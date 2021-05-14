@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-03 09:08+0000\n"
+"PO-Revision-Date: 2021-05-12 22:57+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1046,9 +1046,6 @@ msgstr "服務條款"
 
 msgid "Date range"
 msgstr "日期範圍"
-
-msgid "Map"
-msgstr "地圖"
 
 msgid "Group of questions"
 msgstr "問題題組"

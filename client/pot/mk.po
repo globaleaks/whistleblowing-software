@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-03 09:08+0000\n"
+"PO-Revision-Date: 2021-05-12 22:57+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Macedonian (http://www.transifex.com/otf/globaleaks/language/mk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1042,9 +1042,6 @@ msgstr "Услови за користење "
 
 msgid "Date range"
 msgstr "Опсег на датум "
-
-msgid "Map"
-msgstr "Мапа"
 
 msgid "Group of questions"
 msgstr "Група на прашања "

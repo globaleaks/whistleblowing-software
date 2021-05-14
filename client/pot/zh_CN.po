@@ -4,6 +4,7 @@
 # Chi-Hsun Tsai, 2017
 # ff98sha, 2020
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015,2017-2018,2020
+# khi, 2021
 # 91ca17e215222af3ff24b8eeb76640c7_f9deb57, 2013-2014
 # lin, 2014
 # 刘位, 2014
@@ -21,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-03 09:08+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-05-14 01:38+0000\n"
+"Last-Translator: khi\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -524,10 +525,10 @@ msgid "VAT number"
 msgstr "VAT数字"
 
 msgid "Tax code"
-msgstr ""
+msgstr "税码"
 
 msgid "File a report"
-msgstr ""
+msgstr "提交报告"
 
 msgid "Before proceeding, please set a new password."
 msgstr "继续之前，请设一个新密码。"
@@ -1056,9 +1057,6 @@ msgstr "服务条款"
 
 msgid "Date range"
 msgstr "日期范围"
-
-msgid "Map"
-msgstr "地图"
 
 msgid "Group of questions"
 msgstr "一组问题"

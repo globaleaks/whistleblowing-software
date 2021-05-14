@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-03 09:08+0000\n"
+"PO-Revision-Date: 2021-05-12 22:57+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1043,9 +1043,6 @@ msgstr "Kushtet e shërbimit"
 
 msgid "Date range"
 msgstr "Diapazoni i të dhënave"
-
-msgid "Map"
-msgstr "Hartë"
 
 msgid "Group of questions"
 msgstr "Grupi i pyetjeve"

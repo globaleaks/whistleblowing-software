@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-04 12:54+0000\n"
-"Last-Translator: Cheer Zeng <cheerz6623@gmail.com>\n"
+"PO-Revision-Date: 2021-05-12 22:57+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malay (http://www.transifex.com/otf/globaleaks/language/ms/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1039,9 +1039,6 @@ msgstr "Terma perkhidmatan"
 
 msgid "Date range"
 msgstr "Julat tarikh"
-
-msgid "Map"
-msgstr "Peta"
 
 msgid "Group of questions"
 msgstr "Kumpulan soalan"

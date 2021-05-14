@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-03 09:08+0000\n"
+"PO-Revision-Date: 2021-05-12 22:57+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -523,7 +523,7 @@ msgid "Tax code"
 msgstr "ΑΦΜ"
 
 msgid "File a report"
-msgstr ""
+msgstr "Καταχωρήστε μια αναφορά"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Πριν συνεχίσετε, παρακαλώ ορίστε έναν νέο κωδικό πρόσβασης."
@@ -683,10 +683,10 @@ msgid "Type"
 msgstr "Τυπος"
 
 msgid "Severity"
-msgstr ""
+msgstr "Σοβαρότητα"
 
 msgid "Object"
-msgstr ""
+msgstr "Αντικείμενο"
 
 msgid "ID"
 msgstr "Ταυτότητα"
@@ -1052,9 +1052,6 @@ msgstr "Όροι χρήσης"
 
 msgid "Date range"
 msgstr "Εύρος ημερομηνίας"
-
-msgid "Map"
-msgstr "Χάρτης"
 
 msgid "Group of questions"
 msgstr "Ομάδα των ερωτήσεων"

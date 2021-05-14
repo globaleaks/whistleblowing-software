@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-11 13:17+0000\n"
-"Last-Translator: Cheer Zeng <cheerz6623@gmail.com>\n"
+"PO-Revision-Date: 2021-05-12 22:57+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Hong Kong) (http://www.transifex.com/otf/globaleaks/language/zh_HK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -327,7 +327,7 @@ msgid "Trigger question"
 msgstr "觸發問題"
 
 msgid "Triggered by score:"
-msgstr "由分數觸發："
+msgstr "觸發分數："
 
 msgid "Weak"
 msgstr "弱"
@@ -416,7 +416,7 @@ msgid "Display options alphabetically"
 msgstr "按字母順序顯示選項"
 
 msgid "Enable email notifications for:"
-msgstr "啟用以下電郵提醒："
+msgstr "啟用以下電郵通知："
 
 msgid "Disable"
 msgstr "停用"
@@ -1040,9 +1040,6 @@ msgstr "服務條款"
 
 msgid "Date range"
 msgstr "日期範圍"
-
-msgid "Map"
-msgstr "地圖"
 
 msgid "Group of questions"
 msgstr "問題組"
@@ -1874,7 +1871,7 @@ msgstr "GlobaLeaks 軟件包含了伺服器狀態檢查程序，它會在必要�
 msgid ""
 "For more information, log in to the Administration interface and look at the"
 " \"System Stats\" and \"Anomalies\" sections."
-msgstr "如欲了解更多，請登入管理員介面並查看「系統數據」及「異常」部份。"
+msgstr "如欲了解更多，請登入管理員介面並查看「系統數據」及「異常狀況」部份。"
 
 msgid "Anomaly detected in {NodeName}"
 msgstr "在 {NodeName} 偵測到異常狀況"

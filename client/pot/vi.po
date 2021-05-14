@@ -8,6 +8,7 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # John, 2021
+# Nathan Tran, 2021
 # Ngoc <ngoc@simplysecure.org>, 2021
 # Anh Phan <vietnamesel10n@gmail.com>, 2013
 # Anh Phan <vietnamesel10n@gmail.com>, 2013
@@ -16,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-03 09:08+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-05-15 00:33+0000\n"
+"Last-Translator: Nathan Tran\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -32,16 +33,16 @@ msgid "Main configuration"
 msgstr "Cấu hình chính"
 
 msgid "Theme customization"
-msgstr "Chủ đề tùy chỉnh"
+msgstr "Tùy biến giao diện"
 
 msgid "Languages"
 msgstr "Ngôn ngữ"
 
 msgid "Text customization"
-msgstr "Văn bản tùy chỉnh"
+msgstr "Tùy biến văn bản"
 
 msgid "Advanced settings"
-msgstr "Thiết lập nâng cao"
+msgstr "Thiết đặt nâng cao"
 
 msgid "Questionnaire configuration"
 msgstr "Cấu hình câu hỏi"
@@ -56,10 +57,10 @@ msgid "Add new questionnaire"
 msgstr "Thêm câu hỏi mới"
 
 msgid "Home"
-msgstr "Trở về"
+msgstr "Trang nhà"
 
 msgid "Changelog"
-msgstr "Ký sự thay đổi"
+msgstr "Sổ ghi thay đổi"
 
 msgid "License"
 msgstr "Giấy phép"
@@ -71,13 +72,13 @@ msgid "Delete"
 msgstr "Xóa"
 
 msgid "Anomalies"
-msgstr "Dị thường"
+msgstr "Bất thường"
 
 msgid "Preferences"
-msgstr "Tùy biến"
+msgstr "Chọn lựa"
 
 msgid "Notification settings"
-msgstr "Thiết lập thông báo"
+msgstr "Thiết đặt thông báo"
 
 msgid "file unavailable"
 msgstr "tập tin không có sẵn"
@@ -89,7 +90,7 @@ msgid "Expiration date"
 msgstr "Ngày hết hạn"
 
 msgid "Last Access"
-msgstr "Lần truy cập cuối cùng"
+msgstr "Lần truy cập cuối"
 
 msgid "Files"
 msgstr "Tập tin"
@@ -104,7 +105,7 @@ msgid "Select this recipient."
 msgstr "Chọn người nhận này."
 
 msgid "Unselect this recipient."
-msgstr "Bỏ chọn nhận này."
+msgstr "Bỏ chọn người nhận này."
 
 msgid "This recipient cannot be deselected."
 msgstr "Người nhận này không thể bị hủy chọn"
@@ -113,13 +114,13 @@ msgid "Details"
 msgstr "Chi tiết"
 
 msgid "Platform wizard"
-msgstr "Wizard nền tảng"
+msgstr "Trình hướng dẫn của hệ thống"
 
 msgid "CREDIT CARD"
 msgstr "THẺ TÍN DỤNG"
 
 msgid "YOUR NAME"
-msgstr "TÊN CỦA BẠN"
+msgstr "TÊN BẠN"
 
 msgid "Label the report"
 msgstr "Dán nhãn báo cáo"
@@ -134,22 +135,22 @@ msgid "Deselect all"
 msgstr "Bỏ chọn tất cả"
 
 msgid "Refresh"
-msgstr "Cập nhật"
+msgstr "Làm mới"
 
 msgid "Context"
-msgstr "Nội dung"
+msgstr "Đề tài"
 
 msgid "Private messages"
-msgstr "Tin nhắn riêng tư"
+msgstr "Tin nhắn riêng"
 
 msgid "Preview"
 msgstr "Xem trước"
 
 msgid "The whistleblower has already read the last update"
-msgstr "Người tố giác đã đọc bản cập nhật mới nhất"
+msgstr "Người tố giác đã đọc bản cập nhật cuối"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr "Người tố giác chưa đọc bản cập nhật cuối cùng"
+msgstr "Người tố giác chưa đọc bản cập nhật cuối"
 
 msgid "Move up"
 msgstr "Di chuyển lên"
@@ -176,12 +177,12 @@ msgid "Access control"
 msgstr "Kiểm soát truy cập"
 
 msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Kết nối đã được bảo mật với HTTPS nhẳm đảm bảo tính bảo mật"
+msgstr "Kết nối dùng HTTPS để đảm bảo tính bảo mật"
 
 msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
-msgstr "Kết nối đã được bảo mật với Tor nhằm đảm bảo tính bảo mật và ẩn danh"
+msgstr "Kết nối dùng Tor để đảm bảo tính bảo mật và ẩn danh"
 
 msgid "vertical"
 msgstr "Chiều dọc"
@@ -199,10 +200,10 @@ msgid "Regular expression validator"
 msgstr "Trình xác nhận biểu thức chính quy"
 
 msgid "Minimum number of input characters"
-msgstr "Số ký tự tối thiểu nhập vào"
+msgstr "Số ký tự nhập liệu tối thiểu"
 
 msgid "Maximum number of input characters"
-msgstr "Số ký tự tối đa nhập vào"
+msgstr "Số ký tự nhập liệu tối đa"
 
 msgid "Earliest selectable date"
 msgstr "Ngày chọn được sớm nhất"
@@ -211,7 +212,7 @@ msgid "Latest selectable date"
 msgstr "Ngày chọn được muộn nhất"
 
 msgid "0 = auto"
-msgstr "0 = auto"
+msgstr "0 = tự động"
 
 msgid "True"
 msgstr "Đúng"
@@ -244,19 +245,19 @@ msgid "Status"
 msgstr "Trạng thái"
 
 msgid "Request motivation"
-msgstr "Yêu cầu động lực"
+msgstr "Lý do yêu cầu"
 
 msgid "Reply motivation"
-msgstr "trả lời động lực"
+msgstr "Trả lời lý do"
 
 msgid "Request status"
-msgstr "tình trạng yêu cầu"
+msgstr "Tình trạng yêu cầu"
 
 msgid "Custodian"
-msgstr "Người bảo vệ"
+msgstr "Người bảo quản"
 
 msgid "Custodian of the identities"
-msgstr "Người bảo vệ danh tính"
+msgstr "Người bảo quản danh tính"
 
 msgid "Identity"
 msgstr "Danh tính"
@@ -268,25 +269,25 @@ msgid "Request access to the whistleblower's identity"
 msgstr "Yêu cầu truy cập danh tính của người tố giác"
 
 msgid "Please write a motivation"
-msgstr "Hãy viết một bản trình bày động cơ"
+msgstr "Xin cho biết lý do"
 
 msgid "Reply to the request"
 msgstr "Trả lời yêu cầu"
 
 msgid "Authorized"
-msgstr "Ủy quyền"
+msgstr "Được phép"
 
 msgid "Denied"
 msgstr "Bị từ chối"
 
 msgid "Waiting for authorization"
-msgstr "Đang chờ cấp phép"
+msgstr "Đang chờ xin phép"
 
 msgid "New request"
 msgstr "Yêu cầu mới"
 
 msgid "Authorize"
-msgstr "Ủy quyền"
+msgstr "Cho phép"
 
 msgid "Deny"
 msgstr "Từ chối"
@@ -301,7 +302,7 @@ msgid "Templates"
 msgstr "Mẫu"
 
 msgid "HTTPS settings"
-msgstr "Cài đặt HTTPS"
+msgstr "Thiết đặt HTTPS"
 
 msgid "URL redirects"
 msgstr "Chuyển hướng URL"
@@ -313,32 +314,32 @@ msgid "Available disk space"
 msgstr "Dung lượng đĩa trống"
 
 msgid "Last update"
-msgstr "Cập nhật cuối cùng"
+msgstr "Cập nhật lần cuối"
 
 msgid "Custodian notification templates"
-msgstr "Mẫu thông báo giám sát"
+msgstr "Mẫu thông báo cho người bảo quản"
 
 msgid ""
 "This interface allows configuring email templates used to notify custodians."
-msgstr "Giao diện này cho phép chỉnh sửa cấu hình các mẫu email được dùng để thông báo cho những người bảo vệ."
+msgstr "Giao diện để cấu hình mẫu email thông báo cho người bảo quản."
 
 msgid "Disable notifications to administrators"
-msgstr "Vô hiệu hóa các thông báo cho người quản trị"
+msgstr "Tắt thông báo cho người quản trị"
 
 msgid "Disable notifications to custodians"
-msgstr "Vô hiệu hóa thông báo cho người bảo vệ."
+msgstr "Tắt thông báo cho người bảo quản."
 
 msgid "Disable notifications to recipients"
-msgstr "Vô hiệu hoá thông báo đến người nhận"
+msgstr "Tắt thông báo cho người nhận"
 
 msgid "Score"
 msgstr "Điểm"
 
 msgid "Trigger question"
-msgstr "câu hỏi kích hoạt"
+msgstr "Câu hỏi được khởi động"
 
 msgid "Triggered by score:"
-msgstr "Được kích hoạt bởi điểm số"
+msgstr "Được khởi động bởi số điểm:"
 
 msgid "Weak"
 msgstr "Yếu"
@@ -350,34 +351,34 @@ msgid "Strong"
 msgstr "Mạnh"
 
 msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Văn bản hiển thị trên đầu trang của giao diện để lựa chọn bối cảnh"
+msgstr "Văn bản hiển thị trên đầu trang của giao diện để chọn đề tài"
 
 msgid "Silence email notifications"
-msgstr "Im lặng thông báo email"
+msgstr "Tắt thông báo email"
 
 msgid "Turn on email notifications"
 msgstr "Bật thông báo email"
 
 msgid "Input validation"
-msgstr "Xác nhận thông tin nhập"
+msgstr "Kiểm nhận nhập liệu"
 
 msgid "Email address"
 msgstr "Địa chỉ email"
 
 msgid "Custom"
-msgstr "Tùy chỉnh"
+msgstr "Tùy biến"
 
 msgid "None"
 msgstr "Không có"
 
 msgid "Regular expression"
-msgstr "Biểu hiện thông thường"
+msgstr "Biểu thức chính quy"
 
 msgid "Activate"
 msgstr "Kích hoạt"
 
 msgid "Disactivate"
-msgstr "Không kích hoạt"
+msgstr "Ngừng kích hoạt"
 
 msgid "Search"
 msgstr "Tìm kiếm"
@@ -385,10 +386,10 @@ msgstr "Tìm kiếm"
 msgid ""
 "This custom text is no longer displayed on the platform. The original text "
 "has either changed or been removed."
-msgstr "Văn bản tùy chỉnh này không còn được hiển thị trên nền tảng. Văn bản gốc đã bị thay đổi hoặc bị xóa"
+msgstr "Văn bản tùy biến này không còn được hiển thị trong hệ thống. Văn bản gốc đã bị thay đổi hoặc bị xóa"
 
 msgid "Audit log"
-msgstr "Sổ ghi chép đánh giá"
+msgstr "Sổ kiểm tra"
 
 msgid "Stats"
 msgstr "Thống kê"
@@ -415,16 +416,16 @@ msgid "Maximum file size is:"
 msgstr "Kích thước lớn nhất của tập tin là:"
 
 msgid "Scheduled jobs"
-msgstr "Những công việc đã được lên lịch"
+msgstr "Công việc đã lên lịch"
 
 msgid "Sites management"
-msgstr "Trang web quản lý"
+msgstr "Quản trị các trang web"
 
 msgid "Regenerate"
-msgstr "Phục hồi"
+msgstr "Tái tạo"
 
 msgid "Display options alphabetically"
-msgstr "Hiển thị tùy chọn theo thứ tự bảng chữ cái"
+msgstr "Hiển thị tùy chọn theo thứ tự ABC"
 
 msgid "Enable email notifications for:"
 msgstr "Bật thông báo email cho:"
@@ -436,10 +437,10 @@ msgid "Remove"
 msgstr "Bỏ"
 
 msgid "Use as default"
-msgstr "Sử dụng mặc định"
+msgstr "Dùng như mặc định"
 
 msgid "Create your whistleblowing platform"
-msgstr "Tự tạo nền tảng tố giác của bạn"
+msgstr "Tạo ra hệ thống tố giác của bạn"
 
 msgid "Collapse"
 msgstr "Thu gọn"
@@ -487,16 +488,16 @@ msgid "Not running"
 msgstr "Không hoạt động"
 
 msgid "Send a test email to your email address."
-msgstr "Gửi một email mẫu tới địa chỉ email của bạn"
+msgstr "Gửi thử email đến địa chỉ email của bạn"
 
 msgid "Block the submission"
-msgstr "Chặn đăng kí"
+msgstr "Chặn không cho nộp báo cáo"
 
 msgid "Skip the recipient account creation."
 msgstr "Bỏ qua việc tạo tài khoản người nhận"
 
 msgid "Send activation link"
-msgstr "Gửi link kích hoạt"
+msgstr "Gửi liên kết kích hoạt"
 
 msgid "Password reset"
 msgstr "Cài lại mật khẩu"
@@ -507,7 +508,7 @@ msgid ""
 msgstr "Một hoặc nhiều người nhận chưa thực hiện đăng nhập lần đầu. Điều này có nghĩa là họ sẽ không nhận được báo cáo"
 
 msgid "This user has not performed the first login yet."
-msgstr "Người dùng này chưa thực hiện đăng nhập lần đầu"
+msgstr "Người dùng này chưa thực hiện đăng nhập lần đầu."
 
 msgid "seconds"
 msgstr "giây"
@@ -534,7 +535,7 @@ msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Mật khẩu được chọn quá yếu. Mật khẩu hợp lệ phải dài ít nhất 10 ký tự và chứa nhiều loại ký tự, bao gồm ít nhất một ký tự chữ thường, một ký tự viết hoa, một số và một ký tự đặc biệt"
+msgstr "Mật khẩu được chọn quá yếu. Mật khẩu hợp lệ phải dài ít nhất 10 ký tự và có ít nhất một ký tự chữ thường, một ký tự viết hoa, một ký tự số và một ký tự đặc biệt"
 
 msgid "The new password must be different from the current one."
 msgstr "Mật khẩu mới phải khác mật khẩu hiện tại"
@@ -552,28 +553,28 @@ msgid "Proceed"
 msgstr "Tiếp tục"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr "Trước khi tiếp tục, hãy bật 2 yếu tố xác thực"
+msgstr "Trước khi tiếp tục, hãy bật xác thực 2 yếu tố."
 
 msgid "Disable submissions"
-msgstr "Vô hiệu hóa đệ trình"
+msgstr "Tắt-không nhận báo cáo"
 
 msgid "Enable encryption"
-msgstr "Cho phép mã hóa"
+msgstr "Bật mở mã hóa"
 
 msgid "Enable administrators to change user passwords"
-msgstr "Cho phép các quản trị viên thay đổi mật khẩu người dùng"
+msgstr "Cho phép quản trị viên thay đổi mật khẩu người dùng"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Quản trị viên có quyền thay đổi mật mã người dùng"
 
 msgid "Enable multisite feature"
-msgstr "Cho phép tính năng đa trang web"
+msgstr "Cho phép tính năng nhiều trang web"
 
 msgid "Enable simplified login"
-msgstr "Cho phép đơn giản hóa đăng nhập"
+msgstr "Cho phép đăng nhập đơn giản"
 
 msgid "Allow recipients to delete reports"
-msgstr "Cho phép người nhận để xóa bài nộp"
+msgstr "Cho phép người nhận để xóa báo cáo"
 
 msgid "Allow recipients to postpone expiration date of the report"
 msgstr "Cho phép người nhận hoãn ngày hết hạn của báo cáo"
@@ -586,22 +587,22 @@ msgid "Enable search engines indexing"
 msgstr "Bật công cụ tìm kiếm lập chỉ mục"
 
 msgid "Enable custom privacy panel"
-msgstr "Kích hoạt tính năng bảng điều khiển riêng tư tùy chỉnh"
+msgstr "Bật lên bảng thông tin về bảo mật và riêng tư ở đầu trang"
 
 msgid "Custom privacy panel"
-msgstr "bảng điều khiển riêng tư tùy chỉnh"
+msgstr "Tùy biến bảng thông tin bảo mật và riêng tư"
 
 msgid "Disable the privacy panel"
-msgstr "Vô hiệu hóa bảng điều khiển riêng tư"
+msgstr "Tắt bảng thông tin bảo mật và riêng tư"
 
 msgid "Enable the receipt hint"
-msgstr "Cho phép nhận gợi ý"
+msgstr "Mở gợi ý cho biên nhận"
 
 msgid "Default questionnaire"
 msgstr "Bảng câu hỏi mặc định"
 
 msgid "Show contexts in alphabetical order"
-msgstr "Hiện bối cảnh theo thứ tự ABC"
+msgstr "Hiển thị đề tài theo thứ tự ABC"
 
 msgid "Do not expose users' names"
 msgstr "Không để lộ tên người dùng "
@@ -613,52 +614,52 @@ msgid "in megabytes"
 msgstr "bằng megabyte"
 
 msgid "Enable HSTS preload"
-msgstr "Kích hoạt tải trước HSTS"
+msgstr "Mở chức năng nạp trước HSTS"
 
 msgid "Require two factor authentication"
 msgstr "Yêu cầu xác thực 2 yếu tố"
 
 msgid "Password change interval"
-msgstr "Khoảng thời gian thay đổi mật khẩu"
+msgstr "Khoảng thời gian phải đổi mật khẩu"
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
-msgstr "Vì lý do bảo mật, yêu cầu bạn thay đổi mật khẩu định kỳ"
+msgstr "Vì lý do bảo mật, mật khẩu phải được đổi định kỳ"
 
 msgid "Set the value to 0 to disable this feature."
 msgstr "Đặt giá trị thành 0 để tắt tính năng này"
 
 msgid "Number of days till notifying unread reports to users"
-msgstr "Số ngày còn lại trước khi thông báo người dùng rằng báo cáo chưa được đọc"
+msgstr "Số ngày còn lại trước khi báo cho người dùng biết báo cáo chưa được đọc"
 
 msgid "Enable custodian user role"
-msgstr "Cho phép người dùng sử dụng vai trò người bảo vệ "
+msgstr "Cho dùng vai trò người bảo quản"
 
 msgid "Enable scoring system"
-msgstr "Cho phép hệ thống tính điểm"
+msgstr "Cho dùng hệ thống tính điểm"
 
 msgid "Enable private annotations"
-msgstr "Bật chú thích riêng"
+msgstr "Cho dùng chú thích riêng"
 
 msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Cho phép các trang web sau nhúng nền tảng vào trong iframes"
+msgstr "Cho phép các trang web sau đây cài nhúng hệ thống vào trong iframes"
 
 msgid "Logging level"
-msgstr "Mức đăng nhập"
+msgstr "Mức độ ghi sổ"
 
 msgid "Log accesses of internal users"
-msgstr "Nhật ký truy cập của người dùng nội bộ"
+msgstr "Ghi lại truy cập của người dùng nội bộ"
 
 msgid "Notify administrators of software problems"
-msgstr "Thông báo cho quản trị viên về sự cố phần mềm"
+msgstr "Thông báo cho người quản trị về lỗi phần mềm"
 
 msgid "Notify developers of software problems"
-msgstr "Thông báo cho các nhà phát triển về sự cố phần mềm"
+msgstr "Thông báo cho các nhà phát triển về lỗi phần mềm"
 
 msgid ""
 "By enabling this feature, you will contribute to the development and "
 "security of the platform."
-msgstr "Bằng cách kích hoạt tính năng này, bạn sẽ đóng góp cho sự phát triển và bảo mật của nền tảng"
+msgstr "Bằng cách kích hoạt tính năng này, bạn sẽ đóng góp cho sự phát triển và bảo mật của hệ thống."
 
 msgid "Save"
 msgstr "Lưu"
@@ -685,10 +686,10 @@ msgid "Severity"
 msgstr "Độ nghiêm trọng"
 
 msgid "Object"
-msgstr "Đối tượng"
+msgstr "Dữ liệu"
 
 msgid "ID"
-msgstr "Số"
+msgstr "ID"
 
 msgid "Username"
 msgstr "Người dùng"
@@ -706,10 +707,10 @@ msgid "Last access"
 msgstr "Lần truy cập cuối"
 
 msgid "Connection"
-msgstr "liên quan"
+msgstr "Kết nối"
 
 msgid "Whistleblower's last access"
-msgstr "Lần truy cập WB cuối cùng"
+msgstr "Lần truy cập cuối của người tố giác"
 
 msgid "Substatuses"
 msgstr "Trạng thái phụ"
@@ -721,7 +722,7 @@ msgid "Label"
 msgstr "Nhãn"
 
 msgid "This field is mandatory"
-msgstr "Lĩnh vực này là bắt buộc"
+msgstr "Ô này buộc phải có"
 
 msgid "Edit"
 msgstr "Chỉnh sửa"
@@ -730,7 +731,7 @@ msgid "Cancel"
 msgstr "Hủy bỏ"
 
 msgid "Report statuses"
-msgstr "Báo cáo trạng thái"
+msgstr "Trạng thái báo cáo"
 
 msgid "Logo"
 msgstr "Biểu tượng"
@@ -742,31 +743,31 @@ msgid "Description"
 msgstr "Mô tả"
 
 msgid "Homepage title"
-msgstr "tiêu đề trang chủ"
+msgstr "Tựa đề trang chủ"
 
 msgid "Presentation"
 msgstr "Phần trình bày"
 
 msgid "Question to solicit possible whistleblowers"
-msgstr "Câu hỏi để thu hút những người có thể tố giác "
+msgstr "Câu hỏi để mời gọi người có thể tố giác "
 
 msgid "Whistleblowing button"
 msgstr "Nút tố giác"
 
 msgid "Enable disclaimer"
-msgstr "Cho phép từ chối trách nhiệm"
+msgstr "Bật lên tuyên bố từ chối trách nhiệm"
 
 msgid "Title"
-msgstr "Tiêu đề"
+msgstr "Tựa đề"
 
 msgid "Text"
 msgstr "Văn bản"
 
 msgid "Footer"
-msgstr "Phía cuối trang"
+msgstr "Cuối trang"
 
 msgid "Upload"
-msgstr "Đăng tải"
+msgstr "Tải lên"
 
 msgid "Download"
 msgstr "Tải về"
@@ -775,10 +776,10 @@ msgid "Language:"
 msgstr "Ngôn ngữ"
 
 msgid "Add custom text"
-msgstr "Thêm văn bản tùy chỉnh"
+msgstr "Thêm văn bản tùy biến"
 
 msgid "Custom text"
-msgstr "Văn bản tùy chỉnh"
+msgstr "Văn bản tùy biến"
 
 msgid "Original text"
 msgstr "Văn bản gốc"
@@ -787,16 +788,16 @@ msgid "Original translation"
 msgstr "Phần dịch gốc"
 
 msgid "Custom translation"
-msgstr "Dịch tùy chỉnh"
+msgstr "Phần dịch tùy biến"
 
 msgid "Contexts"
-msgstr "Nội dung"
+msgstr "Đề tài"
 
 msgid "Hidden"
 msgstr "Ẩn"
 
 msgid "Disabled"
-msgstr "Tàn tật"
+msgstr "Tắt"
 
 msgid "Enabled"
 msgstr "Bật"
@@ -811,43 +812,43 @@ msgid "days"
 msgstr "ngày"
 
 msgid "Show the questionnaire navigation interface"
-msgstr "Hiển thị giao diện điều hướng câu hỏi"
+msgstr "Hiển thị giao diện di chuyển của bảng câu hỏi"
 
 msgid "Allow whistleblowers to select their recipients"
-msgstr "Cho phép người tố cáo để chọn người nhận họ"
+msgstr "Cho phép người tố giác chọn người nhận"
 
 msgid "Select all recipients by default"
 msgstr "Chọn tất cả người nhận mặc định"
 
 msgid "Maximum number of selectable recipients:"
-msgstr "Số lượng người nhận lựa chọn:"
+msgstr "Số lượng người nhận được chọn tối đa là:"
 
 msgid "Show recipients in alphabetical order"
-msgstr "Hiện người nhận trong thứ tự chữ cái"
+msgstr "Hiển thị người nhận theo thứ tự ABC"
 
 msgid "Show recipient details on the status page of the report"
-msgstr "Hiển thị chi tiết người nhận trên trang trạng thái của trình"
+msgstr "Hiển thị chi tiết người nhận trong trang trạng thái của báo cáo"
 
 msgid "Enable comments"
-msgstr "Cho phép nhận xét"
+msgstr "Cho phép góp ý"
 
 msgid "Allow whistleblowers to write comments"
-msgstr "Cho phép người tố giác viết bình luận"
+msgstr "Cho phép người tố giác góp ý kiến"
 
 msgid "Enable private messages"
-msgstr "Kích hoạt tính năng tin nhắn"
+msgstr "Cho dùng tin nhắn riêng"
 
 msgid "Allow whistleblowers to send messages"
 msgstr "Cho phép người tố giác gửi tin nhắn"
 
 msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Cho phép người tố giác thêm tệp đính kèm vào các báo cáo hiện có"
+msgstr "Cho phép người tố giác thêm tập tin đính kèm vào các báo cáo hiện có"
 
 msgid "Let recipients upload files to whistleblowers"
-msgstr "Cho phép người nhận tải tệp tin lên cho người tố giác"
+msgstr "Cho phép người nhận tải tập tin lên cho người tố giác"
 
 msgid "Additional questionnaire"
-msgstr "Bảng câu hỏi bổ sung "
+msgstr "Bảng câu hỏi bổ sung"
 
 msgid "Scoring system options"
 msgstr "Tùy chọn hệ thống chấm điểm"
@@ -859,31 +860,31 @@ msgid "Value"
 msgstr "Giá trị"
 
 msgid "Medium"
-msgstr "Vừa phải"
+msgstr "Vừa"
 
 msgid "Customize the message shown in the receipt page"
-msgstr "Tùy chỉnh tin nhắn hiển thị trong trang biên nhận"
+msgstr "Tùy biến tin nhắn hiển thị trong trang biên nhận"
 
 msgid "Assign the receipt only to reports reaching score:"
-msgstr "Chỉ định biên nhận cho các báo cáo đạt điểm:"
+msgstr "Thêm biên nhận vào các báo cáo đạt điểm:"
 
 msgid "Software version:"
 msgstr "Phiên bản phần mềm:"
 
 msgid "Restrict access to specific IP addresses"
-msgstr "Hạn chế quyền truy cập vào các địa chỉ IP cụ thể"
+msgstr "Hạn chế truy cập trong một số địa chỉ IP riêng biệt"
 
 msgid "Allowed IP addresses"
-msgstr "Các địa chỉ IP cho phép"
+msgstr "Các địa chỉ IP được phép truy cập"
 
 msgid "Admin"
-msgstr "quản trị viên"
+msgstr "Quản trị viên"
 
 msgid "Recipient"
 msgstr "Người nhận"
 
 msgid "Each entry must be separated with a comma."
-msgstr "Mỗi mục phải được cách nhau bằng dấu phẩy"
+msgstr "Tách mỗi mục ra bằng dấu phẩy"
 
 msgid "Example:"
 msgstr "Thí dụ:"
@@ -892,16 +893,16 @@ msgid "Hostname"
 msgstr "Tên máy chủ"
 
 msgid "Invalid input format."
-msgstr "Định dạng đầu vào không hợp lệ"
+msgstr "Định dạng của dữ liệu nhập vào không hợp lệ"
 
 msgid "Input should be similar to:"
-msgstr "Đầu vào phải tương tự như:"
+msgstr "Dữ liệu nhập vào phải tương tự như:"
 
 msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr "Sử dụng Let's Encrypt yêu cầu bạn đồng ý với Điều khoản dịch vụ "
+msgstr "Để sử dụng Let's Encrypt bạn phải đồng ý với Điều khoản Dịch vụ của họ."
 
 msgid "Read the Terms of Service"
-msgstr "Đọc điều khoản dịch vụ"
+msgstr "Xin đọc điều khoản dịch vụ"
 
 msgid "I agree to the Terms of Service."
 msgstr "Tôi đồng ý với Điều khoản dịch vụ"
@@ -922,35 +923,35 @@ msgid "Invalid email address"
 msgstr "Địa chỉ email không hợp lệ"
 
 msgid "Generate"
-msgstr "Tạo"
+msgstr "Tạo ra"
 
 msgid "Private Key"
-msgstr "Khóa riêng tư"
+msgstr "Khóa riêng"
 
 msgid "Certificate Signing Request"
-msgstr "Đơn yêu cầu chứng chỉ"
+msgstr "Yêu cầu Ký nhận Chứng chỉ"
 
 msgid "Certificate"
 msgstr "Chứng chỉ"
 
 msgid "Valid until:"
-msgstr "Có thời hạn đến:"
+msgstr "Có giá trị cho đến:"
 
 msgid "Issuer:"
-msgstr "Tổ chức phát hành:"
+msgstr "Nơi cấp phát:"
 
 msgid "Intermediate Certificates"
-msgstr "Chứng chỉ trung cấp"
+msgstr "Chứng chỉ trung gian"
 
 msgid "Enable"
-msgstr "Cho phép"
+msgstr "Bật lên"
 
 msgid "Reset"
-msgstr "Cài đặt lại"
+msgstr "Đặt lại"
 
 msgid ""
 "The platform supports the configuration of HTTPS through this interface."
-msgstr "Nền tảng hỗ trợ cấu hình HTTPS thông qua giao diện này"
+msgstr "Hệ thống có hỗ trợ cấu hình HTTPS thông qua giao diện này."
 
 msgid "Automatic configuration"
 msgstr "Cấu hình tự động"
@@ -959,35 +960,35 @@ msgid ""
 "Using automatic HTTPS configuration will handle the entire process of "
 "requesting, enabling and renewing certificates from the Let's Encrypt "
 "Certificate Authority."
-msgstr "Sử dụng cấu hình tự động HTTPS sẽ xử lý toàn bộ quá trình yêu cầu, bật và gia hạn chứng chỉ từ Cơ quan chứng nhận Let's Encrypt"
+msgstr "Dùng cấu hình HTTPS tự động sẽ thực hiện toàn bộ quá trình yêu cầu, bật và gia hạn chứng chỉ từ Cơ quan Chứng Chỉ Let's Encrypt"
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
 "hostname must have a corresponding DNS record referencing that address."
-msgstr "Nền tảng phải có thể truy cập từ một địa chỉ IP công cộng và tên máy chủ được chọn phải có bản ghi lại các DNS tương ứng trong địa chỉ đó  "
+msgstr "Hệ thống phải truy cập được từ một địa chỉ IP công cộng và tên máy chủ được chọn phải có hồ sơ DNS tương ứng trong địa chỉ đó."
 
 msgid "Manual configuration"
-msgstr "Cấu hình thủ công"
+msgstr "Cấu hình tự làm"
 
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
-msgstr "Trình hướng dẫn cấu hình thủ công sẽ hướng dẫn bạn thiết lập HTTPS từ Tổ chức phát hành chứng chỉ thay thế"
+msgstr "Trình hướng dẫn cấu hình thủ công sẽ hướng dẫn bạn thiết lập HTTPS từ một Cơ Quan Chứng Chỉ khác."
 
 msgid "Auto-renewal"
-msgstr "Đổi mới tự động"
+msgstr "Tự động gia hạn"
 
 msgid "Tor Onion Service"
-msgstr "Dịch vụ của Tor Onion"
+msgstr "Dịch vụ Tor Onion"
 
 msgid "Anonymize outgoing connections"
-msgstr "Ẩn danh các kết nối đi"
+msgstr "Ẩn danh các kết nối ra bên ngoài"
 
 msgid "Let the platform be reachable without Tor"
-msgstr "Hãy để nền tảng có thể truy cập mà không cần Tor"
+msgstr "Hãy để hệ thống truy cập được mà không cần Tor"
 
 msgid "Roles enabled to use the platform without Tor"
-msgstr "Các vai trò có thể sử dụng nền tảng mà không cần Tor"
+msgstr "Các vai trò có thể dùng hệ thống mà không cần Tor"
 
 msgid "Whistleblower"
 msgstr "Người tố giác"
@@ -996,13 +997,13 @@ msgid "To"
 msgstr "Tới"
 
 msgid "SMTP email address"
-msgstr "địa chỉ email SMTP"
+msgstr "Địa chỉ email SMTP"
 
 msgid "SMTP server address"
-msgstr "Địa chỉ server SMTP"
+msgstr "Địa chỉ máy chủ SMTP"
 
 msgid "SMTP server port"
-msgstr "Cổng server SMTP"
+msgstr "Cổng máy chủ SMTP"
 
 msgid "Security"
 msgstr "Bảo mật"
@@ -1017,16 +1018,16 @@ msgid "Password"
 msgstr "Mật khẩu"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr "Số giờ trước khi gửi một cảnh báo hết hạn nộp hồ sơ"
+msgstr "Số giờ trước khi gửi cảnh báo về báo cáo hết hạn"
 
 msgid "Test the configuration"
-msgstr "Kiểm tra cấu hình"
+msgstr "Kiểm thử cấu hình"
 
 msgid "Reset SMTP configuration"
-msgstr "Thiết lập lại cấu hình SMTP"
+msgstr "Đặt lại cấu hình SMTP"
 
 msgid "Reset notification templates to default"
-msgstr "Thiết lập lại các mẫu thông báo mặc định"
+msgstr "Đặt lại các mẫu thông báo mặc định"
 
 msgid "Template"
 msgstr "Bản mẫu"
@@ -1044,31 +1045,28 @@ msgid "Selection box"
 msgstr "Hộp lựa chọn"
 
 msgid "Checkbox"
-msgstr "Checkbox"
+msgstr "Hộp kiểm"
 
 msgid "Terms of service"
 msgstr "Điều khoản dịch vụ"
 
 msgid "Date range"
-msgstr "Thời lượng ngày"
-
-msgid "Map"
-msgstr "Bản đồ"
+msgstr "Phạm vi ngày"
 
 msgid "Group of questions"
-msgstr "Nhóm các câu hỏi"
+msgstr "Nhóm câu hỏi"
 
 msgid "Row"
-msgstr "hàng"
+msgstr "Hàng"
 
 msgid "Column"
 msgstr "Cột"
 
 msgid "Width"
-msgstr "Chiều rộng"
+msgstr "Bề ngang"
 
 msgid "Multiple choice input"
-msgstr "Nhiều lựa chọn đầu vào"
+msgstr "Nút tùy chọn"
 
 msgid "Question group"
 msgstr "Nhóm câu hỏi"
@@ -1077,7 +1075,7 @@ msgid "Hint"
 msgstr "Gợi ý"
 
 msgid "Required"
-msgstr "Cần thiết"
+msgstr "Phải có"
 
 msgid "Accept multiple file uploads"
 msgstr "Chấp nhận nhiều tập tin tải lên"
@@ -1086,13 +1084,13 @@ msgid "Accept multiple answers"
 msgstr "Chấp nhận nhiều câu trả lời"
 
 msgid "Template override"
-msgstr "Ghi đè mẫu"
+msgstr "Ghi đè lên bản mẫu"
 
 msgid "Phone number"
 msgstr "Số điện thoại"
 
 msgid "Checkbox label"
-msgstr "Nhãn dán checkbox"
+msgstr "Nhãn hộp kiểm"
 
 msgid "Add multimedia content"
 msgstr "Thêm nội dung đa phương tiện"
@@ -1107,19 +1105,19 @@ msgid "Video"
 msgstr "Video"
 
 msgid "Subject answer visibility to custodian authorization"
-msgstr "Tình trạng hiển thị của câu trả lời để cho phép quyền bảo vệ"
+msgstr "Để người bảo quản quyết định cho câu trả lời hiển thị hay không "
 
 msgid "Text shown upon negative answer"
-msgstr "Văn bản hiển thị khi trả lời tiêu cực"
+msgstr "Văn bản hiển thị khi câu trả lời là không."
 
 msgid "Prompt confirmation upon negative answer"
-msgstr "Xác nhận gợi ý khi có câu trả lời tiêu cực"
+msgstr "Yêu cầu xác nhận khi có câu trả lời là không"
 
 msgid "Text shown upon confirmation"
-msgstr "Văn bản hiển thị khi xác nhận."
+msgstr "Văn bản hiển thị khi được xác nhận"
 
 msgid "Trigger conditions"
-msgstr "Các điều kiện kích hoạt"
+msgstr "Điều kiện để khởi động"
 
 msgid "Sufficient"
 msgstr "Đủ"
@@ -1140,22 +1138,22 @@ msgid "Add new question"
 msgstr "Thêm câu hỏi mới"
 
 msgid "Add question from template"
-msgstr "Thêm câu hỏi từ mẫu"
+msgstr "Thêm câu hỏi từ bản mẫu"
 
 msgid "Duplicate"
-msgstr "Bản sao"
+msgstr "Sao lại"
 
 msgid "Steps"
 msgstr "Các bước"
 
 msgid "Site settings"
-msgstr "Cài đặt trang"
+msgstr "Thiết đặt trang"
 
 msgid "Case management"
 msgstr "Quản lý hồ sơ"
 
 msgid "Network settings"
-msgstr "Cài đặt mạng"
+msgstr "Thiết đặt mạng"
 
 msgid "Sites"
 msgstr "Các trang web"
@@ -1173,19 +1171,19 @@ msgid "Creation date:"
 msgstr "Ngày thành lập"
 
 msgid "Root domain used for secondary sites"
-msgstr "Tên miền gốc được sử dụng cho các trang web thứ cấp"
+msgstr "Tên miền gốc dùng cho các trang web phụ"
 
 msgid "Use the first site for administrative purposes only"
-msgstr "Chỉ sử dụng trang web đầu tiên cho mục đích quản trị"
+msgstr "Chỉ dùng trang web đầu tiên cho mục đích quản trị"
 
 msgid "Enable multi-site login"
 msgstr "Cho phép đăng nhập nhiều trang"
 
 msgid "Allow users to sign up"
-msgstr "Cho phép người dùng đăng kí"
+msgstr "Cho phép người dùng đăng ký"
 
 msgid "Enable terms of service"
-msgstr "Cho phép điều khoản dịch vụ"
+msgstr "Bật mở điều khoản dịch vụ"
 
 msgid "Send an account activation link to the user."
 msgstr "Gửi liên kết kích hoạt tài khoản người dùng"
@@ -1194,19 +1192,19 @@ msgid "Public name"
 msgstr "Tên công khai"
 
 msgid "Send reset link"
-msgstr "Gửi liên kết cài đặt lại"
+msgstr "Gửi liên kết đặt lại"
 
 msgid "Set password"
 msgstr "Cài đặt mật khẩu"
 
 msgid "Disable two factor authentication"
-msgstr "Vô hiệu hóa 2 yếu tố xác thực"
+msgstr "Tắt xác thực 2 yếu tố "
 
 msgid "Force password change"
-msgstr "Bắt buộc thay đổi mật khẩu"
+msgstr "Buộc thay đổi mật khẩu"
 
 msgid "The user will be forced to change its password on next login."
-msgstr "Người dùng sẽ buộc phải thay đổi mật khẩu của mình trong lần đăng nhập tiếp theo."
+msgstr "Người dùng sẽ buộc phải thay đổi mật khẩu trong lần đăng nhập kế."
 
 msgid "Language"
 msgstr "Ngôn ngữ"
@@ -1215,28 +1213,28 @@ msgid "Enable email notifications"
 msgstr "Bật thông báo email"
 
 msgid "Details of the PGP key:"
-msgstr "Thông tin chi tiết của khóa PGP:"
+msgstr "Chi tiết của khóa PGP:"
 
 msgid "Fingerprint"
-msgstr "Dấu vân tay"
+msgstr "Dấu vết riêng"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "Thiết lập mã hóa bằng cách cung cấp một khóa công khai PGP"
 
 msgid "Give this admin ability to change user passwords"
-msgstr "Cung cấp cho quản trị viên này khả năng thay đổi mật khẩu người dùng"
+msgstr "Cho phép quản trị viên thay đổi mật khẩu người dùng"
 
 msgid "Forcefully selected"
-msgstr "Mạnh mẽ chọn"
+msgstr "Được chọn trước"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Cho phép người nhận hoãn hạn nộp hồ sơ"
+msgstr "Cho phép người nhận hoãn thời điểm hết hạn của báo cáo"
 
 msgid "Allow the recipient to delete reports"
-msgstr "Cho phép người nhận xóa bài nộp"
+msgstr "Cho phép người nhận xóa báo cáo"
 
 msgid "Give the user administrative access to the following features:"
-msgstr "Cho quản trị viên quyền truy cập đến những tính năng sau: "
+msgstr "Cho người dùng quyền quản trị để truy cập đến những tính năng sau: "
 
 msgid "Request date"
 msgstr "Ngày yêu cầu"
@@ -1245,40 +1243,40 @@ msgid "Report date"
 msgstr "Ngày báo cáo"
 
 msgid "Authorization"
-msgstr "Ủy quyền"
+msgstr "Xin phép"
 
 msgid "Requests"
 msgstr "Yêu cầu"
 
 msgid "The validation link is either incorrect or has expired."
-msgstr "Liên kết xác nhận không chính xác hoặc đã hết hạn"
+msgstr "Liên kết kiểm nhận không chính xác hoặc đã hết hạn"
 
 msgid "Your new email address has been validated."
-msgstr "Địa chỉ email của bạn đã được xác thực"
+msgstr "Địa chỉ email của bạn đã được kiểm nhận."
 
 msgid "Forgot password?"
 msgstr "Quên mật khẩu?"
 
 msgid "Enter the two factor authentication code"
-msgstr "Nhập mã 2 yếu tố xác thực"
+msgstr "Nhập mã xác thực 2 yếu tố "
 
 msgid "Authentication failed"
-msgstr "Quá trình xác thực đã thất bại"
+msgstr "Xác thực thất bại"
 
 msgid "The code is either invalid or expired."
-msgstr "Mã này không hợp lệ hoặc đã hết hạn"
+msgstr "Mã số không hợp lệ hoặc đã hết hạn"
 
 msgid "Site:"
 msgstr "Trang web:"
 
 msgid "Please select your account:"
-msgstr "Vui lòng chọn tài khoản của bạn:"
+msgstr "Xin chọn tài khoản của bạn:"
 
 msgid "Now type your password, then click 'Log in':"
-msgstr "Bây giờ gõ mật khẩu của bạn, sau đó nhấp vào 'Đăng nhập':"
+msgstr "Điền vào mật khẩu của bạn, sau đó bấm vào 'Đăng nhập':"
 
 msgid "Text shown after the user has selected the option."
-msgstr "Văn bản hiển thị sau khi người dùng đã chọn các tùy chọn"
+msgstr "Văn bản hiển thị sau khi người dùng đã lựa tùy chọn"
 
 msgid "Confirm"
 msgstr "Xác nhận"
@@ -1287,16 +1285,16 @@ msgid "Are you sure?"
 msgstr "Bạn có chắc không?"
 
 msgid "The operation will reset the configuration and cannot be undone."
-msgstr "Hoạt động sẽ thiết lập lại cấu hình và không thể hoàn tác"
+msgstr "Thao tác này sẽ đặt lại cấu hình và không thể đảo ngược lại được."
 
 msgid "Assign score points"
-msgstr "Gán điểm"
+msgstr "Ấn định điểm"
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Xin lưu ý rằng tất cả các dữ liệu liên quan sẽ bị xóa vĩnh viễn"
+msgstr "Xin lưu ý là tất cả các dữ liệu liên quan sẽ bị xóa vĩnh viễn"
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Đây là một nền tảng thử nghiệm, vui lòng không sử dụng để gửi tin thật."
+msgstr "Đây là một hệ thống thử nghiệm, xin đừng dùng để gửi tin thật."
 
 msgid "Install an authenticator app on your phone"
 msgstr "Cài đặt ứng dụng xác thực trên điện thoại của bạn"
@@ -1305,27 +1303,27 @@ msgid "Scan the QR code with the app"
 msgstr "Quét mã QR với ứng dụng"
 
 msgid "Enable two factor authentication"
-msgstr "Cho phép xác thực hai yếu tố"
+msgstr "Bật chức năng xác thực hai yếu tố"
 
 msgid "Close"
 msgstr "Đóng"
 
 msgid "Before proceeding please read carefully the documentation at:"
-msgstr "Trước khi tiếp tục, vui lòng đọc kỹ tài liệu tại:"
+msgstr "Trước khi tiếp tục, xin đọc kỹ tài liệu tại:"
 
 msgid "Your account recovery key is:"
-msgstr "Mã khôi phục tài khoản của bạn là:"
+msgstr "Chìa khóa khôi phục tài khoản của bạn là:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr "Tạo một bản sao và lưu trữ ở nơi an toàn. Điều này sẽ cần thiết nếu bạn mất mật khẩu và muốn khôi phục quyền truy cập vào tài khoản của mình mà không mất dữ liệu."
+msgstr "Làm một bản sao và lưu trữ ở nơi an toàn. Nếu bạn mất mật khẩu nó sẽ giúp bạn khôi phục lại tài khoản và dữ liệu."
 
 msgid "Welcome!"
 msgstr "Chào mừng bạn!"
 
 msgid "For the user documentation, visit:"
-msgstr "Đối với tư liệu người dùng, hãy truy cập:"
+msgstr "Vào trang sau đây để xem cẩm nang sử dụng"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
@@ -1335,16 +1333,16 @@ msgstr "Nếu bạn cần hỗ trợ kỹ thuật, có câu hỏi chung hoặc c
 msgid ""
 "If you want to contribute to software development or report a bug, please "
 "open an issue in our ticketing system:"
-msgstr "Nếu bạn muốn đóng góp vào việc phát triển phần mềm hoặc báo cáo lỗi, vui lòng báo cáo vấn đề trong hệ thống theo dõi vấn đề (ticketing system) của chúng tôi. "
+msgstr "Nếu bạn muốn đóng góp vào việc phát triển phần mềm hoặc báo cáo lỗi, vui lòng báo cáo trong hệ thống theo dõi vấn đề của chúng tôi:"
 
 msgid "Join our chat:"
-msgstr "Chat cùng chúng tôi:"
+msgstr "Chat với chúng tôi:"
 
 msgid "Follow the project on:"
 msgstr "Theo dõi dự án trên:"
 
 msgid "Hint: How to hide your receipt"
-msgstr "Gợi ý: Cách ẩn biên lai của bạn"
+msgstr "Gợi ý: Cách ẩn biên nhận của bạn"
 
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
@@ -1358,31 +1356,31 @@ msgid "Internal server error"
 msgstr "Lỗi nội bộ máy chủ"
 
 msgid "Error on input validation"
-msgstr "Lỗi khi xác nhận đầu vào"
+msgstr "Lỗi khi kiểm nhận nhập liệu"
 
 msgid "Resource not found"
 msgstr "Không tìm thấy nguồn"
 
 msgid "Forbidden operation"
-msgstr "Cấm hoạt động"
+msgstr "Thao tác bị cấm"
 
 msgid "The specified old password is not valid"
-msgstr "Mật khẩu được xác định trước đó không hợp lệ"
+msgstr "Mật khẩu cũ không hợp lệ"
 
 msgid "Resource can only be accessed via the Tor network"
-msgstr "Tài nguyên chỉ có thể được truy cập thông qua mạng Tor"
+msgstr "Thông tin chỉ có thể truy cập được qua mạng Tor"
 
 msgid "The upload request exceeds the size limit"
-msgstr "Các yêu cầu tải lên vượt quá giới hạn kích thước"
+msgstr "Tập tin tải lên vượt quá giới hạn về kích thước"
 
 msgid "Validation of email address change in progress."
-msgstr "Xác nhận thay đổi địa chỉ email trong quá trình."
+msgstr "Đang trong tiến trình kiểm nhận thay đổi địa chỉ email."
 
 msgid "Please check your inbox for further instructions."
-msgstr "Vui lòng kiểm tra hộp thư đến của bạn để được hướng dẫn thêm"
+msgstr "Xem hộp thư email của bạn để nhận thêm hướng dẫn"
 
 msgid "Account recovery key"
-msgstr "Mã khôi phục tài khoản"
+msgstr "Chìa khóa khôi phục tài khoản"
 
 msgid "Current password"
 msgstr "Mật khẩu hiện tại"
@@ -1393,7 +1391,7 @@ msgstr "Yêu cầu xác nhận mật khẩu cũ"
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
-msgstr "Có vẻ như bạn đang duyệt trang web này mà không có bất kỳ sự riêng tư và bảo mật nào!"
+msgstr "Dường như bạn đang duyệt trang web này nhưng không dùng phương thức bảo mật và riêng tư!"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
@@ -1401,7 +1399,7 @@ msgid ""
 msgstr "Để bảo vệ danh tính của mình, bạn nên truy cập trang web này qua trình duyệt Tor Browser. "
 
 msgid "Download the Tor Browser"
-msgstr "Tải về các trình duyệt Tor"
+msgstr "Tải về trình duyệt Tor"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Sau đó, sao chép và dán địa chỉ sau vào trình duyệt Tor:"
@@ -1410,13 +1408,13 @@ msgid "Enter a name for the copy"
 msgstr "Nhập tên cho bản sao"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "Bạn đã nộp một báo cáo? Nhập mã khóa của bạn."
+msgstr "Bạn đã nộp một báo cáo? Điền biên nhận vào."
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr "Biên lai không hợp lệ hoặc báo cáo đã hết hạn."
+msgstr "Biên nhận không hợp lệ hoặc báo cáo đã hết hạn."
 
 msgid "Select a file or drag it here."
-msgstr "Chọn tập tin hoặc kéo thả vào đây"
+msgstr "Chọn tập tin hoặc kéo thả vào đây."
 
 msgid "Uploading files…"
 msgstr "Đang tải lên tập tin...."
@@ -1425,28 +1423,28 @@ msgid "Upload completed successfully!"
 msgstr "Tải lên thành công!"
 
 msgid "Error while uploading files; check below for details."
-msgstr "Lỗi trong khi tải tệp lên; kiểm tra bên dưới để biết chi tiết."
+msgstr "Có lỗi trong khi tải tập tin lên; xem chi tiết dưới đây."
 
 msgid "Estimated upload time:"
-msgstr "Thời gian tải lên dự kiến:"
+msgstr "Ước lượng thời gian tải lên:"
 
 msgid "Size:"
 msgstr "Kích thước:"
 
 msgid "Enable the Ricochet panel"
-msgstr "Kích hoạt bảng điều khiển Ricochet"
+msgstr "Bật mở bảng Ricochet"
 
 msgid "Address"
-msgstr "Địa chỉ nhà"
+msgstr "Địa chỉ"
 
 msgid "Chat with us anonymously using the Ricochet application"
-msgstr "Trò chuyện với chúng tôi ẩn danh bằng ứng dụng Ricochet"
+msgstr "Trò chuyện ẩn danh với chúng tôi bằng ứng dụng Ricochet"
 
 msgid "To chat with us use the following Ricochet address:"
-msgstr "Để trò chuyện với chúng tôi, hãy sử dụng địa chỉ Ricochet sau:"
+msgstr "Để trò chuyện với chúng tôi, dùng địa chỉ Ricochet sau đây:"
 
 msgid "Download Ricochet at:"
-msgstr "Tải Ricochet tại:"
+msgstr "Tải Ricochet về từ:"
 
 msgid ""
 "By using the Tor network and creating an Onion Service, Ricochet is an "
@@ -1454,7 +1452,7 @@ msgid ""
 "and staying anonymous by not revealing your location or IP address. You "
 "won't notice any difference from an insecure chat, except that you will be "
 "using a unique address instead of a phone number/email/username."
-msgstr "Bằng cách sử dụng mạng Tor và tạo dịch vụ Onion, Ricochet là một ứng dụng nhắn tin tức thời cho phép bạn trò chuyện trong khi bảo vệ quyền riêng tư của bạn và ẩn danh bằng cách không tiết lộ vị trí hoặc địa chỉ IP của bạn. Bạn sẽ không nhận thấy bất kỳ sự khác biệt nào từ một cuộc trò chuyện không an toàn, ngoại trừ việc bạn sẽ sử dụng một địa chỉ duy nhất thay vì số điện thoại / email / tên người dùng"
+msgstr "Bằng cách dùng mạng Tor và tạo dịch vụ Onion, Ricochet là một ứng dụng tin nhắn nhanh để trò chuyện cùng lúc đó bảo vệ quyền riêng tư và ẩn danh của bạn bằng cách không tiết lộ vị trí hoặc địa chỉ IP của bạn. Bạn sẽ không thấy nó khác gì lắm với các loại chat thông thường, ngoại trừ việc bạn sẽ sử dụng một địa chỉ đặc biệt thay vì số điện thoại / email / tên người dùng"
 
 msgid "The connection is not secure."
 msgstr "Kết nối không an toàn"
@@ -1462,7 +1460,7 @@ msgstr "Kết nối không an toàn"
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
-msgstr "Nền tảng vẫn chưa được cấu hình cho các kết nối HTTPS và do đó chỉ nên được sử dụng cho mục đích thử nghiệm"
+msgstr "Hệ thống chưa được cấu hình cho kết nối HTTPS và do đó chỉ nên dùng để thử nghiệm."
 
 msgid "Use case"
 msgstr "Trường hợp sử dụng"
@@ -1471,28 +1469,28 @@ msgid "Anticorruption"
 msgstr "Chống tham nhũng"
 
 msgid "Corporate compliance"
-msgstr "Tuân thủ công ty"
+msgstr "Công ty tuân thủ luật"
 
 msgid "Investigative journalism"
-msgstr "Báo chí điều tra"
+msgstr "Phóng sự điều tra"
 
 msgid "Civic activism"
 msgstr "Hoạt động xã hội dân sự"
 
 msgid "Submit"
-msgstr "Đệ trình"
+msgstr "Đệ nạp"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Người nhận đã yêu cầu bạn điền vào một bảng câu hỏi bổ sung."
 
 msgid "Fill the additional questionnaire"
-msgstr "Điền vào bảng câu hỏi bổ sung"
+msgstr "Điền thêm các câu hỏi bổ sung"
 
 msgid "Send"
 msgstr "Gởi"
 
 msgid "Allow the whistleblower to write comments"
-msgstr "Cho phép người tố giác viết bình luận"
+msgstr "Cho phép người tố giác góp ý kiến"
 
 msgid "From:"
 msgstr "Từ:"
@@ -1504,28 +1502,28 @@ msgid "Filename"
 msgstr "Tên tập tin"
 
 msgid "Upload date"
-msgstr "Ngày đăng"
+msgstr "Ngày tải lên"
 
 msgid "File size"
 msgstr "Kích thước tập tin"
 
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Cho phép người tố giác thêm tệp đính kèm vào báo cáo"
+msgstr "Cho phép người tố giác thêm tập tin đính kèm vào báo cáo"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Cho phép người tố giác gửi tin nhắn"
 
 msgid "Are you sure that you want to delete the report?"
-msgstr "Bạn có chắc chắn muốn xóa các báo cáo?"
+msgstr "Bạn có chắc là muốn xóa báo cáo?"
 
 msgid ""
 "Everything related to the report stored on the platform will be deleted."
-msgstr "Mọi thứ được lưu trữ trên nền tảng liên quan đến báo cáo sẽ bị xóa."
+msgstr "Tất cả dữ kiện lưu trữ trên hệ thống liên quan đến báo cáo sẽ bị xóa."
 
 msgid ""
 "Please be aware that everything stored off the platform, e.g. files you have"
 " saved on your computer, must be deleted manually."
-msgstr "Xin lưu ý rằng mọi thứ được lưu trữ ngoài nền tảng, ví dụ như các tệp bạn đã lưu trên máy tính của bạn, phải được xóa thủ công."
+msgstr "Xin lưu ý là các dữ liệu được lưu trữ bên ngoài hệ thống, ví dụ như tập tin lưu trên máy tính, phải được bạn tự xóa. "
 
 msgid "Are you sure that you want to delete the selected reports?"
 msgstr "Bạn có chắc chắn muốn xóa các báo cáo đã chọn không?"
@@ -1533,27 +1531,27 @@ msgstr "Bạn có chắc chắn muốn xóa các báo cáo đã chọn không?"
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
 "recipients won't be able to further access to it."
-msgstr "Vui lòng đảm bảo rằng tất cả dữ liệu liên quan sẽ được xóa đúng cách để người nhận không thể truy cập thêm vào dữ liệu đó."
+msgstr "Xin đảm bảo rằng tất cả dữ liệu liên quan được xóa sạch để người nhận không thể truy cập dữ liệu đó được nữa."
 
 msgid "Please write a motivation for the reply"
-msgstr "Hãy viết động cơ của bạn trong phần trả lời"
+msgstr "Xin cho biết động cơ của bạn trong phần trả lời"
 
 msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Bạn có chắc chắn rằng bạn muốn hoãn ngày hết hạn nộp báo cáo?"
+msgstr "Bạn có chắc chắn muốn hoãn ngày báo cáo hết hạn?"
 
 msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Bằng cách xác nhận, bạn sẽ hoãn ngày hết hạn đến:"
+msgstr "Khi xác nhận, bạn sẽ hoãn ngày hết hạn đến:"
 
 msgid ""
 "Are you sure that you want to postpone the expiration date for all selected "
 "reports?"
-msgstr "Bạn có chắc chắn rằng bạn muốn hoãn ngày hết hạn cho các báo cáo được chọn không?"
+msgstr "Bạn có chắc chắn muốn hoãn ngày hết hạn cho các báo cáo được chọn không?"
 
 msgid "Questionnaire answers"
-msgstr "Câu trả lời cho bảng hỏi"
+msgstr "Trả lời cho bảng câu hỏi"
 
 msgid "Step"
-msgstr "Bước đi"
+msgstr "Bước"
 
 msgid "Recipient list"
 msgstr "Danh sách người nhận"
@@ -1562,7 +1560,7 @@ msgid "Status:"
 msgstr "Tình trạng"
 
 msgid "Files attached by recipients"
-msgstr "Tập tin được đính kèm bởi người nhận"
+msgstr "Tập tin do người nhận đính kèm"
 
 msgid "Upload a file:"
 msgstr "Tải lên tập tin:"
@@ -1571,20 +1569,20 @@ msgid "Logout"
 msgstr "Đăng xuất"
 
 msgid "An update is available:"
-msgstr "Bản cập nhật đã có sẵn"
+msgstr "Bản cập nhật đã có:"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr "Chúng tôi khuyến khích bạn truy cập phần \"Tuỳ chọn\" để lấy \"Chìa khoá Khôi phục Tài khoản\" của bạn và lưu giữ nó ở nơi an toàn. Chìa khoá này sẽ cần thiết để khôi phục truy cập của bạn vào nền tảng này và vào dữ liệu của bạn trong trường hợp bạn quên mật khẩu của mình."
+msgstr "Chúng tôi khuyến khích bạn vào phần \"Chọn lựa\" để lấy \"Chìa Khoá Khôi Phục Tài khoản\" của bạn và lưu giữ nó ở nơi an toàn. Chìa khoá này sẽ cần thiết để khôi phục lại tài khoản và  dữ liệu của bạn trong trường hợp bạn quên mật khẩu."
 
 msgid "The provided recovery key is invalid."
-msgstr "Khóa khôi phục được cung cấp không hợp lệ."
+msgstr "Chìa khóa khôi phục không hợp lệ."
 
 msgid "The provided reset token is invalid or expired."
-msgstr "Mã thông báo đặt lại được cung cấp không hợp lệ hoặc đã hết hạn"
+msgstr "Mã token để đặt lại không hợp lệ hoặc đã hết hạn."
 
 msgid ""
 "Enter your account's username or your email address to request a password "
@@ -1596,7 +1594,7 @@ msgstr "Nhập địa chỉ email của bạn để yêu cầu đặt lại mậ
 
 msgid ""
 "Enter you encryption recovery key to complete the password reset procedure"
-msgstr "Nhập khóa khôi phục mã hóa của bạn để hoàn tất quy trình đặt lại mật khẩu"
+msgstr "Nhập chìa khóa khôi phục của bạn để hoàn tất quy trình đặt lại mật khẩu"
 
 msgid "Password reset requested."
 msgstr "Yêu cầu đặt lại mật khẩu"
@@ -1609,7 +1607,7 @@ msgstr "Dấu"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
-msgstr "Yêu cầu truy cập danh tính của người tố giác đã được gửi tới người bảo vệ."
+msgstr "Yêu cầu xem danh tính của người tố giác đã được gửi tới người bảo quản."
 
 msgid "Date of the request"
 msgstr "Ngày yêu cầu"
@@ -1618,20 +1616,20 @@ msgid "Congratulations!"
 msgstr "Chúc mừng!"
 
 msgid "You have completed the platform activation."
-msgstr "Bạn đã hoàn thành việc kích hoạt nền tảng."
+msgstr "Bạn đã hoàn tất việc kích hoạt hệ thống."
 
 msgid "Success!"
 msgstr "Thành công!"
 
 msgid "Your whistleblowing platform is almost ready!"
-msgstr "Nền tảng tố giác của bạn gần như đã sẵn sàng!"
+msgstr "Hệ thống tố giác của bạn đã gần xong!"
 
 msgid "Check your inbox to activate it."
-msgstr "Kiểm tra hộp thư đến của bạn để kích hoạt."
+msgstr "Kiểm tra hộp thư của bạn để kích hoạt."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr "Nếu không được kích hoạt trong vòng 24 giờ, nền tảng sẽ tự động bị xóa."
+msgstr "Nếu không được kích hoạt trong vòng 24 giờ, hệ thống sẽ tự động bị xóa."
 
 msgid "Sign up"
 msgstr "Đăng ký"
@@ -1640,7 +1638,7 @@ msgid "Domain"
 msgstr "Tên miền"
 
 msgid "Confirmation"
-msgstr "Sự xác nhận"
+msgstr "Xác nhận"
 
 msgid "Invalid confirmation"
 msgstr "Xác nhận không hợp lệ"
@@ -1655,25 +1653,25 @@ msgid "Invalid phone number"
 msgstr "Số điện thoại không hợp lệ"
 
 msgid "Select the context of your report:"
-msgstr "Chọn ngữ cảnh cho báo cáo của bạn:"
+msgstr "Chọn đề tài cho báo cáo của bạn:"
 
 msgid "The answer is too short"
 msgstr "Câu trả lời quá ngắn. "
 
 msgid "The specified input is not valid."
-msgstr "Đầu vào được chỉ định là không hợp lệ."
+msgstr "Dữ liệu nhập vào không hợp lệ."
 
 msgid "The specified input is not valid:"
-msgstr "Nhập liệu được chỉ định không hợp lệ:"
+msgstr "Dữ liệu nhập vào không hợp lệ:"
 
 msgid "please enter a valid email address."
-msgstr "xin hãy nhập một địa chỉ email hợp lệ."
+msgstr "xin nhập địa chỉ email hợp lệ."
 
 msgid "please enter numbers only."
-msgstr "xin chỉ nhập chữ số."
+msgstr "xin chỉ nhập ký số."
 
 msgid "Submissions disabled"
-msgstr "Đệ trình bị vô hiệu hóa"
+msgstr "Không nhận báo cáo"
 
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
@@ -1687,57 +1685,57 @@ msgid "Your report was successful."
 msgstr "Báo cáo của bạn đã thành công."
 
 msgid "We will try to get back to you as soon as possible."
-msgstr "Chúng tôi sẽ cố gắng liên lạc lại với bạn sớm nhất có thể."
+msgstr "Chúng tôi sẽ cố gắng liên lạc lại với bạn trong thời gian sớm nhất."
 
 msgid "Remember your receipt for this report."
-msgstr "Ghi mã khóa của bạn cho việc gửi này."
+msgstr "Ghi nhớ biên nhận cho báo cáo này."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Sử dụng biên nhận 16 chữ số để đăng nhập. Nó sẽ cho phép bạn xem bất kỳ tin nhắn nào chúng tôi đã gửi cho bạn và cũng để bổ sung thêm thông tin."
+msgstr "Sử dụng biên nhận 16 ký số để đăng nhập. Nó sẽ cho phép xem tin nhắn chúng tôi gửi cho bạn và cũng để bổ sung thêm thông tin."
 
 msgid "View your report"
-msgstr "Xem trình của bạn"
+msgstr "Xem báo cáo của bạn"
 
 msgid "Recipient selection"
-msgstr "lựa chọn người nhận"
+msgstr "Chọn người nhận"
 
 msgid "Select the recipients of your report:"
 msgstr "Chọn người nhận cho báo cáo của bạn:"
 
 msgid "Recipients selected:"
-msgstr "Người nhận được lựa chọn:"
+msgstr "Người nhận được chọn:"
 
 msgid "You have reached the maximum number of selectable recipients."
-msgstr "Bạn đã đạt đến số lượng tối đa người nhận có thể lựa chọn "
+msgstr "Số người chọn để nhận báo cáo đã ở mức tối đa."
 
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr "Những người nhận sau sẽ nhận được báo cáo của bạn và không thể được bỏ chọn:"
+msgstr "Những người sau đây sẽ nhận được báo cáo của bạn và không thể bị hủy chọn:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
 "invalid:"
-msgstr "Trong bước này, câu trả lời cho các câu hỏi sau bị thiếu hoặc không hợp lệ:"
+msgstr "Trong bước này, câu trả lời cho các câu hỏi sau đây bị thiếu hoặc không hợp lệ:"
 
 msgid "You must select at least one recipient."
-msgstr "Bạn phải lựa chọn ít nhất một người nhận"
+msgstr "Bạn phải chọn ít nhất một người nhận"
 
 msgid "Waiting for the file(s) to finish uploading."
-msgstr "Chờ đợi (các) tập tin hoàn tất tải lên."
+msgstr "Chờ cho (các) tập tin tải lên."
 
 msgid "The following steps have errors:"
-msgstr "Các bước sau có lỗi:"
+msgstr "Các bước sau đây có lỗi:"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
 "whistleblowing platform."
-msgstr "Quy trình từng bước sau đây sẽ hướng dẫn bạn cách tạo nền tảng hệ thống cung cấp thông tin nội bộ của bạn"
+msgstr "Quy trình từng bước sau đây sẽ hướng dẫn cách tạo ra hệ thống tố giác của bạn"
 
 msgid "Please choose a configuration profile:"
-msgstr "Vui lòng chọn một cấu hình cấu hình:"
+msgstr "Vui lòng chọn một hồ sơ cấu hình:"
 
 msgid "Make it possible for this admin to reset user passwords."
 msgstr "Cho phép người quản trị này cài lại mật khẩu người dùng."
@@ -1747,7 +1745,7 @@ msgid ""
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr "Chúng tôi khuyến cáo bạn chọn lựa chọn này nếu bạn muốn bảo vệ dữ liệu khỏi bị mất trong trường hợp người nhận mất mật khẩu của họ. Trong trường hợp khác, chúng tôi không khuyến cáo dùng tính năng này nếu bạn muốn thiết lập một hệ thống mà chỉ người nhận mới có thể truy cập được các hồ sơ nộp vào."
+msgstr "Chúng tôi khuyên bạn lấy lựa chọn này nếu muốn bảo vệ dữ liệu khỏi bị mất trong trường hợp người nhận mất mật khẩu của họ. Trong trường hợp khác, chúng tôi khuyên không nên dùng tính năng này nếu bạn muốn có một hệ thống mà chỉ có nhóm người nhận truy cập được các báo cáo."
 
 msgid "Please choose a different username."
 msgstr "Xin hãy chọn tên người dùng khác."
@@ -1756,22 +1754,22 @@ msgid "I have read and agree to the terms of the license."
 msgstr "Tôi đã đọc và đồng ý với các điều khoản của giấy phép."
 
 msgid "You have completed the platform wizard."
-msgstr "Bạn đã hoàn thành trình hướng dẫn nền tảng."
+msgstr "Bạn đã hoàn tất trình hướng dẫn hệ thống."
 
 msgid "Fill out your report"
-msgstr "Điền vào phần đệ trình của bạn"
+msgstr "Điền vào báo cáo của bạn"
 
 msgid "Describe your report in a few words."
-msgstr "Mô tả trình của bạn với một vài từ"
+msgstr "Mô tả ngắn gọn về báo cáo của bạn. "
 
 msgid "Describe your report in detail."
-msgstr "Mô tả báo cáo của bạn một cách chi tiết."
+msgstr "Mô tả một cách chi tiết về báo cáo của bạn."
 
 msgid "Attach files relevant to the report."
 msgstr "Đính kèm các tập tin liên quan đến báo cáo."
 
 msgid "Do you want to provide your identification information?"
-msgstr "Bạn muốn cung cấp thông tin nhận dạng của bạn?"
+msgstr "Bạn muốn cung cấp thông tin về danh tính của bạn?"
 
 msgid "First name"
 msgstr "Tên"
@@ -1783,10 +1781,10 @@ msgid "Gender"
 msgstr "Giới tính"
 
 msgid "Male"
-msgstr "Nam giới"
+msgstr "Nam"
 
 msgid "Female"
-msgstr "Nữ giới"
+msgstr "Nữ"
 
 msgid "Other gender identity"
 msgstr "Các giới tính khác"
@@ -1798,10 +1796,10 @@ msgid "Place of birth"
 msgstr "Nơi sinh"
 
 msgid "Zip code / Postal code"
-msgstr "Zip code / Mã bưu chính"
+msgstr "Mã bưu chính"
 
 msgid "Province"
-msgstr "Địa bàn tỉnh"
+msgstr "Tỉnh"
 
 msgid "Country"
 msgstr "Quốc gia"
@@ -1812,7 +1810,7 @@ msgstr "Kính gửi {RecipientName}"
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr "Bạn đang nhận được email này vì tài khoản người dùng đã được tạo cho bạn trên hệ thống: {Site}"
+msgstr "Bạn đang nhận được email này vì tài khoản người dùng đã được tạo ra cho bạn trên hệ thống: {Site}"
 
 msgid "Username: {Username}"
 msgstr "Tên người dùng: {Username}"
@@ -1837,50 +1835,50 @@ msgid "Account activation"
 msgstr "Kích hoạt tài khoản"
 
 msgid "Your whistleblowing platform is now accessible at:"
-msgstr "Nền tảng tố giác hiện có thể truy cập tại:"
+msgstr "Hệ thống tố giác có thể được truy cập tại:"
 
 msgid "To log in, visit:"
-msgstr "Để đăng nhập, hãy truy cập:"
+msgstr "Để đăng nhập, vào trang:"
 
 msgid "Users' credentials:"
 msgstr "Thông tin đăng nhập của người dùng:"
 
 msgid "The platform will be automatically deleted on:"
-msgstr "Nền tảng sẽ được xóa tự động vào:"
+msgstr "Hệ thống sẽ được xóa tự động vào lúc:"
 
 msgid "Access instructions"
 msgstr "Hướng dẫn truy cập"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
-msgstr "Số lượng các hoạt động gần đây được phát hiện dường như là cao hơn bình thường."
+msgstr "Số lượng các hoạt động được phát hiện gần đây dường như là cao hơn bình thường."
 
 msgid ""
 "This could be a sign of an attack (for example, someone flooding your server"
 " with bogus information) or just a usage spike due to an increased "
 "visibility of your project."
-msgstr "Đây có thể là dấu hiệu của một cuộc tấn công (ví dụ: ai đó làm ngập máy chủ của bạn với thông tin không có thật) hoặc chỉ là sự tăng đột biến về sử dụng do khả năng hiển thị dự án của bạn tăng lên."
+msgstr "Đây có thể là dấu hiệu của một cuộc tấn công từ chối dịch vụ (ví dụ: ai đó làm ngập máy chủ của bạn với thông tin rác) hoặc chỉ vì có nhiều người dùng biết đến dự án của bạn."
 
 msgid "Examine the issue to determine whether it is legitimate or not."
-msgstr "Kiểm tra vấn đề để xác định xem nó có hợp pháp hay không."
+msgstr "Xem xét lại sự việc để xác định việc gia tăng này chính đáng hay không."
 
 msgid "The activities with unusual stats are:"
-msgstr "Các hoạt động với chỉ số bình thường là:"
+msgstr "Các hoạt động với chỉ số bất bình thường là:"
 
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr "Máy chủ không thể đảm bảo rằng một báo cáo mới có thể được lưu trữ, vì vậy các bài nộp đã bị vô hiệu hóa."
+msgstr "Máy chủ không đảm bảo báo cáo mới có thể được lưu trữ, vì vậy không nhận báo cáo."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
 "the server."
-msgstr "Vui lòng xem xét yêu cầu hỗ trợ kỹ thuật của bạn để tạo thêm dung lượng đĩa trên máy chủ."
+msgstr "Bạn nên yêu cầu người hỗ trợ kỹ thuật tăng thêm dung lượng đĩa trên máy chủ."
 
 msgid ""
 "GlobaLeaks technology includes a server status checking component which will"
 " alert you in case something requires your attention."
-msgstr "Công nghệ GlobaLeaks bao gồm đơn vị kiểm tra trạng thái máy chủ sẽ cảnh báo bạn trong trường hợp có điều gì cần bạn chú ý."
+msgstr "Công nghệ GlobaLeaks bao gồm một cơ phận kiểm tra tình trạng máy chủ để giúp cảnh báo bạn những điều phải lưu tâm."
 
 msgid ""
 "For more information, log in to the Administration interface and look at the"
@@ -1888,20 +1886,20 @@ msgid ""
 msgstr "Để biết thêm thông tin, đăng nhập vào giao diện Quản trị và xem phần \"Thống kê hệ thống\" và phần \"Bất thường\"."
 
 msgid "Anomaly detected in {NodeName}"
-msgstr "Bất thường được phát hiện trong {NodeName}"
+msgstr "Phát hiện bất thường trong {NodeName}"
 
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
 "going to expire or has already expired:"
-msgstr "Đây là một email thông báo cho bạn rằng chìa khóa PGP của người sử dụng sau đây được sắp hết hoặc đã hết hạn:"
+msgstr "Email này thông báo cho bạn biết chìa khóa PGP của những người sử dụng sau đây sắp hết hoặc đã hết hạn:"
 
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
 "notifications."
-msgstr "Nếu không có một chìa khóa PGP hợp lệ, hệ thống sẽ không thể gửi các thông báo được mã hóa."
+msgstr "Nếu không có chìa khóa PGP hợp lệ, hệ thống sẽ không thể gửi thông báo được mã hóa."
 
 msgid "PGP key expiration alert"
-msgstr "Cảnh báo hết hạn khoá PGP"
+msgstr "Cảnh báo khóa PGP hết hạn"
 
 msgid "A new whistleblowing site has been registered."
 msgstr "Một trang web tố giác mới đã được đăng ký."
@@ -1925,32 +1923,32 @@ msgid "Use case: {UseCase}"
 msgstr "Trường hợp sử dụng: {UseCase}"
 
 msgid "New whistleblowing site registered"
-msgstr "Trang web tố giác mới đăng kí"
+msgstr "Trang web tố giác mới đăng ký"
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
-msgstr "Đây là một email thử nghiệm được gửi từ giao diện quản trị của nền tảng."
+msgstr "Đây là email thử nghiệm gửi đi từ giao diện quản trị của hệ thống."
 
 msgid ""
 "Reception of this email indicates that the server was able to authenticate "
 "to and interact with the SMTP mail server."
-msgstr "Việc nhận được email này cho thấy rằng máy chủ có thể xác thực và tương tác với máy chủ thư SMTP."
+msgstr "Việc nhận được email này cho thấy rằng máy chủ có thể xác thực và tương tác với máy chủ SMTP email."
 
 msgid "Test email"
-msgstr "Email thử nghiệm:"
+msgstr "Email thử nghiệm"
 
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr "Đây là một email để thông báo cho bạn rằng một yêu cầu đã được thực hiện việc thay đổi địa chỉ email của bạn thành {NewEmailAddress}"
+msgstr "Email này thông báo cho bạn biết có một yêu cầu thay đổi địa chỉ email của bạn thành {NewEmailAddress}."
 
 msgid "Click the following link to validate this change:"
-msgstr "Nhấp vào liên kết sau để xác thực thay đổi này:"
+msgstr "Nhấp vào liên kết sau để xác nhận thay đổi này:"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
 "system administrator."
-msgstr "Nếu bạn không yêu cầu thay đổi này, hãy thay đổi mật khẩu và liên hệ với quản trị viên hệ thống của bạn."
+msgstr "Nếu bạn không yêu cầu thay đổi này, hãy thay đổi mật khẩu và liên lạc với quản trị viên của hệ thống."
 
 msgid "Email change request"
 msgstr "Yêu cầu thay đổi email"
@@ -1962,7 +1960,7 @@ msgid "Date: {EventTime}"
 msgstr "Ngày: {EventTime}"
 
 msgid "From: Whistleblower"
-msgstr "Từ: Whistleblower"
+msgstr "Từ: Người Tố Giác"
 
 msgid "Date: {SubmissionDate}"
 msgstr "Ngày: {SubmissionDate}"
@@ -1976,7 +1974,7 @@ msgstr "Trạng thái: {TipStatus}"
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
-msgstr "Chứng chỉ HTTPS được tải lên trên nền tảng sắp hoặc đã hết hạn"
+msgstr "Chứng chỉ HTTPS cài trong hệ thống sắp hoặc đã hết hạn."
 
 msgid "Expiration date: {ExpirationDate}"
 msgstr "Ngày hết hạn: {ExpirationDate}"
@@ -1984,39 +1982,39 @@ msgstr "Ngày hết hạn: {ExpirationDate}"
 msgid ""
 "Without a valid certificate, the platform will be accessible in a secure way"
 " only via Tor."
-msgstr "Nếu không có chứng chỉ hợp lệ, nền tảng sẽ chỉ có thể truy cập theo cách an toàn thông qua Tor"
+msgstr "Nếu không có chứng chỉ hợp lệ, hệ thống chỉ có thể truy cập an toàn qua Tor."
 
 msgid "Log in to solve the issue."
-msgstr "Đăng nhập để giải quyết sự cố."
+msgstr "Đăng nhập để giải quyết vấn đề."
 
 msgid "Expiration alert for HTTPS certificate"
 msgstr "Thông báo hết hạn cho chứng chỉ HTTPS"
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
-msgstr "Việc gia hạn chứng chỉ HTTPS tự động được lên kế hoạch cho ngày hôm nay vừa thất bại."
+msgstr "Việc tự động gia hạn chứng chỉ HTTPS dự tính cho ngày hôm nay vừa thất bại."
 
 msgid "The system will keep trying."
-msgstr "Hệ thống sẽ tiếp tục cố gắng."
+msgstr "Hệ thống sẽ tiếp tục thử lại."
 
 msgid "Failed HTTPS certificate renewal"
-msgstr "Gia hạn chứng chỉ HTTPS không thành công"
+msgstr "Việc gia hạn chứng chỉ HTTPS thất bại"
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr "Đây là một email thông báo cho bạn rằng người giám sát đã ủy quyền cho bạn truy cập vào danh tính người tố giác của báo cáo {TipNum}"
+msgstr "Email này thông báo cho bạn biết là người bảo quản đã cho phép bạn truy cập vào danh tính người tố giác của báo cáo {TipNum}."
 
 msgid "The report can be accessed at:"
-msgstr "Yêu cầu có thể được truy cập:"
+msgstr "Báo cáo có thể được truy cập nơi đây:"
 
 msgid "Access to whistleblower's identity authorized"
-msgstr "Truy cập vào danh tính người tố giác được ủy quyền"
+msgstr "Truy cập vào danh tính người tố giác được cho phép"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr "Đây là một email thông báo cho bạn rằng một người giám hộ đã ủy quyền cho bạn để truy cập vào các tính wistleblowing cho việc nộp {TipNum}."
+msgstr "Email này thông báo cho bạn biết người bảo quản đã từ chối không cho phép bạn truy cập vào danh tính người tố giác của báo cáo {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "Truy cập vào danh tính người tố giác bị từ chối"
@@ -2024,31 +2022,31 @@ msgstr "Truy cập vào danh tính người tố giác bị từ chối"
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr "Đây là một email thông báo cho bạn rằng một người nhận đã yêu cầu truy cập đến danh tính của người tố giác cho việc nộp {TipNum}"
+msgstr "Email này thông báo cho bạn biết một người nhận đã yêu cầu truy cập danh tính của người tố giác của báo cáo {TipNum}"
 
 msgid "The request can be accessed at:"
 msgstr "Yêu cầu có thể được truy cập tại:"
 
 msgid "New request of access to a whistleblower's identity"
-msgstr "Yêu cầu mới về quyền truy cập vào danh tính của người tố giác"
+msgstr "Có yêu cầu mới muốn biết danh tính của người tố giác"
 
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr "Đây là một email thông báo cho bạn rằng các tố giác viên cho báo cáo {TipNum} đã cung cấp danh tính của họ."
+msgstr "Đây là một email thông báo cho bạn biết người tố giác của báo cáo {TipNum} đã cung cấp danh tính của họ."
 
 msgid "The whistleblower has provided their identity"
-msgstr "Các tố giác viên đã cung cấp danh tính của họ"
+msgstr "Người tố giác đã cung cấp danh tính của họ"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr "Bạn đang nhận được email này vì có yêu cầu đặt lại mật khẩu cho tài khoản: {Username}"
+msgstr "Bạn nhận được email này vì có yêu cầu đặt lại mật khẩu cho tài khoản: {Username}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
 "email."
-msgstr "Nếu bạn không thực hiện yêu cầu này, bạn có thể bỏ qua và xóa email này một cách an toàn."
+msgstr "Nếu bạn không yêu cầu điều này, xin bỏ qua và xóa email này."
 
 msgid "You can confirm your request by clicking the following link:"
 msgstr "Bạn có thể xác nhận yêu cầu của mình bằng cách nhấp vào liên kết sau:"
@@ -2059,20 +2057,20 @@ msgstr "Hướng dẫn cài đặt lại mật khẩu"
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
 "expired."
-msgstr "Đây là một email thông báo cho bạn rằng chìa khóa PGP của bạn hết hạn hoặc đã hết hạn."
+msgstr "Đây là một email thông báo cho bạn biết là chìa khóa PGP của bạn hết hạn hoặc đã hết hạn."
 
 msgid ""
 "You should extend its validity and update the key present on the platform, "
 "or upload a new key."
-msgstr "Bạn nên mở rộng hiệu lực của nó và cập nhật các mặt chính trên nền tảng, hoặc tải lên một khoá mới."
+msgstr "Bạn nên gia hạn hiệu lực của chứng chỉ và cập nhật trong hệ thống, hoặc tải lên một chứng chỉ mới."
 
 msgid ""
 "Without a valid PGP key, the system won't be able to encrypt data provided "
 "to you."
-msgstr "Nếu không có một chìa khóa PGP hợp lệ, hệ thống sẽ không có khả năng mã hóa dữ liệu cung cấp cho bạn."
+msgstr "Nếu không có chìa khóa PGP hợp lệ, hệ thống sẽ không thể mã hóa dữ liệu cho bạn."
 
 msgid "Click the link to activate the platform:"
-msgstr "Nhấp vào liên kết để kích hoạt nền tảng:"
+msgstr "Nhấp vào liên kết để kích hoạt hệ thống:"
 
 msgid "Activation"
 msgstr "Kích hoạt"
@@ -2081,17 +2079,17 @@ msgid "A software update is available."
 msgstr "Cập nhật phần mềm."
 
 msgid "It is good security practice to keep the platform up to date."
-msgstr "Thực hành bảo mật tốt có nghĩa là giữ cho nền tảng luôn được cập nhật."
+msgstr "Thói quen bảo mật tốt là thường xuyên cập nhật hệ thống."
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "
 "change log at: {ChangeLogUrl}"
-msgstr "Để tìm hiểu về các tính năng mới và cách sửa lỗi trong phiên bản mới, hãy tham khảo nhật ký thay đổi tại: {ChangeLogUrl}"
+msgstr "Để tìm hiểu về các tính năng mới và cách sửa lỗi trong phiên bản mới, hãy tham khảo sổ ghi thay đổi tại: {ChangeLogUrl}"
 
 msgid ""
 "For instructions on software updates, please refer to the documentation at: "
 "{UpdateGuideUrl}"
-msgstr "Để biết hướng dẫn về cập nhật phần mềm, vui lòng tham khảo tài liệu tại: {UpdateGuideUrl}"
+msgstr "Để biết cách cập nhật phần mềm, xin tham khảo tài liệu tại: {UpdateGuideUrl}"
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Ngày hết hạn sớm nhất là {EarliestExpirationDate}."
@@ -2100,12 +2098,12 @@ msgid "Please remember to check them before they are deleted."
 msgstr "Hãy nhớ kiểm tra chúng trước khi chúng bị xóa."
 
 msgid "Some reports will expire soon"
-msgstr "Một số báo cáo sẽ hết hạn sớm"
+msgstr "Một số báo cáo gần hết hạn"
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr "Đây là một email thông báo cho bạn rằng một tố giác viên đã chọn bạn là một người nhận có giá trị với báo cáo của họ."
+msgstr "Email này thông báo cho bạn biết là người tố giác đã chọn bạn làm người nhận báo cáo của họ."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -2113,22 +2111,22 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr "Hãy đặc biệt chú ý đến thông tin và tài liệu có trong đó. Xin lưu ý rằng những người tố giác thường chấp nhận rủi ro cá nhân cao vì mục tiêu lợi ích của công chúng. Do đó, tài liệu được cung cấp trong báo cáo này nên được coi là rất quan trọng."
+msgstr "Xin bạn đặc biệt chú ý đến thông tin và tài liệu có trong đó. Xin nhớ rằng những người tố giác thường chấp nhận nhiều rủi ro cho họ cũng vì mục tiêu lợi ích công cộng. Do đó, tài liệu trong báo cáo này nên được coi là rất quan trọng."
 
 msgid "New report"
 msgstr "Báo cáo mới"
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr "Đây là email để thông báo rằng một báo cáo đang có sẵn vừa được cập nhật."
+msgstr "Đây là email để thông báo rằng một báo cáo trong hệ thống vừa được cập nhật."
 
 msgid "Report updated"
 msgstr "Báo cáo đã được cập nhật"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr "Email này là để nhắc bạn về những báo cáo vừa được cập nhật hoặc chưa được đọc."
+msgstr "Email này là để nhắc bạn có những báo cáo vừa được cập nhật hoặc chưa được đọc."
 
 msgid "Reminder about unread or updated reports"
-msgstr "Lời nhắc về báo cáo vừa được cập nhật hoặc chưa được đọc"
+msgstr "Nhắc nhở về báo cáo vừa được cập nhật hoặc chưa được đọc"
 
 msgid "Role: {Role}"
 msgstr "Vai trò: {Role}"

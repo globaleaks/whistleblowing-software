@@ -1,0 +1,2122 @@
+# 
+# Translators:
+# Tenzin Loden <loden1701@gmail.com>, 2021
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks\n"
+"PO-Revision-Date: 2021-05-15 07:40+0000\n"
+"Last-Translator: Tenzin Loden <loden1701@gmail.com>\n"
+"Language-Team: Tibetan (http://www.transifex.com/otf/globaleaks/language/bo/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: bo\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"mime-version: 1.0\n"
+
+msgid "Log in"
+msgstr "ནང་འཛུལ།"
+
+msgid "Main configuration"
+msgstr "སྡེབ་སྒྲིག་གཙོ་བོ།"
+
+msgid "Theme customization"
+msgstr "རང་བཟོས་སྙིང་དོན།"
+
+msgid "Languages"
+msgstr "སྐད་རིགས།"
+
+msgid "Text customization"
+msgstr "རང་བཟོས་ཡི་གེ།"
+
+msgid "Advanced settings"
+msgstr "ཚད་མཐོའི་སྒྲིག་བཀོད།"
+
+msgid "Questionnaire configuration"
+msgstr "སྡེབ་སྒྲིག་དྲི་བ།"
+
+msgid "Question templates"
+msgstr "དྲི་བའི་མ་དཔེ།"
+
+msgid "Questionnaires"
+msgstr "དྲི་བ།"
+
+msgid "Add new questionnaire"
+msgstr "དྲི་བ་གསར་པ་སྣོན།"
+
+msgid "Home"
+msgstr "མདུན་ངོས།"
+
+msgid "Changelog"
+msgstr "ཐོ་འགོད་བརྗེ་སྒྱུར།"
+
+msgid "License"
+msgstr "ཆོག་མཆན་ལག་འཁྱེར།"
+
+msgid "Notification templates"
+msgstr "བརྡ་ཐོ་མ་དཔེ།"
+
+msgid "Delete"
+msgstr "བསུབ།"
+
+msgid "Anomalies"
+msgstr "སྤྱིི་འགྲེ་མིན་པ།"
+
+msgid "Preferences"
+msgstr "མོས་འདེམས།"
+
+msgid "Notification settings"
+msgstr "བརྡ་ཐོ་སྒྲིག་བཀོད།"
+
+msgid "file unavailable"
+msgstr "ཡིག་ཆ་མི་འདུག"
+
+msgid "Date"
+msgstr "ཚེས་གྲངས།"
+
+msgid "Expiration date"
+msgstr "དུས་ཡོལ་ཚེས་གྲངས།"
+
+msgid "Last Access"
+msgstr "ལྟ་སྤྱོད་མཐའ་མ།"
+
+msgid "Files"
+msgstr "ཡིག་ཆ།"
+
+msgid "Comments"
+msgstr "འགྲེལ་བརྗོད།"
+
+msgid "Messages"
+msgstr "འཕྲིན་ཐུང་།"
+
+msgid "Select this recipient."
+msgstr "འབྱོར་ཡུལ་འདི་འདེམས།"
+
+msgid "Unselect this recipient."
+msgstr "འབྱོར་ཡུལ་འདི་ཕྱིར་འཐེན་བྱ།"
+
+msgid "This recipient cannot be deselected."
+msgstr "འབྱོར་ཡུལ་འདི་མི་འདེམས་པ་བྱེད་མི་ཐུབ།"
+
+msgid "Details"
+msgstr "ཞིབ་ཕྲ།"
+
+msgid "Platform wizard"
+msgstr "Platform wizard"
+
+msgid "CREDIT CARD"
+msgstr "བུན་བྱང་།"
+
+msgid "YOUR NAME"
+msgstr "ཁྱེད་ཀྱི་མིང་།"
+
+msgid "Label the report"
+msgstr "སྙན་ཐོ་རྟགས་རྒྱག"
+
+msgid "Postpone the expiration date"
+msgstr "དུས་ཡོལ་ཚེས་གྲངས་ཕྱི་བཤོལ་བྱ།"
+
+msgid "Select all"
+msgstr "ཆ་ཚང་འདེམས།"
+
+msgid "Deselect all"
+msgstr "ཆ་ཚང་མི་འདེམས།"
+
+msgid "Refresh"
+msgstr "གསར་འདོན།"
+
+msgid "Context"
+msgstr "འབྲེལ་ཆགས།"
+
+msgid "Private messages"
+msgstr "སྒེར་གྱི་འཕྲིན་ཐུང་།"
+
+msgid "Preview"
+msgstr "སྔོན་བལྟ།"
+
+msgid "The whistleblower has already read the last update"
+msgstr "གསང་སྒྲོག་པ་ཡིས་གསར་སྒྱུར་མཐའ་མ་དེ་ཀློག་ཟིན་འདུག"
+
+msgid "The whistleblower has not read the last update yet"
+msgstr "གསང་སྒྲོག་པ་ཡིས་གསར་སྒྱུར་མཐའ་མ་དེ་ད་དུང་ཀློག་མི་འདུག"
+
+msgid "Move up"
+msgstr "ཡར་སྤོ།"
+
+msgid "Move down"
+msgstr "མར་སྤོ།"
+
+msgid "Move left"
+msgstr "གཡོན་སྤོ།"
+
+msgid "Move right"
+msgstr "གཡས་སྤོ།"
+
+msgid "Import"
+msgstr "ནང་འདྲེན།"
+
+msgid "Export"
+msgstr "ཕྱི་འདྲེན།"
+
+msgid "Save all"
+msgstr "ཆ་ཚང་ཉར་ཚགས་བྱ།"
+
+msgid "Access control"
+msgstr "ལྟ་སྤྱོད་ཚོད་འཛིན།"
+
+msgid "The connection has been secured with HTTPS ensuring confidentiality."
+msgstr "སྦྲེལ་མཐུད་དེ་ HTTPS ལྷན་བཙན་སྲུང་བྱེད་ཡོད་པས་གསང་རྒྱ་ངེས་བརྟན་བྱེད་ཀྱི་ཡོད།"
+
+msgid ""
+"The connection has been secured with Tor ensuring confidentiality and "
+"anonymity."
+msgstr "སྦྲེལ་མཐུད་དེ་ Tor ལྷན་བཙན་སྲུང་བྱེད་ཡོད་པས་གསང་རྒྱ་དང་མིང་མེད་ངེས་བརྟན་བྱེད་ཀྱི་ཡོད།"
+
+msgid "vertical"
+msgstr "གཞུང་།"
+
+msgid "horizontal"
+msgstr "འཕྲད།"
+
+msgid "Number"
+msgstr "ཨང་གྲངས།"
+
+msgid "Email"
+msgstr "གློག་འཕྲིན།"
+
+msgid "Regular expression validator"
+msgstr "རྒྱུན་གཏན་བརྗོད་ཚུལ་འཐད་ལྡན་ཡོ་ཆས།"
+
+msgid "Minimum number of input characters"
+msgstr "ནང་འཇུག་ཡིག་འབྲུ་ཡི་ཉུང་མཐའི་ཨང་གྲངས།"
+
+msgid "Maximum number of input characters"
+msgstr "ནང་འཇུག་ཡིག་འབྲུ་ཡི་མང་མཐའི་ཨང་གྲངས།"
+
+msgid "Earliest selectable date"
+msgstr "འདེམས་ཐུབ་པའི་ཚེས་གྲངས་སྔ་ཤོས།"
+
+msgid "Latest selectable date"
+msgstr "འདེམས་ཐུབ་པའི་ཚེས་གྲངས་གསར་ཤོས།"
+
+msgid "0 = auto"
+msgstr "0 = རང་འགུལ།"
+
+msgid "True"
+msgstr "བདེན།"
+
+msgid "False"
+msgstr "ནོར།"
+
+msgid "Yes"
+msgstr "ཡིན།"
+
+msgid "No"
+msgstr "མིན།"
+
+msgid "Attachment"
+msgstr "མཐུད་འཛར།"
+
+msgid "Attachments"
+msgstr "མཐུད་འཛར།"
+
+msgid "Change your password"
+msgstr "ཁྱེད་ཀྱི་གསང་ཡིག་བརྗེ་སྒྱུར་བྱ།"
+
+msgid "User"
+msgstr "སྤྱོད་པ་པོ།"
+
+msgid "Motivation"
+msgstr "ཀུན་སློང་།"
+
+msgid "Status"
+msgstr "གནས་བབ།"
+
+msgid "Request motivation"
+msgstr "ཀུན་སློང་རེ་ཞུ་བྱ།"
+
+msgid "Reply motivation"
+msgstr "ཀུན་སློང་ལ་ལན་འདེབས།"
+
+msgid "Request status"
+msgstr "གནས་བབ་རེ་ཞུ་བྱ།"
+
+msgid "Custodian"
+msgstr "བདག་གཉེར།"
+
+msgid "Custodian of the identities"
+msgstr "ངོ་བོའི་བདག་གཉེར།"
+
+msgid "Identity"
+msgstr "ངོ་བོ།"
+
+msgid "Access requested"
+msgstr "ལྟ་སྤྱོད་རེ་ཞུ་ཟིན།"
+
+msgid "Request access to the whistleblower's identity"
+msgstr "གསང་སྒྲོག་པའི་ངོ་བོའི་ཆེད་ལྟ་སྤྱོད་རེ་ཞུ་བྱ།"
+
+msgid "Please write a motivation"
+msgstr "ཀུན་སློང་ཞིག་འབྲི་རོགས་གནང་།"
+
+msgid "Reply to the request"
+msgstr "རེ་ཞུར་ལན་འདེབས་བྱ།"
+
+msgid "Authorized"
+msgstr "བཀའ་འཁྲོལ་ཟིན།"
+
+msgid "Denied"
+msgstr "ཁས་ལེན་བྱས་མེད།"
+
+msgid "Waiting for authorization"
+msgstr "བཀའ་འཁྲོལ་ཆེད་སྒུག་བཞིན་པ།"
+
+msgid "New request"
+msgstr "རེ་ཞུ་གསར་པ།"
+
+msgid "Authorize"
+msgstr "བཀའ་འཁྲོལ་བྱ།"
+
+msgid "Deny"
+msgstr "ཁས་ལེན་མི་བྱ།"
+
+msgid "Deny access to the whistleblower's identity"
+msgstr "གསང་སྒྲོག་པའི་ངོོ་བོའི་ཆེད་ལྟ་སྤྱོད་ཁས་ལེན་མི་བྱ།"
+
+msgid "Authorize access to the whistleblower's identity"
+msgstr "གསང་སྒྲོག་པའི་ངོ་བོའི་ཆེད་ལྟ་སྤྱོད་བཀའ་འཁྲོལ་བྱ།"
+
+msgid "Templates"
+msgstr "མ་དཔེ།"
+
+msgid "HTTPS settings"
+msgstr "HTTPS སྒྲིག་བཀོད།"
+
+msgid "URL redirects"
+msgstr "URL བརྒྱུད་སྟོན།"
+
+msgid "Anomaly detection thresholds"
+msgstr "སྤྱི་འགྲེ་མིན་པ་རྩད་གཅོད་ཐུབ་མཚམས།"
+
+msgid "Available disk space"
+msgstr "ཐོབ་ཐུང་སྡུད་སྡེར་སྟོང་ཆ།"
+
+msgid "Last update"
+msgstr "གསར་སྒྱུར་མཐའ་མ།"
+
+msgid "Custodian notification templates"
+msgstr "བདག་གཉེར་བའི་བརྡ་ཐོ་མ་དཔེ།"
+
+msgid ""
+"This interface allows configuring email templates used to notify custodians."
+msgstr "མཐུད་ཁ་འདི་ཡིས་བདག་གཉེར་རྣམས་ལ་བརྡ་ཁྱབ་ཆེད་བེད་སྤྱོད་བྱས་པའི་གློག་འཕྲིན་མ་དཔེ་རྣམས་སྡེབ་སྒྲིག་བྱེད་དུ་བཅུག་པ་ཡིན། "
+
+msgid "Disable notifications to administrators"
+msgstr "འཛིན་སྐྱོང་བ་རྣམས་ལ་བརྡོ་ཐོ་དག་ནུས་མེད་བཟོ།"
+
+msgid "Disable notifications to custodians"
+msgstr "བདག་གཉེར་བ་རྣམས་ལ་བརྡོ་ཐོ་དག་ནུས་མེད་བཟོ།"
+
+msgid "Disable notifications to recipients"
+msgstr "འབྱོར་ཡུལ་རྣམས་ལ་བརྡོ་ཐོ་དག་ནུས་མེད་བཟོ།"
+
+msgid "Score"
+msgstr "ཐོབ་ཨང་།"
+
+msgid "Trigger question"
+msgstr "དོགས་ཟོན་དྲི་བ།"
+
+msgid "Triggered by score:"
+msgstr "ཐོབ་ཨང་སྒོ་ནས་དོགས་ཟོན།"
+
+msgid "Weak"
+msgstr "ཞན་པོ།"
+
+msgid "Acceptable"
+msgstr "རན་པོ།"
+
+msgid "Strong"
+msgstr "ལེགས།"
+
+msgid "Text shown on top of the interface for selecting contexts"
+msgstr "འབྲེལ་ཆགས་འདེམས་ཆེད་མཐུད་ཁའི་སྟེང་ཡི་གེ་སྟོན་ཡོད། "
+
+msgid "Silence email notifications"
+msgstr "གློག་འཕྲིན་བརྡ་ཐོ་སྒྲ་མེད་བཟོ།"
+
+msgid "Turn on email notifications"
+msgstr "གློག་འཕྲིན་བརྡ་ཐོ་སྤར།"
+
+msgid "Input validation"
+msgstr "ནང་འཇུག་འཐད་ལྡན་བྱ།"
+
+msgid "Email address"
+msgstr "གློག་འཕྲིན་ཁ་བྱང་།"
+
+msgid "Custom"
+msgstr "རང་བཟོ།"
+
+msgid "None"
+msgstr "གང་ཡང་མེད།"
+
+msgid "Regular expression"
+msgstr "རྒྱུན་གཏན་བརྗོད་ཚུལ།"
+
+msgid "Activate"
+msgstr "ནུས་ལྡན་བཟོ།"
+
+msgid "Disactivate"
+msgstr "ནུས་མེད་བཟོ།"
+
+msgid "Search"
+msgstr "འཚོལ།"
+
+msgid ""
+"This custom text is no longer displayed on the platform. The original text "
+"has either changed or been removed."
+msgstr "རང་བཟོའི་ཡི་གེ་འདི་གླེང་སྟེགས་སྟེང་དུ་དུང་འཆར་གྱི་མི་འདུག ཡི་གེ་ངོ་མ་དེ་སྒྱུར་བཅོས་ཕྱིན་པའམ་ཕྱིར་འདོན་བྱས་འདུག"
+
+msgid "Audit log"
+msgstr "རྩིས་ཞིབ་ཐོ་གཞུང་།"
+
+msgid "Stats"
+msgstr "རྣམ་གྲངས་རིག་པ།"
+
+msgid "Activities"
+msgstr "བྱེད་སྒོ།"
+
+msgid "Reports"
+msgstr "སྙན་ཐོ།"
+
+msgid "Users"
+msgstr "སྤྱོད་པ་པོ།"
+
+msgid "From"
+msgstr "ནས།"
+
+msgid "Number of downloads"
+msgstr "ཕབ་ལེན་གྲངས་ཐོ།"
+
+msgid "File size not accepted."
+msgstr "ཡིག་ཆའི་ཆ་ཚད་ཁས་ལེན་མི་འདུག"
+
+msgid "Maximum file size is:"
+msgstr "ཡིག་ཆའི་ཆ་ཚད་མང་མཐའ་ནི།:"
+
+msgid "Scheduled jobs"
+msgstr "འཆར་འགོད་ཟིན་པའི་ལས་ཀ།"
+
+msgid "Sites management"
+msgstr "དྲ་ཚིགས་སྟངས་འཛིན།"
+
+msgid "Regenerate"
+msgstr "བསྐྱར་འདོན།"
+
+msgid "Display options alphabetically"
+msgstr "གདམ་ག་རྣམས་ཀ་མད་སྒོ་ནས་འགྲེམས་སྟོན་བྱ།"
+
+msgid "Enable email notifications for:"
+msgstr "འདི་དག་ཆེད་གློག་འཕྲིན་བརྡ་ཐོ་ནུས་ལྡན་བཟོ།:"
+
+msgid "Disable"
+msgstr "ནུས་འཇོམས་བྱ།"
+
+msgid "Remove"
+msgstr "ཕྱིར་འདོན།"
+
+msgid "Use as default"
+msgstr "ཐོག་མ་ནས་ཡོད་པའི་ཚུལ་དུ་བེད་སྤྱོད་བྱ།"
+
+msgid "Create your whistleblowing platform"
+msgstr "རང་ཉིད་ཀྱི་གསང་སྒྲོག་གླེང་སྟེགས་བཟོ་བསྐྲུན་བྱ།"
+
+msgid "Collapse"
+msgstr "རྡིབ།"
+
+msgid "Expand"
+msgstr "རྒྱ་བསྐྱེད།"
+
+msgid "Select"
+msgstr "འདེམས།"
+
+msgid "Surname"
+msgstr "ཁྱིམ་མིང་།"
+
+msgid "New"
+msgstr "གསར་པ།"
+
+msgid "Opened"
+msgstr "སྒོ་ཕྱེ་ཟིན།"
+
+msgid "Closed"
+msgstr "སྒོ་རྒྱག་ཟིན།"
+
+msgid "Placeholder"
+msgstr "ས་ཆ་འཛིན་མཁན།"
+
+msgid "Print"
+msgstr "པར་བསྐྲུན།"
+
+msgid "Previous"
+msgstr "སྔ་མ།"
+
+msgid "Next"
+msgstr "རྗེས་མ།"
+
+msgid "First"
+msgstr "ཐོག་མ།"
+
+msgid "Last"
+msgstr "མཐའ་མ།"
+
+msgid "Running"
+msgstr "འཁོར་རྒྱུག་བཞིན་པ།"
+
+msgid "Not running"
+msgstr "འཁོར་རྒྱུག་མེད་པ།"
+
+msgid "Send a test email to your email address."
+msgstr "ཁྱེད་ཀྱི་གློག་འཕྲིན་ཁ་བྱང་ལ་ཚོད་ལྟའི་གློག་འཕྲིན་ཞིག་གཏོང་།"
+
+msgid "Block the submission"
+msgstr "ཞུ་འབུལ་བཀག་འགོག་བྱ།"
+
+msgid "Skip the recipient account creation."
+msgstr "འབྱོར་ཡུལ་ཐོ་ཁོངས་བཟོ་བསྐྲུན་དེ་སྐྱུར།"
+
+msgid "Send activation link"
+msgstr "ནུས་ལྡན་བཟོ་རྒྱུའི་མཐུད་ཁ་གཏོང་།"
+
+msgid "Password reset"
+msgstr "གསང་ཡིག་བསྐྱར་སྒྲིག"
+
+msgid ""
+"One or more recipients have not performed the first login yet. This means "
+"they won't be receiving reports."
+msgstr "འབྱོར་ཡུལ་གཅིག་གམ་མང་བ་ཡིས་ད་དུང་ཡང་ནང་འཛུལ་ཐོག་མ་དེ་ལག་བསྟར་བྱེད་མི་འདུག འདིའི་དོན་ནི། ཁོང་ཚོར་སྙན་ཞུ་མི་འབྱོར་བ་ཡིན།"
+
+msgid "This user has not performed the first login yet."
+msgstr "སྤྱོད་པ་པོ་འདི་ཡིས་ད་དུང་ཡང་ནང་འཛུལ་ཐོག་མ་དེ་ལག་བསྟར་བྱེད་མི་འདུག"
+
+msgid "seconds"
+msgstr "སྐར་ཆ།"
+
+msgid "This domain name is not available."
+msgstr "དྲ་རྒྱའི་ཁ་བྱང་འདི་ཐོག་རུང་མི་འདུག"
+
+msgid "VAT number"
+msgstr "VAT ཨང་གྲངས།"
+
+msgid "Tax code"
+msgstr "དཔྱ་ཁྲལ་གསང་རྟགས།"
+
+msgid "File a report"
+msgstr "སྙན་ཞུ་ཞིག་ཞུ་གཏུག་བྱ།"
+
+msgid "Before proceeding, please set a new password."
+msgstr "འགོ་འཛུགས་མ་བྱེད་གོང་། གསང་ཡིག་གསར་པ་ཞིག་སྒྲིག་བཀོད་གནང་རོགས།"
+
+msgid "New password"
+msgstr "གསང་ཡིག་གསར་པ།"
+
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "གསང་ཡིག་འདེམས་པ་དེ་ཧ་ཅང་ཞན་པོ་འདུག འཐད་ལྡན་གསང་ཡིག་ལ་ངེས་པར་དུ་ཉུང་མཐར་ཡིག་འབྲུ་ ༡༠ དགོས་པ་དང་། འདི་ཁོངས་ཡིག་འབྲུ་ཆུང་བ་དང་། ཡིག་འབྲུ་ཆེ་བ། ཨང་གྲངས། དམིགས་བསལ་ཡིག་འབྲུ་བཅས་ཡིག་འབྲུ་སྣ་མིན་ཚང་བ་དགོས།"
+
+msgid "The new password must be different from the current one."
+msgstr "གསང་ཡིག་གསར་པ་དེ་ངེས་པར་དུ་ད་ལྟའི་གསང་ཡིག་ལས་མི་འདྲ་བ་དགོས།"
+
+msgid "Type your new password again"
+msgstr "ཁྱེད་ཀྱི་གསང་ཡིག་གསར་པ་བསྐྱར་དུ་འགོད།"
+
+msgid "The two passwords do not match"
+msgstr "གསང་ཚིག་གཉིས་པོ་མཚུངས་ཀྱི་མི་འདུག"
+
+msgid "The new password must differ from the previous."
+msgstr "གསང་ཡིག་གསར་པ་དེ་ངེས་པར་དུ་དེ་སྔོན་གསང་ཡིག་ལས་མི་འདྲ་བ་དགོས།"
+
+msgid "Proceed"
+msgstr "འགོ་འཛུགས་བྱ།"
+
+msgid "Before proceeding, please enable the two factor authentication."
+msgstr "འགོ་འཛུགས་མ་བྱེད་གོང་། རིམ་གཉིས་བཀའ་འཁྲོལ་ནུས་ལྡན་བཟོ་རོགས་གནང་། "
+
+msgid "Disable submissions"
+msgstr "ཞུ་འབུལ་ནུས་འཇོམས་བྱ།"
+
+msgid "Enable encryption"
+msgstr "གསང་སྡོམ་ནུས་ལྡན་བཟོ།"
+
+msgid "Enable administrators to change user passwords"
+msgstr "འཛིན་སྐྱོང་པར་སྤྱོད་པ་པོའི་གསང་ཡིག་བརྗེ་སྒྱུར་བྱེད་རྒྱུ་ནུས་ལྡན་བཟོ། "
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "འཛིན་སྐྱོང་པར་སྤྱོད་པ་པོའི་གསང་ཡིག་བརྗེ་སྒྱུར་བྱེད་རྒྱུའི་བཀའ་འཁྲོལ་ཟིན།:"
+
+msgid "Enable multisite feature"
+msgstr "དྲ་ཚིགས་སྣ་མང་ཁྱད་ཆོས་ནུས་ལྡན་བཟོ།"
+
+msgid "Enable simplified login"
+msgstr "སྟབས་བདེའི་ནང་འཛུལ་ནུས་ལྡན་བཟོ།"
+
+msgid "Allow recipients to delete reports"
+msgstr "འབྱོར་ཡུལ་ལ་སྙན་ཞུ་བསུབ་ཏུ་འཇུག"
+
+msgid "Allow recipients to postpone expiration date of the report"
+msgstr "འབྱོར་ཡུལ་ལ་སྙན་ཞུ་ཡི་དུས་ཡོལ་ཚེས་གྲངས་ཕྱི་བཤོལ་བྱེད་དུ་འཇུག"
+
+msgid ""
+"Allow recipients to grant permissions to whistleblowers on specific reports"
+msgstr "འབྱོར་ཡུལ་ལ་གསང་སྒྲོག་པར་དམིགས་བཀར་སྙན་ཞུ་སྟེང་ཆོག་མཆན་སྤྲོད་དུ་འཇུག"
+
+msgid "Enable search engines indexing"
+msgstr "འཚོལ་ཞིབ་ཨིན་ཇེན་དཀར་ཆག་གི་ནུས་ལྡན་བཟོ།"
+
+msgid "Enable custom privacy panel"
+msgstr "རང་བཟོ་གསང་རྒྱའི་སྟེགས་བུ་ནུས་ལྡན་བཟོ།"
+
+msgid "Custom privacy panel"
+msgstr "རང་བཟོ་གསང་རྒྱའི་སྟེགས་བུ། "
+
+msgid "Disable the privacy panel"
+msgstr "གསང་རྒྱའི་སྟེགས་བུ་ནུས་འཇོམས་བྱ།"
+
+msgid "Enable the receipt hint"
+msgstr "འབྱོར་བརྡ་ནུས་ལྡན་བཟོ།"
+
+msgid "Default questionnaire"
+msgstr "ཐོག་མ་ནས་ཡོད་པའི་དྲི་བ་ཁག"
+
+msgid "Show contexts in alphabetical order"
+msgstr "འབྲེལ་ཆགས་རྣམས་ཀ་མད་སྒོ་ནས་སྟོན།"
+
+msgid "Do not expose users' names"
+msgstr "སྤྱོད་པ་པོའི་མིང་ཐེར་འདོན་མི་བྱ།"
+
+msgid "Size limit for file attachments"
+msgstr "ཡིག་ཆའི་མཐུད་འཛར་ཆེད་ཆ་ཚད་ཚད་མཚམས།"
+
+msgid "in megabytes"
+msgstr "མེ་ག་བ་ཡེཊ་ནང་།"
+
+msgid "Enable HSTS preload"
+msgstr "HSTS སྔོན་འཇུག་ནུས་ལྡན་བཟོ།"
+
+msgid "Require two factor authentication"
+msgstr "རིམ་གཉིས་བཀའ་འཁྲོལ་ལྡན་དགོས།"
+
+msgid "Password change interval"
+msgstr "གསང་ཡིག་བརྗེ་སྒྱུར་བར་མཚམས།"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "ཉེན་སྲུང་རྒྱ་མཚན་ཆེད། རྒྱུན་གཏན་དུས་མཚམས་ཐོག་གསང་ཡིག་རྣམས་བརྗེ་སྒྱུར་བྱེད་དགོས་པ་ཡིན།"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "ཁྱད་ཆོས་འདི་ནུས་འཇོམས་བཟོ་བར་རིན་ཐང་དེ་ 0 སྟེང་སྒྲིག་བཀོད་བྱ།"
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "སྤྱོད་པ་པོ་ལ་སྙན་ཞུ་མ་ཀློག་པའི་བརྡ་ཐོ་མ་གཏོང་བར་གྱི་ཉིན་གྲངས། "
+
+msgid "Enable custodian user role"
+msgstr "བདག་གཉེར་སྤྱོད་པ་པོའི་འགན་འཁྲི་ནུས་ལྡན་བཟོ།"
+
+msgid "Enable scoring system"
+msgstr "ཨང་ཐོབ་ལམ་ལུགས་ནུས་ལྡན་བཟོ།"
+
+msgid "Enable private annotations"
+msgstr "སྒེར་གྱི་མཆན་འགྲེལ་ནུས་ལྡན་བཟོ།"
+
+msgid "Allow the following websites to embed the platform inside iframes"
+msgstr "གཤམ་འཁོད་དྲ་ཚིགས་རྣམས་ཨཡེ་ཕེ་རེམ་གྱི་གླེང་སྟེགས་ནང་འཚུད་དུ་འཇུག"
+
+msgid "Logging level"
+msgstr "ཐོ་འགོད་རིམ་པ།"
+
+msgid "Log accesses of internal users"
+msgstr "ནང་རོལ་སྤྱོད་པ་པོའི་ཐོ་འགོད་ལྟ་སྤྱོད།"
+
+msgid "Notify administrators of software problems"
+msgstr "འཛིན་སྐྱོང་པར་མཉེན་ཆས་དཀའ་རྙོག་བརྡ་ཐོ་གཏོང་། "
+
+msgid "Notify developers of software problems"
+msgstr "བཟོ་བསྐྲུན་པར་མཉེན་ཆས་དཀའ་རྙོག་བརྡ་ཐོ་གཏོང་།"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "ཁྱད་ཆོས་འདི་ནུས་ལྡན་བཟོ་བ་ཡིས། ཁྱེད་ཀྱིས་གླེང་སྟེགས་འདིའི་གོང་འཕེལ་དང་ཉེན་སྲུང་ཐད་རོགས་འདེགས་བྱེད་ཀྱི་ཡོད།"
+
+msgid "Save"
+msgstr "ཉར་ཚགས།"
+
+msgid "Reset reports"
+msgstr "སྙན་ཞུ་བསྐྱར་སྒྲིག་བྱ།"
+
+msgid "Low"
+msgstr "དམའ་པོ།"
+
+msgid "High"
+msgstr "མཐོ་པོ།"
+
+msgid "megabytes"
+msgstr "མེ་ག་བ་ཡེཊ།"
+
+msgid "percentage"
+msgstr "བརྒྱ་ཆ།"
+
+msgid "Type"
+msgstr "རིགས།"
+
+msgid "Severity"
+msgstr "ཚབས་ཆེ།"
+
+msgid "Object"
+msgstr "བྱ་ཡུལ།"
+
+msgid "ID"
+msgstr "ངོ་སྤྲོད་མིང་བྱང་།"
+
+msgid "Username"
+msgstr "སྤྱོད་པ་པོའི་མིང་།"
+
+msgid "Role"
+msgstr "ལས་འགན།"
+
+msgid "Name"
+msgstr "མིང་།"
+
+msgid "Creation date"
+msgstr "བཟོ་བསྐྲུན་ཚེས་གྲངས།"
+
+msgid "Last access"
+msgstr "ལྟ་སྤྱོད་མཐའ་མ།"
+
+msgid "Connection"
+msgstr "སྦྲེལ་མཐུད།"
+
+msgid "Whistleblower's last access"
+msgstr "གསང་སྒྲོག་པའི་ལྟ་སྤྱོད་མཐའ་མ།"
+
+msgid "Substatuses"
+msgstr "གནས་བབ་གཞན།"
+
+msgid "Add"
+msgstr "སྣོན།"
+
+msgid "Label"
+msgstr "མིང་བྱང་།"
+
+msgid "This field is mandatory"
+msgstr "ཁ་སྐོང་འདི་ངེས་པར་དུ་འགེང་དགོས།"
+
+msgid "Edit"
+msgstr "བཟོ་སྒྲིག"
+
+msgid "Cancel"
+msgstr "བརྩི་མེད།"
+
+msgid "Report statuses"
+msgstr "གནས་བབ་ཞུ་གཏུག་བྱ།"
+
+msgid "Logo"
+msgstr "ལས་རྟགས།"
+
+msgid "Project name"
+msgstr "ལས་འཆར་མིང་།"
+
+msgid "Description"
+msgstr "འགྲེལ་བཤད།"
+
+msgid "Homepage title"
+msgstr "མདུན་ངོས་འགོ་བརྗོད།"
+
+msgid "Presentation"
+msgstr "སྤྱན་བསྟར།"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr ""
+
+msgid "Whistleblowing button"
+msgstr "གསང་སྒྲོག་གི་མཐེབ།"
+
+msgid "Enable disclaimer"
+msgstr "ངོས་ལེན་མེད་པ་ནུས་ལྡན་བཟོ།"
+
+msgid "Title"
+msgstr "འགོ་བརྗོད།"
+
+msgid "Text"
+msgstr "ཡི་གེ།"
+
+msgid "Footer"
+msgstr "ཞབས་མཆན།"
+
+msgid "Upload"
+msgstr "ཡར་འཇུག"
+
+msgid "Download"
+msgstr "ཕབ་ལེན།"
+
+msgid "Language:"
+msgstr "སྐད་ཡིག:"
+
+msgid "Add custom text"
+msgstr "རང་བཟོའི་ཡི་གེ་སྣོན།"
+
+msgid "Custom text"
+msgstr "རང་བཟོའི་ཡི་གེ།"
+
+msgid "Original text"
+msgstr "ཡི་གེ་ངོ་མ།"
+
+msgid "Original translation"
+msgstr "ཡིག་སྒྱུར་ངོ་མ།"
+
+msgid "Custom translation"
+msgstr "རང་བཟོའི་ཡིག་སྒྱུར།"
+
+msgid "Contexts"
+msgstr "འབྲེལ་ཆགས།"
+
+msgid "Hidden"
+msgstr "སྦས་པ།"
+
+msgid "Disabled"
+msgstr "ནུས་འཇོམས་ཟིན།"
+
+msgid "Enabled"
+msgstr "ནུས་ལྡན་ཟིན།"
+
+msgid "Questionnaire"
+msgstr "དྲི་བ།"
+
+msgid "Recipients"
+msgstr "འབྱོར་ཡུལ།"
+
+msgid "days"
+msgstr "ཉིན།"
+
+msgid "Show the questionnaire navigation interface"
+msgstr "དྲི་བའི་བརྡ་སྟོན་མཐུད་ཁ་སྟོན།"
+
+msgid "Allow whistleblowers to select their recipients"
+msgstr "གསང་སྒྲོག་པ་ལ་སོ་སོའི་འབྱོར་ཡུལ་འདེམས་སུ་འཇུག"
+
+msgid "Select all recipients by default"
+msgstr "འབྱོར་ཡུལ་ཆ་ཚང་ཐོག་མ་ནས་ཡོད་པའི་སྒོ་ནས་འདེམས།"
+
+msgid "Maximum number of selectable recipients:"
+msgstr "འདེམས་རུང་བའི་འབྱོར་ཡུལ་གྱི་མང་མཐའི་གྲངས་ཚད།:"
+
+msgid "Show recipients in alphabetical order"
+msgstr "འབྱོར་ཡུལ་རྣམས་ཀ་མད་སྒོ་ནས་སྟོན།"
+
+msgid "Show recipient details on the status page of the report"
+msgstr "འབྱོར་ཡུལ་གྱི་ཞིབ་ཕྲ་རྣམས་སྙན་ཐོའི་གནས་བབ་ཤོག་ངོས་སྟེང་སྟོན།"
+
+msgid "Enable comments"
+msgstr "འགྲེལ་བརྗོད་ནུས་ལྡན་བཟོ།"
+
+msgid "Allow whistleblowers to write comments"
+msgstr "གསང་སྒྲོག་པ་ལ་འགྲེལ་བརྗོད་འབྲི་རུ་འཇུག"
+
+msgid "Enable private messages"
+msgstr "སྒེར་གྱི་འཕྲིན་ཐུང་ནུས་ལྡན་བཟོ།"
+
+msgid "Allow whistleblowers to send messages"
+msgstr "གསང་སྒྲོག་པ་ལ་འཕྲིན་ཐུང་གཏོང་དུ་འཇུག"
+
+msgid "Let whistleblowers add attachments onto existing reports"
+msgstr "གསང་སྒྲོག་པ་ལ་ད་ཡོད་སྙན་ཐོའི་སྟེང་མཐུད་འཛར་སྣོན་དུ་འཇུག"
+
+msgid "Let recipients upload files to whistleblowers"
+msgstr "འབྱོར་ཡུལ་རྣམས་ལ་གསང་སྒྲོག་པའི་སྟེང་་ཡིག་ཆ་ཡར་འཇུག་བྱེད་དུ་འཇུག"
+
+msgid "Additional questionnaire"
+msgstr "དྲི་བ་འཕར་མ།"
+
+msgid "Scoring system options"
+msgstr "ཨང་ཐོབ་མ་ལག་གདམ་ག"
+
+msgid "Threshold"
+msgstr "འགོ་འཛུགས་མཚམས།"
+
+msgid "Value"
+msgstr "རིན་ཐང་།"
+
+msgid "Medium"
+msgstr "འབྲིང་།"
+
+msgid "Customize the message shown in the receipt page"
+msgstr "འབྱོར་འཛིན་ཤོག་ངོས་ནང་སྟོན་པའི་འཕྲིན་ཐུང་རང་བཟོ་བྱ།"
+
+msgid "Assign the receipt only to reports reaching score:"
+msgstr "འབྱོར་འཛིན་དེ་ཨང་ཐོབ་ལོན་པའི་སྙན་ཐོ་ཁོ་ནར་ལག་བསྟར་བྱ།:"
+
+msgid "Software version:"
+msgstr "མཉེན་ཆས་རིམ་པ།:"
+
+msgid "Restrict access to specific IP addresses"
+msgstr "དམིགས་བཀར་ IP ཁ་བྱང་དག་ལ་ལྟ་སྤྱོད་དམ་བསྒྲགས་བྱ།"
+
+msgid "Allowed IP addresses"
+msgstr "ལྟ་སྤྱོད་ཆོག་པའི་ IP ཁ་བྱང་དག"
+
+msgid "Admin"
+msgstr "འཛིན་སྐྱོང་།"
+
+msgid "Recipient"
+msgstr "འབྱོར་ཡུལ།"
+
+msgid "Each entry must be separated with a comma."
+msgstr "ཐོ་འགོད་རེ་རེ་ངེས་པར་དུ་ཀོ་མ་ཞིག་གིས་དབྱེ་བ་འབྱེད་དགོས།"
+
+msgid "Example:"
+msgstr "དཔེར་ན།:"
+
+msgid "Hostname"
+msgstr "གཙོོ་མིང་།"
+
+msgid "Invalid input format."
+msgstr "ནང་འཇུག་རྣམ་དབྱིབས་མི་འཐད།"
+
+msgid "Input should be similar to:"
+msgstr "ནང་འཇུག་ངེས་པར་དུ་འདི་དང་འདྲ་མཚུངས་དགོས།:"
+
+msgid "Using Let's Encrypt requires agreement to their Terms of Service."
+msgstr "Let's Encrypt བེད་སྤྱོད་བྱེད་སྐབས་ཁོང་ཚོའི་ཞབས་ཞུའི་རྒྱས་གཅད་ལ་མོས་མཐུན་དགོས།"
+
+msgid "Read the Terms of Service"
+msgstr "ཞབས་ཞུའི་རྒྱས་གཅད་ཀློག"
+
+msgid "I agree to the Terms of Service."
+msgstr "ངས་ཞབས་ཞུའི་རྒྱས་གཅད་ཁས་ལེན་བྱེད་ཀྱི་ཡོད།"
+
+msgid "Country code"
+msgstr "རྒྱལ་ཁབ་གསང་རྟགས།"
+
+msgid "City"
+msgstr "གྲོང་ཁྱེར།"
+
+msgid "Organization"
+msgstr "ཚོགས་པ།"
+
+msgid "Organizational unit"
+msgstr "ཚོགས་པའི་ཚན་པ།"
+
+msgid "Invalid email address"
+msgstr "གློག་འཕྲིན་ཁ་བྱང་མི་འཐད།"
+
+msgid "Generate"
+msgstr "འདོན་སྤེལ་བྱ།"
+
+msgid "Private Key"
+msgstr "སྒེར་གྱི་མཐེབ།"
+
+msgid "Certificate Signing Request"
+msgstr "ལག་འཁྱེར་སྟེང་མིང་རྟགས་རྒྱག་པའི་རེ་ཞུ།"
+
+msgid "Certificate"
+msgstr "ལག་འཁྱེར།"
+
+msgid "Valid until:"
+msgstr "ནུས་ལྡན་དུས་མཚམས།:"
+
+msgid "Issuer:"
+msgstr "འགྲེམས་སྤེལ་བ།:"
+
+msgid "Intermediate Certificates"
+msgstr "ལག་འཁྱེར་བར་མ།"
+
+msgid "Enable"
+msgstr "ནུས་ལྡན་བཟོ།"
+
+msgid "Reset"
+msgstr "བསྐྱར་སྒྲིག་བྱ།"
+
+msgid ""
+"The platform supports the configuration of HTTPS through this interface."
+msgstr "གླེང་སྟེགས་ཀྱིས་མཐུད་ཁ་འདི་བརྒྱུད་ནས་ HTTPS ཡི་སྡེབ་སྒྲིག་རམ་འདེགས་བྱེད་ཀྱི་འདུག"
+
+msgid "Automatic configuration"
+msgstr "རང་འགུལ་སྡེབ་སྒྲིག"
+
+msgid ""
+"Using automatic HTTPS configuration will handle the entire process of "
+"requesting, enabling and renewing certificates from the Let's Encrypt "
+"Certificate Authority."
+msgstr "རང་འགུལ་ HTTPS སྡེབ་སྒྲིག་བེད་སྤྱོད་བྱེད་པ་ཡིས་ Let's Encrypt ལག་འཁྱེར་དབང་ཚད་པ་ནས་ལག་འཁྱེར་རེ་ཞུ་དང་། ནུས་ལྡན་བཟོ་བ། བསྐྱར་བཟོ་བཅས་ཀྱི་རྒྱུད་རིམ་ཆ་ཚང་ལག་ལེན་བྱེད་ཀྱི་རེད། "
+
+msgid ""
+"The platform must be reachable through a public IP address and the selected "
+"hostname must have a corresponding DNS record referencing that address."
+msgstr "གླེང་སྟེགས་དེ་ངེས་པར་དུ་སྤྱོ་སྤྱོད་ IP ཁ་བྱང་ཞིག་བརྒྱུད་ནས་སྙོབས་རུང་བ་དང་། འདེམས་ཟིན་པའི་གཙོ་མིང་ལ་ངེས་པར་དུ་ཁ་བྱང་དེ་འབྲེལ་སྦྱོར་བྱེད་པའི་དེ་མཚུངས་ DNS ཟིན་ཐོ་ཞིག་ལྡན་དགོས།"
+
+msgid "Manual configuration"
+msgstr "ལག་བཟོའི་སྡེབ་སྒྲིག"
+
+msgid ""
+"The manual configuration wizard will guide you through the setup of HTTPS "
+"from an alternative Certificate Authority."
+msgstr "ལག་བཟོའི་སྡེབ་སྒྲིག་ཝི་ཛཌ་ཡིས་ཁྱེད་ལ་ལག་འཁྱེར་དབང་ཚད་པ་གཞན་ཞིག་ནས་ HTTPS ཡི་སྒྲིག་བཀོད་བརྒྱུད་ནས་ལམ་སྟོན་བྱེད་པ་ཡིན།"
+
+msgid "Auto-renewal"
+msgstr "རང་འགུལ་བསྐྱར་བཟོ།"
+
+msgid "Tor Onion Service"
+msgstr "Tor Onion ཞབས་ཞུ།"
+
+msgid "Anonymize outgoing connections"
+msgstr "ཕྱིར་བསྐྱོད་སྦྲེལ་མཐུད་རྣམས་མིང་མེད་བཟོ།"
+
+msgid "Let the platform be reachable without Tor"
+msgstr "གླེང་སྟེགས་དེ་ Tor མེད་པའི་སྒོ་ནས་སྙོབས་རུང་ཡོད་པ་བཟོ།"
+
+msgid "Roles enabled to use the platform without Tor"
+msgstr "Tor མེད་པའི་སྒོ་ནས་གླེང་སྟེགས་བེད་སྤྱོད་བྱེད་པར་ནུས་ལྡན་ཟིན་པའི་འགན་འཁྲི་དག"
+
+msgid "Whistleblower"
+msgstr "གསང་སྒྲོག་པ།"
+
+msgid "To"
+msgstr "ལ།"
+
+msgid "SMTP email address"
+msgstr "SMTP གློག་འཕྲིན་ཁ་བྱང་།"
+
+msgid "SMTP server address"
+msgstr "SMTP ཞབས་ཞུའི་ཡོ་ཆས་ཁ་བྱང་།"
+
+msgid "SMTP server port"
+msgstr "SMTP ཞབས་ཞུའི་ཡོ་ཆས་མཐུད་སྣེ།"
+
+msgid "Security"
+msgstr "ཉེན་སྲུང་།"
+
+msgid "Warning"
+msgstr "ཉེན་བརྡ།"
+
+msgid "Require authentication"
+msgstr "བཀའ་འཁྲོལ་ལྡན་དགོས།"
+
+msgid "Password"
+msgstr "གསང་ཡིག"
+
+msgid "Number of hours before sending a report expiration alert"
+msgstr "སྙན་ཐོའི་དུས་ཡོལ་ཉེན་བརྡ་མ་གཏོང་གོང་གི་ཆུ་ཚོད་གྲངས་ཚད།"
+
+msgid "Test the configuration"
+msgstr "སྡེབ་སྒྲིག་ཚོད་ལྟ་བྱ།"
+
+msgid "Reset SMTP configuration"
+msgstr "SMTP སྡེབ་སྒྲིག་བསྐྱར་སྒྲིག་བྱ།"
+
+msgid "Reset notification templates to default"
+msgstr "བརྡ་ཐོ་མ་དཔེ་དག་ཐོག་མ་ནས་ཡོད་པའི་སྟེང་བསྐྱར་སྒྲིག་བྱ།"
+
+msgid "Template"
+msgstr "མ་དཔེ།"
+
+msgid "Question"
+msgstr "དྲི་བ།"
+
+msgid "Single-line text input"
+msgstr "ཡིག་ཕྲེང་གཅིག་ཅན་་ཡི་གེ་ནང་འཇུག"
+
+msgid "Multi-line text input"
+msgstr "ཡིག་ཕྲེང་སྣ་མང་ཡི་གེ་ནང་འཇུག"
+
+msgid "Selection box"
+msgstr "འདེམས་སྒྲུག་སྒམ།"
+
+msgid "Checkbox"
+msgstr "ཞིབ་བཤེར་སྒམ།"
+
+msgid "Terms of service"
+msgstr "ཞབས་ཞུའི་རྒྱས་གཅད།"
+
+msgid "Date range"
+msgstr "ཚེས་གྲངས་རིམ་པ།"
+
+msgid "Group of questions"
+msgstr "དྲི་བའི་སྡེ་ཁག"
+
+msgid "Row"
+msgstr "འཕྲེད་བསྟར།"
+
+msgid "Column"
+msgstr "གཞུང་བསྟར།"
+
+msgid "Width"
+msgstr "ཞེང་ཚད།"
+
+msgid "Multiple choice input"
+msgstr "གདམ་ག་སྣ་མང་ནང་འཇུག"
+
+msgid "Question group"
+msgstr "དྲི་བའི་སྡེ་ཚན།"
+
+msgid "Hint"
+msgstr "བརྡ་སྟོན།"
+
+msgid "Required"
+msgstr "ལྡན་དགོས།"
+
+msgid "Accept multiple file uploads"
+msgstr "ཡིག་ཆ་སྣ་མང་ཡར་འཇུག་ཁས་ལེན་བྱ།"
+
+msgid "Accept multiple answers"
+msgstr "ལན་འདེབས་སྣ་མང་ཁས་ལེན་བྱ།"
+
+msgid "Template override"
+msgstr "མ་དཔེ་ཟུར་འཇུག"
+
+msgid "Phone number"
+msgstr "ཁ་པར་ཨང་གྲངས།"
+
+msgid "Checkbox label"
+msgstr "ཞིབ་བཤེར་སྒམ་མིང་བྱང་།"
+
+msgid "Add multimedia content"
+msgstr "སྒྲ་སྙན་ནང་དོན་སྣོན།"
+
+msgid "Image"
+msgstr "སྣང་བརྙན།"
+
+msgid "Audio"
+msgstr "སྒྲ།"
+
+msgid "Video"
+msgstr "བརྙན།"
+
+msgid "Subject answer visibility to custodian authorization"
+msgstr "བདག་གཉེར་བཀའ་འཁྲོལ་སྟེང་ལན་འདེབས་མངོན་གྱུར་འཇོག་རྒྱུ།"
+
+msgid "Text shown upon negative answer"
+msgstr "ལན་འདེབས་ནོར་བའི་ཐོག་ཡི་གེ་སྟོན་པ།"
+
+msgid "Prompt confirmation upon negative answer"
+msgstr "ལན་འདེབས་ནོར་བའི་ཐོག་གཏན་འཁེན་དྲན་སྐུལ།"
+
+msgid "Text shown upon confirmation"
+msgstr "གཏན་འཁེལ་ཐོག་ཡི་གེ་སྟོན་པ།"
+
+msgid "Trigger conditions"
+msgstr "དོགས་ཟོན་ཆ་རྐྱེན།"
+
+msgid "Sufficient"
+msgstr "འདང་ངེས།"
+
+msgid "Options"
+msgstr "གདམ་ག"
+
+msgid "Addition"
+msgstr "སྡོམ་རྩིས།"
+
+msgid "Multiplier"
+msgstr "སྒྱུར་མཁན།"
+
+msgid "Questions"
+msgstr "དྲི་བ།"
+
+msgid "Add new question"
+msgstr "དྲི་བ་གསར་པ་སྣོན།"
+
+msgid "Add question from template"
+msgstr "མ་དཔེ་ནས་དྲི་བ་སྣོན།"
+
+msgid "Duplicate"
+msgstr "འདྲ་བཤུས།"
+
+msgid "Steps"
+msgstr "གོམ་པ།"
+
+msgid "Site settings"
+msgstr "དྲ་ཚིགས་སྒྲིག་བཀོད།"
+
+msgid "Case management"
+msgstr "གནད་དོན་སྟངས་འཛིན།"
+
+msgid "Network settings"
+msgstr "དྲ་ལམ་སྒྲིག་བཀོད།"
+
+msgid "Sites"
+msgstr "དྲ་ཚིགས།"
+
+msgid "Mode:"
+msgstr "རྣམ་པ།:"
+
+msgid "Configure"
+msgstr "སྡེབ་སྒྲིག"
+
+msgid "Subdomain"
+msgstr "གཙོ་བོའི་ནང་གསེས།"
+
+msgid "Creation date:"
+msgstr "བཟོ་བསྐྲུན་ཚེས་གྲངས།:"
+
+msgid "Root domain used for secondary sites"
+msgstr "དྲ་ཚིགས་གཞན་ཆེད་བེད་སྤྱོད་བྱས་པའི་གཙོ་བོའི་རྩ་བ།"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "འཛིན་སྐྱོང་དགོས་དོན་ཁོ་ནའི་ཆེད་དྲ་ཚིགས་དང་པོ་དེ་བེད་སྤྱོད་བྱ།"
+
+msgid "Enable multi-site login"
+msgstr "དྲ་ཚིགས་སྣ་མང་ནང་འཛུལ་ནུས་ལྡན་བཟོ།"
+
+msgid "Allow users to sign up"
+msgstr "སྤྱོད་པ་པོར་ཐོ་འགོད་བྱེད་དུ་འཇུག"
+
+msgid "Enable terms of service"
+msgstr "ཞབས་ཞུའི་རྒྱས་གཅད་ནུས་ལྡན་བཟོ།"
+
+msgid "Send an account activation link to the user."
+msgstr "སྤྱོད་པ་པོ་ལ་ཐོ་ཁོངས་ནུས་ལྡན་བཟོ་བའི་མཐུད་ཁ་ཞིག་གཏོང་།"
+
+msgid "Public name"
+msgstr "སྤྱི་སྤྱོད་མིང་།"
+
+msgid "Send reset link"
+msgstr "བསྐྱར་སྒྲིག་མཐུད་ཁ་གཏོང་།"
+
+msgid "Set password"
+msgstr "གསང་ཡིག་སྒྲིག་བཀོད་བྱ།"
+
+msgid "Disable two factor authentication"
+msgstr "རིམ་གཉིས་བཀའ་འཁྲོལ་ནུས་འཇོམས་བྱ།"
+
+msgid "Force password change"
+msgstr "གསང་ཡིག་བརྗེ་སྒྱུར་བཙན་སྐུལ་བྱ།"
+
+msgid "The user will be forced to change its password on next login."
+msgstr "སྤྱོད་པ་པོ་ལ་ནང་འཛུལ་རྗེས་མའི་སྟེང་དེའི་གསང་ཡིག་བརྗེ་སྒྱུར་བཙན་སྐུལ་བྱེད་དུ་འཇུག་པ་ཡིན།"
+
+msgid "Language"
+msgstr "སྐད་ཡིག"
+
+msgid "Enable email notifications"
+msgstr "གློག་འཕྲིན་བརྡ་ཐོ་ནུས་ལྡན་བཟོ།"
+
+msgid "Details of the PGP key:"
+msgstr "PGP མཐེབ་ཀྱི་ཞིབ་ཕྲ།:"
+
+msgid "Fingerprint"
+msgstr "མཛུབ་རྗེས།"
+
+msgid "Set up encryption by providing a PGP public key"
+msgstr "PGP སྤྱི་སྤྱོད་མཐེབ་ཞིག་མཁོ་སྤྲོད་བྱེད་པའི་སྒོ་ནས་གསང་སྡོམ་སྒྲིག་བཀོད་བྱ།"
+
+msgid "Give this admin ability to change user passwords"
+msgstr "འཛིན་སྐྱོང་བ་འདི་ལ་སྤྱོད་པ་པོའི་གསང་ཡིག་བརྗེ་སྒྱུར་བྱེད་དུ་འཇུག་པའི་ནུས་པ་སྤྲོད།"
+
+msgid "Forcefully selected"
+msgstr "བཙན་སྐུལ་ངང་འདེམས་ཟིན།"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "འབྱོར་ཡུལ་ལ་སྙན་ཐོའི་དུས་ཡོལ་ཚེས་གྲངས་ཕྱི་བཤོལ་བྱེད་དུ་འཇུག"
+
+msgid "Allow the recipient to delete reports"
+msgstr "འབྱོར་ཡུལ་ལ་སྙན་ཐོ་བསུབ་དུ་འཇུག"
+
+msgid "Give the user administrative access to the following features:"
+msgstr "སྤྱོད་པ་པོའི་འཛིན་སྐྱོང་ལ་གཤམ་གྱི་ཁྱད་ཆོས་དག་གི་ལྟ་སྤྱོད་སྤྲོད།:"
+
+msgid "Request date"
+msgstr "རེ་ཞུའི་ཚེས་གྲངས།"
+
+msgid "Report date"
+msgstr "ཞུ་གཏུག་ཚེས་གྲངས།"
+
+msgid "Authorization"
+msgstr "བཀའ་འཁྲོལ།"
+
+msgid "Requests"
+msgstr "རེ་ཞུ།"
+
+msgid "The validation link is either incorrect or has expired."
+msgstr "འཐད་ལྡན་མཐུད་ཁ་དེ་ནོར་བའམ་དུས་ཡོལ་ཟིན་འདུག"
+
+msgid "Your new email address has been validated."
+msgstr "ཁྱེད་ཀྱི་གློག་འཕྲིན་ཁ་བྱང་གསར་པ་དེ་འཐད་ལྡན་ཟིན།"
+
+msgid "Forgot password?"
+msgstr "གསང་ཡིག་བརྗེད་སོང་ངམ།"
+
+msgid "Enter the two factor authentication code"
+msgstr "རིམ་གཉིས་བཀའ་འཁྲོལ་གསང་རྟགས་འཇུག"
+
+msgid "Authentication failed"
+msgstr "བཀའ་འཁྲོལ་མི་ཐུབ།"
+
+msgid "The code is either invalid or expired."
+msgstr "གསང་རྟགས་དེ་མི་འཐད་པའམ་དུས་ཡོལ་ཟིན་པ་གང་རུང་ཡིན་འདུག"
+
+msgid "Site:"
+msgstr "དྲ་ཚིགས།:"
+
+msgid "Please select your account:"
+msgstr "ཁྱེད་ཀྱི་ཐོ་ཁོངས་འདེམས་རོགས་གནང་།:"
+
+msgid "Now type your password, then click 'Log in':"
+msgstr "ད་ལྟ་ཁྱེད་ཀྱི་གསང་ཡིག་འཇུག དེ་ནས་ 'ནང་འཛུལ་' སྟེང་སྣུན།"
+
+msgid "Text shown after the user has selected the option."
+msgstr "སྤྱོད་པ་པོ་ཡིས་གདམ་ག་འདེམས་པའི་རྗེས་སུ་ཡི་གེ་སྟོན་པ།"
+
+msgid "Confirm"
+msgstr "གཏན་འཁེལ།"
+
+msgid "Are you sure?"
+msgstr "ཁྱེད་རང་ངེས་བརྟན་ཡིན་ནམ།"
+
+msgid "The operation will reset the configuration and cannot be undone."
+msgstr "བཀོལ་སྤྱོད་འདི་ཡིས་སྡེབ་སྒྲིག་བསྐྱར་སྒྲིག་བྱེད་པ་དང་། དེ་ཕྱིར་ལོག་བྱེད་མི་ཐུབ།"
+
+msgid "Assign score points"
+msgstr "ཨང་ཐོབ་སྐར་གྲངས་ལག་བསྟར་བྱ།"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "འབྲེལ་འཛུགས་ཟིན་པའི་གཞི་གྲངས་ཆ་ཚང་གཏན་འཇགས་ངང་བསུབ་རྒྱུ་ཡིན་པས་ཐུགས་སྣང་གནང་རོགས།"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "འདི་ནི་འགྲེམས་སྟོན་གླེང་སྟེགས་ཤིག་ཡིན། དེ་ཞུ་འབུལ་དངོས་ཆེད་བེད་སྤྱོད་མ་གནང་རོགས།"
+
+msgid "Install an authenticator app on your phone"
+msgstr "ཁྱེད་ཀྱི་ཁ་པར་སྟེང་བཀའ་འཁྲོལ་ཉེར་སྤྱོད་ཅིག་སྒྲིག་འཇུག་བྱ།"
+
+msgid "Scan the QR code with the app"
+msgstr "ཉེར་སྤྱོད་ལྷན་ QR གསང་རྟགས་འཚག་སེལ་བྱ།"
+
+msgid "Enable two factor authentication"
+msgstr "རིམ་གཉིས་བཀའ་འཁྲོལ་ནུས་ལྡན་བཟོ།"
+
+msgid "Close"
+msgstr "སྒོ་རྒྱག"
+
+msgid "Before proceeding please read carefully the documentation at:"
+msgstr "སྒོ་འཛུགས་མ་བྱེད་གོང་གཤམ་འཁོད་སྟེང་ཡིག་ཆ་རྣམས་གཟབ་ནན་ངང་ཀློག་རོགས་གནང་།:"
+
+msgid "Your account recovery key is:"
+msgstr "ཁྱེད་ཀྱི་ཐོ་ཁོངས་བསྐྱར་གསོའི་མཐེབ་ནི།:"
+
+msgid ""
+"Make a copy and store it in a safe place. It will be necessary if you lose "
+"your password to recover the access to your account without data loss."
+msgstr "འདྲ་བཤུས་ཤིག་བཟོས་ཏེ་དེ་ས་ཆ་བདེ་འཇགས་ཤིག་ནང་ཉར་ཚགས་བྱ། གལ་སྲིད་ཁྱེད་ཀྱི་གསང་ཡིག་བརླག་པ་ཡིན་ན། གཞི་གྲངས་མ་བརླག་པའི་ཐོག་ནས་ཁྱེད་ཀྱི་ཐོ་ཁོངས་ལ་ལྟ་སྤྱོད་ཐུབ་པ་ཡོང་ཕྱིར་དེ་དགོས་ངེས་ཡིན། "
+
+msgid "Welcome!"
+msgstr "བྱོན་པ་ལེགས།"
+
+msgid "For the user documentation, visit:"
+msgstr "སྤྱོད་པ་པོའི་ཡིག་ཆ་དེབ་སྐྱེལ་ཆེད། འདིར་བསྐྱོད།:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "གལ་ཏེ་ཁྱེད་ལ་འཕྲུལ་རིག་རམ་འདེགས་དགོས་པའམ། སྤྱིར་བཏང་དྲི་བ་ཡོད་པ། ཡང་ན་། མཉེན་ཆས་ཆེད་བསམ་བློ་གསར་པ་ཡོད་ན།:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "གལ་ཏེ་ཁྱེད་ཀྱིས་མཉེན་ཆས་གོང་འཕེལ་ཐད་རམ་འདེགས་ཞུ་བའམ་དྲ་འབུ་ཞིག་སྙན་སེང་ཞུ་འདོད་ན། ང་ཚོའི་འཛིན་ཤོག་མ་ལག་ནང་གནད་དོན་ཞིག་སྒོ་ཕྱེ་རོགས་གནང་།:"
+
+msgid "Join our chat:"
+msgstr "ང་ཚོའི་གླེང་མོལ་སྟེང་མཉམ་ཞུགས་བྱ།:"
+
+msgid "Follow the project on:"
+msgstr "འདིའི་ཐོག་ལས་འཆར་སྟེང་རྗེས་འབྲངས་བྱ།:"
+
+msgid "Hint: How to hide your receipt"
+msgstr "བརྡ་སྟོན།: ཁྱེད་ཀྱི་འབྱོར་འཛིན་སྦས་སྐུང་བྱ་ཚུལ།"
+
+msgid ""
+"A useful way to hide your receipt is to write it down like a credit card "
+"number, i.e. by also including an expiration date."
+msgstr "ཁྱེད་ཀྱི་འབྱོར་འཛིན་སྦས་སྐུང་བྱེད་པའི་ཐབས་ལམ་བེད་སྤྱོད་ལྡན་པ་ཞིག་ནི་བུན་བྱང་ཨང་གྲངས་ལྟར་འབྲི་རྒྱུ་ཡིན་ཞིང་། དེའི་ནང་དུས་ཡོལ་ཚེས་གྲངས་ཡང་འཚུད་དགོས། "
+
+msgid "Error!"
+msgstr "ནོར་སྐྱོན།"
+
+msgid "Internal server error"
+msgstr "ནང་རོལ་གྱི་ཞབས་ཞུ་ཡོ་ཆས་ནོར་སྐྱོན།"
+
+msgid "Error on input validation"
+msgstr "ནང་འཇུག་འཐད་ལྡན་སྟེང་ནོར་སྐྱོན།"
+
+msgid "Resource not found"
+msgstr "རྒྱུ་ཆ་རྙེད་མི་འདུག"
+
+msgid "Forbidden operation"
+msgstr "བཀོལ་སྤྱོད་བཀག་འགོག་ཟིན།"
+
+msgid "The specified old password is not valid"
+msgstr "དམིགས་བཀར་བྱས་པའི་གསང་ཡིག་རྙིང་པ་དེ་འཐད་ལྡན་མི་འདུག"
+
+msgid "Resource can only be accessed via the Tor network"
+msgstr "རྒྱུ་ཆ་དེ་ Tor དྲ་ལམ་ཁོ་ན་བརྒྱུད་ནས་ལྟ་སྤྱོད་བྱེད་ཐུབ།"
+
+msgid "The upload request exceeds the size limit"
+msgstr "ཡར་འཇུག་རེ་ཞུའི་ཆ་ཚད་ཚད་མཚམས་བརྒལ་འདུག"
+
+msgid "Validation of email address change in progress."
+msgstr "གློག་འཕྲིན་ཁ་བྱང་བརྗེ་སྒྱུར་བྱས་པ་དེ་འཐད་ཚུལ་ཡིན་མིན་རྒྱུད་རིམ་ནང་འདུག"
+
+msgid "Please check your inbox for further instructions."
+msgstr "ལྷག་དོན་བཀོད་ཁྱབ་ཆེད་ཁྱེད་ཀྱི་འབྱོར་སྒམ་ཞིབ་བཤེར་གནང་རོགས།"
+
+msgid "Account recovery key"
+msgstr "ཐོ་ཁོངས་བསྐྱར་གསོའི་མཐེབ།"
+
+msgid "Current password"
+msgstr "ད་ལྟའི་གསང་ཡིག"
+
+msgid "Old password confirmation required"
+msgstr "གསང་ཡིག་རྙིང་པའི་གཏན་འཁེལ་ལྡན་དགོས་འདུག"
+
+msgid ""
+"It appears that you are browsing this site without any extra privacy and "
+"security!"
+msgstr "ཁྱེད་ཀྱིས་གསང་རྒྱ་དང་ཉེན་སྲུང་འཕར་མ་གང་ཡང་མེད་པའི་སྒོ་ནས་དྲ་ཚིགས་འདི་བཤར་ལྟ་བྱེད་བཞིན་པ་མངོན་གྱི་འདུག"
+
+msgid ""
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr "ཁྱེད་ཀྱིས་ Tor བཤར་ཆས་ཞེས་པའི་ཉེར་སྤྱོད་བེད་སྤྱོད་བྱེད་དེ་དྲ་ཚིགས་འདིའི་སྟེང་བསྐྱོད་དགོས་པ་སློབ་སྟོན་ཤུགས་ཆེ་བྱས་འདུག དེ་ཡིས་ཁྱེད་ཀྱིི་ངོ་བོ་སྲུང་སྐྱོབ་བྱེད་པ་ཡིན།"
+
+msgid "Download the Tor Browser"
+msgstr "Tor བཤར་ཆས་ཕབ་ལེན་བྱ།"
+
+msgid "Then, copy and paste the following address into the Tor Browser:"
+msgstr "དེ་ནས། Tor བཤར་ཆས་ནང་གཤམ་གྱི་དྲ་ཚིགས་ཁ་བྱང་དེ་འདྲ་བཤུས་བྱས་ཏེ་འཇུག:"
+
+msgid "Enter a name for the copy"
+msgstr "འདྲ་བཤུས་དེར་མིང་ཞིག་འཇུག"
+
+msgid "Have you already filed a report? Enter your receipt."
+msgstr "ཁྱེད་ཀྱིས་ཞུ་གཏུག་ཅིག་སྔ་ས་ནས་རྒྱག་ཟིན་ནམ། ཁྱེད་ཀྱི་འབྱོར་འཛིན་འཇུག"
+
+msgid "The receipt is either invalid or the report has expired."
+msgstr "འབྱོར་འཛིན་དེ་འཐད་ལྡན་མིན་པའམ་ཞུ་གཏུག་དེ་དུས་ཡོལ་ཟིན་པ་གང་རུང་ཡིན་སྲིད། "
+
+msgid "Select a file or drag it here."
+msgstr "ཡིག་ཆ་ཞིག་འདེམས་པའམ་འདིར་འདྲེད།"
+
+msgid "Uploading files…"
+msgstr "ཡིག་ཆ་ཡར་འཇུག་བཞིན་པ།..."
+
+msgid "Upload completed successfully!"
+msgstr "ཡར་འཇུག་མཇུག་སྐྱེལ་ཟིན།"
+
+msgid "Error while uploading files; check below for details."
+msgstr "ཡིག་ཆ་ཡར་འཇུག་བྱེད་སྐབས་ནོར་སྐྱོན་འདུག ཞིབ་ཕྲ་ཆེད་གཤམ་དུ་ཞིབ་བཤེར་བྱ།"
+
+msgid "Estimated upload time:"
+msgstr "ཚོད་དཔག་བྱས་པའི་ཡར་འཇུག་དུས་ཚོད།:"
+
+msgid "Size:"
+msgstr "ཆ་ཚད།:"
+
+msgid "Enable the Ricochet panel"
+msgstr "Ricochet སྟེགས་བུ་ནུས་ལྡན་བཟོ།"
+
+msgid "Address"
+msgstr "ཁ་བྱང་།"
+
+msgid "Chat with us anonymously using the Ricochet application"
+msgstr "Ricochet ཉེར་སྤྱོད་བེད་སྤྱོད་བྱེད་དེ་ང་ཚོའི་ལྷན་མིང་མེད་སྒོ་ནས་ཁ་བརྡ་བྱ།"
+
+msgid "To chat with us use the following Ricochet address:"
+msgstr "ང་ཚོའི་ལྷན་ཁ་བརྡ་བྱེད་པར། གཤམ་གྱི་ Ricochet ཁ་བྱང་བེད་སྤྱོད་བྱ།:"
+
+msgid "Download Ricochet at:"
+msgstr "འདིར་ Ricochet ཕབ་ལེན་བྱ།:"
+
+msgid ""
+"By using the Tor network and creating an Onion Service, Ricochet is an "
+"instant messaging app that allows you to chat while protecting your privacy "
+"and staying anonymous by not revealing your location or IP address. You "
+"won't notice any difference from an insecure chat, except that you will be "
+"using a unique address instead of a phone number/email/username."
+msgstr "Tor དྲ་ལམ་བེད་སྤྱོད་བྱེད་པ་དང་ Onion ཞབས་ཞུ་ཞིག་བཟོ་བསྐྲུན་བྱེད་པའི་སྒོ་ནས། Ricochet ནི་དེ་མ་ཐག་འཕྲལ་གྱི་འཕྲིན་ཐུང་གཏོང་བའི་ཉེར་སྤྱོད་ཅིག་ཡིན། དེ་ཡིས་ཁྱེད་ཀྱི་གསང་རྒྱ་སྲུང་སྐྱོབ་བྱེད་པ་དང་། ཁྱེད་ཀྱི་ས་ཚིགས་སམ་ IP ཁ་བྱང་མིང་འདོན་མ་བྱེད་པར་མིང་མེད་སྡོད་པའི་སྒོ་ནས། ཁྱེད་ལ་ཁ་བརྡ་བྱེད་དུ་འཇུག་པ་ཡིན། ཁྱེད་ཀྱིས་ཁ་པར་ཨང་གྲངས་/གློག་འཕྲིན་/སྤྱོད་པ་པོའི་མིང་གི་ཚབ་ཏུ་དམིགས་བསལ་ཁ་བྱང་ཞིག་བེད་སྤྱོད་བྱེད་ཀྱི་ཡོད་པ་མ་གཏོགས། ཁྱེད་ཀྱིས་ཉེན་སྲུང་མེད་པའི་ཁ་བརྡ་ཞིག་ནས་ཁྱད་པར་གཞན་གང་ཡང་མི་ཚོར་བ་ཡིིན།"
+
+msgid "The connection is not secure."
+msgstr "སྦྲེལ་མཐུད་དེ་བཙན་པོ་མི་འདུག"
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "གླེང་སྟེགས་དེ་ HTTPS སྦྲེལ་མཐུད་ཆེད་ད་དུང་ཡང་སྡེབ་སྒྲིག་ཟིན་མེད་པ་དང་། ཚོད་ལྟའི་དགོས་དོན་དག་ཁོ་ནའི་ཆེད་བེད་སྤྱོད་བྱེད་དགོས།"
+
+msgid "Use case"
+msgstr ""
+
+msgid "Anticorruption"
+msgstr "ལྐོག་ཟ་རྒྱབ་འགལ།"
+
+msgid "Corporate compliance"
+msgstr "ཁེ་ལས་བསྟུན་སྤྱོད།"
+
+msgid "Investigative journalism"
+msgstr "རྟོག་ཞིབ་གསར་འགོད།"
+
+msgid "Civic activism"
+msgstr "སྤྱི་དམངས་ལས་འགུལ།"
+
+msgid "Submit"
+msgstr "ཞུ་འབུལ།"
+
+msgid "Recipients have requested you to fill an additional questionnaire."
+msgstr "འབྱོར་ཡུལ་བ་ཡིས་ཁྱེད་ལ་དྲི་བ་འཕར་མ་ཞིག་འགེངས་པའི་རེ་ཞུ་བྱས་འདུག"
+
+msgid "Fill the additional questionnaire"
+msgstr "དྲི་བ་འཕར་མ་འགེངས།"
+
+msgid "Send"
+msgstr "གཏོང་།"
+
+msgid "Allow the whistleblower to write comments"
+msgstr "གསང་སྒྲོག་པ་ལ་འབྲེལ་བརྗོད་འབྲི་རུ་འཇུག"
+
+msgid "From:"
+msgstr "ནས།:"
+
+msgid "To:"
+msgstr "ལ།:"
+
+msgid "Filename"
+msgstr "ཡིག་ཆའི་མིང་།"
+
+msgid "Upload date"
+msgstr "ཡར་འཇུག་ཚེས་གྲངས།"
+
+msgid "File size"
+msgstr "ཡིག་ཆའི་ཆ་ཚད།"
+
+msgid "Allow the whistleblower to add attachments to the report"
+msgstr "གསང་སྒྲོག་པ་ལ་སྙན་ཐོའི་སྟེང་མཐུད་འཛར་སྣོན་དུ་འཇུག"
+
+msgid "Allow the whistleblower to send messages"
+msgstr "གསང་སྒྲོག་པ་ལ་འཕྲིན་ཐུང་གཏོང་དུ་འཇུག"
+
+msgid "Are you sure that you want to delete the report?"
+msgstr "ཁྱེད་ཀྱིས་སྙན་ཐོ་བསུབ་འདོད་པ་ངེས་བརྟན་ཡིན་ནམ།"
+
+msgid ""
+"Everything related to the report stored on the platform will be deleted."
+msgstr "གླེང་སྟེགས་སྟེང་ཉར་གསོག་བྱས་པའི་སྙན་ཐོ་འབྲེལ་ཡོད་ཆ་ཚང་བསུབ་པ་ཡིན། "
+
+msgid ""
+"Please be aware that everything stored off the platform, e.g. files you have"
+" saved on your computer, must be deleted manually."
+msgstr "གླེང་སྟེགས་ཕྱི་རུ་ཉར་གསོག་བྱས་པ་ཆ་ཚང་ངེས་པར་དུ་ལག་པས་བསུབ་དགོས་པ་ཤེས་པ་བྱ། དཔེར་ན། ཁྱེད་ཀྱི་ཀམ་པུ་ཊར་སྟེང་ཁྱེད་ཀྱིས་ཉར་ཚགས་བྱས་པའི་ཡིག་ཆ་དག"
+
+msgid "Are you sure that you want to delete the selected reports?"
+msgstr "ཁྱེད་ཀྱིས་འདེམས་ཟིན་པའི་སྙན་ཐོ་བསུབ་འདོད་པ་ངེས་བརྟན་ཡིན་ནམ།"
+
+msgid ""
+"Please make sure that all related data is properly deleted so that the "
+"recipients won't be able to further access to it."
+msgstr "འབྲེལ་ཡོད་གཞི་གྲངས་ཆ་ཚང་ཚུལ་མཐུན་ངང་བསུབ་པ་ངེས་བརྟན་གནང་རོགས། དེས་ན་འབྱོར་ཡུལ་དག་གིས་ད་དུང་དེའི་སྟེང་ལྟ་སྤྱོད་མི་ཐུབ་པ་ཡིན། "
+
+msgid "Please write a motivation for the reply"
+msgstr "ལན་འདེབས་ཆེད་སྐུལ་སློང་ཞིག་འབྲི་རོགས་གནང་། "
+
+msgid "Are you sure that you want to postpone the report expiration date?"
+msgstr "ཁྱེད་ཀྱིས་སྙན་ཐོའི་དུས་ཡོལ་ཚེས་གྲངས་ཕྱི་བཤོལ་བྱེད་འདོད་པ་ངེས་བརྟན་ཡིན་ནམ།"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "གཏན་འཁེལ་བྱེད་པ་ཡིས། ཁྱེད་ཀྱིས་དུས་ཡུལ་ཚེས་གྲངས་དེ་འདིའི་སྟེང་ཕྱི་བཤོལ་བྱེད་པ་ཡིན།:"
+
+msgid ""
+"Are you sure that you want to postpone the expiration date for all selected "
+"reports?"
+msgstr "ཁྱེད་ཀྱིས་འདེམས་ཟིན་པའི་སྙན་ཐོ་ཆ་ཚང་ཆེད་དུས་ཡོལ་ཚེས་གྲངས་ཕྱི་བཤོལ་བྱེད་འདོད་པ་ངེས་བརྟན་ཡིན་ནམ།"
+
+msgid "Questionnaire answers"
+msgstr "དྲི་བའི་ལན།"
+
+msgid "Step"
+msgstr "གོམ་པ།"
+
+msgid "Recipient list"
+msgstr "འབྱོར་ཡུལ་ཐོ་གཞུང་།"
+
+msgid "Status:"
+msgstr "གནས་བབ།:"
+
+msgid "Files attached by recipients"
+msgstr "འབྱོར་ཡུལ་གྱི་མཉམ་སྦྱར་བྱས་པའི་ཡིག་ཆ།"
+
+msgid "Upload a file:"
+msgstr "ཡིག་ཆ་ཞིག་ཡར་འཇུག་བྱ།:"
+
+msgid "Logout"
+msgstr "ཕྱིར་ཐོན།"
+
+msgid "An update is available:"
+msgstr "གསར་སྒྱུར་ཞིག་ཐོབ་རུང་འདུག:"
+
+msgid ""
+"We recommend that you access the “Preferences” section in order to retrieve "
+"your “Account Recovery Key” and store it safely. This key will be necessary "
+"to recover your access to the platform and to your data in case you forget "
+"your password."
+msgstr "ཁྱེད་ཀྱི་ \"ཐོ་ཁོངས་བསྐྱར་གསོའི་མཐེབ་\" བསྐྱར་ལེན་བྱེད་པ་དང་དེ་བདེ་འཇགས་ངང་ཉར་གསོག་བྱེད་པར། ཁྱེད་ཀྱིས་ \"མོས་འདེམས་\" སྡེ་ཚན་ལྟ་སྤྱོད་བྱེད་རྒྱུར་འོས་སྦྱོར་ཞུ་ཡི་ཡོད། གལ་ཏེ་ཁྱེད་ཀྱི་གསང་ཡིག་བརྗེད་པ་ཡིན་ན། གླེང་སྟེགས་དང་ཁྱེད་ཀྱི་གཞི་གྲངས་ལྟ་སྤྱོད་བསྐྱར་གསོ་བྱེད་པར་མཐེབ་འདི་དགོས་ངེས་ཡིན།"
+
+msgid "The provided recovery key is invalid."
+msgstr "མཁོ་སྤྲོད་བྱས་པའི་བསྐྱར་གསོའི་མཐེབ་དེ་མི་འཐད།"
+
+msgid "The provided reset token is invalid or expired."
+msgstr "མཁོ་སྤྲོད་བྱས་པའི་བསྐྱར་སྒྲིག་ཊོ་ཀེན་དེ་མི་འཐད་པའམ་དུས་ཡོལ་ཟིན་འདུག"
+
+msgid ""
+"Enter your account's username or your email address to request a password "
+"reset."
+msgstr "གསང་ཡིག་བསྐྱར་སྒྲིག་ཅིག་རེ་ཞུ་བྱེད་པར། ཁྱེད་ཀྱི་ཐོ་ཁོངས་ཀྱི་སྤྱོད་པ་པོའི་མིང་ངམ་ཁྱེད་ཀྱི་གློག་འཕྲིན་ཁ་བྱང་འཇུག"
+
+msgid "Enter your email address to request a password reset."
+msgstr "གསང་ཡིག་བསྐྱར་སྒྲིག་ཅིག་རེ་ཞུ་བྱེད་པར། ཁྱེད་ཀྱི་གློག་འཕྲིན་ཁ་བྱང་འཇུག"
+
+msgid ""
+"Enter you encryption recovery key to complete the password reset procedure"
+msgstr "གསང་ཡིག་བསྐྱར་སྒྲིག་རྒྱུད་རིམ་མཇུག་སྐྱེལ་བྱེད་པར། ཁྱེད་ཀྱི་གསང་སྡོམ་བསྐྱར་གསོའི་མཐེབ་འཇུག"
+
+msgid "Password reset requested."
+msgstr "གསང་ཡིག་བསྐྱར་སྒྲིག་རེ་ཞུ་ཟིན།"
+
+msgid "Show"
+msgstr "སྟོན།"
+
+msgid "Hide"
+msgstr "སྦས།"
+
+msgid ""
+"Access to the whistleblower's identity has been requested to the custodian."
+msgstr "གསང་སྒྲོག་པའི་ངོ་བོའི་ལྟ་སྤྱོད་དེ་བདག་གཉེར་བར་རེ་ཞུ་ཟིན་འདུག"
+
+msgid "Date of the request"
+msgstr "རེ་ཞུའི་ཚེས་གྲངས།"
+
+msgid "Congratulations!"
+msgstr "འཚམས་འདྲི་ཞུ།"
+
+msgid "You have completed the platform activation."
+msgstr "ཁྱེད་ཀྱི་གླེང་སྟེགས་ནུས་ལྡན་མཇུག་སྐྱེལ་ཟིན་འདུག"
+
+msgid "Success!"
+msgstr "ལེགས་གྲུབ།"
+
+msgid "Your whistleblowing platform is almost ready!"
+msgstr "ཁྱེད་ཀྱི་གསང་སྒྲོག་པའི་གླེང་སྟེགས་དེ་ཕལ་ཆེར་གྲ་སྒྲིག་རེད་འདུག"
+
+msgid "Check your inbox to activate it."
+msgstr "དེ་ནུས་ལྡན་བཟོ་བར་ཁྱེད་ཀྱི་འབྱོར་སྒམ་ཞིབ་བཤེར་བྱ།"
+
+msgid ""
+"If not activated within 24 hours the platform will be automatically deleted."
+msgstr "གལ་ཏེ་ཆུ་ཚོད་ ༢༤ ནང་འཚུད་ནུས་ལྡན་མི་བཟོས་པ་ཡིན་ན། གླེང་སྟེགས་དེ་རང་འགུལ་གྱི་བསུབ་པ་ཡིན།"
+
+msgid "Sign up"
+msgstr "ཐོ་འགོད།"
+
+msgid "Domain"
+msgstr "གཙོ་བོ།"
+
+msgid "Confirmation"
+msgstr "གཏན་འཁེལ།"
+
+msgid "Invalid confirmation"
+msgstr "གཏན་འཁེལ་མི་འཐད།"
+
+msgid "Other"
+msgstr "གཞན།"
+
+msgid "Complete"
+msgstr "མཇུག་སྐྱེལ།"
+
+msgid "Invalid phone number"
+msgstr "ཁ་པར་ཨང་གྲངས་མི་འཐད།"
+
+msgid "Select the context of your report:"
+msgstr "ཁྱེད་ཀྱི་སྙན་ཐོའི་འབྲེལ་ཆགས་འདེམས།"
+
+msgid "The answer is too short"
+msgstr "ལན་འདེབས་དེ་ཧ་ཅང་ཐུང་ཐུང་འདུག"
+
+msgid "The specified input is not valid."
+msgstr "དམིགས་བཀར་བྱས་པའི་ནང་འཇུག་དེ་འཐད་ཀྱི་མི་འདུག"
+
+msgid "The specified input is not valid:"
+msgstr "དམིགས་བཀར་བྱས་པའི་ནང་འཇུག་དེ་འཐད་ཀྱི་མི་འདུག:"
+
+msgid "please enter a valid email address."
+msgstr "གློག་འཕྲིན་ཁ་བྱང་འཐད་པ་ཞིག་འཇུག་རོགས་གནང་།"
+
+msgid "please enter numbers only."
+msgstr "ཨང་གྲངས་ཁོ་ན་འཇུག་རོགས་གནང་།"
+
+msgid "Submissions disabled"
+msgstr "ཞུ་འབུལ་ནུས་འཇོམས་ཟིན།"
+
+msgid ""
+"You are connecting to the server without anonymity and this server supports "
+"only anonymous submissions"
+msgstr "ཁྱེད་ཉིད་མིང་མེད་མིན་པའི་སྒོ་ནས་ཞབས་ཞུ་ཡོ་ཆས་སྟེང་སྦྲེལ་མཐུད་བྱེད་བཞིན་པ་དང་། ཞབས་ཞུ་ཡོ་ཆས་འདི་ཡིས་མིང་མེད་ཞུ་འབུལ་ཁོ་ན་རམ་འདེགས་བྱེད་ཀྱི་ཡོད།"
+
+msgid "Thank you!"
+msgstr "ཐུགས་རྗེ་ཆེ།"
+
+msgid "Your report was successful."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Remember your receipt for this report."
+msgstr ""
+
+msgid ""
+"Use the 16 digit receipt to log in. It will allow you to view any messages "
+"we sent you, and also to add extra info."
+msgstr ""
+
+msgid "View your report"
+msgstr ""
+
+msgid "Recipient selection"
+msgstr ""
+
+msgid "Select the recipients of your report:"
+msgstr ""
+
+msgid "Recipients selected:"
+msgstr ""
+
+msgid "You have reached the maximum number of selectable recipients."
+msgstr ""
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr ""
+
+msgid ""
+"In this step the answers to the following questions are either missing or "
+"invalid:"
+msgstr ""
+
+msgid "You must select at least one recipient."
+msgstr ""
+
+msgid "Waiting for the file(s) to finish uploading."
+msgstr ""
+
+msgid "The following steps have errors:"
+msgstr ""
+
+msgid ""
+"The following step-by-step procedure will guide you through creating your "
+"whistleblowing platform."
+msgstr ""
+
+msgid "Please choose a configuration profile:"
+msgstr ""
+
+msgid "Make it possible for this admin to reset user passwords."
+msgstr ""
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr ""
+
+msgid "Please choose a different username."
+msgstr ""
+
+msgid "I have read and agree to the terms of the license."
+msgstr ""
+
+msgid "You have completed the platform wizard."
+msgstr ""
+
+msgid "Fill out your report"
+msgstr ""
+
+msgid "Describe your report in a few words."
+msgstr ""
+
+msgid "Describe your report in detail."
+msgstr ""
+
+msgid "Attach files relevant to the report."
+msgstr ""
+
+msgid "Do you want to provide your identification information?"
+msgstr ""
+
+msgid "First name"
+msgstr ""
+
+msgid "Last name"
+msgstr ""
+
+msgid "Gender"
+msgstr ""
+
+msgid "Male"
+msgstr ""
+
+msgid "Female"
+msgstr ""
+
+msgid "Other gender identity"
+msgstr ""
+
+msgid "Date of birth"
+msgstr ""
+
+msgid "Place of birth"
+msgstr ""
+
+msgid "Zip code / Postal code"
+msgstr ""
+
+msgid "Province"
+msgstr ""
+
+msgid "Country"
+msgstr ""
+
+msgid "Dear {RecipientName},"
+msgstr ""
+
+msgid ""
+"You're receiving this email because a user account has been created for you "
+"on the system: {Site}"
+msgstr ""
+
+msgid "Username: {Username}"
+msgstr ""
+
+msgid "Activation link: {Url}"
+msgstr ""
+
+msgid ""
+"Please click on the activation link to proceed with the account activation "
+"and to set your user password."
+msgstr ""
+
+msgid ""
+"After successful activation you will be able to access the system via the "
+"following link: {LoginUrl}"
+msgstr ""
+
+msgid "Kind regards,"
+msgstr ""
+
+msgid "Account activation"
+msgstr ""
+
+msgid "Your whistleblowing platform is now accessible at:"
+msgstr ""
+
+msgid "To log in, visit:"
+msgstr ""
+
+msgid "Users' credentials:"
+msgstr ""
+
+msgid "The platform will be automatically deleted on:"
+msgstr ""
+
+msgid "Access instructions"
+msgstr ""
+
+msgid ""
+"The number of activities recently detected appears to be higher than usual."
+msgstr ""
+
+msgid ""
+"This could be a sign of an attack (for example, someone flooding your server"
+" with bogus information) or just a usage spike due to an increased "
+"visibility of your project."
+msgstr ""
+
+msgid "Examine the issue to determine whether it is legitimate or not."
+msgstr ""
+
+msgid "The activities with unusual stats are:"
+msgstr ""
+
+msgid ""
+"The server cannot guarantee that a new report can be stored, so submissions "
+"have been disabled."
+msgstr ""
+
+msgid ""
+"Please consider asking your technical support to create more disk space on "
+"the server."
+msgstr ""
+
+msgid ""
+"GlobaLeaks technology includes a server status checking component which will"
+" alert you in case something requires your attention."
+msgstr ""
+
+msgid ""
+"For more information, log in to the Administration interface and look at the"
+" \"System Stats\" and \"Anomalies\" sections."
+msgstr ""
+
+msgid "Anomaly detected in {NodeName}"
+msgstr ""
+
+msgid ""
+"This is an email to inform you that the PGP key of the following users is "
+"going to expire or has already expired:"
+msgstr ""
+
+msgid ""
+"Without a valid PGP key, the system will not be able to send them encrypted "
+"notifications."
+msgstr ""
+
+msgid "PGP key expiration alert"
+msgstr ""
+
+msgid "A new whistleblowing site has been registered."
+msgstr ""
+
+msgid "Registration data:"
+msgstr ""
+
+msgid "Site: {Url}"
+msgstr ""
+
+msgid "Name: {Name}"
+msgstr ""
+
+msgid "Email: {Email}"
+msgstr ""
+
+msgid "Language: {Language}"
+msgstr ""
+
+msgid "Use case: {UseCase}"
+msgstr ""
+
+msgid "New whistleblowing site registered"
+msgstr ""
+
+msgid ""
+"This is a test email sent out from the platform's administrative interface."
+msgstr ""
+
+msgid ""
+"Reception of this email indicates that the server was able to authenticate "
+"to and interact with the SMTP mail server."
+msgstr ""
+
+msgid "Test email"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a request has been made to change your "
+"email address to {NewEmailAddress}."
+msgstr ""
+
+msgid "Click the following link to validate this change:"
+msgstr ""
+
+msgid ""
+"If you didn't request this change, change your password and contact your "
+"system administrator."
+msgstr ""
+
+msgid "Email change request"
+msgstr ""
+
+msgid "From: {Author}"
+msgstr ""
+
+msgid "Date: {EventTime}"
+msgstr ""
+
+msgid "From: Whistleblower"
+msgstr ""
+
+msgid "Date: {SubmissionDate}"
+msgstr ""
+
+msgid "Label: {TipLabel}"
+msgstr ""
+
+msgid "Status: {TipStatus}"
+msgstr ""
+
+msgid ""
+"The HTTPS certificate loaded on the platform is about to, or has already "
+"expired."
+msgstr ""
+
+msgid "Expiration date: {ExpirationDate}"
+msgstr ""
+
+msgid ""
+"Without a valid certificate, the platform will be accessible in a secure way"
+" only via Tor."
+msgstr ""
+
+msgid "Log in to solve the issue."
+msgstr ""
+
+msgid "Expiration alert for HTTPS certificate"
+msgstr ""
+
+msgid ""
+"The automatic HTTPS certificate renewal scheduled for today just failed."
+msgstr ""
+
+msgid "The system will keep trying."
+msgstr ""
+
+msgid "Failed HTTPS certificate renewal"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a custodian has authorized you to access"
+" to the whistleblowing identity for the report {TipNum}."
+msgstr ""
+
+msgid "The report can be accessed at:"
+msgstr ""
+
+msgid "Access to whistleblower's identity authorized"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a custodian has denied you access to the"
+" whistleblowing identity for the report {TipNum}."
+msgstr ""
+
+msgid "Access to whistleblower's identity denied"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a recipient has requested access to the "
+"whistleblower's identity for the report {TipNum}"
+msgstr ""
+
+msgid "The request can be accessed at:"
+msgstr ""
+
+msgid "New request of access to a whistleblower's identity"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that the whistleblower for the report "
+"{TipNum} has provided their identity."
+msgstr ""
+
+msgid "The whistleblower has provided their identity"
+msgstr ""
+
+msgid ""
+"You're receiving this email because a password reset has been requested for "
+"the account: {Username}"
+msgstr ""
+
+msgid ""
+"If you didn't make this request, you may safely ignore and delete this "
+"email."
+msgstr ""
+
+msgid "You can confirm your request by clicking the following link:"
+msgstr ""
+
+msgid "Password reset instructions"
+msgstr ""
+
+msgid ""
+"This is an email to inform you that your PGP key is expiring or has already "
+"expired."
+msgstr ""
+
+msgid ""
+"You should extend its validity and update the key present on the platform, "
+"or upload a new key."
+msgstr ""
+
+msgid ""
+"Without a valid PGP key, the system won't be able to encrypt data provided "
+"to you."
+msgstr ""
+
+msgid "Click the link to activate the platform:"
+msgstr ""
+
+msgid "Activation"
+msgstr ""
+
+msgid "A software update is available."
+msgstr ""
+
+msgid "It is good security practice to keep the platform up to date."
+msgstr ""
+
+msgid ""
+"To learn about new features and bug fixes in the new version consult the "
+"change log at: {ChangeLogUrl}"
+msgstr ""
+
+msgid ""
+"For instructions on software updates, please refer to the documentation at: "
+"{UpdateGuideUrl}"
+msgstr ""
+
+msgid "The earliest expiration date is {EarliestExpirationDate}."
+msgstr ""
+
+msgid "Please remember to check them before they are deleted."
+msgstr ""
+
+msgid "Some reports will expire soon"
+msgstr ""
+
+msgid ""
+"This is an email to notify you that a whistleblower has selected you as a "
+"valuable recipient of their report."
+msgstr ""
+
+msgid ""
+"You are asked to pay special attention to the information and material "
+"contained therein. Please keep in mind that whistleblowers often expose "
+"themselves to high personal risks in the interest of the public. Therefore "
+"the material provided within this report should be considered to be of high "
+"importance."
+msgstr ""
+
+msgid "New report"
+msgstr ""
+
+msgid "This is an email to notify that an existing report has been updated."
+msgstr ""
+
+msgid "Report updated"
+msgstr ""
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr ""
+
+msgid "Reminder about unread or updated reports"
+msgstr ""
+
+msgid "Role: {Role}"
+msgstr ""
+
+msgid "Password: {Password}"
+msgstr ""

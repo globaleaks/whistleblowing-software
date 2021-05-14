@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-10 07:25+0000\n"
-"Last-Translator: Vasja <vasja.cepic@transparency.si>\n"
+"PO-Revision-Date: 2021-05-12 22:57+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1045,9 +1045,6 @@ msgstr "Pogoji storitve"
 
 msgid "Date range"
 msgstr "Časovno obdobje"
-
-msgid "Map"
-msgstr "Zemljevid"
 
 msgid "Group of questions"
 msgstr "Skupina vprašanj"
