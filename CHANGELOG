@@ -1,3 +1,10 @@
+Changes in version 4.2.9
+    Fix issue #3007 preventing new setups of globaleaks 4.2.8
+    Fix password reset functionality in relation to pyotp dependency removal
+    Revise min_len and max_len input validations in relation to IE 11
+    Add Tibetan translation (ongoin translation added for revision purposes)
+    Update translations
+
 Changes in version 4.2.8
     Update translations for revision purposes
 
