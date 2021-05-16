@@ -709,7 +709,7 @@ class RTipInstance(OperationHandler):
         if State.tenant_cache[self.request.tid].encryption and crypto_tip_prv_key:
             tip = yield deferToThread(decrypt_tip, self.current_user.cc, crypto_tip_prv_key, tip)
 
-        self.state.log(type='access_report', user_id=self.current_user.user_id, object_id=tip['internaltip_id'])
+        self.state.log(tid=self.current_user.tid, type='access_report', user_id=self.current_user.user_id, object_id=tip['internaltip_id'])
 
         returnValue(tip)
 
