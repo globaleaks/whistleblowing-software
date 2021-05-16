@@ -12,10 +12,11 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import db_get_submission_statuses
-from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip
+from globaleaks.handlers.rtip import serialize_rtip
 from globaleaks.handlers.submission import decrypt_tip
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.orm import transact
+from globaleaks.rest import errors
 from globaleaks.utils.crypto import Base64Encoder, GCE
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import msdos_encode
@@ -24,13 +25,16 @@ from globaleaks.utils.zipstream import ZipStream
 
 @transact
 def get_tip_export(session, tid, user_id, rtip_id, language):
-    rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+    user, context, itip, rtip  = session.query(models.User, models.Context, models.InternalTip, models.ReceiverTip) \
+                                        .filter(models.User.id == user_id,
+                                                models.User.tid == tid,
+                                                models.ReceiverTip.id == rtip_id,
+                                                models.ReceiverTip.receiver_id == user_id,
+                                                models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                                                models.Context.id == models.InternalTip.context_id).one_or_none()
 
-    user, context = session.query(models.User, models.Context) \
-                           .filter(models.User.id == rtip.receiver_id,
-                                   models.Context.id == models.InternalTip.context_id,
-                                   models.InternalTip.id == rtip.internaltip_id,
-                                   models.User.tid == tid).one()
+    if not user:
+        raise errors.ResourceNotFound()
 
     rtip_dict = serialize_rtip(session, rtip, itip, language)
 
