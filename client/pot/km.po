@@ -1,11 +1,12 @@
 # 
 # Translators:
+# Kanika, 2021
 # Ty Sok <sokty2@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-15 13:40+0000\n"
-"Last-Translator: Ty Sok <sokty2@gmail.com>\n"
+"PO-Revision-Date: 2021-05-17 04:27+0000\n"
+"Last-Translator: Kanika\n"
 "Language-Team: Khmer (http://www.transifex.com/otf/globaleaks/language/km/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,7 +18,7 @@ msgid "Log in"
 msgstr "ចូលប្រើប្រាស់"
 
 msgid "Main configuration"
-msgstr "ការកំណត់ដើម"
+msgstr "ការកំណត់សំខាន់"
 
 msgid "Theme customization"
 msgstr "ការផ្លាស់ប្តូរទម្រង់ផ្សេងៗ"

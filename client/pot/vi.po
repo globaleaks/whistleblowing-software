@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-15 00:33+0000\n"
+"PO-Revision-Date: 2021-05-16 17:43+0000\n"
 "Last-Translator: Nathan Tran\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,7 +45,7 @@ msgid "Advanced settings"
 msgstr "Thiết đặt nâng cao"
 
 msgid "Questionnaire configuration"
-msgstr "Cấu hình câu hỏi"
+msgstr "Cấu hình bảng câu hỏi"
 
 msgid "Question templates"
 msgstr "Các mẫu câu hỏi"
@@ -96,7 +96,7 @@ msgid "Files"
 msgstr "Tập tin"
 
 msgid "Comments"
-msgstr "Bình luận"
+msgstr "Ý kiến"
 
 msgid "Messages"
 msgstr "Tin nhắn"
@@ -239,7 +239,7 @@ msgid "User"
 msgstr "Người dùng"
 
 msgid "Motivation"
-msgstr "Động lực"
+msgstr "Lý do"
 
 msgid "Status"
 msgstr "Trạng thái"
@@ -251,7 +251,7 @@ msgid "Reply motivation"
 msgstr "Trả lời lý do"
 
 msgid "Request status"
-msgstr "Tình trạng yêu cầu"
+msgstr "Trạng thái yêu cầu"
 
 msgid "Custodian"
 msgstr "Người bảo quản"
@@ -324,7 +324,7 @@ msgid ""
 msgstr "Giao diện để cấu hình mẫu email thông báo cho người bảo quản."
 
 msgid "Disable notifications to administrators"
-msgstr "Tắt thông báo cho người quản trị"
+msgstr "Tắt thông báo cho quản trị viên"
 
 msgid "Disable notifications to custodians"
 msgstr "Tắt thông báo cho người bảo quản."
@@ -428,7 +428,7 @@ msgid "Display options alphabetically"
 msgstr "Hiển thị tùy chọn theo thứ tự ABC"
 
 msgid "Enable email notifications for:"
-msgstr "Bật thông báo email cho:"
+msgstr "Bật mở thông báo email cho:"
 
 msgid "Disable"
 msgstr "Tắt"
@@ -491,7 +491,7 @@ msgid "Send a test email to your email address."
 msgstr "Gửi thử email đến địa chỉ email của bạn"
 
 msgid "Block the submission"
-msgstr "Chặn không cho nộp báo cáo"
+msgstr "Chặn-không nhận báo cáo"
 
 msgid "Skip the recipient account creation."
 msgstr "Bỏ qua việc tạo tài khoản người nhận"
@@ -568,10 +568,10 @@ msgid "Administrators authorized to change user passwords:"
 msgstr "Quản trị viên có quyền thay đổi mật mã người dùng"
 
 msgid "Enable multisite feature"
-msgstr "Cho phép tính năng nhiều trang web"
+msgstr "Bật mở tính năng nhiều trang web"
 
 msgid "Enable simplified login"
-msgstr "Cho phép đăng nhập đơn giản"
+msgstr "Bật mở đăng nhập đơn giản"
 
 msgid "Allow recipients to delete reports"
 msgstr "Cho phép người nhận để xóa báo cáo"
@@ -587,16 +587,16 @@ msgid "Enable search engines indexing"
 msgstr "Bật công cụ tìm kiếm lập chỉ mục"
 
 msgid "Enable custom privacy panel"
-msgstr "Bật lên bảng thông tin về bảo mật và riêng tư ở đầu trang"
+msgstr "Bật lên bảng thông tin tùy biến về bảo mật và riêng tư ở đầu trang"
 
 msgid "Custom privacy panel"
-msgstr "Tùy biến bảng thông tin bảo mật và riêng tư"
+msgstr "Bảng thông tin tùy biến về bảo mật và riêng tư"
 
 msgid "Disable the privacy panel"
 msgstr "Tắt bảng thông tin bảo mật và riêng tư"
 
 msgid "Enable the receipt hint"
-msgstr "Mở gợi ý cho biên nhận"
+msgstr "Bật mở gợi ý cho biên nhận"
 
 msgid "Default questionnaire"
 msgstr "Bảng câu hỏi mặc định"
@@ -614,7 +614,7 @@ msgid "in megabytes"
 msgstr "bằng megabyte"
 
 msgid "Enable HSTS preload"
-msgstr "Mở chức năng nạp trước HSTS"
+msgstr "Bật mở chức năng nạp trước HSTS"
 
 msgid "Require two factor authentication"
 msgstr "Yêu cầu xác thực 2 yếu tố"
@@ -633,13 +633,13 @@ msgid "Number of days till notifying unread reports to users"
 msgstr "Số ngày còn lại trước khi báo cho người dùng biết báo cáo chưa được đọc"
 
 msgid "Enable custodian user role"
-msgstr "Cho dùng vai trò người bảo quản"
+msgstr "Bật mở vai trò người bảo quản"
 
 msgid "Enable scoring system"
-msgstr "Cho dùng hệ thống tính điểm"
+msgstr "Bật mở hệ thống tính điểm"
 
 msgid "Enable private annotations"
-msgstr "Cho dùng chú thích riêng"
+msgstr "Bật mở chú thích riêng"
 
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr "Cho phép các trang web sau đây cài nhúng hệ thống vào trong iframes"
@@ -651,7 +651,7 @@ msgid "Log accesses of internal users"
 msgstr "Ghi lại truy cập của người dùng nội bộ"
 
 msgid "Notify administrators of software problems"
-msgstr "Thông báo cho người quản trị về lỗi phần mềm"
+msgstr "Thông báo cho quản trị viên về lỗi phần mềm"
 
 msgid "Notify developers of software problems"
 msgstr "Thông báo cho các nhà phát triển về lỗi phần mềm"
@@ -743,7 +743,7 @@ msgid "Description"
 msgstr "Mô tả"
 
 msgid "Homepage title"
-msgstr "Tựa đề trang chủ"
+msgstr "Tựa đề trang nhà"
 
 msgid "Presentation"
 msgstr "Phần trình bày"
@@ -755,7 +755,7 @@ msgid "Whistleblowing button"
 msgstr "Nút tố giác"
 
 msgid "Enable disclaimer"
-msgstr "Bật lên tuyên bố từ chối trách nhiệm"
+msgstr "Bật mở lời tuyên bố từ chối trách nhiệm"
 
 msgid "Title"
 msgstr "Tựa đề"
@@ -800,7 +800,7 @@ msgid "Disabled"
 msgstr "Tắt"
 
 msgid "Enabled"
-msgstr "Bật"
+msgstr "Bật mở"
 
 msgid "Questionnaire"
 msgstr "Bảng câu hỏi"
@@ -830,7 +830,7 @@ msgid "Show recipient details on the status page of the report"
 msgstr "Hiển thị chi tiết người nhận trong trang trạng thái của báo cáo"
 
 msgid "Enable comments"
-msgstr "Cho phép góp ý"
+msgstr "Cho phép góp ý kiến"
 
 msgid "Allow whistleblowers to write comments"
 msgstr "Cho phép người tố giác góp ý kiến"
@@ -941,10 +941,10 @@ msgid "Issuer:"
 msgstr "Nơi cấp phát:"
 
 msgid "Intermediate Certificates"
-msgstr "Chứng chỉ trung gian"
+msgstr "Chứng chỉ Trung gian"
 
 msgid "Enable"
-msgstr "Bật lên"
+msgstr "Bật mở"
 
 msgid "Reset"
 msgstr "Đặt lại"
@@ -973,7 +973,7 @@ msgstr "Cấu hình tự làm"
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
-msgstr "Trình hướng dẫn cấu hình thủ công sẽ hướng dẫn bạn thiết lập HTTPS từ một Cơ Quan Chứng Chỉ khác."
+msgstr "Trình hướng dẫn tự thiết kế cấu hình sẽ hướng dẫn bạn thiết lập HTTPS từ một Cơ Quan Chứng Chỉ khác."
 
 msgid "Auto-renewal"
 msgstr "Tự động gia hạn"
@@ -988,7 +988,7 @@ msgid "Let the platform be reachable without Tor"
 msgstr "Hãy để hệ thống truy cập được mà không cần Tor"
 
 msgid "Roles enabled to use the platform without Tor"
-msgstr "Các vai trò có thể dùng hệ thống mà không cần Tor"
+msgstr "Các vai trò được phép dùng hệ thống mà không cần Tor"
 
 msgid "Whistleblower"
 msgstr "Người tố giác"
@@ -1177,7 +1177,7 @@ msgid "Use the first site for administrative purposes only"
 msgstr "Chỉ dùng trang web đầu tiên cho mục đích quản trị"
 
 msgid "Enable multi-site login"
-msgstr "Cho phép đăng nhập nhiều trang"
+msgstr "Bật mở đăng nhập nhiều trang"
 
 msgid "Allow users to sign up"
 msgstr "Cho phép người dùng đăng ký"
@@ -1210,7 +1210,7 @@ msgid "Language"
 msgstr "Ngôn ngữ"
 
 msgid "Enable email notifications"
-msgstr "Bật thông báo email"
+msgstr "Bật mở thông báo email"
 
 msgid "Details of the PGP key:"
 msgstr "Chi tiết của khóa PGP:"
@@ -1294,7 +1294,7 @@ msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Xin lưu ý là tất cả các dữ liệu liên quan sẽ bị xóa vĩnh viễn"
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Đây là một hệ thống thử nghiệm, xin đừng dùng để gửi tin thật."
+msgstr "Đây là một hệ thống thử nghiệm, xin đừng dùng để gửi báo cáo."
 
 msgid "Install an authenticator app on your phone"
 msgstr "Cài đặt ứng dụng xác thực trên điện thoại của bạn"
@@ -1303,7 +1303,7 @@ msgid "Scan the QR code with the app"
 msgstr "Quét mã QR với ứng dụng"
 
 msgid "Enable two factor authentication"
-msgstr "Bật chức năng xác thực hai yếu tố"
+msgstr "Bật mở xác thực hai yếu tố"
 
 msgid "Close"
 msgstr "Đóng"
@@ -1336,7 +1336,7 @@ msgid ""
 msgstr "Nếu bạn muốn đóng góp vào việc phát triển phần mềm hoặc báo cáo lỗi, vui lòng báo cáo trong hệ thống theo dõi vấn đề của chúng tôi:"
 
 msgid "Join our chat:"
-msgstr "Chat với chúng tôi:"
+msgstr "Trò chuyện với chúng tôi:"
 
 msgid "Follow the project on:"
 msgstr "Theo dõi dự án trên:"
@@ -1534,7 +1534,7 @@ msgid ""
 msgstr "Xin đảm bảo rằng tất cả dữ liệu liên quan được xóa sạch để người nhận không thể truy cập dữ liệu đó được nữa."
 
 msgid "Please write a motivation for the reply"
-msgstr "Xin cho biết động cơ của bạn trong phần trả lời"
+msgstr "Xin cho biết lý do của bạn trong phần trả lời"
 
 msgid "Are you sure that you want to postpone the report expiration date?"
 msgstr "Bạn có chắc chắn muốn hoãn ngày báo cáo hết hạn?"
@@ -1557,7 +1557,7 @@ msgid "Recipient list"
 msgstr "Danh sách người nhận"
 
 msgid "Status:"
-msgstr "Tình trạng"
+msgstr "Trạng thái"
 
 msgid "Files attached by recipients"
 msgstr "Tập tin do người nhận đính kèm"
@@ -1676,7 +1676,7 @@ msgstr "Không nhận báo cáo"
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
-msgstr "Bạn đang kết nối với máy chủ mà không ẩn danh và máy chủ này chỉ hỗ trợ gửi ẩn danh"
+msgstr "Bạn kết nối với máy chủ mà thiếu ẩn danh trong khi máy chủ này chỉ nhận báo cáo gửi ẩn danh"
 
 msgid "Thank you!"
 msgstr "Cảm ơn bạn!"
@@ -1738,7 +1738,7 @@ msgid "Please choose a configuration profile:"
 msgstr "Vui lòng chọn một hồ sơ cấu hình:"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr "Cho phép người quản trị này cài lại mật khẩu người dùng."
+msgstr "Cho phép quản trị viên này cài lại mật khẩu người dùng."
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
@@ -2009,7 +2009,7 @@ msgid "The report can be accessed at:"
 msgstr "Báo cáo có thể được truy cập nơi đây:"
 
 msgid "Access to whistleblower's identity authorized"
-msgstr "Truy cập vào danh tính người tố giác được cho phép"
+msgstr "Được phép truy cập vào danh tính người tố giác"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
@@ -2017,7 +2017,7 @@ msgid ""
 msgstr "Email này thông báo cho bạn biết người bảo quản đã từ chối không cho phép bạn truy cập vào danh tính người tố giác của báo cáo {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
-msgstr "Truy cập vào danh tính người tố giác bị từ chối"
+msgstr "Bị từ chối truy cập vào danh tính người tố giác"
 
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
