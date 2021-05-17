@@ -7,7 +7,7 @@
         <p>
           <span data-translate>Using automatic HTTPS configuration will handle the entire process of requesting, enabling and renewing certificates from the Let's Encrypt Certificate Authority.</span> <span data-translate>The platform must be reachable through a public IP address and the selected hostname must have a corresponding DNS record referencing that address.</span>.
         </p>
-        <button id="HTTPSAutoMode" class="btn btn-primary" data-ng-click="initAcme()" data-translate>Proceed</button>
+        <button id="HTTPSAutoMode" class="btn btn-primary" data-ng-click="setupAcme()" data-translate>Proceed</button>
       </div>
     </div>
   </div>
@@ -16,7 +16,7 @@
       <div class="card-header" data-translate>Manual configuration</div>
       <div class="card-body">
         <p data-translate>The manual configuration wizard will guide you through the setup of HTTPS from an alternative Certificate Authority.</p>
-        <button id="HTTPSManualMode" class="btn btn-primary" data-ng-click="chooseManCfg()" data-translate>Proceed</button>
+        <button id="HTTPSManualMode" class="btn btn-primary" data-ng-click="setup()" data-translate>Proceed</button>
       </div>
     </div>
   </div>

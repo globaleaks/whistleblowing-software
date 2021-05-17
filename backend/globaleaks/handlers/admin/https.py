@@ -38,7 +38,6 @@ def load_tls_dict(session, tid):
     }
 
 
-
 def load_tls_dict_list(session):
     return [load_tls_dict(session, tid[0]) for tid in session.query(models.Tenant.id).filter(models.Tenant.active.is_(True))]
 
@@ -477,11 +476,7 @@ class AcmeHandler(BaseHandler):
     @inlineCallbacks
     def post(self):
         accnt_key = yield AcmeAccntKeyRes.create_file(self.request.tid)
-        tos_url = letsencrypt.get_boulder_tos(Settings.acme_directory_url, accnt_key)
-        returnValue({'terms_of_service': tos_url})
-
-    def put(self):
-        return tw(db_acme_cert_request, self.request.tid)
+        yield tw(db_acme_cert_request, self.request.tid)
 
 
 class AcmeChallengeHandler(BaseHandler):

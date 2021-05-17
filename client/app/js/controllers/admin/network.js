@@ -41,7 +41,6 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibMod
   function($q, $http, $window, $scope, $uibModal, FileSaver, tlsConfigResource, cfgFileResource, adminAcmeResource) {
   $scope.state = 0;
   $scope.menuState = "setup";
-  $scope.choseManCfg = false;
 
   $scope.setMenu = function(state) {
     $scope.menuState = state;
@@ -120,30 +119,21 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibMod
   };
 
   $scope.downloadFile = function(resource) {
-     $http({
-        method: "GET",
-        url: "api/admin/config/tls/files/" + resource.name,
-        responseType: "blob",
-     }).then(function (response) {
-        FileSaver.saveAs(response.data, resource.name + ".pem");
-     });
-  };
-
-  $scope.initAcme = function() {
-    var aRes = new adminAcmeResource();
-    $scope.file_resources.key.$update()
-    .then(function() {
-        return aRes.$save();
-    })
-    .then(function(resp) {
-      $scope.le_terms_of_service = resp.terms_of_service;
-      $scope.setMenu("acme");
+    $http({
+       method: "GET",
+       url: "api/admin/config/tls/files/" + resource.name,
+       responseType: "blob",
+    }).then(function (response) {
+       FileSaver.saveAs(response.data, resource.name + ".pem");
     });
   };
 
-  $scope.completeAcme = function() {
-    var aRes = new adminAcmeResource({});
-    aRes.$update().then($scope.refreshConfig);
+  $scope.setupAcme = function() {
+    var aRes = new adminAcmeResource();
+    $scope.file_resources.key.$update()
+    .then(function() {
+      return aRes.$save();
+    }).then($scope.toggleCfg);
   };
 
   $scope.deleteFile = function(resource) {
@@ -158,8 +148,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibMod
     });
   };
 
-  $scope.chooseManCfg = function() {
-    $scope.choseManCfg = true;
+  $scope.setup = function() {
     $scope.setMenu("files");
   };
 
