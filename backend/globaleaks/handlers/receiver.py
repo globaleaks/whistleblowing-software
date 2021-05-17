@@ -168,8 +168,8 @@ class TipsCollection(BaseHandler):
 
     def get(self):
         return get_receivertips(self.request.tid,
-                                    self.current_user.user_id,
-                                    self.current_user.cc,
+                                    self.session.user_id,
+                                    self.session.cc,
                                     self.request.language)
 
 
@@ -186,6 +186,6 @@ class Operations(BaseHandler):
             raise errors.ForbiddenOperation
 
         return perform_tips_operation(self.request.tid,
-                                      self.current_user.user_id,
+                                      self.session.user_id,
                                       request['operation'],
                                       request['rtips'])

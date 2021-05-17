@@ -153,7 +153,7 @@ class NodeInstance(BaseHandler):
     @inlineCallbacks
     def determine_allow_config_filter(self):
         """Determines what filters are allowed, else throws invalid authentication"""
-        if self.current_user.user_role == 'admin':
+        if self.session.user_role == 'admin':
             node = ('admin_node', requests.AdminNodeDesc)
         else:
             yield can_edit_general_settings_or_raise(self)
@@ -185,7 +185,7 @@ class NodeInstance(BaseHandler):
 
         serialized_node = yield tw(db_update_node,
                                    self.request.tid,
-                                   self.current_user,
+                                   self.session,
                                    request,
                                    self.request.language)
         returnValue(serialized_node)

@@ -253,12 +253,12 @@ def update_user_settings(session, tid, user_session, request, language):
 @inlineCallbacks
 def can_edit_general_settings_or_raise(handler):
     """Determines if this user has ACL permissions to edit general settings"""
-    if handler.current_user.user_role == 'admin':
+    if handler.session.user_role == 'admin':
         returnValue(True)
     else:
         # Get the full user so we can see what we can access
-        user = yield get_user(handler.current_user.user_tid,
-                              handler.current_user.user_id,
+        user = yield get_user(handler.session.user_tid,
+                              handler.session.user_id,
                               handler.request.language)
         if user['can_edit_general_settings'] is True:
             returnValue(True)
@@ -274,15 +274,15 @@ class UserInstance(BaseHandler):
     invalidate_cache = True
 
     def get(self):
-        return get_user(self.current_user.user_tid,
-                        self.current_user.user_id,
+        return get_user(self.session.user_tid,
+                        self.session.user_id,
                         self.request.language)
 
     def put(self):
         request = self.validate_message(self.request.content.read(), requests.UserUserDesc)
 
-        return update_user_settings(self.current_user.user_tid,
-                                    self.current_user,
+        return update_user_settings(self.session.user_tid,
+                                    self.session,
                                     request,
                                     self.request.language)
 
@@ -369,23 +369,23 @@ class UserOperationHandler(OperationHandler):
     check_roles = 'user'
 
     def get_recovery_key(self, req_args, *args, **kwargs):
-        return get_recovery_key(self.current_user.user_tid,
-                                self.current_user.user_id,
-                                self.current_user.cc)
+        return get_recovery_key(self.session.user_tid,
+                                self.session.user_id,
+                                self.session.cc)
 
     def enable_2fa_step1(self, req_args, *args, **kwargs):
-        return enable_2fa_step1(self.current_user.user_tid,
-                                self.current_user.user_id)
+        return enable_2fa_step1(self.session.user_tid,
+                                self.session.user_id)
 
     def enable_2fa_step2(self, req_args, *args, **kwargs):
-        return enable_2fa_step2(self.current_user.user_tid,
-                                self.current_user.user_id,
-                                self.current_user.cc,
+        return enable_2fa_step2(self.session.user_tid,
+                                self.session.user_id,
+                                self.session.cc,
                                 req_args['value'])
 
     def disable_2fa(self, req_args, *args, **kwargs):
-        return disable_2fa(self.current_user.user_tid,
-                           self.current_user.user_id)
+        return disable_2fa(self.session.user_tid,
+                           self.session.user_id)
 
     def operation_descriptors(self):
         return {

@@ -76,4 +76,4 @@ class PostSubmissionAttachment(SubmissionAttachment):
     def post(self):
         self.uploaded_file['submission'] = False
 
-        return register_ifile_on_db(self.request.tid, self.current_user.user_id, self.uploaded_file)
+        return register_ifile_on_db(self.request.tid, self.session.user_id, self.uploaded_file)

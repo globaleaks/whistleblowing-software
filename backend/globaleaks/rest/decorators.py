@@ -12,10 +12,10 @@ from globaleaks.utils.json import JSONEncoder
 def decorator_authentication(f, roles):
     def wrapper(self, *args, **kwargs):
         if (('any' in roles) or
-            ((self.current_user and self.current_user.tid == self.request.tid) and
+            ((self.session and self.session.tid == self.request.tid) and
              (('user' in roles and
-               self.current_user.user_role in ['admin', 'receiver', 'custodian']) or
-              (self.current_user.user_role in roles)))):
+               self.session.user_role in ['admin', 'receiver', 'custodian']) or
+              (self.session.user_role in roles)))):
 
             return f(self, *args, **kwargs)
 

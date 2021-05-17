@@ -241,18 +241,18 @@ class SessionHandler(BaseHandler):
         """
         Refresh and retrive session
         """
-        return self.current_user.serialize()
+        return self.session.serialize()
 
     def delete(self):
         """
         Logout
         """
-        if self.current_user.user_role == 'whistleblower':
-            State.log(tid=self.current_user.tid,  type='whistleblower_logout')
+        if self.session.user_role == 'whistleblower':
+            State.log(tid=self.session.tid,  type='whistleblower_logout')
         else:
-            State.log(tid=self.current_user.tid,  type='logout', user_id=self.current_user.user_id)
+            State.log(tid=self.session.tid,  type='logout', user_id=self.session.user_id)
 
-        del Sessions[self.current_user.id]
+        del Sessions[self.session.id]
 
 
 
@@ -268,13 +268,13 @@ class TenantAuthSwitchHandler(BaseHandler):
 
         tid = int(tid)
         session = Sessions.new(tid,
-                               self.current_user.user_id,
-                               self.current_user.user_tid,
-                               self.current_user.user_role,
+                               self.session.user_id,
+                               self.session.user_tid,
+                               self.session.user_role,
                                False,
                                True,
-                               self.current_user.cc,
-                               self.current_user.ek,
+                               self.session.cc,
+                               self.session.ek,
                                True)
 
         return {'redirect': '/t/%d/#/login?token=%s' % (tid, session.id)}

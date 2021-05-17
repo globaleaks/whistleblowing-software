@@ -28,7 +28,7 @@ class TestExportHandler(helpers.TestHandlerWithPopulatedDB):
         rtips_desc = yield self.get_rtips()
 
         handler = self.request({}, role='receiver')
-        handler.current_user.user_id = rtips_desc[0]['receiver_id']
+        handler.session.user_id = rtips_desc[0]['receiver_id']
 
         yield handler.get(rtips_desc[0]['id'])
         self.assertNotEqual(handler.request.getResponseBody(), b'')

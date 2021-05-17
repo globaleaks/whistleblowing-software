@@ -142,7 +142,7 @@ class AdminOperationHandler(OperationHandler):
 
     def reset_user_password(self, req_args, *args, **kwargs):
         return generate_password_reset_token(self.request.tid,
-                                             self.request.current_user,
+                                             self.request.session,
                                              req_args['value'])
 
     @inlineCallbacks
@@ -158,7 +158,7 @@ class AdminOperationHandler(OperationHandler):
         })
 
     def reset_submissions(self, req_args, *args, **kwargs):
-        return reset_submissions(self.request.tid, self.request.current_user.user_id)
+        return reset_submissions(self.request.tid, self.request.session.user_id)
 
     @inlineCallbacks
     def set_hostname(self, req_args, *args, **kwargs):
@@ -173,7 +173,7 @@ class AdminOperationHandler(OperationHandler):
         language = self.state.tenant_cache[tid].default_language
 
         user = yield get_user(tid,
-                              self.current_user.user_id,
+                              self.session.user_id,
                               language)
 
         data = {
@@ -188,7 +188,7 @@ class AdminOperationHandler(OperationHandler):
         yield self.state.sendmail(tid, user['mail_address'], subject, body)
 
     def toggle_escrow(self, req_args, *args, **kwargs):
-        return toggle_escrow(self.request.tid, self.current_user, req_args['value'])
+        return toggle_escrow(self.request.tid, self.session, req_args['value'])
 
     def reset_templates(self, req_args):
         return reset_templates(self.request.tid)

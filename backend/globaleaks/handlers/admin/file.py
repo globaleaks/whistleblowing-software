@@ -99,7 +99,7 @@ class FileInstance(BaseHandler):
     upload_handler = True
 
     def permission_check(self, name):
-        if self.current_user.user_role == 'admin' or name == 'logo':
+        if self.session.user_role == 'admin' or name == 'logo':
             return can_edit_general_settings_or_raise(self)
 
         raise errors.InvalidAuthentication

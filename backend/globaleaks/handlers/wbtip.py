@@ -181,10 +181,10 @@ class WBTipInstance(BaseHandler):
 
     @inlineCallbacks
     def get(self):
-        tip, crypto_tip_prv_key = yield get_wbtip(self.current_user.user_id, self.request.language)
+        tip, crypto_tip_prv_key = yield get_wbtip(self.session.user_id, self.request.language)
 
         if crypto_tip_prv_key:
-            tip = yield deferToThread(decrypt_tip, self.current_user.cc, crypto_tip_prv_key, tip)
+            tip = yield deferToThread(decrypt_tip, self.session.cc, crypto_tip_prv_key, tip)
 
         returnValue(tip)
 
@@ -197,7 +197,7 @@ class WBTipCommentCollection(BaseHandler):
 
     def post(self):
         request = self.validate_message(self.request.content.read(), requests.CommentDesc)
-        return create_comment(self.request.tid, self.current_user.user_id, request['content'])
+        return create_comment(self.request.tid, self.session.user_id, request['content'])
 
 
 class WBTipMessageCollection(BaseHandler):
@@ -208,7 +208,7 @@ class WBTipMessageCollection(BaseHandler):
 
     def post(self, receiver_id):
         request = self.validate_message(self.request.content.read(), requests.CommentDesc)
-        return create_message(self.request.tid, self.current_user.user_id, receiver_id, request['content'])
+        return create_message(self.request.tid, self.session.user_id, receiver_id, request['content'])
 
 
 class WBTipWBFileHandler(WBFileHandler):
@@ -220,12 +220,12 @@ class WBTipWBFileHandler(WBFileHandler):
                                   models.InternalTip.id == models.ReceiverTip.internaltip_id,
                                   models.InternalTip.tid == tid).one_or_none()
 
-        return wbtip_id is not None and self.current_user.user_id == wbtip_id[0]
+        return wbtip_id is not None and self.session.user_id == wbtip_id[0]
 
     def access_wbfile(self, session, wbfile):
         wbfile.downloads += 1
         log.debug("Download of file %s by whistleblower %s",
-                  wbfile.id, self.current_user.user_id)
+                  wbfile.id, self.session.user_id)
 
     @transact
     def download_wbfile(self, session, tid, file_id):

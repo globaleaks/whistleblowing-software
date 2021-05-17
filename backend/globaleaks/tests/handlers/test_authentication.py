@@ -304,7 +304,7 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
         })
 
         response = yield handler.post()
-        self.assertTrue(handler.current_user is None)
+        self.assertTrue(handler.session is None)
         self.assertTrue('session_id' in response)
         self.assertEqual(len(Sessions), 1)
 
@@ -314,7 +314,6 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
         session_id = response['session_id']
         handler = self.request({}, headers={'x-session': session_id})
         yield handler.delete()
-        self.assertTrue(handler.get_current_user() is None)
         self.assertEqual(len(Sessions), 0)
 
     @inlineCallbacks
@@ -331,7 +330,7 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
         handler.request.client_using_tor = True
 
         response = yield handler.post()
-        self.assertTrue(handler.current_user is None)
+        self.assertTrue(handler.session is None)
         self.assertTrue('session_id' in response)
         self.assertEqual(len(Sessions), 1)
 
@@ -340,7 +339,6 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
         # Logout
         handler = self.request({}, headers={'x-session': response['session_id']})
         yield handler.delete()
-        self.assertTrue(handler.get_current_user() is None)
         self.assertEqual(len(Sessions), 0)
 
 

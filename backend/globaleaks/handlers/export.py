@@ -99,18 +99,18 @@ class ExportHandler(BaseHandler):
     @inlineCallbacks
     def get(self, rtip_id):
         tip_export = yield get_tip_export(self.request.tid,
-                                          self.current_user.user_id,
+                                          self.session.user_id,
                                           rtip_id,
                                           self.request.language)
 
         if tip_export['crypto_tip_prv_key']:
-            tip_export['tip'] = yield deferToThread(decrypt_tip, self.current_user.cc, tip_export['crypto_tip_prv_key'], tip_export['tip'])
+            tip_export['tip'] = yield deferToThread(decrypt_tip, self.session.cc, tip_export['crypto_tip_prv_key'], tip_export['tip'])
 
             for file_dict in tip_export['tip']['rfiles'] + tip_export['tip']['wbfiles']:
                 if file_dict.get('status', '') == 'encrypted':
                     continue
 
-                tip_prv_key = GCE.asymmetric_decrypt(self.current_user.cc, tip_export['crypto_tip_prv_key'])
+                tip_prv_key = GCE.asymmetric_decrypt(self.session.cc, tip_export['crypto_tip_prv_key'])
                 file_dict['fo'] = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, file_dict['path'])
                 del file_dict['path']
 

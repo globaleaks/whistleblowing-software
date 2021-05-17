@@ -166,7 +166,7 @@ class UserInstance(BaseHandler):
 
         return tw(db_admin_update_user,
                   self.request.tid,
-                  self.current_user,
+                  self.session,
                   user_id,
                   request,
                   self.request.language)

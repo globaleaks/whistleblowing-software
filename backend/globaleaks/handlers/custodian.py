@@ -130,7 +130,7 @@ class IdentityAccessRequestInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(), requests.CustodianIdentityAccessRequestDesc)
 
         return update_identityaccessrequest(self.request.tid,
-                                            self.current_user.user_id,
+                                            self.session.user_id,
                                             identityaccessrequest_id,
                                             request)
 
