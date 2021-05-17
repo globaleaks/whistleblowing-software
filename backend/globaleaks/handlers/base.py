@@ -257,7 +257,11 @@ class BaseHandler(object):
 
         return serve_file(self.request, fp)
 
-    def get_current_user(self):
+    @property
+    def session(self):
+        if self.request.session != None:
+            return self.request.session
+
         # Check for the session header
         session_id = self.request.headers.get(b'x-session')
         if session_id is None:
@@ -265,21 +269,16 @@ class BaseHandler(object):
 
         session = Sessions.get(session_id.decode())
 
-        if session is not None and session.tid == self.request.tid:
-            self.request.current_user = session
+        if session is None or session.tid != self.request.tid:
+            return
 
-            if self.request.current_user.user_role != 'whistleblower' and \
-               self.state.tenant_cache[1].get('log_accesses_of_internal_users', False):
-                self.request.log_ip_and_ua = True
+        self.request.session = session
 
-        return session
+        if self.request.session.user_role != 'whistleblower' and \
+           self.state.tenant_cache[1].get('log_accesses_of_internal_users', False):
+           self.request.log_ip_and_ua = True
 
-    @property
-    def current_user(self):
-        if not hasattr(self, '_current_user'):
-            self._current_user = self.get_current_user()
-
-        return self._current_user
+        return self.request.session
 
     def process_file_upload(self):
         if b'flowFilename' not in self.request.args:
