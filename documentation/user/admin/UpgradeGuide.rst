@@ -19,13 +19,13 @@ For security and stability reasons it is recommended to not perform a distributi
 GlobaLeaks could be instead easily migrated to a new up-to-date Debian system with the following recommended instructions:
 
 - create an archive backup of /var/globaleaks
-- instantiate the lates Debian available
+- instantiate the latest Debian available
 - log on the new server and extract the backup in /var/globaleaks
 - follow the :doc:`Installation Guide </setup/InstallationGuide>`; GlobaLeaks while installing will recognize the presence of an existing data directory and will use it
 
 In Case of Errors
 -----------------
-The above commands should allow you to perform regularly updates. On some conditions due to special updates it could be possible that those commands result in a failure. Consult this page for knowning specific FAQs on precise failures.
+The above commands should allow you to perform regularly updates. On some conditions due to special updates it could be possible that those commands result in a failure. Consult this page for knowing specific FAQs on precise failures.
 
 In case you do not find any specific documented solution for your failure, you could run the GlobaLeaks install script.
 The installation script in fact is designed to allow the update of GlobaLeaks and it includes fixes for the most common issue.
