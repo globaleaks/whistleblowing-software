@@ -3,6 +3,12 @@
 # Handler implementing pre/post submission tokens for implementing rate limiting on whistleblower operations
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
+from globaleaks.state import State
+
+
+def generate_token(tid, session):
+    return State.tokens.new(tid, session).serialize()
+
 
 
 class TokenCreate(BaseHandler):
@@ -13,12 +19,10 @@ class TokenCreate(BaseHandler):
 
     def post(self):
         """
-        This API create a Token, a temporary memory only object able to keep
-        track of the submission. If the system is under stress, complete the
-        submission will require some actions to be performed before the
-        submission can be concluded (e.g. hashcash and captchas).
+        This API create a Token, a temporary memory only object able to
+        keep track and limit user actions.
         """
-        return self.state.tokens.new(self.request.tid).serialize()
+        return generate_token(self.request.tid, self.session)
 
 
 class TokenInstance(BaseHandler):

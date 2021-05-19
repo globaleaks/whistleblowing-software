@@ -2,7 +2,6 @@
 from twisted.internet import reactor
 
 class TempDict(dict):
-    expireCallback = None
     reactor = reactor
 
     def __init__(self, timeout=300):
@@ -25,7 +24,7 @@ class TempDict(dict):
         return dict.__setitem__(self, key, value)
 
     def __delitem__(self, key):
-        value = dict.__getitem__(self, key)
+        value = self.pop(key, None)
 
         if value:
             try:
@@ -33,7 +32,5 @@ class TempDict(dict):
             except:
                 pass
 
-            if self.expireCallback is not None:
-                self.expireCallback(value)
-
-        return dict.__delitem__(self, key)
+            if hasattr(value, 'expireCallback'):
+                value.expireCallback()

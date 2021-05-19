@@ -61,6 +61,7 @@ def connection_check(tid, client_ip, role, client_using_tor):
 
 class BaseHandler(object):
     check_roles = 'admin'
+    require_token = []
     handler_exec_time_threshold = 120
     uniform_answer_time = False
     cache_resource = False
@@ -75,6 +76,41 @@ class BaseHandler(object):
         self.state = state
         self.request = request
         self.request.start_time = datetime.now()
+        self.token = False
+        self.session = self.get_session()
+
+    def get_session(self):
+        if hasattr(self, 'session'):
+            return self.session
+
+        # Check session header
+        session_id = self.request.headers.get(b'x-session')
+
+        # Check token GET argument:
+        if b'token' in self.request.args:
+            try:
+                token_id = self.request.args[b'token'][0].decode()
+                self.token = self.state.tokens.validate(token_id)
+                if self.token.session is not None:
+                    session_id = self.token.session.id.encode()
+            except:
+                raise errors.InternalServerError("TokenFailure: Invalid")
+
+        if session_id is None:
+            return
+
+        session = Sessions.get(session_id.decode())
+
+        if session is None or session.tid != self.request.tid:
+            return
+
+        self.session = session
+
+        if self.session.user_role != 'whistleblower' and \
+           self.state.tenant_cache[1].get('log_accesses_of_internal_users', False):
+           self.request.log_ip_and_ua = True
+
+        return self.session
 
     @staticmethod
     def validate_python_type(value, python_type):
@@ -256,29 +292,6 @@ class BaseHandler(object):
                                'attachment; filename="%s"' % filename)
 
         return serve_file(self.request, fp)
-
-    @property
-    def session(self):
-        if self.request.session != None:
-            return self.request.session
-
-        # Check for the session header
-        session_id = self.request.headers.get(b'x-session')
-        if session_id is None:
-            return
-
-        session = Sessions.get(session_id.decode())
-
-        if session is None or session.tid != self.request.tid:
-            return
-
-        self.request.session = session
-
-        if self.request.session.user_role != 'whistleblower' and \
-           self.state.tenant_cache[1].get('log_accesses_of_internal_users', False):
-           self.request.log_ip_and_ua = True
-
-        return self.request.session
 
     def process_file_upload(self):
         if b'flowFilename' not in self.request.args:

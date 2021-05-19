@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*
 from globaleaks.tests import helpers
 from globaleaks.utils.tempdict import TempDict
 
@@ -8,11 +9,10 @@ class TestObject(object):
     def __init__(self, obj_id):
         self.id = obj_id
 
-
-def expireCallback(self):
-    TestObject.callbacks_count += 1
-    if self.id != TestObject.callbacks_count:
-        raise Exception
+    def expireCallback(self):
+        TestObject.callbacks_count += 1
+        if self.id != TestObject.callbacks_count:
+            raise Exception
 
 
 class TestTempDict(helpers.TestGL):
@@ -20,8 +20,6 @@ class TestTempDict(helpers.TestGL):
         timeout = 1337
 
         xxx = TempDict(timeout=timeout)
-
-        xxx.expireCallback = expireCallback
 
         for x in range(1, timeout + 1):
             xxx[x] = TestObject(x)

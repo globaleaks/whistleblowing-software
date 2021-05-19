@@ -9,6 +9,16 @@ from globaleaks.state import State
 from globaleaks.utils.json import JSONEncoder
 
 
+def decorator_require_token(f):
+    def wrapper(self, *args, **kwargs):
+        if self.request.method in self.require_token and not self.token:
+            raise errors.InternalServerError("TokenFailure: Missing or invalid token")
+
+        return f(self, *args, **kwargs)
+
+    return wrapper
+
+
 def decorator_authentication(f, roles):
     def wrapper(self, *args, **kwargs):
         if (('any' in roles) or
@@ -90,6 +100,9 @@ def decorate_method(h, method):
 
             if h.refresh_connection_endpoints:
                 f = decorator_refresh_connection_endpoints(f)
+
+    if h.require_token:
+        f = decorator_require_token(f)
 
     f = decorator_authentication(f, value)
 

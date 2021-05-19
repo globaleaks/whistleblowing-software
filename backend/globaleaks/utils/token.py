@@ -10,14 +10,12 @@ from globaleaks.utils.utility import datetime_now
 
 
 class Token(object):
-    ttl = 1800
-
     def __init__(self, tokenlist, tid):
         self.tokenlist = tokenlist
         self.tid = tid
         self.id = generateRandomKey()
+        self.session = None
         self.creation_date = datetime_now()
-        self.uploaded_files = []
         self.solved = False
 
     def update(self, answer):
@@ -30,39 +28,24 @@ class Token(object):
 
         return self.solved
 
-    def associate_file(self, fileinfo):
-        self.uploaded_files.append(fileinfo)
-
     def serialize(self):
         return {
             'id': self.id,
             'creation_date': self.creation_date,
-            'ttl': self.ttl
+            'ttl': self.tokenlist.timeout
         }
 
 
 class TokenList(TempDict):
-    def __init__(self, state, file_path):
-        self.timeout = Token.ttl
-        self.state = state
-        self.file_path = file_path
-        TempDict.__init__(self, self.timeout)
-
-    def set_file_path(self, file_path):
-        self.file_path = file_path
-
-    def expireCallback(self, item):
-        for f in item.uploaded_files:
-            try:
-                path = os.path.abspath(os.path.join(self.file_path, f['filename']))
-                if os.path.exists(path):
-                    os.remove(path)
-            except Exception:
-                pass
-
-    def new(self, tid):
+    def new(self, tid, session=None):
         token = Token(self, tid)
+
+        if session is not None:
+            token.session = session
+            token.solved = True
+
         self[token.id] = token
+
         return token
 
     def get(self, key):
@@ -72,15 +55,15 @@ class TokenList(TempDict):
 
         return ret
 
-    def use(self, key):
-        token = TokenList.pop(self, key, None)
+    def validate(self, key):
+        token = self.pop(key)
         if token is None:
             raise errors.InternalServerError("TokenFailure: Invalid token")
 
         if not token.solved:
             raise errors.InternalServerError("TokenFailure: Token is not solved")
 
-        end = token.creation_date + timedelta(seconds=token.ttl)
+        end = token.creation_date + timedelta(seconds=self.timeout)
         if datetime_now() > end:
             raise errors.InternalServerError("TokenFailure: Token is expired")
 
