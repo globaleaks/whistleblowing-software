@@ -3,6 +3,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers import rtip
+from globaleaks.handlers.token import generate_token
 from globaleaks.jobs.delivery import Delivery
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_never, datetime_now, datetime_null

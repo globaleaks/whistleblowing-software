@@ -168,10 +168,9 @@ class TipsCollection(BaseHandler):
 
     def get(self):
         return get_receivertips(self.request.tid,
-                                    self.session.user_id,
-                                    self.session.cc,
-                                    self.request.language)
-
+                                self.session.user_id,
+                                self.session.cc,
+                                self.request.language)
 
 class Operations(BaseHandler):
     """
@@ -182,7 +181,7 @@ class Operations(BaseHandler):
     def put(self):
         request = self.validate_message(self.request.content.read(), requests.ReceiverOperationDesc)
 
-        if request['operation'] not in ['postpone', 'delete']:
+        if request['operation'] not in ['delete', 'postpone']:
             raise errors.ForbiddenOperation
 
         return perform_tips_operation(self.request.tid,

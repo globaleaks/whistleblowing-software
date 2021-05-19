@@ -149,6 +149,7 @@ class AuthenticationHandler(BaseHandler):
     """
     check_roles = 'any'
     uniform_answer_time = True
+    require_token = [b'POST']
 
     @inlineCallbacks
     def post(self):
@@ -159,8 +160,6 @@ class AuthenticationHandler(BaseHandler):
             tid = self.request.tid
 
         yield login_delay(tid)
-
-        self.state.tokens.use(request['token'])
 
         session = yield login(tid,
                               request['username'],
@@ -185,14 +184,13 @@ class TokenAuthHandler(BaseHandler):
     """
     check_roles = 'any'
     uniform_answer_time = True
+    require_token = [b'POST']
 
     @inlineCallbacks
     def post(self):
         request = self.validate_message(self.request.content.read(), requests.TokenAuthDesc)
 
         yield login_delay(self.request.tid)
-
-        self.state.tokens.use(request['token'])
 
         session = Sessions.get(request['authtoken'])
         if session is None or session.tid != self.request.tid:
@@ -211,6 +209,7 @@ class ReceiptAuthHandler(BaseHandler):
     Receipt handler used by whistleblowers
     """
     check_roles = 'any'
+    require_token = [b'POST']
     uniform_answer_time = True
 
     @inlineCallbacks
@@ -218,8 +217,6 @@ class ReceiptAuthHandler(BaseHandler):
         request = self.validate_message(self.request.content.read(), requests.ReceiptAuthDesc)
 
         yield login_delay(self.request.tid)
-
-        self.state.tokens.use(request['token'])
 
         connection_check(self.request.tid, self.request.client_ip,
                          'whistleblower', self.request.client_using_tor)

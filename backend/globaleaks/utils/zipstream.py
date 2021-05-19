@@ -12,6 +12,9 @@ import struct
 import time
 import zlib
 
+from twisted.internet import abstract
+from twisted.internet.defer import Deferred
+
 __all__ = ["ZipStream"]
 
 ZIP64_LIMIT = (1 << 31) - 1
@@ -313,3 +316,45 @@ class ZipStream(object):
                 pass
 
         yield self.archive_footer()
+
+
+class ZipStreamProducer(object):
+    """Streaming producter for ZipStream"""
+
+    def __init__(self, handler, zipstreamObject):
+        self.finish = Deferred()
+        self.handler = handler
+        self.zipstreamObject = zipstreamObject
+
+    def start(self):
+        self.handler.request.registerProducer(self, False)
+        return self.finish
+
+    def resumeProducing(self):
+        if not self.handler:
+            return
+
+        data = self.zip_chunk()
+        if data:
+            self.handler.request.write(data)
+        else:
+            self.stopProducing()
+
+    def stopProducing(self):
+        self.handler.request.unregisterProducer()
+        self.handler.request.finish()
+        self.handler = None
+        self.finish.callback(None)
+
+    def zip_chunk(self):
+        chunk = []
+        chunk_size = 0
+
+        for data in self.zipstreamObject:
+            if data:
+                chunk_size += len(data)
+                chunk.append(data)
+                if chunk_size >= abstract.FileDescriptor.bufferSize:
+                    return b''.join(chunk)
+
+        return b''.join(chunk)

@@ -142,7 +142,7 @@ class AdminOperationHandler(OperationHandler):
 
     def reset_user_password(self, req_args, *args, **kwargs):
         return generate_password_reset_token(self.request.tid,
-                                             self.request.session,
+                                             self.session,
                                              req_args['value'])
 
     @inlineCallbacks
@@ -158,7 +158,7 @@ class AdminOperationHandler(OperationHandler):
         })
 
     def reset_submissions(self, req_args, *args, **kwargs):
-        return reset_submissions(self.request.tid, self.request.session.user_id)
+        return reset_submissions(self.request.tid, self.session.user_id)
 
     @inlineCallbacks
     def set_hostname(self, req_args, *args, **kwargs):

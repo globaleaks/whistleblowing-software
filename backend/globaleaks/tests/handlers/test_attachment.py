@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 
-from globaleaks.handlers import attachment
+from globaleaks.handlers import attachment, submission
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
@@ -18,29 +18,28 @@ class TestSubmissionAttachment(helpers.TestHandlerWithPopulatedDB):
         return handler.post(self.dummyToken.id)
 
     @inlineCallbacks
-    def test_post_file_and_verify_deletion_after_token_expiration(self):
-        self.dummyToken = self.state.tokens.new(1)
-        self.dummyToken.solved = True
+    def test_post_file_and_verify_deletion_after_submission_expiration(self):
+        submission_id = submission.initialize_submission()['id']
 
         for _ in range(3):
             handler = self.request()
-            yield handler.post(self.dummyToken.id)
+            yield handler.post(submission_id)
 
         self.state.tokens.reactor.pump([1] * (self.state.tokens.timeout - 1))
 
-        for f in self.dummyToken.uploaded_files:
+        for f in self.state.TempSubmissions[submission_id].files:
             path = os.path.abspath(os.path.join(self.state.settings.tmp_path, f['filename']))
             self.assertTrue(os.path.exists(path))
 
         self.state.tokens.reactor.advance(1)
 
-        for f in self.dummyToken.uploaded_files:
+        for f in self.state.TempSubmissions[submission_id].files:
             path = os.path.abspath(os.path.join(self.state.settings.attachments_path, f['filename']))
             yield self.assertFalse(os.path.exists(path))
 
     def test_post_file_on_unexistent_submission(self):
         handler = self.request()
-        self.assertRaises(Exception, handler.post, 'unexistent_submission')
+        self.assertIsNone(handler.post('unexistent_submission'))
 
 
 class TestPostSubmissionAttachment(helpers.TestHandlerWithPopulatedDB):

@@ -34,7 +34,7 @@ def serialize_rfile(session, rfile):
     return {
         'id': rfile.id,
         'creation_date': ifile.creation_date,
-        'name': ("%s.pgp" % ifile.name) if rfile.status == 'encrypted' else ifile.name,
+        'name': ifile.name,
         'size': ifile.size,
         'type': ifile.content_type,
         'filename': rfile.filename,

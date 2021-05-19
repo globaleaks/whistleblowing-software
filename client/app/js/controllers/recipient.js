@@ -1,5 +1,5 @@
-GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$route", "$location", "$uibModal", "RTipExport", "ReceiverTips",
-  function($scope, $filter, $http, $route, $location, $uibModal, RTipExport, ReceiverTips) {
+GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$route", "$location", "$uibModal", "$window", "RTipExport", "ReceiverTips", "TokenResource",
+  function($scope, $filter, $http, $route, $location, $uibModal, $window, RTipExport, ReceiverTips, TokenResource) {
   $scope.search = undefined;
   $scope.currentPage = 1;
   $scope.itemsPerPage = 20;
@@ -32,7 +32,6 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$route", "$lo
     });
   };
 
-
   $scope.toggle_star = function(tip) {
     tip.important = !tip.important;
 
@@ -59,7 +58,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$route", "$lo
     return $scope.selected_tips.indexOf(id) !== -1;
   };
 
-  $scope.tip_delete_all = function () {
+  $scope.tip_delete_selected = function () {
     $uibModal.open({
       templateUrl: "views/partials/tip_operation_delete_selected.html",
       controller: "TipBulkOperationsCtrl",
@@ -74,7 +73,13 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$route", "$lo
     });
   };
 
-  $scope.tip_postpone_all = function () {
+  $scope.tips_export = function () {
+    return new TokenResource().$get().then(function(token) {
+      $window.open("api/rtips/export?token=" + token.id);
+    });
+  };
+
+  $scope.tip_postpone_selected = function () {
     $uibModal.open({
       templateUrl: "views/partials/tip_operation_postpone_selected.html",
       controller: "TipBulkOperationsCtrl",

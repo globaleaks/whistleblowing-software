@@ -33,8 +33,9 @@ from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
 from globaleaks.handlers.admin.step import db_create_step
 from globaleaks.handlers.admin.tenant import create as create_tenant
 from globaleaks.handlers.admin.user import create_user
+from globaleaks.handlers.token import generate_token
 from globaleaks.handlers.wizard import db_wizard
-from globaleaks.handlers.submission import create_submission
+from globaleaks.handlers.submission import create_submission, initialize_submission
 from globaleaks.models.config import db_set_config_variable
 from globaleaks.rest import decorators
 from globaleaks.rest.api import JSONEncoder
@@ -453,7 +454,7 @@ BaseHandler.get_file_upload = get_file_upload
 
 
 def forge_request(uri=b'https://www.globaleaks.org/',
-                  headers=None, body='', client_addr=None, method=b'GET'):
+                  headers=None, body='', args={}, client_addr=None, method=b'GET'):
     """
     Creates a twisted.web.Request compliant request that is from an external
     IP address.
@@ -475,6 +476,7 @@ def forge_request(uri=b'https://www.globaleaks.org/',
     request.method = method
     request.uri = uri
     request.path = path
+    request.args = args
     request._serverName = host
 
     request.code = 200
@@ -679,11 +681,6 @@ class TestGL(unittest.TestCase):
         token.answer = 406
         return token
 
-    def getSolvedToken(self):
-        t = self.getToken()
-        t.solved = True
-        return t
-
     @inlineCallbacks
     def get_dummy_submission(self, context_id):
         """
@@ -715,12 +712,12 @@ class TestGL(unittest.TestCase):
             'path2': '/path2-' + x
         }
 
-    def emulate_file_upload(self, token, n):
+    def emulate_file_upload(self, submission_id, n):
         """
         This emulates the file upload of an incomplete submission
         """
         for _ in range(n):
-            token.associate_file(self.get_dummy_file())
+            self.state.TempSubmissions[submission_id].files.append(self.get_dummy_file())
 
     def pollute_events(self, number_of_times=10):
         for _ in range(number_of_times):
@@ -863,14 +860,16 @@ class TestGLWithPopulatedDB(TestGL):
         db_create_field(session, 1, reference_field, 'en')
 
     def perform_submission_start(self):
-        return self.getSolvedToken()
+        return initialize_submission()
 
-    def perform_submission_uploads(self, token):
+    def perform_submission_uploads(self, submission_id):
         for _ in range(self.population_of_attachments):
-            token.associate_file(self.get_dummy_file())
+            self.state.TempSubmissions[submission_id].files.append(self.get_dummy_file())
 
     @inlineCallbacks
-    def perform_submission_actions(self, token):
+    def perform_submission_actions(self, submission_id):
+        temp_submission = self.state.TempSubmissions[submission_id]
+
         self.dummySubmission['context_id'] = self.dummyContext['id']
         self.dummySubmission['receivers'] = self.dummyContext['receivers']
         self.dummySubmission['identity_provided'] = False
@@ -880,7 +879,7 @@ class TestGLWithPopulatedDB(TestGL):
 
         self.lastReceipt = (yield create_submission(1,
                                                    self.dummySubmission,
-                                                   token,
+                                                   temp_submission,
                                                    True))['receipt']
 
     @inlineCallbacks
@@ -913,17 +912,17 @@ class TestGLWithPopulatedDB(TestGL):
 
     @inlineCallbacks
     def perform_minimal_submission_actions(self):
-        token = self.perform_submission_start()
-        self.perform_submission_uploads(token)
-        yield self.perform_submission_actions(token)
+        submission = self.perform_submission_start()
+        self.perform_submission_uploads(submission['id'])
+        yield self.perform_submission_actions(submission['id'])
 
     @inlineCallbacks
     def perform_full_submission_actions(self):
         """Populates the DB with tips, comments, messages and files"""
         for x in range(self.population_of_submissions):
-            token = self.perform_submission_start()
-            self.perform_submission_uploads(token)
-            yield self.perform_submission_actions(token)
+            submission = self.perform_submission_start()
+            self.perform_submission_uploads(submission['id'])
+            yield self.perform_submission_actions(submission['id'])
 
         yield self.perform_post_submission_actions()
 
@@ -963,23 +962,50 @@ class TestHandler(TestGLWithPopulatedDB):
         return TestGL.setUp(self)
 
     def request(self, body='', uri=b'https://www.globaleaks.org/',
-                user_id=None, role=None, multilang=False, headers=None,
+                user_id=None, role=None, multilang=False, headers=None, args=None,
                 client_addr=None, handler_cls=None, attached_file=None,
-                kwargs={}):
+                kwargs=None, token=False):
         """
         Constructs a handler for preforming mock requests using the bag of params described below.
         """
         from globaleaks.rest import api
+        if headers is None:
+            headers = {}
+
+        if args is None:
+            args = {}
+
+        if kwargs is None:
+            kwargs = {}
+
+        session = None
+
+        if user_id is None and role is not None:
+            if role == 'admin':
+                user_id = self.dummyAdmin['id']
+            elif role == 'receiver':
+                user_id = self.dummyReceiver_1['id']
+            elif role == 'custodian':
+                user_id = self.dummyCustodian['id']
+
+        if role is not None:
+            session = Sessions.new(1, user_id, 1, role, False, False, USER_PRV_KEY, '')
+            headers[b'x-session'] = session.id.encode()
+
+        # during unit tests a token is always provided to any handler
+        token = generate_token(1, session)
+        self.state.tokens[token['id']].solved = True
+        args[b'token'] = [token['id'].encode()]
 
         if handler_cls is None:
             handler_cls = self._handler
 
         request = forge_request(uri=uri,
                                 headers=headers,
+                                args=args,
                                 body=body,
                                 client_addr=client_addr,
                                 method=b'GET')
-
         x = api.APIResourceWrapper()
         x.preprocess(request)
 
@@ -993,21 +1019,6 @@ class TestHandler(TestGLWithPopulatedDB):
 
         if multilang:
             request.language = None
-
-        if user_id is None and role is not None:
-            if role == 'admin':
-                user_id = self.dummyAdmin['id']
-            elif role == 'receiver':
-                user_id = self.dummyReceiver_1['id']
-            elif role == 'custodian':
-                user_id = self.dummyCustodian['id']
-
-        if headers is not None and headers.get('x-session', None) is not None:
-            handler.request.headers[b'x-session'] = headers.get('x-session').encode()
-
-        elif role is not None:
-            session = Sessions.new(1, user_id, 1, role, False, False, USER_PRV_KEY, '')
-            handler.request.headers[b'x-session'] = session.id.encode()
 
         if handler.upload_handler:
             handler.uploaded_file = self.get_dummy_file(attached_file)

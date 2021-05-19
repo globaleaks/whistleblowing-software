@@ -25,9 +25,16 @@
           <i class="fas fa-check-square"></i>
         </span>
 
+        <span id="tip-action-export-selected"
+              data-ng-click="tips_export()"
+              uib-tooltip="{{'Export' | translate}}"
+              class="btn btn-outline-secondary">
+          <i class="fas fa-save"></i>
+        </span>
+
         <span id="tip-action-postpone-selected"
               data-ng-if="selected_tips.length && preferences.can_postpone_expiration"
-              data-ng-click="tip_postpone_all()"
+              data-ng-click="tip_postpone_selected()"
               uib-tooltip="{{'Postpone the expiration date' | translate}}"
               class="btn btn-outline-secondary">
           <i class="fas fa-clock"></i>
@@ -35,7 +42,7 @@
 
         <span id="tip-action-delete-selected"
               data-ng-if="selected_tips.length && preferences.can_delete_submission"
-              data-ng-click="tip_delete_all()"
+              data-ng-click="tip_delete_selected()"
               uib-tooltip="{{'Delete' | translate}}"
               class="btn btn-outline-secondary">
           <i class="fas fa-trash"></i>

@@ -32,28 +32,28 @@ class TestSubmissionScenario1(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def create_submission(self, request):
-        token = self.getSolvedToken()
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         handler = self.request(self.submission_desc)
-        response = yield handler.put(token.id)
+        submission_id = yield handler.get()['id']
+        response = yield handler.put(submission_id)
         returnValue(response['receipt'])
 
     @inlineCallbacks
     def create_submission_with_files(self, request):
-        token = self.getSolvedToken()
-        self.emulate_file_upload(token, 3)
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         handler = self.request(self.submission_desc)
-        response = yield handler.put(token.id)
+        submission_id = yield handler.get()['id']
+        self.emulate_file_upload(submission_id, 3)
+        response = yield handler.put(submission_id)
         returnValue(response['receipt'])
 
     @inlineCallbacks
     def test_create_submission_with_no_recipients(self):
-        token = self.getSolvedToken()
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         self.submission_desc['receivers'] = []
         handler = self.request(self.submission_desc)
-        self.assertFailure(handler.put(token.id), errors.InputValidationError)
+        submission_id = yield handler.get()['id']
+        self.assertFailure(handler.put(submission_id), errors.InputValidationError)
 
     @inlineCallbacks
     def test_create_simple_submission(self):
@@ -107,22 +107,16 @@ class TestSubmission(helpers.TestHandlerWithPopulatedDB):
     _handler = SubmissionInstance
 
     @inlineCallbacks
-    def test_token_must_be_solved(self):
-        token = self.getToken()
-        self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
-        handler = self.request(self.submission_desc)
-        yield self.assertRaises(Exception, handler.put, token.id)
-
-    @inlineCallbacks
     def test_token_reuse_blocked(self):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
 
         handler = self.request(self.submission_desc)
 
-        token = self.getSolvedToken()
-        yield handler.put(token.id)
+        self.assertFalse(handler.token.id in self.state.tokens)
 
-        yield self.assertRaises(Exception, handler.put, token.id)
+        submission_id = yield handler.get()['id']
+
+        self.assertFalse(handler.token.id in self.state.tokens)
 
 
 class TestSubmissionScenario2(TestSubmissionScenario1):

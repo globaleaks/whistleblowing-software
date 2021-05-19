@@ -4,6 +4,7 @@
 import base64
 import copy
 import json
+import os
 
 from globaleaks import models
 from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
@@ -14,7 +15,28 @@ from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import sha256, Base64Encoder, GCE
 from globaleaks.utils.json import JSONEncoder
-from globaleaks.utils.utility import get_expiration, datetime_null
+from globaleaks.utils.utility import get_expiration, datetime_null, uuid4
+
+
+class TempSubmission(object):
+    id = None
+
+    def __init__(self):
+        self.id = uuid4()
+        self.files = []
+
+    def expireCallback(self):
+        for f in self.files:
+            try:
+                os.path.remove(os.path.abspath(os.path.join(State.settings.tmp_path, f['filename'])))
+            except Exception:
+                pass
+
+
+def initialize_submission():
+    temp_submission = TempSubmission()
+    State.TempSubmissions[temp_submission.id] = temp_submission
+    return {'id': temp_submission.id}
 
 
 def decrypt_tip(user_key, tip_prv_key, tip):
@@ -200,7 +222,7 @@ def db_create_receivertip(session, receiver, internaltip, can_access_whistleblow
     session.add(receivertip)
 
 
-def db_create_submission(session, tid, request, token, client_using_tor):
+def db_create_submission(session, tid, request, temp_submission, client_using_tor):
     encryption = db_get(session, models.Config, (models.Config.tid == tid, models.Config.var_name == 'encryption'))
 
     crypto_is_available = encryption.value
@@ -332,7 +354,7 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
     db_set_internaltip_answers(session, itip.id, questionnaire_hash, answers)
 
-    for uploaded_file in token.uploaded_files:
+    for uploaded_file in temp_submission.files:
         if not itip.enable_attachments:
             break
 
@@ -370,8 +392,8 @@ def db_create_submission(session, tid, request, token, client_using_tor):
 
 
 @transact
-def create_submission(session, tid, request, token, client_using_tor):
-    return db_create_submission(session, tid, request, token, client_using_tor)
+def create_submission(session, tid, request, temp_session, client_using_tor):
+    return db_create_submission(session, tid, request, temp_session, client_using_tor)
 
 
 class SubmissionInstance(BaseHandler):
@@ -379,11 +401,19 @@ class SubmissionInstance(BaseHandler):
     The interface that creates, populates and finishes a submission.
     """
     check_roles = 'any'
+    require_token = [b'GET']
 
-    def put(self, token_id):
+    def get(self):
+        return initialize_submission()
+
+    def put(self, submission_id):
         """
         Finalize the submission
         """
+        temp_submission = self.state.TempSubmissions.pop(submission_id, None)
+        if temp_submission is None:
+            return
+
         connection_check(self.request.tid, self.request.client_ip, 'whistleblower', self.request.client_using_tor)
 
         if not self.state.accept_submissions or self.state.tenant_cache[self.request.tid]['disable_submissions']:
@@ -393,9 +423,7 @@ class SubmissionInstance(BaseHandler):
 
         request['mobile'] = self.request.client_mobile
 
-        token = self.state.tokens.use(token_id)
-
         return create_submission(self.request.tid,
                                  request,
-                                 token,
+                                 temp_submission,
                                  self.request.client_using_tor)

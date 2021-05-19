@@ -812,6 +812,8 @@ class WBFileHandler(BaseHandler):
     This class is used in both RTip and WBTip to define a base for respective handlers
     """
     check_roles = 'receiver'
+    require_token = [b'GET']
+    handler_exec_time_threshold = 3600
 
     def user_can_access(self, session, tid, wbfile):
         raise NotImplementedError("This class defines the user_can_access interface.")
@@ -848,6 +850,7 @@ class WBFileHandler(BaseHandler):
 
         if tip_prv_key:
             tip_prv_key = GCE.asymmetric_decrypt(self.session.cc, tip_prv_key)
+            wbfile['name'] = GCE.asymmetric_decrypt(tip_prv_key, base64.b64decode(wbfile['name'].encode())).decode()
             filelocation = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
 
         yield self.write_file_as_download(wbfile['name'], filelocation)
@@ -885,6 +888,8 @@ class ReceiverFileDownload(BaseHandler):
     This handler exposes rfiles for download.
     """
     check_roles = 'receiver'
+    require_token = [b'GET']
+    handler_exec_time_threshold = 3600
 
     @transact
     def download_rfile(self, session, tid, user_id, file_id):
@@ -911,8 +916,14 @@ class ReceiverFileDownload(BaseHandler):
         filelocation = os.path.join(Settings.attachments_path, rfile['filename'])
         directory_traversal_check(Settings.attachments_path, filelocation)
 
-        if rfile['status'] != 'encrypted' and tip_prv_key:
+        if tip_prv_key:
             tip_prv_key = GCE.asymmetric_decrypt(self.session.cc, tip_prv_key)
+            rfile['name'] = GCE.asymmetric_decrypt(tip_prv_key, base64.b64decode(rfile['name'].encode())).decode()
+
+        if rfile['status'] == 'encrypted':
+            rfile['name'] += ".pgp"
+
+        if tip_prv_key and rfile['status'] != 'encrypted':
             filelocation = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
 
         yield self.write_file_as_download(rfile['name'], filelocation)

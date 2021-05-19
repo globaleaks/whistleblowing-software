@@ -10,7 +10,7 @@ class Test_TokenCreate(helpers.TestHandlerWithPopulatedDB):
     _handler = token.TokenCreate
 
     def assert_default_token_values(self, token):
-        self.assertEqual(token['ttl'], 1800)
+        self.assertEqual(token['ttl'], 60)
 
     @inlineCallbacks
     def test_post(self):
@@ -42,7 +42,7 @@ class Test_TokenInstance(helpers.TestHandlerWithPopulatedDB):
 
         yield handler.put(token.id)
 
-        token.tokenlist.use(token.id)
+        token.tokenlist.validate(token.id)
 
         self.assertTrue(token.solved)
 
@@ -60,4 +60,4 @@ class Test_TokenInstance(helpers.TestHandlerWithPopulatedDB):
 
         yield handler.put(token.id)
 
-        self.assertRaises(Exception, token.tokenlist.use, token.id)
+        self.assertRaises(Exception, token.tokenlist.validate, token.id)

@@ -74,8 +74,10 @@ class StateClass(ObjectDict, metaclass=Singleton):
 
         self.set_orm_tp(ThreadPool(4, 16))
 
+        self.tokens = TokenList(60)
         self.TempLogs = []
         self.TempKeys = TempDict(3600 * 72)
+        self.TempSubmissions = TempDict(3600)
         self.TempUploadFiles = TempDict(3600)
 
         self.shutdown = False
@@ -85,7 +87,6 @@ class StateClass(ObjectDict, metaclass=Singleton):
         self.settings.eval_paths()
         self.create_directories()
         self.cleaning_dead_files()
-        self.tokens = TokenList(self, self.settings.tmp_path)
 
     def set_orm_tp(self, orm_tp):
         self.orm_tp = orm_tp
