@@ -15,7 +15,7 @@ from globaleaks.orm import db_get, transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.pgp import PGPContext
-from globaleaks.utils.crypto import GCE, generateRandomKey, totpVerify
+from globaleaks.utils.crypto import generateOtpSecret, generateRandomKey, totpVerify, GCE
 from globaleaks.utils.utility import datetime_now, datetime_null
 
 
@@ -323,7 +323,7 @@ def enable_2fa_step1(session, tid, user_id):
     if user.two_factor_secret:
         return user.two_factor_secret
 
-    user.two_factor_secret = base64.b32encode(os.urandom(20))
+    user.two_factor_secret = crypto.generateOtpSectret()
 
     return user.two_factor_secret
 

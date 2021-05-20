@@ -1012,7 +1012,7 @@ class _User(Model):
     can_edit_general_settings = Column(Boolean, default=False, nullable=False)
     readonly = Column(Boolean, default=False, nullable=False)
     two_factor_enable = Column(Boolean, default=False, nullable=False)
-    two_factor_secret = Column(UnicodeText(16), default='', nullable=False)
+    two_factor_secret = Column(UnicodeText(32), default='', nullable=False)
     reminder_date = Column(DateTime, default=datetime_null, nullable=False)
 
     # BEGIN of PGP key fields
