@@ -1395,14 +1395,6 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
           field.children.forEach(function(field) {
             self.parseField(field, parsedFields);
           });
-        } else if (field.type === "map") {
-          $http.get(field.attrs.topojson.value).then(function(response) {
-            field.attrs.topojson.geojson = self.topoToGeo(response.data);
-            field.attrs.topojson.id_name_map = {};
-            field.attrs.topojson.geojson.features.forEach(function(feature) {
-              field.attrs.topojson.id_name_map[feature.id] = feature.properties.name;
-            });
-          });
         }
 
         return parsedFields;
@@ -1426,10 +1418,6 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
         });
 
         return parsedFields;
-      },
-
-      topoToGeo: function(data) {
-        return topojson.feature(data, data.objects[Object.keys(data.objects)[0]]);
       }
     };
 }]).
