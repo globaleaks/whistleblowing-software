@@ -50,10 +50,11 @@ An acceptable password should be formed by at least 3 different inputs over capi
 
 Two Factor Authentication (2FA)
 -------------------------------
-Users are enabled to enroll for Two Factor Authentication via their own preferences.
-The system implements Two Factor Authentication (2FA) based on TOTP as for `RFC 6238 <https://tools.ietf.org/rfc/rfc6238.txt>`_.
+The system implements Two Factor Authentication (2FA) based on TOTP based on `RFC 6238 <https://tools.ietf.org/rfc/rfc6238.txt>`_ alghorithm and 160 bits secrets.
 
-Password Change on First Login
+Users are enabled to enroll for Two Factor Authentication via their own preferences and administrators can optionally enforce this requirement.
+
+We recommend using FreeOTP available [for Android](https://play.google.com/store/apps/details?id=org.fedorahosted.freeotp) and[for iOS](https://apps.apple.com/us/app/freeotp-authenticator/id872559395).
 ------------------------------
 The system enforces users to change their own password at their first login.
 Administrators could as well enforce password change for users at their next login.
