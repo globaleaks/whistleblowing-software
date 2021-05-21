@@ -1,3 +1,10 @@
 @media print {
-  #HeaderBox, #FooterBox, #Toolbar, #TipInfoBox .panel-heading, .popover *, .popover .arrow, .fa-collapse-down, .fa-fullscreen { display: none; }
+  #HeaderBox,
+  #FooterBox,
+  #Toolbar,
+  #TipInfoBox .panel-heading,
+  .popover *,
+  .popover .arrow,
+  .fa-collapse-down,
+  .fa-fullscreen { display: none; }
 }

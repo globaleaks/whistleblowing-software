@@ -14,8 +14,8 @@
   z-index: 2147483647;
   pointer-events: none;
   user-select: none;
-  background-color: #FFF;
-  opacity: 0.2;
+  background-color: #ffffff;
+  opacity: .2;
 }
 
 #Loader {
@@ -23,8 +23,8 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
-  border: 0.5rem solid #C8D1E0;
-  border-top-color: #1D1F24;
+  border: .5rem solid #c8d1e0;
+  border-top-color: #1d1f24;
   border-radius: 50%;
   width: 6rem;
   height: 6rem;

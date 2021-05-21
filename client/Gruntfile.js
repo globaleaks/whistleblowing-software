@@ -198,13 +198,13 @@ module.exports = function(grunt) {
             {
               pattern: /(0056b3|17a2b8|28a745|34ce57)/ig,
               replacement: function () {
-                return "377ABC";
+                return "377abc";
               }
             },
             {
               pattern: /007bff/ig,
               replacement: function () {
-                return "2066A2";
+                return "2066a2";
               }
             },
             {
@@ -216,157 +216,157 @@ module.exports = function(grunt) {
             {
               pattern: /0069d9/ig,
               replacement: function () {
-                return "5797D5";
+                return "5797d5";
               }
             },
             {
               pattern: /005cbf/ig,
               replacement: function () {
-                return "79B0E6";
+                return "79B0e6";
               }
             },
             {
               pattern: /0062cc/ig,
               replacement: function () {
-                return "9FC9F1";
+                return "9fc9f1";
               }
             },
             {
               pattern: /6c757d/ig,
               replacement: function () {
-                return "58606E";
+                return "58606e";
               }
             },
             {
               pattern: /5a6268/ig,
               replacement: function () {
-                return "707A8A";
+                return "707a8a";
               }
             },
             {
               pattern: /4e555b/ig,
               replacement: function () {
-                return "8E99AB";
+                return "8e99aB";
               }
             },
             {
               pattern: /(545b62)/ig,
               replacement: function () {
-                return "AFBACC";
+                return "afbacc";
               }
             },
             {
               pattern: /(28a745|20c997)/ig,
               replacement: function () {
-                return "2A854E";
+                return "2a854e";
               }
             },
             {
               pattern: /218838/ig,
               replacement: function () {
-                return "3BA164";
+                return "3ba164";
               }
             },
             {
               pattern: /1e7e34/ig,
               replacement: function () {
-                return "57C282";
+                return "57c282";
               }
             },
             {
               pattern: /1c7430/ig,
               replacement: function () {
-                return "7DDBA3";
+                return "7ddba3";
               }
             },
             {
               pattern: /ffc107/ig,
               replacement: function () {
-                return "FED644";
+                return "Fed644";
               }
             },
             {
               pattern: /e0a800/ig,
               replacement: function () {
-                return "FAEBB6";
+                return "Faebb6";
               }
             },
             {
               pattern: /d39e00/ig,
               replacement: function () {
-                return "FAF2D4";
+                return "faf2d4";
               }
             },
             {
               pattern: /c69500/ig,
               replacement: function () {
-                return "FAF8F0";
+                return "faf8f0";
               }
             },
             {
               pattern: /dc3545/ig,
               replacement: function () {
-                return "DE1B1B";
+                return "de1b1b";
               }
             },
             {
               pattern: /c82333/ig,
               replacement: function () {
-                return "F55353";
+                return "f55353";
               }
             },
             {
               pattern: /b21f2d/ig,
               replacement: function () {
-                return "FA8E8E";
+                return "fa8e8e";
               }
             },
             {
               pattern: /bd2130/ig,
               replacement: function () {
-                return "FAB6B6";
+                return "fab6b6";
               }
             },
             {
               pattern: /(e9ecef|f8f9fa)/ig,
               replacement: function () {
-                return "F5F7FA";
+                return "f5f7fa";
               }
             },
             {
               pattern: /(212529|343a40)/ig,
               replacement: function () {
-                return "1D1F24";
+                return "1d1f24";
               }
             },
             {
               pattern: /(#CED4DA|#DEE2E6|rgba\(0,0,0,.125\))/ig,
               replacement: function () {
-                return "#C8D1E0";
+                return "#c8d1e0";
               }
             },
             {
               pattern: /fff3cd/ig,
               replacement: function () {
-                return "FFFCF1";
+                return "fffcF1";
               }
             },
             {
               pattern: /(b8daff|d6d8db|c3e6cb|f5c6cb|ffeeba)/ig,
               replacement: function () {
-                return "C8D1E0";
+                return "c8d1e0";
               }
             },
             {
               pattern: /155724|#383d41|721c24|856404/ig,
               replacement: function () {
-                return "1D1F24";
+                return "1d1f24";
               }
             },
             {
               pattern: /(rgba\(0,0,0,\.03\)|rgba\(0,0,0,\.05\))/ig,
               replacement: function () {
-                return "#F5F7FA";
+                return "#f5f7fa";
               }
             }
           ]
