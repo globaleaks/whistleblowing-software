@@ -132,11 +132,6 @@ a:hover,
   padding: 1rem;
 }
 
-#HeaderBox {
-  color: #FFF;
-  background-color: #3777BC;
-}
-
 #HeaderBox:after {
   clear: both;
   content: "";
