@@ -448,6 +448,20 @@ module.exports = function(grunt) {
       }
     },
 
+    stylelint: {
+      options: {
+        configFile: '.stylelintrc',
+        formatter: 'string',
+        ignoreDisables: false,
+        failOnError: true,
+        outputFile: '',
+        reportNeedlessDisables: false,
+        fix: false,
+        syntax: ''
+      },
+      all: ["app/css/**/*.css"]
+    },
+
     terser: {
       options: {
         sourceMap: true
@@ -467,6 +481,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-copy");
   grunt.loadNpmTasks("grunt-contrib-cssmin");
   grunt.loadNpmTasks("grunt-postcss");
+  grunt.loadNpmTasks("grunt-stylelint");
   grunt.loadNpmTasks("grunt-string-replace");
   grunt.loadNpmTasks("grunt-terser");
   grunt.loadNpmTasks("grunt-usemin");
