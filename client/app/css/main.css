@@ -120,6 +120,10 @@ a:hover,
   font-weight: bold;
 }
 
+[dir] .form-control {
+  background-color: #F5F7FA;
+}
+
 #PageContent {
   flex: 1 0 auto;
 }
@@ -423,11 +427,12 @@ input[type="file"] {
 
 .drag-drop {
   padding: 1rem;
+  background-color: #F5F7FA;
   border: 1px dashed #C8D1E0;
 }
 
 .drag-drop:hover {
-  background-color: #F5F7FA;
+  background-color: #FFFFFF;
 }
 
 .drag-over {
