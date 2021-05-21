@@ -14,12 +14,13 @@
 | [main](https://github.com/globaleaks/GlobaLeaks/tree/main) | [![Build Status](https://travis-ci.com/globaleaks/GlobaLeaks.svg?branch=main)](https://travis-ci.com/globaleaks/GlobaLeaks) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4e072e7e5287478fa56468f3719d94ef?branch=main)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/4e072e7e5287478fa56468f3719d94ef?branch=main)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Browser Status](https://badges.herokuapp.com/sauce/globaleaks?tag=main&labels=none)](https://saucelabs.com/u/globaleaks)
 | [devel](https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://travis-ci.com/globaleaks/GlobaLeaks.svg?branch=devel)](https://travis-ci.com/globaleaks/GlobaLeaks) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4e072e7e5287478fa56468f3719d94ef?branch=devel)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/4e072e7e5287478fa56468f3719d94ef?branch=devel)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks) | [![Browser Status](https://badges.herokuapp.com/sauce/globaleaks?tag=devel&labels=none)](https://saucelabs.com/u/globaleaks)
 
-Web Security Scoring:
+Project best practices and scores:
 | Metric | Score
 | :---: | :---: |
 | [Mozilla HTTP Observatory](https://observatory.mozilla.org/) | ![Status](https://img.shields.io/mozilla-observatory/grade/try.globaleaks.org?publish)
 | [Security Headers](https://securityheaders.com/) | ![Status](https://img.shields.io/security-headers?url=https%3A%2F%2Ftry.globaleaks.org)
 | [SSLLabs](https://www.ssllabs.com/ssltest/) | [![Status](https://img.shields.io/static/v1?label=SSLLabs&message=A%2B&color=%3CCOLOR%3E)](https://www.ssllabs.com/ssltest/analyze.html?d=try.globaleaks.org&latest)
+| [CII Best Practices](https://bestpractices.coreinfrastructure.org/) | [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/3816/badge)](https://bestpractices.coreinfrastructure.org/projects/3816)
 
 Infrastracture status: [uptime.globaleaks.org](https://uptime.globaleaks.org)
 
