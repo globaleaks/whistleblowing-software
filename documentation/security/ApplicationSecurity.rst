@@ -45,8 +45,11 @@ Password Complexity
 The system enforces the usage of complex password by implementing a custom algorithm necessary for ensuring a reasonable entropy of each authentication secret.
 
 Password are scored in three levels: strong, acceptable, insecure.
-A strong password should be formed by capital letters, lowercase letters, numbers and a symbols, be at least 12 characters long and include a variety of at least 10 different inputs.
-An acceptable password should be formed by at least 3 different inputs over capital letters, lowercase letters, numbers and a symbols, be at least 10 characters and include a variety of at least 7 different inputs.
+
+* A strong password should be formed by capital letters, lowercase letters, numbers and a symbols, be at least 12 characters long and include a variety of at least 10 different inputs.
+* An acceptable password should be formed by at least 3 different inputs over capital letters, lowercase letters, numbers and a symbols, be at least 10 characters and include a variety of at least 7 different inputs.
+
+We encourage each end user to use [KeePassXC](https://keepassxc.org) to generate and retain strong and unique passphrases.
 
 Two Factor Authentication (2FA)
 -------------------------------
