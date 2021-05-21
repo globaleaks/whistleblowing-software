@@ -163,7 +163,7 @@ Every file can contain metadata related to the author or the whistleblower. The 
 
 Malware and Trojans
 -------------------
-GlobaLeaks could not prevent an attacker to use the platform maliciously trying to target recipients users with malware and trojans in general. Considering this and in order to be less vulnerable to risks of data exfiltration perpretrated with trojans, Recipients should always implement proper operation security by possibly using a laptop dedicated to reports visualization and possibly open file attachments on computers disconnected from the network and other sensible information. Wherever possible they should use operation with specialized secure operation systems like [Tails](https://tails.boum.org/) and at least run an up-to-date Anti-Virus software.
+GlobaLeaks could not prevent an attacker to use the platform maliciously trying to target recipients users with malware and trojans in general. Considering this and in order to be less vulnerable to risks of data exfiltration perpretrated with trojans, Recipients should always implement proper operation security by possibly using a laptop dedicated to reports visualization and possibly open file attachments on computers disconnected from the network and other sensible information. Wherever possible they should use operation with specialized secure operation systems like [QubesOS](https://www.qubes-os.org/) or [Tails](https://tails.boum.org/) or and at least run an up-to-date Anti-Virus software.
 
 Data Stored Outside the Platform
 --------------------------------
