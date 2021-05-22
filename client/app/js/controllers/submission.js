@@ -454,7 +454,7 @@ controller("SubmissionFieldErrKeyCtrl", ["$scope",
       formFieldSel.focus();
     };
 }]).
-controller("SubmissionFormFieldCtrl", ["$scope", function($scope {
+controller("SubmissionFormFieldCtrl", ["$scope", function($scope) {
     $scope.f = $scope[$scope.fieldFormVarName];
 }]).
 controller("SubmissionFieldEntryCtrl", ["$scope",
