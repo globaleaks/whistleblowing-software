@@ -29,14 +29,14 @@
     </div>
     <div id="SubmissionComments" data-ng-if="tip.comments.length" data-ng-repeat="comment in tip.comments | orderBy:'creation_date':true| limitTo:itemsPerPage:((currentCommentsPage - 1) * itemsPerPage)">
       <div id="comment-{{$index}}" data-ng-switch="comment.type" class="mt-2">
-        <div data-ng-switch-when="whistleblower" class="alert alert-primary">
+        <div data-ng-switch-when="whistleblower" class="messageWB">
           <div class="row">
             <div class="col-md-6" data-translate>Whistleblower</div>
             <div class="col-md-6 text-right">{{comment.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
           </div>
           <div class="preformatted">{{comment.content}}</div>
         </div>
-        <div data-ng-switch-when="receiver" class="alert alert-secondary">
+        <div data-ng-switch-when="receiver" class="message">
           <div class="row">
             <div class="col-md-6">{{receivers_by_id[comment.author].name}}</div>
 	    <div class="col-md-6 text-right">{{comment.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>

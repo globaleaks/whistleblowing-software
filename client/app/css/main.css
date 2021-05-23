@@ -91,32 +91,32 @@ a:hover,
 
 [dir] .h1,
 [dir] h1 {
-  font-size: 1.6rem;
+  font-size: 1.6em;
 }
 
 [dir] .h2,
 [dir] h2 {
-  font-size: 1.5rem;
+  font-size: 1.5em;
 }
 
 [dir] .h3,
 [dir] h3 {
-  font-size: 1.4rem;
+  font-size: 1.4em;
 }
 
 [dir] .h4,
 [dir] h4 {
-  font-size: 1.3rem;
+  font-size: 1.3em;
 }
 
 [dir] .h5,
 [dir] h5 {
-  font-size: 1.2rem;
+  font-size: 1.2em;
 }
 
 [dir] .h6,
 [dir] h6 {
-  font-size: 1.1rem;
+  font-size: 1.1em;
 }
 
 [dir] .container-fluid {
@@ -146,7 +146,7 @@ a:hover,
 #FooterBox,
 #DemoBadge,
 #PrivacyBadge {
-  padding: 1rem;
+  padding: 1em;
 }
 
 #HeaderBox::after {
@@ -180,7 +180,7 @@ a:hover,
 }
 
 .tab-content {
-  padding-top: 1rem;
+  padding-top: 1em;
 }
 
 .preformatted {
@@ -192,7 +192,7 @@ a:hover,
   overflow-y: scroll;
   background-color: #f5f7fa;
   border: 1px solid #c8d1e0;
-  padding: 1rem;
+  padding: 1em;
 }
 
 .imageUpload {
@@ -228,7 +228,7 @@ a:hover,
 .LoginErrorBox,
 .LoginErrorBoxHomepage {
   display: inline-block;
-  margin: 1rem;
+  margin: 1em;
 }
 
 #LogoBox {
@@ -236,11 +236,11 @@ a:hover,
 }
 
 [dir='ltr'] #LogoBox {
-  margin-right: 1rem;
+  margin-right: 1em;
 }
 
 [dir='rtl'] #LogoBox {
-  margin-left: 1rem;
+  margin-left: 1em;
 }
 
 #WhistleblowerLoginForm input {
@@ -254,7 +254,7 @@ a:hover,
 }
 
 [dir='ltr'] .nested {
-  padding-left: .5rem;
+  padding-left: .5em;
 }
 
 [dir='rtl'] .nested {
@@ -298,12 +298,20 @@ a:hover,
 }
 
 .fileUploadProgress {
-  margin-top: 1rem;
+  margin-top: 1em;
 }
 
+.message, .messageWB {
+  padding: 1em;
+  border: 1px solid #c8d1e0;
+}
+
+.messageWB,
 .selectedTip,
-.table-striped > tbody > tr.selectedTip:nth-child(odd) > td {
-  background-color: #fffcf1;
+[dir] .card-header,
+[dir] .table-striped tbody tr:nth-of-type(odd),
+[dir] .table-striped > tbody > tr.selectedTip:nth-child(odd) > td {
+  background-color: #f5f7fa;
 }
 
 #LogoBox img {
@@ -312,7 +320,7 @@ a:hover,
 }
 
 #Toolbar {
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 }
 
 .modal-title {
@@ -336,7 +344,7 @@ a:hover,
 }
 
 .file-info-row {
-  margin-top: 10px;
+  margin-top: 1em;
 }
 
 .wbfile .top-row {
@@ -393,7 +401,7 @@ input[type='file'] {
 }
 
 .card {
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 }
 
 @media (min-width: 768px) {
@@ -403,13 +411,14 @@ input[type='file'] {
 }
 
 .drag-drop {
-  padding: 1rem;
+  padding: 1em;
   background-color: #F5F7FA;
-  border: 1px dashed #C8D1E0;
+  border: 1px solid #C8D1E0;
 }
 
 .drag-drop:hover {
   background-color: #FFFFFF;
+  border-style: dashed;
 }
 
 .drag-over {
@@ -443,7 +452,7 @@ input[type='file'] {
 
 #NodePresentation,
 #WhistleblowerSubmitBox {
-  margin-bottom: 2rem;
+  margin-bottom: 2em;
 }
 
 #NodePresentation,
@@ -457,10 +466,6 @@ input[type='file'] {
   text-align: center;
 }
 
-#DonationPanel {
-  margin-top: 2rem;
-}
-
 .description {
   color: #1d1f2a;
   white-space: pre-wrap;
@@ -468,8 +473,8 @@ input[type='file'] {
 
 .selectCard {
   cursor: pointer;
-  margin-bottom: 1rem;
-  padding: 1rem;
+  margin-bottom: 1em;
+  padding: 1em;
   background-color: #ffffff;
   border: 1px solid #c8d1e0;
   border-radius: 5px;
@@ -493,7 +498,7 @@ input[type='file'] {
 }
 
 .fieldAnswerEntry {
-  margin-top: 1rem;
+  margin-top: 1em;
 }
 
 .fieldAnswerEntryFirst {
@@ -501,7 +506,7 @@ input[type='file'] {
 }
 
 .fieldAnswerEntryLast {
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 }
 
 .fieldAnswerEntryLabel::after {
@@ -511,7 +516,7 @@ input[type='file'] {
 }
 
 #MaxSelectableReceiverBox {
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 }
 
 [dir] .form-control.is-valid,
@@ -530,7 +535,7 @@ input[type='file'] {
 }
 
 #KeyCodeBox {
-  margin: 1rem;
+  margin: 1em;
   text-align: center;
 }
 
@@ -538,7 +543,7 @@ input[type='file'] {
   background-color: #f5f7fa;
   font-family: monospace;
   font-weight: bold;
-  padding: 1rem;
+  padding: 1em;
   border-radius: 5px;
 }
 
@@ -557,12 +562,12 @@ input[type='file'] {
 
 [dir='ltr'] .stepIndex,
 [dir='ltr'] #SubmissionButtons button {
-  margin-right: 1rem;
+  margin-right: 1em;
 }
 
 [dir='rtl'] .stepIndex,
 [dir='rtl'] #SubmissionButtons button {
-  margin-left: 1rem;
+  margin-left: 1em;
 }
 
 .stepIndexSelected {
@@ -572,19 +577,19 @@ input[type='file'] {
 }
 
 #SubmissionErrors {
-  margin-top: 1rem;
+  margin-top: 1em;
 }
 
 .question-body {
-  padding-bottom: 1rem;
+  padding-bottom: 1em;
 }
 
 [dir='ltr'] .question .question {
-  padding-left: 1rem;
+  padding-left: 1em;
 }
 
 [dir='rtl'] .question .question {
-  padding-right: 1rem;
+  padding-right: 1em;
 }
 
 .mapoutline {
@@ -599,7 +604,7 @@ input[type='file'] {
   z-index: 666;
   height: 10rem;
   width: 10rem;
-  padding: 1rem;
+  padding: 1em;
 }
 
 [dir='ltr'] .fileButtons {
@@ -611,14 +616,13 @@ input[type='file'] {
 }
 
 .configSection {
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 }
 
 .configItem {
-  background-color: #f5f7fa;
   border: 1px solid #c8d1e0;
-  padding: 1rem;
-  margin: 1rem auto;
+  padding: 1em;
+  margin: 1em auto;
 }
 
 #TitleBox {
@@ -638,7 +642,7 @@ input[type='file'] {
 #LanguagePickerBox .form-control {
   height: 2.2rem;
   line-height: 2.2rem;
-  padding: 0 1rem;
+  padding: 0 1em;
   width: max-content;
 }
 
@@ -651,7 +655,7 @@ input[type='file'] {
 
 #Sidebar a {
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 }
 
 #FooterBox {
@@ -672,7 +676,7 @@ input[type='file'] {
   min-width: 20rem;
   z-index: 10;
   top: 1rem;
-  padding: 0 5rem;
+  padding: 0 5eem;
 }
 
 #StepAddBox,
@@ -680,33 +684,29 @@ input[type='file'] {
 #FieldsEditBox,
 #ContextAdvancedSettingsBox,
 #SubstateEditBox {
-  margin-top: 1rem;
+  margin-top: 1em;
 }
 
 .addField,
 .addFieldFromTemplate {
   clear: both;
-  margin-bottom: .5rem;
+  margin-bottom: .5em;
 }
 
 .field {
   position: relative;
   border: 1px solid #c8d1e0;
-  margin-bottom: 1rem;
-}
-
-.editorHeader {
-  background-color: #f5f7fa;
+  margin-bottom: 1em;
 }
 
 .fieldOption {
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 }
 
 .selectionList {
-  background-color: #ffffff;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  background-color: #f5f7fa;
+  padding-top: 1em;
+  padding-bottom: 1em;
   border: 1px solid #c8d1e0;
   list-style-type: none;
   overflow: auto;
@@ -720,7 +720,7 @@ text.axis-worktime {
 
 .tos-text {
   display: block;
-  padding: 1rem;
+  padding: 1em;
   font-family: monospace;
   font-size: .8rem;
   color: #1d1f2a;
@@ -754,7 +754,7 @@ text.axis-worktime {
 }
 
 .fieldAnswer {
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 }
 
 .TipLabel {
@@ -762,7 +762,7 @@ text.axis-worktime {
 }
 
 #SearchFilter {
-  margin: 0 .4rem;
+  margin: 0 .5em;
 }
 
 html[dir='rtl'] input[type=email],

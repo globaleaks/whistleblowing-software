@@ -1,5 +1,5 @@
 <div id="message-{{$index}}" data-ng-switch="message.type" class="mt-2">
-  <div data-ng-switch-when="whistleblower" class="alert alert-primary">
+  <div data-ng-switch-when="whistleblower" class="messageWB">
     <div class="row">
       <div class="col-md-6" data-ng-switch="Authentication.session.role">
         <div data-ng-switch-when="whistleblower"><span data-translate>To:</span> {{receivers_by_id[message.receiver_involved_id].name}}</div>
@@ -9,7 +9,7 @@
     </div>
     <div class="preformatted">{{message.content}}</div>
   </div>
-  <div data-ng-switch-when="receiver" class="alert alert-secondary">
+  <div data-ng-switch-when="receiver" class="message">
     <div class="row">
       <div class="col-md-6" data-ng-switch="Authentication.session.role">
         <div data-ng-switch-when="whistleblower"><span data-translate>From:</span> {{receivers_by_id[message.receiver_involved_id].name}}</div>
