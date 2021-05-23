@@ -81,6 +81,10 @@ vertical li.current > a {
   border: 1px solid #103253;
 }
 
+.document ul, .document li {
+  list-style: disc;
+}
+
 @media screen and (min-width: 767px) {
   .wy-nav-content {
     max-width: 100% !important;
