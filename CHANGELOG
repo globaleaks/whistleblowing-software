@@ -1,3 +1,13 @@
+Changes in version 4.2.10
+    Implement possibility to export all reports at once (#2824)
+    Refactor Token implementation and separate it from Submission state
+    Assign access_report audit log to secondary tenants
+    Revise colors of the application in relation to style guidelines
+    Change logo version and optimize size
+    Update Tibetan translation (ongoing trranslation updated for revision purposes)
+    Fix native language name for Swahili (Kiswahili)
+    Update translations
+
 Changes in version 4.2.9
     Fix issue #3007 preventing new setups of globaleaks 4.2.8
     Fix password reset functionality in relation to pyotp dependency removal
