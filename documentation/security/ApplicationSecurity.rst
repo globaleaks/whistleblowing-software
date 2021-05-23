@@ -49,7 +49,7 @@ Password are scored in three levels: strong, acceptable, insecure.
 * A strong password should be formed by capital letters, lowercase letters, numbers and a symbols, be at least 12 characters long and include a variety of at least 10 different inputs.
 * An acceptable password should be formed by at least 3 different inputs over capital letters, lowercase letters, numbers and a symbols, be at least 10 characters and include a variety of at least 7 different inputs.
 
-We encourage each end user to use [KeePassXC](https://keepassxc.org) to generate and retain strong and unique passphrases.
+We encourage each end user to use `KeePassXC <https://keepassxc.org>`_ to generate and retain strong and unique passphrases.
 
 Two Factor Authentication (2FA)
 -------------------------------
@@ -57,7 +57,7 @@ The system implements Two Factor Authentication (2FA) based on TOTP based on `RF
 
 Users are enabled to enroll for Two Factor Authentication via their own preferences and administrators can optionally enforce this requirement.
 
-We recommend using FreeOTP available [for Android](https://play.google.com/store/apps/details?id=org.fedorahosted.freeotp) and[for iOS](https://apps.apple.com/us/app/freeotp-authenticator/id872559395).
+We recommend using FreeOTP available `for Android <https://play.google.com/store/apps/details?id=org.fedorahosted.freeotp>`_ and `for iOS <https://apps.apple.com/us/app/freeotp-authenticator/id872559395>`_.
 ------------------------------
 The system enforces users to change their own password at their first login.
 
