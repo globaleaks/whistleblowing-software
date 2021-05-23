@@ -133,7 +133,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibMod
     $scope.file_resources.key.$update()
     .then(function() {
       return aRes.$save();
-    }).then($scope.toggleCfg);
+    }).then($scope.refreshConfig);
   };
 
   $scope.deleteFile = function(resource) {
