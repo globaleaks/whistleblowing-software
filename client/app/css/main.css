@@ -84,11 +84,6 @@ a:hover,
   border-color: #c8d1e0;
 }
 
-[dir] p {
-  margin: 0;
-  padding: 0;
-}
-
 [dir] .h1,
 [dir] h1 {
   font-size: 1.6em;
