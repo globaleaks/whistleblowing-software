@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-12 22:57+0000\n"
+"PO-Revision-Date: 2021-05-17 10:54+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -889,15 +889,6 @@ msgstr "އިންޕުޓް ފޯމެޓް ރަނގަޅެއްނޫން"
 
 msgid "Input should be similar to:"
 msgstr "އިންޕުޓް އެއްގޮތް ވާންޖެހެނީ"
-
-msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr "'ލެޓްސް އެންކްރިޕްޓް' ޙިދުމަތް ބޭނުންކުރުމަށް ޚިދުމަތުގެ އިޤްރާާރުގައިވާ ކަންކަމަށް ރުހި ޤަބޫލުވާންޖެހޭ. "
-
-msgid "Read the Terms of Service"
-msgstr "ޚިދުމަތުގެ އިޤްރާރު ކިޔުއްވާ"
-
-msgid "I agree to the Terms of Service."
-msgstr "ޚިދުމަތުގެ އިޤްރާާރުގައިވާ ކަންކަމަށް ރުހި ޤަބޫލުވަމެވެ."
 
 msgid "Country code"
 msgstr "ޤައުމުގެ ކޯޑް ނަމްބަރު"

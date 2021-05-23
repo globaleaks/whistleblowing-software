@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-12 22:57+0000\n"
+"PO-Revision-Date: 2021-05-17 10:54+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -887,15 +887,6 @@ msgstr "Ugyldig inndata-format"
 
 msgid "Input should be similar to:"
 msgstr "Inndata bør ligne:"
-
-msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr "Bruk av Let's Encrypt krever at du samtykker til deres tjenestevilkår."
-
-msgid "Read the Terms of Service"
-msgstr "Les tjenestevilkårene"
-
-msgid "I agree to the Terms of Service."
-msgstr "Jeg samtykker til tjenestevilkårene"
 
 msgid "Country code"
 msgstr "Landskode"

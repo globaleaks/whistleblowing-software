@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-12 22:57+0000\n"
+"PO-Revision-Date: 2021-05-17 10:54+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -889,15 +889,6 @@ msgstr "Yanlış giriş formatı."
 
 msgid "Input should be similar to:"
 msgstr "Giriş aşağıdakına bənzər olmalıdır:"
-
-msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr "Şifrələnmədən istifadə etmək Xidmət Şərtləri ilə razılaşdırılmanı tələb edir."
-
-msgid "Read the Terms of Service"
-msgstr "Xidmət şərtlərini oxuyun"
-
-msgid "I agree to the Terms of Service."
-msgstr "Xidmət şərtləri ilə razıyam."
 
 msgid "Country code"
 msgstr "Ölkə kodu:"

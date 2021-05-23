@@ -43,7 +43,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-12 22:57+0000\n"
+"PO-Revision-Date: 2021-05-17 10:54+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -923,15 +923,6 @@ msgstr "صيغة الإدخال غير صالحة."
 
 msgid "Input should be similar to:"
 msgstr "يجب أن يكون المدخل مشابها ل:"
-
-msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr "يتطلب استخدام Let's Encrypt الموافقة على بنود الخدمة الخاصة بهم."
-
-msgid "Read the Terms of Service"
-msgstr "اقرأ بنود الخدمة"
-
-msgid "I agree to the Terms of Service."
-msgstr "أوافق على شروط الخدمة."
 
 msgid "Country code"
 msgstr "مفتاح الدّولة"

@@ -7,14 +7,14 @@
 # John Wild <ac@elephantleague.org>, 2015
 # Jorma Karvonen <karvonen.jorma@gmail.com>, 2015,2017,2020
 # Juha Nurmi <juha.nurmi@ahmia.fi>, 2015
-# Max Moiseev <max.moiseev@chamber.fi>, 2020
+# Max Moiseev <max.moiseev@chamber.fi>, 2020-2021
 # Panu Ahvenharju, 2018-2020
 # Sami Kuusisto <sami@6sto.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-12 22:57+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-05-18 10:50+0000\n"
+"Last-Translator: Max Moiseev <max.moiseev@chamber.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,7 +23,7 @@ msgstr ""
 "mime-version: 1.0\n"
 
 msgid "Log in"
-msgstr "Kirjaudu"
+msgstr "Kirjaudu sisään"
 
 msgid "Main configuration"
 msgstr "Palvelun etusivu"
@@ -119,7 +119,7 @@ msgid "YOUR NAME"
 msgstr "NIMESI"
 
 msgid "Label the report"
-msgstr "Anna vihjeelle nimi"
+msgstr "Anna ilmoitukselle nimi"
 
 msgid "Postpone the expiration date"
 msgstr "Siirrä vanhentumispäivää myöhäisemmäksi"
@@ -893,15 +893,6 @@ msgstr "Syötteen muoto ei kelpaa."
 
 msgid "Input should be similar to:"
 msgstr "Tekstikentän sallittu muoto: "
-
-msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr "Let's Encrypt -palvelua käytettäessä täytyy hyväksyä heidän käyttöehdot."
-
-msgid "Read the Terms of Service"
-msgstr "Lue käyttöehdot"
-
-msgid "I agree to the Terms of Service."
-msgstr "Hyväksyn käyttöehdot"
 
 msgid "Country code"
 msgstr "Maakoodi"

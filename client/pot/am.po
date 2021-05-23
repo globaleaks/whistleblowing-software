@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-12 22:57+0000\n"
+"PO-Revision-Date: 2021-05-17 10:54+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Amharic (http://www.transifex.com/otf/globaleaks/language/am/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -885,15 +885,6 @@ msgstr "የተሳሳተ ግብኣት ቅርጸት"
 
 msgid "Input should be similar to:"
 msgstr "ግቤት ከ--- ጋር ተመሳሳይ መሆን አለበት"
-
-msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr "እናመስጥር የሚለውን ለመጠቀም ከአግልግሎት ደምቦች ጋር መስማማት ያስፈልጋል"
-
-msgid "Read the Terms of Service"
-msgstr "የአግልግሎት ደምቦችን ያንብቡ"
-
-msgid "I agree to the Terms of Service."
-msgstr "ከአገልግሎት ደምቦች ጋር እስማማለሁ"
 
 msgid "Country code"
 msgstr "የአገር ኮድ"

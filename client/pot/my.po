@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-12 22:57+0000\n"
+"PO-Revision-Date: 2021-05-17 10:54+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Burmese (http://www.transifex.com/otf/globaleaks/language/my/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -886,15 +886,6 @@ msgstr "မှားယွင်းသော ထည့်သွင်းမှ�
 
 msgid "Input should be similar to:"
 msgstr "ထည့်သွင်းမှုသည် ဆင်တူဖြစ်သင့်သည် - "
-
-msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr "Let's Encrypt ကို အသုံးပြုရာတွင် ၎င်းတို့၏ ဝန်ဆောင်မှု စည်းမျဉ်းများကို သဘောတူရန် လိုအပ်သည်။"
-
-msgid "Read the Terms of Service"
-msgstr "ဝန်ဆောင်မှု စည်းမျဉ်းများကို ဖတ်ပါ"
-
-msgid "I agree to the Terms of Service."
-msgstr "ဝန်ဆောင်မှု စည်းမျဉ်းများကို သဘောတူသည်။"
 
 msgid "Country code"
 msgstr "နိုင်ငံကုဒ်"

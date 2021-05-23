@@ -44,7 +44,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-12 22:57+0000\n"
+"PO-Revision-Date: 2021-05-17 10:54+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -924,15 +924,6 @@ msgstr "Ongeldig invoerformaat."
 
 msgid "Input should be similar to:"
 msgstr "Invoer moet lijken op:"
-
-msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr "Om Let's Encrypt te gebruiken is het nodig om akkoord te gaan met hun Algemene Voorwaarden."
-
-msgid "Read the Terms of Service"
-msgstr "Lees de Algemene Voorwaarden"
-
-msgid "I agree to the Terms of Service."
-msgstr "Ik ga akkoord met de Algemene Voorwaarden"
 
 msgid "Country code"
 msgstr "Landcode"

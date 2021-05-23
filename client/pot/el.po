@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-12 22:57+0000\n"
+"PO-Revision-Date: 2021-05-17 10:54+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -897,15 +897,6 @@ msgstr "Μη έγκυρη μορφή δεδομένων εισόδου."
 
 msgid "Input should be similar to:"
 msgstr "Τα δεδομένα εισόδου θα πρέπει να έχουν την μορφή:"
-
-msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr "Η χρήση του Let's Encrypt απαιτεί συμφωνία με τους Όρους Παροχής Υπηρεσιών."
-
-msgid "Read the Terms of Service"
-msgstr "Διαβάστε τους Όρους Χρήσης"
-
-msgid "I agree to the Terms of Service."
-msgstr "Συμφωνώ με τους όρους χρήσης."
 
 msgid "Country code"
 msgstr "Κωδικός χώρας"

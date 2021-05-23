@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-12 22:57+0000\n"
+"PO-Revision-Date: 2021-05-17 10:54+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -906,15 +906,6 @@ msgstr "Format masukan tidak valid."
 
 msgid "Input should be similar to:"
 msgstr "Masukan seharusnya mirip dengan:"
-
-msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr "Menggunakan Let's Encrypt membutuhkan persetujuan atas Persyaratan Layanan mereka."
-
-msgid "Read the Terms of Service"
-msgstr "Baca Persyaratan Layanan"
-
-msgid "I agree to the Terms of Service."
-msgstr "Saya setuju dengan Persyaratan Layanan."
 
 msgid "Country code"
 msgstr "Kode Negara"

@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-12 22:57+0000\n"
+"PO-Revision-Date: 2021-05-17 10:54+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -894,15 +894,6 @@ msgid "Invalid input format."
 msgstr ""
 
 msgid "Input should be similar to:"
-msgstr ""
-
-msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr ""
-
-msgid "Read the Terms of Service"
-msgstr ""
-
-msgid "I agree to the Terms of Service."
 msgstr ""
 
 msgid "Country code"

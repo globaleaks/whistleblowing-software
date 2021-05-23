@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-12 22:57+0000\n"
+"PO-Revision-Date: 2021-05-17 10:54+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swahili (http://www.transifex.com/otf/globaleaks/language/sw/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -885,15 +885,6 @@ msgstr "Muundo wa uingizaji ni batili."
 
 msgid "Input should be similar to:"
 msgstr "Ingizo zinapaswa kuwa sawa na:"
-
-msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr "Kutumia Usimbaji fiche inahitaji makubaliano na Sheria na Masharti yao."
-
-msgid "Read the Terms of Service"
-msgstr "Soma Masharti ya Huduma"
-
-msgid "I agree to the Terms of Service."
-msgstr "Nakubaliana na Masharti ya Huduma"
 
 msgid "Country code"
 msgstr "Nambari ya nchi"

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-12 22:57+0000\n"
+"PO-Revision-Date: 2021-05-17 10:54+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -887,15 +887,6 @@ msgstr "தவறான உள்ளீட்டு வடிவமைப்ப�
 
 msgid "Input should be similar to:"
 msgstr "உள்ளீடு இதற்கு ஒத்திருக்க வேண்டும்:"
-
-msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr "என்க்ரிப்ட் பயன்படுத்தி அவர்களின் சேவை விதிமுறைகளுக்கு உடன்பாடு தேவைப்படுகிறது."
-
-msgid "Read the Terms of Service"
-msgstr "சேவை விதிமுறைகளைப் படிக்கவும்"
-
-msgid "I agree to the Terms of Service."
-msgstr "நான் சேவை விதிமுறைகளை ஒப்புக்கொள்கிறீர்கள்."
 
 msgid "Country code"
 msgstr "நாட்டின் குறியீடு"

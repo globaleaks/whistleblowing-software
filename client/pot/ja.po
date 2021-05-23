@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-12 22:57+0000\n"
+"PO-Revision-Date: 2021-05-17 10:54+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -889,15 +889,6 @@ msgstr "不正な入力形式。"
 
 msgid "Input should be similar to:"
 msgstr "入力は次のようになります:"
-
-msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr "Let's Encrypt を使用するには、利用規約に同意する必要があります。"
-
-msgid "Read the Terms of Service"
-msgstr "利用規約を読む"
-
-msgid "I agree to the Terms of Service."
-msgstr "利用規約に同意します。"
 
 msgid "Country code"
 msgstr "国コード"

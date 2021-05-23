@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-12 22:57+0000\n"
+"PO-Revision-Date: 2021-05-17 10:54+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -903,15 +903,6 @@ msgstr "Formato de entrada inválido."
 
 msgid "Input should be similar to:"
 msgstr "A inserção deverá ser similar a:"
-
-msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr "A utilização de \"Vamos Encriptar\" exige a concordância com os 'Termos do Serviço'."
-
-msgid "Read the Terms of Service"
-msgstr "Ler os Termos de Serviço"
-
-msgid "I agree to the Terms of Service."
-msgstr "Eu concordo com os termos de serviço."
 
 msgid "Country code"
 msgstr "Código do país"

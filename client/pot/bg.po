@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-12 22:57+0000\n"
+"PO-Revision-Date: 2021-05-17 10:54+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -893,15 +893,6 @@ msgstr "Невалиден формат на данните."
 
 msgid "Input should be similar to:"
 msgstr "Информацията трябва да бъде подобна на:"
-
-msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr "Използването на Let's Encrypt изисква приемането на техните Общи Условия."
-
-msgid "Read the Terms of Service"
-msgstr "Прочетете Общите Условия."
-
-msgid "I agree to the Terms of Service."
-msgstr "Съгласен съм с Общите Условия."
 
 msgid "Country code"
 msgstr "Код на държавата"

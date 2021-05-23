@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-12 22:57+0000\n"
+"PO-Revision-Date: 2021-05-17 10:54+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -902,15 +902,6 @@ msgstr "Ogiltigt inmatningsformat."
 
 msgid "Input should be similar to:"
 msgstr "Inmatade uppgifter ska motsvara:"
-
-msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr "Om du använder Let's Encrypt, ska du godkänna deras användarvillkor."
-
-msgid "Read the Terms of Service"
-msgstr "Läs användarvillkor"
-
-msgid "I agree to the Terms of Service."
-msgstr "Jag godkänner användarvillkoren."
 
 msgid "Country code"
 msgstr "Landskod"

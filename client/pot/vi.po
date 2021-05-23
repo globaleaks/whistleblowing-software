@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-16 17:43+0000\n"
+"PO-Revision-Date: 2021-05-17 17:52+0000\n"
 "Last-Translator: Nathan Tran\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -731,7 +731,7 @@ msgid "Cancel"
 msgstr "Hủy bỏ"
 
 msgid "Report statuses"
-msgstr "Trạng thái báo cáo"
+msgstr "Trạng thái của báo cáo"
 
 msgid "Logo"
 msgstr "Biểu tượng"
@@ -764,7 +764,7 @@ msgid "Text"
 msgstr "Văn bản"
 
 msgid "Footer"
-msgstr "Cuối trang"
+msgstr "Ghi chú cuối trang"
 
 msgid "Upload"
 msgstr "Tải lên"
@@ -897,15 +897,6 @@ msgstr "Định dạng của dữ liệu nhập vào không hợp lệ"
 
 msgid "Input should be similar to:"
 msgstr "Dữ liệu nhập vào phải tương tự như:"
-
-msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr "Để sử dụng Let's Encrypt bạn phải đồng ý với Điều khoản Dịch vụ của họ."
-
-msgid "Read the Terms of Service"
-msgstr "Xin đọc điều khoản dịch vụ"
-
-msgid "I agree to the Terms of Service."
-msgstr "Tôi đồng ý với Điều khoản dịch vụ"
 
 msgid "Country code"
 msgstr "Mã quốc gia"

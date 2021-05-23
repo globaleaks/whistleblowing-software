@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-12 22:57+0000\n"
+"PO-Revision-Date: 2021-05-17 10:54+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -891,15 +891,6 @@ msgstr "無效的輸入格式"
 
 msgid "Input should be similar to:"
 msgstr "輪入應相這樣："
-
-msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr "使用Let's Encrypt需要先同意他們的服務條款"
-
-msgid "Read the Terms of Service"
-msgstr "閱課"
-
-msgid "I agree to the Terms of Service."
-msgstr "我同意這份服務个款"
 
 msgid "Country code"
 msgstr "國碼"
