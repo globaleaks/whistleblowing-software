@@ -327,6 +327,4 @@ TODO
 
 .. image:: ../../images/admin/audit_log_reports.png
 
-.. image:: ../../images/admin/audit_log_anomalies.png
-
 .. image:: ../../images/admin/audit_log_scheduled_jobs.png
