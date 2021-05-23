@@ -6,7 +6,7 @@
      flow-file-single
      extend-flow-valid-types="[admin_file.type]"
      extend-flow-valid-size="admin_file.size">
-  <span>
+  <span data-ng-show="!public.node[admin_file.varname]">
     <div class="custom-file">
       <input id="customFile-{{admin_file.varname}}" class="custom-file-input" type="file" flow-btn />
       <label class="btn btn-sm btn-primary" for="customFile-{{admin_file.varname}}">
