@@ -323,7 +323,7 @@ def enable_2fa_step1(session, tid, user_id):
     if user.two_factor_secret:
         return user.two_factor_secret
 
-    user.two_factor_secret = crypto.generateOtpSectret()
+    user.two_factor_secret = generateOtpSecret()
 
     return user.two_factor_secret
 
