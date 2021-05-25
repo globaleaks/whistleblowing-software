@@ -1,6 +1,9 @@
 Project Roadmap
 ===============
 
+.. NOTE::
+  This tentative roadmap is built by the GlobaLeaks team in order to try to respond to main users' needs. Please get sure that the need of your projects and users are well represented on the project `Ticketing System <https://slack.globaleaks.org>`_. If your organization could fund the development of parts of this roadmap please write us at info@globaleaks.org
+
 Introduction
 ------------
 `GlobaLeaks <https://www.globaleaks.org>`_ is free, open source software enabling anyone to easily set up and maintain a secure whistleblowing platform.
