@@ -7,7 +7,7 @@ Introduction
 
 Started in 2011, the software is now widely used worldwide by more than 3000 organizations working in the fields of anti-corruption activism, human rights violations reporting, investigative journalism, and corporate compliance.
 
-This document details the main areas of research development and represents the actual tentative readmap of consolidation planned for 2021-2023 based on the analysis of the large set of user needs collected within the official `Ticketing System<https://github.com/globaleaks/GlobaLeaks/issues>`_.
+This document details the main areas of research development and represents the actual tentative readmap of consolidation planned for 2021-2023 based on the analysis of the large set of user needs collected within the official `Ticketing System <https://github.com/globaleaks/GlobaLeaks/issues>`_.
 
 Project Ideas
 -------------
