@@ -1,7 +1,9 @@
 ============
 Threat Model
 ============
-GlobaLeaks is an Open Whistleblowing Framework that can be used in many different usage scenarios that may require very different approaches to obtain both security and flexibility. Whistleblowing policies and procedures within a corporation for compliance purposes are reasonably different from the ones of a Media outlet or the ones for Hacktivism initiatives. Given the flexibility of uses of GlobaLeaks, the threat model considers different usage scenarios, as threats can vary.
+GlobaLeaks is an free and open source whistleblowing framework that can be used in many different usage scenarios that may require very different approaches to obtain at the same time strong security and high usability. This two requirements are necessary to safely handle a whistleblowing procedure by protecting whistleblowers and at the same time achieve specific project goals. For this reasons considering the variety of different use cases and risks the software supports the possibility to be configured o respond to the specific threat model here detailed.
+
+This document is intended to be used by organizations intending to implement a whistleblowing procedure based on Globaleaks and support the analysis and understanding of the threat model of the context of use and of the risks involved and guide users through the selection of the practices to be used within their own project.
 
 Actors Matrix
 =============
@@ -26,14 +28,6 @@ The anonymity of different actors must be differentiated and classified dependin
    "Anonymous", "Actor's identity and their location cannot be disclosed."
    "Confidential", "The system is designed to remove or limit any recording of identifiable information that when registered is maintained encrypted and managed confidentially."
 
-The following matrix relates the previous definition to different architectural use and implementation of GlobaLeaks software:
-
-.. csv-table::
-
-   "Recipient", "Anonymous", "Confidential"
-   "Whistleblower", "Anonymous", "Confidential"
-   "Administrator", "Anonymous", "Confidential"
-
 Different uses of GlobaLeaks must consider the requirements for different actors in the anonymity matrix. The Anonymity level is reported in the user interface, with the aim of making the user aware of it. The Administrator can configure the Anonymity level required for each actor.
 
 Communication Security Matrix
@@ -41,6 +35,7 @@ Communication Security Matrix
 The security of communication with respect to third party transmission monitoring may have different requirements depending on its context of use.
 
 .. csv-table::
+   :header: "Security level", "Description"
    "High security", "The communication is encrypted end-to-end with the GlobaLeaks platform and no third party is in a condition to eavesdrop the communication."
    "Medium security", "The communication is encrypted end-to-end with the GlobaLeaks platform. A third party able to manipulate HTTPS security (e.g., Govt re-issuing TLS cert) is in a condition to eavesdrop the communication. If HTTPS security is guaranteed, Monitoring  actor’s communication’s line or the GlobaLeaks platform communication’s line is not possible."
    "No security", "The communication is not encrypted at all. Monitoring the communication’s line of the actor or of the GlobaLeaks platform is possible."
@@ -49,6 +44,7 @@ The following matrix applies the previous definition related to different archit
 
 .. csv-table::
    :header: "Communication security matrix", "Tor", "HTTPS"
+   :header: "Actor", "Definition"
 
    "Security Level", "High security", "Medium security"
 
@@ -57,6 +53,8 @@ Identity Disclosure Matrix
 Independently of the anonymity matrix, various actors may decide to, or be required to disclose or not disclose their identity.
 
 .. csv-table::
+   :header: "Identity disclosure matrix", "Definition"
+   :header: "Actor", "Definition"
 
    "Undisclosed", "The actor's identity is not disclosed and its disclosure is not likely."
    "Partially disclosed (pseudonym)", "The actor operates under a pseudonym while interacting with the platform."
@@ -80,6 +78,7 @@ Usage Scenarios Matrix
 In this section you will find examples that show how different anonymity levels of different actors can be mixed together depending on the context of use.
 
 .. csv-table::
+   :header: "Use case", "Description"
 
    "Media outlet", "A Media outlet, whose identity is disclosed, decides to start a Whistleblowing initiative. The outlet's recipients are disclosed to Whistleblowers, so that they can trust a specific journalist rather than the outlet itself. Full anonymity must be assured to whistleblowers and their identity cannot be disclosed in connection with anonymous submissions. The whistleblower MAY choose to willingly disclose their identity (e.g. when the journalist's source-protection record is trusted)."
    "Corporate compliance", "A Corporation needs to implement transparency, or anti-bribery law compliance, by promoting its initiatives to employees, consultants and providers. The recipients are partially disclosed because they are represented by different divisions of the “Internal Audit” business unit of the company. The Whistleblower is guaranteed full anonymity, but they can optionally disclose their identity (tip off vs formal report)."
@@ -100,23 +99,18 @@ GlobaLeaks, through its user interface, will enable each actor with appropriate 
    "Media outlet", "Whistleblower", "Anonymous", "Undisclosed", "High security"
    "", "Recipient", "No anonymity", "Disclosed", "Medium security"
    "", "Admin", "No anonymity", "Disclosed", "Medium security"
-   "", "", "", "", ""
    "Corporate compliance", "Whistleblower", "Anonymous", "Optionally disclosed", "High security"
     "", "Recipient", "No anonymity", "Partially disclosed", "Medium security"
     "", "Admin", "No anonymity", "Disclosed", "Medium security"
-   "", "", "", "", ""
    Government tax whistleblowing", "Whistleblower", "No anonymity", "Disclosed", "Medium security"
    "", "Recipient", "No anonymity", "Undisclosed", "Medium security"
    "", "Admin", "No anonymity", "Disclosed", "Medium security"
-   "", "", "", "", ""
    "Human Rights Activism initiative", "Whistleblower", "Anonymous", "Undisclosed", "High security"
    "", "Recipient", "Anonymous", "Partially disclosed", "High security"
    "", "Admin", "Anonymous", "Partially disclosed", "High security"
-   "", "", "", "", ""
    "Citizen media initiative", "Whistleblower", "Confidential", "Optionally disclosed", "Medium security"
    "", "Recipient", "Confidential", "Confidential", "Medium security"
    "", "Admin", "No anonymity", "Disclosed", "Medium security"
-   "", "", "", "", ""
    "Public agency initiative", "Whistleblower", "No anonymity", "Optionally disclosed", "No security"
    "", "Recipient", "No anonymity", "Undisclosed", "Medium security"
    "", "Admin", "No anonymity", "Disclosed", "Medium security"
@@ -127,10 +121,10 @@ Data Security Matrix
 ====================
 This section highlights the data that is handled by GlobaLeaks and how different protection schemes are applied to GlobaLeaks handled data.
 
-The following data are the one involved within GlobaLeaks:
+The following information types are the one involved within GlobaLeaks:
 
 .. csv-table::
-   :header: "Data", "Description"
+   :header: "Information type", "Description"
 
    "Questionnaire answers", "The data associated with a submission such as the filled forms and selectors provided by the Whistleblower."
    "Submission attachments", "The files associated with a submission."
@@ -141,15 +135,13 @@ The following data are the one involved within GlobaLeaks:
 Below a matrix showing different security measures applied on data.
 
 .. csv-table::
-   :header: "Data", "Encryption", "Metadata cleanup", "Blacklisting", "Sanitization"
+   :header: "Information type", "Encryption", "Metadata cleanup", "Blacklisting", "Sanitization"
 
-   "Questionnaire answers", "Encrypted on the database with per-user / per/submissions keys", "N/A", "Keyword blacklisting", "Antispam, Anti XSS"
+   "Questionnaire answers", "Encrypted on the database with per-user / per-submissions keys", "N/A", "Keyword blacklisting", "Antispam, Anti XSS"
    "Submission attachments", "Encrypted on the filesystem with per-user / per/submissions keys", "Optional", "Extension blocking, Antivirus", "N/A"
-   "Platform configuration", "Encrypted database with admin password", "N/A", "N/A", "N/A"
-   "Software files", "N/A", "N/A", "N/A", "N/A"
    "Email notifications", "Encrypted with PGP when recipients keys are available", "N/A", "Antispam to prevent flooding", "N/A"
 
-Threats to Confidentiality and Anonymity
+Threats to Anonymity and Confidentiality
 ========================================
 In this section we highlight several threats that require specific explanation.
 
@@ -159,11 +151,11 @@ GlobaLeaks tries to avoid, by using properly crafted HTTP headers and other trik
 
 Metadata
 --------
-Every file can contain metadata related to the author or the whistleblower. The cleanup of metadata of submitted files is a particular topic that attempts to protect an “unaware” whistleblower from leaking information in a document that may put their anonymity at risk. In the context of GlobaLeaks, by default no automatic metadata cleanup is implemented because metadata is considered fundamental in the evidence preservation. For that reason metadata cleanup is an optional operation that coulld be suggested to Whistleblowers or operated by Recipients when sharing the document with other persons. A valuable software resource for this aim is the [Metadata Anonymization Toolkit](https://0xacab.org/jvoisin/mat2)
+Every file can contain metadata related to the author or the whistleblower. The cleanup of metadata of submitted files is a particular topic that attempts to protect an “unaware” whistleblower from leaking information in a document that may put their anonymity at risk. In the context of GlobaLeaks, by default no automatic metadata cleanup is implemented because metadata is considered fundamental in the evidence preservation. For that reason metadata cleanup is an optional operation that coulld be suggested to Whistleblowers or operated by Recipients when sharing the document with other persons. A valuable software resource for this aim is the `Metadata Anonymization Toolkit <https://0xacab.org/jvoisin/mat2`_
 
 Malware and Trojans
 -------------------
-GlobaLeaks could not prevent an attacker to use the platform maliciously trying to target recipients users with malware and trojans in general. Considering this and in order to be less vulnerable to risks of data exfiltration perpretrated with trojans, Recipients should always implement proper operation security by possibly using a laptop dedicated to reports visualization and possibly open file attachments on computers disconnected from the network and other sensible information. Wherever possible they should use operation with specialized secure operation systems like [QubesOS](https://www.qubes-os.org/) or [Tails](https://tails.boum.org/) or and at least run an up-to-date Anti-Virus software.
+GlobaLeaks could not prevent an attacker to use the platform maliciously trying to target recipients users with malware and trojans in general. Considering this and in order to be less vulnerable to risks of data exfiltration perpretrated with trojans, Recipients should always implement proper operation security by possibly using a laptop dedicated to reports visualization and possibly open file attachments on computers disconnected from the network and other sensible information. Wherever possible they should use operation with specialized secure operation systems like `QubesOS <https://www.qubes-os.org/>`_ or `Tails <https://tails.boum.org/>`_ or and at least run an up-to-date Anti-Virus software.
 
 Data Stored Outside the Platform
 --------------------------------
