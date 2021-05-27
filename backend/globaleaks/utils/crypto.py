@@ -10,7 +10,7 @@ import time
 
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import constant_time, hashes
-from cryptography.hazmat.primitives.hashes import SHA1
+from cryptography.hazmat.primitives.hashes import SHA1, SHA256
 from cryptography.hazmat.primitives.twofactor.totp import TOTP
 
 from nacl.encoding import Base64Encoder
@@ -18,13 +18,16 @@ from nacl.hashlib import scrypt
 from nacl.pwhash import argon2id
 from nacl.public import SealedBox, PrivateKey, PublicKey
 from nacl.secret import SecretBox
+from nacl.utils import EncryptedMessage
 from nacl.utils import random as nacl_random
+
+from typing import Any, Optional, Tuple, Union
 
 
 crypto_backend = default_backend()
 
 
-def _convert_to_bytes(arg):
+def _convert_to_bytes(arg: Union[bytes, str]) -> bytes:
     """
     Convert the argument to bytes if of string type
     :param arg: a string or a byte object
@@ -36,7 +39,7 @@ def _convert_to_bytes(arg):
     return arg
 
 
-def _sha(alg, data):
+def _sha(alg: SHA256, data: Union[bytes, str]) -> bytes:
     """
     Perform the sha of the passed data
     :param alg: A specific hash algorithm
@@ -48,7 +51,7 @@ def _sha(alg, data):
     return binascii.b2a_hex(h.finalize())
 
 
-def sha256(data):
+def sha256(data: Union[bytes, str]) -> bytes:
     """
     Perform the sha256 of the passed thata
     :param data: A data to be hashed
@@ -57,7 +60,7 @@ def sha256(data):
     return _sha(hashes.SHA256(), data)
 
 
-def generateOtpSecret():
+def generateOtpSecret() -> str:
     """
     Return an OTP secret of 160bit encoded base32
     """
@@ -65,14 +68,14 @@ def generateOtpSecret():
     return ''.join(secrets.choice(symbols) for i in range(32))
 
 
-def generateRandomKey():
+def generateRandomKey() -> str:
     """
     Return a random secret of 256bits
     """
     return sha256(nacl_random(32)).decode()
 
 
-def generateRandomPassword(N):
+def generateRandomPassword(N: int) -> str:
     """
     Return a random password
     """
@@ -83,12 +86,12 @@ def generate2FA():
     return ''.join(random.SystemRandom().choice(string.digits) for _ in range(8))
 
 
-def totpVerify(secret, token):
+def totpVerify(secret: str, token: str) -> None:
     totp = TOTP(base64.b32decode(secret), 6, SHA1(), 30, crypto_backend, enforce_key_length=False)
     totp.verify(token.encode(), time.time())
 
 
-def _hash_scrypt(password, salt):
+def _hash_scrypt(password: bytes, salt: bytes) -> str:
     password = _convert_to_bytes(password)
     salt = _convert_to_bytes(salt)
 
@@ -98,14 +101,14 @@ def _hash_scrypt(password, salt):
     return binascii.hexlify(hash).decode()
 
 
-def _kdf_argon2(password, salt):
+def _kdf_argon2(password: bytes, salt: bytes) -> bytes:
     salt = base64.b64decode(salt)
     return argon2id.kdf(32, password, salt[0:16],
                         opslimit=_GCE.ALGORITM_CONFIGURATION['ARGON2']['OPSLIMIT']+1,
                         memlimit=1 << _GCE.ALGORITM_CONFIGURATION['ARGON2']['MEMLIMIT'])
 
 
-def _hash_argon2(password, salt):
+def _hash_argon2(password: bytes, salt: bytes) -> str:
     salt = base64.b64decode(salt)
     hash = argon2id.kdf(32, password, salt[0:16],
                         opslimit=_GCE.ALGORITM_CONFIGURATION['ARGON2']['OPSLIMIT'],
@@ -114,7 +117,7 @@ def _hash_argon2(password, salt):
 
 
 class _StreamingEncryptionObject(object):
-    def __init__(self, mode, user_key, filepath):
+    def __init__(self, mode: str, user_key: Union[bytes, str], filepath: str) -> None:
         self.mode = mode
         self.user_key = user_key
         self.filepath = filepath
@@ -138,13 +141,13 @@ class _StreamingEncryptionObject(object):
 
         self.box = SecretBox(self.key)
 
-    def fullNonce(self, i):
+    def fullNonce(self, i: int) -> bytes:
         return self.partial_nonce + struct.pack('<Q', i)
 
-    def lastFullNonce(self):
+    def lastFullNonce(self) -> bytes:
         return self.partial_nonce + struct.pack('>Q', 1)
 
-    def getNextNonce(self, last):
+    def getNextNonce(self, last: int) -> bytes:
         if last:
             chunkNonce = self.lastFullNonce()
         else:
@@ -154,13 +157,13 @@ class _StreamingEncryptionObject(object):
 
         return chunkNonce
 
-    def encrypt_chunk(self, chunk, last=0):
+    def encrypt_chunk(self, chunk: bytes, last: int = 0) -> None:
         chunkNonce = self.getNextNonce(last)
         self.fd.write(struct.pack('>B', last))
         self.fd.write(struct.pack('>I', len(chunk)))
         self.fd.write(self.box.encrypt(chunk, chunkNonce)[24:])
 
-    def decrypt_chunk(self):
+    def decrypt_chunk(self) -> Tuple[int, bytes]:
         last = struct.unpack('>B', self.fd.read(1))[0]
         if last:
             self.EOF = True
@@ -170,22 +173,22 @@ class _StreamingEncryptionObject(object):
         chunk = self.fd.read(chunkLen + 16)
         return last, self.box.decrypt(chunk, chunkNonce)
 
-    def read(self, a):
+    def read(self, a: int) -> bytes:
         if not self.EOF:
             return self.decrypt_chunk()[1]
 
-    def close(self):
+    def close(self) -> None:
         if self.fd is not None:
             self.fd.close()
             self.fd = None
 
-    def __enter__(self):
+    def __enter__(self) -> '_StreamingEncryptionObject':
         return self
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+    def __exit__(self, exc_type: Optional[Any], exc_val: Optional[Any], exc_tb: Optional[Any]) -> None:
         self.close()
 
-    def __del__(self):
+    def __del__(self) -> None:
         self.close()
 
 
@@ -211,21 +214,21 @@ class _GCE(object):
     HASH_FUNCTIONS['ARGON2'] = _hash_argon2
 
     @staticmethod
-    def generate_receipt():
+    def generate_receipt() -> str:
         """
         Return a random receipt of 16 digits
         """
         return ''.join(random.SystemRandom().choice(string.digits) for _ in range(16))
 
     @staticmethod
-    def generate_salt():
+    def generate_salt() -> str:
         """
         Return a salt with 128 bit of entropy
         """
         return base64.b64encode(os.urandom(16)).decode()
 
     @staticmethod
-    def hash_password(password, salt, algorithm='ARGON2'):
+    def hash_password(password: str, salt: str, algorithm: str = 'ARGON2') -> str:
         """
         Return the hash a password using a specified algorithm
         If the algorithm provided is none uses the best available algorithm
@@ -236,7 +239,7 @@ class _GCE(object):
         return _GCE.HASH_FUNCTIONS[algorithm](password, salt)
 
     @staticmethod
-    def check_password(algorithm, password, salt, hash):
+    def check_password(algorithm: str, password: str, salt: str, hash: str) -> bool:
         """
         Perform passowrd check for match with a provided hash
         """
@@ -248,14 +251,14 @@ class _GCE(object):
         return constant_time.bytes_eq(x, hash)
 
     @staticmethod
-    def generate_key():
+    def generate_key() -> bytes:
         """
         Generate a 256 bit key
         """
         return nacl_random(32)
 
     @staticmethod
-    def derive_key(password, salt):
+    def derive_key(password: Union[bytes, str], salt: str) -> bytes:
         """
         Perform key derivation from a user password
         """
@@ -265,7 +268,7 @@ class _GCE(object):
         return _GCE.KDF_FUNCTIONS['ARGON2'](password, salt)
 
     @staticmethod
-    def generate_keypair():
+    def generate_keypair() -> Tuple[bytes, bytes]:
         """
         Generate a curve25519 keypair
         """
@@ -275,7 +278,7 @@ class _GCE(object):
                prv_key.public_key.encode(Base64Encoder)
 
     @staticmethod
-    def generate_recovery_key(prv_key):
+    def generate_recovery_key(prv_key: bytes) -> Tuple[bytes, bytes]:
         rec_key = _GCE.generate_key()
         pub_key = PrivateKey(prv_key, Base64Encoder).public_key.encode(Base64Encoder)
         bkp_key = _GCE.symmetric_encrypt(rec_key, prv_key)
@@ -283,7 +286,7 @@ class _GCE(object):
         return Base64Encoder.encode(bkp_key), Base64Encoder.encode(rec_key)
 
     @staticmethod
-    def symmetric_encrypt(key, data):
+    def symmetric_encrypt(key: bytes, data: bytes) -> EncryptedMessage:
         """
         Perform symmetric encryption using libsodium secretbox (XSalsa20-Poly1305))
         """
@@ -292,7 +295,7 @@ class _GCE(object):
         return SecretBox(key).encrypt(data, nonce)
 
     @staticmethod
-    def symmetric_decrypt(key, data):
+    def symmetric_decrypt(key: bytes, data: bytes) -> bytes:
         """
         Perform symmetric decryption using libsodium secretbox (XSalsa20-Poly1305)
         """
@@ -300,7 +303,7 @@ class _GCE(object):
         return SecretBox(key).decrypt(data)
 
     @staticmethod
-    def asymmetric_encrypt(pub_key, data):
+    def asymmetric_encrypt(pub_key: Union[bytes, str], data: Union[bytes, str]) -> bytes:
         """
         Perform asymmetric encryption using libsodium sealedbox (Curve25519, XSalsa20-Poly1305)
         """
@@ -309,7 +312,7 @@ class _GCE(object):
         return SealedBox(pub_key).encrypt(data)
 
     @staticmethod
-    def asymmetric_decrypt(prv_key, data):
+    def asymmetric_decrypt(prv_key: bytes, data: bytes) -> bytes:
         """
         Perform asymmetric decryption using libsodium sealedbox (Curve25519, XSalsa20-Poly1305)
         """
@@ -318,7 +321,7 @@ class _GCE(object):
         return SealedBox(prv_key).decrypt(data)
 
     @staticmethod
-    def streaming_encryption_open(mode, user_key, filepath):
+    def streaming_encryption_open(mode: str, user_key: Union[bytes, str], filepath: str) -> '_StreamingEncryptionObject':
         return _StreamingEncryptionObject(mode, user_key, filepath)
 
 
