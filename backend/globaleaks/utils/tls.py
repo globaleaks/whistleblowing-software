@@ -7,7 +7,6 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
 
 from OpenSSL import SSL
-from OpenSSL._util import lib as _lib, ffi as _ffi
 from OpenSSL.crypto import load_certificate, load_privatekey, FILETYPE_PEM, TYPE_RSA, \
     PKey, dump_certificate_request, X509Req, _new_mem_buf
 
@@ -198,16 +197,6 @@ class TLSServerContextFactory(ssl.ContextFactory):
 
         key = load_privatekey(FILETYPE_PEM, key)
         self.ctx.use_privatekey(key)
-
-        # If SSL_CTX_set_ecdh_auto is available then set it so the ECDH curve
-        # will be auto-selected. This function was added in 1.0.2 and made a
-        # noop in 1.1.0+ (where it is set automatically).
-        try:
-            _lib.SSL_CTX_set_ecdh_auto(self.ctx._context, 1)  # pylint: disable=no-member
-        except AttributeError:
-            ecdh = _lib.EC_KEY_new_by_curve_name(_lib.NID_X9_62_prime256v1)  # pylint: disable=no-member
-            ecdh = _ffi.gc(ecdh, _lib.EC_KEY_free)  # pylint: disable=no-member
-            _lib.SSL_CTX_set_tmp_ecdh(self.ctx._context, ecdh)  # pylint: disable=no-member
 
     def getContext(self):
         return self.ctx
