@@ -190,7 +190,7 @@ class _StreamingEncryptionObject(object):
 
 
 class _GCE(object):
-    # Warning: KDF options by design should be greater than HASH optionsENCRYPTION_AVA
+    # Warning: KDF options by design should be greater than HASH options
     ALGORITM_CONFIGURATION = {
         'ARGON2': {
             'MEMLIMIT': 27,  # 128MB
