@@ -536,7 +536,6 @@ def db_get_questionnaires(session, tid, language):
                             .filter(models.Questionnaire.tid.in_(set([1, tid])),
                                     or_(models.Context.questionnaire_id == models.Questionnaire.id,
                                         models.Context.additional_questionnaire_id == models.Questionnaire.id),
-                                    models.Context.status != EnumContextStatus.disabled.value,
                                     models.Context.tid == tid)
 
     return [serialize_questionnaire(session, tid, questionnaire, language) for questionnaire in questionnaires]
@@ -551,8 +550,7 @@ def db_get_contexts(session, tid, language):
     :param language: The language to be used for the serialization
     :return: A list of contexts descriptors
     """
-    contexts = session.query(models.Context).filter(models.Context.status != EnumContextStatus.disabled.value,
-                                                    models.Context.tid == tid)
+    contexts = session.query(models.Context).filter(models.Context.tid == tid)
 
     data = db_prepare_contexts_serialization(session, contexts)
 
