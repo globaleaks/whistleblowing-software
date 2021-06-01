@@ -23,16 +23,18 @@ GL.mockEngine = (function() {
         }
       } else {
         var custom_elem = e.querySelector(".Mock");
+
         if (!custom_elem) {
           custom_elem = document.createElement("div");
           custom_elem.classList.add("Mock");
-          custom_elem.innerHTML = mock.value;
+        }
 
-          if (mock.type === "add-before") {
-            e.insertBefore(custom_elem, e.childNodes[0]);
-          } else if (mock.type === "add-after") {
-            e.appendChild(custom_elem);
-          }
+        custom_elem.innerHTML = mock.value;
+
+        if (mock.type === "add-before") {
+          e.insertBefore(custom_elem, e.childNodes[0]);
+        } else if (mock.type === "add-after") {
+          e.appendChild(custom_elem);
         }
       }
     }

@@ -682,13 +682,20 @@ var GL = angular.module("GL", [
 
         $rootScope.started = true;
 
-        var observer = new MutationObserver(GL.mockEngine.run);
-
-        observer.observe(document.querySelector("body"), { attributes: false, childList: true, subtree: true });
       }).$promise;
     };
 
     //////////////////////////////////////////////////////////////////
+
+    var hasRegistered = false;
+    $rootScope.$watch(function() {
+      if (hasRegistered) return;
+      hasRegistered = true;
+      $rootScope.$$postDigest(function() {
+        hasRegistered = false;
+        GL.mockEngine.run();
+      });
+    });
 
     $rootScope.$watch(function() {
       return $http.pendingRequests.length;
@@ -698,8 +705,11 @@ var GL = angular.module("GL", [
 
     $rootScope.$watch("GLTranslate.state.language", function(new_val, old_val) {
       if(new_val !== old_val) {
-        GLTranslate.setLang(new_val);
-	$rootScope.reload();
+	if (old_val && old_val !== '*') {
+          $location.search('lang', new_val);
+          GLTranslate.setLang(new_val);
+          $rootScope.reload();
+        }
       }
     });
 
