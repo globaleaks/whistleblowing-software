@@ -86,7 +86,7 @@ class Tenant_v_52(Model):
 
     id = Column(Integer, primary_key=True, nullable=False)
     label = Column(UnicodeText, default='', nullable=False)
-    active = Column(Boolean, default=False, nullable=False)
+    active = Column(Boolean, default=True, nullable=False)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     subdomain = Column(UnicodeText, default='', nullable=False)
 

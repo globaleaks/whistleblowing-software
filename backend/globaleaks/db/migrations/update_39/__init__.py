@@ -453,7 +453,7 @@ class MigrationScript(MigrationBase):
         return self._migrate_File('WhistleblowerFile')
 
     def epilogue(self):
-        self.session_new.add(self.model_to['Tenant']({'label': '', 'active': True}))
+        self.session_new.add(self.model_to['Tenant']())
 
         for q in self.session_old.query(self.model_from['ArchivedSchema']).filter(self.model_from['ArchivedSchema'].type == 'questionnaire'):
             new_obj = self.model_to['ArchivedSchema']()
@@ -475,6 +475,7 @@ class MigrationScript(MigrationBase):
                     continue
 
                 new_file = File()
+                new_file.tid = 1
                 new_file.id = uuid4()
                 new_file.name = filename
                 new_file.data = ''
