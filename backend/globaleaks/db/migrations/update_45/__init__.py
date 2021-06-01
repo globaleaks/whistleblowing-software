@@ -174,13 +174,14 @@ class MigrationScript(MigrationBase):
         ret = {}
 
         for answer in answers:
-            if isinstance(answer.value, list):
+            if answer.is_leaf:
+                ret[answer.key] = answer.value
+            else:
                 for group in groups_by_answer.get(answer.id, []):
                     ret[answer.key] = [
                         self.db_serialize_questionnaire_answers_recursively(session, answers_by_group.get(group.id, []),
                                                                             answers_by_group, groups_by_answer)]
-            else:
-                ret[answer.key] = answer.value
+
         return ret
 
     def db_serialize_questionnaire_answers(self, session, internaltip):
@@ -196,10 +197,11 @@ class MigrationScript(MigrationBase):
             if answer.fieldanswergroup_id is None:
                 answers.append(answer)
 
-            if answer.fieldanswergroup_id not in answers_by_group:
-                answers_by_group[answer.fieldanswergroup_id] = []
+            else:
+                if answer.fieldanswergroup_id not in answers_by_group:
+                    answers_by_group[answer.fieldanswergroup_id] = []
 
-            answers_by_group[answer.fieldanswergroup_id].append(answer)
+                answers_by_group[answer.fieldanswergroup_id].append(answer)
 
         if all_answers_ids:
             for group in session.query(self.model_from['FieldAnswerGroup']) \

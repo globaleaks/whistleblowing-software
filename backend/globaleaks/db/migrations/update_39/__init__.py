@@ -139,6 +139,7 @@ class FieldAnswer_v_38(Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     internaltip_id = Column(UnicodeText(36), nullable=True)
     fieldanswergroup_id = Column(UnicodeText(36), nullable=True)
+    is_leaf = Column(Boolean, default=True, nullable=False)
     key = Column(UnicodeText, default='', nullable=False)
     value = Column(UnicodeText, default='', nullable=False)
 
