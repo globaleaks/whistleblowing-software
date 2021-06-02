@@ -23,7 +23,7 @@ class File_v_53(Model):
     tid = Column(Integer, primary_key=True, default=1)
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     name = Column(UnicodeText, default='', nullable=False)
-    data = Column(UnicodeText, nullable=False)
+    data = Column(UnicodeText, default='', nullable=False)
 
 
 class UserImg_v_53(Model):

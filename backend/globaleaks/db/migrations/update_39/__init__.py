@@ -154,7 +154,7 @@ class FieldAnswerGroup_v_38(Model):
 class File_v_38(Model):
     __tablename__ = 'file'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-    data = Column(UnicodeText)
+    data = Column(UnicodeText, default='')
 
 
 class InternalFile_v_38(Model):
@@ -474,7 +474,7 @@ class MigrationScript(MigrationBase):
                 if not os.path.isfile(filepath):
                     continue
 
-                new_file = File()
+                new_file = self.model_to['File']()
                 new_file.tid = 1
                 new_file.id = uuid4()
                 new_file.name = filename
