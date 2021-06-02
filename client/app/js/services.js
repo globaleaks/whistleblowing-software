@@ -769,6 +769,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
         pt2 = $rootScope.header_title;
       }
 
+      pt2 = pt2 == pt1 ? "" : pt2;
       pt2 = $filter("translate")(pt2);
 
       $rootScope.projectTitle = pt1;
