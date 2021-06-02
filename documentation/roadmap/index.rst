@@ -63,7 +63,6 @@ Reference tickets:
 - https://github.com/globaleaks/GlobaLeaks/issues/2579
 - https://github.com/globaleaks/GlobaLeaks/issues/2580
 - https://github.com/globaleaks/GlobaLeaks/issues/2651
-- https://github.com/globaleaks/GlobaLeaks/issues/2651
 
 GDPR compliance improvements
 ............................
