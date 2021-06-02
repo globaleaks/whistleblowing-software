@@ -39,7 +39,7 @@
   "devDependencies": {
     "eslint": "7.27.0",
     "gettext-parser": "4.0.4",
-    "grunt": "1.4.0",
+    "grunt": "1.4.1",
     "grunt-angular-templates": "1.2.0",
     "grunt-confirm": "1.0.8",
     "grunt-contrib-clean": "2.0.0",
@@ -54,7 +54,7 @@
     "grunt-usemin": "3.1.1",
     "gruntify-eslint": "5.0.0",
     "node-gettext": "3.0.0",
-    "npm-check-updates": "11.5.13",
+    "npm-check-updates": "11.6.0",
     "nyc": "15.1.0",
     "postcss-rtl": "1.7.3",
     "protractor": "7.0.0",
