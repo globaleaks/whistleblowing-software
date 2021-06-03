@@ -40,7 +40,6 @@ function DO () {
 
 LOGFILE="./install.log"
 ASSUMEYES=0
-EXPERIMENTAL=0
 
 DISTRO="unknown"
 DISTRO_CODENAME="unknown"
@@ -79,17 +78,10 @@ for arg in "$@"; do
   shift
   case "$arg" in
     --assume-yes ) ASSUMEYES=1; shift;;
-    --install-experimental-version-and-accept-the-consequences ) EXPERIMENTAL=1; shift;;
     -- ) shift; break;;
     * ) break;;
   esac
 done
-
-if [ $EXPERIMENTAL -eq 1 ]; then
-  echo "!!!!!!!!!!!! WARNING !!!!!!!!!!!!"
-  echo "You requested to install the experimental version."
-  echo "This version is currently under peer review and MUST NOT be used in production."
-fi
 
 echo "Detected OS: $DISTRO - $DISTRO_CODENAME"
 
