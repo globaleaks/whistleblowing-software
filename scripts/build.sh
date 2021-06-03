@@ -70,33 +70,34 @@ fi
 
 ROOTDIR=$(pwd)
 
-BUILDSRC="GLRelease"
-[ -d $BUILDSRC ] && rm -rf $BUILDSRC
-mkdir $BUILDSRC && cd $BUILDSRC
+BUILDDIR="build"
+BUILDSRC="$BUILDDIR/src"
+
+[ -d $BUILDDIR ] && rm -rf $BUILDDIR
+
+mkdir -p $BUILDSRC && cd $BUILDSRC
 
 if [ $LOCAL_ENV -eq 1 ]; then
-  cd ../client/
-  ./node_modules/grunt/bin/grunt build
-  cd ../GLRelease
-  git clone --branch="$TAG" --depth=1 file://$(pwd)/../../GlobaLeaks
-  cp -rf ../client/build GlobaLeaks/client/
+  git clone --branch="$TAG" --depth=1 file://$(pwd)/../../../GlobaLeaks .
 else
-  git clone --depth=1 https://github.com/globaleaks/GlobaLeaks.git
-  cd GlobaLeaks
+  git clone --depth=1 https://github.com/globaleaks/GlobaLeaks.git .
   git checkout $TAG
 fi
+
+cd client && npm install -d && ./node_modules/grunt/bin/grunt build
 
 cd $ROOTDIR
 
 for TARGET in $TARGETS; do
   echo "Packaging GlobaLeaks for:" $TARGET
 
-  BUILDDIR="GLRelease-$TARGET"
+  BUILDDIR="build/$TARGET"
 
   [ -d $BUILDDIR ] && rm -rf $BUILDDIR
 
+  mkdir -p $BUILDDIR
   cp -r $BUILDSRC $BUILDDIR
-  cd $BUILDDIR/GlobaLeaks
+  cd "$BUILDDIR/src"
 
   rm debian/control backend/requirements.txt
 
@@ -111,7 +112,7 @@ for TARGET in $TARGETS; do
     debuild
   fi
 
-  cd ../../
+  cd ../../../
 done
 
 if [ $PUSH -eq 1 ]; then

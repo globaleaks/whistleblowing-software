@@ -30,7 +30,11 @@ EOL
 
 cp debian/controlX/control.$distro debian/control
 cp backend/requirements/requirements-$distro.txt backend/requirements.txt
+
+cd client && npm install -d && ./node_modules/grunt/bin/grunt build && cd ..
+
 debuild -i -us -uc -b
+
 sudo mkdir -p /globaleaks/deb/
 sudo cp ../globaleaks*deb /globaleaks/deb/
 
