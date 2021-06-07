@@ -27,7 +27,7 @@
 # Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
 # Mustafa J. Kadhem <safi2266@gmail.com>, 2015
 # Paolo Valier, 2016
-# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Pedro M. Baeza <pedro.baeza@tecnativa.com>, 2015
 # Rudolf Schnapka <rs@techno-flex.de>, 2016
 # Rudolf Schnapka <schnapkar@golive-saar.de>, 2015
 # Mustafa J. Kadhem <safi2266@gmail.com>, 2015
@@ -40,7 +40,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-17 10:54+0000\n"
+"PO-Revision-Date: 2021-06-02 12:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: English (http://www.transifex.com/otf/globaleaks/language/en/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -236,12 +236,6 @@ msgstr "Latest selectable date"
 
 msgid "0 = auto"
 msgstr "0 = auto"
-
-msgid "True"
-msgstr "True"
-
-msgid "False"
-msgstr "False"
 
 msgid "Yes"
 msgstr "Yes"
@@ -539,11 +533,8 @@ msgstr "seconds"
 msgid "This domain name is not available."
 msgstr "This domain name is not available."
 
-msgid "VAT number"
-msgstr "VAT number"
-
-msgid "Tax code"
-msgstr "Tax code"
+msgid "Mark as important"
+msgstr "Mark as important"
 
 msgid "File a report"
 msgstr "File a report"

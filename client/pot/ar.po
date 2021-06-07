@@ -43,7 +43,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-17 10:54+0000\n"
+"PO-Revision-Date: 2021-06-02 12:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -239,12 +239,6 @@ msgstr "آخر تاريخ للاختيار"
 
 msgid "0 = auto"
 msgstr "0= أوتوماتيكي"
-
-msgid "True"
-msgstr "صحيح"
-
-msgid "False"
-msgstr "خاطئ"
 
 msgid "Yes"
 msgstr "نعم"
@@ -542,10 +536,7 @@ msgstr "ثواني"
 msgid "This domain name is not available."
 msgstr "اسم النطاق غير متاح."
 
-msgid "VAT number"
-msgstr "رقم ضريبة القيمة المضافة(TVA)"
-
-msgid "Tax code"
+msgid "Mark as important"
 msgstr ""
 
 msgid "File a report"

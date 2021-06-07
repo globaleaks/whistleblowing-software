@@ -73,6 +73,8 @@ LANGUAGES_SUPPORTED = [
     {'code': 'th', 'name': 'Thai', 'native': '\u0e44\u0e17\u0e22'},
     {'code': 'tr', 'name': 'Turkish', 'native': 'T\u00fcrk\u00e7e'},
     {'code': 'ug', 'name': 'Uyghur', 'native': '\u0626\u06c7\u064a\u063a\u06c7\u0631\u0686\u06d5'},
+    {'code': 'ug@Latin', 'name': 'Uyghur (Latin)', 'native': 'Uyghurche'},
+    {'code': 'ug@Cyril', 'name': 'Uyghur (Cyrillic)', 'native': '\u0423\u0439\u0493\u0443\u0440\u0071\u0259'},
     {'code': 'uk', 'name': 'Ukrainian', 'native': '\u0423\u043a\u0440\u0430\u0457\u043d\u0441\u044c\u043a\u0430'},
     {'code': 'ur', 'name': 'Urdu', 'native': '\u0627\u0631\u062f\u0648'},
     {'code': 'vi', 'name': 'Vietnamese', 'native': 'Ti\u1ebfng Vi\u1ec7t'},

@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-18 10:50+0000\n"
-"Last-Translator: Max Moiseev <max.moiseev@chamber.fi>\n"
+"PO-Revision-Date: 2021-06-02 12:40+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -209,12 +209,6 @@ msgstr "Myöhäisin valittavissa oleva päivä"
 
 msgid "0 = auto"
 msgstr "0 = automaattinen"
-
-msgid "True"
-msgstr "Tosi"
-
-msgid "False"
-msgstr "Epätosi"
 
 msgid "Yes"
 msgstr "Kyllä"
@@ -512,11 +506,8 @@ msgstr "sekuntia"
 msgid "This domain name is not available."
 msgstr "Verkkotunnus ei ole vapaana."
 
-msgid "VAT number"
-msgstr "Arvonlisäveronumero"
-
-msgid "Tax code"
-msgstr "Veronumero"
+msgid "Mark as important"
+msgstr ""
 
 msgid "File a report"
 msgstr "Jätä ilmoitus"

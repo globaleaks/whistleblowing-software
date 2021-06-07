@@ -17,12 +17,12 @@
 # Petrovics Sándor <egeramasrol@gmail.com>, 2015
 # benewfy <benewfy@gmail.com>, 2015
 # vargaviktor <viktor.varga@gmail.com>, 2014
-# vargaviktor <viktor.varga@gmail.com>, 2014-2018,2020
+# vargaviktor <viktor.varga@gmail.com>, 2014-2018,2020-2021
 # zala krisztina <zalakri@gmail.com>, 2013,2019-2020
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-17 10:54+0000\n"
+"PO-Revision-Date: 2021-06-02 12:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -218,12 +218,6 @@ msgstr "Legkésőbbi kiválasztható dátum"
 
 msgid "0 = auto"
 msgstr "0 = auto"
-
-msgid "True"
-msgstr "Igaz"
-
-msgid "False"
-msgstr "Hamis"
 
 msgid "Yes"
 msgstr "Igen"
@@ -521,14 +515,11 @@ msgstr "másodpercet"
 msgid "This domain name is not available."
 msgstr "Ez a domain nem elérhető."
 
-msgid "VAT number"
-msgstr "Adószám"
-
-msgid "Tax code"
-msgstr "Adókód"
+msgid "Mark as important"
+msgstr ""
 
 msgid "File a report"
-msgstr ""
+msgstr "Jelentés beküldése"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Továblépés előtt kérjük, állítson be új jelszót"
@@ -635,7 +626,7 @@ msgid "Set the value to 0 to disable this feature."
 msgstr "Állítsa az értéket 0-ra, hogy kikapcsolja ezt a funkciót."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr ""
+msgstr "Napok száma a felhasználóknak értesítés küldéséhez"
 
 msgid "Enable custodian user role"
 msgstr "Kezelő felhasználó típus engedélyezése"
@@ -644,7 +635,7 @@ msgid "Enable scoring system"
 msgstr "Pontozási rendszer engedélyezése"
 
 msgid "Enable private annotations"
-msgstr ""
+msgstr "Privát megjegyzések engedélyezése"
 
 msgid "Allow the following websites to embed the platform inside iframes"
 msgstr "A következő weboldalak számára engedélyezett a platform iframe-ként embeddelése"
@@ -688,10 +679,10 @@ msgid "Type"
 msgstr "Típus"
 
 msgid "Severity"
-msgstr ""
+msgstr "Súlyosság"
 
 msgid "Object"
-msgstr ""
+msgstr "Objektum"
 
 msgid "ID"
 msgstr "Azonosító"
@@ -832,7 +823,7 @@ msgid "Show recipients in alphabetical order"
 msgstr "A címzettek megjelenítése betűrendben"
 
 msgid "Show recipient details on the status page of the report"
-msgstr ""
+msgstr "A címzettek adatainak megjelenítése a jelentés státusz oldalán"
 
 msgid "Enable comments"
 msgstr "Megjegyzések engedélyezése"
@@ -1230,7 +1221,7 @@ msgid "Allow the recipient to delete reports"
 msgstr "Engedélyezés a címzetteknek, hogy töröljék a tippeket"
 
 msgid "Give the user administrative access to the following features:"
-msgstr ""
+msgstr "A felhasználónak adminisztratív jogok adása a következő funkciókra:"
 
 msgid "Request date"
 msgstr "Kérés dátuma"
@@ -1242,7 +1233,7 @@ msgid "Authorization"
 msgstr "Felhatalmazás"
 
 msgid "Requests"
-msgstr ""
+msgstr "Kérelmek"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "A validációs link vagy hibás vagy lejárt."
@@ -1392,7 +1383,7 @@ msgstr "Úgy tűnik, hogy az oldalt extra adatvédelem és biztonság nélkül k
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr ""
+msgstr "Erősen ajánlott, hogy ezt az oldalt asztali gépről Tor böngészővel látogassa meg, amely megvédi identitását."
 
 msgid "Download the Tor Browser"
 msgstr "Tor-böngésző letöltése"
@@ -1652,7 +1643,7 @@ msgid "Select the context of your report:"
 msgstr "Válassza ki a beküldés környezetét:"
 
 msgid "The answer is too short"
-msgstr ""
+msgstr "A válasz túl rövid."
 
 msgid "The specified input is not valid."
 msgstr "A megadott érték nem érvényes."
@@ -1698,7 +1689,7 @@ msgid "Recipient selection"
 msgstr "Címzett kiválasztása"
 
 msgid "Select the recipients of your report:"
-msgstr ""
+msgstr "Válaszd ki a beküldés címzettjét:"
 
 msgid "Recipients selected:"
 msgstr "Kiválasztott címzettek:"
@@ -1709,7 +1700,7 @@ msgstr "Elérte a maximum kiválasztható címzett számot."
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr ""
+msgstr "A következő címzettek kapják meg a bejelentését, és nem szüntethető meg a kiválasztásuk:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1734,14 +1725,14 @@ msgid "Please choose a configuration profile:"
 msgstr "Kérjük válasszon konfigurációs profilt:"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr ""
+msgstr "Ennek az admin engedély adása a felhasználói jelszavak alaphelyzetbe állítására"
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr ""
+msgstr "Javasoljuk, hogy állítsa be ezt az opciót, ha szeretné megvédeni az adatot az elvesztéstől, azokban az esetekben, amikor a címzettek elvesztik jelszavukat. Más szempontból nem ajánljuk ennek az opciónak a használatát, ha olyan rendszert szeretne, ahol kizárólag a címzettek férnek hozzá a beküldésekhez."
 
 msgid "Please choose a different username."
 msgstr "Kérjük válasszon másik felhasználónevet."
@@ -2113,16 +2104,16 @@ msgid "New report"
 msgstr "Új jelentés"
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr ""
+msgstr "Ez egy értesítő email arról, hogy egy már létező jelentés frissítve lett."
 
 msgid "Report updated"
-msgstr ""
+msgstr "Jelentés frissítve"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr ""
+msgstr "Ez egy értesítő email olvasatlan vagy frissített jelentésről."
 
 msgid "Reminder about unread or updated reports"
-msgstr ""
+msgstr "Emlékeztető olvasatlan vagy frissített jelentésekről"
 
 msgid "Role: {Role}"
 msgstr "Szerep: {Role}"

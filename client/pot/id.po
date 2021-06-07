@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-17 10:54+0000\n"
+"PO-Revision-Date: 2021-06-02 12:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -222,12 +222,6 @@ msgstr "Tanggal paling akhir yang dapat dipilih"
 
 msgid "0 = auto"
 msgstr "0 = otomatis"
-
-msgid "True"
-msgstr "Benar"
-
-msgid "False"
-msgstr "Salah"
 
 msgid "Yes"
 msgstr "Ya"
@@ -525,11 +519,8 @@ msgstr "detik"
 msgid "This domain name is not available."
 msgstr "Nama domain ini tidak tersedia."
 
-msgid "VAT number"
-msgstr "Nomor VAT"
-
-msgid "Tax code"
-msgstr "Kode pajak"
+msgid "Mark as important"
+msgstr ""
 
 msgid "File a report"
 msgstr "Buat laporan"

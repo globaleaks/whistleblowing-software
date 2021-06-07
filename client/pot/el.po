@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-17 10:54+0000\n"
+"PO-Revision-Date: 2021-06-02 12:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -213,12 +213,6 @@ msgstr "Η πιο πρόσφατη επιλέξιμη ημερομηνία"
 
 msgid "0 = auto"
 msgstr "0 = auto"
-
-msgid "True"
-msgstr "Αληθής"
-
-msgid "False"
-msgstr "Ψευδής"
 
 msgid "Yes"
 msgstr "Ναι"
@@ -516,11 +510,8 @@ msgstr "δευτερόλεπτα"
 msgid "This domain name is not available."
 msgstr "Το όνομα χώρου / domain name δεν είναι διαθέσιμο."
 
-msgid "VAT number"
-msgstr "ΑΦΜ"
-
-msgid "Tax code"
-msgstr "ΑΦΜ"
+msgid "Mark as important"
+msgstr ""
 
 msgid "File a report"
 msgstr "Καταχωρήστε μια αναφορά"

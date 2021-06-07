@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-17 10:54+0000\n"
+"PO-Revision-Date: 2021-06-02 12:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -211,12 +211,6 @@ msgstr "دستیاب تاریخِ انتخاب"
 
 msgid "0 = auto"
 msgstr "0 = آٹو"
-
-msgid "True"
-msgstr "صحیح"
-
-msgid "False"
-msgstr "غلط"
 
 msgid "Yes"
 msgstr "جی ہاں"
@@ -414,7 +408,7 @@ msgid "Maximum file size is:"
 msgstr ""
 
 msgid "Scheduled jobs"
-msgstr ""
+msgstr "Scheduled jobs"
 
 msgid "Sites management"
 msgstr ""
@@ -429,7 +423,7 @@ msgid "Enable email notifications for:"
 msgstr ""
 
 msgid "Disable"
-msgstr ""
+msgstr "Disable"
 
 msgid "Remove"
 msgstr "مٹائیں"
@@ -514,10 +508,7 @@ msgstr "سیکنڈ"
 msgid "This domain name is not available."
 msgstr ""
 
-msgid "VAT number"
-msgstr ""
-
-msgid "Tax code"
+msgid "Mark as important"
 msgstr ""
 
 msgid "File a report"
@@ -792,7 +783,7 @@ msgid "Contexts"
 msgstr "سیاق و سباق"
 
 msgid "Hidden"
-msgstr ""
+msgstr "Hidden"
 
 msgid "Disabled"
 msgstr "غیر فعال"
@@ -903,7 +894,7 @@ msgid "City"
 msgstr "شہر"
 
 msgid "Organization"
-msgstr ""
+msgstr "Organization"
 
 msgid "Organizational unit"
 msgstr ""
@@ -912,7 +903,7 @@ msgid "Invalid email address"
 msgstr "ناجائز ای میل پتہ"
 
 msgid "Generate"
-msgstr ""
+msgstr "Generate"
 
 msgid "Private Key"
 msgstr ""
@@ -921,7 +912,7 @@ msgid "Certificate Signing Request"
 msgstr ""
 
 msgid "Certificate"
-msgstr ""
+msgstr "Certificate"
 
 msgid "Valid until:"
 msgstr ""
@@ -933,7 +924,7 @@ msgid "Intermediate Certificates"
 msgstr ""
 
 msgid "Enable"
-msgstr ""
+msgstr "Enable"
 
 msgid "Reset"
 msgstr "ری سیٹ"
@@ -1085,13 +1076,13 @@ msgid "Add multimedia content"
 msgstr ""
 
 msgid "Image"
-msgstr ""
+msgstr "Image"
 
 msgid "Audio"
 msgstr ""
 
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 msgid "Subject answer visibility to custodian authorization"
 msgstr "ابرکشک اجازت سے مشروط جواب کی نمائش کو"
@@ -1178,13 +1169,13 @@ msgid "Send an account activation link to the user."
 msgstr ""
 
 msgid "Public name"
-msgstr ""
+msgstr "Public name"
 
 msgid "Send reset link"
 msgstr ""
 
 msgid "Set password"
-msgstr ""
+msgstr "Set password"
 
 msgid "Disable two factor authentication"
 msgstr ""
@@ -1205,7 +1196,7 @@ msgid "Details of the PGP key:"
 msgstr "PGP چابی کی تفصیلات:"
 
 msgid "Fingerprint"
-msgstr ""
+msgstr "Fingerprint"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "ایک PGP عوامی کلید فراہم کی طرف سے خفیہ کاری سیٹ اپ کریں"
@@ -1418,7 +1409,7 @@ msgid "Estimated upload time:"
 msgstr "متوقع اپ لوڈ کے لئے وقت:"
 
 msgid "Size:"
-msgstr ""
+msgstr "Size:"
 
 msgid "Enable the Ricochet panel"
 msgstr ""
@@ -1482,10 +1473,10 @@ msgid "Allow the whistleblower to write comments"
 msgstr "مخبر کو تبصرے لکھنے کے لئے کی اجازت دیں"
 
 msgid "From:"
-msgstr ""
+msgstr "From:"
 
 msgid "To:"
-msgstr ""
+msgstr "To:"
 
 msgid "Filename"
 msgstr "فائل کا نام"
@@ -1621,13 +1612,13 @@ msgid ""
 msgstr ""
 
 msgid "Sign up"
-msgstr ""
+msgstr "Sign up"
 
 msgid "Domain"
 msgstr "ڈومین"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "Confirmation"
 
 msgid "Invalid confirmation"
 msgstr ""
@@ -1636,7 +1627,7 @@ msgid "Other"
 msgstr "دیگر"
 
 msgid "Complete"
-msgstr ""
+msgstr "Complete"
 
 msgid "Invalid phone number"
 msgstr ""

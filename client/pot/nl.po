@@ -44,7 +44,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-17 10:54+0000\n"
+"PO-Revision-Date: 2021-06-02 12:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -240,12 +240,6 @@ msgstr "Uiterste datum"
 
 msgid "0 = auto"
 msgstr "0 = automatisch"
-
-msgid "True"
-msgstr "Waar"
-
-msgid "False"
-msgstr "Niet waar"
 
 msgid "Yes"
 msgstr "Ja"
@@ -543,11 +537,8 @@ msgstr "seconden"
 msgid "This domain name is not available."
 msgstr "Deze domeinnaam is niet beschikbaar."
 
-msgid "VAT number"
-msgstr "BTW-nummer"
-
-msgid "Tax code"
-msgstr "BTW-code / Belastingwetgeving"
+msgid "Mark as important"
+msgstr ""
 
 msgid "File a report"
 msgstr "Dien een rapport in"

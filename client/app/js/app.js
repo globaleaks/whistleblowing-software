@@ -503,7 +503,10 @@ var GL = angular.module("GL", [
     var map = {
       "ca@valencia": "ca-es-valencia",
       "dv": "en",
-      "sl-si": "sl"
+      "sl-si": "sl",
+      "ug": "ug-arabic",
+      "ug@Cyril": "ug",
+      "ug@Latin": "ug"
     };
 
     tmhDynamicLocaleProvider.addLocalePatternValue("map", map);

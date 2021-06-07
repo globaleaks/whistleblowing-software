@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-17 10:54+0000\n"
+"PO-Revision-Date: 2021-06-02 12:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -204,12 +204,6 @@ msgstr "Datë e zgjedhur së fundmi"
 
 msgid "0 = auto"
 msgstr "0 = auto"
-
-msgid "True"
-msgstr "i vërtetë"
-
-msgid "False"
-msgstr "I rremë"
 
 msgid "Yes"
 msgstr "Po"
@@ -507,11 +501,8 @@ msgstr "sekonda "
 msgid "This domain name is not available."
 msgstr "Ky emër i domenit nuk është i qasshëm."
 
-msgid "VAT number"
-msgstr "Numri i TVSh"
-
-msgid "Tax code"
-msgstr "Kodi i taksës"
+msgid "Mark as important"
+msgstr ""
 
 msgid "File a report"
 msgstr ""

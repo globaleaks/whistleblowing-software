@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-17 10:54+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-06-04 02:58+0000\n"
+"Last-Translator: Tun Tun Aung <tuntunaung@codingclassroom.org>\n"
 "Language-Team: Burmese (http://www.transifex.com/otf/globaleaks/language/my/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -202,12 +202,6 @@ msgstr "နောက်အကျဆုံး ရွေးချယ်နို�
 
 msgid "0 = auto"
 msgstr "0 = အော်တို"
-
-msgid "True"
-msgstr "မှန်"
-
-msgid "False"
-msgstr "မှား"
 
 msgid "Yes"
 msgstr "ဟုတ်သည်"
@@ -505,11 +499,8 @@ msgstr "စက္ကန့်များ"
 msgid "This domain name is not available."
 msgstr "ဤဒိုမိန်းအမည်ကို မရရှိနိုင်ပါ။"
 
-msgid "VAT number"
-msgstr "VAT နံပါတ်"
-
-msgid "Tax code"
-msgstr "အခွန် ကုဒ်"
+msgid "Mark as important"
+msgstr "အရေးကြီးကြောင်း မှတ်သားပါ"
 
 msgid "File a report"
 msgstr "အစီရင်ခံစာ တင်ပါ"

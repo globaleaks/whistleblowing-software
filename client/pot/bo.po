@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-17 10:54+0000\n"
+"PO-Revision-Date: 2021-06-02 12:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tibetan (http://www.transifex.com/otf/globaleaks/language/bo/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -201,12 +201,6 @@ msgstr "འདེམས་ཐུབ་པའི་ཚེས་གྲངས་ག
 
 msgid "0 = auto"
 msgstr "0 = རང་འགུལ།"
-
-msgid "True"
-msgstr "བདེན།"
-
-msgid "False"
-msgstr "ནོར།"
 
 msgid "Yes"
 msgstr "ཡིན།"
@@ -504,11 +498,8 @@ msgstr "སྐར་ཆ།"
 msgid "This domain name is not available."
 msgstr "དྲ་རྒྱའི་ཁ་བྱང་འདི་ཐོབ་རུང་མི་འདུག"
 
-msgid "VAT number"
-msgstr "VAT ཨང་གྲངས།"
-
-msgid "Tax code"
-msgstr "དཔྱ་ཁྲལ་གསང་རྟགས།"
+msgid "Mark as important"
+msgstr ""
 
 msgid "File a report"
 msgstr "སྙན་ཞུ་ཞིག་ཞུ་གཏུག་བྱ།"

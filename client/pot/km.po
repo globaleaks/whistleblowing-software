@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-21 08:57+0000\n"
-"Last-Translator: Kanika\n"
+"PO-Revision-Date: 2021-06-02 12:40+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Khmer (http://www.transifex.com/otf/globaleaks/language/km/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -203,12 +203,6 @@ msgstr "កាលបរិច្ឆេទដែលអាចជ្រើសរើ
 msgid "0 = auto"
 msgstr "0 = auto"
 
-msgid "True"
-msgstr "ពិត"
-
-msgid "False"
-msgstr "មិនពិត"
-
 msgid "Yes"
 msgstr "បាទ/ចាស"
 
@@ -325,10 +319,10 @@ msgid "Score"
 msgstr "ពិន្ទុ"
 
 msgid "Trigger question"
-msgstr "សំណួរចាប់ផ្តើម"
+msgstr "សំណួរគន្លឹះ"
 
 msgid "Triggered by score:"
-msgstr "ចាប់ផ្តើមដោយពិន្ទុ៖"
+msgstr "ភាពសំខាន់តាមពិន្ទុ៖"
 
 msgid "Weak"
 msgstr "ខ្សោយ"
@@ -505,11 +499,8 @@ msgstr "វិនាទី"
 msgid "This domain name is not available."
 msgstr "ឈ្មោះវេបសាយនេះមិនមានទេ។"
 
-msgid "VAT number"
-msgstr "លេខ VAT "
-
-msgid "Tax code"
-msgstr "លេខពន្ធ"
+msgid "Mark as important"
+msgstr ""
 
 msgid "File a report"
 msgstr "បញ្ចូលរបាយការណ៍"
@@ -931,7 +922,7 @@ msgstr "កំណត់​ឡើង​វិញ"
 
 msgid ""
 "The platform supports the configuration of HTTPS through this interface."
-msgstr "វេទិកាគាំទ្រការកំណត់ HTTPS តាមរយៈទម្រង់នេះ។"
+msgstr "វេទិការនអាចកំណត់ HTTPS តាមរយៈទម្រង់នេះ។"
 
 msgid "Automatic configuration"
 msgstr "ការកំណត់ដោយស្វ័យប្រវត្តិ"
@@ -940,12 +931,12 @@ msgid ""
 "Using automatic HTTPS configuration will handle the entire process of "
 "requesting, enabling and renewing certificates from the Let's Encrypt "
 "Certificate Authority."
-msgstr "ការប្រើប្រាស់ការកំណត់ HTTPS ដោយស្វ័យប្រវត្តិ នឹងគ្រប់គ្រងដំណើរការស្នើសុំ ការបើក និងនិងបន្តវិញ្ញាបនបត្រពីអាជ្ញាធរវិញ្ញាបនប័ត្រ Let's Encrypt ។"
+msgstr "ការប្រើប្រាស់ការកំណត់ HTTPS ដោយស្វ័យប្រវត្តិ នឹងគ្រប់គ្រងដំណើរការស្នើសុំ ការបើក និងបន្តវិញ្ញាបនបត្រពីភ្នាក់ងារវិញ្ញាបនប័ត្រ Let's Encrypt ។"
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
 "hostname must have a corresponding DNS record referencing that address."
-msgstr "វេទិកាត្រូវតែអាចចូលបានតាមអាសយដ្ឋាន IP សាធារណៈ និងឈ្មោះម៉ាស៊ីនដែលបានជ្រើសរើស ត្រូវមានកំណត់ត្រា​ DNS ត្រូវគ្នានឹងអាសយដ្ឋាននោះ។"
+msgstr "វេទិកាត្រូវតែចូលតាមអាសយដ្ឋាន IP សាធារណៈ ហើយឈ្មោះម៉ាស៊ីនដែលបានជ្រើសរើស ត្រូវមានកំណត់ត្រា​ DNS ត្រូវគ្នានឹងអាសយដ្ឋាននោះ។"
 
 msgid "Manual configuration"
 msgstr "ការកំណត់ដោយខ្លួនឯង"
@@ -953,7 +944,7 @@ msgstr "ការកំណត់ដោយខ្លួនឯង"
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
-msgstr "ជំនួយការកំណត់ដោយខ្លួនឯង នឹងណែនាំអ្នកតាមរយៈការរៀបចំ HTTPS ពីអាជ្ញាធរវិញ្ញាបនបត្រជំនួស។"
+msgstr "ជំនួយការកំណត់ដោយខ្លួនឯង នឹងណែនាំអ្នកតាមរយៈការរៀបចំ HTTPS ពីភ្នាក់ងារវិញ្ញាបនបត្រជំនួស។"
 
 msgid "Auto-renewal"
 msgstr "បន្តដោយស្វ័យប្រវត្តិ"
@@ -977,7 +968,7 @@ msgid "To"
 msgstr "ទៅកាន់"
 
 msgid "SMTP email address"
-msgstr "អាសយដ្ឋានអ៊ីមែល SMTP"
+msgstr "អាសយដ្ឋានអុីមែល SMTP"
 
 msgid "SMTP server address"
 msgstr "អាសយដ្ឋានម៉ាស៊ីនមេ SMTP"
@@ -986,7 +977,7 @@ msgid "SMTP server port"
 msgstr "ច្រកម៉ាស៊ីនមេ SMTP"
 
 msgid "Security"
-msgstr "សុវត្ថិភាព"
+msgstr "សន្តិសុខ"
 
 msgid "Warning"
 msgstr "ប្រយ័ត្ន"
@@ -1097,7 +1088,7 @@ msgid "Text shown upon confirmation"
 msgstr "អក្សរបង្ហាញតាមការបញ្ជាក់"
 
 msgid "Trigger conditions"
-msgstr "ស្ថានភាពចាប់ផ្តើម"
+msgstr "ភាពសំខាន់នៃស្ថានភាព"
 
 msgid "Sufficient"
 msgstr "គ្រប់គ្រាន់"
@@ -1118,7 +1109,7 @@ msgid "Add new question"
 msgstr "បន្ថែមសំណួរថ្មី"
 
 msgid "Add question from template"
-msgstr "បន្ថែមសំណួរពីគំរូ"
+msgstr "បន្ថែមសំណួរពីទម្រង់គំរូ"
 
 msgid "Duplicate"
 msgstr "ស្ទួន"
@@ -1166,7 +1157,7 @@ msgid "Enable terms of service"
 msgstr "បើកលក្ខខណ្ឌនៃសេវាកម្ម"
 
 msgid "Send an account activation link to the user."
-msgstr "ផ្ញើតំណភ្ជាប់ធ្វើឲ្យគណនីសកម្ម ទៅកាន់អ្នកប្រើប្រាស់។"
+msgstr "ផ្ញើតំណភ្ជាប់សម្រាប់បើកដំណើរការគណនីទៅកាន់អ្នកប្រើប្រាស់។"
 
 msgid "Public name"
 msgstr "ឈ្មោះសាធារណៈ"
@@ -1181,16 +1172,16 @@ msgid "Disable two factor authentication"
 msgstr "បិទការផ្ទៀងផ្ទាត់ពីរកត្តា"
 
 msgid "Force password change"
-msgstr "បង្ខំផ្លាស់ប្តូរពាក្យសម្ងាត់"
+msgstr "បង្ខំអោយផ្លាស់ប្តូរពាក្យសម្ងាត់"
 
 msgid "The user will be forced to change its password on next login."
-msgstr "អ្នកប្រើប្រាស់នឹងត្រូវបង្ខំផ្លាស់ប្តូរពាក្យសម្ងាត់ពេលចូលប្រើប្រាស់លើកក្រោយ។"
+msgstr "អ្នកប្រើប្រាស់នឹងត្រូវបង្ខំអោយផ្លាស់ប្តូរពាក្យសម្ងាត់ពេលចូលប្រើប្រាស់លើកក្រោយ។"
 
 msgid "Language"
 msgstr "ភាសា"
 
 msgid "Enable email notifications"
-msgstr "បើកការជូនដំណឹងអ៊ីមែល"
+msgstr "បើកការជូនដំណឹងអុីមែល"
 
 msgid "Details of the PGP key:"
 msgstr "ព័ត៌មានលម្អិតនៃសោរ PGP៖"
@@ -1202,7 +1193,7 @@ msgid "Set up encryption by providing a PGP public key"
 msgstr "ដំឡើងកូដនីយកម្ម​ដោយផ្តល់សោរ​ PGP សាធារណៈមួយ"
 
 msgid "Give this admin ability to change user passwords"
-msgstr "អនុញ្ញាតអ្នកគ្រប់គ្រងនេះ​ផ្លាស់ប្តូរពាក្យសម្ងាត់អ្នកប្រើប្រាស់"
+msgstr "អនុញ្ញាតអ្នកគ្រប់គ្រងនេះអោយ​ផ្លាស់ប្តូរពាក្យសម្ងាត់អ្នកប្រើប្រាស់"
 
 msgid "Forcefully selected"
 msgstr "ជ្រើសរើសដោយបង្ខំ"
@@ -1214,7 +1205,7 @@ msgid "Allow the recipient to delete reports"
 msgstr "អនុញ្ញាតអ្នកទទួលលុបរបាយការណ៍"
 
 msgid "Give the user administrative access to the following features:"
-msgstr "ផ្តល់សិទ្ធិចូលគ្រប់គ្រងអ្នកប្រើប្រាស់​ទៅមុខងារដូចខាងក្រោម៖"
+msgstr "ផ្តល់សិទ្ធអ្នកប្រើប្រាស់ចូលគ្រប់គ្រង​មុខងារដូចខាងក្រោម៖"
 
 msgid "Request date"
 msgstr "កាលបរិច្ឆេទស្នើសុំ"
@@ -1229,10 +1220,10 @@ msgid "Requests"
 msgstr "ការស្នើសុំ"
 
 msgid "The validation link is either incorrect or has expired."
-msgstr "តំណភ្ជាប់ដំណើរការ មិនត្រឹមត្រូវ ឬហួសកាលកំណត់។"
+msgstr "តំណភ្ជាប់សម្រាប់ផ្ទៀងផ្ទាត់មិនត្រឹមត្រូវ ឬហួសកាលកំណត់។"
 
 msgid "Your new email address has been validated."
-msgstr "អាសយដ្ឋានអ៊ីមែលរបស់អ្នក ត្រូវបានផ្ទៀងផ្ទាត់។"
+msgstr "អាសយដ្ឋានអុីម៉ែលរបស់អ្នក ត្រូវបានផ្ទៀងផ្ទាត់។"
 
 msgid "Forgot password?"
 msgstr "ភ្លេចពាក្យសម្ងាត់?"
@@ -1277,13 +1268,13 @@ msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "នេះជាវាទិកាសាកល្បង សូមកុំប្រើប្រាស់វាសម្រាប់ការបញ្ជូនពិតប្រាកដ។"
 
 msgid "Install an authenticator app on your phone"
-msgstr "ដំឡើងកម្មវិធី authenticator នៅលើទូរស័ព្ទរបស់អ្នក"
+msgstr "ដំឡើងកម្មវិធីសម្រាប់ផ្ទៀងផ្ទាត់នៅលើទូរស័ព្ទរបស់អ្នក"
 
 msgid "Scan the QR code with the app"
 msgstr "ស្កេនកូដ QR ជាមួយកម្មវិធីនេះ"
 
 msgid "Enable two factor authentication"
-msgstr "បើក ការផ្ទៀងផ្ទាត់ពីរកត្តា"
+msgstr "បើកការផ្ទៀងផ្ទាត់ពីរកត្តា"
 
 msgid "Close"
 msgstr "បិទ"
@@ -1297,13 +1288,13 @@ msgstr "លេខកូដសង្គ្រោះគណនីរបស់អ្
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr "ចំលង និងរក្សាទុកនៅកន្លែងសុវត្ថិភាព។ វាមានសារៈសំខាន់ បើអ្នកបាត់បង់ពាក្យសម្ងាត់ ដើម្បីស្តារការចូលប្រើប្រាស់គណនីរបស់អ្នក ដោយមិនបាត់បង់ទិន្នន័យ។"
+msgstr "ចំលង និងរក្សាទុកនៅកន្លែងសុវត្ថិភាព។ វាមានសារៈសំខាន់ បើអ្នកបាត់បង់ពាក្យសម្ងាត់ ដើម្បីជួយអ្នកក្នុងការចូលប្រើប្រាស់គណនីឡើងវិញ ដោយមិនបាត់បង់ទិន្នន័យ។"
 
 msgid "Welcome!"
 msgstr "សូមស្វាគមន៍!"
 
 msgid "For the user documentation, visit:"
-msgstr "សម្រាប់ឯកសារអ្នកប្រើប្រាស់ ចូលទៅកាន់៖"
+msgstr "សម្រាប់ឯកសារអ្នកប្រើប្រាស់ សូមចូលទៅកាន់៖"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
@@ -1313,7 +1304,7 @@ msgstr "បើអ្នកត្រូវការជំនួយបច្ចេ
 msgid ""
 "If you want to contribute to software development or report a bug, please "
 "open an issue in our ticketing system:"
-msgstr "បើអ្នកចង់ចូលរួមចំណែកក្នុងការអភិវឌ្ឍកម្មវិធី ឬរាយការណ៍អំពីកំហុស សូមបើកបញ្ហានៅក្នុងប្រព័ន្ធលក់សំបុត្ររបស់យើង៖ "
+msgstr "បើអ្នកចង់ចូលរួមចំណែកក្នុងការអភិវឌ្ឍកម្មវិធី ឬរាយការណ៍អំពីកំហុស សូមលើកបញ្ហានៅក្នុងប្រព័ន្ធសំបុត្ររបស់យើង៖ "
 
 msgid "Join our chat:"
 msgstr "ចូលរួមការជជែករបស់យើង៖"
@@ -1327,7 +1318,7 @@ msgstr "ជំនួយ៖ របៀបលាក់បង្កាន់ដៃ�
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr "វិធីមានប្រយោជន៍ ដើម្បីលាក់បង្កាន់ដៃរបស់អ្នក គឺត្រូវកត់ទុកលេខកាតឥណទាន ឧទា. ដោយរួមបញ្ចូលកាលបរិច្ឆេទផុតកំណត់ផងដែរ។"
+msgstr "វិធីមានប្រសិទ្ធភាពដើម្បីលាក់បង្កាន់ដៃរបស់អ្នក គឺត្រូវកត់ទុកដូចលេខកាតឥណទាន ឧទា. ដោយរួមបញ្ចូលកាលបរិច្ឆេទផុតកំណត់ផងដែរ។"
 
 msgid "Error!"
 msgstr "បញ្ហា!"
@@ -1354,10 +1345,10 @@ msgid "The upload request exceeds the size limit"
 msgstr "ការស្នើសុំបញ្ជូន​ លើសពីទំហំកំណត់"
 
 msgid "Validation of email address change in progress."
-msgstr "សុពលភាពនៃការផ្លាស់ប្តូរអាសយដ្ឋានអ៊ីមែលកំពុងដំណើរការ។"
+msgstr "សុពលភាពនៃការផ្លាស់ប្តូរអាសយដ្ឋានអុីមែលកំពុងដំណើរការ"
 
 msgid "Please check your inbox for further instructions."
-msgstr "សូមពិនិត្យប្រអប់សំបុត្ររបស់អ្នកសម្រាប់ការណែនាំបន្ថែម។"
+msgstr "សូមពិនិត្យប្រអប់សំបុត្ររបស់អ្នកសម្រាប់ការណែនាំបន្ថែម"
 
 msgid "Account recovery key"
 msgstr "លេខកូដសង្គ្រោះគណនី"
@@ -1371,7 +1362,7 @@ msgstr "ទាមទារការបញ្ជាក់ពាក្យសម្
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
-msgstr "វាបង្ហាញថា អ្នកកំពុងរុករកគេហទំព័រ ដោយគ្មានឯកជនភាព និងសន្តិសុខបន្ថែម!"
+msgstr "វាបង្ហាញថា អ្នកកំពុងរុករកគេហទំព័រ ដោយគ្មានការរក្សាឯកជនភាព និងសន្តិសុខ!"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
@@ -1394,19 +1385,19 @@ msgid "The receipt is either invalid or the report has expired."
 msgstr "បង្កាន់ដៃមិនត្រឹមត្រូវ ឬរបាយការណ៍ផុតកំណត់។"
 
 msgid "Select a file or drag it here."
-msgstr "ជ្រើសឯកសារ ឬអូសវានៅទីនេះ។"
+msgstr "ជ្រើសឯកសារ ឬអូសវាចូលទីនេះ។"
 
 msgid "Uploading files…"
-msgstr "កំពុងបញ្ជូនឯកសារ..."
+msgstr "កំពុងបញ្ជូលឯកសារ..."
 
 msgid "Upload completed successfully!"
-msgstr "ការបញ្ជូនបានបញ្ចប់ដោយជោគជ័យ!"
+msgstr "ការបញ្ជូលបានបញ្ចប់ដោយជោគជ័យ!"
 
 msgid "Error while uploading files; check below for details."
-msgstr "បញ្ហាពេលកំពុងបញ្ជូនឯកសារ;​ មើលខាងក្រោមសម្រាប់ព័ត៌មានលម្អិត។"
+msgstr "បញ្ហាពេលកំពុងបញ្ជូលឯកសារ សូមមើលខាងក្រោមសម្រាប់ព័ត៌មានលម្អិត។"
 
 msgid "Estimated upload time:"
-msgstr "រយៈពេលបញ្ជូនប៉ាន់ស្មាន៖"
+msgstr "រយៈពេលបញ្ជូលដោយប៉ាន់ស្មាន៖"
 
 msgid "Size:"
 msgstr "ទំហំ៖"
@@ -1432,7 +1423,7 @@ msgid ""
 "and staying anonymous by not revealing your location or IP address. You "
 "won't notice any difference from an insecure chat, except that you will be "
 "using a unique address instead of a phone number/email/username."
-msgstr "ដោយប្រើប្រាស់បណ្តាញ Tor និងបង្កើតសេវាកម្ម Onion, Ricochet ជាកម្មវិធីផ្ញើសារ ដែលអនុញ្ញាតអ្នកជជែក​ ពេលការពារឯកជនភាព និងរក្សាអនាមិកភាព ដោយមិនបង្ហាញទីតាំងរបស់អ្នក​ ឬអាសយដ្ឋាន IP។ អ្នកនឹងមិនដឹងពីភាពខុសគ្នាពីការជជែក​ ដែលគ្មានសុវត្ថិភាព លើកលែងតែអ្នកប្រើប្រាស់អាសយដ្ឋានជាក់លាក់មួយ ជំនួសលេខទូរស័ព្ទ/អ៊ីមែល/ឈ្មោះអ្នកប្រើប្រាស់។"
+msgstr "ដោយប្រើប្រាស់បណ្តាញ Tor និងបង្កើតសេវាកម្ម Onion កម្មវិធីRicochet ជាកម្មវិធីផ្ញើសារ ដែលអនុញ្ញាតអ្នកជជែក​ ដោយមានការការពារឯកជនភាព និងរក្សាអនាមិកភាព ដោយមិនបង្ហាញទីតាំងរបស់អ្នក​ ឬអាសយដ្ឋាន IP។ អ្នកនឹងមិនដឹងពីភាពខុសគ្នាពីការជជែក​ដែលគ្មានសុវត្ថិភាពទេ ព្រោះអ្នកគ្រាន់ប្រើប្រាស់នូវអាសយដ្ឋានជាក់លាក់មួយ ជំនួសលេខទូរស័ព្ទ/អុីមែល/ឈ្មោះអ្នកប្រើប្រាស់។"
 
 msgid "The connection is not secure."
 msgstr "ការតភ្ជាប់នេះមិនមានសុវត្ថិភាពទេ។"
@@ -1440,7 +1431,7 @@ msgstr "ការតភ្ជាប់នេះមិនមានសុវត្
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
-msgstr "វេទិកានេះ​ មិនបានកំណត់សម្រាប់ការតភ្ជាប់ HTTPS និងគួរតែត្រូវបានប្រើប្រាស់គោលបំណងសាកល្បងតែប៉ុណ្ណោះ។​"
+msgstr "វេទិកានេះ​ មិនបានកំណត់សម្រាប់ការតភ្ជាប់ HTTPS និងគួរតែត្រូវបានប្រើប្រាស់សម្រាប់សាកល្បងតែប៉ុណ្ណោះ។​"
 
 msgid "Use case"
 msgstr "ករណីប្រើប្រាស់"
@@ -1470,7 +1461,7 @@ msgid "Send"
 msgstr "បញ្ជូន"
 
 msgid "Allow the whistleblower to write comments"
-msgstr "អនុញ្ញាតអ្នករាយការណ៍សរសេរមតិយោបល់"
+msgstr "អនុញ្ញាតអ្នករាយការណ៍អោយសរសេរមតិយោបល់"
 
 msgid "From:"
 msgstr "ពី៖"
@@ -1491,41 +1482,41 @@ msgid "Allow the whistleblower to add attachments to the report"
 msgstr "អនុញ្ញាតអ្នករាយការណ៍បន្ថែមឯកសារភ្ជាប់ទៅកាន់របាយការណ៍"
 
 msgid "Allow the whistleblower to send messages"
-msgstr "អនុញ្ញាតអ្នករាយការណ៍ ឲ្យផ្ញើសារ"
+msgstr "អនុញ្ញាតអ្នករាយការណ៍ឲ្យផ្ញើសារ"
 
 msgid "Are you sure that you want to delete the report?"
-msgstr "តើអ្នកប្រាកដថា អ្នកចង់លុបរបាយការណ៍នេះ?"
+msgstr "តើអ្នកប្រាកដទេថាអ្នកចង់លុបរបាយការណ៍នេះ?"
 
 msgid ""
 "Everything related to the report stored on the platform will be deleted."
-msgstr "អ្វីៗដែលទាក់ទងនឹងរបាយការណ៍នេះ រក្សានៅលើវេទិកា នឹងត្រូវបានលុបចោល។"
+msgstr "អ្វីៗដែលទាក់ទងនឹងរបាយការណ៍ដែលរក្សានៅលើវេទិកា នឹងត្រូវបានលុបចោល។"
 
 msgid ""
 "Please be aware that everything stored off the platform, e.g. files you have"
 " saved on your computer, must be deleted manually."
-msgstr "សូមជ្រាបថា អ្វីៗទាំងអស់ត្រូវបានទុកចោលនៅលើវេទិកា ឧទា. ឯកសារដែលអ្នកបានរក្សាទុកក្នុងកុំព្យូទ័ររបស់អ្នក ត្រូវតែលុបដោយខ្លួនឯង។"
+msgstr "សូមជ្រាបថាអ្វីៗទាំងអស់ដែលមិនបានរក្សារទុកនៅលើវេទិកានេះ ដូចជាឯកសារដែលអ្នកបានរក្សាទុកក្នុងកុំព្យូទ័ររបស់អ្នក គឺត្រូវតែលុបដោយខ្លួនឯង។"
 
 msgid "Are you sure that you want to delete the selected reports?"
-msgstr "តើអ្នកប្រាកដថា អ្នកចង់លុបរបាយការណ៍ដែលបានជ្រើសរើសនេះ?"
+msgstr "តើអ្នកប្រាកដទេថាអ្នកចង់លុបរបាយការណ៍ដែលបានជ្រើសរើសនេះ?"
 
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
 "recipients won't be able to further access to it."
-msgstr "សូមប្រាកដថា រាល់ទិន្នន័យពាក់ព័ន្ធទាំងអស់ ត្រូវបានលុបចោលយ៉ាងត្រឹមត្រូវ ដូច្នេះ អ្នកទទួលនឹងមិនអាចចូលប្រើវាបានទៀតទេ។"
+msgstr "សូមប្រាកដថារាល់ទិន្នន័យពាក់ព័ន្ធទាំងអស់ ត្រូវបានលុបចោលយ៉ាងត្រឹមត្រូវ ដូច្នេះអ្នកទទួលនឹងមិនអាចចូលប្រើវាបានទៀតទេ។"
 
 msgid "Please write a motivation for the reply"
 msgstr "សូមសរសេរការលើកទឹកចិត្តមួយសម្រាប់ការឆ្លើយតប"
 
 msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "តើអ្នកប្រាកដថាចង់ពន្យាពេលកាលបរិច្ឆេទផុតកំណត់របាយការណ៍?"
+msgstr "តើអ្នកប្រាកដទេថាចង់ពន្យាពេលកាលបរិច្ឆេទផុតកំណត់របាយការណ៍?"
 
 msgid "By confirming, you will postpone the expiration date to:"
-msgstr "ដោយការបញ្ជាក់ អ្នកនឹងពន្យាកាលបរិច្ឆេទផុតកំណត់ទៅ៖"
+msgstr "ដោយការបញ្ជាក់នេះ អ្នកនឹងពន្យាកាលបរិច្ឆេទផុតកំណត់ទៅ៖"
 
 msgid ""
 "Are you sure that you want to postpone the expiration date for all selected "
 "reports?"
-msgstr "តើអ្នកប្រាកដថា អ្នកចង់ពន្យាកាលបរិច្ឆេទផុតកំណត់ សម្រាប់របាយការណ៍ដែលបានជ្រើសរើសទាំងអស់?"
+msgstr "តើអ្នកប្រាកដទេថាអ្នកចង់ពន្យាកាលបរិច្ឆេទផុតកំណត់ សម្រាប់របាយការណ៍ដែលបានជ្រើសរើសទាំងអស់?"
 
 msgid "Questionnaire answers"
 msgstr "ចម្លើយកម្រងសំណួរ"
@@ -1543,7 +1534,7 @@ msgid "Files attached by recipients"
 msgstr "ឯកសារភ្ជាប់ដោយអ្នកទទួល"
 
 msgid "Upload a file:"
-msgstr "បញ្ជូនឯកសារមួយ៖"
+msgstr "បញ្ជូលឯកសារមួយ៖"
 
 msgid "Logout"
 msgstr "ចាកចេញ"
@@ -1556,7 +1547,7 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr "យើងខ្ញុំណែនាំ អ្នកចូលប្រើប្រាស់ផ្នែក “ចំណង់ចំណូលចិត្ត” ដើម្បីទាញយក “លេខកូដសង្គ្រោះគណនី” របស់អ្នក និងរក្សាទុកវា ឲ្យមានសុវត្ថិភាព។ លេខកូដនេះ នឹងចាំបាច់ដើម្បីស្តារការចូលប្រើប្រាស់ទៅកាន់វេទិកា និងទិន្នន័យ ក្នុងករណីអ្នកបានភ្លេចពាក្យសម្ងាត់របស់អ្នក។"
+msgstr "យើងខ្ញុំសូមណែនាំ អ្នកចូលទៅកាន់ផ្នែក “ចំណង់ចំណូលចិត្ត” ដើម្បីទាញយក “លេខកូដសង្គ្រោះគណនី” របស់អ្នក និងរក្សាទុកវាឲ្យមានសុវត្ថិភាព។ លេខកូដនេះ នឹងចាំបាច់ដើម្បីស្តារការចូលប្រើប្រាស់ និងទិន្នន័យរបស់អ្នក ក្នុងករណីអ្នកភ្លេចពាក្យសម្ងាត់។"
 
 msgid "The provided recovery key is invalid."
 msgstr "លេខកូដសង្គ្រោះដែលបានផ្តល់មិនត្រឹមត្រូវ។"
@@ -1567,14 +1558,14 @@ msgstr "វត្ថុតាងកំណត់ឡើងវិញដែលបា
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr "វាយបញ្ចូលឈ្មោះអ្នកប្រើប្រាស់គណនីរបស់អ្នក​ ឬអាសយដ្ឋានអ៊ីមែលរបស់អ្នក ដើម្បីស្នើសុំការកំណត់ពាក្យសម្ងាត់សារឡើងវិញ។"
+msgstr "វាយបញ្ចូលឈ្មោះអ្នកប្រើប្រាស់គណនីរបស់អ្នក​ ឬអាសយដ្ឋានអុីមែលរបស់អ្នក ដើម្បីស្នើសុំការកំណត់ពាក្យសម្ងាត់សារឡើងវិញ។"
 
 msgid "Enter your email address to request a password reset."
-msgstr "វាយបញ្ចូលអាសយដ្ឋានអ៊ីមែលរបស់អ្នក ដើម្បីស្នើសុំការកំណត់ពាក្យសម្ងាត់សារឡើងវិញ។"
+msgstr "វាយបញ្ចូលអាសយដ្ឋានអុីមែលរបស់អ្នក ដើម្បីស្នើសុំការកំណត់ពាក្យសម្ងាត់សារឡើងវិញ។"
 
 msgid ""
 "Enter you encryption recovery key to complete the password reset procedure"
-msgstr "វាយបញ្ចូលលេខកូដសង្គ្រោះកូដនីយកម្មរបស់អ្នក ដើម្បីបញ្ចប់ដំណើរការកំណត់ពាក្យសម្ងាត់ឡើងវិញ"
+msgstr "វាយបញ្ចូលលេខកូដសង្គ្រោះរបស់អ្នក ដើម្បីបញ្ចប់ដំណើរការកំណត់ពាក្យសម្ងាត់ឡើងវិញ"
 
 msgid "Password reset requested."
 msgstr "បានស្នើកំណត់ពាក្យសម្ងាត់ឡើងវិញ។"
@@ -1602,14 +1593,14 @@ msgid "Success!"
 msgstr "ជោគជ័យ!"
 
 msgid "Your whistleblowing platform is almost ready!"
-msgstr "វេទិការាយការណ៍របស់អ្នក​ ជិតរួចរាល់ហើយ!"
+msgstr "វេទិការាយការណ៍របស់អ្នក​ជិតរួចរាល់ហើយ!"
 
 msgid "Check your inbox to activate it."
-msgstr "ពិនិត្យប្រអប់ទទួលរបស់អ្នក ដើម្បីធ្វើឱ្យវាសកម្ម។"
+msgstr "ពិនិត្យប្រអប់សាររបស់អ្នក ដើម្បីដាក់ដំណើរការ។"
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr "បើមិនធ្វើឲ្យសកម្មក្នុងពេល ២៤ម៉ោង វេទិកានឹងត្រូវលុបចោលដោយស្វ័យប្រវត្តិ។"
+msgstr "បើមិនដាក់ដំណើរការក្នុងពេល ២៤ម៉ោង វេទិកានឹងត្រូវលុបចោលដោយស្វ័យប្រវត្តិ។"
 
 msgid "Sign up"
 msgstr "ចុះឈ្មោះ"
@@ -1636,16 +1627,16 @@ msgid "Select the context of your report:"
 msgstr "ជ្រើសរើសបរិបទនៃរបាយការណ៍របស់អ្នក៖"
 
 msgid "The answer is too short"
-msgstr "ចម្លើយនេះ​ ខ្លីពេក"
+msgstr "ចម្លើយនេះ​ខ្លីពេក"
 
 msgid "The specified input is not valid."
-msgstr "ការបញ្ចូលជាក់លាក់នេះ​ មិនត្រឹមត្រូវ។"
+msgstr "ការបញ្ចូលមួយនេះ​មិនត្រឹមត្រូវ។"
 
 msgid "The specified input is not valid:"
-msgstr "ការបញ្ចូលជាក់លាក់នេះ​ មិនត្រឹមត្រូវ៖"
+msgstr "ការបញ្ចូលមួយនេះ​មិនត្រឹមត្រូវ៖"
 
 msgid "please enter a valid email address."
-msgstr "សូមវាយបញ្ចូលអាសយដ្ឋានអ៊ីមែលត្រឹមត្រូវមួយ។"
+msgstr "សូមវាយបញ្ចូលអាសយដ្ឋានអុីមែលត្រឹមត្រូវមួយ។"
 
 msgid "please enter numbers only."
 msgstr "សូមវាយបញ្ចូលលេខតែប៉ុណ្ណោះ។"
@@ -1656,7 +1647,7 @@ msgstr "ការដាក់បញ្ជូនត្រូវបានបិទ
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
-msgstr "អ្នកកំពុងតភ្ជាប់ទៅកាន់ម៉ាស៊ីនមេ​ ដោយគ្មានអនាមិកភាព និងម៉ាស៊ីនមេនេះ គាំទ្រតែការបញ្ជូនអានាមិកប៉ុណ្ណោះ"
+msgstr "អ្នកកំពុងតភ្ជាប់ទៅកាន់ម៉ាស៊ីនមេ​ដោយគ្មានអនាមិកភាព តែម៉ាស៊ីនមេនេះគាំទ្រតែការបញ្ជូនដែលអនាមិកប៉ុណ្ណោះ"
 
 msgid "Thank you!"
 msgstr "អរគុណ!"
@@ -1665,7 +1656,7 @@ msgid "Your report was successful."
 msgstr "របាយការណ៍របស់អ្នកជោគជ័យ។"
 
 msgid "We will try to get back to you as soon as possible."
-msgstr "យើងខ្ញុំ នឹងព្យាយាមទាក់ទងអ្នកវិញឆាប់បំផុត។"
+msgstr "យើងខ្ញុំនឹងព្យាយាមទាក់ទងអ្នកវិញឆាប់បំផុត។"
 
 msgid "Remember your receipt for this report."
 msgstr "ចងចាំបង្កាន់ដៃរបស់អ្នក​ សម្រាប់របាយការណ៍នេះ។"
@@ -1673,7 +1664,7 @@ msgstr "ចងចាំបង្កាន់ដៃរបស់អ្នក​ �
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "ប្រើប្រាស់បង្កាន់ដៃ ១៦ ខ្ទង់ដើម្បីចូលប្រើប្រាស់។ វានឹងអនុញ្ញាតអ្នក ឲ្យបង្ហាញសារដែលយើងខ្ញុំបានផ្ញើទៅកាន់អ្នក និងមានព័ត៌មានបន្ថែមផងដែរ។"
+msgstr "ប្រើប្រាស់បង្កាន់ដៃ ១៦ ខ្ទង់ដើម្បីចូលប្រើប្រាស់។ វានឹងអនុញ្ញាតអ្នកឲ្យបង្ហាញសារដែលយើងខ្ញុំបានផ្ញើទៅកាន់អ្នក និងព័ត៌មានបន្ថែមផងដែរ។"
 
 msgid "View your report"
 msgstr "បង្ហាញរបាយការណ៍របស់អ្នក"
@@ -1693,7 +1684,7 @@ msgstr "អ្នកបានឈានដល់ចំនួនអតិបរម
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr "អ្នកទទួលខាងក្រោម នឹងទទួលរបាយការណ៍របស់អ្នក និងមិនអាចលែងជ្រើសរើសទេ៖"
+msgstr "អ្នកទទួលខាងក្រោម នឹងទទួលរបាយការណ៍របស់អ្នក និងមិនអាចដកចេញទេ៖"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1704,15 +1695,15 @@ msgid "You must select at least one recipient."
 msgstr "អ្នកត្រូវជ្រើសរើសអ្នកទទួលយ៉ាងហោចណាស់ម្នាក់។"
 
 msgid "Waiting for the file(s) to finish uploading."
-msgstr "កំពុងរង់ចាំឯកសារ​ ដើម្បីបញ្ចប់ការបញ្ជូន។"
+msgstr "កំពុងរង់ចាំឯកសារ​ ដើម្បីបញ្ចប់ការបញ្ជូល។"
 
 msgid "The following steps have errors:"
-msgstr "ជំហានខាងក្រោមនេះ មានបញ្ហា៖"
+msgstr "ជំហានខាងក្រោមនេះមានបញ្ហា៖"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
 "whistleblowing platform."
-msgstr "ដំណើរការមួយជំហានម្តងៗខាងក្រោមនេះ នឹងជួយណែនាំអ្នក ដោយការបង្កើតវេទិការាយការណ៍របស់អ្នក។"
+msgstr "ដំណើរការមួយជំហានម្តងៗខាងក្រោមនេះ នឹងជួយណែនាំអ្នកក្នុងការបង្កើតវេទិការាយការណ៍របស់អ្នក។"
 
 msgid "Please choose a configuration profile:"
 msgstr "សូមជ្រើសរើសការកំណត់ប្រវត្តិរូបមួយ៖"
@@ -1743,7 +1734,7 @@ msgid "Describe your report in a few words."
 msgstr "ពណ៌នារបាយកាណ៍របស់អ្នក​ ដោយប្រើពីរ បីពាក្យ។"
 
 msgid "Describe your report in detail."
-msgstr "ពណ៌នារបស់អ្នកដោយលម្អិត។"
+msgstr "ពណ៌នារបាយការណ៍របស់អ្នកដោយលម្អិត។"
 
 msgid "Attach files relevant to the report."
 msgstr "ភ្ជាប់ឯកសារពាក់ព័ន្ធទៅកាន់របាយការណ៍។"
@@ -1767,7 +1758,7 @@ msgid "Female"
 msgstr "ស្រី"
 
 msgid "Other gender identity"
-msgstr "អត្តសញ្ញាណភេទផ្សេង"
+msgstr "អត្តសញ្ញាណភេទផ្សេងៗ"
 
 msgid "Date of birth"
 msgstr "ថ្ងៃខែឆ្នាំកំណើត"
@@ -1790,7 +1781,7 @@ msgstr "ជូនចំពោះ {RecipientName},"
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr "អ្នកបានទទួលអ៊ីមែលនេះ ដោយសារមានគណនីអ្នកប្រើប្រាស់មួយត្រូវបានបង្កើតសម្រាប់អ្នកនៅលើប្រព័ន្ធ៖ {Site}"
+msgstr "អ្នកបានទទួលអុីមែលនេះ ដោយសារមានគណនីអ្នកប្រើប្រាស់មួយត្រូវបានបង្កើតសម្រាប់អ្នកនៅលើប្រព័ន្ធ៖ {Site}"
 
 msgid "Username: {Username}"
 msgstr "ឈ្មោះអ្នកប្រើប្រាស់៖ {Username}"
@@ -1837,7 +1828,7 @@ msgid ""
 "This could be a sign of an attack (for example, someone flooding your server"
 " with bogus information) or just a usage spike due to an increased "
 "visibility of your project."
-msgstr "នេះអាចជាសញ្ញានៃការវាយប្រហារ (ឧទាហរណ៍ មានមនុស្សបំពេញម៉ាស៊ីនមេរបស់អ្នកជាមួយនឹងព័ត៌មានក្លែងក្លាយ) ឬគ្រាន់តែជាការប្រើប្រាស់ខ្ពស់ ដោយសារមានការកើនឡើងនៃគម្រោងរបស់អ្នក។"
+msgstr "នេះអាចជាសញ្ញានៃការវាយប្រហារ (ឧទាហរណ៍ មានមនុស្សបំពេញម៉ាស៊ីនមេរបស់អ្នកជាមួយនឹងព័ត៌មានក្លែងក្លាយ) ឬគ្រាន់តែអត្រានៃការប្រើប្រាស់ខ្ពស់ ដោយសារមានគេចូលមើលគម្រោងរបស់អ្នកច្រើន។"
 
 msgid "Examine the issue to determine whether it is legitimate or not."
 msgstr "ពិនិត្យបញ្ហានេះ ដើម្បីកំណត់ថាតើវាសមស្របឬអត់។"
@@ -1863,7 +1854,7 @@ msgstr "បច្ចេកវិទ្យា GlobaLeaks រួមបញ្ចូ
 msgid ""
 "For more information, log in to the Administration interface and look at the"
 " \"System Stats\" and \"Anomalies\" sections."
-msgstr "សម្រាប់ព័ត៌មានបន្ថែម​ ចូលទៅកាន់រូបរាងការគ្រប់គ្រង និងមើលនៅផ្នែក \"ស្ថានភាពប្រព័ន្ធ\" និង\"ភាពមិនប្រក្រតី\"។"
+msgstr "សម្រាប់ព័ត៌មានបន្ថែម​ ចូលទៅផ្ទាំងការគ្រប់គ្រង និងមើលនៅផ្នែក \"ស្ថានភាពប្រព័ន្ធ\" និង \"ភាពមិនប្រក្រតី\"។"
 
 msgid "Anomaly detected in {NodeName}"
 msgstr "ភាពមិនប្រក្រតីរកឃើញនៅ {NodeName}"
@@ -1876,10 +1867,10 @@ msgstr "នេះជាអ៊ីមែលជូនដំណឹងអ្នកថ
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
 "notifications."
-msgstr "មិនមានសោរ PGP ត្រឹមត្រូវ ប្រព័ន្ធនេះ នឹងមិនអាចជូនដំណឹងដោយមានកូដនីយកម្មបានទេ។"
+msgstr "មិនមានសោរ PGP ត្រឹមត្រូវ ប្រព័ន្ធនេះនឹងមិនអាចជូនដំណឹងដោយមានកូដនីយកម្មបានទេ។"
 
 msgid "PGP key expiration alert"
-msgstr "សារជូនដំណឹង ការផុតកំណត់សោរ PGP"
+msgstr "សារជូនដំណឹងអំពីការផុតកំណត់សោរ PGP"
 
 msgid "A new whistleblowing site has been registered."
 msgstr "ទំព័ររាយការណ៍ថ្មីមួយ ត្រូវបានចុះឈ្មោះ។"
@@ -1894,7 +1885,7 @@ msgid "Name: {Name}"
 msgstr "ឈ្មោះ៖ {Name}"
 
 msgid "Email: {Email}"
-msgstr "អ៊ីមែល៖ {Email}"
+msgstr "អុីមែល៖ {Email}"
 
 msgid "Language: {Language}"
 msgstr "ភាសា៖​ {Language}"
@@ -1907,20 +1898,20 @@ msgstr "គេហទំព័ររាយការណ៍ថ្មី បាន�
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
-msgstr "នេះជាអ៊ីមែលសាកល្បង ផ្ញើចេញពីទម្រង់គ្រប់គ្រងវេទិកា។"
+msgstr "នេះជាអុីមែលសាកល្បង ផ្ញើចេញពីទម្រង់គ្រប់គ្រងវេទិកា។"
 
 msgid ""
 "Reception of this email indicates that the server was able to authenticate "
 "to and interact with the SMTP mail server."
-msgstr "ការទទួលបានអ៊ីមែលនេះបញ្ជាក់ថា ម៉ាស៊ីនមេមិនអាចផ្ទៀងផ្ទាត់ និងធ្វើអន្តរកម្មជាមួយម៉ាស៊ីនមេអ៊ីមែល SMTP ។"
+msgstr "ការទទួលបានអុីមែលនេះបញ្ជាក់ថា ម៉ាស៊ីនមេមិនអាចផ្ទៀងផ្ទាត់ និងធ្វើអន្តរកម្មជាមួយម៉ាស៊ីនមេអុីមែល SMTP ។"
 
 msgid "Test email"
-msgstr "អ៊ីមែលសាកល្បង"
+msgstr "អុីមែលសាកល្បង"
 
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr "នេះជាអ៊ីមែលជូនដំណឹងថា មានការស្នើសុំមួយដើម្បីផ្លាស់ប្តូរអាសយដ្ឋានអ៊ីមែលទៅកាន់ {NewEmailAddress}។"
+msgstr "នេះជាអុីមែលជូនដំណឹងថា មានការស្នើសុំមួយដើម្បីផ្លាស់ប្តូរអាសយដ្ឋានអុីមែលទៅកាន់ {NewEmailAddress}។"
 
 msgid "Click the following link to validate this change:"
 msgstr "ចុចលើតំណភ្ជាប់ខាងក្រោម ដើម្បីធ្វើឱ្យការផ្លាស់ប្តូរនេះមានសុពលភាព៖"
@@ -1931,7 +1922,7 @@ msgid ""
 msgstr "បើអ្នកមិនបានស្នើសុំការផ្លាស់ប្តូរនេះទេ ផ្លាស់ប្តូរពាក្យសម្ងាត់របស់អ្នក និងទាក់ទងអ្នកគ្រប់គ្រងប្រព័ន្ធរបស់អ្នក។"
 
 msgid "Email change request"
-msgstr "ការស្នើសុំផ្លាស់ប្តូរអ៊ីមែល"
+msgstr "ការស្នើសុំផ្លាស់ប្តូរអុីមែល"
 
 msgid "From: {Author}"
 msgstr "ពី៖ {Author}"
@@ -1972,21 +1963,21 @@ msgstr "ការជូនដំណឹងផុតកំណត់សម្រា
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
-msgstr "ការបន្តវិញ្ញាបនប័ត្រ HTTPS ស្វ័យប្រវត្តិដែលបានគ្រោងសម្រាប់ថ្ងៃនេះ ទើបតែបានបរាជ័យ។"
+msgstr "ការបន្តវិញ្ញាបនប័ត្រ HTTPS ស្វ័យប្រវត្តិដែលបានគ្រោងសម្រាប់ថ្ងៃនេះបានបរាជ័យ។"
 
 msgid "The system will keep trying."
-msgstr "ប្រព័ន្ធនេះ នឹងបន្តសាកល្បង។"
+msgstr "ប្រព័ន្ធនេះនឹងបន្តសាកល្បង។"
 
 msgid "Failed HTTPS certificate renewal"
-msgstr "បានបរាជ័យក្នុងការបន្តវិញ្ញាបនបត្រ HTTPS"
+msgstr "បរាជ័យក្នុងការបន្តវិញ្ញាបនប័ត្រ HTTPS"
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr "នេះជាអ៊ីមែលជូនដំណឹងអ្នកថា អ្នកថែរក្សាម្នាក់បានផ្តល់សិទ្ធិអ្នកឲ្យចូលប្រើប្រាស់អត្តសញ្ញាណរាយការណ៍ សម្រាប់របាយការណ៍ {TipNum}។"
+msgstr "នេះជាអុីមែលជូនដំណឹងអ្នកថា អ្នកថែរក្សាម្នាក់បានផ្តល់សិទ្ធិអ្នកឲ្យចូលប្រើប្រាស់អត្តសញ្ញាណអ្នករាយការណ៍ សម្រាប់របាយការណ៍ {TipNum}។"
 
 msgid "The report can be accessed at:"
-msgstr "របាយការណ៍មិនអាចចូលប្រើប្រាស់បាននៅ៖"
+msgstr "របាយការណ៍អាចចូលប្រើប្រាស់បាននៅ៖"
 
 msgid "Access to whistleblower's identity authorized"
 msgstr "ការចូលប្រើប្រាស់អត្តសញ្ញាណអ្នករាយការណ៍ត្រូវបានអនុញ្ញាត"
@@ -1994,7 +1985,7 @@ msgstr "ការចូលប្រើប្រាស់អត្តសញ្ញ
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr "នេះជាអ៊ីមែលជូនដំណឹងអ្នកថា អ្នកថែរក្សាម្នាក់បានបដិសេធអ្នកឲ្យចូលប្រើប្រាស់អត្តសញ្ញាណរាយការណ៍ សម្រាប់របាយការណ៍ {TipNum}។"
+msgstr "នេះជាអុីមែលជូនដំណឹងអ្នកថា អ្នកថែរក្សាម្នាក់បានបដិសេធអ្នកមិនឲ្យចូលប្រើប្រាស់អត្តសញ្ញាណអ្នករាយការណ៍ សម្រាប់របាយការណ៍ {TipNum}។"
 
 msgid "Access to whistleblower's identity denied"
 msgstr "ការចូលប្រើប្រាស់អត្តសញ្ញាណអ្នករាយការណ៍ត្រូវបានបដិសេធ"
@@ -2002,7 +1993,7 @@ msgstr "ការចូលប្រើប្រាស់អត្តសញ្ញ
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr "នេះជាអ៊ីមែលជូនដំណឹងអ្នកថា មានអ្នកទទួលម្នាក់បានស្នើសុំការចូលប្រើប្រាស់ព័ត៌មានអត្តសញ្ញាណរបស់អ្នករាយការណ៍សម្រាប់របាយការណ៍ {TipNum}"
+msgstr "នេះជាអុីមែលជូនដំណឹងអ្នកថា មានអ្នកទទួលម្នាក់បានស្នើសុំការចូលប្រើប្រាស់ព័ត៌មានអត្តសញ្ញាណរបស់អ្នករាយការណ៍សម្រាប់របាយការណ៍ {TipNum}"
 
 msgid "The request can be accessed at:"
 msgstr "ការស្នើសុំអាចចូលប្រើប្រាស់បាននៅ៖"
@@ -2013,7 +2004,7 @@ msgstr "ការស្នើសុំថ្មីនៃការចូលទៅ
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr "នេះជាអ៊ីមែលជូនដំណឹងអ្នកថា អ្នករាយការណ៍សម្រាប់របាយការណ៍ {TipNum} បានផ្តល់ព័ត៌មានអត្តសញ្ញាណរបស់គេ។"
+msgstr "នេះជាអុីមែលជូនដំណឹងអ្នកថា អ្នករាយការណ៍សម្រាប់របាយការណ៍ {TipNum} បានផ្តល់ព័ត៌មានអត្តសញ្ញាណរបស់គេ។"
 
 msgid "The whistleblower has provided their identity"
 msgstr "អ្នករាយការណ៍បានផ្តល់អត្តសញ្ញាណរបស់គេ"
@@ -2021,12 +2012,12 @@ msgstr "អ្នករាយការណ៍បានផ្តល់អត្ត
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr "អ្នកបានទទួលអ៊ីមែលនេះ​ ដោយសារមានការកំណត់ពាក្យសម្ងាត់សារឡើងវិញត្រូវបានស្នើសុំសម្រាប់គណនី៖ {Username}"
+msgstr "អ្នកបានទទួលអុីមែលនេះ​ ដោយសារមានការកំណត់ពាក្យសម្ងាត់សារឡើងវិញត្រូវបានស្នើសុំសម្រាប់គណនី៖ {Username}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
 "email."
-msgstr "បើអ្នកមិនបានស្នើសុំទេ អ្នកអាចរំលងនិងលុបអ៊ីមែលនេះចោល។"
+msgstr "បើអ្នកមិនបានស្នើសុំទេ អ្នកអាចរំលងនិងលុបអុីមែលនេះចោល។"
 
 msgid "You can confirm your request by clicking the following link:"
 msgstr "អ្នកអាចបញ្ជាក់ការស្នើសុំរបស់អ្នក ដោយចុចតំណភ្ជាប់ខាងក្រោម៖"
@@ -2037,29 +2028,29 @@ msgstr "ការណែនាំកំណត់ពាក្យសម្ងាត
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
 "expired."
-msgstr "នេះជាអ៊ីមែលជូនដំណឹងអ្នក​ថា សោរ PGP របស់អ្នកកំពុងផុតកំណត់ ឬបានផុតកំណត់ហើយ។"
+msgstr "នេះជាអុីមែលជូនដំណឹងអ្នក​ថា សោរ PGP របស់អ្នកជិតផុតកំណត់ ឬបានផុតកំណត់ហើយ។"
 
 msgid ""
 "You should extend its validity and update the key present on the platform, "
 "or upload a new key."
-msgstr "អ្នកគួរតែបន្ថែមសុពលភាព និងធ្វើបច្ចុប្បន្នភាពសោរ ដែលមាននៅលើវេទិកា ឬដាក់បញ្ជូនសោរថ្មី។"
+msgstr "អ្នកគួរតែបន្ថែមសុពលភាព និងធ្វើបច្ចុប្បន្នភាពសោរ ដែលមាននៅលើវេទិកា ឬដាក់បញ្ជូលសោរថ្មី។"
 
 msgid ""
 "Without a valid PGP key, the system won't be able to encrypt data provided "
 "to you."
-msgstr "មិនមានសោរ PGP ត្រឹមត្រូវ ប្រព័ន្ធនេះ នឹងមិនអាចធ្វើកូដនីយកម្មទិន្នន័យជូនអ្នកបានទេ។"
+msgstr "បើមិនមានសោរ PGP ត្រឹមត្រូវ ប្រព័ន្ធនេះ នឹងមិនអាចធ្វើកូដនីយកម្មទិន្នន័យជូនអ្នកបានទេ។"
 
 msgid "Click the link to activate the platform:"
 msgstr "ចុចលើតំណភ្ជាប់នេះ ដើម្បីដំណើរការវេទិកា៖"
 
 msgid "Activation"
-msgstr "ការធ្វើឱ្យសកម្ម"
+msgstr "ការធ្វើឱ្យដំណើរការ"
 
 msgid "A software update is available."
-msgstr "កម្មវិធីមានបច្ចុប្បន្នភាពមួយ។"
+msgstr "កម្មវិធីមានបច្ចុប្បន្នភាពថ្មី។"
 
 msgid "It is good security practice to keep the platform up to date."
-msgstr "វាជាការអនុវត្តន៍សន្តិសុខដ៏ល្អ​ ដើម្បីធ្វើឱ្យវេទិកាទាន់សម័យ។"
+msgstr "វាជាការអនុវត្តន៍សន្តិសុខដ៏ល្អ​ ដោយធ្វើបច្ចុប្បន្នភាពវេទិការ។"
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "
@@ -2083,7 +2074,7 @@ msgstr "របាយការណ៍ខ្លះនឹងផុតកំណត់
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr "នេះជាអ៊ីមែលជូនដំណឹងអ្នកថា មានអ្នករាយការណ៍ម្នាក់បានជ្រើសរើសអ្នកជាទទួលដ៏មានតម្លៃសម្រាប់របាយការណ៍របស់គេ។"
+msgstr "នេះជាអុីមែលជូនដំណឹងអ្នកថា មានអ្នករាយការណ៍ម្នាក់បានជ្រើសរើសអ្នកជាទទួលដ៏មានតម្លៃសម្រាប់របាយការណ៍របស់គេ។"
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -2091,7 +2082,7 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr "អ្នកត្រូវបានស្នើសុំឱ្យយកចិត្តទុកដាក់ជាពិសេស ចំពោះព័ត៌មាននិងសម្ភារៈដែលមាននៅក្នុងនោះ។ សូមចងចាំថា អ្នករាយការណ៍ តែងតែប្រឈម ហានិភ័យផ្ទាល់ខ្លួនខ្ពស់ ក្នុងផលប្រយោជន៍សាធារណៈ។ ហេតុដូចនេះ សម្ភារៈែដលបានផ្តល់នៅក្នុងរបាយការណ៍នេះ គួរតែចាត់ទុកថាមានសារៈសំខាន់ខ្ពស់។"
+msgstr "អ្នកត្រូវបានស្នើសុំឱ្យយកចិត្តទុកដាក់ជាពិសេស ចំពោះព័ត៌មាន និងទិន្នន័យដែលមាននៅក្នុងនោះ។ សូមចងចាំថា អ្នករាយការណ៍តែងតែប្រឈម ហានិភ័យផ្ទាល់ខ្លួនខ្ពស់ដើម្បីផលប្រយោជន៍សាធារណៈ។ ហេតុដូចនេះ ទិន្នន័យដែលបានផ្តល់នៅក្នុងរបាយការណ៍នេះ គួរតែចាត់ទុកថាមានសារៈសំខាន់ខ្ពស់។"
 
 msgid "New report"
 msgstr "របាយការណ៍ថ្មី"

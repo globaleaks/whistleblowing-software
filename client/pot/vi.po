@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-17 17:52+0000\n"
-"Last-Translator: Nathan Tran\n"
+"PO-Revision-Date: 2021-06-02 12:40+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -213,12 +213,6 @@ msgstr "Ngày chọn được muộn nhất"
 
 msgid "0 = auto"
 msgstr "0 = tự động"
-
-msgid "True"
-msgstr "Đúng"
-
-msgid "False"
-msgstr "Sai"
 
 msgid "Yes"
 msgstr "Có"
@@ -516,11 +510,8 @@ msgstr "giây"
 msgid "This domain name is not available."
 msgstr "Tên miền này không có sẵn"
 
-msgid "VAT number"
-msgstr "Số VAT"
-
-msgid "Tax code"
-msgstr "Mã số thuế"
+msgid "Mark as important"
+msgstr ""
 
 msgid "File a report"
 msgstr "Nộp báo cáo"

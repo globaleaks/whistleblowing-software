@@ -20,6 +20,7 @@
 # Sibel Taskin Simsek <sibelsimsek@sabanciuniv.edu>, 2015
 # T. E. Kalayci <tekrei@tutanota.com>, 2020-2021
 # T. E. Kalayci <tekrei@tutanota.com>, 2021
+# T. E. Kalayci <tekrei@tutanota.com>, 2021
 # Translinguini <translinguini@gmail.com>, 2013
 # Translinguini <translinguini@gmail.com>, 2013
 # Türker öz <man_lise@hotmail.com>, 2015
@@ -29,8 +30,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-17 10:54+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-06-09 09:12+0000\n"
+"Last-Translator: T. E. Kalayci <tekrei@tutanota.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -225,12 +226,6 @@ msgstr "Seçilebilen en geç tarih"
 
 msgid "0 = auto"
 msgstr "0 = otomatik"
-
-msgid "True"
-msgstr "Doğru"
-
-msgid "False"
-msgstr "Yanlış"
 
 msgid "Yes"
 msgstr "Evet"
@@ -528,11 +523,8 @@ msgstr "saniye"
 msgid "This domain name is not available."
 msgstr "Bu alan adı mevcut değil."
 
-msgid "VAT number"
-msgstr "VAT numarası"
-
-msgid "Tax code"
-msgstr "Vergi kodu"
+msgid "Mark as important"
+msgstr "Önemli olarak işaretle"
 
 msgid "File a report"
 msgstr "Bir bildirimde bulunun"

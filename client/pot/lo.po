@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-17 10:54+0000\n"
+"PO-Revision-Date: 2021-06-02 12:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Lao (http://www.transifex.com/otf/globaleaks/language/lo/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -200,12 +200,6 @@ msgstr "ວັນທີທີ່ສາມາດເລືອກໄດ້ຫຼ້
 
 msgid "0 = auto"
 msgstr "0 = ອັດຕະໂນມັດ"
-
-msgid "True"
-msgstr "ຖືກ"
-
-msgid "False"
-msgstr "ຜິດ"
 
 msgid "Yes"
 msgstr "ແມ່ນ"
@@ -503,11 +497,8 @@ msgstr "ວິນາທີ"
 msgid "This domain name is not available."
 msgstr "ຊື່ໂດເມນນີ້ບໍ່ສາມາດໃຊ້ໄດ້."
 
-msgid "VAT number"
-msgstr "ລະຫັດອາກອນມູນຄ່າເພີ່ມ"
-
-msgid "Tax code"
-msgstr "ລະຫັດອາກອນ"
+msgid "Mark as important"
+msgstr ""
 
 msgid "File a report"
 msgstr "ຍື່ນລາຍງານ"

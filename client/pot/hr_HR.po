@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-17 10:54+0000\n"
+"PO-Revision-Date: 2021-06-02 12:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -206,12 +206,6 @@ msgstr "Najkasniji datum koji se može odabrati"
 
 msgid "0 = auto"
 msgstr "0 = automatski"
-
-msgid "True"
-msgstr "Istina"
-
-msgid "False"
-msgstr "Neistina"
 
 msgid "Yes"
 msgstr "Da"
@@ -509,11 +503,8 @@ msgstr "sekundi"
 msgid "This domain name is not available."
 msgstr "Ovo ime domene nije dostupno."
 
-msgid "VAT number"
-msgstr "PDV broj"
-
-msgid "Tax code"
-msgstr "Porezni kod"
+msgid "Mark as important"
+msgstr ""
 
 msgid "File a report"
 msgstr ""

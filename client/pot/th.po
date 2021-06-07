@@ -2,6 +2,7 @@
 # Translators:
 # Arthit Suriyawongkul, 2021
 # Arthit Suriyawongkul, 2020-2021
+# Cheer Zeng <cheerz6623@gmail.com>, 2021
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2018,2020
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
@@ -12,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-21 03:32+0000\n"
-"Last-Translator: Arthit Suriyawongkul\n"
+"PO-Revision-Date: 2021-06-02 12:40+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,22 +26,22 @@ msgid "Log in"
 msgstr "ลงชื่อเข้า"
 
 msgid "Main configuration"
-msgstr "การตั้งค่าหลัก"
+msgstr "การปรับค่าหลัก"
 
 msgid "Theme customization"
-msgstr "ปรับแต่งรูปแบบ"
+msgstr "การกำหนดค่ารูปแบบ"
 
 msgid "Languages"
 msgstr "ภาษา"
 
 msgid "Text customization"
-msgstr "ปรับแต่งข้อความ"
+msgstr "การกำหนดค่าข้อความ"
 
 msgid "Advanced settings"
-msgstr "ตั้งค่าขั้นสูง"
+msgstr "การตั้งค่าขั้นสูง"
 
 msgid "Questionnaire configuration"
-msgstr "ตั้งค่าแบบสอบถาม"
+msgstr "การปรับค่าแบบสอบถาม"
 
 msgid "Question templates"
 msgstr "แม่แบบคำถาม"
@@ -55,7 +56,7 @@ msgid "Home"
 msgstr "หน้าหลัก"
 
 msgid "Changelog"
-msgstr "ปูมความเปลี่ยนแปลง"
+msgstr "บันทึกการเปลี่ยนแปลง"
 
 msgid "License"
 msgstr "สัญญาอนุญาต"
@@ -73,7 +74,7 @@ msgid "Preferences"
 msgstr "การตั้งค่า"
 
 msgid "Notification settings"
-msgstr "ตั้งค่าการแจ้งเตือน"
+msgstr "การตั้งค่าการแจ้งเตือน"
 
 msgid "file unavailable"
 msgstr "ไม่มีแฟ้มที่ใช้ได้"
@@ -118,7 +119,7 @@ msgid "YOUR NAME"
 msgstr "ชื่อของคุณ"
 
 msgid "Label the report"
-msgstr "ติดฉลากให้กับรายงาน"
+msgstr "ติดป้ายกำกับรายงาน"
 
 msgid "Postpone the expiration date"
 msgstr "เลื่อนวันหมดอายุ"
@@ -148,16 +149,16 @@ msgid "The whistleblower has not read the last update yet"
 msgstr "ผู้แจ้งเบาะแสยังไม่ได้อ่านข่าวสารล่าสุด"
 
 msgid "Move up"
-msgstr "ขยับขึ้น"
+msgstr "เลื่อนขึ้น"
 
 msgid "Move down"
-msgstr "ขยับลง"
+msgstr "เลื่อนลง"
 
 msgid "Move left"
-msgstr "ขยับซ้าย"
+msgstr "เลื่อนซ้าย"
 
 msgid "Move right"
-msgstr "ขยับขวา"
+msgstr "เลื่อนขวา"
 
 msgid "Import"
 msgstr "นำเข้า"
@@ -172,12 +173,12 @@ msgid "Access control"
 msgstr "การควบคุมการเข้าถึง"
 
 msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "การเชื่อมต่อถูกทำให้ปลอดภัยด้วย HTTPS เพื่อรับรองการรักษาความลับ"
+msgstr "การเชื่อมต่อได้รับการรักษาความปลอดภัยด้วย HTTPS เพื่อรับรองการรักษาความลับ"
 
 msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
-msgstr "การเชื่อมต่อถูกทำให้ปลอดภัยด้วย Tor เพื่อรับรองการรักษาความลับและการระบุตัวตนไม่ได้"
+msgstr "การเชื่อมต่อได้รับการรักษาความปลอดภัยด้วย Tor เพื่อรับรองการรักษาความลับและการรักษาความเป็นนิรนาม"
 
 msgid "vertical"
 msgstr "แนวตั้ง"
@@ -195,25 +196,19 @@ msgid "Regular expression validator"
 msgstr "ตัวตรวจรูปแบบ regular expression"
 
 msgid "Minimum number of input characters"
-msgstr "จำนวนตัวอักษรขั้นต่ำสำหรับการป้อนข้อมูล"
+msgstr "จำนวนตัวอักษรต่ำสุดสำหรับอินพุท"
 
 msgid "Maximum number of input characters"
-msgstr "จำนวนตัวอักษรสูงสุดสำหรับการป้อนข้อมูล"
+msgstr "จำนวนตัวอักษรสูงสุดสำหรับอินพุท"
 
 msgid "Earliest selectable date"
-msgstr "วันที่ย้อนไปไกลที่สุดที่ให้เลือกได้"
+msgstr "วันที่แรกสุดที่ให้เลือกได้"
 
 msgid "Latest selectable date"
-msgstr "วันที่สายที่สุดที่ให้เลือกได้"
+msgstr "วันที่สุดท้ายที่ให้เลือกได้"
 
 msgid "0 = auto"
 msgstr "0 = อัตโนมัติ"
-
-msgid "True"
-msgstr "จริง"
-
-msgid "False"
-msgstr "เท็จ"
 
 msgid "Yes"
 msgstr "ใช่"
@@ -222,10 +217,10 @@ msgid "No"
 msgstr "ไม่"
 
 msgid "Attachment"
-msgstr "แฟ้มแนบ"
+msgstr "เอกสารแนบ"
 
 msgid "Attachments"
-msgstr "แฟ้มแนบ"
+msgstr "เอกสารแนบ"
 
 msgid "Change your password"
 msgstr "เปลี่ยนรหัสผ่านของคุณ"
@@ -252,13 +247,13 @@ msgid "Custodian"
 msgstr "ผู้พิทักษ์"
 
 msgid "Custodian of the identities"
-msgstr "ผู้พิทักษ์ของตัวตน"
+msgstr "ผู้พิทักษ์ตัวตน"
 
 msgid "Identity"
 msgstr "อัตลักษณ์"
 
 msgid "Access requested"
-msgstr "การเข้าถึงที่ถูกร้องขอ"
+msgstr "การเข้าถึงที่ร้องขอ"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "ร้องขอการเข้าถึงตัวตนของผู้แจ้งเบาะแส"
@@ -270,13 +265,13 @@ msgid "Reply to the request"
 msgstr "ตอบกลับคำขอ"
 
 msgid "Authorized"
-msgstr "มอบอำนาจแล้ว"
+msgstr "อนุญาตแล้ว"
 
 msgid "Denied"
 msgstr "ถูกปฏิเสธ"
 
 msgid "Waiting for authorization"
-msgstr "กำลังรอการมอบอำนาจ"
+msgstr "กำลังรอการอนุญาต"
 
 msgid "New request"
 msgstr "คำขอใหม่"
@@ -291,7 +286,7 @@ msgid "Deny access to the whistleblower's identity"
 msgstr "ปฏิเสธการเข้าถึงตัวตนของผู้แจ้งเบาะแส"
 
 msgid "Authorize access to the whistleblower's identity"
-msgstr "มอบอำนาจให้เข้าถึงตัวตนของผู้แจ้งเบาะแส"
+msgstr "อนุญาตให้เข้าถึงตัวตนของผู้แจ้งเบาะแส"
 
 msgid "Templates"
 msgstr "แม่แบบ"
@@ -300,10 +295,10 @@ msgid "HTTPS settings"
 msgstr "การตั้งค่า HTTPS"
 
 msgid "URL redirects"
-msgstr "การเปลี่ยนทาง URL"
+msgstr "เปลี่ยนเส้นทาง URL"
 
 msgid "Anomaly detection thresholds"
-msgstr "เกณฑ์การตรวจจับความผิดปกติ"
+msgstr "ค่าเกณฑ์การตรวจจับความผิดปกติ"
 
 msgid "Available disk space"
 msgstr "พื้นที่ดิสก์ที่ใช้ได้"
@@ -316,22 +311,22 @@ msgstr "แม่แบบการแจ้งเตือนผู้พิท
 
 msgid ""
 "This interface allows configuring email templates used to notify custodians."
-msgstr "หน้าจอนี้อนุญาตให้ปรับแต่งค่าแม่แบบอีเมลที่ใช้ในการแจ้งผู้พิทักษ์"
+msgstr "หน้าจอนี้อนุญาตให้ปรับค่าแม่แบบอีเมลที่ใช้ในการแจ้งเตือนผู้พิทักษ์"
 
 msgid "Disable notifications to administrators"
-msgstr "ปิดการแจ้งเตือนไปยังผู้ดูแลระบบ"
+msgstr "ปิดการแจ้งเตือนผู้ดูแลระบบ"
 
 msgid "Disable notifications to custodians"
-msgstr "ปิดการแจ้งเตือนไปยังผู้พิทักษ์"
+msgstr "ปิดการแจ้งเตือนผู้พิทักษ์"
 
 msgid "Disable notifications to recipients"
-msgstr "ปิดการแจ้งเตือนไปยังผู้รับ"
+msgstr "ปิดการแจ้งเตือนผู้รับ"
 
 msgid "Score"
 msgstr "คะแนน"
 
 msgid "Trigger question"
-msgstr "คำถามแตกประเด็น"
+msgstr "คำถามเรียกทำงาน"
 
 msgid "Triggered by score:"
 msgstr "ถูกเรียกทำงานด้วยคะแนน:"
@@ -346,7 +341,7 @@ msgid "Strong"
 msgstr "แข็งแรง"
 
 msgid "Text shown on top of the interface for selecting contexts"
-msgstr "ข้อความแสดงที่ด้านบนของหน้าจอสำหรับเลือกบริบท"
+msgstr "ข้อความแสดงที่ด้านบนหน้าจอเลือกบริบท"
 
 msgid "Silence email notifications"
 msgstr "ปิดการแจ้งเตือนทางอีเมล"
@@ -355,7 +350,7 @@ msgid "Turn on email notifications"
 msgstr "เปิดการแจ้งเตือนทางอีเมล"
 
 msgid "Input validation"
-msgstr "การตรวจรูปแบบข้อมูล"
+msgstr "การตรวจรูปแบบอินพุท"
 
 msgid "Email address"
 msgstr "ที่อยู่อีเมล"
@@ -381,10 +376,10 @@ msgstr "ค้นหา"
 msgid ""
 "This custom text is no longer displayed on the platform. The original text "
 "has either changed or been removed."
-msgstr "ข้อความปรับแต่งเองจะไม่ถูกแสดงบนแพลตฟอร์มอีกต่อไป ข้อความต้นฉบับได้เปลี่ยนหรือถูกลบไปแล้ว"
+msgstr "ข้อความปรับแต่งเองจะไม่ถูกแสดงบนแพลตฟอร์มอีกต่อไป ข้อความต้นฉบับถูกเปลี่ยนหรือถูกลบไปแล้ว"
 
 msgid "Audit log"
-msgstr "ปูมตรวจสอบบัญชี"
+msgstr "บันทึกการตรวจสอบบัญชี"
 
 msgid "Stats"
 msgstr "สถิติ"
@@ -402,16 +397,16 @@ msgid "From"
 msgstr "จาก"
 
 msgid "Number of downloads"
-msgstr "จำนวนดาวน์โหลด"
+msgstr "จำนวนการดาวน์โหลด"
 
 msgid "File size not accepted."
-msgstr "ไม่ยอมรับแฟ้มขนาดนี้"
+msgstr "ไม่ยอมรับขนาดแฟ้ม"
 
 msgid "Maximum file size is:"
 msgstr "ขนาดแฟ้มสูงสุดคือ:"
 
 msgid "Scheduled jobs"
-msgstr "งานที่ถูกตั้งเวลาไว้"
+msgstr "งานที่กำหนดเวลาไว้"
 
 msgid "Sites management"
 msgstr "การจัดการไซต์"
@@ -435,7 +430,7 @@ msgid "Use as default"
 msgstr "ใช้เป็นค่าปริยาย"
 
 msgid "Create your whistleblowing platform"
-msgstr "สร้างแพลตฟอร์มแจ้งเบาะแสที่คุณจัดการได้เอง"
+msgstr "สร้างแพลตฟอร์มแจ้งเบาะแสของคุณเอง"
 
 msgid "Collapse"
 msgstr "ยุบ"
@@ -450,16 +445,16 @@ msgid "Surname"
 msgstr "นามสกุล"
 
 msgid "New"
-msgstr "สร้างใหม่"
+msgstr "ใหม่"
 
 msgid "Opened"
-msgstr "ถูกเปิด"
+msgstr "เปิดแล้ว"
 
 msgid "Closed"
-msgstr "ถูกปิด"
+msgstr "ปิดแล้ว"
 
 msgid "Placeholder"
-msgstr "ข้อความตัวอย่าง"
+msgstr "ตัวยึดตำแหน่ง"
 
 msgid "Print"
 msgstr "พิมพ์"
@@ -492,7 +487,7 @@ msgid "Skip the recipient account creation."
 msgstr "ข้ามการสร้างบัญชีผู้รับ"
 
 msgid "Send activation link"
-msgstr "ส่งลิงก์ยืนยันเปิดใช้งาน"
+msgstr "ส่งลิงก์ยืนยันการเปิดใช้งาน"
 
 msgid "Password reset"
 msgstr "ล้างและตั้งรหัสผ่านใหม่"
@@ -500,7 +495,7 @@ msgstr "ล้างและตั้งรหัสผ่านใหม่"
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr "ผู้รับหนึ่งรายหรือมากกว่านั้นยังไม่ได้ลงชื่อเข้าครั้งแรก นี่หมายความว่าพวกเขายังไม่ได้รับตัวรายงาน"
+msgstr "ผู้รับอย่างน้อยหนึ่งรายยังไม่ได้ลงชื่อเข้าครั้งแรก ซึ่งหมายความว่าพวกเขาจะไม่ได้รับรายงาน"
 
 msgid "This user has not performed the first login yet."
 msgstr "ผู้ใช้รายนี้ยังไม่เคยลงชื่อเข้าใช้ครั้งแรก"
@@ -511,11 +506,8 @@ msgstr "วินาที"
 msgid "This domain name is not available."
 msgstr "ชื่อโดเมนนี้ใช้ไม่ได้"
 
-msgid "VAT number"
-msgstr "หมายเลข VAT"
-
-msgid "Tax code"
-msgstr "เลขประจำตัวผู้เสียภาษี"
+msgid "Mark as important"
+msgstr ""
 
 msgid "File a report"
 msgstr "ยื่นรายงาน"
@@ -533,7 +525,7 @@ msgid ""
 msgstr "รหัสผ่านที่เลือกนั้นอ่อนแอเกินไป รหัสผ่านที่ใช้ได้ควรมีความยาวอย่างน้อย 10 ตัวอักษรและมีตัวอักษรหลากหลายชนิด มีอักษรพิมพ์เล็ก อักษรพิมพ์ใหญ่ ตัวเลข และสัญลักษณ์พิเศษอย่างน้อยอย่างละตัว"
 
 msgid "The new password must be different from the current one."
-msgstr "รหัสผ่านใหม่ต้องแตกต่างไปจากรหัสผ่านปัจจุบัน"
+msgstr "รหัสผ่านใหม่ต้องแตกต่างจากรหัสผ่านปัจจุบัน"
 
 msgid "Type your new password again"
 msgstr "พิมพ์รหัสผ่านใหม่ของคุณอีกครั้ง"
@@ -542,7 +534,7 @@ msgid "The two passwords do not match"
 msgstr "รหัสผ่านสองชุดไม่ตรงกัน"
 
 msgid "The new password must differ from the previous."
-msgstr "รหัสผ่านใหม่จะต้องแตกต่างจากอันก่อนหน้า"
+msgstr "รหัสผ่านใหม่จะต้องแตกต่างจากรหัสผ่านก่อนหน้า"
 
 msgid "Proceed"
 msgstr "ดำเนินการ"
@@ -560,7 +552,7 @@ msgid "Enable administrators to change user passwords"
 msgstr "เปิดให้ผู้ดูแลระบบเปลี่ยนรหัสผ่านของผู้ใช้ได้"
 
 msgid "Administrators authorized to change user passwords:"
-msgstr "ผู้ดูแลที่ได้รับสิทธิ์ในการเปลี่ยนรหัสผ่านของผู้ใช้:"
+msgstr "ผู้ดูแลได้รับอนุญาตให้เปลี่ยนรหัสผ่านของผู้ใช้:"
 
 msgid "Enable multisite feature"
 msgstr "เปิดใช้งานการรองรับหลายเว็บไซต์"
@@ -603,7 +595,7 @@ msgid "Do not expose users' names"
 msgstr "อย่าเปิดเผยชื่อของผู้ใช้"
 
 msgid "Size limit for file attachments"
-msgstr "กำหนดข้อจำกัดขนาดของแฟ้มแนบ"
+msgstr "ขีดจำกัดขนาดเอกสารแนบ"
 
 msgid "in megabytes"
 msgstr "เมกะไบต์"
@@ -619,10 +611,10 @@ msgstr "กำหนดเวลาสำหรับเปลี่ยนรห
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
-msgstr "ด้วยเหตุผลความปลอดภัย ระบบจะให้เปลี่ยนรหัสผ่านเป็นประจำเมื่อถึงเวลาที่กำหนด"
+msgstr "ด้วยเหตุผลความปลอดภัย ระบบจะให้เปลี่ยนรหัสผ่านเป็นประจำตามช่วงเวลาที่กำหนด"
 
 msgid "Set the value to 0 to disable this feature."
-msgstr "ตั้งค่าเป็น 0 เพื่อปิดการทำงานนี้"
+msgstr "ตั้งค่าเป็น 0 เพื่อปิดคุณสมบัตินี้"
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "จำนวนวันจนกว่าจะแจ้งผู้ใช้ถึงรายงานที่ยังไม่ได้อ่าน"
@@ -640,16 +632,16 @@ msgid "Allow the following websites to embed the platform inside iframes"
 msgstr "อนุญาตให้เว็บไซต์ดังต่อไปนี้ฝังแพลตฟอร์มเข้าไปใน iframe ได้"
 
 msgid "Logging level"
-msgstr "ระดับการบันทึกลงปูม"
+msgstr "ระดับการบันทึก"
 
 msgid "Log accesses of internal users"
-msgstr "บันทึกการเข้าถึงของผู้ใช้ภายในลงปูม"
+msgstr "บันทึกการเข้าถึงของผู้ใช้ภายใน"
 
 msgid "Notify administrators of software problems"
-msgstr "แจ้งเตือนผู้ดูแลระบบถึงปัญหาซอฟต์แวร์"
+msgstr "แจ้งเตือนปัญหาซอฟต์แวร์ไปยังผู้ดูแลระบบ"
 
 msgid "Notify developers of software problems"
-msgstr "แจ้งให้ผู้พัฒนาทราบถึงปัญหาของซอฟต์แวร์"
+msgstr "แจ้งเตือนปัญหาซอฟต์แวร์ไปยังผู้พัฒนา"
 
 msgid ""
 "By enabling this feature, you will contribute to the development and "
@@ -675,7 +667,7 @@ msgid "percentage"
 msgstr "ร้อยละ"
 
 msgid "Type"
-msgstr "ชนิด"
+msgstr "ประเภท"
 
 msgid "Severity"
 msgstr "ความรุนแรง"
@@ -684,7 +676,7 @@ msgid "Object"
 msgstr "วัตถุ"
 
 msgid "ID"
-msgstr "รหัสประจำ"
+msgstr "รหัส"
 
 msgid "Username"
 msgstr "ชื่อผู้ใช้"
@@ -705,7 +697,7 @@ msgid "Connection"
 msgstr "การเชื่อมต่อ"
 
 msgid "Whistleblower's last access"
-msgstr "ยินดีเข้ามาครั้งล่าสุด"
+msgstr "การเข้าถึงของผู้แจ้งเบาะแสล่าสุด"
 
 msgid "Substatuses"
 msgstr "สถานะย่อย"
@@ -750,7 +742,7 @@ msgid "Whistleblowing button"
 msgstr "ปุ่มแจ้งเบาะแส"
 
 msgid "Enable disclaimer"
-msgstr "เปิดใช้งานคำปฏิเสธความรับผิดชอบ"
+msgstr "เปิดใช้งานข้อสงวนสิทธิ์"
 
 msgid "Title"
 msgstr "ชื่อเรื่อง"
@@ -759,7 +751,7 @@ msgid "Text"
 msgstr "ข้อความ"
 
 msgid "Footer"
-msgstr "ท้ายหน้า"
+msgstr "ส่วนท้าย"
 
 msgid "Upload"
 msgstr "อัปโหลด"
@@ -792,7 +784,7 @@ msgid "Hidden"
 msgstr "ถูกซ่อนอยู่"
 
 msgid "Disabled"
-msgstr "ถูกปิดใช้งาน"
+msgstr "ปิดใช้งาน"
 
 msgid "Enabled"
 msgstr "เปิดใช้งาน"
@@ -807,13 +799,13 @@ msgid "days"
 msgstr "วัน"
 
 msgid "Show the questionnaire navigation interface"
-msgstr "แสดงหน้าจอสำหรับการนำทางแบบสอบถาม"
+msgstr "แสดงหน้าจอการนำทางแบบสอบถาม"
 
 msgid "Allow whistleblowers to select their recipients"
-msgstr "อนุญาตให้ผู้แจ้งเบาะแสเลือกผู้รับของพวกเขา"
+msgstr "อนุญาตให้ผู้แจ้งเบาะแสเลือกผู้รับของตนเอง"
 
 msgid "Select all recipients by default"
-msgstr "เลือกผู้รับทั้งหมดโดยปริยาย"
+msgstr "เลือกผู้รับทั้งหมดเป็นค่าปริยาย"
 
 msgid "Maximum number of selectable recipients:"
 msgstr "จำนวนสูงสุดของผู้รับที่เลือกได้:"
@@ -825,7 +817,7 @@ msgid "Show recipient details on the status page of the report"
 msgstr "แสดงรายละเอียดของผู้รับในหน้าสถานะของการส่ง"
 
 msgid "Enable comments"
-msgstr "เปิดใช้งานการแสดงความเห็น"
+msgstr "เปิดใช้งานการแสดงความคิดเห็น"
 
 msgid "Allow whistleblowers to write comments"
 msgstr "อนุญาตให้ผู้แจ้งเบาะแสเขียนความคิดเห็น"
@@ -837,7 +829,7 @@ msgid "Allow whistleblowers to send messages"
 msgstr "อนุญาตให้ผู้แจ้งเบาะแสส่งข้อความ"
 
 msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "อนุญาตให้ผู้แจ้งเบาะแสแนบแฟ้มในรายงานที่มีอยู่แล้ว"
+msgstr "อนุญาตให้ผู้แจ้งเบาะแสเพิ่มเอกสารแนบในรายงานที่มีอยู่"
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr "อนุญาตให้ผู้รับอัปโหลดแฟ้มไปให้ผู้แจ้งเบาะแส"
@@ -849,7 +841,7 @@ msgid "Scoring system options"
 msgstr "ตัวเลือกระบบให้คะแนน"
 
 msgid "Threshold"
-msgstr "เกณฑ์"
+msgstr "ค่าเกณฑ์"
 
 msgid "Value"
 msgstr "ค่า"
@@ -864,7 +856,7 @@ msgid "Assign the receipt only to reports reaching score:"
 msgstr "กำหนดใบรับให้กับรายงานก็ต่อเมื่อคะแนนถึง:"
 
 msgid "Software version:"
-msgstr "รุ่นซอฟต์แวร์:"
+msgstr "เวอร์ชันซอฟต์แวร์:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "อนุญาตให้เข้าถึงได้เฉพาะจากที่อยู่ไอพีที่เจาะจง"
@@ -879,7 +871,7 @@ msgid "Recipient"
 msgstr "ผู้รับ"
 
 msgid "Each entry must be separated with a comma."
-msgstr "ข้อมูลแต่ละชิ้นจะต้องถูกแบ่งจากกันด้วยเครื่องหมายจุลภาค ( , )"
+msgstr "แต่ละรายการจะต้องคั่นด้วยเครื่องหมายจุลภาค ( , )"
 
 msgid "Example:"
 msgstr "ตัวอย่าง:"
@@ -888,10 +880,10 @@ msgid "Hostname"
 msgstr "ชื่อโฮสต์"
 
 msgid "Invalid input format."
-msgstr "รูปแบบข้อมูลไม่ถูกต้อง"
+msgstr "รูปแบบอินพุทไม่ถูกต้อง"
 
 msgid "Input should be similar to:"
-msgstr "ข้อมูลควรมีลักษณะแบบเดียวกับ:"
+msgstr "อินพุทควรมีลักษณะเดียวกับ:"
 
 msgid "Country code"
 msgstr "รหัสประเทศ"
@@ -900,10 +892,10 @@ msgid "City"
 msgstr "เมือง"
 
 msgid "Organization"
-msgstr "หน่วยงาน"
+msgstr "องค์กร"
 
 msgid "Organizational unit"
-msgstr "หน่วยภายในหน่วยงาน"
+msgstr "หน่วยภายในองค์กร"
 
 msgid "Invalid email address"
 msgstr "ที่อยู่อีเมลไม่ถูกต้อง"
@@ -915,7 +907,7 @@ msgid "Private Key"
 msgstr "กุญแจส่วนตัว"
 
 msgid "Certificate Signing Request"
-msgstr "ขอขอให้เซ็นชื่อใบรับรอง"
+msgstr "คำขอให้เซ็นชื่อใบรับรอง"
 
 msgid "Certificate"
 msgstr "ใบรับรอง"
@@ -937,16 +929,16 @@ msgstr "รีเซ็ต"
 
 msgid ""
 "The platform supports the configuration of HTTPS through this interface."
-msgstr "แพลตฟอร์มนี้รองรับการปรับแต่งค่า HTTPS ผ่านหน้าจอนี้"
+msgstr "แพลตฟอร์มนี้รองรับการปรับค่า HTTPS ผ่านหน้าจอนี้"
 
 msgid "Automatic configuration"
-msgstr "ติดตั้งปรับค่าอัตโนมัติ"
+msgstr "การปรับค่าอัตโนมัติ"
 
 msgid ""
 "Using automatic HTTPS configuration will handle the entire process of "
 "requesting, enabling and renewing certificates from the Let's Encrypt "
 "Certificate Authority."
-msgstr "การใช้การติดตั้ง HTTPS อัตโนมัติ จะจัดการกระบวนการขอรับใบอนุญาต เปิดใช้ใบอนุญาต และต่ออายุใบอนุญาตจาก Certificate Authority ของ Let's Encrypt ให้ทั้งหมด"
+msgstr "การใช้การปรับค่า HTTPS อัตโนมัติ จะจัดการกระบวนการขอรับใบอนุญาต เปิดใช้ใบอนุญาต และต่ออายุใบอนุญาตจาก Certificate Authority ของ Let's Encrypt ให้ทั้งหมด"
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
@@ -954,12 +946,12 @@ msgid ""
 msgstr "แพลตฟอร์มจะต้องสามารถเห็นได้ทางที่อยู่ไอพีสาธารณะ และชื่อโฮสต์ที่เลือกจะต้องมีระเบียน DNS ที่ชี้มาที่อยู่ดังกล่าว"
 
 msgid "Manual configuration"
-msgstr "ติดตั้งปรับค่าเอง"
+msgstr "การปรับค่าด้วยตัวเอง"
 
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
-msgstr "ตัวช่วยการติดตั้งด้วยตัวเอง จะแนะนำคุณไปทีละขั้น เพื่อช่วยให้คุณติดตั้ง HTTPS โดยใช้ Certificate Authority เจ้าอื่น"
+msgstr "ตัวช่วยการปรับค่าด้วยตัวเองจะแนะนำคุณไปทีละขั้น เพื่อช่วยให้คุณติดตั้ง HTTPS โดยใช้ Certificate Authority เจ้าอื่น"
 
 msgid "Auto-renewal"
 msgstr "ต่ออายุอัตโนมัติ"
@@ -992,7 +984,7 @@ msgid "SMTP server port"
 msgstr "พอร์ตเซิร์ฟเวอร์ SMTP"
 
 msgid "Security"
-msgstr "ความมั่นคงปลอดภัย"
+msgstr "การรักษาความปลอดภัย"
 
 msgid "Warning"
 msgstr "คำเตือน"
@@ -1004,7 +996,7 @@ msgid "Password"
 msgstr "รหัสผ่าน"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr "จำนวนชั่วโมงก่อนจะส่งแจ้งเตือนถึงการหมดอายุของรายงาน"
+msgstr "จำนวนชั่วโมงก่อนจะส่งแจ้งการเตือนถึงการหมดอายุของรายงาน"
 
 msgid "Test the configuration"
 msgstr "ทดสอบการปรับค่า"
@@ -1022,10 +1014,10 @@ msgid "Question"
 msgstr "คำถาม"
 
 msgid "Single-line text input"
-msgstr "ข้อมูลเข้าข้อความบรรทัดเดียว"
+msgstr "อินพุทข้อความบรรทัดเดียว"
 
 msgid "Multi-line text input"
-msgstr "ข้อมูลเข้าข้อความหลายบรรทัด"
+msgstr "อินพุทข้อความหลายบรรทัด"
 
 msgid "Selection box"
 msgstr "กล่องตัวเลือก"
@@ -1052,7 +1044,7 @@ msgid "Width"
 msgstr "ความกว้าง"
 
 msgid "Multiple choice input"
-msgstr "ข้อมูลเข้าหลายตัวเลือก"
+msgstr "อินพุทหลายตัวเลือก"
 
 msgid "Question group"
 msgstr "กลุ่มคำถาม"
@@ -1070,13 +1062,13 @@ msgid "Accept multiple answers"
 msgstr "ยอมรับคำตอบหลายคำตอบ"
 
 msgid "Template override"
-msgstr "ไม่ต้องสนใจแม่แบบ"
+msgstr "แทนที่แม่แบบ"
 
 msgid "Phone number"
 msgstr "หมายเลขโทรศัพท์"
 
 msgid "Checkbox label"
-msgstr "ฉลากช่องกาเครื่องหมาย"
+msgstr "ข้อความกำกับช่องกาเครื่องหมาย"
 
 msgid "Add multimedia content"
 msgstr "เพิ่มเนื้อหามัลติมีเดีย"
@@ -1091,13 +1083,13 @@ msgid "Video"
 msgstr "วิดีโอ"
 
 msgid "Subject answer visibility to custodian authorization"
-msgstr "การมองเห็นคำตอบหรือไม่นั้นขึ้นอยู่กับการมอบอำนาจของผู้พิทักษ์"
+msgstr "การมองเห็นคำตอบหรือไม่นั้นขึ้นอยู่กับการอนุญาตของผู้พิทักษ์"
 
 msgid "Text shown upon negative answer"
 msgstr "ข้อความแสดงเมื่อได้คำตอบปฏิเสธ"
 
 msgid "Prompt confirmation upon negative answer"
-msgstr "แสดงคำขอการยืนยันเมื่อได้คำตอบปฏิเสธ"
+msgstr "สอบถามยืนยันเมื่อได้คำตอบปฏิเสธ"
 
 msgid "Text shown upon confirmation"
 msgstr "ข้อความแสดงเมื่อได้คำตอบยืนยัน"
@@ -1112,10 +1104,10 @@ msgid "Options"
 msgstr "ตัวเลือก"
 
 msgid "Addition"
-msgstr "บวก"
+msgstr "การบวก"
 
 msgid "Multiplier"
-msgstr "คูณ"
+msgstr "ตัวคูณ"
 
 msgid "Questions"
 msgstr "คำถาม"
@@ -1148,16 +1140,16 @@ msgid "Mode:"
 msgstr "โหมด:"
 
 msgid "Configure"
-msgstr "ปรับแต่งค่า"
+msgstr "ปรับค่า"
 
 msgid "Subdomain"
 msgstr "โดเมนย่อย"
 
 msgid "Creation date:"
-msgstr "วันที่สร้าง คือ"
+msgstr "วันที่สร้าง:"
 
 msgid "Root domain used for secondary sites"
-msgstr "รูตโดเมนถูกใช้สำหรับไซต์ชั้นสอง"
+msgstr "โดเมนรากถูกใช้สำหรับไซต์ชั้นสอง"
 
 msgid "Use the first site for administrative purposes only"
 msgstr "ใช้งานเว็บไซต์แรกเพื่อจุดประสงค์ในการจัดการดูแลเท่านั้น"
@@ -1166,13 +1158,13 @@ msgid "Enable multi-site login"
 msgstr "เปิดใช้งานการลงชื่อเข้าใช้แบบหลายเว็บไซต์"
 
 msgid "Allow users to sign up"
-msgstr "อนุญาตให้ผู้ใช้สมัครเข้าระบบ"
+msgstr "อนุญาตให้ผู้ใช้ลงชื่อสมัคร"
 
 msgid "Enable terms of service"
 msgstr "เปิดใช้ข้อตกลงในการให้บริการ"
 
 msgid "Send an account activation link to the user."
-msgstr "ส่งลิงก์ยืนยันเปิดใช้บัญชีไปให้ผู้ใช้"
+msgstr "ส่งลิงก์ยืนยันการเปิดใช้บัญชีไปให้ผู้ใช้"
 
 msgid "Public name"
 msgstr "ชื่อสาธารณะ"
@@ -1184,7 +1176,7 @@ msgid "Set password"
 msgstr "ตั้งรหัสผ่าน"
 
 msgid "Disable two factor authentication"
-msgstr "ปิดใช้งานการยืนยันตัวตนสองชั้น"
+msgstr "ปิดใช้งานการยืนยันตัวตนแบบสองปัจจัย"
 
 msgid "Force password change"
 msgstr "บังคับเปลี่ยนรหัสผ่าน"
@@ -1205,7 +1197,7 @@ msgid "Fingerprint"
 msgstr "ลายนิ้วมือ"
 
 msgid "Set up encryption by providing a PGP public key"
-msgstr "ตั้งค่าให้เข้ารหัสลับ ด้วยการให้กุญสาธารณะ PGP"
+msgstr "ตั้งค่าให้เข้ารหัสลับโดยการให้กุญแจสาธารณะ PGP"
 
 msgid "Give this admin ability to change user passwords"
 msgstr "ให้ผู้ดูแลรายนี้สามารถเปลี่ยนรหัสผ่านของผู้ใช้ได้"
@@ -1229,28 +1221,28 @@ msgid "Report date"
 msgstr "วันที่รายงาน"
 
 msgid "Authorization"
-msgstr "การมอบอำนาจ"
+msgstr "การอนุญาต"
 
 msgid "Requests"
 msgstr "คำขอ"
 
 msgid "The validation link is either incorrect or has expired."
-msgstr "ลิงก์ตรวจความถูกต้องไม่ถูกต้องหรือหมดอายุแล้ว"
+msgstr "ลิงก์ยืนยันความถูกต้องไม่ถูกต้องหรือหมดอายุแล้ว"
 
 msgid "Your new email address has been validated."
-msgstr "ที่อยู่อีเมลใหม่ของคุณได้รับการตรวจความถูกต้องแล้ว"
+msgstr "ที่อยู่อีเมลใหม่ของคุณได้รับการยืนยันความถูกต้องแล้ว"
 
 msgid "Forgot password?"
-msgstr "ลืมรหัสผ่านหรือ?"
+msgstr "ลืมรหัสผ่านใช่ไหม?"
 
 msgid "Enter the two factor authentication code"
-msgstr "ใส่รหัสการยืนยันตัวตนสองชั้น"
+msgstr "ใส่รหัสการยืนยันตัวตนแบบสองปัจจัย"
 
 msgid "Authentication failed"
 msgstr "การยืนยันตัวตนล้มเหลว"
 
 msgid "The code is either invalid or expired."
-msgstr "รหัสดังกล่าวไม่ถูกต้องหรือหมดอายุแล้ว"
+msgstr "รหัสไม่ถูกต้องหรือหมดอายุแล้ว"
 
 msgid "Site:"
 msgstr "ไซต์:"
@@ -1259,7 +1251,7 @@ msgid "Please select your account:"
 msgstr "กรุณาเลือกบัญชีของคุณ:"
 
 msgid "Now type your password, then click 'Log in':"
-msgstr "ตอนนี้พิมพ์รหัสผ่านของคุณแล้วคลิก 'ลงชื่อเข้า':"
+msgstr "ตอนนี้พิมพ์รหัสผ่านของคุณแล้วคลิก 'เข้าสู่ระบบ':"
 
 msgid "Text shown after the user has selected the option."
 msgstr "ข้อความแสดงหลังจากผู้ใช้ได้เลือกตัวเลือก"
@@ -1271,16 +1263,16 @@ msgid "Are you sure?"
 msgstr "คุณแน่ใจหรือไม่?"
 
 msgid "The operation will reset the configuration and cannot be undone."
-msgstr "คำสั่งนี้จะล้างการปรับแต่งค่าและไม่สามารถย้อนคืนได้"
+msgstr "คำสั่งนี้จะล้างการปรับค่าและไม่สามารถย้อนคืนได้"
 
 msgid "Assign score points"
 msgstr "กำหนดแต้มคะแนน"
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr "กรุณาดูแลว่าข้อมูลที่เกี่ยวข้องทั้งหมดจะถูกลบออกได้อย่างถูกต้อง"
+msgstr "โปรดทราบว่าข้อมูลที่เชื่อมโยงกันทั้งหมดจะถูกลบออกอย่างถาวร"
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "นี่เป็นแพลตฟอร์มทดลอง กรุณาอย่าใช้มันเพื่อส่งรายงานจริงๆ"
+msgstr "นี่เป็นแพลตฟอร์มทดลอง กรุณาอย่าใช้เพื่อส่งรายงานจริง"
 
 msgid "Install an authenticator app on your phone"
 msgstr "ติดตั้งแอปยืนยันตัวตนบนโทรศัพท์ของคุณ"
@@ -1289,13 +1281,13 @@ msgid "Scan the QR code with the app"
 msgstr "สแกนรหัส QR ด้วยแอป"
 
 msgid "Enable two factor authentication"
-msgstr "เปิดใช้การยืนยันตัวตนสองชั้น"
+msgstr "เปิดใช้การยืนยันตัวตนแบบสองปัจจัย"
 
 msgid "Close"
 msgstr "ปิด"
 
 msgid "Before proceeding please read carefully the documentation at:"
-msgstr "ก่อนจะไปต่อ กรุณาอ่านเอกสารอย่างระมัดระวังที่:"
+msgstr "ก่อนจะไปต่อ กรุณาอ่านเอกสารอย่างรอบคอบที่:"
 
 msgid "Your account recovery key is:"
 msgstr "กุญแจกู้คืนบัญชีของคุณคือ:"
@@ -1303,7 +1295,7 @@ msgstr "กุญแจกู้คืนบัญชีของคุณคื
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr "ทำสำเนาและเก็บมันไว้ในที่ปลอดภัย มันจะเป็นของจำเป็นเมื่อคุณลืมรหัสผ่าน หากคุณต้องจะกู้คืนการเข้าถึงบัญชีของคุณ โดยไม่มีข้อมูลสูญหาย"
+msgstr "ทำสำเนาและเก็บไว้ในที่ปลอดภัย ข้อมูลนี้มีความจำเป็นเมื่อคุณลืมรหัสผ่าน หากคุณต้องจะกู้คืนการเข้าถึงบัญชีของคุณโดยไม่มีข้อมูลสูญหาย"
 
 msgid "Welcome!"
 msgstr "ยินดีต้อนรับ!"
@@ -1322,10 +1314,10 @@ msgid ""
 msgstr "ถ้าคุณต้องการช่วยในการพัฒนาซอฟต์แวร์หรือรายงานข้อผิดพลาด กรุณาเปิดประเด็น (issue) ในระบบติดตามตั๋วงานของเรา:"
 
 msgid "Join our chat:"
-msgstr "ไปแชตกับเรา:"
+msgstr "เข้าร่วมการแชตกับเรา:"
 
 msgid "Follow the project on:"
-msgstr "ติดตามโครงการได้บน:"
+msgstr "ติดตามโครงการได้ที่:"
 
 msgid "Hint: How to hide your receipt"
 msgstr "คำแนะนำ: จะซ่อนใบรับของคุณอย่างไร"
@@ -1342,16 +1334,16 @@ msgid "Internal server error"
 msgstr "Internal server error"
 
 msgid "Error on input validation"
-msgstr "เกิดข้อผิดพลาดในการตรวจรูปแบบข้อมูลเข้า"
+msgstr "เกิดข้อผิดพลาดในการตรวจรูปแบบอินพุท"
 
 msgid "Resource not found"
-msgstr "Resource not found"
+msgstr "ไม่พบทรัพยากร"
 
 msgid "Forbidden operation"
-msgstr "Forbidden operation"
+msgstr "การดำเนินการต้องห้าม"
 
 msgid "The specified old password is not valid"
-msgstr "รหัสผ่านเดิมที่ระบุมาไม่ถูกต้อง"
+msgstr "รหัสผ่านเดิมที่ระบุไม่ถูกต้อง"
 
 msgid "Resource can only be accessed via the Tor network"
 msgstr "สามารถเข้าถึงทรัพยากรได้ผ่านเครือข่าย Tor เท่านั้น"
@@ -1363,7 +1355,7 @@ msgid "Validation of email address change in progress."
 msgstr "กำลังดำเนินการตรวจความถูกต้องของอีเมลของคุณ"
 
 msgid "Please check your inbox for further instructions."
-msgstr "กรุณาดูกล่องเมลเข้าของคุณสำหรับขั้นตอนต่อไป"
+msgstr "กรุณาดูกล่องขาเข้าของคุณสำหรับคำแนะนำต่อไป"
 
 msgid "Account recovery key"
 msgstr "กุญแจกู้คืนบัญชี"
@@ -1391,7 +1383,7 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "จากนั้น คัดลอกและวางที่อยู่นี้ลงใน Tor Browser:"
 
 msgid "Enter a name for the copy"
-msgstr "ใส่ชื่อสำหรับตัวสำเนา"
+msgstr "ใส่ชื่อสำหรับสำเนา"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "คุณได้ยื่นรายงานแล้วใช่ไหม? ใส่ใบรับของคุณ"
@@ -1400,7 +1392,7 @@ msgid "The receipt is either invalid or the report has expired."
 msgstr "ใบรับนั้นไม่ถูกต้อง หรือรายงานหมดอายุแล้ว"
 
 msgid "Select a file or drag it here."
-msgstr "เลือกแฟ้มหรือวางมันที่นี่"
+msgstr "เลือกแฟ้มหรือลากและวางที่นี่"
 
 msgid "Uploading files…"
 msgstr " กำลังอัปโหลดแฟ้ม..."
@@ -1446,16 +1438,16 @@ msgstr "การเชื่อมต่อไม่ปลอดภัย"
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
-msgstr "แพลตฟอร์มยังไม่ได้ถูกปรับแต่งค่าเพื่อใช้การเชื่อมต่อแบบ HTTPS และด้วยเหตุนั้นมันควรใช้เพื่อจุดประสงค์ในการทดสอบเท่านั้น"
+msgstr "แพลตฟอร์มยังไม่ได้รับการปรับค่าเพื่อใช้การเชื่อมต่อแบบ HTTPS ดังนั้นจึงควรใช้เพื่อการทดสอบเท่านั้น"
 
 msgid "Use case"
-msgstr "ลักษณะใช้งาน"
+msgstr "กรณีการใช้งาน"
 
 msgid "Anticorruption"
 msgstr "การต่อต้านคอร์รัปชัน"
 
 msgid "Corporate compliance"
-msgstr "การปฏิบัติตามกฎขององค์กร"
+msgstr "การปฏิบัติตามกฎระเบียบขององค์กร"
 
 msgid "Investigative journalism"
 msgstr "การทำข่าวสืบสวน"
@@ -1464,7 +1456,7 @@ msgid "Civic activism"
 msgstr "การรณรงค์สิทธิพลเมือง"
 
 msgid "Submit"
-msgstr "เสนอ"
+msgstr "ส่ง"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "ผู้รับได้ร้องขอให้คุณกรอกแบบสอบถามเพิ่มเติม"
@@ -1504,7 +1496,7 @@ msgstr "คุณแน่ใจหรือไม่ว่าคุณต้อ
 
 msgid ""
 "Everything related to the report stored on the platform will be deleted."
-msgstr "ทุกสิ่งทุกอย่างที่เกี่ยวข้องกับรายงานดังกล่าวที่เก็บอยู่บนแพลตฟอร์มจะถูกลบ"
+msgstr "ทุกสิ่งทุกอย่างที่เกี่ยวข้องกับรายงานดังกล่าวที่เก็บอยู่ในแพลตฟอร์มจะถูกลบ"
 
 msgid ""
 "Please be aware that everything stored off the platform, e.g. files you have"
@@ -1517,10 +1509,10 @@ msgstr "คุณแน่ใจหรือไม่ว่าคุณต้อ
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
 "recipients won't be able to further access to it."
-msgstr "กรุณาตรวจสอบให้แน่ใจว่าข้อมูลที่เกี่ยวข้องทั้งหมดได้ถูกลบออกอย่างดี เพื่อให้ผู้รับไม่สามารถเข้าถึงมันได้"
+msgstr "กรุณาตรวจสอบให้แน่ใจว่าข้อมูลที่เกี่ยวข้องทั้งหมดได้ถูกลบออกอย่างถูกต้อง เพื่อให้ผู้รับไม่สามารถเข้าถึงได้"
 
 msgid "Please write a motivation for the reply"
-msgstr "กรุณาเขียนแรงจูงใจสำหรับการตอบกลับมา"
+msgstr "กรุณาเขียนแรงจูงใจสำหรับการตอบกลับ"
 
 msgid "Are you sure that you want to postpone the report expiration date?"
 msgstr "คุณแน่ใจหรือไม่ว่าคุณต้องการเลื่อนวันหมดอายุของรายงานดังกล่าว?"
@@ -1552,23 +1544,23 @@ msgid "Upload a file:"
 msgstr "อัปโหลดแฟ้ม:"
 
 msgid "Logout"
-msgstr "ลงชื่อออก"
+msgstr "ออกจากระบบ"
 
 msgid "An update is available:"
-msgstr "การปรับรุ่นพร้อมแล้ว:"
+msgstr "รายการอัปเดตพร้อมแล้ว:"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr "เราแนะนำให้คุณไปที่ส่วน \"การปรับแต่ง\" เพื่อดึง \"กุญแจกู้คืนบัญชี\" ของคุณ และเก็บมันไว้ในที่ปลอดภัย กุญแจนี้จำเป็นสำหรับการกู้คืนสิทธิ์เข้าถึงแพลตฟอร์มของคุณและสำหรับการกู้คืนข้อมูล ในกรณีที่คุณลืมรหัสผ่าน"
+msgstr "เราแนะนำให้คุณไปที่ส่วน \"การปรับแต่ง\" เพื่อเรียกรับ \"กุญแจกู้คืนบัญชี\" ของคุณ และเก็บเอาไว้ในที่ปลอดภัย กุญแจนี้จำเป็นสำหรับการกู้คืนสิทธิ์เข้าถึงแพลตฟอร์มของคุณและสำหรับการกู้คืนข้อมูล ในกรณีที่คุณลืมรหัสผ่าน"
 
 msgid "The provided recovery key is invalid."
 msgstr "กุญแจกู้คืนที่ให้มานั้นไม่ถูกต้อง"
 
 msgid "The provided reset token is invalid or expired."
-msgstr "โทเค็นสำหรับล้างเริ่มใหม่นั้นไม่ถูกต้องหรือหมดอายุแล้ว"
+msgstr "โทเค็นสำหรับรีเซ็ตไม่ถูกต้องหรือหมดอายุแล้ว"
 
 msgid ""
 "Enter your account's username or your email address to request a password "
@@ -1583,7 +1575,7 @@ msgid ""
 msgstr "ใส่กุญแจกู้คืนการเข้ารหัสลับของคุณ เพื่อทำให้กระบวนการตั้งรหัสผ่านใหม่สมบูรณ์"
 
 msgid "Password reset requested."
-msgstr "มีคำขอล้างและตั้งรหัสผ่านใหม่"
+msgstr "ส่งคำขอรีเซ็ตรหัสผ่านแล้ว"
 
 msgid "Show"
 msgstr "แสดง"
@@ -1602,7 +1594,7 @@ msgid "Congratulations!"
 msgstr "ยินดีด้วย!"
 
 msgid "You have completed the platform activation."
-msgstr "คุณได้ยืนยันเปิดใช้งานแพลตฟอร์มแล้ว"
+msgstr "คุณเสร็จสิ้นการเปิดใช้งานแพลตฟอร์มแล้ว"
 
 msgid "Success!"
 msgstr "สำเร็จ!"
@@ -1611,32 +1603,32 @@ msgid "Your whistleblowing platform is almost ready!"
 msgstr "แพลตฟอร์มแจ้งเบาะแสของคุณใกล้พร้อมแล้ว!"
 
 msgid "Check your inbox to activate it."
-msgstr "ตรวจสอบกล่องเมลเข้าของคุณเพื่อเปิดใช้มัน"
+msgstr "ตรวจสอบกล่องขาเข้าของคุณเพื่อเปิดใช้งาน"
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr "ถ้าคุณไม่ได้ยืนยันเปิดใช้งานภายใน 24 ชั่วโมง แพลตฟอร์มจะถูกลบทิ้งโดยอัตโนมัติ"
+msgstr "ถ้าคุณไม่ได้ยืนยันการเปิดใช้งานภายใน 24 ชั่วโมง แพลตฟอร์มจะถูกลบทิ้งโดยอัตโนมัติ"
 
 msgid "Sign up"
-msgstr "ลงทะเบียน"
+msgstr "ลงชื่อสมัคร"
 
 msgid "Domain"
 msgstr "โดเมน"
 
 msgid "Confirmation"
-msgstr "ยืนยัน"
+msgstr "การยืนยัน"
 
 msgid "Invalid confirmation"
-msgstr "ยืนยันไม่ตรงกัน"
+msgstr "การยืนยันไม่ถูกต้อง"
 
 msgid "Other"
 msgstr "อื่นๆ"
 
 msgid "Complete"
-msgstr "จบ"
+msgstr "เสร็จสิ้น"
 
 msgid "Invalid phone number"
-msgstr "หมายเลขโทรศัพท์ไม่ตรงรูปแบบ"
+msgstr "หมายเลขโทรศัพท์ไม่ถูกต้อง"
 
 msgid "Select the context of your report:"
 msgstr "เลือกบริบทของรายงานของคุณ:"
@@ -1645,10 +1637,10 @@ msgid "The answer is too short"
 msgstr "คำตอบสั้นเกินไป"
 
 msgid "The specified input is not valid."
-msgstr "ข้อมูลเข้าที่ระบุไม่ตรงกับรูปแบบที่ถูกต้อง"
+msgstr "อินพุทที่ระบุไม่ตรงกับรูปแบบที่ถูกต้อง"
 
 msgid "The specified input is not valid:"
-msgstr "ค่าที่ใส่มาเหล่านี้มีรูปแบบไม่ถูกต้อง:"
+msgstr "อินพุทที่ระบุมีรูปแบบไม่ถูกต้อง:"
 
 msgid "please enter a valid email address."
 msgstr "กรุณาใส่ที่อยู่อีเมลที่ถูกรูปแบบ"
@@ -1674,12 +1666,12 @@ msgid "We will try to get back to you as soon as possible."
 msgstr "เราจะติดต่อกลับไปหาคุณเร็วที่สุดเท่าที่จะเป็นไปได้"
 
 msgid "Remember your receipt for this report."
-msgstr "จำใบรับของคุณสำหรับรายงานนี้"
+msgstr "โปรดจดจำใบรับของคุณสำหรับรายงานนี้"
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "ใช้ใบรับ 16 หลักเพื่อเข้าสู่ระบบ มันจะอนุญาตให้คุณดูข้อความที่เราส่งให้คุณ และอนุญาตให้เพิ่มข้อมูลเพิ่มเติมได้"
+msgstr "ใช้รหัสการรับ 16 หลักเพื่อเข้าสู่ระบบ ซึ่งจะอนุญาตให้คุณดูข้อความที่เราส่งให้คุณ และอนุญาตให้เพิ่มข้อมูลเพิ่มเติมได้"
 
 msgid "View your report"
 msgstr "ดูรายงานของคุณ"
@@ -1721,7 +1713,7 @@ msgid ""
 msgstr "กระบวนการทีละขั้นตอนดังต่อไปนี้ จะแนะแนวทางให้คุณสร้างแพลตฟอร์มแจ้งเบาะแสของคุณเอง"
 
 msgid "Please choose a configuration profile:"
-msgstr "กรุณาเลือกโปรไฟล์การปรับแต่ง:"
+msgstr "กรุณาเลือกโปรไฟล์การปรับค่า:"
 
 msgid "Make it possible for this admin to reset user passwords."
 msgstr "ให้ผู้ดูแลสามารถล้างรหัสผ่านผู้ใช้เพื่อตั้งใหม่ได้"
@@ -1731,7 +1723,7 @@ msgid ""
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr "เราแนะนำให้เลือกตัวเลือกนี้ ถ้าคุณต้องการปกป้องข้อมูลจากการสูญหาย ในสถานการณ์ที่ผู้รับลืมรหัสผ่านของพวกเขา ในอีกทางหนึ่ง เราไม่แนะนำให้คุณใช้ความสามารถนี้ ถ้าคุณต้องการติดตั้งระบบที่มีเฉพาะผู้รับเท่านั้นที่จะเข้าถึงสิ่งที่ถูกส่งได้"
+msgstr "เราแนะนำให้เลือกตัวเลือกนี้ ถ้าคุณต้องการปกป้องข้อมูลจากการสูญหาย ในสถานการณ์ที่ผู้รับลืมรหัสผ่านของตนเอง อย่างไรก็ตาม เราไม่แนะนำให้คุณใช้ความสามารถนี้ถ้าคุณต้องการตั้งค่าระบบที่ให้ผู้รับเท่านั้นที่จะสามารถเข้าถึงสิ่งที่ส่งไปได้"
 
 msgid "Please choose a different username."
 msgstr "กรุณาเลือกชื่อผู้ใช้อื่น:"
@@ -1740,7 +1732,7 @@ msgid "I have read and agree to the terms of the license."
 msgstr "ฉันได้อ่านและยอมรับเงื่อนไขในสัญญาอนุญาต"
 
 msgid "You have completed the platform wizard."
-msgstr "คุณได้ทำตามคำแนะนำการติดตั้งแพลตฟอร์มทั้งหมดแล้ว"
+msgstr "คุณได้ดำเนินการตัวช่วยตั้งค่าแพล็ตฟอร์มเสร็จสิ้นแล้ว"
 
 msgid "Fill out your report"
 msgstr "กรอกรายงานของคุณ"
@@ -1749,19 +1741,19 @@ msgid "Describe your report in a few words."
 msgstr "อธิบายรายงานของคุณในไม่กี่คำ"
 
 msgid "Describe your report in detail."
-msgstr "อธิบายรายงานของคุณในรายละเอียด"
+msgstr "อธิบายรายงานของคุณอย่างยละเอียด"
 
 msgid "Attach files relevant to the report."
 msgstr "แนบแฟ้มที่เกี่ยวข้องกับรายงาน"
 
 msgid "Do you want to provide your identification information?"
-msgstr "คุณต้องการที่จะให้ข้อมูลที่ระบุตัวตนของคุณหรือไม่"
+msgstr "คุณต้องการให้ข้อมูลที่ระบุตัวตนของคุณหรือไม่"
 
 msgid "First name"
-msgstr "ชื่อตัว"
+msgstr "ชื่อ"
 
 msgid "Last name"
-msgstr "สกุล"
+msgstr "นามสกุล"
 
 msgid "Gender"
 msgstr "เพศ"
@@ -1773,7 +1765,7 @@ msgid "Female"
 msgstr "หญิง"
 
 msgid "Other gender identity"
-msgstr "อัตลักษณ์สถานะเพศอื่นๆ"
+msgstr "อัตลักษณ์ทางเพศอื่นๆ"
 
 msgid "Date of birth"
 msgstr "วันเกิด"
@@ -1796,23 +1788,23 @@ msgstr "เรียน {RecipientName}"
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr "คุณได้รับอีเมลนี้ เนื่องจากมีบัญชีผู้ใช้ถูกสร้างขึ้นบนระบบของคุณ: {Site}"
+msgstr "คุณได้รับอีเมลนี้ เนื่องจากมีบัญชีผู้ใช้ถูกสร้างขึ้นในระบบของคุณ: {Site}"
 
 msgid "Username: {Username}"
 msgstr "ชื่อผู้ใช้: {Username}"
 
 msgid "Activation link: {Url}"
-msgstr "ลิงก์ยืนยันเปิดใช้งาน: {Url}"
+msgstr "ลิงก์เปิดใช้งาน: {Url}"
 
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr "กรุณาคลิกที่ลิงก์ยืนยืนเปิดใช้งาน เพื่อยืนยันการเปิดใช้งานบัญชี และตั้งรหัสผ่านของคุณ"
+msgstr "กรุณาคลิกที่ลิงก์เปิดใช้งาน เพื่อยืนยันการเปิดใช้งานบัญชี และตั้งรหัสผ่านของคุณ"
 
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
-msgstr "หลังจากการยืนยันเปิดใช้งานสำเร็จ คุณจะสามารถเข้าถึงระบบได้ทางลิงก์นี้: {LoginUrl}"
+msgstr "หลังจากการยืนยันการเปิดใช้งานสำเร็จ คุณจะสามารถเข้าถึงระบบได้ทางลิงก์นี้: {LoginUrl}"
 
 msgid "Kind regards,"
 msgstr "ขอแสดงความนับถือ"
@@ -1824,7 +1816,7 @@ msgid "Your whistleblowing platform is now accessible at:"
 msgstr "แพลตฟอร์มแจ้งเบาแสของคุณสามารถเข้าถึงได้แล้วที่:"
 
 msgid "To log in, visit:"
-msgstr "เพื่อจะลงชื่อเข้าใช้ ไปที่:"
+msgstr "เพื่อลงชื่อเข้าใช้ ให้ไปที่:"
 
 msgid "Users' credentials:"
 msgstr "หนังสือรับรองของผู้ใช้:"
@@ -1843,10 +1835,10 @@ msgid ""
 "This could be a sign of an attack (for example, someone flooding your server"
 " with bogus information) or just a usage spike due to an increased "
 "visibility of your project."
-msgstr "นี่อาจเป็นสัญญาณของการโจมตี (ตัวอย่างเช่น มีใครบางคนกำลังยิ่งรายงานปลอมๆ จำนวนมากมาให้ท่วมเซิร์ฟเวอร์ของคุณ) หรือเป็นเพียงการพุ่งขึ้นของการใช้งาน อันเนื่องมาจากการรับรู้ที่มากขึ้นถึงโครงการของคุณ"
+msgstr "นี่อาจเป็นสัญญาณของการโจมตี (ตัวอย่างเช่น มีใครบางคนกำลังส่งข้อมูลปลอมจำนวนมากมายังเซิร์ฟเวอร์ของคุณ) หรือเป็นเพียงการใช้งานเพิ่มสูงเนื่องจากมีผู้รับรู้โครงการของคุณมากขึ้น"
 
 msgid "Examine the issue to determine whether it is legitimate or not."
-msgstr "พิจารณาประเด็นเพื่อตัดสินใจว่ามันเป็นเรื่องจริงหรือไม่"
+msgstr "พิจารณาประเด็นเพื่อตัดสินใจว่าเป็นเรื่องจริงหรือไม่"
 
 msgid "The activities with unusual stats are:"
 msgstr "กิจกรรมที่มีสถิติผิดปกติคือ:"
@@ -1859,12 +1851,12 @@ msgstr "เซิร์ฟเวอร์ไม่สามารถรับป
 msgid ""
 "Please consider asking your technical support to create more disk space on "
 "the server."
-msgstr "กรุณาพิจารณาขอให้ฝ่ายสนับสนุนทางเทคนิคของคุณ เพิ่มพื้นที่ดิส์กบนเซิร์ฟเวอร์"
+msgstr "กรุณาพิจารณาร้องขอให้ฝ่ายสนับสนุนทางเทคนิคของคุณเพิ่มพื้นที่ดิสก์กบนเซิร์ฟเวอร์"
 
 msgid ""
 "GlobaLeaks technology includes a server status checking component which will"
 " alert you in case something requires your attention."
-msgstr "เทคโนโลยีของ GlobaLeaks มีชิ้นส่วนที่ทำงานตรวจสอบสถานะของเซิร์ฟเวอร์ มันจะแจ้งเตือนคุณในกรณีที่มีอะไรบางอย่างที่ต้องการความสนใจจากคุณ"
+msgstr "เทคโนโลยีของ GlobaLeaks มีส่วนประกอบที่ตรวจสอบสถานะของเซิร์ฟเวอร์ ซึ่งจะแจ้งเตือนคุณในกรณีที่มีบางสิ่งที่ต้องการความสนใจจากคุณ"
 
 msgid ""
 "For more information, log in to the Administration interface and look at the"
@@ -1888,7 +1880,7 @@ msgid "PGP key expiration alert"
 msgstr "การแจ้งเตือนการหมดอายุของกุญแจ PGP"
 
 msgid "A new whistleblowing site has been registered."
-msgstr "เว็บไซต์แจ้งเบาะแสแห่งใหม่ได้ลงทะเบียนแล้ว"
+msgstr "ลงทะเบียนเว็บไซต์แจ้งเบาะแสแห่งใหม่แล้ว"
 
 msgid "Registration data:"
 msgstr "ข้อมูลลงทะเบียน:"
@@ -1906,14 +1898,14 @@ msgid "Language: {Language}"
 msgstr "ภาษา: {Language}"
 
 msgid "Use case: {UseCase}"
-msgstr "ลักษณะใช้งาน: {UseCase}"
+msgstr "กรณีการใช้งาน: {UseCase}"
 
 msgid "New whistleblowing site registered"
-msgstr "เว็บไซต์แจ้งเบาะแสแห่งใหม่ได้ลงทะเบียนแล้ว"
+msgstr "ลงทะเบียนเว็บไซต์แจ้งเบาะแสแห่งใหม่แล้ว"
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
-msgstr "นี่เป็นอีเมลทดสอบที่ส่งออกจากหน้าจอสำหรับผู้ดูแลระบบของแพลตฟอร์ม"
+msgstr "นี่เป็นอีเมลทดสอบที่ส่งจากหน้าจอสำหรับผู้ดูแลระบบของแพลตฟอร์ม"
 
 msgid ""
 "Reception of this email indicates that the server was able to authenticate "
@@ -1934,7 +1926,7 @@ msgstr "คลิกลิงก์ที่ตามมานี้เพื่
 msgid ""
 "If you didn't request this change, change your password and contact your "
 "system administrator."
-msgstr "ถ้าคุณไม่ได้ขอให้มีการเปลี่ยนแปลงนี้ เปลี่ยนรหัสผ่านของคุณและติดต่อผู้ดูแลระบบของคุณ"
+msgstr "ถ้าคุณไม่ได้ขอการเปลี่ยนแปลงนี้ ให้เปลี่ยนรหัสผ่านของคุณและติดต่อผู้ดูแลระบบของคุณ"
 
 msgid "Email change request"
 msgstr "คำขอเปลี่ยนอีเมล"
@@ -1960,7 +1952,7 @@ msgstr "สถานะ: {TipStatus}"
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
-msgstr "ใบรับรอง HTTPS ที่ได้ใส่เข้าในบนแพลตฟอร์มนั้นกำลังจะหมดอายุหรือหมดอายุแล้ว"
+msgstr "ใบรับรอง HTTPS ที่โหลดมายังแพลตฟอร์มกำลังจะหมดอายุหรือหมดอายุแล้ว"
 
 msgid "Expiration date: {ExpirationDate}"
 msgstr "วันหมดอายุ: {ExpirationDate}"
@@ -1968,13 +1960,13 @@ msgstr "วันหมดอายุ: {ExpirationDate}"
 msgid ""
 "Without a valid certificate, the platform will be accessible in a secure way"
 " only via Tor."
-msgstr "หากไม่มีใบรองรับที่ถูกต้อง แพลตฟอร์มจะถูกเข้าถึงอย่างปลอดภัยได้ก็ต่อเมื่อเข้าผ่าน Tor เท่านั้น"
+msgstr "หากไม่มีใบรองรับที่ถูกต้อง จะสามารถเข้าถึงแพลตฟอร์มได้อย่างปลอดภัยได้ก็ต่อเมื่อเข้าผ่าน Tor เท่านั้น"
 
 msgid "Log in to solve the issue."
-msgstr "ลงชื่อเข้าระบบเพื่อแก้ปัญหานี้"
+msgstr "เข้าสู่ระบบเพื่อแก้ปัญหานี้"
 
 msgid "Expiration alert for HTTPS certificate"
-msgstr "แจ้งเตือนการหมดอายุของใบรับรอง HTTPS"
+msgstr "แจ้งเตือนใบรับรอง HTTPS หมดอายุ"
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
@@ -1989,7 +1981,7 @@ msgstr "การต่ออายุใบรับรอง HTTPS ล้ม�
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr "อีเมลฉบับนี้ถูกส่งเพื่อแจ้งคุณว่า ผู้พิทักษ์ได้มอบอำนาจให้คุณเข้าถึงตัวตนของผู้แจ้งเบาะแสของรายงาน {TipNum}"
+msgstr "อีเมลฉบับนี้ถูกส่งเพื่อแจ้งคุณว่า ผู้พิทักษ์ได้อนุญาตให้คุณเข้าถึงตัวตนของผู้แจ้งเบาะแสของรายงาน {TipNum}"
 
 msgid "The report can be accessed at:"
 msgstr "รายงานนี้สามารถเข้าถึงได้ที่:"
@@ -2000,18 +1992,18 @@ msgstr "การเข้าถึงตัวตนของผู้แจ้
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr "อีเมลฉบับนี้ถูกส่งเพื่อแจ้งคุณว่า ผู้พิทักษ์ได้ปฏิเสธไม่ให้คุณเข้าถึงตัวตนของผู้แจ้งเบาะแสของรายงาน {TipNum}"
+msgstr "อีเมลฉบับนี้ส่งมาเพื่อแจ้งคุณว่า ผู้พิทักษ์ได้ปฏิเสธไม่ให้คุณเข้าถึงตัวตนของผู้แจ้งเบาะแสของรายงาน {TipNum}"
 
 msgid "Access to whistleblower's identity denied"
-msgstr "การเข้าถึงตัวตนของผู้แจ้งเบาะแส ถูกปฏิเสธ"
+msgstr "การเข้าถึงตัวตนของผู้แจ้งเบาะแสถูกปฏิเสธ"
 
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr "อีเมลฉบับนี้ถูกส่งเพื่อแจ้งคุณว่า ผู้รับได้ร้องขอเพื่อเข้าถึงตัวตนของผู้แจ้งเบาะแสของรายงาน {TipNum}"
+msgstr "อีเมลฉบับนี้ส่งมาเพื่อแจ้งคุณว่าผู้รับได้ร้องขอเพื่อเข้าถึงตัวตนของผู้แจ้งเบาะแสของรายงาน {TipNum}"
 
 msgid "The request can be accessed at:"
-msgstr "คำร้องขอสามารถเข้าถึงได้ที่:"
+msgstr "สามารถเข้าถึงคำร้องขอได้ที่:"
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "มีคำร้องขอใหม่เพื่อเข้าถึงตัวตนของผู้แจ้งเบาะแส"
@@ -2022,7 +2014,7 @@ msgid ""
 msgstr "อีเมลฉบับนี้ถูกส่งเพื่อแจ้งคุณว่า ผู้แจ้งเบาะแสของรายงาน {TipNum} ได้ให้ข้อมูลระบุตัวตนของพวกเขาแล้ว"
 
 msgid "The whistleblower has provided their identity"
-msgstr "ผู้แจ้งเบาะแสได้ให้ข้อมูลระบุตัวตนของพวกเขาเอาไว้"
+msgstr "ผู้แจ้งเบาะแสได้ให้ข้อมูลระบุตัวตนของตนเองไว้"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
@@ -2038,7 +2030,7 @@ msgid "You can confirm your request by clicking the following link:"
 msgstr "คุณสามารถยืนยันคำร้องของคุณได้ด้วยการคลิกที่ลิงก์นี้:"
 
 msgid "Password reset instructions"
-msgstr "ขั้นตอนล้างและตั้งรหัสผ่านใหม่"
+msgstr "คำแนะนำการรีเซ็ตรหัสผ่าน"
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
@@ -2048,7 +2040,7 @@ msgstr "นี่คืออีเมลแจ้งให้ทราบว่
 msgid ""
 "You should extend its validity and update the key present on the platform, "
 "or upload a new key."
-msgstr "คุณควรเพิ่มความถูกต้องน่าเชื่อถือและปรับปรุงกุญแจที่มีอยู่ในแพลตฟอร์มตอนนี้ หรืออัปโหลดกุญแจใหม่"
+msgstr "คุณควรเพิ่มระยะเวลาที่ใช้งานได้และปรับปรุงกุญแจที่มีอยู่ในแพลตฟอร์มตอนนี้ หรืออัปโหลดกุญแจใหม่"
 
 msgid ""
 "Without a valid PGP key, the system won't be able to encrypt data provided "
@@ -2056,21 +2048,21 @@ msgid ""
 msgstr "ถ้าไม่มีกุญแจ PGP ที่ถูกต้อง ระบบจะไม่สามารถเข้ารหัสลับข้อมูลที่จะส่งให้กับคุณได้"
 
 msgid "Click the link to activate the platform:"
-msgstr "คลิกที่ลิงก์เพื่อยืนยันเปิดใช้งานแพลตฟอร์ม:"
+msgstr "คลิกที่ลิงก์เพื่อเปิดใช้งานแพลตฟอร์ม:"
 
 msgid "Activation"
-msgstr "การยืนยันเปิดใช้"
+msgstr "เปิดใช้งาน"
 
 msgid "A software update is available."
-msgstr "มีการปรับปรุงซอฟต์แวร์พร้อมแล้ว"
+msgstr "การปรับปรุงซอฟต์แวร์พร้อมใช้งานแล้ว"
 
 msgid "It is good security practice to keep the platform up to date."
-msgstr "มันเป็นวิธีปฏิบัติด้านความปลอดภัยที่ดีที่จะปรับปรุงแพลตฟอร์มให้ทันสมัยอยู่เสมอ"
+msgstr "นี่เป็นวิธีปฏิบัติที่ดีในการรักษาความปลอดภัย ซึ่งจะช่วยปรับปรุงแพลตฟอร์มให้ทันสมัยอยู่เสมอ"
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "
 "change log at: {ChangeLogUrl}"
-msgstr "หากต้องการเรียนรู้ถึงความสามารถใหม่และการแก้ไขข้อผิดพลาดในรุ่นใหม่ สามารถดูปูมความเปลี่ยนแปลงได้ที่: {ChangeLogUrl}"
+msgstr "้เพื่อเรียนรู้ถึงความสามารถใหม่ๆ และการแก้ไขข้อผิดพลาดในรุ่นใหม่ สามารถดูบันทึกการเปลี่ยนแปลงได้ที่: {ChangeLogUrl}"
 
 msgid ""
 "For instructions on software updates, please refer to the documentation at: "
@@ -2081,7 +2073,7 @@ msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "วันหมดอายุที่ใกล้ที่สุดคือ {EarliestExpirationDate}"
 
 msgid "Please remember to check them before they are deleted."
-msgstr "โปรดอย่าลืมตรวจดูพวกมันก่อนที่พวกมันจะถูกลบ"
+msgstr "โปรดอย่าลืมตรวจดูก่อนที่รายการเหล่านี้จะถูกลบ"
 
 msgid "Some reports will expire soon"
 msgstr "รายงานบางฉบับกำลังจะหมดอายุเร็วๆ นี้"
@@ -2089,7 +2081,7 @@ msgstr "รายงานบางฉบับกำลังจะหมดอ
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr "อีเมลฉบับนี้ถูกส่งเพื่อแจ้งคุณว่า ผู้แจ้งเบาะแสได้เลือกคุณเป็นผู้รับที่มีค่าสำหรับรายงานของพวกเขา"
+msgstr "อีเมลฉบับนี้ถูกส่งเพื่อแจ้งคุณว่า ผู้แจ้งเบาะแสได้เลือกคุณเป็นผู้รับรายงานซึ่งมีความสำคัญต่อพวกเขา"
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -2103,13 +2095,13 @@ msgid "New report"
 msgstr "รายงานใหม่"
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr "นี่เป็นอีเมลเพื่อแจ้งว่ารายงานที่มีอยู่แล้วฉบับหนึ่งถูกปรับปรุง"
+msgstr "นี่เป็นอีเมลเพื่อแจ้งว่ารายงานที่มีอยู่แล้วฉบับหนึ่งได้รับการปรับปรุงข้อมูล"
 
 msgid "Report updated"
-msgstr "รายงานถูกปรับปรุง"
+msgstr "รายงานได้รับการปรับปรุงใหม่"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr "นี่เป็นอีเมลเพื่อเตือนความจำคุณว่ามีรายงานที่ยังไม่ได้อ่านหรือรายงานที่ถูกปรับปรุง"
+msgstr "อีเมลฉบับนี้ส่งมาเพื่อเตือนความจำคุณว่ามีรายงานที่ยังไม่ได้อ่านหรือรายงานที่ถูกปรับปรุงแล้ว"
 
 msgid "Reminder about unread or updated reports"
 msgstr "เตือนความจำถึงรายงานที่ยังไม่ได้อ่านหรือที่ถูกปรับปรุง"

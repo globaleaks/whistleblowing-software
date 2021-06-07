@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-17 10:54+0000\n"
+"PO-Revision-Date: 2021-06-02 12:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Hong Kong) (http://www.transifex.com/otf/globaleaks/language/zh_HK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -201,12 +201,6 @@ msgstr "最遲可選日期"
 
 msgid "0 = auto"
 msgstr "0 = 自動"
-
-msgid "True"
-msgstr "True"
-
-msgid "False"
-msgstr "False"
 
 msgid "Yes"
 msgstr "是"
@@ -504,11 +498,8 @@ msgstr "秒"
 msgid "This domain name is not available."
 msgstr "此域名不可用。"
 
-msgid "VAT number"
-msgstr "增值税編號"
-
-msgid "Tax code"
-msgstr "稅務編號"
+msgid "Mark as important"
+msgstr ""
 
 msgid "File a report"
 msgstr "提交報告"

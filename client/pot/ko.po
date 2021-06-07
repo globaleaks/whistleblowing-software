@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-20 12:37+0000\n"
-"Last-Translator: Hwamok Chung <denny381506@gmail.com>\n"
+"PO-Revision-Date: 2021-06-02 12:40+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -43,7 +43,7 @@ msgid "Questionnaires"
 msgstr "설문지"
 
 msgid "Add new questionnaire"
-msgstr "새로운 질문을 추가"
+msgstr "새 질문 추가"
 
 msgid "Home"
 msgstr "홈"
@@ -52,7 +52,7 @@ msgid "Changelog"
 msgstr "업데이트 기록"
 
 msgid "License"
-msgstr "라이센스"
+msgstr "라이선스"
 
 msgid "Notification templates"
 msgstr "알림 템플릿"
@@ -70,34 +70,34 @@ msgid "Notification settings"
 msgstr "알림 설정"
 
 msgid "file unavailable"
-msgstr "사용할 수없는 파일"
+msgstr "사용할 수 없는 파일"
 
 msgid "Date"
 msgstr "날짜"
 
 msgid "Expiration date"
-msgstr "유통 기간"
+msgstr "만료 날짜"
 
 msgid "Last Access"
-msgstr "마지막 액세스"
+msgstr "마지막 액세스 날짜"
 
 msgid "Files"
 msgstr "파일"
 
 msgid "Comments"
-msgstr "코멘트"
+msgstr "댓글"
 
 msgid "Messages"
 msgstr "메시지"
 
 msgid "Select this recipient."
-msgstr "이받는 사람을 선택합니다."
+msgstr "수신자를 선택합니다."
 
 msgid "Unselect this recipient."
-msgstr "이받는 사람을 선택 취소합니다."
+msgstr "수신자를 선택 취소합니다."
 
 msgid "This recipient cannot be deselected."
-msgstr "이받는 사람이 선택을 취소 할 수 없습니다."
+msgstr "수신자를 선택 취소할 수 없습니다."
 
 msgid "Details"
 msgstr "세부 정보"
@@ -109,13 +109,13 @@ msgid "CREDIT CARD"
 msgstr "신용 카드"
 
 msgid "YOUR NAME"
-msgstr "당신의 이름"
+msgstr "내 이름"
 
 msgid "Label the report"
 msgstr "보고서 라벨링"
 
 msgid "Postpone the expiration date"
-msgstr "만료일 연기"
+msgstr "만료 날짜 연기"
 
 msgid "Select all"
 msgstr "모두 선택"
@@ -127,19 +127,19 @@ msgid "Refresh"
 msgstr "새로 고침"
 
 msgid "Context"
-msgstr "문맥"
+msgstr "컨텍스트"
 
 msgid "Private messages"
 msgstr "개인 메시지"
 
 msgid "Preview"
-msgstr "시사"
+msgstr "미리 보기"
 
 msgid "The whistleblower has already read the last update"
-msgstr "고발자는 이미 최신 업데이트를 읽기"
+msgstr "내부 고발자가 이미 최신 업데이트를 확인했습니다"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr "고발자는 아직 최신 업데이트를 읽을 수있다"
+msgstr "내부 고발자가 아직 최신 업데이트를 확인하지 않았습니다"
 
 msgid "Move up"
 msgstr "위로 이동"
@@ -148,33 +148,33 @@ msgid "Move down"
 msgstr "아래로 이동"
 
 msgid "Move left"
-msgstr "이동 왼쪽"
+msgstr "왼쪽으로 이동"
 
 msgid "Move right"
 msgstr "오른쪽으로 이동"
 
 msgid "Import"
-msgstr "수입"
+msgstr "가져오기"
 
 msgid "Export"
 msgstr "내보내기"
 
 msgid "Save all"
-msgstr "모든 저장"
+msgstr "모두 저장"
 
 msgid "Access control"
 msgstr "액세스 제어"
 
 msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "이 연결은 기밀성을 보장하는 HTTPS로 보호되고 있습니다."
+msgstr "본 연결은 기밀성을 보장하는 HTTPS로 보호되고 있습니다."
 
 msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
-msgstr "이 연결은 기밀성과 익명성을 보장하는 Tor로 보호되고 있습니다."
+msgstr "본 연결은 기밀성과 익명성을 보장하는 Tor로 보호되고 있습니다."
 
 msgid "vertical"
-msgstr "수직선"
+msgstr "수직"
 
 msgid "horizontal"
 msgstr "수평"
@@ -186,37 +186,31 @@ msgid "Email"
 msgstr "이메일"
 
 msgid "Regular expression validator"
-msgstr "정규 표현식 검사기"
+msgstr "정규식 검증"
 
 msgid "Minimum number of input characters"
-msgstr "입력 문자의 최소 수"
+msgstr "최소 입력 문자 수"
 
 msgid "Maximum number of input characters"
-msgstr "입력 문자의 최대 수"
+msgstr "최대 입력 문자 수"
 
 msgid "Earliest selectable date"
 msgstr "가장 빠른 선택 가능한 날짜"
 
 msgid "Latest selectable date"
-msgstr "최신 선택할 수 날짜"
+msgstr "가장 늦은 선택 가능한 날짜"
 
 msgid "0 = auto"
 msgstr "0 = 자동"
 
-msgid "True"
-msgstr "참"
-
-msgid "False"
-msgstr "거짓"
-
 msgid "Yes"
-msgstr "예"
+msgstr "네"
 
 msgid "No"
 msgstr "아니요"
 
 msgid "Attachment"
-msgstr "부착"
+msgstr "첨부 파일"
 
 msgid "Attachments"
 msgstr "첨부 파일"
@@ -228,46 +222,46 @@ msgid "User"
 msgstr "사용자"
 
 msgid "Motivation"
-msgstr "자극"
+msgstr "동기"
 
 msgid "Status"
 msgstr "상태"
 
 msgid "Request motivation"
-msgstr "요청 동기 부여"
+msgstr "동기 요청"
 
 msgid "Reply motivation"
-msgstr "의욕을 회신"
+msgstr "동기 답변"
 
 msgid "Request status"
 msgstr "요청 상태"
 
 msgid "Custodian"
-msgstr "후견인"
+msgstr "관리인"
 
 msgid "Custodian of the identities"
-msgstr "신원의 수탁"
+msgstr "신원 관리인"
 
 msgid "Identity"
-msgstr "정체"
+msgstr "신원"
 
 msgid "Access requested"
 msgstr "액세스 요청"
 
 msgid "Request access to the whistleblower's identity"
-msgstr "고발자의 신원에 대한 액세스 요청"
+msgstr "내부 고발자 신원 액세스 요청"
 
 msgid "Please write a motivation"
-msgstr "동기 부여를 작성해 주십시오."
+msgstr "동기를 작성하십시오"
 
 msgid "Reply to the request"
-msgstr "요청에 회신"
+msgstr "요청에 답변"
 
 msgid "Authorized"
-msgstr "인정 받은"
+msgstr "승인됨"
 
 msgid "Denied"
-msgstr "거부"
+msgstr "거부됨"
 
 msgid "Waiting for authorization"
 msgstr "승인 대기 중"
@@ -276,16 +270,16 @@ msgid "New request"
 msgstr "새 요청"
 
 msgid "Authorize"
-msgstr "권한 부여"
+msgstr "승인"
 
 msgid "Deny"
 msgstr "거부"
 
 msgid "Deny access to the whistleblower's identity"
-msgstr "고발자의 신원에 대한 액세스를 거부"
+msgstr "내부 고발자 신원 액세스 거부"
 
 msgid "Authorize access to the whistleblower's identity"
-msgstr "고발자의 신원에 대한 액세스 권한을 부여"
+msgstr "내부 고발자 신원 액세스 부여"
 
 msgid "Templates"
 msgstr "템플릿"
@@ -297,7 +291,7 @@ msgid "URL redirects"
 msgstr "URL 리디렉션"
 
 msgid "Anomaly detection thresholds"
-msgstr "이상 검출 임계"
+msgstr "이상 감지 임계값"
 
 msgid "Available disk space"
 msgstr "사용 가능한 디스크 공간"
@@ -306,41 +300,41 @@ msgid "Last update"
 msgstr "마지막 업데이트"
 
 msgid "Custodian notification templates"
-msgstr "자산 보관 알림 템플릿"
+msgstr "관리인 알림 템플릿"
 
 msgid ""
 "This interface allows configuring email templates used to notify custodians."
-msgstr "이 인터페이스는 관리인에게 통지하는 데 사용되는 이메일 템플릿을 구성 허용한다."
+msgstr "본 인터페이스는 관리인 알림에 사용되는 이메일 템플릿 구성을 허용합니다."
 
 msgid "Disable notifications to administrators"
-msgstr "관리자에게 알림을 해제"
+msgstr "관리자 알림 중단"
 
 msgid "Disable notifications to custodians"
-msgstr "관리인에 알림을 해제"
+msgstr "관리인 알림 중단"
 
 msgid "Disable notifications to recipients"
-msgstr "받는 사람에게 알림을 해제"
+msgstr "수신자 알림 중단"
 
 msgid "Score"
 msgstr "점수"
 
 msgid "Trigger question"
-msgstr "트리거 질문"
+msgstr "질문 트리거"
 
 msgid "Triggered by score:"
-msgstr "점수로 트리거됨:"
+msgstr "점수로 트리거:"
 
 msgid "Weak"
-msgstr "약한"
+msgstr "약함"
 
 msgid "Acceptable"
-msgstr "허용"
+msgstr "보통"
 
 msgid "Strong"
-msgstr "강한"
+msgstr "강함"
 
 msgid "Text shown on top of the interface for selecting contexts"
-msgstr "텍스트 컨텍스트를 선택하기위한 인터페이스의 상단에 도시"
+msgstr "컨텍스트를 선택할 수 있는 인터페이스 상단의 텍스트"
 
 msgid "Silence email notifications"
 msgstr "무음 이메일 알림"
@@ -355,13 +349,13 @@ msgid "Email address"
 msgstr "이메일 주소"
 
 msgid "Custom"
-msgstr "커스텀"
+msgstr "사용자 정의"
 
 msgid "None"
 msgstr "없음"
 
 msgid "Regular expression"
-msgstr "정규 표현식"
+msgstr "정규식"
 
 msgid "Activate"
 msgstr "활성화"
@@ -393,19 +387,19 @@ msgid "Users"
 msgstr "사용자"
 
 msgid "From"
-msgstr "From"
+msgstr "발신자"
 
 msgid "Number of downloads"
 msgstr "다운로드 수"
 
 msgid "File size not accepted."
-msgstr "파일 크기가 허용되지 않습니다."
+msgstr "허용되지 않는 파일 크기입니다."
 
 msgid "Maximum file size is:"
 msgstr "최대 파일 크기:"
 
 msgid "Scheduled jobs"
-msgstr "예약된 일감"
+msgstr "예약된 작업"
 
 msgid "Sites management"
 msgstr "사이트 관리"
@@ -417,10 +411,10 @@ msgid "Display options alphabetically"
 msgstr "디스플레이 옵션(알파벳순)"
 
 msgid "Enable email notifications for:"
-msgstr "다음에 대해 이메일 알림 활성화:"
+msgstr "다음에 대해 이메일 알림 허용:"
 
 msgid "Disable"
-msgstr "비활성화"
+msgstr "중단"
 
 msgid "Remove"
 msgstr "삭제"
@@ -465,19 +459,19 @@ msgid "Next"
 msgstr "다음"
 
 msgid "First"
-msgstr "첫번째"
+msgstr "처음"
 
 msgid "Last"
 msgstr "마지막"
 
 msgid "Running"
-msgstr "적용"
+msgstr "실행 중"
 
 msgid "Not running"
 msgstr "실행되지 않음"
 
 msgid "Send a test email to your email address."
-msgstr "이메일 주소로 테스트 이메일을 보냅니다."
+msgstr "이메일 주소로 테스트 이메일을 전송합니다."
 
 msgid "Block the submission"
 msgstr "제출 차단"
@@ -494,10 +488,10 @@ msgstr "비밀번호 재설정"
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr "한 명 이상의 수신자가 한 번도 로그인하지 않았습니다. 해당 사용자들은 보고서를 수신할 수 없습니다."
+msgstr "한 명 이상의 수신자가 한 번도 로그인하지 않았습니다. 해당 사용자는 보고서를 수신할 수 없습니다."
 
 msgid "This user has not performed the first login yet."
-msgstr "이 사용자는 한 번도 로그인하지 않았습니다."
+msgstr "해당 사용자는 한 번도 로그인하지 않았습니다."
 
 msgid "seconds"
 msgstr "초"
@@ -505,17 +499,14 @@ msgstr "초"
 msgid "This domain name is not available."
 msgstr "도메인 이름을 사용할 수 없습니다."
 
-msgid "VAT number"
-msgstr "VAT 번호"
-
-msgid "Tax code"
-msgstr "세금 코드"
+msgid "Mark as important"
+msgstr ""
 
 msgid "File a report"
-msgstr "보고서 파일링"
+msgstr "보고서 보관"
 
 msgid "Before proceeding, please set a new password."
-msgstr "계속하기 전에 새로운 비밀번호를 설정경하십시오."
+msgstr "계속하기 전에 새 비밀번호를 재설정하십시오."
 
 msgid "New password"
 msgstr "새 비밀번호"
@@ -524,86 +515,86 @@ msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "선택한 비밀번호가 너무 약합니다. 유효한 비밀번호는 최소 10자여야 하며, 하나의 소문자, 하나의 대문자, 하나의 숫자와 하나의 특수 문자를 포함한 문자로 구성되어야 합니다"
+msgstr "선택한 비밀번호가 너무 약합니다. 유효한 비밀번호는 최소 10자여야 하며, 하나의 소문자, 하나의 대문자, 하나의 숫자와 하나의 특수 문자를 포함한 문자로 구성되어야 합니다."
 
 msgid "The new password must be different from the current one."
-msgstr "새로운 비밀번호는 현재 비밀번호와 달라야 합니다."
+msgstr "새 비밀번호는 현재 비밀번호와 달라야 합니다."
 
 msgid "Type your new password again"
-msgstr "새 비밀번호를 다시 입력해 주십시오."
+msgstr "새 비밀번호를 다시 입력하십시오"
 
 msgid "The two passwords do not match"
-msgstr "두 비밀번호가 일치하지 않습니다."
+msgstr "두 비밀번호가 일치하지 않습니다"
 
 msgid "The new password must differ from the previous."
-msgstr "새로운 비밀번호는 이전 비밀번호와 달라야 합니다."
+msgstr "새 비밀번호는 이전 비밀번호와 달라야 합니다."
 
 msgid "Proceed"
-msgstr "발하다"
+msgstr "계속"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr "계속하기 전에 이중 요인 인증을 활성화하십시오."
+msgstr "계속하기 전에 이중 요인 인증을 허용하십시오."
 
 msgid "Disable submissions"
-msgstr "안 제출"
+msgstr "제출 중단"
 
 msgid "Enable encryption"
-msgstr "암호화 활성화"
+msgstr "암호화 허용"
 
 msgid "Enable administrators to change user passwords"
 msgstr "관리자가 사용자 비밀번호를 변경하도록 허용"
 
 msgid "Administrators authorized to change user passwords:"
-msgstr "사용자 비밀번호를 변경할 수 있는 승인을 갖춘 관리자:"
+msgstr "사용자 비밀번호 변경 권한을 갖춘 관리자:"
 
 msgid "Enable multisite feature"
-msgstr "다중 사이트 기능 활성화"
+msgstr "다중 사이트 기능 허용"
 
 msgid "Enable simplified login"
-msgstr "단순 로그인 활성화"
+msgstr "단순 로그인 허용"
 
 msgid "Allow recipients to delete reports"
-msgstr "받는 사람이 제출을 삭제할 수"
+msgstr "수신자가 보고서를 삭제하도록 허용"
 
 msgid "Allow recipients to postpone expiration date of the report"
-msgstr "받는 사람이 제출 기한을 연기 할 수 있도록 허용"
+msgstr "수신자가 보고서 만료 날짜를 연기할 수 있도록 허용"
 
 msgid ""
 "Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "받는 사람이 특정 제출에 대한 내부 고발자에 대한 사용 권한을 부여 할 수 있도록 허용"
+msgstr "수신자가 특정 보고서에 대해 내부 고발자에게 권한을 부여하도록 허용"
 
 msgid "Enable search engines indexing"
-msgstr "검색 엔진의 색인을 사용하도록 설정"
+msgstr "검색 엔진 인덱싱을 사용하도록 허용"
 
 msgid "Enable custom privacy panel"
-msgstr "사용자의 개인 정보 보호 패널 사용"
+msgstr "사용자 정의 프라이버시 패널 허용"
 
 msgid "Custom privacy panel"
-msgstr "사용자의 개인 정보 보호 패널"
+msgstr "사용자 정의 프라이버시 패널"
 
 msgid "Disable the privacy panel"
-msgstr "개인 정보 보호 패널을 사용하지 않도록 설정"
+msgstr "프라이버시 패널 사용 중단"
 
 msgid "Enable the receipt hint"
-msgstr "키 코드 힌트를 사용하지 않도록 설정"
+msgstr "키 코드 힌트 허용"
 
 msgid "Default questionnaire"
 msgstr "기본 설문 조사"
 
 msgid "Show contexts in alphabetical order"
-msgstr "알파벳 순서로 표시 컨텍스트"
+msgstr "알파벳 순서로 컨텍스트 표시"
 
 msgid "Do not expose users' names"
-msgstr "사용자 이름을 노출하지 마십시오."
+msgstr "사용자 이름을 노출하지 않습니다"
 
 msgid "Size limit for file attachments"
-msgstr "첨부 파일에 대한 크기 제한"
+msgstr "첨부 파일 크기 제한"
 
 msgid "in megabytes"
-msgstr "메가 바이트"
+msgstr "(메가바이트)"
 
 msgid "Enable HSTS preload"
-msgstr "HSTS 사전 로드 활성화"
+msgstr "HSTS 사전 로드 허용"
 
 msgid "Require two factor authentication"
 msgstr "이중 요인 인증 필요"
@@ -613,25 +604,25 @@ msgstr "비밀번호 변경 주기"
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
-msgstr "보안상의 이유로 비밀번호 변경은 주기적으로 수행되어야 합니다."
+msgstr "보안상의 이유로 주기적으로 비밀번호를 변경해야 합니다."
 
 msgid "Set the value to 0 to disable this feature."
-msgstr "값을 0으로 설정하여 기능을 비활성화하십시오."
+msgstr "값을 0으로 설정하여 기능을 중단하십시오."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "사용자에게 읽지 않은 보고서를 알릴 때까지의 일 수"
 
 msgid "Enable custodian user role"
-msgstr "관리인 사용자 역할 활성화"
+msgstr "관리인 사용자 역할 허용"
 
 msgid "Enable scoring system"
-msgstr "채점 시스템 활성화"
+msgstr "채점 시스템 허용"
 
 msgid "Enable private annotations"
-msgstr "개인 주석 활성화"
+msgstr "개인 주석 허용"
 
 msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "다른 웹 사이트가 iframe 내부의 플랫폼을 포함 할 수 있도록 허용"
+msgstr "다른 웹 사이트에서 iframe 내부의 플랫폼을 내장하도록 허용"
 
 msgid "Logging level"
 msgstr "기록 수준"
@@ -640,15 +631,15 @@ msgid "Log accesses of internal users"
 msgstr "내부 사용자 액세스 기록"
 
 msgid "Notify administrators of software problems"
-msgstr "관리자에게 소프트웨어 문제 알리기"
+msgstr "관리자에게 소프트웨어 문제 알림"
 
 msgid "Notify developers of software problems"
-msgstr "개발자에게 소프트웨어 문제 알리기"
+msgstr "개발자에게 소프트웨어 문제 알림"
 
 msgid ""
 "By enabling this feature, you will contribute to the development and "
 "security of the platform."
-msgstr "이 기능을 활성화하면 플랫폼 개발 및 보안에 기여하게 됩니다."
+msgstr "해당 기능을 허용하면 플랫폼 개발 및 보안에 기여하게 됩니다."
 
 msgid "Save"
 msgstr "저장"
@@ -663,10 +654,10 @@ msgid "High"
 msgstr "높음"
 
 msgid "megabytes"
-msgstr "메가 바이트"
+msgstr "메가바이트"
 
 msgid "percentage"
-msgstr "백분율"
+msgstr "퍼센트"
 
 msgid "Type"
 msgstr "유형"
@@ -684,7 +675,7 @@ msgid "Username"
 msgstr "사용자 이름"
 
 msgid "Role"
-msgstr "직무"
+msgstr "역할"
 
 msgid "Name"
 msgstr "이름"
@@ -699,7 +690,7 @@ msgid "Connection"
 msgstr "연결"
 
 msgid "Whistleblower's last access"
-msgstr "마지막 고발자 액세스"
+msgstr "마지막 내부 고발자 액세스"
 
 msgid "Substatuses"
 msgstr "하위 상태"
@@ -711,10 +702,10 @@ msgid "Label"
 msgstr "상표"
 
 msgid "This field is mandatory"
-msgstr "이 필드는 필수입니다"
+msgstr "본 필드는 필수입니다"
 
 msgid "Edit"
-msgstr "편집하다"
+msgstr "편집"
 
 msgid "Cancel"
 msgstr "취소"
@@ -729,7 +720,7 @@ msgid "Project name"
 msgstr "프로젝트 이름"
 
 msgid "Description"
-msgstr "기술"
+msgstr "설명"
 
 msgid "Homepage title"
 msgstr "홈페이지 제목"
@@ -738,13 +729,13 @@ msgid "Presentation"
 msgstr "표시"
 
 msgid "Question to solicit possible whistleblowers"
-msgstr "질문이 가능 고발자를 요청합니다"
+msgstr "가능한 내부 고발자 요청을 위한 질문"
 
 msgid "Whistleblowing button"
-msgstr "고발 버튼"
+msgstr "내부 고발 버튼"
 
 msgid "Enable disclaimer"
-msgstr "면책 활성화"
+msgstr "면책 허용"
 
 msgid "Title"
 msgstr "제목"
@@ -753,7 +744,7 @@ msgid "Text"
 msgstr "텍스트"
 
 msgid "Footer"
-msgstr "보행인"
+msgstr "각주"
 
 msgid "Upload"
 msgstr "업로드"
@@ -786,16 +777,16 @@ msgid "Hidden"
 msgstr "숨김"
 
 msgid "Disabled"
-msgstr "장애인"
+msgstr "중단됨"
 
 msgid "Enabled"
-msgstr "사용"
+msgstr "허용돔"
 
 msgid "Questionnaire"
-msgstr "질문 사항"
+msgstr "설문 조사"
 
 msgid "Recipients"
-msgstr "받는 사람"
+msgstr "수신자"
 
 msgid "days"
 msgstr "일"
@@ -804,37 +795,37 @@ msgid "Show the questionnaire navigation interface"
 msgstr "설문 조사 탐색 인터페이스 표시"
 
 msgid "Allow whistleblowers to select their recipients"
-msgstr "제보자는 자신의 수신자를 선택할 수 있습니다"
+msgstr "내부 고발자가 수신자를 선택하도록 허용"
 
 msgid "Select all recipients by default"
-msgstr "기본적으로 모든받는 사람을 선택"
+msgstr "기본적으로 모든 수신자 선택"
 
 msgid "Maximum number of selectable recipients:"
-msgstr "선택받는 사람의 최대 수:"
+msgstr "선택 가능한 최대 수신자 수:"
 
 msgid "Show recipients in alphabetical order"
-msgstr "알파벳 순서로 표시받는 사람"
+msgstr "알파벳 순서로 수신자 표시"
 
 msgid "Show recipient details on the status page of the report"
-msgstr "제출의 상태 페이지에받는 사람의 정보를보기"
+msgstr "보고서 상태 페이지에서 수신자 세부 정보 표시"
 
 msgid "Enable comments"
-msgstr "코멘트를 활성화"
+msgstr "댓글 허용"
 
 msgid "Allow whistleblowers to write comments"
-msgstr "제보자는 코멘트를 작성할 수"
+msgstr "내부 고발자가 댓글을 작성하도록 허용"
 
 msgid "Enable private messages"
-msgstr "비공개 메시지를 사용"
+msgstr "비공개 메시지 허용"
 
 msgid "Allow whistleblowers to send messages"
-msgstr "제보자 메시지를 보낼 수 있도록 허용"
+msgstr "내부 고발자가 메시지를 전송하도록 허용"
 
 msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "제보자는 기존의 제출에 첨부 파일을 추가 할 수 있도록 허용"
+msgstr "내부 고발자가 기존 보고서에 첨부 파일을 추가할 수 있도록 허용"
 
 msgid "Let recipients upload files to whistleblowers"
-msgstr "질문이 가능 고발자를 요청합니다"
+msgstr "수신자가 내부 고발자에게 파일을 업로드하도록 허용"
 
 msgid "Additional questionnaire"
 msgstr "추가 설문 조사"
@@ -843,7 +834,7 @@ msgid "Scoring system options"
 msgstr "채점 시스템 옵션"
 
 msgid "Threshold"
-msgstr "임곗값"
+msgstr "임계값"
 
 msgid "Value"
 msgstr "값"
@@ -861,7 +852,7 @@ msgid "Software version:"
 msgstr "소프트웨어 버전:"
 
 msgid "Restrict access to specific IP addresses"
-msgstr "특정 IP 주소에 대한 액세스 제한"
+msgstr "특정 IP 주소 액세스 제한"
 
 msgid "Allowed IP addresses"
 msgstr "허용된 IP 주소"
@@ -870,10 +861,10 @@ msgid "Admin"
 msgstr "관리자"
 
 msgid "Recipient"
-msgstr "받는 사람"
+msgstr "수신자"
 
 msgid "Each entry must be separated with a comma."
-msgstr "각 입력은 쉼표로 구분되어야 합니다."
+msgstr "각 입력 사항은 쉼표로 구분되어야 합니다."
 
 msgid "Example:"
 msgstr "예:"
@@ -882,16 +873,16 @@ msgid "Hostname"
 msgstr "호스트 이름"
 
 msgid "Invalid input format."
-msgstr "잘못된 입력 형식"
+msgstr "유효하지 않은 입력 형식입니다."
 
 msgid "Input should be similar to:"
-msgstr "입력은 다음과 비슷해야 합니다."
+msgstr "입력 내용과 유사한 사항:"
 
 msgid "Country code"
 msgstr "국가 코드"
 
 msgid "City"
-msgstr "시티"
+msgstr "도시"
 
 msgid "Organization"
 msgstr "조직"
@@ -900,10 +891,10 @@ msgid "Organizational unit"
 msgstr "조직 단위"
 
 msgid "Invalid email address"
-msgstr "잘못된 이메일 주소"
+msgstr "유효하지 않은 이메일 주소"
 
 msgid "Generate"
-msgstr "만들기"
+msgstr "생성"
 
 msgid "Private Key"
 msgstr "개인 키"
@@ -915,23 +906,23 @@ msgid "Certificate"
 msgstr "인증서"
 
 msgid "Valid until:"
-msgstr "다음까지 유효:"
+msgstr "유효 기한:"
 
 msgid "Issuer:"
 msgstr "발행자:"
 
 msgid "Intermediate Certificates"
-msgstr "중급 인증서"
+msgstr "중간 인증서"
 
 msgid "Enable"
-msgstr "활성화"
+msgstr "허용"
 
 msgid "Reset"
 msgstr "재설정"
 
 msgid ""
 "The platform supports the configuration of HTTPS through this interface."
-msgstr "이 플랫폼은 인터페이스를 통해 HTTPS 구성을 지원합ㅣ다."
+msgstr "본 플랫폼은 인터페이스를 통해 HTTPS 구성을 지원합니다."
 
 msgid "Automatic configuration"
 msgstr "자동 구성"
@@ -940,12 +931,12 @@ msgid ""
 "Using automatic HTTPS configuration will handle the entire process of "
 "requesting, enabling and renewing certificates from the Let's Encrypt "
 "Certificate Authority."
-msgstr "자동 HTTPS 구성을 사용하면 인증서 암호화 승인의 인증서 요청, 활성화 및 갱신 절차 전체를 처리할 수 있습니다."
+msgstr "자동 HTTPS 구성을 사용하면 Let's Encrypt 인증서 권한의 인증서 요청, 허용 및 갱신 절차 전체를 처리할 수 있습니다."
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
 "hostname must have a corresponding DNS record referencing that address."
-msgstr "이 플랫폼은 공공 IP 주소로 액세스해야 하며 선택한 호스트 이름은 해당 주소를 참조하는 해당 DNS 기록이 있어야 합니다."
+msgstr "본 플랫폼은 공공 IP 주소로 액세스해야 하며 선택한 호스트 이름에는 해당 주소를 참조하는 해당 DNS 기록이 있어야 합니다."
 
 msgid "Manual configuration"
 msgstr "수동 구성"
@@ -959,22 +950,22 @@ msgid "Auto-renewal"
 msgstr "자동 갱신"
 
 msgid "Tor Onion Service"
-msgstr "Tor 어니언 서비스"
+msgstr "Tor Onion 서비스"
 
 msgid "Anonymize outgoing connections"
 msgstr "발신 연결 익명화"
 
 msgid "Let the platform be reachable without Tor"
-msgstr "Tor 없는 플랫폼 액세스"
+msgstr "Tor 없는 플랫폼 액세스 허용"
 
 msgid "Roles enabled to use the platform without Tor"
-msgstr "Tor 없이 플랫폼을 사용하도록 허용된 역할"
+msgstr "Tor 없는 플랫폼 사용이 허용된 역할"
 
 msgid "Whistleblower"
-msgstr "고발자"
+msgstr "내부 고발자"
 
 msgid "To"
-msgstr "To"
+msgstr "수신자"
 
 msgid "SMTP email address"
 msgstr "SMTP 이메일 주소"
@@ -986,7 +977,7 @@ msgid "SMTP server port"
 msgstr "SMTP 서버 포트"
 
 msgid "Security"
-msgstr " 보안"
+msgstr "보안"
 
 msgid "Warning"
 msgstr "경고"
@@ -998,7 +989,7 @@ msgid "Password"
 msgstr "비밀번호"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr "제출 만료 경고를 보내기 전에 시간의 수"
+msgstr "보고서 만료 경고 전송까지의 시간"
 
 msgid "Test the configuration"
 msgstr "구성 테스트"
@@ -1007,10 +998,10 @@ msgid "Reset SMTP configuration"
 msgstr "SMTP 구성 재설정"
 
 msgid "Reset notification templates to default"
-msgstr "기본값으로 알림 템플릿을 재설정"
+msgstr "기본적으로 알림 템플릿 재설정"
 
 msgid "Template"
-msgstr "주형"
+msgstr "템플릿"
 
 msgid "Question"
 msgstr "질문"
@@ -1019,13 +1010,13 @@ msgid "Single-line text input"
 msgstr "한 줄의 텍스트 입력"
 
 msgid "Multi-line text input"
-msgstr "멀티 라인 텍스트 입력"
+msgstr "여러 줄의 텍스트 입력"
 
 msgid "Selection box"
 msgstr "선택 상자"
 
 msgid "Checkbox"
-msgstr "확인란"
+msgstr "체크박스"
 
 msgid "Terms of service"
 msgstr "서비스 약관"
@@ -1040,10 +1031,10 @@ msgid "Row"
 msgstr "열"
 
 msgid "Column"
-msgstr "기둥"
+msgstr "칼럼"
 
 msgid "Width"
-msgstr "폭"
+msgstr "너비"
 
 msgid "Multiple choice input"
 msgstr "여러 선택 입력"
@@ -1058,7 +1049,7 @@ msgid "Required"
 msgstr "필수"
 
 msgid "Accept multiple file uploads"
-msgstr "여러 파일 업로드를 허용"
+msgstr "다중 파일 업로드 허용"
 
 msgid "Accept multiple answers"
 msgstr "다중 답변 허용"
@@ -1076,7 +1067,7 @@ msgid "Add multimedia content"
 msgstr "멀티미디어 콘텐츠 추가"
 
 msgid "Image"
-msgstr "영상"
+msgstr "이미지"
 
 msgid "Audio"
 msgstr "오디오"
@@ -1085,16 +1076,16 @@ msgid "Video"
 msgstr "동영상"
 
 msgid "Subject answer visibility to custodian authorization"
-msgstr "후견인 권한에 따라 응답 가시성"
+msgstr "관리인 승인에 대한 주제 답변 가시성"
 
 msgid "Text shown upon negative answer"
 msgstr "부정적 답변에 대해 표시되는 텍스트"
 
 msgid "Prompt confirmation upon negative answer"
-msgstr "부정적인 응답시 신속한 확인"
+msgstr "부정적 답변에 대한 프롬포트 확인"
 
 msgid "Text shown upon confirmation"
-msgstr "성공에 대해 표시되는 텍스트"
+msgstr "확인에 대해 표시되는 텍스트"
 
 msgid "Trigger conditions"
 msgstr "트리거 조건"
@@ -1115,13 +1106,13 @@ msgid "Questions"
 msgstr "질문"
 
 msgid "Add new question"
-msgstr "새로운 질문을 추가"
+msgstr "새 질문 추가"
 
 msgid "Add question from template"
 msgstr "템플릿에서 질문 추가"
 
 msgid "Duplicate"
-msgstr "중복"
+msgstr "복사"
 
 msgid "Steps"
 msgstr "단계"
@@ -1148,7 +1139,7 @@ msgid "Subdomain"
 msgstr "하위 도메인"
 
 msgid "Creation date:"
-msgstr "만든 날짜:"
+msgstr "생성 날짜:"
 
 msgid "Root domain used for secondary sites"
 msgstr "보조 사이트에 사용하는 루트 도메인"
@@ -1157,13 +1148,13 @@ msgid "Use the first site for administrative purposes only"
 msgstr "관리용으로만 첫 사이트 사용"
 
 msgid "Enable multi-site login"
-msgstr "다중 사이트 로그인 활성화"
+msgstr "다중 사이트 로그인 허용"
 
 msgid "Allow users to sign up"
 msgstr "사용자가 가입하도록 허용"
 
 msgid "Enable terms of service"
-msgstr "이용 약관 활성화"
+msgstr "서비스 약관 허용"
 
 msgid "Send an account activation link to the user."
 msgstr "사용자에게 계정 활성화 링크를 전송합니다."
@@ -1178,22 +1169,22 @@ msgid "Set password"
 msgstr "패스워드 설정"
 
 msgid "Disable two factor authentication"
-msgstr "이중 요인 인증 비활성화"
+msgstr "이중 요인 인증 중단"
 
 msgid "Force password change"
 msgstr "강제 비밀번호 변경"
 
 msgid "The user will be forced to change its password on next login."
-msgstr "사용자는 다음 로그인의 비밀번호를 변경해야 합니다."
+msgstr "사용자는 다음 로그인 시 비밀번호를 변경해야 합니다."
 
 msgid "Language"
 msgstr "언어"
 
 msgid "Enable email notifications"
-msgstr "이메일 알림 활성화"
+msgstr "이메일 알림 허용"
 
 msgid "Details of the PGP key:"
-msgstr "PGP 키의 세부 사항:"
+msgstr "PGP 키 세부 정보:"
 
 msgid "Fingerprint"
 msgstr "지문"
@@ -1208,10 +1199,10 @@ msgid "Forcefully selected"
 msgstr "강제로 선택"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr "받는 사람이 제출 기한을 연기 할 수 있도록 허용"
+msgstr "수신자가 보고서 만료 날짜를 연기할 수 있도록 허용"
 
 msgid "Allow the recipient to delete reports"
-msgstr "받는 사람이 제출을 삭제할 수"
+msgstr "수신자가 보고서를 삭제할 수 있도록 허용"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "관리자가 다음 기능을 액세스하도록 허용:"
@@ -1223,7 +1214,7 @@ msgid "Report date"
 msgstr "보고 날짜"
 
 msgid "Authorization"
-msgstr "권한 부여"
+msgstr "승인"
 
 msgid "Requests"
 msgstr "요청"
@@ -1232,7 +1223,7 @@ msgid "The validation link is either incorrect or has expired."
 msgstr "검증 링크가 올바르지 않거나 만료되었습니다."
 
 msgid "Your new email address has been validated."
-msgstr "새로운 이메일 주소가 검증되었습니다."
+msgstr "새 이메일 주소가 검증되었습니다."
 
 msgid "Forgot password?"
 msgstr "비밀번호를 잊으셨습니까?"
@@ -1244,19 +1235,19 @@ msgid "Authentication failed"
 msgstr "인증 실패"
 
 msgid "The code is either invalid or expired."
-msgstr "키 코드가 잘못되었거나 제출이 만료되었습니다."
+msgstr "코드가 유효하지 않거나 만료되었습니다."
 
 msgid "Site:"
 msgstr "사이트:"
 
 msgid "Please select your account:"
-msgstr "계정을 선택하십시오:"
+msgstr "계정을 선택하십시오."
 
 msgid "Now type your password, then click 'Log in':"
-msgstr "지금 비밀번호를 입력 한 후 '로그인'을 클릭합니다:"
+msgstr "이제 비밀번호를 입력한 후 '로그인'을 클릭합니다."
 
 msgid "Text shown after the user has selected the option."
-msgstr "사용자가 옵션을 선택한 후 표시되는 텍스트"
+msgstr "사용자가 옵션을 선택한 후 표시되는 텍스트압나더,"
 
 msgid "Confirm"
 msgstr "확인"
@@ -1268,28 +1259,28 @@ msgid "The operation will reset the configuration and cannot be undone."
 msgstr "작업 후 구성이 재설정되며 취소할 수 없습니다."
 
 msgid "Assign score points"
-msgstr "점수 포인트를 할당"
+msgstr "점수 포인트 할당"
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr "모든 관련 데이터가 제대로 삭제를 확인하시기 바랍니다."
+msgstr "모든 관련 데이터가 영구적으로 삭제된다는 점에 유의하십시오."
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "데모 플랫폼으로, 실제 제출에 사용할 수 없습니다."
 
 msgid "Install an authenticator app on your phone"
-msgstr "휴대 전화의 인증 앱 설치"
+msgstr "휴대전화 인증 앱 설치"
 
 msgid "Scan the QR code with the app"
 msgstr "앱으로 QR 코드 촬영"
 
 msgid "Enable two factor authentication"
-msgstr "이중 요인 인증 활성화"
+msgstr "이중 요인 인증 허용"
 
 msgid "Close"
 msgstr "종료"
 
 msgid "Before proceeding please read carefully the documentation at:"
-msgstr "계속하기 전에 다음의 문서를 주의 깊게 읽어보십시오:"
+msgstr "계속하기 전에 다음 문서를 주의 깊게 읽어보십시오."
 
 msgid "Your account recovery key is:"
 msgstr "계정 복구 키:"
@@ -1297,7 +1288,7 @@ msgstr "계정 복구 키:"
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr "사본을 생성하여 안전한 곳에 보관하십시오. 비밀번호를 잊어버릴 경우 데이를 손실하지 않고 계정에 다시 액세스할 때 필요합니다."
+msgstr "사본을 생성하여 안전한 곳에 보관하십시오. 비밀번호를 잊어버릴 경우 데이터를 손실하지 않으며 계정에 다시 액세스하는 데 필요합니다."
 
 msgid "Welcome!"
 msgstr "환영합니다!"
@@ -1308,7 +1299,7 @@ msgstr "사용자 문서는 다음을 방문하십시오."
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
 " the software:"
-msgstr "기술 지원이 필요하거나, 일반 질문이 있거나 소프트웨어에 대한 새로운 아이디어가 있다면:"
+msgstr "기술 지원이 필요하거나, 일반 질문이 있거나 소프트웨어에 대한 새 아이디어가 있다면 다음으로 연락해 주십시오."
 
 msgid ""
 "If you want to contribute to software development or report a bug, please "
@@ -1319,15 +1310,15 @@ msgid "Join our chat:"
 msgstr "채팅 참여:"
 
 msgid "Follow the project on:"
-msgstr "다음에서 프로젝트 팔로우:"
+msgstr "프로젝트 팔로우:"
 
 msgid "Hint: How to hide your receipt"
-msgstr "힌트: 어떻게 키 코드를 숨기려면"
+msgstr "힌트: 키 코드를 숨기는 방법"
 
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr "읽었는지 모르게 하기 위해 사용할 수 있는 유용한 방법은 만료 기간을 포함하는 등 신용카드 번호 같이 적어놓는 것입니다."
+msgstr "읽었는지를 알지 못하도록 할 수 있는 유용한 방법은 만료 기간을 포함하는 등의 방법과 함께 신용카드 번호 같이 적어놓는 것입니다."
 
 msgid "Error!"
 msgstr "오류!"
@@ -1348,13 +1339,13 @@ msgid "The specified old password is not valid"
 msgstr "지정된 이전 비밀번호가 유효하지 않습니다."
 
 msgid "Resource can only be accessed via the Tor network"
-msgstr "자원 Tor 네트워크를 통해서만 액세스 할 수 있습니다"
+msgstr "리소스는 Tor 네트워크를 통해서만 액세스할 수 있습니다"
 
 msgid "The upload request exceeds the size limit"
-msgstr "업로드 요구가 크기 제한을 초과"
+msgstr "업로드 요청이 크기 제한을 초과합니다"
 
 msgid "Validation of email address change in progress."
-msgstr "이메일 주소 변경 검증이 진행 ㅈ우입니다"
+msgstr "이메일 주소 변경 검증 진행 중입니다."
 
 msgid "Please check your inbox for further instructions."
 msgstr "받은 편지함에서 자세한 지침을 확인하십시오."
@@ -1371,27 +1362,27 @@ msgstr "이전 비밀번호 확인 필요"
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
-msgstr "당신이 여분의 개인 정보 보호 및 보안없이이 사이트를 탐색하는 것 같습니다!"
+msgstr "사용자가 다른 프라이버시 및 보안 없이 사이트를 탐색하는 것 같습니다!"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr "Tor Browser 앱을 사용하여 사이트를 방문할 것을 권장합니다. 확실하게 신원을 보호합니다"
+msgstr "Tor Browser 앱을 사용하여 사이트를 방문할 것을 권장합니다. 확실하게 신원을 보호해 드립니다."
 
 msgid "Download the Tor Browser"
-msgstr "토르 브라우저 다운로드"
+msgstr "Tor Browser 다운로드"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "그런 다음, 복사 토르 브라우저에 다음 주소를 붙여 넣기:"
+msgstr "이후, Tor Browser에 다음 주소를 복사하고 붙여넣으십시오."
 
 msgid "Enter a name for the copy"
 msgstr "사본 이름 입력"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "당신은 이미 제출을 제기 한 적이 있습니까? 키 코드를 입력합니다."
+msgstr "이미 보고서를 보관하셨습니까? 키 코드를 입력하십시오."
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr "키 코드가 잘못되었거나 제출이 만료되었습니다."
+msgstr "수신이 유효하지 않거나 만료되었습니다."
 
 msgid "Select a file or drag it here."
 msgstr "파일을 선택하거나 여기에 드래그하십시오."
@@ -1400,10 +1391,10 @@ msgid "Uploading files…"
 msgstr "파일 업로드 중..."
 
 msgid "Upload completed successfully!"
-msgstr "업로드가 성공적으로 완료!"
+msgstr "업로드를 성공적으로 완료했습니다!"
 
 msgid "Error while uploading files; check below for details."
-msgstr "파일을 업로드하는 동안 오류; 자세한 내용은 아래를 확인합니다."
+msgstr "파일을 업로드하는 동안 오류가 발생했습니다. 자세한 내용은 다음을 확인하십시오."
 
 msgid "Estimated upload time:"
 msgstr "예상 업로드 시간:"
@@ -1412,7 +1403,7 @@ msgid "Size:"
 msgstr "크기:"
 
 msgid "Enable the Ricochet panel"
-msgstr "Ricochet 패널 활성화"
+msgstr "Ricochet 패널 허용"
 
 msgid "Address"
 msgstr "주소"
@@ -1432,7 +1423,7 @@ msgid ""
 "and staying anonymous by not revealing your location or IP address. You "
 "won't notice any difference from an insecure chat, except that you will be "
 "using a unique address instead of a phone number/email/username."
-msgstr "Tor 네트워크를 사용하고 Onion 서비스를 생성함으로써 Ricochet은 사용자의 위치나 IP 주소를 공개하지 않음으로써 개인 정보를 보호하고 익명을 유지하면서 채팅할 수 있는 인스턴트 메시징 앱입니다. 전화번호/이메일/사용자 이름 대신 고유한 주소를 사용한다는 점을 제외하고는 안전하지 않은 일반 채팅과 어떤 차이도 느끼지 못할 것입니다."
+msgstr "Tor 네트워크를 사용하고 Onion 서비스를 생성함으로써 Ricochet은 사용자의 위치나 IP 주소를 공개하지 않음으로써 프라이버시를 보호하고 익명을 유지하면서 채팅할 수 있는 인스턴트 메시징 앱입니다. 전화번호/이메일/사용자 이름 대신 고유한 주소를 사용한다는 점을 제외하고, 안전하지 않은 일반 채팅과 어떤 차이도 느끼지 못할 것입니다."
 
 msgid "The connection is not secure."
 msgstr "연결이 안전하지 않습니다."
@@ -1440,7 +1431,7 @@ msgstr "연결이 안전하지 않습니다."
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
-msgstr "이 플랫폼은 아직 HTTPS 연결에 대해 구성되지 않았습니다. 따라서 시험용으로만 사용할 수 있습니다."
+msgstr "본 플랫폼은 아직 HTTPS 연결에 대해 구성되지 않았습니다. 따라서 시험용으로만 사용할 수 있습니다."
 
 msgid "Use case"
 msgstr "사용 사례"
@@ -1470,10 +1461,10 @@ msgid "Send"
 msgstr "전송"
 
 msgid "Allow the whistleblower to write comments"
-msgstr "고발자가 코멘트를 작성할 수"
+msgstr "내부 고발자가 댓글을 작성하도록 허용"
 
 msgid "From:"
-msgstr "보낸이:"
+msgstr "발신자:"
 
 msgid "To:"
 msgstr "수신자:"
@@ -1488,17 +1479,17 @@ msgid "File size"
 msgstr "파일 크기"
 
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr "고발자가 보고서에 첨부 파일을 추가하도록 허"
+msgstr "내부 고발자가 보고서에 첨부 파일을 추가하도록 허용"
 
 msgid "Allow the whistleblower to send messages"
-msgstr "고발자 메시지를 보낼 수 있도록 허용"
+msgstr "내부 고발자가 메시지를 전송할 수 있도록 허용"
 
 msgid "Are you sure that you want to delete the report?"
-msgstr "당신은 당신이 제출을 삭제 하시겠습니까?"
+msgstr "보고서를 삭제하시겠습니까?"
 
 msgid ""
 "Everything related to the report stored on the platform will be deleted."
-msgstr "플랫폼에 보고서와 관련되어 저장된 모든 것이 삭제됩니다."
+msgstr "플랫폼에 보관된 보고서와 관련되어 저장된 모든 것이 삭제됩니다."
 
 msgid ""
 "Please be aware that everything stored off the platform, e.g. files you have"
@@ -1506,35 +1497,35 @@ msgid ""
 msgstr "컴퓨터에 저장한 파일 등, 플랫폼에 저장한 모든 것은 수동으로 제거해야 합니다."
 
 msgid "Are you sure that you want to delete the selected reports?"
-msgstr "당신은 당신이 제출을 삭제 하시겠습니까?"
+msgstr "선택한 보고서를 삭제하시겠습니까?"
 
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
 "recipients won't be able to further access to it."
-msgstr "받는 사람이 액세스를 촉진 할 수 없습니다 있도록 모든 관련 데이터가 제대로 삭제되었는지 확인하십시오."
+msgstr "수신자가 추후 액세스할 수 없도록 모든 관련 데이터가 제대로 삭제되었는지 확인하십시오."
 
 msgid "Please write a motivation for the reply"
-msgstr "응답에 대한 의욕을 보냅니다"
+msgstr "답변에 대한 동기를 작성하십시오"
 
 msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "당신은 당신이 제출 기한을 연기 하시겠습니까?"
+msgstr "보고서 만료 날짜를 연기하시겠습니까?"
 
 msgid "By confirming, you will postpone the expiration date to:"
-msgstr "확인하면 만료 날짜를하는 연기합니다:"
+msgstr "확인 시 연기되는 만료 날짜:"
 
 msgid ""
 "Are you sure that you want to postpone the expiration date for all selected "
 "reports?"
-msgstr "당신은 당신이 선택한 모든 제출 기한을 연기 하시겠습니까?"
+msgstr "선택한 모든 보고서에 대해 만료 날짜를 연기하시겠습니까?"
 
 msgid "Questionnaire answers"
-msgstr "설문 답변"
+msgstr "설문 조사 답변"
 
 msgid "Step"
 msgstr "단계"
 
 msgid "Recipient list"
-msgstr "받는 사람 목록"
+msgstr "수신자 목록"
 
 msgid "Status:"
 msgstr "상태"
@@ -1546,7 +1537,7 @@ msgid "Upload a file:"
 msgstr "파일 업로드:"
 
 msgid "Logout"
-msgstr "로그 아웃"
+msgstr "로그아웃"
 
 msgid "An update is available:"
 msgstr "업데이트 사용 가능:"
@@ -1556,7 +1547,7 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr "'기본 설정' 섹션에 액세스하여 '계정 복구 키'를 검색하고 이를 안전하게 저장하는 것을 권장합니다. 이 키는 비밀번호를 잊어버린 경우 플랫폼 및 데이터에 대한 액세스를 복구하는 데 필요합니다."
+msgstr "'기본 설정' 섹션에 액세스하여 '계정 복구 키'를 검색하고 이를 안전하게 저장할 것을 권장합니다. 해당 키는 비밀번호를 잊어버린 경우 플랫폼 및 데이터 액세스를 복구하는 데 필요합니다."
 
 msgid "The provided recovery key is invalid."
 msgstr "제공된 복구 키가 유효하지 않습니다."
@@ -1574,7 +1565,7 @@ msgstr "이메일 주소를 입력하여 비밀번호 재설정을 요청하십�
 
 msgid ""
 "Enter you encryption recovery key to complete the password reset procedure"
-msgstr "비밀번호 재설정 절차를 완료하려면 암호화 복구 키를 입력하십시오."
+msgstr "비밀번호 재설정 절차를 완료하려면 암호화 복구 키를 입력하십시오"
 
 msgid "Password reset requested."
 msgstr "비밀번호 재설정이 요청되었습니다."
@@ -1587,10 +1578,10 @@ msgstr "숨기기"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
-msgstr "고발자의 신원에 대한 액세스는 관리인에게 요청하고있다."
+msgstr "내부 고발자의 신원 액세스 권한이 관리인에게 요청되었습니다."
 
 msgid "Date of the request"
-msgstr "요청 일자"
+msgstr "요청 날짜"
 
 msgid "Congratulations!"
 msgstr "축하합니다!"
@@ -1612,7 +1603,7 @@ msgid ""
 msgstr "24시간 이내에 활성화되지 않으면 플랫폼이 자동으로 삭제됩니다."
 
 msgid "Sign up"
-msgstr "Sign up"
+msgstr "가입"
 
 msgid "Domain"
 msgstr "도메인"
@@ -1621,7 +1612,7 @@ msgid "Confirmation"
 msgstr "확인"
 
 msgid "Invalid confirmation"
-msgstr "잘못된 확인"
+msgstr "유효하지 않은 확인"
 
 msgid "Other"
 msgstr "기타"
@@ -1633,16 +1624,16 @@ msgid "Invalid phone number"
 msgstr "유효하지 않은 전화번호"
 
 msgid "Select the context of your report:"
-msgstr "제출의 컨텍스트를 선택하십시오."
+msgstr "보고서 컨텍스트를 선택하십시오."
 
 msgid "The answer is too short"
 msgstr "답변이 너무 짧습니다."
 
 msgid "The specified input is not valid."
-msgstr "지정된 입력이 유효하지 않습니다."
+msgstr "지정된 입력 사항이 유효하지 않습니다."
 
 msgid "The specified input is not valid:"
-msgstr "지정된 입력이 유효하지 않습니다."
+msgstr "지정된 다음 입력 사항이 유효하지 않습니다."
 
 msgid "please enter a valid email address."
 msgstr "유효한 이메일 주소를 입력하십시오."
@@ -1651,41 +1642,41 @@ msgid "please enter numbers only."
 msgstr "숫자만 입력하십시오."
 
 msgid "Submissions disabled"
-msgstr "제출 불가"
+msgstr "제출 중단됨"
 
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
-msgstr "당신은 익명없이 서버에 연결하는이 서버는 익명 제출 지원"
+msgstr "사용자는 익명성 보장이 되지 않는 서버에 연결하고 있으며 본 서버는 익명 제출만 지원합니다."
 
 msgid "Thank you!"
-msgstr "고맙습니다!"
+msgstr "감사합니다!"
 
 msgid "Your report was successful."
-msgstr "제출 성공했습니다."
+msgstr "보고서 제출에 성공했습니다."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "가능한 한 빨리 답변을 드리겠습니다."
 
 msgid "Remember your receipt for this report."
-msgstr "이 제출 키 코드를 기억하십시오."
+msgstr "보고서 수신을 기억하십시오."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "로그인 할 수있는 16 자리의 키 코드를 사용합니다. 그것은 당신이 우리가 보낸 모든 메시지를 볼 수 있습니다, 또한 여분의 정보를 추가 할 수 있습니다."
+msgstr "16자리의 수신 코드로 로그인하십시오. 이를 통해 당사가 보낸 모든 메시지를 볼 수 있으며, 여분의 정보를 추가할 수도 있습니다."
 
 msgid "View your report"
-msgstr "제출보기"
+msgstr "보고서 보기"
 
 msgid "Recipient selection"
-msgstr "받는 사람 선택"
+msgstr "수신자 선택"
 
 msgid "Select the recipients of your report:"
 msgstr "보고서 수신자 선택:"
 
 msgid "Recipients selected:"
-msgstr "수신자 선택:"
+msgstr "선택한 수신자:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "선택할 수 있는 최대 수신자 수에 도달했습니다."
@@ -1698,7 +1689,7 @@ msgstr "다음 수신자는 보고서를 받게 되며 선택 사항을 취소�
 msgid ""
 "In this step the answers to the following questions are either missing or "
 "invalid:"
-msgstr "이 단계에서 다음 질문에 대한 답변이 누락되었거나 유효하지 않습니다."
+msgstr "본 단계에서 다음 질문에 대한 답변이 누락되었거나 유효하지 않습니다."
 
 msgid "You must select at least one recipient."
 msgstr "수신자를 한 명 이상 선택해야 합니다."
@@ -1718,14 +1709,14 @@ msgid "Please choose a configuration profile:"
 msgstr "구성 프로필을 선택하십시오."
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr "이 관리자가 사용자 비밀번호를 재설정할 수 있도록 합니다."
+msgstr "본 관리자가 사용자 비밀번호를 재설정할 수 있도록 합니다."
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr "수신자가 비밀번호를 잃은 경우 데이터가 손실되지 않도록 보호하려면 해당 옵션을 선택하는 것이 좋습니다. 반면, 수신자만 제출물에 액세스할 수 있는 시스템을 설정하려는 경우 해당 기능을 사용하지 않는 것이 좋습니다."
+msgstr "수신자가 비밀번호를 잊어버린 경우 데이터가 손실되지 않도록 보호하려면 해당 옵션을 선택하는 것이 좋습니다. 반면, 수신자만 제출에 액세스할 수 있는 시스템을 설정하려는 경우 해당 기능을 사용하지 않는 것이 좋습니다."
 
 msgid "Please choose a different username."
 msgstr "다른 사용자 이름을 선택하십시오."
@@ -1734,22 +1725,22 @@ msgid "I have read and agree to the terms of the license."
 msgstr "라이선스 약관을 읽었으며 이에 동의합니다."
 
 msgid "You have completed the platform wizard."
-msgstr "당신은 성공적으로 플랫폼 마법사를 완료했습니다."
+msgstr "성공적으로 플랫폼 마법사를 완료했습니다."
 
 msgid "Fill out your report"
-msgstr "제출을 작성"
+msgstr "보고서 작성"
 
 msgid "Describe your report in a few words."
-msgstr "몇 마디로 제출을 설명"
+msgstr "몇 마디로 보고서를 설명해 주십시오."
 
 msgid "Describe your report in detail."
-msgstr "보고서에 관해 자세히 설명하십시오."
+msgstr "보고서를 자세히 설명해 주십시오."
 
 msgid "Attach files relevant to the report."
 msgstr "보고서와 관련된 파일을 첨부하십시오."
 
 msgid "Do you want to provide your identification information?"
-msgstr "당신은 당신의 식별 정보를 제공 하시겠습니까?"
+msgstr "사용자의 식별 정보를 제공하시겠습니까?"
 
 msgid "First name"
 msgstr "이름"
@@ -1776,21 +1767,21 @@ msgid "Place of birth"
 msgstr "출생지"
 
 msgid "Zip code / Postal code"
-msgstr "우편 번호 / 우편 번호"
+msgstr "우편번호"
 
 msgid "Province"
-msgstr "지방"
+msgstr "시/도"
 
 msgid "Country"
 msgstr "국가"
 
 msgid "Dear {RecipientName},"
-msgstr "친애 %의 {RecipientName} 를,"
+msgstr "{RecipientName} 님,"
 
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr "시스템에 사용자 계정이 생성되었으므로 이메일이 전송되었습니다. {Site}"
+msgstr "{Site} 시스템에 사용자 계정이 생성되었으므로 이메일이 전송되었습니다."
 
 msgid "Username: {Username}"
 msgstr "사용자 이름: {Username}"
@@ -1806,22 +1797,22 @@ msgstr "계정 활성화를 진행하고 사용자 비밀번호를 설정하려�
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
-msgstr "활성화에 성공하면 다음 링크를 통해 시스템에 액세스할 수 있습니다. {LoginUrl}"
+msgstr "활성화에 성공하면 {LoginUrl} 링크를 통해 시스템에 액세스할 수 있습니다."
 
 msgid "Kind regards,"
-msgstr "종류 안부,"
+msgstr "감사합니다."
 
 msgid "Account activation"
 msgstr "계정 활성화"
 
 msgid "Your whistleblowing platform is now accessible at:"
-msgstr "이제 다음에서 내부 고발 플랫폼에 액세스할 수 있습니다."
+msgstr "이제 다음 링크에서 내부 고발 플랫폼에 액세스할 수 있습니다."
 
 msgid "To log in, visit:"
 msgstr "로그인하려면 다음을 방문하십시오."
 
 msgid "Users' credentials:"
-msgstr "사용자 자격 증명:"
+msgstr "사용자 로그인 정보:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "플랫폼은 다음에서 자동으로 삭제됩니다."
@@ -1831,13 +1822,13 @@ msgstr "액세스 지침"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
-msgstr "최근에 검출 된 활동의 수는 통상보다 높게 나타난다."
+msgstr "최근에 감지된 활동 수가 통상보다 높게 나타납니다."
 
 msgid ""
 "This could be a sign of an attack (for example, someone flooding your server"
 " with bogus information) or just a usage spike due to an increased "
 "visibility of your project."
-msgstr "이것은 아니면 그냥 사용 급증으로 인해 프로젝트의 증가 가시성 (당신의 가짜 정보를 서버에 홍수 사람, 예를 들면) 공격의 표적이 될 수 있습니다."
+msgstr "공격의 징후(사용자에 대한 가짜 정보를 서버에 배포하는 등의 행위)이거나 단순한 프로젝트의 증가 가시성으로 인한 사용량 증가로 인한 것일 수 있습니다."
 
 msgid "Examine the issue to determine whether it is legitimate or not."
 msgstr "문제를 조사하여 합법적인지 확인하십시오."
@@ -1848,35 +1839,35 @@ msgstr "특이한 통계와 활동은 다음과 같습니다."
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr "서버에서 새 보고서가 저장될 수 있음을 보장할 수 없으므로 제출물이 비활성화되었습니다."
+msgstr "서버에서 새 보고서가 저장될 수 있음을 보장할 수 없으므로 제출이 중단되었습니다."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
 "the server."
-msgstr "더 많은 서버 디스크 공간을 추가하여 기술 지원을 요청하는 고려하시기 바랍니다."
+msgstr "기술 지원팀에게 문의하여 더 많은 서버 디스크 공간을 추가하사가 바랍니다."
 
 msgid ""
 "GlobaLeaks technology includes a server status checking component which will"
 " alert you in case something requires your attention."
-msgstr "GlobaLeaks 기술은 무엇인가주의가 필요한 경우에 당신을 경고하는 서버 상태 확인 구성 요소가 포함되어 있습니다."
+msgstr "GlobaLeaks 기술에는 사용자의 관심을 끌어야 하는 경우에 사용자에게 경고할 서버 상태 확인 구성 요소가 포함되어 있습니다."
 
 msgid ""
 "For more information, log in to the Administration interface and look at the"
 " \"System Stats\" and \"Anomalies\" sections."
-msgstr "자세한 내용은 관리 인터페이스에 로그인하여 \"System Stats\" 및 \"Anomalies\" 섹션을 참조하십시오."
+msgstr "자세한 내용은 관리 인터페이스에 로그인하여 \"시스템 통계\" 및 \"이상\" 섹션을 참조하십시오."
 
 msgid "Anomaly detected in {NodeName}"
-msgstr "{NodeName}에서 이상이 감지되었습니다."
+msgstr "{NodeName}에서 이상이 감지됨"
 
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
 "going to expire or has already expired:"
-msgstr "다음과 같은 사용자의 PGP 키가 만료 예정 또는 이미 만료되었음을 알리는 이메일입니다."
+msgstr "다음 사용자의 PGP 키가 만료 예정 또는 이미 만료되었음을 알리는 이메일입니다."
 
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
 "notifications."
-msgstr "유효한 PGP 키가 없으면, 시스템에서 암호화된 알림을 보낼 수 없습니다."
+msgstr "유효한 PGP 키가 없으면, 시스템에서 암호화된 알림을 전송할 수 없습니다."
 
 msgid "PGP key expiration alert"
 msgstr "PGP 키 만료 경고"
@@ -1912,7 +1903,7 @@ msgstr "플랫폼의 관리 인터페이스에서 전송한 테스트 이메일�
 msgid ""
 "Reception of this email indicates that the server was able to authenticate "
 "to and interact with the SMTP mail server."
-msgstr "본 이메일을 받았다면 서버에서 SMTP 메일 서버에 대해 인증하고 상호 작용할 수 있음을 나타냅니다."
+msgstr "본 이메일을 받았다면 서버에서 SMTP 메일 서버에 대해 인증하고 상호 작용할 수 있다는 뜻입니다."
 
 msgid "Test email"
 msgstr "테스트 이메일"
@@ -1920,7 +1911,7 @@ msgstr "테스트 이메일"
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr "귀하의 이메일 주소를 {NewEmailAddress} 주소로 변경해 달라는 요청이 접수되었음을 알려드리기 위한 이메일입니다."
+msgstr "사용자의 이메일 주소를 {NewEmailAddress} 주소로 변경해 달라는 요청이 접수되었음을 알려드리기 위한 이메일입니다."
 
 msgid "Click the following link to validate this change:"
 msgstr "변경 사항을 확인하려면 다음 링크를 클릭하십시오."
@@ -1940,7 +1931,7 @@ msgid "Date: {EventTime}"
 msgstr "날짜: {EventTime}"
 
 msgid "From: Whistleblower"
-msgstr "보낸 사람: 내부 고발자"
+msgstr "발신자: 내부 고발자"
 
 msgid "Date: {SubmissionDate}"
 msgstr "날짜: {SubmissionDate}"
@@ -1954,10 +1945,10 @@ msgstr "상태: {TipStatus}"
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
-msgstr "플랫폼에 로드된 HTTPS 인증서가 곧 만료되었거나 이미 만료되었습니다."
+msgstr "플랫폼에 로드된 HTTPS 인증서가 곧 만료되거나 이미 만료되었습니다."
 
 msgid "Expiration date: {ExpirationDate}"
-msgstr "만료일: {ExpirationDate}"
+msgstr "만료 날짜: {ExpirationDate}"
 
 msgid ""
 "Without a valid certificate, the platform will be accessible in a secure way"
@@ -1972,7 +1963,7 @@ msgstr "HTTPS 인증서에 대한 만료 경고"
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
-msgstr "오늘 예약된 자동 HTTPS 인증서 갱신이 실패했습니다."
+msgstr "오늘로 예약된 자동 HTTPS 인증서 갱신이 실패했습니다."
 
 msgid "The system will keep trying."
 msgstr "시스템에서 계속 시도합니다."
@@ -1983,45 +1974,45 @@ msgstr "HTTPS 인증서 갱신 실패"
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr "관리자가 {TipNum} 보고서의 내부 고발 신원에 대한 액세스 권한을 귀하에게 승인했음을 알리는 이메일입니다."
+msgstr "관리자가 {TipNum} 보고서의 내부 고발 신원 액세스 권한을 사용자에게 승인했음을 알리는 이메일입니다."
 
 msgid "The report can be accessed at:"
 msgstr "보고서는 다음 위치에서 액세스할 수 있습니다."
 
 msgid "Access to whistleblower's identity authorized"
-msgstr "내부 고발자의 신원에 대한 액세스 권한을"
+msgstr "내부 고발자의 신원 액세스 권한 승인"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr "관리인이 신고서 {TipNum}의 내부 고발 신원에 대한 액세스 권한을 귀하에 대해 거부했음을 알리는 이메일입니다."
+msgstr "관리인이 {TipNum} 보고서의 내부 고발 신원 액세스 권한을 사용자에 대해 거부했음을 알리는 이메일입니다."
 
 msgid "Access to whistleblower's identity denied"
-msgstr "내부 고발자의 신원에 대한 액세스가 거부"
+msgstr "내부 고발자의 신원 액세스 권한을 거부"
 
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr "이것은받는 사람이 제출 {TipNum} 의 제보자의 신원에 대한 액세스를 요청했음을 알리는 이메일입니다"
+msgstr "수신자가 {TipNum} 보고서의 내부 고발 신원 액세스 권한을 요청했음을 알리는 이메일입니다."
 
 msgid "The request can be accessed at:"
-msgstr "요청은 다음 위치에서 액세스할 수 있습니다."
+msgstr "해당 요청은 다음 위치에서 액세스할 수 있습니다."
 
 msgid "New request of access to a whistleblower's identity"
-msgstr "내부 고발자의 신원에 대한 새 액세스 요청"
+msgstr "내부 고발자의 신원 액세스 권한을 요청"
 
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr "{TipNum} 보고서의 내부 고발자가 신원을 제공했음을 알리는 이메일입니다."
+msgstr "{TipNum} 보고서의 내부 고발자가 자신의 신원을 제공했음을 알리는 이메일입니다."
 
 msgid "The whistleblower has provided their identity"
-msgstr "고발자는 자신의 정체성을 제공하고있다"
+msgstr "내부 고발자가 자신의 신원을 제공했습니다"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr "계정에 대한 비밀번호 재설정을 요청했으므로 발송된 이메일입니다. {Username}"
+msgstr "사용자가 {Username} 계정에 대한 비밀번호 재설정을 요청했으므로 발송된 이메일입니다."
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
@@ -2037,20 +2028,20 @@ msgstr "비밀번호 재설정 지침"
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
 "expired."
-msgstr "이것은 당신의 PGP 키가 만료되거나 이미 만료되었음을 알리는 이메일입니다."
+msgstr "사용자의 PGP 키가 만료되거나 이미 만료되었음을 알리는 이메일입니다."
 
 msgid ""
 "You should extend its validity and update the key present on the platform, "
 "or upload a new key."
-msgstr "당신은 그 유효 기간을 연장하고 플랫폼에서 키 현재를 업데이트하거나 새 키를 업로드해야합니다."
+msgstr "유효성을 연장하고 플랫폼에서 현재 키를 업데이트하거나 새 키를 업로드해야 합니다."
 
 msgid ""
 "Without a valid PGP key, the system won't be able to encrypt data provided "
 "to you."
-msgstr "유효한 PGP 키가 없으면, 시스템에서 귀하에게 제공된 데이터를 암호화할 수 없습니다."
+msgstr "유효한 PGP 키가 없다면 시스템에서 사용자에게 제공된 데이터를 암호화할 수 없습니다."
 
 msgid "Click the link to activate the platform:"
-msgstr "링크를 클릭하여 플랫폼을 활성화하십시오."
+msgstr "링크를 클릭하여 다음 플랫폼을 활성화하십시오."
 
 msgid "Activation"
 msgstr "활성화"
@@ -2064,26 +2055,26 @@ msgstr "플랫폼을 최신 상태로 유지하는 것은 좋은 보안 관행�
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "
 "change log at: {ChangeLogUrl}"
-msgstr "새 버전의 새로운 기능 및 버그 수정에 대해 알아보려면 다음 위치의 변경 로그를 참조하십시오. {ChangeLogUrl}"
+msgstr "새 버전의 새 기능 및 버그 수정에 대해 알아보려면 {ChangeLogUrl}에서 변경 로그를 참조하십시오."
 
 msgid ""
 "For instructions on software updates, please refer to the documentation at: "
 "{UpdateGuideUrl}"
-msgstr "소프트웨어 업데이트에 대한 지침은 다음 문서를 참조하십시오. {UpdateGuideUrl}"
+msgstr "소프트웨어 업데이트에 대한 지침은 {UpdateGuideUrl}에서 문서를 참조하십시오."
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
-msgstr "가장 빠른 만료일은 {EarliestExpirationDate}입니다."
+msgstr "가장 빠른 만료 날짜는 {EarliestExpirationDate}입니다."
 
 msgid "Please remember to check them before they are deleted."
 msgstr "삭제하기 전에 확인하시기 바랍니다."
 
 msgid "Some reports will expire soon"
-msgstr "일부 보고서는 곧 만료됩니다."
+msgstr "일부 보고서가 곧 만료됩니다."
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr "이것은 내부 고발자가 그 / 그녀의 제출 귀중한받는 사람으로 당신을 선택했음을 알리는 이메일입니다."
+msgstr "내부 고발자가 자신의 보고서에 대한 소중한 수신자로 사용자를 선택했음을 알리는 이메일입니다."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -2091,7 +2082,7 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr "여기에 포함된 정보와 자료에 특별한 주의를 기울여야 합니다. 대부분의 내부 고발자는 대중의 이익을 위해 높은 개인적 위험에 노출된다는 점에 명심하십시오. 따라서 이 보고서에 제공된 자료는 매우 중요한 것으로 간주해야 합니다."
+msgstr "여기에 포함된 정보와 자료에 특별한 주의를 기울여야 합니다. 대부분의 내부 고발자는 대중의 이익을 위해 높은 개인적 위험에 노출된다는 점에 명심하십시오. 따라서 해당 보고서에 제공된 자료는 매우 중요한 것으로 간주해야 합니다."
 
 msgid "New report"
 msgstr "새 보고서"
@@ -2100,10 +2091,10 @@ msgid "This is an email to notify that an existing report has been updated."
 msgstr "기존 보고서가 업데이트되었음을 알리는 이메일입니다."
 
 msgid "Report updated"
-msgstr "보고서가 업데이트되었습니다."
+msgstr "보고서 업데이트됨"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr "본 이메일은 사용자가 읽지 않았거나 업데이트된 보고서가 있음을 알려드리기 위한 것입니다."
+msgstr "사용자가 읽지 않았거나 업데이트된 보고서가 있음을 알려드리기 위한 이메일입니다."
 
 msgid "Reminder about unread or updated reports"
 msgstr "사용자가 읽지 않았거나 업데이트된 보고서에 대한 알림"

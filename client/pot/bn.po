@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-17 10:54+0000\n"
+"PO-Revision-Date: 2021-06-02 12:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bengali (http://www.transifex.com/otf/globaleaks/language/bn/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -204,12 +204,6 @@ msgstr "সর্বশেষ নির্বাচনযোগ্য তার�
 
 msgid "0 = auto"
 msgstr "0 = অটো"
-
-msgid "True"
-msgstr "সত্য"
-
-msgid "False"
-msgstr "মিথ্যা"
 
 msgid "Yes"
 msgstr "হাঁ"
@@ -507,11 +501,8 @@ msgstr "সেকেন্ড"
 msgid "This domain name is not available."
 msgstr "এই ডোমেইন নাম উপলব্ধ নয়।"
 
-msgid "VAT number"
-msgstr "ভ্যাট নাম্বার"
-
-msgid "Tax code"
-msgstr "টিন নাম্বার"
+msgid "Mark as important"
+msgstr ""
 
 msgid "File a report"
 msgstr "একটি রিপোর্ট জমা দিন"

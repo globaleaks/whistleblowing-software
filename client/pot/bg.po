@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-05-17 10:54+0000\n"
+"PO-Revision-Date: 2021-06-02 12:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -209,12 +209,6 @@ msgstr "Последна избираема дата"
 
 msgid "0 = auto"
 msgstr "0 = автоматично"
-
-msgid "True"
-msgstr "Вярно"
-
-msgid "False"
-msgstr "Невярно"
 
 msgid "Yes"
 msgstr "Да"
@@ -512,10 +506,7 @@ msgstr "секунди"
 msgid "This domain name is not available."
 msgstr ""
 
-msgid "VAT number"
-msgstr ""
-
-msgid "Tax code"
+msgid "Mark as important"
 msgstr ""
 
 msgid "File a report"
