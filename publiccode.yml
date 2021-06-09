@@ -31,6 +31,32 @@ legal:
     Hermes Center for Transparency and Digital Human Rights
   authorsFile: 'https://github.com/globaleaks/GlobaLeaks/blob/main/AUTHORS'
   repoOwner: GlobaLeaks
+intendedAudience:
+  scope:
+    - agriculture
+    - culture
+    - defence
+    - education
+    - emergency-services
+    - employment
+    - energy
+    - environment
+    - finance-and-economic-development
+    - foreign-affairs
+    - government
+    - healthcare
+    - infrastructures
+    - justice
+    - local-authorities
+    - manufacturing
+    - research
+    - science-and-technology
+    - security
+    - society
+    - sport
+    - tourism
+    - transportation
+    - welfare
 localisation:
   localisationReady: true
   availableLanguages:
