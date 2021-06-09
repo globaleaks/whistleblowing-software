@@ -179,7 +179,9 @@ class SOCKS5Agent(object):
     _tlsWrapper = TLSWrapClientEndpoint
 
     def __init__(self, reactor, contextFactory=BrowserLikePolicyForHTTPS(),
-                 connectTimeout=None, bindAddress=None, pool=None, proxyEndpoint=None, endpointArgs={}):
+                 connectTimeout=None, bindAddress=None, pool=None, proxyEndpoint=None, endpointArgs=None):
+        if endpointArgs is None:
+            endpointArgs = {}
         if not IPolicyForHTTPS.providedBy(contextFactory):
             raise NotImplementedError(
                 'contextFactory must implement IPolicyForHTTPS')
