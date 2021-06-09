@@ -533,7 +533,7 @@ def db_get_questionnaires(session, tid, language):
     :return: A list of contexts descriptors
     """
     questionnaires = session.query(models.Questionnaire) \
-                            .filter(models.Questionnaire.tid.in_(set([1, tid])),
+                            .filter(models.Questionnaire.tid.in_({1, tid}),
                                     or_(models.Context.questionnaire_id == models.Questionnaire.id,
                                         models.Context.additional_questionnaire_id == models.Questionnaire.id),
                                     models.Context.tid == tid)

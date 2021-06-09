@@ -20,7 +20,7 @@ def db_get_questionnaires(session, tid, language):
     :param language: The language to be used for the serialization
     :return: a dictionary representing the serialization of the questionnaires.
     """
-    questionnaires = session.query(models.Questionnaire).filter(models.Questionnaire.tid.in_(set([1, tid])))
+    questionnaires = session.query(models.Questionnaire).filter(models.Questionnaire.tid.in_({1, tid}))
 
     return [serialize_questionnaire(session, tid, questionnaire, language) for questionnaire in questionnaires]
 
@@ -28,7 +28,7 @@ def db_get_questionnaires(session, tid, language):
 def db_get_questionnaire(session, tid, questionnaire_id, language, serialize_templates=True):
     questionnaire = db_get(session,
                            models.Questionnaire,
-                           (models.Questionnaire.tid.in_(set([1, tid])),
+                           (models.Questionnaire.tid.in_({1, tid}),
                             models.Questionnaire.id == questionnaire_id))
 
     return serialize_questionnaire(session, tid, questionnaire, language, serialize_templates=serialize_templates)

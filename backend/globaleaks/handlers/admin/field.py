@@ -171,12 +171,14 @@ def check_field_association(session, tid, request):
         raise errors.InputValidationError()
 
     if request.get('template_id', '') and session.query(models.Field).filter(models.Field.id == request['template_id'],
-                                                                             not_(models.Field.tid.in_(set([1, tid])))).count():
+                                                                             not_(models.Field.tid.in_(
+                                                                                 {1, tid}))).count():
         raise errors.InputValidationError()
 
     if request.get('step_id', '') and session.query(models.Field).filter(models.Step.id == request['step_id'],
                                                                          models.Questionnaire.id == models.Step.questionnaire_id,
-                                                                         not_(models.Questionnaire.tid.in_(set([1, tid])))).count():
+                                                                         not_(models.Questionnaire.tid.in_(
+                                                                             {1, tid}))).count():
         raise errors.InputValidationError()
 
     if request.get('fieldgroup_id', ''):
@@ -366,7 +368,7 @@ def get_fieldtemplate_list(session, tid, language):
     :param language: The language of the request
     :return: The list of serialized field template descriptors
     """
-    templates = session.query(models.Field).filter(models.Field.tid.in_(set([1, tid])),
+    templates = session.query(models.Field).filter(models.Field.tid.in_({1, tid}),
                                                    models.Field.instance == 'template',
                                                    models.Field.fieldgroup_id.is_(None))
 
