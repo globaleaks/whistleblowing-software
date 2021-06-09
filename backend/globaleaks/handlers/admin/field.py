@@ -391,7 +391,7 @@ class FieldTemplatesCollection(BaseHandler):
         """
         if self.request.multilang:
             language = None
-            validator = request.AdminFieldDescRaw
+            validator = requests.AdminFieldDescRaw
         else:
             language = self.request.language
             validator = requests.AdminFieldDesc
