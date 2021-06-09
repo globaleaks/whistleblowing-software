@@ -198,7 +198,7 @@ def db_refresh_tenant_cache(session, tid_list):
             State.tenant_cache[tid]['https_preload'] = State.tenant_cache[1]['https_preload']
 
     for redirect in session.query(models.Redirect).filter(models.Redirect.tid.in_(tid_list)):
-        State.tenant_cache[tid]['redirects'][redirect.path1] = redirect.path2
+        State.tenant_cache[redirect.tid]['redirects'][redirect.path1] = redirect.path2
 
 
 def db_refresh_memory_variables(session, to_refresh=None):
