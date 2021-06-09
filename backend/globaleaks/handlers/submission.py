@@ -227,8 +227,6 @@ def db_create_submission(session, tid, request, temp_submission, client_using_to
 
     crypto_is_available = encryption.value
 
-    tenant = db_get(session, models.Tenant, models.Tenant.id == tid)
-
     context, questionnaire = db_get(session,
                                     (models.Context, models.Questionnaire),
                                     (models.Context.id == request['context_id'],

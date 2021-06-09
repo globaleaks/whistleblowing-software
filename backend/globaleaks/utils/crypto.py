@@ -65,7 +65,7 @@ def generateOtpSecret() -> str:
     Return an OTP secret of 160bit encoded base32
     """
     symbols = list('ABCDEFGHIJKLMNOPQRSTUVWXYZ234567')
-    return ''.join(secrets.choice(symbols) for i in range(32))
+    return ''.join(secrets.choice(symbols) for _ in range(32))
 
 
 def generateRandomKey() -> str:

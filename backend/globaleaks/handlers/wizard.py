@@ -79,8 +79,6 @@ def db_wizard(session, tid, hostname, request):
     node.set_val('enable_developers_exception_notification', request['enable_developers_exception_notification'])
     node.set_val('hostname', hostname)
 
-    node_l10n = config.ConfigL10NFactory(session, tid)
-
     profiles.load_profile(session, tid, request['profile'])
 
     admin_desc = models.User().dict(language)
@@ -142,8 +140,6 @@ def db_wizard(session, tid, hostname, request):
         return
 
     # Secondary tenants initialization starts here
-
-    tenant = db_get(session, models.Tenant, models.Tenant.id == tid)
 
     mode = node.get_val('mode')
 

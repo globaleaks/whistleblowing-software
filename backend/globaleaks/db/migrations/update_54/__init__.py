@@ -59,16 +59,13 @@ class MigrationScript(MigrationBase):
             for old_obj, tid in self.session_old.query(self.model_from[model[0]], self.model_from[model[1]].tid) \
                                                 .filter(self.model_from[model[0]].id == self.model_from[model[1]].id):
                 new_obj = self.model_to['File']()
-                for key in new_obj.__table__.columns._data.keys():
-                    new_obj.tid = tid
-                    new_obj.id = old_obj.id
-                    new_obj.name = old_obj.id
+                new_obj.tid = tid
+                new_obj.id = old_obj.id
+                new_obj.name = old_obj.id
 
-                    data = base64.b64decode(old_obj.data)
-
-                    filepath = os.path.join(State.settings.files_path, old_obj.id)
-                    with open(filepath, 'wb') as out_file:
-                        out_file.write(data)
+                filepath = os.path.join(State.settings.files_path, old_obj.id)
+                with open(filepath, 'wb') as out_file:
+                    out_file.write(base64.b64decode(old_obj.data))
 
                 self.session_new.add(new_obj)
                 self.entries_count['File'] += 1

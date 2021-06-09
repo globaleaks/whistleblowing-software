@@ -21,8 +21,8 @@ def null_function(*args, **kw):
 def mock_Request_getClientIP(self):
     if isinstance(self.client, (address.IPv4Address, address.IPv6Address)):
         return self.client.host
-    else:
-        return None
+
+    return None
 
 
 def mock_Request_gotLength(self, length):

@@ -599,8 +599,8 @@ def db_get_sites(session):
 
         subdomain = tenant.get_val('subdomain')
         if subdomain:
-            site['hostname'] = subdomain + '.' + root_tenant.get_val('rootdomain')
-            site['onionservice'] = subdomain + '.' + root_tenant.get_val('onionservice')
+            site['hostname'] = subdomain + '.' + root_domain
+            site['onionservice'] = subdomain + '.' + root_onionservice
 
     return sites
 

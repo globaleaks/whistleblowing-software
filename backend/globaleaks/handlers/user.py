@@ -329,14 +329,13 @@ def enable_2fa_step1(session, tid, user_id):
 
 
 @transact
-def enable_2fa_step2(session, tid, user_id, user_cc, token):
+def enable_2fa_step2(session, tid, user_id, token):
     """
     Transact for the first step of 2fa enrollment (completion)
 
     :param session: An ORM session
     :param tid: A tenant ID
     :param user_id: A user ID
-    :param user_cc: A user private key
     :param token: A token for OTP authentication
     """
     user = db_get_user(session, tid, user_id)
@@ -380,7 +379,6 @@ class UserOperationHandler(OperationHandler):
     def enable_2fa_step2(self, req_args, *args, **kwargs):
         return enable_2fa_step2(self.session.user_tid,
                                 self.session.user_id,
-                                self.session.cc,
                                 req_args['value'])
 
     def disable_2fa(self, req_args, *args, **kwargs):

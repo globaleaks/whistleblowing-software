@@ -41,7 +41,7 @@ def get_files(session, tid):
     return ret
 
 
-def db_add_file(session, tid, file_id, name, path):
+def db_add_file(session, tid, file_id, name):
     """
     Transaction to register a file on a tenant
 
@@ -49,7 +49,6 @@ def db_add_file(session, tid, file_id, name, path):
     :param tid: The tenant ID
     :param file_id: The ID of the file to be added
     :param name: The file name
-    :param data: The file content
     """
     file_obj = models.File()
     file_obj.tid = tid
@@ -118,7 +117,7 @@ class FileInstance(BaseHandler):
         if os.path.exists(path):
             return
 
-        yield tw(db_add_file, self.request.tid, id, self.uploaded_file['name'], path)
+        yield tw(db_add_file, self.request.tid, id, self.uploaded_file['name'])
 
         yield self.write_upload_plaintext_to_disk(path)
 

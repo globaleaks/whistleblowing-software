@@ -17,7 +17,7 @@ from globaleaks.utils.log import log
 from globaleaks.utils.utility import datetime_now, deferred_sleep
 
 
-def login_failure(tid, role, whistleblower=False):
+def login_failure(tid, whistleblower=False):
     Settings.failed_login_attempts[tid] = Settings.failed_login_attempts.get(tid, 0) + 1
 
     State.log(tid=tid, type='whistleblower_login_failure' if whistleblower else 'login_failure')
