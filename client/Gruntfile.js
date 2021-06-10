@@ -208,7 +208,7 @@ module.exports = function(grunt) {
               }
             },
             {
-              pattern: /40,167,69/ig,
+              pattern: /40, 167, 69/ig,
               replacement: function () {
                 return "56,119,188";
               }
@@ -340,7 +340,7 @@ module.exports = function(grunt) {
               }
             },
             {
-              pattern: /(#CED4DA|#DEE2E6|rgba\(0,0,0,.125\))/ig,
+              pattern: /(#CED4DA|#DEE2E6|rgba\(0, 0, 0, \.125\))/ig,
               replacement: function () {
                 return "#c8d1e0";
               }
@@ -364,7 +364,7 @@ module.exports = function(grunt) {
               }
             },
             {
-              pattern: /(rgba\(0,0,0,\.03\)|rgba\(0,0,0,\.05\))/ig,
+              pattern: /(rgba\(0, 0, 0, \.03\)|rgba\(0, 0, 0, \.05\))/ig,
               replacement: function () {
                 return "#f5f7fa";
               }
