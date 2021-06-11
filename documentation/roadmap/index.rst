@@ -64,8 +64,8 @@ Reference tickets:
 - https://github.com/globaleaks/GlobaLeaks/issues/2580
 - https://github.com/globaleaks/GlobaLeaks/issues/2651
 
-GDPR compliance improvements
-............................
+GDPR compliance
+...............
 GlobaLeaks implements by-design many best practices in matters of privacy and security.
 In order to be effectively accepted and competitive beside commercial proprietary solutions and to guarantee the sustainability of the project, the software needs to achieve some market “standards” (e.g. GDPR compliance / ISO certifications / etc.); among all we selected that GDPR compliance is a first step where the software could implement best practices (e.g. procedures for self signup should present appropriate legal notices, terms of services, and contractualization). Within the software, there should be implemented an automatic contract generation via PDF or other suitable formats in respect with the GDPR requirements.
 
@@ -73,6 +73,7 @@ Reference tickets:
 
 - https://github.com/globaleaks/GlobaLeaks/issues/2145
 - https://github.com/globaleaks/GlobaLeaks/issues/2658
+- https://github.com/globaleaks/GlobaLeaks/issues/2866
 - https://github.com/globaleaks/GlobaLeaks/issues/2767
 - https://github.com/globaleaks/GlobaLeaks/issues/3011
 - https://github.com/globaleaks/GlobaLeaks/issues/3012
