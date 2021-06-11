@@ -12,14 +12,15 @@ Started in 2011, the software is now widely used worldwide by more than 3000 org
 
 This document details the main areas of research development and represents the actual tentative readmap of consolidation planned for 2021-2023 based on the analysis of the large set of user needs collected within the official `Ticketing System <https://github.com/globaleaks/GlobaLeaks/issues>`_.
 
-Project Ideas
--------------
+Development Areas
+-----------------
 
 Application Client Update
 .........................
 GlobaLeeaks client is still based on Angular 1 and on other stable but outdated components. Considering the maturity of the technology and of the libraries adopted, this does not currently represent any security risk but as the time passes by,  it significatively impacts the possibility of growth of the application, especially in relation to the set of plannedproject extensions.
 
 Within this project idea we propose to rewrite the current application client pursuing the following set of goals:
+
 - Bump of the core client library from AngularJs to Angular;
 - Bump of Bootstrap library from Bootstrap 4 to Bootstrap 5
 - General optimization and modularization of the client to foster more code reuse and AGILE development.
@@ -43,16 +44,6 @@ Reference tickets:
 - https://github.com/globaleaks/GlobaLeaks/issues/1959
 - https://github.com/globaleaks/GlobaLeaks/issues/2254
 
-Import and Export of Tenants
-............................
-Part of the software is a recent feature of Multitenancy, first implemented in 2018 and stabilized during 2019. Through this feature, GlobaLeaks makes it possible to create multiple setups of itself via virtual sites (similarly to Wordpress multisite feature).
-In order to make it more easy for an administrator to migrate a platform form a system to an other or to enable users to require data portability from a globaleaks provider to an other, for example in relation to GDPR it has been evaluated necessary to improve the multi tenancy implementation by implementing support for import-export of tenants.
-In the context of a whistleblowing application, involving encryption and logging this poses important challenges on how to best handle this process.
-
-Reference tickets:
-
-- https://github.com/globaleaks/GlobaLeaks/issues/2632
-- https://github.com/globaleaks/GlobaLeaks/issues/2631
 
 Audit Log
 .........
@@ -87,11 +78,24 @@ Reference tickets:
 - https://github.com/globaleaks/GlobaLeaks/issues/528
 - https://github.com/globaleaks/GlobaLeaks/issues/2149
 
+Multitenancy
+............
+Import and Export of Tenants
+............................
+Part of the software is a recent feature of Multitenancy, first implemented in 2018 and stabilized during 2019. Through this feature, GlobaLeaks makes it possible to create multiple setups of itself via virtual sites (similarly to Wordpress multisite feature).
+In order to make it more easy for an administrator to migrate a platform form a system to an other or to enable users to require data portability from a globaleaks provider to an other, for example in relation to GDPR it has been evaluated necessary to improve the multi tenancy implementation by implementing support for import-export of tenants.
+In the context of a whistleblowing application, involving encryption and logging this poses important challenges on how to best handle this process.
+
+Reference tickets:
+
+- https://github.com/globaleaks/GlobaLeaks/issues/2632
+- https://github.com/globaleaks/GlobaLeaks/issues/2631
+
 Multisite Users
-...............
+---------------
 (To be further researched)
 
-Important requirement at the base of the multitenancy expansion is the possibility to enable users to be administrators and recipients of two or multiple instances running on the same multi-site setup.
+Important requirement at the base of the Multitenancy expansion is the possibility to enable users to be administrators and recipients of two or multiple instances running on the same multi-site setup.
 This is useful for example when a lawyer takes part as a recipient on multiple projects; as well it is useful when an ICT consultant joins consultancy on multiple projects.
 
 This could significatively simplify user access enabling the user to have a single set of username and password and associated keys.
