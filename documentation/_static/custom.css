@@ -26,6 +26,7 @@
   font-family: 'Metropolis', Helvetica, Arial, sans-serif;
 }
 
+body,
 h1,
 h2,
 h3,
@@ -37,8 +38,24 @@ legend,
   color: #1D1F2A;
 }
 
-a, a:hover, a:active, a:visited, a:focus {
+a,
+a:hover,
+a:active,
+a:visited,
+a:focus,
+.wy-side-nav-search
+.wy-side-nav-search a,
+.wy-side-nav-search a:hover,
+.wy-side-nav-search a:active,
+.wy-side-nav-search a:visited,
+.wy-side-nav-search a:focus,
+.wy-side-nav-search > a,
+.wy-side-nav-search > div.version {
   color: #204F82;
+}
+
+.wy-side-nav-search {
+  background-color: #ffffff !important;
 }
 
 .highlight {
@@ -47,14 +64,6 @@ a, a:hover, a:active, a:visited, a:focus {
 
 .rst-content tt.literal, .rst-content tt.literal, .rst-content code.literal {
   color: #377abc;
-}
-
-.wy-side-nav-search a,
-.wy-side-nav-search a:hover,
-.wy-side-nav-search a:active,
-.wy-side-nav-search a:visited,
-.wy-side-nav-search a:focus {
-  color: #FFF;
 }
 
 .wy-nav-side {
