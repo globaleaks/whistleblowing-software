@@ -158,6 +158,7 @@
                 </span>
               </div>
               <div class="form-group" data-ng-if="user.newpassword" data-ng-form="userPasswordForm">
+                <input class="d-none" type="password" name="disable-autocomplete-hack" />
                 <input name="password" class="form-control" data-ng-model="user.password" type="password"
                        data-ng-class="{'is-invalid': user.password && (!editUser.password.$error.passwordStrengthValidator && !userPasswordForm.password.$valid)}"
                        autocomplete="off" data-password-strength-validator/>
