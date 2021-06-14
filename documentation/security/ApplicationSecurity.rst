@@ -198,7 +198,7 @@ Form Autocomplete OFF
 ---------------------
 Form implemented by the platform make use of the HTML5 form attribute in order to instruct the browser to do not keep caching of the user data in order to predict and autocomplete forms on subsequent submissions.
 
-This is achieved by setting `autocomplete=”false” <https://www.w3.org/TR/html5/forms.html=autofilling-form-controls:-the-autocomplete-attribute>`_ on the relevant forms or attributes.
+This is achieved by setting `autocomplete=”off” <https://www.w3.org/TR/html5/forms.html=autofilling-form-controls:-the-autocomplete-attribute>`_ on the relevant forms or attributes.
 
 Network Security
 ================
