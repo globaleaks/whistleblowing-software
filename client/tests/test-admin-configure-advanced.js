@@ -10,21 +10,6 @@ describe("admin configure advanced settings", function() {
     // save settings
     await element.all(by.css("[data-ng-click=\"updateNode()\"]")).first().click();
   });
-
-  it("should configure advanced settings", async function() {
-    await browser.setLocation("admin/advanced");
-    await element(by.cssContainingText("a", "Anomaly detection thresholds")).click();
-
-    expect(await element(by.model("resources.node.threshold_free_disk_percentage_high")).getAttribute("value")).toEqual("3");
-
-    await element(by.model("resources.node.threshold_free_disk_percentage_high")).clear();
-    await element(by.model("resources.node.threshold_free_disk_percentage_high")).sendKeys("4");
-
-    // save settings
-    await element.all(by.css("[data-ng-click=\"updateNode()\"]")).get(1).click();
-
-    expect(await element(by.model("resources.node.threshold_free_disk_percentage_high")).getAttribute("value")).toEqual("4");
-  });
 });
 
 describe("admin disable submissions", function() {
