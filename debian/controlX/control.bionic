@@ -8,7 +8,6 @@ Build-Depends:
   dh-apparmor,
   dh-python,
   python3 (>= 3.5),
-  python3-pip,
   python3-setuptools,
   python3-sphinx
 Vcs-Git: https://github.com/globaleaks/GlobaLeaks.git
