@@ -184,14 +184,17 @@ In addition to the protecton offered by the header ``Referrer-Policy: no-referre
 ::
   <a href="url" rel="noopener">link title</a>
 
-Input Validation (Server)
--------------------------
+Input Validation
+----------------
+
+On the Server
++++++++++++++
 The system adopts a whitelist based input validation approach. Each client request is checked against a set of regular expressions and only requests matching the expression are then processed.
 
 As well a set of rules are applied to each request type to limit possible attacks. For example any request is limited to a payload of 1MB.
 
-Input Validation (Client)
--------------------------
+On the Client
++++++++++++++
 The client implement strict validation of the rendered content by using the angular component `ngSanitize.$sanitize <http://docs.angularjs.org/api/ngSanitize.$sanitize>`_
 
 Form Autocomplete OFF
