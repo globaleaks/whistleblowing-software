@@ -147,7 +147,7 @@ ConfigDescriptor = {
     'two_factor': Bool(default=False),
 
     'log_level': Unicode(default='ERROR'),
-    'log_accesses_of_internal_users': Bool(default=False),
+    'log_accesses_of_internal_users': Bool(default=True),
 
     'encryption': Bool(default=True),
     'escrow': Bool(default=True),
