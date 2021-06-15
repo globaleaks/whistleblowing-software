@@ -14,7 +14,7 @@ As a first step we define the actors, which are the users that interact with a G
 
    "Whistleblower", "The user who submits an anonymous report through the GlobaLeaks platform. Whistleblowers are persons in a wide range of different threat models depending on the usage scenario and the nature of information being submitted."
    "Recipient", "The user (person or organization) receiving the anonymous report submitted by the Whistleblower. The recipients act reasonably in good faith, e.g. if any of them were to give their credentials or private information to the attacker, that would be unreasonable."
-   "Administrator", "The user (person or organization) that is running the GlobaLeaks platform. Administrator may not represent the same entity running, promoting and managing the whistleblowing initiatives (e.g., hosted solutions, multiple stakeholders projects, etc). The Administrator has to be considered in all scenarios described as a trusted entity with reference to the data exchanged by actors. The Administrator in most scenarios won’t be a trusted entity with respect to the identity of actors."
+   "Administrator", "The user (person or organization) that is running the GlobaLeaks platform. Administrator may not represent the same entity running, promoting and managing the whistleblowing initiatives (e.g., hosted solutions, multiple stakeholders projects, etc). The Administrator has to be considered in all scenarios described as a trusted entity with reference to the identity and the data exchanged by actors."
 
 It’s highly relevant to apply each of the security measures always in relationship to the actors using GlobaLeaks, while always considering the security and usability tradeoff.
 
@@ -147,7 +147,7 @@ In this section we highlight several threats that require specific explanation.
 
 Browser History and Cache
 -------------------------
-GlobaLeaks tries to avoid, by using properly crafted HTTP headers and other triks, leaking information into any actor’s browser history or cache. This privacy feature cannot guarantee the safety of the user against a forensics analysis of their browser cache and/or history, but it is provided as an additional safety measure.
+GlobaLeaks tries to avoid, by using properly crafted HTTP headers and other tricks, leaking information into any actor’s browser history or cache. This privacy feature cannot guarantee the safety of the user against a forensics analysis of their browser cache and/or history, but it is provided as an additional safety measure.
 
 Metadata
 --------
