@@ -82,10 +82,8 @@ In this section you will find examples that show how different anonymity levels 
 
    "Media outlet", "A Media outlet, whose identity is disclosed, decides to start a Whistleblowing initiative. The outlet's recipients are disclosed to Whistleblowers, so that they can trust a specific journalist rather than the outlet itself. Full anonymity must be assured to whistleblowers and their identity cannot be disclosed in connection with anonymous submissions. The whistleblower MAY choose to willingly disclose their identity (e.g. when the journalist's source-protection record is trusted)."
    "Corporate compliance", "A Corporation needs to implement transparency, or anti-bribery law compliance, by promoting its initiatives to employees, consultants and providers. The recipients are partially disclosed because they are represented by different divisions of the “Internal Audit” business unit of the company. The Whistleblower is guaranteed full anonymity, but they can optionally disclose their identity (tip off vs formal report)."
-   "Government tax whistleblowing", "A Government Authority (central or local) with its own public identity wants to promote Tax Whistleblowing with Rewards procedures for Whistleblowers (e.g. IRS). The recipients are not known because they are an internal division not exposing their names to the Whistleblower in advance. The Whistleblower MUST disclose their identity in order to be eligible for rewards."
    "Human Rights Activism Initiative", "A Human Rights Group starts a Whistleblowing initiative to spot human rights violations in a dangerous place. The organization requires anonymity to avoid retaliations and takedowns, and operates under a Pseudonym. The Recipients MUST not be disclosed to the Whistleblowers, but a Partial Disclosure by pseudonym can be acceptable in order to give proper trust to “Who the whistleblower is submitting to” . The Whistleblower MUST be guaranteed anonymity and their identity cannot be disclosed."
-   "Citizen media initiative", "A Citizen media initiative with it’s own public identity wants to collect tips on a specific topic (political, environmental malpractice, corruption, etc) in a medium-low risk operational context. The recipients could be public or use Pseudonym in order to avoid complete exposure. The Whistleblower, if the topic is not life-threatening, can be allowed to submit also in a Confidential way to lower the entrance barrier."
-   "Public Agency Iniziative", "A local public agency wants to setup a Street Hole Reporting service with it’s own public identity. The recipient can be disclosed to facilitate the CRM (Citizen relationship management) and Whistleblower identity protection is not required."
+   "Citizen media initiative", "A Citizen media initiative with it’s own public identity wants to collect reports on a specific topic (political, environmental malpractice, corruption, etc) in a medium-low risk operational context. The recipients could be public or use Pseudonym in order to avoid complete exposure. The Whistleblower, if the topic is not life-threatening, can be allowed to submit also in a Confidential way to lower the entrance barrier."
 
 GlobaLeaks Security Matrix
 ==========================
@@ -102,17 +100,11 @@ GlobaLeaks, through its user interface, will enable each actor with appropriate 
    "Corporate compliance", "Whistleblower", "Anonymous", "Optionally disclosed", "High security"
     "", "Recipient", "No anonymity", "Partially disclosed", "Medium security"
     "", "Admin", "No anonymity", "Disclosed", "Medium security"
-   Government tax whistleblowing", "Whistleblower", "No anonymity", "Disclosed", "Medium security"
-   "", "Recipient", "No anonymity", "Undisclosed", "Medium security"
-   "", "Admin", "No anonymity", "Disclosed", "Medium security"
    "Human Rights Activism initiative", "Whistleblower", "Anonymous", "Undisclosed", "High security"
    "", "Recipient", "Anonymous", "Partially disclosed", "High security"
    "", "Admin", "Anonymous", "Partially disclosed", "High security"
    "Citizen media initiative", "Whistleblower", "Confidential", "Optionally disclosed", "Medium security"
    "", "Recipient", "Confidential", "Confidential", "Medium security"
-   "", "Admin", "No anonymity", "Disclosed", "Medium security"
-   "Public agency initiative", "Whistleblower", "No anonymity", "Optionally disclosed", "No security"
-   "", "Recipient", "No anonymity", "Undisclosed", "Medium security"
    "", "Admin", "No anonymity", "Disclosed", "Medium security"
 
 The previous schema gives only some examples of GlobaLeaks’s flexibility; but different anonymity, identity and security measures apply to other usage scenarios and actors.
