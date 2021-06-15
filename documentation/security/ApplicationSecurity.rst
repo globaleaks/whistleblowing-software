@@ -3,28 +3,32 @@ Application Security
 ====================
 The GlobaLeaks software tries to conform with industry standard best and practices and its security is a result of applied research.
 
-This document try to detail every aspect implemented by the application in relation to the security design.
+This document tries to detail every aspect implemented by the application in relation to the security design.
 
 Architecture
 ============
-GlobaLeaks is made up of two main software components: a ``Backend`` and a ``Client``:
+The software is made up of two main components: a ``Backend`` and a ``Client``:
 
-* The Backend is a python backend that runs on a physical backend and exposes a ``REST API``
-* The Client is a javascryipt client-side Web Application that interacts with Backend only through ``XHR``.
+* The Backend is a python backend that runs on a physical backend and exposes a `REST API <https://en.wikipedia.org/wiki/Representational_state_transfer>`_.
+* The Client is a JavaScript client-side web application that interacts with Backend only through `XHR <https://en.wikipedia.org/wiki/XMLHttpRequest>`_.
+
+Anonymity
+=========
+Users's anonimity is protected by means of the `Tor <https://www.torproject.org>`_ technology.
 
 Authentication
 ==============
-The confidentiality of the authentication is protected by either Tor Onion Services v3 or TLS version 1.2+
+The confidentiality of the authentication is protected by either `Tor Onion Services v3 <https://www.torproject.org/docs/onion-services.html.en>`_ or `TLS version 1.2+ <https://en.wikipedia.org/wiki/Transport_Layer_Security>`_.
 
-This section describes the authentication methods   implemented by the system.
+This section describes the authentication methods implemented by the system.
 
 Password
 --------
-By accessing the GlobaLeaks login interface, Administrators and Recipients need to insert their respective username and password. If the password submitted is valid, the system grants access to the functionality available to that user.
+By accessing the login web interface, ``Administrators`` and ``Recipients`` need to insert their respective ``Username`` and ``Password``. If the password submitted is valid, the system grants access to the functionality available to that user.
 
 Receipt
 -------
-Whistleblowers access their Reports by using a Receipt, which is a randomly generated 16 digits sequence created by the Backend when the Report is first submitted. The reason of this format of 16 digits is that it resembles a standard phone number, making it easier for the whistleblower to conceal the receipt of their submission and give them plausible deniability on what is the significance of such digits.
+``Whistleblowers`` access their ``Reports`` by using a ``Receipt``, which is a randomly generated 16 digits sequence created by the Backend when the Report is first submitted. The reason of this format of 16 digits is that it resembles a standard phone number, making it easier for the whistleblower to conceal the receipt of their submission and give them plausible deniability on what is the significance of such digits.
 
 Password Security
 =================
@@ -36,28 +40,31 @@ Password are never stored in plaintext but the system maintain at rest only an h
 
 The platform stores Users’ passwords hashed with a random 128 bit salt, unique for each user.
 
-Passwords are hashed using `Argon2 <https://en.wikipedia.org/wiki/Argon2>`_, a key derivation function that was selected as the winner of the ``Password Hashing Competition`` in July 2015.
+Passwords are hashed using `Argon2 <https://en.wikipedia.org/wiki/Argon2>`_, a key derivation function that was selected as the winner of the `Password Hashing Competition <https://en.wikipedia.org/wiki/Password_Hashing_Competition>`_ in July 2015.
 
-The hash involves a per-user salt for each user and a per-system salt for each whistleblower.
+The hash involves a per-user salt for each user and a per-system salt for whistleblowers.
 
 Password Complexity
 -------------------
 The system enforces the usage of complex password by implementing a custom algorithm necessary for ensuring a reasonable entropy of each authentication secret.
 
-Password are scored in three levels: strong, acceptable, insecure.
+Password are scored in three levels: ``Strong``, ``Acceptable``, ``Insecure``.
 
-* A strong password should be formed by capital letters, lowercase letters, numbers and a symbols, be at least 12 characters long and include a variety of at least 10 different inputs.
-* An acceptable password should be formed by at least 3 different inputs over capital letters, lowercase letters, numbers and a symbols, be at least 10 characters and include a variety of at least 7 different inputs.
+* Strong: A strong password should be formed by capital letters, lowercase letters, numbers and a symbols, be at least 12 characters long and include a variety of at least 10 different inputs.
+* Acceptable: An acceptable password should be formed by at least 3 different inputs over capital letters, lowercase letters, numbers and a symbols, be at least 10 characters and include a variety of at least 7 different inputs.
+* Insecure: A password ranked below the stong or acceptable levels is marked as insecure and not accepted by the system.
 
 We encourage each end user to use `KeePassXC <https://keepassxc.org>`_ to generate and retain strong and unique passphrases.
 
-Two Factor Authentication (2FA)
--------------------------------
+Two Factor Authentication
+-------------------------
 The system implements Two Factor Authentication (2FA) based on TOTP based on `RFC 6238 <https://tools.ietf.org/rfc/rfc6238.txt>`_ alghorithm and 160 bits secrets.
 
-Users are enabled to enroll for Two Factor Authentication via their own preferences and administrators can optionally enforce this requirement.
+Users are enabled to enroll for 2FA via their own preferences and administrators can optionally enforce this requirement.
 
 We recommend using FreeOTP available `for Android <https://play.google.com/store/apps/details?id=org.fedorahosted.freeotp>`_ and `for iOS <https://apps.apple.com/us/app/freeotp-authenticator/id872559395>`_.
+
+Password Change on First Login
 ------------------------------
 The system enforces users to change their own password at their first login.
 
@@ -71,7 +78,9 @@ This period is configurable by administrators.
 
 Proof of Work on Login and Submissions
 --------------------------------------
-The system implements an automatic ``proof of work`` on every login that requires every client to request a token, solve a computational probelm before being able to perform a login or file a submission.
+The system implements an automatic `Proof of Work <https://en.wikipedia.org/wiki/Proof_of_work>`_ on every login that requires every client to request a token, solve a computational probelm before being able to perform a login or file a submission.
+
+The same mechanism is implemented on other user APIs (e.g. on user comments).
 
 Slowdown on Failed Login Attempts
 ---------------------------------
@@ -82,7 +91,9 @@ This feature is intended to slow down possible attacks requiring more resources 
 Password Recovery
 -----------------
 In case of password loss users could request a password reset via the web login interface clicking on a ``Forgot password?`` button present on the login interface.
+
 When this button is clicked, users are invited to enter their username or an email. If the provided username or the email correspond to an existing user, the system will provide a reset link to the configured email.
+
 By clicking the link received by email the user is then invited to configure a new email different from the previous.
 
 In case encryption is enabled on the system, a user clicking on the reset link would have first to insert their ``Account Recovery Key`` and only in case of correct insertion the user will be enabled to set a new password.
@@ -97,7 +108,7 @@ Session management
 ------------------
 The session implemenetation follows the `OWASP Session Management Cheat Sheet <https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html>`_ security guidelines.
 
-The system assigns a Session to each authenticated user. The Session ID is 256bits long secret generated randomly by the backend. Each session expire accordingly to a timeout of 30 minutes. Session IDs are exchanged by the client with the backend by means of an header (X-Session) and do expire as soon that users close their browser or the tab running GlobaLeaks. Users could explicitly log out via a logout button or implicitly by closing the browser.
+The system assigns a Session to each authenticated user. The Session ID is 256bits long secret generated randomly by the backend. Each session expire accordingly to a timeout of 30 minutes. Session IDs are exchanged by the client with the backend by means of an header (``X-Session``) and do expire as soon that users close their browser or the tab running GlobaLeaks. Users could explicitly log out via a logout button or implicitly by closing the browser.
 
 Cookies and XSRF Prevention
 ---------------------------
@@ -111,13 +122,13 @@ Strict-Transport-Security
 +++++++++++++++++++++++++
 The system implements strict transport security by default.
 ::
-  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
 
-The preload feature is left optional to users and following the best practices is left disabled as default.
+Administrators could optionally enable the preload functionality.
 
 Content-Security-Policy
 +++++++++++++++++++++++
-The backend implements the following Content Security Policy (CSP):
+The backend implements the following `Content Security Policy (CSP) <https://en.wikipedia.org/wiki/Content_Security_Policy>`_:
 ::
   Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:; media-src 'self'; form-action 'self'; frame-ancestors 'none'; block-all-mixed-content
 
@@ -205,11 +216,15 @@ This is achieved by setting `autocomplete=”off” <https://www.w3.org/TR/html5
 
 Network Security
 ================
+Connection Anonymity
+--------------------
+Users's anonimity is offered by means of the implementation of the [Tor](https://www.torproject.org/) technology. The application implements an ``Onion Service v3`` and advices users to use the Tor Browser when accessing to it.
 
 Connection Encryption
 ---------------------
-The software adopts `Tor <https://www.torproject.org/>`_ as default, prefferred and recommended connection encryption protocol for its security and each GlobaLeaks server by default implement an ``Onion Service v3``.
-The use of ``Tor`` is recommended over HTTPS for its advanced properties of resistance to selective interception and censorship that would make it difficult for a third party to selectively capture or block tccess to the site to specific whistleblower or company department.
+Users' connection is always encrypted, by means of the Tor Protocol while using the Tor Browser or by means of TLS when the application is accessed via a common browser.
+
+The use of the ``Tor`` is recommended over HTTPS for its advanced properties of resistance to selective interception and censorship that would make it difficult for a third party to selectively capture or block access to the site to specific whistleblower or company department.
 
 The software enables as well easy setup of ``HTTPS`` offering both automatic setup via `Let'sEncrypt <https://letsencrypt.org/>`_ and manual setup.
 
