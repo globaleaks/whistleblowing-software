@@ -1,4 +1,4 @@
-# Contributing to GlobaLeaks
+# Contributors Guidelines
 GlobaLeaks is an free and open source software result of a significative community effort for protecting whistleblowers.
 
 You could take part to the GlobaLeaks development process by:

@@ -1,5 +1,4 @@
-# Reporting Security Issues and Vulnerabilities
-
+# Security Policy
 If you have found a vulnerability, please do not file a public issue.
 
 Please send us your report privately either via:
