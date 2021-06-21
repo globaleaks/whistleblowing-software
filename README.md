@@ -22,9 +22,9 @@ Project best practices and scores:
 | [SSLLabs](https://www.ssllabs.com/ssltest/) | [![Status](https://img.shields.io/static/v1?label=SSLLabs&message=A%2B&color=%3CCOLOR%3E)](https://www.ssllabs.com/ssltest/analyze.html?d=try.globaleaks.org&latest)
 | [CII Best Practices](https://bestpractices.coreinfrastructure.org/) | [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/3816/badge)](https://bestpractices.coreinfrastructure.org/projects/3816)
 
-Infrastracture status: [uptime.globaleaks.org](https://uptime.globaleaks.org)
+Project statistics on OpenHub: [www.openhub.net/p/globaleaks](https://www.openhub.net/p/globaleaks)
 
-The uptime of our infrastructure is continously monitored thanks to the support of [UptimeRobot.com](https://uptimerobot.com/).
+Infrastracture status: [uptime.globaleaks.org](https://uptime.globaleaks.org)
 
 ## Documentation
 GlobaLeaks's documentation is built and hosted by [Read the Docs](https://readthedocs.org) and accessible at [docs.globaleaks.org](https://docs.globaleaks.org).
@@ -34,31 +34,25 @@ GlobaLeaks's documentation is built and hosted by [Read the Docs](https://readth
 | [devel](https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://readthedocs.org/projects/globaleaks/badge/?version=devel&style=flat)](https://docs.globaleaks.org/en/devel/)
 
 ## Community Support
-If you need technical support, have general questions, or have new ideas for GlobaLeaks, please post your message on the [community support forum](https://forum.globaleaks.org/).
+If you need technical support, have general questions, or have new ideas for GlobaLeaks, please post your message on the [Community Forum](https://forum.globaleaks.org/).
 
 Join our [Slack](https://slack.globaleaks.org) to get in touch with the development team and the GlobaLeaks community:
 * #development to participate in development discussions
-* #community-support for the community support channel in English
-* #community-support-ita for the community support channel in Italian
+* #community-support for the community support
 
-If you want to contribute to software development or report a bug, please open an issue on [GitHub](https://github.com/globaleaks/GlobaLeaks/issues/).
+You can join our development discussions as well on IRC on the channel [#globaleaks](https://webchat.oftc.net/?channels=%23globaleaks) of the [OFTC Network](https://www.oftc.net/).
+
+If you want to contribute to the project please check the [Contributors Guidelines](https://github.com/globaleaks/GlobaLeaks/blob/main/CONTRIBUTING.md).
+
+In case you need to file a security report please check our [Security Policy](https://github.com/globaleaks/GlobaLeaks/blob/main/SECURITY.md)
 
 ## Brand Guidelines and Brand Assets
-Within the GlobaLeaks project we researched a nice and smooth brand style, using accessible colors and trying to communicate our values through the brand.
+Within the GlobaLeaks project we researched a nice and smooth brand style, using accessible colors and trying to communicate our values.
 If you are planning some press releases, a conference, or promoting GlobaLeaks please keep at reference our official [Brand Guidelines](https://github.com/globaleaks/GlobaLeaks/blob/main/brand/globaleaks-brand-guidelines.pdf) and use our [Brand Assets](https://github.com/globaleaks/GlobaLeaks/blob/main/brand/assets/).
 
-Other resources:
-* Follow us on [Twitter](https://twitter.com/globaleaks)
-* Have a look at [Project Statistics](https://www.openhub.net/p/globaleaks) on OpenHub
-* [ITA] [Applicazione in Riuso](https://developers.italia.it/it/software/globaleaks-globaleaks-f22648.html) secondo [Linee Guida Acquisizione e Riuso](https://docs.italia.it/italia/developers-italia/lg-acquisizione-e-riuso-software-per-pa-docs/it/stabile/) del Codice Amministrazione Digitale Art 69. comma 2
-* [ITA] [Regole di Riuso](https://globaleaks.org/it/anticorruzione/regole-di-riuso-a-cui-devono-attenersi-le-pubbliche-amministrazioni-che-modificano-il-software-di-whistleblowing-globaleaks/) a cui devono attenersi le Pubbliche Amministrazioni che modificano il software di Whistleblowing GlobaLeaks
-
 ## Donate
-To support the GlobaLeaks project you can help us with donations that will goes entirely for the software development.
-
-[Help us by sending us a small donation!](https://www.globaleaks.org/donate)
+To support the GlobaLeaks project you can help us with [donations]() that will goes entirely for the software development.
 
 ## License
-This software is released under the AGPLv3 license. See [LICENSE](https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE) for more information on Additional Terms as per [7(b)](https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE#L684) and [7(c)](https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE#L713).
+GlobaLeaks is released under the AGPLv3 license. See [LICENSE](https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE) for more information on Additional Terms as per [7(b)](https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE#L684) and [7(c)](https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE#L713).
 
-Copyright (c) 2011-2021 - GlobaLeaks
