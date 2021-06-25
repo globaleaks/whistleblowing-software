@@ -1,8 +1,8 @@
 Encryption Protocol
 ===================
-GlobaLeaks implements an encryption protocol designed to implement a trade off between security and usability necessary to enable easy access and anonymous reporting by whistleblowers that is requirement for the most common whistleblowing scenarios.
+GlobaLeaks implements an encryption protocol specifically designed for anonymous whistleblowing applications.
 
-The protocol is intended as well to provide reasonable security from attackers seizing the backend and attempting bruteforce decryption.
+The protocol has been developed and validated in collaboration with the [Open Technology Fund](https://www.opentech.fund/results/supported-projects/globaleaks/) and represents a tradeoff between security and usability intended to provide easy use by whistleblowers and reasonable security from attackers seizing the backend and attempting bruteforce decryption.
 
 Encryption is implemented for each submission protecting questionnaire's answers, comments, attachments and involved metadata. The keys involved in the encryption are per-user and per-submission and only users to which the data was destinated could access the data. This mechanism guarantees that only the user could access the data. Users that would forget their password would lose access to data that won’t be accessible anymore. To handle with this condition the system implements as well `Key recovery`_ and `Key Escrow`_ mechanisms.
 
@@ -34,13 +34,13 @@ The system used two different type of credentials depending on the user role:
 .. csv-table::
    :header: "Credentials type", "User role"
 
-   "Passwords", "For authenticated users identified by a username"
-   "16-digits random receipts", "For anonymous Whistleblowers"
+   "Passwords", "Passowrds are used for authenticating users identified by a username"
+   "Receipts", "Receipts are 16-digits random secrets used for authenticating anonymous whistleblowers"
 
 Assumptions:
 
-* The system enforces authenticated users password quality based on strong password complexity rules.
-* The system enforces expiration of receipts low the number of active receipts.
+* The system enforces strong password complexity;
+* The system enforces expiration of receipts according to a strict data retention policy limiting the concurrent number of active receipts;
 
 Users’ Keys
 -----------
