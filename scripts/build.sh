@@ -2,7 +2,7 @@
 
 set -e
 
-TARGETS="buster focal bionic"
+TARGETS="bullseye buster focal bionic"
 DISTRIBUTION="buster"
 TAG="main"
 LOCAL_ENV=0
@@ -15,7 +15,7 @@ usage() {
   echo " -h"
   echo -e " -t tagname (build specific release/branch)"
   echo -e " -l (Use local repository & enviroment)"
-  echo -e " -d distribution (available: buster, focal, bionic)"
+  echo -e " -d distribution (available: bullseye, buster, focal, bionic)"
   echo -e " -n (do not sign)"
   echo -e " -p (push on repository)"
 }

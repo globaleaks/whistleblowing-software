@@ -92,6 +92,10 @@ elif [ "$GLTEST" = "build_and_install" ]; then
     sudo debootstrap --arch=amd64 buster "$chroot" http://deb.debian.org/debian/
     sudo su -c 'echo "deb http://deb.debian.org/debian buster main contrib" > /tmp/globaleaks_chroot/etc/apt/sources.list'
     sudo su -c 'echo "deb http://deb.debian.org/debian buster main contrib" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
+  elif [ $DISTRIBUTION = "bullseye" ]; then
+    sudo debootstrap --arch=amd64 bullseye "$chroot" http://deb.debian.org/debian/
+    sudo su -c 'echo "deb http://deb.debian.org/debian bullseye main contrib" > /tmp/globaleaks_chroot/etc/apt/sources.list'
+    sudo su -c 'echo "deb http://deb.debian.org/debian bullseye main contrib" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
   fi
 
   sudo mount --rbind /proc "$chroot/proc"
