@@ -530,16 +530,8 @@ input[type='file'] {
 }
 
 #KeyCodeBox {
-  margin: 1em;
-  text-align: center;
-}
-
-#KeyCode {
-  background-color: #f5f7fa;
-  font-family: monospace;
-  font-weight: bold;
-  padding: 1em;
-  border-radius: 5px;
+  margin: 1em auto;
+  width: max-content;
 }
 
 .stepIndex {

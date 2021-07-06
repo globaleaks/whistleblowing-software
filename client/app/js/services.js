@@ -1039,6 +1039,10 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       $window.document.getElementsByTagName("body")[0].scrollIntoView();
     },
 
+    copyToClipboard: function(data) {
+      $window.navigator.clipboard.writeText(data);
+    },
+
     download: function(filename, url) {
       return $http({
         method: "GET",
