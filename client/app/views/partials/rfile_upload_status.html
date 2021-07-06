@@ -22,7 +22,7 @@
                 <img alt="preview picture" flow-img="file" data-ng-if="Utils.showFilePreview(file.file.type)" />
               </div>
               <div class="fileButtons">
-                <div data-ng-if="!file.isComplete() || !submission._submission.id" class="removeFileButton text-danger">
+                <div data-ng-if="page === 'submissionpage' || !file.isComplete()" class="removeFileButton text-danger">
                   <div class="btn btn-sm btn-danger" data-ng-click="Utils.removeFile(submission, uploads[fileinput].files, file)"><i class="fas fa-times"></i></div>
                 </div>
               </div>
