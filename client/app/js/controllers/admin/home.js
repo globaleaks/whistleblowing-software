@@ -35,7 +35,7 @@ controller("AdminCtrl",
 
     for (var i=0; i<$scope.resources.users.length; i++) {
       if ($scope.resources.users[i].role === "receiver" && !$scope.resources.users[i].encryption) {
-        break;
+        return;
       }
     }
 
