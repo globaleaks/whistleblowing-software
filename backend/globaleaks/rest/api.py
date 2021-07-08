@@ -464,23 +464,18 @@ class APIResourceWrapper(Resource):
         # - In order to evaluate code coverage with istanbuljs/nyc
         # - In order to be able to manually retest if it is correctly implemented
         if not State.settings.disable_csp:
-            csp = "base-uri 'none';" \
-                  "default-src 'none';" \
-                  "connect-src 'self';" \
-                  "style-src 'self' 'sha256-fwyo2zCGlh85NfN4rQUlpLM7MB5cry/1AEDA/G9mQJ8=';" \
-                  "script-src 'self' 'sha256-IYBZitj/YWbzjFFnwLPjJJmMGdSj923kzu2tdCxLKdU=';" \
-                  "img-src 'self' data:;" \
-                  "font-src 'self' data:;" \
-                  "media-src 'self';" \
-                  "form-action 'self';" \
-                  "block-all-mixed-content;"
-
-            if State.tenant_cache[request.tid].frame_ancestors:
-                csp += "frame-ancestors " + State.tenant_cache[request.tid].frame_ancestors + ";"
-            else:
-                csp += "frame-ancestors 'none';"
-
-            request.setHeader(b'Content-Security-Policy', csp)
+            request.setHeader(b'Content-Security-Policy',
+                              "base-uri 'none';" \
+                              "default-src 'none';" \
+                              "connect-src 'self';" \
+                              "style-src 'self' 'sha256-fwyo2zCGlh85NfN4rQUlpLM7MB5cry/1AEDA/G9mQJ8=';" \
+                              "script-src 'self' 'sha256-IYBZitj/YWbzjFFnwLPjJJmMGdSj923kzu2tdCxLKdU=';" \
+                              "img-src 'self' data:;" \
+                              "font-src 'self' data:;" \
+                              "media-src 'self';" \
+                              "form-action 'self';" \
+                              "block-all-mixed-content;" \
+                              "frame-ancestors 'none';")
 
         # Disable features that could be used to deanonymize the user
         request.setHeader(b'Permissions-Policy', b"camera=(),"
