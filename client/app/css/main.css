@@ -240,7 +240,24 @@ a:hover,
 
 #WhistleblowerLoginForm input {
   width: 14rem;
-  text-align: center;
+}
+
+#HeaderBox #WhistleblowerLoginBox {
+  clear: both;
+}
+
+#HeaderBox #WhistleblowerLoginBox form {
+  clear: both;
+}
+
+[dir='ltr'] #HeaderBox #WhistleblowerLoginBox form,
+[dir='ltr'] #HeaderBox #WhistleblowerLoginBox label {
+  float: right;
+}
+
+[dir='rtl'] #HeaderBox #WhistleblowerLoginBox form,
+[dir='rtl'] #HeaderBox #WhistleblowerLoginBox label {
+  float: left;
 }
 
 .recoverykeyinput {
@@ -249,11 +266,11 @@ a:hover,
 }
 
 [dir='ltr'] .nested {
-  padding-left: .5em;
+  padding-left: 1em;
 }
 
 [dir='rtl'] .nested {
-  padding-right: .5em;
+  padding-right: 1em;
 }
 
 .filePreview {
@@ -613,7 +630,6 @@ input[type='file'] {
 }
 
 #TitleBox {
-  display: inline-flex;
   font-size: 1.6rem;
   line-height: 1;
   font-weight: bold;
