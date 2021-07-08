@@ -23,7 +23,7 @@
         <span id="PrivacyBadgeCustomText" data-ng-show="privacy_badge_open" data-markdown-to-html="public.node.custom_privacy_badge_text"></span>
       </div>
     </div>
-    <div id="PrivacyBoxToggleButton" class="float-right" data-ng-click="privacy_badge_open = !privacy_badge_open" aria-label="Toggle">
+    <div id="PrivacyBoxToggleButton" class="float-right" data-ng-if="!public.node.enable_custom_privacy_badge" data-ng-click="privacy_badge_open = !privacy_badge_open" aria-label="Toggle">
       <i data-ng-if="!connection.privacy_badge_open" class="fas fa-chevron-circle-down"></i>
       <i data-ng-if="connection.privacy_badge_open" class="fas fa-chevron-circle-up"></i>
     </div>
