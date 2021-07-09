@@ -84,12 +84,12 @@ def prepare_tip_export(cc, tip_export):
             file_dict['fo'] = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, file_dict['path'])
             del file_dict['path']
 
-    for file_dict in tip_export['tip']['rfiles']:
+    for file_dict in tip_export['tip'].pop('rfiles'):
         file_dict['name'] = 'files/' + file_dict['name']
         if file_dict.get('status', '') == 'encrypted':
             file_dict['name'] += '.pgp'
 
-    for file_dict in tip_export['tip']['wbfiles']:
+    for file_dict in tip_export['tip'].pop('wbfiles'):
         file_dict['name'] = 'files_attached_from_recipients/' + file_dict['name']
 
     tip_export['comments'] = tip_export['tip']['comments']
