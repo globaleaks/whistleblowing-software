@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-06-02 13:26+0000\n"
+"PO-Revision-Date: 2021-07-08 20:45+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -521,6 +521,9 @@ msgstr "Questo nome di dominio non è disponibile."
 msgid "Mark as important"
 msgstr "Segna come importante"
 
+msgid "Copy to clipboard"
+msgstr "Copia negli appunti"
+
 msgid "File a report"
 msgstr "Invia una segnalazione"
 
@@ -639,9 +642,6 @@ msgstr "Abilita il sistema di punteggio"
 
 msgid "Enable private annotations"
 msgstr "Abilita annotazioni private"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Permetti ai seguenti siti di includetr la piattaforma attraverso iframes"
 
 msgid "Logging level"
 msgstr "Livello di verbosità dei log"

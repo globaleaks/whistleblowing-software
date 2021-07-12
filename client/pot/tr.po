@@ -30,8 +30,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-06-09 09:12+0000\n"
-"Last-Translator: T. E. Kalayci <tekrei@tutanota.com>\n"
+"PO-Revision-Date: 2021-07-08 20:45+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -526,6 +526,9 @@ msgstr "Bu alan adı mevcut değil."
 msgid "Mark as important"
 msgstr "Önemli olarak işaretle"
 
+msgid "Copy to clipboard"
+msgstr "Panoya kopyala"
+
 msgid "File a report"
 msgstr "Bir bildirimde bulunun"
 
@@ -644,9 +647,6 @@ msgstr "Skorlama sistemini etkinleştir"
 
 msgid "Enable private annotations"
 msgstr "Özel notları etkinleştir"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Aşağıdaki websitelerinin platformu iframe içinde eklemelerine izin ver"
 
 msgid "Logging level"
 msgstr "Günlük düzeyi"

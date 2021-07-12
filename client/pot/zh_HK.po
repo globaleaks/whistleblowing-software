@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-06-02 12:40+0000\n"
+"PO-Revision-Date: 2021-07-08 20:45+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Hong Kong) (http://www.transifex.com/otf/globaleaks/language/zh_HK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -501,6 +501,9 @@ msgstr "此域名不可用。"
 msgid "Mark as important"
 msgstr ""
 
+msgid "Copy to clipboard"
+msgstr ""
+
 msgid "File a report"
 msgstr "提交報告"
 
@@ -619,9 +622,6 @@ msgstr "啟用評分系統"
 
 msgid "Enable private annotations"
 msgstr "啟用私人筆記"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "允許下列網站將此平台嵌入 iframe "
 
 msgid "Logging level"
 msgstr "日誌級別"

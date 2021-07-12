@@ -1,11 +1,12 @@
 # 
 # Translators:
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
+# Lobsang Gyatso Sither <lobsangsither@gmail.com>, 2021
 # Tenzin Loden <loden1701@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-06-02 12:40+0000\n"
+"PO-Revision-Date: 2021-07-08 20:45+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tibetan (http://www.transifex.com/otf/globaleaks/language/bo/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +22,7 @@ msgid "Main configuration"
 msgstr "སྡེབ་སྒྲིག་གཙོ་བོ།"
 
 msgid "Theme customization"
-msgstr "རང་བཟོས་སྙིང་དོན།"
+msgstr "རང་བཟོས་དཔེ་སྒྲོམ།"
 
 msgid "Languages"
 msgstr "སྐད་རིགས།"
@@ -48,28 +49,28 @@ msgid "Home"
 msgstr "མདུན་ངོས།"
 
 msgid "Changelog"
-msgstr "ཐོ་འགོད་བརྗེ་སྒྱུར།"
+msgstr "ཐོ་འགོད་བསྒྱུར་བ།"
 
 msgid "License"
-msgstr "ཆོག་མཆན་ལག་འཁྱེར།"
+msgstr "ཆོག་མཆན་ལག་ཁྱེར།"
 
 msgid "Notification templates"
 msgstr "བརྡ་ཐོ་མ་དཔེ།"
 
 msgid "Delete"
-msgstr "བསུབ།"
+msgstr "སུབ།"
 
 msgid "Anomalies"
 msgstr "སྤྱིི་འགྲེ་མིན་པ།"
 
 msgid "Preferences"
-msgstr "མོས་འདེམས།"
+msgstr "གདམ་ག"
 
 msgid "Notification settings"
 msgstr "བརྡ་ཐོ་སྒྲིག་བཀོད།"
 
 msgid "file unavailable"
-msgstr "ཡིག་ཆ་མི་འདུག"
+msgstr "ཡིག་ཆ་མིན་འདུག"
 
 msgid "Date"
 msgstr "ཚེས་གྲངས།"
@@ -84,7 +85,7 @@ msgid "Files"
 msgstr "ཡིག་ཆ།"
 
 msgid "Comments"
-msgstr "འགྲེལ་བརྗོད།"
+msgstr "མཆན།"
 
 msgid "Messages"
 msgstr "འཕྲིན་ཐུང་།"
@@ -209,10 +210,10 @@ msgid "No"
 msgstr "མིན།"
 
 msgid "Attachment"
-msgstr "མཐུད་འཛར།"
+msgstr "ཟུར་སྣོན།"
 
 msgid "Attachments"
-msgstr "མཐུད་འཛར།"
+msgstr "ཟུར་སྣོན།"
 
 msgid "Change your password"
 msgstr "ཁྱེད་ཀྱི་གསང་ཡིག་བརྗེ་སྒྱུར་བྱ།"
@@ -275,7 +276,7 @@ msgid "Deny"
 msgstr "ཁས་ལེན་མི་བྱ།"
 
 msgid "Deny access to the whistleblower's identity"
-msgstr "གསང་སྒྲོག་པའི་ངོོ་བོའི་ཆེད་ལྟ་སྤྱོད་ཁས་ལེན་མི་བྱ།"
+msgstr "གསང་སྒྲོག་པའི་ངོ་བོའི་ཆེད་ལྟ་སྤྱོད་ཁས་ལེན་མི་བྱ།"
 
 msgid "Authorize access to the whistleblower's identity"
 msgstr "གསང་སྒྲོག་པའི་ངོ་བོའི་ཆེད་ལྟ་སྤྱོད་བཀའ་འཁྲོལ་བྱ།"
@@ -306,13 +307,13 @@ msgid ""
 msgstr "མཐུད་ཁ་འདི་ཡིས་བདག་གཉེར་རྣམས་ལ་བརྡ་ཁྱབ་ཆེད་བེད་སྤྱོད་བྱས་པའི་གློག་འཕྲིན་མ་དཔེ་རྣམས་སྡེབ་སྒྲིག་བྱེད་དུ་འཇུག་པ་ཡིན། "
 
 msgid "Disable notifications to administrators"
-msgstr "འཛིན་སྐྱོང་བ་རྣམས་ལ་བརྡོ་ཐོ་དག་ནུས་འཇོམས་བཟོ།"
+msgstr "འཛིན་སྐྱོང་བ་རྣམས་ལ་བརྡ་ཐོ་དག་ནུས་འཇོམས་བཟོ།"
 
 msgid "Disable notifications to custodians"
-msgstr "བདག་གཉེར་བ་རྣམས་ལ་བརྡོ་ཐོ་དག་ནུས་འཇོམས་བཟོ།"
+msgstr "བདག་གཉེར་བ་རྣམས་ལ་བརྡ་ཐོ་དག་ནུས་འཇོམས་བཟོ།"
 
 msgid "Disable notifications to recipients"
-msgstr "འབྱོར་ཡུལ་རྣམས་ལ་བརྡོ་ཐོ་དག་ནུས་འཇོམས་བཟོ།"
+msgstr "འབྱོར་ཡུལ་རྣམས་ལ་བརྡ་ཐོ་དག་ནུས་འཇོམས་བཟོ།"
 
 msgid "Score"
 msgstr "ཐོབ་ཨང་།"
@@ -419,7 +420,7 @@ msgid "Remove"
 msgstr "ཕྱིར་འདོན།"
 
 msgid "Use as default"
-msgstr "ཐོག་མ་ནས་ཡོད་པའི་ཚུལ་དུ་བེད་སྤྱོད་བྱ།"
+msgstr "རང་སོར་ཡོད་པའི་ཚུལ་དུ་བེད་སྤྱོད་བྱ།"
 
 msgid "Create your whistleblowing platform"
 msgstr "རང་ཉིད་ཀྱི་གསང་སྒྲོག་གླེང་སྟེགས་བཟོ་བསྐྲུན་བྱ།"
@@ -443,13 +444,13 @@ msgid "Opened"
 msgstr "སྒོ་ཕྱེ་ཟིན།"
 
 msgid "Closed"
-msgstr "སྒོ་རྒྱག་ཟིན།"
+msgstr "སྒོ་རྒྱབ་ཟིན།"
 
 msgid "Placeholder"
 msgstr "ས་ཆ་འཛིན་མཁན།"
 
 msgid "Print"
-msgstr "པར་བསྐྲུན།"
+msgstr "པར་སྐྲུན།"
 
 msgid "Previous"
 msgstr "སྔ་མ།"
@@ -464,10 +465,10 @@ msgid "Last"
 msgstr "མཐའ་མ།"
 
 msgid "Running"
-msgstr "འཁོར་རྒྱུག་བཞིན་པ།"
+msgstr "འཁོར་བསྐྱོད་བྱེད་བཞིན་པ།"
 
 msgid "Not running"
-msgstr "འཁོར་རྒྱུག་མེད་པ།"
+msgstr "འཁོར་བསྐྱོད་མི་བྱེད་པ།"
 
 msgid "Send a test email to your email address."
 msgstr "ཁྱེད་ཀྱི་གློག་འཕྲིན་ཁ་བྱང་ལ་ཚོད་ལྟའི་གློག་འཕྲིན་ཞིག་གཏོང་།"
@@ -499,6 +500,9 @@ msgid "This domain name is not available."
 msgstr "དྲ་རྒྱའི་ཁ་བྱང་འདི་ཐོབ་རུང་མི་འདུག"
 
 msgid "Mark as important"
+msgstr "གལ་ཆེ་ཡིན་ན་རྟགས་རྒྱབས།"
+
+msgid "Copy to clipboard"
 msgstr ""
 
 msgid "File a report"
@@ -529,10 +533,10 @@ msgid "The new password must differ from the previous."
 msgstr "གསང་ཡིག་གསར་པ་དེ་ངེས་པར་དུ་དེ་སྔོན་གསང་ཡིག་ལས་མི་འདྲ་བ་དགོས།"
 
 msgid "Proceed"
-msgstr "འགོ་འཛུགས་བྱ།"
+msgstr "མུ་མཐུད།"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr "འགོ་འཛུགས་མ་བྱེད་གོང་། རིམ་གཉིས་བཀའ་འཁྲོལ་ནུས་ལྡན་བཟོ་རོགས་གནང་། "
+msgstr "འགོ་འཛུགས་མ་བྱེད་གོང་། རིམ་པ་གཉིས་བཀའ་འཁྲོལ་ནུས་ལྡན་བཟོ་རོགས་གནང་། "
 
 msgid "Disable submissions"
 msgstr "ཞུ་འབུལ་ནུས་འཇོམས་བྱ།"
@@ -578,7 +582,7 @@ msgid "Enable the receipt hint"
 msgstr "འབྱོར་བརྡ་ནུས་ལྡན་བཟོ།"
 
 msgid "Default questionnaire"
-msgstr "ཐོག་མ་ནས་ཡོད་པའི་དྲི་ཚན།"
+msgstr "རང་སོར་ནས་ཡོད་པའི་དྲི་ཚན།"
 
 msgid "Show contexts in alphabetical order"
 msgstr "འབྲེལ་ཆགས་རྣམས་ཀ་མད་སྒོ་ནས་སྟོན།"
@@ -587,7 +591,7 @@ msgid "Do not expose users' names"
 msgstr "སྤྱོད་པ་པོའི་མིང་ཐེར་འདོན་མི་བྱ།"
 
 msgid "Size limit for file attachments"
-msgstr "ཡིག་ཆའི་མཐུད་འཛར་ཆེད་ཆ་ཚད་ཚད་མཚམས།"
+msgstr "ཟུར་སྣོན་ཡིག་ཆའི་ཚད་མཚམས།"
 
 msgid "in megabytes"
 msgstr "མེ་ག་བ་ཡེཊ་ནང་།"
@@ -596,7 +600,7 @@ msgid "Enable HSTS preload"
 msgstr "HSTS སྔོན་འཇུག་ནུས་ལྡན་བཟོ།"
 
 msgid "Require two factor authentication"
-msgstr "རིམ་གཉིས་བཀའ་འཁྲོལ་ལྡན་དགོས།"
+msgstr "རིམ་པ་གཉིས་བཀའ་འཁྲོལ་ལྡན་དགོས།"
 
 msgid "Password change interval"
 msgstr "གསང་ཡིག་བརྗེ་སྒྱུར་བར་མཚམས།"
@@ -619,9 +623,6 @@ msgstr "ཨང་ཐོབ་ལམ་ལུགས་ནུས་ལྡན་བ
 
 msgid "Enable private annotations"
 msgstr "སྒེར་གྱི་མཆན་འགྲེལ་ནུས་ལྡན་བཟོ།"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "གཤམ་འཁོད་དྲ་ཚིགས་རྣམས་ཨཡེ་ཕེ་རེམ་གྱི་གླེང་སྟེགས་ནང་འཚུད་དུ་འཇུག"
 
 msgid "Logging level"
 msgstr "ཐོ་འགོད་རིམ་པ།"
@@ -734,7 +735,7 @@ msgid "Whistleblowing button"
 msgstr "གསང་སྒྲོག་གི་མཐེབ།"
 
 msgid "Enable disclaimer"
-msgstr "ངོས་ལེན་མེད་པ་ནུས་ལྡན་བཟོ།"
+msgstr "འགན་ལེན་མེད་པ་ནུས་ལྡན་བཟོ།"
 
 msgid "Title"
 msgstr "འགོ་བརྗོད།"
@@ -809,10 +810,10 @@ msgid "Show recipient details on the status page of the report"
 msgstr "འབྱོར་ཡུལ་གྱི་ཞིབ་ཕྲ་རྣམས་སྙན་ཐོའི་གནས་བབ་ཤོག་ངོས་སྟེང་སྟོན།"
 
 msgid "Enable comments"
-msgstr "འགྲེལ་བརྗོད་ནུས་ལྡན་བཟོ།"
+msgstr "མཆན་ནུས་ལྡན་བཟོ།"
 
 msgid "Allow whistleblowers to write comments"
-msgstr "གསང་སྒྲོག་པ་ལ་འགྲེལ་བརྗོད་འབྲི་རུ་འཇུག"
+msgstr "གསང་སྒྲོག་པ་ལ་མཆན་འབྲི་རུ་འཇུག"
 
 msgid "Enable private messages"
 msgstr "སྒེར་གྱི་འཕྲིན་ཐུང་ནུས་ལྡན་བཟོ།"
@@ -821,7 +822,7 @@ msgid "Allow whistleblowers to send messages"
 msgstr "གསང་སྒྲོག་པ་ལ་འཕྲིན་ཐུང་གཏོང་དུ་འཇུག"
 
 msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "གསང་སྒྲོག་པ་ལ་ད་ཡོད་སྙན་ཐོའི་སྟེང་མཐུད་འཛར་སྣོན་དུ་འཇུག"
+msgstr "གསང་སྒྲོག་པ་ལ་ད་ཡོད་སྙན་ཐོའི་སྟེང་ཟུར་སྣོན་སྣོན་དུ་འཇུག"
 
 msgid "Let recipients upload files to whistleblowers"
 msgstr "འབྱོར་ཡུལ་རྣམས་ལ་གསང་སྒྲོག་པའི་སྟེང་ཡིག་ཆ་ཡར་འཇུག་བྱེད་དུ་འཇུག"
@@ -869,7 +870,7 @@ msgid "Example:"
 msgstr "དཔེར་ན།:"
 
 msgid "Hostname"
-msgstr "གཙོོ་མིང་།"
+msgstr "མགྲོན་བདག་མིང་།"
 
 msgid "Invalid input format."
 msgstr "ནང་འཇུག་རྣམ་དབྱིབས་མི་འཐད།"
@@ -1135,13 +1136,13 @@ msgid "Configure"
 msgstr "སྡེབ་སྒྲིག"
 
 msgid "Subdomain"
-msgstr "གཙོ་བོའི་ནང་གསེས།"
+msgstr "དྲྭ་རྒྱའི་ཁ་བྱང་ནང་གསེས།"
 
 msgid "Creation date:"
 msgstr "བཟོ་བསྐྲུན་ཚེས་གྲངས།:"
 
 msgid "Root domain used for secondary sites"
-msgstr "དྲ་ཚིགས་གཞན་ཆེད་བེད་སྤྱོད་བྱས་པའི་གཙོ་བོའི་རྩ་བ།"
+msgstr "དྲ་ཚིགས་གཞན་ཆེད་བེད་སྤྱོད་བྱས་པའི་དྲྭ་རྒྱའི་ཁ་བྱང་རྩ་བ།"
 
 msgid "Use the first site for administrative purposes only"
 msgstr "འཛིན་སྐྱོང་དགོས་དོན་ཁོ་ནའི་ཆེད་དྲ་ཚིགས་དང་པོ་དེ་བེད་སྤྱོད་བྱ།"
@@ -1168,7 +1169,7 @@ msgid "Set password"
 msgstr "གསང་ཡིག་སྒྲིག་བཀོད་བྱ།"
 
 msgid "Disable two factor authentication"
-msgstr "རིམ་གཉིས་བཀའ་འཁྲོལ་ནུས་འཇོམས་བྱ།"
+msgstr "རིམ་པ་གཉིས་བཀའ་འཁྲོལ་ནུས་འཇོམས་བྱ།"
 
 msgid "Force password change"
 msgstr "གསང་ཡིག་བརྗེ་སྒྱུར་བཙན་སྐུལ་བྱ།"
@@ -1228,7 +1229,7 @@ msgid "Forgot password?"
 msgstr "གསང་ཡིག་བརྗེད་སོང་ངམ།"
 
 msgid "Enter the two factor authentication code"
-msgstr "རིམ་གཉིས་བཀའ་འཁྲོལ་གསང་རྟགས་འཇུག"
+msgstr "རིམ་པ་གཉིས་བཀའ་འཁྲོལ་གསང་རྟགས་འཇུག"
 
 msgid "Authentication failed"
 msgstr "བཀའ་འཁྲོལ་མི་ཐུབ།"
@@ -1273,7 +1274,7 @@ msgid "Scan the QR code with the app"
 msgstr "ཉེར་སྤྱོད་ལྷན་ QR གསང་རྟགས་འཚག་སེལ་བྱ།"
 
 msgid "Enable two factor authentication"
-msgstr "རིམ་གཉིས་བཀའ་འཁྲོལ་ནུས་ལྡན་བཟོ།"
+msgstr "རིམ་པ་གཉིས་བཀའ་འཁྲོལ་ནུས་ལྡན་བཟོ།"
 
 msgid "Close"
 msgstr "སྒོ་རྒྱག"
@@ -1366,7 +1367,7 @@ msgstr "ཁྱེད་ཀྱིས་གསང་རྒྱ་དང་ཉེན
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr "ཁྱེད་ཀྱིས་ Tor བཤར་ཆས་ཞེས་པའི་ཉེར་སྤྱོད་བེད་སྤྱོད་བྱེད་དེ་དྲ་ཚིགས་འདིའི་སྟེང་བསྐྱོད་དགོས་པ་སློབ་སྟོན་ཤུགས་ཆེ་བྱས་འདུག དེ་ཡིས་ཁྱེད་ཀྱིི་ངོ་བོ་སྲུང་སྐྱོབ་བྱེད་པ་ཡིན།"
+msgstr "ཁྱེད་ཀྱིས་ Tor བཤར་ཆས་ཞེས་པའི་ཉེར་སྤྱོད་བེད་སྤྱོད་བྱེད་དེ་དྲ་ཚིགས་འདིའི་སྟེང་བསྐྱོད་དགོས་པ་སློབ་སྟོན་ཤུགས་ཆེ་བྱས་འདུག དེ་ཡིས་ཁྱེད་ཀྱི་ངོ་བོ་སྲུང་སྐྱོབ་བྱེད་པ་ཡིན།"
 
 msgid "Download the Tor Browser"
 msgstr "Tor བཤར་ཆས་ཕབ་ལེན་བྱ།"
@@ -1422,7 +1423,7 @@ msgid ""
 "and staying anonymous by not revealing your location or IP address. You "
 "won't notice any difference from an insecure chat, except that you will be "
 "using a unique address instead of a phone number/email/username."
-msgstr "Tor དྲ་ལམ་བེད་སྤྱོད་བྱེད་པ་དང་ Onion ཞབས་ཞུ་ཞིག་བཟོ་བསྐྲུན་བྱེད་པའི་སྒོ་ནས། Ricochet ནི་དེ་མ་ཐག་འཕྲལ་གྱི་འཕྲིན་ཐུང་གཏོང་བའི་ཉེར་སྤྱོད་ཅིག་ཡིན། དེ་ཡིས་ཁྱེད་ཀྱི་གསང་རྒྱ་སྲུང་སྐྱོབ་བྱེད་པ་དང་། ཁྱེད་ཀྱི་ས་ཚིགས་སམ་ IP ཁ་བྱང་མིང་འདོན་མ་བྱེད་པར་མིང་མེད་སྡོད་པའི་སྒོ་ནས། ཁྱེད་ལ་ཁ་བརྡ་བྱེད་དུ་འཇུག་པ་ཡིན། ཁྱེད་ཀྱིས་ཁ་པར་ཨང་གྲངས་/གློག་འཕྲིན་/སྤྱོད་པ་པོའི་མིང་གི་ཚབ་ཏུ་དམིགས་བསལ་ཁ་བྱང་ཞིག་བེད་སྤྱོད་བྱེད་ཀྱི་ཡོད་པ་མ་གཏོགས། ཁྱེད་ཀྱིས་ཉེན་སྲུང་མེད་པའི་ཁ་བརྡ་ཞིག་ནས་ཁྱད་པར་གཞན་གང་ཡང་མི་ཚོར་བ་ཡིིན།"
+msgstr "Tor དྲ་ལམ་བེད་སྤྱོད་བྱེད་པ་དང་ Onion ཞབས་ཞུ་ཞིག་བཟོ་བསྐྲུན་བྱེད་པའི་སྒོ་ནས། Ricochet ནི་དེ་མ་ཐག་འཕྲལ་གྱི་འཕྲིན་ཐུང་གཏོང་བའི་ཉེར་སྤྱོད་ཅིག་ཡིན། དེ་ཡིས་ཁྱེད་ཀྱི་གསང་རྒྱ་སྲུང་སྐྱོབ་བྱེད་པ་དང་། ཁྱེད་ཀྱི་ས་ཚིགས་སམ་ IP ཁ་བྱང་མིང་འདོན་མ་བྱེད་པར་མིང་མེད་སྡོད་པའི་སྒོ་ནས། ཁྱེད་ལ་ཁ་བརྡ་བྱེད་དུ་འཇུག་པ་ཡིན། ཁྱེད་ཀྱིས་ཁ་པར་ཨང་གྲངས་/གློག་འཕྲིན་/སྤྱོད་པ་པོའི་མིང་གི་ཚབ་ཏུ་དམིགས་བསལ་ཁ་བྱང་ཞིག་བེད་སྤྱོད་བྱེད་ཀྱི་ཡོད་པ་མ་གཏོགས། ཁྱེད་ཀྱིས་ཉེན་སྲུང་མེད་པའི་ཁ་བརྡ་ཞིག་ནས་ཁྱད་པར་གཞན་གང་ཡང་མི་ཚོར་བ་ཡིན།"
 
 msgid "The connection is not secure."
 msgstr "སྦྲེལ་མཐུད་དེ་བཙན་པོ་མི་འདུག"
@@ -1460,7 +1461,7 @@ msgid "Send"
 msgstr "གཏོང་།"
 
 msgid "Allow the whistleblower to write comments"
-msgstr "གསང་སྒྲོག་པ་ལ་འབྲེལ་བརྗོད་འབྲི་རུ་འཇུག"
+msgstr "གསང་སྒྲོག་པ་ལ་མཆན་འབྲི་རུ་འཇུག"
 
 msgid "From:"
 msgstr "ནས།:"
@@ -1478,7 +1479,7 @@ msgid "File size"
 msgstr "ཡིག་ཆའི་ཆ་ཚད།"
 
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr "གསང་སྒྲོག་པ་ལ་སྙན་ཐོའི་སྟེང་མཐུད་འཛར་སྣོན་དུ་འཇུག"
+msgstr "གསང་སྒྲོག་པ་ལ་སྙན་ཐོའི་སྟེང་ཟུར་སྣོན་སྣོན་དུ་འཇུག"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "གསང་སྒྲོག་པ་ལ་འཕྲིན་ཐུང་གཏོང་དུ་འཇུག"
@@ -1530,7 +1531,7 @@ msgid "Status:"
 msgstr "གནས་བབ།:"
 
 msgid "Files attached by recipients"
-msgstr "འབྱོར་ཡུལ་གྱི་མཉམ་སྦྱར་བྱས་པའི་ཡིག་ཆ།"
+msgstr "འབྱོར་ཡུལ་གྱི་ཟུར་སྣོན་བྱས་པའི་ཡིག་ཆ།"
 
 msgid "Upload a file:"
 msgstr "ཡིག་ཆ་ཞིག་ཡར་འཇུག་བྱ།:"
@@ -1605,7 +1606,7 @@ msgid "Sign up"
 msgstr "ཐོ་འགོད།"
 
 msgid "Domain"
-msgstr "གཙོ་བོ།"
+msgstr "དྲྭ་རྒྱའི་ཁ་བྱང་།"
 
 msgid "Confirmation"
 msgstr "གཏན་འཁེལ།"
@@ -1736,7 +1737,7 @@ msgid "Describe your report in detail."
 msgstr "ཁྱེད་ཀྱི་སྙན་ཐོ་དེ་ཞིབ་ཕྲ་འགྲེལ་བརྗོད་བྱ།"
 
 msgid "Attach files relevant to the report."
-msgstr "སྙན་ཐོ་འབྲེལ་ཡོད་ཡིག་ཆ་དག་མཉམ་སྦྱར་བྱ།"
+msgstr "སྙན་ཐོ་འབྲེལ་ཡོད་ཡིག་ཆ་དག་ཟུར་སྣོན་བྱ།"
 
 msgid "Do you want to provide your identification information?"
 msgstr "ཁྱེད་ཀྱི་སོ་སོའི་ངོས་འཛིན་ཆ་འཕྲིན་མཁོ་སྤྲོད་བྱེད་འདོད་དམ།"
@@ -1897,7 +1898,7 @@ msgstr "གསང་སྒྲོག་པའི་དྲ་ཚིགས་གས
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
-msgstr "འདི་ནི་གླེང་སྟེགས་ཀྱི་འཛིན་སྐྱོོང་མཐུད་ཁ་ནས་བཏང་བའི་ཚོད་ལྟའི་གློག་འཕྲིན་ཞིག་ཡིན།"
+msgstr "འདི་ནི་གླེང་སྟེགས་ཀྱི་འཛིན་སྐྱོང་མཐུད་ཁ་ནས་བཏང་བའི་ཚོད་ལྟའི་གློག་འཕྲིན་ཞིག་ཡིན།"
 
 msgid ""
 "Reception of this email indicates that the server was able to authenticate "
@@ -1944,7 +1945,7 @@ msgstr "གནས་བབ།: {TipStatus}"
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
-msgstr "གླེང་སྟེགས་སྟེང་འདོན་འཇུག་བྱེད་པའིི་ HTTPS ལག་འཁྱེར་དེ་དུས་ཡོལ་ཟིན་གྲབས་ཡོད་པའམ་དུས་ཡོལ་ཟིན་འདུག"
+msgstr "གླེང་སྟེགས་སྟེང་འདོན་འཇུག་བྱེད་པའི་ HTTPS ལག་འཁྱེར་དེ་དུས་ཡོལ་ཟིན་གྲབས་ཡོད་པའམ་དུས་ཡོལ་ཟིན་འདུག"
 
 msgid "Expiration date: {ExpirationDate}"
 msgstr "དུས་ཡོལ་ཚེས་གྲངས།: {ExpirationDate}"

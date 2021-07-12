@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-06-02 12:40+0000\n"
+"PO-Revision-Date: 2021-07-08 20:45+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -522,6 +522,9 @@ msgstr "این نام دامنه در دسترس نیست."
 msgid "Mark as important"
 msgstr ""
 
+msgid "Copy to clipboard"
+msgstr "به حافظه کوتاه مدت کپی کن"
+
 msgid "File a report"
 msgstr ""
 
@@ -640,9 +643,6 @@ msgstr "فعال سازی سیستم امتیازدهی"
 
 msgid "Enable private annotations"
 msgstr ""
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "به وبسایت‌های زیر اجازه دهید تا پلتفرم را در iframe جاسازی کنند"
 
 msgid "Logging level"
 msgstr "سطح ثبت کردن وقایع"

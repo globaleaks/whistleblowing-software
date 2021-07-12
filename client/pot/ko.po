@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-06-02 12:40+0000\n"
+"PO-Revision-Date: 2021-07-08 20:45+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -502,6 +502,9 @@ msgstr "도메인 이름을 사용할 수 없습니다."
 msgid "Mark as important"
 msgstr ""
 
+msgid "Copy to clipboard"
+msgstr "클립보드로 복사"
+
 msgid "File a report"
 msgstr "보고서 보관"
 
@@ -620,9 +623,6 @@ msgstr "채점 시스템 허용"
 
 msgid "Enable private annotations"
 msgstr "개인 주석 허용"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "다른 웹 사이트에서 iframe 내부의 플랫폼을 내장하도록 허용"
 
 msgid "Logging level"
 msgstr "기록 수준"

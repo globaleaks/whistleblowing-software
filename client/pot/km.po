@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-06-02 12:40+0000\n"
+"PO-Revision-Date: 2021-07-08 20:45+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Khmer (http://www.transifex.com/otf/globaleaks/language/km/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -502,6 +502,9 @@ msgstr "ឈ្មោះវេបសាយនេះមិនមានទេ។"
 msgid "Mark as important"
 msgstr ""
 
+msgid "Copy to clipboard"
+msgstr ""
+
 msgid "File a report"
 msgstr "បញ្ចូលរបាយការណ៍"
 
@@ -620,9 +623,6 @@ msgstr "បើកប្រព័ន្ធដាក់ពិន្ទុ"
 
 msgid "Enable private annotations"
 msgstr "បើកចំណារពន្យល់ឯកជន"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "អនុញ្ញាតគេហទំព័រខាងក្រោមឲ្យភ្ជាប់វេទិកាខាងក្នុង iframes"
 
 msgid "Logging level"
 msgstr "កម្រិតការចូលប្រើប្រាស់"

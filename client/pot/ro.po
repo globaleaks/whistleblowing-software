@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-06-02 12:40+0000\n"
+"PO-Revision-Date: 2021-07-08 20:45+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -515,6 +515,9 @@ msgstr "Numele de domeniu nu este disponibil."
 msgid "Mark as important"
 msgstr ""
 
+msgid "Copy to clipboard"
+msgstr "Copiază în clipboard"
+
 msgid "File a report"
 msgstr ""
 
@@ -633,9 +636,6 @@ msgstr "Activează sistemul de evaluare"
 
 msgid "Enable private annotations"
 msgstr "Permite adnotările private"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Permite următoarelor website-uri să insereze platforma în frame-urile lor"
 
 msgid "Logging level"
 msgstr "Nivel logare "

@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-06-02 12:40+0000\n"
+"PO-Revision-Date: 2021-07-08 20:45+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -505,6 +505,9 @@ msgstr "このドメイン名は利用できません。"
 msgid "Mark as important"
 msgstr ""
 
+msgid "Copy to clipboard"
+msgstr "クリップボードにコピー"
+
 msgid "File a report"
 msgstr "報告を保存する"
 
@@ -623,9 +626,6 @@ msgstr "スコアリングシステムを有効にする"
 
 msgid "Enable private annotations"
 msgstr "プライベートアノテーションを有効にする"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "次のWebサイトがインラインフレーム内にプラットフォームを埋め込むことを許可する"
 
 msgid "Logging level"
 msgstr "ログ取得レベル"

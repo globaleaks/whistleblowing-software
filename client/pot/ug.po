@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-06-03 13:58+0000\n"
-"Last-Translator: Tughluq Qutluq <tugkutluk@gmail.com>\n"
+"PO-Revision-Date: 2021-07-08 20:45+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uyghur (http://www.transifex.com/otf/globaleaks/language/ug/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -503,6 +503,9 @@ msgstr "بۇ دائىرە نامى بوش ئەمەس."
 msgid "Mark as important"
 msgstr "مۇھىم دەپ بەلگە قوي"
 
+msgid "Copy to clipboard"
+msgstr ""
+
 msgid "File a report"
 msgstr "بىر دوكلات يوللا"
 
@@ -621,9 +624,6 @@ msgstr "نومۇر قويۈش سىستېمىسىنى قوزغات"
 
 msgid "Enable private annotations"
 msgstr "شەخسىي ئىزاھاتلارنى قوزغات"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "تۆۋەندىكى تور بېكەتلىرىنىڭ iframe لىرى ئىچىگە بۇ سۇپىنى قىستۇرىشىغا رۇخسەت قىل "
 
 msgid "Logging level"
 msgstr "خاتىرىگە ئېلىش سەۋىيەسى"

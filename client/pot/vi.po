@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-06-02 12:40+0000\n"
+"PO-Revision-Date: 2021-07-08 20:45+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -513,6 +513,9 @@ msgstr "Tên miền này không có sẵn"
 msgid "Mark as important"
 msgstr ""
 
+msgid "Copy to clipboard"
+msgstr "Sao chép vào Clipboard"
+
 msgid "File a report"
 msgstr "Nộp báo cáo"
 
@@ -631,9 +634,6 @@ msgstr "Bật mở hệ thống tính điểm"
 
 msgid "Enable private annotations"
 msgstr "Bật mở chú thích riêng"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Cho phép các trang web sau đây cài nhúng hệ thống vào trong iframes"
 
 msgid "Logging level"
 msgstr "Mức độ ghi sổ"

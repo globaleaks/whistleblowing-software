@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-06-02 12:40+0000\n"
+"PO-Revision-Date: 2021-07-08 20:45+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bosnian (http://www.transifex.com/otf/globaleaks/language/bs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -504,6 +504,9 @@ msgstr "Ova domena nije dostupna"
 msgid "Mark as important"
 msgstr ""
 
+msgid "Copy to clipboard"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
@@ -622,9 +625,6 @@ msgstr "Omogućite sistem bodovanja"
 
 msgid "Enable private annotations"
 msgstr ""
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Omogućite da slijedeći sajtovi ugrade ovu platformu u svoj iframe"
 
 msgid "Logging level"
 msgstr "Nivo logiranja"

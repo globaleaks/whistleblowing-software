@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-06-02 12:40+0000\n"
+"PO-Revision-Date: 2021-07-08 20:45+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -504,6 +504,9 @@ msgstr "Ky emër i domenit nuk është i qasshëm."
 msgid "Mark as important"
 msgstr ""
 
+msgid "Copy to clipboard"
+msgstr "Kopjoje në të papastër"
+
 msgid "File a report"
 msgstr ""
 
@@ -622,9 +625,6 @@ msgstr "Mundëso të lëvizë sistemin"
 
 msgid "Enable private annotations"
 msgstr "Mundëso shënimet private"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Lejo uebfaqet në vazhdim dhe mundëso platformën brenda fremave"
 
 msgid "Logging level"
 msgstr "Nivelet e qasjes"

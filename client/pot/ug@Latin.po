@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-06-03 14:06+0000\n"
-"Last-Translator: Tughluq Qutluq <tugkutluk@gmail.com>\n"
+"PO-Revision-Date: 2021-07-08 20:45+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uighur (Latin) (http://www.transifex.com/otf/globaleaks/language/ug@Latin/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -500,6 +500,9 @@ msgstr "Bu da’ire nami bosh emes."
 msgid "Mark as important"
 msgstr "Muhim dep belge qoy"
 
+msgid "Copy to clipboard"
+msgstr ""
+
 msgid "File a report"
 msgstr "Bir doklat yolla"
 
@@ -618,9 +621,6 @@ msgstr "Nomur qoyüsh sistémisini qozghat"
 
 msgid "Enable private annotations"
 msgstr "Shexsiy izahatlarni qozghat"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Töwendiki tor béketlirining iframe liri ichige bu supini qisturishigha ruxset qil "
 
 msgid "Logging level"
 msgstr "Xatirige élish sewiyesi"

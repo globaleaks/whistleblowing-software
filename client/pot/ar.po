@@ -43,7 +43,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-06-02 12:40+0000\n"
+"PO-Revision-Date: 2021-07-08 20:45+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -539,6 +539,9 @@ msgstr "اسم النطاق غير متاح."
 msgid "Mark as important"
 msgstr ""
 
+msgid "Copy to clipboard"
+msgstr "نسخ إلى الحافظة"
+
 msgid "File a report"
 msgstr ""
 
@@ -657,9 +660,6 @@ msgstr "تمكين نظام تسجيل النقاط"
 
 msgid "Enable private annotations"
 msgstr ""
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "السماح لهذه المواقع لتضمين المنصة داخل النوافذ المدمجة"
 
 msgid "Logging level"
 msgstr "مستوى التسجيل"

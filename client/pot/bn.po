@@ -2,13 +2,13 @@
 # Translators:
 # code smite <codesmite@gmail.com>, 2021
 # Mahmud Numan <mahmudnuman@gmail.com>, 2017
-# nr072, 2020
+# Nafiur Rahman, 2020
 # shawkat khan, 2021
 # Tasneem Khalil <tasneem.khalil@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-06-02 12:40+0000\n"
+"PO-Revision-Date: 2021-07-08 20:45+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bengali (http://www.transifex.com/otf/globaleaks/language/bn/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -504,6 +504,9 @@ msgstr "এই ডোমেইন নাম উপলব্ধ নয়।"
 msgid "Mark as important"
 msgstr ""
 
+msgid "Copy to clipboard"
+msgstr "ক্লিপবোর্ডে অনুলিপি করুন"
+
 msgid "File a report"
 msgstr "একটি রিপোর্ট জমা দিন"
 
@@ -622,9 +625,6 @@ msgstr "স্কোরিং সিস্টেম সক্ষম করুন
 
 msgid "Enable private annotations"
 msgstr "ব্যক্তিগত পাদটীকাগুলি সক্ষম করুন"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "নিম্নলিখিত ওয়েবসাইটগুলিকে আইফ্রেম এর ভিতরে প্ল্যাটফর্ম এম্বেড করার অনুমতি দিন"
 
 msgid "Logging level"
 msgstr "লগিংয়ের স্তর"

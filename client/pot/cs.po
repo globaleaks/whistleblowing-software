@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-06-02 12:40+0000\n"
+"PO-Revision-Date: 2021-07-08 20:45+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -511,6 +511,9 @@ msgstr "Tento název domény není k dispozici."
 msgid "Mark as important"
 msgstr ""
 
+msgid "Copy to clipboard"
+msgstr "Kopírovat do schránky"
+
 msgid "File a report"
 msgstr "Podat hlášení"
 
@@ -629,9 +632,6 @@ msgstr "Aktivovat systém hodnocení"
 
 msgid "Enable private annotations"
 msgstr "Povolit soukromé anotace"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Povolte následujícím stránkám vložit platformu do prvků iframe"
 
 msgid "Logging level"
 msgstr "Přihlašovací úroveň"

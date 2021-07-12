@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-06-02 12:40+0000\n"
+"PO-Revision-Date: 2021-07-08 20:45+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malay (http://www.transifex.com/otf/globaleaks/language/ms/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -500,6 +500,9 @@ msgstr "Nama domain tidak tersedia."
 msgid "Mark as important"
 msgstr ""
 
+msgid "Copy to clipboard"
+msgstr ""
+
 msgid "File a report"
 msgstr "Failkan laporan"
 
@@ -618,9 +621,6 @@ msgstr "Dayakan sistem pemarkahan"
 
 msgid "Enable private annotations"
 msgstr "Dayakan anotasi peribadi"
-
-msgid "Allow the following websites to embed the platform inside iframes"
-msgstr "Benarkan laman web berikut membenamkan platform dalam rangka"
 
 msgid "Logging level"
 msgstr "Tahap log"
