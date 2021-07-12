@@ -550,8 +550,7 @@ var GL = angular.module("GL", [
     };
 
     $rootScope.setHomepage = function() {
-      $rootScope.setPage("homepage");
-      $rootScope.reload();
+      $window.location = "/";
     };
 
     $rootScope.closeAlert = function (list, index) {
