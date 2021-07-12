@@ -1,3 +1,27 @@
+Changes in version 4.2.11
+    Implement copy to clipboard function on encryption recovery key
+    Implement copy to clipboard functionality on receipts (#1143)
+    Implement copy to clipboard function on onion address (#1040)
+    Re-implement feature #3026 with proper handling of responsiveness
+    Make it possible to show comments and messages sent before
+    disabling commenting and messaging
+    Implement link to the homepage on logo and project title
+    Fix regression on feature #2521
+    Fix issue #3015
+    Fix export of submissions including both files and comments
+    Fix password reset link functionality when triggered by
+    administrators of secondary sites
+    Disable autocomplete on password change for modern browsers
+    Log ip and user agent of internal users by default for
+    security purposes
+    Update documentation
+    Publish tentative 2021-2023 roadmap
+    Remove incorrect import of D3 library not used anymore
+    Bump npm dependencies to latest version
+    Add Uyghur translations in latin and cyrillic alphabets
+    Add revised Tibetan translation
+    Update translations
+
 Changes in version 4.2.10
     Implement possibility to export all reports at once (#2824)
     Refactor Token implementation and separate it from Submission state
