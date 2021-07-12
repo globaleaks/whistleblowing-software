@@ -274,21 +274,9 @@ module.exports = function(grunt) {
               }
             },
             {
-              pattern: /ffc107/ig,
+              pattern: /(ffc107|e0a800|d39e00)/ig,
               replacement: function () {
                 return "ffd644";
-              }
-            },
-            {
-              pattern: /e0a800/ig,
-              replacement: function () {
-                return "fae38e";
-              }
-            },
-            {
-              pattern: /d39e00/ig,
-              replacement: function () {
-                return "faf2d4";
               }
             },
             {
