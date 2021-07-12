@@ -39,7 +39,7 @@ List of team members, current and previous contributors and related statistics c
 
 * https://www.globaleaks.org/about/people
 * https://github.com/globaleaks/GlobaLeaks/graphs/contributors
-* https://www.openhub.net/p/globaleaks  
+* https://www.openhub.net/p/globaleaks
 
 ### Maintainers
 Maintainers of the project are individuals who have been given permissions to push commits to one of the git repositories.
