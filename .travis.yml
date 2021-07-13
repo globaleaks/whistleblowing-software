@@ -2,10 +2,6 @@ dist: focal
 language: python
 sudo: required
 addons:
-  hosts:
-  - lh
-  sauce_connect:
-    tunnel_domains: lh
   chrome: stable
 env:
   global:
@@ -19,17 +15,6 @@ matrix:
   - env: GLTEST='test' CODACY=true
   - env: GLTEST='build_and_install' DISTRIBUTION='buster'
   - env: GLTEST='build_and_install' DISTRIBUTION='focal'
-  - env: GLTEST='end2end-0' BROWSER='chrome latest'
-  - env: GLTEST='end2end-1' BROWSER='firefox latest'
-  - env: GLTEST='end2end-2' BROWSER='edge latest'
-  - env: GLTEST='end2end-3' BROWSER='ie 11'
-  - env: GLTEST='end2end-4' BROWSER='android 11'
-  allow_failures:
-  - env: GLTEST='end2end-0' BROWSER='chrome latest'
-  - env: GLTEST='end2end-1' BROWSER='firefox latest'
-  - env: GLTEST='end2end-2' BROWSER='edge latest'
-  - env: GLTEST='end2end-3' BROWSER='ie 11'
-  - env: GLTEST='end2end-4' BROWSER='android 11'
 before_install:
 - nvm install stable
 - nvm use stable
