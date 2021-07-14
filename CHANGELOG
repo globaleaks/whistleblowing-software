@@ -1,3 +1,6 @@
+Changes in version 4.2.12
+    Fix regression #3029 on UI mocks visualization added in 4.2.11
+
 Changes in version 4.2.11
     Implement copy to clipboard function on encryption recovery key
     Implement copy to clipboard functionality on receipts (#1143)
