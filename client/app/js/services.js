@@ -803,7 +803,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
         $location.path("/wizard");
       } else if (path === "/" && $rootScope.public.node.enable_signup) {
         $rootScope.setPage("signuppage");
-      } else if (["/", "/submission"].indexOf(path !== -1) && $rootScope.public.node.adminonly && !$rootScope.Authentication.session) {
+      } else if ((path === "/" || path === "/submission") && $rootScope.public.node.adminonly && !$rootScope.Authentication.session) {
         $location.path("/admin");
       } else if ($rootScope.Authentication.session && $rootScope.Authentication.session.role !== "whistleblower") {
         if ($rootScope.Authentication.session.password_change_needed) {
