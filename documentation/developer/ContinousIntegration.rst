@@ -9,9 +9,9 @@ Testes are performed at every commit by:
 * performing end2end tests on `SauceLabs <https://saucelabs.com/u/globaleaks>`_ to ensure compatibility with common browsers;
 * tracking tests coverage and code quality with `Codacy <https://app.codacy.com/manual/GlobaLeaks/GlobaLeaks>`_.
 
-Backend Tests
-=============
-The backend testes are implemented by means of python-twisted and trial
+Unit Tests
+==========
+Unit tests are implemented by means of python-twisted and trial
 
 Tests can be runned manually by issuing:
 
@@ -21,7 +21,7 @@ Tests can be runned manually by issuing:
 
 E2E Tests
 =========
-End2end tests are implemented by means of the Protractor Angular JS library.
+End to end tests are implemented by means of the Protractor Angular JS library.
 
 Tests can be runned manually by issuing:
 
