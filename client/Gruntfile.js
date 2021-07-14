@@ -41,7 +41,8 @@ module.exports = function(grunt) {
     },
 
     clean: {
-      all: ["build", "tmp"]
+      all: ["build", "tmp"],
+      tmp: ["tmp"]
     },
 
     copy: {
@@ -1016,7 +1017,7 @@ module.exports = function(grunt) {
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask("build",
-    ["clean", "copy:sources", "copy:build", "ngtemplates", "postcss", "useminPrepare", "concat", "usemin", "string-replace", "copy:package", "cssmin", "terser"]);
+    ["clean", "copy:sources", "copy:build", "ngtemplates", "postcss", "useminPrepare", "concat", "usemin", "string-replace", "copy:package", "cssmin", "terser", "clean:tmp"]);
 
   grunt.registerTask("instrument-client", [
     "clean",
