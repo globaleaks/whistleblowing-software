@@ -68,11 +68,6 @@ class FileResource(object):
     An interface for interacting with files stored on disk or in the db
     """
     @classmethod
-    @transact
-    def create_file(session, cls, tid, content):
-        raise errors.MethodNotImplemented()
-
-    @classmethod
     def perform_file_action(cls, tid):
         raise errors.MethodNotImplemented()
 
@@ -96,28 +91,65 @@ class FileResource(object):
         raise errors.MethodNotImplemented()
 
 
+@transact
+def create_file_https_key(session, tid, raw_data):
+    db_cfg = load_tls_dict(session, tid)
+    db_cfg['ssl_key'] = raw_data
+
+    config = ConfigFactory(session, tid)
+    pkv = tls.PrivKeyValidator()
+    ok, _ = pkv.validate(db_cfg)
+    if ok:
+        config.set_val('https_key', raw_data)
+
+    return ok
+
+
+@transact
+def create_file_https_cert(session, tid, raw_data):
+    db_cfg = load_tls_dict(session, tid)
+    db_cfg['ssl_cert'] = raw_data
+
+    config = ConfigFactory(session, tid)
+    pkv = tls.CertValidator()
+    ok, _ = pkv.validate(db_cfg)
+    if ok:
+        config.set_val('https_cert', raw_data)
+        State.tenant_cache[tid].https_cert = raw_data
+
+    return ok
+
+
+@transact
+def create_file_https_chain(session, tid, raw_data):
+    db_cfg = load_tls_dict(session, tid)
+    db_cfg['ssl_intermediate'] = raw_data
+
+    config = ConfigFactory(session, tid)
+    pkv = tls.ChainValidator()
+    ok, _ = pkv.validate(db_cfg)
+    if ok:
+        config.set_val('https_chain', raw_data)
+        State.tenant_cache[tid].https_intermediate = raw_data
+
+    return ok
+
+
+@transact
+def create_file_https_csr(session, tid, raw_data):
+    ConfigFactory(session, tid).set_val('https_csr', raw_data)
+
+    return True
+
+
+@transact
+def create_file_http_acme_key(session, tid):
+    log.info("Generating an ACME account key with %d bits" % Settings.key_bits)
+
+    return db_create_acme_key(session, tid)
+
+
 class PrivKeyFileRes(FileResource):
-    validator = tls.PrivKeyValidator
-
-    @classmethod
-    @transact
-    def create_file(session, cls, tid, raw_key):
-        db_cfg = load_tls_dict(session, tid)
-        db_cfg['ssl_key'] = raw_key
-
-        config = ConfigFactory(session, tid)
-        pkv = cls.validator()
-        ok, _ = pkv.validate(db_cfg)
-        if ok:
-            config.set_val('https_key', raw_key)
-
-        return ok
-
-    @staticmethod
-    @transact
-    def save_tls_key(session, tid, prv_key):
-        ConfigFactory(session, tid).set_val('https_key', prv_key)
-
     @classmethod
     @inlineCallbacks
     def perform_file_action(cls, tid):
@@ -125,7 +157,7 @@ class PrivKeyFileRes(FileResource):
         key = yield deferToThread(tls.gen_ecc_key, Settings.key_bits)
 
         log.debug("Saving the HTTPS key")
-        yield cls.save_tls_key(tid, key)
+        yield create_file_https_key(tid, key)
 
     @staticmethod
     @transact
@@ -148,24 +180,6 @@ class PrivKeyFileRes(FileResource):
 
 
 class CertFileRes(FileResource):
-    validator = tls.CertValidator
-
-    @classmethod
-    @transact
-    def create_file(session, cls, tid, raw_cert):
-        config = ConfigFactory(session, tid)
-
-        db_cfg = load_tls_dict(session, tid)
-        db_cfg['ssl_cert'] = raw_cert
-
-        cv = cls.validator()
-        ok, _ = cv.validate(db_cfg)
-        if ok:
-            config.set_val('https_cert', raw_cert)
-            State.tenant_cache[tid].https_cert = raw_cert
-
-        return ok
-
     @staticmethod
     @transact
     def delete_file(session, tid):
@@ -200,23 +214,6 @@ class CertFileRes(FileResource):
 
 
 class ChainFileRes(FileResource):
-    validator = tls.ChainValidator
-
-    @classmethod
-    @transact
-    def create_file(session, cls, tid, raw_chain):
-        config = ConfigFactory(session, tid)
-
-        db_cfg = load_tls_dict(session, tid)
-        db_cfg['ssl_intermediate'] = raw_chain
-
-        cv = cls.validator()
-        ok, _ = cv.validate(db_cfg)
-        if ok:
-            config.set_val('https_chain', raw_chain)
-
-        return ok
-
     @staticmethod
     @transact
     def delete_file(session, tid):
@@ -249,13 +246,6 @@ class ChainFileRes(FileResource):
 
 
 class CsrFileRes(FileResource):
-    @classmethod
-    @transact
-    def create_file(session, cls, tid, raw_csr):
-        ConfigFactory(session, tid).set_val('https_csr', raw_csr)
-
-        return True
-
     @staticmethod
     @transact
     def delete_file(session, tid):
@@ -282,7 +272,7 @@ class FileHandler(BaseHandler):
         'key': PrivKeyFileRes,
         'cert': CertFileRes,
         'chain': ChainFileRes,
-        'csr': CsrFileRes,
+        'csr': CsrFileRes
     }
 
     def get_file_res_or_raise(self, name):
@@ -301,7 +291,15 @@ class FileHandler(BaseHandler):
 
         file_res_cls = self.get_file_res_or_raise(name)
 
-        ok = yield file_res_cls.create_file(self.request.tid, req['content'])
+        if name == 'key':
+            ok = yield create_file_https_key(self.request.tid, req['content'])
+        elif name == 'cert':
+            ok = yield create_file_https_cert(self.request.tid, req['content'])
+        elif name == 'chain':
+            ok = yield create_file_https_chain(self.request.tid, req['content'])
+        else:
+            ok = False
+
         if not ok:
             raise errors.InputValidationError()
 
@@ -400,15 +398,12 @@ class CSRFileHandler(FileHandler):
             'O': desc['company'],
             'OU': desc['department'],
             'CN': State.tenant_cache[self.request.tid].hostname,
-            # TODO use current admin user mail
             'emailAddress': desc['email'],
         }
 
         csr_txt = yield self.perform_action(self.request.tid, csr_fields)
 
-        file_res_cls = self.get_file_res_or_raise(name)
-
-        ok = yield file_res_cls.create_file(self.request.tid, csr_txt)
+        ok = yield create_file_https_csr(self.request.tid, csr_txt)
         if not ok:
             raise errors.InputValidationError()
 
@@ -430,15 +425,6 @@ class CSRFileHandler(FileHandler):
         except Exception as e:
             log.err(e)
             raise errors.InputValidationError('CSR gen failed')
-
-
-class AcmeAccntKeyRes:
-    @classmethod
-    @transact
-    def create_file(session, cls, tid):
-        log.info("Generating an ACME account key with %d bits" % Settings.key_bits)
-
-        return db_create_acme_key(session, tid)
 
 
 def db_acme_cert_request(session, tid):
@@ -475,7 +461,7 @@ class AcmeHandler(BaseHandler):
 
     @inlineCallbacks
     def post(self):
-        accnt_key = yield AcmeAccntKeyRes.create_file(self.request.tid)
+        accnt_key = yield create_file_http_acme_key(self.request.tid)
         yield tw(db_acme_cert_request, self.request.tid)
 
 

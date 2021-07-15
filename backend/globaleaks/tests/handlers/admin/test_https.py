@@ -74,7 +74,10 @@ class TestFileHandler(helpers.TestHandler):
         n = 'cert'
 
         yield self.get_and_check(n, False)
-        yield https.PrivKeyFileRes.create_file(1, self.valid_setup['key'])
+
+        # Upload a valid key
+        handler = self.request({'name': 'key', 'content': self.valid_setup['key']}, role='admin')
+        yield handler.post('key')
 
         # Test bad cert
         body = {'name': 'cert', 'content': 'bonk bonk bonk'}
@@ -101,8 +104,15 @@ class TestFileHandler(helpers.TestHandler):
         n = 'chain'
 
         yield self.get_and_check(n, False)
-        yield https.PrivKeyFileRes.create_file(1, self.valid_setup['key'])
-        yield https.CertFileRes.create_file(1, self.valid_setup['cert'])
+
+        # Upload a valid key
+        handler = self.request({'name': 'key', 'content': self.valid_setup['key']}, role='admin')
+        yield handler.post('key')
+
+        # Upload a valid chain
+        handler = self.request({'name': 'cert', 'content': self.valid_setup['cert']}, role='admin')
+        yield handler.post('cert')
+
         State.tenant_cache[1].hostname = 'localhost'
 
         body = {'name': 'chain', 'content': self.valid_setup[n]}
@@ -126,9 +136,10 @@ class TestConfigHandler(helpers.TestHandler):
     def test_all_methods(self):
         valid_setup = test_tls.get_valid_setup()
         yield set_init_params(valid_setup)
-        yield https.PrivKeyFileRes.create_file(1, valid_setup['key'])
-        yield https.CertFileRes.create_file(1, valid_setup['cert'])
-        yield https.ChainFileRes.create_file(1, valid_setup['chain'])
+
+        yield https.create_file_https_key(1, valid_setup['key'])
+        yield https.create_file_https_cert(1, valid_setup['cert'])
+        yield https.create_file_https_chain(1, valid_setup['chain'])
 
         handler = self.request(role='admin')
 
@@ -152,7 +163,7 @@ class TestCSRHandler(helpers.TestHandler):
 
         valid_setup = test_tls.get_valid_setup()
         yield set_init_params(valid_setup)
-        yield https.PrivKeyFileRes.create_file(1, valid_setup['key'])
+        yield https.create_file_https_key(1, valid_setup['key'])
         State.tenant_cache[1].hostname = 'notreal.ns.com'
 
         d = {
