@@ -50,11 +50,11 @@ exports.whistleblower = function() {
 
     await element(by.id("SubmitButton")).click();
 
-    await browser.gl.utils.waitUntilPresent(by.id("KeyCode"));
+    await browser.gl.utils.waitUntilPresent(by.id("Receipt"));
 
     await browser.gl.utils.takeScreenshot("whistleblower/receipt.png");
 
-    return await element(by.id("KeyCode")).getText();
+    return await element(by.id("Receipt")).getText();
   };
 
   this.submitFile = async function(fname) {

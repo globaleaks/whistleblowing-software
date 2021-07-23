@@ -552,7 +552,7 @@ input[type='file'] {
   background: #f5f7fa;
 }
 
-#KeyCodeBox {
+#Receipt {
   margin: 1em auto;
   width: max-content;
 }
@@ -773,8 +773,8 @@ html[dir='rtl'] input[type=email],
 html[dir='ltr'] input[type=email],
 html[dir='rtl'] #creditCard,
 html[dir='ltr'] #creditCard,
-html[dir='rtl'] #KeyCodeBox,
-html[dir='ltr'] #KeyCodeBox {
+html[dir='rtl'] #Receipt,
+html[dir='ltr'] #Receipt {
   direction: ltr;
 }
 
