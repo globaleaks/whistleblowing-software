@@ -153,10 +153,7 @@ ConfigDescriptor = {
     'crypto_escrow_pub_key': Unicode(default=''),
 
     'multisite': Bool(default=False),
-    'adminonly': Bool(default=False),
-
-    'old_onionservice': Unicode(default=''),
-    'old_tor_onion_key': Unicode()
+    'adminonly': Bool(default=False)
 }
 
 ConfigFilters = {
@@ -237,9 +234,7 @@ ConfigFilters = {
         'escrow',
         'crypto_escrow_pub_key',
         'multisite',
-        'adminonly',
-        'old_onionservice',
-        'old_tor_onion_key',
+        'adminonly'
     ],
     'notification': [
         'smtp_server',

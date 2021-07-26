@@ -213,12 +213,15 @@ class MigrationScript(MigrationBase):
             if len(c.value) != 22:
                 continue
 
-            c.var_name = 'old_onionservice'
+            self.session_new.query(m) \
+                            .filter(m.tid == c.tid,
+                                    m.var_name == 'onionservice') \
+                            .update({'value': ''})
 
             self.session_new.query(m) \
                             .filter(m.tid == c.tid,
                                     m.var_name == 'tor_onion_key') \
-                            .update({'var_name': 'old_tor_onion_key'})
+                            .update({'value': ''})
 
         m = self.model_to['ConfigL10N']
 
