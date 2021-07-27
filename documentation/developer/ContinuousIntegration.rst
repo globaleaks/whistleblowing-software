@@ -1,7 +1,7 @@
-=====================
-Continous Integration
-=====================
-The globaleaks codebase is continously tested for bug within a complete continous integration lifecycle implemented.
+====================
+Continuous Integration
+====================
+The globaleaks codebase is continuously tested for bug within a complete continuous integration lifecycle implemented.
 
 Testes are performed at every commit by:
 
@@ -13,7 +13,7 @@ Unit Tests
 ==========
 Unit tests are implemented by means of python-twisted and trial
 
-Tests can be runned manually by issuing:
+Tests can be run manually by issuing:
 
 .. code:: sh
 
@@ -23,7 +23,7 @@ E2E Tests
 =========
 End to end tests are implemented by means of the Protractor Angular JS library.
 
-Tests can be runned manually by issuing:
+Tests can be run manually by issuing:
 
 .. code:: sh
 

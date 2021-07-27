@@ -18,7 +18,7 @@ The following bash script could be used in order to perform a backup manually:
      tar --exclude='/var/globaleaks/backups' -zcvf $filepath /var/globaleaks
    fi
 
-After the completion of the command you willfind  a tar.gz archive within the /var/globaleaks/backups.
+After the completion of the command you will find  a tar.gz archive within the /var/globaleaks/backups.
 The file will have the format: globaleaks-$version-$timestamp.tar.gz
 
 GlobaLeaks does automatically perform a backup at each platform update and the backup is kept under data

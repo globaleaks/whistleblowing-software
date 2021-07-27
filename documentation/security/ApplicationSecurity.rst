@@ -14,7 +14,7 @@ The software is made up of two main components: a ``Backend`` and a ``Client``:
 
 Anonymity
 =========
-Users's anonimity is protected by means of the `Tor <https://www.torproject.org>`_ technology.
+Users's anonymity is protected by means of the `Tor <https://www.torproject.org>`_ technology.
 
 Authentication
 ==============
@@ -52,13 +52,13 @@ Password are scored in three levels: ``Strong``, ``Acceptable``, ``Insecure``.
 
 * Strong: A strong password should be formed by capital letters, lowercase letters, numbers and a symbols, be at least 12 characters long and include a variety of at least 10 different inputs.
 * Acceptable: An acceptable password should be formed by at least 3 different inputs over capital letters, lowercase letters, numbers and a symbols, be at least 10 characters and include a variety of at least 7 different inputs.
-* Insecure: A password ranked below the stong or acceptable levels is marked as insecure and not accepted by the system.
+* Insecure: A password ranked below the strong or acceptable levels is marked as insecure and not accepted by the system.
 
 We encourage each end user to use `KeePassXC <https://keepassxc.org>`_ to generate and retain strong and unique passphrases.
 
 Two Factor Authentication
 -------------------------
-The system implements Two Factor Authentication (2FA) based on TOTP based on `RFC 6238 <https://tools.ietf.org/rfc/rfc6238.txt>`_ alghorithm and 160 bits secrets.
+The system implements Two Factor Authentication (2FA) based on TOTP based on `RFC 6238 <https://tools.ietf.org/rfc/rfc6238.txt>`_ algorithm and 160 bits secrets.
 
 Users are enabled to enroll for 2FA via their own preferences and administrators can optionally enforce this requirement.
 
@@ -78,7 +78,7 @@ This period is configurable by administrators.
 
 Proof of Work on Login and Submissions
 --------------------------------------
-The system implements an automatic `Proof of Work <https://en.wikipedia.org/wiki/Proof_of_work>`_ on every login that requires every client to request a token, solve a computational probelm before being able to perform a login or file a submission.
+The system implements an automatic `Proof of Work <https://en.wikipedia.org/wiki/Proof_of_work>`_ on every login that requires every client to request a token, solve a computational problem before being able to perform a login or file a submission.
 
 The same mechanism is implemented on other user APIs (e.g. on user comments).
 
@@ -106,7 +106,7 @@ This section describes the Web Application Security implemented by the software 
 
 Session management
 ------------------
-The session implemenetation follows the `OWASP Session Management Cheat Sheet <https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html>`_ security guidelines.
+The session implementation follows the `OWASP Session Management Cheat Sheet <https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html>`_ security guidelines.
 
 The system assigns a Session to each authenticated user. The Session ID is 256bits long secret generated randomly by the backend. Each session expire accordingly to a timeout of 30 minutes. Session IDs are exchanged by the client with the backend by means of an header (``X-Session``) and do expire as soon that users close their browser or the tab running GlobaLeaks. Users could explicitly log out via a logout button or implicitly by closing the browser.
 
@@ -134,7 +134,7 @@ The backend implements the following `Content Security Policy (CSP) <https://en.
 
 Permissions-Policy
 ++++++++++++++
-The backend implements the following Permissions-Policy header configuration to limit the possible de-anonimization of the user by disabling dangerous browser features:
+The backend implements the following Permissions-Policy header configuration to limit the possible de-anonymization of the user by disabling dangerous browser features:
 ::
   Permissions-Policy: camera=('none') display-capture=('none') document-domain=('none') fullscreen=('none') geolocation=('none') microphone=('none') speaker=('none')
 
@@ -183,7 +183,7 @@ As well the platform instruct crawlers to not keep any cache by injecting the fo
 ::
   X-Robots-Tag: noarchive
 
-For high sensitive projects where the platform is inteded to remain ``hidden`` and commuicated to possible whistleblowers directly the platform could be as well configured to disable indexing completely.
+For high sensitive projects where the platform is intended to remain ``hidden`` and communicated to possible whistleblowers directly the platform could be as well configured to disable indexing completely.
 
 The following is the HTTP header injected in this case:
 ::
@@ -191,7 +191,7 @@ The following is the HTTP header injected in this case:
 
 Anchor Tags and External URLs
 -----------------------------
-In addition to the protecton offered by the header ``Referrer-Policy: no-referrer`` that prevents to pass the referrer while visiting the application sets the rel attribute nooopener to each of the external links. This protects from exectution of malicious content within the context of the application.
+In addition to the protecton offered by the header ``Referrer-Policy: no-referrer`` that prevents to pass the referrer while visiting the application sets the rel attribute nooopener to each of the external links. This protects from execution of malicious content within the context of the application.
 ::
   <a href="url" rel="noopener">link title</a>
 
@@ -218,7 +218,7 @@ Network Security
 ================
 Connection Anonymity
 --------------------
-Users's anonimity is offered by means of the implementation of the [Tor](https://www.torproject.org/) technology. The application implements an ``Onion Service v3`` and advices users to use the Tor Browser when accessing to it.
+Users's anonymity is offered by means of the implementation of the [Tor](https://www.torproject.org/) technology. The application implements an ``Onion Service v3`` and advices users to use the Tor Browser when accessing to it.
 
 Connection Encryption
 ---------------------
@@ -230,7 +230,7 @@ The software enables as well easy setup of ``HTTPS`` offering both automatic set
 
 The configuration enables only ``TLS1.2+`` and is fine tuned and hardened to achieve `SSLLabs grade A+ <https://www.ssllabs.com/ssltest/analyze.html?d=try.globaleaks.org>`_.
 
-In particular only following cyphertexts are enabled:
+In particular only following ciphertexts are enabled:
 ::
   TLS13-AES-256-GCM-SHA384
   TLS13-AES-128-GCM-SHA256

@@ -8,7 +8,7 @@ Users could login by accessing the ``/#/login`` page.
 
 Access the User Preferences
 ---------------------------
-After login Users could access their preferneces by clicking the ``Preferences`` link present in the login status bar.
+After login Users could access their preferences by clicking the ``Preferences`` link present in the login status bar.
 
 .. image:: ../images/user/preferences.png
 
@@ -42,7 +42,7 @@ Access and Save Your Account Recovery Key
 -----------------------------------------
 Users could access their own Account Recovery key by clicking the ``Account Recovery Key`` button present in the ``Preferences`` page.
 
-This is a fundamental step that any user should do at their first login after activating their own account in order to backup their own account recovery key and get sure to not incurr in data loss due to password loss.
+This is a fundamental step that any user should do at their first login after activating their own account in order to backup their own account recovery key and get sure to not incur in data loss due to password loss.
 
 .. image:: ../images/user/recoverykey.png
 
