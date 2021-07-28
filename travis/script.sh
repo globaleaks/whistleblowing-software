@@ -45,17 +45,15 @@ sudo iptables -t nat -A OUTPUT -o lo -p tcp --dport 9000 -j REDIRECT --to-port 8
 npm install -g grunt grunt-cli
 
 if [ "$GLTEST" = "test" ]; then
-  pip install coverage codacy-coverage
-  npm install -g istanbul codacy-coverage
+  pip install coverage
+  npm install -g istanbul
 
   echo "Running backend unit tests"
   setupDependencies
-  cd $TRAVIS_BUILD_DIR/backend
-  coverage run setup.py test
+  cd $TRAVIS_BUILD_DIR/backend && coverage run setup.py test
 
   echo "Running BrowserTesting locally collecting code coverage"
-  cd $TRAVIS_BUILD_DIR/client
-  ./node_modules/nyc/bin/nyc.js  instrument --complete-copy app build --source-map=false
+  cd $TRAVIS_BUILD_DIR/client && ./node_modules/nyc/bin/nyc.js  instrument --complete-copy app build --source-map=false
 
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z -d
   sleep 3
@@ -65,13 +63,9 @@ if [ "$GLTEST" = "test" ]; then
   ./node_modules/protractor/bin/protractor tests/protractor-coverage.config.js
 
   if [ -n "CODACY" ]; then
-    cd $TRAVIS_BUILD_DIR/backend
-    coverage xml
-    python-codacy-coverage -r coverage.xml -c $TRAVIS_COMMIT # Python
-
-    cd $TRAVIS_BUILD_DIR/client
-    ./node_modules/nyc/bin/nyc.js report --reporter=lcov
-    cat coverage/lcov.info | codacy-coverage -c $TRAVIS_COMMIT # Javascript
+    cd $TRAVIS_BUILD_DIR/backend && coverage xml
+    cd $TRAVIS_BUILD_DIR/client && ./node_modules/nyc/bin/nyc.js report --reporter=lcov
+    bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r $TRAVIS_BUILD_DIR/backend/coverage.xml -r $TRAVIS_BUILD_DIR/client/coverage/lcov.info
   fi
 elif [ "$GLTEST" = "build_and_install" ]; then
   LOGFILE="/var/globaleaks/log/globaleaks.log"
