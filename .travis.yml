@@ -14,7 +14,6 @@ matrix:
   include:
   - env: GLTEST='test' CODACY=true
   - env: GLTEST='build_and_install' DISTRIBUTION='buster'
-  - env: GLTEST='build_and_install' DISTRIBUTION='bullseye'
   - env: GLTEST='build_and_install' DISTRIBUTION='focal'
 before_install:
 - nvm install stable
