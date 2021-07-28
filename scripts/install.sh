@@ -130,9 +130,7 @@ echo " + required TCP sockets open"
 # or Buster as fallback.
 if echo "$DISTRO_CODENAME" | grep -vqE "^(buster|focal|bionic)$"; then
   # In case of unsupported platforms we fallback on Bionic
-  echo "No packages available for the current distribution; the install script will use the Bionic repository."
-  echo "In case of a failure refer to the wiki for manual setup possibilities."
-  echo "GlobaLeaks wiki: https://github.com/globaleaks/GlobaLeaks/wiki"
+  echo "No packages available for the current distribution; the install script will use the Buster repository."
   DISTRO="Debian"
   DISTRO_CODENAME="buster"
 fi
