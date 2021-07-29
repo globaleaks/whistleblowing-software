@@ -21,14 +21,14 @@ SSL.OP_NO_RENEGOTIATION = 0x40000000
 SSL.OP_PRIORITIZE_CHACHA = 0x00200000
 
 TLS_CIPHER_LIST = b'TLS13-AES-256-GCM-SHA384:' \
-                  b'TLS13-AES-128-GCM-SHA256:' \
                   b'TLS13-CHACHA20-POLY1305-SHA256:' \
+                  b'TLS13-AES-128-GCM-SHA256:' \
                   b'ECDHE-ECDSA-AES256-GCM-SHA384:' \
                   b'ECDHE-RSA-AES256-GCM-SHA384:' \
-                  b'ECDHE-ECDSA-AES128-GCM-SHA256:' \
-                  b'ECDHE-RSA-AES128-GCM-SHA256:' \
                   b'ECDHE-ECDSA-CHACHA20-POLY1305:' \
-                  b'ECDHE-RSA-CHACHA20-POLY1305'
+                  b'ECDHE-RSA-CHACHA20-POLY1305:' \
+                  b'ECDHE-ECDSA-AES128-GCM-SHA256:' \
+                  b'ECDHE-RSA-AES128-GCM-SHA256'
 
 
 trustRoot = ssl.platformTrust()
