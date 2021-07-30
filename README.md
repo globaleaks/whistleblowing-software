@@ -17,9 +17,9 @@
 Project best practices and scores:
 | Metric | Score
 | :---: | :---: |
-| [Mozilla HTTP Observatory](https://observatory.mozilla.org/) | ![Status](https://img.shields.io/mozilla-observatory/grade/try.globaleaks.org?publish)
-| [Security Headers](https://securityheaders.com/) | ![Status](https://img.shields.io/security-headers?url=https%3A%2F%2Ftry.globaleaks.org)
-| [SSLLabs](https://www.ssllabs.com/ssltest/) | [![Status](https://img.shields.io/static/v1?label=SSLLabs&message=A%2B&color=%3CCOLOR%3E)](https://www.ssllabs.com/ssltest/analyze.html?d=try.globaleaks.org&latest)
+| [Mozilla HTTP Observatory](https://observatory.mozilla.org/analyze/try.globaleaks.org) | ![Status](https://img.shields.io/mozilla-observatory/grade/try.globaleaks.org?publish)
+| [Security Headers](https://securityheaders.com/?q=https%3A%2F%2Ftry.globaleaks.org%2F) | ![Status](https://img.shields.io/security-headers?url=https%3A%2F%2Ftry.globaleaks.org)
+| [SSLLabs](https://www.ssllabs.com/ssltest/analyze.html?d=try.globaleaks.org) | [![Status](https://img.shields.io/static/v1?label=SSLLabs&message=A%2B&color=%3CCOLOR%3E)](https://www.ssllabs.com/ssltest/analyze.html?d=try.globaleaks.org&latest)
 | [CII Best Practices](https://bestpractices.coreinfrastructure.org/) | [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/3816/badge)](https://bestpractices.coreinfrastructure.org/projects/3816)
 
 Project statistics on OpenHub: [www.openhub.net/p/globaleaks](https://www.openhub.net/p/globaleaks)
