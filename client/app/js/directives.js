@@ -1,4 +1,15 @@
-GL.directive("dynamicTextarea", function () {
+GL.directive('a', function () {
+  return {
+    restrict: 'E',
+    link: function (scope, elem, attrs) {
+      if (angular.element(elem).attr('href').toLowerCase().startsWith("http")) {
+        angular.element(elem).attr("target", "_blank");
+        angular.element(elem).attr("referrer", "noopener noreferrer");
+      }
+    }
+  };
+}).
+directive("dynamicTextarea", function () {
   return {
     restrict: "A",
     link: function postLink(scope, element, attrs) {

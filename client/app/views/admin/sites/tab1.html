@@ -55,12 +55,12 @@
                 <span>{{tenant.name}}</span>
               </div>
               <div data-ng-if="tenant.active && (tenant.onionservice || (tenant.id == 1 && tenant.hostname) || (tenant.id > 1 && (tenant.subdomain || resources.node.rootdomain)))">
-                <a class="badge badge-primary" data-ng-if="tenant.onionservice" data-ng-href="http://{{tenant.onionservice}}" target="_blank" isolate-click>{{tenant.onionservice}}</a>
+                <a class="badge badge-primary" data-ng-if="tenant.onionservice" data-ng-href="http://{{tenant.onionservice}}" isolate-click>{{tenant.onionservice}}</a>
                 <span data-ng-if="tenant.id > 1 && tenant.subdomain">
-                  <a data-ng-if="resources.node.rootdomain" class="badge badge-primary" data-ng-href="https://{{tenant.subdomain}}.{{resources.node.rootdomain}}" target="_blank" isolate-click>{{tenant.subdomain}}.{{resources.node.rootdomain}}</a>
-                  <a data-ng-if="resources.node.onionservice && tenant.subdomain" class="badge badge-primary" data-ng-href="http://{{tenant.subdomain}}.{{resources.node.onionservice}}" target="_blank" isolate-click>{{tenant.subdomain}}.{{resources.node.onionservice}}</a>
+                  <a data-ng-if="resources.node.rootdomain" class="badge badge-primary" data-ng-href="https://{{tenant.subdomain}}.{{resources.node.rootdomain}}" isolate-click>{{tenant.subdomain}}.{{resources.node.rootdomain}}</a>
+                  <a data-ng-if="resources.node.onionservice && tenant.subdomain" class="badge badge-primary" data-ng-href="http://{{tenant.subdomain}}.{{resources.node.onionservice}}" isolate-click>{{tenant.subdomain}}.{{resources.node.onionservice}}</a>
                 </span>
-                <a class="badge badge-primary" data-ng-if="tenant.hostname" data-ng-href="https://{{tenant.hostname}}" target="_blank" isolate-click>{{tenant.hostname}}</a>
+                <a class="badge badge-primary" data-ng-if="tenant.hostname" data-ng-href="https://{{tenant.hostname}}" isolate-click>{{tenant.hostname}}</a>
               </div>
             </div>
             <div class="col-md-6 clearfix">
