@@ -13,19 +13,19 @@ GL.directive("a", function () {
 directive("dynamicTextarea", function () {
   return {
     restrict: "A",
-    link: function postLink(scope, element, attrs) {
-      element.css("min-height", "2rem");
+    link: function postLink(scope, elem, attrs) {
+      elem.css("min-height", "2rem");
 
       var update = function(){
-        element.css("height", "auto");
+        elem.css("height", "auto");
 
-        var height = element[0].scrollHeight;
+        var height = elem[0].scrollHeight;
         if(height){
-          element.css("height", height + "px");
+          elem.css("height", height + "px");
         }
       };
 
-      scope.$watch(attrs.ngModel, function(){
+      scope.$watch(attrs.model, function(){
         update();
       });
 
@@ -36,12 +36,12 @@ directive("dynamicTextarea", function () {
 directive("receiptvalidator", function() {
   return {
     require: "ngModel",
-    link: function(scope, elem, attrs, ngModel) {
-      ngModel.$setValidity("receiptvalidator", false);
-      ngModel.$parsers.unshift(function(viewValue) {
+    link: function(scope, elem, attrs, model) {
+      model.$setValidity("receiptvalidator", false);
+      model.$parsers.unshift(function(viewValue) {
         var result = "";
 
-        ngModel.$setValidity("receiptvalidator", false);
+        model.$setValidity("receiptvalidator", false);
         viewValue = viewValue.replace(/\D/g, "");
 
         while (viewValue.length) {
@@ -59,7 +59,7 @@ directive("receiptvalidator", function() {
         angular.element(elem).val(result);
 
         if (result.length === 19) {
-          ngModel.$setValidity("receiptvalidator", true);
+          model.$setValidity("receiptvalidator", true);
         }
 
         return result;
@@ -70,12 +70,12 @@ directive("receiptvalidator", function() {
 directive("recoverykeyvalidator", function() {
   return {
     require: "ngModel",
-    link: function(scope, elem, attrs, ngModel) {
-      ngModel.$setValidity("recoverykeyvalidator", false);
-      ngModel.$parsers.unshift(function(viewValue) {
+    link: function(scope, elem, attrs, model) {
+      model.$setValidity("recoverykeyvalidator", false);
+      model.$parsers.unshift(function(viewValue) {
         var result = "";
 
-        ngModel.$setValidity("recoverykeyvalidator", false);
+        model.$setValidity("recoverykeyvalidator", false);
         viewValue = viewValue.replace(/[^[a-zA-Z0-9]/g, "").toUpperCase();
 
         while (viewValue.length) {
@@ -93,7 +93,7 @@ directive("recoverykeyvalidator", function() {
         angular.element(elem).val(result);
 
         if (result.length === 64) {
-          ngModel.$setValidity("recoverykeyvalidator", true);
+          model.$setValidity("recoverykeyvalidator", true);
         }
 
         return result;
@@ -104,8 +104,8 @@ directive("recoverykeyvalidator", function() {
 directive("subdomainvalidator", function() {
   return {
     require: "ngModel",
-    link: function(scope, elem, attrs, ngModel) {
-      ngModel.$parsers.unshift(function(viewValue) {
+    link: function(scope, elem, attrs, model) {
+      model.$parsers.unshift(function(viewValue) {
         viewValue = viewValue.toLowerCase();
         viewValue = viewValue.replace(/[^a-z0-9-]/g,"");
         angular.element(elem).val(viewValue);
@@ -164,8 +164,8 @@ directive("extendFlowValidSize", ["uploadUtils", function(uploadUtils) {
   return {
     restrict: "A",
     scope: true,
-    link: function(scope, iElment, iAttrs) {
-      var validSize = parseInt(scope.$eval(iAttrs.extendFlowValidSize), 10);
+    link: function(scope, elem, attrs) {
+      var validSize = parseInt(scope.$eval(attrs.extendFlowValidSize), 10);
       scope.$on("flow::fileAdded", function(event, _, flowFile) {
         if (flowFile.size > validSize) {
           if (typeof scope.file_error_msgs === "undefined") {
@@ -194,19 +194,19 @@ directive("imageUpload", function () {
 }).
 // pgpPubkeyValidator binds to text-areas to provide input validation on user
 // input PGP public keys. Note that the directive attaches itself to the
-// containing form's ngModelController NOT the ngModel bound to the value of the
+// containing form's modelController NOT the model bound to the value of the
 // text-area itself. If the key word 'canBeEmpty' the pgp key validator is disabled
 // when the textarea's input is empty.
 directive("pgpPubkeyValidator", function() {
   // scope is the directives scope
   // elem is a jqlite reference to the bound element
   // attrs is the list of directives on the element
-  // ngModel is the model controller attached to the form
-  function link(scope, elem, attrs, ngModel) {
+  // model is the model controller attached to the form
+  function link(scope, elem, attrs, model) {
     scope.canBeEmpty = scope.pgpPubkeyValidator === "canBeEmpty";
 
     // modelValue is the models value, viewVal is displayed on the page.
-    ngModel.$validators.pgpPubKeyValidator = function(modelVal) {
+    model.$validators.pgpPubKeyValidator = function(modelVal) {
     // Check for obvious problems.
       if (typeof modelVal !== "string") {
         modelVal = "";
@@ -257,8 +257,8 @@ directive("fileInput", function() {
       fileInput: "&",
       fileInputLabel: "@"
     },
-    link: function (scope, iElement) {
-      iElement.find("input").on("change", function (event) {
+    link: function (scope, elem) {
+      elem.find("input").on("change", function (event) {
         if(event.target.files && event.target.files.length) {
           scope.$apply(function(){
             scope.fileInput({file: event.target.files[0]});
@@ -280,8 +280,8 @@ directive("isolateClick", function() {
 directive("disableCcp", function(){
   return {
     scope: {},
-    link:function(scope,element) {
-      element.on("cut copy paste", function (event) {
+    link:function(scope, elem) {
+      elem.on("cut copy paste", function (event) {
         event.preventDefault();
       });
     }
@@ -290,19 +290,19 @@ directive("disableCcp", function(){
 directive("convertToNumber", function() {
   return {
     require: "ngModel",
-    link: function(scope, element, attrs, ngModel) {
-      ngModel.$parsers.push(function(val) {
+    link: function(scope, elem, attrs, model) {
+      model.$parsers.push(function(val) {
         return val !== null ? parseInt(val, 10) : null;
       });
-      ngModel.$formatters.push(function(val) {
+      model.$formatters.push(function(val) {
         return val !== null ? "" + val : null;
       });
     }
   };
 }).
 directive("passwordStrengthValidator", function() {
-  function link(scope, elem, attrs, ngModel) {
-    ngModel.$validators.passwordStrengthValidator = function(pwd) {
+  function link(scope, elem, attrs, model) {
+    model.$validators.passwordStrengthValidator = function(pwd) {
       var types = {
         lower: /[a-z]/.test(pwd),
         upper: /[A-Z]/.test(pwd),
