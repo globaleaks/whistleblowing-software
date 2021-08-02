@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-08 20:45+0000\n"
+"PO-Revision-Date: 2021-07-26 17:23+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uighur (Latin) (http://www.transifex.com/otf/globaleaks/language/ug@Latin/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1431,21 +1431,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "Bu supigha téxiche HTTPS baghlinishliri seplenmeptu we shundaq bolghachqa peqet sinaq meqsitidila ishlitish kérek.  "
 
-msgid "Use case"
-msgstr "Ishlinidighan ehwal"
-
-msgid "Anticorruption"
-msgstr "Chiriklikke qarshi"
-
-msgid "Corporate compliance"
-msgstr "Shirket qanuniyliqi"
-
-msgid "Investigative journalism"
-msgstr "Tekshürgüchi zhornalistliq"
-
-msgid "Civic activism"
-msgstr "Puqralar herikiti"
-
 msgid "Submit"
 msgstr "Yolla"
 
@@ -1611,9 +1596,6 @@ msgstr "Jezmleng"
 
 msgid "Invalid confirmation"
 msgstr "Inawetsiz jezimlesh"
-
-msgid "Other"
-msgstr "Bashqa"
 
 msgid "Complete"
 msgstr "Tamam"
@@ -1887,9 +1869,6 @@ msgstr "Élxet: {Email}"
 
 msgid "Language: {Language}"
 msgstr "Tili: {Language}"
-
-msgid "Use case: {UseCase}"
-msgstr "Ishlinidighan ehwal: {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "Yéngi pash qilish békiti tizimlatti"

@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-08 20:45+0000\n"
+"PO-Revision-Date: 2021-07-26 17:23+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1440,21 +1440,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "แพลตฟอร์มยังไม่ได้รับการปรับค่าเพื่อใช้การเชื่อมต่อแบบ HTTPS ดังนั้นจึงควรใช้เพื่อการทดสอบเท่านั้น"
 
-msgid "Use case"
-msgstr "กรณีการใช้งาน"
-
-msgid "Anticorruption"
-msgstr "การต่อต้านคอร์รัปชัน"
-
-msgid "Corporate compliance"
-msgstr "การปฏิบัติตามกฎระเบียบขององค์กร"
-
-msgid "Investigative journalism"
-msgstr "การทำข่าวสืบสวน"
-
-msgid "Civic activism"
-msgstr "การรณรงค์สิทธิพลเมือง"
-
 msgid "Submit"
 msgstr "ส่ง"
 
@@ -1620,9 +1605,6 @@ msgstr "การยืนยัน"
 
 msgid "Invalid confirmation"
 msgstr "การยืนยันไม่ถูกต้อง"
-
-msgid "Other"
-msgstr "อื่นๆ"
 
 msgid "Complete"
 msgstr "เสร็จสิ้น"
@@ -1896,9 +1878,6 @@ msgstr "อีเมล: {Email}"
 
 msgid "Language: {Language}"
 msgstr "ภาษา: {Language}"
-
-msgid "Use case: {UseCase}"
-msgstr "กรณีการใช้งาน: {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "ลงทะเบียนเว็บไซต์แจ้งเบาะแสแห่งใหม่แล้ว"

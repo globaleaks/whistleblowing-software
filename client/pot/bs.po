@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-08 20:45+0000\n"
+"PO-Revision-Date: 2021-07-26 17:23+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bosnian (http://www.transifex.com/otf/globaleaks/language/bs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1435,21 +1435,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "Platforma još uvijek nema konfigurirani HTTPS i može se koristiti samo za testiranje."
 
-msgid "Use case"
-msgstr "Primjer upotrebe"
-
-msgid "Anticorruption"
-msgstr "Antikorupcija"
-
-msgid "Corporate compliance"
-msgstr "Korporativno pridržavanje propisa"
-
-msgid "Investigative journalism"
-msgstr "Istraživačko novinarstvo"
-
-msgid "Civic activism"
-msgstr "Građanski aktivizam"
-
 msgid "Submit"
 msgstr "Podnesi"
 
@@ -1615,9 +1600,6 @@ msgstr "Potvrda"
 
 msgid "Invalid confirmation"
 msgstr "Potvrda nije važeća"
-
-msgid "Other"
-msgstr "Ostalo"
 
 msgid "Complete"
 msgstr "Završeno"
@@ -1891,9 +1873,6 @@ msgstr "Email: {Email}"
 
 msgid "Language: {Language}"
 msgstr "Jezik: {Language}"
-
-msgid "Use case: {UseCase}"
-msgstr "Koristi slučaj: {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "Registracija novog sajta za zviždače"

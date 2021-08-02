@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-08 20:45+0000\n"
+"PO-Revision-Date: 2021-07-26 17:23+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malay (http://www.transifex.com/otf/globaleaks/language/ms/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1431,21 +1431,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "Platform masih tidak dikonfigurasikan untuk sambungan HTTPS dan oleh itu perlu hanya digunakan untuk tujuan pengujian."
 
-msgid "Use case"
-msgstr "Gunakan kes"
-
-msgid "Anticorruption"
-msgstr "Antirasuah"
-
-msgid "Corporate compliance"
-msgstr "Pematuhan korporat"
-
-msgid "Investigative journalism"
-msgstr "Kewartawanan siasat"
-
-msgid "Civic activism"
-msgstr "Aktivitisme sivik"
-
 msgid "Submit"
 msgstr "Hantar"
 
@@ -1611,9 +1596,6 @@ msgstr "Pengesahan"
 
 msgid "Invalid confirmation"
 msgstr "Pengesahan tidak sah"
-
-msgid "Other"
-msgstr "Lain-lain"
 
 msgid "Complete"
 msgstr "Lengkap"
@@ -1887,9 +1869,6 @@ msgstr "E-mel: {Email}"
 
 msgid "Language: {Language}"
 msgstr "Bahasa: {Language}"
-
-msgid "Use case: {UseCase}"
-msgstr "Gunakan kes: {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "Laman memberi maklumat baru berdaftar"

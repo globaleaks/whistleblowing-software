@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-08 20:45+0000\n"
+"PO-Revision-Date: 2021-07-26 17:23+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1453,21 +1453,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "پلتفورم هنوز برای اتصال های HTTPS پیکربندی نشده است و بهتر است فقط برای تست کردن از آن استفاده شود."
 
-msgid "Use case"
-msgstr "مورد کاربرد"
-
-msgid "Anticorruption"
-msgstr "ضد فساد"
-
-msgid "Corporate compliance"
-msgstr "رعایت مقررات"
-
-msgid "Investigative journalism"
-msgstr "ژورنالیسم تحقیقی"
-
-msgid "Civic activism"
-msgstr "فعالیت مدنی"
-
 msgid "Submit"
 msgstr "ارسال"
 
@@ -1633,9 +1618,6 @@ msgstr "تائیدیه"
 
 msgid "Invalid confirmation"
 msgstr "تائیدیه نامعتبر"
-
-msgid "Other"
-msgstr "دیگر"
 
 msgid "Complete"
 msgstr "کامل کنید."
@@ -1909,9 +1891,6 @@ msgstr "ایمیل: {Email}"
 
 msgid "Language: {Language}"
 msgstr "زبان: {Language}"
-
-msgid "Use case: {UseCase}"
-msgstr "مورد کاربرد:  {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "سایت افشاگری جدید ثبت شد"

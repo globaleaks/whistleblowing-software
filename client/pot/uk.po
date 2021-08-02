@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-08 20:45+0000\n"
+"PO-Revision-Date: 2021-07-26 17:23+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1449,21 +1449,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr ""
 
-msgid "Use case"
-msgstr ""
-
-msgid "Anticorruption"
-msgstr "Антикорупція"
-
-msgid "Corporate compliance"
-msgstr "Відповідність корпоративним нормам"
-
-msgid "Investigative journalism"
-msgstr "Журналістські розслідування"
-
-msgid "Civic activism"
-msgstr "Громадська діяльність"
-
 msgid "Submit"
 msgstr "Надіслати"
 
@@ -1629,9 +1614,6 @@ msgstr ""
 
 msgid "Invalid confirmation"
 msgstr ""
-
-msgid "Other"
-msgstr "-Інше-"
 
 msgid "Complete"
 msgstr "Завершити"
@@ -1904,9 +1886,6 @@ msgid "Email: {Email}"
 msgstr ""
 
 msgid "Language: {Language}"
-msgstr ""
-
-msgid "Use case: {UseCase}"
 msgstr ""
 
 msgid "New whistleblowing site registered"

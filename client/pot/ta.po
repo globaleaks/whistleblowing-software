@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-08 20:45+0000\n"
+"PO-Revision-Date: 2021-07-26 17:23+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1434,21 +1434,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "மேடையில் இன்னும் HTTPS இணைப்புகளுக்கு உள்ளமைக்கப்படவில்லை, எனவே சோதனை நோக்கங்களுக்காக மட்டுமே பயன்படுத்தப்பட வேண்டும்."
 
-msgid "Use case"
-msgstr "வழக்கு பயன்படுத்தவும்"
-
-msgid "Anticorruption"
-msgstr "ஊழல் எதிர்ப்பு"
-
-msgid "Corporate compliance"
-msgstr "பெருநிறுவன இணக்கம்"
-
-msgid "Investigative journalism"
-msgstr "விசாரணை பத்திரிகை"
-
-msgid "Civic activism"
-msgstr "குடிமக்கள் ஆர்வம்"
-
 msgid "Submit"
 msgstr "சமர்ப்பி"
 
@@ -1614,9 +1599,6 @@ msgstr ""
 
 msgid "Invalid confirmation"
 msgstr ""
-
-msgid "Other"
-msgstr "மற்ற"
 
 msgid "Complete"
 msgstr "முழுமையான"
@@ -1890,9 +1872,6 @@ msgstr "மின்னஞ்சல்: {Email}"
 
 msgid "Language: {Language}"
 msgstr "மொழி: {Language}"
-
-msgid "Use case: {UseCase}"
-msgstr "வழக்கு பயன்படுத்தவும்: {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "புதிய விசில்ப்ளேஸ் தளம் பதிவுசெய்யப்பட்டது"

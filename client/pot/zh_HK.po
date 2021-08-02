@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-08 20:45+0000\n"
+"PO-Revision-Date: 2021-07-26 17:23+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Hong Kong) (http://www.transifex.com/otf/globaleaks/language/zh_HK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1432,21 +1432,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "平台仍未設定 HTTPS 連接，故應只爲測試目的而使用。"
 
-msgid "Use case"
-msgstr "使用案例"
-
-msgid "Anticorruption"
-msgstr "反貪污"
-
-msgid "Corporate compliance"
-msgstr "企業規範"
-
-msgid "Investigative journalism"
-msgstr "調查報導"
-
-msgid "Civic activism"
-msgstr "公民運動"
-
 msgid "Submit"
 msgstr "提交"
 
@@ -1612,9 +1597,6 @@ msgstr "確認"
 
 msgid "Invalid confirmation"
 msgstr "確認失敗"
-
-msgid "Other"
-msgstr "其他"
 
 msgid "Complete"
 msgstr "完成"
@@ -1888,9 +1870,6 @@ msgstr "電郵地址：{Email}"
 
 msgid "Language: {Language}"
 msgstr "語言：{Language}"
-
-msgid "Use case: {UseCase}"
-msgstr "使用案例：{UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "已註冊新的舉報網"

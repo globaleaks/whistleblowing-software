@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-08 20:45+0000\n"
+"PO-Revision-Date: 2021-07-26 17:23+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Amharic (http://www.transifex.com/otf/globaleaks/language/am/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1432,21 +1432,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "የመሳርያ ስርኣቱ ለኤችቲቲፒኤስ ግንኙነት አልተዋቀረም በመሆኑም\n\nለፍተሻ አላማዎች ብቻ ማገልገል አለበት"
 
-msgid "Use case"
-msgstr "ኬዝ ይጠቀሙ"
-
-msgid "Anticorruption"
-msgstr "ጸረሙስና"
-
-msgid "Corporate compliance"
-msgstr "ድርጅታዊነት የህግ ተገዥነት"
-
-msgid "Investigative journalism"
-msgstr "ተመራማሪ ጋዜጠኝነት"
-
-msgid "Civic activism"
-msgstr "የማሕበረሰብ ለውጥ ንቅናቄ"
-
 msgid "Submit"
 msgstr "አስገባ "
 
@@ -1612,9 +1597,6 @@ msgstr "ማረጋገጫ"
 
 msgid "Invalid confirmation"
 msgstr "የተሳሳተ ማረጋገጫ"
-
-msgid "Other"
-msgstr "ሌላ"
 
 msgid "Complete"
 msgstr "ተጠናቋል"
@@ -1888,9 +1870,6 @@ msgstr "ኢሜይል፡- {Email}"
 
 msgid "Language: {Language}"
 msgstr "ቋንቋ፡- {Language}"
-
-msgid "Use case: {UseCase}"
-msgstr "ኬዝ ይጠቀሙ፡-{UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "አዲስ መረጃ መስጫ ድረገጽ ተመዝግቧል፡፡"

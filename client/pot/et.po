@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-08 20:45+0000\n"
+"PO-Revision-Date: 2021-07-26 17:23+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Estonian (http://www.transifex.com/otf/globaleaks/language/et/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1431,21 +1431,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "Platvorm ei ole veel seadistatud HTTPS-ühenduste jaoks ja seega tuleks seda kasutada ainult testimise eesmärgil."
 
-msgid "Use case"
-msgstr "Kasutusjuht"
-
-msgid "Anticorruption"
-msgstr "Korruptsiooni tõkestamine"
-
-msgid "Corporate compliance"
-msgstr "Ettevõtja nõuetele vastavus"
-
-msgid "Investigative journalism"
-msgstr "Uuriv ajakirjandus"
-
-msgid "Civic activism"
-msgstr "Kodanikuaktiivsus"
-
 msgid "Submit"
 msgstr "Esita"
 
@@ -1611,9 +1596,6 @@ msgstr "Kinnitus"
 
 msgid "Invalid confirmation"
 msgstr "Kehtetu kinnitus"
-
-msgid "Other"
-msgstr "Muu"
 
 msgid "Complete"
 msgstr "Täielik"
@@ -1887,9 +1869,6 @@ msgstr "Meiliaadress: {Email}"
 
 msgid "Language: {Language}"
 msgstr "Keel: {Language}"
-
-msgid "Use case: {UseCase}"
-msgstr "Kasutusjuht: {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "Uus vihjeandmise sait registreeritud"

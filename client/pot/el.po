@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-08 20:45+0000\n"
+"PO-Revision-Date: 2021-07-26 17:23+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1444,21 +1444,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "Η πλατφόρμα δεν είναι ακόμα παραμετροποιημένη για συνδέσεις μέσω HTTPS οπότε θα πρέπει να χρησιμοποιείται μόνο για δοκιμαστικούς λόγους."
 
-msgid "Use case"
-msgstr "Σενάριο χρήσης"
-
-msgid "Anticorruption"
-msgstr "Καταπολέμηση της διαφοράς"
-
-msgid "Corporate compliance"
-msgstr "Εταιρική συμμόρφωση"
-
-msgid "Investigative journalism"
-msgstr "Ερευνητική δημοσιογραφία"
-
-msgid "Civic activism"
-msgstr "Πολιτικός ακτιβισμός"
-
 msgid "Submit"
 msgstr "Καταχώρηση"
 
@@ -1624,9 +1609,6 @@ msgstr "Επιβεβαίωση"
 
 msgid "Invalid confirmation"
 msgstr "Άκυρη επιβεβαίωση"
-
-msgid "Other"
-msgstr "Άλλο"
 
 msgid "Complete"
 msgstr "Ολοκλήρωση"
@@ -1900,9 +1882,6 @@ msgstr "Email: {Email}"
 
 msgid "Language: {Language}"
 msgstr "Γλώσσα: {Language}"
-
-msgid "Use case: {UseCase}"
-msgstr "Σενάριο χρήσης: {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "Νέα εγγραφή διαύλου αναφορών"

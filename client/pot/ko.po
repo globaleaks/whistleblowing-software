@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-08 20:45+0000\n"
+"PO-Revision-Date: 2021-07-26 17:23+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1433,21 +1433,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "본 플랫폼은 아직 HTTPS 연결에 대해 구성되지 않았습니다. 따라서 시험용으로만 사용할 수 있습니다."
 
-msgid "Use case"
-msgstr "사용 사례"
-
-msgid "Anticorruption"
-msgstr "부패 방지"
-
-msgid "Corporate compliance"
-msgstr "기업 규정 준수"
-
-msgid "Investigative journalism"
-msgstr "조사 저널리즘"
-
-msgid "Civic activism"
-msgstr "시민 운동"
-
 msgid "Submit"
 msgstr "제출"
 
@@ -1613,9 +1598,6 @@ msgstr "확인"
 
 msgid "Invalid confirmation"
 msgstr "유효하지 않은 확인"
-
-msgid "Other"
-msgstr "기타"
 
 msgid "Complete"
 msgstr "완료"
@@ -1889,9 +1871,6 @@ msgstr "이메일: {Email}"
 
 msgid "Language: {Language}"
 msgstr "언어: {Language}"
-
-msgid "Use case: {UseCase}"
-msgstr "사용 사례: {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "새 내부 고발 사이트 등록"

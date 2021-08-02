@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-08 20:45+0000\n"
+"PO-Revision-Date: 2021-07-26 17:23+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1439,21 +1439,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "Platformen er stadig ikke konfigureret til HTTPS-forbindelser og bør derfor kun bruges til forsøgsformål."
 
-msgid "Use case"
-msgstr "Use case"
-
-msgid "Anticorruption"
-msgstr "Anti-korruption"
-
-msgid "Corporate compliance"
-msgstr "Corporate compliance"
-
-msgid "Investigative journalism"
-msgstr "Undersøgende journalistik"
-
-msgid "Civic activism"
-msgstr "Borgeraktivisme"
-
 msgid "Submit"
 msgstr "Indsend"
 
@@ -1619,9 +1604,6 @@ msgstr "Bekræftelse"
 
 msgid "Invalid confirmation"
 msgstr "Forkert bekræftelse"
-
-msgid "Other"
-msgstr "Andet"
 
 msgid "Complete"
 msgstr "Afslut"
@@ -1895,9 +1877,6 @@ msgstr "E-mail: {Email}"
 
 msgid "Language: {Language}"
 msgstr "Sprog: {Language}"
-
-msgid "Use case: {UseCase}"
-msgstr "Use case: {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "Nyt whistleblowing-site registreret"

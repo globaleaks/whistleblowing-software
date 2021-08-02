@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-08 20:45+0000\n"
+"PO-Revision-Date: 2021-07-26 17:23+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1444,21 +1444,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "Hệ thống chưa được cấu hình cho kết nối HTTPS và do đó chỉ nên dùng để thử nghiệm."
 
-msgid "Use case"
-msgstr "Trường hợp sử dụng"
-
-msgid "Anticorruption"
-msgstr "Chống tham nhũng"
-
-msgid "Corporate compliance"
-msgstr "Công ty tuân thủ luật"
-
-msgid "Investigative journalism"
-msgstr "Phóng sự điều tra"
-
-msgid "Civic activism"
-msgstr "Hoạt động xã hội dân sự"
-
 msgid "Submit"
 msgstr "Đệ nạp"
 
@@ -1624,9 +1609,6 @@ msgstr "Xác nhận"
 
 msgid "Invalid confirmation"
 msgstr "Xác nhận không hợp lệ"
-
-msgid "Other"
-msgstr "Khác"
 
 msgid "Complete"
 msgstr "Hoàn tất"
@@ -1900,9 +1882,6 @@ msgstr "Email: {Email}"
 
 msgid "Language: {Language}"
 msgstr "Ngôn ngữ: {Language}"
-
-msgid "Use case: {UseCase}"
-msgstr "Trường hợp sử dụng: {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "Trang web tố giác mới đăng ký"

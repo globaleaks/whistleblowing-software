@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-08 20:45+0000\n"
+"PO-Revision-Date: 2021-07-26 17:23+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Burmese (http://www.transifex.com/otf/globaleaks/language/my/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1433,21 +1433,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "ပလက်ဖောင်းကို HTTPS ချိတ်ဆက်မှုများအတွက် ချိန်ညှိမထားသဖြင့် စမ်းသပ်ရန်အတွက်သာ အသုံးပြုသင့်သည်။"
 
-msgid "Use case"
-msgstr "အသုံးပြုရသည့် ကိစ္စရပ်"
-
-msgid "Anticorruption"
-msgstr "အကျင့်ပျက်ခြစားမှု တိုက်ဖျက်ရေး"
-
-msgid "Corporate compliance"
-msgstr "ကော်ပိုရေးရှင်း လေးစားလိုက်နာမှု"
-
-msgid "Investigative journalism"
-msgstr "စုံစမ်းဖော်ထုတ်သော သတင်းစာပညာ"
-
-msgid "Civic activism"
-msgstr "လူထုလှုပ်ရှားမှု"
-
 msgid "Submit"
 msgstr "တင်သွင်းမည်"
 
@@ -1613,9 +1598,6 @@ msgstr "အတည်ပြုရန်"
 
 msgid "Invalid confirmation"
 msgstr "အတည်ပြုချက် မမှန်ကန်ပါ"
-
-msgid "Other"
-msgstr "အခြား"
 
 msgid "Complete"
 msgstr "ပြည့်စုံသည်"
@@ -1889,9 +1871,6 @@ msgstr "အီးမေးလ် - {Email}"
 
 msgid "Language: {Language}"
 msgstr "ဘာသာစကား - {Language}"
-
-msgid "Use case: {UseCase}"
-msgstr "အသုံးပြုရသည့် ကိစ္စရပ် - {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "သတင်းပေးဝက်ဘ်ဆိုက်အသစ် မှတ်ပုံတင်ထားသည်"

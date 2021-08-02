@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-08 20:45+0000\n"
+"PO-Revision-Date: 2021-07-26 17:23+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Lao (http://www.transifex.com/otf/globaleaks/language/lo/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1431,21 +1431,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "ຍັງບໍ່ໄດ້ກຳນົດຄ່າຂອງລະບົບສຳລັບການເຊື່ອມຕໍ່ HTTPS ແລະ ເພາະສະນັ້ນຈຶ່ງຄວນໃຊ້ເພື່ອຈຸດປະສົງໃນການທົດສອບເທົ່ານັ້ນ."
 
-msgid "Use case"
-msgstr "ກໍລະນີການໃຊ້"
-
-msgid "Anticorruption"
-msgstr "ການຕ້ານການສໍ້ລາດບັງຫຼວງ"
-
-msgid "Corporate compliance"
-msgstr "ການປະຕິບັດຕາມຂໍ້ກຳນົດຂອງບໍລິສັດ"
-
-msgid "Investigative journalism"
-msgstr "ວາລະສານເຊີງສືບສວນ"
-
-msgid "Civic activism"
-msgstr "ການເຄື່ອນໄຫວຂອງພົນລະເມືອງ"
-
 msgid "Submit"
 msgstr "ສົ່ງ"
 
@@ -1611,9 +1596,6 @@ msgstr "ການຢືນຢັນ"
 
 msgid "Invalid confirmation"
 msgstr "ການຢືນຢັນໃຊ້ບໍ່ໄດ້"
-
-msgid "Other"
-msgstr "ອື່ນໆ"
 
 msgid "Complete"
 msgstr "ສຳເລັດສົມບູນ"
@@ -1887,9 +1869,6 @@ msgstr "ອີເມວ: {Email}"
 
 msgid "Language: {Language}"
 msgstr "ພາສາ: {Language}"
-
-msgid "Use case: {UseCase}"
-msgstr "ກໍລະນີການໃຊ້: {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "ໄດ້ລົງທະບຽນເວັບໄຊການແຈ້ງເບາະແສໃໝ່ແລ້ວ"

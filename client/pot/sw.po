@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-08 20:45+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-07-27 06:09+0000\n"
+"Last-Translator: Rose Mmbaga\n"
 "Language-Team: Swahili (http://www.transifex.com/otf/globaleaks/language/sw/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -502,7 +502,7 @@ msgid "Mark as important"
 msgstr ""
 
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Nakili kwenye ubao wa kunakili"
 
 msgid "File a report"
 msgstr ""
@@ -1432,21 +1432,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "Jukwaa bado halijasanidiwa kwa unganisho la HTTPS na linapaswa\n\nkutumika tu kwa ajili ya majaribio."
 
-msgid "Use case"
-msgstr "Kisa cha kutumia"
-
-msgid "Anticorruption"
-msgstr "Kupinga rushwa"
-
-msgid "Corporate compliance"
-msgstr "Kukidhi matakwa ya shirika"
-
-msgid "Investigative journalism"
-msgstr "Uandishi wa habari za uchunguzi"
-
-msgid "Civic activism"
-msgstr "Uanaharakati"
-
 msgid "Submit"
 msgstr "Wasilisha"
 
@@ -1612,9 +1597,6 @@ msgstr "Uthibitisho"
 
 msgid "Invalid confirmation"
 msgstr "Uthibitisho batili"
-
-msgid "Other"
-msgstr "Mengineyo"
 
 msgid "Complete"
 msgstr "Maliza"
@@ -1888,9 +1870,6 @@ msgstr "Barua pepe: {Email}"
 
 msgid "Language: {Language}"
 msgstr "Lugha: {Language}"
-
-msgid "Use case: {UseCase}"
-msgstr "Kesi ya kutumia: {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "Tovuti mpya ya kutoa taarifa za siri imesajiliwa"

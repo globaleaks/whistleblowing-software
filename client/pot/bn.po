@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-08 20:45+0000\n"
+"PO-Revision-Date: 2021-07-26 17:23+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bengali (http://www.transifex.com/otf/globaleaks/language/bn/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1435,21 +1435,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "প্ল্যাটফর্মটি এখনও এইচটিটিপিএস সংযোগের জন্য কনফিগার করা হয়নি এবং তাই কেবল এটি পরীক্ষার উদ্দেশ্যে ব্যবহার করা উচিত।"
 
-msgid "Use case"
-msgstr "ব্যাবহারের উদ্দেশ্য"
-
-msgid "Anticorruption"
-msgstr "দুর্নীতি দমন"
-
-msgid "Corporate compliance"
-msgstr "কর্পোরেট প্রতিপালন"
-
-msgid "Investigative journalism"
-msgstr "অনুসন্ধানী সাংবাদিকতা"
-
-msgid "Civic activism"
-msgstr "নাগরিক সক্রিয়তা"
-
 msgid "Submit"
 msgstr "দাখিল করা"
 
@@ -1615,9 +1600,6 @@ msgstr "নিশ্চিতকরণ"
 
 msgid "Invalid confirmation"
 msgstr "অবৈধ নিশ্চিতকরণ"
-
-msgid "Other"
-msgstr "অন্যান্য"
 
 msgid "Complete"
 msgstr "সম্পূর্ণ"
@@ -1891,9 +1873,6 @@ msgstr "ইমেইল: {Email}"
 
 msgid "Language: {Language}"
 msgstr "ভাষা: {Language}"
-
-msgid "Use case: {UseCase}"
-msgstr "ব্যাবহারের উদ্দেশ্য: {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "নতুন হুইসেল ব্লোইং সাইট নিবন্ধিত হয়েছে।"

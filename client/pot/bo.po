@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-08 20:45+0000\n"
+"PO-Revision-Date: 2021-07-26 17:23+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tibetan (http://www.transifex.com/otf/globaleaks/language/bo/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1433,21 +1433,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "གླེང་སྟེགས་དེ་ HTTPS སྦྲེལ་མཐུད་ཆེད་ད་དུང་ཡང་སྡེབ་སྒྲིག་ཟིན་མེད་པ་དང་། ཚོད་ལྟའི་དགོས་དོན་དག་ཁོ་ནའི་ཆེད་བེད་སྤྱོད་བྱེད་དགོས།"
 
-msgid "Use case"
-msgstr "གནད་དོན་བེད་སྤྱོད།"
-
-msgid "Anticorruption"
-msgstr "ལྐོག་ཟ་རྒྱབ་འགལ།"
-
-msgid "Corporate compliance"
-msgstr "ཁེ་ལས་བསྟུན་སྤྱོད།"
-
-msgid "Investigative journalism"
-msgstr "རྟོག་ཞིབ་གསར་འགོད།"
-
-msgid "Civic activism"
-msgstr "སྤྱི་དམངས་ལས་འགུལ།"
-
 msgid "Submit"
 msgstr "ཞུ་འབུལ།"
 
@@ -1613,9 +1598,6 @@ msgstr "གཏན་འཁེལ།"
 
 msgid "Invalid confirmation"
 msgstr "གཏན་འཁེལ་མི་འཐད།"
-
-msgid "Other"
-msgstr "གཞན།"
 
 msgid "Complete"
 msgstr "མཇུག་སྐྱེལ།"
@@ -1889,9 +1871,6 @@ msgstr "གློག་འཕྲིན།: {Email}"
 
 msgid "Language: {Language}"
 msgstr "སྐད་ཡིག: {Language}"
-
-msgid "Use case: {UseCase}"
-msgstr "གནད་དོན་བེད་སྤྱོད།: {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "གསང་སྒྲོག་པའི་དྲ་ཚིགས་གསར་པ་དེབ་སྐྱེལ་ཟིན།"

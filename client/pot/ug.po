@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-08 20:45+0000\n"
+"PO-Revision-Date: 2021-07-26 17:23+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uyghur (http://www.transifex.com/otf/globaleaks/language/ug/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1434,21 +1434,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "بۇ سۇپىغا تېخىچە HTTPS باغلىنىشلىرى سەپلەنمەپتۇ ۋە شۇنداق بولغاچقا پەقەت سىناق مەقسىتىدىلا ئىشلىتىش كېرەك.  "
 
-msgid "Use case"
-msgstr "ئىشلىنىدىغان ئەھۋال"
-
-msgid "Anticorruption"
-msgstr "چىرىكلىككە قارشى"
-
-msgid "Corporate compliance"
-msgstr "شىركەت قانۇنىيلىقى"
-
-msgid "Investigative journalism"
-msgstr "تەكشۈرگۈچى ژورنالىستلىق"
-
-msgid "Civic activism"
-msgstr "پۇقرالار ھەرىكىتى"
-
 msgid "Submit"
 msgstr "يوللا"
 
@@ -1614,9 +1599,6 @@ msgstr "جەزملەڭ"
 
 msgid "Invalid confirmation"
 msgstr "ئىناۋەتسىز جەزىملەش"
-
-msgid "Other"
-msgstr "باشقا"
 
 msgid "Complete"
 msgstr "تامام"
@@ -1890,9 +1872,6 @@ msgstr "ئېلخەت: {Email}"
 
 msgid "Language: {Language}"
 msgstr "تىلى: {Language}"
-
-msgid "Use case: {UseCase}"
-msgstr "ئىشلىنىدىغان ئەھۋال: {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "يېڭى پاش قىلىش بېكىتى تىزىملاتتى"

@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-08 20:45+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-07-27 06:31+0000\n"
+"Last-Translator: vargaviktor <viktor.varga@gmail.com>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -516,10 +516,10 @@ msgid "This domain name is not available."
 msgstr "Ez a domain nem elérhető."
 
 msgid "Mark as important"
-msgstr ""
+msgstr "Megjelölés fontosnak"
 
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Másolás vágólapra"
 
 msgid "File a report"
 msgstr "Jelentés beküldése"
@@ -1449,21 +1449,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "A platform továbbra sem konfigurált HTTPS kapcsolatokra, így kizárólag teszt célokra javasolt a használata."
 
-msgid "Use case"
-msgstr "Esetek"
-
-msgid "Anticorruption"
-msgstr "Korrupcióellenesség"
-
-msgid "Corporate compliance"
-msgstr "Vállalati compliance"
-
-msgid "Investigative journalism"
-msgstr "Oknyomozó újságírás"
-
-msgid "Civic activism"
-msgstr "Civil/állampolgári aktivizmus"
-
 msgid "Submit"
 msgstr "Küldés"
 
@@ -1629,9 +1614,6 @@ msgstr "Megerősítés"
 
 msgid "Invalid confirmation"
 msgstr "Érvénytelen megerősítés"
-
-msgid "Other"
-msgstr "Egyéb"
 
 msgid "Complete"
 msgstr "Kész"
@@ -1905,9 +1887,6 @@ msgstr "E-mailcím: {Email}"
 
 msgid "Language: {Language}"
 msgstr "Nyelv: {Language}"
-
-msgid "Use case: {UseCase}"
-msgstr "Eset: {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "Új közérdekű bejelentő weboldal regisztrációja"

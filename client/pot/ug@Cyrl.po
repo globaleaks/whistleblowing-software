@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-08 20:45+0000\n"
+"PO-Revision-Date: 2021-07-26 17:23+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uighur (Cyrillic) (http://www.transifex.com/otf/globaleaks/language/ug@Cyrl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1432,21 +1432,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "Бу супиға техичә ҺТТПС бағлинишлири сәпләнмәпту вә шундақ болғачқа пәқәт синақ мәқситидила ишлитиш керәк."
 
-msgid "Use case"
-msgstr "Ишлинидиған әһвал"
-
-msgid "Anticorruption"
-msgstr "Чирикликкә қарши"
-
-msgid "Corporate compliance"
-msgstr "Ширкәт қанунийлиқи"
-
-msgid "Investigative journalism"
-msgstr "Тәкшүргүчи жорналистлиқ"
-
-msgid "Civic activism"
-msgstr "Пуқралар һәрикити"
-
 msgid "Submit"
 msgstr "Йолла"
 
@@ -1612,9 +1597,6 @@ msgstr "Җәзмләң"
 
 msgid "Invalid confirmation"
 msgstr "Инавәтсиз җәзимләш"
-
-msgid "Other"
-msgstr "Башқа"
 
 msgid "Complete"
 msgstr "Тамам"
@@ -1888,9 +1870,6 @@ msgstr "Елхәт: {Email}"
 
 msgid "Language: {Language}"
 msgstr "Тили: {Language}"
-
-msgid "Use case: {UseCase}"
-msgstr "Ишлинидиған әһвал: {UseCase}"
 
 msgid "New whistleblowing site registered"
 msgstr "Йеңи паш қилиш бекити тизимлатти"
