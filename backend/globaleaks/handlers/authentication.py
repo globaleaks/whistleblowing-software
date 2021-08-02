@@ -109,11 +109,23 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
                                       User.state == 'enabled',
                                       User.tid == tid).one_or_none()
 
-    if not user or not GCE.check_password(user.hash_alg, password, user.salt, user.password):
+    if not user:
         login_failure(tid, 0)
 
-
     connection_check(tid, client_ip, user.role, client_using_tor)
+
+    if user.two_factor_enable:
+        if authcode != '':
+            # RFC 6238: step size 30 sec; valid_window = 1; total size of the window: 1.30 sec
+            try:
+                totpVerify(user.two_factor_secret, authcode)
+            except:
+                raise errors.InvalidTwoFactorAuthCode
+        else:
+            raise errors.TwoFactorAuthCodeRequired
+
+    if not GCE.check_password(user.hash_alg, password, user.salt, user.password):
+        login_failure(tid, 0)
 
     crypto_prv_key = ''
     if user.crypto_prv_key:
@@ -127,16 +139,6 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
     if State.tenant_cache[tid].password_change_period > 0 and \
        user.password_change_date < datetime_now() - timedelta(days=State.tenant_cache[tid].password_change_period):
         user.password_change_needed = True
-
-    if user.two_factor_enable:
-        if authcode != '':
-            # RFC 6238: step size 30 sec; valid_window = 1; total size of the window: 1.30 sec
-            try:
-                totpVerify(user.two_factor_secret, authcode)
-            except:
-                raise errors.InvalidTwoFactorAuthCode
-        else:
-            raise errors.TwoFactorAuthCodeRequired
 
     user.last_login = datetime_now()
 
