@@ -1,7 +1,7 @@
-=================
-Penetration Tests
-=================
-GlobaLeaks is periodically subject to independent security audit and penetration tests in order to verify and improve the security of the system.
+===============
+Security Audits
+===============
+GlobaLeaks is periodically subject to independent security audits in order to verify and improve the security of the system.
 
 We try to get it audited at least every 2 years thanks to funding opportinities. Each user and adopter as well sometimes is able to fund additional audits.
 
@@ -15,9 +15,8 @@ We additionally invite independent security researchers to apply to our `Bug Bou
    :header: "Date", "Auditor", "Goal", "Report"
    :widths: 6, 15, 15, 15
 
-   "2013 Q1", "`iSecPartners <https://www.isecpartners.com>`_", "Architecture Audit", "`Report <https://www.globaleaks.org/docs/en/pt/2013-isec.pdf>`_"
-   "2013 Q2", "`Cure53 <https://cure53.de/>`_", "Web Security Audit", "`Report <https://www.globaleaks.org/docs/en/pt/2013-cure53.pdf>`_"
-   "2013 Q4", "`VeraCode <https://www.veracode.com/>`_", "Overall Audit", "`Report <https://www.globaleaks.org/docs/en/pt/2013-veracode.pdf>`_"
+   "2013", "`iSecPartners <https://www.isecpartners.com>`_", "Architecture Audit", "`Report <https://www.globaleaks.org/docs/en/pt/2013-isec.pdf>`_"
+   "2013", "`Cure53 <https://cure53.de/>`_", "Web Security Audit", "`Report <https://www.globaleaks.org/docs/en/pt/2013-cure53.pdf>`_"
    "2014", "`LeastAuthority <https://leastauthority.com/>`_", "Source Code Audit", "`Report <https://www.globaleaks.org/docs/en/pt/2014-leastauthority.pdf>`_"
    "2018", "`SubGraph <https://subgraph.com/>`_", "Overall Audit", "`Report <https://www.globaleaks.org/docs/en/pt/2018-subgraph.pdf>`_"
    "2019", "`RadicallyOpenSecurity <https://radicallyopensecurity.com/>`_", "Crypto Audit, Multi-tenancy Audit, Overall Audit", "`Report <https://www.globaleaks.org/docs/en/pt/2019-radicallyopensecurity.pdf>`_"
