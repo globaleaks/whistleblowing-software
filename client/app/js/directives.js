@@ -1,8 +1,9 @@
-GL.directive('a', function () {
+GL.directive("a", function () {
   return {
-    restrict: 'E',
-    link: function (scope, elem, attrs) {
-      if (angular.element(elem).attr('href').toLowerCase().startsWith("http")) {
+    restrict: "E",
+    link: function (scope, elem) {
+      var href = angular.element(elem).attr("href");
+      if (href && href.toLowerCase().startsWith("http")) {
         angular.element(elem).attr("target", "_blank");
         angular.element(elem).attr("referrer", "noopener noreferrer");
       }

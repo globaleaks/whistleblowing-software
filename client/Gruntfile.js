@@ -433,14 +433,14 @@ module.exports = function(grunt) {
 
     stylelint: {
       options: {
-        configFile: '.stylelintrc',
-        formatter: 'string',
+        configFile: ".stylelintrc",
+        formatter: "string",
         ignoreDisables: false,
         failOnError: true,
-        outputFile: '',
+        outputFile: "",
         reportNeedlessDisables: false,
         fix: false,
-        syntax: ''
+        syntax: ""
       },
       all: ["app/css/**/*.css"]
     },

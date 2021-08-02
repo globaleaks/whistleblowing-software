@@ -41,7 +41,7 @@ GL.mockEngine = (function() {
   };
 
   var run = function() {
-    var current_path = document.location.pathname + document.location.hash.split('?')[0];
+    var current_path = document.location.pathname + document.location.hash.split("?")[0];
     var path, selector, i;
 
     for (path in mocks) {

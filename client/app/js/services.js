@@ -302,9 +302,9 @@ factory("Submission", ["$q", "GLResource", "$filter", "$location", "$rootScope",
       });
 
       new TokenResource().$get().then(function(token) {
-        new SubmissionResource().$get({'token_id': token.id}).then(function(ret) {
+        new SubmissionResource().$get({"token_id": token.id}).then(function(ret) {
           self.id = ret.id;
-	  self._submission.id = ret.id;
+          self._submission.id = ret.id;
 	});
       });
     };
@@ -328,7 +328,7 @@ factory("Submission", ["$q", "GLResource", "$filter", "$location", "$rootScope",
       });
 
       return new TokenResource().$get().then(function(token) {
-        return self._submission.$update({'token_id': token.id}).then(function(result) {
+        return self._submission.$update({"token_id": token.id}).then(function(result) {
           if (result) {
             $rootScope.receipt = self._submission.receipt;
             $rootScope.setPage("receiptpage");
@@ -769,7 +769,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
         pt2 = $rootScope.header_title;
       }
 
-      pt2 = pt2 == pt1 ? "" : pt2;
+      pt2 = pt2 === pt1 ? "" : pt2;
       pt2 = $filter("translate")(pt2);
 
       $rootScope.projectTitle = pt1;
