@@ -1,3 +1,13 @@
+Changes in version 4.2.13
+    Deprecate onion services v2 #2894
+    Add Debian Bullseye (11) packaging #3019
+    Show receipt box only when /#/submission url is visited directly #3026
+    Revise TLS implementation improving security and performance
+    Fix integration of ug@Cyrl language
+    Apply minor bugfixing
+    Update translations
+    Bump client dependencies to lates version
+
 Changes in version 4.2.12
     Fix regression #3029 on UI mocks visualization added in 4.2.11
 

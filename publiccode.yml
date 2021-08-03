@@ -1,5 +1,5 @@
 name: GlobaLeaks
-releaseDate: '2021-07-14'
+releaseDate: '2021-07-15'
 publiccodeYmlVersion: '0.2'
 url: 'https://github.com/globaleaks/GlobaLeaks'
 landingURL: 'https://www.globaleaks.org/'
@@ -141,7 +141,7 @@ description:
       [many use cases](https://www.globaleaks.org/usecases/) and therefore
       it has been designed as a framework. Designed with flexibility in mind and
       translated in [more than 60 languages](https://www.transifex.com/otf/globaleaks)
-      GlobaLeaks is nowadays adopted worldwide by more than 3000 projects.
+      GlobaLeaks is nowadays adopted worldwide by more than 4000 projects.
       The vast range of adopters includes independent media, activists, public
       agencies, corporations and more.
     documentation: 'https://docs.globaleaks.org/'
@@ -230,7 +230,7 @@ description:
       [molti casi d'uso](https://www.globaleaks.org/usecases/) e quindi è stato progettato
       come un framework. Progettato per essere altamente configurabile e tradotto in
       [oltre 60 lingue](https://www.transifex.com/otf/globaleaks), GlobaLeaks è oggi adottato
-      in tutto il mondo da oltre 3000 progetti. La variegata gamma di utenti comprende media
+      in tutto il mondo da oltre 4000 progetti. La variegata gamma di utenti comprende media
       indipendenti, attivisti,  agenzie pubbliche, imprese private e altro.
     documentation: 'https://docs.globaleaks.org/'
     features:
