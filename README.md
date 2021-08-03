@@ -9,10 +9,10 @@
 [GlobaLeaks](https://www.globaleaks.org/) is free, open souce software enabling anyone to easily set up and maintain a secure whistleblowing platform.
 
 ## Continuous integration and testing
-| Branch | Status | Quality | Coverage
-| :---: | :---: | :---: | :---: |
-| [main](https://github.com/globaleaks/GlobaLeaks/tree/main) | [![Build Status](https://travis-ci.com/globaleaks/GlobaLeaks.svg?branch=main)](https://travis-ci.com/globaleaks/GlobaLeaks) | [![Codacy Badge](https://app.codacy.com/project/badge/Grade/c09f1ec9607f4546924d19798a98dd7d)](https://www.codacy.com/gh/globaleaks/GlobaLeaks/dashboard) | [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/c09f1ec9607f4546924d19798a98dd7d)](https://www.codacy.com/gh/globaleaks/GlobaLeaks/dashboard)
-| [devel](https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://travis-ci.com/globaleaks/GlobaLeaks.svg?branch=devel)](https://travis-ci.com/globaleaks/GlobaLeaks) | [![Codacy Badge](https://app.codacy.com/project/badge/Grade/c09f1ec9607f4546924d19798a98dd7d?branch=devel)](https://www.codacy.com/gh/globaleaks/GlobaLeaks/dashboard) | [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/c09f1ec9607f4546924d19798a98dd7d?branch=devel)](https://www.codacy.com/gh/globaleaks/GlobaLeaks/dashboard)
+| Branch | Status | Quality | Coverage | Documentation
+| :---: | :---: | :---: | :---: | :---: |
+| [main](https://github.com/globaleaks/GlobaLeaks/tree/main) | [![Build Status](https://travis-ci.com/globaleaks/GlobaLeaks.svg?branch=main)](https://travis-ci.com/globaleaks/GlobaLeaks) | [![Codacy Badge](https://app.codacy.com/project/badge/Grade/c09f1ec9607f4546924d19798a98dd7d)](https://www.codacy.com/gh/globaleaks/GlobaLeaks/dashboard) | [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/c09f1ec9607f4546924d19798a98dd7d)](https://www.codacy.com/gh/globaleaks/GlobaLeaks/dashboard) | [![Build Status](https://readthedocs.org/projects/globaleaks/badge/?version=main&style=flat)](https://docs.globaleaks.org/en/main/)
+| [devel](https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://travis-ci.com/globaleaks/GlobaLeaks.svg?branch=devel)](https://travis-ci.com/globaleaks/GlobaLeaks) | [![Codacy Badge](https://app.codacy.com/project/badge/Grade/c09f1ec9607f4546924d19798a98dd7d?branch=devel)](https://www.codacy.com/gh/globaleaks/GlobaLeaks/dashboard) | [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/c09f1ec9607f4546924d19798a98dd7d?branch=devel)](https://www.codacy.com/gh/globaleaks/GlobaLeaks/dashboard) | [![Build Status](https://readthedocs.org/projects/globaleaks/badge/?version=devel&style=flat)](https://docs.globaleaks.org/en/devel/)
 
 Project best practices and scores:
 | Metric | Score
@@ -27,11 +27,7 @@ Project statistics on OpenHub: [www.openhub.net/p/globaleaks](https://www.openhu
 Infrastructure status: [uptime.globaleaks.org](https://uptime.globaleaks.org)
 
 ## Documentation
-GlobaLeaks's documentation is built and hosted by [Read the Docs](https://readthedocs.org) and accessible at [docs.globaleaks.org](https://docs.globaleaks.org).
-| Branch | Documentation Build
-| :---: | :---:  |
-| [main](https://github.com/globaleaks/GlobaLeaks/tree/main) | [![Build Status](https://readthedocs.org/projects/globaleaks/badge/?version=main&style=flat)](https://docs.globaleaks.org/en/main/)
-| [devel](https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://readthedocs.org/projects/globaleaks/badge/?version=devel&style=flat)](https://docs.globaleaks.org/en/devel/)
+GlobaLeaks's documentation is accessible at: [docs.globaleaks.org](https://docs.globaleaks.org)
 
 ## Community support
 If you need technical support, have general questions, or have new ideas for GlobaLeaks, please post your message on the [Community Forum](https://forum.globaleaks.org/).
