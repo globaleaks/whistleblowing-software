@@ -46,12 +46,12 @@ If you want to contribute to the project please check the [Contributors Guidelin
 
 In case you need to file a security report please check our [Security Policy](https://github.com/globaleaks/GlobaLeaks/blob/main/SECURITY.md)
 
-## Brand Guidelines and Brand Assets
+## Brand guidelines and brand assets
 Within the GlobaLeaks project we researched a nice and smooth brand style, using accessible colors and trying to communicate our values.
 If you are planning some press releases, a conference, or promoting GlobaLeaks please keep at reference our official [Brand Guidelines](https://github.com/globaleaks/GlobaLeaks/blob/main/brand/globaleaks-brand-guidelines.pdf) and use our [Brand Assets](https://github.com/globaleaks/GlobaLeaks/blob/main/brand/assets/).
 
 ## Donate
-To support the GlobaLeaks project you can help us with [donations]() that will goes entirely for the software development.
+To support the GlobaLeaks project you can help us with [donations](https://www.globaleaks.org/get-involved/donate/) that will goes entirely for the software development.
 
 ## License
 GlobaLeaks is released under the AGPLv3 license. See [LICENSE](https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE) for more information on Additional Terms as per [7(b)](https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE#L684) and [7(c)](https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE#L713).
