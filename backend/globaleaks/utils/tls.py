@@ -136,7 +136,6 @@ def new_tls_server_context():
                     SSL.OP_PRIORITIZE_CHACHA |
                     SSL.OP_SINGLE_ECDH_USE |
                     SSL.OP_NO_COMPRESSION |
-                    SSL.OP_NO_TICKET |
                     SSL.OP_NO_RENEGOTIATION)
 
     ctx.set_mode(SSL.MODE_RELEASE_BUFFERS)
@@ -154,7 +153,6 @@ def new_tls_client_context():
                     SSL.OP_NO_SSLv3 |
                     SSL.OP_SINGLE_ECDH_USE |
                     SSL.OP_NO_COMPRESSION |
-                    SSL.OP_NO_TICKET |
                     SSL.OP_NO_RENEGOTIATION)
 
     ctx.set_mode(SSL.MODE_RELEASE_BUFFERS)
