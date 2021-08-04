@@ -8,7 +8,7 @@ export PYBUILD_INSTALL_ARGS=--no-compile
 
 override_dh_install:
 	dh_apparmor --profile-name=usr.bin.globaleaks
-	dh_install --fail-missing
+	dh_install
 
 override_dh_installman:
 	true

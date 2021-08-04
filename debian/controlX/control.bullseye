@@ -3,7 +3,7 @@ Maintainer: Giovanni Pellerano <evilaliv3@globaleaks.org>
 Section: web
 Priority: optional
 Build-Depends:
-  debhelper,
+  debhelper(>=10),
   devscripts,
   dh-apparmor,
   dh-python,
@@ -11,7 +11,7 @@ Build-Depends:
   python3-setuptools,
   python3-sphinx
 Vcs-Git: https://github.com/globaleaks/GlobaLeaks.git
-Standards-Version: 3.9.8
+Standards-Version: 4.1.5
 X-Python3-Version: all
 
 Package: globaleaks
@@ -25,6 +25,7 @@ Depends:
   gnupg,
   haveged,
   iptables,
+  lsb-base,
   python3:any,
   python3-acme,
   python3-debian,
@@ -38,5 +39,6 @@ Depends:
   python3-twisted,
   python3-txtorcon,
   tor
-Description: Opensource whistleblowing platform.
-  GlobaLeaks is free, open souce software enabling anyone to easily set up and maintain a secure whistleblowing platform.
+Description: Free and open-source whistleblowing software
+ GlobaLeaks is free, open source software enabling anyone to easily set up and
+ maintain a secure whistleblowing platform
