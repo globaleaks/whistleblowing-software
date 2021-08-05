@@ -26,12 +26,12 @@
     </div>
     <span data-ng-if="!tip.data.whistleblower_identity_provided">-</span>
     <div data-ng-if="tip.data.whistleblower_identity_provided">
-      <div data-ng-if="!whistleblower_identity_field.attrs.visibility_subject_to_authorization.value || (tip.last_iar && tip.last_iar.reply == 'authorized')">
+      <div data-ng-if="!public.node.enable_custodian || (tip.last_iar && tip.last_iar.reply == 'authorized')">
         <div data-ng-repeat="field in whistleblower_identity_field.children | orderBy:['y', 'x']">
           <span data-ng-init="fieldAnswers=tip.data.whistleblower_identity" data-ng-include="'views/partials/tip_field.html'"></span>
         </div>
       </div>
-      <div data-ng-if="whistleblower_identity_field.attrs.visibility_subject_to_authorization.value && (!tip.last_iar || tip.last_iar.reply == 'denied')">
+      <div data-ng-if="public.node.enable_custodian && (!tip.last_iar || tip.last_iar.reply == 'denied')">
         <button class="btn btn-sm btn-primary" data-ng-click="file_identity_access_request()">
           <span data-translate>Request access to the whistleblower's identity</span>
         </button>

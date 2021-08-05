@@ -261,6 +261,8 @@ def db_serialize_node(session, tid, language):
     ret['languages_enabled'] = languages if ret['wizard_done'] else list(LANGUAGES_SUPPORTED_CODES)
     ret['languages_supported'] = LANGUAGES_SUPPORTED
 
+    ret['enable_custodian'] = session.query(models.User).filter(models.User.tid == tid, models.User.role == 'custodian', models.User.state == 'enabled').count() > 0
+
     for x in special_files:
         ret[x] = session.query(models.File.id).filter(models.File.tid == tid, models.File.name == x).one_or_none()
 
