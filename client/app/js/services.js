@@ -349,9 +349,6 @@ factory("RTipCommentResource", ["GLResource", function(GLResource) {
 factory("RTipMessageResource", ["GLResource", function(GLResource) {
   return new GLResource("api/rtips/:id/messages", {id: "@id"});
 }]).
-factory("RTipIdentityAccessRequestResource", ["GLResource", function(GLResource) {
-  return new GLResource("api/rtips/:id/iars", {id: "@id"});
-}]).
 factory("RTipDownloadRFile", ["$http", "$window", "TokenResource", function($http, $window, TokenResource) {
   return function(file) {
     return new TokenResource().$get().then(function(token) {
@@ -385,9 +382,6 @@ factory("RTip", ["$rootScope", "$http", "$filter", "RTipResource", "RTipMessageR
       tip.context = $rootScope.contexts_by_id[tip.context_id];
       tip.questionnaire = $rootScope.questionnaires_by_id[tip.context.questionnaire_id];
       tip.additional_questionnaire = $rootScope.questionnaires_by_id[tip.context.additional_questionnaire_id];
-
-      tip.iars = $filter("orderBy")(tip.iars, "request_date");
-      tip.last_iar = tip.iars.length ? tip.iars[tip.iars.length - 1] : null;
 
       tip.newComment = function(content) {
         var c = new RTipCommentResource(tipID);

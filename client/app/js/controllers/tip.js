@@ -1,6 +1,6 @@
 GL.controller("TipCtrl",
-  ["$scope", "$location", "$filter", "$route", "$routeParams", "$uibModal", "$http", "Authentication", "RTip", "WBTip", "RTipExport", "RTipDownloadRFile", "WBTipDownloadFile", "fieldUtilities",
-  function($scope, $location, $filter, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, RTipExport, RTipDownloadRFile, WBTipDownloadFile, fieldUtilities) {
+  ["$scope", "$location", "$filter", "$http", "$route", "$routeParams", "$uibModal", "$http", "Authentication", "RTip", "WBTip", "RTipExport", "RTipDownloadRFile", "WBTipDownloadFile", "fieldUtilities",
+  function($scope, $location, $filter, $http, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, RTipExport, RTipDownloadRFile, WBTipDownloadFile, fieldUtilities) {
     $scope.fieldUtilities = fieldUtilities;
     $scope.tip_id = $routeParams.tip_id;
 
@@ -216,6 +216,12 @@ GL.controller("TipCtrl",
       });
     };
 
+    $scope.access_identity = function () {
+      return $http.post("api/rtips/" + $scope.tip.id + "/iars", {"request_motivation": ""}).then(function(){
+         $scope.reload();
+      });
+    };
+
     $scope.file_identity_access_request = function () {
       $uibModal.open({
         templateUrl: "views/partials/tip_operation_file_identity_access_request.html",
@@ -293,8 +299,8 @@ controller("WBTipFileDownloadCtrl", ["$scope", "$uibModalInstance", "WBTipDownlo
   };
 }]).
 controller("IdentityAccessRequestCtrl",
-  ["$scope", "$http", "$route", "$uibModalInstance", "tip",
-   function ($scope, $http, $route, $uibModalInstance, tip) {
+  ["$scope", "$http", "$uibModalInstance", "tip",
+   function ($scope, $http, $uibModalInstance, tip) {
   $scope.tip = tip;
 
   $scope.cancel = function () {
@@ -305,8 +311,8 @@ controller("IdentityAccessRequestCtrl",
     $uibModalInstance.close();
 
     return $http.post("api/rtips/" + tip.id + "/iars", {"request_motivation": $scope.request_motivation}).
-        then(function(){
-          $route.reload();
-        });
+      then(function(){
+        $scope.reload();
+      });
   };
 }]);

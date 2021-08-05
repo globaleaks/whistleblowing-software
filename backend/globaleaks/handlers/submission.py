@@ -210,14 +210,13 @@ def serialize_usertip(session, usertip, itip, language):
     return ret
 
 
-def db_create_receivertip(session, receiver, internaltip, can_access_whistleblower_identity, enc_key):
+def db_create_receivertip(session, receiver, internaltip, enc_key):
     """
     Create a receiver tip for the specified receiver
     """
     receivertip = models.ReceiverTip()
     receivertip.internaltip_id = internaltip.id
     receivertip.receiver_id = receiver.id
-    receivertip.can_access_whistleblower_identity = can_access_whistleblower_identity
     receivertip.crypto_tip_prv_key = Base64Encoder.encode(enc_key)
     session.add(receivertip)
 
@@ -288,21 +287,13 @@ def db_create_submission(session, tid, request, temp_submission, client_using_to
     itip.enable_two_way_messages = context.enable_two_way_messages
     itip.enable_attachments = context.enable_attachments
 
-    x = session.query(models.Field, models.FieldAttr.value) \
-               .filter(models.Field.template_id == 'whistleblower_identity',
-                       models.Field.step_id == models.Step.id,
-                       models.Step.questionnaire_id == context.questionnaire_id,
-                       models.FieldAttr.field_id == models.Field.id,
-                       models.FieldAttr.name == 'visibility_subject_to_authorization').one_or_none()
+    whistleblower_identity = session.query(models.Field) \
+                                    .filter(models.Field.template_id == 'whistleblower_identity',
+                                            models.Field.step_id == models.Step.id,
+                                            models.Step.questionnaire_id == context.questionnaire_id).one_or_none()
 
-    whistleblower_identity = None
-    can_access_whistleblower_identity = True
-
-    if x:
-        whistleblower_identity = x[0]
-        can_access_whistleblower_identity = not x[1]
-
-    itip.enable_whistleblower_identity = whistleblower_identity is not None
+    if whistleblower_identity is not None:
+        itip.enable_whistleblower_identity = True
 
     session.add(itip)
     session.flush()
@@ -334,7 +325,6 @@ def db_create_submission(session, tid, request, temp_submission, client_using_to
         session.add(wbtip)
     else:
         receipt = ''
-
 
     # Apply special handling to the whistleblower identity question
     if itip.enable_whistleblower_identity and request['identity_provided'] and answers[whistleblower_identity.id]:
@@ -379,7 +369,7 @@ def db_create_submission(session, tid, request, temp_submission, client_using_to
         else:
             _tip_key = b''
 
-        db_create_receivertip(session, user, itip, can_access_whistleblower_identity, _tip_key)
+        db_create_receivertip(session, user, itip, _tip_key)
 
     State.log(tid=tid,  type='whistleblower_new_report')
 

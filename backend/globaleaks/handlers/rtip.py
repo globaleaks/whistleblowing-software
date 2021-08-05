@@ -173,12 +173,6 @@ def serialize_rtip(session, rtip, itip, language):
 
     ret = serialize_usertip(session, rtip, itip, language)
 
-    if 'whistleblower_identity' in ret['data']:
-        ret['data']['whistleblower_identity_provided'] = True
-
-        if not rtip.can_access_whistleblower_identity:
-            del ret['data']['whistleblower_identity']
-
     ret['id'] = rtip.id
     ret['receiver_id'] = user_id
 
@@ -193,8 +187,14 @@ def serialize_rtip(session, rtip, itip, language):
     ret['messages'] = db_get_itip_message_list(session, rtip.id)
     ret['rfiles'] = db_receiver_get_rfile_list(session, rtip.id)
     ret['wbfiles'] = db_receiver_get_wbfile_list(session, itip.id)
-    ret['iars'] = db_get_rtip_identityaccessrequest_list(session, rtip.id)
-    ret['enable_notifications'] = bool(rtip.enable_notifications)
+    ret['iar'] = db_get_rtip_identityaccessrequest(session, rtip.id)
+    ret['enable_notifications'] = rtip.enable_notifications
+
+    if 'whistleblower_identity' in ret['data']:
+        ret['data']['whistleblower_identity_provided'] = True
+
+        if ret['iar'] is None or ret['iar']['reply'] == 'denied':
+            del ret['data']['whistleblower_identity']
 
     return ret
 
@@ -588,9 +588,17 @@ def create_identityaccessrequest(session, tid, user_id, rtip_id, request):
     """
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
+    custodian = session.query(models.User).filter(models.User.tid == tid, models.User.role == 'custodian', models.User.state == 'enabled').count() > 0
+
     iar = models.IdentityAccessRequest()
     iar.request_motivation = request['request_motivation']
     iar.receivertip_id = rtip.id
+
+    if not custodian:
+       iar.reply_date = datetime_now()
+       iar.reply_user_id = user_id
+       iar.reply = 'authorized'
+
     session.add(iar)
     session.flush()
 
@@ -599,14 +607,18 @@ def create_identityaccessrequest(session, tid, user_id, rtip_id, request):
     return serialize_identityaccessrequest(session, iar)
 
 
-def db_get_rtip_identityaccessrequest_list(session, rtip_id):
+def db_get_rtip_identityaccessrequest(session, rtip_id):
     """
-    Transaction for retrieving identity associated to an rtip
+    Transaction for retrieving the last identity access request associated to an rtip
     :param session: An ORM session
     :param rtip_id: An rtip ID
-    :return: The list of descriptors of the identity access requests associated to the specified rtip
+    :return: The last identity access request associated to the specified rtip
     """
-    return [serialize_identityaccessrequest(session, iar) for iar in session.query(models.IdentityAccessRequest).filter(models.IdentityAccessRequest.receivertip_id == rtip_id)]
+    iar = session.query(models.IdentityAccessRequest).filter(models.IdentityAccessRequest.receivertip_id == rtip_id).order_by(models.IdentityAccessRequest.request_date.desc()).first()
+    if iar is None:
+        return None
+
+    return serialize_identityaccessrequest(session, iar)
 
 
 @transact
