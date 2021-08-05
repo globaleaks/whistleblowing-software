@@ -57,27 +57,6 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-6 form-group">
-      <label data-translate>Use case</label>
-      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
-      <div>
-        <select name="use_case" class="custom-select" data-ng-model="signup.use_case" required>
-          <option value="" selected="selected"></option>
-          <option value="anticorruption" data-translate>Anticorruption</option>
-          <option value="corporate_compliance" data-translate>Corporate compliance</option>
-          <option value="investigative_journalism" data-translate>Investigative journalism</option>
-          <option value="civic_activism" data-translate>Civic activism</option>
-          <option value="other" data-translate>Other</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-md-6 form-group" data-ng-if="signup.use_case == 'other'">
-      <label data-translate>Other</label>
-      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
-      <input name="use_case_other" class="form-control" data-ng-model="signup.use_case_other" type="text" required>
-    </div>
-  </div>
   <div data-ng-include="'views/signup/tos.html'"></div>
   <div class="row">
     <div class="col-md-12">
