@@ -41,11 +41,7 @@ class MigrationScript(MigrationBase):
             for key in new_obj.__table__.columns._data.keys():
                 setattr(new_obj, key, getattr(old_obj, key))
 
-            if old_obj.name == 'text_of_confirmation_question_upon_negative_answer':
-                new_obj.name = 'text_shown_upon_negative_answer'
-            elif old_obj.name == 'clause':
-                new_obj.name = 'text'
-            elif old_obj.name == 'agreement_statement':
+            if old_obj.name == 'agreement_statement':
                 new_obj.name = 'checkbox_label'
 
             self.session_new.add(new_obj)
