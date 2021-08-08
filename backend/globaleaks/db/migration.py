@@ -289,6 +289,7 @@ def perform_migration(version):
 
         perform_data_update(new_db_file)
 
+    finally:
         # in case of success first copy the new migrated db, then as last action delete the original db file
         shutil.copy(new_db_file, final_db_file)
 
@@ -299,7 +300,6 @@ def perform_migration(version):
         if os.path.exists(path):
             shutil.rmtree(path)
 
-    finally:
         # Always cleanup the temporary directory used for the migration
         for f in os.listdir(tmpdir):
             overwrite_and_remove(os.path.join(tmpdir, f))
