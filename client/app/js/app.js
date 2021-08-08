@@ -495,6 +495,7 @@ var GL = angular.module("GL", [
     $uibModalProvider.options.backdrop = "static";
     $uibModalProvider.options.keyboard = false;
     $uibModalProvider.options.focus = true;
+    $uibModalProvider.options.size = "lg";
 }]).
   config(["$uibTooltipProvider", function($uibTooltipProvider) {
     $uibTooltipProvider.options({placement: "auto", appendToBody: true, trigger: "mouseenter"});
