@@ -1,6 +1,6 @@
 GL.controller("AdminQuestionnaireCtrl",
-  ["$scope", "$http", "$route", "AdminQuestionnaireResource",
-  function($scope, $http, $route, AdminQuestionnaireResource){
+  ["$scope", "$http", "AdminQuestionnaireResource",
+  function($scope, $http, AdminQuestionnaireResource){
   $scope.tabs = [
     {
       title:"Questionnaires",
@@ -40,7 +40,7 @@ GL.controller("AdminQuestionnaireCtrl",
         data: txt,
       });
     }).then(function() {
-       $route.reload();
+       $scope.reload();
     }, $scope.Utils.displayErrorMsg);
   };
 
@@ -118,8 +118,8 @@ controller("AdminQuestionnaireAddCtrl", ["$scope", function($scope) {
   };
 }]).
 controller("QuestionaireOperationsCtrl",
-  ["$scope", "$http", "$route", "$location", "$uibModalInstance", "questionnaire", "operation",
-   function ($scope, $http, $route, $location, $uibModalInstance, questionnaire, operation) {
+  ["$scope", "$http", "$location", "$uibModalInstance", "questionnaire", "operation",
+   function ($scope, $http, $location, $uibModalInstance, questionnaire, operation) {
   $scope.questionnaire = questionnaire;
   $scope.operation = operation;
 
@@ -138,7 +138,7 @@ controller("QuestionaireOperationsCtrl",
           new_name: $scope.duplicate_questionnaire.name
         }
       ).then(function () {
-        $route.reload();
+        $scope.reload();
       });
     }
   };

@@ -1,5 +1,5 @@
-GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$route", "$location", "$uibModal", "$window", "RTipExport", "ReceiverTips", "TokenResource",
-  function($scope, $filter, $http, $route, $location, $uibModal, $window, RTipExport, ReceiverTips, TokenResource) {
+GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "$uibModal", "$window", "RTipExport", "ReceiverTips", "TokenResource",
+  function($scope, $filter, $http, $location, $uibModal, $window, RTipExport, ReceiverTips, TokenResource) {
   $scope.search = undefined;
   $scope.currentPage = 1;
   $scope.itemsPerPage = 20;
@@ -94,8 +94,8 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$route", "$lo
     });
   };
 }]).
-controller("TipBulkOperationsCtrl", ["$scope", "$http", "$route", "$location", "$uibModalInstance", "selected_tips", "operation",
-  function ($scope, $http, $route, $location, $uibModalInstance, selected_tips, operation) {
+controller("TipBulkOperationsCtrl", ["$scope", "$http", "$location", "$uibModalInstance", "selected_tips", "operation",
+  function ($scope, $http, $location, $uibModalInstance, selected_tips, operation) {
   $scope.selected_tips = selected_tips;
   $scope.operation = operation;
 
@@ -115,7 +115,7 @@ controller("TipBulkOperationsCtrl", ["$scope", "$http", "$route", "$location", "
       "rtips": $scope.selected_tips
     }}).then(function(){
       $scope.selected_tips = [];
-      $route.reload();
+      $scope.reload();
     });
   };
 }]);

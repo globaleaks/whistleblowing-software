@@ -1,6 +1,6 @@
 GL.controller("TipCtrl",
-  ["$scope", "$location", "$filter", "$http", "$route", "$routeParams", "$uibModal", "$http", "Authentication", "RTip", "WBTip", "RTipExport", "RTipDownloadRFile", "WBTipDownloadFile", "fieldUtilities",
-  function($scope, $location, $filter, $http, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, RTipExport, RTipDownloadRFile, WBTipDownloadFile, fieldUtilities) {
+  ["$scope", "$location", "$filter", "$http", "$routeParams", "$uibModal", "$http", "Authentication", "RTip", "WBTip", "RTipExport", "RTipDownloadRFile", "WBTipDownloadFile", "fieldUtilities",
+  function($scope, $location, $filter, $http, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, RTipExport, RTipDownloadRFile, WBTipDownloadFile, fieldUtilities) {
     $scope.fieldUtilities = fieldUtilities;
     $scope.tip_id = $routeParams.tip_id;
 
@@ -105,7 +105,7 @@ GL.controller("TipCtrl",
           return $http.post("api/wbtip/" + $scope.tip.id + "/provideidentityinformation",
                             {"identity_field_id": identity_field_id, "identity_field_answers": identity_field_answers}).
               then(function(){
-                $route.reload();
+                $scope.reload();
               });
         };
 
@@ -240,8 +240,8 @@ GL.controller("TipCtrl",
     }, true);
 }]).
 controller("TipOperationsCtrl",
-  ["$scope", "$http", "$route", "$location", "$uibModalInstance", "args",
-   function ($scope, $http, $route, $location, $uibModalInstance, args) {
+  ["$scope", "$http", "$location", "$uibModalInstance", "args",
+   function ($scope, $http, $location, $uibModalInstance, args) {
   $scope.args = args;
 
   $scope.cancel = function () {
@@ -258,13 +258,13 @@ controller("TipOperationsCtrl",
       };
 
       return $http({method: "PUT", url: "api/rtips/" + args.tip.id, data: req}).then(function () {
-        $route.reload();
+        $scope.reload();
       });
     } else if ($scope.args.operation === "delete") {
       return $http({method: "DELETE", url: "api/rtips/" + args.tip.id, data:{}}).
         then(function() {
           $location.url("/recipient/reports");
-          $route.reload();
+          $scope.reload();
         });
     }
   };

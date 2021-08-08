@@ -1,11 +1,11 @@
-GL.controller("CustodianIdentityAccessRequestsCtrl", ["$scope", "$http", "$route",  "$uibModal", "IdentityAccessRequests",
-  function($scope, $http, $route, $uibModal, IdentityAccessRequests) {
+GL.controller("CustodianIdentityAccessRequestsCtrl", ["$scope", "$http", "$uibModal", "IdentityAccessRequests",
+  function($scope, $http, $uibModal, IdentityAccessRequests) {
   $scope.iars = IdentityAccessRequests.query();
 
   $scope.authorize_identity_access_request = function (iar_id) {
     return $http.put("api/custodian/iars/" + iar_id, {"reply": "authorized", "reply_motivation": ""}).
       then(function(){
-        $route.reload();
+        $scope.reload();
       });
   };
 
@@ -21,8 +21,8 @@ GL.controller("CustodianIdentityAccessRequestsCtrl", ["$scope", "$http", "$route
     });
   };
 }]).
-controller("IdentityAccessReplyCtrl", ["$scope", "$http", "$route", "$uibModalInstance", "iar",
-  function ($scope, $http, $route, $uibModalInstance, iar) {
+controller("IdentityAccessReplyCtrl", ["$scope", "$http", "$uibModalInstance", "iar",
+  function ($scope, $http, $uibModalInstance, iar) {
     $scope.iar = iar;
     $scope.cancel = function () {
       $uibModalInstance.close();
@@ -32,7 +32,7 @@ controller("IdentityAccessReplyCtrl", ["$scope", "$http", "$route", "$uibModalIn
       $uibModalInstance.close();
       return $http.put("api/custodian/iars/" + $scope.iar, {"reply": "denied", "reply_motivation": $scope.reply_motivation}).
         then(function(){
-          $route.reload();
+          $scope.reload();
         });
     };
 }]);

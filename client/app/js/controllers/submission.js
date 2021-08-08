@@ -266,8 +266,8 @@ GL.controller("SubmissionCtrl",
   });
 }]).
 controller("AdditionalQuestionnaireCtrl",
-    ["$http", "$route", "$scope", "$uibModalInstance", "$filter", "$location", "$interval", "tmhDynamicLocale", "Submission", "glbcProofOfWork", "fieldUtilities",
-      function ($http, $route, $scope, $uibModalInstance, $filter, $location, $interval, tmhDynamicLocale, Submission, glbcProofOfWork, fieldUtilities) {
+    ["$http", "$scope", "$uibModalInstance", "$filter", "$location", "$interval", "tmhDynamicLocale", "Submission", "glbcProofOfWork", "fieldUtilities",
+      function ($http, $scope, $uibModalInstance, $filter, $location, $interval, tmhDynamicLocale, Submission, glbcProofOfWork, fieldUtilities) {
   $scope.vars = {};
 
   $scope.fieldUtilities = fieldUtilities;
@@ -395,7 +395,7 @@ controller("AdditionalQuestionnaireCtrl",
     return $http.post("api/wbtip/" + $scope.tip.id + "/update",
                       {"cmd": "additional_questionnaire", "answers": $scope.answers}).
         then(function(){
-          $route.reload();
+          $scope.reload();
         });
   };
 
