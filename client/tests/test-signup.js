@@ -16,7 +16,6 @@ describe("user perform signup", function() {
     await element(by.model("signup.surname")).sendKeys("Surname");
     await element(by.model("signup.email")).sendKeys("test@example.net");
     await element(by.model("confirmation_email")).sendKeys("test@example.net");
-    await element.all(by.xpath(".//*[text()='Anticorruption']")).get(0).click();
     await element(by.cssContainingText("button", "Complete")).click();
     await browser.gl.utils.waitUntilPresent(by.xpath(".//*[text()='Success!']"));
   });

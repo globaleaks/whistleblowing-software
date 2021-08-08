@@ -101,7 +101,6 @@ platform_signup_keywords = [
     '{Name}',
     '{Surname}',
     '{Email}',
-    '{UseCase}',
     '{Language}',
     '{AdminCredentials}',
     '{RecipientCredentials}'
@@ -549,21 +548,6 @@ class PlatformSignupKeyword(NodeKeyword):
 
     def Email(self):
         return self.data['signup']['email']
-
-    def UseCase(self):
-        # Some special handling is required here. use_case is, as the name
-        # suggests is the reason why a new tenant signed up for a GL platform,
-        # however, "Other" is allowed as a valid reason, so we need to catch
-        # that and send it seperately.
-        #
-        # The field is currently not subject to internationaliation.
-        signup_data = self.data['signup']
-        if signup_data['use_case'] == 'other':
-            return signup_data['use_case'] + \
-                   " - " + \
-                   signup_data['use_case_other']
-        else:
-            return signup_data['use_case']
 
     def Language(self):
         return self.data['signup']['language']

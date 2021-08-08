@@ -202,8 +202,6 @@ def get_dummy_fieldoption_list():
             'order': 0,
             'score_points': 100,
             'score_type': 'none',
-            'trigger_field': '',
-            'trigger_step': '',
             'trigger_receiver': [],
             'hint1': '',
             'hint2': '',

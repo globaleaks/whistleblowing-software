@@ -572,8 +572,6 @@ SignupDesc = {
     'role': str,
     'phone': str,
     'email': str,
-    'use_case': str,
-    'use_case_other': str,
     'organization_name': str,
     'organization_type': str,
     'organization_tax_code': str,

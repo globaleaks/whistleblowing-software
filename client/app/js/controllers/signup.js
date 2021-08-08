@@ -19,8 +19,6 @@ GL.controller("SignupCtrl", ["$scope", "$location", "$route", "$http", "Authenti
     "role": "",
     "email": "",
     "phone": "",
-    "use_case": "",
-    "use_case_other": "",
     "organization_name": "",
     "organization_type": "",
     "organization_tax_code": "",
