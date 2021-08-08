@@ -22,17 +22,6 @@ filter("expirationDate", function() {
     return e;
   };
 }).
-filter("anomalyToString", function() {
-  return function (anomaly) {
-    var anomalies = {
-      "completed_submissions": "Completed submissions",
-      "failed_logins": "Failed logins",
-      "successful_logins": "Successful logins"
-    };
-
-    return anomalies[anomaly];
-  };
-}).
 filter("split", function() {
   return function(input, splitChar, splitIndex) {
     return input.split(splitChar)[splitIndex];
