@@ -1,7 +1,6 @@
 {
   "id": "default",
   "name": "Default",
-  "layout": "horizontal",
   "steps": [
     {
       "label": {
