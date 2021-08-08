@@ -33,7 +33,6 @@ def db_load_default_questionnaires(session):
         questionnaires.append(read_json_file(qfile))
         qids.append(questionnaires[-1]['id'])
 
-    db_del(session, models.Questionnaire, models.Questionnaire.id.in_(qids))
     db_del(session, models.Step, models.Step.questionnaire_id.in_(qids))
 
     for questionnaire in questionnaires:
@@ -54,23 +53,12 @@ def db_load_default_fields(session):
         questions.append(read_json_file(ffile))
         qids.append(questions[-1]['id'])
 
-    db_del(session, models.Field, models.Field.id.in_(qids))
     db_del(session, models.Field, models.Field.fieldgroup_id.in_(qids))
     db_del(session, models.FieldAttr, models.FieldAttr.field_id.in_(qids))
     db_del(session, models.FieldOption, models.FieldOption.field_id.in_(qids))
 
     for question in questions:
         db_create_field(session, 1, question, None)
-
-
-def db_load_defaults(session):
-    """
-    Transaction for updating application defaults
-
-    :param session: An ORM session
-    """
-    db_load_default_questionnaires(session)
-    db_load_default_fields(session)
 
 
 def db_fix_fields_attrs(session):
@@ -81,7 +69,7 @@ def db_fix_fields_attrs(session):
     """
     field_attrs = read_json_file(Settings.field_attrs_file)
 
-    std_lst = ['inputbox', 'textarea', 'checkbox', 'selectbox', 'fieldgroup', 'tos', 'date', 'daterange', 'map']
+    std_lst = ['inputbox', 'textarea', 'checkbox', 'selectbox', 'fieldgroup', 'tos', 'date', 'daterange']
 
     for field_type, attrs_dict in field_attrs.items():
         attrs_to_keep_for_type = attrs_dict.keys()
@@ -91,18 +79,41 @@ def db_fix_fields_attrs(session):
                       models.FieldAttr.field_id == models.Field.id, \
                       models.Field.type == field_type, \
                       models.Field.template_id.is_(None)
-        else:
-            # Look for dropped attrs in non-standard field_groups like whistleblower_identity
-            _filter = not_(models.FieldAttr.name.in_(attrs_to_keep_for_type)), \
-                      models.FieldAttr.field_id == models.Field.id, \
-                      models.Field.template_id == field_type
 
-        subquery = session.query(models.FieldAttr.id).filter(*_filter).subquery()
+            subquery = session.query(models.FieldAttr.id).filter(*_filter).subquery()
 
-        db_del(models.FieldAttr, models.FieldAttr.id.in_(subquery))
+            db_del(session, models.FieldAttr, models.FieldAttr.id.in_(subquery))
 
     # Add keys to the db that have been added to field_attrs
     for field in session.query(models.Field):
         type = field.type if field.template_id is None else field.template_id
         attrs = field_attrs.get(type, {})
         db_update_fieldattrs(session, field.id, attrs, None)
+
+
+def db_fix_orphans_models(session):
+    """
+    Transaction for deleting orpans models related to old migrations run with disabled foreign keys checks
+
+    :param session: An ORM session
+    """
+    steps_ids = session.query(models.Step.id)
+    fields_ids = session.query(models.Field.id)
+    session.query(models.Field).filter(models.Field.instance == 0, models.Field.step_id != None, not_(models.Field.step_id.in_(steps_ids))).delete(synchronize_session=False)
+    session.query(models.Field).filter(models.Field.fieldgroup_id != None, not_(models.Field.fieldgroup_id.in_(fields_ids))).delete(synchronize_session=False)
+    session.query(models.FieldOption).filter(not_(models.FieldOption.field_id.in_(fields_ids))).delete(synchronize_session=False)
+    session.query(models.FieldAttr).filter(not_(models.FieldAttr.field_id.in_(fields_ids))).delete(synchronize_session=False)
+    session.query(models.FieldOptionTriggerField).filter(not_(models.FieldOptionTriggerField.object_id.in_(fields_ids))).delete(synchronize_session=False)
+    session.query(models.FieldOptionTriggerStep).filter(not_(models.FieldOptionTriggerStep.object_id.in_(steps_ids))).delete(synchronize_session=False)
+
+
+def db_load_defaults(session):
+    """
+    Transaction for updating application defaults
+
+    :param session: An ORM session
+    """
+    db_load_default_questionnaires(session)
+    db_load_default_fields(session)
+    db_fix_fields_attrs(session)
+    db_fix_orphans_models(session)

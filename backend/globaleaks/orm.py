@@ -72,8 +72,11 @@ def get_thread_pool():
 
 def db_add(session, model_class, model_fields):
     obj = model_class(model_fields)
-    session.add(obj)
-    session.flush()
+    if not obj.id:
+        session.add(obj)
+        session.flush()
+    else:
+        session.merge(obj)
     return obj
 
 

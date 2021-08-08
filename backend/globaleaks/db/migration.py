@@ -139,7 +139,7 @@ def perform_data_update(db_file):
 
     appdata = load_appdata()
 
-    session = get_session(make_db_uri(db_file), foreign_keys=False)
+    session = get_session(make_db_uri(db_file))
 
     enabled_languages = [lang.name for lang in session.query(models.EnabledLanguage)]
 
