@@ -6,7 +6,7 @@ User Features
 
 - Multi-user system with customizable user roles (whistleblower, recipient, administrator)
 - Entirely manageable from a web administration interface
-- Support for `more than 40 languages <https://www.transifex.com/otf/globaleaks>`_ with support for Right-to-Left (RTL)
+- Support for `more than 60 languages <https://www.transifex.com/otf/globaleaks>`_ with support for Right-to-Left (RTL)
 - Let whistleblowers decide if and when to confidentially declare their identity
 - Exchange multimedia files with whistleblower
 - Chat with Whistleblower to discuss the report
@@ -71,7 +71,6 @@ Technical Features
 - Support for Linux operating system (`Debian <https://www.debian.org/>`_/`Ubuntu <https://ubuntu.com/>`_)
 - Deb Packaging with repository for update/upgrades
 - Fully self-contained application (no web or application servers needed)
-- Integrated collaborative translation/localization (`Transifex <https://www.transifex.com/otf/globaleaks>`_)
 - Easy integration of the platform with existing websites and intranets
 - `HTTP/2 <https://tools.ietf.org/html/rfc7540>`_ support
 - Rest API
