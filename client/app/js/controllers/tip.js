@@ -211,7 +211,6 @@ GL.controller("TipCtrl",
       $uibModal.open({
         templateUrl: "views/partials/tip_additional_questionnaire_form.html",
         controller: "AdditionalQuestionnaireCtrl",
-        size: "lg",
         scope: $scope
       });
     };

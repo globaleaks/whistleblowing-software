@@ -561,7 +561,6 @@ var GL = angular.module("GL", [
       $uibModal.open({
         controller: "ConfirmableModalCtrl",
         templateUrl: "views/partials/security_awareness_confidentiality.html",
-        size: "lg",
         scope: $rootScope
       });
     };
@@ -570,7 +569,6 @@ var GL = angular.module("GL", [
       $uibModal.open({
         templateUrl: "views/partials/disclaimer.html",
         controller: "ConfirmableModalCtrl",
-        size: "lg",
 	resolve: {
           arg: null,
           confirmFun: function() { return function() { $rootScope.setPage("submissionpage"); }; },

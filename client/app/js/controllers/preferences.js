@@ -41,10 +41,7 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$uibModal", "$http",
         $uibModal.open({
           templateUrl: "views/partials/encryption_recovery_key.html",
           controller: "ConfirmableModalCtrl",
-          size: "lg",
           scope: $scope,
-          backdrop: "static",
-          keyboard: false,
           resolve: {
             arg: null,
             confirmFun: null,
