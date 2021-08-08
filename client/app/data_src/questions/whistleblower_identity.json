@@ -33,7 +33,7 @@
   ],
   "children":[
     {
-      "id":"",
+      "id":"identity_name",
       "label":{
         "en":"First name"
       },
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id":"",
+      "id":"identity_surname",
       "label":{
         "en":"Last name"
       },
@@ -137,9 +137,9 @@
       ]
     },
     {
-      "id":"",
+      "id":"identity_preferred_contact_method",
       "label":{
-        "en":"Gender"
+        "en":"Preferred contact method"
       },
       "description":{
         "en":""
@@ -152,7 +152,7 @@
         },
         "display_alphabetically":{
           "type":"bool",
-          "value":true
+          "value":false
         }
       },
       "instance":"template",
@@ -178,448 +178,46 @@
       "options":[
         {
           "order":0,
-          "trigger_field":"",
           "score_type":"none",
           "score_points":0,
           "label":{
-            "en":"Male"
+            "en":"Email address"
           },
-          "id":""
+          "id":"identity_preferred_contact_method_email"
         },
         {
           "order":1,
-          "trigger_field":"",
           "score_type":"none",
           "score_points":0,
           "label":{
-            "en":"Female"
+            "en":"Phone number"
           },
-          "id":""
+          "id":"identity_preferred_contact_method_phone"
         },
         {
           "order":2,
-          "trigger_field":"",
           "score_type":"none",
           "score_points":0,
           "label":{
-            "en":"Other gender identity"
+            "en":"Other"
           },
-          "id":""
+          "id":"identity_preferred_contact_method_other"
+        },
+        {
+          "order":3,
+          "score_type":"none",
+          "score_points":0,
+          "label":{
+            "en":"I prefer to be contacted via this platform only"
+          },
+          "id":"identity_preferred_contact_method_platform"
         }
       ],
       "children":[
       ]
     },
     {
-      "id":"",
-      "label":{
-        "en":"Date of birth"
-      },
-      "description":{
-        "en":""
-      },
-      "multi_entry":false,
-      "attrs":{
-        "min_date":{
-          "type":"unicode",
-          "value":""
-        },
-        "max_date":{
-          "type":"unicode",
-          "value":""
-        }
-      },
-      "instance":"template",
-      "hint":{
-        "en":""
-      },
-      "placeholder":{
-        "en":""
-      },
-      "width":6,
-      "preview":false,
-      "type":"date",
-      "fieldgroup_id":"",
-      "encrypt":true,
-      "step_id":"",
-      "required":true,
-      "triggered_by_score":0,
-      "triggered_by_options":[
-      ],
-      "template_id":"",
-      "y":3,
-      "x":0,
-      "options":[
-      ],
-      "children":[
-      ]
-    },
-    {
-      "id":"",
-      "label":{
-        "en":"Place of birth"
-      },
-      "description":{
-        "en":""
-      },
-      "multi_entry":false,
-      "attrs":{
-        "max_len":{
-          "type":"int",
-          "value":"-1"
-        },
-        "min_len":{
-          "type":"int",
-          "value":"-1"
-        },
-        "input_validation":{
-          "type":"unicode",
-          "value":"none"
-        },
-        "regexp":{
-          "type":"unicode",
-          "value":""
-        }
-      },
-      "instance":"template",
-      "hint":{
-        "en":""
-      },
-      "placeholder":{
-        "en":""
-      },
-      "width":6,
-      "preview":false,
-      "type":"inputbox",
-      "fieldgroup_id":"",
-      "encrypt":true,
-      "step_id":"",
-      "required":true,
-      "triggered_by_score":0,
-      "triggered_by_options":[
-      ],
-      "template_id":"",
-      "y":3,
-      "x":1,
-      "options":[
-      ],
-      "children":[
-      ]
-    },
-    {
-      "id":"",
-      "label":{
-        "en":"Address"
-      },
-      "description":{
-        "en":""
-      },
-      "instance":"template",
-      "hint":{
-        "en":""
-      },
-      "placeholder":{
-        "en":""
-      },
-      "multi_entry":false,
-      "attrs":{
-        "max_len":{
-          "type":"int",
-          "value":"-1"
-        },
-        "min_len":{
-          "type":"int",
-          "value":"-1"
-        },
-        "input_validation":{
-          "type":"unicode",
-          "value":"none"
-        },
-        "regexp":{
-          "type":"unicode",
-          "value":""
-        }
-      },
-      "width":0,
-      "preview":false,
-      "type":"inputbox",
-      "fieldgroup_id":"",
-      "encrypt":true,
-      "step_id":"",
-      "required":true,
-      "triggered_by_score":0,
-      "triggered_by_options":[
-      ],
-      "template_id":"",
-      "y":5,
-      "x":0,
-      "options":[
-      ],
-      "children":[
-      ]
-    },
-    {
-      "id":"",
-      "label":{
-        "en":"Zip code / Postal code"
-      },
-      "description":{
-        "en":""
-      },
-      "instance":"template",
-      "hint":{
-        "en":""
-      },
-      "placeholder":{
-        "en":""
-      },
-      "multi_entry":false,
-      "attrs":{
-        "max_len":{
-          "type":"int",
-          "value":"-1"
-        },
-        "min_len":{
-          "type":"int",
-          "value":"-1"
-        },
-        "input_validation":{
-          "type":"unicode",
-          "value":"none"
-        },
-        "regexp":{
-          "type":"unicode",
-          "value":""
-        }
-      },
-      "width":0,
-      "preview":false,
-      "type":"inputbox",
-      "fieldgroup_id":"",
-      "encrypt":true,
-      "step_id":"",
-      "required":true,
-      "triggered_by_score":0,
-      "triggered_by_options":[
-      ],
-      "template_id":"",
-      "y":5,
-      "x":1,
-      "options":[
-      ],
-      "children":[
-      ]
-    },
-    {
-      "id":"",
-      "label":{
-        "en":"City"
-      },
-      "description":{
-        "en":""
-      },
-      "instance":"template",
-      "hint":{
-        "en":""
-      },
-      "placeholder":{
-        "en":""
-      },
-      "multi_entry":false,
-      "attrs":{
-        "max_len":{
-          "type":"int",
-          "value":"-1"
-        },
-        "min_len":{
-          "type":"int",
-          "value":"-1"
-        },
-        "input_validation":{
-          "type":"unicode",
-          "value":"none"
-        },
-        "regexp":{
-          "type":"unicode",
-          "value":""
-        }
-      },
-      "width":0,
-      "preview":false,
-      "type":"inputbox",
-      "fieldgroup_id":"",
-      "encrypt":true,
-      "step_id":"",
-      "required":true,
-      "triggered_by_score":0,
-      "triggered_by_options":[
-      ],
-      "template_id":"",
-      "y":6,
-      "x":0,
-      "options":[
-      ],
-      "children":[
-      ]
-    },
-    {
-      "id":"",
-      "label":{
-        "en":"Province"
-      },
-      "description":{
-        "en":""
-      },
-      "instance":"template",
-      "hint":{
-        "en":""
-      },
-      "placeholder":{
-        "en":""
-      },
-      "multi_entry":false,
-      "attrs":{
-        "max_len":{
-          "type":"int",
-          "value":"-1"
-        },
-        "min_len":{
-          "type":"int",
-          "value":"-1"
-        },
-        "input_validation":{
-          "type":"unicode",
-          "value":"none"
-        },
-        "regexp":{
-          "type":"unicode",
-          "value":""
-        }
-      },
-      "width":0,
-      "preview":false,
-      "type":"inputbox",
-      "fieldgroup_id":"",
-      "encrypt":true,
-      "step_id":"",
-      "required":true,
-      "triggered_by_score":0,
-      "triggered_by_options":[
-      ],
-      "template_id":"",
-      "y":6,
-      "x":1,
-      "options":[
-      ],
-      "children":[
-      ]
-    },
-    {
-      "id":"",
-      "label":{
-        "en":"Country"
-      },
-      "description":{
-        "en":""
-      },
-      "instance":"template",
-      "hint":{
-        "en":""
-      },
-      "placeholder":{
-        "en":""
-      },
-      "multi_entry":false,
-      "attrs":{
-        "max_len":{
-          "type":"int",
-          "value":"-1"
-        },
-        "min_len":{
-          "type":"int",
-          "value":"-1"
-        },
-        "input_validation":{
-          "type":"unicode",
-          "value":"none"
-        },
-        "regexp":{
-          "type":"unicode",
-          "value":""
-        }
-      },
-      "width":0,
-      "preview":false,
-      "type":"inputbox",
-      "fieldgroup_id":"",
-      "encrypt":true,
-      "step_id":"",
-      "required":true,
-      "triggered_by_score":0,
-      "triggered_by_options":[
-      ],
-      "template_id":"",
-      "y":6,
-      "x":2,
-      "options":[
-      ],
-      "children":[
-      ]
-    },
-    {
-      "id":"",
-      "label":{
-        "en":"Phone number"
-      },
-      "description":{
-        "en":""
-      },
-      "instance":"template",
-      "hint":{
-        "en":""
-      },
-      "placeholder":{
-        "en":""
-      },
-      "multi_entry":false,
-      "attrs":{
-        "max_len":{
-          "type":"int",
-          "value":"-1"
-        },
-        "min_len":{
-          "type":"int",
-          "value":"-1"
-        },
-        "input_validation":{
-          "type":"unicode",
-          "value":"none"
-        },
-        "regexp":{
-          "type":"unicode",
-          "value":""
-        }
-      },
-      "width":6,
-      "preview":false,
-      "type":"inputbox",
-      "fieldgroup_id":"",
-      "encrypt":true,
-      "step_id":"",
-      "required":true,
-      "triggered_by_score":0,
-      "triggered_by_options":[
-      ],
-      "template_id":"",
-      "y":7,
-      "x":0,
-      "options":[
-      ],
-      "children":[
-      ]
-    },
-    {
-      "id":"",
+      "id":"identity_email",
       "label":{
         "en":"Email address"
       },
@@ -661,9 +259,128 @@
       "required":true,
       "triggered_by_score":0,
       "triggered_by_options":[
+        {
+          "field":"identity_preferred_contact_method",
+          "option":"identity_preferred_contact_method_email",
+          "sufficient":true
+        }
       ],
       "template_id":"",
-      "y":7,
+      "y":2,
+      "x":1,
+      "options":[
+      ],
+      "children":[
+      ]
+    },
+    {
+      "id":"identity_phone",
+      "label":{
+        "en":"Phone number"
+      },
+      "description":{
+        "en":""
+      },
+      "instance":"template",
+      "hint":{
+        "en":""
+      },
+      "placeholder":{
+        "en":""
+      },
+      "multi_entry":false,
+      "attrs":{
+        "max_len":{
+          "type":"int",
+          "value":"-1"
+        },
+        "min_len":{
+          "type":"int",
+          "value":"-1"
+        },
+        "input_validation":{
+          "type":"unicode",
+          "value":"none"
+        },
+        "regexp":{
+          "type":"unicode",
+          "value":""
+        }
+      },
+      "width":6,
+      "preview":false,
+      "type":"inputbox",
+      "fieldgroup_id":"",
+      "encrypt":true,
+      "step_id":"",
+      "required":true,
+      "triggered_by_score":0,
+      "triggered_by_options":[
+        {
+          "field":"identity_preferred_contact_method",
+          "option":"identity_preferred_contact_method_phone",
+          "sufficient":true
+        }
+      ],
+      "template_id":"",
+      "y":2,
+      "x":1,
+      "options":[
+      ],
+      "children":[
+      ]
+    },
+    {
+      "id":"identity_other",
+      "label":{
+        "en":"Other"
+      },
+      "description":{
+        "en":""
+      },
+      "instance":"template",
+      "hint":{
+        "en":""
+      },
+      "placeholder":{
+        "en":""
+      },
+      "multi_entry":false,
+      "attrs":{
+        "max_len":{
+          "type":"int",
+          "value":"-1"
+        },
+        "min_len":{
+          "type":"int",
+          "value":"-1"
+        },
+        "input_validation":{
+          "type":"unicode",
+          "value":"none"
+        },
+        "regexp":{
+          "type":"unicode",
+          "value":""
+        }
+      },
+      "width":6,
+      "preview":false,
+      "type":"inputbox",
+      "fieldgroup_id":"",
+      "encrypt":true,
+      "step_id":"",
+      "required":true,
+      "triggered_by_score":0,
+      "triggered_by_options":[
+        {
+          "field":"identity_preferred_contact_method",
+          "option":"identity_preferred_contact_method_other",
+          "sufficient":true
+        }
+      ],
+      "template_id":"",
+      "y":2,
       "x":1,
       "options":[
       ],
