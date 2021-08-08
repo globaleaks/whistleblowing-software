@@ -29,9 +29,7 @@
                 "en": "a"
               },
               "order": 0,
-              "score_points": 0,
-              "trigger_field": "",
-              "trigger_step": ""
+              "score_points": 0
             },
             {
               "id": "e9cee72c-2c00-4e8d-b468-6f9cd70f1fb7",
@@ -39,9 +37,7 @@
                 "en": "b"
               },
               "order": 1,
-              "score_points": 0,
-              "trigger_field": "",
-              "trigger_step": ""
+              "score_points": 0
             },
             {
               "id": "c23121fb-51da-4128-8c57-bb1b6406f8e0",
@@ -49,9 +45,7 @@
                 "en": "c"
               },
               "order": 2,
-              "score_points": 0,
-              "trigger_field": "",
-              "trigger_step": ""
+              "score_points": 0
             },
             {
               "id": "8dd8351c-bded-4e6a-aa85-3b5b62a0a346",
@@ -59,9 +53,7 @@
                 "en": "d"
               },
               "order": 3,
-              "score_points": 0,
-              "trigger_field": "",
-              "trigger_step": ""
+              "score_points": 0
             }
           ],
           "preview": true,
