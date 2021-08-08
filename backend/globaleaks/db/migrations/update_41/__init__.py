@@ -116,18 +116,16 @@ class MigrationScript(MigrationBase):
                 i += 1
                 new_obj = self.model_to['InternalTip']()
                 for key in new_obj.__table__.columns._data.keys():
-                    if key in ['encrypted', 'wb_prv_key', 'wb_pub_key', 'wb_tip_key', 'enc_data']:
-                        pass
-                    elif key == 'progressive':
+                    if key == 'progressive':
                         new_obj.progressive = i
-                    else:
+                    elif key in old_obj.__table__.columns._data.keys():
                         setattr(new_obj, key, getattr(old_obj, key))
 
                 self.session_new.add(new_obj)
 
-    def migrate_InternalFile(self):
-        for old_obj in self.session_old.query(self.model_from['InternalFile']):
-            new_obj = self.model_to['InternalFile']()
+    def _migrateFile(self, model):
+        for old_obj in self.session_old.query(self.model_from[model]):
+            new_obj = self.model_to[model]()
             for key in new_obj.__table__.columns._data.keys():
                 if key == 'filename':
                     new_obj.filename = os.path.basename(old_obj.file_path)
@@ -135,28 +133,15 @@ class MigrationScript(MigrationBase):
                     setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
+
+    def migrate_InternalFile(self):
+        self._migrateFile("InternalFile")
 
     def migrate_ReceiverFile(self):
-        for old_obj in self.session_old.query(self.model_from['ReceiverFile']):
-            new_obj = self.model_to['ReceiverFile']()
-            for key in new_obj.__table__.columns._data.keys():
-                if key == 'filename':
-                    new_obj.filename = os.path.basename(old_obj.file_path)
-                else:
-                    setattr(new_obj, key, getattr(old_obj, key))
-
-            self.session_new.add(new_obj)
+        self._migrateFile("ReceiverFile")
 
     def migrate_WhistleblowerFile(self):
-        for old_obj in self.session_old.query(self.model_from['WhistleblowerFile']):
-            new_obj = self.model_to['WhistleblowerFile']()
-            for key in new_obj.__table__.columns._data.keys():
-                if key == 'filename':
-                    new_obj.filename = os.path.basename(old_obj.file_path)
-                else:
-                    setattr(new_obj, key, getattr(old_obj, key))
-
-            self.session_new.add(new_obj)
+        self._migrateFile("WhistleblowerFile")
 
     def epilogue(self):
         for tenant in self.session_old.query(self.model_from['Tenant']):

@@ -383,17 +383,6 @@ class MigrationScript(MigrationBase):
 
             self.session_new.add(new_obj)
 
-    def migrate_FieldAttr(self):
-        for old_obj in self.session_old.query(self.model_from['FieldAttr']):
-            new_obj = self.model_to['FieldAttr']()
-            for key in new_obj.__table__.columns._data.keys():
-                setattr(new_obj, key, getattr(old_obj, key))
-
-            if new_obj.name == 'display_alphabetically':
-                new_obj.value = False
-
-            self.session_new.add(new_obj)
-
     def migrate_InternalTip(self):
         for old_obj in self.session_old.query(self.model_from['InternalTip']):
             new_obj = self.model_to['InternalTip']()

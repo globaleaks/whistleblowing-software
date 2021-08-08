@@ -179,9 +179,6 @@ def perform_migration(version):
     Utility function for performing a database migration
     :param version: The current version of the database to update
     """
-    to_delete_on_fail = []
-    to_delete_on_success = []
-
     if version < FIRST_DATABASE_VERSION_SUPPORTED:
         log.info("Migrations from DB version lower than %d are no longer supported!" % FIRST_DATABASE_VERSION_SUPPORTED)
         sys.exit(1)
@@ -210,9 +207,6 @@ def perform_migration(version):
 
             Settings.db_file = new_db_file
             Settings.enable_input_length_checks = False
-
-            to_delete_on_fail.append(new_db_file)
-            to_delete_on_success.append(old_db_file)
 
             log.info("Updating DB from version %d to version %d" %
                      (version, version + 1))
