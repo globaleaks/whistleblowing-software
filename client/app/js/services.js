@@ -1152,10 +1152,6 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
         var r;
 
         for (var key in answers_obj) {
-          if (!key.match(CONSTANTS.uuid_regexp)) {
-            continue;
-          }
-
           if (key === field_id) {
             return answers_obj[key][0];
           }
