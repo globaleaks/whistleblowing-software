@@ -143,7 +143,7 @@ GlobaLeaks tries to avoid, by using properly crafted HTTP headers and other tric
 
 Metadata
 --------
-Every file can contain metadata related to the author or the whistleblower. The cleanup of metadata of submitted files is a particular topic that attempts to protect an “unaware” whistleblower from leaking information in a document that may put their anonymity at risk. In the context of GlobaLeaks, by default no automatic metadata cleanup is implemented because metadata is considered fundamental in the evidence preservation. For that reason metadata cleanup is an optional operation that coulld be suggested to Whistleblowers or operated by Recipients when sharing the document with other persons. A valuable software resource for this aim is the `Metadata Anonymization Toolkit <https://0xacab.org/jvoisin/mat2`_
+Every file can contain metadata related to the author or the whistleblower. The cleanup of metadata of submitted files is a particular topic that attempts to protect an “unaware” whistleblower from leaking information in a document that may put their anonymity at risk. In the context of GlobaLeaks, by default no automatic metadata cleanup is implemented because metadata is considered fundamental in the evidence preservation. For that reason metadata cleanup is an optional operation that coulld be suggested to Whistleblowers or operated by Recipients when sharing the document with other persons. A valuable software resource for this aim is the `Metadata Anonymization Toolkit <https://0xacab.org/jvoisin/mat2>`_
 
 Malware and Trojans
 -------------------
