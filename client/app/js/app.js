@@ -720,7 +720,7 @@ var GL = angular.module("GL", [
       if ($location.path() === "/" &&
           $rootScope.Authentication.session &&
           $rootScope.Authentication.session.role !== "whistleblower") {
-        // Get suer to reset the user session when visiting the public interface
+        // Get sure to reset the user session when visiting the public interface
 	// This is intended as protection in relation to possible XSS and XSRF
 	// on components implementing markdown and direct html input.
         $rootScope.Authentication.session = undefined;
