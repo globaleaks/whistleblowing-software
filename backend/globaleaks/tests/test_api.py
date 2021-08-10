@@ -39,27 +39,19 @@ class TestAPI(TestGL):
                                                    'custodian'], check_roles))
             self.assertTrue(len(rest) == 0)
 
-    def test_get_with_no_language_header(self):
+    def test_get_with_no_accept_language_header(self):
         request = forge_request()
         self.assertEqual(self.api.detect_language(request), 'en')
 
-    def test_get_with_gl_language_header(self):
-        request = forge_request(headers={'Accept-Language': 'it'})
-        self.assertEqual(self.api.detect_language(request), 'it')
-
-    def test_get_with_accept_language_header(self):
+    def test_get_with_accept_language_header_1(self):
         request = forge_request(headers={'Accept-Language': 'ar;q=0.8,it;q=0.6'})
         self.assertEqual(self.api.detect_language(request), 'ar')
 
-    def test_get_with_gl_language_header_and_accept_language_header_1(self):
-        request = forge_request(headers={'Accept-Language': 'en-US,en;q=0.8,it;q=0.6'})
-        self.assertEqual(self.api.detect_language(request), 'en')
-
-    def test_get_with_gl_language_header_and_accept_language_header_2(self):
+    def test_get_with_accept_language_header_2(self):
         request = forge_request(headers={'Accept-Language': 'en-US,en;it;q=0.6'})
         self.assertEqual(self.api.detect_language(request), 'en')
 
-    def test_get_with_gl_language_header_and_accept_language_header_3(self):
+    def test_get_with_accept_language_header_3(self):
         request = forge_request(headers={'Accept-Language': 'antani1,antani2;q=0.8,antani3;q=0.6'})
         self.assertEqual(self.api.detect_language(request), 'en')
 

@@ -75,7 +75,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
         yield self.assertFailure(handler.put(), InputValidationError)
 
     @inlineCallbacks
-    def test_put_update_node_languages_removing_en_adding_fr(self):
+    def test_put_update_node_languages(self):
         # this tests start setting en as the only enabled language and
         # ends keeping enabled only french.
         self.dummyNode['languages_enabled'] = ["en"]
