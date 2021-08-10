@@ -192,7 +192,7 @@ class TestObjectValidators(TestCase):
             ('invalid/glbc_le_stage_cert.pem', 1),
             ('invalid/expired_cert.pem', 1),
             ('invalid/le-staging-chain.pem', 1),
-            ('valid/chains/comodo.pem', 3),
+            ('valid/chains/comodo.pem', 2),
         ]
 
         for chain_path, chain_len in test_cases:
