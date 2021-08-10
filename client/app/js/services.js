@@ -228,8 +228,8 @@ factory("DATA_COUNTRIES_ITALY_PROVINCES", ["$resource", function($resource) {
 factory("DATA_COUNTRIES_ITALY_CITIES", ["$resource", function($resource) {
   return $resource("data/countries/it/comuni.json");
 }]).
-factory("Submission", ["$q", "GLResource", "$filter", "$location", "$rootScope", "SubmissionResource", "TokenResource",
-    function($q, GLResource, $filter, $location, $rootScope, SubmissionResource, TokenResource) {
+factory("Submission", ["$q", "GLResource", "$location", "$rootScope", "SubmissionResource", "TokenResource",
+    function($q, GLResource, $location, $rootScope, SubmissionResource, TokenResource) {
 
   return function(fn) {
     /**
@@ -373,8 +373,8 @@ factory("RTipExport", ["$http", "$window", "TokenResource", function($http, $win
     });
   };
 }]).
-factory("RTip", ["$rootScope", "$http", "$filter", "RTipResource", "RTipMessageResource", "RTipCommentResource",
-        function($rootScope, $http, $filter, RTipResource, RTipMessageResource, RTipCommentResource) {
+factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipMessageResource", "RTipCommentResource",
+        function($rootScope, $http, RTipResource, RTipMessageResource, RTipCommentResource) {
   return function(tipID, fn) {
     var self = this;
 
@@ -448,8 +448,8 @@ factory("WBTipDownloadFile", ["$http", "$window", "TokenResource", function($htt
     });
   };
 }]).
-factory("WBTip", ["$rootScope", "$filter", "WBTipResource", "WBTipCommentResource", "WBTipMessageResource",
-    function($rootScope, $filter, WBTipResource, WBTipCommentResource, WBTipMessageResource) {
+factory("WBTip", ["$rootScope", "WBTipResource", "WBTipCommentResource", "WBTipMessageResource",
+    function($rootScope, WBTipResource, WBTipCommentResource, WBTipMessageResource) {
   return function(fn) {
     var self = this;
 
