@@ -788,10 +788,12 @@ class _ReceiverTip(Model):
     access_counter = Column(Integer, default=0, nullable=False)
     important = Column(Boolean, default=False, nullable=False)
     label = Column(UnicodeText, default='', nullable=False)
-    can_access_whistleblower_identity = Column(Boolean, default=False, nullable=True)
     new = Column(Boolean, default=True, nullable=False)
     enable_notifications = Column(Boolean, default=True, nullable=False)
     crypto_tip_prv_key = Column(UnicodeText(84), default='', nullable=False)
+
+    # TODO: remove at next database migration
+    can_access_whistleblower_identity = Column(Boolean, default=False, nullable=True)
 
     @declared_attr
     def __table_args__(self):
@@ -810,8 +812,6 @@ class _Subscriber(Model):
     role = Column(UnicodeText, default='', nullable=False)
     phone = Column(UnicodeText, default='', nullable=False)
     email = Column(UnicodeText, nullable=False)
-    use_case = Column(UnicodeText, default='', nullable=False)
-    use_case_other = Column(UnicodeText, default='', nullable=False)
     organization_name = Column(UnicodeText, default='', nullable=False)
     organization_type = Column(UnicodeText, default='', nullable=False)
     organization_tax_code = Column(UnicodeText, default='', nullable=False)
@@ -823,7 +823,6 @@ class _Subscriber(Model):
     organization_site = Column(UnicodeText, default='', nullable=False)
     organization_number_employees = Column(UnicodeText, default='', nullable=False)
     organization_number_users = Column(UnicodeText, default='', nullable=False)
-    hear_channel = Column(UnicodeText, default='', nullable=False)
     activation_token = Column(UnicodeText, unique=True, nullable=True)
     client_ip_address = Column(UnicodeText, nullable=False)
     client_user_agent = Column(UnicodeText, nullable=False)
@@ -831,17 +830,21 @@ class _Subscriber(Model):
     tos1 = Column(UnicodeText, default='', nullable=False)
     tos2 = Column(UnicodeText, default='', nullable=False)
 
+    # TODO: remove at next database migration
+    use_case = Column(UnicodeText, default='', nullable=False)
+    use_case_other = Column(UnicodeText, default='', nullable=False)
+    hear_channel = Column(UnicodeText, default='', nullable=False)
+
     unicode_keys = ['subdomain', 'language', 'name', 'surname', 'role', 'phone', 'email',
                     'tax_code', 'vat_code',
-                    'use_case', 'use_case_other',
                     'organization_name', 'organization_type',
                     'organization_tax_code', 'organization_vat_code',
                     'organization_site',
                     'organization_location1', 'organization_location2', 'organization_location3',
                     'organization_location4',
                     'organization_number_employees', 'organization_number_users',
-                    'hear_channel',
-                    'client_ip_address', 'client_user_agent']
+                    'client_ip_address', 'client_user_agent',
+                    'use_case', 'use_case_other', 'hear_channel']
 
     bool_keys = ['tos1', 'tos2']
 
