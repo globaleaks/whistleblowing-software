@@ -146,7 +146,7 @@ def create_file_https_csr(session, tid, raw_data):
 def create_file_http_acme_key(session, tid):
     log.info("Generating an ACME account key with %d bits" % Settings.key_bits)
 
-    return db_create_acme_key(session, tid)
+    db_create_acme_key(session, tid)
 
 
 class PrivKeyFileRes(FileResource):
@@ -287,8 +287,6 @@ class FileHandler(BaseHandler):
     def post(self, name):
         req = self.validate_message(self.request.content.read(),
                                     requests.AdminTLSCfgFileResourceDesc)
-
-        file_res_cls = self.get_file_res_or_raise(name)
 
         if name == 'key':
             ok = yield create_file_https_key(self.request.tid, req['content'])
@@ -460,7 +458,7 @@ class AcmeHandler(BaseHandler):
 
     @inlineCallbacks
     def post(self):
-        accnt_key = yield create_file_http_acme_key(self.request.tid)
+        yield create_file_http_acme_key(self.request.tid)
         yield tw(db_acme_cert_request, self.request.tid)
 
 

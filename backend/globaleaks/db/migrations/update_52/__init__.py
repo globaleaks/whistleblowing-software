@@ -256,8 +256,8 @@ class MigrationScript(MigrationBase):
 
             if new_obj.name == 'attachment_url':
                 x = {}
-                for l in self.session_old.query(self.model_from['EnabledLanguage'].name):
-                    x[l[0]] = old_obj.value
+                for language in self.session_old.query(self.model_from['EnabledLanguage'].name):
+                    x[language[0]] = old_obj.value
 
                 new_obj.type = EnumFieldAttrType.localized.name
                 new_obj.value = x
@@ -287,7 +287,6 @@ class MigrationScript(MigrationBase):
                     setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
-
 
     def epilogue(self):
         # This migration epilogue is necessary because the default variable of the variables is

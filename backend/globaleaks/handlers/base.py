@@ -108,7 +108,7 @@ class BaseHandler(object):
 
         if self.session.user_role != 'whistleblower' and \
            self.state.tenant_cache[1].get('log_accesses_of_internal_users', False):
-           self.request.log_ip_and_ua = True
+             self.request.log_ip_and_ua = True
 
         return self.session
 

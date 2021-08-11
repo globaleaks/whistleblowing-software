@@ -10,7 +10,6 @@ def generate_token(tid, session):
     return State.tokens.new(tid, session).serialize()
 
 
-
 class TokenCreate(BaseHandler):
     """
     This class implement the handler for requesting a token.

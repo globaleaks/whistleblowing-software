@@ -8,6 +8,7 @@ from globaleaks.orm import transact, tw
 from globaleaks.rest.errors import InputValidationError, InvalidAuthentication
 from globaleaks.tests import helpers
 
+
 @transact
 def set_receiver_acl_flag_true(session, rcvr_id):
     rcvr = session.query(models.User).filter_by(id=rcvr_id).first()

@@ -254,7 +254,7 @@ def db_create_submission(session, tid, request, temp_submission, client_using_to
                 receivers.append(r)
                 crypto_is_available = False
         else:
-                receivers.append(r)
+            receivers.append(r)
 
     if not receivers:
         raise errors.InputValidationError("Unable to deliver the submission to at least one recipient")

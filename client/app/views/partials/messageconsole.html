@@ -4,7 +4,7 @@
       We skip authentication errors (9) that are handled by the request interceptor.
     -->
     <div data-translate>Error!</div>
-    <div data-ng-switch="" on="error.code">
+    <div data-ng-switch="error.code">
       <div data-ng-switch-when="1">
         <span data-translate>Internal server error</span> <span>({{error.arguments[0]}})</span>
       </div>

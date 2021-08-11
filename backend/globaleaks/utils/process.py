@@ -2,6 +2,7 @@
 import ctypes
 import os
 
+
 def set_proc_title(title):
     """
     Set the process title

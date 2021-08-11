@@ -363,15 +363,15 @@ module.exports = function(grunt) {
           replacements: [
             {
               pattern: "style=\"outline: 0;\"",
-              replacement: "ng-style=\"{\\'outline\\': \\'0\\'}\""
+              replacement: "data-ng-style=\"{\\'outline\\': \\'0\\'}\""
             },
             {
               pattern: "style=\"margin-right: 10px\"",
-              replacement: "ng-style=\"{\\'margin-right\\': \\'10px\\'}\""
+              replacement: "data-ng-style=\"{\\'margin-right\\': \\'10px\\'}\""
             },
             {
               pattern: "style=\"width: 34px;\"",
-              replacement: "ng-style=\"{\\'width\\': \\'34px\\'}\""
+              replacement: "data-ng-style=\"{\\'width\\': \\'34px\\'}\""
             }
           ]
         }

@@ -17,7 +17,7 @@ class TestFileInstance(helpers.TestHandler):
 
         self._handler = admin_file.FileInstance
         handler = self.request({}, role='admin')
-        x = yield handler.post('custom')
+        yield handler.post('custom')
 
         self._handler = admin_file.FileCollection
         handler = self.request(role='admin')

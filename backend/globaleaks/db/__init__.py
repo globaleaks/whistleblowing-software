@@ -28,7 +28,8 @@ def get_db_file(db_path):
     path = os.path.join(db_path, 'globaleaks.db')
     if os.path.exists(path):
         session = get_session(make_db_uri(path))
-        version_db = session.query(models.Config.value).filter(Config.tid == 1, Config.var_name == 'version_db').one()[0]
+        version_db = session.query(models.Config.value).filter(Config.tid == 1,
+                                                               Config.var_name == 'version_db').one()[0]
         session.close()
         return version_db, path
 
@@ -177,7 +178,8 @@ def db_refresh_tenant_cache(session, tid_list):
             tenant_cache.setdefault('notification', ObjectDict())
             tenant_cache['notification'][cfg.var_name] = cfg.value
 
-    for tid, lang in session.query(models.EnabledLanguage.tid, models.EnabledLanguage.name).filter(models.EnabledLanguage.tid.in_(tid_list)):
+    for tid, lang in session.query(models.EnabledLanguage.tid, models.EnabledLanguage.name)\
+            .filter(models.EnabledLanguage.tid.in_(tid_list)):
         State.tenant_cache[tid].setdefault('languages_enabled', []).append(lang)
 
     for tid in tid_list:

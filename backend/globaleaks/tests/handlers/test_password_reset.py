@@ -17,7 +17,6 @@ def set_reset_token(session, user_id, validation_token):
     user.reset_password_date = datetime_now()
 
 
-
 class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = password_reset.PasswordResetHandler
 

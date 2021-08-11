@@ -190,6 +190,7 @@ def db_update_context(session, tid, context, request, language):
 
     return context
 
+
 @transact
 def update_context(session, tid, context_id, request, language):
     """

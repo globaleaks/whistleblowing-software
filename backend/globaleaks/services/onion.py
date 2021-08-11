@@ -19,7 +19,6 @@ from txtorcon.torconfig import EphemeralHiddenService
 __all__ = ['OnionService']
 
 
-
 @transact
 def get_onion_service_info(session, tid):
     return db_get_onion_service_info(session, tid)
@@ -79,7 +78,7 @@ class OnionService(Service):
         if self.tor_conn is None:
             return
 
-        hs_loc = ('80 localhost:8083')
+        hs_loc = '80 localhost:8083'
 
         log.info('Setting up the onion service %s', hostname, tid=tid)
 

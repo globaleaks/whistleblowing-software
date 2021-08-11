@@ -52,6 +52,7 @@ class TestMigrationRoutines(unittest.TestCase):
 
         self.assertNotEqual(ret, -1)
 
+
 def test(path, version):
     return lambda self: self._test(path, version)
 

@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import io
-
 class Cache(object):
     memory_cache_dict = {}
 

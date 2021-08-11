@@ -152,13 +152,13 @@ def perform_data_update(db_file):
 
     try:
         if config.ConfigFactory(session, 1).get_val('version') != __version__:
-            session.query(models.Config).filter_by(var_name = 'version') \
+            session.query(models.Config).filter_by(var_name='version') \
                    .update({'value': __version__, 'update_date': now})
 
-            session.query(models.Config).filter_by(var_name = 'latest_version') \
+            session.query(models.Config).filter_by(var_name='latest_version') \
                    .update({'value': __version__, 'update_date': now})
 
-            session.query(models.Config).filter_by(var_name = 'version_db') \
+            session.query(models.Config).filter_by(var_name='version_db') \
                    .update({'value': DATABASE_VERSION, 'update_date': now})
 
             for tid in [t[0] for t in session.query(models.Tenant.id)]:

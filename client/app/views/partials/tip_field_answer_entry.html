@@ -1,4 +1,4 @@
-<div data-ng-switch="" on="field.type" class="nested">
+<div data-ng-switch="field.type" class="nested">
   <span data-ng-switch-when="checkbox">
     <div data-ng-repeat="(k, v) in entry">
       <div data-ng-repeat="option in field.options" data-ng-if="k === option.id && v === true">

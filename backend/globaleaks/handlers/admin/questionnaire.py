@@ -88,7 +88,7 @@ def db_update_questionnaire(session, tid, questionnaire_id, request, language):
 
     questionnaire.update(request)
 
-    return  serialize_questionnaire(session, tid, questionnaire, language)
+    return serialize_questionnaire(session, tid, questionnaire, language)
 
 
 @transact

@@ -31,6 +31,7 @@ class JSON(types.TypeDecorator):
 class Enum(types.TypeDecorator):
     """Stores and retrieves ENUM as INTEGER."""
     impl = types.Integer
+
     def __init__(self, enumtype, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._enumtype = enumtype

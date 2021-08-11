@@ -21,6 +21,7 @@ def serialize_log(log):
         'data': log.data
     }
 
+
 @transact
 def get_audit_log(session, tid):
     logs = session.query(models.AuditLog).filter(models.AuditLog.tid == tid)
@@ -88,7 +89,6 @@ class TipsCollection(BaseHandler):
 
     def get(self):
         return get_tips(self.request.tid)
-
 
 
 class RecentEventsCollection(BaseHandler):

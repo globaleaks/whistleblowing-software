@@ -400,7 +400,6 @@ class MigrationScript(MigrationBase):
 
             self.session_new.add(new_obj)
 
-
     def migrate_File(self):
         for old_obj in self.session_old.query(self.model_from['File']):
             obj_id = None

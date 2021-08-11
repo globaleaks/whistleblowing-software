@@ -61,7 +61,7 @@ def reset_submissions(session, tid, user_id):
     """
     session.query(Config).filter(Config.tid == tid, Config.var_name == 'counter_submissions').update({'value': 0})
 
-    db_del(session, InternalTip, InternalTip.tid==tid)
+    db_del(session, InternalTip, InternalTip.tid == tid)
 
     State.log(tid=tid, type='reset_reports', user_id=user_id)
 

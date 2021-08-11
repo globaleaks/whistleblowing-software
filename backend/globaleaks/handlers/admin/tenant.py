@@ -115,7 +115,6 @@ def delete(session, tid):
     db_refresh_memory_variables(session, [tid])
 
 
-
 class TenantCollection(BaseHandler):
     check_roles = 'admin'
     root_tenant_only = True

@@ -13,7 +13,7 @@
           </div>
           <div id="PrivacyBadgeDownloadLink"><a href="https://www.torproject.org/download/" class="btn btn-sm btn-secondary"><i class="fas fa-download"></i> <span data-translate>Download the Tor Browser</span></a></div>
           <div data-ng-if="public.node.onionservice">
-            <span data-translate>Then, copy and paste the following address into the Tor Browser:</span> <span class="onionaddress" uib-tooltip="{{'Copy to clipboard' | translate}}" data-ng-click="Utils.copyToClipboard(public.node.onionservice)">{{public.node.onionservice}}</span>
+            <span data-translate>Then, copy and paste the following address into the Tor Browser:</span> <span class="onionaddress" data-uib-tooltip="{{'Copy to clipboard' | translate}}" data-ng-click="Utils.copyToClipboard(public.node.onionservice)">{{public.node.onionservice}}</span>
           </div>
         </div>
       </div>

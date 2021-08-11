@@ -163,7 +163,7 @@ def ISO8601_to_pretty_str(isodate, tz=0):
 
     if tz != 0:
         tz_i, tz_d = divmod(tz, 1)
-        tz_d, _  = divmod(tz_d * 100, 1)
+        tz_d, _ = divmod(tz_d * 100, 1)
         date += timedelta(hours=tz_i, minutes=tz_d)
         return date.strftime("%A %d %B %Y %H:%M")
 

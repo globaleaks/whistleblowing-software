@@ -3,11 +3,11 @@
     <div class="col-md-1">
       <div data-ng-if="submission.selected_receivers[receiver.id]">
         <div data-ng-if="!receiver.forcefully_selected">
-          <i class="fas fa-check-square" uib-tooltip="{{'Unselect this recipient.' | translate}}"></i>
+          <i class="fas fa-check-square" data-uib-tooltip="{{'Unselect this recipient.' | translate}}"></i>
         </div>
       </div>
       <div data-ng-if="!submission.selected_receivers[receiver.id] && !receiver.forcefully_selected">
-        <i class="far fa-square" uib-tooltip="{{'Select this recipient.' | translate}}"></i>
+        <i class="far fa-square" data-uib-tooltip="{{'Select this recipient.' | translate}}"></i>
       </div>
     </div>
   </div>

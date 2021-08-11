@@ -227,7 +227,7 @@ def db_access_wbfile(session, tid, user_id, wbfile_id):
     :param wbfile_id: the requested wbfile ID
     :return: A model requested
     """
-    itips_ids = [x[0] for x in session.query(models.InternalTip.id) \
+    itips_ids = [x[0] for x in session.query(models.InternalTip.id)
                                       .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
                                               models.ReceiverTip.receiver_id == user_id,
                                               models.InternalTip.tid == tid)]

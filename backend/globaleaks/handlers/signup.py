@@ -34,8 +34,6 @@ def serialize_signup(signup):
         'language': signup.language,
         'activation_token': signup.activation_token,
         'registration_date': signup.registration_date,
-        'use_case': signup.use_case,
-        'use_case_other': signup.use_case_other,
         'organization_name': signup.organization_name,
         'organization_type': signup.organization_type,
         'organization.tax_code': signup.organization_tax_code,
@@ -47,7 +45,6 @@ def serialize_signup(signup):
         'organization_site': signup.organization_site,
         'organization_number_employees': signup.organization_number_employees,
         'organization_number_users': signup.organization_number_users,
-        'hear_channel': signup.hear_channel,
         'tos1': signup.tos1,
         'tos2': signup.tos2
     }

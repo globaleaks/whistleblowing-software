@@ -10,7 +10,7 @@
     <div data-ng-form="newUser" class="addUser col-md-6">
       <div class="form-group">
         <label data-translate>Role</label>
-        <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+        <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
         <div>
           <select name="role" class="form-control" data-ng-model="new_user.role" required>
             <option value="admin" data-translate>Admin</option>
@@ -21,21 +21,21 @@
       </div>
       <div class="form-group" data-ng-if="new_user.role !== 'receiver' || !resources.node.simplified_login">
         <label data-translate>Username</label>
-        <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+        <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
         <div>
           <input class="form-control" name="username" data-ng-model="new_user.username" type="text" required/>
         </div>
       </div>
       <div class="form-group">
         <label data-translate>Name</label>
-        <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+        <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
         <div>
           <input class="form-control" name="name" data-ng-model="new_user.name" type="text" required/>
         </div>
       </div>
       <div class="form-group">
         <label data-translate>Email address</label>
-        <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+        <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
         <div>
           <input class="form-control" name="email" data-ng-model="new_user.email" data-ng-pattern="email_regexp" type="email" data-ng-class="{'is-invalid': newUser.email.$error.pattern}" required/>
         </div>
@@ -71,7 +71,7 @@
             </span>
           </span>
           <span class="badge badge-secondary" data-ng-if="user.state === 'disabled'" data-translate>Disabled</span>
-	  <span class="badge badge-default" data-ng-if="resources.node.encryption && !user.encryption" uib-tooltip="{{'This user has not performed the first login yet.' | translate}}">
+	  <span class="badge badge-default" data-ng-if="resources.node.encryption && !user.encryption" data-uib-tooltip="{{'This user has not performed the first login yet.' | translate}}">
 	    <i class="fas fa-exclamation-circle"></i>
 	  </span>
         </span>
@@ -106,7 +106,7 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <div image-upload image-upload-model="user" image-upload-model-attr="picture" image-upload-id="{{user.id}}"></div>
+              <div data-image-upload data-image-upload-model="user" data-image-upload-model-attr="picture" data-image-upload-id="{{user.id}}"></div>
             </div>
           </div>
         </div>

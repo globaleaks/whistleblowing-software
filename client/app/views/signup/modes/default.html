@@ -8,11 +8,11 @@
     <div class="col-md-12 form-group">
       <label>
         <span data-translate>Domain</span>
-        <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+        <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       </label>
       <div class="input-group">
         <input name="subdomain" class="form-control" data-ng-model="signup.subdomain" type="text"
-               data-ng-pattern="/^[a-z0-9]+$/" required subdomainvalidator>
+               data-ng-pattern="/^[a-z0-9]+$/" data-subdomainvalidator required >
         <span class="input-group-append"><span class="input-group-text">.{{public.node.rootdomain}}</span></span>
       </div>
     </div>
@@ -20,12 +20,12 @@
   <div class="row">
     <div class="col-md-6 form-group">
       <label data-translate>Name</label>
-      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <input name="name" class="form-control" data-ng-model="signup.name" type="text" required>
     </div>
     <div class="col-md-6 form-group">
       <label data-translate>Surname</label>
-      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <input name="surname" class="form-control" data-ng-model="signup.surname" type="text" required>
     </div>
   </div>
@@ -33,7 +33,7 @@
     <div class="col-md-6 form-group">
       <label>
         <span data-translate>Email address</span>
-        <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+        <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       </label>
       <input name="mail_address" class="form-control" data-ng-model="signup.email"
              data-ng-pattern="email_regexp" type="email"
@@ -46,7 +46,7 @@
     <div class="col-md-6 form-group">
       <label>
         <span data-translate>Email address</span> <span>(</span><span data-translate>Confirmation</span><span>)</span>
-        <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+        <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       </label>
       <input name="email" class="form-control" data-ng-model="confirmation_email"
              data-disable-ccp type="email"

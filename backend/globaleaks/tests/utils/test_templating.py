@@ -36,7 +36,7 @@ class notifTemplateTest(helpers.TestGLWithPopulatedDB):
 
         for key in ['tip', 'comment', 'message', 'file']:
             if key == 'tip':
-                data['type']= 'tip'
+                data['type'] = 'tip'
             else:
                 data['type'] = 'tip_update'
 

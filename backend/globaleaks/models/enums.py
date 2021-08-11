@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import enum
 
+
 class _Enum(enum.Enum):
     @classmethod
     def keys(cls):

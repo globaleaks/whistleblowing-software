@@ -16,13 +16,13 @@ def generate_onion_service_v3():
         bits = [(y >> i) & 1 for i in range(b)]
         return b''.join([bytes([sum([bits[i * 8 + j] << j for j in range(8)])]) for i in range(b//8)])
 
-    def bit(h,i):
-        return (h[i//8] >> (i%8)) & 1
+    def bit(h, i):
+        return (h[i//8] >> (i % 8)) & 1
 
     def expandSK(sk):
         h = H(sk)
-        a = 2**(b-2) + sum(2**i * bit(h,i) for i in range(3,b-2))
-        k = b''.join([bytes([h[i]]) for i in range(b//8,b//4)])
+        a = 2**(b-2) + sum(2**i * bit(h, i) for i in range(3, b-2))
+        k = b''.join([bytes([h[i]]) for i in range(b//8, b//4)])
         return encodeint(a)+k
 
     private_key = Ed25519PrivateKey.generate()

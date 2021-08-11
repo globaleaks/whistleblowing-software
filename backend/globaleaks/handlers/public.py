@@ -23,6 +23,7 @@ trigger_map = {
     'step': models.FieldOptionTriggerStep
 }
 
+
 def db_get_languages(session, tid):
     return [x[0] for x in db_query(session, models.EnabledLanguage.name, models.EnabledLanguage.tid == tid)]
 
@@ -120,7 +121,6 @@ def db_get_submission_status(session, tid, status_id, language):
                      models.SubmissionStatus.id == status_id))
 
     return serialize_submission_status(session, status, language)
-
 
 
 def db_get_triggers_by_type(session, type, object_id):

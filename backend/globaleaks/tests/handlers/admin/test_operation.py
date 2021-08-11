@@ -90,7 +90,6 @@ class TestAdminOperations(helpers.TestHandlerWithPopulatedDB):
 
         return handler.put()
 
-
     def test_admin_test_mail(self):
         return self._test_operation_handler('test_mail')
 

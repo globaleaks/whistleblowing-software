@@ -39,13 +39,13 @@ def serialize_rtip_export(session, user, rtip, itip, context, language):
 
 @transact
 def get_tip_export(session, tid, user_id, rtip_id, language):
-    user, context, itip, rtip  = session.query(models.User, models.Context, models.InternalTip, models.ReceiverTip) \
-                                        .filter(models.User.id == user_id,
-                                                models.User.tid == tid,
-                                                models.ReceiverTip.id == rtip_id,
-                                                models.ReceiverTip.receiver_id == user_id,
-                                                models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                                models.Context.id == models.InternalTip.context_id).one_or_none()
+    user, context, itip, rtip = session.query(models.User, models.Context, models.InternalTip, models.ReceiverTip) \
+                                       .filter(models.User.id == user_id,
+                                               models.User.tid == tid,
+                                               models.ReceiverTip.id == rtip_id,
+                                               models.ReceiverTip.receiver_id == user_id,
+                                               models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                                               models.Context.id == models.InternalTip.context_id).one_or_none()
 
     if not user:
         raise errors.ResourceNotFound()

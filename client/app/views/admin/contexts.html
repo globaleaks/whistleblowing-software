@@ -11,7 +11,7 @@
       <div class="form-group">
         <label>
           <span data-translate>Name</span>
-          <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+          <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
         </label>
         <div data-ng-class="{'is-invalid': newContext.name.$error.required}">
           <input name="name" class="form-control" data-ng-model="new_context.name" type="text" required />
@@ -40,13 +40,13 @@
               <button data-ng-if="!$first && resources.node.show_contexts_in_alphabetical_order"
 		      class="btn btn-sm btn-primary"
 		      data-ng-click="moveUp($event, $index)"
-                      uib-tooltip="{{'Move up' | translate}}">
+                      data-uib-tooltip="{{'Move up' | translate}}">
                 <i class="fas fa-chevron-up"></i>
               </button>
               <button data-ng-if="!$last && resources.node.show_contexts_in_alphabetical_order"
 		      class="btn btn-sm btn-primary"
 		      data-ng-click="moveDown($event, $index)"
-                      uib-tooltip="{{'Move down' | translate}}">
+                      data-uib-tooltip="{{'Move down' | translate}}">
                 <i class="fas fa-chevron-down"></i>
               </button>
               <button class="btn btn-sm btn-secondary"
@@ -77,7 +77,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <div image-upload image-upload-model="context" image-upload-model-attr="picture" image-upload-id="{{context.id}}"></div>
+                <div data-image-upload data-image-upload-model="context" data-image-upload-model-attr="picture" data-image-upload-id="{{context.id}}"></div>
               </div>
               <div class="form-group">
                 <label data-translate>Name</label>
@@ -129,17 +129,17 @@
                       <span class="action-btns">
                         <span data-ng-if="!context.show_receivers_in_alphabetical_order">
                           <span data-ng-if="!$first" data-ng-click="moveUp($index)"
-                                uib-tooltip="{{'Move up' | translate}}">
+                                data-uib-tooltip="{{'Move up' | translate}}">
                             <i class="fas fa-chevron-up"></i>
                           </span>
                           <i data-ng-if="$first || $last" class="fas fa-none"></i>
                           <span data-ng-if="!$last" data-ng-click="moveDown($index)"
-                                uib-tooltip="{{'Move down' | translate}}">
+                                data-uib-tooltip="{{'Move down' | translate}}">
                             <i class="fas fa-chevron-down"></i>
                           </span>
                         </span>
                         <span data-ng-click="context.receivers.splice($index, 1)"
-                              uib-tooltip="{{'Remove' | translate}}">
+                              data-uib-tooltip="{{'Remove' | translate}}">
                           <i class="fas fa-times"></i>
                         </span>
                       </span>

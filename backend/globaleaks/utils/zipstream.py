@@ -122,8 +122,7 @@ class ZipInfo(object):
             # File is larger than what fits into a 4 byte integer,
             # fall back to the ZIP64 extension
             fmt = b'<hhqq'
-            extra = extra + struct.pack(fmt,
-                    1, struct.calcsize(fmt)-4, file_size, compress_size)
+            extra = extra + struct.pack(fmt, 1, struct.calcsize(fmt)-4, file_size, compress_size)
             file_size = 0xffffffff  # -1
             compress_size = 0xffffffff  # -1
             self.extract_version = max(45, self.extract_version)

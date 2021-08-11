@@ -134,7 +134,7 @@ def indent_text(text, n=1):
     """
     Add n * 2 space as indentation to each of the non empty lines of the provided text
     """
-    return '\n'.join([('  ' * n if not l.isspace() else '') + l for l in text.splitlines()])
+    return '\n'.join([('  ' * n if not line.isspace() else '') + line for line in text.splitlines()])
 
 
 class Keyword(object):

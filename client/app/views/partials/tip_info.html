@@ -5,7 +5,7 @@
         <div class="float-left">
           <span class="input-group">
             <input id="assignLabelInput" type="text" class="form-control" data-ng-attr-placeholder="{{'Label' | translate}}" data-ng-model="tip.label" />
-            <span class="input-group-append" uib-tooltip="{{'Label to the report' | translate}}">
+            <span class="input-group-append" data-uib-tooltip="{{'Label to the report' | translate}}">
               <button id="assignLabelButton" class="btn btn-primary" data-ng-click="updateLabel(tip.label)">
                 <i class="fas fa-tag"></i>
               </button>
@@ -70,15 +70,15 @@
         </td>
         <td class="TipInfoLastAccess" data-ng-if="Authentication.session.role === 'receiver'">
           <i data-ng-if="tip.wb_last_access >= tip.update_date" class="fas fa-check"
-             uib-tooltip="{{'The whistleblower has already read the last update' | translate }} ({{tip.wb_last_access | date:'dd-MM-yyyy HH:mm'}})"></i>
+             data-uib-tooltip="{{'The whistleblower has already read the last update' | translate }} ({{tip.wb_last_access | date:'dd-MM-yyyy HH:mm'}})"></i>
           <i data-ng-if="tip.wb_last_access < tip.update_date" class="fas fa-times"
-             uib-tooltip="{{'The whistleblower has not read the last update yet' | translate }}"></i>
+             data-uib-tooltip="{{'The whistleblower has not read the last update yet' | translate }}"></i>
         </td>
         <td class="TipInfoConnection" data-ng-if="Authentication.session.role === 'receiver'">
             <span data-ng-if="tip.https"
-                  uib-tooltip="{{'The connection has been secured with HTTPS ensuring confidentiality.' | translate}}">HTTPS</span>
+                  data-uib-tooltip="{{'The connection has been secured with HTTPS ensuring confidentiality.' | translate}}">HTTPS</span>
           <span data-ng-if="!tip.https"
-                uib-tooltip="{{'The connection has been secured with Tor ensuring confidentiality and anonymity.' | translate}}">Tor</span>
+                data-uib-tooltip="{{'The connection has been secured with Tor ensuring confidentiality and anonymity.' | translate}}">Tor</span>
         </td>
 	<td class="TipInfoSubmissionStatus">{{tip.submissionStatusStr}}</td>
         <td class="TipInfoScore" data-ng-if="Authentication.session.role === 'receiver' && public.node.enable_scoring_system" data-ng-switch="tip.score">

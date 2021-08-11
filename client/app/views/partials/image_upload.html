@@ -7,11 +7,11 @@
   <label class="changePictureButton text-primary"
          for="imageFile"
          data-ng-if="!imageUploadModel[imageUploadModelAttr] && !imageUploadObj.flow.files.length"
-         uib-tooltip="{{'Edit' | translate}}" flow-btn><i class="fas fa-edit"></i></label>
+         data-uib-tooltip="{{'Edit' | translate}}" flow-btn><i class="fas fa-edit"></i></label>
   <label class="changePictureButton text-danger"
          data-ng-click="deletePicture()"
          data-ng-if="!imageSrcId && (imageUploadModel[imageUploadModelAttr] || imageUploadObj.flow.files.length)"
-         uib-tooltip="{{'Delete' | translate}}"><i class="fas fa-times"></i></label>
+         data-uib-tooltip="{{'Delete' | translate}}"><i class="fas fa-times"></i></label>
   <div class="imageUploadThumbnail">
     <img data-ng-if="imageUploadModel[imageUploadModelAttr]" data-ng-src="s/{{imageUploadId}}">
   </div>

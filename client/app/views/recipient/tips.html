@@ -3,7 +3,7 @@
     <span class="float-left">
       <a id="link-home"
          href="#/recipient/home"
-         uib-tooltip="{{'Home' | translate}}"
+         data-uib-tooltip="{{'Home' | translate}}"
          class="btn btn-outline-secondary">
         <i class="fas fa-arrow-left"></i>
       </a>
@@ -12,7 +12,7 @@
         <span id="tip-action-select-all"
               data-ng-if="selected_tips.length !== tips.length"
               data-ng-click="select_all()"
-              uib-tooltip="{{'Select all' | translate}}"
+              data-uib-tooltip="{{'Select all' | translate}}"
               class="btn btn-outline-secondary">
           <i class="far fa-square"></i>
         </span>
@@ -20,14 +20,14 @@
         <span id="tip-action-select-all"
               data-ng-if="selected_tips.length === tips.length"
               data-ng-click="deselect_all()"
-              uib-tooltip="{{'Deselect all' | translate}}"
+              data-uib-tooltip="{{'Deselect all' | translate}}"
               class="btn btn-outline-secondary">
           <i class="fas fa-check-square"></i>
         </span>
 
         <span id="tip-action-export-selected"
               data-ng-click="tips_export()"
-              uib-tooltip="{{'Export' | translate}}"
+              data-uib-tooltip="{{'Export' | translate}}"
               class="btn btn-outline-secondary">
           <i class="fas fa-save"></i>
         </span>
@@ -35,7 +35,7 @@
         <span id="tip-action-postpone-selected"
               data-ng-if="selected_tips.length && preferences.can_postpone_expiration"
               data-ng-click="tip_postpone_selected()"
-              uib-tooltip="{{'Postpone the expiration date' | translate}}"
+              data-uib-tooltip="{{'Postpone the expiration date' | translate}}"
               class="btn btn-outline-secondary">
           <i class="fas fa-clock"></i>
         </span>
@@ -43,7 +43,7 @@
         <span id="tip-action-delete-selected"
               data-ng-if="selected_tips.length && preferences.can_delete_submission"
               data-ng-click="tip_delete_selected()"
-              uib-tooltip="{{'Delete' | translate}}"
+              data-uib-tooltip="{{'Delete' | translate}}"
               class="btn btn-outline-secondary">
           <i class="fas fa-trash"></i>
         </span>
@@ -51,7 +51,7 @@
 
       <span id="tip-action-reload"
             data-ng-click="reload()"
-            uib-tooltip="{{'Refresh' | translate}}"
+            data-uib-tooltip="{{'Refresh' | translate}}"
             class="btn btn-outline-secondary">
         <i class="fas fa-sync"></i>
       </span>
@@ -183,14 +183,14 @@
             </span>
             <span name="TipExport"
                   data-ng-click="exportTip(tip); $event.stopPropagation()"
-                  uib-tooltip="{{'Export' | translate}}"
+                  data-uib-tooltip="{{'Export' | translate}}"
                   novalidate>
               <button id="tip-action-export" class="btn btn-sm btn-outline-secondary">
                 <i class="fas fa-save"></i>
               </button>
             </span>
           </td>
-          <td uib-tooltip="{{'Mark as important' | translate }}">
+          <td data-uib-tooltip="{{'Mark as important' | translate }}">
             <i class="fas fa-star text-warning" data-ng-click="toggle_star(tip); $event.stopPropagation();" data-ng-class="{'visible-on-over': !tip.important}"></i>
           </td>
           <td class="TipInfoID">{{tip.progressive}}</td>
@@ -206,15 +206,15 @@
           </td>
           <td class="TipInfoLastAccess">
             <i data-ng-if="tip.wb_last_access >= tip.update_date" class="fas fa-check"
-               uib-tooltip="{{'The whistleblower has already read the latest update' | translate }} ({{tip.wb_last_access | date:'dd-MM-yyyy HH:mm'}})"></i>
+               data-uib-tooltip="{{'The whistleblower has already read the latest update' | translate }} ({{tip.wb_last_access | date:'dd-MM-yyyy HH:mm'}})"></i>
             <i data-ng-if="tip.wb_last_access < tip.update_date" class="fas fa-times"
-               uib-tooltip="{{'The whistleblower has not read the last update yet' | translate }}"></i>
+               data-uib-tooltip="{{'The whistleblower has not read the last update yet' | translate }}"></i>
           </td>
           <td class="TipInfoPreview">
             <div data-ng-if="tip.file_count || tip.comment_count || tip.message_count">
-              <span data-ng-if="tip.file_count" uib-tooltip="{{'Files' | translate}}"><i class="fas fa-file text-secondary"></i>: {{tip.file_count}}</span>
-              <span data-ng-if="tip.comment_count" uib-tooltip="{{'Comments' | translate}}"><i class="fas fa-comment text-secondary"></i>: {{tip.comment_count}}</span>
-              <span data-ng-if="tip.message_count" uib-tooltip="{{'Messages' | translate}}"><i class="fas fa-envelope text-secondary"></i>: {{tip.message_count}}</span>
+              <span data-ng-if="tip.file_count" data-uib-tooltip="{{'Files' | translate}}"><i class="fas fa-file text-secondary"></i>: {{tip.file_count}}</span>
+              <span data-ng-if="tip.comment_count" data-uib-tooltip="{{'Comments' | translate}}"><i class="fas fa-comment text-secondary"></i>: {{tip.comment_count}}</span>
+              <span data-ng-if="tip.message_count" data-uib-tooltip="{{'Messages' | translate}}"><i class="fas fa-envelope text-secondary"></i>: {{tip.message_count}}</span>
             </div>
             <div class="preview">
               <div data-ng-repeat="step in tip.questionnaire" data-ng-init="fieldAnswers = tip.answers; preview=true">

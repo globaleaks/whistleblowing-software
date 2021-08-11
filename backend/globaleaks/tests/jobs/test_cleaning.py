@@ -87,7 +87,7 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
         # mark files as uploaded on timestamp 0
         for f in os.listdir(Settings.attachments_path):
             path = os.path.join(Settings.attachments_path, f)
-            os.utime(path,(0, 0))
+            os.utime(path, (0, 0))
 
         yield cleaning.Cleaning().run()
 

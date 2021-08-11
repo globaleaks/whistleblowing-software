@@ -254,7 +254,6 @@ class SessionHandler(BaseHandler):
         del Sessions[self.session.id]
 
 
-
 class TenantAuthSwitchHandler(BaseHandler):
     """
     Login handler for switching tenant

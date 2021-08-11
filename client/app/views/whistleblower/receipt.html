@@ -19,7 +19,7 @@
         <span data-translate>Remember your receipt for this report.</span>
       </div>
       <div class="card-body">
-        <div id="Receipt"><div class="btn btn-light" uib-tooltip="{{'Copy to clipboard' | translate}}" data-ng-click="Utils.copyToClipboard(receipt)">{{formatted_receipt}}</div></div>
+        <div id="Receipt"><div class="btn btn-light" data-uib-tooltip="{{'Copy to clipboard' | translate}}" data-ng-click="Utils.copyToClipboard(receipt)">{{formatted_receipt}}</div></div>
         <div data-translate>Use the 16 digit receipt to log in. It will allow you to view any messages we sent you, and also to add extra info.</div>
         <div class="mt-md-3 clearfix" data-ng-if="page === 'receiptpage'">
           <button id="ReceiptButton" class="float-right btn btn-primary" data-ng-click="Authentication.login(0, 'whistleblower', receipt)" data-translate>View your report</button>

@@ -7,19 +7,19 @@
   <div class="row">
     <div class="col-md-6 form-group">
       <label>Nome</label>
-      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <input name="name" class="form-control" data-ng-model="signup.name" type="text" required>
     </div>
     <div class="col-md-6 form-group">
       <label>Cognome</label>
-      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <input name="surname" class="form-control" data-ng-model="signup.surname" type="text" required>
     </div>
   </div>
   <div class="row">
     <div class="col-md-6 form-group">
       <label>Ruolo</label>
-      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <div>
         <select name="role" class="custom-select" data-ng-model="signup.role" required>
           <option value="" selected="selected"></option>
@@ -33,7 +33,7 @@
     </div>
     <div class="col-md-6 form-group">
       <label>Telefono</label> <span class="text-danger"
-                                    uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+                                    data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <input name="phone" class="form-control" data-ng-model="signup.phone" type="text"
              data-ng-pattern="phonenumber_regexp" required>
       <div class="text-danger" data-ng-show="signupForm.phone.$error.pattern">
@@ -45,7 +45,7 @@
     <div class="col-md-6 form-group">
       <label>
         <span>Email di ruolo</span>
-        <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+        <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       </label>
       <div>
         <input name="email" class="form-control" data-ng-model="signup.email" data-ng-pattern="email_regexp" type="email" required>
@@ -57,7 +57,7 @@
     <div class="col-md-6 form-group">
       <label>
         <span>Email di ruolo (Conferma)</span>
-        <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+        <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       </label>
       <div>
         <input name="email" class="form-control" data-ng-model="confirmation_email" data-disable-ccp type="email" required>
@@ -70,7 +70,7 @@
   <div class="row">
     <div class="col-md-6 form-group">
       <label>Come sei venuto a conoscenza del progetto?</label>
-      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <div>
         <select name="hear_channel" class="custom-select" data-ng-model="signup.hear_channel" required>
           <option value="" selected="selected"></option>
@@ -93,12 +93,12 @@
   <div class="row">
     <div class="col-md-6 form-group">
       <label>Nome</label>
-      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <input name="organization_name" class="form-control" data-ng-model="signup.organization_name" type="text" data-ng-change="updateSubdomain()" required>
     </div>
     <div class="col-md-6 form-group">
       <label>Tipo</label>
-      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <div>
         <select name="organization_type" class="custom-select" data-ng-model="signup.organization_type" required>
           <option value="" selected="selected"></option>
@@ -160,13 +160,13 @@
   <div class="row">
     <div class="col-md-6 form-group">
       <label>Codice fiscale</label>
-      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <input name="tax_code" class="form-control" data-ng-model="signup.organization_tax_code" type="text"
              data-ng-required="!signup.organization_tax_code && !signup.organization_vat_code">
     </div>
     <div class="col-md-6 form-group">
       <label>Partita IVA</label>
-      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <input name="vat_code" class="form-control" data-ng-model="signup.organization_vat_code" type="text"
              data-ng-required="!signup.organization_tax_code && !signup.organization_vat_code">
     </div>
@@ -175,7 +175,7 @@
     <div class="col-md-12 form-group">
       <label>
         <span>Questo sarà il sito di segnalazione del tuo ente:</span>
-        <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+        <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       </label>
       <div class="fieldDescription">Se vuoi, puoi modificare l’indirizzo per il whistleblowing del tuo ente indicato qui sotto.</div>
       <div class="input-group">
@@ -189,7 +189,7 @@
   <div class="row">
     <div class="col-md-4 form-group">
       <label>Regione</label>
-      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <div>
         <select name="organization_location2" class="custom-select" data-ng-model="signup.organization_location2" required>
           <option value="" selected="selected"></option>
@@ -199,7 +199,7 @@
     </div>
     <div class="col-md-4 form-group">
       <label>Provincia</label>
-      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <div>
         <select name="organization_location3" class="custom-select" data-ng-model="signup.organization_location3" data-ng-disabled="!signup.organization_location2" required>
           <option value="" selected="selected"></option>
@@ -209,7 +209,7 @@
     </div>
     <div class="col-md-4 form-group">
       <label>Città</label>
-      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <div>
         <select name="organization_location4" class="custom-select" data-ng-model="signup.organization_location4" data-ng-disabled="!signup.organization_location3" required>
           <option value="" selected="selected"></option>
@@ -222,7 +222,7 @@
   <div class="row">
     <div class="col-md-12 form-group">
       <label>Numero dipendenti</label>
-      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <div class="row">
         <div class="col-md-6">
           <select name="organization_number_employees" class="custom-select" data-ng-model="signup.organization_number_employees" required>
@@ -241,7 +241,7 @@
   <div class="row">
     <div class="col-md-12 form-group">
       <label>Numero utenti</label>
-      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <div class="fieldDescription">Per numero utenti si intende il bacino di riferimento dell’ente, per un comune sono i cittadini, per una ASL sono gli utenti del servizio sanitario di pertinenza, per l’università gli iscritti, etc.</div>
       <div class="row">
         <div class="col-md-6">
@@ -261,7 +261,7 @@
   <div class="row">
     <div class="col-md-6 form-group">
       <label>Sito ente</label>
-      <span class="text-danger" uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <input name="organization_site" class="form-control" data-ng-model="signup.organization_site" type="text" required>
     </div>
   </div>

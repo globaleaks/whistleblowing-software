@@ -18,6 +18,7 @@ appfiles = {
     'script': 'application/javascript'
 }
 
+
 class FileHandler(BaseHandler):
     """
     Handler that provide public access to configuration files

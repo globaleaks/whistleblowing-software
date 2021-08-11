@@ -172,6 +172,7 @@ class TipsCollection(BaseHandler):
                                 self.session.cc,
                                 self.request.language)
 
+
 class Operations(BaseHandler):
     """
     Handler that enables to issue operations on submissions
