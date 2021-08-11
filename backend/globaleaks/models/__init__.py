@@ -724,7 +724,7 @@ class _Questionnaire(Model):
     tid = Column(Integer, default=1, nullable=False)
     name = Column(UnicodeText, default='', nullable=False)
 
-    unicode_keys = ['key', 'name']
+    unicode_keys = ['name']
     list_keys = ['steps']
 
     @declared_attr
@@ -792,9 +792,6 @@ class _ReceiverTip(Model):
     enable_notifications = Column(Boolean, default=True, nullable=False)
     crypto_tip_prv_key = Column(UnicodeText(84), default='', nullable=False)
 
-    # TODO: remove at next database migration
-    can_access_whistleblower_identity = Column(Boolean, default=False, nullable=True)
-
     @declared_attr
     def __table_args__(self):
         return (ForeignKeyConstraint(['receiver_id'], ['user.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
@@ -830,11 +827,6 @@ class _Subscriber(Model):
     tos1 = Column(UnicodeText, default='', nullable=False)
     tos2 = Column(UnicodeText, default='', nullable=False)
 
-    # TODO: remove at next database migration
-    use_case = Column(UnicodeText, default='', nullable=False)
-    use_case_other = Column(UnicodeText, default='', nullable=False)
-    hear_channel = Column(UnicodeText, default='', nullable=False)
-
     unicode_keys = ['subdomain', 'language', 'name', 'surname', 'role', 'phone', 'email',
                     'tax_code', 'vat_code',
                     'organization_name', 'organization_type',
@@ -843,8 +835,7 @@ class _Subscriber(Model):
                     'organization_location1', 'organization_location2', 'organization_location3',
                     'organization_location4',
                     'organization_number_employees', 'organization_number_users',
-                    'client_ip_address', 'client_user_agent',
-                    'use_case', 'use_case_other', 'hear_channel']
+                    'client_ip_address', 'client_user_agent']
 
     bool_keys = ['tos1', 'tos2']
 
