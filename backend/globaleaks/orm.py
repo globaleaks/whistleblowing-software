@@ -52,9 +52,6 @@ def get_session(db_uri=None, foreign_keys=True):
     return sessionmaker(bind=get_engine(db_uri, foreign_keys))()
 
 
-def get_session_from_dbpath(db_path=None, foreign_keys=True):
-    return get_session(make_db_uri(db_path), foreign_keys)
-
 
 def enable_orm_debug():
     global _DEBUG
