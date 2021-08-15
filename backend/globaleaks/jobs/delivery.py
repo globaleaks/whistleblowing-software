@@ -60,7 +60,7 @@ def file_delivery(session):
                     'rfiles': []
                 }
 
-            if user.pgp_key_public:
+            if not itip.crypto_tip_pub_key and user.pgp_key_public:
                 receiverfile.filename = "%s.pgp" % generateRandomKey()
                 receiverfile.status = 'encrypted'
             else:

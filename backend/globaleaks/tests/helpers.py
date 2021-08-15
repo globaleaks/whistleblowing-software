@@ -542,7 +542,7 @@ def forge_request(uri=b'https://www.globaleaks.org/',
 
 class TestGL(unittest.TestCase):
     initialize_test_database_using_archived_db = True
-    pgp_configuration = 'ALL'
+    pgp_configuration = 'NONE'
 
     @inlineCallbacks
     def setUp(self):
