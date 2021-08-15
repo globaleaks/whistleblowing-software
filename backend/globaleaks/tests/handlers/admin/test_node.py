@@ -25,14 +25,6 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = node.NodeInstance
 
     @inlineCallbacks
-    def setUp(self):
-        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-
-        for r in (yield tw(user.db_get_users, 1, 'receiver', 'en')):
-            if r['pgp_key_fingerprint'] == 'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1':
-                self.rcvr_id = r['id']
-
-    @inlineCallbacks
     def test_get(self):
         handler = self.request(role='admin')
         response = yield handler.get()
@@ -42,9 +34,9 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_get_receiver_general_settings_acl(self):
         """Confirm receivers can read general settings ACL"""
-        yield set_receiver_acl_flag_true(self.rcvr_id)
+        yield set_receiver_acl_flag_true(self.dummyReceiver_1['id'])
 
-        handler = self.request(user_id=self.rcvr_id, role='receiver')
+        handler = self.request(user_id=self.dummyReceiver_1['id'], role='receiver')
         response = yield handler.get()
 
         self.assertNotIn('version', response)
@@ -52,7 +44,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_confirm_fail_receiver_acl_cleared(self):
-        handler = self.request(user_id=self.rcvr_id, role='receiver')
+        handler = self.request(user_id=self.dummyReceiver_1['id'], role='receiver')
         with self.assertRaises(InvalidAuthentication):
             yield handler.get()
 
@@ -105,7 +97,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
     def test_receiver_general_settings_update_field(self):
         """Confirm fields out of the receiver's set updates"""
 
-        yield set_receiver_acl_flag_true(self.rcvr_id)
+        yield set_receiver_acl_flag_true(self.dummyReceiver_1['id'])
         self.dummyNode['header_title_homepage'] = "Whistleblowing Homepage"
 
         handler = self.request(self.dummyNode, role='receiver')
@@ -116,7 +108,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
     def test_receiver_confirm_failure_for_priv_fields_updates(self):
         """Confirm privelleged fields are ignored"""
 
-        yield set_receiver_acl_flag_true(self.rcvr_id)
+        yield set_receiver_acl_flag_true(self.dummyReceiver_1['id'])
         self.dummyNode['smtp_server'] = 'not.a.real.smtpserver'
 
         handler = self.request(self.dummyNode, role='receiver')

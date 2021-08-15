@@ -21,18 +21,9 @@ class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = password_reset.PasswordResetHandler
 
     @inlineCallbacks
-    def setUp(self):
-        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-
-        for r in (yield tw(db_get_users, 1, 'receiver', 'en')):
-            if r['pgp_key_fingerprint'] == 'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1':
-                self.rcvr_id = r['id']
-                self.user = r
-
-    @inlineCallbacks
     def test_post(self):
         data_request = {
-            'username': self.user['username']
+            'username': self.dummyReceiver_1['username']
         }
 
         handler = self.request(data_request)
@@ -45,7 +36,7 @@ class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_put(self):
         yield set_reset_token(
-            self.user['id'],
+            self.dummyReceiver_1['id'],
             u"valid_reset_token"
         )
 

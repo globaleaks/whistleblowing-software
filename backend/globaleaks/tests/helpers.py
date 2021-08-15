@@ -825,12 +825,11 @@ class TestGLWithPopulatedDB(TestGL):
         # fill_data/create_receiver
         self.dummyReceiver_1 = yield create_user(1, self.dummyReceiver_1, 'en')
         self.dummyReceiver_2 = yield create_user(1, self.dummyReceiver_2, 'en')
-        receivers_ids = [self.dummyReceiver_1['id'], self.dummyReceiver_2['id']]
 
         yield mock_users_keys()
 
         # fill_data/create_context
-        self.dummyContext['receivers'] = receivers_ids
+        self.dummyContext['receivers'] = [self.dummyReceiver_1['id'], self.dummyReceiver_2['id']]
         self.dummyContext = yield create_context(1, self.dummyContext, 'en')
 
         self.dummyQuestionnaire = yield tw(db_get_questionnaire, 1, self.dummyContext['questionnaire_id'], 'en')

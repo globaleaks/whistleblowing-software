@@ -13,20 +13,11 @@ class TestAdminPasswordReset(helpers.TestHandlerWithPopulatedDB):
     _handler = AdminOperationHandler
 
     @defer.inlineCallbacks
-    def setUp(self):
-        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-
-        for r in (yield tw(user.db_get_users, 1, 'receiver', 'en')):
-            if r['pgp_key_fingerprint'] == 'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1':
-                self.user = r
-                return
-
-    @defer.inlineCallbacks
     def test_put(self):
         data_request = {
             'operation': 'reset_user_password',
             'args': {
-                'value': self.user['id']
+                'value': self.dummyReceiver_1['id']
             }
         }
 
@@ -43,11 +34,6 @@ class TestAdminResetSubmissions(helpers.TestHandlerWithPopulatedDB):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
         yield self.perform_full_submission_actions()
         yield delivery.Delivery().run()
-
-        for r in (yield tw(user.db_get_users, 1, 'receiver', 'en')):
-            if r['pgp_key_fingerprint'] == 'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1':
-                self.user = r
-                return
 
     @defer.inlineCallbacks
     def test_put(self):

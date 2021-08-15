@@ -21,19 +21,10 @@ class TestEmailValidationInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = email_validation.EmailValidation
 
     @inlineCallbacks
-    def setUp(self):
-        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-
-        for r in (yield tw(user.db_get_users, 1, 'receiver', 'en')):
-            if r['pgp_key_fingerprint'] == 'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1':
-                self.rcvr_id = r['id']
-                self.user = r
-
-    @inlineCallbacks
     def test_get_success(self):
         handler = self.request()
         yield set_email_token(
-            self.user['id'],
+            self.dummyReceiver_1['id'],
             u"token",
             u"test@changeemail.com"
         )
@@ -42,14 +33,15 @@ class TestEmailValidationInstance(helpers.TestHandlerWithPopulatedDB):
 
         # Now we check if the token was update
         for r in (yield tw(user.db_get_users, 1, 'receiver', 'en')):
-            if r['pgp_key_fingerprint'] == 'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1':
+            if r['id'] == self.dummyReceiver_1['id']:
                 self.assertEqual(r['mail_address'], 'test@changeemail.com')
+                break
 
     @inlineCallbacks
     def test_get_failure(self):
         handler = self.request()
         yield set_email_token(
-            self.user['id'],
+            self.dummyReceiver_1['id'],
             u"token",
             u"test@changeemail.com"
         )
@@ -58,5 +50,6 @@ class TestEmailValidationInstance(helpers.TestHandlerWithPopulatedDB):
 
         # Now we check if the token was update
         for r in (yield tw(user.db_get_users, 1, 'receiver', 'en')):
-            if r['pgp_key_fingerprint'] == 'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1':
+            if r['id'] == self.dummyReceiver_1['id']:
                 self.assertNotEqual(r['mail_address'], 'test@changeemail.com')
+                break
