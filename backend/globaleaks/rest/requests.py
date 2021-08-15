@@ -64,10 +64,6 @@ identityaccessreply_regexp = (r'^('
                               'denied)$')
 
 
-class SkipSpecificValidation:
-    pass
-
-
 def get_multilang_request_format(request_format, localized_strings):
     ret = copy.deepcopy(request_format)
 
@@ -307,7 +303,7 @@ AdminFieldAttrDesc = {
     'id': uuid_regexp_or_empty,
     'name': str,
     'type': field_attr_type_regexp,
-    'value': SkipSpecificValidation
+    'value': list
 }
 
 AdminFieldAttrDescRaw = get_multilang_request_format(AdminFieldAttrDesc, models.FieldAttr.localized_keys)

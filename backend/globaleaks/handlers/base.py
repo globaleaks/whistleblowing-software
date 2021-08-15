@@ -120,9 +120,6 @@ class BaseHandler(object):
         if value is None:
             return True
 
-        if python_type == requests.SkipSpecificValidation:
-            return True
-
         if python_type == int:
             try:
                 int(value)
