@@ -245,6 +245,7 @@ a:hover,
 
 #WhistleblowerLoginForm input {
   width: 14rem;
+  text-align: center;
 }
 
 #HeaderBox #WhistleblowerLoginBox {
