@@ -20,24 +20,13 @@ class _NegotiationData(object):
     A container for the negotiation data.
     """
     __slots__ = [
-        'npnAdvertiseCallback',
-        'npnSelectCallback',
         'alpnSelectCallback',
         'alpnProtocols'
     ]
 
     def __init__(self):
-        self.npnAdvertiseCallback = None
-        self.npnSelectCallback = None
         self.alpnSelectCallback = None
         self.alpnProtocols = None
-
-    def negotiateNPN(self, context):
-        if self.npnAdvertiseCallback is None or self.npnSelectCallback is None:
-            return
-
-        context.set_npn_advertise_callback(self.npnAdvertiseCallback)
-        context.set_npn_select_callback(self.npnSelectCallback)
 
     def negotiateALPN(self, context):
         if self.alpnSelectCallback is None or self.alpnProtocols is None:
@@ -57,14 +46,6 @@ class _ContextProxy(object):
     def __init__(self, original, factory):
         self._obj = original
         self._factory = factory
-
-    def set_npn_advertise_callback(self, cb):
-        self._factory._npnAdvertiseCallbackForContext(self._obj, cb)
-        return self._obj.set_npn_advertise_callback(cb)
-
-    def set_npn_select_callback(self, cb):
-        self._factory._npnSelectCallbackForContext(self._obj, cb)
-        return self._obj.set_npn_select_callback(cb)
 
     def set_alpn_select_callback(self, cb):
         self._factory._alpnSelectCallbackForContext(self._obj, cb)
@@ -174,14 +155,6 @@ class SNIMap(object):
 
     def serverConnectionForTLS(self, protocol):
         return _ConnectionProxy(Connection(self.default_context, None), self)
-
-    def _npnAdvertiseCallbackForContext(self, context, callback):
-        self._negotiationDataForContext[context].npnAdvertiseCallback = (
-            callback
-        )
-
-    def _npnSelectCallbackForContext(self, context, callback):
-        self._negotiationDataForContext[context].npnSelectCallback = callback
 
     def _alpnSelectCallbackForContext(self, context, callback):
         self._negotiationDataForContext[context].alpnSelectCallback = callback
