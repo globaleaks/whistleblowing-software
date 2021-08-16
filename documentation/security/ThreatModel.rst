@@ -85,8 +85,6 @@ In this section you will find examples that show how different anonymity levels 
    "Human Rights Activism Initiative", "A Human Rights Group starts a Whistleblowing initiative to spot human rights violations in a dangerous place. The organization requires anonymity to avoid retaliations and takedowns, and operates under a Pseudonym. The Recipients MUST not be disclosed to the Whistleblowers, but a Partial Disclosure by pseudonym can be acceptable in order to give proper trust to “Who the whistleblower is submitting to” . The Whistleblower MUST be guaranteed anonymity and their identity cannot be disclosed."
    "Citizen media initiative", "A Citizen media initiative with it’s own public identity wants to collect reports on a specific topic (political, environmental malpractice, corruption, etc) in a medium-low risk operational context. The recipients could be public or use Pseudonym in order to avoid complete exposure. The Whistleblower, if the topic is not life-threatening, can be allowed to submit also in a Confidential way to lower the entrance barrier."
 
-GlobaLeaks Security Matrix
-==========================
 Below we show how different usage scenarios can require different anonymity levels, communication security requirements and identity disclosures for different actors.
 
 GlobaLeaks, through its user interface, will enable each actor with appropriate security awareness information, and will enforce specific requirements to specific actors by the application of clear configuration guidelines.
@@ -106,8 +104,6 @@ GlobaLeaks, through its user interface, will enable each actor with appropriate 
    "Citizen media initiative", "Whistleblower", "Confidential", "Optionally disclosed", "Medium security"
    "", "Recipient", "Confidential", "Confidential", "Medium security"
    "", "Admin", "No anonymity", "Disclosed", "Medium security"
-
-The previous schema gives only some examples of GlobaLeaks’s flexibility; but different anonymity, identity and security measures apply to other usage scenarios and actors.
 
 Data Security Matrix
 ====================
