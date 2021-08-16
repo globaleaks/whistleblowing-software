@@ -7,10 +7,8 @@
     </span>
   </div>
   <div class="card-body" data-ng-show="!collapsed">
-    <span data-ng-repeat="receiver in tip.receivers">
-      <span id="receiver-{{$index}}">
-        <span class="badge badge-secondary">{{receivers_by_id[receiver.id].name}}</span>
-      </span>
-    </span>
+    <div data-ng-repeat="receiver in tip.receivers">
+      <div>{{receivers_by_id[receiver.id].name}}</div>
+    </div>
   </div>
 </div>
