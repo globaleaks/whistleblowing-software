@@ -2,7 +2,7 @@ Encryption Protocol
 ===================
 GlobaLeaks implements an encryption protocol specifically designed for anonymous whistleblowing applications.
 
-The protocol has been developed and validated in collaboration with the [Open Technology Fund](https://www.opentech.fund/results/supported-projects/globaleaks/) and represents a tradeoff between security and usability intended to provide easy use by whistleblowers and reasonable security from attackers seizing the backend and attempting bruteforce decryption.
+The protocol has been developed and validated in collaboration with the `Open Technology Fund <https://www.opentech.fund/results/supported-projects/globaleaks/>`_ and represents a tradeoff between security and usability intended to provide easy use by whistleblowers and reasonable security from attackers seizing the backend and attempting bruteforce decryption.
 
 Encryption is implemented for each submission protecting questionnaire's answers, comments, attachments and involved metadata. The keys involved in the encryption are per-user and per-submission and only users to which the data was sent could access the data. This mechanism guarantees that only the user could access the data. Users that would forget their password would lose access to data that won’t be accessible anymore. To handle with this condition the system implements as well `Key recovery`_ and `Key Escrow`_ mechanisms.
 
