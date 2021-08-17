@@ -698,7 +698,6 @@ class TestGL(unittest.TestCase):
             'context_id': context_id,
             'receivers': context['receivers'],
             'removed_files': [],
-            'answer': 0,
             'identity_provided': False,
             'total_score': 0,
             'answers': answers
