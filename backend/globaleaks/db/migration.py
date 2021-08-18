@@ -98,7 +98,6 @@ migration_mapping = OrderedDict([
     ('Redirect', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._Redirect, 0, 0, 0, 0, 0, 0]),
     ('SubmissionStatus', [-1, -1, -1, -1, -1, -1, -1, -1, SubmissionStatus_v_46, 0, 0, 0, 0, SubmissionStatus_v_49, 0, 0, SubmissionStatus_v_51, 0, models._SubmissionStatus, 0, 0, 0]),
     ('SubmissionSubStatus', [-1, -1, -1, -1, -1, -1, -1, -1, SubmissionSubStatus_v_46, 0, 0, 0, 0, SubmissionSubStatus_v_49, 0, 0, SubmissionSubStatus_v_51, 0, models._SubmissionSubStatus, 0, 0, 0]),
-    ('SubmissionStatusChange', [-1, -1, -1, -1, -1, -1, -1, -1, models._SubmissionStatusChange, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Step', [Step_v_38, 0, 0, 0, 0, Step_v_44, 0, 0, 0, 0, 0, Step_v_51, 0, 0, 0, 0, 0, 0, models._Step, 0, 0, 0]),
     ('Subscriber', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, Subscriber_v_52, 0, 0, 0, 0, 0, 0, 0, 0, models._Subscriber, 0, 0, 0]),
     ('Tenant', [-1, -1, -1, -1, -1, Tenant_v_52, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._Tenant, 0, 0]),

@@ -932,25 +932,6 @@ class _SubmissionSubStatus(Model):
         return (ForeignKeyConstraint(['tid', 'submissionstatus_id'], ['submissionstatus.tid', 'submissionstatus.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
 
 
-class _SubmissionStatusChange(Model):
-    """
-    Contains a record of all changes of status of a submission
-    """
-
-    __tablename__ = 'submissionstatuschange'
-
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    internaltip_id = Column(UnicodeText(36), nullable=False)
-    status = Column(UnicodeText(36), nullable=False)
-    substatus = Column(UnicodeText(36), nullable=True)
-    changed_on = Column(DateTime, default=datetime_now, nullable=False)
-    changed_by = Column(UnicodeText(36), nullable=False)
-
-    @declared_attr
-    def __table_args__(self):
-        return (ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
-
-
 class _Tenant(Model):
     """
     Class used to implement tenants
@@ -1202,10 +1183,6 @@ class SubmissionStatus(_SubmissionStatus, Base):
 
 
 class SubmissionSubStatus(_SubmissionSubStatus, Base):
-    pass
-
-
-class SubmissionStatusChange(_SubmissionStatusChange, Base):
     pass
 
 

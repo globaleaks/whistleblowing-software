@@ -28,7 +28,7 @@ from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import get_expiration, datetime_now, datetime_never
 
 
-def db_update_submission_status(session, user_id, itip, status_id, substatus_id):
+def db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id):
     """
     Transaction for registering a change of status of a submission
 
@@ -43,13 +43,13 @@ def db_update_submission_status(session, user_id, itip, status_id, substatus_id)
 
     itip.status = status_id
     itip.substatus = substatus_id or None
-    submission_status_change = models.SubmissionStatusChange()
-    submission_status_change.internaltip_id = itip.id
-    submission_status_change.status = status_id
-    submission_status_change.substatus = substatus_id or None
-    submission_status_change.changed_by = user_id
 
-    session.add(submission_status_change)
+    log_data = {
+      'status': itip.status,
+      'substatus': itip.substatus
+    }
+
+    State.log(tid=tid, type='update_report_status', user_id=rtip.receiver_id, object_id=itip.id, data=log_data)
 
 
 @transact
@@ -66,7 +66,7 @@ def update_tip_submission_status(session, tid, user_id, rtip_id, status_id, subs
     """
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    db_update_submission_status(session, user_id, itip, status_id, substatus_id)
+    db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id)
 
 
 def receiver_serialize_rfile(session, rfile):
@@ -327,27 +327,6 @@ def register_wbfile_on_db(session, tid, rtip_id, uploaded_file):
     return serializers.serialize_wbfile(session, new_file)
 
 
-def db_set_itip_open_if_new(session, tid, user_id, itip):
-    """
-    Transaction setting a submission status to open if the current status is new
-
-    :param session: An ORM session
-    :param tid: A tenant ID
-    :param user_id: A user ID of the user opening the submission
-    :param itip: A submission
-    """
-    new_status_id = session.query(models.SubmissionStatus.id) \
-                           .filter(models.SubmissionStatus.id == 'new',
-                                   models.SubmissionStatus.tid == tid).one()[0]
-
-    if new_status_id == itip.status:
-        open_status_id = session.query(models.SubmissionStatus.id) \
-                                .filter(models.SubmissionStatus.id == 'opened',
-                                        models.SubmissionStatus.tid == tid).one()[0]
-
-        db_update_submission_status(session, user_id, itip, open_status_id, '')
-
-
 def db_get_rtip(session, tid, user_id, rtip_id, language):
     """
     Transaction retrieving an rtip
@@ -361,7 +340,8 @@ def db_get_rtip(session, tid, user_id, rtip_id, language):
     """
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    db_set_itip_open_if_new(session, tid, user_id, itip)
+    if itip.status == 'new':
+        db_update_submission_status(session, tid, user_id, itip, 'open', None)
 
     rtip.access_counter += 1
     rtip.last_access = datetime_now()
