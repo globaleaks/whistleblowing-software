@@ -145,6 +145,10 @@ Malware and Trojans
 -------------------
 GlobaLeaks could not prevent an attacker to use the platform maliciously trying to target recipients users with malware and trojans in general. Considering this and in order to be less vulnerable to risks of data exfiltration perpretrated with trojans, Recipients should always implement proper operation security by possibly using a laptop dedicated to reports visualization and possibly open file attachments on computers disconnected from the network and other sensible information. Wherever possible they should use operation with specialized secure operation systems like `QubesOS <https://www.qubes-os.org/>`_ or `Tails <https://tails.boum.org/>`_ or and at least run an up-to-date Anti-Virus software.
 
+Network and Reverse Proxies
+---------------------------
+GlobaLeaks is intended to be used by end users with a direct Tor or TLS connection from the browser of the user to the application backend. Any use of Network and Reverse Proxies in front of the application is discouraged; those appliances could significatively interfere with the application and lower its security vanishing any confidentility and anonimity measure implemented within GlobaLeaks.
+
 Data Stored Outside the Platform
 --------------------------------
 GlobaLeaks does not provide any kind of security for data that is stored outside the GlobaLeaks system. Is responsibility of Recipients to protect the data they download from the platform on their personal computer or that they share with other persons with external usb drives. The operatin system used or the pen drive adoptet should offer encryption and guarantee that in case of device loss or stealing no one could access the data therein contained.
