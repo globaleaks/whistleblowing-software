@@ -123,9 +123,9 @@ The following information types are the one involved within GlobaLeaks:
 Below a matrix showing different security measures applied on data.
 
 .. csv-table::
-   :header: "Information type", "Encryption", "Metadata cleanup", "Blacklisting", "Sanitization"
+   :header: "Information type", "Encryption", "Metadata cleanup", "Filters", "Sanitization"
 
-   "Questionnaire answers", "Encrypted on the database with per-user / per-submissions keys", "N/A", "Keyword blacklisting", "Antispam, Anti XSS"
+   "Questionnaire answers", "Encrypted on the database with per-user / per-submissions keys", "N/A", "Keyword filters", "Antispam, Anti XSS"
    "Submission attachments", "Encrypted on the filesystem with per-user / per/submissions keys", "Optional", "Extension blocking, Antivirus", "N/A"
    "Email notifications", "Encrypted with PGP when recipients keys are available", "N/A", "Antispam to prevent flooding", "N/A"
 
