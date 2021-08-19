@@ -10,7 +10,7 @@ from globaleaks import models
 from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
 from globaleaks.handlers.base import connection_check, BaseHandler
 from globaleaks.models import get_localized_values
-from globaleaks.orm import db_get, transact
+from globaleaks.orm import db_get, db_log, transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import sha256, Base64Encoder, GCE
@@ -371,7 +371,7 @@ def db_create_submission(session, tid, request, temp_submission, client_using_to
 
         db_create_receivertip(session, user, itip, _tip_key)
 
-    State.log(tid=tid,  type='whistleblower_new_report')
+    db_log(session, tid=tid, type='whistleblower_new_report')
 
     return {
         'receipt': receipt,

@@ -17,7 +17,7 @@ from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.submission import serialize_usertip, decrypt_tip
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.models import serializers
-from globaleaks.orm import db_get, db_del, transact
+from globaleaks.orm import db_get, db_del, db_log, transact
 from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
 from globaleaks.state import State
@@ -49,7 +49,7 @@ def db_update_submission_status(session, tid, user_id, itip, status_id, substatu
       'substatus': itip.substatus
     }
 
-    State.log(tid=tid, type='update_report_status', user_id=rtip.receiver_id, object_id=itip.id, data=log_data)
+    db_log(session, tid=tid, type='update_report_status', user_id=user_id, object_id=itip.id, data=log_data)
 
 
 @transact
@@ -345,6 +345,8 @@ def db_get_rtip(session, tid, user_id, rtip_id, language):
 
     rtip.access_counter += 1
     rtip.last_access = datetime_now()
+    
+    db_log(session, tid=tid, type='access_report', user_id=user_id, object_id=itip.id)
 
     return serialize_rtip(session, rtip, itip, language), base64.b64decode(rtip.crypto_tip_prv_key)
 
@@ -409,9 +411,9 @@ def delete_rtip(session, tid, user_id, rtip_id):
             receiver.can_delete_submission):
         raise errors.ForbiddenOperation
 
-    State.log(tid=tid, type='delete_report', user_id=user_id, object_id=itip.id)
-
     db_delete_itip(session, itip.id)
+
+    db_log(session, tid=tid, type='delete_report', user_id=user_id, object_id=itip.id)
 
 
 @transact
@@ -700,8 +702,6 @@ class RTipInstance(OperationHandler):
 
         if State.tenant_cache[self.request.tid].encryption and crypto_tip_prv_key:
             tip = yield deferToThread(decrypt_tip, self.session.cc, crypto_tip_prv_key, tip)
-
-        self.state.log(tid=self.session.tid, type='access_report', user_id=self.session.user_id, object_id=tip['internaltip_id'])
 
         returnValue(tip)
 

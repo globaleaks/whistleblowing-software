@@ -151,7 +151,7 @@ def perform_tips_operation(session, tid, receiver_id, operation, rtips_ids):
         itip_ids = [itip.id for itip in itips]
 
         for itip_id in itip_ids:
-            State.log(tid=tid, type='delete_report', user_id=receiver_id, object_id=itip_id)
+            db_log(session, tid=tid, type='delete_report', user_id=receiver_id, object_id=itip_id)
 
         db_del(session, models.InternalTip, models.InternalTip.id.in_(itip_ids))
 

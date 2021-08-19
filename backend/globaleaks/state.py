@@ -4,6 +4,8 @@ import re
 import sys
 import traceback
 
+from sqlalchemy import event
+
 from twisted.internet import defer
 from twisted.mail.smtp import SMTPError
 from twisted.python.failure import Failure
@@ -97,14 +99,6 @@ class StateClass(ObjectDict, metaclass=Singleton):
             return get_tor_agent(self.settings.socks_host, self.settings.socks_port)
 
         return get_web_agent()
-
-    def log(self, **kwargs):
-        entry = AuditLog()
-
-        for key, value in kwargs.items():
-            setattr(entry, key, value)
-
-        self.TempLogs.append(entry)
 
     def create_directory(self, path):
         """

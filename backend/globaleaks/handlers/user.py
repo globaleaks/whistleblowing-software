@@ -11,7 +11,7 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.models import get_localized_values
-from globaleaks.orm import db_get, transact
+from globaleaks.orm import db_get, db_log, transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.pgp import PGPContext
@@ -33,8 +33,6 @@ def set_user_password(tid, user, password, cc):
 
     user.password = password_hash
     user.password_change_date = datetime_now()
-
-    State.log(tid=tid, type='change_password', user_id=user.id, object_id=user.id)
 
     if not State.tenant_cache[tid].encryption and cc == '':
         return None
@@ -206,6 +204,8 @@ def db_user_update_user(session, tid, user_session, request):
                 raise errors.InvalidOldPassword
 
         user_session.cc = set_user_password(tid, user, request['password'], user_session.cc)
+        
+        db_log(session, tid=tid, type='change_password', user_id=user.id, object_id=user.id)
 
     # If the email address changed, send a validation email
     if request['mail_address'] != user.mail_address:

@@ -7,7 +7,7 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.handlers.base import connection_check, BaseHandler
 from globaleaks.models import InternalTip, User, WhistleblowerTip
-from globaleaks.orm import transact
+from globaleaks.orm import db_log, transact, tw
 from globaleaks.rest import errors, requests
 from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
@@ -20,7 +20,7 @@ from globaleaks.utils.utility import datetime_now, deferred_sleep
 def login_failure(tid, whistleblower=False):
     Settings.failed_login_attempts[tid] = Settings.failed_login_attempts.get(tid, 0) + 1
 
-    State.log(tid=tid, type='whistleblower_login_failure' if whistleblower else 'login_failure')
+    yield tw(db_log, tid=tid, type='whistleblower_login_failure' if whistleblower else 'login_failure')
 
     raise errors.InvalidAuthentication
 
@@ -88,6 +88,8 @@ def login_whistleblower(session, tid, receipt):
         user_key = GCE.derive_key(receipt.encode(), State.tenant_cache[tid].receipt_salt)
         crypto_prv_key = GCE.symmetric_decrypt(user_key, Base64Encoder.decode(wbtip.crypto_prv_key))
 
+    db_log(session, tid=tid,  type='whistleblower_login')
+
     return Sessions.new(tid, wbtip.id, tid, 'whistleblower', False, False, crypto_prv_key, '')
 
 
@@ -142,6 +144,8 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
 
     user.last_login = datetime_now()
 
+    db_log(session, tid=tid, type='login', user_id=user.id)
+
     return Sessions.new(tid, user.id, user.tid, user.role, user.password_change_needed, user.two_factor_enable, crypto_prv_key, user.crypto_escrow_prv_key)
 
 
@@ -169,8 +173,6 @@ class AuthenticationHandler(BaseHandler):
                               request['authcode'],
                               self.request.client_using_tor,
                               self.request.client_ip)
-
-        State.log(tid=tid, type='login', user_id=session.user_id)
 
         if tid != self.request.tid:
             returnValue({
@@ -225,8 +227,6 @@ class ReceiptAuthHandler(BaseHandler):
 
         session = yield login_whistleblower(self.request.tid, request['receipt'])
 
-        State.log(tid=session.tid,  type='whistleblower_login')
-
         returnValue(session.serialize())
 
 
@@ -242,14 +242,15 @@ class SessionHandler(BaseHandler):
         """
         return self.session.serialize()
 
+    @inlineCallbacks
     def delete(self):
         """
         Logout
         """
         if self.session.user_role == 'whistleblower':
-            State.log(tid=self.session.tid,  type='whistleblower_logout')
+            yield tw(db_log, tid=self.session.tid,  type='whistleblower_logout')
         else:
-            State.log(tid=self.session.tid,  type='logout', user_id=self.session.user_id)
+            yield tw(db_log, tid=self.session.tid,  type='logout', user_id=self.session.user_id)
 
         del Sessions[self.session.id]
 

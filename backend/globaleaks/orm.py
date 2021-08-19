@@ -11,6 +11,9 @@ from sqlalchemy.orm import sessionmaker
 from twisted.internet import reactor
 from twisted.internet.threads import deferToThreadPool
 
+from globaleaks.models import AuditLog
+
+
 _DEBUG = False
 _DB_URI = 'sqlite:'
 _THREAD_POOL = None
@@ -98,6 +101,15 @@ def db_get(session, selector, filter=None):
 
 def db_del(session, selector, filter=None):
     db_query(session, selector, filter).delete(synchronize_session=False)
+
+
+def db_log(session, **kwargs):
+    entry = AuditLog()
+
+    for key, value in kwargs.items():
+         setattr(entry, key, value)
+
+    session.add(entry)
 
 
 class transact(object):

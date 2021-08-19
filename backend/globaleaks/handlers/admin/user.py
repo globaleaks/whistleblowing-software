@@ -7,7 +7,7 @@ from globaleaks.handlers.user import db_get_user, \
                                      user_serialize_user
 
 from globaleaks.models import fill_localized_keys
-from globaleaks.orm import db_del, transact, tw
+from globaleaks.orm import db_del, db_log, transact, tw
 from globaleaks.rest import requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import GCE, Base64Encoder
@@ -105,7 +105,7 @@ def db_admin_update_user(session, tid, user_session, user_id, request, language)
         user.password = GCE.hash_password(password, user.salt)
         user.password_change_date = datetime_now()
 
-        State.log(tid=tid, type='change_password', user_id=user_session.user_id, object_id=user_id)
+        db_log(session, tid=tid, type='change_password', user_id=user_session.user_id, object_id=user_id)
 
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)

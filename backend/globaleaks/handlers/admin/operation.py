@@ -10,7 +10,7 @@ from globaleaks.handlers.password_reset import db_generate_password_reset_token
 from globaleaks.handlers.user import db_get_user, disable_2fa, get_user
 from globaleaks.models import Config, InternalTip, User
 from globaleaks.models.config import db_set_config_variable, ConfigFactory, ConfigL10NFactory
-from globaleaks.orm import db_del, transact, tw
+from globaleaks.orm import db_del, db_log, transact, tw
 from globaleaks.rest import errors
 from globaleaks.services.onion import set_onion_service_info, get_onion_service_info
 from globaleaks.state import State
@@ -63,7 +63,7 @@ def reset_submissions(session, tid, user_id):
 
     db_del(session, InternalTip, InternalTip.tid == tid)
 
-    State.log(tid=tid, type='reset_reports', user_id=user_id)
+    db_log(session, tid=tid, type='reset_reports', user_id=user_id)
 
 
 @transact
