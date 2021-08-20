@@ -78,7 +78,7 @@ class Cleaning(DailyJob):
         self.db_clean_expired_itips(session)
 
         # delete emails older than two weeks
-        db_del(session, models.Mail, models.Mail.creation_date < datetime_now() - timedelta(7))
+        db_del(session, models.Mail, models.Mail.creation_date < datetime_now() - timedelta(14))
 
         # delete archived questionnaire schemas not used by any existing submission
         subquery = session.query(models.InternalTipAnswers.questionnaire_hash).subquery()
