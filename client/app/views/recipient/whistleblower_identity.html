@@ -7,17 +7,17 @@
     </span>
   </div>
   <div class="card-body" data-ng-show="!collapsed">
-    <div data-ng-if="tip.last_iar && tip.last_iar.reply != 'authorized'">
+    <div data-ng-if="tip.iar && tip.iar.reply !== 'authorized'">
       <div>
         <label data-translate>Access to the whistleblower's identity has been requested to the custodian.</label>
       </div>
       <div>
         <label data-translate>Date of the request</label><span>:</span>
-        <span>{{tip.last_iar.request_date | date:'dd-MM-yyyy HH:mm'}}</span>
+        <span>{{tip.iar.request_date | date:'dd-MM-yyyy HH:mm'}}</span>
       </div>
       <div>
         <label data-translate>Request status</label><span>:</span>
-        <span data-ng-switch="tip.last_iar.reply">
+        <span data-ng-switch="tip.iar.reply">
           <span data-ng-switch-when="pending" data-translate>Waiting for authorization</span>
           <span data-ng-switch-when="denied" data-translate>Denied</span>
         </span>
@@ -32,8 +32,8 @@
         </div>
       </div>
       <div data-ng-if="!tip.iar || tip.iar.reply === 'denied'">
-        <button data-ng-if="resources.node.enable_custodian" class="btn btn-sm btn-primary" data-ng-click="file_identity_access_request()" data-translate>Request access to the whistleblower's identity</button>
-        <button data-ng-if="!resources.node.enable_custodian" class="btn btn-sm btn-primary" data-ng-click="access_identity()" data-translate>Show</button>
+        <button data-ng-if="public.node.enable_custodian" class="btn btn-sm btn-primary" data-ng-click="file_identity_access_request()" data-translate>Request access to the whistleblower's identity</button>
+        <button data-ng-if="!public.node.enable_custodian" class="btn btn-sm btn-primary" data-ng-click="access_identity()" data-translate>Show</button>
       </div>
     </div>
   </div>
