@@ -49,11 +49,11 @@ def db_generate_password_reset_token(session, user):
 @transact
 def generate_password_reset_token_by_user_id(session, tid, user_id):
     """
-    Transaction for generatin ag password reset token for a user identified by a user ID
+    Transaction for generating a password reset token for a user identified by a user ID
 
     :param session: An ORM session
     :param tid: The tenant on
-    :param user_id:
+    :param user_id: The user id of the user for which issue a password reset
     :return:
     """
     user = session.query(models.User).filter(models.User.tid == tid, models.User.id == user_id).one_or_none()
