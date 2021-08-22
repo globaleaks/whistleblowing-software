@@ -101,7 +101,7 @@ def validate_password_reset(session, reset_token, auth_code, recovery_key):
 
     user = session.query(models.User).filter(
         models.User.reset_password_token == reset_token,
-        models.User.reset_password_date >= now - timedelta(hours=72)
+        models.User.reset_password_date >= now - timedelta(hours=168)
     ).one_or_none()
 
     # If the authentication token is invalid
