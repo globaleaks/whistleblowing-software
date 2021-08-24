@@ -11,14 +11,14 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import db_get_submission_statuses
-from globaleaks.handlers.rtip import serialize_rtip
+from globaleaks.handlers.rtip import db_update_submission_status, serialize_rtip
 from globaleaks.handlers.submission import decrypt_tip
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.utils.crypto import Base64Encoder, GCE
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import msdos_encode
+from globaleaks.utils.utility import datetime_now, msdos_encode
 from globaleaks.utils.zipstream import ZipStream, ZipStreamProducer
 
 
@@ -50,6 +50,11 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
     if not user:
         raise errors.ResourceNotFound()
 
+    rtip.last_access = datetime_now()
+
+    if itip.status == 'new':
+        db_update_submission_status(session, tid, user_id, itip, 'open', None)
+
     return serialize_rtip_export(session, user, rtip, itip, context, language)
 
 
@@ -64,6 +69,11 @@ def get_tips_export(session, tid, user_id, language):
 
     ret = []
     for user, context, itip, rtip in results:
+        rtip.last_access = datetime_now()
+
+        if itip.status == 'new':
+            db_update_submission_status(session, tid, user_id, itip, 'open', None)
+
         ret.append(serialize_rtip_export(session, user, rtip, itip, context, language))
 
     return ret
