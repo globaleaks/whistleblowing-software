@@ -285,8 +285,6 @@ def db_serialize_node(session, tid, language):
             ret['footer'] = root_tenant_l10n.get_val('footer', language)
             ret['whistleblowing_question'] = root_tenant_l10n.get_val('whistleblowing_question', language)
             ret['whistleblowing_button'] = root_tenant_l10n.get_val('whistleblowing_button', language)
-            ret['enable_disclaimer'] = root_tenant_node.get_val('enable_disclaimer')
-            ret['disclaimer_title'] = root_tenant_l10n.get_val('disclaimer_title', language)
             ret['disclaimer_text'] = root_tenant_l10n.get_val('disclaimer_text', language)
 
             for x in special_files:

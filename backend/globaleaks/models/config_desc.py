@@ -98,7 +98,6 @@ ConfigDescriptor = {
 
     'disable_submissions': Bool(default=False),
     'disable_privacy_badge': Bool(default=False),
-    'enable_disclaimer': Bool(default=False),
     'enable_receipt_hint': Bool(default=False),
     'enable_private_annotations': Bool(default=False),
 
@@ -179,7 +178,6 @@ ConfigFilters = {
         'wizard_done',
         'disable_submissions',
         'disable_privacy_badge',
-        'enable_disclaimer',
         'enable_receipt_hint',
         'enable_private_annotations',
         'enable_ricochet_panel',
@@ -316,7 +314,6 @@ ConfigL10NFilters = {
     'node': [
         'presentation',
         'footer',
-        'disclaimer_title',
         'disclaimer_text',
         'whistleblowing_question',
         'whistleblowing_button',

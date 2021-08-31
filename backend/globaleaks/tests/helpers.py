@@ -291,8 +291,6 @@ class MockDict:
             'name': 'Please, set me: name/title',
             'presentation': 'This is whæt æpp€ærs on top',
             'footer': 'check it out https://www.youtube.com/franksentus ;)',
-            'enable_disclaimer': False,
-            'disclaimer_title': '',
             'disclaimer_text': '',
             'whistleblowing_question': '',
             'whistleblowing_button': '',

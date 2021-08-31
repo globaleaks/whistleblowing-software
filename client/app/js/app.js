@@ -592,7 +592,7 @@ var GL = angular.module("GL", [
     };
 
     $rootScope.evaluateDisclaimerModalOpening = function () {
-      if ($rootScope.public.node.enable_disclaimer &&
+      if ($rootScope.public.node.disclaimer_text &&
           !$rootScope.disclaimer_modal_opened) {
         $rootScope.disclaimer_modal_opened = true;
         $rootScope.open_disclaimer_modal();
