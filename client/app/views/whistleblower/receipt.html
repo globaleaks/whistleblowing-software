@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div id="ReceiptText">
       <div data-ng-if="!Authentication.context.score_receipt_text_custom">
-        <span data-translate>Thank you!</span> <span data-translate>Your report was successful.</span> <span data-translate>We will try to get back to you as soon as possible.</span>
+        <span data-translate>Thank you!</span> <span data-translate>Your submission was successful.</span> <span data-translate>We will try to get back to you as soon as possible.</span>
       </div>
       <div data-ng-if="Authentication.context.score_receipt_text_custom">
         <p data-ng-if="Authentication.submission.score === 1" class="preformatted">{{Authentication.context.score_receipt_text_l}}</p>
