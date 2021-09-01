@@ -1,23 +1,23 @@
 <div data-ng-hide="Authentication.session.password_change_needed">
+  <div id="LanguagePickerBox" data-ng-if="public.node.languages_enabled.length > 1" class="float-right ml-1 mb-2">
+    <select class="form-control" data-ng-model="GLTranslate.state.language" data-ng-options="item.code as item.native for item in languages_enabled_selector | orderBy:'native'"></select>
+  </div>
   <div id="LoginStatusBox" data-ng-if="Utils.showUserStatusBox()" class="float-right ml-1 mb-2">
     <span id="UsernameBox" data-ng-if="Authentication.session.role !== 'whistleblower'">
       <label>{{preferences.name}}</label>
       <span class="text-separator">|</span>
     </span>
     <span id="HomeLinkBox" data-ng-if="Authentication.session.role !== 'whistleblower'">
-      <a id="HomepageLink" data-ng-href="#{{Authentication.session.homepage}}" data-translate>Home</a>
+      <a id="HomepageLink" data-ng-href="#{{Authentication.session.homepage}}" data-uib-tooltip="{{'Home' | translate}}"><i class="fas fa-home"></i></a>
       <span class="text-separator">|</span>
     </span>
     <span id="PreferencesLinkBox" data-ng-if="Authentication.session.role != 'whistleblower' && !Authentication.session.management_session">
-      <a id="PreferencesLink" data-ng-href="#{{Authentication.session.preferencespage}}" data-translate>Preferences</a>
+      <a id="PreferencesLink" data-ng-href="#{{Authentication.session.preferencespage}}" data-uib-tooltip="{{'Preferences' | translate}}"><i class="fas fa-user"></i></a>
       <span class="text-separator">|</span>
     </span>
     <span id="LogoutLinkBox">
-      <a id="LogoutLink" href="" data-ng-click="Authentication.logout()" data-translate>Logout</a>
+      <a id="LogoutLink" href="" data-ng-click="Authentication.logout()" data-uib-tooltip="{{'Logout' | translate}}"><i class="fas fa-sign-out-alt"></i></a>
     </span>
-  </div>
-  <div id="LanguagePickerBox" data-ng-if="public.node.languages_enabled.length > 1" class="float-right ml-1 mb-2">
-    <select class="form-control" data-ng-model="GLTranslate.state.language" data-ng-options="item.code as item.native for item in languages_enabled_selector | orderBy:'native'"></select>
   </div>
   <div id="WhistleblowerLoginBox" class="ml-1 mb-1" data-ng-if="location_path === '/submission'" data-ng-include="'views/partials/receipt.html'"></div>
 </div>

@@ -643,6 +643,10 @@ input[type='file'] {
   vertical-align: middle;
 }
 
+#LoginStatusBox {
+  font-weight: bold;
+}
+
 #LanguagePickerBox .form-control {
   width: auto;
 }
