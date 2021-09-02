@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Khmer (http://www.transifex.com/otf/globaleaks/language/km/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,9 +32,6 @@ msgstr "ការកំណត់អក្សរផ្សេងៗ"
 
 msgid "Advanced settings"
 msgstr "ការកំណត់កម្រិតខ្ពស់"
-
-msgid "Questionnaire configuration"
-msgstr "ការកំណត់កម្រងសំណួរ"
 
 msgid "Question templates"
 msgstr "គំរូសំណួរ"
@@ -90,15 +87,6 @@ msgstr "មតិយោបល់"
 msgid "Messages"
 msgstr "សារ"
 
-msgid "Select this recipient."
-msgstr "ជ្រើសយកអ្នកទទួលនេះ។"
-
-msgid "Unselect this recipient."
-msgstr "លែងជ្រើសយកអ្នកទទួលនេះ។"
-
-msgid "This recipient cannot be deselected."
-msgstr "អ្នកទទួលនេះ មិនអាចដកចេញទេ។"
-
 msgid "Details"
 msgstr "លម្អិត"
 
@@ -128,9 +116,6 @@ msgstr "ផ្ទុកឡើងវិញ"
 
 msgid "Context"
 msgstr "បរិបទ"
-
-msgid "Private messages"
-msgstr "សារឯកជន"
 
 msgid "Preview"
 msgstr "មើលព្រាង"
@@ -172,12 +157,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "ការតភ្ជាប់មានសុវត្ថិភាពជាមួយ Tor ដោយធានាការសម្ងាត់ និងមានភាពអនាមិក។"
-
-msgid "vertical"
-msgstr "បញ្ឈរ"
-
-msgid "horizontal"
-msgstr "ផ្តេក"
 
 msgid "Number"
 msgstr "លេខ"
@@ -239,9 +218,6 @@ msgstr "ស្ថានភាពសំណើរ"
 msgid "Custodian"
 msgstr "អ្នកថែរក្សា"
 
-msgid "Custodian of the identities"
-msgstr "អ្នកថែរក្សាអត្តសញ្ញាណ"
-
 msgid "Identity"
 msgstr "អត្តសញ្ញាណ"
 
@@ -284,9 +260,6 @@ msgstr "ផ្តល់សិទ្ធិការចូលប្រើប្រ
 msgid "Templates"
 msgstr "គំរូ"
 
-msgid "HTTPS settings"
-msgstr "ការកំណត់​ HTTPS"
-
 msgid "URL redirects"
 msgstr "បញ្ជូនបន្ត URL"
 
@@ -298,13 +271,6 @@ msgstr "ទំហំថាសនៅទំនេរ"
 
 msgid "Last update"
 msgstr "បច្ចុប្បន្នភាពចុងក្រោយ"
-
-msgid "Custodian notification templates"
-msgstr "គំរូសារជូនដំណឹងអ្នកថែរក្សា"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "ផ្ទាំងនេះ អនុញ្ញាតឲ្យកំណត់គំរូអុីមែលដើម្បីជូនដំណឹងដល់អ្នកថែរក្សា។"
 
 msgid "Disable notifications to administrators"
 msgstr "បិទសារជូនដំណឹងទៅអ្នកគ្រប់គ្រង"
@@ -356,12 +322,6 @@ msgstr "គ្មាន"
 
 msgid "Regular expression"
 msgstr "ការបញ្ចេញមតិធម្មតា"
-
-msgid "Activate"
-msgstr "ធ្វើឱ្យសកម្ម"
-
-msgid "Disactivate"
-msgstr "ធ្វើឱ្យអសកម្ម"
 
 msgid "Search"
 msgstr "ស្វែងរក"
@@ -434,6 +394,9 @@ msgstr "ពង្រីក"
 msgid "Select"
 msgstr "ជ្រើសរើស"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Surname"
 msgstr "ត្រកូល"
 
@@ -505,8 +468,17 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr ""
 
+msgid "Logout"
+msgstr "ចាកចេញ"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
 msgstr "បញ្ចូលរបាយការណ៍"
+
+msgid "Select the context of your report:"
+msgstr "ជ្រើសរើសបរិបទនៃរបាយការណ៍របស់អ្នក៖"
 
 msgid "Before proceeding, please set a new password."
 msgstr "មុនពេលដំណើរការ​ សូមកំណត់ពាក្យសម្ងាត់ថ្មីមួយ។"
@@ -734,14 +706,8 @@ msgstr "សំណួរដែលត្រូវទទូចសុំពីអ្
 msgid "Whistleblowing button"
 msgstr "ប៊ូតុងរាយការណ៍"
 
-msgid "Enable disclaimer"
-msgstr "បើកការបដិសេធ"
-
-msgid "Title"
-msgstr "ចំណង​ជើង"
-
-msgid "Text"
-msgstr "អក្សរ"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "បាតកថា"
@@ -1060,6 +1026,9 @@ msgstr "គំរូជាន់គ្នា"
 msgid "Phone number"
 msgstr "លេខទូរស័ព្ទ"
 
+msgid "Text"
+msgstr "អក្សរ"
+
 msgid "Checkbox label"
 msgstr "ស្លាកប្រអប់ជ្រើស"
 
@@ -1074,18 +1043,6 @@ msgstr "សំឡេង"
 
 msgid "Video"
 msgstr "វីដេអូ"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "ការឆ្លើយសំនួរតាមប្រធានបទចំពោះការផ្តល់សិទ្ធិពីអ្នកថែរក្សា"
-
-msgid "Text shown upon negative answer"
-msgstr "អក្សរបង្ហាញតាមចម្លើយអវិជ្ជមាន"
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "ការបញ្ជាក់ភ្លាមៗតាមចម្លើយអវិជ្ជមាន"
-
-msgid "Text shown upon confirmation"
-msgstr "អក្សរបង្ហាញតាមការបញ្ជាក់"
 
 msgid "Trigger conditions"
 msgstr "ភាពសំខាន់នៃស្ថានភាព"
@@ -1155,6 +1112,9 @@ msgstr "អនុញ្ញាតអ្នកប្រើប្រាស់ចុ
 
 msgid "Enable terms of service"
 msgstr "បើកលក្ខខណ្ឌនៃសេវាកម្ម"
+
+msgid "Title"
+msgstr "ចំណង​ជើង"
 
 msgid "Send an account activation link to the user."
 msgstr "ផ្ញើតំណភ្ជាប់សម្រាប់បើកដំណើរការគណនីទៅកាន់អ្នកប្រើប្រាស់។"
@@ -1267,6 +1227,9 @@ msgstr "សូមចំណាំថា រាល់ទិន្នន័យដ�
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "នេះជាវាទិកាសាកល្បង សូមកុំប្រើប្រាស់វាសម្រាប់ការបញ្ជូនពិតប្រាកដ។"
 
+msgid "Close"
+msgstr "បិទ"
+
 msgid "Install an authenticator app on your phone"
 msgstr "ដំឡើងកម្មវិធីសម្រាប់ផ្ទៀងផ្ទាត់នៅលើទូរស័ព្ទរបស់អ្នក"
 
@@ -1275,9 +1238,6 @@ msgstr "ស្កេនកូដ QR ជាមួយកម្មវិធីន�
 
 msgid "Enable two factor authentication"
 msgstr "បើកការផ្ទៀងផ្ទាត់ពីរកត្តា"
-
-msgid "Close"
-msgstr "បិទ"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "មុនពេលដំណើរការ សូមអានឯកសាររដោយយកចិត្តទុកដាក់នៅ៖"
@@ -1343,6 +1303,18 @@ msgstr "ធនធានអាចចូលប្រើប្រាស់បាន
 
 msgid "The upload request exceeds the size limit"
 msgstr "ការស្នើសុំបញ្ជូន​ លើសពីទំហំកំណត់"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "យើងខ្ញុំនឹងព្យាយាមទាក់ទងអ្នកវិញឆាប់បំផុត។"
+
+msgid "Submit"
+msgstr "បញ្ជូន"
 
 msgid "Validation of email address change in progress."
 msgstr "សុពលភាពនៃការផ្លាស់ប្តូរអាសយដ្ឋានអុីមែលកំពុងដំណើរការ"
@@ -1433,9 +1405,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "វេទិកានេះ​ មិនបានកំណត់សម្រាប់ការតភ្ជាប់ HTTPS និងគួរតែត្រូវបានប្រើប្រាស់សម្រាប់សាកល្បងតែប៉ុណ្ណោះ។​"
 
-msgid "Submit"
-msgstr "បញ្ជូន"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "អ្នកទទួលបានស្នើសុំអ្នកឲ្យបំពេញកម្រងសំណួរបន្ថែម។"
 
@@ -1509,9 +1478,6 @@ msgstr "ចម្លើយកម្រងសំណួរ"
 msgid "Step"
 msgstr "ជំហាន"
 
-msgid "Recipient list"
-msgstr "បញ្ជីអ្នកទទួល"
-
 msgid "Status:"
 msgstr "ស្ថានភាព៖"
 
@@ -1520,9 +1486,6 @@ msgstr "ឯកសារភ្ជាប់ដោយអ្នកទទួល"
 
 msgid "Upload a file:"
 msgstr "បញ្ជូលឯកសារមួយ៖"
-
-msgid "Logout"
-msgstr "ចាកចេញ"
 
 msgid "An update is available:"
 msgstr "មានបច្ចុប្បន្នភាពមួយ៖"
@@ -1555,18 +1518,15 @@ msgstr "វាយបញ្ចូលលេខកូដសង្គ្រោះរ
 msgid "Password reset requested."
 msgstr "បានស្នើកំណត់ពាក្យសម្ងាត់ឡើងវិញ។"
 
-msgid "Show"
-msgstr "បង្ហាញ"
-
-msgid "Hide"
-msgstr "លាក់"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "ការចូលប្រើប្រាស់អត្តសញ្ញាណរបស់អ្នករាយការណ៍ត្រូវបានស្នើសុំទៅអ្នកថែរក្សា។"
 
 msgid "Date of the request"
 msgstr "កាលបរិច្ឆេទនៃការស្នើសុំ"
+
+msgid "Show"
+msgstr "បង្ហាញ"
 
 msgid "Congratulations!"
 msgstr "អប​អរសាទរ!"
@@ -1605,9 +1565,6 @@ msgstr "បញ្ចប់"
 msgid "Invalid phone number"
 msgstr "លេខទូរស័ព្ទមិនត្រឹមត្រូវ"
 
-msgid "Select the context of your report:"
-msgstr "ជ្រើសរើសបរិបទនៃរបាយការណ៍របស់អ្នក៖"
-
 msgid "The answer is too short"
 msgstr "ចម្លើយនេះ​ខ្លីពេក"
 
@@ -1636,9 +1593,6 @@ msgstr "អរគុណ!"
 
 msgid "Your report was successful."
 msgstr "របាយការណ៍របស់អ្នកជោគជ័យ។"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "យើងខ្ញុំនឹងព្យាយាមទាក់ទងអ្នកវិញឆាប់បំផុត។"
 
 msgid "Remember your receipt for this report."
 msgstr "ចងចាំបង្កាន់ដៃរបស់អ្នក​ សម្រាប់របាយការណ៍នេះ។"
@@ -1681,6 +1635,9 @@ msgstr "កំពុងរង់ចាំឯកសារ​ ដើម្បី�
 
 msgid "The following steps have errors:"
 msgstr "ជំហានខាងក្រោមនេះមានបញ្ហា៖"
+
+msgid "Hide"
+msgstr "លាក់"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1730,32 +1687,14 @@ msgstr "នាម"
 msgid "Last name"
 msgstr "ត្រកូល"
 
-msgid "Gender"
-msgstr "ភេទ"
+msgid "Preferred contact method"
+msgstr ""
 
-msgid "Male"
-msgstr "ប្រុស"
+msgid "Other"
+msgstr "ផ្សេងៗ"
 
-msgid "Female"
-msgstr "ស្រី"
-
-msgid "Other gender identity"
-msgstr "អត្តសញ្ញាណភេទផ្សេងៗ"
-
-msgid "Date of birth"
-msgstr "ថ្ងៃខែឆ្នាំកំណើត"
-
-msgid "Place of birth"
-msgstr "ទីកន្លែងកំណើត"
-
-msgid "Zip code / Postal code"
-msgstr "លេខកូដតំបន់ / កូដប្រៃសណីយ៍"
-
-msgid "Province"
-msgstr "ខេត្ត"
-
-msgid "Country"
-msgstr "ប្រទេស"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "ជូនចំពោះ {RecipientName},"
@@ -1868,9 +1807,6 @@ msgstr "ឈ្មោះ៖ {Name}"
 
 msgid "Email: {Email}"
 msgstr "អុីមែល៖ {Email}"
-
-msgid "Language: {Language}"
-msgstr "ភាសា៖​ {Language}"
 
 msgid "New whistleblowing site registered"
 msgstr "គេហទំព័ររាយការណ៍ថ្មី បានចុះឈ្មោះ"
@@ -2041,6 +1977,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "សម្រាប់ការណែនាំបច្ចុប្បន្នភាពកម្មវិធី សូមយោងលើឯកសារនៅ៖ {UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr "របាយការណ៍ថ្មី"
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "កាលបរិច្ឆេទផុតកំណត់ដំបូងបំផុតគឺ {EarliestExpirationDate}។"
 
@@ -2062,9 +2006,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "អ្នកត្រូវបានស្នើសុំឱ្យយកចិត្តទុកដាក់ជាពិសេស ចំពោះព័ត៌មាន និងទិន្នន័យដែលមាននៅក្នុងនោះ។ សូមចងចាំថា អ្នករាយការណ៍តែងតែប្រឈម ហានិភ័យផ្ទាល់ខ្លួនខ្ពស់ដើម្បីផលប្រយោជន៍សាធារណៈ។ ហេតុដូចនេះ ទិន្នន័យដែលបានផ្តល់នៅក្នុងរបាយការណ៍នេះ គួរតែចាត់ទុកថាមានសារៈសំខាន់ខ្ពស់។"
-
-msgid "New report"
-msgstr "របាយការណ៍ថ្មី"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "នេះជាអុីមែលជូនដំណឹងថា របាយការណ៍ដែលមានស្រាប់មួយត្រូវបានធ្វើបច្ចុប្បន្នភាព។"

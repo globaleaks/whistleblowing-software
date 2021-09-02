@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Estonian (http://www.transifex.com/otf/globaleaks/language/et/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,9 +30,6 @@ msgstr "Teksti kohandamine"
 
 msgid "Advanced settings"
 msgstr "Täpsemad seaded"
-
-msgid "Questionnaire configuration"
-msgstr "Ankeedi seaded"
 
 msgid "Question templates"
 msgstr "Küsimuste mallid"
@@ -88,15 +85,6 @@ msgstr "Kommentaarid"
 msgid "Messages"
 msgstr "Sõnumid"
 
-msgid "Select this recipient."
-msgstr "Vali see saaja."
-
-msgid "Unselect this recipient."
-msgstr "Tühista selle saaja valik."
-
-msgid "This recipient cannot be deselected."
-msgstr "Selle saaja valikut ei saa tühistada."
-
 msgid "Details"
 msgstr "Üksikasjad"
 
@@ -126,9 +114,6 @@ msgstr "Värskenda"
 
 msgid "Context"
 msgstr "Kontekst"
-
-msgid "Private messages"
-msgstr "Privaatsõnumid"
 
 msgid "Preview"
 msgstr "Eelvaade"
@@ -170,12 +155,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "Ühendus on turvatud konfidentsiaalsust ja anonüümsust tagava Tor-iga."
-
-msgid "vertical"
-msgstr "vertikaalne"
-
-msgid "horizontal"
-msgstr "horisontaalne"
 
 msgid "Number"
 msgstr "Number"
@@ -237,9 +216,6 @@ msgstr "Küsi staatust"
 msgid "Custodian"
 msgstr "Hoidja"
 
-msgid "Custodian of the identities"
-msgstr "Isikuandmete hoidja"
-
 msgid "Identity"
 msgstr "Isikuandmed"
 
@@ -282,9 +258,6 @@ msgstr "Luba juurdepääs vihjeandja isikuandmetele"
 msgid "Templates"
 msgstr "Mallid"
 
-msgid "HTTPS settings"
-msgstr "HTTPS-i seaded"
-
 msgid "URL redirects"
 msgstr "URL-i ümbersuunamised"
 
@@ -296,13 +269,6 @@ msgstr "Vaba kettaruum"
 
 msgid "Last update"
 msgstr "Viimane värskendus"
-
-msgid "Custodian notification templates"
-msgstr "Hoidja teavituste mallid"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "See liides võimaldab seadistada hoidjate teavitamiseks kasutatavaid meilimalle"
 
 msgid "Disable notifications to administrators"
 msgstr "Keela teavitused administraatoritele"
@@ -354,12 +320,6 @@ msgstr "Puudub"
 
 msgid "Regular expression"
 msgstr "Regulaaravaldis"
-
-msgid "Activate"
-msgstr "Aktiveeri"
-
-msgid "Disactivate"
-msgstr "Desaktiveeri"
 
 msgid "Search"
 msgstr "Otsing"
@@ -432,6 +392,9 @@ msgstr "Laienda"
 msgid "Select"
 msgstr "Vali"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Surname"
 msgstr "Perekonnanimi"
 
@@ -503,8 +466,17 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr ""
 
+msgid "Logout"
+msgstr "Logi välja"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
+
+msgid "Select the context of your report:"
+msgstr "Valige oma teate kontekst:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Enne jätkamist seadistage uus parool."
@@ -732,14 +704,8 @@ msgstr "Küsimus võimalike vihjeandjate leidmiseks"
 msgid "Whistleblowing button"
 msgstr "Vihjeandmise nupp"
 
-msgid "Enable disclaimer"
-msgstr "Luba lahtiütlus"
-
-msgid "Title"
-msgstr "Pealkiri"
-
-msgid "Text"
-msgstr "Tekst"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "Jalus"
@@ -1058,6 +1024,9 @@ msgstr "Malli ülekirjutamine"
 msgid "Phone number"
 msgstr "Telefoninumber"
 
+msgid "Text"
+msgstr "Tekst"
+
 msgid "Checkbox label"
 msgstr "Märkeruudu silt"
 
@@ -1072,18 +1041,6 @@ msgstr "Heli"
 
 msgid "Video"
 msgstr "Video"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "Muuda vastuse nähtavus sõltuvaks hoidja loast"
-
-msgid "Text shown upon negative answer"
-msgstr "Eitava vastuse korral näidatav tekst"
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "Kohene kinnitus eitava vastuse korral"
-
-msgid "Text shown upon confirmation"
-msgstr "Kinnituse korral näidatav tekst"
 
 msgid "Trigger conditions"
 msgstr "Käivitustingimused"
@@ -1153,6 +1110,9 @@ msgstr "Luba kasutajate registreerumine"
 
 msgid "Enable terms of service"
 msgstr "Luba teenusetingimused"
+
+msgid "Title"
+msgstr "Pealkiri"
 
 msgid "Send an account activation link to the user."
 msgstr "Saada kasutajale konto aktiveerimise link."
@@ -1265,6 +1225,9 @@ msgstr "Võtke arvesse, et kõik seotud andmed kustutatakse jäädavalt."
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "See on demoplatvorm, ärge kasutage seda tegelike teabeesituste jaoks."
 
+msgid "Close"
+msgstr "Sulge"
+
 msgid "Install an authenticator app on your phone"
 msgstr "Installige oma telefoni autentimisrakendus"
 
@@ -1273,9 +1236,6 @@ msgstr "Skannige rakendusega QR-kood"
 
 msgid "Enable two factor authentication"
 msgstr "Luba kaheastmeline autentimine"
-
-msgid "Close"
-msgstr "Sulge"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Enne jätkamist lugege hoolikalt dokumente aadressil:"
@@ -1341,6 +1301,18 @@ msgstr "Ressursile pääseb ligi ainult Tor-i võrgu kaudu"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Üleslaadimistaotlus ületab mahupiirangut"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Püüame teiega esimesel võimalusel ühendust võtta."
+
+msgid "Submit"
+msgstr "Esita"
 
 msgid "Validation of email address change in progress."
 msgstr "Meiliaadressi vahetust valideeritakse."
@@ -1431,9 +1403,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "Platvorm ei ole veel seadistatud HTTPS-ühenduste jaoks ja seega tuleks seda kasutada ainult testimise eesmärgil."
 
-msgid "Submit"
-msgstr "Esita"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Saajad on soovinud, et täidaksite täiendava ankeedi."
 
@@ -1507,9 +1476,6 @@ msgstr "Ankeetide vastused"
 msgid "Step"
 msgstr "Etapp"
 
-msgid "Recipient list"
-msgstr "Saajate loend"
-
 msgid "Status:"
 msgstr "Staatus:"
 
@@ -1518,9 +1484,6 @@ msgstr "Saajate lisatud failid"
 
 msgid "Upload a file:"
 msgstr "Faili üleslaadimine:"
-
-msgid "Logout"
-msgstr "Logi välja"
 
 msgid "An update is available:"
 msgstr "Värskendus on saadaval:"
@@ -1553,18 +1516,15 @@ msgstr "Parooli lähtestamise lõpuleviimiseks sisestage krüpteeringu taastevõ
 msgid "Password reset requested."
 msgstr "Parooli lähtestamise taotlus esitatud."
 
-msgid "Show"
-msgstr "Näita"
-
-msgid "Hide"
-msgstr "Peida"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Hoidja jaoks on taotletud juurdepääsu vihjeandja isikuandmetele."
 
 msgid "Date of the request"
 msgstr "Taotluse kuupäev"
+
+msgid "Show"
+msgstr "Näita"
 
 msgid "Congratulations!"
 msgstr "Õnnitleme!"
@@ -1603,9 +1563,6 @@ msgstr "Täielik"
 msgid "Invalid phone number"
 msgstr "Vigane telefoninumber"
 
-msgid "Select the context of your report:"
-msgstr "Valige oma teate kontekst:"
-
 msgid "The answer is too short"
 msgstr "Vastus on liiga lühike"
 
@@ -1634,9 +1591,6 @@ msgstr "Täname!"
 
 msgid "Your report was successful."
 msgstr "Teie teade on esitatud."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Püüame teiega esimesel võimalusel ühendust võtta."
 
 msgid "Remember your receipt for this report."
 msgstr "Pidage meeles selle teate kättesaamiskood."
@@ -1679,6 +1633,9 @@ msgstr "Oodake, kuni fail(id) on üles laaditud."
 
 msgid "The following steps have errors:"
 msgstr "Järgmised etapid sisaldavad vigu:"
+
+msgid "Hide"
+msgstr "Peida"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1728,31 +1685,13 @@ msgstr "Eesnimi"
 msgid "Last name"
 msgstr "Perekonnanimi"
 
-msgid "Gender"
-msgstr "Sugu"
+msgid "Preferred contact method"
+msgstr ""
 
-msgid "Male"
-msgstr "Mees"
+msgid "Other"
+msgstr "Muu"
 
-msgid "Female"
-msgstr "Naine"
-
-msgid "Other gender identity"
-msgstr "Muu sooidentiteet"
-
-msgid "Date of birth"
-msgstr "Sünniaeg"
-
-msgid "Place of birth"
-msgstr "Sünnikoht"
-
-msgid "Zip code / Postal code"
-msgstr "Sihtnumber/postiindeks"
-
-msgid "Province"
-msgstr "Provints"
-
-msgid "Country"
+msgid "I prefer to be contacted via this platform only"
 msgstr ""
 
 msgid "Dear {RecipientName},"
@@ -1866,9 +1805,6 @@ msgstr "Nimi: {Name}"
 
 msgid "Email: {Email}"
 msgstr "Meiliaadress: {Email}"
-
-msgid "Language: {Language}"
-msgstr "Keel: {Language}"
 
 msgid "New whistleblowing site registered"
 msgstr "Uus vihjeandmise sait registreeritud"
@@ -2039,6 +1975,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "Tarkvara värskendamise juhised on esitatud järgmisel aadressil asuvates dokumentides: {UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr "Uus teade"
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Varaseim aegumiskuupäev on {EarliestExpirationDate}."
 
@@ -2060,9 +2004,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "Teil palutakse pöörata selles sisalduvale teabele ja materjalidele erilist tähelepanu. Pidage meeles, et vihjeandjad seavad ennast üldiste huvide nimel sageli suurde isiklikku ohtu. Seetõttu tuleks teates sisalduvaid materjale käsitada väga olulisena."
-
-msgid "New report"
-msgstr "Uus teade"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr ""

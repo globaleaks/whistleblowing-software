@@ -4,12 +4,12 @@
 # Fardin Shikhiyev <shihiyev@gmail.com>, 2015
 # fiore <salimova.gulnar@gmail.com>, 2017
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017-2018,2020
-# Nikafn <appone6@gmail.com>, 2016-2018
+# Nikafn <appone6@gmail.com>, 2016-2018,2021
 # ulkar!(($-2017 <ulkernatiqqizis@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,9 +35,6 @@ msgstr "Yazı quraşdırması"
 
 msgid "Advanced settings"
 msgstr "Təkmilləşdirilmiş tənzimləmələr"
-
-msgid "Questionnaire configuration"
-msgstr "Sorğu quraşdırması"
 
 msgid "Question templates"
 msgstr "Sual formatı"
@@ -93,15 +90,6 @@ msgstr "Şərhlər"
 msgid "Messages"
 msgstr "İsmarışlar"
 
-msgid "Select this recipient."
-msgstr "Bu alıcını seç."
-
-msgid "Unselect this recipient."
-msgstr "Bu alıcını seçmə."
-
-msgid "This recipient cannot be deselected."
-msgstr "Bu alıcı seçilməyə bilməz."
-
 msgid "Details"
 msgstr "Detallar"
 
@@ -131,9 +119,6 @@ msgstr "Yenilə"
 
 msgid "Context"
 msgstr "Kontekst"
-
-msgid "Private messages"
-msgstr "Şəxsi ismarışlar"
 
 msgid "Preview"
 msgstr "Görüntü"
@@ -175,12 +160,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr ""
-
-msgid "vertical"
-msgstr "şaquli"
-
-msgid "horizontal"
-msgstr "üfüqi"
 
 msgid "Number"
 msgstr "Say"
@@ -242,9 +221,6 @@ msgstr "Tələbin vəziyyəti"
 msgid "Custodian"
 msgstr "Mühafizəçi"
 
-msgid "Custodian of the identities"
-msgstr "Kimliklərin mühafizəçisi"
-
 msgid "Identity"
 msgstr "Kimlik"
 
@@ -287,11 +263,8 @@ msgstr "İnformasiya ötürənin kimliyinə girişinə izin ver"
 msgid "Templates"
 msgstr "Şablonlar"
 
-msgid "HTTPS settings"
-msgstr "HTTPS  tənzimləmələri "
-
 msgid "URL redirects"
-msgstr ""
+msgstr "Link yönləməsi"
 
 msgid "Anomaly detection thresholds"
 msgstr "Anomaliya aşkarlama hədləri "
@@ -301,13 +274,6 @@ msgstr "İstifadə oluna bilən disk sahəsi "
 
 msgid "Last update"
 msgstr "Son yeniləmə"
-
-msgid "Custodian notification templates"
-msgstr "Mühafizəçi bildiriş şablonları"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "Bu ekran, mühafizəçilərə xəbərdarlıq etmək üçün istifadə edilən e-poçt şablonlarını quraşdırmağa imkan verir"
 
 msgid "Disable notifications to administrators"
 msgstr "İdarəçilərə bildirişləri sıradan çıxart"
@@ -360,12 +326,6 @@ msgstr "Heç biri"
 msgid "Regular expression"
 msgstr "Daimi ifadə"
 
-msgid "Activate"
-msgstr "Aktivləşdir"
-
-msgid "Disactivate"
-msgstr ""
-
 msgid "Search"
 msgstr "Axtarış"
 
@@ -375,7 +335,7 @@ msgid ""
 msgstr "Bu fərdi mətn artıq platformada görünmür. Orijinal mətn dəyişdirildi və ya silindi."
 
 msgid "Audit log"
-msgstr ""
+msgstr "Audit girişi"
 
 msgid "Stats"
 msgstr "Statistikalar"
@@ -435,6 +395,9 @@ msgid "Expand"
 msgstr ""
 
 msgid "Select"
+msgstr ""
+
+msgid "Deselect"
 msgstr ""
 
 msgid "Surname"
@@ -508,7 +471,16 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr "Mübadilə Buferinə kopyala"
 
+msgid "Logout"
+msgstr "Çıxış"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
+msgstr ""
+
+msgid "Select the context of your report:"
 msgstr ""
 
 msgid "Before proceeding, please set a new password."
@@ -737,14 +709,8 @@ msgstr "Mümkün olan informasiya ötürənlərə sual vermək"
 msgid "Whistleblowing button"
 msgstr "İnformasiya ötürmə düyməsi "
 
-msgid "Enable disclaimer"
+msgid "Disclaimer"
 msgstr ""
-
-msgid "Title"
-msgstr "Başlıq"
-
-msgid "Text"
-msgstr "Mətn"
 
 msgid "Footer"
 msgstr "Aşağı lövhə"
@@ -1063,6 +1029,9 @@ msgstr ""
 msgid "Phone number"
 msgstr "Telefon nömrə"
 
+msgid "Text"
+msgstr "Mətn"
+
 msgid "Checkbox label"
 msgstr ""
 
@@ -1076,18 +1045,6 @@ msgid "Audio"
 msgstr ""
 
 msgid "Video"
-msgstr ""
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "Mövzu mühafizəçiyə cavab olaraq görünür"
-
-msgid "Text shown upon negative answer"
-msgstr ""
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "Mənfi cavab üzərindən tez təsdiqlənmə"
-
-msgid "Text shown upon confirmation"
 msgstr ""
 
 msgid "Trigger conditions"
@@ -1158,6 +1115,9 @@ msgstr ""
 
 msgid "Enable terms of service"
 msgstr ""
+
+msgid "Title"
+msgstr "Başlıq"
 
 msgid "Send an account activation link to the user."
 msgstr ""
@@ -1270,6 +1230,9 @@ msgstr "Xahiş edirik bütün əlaqəli məlumatların daimi olaraq silinəcəyi
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""
 
+msgid "Close"
+msgstr "Bağla"
+
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
@@ -1278,9 +1241,6 @@ msgstr ""
 
 msgid "Enable two factor authentication"
 msgstr ""
-
-msgid "Close"
-msgstr "Bağla"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr ""
@@ -1346,6 +1306,18 @@ msgstr "Mənbəyə giriş yalnız Tor şəbəkəsi vasitəsilə mümkündür"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Yükləmə tələbi ölçü həddini aşır"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Qısa zamanda Sizinlə əlaqə saxlamağa çalışacağıq"
+
+msgid "Submit"
+msgstr "Göndər"
 
 msgid "Validation of email address change in progress."
 msgstr ""
@@ -1436,9 +1408,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "Platforma hələ HTTPS əlaqələri üçün quraşdırılmayıb və yalnız test məqsədləri üçün istifadə olunmalıdır."
 
-msgid "Submit"
-msgstr "Göndər"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr ""
 
@@ -1512,9 +1481,6 @@ msgstr "Sorğu cavabları"
 msgid "Step"
 msgstr "Addım"
 
-msgid "Recipient list"
-msgstr "Qəbul edici siyahısı"
-
 msgid "Status:"
 msgstr "Status:"
 
@@ -1523,9 +1489,6 @@ msgstr "Qəbul edicilər tərəfindən yüklənilmiş fayllar"
 
 msgid "Upload a file:"
 msgstr "Yeni fayl yüklə:"
-
-msgid "Logout"
-msgstr "Çıxış"
 
 msgid "An update is available:"
 msgstr "Yenilənmə mümkündür"
@@ -1558,18 +1521,15 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Show"
-msgstr "Göstər"
-
-msgid "Hide"
-msgstr "Gizlətmək"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Mühafizəçidən informasiya ötürənin kimliyinə giriş tələb olunur."
 
 msgid "Date of the request"
 msgstr "Tələb olunan tarix"
+
+msgid "Show"
+msgstr "Göstər"
 
 msgid "Congratulations!"
 msgstr "Təbriklər!"
@@ -1608,9 +1568,6 @@ msgstr "Tamamla"
 msgid "Invalid phone number"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr ""
-
 msgid "The answer is too short"
 msgstr ""
 
@@ -1639,9 +1596,6 @@ msgstr "Təşəkkürlər!"
 
 msgid "Your report was successful."
 msgstr "Sizin təqdimatınız uğurlu oldu."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Qısa zamanda Sizinlə əlaqə saxlamağa çalışacağıq"
 
 msgid "Remember your receipt for this report."
 msgstr "Bu təqdimat üçün açar şifrəni xatırlayın."
@@ -1684,6 +1638,9 @@ msgstr "Yükənən faylın (lar) bitməsini gözləyirəm."
 
 msgid "The following steps have errors:"
 msgstr "Aşağıdakı addımlarda səhvlər var:"
+
+msgid "Hide"
+msgstr "Gizlətmək"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1733,32 +1690,14 @@ msgstr "Ad"
 msgid "Last name"
 msgstr "Soyad"
 
-msgid "Gender"
-msgstr "Cins"
-
-msgid "Male"
-msgstr "Kişi"
-
-msgid "Female"
-msgstr "Qadın"
-
-msgid "Other gender identity"
+msgid "Preferred contact method"
 msgstr ""
 
-msgid "Date of birth"
-msgstr "Doğum yeri"
+msgid "Other"
+msgstr "Digər"
 
-msgid "Place of birth"
-msgstr "Doğum yeri"
-
-msgid "Zip code / Postal code"
-msgstr "Poçt indeksi"
-
-msgid "Province"
-msgstr "Bölgə"
-
-msgid "Country"
-msgstr "Ölkə"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Əziz {RecipientName}, "
@@ -1870,9 +1809,6 @@ msgid "Name: {Name}"
 msgstr ""
 
 msgid "Email: {Email}"
-msgstr ""
-
-msgid "Language: {Language}"
 msgstr ""
 
 msgid "New whistleblowing site registered"
@@ -2044,6 +1980,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "Proqam yeniləmələrinə dair təlimatlar üçün sənədlərə keç: {UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Ən son istifadə tarixi {EarliestExpirationDate}"
 
@@ -2065,9 +2009,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "Buradakı məlumat və materiallara xüsusi diqqət yetirməyiniz xahiş olunur. Nəzərdə saxlayın ki, informasiya ötürənlər ictimai maraqlara görə yüksək şəxsi risklərə məruz qalırlar. Buna görə də təqdim edilən təqdimat materialları böyük əhəmiyyətə malikdirlər."
-
-msgid "New report"
-msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr ""

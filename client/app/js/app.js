@@ -506,6 +506,7 @@ var GL = angular.module("GL", [
       "ca@valencia": "ca-es-valencia",
       "dv": "en",
       "sl-si": "sl",
+      "sr_RS@latin": "sr-latn",
       "ug": "ug-arabic",
       "ug@Cyril": "ug",
       "ug@Latin": "ug"

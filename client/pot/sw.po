@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-27 06:09+0000\n"
-"Last-Translator: Rose Mmbaga\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swahili (http://www.transifex.com/otf/globaleaks/language/sw/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -31,9 +31,6 @@ msgstr "Ubinafsishaji wa maandishi"
 
 msgid "Advanced settings"
 msgstr "Mipangilio ya hali ya juu"
-
-msgid "Questionnaire configuration"
-msgstr "Usanidi wa dodoso"
 
 msgid "Question templates"
 msgstr "Kiolezo cha maswali"
@@ -89,15 +86,6 @@ msgstr "Maoni"
 msgid "Messages"
 msgstr "Ujumbe"
 
-msgid "Select this recipient."
-msgstr "Chagua mpokeaji huyu."
-
-msgid "Unselect this recipient."
-msgstr "Usimchague mpokeaji huyu."
-
-msgid "This recipient cannot be deselected."
-msgstr "Mpokeaji huyu hawezi kutokuchaguliwa"
-
 msgid "Details"
 msgstr "Maelezo"
 
@@ -127,9 +115,6 @@ msgstr "Fanyiza upya"
 
 msgid "Context"
 msgstr "Muktadha"
-
-msgid "Private messages"
-msgstr "Ujumbe wa binafsi"
 
 msgid "Preview"
 msgstr "Chungulia kwanza"
@@ -171,12 +156,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "Uunganisho umelindwa na Tor kuhakikisha usiri na\n\nkujulikana."
-
-msgid "vertical"
-msgstr "wima"
-
-msgid "horizontal"
-msgstr "ulalo"
 
 msgid "Number"
 msgstr "Namba"
@@ -238,9 +217,6 @@ msgstr "Hali ya ombi"
 msgid "Custodian"
 msgstr "Mwangalizi"
 
-msgid "Custodian of the identities"
-msgstr "Mwangalizi wa vitambulisho"
-
 msgid "Identity"
 msgstr "Kitambulisho"
 
@@ -283,9 +259,6 @@ msgstr "Idhinisha ufikiaji wa kitambulisho cha mtoa taarifa ya siri"
 msgid "Templates"
 msgstr "Violezo"
 
-msgid "HTTPS settings"
-msgstr "Mipangilio ya HTTP"
-
 msgid "URL redirects"
 msgstr "inaelekeza tena za URL"
 
@@ -297,13 +270,6 @@ msgstr "Nafasi ya diski inayopatikana"
 
 msgid "Last update"
 msgstr "Huisho la mwisho"
-
-msgid "Custodian notification templates"
-msgstr "Violezo vya taarifu za mwangalizi"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "Muunganisho huu unaruhusu kusanidi violezo vya barua pepe zinazotumika kuwarifu waangalizi."
 
 msgid "Disable notifications to administrators"
 msgstr "Usiwezeshe taarifa kwa wasimamizi"
@@ -355,12 +321,6 @@ msgstr "Hakuna"
 
 msgid "Regular expression"
 msgstr "Maneno ya kawaida"
-
-msgid "Activate"
-msgstr "Amilisha"
-
-msgid "Disactivate"
-msgstr "Usiamilishe"
 
 msgid "Search"
 msgstr "Tafuta"
@@ -433,6 +393,9 @@ msgstr "Panua"
 msgid "Select"
 msgstr "Chagua"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Surname"
 msgstr "Jina la ukoo"
 
@@ -504,7 +467,16 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr "Nakili kwenye ubao wa kunakili"
 
+msgid "Logout"
+msgstr "Toka"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
+msgstr ""
+
+msgid "Select the context of your report:"
 msgstr ""
 
 msgid "Before proceeding, please set a new password."
@@ -733,14 +705,8 @@ msgstr "Swali la kuomba watoa taarifa za siri"
 msgid "Whistleblowing button"
 msgstr "Kitufe cha watoa taarifa za siri"
 
-msgid "Enable disclaimer"
-msgstr "Wezesha kanusho"
-
-msgid "Title"
-msgstr "Kichwa"
-
-msgid "Text"
-msgstr "Maandishi"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "Kijachini"
@@ -1059,6 +1025,9 @@ msgstr "Batilisha kiolezo"
 msgid "Phone number"
 msgstr "Namba ya simu"
 
+msgid "Text"
+msgstr "Maandishi"
+
 msgid "Checkbox label"
 msgstr "Lebo ya kisanduku cha kuangalia"
 
@@ -1073,18 +1042,6 @@ msgstr "Sauti"
 
 msgid "Video"
 msgstr "Video"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "Kuonekana kwa jibu la mada ni kwa idhini ya mwangalizi"
-
-msgid "Text shown upon negative answer"
-msgstr "Maandishi yameonyeshwa kwa jibu hasi"
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "Uthibitisho wa haraka kwa jibu hasi"
-
-msgid "Text shown upon confirmation"
-msgstr "Maandishi yameonyeshwa baada ya uthibitisho"
 
 msgid "Trigger conditions"
 msgstr "Chochea hali"
@@ -1154,6 +1111,9 @@ msgstr "Ruhusu watumiaji kujisajili"
 
 msgid "Enable terms of service"
 msgstr "Wezesha masharti ya huduma"
+
+msgid "Title"
+msgstr "Kichwa"
 
 msgid "Send an account activation link to the user."
 msgstr "Tuma kiunga cha uanzishaji wa akaunti kwa mtumiaji."
@@ -1266,6 +1226,9 @@ msgstr "Tafadhali kumbuka kuwa data zote zinazohusiana zitafutwa kabisa."
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Hili ni jukwaa la kufanya majaribia au onyesho tu, tafadhali usilitumie kwa uwasilisho halisi. "
 
+msgid "Close"
+msgstr "Funga"
+
 msgid "Install an authenticator app on your phone"
 msgstr "Weka programu ya uthibitishaji kwenye simu yako"
 
@@ -1274,9 +1237,6 @@ msgstr "Changanua nambari ya QR na programu"
 
 msgid "Enable two factor authentication"
 msgstr "Wezesha uthibitishaji wa mara mbili "
-
-msgid "Close"
-msgstr "Funga"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Kabla ya kuendelea tafadhali soma kwa uangalifu nyaraka kwenye:"
@@ -1342,6 +1302,18 @@ msgstr "Rasilimali zinaweza kupatikana tu kupitia mtandao wa Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Ombi la kupakia linazidi kikomo cha ukubwa"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Tutajaribu kukurudia haraka iwezekanavyo."
+
+msgid "Submit"
+msgstr "Wasilisha"
 
 msgid "Validation of email address change in progress."
 msgstr "Uthibitishaji wa mabadiliko ya anwani ya barua pepe unaendelea"
@@ -1432,9 +1404,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "Jukwaa bado halijasanidiwa kwa unganisho la HTTPS na linapaswa\n\nkutumika tu kwa ajili ya majaribio."
 
-msgid "Submit"
-msgstr "Wasilisha"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Wapokeaji wamekuomba ujaze hadidu za nyongeza."
 
@@ -1508,9 +1477,6 @@ msgstr "Majibu ya dodoso"
 msgid "Step"
 msgstr "Hatua"
 
-msgid "Recipient list"
-msgstr "Orodha ya wapokeaji"
-
 msgid "Status:"
 msgstr "Hali:"
 
@@ -1519,9 +1485,6 @@ msgstr ""
 
 msgid "Upload a file:"
 msgstr "Pakia faili:"
-
-msgid "Logout"
-msgstr "Toka"
 
 msgid "An update is available:"
 msgstr "Huisho linapatikana:"
@@ -1554,18 +1517,15 @@ msgstr "Ingiza namba za kurudisha programu ya kuficha ili kukamilisha utaratibu 
 msgid "Password reset requested."
 msgstr "Kuweka upya neno la siri imeombwa"
 
-msgid "Show"
-msgstr "Onyesha"
-
-msgid "Hide"
-msgstr "Ficha"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Ufikiaji wa kitambulisho cha mtoa taarifa za siri umeombwa kwa mwangalzi."
 
 msgid "Date of the request"
 msgstr "Tarehe ya kuomba"
+
+msgid "Show"
+msgstr "Onyesha"
 
 msgid "Congratulations!"
 msgstr "Hongera!"
@@ -1604,9 +1564,6 @@ msgstr "Maliza"
 msgid "Invalid phone number"
 msgstr "Namba ya simu batili"
 
-msgid "Select the context of your report:"
-msgstr ""
-
 msgid "The answer is too short"
 msgstr "Jibu ni fupi sana."
 
@@ -1635,9 +1592,6 @@ msgstr "Asante!"
 
 msgid "Your report was successful."
 msgstr "Ripoti yako imefanikiwa."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Tutajaribu kukurudia haraka iwezekanavyo."
 
 msgid "Remember your receipt for this report."
 msgstr "Kumbuka risiti yako kwa ripoti hii"
@@ -1680,6 +1634,9 @@ msgstr "Inasubiri faili/mafaili ili kumaliza upakuaji."
 
 msgid "The following steps have errors:"
 msgstr "Hatua zifuatazo zina makossa:"
+
+msgid "Hide"
+msgstr "Ficha"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1729,32 +1686,14 @@ msgstr "Jina la kwanza"
 msgid "Last name"
 msgstr "Jina la mwisho"
 
-msgid "Gender"
-msgstr "Jinsia"
+msgid "Preferred contact method"
+msgstr ""
 
-msgid "Male"
-msgstr "Mwanaume"
+msgid "Other"
+msgstr "Mengineyo"
 
-msgid "Female"
-msgstr "Mwanamke"
-
-msgid "Other gender identity"
-msgstr "Utambulisho mwingine wa jinsia"
-
-msgid "Date of birth"
-msgstr "Tarehe ya kuzaliwa"
-
-msgid "Place of birth"
-msgstr "Sehemu ulipozaliwa"
-
-msgid "Zip code / Postal code"
-msgstr "Zip code / Postal code"
-
-msgid "Province"
-msgstr "Jimbo"
-
-msgid "Country"
-msgstr "Nchi"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Kwako {RecipientName}"
@@ -1867,9 +1806,6 @@ msgstr "Jina: {Name}"
 
 msgid "Email: {Email}"
 msgstr "Barua pepe: {Email}"
-
-msgid "Language: {Language}"
-msgstr "Lugha: {Language}"
 
 msgid "New whistleblowing site registered"
 msgstr "Tovuti mpya ya kutoa taarifa za siri imesajiliwa"
@@ -2040,6 +1976,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "Kwa maelekezo juu ya uhuishaji wa programu, tafadhali rejea nakala kwenye: {UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr "Ripoti mpya"
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Tarehe ya mapema kabisa ya kumalizika ni {EarliestExpirationDate}."
 
@@ -2061,9 +2005,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "Unaombwa kuweka umakini kwenye taarifa na nyenzo \n\nzilizopo hapa. Tafadhali kumbuka kuwa watoa habari za siri mara nyingi hujiweka\n\nkatika mazingira hatarishi kwa manufaa ya umma. Kwahiyo\n\nnyenzo zilizotolewa ndani ya ripoti hii zinapaswa kuzingatiwa kuwa na\n\numuhimu sana."
-
-msgid "New report"
-msgstr "Ripoti mpya"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr ""

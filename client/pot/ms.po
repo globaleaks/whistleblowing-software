@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malay (http://www.transifex.com/otf/globaleaks/language/ms/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,9 +30,6 @@ msgstr "Penyesuaian teks"
 
 msgid "Advanced settings"
 msgstr "Tetapan lanjutan"
-
-msgid "Questionnaire configuration"
-msgstr "Konfigurasi soal selidik"
 
 msgid "Question templates"
 msgstr "Templat soalan"
@@ -88,15 +85,6 @@ msgstr "Komen"
 msgid "Messages"
 msgstr "Mesej"
 
-msgid "Select this recipient."
-msgstr "Pilih penerima ini."
-
-msgid "Unselect this recipient."
-msgstr "Nyahpilih penerima ini."
-
-msgid "This recipient cannot be deselected."
-msgstr "Penerima ini tidak dapat dinyahpilih."
-
 msgid "Details"
 msgstr "Butiran"
 
@@ -126,9 +114,6 @@ msgstr "Segar semula"
 
 msgid "Context"
 msgstr "Konteks"
-
-msgid "Private messages"
-msgstr "Mesej peribadi"
 
 msgid "Preview"
 msgstr "Pratonton"
@@ -170,12 +155,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "Sambungan telah dilindungi dengan Tor memastikan kerahsiaan dan ketanpanamaan."
-
-msgid "vertical"
-msgstr "menegak"
-
-msgid "horizontal"
-msgstr "mendatar"
 
 msgid "Number"
 msgstr "Nombor"
@@ -237,9 +216,6 @@ msgstr "Status permintaan"
 msgid "Custodian"
 msgstr "Penjaga"
 
-msgid "Custodian of the identities"
-msgstr "Penjaga identiti"
-
 msgid "Identity"
 msgstr "Identiti"
 
@@ -282,9 +258,6 @@ msgstr "Benarkan akses kepada identiti pemberi maklumat"
 msgid "Templates"
 msgstr "Templat"
 
-msgid "HTTPS settings"
-msgstr "Tetapan HTTPS"
-
 msgid "URL redirects"
 msgstr "Penghalaan URL"
 
@@ -296,13 +269,6 @@ msgstr "Ruang cakera tersedia"
 
 msgid "Last update"
 msgstr "Kemas kini terakhir"
-
-msgid "Custodian notification templates"
-msgstr "Templat pemberitahuan penjaga"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "Antara muka ini membolehkan menkonfigurasi templat e-mel yang digunakan untuk memaklumkan penjaga."
 
 msgid "Disable notifications to administrators"
 msgstr "Nyahdayakan pemberitahuan kepada pentadbir"
@@ -354,12 +320,6 @@ msgstr "Tiada"
 
 msgid "Regular expression"
 msgstr "Ungkapan biasa"
-
-msgid "Activate"
-msgstr "Aktifkan"
-
-msgid "Disactivate"
-msgstr "Nyahaktifkan"
 
 msgid "Search"
 msgstr "Cari"
@@ -432,6 +392,9 @@ msgstr "Kembangkan"
 msgid "Select"
 msgstr "Pilih"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Surname"
 msgstr "Nama keluarga"
 
@@ -503,8 +466,17 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr ""
 
+msgid "Logout"
+msgstr "Log keluar"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
 msgstr "Failkan laporan"
+
+msgid "Select the context of your report:"
+msgstr "Pilih konteks laporan anda:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Sebelum meneruskan, sila tetapkan kata laluan baru."
@@ -732,14 +704,8 @@ msgstr "Soalan untuk mendapatkan pemberi maklumat berpotensi"
 msgid "Whistleblowing button"
 msgstr "Butang memberi maklumat"
 
-msgid "Enable disclaimer"
-msgstr "Dayakan penafian"
-
-msgid "Title"
-msgstr "Tajuk"
-
-msgid "Text"
-msgstr "Teks"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "Kekaki"
@@ -1058,6 +1024,9 @@ msgstr "Ganti templat"
 msgid "Phone number"
 msgstr "Nombor telefon"
 
+msgid "Text"
+msgstr "Teks"
+
 msgid "Checkbox label"
 msgstr "Label kotak semak"
 
@@ -1072,18 +1041,6 @@ msgstr "Audio"
 
 msgid "Video"
 msgstr "Video"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "Tertakluk kebolehlihatan jawapan kepada pengesahan penjaga"
-
-msgid "Text shown upon negative answer"
-msgstr "Teks ditunjukkan selepas jawapan negatif"
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "Minta pengesahan selepas jawapan negatif"
-
-msgid "Text shown upon confirmation"
-msgstr "Teks ditunjukkan selepas pengesahan"
 
 msgid "Trigger conditions"
 msgstr "Keadaan pencetus"
@@ -1153,6 +1110,9 @@ msgstr "Benarkan pengguna untuk mendaftar"
 
 msgid "Enable terms of service"
 msgstr "Dayakan terma perkhidmatan"
+
+msgid "Title"
+msgstr "Tajuk"
 
 msgid "Send an account activation link to the user."
 msgstr "Hantar pautan pengaktifan akaun kepada pengguna."
@@ -1265,6 +1225,9 @@ msgstr "Sila ambil perhatian bahawa semua data berkaitan akan dipadam secara kek
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Ini ialah platform demo, sila jangan gunakannya untuk penghantaran sebenar."
 
+msgid "Close"
+msgstr "Tutup"
+
 msgid "Install an authenticator app on your phone"
 msgstr "Pasang aplikasi pengesahan di telefon anda"
 
@@ -1273,9 +1236,6 @@ msgstr "Imbas kod QR dengan aplikasi"
 
 msgid "Enable two factor authentication"
 msgstr "Dayakan pengesahan dua faktor"
-
-msgid "Close"
-msgstr "Tutup"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Sebelum meneruskan, sila baca dokumentasi dengan teliti di:"
@@ -1341,6 +1301,18 @@ msgstr "Sumber hanya boleh diakses melalui rangkaian Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Permintaan muat naik melebihi had saiz"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Kami akan cuba kembali kepada anda secepat mungkin."
+
+msgid "Submit"
+msgstr "Hantar"
 
 msgid "Validation of email address change in progress."
 msgstr "Pengesahan perubahan alamat e-mel sedang berjalan."
@@ -1431,9 +1403,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "Platform masih tidak dikonfigurasikan untuk sambungan HTTPS dan oleh itu perlu hanya digunakan untuk tujuan pengujian."
 
-msgid "Submit"
-msgstr "Hantar"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Penerima telah meminta anda mengisi soal selidik tambahan."
 
@@ -1507,9 +1476,6 @@ msgstr "Jawapan soal selidik"
 msgid "Step"
 msgstr "Langkah"
 
-msgid "Recipient list"
-msgstr "Senarai penerima"
-
 msgid "Status:"
 msgstr "Status:"
 
@@ -1518,9 +1484,6 @@ msgstr "Fail dilampirkan oleh penerima"
 
 msgid "Upload a file:"
 msgstr "Muat naik fail:"
-
-msgid "Logout"
-msgstr "Log keluar"
 
 msgid "An update is available:"
 msgstr "Kemas kini tersedia:"
@@ -1553,18 +1516,15 @@ msgstr "Masukkan kunci pemulihan penyulitan anda untuk melengkapkan prosedur pen
 msgid "Password reset requested."
 msgstr "Penetapan kata laluan diminta."
 
-msgid "Show"
-msgstr "Tunjukkan"
-
-msgid "Hide"
-msgstr "Sembunyikan"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Akses kepada identiti pemberi maklumat telah diminta kepada penjaga."
 
 msgid "Date of the request"
 msgstr "Tarikh permintaan"
+
+msgid "Show"
+msgstr "Tunjukkan"
 
 msgid "Congratulations!"
 msgstr "Tahniah!"
@@ -1603,9 +1563,6 @@ msgstr "Lengkap"
 msgid "Invalid phone number"
 msgstr "Nombor telefon tidak sah"
 
-msgid "Select the context of your report:"
-msgstr "Pilih konteks laporan anda:"
-
 msgid "The answer is too short"
 msgstr "Jawapan terlalu pendek"
 
@@ -1634,9 +1591,6 @@ msgstr "Terima kasih!"
 
 msgid "Your report was successful."
 msgstr "Laporan anda telah berjaya."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Kami akan cuba kembali kepada anda secepat mungkin."
 
 msgid "Remember your receipt for this report."
 msgstr "Ingat resit anda untuk laporan ini."
@@ -1679,6 +1633,9 @@ msgstr "Menunggu untuk fail selesai dimuat naik."
 
 msgid "The following steps have errors:"
 msgstr "Langkah berikut mempunyai ralat:"
+
+msgid "Hide"
+msgstr "Sembunyikan"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1728,32 +1685,14 @@ msgstr "Nama pertama"
 msgid "Last name"
 msgstr "Nama akhir"
 
-msgid "Gender"
-msgstr "Jantina"
+msgid "Preferred contact method"
+msgstr ""
 
-msgid "Male"
-msgstr "Lelaki"
+msgid "Other"
+msgstr "Lain-lain"
 
-msgid "Female"
-msgstr "Perempuan"
-
-msgid "Other gender identity"
-msgstr "Identiti jantina lain"
-
-msgid "Date of birth"
-msgstr "Tarikh lahir"
-
-msgid "Place of birth"
-msgstr "Tempat lahir"
-
-msgid "Zip code / Postal code"
-msgstr "Poskod"
-
-msgid "Province"
-msgstr "Wilayah"
-
-msgid "Country"
-msgstr "Negara"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} yang dihormati,"
@@ -1866,9 +1805,6 @@ msgstr "Nama: {Name}"
 
 msgid "Email: {Email}"
 msgstr "E-mel: {Email}"
-
-msgid "Language: {Language}"
-msgstr "Bahasa: {Language}"
 
 msgid "New whistleblowing site registered"
 msgstr "Laman memberi maklumat baru berdaftar"
@@ -2039,6 +1975,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "Untuk arahan mengenai kemas kini perisian, sila rujuk dokumentasi di: {UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr "Laporan baru"
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Tarikh tamat tempoh terawal ialah {EarliestExpirationDate}."
 
@@ -2060,9 +2004,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "Anda diminta memberi perhatian khusus kepada maklumat dan bahan yang terdapat di dalamnya. Ingat bahawa pemberi maklumat sering mendedahkan diri mereka kepada risiko peribadi yang tinggi demi kepentingan orang ramai. Oleh itu, bahan yang disediakan dalam laporan ini perlu dianggap sangat penting."
-
-msgid "New report"
-msgstr "Laporan baru"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "E-mel ini untuk memberitahu bahawa laporan sedia ada telah dikemas kini."

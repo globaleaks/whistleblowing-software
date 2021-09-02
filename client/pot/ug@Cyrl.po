@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uighur (Cyrillic) (http://www.transifex.com/otf/globaleaks/language/ug@Cyrl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,9 +31,6 @@ msgstr "Текист ихтийари"
 
 msgid "Advanced settings"
 msgstr "Алий тәңшәкләр"
-
-msgid "Questionnaire configuration"
-msgstr "Рай синаш сәплимә"
 
 msgid "Question templates"
 msgstr "Суъал қелиплири"
@@ -89,15 +86,6 @@ msgstr "Инкаслар"
 msgid "Messages"
 msgstr "Учурлар"
 
-msgid "Select this recipient."
-msgstr "Бу тапшуривалғучини талла"
-
-msgid "Unselect this recipient."
-msgstr "Бу тапшуривалғучини таллима"
-
-msgid "This recipient cannot be deselected."
-msgstr "Бу тапшуривалғучини таллимаслиққа болмайду."
-
 msgid "Details"
 msgstr "Тәпсилатлар"
 
@@ -127,9 +115,6 @@ msgstr "Йеңила"
 
 msgid "Context"
 msgstr "Контекист"
-
-msgid "Private messages"
-msgstr "Шәхсий учур"
 
 msgid "Preview"
 msgstr "Алдин көр"
@@ -171,12 +156,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "Уланмиңизниң бихәтәрлиги Tor ниң мәхпийәтлик вә намсизлиқ капалити арқилиң сақлиниватиду."
-
-msgid "vertical"
-msgstr "Тик"
-
-msgid "horizontal"
-msgstr "Тоғрисиға"
 
 msgid "Number"
 msgstr "Сан"
@@ -238,9 +217,6 @@ msgstr "Тәләп һаләт"
 msgid "Custodian"
 msgstr "Сақлиғучи"
 
-msgid "Custodian of the identities"
-msgstr "Кимликләрниң сақлиғучиси"
-
 msgid "Identity"
 msgstr "Кимлик"
 
@@ -283,9 +259,6 @@ msgstr "Паш қилғучиниң кимликини зийарәт қилиш
 msgid "Templates"
 msgstr "Қелиплар"
 
-msgid "HTTPS settings"
-msgstr "HTTPS тәңшәклири"
-
 msgid "URL redirects"
 msgstr "URL қайта йетәкләш"
 
@@ -297,13 +270,6 @@ msgstr "Қалған диска бошлуқи"
 
 msgid "Last update"
 msgstr "Ахирқи йеңилиниши"
-
-msgid "Custodian notification templates"
-msgstr "Сақлиғучи уқтуруш қелиплири"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "Бу ара йүз сақлиғучиға уқтуруш қилишқа ишлитилидиған елхәт қелипини тәңшәшкә йол қойиду."
 
 msgid "Disable notifications to administrators"
 msgstr "Башқурғучиға уқтуруш әвәтишни чәклә"
@@ -355,12 +321,6 @@ msgstr "Һечнимә"
 
 msgid "Regular expression"
 msgstr "Мунтизим ипадә"
-
-msgid "Activate"
-msgstr "Актипла"
-
-msgid "Disactivate"
-msgstr "Тохтат"
 
 msgid "Search"
 msgstr "Ахтуруш"
@@ -433,6 +393,9 @@ msgstr "Йай"
 msgid "Select"
 msgstr "Талла"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Surname"
 msgstr "Фамилә"
 
@@ -504,8 +467,17 @@ msgstr "Муһим дәп бәлгә қой"
 msgid "Copy to clipboard"
 msgstr ""
 
+msgid "Logout"
+msgstr "Тизимдин чиқ"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
 msgstr "Бир доклат йолла"
+
+msgid "Select the context of your report:"
+msgstr "Доклатиңизниң мәзмунини таллаң:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Бир тәрәп қилиштин бурун, йеңи бир парол бәлгиләң."
@@ -733,14 +705,8 @@ msgstr "Паш қилғучи болуш мүмкинчилиги бар киш�
 msgid "Whistleblowing button"
 msgstr "Паш қилиш кунупкиси"
 
-msgid "Enable disclaimer"
-msgstr "Мәсъулийәттин сақлиниш байанатини қозғат"
-
-msgid "Title"
-msgstr "Тема"
-
-msgid "Text"
-msgstr "Текист"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "Бәт асти"
@@ -1059,6 +1025,9 @@ msgstr "Қелиипниң үстигә йаз"
 msgid "Phone number"
 msgstr "Телефон номури"
 
+msgid "Text"
+msgstr "Текист"
+
 msgid "Checkbox label"
 msgstr "Тәстиқ рамка бәлгиси"
 
@@ -1073,18 +1042,6 @@ msgstr "Үн"
 
 msgid "Video"
 msgstr "Син"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "Сақлиғучи һоқуқиңиз бойичә көрәләйдиған тема җаваби"
-
-msgid "Text shown upon negative answer"
-msgstr "Сәлбий җавабта көрситилидиған текист"
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "Сәлбий җавабқа җәзмләш көзниги көрсәт"
-
-msgid "Text shown upon confirmation"
-msgstr "Җәзимләштә көрситилидиған текист"
 
 msgid "Trigger conditions"
 msgstr "Қозғитилиш шәртләр"
@@ -1154,6 +1111,9 @@ msgstr "Ишләткүчиләрниң тизимлитишиға рухсәт �
 
 msgid "Enable terms of service"
 msgstr "Мулазимәт шәртлирини қозғат"
+
+msgid "Title"
+msgstr "Тема"
 
 msgid "Send an account activation link to the user."
 msgstr "Һесабат актиплаш уланмисини ишләткүчигә әвәт"
@@ -1266,6 +1226,9 @@ msgstr "Мунасивәтлик барлиқ санлиқ мәлуматлар�
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Бу бир көрсәтмә супа, буни һәқиқий йолланмилар үчүн ишләтмәң."
 
+msgid "Close"
+msgstr "Тақа"
+
 msgid "Install an authenticator app on your phone"
 msgstr "Телифониңизға бир дәлиллигүчи әп қачилаң"
 
@@ -1274,9 +1237,6 @@ msgstr "QR кодини бу әп билән таритиң"
 
 msgid "Enable two factor authentication"
 msgstr "Икки қәдәмлик тоғрулашни қозғат"
-
-msgid "Close"
-msgstr "Тақа"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Давам қилиштин бурун бу йәрдики һөҗҗәтни әстайидил оқуң:"
@@ -1342,6 +1302,18 @@ msgstr "Мәнбәни пәқәт Tor тори биләнла зийарәт қ�
 
 msgid "The upload request exceeds the size limit"
 msgstr "Йүклимә тәлипи чоңлуқ чекидин ешип кәтти"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Биз сизгә әң қисқа вақитта җавап қайтурушқа тиришимиз."
+
+msgid "Submit"
+msgstr "Йолла"
 
 msgid "Validation of email address change in progress."
 msgstr "Елхәт адреси өзгәртишни дәлилләш давам қиливатиду."
@@ -1432,9 +1404,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "Бу супиға техичә ҺТТПС бағлинишлири сәпләнмәпту вә шундақ болғачқа пәқәт синақ мәқситидила ишлитиш керәк."
 
-msgid "Submit"
-msgstr "Йолла"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Тапшуривалғучилар сизниң бир қошумчә рай синашни тошқузишиңизни тәләп қилди."
 
@@ -1508,9 +1477,6 @@ msgstr "Рай синаш җаваблири"
 msgid "Step"
 msgstr "Қәдәм"
 
-msgid "Recipient list"
-msgstr "Тапшурувалғучи тизими"
-
 msgid "Status:"
 msgstr "Һаләт:"
 
@@ -1519,9 +1485,6 @@ msgstr "Һөҗҗәтләр тапшуривалғучилар тәрипидин
 
 msgid "Upload a file:"
 msgstr "Бир һөҗҗәт йүклә:"
-
-msgid "Logout"
-msgstr "Тизимдин чиқ"
 
 msgid "An update is available:"
 msgstr "Бир йеңиланма бар:"
@@ -1554,18 +1517,15 @@ msgstr "Парол қайта сәпләш җәрйанини тамамлаш �
 msgid "Password reset requested."
 msgstr "Паролиңизни қайта сәпләш тәләп қилинди."
 
-msgid "Show"
-msgstr "Көрсәт"
-
-msgid "Hide"
-msgstr "Йошур"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Сақлиғучи паш қилғучиниң кимлигини зийарәт қилишни тәләп қилди."
 
 msgid "Date of the request"
 msgstr "Telep qilghan chésla"
+
+msgid "Show"
+msgstr "Көрсәт"
 
 msgid "Congratulations!"
 msgstr "Тәбрикләймиз!"
@@ -1604,9 +1564,6 @@ msgstr "Тамам"
 msgid "Invalid phone number"
 msgstr "Инавәтсиз телефон номури"
 
-msgid "Select the context of your report:"
-msgstr "Доклатиңизниң мәзмунини таллаң:"
-
 msgid "The answer is too short"
 msgstr "Җавап бәк қисқа"
 
@@ -1635,9 +1592,6 @@ msgstr "Рәһмәт сизгә!"
 
 msgid "Your report was successful."
 msgstr "Доклатиңиз мувәппиқийәтлик болди."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Биз сизгә әң қисқа вақитта җавап қайтурушқа тиришимиз."
 
 msgid "Remember your receipt for this report."
 msgstr "Бу доклатниң талонини есиңиздә тутуң."
@@ -1680,6 +1634,9 @@ msgstr "Һөҗҗәт(ләр)ниң йүклинип болишини сақла�
 
 msgid "The following steps have errors:"
 msgstr "Төвәндики қәдәмләрдә хаталиқ бар:"
+
+msgid "Hide"
+msgstr "Йошур"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1729,32 +1686,14 @@ msgstr "Исми"
 msgid "Last name"
 msgstr "Фамилиси"
 
-msgid "Gender"
-msgstr "Җинси"
+msgid "Preferred contact method"
+msgstr ""
 
-msgid "Male"
-msgstr "Әр"
+msgid "Other"
+msgstr "Башқа"
 
-msgid "Female"
-msgstr "Айал"
-
-msgid "Other gender identity"
-msgstr "Башқа җинсийәти"
-
-msgid "Date of birth"
-msgstr "Туғулған күни"
-
-msgid "Place of birth"
-msgstr "Туғулған йери"
-
-msgid "Zip code / Postal code"
-msgstr "Почта номури"
-
-msgid "Province"
-msgstr "Өлкә"
-
-msgid "Country"
-msgstr "Наһийә"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "‏Қәдирлик {RecipientName},"
@@ -1867,9 +1806,6 @@ msgstr "Нами: {Name}"
 
 msgid "Email: {Email}"
 msgstr "Елхәт: {Email}"
-
-msgid "Language: {Language}"
-msgstr "Тили: {Language}"
 
 msgid "New whistleblowing site registered"
 msgstr "Йеңи паш қилиш бекити тизимлатти"
@@ -2040,6 +1976,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "Йумшақ детални йеңилаш көрсәтмиси үчүн, бу йәрдики һөҗҗәтләрдин пайдилиниң:  {UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr "Йеңи доклат"
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Әң бурунқи сүрүк вақти: {EarliestExpirationDate}."
 
@@ -2061,9 +2005,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "Бу йәрдики учурлар вә материйалларға алаһидә әһмийәт беришиңиз тәләп қилиниду. есиңиздә болсунки , паш қилғучилар көпинчә омумниң мәнпәъәти үчүн чоң хәтәргә тәвәккүл қилиду. Шуңа бу доклатта тәминләнгән материйалларни интайин муһим, дәп қарилиши керәк."
-
-msgid "New report"
-msgstr "Йеңи доклат"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Бу елхәт сизгә бир мәвҗут доклатниң йеңиланғанлиқини уқтуруш үчүндур."

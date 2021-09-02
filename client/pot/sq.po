@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,9 +34,6 @@ msgstr "Përshtatja e Tekstit"
 
 msgid "Advanced settings"
 msgstr "Konfigurimi i përparuar"
-
-msgid "Questionnaire configuration"
-msgstr "Konfigurimi i pyetësorit"
 
 msgid "Question templates"
 msgstr "Pyetjet shabllon"
@@ -92,15 +89,6 @@ msgstr "Komente"
 msgid "Messages"
 msgstr "mesazhet"
 
-msgid "Select this recipient."
-msgstr "Përzgjidheni këtë marrës."
-
-msgid "Unselect this recipient."
-msgstr "Zhbëjeni përzgjedhjen për këtë marrës."
-
-msgid "This recipient cannot be deselected."
-msgstr "Këtij marrësi s'mund t'i zhbëhet përzgjidhja."
-
 msgid "Details"
 msgstr "Hollësitë"
 
@@ -130,9 +118,6 @@ msgstr "Rifresko"
 
 msgid "Context"
 msgstr "Kontekst"
-
-msgid "Private messages"
-msgstr "Mesazhet Private"
 
 msgid "Preview"
 msgstr "Shikim paraprak"
@@ -174,12 +159,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "Lidhja është siguruar me Tor po ashtu është siguruar konfidencialiteti dhe anonimiteti"
-
-msgid "vertical"
-msgstr "vertikale"
-
-msgid "horizontal"
-msgstr "horizontal"
 
 msgid "Number"
 msgstr "Numër"
@@ -241,9 +220,6 @@ msgstr "Statusi i kërkesës"
 msgid "Custodian"
 msgstr "Kujdestar"
 
-msgid "Custodian of the identities"
-msgstr "Kujdestari i identiteteve"
-
 msgid "Identity"
 msgstr "Identitet"
 
@@ -286,9 +262,6 @@ msgstr "Autorizojë qasje në identitetin e sinjalizuesit"
 msgid "Templates"
 msgstr "Shabllone"
 
-msgid "HTTPS settings"
-msgstr "Cilësimet e HTTPS"
-
 msgid "URL redirects"
 msgstr "Ridrejtimi i URL"
 
@@ -300,13 +273,6 @@ msgstr "Hapësirë ​​e disponueshme nëvdisk"
 
 msgid "Last update"
 msgstr "Përditësimi i fundit"
-
-msgid "Custodian notification templates"
-msgstr "Kujdestari i njoftimeve shabllone"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "Kjo ndërfaqe lejon konfigurimin shabllon të emailit dhe përdoret për të njoftuar kujdestarët."
 
 msgid "Disable notifications to administrators"
 msgstr "Çaktivizo njoftimet për administratorët"
@@ -358,12 +324,6 @@ msgstr "Asnjë"
 
 msgid "Regular expression"
 msgstr "Shprehje të rregullta"
-
-msgid "Activate"
-msgstr "Aktivizo"
-
-msgid "Disactivate"
-msgstr "Shkyç"
 
 msgid "Search"
 msgstr "Kërkoni"
@@ -436,6 +396,9 @@ msgstr "Zgjeroje"
 msgid "Select"
 msgstr "Përzgjidhni"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Surname"
 msgstr "Mbiemër"
 
@@ -507,7 +470,16 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr "Kopjoje në të papastër"
 
+msgid "Logout"
+msgstr "Dilni"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
+msgstr ""
+
+msgid "Select the context of your report:"
 msgstr ""
 
 msgid "Before proceeding, please set a new password."
@@ -736,14 +708,8 @@ msgstr "Pyetje për të kërkuar informatorë të mundshëm"
 msgid "Whistleblowing button"
 msgstr "Butoni i Informimit"
 
-msgid "Enable disclaimer"
-msgstr "Aktivizo mohimin"
-
-msgid "Title"
-msgstr "Titulli"
-
-msgid "Text"
-msgstr "Tekst"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "Fundfaqja"
@@ -1062,6 +1028,9 @@ msgstr "Mbizotërim i shabllonit"
 msgid "Phone number"
 msgstr "Numri i telefonit"
 
+msgid "Text"
+msgstr "Tekst"
+
 msgid "Checkbox label"
 msgstr "Emërtimi i kutisë shënjuese"
 
@@ -1076,18 +1045,6 @@ msgstr "Audio"
 
 msgid "Video"
 msgstr "Video"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "Subject përgjigje shikimit të autorizimit të kujdestarisë"
-
-msgid "Text shown upon negative answer"
-msgstr "Teksti sipër tregon përgjigje negative"
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "konfirmim të menjëhershëm mbi pergjigje negative"
-
-msgid "Text shown upon confirmation"
-msgstr "Teksti sipër është konfirmues"
 
 msgid "Trigger conditions"
 msgstr "Kushtet e shkarkimit"
@@ -1157,6 +1114,9 @@ msgstr ""
 
 msgid "Enable terms of service"
 msgstr ""
+
+msgid "Title"
+msgstr "Titulli"
 
 msgid "Send an account activation link to the user."
 msgstr ""
@@ -1269,6 +1229,9 @@ msgstr "Ju lutemi kujdesuni që të gjitha të dhënat shoqëruese të hiqen si�
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""
 
+msgid "Close"
+msgstr "Mbylle"
+
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
@@ -1277,9 +1240,6 @@ msgstr ""
 
 msgid "Enable two factor authentication"
 msgstr ""
-
-msgid "Close"
-msgstr "Mbylle"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr ""
@@ -1345,6 +1305,18 @@ msgstr "Burimi mund të qaset vetëm përmes rrjetit Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Kërkesa për ngarkim e kalon kufirin e përmasës"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Submit"
+msgstr "Parashtroni"
 
 msgid "Validation of email address change in progress."
 msgstr ""
@@ -1435,9 +1407,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr ""
 
-msgid "Submit"
-msgstr "Parashtroni"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr ""
 
@@ -1511,9 +1480,6 @@ msgstr "përgjigjet e pyetësorit"
 msgid "Step"
 msgstr "Hap"
 
-msgid "Recipient list"
-msgstr "Lista marrësi"
-
 msgid "Status:"
 msgstr "Gjëndja"
 
@@ -1522,9 +1488,6 @@ msgstr ""
 
 msgid "Upload a file:"
 msgstr ""
-
-msgid "Logout"
-msgstr "Dilni"
 
 msgid "An update is available:"
 msgstr ""
@@ -1557,18 +1520,15 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Show"
-msgstr "Shfaqe"
-
-msgid "Hide"
-msgstr "Fshihe"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Qasja në identitetin e Whistleblower i është kërkuar të kujdestarit."
 
 msgid "Date of the request"
 msgstr "Data e kërkesës"
+
+msgid "Show"
+msgstr "Shfaqe"
 
 msgid "Congratulations!"
 msgstr "Urime!"
@@ -1607,9 +1567,6 @@ msgstr "E plotësuar"
 msgid "Invalid phone number"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr ""
-
 msgid "The answer is too short"
 msgstr ""
 
@@ -1638,9 +1595,6 @@ msgstr "Ju faleminderit!"
 
 msgid "Your report was successful."
 msgstr "Parashtrimi juaj ishte i suksesshëm."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
 
 msgid "Remember your receipt for this report."
 msgstr "Kujtojeni kodin e çelësit tuaj për këtë parashtrim."
@@ -1683,6 +1637,9 @@ msgstr ""
 
 msgid "The following steps have errors:"
 msgstr ""
+
+msgid "Hide"
+msgstr "Fshihe"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1732,32 +1689,14 @@ msgstr "Emri"
 msgid "Last name"
 msgstr "Mbiemri"
 
-msgid "Gender"
-msgstr "gjini"
-
-msgid "Male"
-msgstr "mashkull"
-
-msgid "Female"
-msgstr "femër"
-
-msgid "Other gender identity"
+msgid "Preferred contact method"
 msgstr ""
 
-msgid "Date of birth"
-msgstr "Data e lindjes"
+msgid "Other"
+msgstr "Tjetër"
 
-msgid "Place of birth"
-msgstr "Vendi i lindjes"
-
-msgid "Zip code / Postal code"
-msgstr "Kodi Zip / Postal code"
-
-msgid "Province"
-msgstr "krahinë"
-
-msgid "Country"
-msgstr "Vend"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Dear {RecipientName},"
@@ -1869,9 +1808,6 @@ msgid "Name: {Name}"
 msgstr ""
 
 msgid "Email: {Email}"
-msgstr ""
-
-msgid "Language: {Language}"
 msgstr ""
 
 msgid "New whistleblowing site registered"
@@ -2043,6 +1979,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr ""
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr ""
 
@@ -2064,9 +2008,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "Ata do të dëshironin që ju të përkushtoheshit veçanërisht ndaj informacionit dhe materialit që përmbahet këtu. Ju lutemi mos harroni që, në të mirë të interesit publik, shpesh informatorët e ekspozojnë veten ndaj një rreziku të madh.Kësisoj, materiali që ata ofrojnë me këtë sugjerim konfidencial duhet të konsiderohet me rëndësi të madhe."
-
-msgid "New report"
-msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr ""

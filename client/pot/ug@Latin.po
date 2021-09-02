@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uighur (Latin) (http://www.transifex.com/otf/globaleaks/language/ug@Latin/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,9 +30,6 @@ msgstr "Tékist ixtiyari"
 
 msgid "Advanced settings"
 msgstr "Aliy tengshekler"
-
-msgid "Questionnaire configuration"
-msgstr "Ray sinash seplime"
 
 msgid "Question templates"
 msgstr "Su’al qélipliri"
@@ -88,15 +85,6 @@ msgstr "Inkaslar"
 msgid "Messages"
 msgstr "Uchurlar"
 
-msgid "Select this recipient."
-msgstr "Bu tapshuriwalghuchini talla"
-
-msgid "Unselect this recipient."
-msgstr "Bu tapshuriwalghuchini tallima"
-
-msgid "This recipient cannot be deselected."
-msgstr "Bu tapshuriwalghuchini tallimasliqqa bolmaydu."
-
 msgid "Details"
 msgstr "Tepsilatlar"
 
@@ -126,9 +114,6 @@ msgstr "Yéngila"
 
 msgid "Context"
 msgstr "Kontékist"
-
-msgid "Private messages"
-msgstr "Shexsiy uchur"
 
 msgid "Preview"
 msgstr "Aldin kör"
@@ -170,12 +155,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "Ulanmingizning bixeterligi Tor ning mexpiyetlik we namsizliq kapaliti arqiling saqliniwatidu."
-
-msgid "vertical"
-msgstr "Tik"
-
-msgid "horizontal"
-msgstr "Toghrisigha"
 
 msgid "Number"
 msgstr "San"
@@ -237,9 +216,6 @@ msgstr "Telep halet"
 msgid "Custodian"
 msgstr "Saqlighuchi"
 
-msgid "Custodian of the identities"
-msgstr "Kimliklerning saqlighuchisi"
-
 msgid "Identity"
 msgstr "Kimlik"
 
@@ -282,9 +258,6 @@ msgstr "Pash qilghuchining kimlikini ziyaret qilishqa hoquq ber"
 msgid "Templates"
 msgstr "Qéliplar"
 
-msgid "HTTPS settings"
-msgstr "HTTPS tengshekliri"
-
 msgid "URL redirects"
 msgstr "URL qayta yéteklesh"
 
@@ -296,13 +269,6 @@ msgstr "Qalghan diska boshluqi"
 
 msgid "Last update"
 msgstr "Axirqi yéngilinishi"
-
-msgid "Custodian notification templates"
-msgstr "Saqlighuchi uqturush qélipliri"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "Bu ara yüz saqlighuchigha uqturush qilishqa ishlitilidighan élxet qélipini tengsheshke yol qoyidu."
 
 msgid "Disable notifications to administrators"
 msgstr "Bashqurghuchigha uqturush ewetishni chekle"
@@ -354,12 +320,6 @@ msgstr "Héchnime"
 
 msgid "Regular expression"
 msgstr "Muntizim ipade"
-
-msgid "Activate"
-msgstr "Aktipla"
-
-msgid "Disactivate"
-msgstr "Toxtat"
 
 msgid "Search"
 msgstr "Axturush"
@@ -432,6 +392,9 @@ msgstr "Yay"
 msgid "Select"
 msgstr "Talla"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Surname"
 msgstr "Famile"
 
@@ -503,8 +466,17 @@ msgstr "Muhim dep belge qoy"
 msgid "Copy to clipboard"
 msgstr ""
 
+msgid "Logout"
+msgstr "Tizimdin chiq"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
 msgstr "Bir doklat yolla"
+
+msgid "Select the context of your report:"
+msgstr "Doklatingizning mezmunini tallang:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Bir terep qilishtin burun, yéngi bir parol belgileng."
@@ -732,14 +704,8 @@ msgstr "Pash qilghuchi bolush mümkinchiligi bar kishilerdin sorilidighan su’a
 msgid "Whistleblowing button"
 msgstr "Pash qilish kunupkisi"
 
-msgid "Enable disclaimer"
-msgstr "Mes’uliyettin saqlinish bayanatini qozghat"
-
-msgid "Title"
-msgstr "Téma"
-
-msgid "Text"
-msgstr "Tékist"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "Bet asti"
@@ -1058,6 +1024,9 @@ msgstr "Qéliipning üstige yaz"
 msgid "Phone number"
 msgstr "Téléfon nomuri"
 
+msgid "Text"
+msgstr "Tékist"
+
 msgid "Checkbox label"
 msgstr "Testiq ramka belgisi"
 
@@ -1072,18 +1041,6 @@ msgstr "Ün"
 
 msgid "Video"
 msgstr "Sin"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "Saqlighuchi hoquqingiz boyiche köreleydighan téma jawabi"
-
-msgid "Text shown upon negative answer"
-msgstr "Selbiy jawabta körsitilidighan tékist"
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "Selbiy jawabqa jezmlesh köznigi körset"
-
-msgid "Text shown upon confirmation"
-msgstr "Jezimleshte körsitilidighan tékist"
 
 msgid "Trigger conditions"
 msgstr "Qozghitilish shertler"
@@ -1153,6 +1110,9 @@ msgstr "Ishletküchilerning tizimlitishigha ruxset qil"
 
 msgid "Enable terms of service"
 msgstr "Mulazimet shertlirini qozghat"
+
+msgid "Title"
+msgstr "Téma"
 
 msgid "Send an account activation link to the user."
 msgstr "Hésabat aktiplash ulanmisini ishletküchige ewet"
@@ -1265,6 +1225,9 @@ msgstr "Munasiwetlik barliq sanliq melumatlarnng menggülük öchürürilidighan
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Bu bir körsetme supa, buni heqiqiy yollanmilar üchün ishletmeng."
 
+msgid "Close"
+msgstr "Taqa"
+
 msgid "Install an authenticator app on your phone"
 msgstr "Télifoningizgha bir delilligüchi ep qachilang"
 
@@ -1273,9 +1236,6 @@ msgstr "QR kodini bu ep bilen tariting"
 
 msgid "Enable two factor authentication"
 msgstr "Ikki qedemlik toghrulashni qozghat"
-
-msgid "Close"
-msgstr "Taqa"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Dawam qilishtin burun bu yerdiki höjjetni estayidil oqung:"
@@ -1341,6 +1301,18 @@ msgstr "Menbeni peqet Tor tori bilenla ziyaret qilghili bolidu "
 
 msgid "The upload request exceeds the size limit"
 msgstr "Yüklime telipi chongluq chékidin éship ketti"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Biz sizge eng qisqa waqitta jawap qayturushqa tirishimiz."
+
+msgid "Submit"
+msgstr "Yolla"
 
 msgid "Validation of email address change in progress."
 msgstr "Élxet adrési özgertishni delillesh dawam qiliwatidu."
@@ -1431,9 +1403,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "Bu supigha téxiche HTTPS baghlinishliri seplenmeptu we shundaq bolghachqa peqet sinaq meqsitidila ishlitish kérek.  "
 
-msgid "Submit"
-msgstr "Yolla"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Tapshuriwalghuchilar sizning bir qoshumche ray sinashni toshquzishingizni telep qildi."
 
@@ -1507,9 +1476,6 @@ msgstr "Ray sinash jawabliri"
 msgid "Step"
 msgstr "Qedem"
 
-msgid "Recipient list"
-msgstr "Tapshuruwalghuchi tizimi"
-
 msgid "Status:"
 msgstr "Halet:"
 
@@ -1518,9 +1484,6 @@ msgstr "Höjjetler tapshuriwalghuchilar teripidin qoshup qoyuldi"
 
 msgid "Upload a file:"
 msgstr "Bir höjjet yükle:"
-
-msgid "Logout"
-msgstr "Tizimdin chiq"
 
 msgid "An update is available:"
 msgstr "Bir yéngilanma bar:"
@@ -1553,18 +1516,15 @@ msgstr "Parol qayta seplesh jeryanini tamamlash üchün shifirlen’gen eslige k
 msgid "Password reset requested."
 msgstr "Parolingizni qayta seplesh telep qilindi."
 
-msgid "Show"
-msgstr "Körset"
-
-msgid "Hide"
-msgstr "Yoshur"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Saqlighuchi pash qilghuchining kimligini ziyaret qilishni telep qildi."
 
 msgid "Date of the request"
 msgstr "Telep qilghan chésla"
+
+msgid "Show"
+msgstr "Körset"
 
 msgid "Congratulations!"
 msgstr "Tebrikleymiz!"
@@ -1603,9 +1563,6 @@ msgstr "Tamam"
 msgid "Invalid phone number"
 msgstr "Inawetsiz téléfon nomuri"
 
-msgid "Select the context of your report:"
-msgstr "Doklatingizning mezmunini tallang:"
-
 msgid "The answer is too short"
 msgstr "Jawap bek qisqa"
 
@@ -1634,9 +1591,6 @@ msgstr "Rehmet sizge!"
 
 msgid "Your report was successful."
 msgstr "Doklatingiz muweppiqiyetlik boldi."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Biz sizge eng qisqa waqitta jawap qayturushqa tirishimiz."
 
 msgid "Remember your receipt for this report."
 msgstr "Bu doklatning talonini ésingizde tutung."
@@ -1679,6 +1633,9 @@ msgstr "Höjjet(ler)ning yüklinip bolishini saqlawatidu."
 
 msgid "The following steps have errors:"
 msgstr "Töwendiki qedemlerde xataliq bar:"
+
+msgid "Hide"
+msgstr "Yoshur"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1728,32 +1685,14 @@ msgstr "Ismi"
 msgid "Last name"
 msgstr "Familisi"
 
-msgid "Gender"
-msgstr "Jinsi"
+msgid "Preferred contact method"
+msgstr ""
 
-msgid "Male"
-msgstr "Er"
+msgid "Other"
+msgstr "Bashqa"
 
-msgid "Female"
-msgstr "Ayal"
-
-msgid "Other gender identity"
-msgstr "Bashqa jinsiyeti"
-
-msgid "Date of birth"
-msgstr "Tughulghan küni"
-
-msgid "Place of birth"
-msgstr "Tughulghan yéri"
-
-msgid "Zip code / Postal code"
-msgstr "Pochta nomuri"
-
-msgid "Province"
-msgstr "Ölke"
-
-msgid "Country"
-msgstr "Nahiye"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "‏Qedirlik {RecipientName},"
@@ -1866,9 +1805,6 @@ msgstr "Nami: {Name}"
 
 msgid "Email: {Email}"
 msgstr "Élxet: {Email}"
-
-msgid "Language: {Language}"
-msgstr "Tili: {Language}"
 
 msgid "New whistleblowing site registered"
 msgstr "Yéngi pash qilish békiti tizimlatti"
@@ -2039,6 +1975,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "Yumshaq détalni yéngilash körsetmisi üchün, bu yerdiki höjjetlerdin paydilining:  {UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr "Yéngi doklat"
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Eng burunqi sürük waqti: {EarliestExpirationDate}."
 
@@ -2060,9 +2004,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "Bu yerdiki uchurlar we matériyallargha alahide ehmiyet bérishingiz telep qilinidu. ésingizde bolsunki , pash qilghuchilar köpinche omumning menpe’eti üchün chong xeterge tewekkül qilidu. Shunga bu doklatta teminlen’gen matériyallarni intayin muhim, dep qarilishi kérek."
-
-msgid "New report"
-msgstr "Yéngi doklat"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Bu élxet sizge bir mewjut doklatning yéngilan’ghanliqini uqturush üchündur."

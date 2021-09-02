@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-27 06:31+0000\n"
-"Last-Translator: vargaviktor <viktor.varga@gmail.com>\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -48,9 +48,6 @@ msgstr "Szöveg testreszabás"
 
 msgid "Advanced settings"
 msgstr "Haladó beállítások"
-
-msgid "Questionnaire configuration"
-msgstr "Kérdőív konfiguráció"
 
 msgid "Question templates"
 msgstr "Kérdés sablonok"
@@ -106,15 +103,6 @@ msgstr "Hozzászólások"
 msgid "Messages"
 msgstr "Üzenetek"
 
-msgid "Select this recipient."
-msgstr "Címzett kiválasztása."
-
-msgid "Unselect this recipient."
-msgstr "Címzett kiválasztásának törlése."
-
-msgid "This recipient cannot be deselected."
-msgstr "Ezt a címzettet nem lehet törölni a kiválasztásból."
-
 msgid "Details"
 msgstr "Részletek"
 
@@ -144,9 +132,6 @@ msgstr "Frissítés"
 
 msgid "Context"
 msgstr "Kontextus"
-
-msgid "Private messages"
-msgstr "Személyes üzenetek"
 
 msgid "Preview"
 msgstr "Előnézet"
@@ -188,12 +173,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "A kapcsolat Tor-ral védett, így biztosítja a titkosságot és az anonimitást."
-
-msgid "vertical"
-msgstr "függőleges"
-
-msgid "horizontal"
-msgstr "vízszintes"
 
 msgid "Number"
 msgstr "Szám"
@@ -255,9 +234,6 @@ msgstr "Állapot kérése"
 msgid "Custodian"
 msgstr "Gondnok"
 
-msgid "Custodian of the identities"
-msgstr "Az identitások gondnoka"
-
 msgid "Identity"
 msgstr "Identitás"
 
@@ -300,9 +276,6 @@ msgstr "Hozzáférés engedélyezése a bejelentők identitásához"
 msgid "Templates"
 msgstr "Sablonok"
 
-msgid "HTTPS settings"
-msgstr "HTTPS beállítások"
-
 msgid "URL redirects"
 msgstr "Átirányítás"
 
@@ -314,13 +287,6 @@ msgstr "Elérhető lemezterület"
 
 msgid "Last update"
 msgstr "Utolsó frissítés"
-
-msgid "Custodian notification templates"
-msgstr "Gondnok értesítés sablonok"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "Ez a felület lehetővé teszi a kezelők értesítéséhez használt e-mail sablonok konfigurálását."
 
 msgid "Disable notifications to administrators"
 msgstr "Értesítések letiltása az adminisztrátoroknak"
@@ -372,12 +338,6 @@ msgstr "Semmi"
 
 msgid "Regular expression"
 msgstr "Reguláris kifejezés"
-
-msgid "Activate"
-msgstr "Aktiválás"
-
-msgid "Disactivate"
-msgstr "Deaktiválás"
 
 msgid "Search"
 msgstr "Keresés"
@@ -450,6 +410,9 @@ msgstr "Kinyit"
 msgid "Select"
 msgstr "Kiválaszt"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Surname"
 msgstr "Vezetéknév"
 
@@ -521,8 +484,17 @@ msgstr "Megjelölés fontosnak"
 msgid "Copy to clipboard"
 msgstr "Másolás vágólapra"
 
+msgid "Logout"
+msgstr "Kilépés"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
 msgstr "Jelentés beküldése"
+
+msgid "Select the context of your report:"
+msgstr "Válassza ki a beküldés környezetét:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Továblépés előtt kérjük, állítson be új jelszót"
@@ -750,14 +722,8 @@ msgstr "Kiszivárogtatás kérdés"
 msgid "Whistleblowing button"
 msgstr "Szivárogtatás gomb"
 
-msgid "Enable disclaimer"
-msgstr "Nyilatkozat engedélyezése"
-
-msgid "Title"
-msgstr "Cím"
-
-msgid "Text"
-msgstr "Szöveg"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "Élőláb"
@@ -1076,6 +1042,9 @@ msgstr "Template felülírása"
 msgid "Phone number"
 msgstr "Telefonszám"
 
+msgid "Text"
+msgstr "Szöveg"
+
 msgid "Checkbox label"
 msgstr "Checkbox felirata"
 
@@ -1090,18 +1059,6 @@ msgstr "hanganyag"
 
 msgid "Video"
 msgstr "videó"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "Tárgy válasz láthatósága gondnok jogosultságnak"
-
-msgid "Text shown upon negative answer"
-msgstr "Megjelenítendő szöveg negatív válasz esetén"
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "Azonnali értesítés negatív válaszról"
-
-msgid "Text shown upon confirmation"
-msgstr "Megjelenítendő szöveg megerősítés esetén"
 
 msgid "Trigger conditions"
 msgstr "Trigger feltételek"
@@ -1171,6 +1128,9 @@ msgstr "Felhasználók feliratkozásának engedélyezése"
 
 msgid "Enable terms of service"
 msgstr "Felhasználási feltételek engedélyezése"
+
+msgid "Title"
+msgstr "Cím"
 
 msgid "Send an account activation link to the user."
 msgstr "Felhasználói aktivációs link küldése"
@@ -1283,6 +1243,9 @@ msgstr "Kérjük figyeljen arra, hogy minden kapcsolódó adat véglegesen törl
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Ez egy demó telepítés, kérjük ne használja valódi beküldésekre."
 
+msgid "Close"
+msgstr "Bezár"
+
 msgid "Install an authenticator app on your phone"
 msgstr "Telepítsen egy authentikátor appot a telefonjára"
 
@@ -1291,9 +1254,6 @@ msgstr "A QR kód beolvasása az app-pal"
 
 msgid "Enable two factor authentication"
 msgstr "Kétfaktoros azonosítás engedélyezése"
-
-msgid "Close"
-msgstr "Bezár"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Mielőtt végrehajtja, kérjük olvassa el figyelmesen a dokumentációt itt:"
@@ -1359,6 +1319,18 @@ msgstr "A forrást csak a Tor hálózatán keresztül lehet elérni"
 
 msgid "The upload request exceeds the size limit"
 msgstr "A feltöltés meghadja a megengedett limitet"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Kapcsolatba lépünk Önnel, amint lehetséges."
+
+msgid "Submit"
+msgstr "Küldés"
 
 msgid "Validation of email address change in progress."
 msgstr "Az e-mailcím változtatás ellenőrzése folyamatban"
@@ -1449,9 +1421,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "A platform továbbra sem konfigurált HTTPS kapcsolatokra, így kizárólag teszt célokra javasolt a használata."
 
-msgid "Submit"
-msgstr "Küldés"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "A címzettek igényelték, hogy töltsön ki egy további kérdőívet."
 
@@ -1525,9 +1494,6 @@ msgstr "Kérdőív válaszok"
 msgid "Step"
 msgstr "Lépés"
 
-msgid "Recipient list"
-msgstr "Címzett lista"
-
 msgid "Status:"
 msgstr "Állapot:"
 
@@ -1536,9 +1502,6 @@ msgstr "Címzettek csatolt fájljai"
 
 msgid "Upload a file:"
 msgstr "Fájl feltöltése:"
-
-msgid "Logout"
-msgstr "Kilépés"
 
 msgid "An update is available:"
 msgstr "Frissítés elérhető:"
@@ -1571,18 +1534,15 @@ msgstr "Írja be a titkosítás helyreállító kulcsot, hogy végre hajthassa a
 msgid "Password reset requested."
 msgstr "Új jelszó kérése megtörtént."
 
-msgid "Show"
-msgstr "Mutat"
-
-msgid "Hide"
-msgstr "Elrejt"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "A bejelentő identitásához való hozzáférés kérelmezve a gondnoknak."
 
 msgid "Date of the request"
 msgstr "A kérés dátuma"
+
+msgid "Show"
+msgstr "Mutat"
 
 msgid "Congratulations!"
 msgstr "Gratulálunk!"
@@ -1621,9 +1581,6 @@ msgstr "Kész"
 msgid "Invalid phone number"
 msgstr "Érvénytelen telefonszám"
 
-msgid "Select the context of your report:"
-msgstr "Válassza ki a beküldés környezetét:"
-
 msgid "The answer is too short"
 msgstr "A válasz túl rövid."
 
@@ -1652,9 +1609,6 @@ msgstr "Köszönjük!"
 
 msgid "Your report was successful."
 msgstr "Beküldése sikeres volt."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Kapcsolatba lépünk Önnel, amint lehetséges."
 
 msgid "Remember your receipt for this report."
 msgstr "Jegyezze meg a visszaigazolást erről a bejelentésről."
@@ -1697,6 +1651,9 @@ msgstr "Várakozás a fájl(ok) feltöltésére."
 
 msgid "The following steps have errors:"
 msgstr "A következő lépések tartalmaztak hibákat:"
+
+msgid "Hide"
+msgstr "Elrejt"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1746,32 +1703,14 @@ msgstr "Keresztnév"
 msgid "Last name"
 msgstr "Vezetéknév"
 
-msgid "Gender"
-msgstr "Nem"
+msgid "Preferred contact method"
+msgstr "Preferált kapcsolatfelvételi mód"
 
-msgid "Male"
-msgstr "Férfi"
+msgid "Other"
+msgstr "Egyéb"
 
-msgid "Female"
-msgstr "Nő"
-
-msgid "Other gender identity"
-msgstr "Egyéb nemi identitás"
-
-msgid "Date of birth"
-msgstr "Születési idő"
-
-msgid "Place of birth"
-msgstr "Születési hely"
-
-msgid "Zip code / Postal code"
-msgstr "Irányítószám"
-
-msgid "Province"
-msgstr "Tartomány"
-
-msgid "Country"
-msgstr "Ország"
+msgid "I prefer to be contacted via this platform only"
+msgstr "Kizárólag ezen a platformon keresztüli kapcsolatfelvételt preferálom"
 
 msgid "Dear {RecipientName},"
 msgstr "Kedves {RecipientName},"
@@ -1884,9 +1823,6 @@ msgstr "Név: {Name}"
 
 msgid "Email: {Email}"
 msgstr "E-mailcím: {Email}"
-
-msgid "Language: {Language}"
-msgstr "Nyelv: {Language}"
 
 msgid "New whistleblowing site registered"
 msgstr "Új közérdekű bejelentő weboldal regisztrációja"
@@ -2057,6 +1993,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "Útmutatásért a frissítésekhez tekintse meg a kézikönyvet: {UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr "Új jelentés"
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "A legkorábbi lejárati dátum: {EarliestExpirationDate}."
 
@@ -2078,9 +2022,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "Önt arra kérték, hogy kifejezett figyelemmel tekintsen az információra és anyagra, ami benne található, Kérjük tartsa észben, hogy egy bejelentő többnyire nagy rizikónak teszi ki magát a publikum figyelme tekintetében. Ezért az anyag, ami ebben a jelentésben találhat magas fontossággal kezelendő."
-
-msgid "New report"
-msgstr "Új jelentés"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Ez egy értesítő email arról, hogy egy már létező jelentés frissítve lett."

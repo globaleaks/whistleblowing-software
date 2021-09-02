@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bosnian (http://www.transifex.com/otf/globaleaks/language/bs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,9 +34,6 @@ msgstr "Prilagođavanje teksta"
 
 msgid "Advanced settings"
 msgstr "Napredne postavke"
-
-msgid "Questionnaire configuration"
-msgstr "Konfiguracija upitnika"
 
 msgid "Question templates"
 msgstr "Predlošci za pitanja"
@@ -92,15 +89,6 @@ msgstr "Komentari"
 msgid "Messages"
 msgstr "Poruke"
 
-msgid "Select this recipient."
-msgstr "Odaberite ovog primaoca."
-
-msgid "Unselect this recipient."
-msgstr "Deselektujete ovog primaoca."
-
-msgid "This recipient cannot be deselected."
-msgstr "Ovaj primalac se ne može deselektovati"
-
 msgid "Details"
 msgstr "Detalji"
 
@@ -130,9 +118,6 @@ msgstr "Osvježi"
 
 msgid "Context"
 msgstr "Kontekst"
-
-msgid "Private messages"
-msgstr "Privatne poruke"
 
 msgid "Preview"
 msgstr "Pregled"
@@ -174,12 +159,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "Povjerljivost i anonimnost povezivanja osigurana je putem Tor web preglednika."
-
-msgid "vertical"
-msgstr "vertikalno"
-
-msgid "horizontal"
-msgstr "horizontalno"
 
 msgid "Number"
 msgstr "Broj"
@@ -241,9 +220,6 @@ msgstr "Traži status"
 msgid "Custodian"
 msgstr "Odgovorna osoba"
 
-msgid "Custodian of the identities"
-msgstr "Osoba odgovorna za identitete"
-
 msgid "Identity"
 msgstr "Identitet"
 
@@ -286,9 +262,6 @@ msgstr "Ovlasti pristup identitetu zviždača"
 msgid "Templates"
 msgstr "Predlošci"
 
-msgid "HTTPS settings"
-msgstr "Postavke HTTPS"
-
 msgid "URL redirects"
 msgstr "URL preusmjerava"
 
@@ -300,13 +273,6 @@ msgstr "Raspoloživi prostor na disku"
 
 msgid "Last update"
 msgstr "Posljednje ažuriranje"
-
-msgid "Custodian notification templates"
-msgstr "Predložak obavijesti odgovornoj osobi"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "Ovaj interface omogućava konfiguriranje e-mail predložaka korištenih za obavještavanje odgovornih osoba."
 
 msgid "Disable notifications to administrators"
 msgstr "Onemogući obavijesti za administratore"
@@ -358,12 +324,6 @@ msgstr "Ništa"
 
 msgid "Regular expression"
 msgstr "Regular expression"
-
-msgid "Activate"
-msgstr "Aktivirajte"
-
-msgid "Disactivate"
-msgstr "Deaktivirajte"
 
 msgid "Search"
 msgstr "Pretraga"
@@ -436,6 +396,9 @@ msgstr "Expand"
 msgid "Select"
 msgstr "Odaberi"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Surname"
 msgstr "Prezime"
 
@@ -507,8 +470,17 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr ""
 
+msgid "Logout"
+msgstr "Odjava"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
+
+msgid "Select the context of your report:"
+msgstr "Odaberite kontekst vaše prijave"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Prije nastavka, molimo vas da odaberete novu lozinku"
@@ -736,14 +708,8 @@ msgstr "Pitanje koje se upućuje potencijalnim zviždačima"
 msgid "Whistleblowing button"
 msgstr "Dugme za zviždačevu prijavu"
 
-msgid "Enable disclaimer"
-msgstr "Omogućite izjavu o odricanju od odgovornosti"
-
-msgid "Title"
-msgstr "Naslov"
-
-msgid "Text"
-msgstr "Tekst"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "Footer"
@@ -1062,6 +1028,9 @@ msgstr "Izmjena na predlošku"
 msgid "Phone number"
 msgstr "Telefonski broj"
 
+msgid "Text"
+msgstr "Tekst"
+
 msgid "Checkbox label"
 msgstr "Oznaka kućice za odabir"
 
@@ -1076,18 +1045,6 @@ msgstr "Audio"
 
 msgid "Video"
 msgstr "Video"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "Vidljivost odgovora osobi odgovornoj za odobrenje"
-
-msgid "Text shown upon negative answer"
-msgstr "Tekst koji se prikazuje u slučaju negativnog odgovora"
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "Prompt potvrda na negativan odgovor"
-
-msgid "Text shown upon confirmation"
-msgstr "Tekst koji se prikazuje nakon potvrde"
 
 msgid "Trigger conditions"
 msgstr "Uslovi za pokretanje akcije"
@@ -1157,6 +1114,9 @@ msgstr "Dozvolite korisnicima da se prijave"
 
 msgid "Enable terms of service"
 msgstr "Omogućite uslove korištenja"
+
+msgid "Title"
+msgstr "Naslov"
 
 msgid "Send an account activation link to the user."
 msgstr "Pošaljite korisniku link za aktivaciju računa."
@@ -1269,6 +1229,9 @@ msgstr "Obratite pažnju na to da će svi povezani podaci biti trajno obrisani."
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Ovo je probna platforma, molimo vas da je ne koristite za stvarne prijave."
 
+msgid "Close"
+msgstr "Zatvorite"
+
 msgid "Install an authenticator app on your phone"
 msgstr "Instalirajte aplikaciju za provjeru autentičnosti na svoj mobitel"
 
@@ -1277,9 +1240,6 @@ msgstr "Skenirajte QR kod koristeći aplikaciju"
 
 msgid "Enable two factor authentication"
 msgstr "Omogući dvostruku provjeru autentičnosti"
-
-msgid "Close"
-msgstr "Zatvorite"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Prije nego nastavite pažljivo pročitajte dokumentaciju na:"
@@ -1345,6 +1305,18 @@ msgstr "Ovom resursu je moguće pristupiti samo preko Tor mreže"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Zahtjev za upload premašuje dozvoljenu veličinu"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Kontaktirat ćemo vas što je prije moguće."
+
+msgid "Submit"
+msgstr "Podnesi"
 
 msgid "Validation of email address change in progress."
 msgstr "Odobravanje promjene e-mail adrese u toku"
@@ -1435,9 +1407,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "Platforma još uvijek nema konfigurirani HTTPS i može se koristiti samo za testiranje."
 
-msgid "Submit"
-msgstr "Podnesi"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Primaoci će biti zamoljeni da ispune dodatni upitnik."
 
@@ -1511,9 +1480,6 @@ msgstr "Odgovori na upitnik"
 msgid "Step"
 msgstr "Korak"
 
-msgid "Recipient list"
-msgstr "Lista primalaca"
-
 msgid "Status:"
 msgstr "Status:"
 
@@ -1522,9 +1488,6 @@ msgstr "Datoteke koje je priložio primalac"
 
 msgid "Upload a file:"
 msgstr "Uploadajte datoteku:"
-
-msgid "Logout"
-msgstr "Odjava"
 
 msgid "An update is available:"
 msgstr "Ažuriranje je dostupno"
@@ -1557,18 +1520,15 @@ msgstr "Unesite svoj ključ za obnovu enkripcije da biste završili proces reset
 msgid "Password reset requested."
 msgstr "Zahtijeva se reset lozinke."
 
-msgid "Show"
-msgstr "Prikažite"
-
-msgid "Hide"
-msgstr "Sakrijte"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Pristup identitetu zviždača je zatražen od odgovorne osobei."
 
 msgid "Date of the request"
 msgstr "Datum zahtjeva"
+
+msgid "Show"
+msgstr "Prikažite"
 
 msgid "Congratulations!"
 msgstr "Čestitamo!"
@@ -1607,9 +1567,6 @@ msgstr "Završeno"
 msgid "Invalid phone number"
 msgstr "Broj telefona nije važeći"
 
-msgid "Select the context of your report:"
-msgstr "Odaberite kontekst vaše prijave"
-
 msgid "The answer is too short"
 msgstr ""
 
@@ -1638,9 +1595,6 @@ msgstr "Hvala vam!"
 
 msgid "Your report was successful."
 msgstr "Vaša prijava je uspješna!"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Kontaktirat ćemo vas što je prije moguće."
 
 msgid "Remember your receipt for this report."
 msgstr "Zapamtite potvrde za ovu prijavu."
@@ -1683,6 +1637,9 @@ msgstr "Čekanje da se uploadaju datoteke."
 
 msgid "The following steps have errors:"
 msgstr "Naredni koraci imaju greške:"
+
+msgid "Hide"
+msgstr "Sakrijte"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1732,32 +1689,14 @@ msgstr "Ime"
 msgid "Last name"
 msgstr "Prezime"
 
-msgid "Gender"
-msgstr "Spol"
+msgid "Preferred contact method"
+msgstr ""
 
-msgid "Male"
-msgstr "Muški"
+msgid "Other"
+msgstr "Ostalo"
 
-msgid "Female"
-msgstr "Ženski"
-
-msgid "Other gender identity"
-msgstr "Drugi rodni identitet"
-
-msgid "Date of birth"
-msgstr "Datum rođenja"
-
-msgid "Place of birth"
-msgstr "Mjesto rođenja"
-
-msgid "Zip code / Postal code"
-msgstr "Poštanski broj"
-
-msgid "Province"
-msgstr "Pokrajina"
-
-msgid "Country"
-msgstr "zemlja"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Dragi {RecipientName},"
@@ -1870,9 +1809,6 @@ msgstr "Ime: {Name}"
 
 msgid "Email: {Email}"
 msgstr "Email: {Email}"
-
-msgid "Language: {Language}"
-msgstr "Jezik: {Language}"
 
 msgid "New whistleblowing site registered"
 msgstr "Registracija novog sajta za zviždače"
@@ -2043,6 +1979,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "Za upute za ažuriranje softvera, molimo vas da konsultirate dokumentaciju na: {UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr "Nova prijava"
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Najraniji datum isteka je {EarliestExpirationDate}."
 
@@ -2064,9 +2008,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "Od vas se traži da obratite posebnu pažnju na informacije i materijale koje se tu nalaze. Molimo vas da imate na umu da se zviždači često izlažu velikom ličnom riziku u interesu javnosti. Stoga trebate smatrati da su materijal koji su dostavljeni u ovoj prijavi od velike važnosti."
-
-msgid "New report"
-msgstr "Nova prijava"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr ""

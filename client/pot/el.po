@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,9 +43,6 @@ msgstr "Παραμετροποίηση κειμένου"
 
 msgid "Advanced settings"
 msgstr "Ρυθμίσεις για προχωρημένους"
-
-msgid "Questionnaire configuration"
-msgstr "Διαμόρφωση ερωτηματολογίου"
 
 msgid "Question templates"
 msgstr "Πρότυπα ερωτήσεων"
@@ -101,15 +98,6 @@ msgstr "Σχόλια"
 msgid "Messages"
 msgstr "Μηνύματα"
 
-msgid "Select this recipient."
-msgstr "Επιλογή αυτού του παραλήπτη."
-
-msgid "Unselect this recipient."
-msgstr "Αποεπιλογή αυτού του παραλήπτη."
-
-msgid "This recipient cannot be deselected."
-msgstr "Αυτός ο παραλήπτης δεν μπορεί να αποεπιλεχθεί"
-
 msgid "Details"
 msgstr "Λεπτομέρειες"
 
@@ -139,9 +127,6 @@ msgstr "Ανανέωση"
 
 msgid "Context"
 msgstr "Θεματική ενότητα"
-
-msgid "Private messages"
-msgstr "Προσωπικά μηνύματα"
 
 msgid "Preview"
 msgstr "Προεπισκόπηση"
@@ -183,12 +168,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "Η σύνδεση έχει ασφαλιστεί με Tor διασφαλίζοντας εμπιστευτικότητα και ανωνυμία."
-
-msgid "vertical"
-msgstr "κάθετα"
-
-msgid "horizontal"
-msgstr "Οριζόντια"
 
 msgid "Number"
 msgstr "Αριθμός"
@@ -250,9 +229,6 @@ msgstr "Κατάσταση αιτήματος"
 msgid "Custodian"
 msgstr "Θεματοφύλακας"
 
-msgid "Custodian of the identities"
-msgstr "Θεματοφύλακας των ταυτοτήτων"
-
 msgid "Identity"
 msgstr "Ταυτότητα"
 
@@ -295,9 +271,6 @@ msgstr "Να εγκριθεί η πρόσβαση στην ταυτότητα τ
 msgid "Templates"
 msgstr "Πρότυπα"
 
-msgid "HTTPS settings"
-msgstr "Ρυθμίσεις HTTPS"
-
 msgid "URL redirects"
 msgstr "Ανακατεύθυνση URL"
 
@@ -309,13 +282,6 @@ msgstr "Διαθέσιμος χώρος στο δίσκο"
 
 msgid "Last update"
 msgstr "Τελευταία ενημέρωση"
-
-msgid "Custodian notification templates"
-msgstr "Πρότυπα ειδοποίησης θεματοφύλακα"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "Αυτή η διεπαφή επιτρέπει τη διαμόρφωση προτύπων ηλεκτρονικού ταχυδρομείου που θα χρησιμοποιούνται για να ειδοποιούνται οι θεματοφύλακες."
 
 msgid "Disable notifications to administrators"
 msgstr "Απενεργοποίηση ειδοποιήσεων στους διαχειριστές"
@@ -367,12 +333,6 @@ msgstr "Κανένα"
 
 msgid "Regular expression"
 msgstr "Κανονική έκφραση"
-
-msgid "Activate"
-msgstr "Ενεργοποίηση"
-
-msgid "Disactivate"
-msgstr "Απενεργοποιώ"
 
 msgid "Search"
 msgstr "Αναζήτηση"
@@ -445,6 +405,9 @@ msgstr "Ανάπτυξη"
 msgid "Select"
 msgstr "Επιλογή"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Surname"
 msgstr "Επώνυμο"
 
@@ -516,8 +479,17 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr "Αντιγραφή στο πρόχειρο"
 
+msgid "Logout"
+msgstr "Αποσύνδεση"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
 msgstr "Καταχωρήστε μια αναφορά"
+
+msgid "Select the context of your report:"
+msgstr "Επιλέξτε τη θεματική ενότητα της αναφοράς σας:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Πριν συνεχίσετε, παρακαλώ ορίστε έναν νέο κωδικό πρόσβασης."
@@ -745,14 +717,8 @@ msgstr "Ερώτηση για την επιδίωξη πιθανών προσώ�
 msgid "Whistleblowing button"
 msgstr "Πλήκτρο πληροφοριοδότησης"
 
-msgid "Enable disclaimer"
-msgstr "Ενεργοποίηση αποποίησης ευθυνών"
-
-msgid "Title"
-msgstr "Τίτλος"
-
-msgid "Text"
-msgstr "Κείμενο"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "Υποσέλιδο"
@@ -1071,6 +1037,9 @@ msgstr "Παράκαμψη προτύπου"
 msgid "Phone number"
 msgstr "Αριθμός τηλεφώνου"
 
+msgid "Text"
+msgstr "Κείμενο"
+
 msgid "Checkbox label"
 msgstr "Ετικέτα κουτιού"
 
@@ -1085,18 +1054,6 @@ msgstr "Ηχητικό"
 
 msgid "Video"
 msgstr "Βίντεο"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "Να υπόκειται η ορατότητα της απάντησης στην έγκριση του θεματοφύλακα"
-
-msgid "Text shown upon negative answer"
-msgstr "Κείμενο που εμφανίζεται με την αρνητική απάντηση"
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "Να ζητείται επιβεβαίωση κατά την αρνητική απάντηση"
-
-msgid "Text shown upon confirmation"
-msgstr "Κείμενο που εμφανίζεται με την επιβεβαίωση"
 
 msgid "Trigger conditions"
 msgstr "Συνθήκες ενεργοποίησης"
@@ -1166,6 +1123,9 @@ msgstr "Να επιτρέπεται σε χρήστες να εγγράφοντ�
 
 msgid "Enable terms of service"
 msgstr "Ενεργοποίηση όρων χρήσης"
+
+msgid "Title"
+msgstr "Τίτλος"
 
 msgid "Send an account activation link to the user."
 msgstr "Αποστολή συνδέσμου ενεργοποίησης λογαριασμού στον χρήστη"
@@ -1278,6 +1238,9 @@ msgstr "Παρακαλούμε σημειώστε ότι όλα τα σχετι�
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Ο δίαυλος αναφορών είναι δοκιμαστικός, παρακαλούμε μην την χρησιμοποιείτε για πραγματικές αναφορές."
 
+msgid "Close"
+msgstr "Κλείσιμο"
+
 msgid "Install an authenticator app on your phone"
 msgstr "Εγκαταστήστε μια εφαρμογή αυθεντικοποίησης στο τηλέφωνό σας"
 
@@ -1286,9 +1249,6 @@ msgstr "Σκανάρετε τον κωδικό QR με την εφαρμογή"
 
 msgid "Enable two factor authentication"
 msgstr "Ενεργοποίηση πιστοποίησης δυο παραγόντων"
-
-msgid "Close"
-msgstr "Κλείσιμο"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Πριν προχωρήσετε παρακαλούμε διαβάστε προσεχτικά την τεκμηρίωση εδώ:"
@@ -1354,6 +1314,18 @@ msgstr "Το περιεχόμενο είναι προσβάσιμο μόνο μ�
 
 msgid "The upload request exceeds the size limit"
 msgstr "Το αίτημα ανεβάσματος ξεπερνά τα όρια μεγέθους"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr "Ευχαριστώ. "
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Θα επικοινωνήσουμε μαζί σας το συντομότερο δυνατόν"
+
+msgid "Submit"
+msgstr "Καταχώρηση"
 
 msgid "Validation of email address change in progress."
 msgstr "Η επικύρωση της αλλαγής διεύθυνσης email είναι σε εξέλιξη."
@@ -1444,9 +1416,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "Η πλατφόρμα δεν είναι ακόμα παραμετροποιημένη για συνδέσεις μέσω HTTPS οπότε θα πρέπει να χρησιμοποιείται μόνο για δοκιμαστικούς λόγους."
 
-msgid "Submit"
-msgstr "Καταχώρηση"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Οι παραλήπτες σας ζητούν να συμπληρώσετε ένα επιπρόσθετο ερωτηματολόγιο"
 
@@ -1520,9 +1489,6 @@ msgstr "Απαντήσεις ερωτηματολογίου"
 msgid "Step"
 msgstr "Βήμα"
 
-msgid "Recipient list"
-msgstr "Λίστα παραληπτών"
-
 msgid "Status:"
 msgstr "Κατάσταση:"
 
@@ -1531,9 +1497,6 @@ msgstr "Συνημμένα αρχεία από τους παραλήπτες"
 
 msgid "Upload a file:"
 msgstr "Ανεβάστε ένα αρχείο:"
-
-msgid "Logout"
-msgstr "Αποσύνδεση"
 
 msgid "An update is available:"
 msgstr "Υπάρχει μια διαθέσιμη ενημέρωση:"
@@ -1566,18 +1529,15 @@ msgstr "Εισάγετε το κρυπτογραφημένο κλειδί ανά
 msgid "Password reset requested."
 msgstr "Η επαναφορά του κωδικού πρόσβασης αιτήθηκε."
 
-msgid "Show"
-msgstr "Εμφάνιση"
-
-msgid "Hide"
-msgstr "Απόκρυψη"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Η πρόσβαση στην ταυτότητα του προσώπου που υποβάλλει την αναφορά έχει αιτηθεί στο θεματοφύλακα."
 
 msgid "Date of the request"
 msgstr "Ημερομηνία υποβολής της αίτησης"
+
+msgid "Show"
+msgstr "Εμφάνιση"
 
 msgid "Congratulations!"
 msgstr "Συγχαρητήρια!"
@@ -1616,9 +1576,6 @@ msgstr "Ολοκλήρωση"
 msgid "Invalid phone number"
 msgstr "Μη έγκυρος αριθμός τηλεφώνου"
 
-msgid "Select the context of your report:"
-msgstr "Επιλέξτε τη θεματική ενότητα της αναφοράς σας:"
-
 msgid "The answer is too short"
 msgstr "Η απάντηση είναι πολυ μικρή"
 
@@ -1647,9 +1604,6 @@ msgstr "Ευχαριστούμε!"
 
 msgid "Your report was successful."
 msgstr "Η αναφορά σας ήταν επιτυχής."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Θα επικοινωνήσουμε μαζί σας το συντομότερο δυνατόν"
 
 msgid "Remember your receipt for this report."
 msgstr "Θυμηθείτε το αποδεικτικό για αυτή την καταχώρηση"
@@ -1692,6 +1646,9 @@ msgstr "Αναμονή για την ολοκλήρωση ανεβάσματος
 
 msgid "The following steps have errors:"
 msgstr "Τα παρακάτω βήματα έχουν σφάλματα:"
+
+msgid "Hide"
+msgstr "Απόκρυψη"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1741,32 +1698,14 @@ msgstr "Όνομα"
 msgid "Last name"
 msgstr "Επώνυμο"
 
-msgid "Gender"
-msgstr "Φύλο"
+msgid "Preferred contact method"
+msgstr ""
 
-msgid "Male"
-msgstr "Άνδρας"
+msgid "Other"
+msgstr "Άλλο"
 
-msgid "Female"
-msgstr "Γυναίκα"
-
-msgid "Other gender identity"
-msgstr "Άλλη ταυτότητα φύλου"
-
-msgid "Date of birth"
-msgstr "Ημερομηνία γέννησης"
-
-msgid "Place of birth"
-msgstr "Τόπος γέννησης"
-
-msgid "Zip code / Postal code"
-msgstr "Ταχυδρομικός κώδικας"
-
-msgid "Province"
-msgstr "Νομός"
-
-msgid "Country"
-msgstr "Χώρα"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Αγαπητέ/ή {RecipientName},"
@@ -1879,9 +1818,6 @@ msgstr "Όνομα: {Name}"
 
 msgid "Email: {Email}"
 msgstr "Email: {Email}"
-
-msgid "Language: {Language}"
-msgstr "Γλώσσα: {Language}"
 
 msgid "New whistleblowing site registered"
 msgstr "Νέα εγγραφή διαύλου αναφορών"
@@ -2052,6 +1988,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "Για οδηγίες για την αναβάθμιση λογισμικού, παρακαλούμε ανατρέξτε στην τεκμηρίωση στο: {UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr "Νέα αναφορά"
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Η πιο σύντομη ημερομηνία λήξης είναι {EarliestExpirationDate}."
 
@@ -2073,9 +2017,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "Σας ζητούμε να δώσετε ιδιαίτερη προσοχή στις πληροφορίες και το υλικό που παρέχεται παρακάτω. Παρακαλούμε να έχετε υπόψιν ότι οι πληροφοριοδότες συχνά εκθέτουν τον εαυτό τους σε υψηλό προσωπικό κίνδυνο για το κοινό συμφέρον. Επομένως, το υλικό που παρέχεται στη συγκεκριμένη αναφορά θα πρέπει να θεωρείται υψηλής σημασίας."
-
-msgid "New report"
-msgstr "Νέα αναφορά"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Με αυτό το email σας ειδοποιούμε πως μια υπάρχουσα αναφορά ανανεώθηκε."

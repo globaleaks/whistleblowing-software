@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,9 +48,6 @@ msgstr "Textanpassning"
 
 msgid "Advanced settings"
 msgstr "Avancerade inställningar"
-
-msgid "Questionnaire configuration"
-msgstr "Formulärsinställningar"
 
 msgid "Question templates"
 msgstr "Formulärsmallar"
@@ -106,15 +103,6 @@ msgstr "Kommentarer"
 msgid "Messages"
 msgstr "Meddelanden"
 
-msgid "Select this recipient."
-msgstr "Välj denna mottagare."
-
-msgid "Unselect this recipient."
-msgstr "Avmarkera denna mottagare."
-
-msgid "This recipient cannot be deselected."
-msgstr "Denna mottagare kan inte väljas bort."
-
 msgid "Details"
 msgstr "Detaljer"
 
@@ -144,9 +132,6 @@ msgstr "Uppdatera"
 
 msgid "Context"
 msgstr "Kontext"
-
-msgid "Private messages"
-msgstr "Privata meddelanden"
 
 msgid "Preview"
 msgstr "Förhandsgranska"
@@ -188,12 +173,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "Anslutningen har säkrats med Tor, som garanterar sekretess och anonymitet."
-
-msgid "vertical"
-msgstr "vertikal"
-
-msgid "horizontal"
-msgstr "horisontell"
 
 msgid "Number"
 msgstr "Nummer"
@@ -255,9 +234,6 @@ msgstr "Begär status"
 msgid "Custodian"
 msgstr "Förvaltare"
 
-msgid "Custodian of the identities"
-msgstr "Systemförvaltare som hanterar identiteterna"
-
 msgid "Identity"
 msgstr "Identitet"
 
@@ -300,9 +276,6 @@ msgstr "Tillåt åtkomst till visselblåsarens identitet"
 msgid "Templates"
 msgstr "Mallar"
 
-msgid "HTTPS settings"
-msgstr "HTTPS-inställningar"
-
 msgid "URL redirects"
 msgstr "URL-omdirigeringar"
 
@@ -314,13 +287,6 @@ msgstr "Ledigt diskutrymme"
 
 msgid "Last update"
 msgstr "Senaste uppdatering"
-
-msgid "Custodian notification templates"
-msgstr "Mallar för aviseringar till systemförvaltare"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "Detta gränssnitt gör det möjligt att konfigurera e-postmallar som används för att skicka aviseringar till systemförvaltare."
 
 msgid "Disable notifications to administrators"
 msgstr "Inaktivera aviseringar till administratörer"
@@ -372,12 +338,6 @@ msgstr "Ingen"
 
 msgid "Regular expression"
 msgstr "Vanliga uttryck"
-
-msgid "Activate"
-msgstr "Aktivera"
-
-msgid "Disactivate"
-msgstr "Koppla bort"
 
 msgid "Search"
 msgstr "Sök"
@@ -450,6 +410,9 @@ msgstr "Fäll ut"
 msgid "Select"
 msgstr "Välj"
 
+msgid "Deselect"
+msgstr "Avmarkera"
+
 msgid "Surname"
 msgstr "Efternamn"
 
@@ -521,8 +484,17 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr "Kopiera till urklipp"
 
+msgid "Logout"
+msgstr "Logga ut"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
+
+msgid "Select the context of your report:"
+msgstr "Välj kontext för din rapport:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Vänligen ställ in ett lösenord innan du går vidare."
@@ -750,14 +722,8 @@ msgstr "Fråga som sänds till potentiella visselblåsare"
 msgid "Whistleblowing button"
 msgstr "Visselblåsarknapp"
 
-msgid "Enable disclaimer"
-msgstr "Aktivera ansvarsfriskrivning"
-
-msgid "Title"
-msgstr "Titel"
-
-msgid "Text"
-msgstr "Text"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "Sidfot"
@@ -1076,6 +1042,9 @@ msgstr "Hoppa över mallen"
 msgid "Phone number"
 msgstr "Telefonnummer"
 
+msgid "Text"
+msgstr "Text"
+
 msgid "Checkbox label"
 msgstr "Etikett på kryssruta"
 
@@ -1090,18 +1059,6 @@ msgstr "Ljud"
 
 msgid "Video"
 msgstr "Video"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "Synlighet för den tillfrågades svar i samband med systemförvaltarens godkännande"
-
-msgid "Text shown upon negative answer"
-msgstr "Text som visas efter nekande svar"
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "Omedelbar bekräftelse efter nekande svar"
-
-msgid "Text shown upon confirmation"
-msgstr "Text som visas efter bekräftelse"
 
 msgid "Trigger conditions"
 msgstr "Tröskelvillkor"
@@ -1171,6 +1128,9 @@ msgstr "Tillåt användarna att registrera sig"
 
 msgid "Enable terms of service"
 msgstr "Aktivera användarvillkor"
+
+msgid "Title"
+msgstr "Titel"
 
 msgid "Send an account activation link to the user."
 msgstr "Skicka en länk för aktivering av kontot till användaren."
@@ -1283,6 +1243,9 @@ msgstr "Vänligen notera att alla tillhörande uppgifter kommer att tas bort per
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Detta är en demonstrationsplattform, vänligen använd den inte för verkliga tips."
 
+msgid "Close"
+msgstr "Stäng"
+
 msgid "Install an authenticator app on your phone"
 msgstr "Installera en autentiseringsapp på din smarttelefon"
 
@@ -1291,9 +1254,6 @@ msgstr "Scanna QR-koden med appen"
 
 msgid "Enable two factor authentication"
 msgstr "Tillåt tvåfaktorsautentisering"
-
-msgid "Close"
-msgstr "Stäng"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Innan du går vidare ber vi dig noggrant läsa igenom informationsdokumenten på adressen:"
@@ -1359,6 +1319,18 @@ msgstr "Resursen kan bara nås inom Tor-nätverket"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Uppladdningen går över maxgränsen för antalet MB"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Vi ska försöka kontakta dig så fort som möjligt."
+
+msgid "Submit"
+msgstr "Skicka"
 
 msgid "Validation of email address change in progress."
 msgstr "Bekräftelse av ändrad e-postadress pågår."
@@ -1449,9 +1421,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "Plattformen är fortfarande inte konfigurerad för HTTPS-uppkopplingar och ska därför endast användas i testsyfte."
 
-msgid "Submit"
-msgstr "Skicka"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Mottagarna har bett dig fylla i ytterligare ett frågeformulär."
 
@@ -1525,9 +1494,6 @@ msgstr "Svar på frågeformuläret"
 msgid "Step"
 msgstr "Steg"
 
-msgid "Recipient list"
-msgstr "Lista över mottagare"
-
 msgid "Status:"
 msgstr "Status:"
 
@@ -1536,9 +1502,6 @@ msgstr "Filer som mottagarna bifogat"
 
 msgid "Upload a file:"
 msgstr "Ladda upp en fil:"
-
-msgid "Logout"
-msgstr "Logga ut"
 
 msgid "An update is available:"
 msgstr "En uppdatering är tillgänglig:"
@@ -1571,18 +1534,15 @@ msgstr "Ange din krypterade återställningskod för att slutföra förfarandet 
 msgid "Password reset requested."
 msgstr "Begäran om lösenordsåterställning mottagen."
 
-msgid "Show"
-msgstr "Visa"
-
-msgid "Hide"
-msgstr "Göm"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Åtkomst till visselblåsarens identitet har begärts av systemförvaltaren."
 
 msgid "Date of the request"
 msgstr "Datum för begäran"
+
+msgid "Show"
+msgstr "Visa"
 
 msgid "Congratulations!"
 msgstr "Grattis!"
@@ -1621,9 +1581,6 @@ msgstr "Klar"
 msgid "Invalid phone number"
 msgstr "Ogiltigt telefonnummer"
 
-msgid "Select the context of your report:"
-msgstr "Välj kontext för din rapport:"
-
 msgid "The answer is too short"
 msgstr "Svaret är alltför kort"
 
@@ -1652,9 +1609,6 @@ msgstr "Tack!"
 
 msgid "Your report was successful."
 msgstr "Du har lämnat in rapporten."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Vi ska försöka kontakta dig så fort som möjligt."
 
 msgid "Remember your receipt for this report."
 msgstr "Kom ihåg ditt leveranskvitto för denna rapport."
@@ -1697,6 +1651,9 @@ msgstr "Väntar på att uppladdningen av filen/filerna är klar."
 
 msgid "The following steps have errors:"
 msgstr "I följande steg finns det fel:"
+
+msgid "Hide"
+msgstr "Göm"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1746,32 +1703,14 @@ msgstr "Förnamn"
 msgid "Last name"
 msgstr "Efternamn"
 
-msgid "Gender"
-msgstr "Kön"
+msgid "Preferred contact method"
+msgstr ""
 
-msgid "Male"
-msgstr "Man"
+msgid "Other"
+msgstr "Annat"
 
-msgid "Female"
-msgstr "Kvinna"
-
-msgid "Other gender identity"
-msgstr "Annan könsidentitet"
-
-msgid "Date of birth"
-msgstr "Födelsedatum"
-
-msgid "Place of birth"
-msgstr "Födelseort"
-
-msgid "Zip code / Postal code"
-msgstr "Postnummer"
-
-msgid "Province"
-msgstr "Landskap"
-
-msgid "Country"
-msgstr "Land"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Bästa {RecipientName},"
@@ -1884,9 +1823,6 @@ msgstr "Namn: {Name}"
 
 msgid "Email: {Email}"
 msgstr "E-post: {Email}"
-
-msgid "Language: {Language}"
-msgstr "Språk: {Language}"
 
 msgid "New whistleblowing site registered"
 msgstr "Ny visselblåsarwebbplats registrerad"
@@ -2057,6 +1993,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "För att hitta instruktioner om uppdateringar av mjukvaran, se användardokumentationen på adressen: {UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr "Ny rapport"
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Tidigaste utgångsdatum är {EarliestExpirationDate}."
 
@@ -2078,9 +2022,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "Du ombeds att fästa särskild uppmärksamhet vid den information och det material som finns där. Kom ihåg att visselblåsare ofta utsätter sig för stora personliga risker i allmänhetens intresse. Det material som lämnas i denna rapport bör därför anses vara av stor betydelse."
-
-msgid "New report"
-msgstr "Ny rapport"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Syftet med detta e-postmeddelande är att upplysa dig om att en rapport har uppdaterats."

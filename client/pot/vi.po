@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,9 +43,6 @@ msgstr "Tùy biến văn bản"
 
 msgid "Advanced settings"
 msgstr "Thiết đặt nâng cao"
-
-msgid "Questionnaire configuration"
-msgstr "Cấu hình bảng câu hỏi"
 
 msgid "Question templates"
 msgstr "Các mẫu câu hỏi"
@@ -101,15 +98,6 @@ msgstr "Ý kiến"
 msgid "Messages"
 msgstr "Tin nhắn"
 
-msgid "Select this recipient."
-msgstr "Chọn người nhận này."
-
-msgid "Unselect this recipient."
-msgstr "Bỏ chọn người nhận này."
-
-msgid "This recipient cannot be deselected."
-msgstr "Người nhận này không thể bị hủy chọn"
-
 msgid "Details"
 msgstr "Chi tiết"
 
@@ -139,9 +127,6 @@ msgstr "Làm mới"
 
 msgid "Context"
 msgstr "Đề tài"
-
-msgid "Private messages"
-msgstr "Tin nhắn riêng"
 
 msgid "Preview"
 msgstr "Xem trước"
@@ -183,12 +168,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "Kết nối dùng Tor để đảm bảo tính bảo mật và ẩn danh"
-
-msgid "vertical"
-msgstr "Chiều dọc"
-
-msgid "horizontal"
-msgstr "Chiều ngang"
 
 msgid "Number"
 msgstr "Số"
@@ -250,9 +229,6 @@ msgstr "Trạng thái yêu cầu"
 msgid "Custodian"
 msgstr "Người bảo quản"
 
-msgid "Custodian of the identities"
-msgstr "Người bảo quản danh tính"
-
 msgid "Identity"
 msgstr "Danh tính"
 
@@ -295,9 +271,6 @@ msgstr "Cho phép truy cập danh tính của người tố giác"
 msgid "Templates"
 msgstr "Mẫu"
 
-msgid "HTTPS settings"
-msgstr "Thiết đặt HTTPS"
-
 msgid "URL redirects"
 msgstr "Chuyển hướng URL"
 
@@ -309,13 +282,6 @@ msgstr "Dung lượng đĩa trống"
 
 msgid "Last update"
 msgstr "Cập nhật lần cuối"
-
-msgid "Custodian notification templates"
-msgstr "Mẫu thông báo cho người bảo quản"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "Giao diện để cấu hình mẫu email thông báo cho người bảo quản."
 
 msgid "Disable notifications to administrators"
 msgstr "Tắt thông báo cho quản trị viên"
@@ -367,12 +333,6 @@ msgstr "Không có"
 
 msgid "Regular expression"
 msgstr "Biểu thức chính quy"
-
-msgid "Activate"
-msgstr "Kích hoạt"
-
-msgid "Disactivate"
-msgstr "Ngừng kích hoạt"
 
 msgid "Search"
 msgstr "Tìm kiếm"
@@ -445,6 +405,9 @@ msgstr "Mở rộng"
 msgid "Select"
 msgstr "Chọn"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Surname"
 msgstr "Họ"
 
@@ -516,8 +479,17 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr "Sao chép vào Clipboard"
 
+msgid "Logout"
+msgstr "Đăng xuất"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
 msgstr "Nộp báo cáo"
+
+msgid "Select the context of your report:"
+msgstr "Chọn đề tài cho báo cáo của bạn:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Trước khi tiếp tục, hãy cài mật khẩu mới"
@@ -745,14 +717,8 @@ msgstr "Câu hỏi để mời gọi người có thể tố giác "
 msgid "Whistleblowing button"
 msgstr "Nút tố giác"
 
-msgid "Enable disclaimer"
-msgstr "Bật mở lời tuyên bố từ chối trách nhiệm"
-
-msgid "Title"
-msgstr "Tựa đề"
-
-msgid "Text"
-msgstr "Văn bản"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "Ghi chú cuối trang"
@@ -1071,6 +1037,9 @@ msgstr "Ghi đè lên bản mẫu"
 msgid "Phone number"
 msgstr "Số điện thoại"
 
+msgid "Text"
+msgstr "Văn bản"
+
 msgid "Checkbox label"
 msgstr "Nhãn hộp kiểm"
 
@@ -1085,18 +1054,6 @@ msgstr "Âm Thanh"
 
 msgid "Video"
 msgstr "Video"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "Để người bảo quản quyết định cho câu trả lời hiển thị hay không "
-
-msgid "Text shown upon negative answer"
-msgstr "Văn bản hiển thị khi câu trả lời là không."
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "Yêu cầu xác nhận khi có câu trả lời là không"
-
-msgid "Text shown upon confirmation"
-msgstr "Văn bản hiển thị khi được xác nhận"
 
 msgid "Trigger conditions"
 msgstr "Điều kiện để khởi động"
@@ -1166,6 +1123,9 @@ msgstr "Cho phép người dùng đăng ký"
 
 msgid "Enable terms of service"
 msgstr "Bật mở điều khoản dịch vụ"
+
+msgid "Title"
+msgstr "Tựa đề"
 
 msgid "Send an account activation link to the user."
 msgstr "Gửi liên kết kích hoạt tài khoản người dùng"
@@ -1278,6 +1238,9 @@ msgstr "Xin lưu ý là tất cả các dữ liệu liên quan sẽ bị xóa v�
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Đây là một hệ thống thử nghiệm, xin đừng dùng để gửi báo cáo."
 
+msgid "Close"
+msgstr "Đóng"
+
 msgid "Install an authenticator app on your phone"
 msgstr "Cài đặt ứng dụng xác thực trên điện thoại của bạn"
 
@@ -1286,9 +1249,6 @@ msgstr "Quét mã QR với ứng dụng"
 
 msgid "Enable two factor authentication"
 msgstr "Bật mở xác thực hai yếu tố"
-
-msgid "Close"
-msgstr "Đóng"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Trước khi tiếp tục, xin đọc kỹ tài liệu tại:"
@@ -1354,6 +1314,18 @@ msgstr "Thông tin chỉ có thể truy cập được qua mạng Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Tập tin tải lên vượt quá giới hạn về kích thước"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Chúng tôi sẽ cố gắng liên lạc lại với bạn trong thời gian sớm nhất."
+
+msgid "Submit"
+msgstr "Đệ nạp"
 
 msgid "Validation of email address change in progress."
 msgstr "Đang trong tiến trình kiểm nhận thay đổi địa chỉ email."
@@ -1444,9 +1416,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "Hệ thống chưa được cấu hình cho kết nối HTTPS và do đó chỉ nên dùng để thử nghiệm."
 
-msgid "Submit"
-msgstr "Đệ nạp"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Người nhận đã yêu cầu bạn điền vào một bảng câu hỏi bổ sung."
 
@@ -1520,9 +1489,6 @@ msgstr "Trả lời cho bảng câu hỏi"
 msgid "Step"
 msgstr "Bước"
 
-msgid "Recipient list"
-msgstr "Danh sách người nhận"
-
 msgid "Status:"
 msgstr "Trạng thái"
 
@@ -1531,9 +1497,6 @@ msgstr "Tập tin do người nhận đính kèm"
 
 msgid "Upload a file:"
 msgstr "Tải lên tập tin:"
-
-msgid "Logout"
-msgstr "Đăng xuất"
 
 msgid "An update is available:"
 msgstr "Bản cập nhật đã có:"
@@ -1566,18 +1529,15 @@ msgstr "Nhập chìa khóa khôi phục của bạn để hoàn tất quy trình
 msgid "Password reset requested."
 msgstr "Yêu cầu đặt lại mật khẩu"
 
-msgid "Show"
-msgstr "Hiển thị"
-
-msgid "Hide"
-msgstr "Dấu"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Yêu cầu xem danh tính của người tố giác đã được gửi tới người bảo quản."
 
 msgid "Date of the request"
 msgstr "Ngày yêu cầu"
+
+msgid "Show"
+msgstr "Hiển thị"
 
 msgid "Congratulations!"
 msgstr "Chúc mừng!"
@@ -1616,9 +1576,6 @@ msgstr "Hoàn tất"
 msgid "Invalid phone number"
 msgstr "Số điện thoại không hợp lệ"
 
-msgid "Select the context of your report:"
-msgstr "Chọn đề tài cho báo cáo của bạn:"
-
 msgid "The answer is too short"
 msgstr "Câu trả lời quá ngắn. "
 
@@ -1647,9 +1604,6 @@ msgstr "Cảm ơn bạn!"
 
 msgid "Your report was successful."
 msgstr "Báo cáo của bạn đã thành công."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Chúng tôi sẽ cố gắng liên lạc lại với bạn trong thời gian sớm nhất."
 
 msgid "Remember your receipt for this report."
 msgstr "Ghi nhớ biên nhận cho báo cáo này."
@@ -1692,6 +1646,9 @@ msgstr "Chờ cho (các) tập tin tải lên."
 
 msgid "The following steps have errors:"
 msgstr "Các bước sau đây có lỗi:"
+
+msgid "Hide"
+msgstr "Dấu"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1741,32 +1698,14 @@ msgstr "Tên"
 msgid "Last name"
 msgstr "Họ"
 
-msgid "Gender"
-msgstr "Giới tính"
+msgid "Preferred contact method"
+msgstr ""
 
-msgid "Male"
-msgstr "Nam"
+msgid "Other"
+msgstr "Khác"
 
-msgid "Female"
-msgstr "Nữ"
-
-msgid "Other gender identity"
-msgstr "Các giới tính khác"
-
-msgid "Date of birth"
-msgstr "Ngày sinh"
-
-msgid "Place of birth"
-msgstr "Nơi sinh"
-
-msgid "Zip code / Postal code"
-msgstr "Mã bưu chính"
-
-msgid "Province"
-msgstr "Tỉnh"
-
-msgid "Country"
-msgstr "Quốc gia"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Kính gửi {RecipientName}"
@@ -1879,9 +1818,6 @@ msgstr "Tên: {Name}"
 
 msgid "Email: {Email}"
 msgstr "Email: {Email}"
-
-msgid "Language: {Language}"
-msgstr "Ngôn ngữ: {Language}"
 
 msgid "New whistleblowing site registered"
 msgstr "Trang web tố giác mới đăng ký"
@@ -2052,6 +1988,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "Để biết cách cập nhật phần mềm, xin tham khảo tài liệu tại: {UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr "Báo cáo mới"
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Ngày hết hạn sớm nhất là {EarliestExpirationDate}."
 
@@ -2073,9 +2017,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "Xin bạn đặc biệt chú ý đến thông tin và tài liệu có trong đó. Xin nhớ rằng những người tố giác thường chấp nhận nhiều rủi ro cho họ cũng vì mục tiêu lợi ích công cộng. Do đó, tài liệu trong báo cáo này nên được coi là rất quan trọng."
-
-msgid "New report"
-msgstr "Báo cáo mới"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Đây là email để thông báo rằng một báo cáo trong hệ thống vừa được cập nhật."

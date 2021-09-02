@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,9 +39,6 @@ msgstr "Tekstimuutokset"
 
 msgid "Advanced settings"
 msgstr "Lisäasetukset"
-
-msgid "Questionnaire configuration"
-msgstr "Vihjelomakkeiden asetukset"
 
 msgid "Question templates"
 msgstr "Mallipohjat"
@@ -97,15 +94,6 @@ msgstr "Kommentit"
 msgid "Messages"
 msgstr "Viestit"
 
-msgid "Select this recipient."
-msgstr "Valitse tämä vastaanottaja."
-
-msgid "Unselect this recipient."
-msgstr "Poista tämä vastaanottaja."
-
-msgid "This recipient cannot be deselected."
-msgstr "Tätä vastaanottajaa ei voida poistaa."
-
 msgid "Details"
 msgstr "Lisätiedot"
 
@@ -135,9 +123,6 @@ msgstr "Päivitä"
 
 msgid "Context"
 msgstr "Aihe"
-
-msgid "Private messages"
-msgstr "Yksityisviestit"
 
 msgid "Preview"
 msgstr "Esikatselu"
@@ -179,12 +164,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "Tämä yhteys on varmennettu Tor-yhteydellä luottamuksellisuuden ja nimettömyyden varmistamiseksi."
-
-msgid "vertical"
-msgstr "pystysuora"
-
-msgid "horizontal"
-msgstr "vaakasuora"
 
 msgid "Number"
 msgstr "Numero"
@@ -246,9 +225,6 @@ msgstr "Pyynnön tila"
 msgid "Custodian"
 msgstr "Valvoja"
 
-msgid "Custodian of the identities"
-msgstr "Käyttäjätietojen valvoja"
-
 msgid "Identity"
 msgstr "Identiteetti"
 
@@ -291,9 +267,6 @@ msgstr "Salli pääsy vihjeenantajan henkilöllisyyteen"
 msgid "Templates"
 msgstr "Mallipohjat"
 
-msgid "HTTPS settings"
-msgstr "HTTPS-asetukset"
-
 msgid "URL redirects"
 msgstr "URL-uudelleenohjaukset"
 
@@ -305,13 +278,6 @@ msgstr "Levytilaa jäljellä"
 
 msgid "Last update"
 msgstr "Viimeisin päivitys"
-
-msgid "Custodian notification templates"
-msgstr "Valvojan mallipohjat ilmoituksille"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "Tässä näkymässä voit määrittää asetukset palvelun valvojille lähetettävien sähköposti-ilmoitusten mallipohjille."
 
 msgid "Disable notifications to administrators"
 msgstr "Poista käytöstä ilmoitukset ylläpidolle"
@@ -363,12 +329,6 @@ msgstr "Ei mitään"
 
 msgid "Regular expression"
 msgstr "Säännöllinen lauseke (regexp)"
-
-msgid "Activate"
-msgstr "Ota käyttöön"
-
-msgid "Disactivate"
-msgstr "Pois päältä"
 
 msgid "Search"
 msgstr "Haku"
@@ -441,6 +401,9 @@ msgstr "Laajenna"
 msgid "Select"
 msgstr "Valitse"
 
+msgid "Deselect"
+msgstr "Poista valinta"
+
 msgid "Surname"
 msgstr "Sukunimi"
 
@@ -512,8 +475,17 @@ msgstr "Merkitse tärkeäksi"
 msgid "Copy to clipboard"
 msgstr "Kopioi leikepöydälle"
 
+msgid "Logout"
+msgstr "Kirjaudu ulos"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
 msgstr "Jätä ilmoitus"
+
+msgid "Select the context of your report:"
+msgstr "Valitse vihjeen aihe:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Määritä uusi salasana ennen kuin jatkat."
@@ -741,14 +713,8 @@ msgstr "Vihjeenantajalle esitettävä kysymys palvelun etusivulla"
 msgid "Whistleblowing button"
 msgstr "Aloituspainikkeen teksti"
 
-msgid "Enable disclaimer"
-msgstr "Ota käyttöön vastuuvapauslauseke"
-
-msgid "Title"
-msgstr "Otsikko"
-
-msgid "Text"
-msgstr "Teksti"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "Sivun alatunnisteen teksti"
@@ -1067,6 +1033,9 @@ msgstr "Mallipohjan korvaus"
 msgid "Phone number"
 msgstr "Puhelinnumero"
 
+msgid "Text"
+msgstr "Teksti"
+
 msgid "Checkbox label"
 msgstr "Valintaruudun teksti"
 
@@ -1081,18 +1050,6 @@ msgstr "Ääni"
 
 msgid "Video"
 msgstr "Video"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "Vastauksen näkyvyys riippuu valvojan luvasta"
-
-msgid "Text shown upon negative answer"
-msgstr "Kielteisen vastauksen yhteydessä näytettävä teksti"
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "Pyydä vahvistamaan kielteiset vastaukset"
-
-msgid "Text shown upon confirmation"
-msgstr "Vahvistuksen yhteydessä näytettävä teksti"
 
 msgid "Trigger conditions"
 msgstr "Jatkokysymyksen valinnat"
@@ -1162,6 +1119,9 @@ msgstr "Salli käyttäjien rekisteröityä palveluun"
 
 msgid "Enable terms of service"
 msgstr "Ota käyttöön palvelun käyttöehdot"
+
+msgid "Title"
+msgstr "Otsikko"
 
 msgid "Send an account activation link to the user."
 msgstr "Lähetä tilin aktivointilinkki käyttäjälle."
@@ -1274,6 +1234,9 @@ msgstr "Huomaa, että kaikki tiliin liittyvät tiedot poistetaan pysyvästi."
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Tämä on palvelun esittelyversio, eikä se sovellu oikeiden vihjeiden lähettämiseen."
 
+msgid "Close"
+msgstr "Sulje"
+
 msgid "Install an authenticator app on your phone"
 msgstr "Asenna kirjautumissovellus puhelimeesi"
 
@@ -1282,9 +1245,6 @@ msgstr "Skannaa QR-koodi puhelimen sovelluksella"
 
 msgid "Enable two factor authentication"
 msgstr "Ota käyttöön kaksivaiheinen kirjautuminen"
-
-msgid "Close"
-msgstr "Sulje"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Lue ennen jatkamista huolellisesti dokumentaatio osoitteessa "
@@ -1350,6 +1310,18 @@ msgstr "Resurssiin on pääsy vain Tor-verkon sisällä"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Lähetyspyyntö palvelimelle ylittää kokorajan"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Vastaamme niin pian kuin mahdollista."
+
+msgid "Submit"
+msgstr "Lähetä"
 
 msgid "Validation of email address change in progress."
 msgstr "Sähköpostiosoitteen vaihtamisen vahvistaminen käynnissä."
@@ -1440,9 +1412,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "Järjestelmän HTTPS-asetuksia ei ole vielä määritetty, joten sen käyttöä suositellaan ainoastaan koekäytössä."
 
-msgid "Submit"
-msgstr "Lähetä"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Vastaanottajat ovat pyytäneet sinua täyttämään täydentävän vihjelomakkeen."
 
@@ -1516,9 +1485,6 @@ msgstr "Saapuneet vihjeet"
 msgid "Step"
 msgstr "Vaihe"
 
-msgid "Recipient list"
-msgstr "Vastaanottajat"
-
 msgid "Status:"
 msgstr "Tila:"
 
@@ -1527,9 +1493,6 @@ msgstr "Vastaanottajien lisäämät tiedostot"
 
 msgid "Upload a file:"
 msgstr "Lähetä tiedosto:"
-
-msgid "Logout"
-msgstr "Kirjaudu ulos"
 
 msgid "An update is available:"
 msgstr "Uusi ohjelmistoversio saatavilla:"
@@ -1562,18 +1525,15 @@ msgstr "Kirjoita vielä tietojen palauttamista varten käytettävä salausavaime
 msgid "Password reset requested."
 msgstr "Salasanan nollaus pyydetty."
 
-msgid "Show"
-msgstr "Näytä"
-
-msgid "Hide"
-msgstr "Piilota"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Valvojalle on lähetetty pyyntö päästä vihjeen antajan henkilötietoihin."
 
 msgid "Date of the request"
 msgstr "Pyynnön päivämäärä"
+
+msgid "Show"
+msgstr "Näytä"
 
 msgid "Congratulations!"
 msgstr "Onneksi olkoon!"
@@ -1612,9 +1572,6 @@ msgstr "Valmis"
 msgid "Invalid phone number"
 msgstr "Puhelinnumero ei kelpaa"
 
-msgid "Select the context of your report:"
-msgstr "Valitse vihjeen aihe:"
-
 msgid "The answer is too short"
 msgstr "Vastaus on liian lyhyt"
 
@@ -1643,9 +1600,6 @@ msgstr "Kiitos!"
 
 msgid "Your report was successful."
 msgstr "Vihjeesi lähettäminen onnistui."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Vastaamme niin pian kuin mahdollista."
 
 msgid "Remember your receipt for this report."
 msgstr "Muista tämän lähetyksen kuitti"
@@ -1688,6 +1642,9 @@ msgstr "Odotetaan tiedosto(je)n latauksen valmistumista."
 
 msgid "The following steps have errors:"
 msgstr "Näiden vaiheiden kohdalla on ongelmia:"
+
+msgid "Hide"
+msgstr "Piilota"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1737,32 +1694,14 @@ msgstr "Etunimi"
 msgid "Last name"
 msgstr "Sukunimi"
 
-msgid "Gender"
-msgstr "Sukupuoli"
+msgid "Preferred contact method"
+msgstr ""
 
-msgid "Male"
-msgstr "Mies"
+msgid "Other"
+msgstr "Muut"
 
-msgid "Female"
-msgstr "Nainen"
-
-msgid "Other gender identity"
-msgstr "Muu sukupuoli-identiteetti"
-
-msgid "Date of birth"
-msgstr "Syntymäpäivä"
-
-msgid "Place of birth"
-msgstr "Syntymäpaikka"
-
-msgid "Zip code / Postal code"
-msgstr "Postinumero"
-
-msgid "Province"
-msgstr "Provinssi"
-
-msgid "Country"
-msgstr "Maa"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Hyvä {RecipientName},"
@@ -1875,9 +1814,6 @@ msgstr "Nimi: {Name}"
 
 msgid "Email: {Email}"
 msgstr "Sähköpostiosoite: {Email}"
-
-msgid "Language: {Language}"
-msgstr "Kieli: {Language}"
 
 msgid "New whistleblowing site registered"
 msgstr "Uusi vihjepalvelu on rekisteröity"
@@ -2048,6 +1984,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "Ohjelmistopäivityksen ohjeet löytyvät osoitteesta {UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr "Uusi ilmoitus"
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Aikaisin mahdollinen vanhentumispäivämäärä on {EarliestExpirationDate}."
 
@@ -2069,9 +2013,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "Muista noudattaa erityistä varovaisuutta käsitellessäsi näitä tietoja, koska usein vihjeiden antajat altistavat itsensä suurelle henkilökohtaiselle riskille julkisen kiinnostuksen vuoksi. Tästä johtuen vihjettä materiaaleineen täytyy käsitellä erityisen huolellisesti."
-
-msgid "New report"
-msgstr "Uusi ilmoitus"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Vihjeen antaja on päivittänyt vihjettään palvelussa."

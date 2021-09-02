@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,9 +65,6 @@ msgstr "Personnalisation des textes"
 
 msgid "Advanced settings"
 msgstr "Paramètres avancés"
-
-msgid "Questionnaire configuration"
-msgstr "Configuration des questionnaires"
 
 msgid "Question templates"
 msgstr "Modèles de questions"
@@ -123,15 +120,6 @@ msgstr "Commentaires"
 msgid "Messages"
 msgstr "Messages"
 
-msgid "Select this recipient."
-msgstr "Sélectionner ce destinataire."
-
-msgid "Unselect this recipient."
-msgstr "Dessélectionner ce destinataire."
-
-msgid "This recipient cannot be deselected."
-msgstr "Ce destinataire ne peut pas être dessélectionné."
-
 msgid "Details"
 msgstr "Détails"
 
@@ -161,9 +149,6 @@ msgstr "Actualiser"
 
 msgid "Context"
 msgstr "Contexte"
-
-msgid "Private messages"
-msgstr "Messages privés"
 
 msgid "Preview"
 msgstr "Aperçu"
@@ -205,12 +190,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "La connexion utilisé a été sécurisée avec Tor afin de garantir la confidentialité de vos données et votre anonymat."
-
-msgid "vertical"
-msgstr "verticale"
-
-msgid "horizontal"
-msgstr "horizontale"
 
 msgid "Number"
 msgstr "Nombre"
@@ -272,9 +251,6 @@ msgstr "État de la demande"
 msgid "Custodian"
 msgstr "Gardien"
 
-msgid "Custodian of the identities"
-msgstr "Gardien des identités"
-
 msgid "Identity"
 msgstr "Identité"
 
@@ -317,9 +293,6 @@ msgstr "Autoriser l’accès à l’identité du lanceur d’alerte"
 msgid "Templates"
 msgstr "Modèles"
 
-msgid "HTTPS settings"
-msgstr "Paramètres HTTPS"
-
 msgid "URL redirects"
 msgstr "Redirections d’URL"
 
@@ -331,13 +304,6 @@ msgstr "Espace disque disponible"
 
 msgid "Last update"
 msgstr "Mise à jour"
-
-msgid "Custodian notification templates"
-msgstr "Modèles de notification des gardiens"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "Cette interface permet de configurer les modèles de courriel utilisés pour les notifications aux gardiens."
 
 msgid "Disable notifications to administrators"
 msgstr "Désactiver les courriels de notification aux administrateurs."
@@ -389,12 +355,6 @@ msgstr "Aucune"
 
 msgid "Regular expression"
 msgstr "Expression rationnelle"
-
-msgid "Activate"
-msgstr "Activer"
-
-msgid "Disactivate"
-msgstr "Désactiver"
 
 msgid "Search"
 msgstr "Recherche"
@@ -467,6 +427,9 @@ msgstr "Développer"
 msgid "Select"
 msgstr "Sélectionner"
 
+msgid "Deselect"
+msgstr "Dessélectionner"
+
 msgid "Surname"
 msgstr "Nom de famille"
 
@@ -538,8 +501,17 @@ msgstr "Marquer comme important"
 msgid "Copy to clipboard"
 msgstr "Copier dans le presse-papiers"
 
+msgid "Logout"
+msgstr "Déconnexion"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
 msgstr "Remplir un signalement"
+
+msgid "Select the context of your report:"
+msgstr "Sélectionnez le contexte de votre signalement :"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Avant de poursuivre, veuillez définir un nouveau mot de passe."
@@ -767,14 +739,8 @@ msgstr "Question pour attirer les lanceurs d’alerte potentiels"
 msgid "Whistleblowing button"
 msgstr "Bouton de dénonciation"
 
-msgid "Enable disclaimer"
-msgstr "Activer un avis"
-
-msgid "Title"
-msgstr "Titre"
-
-msgid "Text"
-msgstr "Texte"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "Bas de page"
@@ -1093,6 +1059,9 @@ msgstr "Remplacement du modèle"
 msgid "Phone number"
 msgstr "Numéro de téléphone"
 
+msgid "Text"
+msgstr "Texte"
+
 msgid "Checkbox label"
 msgstr "Étiquette de la case à cocher"
 
@@ -1107,18 +1076,6 @@ msgstr "Audio"
 
 msgid "Video"
 msgstr "Vidéo"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "Soumettre la visibilité des réponses à l’autorisation des gardiens"
-
-msgid "Text shown upon negative answer"
-msgstr "Texte affiché en cas de réponse négative"
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "Demander une confirmation en cas de réponse négative"
-
-msgid "Text shown upon confirmation"
-msgstr "Texte affiché après confirmation"
 
 msgid "Trigger conditions"
 msgstr "Conditions de déclenchement"
@@ -1188,6 +1145,9 @@ msgstr "Permettre aux utilisateurs de s’inscrire"
 
 msgid "Enable terms of service"
 msgstr "Activer les conditions générales d’utilisation"
+
+msgid "Title"
+msgstr "Titre"
 
 msgid "Send an account activation link to the user."
 msgstr "Envoyer un lien d’activation du compte à l’utilisateur."
@@ -1300,6 +1260,9 @@ msgstr "Veuillez noter que toutes les données associées seront irrémédiablem
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Ceci est une plateforme de démonstration. Veuillez ne pas l’utiliser pour des envois réels."
 
+msgid "Close"
+msgstr "Fermer"
+
 msgid "Install an authenticator app on your phone"
 msgstr "Installez une appli d’authentification sur votre téléphone"
 
@@ -1308,9 +1271,6 @@ msgstr "Balayez le code QR avec l’appli"
 
 msgid "Enable two factor authentication"
 msgstr "Activer l’authentification à deux facteurs"
-
-msgid "Close"
-msgstr "Fermer"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Avant de poursuivre, veuillez lire attentivement la documentation sur :"
@@ -1376,6 +1336,18 @@ msgstr "L’accès à cette ressource ne peut se faire que par le réseau Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "La demande de téléversement dépasse la limite de taille"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr "Merci."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Nous essaierons de vous contacter dès que possible."
+
+msgid "Submit"
+msgstr "Envoyer"
 
 msgid "Validation of email address change in progress."
 msgstr "La validation du changement d’adresse courriel est en cours."
@@ -1466,9 +1438,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "La plateforme n’est toujours pas configurée pour les connexions HTTPS  et ne devrait être utilisée qu’à des fins de test."
 
-msgid "Submit"
-msgstr "Envoyer"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Les destinataires ont demandé à ce que vous remplissiez un questionnaire supplémentaire."
 
@@ -1542,9 +1511,6 @@ msgstr "Réponses au questionnaire"
 msgid "Step"
 msgstr "Étape"
 
-msgid "Recipient list"
-msgstr "Liste des destinataires"
-
 msgid "Status:"
 msgstr "État :"
 
@@ -1553,9 +1519,6 @@ msgstr "Pièces jointes par les destinataires"
 
 msgid "Upload a file:"
 msgstr "Téléverser un fichier :"
-
-msgid "Logout"
-msgstr "Déconnexion"
 
 msgid "An update is available:"
 msgstr "Une mise à jour est proposée :"
@@ -1588,18 +1551,15 @@ msgstr "Saisissez votre clé de récupération de chiffrement pour achever la pr
 msgid "Password reset requested."
 msgstr "Une réinitialisation de mot de passe a été demandée."
 
-msgid "Show"
-msgstr "Afficher"
-
-msgid "Hide"
-msgstr "Cacher"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "L’accès à l’identité du lanceur d’alerte a été demandé au gardien. "
 
 msgid "Date of the request"
 msgstr "Date de la demande"
+
+msgid "Show"
+msgstr "Afficher"
 
 msgid "Congratulations!"
 msgstr "Félicitations !"
@@ -1638,9 +1598,6 @@ msgstr "Terminé"
 msgid "Invalid phone number"
 msgstr "Le numéro de téléphone est invalide"
 
-msgid "Select the context of your report:"
-msgstr "Sélectionnez le contexte de votre signalement :"
-
 msgid "The answer is too short"
 msgstr "La réponse est trop courte"
 
@@ -1669,9 +1626,6 @@ msgstr "Merci."
 
 msgid "Your report was successful."
 msgstr "Votre signalement a bien été effectué."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Nous essaierons de vous contacter dès que possible."
 
 msgid "Remember your receipt for this report."
 msgstr "Souvenez-vous de votre reçu pour ce signalement."
@@ -1714,6 +1668,9 @@ msgstr "En attente de la fin du téléversement des fichiers."
 
 msgid "The following steps have errors:"
 msgstr "Les étapes suivantes présentent des erreurs :"
+
+msgid "Hide"
+msgstr "Cacher"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1763,32 +1720,14 @@ msgstr "Prénom"
 msgid "Last name"
 msgstr "Nom de famille"
 
-msgid "Gender"
-msgstr "Genre"
+msgid "Preferred contact method"
+msgstr ""
 
-msgid "Male"
-msgstr "Homme"
+msgid "Other"
+msgstr "Autre"
 
-msgid "Female"
-msgstr "Femme"
-
-msgid "Other gender identity"
-msgstr "Autre identité de genre"
-
-msgid "Date of birth"
-msgstr "Date de naissance"
-
-msgid "Place of birth"
-msgstr "Lieu de naissance"
-
-msgid "Zip code / Postal code"
-msgstr "Code postal"
-
-msgid "Province"
-msgstr "Province"
-
-msgid "Country"
-msgstr "Pays"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Cher, chère {RecipientName},"
@@ -1901,9 +1840,6 @@ msgstr "Nom : {Name}"
 
 msgid "Email: {Email}"
 msgstr "Adresse courriel : {Email}"
-
-msgid "Language: {Language}"
-msgstr "Langue : {Language}"
 
 msgid "New whistleblowing site registered"
 msgstr "Un nouveau site de lancement d’alerte a été enregistré."
@@ -2074,6 +2010,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "Pour obtenir des instructions de mise à jour logicielle, veuillez consulter la documentation : {UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr "Nouveau signalement"
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "La prochaine date d’expiration est {EarliestExpirationDate}."
 
@@ -2095,9 +2039,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "Il vous est demandé de prêter une attention particulière aux renseignements et documents ci-inclus. Veuillez garder à l’esprit que les lanceurs d’alerte prennent souvent des risques personnels importants dans l’intérêt du public. Par conséquent, les documents qui ont été fournis avec ce signalement doivent être traités avec l’importance qu’ils méritent."
-
-msgid "New report"
-msgstr "Nouveau signalement"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Le but de ce courriel est de vous aviser qu’un rapport existant a été mis à jour."

@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,9 +41,6 @@ msgstr "Prispôsobenie textu"
 
 msgid "Advanced settings"
 msgstr "Pokročilé nastavenia"
-
-msgid "Questionnaire configuration"
-msgstr "Konfigurácia dotazníka"
 
 msgid "Question templates"
 msgstr "Šablóny otázok"
@@ -99,15 +96,6 @@ msgstr "Komentáre"
 msgid "Messages"
 msgstr "Správy"
 
-msgid "Select this recipient."
-msgstr "Vybrať tohto príjemcu."
-
-msgid "Unselect this recipient."
-msgstr "Zrušiť výber tohto príjemcu."
-
-msgid "This recipient cannot be deselected."
-msgstr "Zrušenie výberu tohto príjemcu nie je možné."
-
 msgid "Details"
 msgstr "Detaily"
 
@@ -137,9 +125,6 @@ msgstr "Obnoviť"
 
 msgid "Context"
 msgstr "Kontext"
-
-msgid "Private messages"
-msgstr "Súkromné správy"
 
 msgid "Preview"
 msgstr "Náhľad"
@@ -181,12 +166,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "Pripojenie bolo zabezpečené pomocou Tor, čo zaisťuje dôvernosť a anonymitu."
-
-msgid "vertical"
-msgstr "vertikálny"
-
-msgid "horizontal"
-msgstr "horizontálny"
 
 msgid "Number"
 msgstr "Číslo"
@@ -248,9 +227,6 @@ msgstr "Stav požiadavky"
 msgid "Custodian"
 msgstr "Správca"
 
-msgid "Custodian of the identities"
-msgstr "Správca identít"
-
 msgid "Identity"
 msgstr "Identita"
 
@@ -293,9 +269,6 @@ msgstr "Povoliť prístup k identite oznamovateľa"
 msgid "Templates"
 msgstr "Šablóny"
 
-msgid "HTTPS settings"
-msgstr "Nastavenie HTTPS"
-
 msgid "URL redirects"
 msgstr "Presmerovanie URL"
 
@@ -307,13 +280,6 @@ msgstr "Voľné miesto na disku"
 
 msgid "Last update"
 msgstr "Posledná aktualizácia"
-
-msgid "Custodian notification templates"
-msgstr "Notifikačné šablóny správcu"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "Toto rozhranie umožňuje nakonfigurovať šablóny emailov použitých pre notifikácie správcom."
 
 msgid "Disable notifications to administrators"
 msgstr "Vypnúť notifikácie administrátorom"
@@ -365,12 +331,6 @@ msgstr "Žiaden"
 
 msgid "Regular expression"
 msgstr "Regulárny výraz"
-
-msgid "Activate"
-msgstr "Aktivovať"
-
-msgid "Disactivate"
-msgstr "Deaktivovať"
 
 msgid "Search"
 msgstr "Hľadať"
@@ -443,6 +403,9 @@ msgstr "Rozbaliť"
 msgid "Select"
 msgstr "Vyberte"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Surname"
 msgstr "Priezvisko"
 
@@ -514,8 +477,17 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr "Kopírovať do schránky"
 
+msgid "Logout"
+msgstr "Odhlásiť sa"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
 msgstr "podať oznámenie"
+
+msgid "Select the context of your report:"
+msgstr "Vyberte obsah správy:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Než budete pokračovať, nastavte prosím nové heslo."
@@ -743,14 +715,8 @@ msgstr "Otázky pre získavanie možných oznamovateľov"
 msgid "Whistleblowing button"
 msgstr "Tlačidlo oznamovateľa"
 
-msgid "Enable disclaimer"
-msgstr "Povoliť odmietnutie zodpovednosti"
-
-msgid "Title"
-msgstr "Názov"
-
-msgid "Text"
-msgstr "Text"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "Pätička"
@@ -1069,6 +1035,9 @@ msgstr "Prepísanie šablóny"
 msgid "Phone number"
 msgstr "Telefónne číslo"
 
+msgid "Text"
+msgstr "Text"
+
 msgid "Checkbox label"
 msgstr "Zaškrtávacie políčko"
 
@@ -1083,18 +1052,6 @@ msgstr "Zvuk"
 
 msgid "Video"
 msgstr "Video"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "Vystaviť viditeľnosť oprávnenia ochrancu"
-
-msgid "Text shown upon negative answer"
-msgstr "Text zobrazený pri zápornej odpovedi"
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "Výzva na potvrdenie zápornej odpovede"
-
-msgid "Text shown upon confirmation"
-msgstr "Text zobrazený pri potvrdení"
 
 msgid "Trigger conditions"
 msgstr "Prvotné podmienky"
@@ -1164,6 +1121,9 @@ msgstr "Povoliť používateľom registráciu"
 
 msgid "Enable terms of service"
 msgstr "Povoliť zmluvné podmienky"
+
+msgid "Title"
+msgstr "Názov"
 
 msgid "Send an account activation link to the user."
 msgstr "Poslať užívateľovi odkaz k aktivácii účtu."
@@ -1276,6 +1236,9 @@ msgstr "Upozorňujeme, že všetky súvisiace údaje budú natrvalo odstránené
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Toto je demo platforma, nepoužívajte ju prosím pre skutočné podanie."
 
+msgid "Close"
+msgstr "Zatvoriť"
+
 msgid "Install an authenticator app on your phone"
 msgstr "Nainštalujte si do telefónu overovaciu aplikáciu"
 
@@ -1284,9 +1247,6 @@ msgstr "Naskenujte QR kód pomocou aplikácie"
 
 msgid "Enable two factor authentication"
 msgstr "Povoliť dvojfaktorovú autorizáciu"
-
-msgid "Close"
-msgstr "Zatvoriť"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Než budete pokračovať, prečítajte si pozorne dokumentáciu na adrese:"
@@ -1352,6 +1312,18 @@ msgstr "Zdroj je prístupný iba v rámci siete Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Žiadosť na upload prekročila veľkostné limity"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Ozveme sa Vám hneď, ako to bude možné."
+
+msgid "Submit"
+msgstr "Odoslať"
 
 msgid "Validation of email address change in progress."
 msgstr "Prebieha overovanie zmeny emailovej adresy."
@@ -1442,9 +1414,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "Platforma stále nie je nakonfigurovaná pre pripojenia HTTPS, a preto by sa mala používať iba na účely testovania."
 
-msgid "Submit"
-msgstr "Odoslať"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Príjemcovia požadujú, aby ste vyplnili dodatočný dotazník."
 
@@ -1518,9 +1487,6 @@ msgstr "Odpovede z dotazníkov"
 msgid "Step"
 msgstr "Krok"
 
-msgid "Recipient list"
-msgstr "Zoznam príjemcov"
-
 msgid "Status:"
 msgstr "Stav"
 
@@ -1529,9 +1495,6 @@ msgstr "Prílohy od príjemcov"
 
 msgid "Upload a file:"
 msgstr "Nahrať súbor:"
-
-msgid "Logout"
-msgstr "Odhlásiť sa"
 
 msgid "An update is available:"
 msgstr "Je dostupná aktualizácia:"
@@ -1564,18 +1527,15 @@ msgstr "Zadajte kľúč pre obnovenie šifrovanie a dokončite postup pre reseto
 msgid "Password reset requested."
 msgstr "Vyžaduje sa obnovenie hesla."
 
-msgid "Show"
-msgstr "Zobraziť"
-
-msgid "Hide"
-msgstr "Skryť"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Správca bol požiadaný o prístup k identite oznamovateľa."
 
 msgid "Date of the request"
 msgstr "Dátum žiadosti"
+
+msgid "Show"
+msgstr "Zobraziť"
 
 msgid "Congratulations!"
 msgstr "Gratulujeme!"
@@ -1614,9 +1574,6 @@ msgstr "Dokončiť"
 msgid "Invalid phone number"
 msgstr "Neplatné telefónne číslo"
 
-msgid "Select the context of your report:"
-msgstr "Vyberte obsah správy:"
-
 msgid "The answer is too short"
 msgstr "Odpoveď je príliš krátka."
 
@@ -1645,9 +1602,6 @@ msgstr "Ďakujeme Vám!"
 
 msgid "Your report was successful."
 msgstr "Vaše podanie prebehlo úspešne."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Ozveme sa Vám hneď, ako to bude možné."
 
 msgid "Remember your receipt for this report."
 msgstr "Zapamätajte si potvrdenie o tomto podaní."
@@ -1690,6 +1644,9 @@ msgstr "Čaká sa na dokončenie nahrávania súborov."
 
 msgid "The following steps have errors:"
 msgstr "Nasledujúce kroky sú chybné:"
+
+msgid "Hide"
+msgstr "Skryť"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1739,32 +1696,14 @@ msgstr "Meno"
 msgid "Last name"
 msgstr "Priezvisko"
 
-msgid "Gender"
-msgstr "Pohlavie"
+msgid "Preferred contact method"
+msgstr ""
 
-msgid "Male"
-msgstr "Muž"
+msgid "Other"
+msgstr "Ďalší"
 
-msgid "Female"
-msgstr "Žena"
-
-msgid "Other gender identity"
-msgstr "Iná genderová identita"
-
-msgid "Date of birth"
-msgstr "Dátum narodenia"
-
-msgid "Place of birth"
-msgstr "Miesto narodenia"
-
-msgid "Zip code / Postal code"
-msgstr "PSČ"
-
-msgid "Province"
-msgstr "Okres"
-
-msgid "Country"
-msgstr "Štát"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Vážený/á {RecipientName},"
@@ -1877,9 +1816,6 @@ msgstr "Meno: {Name}"
 
 msgid "Email: {Email}"
 msgstr "Email: {Email} "
-
-msgid "Language: {Language}"
-msgstr "Jazyk: {Language} "
 
 msgid "New whistleblowing site registered"
 msgstr "Nová whistleblowingová stránka zaregistrovaná."
@@ -2050,6 +1986,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "Pokyny týkajúce sa aktualizácií softvéru nájdete v dokumentácii na: {UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr "Nové podanie"
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Najbližší deň vypršania platnosti je {EarliestExpirationDate}."
 
@@ -2071,9 +2015,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "Prosím, venujte zvláštnu pozornosť obsiahnutým informáciám a materiálom. Majte na pamäti, že oznamovatelia sa často vystavujú osobným rizikám v záujme verejnosti. Informácie poskytnuté v rámci tohto podania by preto mali byť považované za veľmi dôležité."
-
-msgid "New report"
-msgstr "Nové podanie"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Toto je e-mailové upozornenia o aktualizácii u existujúceho podaní."

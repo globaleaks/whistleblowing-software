@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,9 +41,6 @@ msgstr "متن کی تخصیص"
 
 msgid "Advanced settings"
 msgstr "اعلٰی ترتیبات"
-
-msgid "Questionnaire configuration"
-msgstr "ترتیبِ سوالنامہ"
 
 msgid "Question templates"
 msgstr "سوال ٹیمپلیٹس"
@@ -99,15 +96,6 @@ msgstr "تبصرے"
 msgid "Messages"
 msgstr "پیغامات"
 
-msgid "Select this recipient."
-msgstr "وصول کنندہ منتخب کریں"
-
-msgid "Unselect this recipient."
-msgstr "وصول کنندہ غیر منتخب کریں"
-
-msgid "This recipient cannot be deselected."
-msgstr "اس وصول کنندہ یعنی ریسیور کو غیرمنتخب نہیں کیا جاسکتا "
-
 msgid "Details"
 msgstr "تفصیلات"
 
@@ -137,9 +125,6 @@ msgstr "تازہ کرنا"
 
 msgid "Context"
 msgstr "سیاق و سباق"
-
-msgid "Private messages"
-msgstr "ذاتی پیغامات"
 
 msgid "Preview"
 msgstr " مشاہدہ کریں"
@@ -181,12 +166,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "رازداری ا ورگمنامی کے لیے یہ رابطہTorکےساتھ محفوظ کر لیا گیا ہے"
-
-msgid "vertical"
-msgstr "عمودی"
-
-msgid "horizontal"
-msgstr "افقی"
 
 msgid "Number"
 msgstr "عدد"
@@ -248,9 +227,6 @@ msgstr "پروپوزل کی اسٹیٹس"
 msgid "Custodian"
 msgstr "محافظ"
 
-msgid "Custodian of the identities"
-msgstr "تشخص کا محافظ"
-
 msgid "Identity"
 msgstr "شناخت"
 
@@ -293,9 +269,6 @@ msgstr "مخبر کی شناخت تک رسائی کی اجازت دیں"
 msgid "Templates"
 msgstr "سانچے"
 
-msgid "HTTPS settings"
-msgstr "HTTPS ترتیبات"
-
 msgid "URL redirects"
 msgstr "URL ری ڈ ائیرکٹس"
 
@@ -307,13 +280,6 @@ msgstr "ڈسک میں دستیاب جگہ"
 
 msgid "Last update"
 msgstr "آخری اپ ڈیٹ"
-
-msgid "Custodian notification templates"
-msgstr "ابرکشک نوٹیفکیشن کے سانچوں"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "اس انٹرفیس ترپر مطلع کرنے کے لئے استعمال ای میل کے سانچوں کی تشکیل کی اجازت دیتا ہے."
 
 msgid "Disable notifications to administrators"
 msgstr "منتظمین کو اطلاعات کو غیر فعال کریں"
@@ -365,12 +331,6 @@ msgstr "کوئی نہیں"
 
 msgid "Regular expression"
 msgstr "با قاعدہ اظہار"
-
-msgid "Activate"
-msgstr "فعال کیجیے"
-
-msgid "Disactivate"
-msgstr "غیرفعال"
 
 msgid "Search"
 msgstr "ڈھونڈیں"
@@ -443,6 +403,9 @@ msgstr "کھولنا"
 msgid "Select"
 msgstr "منتخب کرنا"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Surname"
 msgstr "خاندانی نام"
 
@@ -514,8 +477,17 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr ""
 
+msgid "Logout"
+msgstr "لاگ آئوٹ"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
+
+msgid "Select the context of your report:"
+msgstr "اپنی گزارش کا سیاق و سباق کا انتخاب کریں :"
 
 msgid "Before proceeding, please set a new password."
 msgstr ""
@@ -743,14 +715,8 @@ msgstr "مخبر سوال "
 msgid "Whistleblowing button"
 msgstr "مخبری بٹن"
 
-msgid "Enable disclaimer"
+msgid "Disclaimer"
 msgstr ""
-
-msgid "Title"
-msgstr "عنوان"
-
-msgid "Text"
-msgstr "متن"
 
 msgid "Footer"
 msgstr "ذیلی تحریر"
@@ -1069,6 +1035,9 @@ msgstr ""
 msgid "Phone number"
 msgstr "فون نمبر"
 
+msgid "Text"
+msgstr "متن"
+
 msgid "Checkbox label"
 msgstr ""
 
@@ -1083,18 +1052,6 @@ msgstr ""
 
 msgid "Video"
 msgstr "Video"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "ابرکشک اجازت سے مشروط جواب کی نمائش کو"
-
-msgid "Text shown upon negative answer"
-msgstr ""
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "منفی جواب پر فوری طور پر تصدیق"
-
-msgid "Text shown upon confirmation"
-msgstr ""
 
 msgid "Trigger conditions"
 msgstr ""
@@ -1164,6 +1121,9 @@ msgstr ""
 
 msgid "Enable terms of service"
 msgstr ""
+
+msgid "Title"
+msgstr "عنوان"
 
 msgid "Send an account activation link to the user."
 msgstr ""
@@ -1276,6 +1236,9 @@ msgstr "خیال رکھئے کہ تمام متعلقہ ڈیٹا مناسب طر�
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""
 
+msgid "Close"
+msgstr "بند کریں"
+
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
@@ -1284,9 +1247,6 @@ msgstr ""
 
 msgid "Enable two factor authentication"
 msgstr ""
-
-msgid "Close"
-msgstr "بند کریں"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr ""
@@ -1352,6 +1312,18 @@ msgstr " صرف ٹور نیٹ ورک کے اندررہتے ہوئے وسائل �
 
 msgid "The upload request exceeds the size limit"
 msgstr "اپ لوڈ کی درخواست سائز کی حد سے تجاوز کر گئی ہے"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Submit"
+msgstr "جمع کرائیں"
 
 msgid "Validation of email address change in progress."
 msgstr ""
@@ -1442,9 +1414,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr ""
 
-msgid "Submit"
-msgstr "جمع کرائیں"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr ""
 
@@ -1518,9 +1487,6 @@ msgstr "سوالنامہ کے جوابات"
 msgid "Step"
 msgstr "قدم"
 
-msgid "Recipient list"
-msgstr "وصول کنندہ کی فہرست"
-
 msgid "Status:"
 msgstr "حالت:"
 
@@ -1529,9 +1495,6 @@ msgstr ""
 
 msgid "Upload a file:"
 msgstr ""
-
-msgid "Logout"
-msgstr "لاگ آئوٹ"
 
 msgid "An update is available:"
 msgstr ""
@@ -1564,18 +1527,15 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Show"
-msgstr "دکھائیے"
-
-msgid "Hide"
-msgstr "چھپائیے"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "مخبر کی شناخت تک رسائی نگرانی کرنے کی درخواست کی گئی ہے."
 
 msgid "Date of the request"
 msgstr "درخواست کی تاریخ"
+
+msgid "Show"
+msgstr "دکھائیے"
 
 msgid "Congratulations!"
 msgstr "مبارک ہو!"
@@ -1614,9 +1574,6 @@ msgstr "Complete"
 msgid "Invalid phone number"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr "اپنی گزارش کا سیاق و سباق کا انتخاب کریں :"
-
 msgid "The answer is too short"
 msgstr ""
 
@@ -1645,9 +1602,6 @@ msgstr "شکریہ"
 
 msgid "Your report was successful."
 msgstr "آپ کی جمع کردہ گذارشارت کامیاب رہیں"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
 
 msgid "Remember your receipt for this report."
 msgstr "اس داخلے کے لیے اپنا کلیدی کوڈ ذہن نشین رکھیے"
@@ -1690,6 +1644,9 @@ msgstr ""
 
 msgid "The following steps have errors:"
 msgstr ""
+
+msgid "Hide"
+msgstr "چھپائیے"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1739,32 +1696,14 @@ msgstr "پہلا نام"
 msgid "Last name"
 msgstr "آخری نام"
 
-msgid "Gender"
-msgstr "صنف"
-
-msgid "Male"
-msgstr "مرد"
-
-msgid "Female"
-msgstr "عورت"
-
-msgid "Other gender identity"
+msgid "Preferred contact method"
 msgstr ""
 
-msgid "Date of birth"
-msgstr "تاریخِ پیدائش"
+msgid "Other"
+msgstr "دیگر"
 
-msgid "Place of birth"
-msgstr "جاہِ پیدائیش"
-
-msgid "Zip code / Postal code"
-msgstr "زپ کوڈ / پوسٹ کوڈ"
-
-msgid "Province"
-msgstr "صوبہ"
-
-msgid "Country"
-msgstr "ملک"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "محترم{RecipientName}،"
@@ -1876,9 +1815,6 @@ msgid "Name: {Name}"
 msgstr ""
 
 msgid "Email: {Email}"
-msgstr ""
-
-msgid "Language: {Language}"
 msgstr ""
 
 msgid "New whistleblowing site registered"
@@ -2050,6 +1986,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "سافٹ ویئر اپ ڈیٹ سے متعلق ہدایات کے لئے ، براہ کرم ذیل میں موجود دستاویزات کا مطالع کریں: {UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr "نئی رپورٹ"
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr ""
 
@@ -2071,9 +2015,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "وہ پسند کریں گے کہ آپ اس میں موجود معلومات اور مواد پر خصوصی توجہ دیجئے .اس بات کو ذہن میں رکھیں کہ whistleblowers اکثر عوامی مفاد کے لئے اعلی ذاتی خطرات میں ڈالتے ہوئے خود کو ظاہر کرتے ہیں۔اس وجہ سے انکے اس مخبری کے ساتھ فراہم کردہ مواد کو اعلی اہمیت کا حامل سمجھا جانا چاہئے."
-
-msgid "New report"
-msgstr "نئی رپورٹ"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr ""

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,9 +33,6 @@ msgstr "Tekstbehandling"
 
 msgid "Advanced settings"
 msgstr "Avanserte innstillinger"
-
-msgid "Questionnaire configuration"
-msgstr "Oppsett av spørreskjema"
 
 msgid "Question templates"
 msgstr "Spørsmålsmaler"
@@ -91,15 +88,6 @@ msgstr "Kommentarer"
 msgid "Messages"
 msgstr "Meldinger"
 
-msgid "Select this recipient."
-msgstr "Velg denne mottakeren."
-
-msgid "Unselect this recipient."
-msgstr "Angre valg av denne mottakeren."
-
-msgid "This recipient cannot be deselected."
-msgstr "Denne mottakeren kan ikke fravelges."
-
 msgid "Details"
 msgstr "Detaljer"
 
@@ -129,9 +117,6 @@ msgstr "Gjenoppfrisk"
 
 msgid "Context"
 msgstr "Bindeleddsinformasjon"
-
-msgid "Private messages"
-msgstr "Privat korrespondanse"
 
 msgid "Preview"
 msgstr "Forhåndsvisning"
@@ -173,12 +158,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr ""
-
-msgid "vertical"
-msgstr "vertikal"
-
-msgid "horizontal"
-msgstr "horisontal"
 
 msgid "Number"
 msgstr "Nummer"
@@ -240,9 +219,6 @@ msgstr "Forespørselsstatus"
 msgid "Custodian"
 msgstr "Tillitsperson"
 
-msgid "Custodian of the identities"
-msgstr "Tillitsperson for identiteter"
-
 msgid "Identity"
 msgstr "Identitet"
 
@@ -285,9 +261,6 @@ msgstr "Tillat tilgang til fløyteblåsers sanne identitet"
 msgid "Templates"
 msgstr "Maler"
 
-msgid "HTTPS settings"
-msgstr "HTTPS-innstillinger"
-
 msgid "URL redirects"
 msgstr ""
 
@@ -299,13 +272,6 @@ msgstr "Tilgjengelig lagringsplass"
 
 msgid "Last update"
 msgstr "Siste oppdatering"
-
-msgid "Custodian notification templates"
-msgstr "Maler for merknader til tillitsperson"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "Dette grensesnittet tillater oppsett av e-postmaler brukt for merknader til tillitspersoner."
 
 msgid "Disable notifications to administrators"
 msgstr "Skru av merknader til administratorer"
@@ -357,12 +323,6 @@ msgstr "Ingen"
 
 msgid "Regular expression"
 msgstr "Regulært uttrykk"
-
-msgid "Activate"
-msgstr "Aktiver"
-
-msgid "Disactivate"
-msgstr ""
 
 msgid "Search"
 msgstr "Søk"
@@ -435,6 +395,9 @@ msgstr "Utvid"
 msgid "Select"
 msgstr "Velg"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Surname"
 msgstr "Etternavn"
 
@@ -506,7 +469,16 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr "Kopier til utklippstavle"
 
+msgid "Logout"
+msgstr "Logg ut"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
+msgstr ""
+
+msgid "Select the context of your report:"
 msgstr ""
 
 msgid "Before proceeding, please set a new password."
@@ -735,14 +707,8 @@ msgstr "Oppfordring til fløyteblåser"
 msgid "Whistleblowing button"
 msgstr "Fløyteblåsnings-knapp"
 
-msgid "Enable disclaimer"
-msgstr "Slå på ansvarsfraskrivelse"
-
-msgid "Title"
-msgstr "Tittel"
-
-msgid "Text"
-msgstr "Tekst"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "Bunntekst"
@@ -1061,6 +1027,9 @@ msgstr ""
 msgid "Phone number"
 msgstr "Telefonnummer"
 
+msgid "Text"
+msgstr "Tekst"
+
 msgid "Checkbox label"
 msgstr ""
 
@@ -1075,18 +1044,6 @@ msgstr ""
 
 msgid "Video"
 msgstr "Video"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "Synlighet for emne underlagt godkjenning av tillitsperson"
-
-msgid "Text shown upon negative answer"
-msgstr ""
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "Etterspør bekreftelse ved negativt svar"
-
-msgid "Text shown upon confirmation"
-msgstr ""
 
 msgid "Trigger conditions"
 msgstr ""
@@ -1156,6 +1113,9 @@ msgstr "Tillat brukere å registrere seg"
 
 msgid "Enable terms of service"
 msgstr ""
+
+msgid "Title"
+msgstr "Tittel"
 
 msgid "Send an account activation link to the user."
 msgstr ""
@@ -1268,6 +1228,9 @@ msgstr ""
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""
 
+msgid "Close"
+msgstr "Lukk"
+
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
@@ -1276,9 +1239,6 @@ msgstr ""
 
 msgid "Enable two factor authentication"
 msgstr ""
-
-msgid "Close"
-msgstr "Lukk"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr ""
@@ -1344,6 +1304,18 @@ msgstr "Ressurs kan nåes bare i Tor-nettverket"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Opplastingsforespørselen overskrider størrelsesavgrensningen"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Submit"
+msgstr "Send inn"
 
 msgid "Validation of email address change in progress."
 msgstr "Bekreftelse av e-postendring underveis."
@@ -1434,9 +1406,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "Plattformen er fremdeles ikke satt opp for HTTPS-tilkoblinger og burde bare brukes for testformål."
 
-msgid "Submit"
-msgstr "Send inn"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr ""
 
@@ -1510,9 +1479,6 @@ msgstr "Svar oppgitt for spørreskjema"
 msgid "Step"
 msgstr "Steg"
 
-msgid "Recipient list"
-msgstr "Mottaker-liste"
-
 msgid "Status:"
 msgstr ""
 
@@ -1521,9 +1487,6 @@ msgstr "Filer vedlegt av mottakere"
 
 msgid "Upload a file:"
 msgstr "Last opp en fil:"
-
-msgid "Logout"
-msgstr "Logg ut"
 
 msgid "An update is available:"
 msgstr "Oppgradering tilgjengelig:"
@@ -1556,18 +1519,15 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Show"
-msgstr "Vis"
-
-msgid "Hide"
-msgstr "Skjul"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Tilgang til fløyteblåsers identitet har blitt forespurt av tillitsperson."
 
 msgid "Date of the request"
 msgstr "Dato for forespørsel"
+
+msgid "Show"
+msgstr "Vis"
 
 msgid "Congratulations!"
 msgstr "Gratulerer!"
@@ -1606,9 +1566,6 @@ msgstr "Ferdig"
 msgid "Invalid phone number"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr ""
-
 msgid "The answer is too short"
 msgstr ""
 
@@ -1636,9 +1593,6 @@ msgid "Thank you!"
 msgstr "Takk!"
 
 msgid "Your report was successful."
-msgstr ""
-
-msgid "We will try to get back to you as soon as possible."
 msgstr ""
 
 msgid "Remember your receipt for this report."
@@ -1682,6 +1636,9 @@ msgstr "Venter på at ei fil skal lastes opp."
 
 msgid "The following steps have errors:"
 msgstr "Følgende steg har feil:"
+
+msgid "Hide"
+msgstr "Skjul"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1731,32 +1688,14 @@ msgstr "Fornavn"
 msgid "Last name"
 msgstr "Etternavn"
 
-msgid "Gender"
-msgstr "Kjønn"
+msgid "Preferred contact method"
+msgstr ""
 
-msgid "Male"
-msgstr "Hannkjønn"
+msgid "Other"
+msgstr "Annet"
 
-msgid "Female"
-msgstr "Hunnkjønn"
-
-msgid "Other gender identity"
-msgstr "Annen kjønnsidentitet"
-
-msgid "Date of birth"
-msgstr "Fødselsdato"
-
-msgid "Place of birth"
-msgstr "Fødested"
-
-msgid "Zip code / Postal code"
-msgstr "Postnummer"
-
-msgid "Province"
-msgstr "Kommune"
-
-msgid "Country"
-msgstr "Land"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Kjære {RecipientName},"
@@ -1869,9 +1808,6 @@ msgstr "Navn: {Name}"
 
 msgid "Email: {Email}"
 msgstr "E-post: {Email}"
-
-msgid "Language: {Language}"
-msgstr "Språk: {Language}"
 
 msgid "New whistleblowing site registered"
 msgstr "Ny fløyteblåserside registrert"
@@ -2042,6 +1978,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "For instruks om programvareoppdateringer, henvend dem til dokumentasjonen på: {UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Den tidligste utløpsdatoen er {EarliestExpirationDate}."
 
@@ -2062,9 +2006,6 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr ""
-
-msgid "New report"
 msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."

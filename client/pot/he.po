@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,9 +45,6 @@ msgstr "התאמה אישית של טקסט"
 
 msgid "Advanced settings"
 msgstr "הגדרות מתקדמות"
-
-msgid "Questionnaire configuration"
-msgstr "תצורת שאלון"
 
 msgid "Question templates"
 msgstr "תבניות שאלה"
@@ -103,15 +100,6 @@ msgstr "הערות"
 msgid "Messages"
 msgstr "הודעות"
 
-msgid "Select this recipient."
-msgstr "בחר מקבל"
-
-msgid "Unselect this recipient."
-msgstr "בטל מקבל"
-
-msgid "This recipient cannot be deselected."
-msgstr "אין אפשרות לבטל בחירת הנמען"
-
 msgid "Details"
 msgstr "פרטים"
 
@@ -141,9 +129,6 @@ msgstr "רענן"
 
 msgid "Context"
 msgstr "הקשר"
-
-msgid "Private messages"
-msgstr "הודעות פרטיות"
 
 msgid "Preview"
 msgstr "הצג מראש"
@@ -185,12 +170,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr ""
-
-msgid "vertical"
-msgstr "אנכי"
-
-msgid "horizontal"
-msgstr "אופקי"
 
 msgid "Number"
 msgstr "מספר"
@@ -252,9 +231,6 @@ msgstr "מעמד בקשה"
 msgid "Custodian"
 msgstr "אַפּוֹטרוֹפּוֹס"
 
-msgid "Custodian of the identities"
-msgstr "אפוטרופוס של הזהויות"
-
 msgid "Identity"
 msgstr "זהות"
 
@@ -297,9 +273,6 @@ msgstr "תן הרשאת גישת הזהות של המתריע"
 msgid "Templates"
 msgstr "תבניות"
 
-msgid "HTTPS settings"
-msgstr "הגדרות HTTPS"
-
 msgid "URL redirects"
 msgstr ""
 
@@ -311,13 +284,6 @@ msgstr "שטח דיסק זמין"
 
 msgid "Last update"
 msgstr "עדכון אחרון"
-
-msgid "Custodian notification templates"
-msgstr "תבניות להודעות אפוטרופוס"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "ממשק זה מאפשר תצורה של תבניות דואר אלקטרוניות המשמשות להודיע ​​ונאמנים."
 
 msgid "Disable notifications to administrators"
 msgstr "השבת הודעות למנהלים"
@@ -369,12 +335,6 @@ msgstr "כלום"
 
 msgid "Regular expression"
 msgstr "ביטוי רגולרי"
-
-msgid "Activate"
-msgstr "שפעל"
-
-msgid "Disactivate"
-msgstr "בטל שיפעול"
 
 msgid "Search"
 msgstr "חפש"
@@ -447,6 +407,9 @@ msgstr "הרחב"
 msgid "Select"
 msgstr "בחר"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Surname"
 msgstr "שם משפחה"
 
@@ -518,8 +481,17 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr "העתק ללוח גזירה"
 
+msgid "Logout"
+msgstr "התנתק"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
+
+msgid "Select the context of your report:"
+msgstr "בחר את ההקשר של הדוח שלך:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "לפני שממשיכים, אנא קבע/י סיסמה חדשה"
@@ -747,14 +719,8 @@ msgstr "שאלות על הלשנה"
 msgid "Whistleblowing button"
 msgstr "כפתור חשיפת שחיתות"
 
-msgid "Enable disclaimer"
+msgid "Disclaimer"
 msgstr ""
-
-msgid "Title"
-msgstr "כותרת"
-
-msgid "Text"
-msgstr "טקסט"
 
 msgid "Footer"
 msgstr "כותרת תחתונה"
@@ -1073,6 +1039,9 @@ msgstr ""
 msgid "Phone number"
 msgstr "מספר טלפון"
 
+msgid "Text"
+msgstr "טקסט"
+
 msgid "Checkbox label"
 msgstr "תווית של תיבת סימון"
 
@@ -1087,18 +1056,6 @@ msgstr "שמע"
 
 msgid "Video"
 msgstr "סרטון"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "נראות תשובה בכפופות אישור אפוטרופוס"
-
-msgid "Text shown upon negative answer"
-msgstr ""
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "אישור שורה על תשובה שלילית"
-
-msgid "Text shown upon confirmation"
-msgstr ""
 
 msgid "Trigger conditions"
 msgstr "תנאיי מעורר"
@@ -1168,6 +1125,9 @@ msgstr "התר למשתמשים להירשם"
 
 msgid "Enable terms of service"
 msgstr "אפשר תנאיי שירות"
+
+msgid "Title"
+msgstr "כותרת"
 
 msgid "Send an account activation link to the user."
 msgstr "שלח קישור שיפעול חשבון אל המשתמש."
@@ -1280,6 +1240,9 @@ msgstr ""
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""
 
+msgid "Close"
+msgstr "סגור"
+
 msgid "Install an authenticator app on your phone"
 msgstr "התקן יישום אימות בטלפון שלך"
 
@@ -1288,9 +1251,6 @@ msgstr "סרוק את קוד ה־QR עם היישום"
 
 msgid "Enable two factor authentication"
 msgstr "אפשר אימות דו־שלבי"
-
-msgid "Close"
-msgstr "סגור"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr ""
@@ -1356,6 +1316,18 @@ msgstr "משאב ניתן לגשת רק בתוך רשת Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "בקשת ההעלאה עולה על מגבלות הגודל"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Submit"
+msgstr "הגש"
 
 msgid "Validation of email address change in progress."
 msgstr ""
@@ -1446,9 +1418,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr ""
 
-msgid "Submit"
-msgstr "הגש"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr ""
 
@@ -1522,9 +1491,6 @@ msgstr "תשובות לשאלון"
 msgid "Step"
 msgstr "צעד"
 
-msgid "Recipient list"
-msgstr "רשימת נמענים"
-
 msgid "Status:"
 msgstr "מצב"
 
@@ -1533,9 +1499,6 @@ msgstr ""
 
 msgid "Upload a file:"
 msgstr "העלה קובץ:"
-
-msgid "Logout"
-msgstr "התנתק"
 
 msgid "An update is available:"
 msgstr "עדכון זמין:"
@@ -1568,18 +1531,15 @@ msgstr ""
 msgid "Password reset requested."
 msgstr "איפוס סיסמה בוקש."
 
-msgid "Show"
-msgstr "הצג"
-
-msgid "Hide"
-msgstr "הסתר"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "גישה אל הזהות של המתריע התבקש האפוטרופוס."
 
 msgid "Date of the request"
 msgstr "תאריך הבקשה"
+
+msgid "Show"
+msgstr "הצג"
 
 msgid "Congratulations!"
 msgstr "מזל טוב!"
@@ -1618,9 +1578,6 @@ msgstr "שלם"
 msgid "Invalid phone number"
 msgstr "מספר טלפון בלתי תקף"
 
-msgid "Select the context of your report:"
-msgstr "בחר את ההקשר של הדוח שלך:"
-
 msgid "The answer is too short"
 msgstr ""
 
@@ -1649,9 +1606,6 @@ msgstr "תודה לך!"
 
 msgid "Your report was successful."
 msgstr "הדוח שלך היה מוצלח."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
 
 msgid "Remember your receipt for this report."
 msgstr ""
@@ -1694,6 +1648,9 @@ msgstr ""
 
 msgid "The following steps have errors:"
 msgstr ""
+
+msgid "Hide"
+msgstr "הסתר"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1743,32 +1700,14 @@ msgstr "שם פרטי"
 msgid "Last name"
 msgstr "שם משפחה"
 
-msgid "Gender"
-msgstr "מגדר"
+msgid "Preferred contact method"
+msgstr ""
 
-msgid "Male"
-msgstr "זכר"
+msgid "Other"
+msgstr "אחר"
 
-msgid "Female"
-msgstr "נקבה"
-
-msgid "Other gender identity"
-msgstr "זהות מגדר אחרת"
-
-msgid "Date of birth"
-msgstr "תאריך לידה"
-
-msgid "Place of birth"
-msgstr "מקום לידה"
-
-msgid "Zip code / Postal code"
-msgstr "מיקוד"
-
-msgid "Province"
-msgstr "מחוז"
-
-msgid "Country"
-msgstr "מדינה"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} היקר,"
@@ -1881,9 +1820,6 @@ msgstr "שם: {Name}"
 
 msgid "Email: {Email}"
 msgstr "דוא״ל: {Email}"
-
-msgid "Language: {Language}"
-msgstr "שפה: {Language}"
 
 msgid "New whistleblowing site registered"
 msgstr ""
@@ -2054,6 +1990,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr ""
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr "דוח חדש"
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr ""
 
@@ -2075,9 +2019,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr ""
-
-msgid "New report"
-msgstr "דוח חדש"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr ""

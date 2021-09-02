@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,9 +35,6 @@ msgstr "އަކުރު ބެނުންފުޅުވާ ގޮތަށްބަދަލުކުރަނ
 
 msgid "Advanced settings"
 msgstr "އިތުރު އިންހަމަ"
-
-msgid "Questionnaire configuration"
-msgstr "ސުވާލުކަރުދާޙަށް ބަދަލުގެނައުމަށް"
 
 msgid "Question templates"
 msgstr "ސުވާލުކަރުދާހުގެ ސުވާލުތަކުގެ ޓެންޕްލޭޓް"
@@ -93,15 +90,6 @@ msgstr "ކޮމެންޓް"
 msgid "Messages"
 msgstr "މެސެޖް"
 
-msgid "Select this recipient."
-msgstr "ފޮނުުވުމަށް މިއެކައުންޓް ހިޔާކުރަން"
-
-msgid "Unselect this recipient."
-msgstr "މި އެކައުންޓަށް ފޮނުވަން ބޭނުންފުޅު ނޫންނަމަ"
-
-msgid "This recipient cannot be deselected."
-msgstr "ފޮނުވުމަށް ތި އެކައުންޓް ހިޔާރެއް ނުކުރެވޭ. "
-
 msgid "Details"
 msgstr "އިތުރު މައުލޫއްމާތު"
 
@@ -131,9 +119,6 @@ msgstr "ރިފްރެސް ކުރުމަށް"
 
 msgid "Context"
 msgstr "ކޮންޓެކްސްޓް"
-
-msgid "Private messages"
-msgstr "އަމިއްލަ މެސެޖްތައް"
 
 msgid "Preview"
 msgstr "ޕްރީވިއު"
@@ -175,12 +160,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "ބޭނުންކުރައްވާ ކަނެކްޝަންގެ ރައްކާތެރިކަން ވަނީ ޓޯރ އިން ކަށަވަރުކޮއްފައި. "
-
-msgid "vertical"
-msgstr "ވާޓިކަލް"
-
-msgid "horizontal"
-msgstr "ހޮރިޒޯންޓަލް"
 
 msgid "Number"
 msgstr "ނަންބަރު"
@@ -242,9 +221,6 @@ msgstr "ރިކުއެސްޓް ސްޓޭޓަސް"
 msgid "Custodian"
 msgstr "ކަސްޓޯޑިއަން"
 
-msgid "Custodian of the identities"
-msgstr "ކަސްޓޯޑިއަން އޮފް އައިޑެންޓިޓީސް"
-
 msgid "Identity"
 msgstr "އައިޑެންޓިޓީ"
 
@@ -287,9 +263,6 @@ msgstr "ވިސިލްބްލޯވަރގެ ފޮރުވިފައިވާ މައުލޫމާ
 msgid "Templates"
 msgstr "ޓެމްޕްލޭޓްތައް"
 
-msgid "HTTPS settings"
-msgstr "އެޗް.ޓީ.ޓީ.ޕީ.އެސް އިންހަމަ"
-
 msgid "URL redirects"
 msgstr "ހުޅުވޭ ޔޫ.އާރ.ޢެލް"
 
@@ -301,13 +274,6 @@ msgstr "ބޭނުންކުރެވެން ހުރި ޑިސްކްގެ ޖާގަ"
 
 msgid "Last update"
 msgstr "އެންމެފަހުގެ އަޕްޑޭޓް"
-
-msgid "Custodian notification templates"
-msgstr "ކަސްޓޯޑިއަން ނޮޓިފިކޭޝަންގެ ޓެންޕްލޭޓް"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "މި އިންޓަފޭސްއިން ކަސްޓޯޑިއަންސްއަށް ފޮނުވާ އީމެއިލްތަކުގެ ޓެނެޕްލޭޓްއަށް ބަދަލުގެނެވޭނެ. "
 
 msgid "Disable notifications to administrators"
 msgstr "އެޑްމިނިސްޓްރޭޓަރސްއަށް ނޮޓިފިކޭޝަން އައުން ހުއްޓުވުމަށް. "
@@ -359,12 +325,6 @@ msgstr "ނެތް"
 
 msgid "Regular expression"
 msgstr "ރެގިއުލަރ އެކްސްޕްރެޝަން"
-
-msgid "Activate"
-msgstr "އެކްޓިވޭޓް ކުރަން"
-
-msgid "Disactivate"
-msgstr "ޑީއެކްޓިވޭޓް ކުރަން"
 
 msgid "Search"
 msgstr "ހޯދާ"
@@ -437,6 +397,9 @@ msgstr "އިތުރަށް ބައްލަވަން"
 msgid "Select"
 msgstr "ހިޔާރުކުރަން"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Surname"
 msgstr "އާއިލީ ނަން"
 
@@ -508,8 +471,17 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr ""
 
+msgid "Logout"
+msgstr "ލޮގްއައުޓް"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
+
+msgid "Select the context of your report:"
+msgstr "ތިޔަ ފަރާތުގެ ރިޕޯޓްގެ ކޮއްޓެކްސްޓެ ހިޔާރުކުރައްވާ"
 
 msgid "Before proceeding, please set a new password."
 msgstr "ކުރިއަށް ދިޔުމުގެ ކުރިން އާ ޕާސްވޯޑްއެއް ހިޔާރުކުރައްވާ"
@@ -737,14 +709,8 @@ msgstr "ވިސިލްބްލޯވަރއެއްކަން ކަށަވަރުކުރަން 
 msgid "Whistleblowing button"
 msgstr "ވިސްލްބްލޯކުރުމަށް ފިއްތަވާ"
 
-msgid "Enable disclaimer"
-msgstr "ވަކި ހާއްސަ މެސެޖެއް ދެއްވަން ހިޔާރުކުރެއްވުމަށް"
-
-msgid "Title"
-msgstr "ލަގަބު"
-
-msgid "Text"
-msgstr "އަކުރު"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "ތިރީ ހަވާސާ"
@@ -1063,6 +1029,9 @@ msgstr "ނަމޫނާއިން ބޭރަށްދިއުމަށް"
 msgid "Phone number"
 msgstr "ފޯނު ނަމްބަރު"
 
+msgid "Text"
+msgstr "އަކުރު"
+
 msgid "Checkbox label"
 msgstr "ފާހަގަޖަހާގޮޅީގެ ނަންކޮޅު"
 
@@ -1077,18 +1046,6 @@ msgstr "އަޑު"
 
 msgid "Video"
 msgstr "ވީޑިޔޯ"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "ޖަވާބު ފެންނާނީ ކަސްޓޯޑިއަންގެ ޙުއްދައާއި އެކު. "
-
-msgid "Text shown upon negative answer"
-msgstr "ނުރަނގަޅު ޖަވާބެއް ދެއްވުމުން ލިބިވަޑައިގަންނަވާ މެސެޖު"
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "ނުބައި ޖަވާބެއް ދީފިނަމަ ވަގުތުން އެކަން ބަޔާންކޮށްދިނުން"
-
-msgid "Text shown upon confirmation"
-msgstr "ޔަގީންކުރަން ފިތަށް އޮއްބާލީމައި ލިބިވަޑައިގަންނަވާ މެސެޖު"
 
 msgid "Trigger conditions"
 msgstr "ޓްރިގަރ ވާނެ ޙާލަތްތަތް"
@@ -1158,6 +1115,9 @@ msgstr "އިތުރު މީހުން ސައިން އަޕް ކުރުމުގެ ހުއ�
 
 msgid "Enable terms of service"
 msgstr "ޚިދުމަތުގެ އިޤްރާރު އޮން ކުރަން"
+
+msgid "Title"
+msgstr "ލަގަބު"
 
 msgid "Send an account activation link to the user."
 msgstr "ބޭނުންކުރާ ފަރާތަށް އެކްޓިވޭޝަން ލިންކް ފޮނުއްވުމަށް"
@@ -1270,6 +1230,9 @@ msgstr "މިކަމާޢި ގުޅޭ ހުރިހާ މަޢުލޫމާތެއް ޑިލީ
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "މީ މިސާލު ޕްލެޓްފޯމްއެއް، މި ޕްލެޓްފޯމް ބޭނުންކޮއްގެން އަސްލު ރިޕޯޓު ހުށައެއްނޭޅޭނެ. "
 
+msgid "Close"
+msgstr "ލައްޕާ"
+
 msgid "Install an authenticator app on your phone"
 msgstr "ހުއްދަކަށަވަރުކުރާ އެޕްލިކޭޝަނެއް ފޯނަށް އިންސްޓޯލްކުރައްވާ"
 
@@ -1278,9 +1241,6 @@ msgstr "އެޕްލިކޭޝަނުން ކިއު އާރު ކޯޑު ސްކޭން ކ�
 
 msgid "Enable two factor authentication"
 msgstr "ޓޫ ފެކްޓަރ އޮތެންޓިކޭޝަން އޮން ކުރެއްވުމަށް"
-
-msgid "Close"
-msgstr "ލައްޕާ"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "ކުރިއަށް ދިޔުމުގެ ކުރިން: ގައިވާ ޑޮކިއުމެންޓޭޝަން ރަނގަޅަށް ކިޔުން ވަރަށް މުހިންމު"
@@ -1346,6 +1306,18 @@ msgstr "ވަޞީލަތްތަކުގެ ބޭނުންކުރެވޭނީ ހަމައެކ
 
 msgid "The upload request exceeds the size limit"
 msgstr "އަޕްލޯޑް ކުރަން ބޭނުންވާ މީޑިއާގެ ސައިޒް ހުއްދަ ކުރެވިފައިވާ މިންވަރަށްވުރެ ބޮޑު"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "ވީހާވެސް އަވަހަކަށް ޖަވާބު އަރުވާނަން. "
+
+msgid "Submit"
+msgstr "ސަބްމިޓް ކުރައްވާ"
 
 msgid "Validation of email address change in progress."
 msgstr "އީމެއިލް އެޑްރެސް ބަދަލުކުރުމުގެ މަސައްކަތް ކުރިޔަށް ދަނީ. "
@@ -1436,9 +1408,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "މި ޕްލެޓްފޯމް އެޗް.ޓީ.ޓީ.ޕީ.އެސް ކަނެކްޝަންސްއަށް ކޮންފިގަރ ކޮއްފަކާއެއްނުވޭ. އެހެންކަމުން މި ކަނެކްޝަން ބޭނުންކުރެވޭނީ ހަމައެކަނި ޓެސްޓްކުރުމަށް. "
 
-msgid "Submit"
-msgstr "ސަބްމިޓް ކުރައްވާ"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "ރިޕޯޓް ލިބިލެއްވި ފަރާތްތަކުން އިތުރު ސަުވާލު ކަރުދާހަކަށް ޖަވާބުދިނުމަށް އެދިއްޖެ. "
 
@@ -1512,9 +1481,6 @@ msgstr "ސާވޭ ސުވާލުކަރުދާހުގެ ސުވާލުތައް"
 msgid "Step"
 msgstr "ފިޔަވަޅު"
 
-msgid "Recipient list"
-msgstr "ޚިދުމަތް ލިބޭ ފަރާތްތަކުގެ ލިސްޓް"
-
 msgid "Status:"
 msgstr "ސްޓޭޓަސް/ހާލަތު"
 
@@ -1523,9 +1489,6 @@ msgstr "ލިބިފައިވާ ފަރާތްކުން ހިމެނުއްވާފައިވ
 
 msgid "Upload a file:"
 msgstr "ފައިލް އަޕްލޯޑް ކުރުމަށް: "
-
-msgid "Logout"
-msgstr "ލޮގްއައުޓް"
 
 msgid "An update is available:"
 msgstr "އަދާހަމަކުރުމެއް ތައްޔާރުވެފައި"
@@ -1558,18 +1521,15 @@ msgstr "ޕާސްވޯޑް ރީސެޓްކޮށް ނިންމުމަށް ލިބިފަ�
 msgid "Password reset requested."
 msgstr "ޕާސްވޯޑް ރީސެޓްކުރަން އެދެވިއްޖެ."
 
-msgid "Show"
-msgstr "ދައްކާ"
-
-msgid "Hide"
-msgstr "ފޮރުވާ/ ފަރުދާކުރޭ"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "ވިސިލްބްލޯވަރގެ ފޮރުވިފައިވާ މައުލޫމާތު ހާމަކުރުމަށް ކަސްޓޯޑިއަން ކައިރިން އެދެވިއްޖެ. "
 
 msgid "Date of the request"
 msgstr "ޚިދުމަތަށް އެދިލެއްވި ތާރީޚް"
+
+msgid "Show"
+msgstr "ދައްކާ"
 
 msgid "Congratulations!"
 msgstr "މަރުޙަބާ!"
@@ -1608,9 +1568,6 @@ msgstr "ނިންމުމަށް"
 msgid "Invalid phone number"
 msgstr "ފޯނު ނަމްބަރު ރަނގަޅެއްނޫން"
 
-msgid "Select the context of your report:"
-msgstr "ތިޔަ ފަރާތުގެ ރިޕޯޓްގެ ކޮއްޓެކްސްޓެ ހިޔާރުކުރައްވާ"
-
 msgid "The answer is too short"
 msgstr ""
 
@@ -1639,9 +1596,6 @@ msgstr "ޝުކުރިއްޔާ! "
 
 msgid "Your report was successful."
 msgstr "ރިޕޯޓު ކުރެވިއްޖެ. "
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "ވީހާވެސް އަވަހަކަށް ޖަވާބު އަރުވާނަން. "
 
 msgid "Remember your receipt for this report."
 msgstr "ރިޕޯޓުގެ ރަޝީދުގެ ހަނދާން ބަހައްޓަވާ. "
@@ -1684,6 +1638,9 @@ msgstr "ފައިލް(ތައް) އަޕްލޯޑް ވަންދެކަށް މަޑުކ�
 
 msgid "The following steps have errors:"
 msgstr "މިފިޔަވަޅުތަކުގައި ކުށްމައުލޫމާތު ހިމެނޭ"
+
+msgid "Hide"
+msgstr "ފޮރުވާ/ ފަރުދާކުރޭ"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1733,31 +1690,13 @@ msgstr "ފުރަތަމަ ނަން"
 msgid "Last name"
 msgstr "އާއިލީ ނަން "
 
-msgid "Gender"
-msgstr "ޖިންސު"
+msgid "Preferred contact method"
+msgstr ""
 
-msgid "Male"
-msgstr "ފިރިހެން"
+msgid "Other"
+msgstr "އެހެނިހެން"
 
-msgid "Female"
-msgstr "އަންހެން"
-
-msgid "Other gender identity"
-msgstr "އެހެން ޖިއްސެއް ނަމަ"
-
-msgid "Date of birth"
-msgstr "އުފަންވީ ތާރީޚް"
-
-msgid "Place of birth"
-msgstr "އުފަންވީ ތަން"
-
-msgid "Zip code / Postal code"
-msgstr "ޒިޕްކޯޑް/ ޕޯސްޓަލް ކޯޑް"
-
-msgid "Province"
-msgstr "ޕްރޮވިންސް/ އަތޮޅު"
-
-msgid "Country"
+msgid "I prefer to be contacted via this platform only"
 msgstr ""
 
 msgid "Dear {RecipientName},"
@@ -1871,9 +1810,6 @@ msgstr "ނަން:{Name}"
 
 msgid "Email: {Email}"
 msgstr "އީމެއިލް: {Email}"
-
-msgid "Language: {Language}"
-msgstr "ބަސް:{Language}"
 
 msgid "New whistleblowing site registered"
 msgstr "އައު ވިސިލްބްލޯވިންގ ސައިޓް ރެޖިސްޓަރކުރެވިފައި"
@@ -2044,6 +1980,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "ސޮފްޓްވެއަރ އަޕްޑޭޓްސްގެ މައުލޫއްމާތު ހޯއްދެވުމަށް ޑޮކިއުމެންޓޭޝަން ބައްލަވާ: {UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr "އައު ރިޕޯޓް"
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "އެންމެ ކުރު މުއްދަތެއްގައި ދުވަސްހަމަވާނެ ތާރީޙަކީ {EarliestExpirationDate}"
 
@@ -2065,9 +2009,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "މީގައި ހިމެނޭ މައުލޫމާތާއި ތަކެއްޗަށް ޚާއްޞަ ސަމާލުކަމެއްދެއްވުން އެދެމެއެވެ.  ހަނދުމަފުޅު ބަހައްޓަވަންވީ ކަމަކީ ވިސިލްބްލޯވަރުންނަކީ އާންމު ލާބަޔާ މަންފާއަށްޓަކާ އެމީހުންގެ އަމިއްލަ ނަފުސު ވަރަށްބޮޑަށް ނުރައްކަލަށް ހުށަހެޅޭ ބަޔެއްކަމެވެ. އެހެންކަމުން މި ރިޕޯޓަށް ފޯރުކޮށްދީފައިވާ މަޢުލޫމާތަކީ އެންމެ މުހިންމު ކަމެއްދީގެން ބަލަހައްޓަންޖެހޭ ތަކެއްޗެވެ."
-
-msgid "New report"
-msgstr "އައު ރިޕޯޓް"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr ""

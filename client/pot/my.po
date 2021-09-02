@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Burmese (http://www.transifex.com/otf/globaleaks/language/my/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,9 +32,6 @@ msgstr "စာသား ဖန်တီးပြုပြင်ခြင်း"
 
 msgid "Advanced settings"
 msgstr "အဆင့်မြင့်သော ဆက်တင်များ"
-
-msgid "Questionnaire configuration"
-msgstr "မေးခွန်းလွှာ အစိတ်အပိုင်းများဖွဲ့စည်းပုံ"
 
 msgid "Question templates"
 msgstr "မေးခွန်း ပုံစံပြားများ"
@@ -90,15 +87,6 @@ msgstr "မှတ်ချက်များ"
 msgid "Messages"
 msgstr "မက်ဆေ့ချ်များ"
 
-msgid "Select this recipient."
-msgstr "ဤလက်ခံသူကို ရွေးချယ်ပါ။"
-
-msgid "Unselect this recipient."
-msgstr "ဤလက်ခံသူကို မရွေးပါ။"
-
-msgid "This recipient cannot be deselected."
-msgstr "ဤလက်ခံသူကို ရွေးချယ်မှုဖျက်၍ မရပါ။ "
-
 msgid "Details"
 msgstr "အသေးစိတ်များ"
 
@@ -128,9 +116,6 @@ msgstr "ရီဖရက်ရှ်လုပ်ရန်"
 
 msgid "Context"
 msgstr "အကြောင်းအရာ"
-
-msgid "Private messages"
-msgstr "သီးသန့် မက်ဆေ့ချ်များ"
 
 msgid "Preview"
 msgstr "အစမ်းကြည့်ရှုခြင်း"
@@ -172,12 +157,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "ချိတ်ဆက်ခြင်းကို Tor ဖြင့် ကာကွယ်ထားသောကြောင့် လုံခြုံစိတ်ချမှုရှိပြီး အမည်မသိနိုင်ပါ။"
-
-msgid "vertical"
-msgstr "ဒေါင်လိုက်"
-
-msgid "horizontal"
-msgstr "အလျားလိုက်"
 
 msgid "Number"
 msgstr "နံပါတ်"
@@ -239,9 +218,6 @@ msgstr "တောင်းဆိုမှု အခြေအနေ"
 msgid "Custodian"
 msgstr "အုပ်ထိန်းသူ"
 
-msgid "Custodian of the identities"
-msgstr "ကိုယ်ပိုင်အမှတ်သင်္ကေတများကို အုပ်ထိန်းသူ"
-
 msgid "Identity"
 msgstr "ကိုယ်ပိုင်အမှတ်သင်္ကေတ"
 
@@ -284,9 +260,6 @@ msgstr "သတင်းပေးသူ၏ ကိုယ်ပိုင်အမ�
 msgid "Templates"
 msgstr "ပုံစံပြားများ"
 
-msgid "HTTPS settings"
-msgstr "HTTPS ဆက်တင်များ"
-
 msgid "URL redirects"
 msgstr "URL ဦးတည်ရာပြောင်းမှုများ"
 
@@ -298,13 +271,6 @@ msgstr "ရရှိနိုင်သော ဟာ့ဒစ် နေရာ"
 
 msgid "Last update"
 msgstr "နောက်ဆုံး အပ်ဒိတ်"
-
-msgid "Custodian notification templates"
-msgstr "အုပ်ထိန်းသူ အသိပေးချက် ပုံစံပြားများ"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "ဤအသုံးပြုသူမြင်ရမည့်ပုံစံတွင် အုပ်ထိန်းသူများကို အကြောင်းကြားရန် အသုံးပြုသော အီးမေးလ် ပုံစံပြားများကို ချိန်ညှိခွင့်ပြုသည်။"
 
 msgid "Disable notifications to administrators"
 msgstr "အုပ်ချုပ်ရေးမှူးများအတွက် အသိပေးချက်များကို ပိတ်မည်"
@@ -356,12 +322,6 @@ msgstr "ဘာမှမရှိ"
 
 msgid "Regular expression"
 msgstr "ပုံမှန် စကားအသုံးအနှုန်း"
-
-msgid "Activate"
-msgstr "သက်ဝင်လုပ်ဆောင်မည်"
-
-msgid "Disactivate"
-msgstr "လုပ်ဆောင်မှုရပ်တန့်မည်"
 
 msgid "Search"
 msgstr "ရှာဖွေမည်"
@@ -434,6 +394,9 @@ msgstr "ချဲ့မည်"
 msgid "Select"
 msgstr "ရွေးချယ်မည်"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Surname"
 msgstr "မိသားစုအမည်"
 
@@ -505,8 +468,17 @@ msgstr "အရေးကြီးကြောင်း မှတ်သားပ�
 msgid "Copy to clipboard"
 msgstr ""
 
+msgid "Logout"
+msgstr "အကောင့်ထွက်ရန်"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
 msgstr "အစီရင်ခံစာ တင်ပါ"
+
+msgid "Select the context of your report:"
+msgstr "သင့်အစီရင်ခံစာ၏ အကြောင်းအရာကို ရွေးချယ်ပါ - "
 
 msgid "Before proceeding, please set a new password."
 msgstr "ဆက်မလုပ်မီ ကျေးဇူးပြု၍ စကားဝှက်အသစ် သတ်မှတ်ပါ။ "
@@ -734,14 +706,8 @@ msgstr "ဖြစ်နိုင်ခြေရှိသော သတင်း�
 msgid "Whistleblowing button"
 msgstr "သတင်းပေး ခလုတ်"
 
-msgid "Enable disclaimer"
-msgstr "ငြင်းဆိုမှုကို ဖွင့်ပါ"
-
-msgid "Title"
-msgstr "ခေါင်းစဉ်"
-
-msgid "Text"
-msgstr "စာသား"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "အောက်ခြေ စာသား"
@@ -1060,6 +1026,9 @@ msgstr "ပုံစံပြား ပယ်ဖျက်ခြင်း"
 msgid "Phone number"
 msgstr "ဖုန်းနံပါတ်"
 
+msgid "Text"
+msgstr "စာသား"
+
 msgid "Checkbox label"
 msgstr "အမှန်ခြစ် အကွက် အညွှန်း"
 
@@ -1074,18 +1043,6 @@ msgstr "အသံ"
 
 msgid "Video"
 msgstr "ဗီဒီယို"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "အုပ်ထိန်းသူ ခွင့်ပြုချက်ဖြင့် ဘာသာရပ် အဖြေကို မြင်နိုင်သည်"
-
-msgid "Text shown upon negative answer"
-msgstr "ငြင်းပယ်သော အဖြေအတွက် ပြသသည့် စာသား"
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "ငြင်းပယ်သော အဖြေအတွက် လျင်မြန်စွာ အတည်ပြုချက်"
-
-msgid "Text shown upon confirmation"
-msgstr "အတည်ပြုချိန် ပြသသည့် စာသား"
 
 msgid "Trigger conditions"
 msgstr "လှုံ့ဆော် အခြေအနေများ"
@@ -1155,6 +1112,9 @@ msgstr "အသုံးပြုသူများကို အကောင့�
 
 msgid "Enable terms of service"
 msgstr "ဝန်ဆောင်မှု စည်းမျဉ်းများကို ဖွင့်ပါ"
+
+msgid "Title"
+msgstr "ခေါင်းစဉ်"
 
 msgid "Send an account activation link to the user."
 msgstr "အသုံးပြုသူထံ အကောင့် သက်ဝင်လုပ်ဆောင်မှု လင့် ပို့ပါ။"
@@ -1267,6 +1227,9 @@ msgstr "ကျေးဇူးပြု၍ ဆက်နွှယ်သော အ�
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "ဤပလက်ဖောင်းသည် နမူနာ ဖြစ်၍ အမှန်တကယ် တင်သွင်းမှုများအတွက် အသုံးမပြုပါနှင့်။"
 
+msgid "Close"
+msgstr "ပိတ်မည်"
+
 msgid "Install an authenticator app on your phone"
 msgstr "သင့်ဖုန်းတွင် စစ်မှန်ကြောင်းသက်သေပြသည့် အက်ပ်ကို တပ်ဆင်ပါ"
 
@@ -1275,9 +1238,6 @@ msgstr "QR ကုဒ်ကို အက်ပ်ဖြင့် စကန်ဖ�
 
 msgid "Enable two factor authentication"
 msgstr "အဆင့်နှစ်ဆင့်ဖြင့် စစ်မှန်ကြောင်းသက်သေပြခြင်းကို ဖွင့်ပါ"
-
-msgid "Close"
-msgstr "ပိတ်မည်"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "ဆက်မလုပ်မီ ကျေးဇူးပြု၍ စာရွက်စာတမ်းကို ဂရုတစိုက် ဖတ်ပါ - "
@@ -1343,6 +1303,18 @@ msgstr "ရင်းမြစ်ကို Tor ကွန်ရက်မှတစ�
 
 msgid "The upload request exceeds the size limit"
 msgstr "အပ်လုဒ် တောင်းဆိုမှုသည် အရွယ်အစား ကန့်သတ်ချက်ထက် ကျော်လွန်နေသည်"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "သင့်ကို အမြန်ဆုံး အကြောင်းပြန်နိုင်ရန် ကျွန်ုပ်တို့ ကြိုးစားပါမည်။"
+
+msgid "Submit"
+msgstr "တင်သွင်းမည်"
 
 msgid "Validation of email address change in progress."
 msgstr "အီးမေးလ်လိပ်စာ အပြောင်းအလဲ အတည်ပြုနေသည်။"
@@ -1433,9 +1405,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "ပလက်ဖောင်းကို HTTPS ချိတ်ဆက်မှုများအတွက် ချိန်ညှိမထားသဖြင့် စမ်းသပ်ရန်အတွက်သာ အသုံးပြုသင့်သည်။"
 
-msgid "Submit"
-msgstr "တင်သွင်းမည်"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "လက်ခံသူများက သင့်အား အပိုဆောင်း မေးခွန်းလွှာဖြည့်ရန် တောင်းဆိုထားသည်။"
 
@@ -1509,9 +1478,6 @@ msgstr "မေးခွန်းလွှာ အဖြေများ"
 msgid "Step"
 msgstr "အဆင့်"
 
-msgid "Recipient list"
-msgstr "လက်ခံသူ စာရင်း"
-
 msgid "Status:"
 msgstr "အခြေအနေ -"
 
@@ -1520,9 +1486,6 @@ msgstr "လက်ခံသူများက တွဲကပ်သော ဖိ�
 
 msgid "Upload a file:"
 msgstr "ဖိုင် အပ်လုဒ်လုပ်ပါ -"
-
-msgid "Logout"
-msgstr "အကောင့်ထွက်ရန်"
 
 msgid "An update is available:"
 msgstr "အပ်ဒိတ် ရရှိနိုင်သည် - "
@@ -1555,18 +1518,15 @@ msgstr "စကားဝှက်ကို ပြန်လည်ရယူခြ�
 msgid "Password reset requested."
 msgstr "စကားဝှက် ပြန်လည်သတ်မှတ်ခွင့် တောင်းခံထားသည်။ "
 
-msgid "Show"
-msgstr "ပြသမည်"
-
-msgid "Hide"
-msgstr "ဝှက်မည်"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "သတင်းပေးသူ၏ ကိုယ်ပိုင်အမှတ်သင်္ကေတကို ဝင်ရောက်ကြည့်ရှုရန် အုပ်ထိန်းသူထံ တောင်းဆိုထားသည်။"
 
 msgid "Date of the request"
 msgstr "တောင်းဆိုသည့် နေ့စွဲ"
+
+msgid "Show"
+msgstr "ပြသမည်"
 
 msgid "Congratulations!"
 msgstr "ဂုဏ်ယူပါသည်။"
@@ -1605,9 +1565,6 @@ msgstr "ပြည့်စုံသည်"
 msgid "Invalid phone number"
 msgstr "မမှန်ကန်သော ဖုန်းနံပါတ်"
 
-msgid "Select the context of your report:"
-msgstr "သင့်အစီရင်ခံစာ၏ အကြောင်းအရာကို ရွေးချယ်ပါ - "
-
 msgid "The answer is too short"
 msgstr "အဖြေက တိုလွန်းသည်"
 
@@ -1636,9 +1593,6 @@ msgstr "ကျေးဇူးတင်ပါသည်။"
 
 msgid "Your report was successful."
 msgstr "သင့်အစီရင်ခံစာ အောင်မြင်ပါသည်။"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "သင့်ကို အမြန်ဆုံး အကြောင်းပြန်နိုင်ရန် ကျွန်ုပ်တို့ ကြိုးစားပါမည်။"
 
 msgid "Remember your receipt for this report."
 msgstr "ဤအစီရင်ခံစာအတွက် သင့်လက်ခံဖြတ်ပိုင်းကို မှတ်ထားပါ။"
@@ -1681,6 +1635,9 @@ msgstr "ဖိုင်(များ) အပ်လုဒ်လုပ်ခြင
 
 msgid "The following steps have errors:"
 msgstr "အောက်ပါအဆင့်များတွင် ပြဿနာရှိသည် - "
+
+msgid "Hide"
+msgstr "ဝှက်မည်"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1730,32 +1687,14 @@ msgstr "အမည် ပထမစာလုံး"
 msgid "Last name"
 msgstr "အမည် နောက်ဆုံးစာလုံး"
 
-msgid "Gender"
-msgstr "လိင်"
+msgid "Preferred contact method"
+msgstr ""
 
-msgid "Male"
-msgstr "ကျား"
+msgid "Other"
+msgstr "အခြား"
 
-msgid "Female"
-msgstr "မ"
-
-msgid "Other gender identity"
-msgstr "အခြား လိင်စိတ်ခံယူမှု"
-
-msgid "Date of birth"
-msgstr "မွေးနေ့"
-
-msgid "Place of birth"
-msgstr "မွေးရပ်"
-
-msgid "Zip code / Postal code"
-msgstr "စာတိုက်နံပါတ် / စာတိုက်ကုဒ်"
-
-msgid "Province"
-msgstr "ပြည်နယ်"
-
-msgid "Country"
-msgstr "နိုင်ငံ"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "ချစ်ခင်ရပါသော {RecipientName}"
@@ -1868,9 +1807,6 @@ msgstr "အမည် - {Name}"
 
 msgid "Email: {Email}"
 msgstr "အီးမေးလ် - {Email}"
-
-msgid "Language: {Language}"
-msgstr "ဘာသာစကား - {Language}"
 
 msgid "New whistleblowing site registered"
 msgstr "သတင်းပေးဝက်ဘ်ဆိုက်အသစ် မှတ်ပုံတင်ထားသည်"
@@ -2041,6 +1977,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "ဆော့ဝဲ အပ်ဒိတ်များဆိုင်ရာ လမ်းညွှန်ချက်များအတွက် ကျေးဇူးပြု၍ စာရွက်စာတမ်းကို ရည်ညွှန်းပါ - {UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr "အစီရင်ခံစာအသစ်"
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "အစောဆုံး သက်တမ်းကုန်ဆုံးရက်မှာ {EarliestExpirationDate} ဖြစ်သည်။"
 
@@ -2062,9 +2006,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "ထိုနေရာတွင် ပါဝင်သည့် အချက်အလက်နှင့် ပစ္စည်းများကို အထူးဂရုပြုရန် သင့်အား တောင်းဆိုသည်။ သတင်းပေးသူများသည် အများပြည်သူ အကျိုးစီးပွားအတွက် ကြီးမားသော ပုဂ္ဂိုလ်ရေးအန္တရာယ်များကို မကြာခဏ ကြုံတွေ့တတ်ကြောင်း သတိပြုပါ။ ထို့ကြောင့် ဤအစီရင်ခံစာအတွင်း ပါဝင်သော အကြောင်းအရာကို အလွန်အရေးကြီးသည်ဟု မှတ်ယူသင့်သည်။"
-
-msgid "New report"
-msgstr "အစီရင်ခံစာအသစ်"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "ဤသည်မှာ ရှိပြီးသား အစီရင်ခံစာကို အပ်ဒိတ်လုပ်ထားကြောင်း အကြောင်းကြားသည့် အီးမေးလ် ဖြစ်သည်။"

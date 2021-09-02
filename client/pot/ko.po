@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,9 +32,6 @@ msgstr "텍스트 사용자 정의"
 
 msgid "Advanced settings"
 msgstr "고급 설정"
-
-msgid "Questionnaire configuration"
-msgstr "설문 구성"
 
 msgid "Question templates"
 msgstr "질문 템플릿"
@@ -90,15 +87,6 @@ msgstr "댓글"
 msgid "Messages"
 msgstr "메시지"
 
-msgid "Select this recipient."
-msgstr "수신자를 선택합니다."
-
-msgid "Unselect this recipient."
-msgstr "수신자를 선택 취소합니다."
-
-msgid "This recipient cannot be deselected."
-msgstr "수신자를 선택 취소할 수 없습니다."
-
 msgid "Details"
 msgstr "세부 정보"
 
@@ -128,9 +116,6 @@ msgstr "새로 고침"
 
 msgid "Context"
 msgstr "컨텍스트"
-
-msgid "Private messages"
-msgstr "개인 메시지"
 
 msgid "Preview"
 msgstr "미리 보기"
@@ -172,12 +157,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "본 연결은 기밀성과 익명성을 보장하는 Tor로 보호되고 있습니다."
-
-msgid "vertical"
-msgstr "수직"
-
-msgid "horizontal"
-msgstr "수평"
 
 msgid "Number"
 msgstr "번호"
@@ -239,9 +218,6 @@ msgstr "요청 상태"
 msgid "Custodian"
 msgstr "관리인"
 
-msgid "Custodian of the identities"
-msgstr "신원 관리인"
-
 msgid "Identity"
 msgstr "신원"
 
@@ -284,9 +260,6 @@ msgstr "내부 고발자 신원 액세스 부여"
 msgid "Templates"
 msgstr "템플릿"
 
-msgid "HTTPS settings"
-msgstr "HTTPS 설정"
-
 msgid "URL redirects"
 msgstr "URL 리디렉션"
 
@@ -298,13 +271,6 @@ msgstr "사용 가능한 디스크 공간"
 
 msgid "Last update"
 msgstr "마지막 업데이트"
-
-msgid "Custodian notification templates"
-msgstr "관리인 알림 템플릿"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "본 인터페이스는 관리인 알림에 사용되는 이메일 템플릿 구성을 허용합니다."
 
 msgid "Disable notifications to administrators"
 msgstr "관리자 알림 중단"
@@ -356,12 +322,6 @@ msgstr "없음"
 
 msgid "Regular expression"
 msgstr "정규식"
-
-msgid "Activate"
-msgstr "활성화"
-
-msgid "Disactivate"
-msgstr "비활성화"
 
 msgid "Search"
 msgstr "검색"
@@ -434,6 +394,9 @@ msgstr "확장"
 msgid "Select"
 msgstr "선택"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Surname"
 msgstr "성"
 
@@ -505,8 +468,17 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr "클립보드로 복사"
 
+msgid "Logout"
+msgstr "로그아웃"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
 msgstr "보고서 보관"
+
+msgid "Select the context of your report:"
+msgstr "보고서 컨텍스트를 선택하십시오."
 
 msgid "Before proceeding, please set a new password."
 msgstr "계속하기 전에 새 비밀번호를 재설정하십시오."
@@ -734,14 +706,8 @@ msgstr "가능한 내부 고발자 요청을 위한 질문"
 msgid "Whistleblowing button"
 msgstr "내부 고발 버튼"
 
-msgid "Enable disclaimer"
-msgstr "면책 허용"
-
-msgid "Title"
-msgstr "제목"
-
-msgid "Text"
-msgstr "텍스트"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "각주"
@@ -1060,6 +1026,9 @@ msgstr "템플릿 오버라이드"
 msgid "Phone number"
 msgstr "전화번호"
 
+msgid "Text"
+msgstr "텍스트"
+
 msgid "Checkbox label"
 msgstr "체크박스 라벨"
 
@@ -1074,18 +1043,6 @@ msgstr "오디오"
 
 msgid "Video"
 msgstr "동영상"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "관리인 승인에 대한 주제 답변 가시성"
-
-msgid "Text shown upon negative answer"
-msgstr "부정적 답변에 대해 표시되는 텍스트"
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "부정적 답변에 대한 프롬포트 확인"
-
-msgid "Text shown upon confirmation"
-msgstr "확인에 대해 표시되는 텍스트"
 
 msgid "Trigger conditions"
 msgstr "트리거 조건"
@@ -1155,6 +1112,9 @@ msgstr "사용자가 가입하도록 허용"
 
 msgid "Enable terms of service"
 msgstr "서비스 약관 허용"
+
+msgid "Title"
+msgstr "제목"
 
 msgid "Send an account activation link to the user."
 msgstr "사용자에게 계정 활성화 링크를 전송합니다."
@@ -1267,6 +1227,9 @@ msgstr "모든 관련 데이터가 영구적으로 삭제된다는 점에 유의
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "데모 플랫폼으로, 실제 제출에 사용할 수 없습니다."
 
+msgid "Close"
+msgstr "종료"
+
 msgid "Install an authenticator app on your phone"
 msgstr "휴대전화 인증 앱 설치"
 
@@ -1275,9 +1238,6 @@ msgstr "앱으로 QR 코드 촬영"
 
 msgid "Enable two factor authentication"
 msgstr "이중 요인 인증 허용"
-
-msgid "Close"
-msgstr "종료"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "계속하기 전에 다음 문서를 주의 깊게 읽어보십시오."
@@ -1343,6 +1303,18 @@ msgstr "리소스는 Tor 네트워크를 통해서만 액세스할 수 있습니
 
 msgid "The upload request exceeds the size limit"
 msgstr "업로드 요청이 크기 제한을 초과합니다"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "가능한 한 빨리 답변을 드리겠습니다."
+
+msgid "Submit"
+msgstr "제출"
 
 msgid "Validation of email address change in progress."
 msgstr "이메일 주소 변경 검증 진행 중입니다."
@@ -1433,9 +1405,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "본 플랫폼은 아직 HTTPS 연결에 대해 구성되지 않았습니다. 따라서 시험용으로만 사용할 수 있습니다."
 
-msgid "Submit"
-msgstr "제출"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "수신자가 추가 설문 조사를 작성할 것을 요청했습니다."
 
@@ -1509,9 +1478,6 @@ msgstr "설문 조사 답변"
 msgid "Step"
 msgstr "단계"
 
-msgid "Recipient list"
-msgstr "수신자 목록"
-
 msgid "Status:"
 msgstr "상태"
 
@@ -1520,9 +1486,6 @@ msgstr "수신자별 첨부 파일"
 
 msgid "Upload a file:"
 msgstr "파일 업로드:"
-
-msgid "Logout"
-msgstr "로그아웃"
 
 msgid "An update is available:"
 msgstr "업데이트 사용 가능:"
@@ -1555,18 +1518,15 @@ msgstr "비밀번호 재설정 절차를 완료하려면 암호화 복구 키를
 msgid "Password reset requested."
 msgstr "비밀번호 재설정이 요청되었습니다."
 
-msgid "Show"
-msgstr "표시"
-
-msgid "Hide"
-msgstr "숨기기"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "내부 고발자의 신원 액세스 권한이 관리인에게 요청되었습니다."
 
 msgid "Date of the request"
 msgstr "요청 날짜"
+
+msgid "Show"
+msgstr "표시"
 
 msgid "Congratulations!"
 msgstr "축하합니다!"
@@ -1605,9 +1565,6 @@ msgstr "완료"
 msgid "Invalid phone number"
 msgstr "유효하지 않은 전화번호"
 
-msgid "Select the context of your report:"
-msgstr "보고서 컨텍스트를 선택하십시오."
-
 msgid "The answer is too short"
 msgstr "답변이 너무 짧습니다."
 
@@ -1636,9 +1593,6 @@ msgstr "감사합니다!"
 
 msgid "Your report was successful."
 msgstr "보고서 제출에 성공했습니다."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "가능한 한 빨리 답변을 드리겠습니다."
 
 msgid "Remember your receipt for this report."
 msgstr "보고서 수신을 기억하십시오."
@@ -1681,6 +1635,9 @@ msgstr "파일 업로드가 완료되기를 기다리고 있습니다."
 
 msgid "The following steps have errors:"
 msgstr "다음 단계에 오류가 있습니다."
+
+msgid "Hide"
+msgstr "숨기기"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1730,32 +1687,14 @@ msgstr "이름"
 msgid "Last name"
 msgstr "성"
 
-msgid "Gender"
-msgstr "성별"
+msgid "Preferred contact method"
+msgstr ""
 
-msgid "Male"
-msgstr "남성"
+msgid "Other"
+msgstr "기타"
 
-msgid "Female"
-msgstr "여성"
-
-msgid "Other gender identity"
-msgstr "기타 성 정체성"
-
-msgid "Date of birth"
-msgstr "생년월일"
-
-msgid "Place of birth"
-msgstr "출생지"
-
-msgid "Zip code / Postal code"
-msgstr "우편번호"
-
-msgid "Province"
-msgstr "시/도"
-
-msgid "Country"
-msgstr "국가"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} 님,"
@@ -1868,9 +1807,6 @@ msgstr "이름: {Name}"
 
 msgid "Email: {Email}"
 msgstr "이메일: {Email}"
-
-msgid "Language: {Language}"
-msgstr "언어: {Language}"
 
 msgid "New whistleblowing site registered"
 msgstr "새 내부 고발 사이트 등록"
@@ -2041,6 +1977,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "소프트웨어 업데이트에 대한 지침은 {UpdateGuideUrl}에서 문서를 참조하십시오."
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr "새 보고서"
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "가장 빠른 만료 날짜는 {EarliestExpirationDate}입니다."
 
@@ -2062,9 +2006,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "여기에 포함된 정보와 자료에 특별한 주의를 기울여야 합니다. 대부분의 내부 고발자는 대중의 이익을 위해 높은 개인적 위험에 노출된다는 점에 명심하십시오. 따라서 해당 보고서에 제공된 자료는 매우 중요한 것으로 간주해야 합니다."
-
-msgid "New report"
-msgstr "새 보고서"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "기존 보고서가 업데이트되었음을 알리는 이메일입니다."

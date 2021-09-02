@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/otf/globaleaks/language/lt/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,9 +31,6 @@ msgstr "Teksto tinkinimas"
 
 msgid "Advanced settings"
 msgstr "Išplėstiniai nustatymai"
-
-msgid "Questionnaire configuration"
-msgstr "Klausimyno konfigūracija"
 
 msgid "Question templates"
 msgstr "Klausimų šablonai"
@@ -89,15 +86,6 @@ msgstr "Komentarai"
 msgid "Messages"
 msgstr "Laiškai"
 
-msgid "Select this recipient."
-msgstr "Pasirinkti šį gavėją."
-
-msgid "Unselect this recipient."
-msgstr "Panaikinti šio gavėjo žymėjimą."
-
-msgid "This recipient cannot be deselected."
-msgstr "Negalima panaikinti šio gavėjo žymėjimo."
-
 msgid "Details"
 msgstr "Išsamiau"
 
@@ -127,9 +115,6 @@ msgstr "Įkelti iš naujo"
 
 msgid "Context"
 msgstr "Kontekstas"
-
-msgid "Private messages"
-msgstr "Privačios žinutės"
 
 msgid "Preview"
 msgstr "Peržiūra"
@@ -171,12 +156,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "Prisijungimas apsaugotas naudojant Tor užtikrinant konfidencialumą ir anonimiškumą."
-
-msgid "vertical"
-msgstr "vertikalus"
-
-msgid "horizontal"
-msgstr "horizontalus"
 
 msgid "Number"
 msgstr "Skaičius"
@@ -238,9 +217,6 @@ msgstr ""
 msgid "Custodian"
 msgstr "Prižiūrėtojas"
 
-msgid "Custodian of the identities"
-msgstr "Tapatybių prižiūrėtojas"
-
 msgid "Identity"
 msgstr "Tapatybė"
 
@@ -283,9 +259,6 @@ msgstr ""
 msgid "Templates"
 msgstr "Šablonai"
 
-msgid "HTTPS settings"
-msgstr "HTTPS nustatymai"
-
 msgid "URL redirects"
 msgstr "URL peradresavimai"
 
@@ -297,13 +270,6 @@ msgstr "Galima vieta diske"
 
 msgid "Last update"
 msgstr "Paskutinis atnaujinimas"
-
-msgid "Custodian notification templates"
-msgstr "Prižiūrėtojo pranešimų šablonai"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "Šioje sąsajoje galima konfigūruoti el. laiškų šablonus, naudojamus informuoti prižiūrėtojus."
 
 msgid "Disable notifications to administrators"
 msgstr "Išjungti pranešimus administratoriams"
@@ -355,12 +321,6 @@ msgstr "Joks"
 
 msgid "Regular expression"
 msgstr "Įprastoji išraiška"
-
-msgid "Activate"
-msgstr "Aktyvuoti"
-
-msgid "Disactivate"
-msgstr "Deaktyvuoti"
 
 msgid "Search"
 msgstr "Ieškoti"
@@ -433,6 +393,9 @@ msgstr "Išskleisti"
 msgid "Select"
 msgstr "Žymėti"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Surname"
 msgstr "Pavardė"
 
@@ -504,8 +467,17 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr "Kopijuoti į iškarpinę"
 
+msgid "Logout"
+msgstr "Atsijungti"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
+
+msgid "Select the context of your report:"
+msgstr "Pasirinkite ataskaitos kontekstą:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Prieš pradėdami sukurkite naują slaptažodį."
@@ -733,14 +705,8 @@ msgstr ""
 msgid "Whistleblowing button"
 msgstr ""
 
-msgid "Enable disclaimer"
+msgid "Disclaimer"
 msgstr ""
-
-msgid "Title"
-msgstr "Antraštė"
-
-msgid "Text"
-msgstr "Tekstas"
 
 msgid "Footer"
 msgstr "Poraštė"
@@ -1059,6 +1025,9 @@ msgstr ""
 msgid "Phone number"
 msgstr "Telefono numeris"
 
+msgid "Text"
+msgstr "Tekstas"
+
 msgid "Checkbox label"
 msgstr ""
 
@@ -1073,18 +1042,6 @@ msgstr "Garso įrašas"
 
 msgid "Video"
 msgstr "Vaizdo įrašas"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr ""
-
-msgid "Text shown upon negative answer"
-msgstr "Tekstas rodomas gavus neigiamą atsakymą"
-
-msgid "Prompt confirmation upon negative answer"
-msgstr ""
-
-msgid "Text shown upon confirmation"
-msgstr ""
 
 msgid "Trigger conditions"
 msgstr ""
@@ -1154,6 +1111,9 @@ msgstr "Leisti naudotojams registruotis"
 
 msgid "Enable terms of service"
 msgstr "Įgalinti paslaugų sąlygas"
+
+msgid "Title"
+msgstr "Antraštė"
 
 msgid "Send an account activation link to the user."
 msgstr "Siųsti paskyros aktyvacijos nuorodą naudotojui."
@@ -1266,6 +1226,9 @@ msgstr ""
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""
 
+msgid "Close"
+msgstr "Užverti"
+
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
@@ -1274,9 +1237,6 @@ msgstr ""
 
 msgid "Enable two factor authentication"
 msgstr ""
-
-msgid "Close"
-msgstr "Užverti"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr ""
@@ -1342,6 +1302,18 @@ msgstr ""
 
 msgid "The upload request exceeds the size limit"
 msgstr ""
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Submit"
+msgstr "Pateikti"
 
 msgid "Validation of email address change in progress."
 msgstr ""
@@ -1432,9 +1404,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr ""
 
-msgid "Submit"
-msgstr "Pateikti"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr ""
 
@@ -1508,9 +1477,6 @@ msgstr ""
 msgid "Step"
 msgstr ""
 
-msgid "Recipient list"
-msgstr ""
-
 msgid "Status:"
 msgstr "Būsena:"
 
@@ -1519,9 +1485,6 @@ msgstr ""
 
 msgid "Upload a file:"
 msgstr ""
-
-msgid "Logout"
-msgstr "Atsijungti"
 
 msgid "An update is available:"
 msgstr "Prieinamas atnaujinimas:"
@@ -1554,18 +1517,15 @@ msgstr ""
 msgid "Password reset requested."
 msgstr ""
 
-msgid "Show"
-msgstr "Rodyti"
-
-msgid "Hide"
-msgstr "Slėpti"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr ""
 
 msgid "Date of the request"
 msgstr ""
+
+msgid "Show"
+msgstr "Rodyti"
 
 msgid "Congratulations!"
 msgstr "Sveikiname!"
@@ -1604,9 +1564,6 @@ msgstr ""
 msgid "Invalid phone number"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr "Pasirinkite ataskaitos kontekstą:"
-
 msgid "The answer is too short"
 msgstr ""
 
@@ -1634,9 +1591,6 @@ msgid "Thank you!"
 msgstr "Ačiū!"
 
 msgid "Your report was successful."
-msgstr ""
-
-msgid "We will try to get back to you as soon as possible."
 msgstr ""
 
 msgid "Remember your receipt for this report."
@@ -1680,6 +1634,9 @@ msgstr ""
 
 msgid "The following steps have errors:"
 msgstr ""
+
+msgid "Hide"
+msgstr "Slėpti"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1729,32 +1686,14 @@ msgstr "Vardas"
 msgid "Last name"
 msgstr "Pavardė"
 
-msgid "Gender"
+msgid "Preferred contact method"
 msgstr ""
 
-msgid "Male"
-msgstr ""
+msgid "Other"
+msgstr "Kiti"
 
-msgid "Female"
+msgid "I prefer to be contacted via this platform only"
 msgstr ""
-
-msgid "Other gender identity"
-msgstr ""
-
-msgid "Date of birth"
-msgstr ""
-
-msgid "Place of birth"
-msgstr ""
-
-msgid "Zip code / Postal code"
-msgstr ""
-
-msgid "Province"
-msgstr ""
-
-msgid "Country"
-msgstr "Šalis"
 
 msgid "Dear {RecipientName},"
 msgstr ""
@@ -1866,9 +1805,6 @@ msgid "Name: {Name}"
 msgstr ""
 
 msgid "Email: {Email}"
-msgstr ""
-
-msgid "Language: {Language}"
 msgstr ""
 
 msgid "New whistleblowing site registered"
@@ -2040,6 +1976,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr ""
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr ""
 
@@ -2060,9 +2004,6 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr ""
-
-msgid "New report"
 msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."

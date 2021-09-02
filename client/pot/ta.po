@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,9 +33,6 @@ msgstr "உரை தனிப்பயனாக்கம்"
 
 msgid "Advanced settings"
 msgstr "மேம்பட்ட அமைப்புக்கள்"
-
-msgid "Questionnaire configuration"
-msgstr "கேள்வித்தாள் கட்டமைப்பு"
 
 msgid "Question templates"
 msgstr "கேள்வி வார்ப்புருக்கள்"
@@ -91,15 +88,6 @@ msgstr "பின்னூட்டங்கள்"
 msgid "Messages"
 msgstr "செய்திகள்"
 
-msgid "Select this recipient."
-msgstr "இந்த பெறுநர் தேர்ந்தெடுக்கவும்."
-
-msgid "Unselect this recipient."
-msgstr "இந்த பெறுநர் தேர்வை நீக்கவும்."
-
-msgid "This recipient cannot be deselected."
-msgstr "இந்த பெறுநர் தேர்வுநீக்கிய முடியாது."
-
 msgid "Details"
 msgstr "விபரங்கள்"
 
@@ -129,9 +117,6 @@ msgstr ""
 
 msgid "Context"
 msgstr "சூழல்"
-
-msgid "Private messages"
-msgstr "தனியார் செய்திகளை"
 
 msgid "Preview"
 msgstr "முன்னோட்டம்"
@@ -173,12 +158,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr ""
-
-msgid "vertical"
-msgstr "செங்குத்து"
-
-msgid "horizontal"
-msgstr "கிடைமட்ட"
 
 msgid "Number"
 msgstr "இலக்கம்"
@@ -240,9 +219,6 @@ msgstr "வேண்டுகோள் நிலை"
 msgid "Custodian"
 msgstr "பொறுப்பாளரான"
 
-msgid "Custodian of the identities"
-msgstr "அடையாளங்களை பொறுப்பாளரான"
-
 msgid "Identity"
 msgstr "அடையாளம்"
 
@@ -285,9 +261,6 @@ msgstr "தகவல் தெரிவிப்பவர் அடையாள�
 msgid "Templates"
 msgstr "டெம்ப்ளேட்கள்"
 
-msgid "HTTPS settings"
-msgstr "HTTP அமைப்புகளை"
-
 msgid "URL redirects"
 msgstr ""
 
@@ -299,13 +272,6 @@ msgstr "வட்டு இடம்"
 
 msgid "Last update"
 msgstr "கடைசியாக புதுப்பிக்கப்பட்டது"
-
-msgid "Custodian notification templates"
-msgstr "பொறுப்பாளரான அறிவிப்பை வார்ப்புருக்கள்"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "இந்த இடைமுகம் பொறுப்பாளர்கள் தெரிவிக்க பயன்படுத்தப்படுகிறது மின்னஞ்சல் டெம்ப்ளேட்களை கட்டமைக்கும் அனுமதிக்கிறது."
 
 msgid "Disable notifications to administrators"
 msgstr "நிர்வாகிகள் அறிவிப்புகளை முடக்கு"
@@ -357,12 +323,6 @@ msgstr "எதுவுமில்லை"
 
 msgid "Regular expression"
 msgstr "வழக்கமான வெளிப்பாடு"
-
-msgid "Activate"
-msgstr "செயல்படுத்தவும்"
-
-msgid "Disactivate"
-msgstr ""
 
 msgid "Search"
 msgstr "தேடு"
@@ -435,6 +395,9 @@ msgstr "விரி"
 msgid "Select"
 msgstr "தேர்ந்தெடு"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Surname"
 msgstr "குடும்ப"
 
@@ -506,8 +469,17 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr ""
 
+msgid "Logout"
+msgstr "வெளியேறு"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
+
+msgid "Select the context of your report:"
+msgstr "உங்கள் சமர்ப்பிப்பு சூழலில் தேர்வு:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "தொடருவதற்கு முன், புதிய கடவுச்சொல்லை அமைக்கவும்."
@@ -735,14 +707,8 @@ msgstr "கேள்வி சாத்தியம் இம்மாதிர�
 msgid "Whistleblowing button"
 msgstr "whistleblowing பொத்தானை"
 
-msgid "Enable disclaimer"
-msgstr "மறுதலிப்பை இயக்கு"
-
-msgid "Title"
-msgstr "தலைப்பு"
-
-msgid "Text"
-msgstr "உரை"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "அடிக்குறிப்பு"
@@ -1061,6 +1027,9 @@ msgstr "டெம்ப்ளேட் மேலெழுதும்"
 msgid "Phone number"
 msgstr "தொலைபேசி எண்"
 
+msgid "Text"
+msgstr "உரை"
+
 msgid "Checkbox label"
 msgstr "சரிபார்க்கும் லேபிள்"
 
@@ -1075,18 +1044,6 @@ msgstr ""
 
 msgid "Video"
 msgstr "வீடியோ"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "பாதுகாப்பாளர் அங்கீகாரம் உட்பட்டு பதில் தன்மை"
-
-msgid "Text shown upon negative answer"
-msgstr "எதிர்மறை பதிலில் உரை காட்டப்பட்டுள்ளது"
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "எதிர்மறை பதில் மீது உடனடியான உறுதிப்படுத்தல்"
-
-msgid "Text shown upon confirmation"
-msgstr "உறுதிப்படுத்தல் மீது உரை காட்டப்பட்டுள்ளது"
 
 msgid "Trigger conditions"
 msgstr ""
@@ -1156,6 +1113,9 @@ msgstr "பயனர்களை டிஜிட்டல் கையெழு�
 
 msgid "Enable terms of service"
 msgstr "சேவை விதிமுறைகளை இயக்கு"
+
+msgid "Title"
+msgstr "தலைப்பு"
 
 msgid "Send an account activation link to the user."
 msgstr ""
@@ -1268,6 +1228,9 @@ msgstr ""
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""
 
+msgid "Close"
+msgstr "நெருக்கமான"
+
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
@@ -1276,9 +1239,6 @@ msgstr ""
 
 msgid "Enable two factor authentication"
 msgstr ""
-
-msgid "Close"
-msgstr "நெருக்கமான"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr ""
@@ -1344,6 +1304,18 @@ msgstr "வள மட்டுமே தோர் நெட்வொர்
 
 msgid "The upload request exceeds the size limit"
 msgstr "பதிவேற்ற கோரிக்கை அளவு வரம்பை மீறுகிறது"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Submit"
+msgstr "சமர்ப்பி"
 
 msgid "Validation of email address change in progress."
 msgstr "மின்னஞ்சல் முகவரி மாற்றுவதற்கான மாற்றம் முன்னேற்றம்."
@@ -1434,9 +1406,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "மேடையில் இன்னும் HTTPS இணைப்புகளுக்கு உள்ளமைக்கப்படவில்லை, எனவே சோதனை நோக்கங்களுக்காக மட்டுமே பயன்படுத்தப்பட வேண்டும்."
 
-msgid "Submit"
-msgstr "சமர்ப்பி"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "கூடுதல் கேள்வித்தாள் நிரப்ப நிர்பந்திக்கப்பட்டவர்கள் உங்களிடம் கேட்டுள்ளனர்."
 
@@ -1510,9 +1479,6 @@ msgstr "கேள்வித்தாள் பதில்களை"
 msgid "Step"
 msgstr "படி"
 
-msgid "Recipient list"
-msgstr "பெறுநர் பட்டியலில்"
-
 msgid "Status:"
 msgstr ""
 
@@ -1521,9 +1487,6 @@ msgstr "பெறுநர்கள் இணைத்த கோப்புக�
 
 msgid "Upload a file:"
 msgstr "கோப்பு பதிவேற்று:"
-
-msgid "Logout"
-msgstr "வெளியேறு"
 
 msgid "An update is available:"
 msgstr "புதுப்பிப்பு இருக்கிறது:"
@@ -1556,18 +1519,15 @@ msgstr ""
 msgid "Password reset requested."
 msgstr "கடவுச்சொல் மீட்டமைப்பு கோரப்பட்டது."
 
-msgid "Show"
-msgstr "காண்பி"
-
-msgid "Hide"
-msgstr "மறை"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "தகவல் தெரிவிப்பவர் அடையாளத்திற்கான அணுகல் பொறுப்பாளரான கேட்கப்பட்டுள்ளது."
 
 msgid "Date of the request"
 msgstr "கோரிக்கையின் தேதி"
+
+msgid "Show"
+msgstr "காண்பி"
 
 msgid "Congratulations!"
 msgstr "வாழ்த்துக்கள்!"
@@ -1606,9 +1566,6 @@ msgstr "முழுமையான"
 msgid "Invalid phone number"
 msgstr "தவறான தொலைபேசி எண்"
 
-msgid "Select the context of your report:"
-msgstr "உங்கள் சமர்ப்பிப்பு சூழலில் தேர்வு:"
-
 msgid "The answer is too short"
 msgstr ""
 
@@ -1637,9 +1594,6 @@ msgstr "நன்றி!"
 
 msgid "Your report was successful."
 msgstr "உங்கள் சமர்ப்பிப்பு வெற்றியடைந்தது."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
 
 msgid "Remember your receipt for this report."
 msgstr "இந்த சமர்ப்பிப்புக்கான உங்கள் ரசீது நினைவில் கொள்ளுங்கள்."
@@ -1682,6 +1636,9 @@ msgstr "பதிவேற்ற முடிக்க கோப்பு (�
 
 msgid "The following steps have errors:"
 msgstr "பின்வரும் வழிமுறைகளில் பிழைகள் உள்ளன:"
+
+msgid "Hide"
+msgstr "மறை"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1731,32 +1688,14 @@ msgstr "முதல் பெயர்"
 msgid "Last name"
 msgstr "கடைசி பெயர்"
 
-msgid "Gender"
-msgstr "பாலினம்"
+msgid "Preferred contact method"
+msgstr ""
 
-msgid "Male"
-msgstr "ஆண்"
+msgid "Other"
+msgstr "மற்ற"
 
-msgid "Female"
-msgstr "பெண்"
-
-msgid "Other gender identity"
-msgstr "பிற பாலின அடையாளம்"
-
-msgid "Date of birth"
-msgstr "பிறந்த தேதி"
-
-msgid "Place of birth"
-msgstr "பிறந்த இடம்"
-
-msgid "Zip code / Postal code"
-msgstr "Zip குறியீடு / அஞ்சல் குறியீடு"
-
-msgid "Province"
-msgstr "மாகாணம்"
-
-msgid "Country"
-msgstr "நாடு"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "அன்பே {RecipientName},"
@@ -1869,9 +1808,6 @@ msgstr "பெயர்: {Name}"
 
 msgid "Email: {Email}"
 msgstr "மின்னஞ்சல்: {Email}"
-
-msgid "Language: {Language}"
-msgstr "மொழி: {Language}"
 
 msgid "New whistleblowing site registered"
 msgstr "புதிய விசில்ப்ளேஸ் தளம் பதிவுசெய்யப்பட்டது"
@@ -2042,6 +1978,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "மென்பொருள் புதுப்பிப்புகளுக்கான வழிமுறைகளுக்கு, தயவுசெய்து பின்வருவனவற்றின் ஆவணத்தை பார்க்கவும்: {UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "ஆரம்ப காலாவதி தேதி {EarliestExpirationDate}."
 
@@ -2063,9 +2007,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "இதில் உள்ள தகவல்கள் மற்றும் உள்ளடக்கத்திற்கு சிறப்பு கவனம் செலுத்தும்படி நீங்கள் கேட்கப்படுகிறீர்கள். பொதுமக்களின் வட்டிக்கு விசில்ப்ளேவர்கள் பெரும்பாலும் அதிகமான தனிப்பட்ட அபாயங்களை அம்பலப்படுத்துகிறார்கள் என்பதை நினைவில் கொள்ளுங்கள். எனவே இந்த சமர்ப்பிப்பு உள்ள வழங்கப்படும் பொருள் உயர் முக்கியத்துவம் கருதப்படுகிறது."
-
-msgid "New report"
-msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr ""

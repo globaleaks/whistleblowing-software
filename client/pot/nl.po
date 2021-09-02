@@ -44,7 +44,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,9 +70,6 @@ msgstr "Tekst aanpassing"
 
 msgid "Advanced settings"
 msgstr "Geavanceerde instellingen"
-
-msgid "Questionnaire configuration"
-msgstr "Formulierconfiguratie"
 
 msgid "Question templates"
 msgstr "Formuliersjablonen"
@@ -128,15 +125,6 @@ msgstr "Reacties"
 msgid "Messages"
 msgstr "Berichten"
 
-msgid "Select this recipient."
-msgstr "Deze ontvanger selecteren."
-
-msgid "Unselect this recipient."
-msgstr "Deze ontvanger deselecteren."
-
-msgid "This recipient cannot be deselected."
-msgstr "Deze ontvanger kan niet worden gedeselecteerd."
-
 msgid "Details"
 msgstr "Details"
 
@@ -166,9 +154,6 @@ msgstr "Vernieuwen"
 
 msgid "Context"
 msgstr "Context"
-
-msgid "Private messages"
-msgstr "Privéberichten"
 
 msgid "Preview"
 msgstr "Voorbeeld"
@@ -210,12 +195,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "De verbinding is beveiligd met Tor om de veiligheid en anonimiteit te waarborgen."
-
-msgid "vertical"
-msgstr "verticaal"
-
-msgid "horizontal"
-msgstr "horizontaal"
 
 msgid "Number"
 msgstr "Nummer"
@@ -277,9 +256,6 @@ msgstr "Status van de aanvraag"
 msgid "Custodian"
 msgstr "Vertrouwenspersoon"
 
-msgid "Custodian of the identities"
-msgstr "Vertrouwenspersoon"
-
 msgid "Identity"
 msgstr "Identiteit"
 
@@ -322,9 +298,6 @@ msgstr "Verleen toegang tot de identiteit van de klokkenluider"
 msgid "Templates"
 msgstr "Sjablonen"
 
-msgid "HTTPS settings"
-msgstr "HTTPS-instellingen"
-
 msgid "URL redirects"
 msgstr "URL-verwijzingen"
 
@@ -336,13 +309,6 @@ msgstr "Beschikbare schijfruimte"
 
 msgid "Last update"
 msgstr "Voor het laatst bijgewerkt"
-
-msgid "Custodian notification templates"
-msgstr "Sjabloons voor berichten aan vertrouwenspersoon"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "Hier kunt u de sjablonen voor e-mails aan vertrouwenspersonen aanpassen. "
 
 msgid "Disable notifications to administrators"
 msgstr "Berichten aan managers uitschakelen"
@@ -394,12 +360,6 @@ msgstr "Geen"
 
 msgid "Regular expression"
 msgstr "Reguliere expressie"
-
-msgid "Activate"
-msgstr "Activeren"
-
-msgid "Disactivate"
-msgstr "Deactiveren"
 
 msgid "Search"
 msgstr "Zoeken"
@@ -472,6 +432,9 @@ msgstr "Uitklappen"
 msgid "Select"
 msgstr "Selecteren"
 
+msgid "Deselect"
+msgstr "Deselecteren"
+
 msgid "Surname"
 msgstr "Achternaam"
 
@@ -543,8 +506,17 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr "Kopiëren naar klembord"
 
+msgid "Logout"
+msgstr "Log uit"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
 msgstr "Dien een rapport in"
+
+msgid "Select the context of your report:"
+msgstr "Selecteer de context van uw inzending:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Voor je verdergaat, stel alsjeblieft een nieuw wachtwoord in."
@@ -772,14 +744,8 @@ msgstr "Vraag om potentiële klokkenluiders aan te spreken"
 msgid "Whistleblowing button"
 msgstr "Klokkenluid-knop"
 
-msgid "Enable disclaimer"
-msgstr "Disclaimer inschakelen"
-
-msgid "Title"
-msgstr "Titel"
-
-msgid "Text"
-msgstr "Tekst"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "Voettekst"
@@ -1098,6 +1064,9 @@ msgstr "Sjabloon overschrijven"
 msgid "Phone number"
 msgstr "Telefoonnummer"
 
+msgid "Text"
+msgstr "Tekst"
+
 msgid "Checkbox label"
 msgstr "Selectievakje label"
 
@@ -1112,18 +1081,6 @@ msgstr "Geluid"
 
 msgid "Video"
 msgstr "Film/Beeld"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "Onderwerp antwoord zichtbaarheid aan toezichthouder autorisatie"
-
-msgid "Text shown upon negative answer"
-msgstr "Tekst welke wordt getoond bij een ontkennend antwoord"
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "Snelle bevestiging na negatief antwoord"
-
-msgid "Text shown upon confirmation"
-msgstr "Tekst welke wordt getoond bij bevestiging"
 
 msgid "Trigger conditions"
 msgstr "Initiatie-voorwaarden"
@@ -1193,6 +1150,9 @@ msgstr "Gebruikers toestaan zich in te schijven"
 
 msgid "Enable terms of service"
 msgstr "Gebruiksvoorwaarden inschakelen"
+
+msgid "Title"
+msgstr "Titel"
 
 msgid "Send an account activation link to the user."
 msgstr "Verstuur een account activatielink naar de gebruiker."
@@ -1305,6 +1265,9 @@ msgstr "Let op dat alle hiermee verbonden gegevens definitief verwijderd zullen 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Dit is een test platform, gebruik het niet voor echte inzendingen."
 
+msgid "Close"
+msgstr "Sluiten"
+
 msgid "Install an authenticator app on your phone"
 msgstr "Installeer een authenticatie app op je telefoon"
 
@@ -1313,9 +1276,6 @@ msgstr "Scan de QR code met de app"
 
 msgid "Enable two factor authentication"
 msgstr "Twee-factor-authenticatie inschakelen"
-
-msgid "Close"
-msgstr "Sluiten"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Lees voor je doorgaat zorgvuldig de documentatie door op:"
@@ -1381,6 +1341,18 @@ msgstr "Bron is alleen toegankelijk binnen het Tor-netwerk"
 
 msgid "The upload request exceeds the size limit"
 msgstr "De uploadaanvraag overstijgt de MB limiet"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr "Bedankt."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "We zullen ons best doen zo snel als mogelijk op je te reageren."
+
+msgid "Submit"
+msgstr "Verstuur"
 
 msgid "Validation of email address change in progress."
 msgstr "Validatie van e-mail adres verandering wordt uitgevoerd."
@@ -1471,9 +1443,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "Het platform is nog steeds niet geconfigureerd voor HTTPS verbindingen en mag daarom alleen worden gebruikt om te testen."
 
-msgid "Submit"
-msgstr "Verstuur"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Ontvangers hebben je verzocht dat je een additionele vragenlijst invult."
 
@@ -1547,9 +1516,6 @@ msgstr "Antwoorden vragenformulier"
 msgid "Step"
 msgstr "Stap"
 
-msgid "Recipient list"
-msgstr "Lijst ontvangers"
-
 msgid "Status:"
 msgstr "Status:"
 
@@ -1558,9 +1524,6 @@ msgstr "Bestanden die door ontvangers zijn toegevoegd"
 
 msgid "Upload a file:"
 msgstr "Upload een bestand:"
-
-msgid "Logout"
-msgstr "Log uit"
 
 msgid "An update is available:"
 msgstr "Een update is beschikbaar:"
@@ -1593,18 +1556,15 @@ msgstr "Vul de herstelcode voor de versleuteling in om de wachtwoord reset proce
 msgid "Password reset requested."
 msgstr "Wachtwoord veranderen aangevraagd."
 
-msgid "Show"
-msgstr "Tonen"
-
-msgid "Hide"
-msgstr "Verberg"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "De toezichthouder heeft een aanvraag ingediend om toegang te krijgen tot de identiteit van de klokkenluider."
 
 msgid "Date of the request"
 msgstr "Datum aanvraag"
+
+msgid "Show"
+msgstr "Tonen"
 
 msgid "Congratulations!"
 msgstr "Gefeliciteerd!"
@@ -1643,9 +1603,6 @@ msgstr "Volledig"
 msgid "Invalid phone number"
 msgstr "Ongeldig telefoonnummer"
 
-msgid "Select the context of your report:"
-msgstr "Selecteer de context van uw inzending:"
-
 msgid "The answer is too short"
 msgstr "Het antwoord is te kort"
 
@@ -1674,9 +1631,6 @@ msgstr "Bedankt!"
 
 msgid "Your report was successful."
 msgstr "Je inzending was succesvol."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "We zullen ons best doen zo snel als mogelijk op je te reageren."
 
 msgid "Remember your receipt for this report."
 msgstr "Onthoud de code voor uw inzending."
@@ -1719,6 +1673,9 @@ msgstr "Wacht totdat de bestanden volledig zijn verzonden."
 
 msgid "The following steps have errors:"
 msgstr "De volgende stappen bevatten fouter:"
+
+msgid "Hide"
+msgstr "Verberg"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1768,32 +1725,14 @@ msgstr "Voornaam"
 msgid "Last name"
 msgstr "Achternaam"
 
-msgid "Gender"
-msgstr "Geslacht"
+msgid "Preferred contact method"
+msgstr ""
 
-msgid "Male"
-msgstr "Man"
+msgid "Other"
+msgstr "Other"
 
-msgid "Female"
-msgstr "Vrouw"
-
-msgid "Other gender identity"
-msgstr "Andere gender identiteit"
-
-msgid "Date of birth"
-msgstr "Geboortedatum"
-
-msgid "Place of birth"
-msgstr "Geboorteplaats"
-
-msgid "Zip code / Postal code"
-msgstr "Postcode"
-
-msgid "Province"
-msgstr "Provincie"
-
-msgid "Country"
-msgstr "Land"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Beste {RecipientName},"
@@ -1906,9 +1845,6 @@ msgstr "Naam: {Name}"
 
 msgid "Email: {Email}"
 msgstr "E-mail: {Email}"
-
-msgid "Language: {Language}"
-msgstr "Taal: {Language}"
 
 msgid "New whistleblowing site registered"
 msgstr "Nieuwe klokkenluiders-weblocatie geregistreerd"
@@ -2079,6 +2015,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "Voor instructies bij nieuwe software versies, kun je de documentatie naslaan op: {UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr "Nieuwe inzending"
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "De vroegste vervaldatum is {EarliestExpirationDate}."
 
@@ -2100,9 +2044,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "Je wordt verzocht om extra aandacht te besteden aan de informatie en materialen daarin. Houd er rekening mee dat klokkenluiders vaak voor het maatschappelijk belang zelf grote persoonlijke risico's nemen. Daarom moet het materiaal dat deze inzending bevat als van groot belang worden beschouwd."
-
-msgid "New report"
-msgstr "Nieuwe inzending"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Dit is een e-mail om te melden dat een bestaande inzending is bijgewerkt."

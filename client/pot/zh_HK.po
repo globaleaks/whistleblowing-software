@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Hong Kong) (http://www.transifex.com/otf/globaleaks/language/zh_HK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,9 +31,6 @@ msgstr "自訂內文"
 
 msgid "Advanced settings"
 msgstr "進階設定"
-
-msgid "Questionnaire configuration"
-msgstr "問卷設定"
 
 msgid "Question templates"
 msgstr "問題範本"
@@ -89,15 +86,6 @@ msgstr "註釋"
 msgid "Messages"
 msgstr "訊息"
 
-msgid "Select this recipient."
-msgstr "選擇此接收者。"
-
-msgid "Unselect this recipient."
-msgstr "取消選擇此接收者。"
-
-msgid "This recipient cannot be deselected."
-msgstr "無法取消選擇此接收者。"
-
 msgid "Details"
 msgstr "詳情"
 
@@ -127,9 +115,6 @@ msgstr "重新整理"
 
 msgid "Context"
 msgstr "主題"
-
-msgid "Private messages"
-msgstr "私人訊息"
 
 msgid "Preview"
 msgstr "預覽"
@@ -171,12 +156,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "本連接已使用 Tor 確保機密及匿名。"
-
-msgid "vertical"
-msgstr "垂直"
-
-msgid "horizontal"
-msgstr "水平"
 
 msgid "Number"
 msgstr "數字"
@@ -238,9 +217,6 @@ msgstr "請求狀態"
 msgid "Custodian"
 msgstr "保管人"
 
-msgid "Custodian of the identities"
-msgstr "個人身份保管人"
-
 msgid "Identity"
 msgstr "個人身份"
 
@@ -283,9 +259,6 @@ msgstr "批准讀取吹哨者的個人身份"
 msgid "Templates"
 msgstr "範本"
 
-msgid "HTTPS settings"
-msgstr "HTTPS 設定"
-
 msgid "URL redirects"
 msgstr "URL 重新導向"
 
@@ -297,13 +270,6 @@ msgstr "可用硬碟空間"
 
 msgid "Last update"
 msgstr "最後更新日期"
-
-msgid "Custodian notification templates"
-msgstr "保管人通知範本"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "此介面用於編輯通知保管人的電郵範本。"
 
 msgid "Disable notifications to administrators"
 msgstr "停止向管理員發出通知"
@@ -355,12 +321,6 @@ msgstr "無"
 
 msgid "Regular expression"
 msgstr "正規表示式"
-
-msgid "Activate"
-msgstr "啟用"
-
-msgid "Disactivate"
-msgstr "停用"
 
 msgid "Search"
 msgstr "搜尋"
@@ -433,6 +393,9 @@ msgstr "展開"
 msgid "Select"
 msgstr "選擇"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Surname"
 msgstr "姓氏"
 
@@ -504,8 +467,17 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr ""
 
+msgid "Logout"
+msgstr "登出"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
 msgstr "提交報告"
+
+msgid "Select the context of your report:"
+msgstr "請選擇您的報告主題："
 
 msgid "Before proceeding, please set a new password."
 msgstr "在繼續之前，請更新您的密碼。"
@@ -733,14 +705,8 @@ msgstr "給吹哨者的徵求"
 msgid "Whistleblowing button"
 msgstr "舉報按鈕"
 
-msgid "Enable disclaimer"
-msgstr "免責聲明"
-
-msgid "Title"
-msgstr "標題"
-
-msgid "Text"
-msgstr "內文"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "頁尾文字"
@@ -1059,6 +1025,9 @@ msgstr "以此範本取替"
 msgid "Phone number"
 msgstr "電話號碼"
 
+msgid "Text"
+msgstr "內文"
+
 msgid "Checkbox label"
 msgstr "選框文字"
 
@@ -1073,18 +1042,6 @@ msgstr "音訊"
 
 msgid "Video"
 msgstr "影片"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "將答案能見度限制於保管人的授權"
-
-msgid "Text shown upon negative answer"
-msgstr "收到否定答案時所顯示的文字"
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "要求確認否定答案"
-
-msgid "Text shown upon confirmation"
-msgstr "收到確認後所顯示的文字"
 
 msgid "Trigger conditions"
 msgstr "觸發條件"
@@ -1154,6 +1111,9 @@ msgstr "接受新用戶註冊"
 
 msgid "Enable terms of service"
 msgstr "使用服務條款"
+
+msgid "Title"
+msgstr "標題"
 
 msgid "Send an account activation link to the user."
 msgstr "傳送帳號啟動連結給使用者。"
@@ -1266,6 +1226,9 @@ msgstr "請注意，所有相關資料將會被永久刪除。"
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "這是示範平台，請勿在此提交真實報告。"
 
+msgid "Close"
+msgstr "關閉"
+
 msgid "Install an authenticator app on your phone"
 msgstr "在您的電話上安裝雙重驗證應用程式"
 
@@ -1274,9 +1237,6 @@ msgstr "使用該應用程式掃描此 QR code"
 
 msgid "Enable two factor authentication"
 msgstr "啟用雙重認證"
-
-msgid "Close"
-msgstr "關閉"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "在繼續之前，請先仔細閱讀此文檔："
@@ -1342,6 +1302,18 @@ msgstr "資源僅能透過 Tor 網路讀取"
 
 msgid "The upload request exceeds the size limit"
 msgstr "上傳請求超出檔案大小上限"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "我們會儘快回覆您。"
+
+msgid "Submit"
+msgstr "提交"
 
 msgid "Validation of email address change in progress."
 msgstr "正在驗證更改的電郵地址。"
@@ -1432,9 +1404,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "平台仍未設定 HTTPS 連接，故應只爲測試目的而使用。"
 
-msgid "Submit"
-msgstr "提交"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "接收者想請您填寫一份附加問卷。"
 
@@ -1508,9 +1477,6 @@ msgstr "問卷答覆"
 msgid "Step"
 msgstr "步驟"
 
-msgid "Recipient list"
-msgstr "接收者名單"
-
 msgid "Status:"
 msgstr "狀態："
 
@@ -1519,9 +1485,6 @@ msgstr "接收者附加的檔案"
 
 msgid "Upload a file:"
 msgstr "上傳檔案："
-
-msgid "Logout"
-msgstr "登出"
 
 msgid "An update is available:"
 msgstr "有可用的更新："
@@ -1554,18 +1517,15 @@ msgstr "請輸入您的加密修復金鑰以完成密碼重置手續"
 msgid "Password reset requested."
 msgstr "已請求重置密碼。"
 
-msgid "Show"
-msgstr "顯示"
-
-msgid "Hide"
-msgstr "隱藏"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "已向保管人請求吹哨者的個人身份。"
 
 msgid "Date of the request"
 msgstr "請求日期"
+
+msgid "Show"
+msgstr "顯示"
 
 msgid "Congratulations!"
 msgstr "恭喜您！"
@@ -1604,9 +1564,6 @@ msgstr "完成"
 msgid "Invalid phone number"
 msgstr "電話號碼無效"
 
-msgid "Select the context of your report:"
-msgstr "請選擇您的報告主題："
-
 msgid "The answer is too short"
 msgstr "答案過短"
 
@@ -1635,9 +1592,6 @@ msgstr "多謝您！"
 
 msgid "Your report was successful."
 msgstr "您已成功提交報告。"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "我們會儘快回覆您。"
 
 msgid "Remember your receipt for this report."
 msgstr "請謹記此報告的收據號碼。"
@@ -1680,6 +1634,9 @@ msgstr "檔案上傳中"
 
 msgid "The following steps have errors:"
 msgstr "以下步驟存在錯誤："
+
+msgid "Hide"
+msgstr "隱藏"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1729,32 +1686,14 @@ msgstr "名"
 msgid "Last name"
 msgstr "姓"
 
-msgid "Gender"
-msgstr "性別"
+msgid "Preferred contact method"
+msgstr ""
 
-msgid "Male"
-msgstr "男"
+msgid "Other"
+msgstr "其他"
 
-msgid "Female"
-msgstr "女"
-
-msgid "Other gender identity"
-msgstr "其他性別"
-
-msgid "Date of birth"
-msgstr "出生日期"
-
-msgid "Place of birth"
-msgstr "出生地"
-
-msgid "Zip code / Postal code"
-msgstr "郵遞區號"
-
-msgid "Province"
-msgstr "省份"
-
-msgid "Country"
-msgstr "國家／地區"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "尊敬的 {RecipientName}，"
@@ -1867,9 +1806,6 @@ msgstr "名稱：{Name}"
 
 msgid "Email: {Email}"
 msgstr "電郵地址：{Email}"
-
-msgid "Language: {Language}"
-msgstr "語言：{Language}"
 
 msgid "New whistleblowing site registered"
 msgstr "已註冊新的舉報網"
@@ -2040,6 +1976,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "有關軟件更新說明，請參閱文檔：{UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr "新報告"
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "最早的到期日是 {EarliestExpirationDate}。"
 
@@ -2061,9 +2005,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "敬請留心關注此報告內的所有資料。請謹記，吹哨者爲了公衆權益而提交此報告，而極可能因此面臨高度的人身風險。所以，報告內的資料應被好好重視。"
-
-msgid "New report"
-msgstr "新報告"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "謹以此電郵通知您，一份現有報告剛被更新。"

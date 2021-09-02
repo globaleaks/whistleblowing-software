@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,9 +35,6 @@ msgstr "テキストのカスタマイズ"
 
 msgid "Advanced settings"
 msgstr "詳細設定"
-
-msgid "Questionnaire configuration"
-msgstr "アンケートの設定"
 
 msgid "Question templates"
 msgstr "質問のテンプレート"
@@ -93,15 +90,6 @@ msgstr "コメント"
 msgid "Messages"
 msgstr "メッセージ"
 
-msgid "Select this recipient."
-msgstr "この受信者を選択"
-
-msgid "Unselect this recipient."
-msgstr "この受信者の選択を外す"
-
-msgid "This recipient cannot be deselected."
-msgstr "この受信者の選択は解除できません。"
-
 msgid "Details"
 msgstr "詳細"
 
@@ -131,9 +119,6 @@ msgstr "更新"
 
 msgid "Context"
 msgstr "コンテキスト"
-
-msgid "Private messages"
-msgstr "プライベート・メッセージ"
 
 msgid "Preview"
 msgstr "プレビュー"
@@ -175,12 +160,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "接続は Tor で機密性と匿名性を確保するために保護されています。"
-
-msgid "vertical"
-msgstr "縦"
-
-msgid "horizontal"
-msgstr "横"
 
 msgid "Number"
 msgstr "番号"
@@ -242,9 +221,6 @@ msgstr "リクエストの状況"
 msgid "Custodian"
 msgstr "管理人"
 
-msgid "Custodian of the identities"
-msgstr "身元の管理人"
-
 msgid "Identity"
 msgstr "身元"
 
@@ -287,9 +263,6 @@ msgstr "内部告発者の身元へのアクセスを承認"
 msgid "Templates"
 msgstr "テンプレート"
 
-msgid "HTTPS settings"
-msgstr "HTTPS 設定"
-
 msgid "URL redirects"
 msgstr "URL リダイレクト"
 
@@ -301,13 +274,6 @@ msgstr "利用可能ディスク容量"
 
 msgid "Last update"
 msgstr "最終更新"
-
-msgid "Custodian notification templates"
-msgstr "管理人の通知テンプレート"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "このインターフェースは、管理人の通知に使われるメールのテンプレートを設定することができます。"
 
 msgid "Disable notifications to administrators"
 msgstr "管理者への通知メールを無効にする"
@@ -359,12 +325,6 @@ msgstr "なし"
 
 msgid "Regular expression"
 msgstr "正規表現"
-
-msgid "Activate"
-msgstr "アクティブにする"
-
-msgid "Disactivate"
-msgstr "無効にする"
 
 msgid "Search"
 msgstr "検索"
@@ -437,6 +397,9 @@ msgstr "展開する"
 msgid "Select"
 msgstr "選択"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Surname"
 msgstr "敬称"
 
@@ -508,8 +471,17 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr "クリップボードにコピー"
 
+msgid "Logout"
+msgstr "ログアウト"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
 msgstr "報告を保存する"
+
+msgid "Select the context of your report:"
+msgstr "報告のコンテキストを選択してください:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "次に進む前に、新しいパスワードを設定してください。"
@@ -737,14 +709,8 @@ msgstr "内部告発の質問"
 msgid "Whistleblowing button"
 msgstr "内部告発ボタン"
 
-msgid "Enable disclaimer"
-msgstr "免責事項を有効にする"
-
-msgid "Title"
-msgstr "タイトル"
-
-msgid "Text"
-msgstr "テキスト"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "フッター"
@@ -1063,6 +1029,9 @@ msgstr "テンプレートの上書き"
 msgid "Phone number"
 msgstr "電話番号"
 
+msgid "Text"
+msgstr "テキスト"
+
 msgid "Checkbox label"
 msgstr "チェックボックスラベル"
 
@@ -1077,18 +1046,6 @@ msgstr "オーディオ"
 
 msgid "Video"
 msgstr "ビデオ"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "管理人の認証に回答が表示されるか否か"
-
-msgid "Text shown upon negative answer"
-msgstr "否定的な回答に表示されるテキスト"
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "否定の回答時に、確認を表示"
-
-msgid "Text shown upon confirmation"
-msgstr "確認時に表示されるテキスト"
 
 msgid "Trigger conditions"
 msgstr "トリガー条件"
@@ -1158,6 +1115,9 @@ msgstr "ユーザーによるサインアップを許可"
 
 msgid "Enable terms of service"
 msgstr "利用規約を有効にする"
+
+msgid "Title"
+msgstr "タイトル"
 
 msgid "Send an account activation link to the user."
 msgstr "アカウントの有効化リンクをユーザーに送信します。"
@@ -1270,6 +1230,9 @@ msgstr "すべての関連データが完全に失われますのでご注意く
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "これはデモプラットフォームです。実際の提出には使用しないでください。"
 
+msgid "Close"
+msgstr "閉じる"
+
 msgid "Install an authenticator app on your phone"
 msgstr "お使いの電話に認証アプリをインストールする"
 
@@ -1278,9 +1241,6 @@ msgstr "アプリでQRコードをスキャンしてください"
 
 msgid "Enable two factor authentication"
 msgstr "2要素認証を有効にする"
-
-msgid "Close"
-msgstr "閉じる"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "先に進む前に、次のドキュメントを注意深くお読みください:"
@@ -1346,6 +1306,18 @@ msgstr "リソースはTorネットワーク内でのみアクセスできます
 
 msgid "The upload request exceeds the size limit"
 msgstr "アップロードリクエストがサイズ制限を超過しました"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "できるだけ早くあなたが戻ってこられますように。"
+
+msgid "Submit"
+msgstr "提出"
 
 msgid "Validation of email address change in progress."
 msgstr "メールアドレス変更の検証を処理しています。"
@@ -1436,9 +1408,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "プラットフォームはまだ HTTPS 接続用に構成されていないため、テスト目的のみで使用する必要があります。"
 
-msgid "Submit"
-msgstr "提出"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "受領者があなたに追加のアンケートを記入するよう依頼しました。"
 
@@ -1512,9 +1481,6 @@ msgstr "アンケート回答"
 msgid "Step"
 msgstr "ステップ"
 
-msgid "Recipient list"
-msgstr "受信者のリスト"
-
 msgid "Status:"
 msgstr "状態"
 
@@ -1523,9 +1489,6 @@ msgstr "受信者が添付したファイル"
 
 msgid "Upload a file:"
 msgstr "ファイルをアップロード："
-
-msgid "Logout"
-msgstr "ログアウト"
 
 msgid "An update is available:"
 msgstr "アップデートが利用できます。"
@@ -1558,18 +1521,15 @@ msgstr "暗号化回復鍵を入力して、パスワードのリセット手順
 msgid "Password reset requested."
 msgstr "パスワードのリセットをリクエストしました。"
 
-msgid "Show"
-msgstr "表示"
-
-msgid "Hide"
-msgstr "非表示"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "内部告発者の身元へのアクセスを管理人にリクエストしました。"
 
 msgid "Date of the request"
 msgstr "リクエスト日"
+
+msgid "Show"
+msgstr "表示"
 
 msgid "Congratulations!"
 msgstr "おめでとうございます"
@@ -1608,9 +1568,6 @@ msgstr "完了"
 msgid "Invalid phone number"
 msgstr "電話番号が正しくありません"
 
-msgid "Select the context of your report:"
-msgstr "報告のコンテキストを選択してください:"
-
 msgid "The answer is too short"
 msgstr "回答が短すぎます"
 
@@ -1639,9 +1596,6 @@ msgstr "ありがとうございます!"
 
 msgid "Your report was successful."
 msgstr "あなたの報告は成功しました。"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "できるだけ早くあなたが戻ってこられますように。"
 
 msgid "Remember your receipt for this report."
 msgstr "この報告の受領番号を覚えておいてください。"
@@ -1684,6 +1638,9 @@ msgstr "ファイルのアップロードが完了するのを待っています
 
 msgid "The following steps have errors:"
 msgstr "次のステップにエラーがあります:"
+
+msgid "Hide"
+msgstr "非表示"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1733,32 +1690,14 @@ msgstr "名"
 msgid "Last name"
 msgstr "姓"
 
-msgid "Gender"
-msgstr "性別"
+msgid "Preferred contact method"
+msgstr ""
 
-msgid "Male"
-msgstr "男性"
+msgid "Other"
+msgstr "その他"
 
-msgid "Female"
-msgstr "女性"
-
-msgid "Other gender identity"
-msgstr "その他の性同一性"
-
-msgid "Date of birth"
-msgstr "誕生日"
-
-msgid "Place of birth"
-msgstr "誕生地"
-
-msgid "Zip code / Postal code"
-msgstr "郵便番号"
-
-msgid "Province"
-msgstr "地方"
-
-msgid "Country"
-msgstr "国"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} 様"
@@ -1871,9 +1810,6 @@ msgstr "名前: {Name}"
 
 msgid "Email: {Email}"
 msgstr "メール: {Email}"
-
-msgid "Language: {Language}"
-msgstr "言語: {Language}"
 
 msgid "New whistleblowing site registered"
 msgstr "新しい告発サイトが登録されました。"
@@ -2044,6 +1980,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "ソフトウェア更新の説明は、ドキュメントを参照してください: {UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr "新しい報告"
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "最も早い有効期限は {EarliestExpirationDate} です。"
 
@@ -2065,9 +2009,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "あなたは、含まれる情報および資料に特に注意を払うよう求められます。 内部通報者はしばしば、公衆の利益のために高い個人的リスクにさらされることに注意してください。 したがって、この提出書類の中で報告される資料は、重要性が高いと考えるべきです。"
-
-msgid "New report"
-msgstr "新しい報告"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "これは、既存の報告が更新されたことを通知するメールです。"

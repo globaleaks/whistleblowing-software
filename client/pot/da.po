@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,9 +38,6 @@ msgstr "Teksttilpasning"
 
 msgid "Advanced settings"
 msgstr "Avancerede indstillinger"
-
-msgid "Questionnaire configuration"
-msgstr "Konfiguration af spørgeskema"
 
 msgid "Question templates"
 msgstr "Spørgsmålsskabeloner"
@@ -96,15 +93,6 @@ msgstr "Kommentarer"
 msgid "Messages"
 msgstr "Beskeder"
 
-msgid "Select this recipient."
-msgstr "Vælg denne modtager."
-
-msgid "Unselect this recipient."
-msgstr "Fravælg denne modtager."
-
-msgid "This recipient cannot be deselected."
-msgstr "Denne modtager kan ikke fravælges."
-
 msgid "Details"
 msgstr "Detaljer"
 
@@ -134,9 +122,6 @@ msgstr "Opdater"
 
 msgid "Context"
 msgstr "Kontekst"
-
-msgid "Private messages"
-msgstr "Private beskeder"
 
 msgid "Preview"
 msgstr "Forhåndsvisning"
@@ -178,12 +163,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "Forbindelsen var sikret over Tor, hvilket sikrer fortrolighed og anonymitet."
-
-msgid "vertical"
-msgstr "lodret"
-
-msgid "horizontal"
-msgstr "vandret"
 
 msgid "Number"
 msgstr "Nummer"
@@ -245,9 +224,6 @@ msgstr "Anmod om status"
 msgid "Custodian"
 msgstr "Ansvarshaver"
 
-msgid "Custodian of the identities"
-msgstr "Den ansvarlige for identiteterne"
-
 msgid "Identity"
 msgstr "Identitet"
 
@@ -290,9 +266,6 @@ msgstr "Godkend adgang til whistleblowerens identitet"
 msgid "Templates"
 msgstr "Skabeloner"
 
-msgid "HTTPS settings"
-msgstr "HTTPS-indstillinger"
-
 msgid "URL redirects"
 msgstr "URL-omdirigeringer"
 
@@ -304,13 +277,6 @@ msgstr "Tilgængelig diskplads"
 
 msgid "Last update"
 msgstr "Seneste opdatering"
-
-msgid "Custodian notification templates"
-msgstr " Kontoindehaver notificationsskabelon"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "Dette interface gør det muligt at konfigurere e-mail-skabeloner til underretning af kontoindehavere."
 
 msgid "Disable notifications to administrators"
 msgstr "Deaktiver notifikation af administratorer"
@@ -362,12 +328,6 @@ msgstr "Ingen"
 
 msgid "Regular expression"
 msgstr "Almindeligt udtryk"
-
-msgid "Activate"
-msgstr "Aktivér"
-
-msgid "Disactivate"
-msgstr "Deaktivér"
 
 msgid "Search"
 msgstr "Søg"
@@ -440,6 +400,9 @@ msgstr "Udvid"
 msgid "Select"
 msgstr "Vælg"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Surname"
 msgstr "Efternavn"
 
@@ -511,8 +474,17 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr "Kopier til udklipsholder"
 
+msgid "Logout"
+msgstr "Log ud"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
 msgstr "Indsend en rapportering"
+
+msgid "Select the context of your report:"
+msgstr "Vælg hvilken sammehæng din indsendelse indgår i."
 
 msgid "Before proceeding, please set a new password."
 msgstr "Før du fortsætter bedes du indstille en ny adgangskode."
@@ -740,14 +712,8 @@ msgstr "Spørgsmål der skal bruges til at anmode om nye whistleblowere"
 msgid "Whistleblowing button"
 msgstr "Whistleblower-knap"
 
-msgid "Enable disclaimer"
-msgstr "Aktivér ansvarsfraskrivelse"
-
-msgid "Title"
-msgstr "Titel"
-
-msgid "Text"
-msgstr "Tekst"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "Sidefod"
@@ -1066,6 +1032,9 @@ msgstr "Tilsidesæt skabelon"
 msgid "Phone number"
 msgstr "Telefonnummer"
 
+msgid "Text"
+msgstr "Tekst"
+
 msgid "Checkbox label"
 msgstr "Mærkat til afkrydsningsboks"
 
@@ -1080,18 +1049,6 @@ msgstr "Lyd"
 
 msgid "Video"
 msgstr "Video"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "Synlighed af svaret kræver godkendelse fra den tilsynsførende"
-
-msgid "Text shown upon negative answer"
-msgstr "Tekst der vises ved negativt svar"
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "Anmod om bekræftelse ved negativt svar"
-
-msgid "Text shown upon confirmation"
-msgstr "Tekst der vises ved bekræftelse"
 
 msgid "Trigger conditions"
 msgstr "Udløsningsbetingelser"
@@ -1161,6 +1118,9 @@ msgstr "Tillad brugere at tilmelde sig"
 
 msgid "Enable terms of service"
 msgstr "Aktivér servicebetingelserne"
+
+msgid "Title"
+msgstr "Titel"
 
 msgid "Send an account activation link to the user."
 msgstr "Send et kontoaktiveringslink til brugeren."
@@ -1273,6 +1233,9 @@ msgstr "Bemærk at alle tilknyttede data bliver slettet permanent."
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Dette er en demonstrationsplatform. Undlad at bruge den til rigtige indsendelser."
 
+msgid "Close"
+msgstr "Luk"
+
 msgid "Install an authenticator app on your phone"
 msgstr "Installér en autentificeringsapp på din telefon"
 
@@ -1281,9 +1244,6 @@ msgstr "Scan QR-koden med din mobile enhed."
 
 msgid "Enable two factor authentication"
 msgstr "Aktivér to-faktor-godkendelse"
-
-msgid "Close"
-msgstr "Luk"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Før du forsætter, gennemlæs venligst dokumentationen grundigt"
@@ -1349,6 +1309,18 @@ msgstr "Denne ressource kan kun tilgås via Tor netværket"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Upload overstiger tilladt størrelse"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Vi vil forsøge at vende tilbage så snart som muligt."
+
+msgid "Submit"
+msgstr "Indsend"
 
 msgid "Validation of email address change in progress."
 msgstr "Godkendelse af skift af e-mail-adresse i gang."
@@ -1439,9 +1411,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "Platformen er stadig ikke konfigureret til HTTPS-forbindelser og bør derfor kun bruges til forsøgsformål."
 
-msgid "Submit"
-msgstr "Indsend"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Modtagere har anmodet dig om at udfylde et ekstra spørgeskema."
 
@@ -1515,9 +1484,6 @@ msgstr "Svar på spørgeskemaet"
 msgid "Step"
 msgstr "Trin"
 
-msgid "Recipient list"
-msgstr "Modtagerliste"
-
 msgid "Status:"
 msgstr "Status:"
 
@@ -1526,9 +1492,6 @@ msgstr "Filer der er vedhæftet af modtagere"
 
 msgid "Upload a file:"
 msgstr "Upload en fil:"
-
-msgid "Logout"
-msgstr "Log ud"
 
 msgid "An update is available:"
 msgstr "Der er tilgængelige opdateringer:"
@@ -1561,18 +1524,15 @@ msgstr "Indtast din krypteringsnøgle for at færdiggøre adgangskodegendannelse
 msgid "Password reset requested."
 msgstr "Der er anmodet om nulstilling af adgangskode."
 
-msgid "Show"
-msgstr "Vis"
-
-msgid "Hide"
-msgstr "Skjul"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Forespørgsel om whistleblowerens identitet er blevet videregivet til den tilsynsførende."
 
 msgid "Date of the request"
 msgstr "Dato for forespørgslen"
+
+msgid "Show"
+msgstr "Vis"
 
 msgid "Congratulations!"
 msgstr "Tillykke!"
@@ -1611,9 +1571,6 @@ msgstr "Afslut"
 msgid "Invalid phone number"
 msgstr "Forkert telefonnummer"
 
-msgid "Select the context of your report:"
-msgstr "Vælg hvilken sammehæng din indsendelse indgår i."
-
 msgid "The answer is too short"
 msgstr "Dit svar er for kort"
 
@@ -1642,9 +1599,6 @@ msgstr "Tak!"
 
 msgid "Your report was successful."
 msgstr "Din indsendelse er gennemført."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Vi vil forsøge at vende tilbage så snart som muligt."
 
 msgid "Remember your receipt for this report."
 msgstr "Husk din nøglekode for denne indsendelse."
@@ -1687,6 +1641,9 @@ msgstr "Venter på at fil(er) er færdiguploadet."
 
 msgid "The following steps have errors:"
 msgstr "De følgende trin har fejl:"
+
+msgid "Hide"
+msgstr "Skjul"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1736,32 +1693,14 @@ msgstr "Fornavn"
 msgid "Last name"
 msgstr "Efternavn"
 
-msgid "Gender"
-msgstr "Køn"
+msgid "Preferred contact method"
+msgstr ""
 
-msgid "Male"
-msgstr "Mand"
+msgid "Other"
+msgstr "Andet"
 
-msgid "Female"
-msgstr "Kvinde"
-
-msgid "Other gender identity"
-msgstr "Anden kønsidentitet"
-
-msgid "Date of birth"
-msgstr "Fødselsdato"
-
-msgid "Place of birth"
-msgstr "Fødested"
-
-msgid "Zip code / Postal code"
-msgstr "Postnummer"
-
-msgid "Province"
-msgstr "Provins"
-
-msgid "Country"
-msgstr "Land"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Kære {RecipientName},"
@@ -1874,9 +1813,6 @@ msgstr "Navn: {Name}"
 
 msgid "Email: {Email}"
 msgstr "E-mail: {Email}"
-
-msgid "Language: {Language}"
-msgstr "Sprog: {Language}"
 
 msgid "New whistleblowing site registered"
 msgstr "Nyt whistleblowing-site registreret"
@@ -2047,6 +1983,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "For instruktioner om opdatering af software, læs venligst dokumentationen på: {UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr "Ny indberetning"
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Den tidligste udløbsdato er  {EarliestExpirationDate}."
 
@@ -2068,9 +2012,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "Du skal være særligt opmærksom på oplysninger og materiale, der er indeholdt heri. Vær opmærksom på, at whistleblowere ofte udsætter sig selv for store personlige risici i offentlighedens interesse. Derfor skal det indleverede materiale håndteres som særligt følsomt."
-
-msgid "New report"
-msgstr "Ny indberetning"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Dette er en email der underretter dig om at en eksisterende rapportering er blevet opdateret."

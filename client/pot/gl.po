@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Galician (http://www.transifex.com/otf/globaleaks/language/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,9 +34,6 @@ msgstr "Personalización de texto"
 
 msgid "Advanced settings"
 msgstr "Configuración avanzada"
-
-msgid "Questionnaire configuration"
-msgstr "Configuración do cuestionario"
 
 msgid "Question templates"
 msgstr "Modelos de preguntas"
@@ -92,15 +89,6 @@ msgstr "Comentarios"
 msgid "Messages"
 msgstr "Mensaxes"
 
-msgid "Select this recipient."
-msgstr "Selecciona este destinatario."
-
-msgid "Unselect this recipient."
-msgstr "Cancela este destinatario."
-
-msgid "This recipient cannot be deselected."
-msgstr "Este destinatario non pode ser cancelado."
-
 msgid "Details"
 msgstr "Detalles"
 
@@ -130,9 +118,6 @@ msgstr "Actualizar"
 
 msgid "Context"
 msgstr "Contexto"
-
-msgid "Private messages"
-msgstr "Mensaxes privadas"
 
 msgid "Preview"
 msgstr "Vista previa"
@@ -174,12 +159,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "A conexión foi asegurada con Tor garantindo a confidencialidade e o anonimato."
-
-msgid "vertical"
-msgstr "vertical"
-
-msgid "horizontal"
-msgstr "horizontal"
 
 msgid "Number"
 msgstr "Número"
@@ -241,9 +220,6 @@ msgstr "Estado de solicitude"
 msgid "Custodian"
 msgstr "Custodio"
 
-msgid "Custodian of the identities"
-msgstr "Custodio das identidades"
-
 msgid "Identity"
 msgstr "Identidade"
 
@@ -286,9 +262,6 @@ msgstr "Autoriza o acceso á identidade do denunciante"
 msgid "Templates"
 msgstr "Modelos"
 
-msgid "HTTPS settings"
-msgstr "Configuración de HTTPS"
-
 msgid "URL redirects"
 msgstr ""
 
@@ -300,13 +273,6 @@ msgstr "Espazo en disco dispoñible"
 
 msgid "Last update"
 msgstr "Última actualización"
-
-msgid "Custodian notification templates"
-msgstr "Modelos de notificación custodio"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "Esta interface permite configurar os modelos de correo electrónico que se usan para notificar aos custodios."
 
 msgid "Disable notifications to administrators"
 msgstr "Deshabilita as notificacións aos administradores"
@@ -358,12 +324,6 @@ msgstr "Nada"
 
 msgid "Regular expression"
 msgstr "Expresión habitual"
-
-msgid "Activate"
-msgstr "Activar"
-
-msgid "Disactivate"
-msgstr ""
 
 msgid "Search"
 msgstr "Busca"
@@ -436,6 +396,9 @@ msgstr "Expandir"
 msgid "Select"
 msgstr "Seleccionar"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Surname"
 msgstr "Apelido"
 
@@ -507,7 +470,16 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr "Copiar o portapapeis"
 
+msgid "Logout"
+msgstr "Saír"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
+msgstr ""
+
+msgid "Select the context of your report:"
 msgstr ""
 
 msgid "Before proceeding, please set a new password."
@@ -736,14 +708,8 @@ msgstr "Pregunta para solicitar posibles denuncias"
 msgid "Whistleblowing button"
 msgstr "Botón de denuncia"
 
-msgid "Enable disclaimer"
-msgstr "Habilitar exención de responsabilidade"
-
-msgid "Title"
-msgstr "Título"
-
-msgid "Text"
-msgstr "Texto"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "Pé de páxina"
@@ -1062,6 +1028,9 @@ msgstr "Substitución de modelo"
 msgid "Phone number"
 msgstr "Número de teléfono"
 
+msgid "Text"
+msgstr "Texto"
+
 msgid "Checkbox label"
 msgstr "Etiqueta da caixa de verificación"
 
@@ -1076,18 +1045,6 @@ msgstr ""
 
 msgid "Video"
 msgstr "Video"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "Visión de resposta de asunto a autorización de custodia"
-
-msgid "Text shown upon negative answer"
-msgstr "Texto amosado na resposta negativa"
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "Confirmación rápida sobre a resposta negativa"
-
-msgid "Text shown upon confirmation"
-msgstr "Texto que se amosa despois da confirmación"
 
 msgid "Trigger conditions"
 msgstr ""
@@ -1157,6 +1114,9 @@ msgstr "Permitir aos usuarios rexistrarse"
 
 msgid "Enable terms of service"
 msgstr "Habilitar os termos do servizo"
+
+msgid "Title"
+msgstr "Título"
 
 msgid "Send an account activation link to the user."
 msgstr ""
@@ -1269,6 +1229,9 @@ msgstr ""
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""
 
+msgid "Close"
+msgstr "Pechar"
+
 msgid "Install an authenticator app on your phone"
 msgstr ""
 
@@ -1277,9 +1240,6 @@ msgstr ""
 
 msgid "Enable two factor authentication"
 msgstr "Activar a autenticación de dous factores"
-
-msgid "Close"
-msgstr "Pechar"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr ""
@@ -1345,6 +1305,18 @@ msgstr "Só se pode acceder ao recurso a través da rede Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "A solicitude de carga supera o límite de tamaño"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Submit"
+msgstr "Enviar"
 
 msgid "Validation of email address change in progress."
 msgstr "Validación da modificación do enderezo de correo electrónico en progreso."
@@ -1435,9 +1407,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "A plataforma aínda non está configurada para conexións HTTPS e debería polo tanto, só se pode empregar para probas."
 
-msgid "Submit"
-msgstr "Enviar"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Os destinatarios pediron que complete un cuestionario adicional."
 
@@ -1511,9 +1480,6 @@ msgstr "Respostas do cuestionario"
 msgid "Step"
 msgstr "Paso"
 
-msgid "Recipient list"
-msgstr "Lista de destinatarios"
-
 msgid "Status:"
 msgstr "Estado"
 
@@ -1522,9 +1488,6 @@ msgstr "Arquivos adxuntos por destinatarios"
 
 msgid "Upload a file:"
 msgstr "Carga un ficheiro:"
-
-msgid "Logout"
-msgstr "Saír"
 
 msgid "An update is available:"
 msgstr "Hai unha actualización dispoñible:"
@@ -1557,18 +1520,15 @@ msgstr ""
 msgid "Password reset requested."
 msgstr "Restablecemento do contrasinal solicitado."
 
-msgid "Show"
-msgstr "Amosar"
-
-msgid "Hide"
-msgstr "Agochar"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Foi requerido o acceso á identidade do denunciante para o custodio "
 
 msgid "Date of the request"
 msgstr "Data da solicitude"
+
+msgid "Show"
+msgstr "Amosar"
 
 msgid "Congratulations!"
 msgstr "Parabéns!"
@@ -1607,9 +1567,6 @@ msgstr "Completa"
 msgid "Invalid phone number"
 msgstr "Número de teléfono non válido"
 
-msgid "Select the context of your report:"
-msgstr ""
-
 msgid "The answer is too short"
 msgstr ""
 
@@ -1637,9 +1594,6 @@ msgid "Thank you!"
 msgstr "Grazas!"
 
 msgid "Your report was successful."
-msgstr ""
-
-msgid "We will try to get back to you as soon as possible."
 msgstr ""
 
 msgid "Remember your receipt for this report."
@@ -1683,6 +1637,9 @@ msgstr "Esperando que o ficheiro (s) finalice a carga."
 
 msgid "The following steps have errors:"
 msgstr "Os seguintes pasos teñen erros:"
+
+msgid "Hide"
+msgstr "Agochar"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1732,32 +1689,14 @@ msgstr "Nome"
 msgid "Last name"
 msgstr "Apelido"
 
-msgid "Gender"
-msgstr "Xénero"
+msgid "Preferred contact method"
+msgstr ""
 
-msgid "Male"
-msgstr "Home"
+msgid "Other"
+msgstr "Outra"
 
-msgid "Female"
-msgstr "Muller"
-
-msgid "Other gender identity"
-msgstr "Outra identidade de xénero"
-
-msgid "Date of birth"
-msgstr "Data de nacemento"
-
-msgid "Place of birth"
-msgstr "Lugar de nacemento"
-
-msgid "Zip code / Postal code"
-msgstr "Código postal / código postal"
-
-msgid "Province"
-msgstr "Provincia"
-
-msgid "Country"
-msgstr "País"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Estimado {RecipientName},"
@@ -1870,9 +1809,6 @@ msgstr "Nome: {Name}"
 
 msgid "Email: {Email}"
 msgstr "Enderezo electrónico: {Email}"
-
-msgid "Language: {Language}"
-msgstr "Idioma: {Language}"
 
 msgid "New whistleblowing site registered"
 msgstr "Novo sitio de denuncias rexistrado"
@@ -2043,6 +1979,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "Para obter instrucións sobre actualizacións de software, consulte a documentación en: {UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "A data de caducidade máis próxima é {EarliestExpirationDate}."
 
@@ -2063,9 +2007,6 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr ""
-
-msgid "New report"
 msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."

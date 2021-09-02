@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-07-26 17:23+0000\n"
+"PO-Revision-Date: 2021-09-04 13:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -52,9 +52,6 @@ msgstr "سفارشی سازی متن"
 
 msgid "Advanced settings"
 msgstr "تنظیمات پیشرفته"
-
-msgid "Questionnaire configuration"
-msgstr "تنظیمات پرسش‌نامه"
 
 msgid "Question templates"
 msgstr "الگوهای سوال"
@@ -110,15 +107,6 @@ msgstr "دیدگاه‌ها"
 msgid "Messages"
 msgstr "پیام‌ها"
 
-msgid "Select this recipient."
-msgstr "این دریافتکننده را انتخاب کن. "
-
-msgid "Unselect this recipient."
-msgstr "این دریافتکننده را انتخاب نکن"
-
-msgid "This recipient cannot be deselected."
-msgstr "این دریافت کننده را نمی توان از حالت انتخاب شده خارج کرد"
-
 msgid "Details"
 msgstr "جزییات"
 
@@ -148,9 +136,6 @@ msgstr "تازه کردن"
 
 msgid "Context"
 msgstr "متن"
-
-msgid "Private messages"
-msgstr "پیام خصوصی"
 
 msgid "Preview"
 msgstr "نمایش"
@@ -192,12 +177,6 @@ msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
 msgstr "ارتباط با تور ایمن و محرمانگی و گمنامی آن تامین شده است."
-
-msgid "vertical"
-msgstr "عمودی"
-
-msgid "horizontal"
-msgstr "افقی"
 
 msgid "Number"
 msgstr "عدد"
@@ -259,9 +238,6 @@ msgstr "درخواست وضعیت"
 msgid "Custodian"
 msgstr "نگهبان"
 
-msgid "Custodian of the identities"
-msgstr "نگهبانی از هویت"
-
 msgid "Identity"
 msgstr "هویت"
 
@@ -304,9 +280,6 @@ msgstr "اجازه دسترسی به هویت افشاگر"
 msgid "Templates"
 msgstr "الگو"
 
-msgid "HTTPS settings"
-msgstr "تنظیمات HTTPS"
-
 msgid "URL redirects"
 msgstr "تغییر مسیر آدرس"
 
@@ -318,13 +291,6 @@ msgstr "فضای قابل دسترس"
 
 msgid "Last update"
 msgstr "آخرین به‌روز رسانی"
-
-msgid "Custodian notification templates"
-msgstr "الگوی اعلان نگهبانی"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "این رابط اجازه پیکربندی قالب های ایمیل استفاده شده برای آگاه سازی داده بان ها"
 
 msgid "Disable notifications to administrators"
 msgstr "غیرفعال کردن اعلان به مدیریت"
@@ -376,12 +342,6 @@ msgstr "هیـچ"
 
 msgid "Regular expression"
 msgstr "عبارت باقاعده"
-
-msgid "Activate"
-msgstr "فعال كردن"
-
-msgid "Disactivate"
-msgstr "غیرفعال سازی"
 
 msgid "Search"
 msgstr "جستجو"
@@ -454,6 +414,9 @@ msgstr "بسط"
 msgid "Select"
 msgstr "انتخاب"
 
+msgid "Deselect"
+msgstr "لغو انتخاب"
+
 msgid "Surname"
 msgstr "نام خانوادگی"
 
@@ -525,8 +488,17 @@ msgstr ""
 msgid "Copy to clipboard"
 msgstr "به حافظه کوتاه مدت کپی کن"
 
+msgid "Logout"
+msgstr "خروج"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
+
+msgid "Select the context of your report:"
+msgstr "زمینه گزارش خود را انتخاب کنید:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "قبل از ادامه  لطفا یک گذرواژه جدید تنظیم کنید."
@@ -754,14 +726,8 @@ msgstr "پرسش افشاگری"
 msgid "Whistleblowing button"
 msgstr "دکمه افشاگری"
 
-msgid "Enable disclaimer"
-msgstr "فعال سازی سلب مسئولیت"
-
-msgid "Title"
-msgstr "عنوان"
-
-msgid "Text"
-msgstr "متن"
+msgid "Disclaimer"
+msgstr ""
 
 msgid "Footer"
 msgstr "پانویس"
@@ -1080,6 +1046,9 @@ msgstr "لغو قالب"
 msgid "Phone number"
 msgstr "شماره تلفن"
 
+msgid "Text"
+msgstr "متن"
+
 msgid "Checkbox label"
 msgstr "برچست جعبه انتخاب"
 
@@ -1094,18 +1063,6 @@ msgstr "صوتی"
 
 msgid "Video"
 msgstr "تصویری"
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "در معرض گذاشتن قابل مشاهده بودن پاسخ به مجوز داده بان"
-
-msgid "Text shown upon negative answer"
-msgstr "نمایش متن در هنگام پاسخ منفی"
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "واداشتن تایید هنگام پاسخ منفی"
-
-msgid "Text shown upon confirmation"
-msgstr "نمایش متن در هنگام تایید"
 
 msgid "Trigger conditions"
 msgstr "شرابط رهاساز"
@@ -1175,6 +1132,9 @@ msgstr "اجازه به کاربران برای ثبت نام"
 
 msgid "Enable terms of service"
 msgstr "فعال سازی شرایط استفاده از خدمات"
+
+msgid "Title"
+msgstr "عنوان"
 
 msgid "Send an account activation link to the user."
 msgstr "ارسال لینک فعال‌سازی حساب به کاربر:"
@@ -1287,6 +1247,9 @@ msgstr "لطفا توجه داشته باشید که تمام داده های م
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "این یک پلتفرم نمایشی است، لطفا از آن برای ارسال واقعی استفاده نکنید."
 
+msgid "Close"
+msgstr "بستن"
+
 msgid "Install an authenticator app on your phone"
 msgstr "لطفا یک برنامه احراز هویت بر روی موبایل خود نصب کنید."
 
@@ -1295,9 +1258,6 @@ msgstr "کد QR را با برنامه اسکن کنید"
 
 msgid "Enable two factor authentication"
 msgstr "فعال سازی احراز هویت دو عاملی"
-
-msgid "Close"
-msgstr "بستن"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "لطفا قبل از ادامه، مستندات زیر را به دقت مطالعه کنید:"
@@ -1363,6 +1323,18 @@ msgstr "این منبع فقط با استفاده از شبکه تور قابل
 
 msgid "The upload request exceeds the size limit"
 msgstr "آپلود درخواستی بزرگتر از حد مجاز است"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "ما در اسرع وقت با شما تماس خواهیم گرفت."
+
+msgid "Submit"
+msgstr "ارسال"
 
 msgid "Validation of email address change in progress."
 msgstr "اعتبار سنجی تغییر آدرس ایمیل در حال انجام می باشد."
@@ -1453,9 +1425,6 @@ msgid ""
 "therefore only be used for testing purposes."
 msgstr "پلتفورم هنوز برای اتصال های HTTPS پیکربندی نشده است و بهتر است فقط برای تست کردن از آن استفاده شود."
 
-msgid "Submit"
-msgstr "ارسال"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "گیرندگان خواستار این هستند که یک پرسش نامه اضافی را پر کنید."
 
@@ -1529,9 +1498,6 @@ msgstr "پاسخ‌های به پرسش‌نامه"
 msgid "Step"
 msgstr "قدم"
 
-msgid "Recipient list"
-msgstr "فهرست گیرنده‌ها"
-
 msgid "Status:"
 msgstr "وضعیت:"
 
@@ -1540,9 +1506,6 @@ msgstr "فایل های ضمیمه شده توسط گیرندگان"
 
 msgid "Upload a file:"
 msgstr "بارگذاری یک فایل:"
-
-msgid "Logout"
-msgstr "خروج"
 
 msgid "An update is available:"
 msgstr "یک به روز رسانی موجود می باشد:"
@@ -1575,18 +1538,15 @@ msgstr "برای کامل کردن پروسه تنظیم مجدد رمزعبور
 msgid "Password reset requested."
 msgstr "تنظیم مجدد گذرواژه درخواست شد."
 
-msgid "Show"
-msgstr "نمایش"
-
-msgid "Hide"
-msgstr "پنهان کردن"
-
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "دسترسی به هویت افشاگر از ‍داده بان درخواست شده است."
 
 msgid "Date of the request"
 msgstr "تاریخ درخواست"
+
+msgid "Show"
+msgstr "نمایش"
 
 msgid "Congratulations!"
 msgstr "تبریک!"
@@ -1625,9 +1585,6 @@ msgstr "کامل کنید."
 msgid "Invalid phone number"
 msgstr "شماره تلفن ناموجود"
 
-msgid "Select the context of your report:"
-msgstr "زمینه گزارش خود را انتخاب کنید:"
-
 msgid "The answer is too short"
 msgstr ""
 
@@ -1656,9 +1613,6 @@ msgstr "متشکریم!"
 
 msgid "Your report was successful."
 msgstr "گزارش شما با موفقیت انجام شد."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "ما در اسرع وقت با شما تماس خواهیم گرفت."
 
 msgid "Remember your receipt for this report."
 msgstr "رسید خود برای این گزارش را به یاد داشته باشید."
@@ -1701,6 +1655,9 @@ msgstr "انتظار برای تمام شدن آپلود فایل(ها)."
 
 msgid "The following steps have errors:"
 msgstr "مراحل زیر دارای خطا می باشند:"
+
+msgid "Hide"
+msgstr "پنهان کردن"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
@@ -1750,32 +1707,14 @@ msgstr "نام کوچک"
 msgid "Last name"
 msgstr "نام خانوداگی"
 
-msgid "Gender"
-msgstr "جنسیت"
+msgid "Preferred contact method"
+msgstr ""
 
-msgid "Male"
-msgstr "مرد"
+msgid "Other"
+msgstr "دیگر"
 
-msgid "Female"
-msgstr "زن"
-
-msgid "Other gender identity"
-msgstr "سایر هویت های جنسی"
-
-msgid "Date of birth"
-msgstr "تاریخ تولد"
-
-msgid "Place of birth"
-msgstr "محل تولد"
-
-msgid "Zip code / Postal code"
-msgstr "کد پستی"
-
-msgid "Province"
-msgstr "استان"
-
-msgid "Country"
-msgstr "کشور"
+msgid "I prefer to be contacted via this platform only"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} گرامی،"
@@ -1888,9 +1827,6 @@ msgstr "نام: {Name}"
 
 msgid "Email: {Email}"
 msgstr "ایمیل: {Email}"
-
-msgid "Language: {Language}"
-msgstr "زبان: {Language}"
 
 msgid "New whistleblowing site registered"
 msgstr "سایت افشاگری جدید ثبت شد"
@@ -2061,6 +1997,14 @@ msgid ""
 "{UpdateGuideUrl}"
 msgstr "برای دستورالعمل برای به روز رسانی نرم افزار،  لطفا به مستندات موجود مراجعه کنید: {UpdateGuideUrl}"
 
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr ""
+
+msgid "New report"
+msgstr "گزارش جدید"
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "اولین تاریخ انقضا {EarliestExpirationDate} می باشد."
 
@@ -2082,9 +2026,6 @@ msgid ""
 "the material provided within this report should be considered to be of high "
 "importance."
 msgstr "از شما خواسته می شود تا توجه خاصی به اطلاعات و چیزهایی که در آن قرار گرفته داشته باشید. لطفا به خاطر داشته باشید که افشاگران خود را در معرض ریسک های شخصی بالایی به منظور منفعت جامعه قرار میدهند. بنابراین چیزهای تامین شده در این گزارش از اهمیت بالایی برخوردار هستند."
-
-msgid "New report"
-msgstr "گزارش جدید"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr ""
