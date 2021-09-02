@@ -17,10 +17,10 @@ from globaleaks.utils.log import log
 from globaleaks.utils.utility import datetime_now, deferred_sleep
 
 
-def login_failure(tid, whistleblower=False):
+def db_login_failure(session, tid, whistleblower=False):
     Settings.failed_login_attempts[tid] = Settings.failed_login_attempts.get(tid, 0) + 1
 
-    yield tw(db_log, tid=tid, type='whistleblower_login_failure' if whistleblower else 'login_failure')
+    db_log(session, tid=tid, type='whistleblower_login_failure' if whistleblower else 'login_failure')
 
     raise errors.InvalidAuthentication
 
@@ -76,7 +76,7 @@ def login_whistleblower(session, tid, receipt):
                            InternalTip.id == WhistleblowerTip.id).one_or_none()
 
     if x is None:
-        login_failure(tid, 1)
+        db_login_failure(session, tid, 1)
 
     wbtip = x[0]
     itip = x[1]
@@ -112,7 +112,7 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
                                       User.tid == tid).one_or_none()
 
     if not user:
-        login_failure(tid, 0)
+        db_login_failure(session, tid, 0)
 
     connection_check(tid, client_ip, user.role, client_using_tor)
 
@@ -127,7 +127,7 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
             raise errors.TwoFactorAuthCodeRequired
 
     if not GCE.check_password(user.hash_alg, password, user.salt, user.password):
-        login_failure(tid, 0)
+        db_login_failure(session, tid, 0)
 
     crypto_prv_key = ''
     if user.crypto_prv_key:
@@ -198,7 +198,7 @@ class TokenAuthHandler(BaseHandler):
 
         session = Sessions.get(request['authtoken'])
         if session is None or session.tid != self.request.tid:
-            login_failure(self.request.tid, 0)
+            yield tw(login_failure, self.request.tid, 0)
 
         connection_check(self.request.tid, self.request.client_ip,
                          session.user_role, self.request.client_using_tor)
