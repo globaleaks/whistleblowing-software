@@ -591,15 +591,12 @@ var GL = angular.module("GL", [
       return false;
     };
 
-    $rootScope.evaluateDisclaimerModalOpening = function () {
-      if ($rootScope.public.node.disclaimer_text &&
-          !$rootScope.disclaimer_modal_opened) {
-        $rootScope.disclaimer_modal_opened = true;
-        $rootScope.open_disclaimer_modal();
-        return true;
+    $rootScope.openSubmission = function () {
+      if ($rootScope.public.node.disclaimer_text) {
+        return $rootScope.open_disclaimer_modal();
       }
 
-      return false;
+      return $rootScope.setPage("submissionpage");
     };
 
     $rootScope.init = function () {
@@ -675,8 +672,6 @@ var GL = angular.module("GL", [
         } else {
           $rootScope.isFieldTriggered = $rootScope.null_function;
         }
-
-        $rootScope.evaluateConfidentialityModalOpening();
 
         GLTranslate.addNodeFacts($rootScope.public.node.default_language, $rootScope.public.node.languages_enabled);
         Utils.set_title();

@@ -237,8 +237,6 @@ GL.controller("SubmissionCtrl",
     return false;
   };
 
-  $scope.evaluateDisclaimerModalOpening();
-
   $scope.submission = new Submission(function() {
     var context = null;
 

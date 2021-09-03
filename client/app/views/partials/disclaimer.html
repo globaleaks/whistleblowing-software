@@ -1,4 +1,12 @@
+<div class="modal-header">
+  <button type="button" class="close" data-ng-click="cancel()">
+    <i class="fas fa-times"></i>
+  </button>
+</div>
 <div class="modal-body">
   <div data-markdown-to-html="public.node.disclaimer_text"></div>
-  <button data-ng-click="confirm()" class="float-right btn btn-warning" data-translate>Proceed</button>
+</div>
+<div class="modal-footer">
+  <button data-ng-click="confirm()" class="btn btn-warning" data-translate>Proceed</button>
+  <button id="modal-action-cancel" class="btn btn-secondary" data-ng-click="cancel()" data-translate>Close</button>
 </div>
