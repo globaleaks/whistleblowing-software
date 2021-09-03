@@ -10,7 +10,7 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_postpone_expiration
 from globaleaks.handlers.submission import db_serialize_archived_questionnaire_schema
-from globaleaks.orm import db_get, db_del, transact
+from globaleaks.orm import db_get, db_del, db_log, transact
 from globaleaks.rest import requests, errors
 from globaleaks.state import State
 from globaleaks.utils.crypto import GCE
