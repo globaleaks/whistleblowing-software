@@ -23,11 +23,10 @@
             <tr id="file-{{$index}}" data-ng-repeat="file in tip.rfiles">
               <td>{{file.name}}</td>
               <td>
-                <button class="btn btn-primary tip-action-download-file"
+                <button class="btn btn-sm btn-primary tip-action-download-file"
                         data-uib-tooltip="{{'Download' | translate}}"
                         data-ng-click="downloadRFile(file)">
                   <i class="fas fa-download"></i>
-                  <span data-translate>Download</span>
                 </button>
               </td>
 	      <td>{{file.creation_date | date:'dd-MM-yyyy'}}</td>
