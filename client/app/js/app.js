@@ -584,11 +584,8 @@ var GL = angular.module("GL", [
           !$rootScope.confidentiality_warning_opened &&
           ["localhost", "127.0.0.1"].indexOf($location.host()) === -1) {
         $rootScope.confidentiality_warning_opened = true;
-        $rootScope.open_confidentiality_modal();
-        return true;
+        return $rootScope.open_confidentiality_modal();
       }
-
-      return false;
     };
 
     $rootScope.openSubmission = function () {
