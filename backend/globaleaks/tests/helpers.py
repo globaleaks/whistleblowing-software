@@ -570,8 +570,6 @@ class TestGL(unittest.TestCase):
 
         self.state.reset_hourly()
 
-        Settings.submission_minimum_delay = 0
-
         self.internationalized_text = load_appdata()['node']['whistleblowing_button']
 
     @transact
