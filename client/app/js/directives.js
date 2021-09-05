@@ -25,7 +25,7 @@ directive("dynamicTextarea", function () {
         }
       };
 
-      scope.$watch(attrs.model, function(){
+      scope.$watch(attrs.ngModel, function(){
         update();
       });
 
