@@ -95,6 +95,8 @@ def db_update_node(session, tid, user_session, request, language):
     :param language: the language in which to localize data
     :return: Return the serialized configuration for the specified tenant
     """
+    root_config = ConfigFactory(session, 1)
+
     config = ConfigFactory(session, tid)
 
     enable_escrow = not config.get_val('escrow') and request.get('escrow', False)
@@ -119,7 +121,7 @@ def db_update_node(session, tid, user_session, request, language):
         ConfigL10NFactory(session, tid).update('node', request, language)
 
     if enable_escrow:
-        crypto_escrow_prv_key, State.tenant_cache[tid].crypto_escrow_pub_key = GCE.generate_keypair()
+        crypto_escrow_prv_key, crypto_escrow_pub_key = GCE.generate_keypair()
         user = db_get(session, models.User, models.User.id == user_session.user_id)
         user.crypto_escrow_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_escrow_prv_key))
 
@@ -127,6 +129,12 @@ def db_update_node(session, tid, user_session, request, language):
             session.query(models.User).update({'password_change_needed': True}, synchronize_session=False)
         else:
             session.query(models.User).filter(models.User.tid == tid).update({'password_change_needed': True}, synchronize_session=False)
+
+        config.set_val('crypto_escrow_pub_key', crypto_escrow_pub_key)
+
+        if  tid != 1 and root_config.get_val('escrow'):
+            config.set_val('crypto_escrow_prv_key', Base64Encoder.encode(GCE.asymmetric_encrypt(root_config.get_val('crypto_escrow_pub_key'), crypto_escrow_prv_key)))
+
 
     if disable_escrow:
         if tid == 1:
@@ -136,7 +144,8 @@ def db_update_node(session, tid, user_session, request, language):
 
         session.query(models.User).filter(models.User.tid == tid).update({'crypto_escrow_prv_key': ''}, synchronize_session=False)
 
-    config.set_val('crypto_escrow_pub_key', State.tenant_cache[tid].crypto_escrow_pub_key)
+        config.set_val('crypto_escrow_pub_key', '')
+        config.set_val('crypto_escrow_prv_key', '')
 
     db_refresh_memory_variables(session, [tid])
 

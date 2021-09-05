@@ -57,12 +57,13 @@ def db_wizard(session, tid, hostname, request):
 
     root_tenant_node = config.ConfigFactory(session, 1)
     encryption = root_tenant_node.get_val('encryption')
-    escrow = request['admin_escrow']
+    escrow = root_tenant_node.get_val('escrow')
 
     if tid == 1:
         node = root_tenant_node
     else:
         node = config.ConfigFactory(session, tid)
+        escrow = request['admin_escrow']
 
     if node.get_val('wizard_done'):
         log.err("DANGER: Wizard already initialized!", tid=tid)
@@ -99,12 +100,20 @@ def db_wizard(session, tid, hostname, request):
     if encryption:
         if escrow:
             crypto_escrow_prv_key, crypto_escrow_pub_key = GCE.generate_keypair()
-            node.set_val('crypto_escrow_pub_key', crypto_escrow_pub_key)
+
+            if  tid != 1 and root_tenant_node.get_val('crypto_escrow_pub_key'):
+                node.set_val('crypto_escrow_prv_key', Base64Encoder.encode(GCE.asymmetric_encrypt(root_tenant_node.get_val('crypto_escrow_pub_key'), crypto_escrow_prv_key)))
 
         db_gen_user_keys(session, tid, admin_user, request['admin_password'])
 
-        if escrow:
-            admin_user.crypto_escrow_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(admin_user.crypto_pub_key, crypto_escrow_prv_key))
+        if encryption:
+            if escrow:
+                node.set_val('crypto_escrow_pub_key', crypto_escrow_pub_key)
+
+            db_gen_user_keys(session, tid, admin_user, request['admin_password'])
+
+            if escrow:
+                admin_user.crypto_escrow_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(admin_user.crypto_pub_key, crypto_escrow_prv_key))
 
     receiver_user = None
     if not request['skip_recipient_account_creation']:

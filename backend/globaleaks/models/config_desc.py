@@ -150,6 +150,7 @@ ConfigDescriptor = {
     'encryption': Bool(default=True),
     'escrow': Bool(default=True),
     'crypto_escrow_pub_key': Unicode(default=''),
+    'crypto_escrow_prv_key': Unicode(default=''),
 
     'multisite': Bool(default=False),
     'adminonly': Bool(default=False)
@@ -274,6 +275,7 @@ ConfigFilters['public_node'] = list(set(ConfigFilters['admin_node']) - set([
     'version',
     'version_db',
     'crypto_escrow_pub_key',
+    'crypto_escrow_prv_key',
     'timezone',
     'ip_filter_admin',
     'ip_filter_admin_enable',

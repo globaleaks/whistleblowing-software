@@ -85,6 +85,10 @@ def toggle_escrow(session, tid, user_session, user_id):
 
     if not user.crypto_escrow_prv_key:
         crypto_escrow_prv_key = GCE.asymmetric_decrypt(user_session.cc, Base64Encoder.decode(user_session.ek))
+
+        if user_session.user_tid == 1 and tid != 1:
+            crypto_escrow_prv_key = GCE.asymmetric_decrypt(crypto_escrow_prv_key, Base64Encoder.decode(ConfigFactory(session, tid).get_val('crypto_escrow_prv_key')))
+
         user.crypto_escrow_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_escrow_prv_key))
     else:
         user.crypto_escrow_prv_key = ''
