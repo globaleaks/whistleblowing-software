@@ -167,6 +167,7 @@ def signup_activation(session, token, hostname, language):
         'receiver_password': password_receiver,
         'receiver_mail_address': signup.email,
         'profile': 'default',
+        'skip_admin_account_creation': False,
         'skip_recipient_account_creation': False,
         'enable_developers_exception_notification': True
     }

@@ -82,21 +82,6 @@ def db_wizard(session, tid, hostname, request):
 
     profiles.load_profile(session, tid, request['profile'])
 
-    admin_desc = models.User().dict(language)
-    admin_desc['username'] = request['admin_username']
-    admin_desc['name'] = request['admin_name']
-    admin_desc['password'] = request['admin_password']
-    admin_desc['name'] = request['admin_name']
-    admin_desc['mail_address'] = request['admin_mail_address']
-    admin_desc['language'] = language
-    admin_desc['role'] = 'admin'
-    admin_desc['pgp_key_remove'] = False
-
-    admin_user = db_create_user(session, tid, admin_desc, language)
-    admin_user.password = GCE.hash_password(request['admin_password'], admin_user.salt)
-    admin_user.password_change_needed = False
-    admin_user.password_change_date = date
-
     if encryption:
         if escrow:
             crypto_escrow_prv_key, crypto_escrow_pub_key = GCE.generate_keypair()
@@ -104,7 +89,21 @@ def db_wizard(session, tid, hostname, request):
             if  tid != 1 and root_tenant_node.get_val('crypto_escrow_pub_key'):
                 node.set_val('crypto_escrow_prv_key', Base64Encoder.encode(GCE.asymmetric_encrypt(root_tenant_node.get_val('crypto_escrow_pub_key'), crypto_escrow_prv_key)))
 
-        db_gen_user_keys(session, tid, admin_user, request['admin_password'])
+    if not request['skip_admin_account_creation']:
+        admin_desc = models.User().dict(language)
+        admin_desc['username'] = request['admin_username']
+        admin_desc['name'] = request['admin_name']
+        admin_desc['password'] = request['admin_password']
+        admin_desc['name'] = request['admin_name']
+        admin_desc['mail_address'] = request['admin_mail_address']
+        admin_desc['language'] = language
+        admin_desc['role'] = 'admin'
+        admin_desc['pgp_key_remove'] = False
+
+        admin_user = db_create_user(session, tid, admin_desc, language)
+        admin_user.password = GCE.hash_password(request['admin_password'], admin_user.salt)
+        admin_user.password_change_needed = False
+        admin_user.password_change_date = date
 
         if encryption:
             if escrow:

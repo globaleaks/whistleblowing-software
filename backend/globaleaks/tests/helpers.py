@@ -383,6 +383,7 @@ class MockDict:
             'receiver_password': 'P4ssword',
             'receiver_mail_address': 'naif@globaleaks.org',
             'profile': 'default',
+            'skip_admin_account_creation': False,
             'skip_recipient_account_creation': False,
             'enable_developers_exception_notification': True
         }

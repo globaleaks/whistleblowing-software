@@ -553,6 +553,7 @@ WizardDesc = {
     'receiver_password': str,
     'receiver_mail_address': str,
     'profile': r'^(default)$',
+    'skip_admin_account_creation': bool,
     'skip_recipient_account_creation': bool,
     'enable_developers_exception_notification': bool
 }

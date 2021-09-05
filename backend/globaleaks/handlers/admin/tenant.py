@@ -6,6 +6,7 @@ from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import load_appdata, db_load_defaults
 from globaleaks.handlers.admin import file
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.wizard import db_wizard
 from globaleaks.models.config import db_set_config_variable, ConfigFactory
 from globaleaks.orm import db_del, db_get, transact
 from globaleaks.rest import requests
@@ -81,6 +82,24 @@ def create(session, desc, *args, **kwargs):
     return serialize_tenant(session, db_create(session, desc, *args, **kwargs))
 
 
+@transact
+def create_and_initialize(session, desc, *args, **kwargs):
+    tenant = db_create(session, desc, *args, **kwargs)
+
+    wizard = {
+        'node_language': 'en',
+        'node_name': desc['name'],
+        'profile': 'default',
+        'skip_admin_account_creation': True,
+        'skip_recipient_account_creation': True,
+        'enable_developers_exception_notification': True
+    }
+
+    db_wizard(session, tenant.id, '', wizard)
+
+    return serialize_tenant(session, tenant)
+
+
 def db_get_tenant_list(session):
     return [serialize_tenant(session, t) for t in session.query(models.Tenant)]
 
@@ -134,7 +153,7 @@ class TenantCollection(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminTenantDesc)
 
-        return create(request)
+        return create_and_initialize(request)
 
 
 class TenantInstance(BaseHandler):
