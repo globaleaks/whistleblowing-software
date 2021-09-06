@@ -63,7 +63,6 @@ def db_wizard(session, tid, hostname, request):
         node = root_tenant_node
     else:
         node = config.ConfigFactory(session, tid)
-        escrow = request['admin_escrow']
 
     if node.get_val('wizard_done'):
         log.err("DANGER: Wizard already initialized!", tid=tid)
