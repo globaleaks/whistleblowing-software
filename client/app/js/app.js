@@ -492,6 +492,7 @@ var GL = angular.module("GL", [
     $translateProvider.useSanitizeValueStrategy("escape");
 }]).
   config(["$uibModalProvider", function($uibModalProvider) {
+    $uibModalProvider.options.animation = false;
     $uibModalProvider.options.backdrop = "static";
     $uibModalProvider.options.keyboard = false;
     $uibModalProvider.options.focus = true;
