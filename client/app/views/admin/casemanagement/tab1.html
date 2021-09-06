@@ -40,13 +40,13 @@
                 <button data-ng-if="!$last" class="btn btn-sm btn-primary" data-ng-click="moveDown($event, $index)" data-uib-tooltip="{{'Move down' | translate}}">
                   <i class="fas fa-chevron-down"></i>
                 </button>
-                <button class="btn btn-sm btn-secondary" data-ng-show="isEditable() && !editing" data-ng-click="toggleEditing(); $event.stopPropagation();">
+                <button class="btn btn-sm btn-outline-secondary" data-ng-show="isEditable() && !editing" data-ng-click="toggleEditing(); $event.stopPropagation();">
                   <span data-translate>Edit</span>
                 </button>
                 <button class="btn btn-sm btn-primary" data-ng-show="editing" data-ng-disabled="editSubmissionStatus.$invalid" data-ng-click="save_submissions_status(submissions_status); toggleEditing();">
                   <span data-translate>Save</span>
                 </button>
-                <button class="btn btn-sm btn-secondary" data-ng-show="editing" data-ng-click="toggleEditing(); $event.stopPropagation();">
+                <button class="btn btn-sm btn-outline-secondary" data-ng-show="editing" data-ng-click="toggleEditing(); $event.stopPropagation();">
                   <span data-translate>Cancel</span>
                 </button>
                 <button class="btn btn-sm btn-danger" data-ng-if="!isSystemDefined(submissions_status)" data-ng-click="deleteSubmissionStatus(); $event.stopPropagation();">

@@ -77,7 +77,7 @@
         </span>
         <span class="col-md-5 clearfix">
           <span class="float-right">
-            <button class="btn btn-sm btn-secondary"
+            <button class="btn btn-sm btn-outline-secondary"
               data-ng-show="!editing"
               data-ng-click="toggleEditing(); $event.stopPropagation();">
               <span data-translate>Edit</span>
@@ -88,7 +88,7 @@
               data-ng-click="saveUser()">
               <span data-translate>Save</span>
             </button>
-            <button class="btn btn-sm btn-secondary"
+            <button class="btn btn-sm btn-outline-secondary"
               data-ng-show="editing"
               data-ng-click="toggleEditing(); $event.stopPropagation();">
               <span data-translate>Cancel</span>
@@ -137,15 +137,15 @@
             <div class="form-group">
               <label data-translate>Password</label>
               <div>
-		      <span class="btn btn-secondary" data-ng-click="resetUserPassword()" data-ng-if="user.last_login === '1970-01-01T00:00:00Z'">
+		      <span class="btn btn-outline-secondary" data-ng-click="resetUserPassword()" data-ng-if="user.last_login === '1970-01-01T00:00:00Z'">
                   <i class="fas fa-sync"></i>
                   <span data-translate>Send activation link</span>
                 </span>
-		<span class="btn btn-secondary" data-ng-click="resetUserPassword()" data-ng-if="user.last_login !== '1970-01-01T00:00:00Z'">
+		<span class="btn btn-outline-secondary" data-ng-click="resetUserPassword()" data-ng-if="user.last_login !== '1970-01-01T00:00:00Z'">
                   <i class="fas fa-sync"></i>
                   <span data-translate>Send reset link</span>
                 </span>
-                <span class="btn btn-secondary"
+                <span class="btn btn-outline-secondary"
                       data-ng-if="!user.encryption || preferences.escrow"
                       data-ng-init="user.newpassword = false"
                       data-ng-click="user.newpassword=!user.newpassword">
@@ -221,7 +221,7 @@
                           data-ng-class="{'is-invalid': !editUser.pgp_key.$valid}"
                           data-pgp-pubkey-validator="canBeEmpty"></textarea>
                 <label file-input="loadPublicKeyFile(file)" file-input-label="Select"
-                       class="btn btn-sm btn-secondary textarea-btn"></label>
+                       class="btn btn-sm btn-outline-secondary textarea-btn"></label>
               </div>
             </div>
           </div>

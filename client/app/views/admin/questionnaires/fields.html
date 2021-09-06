@@ -42,7 +42,7 @@
           </span>
           <span class="col-md-6 clearfix" data-ng-if="field.editable">
             <span class="float-right">
-              <button class="btn btn-sm btn-secondary"
+              <button class="btn btn-sm btn-outline-secondary"
                 data-ng-if="!editing"
                 data-ng-click="toggleEditing(); $event.stopPropagation();">
                 <span data-translate>Edit</span>
@@ -53,7 +53,7 @@
                 <span data-translate>Save</span>
               </button>
               <button
-                class="btn btn-sm btn-secondary"
+                class="btn btn-sm btn-outline-secondary"
                 data-ng-if="editing"
                 data-ng-click="toggleEditing(); $event.stopPropagation();">
                 <span data-translate>Cancel</span>
@@ -241,7 +241,7 @@
                         <i class="fas fa-times"></i>
                       </button>
                     </span>
-                    <button data-ng-show="field.attrs.min_date.value === ''" type="button" class="btn btn-sm btn-secondary"><i class="fas fa-calendar"></i></button>
+                    <button data-ng-show="field.attrs.min_date.value === ''" type="button" class="btn btn-sm btn-outline-secondary"><i class="fas fa-calendar"></i></button>
                   </div>
                 </div>
                 <div class="form-group">
@@ -258,7 +258,7 @@
                         <i class="fas fa-times"></i>
                       </button>
                     </span>
-                    <button data-ng-show="field.attrs.max_date.value === ''" type="button" class="btn btn-sm btn-secondary"><i class="fas fa-calendar"></i></button>
+                    <button data-ng-show="field.attrs.max_date.value === ''" type="button" class="btn btn-sm btn-outline-secondary"><i class="fas fa-calendar"></i></button>
                   </div>
                 </div>
               </div>
@@ -354,22 +354,22 @@
                         <i class="fas fa-chevron-down"></i>
                       </button>
                       <span>
-                        <button class="btn btn-sm" data-ng-class="option.hint1 || option.hint2 ? 'btn-warning' : 'btn-secondary'" data-ng-click="addOptionHintDialog(option)" data-uib-tooltip="{{'Hint' | translate}}">
+                        <button class="btn btn-sm" data-ng-class="option.hint1 || option.hint2 ? 'btn-warning' : 'btn-outline-secondary'" data-ng-click="addOptionHintDialog(option)" data-uib-tooltip="{{'Hint' | translate}}">
                           <i class="fas fa-question-circle"></i>
                         </button>
                       </span>
                       <span>
-                        <button class="btn btn-sm" data-ng-class="option.block_submission ? 'btn-danger' : 'btn-secondary'" data-ng-click="flipBlockSubmission(option)" data-uib-tooltip="{{'Block the submission' | translate}}">
+                        <button class="btn btn-sm" data-ng-class="option.block_submission ? 'btn-danger' : 'btn-outline-secondary'" data-ng-click="flipBlockSubmission(option)" data-uib-tooltip="{{'Block the submission' | translate}}">
                           <i class="fas fa-ban"></i>
                         </button>
                       </span>
                       <span>
-                        <button class="btn btn-sm" data-ng-class="option.trigger_receiver.length ? 'btn-primary' : 'btn-secondary'" data-ng-click="triggerReceiverDialog(option)" data-uib-tooltip="{{'Recipients' | translate}}">
+                        <button class="btn btn-sm" data-ng-class="option.trigger_receiver.length ? 'btn-primary' : 'btn-outline-secondary'" data-ng-click="triggerReceiverDialog(option)" data-uib-tooltip="{{'Recipients' | translate}}">
                           <i class="fas fa-user"></i>
                         </button>
                       </span>
                       <span data-ng-if="resources.node.enable_scoring_system">
-                        <button class="btn btn-sm" data-ng-class="option.score_type !== 'none' ? 'btn-warning' : 'btn-secondary'" data-ng-click="assignScorePointsDialog(option)" data-uib-tooltip="{{'Assign score points' | translate}}">
+                        <button class="btn btn-sm" data-ng-class="option.score_type !== 'none' ? 'btn-warning' : 'btn-outline-secondary'" data-ng-click="assignScorePointsDialog(option)" data-uib-tooltip="{{'Assign score points' | translate}}">
                           <i class="fas fa-bolt"></i>
                           <span data-ng-if="option.score_type !== 'none'">
                             <span> {{option.score_points}} </span>
