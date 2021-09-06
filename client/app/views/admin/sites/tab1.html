@@ -54,7 +54,7 @@
                 <span class="badge badge-secondary">{{tenant.id}}</span>
                 <span>{{tenant.name}}</span>
               </div>
-              <div data-ng-if="tenant.active && (tenant.onionservice || (tenant.id == 1 && tenant.hostname) || (tenant.id > 1 && (tenant.subdomain || resources.node.rootdomain)))">
+              <div data-ng-if="tenant.active && (tenant.onionservice || tenant.hostname || (tenant.id > 1 && (tenant.subdomain || resources.node.rootdomain)))">
                 <a class="badge badge-primary" data-ng-if="tenant.onionservice" data-ng-href="http://{{tenant.onionservice}}" isolate-click>{{tenant.onionservice}}</a>
                 <span data-ng-if="tenant.id > 1 && tenant.subdomain">
                   <a data-ng-if="resources.node.rootdomain" class="badge badge-primary" data-ng-href="https://{{tenant.subdomain}}.{{resources.node.rootdomain}}" isolate-click>{{tenant.subdomain}}.{{resources.node.rootdomain}}</a>
