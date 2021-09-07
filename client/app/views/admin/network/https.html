@@ -6,7 +6,7 @@
              class="form-control"
              type="text"
              data-ng-model="resources.node.hostname"
-             data-ng-pattern="hostname_regexp"
+             data-ng-pattern="CONSTANTS.hostname_regexp"
 	     data-ng-class="{'is-invalid': adminNetForm.hostname.$error.pattern}"/>
       <span class="input-group-append">
         <button class="btn btn-primary" data-ng-click="Utils.applyConfig('set_hostname', resources.node.hostname, true)" data-ng-disabled="adminNetForm.$pristine" data-translate>Save</button>

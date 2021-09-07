@@ -1,5 +1,5 @@
-GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$uibModal", "$http", "CONSTANTS",
-  function($scope, $q, $http, $uibModal, CONSTANTS) {
+GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$uibModal", "$http",
+  function($scope, $q, $http, $uibModal) {
     $scope.tabs = [
       {
         title: "Preferences",
@@ -13,7 +13,6 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$uibModal", "$http",
 
     $scope.vars = {};
 
-    $scope.email_regexp = CONSTANTS.email_regexp;
     $scope.editingName = false;
     $scope.editingPublicName = false;
     $scope.showEncryptionKey = false;

@@ -48,7 +48,7 @@
     <div class="col-md-8">
       <input class="form-control" data-ng-model="csr_cfg.email"
              data-ng-class="{'is-invalid': certSigRequestForm.email.$invalid}"
-             name="email" type="text" required data-ng-pattern="email_regexp"/>
+             name="email" type="text" required data-ng-pattern="CONSTANTS.email_regexp"/>
       <div class="text-danger" data-ng-show="certSigRequestForm.email.$error.pattern">
         <span data-translate>Invalid email address</span>
       </div>

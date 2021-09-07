@@ -35,7 +35,7 @@
       <label>Telefono</label> <span class="text-danger"
                                     data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <input name="phone" class="form-control" data-ng-model="signup.phone" type="text"
-             data-ng-pattern="phonenumber_regexp" required>
+             data-ng-pattern="CONSTANTS.phonenumber_regexp" required>
       <div class="text-danger" data-ng-show="signupForm.phone.$error.pattern">
         <span data-translate>Invalid phone number</span>
       </div>
@@ -48,7 +48,7 @@
         <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       </label>
       <div>
-        <input name="email" class="form-control" data-ng-model="signup.email" data-ng-pattern="email_regexp" type="email" required>
+        <input name="email" class="form-control" data-ng-model="signup.email" data-ng-pattern="CONSTANTS.email_regexp" type="email" required>
         <div class="text-danger" data-ng-show="signupForm.email.$error.pattern">
           <span data-translate>Invalid email address</span>
         </div>

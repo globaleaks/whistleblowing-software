@@ -1,13 +1,10 @@
-GL.controller("SignupCtrl", ["$scope", "$location", "$route", "$http", "Authentication", "CONSTANTS", "DATA_COUNTRIES_ITALY_REGIONS", "DATA_COUNTRIES_ITALY_PROVINCES", "DATA_COUNTRIES_ITALY_CITIES",
-              function($scope, $location, $route, $http, Authentication, CONSTANTS, DATA_COUNTRIES_ITALY_REGIONS, DATA_COUNTRIES_ITALY_PROVINCES, DATA_COUNTRIES_ITALY_CITIES) {
+GL.controller("SignupCtrl", ["$scope", "$location", "$route", "$http", "Authentication", "DATA_COUNTRIES_ITALY_REGIONS", "DATA_COUNTRIES_ITALY_PROVINCES", "DATA_COUNTRIES_ITALY_CITIES",
+              function($scope, $location, $route, $http, Authentication, DATA_COUNTRIES_ITALY_REGIONS, DATA_COUNTRIES_ITALY_PROVINCES, DATA_COUNTRIES_ITALY_CITIES) {
   if ($scope.public.node.mode === "whistleblowing.it") {
     $scope.data_countries_italy_regions = DATA_COUNTRIES_ITALY_REGIONS.query();
     $scope.data_countries_italy_provinces = DATA_COUNTRIES_ITALY_PROVINCES.query();
     $scope.data_countries_italy_cities = DATA_COUNTRIES_ITALY_CITIES.query();
   }
-
-  $scope.email_regexp = CONSTANTS.email_regexp;
-  $scope.phonenumber_regexp = CONSTANTS.phonenumber_regexp;
 
   $scope.hostname = $location.search().hostname || "";
 

@@ -37,7 +37,7 @@
     </div>
   </div>
   <div data-ng-if="editingEmailAddress">
-    <input class="form-control" name="mail_address" data-ng-model="preferences.mail_address" data-ng-pattern="email_regexp" type="email" data-ng-class="{'is-invalid': preferencesForm.$error.pattern}" />
+    <input class="form-control" name="mail_address" data-ng-model="preferences.mail_address" data-ng-pattern="CONSTANTS.email_regexp" type="email" data-ng-class="{'is-invalid': preferencesForm.$error.pattern}" />
   </div>
   <div data-ng-if="!editingEmailAddress && preferences.change_email_address" class="alert alert-warning">
     <div data-translate>Validation of email address change in progress.</div>

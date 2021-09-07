@@ -1,12 +1,10 @@
-GL.controller("WizardCtrl", ["$scope", "$location", "$http", "Authentication", "GLTranslate", "CONSTANTS",
-                    function($scope, $location, $http, Authentication, GLTranslate, CONSTANTS) {
+GL.controller("WizardCtrl", ["$scope", "$location", "$http", "Authentication", "GLTranslate",
+                    function($scope, $location, $http, Authentication, GLTranslate) {
   /* if the wizard has been already performed redirect to the homepage */
   if ($scope.public.node.wizard_done) {
     $location.path("/");
     return;
   }
-
-  $scope.email_regexp = CONSTANTS.email_regexp;
 
   $scope.step = 1;
 

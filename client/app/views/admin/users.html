@@ -37,7 +37,7 @@
         <label data-translate>Email address</label>
         <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
         <div>
-          <input class="form-control" name="email" data-ng-model="new_user.email" data-ng-pattern="email_regexp" type="email" data-ng-class="{'is-invalid': newUser.email.$error.pattern}" required/>
+          <input class="form-control" name="email" data-ng-model="new_user.email" data-ng-pattern="CONSTANTS.email_regexp" type="email" data-ng-class="{'is-invalid': newUser.email.$error.pattern}" required/>
         </div>
         <div class="text-danger" data-ng-show="newUser.email.$error.pattern" data-translate>Invalid email address</div>
       </div>
@@ -130,7 +130,7 @@
             <div class="form-group">
               <label data-translate>Email address</label>
               <input class="form-control" name="email" data-ng-model="user.mail_address" type="email"
-                     data-ng-pattern="email_regexp" required/>
+                     data-ng-pattern="CONSTANTS.email_regexp" required/>
               <div class="text-danger" data-ng-show="editUser.email.$error.required" data-translate>This field is mandatory</div>
               <div class="text-danger" data-ng-show="editUser.email.$error.pattern" data-translate>Invalid email address</div>
             </div>

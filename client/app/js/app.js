@@ -520,8 +520,8 @@ var GL = angular.module("GL", [
     // Trick to move the flowFactoryProvider config inside run block.
     _flowFactoryProvider = flowFactoryProvider;
 }]).
-  run(["$rootScope", "$http", "$route", "$routeParams", "$window", "$location",  "$filter", "$translate", "$uibModal", "$templateCache", "Authentication", "PublicResource", "Utils", "AdminUtils", "fieldUtilities", "GLTranslate", "Access",
-      function($rootScope, $http, $route, $routeParams, $window, $location, $filter, $translate, $uibModal, $templateCache, Authentication, PublicResource, Utils, AdminUtils, fieldUtilities, GLTranslate, Access) {
+  run(["$rootScope", "$http", "$route", "$routeParams", "$window", "$location",  "$filter", "$translate", "$uibModal", "$templateCache", "Authentication", "PublicResource", "Utils", "AdminUtils", "fieldUtilities", "CONSTANTS", "GLTranslate", "Access",
+      function($rootScope, $http, $route, $routeParams, $window, $location, $filter, $translate, $uibModal, $templateCache, Authentication, PublicResource, Utils, AdminUtils, fieldUtilities, CONSTANTS, GLTranslate, Access) {
     $rootScope.started = false;
 
     $rootScope.Authentication = Authentication;
@@ -529,6 +529,7 @@ var GL = angular.module("GL", [
     $rootScope.Utils = Utils;
     $rootScope.fieldUtilities = fieldUtilities;
     $rootScope.AdminUtils = AdminUtils;
+    $rootScope.CONSTANTS = CONSTANTS;
 
     $rootScope.showLoadingPanel = false;
     $rootScope.errors = [];

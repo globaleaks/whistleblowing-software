@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="form-group">
       <label data-translate>SMTP email address</label>
-      <input class="form-control" name="source_email" data-ng-model="resources.notification.smtp_source_email" data-ng-pattern="email_regexp" type="text" />
+      <input class="form-control" name="source_email" data-ng-model="resources.notification.smtp_source_email" data-ng-pattern="CONSTANTS.email_regexp" type="text" />
     </div>
     <div class="text-danger" data-ng-show="notificationForm.source_email.$error.pattern">
       <span data-translate>Invalid email address</span>

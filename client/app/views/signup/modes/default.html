@@ -36,7 +36,7 @@
         <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       </label>
       <input name="mail_address" class="form-control" data-ng-model="signup.email"
-             data-ng-pattern="email_regexp" type="email"
+             data-ng-pattern="CONSTANTS.email_regexp" type="email"
              data-ng-class="{'is-invalid': validated && signupForm.mail_address.$error.pattern}"
              required>
       <div class="text-danger" data-ng-show="signupForm.mail_address.$error.pattern">

@@ -84,7 +84,7 @@
             <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
           </label>
           <div class="col-md-8">
-            <input name="admin_email" class="form-control" data-ng-model="wizard.admin_mail_address" data-ng-attr-placeholder="{{'Email address' | translate}}" data-ng-pattern="email_regexp" type="text" data-ng-class="{'is-invalid': validated4 && (wizardFormStep4.admin_email.$error.required || wizardFormStep4.admin_email.$error.pattern)}" required>
+            <input name="admin_email" class="form-control" data-ng-model="wizard.admin_mail_address" data-ng-attr-placeholder="{{'Email address' | translate}}" data-ng-pattern="CONSTANTS.email_regexp" type="text" data-ng-class="{'is-invalid': validated4 && (wizardFormStep4.admin_email.$error.required || wizardFormStep4.admin_email.$error.pattern)}" required>
             <div class="text-danger" data-ng-show="wizardFormStep4.admin_email.$error.pattern">
               <span data-translate>Invalid email address</span>
             </div>
