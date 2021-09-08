@@ -80,6 +80,7 @@ LANGUAGES_SUPPORTED = [
     {'code': 'ug@Cyrl', 'name': 'Uyghur (Cyrillic)', 'native': '\u0423\u0439\u0493\u0443\u0440\u0071\u0259'},
     {'code': 'uk', 'name': 'Ukrainian', 'native': '\u0423\u043a\u0440\u0430\u0457\u043d\u0441\u044c\u043a\u0430'},
     {'code': 'ur', 'name': 'Urdu', 'native': '\u0627\u0631\u062f\u0648'},
+    {'code': 'uz', 'name': 'Uzbek', 'native': '\u004f\u2018\u007a\u0062\u0065\u006b'},
     {'code': 'vi', 'name': 'Vietnamese', 'native': 'Ti\u1ebfng Vi\u1ec7t'},
     {'code': 'zh_CN', 'name': 'Chinese (China)', 'native': '\u4e2d\u6587 (\u7b80\u4f53, \u4e2d\u56fd)'},
     {'code': 'zh_HK', 'name': 'Chinese (Hong Kong)', 'native': '\u4e2d\u6587(\u7e41\u9ad4\u5b57\u002c\u0020\u4e2d\u570b\u9999\u6e2f\u7279\u5225\u884c\u653F\u5340)'},

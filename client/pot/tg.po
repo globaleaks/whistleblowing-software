@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-09-06 03:21+0000\n"
+"Last-Translator: Iftihor Muhtorov <i.muhtorov@gmail.com>\n"
 "Language-Team: Tajik (http://www.transifex.com/otf/globaleaks/language/tg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -393,7 +393,7 @@ msgid "Select"
 msgstr "Интихоб кардан"
 
 msgid "Deselect"
-msgstr ""
+msgstr "Интихобро лағв кардан"
 
 msgid "Surname"
 msgstr "Насаб"
@@ -470,7 +470,7 @@ msgid "Logout"
 msgstr "Хориҷ шудан"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
+msgstr "Ба ин гиранда имкони ба корбарон ба гузоришҳо дастрасӣ додан"
 
 msgid "File a report"
 msgstr "Таҳияи гузориш"
@@ -1978,7 +1978,7 @@ msgstr "Барои дастур оид ба навсозии нармафзор,
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "Ин почтаи электронӣ шуморо огоҳ мекунад, ки гиранда ба шумо дастрасӣ ба як ё якчанд гузоришҳоро додааст."
 
 msgid "New report"
 msgstr "Гузориши нав"

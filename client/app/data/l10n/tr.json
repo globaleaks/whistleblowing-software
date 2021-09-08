@@ -611,7 +611,7 @@
   "It is good security practice to keep the platform up to date.": "Platformu güncel tutmak iyi bir güvenlik uygulamasıdır.",
   "To learn about new features and bug fixes in the new version consult the change log at: {ChangeLogUrl}": "Yeni sürümdeki yeni özellikler ve hata düzeltmelerini öğrenmek için şu adresteki değişim günlüğüne bakabilirsiniz: {ChangeLogUrl}",
   "For instructions on software updates, please refer to the documentation at: {UpdateGuideUrl}": "Yazılım güncellemelerine ilişkin yönergeler için, lütfen şu adresteki belgelere bakınız: {UpdateGuideUrl}",
-  "This is an email to notify you that a recipient has granted you access to one or more reports.": "This is an email to notify you that a recipient has granted you access to one or more reports.",
+  "This is an email to notify you that a recipient has granted you access to one or more reports.": "Bu e-posta, bir alıcının size bir veya daha fazla rapora erişim izni verdiğini bildirmek için gönderilmiştir.",
   "New report": "Yeni rapor",
   "The earliest expiration date is {EarliestExpirationDate}.": "En erken süre dolum tarihi {EarliestExpirationDate}.",
   "Please remember to check them before they are deleted.": "Lütfen silinmeden önce onları incelemeyi unutmayın.",

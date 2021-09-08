@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-09-08 09:07+0000\n"
+"Last-Translator: ical\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -415,7 +415,7 @@ msgid "Select"
 msgstr "Pilih"
 
 msgid "Deselect"
-msgstr ""
+msgstr "Batal pilih"
 
 msgid "Surname"
 msgstr "Nama keluarga"
@@ -486,13 +486,13 @@ msgid "Mark as important"
 msgstr "Tandai sebagai penting"
 
 msgid "Copy to clipboard"
-msgstr "Salin ke clipboard"
+msgstr "Salin ke papan klip"
 
 msgid "Logout"
 msgstr "Keluar"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
+msgstr "Berikan penerima ini kemampuan untuk mengizinkan pengguna mengakses laporan"
 
 msgid "File a report"
 msgstr "Buat laporan"
@@ -727,7 +727,7 @@ msgid "Whistleblowing button"
 msgstr "Tombol laporan informasi publik"
 
 msgid "Disclaimer"
-msgstr ""
+msgstr "Penafian"
 
 msgid "Footer"
 msgstr "Catatan kaki"
@@ -1325,10 +1325,10 @@ msgid "The upload request exceeds the size limit"
 msgstr "Permintaan unggahan melebihi batas ukuran"
 
 msgid "Request support"
-msgstr ""
+msgstr "Permintaan bantuan"
 
 msgid "Thank you."
-msgstr ""
+msgstr "Terima kasih."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Kami akan menghubungi Anda secepatnya."
@@ -1708,13 +1708,13 @@ msgid "Last name"
 msgstr "Nama Belakang"
 
 msgid "Preferred contact method"
-msgstr ""
+msgstr "Metode kontak pilihan"
 
 msgid "Other"
 msgstr "Lainnya"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr ""
+msgstr "Saya memilih untuk dihubungi hanya melalui platform ini"
 
 msgid "Dear {RecipientName},"
 msgstr "Yang terhormat {RecipientName},"
@@ -2000,7 +2000,7 @@ msgstr "Untuk instruksi tentang pembaruan perangkat lunak, silakan lihat dokumen
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "Ini adalah pesan untuk memberitahu Anda bahwa seorang penerima telah memberikan Anda akses ke satu atau beberapa laporan."
 
 msgid "New report"
 msgstr "Laporan baru"

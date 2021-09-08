@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-05 07:45+0000\n"
+"PO-Revision-Date: 2021-09-07 18:35+0000\n"
 "Last-Translator: Claus A <claudiu.andrei.90@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,7 +48,7 @@ msgid "Advanced settings"
 msgstr "Setări avansate"
 
 msgid "Question templates"
-msgstr "Template-uri pentru întrebări"
+msgstr "Șabloane pentru întrebări"
 
 msgid "Questionnaires"
 msgstr "Chestionare"
@@ -66,7 +66,7 @@ msgid "License"
 msgstr "Licență"
 
 msgid "Notification templates"
-msgstr "Template-uri pentru notificări"
+msgstr "Șabloane pentru notificări"
 
 msgid "Delete"
 msgstr "Şterge"
@@ -272,7 +272,7 @@ msgid "Authorize access to the whistleblower's identity"
 msgstr "Permite accesul la identitatea avertizorului de integritate."
 
 msgid "Templates"
-msgstr "Template-uri"
+msgstr "Șabloane"
 
 msgid "URL redirects"
 msgstr "Redirecționări URL"
@@ -317,10 +317,10 @@ msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Text afișat în partea de sus a interfeței pentru selectarea contextelor"
 
 msgid "Silence email notifications"
-msgstr "Pune pe silențios notificările email-urilor"
+msgstr "Pune pe silențios notificările e-mailurilor"
 
 msgid "Turn on email notifications"
-msgstr "Activează notificarile pentru email-uri"
+msgstr "Activează notificările pentru e-mailuri"
 
 msgid "Input validation"
 msgstr "Validarea datelor introduse"
@@ -457,7 +457,7 @@ msgid "Skip the recipient account creation."
 msgstr "Sari peste crearea contului pentru destinatar."
 
 msgid "Send activation link"
-msgstr "Trimite link-ul pentru activare."
+msgstr "Trimite linkul pentru activare."
 
 msgid "Password reset"
 msgstr "Resetează parola"
@@ -611,7 +611,7 @@ msgid "Enable private annotations"
 msgstr "Activează adnotările private"
 
 msgid "Logging level"
-msgstr "Nivel logare "
+msgstr "Nivel logare"
 
 msgid "Log accesses of internal users"
 msgstr "Logare acces utilizatori interni"
@@ -832,7 +832,7 @@ msgid "Software version:"
 msgstr "Versiune software:"
 
 msgid "Restrict access to specific IP addresses"
-msgstr "Resticționează accesul anumitor adrese IP"
+msgstr "Permite accesul doar anumitor adrese IP"
 
 msgid "Allowed IP addresses"
 msgstr "Adrese IP permise"
@@ -902,7 +902,7 @@ msgstr "Resetează "
 
 msgid ""
 "The platform supports the configuration of HTTPS through this interface."
-msgstr "Platforma permite configurarea HTTPS prin intermediul acestei interfațe."
+msgstr "Platforma permite configurarea HTTPS prin intermediul acestei interfețe."
 
 msgid "Automatic configuration"
 msgstr "Configurare automată"
@@ -939,7 +939,7 @@ msgid "Let the platform be reachable without Tor"
 msgstr "Permite ca platforma să fie accesibilă fără Tor."
 
 msgid "Roles enabled to use the platform without Tor"
-msgstr "Rolurile care pot folosi platforma fară browserul Tor"
+msgstr "Rolurile care pot folosi platforma fără browserul Tor"
 
 msgid "Whistleblower"
 msgstr "Avertizor de integritate"
@@ -978,19 +978,19 @@ msgid "Reset SMTP configuration"
 msgstr "Resetează configurația SMTP"
 
 msgid "Reset notification templates to default"
-msgstr "Resetează template-urile de notificare la setările inițiale"
+msgstr "Resetează șabloanele de notificare la valorile implicite"
 
 msgid "Template"
-msgstr "Template"
+msgstr "Șablon"
 
 msgid "Question"
 msgstr "Întrebare"
 
 msgid "Single-line text input"
-msgstr "Input text cu o singură linie"
+msgstr "Introducere text pe o singură linie"
 
 msgid "Multi-line text input"
-msgstr "Input text multi-line"
+msgstr "Introducere text pe mai multe linii"
 
 msgid "Selection box"
 msgstr "Caseta de selecție"
@@ -1035,7 +1035,7 @@ msgid "Accept multiple answers"
 msgstr "Acceptă răspunsuri multiple"
 
 msgid "Template override"
-msgstr "Suprascriere template "
+msgstr "Suprascrie șablonul"
 
 msgid "Phone number"
 msgstr "Număr de telefon"
@@ -1080,7 +1080,7 @@ msgid "Add new question"
 msgstr "Adaugă o întrebare nouă"
 
 msgid "Add question from template"
-msgstr "Adăugă o întrebare din template"
+msgstr "Adăugă o întrebare din șablon"
 
 msgid "Duplicate"
 msgstr "Duplicare"
@@ -1137,7 +1137,7 @@ msgid "Public name"
 msgstr "Nume public"
 
 msgid "Send reset link"
-msgstr "Trimite link-ul pentru resetare"
+msgstr "Trimite linkul pentru resetare"
 
 msgid "Set password"
 msgstr "Setează parola"
@@ -1727,7 +1727,7 @@ msgstr "Link pentru activare: {Url}"
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr "Accesează link-ul pentru a activa contul și pentru a seta parola de utilizator."
+msgstr "Accesează linkul pentru a activa contul și pentru a seta parola de utilizator."
 
 msgid ""
 "After successful activation you will be able to access the system via the "

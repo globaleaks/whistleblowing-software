@@ -23,11 +23,12 @@
 # signal89, 2014
 # b0b47d46632b78a09a40de799fda9a65, 2019
 # Vox <voxp@protonmail.com>, 2020
+# Xashyar, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-09-06 16:41+0000\n"
+"Last-Translator: Xashyar\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -48,13 +49,13 @@ msgid "Languages"
 msgstr "زبان‌ها"
 
 msgid "Text customization"
-msgstr "سفارشی سازی متن"
+msgstr "سفارشی‌سازی متن"
 
 msgid "Advanced settings"
 msgstr "تنظیمات پیشرفته"
 
 msgid "Question templates"
-msgstr "الگوهای سوال"
+msgstr "قالب‌های پرسش‌"
 
 msgid "Questionnaires"
 msgstr "پرسش‌نامه"
@@ -66,13 +67,13 @@ msgid "Home"
 msgstr "خانه"
 
 msgid "Changelog"
-msgstr "لیست تغییرات"
+msgstr "گزارش تغییرات"
 
 msgid "License"
 msgstr "پروانه"
 
 msgid "Notification templates"
-msgstr "الگوی اطلاع‌رسانی"
+msgstr "قالب‌های اطلاع‌رسانی"
 
 msgid "Delete"
 msgstr "حذف"
@@ -483,7 +484,7 @@ msgid "This domain name is not available."
 msgstr "این نام دامنه در دسترس نیست."
 
 msgid "Mark as important"
-msgstr ""
+msgstr "علامت زدن به عنوان مهم"
 
 msgid "Copy to clipboard"
 msgstr "به حافظه کوتاه مدت کپی کن"
@@ -492,7 +493,7 @@ msgid "Logout"
 msgstr "خروج"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
+msgstr "به این گیرنده توانایی اعطای دسترسی کاربر به گزارش‌ها را بدهید"
 
 msgid "File a report"
 msgstr ""
