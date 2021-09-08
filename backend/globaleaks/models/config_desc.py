@@ -89,9 +89,6 @@ ConfigDescriptor = {
     'https_whistleblower': Bool(default=True),
     'https_receiver': Bool(default=True),
 
-    'can_postpone_expiration': Bool(default=True),
-    'can_delete_submission': Bool(default=True),
-
     'allow_indexing': Bool(default=True),
 
     'wizard_done': Bool(default=False),
@@ -173,8 +170,6 @@ ConfigFilters = {
         'https_whistleblower',
         'https_receiver',
         'frame_ancestors',
-        'can_postpone_expiration',
-        'can_delete_submission',
         'allow_indexing',
         'wizard_done',
         'disable_submissions',

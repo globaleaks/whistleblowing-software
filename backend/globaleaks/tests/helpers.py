@@ -308,8 +308,6 @@ class MockDict:
             'https_whistleblower': True,
             'https_receiver': True,
             'https_preload': True,
-            'can_postpone_expiration': False,
-            'can_delete_submission': False,
             'allow_indexing': False,
             'disable_submissions': False,
             'disable_privacy_badge': False,

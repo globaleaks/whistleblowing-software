@@ -132,12 +132,6 @@ def user_serialize_user(session, user, language):
         'contexts': contexts
     }
 
-    if user.tid in State.tenant_cache:
-        ret.update({
-            'can_postpone_expiration': State.tenant_cache[user.tid].can_postpone_expiration or user.can_postpone_expiration,
-            'can_delete_submission': State.tenant_cache[user.tid].can_delete_submission or user.can_delete_submission
-        })
-
     return get_localized_values(ret, user, user.localized_keys, language)
 
 

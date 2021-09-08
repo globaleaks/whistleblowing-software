@@ -213,8 +213,6 @@ AdminNodeDesc = {
     'https_whistleblower': bool,
     'https_receiver': bool,
     'https_preload': bool,
-    'can_postpone_expiration': bool,
-    'can_delete_submission': bool,
     'allow_indexing': bool,
     'disable_privacy_badge': bool,
     'enable_receipt_hint': bool,
@@ -434,8 +432,6 @@ NodeDesc = {
     'https_custodian': bool,
     'https_whistleblower': bool,
     'https_receiver': bool,
-    'can_postpone_expiration': bool,
-    'can_delete_submission': bool,
     'allow_indexing': bool,
     'disable_privacy_badge': bool,
     'enable_receipt_hint': bool,
@@ -496,8 +492,6 @@ ReceiverDesc = {
     'can_delete_submission': bool,
     'can_postpone_expiration': bool
 }
-
-ReceiverCollectionDesc = [ReceiverDesc]
 
 ContextDesc = {
     'id': uuid_regexp,

@@ -158,9 +158,7 @@ def db_wizard(session, tid, hostname, request):
         receiver_user.password_change_needed = True
 
     if mode in ['whistleblowing.it', 'eat']:
-        for varname in ['can_delete_submission',
-                        'can_postpone_expiration',
-                        'anonymize_outgoing_connections',
+        for varname in ['anonymize_outgoing_connections',
                         'password_change_period',
                         'default_questionnaire']:
             node.set_val(varname, root_tenant_node.get_val(varname))
@@ -175,8 +173,9 @@ def db_wizard(session, tid, hostname, request):
         session.delete(admin_user)
 
         if receiver_user is not None:
-            # Enable the recipient user to configure platform general settings
             receiver_user.can_edit_general_settings = True
+            receiver_user.can_delete_submission = True
+            receiver_user.can_postpone_expiration = True
 
             # Set the recipient name equal to the node name
             receiver_user.name = receiver_user.public_name = request['node_name']

@@ -15,8 +15,15 @@ class SubmissionStatusChange_v_54(Model):
 
 class MigrationScript(MigrationBase):
     def epilogue(self):
-        s_m = self.model_from['SubmissionStatusChange']
+        c_m = self.model_from['Config']
         t_m = self.model_from['InternalTip']
+        s_m = self.model_from['SubmissionStatusChange']
+        u_m = self.model_to['User']
+
+        for k in ['can_delete_submission', 'can_postpone_expiration']:
+            for x in self.session_old.query(c_m).filter(c_m.var_name == k, c_m.value == True):
+                self.session_new.query(u_m).filter(u_m.tid == x.tid).update({x.var_name: True})
+
         for ssc, tid in self.session_old.query(s_m, t_m).filter(s_m.internaltip_id == t_m.id):
             log = self.model_to['AuditLog']()
             log.object_id = ssc.internaltip_id

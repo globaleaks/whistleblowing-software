@@ -407,8 +407,7 @@ def delete_rtip(session, tid, user_id, rtip_id):
                       models.User,
                       models.User.id == rtip.receiver_id)
 
-    if not (State.tenant_cache[tid].can_delete_submission or
-            receiver.can_delete_submission):
+    if not receiver.can_delete_submission:
         raise errors.ForbiddenOperation
 
     db_delete_itip(session, itip.id)
@@ -432,8 +431,7 @@ def postpone_expiration(session, tid, user_id, rtip_id):
                       models.User,
                       models.User.id == rtip.receiver_id)
 
-    if not (State.tenant_cache[tid].can_postpone_expiration or
-            receiver.can_postpone_expiration):
+    if not receiver.can_postpone_expiration:
         raise errors.ForbiddenOperation
 
     db_postpone_expiration(session, itip)

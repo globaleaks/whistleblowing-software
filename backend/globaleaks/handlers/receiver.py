@@ -134,20 +134,17 @@ def perform_tips_operation(session, tid, receiver_id, operation, rtips_ids):
     """
     receiver = db_get(session, models.User, models.User.id == receiver_id)
 
-    can_postpone_expiration = State.tenant_cache[tid].can_postpone_expiration or receiver.can_postpone_expiration
-    can_delete_submission = State.tenant_cache[tid].can_delete_submission or receiver.can_delete_submission
-
     itips = session.query(models.InternalTip) \
                    .filter(models.ReceiverTip.receiver_id == receiver_id,
                            models.ReceiverTip.id.in_(rtips_ids),
                            models.InternalTip.id == models.ReceiverTip.internaltip_id,
                            models.InternalTip.tid == tid)
 
-    if operation == 'postpone' and can_postpone_expiration:
+    if operation == 'postpone' and receiver.can_postpone_expiration:
         for itip in itips:
             db_postpone_expiration(session, itip)
 
-    elif operation == 'delete' and can_delete_submission:
+    elif operation == 'delete' and receiver.can_delete_submission:
         itip_ids = [itip.id for itip in itips]
 
         for itip_id in itip_ids:
