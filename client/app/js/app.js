@@ -497,8 +497,8 @@ var GL = angular.module("GL", [
       "dv": "en",
       "sl-si": "sl",
       "sr_RS@latin": "sr-latn",
-      "ug": "ug-arabic",
-      "ug@Cyril": "ug",
+      "ug": "ug-arab",
+      "ug@Cyrl": "ug",
       "ug@Latin": "ug"
     };
 
