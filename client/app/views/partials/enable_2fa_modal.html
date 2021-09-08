@@ -5,6 +5,6 @@
   <div data-ng-include="'views/partials/enable_2fa.html'"></div>
 </div>
 <div class="modal-footer">
- <button data-ng-click="cancel()" class="btn btn-light" data-translate>Close</button>
  <button data-ng-click="confirm(vars.token_2fa)" data-ng-disabled="vars.token_2fa.length !== 6" class="btn btn-primary" data-translate>Enable</button>
+ <button data-ng-click="cancel()" class="btn btn-light" data-translate>Close</button>
 </div>

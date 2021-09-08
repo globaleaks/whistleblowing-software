@@ -21,6 +21,10 @@
   </span>
 </div>
 <div class="modal-footer">
+  <a id="modal-action-ok" class="btn btn-primary" data-ng-click="confirm()">
+    <i class="fas fa-check"></i>
+    <span data-translate>Confirm</span>
+  </a>
   <a id="modal-action-cancel" class="btn btn-outline-secondary" data-ng-click="cancel()">
     <i class="fas fa-times"></i>
     <span data-translate>Cancel</span>
@@ -28,9 +32,5 @@
   <a id="modal-action-reset" class="btn btn-danger" data-ng-click="arg.score_type = 0; arg.score_points = 0; cancel()">
     <i class="fas fa-check"></i>
     <span data-translate>Reset</span>
-  </a>
-  <a id="modal-action-ok" class="btn btn-primary" data-ng-click="confirm()">
-    <i class="fas fa-check"></i>
-    <span data-translate>Confirm</span>
   </a>
 </div>
