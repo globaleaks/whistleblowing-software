@@ -30,6 +30,7 @@ from globaleaks.handlers import custodian, \
                                 robots, \
                                 signup, \
                                 sitemap, \
+                                support, \
                                 staticfile
 
 from globaleaks.handlers.admin import context as admin_context
@@ -155,6 +156,8 @@ api_spec = [
     (r'/api/wizard', wizard.Wizard),
     (r'/api/signup', signup.Signup),
     (r'/api/signup/([a-zA-Z0-9_\-]{64})', signup.SignupActivation),
+
+    (r'/api/support', support.SupportHandler),
 
     (r'/api/admin/config/acme/run', https.AcmeHandler),
 

@@ -734,8 +734,8 @@ factory("Files", ["GLResource", function(GLResource) {
 factory("DefaultL10NResource", ["GLResource", function(GLResource) {
   return new GLResource("/data/l10n/:lang.json", {lang: "@lang"});
 }]).
-factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModal", "$window", "FileSaver",
-    function($rootScope, $http, $q, $location, $filter, $uibModal, $window, FileSaver) {
+factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModal", "$window", "FileSaver", "TokenResource",
+    function($rootScope, $http, $q, $location, $filter, $uibModal, $window, FileSaver, TokenResource) {
   return {
     array_to_map: function(array) {
       var ret = {};
@@ -1023,6 +1023,16 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       }
 
       return text;
+    },
+
+    openSupportModal: function() {
+      return this.openConfirmableModalDialog("views/partials/modal_request_support.html", {});
+    },
+
+    submitSupportRequest: function(data) {
+      return new TokenResource().$get().then(function(token) {
+        return $http({method: "POST", url: "api/support?token=" + token.id, data:{"mail_address": data.mail_address, "text": data.text}});
+      });
     },
 
     print: function() {

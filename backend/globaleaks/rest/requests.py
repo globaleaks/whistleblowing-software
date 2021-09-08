@@ -581,6 +581,11 @@ SignupDesc = {
     'tos2': bool
 }
 
+SupportDesc = {
+    'mail_address': str,
+    'text': str
+}
+
 ExceptionDesc = {
     'errorUrl': str,
     'errorMessage': str,

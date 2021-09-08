@@ -198,6 +198,23 @@ class StateClass(ObjectDict, metaclass=Singleton):
                         self.settings.socks_host,
                         self.settings.socks_port)
 
+    def schedule_support_email(self, tid, text):
+        mail_subject = "Support request"
+        delivery_list = self.tenant_cache[1].notification.admin_list
+
+        for mail_address, pgp_key_public in delivery_list:
+            mail_body = text
+
+            # Opportunisticly encrypt the mail body. NOTE that mails will go out
+            # unencrypted if one address in the list does not have a public key set.
+            if pgp_key_public:
+                pgpctx = PGPContext(self.settings.tmp_path)
+                fingerprint = pgpctx.load_key(pgp_key_public)['fingerprint']
+                mail_body = pgpctx.encrypt_message(fingerprint, mail_body)
+
+            # avoid waiting for the notification to send and instead rely on threads to handle it
+            tw(db_schedule_email, 1, mail_address, mail_subject, mail_body)
+
     def schedule_exception_email(self, tid, exception_text, *args):
         if not hasattr(self.tenant_cache[tid], 'notification'):
             log.err("Error: Cannot send mail exception before complete initialization.")

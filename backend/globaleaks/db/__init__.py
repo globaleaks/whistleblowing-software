@@ -148,6 +148,17 @@ def sync_initialize_snimap(session):
             State.snimap.load(cfg['tid'], cfg)
 
 
+def db_set_cache_admin_list(session, tenant_cache):
+    """
+    Constructs and sets a list of (email_addr, public_key) pairs of administrators
+    """
+    tenant_cache.notification.admin_list = []
+
+    results = session.query(models.User.mail_address, models.User.pgp_key_public) \
+                     .filter(models.User.tid == 1, models.User.state == 'enabled', models.User.role == 'admin')
+    tenant_cache.notification.admin_list.extend([(mail, pub_key) for mail, pub_key in results])
+
+
 def db_set_cache_exception_delivery_list(session, tenant_cache):
     """
     Constructs and sets a list of (email_addr, public_key) pairs
@@ -241,6 +252,7 @@ def db_refresh_memory_variables(session, to_refresh=None):
 
         if tid == 1:
             log.setloglevel(tenant.log_level)
+            db_set_cache_admin_list(session, tenant)
             db_set_cache_exception_delivery_list(session, tenant)
 
         if tenant.hostname:
