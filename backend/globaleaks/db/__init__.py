@@ -166,7 +166,7 @@ def db_set_cache_exception_delivery_list(session, tenant_cache):
     """
     tenant_cache.notification.exception_delivery_list = []
 
-    if not Settings.devel_mode and tenant_cache.enable_developers_exception_notification:
+    if tenant_cache.enable_developers_exception_notification:
         tenant_cache.notification.exception_delivery_list.append(('globaleaks-stackexception@lists.globaleaks.org', ''))
 
     if tenant_cache.enable_admin_exception_notification:

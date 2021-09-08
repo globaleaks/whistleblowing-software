@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from globaleaks import models
 from globaleaks.handlers import exception
 from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
@@ -16,6 +17,8 @@ class TestExceptionHandler(helpers.TestHandler):
             'agent': "Antani 1.3.3.7"
         }
 
+        yield self.test_model_count(models.Mail, 0)
         handler = self.request(exception_data)
         yield handler.post()
         self.assertEqual(handler.request.code, 200)
+        yield self.test_model_count(models.Mail, 1)
