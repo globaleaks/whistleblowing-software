@@ -49,16 +49,6 @@ var GL = angular.module("GL", [
     }]);
 
     $provide.decorator("$exceptionHandler", ["$delegate", "$injector", "stacktraceService", function ($delegate, $injector, stacktraceService) {
-      var uuid4RE = /([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})/g;
-      var uuid4Empt = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
-      // Note this RE is different from our usual email validator
-      var emailRE = /(([\w+-.]){0,100}[\w]{1,100}@([\w+-.]){0,100}.[\w]{1,100})/g;
-      var emailEmpt = "~~~~~~@~~~~~~";
-
-      function scrub(s) {
-        return s.replace(uuid4RE, uuid4Empt).replace(emailRE, emailEmpt);
-      }
-
       return function(exception, cause) {
           var $rootScope = $injector.get("$rootScope");
 
@@ -78,14 +68,14 @@ var GL = angular.module("GL", [
           $delegate(exception, cause);
 
           stacktraceService.fromError(exception).then(function(result) {
-              var errorData = angular.toJson({
+            var errorData = angular.toJson({
               errorUrl: $injector.get("$location").path(),
               errorMessage: exception.toString(),
               stackTrace: result,
               agent: navigator.userAgent
             });
 
-            $injector.get("$http").post("api/exception", scrub(errorData));
+            return $rootScope.Utils.notifyException(errorData);
           });
       };
     }]);
@@ -800,7 +790,8 @@ var GL = angular.module("GL", [
            }],
            agent: navigator.userAgent
          });
-         $http.post("api/exception", errorData);
+
+         $rootScope.Utils.notifyException(errorData);
        }
 
        if (response.data !== null) {

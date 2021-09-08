@@ -1069,6 +1069,22 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
           file.abort();
         }
       }
+    },
+
+    notifyException: function(exception) {
+      var uuid4RE = /([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})/g;
+      var uuid4Empt = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+      // Note this RE is different from our usual email validator
+      var emailRE = /(([\w+-.]){0,100}[\w]{1,100}@([\w+-.]){0,100}.[\w]{1,100})/g;
+      var emailEmpt = "~~~~~~@~~~~~~";
+
+      function scrub(s) {
+        return s.replace(uuid4RE, uuid4Empt).replace(emailRE, emailEmpt);
+      }
+
+      return new TokenResource().$get().then(function(token) {
+        return $http.post("api/exception?token=" + token.id, scrub(exception));
+      });
     }
   };
 }]).
