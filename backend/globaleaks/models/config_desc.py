@@ -98,9 +98,6 @@ ConfigDescriptor = {
     'enable_receipt_hint': Bool(default=False),
     'enable_private_annotations': Bool(default=False),
 
-    'enable_ricochet_panel': Bool(default=False),
-    'ricochet_address': Unicode(default=''),
-
     'do_not_expose_users_names': Bool(default=False),
 
     'counter_submissions': Int(default=0),
@@ -176,8 +173,6 @@ ConfigFilters = {
         'disable_privacy_badge',
         'enable_receipt_hint',
         'enable_private_annotations',
-        'enable_ricochet_panel',
-        'ricochet_address',
         'do_not_expose_users_names',
         'enable_signup',
         'mode',
@@ -301,9 +296,7 @@ ConfigFilters['general_settings'] = [
     'favicon',
     'languages_enabled',
     'default_language',
-    'languages_supported',
-    'enable_ricochet_panel',
-    'ricochet_address'
+    'languages_supported'
 ]
 
 

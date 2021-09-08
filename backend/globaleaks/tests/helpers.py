@@ -313,8 +313,6 @@ class MockDict:
             'disable_privacy_badge': False,
             'enable_receipt_hint': False,
             'enable_private_annotations': False,
-            'enable_ricochet_panel': False,
-            'ricochet_address': '',
             'do_not_expose_users_names': True,
             'timezone': 0,
             'default_language': 'en',

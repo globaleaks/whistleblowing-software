@@ -216,8 +216,6 @@ AdminNodeDesc = {
     'allow_indexing': bool,
     'disable_privacy_badge': bool,
     'enable_receipt_hint': bool,
-    'enable_ricochet_panel': bool,
-    'ricochet_address': str,
     'do_not_expose_users_names': bool,
     'disable_submissions': bool,
     'multisite_login': bool,
@@ -601,9 +599,7 @@ SiteSettingsDesc = {
     'name': str,
     'header_title_homepage': str,
     'presentation': str,
-    'footer': str,
-    'enable_ricochet_panel': bool,
-    'ricochet_address': str
+    'footer': str
 }
 
 QuestionnaireDuplicationDesc = {
