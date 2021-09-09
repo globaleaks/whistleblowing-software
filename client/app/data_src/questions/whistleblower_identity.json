@@ -137,9 +137,9 @@
       ]
     },
     {
-      "id":"identity_preferred_contact_method",
+      "id":"identity_alternative_contact_method",
       "label":{
-        "en":"Preferred contact method"
+        "en":"Alternative contact method"
       },
       "description":{
         "en":""
@@ -183,7 +183,7 @@
           "label":{
             "en":"Email address"
           },
-          "id":"identity_preferred_contact_method_email"
+          "id":"identity_alternative_contact_method_email"
         },
         {
           "order":1,
@@ -192,7 +192,7 @@
           "label":{
             "en":"Phone number"
           },
-          "id":"identity_preferred_contact_method_phone"
+          "id":"identity_alternative_contact_method_phone"
         },
         {
           "order":2,
@@ -201,7 +201,7 @@
           "label":{
             "en":"Other"
           },
-          "id":"identity_preferred_contact_method_other"
+          "id":"identity_alternative_contact_method_other"
         },
         {
           "order":3,
@@ -210,7 +210,7 @@
           "label":{
             "en":"I prefer to be contacted via this platform only"
           },
-          "id":"identity_preferred_contact_method_platform"
+          "id":"identity_alternative_contact_method_platform"
         }
       ],
       "children":[
@@ -260,8 +260,8 @@
       "triggered_by_score":0,
       "triggered_by_options":[
         {
-          "field":"identity_preferred_contact_method",
-          "option":"identity_preferred_contact_method_email",
+          "field":"identity_alternative_contact_method",
+          "option":"identity_alternative_contact_method_email",
           "sufficient":true
         }
       ],
@@ -317,8 +317,8 @@
       "triggered_by_score":0,
       "triggered_by_options":[
         {
-          "field":"identity_preferred_contact_method",
-          "option":"identity_preferred_contact_method_phone",
+          "field":"identity_alternative_contact_method",
+          "option":"identity_alternative_contact_method_phone",
           "sufficient":true
         }
       ],
@@ -374,8 +374,8 @@
       "triggered_by_score":0,
       "triggered_by_options":[
         {
-          "field":"identity_preferred_contact_method",
-          "option":"identity_preferred_contact_method_other",
+          "field":"identity_alternative_contact_method",
+          "option":"identity_alternative_contact_method_other",
           "sufficient":true
         }
       ],
