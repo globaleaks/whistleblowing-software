@@ -58,27 +58,6 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
     return serialize_rtip_export(session, user, rtip, itip, context, language)
 
 
-@transact
-def get_tips_export(session, tid, user_id, language):
-    results = session.query(models.User, models.Context, models.InternalTip, models.ReceiverTip) \
-                     .filter(models.User.id == user_id,
-                             models.User.tid == tid,
-                             models.ReceiverTip.receiver_id == user_id,
-                             models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                             models.Context.id == models.InternalTip.context_id)
-
-    ret = []
-    for user, context, itip, rtip in results:
-        rtip.last_access = datetime_now()
-
-        if itip.status == 'new':
-            db_update_submission_status(session, tid, user_id, itip, 'open', None)
-
-        ret.append(serialize_rtip_export(session, user, rtip, itip, context, language))
-
-    return ret
-
-
 @inlineCallbacks
 def prepare_tip_export(cc, tip_export):
     files = tip_export['tip']['rfiles'] + tip_export['tip']['wbfiles']
@@ -130,33 +109,6 @@ class ExportHandler(BaseHandler):
         self.request.setHeader(b'X-Download-Options', b'noopen')
         self.request.setHeader(b'Content-Type', b'application/octet-stream')
         self.request.setHeader(b'Content-Disposition', b'attachment; filename="report-' + str(tip_export["tip"]["progressive"]).encode() + b'.zip"')
-
-        self.zip_stream = iter(ZipStream(files))
-
-        yield ZipStreamProducer(self, self.zip_stream).start()
-
-
-class ExportAllHandler(BaseHandler):
-    check_roles = 'receiver'
-    require_token = [b'GET']
-    handler_exec_time_threshold = 3600
-
-    @inlineCallbacks
-    def get(self):
-        tips_export = yield get_tips_export(self.request.tid,
-                                            self.session.user_id,
-                                            self.request.language)
-
-        files = []
-        for tip_export in tips_export:
-            _files = yield prepare_tip_export(self.session.cc, tip_export)
-            for _file in _files:
-                _file['name'] = str(tip_export['tip']['progressive']) + "/" + _file['name']
-                files.append(_file)
-
-        self.request.setHeader(b'X-Download-Options', b'noopen')
-        self.request.setHeader(b'Content-Type', b'application/octet-stream')
-        self.request.setHeader(b'Content-Disposition', b'attachment; filename="reports.zip"')
 
         self.zip_stream = iter(ZipStream(files))
 

@@ -85,7 +85,6 @@ api_spec = [
     # Receiver Handlers
     (r'/api/recipient/operations', receiver.Operations),
     (r'/api/rtips', receiver.TipsCollection),
-    (r'/api/rtips/export', export.ExportAllHandler),
     (r'/api/rtips/' + uuid_regexp, rtip.RTipInstance),
     (r'/api/rtips/' + uuid_regexp + r'/comments', rtip.RTipCommentCollection),
     (r'/api/rtips/' + uuid_regexp + r'/messages', rtip.ReceiverMsgCollection),
