@@ -8,7 +8,7 @@ From this Home page you may access all the common user facilities already descri
 
 .. image:: ../../images/admin/home.png
 
-A menu on the right offers you links to the different administative sections:
+A menu on the right offers you links to the different administrative sections:
 
    1. Site settings
 
@@ -67,13 +67,13 @@ Languages
 In this section you could enable all the languages required by your project and configure the default language.
 
 .. note::
-   Thanks to the `Localization Lab <https://www.localizationlab.org/>`_ and our great voluneer comminity, the software is already available and continously made available in a lot of languages. This aspect of internationalization is crucial in many projects. In case you are starting a project and the required languages are not available we strongly invite you to register on our `web translation platform <https://www.transifex.com/otf/globaleaks/>`_ offered by `Transifex <https://www.transifex.com/otf/globaleaks/>`_ and support yourself the translation. Internationalization and Localization is in fact are crucial for the success of a whistleblowing project. Thank you!
+   Thanks to the `Localization Lab <https://www.localizationlab.org/>`_ and our great volunteer community, the software is already available and continuously made available in a lot of languages. This aspect of internationalization is crucial in many projects. In case you are starting a project and the required languages are not available we strongly invite you to register on our `web translation platform <https://www.transifex.com/otf/globaleaks/>`_ offered by `Transifex <https://www.transifex.com/otf/globaleaks/>`_ and support yourself the translation. Internationalization and Localization is in fact are crucial for the success of a whistleblowing project. Thank you!
 
 .. image:: ../../images/admin/site_settings_languages.png
 
 Text Customization
 ..................
-Here could be confiured overrides for any of the texts of the platform and of their translation.
+Here could be configured overrides for any of the texts of the platform and of their translation.
 
 .. image:: ../../images/admin/site_settings_text_customization.png
 
@@ -126,8 +126,8 @@ Depending on your project needs you may evaluate defining some questions once as
 
 Steps
 .....
-The software enables to organise questionnaire in one or multiple steps.
-For example the default qeustionnaire is organized with a single step including all the questions.
+The software enables to organize questionnaire in one or multiple steps.
+For example the default questionnaire is organized with a single step including all the questions.
 
 Questions Types
 ...............
@@ -197,7 +197,7 @@ A whistleblowing channel is typically defined by the following main characterist
     Image: an image to identify the channel
     Description: a description of the channel
     Recipients: the set of recipients that will receive reports sent to this channel
-    Questionnaire: the questionnaire that will be proposed to whistlelowers selecting this channel
+    Questionnaire: the questionnaire that will be proposed to whistleblowers selecting this channel
     Submission expiration: the data retention policy for the channel
 
 The system with the basic configuration completed with the initial platform wizard is configured with a single Context called Default, on which is associated a recipient and the default questionnaire.
@@ -210,14 +210,14 @@ Submissions Expiration
 ......................
 The software enables to configure a data retention policy for each channel.
 This is a fundamental property of the whistleblowing channel that makes it possible to configure automatic secure deletion of reports after a certain period of time.
-This setting should be configured in relation to the risk of the channel in order to limit unndeded exposure of the reportss received therein.
+This setting should be configured in relation to the risk of the channel in order to limit unneeded exposure of the reports received therein.
 
 By default a context is configured with a report expiration of 30 days.
 
 Case Management
 ---------------
 This section is intended to host all the main case management feature that will be offered by the software.
-Currently it hosts the possibility to define reports statuses and substatuses intended to be used by Recipients while working on the reports.
+Currently it hosts the possibility to define reports statuses and sub-statuses intended to be used by Recipients while working on the reports.
 
 By default the system includes the following report statuses:
 
@@ -227,7 +227,7 @@ By default the system includes the following report statuses:
 
    3. Closed
 
-Within this section you may add additional Statuses between the State Open and Closed and you can furtherly define Substatuses for the Closed status (e.g. Archived / Spam)
+Within this section you may add additional Statuses between the State Open and Closed and you can furtherly define Sub-statuses for the Closed status (e.g. Archived / Spam)
 
 .. image:: ../../images/admin/report_statuses.png
 
@@ -242,10 +242,10 @@ The section is furtherly divided in:
 
 Main configuration
 ..................
-Here are configured the techinical details about SMTP.
+Here are configured the technical details about SMTP.
 
 .. note::
-   By default GlobaLeaks comes with a working configuration that is based on systems offered by the GlobaLeaks developers to the community of users and testers; even though this configuration is designed by their owners with special care in relation to security and privacy you are invited to consider using alternative systems for your production enviroment.
+   By default GlobaLeaks comes with a working configuration that is based on systems offered by the GlobaLeaks developers to the community of users and testers; even though this configuration is designed by their owners with special care in relation to security and privacy you are invited to consider using alternative systems for your production environment.
 
 .. image:: ../../images/admin/notification_settings.png
 
@@ -260,7 +260,7 @@ Depending on your project needs you may override the default text with your cust
 
 Network Settings
 ----------------
-In this section are configured the newtork settings.
+In this section are configured the network settings.
 
 The section is furtherly divided in:
    1. HTTPS
@@ -281,7 +281,7 @@ In particular here are configured:
 
    2. The HTTPS key and certificates
 
-To ease the deployment and the maintainance and reduce the costs of your project, consider using the software includes support for the Let'sEncrypt HTTPS certificates.
+To ease the deployment and the maintenance and reduce the costs of your project, consider using the software includes support for the Let’s Encrypt HTTPS certificates.
 
 Tor
 ...
@@ -297,7 +297,7 @@ Here you can configure IP based Access Control.
 
 Suggested configurations are:
 
-   1. Prevent Whistleblowers to report from whithin their respective work space.
+   1. Prevent Whistleblowers to report from within their respective work space.
 
    2. Restrict Recipients access to their intranet.
 
@@ -328,3 +328,4 @@ TODO
 .. image:: ../../images/admin/audit_log_reports.png
 
 .. image:: ../../images/admin/audit_log_scheduled_jobs.png
+
