@@ -25,28 +25,30 @@
           <i class="fas fa-check-square"></i>
         </span>
 
-        <span id="tip-action-export-selected"
-              data-ng-click="tips_export()"
-              data-uib-tooltip="{{'Export' | translate}}"
-              class="btn btn-outline-secondary">
-          <i class="fas fa-save"></i>
-        </span>
+	<span data-ng-if="selected_tips.length">
+          <span id="tip-action-export-selected"
+                data-ng-click="tips_export()"
+                data-uib-tooltip="{{'Export' | translate}}"
+                class="btn btn-outline-secondary">
+            <i class="fas fa-save"></i>
+          </span>
 
-        <span id="tip-action-postpone-selected"
-              data-ng-if="selected_tips.length && preferences.can_postpone_expiration"
-              data-ng-click="tip_postpone_selected()"
-              data-uib-tooltip="{{'Postpone the expiration date' | translate}}"
-              class="btn btn-outline-secondary">
-          <i class="fas fa-clock"></i>
-        </span>
+          <span id="tip-action-postpone-selected"
+                data-ng-if="preferences.can_postpone_expiration"
+                data-ng-click="tip_postpone_selected()"
+                data-uib-tooltip="{{'Postpone the expiration date' | translate}}"
+                class="btn btn-outline-secondary">
+            <i class="fas fa-clock"></i>
+          </span>
 
-        <span id="tip-action-delete-selected"
-              data-ng-if="selected_tips.length && preferences.can_delete_submission"
-              data-ng-click="tip_delete_selected()"
-              data-uib-tooltip="{{'Delete' | translate}}"
-              class="btn btn-outline-secondary">
-          <i class="fas fa-trash"></i>
-        </span>
+          <span id="tip-action-delete-selected"
+                data-ng-if="preferences.can_delete_submission"
+                data-ng-click="tip_delete_selected()"
+                data-uib-tooltip="{{'Delete' | translate}}"
+                class="btn btn-outline-secondary">
+            <i class="fas fa-trash"></i>
+          </span>
+	</span>
       </span>
 
       <span id="tip-action-reload"

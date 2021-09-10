@@ -1,11 +1,11 @@
-GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "$uibModal", "$window", "RTipExport", "ReceiverTips", "TokenResource",
-  function($scope, $filter, $http, $location, $uibModal, $window, RTipExport, ReceiverTips, TokenResource) {
+GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$q", "$http", "$location", "$uibModal", "$window", "RTipExport", "ReceiverTips", "TokenResource",
+  function($scope, $filter, $q, $http, $location, $uibModal, $window, RTipExport, ReceiverTips, TokenResource) {
   $scope.search = undefined;
   $scope.currentPage = 1;
   $scope.itemsPerPage = 20;
 
   $scope.tips = ReceiverTips.query(function(tips) {
-    angular.forEach(tips, function (tip) {
+    angular.forEach(tips, function(tip) {
       tip.context = $scope.contexts_by_id[tip.context_id];
       tip.context_name = tip.context.name;
       tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText(tip.status, tip.substatus, $scope.submission_statuses);
@@ -27,7 +27,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
 
   $scope.select_all = function () {
     $scope.selected_tips = [];
-    angular.forEach($scope.tips, function (tip) {
+    angular.forEach($scope.filteredTips, function (tip) {
       $scope.selected_tips.push(tip.id);
     });
   };
@@ -74,9 +74,13 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
   };
 
   $scope.tips_export = function () {
-    return new TokenResource().$get().then(function(token) {
-      $window.open("api/rtips/export?token=" + token.id);
-    });
+    for(var i=0; i<$scope.selected_tips.length; i++) {
+      (function(i) {
+        new TokenResource().$get().then(function(token) {
+          return $window.open("api/rtips/" + $scope.selected_tips[i] + "/export?token=" + token.id);
+        });
+      })(i);
+    };
   };
 
   $scope.tip_postpone_selected = function () {
