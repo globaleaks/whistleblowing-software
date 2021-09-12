@@ -341,7 +341,7 @@ def db_get_rtip(session, tid, user_id, rtip_id, language):
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     if itip.status == 'new':
-        db_update_submission_status(session, tid, user_id, itip, 'open', None)
+        db_update_submission_status(session, tid, user_id, itip, 'opened', None)
 
     rtip.access_counter += 1
     rtip.last_access = datetime_now()
