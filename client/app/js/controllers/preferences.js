@@ -1,5 +1,5 @@
-GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$uibModal", "$http",
-  function($scope, $q, $http, $uibModal) {
+GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$location", "$uibModal",
+  function($scope, $q, $http, $location, $uibModal) {
     $scope.tabs = [
       {
         title: "Preferences",
@@ -57,9 +57,9 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$uibModal", "$http",
         return $http({method: "PUT", url: "api/user/operations", data:{
           "operation": "enable_2fa_step1",
           "args": {}
-        }}).then(function(data){
+        }}).then(function(data) {
           $scope.two_factor_secret = data.data;
-          $scope.qrcode_string = "otpauth://totp/GlobaLeaks?secret=" + $scope.two_factor_secret;
+          $scope.qrcode_string = "otpauth://totp/" + $location.host() + "%20%28" + $scope.preferences.username + "%29?secret=" + $scope.two_factor_secret;
 
           $scope.Utils.openConfirmableModalDialog("views/partials/enable_2fa_modal.html", {}, $scope).then(function (result) {
             return $http({method: "PUT", url: "api/user/operations", data:{
