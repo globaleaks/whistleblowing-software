@@ -247,11 +247,12 @@ class MockDict:
             'pgp_key_public': '',
             'pgp_key_expiration': '1970-01-01 00:00:00.000000',
             'pgp_key_remove': False,
-            'can_edit_general_settings': False,
             'notification': True,
             'forcefully_selected': True,
-            'can_delete_submission': False,
-            'can_postpone_expiration': False,
+            'can_edit_general_settings': False,
+            'can_grant_access_to_reports': True,
+            'can_delete_submission': True,
+            'can_postpone_expiration': True,
             'contexts': []
         }
 

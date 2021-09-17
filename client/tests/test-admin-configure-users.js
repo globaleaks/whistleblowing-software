@@ -45,6 +45,16 @@ describe("admin add, configure, and delete users", function() {
     }
   });
 
+  it("should grant permissions to recipientson first recipient", async function() {
+    await element.all(by.className("userList")).then(async function(elements) {
+      var editUsrForm = elements[3];
+      await editUsrForm.element(by.cssContainingText("button", "Edit")).click();
+      await element(by.model("user.can_delete_submission")).click();
+      await element(by.model("user.can_postpone_expiration")).click();
+      await editUsrForm.element(by.cssContainingText("button", "Save")).click();
+    });
+  });
+
   it("should configure users' passwords", async function() {
     for (var i = 1; i < 6; i++) {
       await browser.setLocation("admin/users");

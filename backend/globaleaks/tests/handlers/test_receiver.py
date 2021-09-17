@@ -40,10 +40,40 @@ class TestOperations(helpers.TestHandlerWithPopulatedDB):
         yield self.perform_full_submission_actions()
 
     @inlineCallbacks
-    def test_put_postpone(self):
-        for _ in range(3):
-            yield self.perform_full_submission_actions()
+    def test_put_revoke_and_grant(self):
+        rtips = yield receiver.get_receivertips(1, self.dummyReceiver_1['id'], helpers.USER_PRV_KEY, 'en')
+        rtips_ids = [rtip['id'] for rtip in rtips]
 
+        yield self.test_model_count(models.ReceiverTip, 4)
+
+        data_request = {
+            'operation': 'revoke',
+            'args': {
+              'receiver': self.dummyReceiver_2['id'],
+              'rtips': rtips_ids
+            }
+        }
+
+        handler = self.request(data_request, user_id=self.dummyReceiver_1['id'], role='receiver')
+        yield handler.put()
+
+        yield self.test_model_count(models.ReceiverTip, 2)
+
+        data_request = {
+            'operation': 'grant',
+            'args': {
+              'receiver': self.dummyReceiver_2['id'],
+              'rtips': rtips_ids
+            }
+        }
+
+        handler = self.request(data_request, user_id=self.dummyReceiver_1['id'], role='receiver')
+        yield handler.put()
+
+        yield self.test_model_count(models.ReceiverTip, 4)
+
+    @inlineCallbacks
+    def test_put_postpone(self):
         yield set_expiration_of_all_rtips_to_unlimited()
 
         rtips = yield receiver.get_receivertips(1, self.dummyReceiver_1['id'], helpers.USER_PRV_KEY, 'en')
@@ -55,7 +85,9 @@ class TestOperations(helpers.TestHandlerWithPopulatedDB):
 
         data_request = {
             'operation': 'postpone',
-            'rtips': rtips_ids
+            'args': {
+                'rtips': rtips_ids
+            }
         }
 
         handler = self.request(data_request, user_id=self.dummyReceiver_1['id'], role='receiver')
@@ -68,15 +100,14 @@ class TestOperations(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_delete(self):
-        for _ in range(3):
-            yield self.perform_full_submission_actions()
-
         rtips = yield receiver.get_receivertips(1, self.dummyReceiver_1['id'], helpers.USER_PRV_KEY, 'en')
         rtips_ids = [rtip['id'] for rtip in rtips]
 
         data_request = {
             'operation': 'delete',
-            'rtips': rtips_ids
+            'args': {
+                'rtips': rtips_ids
+            }
         }
 
         handler = self.request(data_request, user_id=self.dummyReceiver_1['id'], role='receiver')

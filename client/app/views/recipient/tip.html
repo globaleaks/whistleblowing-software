@@ -22,6 +22,13 @@
       <i class="fas fa-volume-mute"></i>
     </span>
 
+    <span id="tip-action-silence" data-ng-if="tip.enable_notifications"
+          data-ng-click="tip_notify(false)"
+          data-uib-tooltip="{{'Silence email notifications' | translate}}"
+          class="btn btn-outline-secondary">
+      <i class="fas fa-volume-up"></i>
+    </span>
+
     <span id="tip-action-grant-access"
           data-ng-if="preferences.can_grant_access_to_reports"
           data-ng-click="openGrantTipAccessModal()"

@@ -2,6 +2,7 @@
 from sqlalchemy.orm.exc import NoResultFound
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks import models
 from globaleaks.handlers import rtip
 from globaleaks.handlers.token import generate_token
 from globaleaks.jobs.delivery import Delivery
@@ -36,7 +37,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
         for rtip_desc in rtip_descs:
             self.assertTrue(rtip_desc['expiration_date'] == datetime_null())
             operation = {
-              'operation': 'postpone_expiration',
+              'operation': 'postpone',
               'args': {}
             }
 
@@ -49,27 +50,51 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             self.assertTrue(rtip_desc['expiration_date'] >= now)
 
     @inlineCallbacks
-    def test_put_postpone_never(self):
-        yield self.force_itip_expiration()
-
-        yield self.set_contexts_timetolive(-1)
+    def test_put_grant_and_revoke_access(self):
+        now = datetime_now()
 
         rtip_descs = yield self.get_rtips()
 
+        count = len(rtip_descs)
+
+        yield self.test_model_count(models.ReceiverTip, count)
+
         for rtip_desc in rtip_descs:
-            self.assertTrue(rtip_desc['expiration_date'] == datetime_null())
+            if rtip_desc['receiver_id'] != self.dummyReceiver_1['id']:
+                continue
+
+            count -= 1
+
             operation = {
-              'operation': 'postpone_expiration',
-              'args': {}
+              'operation': 'revoke',
+              'args': {
+                'receiver':  self.dummyReceiver_2['id']
+              }
             }
 
             handler = self.request(operation, role='receiver', user_id=rtip_desc['receiver_id'])
             yield handler.put(rtip_desc['id'])
             self.assertEqual(handler.request.code, 200)
+            yield self.test_model_count(models.ReceiverTip, count)
 
-        rtip_descs = yield self.get_rtips()
         for rtip_desc in rtip_descs:
-            self.assertTrue(rtip_desc['expiration_date'] == datetime_never())
+            if rtip_desc['receiver_id'] != self.dummyReceiver_1['id']:
+                return
+
+            count += 1
+
+            operation = {
+              'operation': 'grant',
+              'args': {
+                'receiver':  self.dummyReceiver_2['id']
+              }
+            }
+
+            handler = self.request(operation, role='receiver', user_id=rtip_desc['receiver_id'])
+            yield handler.put(rtip_desc['id'])
+            self.assertEqual(handler.request.code, 200)
+            yield self.test_model_count(models.ReceiverTip, count)
+
 
     @inlineCallbacks
     def switch_enabler(self, key):
