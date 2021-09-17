@@ -9,7 +9,7 @@
 # Erdoğan Şahin, 2016
 # Erdoğan Şahin, 2016-2017
 # Erdoğan Şahin, 2016
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2021
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # uskumru, 2013
@@ -30,7 +30,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-08 08:01+0000\n"
+"PO-Revision-Date: 2021-09-17 13:04+0000\n"
 "Last-Translator: Kaya Zeren <kayazeren@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -498,6 +498,12 @@ msgstr "Çıkış yap"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr "Bu alıcıya kullanıcılara raporlara erişme izni verme yetkisi ver"
 
+msgid "Grant access"
+msgstr "Erişim izni ver"
+
+msgid "Revoke access"
+msgstr "Erişim iznini kaldır"
+
 msgid "File a report"
 msgstr "Bir bildirimde bulunun"
 
@@ -552,27 +558,8 @@ msgstr "Çoklu site özelliğini etkinleştir"
 msgid "Enable simplified login"
 msgstr "Kolaylaştırılmış kullanıcı girişini etkinleştir"
 
-msgid "Allow recipients to delete reports"
-msgstr "Alıcıların raporları silmesine izin ver"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Alıcıların raporların zaman aşımını ertelemelerine izin ver"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Alıcıların belirli raporlara ihbarcı yetkileri vermesine izin ver"
-
 msgid "Enable search engines indexing"
 msgstr "Arama motoru dizinlemeyi etkinleştir"
-
-msgid "Enable custom privacy panel"
-msgstr "Özel gizlilik panelini etkinleştir"
-
-msgid "Custom privacy panel"
-msgstr "Özel gizlilik paneli"
-
-msgid "Disable the privacy panel"
-msgstr "Gizlilik rozetini devre dışı bırak"
 
 msgid "Enable the receipt hint"
 msgstr "Alındı ipucunu etkinleştir"
@@ -925,7 +912,7 @@ msgstr "Otomatik HTTPS yapılandırma, Let's Encrypt Sertifika Otoritesinden ser
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
+"hostname must have a DNS record referencing that address."
 msgstr "Platform açık bir IP adresiyle erişilebilir olmalı ve seçilen sunucu adı, kendisine karşılık gelen, bu adrese işaret eden bir DNS kaydına sahip olmadır."
 
 msgid "Manual configuration"
@@ -941,6 +928,15 @@ msgstr "Otomatik yenileme"
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion Hizmeti"
+
+msgid "Disable the privacy panel"
+msgstr "Gizlilik rozetini devre dışı bırak"
+
+msgid "Enable custom privacy panel"
+msgstr "Özel gizlilik panelini etkinleştir"
+
+msgid "Custom privacy panel"
+msgstr "Özel gizlilik paneli"
 
 msgid "Anonymize outgoing connections"
 msgstr "Çıkış bağlantılarını anonimleştirme"
@@ -1182,11 +1178,11 @@ msgstr "Bu yöneticiye kullanıcı parolalarını değiştirme izni ver"
 msgid "Forcefully selected"
 msgstr "Zorunlu seçilmiş"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Alıcıya raporun zaman aşımı tarihini erteleme izni ver"
-
 msgid "Allow the recipient to delete reports"
 msgstr "Alıcıya raporları silme izni ver"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Alıcıya raporun zaman aşımı tarihini erteleme izni ver"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Kullanıcıya aşağıdaki özellikler için yönetimsel erişim verin:"
@@ -1398,29 +1394,6 @@ msgstr "Tahmini yükleme zamanı:"
 msgid "Size:"
 msgstr "Boyut:"
 
-msgid "Enable the Ricochet panel"
-msgstr "Ricochet panelini etkinleştirin"
-
-msgid "Address"
-msgstr "Adres"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "Ricochet uygulamasıyla bizimle anonim olarak sohbet edin"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "Bizimle sohbet etmek için şu Ricochet adresini kullanın:"
-
-msgid "Download Ricochet at:"
-msgstr "Ricochet'i indirin:"
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "Ricochet, Tor ağını kullanarak ve Onion Hizmeti oluşturarak, mahremiyetinizi koruyan ve IP adresinizi veya konumunuzu açığa çıkarmadan anonim kalmanızı sağlayan bir anlık mesajlaşma uygulamasıdır. Güvensiz bir sohbet uygulamasına göre bir fark hissetmeyeceksiniz, sadece telefon numarası/kullanıcı adı/e-posta adresi yerine tekil bir adres kullanacaksınız."
-
 msgid "The connection is not secure."
 msgstr "Bağlantı güvenli değil."
 
@@ -1612,9 +1585,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "Sisteme anonim olmadan bağlanıyorsunuz ve bu sistem sadece anonim gönderimleri destekliyor."
 
-msgid "Thank you!"
-msgstr "Teşekkürler!"
-
 msgid "Your report was successful."
 msgstr "Raporunuz başarıyla tamamlandı."
 
@@ -1711,8 +1681,8 @@ msgstr "İsim"
 msgid "Last name"
 msgstr "Soyisim"
 
-msgid "Preferred contact method"
-msgstr "Tercih edilen iletişim yöntemi"
+msgid "Alternative contact method"
+msgstr "Alternatif iletişim yöntemi"
 
 msgid "Other"
 msgstr "Diğer"

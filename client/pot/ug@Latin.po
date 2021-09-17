@@ -1,10 +1,11 @@
 # 
 # Translators:
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
 # Tughluq Qutluq <tugkutluk@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uighur (Latin) (http://www.transifex.com/otf/globaleaks/language/ug@Latin/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -472,6 +473,12 @@ msgstr "Tizimdin chiq"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr ""
+
 msgid "File a report"
 msgstr "Bir doklat yolla"
 
@@ -526,27 +533,8 @@ msgstr "Köp béket iqtidarini qozghat"
 msgid "Enable simplified login"
 msgstr "Addilashqan tizimgha kirishni qozghat"
 
-msgid "Allow recipients to delete reports"
-msgstr "Tapshuriwalghuchilarning doklatlarni öchürishige ruxset qil"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Tapshuriwalghuchilarning doklat sürükini keynige sürishige ruxset qil"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Tapshuriwalghuchilarning pash qilghuchilargha melum doklatqa hoquq bérishige ruxset qil"
-
 msgid "Enable search engines indexing"
 msgstr "Axturush matorlirining indékislishini qozghat"
-
-msgid "Enable custom privacy panel"
-msgstr "Ixtiyari shexsiyet taxtisini qozghat"
-
-msgid "Custom privacy panel"
-msgstr "Ixtiyari shexsiyet taxtisi"
-
-msgid "Disable the privacy panel"
-msgstr "Ixtiyari shexsiyet taxtisini chekle"
 
 msgid "Enable the receipt hint"
 msgstr "Talon isharitini qozghat"
@@ -899,8 +887,8 @@ msgstr "Aptumatik HTTPS seplimisini ishlitish,  Let's Encrypt orginidin guwahnam
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
-msgstr "Bu supigha ammiwi IP adrési bilen baghlan’ghili bolishi we tallan’ghan mulazimétér namining bu adrésqa munasip DNS rékorti bolushi kérek."
+"hostname must have a DNS record referencing that address."
+msgstr "Бу супиға аммиви IP адреси билән бағланғили болиши вә талланған мулазиметер наминиң бу адресқа мунасип ДНС рекорти болуши керәк."
 
 msgid "Manual configuration"
 msgstr "Qolda seplime"
@@ -915,6 +903,15 @@ msgstr "Aptumatik yéngilash"
 
 msgid "Tor Onion Service"
 msgstr "‏Tor Onion mulazimiti"
+
+msgid "Disable the privacy panel"
+msgstr "Ixtiyari shexsiyet taxtisini chekle"
+
+msgid "Enable custom privacy panel"
+msgstr "Ixtiyari shexsiyet taxtisini qozghat"
+
+msgid "Custom privacy panel"
+msgstr "Ixtiyari shexsiyet taxtisi"
 
 msgid "Anonymize outgoing connections"
 msgstr "Sirtqa ulanmilarni namsizlashtur"
@@ -1156,11 +1153,11 @@ msgstr "Bu bashqurghuchigha ishletküchilerning parolini özgertish iqtidari ber
 msgid "Forcefully selected"
 msgstr "Mejburiy tallandi"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Tapshuriwalghuchining doklat sürükini keynige sürishige ruxset qil"
-
 msgid "Allow the recipient to delete reports"
 msgstr "Tapshuriwalghuchilarning doklatlarni öchürishige ruxset qil"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Tapshuriwalghuchining doklat sürükini keynige sürishige ruxset qil"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Töwendiki iqtidarlar üchün ishletküchilerge bashqurghuchi ziyaret hoquqi ber:"
@@ -1306,7 +1303,7 @@ msgid "Request support"
 msgstr ""
 
 msgid "Thank you."
-msgstr ""
+msgstr "Rehmet sizge."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Biz sizge eng qisqa waqitta jawap qayturushqa tirishimiz."
@@ -1371,29 +1368,6 @@ msgstr "Texminen yüklesh waqti:"
 
 msgid "Size:"
 msgstr "Chongluqi:"
-
-msgid "Enable the Ricochet panel"
-msgstr "Ricochet taxtiyini qozghiting"
-
-msgid "Address"
-msgstr "Adrés"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "Ricochet qollinishchan détalini ishlitip biz bilen namsiz söhbetlishing"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "Biz bilen söhbetlishish üchün töwendiki Ricochet adrésini ishliting"
-
-msgid "Download Ricochet at:"
-msgstr "Ricoche ni bu yerdin chüshürüng: "
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "Ricochet bir téz uchur yollash détali bolup, Tor torini ishlitish we Onion mulazimitini qurush arqiliq, orningiz yaki IP adrésingizni ashkarilimastin, shexsiyitingiz we namsizliqingizni  saqlighan halda söhbetlishishingizge ruxset qilidu. Téléfon nomuri/Éléktronluq xet/Ishletküchi namining ornigha özgiche adrés ishlitidighanliqingizni hésabqa almighanda , bixeter bolmighan söhbettin héchqandaq perq hés qilmaysiz."
 
 msgid "The connection is not secure."
 msgstr "Bu ulanma bixeter emes."
@@ -1586,9 +1560,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "Siz mulazimétirgha namsizlashmay turup uliniwatisiz, hemde bu mulazimétir peqet namsiz yollashnila qollaydu"
 
-msgid "Thank you!"
-msgstr "Rehmet sizge!"
-
 msgid "Your report was successful."
 msgstr "Doklatingiz muweppiqiyetlik boldi."
 
@@ -1685,7 +1656,7 @@ msgstr "Ismi"
 msgid "Last name"
 msgstr "Familisi"
 
-msgid "Preferred contact method"
+msgid "Alternative contact method"
 msgstr ""
 
 msgid "Other"

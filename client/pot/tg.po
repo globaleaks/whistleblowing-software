@@ -1,10 +1,11 @@
 # 
 # Translators:
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
 # Iftihor Muhtorov <i.muhtorov@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-06 03:21+0000\n"
+"PO-Revision-Date: 2021-09-17 12:20+0000\n"
 "Last-Translator: Iftihor Muhtorov <i.muhtorov@gmail.com>\n"
 "Language-Team: Tajik (http://www.transifex.com/otf/globaleaks/language/tg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -472,6 +473,12 @@ msgstr "Хориҷ шудан"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr "Ба ин гиранда имкони ба корбарон ба гузоришҳо дастрасӣ додан"
 
+msgid "Grant access"
+msgstr "Дастрасӣ додан"
+
+msgid "Revoke access"
+msgstr "Дастрасиро бекор кардан"
+
 msgid "File a report"
 msgstr "Таҳияи гузориш"
 
@@ -526,27 +533,8 @@ msgstr "Функсияи якчандторнамоиро фаъол сохта�
 msgid "Enable simplified login"
 msgstr "Воридшавии соддагардонидашударо фаъол сохтан"
 
-msgid "Allow recipients to delete reports"
-msgstr "Ба гирандагон иҷозаи пок кардани гузоришҳоро додан"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Ба гирандагон иҷозаи ба таъхир гузоштани мӯҳлати анҷоми эътибори гузоришро додан"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Ба гирандагон имкони ба хабардиҳандагон кафолати иҷозат ба гузоришҳои муайян додан"
-
 msgid "Enable search engines indexing"
 msgstr "Индексатсияи системаҳои ҷустуҷӯро фаъол сохтан"
-
-msgid "Enable custom privacy panel"
-msgstr "Панели махфии фармоиширо фаъол сохтан"
-
-msgid "Custom privacy panel"
-msgstr "Панели махфии фармоишӣ"
-
-msgid "Disable the privacy panel"
-msgstr "Панели махфиро хомӯш кардан"
 
 msgid "Enable the receipt hint"
 msgstr "Ишораи расидро фаъол кардан"
@@ -899,7 +887,7 @@ msgstr "Истифодаи худкори танзимоти HTTPS тамоми 
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
+"hostname must have a DNS record referencing that address."
 msgstr "Барнома бояд тавассути IP суроғаи ҷамъиятӣ дастрас бошад ва номи ҳости интихобшуда бояд дорои DNS сабти мувофиқ ба он суроға бошад. "
 
 msgid "Manual configuration"
@@ -915,6 +903,15 @@ msgstr "Азнавшавии худкор"
 
 msgid "Tor Onion Service"
 msgstr "Хадамоти Tor Onion"
+
+msgid "Disable the privacy panel"
+msgstr "Панели махфиро хомӯш кардан"
+
+msgid "Enable custom privacy panel"
+msgstr "Панели махфии фармоиширо фаъол сохтан"
+
+msgid "Custom privacy panel"
+msgstr "Панели махфии фармоишӣ"
 
 msgid "Anonymize outgoing connections"
 msgstr "Алоқаҳои содиротиро номаълум кардан"
@@ -1156,11 +1153,11 @@ msgstr "Ба ин маъмур имкони тағйири гузарвожаҳ�
 msgid "Forcefully selected"
 msgstr "Маҷбуран интихобшуда"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Ба гиранда иҷозаи ба таъхир гузоштани мӯҳлати анҷоми эътибори гузоришро додан"
-
 msgid "Allow the recipient to delete reports"
 msgstr "Ба гиранда иҷозаи пок кардани гузоришро додан"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Ба гиранда иҷозаи ба таъхир гузоштани мӯҳлати анҷоми эътибори гузоришро додан"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Ба функсияҳои зерин дастрасии маъмурии корбар додан:"
@@ -1372,29 +1369,6 @@ msgstr "Вақти тахминии боркунӣ:"
 msgid "Size:"
 msgstr "Андоза:"
 
-msgid "Enable the Ricochet panel"
-msgstr "Панели Ricochet-ро фаъол кардан"
-
-msgid "Address"
-msgstr "Суроға"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "Бо истифода аз нармафзори Ricochet бо мо сӯҳбати пинҳонӣ кунед"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "Барои сӯҳбат бо мо суроғаи зерини Ricochet-ро истифода кунед:"
-
-msgid "Download Ricochet at:"
-msgstr "Боргирии Ricochet аз:"
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "Бо истифода аз шабакаи Tor ва эҷоди Хадамоти Onion, Ricochet нармафзор барои паёмнависии фаврӣ буда, ба шумо имкон медиҳад, ки сӯҳбат кунед ва амнияту номаълумии худро тавассути пинҳон доштани макон ё IP суроғаи худ таъмин созед. Аз сӯҳбати ноамн шумо ягон фарқиятро ҳис намекунед, ба ғайр аз он ки ба ҷои рақами телефон/почтаи электронӣ/номи корбар суроғаи махсусро истифода мебаред."
-
 msgid "The connection is not secure."
 msgstr "Алоқа ноамн аст."
 
@@ -1586,9 +1560,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "Шумо ба сервер бо ному насаб пайваст шуда истодаед ва ин сервер танҳо ирсолҳои беномро дастгирӣ мекунад"
 
-msgid "Thank you!"
-msgstr "Ташаккур!"
-
 msgid "Your report was successful."
 msgstr "Ҳисоботи шумо муваффақ шуд."
 
@@ -1685,8 +1656,8 @@ msgstr "Номи файл"
 msgid "Last name"
 msgstr "Насаб"
 
-msgid "Preferred contact method"
-msgstr "Усули тамоси афзалиятдор"
+msgid "Alternative contact method"
+msgstr "Усули алтернативии тамос"
 
 msgid "Other"
 msgstr "Дигар"

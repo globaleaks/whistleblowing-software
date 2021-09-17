@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -490,6 +490,12 @@ msgstr "Kilépés"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr ""
+
 msgid "File a report"
 msgstr "Jelentés beküldése"
 
@@ -544,27 +550,8 @@ msgstr "Multisite engedélyezése"
 msgid "Enable simplified login"
 msgstr "Egyszerűsített login engedélyezése"
 
-msgid "Allow recipients to delete reports"
-msgstr "Engedélyezés a címzetteknek, hogy töröljék a tippeket"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Engedélyezés a címzetteknek, hogy meghosszabbítsák a tippek lejárati idejét"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Engedélyezés a címzetteknek, hogy jogosultságokat biztosítsanak a bejelentőknek egyes különleges beadványoknál"
-
 msgid "Enable search engines indexing"
 msgstr "Keresőmotorok indexelésének engedélyezése"
-
-msgid "Enable custom privacy panel"
-msgstr "Egyedi adatvédelmi panel engedélyezése"
-
-msgid "Custom privacy panel"
-msgstr "Egyéni adatvédelmi panel"
-
-msgid "Disable the privacy panel"
-msgstr "Adatvédelmi panel letiltása"
 
 msgid "Enable the receipt hint"
 msgstr "Nyugtázás engedélyezése"
@@ -917,8 +904,8 @@ msgstr "Az automatikus HTTPS konfiguráció az egész tanúsítvány igénylés,
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
-msgstr "A platformnak publikus IP címen és a választott kiszolgáló névnek erre a címre kell mutatnia."
+"hostname must have a DNS record referencing that address."
+msgstr ""
 
 msgid "Manual configuration"
 msgstr "Manuális  konfigurálás"
@@ -933,6 +920,15 @@ msgstr "Auto-megújítás"
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion szolgáltatás"
+
+msgid "Disable the privacy panel"
+msgstr "Adatvédelmi panel letiltása"
+
+msgid "Enable custom privacy panel"
+msgstr "Egyedi adatvédelmi panel engedélyezése"
+
+msgid "Custom privacy panel"
+msgstr "Egyéni adatvédelmi panel"
 
 msgid "Anonymize outgoing connections"
 msgstr "Kimenő kapcsolatok anonimizálása"
@@ -1174,11 +1170,11 @@ msgstr "Adjon az adminisztrátornak lehetőséget a felhasználók jelszavának 
 msgid "Forcefully selected"
 msgstr "Erőteljesen kiválasztva"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "A címzett számára engedélyezi a füles lejárati dátumának hosszabítását"
-
 msgid "Allow the recipient to delete reports"
 msgstr "Engedélyezés a címzetteknek, hogy töröljék a tippeket"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "A címzett számára engedélyezi a füles lejárati dátumának hosszabítását"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "A felhasználónak adminisztratív jogok adása a következő funkciókra:"
@@ -1390,29 +1386,6 @@ msgstr "Becsült feltöltési idő:"
 msgid "Size:"
 msgstr "Méret"
 
-msgid "Enable the Ricochet panel"
-msgstr "Ricochet panel engedélyezése"
-
-msgid "Address"
-msgstr "Cím"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "Chateljen velünk névtelenül a Ricochet applikáció használatával"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "Chateléshez kérjük használka a következő Ricochet címet:"
-
-msgid "Download Ricochet at:"
-msgstr "Ricochet applikáció letöltése:"
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "A Tor hálózat használatával és saját Onion szolgáltatás létrehozásával a Ricochet azonnali üzenetküldő app lehetővé teszi, hogy úgy csevegjen, hogy védi adatait, és anonim maradjon, az IP címe elrejtésével. A chat során nem vesz észre különbséget, csak annyit, hogy egy egyedi címet használ a telefonszáma/email címe/user neve helyett."
-
 msgid "The connection is not secure."
 msgstr "A kapcsolat nem biztonságos."
 
@@ -1604,9 +1577,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "A kiszolgálóhoz anonim módon csatlakozik, ez a kiszolgáló csak névtelen beadványokat fogad el"
 
-msgid "Thank you!"
-msgstr "Köszönjük!"
-
 msgid "Your report was successful."
 msgstr "Beküldése sikeres volt."
 
@@ -1703,8 +1673,8 @@ msgstr "Keresztnév"
 msgid "Last name"
 msgstr "Vezetéknév"
 
-msgid "Preferred contact method"
-msgstr "Preferált kapcsolatfelvételi mód"
+msgid "Alternative contact method"
+msgstr ""
 
 msgid "Other"
 msgstr "Egyéb"

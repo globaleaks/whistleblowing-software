@@ -7,7 +7,7 @@
 # Mihai, 2014
 # Claus A <claudiu.andrei.90@gmail.com>, 2021
 # Cristina Lupu <cristina@cji.ro>, 2019-2021
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2021
 # Inpresentia I., 2016
 # Inpresentia I., 2016
 # Matei Imola <imolam11@gmail.com>, 2016
@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-07 18:35+0000\n"
+"PO-Revision-Date: 2021-09-17 12:15+0000\n"
 "Last-Translator: Claus A <claudiu.andrei.90@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -176,7 +176,7 @@ msgid "Number"
 msgstr "Număr"
 
 msgid "Email"
-msgstr "Email"
+msgstr "E-mail"
 
 msgid "Regular expression validator"
 msgstr "Verificare expresie regulată"
@@ -448,7 +448,7 @@ msgid "Not running"
 msgstr "Nu rulează"
 
 msgid "Send a test email to your email address."
-msgstr "Trimite un email de test către adresa ta de email."
+msgstr "Trimite un e-mail de test către adresa ta de e-mail."
 
 msgid "Block the submission"
 msgstr "Blochează sesizarea"
@@ -487,6 +487,12 @@ msgstr "Deconectare"
 
 msgid "Give this recipient ability to grant user access to reports"
 msgstr "Permite acestui destinatar să acorde utilizatorilor acces la sesizări"
+
+msgid "Grant access"
+msgstr "Acordă acces"
+
+msgid "Revoke access"
+msgstr "Revocă accesul"
 
 msgid "File a report"
 msgstr "Depune o sesizare"
@@ -542,27 +548,8 @@ msgstr "Activează funcționalitatea multi-site"
 msgid "Enable simplified login"
 msgstr "Activează autentificarea simplificată"
 
-msgid "Allow recipients to delete reports"
-msgstr "Permite destinatarilor să șteargă sesizările"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Permite destinatarilor să amâne data de expirare a sesizării"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Permite destinatarilor să acorde permisiuni avertizorilor de integritate pentru anumite sesizări"
-
 msgid "Enable search engines indexing"
 msgstr "Activează indexarea pentru motoarele de căutare"
-
-msgid "Enable custom privacy panel"
-msgstr "Activează panoul pentru personalizarea setărilor privind confidențialitatea"
-
-msgid "Custom privacy panel"
-msgstr "Panou pentru personalizarea setărilor privind confidențialitatea"
-
-msgid "Disable the privacy panel"
-msgstr "Dezactivează panoul cu setări de confidențialitate"
 
 msgid "Enable the receipt hint"
 msgstr "Activează indiciul pentru codul de înregistrare"
@@ -871,7 +858,7 @@ msgid "Organizational unit"
 msgstr "Departament"
 
 msgid "Invalid email address"
-msgstr "Adresă de e-mail invalidă "
+msgstr "Adresă de e-mail invalidă"
 
 msgid "Generate"
 msgstr "Generează"
@@ -915,8 +902,8 @@ msgstr "Folosind configurarea HTTPS automată, aceasta va gestiona întregul pro
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
-msgstr "Platforma trebuie să fie accesibilă printr-o adresă de IP publică iar serverul selectat trebuie să aibă o înregistrare DNS compatibilă care face referire la acea adresă. "
+"hostname must have a DNS record referencing that address."
+msgstr "Platforma trebuie să fie accesibilă printr-o adresă de IP publică iar serverul selectat trebuie să aibă o înregistrare DNS care face referire la acea adresă."
 
 msgid "Manual configuration"
 msgstr "Configurare manuală"
@@ -931,6 +918,15 @@ msgstr "Reînnoire automată"
 
 msgid "Tor Onion Service"
 msgstr "Serviciul Tor Onion"
+
+msgid "Disable the privacy panel"
+msgstr "Dezactivează panoul cu setări de confidențialitate"
+
+msgid "Enable custom privacy panel"
+msgstr "Activează panoul pentru personalizarea setărilor privind confidențialitatea"
+
+msgid "Custom privacy panel"
+msgstr "Panou pentru personalizarea setărilor privind confidențialitatea"
 
 msgid "Anonymize outgoing connections"
 msgstr "Anonimizează conexiunile de ieșire"
@@ -948,7 +944,7 @@ msgid "To"
 msgstr "Către"
 
 msgid "SMTP email address"
-msgstr "Adresă de email SMTP"
+msgstr "Adresă de e-mail SMTP"
 
 msgid "SMTP server address"
 msgstr "Adresă server SMTP"
@@ -1113,7 +1109,7 @@ msgid "Creation date:"
 msgstr "Data creării:"
 
 msgid "Root domain used for secondary sites"
-msgstr "Domeniu pricipal utilizat pentru website-urile secundare"
+msgstr "Domeniu principal utilizat pentru website-urile secundare"
 
 msgid "Use the first site for administrative purposes only"
 msgstr "Folosește primul website doar pentru scopuri administrative"
@@ -1155,7 +1151,7 @@ msgid "Language"
 msgstr "Limba"
 
 msgid "Enable email notifications"
-msgstr "Activează notificările prin email"
+msgstr "Activează notificările prin e-mail"
 
 msgid "Details of the PGP key:"
 msgstr "Detalii ale cheii PGP:"
@@ -1172,11 +1168,11 @@ msgstr "Permite acestui administrator să schimbe parolele utilizatorilor "
 msgid "Forcefully selected"
 msgstr "Selectat obligatoriu"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Permite destinatarului să amâne data de expirare a sesizării"
-
 msgid "Allow the recipient to delete reports"
 msgstr "Permite destinatarilor să șteargă sesizările"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Permite destinatarului să amâne data de expirare a sesizării"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Permite utilizatorului acces administrativ la următoarele instrumente:"
@@ -1197,7 +1193,7 @@ msgid "The validation link is either incorrect or has expired."
 msgstr "Linkul pentru validare este fie incorect, fie a expirat."
 
 msgid "Your new email address has been validated."
-msgstr "Noua adresă de email a fost validată."
+msgstr "Noua adresă de e-mail a fost validată."
 
 msgid "Forgot password?"
 msgstr "Ai uitat parola?"
@@ -1262,7 +1258,7 @@ msgstr "Cheia de recuperare a contului tău este:"
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr "Notează și pune cheia într-un loc sigur. Vei avea nevoie de ea dacă îți pierzi parola și vrei să îți recuperezi accesul la cont fară a pierde datele."
+msgstr "Notează și pune cheia într-un loc sigur. Vei avea nevoie de ea dacă îți pierzi parola și vrei să îți recuperezi accesul la cont fără a pierde datele."
 
 msgid "Welcome!"
 msgstr "Bine ai venit!"
@@ -1278,7 +1274,7 @@ msgstr "Dacă ai nevoie de suport tehnic, ai întrebări generale sau ai idei pe
 msgid ""
 "If you want to contribute to software development or report a bug, please "
 "open an issue in our ticketing system:"
-msgstr "Dacă vrei să contibui la dezvoltarea software-ului sau dorești să raportezi o problemă, te rugăm să deschizi o sesizare: "
+msgstr "Dacă vrei să contribui la dezvoltarea software-ului sau dorești să raportezi o problemă, te rugăm să deschizi o sesizare:"
 
 msgid "Join our chat:"
 msgstr "Participă la discuția noastră:"
@@ -1331,7 +1327,7 @@ msgid "Submit"
 msgstr "Trimite"
 
 msgid "Validation of email address change in progress."
-msgstr "Validarea schimbării emailului este în desfășurare."
+msgstr "Validarea schimbării e-mailului este în desfășurare."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Te rugăm să îți verifici email-ul pentru instrucțiuni suplimentare."
@@ -1365,7 +1361,7 @@ msgid "Enter a name for the copy"
 msgstr "Introdu un nume pentru copie"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "Ai trimis deja o sesizare? Introdu codul înregristrării."
+msgstr "Ai trimis deja o sesizare? Introdu codul înregistrării."
 
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Acest cod este fie invalid, fie sesizarea a expirat."
@@ -1387,29 +1383,6 @@ msgstr "Timpul estimat pentru încărcare:"
 
 msgid "Size:"
 msgstr "Dimensiune:"
-
-msgid "Enable the Ricochet panel"
-msgstr "Activează panoul de control pentru Ricochet"
-
-msgid "Address"
-msgstr "Adresă"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "Discută în mod anonim cu noi folosind aplicația Ricochet."
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "Pentru a discuta cu noi, folosește următoarea adresă Ricochet: "
-
-msgid "Download Ricochet at:"
-msgstr "Descărcă aplicația Ricochet de aici:"
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "Folosind browser-ul Tor și creând un serviciu de tip Onion, Ricochet este o aplicație de mesagerie instant care îți permite să discuți în timp ce îți protejează identitatea, rămânând anonim. Nu îți va dezvălui locația sau adresa IP. Nu vei observa nicio diferență față de serviciile de mesagerie neecurizate, cu excepția faptului că vei folosi o adresă unică în loc de un număr de telefon/email/nume utilizator."
 
 msgid "The connection is not secure."
 msgstr "Conexiunea nu este sigură."
@@ -1520,10 +1493,10 @@ msgstr "Codul de resetare introdus este invalid sau a expirat."
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr "Introdu numele de utilizator sau adresa de email pentru a solicita o resetare a parolei."
+msgstr "Introdu numele de utilizator sau adresa de e-mail pentru a solicita o resetare a parolei."
 
 msgid "Enter your email address to request a password reset."
-msgstr "Introdu adresa de email pentru a solicita o resetare a parolei."
+msgstr "Introdu adresa de e-mail pentru a solicita o resetare a parolei."
 
 msgid ""
 "Enter you encryption recovery key to complete the password reset procedure"
@@ -1589,7 +1562,7 @@ msgid "The specified input is not valid:"
 msgstr "Intrarea specificată nu este validă:"
 
 msgid "please enter a valid email address."
-msgstr "Te rog introdu o adresă de email validă."
+msgstr "Te rog introdu o adresă de e-mail validă."
 
 msgid "please enter numbers only."
 msgstr "Te rog, introdu doar numere."
@@ -1601,9 +1574,6 @@ msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
 msgstr "Te conectezi la server fără anonimat iar acest server permite doar sesizări anonimizate."
-
-msgid "Thank you!"
-msgstr "Mulțumim!"
 
 msgid "Your report was successful."
 msgstr "Ai trimis sesizarea cu succes."
@@ -1642,7 +1612,7 @@ msgid ""
 msgstr "În această etapă, răspunsurile pentru următoarele întrebări fie lipsesc, fie sunt invalide:"
 
 msgid "You must select at least one recipient."
-msgstr "Trebuie sa alegi cel putin un destinatar."
+msgstr "Trebuie sa alegi cel puțin un destinatar."
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Se așteaptă finalizarea încărcării fișierului(lor)."
@@ -1701,8 +1671,8 @@ msgstr "Prenume"
 msgid "Last name"
 msgstr "Nume"
 
-msgid "Preferred contact method"
-msgstr "Metodă de contact preferată"
+msgid "Alternative contact method"
+msgstr "Metodă de contact alternativă"
 
 msgid "Other"
 msgstr "Alta"
@@ -1716,7 +1686,7 @@ msgstr "Bună ziua, {RecipientName},"
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr "Primești acest email deoarece ți-a fost creat un cont de utilizator în sistem: {Site} ."
+msgstr "Primești acest e-mail deoarece ți-a fost creat un cont de utilizator în sistem: {Site} ."
 
 msgid "Username: {Username}"
 msgstr "Utilizator: {Username}"
@@ -1797,7 +1767,7 @@ msgstr "Anomalie detectată la {NodeName}"
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
 "going to expire or has already expired:"
-msgstr "Acesta este un email pentru a te informa că cheia PGP a următorilor utilizatori urmează să expire sau a expirat deja:"
+msgstr "Acesta este un e-mail pentru a te informa că cheia PGP a următorilor utilizatori urmează să expire sau a expirat deja:"
 
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
@@ -1820,27 +1790,27 @@ msgid "Name: {Name}"
 msgstr "Nume: {Name}"
 
 msgid "Email: {Email}"
-msgstr "Email: {Email}"
+msgstr "E-mail: {Email}"
 
 msgid "New whistleblowing site registered"
 msgstr "Noua platformă pentru avertizorii de integritate înregistrată"
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
-msgstr "Acesta este un email de test trimis din interfața de administrare a platformei."
+msgstr "Acesta este un e-mail de test trimis din interfața de administrare a platformei."
 
 msgid ""
 "Reception of this email indicates that the server was able to authenticate "
 "to and interact with the SMTP mail server."
-msgstr "Primirea acestui email indică faptul că serverul a putut să se autentifice și să interacționeze cu serverul de mail SMTP."
+msgstr "Primirea acestui e-mail indică faptul că serverul a putut să se autentifice și să interacționeze cu serverul de mail SMTP."
 
 msgid "Test email"
-msgstr "Email test"
+msgstr "E-mail test"
 
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr "Prin acest email te notificăm că a fost făcută o solicitate pentru a îți schimba adresa de email cu {NewEmailAddress}. "
+msgstr "Prin acest e-mail te notificăm că a fost făcută o solicitate pentru a îți schimba adresa de e-mail cu {NewEmailAddress}. "
 
 msgid "Click the following link to validate this change:"
 msgstr "Dă click pe acest link pentru a valida schimbarea:"
@@ -1851,7 +1821,7 @@ msgid ""
 msgstr "Dacă nu ai solicitat această modificare,  schimbă parola și contactează administratorul de sistem."
 
 msgid "Email change request"
-msgstr "Solicitare pentru schimbarea emailului"
+msgstr "Solicitare pentru schimbarea e-mailului"
 
 msgid "From: {Author}"
 msgstr "De la: {Author}"
@@ -1903,7 +1873,7 @@ msgstr "Reînoirea certificatului HTTPS a eșuat."
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr "Acesta este un email pentru a te anunța că un custode te-a autorizat să accesezi identitatea avertizorului sesizării {TipNum}."
+msgstr "Acesta este un e-mail pentru a te anunța că un custode te-a autorizat să accesezi identitatea avertizorului sesizării {TipNum}."
 
 msgid "The report can be accessed at:"
 msgstr "Sesizarea poate fi accesată la:"
@@ -1941,12 +1911,12 @@ msgstr "Avertizorul și-a dezvăluit identitatea."
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr "Primești acest email deoarece a fost solicitată resetarea parolei pentru acest cont: {Username}"
+msgstr "Primești acest e-mail deoarece a fost solicitată resetarea parolei pentru acest cont: {Username}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
 "email."
-msgstr "Dacă nu ai făcut această solicitare, ignoră și șterge acest email. "
+msgstr "Dacă nu ai făcut această solicitare, ignoră și șterge acest e-mail. "
 
 msgid "You can confirm your request by clicking the following link:"
 msgstr "Poți confima solicitarea, dând click pe acest link:"
@@ -1957,7 +1927,7 @@ msgstr "Instrucțiuni pentru resetarea parolei"
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
 "expired."
-msgstr "Acesta este un email pentru a te anunța că cheia PGP expiră sau a expirat deja."
+msgstr "Acesta este un e-mail pentru a te anunța că cheia PGP expiră sau a expirat deja."
 
 msgid ""
 "You should extend its validity and update the key present on the platform, "
@@ -2022,13 +1992,13 @@ msgid ""
 msgstr "Te rugăm să acorzi atenție specială informațiilor și materialelor prezentate aici. Te rugăm să nu uiți că avertizorii de integritate se expun adesea unor riscuri personale mari în interesul public. De aceea, materialele oferite prin intermediul acestei sesizări trebuie să fie considerate de importanță majoră. "
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr "Prin acest email te notificăm că o avertizare deja existentă a fost completată."
+msgstr "Prin acest e-mail te notificăm că o avertizare deja existentă a fost completată."
 
 msgid "Report updated"
 msgstr "Avertizarea a fost completată."
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr "Prin acest email îți reamintim că ai avertizări necitite sau care au primit informații suplimentare."
+msgstr "Prin acest e-mail îți reamintim că ai avertizări necitite sau care au primit informații suplimentare."
 
 msgid "Reminder about unread or updated reports"
 msgstr "Memento pentru sesizările necitite sau actualizate"

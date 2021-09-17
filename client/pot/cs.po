@@ -1,7 +1,7 @@
 # 
 # Translators:
 # A5h8d0wf0x <littleslyfoxie28@gmail.com>, 2014
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2021
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"Last-Translator: zeritti <woodenmo@posteo.de>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -483,6 +483,12 @@ msgstr "Odhlášení"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr "Odvolat přístup"
+
 msgid "File a report"
 msgstr "Podat hlášení"
 
@@ -537,27 +543,8 @@ msgstr "Povolit funkci multisite "
 msgid "Enable simplified login"
 msgstr "Povolit zjednodušené přihlášení"
 
-msgid "Allow recipients to delete reports"
-msgstr "Povolit příjemcům smazat podání"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Povolit příjemcům odložit datum vypršení platnosti podání"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Povolit příjemcům udělit oprávnění oznamovatelům ke konkrétním podáním"
-
 msgid "Enable search engines indexing"
 msgstr "Povolit vyhledávačům indexování."
-
-msgid "Enable custom privacy panel"
-msgstr "Povolit vlastní panel soukromí"
-
-msgid "Custom privacy panel"
-msgstr "Vlastní panel soukromí"
-
-msgid "Disable the privacy panel"
-msgstr "Zakázat panel o ochraně osobních údajů."
 
 msgid "Enable the receipt hint"
 msgstr "Povolit možnost pro příjem "
@@ -910,7 +897,7 @@ msgstr "Použití automatické konfigurace HTTPS zajistí celý proces vyžádá
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
+"hostname must have a DNS record referencing that address."
 msgstr "Platforma musí být dosažitelná prostřednictvím veřejné IP adresy a zvolený název hostitele musí mít odpovídající záznam DNS, který odkazuje na tuto adresu."
 
 msgid "Manual configuration"
@@ -926,6 +913,15 @@ msgstr "Automatické obnovení"
 
 msgid "Tor Onion Service"
 msgstr "Služba Tor Onion"
+
+msgid "Disable the privacy panel"
+msgstr "Zakázat panel o ochraně osobních údajů."
+
+msgid "Enable custom privacy panel"
+msgstr "Povolit vlastní panel soukromí"
+
+msgid "Custom privacy panel"
+msgstr "Vlastní panel soukromí"
 
 msgid "Anonymize outgoing connections"
 msgstr "Anonymizace odchozích spojení"
@@ -1167,11 +1163,11 @@ msgstr "Umožněte tomuto administrátorovi měnit uživatelská hesla "
 msgid "Forcefully selected"
 msgstr "Nastaveno administrátorem"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Povolit příjemci odložit datum expirace podání"
-
 msgid "Allow the recipient to delete reports"
 msgstr "Povolit příjemcům smazat podání"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Povolit příjemci odložit datum expirace podání"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Poskytněte uživateli administrativní přístup k následujícím funkcím:"
@@ -1317,7 +1313,7 @@ msgid "Request support"
 msgstr ""
 
 msgid "Thank you."
-msgstr ""
+msgstr "Děkujeme Vám."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Pokusíme se vrátit se k Vám co nejdříve."
@@ -1382,29 +1378,6 @@ msgstr "Odhadovaná doba nahravání:"
 
 msgid "Size:"
 msgstr "Velikost:"
-
-msgid "Enable the Ricochet panel"
-msgstr "Povolte panel Ricochet"
-
-msgid "Address"
-msgstr "Adresa"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "Chatujte s námi anonymně pomocí aplikace Ricochet"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "K chatování s námi použijte následující adresu Ricochet:"
-
-msgid "Download Ricochet at:"
-msgstr "Stáhněte Ricochet na:"
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "S využitím sítě Tor a vytvořením skryté služby je Ricochet chatem, který Vám umožňuje chatovat a zároveň chrání Vaše soukromí a anonymitu tím, že neodhalí Vaši polohu nebo IP adresu. Oproti nezabezpečenému chatu si nepovšimnete rozdílu, kromě toho, že budete využívat jedinečné ID namísto telefonního čísla/emailu/uživatelského jména. "
 
 msgid "The connection is not secure."
 msgstr "Spojení není bezpečné."
@@ -1597,9 +1570,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "Připojujete se k serveru neanonymně. Tento server podporuje pouze anonymní podání."
 
-msgid "Thank you!"
-msgstr "Děkujeme Vám!"
-
 msgid "Your report was successful."
 msgstr "Vaše podání proběhlo úspěšně."
 
@@ -1696,7 +1666,7 @@ msgstr "Jméno"
 msgid "Last name"
 msgstr "Příjmení"
 
-msgid "Preferred contact method"
+msgid "Alternative contact method"
 msgstr ""
 
 msgid "Other"

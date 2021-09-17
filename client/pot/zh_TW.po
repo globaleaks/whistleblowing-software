@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"Last-Translator: Pin Gu\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -479,6 +479,12 @@ msgstr "登出"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr "撤銷存取"
+
 msgid "File a report"
 msgstr ""
 
@@ -533,27 +539,8 @@ msgstr "啟用多個網站功能"
 msgid "Enable simplified login"
 msgstr "開啟簡易登入"
 
-msgid "Allow recipients to delete reports"
-msgstr "收件者可以刪除報告"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "收件者可以延長報告期限"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "收件者可以准許揭密者讀取某份報告的權限"
-
 msgid "Enable search engines indexing"
 msgstr "可讓搜尋引擎進行索引"
-
-msgid "Enable custom privacy panel"
-msgstr "啟用自定的隱私面版"
-
-msgid "Custom privacy panel"
-msgstr "自定隱私面板"
-
-msgid "Disable the privacy panel"
-msgstr "取消隱私面板"
 
 msgid "Enable the receipt hint"
 msgstr "啟動收件人提示"
@@ -906,8 +893,8 @@ msgstr "使用自動的 HTTPS 設定來處理全部請求過程，啟動並更�
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
-msgstr "這個平台可以透由公開的IP地址進入，故其所選的主機名稱必須要有一個可通訊的DNS記錄來告訴其地址。"
+"hostname must have a DNS record referencing that address."
+msgstr ""
 
 msgid "Manual configuration"
 msgstr "手動設定"
@@ -922,6 +909,15 @@ msgstr "自動更新"
 
 msgid "Tor Onion Service"
 msgstr "Tor 洋瞛服務 "
+
+msgid "Disable the privacy panel"
+msgstr "取消隱私面板"
+
+msgid "Enable custom privacy panel"
+msgstr "啟用自定的隱私面版"
+
+msgid "Custom privacy panel"
+msgstr "自定隱私面板"
 
 msgid "Anonymize outgoing connections"
 msgstr "匿名化對外連線 "
@@ -1163,11 +1159,11 @@ msgstr "授權管理者變更用戶的密碼"
 msgid "Forcefully selected"
 msgstr "強迫選擇"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "收件者可以延長報告期限"
-
 msgid "Allow the recipient to delete reports"
 msgstr "收件者可以刪除報告"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "收件者可以延長報告期限"
 
 msgid "Give the user administrative access to the following features:"
 msgstr ""
@@ -1379,29 +1375,6 @@ msgstr "預估上傳時間:"
 msgid "Size:"
 msgstr "大小:"
 
-msgid "Enable the Ricochet panel"
-msgstr "啟動收件人面板"
-
-msgid "Address"
-msgstr "地址"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "利用 Ricochet 可匿名地與我們線上聊天"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "請利用下方 Ricochet 網址來聊天： "
-
-msgid "Download Ricochet at:"
-msgstr "下載 Ricochet :"
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "利用 Tor 網路與建立 Onion 服務，Ricochet 是一款即時傳訊應用，在線上聊天時不會洩露用戶位置與IP，以維持匿名保護隱私。用戶不會查察它和其它即時通訊有何差異，除了使用的是一串獨特的網址而非一般的電話話碼/email 或用戶名稱。"
-
 msgid "The connection is not secure."
 msgstr "連接安全"
 
@@ -1593,9 +1566,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "你正連結到正常運行的伺服器上，它僅支援匿名的揭密提交"
 
-msgid "Thank you!"
-msgstr "謝謝"
-
 msgid "Your report was successful."
 msgstr "您的報告已成功。"
 
@@ -1692,7 +1662,7 @@ msgstr "名"
 msgid "Last name"
 msgstr "姓"
 
-msgid "Preferred contact method"
+msgid "Alternative contact method"
 msgstr ""
 
 msgid "Other"

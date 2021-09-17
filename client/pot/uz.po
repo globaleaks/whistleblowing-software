@@ -1,12 +1,14 @@
 # 
 # Translators:
 # Adham Kurbanov <uz@zu.uz>, 2021
-# Nurkamol Vakhidov <nurkamol@gmail.com>, 2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
+# Nurkamol Vokhidov <nurkamol@gmail.com>, 2021
+# Nurkamol Vokhidov <nurkamol@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-08 10:23+0000\n"
-"Last-Translator: Adham Kurbanov <uz@zu.uz>\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uzbek (http://www.transifex.com/otf/globaleaks/language/uz/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -99,7 +101,7 @@ msgid "YOUR NAME"
 msgstr "ISMINGIZ"
 
 msgid "Label the report"
-msgstr "Hisobga yorliq biriktiring"
+msgstr "Xabarga yorliq biriktiring"
 
 msgid "Postpone the expiration date"
 msgstr "Muddatini uzaytirish"
@@ -269,7 +271,7 @@ msgid "Available disk space"
 msgstr "Diskdagi mavjud joy"
 
 msgid "Last update"
-msgstr "Oxirgi xabar"
+msgstr "Oxirgi yangilanish"
 
 msgid "Disable notifications to administrators"
 msgstr "Administratorlar uchun bildirishnomalarni faolsizlantirish"
@@ -328,7 +330,7 @@ msgstr "Qidiruv"
 msgid ""
 "This custom text is no longer displayed on the platform. The original text "
 "has either changed or been removed."
-msgstr "Bu maxsus matn patformada boshqa chiqmaydi. Asl matn oʻzgartirilgan yoki olib tashlangan."
+msgstr "Bu maxsus matn platformada boshqa chiqmaydi. Asl matn oʻzgartirilgan yoki olib tashlangan."
 
 msgid "Audit log"
 msgstr "Audit jurnali"
@@ -340,7 +342,7 @@ msgid "Activities"
 msgstr "Faoliyat"
 
 msgid "Reports"
-msgstr "Hisobotlar"
+msgstr "Xabarlar"
 
 msgid "Users"
 msgstr "Foydalanuvchilar"
@@ -450,7 +452,7 @@ msgstr "Parolni yangilash"
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr "Qabul qiluvchilardan biri yoki bir nechtasi hali biror marta kirmagan. Demak ular hisobot ham olmagan."
+msgstr "Qabul qiluvchilardan biri yoki bir nechtasi hali biror marta kirmagan. Demak ular anonim xabar olmaydi."
 
 msgid "This user has not performed the first login yet."
 msgstr "Bu foydalanuvchi hali biror marta kirmagan."
@@ -471,13 +473,19 @@ msgid "Logout"
 msgstr "Chiqish"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr "Bu qabul qiluvchi uchun hisobotlarni koʻrishga ruxsat berish"
+msgstr "Bu qabul qiluvchi uchun anonim xabarlarni koʻrishga ruxsat berish"
+
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr ""
 
 msgid "File a report"
-msgstr "Hisobot yuborish"
+msgstr "Anonim xabar yuborish"
 
 msgid "Select the context of your report:"
-msgstr "Hisobot mazmunini tanlang"
+msgstr "Xabaringiz kanalini tanlang:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Davom etishdan oldin yangi parol belgilang."
@@ -527,27 +535,8 @@ msgstr "Multisayt funksiyasini yoqish"
 msgid "Enable simplified login"
 msgstr "Soddalashtirilgan kirishni yoqish"
 
-msgid "Allow recipients to delete reports"
-msgstr "Qabul qiluvchilarga hisobotlarni oʻchirish imkonini berish"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Qabul qiluvchilarga hisobot muddatini uzaytirish imkonini berish"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Qabul qiluvchilarga ayrim hisobotlar oshkor qiluvchilarini koʻrish ruxsatini berish"
-
 msgid "Enable search engines indexing"
 msgstr "Qidiruv tizimlari indeksatsiyasiga ruxsat berish"
-
-msgid "Enable custom privacy panel"
-msgstr "Maxsus maxfiylik panelini yoqish"
-
-msgid "Custom privacy panel"
-msgstr "Maxsus maxfiylik paneli"
-
-msgid "Disable the privacy panel"
-msgstr "Maxfiylik panelini faolsizlantirish"
 
 msgid "Enable the receipt hint"
 msgstr "Qabul bildirgisini yoqish"
@@ -584,7 +573,7 @@ msgid "Set the value to 0 to disable this feature."
 msgstr "Bu funksiya yoqilmasligi uchun 0 qiymatini belgilang."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr ""
+msgstr "Foydalanuvchilarga oʻqilmagan anonim xabarlar haqida necha kundan keyin xabar qilinsin"
 
 msgid "Enable custodian user role"
 msgstr "Himoyachi foydalanuvchi vakolatini yoqish"
@@ -599,7 +588,7 @@ msgid "Logging level"
 msgstr "Jurnal darajasi"
 
 msgid "Log accesses of internal users"
-msgstr "Internet foydalanuvchilar kirishini jurnalga yozish"
+msgstr "Ichki foydalanuvchilar kirishini jurnalga yozish"
 
 msgid "Notify administrators of software problems"
 msgstr "Administratorlarga dasturiy muammolar haqida xabar qilish"
@@ -616,7 +605,7 @@ msgid "Save"
 msgstr "Saqlash"
 
 msgid "Reset reports"
-msgstr ""
+msgstr "Anonim xabarlarni asliga qaytarish"
 
 msgid "Low"
 msgstr "Past"
@@ -682,7 +671,7 @@ msgid "Cancel"
 msgstr "Bekor qilish"
 
 msgid "Report statuses"
-msgstr ""
+msgstr "Anonim xabarlar holati"
 
 msgid "Logo"
 msgstr "Logotip"
@@ -814,7 +803,7 @@ msgid "Assign the receipt only to reports reaching score:"
 msgstr "Quyidagi ballik anonim xabarlarga faqat murojaat raqami berilsin:"
 
 msgid "Software version:"
-msgstr "Dastur versiyasi"
+msgstr "Dasturiy taʼminot versiyasi:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Quyidagi IP manzillardan kirishni taqiqlash"
@@ -900,7 +889,7 @@ msgstr "HTTPS avtomatik konfiguratsiyasida Let's Encrypt sertifikatlash idorasin
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
+"hostname must have a DNS record referencing that address."
 msgstr "Platforma ommaviy IP manzil orqali ochilishi va tanlangan host nomida shu manzilga yoʻnaltirilgan tegishli DNS qaydlari boʻlishi lozim."
 
 msgid "Manual configuration"
@@ -916,6 +905,15 @@ msgstr "Avto-yangilanishi"
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion xizmati"
+
+msgid "Disable the privacy panel"
+msgstr "Maxfiylik panelini faolsizlantirish"
+
+msgid "Enable custom privacy panel"
+msgstr "Maxsus maxfiylik panelini yoqish"
+
+msgid "Custom privacy panel"
+msgstr "Maxsus maxfiylik paneli"
 
 msgid "Anonymize outgoing connections"
 msgstr "Chiquvchi ulanishlarni anonimlash"
@@ -954,7 +952,7 @@ msgid "Password"
 msgstr "Parol"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr "Anonim xabar muddati tugashi xabar qilinishidan oldingi kutish vaqti (soatlarda)"
+msgstr "Anonim xabar muddatining tugashi necha soatdan keyin xabar qilinsin"
 
 msgid "Test the configuration"
 msgstr "Konfiguratsiyani sinash"
@@ -1149,854 +1147,828 @@ msgid "Fingerprint"
 msgstr "Barmoq izi"
 
 msgid "Set up encryption by providing a PGP public key"
-msgstr ""
+msgstr "PGP ochiq kaliti yordamida shifrlanishini sozlash"
 
 msgid "Give this admin ability to change user passwords"
-msgstr ""
+msgstr "Bu administratorga foydalanuvchilar parollarini oʻzgartirish vakolatini berish"
 
 msgid "Forcefully selected"
-msgstr ""
-
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr ""
+msgstr "Majburiy tanlangan"
 
 msgid "Allow the recipient to delete reports"
-msgstr ""
+msgstr "Qabul qiluvchiga anonim xabarlarni oʻchirish imkonini berish"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Qabul qiluvchi anonim xabar muddatini kechiktirishiga ruxsat berish"
 
 msgid "Give the user administrative access to the following features:"
-msgstr ""
+msgstr "Foydalanuvchiga quyidagi funksiyalarni boshqarish vakolatini berish:"
 
 msgid "Request date"
-msgstr ""
+msgstr "Soʻrov sanasi"
 
 msgid "Report date"
-msgstr ""
+msgstr "Xabar qilingan sanasi"
 
 msgid "Authorization"
-msgstr ""
+msgstr "Avtorizatsiya"
 
 msgid "Requests"
-msgstr ""
+msgstr "Soʻrovlar"
 
 msgid "The validation link is either incorrect or has expired."
-msgstr ""
+msgstr "Tekshiruv havolasi xato yoki eskirgan."
 
 msgid "Your new email address has been validated."
-msgstr ""
+msgstr "Yangi email manzilingiz tasdiqlandi."
 
 msgid "Forgot password?"
-msgstr ""
+msgstr "Parolni unutdingizmi?"
 
 msgid "Enter the two factor authentication code"
-msgstr ""
+msgstr "Ikki bosqichli hisob tekshiruvi kodini kiriting"
 
 msgid "Authentication failed"
-msgstr ""
+msgstr "Hisob tasdiqlanmadi"
 
 msgid "The code is either invalid or expired."
-msgstr ""
+msgstr "Kod yaroqsiz yoki eskirgan."
 
 msgid "Site:"
-msgstr ""
+msgstr "Sayt:"
 
 msgid "Please select your account:"
-msgstr ""
+msgstr "Hisobingizni tanlang:"
 
 msgid "Now type your password, then click 'Log in':"
-msgstr ""
+msgstr "Endi parolni yozing va “Kirish” ustiga bosing:"
 
 msgid "Text shown after the user has selected the option."
-msgstr ""
+msgstr "Foydalanuvchi parametr tanlaganidan keyin chiqadigan matn."
 
 msgid "Confirm"
 msgstr "Tasdiqlash"
 
 msgid "Are you sure?"
-msgstr ""
+msgstr "Ishonchingiz komilmi?"
 
 msgid "The operation will reset the configuration and cannot be undone."
-msgstr ""
+msgstr "Bu amal konfiguratsiyani asliga qaytaradi va uni ortga qaytarish imkonsiz."
 
 msgid "Assign score points"
-msgstr ""
+msgstr "Ballarni belgilash"
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr ""
+msgstr "Tegishli axborot butunlay oʻchib ketishini unutmang."
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr ""
+msgstr "Bu — demo platforma, unga haqiqiy anonim xabarlar yubormang."
 
 msgid "Close"
-msgstr "Закрыть"
+msgstr "Yopish"
 
 msgid "Install an authenticator app on your phone"
-msgstr ""
+msgstr "Telefonga autentifikator ilovasini oʻrnatish"
 
 msgid "Scan the QR code with the app"
-msgstr ""
+msgstr "QR kodni ilova yordamida skanerlang"
 
 msgid "Enable two factor authentication"
-msgstr ""
+msgstr "Ikki bosqichli hisob tekshiruvini yoqish"
 
 msgid "Before proceeding please read carefully the documentation at:"
-msgstr ""
+msgstr "Davom ettirishdan oldin quyidagi texnik hujjatlar bilan tanishing:"
 
 msgid "Your account recovery key is:"
-msgstr ""
+msgstr "Hisobingizni tiklash kaliti:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr ""
+msgstr "Uni nusxalang va ishonchli joyda saqlang. U parol unutilganda hisobni xavfsiz tiklash uchun kerak boʻladi."
 
 msgid "Welcome!"
 msgstr "Xush kelibsiz!"
 
 msgid "For the user documentation, visit:"
-msgstr ""
+msgstr "Foydalanuvchilar uchun texnik hujjatlar:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
 " the software:"
-msgstr ""
+msgstr "Texnik koʻmak, dastur yuzasidan savollar va takliflar uchun:"
 
 msgid ""
 "If you want to contribute to software development or report a bug, please "
 "open an issue in our ticketing system:"
-msgstr ""
+msgstr "Dasturiy taʼminot rivojiga hissa qoʻshish yoki xatoliklar haqida xabar qilish uchun bizning tiketlar tizimimizga tashrif buyuring:"
 
 msgid "Join our chat:"
-msgstr ""
+msgstr "Chatimizga qoʻshiling:"
 
 msgid "Follow the project on:"
-msgstr ""
+msgstr "Loyihani kuzating:"
 
 msgid "Hint: How to hide your receipt"
-msgstr ""
+msgstr "Bildirgi: Murojaat raqamini qanday yashirish mumkin"
 
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr ""
+msgstr "Murojaat raqamini yashirishning oddiy usuli, kredit karta raqami kabi muddati bilan biror joyga yozib olishdir."
 
 msgid "Error!"
-msgstr ""
+msgstr "Xato!"
 
 msgid "Internal server error"
-msgstr ""
+msgstr "Server ichki xatosi"
 
 msgid "Error on input validation"
-msgstr ""
+msgstr "Kiritish tekshiruvida xato"
 
 msgid "Resource not found"
-msgstr ""
+msgstr "Manba topilmadi"
 
 msgid "Forbidden operation"
-msgstr ""
+msgstr "Taqiqlangan amal"
 
 msgid "The specified old password is not valid"
-msgstr ""
+msgstr "Eski parol xato kiritildi"
 
 msgid "Resource can only be accessed via the Tor network"
-msgstr ""
+msgstr "Manba faqatgina Tor tarmoq ulanishi orqali ochiladi"
 
 msgid "The upload request exceeds the size limit"
-msgstr ""
+msgstr "Yuklash soʻrovi belgilangan limitdan ortiq"
 
 msgid "Request support"
-msgstr ""
+msgstr "Yordam olish"
 
 msgid "Thank you."
-msgstr ""
+msgstr "Rahmat."
 
 msgid "We will try to get back to you as soon as possible."
-msgstr ""
+msgstr "Murojaatingizga iloji boricha tez javob beramiz."
 
 msgid "Submit"
 msgstr "Yuborish"
 
 msgid "Validation of email address change in progress."
-msgstr ""
+msgstr "Email manzil oʻzgarishi tekshirilmoqda."
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
+msgstr "Keyingi qadamlar email manzilingizga yuborildi."
 
 msgid "Account recovery key"
-msgstr ""
+msgstr "Hisobni tiklash kaliti"
 
 msgid "Current password"
-msgstr ""
+msgstr "Joriy parol"
 
 msgid "Old password confirmation required"
-msgstr ""
+msgstr "Eski parolni tasdiqlash lozim"
 
 msgid ""
 "It appears that you are browsing this site without any extra privacy and "
 "security!"
-msgstr ""
+msgstr "Siz bu saytga himoyalanmagan protokol orqali kirdingiz!"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr ""
+msgstr "Shaxsingiz maxfiyligi uchun bu saytga Tor brauzeri ilovasidan kirishni tavsiya etamiz."
 
 msgid "Download the Tor Browser"
-msgstr ""
+msgstr "Tor Brauzerini yuklab olish"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr ""
+msgstr "Keyin quyidagi manzilni nusxalang va Tor Brauzeri manzillar qatoriga joylang:"
 
 msgid "Enter a name for the copy"
-msgstr ""
+msgstr "Nusxa nomini kiriting"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr ""
+msgstr "Allaqachon anonim xabar qilganmisiz? Murojaat raqamingizni kiriting."
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr ""
+msgstr "Anonim xabar yaroqsiz yoki uning muddati eskirgan."
 
 msgid "Select a file or drag it here."
-msgstr ""
+msgstr "Fayl tanlang yoki shu yerga tortib tashlang."
 
 msgid "Uploading files…"
-msgstr ""
+msgstr "Fayllar yuklanmoqda…"
 
 msgid "Upload completed successfully!"
-msgstr ""
+msgstr "Fayllar yuklandi!"
 
 msgid "Error while uploading files; check below for details."
-msgstr ""
+msgstr "Fayllarni yuklashda xatolik yuz berdi, quyidagi xato tafsilotini tekshiring."
 
 msgid "Estimated upload time:"
-msgstr ""
+msgstr "Taxminiy yuklash vaqti:"
 
 msgid "Size:"
-msgstr ""
-
-msgid "Enable the Ricochet panel"
-msgstr ""
-
-msgid "Address"
-msgstr ""
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr ""
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr ""
-
-msgid "Download Ricochet at:"
-msgstr ""
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr ""
+msgstr "Hajmi:"
 
 msgid "The connection is not secure."
-msgstr ""
+msgstr "Ulanish xavfsiz emas."
 
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
-msgstr ""
+msgstr "Platforma hozircha HTTPS ulanishlar uchun sozlanmagan va faqat sinov maqsadlarida ishlatiladi."
 
 msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr ""
+msgstr "Qabul qiluvchilar qoʻshimcha savolnomani toʻldirishingizni soʻradi."
 
 msgid "Fill the additional questionnaire"
-msgstr ""
+msgstr "Qoʻshimcha savolnomani toʻldirish"
 
 msgid "Send"
 msgstr "Yuborish"
 
 msgid "Allow the whistleblower to write comments"
-msgstr ""
+msgstr "Oshkor qiluvchilar fikr bildirishiga ruxsat berish"
 
 msgid "From:"
-msgstr ""
+msgstr "Kimdan:"
 
 msgid "To:"
-msgstr ""
+msgstr "Kimga:"
 
 msgid "Filename"
-msgstr ""
+msgstr "Fayl nomi"
 
 msgid "Upload date"
-msgstr ""
+msgstr "Yuklangan vaqti"
 
 msgid "File size"
-msgstr ""
+msgstr "Fayl hajmi"
 
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr ""
+msgstr "Oshkor qiluvchilar anonim xabarlarida fayl biriktirishlariga ruxsat berish"
 
 msgid "Allow the whistleblower to send messages"
-msgstr ""
+msgstr "Oshkor qiluvchilar xabar yuborishiga ruxsat berish"
 
 msgid "Are you sure that you want to delete the report?"
-msgstr ""
+msgstr "Bu anonim xabar aniq oʻchirilsinmi?"
 
 msgid ""
 "Everything related to the report stored on the platform will be deleted."
-msgstr ""
+msgstr "Platformadagi bu xabarga aloqador barcha narsalar oʻchib ketadi."
 
 msgid ""
 "Please be aware that everything stored off the platform, e.g. files you have"
 " saved on your computer, must be deleted manually."
-msgstr ""
+msgstr "Eslatma: xabarga aloqador kompyuteringizdagi kabi platforma tashqarisidagi fayllar mustaqil oʻchirilishi kerak."
 
 msgid "Are you sure that you want to delete the selected reports?"
-msgstr ""
+msgstr "Tanlangan anonim xabarlar aniq oʻchirilsinmi?"
 
 msgid ""
 "Please make sure that all related data is properly deleted so that the "
 "recipients won't be able to further access to it."
-msgstr ""
+msgstr "Qabul qiluvchilar keyinchalik ochmasligi uchun barcha aloqador axborotlar bexato oʻchirilganini tekshiring."
 
 msgid "Please write a motivation for the reply"
-msgstr ""
+msgstr "Motivatsiyangizni javobda yozing"
 
 msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr ""
+msgstr "Anonim xabar muddati aniq kechiktirilsinmi?"
 
 msgid "By confirming, you will postpone the expiration date to:"
-msgstr ""
+msgstr "Tasdiqlansa, muddat quyidagi sanagacha kechiktiriladi:"
 
 msgid ""
 "Are you sure that you want to postpone the expiration date for all selected "
 "reports?"
-msgstr ""
+msgstr "Tanlangan anonim xabarlar muddati aniq kechiktirilsinmi?"
 
 msgid "Questionnaire answers"
-msgstr ""
+msgstr "Savolnomaga javoblar"
 
 msgid "Step"
-msgstr ""
+msgstr "Qadam"
 
 msgid "Status:"
-msgstr ""
+msgstr "Holati:"
 
 msgid "Files attached by recipients"
-msgstr ""
+msgstr "Qabul qiluvchilar biriktirgan fayllar"
 
 msgid "Upload a file:"
-msgstr ""
+msgstr "Fayl yuklash:"
 
 msgid "An update is available:"
-msgstr ""
+msgstr "Yangilanish bor:"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
+msgstr "“Hisobni tiklash kaliti”ngizni olish va xavfsiz joyda saqlash uchun “Parametrlar” bandini ochishni tavsiya etamiz. Bu kalit parol unutilganda platformaga ruxsatingizni xavfsiz tiklashda kerak boʻladi."
 
 msgid "The provided recovery key is invalid."
-msgstr ""
+msgstr "Taqdim etilgan tiklash kaliti yaroqsiz."
 
 msgid "The provided reset token is invalid or expired."
-msgstr ""
+msgstr "Taqdim etilgan tiklash tokeni yaroqsiz yoki eskirgan."
 
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr ""
+msgstr "Parolni yangilash uchun hisobingizga ulangan foydalanuvchi nomi yoki email manzilingizni kiriting."
 
 msgid "Enter your email address to request a password reset."
-msgstr ""
+msgstr "Parolni yangilash uchun email manzilingizni kiriting."
 
 msgid ""
 "Enter you encryption recovery key to complete the password reset procedure"
-msgstr ""
+msgstr "Parolni yangilash jarayonini yakunlash uchun shifrlangan tiklash kalitini kiriting"
 
 msgid "Password reset requested."
-msgstr ""
+msgstr "Parol yangilanishi soʻraldi."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
-msgstr ""
+msgstr "Himoyachi tomonidan oshkor qiluvchining shaxsiy axborotini koʻrishga ruxsat soʻraldi."
 
 msgid "Date of the request"
-msgstr ""
+msgstr "Soʻrov sanasi"
 
 msgid "Show"
 msgstr "Ko‘rsatish"
 
 msgid "Congratulations!"
-msgstr ""
+msgstr "Tabriklaymiz!"
 
 msgid "You have completed the platform activation."
-msgstr ""
+msgstr "Platformani aktivatsiya qildingiz."
 
 msgid "Success!"
 msgstr "Yakunlandi!"
 
 msgid "Your whistleblowing platform is almost ready!"
-msgstr ""
+msgstr "Oshkor qilish platformangiz deyarli tayyor!"
 
 msgid "Check your inbox to activate it."
-msgstr ""
+msgstr "Aktivatsiya qilish uchun email qutingizni tekshiring."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr ""
+msgstr "Agar platforma 24 soat ichida aktivatsiya qilinmasa, u avtomatik oʻchiriladi."
 
 msgid "Sign up"
-msgstr ""
+msgstr "Roʻyxatdan oʻtish"
 
 msgid "Domain"
 msgstr "Domen"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "Tasdiqlash"
 
 msgid "Invalid confirmation"
-msgstr ""
+msgstr "Yaroqsiz tasdiqlash"
 
 msgid "Complete"
-msgstr ""
+msgstr "Yakunlash"
 
 msgid "Invalid phone number"
-msgstr ""
+msgstr "Telefon raqami yaroqsiz"
 
 msgid "The answer is too short"
-msgstr ""
+msgstr "Javob juda qisqa"
 
 msgid "The specified input is not valid."
-msgstr ""
+msgstr "Belgilangan kiritish oynasi yaroqsiz."
 
 msgid "The specified input is not valid:"
-msgstr ""
+msgstr "Belgilangan kiritish oynasi yaroqsiz:"
 
 msgid "please enter a valid email address."
-msgstr ""
+msgstr "yaroqli email manzilini kiriting"
 
 msgid "please enter numbers only."
-msgstr ""
+msgstr "faqat raqam kiriting."
 
 msgid "Submissions disabled"
-msgstr ""
+msgstr "Xabar berishlar yopilgan"
 
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
-msgstr ""
-
-msgid "Thank you!"
-msgstr ""
+msgstr "Serverga himoyasiz ulangansiz va bu server faqat anonim xabarlarni qabul qiladi"
 
 msgid "Your report was successful."
-msgstr ""
+msgstr "Xabaringiz qabul qilindi."
 
 msgid "Remember your receipt for this report."
-msgstr ""
+msgstr "Xabaringiz murojaat raqamini eslab qoling."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr ""
+msgstr "Kirishda 16 xonali murojaat raqamidan foydalaning. Uning yordamida sizga yuborilgan javoblarni koʻrish va qoʻshimcha axborot yuborish mumkin."
 
 msgid "View your report"
-msgstr ""
+msgstr "Anonim xabaringiz"
 
 msgid "Recipient selection"
-msgstr ""
+msgstr "Qabul qiluvchini tanlash"
 
 msgid "Select the recipients of your report:"
-msgstr ""
+msgstr "Xabaringiz uchun qabul qiluvchini tanlang:"
 
 msgid "Recipients selected:"
-msgstr ""
+msgstr "Tanlangan qabul qiluvchilar:"
 
 msgid "You have reached the maximum number of selectable recipients."
-msgstr ""
+msgstr "Qabul qiluvchilar maksimal miqdorda tanlandi."
 
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr ""
+msgstr "Quyidagi qabul qiluvchilar xabaringizni oladi va ularni tanlovdan yechish imkonsiz:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
 "invalid:"
-msgstr ""
+msgstr "Bu bosqichda quyidagi savollarga javoblar berilmagan yoki yaroqsiz:"
 
 msgid "You must select at least one recipient."
-msgstr ""
+msgstr "Kamida bitta qabul qiluvchini tanlang."
 
 msgid "Waiting for the file(s) to finish uploading."
-msgstr ""
+msgstr "Fayl(lar)ning oxirigacha yuklanishi kutilmoqda."
 
 msgid "The following steps have errors:"
-msgstr ""
+msgstr "Quyidagi bosqichlarda xato bor:"
 
 msgid "Hide"
-msgstr ""
+msgstr "Berkitish"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
 "whistleblowing platform."
-msgstr ""
+msgstr "Quyidagi koʻrsatmalar yordamida oʻz oshkor qilish platformangizni yarata olasiz."
 
 msgid "Please choose a configuration profile:"
-msgstr ""
+msgstr "Konfiguratsiya profilini tanlang:"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr ""
+msgstr "Bu administratorga foydalanuvchilar parolini oʻzgartirish imkonini berish."
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr ""
+msgstr "Qabul qiluvchilar parollarini unutishi kabi vaziyatlarda axborotlarni oʻchib ketishdan himoyalashni istasangiz, bu parametrni tanlashni tavsiya qilamiz. Lekin agar anonim xabarlarni faqat qabul qiluvchilar koʻra oladigan tizim sozlamoqchi boʻlsangiz, bu parametr yoqilmasligi kerak."
 
 msgid "Please choose a different username."
-msgstr ""
+msgstr "Boshqa foydalanuvchi nomini tanlang."
 
 msgid "I have read and agree to the terms of the license."
-msgstr ""
+msgstr "Litsenziya shartlari bilan tanishdim va ularga roziman."
 
 msgid "You have completed the platform wizard."
-msgstr ""
+msgstr "Platformani sozlash jarayoni yakunlandi."
 
 msgid "Fill out your report"
-msgstr ""
+msgstr "Anonim xabaringizni toʻldiring"
 
 msgid "Describe your report in a few words."
-msgstr ""
+msgstr "Xabaringizni bir nechta soʻz bilan ifodalang."
 
 msgid "Describe your report in detail."
-msgstr ""
+msgstr "Xabaringiz haqida batafsil axborot bering."
 
 msgid "Attach files relevant to the report."
-msgstr ""
+msgstr "Xabaringizga aloqador fayllarni biriktiring."
 
 msgid "Do you want to provide your identification information?"
-msgstr ""
+msgstr "Shaxsiy axoborotingiz taqdim qilinsinmi?"
 
 msgid "First name"
-msgstr ""
+msgstr "Ismi"
 
 msgid "Last name"
-msgstr ""
+msgstr "Sharifi"
 
-msgid "Preferred contact method"
-msgstr ""
+msgid "Alternative contact method"
+msgstr "Muqobil bogʻlanish usuli"
 
 msgid "Other"
-msgstr ""
+msgstr "Boshqa"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr ""
+msgstr "Men bilan faqat shu platformada bogʻlanilsin"
 
 msgid "Dear {RecipientName},"
-msgstr ""
+msgstr "Hurmatli {RecipientName},"
 
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr ""
+msgstr "Tizimingizda foydalanuvchi yaratilgani uchun sizga bu email yuborildi: {Site}"
 
 msgid "Username: {Username}"
-msgstr ""
+msgstr "Foydalanuvchi: {Username}"
 
 msgid "Activation link: {Url}"
-msgstr ""
+msgstr "Aktivatsiya havolasi: {Url}"
 
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr ""
+msgstr "Hisobni faollashtirish uchun aktivatsiya havolasini bosing va foydalanuvchi parolini belgilang."
 
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
-msgstr ""
+msgstr "Aktivatsiya qilinganidan keyin tizimga quyidagi havola orqali kirish mumkin: {LoginUrl}"
 
 msgid "Kind regards,"
-msgstr ""
+msgstr "Hurmat bilan,"
 
 msgid "Account activation"
-msgstr ""
+msgstr "Hisobni faollashtirish"
 
 msgid "Your whistleblowing platform is now accessible at:"
-msgstr ""
+msgstr "Oshkor qilish platformangiz quyidagi manzilda ochiladi:"
 
 msgid "To log in, visit:"
-msgstr ""
+msgstr "Quyidagi manzil orqali kiring:"
 
 msgid "Users' credentials:"
-msgstr ""
+msgstr "Foydalanuvchilar kirish maʼlumotlari:"
 
 msgid "The platform will be automatically deleted on:"
-msgstr ""
+msgstr "Platforma quyidagi sanada avtomatik oʻchiriladi:"
 
 msgid "Access instructions"
-msgstr ""
+msgstr "Koʻrsatmalarni ochish"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
-msgstr ""
+msgstr "Yaqinda aniqlangan yuqori darajadagi noodatiy harakatlar soni."
 
 msgid ""
 "This could be a sign of an attack (for example, someone flooding your server"
 " with bogus information) or just a usage spike due to an increased "
 "visibility of your project."
-msgstr ""
+msgstr "Bu kiber hujum (masalan, kimdir serverdan axborot chiqarib olishga urinyapti) alomati boʻlishi mumkin yoki loyihangiz yaxshi tanilgan boʻlishi mumkin."
 
 msgid "Examine the issue to determine whether it is legitimate or not."
-msgstr ""
+msgstr "Muammoni yaxshilab tekshiring, unda noqonuniy harakatlar boʻlishi mumkin."
 
 msgid "The activities with unusual stats are:"
-msgstr ""
+msgstr "Noodatiy harakatlarda quyidagilar yuz berishi mumkin:"
 
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr ""
+msgstr "Server yangi anonim xabarlarni saqlash kafolatini bermaydi va yangi xabar qilishlar yopiladi."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
 "the server."
-msgstr ""
+msgstr "Texnik yordam xizmatidan serverda qoʻshimcha joy ochishni soʻrash haqida oʻylab koʻring."
 
 msgid ""
 "GlobaLeaks technology includes a server status checking component which will"
 " alert you in case something requires your attention."
-msgstr ""
+msgstr "GlobaLeaks texnologiyasi diqqatingizni qaratish kerakligida server holatini tekshirish komponentiga ega."
 
 msgid ""
 "For more information, log in to the Administration interface and look at the"
 " \"System Stats\" and \"Anomalies\" sections."
-msgstr ""
+msgstr "Batafsil axborot olish uchun boshqaruv interfeysiga kirib, “Tizim statistikasi” va “Anomaliyalar” bandlarini tekshiring."
 
 msgid "Anomaly detected in {NodeName}"
-msgstr ""
+msgstr "{NodeName} tugunida anomaliya aniqlandi"
 
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
 "going to expire or has already expired:"
-msgstr ""
+msgstr "Bu xat sizga quyidagi foydalanuvchilarning PGP kalitlari muddati tugaganligi yoki tugash arafasida ekanini xabar qiladi:"
 
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
 "notifications."
-msgstr ""
+msgstr "Yaroqli PGP kalitisiz tizim ularga shirflangan bildirishnomalar yubora olmaydi."
 
 msgid "PGP key expiration alert"
-msgstr ""
+msgstr "PGP kalit muddati signali"
 
 msgid "A new whistleblowing site has been registered."
-msgstr ""
+msgstr "Yangi oshkor qilish sayti roʻyxatdan oʻtkazildi."
 
 msgid "Registration data:"
-msgstr ""
+msgstr "Roʻyxatga olingan sanasi:"
 
 msgid "Site: {Url}"
-msgstr ""
+msgstr "Sayt: {Url}"
 
 msgid "Name: {Name}"
-msgstr ""
+msgstr "Ismi: {Name}"
 
 msgid "Email: {Email}"
-msgstr ""
+msgstr "Email manzili: {Email}"
 
 msgid "New whistleblowing site registered"
-msgstr ""
+msgstr "Yangi oshkor qilish sayti roʻyxatdan oʻtkazildi"
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
-msgstr ""
+msgstr "Bu sinov xati platformaning boshqaruv interfeysidan yuborildi."
 
 msgid ""
 "Reception of this email indicates that the server was able to authenticate "
 "to and interact with the SMTP mail server."
-msgstr ""
+msgstr "Bu email xabarning kelgani serverning SMTP pochta serveri orqali avtorizatsiya qilingani va muloqotdaligini bildiradi."
 
 msgid "Test email"
-msgstr ""
+msgstr "Email sinovi"
 
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr ""
+msgstr "Bu xat sizga email manzilingizni yangi {NewEmailAddress} manziliga almashtirishni soʻraganingizni bildiradi."
 
 msgid "Click the following link to validate this change:"
-msgstr ""
+msgstr "Almashtiruvni tasdiqlash uchun quyidagi havolani bosing:"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
 "system administrator."
-msgstr ""
+msgstr "Bu soʻrovni yubormagan boʻlsangiz, parolingizni yangilang va tizim administratoriga murojaat qiling."
 
 msgid "Email change request"
-msgstr ""
+msgstr "Email almashtiruvi soʻrovi"
 
 msgid "From: {Author}"
-msgstr ""
+msgstr "Kimdan: {Author}"
 
 msgid "Date: {EventTime}"
-msgstr ""
+msgstr "Sana: {EventTime}"
 
 msgid "From: Whistleblower"
-msgstr ""
+msgstr "Kimdan: Oshkor qiluvchidan"
 
 msgid "Date: {SubmissionDate}"
-msgstr ""
+msgstr "Sana: {SubmissionDate}"
 
 msgid "Label: {TipLabel}"
-msgstr ""
+msgstr "Yorliq: {TipLabel}"
 
 msgid "Status: {TipStatus}"
-msgstr ""
+msgstr "Holati: {TipStatus}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
-msgstr ""
+msgstr "Platformada yuklangan HTTPS sertifikati muddati tugash arafasida yoki tugagan."
 
 msgid "Expiration date: {ExpirationDate}"
-msgstr ""
+msgstr "Tugash sanasi: {ExpirationDate}"
 
 msgid ""
 "Without a valid certificate, the platform will be accessible in a secure way"
 " only via Tor."
-msgstr ""
+msgstr "Yaroqli sertifikatsiz Platforma faqat Tor orqali xavfsiz ochiladi."
 
 msgid "Log in to solve the issue."
-msgstr ""
+msgstr "Muammoni tuzatish uchun hisobga kirish."
 
 msgid "Expiration alert for HTTPS certificate"
-msgstr ""
+msgstr "HTTPS sertifikat muddati tugashi signali"
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
-msgstr ""
+msgstr "Bugun rejalashtirilgan HTTPS sertifikatning avtomatik uzaytirilishi hozirgina bajarilmadi."
 
 msgid "The system will keep trying."
-msgstr ""
+msgstr "Tizim urinishda davom etadi."
 
 msgid "Failed HTTPS certificate renewal"
-msgstr ""
+msgstr "HTTPS sertifikat muddati uzaytirilmadi"
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr ""
+msgstr "Bu xat sizga {TipNum} xabari oshkor qiluvchisining shaxsiy axborotini koʻrishga himoyachi tomonidan ruxsat berilgani haqida xabar qiladi."
 
 msgid "The report can be accessed at:"
-msgstr ""
+msgstr "Anonim xabarni quyida ochish muimkin:"
 
 msgid "Access to whistleblower's identity authorized"
-msgstr ""
+msgstr "Oshkor qiluvchining shaxsiy axborotini koʻrishga ruxsat berildi"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr ""
+msgstr "Bu xat sizga {TipNum} xabari oshkor qiluvchisining shaxsiy axborotini koʻrishga himoyachi tomonidan ruxsat rad etilgani haqida xabar qiladi."
 
 msgid "Access to whistleblower's identity denied"
-msgstr ""
+msgstr "Oshkor qiluvchining shaxsiy axborotini koʻrishga ruxsat rad etildi"
 
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr ""
+msgstr "Bu xat sizga qabul qiluvchi {TipNum} xabari oshkor qiluvchisining shaxsiy axborotini koʻrishga ruxsat soʻragani haqida xabar qiladi."
 
 msgid "The request can be accessed at:"
-msgstr ""
+msgstr "Soʻrovni quyida ochish mumkin:"
 
 msgid "New request of access to a whistleblower's identity"
-msgstr ""
+msgstr "Oshkor qiluvchining shaxsiy axborotini koʻrishga yangi ruxsat soʻrovi"
 
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr ""
+msgstr "Bu xat sizga {TipNum} xabari oshkor qiluvchisining shaxsiy axborotini koʻrishga ruxsat berilgani haqida xabar qiladi."
 
 msgid "The whistleblower has provided their identity"
-msgstr ""
+msgstr "Oshkor qiluvchining shaxsiy axborotiga ruxsat taqdim etildi"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr ""
+msgstr "Bu xat sizga hisob parolini yangilash soʻralgani haqida xabar qiladi: {Username}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
 "email."
-msgstr ""
+msgstr "Agar bu soʻrovni siz yubormagan boʻlsangiz, bu xatni inkor qiling va oʻchirib yuboring."
 
 msgid "You can confirm your request by clicking the following link:"
-msgstr ""
+msgstr "Soʻrovni tasdiqlash uchun quyidagi havolani bosing:"
 
 msgid "Password reset instructions"
-msgstr ""
+msgstr "Parolni yangilash koʻrsatmalari"
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
 "expired."
-msgstr ""
+msgstr "Bu xat sizga PGP kalitingiz muddati tugash arafasida yoki tugagani haqida xabar qiladi."
 
 msgid ""
 "You should extend its validity and update the key present on the platform, "
 "or upload a new key."
-msgstr ""
+msgstr "Platformadagi kalit muddatini uzaytirishingiz yoki yangi kalit yuklashingiz kerak."
 
 msgid ""
 "Without a valid PGP key, the system won't be able to encrypt data provided "
 "to you."
-msgstr ""
+msgstr "Yaroqli PGP kalitsiz tizim sizga shifrlangan axborot taqdim qila olmaydi."
 
 msgid "Click the link to activate the platform:"
-msgstr ""
+msgstr "Platformani faollashtirish uchun havola ustiga bosing:"
 
 msgid "Activation"
-msgstr ""
+msgstr "Aktivatsiya"
 
 msgid "A software update is available."
-msgstr ""
+msgstr "Dasturiy taʼminot yangilanishi chiqdi."
 
 msgid "It is good security practice to keep the platform up to date."
-msgstr ""
+msgstr "Platformani eng oxirgi nashrda ishlatish tavsiya etiladi."
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "
 "change log at: {ChangeLogUrl}"
-msgstr ""
+msgstr "Yangi oʻzgarishlar va tuzatilgan xatoliklar haqidagi batafsil axborot: {ChangeLogUrl}"
 
 msgid ""
 "For instructions on software updates, please refer to the documentation at: "
 "{UpdateGuideUrl}"
-msgstr ""
+msgstr "Dasturiy taʼminot yangilanishlari haqidagi texnik hujjatlar: {UpdateGuideUrl}"
 
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "Bu xat qabul qiluvchiga bir yoki bir necha anonim xabarlaringizni koʻrishga ruxsat berilgani haqida xabar qiladi."
 
 msgid "New report"
-msgstr ""
+msgstr "Yangi anonim xabar"
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
-msgstr ""
+msgstr "Eng erta muddati: {EarliestExpirationDate}."
 
 msgid "Please remember to check them before they are deleted."
-msgstr ""
+msgstr "Ularni oʻchib ketishidan oldin tekshirishni unutmang."
 
 msgid "Some reports will expire soon"
-msgstr ""
+msgstr "Ayrim anonim xabarlar muddati tez orada tugaydi"
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr ""
+msgstr "Bu xat oshkor qiluvchi oʻz xabarlariga sizni ishonchli qabul qiluvchi sifatida tanlagani haqida xabar qiladi."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -2004,22 +1976,22 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr ""
+msgstr "Tarkibidagi axborot va materiallarni diqqat bilan tekshirishni tavsiya qilamiz. Unutmangki, oshkor qiluvchilar odatda jamiyat farovonligi maqsadida oʻzlarini xavf ostiga qoʻygan holda xabar berayotgan boʻlishi mumkin. Shu sababli kelgan axborotlar diqqat bilan koʻrib chiqilishi lozim."
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr ""
+msgstr "Bu xat mavjud anonim axborot yangilangani haqida xabar qiladi."
 
 msgid "Report updated"
-msgstr ""
+msgstr "Anonim xabar yangilandi"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr ""
+msgstr "Bu xat sizga oʻqilmagan yoki yangilangan anonim xabarlar haqida eslatish uchun yuborildi."
 
 msgid "Reminder about unread or updated reports"
-msgstr ""
+msgstr "Oʻqilmagan yoki yangilangan xabarlar haqida eslatma"
 
 msgid "Role: {Role}"
-msgstr ""
+msgstr "Vakolati: {Role}"
 
 msgid "Password: {Password}"
-msgstr ""
+msgstr "Paroli: {Password}"

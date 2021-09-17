@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-05 15:38+0000\n"
+"PO-Revision-Date: 2021-09-18 11:25+0000\n"
 "Last-Translator: Veranika Mazurkevich <v.mazurkievic@gmail.com>\n"
 "Language-Team: Belarusian (http://www.transifex.com/otf/globaleaks/language/be/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -474,6 +474,12 @@ msgstr "Выхад"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr "Дазволіць гэтаму атрымальніку даваць права карыстальніцкага доступу да справаздачаў"
 
+msgid "Grant access"
+msgstr "Даць доступ"
+
+msgid "Revoke access"
+msgstr "Адклікаць доступ"
+
 msgid "File a report"
 msgstr "Падаць справаздачу"
 
@@ -528,27 +534,8 @@ msgstr "Уключыць функцыю мултысайтавага разго�
 msgid "Enable simplified login"
 msgstr "Уключыць спрошаны ўваход"
 
-msgid "Allow recipients to delete reports"
-msgstr "Дазволіць атрымальнікам выдаляць справаздачы"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Дазволіць атрымальнікам пераносіць сканчэнне тэрміну дзеяння справаздачы"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Дазволіць атрымальнікам адкрываць доступ выкрывальнікам па асобных справаздачах"
-
 msgid "Enable search engines indexing"
 msgstr "Уключыць індэксацыю пошукавых сістэм"
-
-msgid "Enable custom privacy panel"
-msgstr "Уключыць карыстальніцкую панэль канфідэнцыйнасці"
-
-msgid "Custom privacy panel"
-msgstr "Карыстальніцкая панэль канфідэнцыйнасці"
-
-msgid "Disable the privacy panel"
-msgstr "Адключыць панэль канфідэнцыйнасці"
 
 msgid "Enable the receipt hint"
 msgstr "Уключыць уведамленне аб атрыманні"
@@ -901,7 +888,7 @@ msgstr "Выкарыстанне аўтаматычнай канфігурацы
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
+"hostname must have a DNS record referencing that address."
 msgstr "Платформа павінна быць даступнай праз публічны IP -адрас, а абранае імя вузла павінна мець адпаведны запіс DNS, які скіроўвае на гэты адрас."
 
 msgid "Manual configuration"
@@ -917,6 +904,15 @@ msgstr "Аўта-аднаўленне"
 
 msgid "Tor Onion Service"
 msgstr "Сэрвіс Tor Onion"
+
+msgid "Disable the privacy panel"
+msgstr "Адключыць панэль канфідэнцыйнасці"
+
+msgid "Enable custom privacy panel"
+msgstr "Уключыць карыстальніцкую панэль канфідэнцыйнасці"
+
+msgid "Custom privacy panel"
+msgstr "Карыстальніцкая панэль канфідэнцыйнасці"
 
 msgid "Anonymize outgoing connections"
 msgstr "Ананімізаваць выходныя злучэнні"
@@ -1158,11 +1154,11 @@ msgstr "Надзяліць гэтага адміна правам мяняць �
 msgid "Forcefully selected"
 msgstr "Абавязковы элемент"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Дазволіць атрымальніку пераносіць сканчэнне тэрміну дзеяння справаздачы"
-
 msgid "Allow the recipient to delete reports"
 msgstr "Дазволіць атрымальніку выдаляць справаздачы"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Дазволіць атрымальніку пераносіць сканчэнне тэрміну дзеяння справаздачы"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Даць карыстальніку адміністратарскі доступ да наступных функцый:"
@@ -1374,29 +1370,6 @@ msgstr "Разліковы час загрузкі:"
 msgid "Size:"
 msgstr "Памер:"
 
-msgid "Enable the Ricochet panel"
-msgstr "Уключыць панэль Ricochet"
-
-msgid "Address"
-msgstr "Адрас"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "Ананімны чат з намі з дапамогай прыкладання Ricochet"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "Для чата з намі выкарыстоўваць наступны адрас Ricochet:"
-
-msgid "Download Ricochet at:"
-msgstr "Спампаваць Ricochet адсюль:"
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "Ужываючы сетку Tor і ствараючы сервіс Onion, Ricochet - гэта прыкладанне для абмену імгненнымі паведамленнямі, якое дазваляе камунікаваць праз чат, дзе захоўваецца канфідэнцыйнасць і ананімнасць, а таксама не раскрываецца месцазнаходжанне або IP-адрас. Вы не адчуеце аніякай розніцы з неабароненым чатам, за выключэннем таго, што будзеце выкарыстоўваць унікальны адрас замест нумара тэлефону/электроннай пошты/імя карыстальніка."
-
 msgid "The connection is not secure."
 msgstr "Дадзенае злучэнне неабароненае."
 
@@ -1588,9 +1561,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "Вы падлучаецеся да сервера неананімна, а гэты сервер падтрымлівае толькі ананімную падачу матэрыялаў"
 
-msgid "Thank you!"
-msgstr "Дзякуй!"
-
 msgid "Your report was successful."
 msgstr "Ваша справаздача паспяхова зробленая. "
 
@@ -1687,8 +1657,8 @@ msgstr "Імя"
 msgid "Last name"
 msgstr "Прозвішча"
 
-msgid "Preferred contact method"
-msgstr "Пажаданы спосаб кантакту"
+msgid "Alternative contact method"
+msgstr "Альтэрнатыўны спосаб кантакту"
 
 msgid "Other"
 msgstr "Іншае"

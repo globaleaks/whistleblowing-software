@@ -2,10 +2,11 @@
 # Translators:
 # Adawcs, 2021
 # Cheer Zeng <cheerz6623@gmail.com>, 2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Hong Kong) (http://www.transifex.com/otf/globaleaks/language/zh_HK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -473,6 +474,12 @@ msgstr "登出"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr ""
+
 msgid "File a report"
 msgstr "提交報告"
 
@@ -527,27 +534,8 @@ msgstr "啟用多網站功能"
 msgid "Enable simplified login"
 msgstr "開啟簡易登入"
 
-msgid "Allow recipients to delete reports"
-msgstr "接收者可以刪除報告"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "接收者可以延遲報告到期日"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "接收者可以授予吹哨者對於特定報告的權限"
-
 msgid "Enable search engines indexing"
 msgstr "允許搜尋引擎進行索引"
-
-msgid "Enable custom privacy panel"
-msgstr "自訂平台頁首的私隱通告"
-
-msgid "Custom privacy panel"
-msgstr "自訂私隱通告內文"
-
-msgid "Disable the privacy panel"
-msgstr "隱藏私隱通告"
 
 msgid "Enable the receipt hint"
 msgstr "啟用收據提示"
@@ -900,8 +888,8 @@ msgstr "透過 Let's Encrypt 憑證頒發機構，HTTPS 自動配置可處理憑
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
-msgstr "平台必須可透過公用 IP 地址訪問，而所選的主機名稱亦必須有該 IP 地址對應的 DNS 記錄。"
+"hostname must have a DNS record referencing that address."
+msgstr "该平台必须可通过公共 IP 地址访问，并且所选主机名必须具有引用该地址的相应 DNS 记录。"
 
 msgid "Manual configuration"
 msgstr "手動配置"
@@ -916,6 +904,15 @@ msgstr "自動更新"
 
 msgid "Tor Onion Service"
 msgstr "Tor 匿名服務"
+
+msgid "Disable the privacy panel"
+msgstr "隱藏私隱通告"
+
+msgid "Enable custom privacy panel"
+msgstr "自訂平台頁首的私隱通告"
+
+msgid "Custom privacy panel"
+msgstr "自訂私隱通告內文"
 
 msgid "Anonymize outgoing connections"
 msgstr "將對外連接匿名化"
@@ -1157,11 +1154,11 @@ msgstr "給予此管理員更改使用者密碼的權限"
 msgid "Forcefully selected"
 msgstr "強制選擇"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "允許此接收者延遲報告到期日"
-
 msgid "Allow the recipient to delete reports"
 msgstr "允許此接收者刪除報告"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "允許此接收者延遲報告到期日"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "允許此使用者使用以下功能："
@@ -1307,7 +1304,7 @@ msgid "Request support"
 msgstr ""
 
 msgid "Thank you."
-msgstr ""
+msgstr "谢谢。"
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "我們會儘快回覆您。"
@@ -1372,29 +1369,6 @@ msgstr "預計上傳時間："
 
 msgid "Size:"
 msgstr "大小：   "
-
-msgid "Enable the Ricochet panel"
-msgstr "啟用 Ricochet 面板"
-
-msgid "Address"
-msgstr "地址"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "用 Ricochet 應用程序匿名地與我們即時通訊"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "請用此 Ricochet 網址與我們對話："
-
-msgid "Download Ricochet at:"
-msgstr "下載 Ricochet："
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "Ricochet 是一個使用 Tor 網絡和匿名服務的即時通訊軟件，使用者在通訊時不會洩露地理位置或 IP 地址，以保護私隱並確保匿名。用戶不會察覺它和其他通訊軟件有何差異，除了使用的是獨特的網址，而不是在其他軟件所使用的電話號碼、電郵或用戶名稱。"
 
 msgid "The connection is not secure."
 msgstr "此連接不安全。"
@@ -1587,9 +1561,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "您並沒有以匿名的方式連接到此伺服器，而其只能接收匿名的報告。"
 
-msgid "Thank you!"
-msgstr "多謝您！"
-
 msgid "Your report was successful."
 msgstr "您已成功提交報告。"
 
@@ -1686,7 +1657,7 @@ msgstr "名"
 msgid "Last name"
 msgstr "姓"
 
-msgid "Preferred contact method"
+msgid "Alternative contact method"
 msgstr ""
 
 msgid "Other"

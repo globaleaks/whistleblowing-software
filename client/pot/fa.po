@@ -5,7 +5,7 @@
 # signal89, 2014
 # Ali, 2015
 # Amir A. <amir@armandis.com>, 2015
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015,2017,2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015,2017,2020-2021
 # Hamed Behravan <behravan.hamed@gmail.com>, 2015
 # Hamed Behravan <behravan.hamed@gmail.com>, 2015
 # 1bdf31d1c1e9cb24d6578874174ff2c7, 2016
@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-06 16:41+0000\n"
-"Last-Translator: Xashyar\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -40,10 +40,10 @@ msgid "Log in"
 msgstr "ورود"
 
 msgid "Main configuration"
-msgstr "تنظیمات اصلی"
+msgstr "پیکربندی اصلی"
 
 msgid "Theme customization"
-msgstr "شخصی‌سازی تم"
+msgstr "سفارشی‌سازی طرح زمینه"
 
 msgid "Languages"
 msgstr "زبان‌ها"
@@ -61,7 +61,7 @@ msgid "Questionnaires"
 msgstr "پرسش‌نامه"
 
 msgid "Add new questionnaire"
-msgstr "اضافه کردن پرسش جدید"
+msgstr "افزودن پرسش‌نامهٔ جدید"
 
 msgid "Home"
 msgstr "خانه"
@@ -73,19 +73,19 @@ msgid "License"
 msgstr "پروانه"
 
 msgid "Notification templates"
-msgstr "قالب‌های اطلاع‌رسانی"
+msgstr "قالب‌های اعلان"
 
 msgid "Delete"
 msgstr "حذف"
 
 msgid "Anomalies"
-msgstr "بیقاعدگی"
+msgstr "ناهنجاری‌ها"
 
 msgid "Preferences"
-msgstr "پرفرنس"
+msgstr "ترجیحات"
 
 msgid "Notification settings"
-msgstr "تنظیمات اعلان ها"
+msgstr "تنظیمات اعلان"
 
 msgid "file unavailable"
 msgstr "فایل در دسترس نیست"
@@ -103,16 +103,16 @@ msgid "Files"
 msgstr "فایل‌ها"
 
 msgid "Comments"
-msgstr "دیدگاه‌ها"
+msgstr "نظرها"
 
 msgid "Messages"
 msgstr "پیام‌ها"
 
 msgid "Details"
-msgstr "جزییات"
+msgstr "جزئیات"
 
 msgid "Platform wizard"
-msgstr "صفخه نمایش"
+msgstr "دستیار پلتفرم"
 
 msgid "CREDIT CARD"
 msgstr "کارت اعتباری"
@@ -124,7 +124,7 @@ msgid "Label the report"
 msgstr "برچسب زدن گزارش"
 
 msgid "Postpone the expiration date"
-msgstr "تعویق زمان انقضاء"
+msgstr "تعویق زمان انقضا"
 
 msgid "Select all"
 msgstr "انتخاب همه"
@@ -495,8 +495,14 @@ msgstr "خروج"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr "به این گیرنده توانایی اعطای دسترسی کاربر به گزارش‌ها را بدهید"
 
-msgid "File a report"
+msgid "Grant access"
+msgstr "اعطای دسترسی"
+
+msgid "Revoke access"
 msgstr ""
+
+msgid "File a report"
+msgstr "تشکیل یک گزارش"
 
 msgid "Select the context of your report:"
 msgstr "زمینه گزارش خود را انتخاب کنید:"
@@ -549,27 +555,8 @@ msgstr "فعال سازی ویژگی چند سایت"
 msgid "Enable simplified login"
 msgstr "فعال سازی ورود ساده شده"
 
-msgid "Allow recipients to delete reports"
-msgstr "به دریافت کننده‌ها اجازه بدهید که گزارش ها را پاک کنند"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "به دریافت کننده ها اجازه بده که تاریخ انقضاء نکته ها را به تعویق بیاندازند"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "به دریافت کننده و به افشاگر اجازه یک گزارش خاص داده شود"
-
 msgid "Enable search engines indexing"
 msgstr "فعال کردن ایندکس سازی موتورهای جستجو"
-
-msgid "Enable custom privacy panel"
-msgstr "فعال سازی پنل پوشیدگی اختصاصی"
-
-msgid "Custom privacy panel"
-msgstr "سفارش‌سازی پنل حریم خصوصی"
-
-msgid "Disable the privacy panel"
-msgstr "غیر فعال کردن پنل پوشیدگی"
 
 msgid "Enable the receipt hint"
 msgstr "فعال سازی راهنما رسید"
@@ -606,7 +593,7 @@ msgid "Set the value to 0 to disable this feature."
 msgstr "برای غیرفعال کردن این ویژگی مقدار را بر روی 0 تنظیم کنید."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr ""
+msgstr "تعداد روزها تا اطلاع گزارش به کاربران"
 
 msgid "Enable custodian user role"
 msgstr "فعال سازی نقش کاربر نگهبان"
@@ -615,7 +602,7 @@ msgid "Enable scoring system"
 msgstr "فعال سازی سیستم امتیازدهی"
 
 msgid "Enable private annotations"
-msgstr ""
+msgstr "فعال کردن یادداشت‌های خصوصی"
 
 msgid "Logging level"
 msgstr "سطح ثبت کردن وقایع"
@@ -656,10 +643,10 @@ msgid "Type"
 msgstr "نوع"
 
 msgid "Severity"
-msgstr ""
+msgstr "شدت"
 
 msgid "Object"
-msgstr ""
+msgstr "موضوع"
 
 msgid "ID"
 msgstr "مشخصات "
@@ -728,7 +715,7 @@ msgid "Whistleblowing button"
 msgstr "دکمه افشاگری"
 
 msgid "Disclaimer"
-msgstr ""
+msgstr "بیانیهٔ رفع مسئولیت"
 
 msgid "Footer"
 msgstr "پانویس"
@@ -922,7 +909,7 @@ msgstr "استفاده از پیکربندی HTTPS خودکار تمام مرا�
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
+"hostname must have a DNS record referencing that address."
 msgstr "پلتفورم باید از طریق یک آدرس IP عمومی قابل دسترسی باشد و نام میزبان انتخاب شده باید یک رکورد DNS متناظر که به آن آدرس اشاده دارد را داشته باشد."
 
 msgid "Manual configuration"
@@ -938,6 +925,15 @@ msgstr "تمدید-خودکار"
 
 msgid "Tor Onion Service"
 msgstr "سرویس پیازی تور"
+
+msgid "Disable the privacy panel"
+msgstr "غیر فعال کردن پنل پوشیدگی"
+
+msgid "Enable custom privacy panel"
+msgstr "فعال سازی پنل پوشیدگی اختصاصی"
+
+msgid "Custom privacy panel"
+msgstr "سفارش‌سازی پنل حریم خصوصی"
 
 msgid "Anonymize outgoing connections"
 msgstr "گمنام کردن اتصال های خروجی"
@@ -1179,14 +1175,14 @@ msgstr "به این سرپرست اجازه‌ی تغییر رمزهای عبو�
 msgid "Forcefully selected"
 msgstr "انتخاب شده به اجبار"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "اجازه به گیرنده برای به عقب انداختن تاریخ انقضا گزارش"
-
 msgid "Allow the recipient to delete reports"
 msgstr "به دریافت کننده‌ها اجازه بدهید که گزارش ها را پاک کنند"
 
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "اجازه به گیرنده برای به عقب انداختن تاریخ انقضا گزارش"
+
 msgid "Give the user administrative access to the following features:"
-msgstr ""
+msgstr "دادن دسترسی اداری به قابلیت‌های زیر:"
 
 msgid "Request date"
 msgstr "تاریخ درخواست"
@@ -1198,7 +1194,7 @@ msgid "Authorization"
 msgstr "احراز هویت"
 
 msgid "Requests"
-msgstr ""
+msgstr "درخواست‌ها"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "لینک تایید یا نادرست می باشد یا انقضا یافته است."
@@ -1326,10 +1322,10 @@ msgid "The upload request exceeds the size limit"
 msgstr "آپلود درخواستی بزرگتر از حد مجاز است"
 
 msgid "Request support"
-msgstr ""
+msgstr "درخواست پشتیبانی"
 
 msgid "Thank you."
-msgstr ""
+msgstr "متشکریم."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "ما در اسرع وقت با شما تماس خواهیم گرفت."
@@ -1394,29 +1390,6 @@ msgstr "زمان تخمین‌زده‌شده برای بارگذاری:"
 
 msgid "Size:"
 msgstr "سایز:"
-
-msgid "Enable the Ricochet panel"
-msgstr "پنل Ricochet را فعال کنید"
-
-msgid "Address"
-msgstr "آدرس"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "با برنامه Ricochet به صورت ناشناس با ما گفتگو کنید"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "برای گفتگو با ما از آدرس Ricochet زیر استفاده کنید:"
-
-msgid "Download Ricochet at:"
-msgstr "Ricochet را از اینجا بارگیری کنید:"
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "با استفاده از شبکه‌ی تور و ساخت سرویس پیازی، Ricochet یک برنامه پیام‌رسان سریع است که به شما اجازه‌ی گفتگو با حفظ حریم خصوصی و گمنامی شما و لو نرفتن مکان و نشانی IP شما را ممکن می‌سازد. شما هیچ تفاوتی با گفتگوی غیرایمن حس نخواهید کرد جز اینکه از یک آدرس خاص به جای شماره تلفن/ایمیل/نام کاربری استفاده خواهید کرد."
 
 msgid "The connection is not secure."
 msgstr "ارتباط امن نمی باشد."
@@ -1587,7 +1560,7 @@ msgid "Invalid phone number"
 msgstr "شماره تلفن ناموجود"
 
 msgid "The answer is too short"
-msgstr ""
+msgstr "پاسخ بسیار کوتاه است"
 
 msgid "The specified input is not valid."
 msgstr "ورودی خاص معتبر نیست."
@@ -1609,9 +1582,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "شما بدون ناشناسی به گره متصل شده اید و این گره فقط گزارش های ناشناس را قبول میکند"
 
-msgid "Thank you!"
-msgstr "متشکریم!"
-
 msgid "Your report was successful."
 msgstr "گزارش شما با موفقیت انجام شد."
 
@@ -1630,7 +1600,7 @@ msgid "Recipient selection"
 msgstr "انتخاب گیرنده"
 
 msgid "Select the recipients of your report:"
-msgstr ""
+msgstr "گیرندگان گزارش خود را انتخاب کنید:"
 
 msgid "Recipients selected:"
 msgstr "گیرنده‌های انتخاب‌شده:"
@@ -1641,7 +1611,7 @@ msgstr "شما به حداکثر مجاز تعداد دریافت‌کنندگا
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr ""
+msgstr "گیرندگان زیر گزارش شما را دریافت خواهند کرد و انتخاب آن‌ها نمی‌تواند حذف شود:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1676,7 +1646,7 @@ msgid ""
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr ""
+msgstr "در صورتی که می‌خواهید از داده‌ها در شرایطی که گیرندگان گذرواژه‌های خود را گم می‌کنند حفاظت کنید، به شما انتخاب این گزینه را توصیه می‌کنیم. از طرف دیگر، اگر می‌خواهید سیستمی راه‌اندازی کنید که در آن فقط گیرندگان قادر به دسترسی به ارسال‌ها باشند، ما استفاده از این قابلیت را توصیه نمی‌کنیم."
 
 msgid "Please choose a different username."
 msgstr "لطفا نام کاربری متفاوتی را انتخاب کنید."
@@ -1708,14 +1678,14 @@ msgstr "نام کوچک"
 msgid "Last name"
 msgstr "نام خانوداگی"
 
-msgid "Preferred contact method"
-msgstr ""
+msgid "Alternative contact method"
+msgstr "روش جایگزین برقراری تماس"
 
 msgid "Other"
 msgstr "دیگر"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr ""
+msgstr "من ترجیح می‌دهم که تنها از طریق این پلتفرم با من تماس گرفته شود"
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} گرامی،"
@@ -2001,7 +1971,7 @@ msgstr "برای دستورالعمل برای به روز رسانی نرم ا�
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "این ایمیل به شما اطلاع می‌دهد که یک گیرنده دسترسی به یک یا چند گزارش را داده است."
 
 msgid "New report"
 msgstr "گزارش جدید"
@@ -2029,16 +1999,16 @@ msgid ""
 msgstr "از شما خواسته می شود تا توجه خاصی به اطلاعات و چیزهایی که در آن قرار گرفته داشته باشید. لطفا به خاطر داشته باشید که افشاگران خود را در معرض ریسک های شخصی بالایی به منظور منفعت جامعه قرار میدهند. بنابراین چیزهای تامین شده در این گزارش از اهمیت بالایی برخوردار هستند."
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr ""
+msgstr "این ایمیل به‌روزرسانی شدن یک گزارش موجود را به شما اطلاع می‌دهد."
 
 msgid "Report updated"
-msgstr ""
+msgstr "گزارش به‌روزرسانی شد"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr ""
+msgstr "این ایمیل وجود گزارش‌های خوانده نشده یا به‌روزرسانی شده را به شما یادآوری می‌کند."
 
 msgid "Reminder about unread or updated reports"
-msgstr ""
+msgstr "یادآور در مورد گزارش‌های خوانده نشده یا به‌روزرسانی شده"
 
 msgid "Role: {Role}"
 msgstr "نقش: {Role}"

@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-08 09:07+0000\n"
-"Last-Translator: ical\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -494,6 +494,12 @@ msgstr "Keluar"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr "Berikan penerima ini kemampuan untuk mengizinkan pengguna mengakses laporan"
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr ""
+
 msgid "File a report"
 msgstr "Buat laporan"
 
@@ -548,27 +554,8 @@ msgstr "Aktifkan fitur multisitus"
 msgid "Enable simplified login"
 msgstr "Aktifkan metode masuk yang mudah"
 
-msgid "Allow recipients to delete reports"
-msgstr "Izinkan penerima untuk menghapus laporan"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Izinkan penerima untuk menunda tanggal kedaluwarsa laporan"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Izinkan penerima memberikan izin kepada informan publik pada laporan tertentu"
-
 msgid "Enable search engines indexing"
 msgstr "Aktifkan pengindeksan mesin pencari"
-
-msgid "Enable custom privacy panel"
-msgstr "Aktifkan panel privasi kustom"
-
-msgid "Custom privacy panel"
-msgstr "Panel privasi kustom"
-
-msgid "Disable the privacy panel"
-msgstr "Menonaktifkan panel privasi"
 
 msgid "Enable the receipt hint"
 msgstr "Aktifkan petunjuk tanda terima"
@@ -921,7 +908,7 @@ msgstr "Menggunakan konfigurasi HTTPS otomatis akan menangani seluruh proses per
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
+"hostname must have a DNS record referencing that address."
 msgstr "Platform ini harus diakses menggunakan alamat IP publik dan nama host yang dipilih harus mempunyai DNS yang terhubung dengan alamat tersebut."
 
 msgid "Manual configuration"
@@ -937,6 +924,15 @@ msgstr "Pembaruan otomatis"
 
 msgid "Tor Onion Service"
 msgstr "Layanan Onion Tor"
+
+msgid "Disable the privacy panel"
+msgstr "Menonaktifkan panel privasi"
+
+msgid "Enable custom privacy panel"
+msgstr "Aktifkan panel privasi kustom"
+
+msgid "Custom privacy panel"
+msgstr "Panel privasi kustom"
 
 msgid "Anonymize outgoing connections"
 msgstr "Menganonimisasi koneksi keluar"
@@ -1178,11 +1174,11 @@ msgstr "Izinkan admin ini untuk mengubah kata sandi pengguna"
 msgid "Forcefully selected"
 msgstr "Secara paksa dipilih"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Izinkan penerima untuk menunda tanggal kedaluwarsa laporan"
-
 msgid "Allow the recipient to delete reports"
 msgstr "Izinkan penerima untuk menghapus laporan"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Izinkan penerima untuk menunda tanggal kedaluwarsa laporan"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Izinkan akses administratif bagi pengguna untuk fitur berikut:"
@@ -1394,29 +1390,6 @@ msgstr "Perkiraan waktu mengunggah:"
 msgid "Size:"
 msgstr "Ukuran:"
 
-msgid "Enable the Ricochet panel"
-msgstr "Aktifkan panel Ricochet"
-
-msgid "Address"
-msgstr "Alamat"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "Mulai percakapan dengan kami secara anonim menggunakan aplikasi Ricochet"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "Untuk memulai percakapan dengan kami, gunakan alamat Ricochet berikut:"
-
-msgid "Download Ricochet at:"
-msgstr "Unduh Ricochet di:"
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "Dengan menggunakan jaringan Tor dan membuat sebuah Layanan Onion, Ricochet adalah aplikasi olahpesan yang memungkinkan Anda bertukar pesan sembari melindungi privasi dan tetap anonim dengan tidak menyingkap lokasi atau alamat IP Anda. Anda tidak akan menemukan perbedaannya dengan percakapan yang tidak aman, kecuali penggunaan alamat yang unik sebagai ganti dari nomor telepon/surel/nama pengguna."
-
 msgid "The connection is not secure."
 msgstr "Koneksi tidak aman."
 
@@ -1608,9 +1581,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "Anda sudah terhubung dengan server tanpa anonimitas dan server ini hanya mendukung pengiriman anonim "
 
-msgid "Thank you!"
-msgstr "Terima kasih!"
-
 msgid "Your report was successful."
 msgstr "Laporan Anda telah berhasil."
 
@@ -1707,8 +1677,8 @@ msgstr "Nama Depan"
 msgid "Last name"
 msgstr "Nama Belakang"
 
-msgid "Preferred contact method"
-msgstr "Metode kontak pilihan"
+msgid "Alternative contact method"
+msgstr ""
 
 msgid "Other"
 msgstr "Lainnya"

@@ -3,7 +3,7 @@
 # Chi-Hsun Tsai, 2017
 # Chi-Hsun Tsai, 2017
 # ff98sha, 2020
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015,2017-2018,2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015,2017-2018,2020-2021
 # khi, 2021
 # 91ca17e215222af3ff24b8eeb76640c7_f9deb57, 2013-2014
 # lin, 2014
@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -490,6 +490,12 @@ msgstr "注销"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr ""
+
 msgid "File a report"
 msgstr "提交报告"
 
@@ -544,27 +550,8 @@ msgstr "启用多站点功能"
 msgid "Enable simplified login"
 msgstr "启用简易登录"
 
-msgid "Allow recipients to delete reports"
-msgstr "允许接收人删除报告"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "允许接收人推迟报告过期日期"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "允许接收人授权揭发者访问特定报告"
-
 msgid "Enable search engines indexing"
 msgstr "启用搜索引擎索引"
-
-msgid "Enable custom privacy panel"
-msgstr "启用自定义隐私面板"
-
-msgid "Custom privacy panel"
-msgstr "自定义隐私面板"
-
-msgid "Disable the privacy panel"
-msgstr "禁用隐私面板"
 
 msgid "Enable the receipt hint"
 msgstr "启用接收人提示"
@@ -917,7 +904,7 @@ msgstr "使用自动 HTTPS 配置之后，将处理全部流程：Let's Encrypt 
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
+"hostname must have a DNS record referencing that address."
 msgstr "该平台必须可通过公共 IP 地址访问，并且所选主机名必须具有引用该地址的相应 DNS 记录。"
 
 msgid "Manual configuration"
@@ -933,6 +920,15 @@ msgstr "自动续订"
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion 服务"
+
+msgid "Disable the privacy panel"
+msgstr "禁用隐私面板"
+
+msgid "Enable custom privacy panel"
+msgstr "启用自定义隐私面板"
+
+msgid "Custom privacy panel"
+msgstr "自定义隐私面板"
 
 msgid "Anonymize outgoing connections"
 msgstr "匿名化传出连接"
@@ -1174,11 +1170,11 @@ msgstr "允许管理员更改用户密码"
 msgid "Forcefully selected"
 msgstr "强制已选"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "允许接收人推迟报告过期日期"
-
 msgid "Allow the recipient to delete reports"
 msgstr "允许接收人删除报告"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "允许接收人推迟报告过期日期"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "对于以下功能，授予用户管理员权限："
@@ -1390,29 +1386,6 @@ msgstr "预计上传时间："
 msgid "Size:"
 msgstr "大小："
 
-msgid "Enable the Ricochet panel"
-msgstr "启用 Ricochet 面板"
-
-msgid "Address"
-msgstr "地址"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "使用 Ricochet 应用匿名地和我们聊天"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "与我们聊天，请使用以下 Ricochet 地址："
-
-msgid "Download Ricochet at:"
-msgstr "下载 Ricochet："
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "通过 Tor 网络与创建 Onion 服务，即时通讯应用 Ricochet 不会泄露用户位置与 IP 地址，从而可在聊天的同时保护用户的隐私，并保持匿名。用户不会注意到它与其它即时通信有何差异，除了它使用独特的网址而不是电话话码、电子邮件或用户名。"
-
 msgid "The connection is not secure."
 msgstr "连接不安全。"
 
@@ -1604,9 +1577,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "正在以非匿名的方式连接服务器，但该服务器仅支持匿名提交。"
 
-msgid "Thank you!"
-msgstr "谢谢您！"
-
 msgid "Your report was successful."
 msgstr "您的报告已成功提交。"
 
@@ -1703,7 +1673,7 @@ msgstr "名"
 msgid "Last name"
 msgstr "姓"
 
-msgid "Preferred contact method"
+msgid "Alternative contact method"
 msgstr ""
 
 msgid "Other"

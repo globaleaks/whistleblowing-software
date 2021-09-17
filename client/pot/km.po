@@ -1,12 +1,13 @@
 # 
 # Translators:
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
 # Kanika, 2021
 # Kanika, 2021
 # Ty Sok <sokty2@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Khmer (http://www.transifex.com/otf/globaleaks/language/km/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -474,6 +475,12 @@ msgstr "ចាកចេញ"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr ""
+
 msgid "File a report"
 msgstr "បញ្ចូលរបាយការណ៍"
 
@@ -528,27 +535,8 @@ msgstr "បើកមុខងារពហុទំព័រ"
 msgid "Enable simplified login"
 msgstr "បើកការចូលសាមញ្ញ"
 
-msgid "Allow recipients to delete reports"
-msgstr "អនុញ្ញាតអ្នកទទួលលុបរបាយការណ៍"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "អនុញ្ញាតអ្នកទទួលពន្យាកាលបរិច្ឆេទហួសកំណត់នៃរបាយការណ៍"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "អនុញ្ញតអោយអ្នកទទួលផ្តល់សិទ្ធិទៅអ្នករាយការណ៍លើរបាយកាណ៍ជាក់លាក់"
-
 msgid "Enable search engines indexing"
 msgstr "បើកការផ្ទុកម៉ាស៊ីនស្វែងរក"
-
-msgid "Enable custom privacy panel"
-msgstr "បើកកំណត់ផ្ទាំងឯកជន"
-
-msgid "Custom privacy panel"
-msgstr "កំណត់ផ្ទាំងឯកជន"
-
-msgid "Disable the privacy panel"
-msgstr "បិទផ្ទាំងឯកជន"
 
 msgid "Enable the receipt hint"
 msgstr "បើកជំនួយទទួល"
@@ -901,7 +889,7 @@ msgstr "ការប្រើប្រាស់ការកំណត់ HTTPS �
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
+"hostname must have a DNS record referencing that address."
 msgstr "វេទិកាត្រូវតែចូលតាមអាសយដ្ឋាន IP សាធារណៈ ហើយឈ្មោះម៉ាស៊ីនដែលបានជ្រើសរើស ត្រូវមានកំណត់ត្រា​ DNS ត្រូវគ្នានឹងអាសយដ្ឋាននោះ។"
 
 msgid "Manual configuration"
@@ -917,6 +905,15 @@ msgstr "បន្តដោយស្វ័យប្រវត្តិ"
 
 msgid "Tor Onion Service"
 msgstr "សេវាកម្ម Tor Onion"
+
+msgid "Disable the privacy panel"
+msgstr "បិទផ្ទាំងឯកជន"
+
+msgid "Enable custom privacy panel"
+msgstr "បើកកំណត់ផ្ទាំងឯកជន"
+
+msgid "Custom privacy panel"
+msgstr "កំណត់ផ្ទាំងឯកជន"
 
 msgid "Anonymize outgoing connections"
 msgstr "ការតភ្ជាប់ចេញក្រៅដោយអនាមិកភាព"
@@ -1158,11 +1155,11 @@ msgstr "អនុញ្ញាតអ្នកគ្រប់គ្រងនេះ
 msgid "Forcefully selected"
 msgstr "ជ្រើសរើសដោយបង្ខំ"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "អនុញ្ញាតអ្នកទទួលពន្យាពេលកាលបរិច្ឆេទផុតកំណត់របាយការណ៍"
-
 msgid "Allow the recipient to delete reports"
 msgstr "អនុញ្ញាតអ្នកទទួលលុបរបាយការណ៍"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "អនុញ្ញាតអ្នកទទួលពន្យាពេលកាលបរិច្ឆេទផុតកំណត់របាយការណ៍"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "ផ្តល់សិទ្ធអ្នកប្រើប្រាស់ចូលគ្រប់គ្រង​មុខងារដូចខាងក្រោម៖"
@@ -1308,7 +1305,7 @@ msgid "Request support"
 msgstr ""
 
 msgid "Thank you."
-msgstr ""
+msgstr "អរគុណ."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "យើងខ្ញុំនឹងព្យាយាមទាក់ទងអ្នកវិញឆាប់បំផុត។"
@@ -1373,29 +1370,6 @@ msgstr "រយៈពេលបញ្ជូលដោយប៉ាន់ស្មា
 
 msgid "Size:"
 msgstr "ទំហំ៖"
-
-msgid "Enable the Ricochet panel"
-msgstr "បើកផ្ទាំង Ricochet"
-
-msgid "Address"
-msgstr "អាសយដ្ឋាន"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "ជជែកជាមួយយើងខ្ញុំដោយអនាមិក​ ប្រើប្រាស់កម្មវិធី Ricochet"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "ដើម្បីជជែកជាមួយយើងខ្ញុំ​ សូមប្រើប្រាស់អាសយដ្ឋាន Ricochet ខាងក្រោម៖"
-
-msgid "Download Ricochet at:"
-msgstr "ទាញយក Ricochet នៅ៖"
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "ដោយប្រើប្រាស់បណ្តាញ Tor និងបង្កើតសេវាកម្ម Onion កម្មវិធីRicochet ជាកម្មវិធីផ្ញើសារ ដែលអនុញ្ញាតអ្នកជជែក​ ដោយមានការការពារឯកជនភាព និងរក្សាអនាមិកភាព ដោយមិនបង្ហាញទីតាំងរបស់អ្នក​ ឬអាសយដ្ឋាន IP។ អ្នកនឹងមិនដឹងពីភាពខុសគ្នាពីការជជែក​ដែលគ្មានសុវត្ថិភាពទេ ព្រោះអ្នកគ្រាន់ប្រើប្រាស់នូវអាសយដ្ឋានជាក់លាក់មួយ ជំនួសលេខទូរស័ព្ទ/អុីមែល/ឈ្មោះអ្នកប្រើប្រាស់។"
 
 msgid "The connection is not secure."
 msgstr "ការតភ្ជាប់នេះមិនមានសុវត្ថិភាពទេ។"
@@ -1588,9 +1562,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "អ្នកកំពុងតភ្ជាប់ទៅកាន់ម៉ាស៊ីនមេ​ដោយគ្មានអនាមិកភាព តែម៉ាស៊ីនមេនេះគាំទ្រតែការបញ្ជូនដែលអនាមិកប៉ុណ្ណោះ"
 
-msgid "Thank you!"
-msgstr "អរគុណ!"
-
 msgid "Your report was successful."
 msgstr "របាយការណ៍របស់អ្នកជោគជ័យ។"
 
@@ -1687,7 +1658,7 @@ msgstr "នាម"
 msgid "Last name"
 msgstr "ត្រកូល"
 
-msgid "Preferred contact method"
+msgid "Alternative contact method"
 msgstr ""
 
 msgid "Other"

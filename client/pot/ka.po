@@ -1,11 +1,12 @@
 # 
 # Translators:
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2018,2020
+# Tina Paatashvili <tina.paatashvili@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2020-09-29 14:49+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-09-19 01:56+0000\n"
+"Last-Translator: Tina Paatashvili <tina.paatashvili@gmail.com>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,16 +24,13 @@ msgid "Theme customization"
 msgstr "Theme დაკონფიგურირება"
 
 msgid "Languages"
-msgstr ""
+msgstr "ენები"
 
 msgid "Text customization"
-msgstr ""
+msgstr "ტექსტის მორგება"
 
 msgid "Advanced settings"
 msgstr "დამატებითი პარამეტრები"
-
-msgid "Questionnaire configuration"
-msgstr "კითხვარი კონფიგურაცია"
 
 msgid "Question templates"
 msgstr "კითხვა თარგები"
@@ -50,16 +48,10 @@ msgid "Changelog"
 msgstr "ცვლილებები"
 
 msgid "License"
-msgstr ""
+msgstr "ლიცენზია"
 
 msgid "Notification templates"
 msgstr "შეტყობინება თარგები"
-
-msgid "Missing data"
-msgstr "დაკარგული მონაცემები"
-
-msgid "no stats available for this hour."
-msgstr "სტატისტიკა მიუწვდომელია ამ საათში."
 
 msgid "Delete"
 msgstr "წაშლა"
@@ -94,15 +86,6 @@ msgstr "კომენტარები"
 msgid "Messages"
 msgstr "შეტყობინებები"
 
-msgid "Select this recipient."
-msgstr "აირჩიეთ ამ მიმღები."
-
-msgid "Unselect this recipient."
-msgstr "მონიშვნა ამ მიმღები."
-
-msgid "This recipient cannot be deselected."
-msgstr "ეს მიმღები არ შეიძლება deselected."
-
 msgid "Details"
 msgstr "დაწვრილებით"
 
@@ -116,7 +99,7 @@ msgid "YOUR NAME"
 msgstr "თქვენი სახელი"
 
 msgid "Label the report"
-msgstr ""
+msgstr "ანგარიშის დასათაურება"
 
 msgid "Postpone the expiration date"
 msgstr "გადადეთ ვადის გასვლის თარიღი"
@@ -128,13 +111,10 @@ msgid "Deselect all"
 msgstr "გააუქმეთ ყველა მონიშვნა"
 
 msgid "Refresh"
-msgstr ""
+msgstr "განახლება"
 
 msgid "Context"
 msgstr "კონტექსტი"
-
-msgid "Private messages"
-msgstr "პირადი შეტყობინებები"
 
 msgid "Preview"
 msgstr "Preview"
@@ -167,21 +147,15 @@ msgid "Save all"
 msgstr "შენახვა ყველა"
 
 msgid "Access control"
-msgstr ""
+msgstr "წვდომის კონტროლი"
 
 msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr ""
+msgstr "კონფიდენციალურობის უზრუნველსაყოფად კავშირი დაცულია HTTPS პროტოკოლით."
 
 msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
-msgstr ""
-
-msgid "vertical"
-msgstr "ვერტიკალური"
-
-msgid "horizontal"
-msgstr "ჰორიზონტალური"
+msgstr "კონფიდენციალურობის და ანონიმურობის უზრუნველსაყოფად კავშირი დაცულია Tor-ის მეშვეობით."
 
 msgid "Number"
 msgstr "პუნქტების"
@@ -207,12 +181,6 @@ msgstr "Latest მითითებული თარიღი"
 msgid "0 = auto"
 msgstr "0 = განცხადება"
 
-msgid "True"
-msgstr "True"
-
-msgid "False"
-msgstr "False"
-
 msgid "Yes"
 msgstr "დიახ"
 
@@ -227,9 +195,6 @@ msgstr "attachments"
 
 msgid "Change your password"
 msgstr "შეცვალეთ თქვენი პაროლი"
-
-msgid "Access requests"
-msgstr ""
 
 msgid "User"
 msgstr "შესახებ"
@@ -252,17 +217,8 @@ msgstr "მოთხოვნა სტატუსი"
 msgid "Custodian"
 msgstr "მზრუნველი"
 
-msgid "Custodian of the identities"
-msgstr "მზრუნველი ვინაობა"
-
 msgid "Identity"
 msgstr "Identity"
-
-msgid "Available"
-msgstr "ხელმისაწვდომია"
-
-msgid "Not available"
-msgstr "მიუწვდომელია"
 
 msgid "Access requested"
 msgstr "Access მოითხოვა"
@@ -303,11 +259,8 @@ msgstr "ავტორიზაცია ხელმისაწვდომ�
 msgid "Templates"
 msgstr "Templates"
 
-msgid "HTTPS settings"
-msgstr "HTTPS პარამეტრები"
-
 msgid "URL redirects"
-msgstr ""
+msgstr "URL გადამისამართებები"
 
 msgid "Anomaly detection thresholds"
 msgstr "ანომალიის გამოვლენის დევნება"
@@ -317,13 +270,6 @@ msgstr "ხელმისაწვდომი დისკზე"
 
 msgid "Last update"
 msgstr "ბოლო განახლება"
-
-msgid "Custodian notification templates"
-msgstr "მზრუნველი შეტყობინება თარგები"
-
-msgid ""
-"This interface allows configuring email templates used to notify custodians."
-msgstr "ეს ინტერფეისი საშუალებას კონფიგურირებას ელ თარგები გამოყენებულ იქნას აცნობოს მეურვეები."
 
 msgid "Disable notifications to administrators"
 msgstr "შეტყობინებების გამორთვა ადმინისტრატორები"
@@ -341,13 +287,7 @@ msgid "Trigger question"
 msgstr "გამოიწვევს კითხვა"
 
 msgid "Triggered by score:"
-msgstr ""
-
-msgid "Message shown on top of the status page of the report"
-msgstr "შეტყობინება ნაჩვენები თავზე სტატუსი გვერდი წარდგინების"
-
-msgid "Password strength:"
-msgstr "პაროლის სირთულე:"
+msgstr "გააქტიურდება ქულებით:"
 
 msgid "Weak"
 msgstr "სუსტი"
@@ -361,44 +301,14 @@ msgstr "ძლიერი"
 msgid "Text shown on top of the interface for selecting contexts"
 msgstr "ტექსტი ნაჩვენები თავზე ინტერფეისი შერჩევის კონტექსტში"
 
-msgid "Show small context cards on submission interface"
-msgstr "აჩვენეთ პატარა კონტექსტში ბარათები წარდგენის ინტერფეისი"
-
-msgid "Type of context selector:"
-msgstr "გაცნობის კონტექსტში selector:"
-
-msgid "Type to search…"
-msgstr ""
-
 msgid "Silence email notifications"
-msgstr ""
+msgstr "დაადუმეთ ელფოსტის შეტყობინებები"
 
 msgid "Turn on email notifications"
-msgstr ""
-
-msgid "Enter an email address for the administrator"
-msgstr ""
-
-msgid "Enter a password for the administrator"
-msgstr ""
-
-msgid "Failed logins"
-msgstr "ვერ შესვლა"
-
-msgid "Successful logins"
-msgstr "წარმატებული შესვლა"
-
-msgid "Started submissions"
-msgstr "დაიწყო წარდგინება"
-
-msgid "Completed submissions"
-msgstr "დასრულდა წარდგინება"
-
-msgid "Failed submissions"
-msgstr ""
+msgstr "ჩართეთ ელფოსტის შეტყობინებები"
 
 msgid "Input validation"
-msgstr ""
+msgstr "შეტანის გადამოწმება"
 
 msgid "Email address"
 msgstr "ელექტრონული მისამართი"
@@ -410,13 +320,7 @@ msgid "None"
 msgstr "არა"
 
 msgid "Regular expression"
-msgstr ""
-
-msgid "Activate"
-msgstr ""
-
-msgid "Disactivate"
-msgstr ""
+msgstr "რეგულარული გამოთქმა"
 
 msgid "Search"
 msgstr "ძებნა"
@@ -424,83 +328,49 @@ msgstr "ძებნა"
 msgid ""
 "This custom text is no longer displayed on the platform. The original text "
 "has either changed or been removed."
-msgstr ""
-
-msgid ""
-"Unless the whistleblower checks the report by this time, their access to it "
-"will expire."
-msgstr ""
-
-msgid "The whistleblower can no longer access the report"
-msgstr ""
-
-msgid "Warning!"
-msgstr "გაფრთხილება!"
-
-msgid "You are running an unsupported and potentially vulnerable browser."
-msgstr ""
-
-msgid "You are strongly advised to download and install the Tor Browser."
-msgstr ""
-
-msgid ""
-"The Tor Browser includes various privacy and security enhancements not "
-"present in other browsers."
-msgstr "აღწერის Browser მოიცავს სხვადასხვა კონფიდენციალურობის და უსაფრთხოების Enhancements არ იმყოფება სხვა ბრაუზერები."
-
-msgid "Download the Tor Browser"
-msgstr "ჩამოტვირთეთ Tor Browser"
+msgstr "ეს პერსონალური ტექსტი აღარ არის ნაჩვენები პლატფორმაზე. საწყისი ტექსტი შეიცვალა ან წაიშალა."
 
 msgid "Audit log"
-msgstr ""
+msgstr "აუდიტის ჟურნალი"
 
 msgid "Stats"
-msgstr ""
+msgstr "სტატისტიკა"
 
 msgid "Activities"
-msgstr ""
+msgstr "საქმიანობა"
 
 msgid "Reports"
 msgstr "ანგარიშები"
 
 msgid "Users"
-msgstr ""
+msgstr "მომხმარებლები"
 
 msgid "From"
-msgstr ""
+msgstr "გამომგზავნი"
 
 msgid "Number of downloads"
-msgstr ""
-
-msgid "Error with file:"
-msgstr ""
+msgstr "ჩამოტვირთვების რაოდენობა"
 
 msgid "File size not accepted."
-msgstr ""
-
-msgid "File type not accepted."
-msgstr ""
+msgstr "ფაილის ზომა არ მიიღება."
 
 msgid "Maximum file size is:"
-msgstr ""
-
-msgid "Accepted file types are:"
-msgstr ""
+msgstr "ფაილის მაქსიმალური ზომაა:"
 
 msgid "Scheduled jobs"
-msgstr ""
+msgstr "დაგეგმილი სამუშაოები"
 
 msgid "Sites management"
-msgstr ""
+msgstr "საიტების მართვა"
 
 msgid "Regenerate"
-msgstr ""
+msgstr "ხელახლა გენერირება"
 
 msgid "Display options alphabetically"
-msgstr ""
+msgstr "პარამეტრების ჩვენება ანბანურად"
 
 msgid "Enable email notifications for:"
-msgstr ""
+msgstr "ელექტრონული ფოსტით შეტყობინებების მიღების ჩართვა:"
 
 msgid "Disable"
 msgstr "გამორთვა"
@@ -509,119 +379,111 @@ msgid "Remove"
 msgstr "წაშლა"
 
 msgid "Use as default"
-msgstr ""
+msgstr "როგორც ნაგულისხმევის გამოყენება"
 
 msgid "Create your whistleblowing platform"
-msgstr ""
+msgstr "შექმენით თქვენი დარღვევების შეტყობინების პლატფორმა"
 
 msgid "Collapse"
-msgstr ""
+msgstr "აკეცვა"
 
 msgid "Expand"
-msgstr ""
+msgstr "გაშლა"
 
 msgid "Select"
-msgstr ""
+msgstr "არჩევა"
 
-msgid "Selected by default"
-msgstr ""
-
-msgid "Unselected by default"
-msgstr ""
+msgid "Deselect"
+msgstr "მონიშვნის გაუქმება"
 
 msgid "Surname"
-msgstr ""
+msgstr "გვარი"
 
 msgid "New"
 msgstr "ახალი"
 
 msgid "Opened"
-msgstr ""
+msgstr "გახსნილი"
 
 msgid "Closed"
-msgstr ""
+msgstr "დახურული"
 
 msgid "Placeholder"
-msgstr ""
+msgstr "ჩანაცვლების ტექსტი"
 
 msgid "Print"
-msgstr ""
+msgstr "ბეჭდვა"
 
 msgid "Previous"
-msgstr ""
+msgstr "წინა"
 
 msgid "Next"
 msgstr "შემდეგი"
 
 msgid "First"
-msgstr ""
+msgstr "პირველი"
 
 msgid "Last"
-msgstr ""
+msgstr "ბოლო"
 
 msgid "Running"
-msgstr ""
+msgstr "გაშვებულია"
 
 msgid "Not running"
-msgstr ""
+msgstr "არ არის გაშვებული"
 
 msgid "Send a test email to your email address."
-msgstr ""
+msgstr "გააგზავნეთ სატესტო ელფოსტა თქვენს ელფოსტის მისამართზე."
 
 msgid "Block the submission"
-msgstr ""
+msgstr "გაგზავნის დაბლოკვა"
 
 msgid "Skip the recipient account creation."
-msgstr ""
+msgstr "მიმღების ანგარიშის შექმნის გამოტოვება."
 
 msgid "Send activation link"
-msgstr ""
+msgstr "აქტივაციის ბმულის გაგზავნა"
 
 msgid "Password reset"
-msgstr ""
+msgstr "პაროლის აღდგენა"
 
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr ""
+msgstr "ერთ ან მეტ მიმღებს ჯერ არ შეუსრულებია პირველი შესვლა. ეს ნიშნავს, რომ ისინი არ მიიღებენ ანგარიშებს."
 
 msgid "This user has not performed the first login yet."
-msgstr ""
+msgstr "ამ მომხმარებელს ჯერ არ შეუსრულებია პირველი შესვლა."
 
 msgid "seconds"
 msgstr "წამში"
 
 msgid "This domain name is not available."
-msgstr ""
+msgstr "ეს დომენის სახელი არ არის ხელმისაწვდომი."
 
-msgid "VAT number"
-msgstr ""
+msgid "Mark as important"
+msgstr "როგორც მნიშვნელოვანის მონიშვნა"
 
-msgid "Tax code"
-msgstr ""
+msgid "Copy to clipboard"
+msgstr "გაცვლის ბუფერში კოპირება"
 
-msgid "Administrators authorized to change user passwords"
-msgstr ""
+msgid "Logout"
+msgstr "გამოსვლა"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "ამ მიმღებს მიეცეს შესაძლებლობა მიანიჭოს მომხმარებელს ანგარიშებზე წვდომის უფლება"
+
+msgid "Grant access"
+msgstr "წვდომის დაშვება"
+
+msgid "Revoke access"
+msgstr "წვდომის გაუქმება"
+
+msgid "File a report"
+msgstr "ანგარიშის წარდგენა"
 
 msgid "Select the context of your report:"
 msgstr "აირჩიეთ კონტექსტში თქვენი წარმოდგენის:"
-
-msgid "Warning! You are not anonymous."
-msgstr "ყურადღება! თქვენ არ ხართ ანონიმური."
-
-msgid ""
-"Sending reports over HTTPS exposes the act of doing so, but not the "
-"content.\\n\\nAlso, hiding the fact that you are submitting something makes "
-"the report anonymous, which is strongly recommended.\\n\\nThis can be "
-"achieved with the use of the Tor Browser, providing anonymisation not found "
-"in other browsers."
-msgstr ""
-
-msgid "Are you a whistleblower?"
-msgstr "ხართ თუ მამხილებლის?"
-
-msgid "Blow the whistle"
-msgstr "აფეთქება ისთვის"
 
 msgid "Before proceeding, please set a new password."
 msgstr "გაგრძელებამდე, გთხოვთ შეცვალოთ თქვენი პაროლი."
@@ -633,10 +495,10 @@ msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr ""
+msgstr "არჩეული პაროლი ძალიან სუსტია. სწორი პაროლი უნდა შედგებოდეს მინიმუმ 10 სიმბოლოსგან და შეიცავდეს სხვადასხვა სიმბოლოებს, მათ შორის მინიმუმ ერთი ქვედა რეგისტრის სიმბოლო, ზედა რეგისტრის სიმბოლო, რიცხვი და სპეციალური სიმბოლო."
 
 msgid "The new password must be different from the current one."
-msgstr ""
+msgstr "ახალი პაროლი უნდა განსხვავდებოდეს მიმდინარესგან."
 
 msgid "Type your new password again"
 msgstr "შეიტანეთ თქვენი ახალი პაროლი კიდევ ერთხელ"
@@ -645,71 +507,46 @@ msgid "The two passwords do not match"
 msgstr "პაროლები არ ემთხვევა"
 
 msgid "The new password must differ from the previous."
-msgstr ""
+msgstr "ახალი პაროლი უნდა განსხვავდებოდეს წინა პაროლისგან."
 
 msgid "Proceed"
 msgstr "გაგრძელება"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr ""
+msgstr "გაგრძელებამდე ჩართეთ ორფაქტორიანი ავტორიზაცია."
 
 msgid "Disable submissions"
 msgstr "შეზღუდული შესაძლებლობების მქონე წარდგინება"
 
 msgid "Enable encryption"
-msgstr ""
+msgstr "დაშიფვრის ჩართვა"
 
 msgid "Enable administrators to change user passwords"
-msgstr ""
+msgstr "ადმინისტრატორებისთვის მომხმარებლის პაროლების შეცვლის უფლების მინიჭება"
 
 msgid "Administrators authorized to change user passwords:"
-msgstr ""
+msgstr "ადმინისტრატორებს უფლება აქვთ შეცვალონ მომხმარებლის პაროლები:"
 
 msgid "Enable multisite feature"
-msgstr ""
+msgstr "მრავალსაიტიანი ფუნქციის ჩართვა"
 
 msgid "Enable simplified login"
-msgstr ""
-
-msgid "Allow recipients to delete reports"
-msgstr "ნება მიმღები წაშლა წარდგინება"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "ნება მიმღები გადადების ვადის წარდგენის"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "ნება მიმღები გასცეს ნებართვები მამხილებელთა კონკრეტული წარდგინება"
+msgstr "გამარტივებული შესვლის ჩართვა"
 
 msgid "Enable search engines indexing"
 msgstr "ჩართვა საძიებო სისტემებში ინდექსირებას"
 
-msgid "Description"
-msgstr "აღწერა"
-
-msgid "Enable custom privacy panel"
-msgstr "მორგებული კონფიდენციალურობის პანელი"
-
-msgid "Custom privacy panel"
-msgstr "Custom კონფიდენციალურობის პანელი"
-
-msgid "Text shown when the whistleblower is not using Tor"
-msgstr "ტექსტი ჩანს როდესაც მამხილებლის არ არის გამოყენებით Tor"
-
-msgid "Disable the privacy panel"
-msgstr "შეზღუდული შესაძლებლობების მქონე კონფიდენციალურობის პანელი"
-
 msgid "Enable the receipt hint"
-msgstr ""
+msgstr "მიღების მინიშნების ჩართვა"
 
 msgid "Default questionnaire"
-msgstr ""
+msgstr "ნაგულისხმევი კითხვარის ჩართვა"
 
 msgid "Show contexts in alphabetical order"
 msgstr "Show კონტექსტში ანბანის მიხედვით"
 
 msgid "Do not expose users' names"
-msgstr ""
+msgstr "არ გამჟღავნდეს მომხმარებლის სახელები"
 
 msgid "Size limit for file attachments"
 msgstr "ზომა ლიმიტი ფაილის მიმაგრება"
@@ -718,92 +555,79 @@ msgid "in megabytes"
 msgstr "მბ"
 
 msgid "Enable HSTS preload"
-msgstr ""
+msgstr "HSTS პროტოკოლით წინასწარი ჩატვირთვის ჩართვა"
 
 msgid "Require two factor authentication"
-msgstr ""
+msgstr "ორფაქტორიანი ავტორიზაციის მოთხოვნა"
 
 msgid "Password change interval"
-msgstr ""
+msgstr "პაროლის შეცვლის ინტერვალი"
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
-msgstr ""
+msgstr "უსაფრთხოების მიზნებისთვის, პაროლის შეცვლა საჭიროა რეგულარული ინტერვალებით."
 
 msgid "Set the value to 0 to disable this feature."
-msgstr ""
+msgstr "ამ ფუნქციის გამოსართავად მნიშვნელობა დააყენეთ 0-ზე."
 
-msgid "Amount of days till whistleblower access expires"
-msgstr ""
-
-msgid ""
-"For security reasons the whistleblower access is subject to expiration."
-msgstr ""
-
-msgid "Tweak this setting only if you know what you are doing."
-msgstr ""
+msgid "Number of days till notifying unread reports to users"
+msgstr "დღეების რაოდენობა მომხმარებლების შეტყობინებამდე წაუკითხავი ანგარიშების შესახებ"
 
 msgid "Enable custodian user role"
-msgstr ""
+msgstr "პასუხისმგებელი მომხმარებლის როლის ჩართვა"
 
 msgid "Enable scoring system"
-msgstr ""
+msgstr "ქულების დათვლის სისტემის ჩართვა"
 
-msgid "Enable private labels"
-msgstr ""
+msgid "Enable private annotations"
+msgstr "პირადი ანოტაციების ჩართვა"
 
 msgid "Logging level"
-msgstr ""
+msgstr "შესვლის დონე"
 
 msgid "Log accesses of internal users"
-msgstr ""
+msgstr "შიდა მომხმარებლების წვდომის ჟურნალი"
 
 msgid "Notify administrators of software problems"
-msgstr ""
+msgstr "ადმინისტრატორების შეტყობინება პროგრამული უზრუნველყოფის პრობლემების შესახებ"
 
 msgid "Notify developers of software problems"
-msgstr ""
+msgstr "დეველოპერების შეტყობინება პროგრამული უზრუნველყოფის პრობლემების შესახებ"
 
 msgid ""
 "By enabling this feature, you will contribute to the development and "
 "security of the platform."
-msgstr ""
+msgstr "ამ ფუნქციის გააქტიურებით, თქვენ შეიტანთ წვლილს პლატფორმის განვითარებასა და უსაფრთხოებაში."
 
 msgid "Save"
 msgstr "გადარჩენა"
 
 msgid "Reset reports"
-msgstr ""
+msgstr "ანგარიშების გადატვირთვა"
 
 msgid "Low"
-msgstr ""
+msgstr "დაბალი"
 
 msgid "High"
-msgstr ""
+msgstr "მაღალი"
 
 msgid "megabytes"
-msgstr ""
+msgstr "მეგაბაიტები"
 
 msgid "percentage"
-msgstr ""
+msgstr "პროცენტი"
 
-msgid "Stats of the week:"
-msgstr "სტატისტიკა კვირაში:"
+msgid "Type"
+msgstr "ტიპი"
 
-msgid "Event ID"
-msgstr "თარიღის ID"
+msgid "Severity"
+msgstr "სიმწვავე"
 
-msgid "Time"
-msgstr "დრო"
-
-msgid "Event"
-msgstr "ღონისძიებები"
-
-msgid "Response time"
-msgstr "რეაგირების დრო"
+msgid "Object"
+msgstr "ობიექტი"
 
 msgid "ID"
-msgstr ""
+msgstr "იდენტიფიკატორი"
 
 msgid "Username"
 msgstr "ნიკი"
@@ -814,6 +638,9 @@ msgstr "როლი"
 msgid "Name"
 msgstr "სახელი"
 
+msgid "Creation date"
+msgstr "შექმნის თარიღი"
+
 msgid "Last access"
 msgstr "ბოლო შესვლა"
 
@@ -821,16 +648,10 @@ msgid "Connection"
 msgstr "კავშირი"
 
 msgid "Whistleblower's last access"
-msgstr ""
-
-msgid "Alarm level"
-msgstr "განგაშის დონე"
-
-msgid "Events"
-msgstr "მოვლენები"
+msgstr "ბოლო წვდომა დარღვევების შეტყობინების პორტალზე"
 
 msgid "Substatuses"
-msgstr ""
+msgstr "ჩანაცვლებები"
 
 msgid "Add"
 msgstr "სანიშნეს"
@@ -848,16 +669,16 @@ msgid "Cancel"
 msgstr "გაუქმება"
 
 msgid "Report statuses"
-msgstr ""
+msgstr "ანგარიშის სტატუსები"
 
 msgid "Logo"
-msgstr ""
+msgstr "ლოგო"
 
 msgid "Project name"
 msgstr "პროექტის სახელი"
 
-msgid "Header title"
-msgstr ""
+msgid "Description"
+msgstr "აღწერა"
 
 msgid "Homepage title"
 msgstr "მთავარი სათაური"
@@ -871,17 +692,8 @@ msgstr "კითხვა შუამდგომლობას შესა�
 msgid "Whistleblowing button"
 msgstr "მხილება ღილაკს"
 
-msgid "Title of the submission page"
-msgstr "დასახელება წარდგენის გვერდი"
-
-msgid "Enable disclaimer"
-msgstr ""
-
-msgid "Title"
-msgstr "სათაური"
-
-msgid "Text"
-msgstr ""
+msgid "Disclaimer"
+msgstr "პასუხისმგებლობის მოხსნა"
 
 msgid "Footer"
 msgstr "Footer"
@@ -896,19 +708,19 @@ msgid "Language:"
 msgstr "ენა:"
 
 msgid "Add custom text"
-msgstr ""
+msgstr "მორგებული ტექსტის დამატება"
 
 msgid "Custom text"
-msgstr ""
+msgstr "მორგებული ტექსტი"
 
 msgid "Original text"
-msgstr ""
+msgstr "საწყისი ტექსტი"
 
 msgid "Original translation"
-msgstr ""
+msgstr "საწყისი თარგმანი"
 
 msgid "Custom translation"
-msgstr ""
+msgstr "მორგებული თარგმანი"
 
 msgid "Contexts"
 msgstr "კონტექსტში"
@@ -925,9 +737,6 @@ msgstr "ჩართულია"
 msgid "Questionnaire"
 msgstr "კითხვარი"
 
-msgid "Additional questionnaire"
-msgstr ""
-
 msgid "Recipients"
 msgstr "მიმღები"
 
@@ -935,7 +744,7 @@ msgid "days"
 msgstr "დღე"
 
 msgid "Show the questionnaire navigation interface"
-msgstr ""
+msgstr "კითხვარის ნავიგაციის ინტერფეისის ჩვენება"
 
 msgid "Allow whistleblowers to select their recipients"
 msgstr "ნება მამხილებელთა აირჩიოთ მათი მიმღები"
@@ -951,9 +760,6 @@ msgstr "Show მიმღები ანბანის მიხედვი�
 
 msgid "Show recipient details on the status page of the report"
 msgstr "აჩვენეთ მიმღები დეტალები მდგომარეობა გვერდზე წარდგენის"
-
-msgid "Text shown on top of the interface for selecting recipients"
-msgstr "ტექსტი ნაჩვენები თავზე ინტერფეისი შერჩევის მიმღები"
 
 msgid "Enable comments"
 msgstr "კომენტარების"
@@ -971,37 +777,37 @@ msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "ნება მამხილებელთა დაამატოთ attachments არსებული წარდგინება"
 
 msgid "Let recipients upload files to whistleblowers"
-msgstr ""
+msgstr "მიმღებების დაშვება ატვირთონ ფაილები დარღვევების შეტყობინების პორტალზე"
+
+msgid "Additional questionnaire"
+msgstr "დამატებითი კითხვარი"
 
 msgid "Scoring system options"
-msgstr ""
+msgstr "  ქულების დათვლის სისტემის პარამეტრები"
 
 msgid "Threshold"
-msgstr ""
+msgstr "ზღვარი"
 
 msgid "Value"
 msgstr "მნიშვნელობა"
 
 msgid "Medium"
-msgstr ""
+msgstr "საშუალო"
 
 msgid "Customize the message shown in the receipt page"
-msgstr ""
+msgstr "ქვითრის გვერდზე ნაჩვენები შეტყობინების მორგება"
 
 msgid "Assign the receipt only to reports reaching score:"
-msgstr ""
+msgstr "ქვითარი მიენიჭოს მხოლოდ ანგარიშებს, რომლებმაც მიაღწიეს ქულას:"
 
 msgid "Software version:"
 msgstr "Software ვერსია:"
 
-msgid "An update is available:"
-msgstr ""
-
 msgid "Restrict access to specific IP addresses"
-msgstr ""
+msgstr "კონკრეტულ IP მისამართებზე წვდომის შეზღუდვა"
 
 msgid "Allowed IP addresses"
-msgstr ""
+msgstr "ნებადართული IP მისამართები"
 
 msgid "Admin"
 msgstr "admin"
@@ -1009,121 +815,118 @@ msgstr "admin"
 msgid "Recipient"
 msgstr "მიმღები"
 
-msgid "Whistleblower"
-msgstr ""
-
 msgid "Each entry must be separated with a comma."
-msgstr ""
+msgstr "თითოეული ჩანაწერი უნდა გამოიყოს მძიმით."
 
 msgid "Example:"
 msgstr "მაგალითად:"
 
 msgid "Hostname"
-msgstr ""
+msgstr "საკვანძო კომპიუტერის სახელი"
 
 msgid "Invalid input format."
 msgstr "არასწორი შეყვანის ფორმატი"
 
 msgid "Input should be similar to:"
-msgstr ""
-
-msgid "Using Let's Encrypt requires agreement to their Terms of Service."
-msgstr ""
-
-msgid "Read the Terms of Service"
-msgstr ""
-
-msgid "I agree to the Terms of Service."
-msgstr ""
+msgstr "შენატანი უნდა იყოს მსგავსი:"
 
 msgid "Country code"
-msgstr ""
+msgstr "ქვეყნის კოდი"
 
 msgid "City"
 msgstr "ქალაქი"
 
 msgid "Organization"
-msgstr ""
+msgstr "ორგანიზაცია"
 
 msgid "Organizational unit"
-msgstr ""
+msgstr "ორგანიზაციული ერთეული"
 
 msgid "Invalid email address"
 msgstr "ელფოსტის მისამართი არასწორია"
 
 msgid "Generate"
-msgstr ""
+msgstr "გენერირება"
 
 msgid "Private Key"
-msgstr ""
+msgstr "პირადი კოდი"
 
 msgid "Certificate Signing Request"
-msgstr ""
+msgstr "სერტიფიკატის ხელმოწერის მოთხოვნა"
 
 msgid "Certificate"
-msgstr ""
+msgstr "სერტიფიკატი"
 
 msgid "Valid until:"
-msgstr ""
+msgstr "ძალაშია:"
 
 msgid "Issuer:"
-msgstr ""
+msgstr "გამომცემელი:"
 
 msgid "Intermediate Certificates"
-msgstr ""
+msgstr "შუალედური სერტიფიკატები"
 
 msgid "Enable"
-msgstr ""
+msgstr "ჩართვა"
 
 msgid "Reset"
 msgstr "აღდგენა"
 
 msgid ""
 "The platform supports the configuration of HTTPS through this interface."
-msgstr ""
+msgstr "პლატფორმა მხარს უჭერს HTTPS პროტოკოლის კონფიგურაციას ამ ინტერფეისის მეშვეობით."
 
 msgid "Automatic configuration"
-msgstr ""
+msgstr "ავტომატური კონფიგურაცია"
 
 msgid ""
 "Using automatic HTTPS configuration will handle the entire process of "
 "requesting, enabling and renewing certificates from the Let's Encrypt "
 "Certificate Authority."
-msgstr ""
+msgstr "ავტომატური HTTPS კონფიგურაციის გამოყენება მართავს სერტიფიკატების მოთხოვნის, გააქტიურების და განახლების მთელ პროცესს სერტიფიკაციის ორგანოდან Let's Encrypt."
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
-msgstr ""
+"hostname must have a DNS record referencing that address."
+msgstr "პლატფორმა უნდა იყოს მისაწვდომი საჯარო IP მისამართის მეშვეობით, ხოლო არჩეულ საკვანძო კომპიუტერის სახელს უნდა ქონდეს DNS ჩანაწერი ამ მისამართის მითითებით."
 
 msgid "Manual configuration"
-msgstr ""
+msgstr "ხელით კონფიგურაცია"
 
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
-msgstr ""
+msgstr "ხელით კონფიგურაციის ოსტატი დაგეხმარებათ HTTPS  პროტოკოლის დაყენების პროცესში ალტერნატიული სერტიფიკაციის ორგანოდან."
 
 msgid "Auto-renewal"
-msgstr ""
+msgstr "ავტომატური განახლება"
 
 msgid "Tor Onion Service"
-msgstr ""
+msgstr "Tor Onion Service"
 
-msgid "Tor Browser download link"
-msgstr ""
+msgid "Disable the privacy panel"
+msgstr "შეზღუდული შესაძლებლობების მქონე კონფიდენციალურობის პანელი"
+
+msgid "Enable custom privacy panel"
+msgstr "მორგებული კონფიდენციალურობის პანელი"
+
+msgid "Custom privacy panel"
+msgstr "Custom კონფიდენციალურობის პანელი"
 
 msgid "Anonymize outgoing connections"
-msgstr ""
+msgstr "გამავალი კავშირების ანონიმიზაცია"
 
 msgid "Let the platform be reachable without Tor"
-msgstr ""
+msgstr "პლატფორმა ხელმისაწვდომი იყოს Tor-ის გარეშე"
 
 msgid "Roles enabled to use the platform without Tor"
-msgstr ""
+msgstr "როლები, რომლებიც იძლევა პლატფორმის გამოყენების საშუალებას Tor-ის გარეშე"
+
+msgid "Whistleblower"
+msgstr "დარღვევების შეტყობინების პორტალი"
 
 msgid "To"
-msgstr ""
+msgstr "ვის"
 
 msgid "SMTP email address"
 msgstr "SMTP ელ-ფოსტის მისამართი"
@@ -1141,7 +944,7 @@ msgid "Warning"
 msgstr "გაფრთხილება"
 
 msgid "Require authentication"
-msgstr ""
+msgstr "საჭიროა ავტორიზაცია"
 
 msgid "Password"
 msgstr "პაროლი"
@@ -1150,10 +953,10 @@ msgid "Number of hours before sending a report expiration alert"
 msgstr "პუნქტების საათით ადრე გაგზავნის წარდგენის ვადის გასვლის alert"
 
 msgid "Test the configuration"
-msgstr ""
+msgstr "კონფიგურაციის ტესტირება"
 
 msgid "Reset SMTP configuration"
-msgstr ""
+msgstr "SMTP კონფიგურაციის გადატვირთვა"
 
 msgid "Reset notification templates to default"
 msgstr "აღდგენა შეტყობინება თარგები ნაგულისხმევია"
@@ -1162,10 +965,7 @@ msgid "Template"
 msgstr "თარგი"
 
 msgid "Question"
-msgstr ""
-
-msgid "Type"
-msgstr "ტიპი"
+msgstr "კითხვა"
 
 msgid "Single-line text input"
 msgstr "Single-line ტექსტი"
@@ -1183,10 +983,7 @@ msgid "Terms of service"
 msgstr "მომსახურების პირობები"
 
 msgid "Date range"
-msgstr ""
-
-msgid "Map"
-msgstr ""
+msgstr "თარიღის დიაპაზონი"
 
 msgid "Group of questions"
 msgstr "ჯგუფი კითხვები"
@@ -1216,64 +1013,49 @@ msgid "Accept multiple file uploads"
 msgstr "მიიღოს მრავალი ფაილის ატვირთვის"
 
 msgid "Accept multiple answers"
-msgstr ""
-
-msgid "Hint shown on the button for adding an additional answer"
-msgstr "მინიშნება ნაჩვენები ღილაკს დამატებით პასუხი"
-
-msgid "Encrypt"
-msgstr ""
+msgstr "რამდენიმე პასუხის მიღება"
 
 msgid "Template override"
-msgstr ""
+msgstr "შაბლონის ხელახლა განსაზღვრა"
 
 msgid "Phone number"
 msgstr "ტელეფონის ნომერი"
 
+msgid "Text"
+msgstr "ტექსტი"
+
 msgid "Checkbox label"
-msgstr ""
+msgstr "მოსანიშნი უჯრის წარწერა"
 
 msgid "Add multimedia content"
-msgstr ""
+msgstr "მულტიმედიური შიგთავსის დამატება"
 
 msgid "Image"
-msgstr ""
+msgstr "სურათი"
 
 msgid "Audio"
-msgstr ""
+msgstr "აუდიო"
 
 msgid "Video"
-msgstr ""
-
-msgid "Subject answer visibility to custodian authorization"
-msgstr "თემა პასუხი ხილვადობა მეურვის ნებართვის"
-
-msgid "Text shown upon negative answer"
-msgstr ""
-
-msgid "Prompt confirmation upon negative answer"
-msgstr "სწრაფი დადასტურება საფუძველზე უარყოფითი პასუხი"
-
-msgid "Text shown upon confirmation"
-msgstr ""
+msgstr "ვიდეო"
 
 msgid "Trigger conditions"
-msgstr ""
+msgstr "გაშვების პირობები"
 
 msgid "Sufficient"
-msgstr ""
+msgstr "საკმარისი"
 
 msgid "Options"
 msgstr "პარამეტრები"
 
 msgid "Addition"
-msgstr ""
+msgstr "დამატება"
 
 msgid "Multiplier"
-msgstr ""
+msgstr "მულტიპლიკატორი"
 
 msgid "Questions"
-msgstr ""
+msgstr "კითხვები"
 
 msgid "Add new question"
 msgstr "ახალი კითხვა"
@@ -1282,70 +1064,67 @@ msgid "Add question from template"
 msgstr "სანიშნეს კითხვა template"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "დუბლირება"
 
 msgid "Steps"
-msgstr ""
+msgstr "ნაბიჯები"
 
 msgid "Site settings"
-msgstr ""
+msgstr "საიტის პარამეტრები"
 
 msgid "Case management"
-msgstr ""
+msgstr "საქმის მენეჯმენტი"
 
 msgid "Network settings"
-msgstr ""
-
-msgid "Root domain used for secondary sites"
-msgstr ""
-
-msgid "Use the first site for administrative purposes only"
-msgstr ""
-
-msgid "Allow users to sign up"
-msgstr ""
-
-msgid "Enable multi-site login"
-msgstr ""
-
-msgid "Enable terms of service"
-msgstr ""
+msgstr "ქსელის პარამეტრები"
 
 msgid "Sites"
-msgstr ""
+msgstr "საიტები"
 
 msgid "Mode:"
-msgstr ""
-
-msgid "Active"
-msgstr ""
-
-msgid "Inactive"
-msgstr ""
+msgstr "რეჟიმი:"
 
 msgid "Configure"
 msgstr "გამართვა"
 
 msgid "Subdomain"
-msgstr ""
+msgstr "ქვედომენი"
 
 msgid "Creation date:"
-msgstr ""
+msgstr "შექმნის თარიღი:"
+
+msgid "Root domain used for secondary sites"
+msgstr "მეორადი საიტებისთვის გამოყენებული ძირითადი დომენი"
+
+msgid "Use the first site for administrative purposes only"
+msgstr "პირველი საიტი გამოიყენეთ მხოლოდ ადმინისტრაციული მიზნებისთვის"
+
+msgid "Enable multi-site login"
+msgstr "მრავალსაიტიანი შესვლის ჩართვა"
+
+msgid "Allow users to sign up"
+msgstr "მომხმარებლებისთვის რეგისტრაციის ნების დართვა"
+
+msgid "Enable terms of service"
+msgstr "მომსახურების პირობების ჩართვა"
+
+msgid "Title"
+msgstr "სათაური"
 
 msgid "Send an account activation link to the user."
-msgstr ""
+msgstr "მომხმარებლისთვის ანგარიშის გააქტიურების ბმულის გაგზავნა"
 
 msgid "Public name"
-msgstr ""
+msgstr "საჯარო სახელი"
 
 msgid "Send reset link"
-msgstr ""
+msgstr "გადატვირთვის ბმულის გაგზავნა"
 
 msgid "Set password"
-msgstr ""
+msgstr "პაროლის დაყენება"
 
 msgid "Disable two factor authentication"
-msgstr ""
+msgstr "ორფაქტორიანი ავტორიზაციის გამორთვა"
 
 msgid "Force password change"
 msgstr "Force პაროლის შეცვლა"
@@ -1357,75 +1136,64 @@ msgid "Language"
 msgstr "ენა"
 
 msgid "Enable email notifications"
-msgstr ""
+msgstr "ელფოსტის შეტყობინებების ჩართვა"
 
 msgid "Details of the PGP key:"
 msgstr "დეტალები PGP გასაღები:"
 
 msgid "Fingerprint"
-msgstr ""
+msgstr "თითის ანაბეჭდი"
 
 msgid "Set up encryption by providing a PGP public key"
 msgstr "შეიქმნა დაშიფვრის უზრუნველყოფს PGP საჯარო გასაღები"
 
 msgid "Give this admin ability to change user passwords"
-msgstr ""
-
-msgid "Configuration"
-msgstr "კონფიგურაცია"
-
-msgid "Default"
-msgstr "Default"
+msgstr "ადმინისტრატორისთვის მომხმარებლის პაროლების შეცვლის შესაძლებლობის მიცემა"
 
 msgid "Forcefully selected"
 msgstr "იძულებით შერჩეული"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "მისცემს მიმღები გადადება წარდგენის ვადის გასვლის თარიღი"
-
 msgid "Allow the recipient to delete reports"
 msgstr "ნება მიმღები წაშლა წარდგინება"
 
-msgid ""
-"Allow the recipient to grant permissions to whistleblowers on specific "
-"reports"
-msgstr "ნება მიმღები გასცეს ნებართვები მამხილებელთა კონკრეტული წარდგინება"
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "მისცემს მიმღები გადადება წარდგენის ვადის გასვლის თარიღი"
 
-msgid "User has administrative access to the following features:"
-msgstr ""
+msgid "Give the user administrative access to the following features:"
+msgstr "მიეცეს მომხმარებელს ადმინისტრაციული წვდომა შემდეგ ფუნქციებზე:"
 
 msgid "Request date"
 msgstr "მოთხოვნა თარიღი"
 
 msgid "Report date"
-msgstr ""
+msgstr "ანგარიშის თარიღი"
 
 msgid "Authorization"
 msgstr "ავტორიზაცია"
 
-msgid "Identities"
-msgstr ""
+msgid "Requests"
+msgstr "მოთხოვნები"
 
 msgid "The validation link is either incorrect or has expired."
-msgstr ""
+msgstr "შემოწმების ბმული არასწორია ან ვადაგასულია."
 
 msgid "Your new email address has been validated."
-msgstr ""
+msgstr "თქვენი ახალი ელფოსტის მისამართი დადასტურებულია"
 
 msgid "Forgot password?"
-msgstr ""
+msgstr "დაგავიწყდათ პაროლი?"
 
 msgid "Enter the two factor authentication code"
-msgstr ""
+msgstr "შეიყვანეთ ორფაქტორიანი ავტორიზაციის კოდი"
 
 msgid "Authentication failed"
 msgstr "ავთენტიფიკაცია ვერ"
 
 msgid "The code is either invalid or expired."
-msgstr ""
+msgstr "კოდი არასწორია ან ვაადაგასულია"
 
 msgid "Site:"
-msgstr ""
+msgstr "საიტი:"
 
 msgid "Please select your account:"
 msgstr "გთხოვთ, აირჩიოთ თქვენი ანგარიში:"
@@ -1434,19 +1202,16 @@ msgid "Now type your password, then click 'Log in':"
 msgstr "ახლა აკრიფოთ თქვენი პაროლი, შემდეგ დააჭირეთ \"შესვლა\":"
 
 msgid "Text shown after the user has selected the option."
-msgstr ""
+msgstr "ტექსტი გამოჩნდება მას შემდეგ, რაც მომხმარებელი აირჩევს ვარიანტს."
 
 msgid "Confirm"
 msgstr "დაადასტურეთ"
-
-msgid "Add file"
-msgstr "ფაილის დამატება"
 
 msgid "Are you sure?"
 msgstr "დარწმუნებული ხარ?"
 
 msgid "The operation will reset the configuration and cannot be undone."
-msgstr ""
+msgstr "ოპერაცია გადატვირთავს კონფიგურაციას და მისი გაუქმება შეუძლებელია."
 
 msgid "Assign score points"
 msgstr "მიანიჭეთ ქულა რაოდენობა"
@@ -1455,52 +1220,52 @@ msgid "Please note that all the associated data will be permanently deleted."
 msgstr "გთხოვთ იზრუნოს, რომ ყველა დაკავშირებული მონაცემები სწორად იშლება."
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr ""
-
-msgid "Install an authenticator app on your phone"
-msgstr ""
-
-msgid "Scan the QR code with the app"
-msgstr ""
-
-msgid "Enable two factor authentication"
-msgstr ""
+msgstr "ეს არის სადემონსტრაციო პლატფორმა, გთხოვთ, არ გამოიყენოთ იგი რეალური წარდგენებისთვის."
 
 msgid "Close"
 msgstr "დახურვა"
 
+msgid "Install an authenticator app on your phone"
+msgstr "დააინსტალირეთ ავტორიზაციის აპი თქვენს ტელეფონზე"
+
+msgid "Scan the QR code with the app"
+msgstr "დაასკანირეთ QR კოდი აპის მეშვეობით"
+
+msgid "Enable two factor authentication"
+msgstr "ჩართეთ ორფაქტორიანი ავტორიზაცია"
+
 msgid "Before proceeding please read carefully the documentation at:"
-msgstr ""
+msgstr "გაგრძელებამდე ყურადღებით წაიკითხეთ დოკუმენტაცია:"
 
 msgid "Your account recovery key is:"
-msgstr ""
+msgstr "თქვენი ანგარიშის აღდგენის კოდია:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr ""
+msgstr "გააკეთეთ ასლი და შეინახეთ უსაფრთხო ადგილას. ის საჭირო იქნება თქვენი პაროლის დაკარგვის შემთხვევაში თქვენს ანგარიშზე წვდომის აღსადგენად   მონაცემების დაკარგვის გარეშე. "
 
 msgid "Welcome!"
 msgstr "მოგესალმებით!"
 
 msgid "For the user documentation, visit:"
-msgstr ""
+msgstr "მომხმარებლის დოკუმენტაციისთვის, ეწვიეთ:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
 " the software:"
-msgstr ""
+msgstr "თუ გჭირდებათ ტექნიკური მხარდაჭერა, გაქვთ ზოგადი კითხვები ან ახალი იდეები პროგრამულ უზრუნველყოფასთან დაკავშირებით:"
 
 msgid ""
 "If you want to contribute to software development or report a bug, please "
 "open an issue in our ticketing system:"
-msgstr ""
+msgstr "თუ ქსურთ შეიტანოთ წვლილი პროგრამული უზრუნველყოფის განვითარებაში ან შეატყობინოთ შეცდომის შესახებ, გახსენით საკითხი ჩვენს საბილეთო სისტემაში:"
 
 msgid "Join our chat:"
-msgstr ""
+msgstr "შემოუერთდით ჩვენს საუბარს:"
 
 msgid "Follow the project on:"
-msgstr ""
+msgstr "თვალყური ადევნეთ პროექტს:"
 
 msgid "Hint: How to hide your receipt"
 msgstr "მინიშნება: როგორ დაფაროთ თქვენი გასაღები კოდი"
@@ -1508,22 +1273,22 @@ msgstr "მინიშნება: როგორ დაფაროთ თ�
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr ""
+msgstr "თქვენი ქვითრის დამალვის სასარგებლო ხერხია - ჩაწეროთ ის, როგორც საკრედიტო ბარათის ნომერი, ანუ მოქმედების ვადის ჩათვლით."
 
 msgid "Error!"
 msgstr "შეცდომა!"
 
 msgid "Internal server error"
-msgstr ""
+msgstr "შიდა სერვერის შეცდომა"
 
 msgid "Error on input validation"
-msgstr ""
+msgstr "შეტანის შემოწმების შეცდომა"
 
 msgid "Resource not found"
-msgstr ""
+msgstr "რესურსი ვერ მოიძებნა"
 
 msgid "Forbidden operation"
-msgstr ""
+msgstr "აკრძალული ოპერაცია"
 
 msgid "The specified old password is not valid"
 msgstr "მითითებული ძველი პაროლი არ არის სწორი"
@@ -1534,20 +1299,29 @@ msgstr "რესურსი შეიძლება მხოლოდ მი
 msgid "The upload request exceeds the size limit"
 msgstr "ატვირთვა მოთხოვნა აღემატება ზომა ლიმიტი"
 
-msgid "Success!"
-msgstr "წარმატებას!"
+msgid "Request support"
+msgstr "მხარდაჭერის მოთხოვნა"
+
+msgid "Thank you."
+msgstr "გმადლობთ"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "ვეცდებით რაც შეიძლება მალე გიპასუხოთ."
+
+msgid "Submit"
+msgstr "წარუდგინოს"
 
 msgid "Validation of email address change in progress."
-msgstr ""
+msgstr "მიმდინარეობს ელფოსტის მისამართის ცვლილების შემოწმება."
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
+msgstr "შემდგომი ინსტრუქციებისთვის შეამოწმეთ თქვენი შემოსული წერილები."
 
 msgid "Account recovery key"
-msgstr ""
+msgstr "ანგარიშის აღდგენის კოდი"
 
 msgid "Current password"
-msgstr ""
+msgstr "მიმდინარე პაროლი"
 
 msgid "Old password confirmation required"
 msgstr "ძველი პაროლი დადასტურება"
@@ -1558,15 +1332,18 @@ msgid ""
 msgstr "როგორც ჩანს, თქვენ ათვალიერებს ამ საიტიდან ყოველგვარი ზედმეტი კონფიდენციალურობა და უსაფრთხოება!"
 
 msgid ""
-"You are strongly advised to visit this site using the desktop app called Tor"
-" Browser, that protects your identity."
-msgstr "თქვენ მკაცრად ურჩია ეწვევა ამ საიტიდან გამოყენებით desktop app მოუწოდა Tor Browser, რომელიც იცავს თქვენს ვინაობას."
+"You are strongly advised to visit this site using the app called Tor "
+"Browser, that protects your identity."
+msgstr "დაბეჯითებით გირჩევთ ეწვიოთ ამ საიტს Tor Browser აპის გამოყენებით, რომელიც იცავს თქვენს კონფიდენციალურობას."
+
+msgid "Download the Tor Browser"
+msgstr "ჩამოტვირთეთ Tor Browser"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "ამის შემდეგ, დააკოპირეთ და ჩასვით შემდეგ მისამართზე შევიდა Tor Browser:"
 
 msgid "Enter a name for the copy"
-msgstr ""
+msgstr "შეიყვანეთ სახელი ასლისთვის"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "თქვენ უკვე შეიტანა წარდგენის? შეიყვანეთ თქვენი გასაღები კოდი."
@@ -1575,10 +1352,10 @@ msgid "The receipt is either invalid or the report has expired."
 msgstr "გასაღები კოდი ან არასწორი ან წარდგენის ვადა გაუვიდა."
 
 msgid "Select a file or drag it here."
-msgstr ""
+msgstr "აირჩიეთ ფაილი ან გადმოათრიეთ აქ."
 
 msgid "Uploading files…"
-msgstr ""
+msgstr "მიმდინარეობს ფაილების ატვირთვა…"
 
 msgid "Upload completed successfully!"
 msgstr "ატვირთვა წარმატებით დასრულდა!"
@@ -1590,62 +1367,21 @@ msgid "Estimated upload time:"
 msgstr "სავარაუდო upload დრო:"
 
 msgid "Size:"
-msgstr ""
-
-msgid "Enable the Ricochet panel"
-msgstr ""
-
-msgid "Address"
-msgstr "მისამართი"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr ""
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr ""
-
-msgid "Download Ricochet at:"
-msgstr ""
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr ""
+msgstr "ზომა:"
 
 msgid "The connection is not secure."
-msgstr ""
+msgstr "კავშირი არ არის დაცული."
 
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
-msgstr ""
-
-msgid "Use case"
-msgstr ""
-
-msgid "Anticorruption"
-msgstr ""
-
-msgid "Corporate compliance"
-msgstr ""
-
-msgid "Investigative journalism"
-msgstr ""
-
-msgid "Civic activism"
-msgstr ""
-
-msgid "Submit"
-msgstr "წარუდგინოს"
+msgstr "პლატფორმა ჯერ არ არის კონფიგურირებული HTTPS პროტოკოლით კავშირებისთვის და ამიტომ უნდა იყოს გამოყენებული მხოლოდ ტესტირების მიზნებისთვის."
 
 msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr ""
+msgstr "მიმღებებმა მოგთხოვეს დამატებითი კითხვარის შევსება."
 
 msgid "Fill the additional questionnaire"
-msgstr ""
+msgstr "შეავსეთ დამატებითი კითხვარი"
 
 msgid "Send"
 msgstr "პირადი"
@@ -1654,10 +1390,10 @@ msgid "Allow the whistleblower to write comments"
 msgstr "ნება მამხილებელთა დაწერა კომენტარი"
 
 msgid "From:"
-msgstr ""
+msgstr "ვისგან:"
 
 msgid "To:"
-msgstr ""
+msgstr "ვის:"
 
 msgid "Filename"
 msgstr "ფაილის სახელი"
@@ -1668,26 +1404,8 @@ msgstr "ატვირთვა თარიღი"
 msgid "File size"
 msgstr "ფაილის ზომა"
 
-msgid "download"
-msgstr "ჩამოტვირთვა"
-
-msgid "No files have been uploaded!"
-msgstr "არარის ფაილი აიტვირთა!"
-
 msgid "Allow the whistleblower to add attachments to the report"
 msgstr "ნება მამხილებელთა დამატება attachments წარდგენის"
-
-msgid "Report"
-msgstr "წარდგენა"
-
-msgid "Access expiration"
-msgstr ""
-
-msgid "Never"
-msgstr "არასდროს"
-
-msgid "Revoked"
-msgstr ""
 
 msgid "Allow the whistleblower to send messages"
 msgstr "ნება მამხილებელთა გააგზავნოთ შეტყობინებები"
@@ -1697,12 +1415,12 @@ msgstr "დარწმუნებული ხართ, რომ გსუ�
 
 msgid ""
 "Everything related to the report stored on the platform will be deleted."
-msgstr ""
+msgstr "ყველაფერი, რაც დაკავშირებულია პლატფორმაზე შენახულ ანგარიშთან, წაიშლება."
 
 msgid ""
 "Please be aware that everything stored off the platform, e.g. files you have"
 " saved on your computer, must be deleted manually."
-msgstr ""
+msgstr "გაითვალისწინეთ, რომ ყვეაფერი, რაც ინახება პლატფორმის გარეთ, მაგალითად, თქვენს კომპიუტერზე შენახული ფაილები, ხელით უნდა წაიშალოს."
 
 msgid "Are you sure that you want to delete the selected reports?"
 msgstr "დარწმუნებული ხართ, რომ გსურთ ამ მომხმარებლის წაშლა?"
@@ -1732,60 +1450,45 @@ msgstr "კითხვარი პასუხი"
 msgid "Step"
 msgstr "ნაბიჯი"
 
-msgid "Recipient list"
-msgstr "მიმღები სია"
-
 msgid "Status:"
 msgstr "სტატუსი:"
 
-msgid "Attached files for the whistleblower"
-msgstr ""
+msgid "Files attached by recipients"
+msgstr "მიმღების მიერ ატვირთული ფაილები"
 
 msgid "Upload a file:"
-msgstr ""
+msgstr "ატვირთეთ ფაილი:"
 
-msgid "Logout"
-msgstr "გამოსვლა"
+msgid "An update is available:"
+msgstr "განახლება ხელმისაწვდომია:"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
-
-msgid "Files attached by recipients"
-msgstr ""
-
-msgid "These files have been attached to your report by the recipients."
-msgstr ""
+msgstr "თქვენი პაროლის დავიწყების შემთხვევაში, \"ანგარიშის აღდგენის კოდის\" მისაღებად, გირჩევთ შეხვიდეთ “პარამეტრების” განყოფილებაში და შეინახოთ იგი უსაფრთხოდ. ეს კოდი საჭირო იქნება პლატფორმაზე და თქვენს მონაცემებზე წვდომის აღსადგენად."
 
 msgid "The provided recovery key is invalid."
-msgstr ""
+msgstr "წარდგენილი აღდგენის კოდი არასწორია."
 
 msgid "The provided reset token is invalid or expired."
-msgstr ""
+msgstr "წარდგენილი გადატვირთვის ჟეტონი არასწორია ან ვადაგასულია."
 
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr ""
+msgstr "პაროლის აღდგენის მოთხოვნისთვის, შეიყვანეთ თქვენი ანგარიშის მომხმარებლის სახელი ან ელფოსტის მისამართი."
 
 msgid "Enter your email address to request a password reset."
-msgstr ""
+msgstr "პაროლის აღდგენის მოთხოვნისთვის, შეიყვანეთ თქვენი ელფოსტის მისამართი."
 
 msgid ""
 "Enter you encryption recovery key to complete the password reset procedure"
-msgstr ""
+msgstr "პაროლის აღდგენის პროცედურის დასასრულებლად, შეიყვანეთ თქვენი დაშიფვრის აღდგენის კოდი"
 
 msgid "Password reset requested."
-msgstr ""
-
-msgid "Show"
-msgstr ""
-
-msgid "Hide"
-msgstr ""
+msgstr "პაროლის აღდგენა მოთხოვნილია."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -1794,80 +1497,71 @@ msgstr "ხელმისაწვდომობა მამხილებ�
 msgid "Date of the request"
 msgstr "მოთხოვნის თარიღი"
 
-msgid "Undeclared"
-msgstr ""
+msgid "Show"
+msgstr "ჩვენება"
 
 msgid "Congratulations!"
 msgstr "გილოცავთ!"
 
 msgid "You have completed the platform activation."
-msgstr ""
+msgstr "თქვენ დაასრულეთ პლატფორმის აქტივაცია."
+
+msgid "Success!"
+msgstr "წარმატებას!"
 
 msgid "Your whistleblowing platform is almost ready!"
-msgstr ""
+msgstr "თქვენი დარღვევის შეტყობინების პლატფორმა თითქმის მზადაა!"
 
 msgid "Check your inbox to activate it."
-msgstr ""
+msgstr "მის გასააქტიურებლად, შეამოწმეთ თქვენი შემოსული წერილები."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr ""
+msgstr "თუ პლატფორმა არ გააქტიურდება 24 საათის განმავლობაში, ის ავტომატურად წაიშლება."
 
 msgid "Sign up"
 msgstr "შექმნა"
 
 msgid "Domain"
-msgstr ""
+msgstr "დომენი"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "დადასტურება"
 
 msgid "Invalid confirmation"
-msgstr ""
-
-msgid "Other"
-msgstr "სხვა"
+msgstr "არასწორი დადასტურება"
 
 msgid "Complete"
-msgstr ""
+msgstr "დასრულება"
 
 msgid "Invalid phone number"
-msgstr ""
+msgstr "არასწორი ტელეფონის ნომერი"
 
-msgid "This field is mandatory."
-msgstr "ამ სფეროში სავალდებულოა."
-
-msgid "The answer is too short."
-msgstr ""
+msgid "The answer is too short"
+msgstr "პასუხი ძალიან მოკლეა"
 
 msgid "The specified input is not valid."
-msgstr ""
+msgstr "მითითებული შეტანა არ არის სწორი."
 
 msgid "The specified input is not valid:"
-msgstr ""
+msgstr "მითითებული შეტანა არ არის სწორი:"
 
 msgid "please enter a valid email address."
-msgstr ""
+msgstr "შეიყვანეთ სწორი ელფოსტის მისამართი."
 
 msgid "please enter numbers only."
-msgstr ""
+msgstr "შეიყვანეთ მხოლოდ ციფრები"
 
 msgid "Submissions disabled"
-msgstr ""
+msgstr "წარდგენები გამორთულია"
 
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
 msgstr "თქვენ დამაკავშირებელი სერვერზე გარეშე ანონიმურობის და ამ სერვერზე მხარს უჭერს მხოლოდ ანონიმური წარდგინება"
 
-msgid "Thank you!"
-msgstr "მადლობა!"
-
 msgid "Your report was successful."
 msgstr "შენი წარდგენა წარმატებული იყო."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
 
 msgid "Remember your receipt for this report."
 msgstr "გახსოვდეთ გასაღები კოდი ამ წარდგენა."
@@ -1875,7 +1569,7 @@ msgstr "გახსოვდეთ გასაღები კოდი ამ
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr ""
+msgstr "შესასვლელად გამოიყენეთ 16-ციფრიანი ქვითარი. ეს მოგცემთ ჩვენ მიერ გამოგზავნილი ნებისმიერი შეტყობინების დათვალიერების და ასევე დამატებითი ინფორმაციის დამატების საშუალებას."
 
 msgid "View your report"
 msgstr "ნახეთ თქვენი წარდგენის"
@@ -1883,48 +1577,63 @@ msgstr "ნახეთ თქვენი წარდგენის"
 msgid "Recipient selection"
 msgstr "მიმღების შერჩევა"
 
+msgid "Select the recipients of your report:"
+msgstr "აირჩიეთ  თქვენი ანგარიშის მიმღებები:"
+
 msgid "Recipients selected:"
 msgstr "მიმღები შეარჩია:"
 
 msgid "You have reached the maximum number of selectable recipients."
-msgstr ""
+msgstr "თქვენ მიაღწიეთ ასარჩევი მიმღებების მაქსიმალურ რიცხვს."
+
+msgid ""
+"The following recipients will receive your report and could not be "
+"deselected:"
+msgstr "თქვენს ანგარიშს მიიღებენ შემდეგი მიმღებები და მონიშვნის მოხსნა შეუძლებელია:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
 "invalid:"
-msgstr ""
-
-msgid "Errors"
-msgstr ""
+msgstr "ამ ეტაპზე პასუხები შემდეგ კითხვებზე არ არის ან არასწორია:"
 
 msgid "You must select at least one recipient."
-msgstr ""
+msgstr "თქვენ უნდა აირჩიოთ მინიმუმ ერთი მიმღები."
 
 msgid "Waiting for the file(s) to finish uploading."
-msgstr ""
+msgstr "ფაილ(ებ)ის ატვირთვის დასრულების ლოდინი."
 
 msgid "The following steps have errors:"
-msgstr ""
+msgstr "შემდეგი ეტაპები შეიცავენ შეცდომებს:"
+
+msgid "Hide"
+msgstr "დამალვა"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
 "whistleblowing platform."
-msgstr ""
+msgstr "თქვენი დარღვევების შეტყობინების პლატფორმის შექმნაში დაგეხმარებათ შემდეგი ეტაპობრივი პროცედურა."
 
 msgid "Please choose a configuration profile:"
-msgstr ""
+msgstr "აირჩიეთ კონფიგურაციის პროფილი:"
+
+msgid "Make it possible for this admin to reset user passwords."
+msgstr "გახადეთ შესაძლებელი მომხმარებლის პაროლების აღდგენა ამ ადმინისტრატორისთვის."
+
+msgid ""
+"We advise selecting this option if you would like to protect data from being"
+" lost in the situation where recipients lose their passwords. On the other "
+"hand, we would not advise using this feature if you want to setup a system "
+"where only recipients are able to access submissions."
+msgstr "თუ გსურთ დაიცვათ მონაცემები დაკარგვისგან სიტუაციაში, როდესაც მიმღებები კარგავენ პაროლებს, გირჩევთ აირჩიოთ ეს ვარიანტი. მეორეს მხრივ, არ გირჩევთ ამ ფუნქციის გამოყენებას, თუ გსურთ სისტემის დაყენება, სადაც მხოლოდ მიმღებებს შეუძლიათ წარდგენებზე წვდომა."
 
 msgid "Please choose a different username."
-msgstr ""
-
-msgid "The user will receive an activation link via email."
-msgstr ""
+msgstr "აირჩიეთ სხვა მომხმარებლის სახელი."
 
 msgid "I have read and agree to the terms of the license."
-msgstr ""
+msgstr "მე წავიკითხე და ვეთანხმები ლიცენზიის პირობებს."
 
 msgid "You have completed the platform wizard."
-msgstr ""
+msgstr "თქვენ დაასრულეთ პლატფორმის ოსტატი."
 
 msgid "Fill out your report"
 msgstr "შეავსეთ თქვენი წარდგენის"
@@ -1947,53 +1656,14 @@ msgstr "სახელი"
 msgid "Last name"
 msgstr "გვარი"
 
-msgid "Gender"
-msgstr "სქესი"
+msgid "Alternative contact method"
+msgstr "ალტერნატიული საკონტაქტო ხერხი"
 
-msgid "Male"
-msgstr "კაცი"
+msgid "Other"
+msgstr "სხვა"
 
-msgid "Female"
-msgstr "ქალი"
-
-msgid "Other gender identity"
-msgstr ""
-
-msgid "Date of birth"
-msgstr "დაბადების თარიღი"
-
-msgid "Place of birth"
-msgstr "დაბადების ადგილი"
-
-msgid "Social security number"
-msgstr "სოციალური დაცვის ნომერი"
-
-msgid "Residence"
-msgstr "Residence"
-
-msgid "Zip code / Postal code"
-msgstr "Zip კოდი / საფოსტო კოდი"
-
-msgid "Province"
-msgstr "პროვინციაში"
-
-msgid "Current job title"
-msgstr "აქტუალური თანამდებობა"
-
-msgid "Current job responsibility (role)"
-msgstr "მიმდინარე სამუშაოს პასუხისმგებლობა (როლი)"
-
-msgid "Current organization unit and job location"
-msgstr "მიმდინარე ორგანიზაცია ერთეული და სამუშაოს ადგილმდებარეობა"
-
-msgid "Job title at the time of the reported fact"
-msgstr "თანამდებობა დროს ინფორმაციით ფაქტი"
-
-msgid "Job responsibility (role) at the time of the reported fact"
-msgstr "სამუშაო პასუხისმგებლობა (როლი) დროს ინფორმაციით ფაქტი"
-
-msgid "Organization unit and job location at the time of the reported fact"
-msgstr "ორგანიზაცია ერთეული და სამუშაოს ადგილმდებარეობა დროს ინფორმაციით ფაქტი"
+msgid "I prefer to be contacted via this platform only"
+msgstr "მე მირჩევნია დამიკავშირდნენ მხოლოდ ამ პორტალის მეშვეობით"
 
 msgid "Dear {RecipientName},"
 msgstr "ძვირფასო {RecipientName}"
@@ -2001,44 +1671,44 @@ msgstr "ძვირფასო {RecipientName}"
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr ""
+msgstr "თქვენ იღებთ ამ ელფოსტას, რადგან სისტემაში თქვენთვის შეიქმნა მომხმარებლის ანგარიში: {Site}"
 
 msgid "Username: {Username}"
-msgstr ""
+msgstr "მომხმარებლის სახელი: {Username}"
 
 msgid "Activation link: {Url}"
-msgstr ""
+msgstr "აქტივაციის ბმული: {Url}"
 
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr ""
+msgstr "ანგარიშის გააქტიურების და თქვენი მომხმარებლის პაროლის დაყენების გასაგრძელებლად დააწკაპუნეთ აქტივაციის ბმულს."
 
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
-msgstr ""
+msgstr "წარმატებული გააქტიურების შემდეგ მოგეცემათ სისტემაზე წვდომის შესაძლებლობა შემდეგი ბმულის მეშვეობით: {LoginUrl}"
 
 msgid "Kind regards,"
 msgstr "კეთილი სურვილებით,"
 
 msgid "Account activation"
-msgstr ""
+msgstr "ანგარიშის აქტივაცია"
 
 msgid "Your whistleblowing platform is now accessible at:"
-msgstr ""
+msgstr "თქვენი დარღვევის შეტყობინების პლატფორმა ახლა ხელმისაწვდომია:"
 
 msgid "To log in, visit:"
-msgstr ""
+msgstr "შესასვლელად, ეწვიეთ:"
 
 msgid "Users' credentials:"
-msgstr ""
+msgstr "მომხმარებლის ავტორიზაციის მონაცემები:"
 
 msgid "The platform will be automatically deleted on:"
-msgstr ""
+msgstr "პლატფორმა ავტომატურად წაიშლება:"
 
 msgid "Access instructions"
-msgstr ""
+msgstr "წვდომის ინსტრუქციები"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
@@ -2051,7 +1721,7 @@ msgid ""
 msgstr "ეს შეიძლება იყოს ნიშანი თავდასხმა (მაგალითად, ვინმე დატბორილი თქვენი სერვერზე ყალბი ინფორმაციის), ან უბრალოდ გამოყენება spike გამო გაზრდილი ხილვადობა თქვენი პროექტი."
 
 msgid "Examine the issue to determine whether it is legitimate or not."
-msgstr ""
+msgstr "შეისწავლეთ საკითხი მისი კანონიერების დასადგენად."
 
 msgid "The activities with unusual stats are:"
 msgstr "საქმიანობის უჩვეულო სტატისტიკის არიან:"
@@ -2064,7 +1734,7 @@ msgstr "სერვერზე ვერ უზრუნველყოფს,
 msgid ""
 "Please consider asking your technical support to create more disk space on "
 "the server."
-msgstr ""
+msgstr "სთხოვეთ ტექნიკური დახმარების სამსახურს მეტი მეხსიერება გამოგინთავისუფლოთ სერვერზე."
 
 msgid ""
 "GlobaLeaks technology includes a server status checking component which will"
@@ -2074,10 +1744,10 @@ msgstr "GlobaLeaks ტექნოლოგია მოიცავს სე�
 msgid ""
 "For more information, log in to the Administration interface and look at the"
 " \"System Stats\" and \"Anomalies\" sections."
-msgstr ""
+msgstr "დამატებითი ინფორმაციის მისაღებად შედით ადმინისტრირების ინტერფეისში და გადახედეთ განყოფილებებს \"სისტემის სტატისტიკა\" და \"ანომალიები\"."
 
 msgid "Anomaly detected in {NodeName}"
-msgstr ""
+msgstr "ანომალია გამოვლინდა {NodeName}-ში"
 
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
@@ -2093,68 +1763,53 @@ msgid "PGP key expiration alert"
 msgstr "PGP გასაღები გასვლის alert"
 
 msgid "A new whistleblowing site has been registered."
-msgstr ""
+msgstr "ახალი დარღვევების შეტყობინების საიტი დარეგისტრირდა."
 
 msgid "Registration data:"
-msgstr ""
+msgstr "რეგისტრაციის თარიღი:"
 
 msgid "Site: {Url}"
-msgstr ""
+msgstr "საიტი: {Url}"
 
 msgid "Name: {Name}"
-msgstr ""
+msgstr "სახელი: {Name}"
 
 msgid "Email: {Email}"
-msgstr ""
-
-msgid "Language: {Language}"
-msgstr ""
-
-msgid "Use case: {UseCase}"
-msgstr ""
+msgstr "ელფოსტა: {Email}"
 
 msgid "New whistleblowing site registered"
-msgstr ""
+msgstr "ახალი დარღვევების შეტყობინების საიტი რეგისტრირებულია"
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
-msgstr ""
+msgstr "ეს არის პლატფორმის ადმინისტრაციული ინტერფეისიდან გამოგზავნილი სატესტო ელწერილი."
 
 msgid ""
 "Reception of this email indicates that the server was able to authenticate "
 "to and interact with the SMTP mail server."
-msgstr ""
+msgstr "ამ ელფოსტის მიღება მიუთითებს იმაზე, რომ სერვერმა შეძლო ავტორიზაციის გავლა SMTP საფოსტო სერვერზე და მასთან ურთიერთქმედება."
 
 msgid "Test email"
-msgstr ""
-
-msgid "This is an email to notify you of a new comment on an existing report."
-msgstr "ეს არის ელექტრონული შეგატყობინებთ ახალი კომენტარის არსებული წარდგენა."
-
-msgid "The report can be accessed at:"
-msgstr "წარდგენა შეიძლება ხელმისაწვდომი:"
-
-msgid "New comment"
-msgstr "ახალი კომენტარის დამატება"
+msgstr "სატესტო ელფოსტა"
 
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr ""
+msgstr "ეს არის ელექტრონული ფოსტა თქვენს შესატყობინებლად, რომ წარდგენილია მოთხოვნა თქვენი ელფოსტის მისამართის შესაცვლელად შემდეგზე: {NewEmailAddress}. "
 
 msgid "Click the following link to validate this change:"
-msgstr ""
+msgstr "ამ ცვლილების დასადასტურებლად დააწკაპუნეთ შემდეგ ბმულზე:"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
 "system administrator."
-msgstr ""
+msgstr "თუ არ მოგითხოვნიათ ეს ცვლილება, შეცვალეთ თქვენი პაროლი და დაუკავშირდით თქვენი სისტემის ადმინისტრატორს."
 
 msgid "Email change request"
-msgstr ""
+msgstr "ელფოსტის შეცვლის მოთხოვნა"
 
 msgid "From: {Author}"
-msgstr ""
+msgstr "ვისგან: {Author}"
 
 msgid "Date: {EventTime}"
 msgstr "თარიღი: {EventTime}"
@@ -2169,23 +1824,12 @@ msgid "Label: {TipLabel}"
 msgstr "ჟანრი: {TipLabel}"
 
 msgid "Status: {TipStatus}"
-msgstr ""
-
-msgid "Context: {ContextName}"
-msgstr "კონტექსტი: {ContextName}"
-
-msgid ""
-"This is an email to notify you that the whistleblower of report {TipNum} has"
-" attached new material."
-msgstr "ეს არის ელ გაცნობებთ, რომ მამხილებელთა წარდგენის {TipNum} ერთვის ახალი მასალა."
-
-msgid "New attachment"
-msgstr "ახალი დანართი"
+msgstr "სტატუსი: {TipStatus}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
-msgstr ""
+msgstr "პლატფორმაზე ჩატვირთული HTTPS სერტიფიკატი მალე ამოიწურება ან უკვე ამოიწურა."
 
 msgid "Expiration date: {ExpirationDate}"
 msgstr "ვადის გასვლის თარიღი: {ExpirationDate}"
@@ -2193,28 +1837,31 @@ msgstr "ვადის გასვლის თარიღი: {ExpirationDat
 msgid ""
 "Without a valid certificate, the platform will be accessible in a secure way"
 " only via Tor."
-msgstr ""
+msgstr "სწორი სერტიფიკატის გარეშე, პლატფორმა უსაფრთხოდ იქნება ხელმისაწვდომი მხოლოდ Tor-ის მეშვეობით."
 
 msgid "Log in to solve the issue."
-msgstr ""
+msgstr "პრობლემის გადასაჭრელად, შედით სისტემაში."
 
 msgid "Expiration alert for HTTPS certificate"
-msgstr ""
+msgstr "HTTPS სერტიფიკატის ვადის ამოწურვის გაფრთხილება"
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
-msgstr ""
+msgstr "დღეისთვის დაგეგმილი HTTPS სერტიფიკატის ავტომატური განახლება ვერ მოხერხდა."
 
 msgid "The system will keep trying."
-msgstr ""
+msgstr "სისტემა გააგრძელებს ცდას."
 
 msgid "Failed HTTPS certificate renewal"
-msgstr ""
+msgstr "მიუწოდებელი HTTPS სერტიფიკატის განახლება"
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
 msgstr "ეს არის ელ გაცნობებთ, რომ მზრუნველი უფლებამოსილი თქვენ ხელმისაწვდომობის wistleblowing პირადობის წარდგენის {TipNum}."
+
+msgid "The report can be accessed at:"
+msgstr "წარდგენა შეიძლება ხელმისაწვდომი:"
 
 msgid "Access to whistleblower's identity authorized"
 msgstr "ხელმისაწვდომობა მამხილებლის ვინაობა უფლებამოსილი"
@@ -2222,7 +1869,7 @@ msgstr "ხელმისაწვდომობა მამხილებ�
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr ""
+msgstr "ეს არის ელწერილი შეტყობინებით, რომ პასუხისმგებელმა პირმა უარყო თქვენი წვდომა დარღვევის წარმდგენის პიროვნებაზე ანგარიშისთვის {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "ხელმისაწვდომობა მამხილებლის ვინაობა უარყო"
@@ -2233,10 +1880,10 @@ msgid ""
 msgstr "ეს არის ელ გაცნობებთ, რომ მიმღები მოითხოვა ხელმისაწვდომობის მამხილებელთა პირადობის წარდგენის {TipNum}"
 
 msgid "The request can be accessed at:"
-msgstr ""
+msgstr "მოთხოვნა შეიძლება იყოს ხელმისაწვდომი აქ:"
 
 msgid "New request of access to a whistleblower's identity"
-msgstr ""
+msgstr "ახალი წვდომის მოთხოვნა მამხილებლის ვინაობაზე"
 
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
@@ -2246,27 +1893,21 @@ msgstr "ეს არის ელ გაცნობებთ, რომ მა
 msgid "The whistleblower has provided their identity"
 msgstr "მამხილებლისთვის უზრუნველყო მათი ვინაობა"
 
-msgid "This is an email to notify you of a new message on an existing report."
-msgstr "ეს არის ელექტრონული შეგატყობინებთ ახალი კომენტარის არსებული წარდგენა."
-
-msgid "New message"
-msgstr "ახალი შეტყობინება"
-
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr ""
+msgstr "თქვენ იღებთ ამ ელფოსტას, რადგან პაროლის აღდგენა მოთხოვნილია ანგარიშისთვის: {Username}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
 "email."
-msgstr ""
+msgstr "თუ თქვენ არ გაგიკეთებიათ ეს მოთხოვნა, შეგიძლიათ უგულებელყოთ და წაშალოთ ეს წერილი."
 
 msgid "You can confirm your request by clicking the following link:"
-msgstr ""
+msgstr "თქვენ შეგიძლიათ დაადასტუროთ თქვენი მოთხოვნა დაწკაპუნებით შემდეგ ბმულზე:"
 
 msgid "Password reset instructions"
-msgstr ""
+msgstr "პაროლის აღდგენის ინსტრუქციები"
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
@@ -2284,35 +1925,43 @@ msgid ""
 msgstr "არასაპატიო PGP გასაღები, სისტემა ვერ შეძლებს დაშიფროთ მონაცემები თქვენთვის."
 
 msgid "Click the link to activate the platform:"
-msgstr ""
+msgstr "პლატფორმის გასააქტიურებლად დააწკაპუნეთ ბმულს:"
 
 msgid "Activation"
-msgstr ""
+msgstr "გააქტიურება"
 
 msgid "A software update is available."
-msgstr ""
+msgstr "პროგრამული უზრუნველყოფის განახლება ხელმისაწვდომია."
 
 msgid "It is good security practice to keep the platform up to date."
-msgstr ""
+msgstr "პლატფორმის განახლება კარგი უსაფრთხოების პრაქტიკაა."
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "
 "change log at: {ChangeLogUrl}"
-msgstr ""
+msgstr "იმისთვის რო შეიტყოთ ახალ ვერსიაში ახალი მახასიათებლებისა და შეცდომების აღმოსაფხვრის შესახებ, მიმართეთ ცვლილებების ჟურნალს: {ChangeLogUrl}"
 
 msgid ""
 "For instructions on software updates, please refer to the documentation at: "
 "{UpdateGuideUrl}"
-msgstr ""
+msgstr "პროგრამული უზრუნველყოფის განახლებების შესახებ ინსტრუქციებისთვის იხილეთ დოკუმენტაცია მისამართზე: {UpdateGuideUrl}"
+
+msgid ""
+"This is an email to notify you that a recipient has granted you access to "
+"one or more reports."
+msgstr "ეს არის ელწერილი შეტყობინებით, რომ მიმღებმა მოგანიჭათ ერთ ან მეტ ანგარიშზე წვდომა."
+
+msgid "New report"
+msgstr "ახალი ანგარიში"
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
-msgstr ""
+msgstr "ვადის ამოწურვის ყველაზე ადრეული თარიღია {EarliestExpirationDate}."
 
 msgid "Please remember to check them before they are deleted."
-msgstr ""
+msgstr "არ დაგავიწყდეთ მათი შემოწმება წაშლამდე."
 
 msgid "Some reports will expire soon"
-msgstr ""
+msgstr "ზოგიერთი ანგარიშის ვადა მალე ამოიწურება"
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
@@ -2327,11 +1976,20 @@ msgid ""
 "importance."
 msgstr "მათ მინდა განსაკუთრებული ყურადღება მიაქციონ ინფორმაცია და მასალა მასში. გთხოვთ გახსოვდეთ, რომ მამხილებელთა ხშირად ფიგურირებს თავს მაღალი პირადი რისკის საზოგადოების ინტერესი. ამიტომ მატერიალური, რომ უზრუნველყოს ამ tip-off უნდა ჩაითვალოს მნიშვნელოვანია."
 
-msgid "New report"
-msgstr ""
+msgid "This is an email to notify that an existing report has been updated."
+msgstr "ეს არის ელწერილი შეტყობინებით არსებული ანგარიშის განახლების შესახებ."
+
+msgid "Report updated"
+msgstr "ანგარიში განახლდა"
+
+msgid "This email is to remind you the presence of unread or updated reports."
+msgstr "ეს ელწერილი შეგახსენებთ წაუკითხავი ან განახლებული ანგარიშების არსებობის შესახებ."
+
+msgid "Reminder about unread or updated reports"
+msgstr "შეხსენება წაუკითხავი ან განახლებული ანგარიშების შესახებ"
 
 msgid "Role: {Role}"
-msgstr ""
+msgstr "როლი: {Role}"
 
 msgid "Password: {Password}"
-msgstr ""
+msgstr "პაროლი: {Password}"

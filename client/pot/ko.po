@@ -2,12 +2,12 @@
 # Translators:
 # ACCLARO_OnShape_KO_EDI1 <ACCLARO_OnShape_KO_EDI1@acclaro.com>, 2021
 # Changkyoon Kim <ocnblu@gmail.com>, 2015
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2018,2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2018,2020-2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"Last-Translator: Daun Jeong <minori@minori.moe>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -474,6 +474,12 @@ msgstr "로그아웃"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr "권한 무효화"
+
 msgid "File a report"
 msgstr "보고서 보관"
 
@@ -528,27 +534,8 @@ msgstr "다중 사이트 기능 허용"
 msgid "Enable simplified login"
 msgstr "단순 로그인 허용"
 
-msgid "Allow recipients to delete reports"
-msgstr "수신자가 보고서를 삭제하도록 허용"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "수신자가 보고서 만료 날짜를 연기할 수 있도록 허용"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "수신자가 특정 보고서에 대해 내부 고발자에게 권한을 부여하도록 허용"
-
 msgid "Enable search engines indexing"
 msgstr "검색 엔진 인덱싱을 사용하도록 허용"
-
-msgid "Enable custom privacy panel"
-msgstr "사용자 정의 프라이버시 패널 허용"
-
-msgid "Custom privacy panel"
-msgstr "사용자 정의 프라이버시 패널"
-
-msgid "Disable the privacy panel"
-msgstr "프라이버시 패널 사용 중단"
 
 msgid "Enable the receipt hint"
 msgstr "키 코드 힌트 허용"
@@ -901,7 +888,7 @@ msgstr "자동 HTTPS 구성을 사용하면 Let's Encrypt 인증서 권한의 �
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
+"hostname must have a DNS record referencing that address."
 msgstr "본 플랫폼은 공공 IP 주소로 액세스해야 하며 선택한 호스트 이름에는 해당 주소를 참조하는 해당 DNS 기록이 있어야 합니다."
 
 msgid "Manual configuration"
@@ -917,6 +904,15 @@ msgstr "자동 갱신"
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion 서비스"
+
+msgid "Disable the privacy panel"
+msgstr "프라이버시 패널 사용 중단"
+
+msgid "Enable custom privacy panel"
+msgstr "사용자 정의 프라이버시 패널 허용"
+
+msgid "Custom privacy panel"
+msgstr "사용자 정의 프라이버시 패널"
 
 msgid "Anonymize outgoing connections"
 msgstr "발신 연결 익명화"
@@ -1158,11 +1154,11 @@ msgstr "관리자가 사용자 비밀번호를 변경하도록 허용"
 msgid "Forcefully selected"
 msgstr "강제로 선택"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "수신자가 보고서 만료 날짜를 연기할 수 있도록 허용"
-
 msgid "Allow the recipient to delete reports"
 msgstr "수신자가 보고서를 삭제할 수 있도록 허용"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "수신자가 보고서 만료 날짜를 연기할 수 있도록 허용"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "관리자가 다음 기능을 액세스하도록 허용:"
@@ -1308,7 +1304,7 @@ msgid "Request support"
 msgstr ""
 
 msgid "Thank you."
-msgstr ""
+msgstr "감사합니다."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "가능한 한 빨리 답변을 드리겠습니다."
@@ -1373,29 +1369,6 @@ msgstr "예상 업로드 시간:"
 
 msgid "Size:"
 msgstr "크기:"
-
-msgid "Enable the Ricochet panel"
-msgstr "Ricochet 패널 허용"
-
-msgid "Address"
-msgstr "주소"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "Ricochet 애플리케이션을 사용하여 채팅"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "다음 Ricochet 주소로 채팅하려면:"
-
-msgid "Download Ricochet at:"
-msgstr "Ricochet 다운로드 주소:"
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "Tor 네트워크를 사용하고 Onion 서비스를 생성함으로써 Ricochet은 사용자의 위치나 IP 주소를 공개하지 않음으로써 프라이버시를 보호하고 익명을 유지하면서 채팅할 수 있는 인스턴트 메시징 앱입니다. 전화번호/이메일/사용자 이름 대신 고유한 주소를 사용한다는 점을 제외하고, 안전하지 않은 일반 채팅과 어떤 차이도 느끼지 못할 것입니다."
 
 msgid "The connection is not secure."
 msgstr "연결이 안전하지 않습니다."
@@ -1588,9 +1561,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "사용자는 익명성 보장이 되지 않는 서버에 연결하고 있으며 본 서버는 익명 제출만 지원합니다."
 
-msgid "Thank you!"
-msgstr "감사합니다!"
-
 msgid "Your report was successful."
 msgstr "보고서 제출에 성공했습니다."
 
@@ -1687,7 +1657,7 @@ msgstr "이름"
 msgid "Last name"
 msgstr "성"
 
-msgid "Preferred contact method"
+msgid "Alternative contact method"
 msgstr ""
 
 msgid "Other"

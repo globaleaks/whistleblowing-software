@@ -1,10 +1,11 @@
 # 
 # Translators:
 # Cheer Zeng <cheerz6623@gmail.com>, 2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Lao (http://www.transifex.com/otf/globaleaks/language/lo/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -472,6 +473,12 @@ msgstr "ອອກຈາກລະບົບ"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr ""
+
 msgid "File a report"
 msgstr "ຍື່ນລາຍງານ"
 
@@ -526,27 +533,8 @@ msgstr "ເປີດນຳໃຊ້ຄຸນສົມບັດຫຼາຍເວ
 msgid "Enable simplified login"
 msgstr "ເປີດນຳໃຊ້ການເຂົ້າສູ່ລະບົບແບບງ່າຍດາຍ"
 
-msgid "Allow recipients to delete reports"
-msgstr "ອະນຸຍາດໃຫ້ຜູ້ຮັບສາມາດລຶບລາຍງານໄດ້"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "ອະນຸຍາດໃຫ້ຜູ້ຮັບສາມາດເລື່ອນວັນໝົດອາຍຸຂອງລາຍງານໄດ້"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "ອະນຸຍາດໃຫ້ຜູ້ຮັບສາມາດໃຫ້ອະນຸຍາດແກ່ຜູ້ແຈ້ງເບາະແສໃນລາຍງານສະເພາະໄດ້"
-
 msgid "Enable search engines indexing"
 msgstr "ເປີດນຳໃຊ້ການສ້າງດັດຊະນີຂອງເຄື່ອງມືຄົ້ນຫາ"
-
-msgid "Enable custom privacy panel"
-msgstr "ເປີດນຳໃຊ້ແຜງຄວາມເປັນສ່ວນຕົວທີ່ກຳນົດເອງ"
-
-msgid "Custom privacy panel"
-msgstr "ແຜງຄວາມເປັນສ່ວນຕົວທີ່ກຳນົດເອງ"
-
-msgid "Disable the privacy panel"
-msgstr "ປິດໃຊ້ງານແຜງຄວາມເປັນສ່ວນຕົວ"
 
 msgid "Enable the receipt hint"
 msgstr "ເປີດນຳໃຊ້ການແນະນໍາກ່ຽວກັບໃບບິນ"
@@ -899,7 +887,7 @@ msgstr "ການນຳໃຊ້ການກຳນົດຄ່າ HTTPS ແບ�
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
+"hostname must have a DNS record referencing that address."
 msgstr "ຕ້ອງສາມາດເຂົ້າເຖິງລະບົບໄດ້ຜ່ານທີ່ຢູ່ IP ສາທາລະນະ ແລະ ຊື່ໂຮສ໌ທີ່ເລືອກຕ້ອງມີເອກະສານ DNS ທີ່ສອດຄ້ອງກັນທີ່ເປັນບ່ອນອີງຂອງທີ່ຢູ່ນັ້ນ."
 
 msgid "Manual configuration"
@@ -915,6 +903,15 @@ msgstr "ການຕໍ່ອາຍຸອັດຕະໂນມັດ"
 
 msgid "Tor Onion Service"
 msgstr "ການບໍລິການ Tor Onion"
+
+msgid "Disable the privacy panel"
+msgstr "ປິດໃຊ້ງານແຜງຄວາມເປັນສ່ວນຕົວ"
+
+msgid "Enable custom privacy panel"
+msgstr "ເປີດນຳໃຊ້ແຜງຄວາມເປັນສ່ວນຕົວທີ່ກຳນົດເອງ"
+
+msgid "Custom privacy panel"
+msgstr "ແຜງຄວາມເປັນສ່ວນຕົວທີ່ກຳນົດເອງ"
 
 msgid "Anonymize outgoing connections"
 msgstr "ການປິດບັງການເຊື່ອມຕໍ່ຂາອອກ"
@@ -1156,11 +1153,11 @@ msgstr "ອະນຸຍາດໃຫ້ຜູ້ເບິ່ງແຍງລະບ
 msgid "Forcefully selected"
 msgstr "ຄັດເລືອກຢ່າງແຂງຂັນ"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "ອະນຸຍາດໃຫ້ຜູ້ຮັບເລື່ອນວັນທີໝົດອາຍຸໃນການລາຍງານ"
-
 msgid "Allow the recipient to delete reports"
 msgstr "ອະນຸຍາດໃຫ້ຜູ້ຮັບລຶບລາຍງານ"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "ອະນຸຍາດໃຫ້ຜູ້ຮັບເລື່ອນວັນທີໝົດອາຍຸໃນການລາຍງານ"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "ອະນຸຍາດໃຫ້ຜູ້ໃຊ້ທີ່ເປັນຜູ້ເບິ່ງແຍງລະບົບເຂົ້າເຖິງຄຸນສົມບັດຕ່າງໆຕໍ່ໄປນີ້:"
@@ -1306,7 +1303,7 @@ msgid "Request support"
 msgstr ""
 
 msgid "Thank you."
-msgstr ""
+msgstr "ຂໍຂອບ​ໃຈ."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "ພວກເຮົາຈະພະຍາຍາມຕິດຕໍ່ກັບໃຫ້ໄວເທົ່າທີ່ຈະໄວໄດ້."
@@ -1371,29 +1368,6 @@ msgstr "ເວລາອັບໂຫຼດໂດຍປະມານ:"
 
 msgid "Size:"
 msgstr "ຂະໜາດ:"
-
-msgid "Enable the Ricochet panel"
-msgstr "ເປີດນຳໃຊ້ແຜງ Ricochet"
-
-msgid "Address"
-msgstr "ທີ່ຢູ່"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "ສົນທະນາກັບພວກເຮົາແບບບໍ່ເປີດເຜີຍຊື່ ໂດຍນຳໃຊ້ແອັບພຼີເຄຊັນ Ricochet"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "ເພື່ອສົນທະນາກັບພວກເຮົາ ໃຫ້ໃຊ້ທີ່ຢູ່ Ricochet ຕໍ່ໄປນີ້:"
-
-msgid "Download Ricochet at:"
-msgstr "ດາວໂຫຼດ Ricochet ໄດ້ທີ່:"
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "ໂດຍການນຳໃຊ້ເຄືອຂ່າຍ Tor ແລະ ການສ້າງ Onion Service, Ricochet ແມ່ນແອັບສົ່ງຂໍ້ຄວາມແບບທັນທີທີ່ອະນຸຍາດໃຫ້ທ່ານສາມາດສົນທະນາໃນຂະນະທີ່ມີການປົກປ້ອງຄວາມເປັນສ່ວນຕົວຂອງທ່ານ ແລະ ບໍ່ເປີດເຜີຍຕົວຕົນ ໂດຍການບໍ່ເປີດເຜີຍທີ່ຕັ້ງ ຫຼື ທີ່ຢູ່ IP ຂອງທ່ານ. ທ່ານຈະສັງເກດບໍ່ເຫັນຄວາມແຕກຕ່າງຂອງການສົນທະນາທີ່ບໍ່ປອດໄພ, ເວັ້ນເສຍແຕ່ວ່າທ່ານຈະນຳໃຊ້ທີ່ຢູ່ທີ່ເປັນເອກະລັກແທນເບີໂທລະສັບ/ອີເມວ/ຊື່ຜູ້ໃຊ້."
 
 msgid "The connection is not secure."
 msgstr "ການເຊື່ອມຕໍ່ບໍ່ມີຄວາມປອດໄພ."
@@ -1586,9 +1560,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "ທ່ານກຳລັງເຊື່ອມຕໍ່ກັບເຊີບເວີໂດຍບໍ່ມີການລະບຸຕົວຕົນ ແລະ ເຊີບເວີນີ້ຮອງຮັບພຽງແຕ່ການສົ່ງທີ່ມີການລະບຸຕົວຕົນເທົ່ານັ້ນ"
 
-msgid "Thank you!"
-msgstr "ຂໍຂອບ​ໃຈ!"
-
 msgid "Your report was successful."
 msgstr "ການລາຍງານຂອງທ່ານສຳເລັດແລ້ວ."
 
@@ -1685,7 +1656,7 @@ msgstr "ຊື່ແທ້"
 msgid "Last name"
 msgstr "ນາມສະກຸນ"
 
-msgid "Preferred contact method"
+msgid "Alternative contact method"
 msgstr ""
 
 msgid "Other"

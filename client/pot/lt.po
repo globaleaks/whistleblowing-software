@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/otf/globaleaks/language/lt/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -473,6 +473,12 @@ msgstr "Atsijungti"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
@@ -527,27 +533,8 @@ msgstr "Įgalinti daugiavietę funkciją"
 msgid "Enable simplified login"
 msgstr "Įgalinti supaprastintą prisijungimą"
 
-msgid "Allow recipients to delete reports"
-msgstr "Leisti gavėjams panaikinti ataskaitas"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Leisti gavėjams atidėti ataskaitos galiojimo pabaigos datą"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Leisti gavėjams suteikti leidimus informatoriams tam tikrose ataskaitose"
-
 msgid "Enable search engines indexing"
 msgstr "Įgalinti paieškos variklių indeksavimą"
-
-msgid "Enable custom privacy panel"
-msgstr "Įgalinti tinkintą privatumo skydelį"
-
-msgid "Custom privacy panel"
-msgstr "Tinkintas privatumo skydelis"
-
-msgid "Disable the privacy panel"
-msgstr "Išjungti privatumo skydelį"
 
 msgid "Enable the receipt hint"
 msgstr ""
@@ -900,7 +887,7 @@ msgstr ""
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
+"hostname must have a DNS record referencing that address."
 msgstr ""
 
 msgid "Manual configuration"
@@ -916,6 +903,15 @@ msgstr "Automatinis atnaujinimas"
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion paslauga"
+
+msgid "Disable the privacy panel"
+msgstr "Išjungti privatumo skydelį"
+
+msgid "Enable custom privacy panel"
+msgstr "Įgalinti tinkintą privatumo skydelį"
+
+msgid "Custom privacy panel"
+msgstr "Tinkintas privatumo skydelis"
 
 msgid "Anonymize outgoing connections"
 msgstr ""
@@ -1157,10 +1153,10 @@ msgstr ""
 msgid "Forcefully selected"
 msgstr ""
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to delete reports"
 msgstr ""
 
-msgid "Allow the recipient to delete reports"
+msgid "Allow the recipient to postpone the report expiration date"
 msgstr ""
 
 msgid "Give the user administrative access to the following features:"
@@ -1373,29 +1369,6 @@ msgstr ""
 msgid "Size:"
 msgstr "Dydis:"
 
-msgid "Enable the Ricochet panel"
-msgstr ""
-
-msgid "Address"
-msgstr "Adresas"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr ""
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr ""
-
-msgid "Download Ricochet at:"
-msgstr ""
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr ""
-
 msgid "The connection is not secure."
 msgstr ""
 
@@ -1587,9 +1560,6 @@ msgid ""
 "only anonymous submissions"
 msgstr ""
 
-msgid "Thank you!"
-msgstr "Ačiū!"
-
 msgid "Your report was successful."
 msgstr ""
 
@@ -1686,7 +1656,7 @@ msgstr "Vardas"
 msgid "Last name"
 msgstr "Pavardė"
 
-msgid "Preferred contact method"
+msgid "Alternative contact method"
 msgstr ""
 
 msgid "Other"

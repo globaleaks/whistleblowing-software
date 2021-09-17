@@ -17,7 +17,7 @@
 # Dragana Kaurin <dragana.kaurin@localizationlab.org>, 2014
 # ِAbu <elsahookie@gmail.com>, 2013
 # a96921fef9a72b1bcbac1fc92cca715a, 2015
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2021
 # b665ec457f7dbc468840c2b55b7422d3_ad81431 <382f1c68613d5cfe601c75d66e8ff0dd_51600>, 2013
 # harmony, 2013
 # harmony, 2013
@@ -29,6 +29,7 @@
 # lamine Kacimi <k_lamine27@yahoo.fr>, 2015
 # mohammad ali <ilir95palira@gmail.com>, 2017
 # Muhammad Elghdban <Mohamed.Elghdban@gmail.com>, 2020
+# Muna Hemoudi <muna@localizationlab.org>, 2021
 # nawaat <contact@nawaat.org>, 2014
 # ouss <oussjarrouse@gmail.com>, 2016
 # ouss <oussjarrouse@gmail.com>, 2016
@@ -43,7 +44,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -511,6 +512,12 @@ msgstr "تسجيل الخروج"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
@@ -565,27 +572,8 @@ msgstr "تمكين خاصية تعدد المواقع"
 msgid "Enable simplified login"
 msgstr "تمكين تسجيل دخول مبسط"
 
-msgid "Allow recipients to delete reports"
-msgstr "السماح للمتلقين بحذف البلاغات"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "التصريح للمتلقي بتأجيل تاريخ انتهاء صلاحية البلاغات"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "السماح للمتقبلين بمنح تراخيص للمبلغين بشأن بلاغات معينة"
-
 msgid "Enable search engines indexing"
 msgstr "تفعيل فهرسة محركات البحث"
-
-msgid "Enable custom privacy panel"
-msgstr "تمكين شريط الخصوصيّة المخصّص"
-
-msgid "Custom privacy panel"
-msgstr "مخصص لوحة الخصوصية"
-
-msgid "Disable the privacy panel"
-msgstr "تعطيل شارة الخصوصية"
 
 msgid "Enable the receipt hint"
 msgstr "تمكين إشارة الإستلام"
@@ -938,8 +926,8 @@ msgstr "سيؤدي استخدام إعداد HTTPS الاوتوماتيكي إل
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
-msgstr "يجب أن يكون ممكنا الاتصال بالمنصة عبر عنوان IP عامّ ويجب أن يتوافق الاسم المحدد للمضيف مع سجل نظام أسماء النطاقات الذي يشير إلى هذا العنوان."
+"hostname must have a DNS record referencing that address."
+msgstr "يجب التمكن من الاتصال بالمنصة عبر عنوان بروتوكول الإنترنت العام، ويجب أن يتوافق الاسم المحدد للمضيف مع سجل نظام أسماء النطاقات الذي يشير إلى هذا العنوان."
 
 msgid "Manual configuration"
 msgstr "التهيئة اليدوية"
@@ -954,6 +942,15 @@ msgstr "تجديد تلقائي"
 
 msgid "Tor Onion Service"
 msgstr "خدمة Tor onion"
+
+msgid "Disable the privacy panel"
+msgstr "تعطيل شارة الخصوصية"
+
+msgid "Enable custom privacy panel"
+msgstr "تمكين شريط الخصوصيّة المخصّص"
+
+msgid "Custom privacy panel"
+msgstr "مخصص لوحة الخصوصية"
 
 msgid "Anonymize outgoing connections"
 msgstr "إخفاء هوية الاتصالات الصادرة"
@@ -1195,11 +1192,11 @@ msgstr "إعطاء هذا المشرف القدرة على تغيير كلمات
 msgid "Forcefully selected"
 msgstr "مختارة بالقوّة"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "السماح للمتلقّي بتأجيل تاريخ انتهاء صلاحية الابلاغ"
-
 msgid "Allow the recipient to delete reports"
 msgstr "السماح للمتلقين بحذف البلاغات"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "السماح للمتلقّي بتأجيل تاريخ انتهاء صلاحية الابلاغ"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "امنح المستخدم حق الوصول المطلق إلى الميزات التالية:"
@@ -1342,7 +1339,7 @@ msgid "The upload request exceeds the size limit"
 msgstr "الملفات المراد رفعها تتخطى السعة المسموح بها."
 
 msgid "Request support"
-msgstr ""
+msgstr "اطلب مساعدة"
 
 msgid "Thank you."
 msgstr ""
@@ -1410,29 +1407,6 @@ msgstr "وقت الرّفع التقديري:"
 
 msgid "Size:"
 msgstr "حجم:"
-
-msgid "Enable the Ricochet panel"
-msgstr "تمكين لوحة Ricochet"
-
-msgid "Address"
-msgstr "العنوان"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "دردش معنا مع اخفاء هويتك باستخدام تطبيق Ricochet"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "استخدم عنوان Ricochet التالى للدردشة معنا:"
-
-msgid "Download Ricochet at:"
-msgstr "حمّل Ricochet من:"
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "Ricochet هو تطبيق تراسل فوري يستخدم شبكة تور وينشأ خدمة البصلة ويسمح لك بالدردشة بينما يحمي خصوصيتك ويخفى هويتك عن طريق عدم اظهار موقعك أو عنوان IP. لن تلاحظ فرقا عن أي دردشة غير آمنة، عدا أنك ستستخدم عنوانا فريدا بدلا من رقم الهاتف/البريد الإلكتروني/اسم المستخدم."
 
 msgid "The connection is not secure."
 msgstr "الاتصال غير آمن."
@@ -1625,9 +1599,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "أنت تتصل بالخادم بطريقة لا تخفي هويتك. هذا الخادم يعمل فقط مع المتصلين و البلاغات المجهولة المصدر "
 
-msgid "Thank you!"
-msgstr "شكرا!"
-
 msgid "Your report was successful."
 msgstr "تمّ الابلاغ بنجاح."
 
@@ -1724,7 +1695,7 @@ msgstr "الاسم"
 msgid "Last name"
 msgstr "الكنية"
 
-msgid "Preferred contact method"
+msgid "Alternative contact method"
 msgstr ""
 
 msgid "Other"
@@ -1883,7 +1854,7 @@ msgid "Date: {EventTime}"
 msgstr "التاريخ: {EventTime}"
 
 msgid "From: Whistleblower"
-msgstr "من: المبلغ"
+msgstr "من: المُبلٍّغ"
 
 msgid "Date: {SubmissionDate}"
 msgstr "التاريخ: {SubmissionDate}"

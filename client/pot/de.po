@@ -47,8 +47,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"Last-Translator: Dominik Schürmann <dominik@schuermann.eu>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -515,6 +515,12 @@ msgstr "Abmelden"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr "Zugriff widerufen"
+
 msgid "File a report"
 msgstr ""
 
@@ -569,27 +575,8 @@ msgstr "Die Multisite-Funktion aktivieren"
 msgid "Enable simplified login"
 msgstr "Vereinfachte Anmeldung aktivieren"
 
-msgid "Allow recipients to delete reports"
-msgstr "Empfängern das Löschen von Berichten erlauben"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Empfängern erlauben, das Ablaufdatum des Berichts hinauszuschieben"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Empfängern bei bestimmten Einreichungen die Rechtevergabe an Hinweisgeber erlauben"
-
 msgid "Enable search engines indexing"
 msgstr "Suchmaschinenindizierung aktivieren"
-
-msgid "Enable custom privacy panel"
-msgstr "Benutzerdefiniertes Datenschutzpanel aktivieren"
-
-msgid "Custom privacy panel"
-msgstr "Benutzerdefiniertes Datenschutzpanel"
-
-msgid "Disable the privacy panel"
-msgstr "Datenschutzpanel deaktivieren"
 
 msgid "Enable the receipt hint"
 msgstr "Den Empfangsbestätigungshinweis aktivieren"
@@ -942,7 +929,7 @@ msgstr "Die Verwendung der automatischen HTTPS-Konfiguration übernimmt den gesa
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
+"hostname must have a DNS record referencing that address."
 msgstr "Die Plattform muss über eine öffentliche IP-Adresse erreichbar sein und der ausgewählte Hostname muss einen entsprechenden DNS-Eintrag haben, der auf diese Adresse verweist."
 
 msgid "Manual configuration"
@@ -958,6 +945,15 @@ msgstr "Automatische Erneuerung"
 
 msgid "Tor Onion Service"
 msgstr "Tor-Onion-Dienst"
+
+msgid "Disable the privacy panel"
+msgstr "Datenschutzpanel deaktivieren"
+
+msgid "Enable custom privacy panel"
+msgstr "Benutzerdefiniertes Datenschutzpanel aktivieren"
+
+msgid "Custom privacy panel"
+msgstr "Benutzerdefiniertes Datenschutzpanel"
 
 msgid "Anonymize outgoing connections"
 msgstr "Ausgehende Verbindungen anonymisieren"
@@ -1199,11 +1195,11 @@ msgstr "Diesem Administrator das Ändern von Benutzerpasswörtern erlauben"
 msgid "Forcefully selected"
 msgstr "Zwingend ausgewählt"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Empfängern das Hinausschieben des Ablaufdatums des Hinweises erlauben"
-
 msgid "Allow the recipient to delete reports"
 msgstr "Empfängern das Löschen von Hinweisen erlauben"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Empfängern das Hinausschieben des Ablaufdatums des Hinweises erlauben"
 
 msgid "Give the user administrative access to the following features:"
 msgstr ""
@@ -1415,29 +1411,6 @@ msgstr "Geschätzte Hochladezeit:"
 msgid "Size:"
 msgstr "Größe:"
 
-msgid "Enable the Ricochet panel"
-msgstr "Das Ricochetpanel aktivieren"
-
-msgid "Address"
-msgstr "Adresse"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "Mit uns anonym chatten mit der Ricochet-Anwendung"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "Nutzen Sie diese Ricochet-Adresse um mit uns zu chatten:"
-
-msgid "Download Ricochet at:"
-msgstr "Ricochet hier herunterladen:"
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "Mit der Nutzung des Tor-Netzwerks und der Einrichtung eines Onion-Netzwerks kann die Instant-Messaging App Ricochet zum Schutz der Privatsphäre und um Anonym zu bleiben genutzt werden, da der Standort oder die IP-Adresse nicht bekannt sind. Sie werden keinen Unterschied zu einem unsicheren Chat bemerken, außer dass sie eine eindeutige Adresse statt einer Telefonnummer, E-Mailadresse oder einem Benutzernamen verwenden."
-
 msgid "The connection is not secure."
 msgstr "Die Verbindung ist nicht sicher."
 
@@ -1629,9 +1602,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "Sie versuchen, eine nicht anonyme Verbindung zu diesem server herzustellen. Dieser server.erlaubt nur anonyme Verbindungen. "
 
-msgid "Thank you!"
-msgstr "Vielen Dank!"
-
 msgid "Your report was successful."
 msgstr "Ihr Bericht war erfolgreich."
 
@@ -1728,7 +1698,7 @@ msgstr "Vorname"
 msgid "Last name"
 msgstr "Nachname"
 
-msgid "Preferred contact method"
+msgid "Alternative contact method"
 msgstr ""
 
 msgid "Other"

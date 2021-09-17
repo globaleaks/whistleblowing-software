@@ -3,7 +3,7 @@
 # Arthit Suriyawongkul, 2021
 # Arthit Suriyawongkul, 2020-2021
 # Cheer Zeng <cheerz6623@gmail.com>, 2021
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2018,2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2018,2020-2021
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # Ingo Dettmar <ingo.dettmar@gmail.com>, 2014,2017
@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"Last-Translator: Arthit Suriyawongkul\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -402,7 +402,7 @@ msgid "Select"
 msgstr "เลือก"
 
 msgid "Deselect"
-msgstr ""
+msgstr "เลิกเลือก"
 
 msgid "Surname"
 msgstr "นามสกุล"
@@ -479,7 +479,13 @@ msgid "Logout"
 msgstr "ออกจากระบบ"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
+msgstr "ให้ผู้รับรายนี้สามารถมอบสิทธิเข้าถึงรายงานให้กับผู้ใช้ได้"
+
+msgid "Grant access"
+msgstr "มอบสิทธิเข้าถึง"
+
+msgid "Revoke access"
+msgstr "เพิกถอนการเข้าถึง"
 
 msgid "File a report"
 msgstr "ยื่นรายงาน"
@@ -535,27 +541,8 @@ msgstr "เปิดใช้งานการรองรับหลายเ
 msgid "Enable simplified login"
 msgstr "เปิดใช้งานการลงชื่อเข้าใช้แบบเรียบง่าย"
 
-msgid "Allow recipients to delete reports"
-msgstr "อนุญาตให้ผู้รับลบรายงานได้"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "อนุญาตให้ผู้รับเลื่อนวันหมดอายุของรายงานได้"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "อนุญาตให้ผู้รับสามารถมอบสิทธิ์เข้าถึงรายงานเฉพาะเรื่องให้กับผู้แจ้งเบาะแส"
-
 msgid "Enable search engines indexing"
 msgstr "เปิดใช้การสร้างดัชนีเครื่องมือค้นหา"
-
-msgid "Enable custom privacy panel"
-msgstr "เปิดใช้งานแผงความเป็นส่วนตัวที่กำหนดเอง"
-
-msgid "Custom privacy panel"
-msgstr "แผงความเป็นส่วนตัวที่ปรับแต่งเอง"
-
-msgid "Disable the privacy panel"
-msgstr "ปิดการใช้งานแผงความเป็นส่วนตัว"
 
 msgid "Enable the receipt hint"
 msgstr "เปิดใช้คำแนะนำเรื่องใบรับ"
@@ -714,7 +701,7 @@ msgid "Whistleblowing button"
 msgstr "ปุ่มแจ้งเบาะแส"
 
 msgid "Disclaimer"
-msgstr ""
+msgstr "การปฏิเสธความรับผิดชอบ"
 
 msgid "Footer"
 msgstr "ส่วนท้าย"
@@ -908,7 +895,7 @@ msgstr "การใช้การปรับค่า HTTPS อัตโน�
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
+"hostname must have a DNS record referencing that address."
 msgstr "แพลตฟอร์มจะต้องสามารถเห็นได้ทางที่อยู่ไอพีสาธารณะ และชื่อโฮสต์ที่เลือกจะต้องมีระเบียน DNS ที่ชี้มาที่อยู่ดังกล่าว"
 
 msgid "Manual configuration"
@@ -924,6 +911,15 @@ msgstr "ต่ออายุอัตโนมัติ"
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion Service"
+
+msgid "Disable the privacy panel"
+msgstr "ปิดการใช้งานแผงความเป็นส่วนตัว"
+
+msgid "Enable custom privacy panel"
+msgstr "เปิดใช้งานแผงความเป็นส่วนตัวที่กำหนดเอง"
+
+msgid "Custom privacy panel"
+msgstr "แผงความเป็นส่วนตัวที่ปรับแต่งเอง"
 
 msgid "Anonymize outgoing connections"
 msgstr "ทำให้การเชื่อมต่อขาออกเป็นนิรนาม"
@@ -1165,11 +1161,11 @@ msgstr "ให้ผู้ดูแลรายนี้สามารถเป
 msgid "Forcefully selected"
 msgstr "บังคับเลือก"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "อนุญาตให้ผู้รับเลื่อนวันหมดอายุของรายงานได้"
-
 msgid "Allow the recipient to delete reports"
 msgstr "อนุญาตให้ผู้รับลบรายงานได้"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "อนุญาตให้ผู้รับเลื่อนวันหมดอายุของรายงานได้"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "ให้ผู้ใช้มีสิทธิ์ผู้ดูแลในการเข้าถึงความสามารถเหล่านี้:"
@@ -1312,10 +1308,10 @@ msgid "The upload request exceeds the size limit"
 msgstr "ขนาดการขออัปโหลดเกินขีดจำกัด"
 
 msgid "Request support"
-msgstr ""
+msgstr "ขอการสนับสนุน"
 
 msgid "Thank you."
-msgstr ""
+msgstr "ขอบคุณ."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "เราจะติดต่อกลับไปหาคุณเร็วที่สุดเท่าที่จะเป็นไปได้"
@@ -1380,29 +1376,6 @@ msgstr "เวลาในการอัปโหลดโดยประมา
 
 msgid "Size:"
 msgstr "ขนาด:"
-
-msgid "Enable the Ricochet panel"
-msgstr "เปิดใช้แผง Ricochet"
-
-msgid "Address"
-msgstr "ที่อยู่"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "แชตกับเราแบบไม่เปิดเผยตัวตนโดยใช้แอป Ricochet"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "ถ้าจะแชตกับเรา ใช้ที่อยู่ Ricochet นี้:"
-
-msgid "Download Ricochet at:"
-msgstr "ดาวน์โหลด Ricochet ที่:"
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "ด้วยการใช้เครือข่าย Tor และการสร้างบริการ Onion Service ซึ่งปกปิดตำแหน่งที่ตั้ง Ricochet เป็นแอปรับส่งข้อความด่วนที่อนุญาตให้คุณแชตได้โดยยังคุ้มครองความเป็นส่วนตัวและยังคงความเป็นนิรนามของคุณอยู่ เนื่องจากมันจะไม่เปิดเผยที่ตั้งหรือที่อยู่ไอพีของคุณ คุณจะไม่รู้สึกแตกต่างจากการแชตที่ไม่ปลอดภัย นอกจากการที่คุณจะใช้ที่อยู่ที่ไม่ซ้ำใครชุดหนึ่ง แทนที่จะใช้หมายเลขโทรศัพท์ อีเมล หรือชื่อผู้ใช้"
 
 msgid "The connection is not secure."
 msgstr "การเชื่อมต่อไม่ปลอดภัย"
@@ -1595,9 +1568,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "คุณกำลังเชื่อมต่อไปยังเซิร์ฟเวอร์โดยไม่ได้เป็นนิรนาม และเซิร์ฟเวอร์นี้รองรับการส่งรายงานอย่างเป็นนิรนามเท่านั้น"
 
-msgid "Thank you!"
-msgstr "ขอบคุณ!"
-
 msgid "Your report was successful."
 msgstr "การรายงานของคุณสำเร็จแล้ว"
 
@@ -1694,8 +1664,8 @@ msgstr "ชื่อ"
 msgid "Last name"
 msgstr "นามสกุล"
 
-msgid "Preferred contact method"
-msgstr "วิธีติดต่อที่สะดวก"
+msgid "Alternative contact method"
+msgstr "วิธีติดต่ออื่น"
 
 msgid "Other"
 msgstr "อื่นๆ"
@@ -1987,7 +1957,7 @@ msgstr "สำหรับขั้นตอนวิธีการปรับ
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "อีเมลฉบับนี้ส่งมาเพื่อแจ้งคุณว่า ผู้รับรายหนึ่งได้มอบสิทธิให้คุณเข้าถึงรายงานหนึ่งฉบับหรือมากกว่า"
 
 msgid "New report"
 msgstr "รายงานใหม่"

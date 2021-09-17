@@ -9,7 +9,7 @@
 # dragnadh, 2016-2017
 # erinm, 2021
 # tyfjoh, 2014
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2021
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -44,8 +44,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"Last-Translator: Dominik Schürmann <dominik@schuermann.eu>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -512,6 +512,12 @@ msgstr "Log uit"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr "Toegang herroepen"
+
 msgid "File a report"
 msgstr "Dien een rapport in"
 
@@ -566,27 +572,8 @@ msgstr "Functie voor meerdere-weblocaties inschakelen"
 msgid "Enable simplified login"
 msgstr "Vereenvoudigdelogin inschakelen"
 
-msgid "Allow recipients to delete reports"
-msgstr "Sta ontvangers toe tips te verwijderen"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Sta ontvangers toe de vervaldatum van hun inzending te verlengen"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Ontvangers toestaan om klokkenluiders per tip rechten toe te wijzen"
-
 msgid "Enable search engines indexing"
 msgstr "Zoekmachine-indexering inschakelen"
-
-msgid "Enable custom privacy panel"
-msgstr "Gepersonaliseerd privacy-paneel inschakelen"
-
-msgid "Custom privacy panel"
-msgstr "Gepersonaliseerd privacy-paneel"
-
-msgid "Disable the privacy panel"
-msgstr "Privacy-paneel uitschakelen"
 
 msgid "Enable the receipt hint"
 msgstr "Ontvangst-hint inschakelen"
@@ -939,7 +926,7 @@ msgstr "Het gebruik van automatische HTTPS configuratie doorloopt het gehele pro
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
+"hostname must have a DNS record referencing that address."
 msgstr "Het platform moet bereikbaar zijn via een publiekelijk IP-adres en de geselecteerde hostname moet een DNS regel bevatten welke verwijst naar dat adres."
 
 msgid "Manual configuration"
@@ -955,6 +942,15 @@ msgstr "Auto-hernieuwing"
 
 msgid "Tor Onion Service"
 msgstr "Tor-onion-dienst"
+
+msgid "Disable the privacy panel"
+msgstr "Privacy-paneel uitschakelen"
+
+msgid "Enable custom privacy panel"
+msgstr "Gepersonaliseerd privacy-paneel inschakelen"
+
+msgid "Custom privacy panel"
+msgstr "Gepersonaliseerd privacy-paneel"
 
 msgid "Anonymize outgoing connections"
 msgstr "Anonimiseer uitgaande verbindingen"
@@ -1196,11 +1192,11 @@ msgstr "Geef deze administrator het vermogen om gebruikerswachtwoorden te verand
 msgid "Forcefully selected"
 msgstr "Actief geselecteerd"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "De ontvanger mag de einddatum van de inzending uitstellen"
-
 msgid "Allow the recipient to delete reports"
 msgstr "Sta ontvangers toe tips te verwijderen"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "De ontvanger mag de einddatum van de inzending uitstellen"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Geef de gebruiker beheerderstoegang tot de volgende functies:"
@@ -1412,29 +1408,6 @@ msgstr "Geschatte tijd voor uploaden:"
 msgid "Size:"
 msgstr "Grootte:"
 
-msgid "Enable the Ricochet panel"
-msgstr "Activeer de Ricochet panel"
-
-msgid "Address"
-msgstr "Adres 2"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "Chat anoniem met ons door middel van de Ricochet applicatie"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "Gebruik het volgende Ricochet adres om met ons te chatten:"
-
-msgid "Download Ricochet at:"
-msgstr "Download Ricochet hier:"
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "Ricochet is een app die gebruik maakt van het Tor netwerk en een Onion Service. Met deze app kun je chatten terwijl je identiteit en je privacy beschermd blijven doordat je locatie en IP adres niet worden onthuld. Je merkt geen verschil merken met een onveilige chat, behalve dat je een uniek adres gebruikt in plaats van een telefoonnummer / e-mailadres / gebruikersnaam. "
-
 msgid "The connection is not secure."
 msgstr "De verbinding is onbeveiligd."
 
@@ -1626,9 +1599,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "U bent een niet-anonieme verbinding tot stand aan het brengen met de server en deze server ondersteunt alleen anonieme inzendingen"
 
-msgid "Thank you!"
-msgstr "Bedankt!"
-
 msgid "Your report was successful."
 msgstr "Je inzending was succesvol."
 
@@ -1725,7 +1695,7 @@ msgstr "Voornaam"
 msgid "Last name"
 msgstr "Achternaam"
 
-msgid "Preferred contact method"
+msgid "Alternative contact method"
 msgstr ""
 
 msgid "Other"

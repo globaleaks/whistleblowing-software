@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swahili (http://www.transifex.com/otf/globaleaks/language/sw/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -473,6 +473,12 @@ msgstr "Toka"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
@@ -527,27 +533,8 @@ msgstr "Wezesha huduma nyingi katika tofuti"
 msgid "Enable simplified login"
 msgstr "Wezesha uingiaji rahisi"
 
-msgid "Allow recipients to delete reports"
-msgstr "Ruhusu wapokeaji kufuta ripoti"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Ruhusu wapokeaji kuahirisha tarehe ya kumalizika muda wa ripoti"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Ruhusu wapokeaji kutoa ruhusa kwa watoa taarifa za siri katika ripoti maalumu"
-
 msgid "Enable search engines indexing"
 msgstr "Wezesha kivinjari cha kutafuta"
-
-msgid "Enable custom privacy panel"
-msgstr "Wezesha paneli ya faragha maalum "
-
-msgid "Custom privacy panel"
-msgstr "paneli ya faragha"
-
-msgid "Disable the privacy panel"
-msgstr "Usiwezeshe paneli ya faragha"
 
 msgid "Enable the receipt hint"
 msgstr "Wezesha kidokezo cha kupokea"
@@ -900,8 +887,8 @@ msgstr "Kutumia usanidi wa kiotomatiki wa HTTPS utashughulikia mchakato mzima wa
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
-msgstr "Jukwaa lazima lifikiwe kupitia anwani ya IP ya umma na iliyochaguliwa\n\njina la mwenyeji lazima liwe na rekodi inayolingana ya DNS inayorejelea anwani hiyo."
+"hostname must have a DNS record referencing that address."
+msgstr "Jukwaa lazima lifikiwe kupitia anwani ya IP ya umma na iliyochaguliwa jina la mwenyeji lazima liwe na rekodi inayolingana ya DNS inayorejelea anwani hiyo."
 
 msgid "Manual configuration"
 msgstr "Usanidi wa mwongozo"
@@ -916,6 +903,15 @@ msgstr "Uhuishaji kiotomatiki"
 
 msgid "Tor Onion Service"
 msgstr "Huduma binafsi"
+
+msgid "Disable the privacy panel"
+msgstr "Usiwezeshe paneli ya faragha"
+
+msgid "Enable custom privacy panel"
+msgstr "Wezesha paneli ya faragha maalum "
+
+msgid "Custom privacy panel"
+msgstr "paneli ya faragha"
 
 msgid "Anonymize outgoing connections"
 msgstr "Fanya kutokujulikana viunganisho vinavyotoka nnje"
@@ -1157,11 +1153,11 @@ msgstr "Mpe msimamizi huyu uwezo wa kubadilisha neno la siri la mtumiaji"
 msgid "Forcefully selected"
 msgstr "Imechaguliwa kwa nguvu"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Ruhusu wapokeaji kuahirisha tarehe ya kumalizika muda wa ripoti."
-
 msgid "Allow the recipient to delete reports"
 msgstr "Ruhusu mpokeaji kufuta ripoti"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Ruhusu wapokeaji kuahirisha tarehe ya kumalizika muda wa ripoti."
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Mtumiaji ana ufikiaji wa kiutawala kwa huduma zifuatazo"
@@ -1373,29 +1369,6 @@ msgstr "Wakati uliokadiriwa wa kupakia:"
 msgid "Size:"
 msgstr "Ukubwa:"
 
-msgid "Enable the Ricochet panel"
-msgstr "Wezesha paneli ya Ricochet"
-
-msgid "Address"
-msgstr "Anwani"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "Chati na sisi pasipo kujulikana kwa kutumia programu ya Ricochet"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "Kuchati na sisi tumia anuani ifuatayo ya Ricochet:"
-
-msgid "Download Ricochet at:"
-msgstr "Pakua Ricochet kupitia:"
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "Kwa kutumia mtandao wa Tor na kuunda huduma ya siri, Ricochet ni\n\nprogramu ya kutuma ujumbe papo hapo inayokuruhusu kuchati huku ukilinda faragha yako\n\nna kukaa bila kujulikana kwa kutokuonyesha eneo ulilopo au anwani ya IP\n\nHutaona utofauti wowote kutokana na kuchati kusiko salama, isipokuwa kuwa utakuwa\n\nunatumia anwani ya kipekee badala ya nambari ya simu / barua pepe / jina la mtumiaji. "
-
 msgid "The connection is not secure."
 msgstr "Muunganisho sio salama"
 
@@ -1587,9 +1560,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "Unaunganisha kwenye seva bila kuficha utambulisho wako na seva hii inapokea\n\nmawasilisho kutoka kwa mtumaji asiyojulikana tu"
 
-msgid "Thank you!"
-msgstr "Asante!"
-
 msgid "Your report was successful."
 msgstr "Ripoti yako imefanikiwa."
 
@@ -1686,7 +1656,7 @@ msgstr "Jina la kwanza"
 msgid "Last name"
 msgstr "Jina la mwisho"
 
-msgid "Preferred contact method"
+msgid "Alternative contact method"
 msgstr ""
 
 msgid "Other"

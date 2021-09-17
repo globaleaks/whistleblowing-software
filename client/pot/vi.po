@@ -3,7 +3,7 @@
 # Anh Phan <vietnamesel10n@gmail.com>, 2013
 # Anh Phan <vietnamesel10n@gmail.com>, 2013-2014
 # Dong Quoc <huynhquocdong@gmail.com>, 2018-2019
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2016-2018,2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2016-2018,2020-2021
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"Last-Translator: sixtyninefourtwenty <quangtrung02hn16@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -485,6 +485,12 @@ msgstr "Đăng xuất"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr "Thu hồi quyền truy cập"
+
 msgid "File a report"
 msgstr "Nộp báo cáo"
 
@@ -539,27 +545,8 @@ msgstr "Bật mở tính năng nhiều trang web"
 msgid "Enable simplified login"
 msgstr "Bật mở đăng nhập đơn giản"
 
-msgid "Allow recipients to delete reports"
-msgstr "Cho phép người nhận để xóa báo cáo"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Cho phép người nhận hoãn ngày hết hạn của báo cáo"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Cho phép người nhận cấp quyền cho người tố giác trên các báo cáo cụ thể"
-
 msgid "Enable search engines indexing"
 msgstr "Bật công cụ tìm kiếm lập chỉ mục"
-
-msgid "Enable custom privacy panel"
-msgstr "Bật lên bảng thông tin tùy biến về bảo mật và riêng tư ở đầu trang"
-
-msgid "Custom privacy panel"
-msgstr "Bảng thông tin tùy biến về bảo mật và riêng tư"
-
-msgid "Disable the privacy panel"
-msgstr "Tắt bảng thông tin bảo mật và riêng tư"
 
 msgid "Enable the receipt hint"
 msgstr "Bật mở gợi ý cho biên nhận"
@@ -912,7 +899,7 @@ msgstr "Dùng cấu hình HTTPS tự động sẽ thực hiện toàn bộ quá 
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
+"hostname must have a DNS record referencing that address."
 msgstr "Hệ thống phải truy cập được từ một địa chỉ IP công cộng và tên máy chủ được chọn phải có hồ sơ DNS tương ứng trong địa chỉ đó."
 
 msgid "Manual configuration"
@@ -928,6 +915,15 @@ msgstr "Tự động gia hạn"
 
 msgid "Tor Onion Service"
 msgstr "Dịch vụ Tor Onion"
+
+msgid "Disable the privacy panel"
+msgstr "Tắt bảng thông tin bảo mật và riêng tư"
+
+msgid "Enable custom privacy panel"
+msgstr "Bật lên bảng thông tin tùy biến về bảo mật và riêng tư ở đầu trang"
+
+msgid "Custom privacy panel"
+msgstr "Bảng thông tin tùy biến về bảo mật và riêng tư"
 
 msgid "Anonymize outgoing connections"
 msgstr "Ẩn danh các kết nối ra bên ngoài"
@@ -1169,11 +1165,11 @@ msgstr "Cho phép quản trị viên thay đổi mật khẩu người dùng"
 msgid "Forcefully selected"
 msgstr "Được chọn trước"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Cho phép người nhận hoãn thời điểm hết hạn của báo cáo"
-
 msgid "Allow the recipient to delete reports"
 msgstr "Cho phép người nhận xóa báo cáo"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Cho phép người nhận hoãn thời điểm hết hạn của báo cáo"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Cho người dùng quyền quản trị để truy cập đến những tính năng sau: "
@@ -1319,7 +1315,7 @@ msgid "Request support"
 msgstr ""
 
 msgid "Thank you."
-msgstr ""
+msgstr "Cảm ơn bạn."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Chúng tôi sẽ cố gắng liên lạc lại với bạn trong thời gian sớm nhất."
@@ -1384,29 +1380,6 @@ msgstr "Ước lượng thời gian tải lên:"
 
 msgid "Size:"
 msgstr "Kích thước:"
-
-msgid "Enable the Ricochet panel"
-msgstr "Bật mở bảng Ricochet"
-
-msgid "Address"
-msgstr "Địa chỉ"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "Trò chuyện ẩn danh với chúng tôi bằng ứng dụng Ricochet"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "Để trò chuyện với chúng tôi, dùng địa chỉ Ricochet sau đây:"
-
-msgid "Download Ricochet at:"
-msgstr "Tải Ricochet về từ:"
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "Bằng cách dùng mạng Tor và tạo dịch vụ Onion, Ricochet là một ứng dụng tin nhắn nhanh để trò chuyện cùng lúc đó bảo vệ quyền riêng tư và ẩn danh của bạn bằng cách không tiết lộ vị trí hoặc địa chỉ IP của bạn. Bạn sẽ không thấy nó khác gì lắm với các loại chat thông thường, ngoại trừ việc bạn sẽ sử dụng một địa chỉ đặc biệt thay vì số điện thoại / email / tên người dùng"
 
 msgid "The connection is not secure."
 msgstr "Kết nối không an toàn"
@@ -1599,9 +1572,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "Bạn kết nối với máy chủ mà thiếu ẩn danh trong khi máy chủ này chỉ nhận báo cáo gửi ẩn danh"
 
-msgid "Thank you!"
-msgstr "Cảm ơn bạn!"
-
 msgid "Your report was successful."
 msgstr "Báo cáo của bạn đã thành công."
 
@@ -1698,7 +1668,7 @@ msgstr "Tên"
 msgid "Last name"
 msgstr "Họ"
 
-msgid "Preferred contact method"
+msgid "Alternative contact method"
 msgstr ""
 
 msgid "Other"

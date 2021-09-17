@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -475,6 +475,12 @@ msgstr "Logg ut"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
@@ -529,27 +535,8 @@ msgstr ""
 msgid "Enable simplified login"
 msgstr ""
 
-msgid "Allow recipients to delete reports"
-msgstr ""
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr ""
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr ""
-
 msgid "Enable search engines indexing"
 msgstr "Skru på søkemotor-indeksering"
-
-msgid "Enable custom privacy panel"
-msgstr "Skru på egentilpasset personvernspanel"
-
-msgid "Custom privacy panel"
-msgstr "Egentilpasset personvernspanel"
-
-msgid "Disable the privacy panel"
-msgstr "Skru av personvernspanelet"
 
 msgid "Enable the receipt hint"
 msgstr ""
@@ -902,8 +889,8 @@ msgstr "Det automatiske oppsettet vil ta hånd om hele prosessen med å forespø
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
-msgstr "Plattformen må kunne nås gjennom en offentlig IP-adresse og valgt vertsnavn må ha en tilhørende DNS-oppføring som nevner den adressen."
+"hostname must have a DNS record referencing that address."
+msgstr ""
 
 msgid "Manual configuration"
 msgstr "Manuelt oppsett"
@@ -918,6 +905,15 @@ msgstr "Automatisk fornyelse"
 
 msgid "Tor Onion Service"
 msgstr "Tor-løktjeneste"
+
+msgid "Disable the privacy panel"
+msgstr "Skru av personvernspanelet"
+
+msgid "Enable custom privacy panel"
+msgstr "Skru på egentilpasset personvernspanel"
+
+msgid "Custom privacy panel"
+msgstr "Egentilpasset personvernspanel"
 
 msgid "Anonymize outgoing connections"
 msgstr "Anonymiser utgående tilkoblinger"
@@ -1159,10 +1155,10 @@ msgstr ""
 msgid "Forcefully selected"
 msgstr "Påtvunget forvalg"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to delete reports"
 msgstr ""
 
-msgid "Allow the recipient to delete reports"
+msgid "Allow the recipient to postpone the report expiration date"
 msgstr ""
 
 msgid "Give the user administrative access to the following features:"
@@ -1375,29 +1371,6 @@ msgstr "Forventet opplastingstid:"
 msgid "Size:"
 msgstr "Størrelse:"
 
-msgid "Enable the Ricochet panel"
-msgstr ""
-
-msgid "Address"
-msgstr "Adresse"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr ""
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr ""
-
-msgid "Download Ricochet at:"
-msgstr ""
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr ""
-
 msgid "The connection is not secure."
 msgstr "Tilkoblingen er ikke sikker."
 
@@ -1589,9 +1562,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "Din tilknytning til tjeneren er ikke anonym, denne tjeneren støtter bare anonyme innsendelser"
 
-msgid "Thank you!"
-msgstr "Takk!"
-
 msgid "Your report was successful."
 msgstr ""
 
@@ -1688,7 +1658,7 @@ msgstr "Fornavn"
 msgid "Last name"
 msgstr "Etternavn"
 
-msgid "Preferred contact method"
+msgid "Alternative contact method"
 msgstr ""
 
 msgid "Other"

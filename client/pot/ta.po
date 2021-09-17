@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -475,6 +475,12 @@ msgstr "வெளியேறு"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
@@ -529,27 +535,8 @@ msgstr "பன்முனை அம்சத்தை இயக்கு"
 msgid "Enable simplified login"
 msgstr "எளிய உள்நுழைவை இயக்கவும்"
 
-msgid "Allow recipients to delete reports"
-msgstr "பெற்றவர்கள் சமர்ப்பிப்புகளை நீக்க அனுமதிக்க"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "பெற்றவர்கள் சமர்ப்பிக்கும் காலாவதி தேதி ஒத்தி அனுமதி"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "பெற்றவர்கள் குறிப்பிட்ட சமர்ப்பிப்புகளை இம்மாதிரி செய்ய அனுமதிகளை வழங்க அனுமதி"
-
 msgid "Enable search engines indexing"
 msgstr "தேடுபொறிகள் திருப்பு இயக்கு"
-
-msgid "Enable custom privacy panel"
-msgstr "விருப்ப தனியுரிமை குழு இயக்கு"
-
-msgid "Custom privacy panel"
-msgstr "விருப்ப தனியுரிமை குழு"
-
-msgid "Disable the privacy panel"
-msgstr "தனியுரிமை குழு முடக்கு"
 
 msgid "Enable the receipt hint"
 msgstr ""
@@ -902,8 +889,8 @@ msgstr "தானியங்கு HTTPS கட்டமைப்பு பய�
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
-msgstr "பொது IP முகவரி மூலம் தளத்தை அணுகலாம் மற்றும் தேர்ந்தெடுத்த புரவலன் பெயர் அந்த முகவரியுடன் தொடர்புடைய டிஎன்எஸ் பதிவைக் கொண்டிருக்க வேண்டும்."
+"hostname must have a DNS record referencing that address."
+msgstr ""
 
 msgid "Manual configuration"
 msgstr "கையேடு கட்டமைப்பு"
@@ -918,6 +905,15 @@ msgstr "ஆட்டோ புதுப்பித்தல்"
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion சேவை"
+
+msgid "Disable the privacy panel"
+msgstr "தனியுரிமை குழு முடக்கு"
+
+msgid "Enable custom privacy panel"
+msgstr "விருப்ப தனியுரிமை குழு இயக்கு"
+
+msgid "Custom privacy panel"
+msgstr "விருப்ப தனியுரிமை குழு"
 
 msgid "Anonymize outgoing connections"
 msgstr "வெளியேறும் இணைப்புகளை அநாமதேயப்படுத்து"
@@ -1159,11 +1155,11 @@ msgstr ""
 msgid "Forcefully selected"
 msgstr "கட்டாயப்படுத்தி தேர்வு"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "பெறுநர் சமர்ப்பிப்பு காலாவதி தேதி ஒத்தி அனுமதி"
-
 msgid "Allow the recipient to delete reports"
 msgstr "பெற்றவர்கள் சமர்ப்பிப்புகளை நீக்க அனுமதிக்க"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "பெறுநர் சமர்ப்பிப்பு காலாவதி தேதி ஒத்தி அனுமதி"
 
 msgid "Give the user administrative access to the following features:"
 msgstr ""
@@ -1375,29 +1371,6 @@ msgstr "கணக்கிடப்பட்ட பதிவேற்ற நே�
 msgid "Size:"
 msgstr "அளவு:"
 
-msgid "Enable the Ricochet panel"
-msgstr ""
-
-msgid "Address"
-msgstr "முகவரி"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr ""
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr ""
-
-msgid "Download Ricochet at:"
-msgstr ""
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr ""
-
 msgid "The connection is not secure."
 msgstr "இணைப்பு பாதுகாப்பாக இல்லை."
 
@@ -1589,9 +1562,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "நீங்கள் தெரியாத இல்லாமல் சர்வர் இணைக்கப்பட்டால் இந்த சர்வர் அநாமதேய சமர்ப்பிப்புகளை மட்டுமே ஆதரிக்கிறது"
 
-msgid "Thank you!"
-msgstr "நன்றி!"
-
 msgid "Your report was successful."
 msgstr "உங்கள் சமர்ப்பிப்பு வெற்றியடைந்தது."
 
@@ -1688,7 +1658,7 @@ msgstr "முதல் பெயர்"
 msgid "Last name"
 msgstr "கடைசி பெயர்"
 
-msgid "Preferred contact method"
+msgid "Alternative contact method"
 msgstr ""
 
 msgid "Other"

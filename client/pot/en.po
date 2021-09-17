@@ -40,7 +40,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: English (http://www.transifex.com/otf/globaleaks/language/en/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -508,6 +508,12 @@ msgstr "Logout"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr "Give this recipient ability to grant user access to reports"
 
+msgid "Grant access"
+msgstr "Grant access"
+
+msgid "Revoke access"
+msgstr "Revoke access"
+
 msgid "File a report"
 msgstr "File a report"
 
@@ -562,27 +568,8 @@ msgstr "Enable multisite feature"
 msgid "Enable simplified login"
 msgstr "Enable simplified login"
 
-msgid "Allow recipients to delete reports"
-msgstr "Allow recipients to delete reports"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Allow recipients to postpone expiration date of the report"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Allow recipients to grant permissions to whistleblowers on specific reports"
-
 msgid "Enable search engines indexing"
 msgstr "Enable search engines indexing"
-
-msgid "Enable custom privacy panel"
-msgstr "Enable custom privacy panel"
-
-msgid "Custom privacy panel"
-msgstr "Custom privacy panel"
-
-msgid "Disable the privacy panel"
-msgstr "Disable the privacy panel"
 
 msgid "Enable the receipt hint"
 msgstr "Enable the receipt hint"
@@ -935,8 +922,8 @@ msgstr "Using automatic HTTPS configuration will handle the entire process of re
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
-msgstr "The platform must be reachable through a public IP address and the selected hostname must have a corresponding DNS record referencing that address."
+"hostname must have a DNS record referencing that address."
+msgstr "The platform must be reachable through a public IP address and the selected hostname must have a DNS record referencing that address."
 
 msgid "Manual configuration"
 msgstr "Manual configuration"
@@ -951,6 +938,15 @@ msgstr "Auto-renewal"
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion Service"
+
+msgid "Disable the privacy panel"
+msgstr "Disable the privacy panel"
+
+msgid "Enable custom privacy panel"
+msgstr "Enable custom privacy panel"
+
+msgid "Custom privacy panel"
+msgstr "Custom privacy panel"
 
 msgid "Anonymize outgoing connections"
 msgstr "Anonymize outgoing connections"
@@ -1192,11 +1188,11 @@ msgstr "Give this admin ability to change user passwords"
 msgid "Forcefully selected"
 msgstr "Forcefully selected"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Allow the recipient to postpone the report expiration date"
-
 msgid "Allow the recipient to delete reports"
 msgstr "Allow the recipient to delete reports"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Allow the recipient to postpone the report expiration date"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Give the user administrative access to the following features:"
@@ -1408,29 +1404,6 @@ msgstr "Estimated upload time:"
 msgid "Size:"
 msgstr "Size:"
 
-msgid "Enable the Ricochet panel"
-msgstr "Enable the Ricochet panel"
-
-msgid "Address"
-msgstr "Address"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "Chat with us anonymously using the Ricochet application"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "To chat with us use the following Ricochet address:"
-
-msgid "Download Ricochet at:"
-msgstr "Download Ricochet at:"
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "By using the Tor network and creating an Onion Service, Ricochet is an instant messaging app that allows you to chat while protecting your privacy and staying anonymous by not revealing your location or IP address. You won't notice any difference from an insecure chat, except that you will be using a unique address instead of a phone number/email/username."
-
 msgid "The connection is not secure."
 msgstr "The connection is not secure."
 
@@ -1622,9 +1595,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "You are connecting to the server without anonymity and this server supports only anonymous submissions"
 
-msgid "Thank you!"
-msgstr "Thank you!"
-
 msgid "Your report was successful."
 msgstr "Your report was successful."
 
@@ -1721,8 +1691,8 @@ msgstr "First name"
 msgid "Last name"
 msgstr "Last name"
 
-msgid "Preferred contact method"
-msgstr "Preferred contact method"
+msgid "Alternative contact method"
+msgstr "Alternative contact method"
 
 msgid "Other"
 msgstr "Other"

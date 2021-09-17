@@ -2,7 +2,7 @@
 # Translators:
 # Akseli Pihlajamaa <akselijuhanipihlajamaa@gmail.com>, 2020-2021
 # Eva Simonsson, 2020-2021
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018,2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018,2020-2021
 # Jaakko Korhonen <jaakko.korhonen@gmail.com>, 2018
 # John Wild <ac@elephantleague.org>, 2015
 # Jorma Karvonen <karvonen.jorma@gmail.com>, 2015,2017,2020
@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-07 12:19+0000\n"
-"Last-Translator: Eva Simonsson\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -481,6 +481,12 @@ msgstr "Kirjaudu ulos"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr "Salli tämän käyttäjän myöntää pääsyoikeuksia ilmoituksiin."
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr ""
+
 msgid "File a report"
 msgstr "Jätä ilmoitus"
 
@@ -535,27 +541,8 @@ msgstr "Ota käyttöön samanaikainen kirjautuminen useaan järjestelmään"
 msgid "Enable simplified login"
 msgstr "Ota käyttöön helpotettu kirjautuminen"
 
-msgid "Allow recipients to delete reports"
-msgstr "Salli vastaanottajien poistaa vihjeitä"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Salli vastaanottajien siirtää vihjeiden vanhentumispäivämäärää myöhemmäksi"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Salli vastaanottajien myöntää lupia vihjeiden lähettäjille"
-
 msgid "Enable search engines indexing"
 msgstr "Ota käyttöön hakukoneiden indeksointi"
-
-msgid "Enable custom privacy panel"
-msgstr "Ota käyttöön oma yksityisyyskulkukortti"
-
-msgid "Custom privacy panel"
-msgstr "Mukautettu yksityisyysasetusten hallintapaneeli"
-
-msgid "Disable the privacy panel"
-msgstr "Ota pois käytöstä yksityisyyskulkukortti"
 
 msgid "Enable the receipt hint"
 msgstr "Ota kuittivinkki käyttöön"
@@ -908,7 +895,7 @@ msgstr "Automaattinen HTTPS-asetusten määrittäminen hoitaa koko prosessin sis
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
+"hostname must have a DNS record referencing that address."
 msgstr "Palvelun täytyy olla tavoitettavissa julkisen IP-osoitteen kautta ja valitun tietokoneen nimen (hostname) nimipalvelinasetukset (DNS) täytyy osoittaa samaan IP-osoitteeseen."
 
 msgid "Manual configuration"
@@ -924,6 +911,15 @@ msgstr "Automaattinen uusiminen"
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion Service"
+
+msgid "Disable the privacy panel"
+msgstr "Ota pois käytöstä yksityisyyskulkukortti"
+
+msgid "Enable custom privacy panel"
+msgstr "Ota käyttöön oma yksityisyyskulkukortti"
+
+msgid "Custom privacy panel"
+msgstr "Mukautettu yksityisyysasetusten hallintapaneeli"
 
 msgid "Anonymize outgoing connections"
 msgstr "Anonymisoi yhteydet ulospäin"
@@ -1165,11 +1161,11 @@ msgstr "Salli tälle ylläpitäjälle mahdollisuus vaihtaa käyttäjien salasana
 msgid "Forcefully selected"
 msgstr "Aina päällä (ei voi muuttaa)"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Salli vastaanottajan siirtää vihjeen vanhentumispäivämäärää myöhemmäksi"
-
 msgid "Allow the recipient to delete reports"
 msgstr "Salli vastaanottajien poistaa vihjeitä"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Salli vastaanottajan siirtää vihjeen vanhentumispäivämäärää myöhemmäksi"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Anna käyttäjälle ylläpito-oikeudet seuraaviin toimintoihin:"
@@ -1381,29 +1377,6 @@ msgstr "Arvioitu latausaika:"
 msgid "Size:"
 msgstr "Koko:"
 
-msgid "Enable the Ricochet panel"
-msgstr "Ota käyttöön Ricochet-järjestelmä"
-
-msgid "Address"
-msgstr "Osoite"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "Keskustele kanssamme anonyymisti Ricochet-sovelluksen avulla"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "Käytä keskusteluun seuraavaa Ricochet-osoitetta:"
-
-msgid "Download Ricochet at:"
-msgstr "Lataa Ricochet osoitteesta:"
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "Käyttämällä Tor-verkkoa ja luomalla Onion Service-palvelun Ricochet on pikaviestisovellus, joka sallii sinun jutella samalla kun yksityisyytesi suojellaan ja anonyymisyytesi pysyy paljastamatta sijaintiasi tai IP-osoitettasi. Et huomaa mitään eroa turvattomaan juttelusovellukseen, paitsi että käytät uniikkia osoitettaa puhelinnumeron/sähköpostiosoitteen/käyttäjänimen sijasta."
-
 msgid "The connection is not secure."
 msgstr "Yhteys ei ole turvallinen."
 
@@ -1595,9 +1568,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "Olet yhdistänyt palvelimen ilman anonymiteettiä ja tämä solmu tukee vain nimettömiä lähetyksiä"
 
-msgid "Thank you!"
-msgstr "Kiitos!"
-
 msgid "Your report was successful."
 msgstr "Vihjeesi lähettäminen onnistui."
 
@@ -1694,8 +1664,8 @@ msgstr "Etunimi"
 msgid "Last name"
 msgstr "Sukunimi"
 
-msgid "Preferred contact method"
-msgstr "Toivottu yhteydenottotapa"
+msgid "Alternative contact method"
+msgstr "Vaihtoehtoinen yhteydenottotapa"
 
 msgid "Other"
 msgstr "Muut"

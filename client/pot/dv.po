@@ -3,13 +3,13 @@
 # Abdulla Shaheed <evenexzero@gmail.com>, 2019
 # Afrah Mohamed <myza.afrah@gmail.com>, 2020
 # Ahmed Naushad <nwshadh@gmail.com>, 2020
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2020-2021
 # Hussain Iyad <huseniyad@gmail.com>, 2020
 # Ruba Ali <rubaa.ali@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -477,6 +477,12 @@ msgstr "ލޮގްއައުޓް"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
@@ -531,27 +537,8 @@ msgstr "މަލްޓިސައިޓް ފީޗާ އޮންކުރަން"
 msgid "Enable simplified login"
 msgstr "ސިންޕްލިފައިޑް ލޮގް އިން އޮން ކުރަން"
 
-msgid "Allow recipients to delete reports"
-msgstr "ލިބިލައްވާ ފަރާތްތަކަށް ރިޕޯޓު ފުހެލުމުގެ ޙުއްދަ ދިނުމަށް"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "ލިބިލައްވާ ފަރާތްތަކަށް ދުވަސްހަމަވާ ތާރީޙް ލަސްކުރުމުގެ ޙުއްދަ ދިނުމަށް"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "ވިސިލްބްލޯވަރސްއައް ވަކި ރިޕޯޓްތަކެއްގެ އެކި ޙުއްދަ ދިނުމުގެ އިޒްނަ ލިބިލައްވާ ފަރާތްތަކަށް ދިނުމަށް"
-
 msgid "Enable search engines indexing"
 msgstr "ސަރޗް އިންޖިންތަކުގައި އިންޑެކްސް ކުރުމަށް"
-
-msgid "Enable custom privacy panel"
-msgstr "ކަސްޓަމް ޕްރައިވަސީ ޗެނަލް އޮން ކުރުމަށް"
-
-msgid "Custom privacy panel"
-msgstr "ކަސްޓަމް ޕްރައިވަސީ ޗެނަލް"
-
-msgid "Disable the privacy panel"
-msgstr "ކަސްޓަމް ޕްރައިވަސީ ޗެނަލް އޮފް ކުރުމަށް"
 
 msgid "Enable the receipt hint"
 msgstr "ރަޝީދުގެ ހިންޓް އޮން ކުރުމަށް"
@@ -904,8 +891,8 @@ msgstr "އޮޓަމެޓިކް އެޗް.ޓީ.ޓީ.ޕީ.އެސް ކޮންފިގަރ
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
-msgstr "ޕަބްލިކް އައި.ޕީ އެޑްރެސްއަކުންވެސް މި ޕްލެޓްފޯމްއަށް އެކްސެސް ވެވެން ޖެހޭނެ. އަދި ހިޔާކުރެވިފައިވާ ހޯސްޓްނޭމްގައި ކޮރެސްޕޮންޑިންގް ޑީ.އެން.އެސް ރިކޯޑެއް އެ އެޑްރެސްއާއި ގުޅިފައި އޮންނަންޖެހޭ. "
+"hostname must have a DNS record referencing that address."
+msgstr ""
 
 msgid "Manual configuration"
 msgstr "މީހެއްގެ އެހީތެރިކަމާއެކު ރުކުރުވުން"
@@ -920,6 +907,15 @@ msgstr "ގަވައިދުން އާކުރެވިގެންދިއުން"
 
 msgid "Tor Onion Service"
 msgstr "ޓީ.އޯ.އާރް އަނިއަންގެ ހިދުމަތް"
+
+msgid "Disable the privacy panel"
+msgstr "ކަސްޓަމް ޕްރައިވަސީ ޗެނަލް އޮފް ކުރުމަށް"
+
+msgid "Enable custom privacy panel"
+msgstr "ކަސްޓަމް ޕްރައިވަސީ ޗެނަލް އޮން ކުރުމަށް"
+
+msgid "Custom privacy panel"
+msgstr "ކަސްޓަމް ޕްރައިވަސީ ޗެނަލް"
 
 msgid "Anonymize outgoing connections"
 msgstr "ބޭރަށްދާ ގުޅުންތަކުގެ ސިއްރު ހިފެހެއްޓުމަށް"
@@ -1161,11 +1157,11 @@ msgstr "ބޭނުންކުރާ ފަރާތްތަކުގެ ޕާސްވޯޑް ބަދަ�
 msgid "Forcefully selected"
 msgstr "ބާރާއެކު ސިލެކްޝަން ހެދުން"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "ޚިދުމަތްލިބޭ ފަރާތަކަށް ރިޕޯޓްގެ މުއްދަތުހަމަވާ ތާރީޚް ފަސްކުރުމަށް ހުއްދަކުރުން"
-
 msgid "Allow the recipient to delete reports"
 msgstr "ލިބިލައްވާ ފަރާތަށް ރިޕޯޓު ފުހެލުމުގެ ޙުއްދަ ދިނުމަށް"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "ޚިދުމަތްލިބޭ ފަރާތަކަށް ރިޕޯޓްގެ މުއްދަތުހަމަވާ ތާރީޚް ފަސްކުރުމަށް ހުއްދަކުރުން"
 
 msgid "Give the user administrative access to the following features:"
 msgstr ""
@@ -1311,7 +1307,7 @@ msgid "Request support"
 msgstr ""
 
 msgid "Thank you."
-msgstr ""
+msgstr "ޝުކުރިއްޔާ."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "ވީހާވެސް އަވަހަކަށް ޖަވާބު އަރުވާނަން. "
@@ -1376,29 +1372,6 @@ msgstr "އަޕްލޯޑްވާން ނަގާނެކަމަށް ލަފާކުރެވޭ �
 
 msgid "Size:"
 msgstr "ސައިޒު:"
-
-msgid "Enable the Ricochet panel"
-msgstr "ރިކޮށޭ ޕެނަލް އޮން ކުރެއްވުމަށް"
-
-msgid "Address"
-msgstr "ްއެޑްރެސް"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "ރިކޮށޭ ބޭނުންކޮއްގެން ރައްކާތެރިކޮށް ޗެޓްކުރައްވާ"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "އަޅުގަނޑުމެންނާއި ޗުޓްކުރުމަށް މި ރިކޮށޭ އެޑްރެސް ބޭނުންކުރައްވާ: "
-
-msgid "Download Ricochet at:"
-msgstr "ރިކޮށޭ ޑައުންލޯޑު ކުރެއްވުމަށް: "
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "ރިކޮށޭއަކީ ޓޯރ ނެޓްވާރކް އަދި އަނިއަން ސާރވިސްއެއް އުފައްދައިގެން ރައްކާތެރިކޮށް އަދި އަމިއްލަ މައުލޫއްމާތާއި އައި.ޕީ.އެޑްރެސް ސިއްރުވާގޮތަށް ބޭނުންކުރެވޭ ޗެޓް އެޕް އެއް. ރިކޮށޭ ބޭނުންކުރުމުގައި އެހެންނިހެން ޗެޓް ހިދުމަތްތަކާއި ދެމެދު ފެންނާނެ ހަމައެކަނި ފަރަގަކީ ފޯން ނަންބަރެއްގެ ބަދަލުގައި ބޭނުންކުރަނީ ޔުނީކް އެޑްރެސްއެއްކަން. "
 
 msgid "The connection is not secure."
 msgstr "ކަނެކްޝަން ރައްކާތެރިއެއް ނޫން. "
@@ -1591,9 +1564,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "ސާވަރއަށް ތިޔަފަރާތުން ތި ކަނެކްޓްވަނީ އަމިއްލަ ސިއްރު މައުލޫމާތު ރައްކާތެރިނޫންގޮތަކަށް. މި ސާރވަރ އަަށް ސަބްމިޝަން ފޮނުވޭނީ ހަމައެކަނި ރައްކާތެރި ކަނެކްޝަން ބޭނުންކޮއްގެން. "
 
-msgid "Thank you!"
-msgstr "ޝުކުރިއްޔާ! "
-
 msgid "Your report was successful."
 msgstr "ރިޕޯޓު ކުރެވިއްޖެ. "
 
@@ -1690,7 +1660,7 @@ msgstr "ފުރަތަމަ ނަން"
 msgid "Last name"
 msgstr "އާއިލީ ނަން "
 
-msgid "Preferred contact method"
+msgid "Alternative contact method"
 msgstr ""
 
 msgid "Other"

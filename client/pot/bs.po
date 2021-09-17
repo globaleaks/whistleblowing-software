@@ -2,13 +2,13 @@
 # Translators:
 # Aleksandar Todorović (r3bl) <aleksandar@r3bl.me>, 2015
 # Aleksandar Todorović (r3bl) <aleksandar@r3bl.me>, 2015
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2018,2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2018,2020-2021
 # Kenan Efendic <kenan@occrp.org>, 2015
 # Vojtech Kotek <kotek.vojtech@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bosnian (http://www.transifex.com/otf/globaleaks/language/bs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -476,6 +476,12 @@ msgstr "Odjava"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
@@ -530,27 +536,8 @@ msgstr "Omogućite korištenje s više lokacija"
 msgid "Enable simplified login"
 msgstr "Omogućite pojednostavljeni login"
 
-msgid "Allow recipients to delete reports"
-msgstr "Dopustite primaocima da obrišu prijave"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Dopustite primaocima da odgode datum isteka prijave"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Dopustite primaocima da dozvole pristup zviždačima određenim prijavama"
-
 msgid "Enable search engines indexing"
 msgstr "Omogućite indeksiranje od strane internet pretraživača"
-
-msgid "Enable custom privacy panel"
-msgstr "Omogućite prilagođeni panel privatnosti"
-
-msgid "Custom privacy panel"
-msgstr "Prilagodite panel privatnosti"
-
-msgid "Disable the privacy panel"
-msgstr "Onemogućite panel privatnosti"
 
 msgid "Enable the receipt hint"
 msgstr "Omogućite primanje hinta"
@@ -903,7 +890,7 @@ msgstr "Automatsko konfiguriranje HTTPS-a će samo obaviti cijeli proces zahtjev
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
+"hostname must have a DNS record referencing that address."
 msgstr "Ovoj platformi se mora moći pristupiti putem javne IP adrese i odabranihostname mora imati odgovarajući DNS zapise koji se referiraju na tu adresu."
 
 msgid "Manual configuration"
@@ -919,6 +906,15 @@ msgstr "Automatska obnova"
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion Service"
+
+msgid "Disable the privacy panel"
+msgstr "Onemogućite panel privatnosti"
+
+msgid "Enable custom privacy panel"
+msgstr "Omogućite prilagođeni panel privatnosti"
+
+msgid "Custom privacy panel"
+msgstr "Prilagodite panel privatnosti"
 
 msgid "Anonymize outgoing connections"
 msgstr "Anonimiziranje odlaznih konekcija"
@@ -1160,11 +1156,11 @@ msgstr "Dopustite ovome adminu da može promijeniti korisničku lozinku"
 msgid "Forcefully selected"
 msgstr "Prisilno izabrane"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Dozvolite primaocu da odgodi kada prijava ističe"
-
 msgid "Allow the recipient to delete reports"
 msgstr "Dozvolite primaocu da briše prijave"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Dozvolite primaocu da odgodi kada prijava ističe"
 
 msgid "Give the user administrative access to the following features:"
 msgstr ""
@@ -1376,29 +1372,6 @@ msgstr "Procijenjeno vrijeme za upload:"
 msgid "Size:"
 msgstr "Veličina"
 
-msgid "Enable the Ricochet panel"
-msgstr "Omogućite Ricochet panel"
-
-msgid "Address"
-msgstr "Adresa"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "Koristeći Ricochet panel možete chatati sa nama anonimno"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "Da biste chatali sa nama, koristite slijedeći Ricochet adresu:"
-
-msgid "Download Ricochet at:"
-msgstr "Preuzmite Ricochet na:"
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "Korištenjem Tor mreže i kreiranjem Onion usluge, Ricochet je aplikacija za slanje poruka koja  omogućava chat i štiti vašu privatnost i anonimnost, ne otkrivajućivašu lokaciju ili IP adresu. Nećete primijetiti nikakvu razliku u odnosu na chatservise koji nemaju takvu zaštitu, osim što ćete za povezivanje koristiti jedinstvenu addresu umjesto telefonskog broja/e-maila/korisničkog imena."
-
 msgid "The connection is not secure."
 msgstr "Ova konekcija nije sigurna."
 
@@ -1590,9 +1563,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "Vi se povezujete na serverom bez anonimnosti, a ovaj server podržava samo anonimne podneske"
 
-msgid "Thank you!"
-msgstr "Hvala vam!"
-
 msgid "Your report was successful."
 msgstr "Vaša prijava je uspješna!"
 
@@ -1689,7 +1659,7 @@ msgstr "Ime"
 msgid "Last name"
 msgstr "Prezime"
 
-msgid "Preferred contact method"
+msgid "Alternative contact method"
 msgstr ""
 
 msgid "Other"

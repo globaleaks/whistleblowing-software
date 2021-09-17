@@ -5,7 +5,7 @@
 # Enrique Blat Puchades <enrique.blat@antifraucv.es>, 2020
 # estrella1876lc <estrella1876lc@gmail.com>, 2014
 # Francisco Huerta <francisco.huerta@davinci-ti.es>, 2016
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2018-2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2018-2021
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # Joan Bitlloch <joanbit@gmail.com>, 2017
 # Josep Anton Rius <j.rius.cat@gmail.com>, 2016
@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca@valencia/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -485,6 +485,12 @@ msgstr "Tanca sessió"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
@@ -539,27 +545,8 @@ msgstr "Activar la característica multi-lloc"
 msgid "Enable simplified login"
 msgstr "Activar inici de sessió simplificat"
 
-msgid "Allow recipients to delete reports"
-msgstr "Permet que els destinataris esborren els lliuraments"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Permet que els destinataris posposen la caducitat del lliurament"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Permet als destinataris concedir permisos als informadors sobre determinats enviaments"
-
 msgid "Enable search engines indexing"
 msgstr "Habilita els motors de cerca d'indexació"
-
-msgid "Enable custom privacy panel"
-msgstr "Habilita distintiu personalitzat de privacitat"
-
-msgid "Custom privacy panel"
-msgstr "Tauler de privacitat del client"
-
-msgid "Disable the privacy panel"
-msgstr "Deshabilita el distintiu de privacitat "
 
 msgid "Enable the receipt hint"
 msgstr "Activa el suggeriment de recepció"
@@ -912,8 +899,8 @@ msgstr "L'ús de la configuració HTTPS automàtica gestionarà tot el procés d
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
-msgstr "La plataforma ha de ser accessible a través d'una adreça IP pública i el domini web seleccionat ha de tenir un registre DNS corresponent que faça referència a aquesta adreça."
+"hostname must have a DNS record referencing that address."
+msgstr "La plataforma ha de ser accessible a través d'una adreça IP pública i el domini web seleccionat ha de tenir un registre DNS corresponent que faci referència a aquesta adreça."
 
 msgid "Manual configuration"
 msgstr "Configuració manual"
@@ -928,6 +915,15 @@ msgstr "Renovació automàtica"
 
 msgid "Tor Onion Service"
 msgstr "Servei Tor Onion"
+
+msgid "Disable the privacy panel"
+msgstr "Deshabilita el distintiu de privacitat "
+
+msgid "Enable custom privacy panel"
+msgstr "Habilita distintiu personalitzat de privacitat"
+
+msgid "Custom privacy panel"
+msgstr "Tauler de privacitat del client"
 
 msgid "Anonymize outgoing connections"
 msgstr "Anonimitzar les connexions de sortida"
@@ -1169,11 +1165,11 @@ msgstr "Dóna-li a aquest administrador la possibilitat de canviar les contrasen
 msgid "Forcefully selected"
 msgstr "Obligatòriament seleccionats"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Permet al destinatari pospondre la data d'expiració de l'enviament"
-
 msgid "Allow the recipient to delete reports"
 msgstr "Permet que els destinataris esborren els lliuraments"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Permet al destinatari pospondre la data d'expiració de l'enviament"
 
 msgid "Give the user administrative access to the following features:"
 msgstr ""
@@ -1385,29 +1381,6 @@ msgstr "Temps estimat de càrrega:"
 msgid "Size:"
 msgstr "Tamany:"
 
-msgid "Enable the Ricochet panel"
-msgstr "Activar el panell Ricochet"
-
-msgid "Address"
-msgstr "Adreça"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "Converse amb nosaltres anònimament utilitzant l'aplicació Ricochet"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "Per a conversar amb nosaltres utilitze la següent adreça Ricochet:"
-
-msgid "Download Ricochet at:"
-msgstr "Descarregue Ricochet des de:"
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "Mitjançant l’ús de la xarxa Tor i la creació d’un Servei Onion, Ricochet és una aplicació de missatgeria instantània que permet xerrar mentre es protegeix la vostra privadesa i es manté anònim en no revelar la seva ubicació o adreça IP. No notareu cap diferència respecte a un xat insegur, tret que utilitzeu una adreça única en lloc d’un número de telèfon / correu electrònic / nom d’usuari."
-
 msgid "The connection is not secure."
 msgstr "La connexió no és segura"
 
@@ -1599,9 +1572,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "S'està connectant al servidor de manera no anònima i aquest servidor només admet lliuraments anònims"
 
-msgid "Thank you!"
-msgstr "Gràcies!"
-
 msgid "Your report was successful."
 msgstr "El seu lliurament s'ha efectuat amb èxit."
 
@@ -1698,7 +1668,7 @@ msgstr "Nom"
 msgid "Last name"
 msgstr "Cognom(s)"
 
-msgid "Preferred contact method"
+msgid "Alternative contact method"
 msgstr ""
 
 msgid "Other"

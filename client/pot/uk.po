@@ -3,7 +3,7 @@
 # Annie Bridges <anniebridges90@gmail.com>, 2014
 # Bogdan Lytvynovskyi <bogdan.lytvynovskyi@gmail.com>, 2014
 # EugeneNemo <eugeye@gmail.com>, 2014
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018,2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018,2020-2021
 # jonny_nut, 2014
 # jonny_nut, 2014
 # kyrylkov <kyrylkov@gmail.com>, 2013,2015
@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-08 07:48+0000\n"
+"PO-Revision-Date: 2021-09-17 13:45+0000\n"
 "Last-Translator: Любомир <n.lyubomyr@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -491,6 +491,12 @@ msgstr "Вихід"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr "Дайте цьому одержувачу можливість надавати користувачам доступ до звітів"
 
+msgid "Grant access"
+msgstr "Дозволити доступ"
+
+msgid "Revoke access"
+msgstr "Відкликати доступ"
+
 msgid "File a report"
 msgstr "Подати звіт"
 
@@ -545,27 +551,8 @@ msgstr "Включити налаштування мульти-сайтів"
 msgid "Enable simplified login"
 msgstr "Дозволити спрощений вхід"
 
-msgid "Allow recipients to delete reports"
-msgstr "Дозволити одержувачам видаляти матеріали"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Дозволити одержувачам відтерміновувати видалення матеріалів."
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Дозволити одержувачам обирати які типи повідомлень можуть надсилати інформатори "
-
 msgid "Enable search engines indexing"
 msgstr "Включити індексацію пошуковими системами"
-
-msgid "Enable custom privacy panel"
-msgstr "Увімкнути значок конфіденційності"
-
-msgid "Custom privacy panel"
-msgstr "власні налаштування панелі приватності"
-
-msgid "Disable the privacy panel"
-msgstr "Відключити значок конфіденційності"
 
 msgid "Enable the receipt hint"
 msgstr "Увімкніть звіт про отримання"
@@ -918,7 +905,7 @@ msgstr "Автонастрoйка HTTPS керує всім процесом з�
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
+"hostname must have a DNS record referencing that address."
 msgstr "Платформа повинна бути доступна через публічну IP-адресу і для обраного імені хоста повинен бути відповідний DNS-запис."
 
 msgid "Manual configuration"
@@ -934,6 +921,15 @@ msgstr "Автоматичне продовження"
 
 msgid "Tor Onion Service"
 msgstr "Сервіс Tor Onion"
+
+msgid "Disable the privacy panel"
+msgstr "Відключити значок конфіденційності"
+
+msgid "Enable custom privacy panel"
+msgstr "Увімкнути значок конфіденційності"
+
+msgid "Custom privacy panel"
+msgstr "власні налаштування панелі приватності"
 
 msgid "Anonymize outgoing connections"
 msgstr "Анонімізувати вихідні з'єднання"
@@ -1175,11 +1171,11 @@ msgstr "Дати адміністратору можливість змінюв�
 msgid "Forcefully selected"
 msgstr "Обрано за замовчуванням без права змін"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Дозволити одержувачам відтерміновувати видалення матеріалів."
-
 msgid "Allow the recipient to delete reports"
 msgstr "Дозволити одержувачам видаляти матеріали"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Дозволити одержувачам відтерміновувати видалення матеріалів."
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Надайте користувачеві адміністративний доступ до таких функцій:"
@@ -1391,29 +1387,6 @@ msgstr "Час завершення завантаження"
 msgid "Size:"
 msgstr "Розмір:"
 
-msgid "Enable the Ricochet panel"
-msgstr "Включити панель Ricochet"
-
-msgid "Address"
-msgstr "Адреса"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "Спілкуйтеся з нами в чаті анонімно, використовуючи додаток Ricochet"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "Для спілкування з нами в чаті використовуйте наступну адресу Ricochet:"
-
-msgid "Download Ricochet at:"
-msgstr "Завантажте Ricochet на сторінці:"
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "Ricochet - це додаток для миттєвого обміну повідомленнями, в якому використовується мережа Tor і створюється сервіс Onion. Це дозволяє спілкуватися в чаті зі збереженням конфіденційності та анонімності, оскільки не розкриваються ваше місцезнаходження та IP-адреса. Ви не помітите жодної різниці з незахищеним чатом, за винятком того, що ви будете використовувати унікальну адресу замість номера телефону/адреси електронної пошти/імені користувача."
-
 msgid "The connection is not secure."
 msgstr "Інтернет з'єднання недостатньо безпечне."
 
@@ -1512,10 +1485,10 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
+msgstr "Ми рекомендуємо вам увійти в розділ \"Налаштування\", щоб отримати \"ключ для відновлення облікового запису\" і зберегти його в безпечному місці. Цей ключ знадобиться для відновлення доступу до платформи і ваших даних в тому випадку, якщо ви збудете свій пароль."
 
 msgid "The provided recovery key is invalid."
-msgstr ""
+msgstr "Наданий ключ відновлення недійсний."
 
 msgid "The provided reset token is invalid or expired."
 msgstr "Вказаний маркер відновлення недійсний або термін його дії закінчився."
@@ -1526,11 +1499,11 @@ msgid ""
 msgstr "Введіть ім'я користувача або електронну адресу, щоб надіслати запит на скидання пароля."
 
 msgid "Enter your email address to request a password reset."
-msgstr ""
+msgstr "Введіть вашу адресу електронної пошти, щоб відправити запит на скидання паролю."
 
 msgid ""
 "Enter you encryption recovery key to complete the password reset procedure"
-msgstr ""
+msgstr "Введіть ваш ключ відновлення шифрування, щоб завершити процедуру скидання паролю"
 
 msgid "Password reset requested."
 msgstr "Запит на скидання паролю надіслано."
@@ -1549,20 +1522,20 @@ msgid "Congratulations!"
 msgstr "Вітаємо!"
 
 msgid "You have completed the platform activation."
-msgstr ""
+msgstr "Ви завершили активацію платформи."
 
 msgid "Success!"
 msgstr "Успіх!"
 
 msgid "Your whistleblowing platform is almost ready!"
-msgstr ""
+msgstr "Ваша платформа для інформування майже готова!"
 
 msgid "Check your inbox to activate it."
-msgstr ""
+msgstr "Перевірте пошту в папці “Вхідні”, щоб активувати її."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr ""
+msgstr "Якщо не активувати платформу протягом 24 годин, вона буде автоматично видалена."
 
 msgid "Sign up"
 msgstr "Зареєструватися"
@@ -1571,22 +1544,22 @@ msgid "Domain"
 msgstr "Домен"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "Підтвердження"
 
 msgid "Invalid confirmation"
-msgstr ""
+msgstr "Недійсне підтвердження"
 
 msgid "Complete"
 msgstr "Завершити"
 
 msgid "Invalid phone number"
-msgstr ""
+msgstr "Недійсний номер телефону"
 
 msgid "The answer is too short"
-msgstr ""
+msgstr "Відповідь дуже коротка"
 
 msgid "The specified input is not valid."
-msgstr ""
+msgstr "Наступні дані не дійсні."
 
 msgid "The specified input is not valid:"
 msgstr "Зазначені дані недійсні:"
@@ -1604,9 +1577,6 @@ msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
 msgstr "Ви підключаєтеся до вузла без анонімності. Цей вузол підтримує тільки анонімну подачу матеріалів"
-
-msgid "Thank you!"
-msgstr "Дякуємо!"
 
 msgid "Your report was successful."
 msgstr "Ваше відправлення було успішне."
@@ -1626,18 +1596,18 @@ msgid "Recipient selection"
 msgstr "Вибір одержувача"
 
 msgid "Select the recipients of your report:"
-msgstr ""
+msgstr "Виберіть одержувачів вашого звіту:"
 
 msgid "Recipients selected:"
 msgstr "Обрані одержувачі:"
 
 msgid "You have reached the maximum number of selectable recipients."
-msgstr ""
+msgstr "Ви досягли максимальної кількості можливих одержувачів."
 
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr ""
+msgstr "Наступні одержувачі отримають ваш звіт, вибір яких не можна скасувати:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1659,32 +1629,32 @@ msgstr "Приховати"
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
 "whistleblowing platform."
-msgstr ""
+msgstr "Наступна покрокова процедура дозволить вам створити платформу для інформування."
 
 msgid "Please choose a configuration profile:"
-msgstr ""
+msgstr "Будь ласка, виберіть профіль конфігурації:"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr ""
+msgstr "Надайте цьому адміністратору можливість скидати паролі користувачів."
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr ""
+msgstr "Ми рекомендуємо вибрати цю опцію, якщо ви хочете захистити дані від втрати в разі втрати одержувачами їх паролів. З іншого боку, ми не рекомендуємо використовувати цю функцію, якщо ви хочете налаштувати систему таким чином, щоб тільки одержувачі мали доступ до наданих матеріалів."
 
 msgid "Please choose a different username."
-msgstr ""
+msgstr "Виберіть інше ім'я користувача."
 
 msgid "I have read and agree to the terms of the license."
-msgstr ""
+msgstr "Я прочитав умови ліцензії і згоден з ними."
 
 msgid "You have completed the platform wizard."
 msgstr "Ви закінчили налаштування платформи."
 
 msgid "Fill out your report"
-msgstr ""
+msgstr "Заповніть свій звіт"
 
 msgid "Describe your report in a few words."
 msgstr "Опишіть кількома словами надані вами матеріали."
@@ -1704,14 +1674,14 @@ msgstr "Ім'я"
 msgid "Last name"
 msgstr "Прізвище"
 
-msgid "Preferred contact method"
-msgstr ""
+msgid "Alternative contact method"
+msgstr "Альтернативний спосіб контактування"
 
 msgid "Other"
 msgstr "-Інше-"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr ""
+msgstr "Я вважаю за краще, щоб до мене зверталися лише через цю платформу"
 
 msgid "Dear {RecipientName},"
 msgstr "Шановний {RecipientName},"
@@ -1719,44 +1689,44 @@ msgstr "Шановний {RecipientName},"
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr ""
+msgstr "Ви отримали це повідомлення, оскільки для вас був створений обліковий запис в системі: {Site}"
 
 msgid "Username: {Username}"
-msgstr ""
+msgstr "Ім'я користувача: {Username}"
 
 msgid "Activation link: {Url}"
-msgstr ""
+msgstr "Посилання для активації: {Url}"
 
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr ""
+msgstr "Клацніть на посилання для активації, щоб приступити до активації облікового запису і встановити свій пароль користувача."
 
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
-msgstr ""
+msgstr "Після успішної активації ви зможете входити в систему, використовуючи наступне посилання: {LoginUrl}"
 
 msgid "Kind regards,"
 msgstr "З повагою,"
 
 msgid "Account activation"
-msgstr ""
+msgstr "Активація облікового запису"
 
 msgid "Your whistleblowing platform is now accessible at:"
-msgstr ""
+msgstr "Ваша платформа для інформування тепер доступна за адресою:"
 
 msgid "To log in, visit:"
 msgstr "Щоб увійти, відвідайте:"
 
 msgid "Users' credentials:"
-msgstr ""
+msgstr "Облікові дані користувачів:"
 
 msgid "The platform will be automatically deleted on:"
-msgstr ""
+msgstr "Платформа буде автоматично видалена:"
 
 msgid "Access instructions"
-msgstr ""
+msgstr "Інструкції щодо доступу"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
@@ -1769,7 +1739,7 @@ msgid ""
 msgstr "This could be a sign of an attack (for example, someone flooding your server with bogus information) or just a usage spike due to an increased visibility of your project."
 
 msgid "Examine the issue to determine whether it is legitimate or not."
-msgstr ""
+msgstr "Перевірте, в чому справа, щоб визначити, чи йде мова про нормальну активність чи ні."
 
 msgid "The activities with unusual stats are:"
 msgstr "Активність з незвичайною статистикою:"
@@ -1777,12 +1747,12 @@ msgstr "Активність з незвичайною статистикою:"
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr ""
+msgstr "Сервер не може гарантувати збереження нового звіту, тому подача матеріалів відключена."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
 "the server."
-msgstr ""
+msgstr "Будь ласка, зверніться в вашу службу технічної підтримки, щоб отримати більше дискового простору для серверу."
 
 msgid ""
 "GlobaLeaks technology includes a server status checking component which will"
@@ -1792,7 +1762,7 @@ msgstr "GlobaLeaks technology includes a server status checking component which 
 msgid ""
 "For more information, log in to the Administration interface and look at the"
 " \"System Stats\" and \"Anomalies\" sections."
-msgstr ""
+msgstr "Для отримання інформації увійдіть в Панель Адміністратора і перейдіть до розділів \\ \"Статистика системи\" і \"Аномалії\"."
 
 msgid "Anomaly detected in {NodeName}"
 msgstr "Anomaly detected in {NodeName}"
@@ -1811,22 +1781,22 @@ msgid "PGP key expiration alert"
 msgstr "Попередження про закінчення PGP ключа"
 
 msgid "A new whistleblowing site has been registered."
-msgstr ""
+msgstr "Зареєстрований новий сайт для інформування."
 
 msgid "Registration data:"
-msgstr ""
+msgstr "Реєстраційні дані:"
 
 msgid "Site: {Url}"
-msgstr ""
+msgstr "Сайт: {Url}"
 
 msgid "Name: {Name}"
-msgstr ""
+msgstr "Ім'я: {Name}"
 
 msgid "Email: {Email}"
-msgstr ""
+msgstr "Ел. пошта: {Email}"
 
 msgid "New whistleblowing site registered"
-msgstr ""
+msgstr "Зареєстровано новий сайт для інформування."
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
@@ -1846,7 +1816,7 @@ msgid ""
 msgstr "Цей лист повідомляє вас про те, що було внесено запит на зміну вашої електронної адреси на адресу {NewEmailAddress}."
 
 msgid "Click the following link to validate this change:"
-msgstr ""
+msgstr "Натисніть на посилання, щоб підтвердити цю зміну:"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
@@ -1857,7 +1827,7 @@ msgid "Email change request"
 msgstr "Запит на зміну електронної пошти"
 
 msgid "From: {Author}"
-msgstr ""
+msgstr "Від кого: {Author}"
 
 msgid "Date: {EventTime}"
 msgstr "Дата: {EventTime}"
@@ -1872,12 +1842,12 @@ msgid "Label: {TipLabel}"
 msgstr "Позначка: {TipLabel}"
 
 msgid "Status: {TipStatus}"
-msgstr ""
+msgstr "Статус: {TipStatus}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
-msgstr ""
+msgstr "Термін дії HTTPS сертифікату системи скоро закінчиться або вже закінчився."
 
 msgid "Expiration date: {ExpirationDate}"
 msgstr "Дата закінчення терміну дії: {ExpirationDate}"
@@ -1885,23 +1855,23 @@ msgstr "Дата закінчення терміну дії: {ExpirationDate}"
 msgid ""
 "Without a valid certificate, the platform will be accessible in a secure way"
 " only via Tor."
-msgstr ""
+msgstr "Без дійсного сертифікату безпечний вхід в систему може здійснюватись тільки через Tor."
 
 msgid "Log in to solve the issue."
-msgstr ""
+msgstr "Для вирішення даного питання увійдіть в систему."
 
 msgid "Expiration alert for HTTPS certificate"
-msgstr ""
+msgstr "Попередження про закінчення терміну дії сертифіката HTTPS"
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
-msgstr ""
+msgstr "Автоматичне оновлення сертифікату HTTPS, заплановане на сьогодні, завершилось збоєм."
 
 msgid "The system will keep trying."
-msgstr ""
+msgstr "Спроби оновлення будуть продовжені."
 
 msgid "Failed HTTPS certificate renewal"
-msgstr ""
+msgstr "Не вдалося оновити сертифіката HTTPS"
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
@@ -1917,7 +1887,7 @@ msgstr "Запит на інформацію про особу викривач�
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr ""
+msgstr "Повідомляємо, що куратор задовольнив Ваш запит на доступ до даних про інформатора, який надіслав повідомлення {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "Запит на інформацію про особу викривача було відхилено"
@@ -1944,7 +1914,7 @@ msgstr "Викривач ідентифікував себе"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr ""
+msgstr "Ви отримали це повідомлення, оскільки надійшов запит на скидання паролю щодо облікового запису: {Username}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
@@ -1952,7 +1922,7 @@ msgid ""
 msgstr "Якщо ви не надсилали такий запит, ви можете безпечно проігнорувати та видалити це повідомлення."
 
 msgid "You can confirm your request by clicking the following link:"
-msgstr ""
+msgstr "Ви можете підтвердити свій запит, клацнувши на це посилання:"
 
 msgid "Password reset instructions"
 msgstr "Інструкції щодо відновлення паролю"
@@ -1973,34 +1943,34 @@ msgid ""
 msgstr "Без дійсного ключа PGP, система не зможе надсилати вам зашифровані повідомлення. "
 
 msgid "Click the link to activate the platform:"
-msgstr ""
+msgstr "Клацніть на посилання, щоб активувати платформу:"
 
 msgid "Activation"
-msgstr ""
+msgstr "Активація"
 
 msgid "A software update is available."
-msgstr ""
+msgstr "Оновлення програмного забезпечення доступно."
 
 msgid "It is good security practice to keep the platform up to date."
-msgstr ""
+msgstr "Оновлюйте програмне забезпечення для підтримки хорошої системи безпеки."
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "
 "change log at: {ChangeLogUrl}"
-msgstr ""
+msgstr "Читайте про нові функції та усунення помилок в новій версії журналу змін: {ChangeLogUrl}"
 
 msgid ""
 "For instructions on software updates, please refer to the documentation at: "
 "{UpdateGuideUrl}"
-msgstr ""
+msgstr "Будь ласка, прочитайте інструкції по установці оновлень програмного забезпечення в документації: {UpdateGuideUrl}"
 
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "Це електронний лист із сповіщенням про те, що одержувач надав вам доступ до одного або кількох звітів."
 
 msgid "New report"
-msgstr ""
+msgstr "Новий звіт"
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Перша дата закінчення терміну дії {EarliestExpirationDate}."
@@ -2025,19 +1995,19 @@ msgid ""
 msgstr "Інформатор сподівається, що саме Ви звернете увагу на надані матеріали. Викривачі дуже ризикують. Інформація, яку вони надають, заслуговує особливої уваги!"
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr ""
+msgstr "Цей лист, щоб повідомити про те, що існуючий звіт був оновлений."
 
 msgid "Report updated"
-msgstr ""
+msgstr "Звіт оновлено"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr ""
+msgstr "Цей лист, щоб нагадати вам про наявність непрочитаних або оновлених звітів."
 
 msgid "Reminder about unread or updated reports"
-msgstr ""
+msgstr "Нагадування про непрочитані або оновлені звіти"
 
 msgid "Role: {Role}"
-msgstr ""
+msgstr "Роль: {Role}"
 
 msgid "Password: {Password}"
-msgstr ""
+msgstr "Пароль: {Password}"

@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-08 07:45+0000\n"
-"Last-Translator: Christine Ivy <christineivy19@gmail.com>\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Burmese (http://www.transifex.com/otf/globaleaks/language/my/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -474,6 +474,12 @@ msgstr "အကောင့်ထွက်ရန်"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr ""
+
 msgid "File a report"
 msgstr "အစီရင်ခံစာ တင်ပါ"
 
@@ -528,27 +534,8 @@ msgstr "ဝက်ဘ်ဆိုက်မျိုးစုံ လုပ်ဆ�
 msgid "Enable simplified login"
 msgstr "ရိုးရှင်းသော အကောင့်ဝင်မှုကို ဖွင့်ပါ"
 
-msgid "Allow recipients to delete reports"
-msgstr "လက်ခံသူများအား အစီရင်ခံစာများကို ဖျက်ခွင့်ပြုပါ"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "လက်ခံသူများအား အစီရင်ခံစာ သက်တမ်းကုန်ဆုံးရက်ကို ရွှေ့ဆိုင်းခွင့်ပြုပါ"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "သတင်းပေးသူများအား တိကျသော အစီရင်ခံစာများအတွက် ခွင့်ပြုချက်ပေးရန် လက်ခံသူများကို ခွင့်ပြုပါ"
-
 msgid "Enable search engines indexing"
 msgstr "ရှာဖွေရေးအင်ဂျင် အညွှန်းစီစဉ်ခြင်းကို ဖွင့်ပါ"
-
-msgid "Enable custom privacy panel"
-msgstr "စိတ်ကြိုက် ကိုယ်ရေး အချက်အလက် မျက်နှာပြင်ကို ဖွင့်ပါ"
-
-msgid "Custom privacy panel"
-msgstr "စိတ်ကြိုက် ကိုယ်ရေး အချက်အလက် မျက်နှာပြင်"
-
-msgid "Disable the privacy panel"
-msgstr "ကိုယ်ရေး အချက်အလက် မျက်နှာပြင်ကို ပိတ်ပါ"
 
 msgid "Enable the receipt hint"
 msgstr "လက်ခံပြေစာ အရိပ်အမြွက် ဖွင့်ပါ"
@@ -901,7 +888,7 @@ msgstr "အလိုအလျောက် HTTPS အစိတ်အပိုင�
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
+"hostname must have a DNS record referencing that address."
 msgstr "ပလက်ဖောင်းကို အများပြည်သူဆိုင်ရာ IP လိပ်စာမှတစ်ဆင့် ရောက်ရှိနိုင်ပြီး ရွေးချယ်ထားသော အထိုင်နေရာအမည်တွင် ထိုလိပ်စာကို ရည်ညွှန်းသည့် သက်ဆိုင်ရာ DNS မှတ်တမ်း ရှိရမည်။"
 
 msgid "Manual configuration"
@@ -917,6 +904,15 @@ msgstr "အော်တို သက်တမ်းတိုးခြင်း"
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion ဝန်ဆောင်မှု"
+
+msgid "Disable the privacy panel"
+msgstr "ကိုယ်ရေး အချက်အလက် မျက်နှာပြင်ကို ပိတ်ပါ"
+
+msgid "Enable custom privacy panel"
+msgstr "စိတ်ကြိုက် ကိုယ်ရေး အချက်အလက် မျက်နှာပြင်ကို ဖွင့်ပါ"
+
+msgid "Custom privacy panel"
+msgstr "စိတ်ကြိုက် ကိုယ်ရေး အချက်အလက် မျက်နှာပြင်"
 
 msgid "Anonymize outgoing connections"
 msgstr " အထွက် ဆက်သွယ်မှုများအတွက် အမည်မသိပါစေနှင့်"
@@ -1158,11 +1154,11 @@ msgstr "ဤအက်ဒ်မင်အား အသုံးပြုသူ၏ �
 msgid "Forcefully selected"
 msgstr "အတင်းအကျပ် ရွေးချယ်ထားကြသည်"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "လက်ခံသူအား အစီရင်ခံစာ သက်တမ်းကုန်ဆုံးရက်ကို ရွှေ့ဆိုင်းခွင့်ပြုပါ"
-
 msgid "Allow the recipient to delete reports"
 msgstr "လက်ခံသူအား အစီရင်ခံစာများကို ဖျက်ခွင့်ပြုပါ"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "လက်ခံသူအား အစီရင်ခံစာ သက်တမ်းကုန်ဆုံးရက်ကို ရွှေ့ဆိုင်းခွင့်ပြုပါ"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "အသုံးပြုသူအား အောက်ပါလုပ်ဆောင်ချက်များကို ထိန်းချုပ် အသုံးပြုခွင့်ပေးပါ။"
@@ -1308,7 +1304,7 @@ msgid "Request support"
 msgstr ""
 
 msgid "Thank you."
-msgstr ""
+msgstr "ကျေးဇူးတင်ပါသည်။"
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "သင့်ကို အမြန်ဆုံး အကြောင်းပြန်နိုင်ရန် ကျွန်ုပ်တို့ ကြိုးစားပါမည်။"
@@ -1373,29 +1369,6 @@ msgstr "အပ်လုဒ်လုပ်ရန် ကြာချိန် ခ�
 
 msgid "Size:"
 msgstr "အရွယ်အစား - "
-
-msgid "Enable the Ricochet panel"
-msgstr "Ricochet မျက်နှာပြင်ကို ဖွင့်ပါ။ "
-
-msgid "Address"
-msgstr "လိပ်စာ"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "Ricochet အက်ပလီကေးရှင်းကို အသုံးပြု၍ အမည်မသိစေဘဲ ကျွန်ုပ်တို့နှင့် စကားပြောပါ"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "ကျွန်ုပ်တို့နှင့် စကားပြောရန် အောက်ပါ Ricochet လိပ်စာကို အသုံးပြုပါ - "
-
-msgid "Download Ricochet at:"
-msgstr "Ricochet ကို ဒေါင်းလုဒ်လုပ်ပါ - "
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "Ricochet သည် Tor ကွန်ရက် အသုံးပြုခြင်းနှင့် Onion ဝန်ဆောင်မှု ဖန်တီးခြင်းအားဖြင့် သင်၏ တည်နေရာ (သို့) IP လိပ်စာကို မဖော်ပြသော၊ သင်၏ ကိုယ်ရေးလုံခြုံမှုကို ကာကွယ်ပေးသည့် အမည်မသိဘဲ စကားပြောရန် ခွင့်ပြုသည့် ချက်ချင်း မက်ဆေ့ချ်ပို့သည့် အက်ပ် ဖြစ်သည်။ ဖုန်းနံပါတ် / အီးမေးလ် / သုံးစွဲသူအမည်အစား ထူးခြားသော လိပ်စာကို အသုံးပြုခြင်းမှလွဲ၍ လုံခြုံမှုမရှိသော စကားဝိုင်းနှင့် ခြားနားချက်ကို သင် သတိပြုမိမည်မဟုတ်ပါ။"
 
 msgid "The connection is not secure."
 msgstr "ချိတ်ဆက်မှု မလုံခြုံပါ။"
@@ -1588,9 +1561,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "သင်သည် ဆာဗာသို့ အမည်မသိ ချိတ်ဆက်ခြင်း မရှိပါ၊၊ ဆာဗာသည် အမည်မသိ တင်ပို့မှုများကိုသာ ထောက်ခံသည်"
 
-msgid "Thank you!"
-msgstr "ကျေးဇူးတင်ပါသည်။"
-
 msgid "Your report was successful."
 msgstr "သင့်အစီရင်ခံစာ အောင်မြင်ပါသည်။"
 
@@ -1687,7 +1657,7 @@ msgstr "အမည် ပထမစာလုံး"
 msgid "Last name"
 msgstr "အမည် နောက်ဆုံးစာလုံး"
 
-msgid "Preferred contact method"
+msgid "Alternative contact method"
 msgstr ""
 
 msgid "Other"

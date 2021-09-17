@@ -12,7 +12,7 @@
 # 4b8fe8aa5774ddeb3c4c7817cd28f50e_d751ab4 <55c3bb72c999b01f254463d72e197fd7_99140>, 2013
 # Federico Scrinzi <fox91@anche.no>, 2013
 # Francisco Huerta <francisco.huerta@davinci-ti.es>, 2016
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2021
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -36,8 +36,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"Last-Translator: xphnx\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -504,6 +504,12 @@ msgstr "Cerrar sesión"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr "Revocar acceso"
+
 msgid "File a report"
 msgstr "Presentar un informe"
 
@@ -558,27 +564,8 @@ msgstr "Activar las funcionalidades multi-sitio"
 msgid "Enable simplified login"
 msgstr "Activar el inicio de sesión simplificado"
 
-msgid "Allow recipients to delete reports"
-msgstr "Permitir a los receptores borrar reportes"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Permitir a los receptores posponer la fecha de caducidad de los reportes"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Permitir a los destinatarios conceder permisos a alertadores en reportes concretos"
-
 msgid "Enable search engines indexing"
 msgstr "Habilitar indexación por los motores de búsqueda"
-
-msgid "Enable custom privacy panel"
-msgstr "Habilitar panel de privacidad personalizado"
-
-msgid "Custom privacy panel"
-msgstr "Panel de privacidad personalizado"
-
-msgid "Disable the privacy panel"
-msgstr "Deshabilitar el panel de privacidad"
 
 msgid "Enable the receipt hint"
 msgstr "Permitir la notificación de recepción"
@@ -931,7 +918,7 @@ msgstr "Usar configuración automática de HTTPS manejará todo el proceso de pe
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
+"hostname must have a DNS record referencing that address."
 msgstr "La plataforma debe ser accesible a través de una dirección IP pública, y el nombre de equipo seleccionado debe tener un registro DNS correspondiente que referencie esa dirección."
 
 msgid "Manual configuration"
@@ -947,6 +934,15 @@ msgstr "Auto-renovación"
 
 msgid "Tor Onion Service"
 msgstr "Servicio Tor Onion"
+
+msgid "Disable the privacy panel"
+msgstr "Deshabilitar el panel de privacidad"
+
+msgid "Enable custom privacy panel"
+msgstr "Habilitar panel de privacidad personalizado"
+
+msgid "Custom privacy panel"
+msgstr "Panel de privacidad personalizado"
 
 msgid "Anonymize outgoing connections"
 msgstr "Anonimizar las conexiones salientes"
@@ -1188,11 +1184,11 @@ msgstr "Dar permiso a este administrador para cambiar las contraseñas de usuari
 msgid "Forcefully selected"
 msgstr "Seleccionado a la fuerza"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Permitir al receptor posponer la fecha de vencimiento de "
-
 msgid "Allow the recipient to delete reports"
 msgstr "Permitir a los receptores borrar reportes"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Permitir al receptor posponer la fecha de vencimiento de "
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Far al usuario acceso administrativo a las siguientes características:"
@@ -1404,29 +1400,6 @@ msgstr "Tiempo estimado de subida:"
 msgid "Size:"
 msgstr "Tamaño:"
 
-msgid "Enable the Ricochet panel"
-msgstr "Activar el panel Ricochet"
-
-msgid "Address"
-msgstr "Dirección"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "Chatea con nosotros anónimamente utilizando la aplicación Ricochet"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "Para chatear con nosotros utiliza la siguiente dirección Ricochet:"
-
-msgid "Download Ricochet at:"
-msgstr "Descargar Ricochet desde:"
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "Al usar la red Tor y crear un Servicio Cebolla, Ricochet es una aplicación de mensajería instantánea que te permite comunicarte, mientras protege tu privacidad y anonimato al no revelar tu ubicación ni dirección IP. No notarás ninguna diferencia respecto a un chat no-seguro, excepto que usarás una dirección única en vez de un número de teléfono/correo electrónico/nombre de usuario."
-
 msgid "The connection is not secure."
 msgstr "La conexión no es segura."
 
@@ -1618,9 +1591,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "Te estas conectando al servidor de forma no anónima y este nodo sólo soporta reportes anónimos"
 
-msgid "Thank you!"
-msgstr "¡Gracias!"
-
 msgid "Your report was successful."
 msgstr "¡Tu reporte se completó con éxito!"
 
@@ -1717,8 +1687,8 @@ msgstr "Nombre"
 msgid "Last name"
 msgstr "Apellidos"
 
-msgid "Preferred contact method"
-msgstr "Método de contacto preferido"
+msgid "Alternative contact method"
+msgstr ""
 
 msgid "Other"
 msgstr "Otro"

@@ -1,10 +1,11 @@
 # 
 # Translators:
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
 # Max Moiseev <max.moiseev@chamber.fi>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Estonian (http://www.transifex.com/otf/globaleaks/language/et/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -472,6 +473,12 @@ msgstr "Logi välja"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
@@ -526,27 +533,8 @@ msgstr "Luba mitme saidi funktsioon"
 msgid "Enable simplified login"
 msgstr ""
 
-msgid "Allow recipients to delete reports"
-msgstr "Luba saajatel teateid kustutada"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Luba saajatel teate aegumiskuupäeva edasi lükata"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Luba saajatel anda vihjeandjatele kindlate teadetega seotud lube"
-
 msgid "Enable search engines indexing"
 msgstr "Luba indekseerimine otsimootorite jaoks"
-
-msgid "Enable custom privacy panel"
-msgstr "Luba kohandatud andmekaitsepaneel"
-
-msgid "Custom privacy panel"
-msgstr "Kohandatud andmekaitsepaneel"
-
-msgid "Disable the privacy panel"
-msgstr "Keela andmekaitsepaneel"
 
 msgid "Enable the receipt hint"
 msgstr "Luba kättesaamisvihje"
@@ -899,7 +887,7 @@ msgstr "HTTPS-i automaatse seadistamise korral toimub sertimisasutuse Let’s En
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
+"hostname must have a DNS record referencing that address."
 msgstr "Platvorm peab olema avaliku IP-aadressi kaudu kättesaadav ning valitud hostinimel peab olema sellele aadressile viitav vastav DNS-i kirje."
 
 msgid "Manual configuration"
@@ -915,6 +903,15 @@ msgstr "Automaatne uuendamine"
 
 msgid "Tor Onion Service"
 msgstr "Teenus Tor Onion"
+
+msgid "Disable the privacy panel"
+msgstr "Keela andmekaitsepaneel"
+
+msgid "Enable custom privacy panel"
+msgstr "Luba kohandatud andmekaitsepaneel"
+
+msgid "Custom privacy panel"
+msgstr "Kohandatud andmekaitsepaneel"
 
 msgid "Anonymize outgoing connections"
 msgstr "Väljuvate ühenduste anonüümimine"
@@ -1156,11 +1153,11 @@ msgstr "Anna sellele administraatorile õigus muuta kasutajate paroole"
 msgid "Forcefully selected"
 msgstr "Valitud sundkorras"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Luba saajal teate aegumiskuupäeva edasi lükata"
-
 msgid "Allow the recipient to delete reports"
 msgstr "Luba saajal teateid kustutada"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Luba saajal teate aegumiskuupäeva edasi lükata"
 
 msgid "Give the user administrative access to the following features:"
 msgstr ""
@@ -1306,7 +1303,7 @@ msgid "Request support"
 msgstr ""
 
 msgid "Thank you."
-msgstr ""
+msgstr "Täname."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Püüame teiega esimesel võimalusel ühendust võtta."
@@ -1371,29 +1368,6 @@ msgstr "Hinnanguline üleslaadimisaeg:"
 
 msgid "Size:"
 msgstr "Maht:"
-
-msgid "Enable the Ricochet panel"
-msgstr "Luba Ricochet’ paneel"
-
-msgid "Address"
-msgstr "Aadress"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "Rakenduse Ricochet abil saate meiega anonüümselt vestelda"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "Kasutage vestlemiseks järgmist Ricochet’ aadressi:"
-
-msgid "Download Ricochet at:"
-msgstr "Ricochet’ allalaadimine:"
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "Tor-i võrku kasutav ja Onioni teenusel põhinev Ricochet on kiirsõnumside rakendus, mis võimaldab vestelda anonüümselt ilma oma asukohta ja IP-aadressi avaldamata. Kasutades pole mingit vahet võrreldes ebaturvalise vestlusega peale selle, et kasutate telefoninumbri/meiliaadressi/kasutajanime asemel kordumatut aadressi."
 
 msgid "The connection is not secure."
 msgstr "Ühendus ei ole turvaline."
@@ -1586,9 +1560,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "Teie ühendus serveriga ei ole anonüümne ja see server toetab ainult anonüümseid teabeesitusi."
 
-msgid "Thank you!"
-msgstr "Täname!"
-
 msgid "Your report was successful."
 msgstr "Teie teade on esitatud."
 
@@ -1685,7 +1656,7 @@ msgstr "Eesnimi"
 msgid "Last name"
 msgstr "Perekonnanimi"
 
-msgid "Preferred contact method"
+msgid "Alternative contact method"
 msgstr ""
 
 msgid "Other"

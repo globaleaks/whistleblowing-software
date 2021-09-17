@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uighur (Cyrillic) (http://www.transifex.com/otf/globaleaks/language/ug@Cyrl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -473,6 +473,12 @@ msgstr "Тизимдин чиқ"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr ""
+
 msgid "File a report"
 msgstr "Бир доклат йолла"
 
@@ -527,27 +533,8 @@ msgstr "Көп бекәт иқтидарини қозғат"
 msgid "Enable simplified login"
 msgstr "Аддилашқан тизимға киришни қозғат"
 
-msgid "Allow recipients to delete reports"
-msgstr "Тапшуривалғучиларниң доклатларни өчүришигә рухсәт қил"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Тапшуривалғучиларниң доклат сүрүкини кәйнигә сүришигә рухсәт қил"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Тапшуривалғучиларниң паш қилғучиларға мәлум доклатқа һоқуқ беришигә рухсәт қил"
-
 msgid "Enable search engines indexing"
 msgstr "Ахтуруш маторлириниң индекислишини қозғат"
-
-msgid "Enable custom privacy panel"
-msgstr "Ихтийари шәхсийәт тахтисини қозғат"
-
-msgid "Custom privacy panel"
-msgstr "Ихтийари шәхсийәт тахтиси"
-
-msgid "Disable the privacy panel"
-msgstr "Ихтийари шәхсийәт тахтисини чәклә"
 
 msgid "Enable the receipt hint"
 msgstr "Талон ишаритини қозғат"
@@ -900,7 +887,7 @@ msgstr "Аптуматик ҺТТПС сәплимисини ишлитиш,  Л
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
+"hostname must have a DNS record referencing that address."
 msgstr "Бу супиға аммиви IP адреси билән бағланғили болиши вә талланған мулазиметер наминиң бу адресқа мунасип ДНС рекорти болуши керәк."
 
 msgid "Manual configuration"
@@ -916,6 +903,15 @@ msgstr "Аптуматик йеңилаш"
 
 msgid "Tor Onion Service"
 msgstr "‏Tor Onion мулазимити"
+
+msgid "Disable the privacy panel"
+msgstr "Ихтийари шәхсийәт тахтисини чәклә"
+
+msgid "Enable custom privacy panel"
+msgstr "Ихтийари шәхсийәт тахтисини қозғат"
+
+msgid "Custom privacy panel"
+msgstr "Ихтийари шәхсийәт тахтиси"
 
 msgid "Anonymize outgoing connections"
 msgstr "Сиртқа уланмиларни намсизлаштур"
@@ -1157,11 +1153,11 @@ msgstr "Бу башқурғучиға ишләткүчиләрниң парол�
 msgid "Forcefully selected"
 msgstr "Мәҗбурий талланди"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Тапшуривалғучиниң доклат сүрүкини кәйнигә сүришигә рухсәт қил"
-
 msgid "Allow the recipient to delete reports"
 msgstr "Тапшуривалғучиларниң доклатларни өчүришигә рухсәт қил"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Тапшуривалғучиниң доклат сүрүкини кәйнигә сүришигә рухсәт қил"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Төвәндики иқтидарлар үчүн ишләткүчиләргә башқурғучи зийарәт һоқуқи бәр:"
@@ -1307,7 +1303,7 @@ msgid "Request support"
 msgstr ""
 
 msgid "Thank you."
-msgstr ""
+msgstr "Рәһмәт сизгә."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Биз сизгә әң қисқа вақитта җавап қайтурушқа тиришимиз."
@@ -1372,29 +1368,6 @@ msgstr "Тәхминән йүкләш вақти:"
 
 msgid "Size:"
 msgstr "Чоңлуқи:"
-
-msgid "Enable the Ricochet panel"
-msgstr "Рисочәт тахтийини қозғитиң"
-
-msgid "Address"
-msgstr "Адрес"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr "Рисочәт қоллинишчан деталини ишлитип биз билән намсиз сөһбәтлишиң"
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr "Биз билән сөһбәтлишиш үчүн төвәндики Рисочәт адресини ишлитиң"
-
-msgid "Download Ricochet at:"
-msgstr "Рисочә ни бу йәрдин чүшүрүң: "
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr "Ricochet бир тез учур йоллаш детали болуп, Tor торини ишлитиш we Onion мулазимитини қуруш арқилиқ, орниңиз йаки IP адресиңизни ашкарилимастин, шәхсийитиңиз вә намсизлиқиңизни  сақлиған һалда сөһбәтлишишиңизгә рухсәт қилиду.Телефон номури/Електронлуқ хәт/Ишләткүчи наминиң орниға өзгичә адрес ишлитидиғанлиқиңизни һесабқа алмиғанда , бихәтәр болмиған сөһбәттин һечқандақ пәрқ һес қилмайсиз."
 
 msgid "The connection is not secure."
 msgstr "Бу уланма бихәтәр әмәс."
@@ -1587,9 +1560,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "Сиз мулазиметирға намсизлашмай туруп улиниватисиз, һәмдә бу мулазиметир пәқәт намсиз йоллашнила қоллайду"
 
-msgid "Thank you!"
-msgstr "Рәһмәт сизгә!"
-
 msgid "Your report was successful."
 msgstr "Доклатиңиз мувәппиқийәтлик болди."
 
@@ -1686,7 +1656,7 @@ msgstr "Исми"
 msgid "Last name"
 msgstr "Фамилиси"
 
-msgid "Preferred contact method"
+msgid "Alternative contact method"
 msgstr ""
 
 msgid "Other"

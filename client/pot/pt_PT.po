@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-04 13:49+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"Last-Translator: Rui <xymarior@yandex.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -491,6 +491,12 @@ msgstr "Terminar sessão"
 msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
+msgid "Grant access"
+msgstr ""
+
+msgid "Revoke access"
+msgstr "Revogar acesso"
+
 msgid "File a report"
 msgstr ""
 
@@ -545,27 +551,8 @@ msgstr ""
 msgid "Enable simplified login"
 msgstr ""
 
-msgid "Allow recipients to delete reports"
-msgstr "Permitir que os destinatários eliminem as submissões"
-
-msgid "Allow recipients to postpone expiration date of the report"
-msgstr "Permitir que os destinatários adiem a data de expiração da submissão"
-
-msgid ""
-"Allow recipients to grant permissions to whistleblowers on specific reports"
-msgstr "Permitir que os destinatários concedam permissões aos informadores em submissões específicas"
-
 msgid "Enable search engines indexing"
 msgstr "Ativar a indexação dos motores de pesquisa"
-
-msgid "Enable custom privacy panel"
-msgstr "Permitir um painel de privacidade personalizado"
-
-msgid "Custom privacy panel"
-msgstr "Painel de privacidade personalizado"
-
-msgid "Disable the privacy panel"
-msgstr "Desativar o painel de privacidade"
 
 msgid "Enable the receipt hint"
 msgstr ""
@@ -918,8 +905,8 @@ msgstr "A utilização da configuração automática de HTTPS irá cuidar de tod
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
-"hostname must have a corresponding DNS record referencing that address."
-msgstr "A plataforma deve estar acessível através de um endereço de IP público e o nome do hospedeiro selecionado deve ter um registo de DNS correspondente referenciando esse endereço."
+"hostname must have a DNS record referencing that address."
+msgstr ""
 
 msgid "Manual configuration"
 msgstr "Configuração manual"
@@ -934,6 +921,15 @@ msgstr "Renovação automática"
 
 msgid "Tor Onion Service"
 msgstr "Tor Onion - Serviço"
+
+msgid "Disable the privacy panel"
+msgstr "Desativar o painel de privacidade"
+
+msgid "Enable custom privacy panel"
+msgstr "Permitir um painel de privacidade personalizado"
+
+msgid "Custom privacy panel"
+msgstr "Painel de privacidade personalizado"
 
 msgid "Anonymize outgoing connections"
 msgstr "Anonimizar ligações de saída"
@@ -1175,11 +1171,11 @@ msgstr ""
 msgid "Forcefully selected"
 msgstr "Selecionado à força"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Permitir o destinatário para adiar a data de validade "
-
 msgid "Allow the recipient to delete reports"
 msgstr "Permitir que os recetores apaguem as denúncias"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Permitir o destinatário para adiar a data de validade "
 
 msgid "Give the user administrative access to the following features:"
 msgstr ""
@@ -1391,29 +1387,6 @@ msgstr "Duração estimada do envio:"
 msgid "Size:"
 msgstr "Tamanho:"
 
-msgid "Enable the Ricochet panel"
-msgstr ""
-
-msgid "Address"
-msgstr "Morada"
-
-msgid "Chat with us anonymously using the Ricochet application"
-msgstr ""
-
-msgid "To chat with us use the following Ricochet address:"
-msgstr ""
-
-msgid "Download Ricochet at:"
-msgstr ""
-
-msgid ""
-"By using the Tor network and creating an Onion Service, Ricochet is an "
-"instant messaging app that allows you to chat while protecting your privacy "
-"and staying anonymous by not revealing your location or IP address. You "
-"won't notice any difference from an insecure chat, except that you will be "
-"using a unique address instead of a phone number/email/username."
-msgstr ""
-
 msgid "The connection is not secure."
 msgstr "A ligação não é segura."
 
@@ -1605,9 +1578,6 @@ msgid ""
 "only anonymous submissions"
 msgstr "Está a ligar-se ao servidor sem anonimato, mas o servidor admite apenas envio de comunicações anónimas."
 
-msgid "Thank you!"
-msgstr "Obrigado!"
-
 msgid "Your report was successful."
 msgstr "A sua submissão foi bem sucedida."
 
@@ -1704,7 +1674,7 @@ msgstr "Nome"
 msgid "Last name"
 msgstr "Sobrenome"
 
-msgid "Preferred contact method"
+msgid "Alternative contact method"
 msgstr ""
 
 msgid "Other"
