@@ -1045,7 +1045,9 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
     },
 
     copyToClipboard: function(data) {
-      $window.navigator.clipboard.writeText(data);
+      if ($window.navigator.clipboard && $window.isSecureContext) {
+        $window.navigator.clipboard.writeText(data);
+      }
     },
 
     download: function(filename, url) {
