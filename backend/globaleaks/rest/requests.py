@@ -143,6 +143,7 @@ AdminUserDesc = {
     'can_edit_general_settings': bool,
     'can_delete_submission': bool,
     'can_postpone_expiration': bool,
+    'can_grant_access_to_reports': bool,
     'forcefully_selected': bool,
     'send_account_activation_link': bool
 }
@@ -163,11 +164,6 @@ UserUserDesc = {
     'pgp_key_public': str,
     'language': str,
     'notification': bool
-}
-
-ReceiverOperationDesc = {
-    'operation': str,
-    'rtips': [uuid_regexp]
 }
 
 CommentDesc = {

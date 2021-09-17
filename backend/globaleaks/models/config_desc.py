@@ -362,6 +362,8 @@ ConfigL10NFilters = {
         'signup_mail_title',
         'software_update_available_mail_template',
         'software_update_available_mail_title',
+        'tip_access_mail_template',
+        'tip_access_mail_title',
         'tip_expiration_summary_mail_template',
         'tip_expiration_summary_mail_title',
         'tip_mail_template',

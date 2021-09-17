@@ -25,11 +25,18 @@
       </span>
 
       <span data-ng-if="selected_tips.length">
-        <span id="tip-action-export-selected"
-              data-ng-click="tips_export()"
-              data-uib-tooltip="{{'Export' | translate}}"
+        <span id="tip-action-grant-access-selected"
+              data-ng-click="open_grant_access_modal()"
+              data-uib-tooltip="{{'Grant access' | translate}}"
               class="btn btn-outline-secondary">
-          <i class="fas fa-save"></i>
+          <i class="fas fa-user-plus"></i>
+        </span>
+
+        <span id="tip-action-revoke-access-selected"
+              data-ng-click="open_revoke_access_modal()"
+              data-uib-tooltip="{{'Revoke access' | translate}}"
+              class="btn btn-outline-secondary">
+          <i class="fas fa-user-minus"></i>
         </span>
 
         <span id="tip-action-postpone-selected"
@@ -47,6 +54,13 @@
               class="btn btn-outline-secondary">
           <i class="fas fa-trash"></i>
         </span>
+
+        <span id="tip-action-export-selected"
+              data-ng-click="tips_export()"
+              data-uib-tooltip="{{'Export' | translate}}"
+              class="btn btn-outline-secondary">
+          <i class="fas fa-save"></i>
+        </span>
       </span>
 
       <span id="tip-action-reload"
@@ -57,8 +71,13 @@
       </span>
 
       <span id="SearchFilter" class="form-group float-right">
-        <input type="text" class="form-control" data-ng-attr-placeholder="{{'Search' | translate}}"
-               data-ng-model="search">
+        <div class="input-group">
+          <input type="text" class="form-control" data-ng-attr-placeholder="{{'Search' | translate}}"
+                 data-ng-model="search">
+            <div class="input-group-append">
+            <span class="input-group-text"><i class="fas fa-search"></i></span>
+          </div>
+        </div>
       </span>
     </span>
   </div>
@@ -171,15 +190,13 @@
             data-ng-class="{'font-weight-bold': tip.updated, 'selectedTip': isSelected(tip.id)}" class="tip-action-open"
             data-ng-click="Utils.go('/status/' + tip.id)">
           <td>
-            <span data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission">
-              <span class="btn btn-sm btn-outline-secondary" data-ng-if="isSelected(tip.id)"
-                    data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
-                <i class="fas fa-check-square"></i>
-              </span>
-              <span class="btn btn-sm btn-outline-secondary" data-ng-if="!isSelected(tip.id)"
-                    data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
-                <i class="far fa-square"></i>
-              </span>
+            <span class="btn btn-sm btn-outline-secondary" data-ng-if="isSelected(tip.id)"
+                  data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
+              <i class="fas fa-check-square"></i>
+            </span>
+            <span class="btn btn-sm btn-outline-secondary" data-ng-if="!isSelected(tip.id)"
+                  data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
+              <i class="far fa-square"></i>
             </span>
             <span name="TipExport"
                   data-ng-click="exportTip(tip); $event.stopPropagation()"

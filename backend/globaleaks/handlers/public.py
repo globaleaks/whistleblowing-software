@@ -517,6 +517,7 @@ def serialize_receiver(session, user, language, data=None):
         'forcefully_selected': user.forcefully_selected,
         'can_delete_submission': user.can_delete_submission,
         'can_postpone_expiration': user.can_postpone_expiration,
+        'can_grant_access_to_reports': user.can_grant_access_to_reports,
         'picture': data['imgs'].get(user.id, False)
     }
 

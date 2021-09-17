@@ -634,6 +634,7 @@ class IdentityAccessRequestKeyword(UserNodeKeyword):
 supported_template_types = {
     'null': Keyword,
     'tip': TipKeyword,
+    'tip_access': UserNodeKeyword,
     'tip_update': TipKeyword,
     'tip_expiration_summary': ExpirationSummaryKeyword,
     'unread_tips': UserNodeKeyword,

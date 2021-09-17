@@ -118,7 +118,6 @@ def user_serialize_user(session, user, language):
         'pgp_key_expiration': user.pgp_key_expiration,
         'pgp_key_remove': False,
         'picture': picture,
-        'can_edit_general_settings': user.can_edit_general_settings,
         'tid': user.tid,
         'notification': user.notification,
         'encryption': user.crypto_pub_key != '',
@@ -127,6 +126,8 @@ def user_serialize_user(session, user, language):
         'forcefully_selected': user.forcefully_selected,
         'can_postpone_expiration': user.can_postpone_expiration,
         'can_delete_submission': user.can_delete_submission,
+        'can_grant_access_to_reports': user.can_grant_access_to_reports,
+        'can_edit_general_settings': user.can_edit_general_settings,
         'clicked_recovery_key': user.clicked_recovery_key,
         'send_account_activation_link': False,
         'contexts': contexts

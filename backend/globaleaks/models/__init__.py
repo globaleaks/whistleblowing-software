@@ -984,6 +984,7 @@ class _User(Model):
     forcefully_selected = Column(Boolean, default=False, nullable=False)
     can_delete_submission = Column(Boolean, default=False, nullable=False)
     can_postpone_expiration = Column(Boolean, default=False, nullable=False)
+    can_grant_access_to_reports = Column(Boolean, default=False, nullable=False)
     can_edit_general_settings = Column(Boolean, default=False, nullable=False)
     readonly = Column(Boolean, default=False, nullable=False)
     two_factor_enable = Column(Boolean, default=False, nullable=False)
@@ -1009,9 +1010,10 @@ class _User(Model):
 
     bool_keys = ['password_change_needed',
                  'notification',
-                 'can_edit_general_settings',
                  'can_delete_submission',
                  'can_postpone_expiration',
+                 'can_grant_access_to_reports',
+                 'can_edit_general_settings',
                  'two_factor_enable',
                  'forcefully_selected',
                  'readonly',

@@ -219,6 +219,8 @@ def db_create_receivertip(session, receiver, internaltip, enc_key):
     receivertip.receiver_id = receiver.id
     receivertip.crypto_tip_prv_key = Base64Encoder.encode(enc_key)
     session.add(receivertip)
+    session.flush()
+    return receivertip
 
 
 def db_create_submission(session, tid, request, temp_submission, client_using_tor):

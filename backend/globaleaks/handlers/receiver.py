@@ -8,7 +8,7 @@ from sqlalchemy.sql.expression import distinct, func
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.rtip import db_postpone_expiration
+from globaleaks.handlers.rtip import db_grant_tip_access, db_postpone_expiration, db_revoke_tip_access
 from globaleaks.handlers.submission import db_serialize_archived_questionnaire_schema
 from globaleaks.orm import db_get, db_del, db_log, transact
 from globaleaks.rest import requests, errors
@@ -122,35 +122,43 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
 
 
 @transact
-def perform_tips_operation(session, tid, receiver_id, operation, rtips_ids):
+def perform_tips_operation(session, tid, user_id, user_cc, operation, args):
     """
     Transaction for performing operation on submissions (postpone/delete)
 
     :param session: An ORM session
     :param tid: A tenant ID
-    :param receiver_id: A recipient ID
+    :param user_id: A recipient ID
     :param operation: An operation command (postpone/delete)
-    :param rtips_ids: The set of submissions on which performing the specified operation
+    :param args: The operation arguments
     """
-    receiver = db_get(session, models.User, models.User.id == receiver_id)
+    receiver = db_get(session, models.User, models.User.id == user_id)
 
-    itips = session.query(models.InternalTip) \
-                   .filter(models.ReceiverTip.receiver_id == receiver_id,
-                           models.ReceiverTip.id.in_(rtips_ids),
-                           models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                           models.InternalTip.tid == tid)
+    result = session.query(models.InternalTip, models.ReceiverTip) \
+                                 .filter(models.ReceiverTip.receiver_id == user_id,
+                                         models.ReceiverTip.id.in_(args['rtips']),
+                                         models.InternalTip.id == models.ReceiverTip.internaltip_id)
 
     if operation == 'postpone' and receiver.can_postpone_expiration:
-        for itip in itips:
+        for itip, _ in result:
             db_postpone_expiration(session, itip)
 
     elif operation == 'delete' and receiver.can_delete_submission:
-        itip_ids = [itip.id for itip in itips]
+        itip_ids = []
 
-        for itip_id in itip_ids:
-            db_log(session, tid=tid, type='delete_report', user_id=receiver_id, object_id=itip_id)
+        for itip, _ in result:
+            itip_ids.append(itip.id)
+            db_log(session, tid=tid, type='delete_report', user_id=user_id, object_id=itip.id)
 
         db_del(session, models.InternalTip, models.InternalTip.id.in_(itip_ids))
+
+    elif operation == 'grant' and receiver.can_grant_access_to_reports:
+        for itip, rtip in result:
+            db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, args['receiver'])
+
+    elif operation == 'revoke' and receiver.can_grant_access_to_reports:
+        for itip, _ in result:
+            db_revoke_tip_access(session, tid, user_id, itip, args['receiver'])
 
     else:
         raise errors.ForbiddenOperation
@@ -177,12 +185,13 @@ class Operations(BaseHandler):
     check_roles = 'receiver'
 
     def put(self):
-        request = self.validate_message(self.request.content.read(), requests.ReceiverOperationDesc)
+        request = self.validate_message(self.request.content.read(), requests.OpsDesc)
 
-        if request['operation'] not in ['delete', 'postpone']:
+        if request['operation'] not in ['delete', 'postpone', 'grant', 'revoke']:
             raise errors.ForbiddenOperation
 
         return perform_tips_operation(self.request.tid,
                                       self.session.user_id,
+                                      self.session.cc,
                                       request['operation'],
-                                      request['rtips'])
+                                      request['args'])

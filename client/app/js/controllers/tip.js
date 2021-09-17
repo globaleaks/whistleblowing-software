@@ -13,6 +13,56 @@ GL.controller("TipCtrl",
 
     $scope.showEditLabelInput = false;
 
+    $scope.openGrantTipAccessModal = function () {
+      $uibModal.open({
+        templateUrl: "views/partials/modal_grant_access.html",
+        controller: "ConfirmableModalCtrl",
+        resolve: {
+          arg: {},
+          confirmFun: function() {
+            return function(receiver_id) {
+              var req = {
+                operation: "grant",
+                args: {
+                  receiver: receiver_id
+                },
+              };
+
+              return $http({method: "PUT", url: "api/rtips/" + $scope.tip.id, data: req}).then(function () {
+                $scope.reload();
+              });
+            };
+          },
+          cancelFun: null
+        }
+      });
+    };
+
+    $scope.openRevokeTipAccessModal = function (receiver_id) {
+      $uibModal.open({
+        templateUrl: "views/partials/modal_revoke_access.html",
+        controller: "ConfirmableModalCtrl",
+        resolve: {
+          arg: null,
+          confirmFun: function() {
+            return function(receiver_id) {
+              var req = {
+                operation: "revoke",
+                args: {
+                  receiver: receiver_id
+                }
+              };
+
+              return $http({method: "PUT", url: "api/rtips/" + $scope.tip.id, data: req}).then(function () {
+                $scope.reload();
+              });
+            };
+          },
+          cancelFun: null
+        }
+      });
+    };
+
     $scope.getAnswersEntries = function(entry) {
       if (typeof entry === "undefined") {
         return $scope.answers[$scope.field.id];
@@ -118,6 +168,7 @@ GL.controller("TipCtrl",
       $scope.tip = new RTip({id: $scope.tip_id}, function(tip) {
         $scope.tip = tip;
         $scope.tip.context = $scope.contexts_by_id[$scope.tip.context_id];
+
         $scope.total_score = $scope.tip.total_score;
         $scope.ctx = "rtip";
         $scope.preprocessTipAnswers(tip);
@@ -134,6 +185,7 @@ GL.controller("TipCtrl",
         };
       });
     }
+
 
     $scope.editLabel = function() {
       $scope.showEditLabelInput = true;
@@ -195,7 +247,7 @@ GL.controller("TipCtrl",
           args: function() {
             return {
               tip: $scope.tip,
-              operation: "postpone_expiration",
+              operation: "postpone",
               contexts_by_id: $scope.contexts_by_id,
               Utils: $scope.Utils
             };
@@ -251,9 +303,9 @@ controller("TipOperationsCtrl",
   $scope.confirm = function () {
     $uibModalInstance.close();
 
-    if ($scope.args.operation === "postpone_expiration") {
+    if ($scope.args.operation === "postpone") {
       var req = {
-        "operation": "postpone_expiration",
+        "operation": "postpone",
         "args": {}
       };
 

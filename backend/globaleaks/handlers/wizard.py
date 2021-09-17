@@ -113,13 +113,14 @@ def db_wizard(session, tid, hostname, request):
             if escrow:
                 admin_user.crypto_escrow_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(admin_user.crypto_pub_key, crypto_escrow_prv_key))
 
-    receiver_user = None
     if not request['skip_recipient_account_creation']:
         receiver_desc = models.User().dict(language)
         receiver_desc['username'] = request['receiver_username']
         receiver_desc['name'] = request['receiver_name']
         receiver_desc['password'] = request['receiver_password']
         receiver_desc['mail_address'] = request['receiver_mail_address']
+        receiver_desc['can_delete_submission'] = True
+        receiver_desc['can_postpone_expiration'] = True
         receiver_desc['language'] = language
         receiver_desc['role'] = 'receiver'
         receiver_desc['pgp_key_remove'] = False
@@ -136,7 +137,10 @@ def db_wizard(session, tid, hostname, request):
     context_desc['name'] = 'Default'
     context_desc['status'] = 'enabled'
 
-    context_desc['receivers'] = [receiver_user.id] if receiver_user else []
+    if not request['skip_recipient_account_creation']:
+        context_desc['receivers'] = [receiver_user.id]
+    else:
+        context_desc['receivers'] = []
 
     context = db_create_context(session, tid, context_desc, language)
 
@@ -154,8 +158,11 @@ def db_wizard(session, tid, hostname, request):
         node.set_val('hostname', node.get_val('subdomain') + '.' + root_tenant_node.get_val('rootdomain'))
         node.set_val('tor', False)
 
-        admin_user.password_change_needed = True
-        receiver_user.password_change_needed = True
+        if not request['skip_recipient_account_creation']:
+            admin_user.password_change_needed = True
+
+        if not request['skip_recipient_account_creation']:
+            receiver_user.password_change_needed = True
 
     if mode in ['whistleblowing.it', 'eat']:
         for varname in ['anonymize_outgoing_connections',
@@ -172,10 +179,8 @@ def db_wizard(session, tid, hostname, request):
         request['admin_password'] = ''
         session.delete(admin_user)
 
-        if receiver_user is not None:
+        if not request['skip_recipient_account_creation']:
             receiver_user.can_edit_general_settings = True
-            receiver_user.can_delete_submission = True
-            receiver_user.can_postpone_expiration = True
 
             # Set the recipient name equal to the node name
             receiver_user.name = receiver_user.public_name = request['node_name']
