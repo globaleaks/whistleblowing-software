@@ -64,11 +64,13 @@ localisation:
     - am
     - ar
     - az
+    - be
     - bg
     - bn
     - bo
     - bs
     - ca
+    - ce
     - cs
     - da
     - de
@@ -78,6 +80,7 @@ localisation:
     - es
     - et
     - fa
+    - fa_AF
     - fi
     - fr
     - gl
@@ -88,6 +91,7 @@ localisation:
     - it
     - ja
     - ka
+    - kk
     - km
     - ko
     - lo
@@ -99,6 +103,7 @@ localisation:
     - nb_NO
     - nl
     - pl
+    - ps
     - pt_BR
     - pt_PT
     - ro
@@ -106,10 +111,13 @@ localisation:
     - sk
     - sl_SI
     - sq
+    - sr-Latn-RS
     - sv
     - sw
     - ta
+    - tg
     - th
+    - tk
     - tr
     - ug
     - uk
