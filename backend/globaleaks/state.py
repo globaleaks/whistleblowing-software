@@ -200,7 +200,8 @@ class StateClass(ObjectDict, metaclass=Singleton):
 
     def schedule_support_email(self, tid, text):
         mail_subject = "Support request"
-        delivery_list = self.tenant_cache[1].notification.admin_list
+        delivery_list = set.union(set(self.tenant_cache[1].notification.admin_list),
+                                  set(self.tenant_cache[tid].notification.admin_list))
 
         for mail_address, pgp_key_public in delivery_list:
             mail_body = text
@@ -213,7 +214,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
                 mail_body = pgpctx.encrypt_message(fingerprint, mail_body)
 
             # avoid waiting for the notification to send and instead rely on threads to handle it
-            tw(db_schedule_email, 1, mail_address, mail_subject, mail_body)
+            tw(db_schedule_email, tid, mail_address, mail_subject, mail_body)
 
     def schedule_exception_email(self, tid, exception_text, *args):
         if not hasattr(self.tenant_cache[tid], 'notification'):

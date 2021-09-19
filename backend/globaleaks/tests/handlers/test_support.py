@@ -5,7 +5,7 @@ from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
 
-class TestSupportionHandler(helpers.TestHandler):
+class TestSupportionHandler(helpers.TestHandlerWithPopulatedDB):
     _handler = support.SupportHandler
 
     @inlineCallbacks
@@ -19,4 +19,4 @@ class TestSupportionHandler(helpers.TestHandler):
         handler = self.request(request)
         yield handler.post()
         self.assertEqual(handler.request.code, 200)
-        yield self.test_model_count(models.Mail, 2)
+        yield self.test_model_count(models.Mail, 1)

@@ -1,7 +1,5 @@
 GL.
-controller("AdminCtrl",
-    ["$scope", "$route", "$filter", "AdminNodeResource",
-    function($scope, $route, $filter, AdminNodeResource) {
+controller("AdminCtrl", ["$scope", function($scope) {
   $scope.updateNode = function() {
     $scope.Utils.update($scope.resources.node, function() { $scope.$emit("REFRESH"); });
   };

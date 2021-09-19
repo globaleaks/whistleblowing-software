@@ -53,7 +53,7 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
     rtip.last_access = datetime_now()
 
     if itip.status == 'new':
-        db_update_submission_status(session, tid, user_id, itip, 'open', None)
+        db_update_submission_status(session, tid, user_id, itip, 'opened', None)
 
     return serialize_rtip_export(session, user, rtip, itip, context, language)
 

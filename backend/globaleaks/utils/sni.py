@@ -39,7 +39,7 @@ class _NegotiationData(object):
 class _ContextProxy(object):
     """
     A basic proxy object for the OpenSSL Context object that records the
-    values of the NPN/ALPN callbacks, to ensure that they get set appropriately
+    values of the ALPN callback, to ensure that they get set appropriately
     if a context is swapped out during connection setup.
     """
 
@@ -149,7 +149,6 @@ class SNIMap(object):
             context = self.default_context
 
         negotiationData = self._negotiationDataForContext[connection.get_context()]
-        negotiationData.negotiateNPN(context)
         negotiationData.negotiateALPN(context)
         connection.set_context(context)
 

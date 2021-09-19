@@ -44,13 +44,13 @@ describe("globaleaks process", function() {
       return;
     }
 
-    expect(await element.all(by.cssContainingText("button", "Download")).count()).toEqual(2);
+    expect(await element.all(by.css(".tip-action-download-file")).count()).toEqual(2);
 
     if (!browser.gl.utils.testFileDownload()) {
       return;
     }
 
-    await element.all(by.cssContainingText("button", "Download")).get(0).click();
+    await element.all(by.css(".tip-action-download-file")).get(0).click();
   });
 
   it("Recipient should be able to leave a comment to the whistleblower", async function() {

@@ -29,7 +29,6 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$q", "$http", "$locati
         arg: {},
         confirmFun: function() {
           return function(receiver_id) {
-	    alert(receiver_id);
             var req = {
               operation: "grant",
               args: {
@@ -132,7 +131,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$q", "$http", "$locati
           return $window.open("api/rtips/" + $scope.selected_tips[i] + "/export?token=" + token.id);
         });
       })(i);
-    };
+    }
   };
 
   $scope.tip_postpone_selected = function () {

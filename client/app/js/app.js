@@ -612,10 +612,18 @@ var GL = angular.module("GL", [
           if (elem === null) {
             elem = document.createElement("script");
             elem.setAttribute("id", "load-custom-script");
-            elem.setAttribute("type", "text/javascript");
             elem.setAttribute("src", "s/script");
             document.getElementsByTagName("body")[0].appendChild(elem);
           }
+        }
+
+        elem = document.getElementById("load-custom-favicon");
+        if (elem === null) {
+          elem = document.createElement("link");
+          elem.setAttribute("id", "load-custom-favicon");
+          elem.setAttribute("rel", "shortcut icon");
+          elem.setAttribute("href", $rootScope.public.node.favicon ? 's/favicon' : 'data/favicon.ico');
+          document.getElementsByTagName("head")[0].appendChild(elem);
         }
 
         $rootScope.contexts_by_id = $rootScope.Utils.array_to_map(result.contexts);
@@ -776,7 +784,6 @@ var GL = angular.module("GL", [
           errors array the error message.
        */
        var $rootScope = $injector.get("$rootScope");
-       var $http = $injector.get("$http");
        var $q = $injector.get("$q");
        var $location = $injector.get("$location");
 

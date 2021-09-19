@@ -38,7 +38,7 @@ GL.controller("TipCtrl",
       });
     };
 
-    $scope.openRevokeTipAccessModal = function (receiver_id) {
+    $scope.openRevokeTipAccessModal = function () {
       $uibModal.open({
         templateUrl: "views/partials/modal_revoke_access.html",
         controller: "ConfirmableModalCtrl",

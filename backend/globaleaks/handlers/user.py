@@ -199,7 +199,7 @@ def db_user_update_user(session, tid, user_session, request):
                 raise errors.InvalidOldPassword
 
         user_session.cc = set_user_password(tid, user, request['password'], user_session.cc)
-        
+
         db_log(session, tid=tid, type='change_password', user_id=user.id, object_id=user.id)
 
     # If the email address changed, send a validation email

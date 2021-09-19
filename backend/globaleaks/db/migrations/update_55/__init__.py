@@ -4,6 +4,7 @@ from globaleaks.models import Model
 from globaleaks.models.properties import *
 from globaleaks.utils.utility import datetime_now
 
+
 class SubmissionStatusChange_v_54(Model):
     __tablename__ = 'submissionstatuschange'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
@@ -12,6 +13,7 @@ class SubmissionStatusChange_v_54(Model):
     substatus = Column(UnicodeText(36), nullable=True)
     changed_on = Column(DateTime, default=datetime_now, nullable=False)
     changed_by = Column(UnicodeText(36), nullable=False)
+
 
 class MigrationScript(MigrationBase):
     def epilogue(self):

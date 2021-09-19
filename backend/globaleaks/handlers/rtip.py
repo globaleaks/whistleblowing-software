@@ -78,6 +78,10 @@ def db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, receiver_id)
                           models.User,
                           models.User.id == receiver_id)
 
+    if itip.crypto_tip_pub_key and not new_receiver.crypto_pub_key:
+        # Access to encrypted submissions could be granted only if the recipient has performed first login
+        return
+
     if itip.crypto_tip_pub_key:
         _tip_key = GCE.asymmetric_decrypt(user_cc, base64.b64decode(rtip.crypto_tip_prv_key))
         _tip_key = GCE.asymmetric_encrypt(new_receiver.crypto_pub_key, _tip_key)
@@ -473,7 +477,7 @@ def db_get_rtip(session, tid, user_id, rtip_id, language):
 
     rtip.access_counter += 1
     rtip.last_access = datetime_now()
-    
+
     db_log(session, tid=tid, type='access_report', user_id=user_id, object_id=itip.id)
 
     return serialize_rtip(session, rtip, itip, language), base64.b64decode(rtip.crypto_tip_prv_key)
@@ -531,7 +535,7 @@ def delete_rtip(session, tid, user_id, rtip_id):
     """
     receiver = db_get(session,
                       models.User,
-                      models.User.id == rtip.receiver_id)
+                      models.User.id == user_id)
 
     if not receiver.can_delete_submission:
         raise errors.ForbiddenOperation
@@ -555,7 +559,7 @@ def postpone_expiration(session, tid, user_id, rtip_id):
     """
     receiver = db_get(session,
                       models.User,
-                      models.User.id == rtip.receiver_id)
+                      models.User.id == user_id)
 
     if not receiver.can_postpone_expiration:
         raise errors.ForbiddenOperation
