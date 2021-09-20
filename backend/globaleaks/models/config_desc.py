@@ -142,7 +142,7 @@ ConfigDescriptor = {
     'log_accesses_of_internal_users': Bool(default=True),
 
     'encryption': Bool(default=True),
-    'escrow': Bool(default=True),
+    'escrow': Bool(default=False),
     'crypto_escrow_pub_key': Unicode(default=''),
     'crypto_escrow_prv_key': Unicode(default=''),
 
