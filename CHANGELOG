@@ -1,3 +1,31 @@
+Changes in version 4.3.0
+    Make it possible for recipients to add a new recipient to their submissions (#2595)
+    Implement Request Support feature (#3035)
+    Revise data collected when asking whistleblower's identity (#3032)
+    Logs when recipients access whistleblowers's identity
+    Enable custodian functionality when a custodian user exists
+    Prioritizing new encryption model over PGP encryption
+    Deprecate support of HTTPS NPN protocol
+    Revise password reset token setting expiration to 7 days
+    Track access to submissions that are exported
+    Make it possible to customize the text shown over the context selection
+    Reorganize secondary tenant creation to not require wizard completion
+    Improve 2FA account name to show: $hostname ($username) (#3021)
+    Fix issues #3027, #3041
+    Bump npm dependencies to latest version
+    Add support Persian (Afghanistan) language
+    Add support for Armenian language
+    Add support for Belarusian
+    Add support for Checken language
+    Add support for Kazakh language
+    Add support for Kyrgyz language
+    Add support for Pashto language
+    Add support for Serbian (Latin) language
+    Add support for Turkmen language
+    Add support for Tajik language
+    Add support for Uzbek language
+    Update translations
+
 Changes in version 4.2.13
     Deprecate onion services v2 #2894
     Add Debian Bullseye (11) packaging #3019
