@@ -50,6 +50,7 @@ a:hover,
 
 .onionaddress {
   font-weight: bold;
+  word-break: break-all;
 }
 
 .visible-on-over {
