@@ -25,7 +25,12 @@ controller("AdminAdvancedCtrl", ["$scope", function($scope) {
       $scope.Utils.openConfirmableModalDialog("views/partials/enable_encryption.html").then(
       function() {
         $scope.resources.node.encryption = true;
-        $scope.Utils.update($scope.resources.node, function() { $scope.Authentication.logout(); });
+        $scope.resources.node.escrow = false;
+        $scope.Utils.update($scope.resources.node, function() {
+          if(!$scope.preferences.encryption) {
+            $scope.Authentication.logout();
+          }
+	});
       },
       function() {
         $scope.resources.node.encryption = false;
