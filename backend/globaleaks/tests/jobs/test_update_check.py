@@ -10,13 +10,13 @@ from globaleaks.tests import helpers
 
 packages = b"Package: globaleaks\n" \
            b"Version: 0.0.1\n" \
-           b"Filename: buster/globaleaks_0.0.1_all.deb\n\n" \
+           b"Filename: bullseye/globaleaks_0.0.1_all.deb\n\n" \
            b"Package: globaleaks\n" \
            b"Version: 1.0.0\n" \
-           b"Filename: buster/globaleaks_1.0.0_all.deb\n\n" \
+           b"Filename: bullseye/globaleaks_1.0.0_all.deb\n\n" \
            b"Package: globaleaks\n" \
            b"Version: 6.6.6\n" \
-           b"Filename: buster/globaleaks_6.6.6_all.deb\n\n"
+           b"Filename: bullseye/globaleaks_6.6.6_all.deb\n\n"
 
 
 class TestUpdateCheck(helpers.TestGLWithPopulatedDB):

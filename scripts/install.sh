@@ -87,8 +87,8 @@ echo "Detected OS: $DISTRO - $DISTRO_CODENAME"
 
 last_command "check_distro"
 
-if echo "$DISTRO_CODENAME" | grep -vqE "^buster$" ; then
-  echo "WARNING: GlobaLeaks is actively developed and tested specifically for Debian 10 (Buster)"
+if echo "$DISTRO_CODENAME" | grep -vqE "^bullseye$" ; then
+  echo "WARNING: GlobaLeaks is actively developed and tested specifically for Debian 11 (Bullseye)"
   echo "WARNING: The software lifecycle of the platform includes full support for all Debian and Ubuntu LTS versions starting from Debian 10 and Ubuntu 20.04"
 
   prompt_for_continuation
@@ -132,7 +132,7 @@ if echo "$DISTRO_CODENAME" | grep -vqE "^(bullseye|buster|focal|bionic)$"; then
   # In case of unsupported platforms we fallback on Bionic
   echo "No packages available for the current distribution; the install script will use the Buster repository."
   DISTRO="Debian"
-  DISTRO_CODENAME="buster"
+  DISTRO_CODENAME="bullseye"
 fi
 
 echo "Adding GlobaLeaks PGP key to trusted APT keys"
