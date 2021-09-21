@@ -148,7 +148,7 @@ description:
       privacy and submissions. GlobaLeaks targets
       [many use cases](https://www.globaleaks.org/usecases/) and therefore
       it has been designed as a framework. Designed with flexibility in mind and
-      translated in [more than 60 languages](https://www.transifex.com/otf/globaleaks)
+      translated in [more than 70 languages](https://www.transifex.com/otf/globaleaks)
       GlobaLeaks is nowadays adopted worldwide by more than 4000 projects.
       The vast range of adopters includes independent media, activists, public
       agencies, corporations and more.
@@ -156,7 +156,7 @@ description:
     features:
       - "Multi-user system with customizable user roles (whistleblower, recipient, administrator)"
       - "Entirely manageable from a web administration interface"
-      - "Support for more than 40 languages with Right-to-Left (RTL)"
+      - "Support for more than 70 languages with Right-to-Left (RTL)"
       - "Receive reports from whistleblower through structured multi-step questionnaire"
       - "Let whistleblowers decide if and when to confidentially declare their identity"
       - "Exchange multimedia files with whistleblower"
@@ -237,14 +237,14 @@ description:
       dei segnalanti. GlobaLeaks si rivolge a
       [molti casi d'uso](https://www.globaleaks.org/usecases/) e quindi è stato progettato
       come un framework. Progettato per essere altamente configurabile e tradotto in
-      [oltre 60 lingue](https://www.transifex.com/otf/globaleaks), GlobaLeaks è oggi adottato
+      [oltre 70 lingue](https://www.transifex.com/otf/globaleaks), GlobaLeaks è oggi adottato
       in tutto il mondo da oltre 4000 progetti. La variegata gamma di utenti comprende media
       indipendenti, attivisti,  agenzie pubbliche, imprese private e altro.
     documentation: 'https://docs.globaleaks.org/'
     features:
       - "Sistema multiutente con ruoli utente personalizzabili (segnalante, ricevente, amministratore)"
       - "Interamente gestibile da un'interfaccia di amministrazione web"
-      - "Supporto per oltre 40 lingue ed RTL"
+      - "Supporto per oltre 70 lingue ed RTL"
       - "Ricevi segnalazioni da un segnalante tramite un questionario strutturato in più passaggi"
       - "Possibilità per i segnalanti di decidere se e quando dichiarare la propria identità"
       - "Possibilità di scambio dile con il segnalante"
