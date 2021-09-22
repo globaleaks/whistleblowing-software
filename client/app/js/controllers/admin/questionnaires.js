@@ -80,7 +80,7 @@ controller("AdminQuestionnaireEditorCtrl", ["$scope", "$uibModal", "$http", "Fil
 
   $scope.duplicate_questionnaire = function(questionnaire) {
     $uibModal.open({
-      templateUrl: "views/partials/questionnaire_duplication.html",
+      templateUrl: "views/modals/questionnaire_duplication.html",
       controller: "QuestionaireOperationsCtrl",
       resolve: {
         questionnaire: function () {

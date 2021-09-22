@@ -38,7 +38,7 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$location", "$uibMod
 	$scope.preferences.clicked_recovery_key = true;
         $scope.erk = data.data.match(/.{1,4}/g).join("-");
         $uibModal.open({
-          templateUrl: "views/partials/encryption_recovery_key.html",
+          templateUrl: "views/modals/encryption_recovery_key.html",
           controller: "ConfirmableModalCtrl",
           scope: $scope,
           resolve: {
@@ -61,7 +61,7 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$location", "$uibMod
           $scope.two_factor_secret = data.data;
           $scope.qrcode_string = "otpauth://totp/" + $location.host() + "%20%28" + $scope.preferences.username + "%29?secret=" + $scope.two_factor_secret;
 
-          $scope.Utils.openConfirmableModalDialog("views/partials/enable_2fa_modal.html", {}, $scope).then(function (result) {
+          $scope.Utils.openConfirmableModalDialog("views/modals/enable_2fa.html", {}, $scope).then(function (result) {
             return $http({method: "PUT", url: "api/user/operations", data:{
               "operation": "enable_2fa_step2",
               "args": {

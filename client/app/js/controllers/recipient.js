@@ -23,7 +23,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$q", "$http", "$locati
 
   $scope.open_grant_access_modal = function () {
     $uibModal.open({
-    templateUrl: "views/partials/modal_grant_access.html",
+    templateUrl: "views/modals/grant_access.html",
       controller: "ConfirmableModalCtrl",
       resolve: {
         arg: {},
@@ -48,7 +48,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$q", "$http", "$locati
 
   $scope.open_revoke_access_modal = function () {
     $uibModal.open({
-    templateUrl: "views/partials/modal_revoke_access.html",
+    templateUrl: "views/modals/revoke_access.html",
       controller: "ConfirmableModalCtrl",
       resolve: {
         arg: {},
@@ -111,7 +111,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$q", "$http", "$locati
 
   $scope.tip_delete_selected = function () {
     $uibModal.open({
-      templateUrl: "views/partials/delete_confirmation.html",
+      templateUrl: "views/modals/delete_confirmation.html",
       controller: "TipBulkOperationsCtrl",
       resolve: {
         selected_tips: function () {
@@ -136,7 +136,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$q", "$http", "$locati
 
   $scope.tip_postpone_selected = function () {
     $uibModal.open({
-      templateUrl: "views/partials/confirmation.html",
+      templateUrl: "views/modals/confirmation.html",
       controller: "TipBulkOperationsCtrl",
       resolve: {
         selected_tips: function () {

@@ -1027,7 +1027,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
     },
 
     openSupportModal: function() {
-      return this.openConfirmableModalDialog("views/partials/modal_request_support.html", {});
+      return this.openConfirmableModalDialog("views/modals/request_support.html", {});
     },
 
     submitSupportRequest: function(data) {

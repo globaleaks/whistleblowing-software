@@ -554,7 +554,7 @@ var GL = angular.module("GL", [
     $rootScope.open_confidentiality_modal = function () {
       $uibModal.open({
         controller: "ConfirmableModalCtrl",
-        templateUrl: "views/partials/security_awareness_confidentiality.html",
+        templateUrl: "views/modals/security_awareness_confidentiality.html",
         scope: $rootScope
       });
     };

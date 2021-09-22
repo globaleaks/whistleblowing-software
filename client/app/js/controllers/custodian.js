@@ -11,7 +11,7 @@ GL.controller("CustodianIdentityAccessRequestsCtrl", ["$scope", "$http", "$uibMo
 
   $scope.file_denied_identity_access_reply = function (iar_id) {
     $uibModal.open({
-      templateUrl: "views/partials/tip_operation_file_identity_access_reply.html",
+      templateUrl: "views/modals/tip_operation_file_identity_access_reply.html",
       controller: "IdentityAccessReplyCtrl",
       resolve: {
         iar: function () {

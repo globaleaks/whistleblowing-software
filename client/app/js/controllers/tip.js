@@ -15,7 +15,7 @@ GL.controller("TipCtrl",
 
     $scope.openGrantTipAccessModal = function () {
       $uibModal.open({
-        templateUrl: "views/partials/modal_grant_access.html",
+        templateUrl: "views/modals/grant_access.html",
         controller: "ConfirmableModalCtrl",
         resolve: {
           arg: {},
@@ -40,7 +40,7 @@ GL.controller("TipCtrl",
 
     $scope.openRevokeTipAccessModal = function () {
       $uibModal.open({
-        templateUrl: "views/partials/modal_revoke_access.html",
+        templateUrl: "views/modals/revoke_access.html",
         controller: "ConfirmableModalCtrl",
         resolve: {
           arg: null,
@@ -226,7 +226,7 @@ GL.controller("TipCtrl",
 
     $scope.tip_delete = function () {
       $uibModal.open({
-        templateUrl: "views/partials/delete_confirmation.html",
+        templateUrl: "views/modals/delete_confirmation.html",
         controller: "TipOperationsCtrl",
         resolve: {
           args: function () {
@@ -241,7 +241,7 @@ GL.controller("TipCtrl",
 
     $scope.tip_postpone = function () {
       $uibModal.open({
-        templateUrl: "views/partials/tip_operation_postpone.html",
+        templateUrl: "views/modals/tip_operation_postpone.html",
         controller: "TipOperationsCtrl",
         resolve: {
           args: function() {
@@ -261,7 +261,7 @@ GL.controller("TipCtrl",
       $scope.uploads = {};
 
       $uibModal.open({
-        templateUrl: "views/partials/tip_additional_questionnaire_form.html",
+        templateUrl: "views/modals/tip_additional_questionnaire_form.html",
         controller: "AdditionalQuestionnaireCtrl",
         scope: $scope
       });
@@ -275,7 +275,7 @@ GL.controller("TipCtrl",
 
     $scope.file_identity_access_request = function () {
       $uibModal.open({
-        templateUrl: "views/partials/tip_operation_file_identity_access_request.html",
+        templateUrl: "views/modals/tip_operation_file_identity_access_request.html",
         controller: "IdentityAccessRequestCtrl",
         resolve: {
           tip: function () {
