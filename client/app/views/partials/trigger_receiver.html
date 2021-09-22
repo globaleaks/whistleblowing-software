@@ -5,29 +5,27 @@
   </button>
 </div>
 <div class="modal-body">
-  <div class="alert alert-default">
-    <div data-translate>Recipients</div>
-    <ui-select data-ng-model="selected.value" data-theme="bootstrap" data-on-select='addReceiver($item)'>
-      <ui-select-match data-ng-attr-placeholder="{{'Search' | translate}}">
-        <span data-ng-bind="$select.selected.name"></span>
-      </ui-select-match>
-      <ui-select-choices data-repeat="user in resources.users | filter: {role: 'receiver', name: $selected.search} | filter:receiverNotSelectedFilter">
-        <span data-ng-bind-html="user.name | highlight: $select.search"></span>
-      </ui-select-choices>
-    </ui-select>
-    <div data-ng-if="arg.trigger_receiver">
-      <br />
-      <ol class="selectionList">
-        <li data-ng-repeat="user in arg.trigger_receiver">
-          <span class="action-btns">
-            <span data-ng-click="arg.trigger_receiver.splice($index, 1)" data-uib-tooltip="{{'Remove' | translate}}">
-              <i class="fas fa-times"></i>
-            </span>
+  <div data-translate>Recipients</div>
+  <ui-select data-ng-model="selected.value" data-theme="bootstrap" data-on-select='addReceiver($item)'>
+    <ui-select-match data-ng-attr-placeholder="{{'Search' | translate}}">
+      <span data-ng-bind="$select.selected.name"></span>
+    </ui-select-match>
+    <ui-select-choices data-repeat="user in resources.users | filter: {role: 'receiver', name: $selected.search} | filter:receiverNotSelectedFilter">
+      <span data-ng-bind-html="user.name | highlight: $select.search"></span>
+    </ui-select-choices>
+  </ui-select>
+  <div data-ng-if="arg.trigger_receiver">
+    <br />
+    <ol class="selectionList">
+      <li data-ng-repeat="user in arg.trigger_receiver">
+        <span class="action-btns">
+          <span data-ng-click="arg.trigger_receiver.splice($index, 1)" data-uib-tooltip="{{'Remove' | translate}}">
+            <i class="fas fa-times"></i>
           </span>
-          <span>{{admin_receivers_by_id[user].name}}</span>
-        </li>
-      </ol>
-    </div>
+        </span>
+        <span>{{admin_receivers_by_id[user].name}}</span>
+      </li>
+    </ol>
   </div>
 </div>
 <div class="modal-footer">

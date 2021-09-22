@@ -111,7 +111,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$q", "$http", "$locati
 
   $scope.tip_delete_selected = function () {
     $uibModal.open({
-      templateUrl: "views/partials/tip_operation_delete_selected.html",
+      templateUrl: "views/partials/delete_confirmation.html",
       controller: "TipBulkOperationsCtrl",
       resolve: {
         selected_tips: function () {
@@ -136,7 +136,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$q", "$http", "$locati
 
   $scope.tip_postpone_selected = function () {
     $uibModal.open({
-      templateUrl: "views/partials/tip_operation_postpone_selected.html",
+      templateUrl: "views/partials/confirmation.html",
       controller: "TipBulkOperationsCtrl",
       resolve: {
         selected_tips: function () {

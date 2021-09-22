@@ -138,7 +138,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibMod
 
   $scope.deleteFile = function(resource) {
     $uibModal.open({
-      templateUrl: "views/partials/admin_review_action.html",
+      templateUrl: "views/partials/confirmation.html",
       controller: "ConfirmableModalCtrl",
       resolve: {
         arg: null,
@@ -173,7 +173,7 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibMod
 
   $scope.resetCfg = function() {
     $uibModal.open({
-      templateUrl: "views/partials/admin_review_action.html",
+      templateUrl: "views/partials/confirmation.html",
       controller: "ConfirmableModalCtrl",
       resolve: {
 	arg: null,

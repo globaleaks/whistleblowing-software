@@ -226,7 +226,7 @@ GL.controller("TipCtrl",
 
     $scope.tip_delete = function () {
       $uibModal.open({
-        templateUrl: "views/partials/tip_operation_delete.html",
+        templateUrl: "views/partials/delete_confirmation.html",
         controller: "TipOperationsCtrl",
         resolve: {
           args: function () {

@@ -960,7 +960,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
     },
 
     deleteDialog: function() {
-      return this.openConfirmableModalDialog("views/partials/delete_dialog.html");
+      return this.openConfirmableModalDialog("views/partials/delete_confirmation.html");
     },
 
     deleteResource: function(factory, list, res) {
