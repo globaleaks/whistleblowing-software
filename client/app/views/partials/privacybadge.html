@@ -1,6 +1,6 @@
 <div data-ng-if="!connection.tor">
-  <div id="PrivacyBadge" class="clearfix">
-    <div data-ng-if="!public.node.enable_custom_privacy_badge" data-ng-init="connection.privacy_badge_open = true">
+  <div id="PrivacyBadge" class="clearfix" data-ng-init="connection.privacy_badge_open = true" data-ng-click="connection.privacy_badge_open = !connection.privacy_badge_open" >
+    <div data-ng-if="!public.node.enable_custom_privacy_badge">
       <div id="PrivacyBadgeTextBox" class="float-left">
         <span class="badge badge-warning">
           <i class="fas fa-exclamation-circle"></i>
@@ -12,7 +12,7 @@
           </div>
           <div id="PrivacyBadgeDownloadLink"><a href="https://www.torproject.org/download/" class="btn btn-sm btn-secondary"><i class="fas fa-download"></i> <span data-translate>Download the Tor Browser</span></a></div>
           <div data-ng-if="public.node.onionservice">
-            <span data-translate>Then, copy and paste the following address into the Tor Browser:</span> <span class="onionaddress" data-uib-tooltip="{{'Copy to clipboard' | translate}}" data-ng-click="Utils.copyToClipboard(public.node.onionservice)">{{public.node.onionservice}}</span>
+            <span data-translate>Then, copy and paste the following address into the Tor Browser:</span> <span class="onionaddress" data-uib-tooltip="{{'Copy to clipboard' | translate}}" data-ng-click="Utils.copyToClipboard(public.node.onionservice); $event.stopPropagation()">{{public.node.onionservice}}</span>
           </div>
         </div>
       </div>
@@ -22,7 +22,7 @@
         <span id="PrivacyBadgeCustomText" data-ng-show="connection.privacy_badge_open" data-markdown-to-html="public.node.custom_privacy_badge_text"></span>
       </div>
     </div>
-    <div id="PrivacyBoxToggleButton" class="float-right" data-ng-if="!public.node.enable_custom_privacy_badge" data-ng-click="connection.privacy_badge_open = !connection.privacy_badge_open" aria-label="Toggle">
+    <div id="PrivacyBoxToggleButton" class="float-right" data-ng-if="!public.node.enable_custom_privacy_badge" aria-label="Toggle">
       <i data-ng-if="!connection.privacy_badge_open" class="fas fa-chevron-circle-down"></i>
       <i data-ng-if="connection.privacy_badge_open" class="fas fa-chevron-circle-up"></i>
     </div>
