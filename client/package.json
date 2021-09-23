@@ -62,6 +62,6 @@
     "stylelint": "13.13.1",
     "stylelint-config-standard": "22.0.0",
     "superagent": "6.1.0",
-    "terser": "5.8.0"
+    "terser": "5.9.0"
   }
 }
