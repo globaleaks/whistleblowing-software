@@ -139,10 +139,6 @@ GL.controller("TipCtrl",
 
         $scope.tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText($scope.tip.status, $scope.tip.substatus, $scope.submission_statuses);
 
-        $scope.showWBFileWidget = function() {
-          return $scope.tip.context.enable_rc_to_wb_files && (tip.wbfiles.length);
-        };
-
         $scope.downloadWBFile = function(file) {
           WBTipDownloadFile(file);
         };
@@ -179,10 +175,6 @@ GL.controller("TipCtrl",
         $scope.showEditLabelInput = $scope.tip.label === "";
 
         $scope.tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText($scope.tip.status, $scope.tip.substatus, $scope.submission_statuses);
-
-        $scope.showWBFileUpload = function() {
-          return $scope.tip.context.enable_rc_to_wb_files;
-        };
       });
     }
 

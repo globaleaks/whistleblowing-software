@@ -36,7 +36,6 @@ def admin_serialize_context(session, context, language):
         'enable_two_way_comments': context.enable_two_way_comments,
         'enable_two_way_messages': context.enable_two_way_messages,
         'enable_attachments': context.enable_attachments,
-        'enable_rc_to_wb_files': context.enable_rc_to_wb_files,
         'score_threshold_medium': context.score_threshold_medium,
         'score_threshold_high': context.score_threshold_high,
         'score_receipt_text_custom': context.score_receipt_text_custom,

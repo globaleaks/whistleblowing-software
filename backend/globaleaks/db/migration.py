@@ -12,7 +12,7 @@ from globaleaks import __version__, models, \
     DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, LANGUAGES_SUPPORTED_CODES
 from globaleaks.db.appdata import load_appdata, db_load_defaults
 
-from globaleaks.db.migrations.update_35 import Context_v_34, InternalTip_v_34, \
+from globaleaks.db.migrations.update_35 import InternalTip_v_34, \
     WhistleblowerTip_v_34
 from globaleaks.db.migrations.update_38 import Field_v_37, Questionnaire_v_37
 from globaleaks.db.migrations.update_39 import \
@@ -72,7 +72,7 @@ migration_mapping = OrderedDict([
     ('Comment', [Comment_v_38, 0, 0, 0, 0, models._Comment, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Config', [Config_v_38, 0, 0, 0, 0, Config_v_45, 0, 0, 0, 0, 0, 0, models._Config, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('ConfigL10N', [ConfigL10N_v_38, 0, 0, 0, 0, ConfigL10N_v_45, 0, 0, 0, 0, 0, 0, models._ConfigL10N, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('Context', [Context_v_34, Context_v_38, 0, 0, 0, Context_v_44, 0, 0, 0, 0, 0, Context_v_45, Context_v_46, Context_v_51, 0, 0, 0, 0, models._Context, 0, 0, 0]),
+    ('Context', [Context_v_38, 0, 0, 0, 0, Context_v_44, 0, 0, 0, 0, 0, Context_v_45, Context_v_46, Context_v_51, 0, 0, 0, 0, models._Context, 0, 0, 0]),
     ('ContextImg', [-1, -1, -1, -1, -1, ContextImg_v_53, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1]),
     ('CustomTexts', [CustomTexts_v_38, 0, 0, 0, 0, models._CustomTexts, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('EnabledLanguage', [EnabledLanguage_v_38, 0, 0, 0, 0, models._EnabledLanguage, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),

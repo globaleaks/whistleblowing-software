@@ -368,7 +368,6 @@ AdminContextDesc = {
     'enable_two_way_comments': bool,
     'enable_two_way_messages': bool,
     'enable_attachments': bool,
-    'enable_rc_to_wb_files': bool,
     'score_threshold_medium': int,
     'score_threshold_high': int,
     'score_receipt_text_custom': bool,

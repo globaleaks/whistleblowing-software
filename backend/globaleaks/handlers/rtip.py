@@ -915,22 +915,8 @@ class WhistleblowerFileHandler(BaseHandler):
     check_roles = 'receiver'
     upload_handler = True
 
-    @transact
-    def can_perform_action(self, session, tid, rtip_id, filename):
-        rtip, _ = db_access_rtip(session, tid, self.session.user_id, rtip_id)
-
-        enable_rc_to_wb_files = session.query(models.Context.enable_rc_to_wb_files) \
-                                       .filter(models.Context.id == models.InternalTip.context_id,
-                                               models.InternalTip.id == rtip.internaltip_id,
-                                               models.Context.tid == tid).one()
-
-        if not enable_rc_to_wb_files:
-            raise errors.ForbiddenOperation()
-
     @inlineCallbacks
     def post(self, rtip_id):
-        yield self.can_perform_action(self.request.tid, rtip_id, self.uploaded_file['name'])
-
         yield register_wbfile_on_db(self.request.tid, rtip_id, self.uploaded_file)
 
         log.debug("Recorded new WhistleblowerFile %s",

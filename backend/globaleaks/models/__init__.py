@@ -313,7 +313,6 @@ class _Context(Model):
     enable_two_way_comments = Column(Boolean, default=True, nullable=False)
     enable_two_way_messages = Column(Boolean, default=True, nullable=False)
     enable_attachments = Column(Boolean, default=True, nullable=False)
-    enable_rc_to_wb_files = Column(Boolean, default=False, nullable=False)
     tip_timetolive = Column(Integer, default=90, nullable=False)
     name = Column(JSON, default=dict, nullable=False)
     description = Column(JSON, default=dict, nullable=False)
@@ -367,7 +366,6 @@ class _Context(Model):
         'enable_two_way_comments',
         'enable_two_way_messages',
         'enable_attachments',
-        'enable_rc_to_wb_files',
         'score_receipt_text_custom'
     ]
 

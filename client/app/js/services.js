@@ -585,7 +585,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       context.enable_two_way_comments = true;
       context.enable_two_way_messages = true;
       context.enable_attachments = true;
-      context.enable_rc_to_wb_files = false;
       context.questionnaire_id = "";
       context.additional_questionnaire_id = "";
       context.score_threshold_medium = 0;

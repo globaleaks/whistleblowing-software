@@ -5,28 +5,6 @@ from globaleaks.models.properties import *
 from globaleaks.utils.utility import datetime_now, datetime_null
 
 
-class Context_v_34(models.Model):
-    __tablename__ = 'context'
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-    show_context = Column(Boolean, default=True)
-    show_recipients_details = Column(Boolean, default=False)
-    allow_recipients_selection = Column(Boolean, default=False)
-    maximum_selectable_receivers = Column(Integer, default=0)
-    select_all_receivers = Column(Boolean, default=True)
-    enable_comments = Column(Boolean, default=True)
-    enable_messages = Column(Boolean, default=False)
-    enable_two_way_comments = Column(Boolean, default=True)
-    enable_two_way_messages = Column(Boolean, default=True)
-    enable_attachments = Column(Boolean, default=True)
-    tip_timetolive = Column(Integer, default=15)
-    name = Column(JSON)
-    description = Column(JSON)
-    show_receivers_in_alphabetical_order = Column(Boolean, default=False)
-    presentation_order = Column(Integer, default=0)
-    questionnaire_id = Column(UnicodeText(36))
-    img_id = Column(UnicodeText(36))
-
-
 class WhistleblowerTip_v_34(models.Model):
     __tablename__ = 'whistleblowertip'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
@@ -56,17 +34,6 @@ class InternalTip_v_34(models.Model):
 
 
 class MigrationScript(MigrationBase):
-    def migrate_Context(self):
-        for old_obj in self.session_old.query(self.model_from['Context']):
-            new_obj = self.model_to['Context']()
-            for key in new_obj.__table__.columns._data.keys():
-                if key == 'enable_rc_to_wb_files':
-                    new_obj.enable_rc_to_wb_files = False
-                else:
-                    setattr(new_obj, key, getattr(old_obj, key))
-
-            self.session_new.add(new_obj)
-
     def migrate_User(self):
         default_language = self.session_new.query(self.model_to['Config']).filter(self.model_to['Config'].var_name == 'default_language').one().value['v']
         enabled_languages = [r[0] for r in self.session_old.query(self.model_to['EnabledLanguage'].name)]

@@ -65,7 +65,6 @@ class Context_v_38(Model):
     enable_two_way_comments = Column(Boolean, default=True)
     enable_two_way_messages = Column(Boolean, default=True)
     enable_attachments = Column(Boolean, default=True)
-    enable_rc_to_wb_files = Column(Boolean, default=False)
     tip_timetolive = Column(Integer, default=15)
     name = Column(JSON)
     description = Column(JSON)

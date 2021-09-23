@@ -276,7 +276,6 @@ class MockDict:
             'enable_two_way_comments': True,
             'enable_two_way_messages': True,
             'enable_attachments': True,
-            'enable_rc_to_wb_files': True,
             'show_receivers_in_alphabetical_order': False,
         }
 

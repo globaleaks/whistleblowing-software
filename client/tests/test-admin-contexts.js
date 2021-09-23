@@ -18,7 +18,6 @@ describe("admin configure, add, and delete contexts", function() {
     await ctx.element(by.cssContainingText("button", "Advanced settings")).click();
 
     await ctx.element(by.model("context.enable_messages")).click();
-    await ctx.element(by.model("context.enable_rc_to_wb_files")).click();
 
     // Save the results
     await ctx.element(by.cssContainingText("button", "Save")).click();
