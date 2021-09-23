@@ -181,7 +181,7 @@ class AdminOperationHandler(OperationHandler):
         tid = self.request.tid
         language = self.state.tenant_cache[tid].default_language
 
-        user = yield get_user(tid,
+        user = yield get_user(self.session.user_tid,
                               self.session.user_id,
                               language)
 
