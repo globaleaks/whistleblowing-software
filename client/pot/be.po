@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-18 11:25+0000\n"
-"Last-Translator: Veranika Mazurkevich <v.mazurkievic@gmail.com>\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Belarusian (http://www.transifex.com/otf/globaleaks/language/be/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -427,12 +427,6 @@ msgstr "Першы"
 msgid "Last"
 msgstr "Апошні"
 
-msgid "Running"
-msgstr "Выконваецца"
-
-msgid "Not running"
-msgstr "Не выконваецца"
-
 msgid "Send a test email to your email address."
 msgstr "Адправіць тэставы ліст на свой адрас электроннай пошты."
 
@@ -552,8 +546,8 @@ msgstr "Не паказваць імёны карыстальнікаў"
 msgid "Size limit for file attachments"
 msgstr "Абмежаванне памеру далучаных файлаў"
 
-msgid "in megabytes"
-msgstr "у мегабайтах"
+msgid "megabytes"
+msgstr "мегабайты"
 
 msgid "Enable HSTS preload"
 msgstr "Уключыць папярэднюю загрузку HSTS"
@@ -611,9 +605,6 @@ msgstr "Нізкая"
 
 msgid "High"
 msgstr "Высокая"
-
-msgid "megabytes"
-msgstr "мегабайты"
 
 msgid "percentage"
 msgstr "працэнт"
@@ -776,9 +767,6 @@ msgstr "Дазволіць выкрывальнікам дасылаць пав�
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Дазволіць выкрывальнікам дадаваць далучаныя файлы да існуючых справаздачаў"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Дазволіць атрымальнікам загружаць файлы для выкрывальнікаў"
 
 msgid "Additional questionnaire"
 msgstr "Дадатковая анкета"
@@ -1208,32 +1196,20 @@ msgstr "Тэкст, які паказваецца пасля таго, як ка
 msgid "Confirm"
 msgstr "Пацвердзіць"
 
-msgid "Are you sure?"
-msgstr "Упэўненыя?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "У выніку аперацыі адбудзецца абнуленне канфігурацыі і яе нельга будзе адмяніць."
-
 msgid "Assign score points"
 msgstr "Налічыць балы"
+
+msgid "Are you sure?"
+msgstr "Упэўненыя?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Звярніце ўвагу, што ўсе спалучаныя дадзеныя будуць выдаленыя назаўжды."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Гэта дэма-платформа, калі ласка, не выкарыстоўвайце яе для падачы рэальных матэрыялаў."
+msgid "Enable two factor authentication"
+msgstr "Уключыць двухфактарную аўтэнтыфікацыю"
 
 msgid "Close"
 msgstr "Зачыніць"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Усталяваць на свой тэлефон праграму аўтэнтыфікацыі"
-
-msgid "Scan the QR code with the app"
-msgstr " Адсканаваць QR-код з дапамогай прыкладання"
-
-msgid "Enable two factor authentication"
-msgstr "Уключыць двухфактарную аўтэнтыфікацыю"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Перад тым як працягнуць, уважліва прачытайце дакументацыю тут:"
@@ -1245,6 +1221,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Зрабіце копію і захавайце яе ў бяспечным месцы. Гэта будзе неабходна, калі вы згубіце пароль, каб аднавіць доступ да ўліковага запісу без страты дадзеных."
+
+msgid "Enter a name for the copy"
+msgstr "Увесці назву для копіі"
+
+msgid "Request support"
+msgstr "Зрабіць запыт аб дапамозе"
+
+msgid "Thank you."
+msgstr "Дзякуй!"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Мы пастараемся звязацца з вамі як мага хутчэй."
+
+msgid "Submit"
+msgstr "Адправіць"
+
+msgid "The connection is not secure."
+msgstr "Дадзенае злучэнне неабароненае."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Платформа па -ранейшаму не сканфігураваная для злучэнняў HTTPS, і таму яе варта выкарыстоўваць толькі ў мэтах тэставання."
+
+msgid "Please write a motivation for the reply"
+msgstr "Калі ласка, напішыце прычыну такога адказу"
+
+msgid "Send"
+msgstr "Адправіць"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Пацвярджаючы, вы пераносіце сканчэнне тэрміну дзеяння справаздачы на:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Гэта дэма-платформа, калі ласка, не выкарыстоўвайце яе для падачы рэальных матэрыялаў."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Усталяваць на свой тэлефон праграму аўтэнтыфікацыі"
+
+msgid "Scan the QR code with the app"
+msgstr " Адсканаваць QR-код з дапамогай прыкладання"
 
 msgid "Welcome!"
 msgstr "Вітаем!"
@@ -1300,18 +1317,6 @@ msgstr "Даступ да рэсурсу можна атрымаць тольк�
 msgid "The upload request exceeds the size limit"
 msgstr "Файл для загрузкі перавышае максімальны памер"
 
-msgid "Request support"
-msgstr "Зрабіць запыт аб дапамозе"
-
-msgid "Thank you."
-msgstr "Дзякуй!"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Мы пастараемся звязацца з вамі як мага хутчэй."
-
-msgid "Submit"
-msgstr "Адправіць"
-
 msgid "Validation of email address change in progress."
 msgstr "Ідзе валідацыя змены адраса электроннай пошты."
 
@@ -1328,11 +1333,6 @@ msgid "Old password confirmation required"
 msgstr "Патрабуецца пацверджанне старога пароля"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Выглядае, вы наведваеце гэты сайт без дадатковых параметраў канфідэнцыйнасці і бяспекі!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "Настойліва раім наведваць гэты сайт з дапамогай прыкладання пад назвай Tor Browser, якое абараняе інфармацыю пра вашу асобу."
@@ -1342,9 +1342,6 @@ msgstr "Спампаваць Tor Browser"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Затым скапіяваць і ўставіць наступны адрас у Tor Browser:"
-
-msgid "Enter a name for the copy"
-msgstr "Увесці назву для копіі"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Вы ўжо загрузілі справаздачу? Увесці код."
@@ -1370,22 +1367,11 @@ msgstr "Разліковы час загрузкі:"
 msgid "Size:"
 msgstr "Памер:"
 
-msgid "The connection is not secure."
-msgstr "Дадзенае злучэнне неабароненае."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Платформа па -ранейшаму не сканфігураваная для злучэнняў HTTPS, і таму яе варта выкарыстоўваць толькі ў мэтах тэставання."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Атрымальнікі зрабілі вам запыт запоўніць дадатковую анкету."
 
 msgid "Fill the additional questionnaire"
 msgstr "Запоўніць дадатковую анкету."
-
-msgid "Send"
-msgstr "Адправіць"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Дазволіць выкрывальніку пакідаць каментары"
@@ -1410,40 +1396,6 @@ msgstr "Дазволіць выкрывальніку дадаваць да сп
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Дазволіць выкрывальніку адпраўляць паведамленні"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "Вы ўпэўненыя, што хочаце выдаліць справаздачу?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Усё, што тычыцца справаздачы і захоўваецца на платформе, будзе выдаленым."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Увага: ўсё, што захоўваецца па-за межамі платформы, напрыклад, захаваныя на камп'ютары файлы, трэба выдаляць уручную."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Вы ўпэўненыя, што хочаце выдаліць выбраныя справаздачы?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Калі ласка, пераканайцеся, што ўсе звязаныя дадзеныя належным чынам выдаленыя, каб атрымальнікі не мелі больш доступу да іх."
-
-msgid "Please write a motivation for the reply"
-msgstr "Калі ласка, напішыце прычыну такога адказу"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Вы ўпэўненыя, што хочаце перанесці сканчэнне тэрміну дзеяння справаздачы?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Пацвярджаючы, вы пераносіце сканчэнне тэрміну дзеяння справаздачы на:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Вы ўпэўненыя, што хочаце перанесці сканчэнне тэрміну дзеяння для ўсіх выбраных справаздачаў?"
 
 msgid "Questionnaire answers"
 msgstr "Адказы на пытанні анкеты"
@@ -1531,9 +1483,6 @@ msgstr "Пацверджанне"
 
 msgid "Invalid confirmation"
 msgstr "Несапраўднае пацверджанне"
-
-msgid "Complete"
-msgstr "Завершана"
 
 msgid "Invalid phone number"
 msgstr "Несапраўдны нумар тэлефону"

@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
-"Last-Translator: Pin Gu\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -432,12 +432,6 @@ msgstr "第一"
 msgid "Last"
 msgstr "最後"
 
-msgid "Running"
-msgstr "執行"
-
-msgid "Not running"
-msgstr "無執行"
-
 msgid "Send a test email to your email address."
 msgstr "寄一封測試信件到你的電子郵箱"
 
@@ -557,7 +551,7 @@ msgstr ""
 msgid "Size limit for file attachments"
 msgstr "附件檔案的大小限制"
 
-msgid "in megabytes"
+msgid "megabytes"
 msgstr "MB"
 
 msgid "Enable HSTS preload"
@@ -616,9 +610,6 @@ msgstr "低"
 
 msgid "High"
 msgstr "高"
-
-msgid "megabytes"
-msgstr "MB"
 
 msgid "percentage"
 msgstr "百分比"
@@ -781,9 +772,6 @@ msgstr "允許吹哨者傳送訊息"
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "讓揭密吹哨者可在已有的報告中新增附加檔案"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "可允許收件者上傳檔案給吹哨者"
 
 msgid "Additional questionnaire"
 msgstr "其它的問卷"
@@ -1213,32 +1201,20 @@ msgstr "用戶決定此選項後會出現的文字"
 msgid "Confirm"
 msgstr "確認"
 
-msgid "Are you sure?"
-msgstr "你確定嗎？"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "這項操作還重置設定且無法回復。"
-
 msgid "Assign score points"
 msgstr "指定得分點數"
+
+msgid "Are you sure?"
+msgstr "你確定嗎？"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "請注意所有相關的資料將會永久消失。"
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "這是示範平台，請勿利用它作掲密提交。"
+msgid "Enable two factor authentication"
+msgstr "啟用雙因子驗證"
 
 msgid "Close"
 msgstr "關閉"
-
-msgid "Install an authenticator app on your phone"
-msgstr "在手機上安裝驗證應用程式"
-
-msgid "Scan the QR code with the app"
-msgstr "透過應用程式掃描 QR  碼"
-
-msgid "Enable two factor authentication"
-msgstr "啟用雙因子驗證"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "繼續下一步之前請先仔細閱讀此文件："
@@ -1250,6 +1226,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "備份並將之存放在安全處，一旦遺失密碼則須用它來恢復帳號與讀取資料。"
+
+msgid "Enter a name for the copy"
+msgstr "為此複本輸入名稱"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "我們會盡快回覆。"
+
+msgid "Submit"
+msgstr "送出"
+
+msgid "The connection is not secure."
+msgstr "連接安全"
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "平台仍未設定好 HTTPS 連線,故應只能作測試目的使用"
+
+msgid "Please write a motivation for the reply"
+msgstr "請寫下這份回覆的動機"
+
+msgid "Send"
+msgstr "送出"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "請確認你將把截止日期延後到："
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "這是示範平台，請勿利用它作掲密提交。"
+
+msgid "Install an authenticator app on your phone"
+msgstr "在手機上安裝驗證應用程式"
+
+msgid "Scan the QR code with the app"
+msgstr "透過應用程式掃描 QR  碼"
 
 msgid "Welcome!"
 msgstr "歡迎！"
@@ -1305,18 +1322,6 @@ msgstr "資源僅能透過 TOR 網路讀取"
 msgid "The upload request exceeds the size limit"
 msgstr "上傳的請求超出檔案大小上限"
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr ""
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "我們會盡快回覆。"
-
-msgid "Submit"
-msgstr "送出"
-
 msgid "Validation of email address change in progress."
 msgstr "正在查驗電郵地址變更"
 
@@ -1333,11 +1338,6 @@ msgid "Old password confirmation required"
 msgstr "要求確認舊密碼"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "你瀏覧這個網站時沒有加強隱私與安全保護"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr ""
@@ -1347,9 +1347,6 @@ msgstr "下載 Tor 瀏覧器"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "然後在 TOR 瀏覧器上複制貼上以下的網址"
-
-msgid "Enter a name for the copy"
-msgstr "為此複本輸入名稱"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "是否已提交報告？請輸入其收件人。"
@@ -1375,22 +1372,11 @@ msgstr "預估上傳時間:"
 msgid "Size:"
 msgstr "大小:"
 
-msgid "The connection is not secure."
-msgstr "連接安全"
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "平台仍未設定好 HTTPS 連線,故應只能作測試目的使用"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "收件者已請求您填寫另一份問卷。"
 
 msgid "Fill the additional questionnaire"
 msgstr "填寫其它的問卷"
-
-msgid "Send"
-msgstr "送出"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "允許吹哨者作評論"
@@ -1415,40 +1401,6 @@ msgstr "揭密者可對此報告附加資料檔案"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "允許吹哨者傳送訊息"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "確認要刪除此份報告？"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "儲存在平台裏關於報告的所有資料都將刪除。"
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "請理解任何自平台上存入的東西，例如下載到本地端電腦上的資料，必須以手動方式刪除。"
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "確定要刪除所選取的報告？"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "請確認相關資料已適當刪除，所以收件暂無法再次讀取使用"
-
-msgid "Please write a motivation for the reply"
-msgstr "請寫下這份回覆的動機"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "被視為欺詐。"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "請確認你將把截止日期延後到："
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "確認要延長此報告的期限嗎？"
 
 msgid "Questionnaire answers"
 msgstr "問卷答案"
@@ -1536,9 +1488,6 @@ msgstr "確認"
 
 msgid "Invalid confirmation"
 msgstr "無效的確認"
-
-msgid "Complete"
-msgstr "完成"
 
 msgid "Invalid phone number"
 msgstr "無效的電話號碼"

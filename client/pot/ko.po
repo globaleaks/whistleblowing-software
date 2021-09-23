@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
-"Last-Translator: Daun Jeong <minori@minori.moe>\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -427,12 +427,6 @@ msgstr "처음"
 msgid "Last"
 msgstr "마지막"
 
-msgid "Running"
-msgstr "실행 중"
-
-msgid "Not running"
-msgstr "실행되지 않음"
-
 msgid "Send a test email to your email address."
 msgstr "이메일 주소로 테스트 이메일을 전송합니다."
 
@@ -552,8 +546,8 @@ msgstr "사용자 이름을 노출하지 않습니다"
 msgid "Size limit for file attachments"
 msgstr "첨부 파일 크기 제한"
 
-msgid "in megabytes"
-msgstr "(메가바이트)"
+msgid "megabytes"
+msgstr "메가바이트"
 
 msgid "Enable HSTS preload"
 msgstr "HSTS 사전 로드 허용"
@@ -611,9 +605,6 @@ msgstr "낮음"
 
 msgid "High"
 msgstr "높음"
-
-msgid "megabytes"
-msgstr "메가바이트"
 
 msgid "percentage"
 msgstr "퍼센트"
@@ -776,9 +767,6 @@ msgstr "내부 고발자가 메시지를 전송하도록 허용"
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "내부 고발자가 기존 보고서에 첨부 파일을 추가할 수 있도록 허용"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "수신자가 내부 고발자에게 파일을 업로드하도록 허용"
 
 msgid "Additional questionnaire"
 msgstr "추가 설문 조사"
@@ -1208,32 +1196,20 @@ msgstr "사용자가 옵션을 선택한 후 표시되는 텍스트압나더,"
 msgid "Confirm"
 msgstr "확인"
 
-msgid "Are you sure?"
-msgstr "계속하시겠습니까?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "작업 후 구성이 재설정되며 취소할 수 없습니다."
-
 msgid "Assign score points"
 msgstr "점수 포인트 할당"
+
+msgid "Are you sure?"
+msgstr "계속하시겠습니까?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "모든 관련 데이터가 영구적으로 삭제된다는 점에 유의하십시오."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "데모 플랫폼으로, 실제 제출에 사용할 수 없습니다."
+msgid "Enable two factor authentication"
+msgstr "이중 요인 인증 허용"
 
 msgid "Close"
 msgstr "종료"
-
-msgid "Install an authenticator app on your phone"
-msgstr "휴대전화 인증 앱 설치"
-
-msgid "Scan the QR code with the app"
-msgstr "앱으로 QR 코드 촬영"
-
-msgid "Enable two factor authentication"
-msgstr "이중 요인 인증 허용"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "계속하기 전에 다음 문서를 주의 깊게 읽어보십시오."
@@ -1245,6 +1221,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "사본을 생성하여 안전한 곳에 보관하십시오. 비밀번호를 잊어버릴 경우 데이터를 손실하지 않으며 계정에 다시 액세스하는 데 필요합니다."
+
+msgid "Enter a name for the copy"
+msgstr "사본 이름 입력"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr "감사합니다."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "가능한 한 빨리 답변을 드리겠습니다."
+
+msgid "Submit"
+msgstr "제출"
+
+msgid "The connection is not secure."
+msgstr "연결이 안전하지 않습니다."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "본 플랫폼은 아직 HTTPS 연결에 대해 구성되지 않았습니다. 따라서 시험용으로만 사용할 수 있습니다."
+
+msgid "Please write a motivation for the reply"
+msgstr "답변에 대한 동기를 작성하십시오"
+
+msgid "Send"
+msgstr "전송"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "확인 시 연기되는 만료 날짜:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "데모 플랫폼으로, 실제 제출에 사용할 수 없습니다."
+
+msgid "Install an authenticator app on your phone"
+msgstr "휴대전화 인증 앱 설치"
+
+msgid "Scan the QR code with the app"
+msgstr "앱으로 QR 코드 촬영"
 
 msgid "Welcome!"
 msgstr "환영합니다!"
@@ -1300,18 +1317,6 @@ msgstr "리소스는 Tor 네트워크를 통해서만 액세스할 수 있습니
 msgid "The upload request exceeds the size limit"
 msgstr "업로드 요청이 크기 제한을 초과합니다"
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr "감사합니다."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "가능한 한 빨리 답변을 드리겠습니다."
-
-msgid "Submit"
-msgstr "제출"
-
 msgid "Validation of email address change in progress."
 msgstr "이메일 주소 변경 검증 진행 중입니다."
 
@@ -1328,11 +1333,6 @@ msgid "Old password confirmation required"
 msgstr "이전 비밀번호 확인 필요"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "사용자가 다른 프라이버시 및 보안 없이 사이트를 탐색하는 것 같습니다!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "Tor Browser 앱을 사용하여 사이트를 방문할 것을 권장합니다. 확실하게 신원을 보호해 드립니다."
@@ -1342,9 +1342,6 @@ msgstr "Tor Browser 다운로드"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "이후, Tor Browser에 다음 주소를 복사하고 붙여넣으십시오."
-
-msgid "Enter a name for the copy"
-msgstr "사본 이름 입력"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "이미 보고서를 보관하셨습니까? 키 코드를 입력하십시오."
@@ -1370,22 +1367,11 @@ msgstr "예상 업로드 시간:"
 msgid "Size:"
 msgstr "크기:"
 
-msgid "The connection is not secure."
-msgstr "연결이 안전하지 않습니다."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "본 플랫폼은 아직 HTTPS 연결에 대해 구성되지 않았습니다. 따라서 시험용으로만 사용할 수 있습니다."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "수신자가 추가 설문 조사를 작성할 것을 요청했습니다."
 
 msgid "Fill the additional questionnaire"
 msgstr "추가 설문 조사 작성"
-
-msgid "Send"
-msgstr "전송"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "내부 고발자가 댓글을 작성하도록 허용"
@@ -1410,40 +1396,6 @@ msgstr "내부 고발자가 보고서에 첨부 파일을 추가하도록 허용
 
 msgid "Allow the whistleblower to send messages"
 msgstr "내부 고발자가 메시지를 전송할 수 있도록 허용"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "보고서를 삭제하시겠습니까?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "플랫폼에 보관된 보고서와 관련되어 저장된 모든 것이 삭제됩니다."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "컴퓨터에 저장한 파일 등, 플랫폼에 저장한 모든 것은 수동으로 제거해야 합니다."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "선택한 보고서를 삭제하시겠습니까?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "수신자가 추후 액세스할 수 없도록 모든 관련 데이터가 제대로 삭제되었는지 확인하십시오."
-
-msgid "Please write a motivation for the reply"
-msgstr "답변에 대한 동기를 작성하십시오"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "보고서 만료 날짜를 연기하시겠습니까?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "확인 시 연기되는 만료 날짜:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "선택한 모든 보고서에 대해 만료 날짜를 연기하시겠습니까?"
 
 msgid "Questionnaire answers"
 msgstr "설문 조사 답변"
@@ -1531,9 +1483,6 @@ msgstr "확인"
 
 msgid "Invalid confirmation"
 msgstr "유효하지 않은 확인"
-
-msgid "Complete"
-msgstr "완료"
 
 msgid "Invalid phone number"
 msgstr "유효하지 않은 전화번호"

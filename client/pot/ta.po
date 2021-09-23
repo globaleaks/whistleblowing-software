@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -428,12 +428,6 @@ msgstr ""
 msgid "Last"
 msgstr ""
 
-msgid "Running"
-msgstr "இயங்கும்"
-
-msgid "Not running"
-msgstr "இயங்கவில்லை"
-
 msgid "Send a test email to your email address."
 msgstr ""
 
@@ -553,7 +547,7 @@ msgstr ""
 msgid "Size limit for file attachments"
 msgstr "கோப்பு இணைப்புகளை அளவு எல்லை"
 
-msgid "in megabytes"
+msgid "megabytes"
 msgstr "மெகாபைட்"
 
 msgid "Enable HSTS preload"
@@ -612,9 +606,6 @@ msgstr ""
 
 msgid "High"
 msgstr "உயர்"
-
-msgid "megabytes"
-msgstr "மெகாபைட்"
 
 msgid "percentage"
 msgstr ""
@@ -777,9 +768,6 @@ msgstr "இம்மாதிரி செய்திகளை அனுப்�
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "விசில்ப்ளேவர்கள் ஏற்கனவே உள்ள சமர்ப்பிப்புகளில் இணைப்புகளை சேர்க்கட்டும்"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "பெறுநர்கள் விசில்ப்ளேருக்கு கோப்புகளை பதிவேற்ற அனுமதிக்கவும்"
 
 msgid "Additional questionnaire"
 msgstr "கூடுதல் கேள்வித்தாள்"
@@ -1209,32 +1197,20 @@ msgstr ""
 msgid "Confirm"
 msgstr "உறுதிப்படுத்தவும்"
 
-msgid "Are you sure?"
-msgstr "நீ சொல்வது உறுதியா?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "செயல்பாட்டை உள்ளமைவு மீட்டமைக்கும் மற்றும் செயல்தவிர்க்க முடியாது."
-
 msgid "Assign score points"
 msgstr "ஸ்கோர் புள்ளிகள் ஒதுக்க"
+
+msgid "Are you sure?"
+msgstr "நீ சொல்வது உறுதியா?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr ""
 
-msgid "This is a demo platform, please do not use it for real submissions."
+msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Close"
 msgstr "நெருக்கமான"
-
-msgid "Install an authenticator app on your phone"
-msgstr ""
-
-msgid "Scan the QR code with the app"
-msgstr ""
-
-msgid "Enable two factor authentication"
-msgstr ""
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr ""
@@ -1245,6 +1221,47 @@ msgstr ""
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
+msgstr ""
+
+msgid "Enter a name for the copy"
+msgstr "நகலுக்கு ஒரு பெயரை உள்ளிடவும்"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Submit"
+msgstr "சமர்ப்பி"
+
+msgid "The connection is not secure."
+msgstr "இணைப்பு பாதுகாப்பாக இல்லை."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "மேடையில் இன்னும் HTTPS இணைப்புகளுக்கு உள்ளமைக்கப்படவில்லை, எனவே சோதனை நோக்கங்களுக்காக மட்டுமே பயன்படுத்தப்பட வேண்டும்."
+
+msgid "Please write a motivation for the reply"
+msgstr "பதிலுக்கு ஒரு உள்நோக்கம் எழுத கொள்ளவும்"
+
+msgid "Send"
+msgstr "அனுப்பு"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "உறுதிப்படுத்துவதன் மூலம், நீங்கள் காலாவதி தேதி தள்ளிப்போட:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr ""
+
+msgid "Install an authenticator app on your phone"
+msgstr ""
+
+msgid "Scan the QR code with the app"
 msgstr ""
 
 msgid "Welcome!"
@@ -1301,18 +1318,6 @@ msgstr "வள மட்டுமே தோர் நெட்வொர்
 msgid "The upload request exceeds the size limit"
 msgstr "பதிவேற்ற கோரிக்கை அளவு வரம்பை மீறுகிறது"
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr ""
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
-
-msgid "Submit"
-msgstr "சமர்ப்பி"
-
 msgid "Validation of email address change in progress."
 msgstr "மின்னஞ்சல் முகவரி மாற்றுவதற்கான மாற்றம் முன்னேற்றம்."
 
@@ -1329,11 +1334,6 @@ msgid "Old password confirmation required"
 msgstr "பழைய கடவுச்சொல் உறுதிப்படுத்தல் அவசியம்"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "அதை நீங்கள் எந்த கூடுதல் தனியுரிமை மற்றும் பாதுகாப்பு இல்லாமல் இந்த தளத்தில் உலாவும் என்று தோன்றுகிறது!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr ""
@@ -1343,9 +1343,6 @@ msgstr "தோர் உலாவி பதிவிறக்க"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "பின்னர், நகல் மற்றும் தோர் உலாவி பின்வரும் முகவரியை ஒட்டவும்:"
-
-msgid "Enter a name for the copy"
-msgstr "நகலுக்கு ஒரு பெயரை உள்ளிடவும்"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "நீங்கள் ஏற்கனவே ஒரு சமர்ப்பிப்பு தாக்கல் செய்துள்ளனர்? உங்கள் முக்கிய குறியீடு உள்ளிடவும்."
@@ -1371,22 +1368,11 @@ msgstr "கணக்கிடப்பட்ட பதிவேற்ற நே�
 msgid "Size:"
 msgstr "அளவு:"
 
-msgid "The connection is not secure."
-msgstr "இணைப்பு பாதுகாப்பாக இல்லை."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "மேடையில் இன்னும் HTTPS இணைப்புகளுக்கு உள்ளமைக்கப்படவில்லை, எனவே சோதனை நோக்கங்களுக்காக மட்டுமே பயன்படுத்தப்பட வேண்டும்."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "கூடுதல் கேள்வித்தாள் நிரப்ப நிர்பந்திக்கப்பட்டவர்கள் உங்களிடம் கேட்டுள்ளனர்."
 
 msgid "Fill the additional questionnaire"
 msgstr "கூடுதல் கேள்வித்தாளை நிரப்புக"
-
-msgid "Send"
-msgstr "அனுப்பு"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "தகவல் தெரிவிப்பவர் கருத்துக்கள் எழுத அனுமதி"
@@ -1411,40 +1397,6 @@ msgstr "தகவல் தெரிவிப்பவர் சமர்ப்�
 
 msgid "Allow the whistleblower to send messages"
 msgstr "தகவல் தெரிவிப்பவர் செய்திகளை அனுப்ப அனுமதிக்க"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "நிச்சயமாக பயனர் நீக்க வேண்டுமா?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "மேடையில் சேமிக்கப்பட்ட சமர்ப்பிப்பு தொடர்பான எல்லாமே நீக்கப்படும்."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "மேடையில் இருந்து சேகரிக்கப்பட்ட எல்லாவற்றையும் அறிந்து கொள்ளுங்கள், எ.கா. உங்கள் கணினியில் சேமித்த கோப்புகள், கைமுறையாக நீக்கப்பட வேண்டும்."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "நிச்சயமாக பயனர் நீக்க வேண்டுமா?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "என்று பெற்றவர்கள் அதை அணுக முன்னெடுத்துச் செல்வதற்கு முடியாது தொடர்பான அனைத்து தரவு ஒழுங்காக நீக்கப்படும் என்பதை உறுதி செய்து கொள்ளுங்கள்."
-
-msgid "Please write a motivation for the reply"
-msgstr "பதிலுக்கு ஒரு உள்நோக்கம் எழுத கொள்ளவும்"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "நிச்சயமாக சமர்ப்பிப்பு காலாவதி தேதி ஒத்தி வைக்க வேண்டுமா?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "உறுதிப்படுத்துவதன் மூலம், நீங்கள் காலாவதி தேதி தள்ளிப்போட:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "நிச்சயமாக எல்லா தேர்ந்தெடுக்கப்பட்ட சமர்ப்பிப்புகளை காலாவதி தேதி ஒத்தி வைக்க வேண்டுமா?"
 
 msgid "Questionnaire answers"
 msgstr "கேள்வித்தாள் பதில்களை"
@@ -1532,9 +1484,6 @@ msgstr ""
 
 msgid "Invalid confirmation"
 msgstr ""
-
-msgid "Complete"
-msgstr "முழுமையான"
 
 msgid "Invalid phone number"
 msgstr "தவறான தொலைபேசி எண்"

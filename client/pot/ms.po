@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malay (http://www.transifex.com/otf/globaleaks/language/ms/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -426,12 +426,6 @@ msgstr "Pertama"
 msgid "Last"
 msgstr "Terakhir"
 
-msgid "Running"
-msgstr "Berjalan"
-
-msgid "Not running"
-msgstr "Tidak berjalan"
-
 msgid "Send a test email to your email address."
 msgstr "Hantar e-mel ujian kepada alamat e-mel anda."
 
@@ -551,8 +545,8 @@ msgstr "Jangan dedahkan nama pengguna"
 msgid "Size limit for file attachments"
 msgstr "Had saiz untuk lampiran fail"
 
-msgid "in megabytes"
-msgstr "dalam megabait"
+msgid "megabytes"
+msgstr "megabait"
 
 msgid "Enable HSTS preload"
 msgstr "Dayakan pramuatan HSTS"
@@ -610,9 +604,6 @@ msgstr "Rendah"
 
 msgid "High"
 msgstr "Tinggi"
-
-msgid "megabytes"
-msgstr "megabait"
 
 msgid "percentage"
 msgstr "peratusan"
@@ -775,9 +766,6 @@ msgstr "Benarkan pemberi maklumat menghantar mesej"
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Benarkan pemberi maklumat menambah lampiran kepada laporan sedia ada"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Benarkan penerima memuat naik fail kepada pemberi maklumat"
 
 msgid "Additional questionnaire"
 msgstr "Soal selidik tambahan"
@@ -1207,32 +1195,20 @@ msgstr "Teks ditunjukkan selepas pengguna telah memilih pilihan."
 msgid "Confirm"
 msgstr "Sahkan"
 
-msgid "Are you sure?"
-msgstr "Adakah anda pasti?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "Operasi akan menetapkan semula konfigurasi dan tidak boleh dibuat asal."
-
 msgid "Assign score points"
 msgstr "Tetapkan mata markah"
+
+msgid "Are you sure?"
+msgstr "Adakah anda pasti?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Sila ambil perhatian bahawa semua data berkaitan akan dipadam secara kekal."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Ini ialah platform demo, sila jangan gunakannya untuk penghantaran sebenar."
+msgid "Enable two factor authentication"
+msgstr "Dayakan pengesahan dua faktor"
 
 msgid "Close"
 msgstr "Tutup"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Pasang aplikasi pengesahan di telefon anda"
-
-msgid "Scan the QR code with the app"
-msgstr "Imbas kod QR dengan aplikasi"
-
-msgid "Enable two factor authentication"
-msgstr "Dayakan pengesahan dua faktor"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Sebelum meneruskan, sila baca dokumentasi dengan teliti di:"
@@ -1244,6 +1220,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Buat salinan dan simpannya di tempat yang selamat. Ia diperlukan jika anda kehilangan kata laluan anda untuk memulihkan akses kepada akaun anda tanpa kehilangan data."
+
+msgid "Enter a name for the copy"
+msgstr "Masukkan nama untuk salinan"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr "Terima kasih."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Kami akan cuba kembali kepada anda secepat mungkin."
+
+msgid "Submit"
+msgstr "Hantar"
+
+msgid "The connection is not secure."
+msgstr "Sambungan tidak selamat."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Platform masih tidak dikonfigurasikan untuk sambungan HTTPS dan oleh itu perlu hanya digunakan untuk tujuan pengujian."
+
+msgid "Please write a motivation for the reply"
+msgstr "Sila tuliskan motivasi untuk balas"
+
+msgid "Send"
+msgstr "Hantar"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Dengan mengesahkan, anda akan menunda tarikh tamat tempoh kepada:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Ini ialah platform demo, sila jangan gunakannya untuk penghantaran sebenar."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Pasang aplikasi pengesahan di telefon anda"
+
+msgid "Scan the QR code with the app"
+msgstr "Imbas kod QR dengan aplikasi"
 
 msgid "Welcome!"
 msgstr "Selamat datang!"
@@ -1299,18 +1316,6 @@ msgstr "Sumber hanya boleh diakses melalui rangkaian Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Permintaan muat naik melebihi had saiz"
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr "Terima kasih."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Kami akan cuba kembali kepada anda secepat mungkin."
-
-msgid "Submit"
-msgstr "Hantar"
-
 msgid "Validation of email address change in progress."
 msgstr "Pengesahan perubahan alamat e-mel sedang berjalan."
 
@@ -1327,11 +1332,6 @@ msgid "Old password confirmation required"
 msgstr "Pengesahan kata laluan lama diperlukan"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Nampaknya anda melayari laman ini tanpa sebarang privasi dan keselamatan tambahan!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "Anda sangat dinasihatkan untuk melayari laman web ini menggunakan aplikasi bernama Tor Browser, yang melindungi identiti anda."
@@ -1341,9 +1341,6 @@ msgstr "Muat Turun Tor Browser"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Kemudian, salin dan tampal alamat berikut ke dalam Tor Browser:"
-
-msgid "Enter a name for the copy"
-msgstr "Masukkan nama untuk salinan"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Sudahkah anda memfailkan laporan? Masukkan resit anda."
@@ -1369,22 +1366,11 @@ msgstr "Anggaran masa muat naik:"
 msgid "Size:"
 msgstr "Saiz:"
 
-msgid "The connection is not secure."
-msgstr "Sambungan tidak selamat."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Platform masih tidak dikonfigurasikan untuk sambungan HTTPS dan oleh itu perlu hanya digunakan untuk tujuan pengujian."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Penerima telah meminta anda mengisi soal selidik tambahan."
 
 msgid "Fill the additional questionnaire"
 msgstr "Isikan soal selidik tambahan"
-
-msgid "Send"
-msgstr "Hantar"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Benarkan pemberi maklumat menulis komen"
@@ -1409,40 +1395,6 @@ msgstr "Benarkan pemberi maklumat menambah lampiran kepada laporan"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Benarkan pemberi maklumat menghantar mesej"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "Adakah anda pasti anda mahu memadam laporan?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Semua yang berkaitan kepada laporan disimpan di platform akan dipadam."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Sila ambil perhatian bahawa semua yang disimpan di luar platform, contohnya fail yang anda simpan di komputer anda, perlu dipadam secara manual."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Adakah anda pasti anda mahu memadam laporan yang dipilih?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Sila pastikan bahawa semua data berkaitan dipadam dengan betul supaya penerima tidak dapat mengakses selanjutnya kepadanya."
-
-msgid "Please write a motivation for the reply"
-msgstr "Sila tuliskan motivasi untuk balas"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Adakah anda pasti anda mahu menunda tarikh tamat tempoh laporan?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Dengan mengesahkan, anda akan menunda tarikh tamat tempoh kepada:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Adakah anda pasti anda mahu menunda tarikh tamat tempoh untuk semua laporan yang dipilih?"
 
 msgid "Questionnaire answers"
 msgstr "Jawapan soal selidik"
@@ -1530,9 +1482,6 @@ msgstr "Pengesahan"
 
 msgid "Invalid confirmation"
 msgstr "Pengesahan tidak sah"
-
-msgid "Complete"
-msgstr "Lengkap"
 
 msgid "Invalid phone number"
 msgstr "Nombor telefon tidak sah"

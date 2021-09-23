@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -436,12 +436,6 @@ msgstr "پہلا"
 msgid "Last"
 msgstr "آخری"
 
-msgid "Running"
-msgstr "چل رہا ہے"
-
-msgid "Not running"
-msgstr "نہیں چل رہا"
-
 msgid "Send a test email to your email address."
 msgstr "اپنے ای میل ایڈریس کو ٹیسٹ ای میل بھیجیں"
 
@@ -561,8 +555,8 @@ msgstr ""
 msgid "Size limit for file attachments"
 msgstr "فائل اٹیچمنٹ کے سائز کی حد"
 
-msgid "in megabytes"
-msgstr "میگا بائٹس میں"
+msgid "megabytes"
+msgstr "میگا بائٹ"
 
 msgid "Enable HSTS preload"
 msgstr ""
@@ -620,9 +614,6 @@ msgstr "کم"
 
 msgid "High"
 msgstr "اونچا"
-
-msgid "megabytes"
-msgstr "میگا بائٹ"
 
 msgid "percentage"
 msgstr "فیصد"
@@ -785,9 +776,6 @@ msgstr "مخبر کو پیغامات بھیجنے کی اجازت دیں"
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "مخبر کو موجودہ گذارشات پر منسلکات شامل کرنے کی اجازت دیں"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr ""
 
 msgid "Additional questionnaire"
 msgstr ""
@@ -1217,32 +1205,20 @@ msgstr ""
 msgid "Confirm"
 msgstr "تصدیق کی توسیع"
 
-msgid "Are you sure?"
-msgstr "کیا آپ کو یقین ہے؟"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr ""
-
 msgid "Assign score points"
 msgstr "سکور پوائنٹس مقرر کریں"
+
+msgid "Are you sure?"
+msgstr "کیا آپ کو یقین ہے؟"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "خیال رکھئے کہ تمام متعلقہ ڈیٹا مناسب طریقے سے خارج کر دیا جاتا ہے"
 
-msgid "This is a demo platform, please do not use it for real submissions."
+msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Close"
 msgstr "بند کریں"
-
-msgid "Install an authenticator app on your phone"
-msgstr ""
-
-msgid "Scan the QR code with the app"
-msgstr ""
-
-msgid "Enable two factor authentication"
-msgstr ""
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr ""
@@ -1253,6 +1229,47 @@ msgstr ""
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
+msgstr ""
+
+msgid "Enter a name for the copy"
+msgstr ""
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Submit"
+msgstr "جمع کرائیں"
+
+msgid "The connection is not secure."
+msgstr ""
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Please write a motivation for the reply"
+msgstr "جواب کے لئے ایک حوصلہ افزائی لکھ کریں"
+
+msgid "Send"
+msgstr "بھیجیں"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "کی تصدیق کر کے، آپ کا وقت ختم ہونے کی تاریخ ملتوی ہو گی:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr ""
+
+msgid "Install an authenticator app on your phone"
+msgstr ""
+
+msgid "Scan the QR code with the app"
 msgstr ""
 
 msgid "Welcome!"
@@ -1309,18 +1326,6 @@ msgstr " صرف ٹور نیٹ ورک کے اندررہتے ہوئے وسائل �
 msgid "The upload request exceeds the size limit"
 msgstr "اپ لوڈ کی درخواست سائز کی حد سے تجاوز کر گئی ہے"
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr ""
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
-
-msgid "Submit"
-msgstr "جمع کرائیں"
-
 msgid "Validation of email address change in progress."
 msgstr ""
 
@@ -1337,11 +1342,6 @@ msgid "Old password confirmation required"
 msgstr "پرانے پاس ورڈ کی تصدیق کی ضرورت ہے"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "يوں معلوم ہوتا ہے کہ آپ بغير کسی تحفظ کے يہ ويب سائٹ ديکھ رہے ہيں ۔"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr ""
@@ -1351,9 +1351,6 @@ msgstr "ٹوربراؤزر ڈاؤن لوڈ کیجیے"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "اس کے بعد، ٹور براؤزر انسٹال کرنے کے لیے ذیل میں دیے گئے ایڈریس کو نقل  اور چسپاں  کریں۔"
-
-msgid "Enter a name for the copy"
-msgstr ""
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "کیا آپ  پہلے ہی گزارش جمع کرا چکے ہیں ؟ اپنی رسید جمع کرائیے "
@@ -1379,22 +1376,11 @@ msgstr "متوقع اپ لوڈ کے لئے وقت:"
 msgid "Size:"
 msgstr "Size:"
 
-msgid "The connection is not secure."
-msgstr ""
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr ""
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr ""
 
 msgid "Fill the additional questionnaire"
 msgstr ""
-
-msgid "Send"
-msgstr "بھیجیں"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "مخبر کو تبصرے لکھنے کے لئے کی اجازت دیں"
@@ -1419,40 +1405,6 @@ msgstr "مخبر کو اٹیچمنٹ شامل کرنے کی اجازت دیں"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "مخبر کو پیغامات بھیجنے کی اجازت دیں"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr ""
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr ""
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr ""
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr ""
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "خیال رکھئے کہ تمام متعلقہ ڈیٹا مناسب طریقے سے خارج کر دیا جاتا ہے اور تمام وصول کنندہ اب اس تک مزید رسائی حاصل نہیں کر سکتے "
-
-msgid "Please write a motivation for the reply"
-msgstr "جواب کے لئے ایک حوصلہ افزائی لکھ کریں"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "کیا آپ واقعی تجویز کے وقت ختم ہونے کی تاریخ ملتوی کرنا چاہتے ہیں؟"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "کی تصدیق کر کے، آپ کا وقت ختم ہونے کی تاریخ ملتوی ہو گی:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "کیا آپ تمام منتخب گذارشات کے لئے آخری اپ ڈیٹ کی تاریخ ملتوی کرنا چاہتے ہیں کہ یقین ہے؟"
 
 msgid "Questionnaire answers"
 msgstr "سوالنامہ کے جوابات"
@@ -1540,9 +1492,6 @@ msgstr "Confirmation"
 
 msgid "Invalid confirmation"
 msgstr ""
-
-msgid "Complete"
-msgstr "Complete"
 
 msgid "Invalid phone number"
 msgstr ""

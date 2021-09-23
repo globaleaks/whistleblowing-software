@@ -44,7 +44,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -465,12 +465,6 @@ msgstr "اﻷول"
 msgid "Last"
 msgstr "اﻷخير"
 
-msgid "Running"
-msgstr "يعمل"
-
-msgid "Not running"
-msgstr "لا يعمل"
-
 msgid "Send a test email to your email address."
 msgstr " ارسال بريد الكتروني تجريبي الى عنوان البريد الإلكتروني الخاص بك."
 
@@ -590,7 +584,7 @@ msgstr "لا تكشف أسماء المستخدمين"
 msgid "Size limit for file attachments"
 msgstr "الحد الأقصى لحجم الملفات المرفقة"
 
-msgid "in megabytes"
+msgid "megabytes"
 msgstr "بالميغابايت"
 
 msgid "Enable HSTS preload"
@@ -649,9 +643,6 @@ msgstr "منخفض"
 
 msgid "High"
 msgstr "عالٍ"
-
-msgid "megabytes"
-msgstr "بالميغابايت"
 
 msgid "percentage"
 msgstr "بالنسبة المئوية"
@@ -814,9 +805,6 @@ msgstr "السماح للمبلغين بارسال رسائل"
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "تمكين المبلغين من اضافة مرفقات للبلاغات الموجودة"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "السماح للمتلقّين برفع ملفات للمبلغين."
 
 msgid "Additional questionnaire"
 msgstr "الاستبيان اﻹضافي"
@@ -1246,32 +1234,20 @@ msgstr "النص الذى يظهر بعد أن ينتقى المستخدم ال�
 msgid "Confirm"
 msgstr "تأكيد "
 
-msgid "Are you sure?"
-msgstr "هل أنت متأكد؟"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "ستؤدي العملية إلى إعادة ضبط التهيئة ولا يمكن التراجع عنها."
-
 msgid "Assign score points"
 msgstr "تخصيص نقاط المجموع"
+
+msgid "Are you sure?"
+msgstr "هل أنت متأكد؟"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "يرجى ملاحظة أنه سيتم حذف كل البيانات المتعلقة بشكل دائم."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "هذه منصة تجريبية، يرجى عدم استخدامها في أي بلاغ حقيقي."
+msgid "Enable two factor authentication"
+msgstr "فعّل الاستيثاق ذي المعاملين"
 
 msgid "Close"
 msgstr "‮إغلاق"
-
-msgid "Install an authenticator app on your phone"
-msgstr "تثبيت تطبيق استيثاقي على هاتفك"
-
-msgid "Scan the QR code with the app"
-msgstr "امسح رمز QR باستخدام التطبيق"
-
-msgid "Enable two factor authentication"
-msgstr "فعّل الاستيثاق ذي المعاملين"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "قبل المتابعة، يرجى قراءة التوثيق جيدا في:"
@@ -1283,6 +1259,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "اعمل نسخة منه وخزنها فى مكان آمن. اذا فقدت كلمة السر سيكون مهما لاسترداد الدخول إلى حسابك دون فقدان أى بيانات."
+
+msgid "Enter a name for the copy"
+msgstr "أدخل اسما من أجل النسخة"
+
+msgid "Request support"
+msgstr "اطلب مساعدة"
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "سوف نسعى للاتصال بك مجددًا في أقرب وقت ممكن."
+
+msgid "Submit"
+msgstr "تقديم"
+
+msgid "The connection is not secure."
+msgstr "الاتصال غير آمن."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "لم تتم تهيئة المنصة بعد لاتصالات HTTPS و على اساس ذلك ينبغي أن تستخدم فقط لغرض الاختبار."
+
+msgid "Please write a motivation for the reply"
+msgstr "يرجى كتابة دافع للاجابة"
+
+msgid "Send"
+msgstr "إرسال"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "عند التأكيد، سوف يؤجل موعد انتهاء الصلاحية إلى:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "هذه منصة تجريبية، يرجى عدم استخدامها في أي بلاغ حقيقي."
+
+msgid "Install an authenticator app on your phone"
+msgstr "تثبيت تطبيق استيثاقي على هاتفك"
+
+msgid "Scan the QR code with the app"
+msgstr "امسح رمز QR باستخدام التطبيق"
 
 msgid "Welcome!"
 msgstr "مرحبا!"
@@ -1338,18 +1355,6 @@ msgstr "يمكن الوصول إلى المحتوى فقط ضمن شبكة Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "الملفات المراد رفعها تتخطى السعة المسموح بها."
 
-msgid "Request support"
-msgstr "اطلب مساعدة"
-
-msgid "Thank you."
-msgstr ""
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "سوف نسعى للاتصال بك مجددًا في أقرب وقت ممكن."
-
-msgid "Submit"
-msgstr "تقديم"
-
 msgid "Validation of email address change in progress."
 msgstr "جارى التحقق من التغيير في عنوان البريد الإلكتروني."
 
@@ -1366,11 +1371,6 @@ msgid "Old password confirmation required"
 msgstr "تأكيد كلمة المرور القديمةمطلوب"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "يبدو أنك تتصفّح هذا الموقع دون أيّ ضمانات خصوصيّة أو أمن اضافيّة!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "يُنصح بشدة بزيارة هذا الموقع باستخدام متصفح الانترنت Tor Browser ، الذي يحمي هويتك."
@@ -1380,9 +1380,6 @@ msgstr "تحميل متصفح Tor ."
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "ثمّ، انسخ والصق العنوان التالي في متصفّح Tor."
-
-msgid "Enter a name for the copy"
-msgstr "أدخل اسما من أجل النسخة"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "هل قدمت بلاغا سابقا؟ أدخل الاستلام الخاص بك."
@@ -1408,22 +1405,11 @@ msgstr "وقت الرّفع التقديري:"
 msgid "Size:"
 msgstr "حجم:"
 
-msgid "The connection is not secure."
-msgstr "الاتصال غير آمن."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "لم تتم تهيئة المنصة بعد لاتصالات HTTPS و على اساس ذلك ينبغي أن تستخدم فقط لغرض الاختبار."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "طلب المستلمون منك إكمال استبيان إضافي."
 
 msgid "Fill the additional questionnaire"
 msgstr "قم بإكمال الاستبيان الإضافي,"
-
-msgid "Send"
-msgstr "إرسال"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "تمكين المبلغ من كتابة تعليقات"
@@ -1448,40 +1434,6 @@ msgstr "السّماح للمبلغين باضافة مرفقات إلى الب�
 
 msgid "Allow the whistleblower to send messages"
 msgstr "تمكين المبلغ من ارسال رسائل"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "هل أنت متأكد أنك تريد حذف المستخدم؟"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "  سيتم حذف كل ماهو مخزن على المنصة في علاقة بالبلاغ."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "يرجى أن تكون على علم بأن كل شيء تم تخزينه من المنصة، على سبيل المثال، الملفات التي قمت بحفظها على جهاز الكمبيوتر الخاص بك، يجب أن يتم حذفها يدويا."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "هل أنت متأكد أنك تريد حذف المستخدم؟"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "الرجاء الإنتباه  لأن يتم حذف كل المعلومات المرتبطة بشكل ملائم، كي لا يتمكن المتلقين من الوصول إليها."
-
-msgid "Please write a motivation for the reply"
-msgstr "يرجى كتابة دافع للاجابة"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "هل أنت متأكد أنك تريد تأجيل تاريخ انتهاء صلاحية البلاغ؟"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "عند التأكيد، سوف يؤجل موعد انتهاء الصلاحية إلى:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "هل أنت متأكد من أنك تريد تأجيل تاريخ انتهاء صلاحية كل البلاغات المختارة؟"
 
 msgid "Questionnaire answers"
 msgstr "إجابات الاستبيان"
@@ -1569,9 +1521,6 @@ msgstr "تأكيد"
 
 msgid "Invalid confirmation"
 msgstr "تأكيد غير صالح"
-
-msgid "Complete"
-msgstr "اكتمل"
 
 msgid "Invalid phone number"
 msgstr "رقم هاتف غير صالح"

@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
-"Last-Translator: Arthit Suriyawongkul\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -434,12 +434,6 @@ msgstr "ส่วนแรก"
 msgid "Last"
 msgstr "ส่วนสุดท้าย"
 
-msgid "Running"
-msgstr "กำลังทำงาน"
-
-msgid "Not running"
-msgstr "ไม่ได้กำลังทำงาน"
-
 msgid "Send a test email to your email address."
 msgstr "ส่งอีเมลทดสอบไปยังที่อยู่อีเมลของคุณ"
 
@@ -559,7 +553,7 @@ msgstr "อย่าเปิดเผยชื่อของผู้ใช้
 msgid "Size limit for file attachments"
 msgstr "ขีดจำกัดขนาดเอกสารแนบ"
 
-msgid "in megabytes"
+msgid "megabytes"
 msgstr "เมกะไบต์"
 
 msgid "Enable HSTS preload"
@@ -618,9 +612,6 @@ msgstr "ต่ำ"
 
 msgid "High"
 msgstr "สูง"
-
-msgid "megabytes"
-msgstr "เมกะไบต์"
 
 msgid "percentage"
 msgstr "ร้อยละ"
@@ -783,9 +774,6 @@ msgstr "อนุญาตให้ผู้แจ้งเบาะแสส่
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "อนุญาตให้ผู้แจ้งเบาะแสเพิ่มเอกสารแนบในรายงานที่มีอยู่"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "อนุญาตให้ผู้รับอัปโหลดแฟ้มไปให้ผู้แจ้งเบาะแส"
 
 msgid "Additional questionnaire"
 msgstr "แบบสอบถามเพิ่มเติม"
@@ -1215,32 +1203,20 @@ msgstr "ข้อความแสดงหลังจากผู้ใช้
 msgid "Confirm"
 msgstr "ยืนยัน"
 
-msgid "Are you sure?"
-msgstr "คุณแน่ใจหรือไม่?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "คำสั่งนี้จะล้างการปรับค่าและไม่สามารถย้อนคืนได้"
-
 msgid "Assign score points"
 msgstr "กำหนดแต้มคะแนน"
+
+msgid "Are you sure?"
+msgstr "คุณแน่ใจหรือไม่?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "โปรดทราบว่าข้อมูลที่เชื่อมโยงกันทั้งหมดจะถูกลบออกอย่างถาวร"
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "นี่เป็นแพลตฟอร์มทดลอง กรุณาอย่าใช้เพื่อส่งรายงานจริง"
+msgid "Enable two factor authentication"
+msgstr "เปิดใช้การยืนยันตัวตนแบบสองปัจจัย"
 
 msgid "Close"
 msgstr "ปิด"
-
-msgid "Install an authenticator app on your phone"
-msgstr "ติดตั้งแอปยืนยันตัวตนบนโทรศัพท์ของคุณ"
-
-msgid "Scan the QR code with the app"
-msgstr "สแกนรหัส QR ด้วยแอป"
-
-msgid "Enable two factor authentication"
-msgstr "เปิดใช้การยืนยันตัวตนแบบสองปัจจัย"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "ก่อนจะไปต่อ กรุณาอ่านเอกสารอย่างรอบคอบที่:"
@@ -1252,6 +1228,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "ทำสำเนาและเก็บไว้ในที่ปลอดภัย ข้อมูลนี้มีความจำเป็นเมื่อคุณลืมรหัสผ่าน หากคุณต้องจะกู้คืนการเข้าถึงบัญชีของคุณโดยไม่มีข้อมูลสูญหาย"
+
+msgid "Enter a name for the copy"
+msgstr "ใส่ชื่อสำหรับสำเนา"
+
+msgid "Request support"
+msgstr "ขอการสนับสนุน"
+
+msgid "Thank you."
+msgstr "ขอบคุณ."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "เราจะติดต่อกลับไปหาคุณเร็วที่สุดเท่าที่จะเป็นไปได้"
+
+msgid "Submit"
+msgstr "ส่ง"
+
+msgid "The connection is not secure."
+msgstr "การเชื่อมต่อไม่ปลอดภัย"
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "แพลตฟอร์มยังไม่ได้รับการปรับค่าเพื่อใช้การเชื่อมต่อแบบ HTTPS ดังนั้นจึงควรใช้เพื่อการทดสอบเท่านั้น"
+
+msgid "Please write a motivation for the reply"
+msgstr "กรุณาเขียนแรงจูงใจสำหรับการตอบกลับ"
+
+msgid "Send"
+msgstr "ส่ง"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "เมื่อยืนยัน คุณจะเลื่อนวันหมดอายุไปที่:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "นี่เป็นแพลตฟอร์มทดลอง กรุณาอย่าใช้เพื่อส่งรายงานจริง"
+
+msgid "Install an authenticator app on your phone"
+msgstr "ติดตั้งแอปยืนยันตัวตนบนโทรศัพท์ของคุณ"
+
+msgid "Scan the QR code with the app"
+msgstr "สแกนรหัส QR ด้วยแอป"
 
 msgid "Welcome!"
 msgstr "ยินดีต้อนรับ!"
@@ -1307,18 +1324,6 @@ msgstr "สามารถเข้าถึงทรัพยากรได้
 msgid "The upload request exceeds the size limit"
 msgstr "ขนาดการขออัปโหลดเกินขีดจำกัด"
 
-msgid "Request support"
-msgstr "ขอการสนับสนุน"
-
-msgid "Thank you."
-msgstr "ขอบคุณ."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "เราจะติดต่อกลับไปหาคุณเร็วที่สุดเท่าที่จะเป็นไปได้"
-
-msgid "Submit"
-msgstr "ส่ง"
-
 msgid "Validation of email address change in progress."
 msgstr "กำลังดำเนินการตรวจความถูกต้องของอีเมลของคุณ"
 
@@ -1335,11 +1340,6 @@ msgid "Old password confirmation required"
 msgstr "จำเป็นต้องยืนยันรหัสผ่านเก่า"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "ดูเหมือนว่าคุณกำลังเรียกดูเว็บไซต์นี้โดยไม่มีมาตรการความเป็นส่วนตัวหรือความปลอดภัย!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "เราแนะนำเป็นอย่างยิ่ง ให้คุณเข้าถึงเว็บไซต์นี้ด้วยแอปที่ชื่อ Tor Browser มันจะปกป้องตัวตนของคุณ"
@@ -1349,9 +1349,6 @@ msgstr "ดาวน์โหลด Tor Browser"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "จากนั้น คัดลอกและวางที่อยู่นี้ลงใน Tor Browser:"
-
-msgid "Enter a name for the copy"
-msgstr "ใส่ชื่อสำหรับสำเนา"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "คุณได้ยื่นรายงานแล้วใช่ไหม? ใส่ใบรับของคุณ"
@@ -1377,22 +1374,11 @@ msgstr "เวลาในการอัปโหลดโดยประมา
 msgid "Size:"
 msgstr "ขนาด:"
 
-msgid "The connection is not secure."
-msgstr "การเชื่อมต่อไม่ปลอดภัย"
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "แพลตฟอร์มยังไม่ได้รับการปรับค่าเพื่อใช้การเชื่อมต่อแบบ HTTPS ดังนั้นจึงควรใช้เพื่อการทดสอบเท่านั้น"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "ผู้รับได้ร้องขอให้คุณกรอกแบบสอบถามเพิ่มเติม"
 
 msgid "Fill the additional questionnaire"
 msgstr "กรอกแบบสอบถามเพิ่มเติม"
-
-msgid "Send"
-msgstr "ส่ง"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "อนุญาตให้ผู้แจ้งเบาะแสเขียนความคิดเห็น"
@@ -1417,40 +1403,6 @@ msgstr "อนุญาตให้ผู้แจ้งเบาะแสแน
 
 msgid "Allow the whistleblower to send messages"
 msgstr "อนุญาตให้ผู้แจ้งเบาะแสส่งข้อความ"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "คุณแน่ใจหรือไม่ว่าคุณต้องการจะลบรายงาน?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "ทุกสิ่งทุกอย่างที่เกี่ยวข้องกับรายงานดังกล่าวที่เก็บอยู่ในแพลตฟอร์มจะถูกลบ"
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "อย่าลืมว่า คุณจะต้องลบทุกสิ่งทุกอย่างที่เก็บเอาไว้ข้างนอกแพลตฟอร์ม (เช่น แฟ้มที่คุณบันทึกไว้ในคอมพิวเตอร์ของคุณ) ด้วยตัวเอง"
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "คุณแน่ใจหรือไม่ว่าคุณต้องการลบรายงานที่เลือกไว้?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "กรุณาตรวจสอบให้แน่ใจว่าข้อมูลที่เกี่ยวข้องทั้งหมดได้ถูกลบออกอย่างถูกต้อง เพื่อให้ผู้รับไม่สามารถเข้าถึงได้"
-
-msgid "Please write a motivation for the reply"
-msgstr "กรุณาเขียนแรงจูงใจสำหรับการตอบกลับ"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "คุณแน่ใจหรือไม่ว่าคุณต้องการเลื่อนวันหมดอายุของรายงานดังกล่าว?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "เมื่อยืนยัน คุณจะเลื่อนวันหมดอายุไปที่:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "คุณแน่ใจหรือว่าคุณต้องการที่จะเลื่อนวันหมดอายุสำหรับการส่งเลือกทั้งหมดหรือไม่"
 
 msgid "Questionnaire answers"
 msgstr "คำตอบของแบบสอบถาม"
@@ -1538,9 +1490,6 @@ msgstr "การยืนยัน"
 
 msgid "Invalid confirmation"
 msgstr "การยืนยันไม่ถูกต้อง"
-
-msgid "Complete"
-msgstr "เสร็จสิ้น"
 
 msgid "Invalid phone number"
 msgstr "หมายเลขโทรศัพท์ไม่ถูกต้อง"

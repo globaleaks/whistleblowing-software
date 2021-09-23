@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -430,12 +430,6 @@ msgstr "ފުރަތަމަ"
 msgid "Last"
 msgstr "ފަހު"
 
-msgid "Running"
-msgstr "ހިނގަމުންދާ"
-
-msgid "Not running"
-msgstr "ކުރިޔަށްނުދާ"
-
 msgid "Send a test email to your email address."
 msgstr "ތިޔަފަރާތުގެ އީމެއިލް އެޑްރެސްއަށް ޓެސްޓް އީމެއިލްއެއް ފޮނުވުމަށް"
 
@@ -555,8 +549,8 @@ msgstr ""
 msgid "Size limit for file attachments"
 msgstr "ފައިލް އެޓޭޗްމެންޓްގެ ސައިޒުގެ ތަފްސީލް"
 
-msgid "in megabytes"
-msgstr "މެގަބައިޓްއިން"
+msgid "megabytes"
+msgstr "މެގަބައިޓް"
 
 msgid "Enable HSTS preload"
 msgstr "އެޗް.އެސް.ޓީ.އެސް ޕްރިލޯޑް ހިޔާރުކުރެއްވުމަށް"
@@ -614,9 +608,6 @@ msgstr "ތިރި"
 
 msgid "High"
 msgstr "މަތި"
-
-msgid "megabytes"
-msgstr "މެގަބައިޓް"
 
 msgid "percentage"
 msgstr "ޕަސެންޓު"
@@ -779,9 +770,6 @@ msgstr "މެސެޖު ފޮނުވުމުގެ ޙުއްދަ ވިސިލްބްލޯވާ�
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "ކުރީގެ ރިޕޯޓްތަކުގައި އާ ފައިލްތަށް ހިމެނުމުގެ ޙުއްދަ ވިސިލްބްލޯވާރސް އަށް ދިނުމަށް. "
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "ވިސިލްބްލޯވަރއަށް ދޭންބޭނުންފުޅުވާ ފައިލްތައް ހިމެނުމުގެ ޙުއްދަ ރިޕޯޓް ލިވިލައްވާ ފަރާތްތަކަށް ދިނުމަށް. "
 
 msgid "Additional questionnaire"
 msgstr "އިތުރު ސުވާލުކަރުދާސް"
@@ -1211,32 +1199,20 @@ msgstr "ބޭނުންކުރާ ފަރާތުން ވަކި ކަމެއް އިޚްތި
 msgid "Confirm"
 msgstr "ކޮންފަރމް ކުރެއްވުމަށް"
 
-msgid "Are you sure?"
-msgstr "ޔަގީންކަން އެބައޮތްތޯ؟"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "ޔަގީންކުރައްވަން ފިތައް އޮއްބަވާލެއްވުމުން ހުރިހާ ކޮއްފިގަރޭޝަންއެއް ކުރިން ހުރިގޮތަށް ރީސެޓް ވާނެ، އަދި ރީސެޓްކުރުމުގެ ކުރިން ގެނައި ބަދަލުތައް އެއްކޮށް ފުހެވިގެންދާނެ. "
-
 msgid "Assign score points"
 msgstr "ސްކޯ ޕޮއިންޓް އަސައިން ކުރެއްވުމަށް"
+
+msgid "Are you sure?"
+msgstr "ޔަގީންކަން އެބައޮތްތޯ؟"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "މިކަމާޢި ގުޅޭ ހުރިހާ މަޢުލޫމާތެއް ޑިލީޓް ކުރެވޭނެކަން ދެނެވަޑައިގަންނަވާތި"
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "މީ މިސާލު ޕްލެޓްފޯމްއެއް، މި ޕްލެޓްފޯމް ބޭނުންކޮއްގެން އަސްލު ރިޕޯޓު ހުށައެއްނޭޅޭނެ. "
+msgid "Enable two factor authentication"
+msgstr "ޓޫ ފެކްޓަރ އޮތެންޓިކޭޝަން އޮން ކުރެއްވުމަށް"
 
 msgid "Close"
 msgstr "ލައްޕާ"
-
-msgid "Install an authenticator app on your phone"
-msgstr "ހުއްދަކަށަވަރުކުރާ އެޕްލިކޭޝަނެއް ފޯނަށް އިންސްޓޯލްކުރައްވާ"
-
-msgid "Scan the QR code with the app"
-msgstr "އެޕްލިކޭޝަނުން ކިއު އާރު ކޯޑު ސްކޭން ކުރައްވާ"
-
-msgid "Enable two factor authentication"
-msgstr "ޓޫ ފެކްޓަރ އޮތެންޓިކޭޝަން އޮން ކުރެއްވުމަށް"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "ކުރިއަށް ދިޔުމުގެ ކުރިން: ގައިވާ ޑޮކިއުމެންޓޭޝަން ރަނގަޅަށް ކިޔުން ވަރަށް މުހިންމު"
@@ -1248,6 +1224,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "ކޮޕީއެއް ހައްދާފައި ރައްކާތެރިކޮށް ފޮރުވާފައި ބަހައްޓަން އިލްތިމާސްކުރަން. ޕާސްވާޑް ހަނދާންނެތިއްޖެ ނުވަތަ އެކައުންޓަށ ލިބިފައިވާ އެކްސެސް ގެއްލިއްޖެނަމަ އަލުން އެކައުންޓް ހޯދަން މި މައުލޫއްމާތު ބޭނުންވާނެ. "
+
+msgid "Enter a name for the copy"
+msgstr "ކޮޕީއަށް ނަމެއް ހިޔާރުކުރައްވާ"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr "ޝުކުރިއްޔާ."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "ވީހާވެސް އަވަހަކަށް ޖަވާބު އަރުވާނަން. "
+
+msgid "Submit"
+msgstr "ސަބްމިޓް ކުރައްވާ"
+
+msgid "The connection is not secure."
+msgstr "ކަނެކްޝަން ރައްކާތެރިއެއް ނޫން. "
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "މި ޕްލެޓްފޯމް އެޗް.ޓީ.ޓީ.ޕީ.އެސް ކަނެކްޝަންސްއަށް ކޮންފިގަރ ކޮއްފަކާއެއްނުވޭ. އެހެންކަމުން މި ކަނެކްޝަން ބޭނުންކުރެވޭނީ ހަމައެކަނި ޓެސްޓްކުރުމަށް. "
+
+msgid "Please write a motivation for the reply"
+msgstr "ރައްދެއް ދެއްވުމަށް ޤަސްތުކުރެއްވި ސަބަބު ލިޔުއްވާ"
+
+msgid "Send"
+msgstr "ފޮނުވަން"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "ދުވަސްހަމަވާ ތާރީޙް:  އަށް ލަސްކުރަން ބޭނުންފުޅުކަން ޔަގީންކުރެއްވުމަށް. "
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "މީ މިސާލު ޕްލެޓްފޯމްއެއް، މި ޕްލެޓްފޯމް ބޭނުންކޮއްގެން އަސްލު ރިޕޯޓު ހުށައެއްނޭޅޭނެ. "
+
+msgid "Install an authenticator app on your phone"
+msgstr "ހުއްދަކަށަވަރުކުރާ އެޕްލިކޭޝަނެއް ފޯނަށް އިންސްޓޯލްކުރައްވާ"
+
+msgid "Scan the QR code with the app"
+msgstr "އެޕްލިކޭޝަނުން ކިއު އާރު ކޯޑު ސްކޭން ކުރައްވާ"
 
 msgid "Welcome!"
 msgstr "މަރުހަބާ"
@@ -1303,18 +1320,6 @@ msgstr "ވަޞީލަތްތަކުގެ ބޭނުންކުރެވޭނީ ހަމައެކ
 msgid "The upload request exceeds the size limit"
 msgstr "އަޕްލޯޑް ކުރަން ބޭނުންވާ މީޑިއާގެ ސައިޒް ހުއްދަ ކުރެވިފައިވާ މިންވަރަށްވުރެ ބޮޑު"
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr "ޝުކުރިއްޔާ."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "ވީހާވެސް އަވަހަކަށް ޖަވާބު އަރުވާނަން. "
-
-msgid "Submit"
-msgstr "ސަބްމިޓް ކުރައްވާ"
-
 msgid "Validation of email address change in progress."
 msgstr "އީމެއިލް އެޑްރެސް ބަދަލުކުރުމުގެ މަސައްކަތް ކުރިޔަށް ދަނީ. "
 
@@ -1331,11 +1336,6 @@ msgid "Old password confirmation required"
 msgstr "ޔަގީންކުރުމަށް ކުރީގެ ޕާސްވޯޑް ބޭނުންވޭ "
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "މި ސައިޜް ބޭނުންކުރައްވަމުން ތިޔަ ގެންދަވަނީ އިތުރު ޕްރައިވެސީއެއް އަދި ސެކިއުރިޓީއެއް ނެތި"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr ""
@@ -1345,9 +1345,6 @@ msgstr "ޓޯރ ބްރައުޒަރ ޑައުންލޯޑްކުރުމަށް"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "ޓޯރ ބްރައުޒަރ އަށް މި އެޑްރެސް ކޮޕީ ކުރައްވާ: "
-
-msgid "Enter a name for the copy"
-msgstr "ކޮޕީއަށް ނަމެއް ހިޔާރުކުރައްވާ"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "ރިޕޯޓް ފައިލް ކޮއްފާވާނަމަ ރަޝީދު ނަންބަރ ޖައްސަވާ"
@@ -1373,22 +1370,11 @@ msgstr "އަޕްލޯޑްވާން ނަގާނެކަމަށް ލަފާކުރެވޭ �
 msgid "Size:"
 msgstr "ސައިޒު:"
 
-msgid "The connection is not secure."
-msgstr "ކަނެކްޝަން ރައްކާތެރިއެއް ނޫން. "
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "މި ޕްލެޓްފޯމް އެޗް.ޓީ.ޓީ.ޕީ.އެސް ކަނެކްޝަންސްއަށް ކޮންފިގަރ ކޮއްފަކާއެއްނުވޭ. އެހެންކަމުން މި ކަނެކްޝަން ބޭނުންކުރެވޭނީ ހަމައެކަނި ޓެސްޓްކުރުމަށް. "
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "ރިޕޯޓް ލިބިލެއްވި ފަރާތްތަކުން އިތުރު ސަުވާލު ކަރުދާހަކަށް ޖަވާބުދިނުމަށް އެދިއްޖެ. "
 
 msgid "Fill the additional questionnaire"
 msgstr "އިތުރު ސުވާލުކަރުދާހަށް ޖަވާބު ދޭން. "
-
-msgid "Send"
-msgstr "ފޮނުވަން"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "ކޮމެންޓްސް ލިޔުމުގެ ޙުއްދަ ވިސިލްބްލޯވާރ އަށް ދިނުމަށް. "
@@ -1413,40 +1399,6 @@ msgstr "ރިޕޯޓުގައި އާ ފައިލްތަށް ހިމެނުމުގެ ޙު
 
 msgid "Allow the whistleblower to send messages"
 msgstr "މެސެޖު ފޮނުވުމުގެ ޙުއްދަ ވިސިލްބްލޯވާރ އަށް ދިނުމަށް. "
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "ރިޕޯޓުގެ ފުހެލަން ބޭނުންކަން ޔަގީން؟ "
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "ރިޕޯޓާއި މި ޕްލެޓްފޯމްގައި ހުރި ތިރިޕޯޓާއި ގުޅޭ ހުރިހާ މައުލޫއްމާތު ފުހެވިގެން ދާނެކަން އަންގަން. "
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "ސަމާލް: މި ޕްލެޓްފޯމްއިން ބޭރުގައި ހުރި ފައިލްތަކާއި މައުލޫއްމާތު. މިސާލަކަށް ކޮމްޕިއުޓަރުގެ ހާޑްޑިސްކުގައި ހުރިހުރިހާ ފައިލްތަށް، އަމިއްލަ ފުޅައް ފުހެލަން ހަނދާންކޮއްދެން. "
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "ހިޔާރުކުރައްވާފައިވާ ހުރިހާ ރިޕޯޓެއް ފުހެލަން ބޭނުންކަން ޔަގީން؟ "
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "ޚިދުމަތްލިބޭ ފަރާތަށް އިތުރަށް ނުލިބޭގޮތަށް   ގުޅުންހުރި ހުރިހާ ޑާޓާއެއް ރަނގަޅަށް ޑިލީޓްކުރިކަން ކަށަވަރުކުރައްވާ "
-
-msgid "Please write a motivation for the reply"
-msgstr "ރައްދެއް ދެއްވުމަށް ޤަސްތުކުރެއްވި ސަބަބު ލިޔުއްވާ"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "ރިޕޯޓުގެ ދުވަސްހަމަވާ ތާރީޙް ލަސްކުރަން ބޭނުންކަން ޔަގީން؟ "
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "ދުވަސްހަމަވާ ތާރީޙް:  އަށް ލަސްކުރަން ބޭނުންފުޅުކަން ޔަގީންކުރެއްވުމަށް. "
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "ހިޔާރުކުރައްވާފައިވާ ހުރިހާ ރިޕޯޓުގެ ދުވަސްހަމަވާ ތާރީޙް ލަސްކުރަން ބޭނުންކަން ޔަގީން؟ "
 
 msgid "Questionnaire answers"
 msgstr "ސާވޭ ސުވާލުކަރުދާހުގެ ސުވާލުތައް"
@@ -1534,9 +1486,6 @@ msgstr "ކަށަވަރުކުރައްވާ"
 
 msgid "Invalid confirmation"
 msgstr "ކަށަވަރުކުރެވޭގޮތެއް ނުވި"
-
-msgid "Complete"
-msgstr "ނިންމުމަށް"
 
 msgid "Invalid phone number"
 msgstr "ފޯނު ނަމްބަރު ރަނގަޅެއްނޫން"

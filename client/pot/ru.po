@@ -30,8 +30,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
-"Last-Translator: Sergey Briskin\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -451,12 +451,6 @@ msgstr "Первое"
 msgid "Last"
 msgstr "Последнее"
 
-msgid "Running"
-msgstr "Запущен"
-
-msgid "Not running"
-msgstr "Не запущен"
-
 msgid "Send a test email to your email address."
 msgstr "Послать пробное письмо на вашу эл. почту"
 
@@ -576,8 +570,8 @@ msgstr "Не отображать имена пользователей"
 msgid "Size limit for file attachments"
 msgstr "Ограничение в размере для приложений"
 
-msgid "in megabytes"
-msgstr "в мегабайтах"
+msgid "megabytes"
+msgstr "мегабайт"
 
 msgid "Enable HSTS preload"
 msgstr "Включить предзагрузку HSTS"
@@ -635,9 +629,6 @@ msgstr "Низкий"
 
 msgid "High"
 msgstr "Высокий"
-
-msgid "megabytes"
-msgstr "мегабайт"
 
 msgid "percentage"
 msgstr "процентов"
@@ -800,9 +791,6 @@ msgstr "Разрешить информаторам отправлять соо�
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Разрешить информаторам добавлять приложения к имеющимся отчетам"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Позволить получателям загружать файлы для информаторов"
 
 msgid "Additional questionnaire"
 msgstr "Дополнительный опросник"
@@ -1232,32 +1220,20 @@ msgstr "Текст, показываемый после выбора опции 
 msgid "Confirm"
 msgstr "Подтвердить"
 
-msgid "Are you sure?"
-msgstr "Вы уверены?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "Эта операция необратимо сбросит настройки конфигурации."
-
 msgid "Assign score points"
 msgstr "Оценить"
+
+msgid "Are you sure?"
+msgstr "Вы уверены?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Обратите внимание, что все связанные данные будут удалены без возможности восстановления."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Это демонстрационная платформа, не используйте ее для подачи реальных документов."
+msgid "Enable two factor authentication"
+msgstr "Включите двухфакторную аутентификацию"
 
 msgid "Close"
 msgstr "Закрыть"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Установите на свой телефон приложение для аутентификации"
-
-msgid "Scan the QR code with the app"
-msgstr "Отсканируйте QR-код с помощью приложения"
-
-msgid "Enable two factor authentication"
-msgstr "Включите двухфакторную аутентификацию"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Прежде чем продолжить, внимательно ознакомьтесь с документацией на странице:"
@@ -1269,6 +1245,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Сделайте копию и поместите ее в безопасное место. Она понадобится для восстановления доступа к вашей учетной записи без потери данных, если вы потеряете свой пароль."
+
+msgid "Enter a name for the copy"
+msgstr "Введите имя копии"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr "Спасибо."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Мы постараемся связаться с вами в ближайшее время."
+
+msgid "Submit"
+msgstr "Передать"
+
+msgid "The connection is not secure."
+msgstr "Соединение не защищено."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Платформа все еще не настроена на соединения HTTPS и поэтому должна использоваться исключительно для тестирования."
+
+msgid "Please write a motivation for the reply"
+msgstr "Пожалуйста укажите мотивацию ответа"
+
+msgid "Send"
+msgstr "Отправить"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "В случае подтверждения вы увеличите срок истечения сведения до:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Это демонстрационная платформа, не используйте ее для подачи реальных документов."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Установите на свой телефон приложение для аутентификации"
+
+msgid "Scan the QR code with the app"
+msgstr "Отсканируйте QR-код с помощью приложения"
 
 msgid "Welcome!"
 msgstr "Добро пожаловать!"
@@ -1324,18 +1341,6 @@ msgstr "Доступ к ресурсу возможен только из сет
 msgid "The upload request exceeds the size limit"
 msgstr "Запрос на загрузку файла на сервер превышает установленный лимит"
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr "Спасибо."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Мы постараемся связаться с вами в ближайшее время."
-
-msgid "Submit"
-msgstr "Передать"
-
 msgid "Validation of email address change in progress."
 msgstr "Осуществляется проверка изменения адреса электронной почты."
 
@@ -1352,11 +1357,6 @@ msgid "Old password confirmation required"
 msgstr "Необходимо подтверждение старого пароля"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Похоже, что вы просматриваете этот сайт, не обеспечив дополнительную приватность и безопасность!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "Вам настоятельно рекомендуется посещать этот сайт, используя Tor Browser, который защищает ваши личные данные."
@@ -1366,9 +1366,6 @@ msgstr "Скачать Tor Browser"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Затем скопируйте и вставьте следующий адрес в адресную строку Tor Browser:"
-
-msgid "Enter a name for the copy"
-msgstr "Введите имя копии"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Вы уже подали отчет? Введите свою квитанцию."
@@ -1394,22 +1391,11 @@ msgstr "Расчетное время загрузки:"
 msgid "Size:"
 msgstr "Размер:"
 
-msgid "The connection is not secure."
-msgstr "Соединение не защищено."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Платформа все еще не настроена на соединения HTTPS и поэтому должна использоваться исключительно для тестирования."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Получатели попросили вас заполнить дополнительный опросник."
 
 msgid "Fill the additional questionnaire"
 msgstr "Заполнить дополнительный опросник"
-
-msgid "Send"
-msgstr "Отправить"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Разрешить информатору добавлять комментарии"
@@ -1434,40 +1420,6 @@ msgstr "Разрешить информатору добавлять прило�
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Разрешить информатору отправлять комментарии"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "Вы действительно хотите удалить отчет?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Будут удалены все хранящиеся на платформе материалы, имеющие отношение к отчету."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Пожалуйста, примите во внимание, что вся информация, сохраненная вне платформы, как например, файлы на вашем компьютере, должна быть удалена вручную."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Вы действительно хотите удалить выбранные отчеты?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Убедитесь, что все связанные данные надлежащим образом удалены, чтобы получатели не смогли больше получить доступ к ним."
-
-msgid "Please write a motivation for the reply"
-msgstr "Пожалуйста укажите мотивацию ответа"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Вы действительно хотите отложить срок истечения действия отчета?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "В случае подтверждения вы увеличите срок истечения сведения до:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Вы действительно хотите отложить срок истечения действия для всех выбранных отчетов?"
 
 msgid "Questionnaire answers"
 msgstr "Ответы опросника"
@@ -1555,9 +1507,6 @@ msgstr "Подтверждение"
 
 msgid "Invalid confirmation"
 msgstr "Недействительное подтверждение"
-
-msgid "Complete"
-msgstr "Завершить"
 
 msgid "Invalid phone number"
 msgstr "Недействительный номер телефона"

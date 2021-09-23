@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -443,12 +443,6 @@ msgstr "Első"
 msgid "Last"
 msgstr "Utolsó"
 
-msgid "Running"
-msgstr "Fut"
-
-msgid "Not running"
-msgstr "Nem fut"
-
 msgid "Send a test email to your email address."
 msgstr "Küldjön teszt email az email címére."
 
@@ -568,8 +562,8 @@ msgstr "Ne jelenítse meg a felhasználó neveket"
 msgid "Size limit for file attachments"
 msgstr "Mellékletek méretkorláta"
 
-msgid "in megabytes"
-msgstr "megabájtokban"
+msgid "megabytes"
+msgstr "megabájt"
 
 msgid "Enable HSTS preload"
 msgstr "HSTS betöltés engedélyezése"
@@ -627,9 +621,6 @@ msgstr "Alacsony"
 
 msgid "High"
 msgstr "Magas"
-
-msgid "megabytes"
-msgstr "megabájt"
 
 msgid "percentage"
 msgstr "százalék"
@@ -792,9 +783,6 @@ msgstr "A bejelentő számára az üzenetek  írásának engedélyezése"
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Engedélyezi a bejelentőknek, hogy mellékleteket adjanak hozzá már létező beadványokhoz"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Tegye lehetővé, hogy a címzettek feltöltsenek fájlokat a bejelentő számára"
 
 msgid "Additional questionnaire"
 msgstr "További kérdőívek"
@@ -1224,32 +1212,20 @@ msgstr "Megjelenített szöveg, miután a felhasználó kiválasztotta az opció
 msgid "Confirm"
 msgstr "Hosszabbítás megerősítése"
 
-msgid "Are you sure?"
-msgstr "Biztosan?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "Ez a művelet alaphelyzetbe állítja a konfigurációt és nem visszavonható."
-
 msgid "Assign score points"
 msgstr "Pontszám hozzárendelése"
+
+msgid "Are you sure?"
+msgstr "Biztosan?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Kérjük figyeljen arra, hogy minden kapcsolódó adat véglegesen törlésre kerül."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Ez egy demó telepítés, kérjük ne használja valódi beküldésekre."
+msgid "Enable two factor authentication"
+msgstr "Kétfaktoros azonosítás engedélyezése"
 
 msgid "Close"
 msgstr "Bezár"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Telepítsen egy authentikátor appot a telefonjára"
-
-msgid "Scan the QR code with the app"
-msgstr "A QR kód beolvasása az app-pal"
-
-msgid "Enable two factor authentication"
-msgstr "Kétfaktoros azonosítás engedélyezése"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Mielőtt végrehajtja, kérjük olvassa el figyelmesen a dokumentációt itt:"
@@ -1261,6 +1237,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Készítsen róla egy másolatot és tárolja biztonságos helyen.  Ha elveszti jelszavát, akkor az adatvesztés nélküli helyreállításhoz szükséges."
+
+msgid "Enter a name for the copy"
+msgstr "Adja meg a másolat nevét"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Kapcsolatba lépünk Önnel, amint lehetséges."
+
+msgid "Submit"
+msgstr "Küldés"
+
+msgid "The connection is not secure."
+msgstr "A kapcsolat nem biztonságos."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "A platform továbbra sem konfigurált HTTPS kapcsolatokra, így kizárólag teszt célokra javasolt a használata."
+
+msgid "Please write a motivation for the reply"
+msgstr "Kérem írjon egy motivációt a válaszra"
+
+msgid "Send"
+msgstr "Küldés"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Az elfogadással meghosszabbítja a lejárati dátumot erre:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Ez egy demó telepítés, kérjük ne használja valódi beküldésekre."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Telepítsen egy authentikátor appot a telefonjára"
+
+msgid "Scan the QR code with the app"
+msgstr "A QR kód beolvasása az app-pal"
 
 msgid "Welcome!"
 msgstr "Üdvözöljük!"
@@ -1316,18 +1333,6 @@ msgstr "A forrást csak a Tor hálózatán keresztül lehet elérni"
 msgid "The upload request exceeds the size limit"
 msgstr "A feltöltés meghadja a megengedett limitet"
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr ""
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Kapcsolatba lépünk Önnel, amint lehetséges."
-
-msgid "Submit"
-msgstr "Küldés"
-
 msgid "Validation of email address change in progress."
 msgstr "Az e-mailcím változtatás ellenőrzése folyamatban"
 
@@ -1344,11 +1349,6 @@ msgid "Old password confirmation required"
 msgstr "Régi jelszó megerősítése kötelező"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Úgy tűnik, hogy az oldalt extra adatvédelem és biztonság nélkül kereste fel!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "Erősen ajánlott, hogy ezt az oldalt asztali gépről Tor böngészővel látogassa meg, amely megvédi identitását."
@@ -1358,9 +1358,6 @@ msgstr "Tor-böngésző letöltése"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Utána másolja át a következő címet a telepített Tor Böngészőbe:"
-
-msgid "Enter a name for the copy"
-msgstr "Adja meg a másolat nevét"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Küldött már be valamit? Adja meg a kulcskódját."
@@ -1386,22 +1383,11 @@ msgstr "Becsült feltöltési idő:"
 msgid "Size:"
 msgstr "Méret"
 
-msgid "The connection is not secure."
-msgstr "A kapcsolat nem biztonságos."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "A platform továbbra sem konfigurált HTTPS kapcsolatokra, így kizárólag teszt célokra javasolt a használata."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "A címzettek igényelték, hogy töltsön ki egy további kérdőívet."
 
 msgid "Fill the additional questionnaire"
 msgstr "Kérjük, töltse ki a kérdőívet"
-
-msgid "Send"
-msgstr "Küldés"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "A bejelentő írhat megjegyzéseket"
@@ -1426,40 +1412,6 @@ msgstr "Engedélyezi a bejelentőknek, hogy mellékleteket adjanak hozzá a bead
 
 msgid "Allow the whistleblower to send messages"
 msgstr "A bejelentő küldhet üzeneteket"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "Biztos benne, hogy törölni szeretné a beadványt?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Minden ami kapcsolódik a jelentéshez és tárolva a platformon törlésre kerül."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Kérjük vegye figyelembe, hogy minden, ami a platformon kívül tárolt, például mentett fájlok a számítógépén, kézzel törlendő."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Biztosan szeretné törölni az összes kijelölt jelentést?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Kérem győződjön meg arról, hogy minden kapcsolódó adat megfelelően törölve van és a címzettek nem tudnak többet hozzáférni."
-
-msgid "Please write a motivation for the reply"
-msgstr "Kérem írjon egy motivációt a válaszra"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Biztosan szeretné meghosszabbítani a lejárati dátumát a jelentésnek?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Az elfogadással meghosszabbítja a lejárati dátumot erre:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Biztosan szeretné meghosszabbítani a lejárati dátumát az összes kijelölt jelentésnek?"
 
 msgid "Questionnaire answers"
 msgstr "Kérdőív válaszok"
@@ -1547,9 +1499,6 @@ msgstr "Megerősítés"
 
 msgid "Invalid confirmation"
 msgstr "Érvénytelen megerősítés"
-
-msgid "Complete"
-msgstr "Kész"
 
 msgid "Invalid phone number"
 msgstr "Érvénytelen telefonszám"

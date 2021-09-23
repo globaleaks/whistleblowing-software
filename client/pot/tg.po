@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 12:20+0000\n"
-"Last-Translator: Iftihor Muhtorov <i.muhtorov@gmail.com>\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tajik (http://www.transifex.com/otf/globaleaks/language/tg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -426,12 +426,6 @@ msgstr "Якум"
 msgid "Last"
 msgstr "Охирин"
 
-msgid "Running"
-msgstr "Фаъол"
-
-msgid "Not running"
-msgstr "Ғайри фаъол"
-
 msgid "Send a test email to your email address."
 msgstr "Ба почтаи электронии худ почтаи санҷишӣ фиристодан"
 
@@ -551,8 +545,8 @@ msgstr "Номи корбаронро ифшо накардан"
 msgid "Size limit for file attachments"
 msgstr "Маҳдудияти ҳаҷм барои файлҳои замимашаванда "
 
-msgid "in megabytes"
-msgstr "бо мегабайт"
+msgid "megabytes"
+msgstr "мегабайтҳо"
 
 msgid "Enable HSTS preload"
 msgstr "Боркунии пешакии HSTS-ро фаъол кардан"
@@ -610,9 +604,6 @@ msgstr "Паст"
 
 msgid "High"
 msgstr "Баланд"
-
-msgid "megabytes"
-msgstr "мегабайтҳо"
 
 msgid "percentage"
 msgstr "фоиз"
@@ -775,9 +766,6 @@ msgstr "Ба хабардиҳандагон иҷозаи ирсоли паёмҳ
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Ба хабардиҳандагон иҷозаи илова кардани замима ба гузориши мавҷудбуда додан"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Ба гирандагон иҷозаи боркунии файлҳоро ба хабардиҳандагон додан"
 
 msgid "Additional questionnaire"
 msgstr "Саволномаи иловагӣ"
@@ -1207,32 +1195,20 @@ msgstr "Матне, ки баъди аз ҷониби корбар интихо�
 msgid "Confirm"
 msgstr "Тасдиқ кардан"
 
-msgid "Are you sure?"
-msgstr "Шумо мутмаъин ҳастед?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "Ин амал танзимотро бекор мекунад ва онро барқарор карда намешавад. "
-
 msgid "Assign score points"
 msgstr "Холҳоро муқаррар кардан"
+
+msgid "Are you sure?"
+msgstr "Шумо мутмаъин ҳастед?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Лутфан таваҷҷӯҳ кунед, ки тамоми маълумоти марбут ба таври ҳамешагӣ пок карда мешавад. "
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Ин барномаи намоишӣ аст, лутфан аз он барои ирсолҳои воқеӣ истифода накунед. "
+msgid "Enable two factor authentication"
+msgstr "Тасдиқкунандаи шахсияти ду омиларо фаъол кардан"
 
 msgid "Close"
 msgstr "Пӯшидан"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Дар телефони худ нармафзори тасдиқкунандаи шахсият насб намоед"
-
-msgid "Scan the QR code with the app"
-msgstr "Рамзи QR-ро бо нармафзор скан кунед"
-
-msgid "Enable two factor authentication"
-msgstr "Тасдиқкунандаи шахсияти ду омиларо фаъол кардан"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Пеш аз идома додан, лутфан ҳуҷҷатҳои зеринро бодиққат хонед: "
@@ -1244,6 +1220,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Инро нусхабардорӣ кунед ва дар ҷои амн нигоҳ доред. Агар шумо гузарвожаи худро гум кунед, барои барқарор кардани дастрасӣ ба аккаунти шумо бидуни талафи маълумот, лозим мешавад."
+
+msgid "Enter a name for the copy"
+msgstr "Барои нусха ном ворид кунед"
+
+msgid "Request support"
+msgstr "Дастгирӣ дархост кардан"
+
+msgid "Thank you."
+msgstr "Ташаккур."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Мо кӯшиш мекунем, ки ҳарчи зудтар бо шумо тамос гирем."
+
+msgid "Submit"
+msgstr "Ирсол кардан"
+
+msgid "The connection is not secure."
+msgstr "Алоқа ноамн аст."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Барнома то ҳол барои алоқаи HTTPS танзим нашудааст ва бинобар ин танҳо бо мақсади санҷишӣ истифода мешавад."
+
+msgid "Please write a motivation for the reply"
+msgstr "Лутфан барои ҷавоб додан далел нависонед"
+
+msgid "Send"
+msgstr "Фиристодан"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Бо тасдиқи ин шумо мӯҳлати анҷоми эътиборро то ба ин сана ба таъхир мегузоред:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Ин барномаи намоишӣ аст, лутфан аз он барои ирсолҳои воқеӣ истифода накунед. "
+
+msgid "Install an authenticator app on your phone"
+msgstr "Дар телефони худ нармафзори тасдиқкунандаи шахсият насб намоед"
+
+msgid "Scan the QR code with the app"
+msgstr "Рамзи QR-ро бо нармафзор скан кунед"
 
 msgid "Welcome!"
 msgstr "Марҳабо!"
@@ -1299,18 +1316,6 @@ msgstr "Дастрасӣ ба ин манбаъ танҳо тавассути ш
 msgid "The upload request exceeds the size limit"
 msgstr "Дархости боркунӣ аз ҳадди андозаи муқарраршуда зиёд аст"
 
-msgid "Request support"
-msgstr "Дастгирӣ дархост кардан"
-
-msgid "Thank you."
-msgstr "Ташаккур."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Мо кӯшиш мекунем, ки ҳарчи зудтар бо шумо тамос гирем."
-
-msgid "Submit"
-msgstr "Ирсол кардан"
-
 msgid "Validation of email address change in progress."
 msgstr "Тасдиқи тағйири суроғаи почтаи электронӣ идома дорад."
 
@@ -1327,11 +1332,6 @@ msgid "Old password confirmation required"
 msgstr "Тасдиқи гузарвожаи куҳна лозим аст"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Чунин ба назар мерасад, ки шумо ин торнаморо бе ягон махфият ва амнияти иловагӣ дидан карда истодаед!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "Ба шумо тавсияи қатъӣ дода мешавад, ки бо истифода аз нармафзори Tor Browser, ки шахсияти шуморо муҳофизат мекунад, аз ин торнамо дидан кунед."
@@ -1341,9 +1341,6 @@ msgstr "Боргирии Tor Browser"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Баъд нусхаи суроғаи зеринро дар дохили Tor Browser гузоред:"
-
-msgid "Enter a name for the copy"
-msgstr "Барои нусха ном ворид кунед"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Оё шумо аллакай гузориш пешниҳод кардаед? Расиди худро ворид кунед."
@@ -1369,22 +1366,11 @@ msgstr "Вақти тахминии боркунӣ:"
 msgid "Size:"
 msgstr "Андоза:"
 
-msgid "The connection is not secure."
-msgstr "Алоқа ноамн аст."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Барнома то ҳол барои алоқаи HTTPS танзим нашудааст ва бинобар ин танҳо бо мақсади санҷишӣ истифода мешавад."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Гирандагон аз шумо дархост кардаанд саволномаи иловагиро пур намоед."
 
 msgid "Fill the additional questionnaire"
 msgstr "Пур кардани саволномаи иловагӣ"
-
-msgid "Send"
-msgstr "Фиристодан"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Ба хабардиҳанда иҷозаи навиштани шарҳҳоро додан"
@@ -1409,40 +1395,6 @@ msgstr "Ба хабардиҳанда иҷозаи илова кардани з�
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Ба хабардиҳанда иҷозаи ирсоли паём додан"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "Шумо мутмаъин ҳастед, ки мехоҳед гузоришро пок созед?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Ҳама чизҳои марбут ба гузориши дар барнома ҳифз шуда пок карда мешаванд."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Лутфан дониста бошед, ки ҳама чизҳои берун аз барнома нигоҳ дошташуда, ба монанди файлҳои дар компютери шумо ҳифзшуда бояд дастӣ пок карда шаванд. "
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Шумо мутмаъин ҳастед, ки мехоҳед гузоришҳои интихобшударо пок созед?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Лутфан боварӣ ҳосил кунед, ки ҳама маълумоти марбута дуруст пок карда мешаванд, то гирандагон минбаъд натавонанд ба он дастрасӣ пайдо кунанд."
-
-msgid "Please write a motivation for the reply"
-msgstr "Лутфан барои ҷавоб додан далел нависонед"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Шумо мутмаъин ҳастед, ки мехоҳед мӯҳлати анҷоми эътибори гузоришро ба таъхир гузоред?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Бо тасдиқи ин шумо мӯҳлати анҷоми эътиборро то ба ин сана ба таъхир мегузоред:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Шумо мутмаъин ҳастед, ки мехоҳед мӯҳлати анҷоми эътиборро барои ҳамаи гузоришҳо ба таъхир гузоред?"
 
 msgid "Questionnaire answers"
 msgstr "Ҷавобҳои саволнома"
@@ -1530,9 +1482,6 @@ msgstr "Тасдиқ кардан"
 
 msgid "Invalid confirmation"
 msgstr "Тасдиқи нодуруст"
-
-msgid "Complete"
-msgstr "Пурра"
 
 msgid "Invalid phone number"
 msgstr "Рақами телефони нодуруст"

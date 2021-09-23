@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swahili (http://www.transifex.com/otf/globaleaks/language/sw/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -426,12 +426,6 @@ msgstr "Kwanza"
 msgid "Last"
 msgstr "Mwisho"
 
-msgid "Running"
-msgstr "Inafanya kazi"
-
-msgid "Not running"
-msgstr "Haifanyi kazi"
-
 msgid "Send a test email to your email address."
 msgstr "Tuma barua pepe ya majaribio kwenye barua pepe yako."
 
@@ -551,8 +545,8 @@ msgstr "Usionyeshe majina ya watumiaji"
 msgid "Size limit for file attachments"
 msgstr "Kikomo cha ukubwa wa viambatisho vya faili"
 
-msgid "in megabytes"
-msgstr "katika megabiti"
+msgid "megabytes"
+msgstr "megabiti"
 
 msgid "Enable HSTS preload"
 msgstr "Wezesha HSTS kupakia kabla"
@@ -610,9 +604,6 @@ msgstr "Chini"
 
 msgid "High"
 msgstr "Juu"
-
-msgid "megabytes"
-msgstr "megabiti"
 
 msgid "percentage"
 msgstr "asilimia"
@@ -775,9 +766,6 @@ msgstr "Ruhusu watoa taarifa za siri kutuma ujumba"
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Wacha watoa taarifa za siri waongeze viambatisho kwenye ripoti zilizopo"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Wacha wapokeaji wapakie faili kwa watoa taarifa za siri"
 
 msgid "Additional questionnaire"
 msgstr "Dodoso la nyongeza"
@@ -1207,32 +1195,20 @@ msgstr "Maandishi yanayoonyeshwa baada ya mtumiaji kuchagua chaguo."
 msgid "Confirm"
 msgstr "Thibitisha"
 
-msgid "Are you sure?"
-msgstr "Una uhakika?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "Operesheni itaweka upya usanidi na haiwezi kutenguliwa."
-
 msgid "Assign score points"
 msgstr "Weka alama za kupata"
+
+msgid "Are you sure?"
+msgstr "Una uhakika?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Tafadhali kumbuka kuwa data zote zinazohusiana zitafutwa kabisa."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Hili ni jukwaa la kufanya majaribia au onyesho tu, tafadhali usilitumie kwa uwasilisho halisi. "
+msgid "Enable two factor authentication"
+msgstr "Wezesha uthibitishaji wa mara mbili "
 
 msgid "Close"
 msgstr "Funga"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Weka programu ya uthibitishaji kwenye simu yako"
-
-msgid "Scan the QR code with the app"
-msgstr "Changanua nambari ya QR na programu"
-
-msgid "Enable two factor authentication"
-msgstr "Wezesha uthibitishaji wa mara mbili "
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Kabla ya kuendelea tafadhali soma kwa uangalifu nyaraka kwenye:"
@@ -1244,6 +1220,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Tengeneza nakala na uihifadhi mahali salama. Itakuwa muhimu ikiwa utapoteza\n\nneno lako la siri kupata ufikiaji wa akaunti yako bila kupoteza data."
+
+msgid "Enter a name for the copy"
+msgstr "Ingiza jina la nakala"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Tutajaribu kukurudia haraka iwezekanavyo."
+
+msgid "Submit"
+msgstr "Wasilisha"
+
+msgid "The connection is not secure."
+msgstr "Muunganisho sio salama"
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Jukwaa bado halijasanidiwa kwa unganisho la HTTPS na linapaswa\n\nkutumika tu kwa ajili ya majaribio."
+
+msgid "Please write a motivation for the reply"
+msgstr "Tafadhali andika motisha kwa kujibu"
+
+msgid "Send"
+msgstr "Tuma"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Kwa kudhibitisha, utaahirisha tarehe ya kumalizika muda kuwa"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Hili ni jukwaa la kufanya majaribia au onyesho tu, tafadhali usilitumie kwa uwasilisho halisi. "
+
+msgid "Install an authenticator app on your phone"
+msgstr "Weka programu ya uthibitishaji kwenye simu yako"
+
+msgid "Scan the QR code with the app"
+msgstr "Changanua nambari ya QR na programu"
 
 msgid "Welcome!"
 msgstr "Karibu!"
@@ -1299,18 +1316,6 @@ msgstr "Rasilimali zinaweza kupatikana tu kupitia mtandao wa Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Ombi la kupakia linazidi kikomo cha ukubwa"
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr ""
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Tutajaribu kukurudia haraka iwezekanavyo."
-
-msgid "Submit"
-msgstr "Wasilisha"
-
 msgid "Validation of email address change in progress."
 msgstr "Uthibitishaji wa mabadiliko ya anwani ya barua pepe unaendelea"
 
@@ -1327,11 +1332,6 @@ msgid "Old password confirmation required"
 msgstr "Uthibitishaji wa nenosiri la zamani unahitajika"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Inaonekana unavinjari tovuti hii bila faragha yoyote ya ziada na\n\n\"usalama!\""
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "Unashauriwa sana kutembelea wavuti hii ukitumia kivinjari kinachoitwa Tor\n\nKivinjari ambacho kinalinda utambulisho wako."
@@ -1341,9 +1341,6 @@ msgstr "Pakua kivinjari cha Tor"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Kisha, nakili na ubandike anwani ifuatayo kwenye Kivinjari cha Tor:"
-
-msgid "Enter a name for the copy"
-msgstr "Ingiza jina la nakala"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Je, umeshajaza ripoti? Ingiza risiti yako."
@@ -1369,22 +1366,11 @@ msgstr "Wakati uliokadiriwa wa kupakia:"
 msgid "Size:"
 msgstr "Ukubwa:"
 
-msgid "The connection is not secure."
-msgstr "Muunganisho sio salama"
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Jukwaa bado halijasanidiwa kwa unganisho la HTTPS na linapaswa\n\nkutumika tu kwa ajili ya majaribio."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Wapokeaji wamekuomba ujaze hadidu za nyongeza."
 
 msgid "Fill the additional questionnaire"
 msgstr "Jaza dodoso za nyongeza"
-
-msgid "Send"
-msgstr "Tuma"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Ruhusu mtoa taarifa ya siri kuandika maoni."
@@ -1409,40 +1395,6 @@ msgstr "Ruhusu mtoa taarifa ya siri kuongeza viambatanisho kwenye ripoti"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Ruhusu mtoa taarifa ya siri kutuma ujumbe"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "Una uhakika kwamba unataka kufuta ripoti hii?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Kila kitu kinachohusiana na ripoti ambacho kilihifadhiwa katika jukwaa kitafutwa."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Tafadhali fahamu kuwa kila kitu ambacho kimehifadhiwa nnje ya jukwaa, mfano. Faili ambazo\n\numezihifadhi kwenye kompyuta yako, lazima ufute mwenyewe."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Una uhakika kwamba unataka kufuta ripoti zilizochaguliwa?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Tafadhali hakikisha kwamba taarifa zote zinazohusiana zinafutwa kwa usahihi ili\n\nwapokeaji wasiweze tena kuzifikia."
-
-msgid "Please write a motivation for the reply"
-msgstr "Tafadhali andika motisha kwa kujibu"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Una uhakika kwamba unataka kuahirisha muda wa ripoti kuisha muda wake?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Kwa kudhibitisha, utaahirisha tarehe ya kumalizika muda kuwa"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Una uhakika kwamba unataka kuahirisha muda wa kuisha muda kwa “ripoti zote” zilizochaguliwa"
 
 msgid "Questionnaire answers"
 msgstr "Majibu ya dodoso"
@@ -1530,9 +1482,6 @@ msgstr "Uthibitisho"
 
 msgid "Invalid confirmation"
 msgstr "Uthibitisho batili"
-
-msgid "Complete"
-msgstr "Maliza"
 
 msgid "Invalid phone number"
 msgstr "Namba ya simu batili"

@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-20 05:46+0000\n"
-"Last-Translator: ruzanna <ruzanna81@gmail.com>\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -283,7 +283,7 @@ msgid "Disable notifications to custodians"
 msgstr "Bildirişləri mühafizəçilər üçün deaktiv et"
 
 msgid "Disable notifications to recipients"
-msgstr "Bildirişləri istifadəçilər üçün deaktiv et"
+msgstr "Bildirişləri alıcılar üçün deaktiv edin"
 
 msgid "Score"
 msgstr "Xal"
@@ -336,7 +336,7 @@ msgid ""
 msgstr "Bu fərdi mətn platformada artıq görünmür. Orijinal mətn ya dəyişdirilib, ya da silinib."
 
 msgid "Audit log"
-msgstr "Audit girişi"
+msgstr "Yoxlama giriş"
 
 msgid "Stats"
 msgstr "Statistikalar"
@@ -431,12 +431,6 @@ msgstr "İlk"
 msgid "Last"
 msgstr "Sonuncu"
 
-msgid "Running"
-msgstr "İşləyir"
-
-msgid "Not running"
-msgstr "İşləmir"
-
 msgid "Send a test email to your email address."
 msgstr "Emeyl ünvanınıza test məktub göndərin"
 
@@ -444,7 +438,7 @@ msgid "Block the submission"
 msgstr "Göndərməni blokla"
 
 msgid "Skip the recipient account creation."
-msgstr "İstifadəçinin hesab yaratmasını atla."
+msgstr "Alıcının hesab yaratmasını atlayın."
 
 msgid "Send activation link"
 msgstr "Aktivləşmə linki göndər"
@@ -455,7 +449,7 @@ msgstr "Parolu yenilə"
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr "Bir və ya daha artıq istifadəçi ilk girişini hələ etməyib. Ona görə də hesabatları ala bilməyəcəklər."
+msgstr "Bir və ya daha artıq alıcı ilk girişini hələ etməyib. Ona görə də hesabatları ala bilməyəcəklər."
 
 msgid "This user has not performed the first login yet."
 msgstr "İstifadəçi ilk girişini hələ etməyib."
@@ -476,7 +470,7 @@ msgid "Logout"
 msgstr "Çıxış"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr "İstifadəçiyə hesabatlara giriş imkanı ver."
+msgstr "Alıcıya hesabatlara giriş imkanı ver."
 
 msgid "Grant access"
 msgstr "Giriş ver"
@@ -556,8 +550,8 @@ msgstr "İstifadəçilərin adlarını göstərmə"
 msgid "Size limit for file attachments"
 msgstr "Fayl əlavələrinin ölçü həddi"
 
-msgid "in megabytes"
-msgstr "Megabaytla"
+msgid "megabytes"
+msgstr "meqabaytlar"
 
 msgid "Enable HSTS preload"
 msgstr "HSTS yenidən yükləməni işə salın"
@@ -615,9 +609,6 @@ msgstr "Aşağı"
 
 msgid "High"
 msgstr "Yuksək"
-
-msgid "megabytes"
-msgstr "meqabaytlar"
 
 msgid "percentage"
 msgstr "faiz"
@@ -743,7 +734,7 @@ msgid "Questionnaire"
 msgstr "Sorğu"
 
 msgid "Recipients"
-msgstr "İstifadəçilər"
+msgstr "Alıcılar"
 
 msgid "days"
 msgstr "günlər"
@@ -752,19 +743,19 @@ msgid "Show the questionnaire navigation interface"
 msgstr "Sorğu naviqasiyası üzlüyünü göstər"
 
 msgid "Allow whistleblowers to select their recipients"
-msgstr "İnformasiya ötürənlərə öz istifadəçilərini seçmək imkanı verin"
+msgstr "İnformasiya ötürənlərə öz alıcılarını seçmək imkanı verin"
 
 msgid "Select all recipients by default"
-msgstr "Bütün istifadəçiləri ümumi qaydada seçin"
+msgstr "Bütün alıcıları ümumi qaydada seçin"
 
 msgid "Maximum number of selectable recipients:"
-msgstr "Seçilən istifadəçilərin maksimum sayı:"
+msgstr "Seçilən alıcıların maksimum sayı:"
 
 msgid "Show recipients in alphabetical order"
-msgstr "İstifadəçiləri əlifba sırası ilə göstərin"
+msgstr "Alıcıları əlifba sırası ilə göstərin"
 
 msgid "Show recipient details on the status page of the report"
-msgstr "İstifadəçi haqda məlumatları hesabatın status səhifəsində göstərin "
+msgstr "Alıcı haqda məlumatları hesabatın status səhifəsində göstərin "
 
 msgid "Enable comments"
 msgstr "Şərhləri aktiv edin"
@@ -780,9 +771,6 @@ msgstr "İnformasiya ötürənlərin mesaj göndərməsinə icazə verin"
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "İnformasiya ötürənlərin mövcud təqdimatlara əlavələr etməsinə icazə verin"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "İstifadəçilərin informasiya ötürənlər üçün fayl yükləməsinə icazə verin"
 
 msgid "Additional questionnaire"
 msgstr "Əlavə sorğu"
@@ -818,7 +806,7 @@ msgid "Admin"
 msgstr "İnzibatçı"
 
 msgid "Recipient"
-msgstr "İstifadəçi"
+msgstr "Alıcı"
 
 msgid "Each entry must be separated with a comma."
 msgstr "Hər bir giriş vergüllə ayrılmalıdır."
@@ -1003,25 +991,25 @@ msgid "Width"
 msgstr "En"
 
 msgid "Multiple choice input"
-msgstr "Təkrar daxil olma seçimi"
+msgstr "Çoxseçimli giriş"
 
 msgid "Question group"
 msgstr "Sual qrupu"
 
 msgid "Hint"
-msgstr "Kömək"
+msgstr "Göstəriş"
 
 msgid "Required"
 msgstr "Tələb edilir"
 
 msgid "Accept multiple file uploads"
-msgstr "Birdən çox fayl yükləməsini qəbul et"
+msgstr "Eyni vaxtda müxtəlif fayl yükləmələrini qəbul et"
 
 msgid "Accept multiple answers"
-msgstr "Çoxlu cavabları qəbul et"
+msgstr "Müxtəlif cavabları qəbul et"
 
 msgid "Template override"
-msgstr "Üzlük silinsin"
+msgstr "Şablonun ləğvi"
 
 msgid "Phone number"
 msgstr "Telefon nömrəsi"
@@ -1030,7 +1018,7 @@ msgid "Text"
 msgstr "Mətn"
 
 msgid "Checkbox label"
-msgstr "Quş qoyma seçimi"
+msgstr "Quşqoyma seçimi"
 
 msgid "Add multimedia content"
 msgstr "Multimedia məzumunu əlavə et"
@@ -1048,7 +1036,7 @@ msgid "Trigger conditions"
 msgstr "Şərtləri işə sal"
 
 msgid "Sufficient"
-msgstr "Kifayət"
+msgstr "Kifayətdir"
 
 msgid "Options"
 msgstr "Seçimlər"
@@ -1075,7 +1063,7 @@ msgid "Steps"
 msgstr "Mərhələlər"
 
 msgid "Site settings"
-msgstr "Sayt seçimləri"
+msgstr "Sayt parametrləri"
 
 msgid "Case management"
 msgstr "Keys menecmenti"
@@ -1099,19 +1087,19 @@ msgid "Creation date:"
 msgstr "Yaradılma tarixi:"
 
 msgid "Root domain used for secondary sites"
-msgstr "İkinci dərəcəli saytların domenini yönəlt"
+msgstr "İkinci dərəcəli saytların əsas domeni"
 
 msgid "Use the first site for administrative purposes only"
-msgstr "Birinci saytı yalnız inzibati məqsədlər üçün istifadə et"
+msgstr "İlk saytı yalnız inzibati məqsədlər üçün istifadə edin"
 
 msgid "Enable multi-site login"
-msgstr "Çoxsaytlı girişi yandır"
+msgstr "Çoxsaytlı girişi işə salın"
 
 msgid "Allow users to sign up"
-msgstr "İstifadəçilərin qeydiyyatına icazə ver"
+msgstr "İstifadəçilərin qeydiyyatına icazə verin"
 
 msgid "Enable terms of service"
-msgstr "Qaydaları yandır"
+msgstr "Qaydaları aktiv edin"
 
 msgid "Title"
 msgstr "Başlıq"
@@ -1123,16 +1111,16 @@ msgid "Public name"
 msgstr "İctimai ad"
 
 msgid "Send reset link"
-msgstr "Sıfırlama linkini göndər"
+msgstr "Sıfırlama linkini göndərin"
 
 msgid "Set password"
-msgstr "Şifrənin quraşdırılması"
+msgstr "Şifrə təyin edin"
 
 msgid "Disable two factor authentication"
-msgstr "İki pilləli təsdiqləməni söndür."
+msgstr "İki pilləli təsdiqləməni deaktiv edin"
 
 msgid "Force password change"
-msgstr "Şifrəni dəyişdir"
+msgstr "Şifrəni dəyişdirin"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "İstifadəçi növbəti giriş zamanı şifrəsini dəyişməyə məcbur ediləcək."
@@ -1141,7 +1129,7 @@ msgid "Language"
 msgstr "Dil"
 
 msgid "Enable email notifications"
-msgstr "Email xəbərdarlıqlarını yandır"
+msgstr "Emeyl bildirişləri aktiv edin"
 
 msgid "Details of the PGP key:"
 msgstr "PGP açarının detalları"
@@ -1150,22 +1138,22 @@ msgid "Fingerprint"
 msgstr "Barmaq izi"
 
 msgid "Set up encryption by providing a PGP public key"
-msgstr "Bir PGP ictimai açarı istifadə edərək şifrələmə yaradın"
+msgstr "Bir PGP ictimai açarından istifadə edərək şifrələmə yaradın"
 
 msgid "Give this admin ability to change user passwords"
-msgstr "İnzibatçının istifadəçinin parolunu dəyişməsinə icazə ver."
+msgstr "İnzibatçıya istifadəçinin parolunu dəyişmək imkanı verin"
 
 msgid "Forcefully selected"
 msgstr "Zorla seçilmiş"
 
 msgid "Allow the recipient to delete reports"
-msgstr "Qəbul ediciyə təqdimatları silməsinə icazə verin"
+msgstr "Alıcının hesabatları silməsinə icazə verin"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Qəbul ediciyə təqdimatın sona çatma tarixini təxirə salmasına icazə verin"
+msgstr "Alıcının hesabatların son tarixini dəyişməsinə icazə verin"
 
 msgid "Give the user administrative access to the following features:"
-msgstr "İstifadəçiyə bu imkanlar üçün inzibatçı icazəsi ver:"
+msgstr "İstifadəçiyə aşağıdakılar üçün inzibatçı icazəsi ver:"
 
 msgid "Request date"
 msgstr "Tələb olunan tarix"
@@ -1177,70 +1165,58 @@ msgid "Authorization"
 msgstr "Səlahiyyətvermə"
 
 msgid "Requests"
-msgstr "İstəklər"
+msgstr "Tələblər"
 
 msgid "The validation link is either incorrect or has expired."
-msgstr "Təsdiqləmə linki səhvdir və ya köhnədir."
+msgstr "Təsdiqləmə linki ya səhv, ya da köhnədir."
 
 msgid "Your new email address has been validated."
 msgstr "Yeni email ünvanınız təsdiqləndi."
 
 msgid "Forgot password?"
-msgstr "Parolu unutdunuz?"
+msgstr "Parolu unutmusunuz?"
 
 msgid "Enter the two factor authentication code"
 msgstr "İki pilləli təsdiqləmə kodunu daxil et"
 
 msgid "Authentication failed"
-msgstr "Kimlik təsdiqləməsi uğursuzdur"
+msgstr "Təsdiqləmə uğursuz oldu"
 
 msgid "The code is either invalid or expired."
-msgstr "Açar şifrə etibarsızdır və ya təqdimat müddəti başa çatıb."
+msgstr "Şifrə etibarsızdır, ya da vaxtı bitib."
 
 msgid "Site:"
 msgstr "Sayt:"
 
 msgid "Please select your account:"
-msgstr "Xahiş edirik  hesabınızı seçəsiniz. "
+msgstr "Xahiş edirik, hesabınızı seçin. "
 
 msgid "Now type your password, then click 'Log in':"
-msgstr "Şifrənizi daxil edin, daha sonra \"Giriş\" düyməsinə basın"
+msgstr "Şifrənizi daxil edin, sonra \"Giriş\" düyməsinə basın"
 
 msgid "Text shown after the user has selected the option."
-msgstr "İstifadəçi seçim etdikdən sonra görünən yazı."
+msgstr "İstifadəçi seçimini etdikdən sonra görünən mətn."
 
 msgid "Confirm"
 msgstr "Təsdiqlə"
 
-msgid "Are you sure?"
-msgstr "Əminsiniz mi?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "Əməliyyat, quraşdırılmanı sıfırlayır və geri qaytara bilmir."
-
 msgid "Assign score points"
-msgstr "Hesab nöqtələrini təyin et"
+msgstr "Xalları təyin edin"
+
+msgid "Are you sure?"
+msgstr "Əminsinizmi?"
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Xahiş edirik bütün əlaqəli məlumatların daimi olaraq silinəcəyini unutmayın."
+msgstr "Xahiş edirik, bütün əlaqəli məlumatların həmişəlik silinəcəyini unutmayın."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Bu demo platformadır, ona görə əsl məlumatlar üçün istifadə etməyin."
+msgid "Enable two factor authentication"
+msgstr "İki pilləli təsdiqləməni işə salın"
 
 msgid "Close"
 msgstr "Bağla"
 
-msgid "Install an authenticator app on your phone"
-msgstr "Telefona təsdiqləmə tətbiqini yüklə"
-
-msgid "Scan the QR code with the app"
-msgstr "Tətbiqlə QR kodu skan et"
-
-msgid "Enable two factor authentication"
-msgstr "İki pilləli təsdiqləməni yandır"
-
 msgid "Before proceeding please read carefully the documentation at:"
-msgstr "Davam etməmişdən əvvəl sənədləşməni diqqətlə oxu:"
+msgstr "Davam etməzdən əvvəl sənədləşməni diqqətlə oxuyun:"
 
 msgid "Your account recovery key is:"
 msgstr "Hesabı qaytarma açarınız:"
@@ -1248,7 +1224,48 @@ msgstr "Hesabı qaytarma açarınız:"
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr "Nüsxəsisni çıxarıb təhlükəsiz yerdə saxlayın. Beləcə, parolunuzu itirsəniz,məlumatlarınızı itirmədən hesabınızı qaytara biləcəksiniz."
+msgstr "Nüsxəsini çıxarıb, təhlükəsiz yerdə saxlayın. Beləcə, parol itəndə hesabınızı, məlumatlarınızı itirmədən qaytara biləcəksiniz."
+
+msgid "Enter a name for the copy"
+msgstr "Nüsxə üçün ad əlavə edin"
+
+msgid "Request support"
+msgstr "Kömək istəyin"
+
+msgid "Thank you."
+msgstr "Sağ olun."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Sizinlə tezliklə əlaqə saxlamağa çalışacağıq"
+
+msgid "Submit"
+msgstr "Göndər"
+
+msgid "The connection is not secure."
+msgstr "Bağlantı təhlükəsiz deyil."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Platforma hələ HTTPS əlaqələri üçün quraşdırılmayıb, ona görə də yalnız test məqsədləri üçün istifadə olunmalıdır."
+
+msgid "Please write a motivation for the reply"
+msgstr "Xahiş edirik, cavab üçün motivasiya yazın"
+
+msgid "Send"
+msgstr "Göndər"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Təsdiqləməklə, hesabatın tarixini dəyişəcəksiz:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Bu bir demo platformadır, real təqdimatlar üçün bundan istifadə etməyin."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Telefona təsdiqləmə tətbiqi yükləyin"
+
+msgid "Scan the QR code with the app"
+msgstr "QR kodunu tətbiqlə skan edin"
 
 msgid "Welcome!"
 msgstr "Xoş gördük!"
@@ -1259,26 +1276,26 @@ msgstr "Sənədləşməyə baxmaq üçün:"
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
 " the software:"
-msgstr "Texniki dəstəyə ehtiyacınız, ümumi suallarınız və ya proqram üçün yeni ideyalarınız varsa: "
+msgstr "Texniki dəstəyə ehtiyacınız , ümumi suallarınız və ya proqramçün yeni ideyalarınız varsa: "
 
 msgid ""
 "If you want to contribute to software development or report a bug, please "
 "open an issue in our ticketing system:"
-msgstr "Əgər proqram təminatına və ya problemlərin çatdırılmasına öz töhvənizi vermək istəyirsinizsə, bilet sistemində bir məsələ qaldırın: "
+msgstr "Proqram təminatına töhvə, yaxud problem haqda məlumat vermək istəyirsinizsə, bilet sistemində məsələ qaldırın: "
 
 msgid "Join our chat:"
-msgstr "Çata qoşul:"
+msgstr "Çata qoşulun:"
 
 msgid "Follow the project on:"
 msgstr "Layihəni izləyin:"
 
 msgid "Hint: How to hide your receipt"
-msgstr "İşarə: Açar şifrənizi necə gizlədə bilərsiniz?"
+msgstr "Göstəriş: Şifrənizi necə gizlədə bilərsiz?"
 
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr "Çekinizi gizlətmək üçün bank kartməlumatı kimi nömrəsini bir yerə yazın, həm də son istifadə tarixini də daxil edin. "
+msgstr "Şifrənizi gizlətmək üçün onu hardasa, məsələn, bank kartı məlumatı kimi qeyd edin, son istifadə tarixini də əlavə edin. "
 
 msgid "Error!"
 msgstr "Səhv!"
@@ -1287,77 +1304,57 @@ msgid "Internal server error"
 msgstr "Serverin daxili xətası"
 
 msgid "Error on input validation"
-msgstr "Daxiletmə təsdiqinin xətası"
+msgstr "Daxiletmənin təsdiqi xətası"
 
 msgid "Resource not found"
 msgstr "Resurs tapılmadı"
 
 msgid "Forbidden operation"
-msgstr "Qadağan edilmiş fəaliyyət"
+msgstr "Qadağan edilmiş əməliyyat"
 
 msgid "The specified old password is not valid"
 msgstr "Göstərilən köhnə parol etibarlı deyil"
 
 msgid "Resource can only be accessed via the Tor network"
-msgstr "Mənbəyə giriş yalnız Tor şəbəkəsi vasitəsilə mümkündür"
+msgstr "Resursa giriş yalnız Tor şəbəkəsi vasitəsiylə mümkündür"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Yükləmə tələbi ölçü həddini aşır"
 
-msgid "Request support"
-msgstr "Kömək istə"
-
-msgid "Thank you."
-msgstr "Sağ olun."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Qısa zamanda Sizinlə əlaqə saxlamağa çalışacağıq"
-
-msgid "Submit"
-msgstr "Göndər"
-
 msgid "Validation of email address change in progress."
-msgstr "Email ünvanı dəyişməsinin təsdiqi prosesi gedir."
+msgstr "Emeyl ünvanın dəyişməsinin təsdiqi prosesi gedir."
 
 msgid "Please check your inbox for further instructions."
-msgstr "Ətraflı instruksiya üçün daxilolan qutusunu yoxlayın."
+msgstr "Ətraflı məlumat üçün inboksunuza baxın."
 
 msgid "Account recovery key"
 msgstr "Hesabı qaytarma açarı"
 
 msgid "Current password"
-msgstr "Hazırkı şifrə"
+msgstr "İndiki şifrə"
 
 msgid "Old password confirmation required"
 msgstr "Köhnə şifrənin təsdiqi tələb edilir"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Bu onu göstərir ki, siz, saytı heç bir gizlilik və təhlükəsizlik qorunmadan  nəzərdən keçirirsiniz. "
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr "Sayta kimliyinizi mühafizə edən Tor Brauzerlə daxil olmağınız şiddətlə tövsiyyə olunur."
+msgstr "Sayta kimliyinizi qoruyan Tor Brauzeri ilə daxil olmağınız şiddətlə tövsiyyə edilir."
 
 msgid "Download the Tor Browser"
 msgstr "Tor Brauzeri yükləyin"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "Daha sonra Tor Brauzerə aşağıdakı ünvanı kopyalayıb yapışdırın:"
-
-msgid "Enter a name for the copy"
-msgstr "Nüsxə üçün adınızı əlavə edin"
+msgstr "Sonra aşağıdakı ünvanı kopyalayıb, Tor Brauzerə köçürün:"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "Artıq təqdim etmisiniz mı? Açar açar şifrəni daxil edin"
+msgstr "Hesabatı artıq göndərmisiz? Açar şifrəni daxil edin"
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr "Açar şifrə etibarsızdır və ya təqdimat müddəti başa çatıb."
+msgstr "Açar şifrə etibarsızdır, ya da hesabat müddəti başa çatıb."
 
 msgid "Select a file or drag it here."
-msgstr "Faylı seçin ya bura sürüşdürün."
+msgstr "Faylı seçin, yaxud bura sürüşdürün."
 
 msgid "Uploading files…"
 msgstr "Fayllar yüklənir..."
@@ -1366,7 +1363,7 @@ msgid "Upload completed successfully!"
 msgstr "Yükləmə uğurla başa çatdı!"
 
 msgid "Error while uploading files; check below for details."
-msgstr "Fayl yükləyərkən səhvə yol verilib. Ətraflı məlumat üçün aşağı baxın."
+msgstr "Fayl yüklənərkən səhvə yol verilib; ətraflı məlumat üçün aşağı baxın."
 
 msgid "Estimated upload time:"
 msgstr "Təxmini yükləmə müddəti:"
@@ -1374,22 +1371,11 @@ msgstr "Təxmini yükləmə müddəti:"
 msgid "Size:"
 msgstr "Ölçü:"
 
-msgid "The connection is not secure."
-msgstr "Bağlantı təhlükəlidir."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Platforma hələ HTTPS əlaqələri üçün quraşdırılmayıb və yalnız test məqsədləri üçün istifadə olunmalıdır."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr "Alıcılar əlavə sorğunu doldurmağınızı istəyirlər."
+msgstr "Alıcılar əlavə sorğu anketini doldurmağınızı istəyirlər."
 
 msgid "Fill the additional questionnaire"
-msgstr "Əlavə sorğunu doldur"
-
-msgid "Send"
-msgstr "Göndər"
+msgstr "Əlavə sorğu anketini doldurun"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "İnformasiya ötürənlərin şərh yazmasına icazə verin"
@@ -1410,80 +1396,46 @@ msgid "File size"
 msgstr "Faylın ölçüsü"
 
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr "İnformasiya ötürənə təsdiqetməyə əlavələr etməsinə icazə verin"
+msgstr "İnformasiya ötürənin hesabata əlavələr etməsinə icazə verin"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "İnformasiya ötürənin mesaj göndərməsinə icazə verin"
 
-msgid "Are you sure that you want to delete the report?"
-msgstr "İstifadəçini silmək istədiyinizdən əminsiniz mi?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Platformada saxlanılan təqdimatla bağlı hər şey silinəcəkdir."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Platformada saxlanan hər şeyin məsələn: kompüterinizin saxlanan faylların, əl ilə silinməli olduğunu unutmayın."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Seçdiyiniz bütün təqdimatları silmək istədiyinizə əminsiniz mi?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Xahiş edirik qəbul edicilərin gələcəkdə daxil ola bilməyəcəkləri bütün müvafiq məlumatların silindiyindən əmin olasınız. "
-
-msgid "Please write a motivation for the reply"
-msgstr "Xahiş edirik cavab üçün motivasiya yazın"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Təqdimatın bitmə tarixini təxirə salmaq istədiyinizə əminsiniz mi?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Təsdiqləməklə, son istifadə tarixini təxirə salacaqsınız:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Bütün seçilmiş təqdimatların bitmə tarixini təxirə salmaq istədiyinizə əminsinizmi?"
-
 msgid "Questionnaire answers"
-msgstr "Sorğu cavabları"
+msgstr "Sorğunun cavabları"
 
 msgid "Step"
-msgstr "Addım"
+msgstr "Mərhələ"
 
 msgid "Status:"
 msgstr "Status:"
 
 msgid "Files attached by recipients"
-msgstr "Qəbul edicilər tərəfindən yüklənilmiş fayllar"
+msgstr "Alıcıların yüklədiyi fayllar"
 
 msgid "Upload a file:"
 msgstr "Yeni fayl yüklə:"
 
 msgid "An update is available:"
-msgstr "Yenilənmə mümkündür"
+msgstr "Yeniləmə mümkündür"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr "Məsləhət görürük ki, \"Seçimlər\" bölmənizə keçib \"Hesab yeniləmə Açarı\"nı əldə edəsiniz və təhlükəsiz yerdə saxlayasınız. Bu açar parolunuzu unutduğunuzda platformaya giriş və məlumatlarınıza çıxış əldə etmək üçün istifadə oluna bilər."
+msgstr "\"Hesabı Yeniləmə Açarı\"nı əldə etməkçün \"Seçimlər\" bölməsinə keçməyi və açarı təhlükəsiz yerdə saxlamağı məsləhət görürük. Bu açar parolunuzu unutduğunuzda platformaya və məlumatlarınıza çıxış əldə etməkçün lazım olacaq."
 
 msgid "The provided recovery key is invalid."
-msgstr "Verilən qaytarma açarı səhvdir."
+msgstr "Verilən qaytarma açarı etibarsızdır."
 
 msgid "The provided reset token is invalid or expired."
-msgstr "Verilən sıfırlama tokeni səhvdir və ya köhnədir."
+msgstr "Verilən sıfırlama tokeni etibarsızdır, ya da köhnədir."
 
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr "Parolunuzu yeniləmək üçün hesabınızın istifadəçi adını və ya email ünvanını yazın."
+msgstr "Parolunuzu yeniləmək üçün istifadəçi adı və ya emeyl ünvanınızı yazın."
 
 msgid "Enter your email address to request a password reset."
 msgstr "Parolu yeniləmək üçün email ünvanınızı daxil edin."
@@ -1493,14 +1445,14 @@ msgid ""
 msgstr "Parolu yeniləmə prosedurunu bitirmək üçün şifrəli sıfırlama kodunuzu daxil edin."
 
 msgid "Password reset requested."
-msgstr "Parol yenilənməsi tələb edildi."
+msgstr "Parolun yenilənməsi tələb edildi."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
 msgstr "Mühafizəçidən informasiya ötürənin kimliyinə giriş tələb olunur."
 
 msgid "Date of the request"
-msgstr "Tələb olunan tarix"
+msgstr "Sorğunun tarixi"
 
 msgid "Show"
 msgstr "Göstər"
@@ -1512,17 +1464,17 @@ msgid "You have completed the platform activation."
 msgstr "Platforma aktivasiyasını bitirdiniz."
 
 msgid "Success!"
-msgstr "Uğurlu!"
+msgstr "Uğur!"
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr "Məlumatlandırma platformanız hazırlanır!"
 
 msgid "Check your inbox to activate it."
-msgstr "Daxilolan qutunuzu yoxlayın və aktivləşdirin."
+msgstr "İnboksunuza baxın və onu aktivləşdirin."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr "Platforma 24 saat ərzində aktivləşdirilməsə avtomatik ləğv olunacaq."
+msgstr "Platforma 24 saat ərzində aktivləşdirilməsə, avtomatik ləğv olunacaq."
 
 msgid "Sign up"
 msgstr "Qeydiyyat"
@@ -1536,9 +1488,6 @@ msgstr "Təsdiqləmə"
 msgid "Invalid confirmation"
 msgstr "Səhv təsdiqləmə"
 
-msgid "Complete"
-msgstr "Tamamla"
-
 msgid "Invalid phone number"
 msgstr "Səhv telefon nömrəsi"
 
@@ -1546,38 +1495,38 @@ msgid "The answer is too short"
 msgstr "Cavab çox qısadır"
 
 msgid "The specified input is not valid."
-msgstr "Daxil edilən xətalıdır."
+msgstr "Göstərilən giriş düzgün deyil."
 
 msgid "The specified input is not valid:"
 msgstr "Göstərilən giriş düzgün deyil:"
 
 msgid "please enter a valid email address."
-msgstr "Etibarlı  e-mail ünvanı daxil edin."
+msgstr "etibarlı emeyli ünvanı daxil edin."
 
 msgid "please enter numbers only."
 msgstr "xahiş edirik, yalnız rəqəmləri qeyd edin"
 
 msgid "Submissions disabled"
-msgstr "Təqdimatlar aradan qaldırıldı"
+msgstr "Göndərmələr deaktiv edildi"
 
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
-msgstr "Siz serverə məxfiliyiniz qorunmadan qoşulursunuz və bu server yalnız anonim təqdimatları dəstəkləyir"
+msgstr "Siz serverə məxfiliyinizi qorumadan qoşulmusuz və bu server yalnız anonim göndərmələri dəstəkləyir"
 
 msgid "Your report was successful."
 msgstr "Sizin təqdimatınız uğurlu oldu."
 
 msgid "Remember your receipt for this report."
-msgstr "Bu təqdimat üçün açar şifrəni xatırlayın."
+msgstr "Bu təqdimat üçün açar şifrənizi unutmayın."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Daxil olmaq üçün 16 rəqəmli şifrədən istifadə edin. Bu, sizə göndərdiyimiz bütün mesajları görməyinizə eyni zamanda əlavə məlumat yükləməyinə şərait yaradacaq. "
+msgstr "Daxil olmaq üçün 16 rəqəmli şifrədən istifadə edin. Bu, sizə göndərdiyimiz bütün mesajları görməyinizə, həmçinin əlavə məlumat yükləməyə imkan verəcək. "
 
 msgid "View your report"
-msgstr "Təqdimatını nəzərdən keçir"
+msgstr "Təqdimatınızı nəzərdən keçirin"
 
 msgid "Recipient selection"
 msgstr "Alıcı seçimi"
@@ -1594,51 +1543,51 @@ msgstr "Seçilə bilən alıcıların sayının maksimumuna çatdınız."
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr "Bu alıcılar hesabatınızı alacaq və onları seçməmək olmaz:"
+msgstr "Bu alıcılar hesabatınızı alacaq və onlarla bağlı seçimi ləğv etmək olmaz:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
 "invalid:"
-msgstr "Bu addımda aşağıdakı suallara verilən cavablar ya buraxılmış, ya da etibarsızdır:"
+msgstr "Bu mərhələdə aşağıdakı suallara cavablar ya verilməyib, ya da etibarsızdır:"
 
 msgid "You must select at least one recipient."
-msgstr "Ən azı bir qəbul edici seçməlisiniz."
+msgstr "Ən azı bir alıcı seçməlisiz."
 
 msgid "Waiting for the file(s) to finish uploading."
-msgstr "Yükənən faylın (lar) bitməsini gözləyirəm."
+msgstr "Faylın (faylların) yüklənməsinin bitməsini gözləyir."
 
 msgid "The following steps have errors:"
-msgstr "Aşağıdakı addımlarda səhvlər var:"
+msgstr "Aşağıdakı mərhələlərdə səhvlər var:"
 
 msgid "Hide"
-msgstr "Gizlətmək"
+msgstr "Gizlət"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
 "whistleblowing platform."
-msgstr "Məlumatlandırma platformanızı yaratmaq üçün addım-addım prosedur sizə yardımçı olacaq."
+msgstr "Aşağıdakı prosedur məlumatlandırma platformanızı yaratmaqda sizə addım-addım yardım edəcək."
 
 msgid "Please choose a configuration profile:"
-msgstr "Xahiş edirik quraşdırma profili seçəsiniz:"
+msgstr "Xahiş edirik, quraşdırma profilini seçin:"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr "İnzibatçıya parolları yeniləmək imkanını verin. "
+msgstr "İnzibatçıya parolları yeniləmək imkanı verin. "
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr "Məsləhət görürük ki,alıcılar öz parollarını itirdikdə məlumatların mühafizəsini təmin etmək üçün bu seçimdən istifadə edəsiniz. Digər tərəfdən, yalnız alıcıların göndərilən məlumatları əldə edə biləcəyi sistemi yaratmaq istəyirsinizsə bu seçimi etməyinizi məsləhət görürük."
+msgstr "Alıcılar öz parollarını itirdikdə belə, məlumatlarını mühafizə edə bilsinlər deyə, bu seçimdən istifadə etməyi məsləhət görürük. Digər tərəfdən, göndərmələri yalnız alıcıların əldə edə biləcəyi sistem yaratmaq istəyirsizsə, bu funksiyadan istifadə etməməyinizi tövsiyə edirik."
 
 msgid "Please choose a different username."
-msgstr "Zəhmət olmasa, digər istifadəçi adın seçin."
+msgstr "Zəhmət olmasa, fərqli istifadəçi adı seçin."
 
 msgid "I have read and agree to the terms of the license."
 msgstr "Lisenziya qaydalarını oxudum və razıyam."
 
 msgid "You have completed the platform wizard."
-msgstr "Platforma artıq hazırdır. "
+msgstr "Platforma hazırdır. "
 
 msgid "Fill out your report"
 msgstr "Təqdimatınızı doldurun"
@@ -1650,10 +1599,10 @@ msgid "Describe your report in detail."
 msgstr "Təqdimatınızı təfərrüatı ilə təsvir edin."
 
 msgid "Attach files relevant to the report."
-msgstr "Təqdimat ilə əlaqəli faylları əlavə edin"
+msgstr "Təqdimatla əlaqəli faylları əlavə edin"
 
 msgid "Do you want to provide your identification information?"
-msgstr "Kimlik məlumatınızı vermək istəyirsiniz mi?"
+msgstr "Özünüz haqda məlumat vermək istəyirsizmi?"
 
 msgid "First name"
 msgstr "Ad"
@@ -1662,13 +1611,13 @@ msgid "Last name"
 msgstr "Soyad"
 
 msgid "Alternative contact method"
-msgstr "Alternativ əlaqə yolu"
+msgstr "Alternativ əlaqə "
 
 msgid "Other"
 msgstr "Digər"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr "Yalnız bu platforma vasitəsilə əlaqə saxlanılmasına üstünlük verirəm"
+msgstr "Yalnız bu platforma vasitəsiylə əlaqə saxlanmasına üstünlük verirəm"
 
 msgid "Dear {RecipientName},"
 msgstr "Əziz {RecipientName}, "
@@ -1676,7 +1625,7 @@ msgstr "Əziz {RecipientName}, "
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr "Sistemdə sizin üçün istifadəçi hesabı yaradıldığı üçün siz bu emaili alırsınız: {Site}"
+msgstr "Sistemdə sizin üçün istifadəçi hesabı yaradıldığına görə siz bu emeyli alırsınız: {Site}"
 
 msgid "Username: {Username}"
 msgstr "İstifadəçi adı: {Username}"
@@ -1687,12 +1636,12 @@ msgstr "Aktivasiya linki: {Url}"
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr "Hesabı aktivləşdirmək və istifadəçi parolunuzu seçmək üçün aktivasiya linkinə tıqlayın."
+msgstr "Hesabı aktivləşdirmək və istifadəçi parolunuzu seçmək üçün aktivasiya linkinə tıklayın."
 
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
-msgstr "Uğurlu aktivasiyadan sonra sistemə bu linklə daxil ola biləcəksiniz: {LoginUrl}"
+msgstr "Uğurlu aktivasiyadan sonra sistemə bu linklə daxil ola biləcəksiz: {LoginUrl}"
 
 msgid "Kind regards,"
 msgstr "Xoş arzularla,"
@@ -1717,16 +1666,16 @@ msgstr "Giriş qaydaları"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
-msgstr "Son zamanlarda aşkarlanan fəaliyyətlərin sayı normaldan daha yüksəkdir."
+msgstr "Son zamanlarda qeydə alınan fəaliyyətlərin sayı həmişəkindən yüksəkdir."
 
 msgid ""
 "This could be a sign of an attack (for example, someone flooding your server"
 " with bogus information) or just a usage spike due to an increased "
 "visibility of your project."
-msgstr "Bu, hücum (məsələn, kimsə serverinizi saxta məlumatlarla doldurur) yaxud layihənizə baxış  səbəbiylə istifadənin kəskin artımının əlaməti ola bilər."
+msgstr "Bu, hücumla (məsələn, kimsə serverinizi saxta məlumatlarla doldurur), yaxud layihənizə baxış  sayının çoxalmasıyla bağlı artımın əlaməti ola bilər."
 
 msgid "Examine the issue to determine whether it is legitimate or not."
-msgstr "Bu məsələnin qanuniliyini yoxlayın."
+msgstr "Bu məsələnin qanuni olub-olmadığını yoxlayın."
 
 msgid "The activities with unusual stats are:"
 msgstr "Qeyri-adi statistikası olan fəaliyyətlər:"
@@ -1734,44 +1683,44 @@ msgstr "Qeyri-adi statistikası olan fəaliyyətlər:"
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr "Server yeni hesabatın saxlanacağına zəmanət vermədiyi üçün yeni göndərmələr söndürülüb."
+msgstr "Server yeni hesabatın saxlanacağına zəmanət vermədiyindən göndərmələr deaktiv edilib."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
 "the server."
-msgstr "Serverdəki disk həcminin artırılması üçün texniki yardıma müraciəti nəzərdən keçirin. "
+msgstr "Serverdəki disk həcmini artırmaqdan ötrü texniki yardıma müraciəti nəzərdən keçirin. "
 
 msgid ""
 "GlobaLeaks technology includes a server status checking component which will"
 " alert you in case something requires your attention."
-msgstr "GlobaLeaks texnologiyasının serverin statusunu yoxlayan hissəsi diqqət tələb edən məsələ olanda sizi xəbərdarlıq edəcək."
+msgstr "Diqqətinizi tələb edən məsələ olanda GlobaLeaks texnologiyası serverin statusunu yoxlayan hissə vasitəsiylə sizə xəbərdarlıq edəcək."
 
 msgid ""
 "For more information, log in to the Administration interface and look at the"
 " \"System Stats\" and \"Anomalies\" sections."
-msgstr "Daha ətraflı məlumat üçün İdarəetmə ekranına daxil olun və \"Sistem Statistikaları\" və ya \"Anomaliyalar\" bölmələrinə baxın. "
+msgstr "Ətraflı məlumat üçün İdarəetmə ekranına daxil olun və \"Sistem Statistikaları\" və ya \"Anomaliyalar\" bölmələrinə baxın. "
 
 msgid "Anomaly detected in {NodeName}"
-msgstr "{NodeName} -da aşkarlanan paradoksallıq"
+msgstr "{NodeName} -da aşkarlanan anomaliya"
 
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
 "going to expire or has already expired:"
-msgstr "Bu e-mail, aşağıdaki istifadəçilər üçün PGP açarının müddətinin sona çatacağı və ya artıq başa çatdığını bildirmək üçün göndərilib."
+msgstr "Bu məktub PGP açarının müddətinin sona çatacağını və ya artıq çatdığını aşağıdakı istifadəçilərə bildirməkçün göndərilib:"
 
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
 "notifications."
-msgstr "Mümkün PGP açarı olmadan sistem şifrəli bildirişlər göndərə bilməyəcək. "
+msgstr "Etibarlı PGP açarı olmadan sistem şifrəli bildirişlər göndərə bilməyəcək. "
 
 msgid "PGP key expiration alert"
-msgstr "PGP əsas həyəcan siqnalı"
+msgstr "PGP açarı müddətinin başa çatması haqda xəbərdarlıq "
 
 msgid "A new whistleblowing site has been registered."
-msgstr "Yeni məlumatlandırma saytı qeydə alındı."
+msgstr "Yeni məlumatlandırma saytı qeydə alınıb."
 
 msgid "Registration data:"
-msgstr "Qeydiyyat məlumatı:"
+msgstr "Qeydiyyat haqda:"
 
 msgid "Site: {Url}"
 msgstr "Sayt: {Url}"
@@ -1780,38 +1729,38 @@ msgid "Name: {Name}"
 msgstr "Ad: {Name}"
 
 msgid "Email: {Email}"
-msgstr "Email: {Email}"
+msgstr "Emeyl: {Email}"
 
 msgid "New whistleblowing site registered"
 msgstr "Yeni məlumatlandırma saytı qeydə alındı"
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
-msgstr "Bu, platformanın idarəetmə ekranından  göndərilən  yoxlama e-poçtudur. "
+msgstr "Bu, platformanın idarəetmə ekranından göndərilən yoxlama emeylidir. "
 
 msgid ""
 "Reception of this email indicates that the server was able to authenticate "
 "to and interact with the SMTP mail server."
-msgstr "Bu emailin alınması serverin SMTP poçt xidməti ilə əlaqə qurduğunu və təsdiqlədiyini göstərir. "
+msgstr "Bu məktubun alınması serverin SMTP poçt xidməti ilə əlaqə qura və təsdiqlənə bildiyini göstərir. "
 
 msgid "Test email"
-msgstr "Yoxlanış e-poçtu"
+msgstr "Test emeyl"
 
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr "Bu məktub email ünvanınızı dəyişmək istəyi bildirdiyiniz üçün sizə göndərilib {NewEmailAddress}."
+msgstr "Bu məktub sizə emeyl ünvanınızı dəyişmək tələbi olduğunu bildirməkçün göndərilib {NewEmailAddress}."
 
 msgid "Click the following link to validate this change:"
-msgstr "Dəyişikliyi təsdiqləmək üçün bu linkə tıqlayın:"
+msgstr "Dəyişikliyi təsdiqləməkçün bu linkə tıklayın:"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
 "system administrator."
-msgstr "Bu dəyiikliyi istəməmisinizsə, parolunuzu və əlaqə məlumatlarınız sistem inzibatçınızla əlaqə saxlayaraq dəyişin."
+msgstr "Bu dəyişikliyi siz istəməmisinizsə, parolunuzu dəyişin və sistem inzibatçınızla əlaqə saxlayın."
 
 msgid "Email change request"
-msgstr "Email dəyişikliyi istəyi"
+msgstr "Emeyl dəyişikliyi tələbi"
 
 msgid "From: {Author}"
 msgstr "Kimdən: {Author}"
@@ -1820,7 +1769,7 @@ msgid "Date: {EventTime}"
 msgstr "Tarix: {EventTime}"
 
 msgid "From: Whistleblower"
-msgstr "dan: İnformasiya ötürən"
+msgstr "Kimdən: İnformasiya ötürəndən"
 
 msgid "Date: {SubmissionDate}"
 msgstr "Tarix: {SubmissionDate}"
@@ -1834,7 +1783,7 @@ msgstr "Status: {TipStatus}"
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
-msgstr "Platformaya yüklənmiş HTTPS seritifikat müddəti sona çatır və ya artıq başa çatıb."
+msgstr "Platformaya yüklənmiş HTTPS seritifikatın müddəti sona çatır və ya artıq çatıb."
 
 msgid "Expiration date: {ExpirationDate}"
 msgstr "Bitmə tarixi: {ExpirationDate}"
@@ -1842,20 +1791,20 @@ msgstr "Bitmə tarixi: {ExpirationDate}"
 msgid ""
 "Without a valid certificate, the platform will be accessible in a secure way"
 " only via Tor."
-msgstr "Mümkün sertifikat olmadığı halda , platforma ancaq Tor vasitəsi ilə təhlükəsiz şəkildə əldə edilə bilər. "
+msgstr "Etibarlı sertifikat olmasa, platformaya təhlükəsiz şəkildə ancaq Tor vasitəsiylə keçmək mümkündür. "
 
 msgid "Log in to solve the issue."
 msgstr "Məsələni həll etmək üçün daxil olun."
 
 msgid "Expiration alert for HTTPS certificate"
-msgstr "HTTPS sertifikatı üçün bitmə xəbərdarlığı"
+msgstr "HTTPS sertifikatının müddəti haqda xəbərdarlıq"
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
 msgstr "Bu günə nəzərdə tutulan avtomatik HTTPS sertifikat yenilənməsi baş tutmadı."
 
 msgid "The system will keep trying."
-msgstr "Sistem sınamağa davam edəcək."
+msgstr "Sistem cəhdə davam edəcək."
 
 msgid "Failed HTTPS certificate renewal"
 msgstr "HTTPS sertifikat yenilənməsi xətası"
@@ -1863,37 +1812,37 @@ msgstr "HTTPS sertifikat yenilənməsi xətası"
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr "Bu email sizə təqdimat üçün informasiya ötürənin kimliyinə girməyə icazə verdiyini bildirmək üçün \nmühafizəçi tərəfindən göndərilib {TipNum}."
+msgstr "Bu məktub sizə, məlumatlandırma platformasına keçidinizin mühafizəçi tərəfindən təsdiqləndiyini bildirməkçün göndərilib {TipNum}."
 
 msgid "The report can be accessed at:"
-msgstr "Təqdimat əldə edilə bilər:"
+msgstr "Hesabat əldə edilə bilər:"
 
 msgid "Access to whistleblower's identity authorized"
-msgstr "İnformasiya ötürənin kimliyinə girişə icazə verildi"
+msgstr "Məlumatlandırma platformasına keçidə icazə verildi"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr "Bu email məlumatlandırma platformasında hesabata girişinizin mühafizəçi tərəfindən qəbul olunmadığını bildirir {TipNum}."
+msgstr "Bu məktub sizə, məlumatlandırma platformasına keçidinizin mühafizəçi tərəfindən təsdiqlənmədiyini bildirməkçün göndərilib {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
-msgstr "İnformasiya ötürənin kimliyinə giriş rədd edildi"
+msgstr "Məlumatlandırma platformasına keçid rədd edildi"
 
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr "Bu email təqdimat üçün qəbuledicinin informasiya ötürənin kimliyinə girişə icazə verilməsi tələbini bildirmək üçün göndərilib {TipNum}"
+msgstr "Bu məktub sizə, alıcının məlumat platformasına keçid tələb etdiyini bildirməkçün göndərilib {TipNum}"
 
 msgid "The request can be accessed at:"
 msgstr "Tələbə baxmaq üçün:"
 
 msgid "New request of access to a whistleblower's identity"
-msgstr "İnformasiya ötürənin kimliyinə yeni giriş tələbi"
+msgstr "Məlumat platformasına yeni keçid tələbi"
 
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr "Bu e-poçt, informasiya ötürənin təqdimat {TipNum} üçün öz kimliyi ilə məlumatları təmin etməsi ilə bağlı göndərilib."
+msgstr "Bu məktub sizə, informasiya ötürənin {TipNum} öz kimliyi haqda məlumatı verdiyini bildirməkçün göndərilib."
 
 msgid "The whistleblower has provided their identity"
 msgstr "İnformasiya ötürən öz kimliyini göstərib. "
@@ -1901,36 +1850,36 @@ msgstr "İnformasiya ötürən öz kimliyini göstərib. "
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr "Hesabın parolunu dəyişmək üçün tələb yaradıldığından siz bu email göndərilib: {Username}"
+msgstr "Bu məktubu, hesabın parolunu dəyişmək tələbi olduğuna görə almısınız: {Username}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
 "email."
-msgstr "Əgər bu istəyi siz bildirməmisinizsə, emailə fikir verməyin və silin."
+msgstr "Əgər bu tələbi siz göndərməmisinizsə, məktuba fikir verməyin və onu silin."
 
 msgid "You can confirm your request by clicking the following link:"
-msgstr "İstəyinizi təsdiqləmək üçün linkə tıqlayın:"
+msgstr "Tələbinizi təsdiqləməkçün aşağıdakı linkə tıklayın:"
 
 msgid "Password reset instructions"
-msgstr "Parol yeniləmə qaydaları:"
+msgstr "Parolu yeniləmə qaydaları:"
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
 "expired."
-msgstr "Bu e-poçt, PGP açarın sona çatacağını və ya artıq başa çatdığını bildirmək üçün göndərilib. "
+msgstr "Bu məktub sizə, PGP açarı müddətinin sona çatacağını və ya artıq çatdığını bildirməkçün göndərilib. "
 
 msgid ""
 "You should extend its validity and update the key present on the platform, "
 "or upload a new key."
-msgstr "Siz, platformada mövcud açarın etibarlılığını uzatmalı və yeniləməli, və ya yenisini yükləməlisiniz. "
+msgstr "Platformadakı açarın etibarlılığını uzatmalı, onu yeniləməli, ya da yeni açar yükləməlisiz. "
 
 msgid ""
 "Without a valid PGP key, the system won't be able to encrypt data provided "
 "to you."
-msgstr "Etibarlı PGP açarı olmadan sistem sizə verilən məlumatları şifrələməyəcək. "
+msgstr "Etibarlı PGP açarı olmasa, sistem sizə verilən məlumatları şifrələyə bilməyəcək. "
 
 msgid "Click the link to activate the platform:"
-msgstr "Platformanı aktivləşdirmək üçün linkə tıqlayın:"
+msgstr "Platformanı aktivləşdirmək üçün linkə tıklayın:"
 
 msgid "Activation"
 msgstr "Aktivləşdirmə"
@@ -1944,17 +1893,17 @@ msgstr "Platformanı son versiyada saxlamaq yaxşı təhlükəsizlik təcrübəs
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "
 "change log at: {ChangeLogUrl}"
-msgstr "Yeni versiyada yeni xüsusiyyətləri və problem həllərini öyrənmək üçün dəyişiklik tarixinə müraciət edin: {ChangeLogUrl}"
+msgstr "Yeni versiyanın yeni xüsusiyyətləri və həllərini öyrənməkçün dəyişiklik haqda qeydə baxın: {ChangeLogUrl}"
 
 msgid ""
 "For instructions on software updates, please refer to the documentation at: "
 "{UpdateGuideUrl}"
-msgstr "Proqam yeniləmələrinə dair təlimatlar üçün sənədlərə keç: {UpdateGuideUrl}"
+msgstr "Proqam yeniləmələrinə dair təlimatlar üçün sənədlərə keçin: {UpdateGuideUrl}"
 
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr "Bu email alıcının bir və ya daha çox hesabata giriş verdiyini bildrmək üçündür."
+msgstr "Bu məktub sizə, alıcının bir və ya daha çox hesabata giriş verdiyini bildrməkçün göndərilib."
 
 msgid "New report"
 msgstr "Yeni hesabat"
@@ -1966,12 +1915,12 @@ msgid "Please remember to check them before they are deleted."
 msgstr "Silinmədən öncə onları yoxlamağı unutmayın"
 
 msgid "Some reports will expire soon"
-msgstr "Bəzi təqdimatlar tezliklə başa çatacaq"
+msgstr "Bəzi hesabatların müddəti tezliklə başa çatacaq"
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr "Bu e-poçt, informasiya ötürənin sizi təqdimatı üçün qiymətli qəbul edici olaraq seçdiyini bildirmək üçün göndərilib."
+msgstr "Bu məktub sizə, informasiya ötürənin sizi dəyərli alıcı kimi seçdiyini bildirməkçün göndərilib."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -1979,16 +1928,16 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr "Buradakı məlumat və materiallara xüsusi diqqət yetirməyiniz xahiş olunur. Nəzərdə saxlayın ki, informasiya ötürənlər ictimai maraqlara görə yüksək şəxsi risklərə məruz qalırlar. Buna görə də təqdim edilən təqdimat materialları böyük əhəmiyyətə malikdirlər."
+msgstr "Burdakı məlumat və materiallara xüsusi diqqət yetirməyiniz xahiş olunur. Unutmayın ki, informasiya ötürənlər ictimai maraqlar naminə böyük risklərə məruz qalırlar. Onların təqdim etdiyi materiallar böyük əhəmiyyətə malikdir."
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr "Bu email hazırkı hesabatın yenilənməsini bildirir."
+msgstr "Bu məktub sizə, mövcud hesabatın yeniləndiyini bildirməkçün göndərilib."
 
 msgid "Report updated"
 msgstr "Hesabat yeniləndi"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr "Bu email oxunmamış və ya yenilənmiş hesabatların olduğunu bildirir."
+msgstr "Bu məktub sizə, oxunmamış və ya yenilənmiş hesabatların olduğunu xatıratmaqçün göndərilib."
 
 msgid "Reminder about unread or updated reports"
 msgstr "Oxunmamış və ya yenilənmiş hesabatlar haqda xəbərdarlıq"

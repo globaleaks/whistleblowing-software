@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 12:53+0000\n"
+"PO-Revision-Date: 2021-09-24 08:46+0000\n"
 "Last-Translator: Zangar Batyrkhan <zangar.kazakh@gmail.com>\n"
 "Language-Team: Kazakh (http://www.transifex.com/otf/globaleaks/language/kk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,7 +51,7 @@ msgid "License"
 msgstr "Лицензия"
 
 msgid "Notification templates"
-msgstr "Хабарлама үлгілері"
+msgstr "Хабарландыру үлгілері"
 
 msgid "Delete"
 msgstr "Жою"
@@ -63,7 +63,7 @@ msgid "Preferences"
 msgstr "Бапталған параметрлер"
 
 msgid "Notification settings"
-msgstr "Хабарлама параметрлері"
+msgstr "Хабарландыру параметрлері"
 
 msgid "file unavailable"
 msgstr "файл қолжетімсіз"
@@ -99,7 +99,7 @@ msgid "YOUR NAME"
 msgstr "СІЗДІҢ ЕСІМІҢІЗ"
 
 msgid "Label the report"
-msgstr "Есепті белгілеңіз"
+msgstr "Есепті белгілеу"
 
 msgid "Postpone the expiration date"
 msgstr "Жарамдылық мерзімін кейінге жылжыту"
@@ -120,10 +120,10 @@ msgid "Preview"
 msgstr "Алдын ала қарау"
 
 msgid "The whistleblower has already read the last update"
-msgstr "Ақпарат таратушы соңғы жаңартуды оқып үлгерді"
+msgstr "Ақпар беруші соңғы жаңартуды оқып үлгерді"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr "Ақпарат таратушы соңғы жаңартуды әлі оқыған жоқ"
+msgstr "Ақпар беруші соңғы жаңартуды әлі оқыған жоқ"
 
 msgid "Move up"
 msgstr "Жоғары жылжу"
@@ -170,7 +170,7 @@ msgid "Minimum number of input characters"
 msgstr "Енгізілетін таңбалардың ең аз саны"
 
 msgid "Maximum number of input characters"
-msgstr "Енгізілетін таңбалардың көп аз саны"
+msgstr "Енгізілетін таңбалардың ең көп саны"
 
 msgid "Earliest selectable date"
 msgstr "Таңдауға болатын ең ерте уақыт"
@@ -221,10 +221,10 @@ msgid "Identity"
 msgstr "Жеке басын куәландыру"
 
 msgid "Access requested"
-msgstr "Кіруге сұратым жіберілді"
+msgstr "Қатынасуға сұратым жіберілді"
 
 msgid "Request access to the whistleblower's identity"
-msgstr "Ақпарат таратушының жеке басын куәландыруға қол жеткізуге сұратым жіберілді"
+msgstr "Ақпар беруші жеке басын куәландыруға қол жеткізуге сұратым жіберілді"
 
 msgid "Please write a motivation"
 msgstr "Мотивация жазыңыз"
@@ -251,10 +251,10 @@ msgid "Deny"
 msgstr "Рұқсат бермеу"
 
 msgid "Deny access to the whistleblower's identity"
-msgstr "Ақпарат таратушының жеке басына кіруге рұқсат етпеу"
+msgstr "Ақпар берушінің жеке басына қатынасуға рұқсат етпеу"
 
 msgid "Authorize access to the whistleblower's identity"
-msgstr "Ақпарат таратушының жеке басына қатынасуға рұқсат беру"
+msgstr "Ақпар берушінің жеке басына қатынасуға рұқсат беру"
 
 msgid "Templates"
 msgstr "Үлгілер"
@@ -382,7 +382,7 @@ msgid "Use as default"
 msgstr "Әдепкі ретінде пайдалану"
 
 msgid "Create your whistleblowing platform"
-msgstr "Ақпарат беретін платформаңызды жасаңыз"
+msgstr "Ақпар беретін платформаңызды жасаңыз"
 
 msgid "Collapse"
 msgstr "Жинау"
@@ -425,12 +425,6 @@ msgstr "Алғашқы"
 
 msgid "Last"
 msgstr "Соңғы"
-
-msgid "Running"
-msgstr "Қолданыста"
-
-msgid "Not running"
-msgstr "Қолданыста емес"
 
 msgid "Send a test email to your email address."
 msgstr "Электрондық пошта мекенжайына тестілік хат жіберіңіз."
@@ -477,7 +471,7 @@ msgid "Grant access"
 msgstr "Қатынасуға рұқсат беру"
 
 msgid "Revoke access"
-msgstr ""
+msgstr "Рұқсатты кері қайтару"
 
 msgid "File a report"
 msgstr "Есеп беру"
@@ -495,7 +489,7 @@ msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Таңдалған құпиясөз тым жеңіл. Жарамды құпия сөз кемінде 10 таңбадан тұруы керек және әр түрлі таңбаларды, оның ішінде кіші әріпті, бас әріпті, сан мен арнайы таңбаны қамтуы тиіс."
+msgstr "Таңдалған құпиясөз тым жеңіл. Жарамды құпиясөз кемінде 10 таңбадан тұруы керек және әр түрлі таңбаларды, оның ішінде кіші әріпті, бас әріпті, сан мен арнайы таңбаны қамтуы тиіс."
 
 msgid "The new password must be different from the current one."
 msgstr "Жаңа құпиясөз қолданыстағы құпиясөзден өзгеше болуы керек."
@@ -528,7 +522,7 @@ msgid "Administrators authorized to change user passwords:"
 msgstr "Пайдаланушылардың құпиясөздерін өзгертуге рұқсаты бар әкімшілер:"
 
 msgid "Enable multisite feature"
-msgstr "Көп сайт функциясын қосу"
+msgstr "Мульти-сайт функциясын қосу"
 
 msgid "Enable simplified login"
 msgstr "Жеңілдетілген кіруді іске қосу"
@@ -551,8 +545,8 @@ msgstr "Пайдаланушылардың есімдерін жария етп�
 msgid "Size limit for file attachments"
 msgstr "Файл тіркемелерінің өлшемінің шектеуі"
 
-msgid "in megabytes"
-msgstr "мегабайтпен"
+msgid "megabytes"
+msgstr "мегабайт"
 
 msgid "Enable HSTS preload"
 msgstr "HSTS алдын-ала жүктеуін қосу"
@@ -610,9 +604,6 @@ msgstr "Төмен"
 
 msgid "High"
 msgstr "Жоғары"
-
-msgid "megabytes"
-msgstr "мегабайт"
 
 msgid "percentage"
 msgstr "пайыз"
@@ -775,9 +766,6 @@ msgstr "Ақпарат таратушыларға хабар жіберуге р
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Ақпарат берушілерге бар есептерге тіркемелерді қосуға рұқсат ету"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Алушыларға файлдарды ақпарат таратушыларға жіберуге рұқсат ету"
 
 msgid "Additional questionnaire"
 msgstr "Қосымша сауалнама"
@@ -1207,32 +1195,20 @@ msgstr "Мәтін пайдаланушы опцияны таңдағаннан 
 msgid "Confirm"
 msgstr "Растау"
 
-msgid "Are you sure?"
-msgstr "Сенімдісіз бе?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "Операция баптауды қалпына келтіреді және оны қайтару мүмкін болмайды ."
-
 msgid "Assign score points"
 msgstr "Ұпайларды тағайындау"
+
+msgid "Are you sure?"
+msgstr "Сенімдісіз бе?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Осыған байланысты барлық деректер біржола жойылатынына назар аударыңыз."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Бұл демо-платформа, оны шынайы түрде жіберу үшін пайдаланбаңыз."
+msgid "Enable two factor authentication"
+msgstr "Екі факторлы аутентификацияны іске қосу"
 
 msgid "Close"
 msgstr "Жабу"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Телефонға аутентификатор қолданбасын орнату"
-
-msgid "Scan the QR code with the app"
-msgstr "QR кодын қолданба арқылы сканерлеу"
-
-msgid "Enable two factor authentication"
-msgstr "Екі факторлы аутентификацияны іске қосу"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Жалғастырмас бұрын құжаттаманы мұқият оқып шығыңыз:"
@@ -1244,6 +1220,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Көшірмені жасап, оны қауіпсіз жерде сақтаңыз. Бұл құпиясөзіңізді жоғалтқан кезде ешқандай деректеріңізді жоғалтпай есептік жазбаңызға қатынасуыңыз үшін қажет."
+
+msgid "Enter a name for the copy"
+msgstr "Көшірменің атауын енгізіңіз"
+
+msgid "Request support"
+msgstr "Қолдау сұратылымы"
+
+msgid "Thank you."
+msgstr "Рахмет."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Сізбен мүмкіндігінше тезірек байланысуға тырысамыз."
+
+msgid "Submit"
+msgstr "Жіберу"
+
+msgid "The connection is not secure."
+msgstr "Қосылым қауіпсіз емес."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Платформа әлі HTTPS қосылымдары үшін баптаудан өткізілмеген, сондықтан оны тек тестілеу мақсатында пайдалану керек."
+
+msgid "Please write a motivation for the reply"
+msgstr "Жауап үшін мотивация жазыңыз"
+
+msgid "Send"
+msgstr "Жіберу"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Растау арқылы жарамдылық мерзімін келесіге дейін қалдырасыз:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Бұл демо-платформа, оны шынайы түрде жіберу үшін пайдаланбаңыз."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Телефонға аутентификатор қолданбасын орнату"
+
+msgid "Scan the QR code with the app"
+msgstr "QR кодын қолданба арқылы сканерлеу"
 
 msgid "Welcome!"
 msgstr "Қош келдіңіз!"
@@ -1299,18 +1316,6 @@ msgstr "Ресурстарға Tor желісі арқылы ғана қол ж�
 msgid "The upload request exceeds the size limit"
 msgstr "Жүктеу сұранысы шекті мөлшерден асып тұр"
 
-msgid "Request support"
-msgstr "Қолдау сұратылымы"
-
-msgid "Thank you."
-msgstr "Рахмет."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Сізбен мүмкіндігінше тезірек байланысуға тырысамыз."
-
-msgid "Submit"
-msgstr "Жіберу"
-
 msgid "Validation of email address change in progress."
 msgstr "Электрондық пошта мекенжайының өзгеруі расталуда."
 
@@ -1327,11 +1332,6 @@ msgid "Old password confirmation required"
 msgstr "Ескі құпиясөзді растау қажет"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Сіз бұл сайтты қосымша құпиялылық пен қауіпсіздіксіз шолып жатқан сияқтысыз!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "Сізге бұл сайтқа сіздің жеке басыңызды қорғайтын Tor Browser қолданбасы арқылы кіру ұсынылады."
@@ -1341,9 +1341,6 @@ msgstr "Tor Browser-ін жүктеңіз"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Содан кейін келесі мекенжайды Tor Browser-іне көшіріңіз:"
-
-msgid "Enter a name for the copy"
-msgstr "Көшірменің атауын енгізіңіз"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Сіз өтініш бердіңіз бе? Түбіртекті енгізіңіз."
@@ -1369,22 +1366,11 @@ msgstr "Жүктеудің болжамды уақыты:"
 msgid "Size:"
 msgstr "Өлшемі:"
 
-msgid "The connection is not secure."
-msgstr "Қосылым қауіпсіз емес."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Платформа әлі HTTPS қосылымдары үшін баптаудан өткізілмеген, сондықтан оны тек тестілеу мақсатында пайдалану керек."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Алушылар сізден қосымша сауалнаманы толтыруды сұрады."
 
 msgid "Fill the additional questionnaire"
 msgstr "Қосымша сауалнаманы толтырыңыз"
-
-msgid "Send"
-msgstr "Жіберу"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Ақпарат таратушыға түсініктеме жазуға рұқсат ету"
@@ -1409,40 +1395,6 @@ msgstr "Ақпарат таратушыға есепке тіркемелер қ
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Ақпарат таратушыға хабарлама жіберуге рұқсат ету"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "Есепті жойғыңыз келетініне сенімдісіз бе?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Платформада сақталған есепке қатысты барлық мәліметтер жойылады."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Платформадан тыс жерде сақталатындардың барлығын (мысалы, компьютерде сақталған файлдар) қолмен жою қажет."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Таңдалған есептерді жойғыңыз келетініне сенімдісіз бе?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Қатысушылардың оған бұдан әрі кіре алмауы үшін барлық қатысты деректердің дұрыс жойылғанына көз жеткізіңіз."
-
-msgid "Please write a motivation for the reply"
-msgstr "Жауап үшін мотивация жазыңыз"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Сіз есептің жарамдылық мерзімін кейінге қалдырғыңыз келетініне сенімдісіз бе?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Растау арқылы жарамдылық мерзімін келесіге дейін қалдырасыз:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Сіз барлық таңдалған есептердің жарамдылық мерзімін ауыстырғыңыз келетініне сенімдісіз бе?"
 
 msgid "Questionnaire answers"
 msgstr "Сауалнама жауаптары"
@@ -1530,9 +1482,6 @@ msgstr "Растау"
 
 msgid "Invalid confirmation"
 msgstr "Қате растау"
-
-msgid "Complete"
-msgstr "Толық"
 
 msgid "Invalid phone number"
 msgstr "Телефон нөмірі жарамсыз"

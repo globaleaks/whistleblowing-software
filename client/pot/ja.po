@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
-"Last-Translator: Tsuyoshi CHO <Tsuyoshi.CHO+transifex@gmail.com>\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -430,12 +430,6 @@ msgstr "最初"
 msgid "Last"
 msgstr "最終"
 
-msgid "Running"
-msgstr "実行中"
-
-msgid "Not running"
-msgstr "実行していません"
-
 msgid "Send a test email to your email address."
 msgstr "お使いのメールアドレスにテストメールを送信します。"
 
@@ -555,7 +549,7 @@ msgstr "ユーザーの名前を公開しない"
 msgid "Size limit for file attachments"
 msgstr "添付ファイルの制限サイズ"
 
-msgid "in megabytes"
+msgid "megabytes"
 msgstr "メガバイトで"
 
 msgid "Enable HSTS preload"
@@ -614,9 +608,6 @@ msgstr "低"
 
 msgid "High"
 msgstr "高い"
-
-msgid "megabytes"
-msgstr "メガバイトで"
 
 msgid "percentage"
 msgstr "パーセントで"
@@ -779,9 +770,6 @@ msgstr "内部告発者が、メッセージを送信することを許可"
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "内部告発者が、既存の報告に添付ファイルを追加することを許可する"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "受信者が、内部告発者向けのファイルをアップロードすることを許可します"
 
 msgid "Additional questionnaire"
 msgstr "追加のアンケート"
@@ -1211,32 +1199,20 @@ msgstr "ユーザーがオプションを選択した後に表示されるテキ
 msgid "Confirm"
 msgstr "延期を確認"
 
-msgid "Are you sure?"
-msgstr "よろしいですか?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "操作によって設定がリセットされ、元に戻すことはできません。"
-
 msgid "Assign score points"
 msgstr "スコアポイントを割り当て"
+
+msgid "Are you sure?"
+msgstr "よろしいですか?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "すべての関連データが完全に失われますのでご注意ください。"
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "これはデモプラットフォームです。実際の提出には使用しないでください。"
+msgid "Enable two factor authentication"
+msgstr "2要素認証を有効にする"
 
 msgid "Close"
 msgstr "閉じる"
-
-msgid "Install an authenticator app on your phone"
-msgstr "お使いの電話に認証アプリをインストールする"
-
-msgid "Scan the QR code with the app"
-msgstr "アプリでQRコードをスキャンしてください"
-
-msgid "Enable two factor authentication"
-msgstr "2要素認証を有効にする"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "先に進む前に、次のドキュメントを注意深くお読みください:"
@@ -1248,6 +1224,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "コピーを作成して、安全な場所に保管してください。 パスワードを紛失した場合に、データを失うことなくアカウントへのアクセスを回復する必要があります。"
+
+msgid "Enter a name for the copy"
+msgstr "コピーの名前を入力してください"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr "ありがとうございます."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "できるだけ早くあなたが戻ってこられますように。"
+
+msgid "Submit"
+msgstr "提出"
+
+msgid "The connection is not secure."
+msgstr "接続が安全ではありません。"
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "プラットフォームはまだ HTTPS 接続用に構成されていないため、テスト目的のみで使用する必要があります。"
+
+msgid "Please write a motivation for the reply"
+msgstr "返信の動機を書いてください"
+
+msgid "Send"
+msgstr "送信"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "確認すると、有効期限を以下に延期します:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "これはデモプラットフォームです。実際の提出には使用しないでください。"
+
+msgid "Install an authenticator app on your phone"
+msgstr "お使いの電話に認証アプリをインストールする"
+
+msgid "Scan the QR code with the app"
+msgstr "アプリでQRコードをスキャンしてください"
 
 msgid "Welcome!"
 msgstr "ようこそ!"
@@ -1303,18 +1320,6 @@ msgstr "リソースはTorネットワーク内でのみアクセスできます
 msgid "The upload request exceeds the size limit"
 msgstr "アップロードリクエストがサイズ制限を超過しました"
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr "ありがとうございます."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "できるだけ早くあなたが戻ってこられますように。"
-
-msgid "Submit"
-msgstr "提出"
-
 msgid "Validation of email address change in progress."
 msgstr "メールアドレス変更の検証を処理しています。"
 
@@ -1331,11 +1336,6 @@ msgid "Old password confirmation required"
 msgstr "旧パスワードの確認が必要"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "何の追加的なプライバシーやセキュリティもなしに、このサイトを参照しているようです!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "このサイトをTor ブラウザというアプリケーションを介してご覧になることを強くお勧めします。Torブラウザはあなたの身元を守ります。"
@@ -1345,9 +1345,6 @@ msgstr "Tor Browser をダウンロード"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "その上で、以下のアドレスをインストールされたTor Browserにコピー&ペーストしてください。"
-
-msgid "Enter a name for the copy"
-msgstr "コピーの名前を入力してください"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "すでに報告を行っていますか？あなたの受領番号を入力してください。"
@@ -1373,22 +1370,11 @@ msgstr "見積アップロード時間:"
 msgid "Size:"
 msgstr "サイズ："
 
-msgid "The connection is not secure."
-msgstr "接続が安全ではありません。"
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "プラットフォームはまだ HTTPS 接続用に構成されていないため、テスト目的のみで使用する必要があります。"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "受領者があなたに追加のアンケートを記入するよう依頼しました。"
 
 msgid "Fill the additional questionnaire"
 msgstr "追加のアンケートを入力してください"
-
-msgid "Send"
-msgstr "送信"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "その内部告発者が、コメントを書くことを許可"
@@ -1413,40 +1399,6 @@ msgstr "その内部告発者が、報告に添付ファイルを追加するこ
 
 msgid "Allow the whistleblower to send messages"
 msgstr "その内部告発者が、メッセージを送信することを許可"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "報告を削除してもよろしいですか?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "プラットフォーム上に格納された、報告に関連したすべてが削除されます。"
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "プラットフォーム外に格納されているものすべてに注意してください。例えば、お使いのコンピュータに保存されたファイルは、手動で削除する必要があります。"
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "選択した報告をすべて削除してもよろしいですか?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "全ての関連するデータが適切に削除され、全ての受信者がこれ以上それにアクセスできないことを確認してください。"
-
-msgid "Please write a motivation for the reply"
-msgstr "返信の動機を書いてください"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "報告の有効期限を延長してもよろしいですか?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "確認すると、有効期限を以下に延期します:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "選択した報告の有効期限をすべて延長してもよろしいですか?"
 
 msgid "Questionnaire answers"
 msgstr "アンケート回答"
@@ -1534,9 +1486,6 @@ msgstr "確認"
 
 msgid "Invalid confirmation"
 msgstr "確認できません"
-
-msgid "Complete"
-msgstr "完了"
 
 msgid "Invalid phone number"
 msgstr "電話番号が正しくありません"

@@ -1,5 +1,6 @@
 # 
 # Translators:
+# Daniel Vaknine <vaknine.daniel@gmail.com>, 2021
 # eckeman <eckeman@zoho.com>, 2020
 # ester.a <ester@virtualroad.org>, 2014
 # ester.a <ester@virtualroad.org>, 2014-2015
@@ -22,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
-"Last-Translator: 0848eda738c5b7991c82fe32ea145d37_6f8c5b1\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -443,12 +444,6 @@ msgstr "Första"
 msgid "Last"
 msgstr "Sista"
 
-msgid "Running"
-msgstr "Kör"
-
-msgid "Not running"
-msgstr "Kör inte"
-
 msgid "Send a test email to your email address."
 msgstr "Skicka ett testmejl till din e-postadress."
 
@@ -479,7 +474,7 @@ msgid "This domain name is not available."
 msgstr "Detta domännamn är inte tillgängligt."
 
 msgid "Mark as important"
-msgstr ""
+msgstr "Markera som viktigt"
 
 msgid "Copy to clipboard"
 msgstr "Kopiera till urklipp"
@@ -491,7 +486,7 @@ msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
 msgid "Grant access"
-msgstr ""
+msgstr "Ge åtkomst"
 
 msgid "Revoke access"
 msgstr "Återkalla åtkomst"
@@ -568,8 +563,8 @@ msgstr "Visa inte användarnas namn"
 msgid "Size limit for file attachments"
 msgstr "Storleksgräns för bifogade filer"
 
-msgid "in megabytes"
-msgstr "i megabyte"
+msgid "megabytes"
+msgstr "megabytes"
 
 msgid "Enable HSTS preload"
 msgstr "Tillåt förladdning i HSTS"
@@ -628,9 +623,6 @@ msgstr "Låg"
 msgid "High"
 msgstr "Hög"
 
-msgid "megabytes"
-msgstr "megabytes"
-
 msgid "percentage"
 msgstr "procent"
 
@@ -638,10 +630,10 @@ msgid "Type"
 msgstr "Typ"
 
 msgid "Severity"
-msgstr ""
+msgstr "Allvarighetsgrad"
 
 msgid "Object"
-msgstr ""
+msgstr "Objekt"
 
 msgid "ID"
 msgstr "ID"
@@ -792,9 +784,6 @@ msgstr "Tillåt att visselblåsarna skickar meddelanden"
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Låt visselblåsarna lägga till bilagor till befintliga rapporter"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Låt mottagarna ladda upp filer till visselblåsarna"
 
 msgid "Additional questionnaire"
 msgstr "Ytterligare frågeformulär"
@@ -1224,32 +1213,20 @@ msgstr "Text som visas efter att användaren har gjort sitt val."
 msgid "Confirm"
 msgstr "Bekräfta"
 
-msgid "Are you sure?"
-msgstr "Är du säker?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "Denna åtgärd kommer att återställa konfigureringen och kan inte ångras."
-
 msgid "Assign score points"
 msgstr "Tilldela poängtal"
+
+msgid "Are you sure?"
+msgstr "Är du säker?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Vänligen notera att alla tillhörande uppgifter kommer att tas bort permanent."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Detta är en demonstrationsplattform, vänligen använd den inte för verkliga tips."
+msgid "Enable two factor authentication"
+msgstr "Tillåt tvåfaktorsautentisering"
 
 msgid "Close"
 msgstr "Stäng"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Installera en autentiseringsapp på din smarttelefon"
-
-msgid "Scan the QR code with the app"
-msgstr "Scanna QR-koden med appen"
-
-msgid "Enable two factor authentication"
-msgstr "Tillåt tvåfaktorsautentisering"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Innan du går vidare ber vi dig noggrant läsa igenom informationsdokumenten på adressen:"
@@ -1261,6 +1238,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Gör en kopia och förvara den på ett säkert ställe. Om du tappar bort ditt lösenord behövs detta för att du på nytt ska få åtkomst till ditt konto utan dataförlust."
+
+msgid "Enter a name for the copy"
+msgstr "Skriv in ett namn för denna kopia"
+
+msgid "Request support"
+msgstr "Begär support"
+
+msgid "Thank you."
+msgstr "Tack."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Vi ska försöka kontakta dig så fort som möjligt."
+
+msgid "Submit"
+msgstr "Skicka"
+
+msgid "The connection is not secure."
+msgstr "Uppkopplingen är inte säker."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Plattformen är fortfarande inte konfigurerad för HTTPS-uppkopplingar och ska därför endast användas i testsyfte."
+
+msgid "Please write a motivation for the reply"
+msgstr "Vänligen skriv en motivering till svaret"
+
+msgid "Send"
+msgstr "Skicka"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Genom att klicka på förlängning så kommer du att förlänga tipsets utgångsdatum till:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Detta är en demonstrationsplattform, vänligen använd den inte för verkliga tips."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Installera en autentiseringsapp på din smarttelefon"
+
+msgid "Scan the QR code with the app"
+msgstr "Scanna QR-koden med appen"
 
 msgid "Welcome!"
 msgstr "Välkommen!"
@@ -1316,18 +1334,6 @@ msgstr "Resursen kan bara nås inom Tor-nätverket"
 msgid "The upload request exceeds the size limit"
 msgstr "Uppladdningen går över maxgränsen för antalet MB"
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr "Tack."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Vi ska försöka kontakta dig så fort som möjligt."
-
-msgid "Submit"
-msgstr "Skicka"
-
 msgid "Validation of email address change in progress."
 msgstr "Bekräftelse av ändrad e-postadress pågår."
 
@@ -1344,11 +1350,6 @@ msgid "Old password confirmation required"
 msgstr "Kräv bekräftelse på gammalt lösenord"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Det ser ut som att du besöker den här sajten utan extra integritet och säkerhet!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "Vi rekommenderar starkt att du besöker denna webbplats med hjälp av appen (webbläsaren) som kallas Tor Browser."
@@ -1358,9 +1359,6 @@ msgstr "Ladda ner webbläsaren Tor"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Sedan ska du kopiera och klistra in följande adress i webbläsaren Tor:"
-
-msgid "Enter a name for the copy"
-msgstr "Skriv in ett namn för denna kopia"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Har du redan lämnat en rapport? Ange din kod."
@@ -1386,22 +1384,11 @@ msgstr "Uppskattad uppladdningstid:"
 msgid "Size:"
 msgstr "Storlek:"
 
-msgid "The connection is not secure."
-msgstr "Uppkopplingen är inte säker."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Plattformen är fortfarande inte konfigurerad för HTTPS-uppkopplingar och ska därför endast användas i testsyfte."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Mottagarna har bett dig fylla i ytterligare ett frågeformulär."
 
 msgid "Fill the additional questionnaire"
 msgstr "Fyll i det ytterligare frågeformuläret"
-
-msgid "Send"
-msgstr "Skicka"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Tillåt att visselblåsaren skriver kommentarer"
@@ -1426,40 +1413,6 @@ msgstr "Tillåt att visselblåsaren lägger till bilagor till rapporten"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Tillåt att visselblåsaren skickar meddelanden"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "Är du säker på att du vill radera rapporten?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Samtliga uppgifter som har anknytning till rapporten och som sparats på plattformen kommer att raderas."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Kom ihåg att allt som du sparat utanför plattformen, t.ex. filer som du sparat på din dator, måste raderas manuellt."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Är du säker på att du vill radera alla valda rapporter?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Säkerställ att alla tillhörande uppgifter raderas ordentligt så att ingen av mottagarna har tillgång till dem längre."
-
-msgid "Please write a motivation for the reply"
-msgstr "Vänligen skriv en motivering till svaret"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Är du säker på att du vill förlänga utgångsdatumet för rapporten?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Genom att klicka på förlängning så kommer du att förlänga tipsets utgångsdatum till:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Är du säker på att du vill förlänga utgångsdatumet för alla valda rapporter?"
 
 msgid "Questionnaire answers"
 msgstr "Svar på frågeformuläret"
@@ -1547,9 +1500,6 @@ msgstr "Bekräftelse"
 
 msgid "Invalid confirmation"
 msgstr "Ogiltig bekräftelse"
-
-msgid "Complete"
-msgstr "Klar"
 
 msgid "Invalid phone number"
 msgstr "Ogiltigt telefonnummer"
@@ -1674,13 +1624,13 @@ msgid "Last name"
 msgstr "Efternamn"
 
 msgid "Alternative contact method"
-msgstr ""
+msgstr "Alternativ kontaktmetod"
 
 msgid "Other"
 msgstr "Annat"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr ""
+msgstr "Jag föredrar att bli kontaktad endast via denna plattform"
 
 msgid "Dear {RecipientName},"
 msgstr "Bästa {RecipientName},"

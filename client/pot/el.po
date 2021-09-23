@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -438,12 +438,6 @@ msgstr "Πρώτο"
 msgid "Last"
 msgstr "Τελευταίο"
 
-msgid "Running"
-msgstr "Εκτελείται"
-
-msgid "Not running"
-msgstr "Δεν εκτελείται"
-
 msgid "Send a test email to your email address."
 msgstr "Στείλτε ένα δοκιμαστικό email στη διεύθυνση ηλεκτρονικού ταχυδρομείου σας."
 
@@ -563,8 +557,8 @@ msgstr "Μην εκθέσετε τα ονόματα των χρηστών"
 msgid "Size limit for file attachments"
 msgstr "Όριο μεγέθους για τα συνημμένα αρχεία"
 
-msgid "in megabytes"
-msgstr "σε megabyte"
+msgid "megabytes"
+msgstr "megabyte"
 
 msgid "Enable HSTS preload"
 msgstr "Επιτρέψτε την προφόρτωση HSTS"
@@ -622,9 +616,6 @@ msgstr "Χαμηλό"
 
 msgid "High"
 msgstr "Υψηλό"
-
-msgid "megabytes"
-msgstr "megabyte"
 
 msgid "percentage"
 msgstr "ποσοστό"
@@ -787,9 +778,6 @@ msgstr "Να επιτρέπεται στα πρόσωπα που υποβάλλ�
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Επιτρέψτε στους πληροφοριοδότες να προσθέτουν συνημμένα σε υπάρχουσες αναφορές"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Να επιτρέπεται στους παραλήπτες να ανεβάζουν αρχεία για τα πρόσωπα που υποβάλλουν αναφορές"
 
 msgid "Additional questionnaire"
 msgstr "Επιπλέον ερωτηματολόγιο"
@@ -1219,32 +1207,20 @@ msgstr "Κείμενο που εμφανίζεται αφού ο χρήστης 
 msgid "Confirm"
 msgstr "Επιβεβαίωση"
 
-msgid "Are you sure?"
-msgstr "Είστε σίγουροι;"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "Αυτή η ενέργεια θα επαναφέρει τις ρυθμίσεις και δεν μπορεί να ανακληθεί."
-
 msgid "Assign score points"
 msgstr "Ανάθεση πόντων βαθμολογίας"
+
+msgid "Are you sure?"
+msgstr "Είστε σίγουροι;"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Παρακαλούμε σημειώστε ότι όλα τα σχετικά δεδομένα θα χαθούν οριστικά."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Ο δίαυλος αναφορών είναι δοκιμαστικός, παρακαλούμε μην την χρησιμοποιείτε για πραγματικές αναφορές."
+msgid "Enable two factor authentication"
+msgstr "Ενεργοποίηση πιστοποίησης δυο παραγόντων"
 
 msgid "Close"
 msgstr "Κλείσιμο"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Εγκαταστήστε μια εφαρμογή αυθεντικοποίησης στο τηλέφωνό σας"
-
-msgid "Scan the QR code with the app"
-msgstr "Σκανάρετε τον κωδικό QR με την εφαρμογή"
-
-msgid "Enable two factor authentication"
-msgstr "Ενεργοποίηση πιστοποίησης δυο παραγόντων"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Πριν προχωρήσετε παρακαλούμε διαβάστε προσεχτικά την τεκμηρίωση εδώ:"
@@ -1256,6 +1232,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Κρατήστε σε ασφαλές μέρος ένα αντίγραφο. Αν χάσετε τον κωδικό σας, θα σας είναι απαραίτητο για να ανακτήσετε την πρόσβαση στο λογαριασμό σας χωρίς απώλεια δεδομένων "
+
+msgid "Enter a name for the copy"
+msgstr "Εισαγωγή ονόματος για το αντίγραφο"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr "Ευχαριστώ. "
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Θα επικοινωνήσουμε μαζί σας το συντομότερο δυνατόν"
+
+msgid "Submit"
+msgstr "Καταχώρηση"
+
+msgid "The connection is not secure."
+msgstr "Η σύνδεση δεν είναι ασφαλής."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Η πλατφόρμα δεν είναι ακόμα παραμετροποιημένη για συνδέσεις μέσω HTTPS οπότε θα πρέπει να χρησιμοποιείται μόνο για δοκιμαστικούς λόγους."
+
+msgid "Please write a motivation for the reply"
+msgstr "Παρακαλούμε γράψτε ένα κίνητρο για την απάντηση"
+
+msgid "Send"
+msgstr "Αποστολή"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Επιβεβαιώνοντας, θα αναβληθεί η ημερομηνία λήξης για τις:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Ο δίαυλος αναφορών είναι δοκιμαστικός, παρακαλούμε μην την χρησιμοποιείτε για πραγματικές αναφορές."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Εγκαταστήστε μια εφαρμογή αυθεντικοποίησης στο τηλέφωνό σας"
+
+msgid "Scan the QR code with the app"
+msgstr "Σκανάρετε τον κωδικό QR με την εφαρμογή"
 
 msgid "Welcome!"
 msgstr "Καλώς ήρθατε!"
@@ -1311,18 +1328,6 @@ msgstr "Το περιεχόμενο είναι προσβάσιμο μόνο μ�
 msgid "The upload request exceeds the size limit"
 msgstr "Το αίτημα ανεβάσματος ξεπερνά τα όρια μεγέθους"
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr "Ευχαριστώ. "
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Θα επικοινωνήσουμε μαζί σας το συντομότερο δυνατόν"
-
-msgid "Submit"
-msgstr "Καταχώρηση"
-
 msgid "Validation of email address change in progress."
 msgstr "Η επικύρωση της αλλαγής διεύθυνσης email είναι σε εξέλιξη."
 
@@ -1339,11 +1344,6 @@ msgid "Old password confirmation required"
 msgstr "Χρειάζεται επιβεβαίωση του παλιού κωδικού πρόσβασης"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Φαίνεται ότι περιηγείστε σε αυτό τον ιστότοπο χωρίς καμία επιπλέον προστασία ιδιωτικότητας και ασφάλειας!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "Σας προτείνουμε ανεπιφύλακτα να επισκεφτείτε αυτή τη σελίδα χρησιμοποιώντας την εφαρμογή Tor Browser, η οποία προστατεύει την ταυτότητά σας. "
@@ -1353,9 +1353,6 @@ msgstr "Κατεβάστε τον Περιηγητή Tor"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Στη συνέχεια, αντιγράψτε και επικολλήστε την παρακάτω διεύθυνση στον περιηγητή Tor:"
-
-msgid "Enter a name for the copy"
-msgstr "Εισαγωγή ονόματος για το αντίγραφο"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Έχετε ήδη καταχωρήσει την αναφορά σας; Εισάγετε το αποδεικτικό."
@@ -1381,22 +1378,11 @@ msgstr "Εκτιμώμενος χρόνος ανεβάσματος:"
 msgid "Size:"
 msgstr "Μέγεθος:"
 
-msgid "The connection is not secure."
-msgstr "Η σύνδεση δεν είναι ασφαλής."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Η πλατφόρμα δεν είναι ακόμα παραμετροποιημένη για συνδέσεις μέσω HTTPS οπότε θα πρέπει να χρησιμοποιείται μόνο για δοκιμαστικούς λόγους."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Οι παραλήπτες σας ζητούν να συμπληρώσετε ένα επιπρόσθετο ερωτηματολόγιο"
 
 msgid "Fill the additional questionnaire"
 msgstr "Συμπληρώστε το εππρόσθετο ερωτηματολόγιο"
-
-msgid "Send"
-msgstr "Αποστολή"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Να επιτρέπεται στο πρόσωπο που υποβάλλει αναφορά να γράφει σχόλια"
@@ -1421,40 +1407,6 @@ msgstr "Αφήστε το πληροφοριοδότη για να προσθέ�
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Να επιτρέπεται στο πρόσωπο που υποβάλλει την αναφορά να στέλνει μηνύματα"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "Είστε σίγουροι ότι θέλετε να διαγράψετε την αναφορά;"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Όλα όσα σχετίζονται με την καταχωρημένη στο δίαυλο αναφορά θα διαγραφούν."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Παρακαλούμε έχετε υπόψιν ότι οτιδήποτε αποθηκεύεται εκτός της πλατφόρμας, για παράδειγμα αρχεία που αποθηκεύσατε στον υπολογιστή σας, θα πρέπει να διαγραφτούν χειροκίνητα."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Είστε σίγουροι ότι θέλετε να διαγράψετε τις επιλεγμένες αναφορές;"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Παρακαλώ φροντίστε να διαγράψετε με σωστό τρόπο όλα τα σχετικά δεδομένα ώστε κανένας παραλήπτης να μην μπορεί πλέον να έχει πρόσβαση σε αυτά."
-
-msgid "Please write a motivation for the reply"
-msgstr "Παρακαλούμε γράψτε ένα κίνητρο για την απάντηση"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Είστε σίγουροι ότι θέλετε να αναβάλετε την ημερομηνία λήξης της αναφοράς;"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Επιβεβαιώνοντας, θα αναβληθεί η ημερομηνία λήξης για τις:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Είστε σίγουροι ότι θέλετε να αναβάλετε την ημερομηνία λήξης για όλες τις επιλεγμένες αναφορές;"
 
 msgid "Questionnaire answers"
 msgstr "Απαντήσεις ερωτηματολογίου"
@@ -1542,9 +1494,6 @@ msgstr "Επιβεβαίωση"
 
 msgid "Invalid confirmation"
 msgstr "Άκυρη επιβεβαίωση"
-
-msgid "Complete"
-msgstr "Ολοκλήρωση"
 
 msgid "Invalid phone number"
 msgstr "Μη έγκυρος αριθμός τηλεφώνου"

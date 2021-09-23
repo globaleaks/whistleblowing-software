@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -440,12 +440,6 @@ msgstr "ראשון"
 msgid "Last"
 msgstr "אחרון"
 
-msgid "Running"
-msgstr "רץ"
-
-msgid "Not running"
-msgstr "לא רץ"
-
 msgid "Send a test email to your email address."
 msgstr "שלח/י מייל ניסיון לכתובת האימייל שלך"
 
@@ -565,8 +559,8 @@ msgstr ""
 msgid "Size limit for file attachments"
 msgstr "גודל גבול עבור קבצים מצורפים"
 
-msgid "in megabytes"
-msgstr "במגה־בתים"
+msgid "megabytes"
+msgstr ""
 
 msgid "Enable HSTS preload"
 msgstr "אפשר קדם־טעינה HSTS"
@@ -624,9 +618,6 @@ msgstr "נמוכה"
 
 msgid "High"
 msgstr "גבוהה"
-
-msgid "megabytes"
-msgstr ""
 
 msgid "percentage"
 msgstr ""
@@ -788,9 +779,6 @@ msgid "Allow whistleblowers to send messages"
 msgstr ""
 
 msgid "Let whistleblowers add attachments onto existing reports"
-msgstr ""
-
-msgid "Let recipients upload files to whistleblowers"
 msgstr ""
 
 msgid "Additional questionnaire"
@@ -1221,32 +1209,20 @@ msgstr ""
 msgid "Confirm"
 msgstr "אשר"
 
-msgid "Are you sure?"
-msgstr "האם אתה בטוח?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr ""
-
 msgid "Assign score points"
 msgstr "הקצאת נקודות ציון"
+
+msgid "Are you sure?"
+msgstr "האם אתה בטוח?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr ""
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr ""
+msgid "Enable two factor authentication"
+msgstr "אפשר אימות דו־שלבי"
 
 msgid "Close"
 msgstr "סגור"
-
-msgid "Install an authenticator app on your phone"
-msgstr "התקן יישום אימות בטלפון שלך"
-
-msgid "Scan the QR code with the app"
-msgstr "סרוק את קוד ה־QR עם היישום"
-
-msgid "Enable two factor authentication"
-msgstr "אפשר אימות דו־שלבי"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr ""
@@ -1258,6 +1234,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr ""
+
+msgid "Enter a name for the copy"
+msgstr ""
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Submit"
+msgstr "הגש"
+
+msgid "The connection is not secure."
+msgstr ""
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Please write a motivation for the reply"
+msgstr "אנא לכתוב מוטיבציה על התשובה"
+
+msgid "Send"
+msgstr "שלח"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "לאחר שיאשר, תוכל לדחות את מועד התפוגה:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr ""
+
+msgid "Install an authenticator app on your phone"
+msgstr "התקן יישום אימות בטלפון שלך"
+
+msgid "Scan the QR code with the app"
+msgstr "סרוק את קוד ה־QR עם היישום"
 
 msgid "Welcome!"
 msgstr "ברוך הבא!"
@@ -1313,18 +1330,6 @@ msgstr "משאב ניתן לגשת רק בתוך רשת Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "בקשת ההעלאה עולה על מגבלות הגודל"
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr ""
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
-
-msgid "Submit"
-msgstr "הגש"
-
 msgid "Validation of email address change in progress."
 msgstr ""
 
@@ -1341,11 +1346,6 @@ msgid "Old password confirmation required"
 msgstr "אישור סיסמה ישנה נדרש"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "נראה שאתה גולש באתר זה ללא פרטיות ואבטחה נוספות!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr ""
@@ -1355,9 +1355,6 @@ msgstr "הורד את דפדפן Tor"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "לאחר מכן, העתק והדבק כתובת הבאה לדפדפן Tor המותקן:"
-
-msgid "Enter a name for the copy"
-msgstr ""
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr ""
@@ -1383,22 +1380,11 @@ msgstr "זמן העלאה משוער:"
 msgid "Size:"
 msgstr "גודל:"
 
-msgid "The connection is not secure."
-msgstr ""
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr ""
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr ""
 
 msgid "Fill the additional questionnaire"
 msgstr ""
-
-msgid "Send"
-msgstr "שלח"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "התר לחושף השחיתות לכתוב תגובות"
@@ -1423,40 +1409,6 @@ msgstr ""
 
 msgid "Allow the whistleblower to send messages"
 msgstr "התר לחושף השחיתות לשלוח הודעות"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr ""
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr ""
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr ""
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr ""
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "נא תדאג שכל הנתונים הקשורים נמחקו כראוי וכל המקבלים לא יוכלו לגשת עליו"
-
-msgid "Please write a motivation for the reply"
-msgstr "אנא לכתוב מוטיבציה על התשובה"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "לאחר שיאשר, תוכל לדחות את מועד התפוגה:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr ""
 
 msgid "Questionnaire answers"
 msgstr "תשובות לשאלון"
@@ -1544,9 +1496,6 @@ msgstr "אישור"
 
 msgid "Invalid confirmation"
 msgstr "אישור בלתי תקף"
-
-msgid "Complete"
-msgstr "שלם"
 
 msgid "Invalid phone number"
 msgstr "מספר טלפון בלתי תקף"

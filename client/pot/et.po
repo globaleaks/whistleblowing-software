@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Estonian (http://www.transifex.com/otf/globaleaks/language/et/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -426,12 +426,6 @@ msgstr "Esimene"
 msgid "Last"
 msgstr "Viimane"
 
-msgid "Running"
-msgstr "Töötab"
-
-msgid "Not running"
-msgstr "Ei tööta"
-
 msgid "Send a test email to your email address."
 msgstr "Testmeili saatmine oma meiliaadressile."
 
@@ -551,8 +545,8 @@ msgstr "Ära näita kasutajate nime"
 msgid "Size limit for file attachments"
 msgstr "Manusfailide mahupiirang"
 
-msgid "in megabytes"
-msgstr "megabaitides"
+msgid "megabytes"
+msgstr "megabaiti"
 
 msgid "Enable HSTS preload"
 msgstr "Luba HSTS-eellaadimine"
@@ -610,9 +604,6 @@ msgstr "Madal"
 
 msgid "High"
 msgstr "Kõrge"
-
-msgid "megabytes"
-msgstr "megabaiti"
 
 msgid "percentage"
 msgstr "protsenti"
@@ -775,9 +766,6 @@ msgstr "Luba vihjeandjatel sõnumeid saata"
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Luba vihjeandjatel olemasolevatele teadetele manuseid lisada"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Luba saajatel vihjeandjate jaoks faile üles laadida"
 
 msgid "Additional questionnaire"
 msgstr "Täiendav ankeet"
@@ -1207,32 +1195,20 @@ msgstr "Tekst, mis kuvatakse pärast seda, kui kasutaja on suvandi valinud."
 msgid "Confirm"
 msgstr "Kinnita"
 
-msgid "Are you sure?"
-msgstr "Kas olete kindel?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "See toiming lähtestab seadistuse ja seda ei saa tagasi võtta."
-
 msgid "Assign score points"
 msgstr "Punktide andmine"
+
+msgid "Are you sure?"
+msgstr "Kas olete kindel?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Võtke arvesse, et kõik seotud andmed kustutatakse jäädavalt."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "See on demoplatvorm, ärge kasutage seda tegelike teabeesituste jaoks."
+msgid "Enable two factor authentication"
+msgstr "Luba kaheastmeline autentimine"
 
 msgid "Close"
 msgstr "Sulge"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Installige oma telefoni autentimisrakendus"
-
-msgid "Scan the QR code with the app"
-msgstr "Skannige rakendusega QR-kood"
-
-msgid "Enable two factor authentication"
-msgstr "Luba kaheastmeline autentimine"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Enne jätkamist lugege hoolikalt dokumente aadressil:"
@@ -1244,6 +1220,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Tehke sellest koopia ja hoidke seda kindlas kohas. Seda läheb vaja parooli kaotamise korral, et saaksite juurdepääsu kontole taastada ilma andmeid kaotamata."
+
+msgid "Enter a name for the copy"
+msgstr "Sisestage koopia nimi"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr "Täname."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Püüame teiega esimesel võimalusel ühendust võtta."
+
+msgid "Submit"
+msgstr "Esita"
+
+msgid "The connection is not secure."
+msgstr "Ühendus ei ole turvaline."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Platvorm ei ole veel seadistatud HTTPS-ühenduste jaoks ja seega tuleks seda kasutada ainult testimise eesmärgil."
+
+msgid "Please write a motivation for the reply"
+msgstr "Kirjutage vastuse kohta motivatsioon"
+
+msgid "Send"
+msgstr "Saada"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Kinnitades lükkate aegumise edasi kuupäevale:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "See on demoplatvorm, ärge kasutage seda tegelike teabeesituste jaoks."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Installige oma telefoni autentimisrakendus"
+
+msgid "Scan the QR code with the app"
+msgstr "Skannige rakendusega QR-kood"
 
 msgid "Welcome!"
 msgstr "Tere tulemast!"
@@ -1299,18 +1316,6 @@ msgstr "Ressursile pääseb ligi ainult Tor-i võrgu kaudu"
 msgid "The upload request exceeds the size limit"
 msgstr "Üleslaadimistaotlus ületab mahupiirangut"
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr "Täname."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Püüame teiega esimesel võimalusel ühendust võtta."
-
-msgid "Submit"
-msgstr "Esita"
-
 msgid "Validation of email address change in progress."
 msgstr "Meiliaadressi vahetust valideeritakse."
 
@@ -1327,11 +1332,6 @@ msgid "Old password confirmation required"
 msgstr "Vana parooli kinnitus on nõutav"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Näib, et sirvite seda saiti ilma täiendavate andmekaitse- ja turvameetmeteta."
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "Soovitame tungivalt kasutada selle saidi külastamiseks ainult rakendust Tor Browser, mis kaitseb teie isikuandmeid."
@@ -1341,9 +1341,6 @@ msgstr "Laadige alla Tor Browser"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Seejärel kopeerige ja kleepige Tor Browserisse järgmine aadress:"
-
-msgid "Enter a name for the copy"
-msgstr "Sisestage koopia nimi"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Kas olete teate juba esitanud? Sisestage kättesaamiskood."
@@ -1369,22 +1366,11 @@ msgstr "Hinnanguline üleslaadimisaeg:"
 msgid "Size:"
 msgstr "Maht:"
 
-msgid "The connection is not secure."
-msgstr "Ühendus ei ole turvaline."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Platvorm ei ole veel seadistatud HTTPS-ühenduste jaoks ja seega tuleks seda kasutada ainult testimise eesmärgil."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Saajad on soovinud, et täidaksite täiendava ankeedi."
 
 msgid "Fill the additional questionnaire"
 msgstr "Täiendavat ankeeti täitma"
-
-msgid "Send"
-msgstr "Saada"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Luba vihjeandjal kommentaare kirjutada"
@@ -1409,40 +1395,6 @@ msgstr "Luba vihjeandjal teatele manuseid lisada"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Luba vihjeandjal sõnumeid saata"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "Kas olete kindel, et soovite teate kustutada?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Kõik teatega seoses platvormi salvestatud andmed kustutatakse."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Arvestage, et kõik andmed, mis asuvad väljaspool platvormi (nt arvutisse salvestatud failid), tuleb kustutada käsitsi."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Kas olete kindel, et soovite valitud teated kustutada?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Veenduge, et kõik seotud andmed on korrektselt kustutatud, et saajatel ei oleks neile edaspidi juurdepääsu."
-
-msgid "Please write a motivation for the reply"
-msgstr "Kirjutage vastuse kohta motivatsioon"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Kas olete kindel, et soovite teate aegumiskuupäeva edasi lükata?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Kinnitades lükkate aegumise edasi kuupäevale:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Kas olete kindel, et soovite kõikide valitud teadete aegumiskuupäeva edasi lükata?"
 
 msgid "Questionnaire answers"
 msgstr "Ankeetide vastused"
@@ -1530,9 +1482,6 @@ msgstr "Kinnitus"
 
 msgid "Invalid confirmation"
 msgstr "Kehtetu kinnitus"
-
-msgid "Complete"
-msgstr "Täielik"
 
 msgid "Invalid phone number"
 msgstr "Vigane telefoninumber"

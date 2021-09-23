@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Burmese (http://www.transifex.com/otf/globaleaks/language/my/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -427,12 +427,6 @@ msgstr "ပထမဆုံး"
 msgid "Last"
 msgstr "နောက်ဆုံး"
 
-msgid "Running"
-msgstr "လုပ်ဆောင်နေသည်"
-
-msgid "Not running"
-msgstr "လုပ်ဆောင်မနေပါ"
-
 msgid "Send a test email to your email address."
 msgstr "သင့်အီးမေးလ်လိပ်စာထံ စမ်းသပ်အီးမေးလ် ပို့ပါ။"
 
@@ -552,8 +546,8 @@ msgstr "အသုံးပြုသူများ၏ အမည်များ�
 msgid "Size limit for file attachments"
 msgstr "ပူးတွဲဖိုင်များအတွက် အရွယ်အစား ကန့်သတ်ချက်"
 
-msgid "in megabytes"
-msgstr "မီဂါဘိုက်ဖြင့်"
+msgid "megabytes"
+msgstr "မီဂါဘိုက်"
 
 msgid "Enable HSTS preload"
 msgstr "HSTS ကြိုတင်ခြင်း ဖွင့်ပါ"
@@ -611,9 +605,6 @@ msgstr "နိမ့်"
 
 msgid "High"
 msgstr "မြင့်"
-
-msgid "megabytes"
-msgstr "မီဂါဘိုက်"
 
 msgid "percentage"
 msgstr "ရာခိုင်နှုန်း"
@@ -776,9 +767,6 @@ msgstr "သတင်းပေးသူများအား မက်ဆေ့�
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "သတင်းပေးသူများအား လက်ရှိ အစီရင်ခံစာများတွင် ပူးတွဲဖိုင်များကို ထည့်ခွင့်ပြုပါ"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "လက်ခံသူများအား သတင်းပေးသူများထံသို့ ဖိုင်များ အပ်လုဒ်လုပ်ခွင့်ပြုပါ"
 
 msgid "Additional questionnaire"
 msgstr "အပိုဆောင်း မေးခွန်းလွှာ"
@@ -1208,32 +1196,20 @@ msgstr "အသုံးပြုသူ ရွေးချယ်စရာကိ�
 msgid "Confirm"
 msgstr "အတည်ပြုမည်"
 
-msgid "Are you sure?"
-msgstr "သေချာပါသလား။"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "လုပ်ဆောင်ချက်သည် အစိတ်အပိုင်းများဖွဲ့စည်းပုံကို ပြန်လည်သတ်မှတ်မည်ဖြစ်ပြီး ပြန်ပြောင်း၍ မရပါ။"
-
 msgid "Assign score points"
 msgstr "ရမှတ်များကို သတ်မှတ်ပါ"
+
+msgid "Are you sure?"
+msgstr "သေချာပါသလား။"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "ကျေးဇူးပြု၍ ဆက်နွှယ်သော အချက်အလက်အားလုံးကို အပြီးတိုင် ဖျက်ပစ်မည်ဖြစ်ကြောင်း သတိပြုပါ။"
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "ဤပလက်ဖောင်းသည် နမူနာ ဖြစ်၍ အမှန်တကယ် တင်သွင်းမှုများအတွက် အသုံးမပြုပါနှင့်။"
+msgid "Enable two factor authentication"
+msgstr "အဆင့်နှစ်ဆင့်ဖြင့် စစ်မှန်ကြောင်းသက်သေပြခြင်းကို ဖွင့်ပါ"
 
 msgid "Close"
 msgstr "ပိတ်မည်"
-
-msgid "Install an authenticator app on your phone"
-msgstr "သင့်ဖုန်းတွင် စစ်မှန်ကြောင်းသက်သေပြသည့် အက်ပ်ကို တပ်ဆင်ပါ"
-
-msgid "Scan the QR code with the app"
-msgstr "QR ကုဒ်ကို အက်ပ်ဖြင့် စကန်ဖတ်ပါ"
-
-msgid "Enable two factor authentication"
-msgstr "အဆင့်နှစ်ဆင့်ဖြင့် စစ်မှန်ကြောင်းသက်သေပြခြင်းကို ဖွင့်ပါ"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "ဆက်မလုပ်မီ ကျေးဇူးပြု၍ စာရွက်စာတမ်းကို ဂရုတစိုက် ဖတ်ပါ - "
@@ -1245,6 +1221,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "၎င်းကို ကူးယူ၍ လုံခြုံသော နေရာတွင် သိမ်းထားပါ။ သင့်စကားဝှက် ပျောက်သွားလျှင် အချက်အလက် ဆုံးရှုံးမှု မရှိဘဲ သင့်အကောင့်ကို အသုံးပြုခွင့် ပြန်ရရန်အတွက် ၎င်းကို လိုအပ်ပါမည်။"
+
+msgid "Enter a name for the copy"
+msgstr "မိတ္တူအတွက် အမည်တစ်ခု ရိုက်ထည့်ပါ"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr "ကျေးဇူးတင်ပါသည်။"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "သင့်ကို အမြန်ဆုံး အကြောင်းပြန်နိုင်ရန် ကျွန်ုပ်တို့ ကြိုးစားပါမည်။"
+
+msgid "Submit"
+msgstr "တင်သွင်းမည်"
+
+msgid "The connection is not secure."
+msgstr "ချိတ်ဆက်မှု မလုံခြုံပါ။"
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "ပလက်ဖောင်းကို HTTPS ချိတ်ဆက်မှုများအတွက် ချိန်ညှိမထားသဖြင့် စမ်းသပ်ရန်အတွက်သာ အသုံးပြုသင့်သည်။"
+
+msgid "Please write a motivation for the reply"
+msgstr "ကျေးဇူးပြု၍ အကြောင်းပြန်မှုအတွက် လှုံ့ဆော်မှုတစ်ခု ရေးပါ။"
+
+msgid "Send"
+msgstr "ပို့မည်"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "အတည်ပြုခြင်းအားဖြင့် သင်သည် သက်တမ်းကုန်ဆုံးရက်ကို ရွှေ့ဆိုင်းပါမည် -"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "ဤပလက်ဖောင်းသည် နမူနာ ဖြစ်၍ အမှန်တကယ် တင်သွင်းမှုများအတွက် အသုံးမပြုပါနှင့်။"
+
+msgid "Install an authenticator app on your phone"
+msgstr "သင့်ဖုန်းတွင် စစ်မှန်ကြောင်းသက်သေပြသည့် အက်ပ်ကို တပ်ဆင်ပါ"
+
+msgid "Scan the QR code with the app"
+msgstr "QR ကုဒ်ကို အက်ပ်ဖြင့် စကန်ဖတ်ပါ"
 
 msgid "Welcome!"
 msgstr "ကြိုဆိုပါသည်။"
@@ -1300,18 +1317,6 @@ msgstr "ရင်းမြစ်ကို Tor ကွန်ရက်မှတစ�
 msgid "The upload request exceeds the size limit"
 msgstr "အပ်လုဒ် တောင်းဆိုမှုသည် အရွယ်အစား ကန့်သတ်ချက်ထက် ကျော်လွန်နေသည်"
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr "ကျေးဇူးတင်ပါသည်။"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "သင့်ကို အမြန်ဆုံး အကြောင်းပြန်နိုင်ရန် ကျွန်ုပ်တို့ ကြိုးစားပါမည်။"
-
-msgid "Submit"
-msgstr "တင်သွင်းမည်"
-
 msgid "Validation of email address change in progress."
 msgstr "အီးမေးလ်လိပ်စာ အပြောင်းအလဲ အတည်ပြုနေသည်။"
 
@@ -1328,11 +1333,6 @@ msgid "Old password confirmation required"
 msgstr "စကားဝှက်အဟောင်းကို အတည်ပြုရန် လိုအပ်သည်"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "သင်သည် ဤဝက်ဘ်ဆိုက်ကို အပို ကိုယ်ရေးလုံခြုံမှုနှင့် လုံခြုံမှုမရှိဘဲ ရှာဖွေနေပုံရသည်။"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "သင့်ကိုယ်ပိုင်အမှတ်သင်္ကေတကို ကာကွယ်ပေးသည့် Tor ဘရောက်ဇာ ဟုခေါ်သော အက်ပ်ကို အသုံးပြု၍ ဤဝက်ဘ်ဆိုက်သို့ ဝင်ကြည့်ရန် အလေးအနက် အကြံပြုပါသည်။"
@@ -1342,9 +1342,6 @@ msgstr "Tor ဘရောက်ဇာကို ဒေါင်းလုဒ်လ�
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "ထို့နောက် အောက်ပါလိပ်စာကို Tor ဘရောက်ဇာထဲသို့ ကူးထည့်ပါ - "
-
-msgid "Enter a name for the copy"
-msgstr "မိတ္တူအတွက် အမည်တစ်ခု ရိုက်ထည့်ပါ"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "သင် အစီရင်ခံစာ တင်ပြီးပြီလား။ သင့်လက်ခံဖြတ်ပိုင်းကို ရိုက်ထည့်ပါ။"
@@ -1370,22 +1367,11 @@ msgstr "အပ်လုဒ်လုပ်ရန် ကြာချိန် ခ�
 msgid "Size:"
 msgstr "အရွယ်အစား - "
 
-msgid "The connection is not secure."
-msgstr "ချိတ်ဆက်မှု မလုံခြုံပါ။"
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "ပလက်ဖောင်းကို HTTPS ချိတ်ဆက်မှုများအတွက် ချိန်ညှိမထားသဖြင့် စမ်းသပ်ရန်အတွက်သာ အသုံးပြုသင့်သည်။"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "လက်ခံသူများက သင့်အား အပိုဆောင်း မေးခွန်းလွှာဖြည့်ရန် တောင်းဆိုထားသည်။"
 
 msgid "Fill the additional questionnaire"
 msgstr "အပိုဆောင်း မေးခွန်းလွှာ ဖြည့်ပါ"
-
-msgid "Send"
-msgstr "ပို့မည်"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "သတင်းပေးသူအား မှတ်ချက်များ ရေးသားခွင့်ပြုပါ"
@@ -1410,40 +1396,6 @@ msgstr "သတင်းပေးသူအား အစီရင်ခံစာ�
 
 msgid "Allow the whistleblower to send messages"
 msgstr "သတင်းပေးသူအား မက်ဆေ့များ ပို့ခွင့်ပြုပါ"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "သင် အစီရင်ခံစာကို ဖျက်လိုသည်မှာ သေချာပါသလား။"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "ပလက်ဖောင်းတွင် သိမ်းထားသော အစီရင်ခံစာနှင့် သက်ဆိုင်သမျှကို ဖျက်ပစ်ပါမည်။"
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "ကျေးဇူးပြု၍ ပလက်ဖောင်း ပြင်ပတွင် သိမ်းထားသော အရာအားလုံး၊ ဥပမာ - သင့်ကွန်ပျူတာတွင် သိမ်းထားသော ဖိုင်များကို ကိုယ်တိုင် ဖျက်ပစ်ရမည်။"
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "ရွေးချယ်ထားသည့် အစီရင်ခံစာများကို သင် ဖျက်လိုသည်မှာ သေချာပါသလား။"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "လက်ခံသူများ ထပ်မံ အသုံးမပြုနိုင်ရန် သက်ဆိုင်ရာ အချက်အလက်အားလုံးကို စနစ်တကျ ဖျက်ထားကြောင်း သေချာပါစေ။"
-
-msgid "Please write a motivation for the reply"
-msgstr "ကျေးဇူးပြု၍ အကြောင်းပြန်မှုအတွက် လှုံ့ဆော်မှုတစ်ခု ရေးပါ။"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "သင် အစီရင်ခံစာ သက်တမ်းကုန်ဆုံးရက်ကို ရွှေ့ဆိုင်းလိုသည်မှာ သေချာပါသလား။"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "အတည်ပြုခြင်းအားဖြင့် သင်သည် သက်တမ်းကုန်ဆုံးရက်ကို ရွှေ့ဆိုင်းပါမည် -"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "ရွေးချယ်ထားသည့် အစီရင်ခံစာအားလုံးအတွက် သက်တမ်းကုန်ဆုံးရက်ကို ရွှေ့ဆိုင်းလိုသည်မှာ သေချာပါသလား။"
 
 msgid "Questionnaire answers"
 msgstr "မေးခွန်းလွှာ အဖြေများ"
@@ -1531,9 +1483,6 @@ msgstr "အတည်ပြုရန်"
 
 msgid "Invalid confirmation"
 msgstr "အတည်ပြုချက် မမှန်ကန်ပါ"
-
-msgid "Complete"
-msgstr "ပြည့်စုံသည်"
 
 msgid "Invalid phone number"
 msgstr "မမှန်ကန်သော ဖုန်းနံပါတ်"

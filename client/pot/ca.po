@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
-"Last-Translator: Gerard Farràs Ballabriga <gfarrasb@gmail.com>\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -440,12 +440,6 @@ msgstr "Primer"
 msgid "Last"
 msgstr "Últim"
 
-msgid "Running"
-msgstr "S'està executant"
-
-msgid "Not running"
-msgstr "No s'està executant"
-
 msgid "Send a test email to your email address."
 msgstr "Envia un correu electrònic de prova a la teva adreça electrònica."
 
@@ -565,8 +559,8 @@ msgstr "No mostrar els noms d'usuari"
 msgid "Size limit for file attachments"
 msgstr "Límit de mida per als arxius adjunts"
 
-msgid "in megabytes"
-msgstr "en megabytes"
+msgid "megabytes"
+msgstr "megabytes"
 
 msgid "Enable HSTS preload"
 msgstr "Activa la pre-càrrega HSTS"
@@ -624,9 +618,6 @@ msgstr "Baix"
 
 msgid "High"
 msgstr "Alt"
-
-msgid "megabytes"
-msgstr "megabytes"
 
 msgid "percentage"
 msgstr "percentatge"
@@ -789,9 +780,6 @@ msgstr "Permet als informadors enviar missatges"
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Permet als informadors afegir arxius adjunts en un informe existent"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Permet als destinataris carregar arxius per als informadors"
 
 msgid "Additional questionnaire"
 msgstr "Qüestionari addicional"
@@ -1221,32 +1209,20 @@ msgstr "Text que es mostra després que l’usuari hagi seleccionat l’opció."
 msgid "Confirm"
 msgstr "Confirma extensió"
 
-msgid "Are you sure?"
-msgstr "N'estàs segur?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "L'operació restablirà la configuració i no es podrà desfer."
-
 msgid "Assign score points"
 msgstr "Assigna puntuació"
+
+msgid "Are you sure?"
+msgstr "N'estàs segur?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Si us plau, sàpiga que totes les dades associades seran esborrades definitivament."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Aquesta és una plataforma de demostració, no la utilitzeu per a enviaments reals."
+msgid "Enable two factor authentication"
+msgstr "Activa l'autenticació de dues passes"
 
 msgid "Close"
 msgstr "Tanca"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Instal·leu una aplicació d'autenticació al vostre telèfon"
-
-msgid "Scan the QR code with the app"
-msgstr "Escanegeu el codi QR amb l'aplicació de mòbil"
-
-msgid "Enable two factor authentication"
-msgstr "Activa l'autenticació de dues passes"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Abans de continuar, llegiu atentament la documentació a:"
@@ -1258,6 +1234,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Feu una còpia i guardeu-la en un lloc segur. Serà necessari si perdeu la contrasenya per recuperar l’accés al vostre compte sense pèrdues de dades."
+
+msgid "Enter a name for the copy"
+msgstr "Introduïu un nom per a la còpia"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Intentarem donar resposta més aviat possible."
+
+msgid "Submit"
+msgstr "Entrega"
+
+msgid "The connection is not secure."
+msgstr "La connexió no és segura"
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "La plataforma encara no està configurada per a connexions HTTPS i, per tant, només s'hauria d'utilitzar per fer proves."
+
+msgid "Please write a motivation for the reply"
+msgstr "Si us plau, escriu una motivació per a la resposta"
+
+msgid "Send"
+msgstr "Envia-ho"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Si ho confirmes, posposaràs la data de caducitat fins a:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Aquesta és una plataforma de demostració, no la utilitzeu per a enviaments reals."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Instal·leu una aplicació d'autenticació al vostre telèfon"
+
+msgid "Scan the QR code with the app"
+msgstr "Escanegeu el codi QR amb l'aplicació de mòbil"
 
 msgid "Welcome!"
 msgstr "Benvingut!"
@@ -1313,18 +1330,6 @@ msgstr "Només es pot accedir a aquest recurs a través de la xarxa Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "La petició de pujada preval sobre els límits de volum de dades"
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr ""
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Intentarem donar resposta més aviat possible."
-
-msgid "Submit"
-msgstr "Entrega"
-
 msgid "Validation of email address change in progress."
 msgstr "Validació del canvi d'adreça electrònica en progrés."
 
@@ -1341,11 +1346,6 @@ msgid "Old password confirmation required"
 msgstr "Es requereix confirmació de l'anterior contrasenya"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Sembla que estàs navegant per aquesta web sense cap mesura extra de privacitat i seguretat!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr ""
@@ -1355,9 +1355,6 @@ msgstr "Descarrega el navegador \"Tor\""
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Després, copia i enganxa l'adreça següent al navegador \"Tor\" instal·lat:"
-
-msgid "Enter a name for the copy"
-msgstr "Introduïu un nom per a la còpia"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Ja heu fet algun enviament? Introduïu el vostre codi de rebut."
@@ -1383,22 +1380,11 @@ msgstr "Temps estimat de càrrega:"
 msgid "Size:"
 msgstr "Mida:"
 
-msgid "The connection is not secure."
-msgstr "La connexió no és segura"
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "La plataforma encara no està configurada per a connexions HTTPS i, per tant, només s'hauria d'utilitzar per fer proves."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Els destinataris han demanat que ompli un qüestionari addicional."
 
 msgid "Fill the additional questionnaire"
 msgstr "Ompliu el qüestionari addicional"
-
-msgid "Send"
-msgstr "Envia-ho"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Permet als informadors escriure comentaris"
@@ -1423,40 +1409,6 @@ msgstr "Permet als informadors afegir arxius adjunts a l'informe"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Permet als informadors enviar missatges"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "Estàs segur que vols esborrar aquest informe?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Tot el relacionat amb l’informe emmagatzemat a la plataforma s'esborrarà."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Recordeu que tot el emmagatzemat fora de la plataforma, per exemple, els arxius que ha guardat al seu ordinador, s'ha d'esborrar manualment."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Esteu segur que voleu esborrar els informes seleccionats?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Si us plau, asseguri's que totes les dades associades seran esborrades adequadament i que cap dels destinataris no hi podrà accedir."
-
-msgid "Please write a motivation for the reply"
-msgstr "Si us plau, escriu una motivació per a la resposta"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Esteu segur que voleu ajornar la data de caducitat de l'informe?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Si ho confirmes, posposaràs la data de caducitat fins a:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Estàs segur que vols posposar la data de caducitat de tots els informes que has seleccionat?"
 
 msgid "Questionnaire answers"
 msgstr "Respostes del qüestionari"
@@ -1544,9 +1496,6 @@ msgstr "Confirmació"
 
 msgid "Invalid confirmation"
 msgstr "Confirmació no vàlida"
-
-msgid "Complete"
-msgstr "Completar"
 
 msgid "Invalid phone number"
 msgstr "Número de telèfon no vàlid"

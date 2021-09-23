@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uyghur (http://www.transifex.com/otf/globaleaks/language/ug/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -428,12 +428,6 @@ msgstr "باشتىكى"
 msgid "Last"
 msgstr "ئاخىرقى"
 
-msgid "Running"
-msgstr "ئىجرا قىلىنىۋاتىدۇ"
-
-msgid "Not running"
-msgstr "ئىجرا قىلىنمايۋاتىدۇ"
-
 msgid "Send a test email to your email address."
 msgstr "ئېلخەت ئادرېسىڭىزگە سىناق ئېلخەت ئەۋەتىڭ."
 
@@ -553,8 +547,8 @@ msgstr "ئىشلەتكۈچىلەرنىڭ ناملىرىنى ئاشكارىلىم
 msgid "Size limit for file attachments"
 msgstr "ھۆججەت قوشۇمچىلىرى ئۈچۈن چوڭلۇق چېكى"
 
-msgid "in megabytes"
-msgstr "مېگابايتس بىلەن"
+msgid "megabytes"
+msgstr "مېگابايتس"
 
 msgid "Enable HSTS preload"
 msgstr "HSTS ئالدىن قاچىلاشنى قوزغات"
@@ -612,9 +606,6 @@ msgstr "تۆۋەن"
 
 msgid "High"
 msgstr "يۇقۇرى"
-
-msgid "megabytes"
-msgstr "مېگابايتس"
 
 msgid "percentage"
 msgstr "پىرسەنتى"
@@ -777,9 +768,6 @@ msgstr "پاش قىلغۇچىلارنىڭ ئۇچۇر ئەۋەتىشىگە رۇخ
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "پاش قىلغۇچىلارنىڭ مەۋجۇت دوكلاتلارنىڭ ئۈستىگە قوشۇمچىلارنى قوشۇشىغا رۇخسەت قىل"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "تاپشۇرىۋالغۇچىلار پاش قىلغۇچىلار ئۈچۈن ھۆججەت يۈكلىيەلىسۇن "
 
 msgid "Additional questionnaire"
 msgstr "قوشۇمچە راي سىناش"
@@ -1209,32 +1197,20 @@ msgstr "ئىشلەتكۈچى تاللانمىنى تاللىغاندىن كېي�
 msgid "Confirm"
 msgstr "جەزىملە"
 
-msgid "Are you sure?"
-msgstr "جەزىم قىلامسىز؟"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "بۇ مەشغۇلات سەپلىمىلەرنى قايتا سەپلەيدۇ ۋە بۇنىڭدىن ئارقىغا يانغىلى بولمايدۇ."
-
 msgid "Assign score points"
 msgstr "نومۇر نۇقتىلىرىنى بەلگىلەڭ"
+
+msgid "Are you sure?"
+msgstr "جەزىم قىلامسىز؟"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "مۇناسىۋەتلىك بارلىق سانلىق مەلۇماتلارنڭ مەڭگۈلۈك ئۆچۈرۈرىلىدىغانلىقىغا دىققەت قىلىڭ."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "بۇ بىر كۆرسەتمە سۇپا، بۇنى ھەقىقىي يوللانمىلار ئۈچۈن ئىشلەتمەڭ."
+msgid "Enable two factor authentication"
+msgstr "ئىككى قەدەملىك توغرۇلاشنى قوزغات"
 
 msgid "Close"
 msgstr "تاقا"
-
-msgid "Install an authenticator app on your phone"
-msgstr "تېلىفونىڭىزغا بىر دەلىللىگۈچى ئەپ قاچىلاڭ"
-
-msgid "Scan the QR code with the app"
-msgstr "QR كودىنى بۇ ئەپ بىلەن تارىتىڭ"
-
-msgid "Enable two factor authentication"
-msgstr "ئىككى قەدەملىك توغرۇلاشنى قوزغات"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "داۋام قىلىشتىن بۇرۇن بۇ يەردىكى ھۆججەتنى ئەستايىدىل ئوقۇڭ:"
@@ -1246,6 +1222,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "بىر كۇپىيەسىنى ئېلىڭ ۋە ىخەتەر يەردە ساقلاڭ. ئەگەر پارولىڭىزنى ئۇنتۇپ قېلىپ، ھېسابىتىڭىزدىكى مەلۇماتلارنى يوقاتماستىن زىيارەت قىلماقچى بولغىنىڭىزدا لازىم بولغۇسى."
+
+msgid "Enter a name for the copy"
+msgstr "كۇپىيە ئۈچۈن بىر نام كىرگۈزۈڭ"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr "رەھمەت سىزگ."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "بىز سىزگە ئەڭ قىسقا ۋاقىتتا جاۋاپ قايتۇرۇشقا تىرىشىمىز."
+
+msgid "Submit"
+msgstr "يوللا"
+
+msgid "The connection is not secure."
+msgstr "بۇ ئۇلانما بىخەتەر ئەمەس."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "بۇ سۇپىغا تېخىچە HTTPS باغلىنىشلىرى سەپلەنمەپتۇ ۋە شۇنداق بولغاچقا پەقەت سىناق مەقسىتىدىلا ئىشلىتىش كېرەك.  "
+
+msgid "Please write a motivation for the reply"
+msgstr "جاۋا قايتۇرۇشتىكى بىر مەقسىتىڭىزنى يېزىڭ"
+
+msgid "Send"
+msgstr "ئەۋەت"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "جەزىملىسىڭىز، سۈرۈك چېسلاسىنى بۇ كۈنگە كەينىگە سۈرگەن بولىسىز:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "بۇ بىر كۆرسەتمە سۇپا، بۇنى ھەقىقىي يوللانمىلار ئۈچۈن ئىشلەتمەڭ."
+
+msgid "Install an authenticator app on your phone"
+msgstr "تېلىفونىڭىزغا بىر دەلىللىگۈچى ئەپ قاچىلاڭ"
+
+msgid "Scan the QR code with the app"
+msgstr "QR كودىنى بۇ ئەپ بىلەن تارىتىڭ"
 
 msgid "Welcome!"
 msgstr "خوش كەپسىز!"
@@ -1301,18 +1318,6 @@ msgstr "مەنبەنى پەقەت Tor تورى بىلەنلا زىيارەت ق�
 msgid "The upload request exceeds the size limit"
 msgstr "يۈكلىمە تەلىپى چوڭلۇق چېكىدىن ئېشىپ كەتتى"
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr "رەھمەت سىزگ."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "بىز سىزگە ئەڭ قىسقا ۋاقىتتا جاۋاپ قايتۇرۇشقا تىرىشىمىز."
-
-msgid "Submit"
-msgstr "يوللا"
-
 msgid "Validation of email address change in progress."
 msgstr "ئېلخەت ئادرېسى ئۆزگەرتىشنى دەلىللەش داۋام قىلىۋاتىدۇ."
 
@@ -1329,11 +1334,6 @@ msgid "Old password confirmation required"
 msgstr "كونا پارولنى جەزىملەش تەلەپ قىلىنىدۇ"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "سىز بۇ بېكەتنى ھېچقانداق قوشۇمچە شەخسىيەت ۋە بىخەتەرلىك ئىشلەتمەي كېزىۋاتقاندەك قىلىسىز!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "سىزگە بۇ بېكەتنى Tor تور كۆرگۈچى ئىسملىك، شەخسىيىتىڭىزنى قوغدايدىغان ئەپنى ئىشلىتىپ زىيارەت قىلىشىڭىزنى كۈچلۈك تەۋسىيە قىلىمىز."
@@ -1343,9 +1343,6 @@ msgstr "Tor تور كۆرگۈچىنى چۈشۈرۈڭ"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "ئارقىدىن، كەينىدىكى ئادرېسنى كۆچۈرۈپ، Tor تور كۆرگۈچىگە چاپلاڭ:"
-
-msgid "Enter a name for the copy"
-msgstr "كۇپىيە ئۈچۈن بىر نام كىرگۈزۈڭ"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "ئاللىبۇرۇن بىر دوكلات توشقۇزغانمىتىڭىز؟ تالونىڭىزنى كىرگۈزۈڭ:"
@@ -1371,22 +1368,11 @@ msgstr "تەخمىنەن يۈكلەش ۋاقتى:"
 msgid "Size:"
 msgstr "چوڭلۇقى:"
 
-msgid "The connection is not secure."
-msgstr "بۇ ئۇلانما بىخەتەر ئەمەس."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "بۇ سۇپىغا تېخىچە HTTPS باغلىنىشلىرى سەپلەنمەپتۇ ۋە شۇنداق بولغاچقا پەقەت سىناق مەقسىتىدىلا ئىشلىتىش كېرەك.  "
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "تاپشۇرىۋالغۇچىلار سىزنىڭ بىر قوشۇمچە راي سىناشنى توشقۇزىشىڭىزنى تەلەپ قىلدى."
 
 msgid "Fill the additional questionnaire"
 msgstr "بۇ قوشۇمچە راي سىناشنى توشقۇز"
-
-msgid "Send"
-msgstr "ئەۋەت"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "پاش قىلغۇچىنىڭ باھا يېزىشىگە رۇخسەت قىل"
@@ -1411,40 +1397,6 @@ msgstr "پاش قىلغۇچىنىڭ دوكلاتقا قوشۇمچە قىستۇر
 
 msgid "Allow the whistleblower to send messages"
 msgstr "پاش قىلغۇچىنىڭ ئۇچۇر ئەۋەتىشىگە رۇخسەت قىل"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "دوكلاتنى راستىنلا ئۆچۈرىۋەتمەكچىمۇسىز؟"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "سۇپىدا ساقلانغان دوكلاتقا مۇناسىۋەتلىك ھەرقانداق نەرسە ئۆچۈرۈلىدۇ."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "شۇنىڭغا دىققەت قىلىڭكى، سۇپىدا ساقلانمىغان ھەرقانداق نەرسە، مەسىلەن كومپيۇتېرىڭىزدا ساقلانغان ھۆججەتلەر، چوقۇم قول بىلەن ئۆچۈرۈلىشى كېرەك."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "بۇ تاللانغان دوكلاتلارنى راستىنلا ئۆچۈرىۋەتمەكچىمۇسىز؟"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "مۇناسىۋەتلىك سانلىق مەلۇماتلارنىڭ توغرا ئۆچۈرۈلگەنلىكى ھەمدە تاپشۇرىۋالغۇچىلار ئەمدى زىيارەت قىلالمايدىغانلىقىنى جەزملەشتۈرۈڭ."
-
-msgid "Please write a motivation for the reply"
-msgstr "جاۋا قايتۇرۇشتىكى بىر مەقسىتىڭىزنى يېزىڭ"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "دوكلاتنىڭ سۈرۈك چېسلاسىنى كېچىكتۈرمەكچى بولغىنىڭىزنى جەزملەشتۈرەمسىز؟"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "جەزىملىسىڭىز، سۈرۈك چېسلاسىنى بۇ كۈنگە كەينىگە سۈرگەن بولىسىز:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "تاللانغان بارلىق دوكلاتلارنىڭ سۈرۈك چېسلاسىنى كەينىگە سۈرمەكچى بولغىنىڭىزنى جەزملەشتۈرەمسىز؟"
 
 msgid "Questionnaire answers"
 msgstr "راي سىناش جاۋابلىرى"
@@ -1532,9 +1484,6 @@ msgstr "جەزملەڭ"
 
 msgid "Invalid confirmation"
 msgstr "ئىناۋەتسىز جەزىملەش"
-
-msgid "Complete"
-msgstr "تامام"
 
 msgid "Invalid phone number"
 msgstr "ئىناۋەتسىز تېلېفون نومۇرى"

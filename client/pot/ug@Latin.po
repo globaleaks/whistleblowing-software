@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uighur (Latin) (http://www.transifex.com/otf/globaleaks/language/ug@Latin/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -426,12 +426,6 @@ msgstr "Bashtiki"
 msgid "Last"
 msgstr "Axirqi"
 
-msgid "Running"
-msgstr "Ijra qiliniwatidu"
-
-msgid "Not running"
-msgstr "Ijra qilinmaywatidu"
-
 msgid "Send a test email to your email address."
 msgstr "Élxet adrésingizge sinaq élxet eweting."
 
@@ -551,8 +545,8 @@ msgstr "Ishletküchilerning namlirini ashkarilima"
 msgid "Size limit for file attachments"
 msgstr "Höjjet qoshumchiliri üchün chongluq chéki"
 
-msgid "in megabytes"
-msgstr "Mégabayts bilen"
+msgid "megabytes"
+msgstr "Mégabayts"
 
 msgid "Enable HSTS preload"
 msgstr "HSTS aldin qachilashni qozghat"
@@ -610,9 +604,6 @@ msgstr "Töwen"
 
 msgid "High"
 msgstr "Yuquri"
-
-msgid "megabytes"
-msgstr "Mégabayts"
 
 msgid "percentage"
 msgstr "Pirsenti"
@@ -775,9 +766,6 @@ msgstr "Pash qilghuchilarning uchur ewetishige ruxset qil"
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Pash qilghuchilarning mewjut doklatlarning üstige qoshumchilarni qoshushigha ruxset qil"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Tapshuriwalghuchilar pash qilghuchilar üchün höjjet yükliyelisun "
 
 msgid "Additional questionnaire"
 msgstr "Qoshumche ray sinash"
@@ -1207,32 +1195,20 @@ msgstr "Ishletküchi tallanmini tallighandin kéyin tékist körsitilidu."
 msgid "Confirm"
 msgstr "Jezimle"
 
-msgid "Are you sure?"
-msgstr "Jezim qilamsiz?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "Bu meshghulat seplimilerni qayta sepleydu we buningdin arqigha yan’ghili bolmaydu."
-
 msgid "Assign score points"
 msgstr "Nomur nuqtilirini belgileng"
+
+msgid "Are you sure?"
+msgstr "Jezim qilamsiz?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Munasiwetlik barliq sanliq melumatlarnng menggülük öchürürilidighanliqigha diqqet qiling."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Bu bir körsetme supa, buni heqiqiy yollanmilar üchün ishletmeng."
+msgid "Enable two factor authentication"
+msgstr "Ikki qedemlik toghrulashni qozghat"
 
 msgid "Close"
 msgstr "Taqa"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Télifoningizgha bir delilligüchi ep qachilang"
-
-msgid "Scan the QR code with the app"
-msgstr "QR kodini bu ep bilen tariting"
-
-msgid "Enable two factor authentication"
-msgstr "Ikki qedemlik toghrulashni qozghat"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Dawam qilishtin burun bu yerdiki höjjetni estayidil oqung:"
@@ -1244,6 +1220,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Bir kupiyesini éling we ixeter yerde saqlang. eger parolingizni untup qélip, hésabitingizdiki melumatlarni yoqatmastin ziyaret qilmaqchi bolghiningizda lazim bolghusi."
+
+msgid "Enter a name for the copy"
+msgstr "Kupiye üchün bir nam kirgüzüng"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr "Rehmet sizge."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Biz sizge eng qisqa waqitta jawap qayturushqa tirishimiz."
+
+msgid "Submit"
+msgstr "Yolla"
+
+msgid "The connection is not secure."
+msgstr "Bu ulanma bixeter emes."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Bu supigha téxiche HTTPS baghlinishliri seplenmeptu we shundaq bolghachqa peqet sinaq meqsitidila ishlitish kérek.  "
+
+msgid "Please write a motivation for the reply"
+msgstr "Jawa qayturushtiki bir meqsitingizni yézing"
+
+msgid "Send"
+msgstr "Ewet"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Jezimlisingiz, sürük chéslasini bu kün’ge keynige sürgen bolisiz:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Bu bir körsetme supa, buni heqiqiy yollanmilar üchün ishletmeng."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Télifoningizgha bir delilligüchi ep qachilang"
+
+msgid "Scan the QR code with the app"
+msgstr "QR kodini bu ep bilen tariting"
 
 msgid "Welcome!"
 msgstr "Xosh kepsiz!"
@@ -1299,18 +1316,6 @@ msgstr "Menbeni peqet Tor tori bilenla ziyaret qilghili bolidu "
 msgid "The upload request exceeds the size limit"
 msgstr "Yüklime telipi chongluq chékidin éship ketti"
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr "Rehmet sizge."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Biz sizge eng qisqa waqitta jawap qayturushqa tirishimiz."
-
-msgid "Submit"
-msgstr "Yolla"
-
 msgid "Validation of email address change in progress."
 msgstr "Élxet adrési özgertishni delillesh dawam qiliwatidu."
 
@@ -1327,11 +1332,6 @@ msgid "Old password confirmation required"
 msgstr "Kona parolni jezimlesh telep qilinidu"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Siz bu béketni héchqandaq qoshumche shexsiyet we bixeterlik ishletmey kéziwatqandek qilisiz!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "Sizge bu béketni Tor tor körgüchi ismlik, shexsiyitingizni qoghdaydighan epni ishlitip ziyaret qilishingizni küchlük tewsiye qilimiz."
@@ -1341,9 +1341,6 @@ msgstr "Tor tor körgüchini chüshürüng"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Arqidin, keynidiki adrésni köchürüp, Tor tor körgüchige chaplang:"
-
-msgid "Enter a name for the copy"
-msgstr "Kupiye üchün bir nam kirgüzüng"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Alliburun bir doklat toshquzghanmitingiz? taloningizni kirgüzüng:"
@@ -1369,22 +1366,11 @@ msgstr "Texminen yüklesh waqti:"
 msgid "Size:"
 msgstr "Chongluqi:"
 
-msgid "The connection is not secure."
-msgstr "Bu ulanma bixeter emes."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Bu supigha téxiche HTTPS baghlinishliri seplenmeptu we shundaq bolghachqa peqet sinaq meqsitidila ishlitish kérek.  "
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Tapshuriwalghuchilar sizning bir qoshumche ray sinashni toshquzishingizni telep qildi."
 
 msgid "Fill the additional questionnaire"
 msgstr "Bu qoshumche ray sinashni toshquz"
-
-msgid "Send"
-msgstr "Ewet"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Pash qilghuchining baha yézishige ruxset qil"
@@ -1409,40 +1395,6 @@ msgstr "Pash qilghuchining doklatqa qoshumche qisturishigha ruxset qil"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Pash qilghuchining uchur ewetishige ruxset qil"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "Doklatni rastinla öchüriwetmekchimusiz?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Supida saqlan’ghan doklatqa munasiwetlik herqandaq nerse öchürülidu."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Shuninggha diqqet qilingki, supida saqlanmighan herqandaq nerse, mesilen kompyutéringizda saqlan’ghan höjjetler, choqum qol bilen öchürülishi kérek."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Bu tallan’ghan doklatlarni rastinla öchüriwetmekchimusiz?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Munasiwetlik sanliq melumatlarning toghra öchürülgenliki hemde tapshuriwalghuchilar emdi ziyaret qilalmaydighanliqini jezmleshtürüng."
-
-msgid "Please write a motivation for the reply"
-msgstr "Jawa qayturushtiki bir meqsitingizni yézing"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Doklatning sürük chéslasini kéchiktürmekchi bolghiningizni jezmleshtüremsiz?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Jezimlisingiz, sürük chéslasini bu kün’ge keynige sürgen bolisiz:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Tallan’ghan barliq doklatlarning sürük chéslasini keynige sürmekchi bolghiningizni jezmleshtüremsiz?"
 
 msgid "Questionnaire answers"
 msgstr "Ray sinash jawabliri"
@@ -1530,9 +1482,6 @@ msgstr "Jezmleng"
 
 msgid "Invalid confirmation"
 msgstr "Inawetsiz jezimlesh"
-
-msgid "Complete"
-msgstr "Tamam"
 
 msgid "Invalid phone number"
 msgstr "Inawetsiz téléfon nomuri"

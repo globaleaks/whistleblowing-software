@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (Afghanistan) (http://www.transifex.com/otf/globaleaks/language/fa_AF/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -425,12 +425,6 @@ msgstr "اولین"
 msgid "Last"
 msgstr "آخرین"
 
-msgid "Running"
-msgstr "در حال اجرا"
-
-msgid "Not running"
-msgstr "در حال اجرا نمی باشد"
-
 msgid "Send a test email to your email address."
 msgstr "یک ایمیل آزمایشی به آدرس ایمیل خود روان کنید."
 
@@ -550,8 +544,8 @@ msgstr "نام کاربران را نمایش نده"
 msgid "Size limit for file attachments"
 msgstr "محدودیت حجم برای ضمیمه‌ها"
 
-msgid "in megabytes"
-msgstr "به مگابایت"
+msgid "megabytes"
+msgstr "مگابایت"
 
 msgid "Enable HSTS preload"
 msgstr "فعال سازی HSTS preload"
@@ -609,9 +603,6 @@ msgstr "کم"
 
 msgid "High"
 msgstr "زیاد"
-
-msgid "megabytes"
-msgstr "مگابایت"
 
 msgid "percentage"
 msgstr "فی صد"
@@ -774,9 +765,6 @@ msgstr "اجازه به افشاگران برای ارسال پیام "
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "اجازه به افشاگران برای افزودن ضمیمه‌ به راپور فعلی"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "اجازه به دریافت کننده ها در جهت اپلود فایل برای افشاگران"
 
 msgid "Additional questionnaire"
 msgstr "پرسشنامه اضافی"
@@ -1206,32 +1194,20 @@ msgstr "متن نشان داده شده بعد از اینکه کاربر گزی
 msgid "Confirm"
 msgstr "تأیید "
 
-msgid "Are you sure?"
-msgstr "آیا مطمئن هستید؟"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "این عملیات تنطیمات را ریست می کند و قابل برگشت نمی باشد."
-
 msgid "Assign score points"
 msgstr "تخصیص امتیاز"
+
+msgid "Are you sure?"
+msgstr "آیا مطمئن هستید؟"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "لطفاً توجه داشته باشید که تمام داده های مرتبط برای همیشه از بین خواهند رفت."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "این یک پلتفورم نمایشی است، لطفاً از آن برای ارسال واقعی استفاده نکنید."
+msgid "Enable two factor authentication"
+msgstr "فعال سازی تأیید هویت دو عاملی"
 
 msgid "Close"
 msgstr "بستن"
-
-msgid "Install an authenticator app on your phone"
-msgstr "لطفاً یک اپلیکیشن تأیید هویت بر روی موبایل خود نصب کنید."
-
-msgid "Scan the QR code with the app"
-msgstr "QR کود را ذریعه اپلیکیشن اسکن کنید "
-
-msgid "Enable two factor authentication"
-msgstr "فعال سازی تأیید هویت دو عاملی"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "لطفاً قبل از ادامه، مستندات را به دقت مطالعه کنید:"
@@ -1243,6 +1219,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "از آن یک کاپی تهیه کرده و در مکانی ایمن نگه‌داری نمایید. اگر پسورد خود را فراموش کردید، برای بازیابی دسترسی به اکاونت خود، بدون از دست دادن معلومات، به آن ضرور دارید."
+
+msgid "Enter a name for the copy"
+msgstr "یک نام برای کاپی وارد کنید"
+
+msgid "Request support"
+msgstr "درخواست پشتیبانی"
+
+msgid "Thank you."
+msgstr "متشکریم."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "ما در اسرع وقت با شما تماس خواهیم گرفت."
+
+msgid "Submit"
+msgstr "ارائه کردن"
+
+msgid "The connection is not secure."
+msgstr "ارتباط امن نمی باشد."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "پلتفورم هنوز برای اتصال های HTTPS تنظیم نشده و بهتر است که فقط برای تست کردن از آن استفاده شود."
+
+msgid "Please write a motivation for the reply"
+msgstr "لطفاً یک محرک بنویسید"
+
+msgid "Send"
+msgstr "ارسال"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "با تأیید، شما تاریخ انقضا را به تعویق خواهید انداخت به:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "این یک پلتفورم نمایشی است، لطفاً از آن برای ارسال واقعی استفاده نکنید."
+
+msgid "Install an authenticator app on your phone"
+msgstr "لطفاً یک اپلیکیشن تأیید هویت بر روی موبایل خود نصب کنید."
+
+msgid "Scan the QR code with the app"
+msgstr "QR کود را ذریعه اپلیکیشن اسکن کنید "
 
 msgid "Welcome!"
 msgstr "خوش آمدید!"
@@ -1298,18 +1315,6 @@ msgstr "منبع فقط با استفاده از شبکه Tor قابل دستر�
 msgid "The upload request exceeds the size limit"
 msgstr "سایز اپلود درخواستی بزرگتر از حد مجاز است"
 
-msgid "Request support"
-msgstr "درخواست پشتیبانی"
-
-msgid "Thank you."
-msgstr "متشکریم."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "ما در اسرع وقت با شما تماس خواهیم گرفت."
-
-msgid "Submit"
-msgstr "ارائه کردن"
-
 msgid "Validation of email address change in progress."
 msgstr "اعتبار سنجی تغییر آدرس ایمیل در حال انجام می باشد."
 
@@ -1326,11 +1331,6 @@ msgid "Old password confirmation required"
 msgstr "تایید پسورد قبلی لازم است"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "به نظر می رسد که شما بدون هیچ گونه حریم خصوصی و امنیت اضافی در حال مرور این سایت  هستید!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "به شما اکیداً توصیه می شود که برای بازدید از این سایت، از برنامه ای به نام مرورگر Tor استفاده کنید که  از هویت شما محافظت می کند."
@@ -1340,9 +1340,6 @@ msgstr "مرورگر Tor را دانلود کنید"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "سپس آدرس زیر را در مرورگر Tor کپی و جایگذاری کنید:"
-
-msgid "Enter a name for the copy"
-msgstr "یک نام برای کاپی وارد کنید"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "آیا در حال حاضر راپور خود را داده اید؟ رسید خود را وارد کنید."
@@ -1368,22 +1365,11 @@ msgstr "زمان تخمینی برای اپلود:"
 msgid "Size:"
 msgstr "سایز:"
 
-msgid "The connection is not secure."
-msgstr "ارتباط امن نمی باشد."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "پلتفورم هنوز برای اتصال های HTTPS تنظیم نشده و بهتر است که فقط برای تست کردن از آن استفاده شود."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "دریافت کنندگان از شما می خواهند تا یک پرسشنامه اضافی را پر کنید."
 
 msgid "Fill the additional questionnaire"
 msgstr "پرسشنامه اضافی را پر کنید"
-
-msgid "Send"
-msgstr "ارسال"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "به افشاگر اجازه نوشتن کومنت داده شود"
@@ -1408,40 +1394,6 @@ msgstr "به افشاگر اجازه اضافه کردن ضمیمه به این 
 
 msgid "Allow the whistleblower to send messages"
 msgstr "به افشاگر اجازه ارسال پیام داده شود"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "آیا از حذف راپور مطمئن هستید؟"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "هر چیز مرتبط با راپور که بر روی پلتفورم ذخیره شده، حذف خواهد شد."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "لطفاً دقت کنید که تمام چیزهایی که خارج از پلتفورم ذخیره شده، مثل فایلی که روی کمپیوتر خود ذخیره کرده اید، باید به صورت دستی حذف شوند."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "آیا از حذف راپور انتخابی مطمئن هستید؟"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "لطفاً از کامل پاک شدن همه داده های مرتبط اطمینان حاصل کنید تا دریافت کنندگان قادر به دسترسی به آنها نباشند."
-
-msgid "Please write a motivation for the reply"
-msgstr "لطفاً یک محرک بنویسید"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "آیا از به تعویق انداختن تاریخ انقضای راپور مطمئن هستید؟"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "با تأیید، شما تاریخ انقضا را به تعویق خواهید انداخت به:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "آیا از به تعویق انداختن تاریخ انقضای تمام راپورهای انتخابی مطمئن هستید؟"
 
 msgid "Questionnaire answers"
 msgstr "پاسخ‌های پرسشنامه"
@@ -1529,9 +1481,6 @@ msgstr "تائیدیه"
 
 msgid "Invalid confirmation"
 msgstr "تائیدیه نامعتبر"
-
-msgid "Complete"
-msgstr "کامل"
 
 msgid "Invalid phone number"
 msgstr "نمبر تلیفون نامعتبر"

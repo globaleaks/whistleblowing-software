@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -428,12 +428,6 @@ msgstr "Først"
 msgid "Last"
 msgstr "Sist"
 
-msgid "Running"
-msgstr "Kjører"
-
-msgid "Not running"
-msgstr "Kjører ikke"
-
 msgid "Send a test email to your email address."
 msgstr "Send en test-e-post til din e-postadresse."
 
@@ -553,8 +547,8 @@ msgstr ""
 msgid "Size limit for file attachments"
 msgstr "Størrelsesgrense for vedlegg"
 
-msgid "in megabytes"
-msgstr "i megabyte"
+msgid "megabytes"
+msgstr ""
 
 msgid "Enable HSTS preload"
 msgstr ""
@@ -611,9 +605,6 @@ msgid "Low"
 msgstr ""
 
 msgid "High"
-msgstr ""
-
-msgid "megabytes"
 msgstr ""
 
 msgid "percentage"
@@ -777,9 +768,6 @@ msgstr "Tillat fløyteblåsere å sende meldinger"
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr ""
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Tillat mottakere å laste opp filer til fløyteblåsere"
 
 msgid "Additional questionnaire"
 msgstr ""
@@ -1209,32 +1197,20 @@ msgstr ""
 msgid "Confirm"
 msgstr "Bekreft tillegg"
 
-msgid "Are you sure?"
-msgstr "Er du sikker?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "Operasjonen vil tilbakestille oppsettet og kan ikke angres."
-
 msgid "Assign score points"
 msgstr "Tildel poeng"
+
+msgid "Are you sure?"
+msgstr "Er du sikker?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr ""
 
-msgid "This is a demo platform, please do not use it for real submissions."
+msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Close"
 msgstr "Lukk"
-
-msgid "Install an authenticator app on your phone"
-msgstr ""
-
-msgid "Scan the QR code with the app"
-msgstr ""
-
-msgid "Enable two factor authentication"
-msgstr ""
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr ""
@@ -1245,6 +1221,47 @@ msgstr ""
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
+msgstr ""
+
+msgid "Enter a name for the copy"
+msgstr ""
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Submit"
+msgstr "Send inn"
+
+msgid "The connection is not secure."
+msgstr "Tilkoblingen er ikke sikker."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Plattformen er fremdeles ikke satt opp for HTTPS-tilkoblinger og burde bare brukes for testformål."
+
+msgid "Please write a motivation for the reply"
+msgstr "Skriv motivasjon for forespørsel"
+
+msgid "Send"
+msgstr "Send"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Ved å bekrefte vil du utsette utløpsdatoen til:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr ""
+
+msgid "Install an authenticator app on your phone"
+msgstr ""
+
+msgid "Scan the QR code with the app"
 msgstr ""
 
 msgid "Welcome!"
@@ -1301,18 +1318,6 @@ msgstr "Ressurs kan nåes bare i Tor-nettverket"
 msgid "The upload request exceeds the size limit"
 msgstr "Opplastingsforespørselen overskrider størrelsesavgrensningen"
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr ""
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
-
-msgid "Submit"
-msgstr "Send inn"
-
 msgid "Validation of email address change in progress."
 msgstr "Bekreftelse av e-postendring underveis."
 
@@ -1329,11 +1334,6 @@ msgid "Old password confirmation required"
 msgstr "Bekreftelse av gammelt passord påkrevd"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Det later til at du surfer på denne siden uten bruk av ekstra personvern og sikkerhet!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr ""
@@ -1343,9 +1343,6 @@ msgstr "Last ned Tor-nettleseren"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Deretter, kopier og lim inn følgende adresse i den nå installerte  Tor-nettleseren:"
-
-msgid "Enter a name for the copy"
-msgstr ""
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr ""
@@ -1371,22 +1368,11 @@ msgstr "Forventet opplastingstid:"
 msgid "Size:"
 msgstr "Størrelse:"
 
-msgid "The connection is not secure."
-msgstr "Tilkoblingen er ikke sikker."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Plattformen er fremdeles ikke satt opp for HTTPS-tilkoblinger og burde bare brukes for testformål."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr ""
 
 msgid "Fill the additional questionnaire"
 msgstr ""
-
-msgid "Send"
-msgstr "Send"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Tillat fløyteblåseren å skrive kommentarer"
@@ -1411,40 +1397,6 @@ msgstr ""
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Tillat fløyteblåseren å sende meldinger"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr ""
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr ""
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Merk deg at alt lagret andre steder enn på plattformen, eksempelvis filer du har lagret på din datamaskin, må slettes manuelt."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr ""
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Ha i minnet at all tilhørende data vil bli ordentlig slettet og at alle mottakere ikke lenger vil ha tilgang til det."
-
-msgid "Please write a motivation for the reply"
-msgstr "Skriv motivasjon for forespørsel"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Ved å bekrefte vil du utsette utløpsdatoen til:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr ""
 
 msgid "Questionnaire answers"
 msgstr "Svar oppgitt for spørreskjema"
@@ -1532,9 +1484,6 @@ msgstr ""
 
 msgid "Invalid confirmation"
 msgstr ""
-
-msgid "Complete"
-msgstr "Ferdig"
 
 msgid "Invalid phone number"
 msgstr ""

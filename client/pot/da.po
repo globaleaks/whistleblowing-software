@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -433,12 +433,6 @@ msgstr "Første"
 msgid "Last"
 msgstr "Sidste"
 
-msgid "Running"
-msgstr "Kører"
-
-msgid "Not running"
-msgstr "Kører ikke"
-
 msgid "Send a test email to your email address."
 msgstr "Send en testbesked til din e-mail-adresse."
 
@@ -558,8 +552,8 @@ msgstr "Vis ikke brugeres navne"
 msgid "Size limit for file attachments"
 msgstr "Størrelsesgrænse for vedhæftede filer"
 
-msgid "in megabytes"
-msgstr "i megabyte"
+msgid "megabytes"
+msgstr "megabyte"
 
 msgid "Enable HSTS preload"
 msgstr "Aktivér HTTPS preload"
@@ -617,9 +611,6 @@ msgstr "Lav"
 
 msgid "High"
 msgstr "Høj"
-
-msgid "megabytes"
-msgstr "megabyte"
 
 msgid "percentage"
 msgstr "procent"
@@ -782,9 +773,6 @@ msgstr "Tillad whistleblowere at sende beskeder"
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Tillad at whistleblowere kan tilføje vedhæftelser til eksisterende indsendelser"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Tillad at modtagere kan uploade filer til whistleblowere"
 
 msgid "Additional questionnaire"
 msgstr "Ekstra spørgeskema"
@@ -1214,32 +1202,20 @@ msgstr "Tekst der vises efter at brugeren har valgt denne mulighed."
 msgid "Confirm"
 msgstr "Bekræft"
 
-msgid "Are you sure?"
-msgstr "Er du sikker?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "Denne handling vil nulstille konfigurationen og kan ikke fortrydes."
-
 msgid "Assign score points"
 msgstr "Tildel pointtal"
+
+msgid "Are you sure?"
+msgstr "Er du sikker?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Bemærk at alle tilknyttede data bliver slettet permanent."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Dette er en demonstrationsplatform. Undlad at bruge den til rigtige indsendelser."
+msgid "Enable two factor authentication"
+msgstr "Aktivér to-faktor-godkendelse"
 
 msgid "Close"
 msgstr "Luk"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Installér en autentificeringsapp på din telefon"
-
-msgid "Scan the QR code with the app"
-msgstr "Scan QR-koden med din mobile enhed."
-
-msgid "Enable two factor authentication"
-msgstr "Aktivér to-faktor-godkendelse"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Før du forsætter, gennemlæs venligst dokumentationen grundigt"
@@ -1251,6 +1227,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Lav en kopi og gem den et sikkert sted. Den vil være nødvendig for at gendanne adgangen til din konto uden datatab hvis du mister din adgangskode."
+
+msgid "Enter a name for the copy"
+msgstr "Indtast et navn på kopien"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr "Tak."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Vi vil forsøge at vende tilbage så snart som muligt."
+
+msgid "Submit"
+msgstr "Indsend"
+
+msgid "The connection is not secure."
+msgstr "Forbindelsen er ikke sikker."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Platformen er stadig ikke konfigureret til HTTPS-forbindelser og bør derfor kun bruges til forsøgsformål."
+
+msgid "Please write a motivation for the reply"
+msgstr "Skriv venligst en motivering for svaret"
+
+msgid "Send"
+msgstr "Send"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Ved at bekræfte udsætter du udløbsdatoen til:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Dette er en demonstrationsplatform. Undlad at bruge den til rigtige indsendelser."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Installér en autentificeringsapp på din telefon"
+
+msgid "Scan the QR code with the app"
+msgstr "Scan QR-koden med din mobile enhed."
 
 msgid "Welcome!"
 msgstr "Velkommen!"
@@ -1306,18 +1323,6 @@ msgstr "Denne ressource kan kun tilgås via Tor netværket"
 msgid "The upload request exceeds the size limit"
 msgstr "Upload overstiger tilladt størrelse"
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr "Tak."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Vi vil forsøge at vende tilbage så snart som muligt."
-
-msgid "Submit"
-msgstr "Indsend"
-
 msgid "Validation of email address change in progress."
 msgstr "Godkendelse af skift af e-mail-adresse i gang."
 
@@ -1334,11 +1339,6 @@ msgid "Old password confirmation required"
 msgstr "Der kræves bekræftelse af gammel adgangskode"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Det ser ud som om du besøger dette websted uden at gøre brug af ekstra beskyttelse af privatliv og sikkerhed!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "Vi opfordre kraftigt til at bruge et program kaldet \"Tor Browser\" til denne side, for at beskytte din identitet"
@@ -1348,9 +1348,6 @@ msgstr "Download Tor browseren"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Kopier og indsæt følgende adresse i din Tor browser: "
-
-msgid "Enter a name for the copy"
-msgstr "Indtast et navn på kopien"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Har du allerede indsendt en indberetning? Indtast din nøglekode."
@@ -1376,22 +1373,11 @@ msgstr "Anslået tid til upload:"
 msgid "Size:"
 msgstr "Størrelse:"
 
-msgid "The connection is not secure."
-msgstr "Forbindelsen er ikke sikker."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Platformen er stadig ikke konfigureret til HTTPS-forbindelser og bør derfor kun bruges til forsøgsformål."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Modtagere har anmodet dig om at udfylde et ekstra spørgeskema."
 
 msgid "Fill the additional questionnaire"
 msgstr "Udfyld det ekstra spørgeskema"
-
-msgid "Send"
-msgstr "Send"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Tillad whistlebloweren at skrive kommentarer"
@@ -1416,40 +1402,6 @@ msgstr "Tillad whistlebloweren at tilføje vedhæftelser til indsendelsen"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Tillad whistlebloweren at sende beskeder"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "Er du sikker på, at du ønsker at slette indsendelsen?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Alle data vedrørende indsendelsen der er lagret på platformen vil blive slettet."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Vær opmærksom på, at alt hvad der lagres uden for platformen, fx filer du har gemt på din egen computer, skal slettes manuelt."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Er du sikker på, at du ønsker at slette indsendelsen?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Venligst kontroller, at alle tilknyttede data er korrekt slettet, så modtagerne ikke længere har adgang til materialet."
-
-msgid "Please write a motivation for the reply"
-msgstr "Skriv venligst en motivering for svaret"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Er du sikker på, at du ønsker at udsætte udløbstidspunktet for indsendelsen?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Ved at bekræfte udsætter du udløbsdatoen til:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Er du sikker på, at du ønsker at udsætte udløbsdatoen for alle valgte indsendelser?"
 
 msgid "Questionnaire answers"
 msgstr "Svar på spørgeskemaet"
@@ -1537,9 +1489,6 @@ msgstr "Bekræftelse"
 
 msgid "Invalid confirmation"
 msgstr "Forkert bekræftelse"
-
-msgid "Complete"
-msgstr "Afslut"
 
 msgid "Invalid phone number"
 msgstr "Forkert telefonnummer"

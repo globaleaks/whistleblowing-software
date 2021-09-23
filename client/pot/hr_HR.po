@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -431,12 +431,6 @@ msgstr "Prvi"
 msgid "Last"
 msgstr "Posljednji"
 
-msgid "Running"
-msgstr "Pokrenuto"
-
-msgid "Not running"
-msgstr "Nije pokrenuto"
-
 msgid "Send a test email to your email address."
 msgstr "Pošaljite testni email na svoju email adresu."
 
@@ -556,8 +550,8 @@ msgstr "Ne pokazuj imena korisnika"
 msgid "Size limit for file attachments"
 msgstr "Ograničenje veličine privitaka"
 
-msgid "in megabytes"
-msgstr "u megabajtima"
+msgid "megabytes"
+msgstr "megabajta"
 
 msgid "Enable HSTS preload"
 msgstr "Omogući  HSTS predučitavanje"
@@ -615,9 +609,6 @@ msgstr "Niska"
 
 msgid "High"
 msgstr "Visoka"
-
-msgid "megabytes"
-msgstr "megabajta"
 
 msgid "percentage"
 msgstr "postotak"
@@ -780,9 +771,6 @@ msgstr "Dopusti zviždačima da šalju poruke"
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Dopusti zviždačima da dodaju privitke na postojeće prijave"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Dopusti primateljima da postave datoteke za zviždače"
 
 msgid "Additional questionnaire"
 msgstr "Dodatni upitnik"
@@ -1212,32 +1200,20 @@ msgstr "Tekst prikazan nakon što korisnik odabere opciju."
 msgid "Confirm"
 msgstr "Potvrdi ekstenziju"
 
-msgid "Are you sure?"
-msgstr "Jeste li sigurni?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "Ova radnja će ponovno postaviti konfiguraciju i ne može biti opozvana."
-
 msgid "Assign score points"
 msgstr "Dodjeli bodove rezultata"
+
+msgid "Are you sure?"
+msgstr "Jeste li sigurni?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Imajte na umu da će svi povezani podatci biti trajno obrisani."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Ovo je probna platforma, molimo Vas da ju ne koristite za stvarne predaje."
+msgid "Enable two factor authentication"
+msgstr "Omogućite dvofaktorsku autentikaciju"
 
 msgid "Close"
 msgstr "Zatvori"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Instalirajte autentikacijsku aplikaciju na svoj telefon"
-
-msgid "Scan the QR code with the app"
-msgstr "Skenirajte QR kod aplikacijom"
-
-msgid "Enable two factor authentication"
-msgstr "Omogućite dvofaktorsku autentikaciju"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Prije nego što nastavite molimo Vas da pažljivo pročitate dokumentaciju na:"
@@ -1249,6 +1225,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Napravite kopiju i spremite je na sigurno mjesto. Ukoliko izgubite lozinku kopija će vam neophodna kako biste mogli ponovo pristupiti svom računu bez gubitka podataka. "
+
+msgid "Enter a name for the copy"
+msgstr "Unesite ime za kopiju"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Javit ćemo se u najkraćem mogućem roku."
+
+msgid "Submit"
+msgstr "Predaj"
+
+msgid "The connection is not secure."
+msgstr "Veza nije sigurna."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Platforma još uvijek nije konfigurirana za HTTPS veze i stoga bi se trebala koristiti samo za testiranje."
+
+msgid "Please write a motivation for the reply"
+msgstr "Molimo Vas da napišete motiv za odgovor"
+
+msgid "Send"
+msgstr "Pošalji"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Potvrđivanjem odgađate datum isteka na:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Ovo je probna platforma, molimo Vas da ju ne koristite za stvarne predaje."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Instalirajte autentikacijsku aplikaciju na svoj telefon"
+
+msgid "Scan the QR code with the app"
+msgstr "Skenirajte QR kod aplikacijom"
 
 msgid "Welcome!"
 msgstr "Dobrodošli!"
@@ -1304,18 +1321,6 @@ msgstr "Resursu se može pristupiti samo preko Tor mreže"
 msgid "The upload request exceeds the size limit"
 msgstr "Zahtjev za postavljanje premašuje ograničenja veličine"
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr ""
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Javit ćemo se u najkraćem mogućem roku."
-
-msgid "Submit"
-msgstr "Predaj"
-
 msgid "Validation of email address change in progress."
 msgstr "Ovjera email adrese u tijeku."
 
@@ -1332,11 +1337,6 @@ msgid "Old password confirmation required"
 msgstr "Potrebna je potvrda stare lozinke"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Čini se da pregledavate ovu stranicu bez dodatne privatnosti i sigurnosti!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr ""
@@ -1346,9 +1346,6 @@ msgstr "Preuzmi Tor preglednik"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Zatim kopirajte sljedeću adresu u Tor preglednik:"
-
-msgid "Enter a name for the copy"
-msgstr "Unesite ime za kopiju"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Jeste li već poslali prijavu? Unesite potvrdu."
@@ -1374,22 +1371,11 @@ msgstr "Procjenjeno vrijeme postavljanja:"
 msgid "Size:"
 msgstr "Veličina:"
 
-msgid "The connection is not secure."
-msgstr "Veza nije sigurna."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Platforma još uvijek nije konfigurirana za HTTPS veze i stoga bi se trebala koristiti samo za testiranje."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Primatelji traže da popunite dodatni upitnik."
 
 msgid "Fill the additional questionnaire"
 msgstr "Ispunite dodatni upitnik"
-
-msgid "Send"
-msgstr "Pošalji"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Dopusti zviždaču da piše komentare"
@@ -1414,40 +1400,6 @@ msgstr "Dopusti zviždaču da doda privitke prijavi"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Dopusti zviždaču da šalje poruke"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "Jeste li sigurni da želite obrisati prijavu?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Sve pohranjeno na platformi što se odnosi na prijave će biti obrisano."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Imajte na umu da sve pohranjeno van platforme, npr. datoteke koje ste pohranili na svom računalu, moraju biti obrisane ručno."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Jeste li sigurni da želite obrisati odabrane prijave?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Molimo vodite računa da su svi povezani podaci uredno obrisani tako da im primatelji ne mogu dalje pristupati."
-
-msgid "Please write a motivation for the reply"
-msgstr "Molimo Vas da napišete motiv za odgovor"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Jeste li sigurni da želite odgoditi datum isteka prijave?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Potvrđivanjem odgađate datum isteka na:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Jeste li sigurni da želite odgoditi datum isteka dojave za sve odabrane prijave?"
 
 msgid "Questionnaire answers"
 msgstr "Odgovori na upitnik"
@@ -1535,9 +1487,6 @@ msgstr "Potvrda"
 
 msgid "Invalid confirmation"
 msgstr "Neispravna potvrda"
-
-msgid "Complete"
-msgstr "Gotovo"
 
 msgid "Invalid phone number"
 msgstr "Neispravan telefonski broj"

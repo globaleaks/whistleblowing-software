@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-18 13:57+0000\n"
-"Last-Translator: Mariam Mansuryan <mariammansuryan17@gmail.com>\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Armenian (http://www.transifex.com/otf/globaleaks/language/hy/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -425,12 +425,6 @@ msgstr "Առաջին"
 msgid "Last"
 msgstr "Վերջին"
 
-msgid "Running"
-msgstr "Ընթացիկ"
-
-msgid "Not running"
-msgstr "Ոչ ընթացիկ"
-
 msgid "Send a test email to your email address."
 msgstr "Ձեր էլեկտրոնային հասցեին ուղարկել փորձնական նամակ ։"
 
@@ -550,8 +544,8 @@ msgstr "Չցուցադրել օգտատերերի անունները"
 msgid "Size limit for file attachments"
 msgstr "Ֆայլի կցորդների թույլատրելի չափ"
 
-msgid "in megabytes"
-msgstr "մեգաբայթերով"
+msgid "megabytes"
+msgstr "մեգաբայթ"
 
 msgid "Enable HSTS preload"
 msgstr "Թույլատրել HSTS-ի նախաբեռնումը"
@@ -609,9 +603,6 @@ msgstr "Ցածր"
 
 msgid "High"
 msgstr "Բարձր"
-
-msgid "megabytes"
-msgstr "մեգաբայթ"
 
 msgid "percentage"
 msgstr "տոկոս"
@@ -774,9 +765,6 @@ msgstr "Թույլ տալ, որ իրազեկիչները հաղորդագրու�
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Թույլ տալ իրազեկիչներին կցորդներ ավելացնել առկա զեկույցներին"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Թույլ տալ հասցեատերերին ֆայլեր վերբեռնել իրազեկիչների համար"
 
 msgid "Additional questionnaire"
 msgstr "Հավելյալ հարցաշար"
@@ -1206,32 +1194,20 @@ msgstr "Տեքստ, որ կցուցադրվի օգտատիրոջը տարբեր�
 msgid "Confirm"
 msgstr "Հաստատել"
 
-msgid "Are you sure?"
-msgstr "Համոզվա՞ծ եք։"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "Գործողությունը կվերակայի կազմաձևը. ​​այս փոփոխությունը հնարավոր չէ հետարկել:"
-
 msgid "Assign score points"
 msgstr "Գնահատել"
+
+msgid "Are you sure?"
+msgstr "Համոզվա՞ծ եք։"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Խնդրում ենք նկատի ունենալ, որ բոլոր հարակից տվյալները մշտապես կջնջվեն:"
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Սա ցուցադրական հարթակ է, մի օգտագործեք այն իրական փաստաթղթեր ներկայացնելու համար:"
+msgid "Enable two factor authentication"
+msgstr "Ակտիվացնել երկու գործոնով նույնականացումը"
 
 msgid "Close"
 msgstr "Փակել"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Ներբեռնեք նույնականացման ծրագիր ձեր հեռախոսի վրա"
-
-msgid "Scan the QR code with the app"
-msgstr "Ծրագրով սկանավորեք QR կոդը"
-
-msgid "Enable two factor authentication"
-msgstr "Ակտիվացնել երկու գործոնով նույնականացումը"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Շարունակելուց առաջ ուշադիր ծանոթացեք տվյալ էջի փաստաթղթերին. "
@@ -1243,6 +1219,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Պատճենեք և պահեք այն ապահով վայրում: Այն անհրաժեշտ կլինի վերականգնելու համար ձեր հաշվի հասանելիությունն առանց տվյալների կորստի գաղտնաբառը կորցնելու դեպքում։"
+
+msgid "Enter a name for the copy"
+msgstr "Մուտքագրեք պատճենի անունը"
+
+msgid "Request support"
+msgstr "Հայցել աջակցություն"
+
+msgid "Thank you."
+msgstr "Շնորհակալություն։"
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Մենք կփորձենք հնարավորինս արագ պատասխանել ձեզ:"
+
+msgid "Submit"
+msgstr "Ուղարկել"
+
+msgid "The connection is not secure."
+msgstr "Կապն ապահով չէ:"
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Հարթակը դեռ կազմաձևված չէ HTTPS միացումների համար, հետևաբար պետք է օգտագործվի բացառապես փորձարկումների համար։"
+
+msgid "Please write a motivation for the reply"
+msgstr "Խնդրում ենք նշել պատասխանի մոտիվացիան"
+
+msgid "Send"
+msgstr "Ուղարկել"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Հաստատելով ՝ դուք կհետաձգեք վերջնաժամկետը մինչև."
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Սա ցուցադրական հարթակ է, մի օգտագործեք այն իրական փաստաթղթեր ներկայացնելու համար:"
+
+msgid "Install an authenticator app on your phone"
+msgstr "Ներբեռնեք նույնականացման ծրագիր ձեր հեռախոսի վրա"
+
+msgid "Scan the QR code with the app"
+msgstr "Ծրագրով սկանավորեք QR կոդը"
 
 msgid "Welcome!"
 msgstr "Բարի գալուստ"
@@ -1298,18 +1315,6 @@ msgstr "Ռեսուրսը հասանելի է միայն Tor ցանցի միջո�
 msgid "The upload request exceeds the size limit"
 msgstr "Վերբեռնման հայտը գերազանցում է թույլատրելի չափը"
 
-msgid "Request support"
-msgstr "Հայցել աջակցություն"
-
-msgid "Thank you."
-msgstr "Շնորհակալություն։"
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Մենք կփորձենք հնարավորինս արագ պատասխանել ձեզ:"
-
-msgid "Submit"
-msgstr "Ուղարկել"
-
 msgid "Validation of email address change in progress."
 msgstr "Էլեկտրոնային հասցեն փոխելու հայցի վավերացումն ընթացքի մեջ է:"
 
@@ -1326,11 +1331,6 @@ msgid "Old password confirmation required"
 msgstr "Պահանջվում է հին գաղտնաբառի հաստատում"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Դուք, կարծես, դիտում եք այս կայքն առանց լրացուցիչ անվտանգություն և գաղտնիություն ապահովող միջոցների:"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "Խորհուրդ ենք տալիս այցելել այս կայքն օգտագործելով Tor բրաուզերը, որը պաշտպանում է ձեր գաղտնիությունը:"
@@ -1340,9 +1340,6 @@ msgstr "Ներբեռնել Tor բրաուզերը"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Այնուհետև, պատճենեք և տեղադրեք հետևյալ հասցեն Tor բրաուզերում."
-
-msgid "Enter a name for the copy"
-msgstr "Մուտքագրեք պատճենի անունը"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Դուք արդեն զեկույց ներկայացրե՞լ եք: Մուտքագրեք ձեր անդորրագիրը:"
@@ -1368,22 +1365,11 @@ msgstr "Վերբեռնման մոտավոր ժամանակը՝"
 msgid "Size:"
 msgstr "Չափ՝"
 
-msgid "The connection is not secure."
-msgstr "Կապն ապահով չէ:"
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Հարթակը դեռ կազմաձևված չէ HTTPS միացումների համար, հետևաբար պետք է օգտագործվի բացառապես փորձարկումների համար։"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Հասցեատերերը ձեզ խնդրել են լրացնել հավելյալ հարցաշար:"
 
 msgid "Fill the additional questionnaire"
 msgstr "Լրացնել հավելյալ հարցաշարը"
-
-msgid "Send"
-msgstr "Ուղարկել"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Թույլ տալ իրազեկչին մեկնաբանություններ գրել"
@@ -1408,40 +1394,6 @@ msgstr "Թույլ տալ իրազեկչին կցորդներ ավելացնել
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Թույլ տալ, որ իրազեկիչը հաղորդագրություններ ուղարկի"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "Համոզվա՞ծ եք, որ ցանկանում եք ջնջել զեկույցը:"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Այս զեկույցի հետ կապված ամեն ինչ հարթակից կջնջվի:"
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Խնդրում ենք նկատի ունենալ, որ ծրագիրը չի ջնջում այն ամենն, ինչ պահված է հարթակից դուրս, օրինակ՝ ձեր համակարգչում։"
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Համոզվա՞ծ եք, որ ցանկանում եք ջնջել նշված զեկույցները:"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Խնդրում ենք Համոզվեք, որ բոլոր հարակից տվյալները ջնջված են, որպեսզի հետագայում դրանք հասանելի չլինեն:"
-
-msgid "Please write a motivation for the reply"
-msgstr "Խնդրում ենք նշել պատասխանի մոտիվացիան"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Համոզվա՞ծ եք, որ ցանկանում եք հետաձգել զեկույցների վերջնաժամկետները։"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Հաստատելով ՝ դուք կհետաձգեք վերջնաժամկետը մինչև."
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Համոզվա՞ծ եք, որ ցանկանում եք հետաձգել բոլոր ընտրված զեկույցների վերջնաժամկետները:"
 
 msgid "Questionnaire answers"
 msgstr "Հարցաշարի պատասխաններ"
@@ -1529,9 +1481,6 @@ msgstr "Վավերացում"
 
 msgid "Invalid confirmation"
 msgstr "Վավերացումն անհաջող էր"
-
-msgid "Complete"
-msgstr "Հաստատել"
 
 msgid "Invalid phone number"
 msgstr "Հեռախոսահամարն անվավեր է"

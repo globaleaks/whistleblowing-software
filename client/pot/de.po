@@ -47,8 +47,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
-"Last-Translator: Dominik Schürmann <dominik@schuermann.eu>\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -468,12 +468,6 @@ msgstr "Erste"
 msgid "Last"
 msgstr "Letzte"
 
-msgid "Running"
-msgstr "Läuft"
-
-msgid "Not running"
-msgstr "Läuft nicht"
-
 msgid "Send a test email to your email address."
 msgstr "Senden Sie eine Test-E-Mail an Ihre E-Mail-Adresse."
 
@@ -593,8 +587,8 @@ msgstr "Die Namen der Benutzer nicht preisgeben"
 msgid "Size limit for file attachments"
 msgstr "Größenbegrenzung für Dateianhänge"
 
-msgid "in megabytes"
-msgstr "in Megabyte"
+msgid "megabytes"
+msgstr "Megabyte"
 
 msgid "Enable HSTS preload"
 msgstr "HSTS-Vorladen aktivieren"
@@ -652,9 +646,6 @@ msgstr "Niedrig"
 
 msgid "High"
 msgstr "Hoch"
-
-msgid "megabytes"
-msgstr "Megabyte"
 
 msgid "percentage"
 msgstr "prozent"
@@ -817,9 +808,6 @@ msgstr "Hinweisgebern das Senden von Mitteilungen erlauben"
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Hinweisgebern das Hinzufügen von Anhängen zu vorhandenen Einreichungen erlauben"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Erlaube Emfängern das Hochladen von Dateien für Hinweisgeber."
 
 msgid "Additional questionnaire"
 msgstr "Zusätzlicher Fragebogen"
@@ -1249,32 +1237,20 @@ msgstr "Angezeigter Text nach dem der Benutzer die Option ausgewählt hat."
 msgid "Confirm"
 msgstr "Bestätigen"
 
-msgid "Are you sure?"
-msgstr "Sind Sie sicher?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "Der Vorgang setzt die Konfiguration zurück und kann nicht rückgängig gemacht werden."
-
 msgid "Assign score points"
 msgstr "Vergeben Sie Punkte"
+
+msgid "Are you sure?"
+msgstr "Sind Sie sicher?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Bitte beachten Sie, dass alle zugehörigen Daten unwiederbringlich verloren gehen."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Dies ist eine Demonstrationswebsite, bitte nutzen Sie diese nicht für tatsächliche Einreichungen."
+msgid "Enable two factor authentication"
+msgstr "Zwei-Faktor-Authentifizierung aktivieren"
 
 msgid "Close"
 msgstr "Schließen"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Eine Authentifizierungs-App auf Ihrem Smartphone installieren"
-
-msgid "Scan the QR code with the app"
-msgstr "Scannen Sie den QR-Code mit der App."
-
-msgid "Enable two factor authentication"
-msgstr "Zwei-Faktor-Authentifizierung aktivieren"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Bevor Sie fortfahren, lesen Sie bitte sorgfältig die Dokumentation unter:"
@@ -1286,6 +1262,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Erstellen Sie eine Kopie und lagern Sie diese an einem sicheren Ort. Sie werden diese brauchen um ohne Datenverlust auf Ihr Konto zuzugreifen, wenn Sie Ihr Passwort verloren haben."
+
+msgid "Enter a name for the copy"
+msgstr "Geben Sie einen Namen für die Kopie ein"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr "Vielen Dank."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Wir versuchen Ihnen so schnell wie möglich zu antworten."
+
+msgid "Submit"
+msgstr "Einreichen"
+
+msgid "The connection is not secure."
+msgstr "Die Verbindung ist nicht sicher."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Die Plattform ist noch nicht für HTTPS-Verbindungen konfiguriert und sollte nur zu Testzwecken verwendet werden."
+
+msgid "Please write a motivation for the reply"
+msgstr "Bitte schreiben Sie eine Motivation für die Antwort"
+
+msgid "Send"
+msgstr "Senden"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Mit der Bestätigung werden Sie das Ablaufdatum hinausschieben bis:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Dies ist eine Demonstrationswebsite, bitte nutzen Sie diese nicht für tatsächliche Einreichungen."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Eine Authentifizierungs-App auf Ihrem Smartphone installieren"
+
+msgid "Scan the QR code with the app"
+msgstr "Scannen Sie den QR-Code mit der App."
 
 msgid "Welcome!"
 msgstr "Willkommen!"
@@ -1341,18 +1358,6 @@ msgstr "Ressource kann ausschließlich über das Tor-Netzwerk aufgerufen werden"
 msgid "The upload request exceeds the size limit"
 msgstr "Der Upload überschreitet das eingestellte MB Limit."
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr "Vielen Dank."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Wir versuchen Ihnen so schnell wie möglich zu antworten."
-
-msgid "Submit"
-msgstr "Einreichen"
-
 msgid "Validation of email address change in progress."
 msgstr "Validierung der E-Mail-Adressänderung in Arbeit."
 
@@ -1369,11 +1374,6 @@ msgid "Old password confirmation required"
 msgstr "Bestätigung des alten Passworts erforderlich"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Es scheint so, dass du diese Seite besuchst ohne zusätzliche Privatssphären- oder Sicherheitsverbesserungen!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "Es wird dringend empfohlen, diese Seite mit der App namens Tor-Browser zu besuchen, die Ihre Identität schützt."
@@ -1383,9 +1383,6 @@ msgstr "Laden Sie den Tor-Browser herunter"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Anschließend kopieren Sie die folgende Adresse und fügen Sie sie in den installierten Tor-Browser ein:"
-
-msgid "Enter a name for the copy"
-msgstr "Geben Sie einen Namen für die Kopie ein"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Haben Sie bereits eine Einreichung durchgeführt? Geben Sie Ihre Empfangsbestätigung an."
@@ -1411,22 +1408,11 @@ msgstr "Geschätzte Hochladezeit:"
 msgid "Size:"
 msgstr "Größe:"
 
-msgid "The connection is not secure."
-msgstr "Die Verbindung ist nicht sicher."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Die Plattform ist noch nicht für HTTPS-Verbindungen konfiguriert und sollte nur zu Testzwecken verwendet werden."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Empfänger haben Sie gebeten, einen zusätzlichen Fragebogen auszufüllen."
 
 msgid "Fill the additional questionnaire"
 msgstr "Den zusätzlichen Fragebogen ausfüllen"
-
-msgid "Send"
-msgstr "Senden"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Dem Hinweisgeber das Schreiben von Kommentaren erlauben"
@@ -1451,40 +1437,6 @@ msgstr "Dem Hinweisgeber das Hinzufügen von Anhängen zur Einreichung erlauben"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Dem Hinweisgeber das Schreiben von Mitteilungen erlauben"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "Sind Sie sicher, dass Sie den Bericht löschen möchten?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Alles, was mit dem auf der Plattform gespeicherten Bericht zusammenhängt, wird gelöscht."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Bitte beachten Sie, dass alles was außerhalb der Plattform gespeichert ist, z.B. Dateien, die Sie auf Ihrem Computer gespeichert haben, manuell gelöscht werden müssen."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Sind Sie sicher, dass Sie die ausgewählten Berichte löschen wollen?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Bitte stellen Sie sicher, dass alle zugehörigen Daten ordnungsgemäß gelöscht werden, damit die Empfänger nicht weiter darauf zugreifen können."
-
-msgid "Please write a motivation for the reply"
-msgstr "Bitte schreiben Sie eine Motivation für die Antwort"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Sind Sie sicher, dass Sie das Ablaufdatum des Berichts hinausschieben möchten?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Mit der Bestätigung werden Sie das Ablaufdatum hinausschieben bis:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Sind Sie sicher, dass Sie das Ablaufdatum für alle ausgewählten Berichte hinausschieben möchten?"
 
 msgid "Questionnaire answers"
 msgstr "Antworten zu Fragebögen"
@@ -1572,9 +1524,6 @@ msgstr "Bestätigung"
 
 msgid "Invalid confirmation"
 msgstr "Ungültige Bestätigung"
-
-msgid "Complete"
-msgstr "Vollständig"
 
 msgid "Invalid phone number"
 msgstr "Ungültige Telefonnummer"

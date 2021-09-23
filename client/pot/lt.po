@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/otf/globaleaks/language/lt/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -426,12 +426,6 @@ msgstr "Pirmas"
 msgid "Last"
 msgstr "Paskutinis"
 
-msgid "Running"
-msgstr "Vykdoma"
-
-msgid "Not running"
-msgstr "Nevykdoma"
-
 msgid "Send a test email to your email address."
 msgstr "Išsiųsti bandomąjį el. laišką jūsų el. pašto adresu."
 
@@ -551,8 +545,8 @@ msgstr "Neatskleisti naudotojų vardų"
 msgid "Size limit for file attachments"
 msgstr "Pridedamų failų dydžio limitas"
 
-msgid "in megabytes"
-msgstr "megabaitais"
+msgid "megabytes"
+msgstr "megabaitai"
 
 msgid "Enable HSTS preload"
 msgstr ""
@@ -610,9 +604,6 @@ msgstr "Žema"
 
 msgid "High"
 msgstr "Aukštas"
-
-msgid "megabytes"
-msgstr "megabaitai"
 
 msgid "percentage"
 msgstr "procentai"
@@ -775,9 +766,6 @@ msgstr "Leisti informatoriams siųsti žinutes"
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Leisti informatoriams prisegti priedus prie esamų ataskaitų"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Leisti gavėjams išsiųsti failus, skirtus informatoriams"
 
 msgid "Additional questionnaire"
 msgstr "Papildomas klausimynas"
@@ -1207,32 +1195,20 @@ msgstr ""
 msgid "Confirm"
 msgstr "Patvirtinti"
 
-msgid "Are you sure?"
-msgstr ""
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr ""
-
 msgid "Assign score points"
+msgstr ""
+
+msgid "Are you sure?"
 msgstr ""
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr ""
 
-msgid "This is a demo platform, please do not use it for real submissions."
+msgid "Enable two factor authentication"
 msgstr ""
 
 msgid "Close"
 msgstr "Užverti"
-
-msgid "Install an authenticator app on your phone"
-msgstr ""
-
-msgid "Scan the QR code with the app"
-msgstr ""
-
-msgid "Enable two factor authentication"
-msgstr ""
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr ""
@@ -1243,6 +1219,47 @@ msgstr ""
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
+msgstr ""
+
+msgid "Enter a name for the copy"
+msgstr ""
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr ""
+
+msgid "We will try to get back to you as soon as possible."
+msgstr ""
+
+msgid "Submit"
+msgstr "Pateikti"
+
+msgid "The connection is not secure."
+msgstr ""
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr ""
+
+msgid "Please write a motivation for the reply"
+msgstr ""
+
+msgid "Send"
+msgstr "Siųsti"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr ""
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr ""
+
+msgid "Install an authenticator app on your phone"
+msgstr ""
+
+msgid "Scan the QR code with the app"
 msgstr ""
 
 msgid "Welcome!"
@@ -1299,18 +1316,6 @@ msgstr ""
 msgid "The upload request exceeds the size limit"
 msgstr ""
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr ""
-
-msgid "We will try to get back to you as soon as possible."
-msgstr ""
-
-msgid "Submit"
-msgstr "Pateikti"
-
 msgid "Validation of email address change in progress."
 msgstr ""
 
@@ -1327,11 +1332,6 @@ msgid "Old password confirmation required"
 msgstr ""
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr ""
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr ""
@@ -1340,9 +1340,6 @@ msgid "Download the Tor Browser"
 msgstr "Atsisiųsti Tor naršyklę"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr ""
-
-msgid "Enter a name for the copy"
 msgstr ""
 
 msgid "Have you already filed a report? Enter your receipt."
@@ -1369,22 +1366,11 @@ msgstr ""
 msgid "Size:"
 msgstr "Dydis:"
 
-msgid "The connection is not secure."
-msgstr ""
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr ""
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr ""
 
 msgid "Fill the additional questionnaire"
 msgstr ""
-
-msgid "Send"
-msgstr "Siųsti"
 
 msgid "Allow the whistleblower to write comments"
 msgstr ""
@@ -1408,40 +1394,6 @@ msgid "Allow the whistleblower to add attachments to the report"
 msgstr ""
 
 msgid "Allow the whistleblower to send messages"
-msgstr ""
-
-msgid "Are you sure that you want to delete the report?"
-msgstr ""
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr ""
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr ""
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr ""
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr ""
-
-msgid "Please write a motivation for the reply"
-msgstr ""
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr ""
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr ""
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
 msgstr ""
 
 msgid "Questionnaire answers"
@@ -1529,9 +1481,6 @@ msgid "Confirmation"
 msgstr ""
 
 msgid "Invalid confirmation"
-msgstr ""
-
-msgid "Complete"
 msgstr ""
 
 msgid "Invalid phone number"

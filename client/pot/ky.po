@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-20 16:22+0000\n"
-"Last-Translator: Turdimurod Rakhmanov <turdimurot.rakhmonov@gmail.com>\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Kyrgyz (http://www.transifex.com/otf/globaleaks/language/ky/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -427,12 +427,6 @@ msgstr "Алгачкы"
 msgid "Last"
 msgstr "Акыркы"
 
-msgid "Running"
-msgstr "Жүргүзүлдү"
-
-msgid "Not running"
-msgstr "Жүргүзүлбөдү"
-
 msgid "Send a test email to your email address."
 msgstr "Электрондук дарегиңизге тесттик кат жибериңиз."
 
@@ -552,8 +546,8 @@ msgstr "Колдонуучулардын аттарын ачыкка чыгар�
 msgid "Size limit for file attachments"
 msgstr "Файлдын тиркемелеринин лимиттик өлчөмү"
 
-msgid "in megabytes"
-msgstr "мегабиттер менен"
+msgid "megabytes"
+msgstr "мегабиттер"
 
 msgid "Enable HSTS preload"
 msgstr "HSTS алдын ала жүктөөнү иштетүү"
@@ -611,9 +605,6 @@ msgstr "Төмөн"
 
 msgid "High"
 msgstr "Жогорку"
-
-msgid "megabytes"
-msgstr "мегабиттер"
 
 msgid "percentage"
 msgstr "пайыз"
@@ -776,9 +767,6 @@ msgstr "Кабарчыларга билдирүү жиберүүгө урукс�
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Кабарчыларга отчетко тиркеме кошуу мүмкүнчүлүгүн бериңиз"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Алуучуларга кабарчылар үчүн файлдарды жүктөөгө уруксат бериңиз"
 
 msgid "Additional questionnaire"
 msgstr "Кошумча анкета"
@@ -1208,32 +1196,20 @@ msgstr "Колдонуучу вариантын тандагандан кийи�
 msgid "Confirm"
 msgstr "Ырастоо"
 
-msgid "Are you sure?"
-msgstr "Чечимиңиз катуубу?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "Бул опреация конфигурацияны баштапкы абалга келтирет жана аны артка кайтаруу мүмкүн эмес."
-
 msgid "Assign score points"
 msgstr "Упайлардын атаңыз"
+
+msgid "Are you sure?"
+msgstr "Чечимиңиз катуубу?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Эске алыңыз, байланышкан бардык маалыматтар биротоло жок кылынат."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Бул демо платформа, аны чыныгы тапшыруулар үчүн колдонбоңуз."
+msgid "Enable two factor authentication"
+msgstr "Эки факторлуу аутентификация иштетилсин"
 
 msgid "Close"
 msgstr "Жабуу"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Телефонуңузга аныктыгын текшерүүчү колдонмо орнотуңуз"
-
-msgid "Scan the QR code with the app"
-msgstr "Колдонмо менен QR кодун сканерлеңиз"
-
-msgid "Enable two factor authentication"
-msgstr "Эки факторлуу аутентификация иштетилсин"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Улантуудан мурун, төмөнкү документтерди кунт коюп окуңуз:"
@@ -1245,6 +1221,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Көчүрмөсүн жасап, коопсуз жерге сактаңыз. Маалыматты жоготпостон, каттоо эсебиңизге кирүүнү калыбына келтирүү үчүн сырсөзүңүздү жоготуп алсаңыз, бул керек болот."
+
+msgid "Enter a name for the copy"
+msgstr "Көчүрүү үчүн ат киргизиңиз"
+
+msgid "Request support"
+msgstr "Колдоо сураңыз"
+
+msgid "Thank you."
+msgstr "Рахмат."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Сизге мүмкүн болушунча тез кайтууга аракет кылабыз."
+
+msgid "Submit"
+msgstr "Карап чыгууга жиберүү"
+
+msgid "The connection is not secure."
+msgstr "Байланыш коопсуз эмес."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Платформа дагы эле HTTPS туташуулары үчүн жөндөлгөн эмес, ошондуктан тестирлөө максатында гана колдонулушу керек."
+
+msgid "Please write a motivation for the reply"
+msgstr "Сураныч, жооп үчүн мотивация жазыңыз"
+
+msgid "Send"
+msgstr "Жөнөтүү"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Тастыктоо менен жарактуулук мөөнөтүн төмөнкүгө жылдырасыз:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Бул демо платформа, аны чыныгы тапшыруулар үчүн колдонбоңуз."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Телефонуңузга аныктыгын текшерүүчү колдонмо орнотуңуз"
+
+msgid "Scan the QR code with the app"
+msgstr "Колдонмо менен QR кодун сканерлеңиз"
 
 msgid "Welcome!"
 msgstr "Кош келиңиз!"
@@ -1300,18 +1317,6 @@ msgstr "Ресурска Tor тармагы аркылуу гана кирүүг
 msgid "The upload request exceeds the size limit"
 msgstr "Жүктөөгө талап болгондун өлчөмү чегинен ашып кетти"
 
-msgid "Request support"
-msgstr "Колдоо сураңыз"
-
-msgid "Thank you."
-msgstr "Рахмат."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Сизге мүмкүн болушунча тез кайтууга аракет кылабыз."
-
-msgid "Submit"
-msgstr "Карап чыгууга жиберүү"
-
 msgid "Validation of email address change in progress."
 msgstr "Электрондук даректин өзгөрүүсү текшерилип жатат."
 
@@ -1328,11 +1333,6 @@ msgid "Old password confirmation required"
 msgstr "Эски сырсөздү ырастоо талап кылынат"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Сиз бул сайтты эч кандай кошумча купуялыгы жок жана коопсуздугу жок эле карап жаткандай көрүнөт!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "Бул сайттка кирүүдө Tor Браузери деп аталган колдонмо иштетилүүсү сизге катуу сунушталат, бул сиздин идентификацияңызды коргоого жардам берет."
@@ -1342,9 +1342,6 @@ msgstr "Tor Браузерин жүктөө"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Андан кийин, төмөнкү даректи көчүрүп, Tor Tor Браузерине киргизиңиз:"
-
-msgid "Enter a name for the copy"
-msgstr "Көчүрүү үчүн ат киргизиңиз"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Сиз буга чейин отчет тапшырдыңыз беле? Дүмүрчөгүңүздү киргизиңиз."
@@ -1370,22 +1367,11 @@ msgstr "Болжолдуу жүктөө убактысы:"
 msgid "Size:"
 msgstr "Өлчөм:"
 
-msgid "The connection is not secure."
-msgstr "Байланыш коопсуз эмес."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Платформа дагы эле HTTPS туташуулары үчүн жөндөлгөн эмес, ошондуктан тестирлөө максатында гана колдонулушу керек."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Алуучулар сизден кошумча анкетаны толтурууңузду суранышты."
 
 msgid "Fill the additional questionnaire"
 msgstr "Кошумча анкетаны толтуруңуз"
-
-msgid "Send"
-msgstr "Жөнөтүү"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Кабарчыга комментарий жазууга уруксат берүү"
@@ -1410,40 +1396,6 @@ msgstr "Кабарчыга отчетко тиркеме кошууга урук
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Кабарчыга билдирүү жиберүүгө уруксат берүү"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "Отчетту өчүрүү чечимиңиз бекемби?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Платформада сакталган отчетко байланыштуу нерселердин баары жок кылынат."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Платформа тышында сакталган бардык нерселер, мисалы компьютериңиздеги файлдар,  кол менен жок кылынышы керектигин билип коюңуз."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Тандалган отчеторду өчүрүү чечимиңиз бекемби?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Сураныч, алуучулар ага мындан ары кире албай калуусу үчүн, бардык тиешелүү маалыматтар туура түрдө жок кылынганын текшериңиз."
-
-msgid "Please write a motivation for the reply"
-msgstr "Сураныч, жооп үчүн мотивация жазыңыз"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Отчеттун жарактуулук мөөнөтүн узартуу чечимиңиз бекемби?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Тастыктоо менен жарактуулук мөөнөтүн төмөнкүгө жылдырасыз:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Тандалган бардык отчеттордун жарактуулук мөөнөтүн узартуу чечимиңиз бекемби?"
 
 msgid "Questionnaire answers"
 msgstr "Анкетанын жооптору"
@@ -1531,9 +1483,6 @@ msgstr "Тастыктоо"
 
 msgid "Invalid confirmation"
 msgstr "Тастыктоо жараксыз"
-
-msgid "Complete"
-msgstr "Толук"
 
 msgid "Invalid phone number"
 msgstr "Жараксыз телефон номуру"

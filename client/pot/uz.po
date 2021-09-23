@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uzbek (http://www.transifex.com/otf/globaleaks/language/uz/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -428,12 +428,6 @@ msgstr "Birinchi"
 msgid "Last"
 msgstr "Oxirgi"
 
-msgid "Running"
-msgstr "Ishlayapti"
-
-msgid "Not running"
-msgstr "Ishlamayapti"
-
 msgid "Send a test email to your email address."
 msgstr "Email manzilingizga test xatini yuborish"
 
@@ -476,10 +470,10 @@ msgid "Give this recipient ability to grant user access to reports"
 msgstr "Bu qabul qiluvchi uchun anonim xabarlarni koʻrishga ruxsat berish"
 
 msgid "Grant access"
-msgstr ""
+msgstr "Ruxsat berish"
 
 msgid "Revoke access"
-msgstr ""
+msgstr "Ruxsatni bekot qilish"
 
 msgid "File a report"
 msgstr "Anonim xabar yuborish"
@@ -553,8 +547,8 @@ msgstr "Foydalanuvchilarning ismlari oshkor qilinmasin"
 msgid "Size limit for file attachments"
 msgstr "Fayl biriktirmalari hajmi limiti"
 
-msgid "in megabytes"
-msgstr "megabaytlarda"
+msgid "megabytes"
+msgstr "megabayt"
 
 msgid "Enable HSTS preload"
 msgstr "HSTS oldindan yuklanishini yoqish"
@@ -612,9 +606,6 @@ msgstr "Past"
 
 msgid "High"
 msgstr "Yuqori"
-
-msgid "megabytes"
-msgstr "megabayt"
 
 msgid "percentage"
 msgstr "foiz"
@@ -777,9 +768,6 @@ msgstr "Oshkor qiluvchilarga shaxsiy xabar yuborish imkonini berish"
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Oshkor qiluvchilarga mavjud anonim xabarlarga fayl biriktirish imkonini berish"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Oshkor qiluvchilarga fayllarni yuklash imkonini berish"
 
 msgid "Additional questionnaire"
 msgstr "Qoʻshimcha savolnomalar"
@@ -1209,32 +1197,20 @@ msgstr "Foydalanuvchi parametr tanlaganidan keyin chiqadigan matn."
 msgid "Confirm"
 msgstr "Tasdiqlash"
 
-msgid "Are you sure?"
-msgstr "Ishonchingiz komilmi?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "Bu amal konfiguratsiyani asliga qaytaradi va uni ortga qaytarish imkonsiz."
-
 msgid "Assign score points"
 msgstr "Ballarni belgilash"
+
+msgid "Are you sure?"
+msgstr "Ishonchingiz komilmi?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Tegishli axborot butunlay oʻchib ketishini unutmang."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Bu — demo platforma, unga haqiqiy anonim xabarlar yubormang."
+msgid "Enable two factor authentication"
+msgstr "Ikki bosqichli hisob tekshiruvini yoqish"
 
 msgid "Close"
 msgstr "Yopish"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Telefonga autentifikator ilovasini oʻrnatish"
-
-msgid "Scan the QR code with the app"
-msgstr "QR kodni ilova yordamida skanerlang"
-
-msgid "Enable two factor authentication"
-msgstr "Ikki bosqichli hisob tekshiruvini yoqish"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Davom ettirishdan oldin quyidagi texnik hujjatlar bilan tanishing:"
@@ -1246,6 +1222,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Uni nusxalang va ishonchli joyda saqlang. U parol unutilganda hisobni xavfsiz tiklash uchun kerak boʻladi."
+
+msgid "Enter a name for the copy"
+msgstr "Nusxa nomini kiriting"
+
+msgid "Request support"
+msgstr "Yordam olish"
+
+msgid "Thank you."
+msgstr "Rahmat."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Murojaatingizga iloji boricha tez javob beramiz."
+
+msgid "Submit"
+msgstr "Yuborish"
+
+msgid "The connection is not secure."
+msgstr "Ulanish xavfsiz emas."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Platforma hozircha HTTPS ulanishlar uchun sozlanmagan va faqat sinov maqsadlarida ishlatiladi."
+
+msgid "Please write a motivation for the reply"
+msgstr "Motivatsiyangizni javobda yozing"
+
+msgid "Send"
+msgstr "Yuborish"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Tasdiqlansa, muddat quyidagi sanagacha kechiktiriladi:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Bu — demo platforma, unga haqiqiy anonim xabarlar yubormang."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Telefonga autentifikator ilovasini oʻrnatish"
+
+msgid "Scan the QR code with the app"
+msgstr "QR kodni ilova yordamida skanerlang"
 
 msgid "Welcome!"
 msgstr "Xush kelibsiz!"
@@ -1301,18 +1318,6 @@ msgstr "Manba faqatgina Tor tarmoq ulanishi orqali ochiladi"
 msgid "The upload request exceeds the size limit"
 msgstr "Yuklash soʻrovi belgilangan limitdan ortiq"
 
-msgid "Request support"
-msgstr "Yordam olish"
-
-msgid "Thank you."
-msgstr "Rahmat."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Murojaatingizga iloji boricha tez javob beramiz."
-
-msgid "Submit"
-msgstr "Yuborish"
-
 msgid "Validation of email address change in progress."
 msgstr "Email manzil oʻzgarishi tekshirilmoqda."
 
@@ -1329,11 +1334,6 @@ msgid "Old password confirmation required"
 msgstr "Eski parolni tasdiqlash lozim"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Siz bu saytga himoyalanmagan protokol orqali kirdingiz!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "Shaxsingiz maxfiyligi uchun bu saytga Tor brauzeri ilovasidan kirishni tavsiya etamiz."
@@ -1343,9 +1343,6 @@ msgstr "Tor Brauzerini yuklab olish"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Keyin quyidagi manzilni nusxalang va Tor Brauzeri manzillar qatoriga joylang:"
-
-msgid "Enter a name for the copy"
-msgstr "Nusxa nomini kiriting"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Allaqachon anonim xabar qilganmisiz? Murojaat raqamingizni kiriting."
@@ -1371,22 +1368,11 @@ msgstr "Taxminiy yuklash vaqti:"
 msgid "Size:"
 msgstr "Hajmi:"
 
-msgid "The connection is not secure."
-msgstr "Ulanish xavfsiz emas."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Platforma hozircha HTTPS ulanishlar uchun sozlanmagan va faqat sinov maqsadlarida ishlatiladi."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Qabul qiluvchilar qoʻshimcha savolnomani toʻldirishingizni soʻradi."
 
 msgid "Fill the additional questionnaire"
 msgstr "Qoʻshimcha savolnomani toʻldirish"
-
-msgid "Send"
-msgstr "Yuborish"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Oshkor qiluvchilar fikr bildirishiga ruxsat berish"
@@ -1411,40 +1397,6 @@ msgstr "Oshkor qiluvchilar anonim xabarlarida fayl biriktirishlariga ruxsat beri
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Oshkor qiluvchilar xabar yuborishiga ruxsat berish"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "Bu anonim xabar aniq oʻchirilsinmi?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Platformadagi bu xabarga aloqador barcha narsalar oʻchib ketadi."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Eslatma: xabarga aloqador kompyuteringizdagi kabi platforma tashqarisidagi fayllar mustaqil oʻchirilishi kerak."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Tanlangan anonim xabarlar aniq oʻchirilsinmi?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Qabul qiluvchilar keyinchalik ochmasligi uchun barcha aloqador axborotlar bexato oʻchirilganini tekshiring."
-
-msgid "Please write a motivation for the reply"
-msgstr "Motivatsiyangizni javobda yozing"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Anonim xabar muddati aniq kechiktirilsinmi?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Tasdiqlansa, muddat quyidagi sanagacha kechiktiriladi:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Tanlangan anonim xabarlar muddati aniq kechiktirilsinmi?"
 
 msgid "Questionnaire answers"
 msgstr "Savolnomaga javoblar"
@@ -1532,9 +1484,6 @@ msgstr "Tasdiqlash"
 
 msgid "Invalid confirmation"
 msgstr "Yaroqsiz tasdiqlash"
-
-msgid "Complete"
-msgstr "Yakunlash"
 
 msgid "Invalid phone number"
 msgstr "Telefon raqami yaroqsiz"

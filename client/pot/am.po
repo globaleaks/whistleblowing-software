@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Amharic (http://www.transifex.com/otf/globaleaks/language/am/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -426,12 +426,6 @@ msgstr "አትም"
 msgid "Last"
 msgstr "መጨረሻ"
 
-msgid "Running"
-msgstr "እየሠራ ነው"
-
-msgid "Not running"
-msgstr "እየሠራ አይደለም"
-
 msgid "Send a test email to your email address."
 msgstr "ወደ ኢሜል አድራሻዎት የፍተሻ ኢሜል ይላኩ"
 
@@ -551,8 +545,8 @@ msgstr "የተጠቃሚዎችን ስሞች አታጋልጡ"
 msgid "Size limit for file attachments"
 msgstr "ለፋይል አባሪዎች የመጠን ገደብ"
 
-msgid "in megabytes"
-msgstr "በሜጋባይት"
+msgid "megabytes"
+msgstr "ሜጋባይትስ"
 
 msgid "Enable HSTS preload"
 msgstr "የኤችቲኤስ ቅድመጫን ያንቁ"
@@ -610,9 +604,6 @@ msgstr "ዝቅተኛ"
 
 msgid "High"
 msgstr "ከፍተኛ"
-
-msgid "megabytes"
-msgstr "ሜጋባይትስ"
 
 msgid "percentage"
 msgstr "ፐርሰንቴጅ"
@@ -775,9 +766,6 @@ msgstr "መረጃ ሰጪዎች መልእክት እንዲልኩ ፍቀድ"
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "መረጃ ሰጪዎች ያሉ ሪፖርቶች ላይ አባሪ አንዲጨምሩ አስችል"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "ተቀባዮች ለመረጃ ሰጪዎች ፈይል እንዲጭኑ አስችል"
 
 msgid "Additional questionnaire"
 msgstr "ተጨማሪ መጠይቅ"
@@ -1207,32 +1195,20 @@ msgstr "ተጠቃሚው አማራጩን ከመረጠ በኋላ የሚታይ ጽ�
 msgid "Confirm"
 msgstr "አረጋግጥ "
 
-msgid "Are you sure?"
-msgstr "እርግጠኛ ነዎት?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "ክወናው ውቅረቱን እንደገና ይለውጠዋል፤ መመለስ አይቻልም፡፡"
-
 msgid "Assign score points"
 msgstr "የውጤት ነጥቦች መድብ"
+
+msgid "Are you sure?"
+msgstr "እርግጠኛ ነዎት?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "የተያያዙ ውሂቦች በሙሉ በቋሚነት እንደሚጠፉ ልብ በል፡፡"
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "ይህ የሙከራ የመሳርያ ስርኣት ነው፤ ለትክክለኛ ማስረከቢያ አትጠቀሙበት፡፡"
+msgid "Enable two factor authentication"
+msgstr "ሁለት ደረጃ ማረጋገጫ አንቁ"
 
 msgid "Close"
 msgstr "ዝጋ  "
-
-msgid "Install an authenticator app on your phone"
-msgstr "ስልካችሁ ላይ የማረጋገጫ መተግበርያ ጫኑ"
-
-msgid "Scan the QR code with the app"
-msgstr "የኪውአር ኮዱን በመተግበርያው አንብቡ"
-
-msgid "Enable two factor authentication"
-msgstr "ሁለት ደረጃ ማረጋገጫ አንቁ"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "ከመቀጠላችሁ በፊት --- ላይ ያለውን ሰነድ በጥንቃቄ አንብቡ"
@@ -1244,6 +1220,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "ቅዱና በጥብቅ ቦታ አስቀምጡ፡፡ የይለፍ ቃልህ ቢጠፋ ምንም ውሂብ ሳይጠፋበዎት\n\nየመለያ መዳረሻ ለማግኘት አስፈላጊ ይሆናል"
+
+msgid "Enter a name for the copy"
+msgstr "ለቅጂው ስም አስገቡ"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr "እናመሰግናለን."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "በተቻለ ፍጥነት መልሰን ልናገኞት እንሞክራለን፡፡"
+
+msgid "Submit"
+msgstr "አስገባ "
+
+msgid "The connection is not secure."
+msgstr "ግንኙነቱ ጥብቅ አይደለም፡፡"
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "የመሳርያ ስርኣቱ ለኤችቲቲፒኤስ ግንኙነት አልተዋቀረም በመሆኑም\n\nለፍተሻ አላማዎች ብቻ ማገልገል አለበት"
+
+msgid "Please write a motivation for the reply"
+msgstr "ለመልሱ ማነሳሻ ጻፉ"
+
+msgid "Send"
+msgstr "ይላኩ"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "በማረጋገጥ የሪፖርት መቃጠያ ቀኑን ያስተላልፋሉ፡-"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "ይህ የሙከራ የመሳርያ ስርኣት ነው፤ ለትክክለኛ ማስረከቢያ አትጠቀሙበት፡፡"
+
+msgid "Install an authenticator app on your phone"
+msgstr "ስልካችሁ ላይ የማረጋገጫ መተግበርያ ጫኑ"
+
+msgid "Scan the QR code with the app"
+msgstr "የኪውአር ኮዱን በመተግበርያው አንብቡ"
 
 msgid "Welcome!"
 msgstr "እንኳን ደህና መጡ！"
@@ -1299,18 +1316,6 @@ msgstr "ንብረቱ መዳረሻ በቶር ኔትዎርክ በኩል ብቻ ነ
 msgid "The upload request exceeds the size limit"
 msgstr "የጭነት ጥያቄው ከተፈቀደው ወሰን ያልፋል"
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr "እናመሰግናለን."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "በተቻለ ፍጥነት መልሰን ልናገኞት እንሞክራለን፡፡"
-
-msgid "Submit"
-msgstr "አስገባ "
-
 msgid "Validation of email address change in progress."
 msgstr "የኢሜል አድራሻ ለውጥ ማረጋገጫ በሂደት ላይ"
 
@@ -1327,11 +1332,6 @@ msgid "Old password confirmation required"
 msgstr "የአሮጌ ይለፍ ቃል ማረጋገጫ ያስፈልጋል"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "ይህንን ድረገጽ ያለምንም ግለኝነት እና ጥበቃ\n\nእያሰሱ ነው!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "ይህንን ድረገጽ  ማንነትዎን በሚጠብቀው ቶር በተባለው የዴስክቶፕ መተግበርያ\n\nበመጠቀም እንዲጎበኙ በጥብቅ ይመከራሉ"
@@ -1341,9 +1341,6 @@ msgstr "ከዚያ የሚከተለውን አድራሻ ቀድተው የቶር ማ�
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "ከዚያ የሚከተለውን አድራሻ ቀድተው የቶር ማሰሻው ላይ ይለጥፉ"
-
-msgid "Enter a name for the copy"
-msgstr "ለቅጂው ስም አስገቡ"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "ሪፖርት አስቀድመው አስገብተዋል? ደረሰኝዎን ያስገቡ፡፡"
@@ -1369,22 +1366,11 @@ msgstr "የጭነት ጊዜ በግምት፡፡"
 msgid "Size:"
 msgstr "መጠን"
 
-msgid "The connection is not secure."
-msgstr "ግንኙነቱ ጥብቅ አይደለም፡፡"
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "የመሳርያ ስርኣቱ ለኤችቲቲፒኤስ ግንኙነት አልተዋቀረም በመሆኑም\n\nለፍተሻ አላማዎች ብቻ ማገልገል አለበት"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "ተቀባዮች ተጨማሪ መጠይቅ እንዲሞሉ ጠይቀዋል፡፡"
 
 msgid "Fill the additional questionnaire"
 msgstr "ተጨማሪ መጠይቁን ይሙሉ"
-
-msgid "Send"
-msgstr "ይላኩ"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "መረጃ ሰጪው አስተያየት እንዲሰጥ ፍቀዱ"
@@ -1409,40 +1395,6 @@ msgstr "መረጃ ሰጪው ሪፖርቱ ላይ አባሪ እንዲጨምር ፍ
 
 msgid "Allow the whistleblower to send messages"
 msgstr "መረጃ ሰጪው መልእክት እንዲልክ ፍቀድ"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "ሪፖርቱን ማጥፋት እንደሚፈልጉ እርግጠኛ ነዎት?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "ከሪፖርቱ ጋር የተገናኝ የመስርያ ሥርአቱ ውስጥ የተቀመጠ ነገር ሁሉ ይጠፋል፡፡"
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "ከመስርያ ስርኣቱ ውጭ የተቀመጠ ነገር ሁሉ ለምሳሌ ኮምፒዩተሮት ላይ ያስቀመጧቸው ፋይሎች \n\nበእጅ መጥፋት አለባቸው"
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "የተመረጡትን ሪፖቶች ማጥፋት እንደሚፈልጉ እርግጠኛ ነዎት?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "ተቀባዮች ከዚህ በኋላ መዳረሻ እንዳገኙ\n\nግንኙነት ያላቸው ውሂቦች በሙሉ በአግባቡ መጥፋታቸውን አረጋግጡ፡፡"
-
-msgid "Please write a motivation for the reply"
-msgstr "ለመልሱ ማነሳሻ ጻፉ"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "የሪፖርት መቃጠያ ቀኑን ማስተላለፍ እንደሚፈልጉ እርግጠኛ ነዎት?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "በማረጋገጥ የሪፖርት መቃጠያ ቀኑን ያስተላልፋሉ፡-"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "ለተመረጡት ፋይሎች የሪፖርት መቃጠያ ቀኑን ማስተላለፍ እንደሚፈልጉ\n\nእርግጠኛ ነዎት?"
 
 msgid "Questionnaire answers"
 msgstr "የመጠይቅ መልሶች"
@@ -1530,9 +1482,6 @@ msgstr "ማረጋገጫ"
 
 msgid "Invalid confirmation"
 msgstr "የተሳሳተ ማረጋገጫ"
-
-msgid "Complete"
-msgstr "ተጠናቋል"
 
 msgid "Invalid phone number"
 msgstr "የተሳሳተ ስልክ ቁጥር"

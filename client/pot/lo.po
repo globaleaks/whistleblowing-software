@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Lao (http://www.transifex.com/otf/globaleaks/language/lo/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -426,12 +426,6 @@ msgstr "ທຳອິດ"
 msgid "Last"
 msgstr "ສຸດທ້າຍ"
 
-msgid "Running"
-msgstr "ກຳລັງເປີດໃຊ້"
-
-msgid "Not running"
-msgstr "ບໍ່ໄດ້ເປີດໃຊ້"
-
 msgid "Send a test email to your email address."
 msgstr "ສົ່ງອີເມວທົດລອງຫາທີ່ຢູ່ອີເມວຂອງທ່ານ."
 
@@ -551,8 +545,8 @@ msgstr "ຫ້າມເປີດເຜີຍຊື່ຂອງຜູ້ໃຊ້
 msgid "Size limit for file attachments"
 msgstr "ຂະໜາດຈຳກັດສຳລັບໄຟລ໌ຄັດຕິດ"
 
-msgid "in megabytes"
-msgstr "ເປັນເມກາໄບທ໌"
+msgid "megabytes"
+msgstr "ເມກາໄບທ໌"
 
 msgid "Enable HSTS preload"
 msgstr "ເປີດນຳໃຊ້ການໂຫຼດລ່ວງໜ້າຂອງ HSTS"
@@ -610,9 +604,6 @@ msgstr "ຕ່ຳ"
 
 msgid "High"
 msgstr "ສູງ"
-
-msgid "megabytes"
-msgstr "ເມກາໄບທ໌"
 
 msgid "percentage"
 msgstr "ເປີເຊັນ"
@@ -775,9 +766,6 @@ msgstr "ອະນຸຍາດໃຫ້ຜູ້ແຈ້ງເບາະແສສ
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "ອະນຸຍາດໃຫ້ຜູ້ແຈ້ງເບາະແສເພີ່ມເອກະສານຄັດຕິດຕື່ມໃສ່ລາຍງານທີ່ມີຢູ່ແລ້ວ"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "ອະນຸຍາດໃຫ້ຜູ້ຮັບອັບໂຫຼດໄຟລ໌ໄປໃຫ້ຜູ້ແຈ້ງເບາະແສ"
 
 msgid "Additional questionnaire"
 msgstr "ແບບສອບຖາມເພີ່ມຕື່ມ"
@@ -1207,32 +1195,20 @@ msgstr "ຂໍ້ຄວາມທີ່ຈະສະແດງໃຫ້ເຫັນ
 msgid "Confirm"
 msgstr "ຢືນຢັນ"
 
-msgid "Are you sure?"
-msgstr "ທ່ານ​ແນ່​ໃຈ​ບໍ?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "ການດຳເນີນງານຈະຕັ້ງການກຳນົດຄ່າຄືນໃໝ່ ແລະ ບໍ່ສາມາດຍົກເລີກໄດ້."
-
 msgid "Assign score points"
 msgstr "ກຳນົດຈຸດໃຫ້ຄະແນນ"
+
+msgid "Are you sure?"
+msgstr "ທ່ານ​ແນ່​ໃຈ​ບໍ?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "ກະລຸນາຊາບວ່າ ຂໍ້ມູນທີ່ກ່ຽວຂ້ອງທັງໝົດຈະຖືກລຶບຖິ້ມຢ່າງຖາວອນ."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "ນີ້ແມ່ນເປັນລະບົບສາທິດເທົ່ານັ້ນ, ກະລຸນາຢ່າໃຊ້ສຳລັບການສົ່ງຕົວຈິງ."
+msgid "Enable two factor authentication"
+msgstr "ເປີດນຳໃຊ້ການຢືນຢັນແບບສອງຂັ້ນຕອນ"
 
 msgid "Close"
 msgstr "ປິດ"
-
-msgid "Install an authenticator app on your phone"
-msgstr "ຕິດຕັ້ງແອັບຢືນຢັນຄວາມຖືກຕ້ອງໃນໂທລະສັບຂອງທ່ານ"
-
-msgid "Scan the QR code with the app"
-msgstr "ສະແກນລະຫັດ QR ດ້ວຍແອັບ"
-
-msgid "Enable two factor authentication"
-msgstr "ເປີດນຳໃຊ້ການຢືນຢັນແບບສອງຂັ້ນຕອນ"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "ກ່ອນຈະດຳເນີນການຕໍ່ ກະລຸນາອ່ານເອກະສານຢ່າງລະອຽດໄດ້ທີ່:"
@@ -1244,6 +1220,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "ເຮັດການສຳເນົາ ແລະ ຈັດເກັບໄວ້ໃນບ່ອນທີ່ມີຄວາມປອດໄພ. ມັນຈະມີຄວາມຈຳເປັນຖ້າທ່ານລືມລະຫັດຜ່ານຂອງທ່ານເພື່ອກູ້ຄືນການເຂົ້າເຖິງບັນຊີຂອງທ່ານໂດຍທີ່ຂໍ້ມູນຈະບໍ່ສູນຫາຍ."
+
+msgid "Enter a name for the copy"
+msgstr "ປ້ອນຊື່ສຳລັບການສຳເນົາ"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr "ຂໍຂອບ​ໃຈ."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "ພວກເຮົາຈະພະຍາຍາມຕິດຕໍ່ກັບໃຫ້ໄວເທົ່າທີ່ຈະໄວໄດ້."
+
+msgid "Submit"
+msgstr "ສົ່ງ"
+
+msgid "The connection is not secure."
+msgstr "ການເຊື່ອມຕໍ່ບໍ່ມີຄວາມປອດໄພ."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "ຍັງບໍ່ໄດ້ກຳນົດຄ່າຂອງລະບົບສຳລັບການເຊື່ອມຕໍ່ HTTPS ແລະ ເພາະສະນັ້ນຈຶ່ງຄວນໃຊ້ເພື່ອຈຸດປະສົງໃນການທົດສອບເທົ່ານັ້ນ."
+
+msgid "Please write a motivation for the reply"
+msgstr "ກະລຸນາຂຽນແຮງຈູງໃຈໃນການຕອບກັບ"
+
+msgid "Send"
+msgstr "ສົ່ງ"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "ການຢືນຢັນ, ໝາຍຄວາມວ່າທ່ານຈະເລື່ອນວັນທີໝົດອາຍຸໄປຍັງ:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "ນີ້ແມ່ນເປັນລະບົບສາທິດເທົ່ານັ້ນ, ກະລຸນາຢ່າໃຊ້ສຳລັບການສົ່ງຕົວຈິງ."
+
+msgid "Install an authenticator app on your phone"
+msgstr "ຕິດຕັ້ງແອັບຢືນຢັນຄວາມຖືກຕ້ອງໃນໂທລະສັບຂອງທ່ານ"
+
+msgid "Scan the QR code with the app"
+msgstr "ສະແກນລະຫັດ QR ດ້ວຍແອັບ"
 
 msgid "Welcome!"
 msgstr "ຍິນດີຕ້ອນຮັບ!"
@@ -1299,18 +1316,6 @@ msgstr "ສາມາດເຂົ້າເຖິງແຫຼ່ງຂໍ້ມູ
 msgid "The upload request exceeds the size limit"
 msgstr "ຄຳຮ້ອງຂໍການອັບໂຫຼດເກີນຂີດຈຳກັດຂອງຂະໜາດ"
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr "ຂໍຂອບ​ໃຈ."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "ພວກເຮົາຈະພະຍາຍາມຕິດຕໍ່ກັບໃຫ້ໄວເທົ່າທີ່ຈະໄວໄດ້."
-
-msgid "Submit"
-msgstr "ສົ່ງ"
-
 msgid "Validation of email address change in progress."
 msgstr "ການກວດສອບຄວາມຖືກຕ້ອງຂອງການປ່ຽນແປງທີ່ຢູ່ອີເມວກຳລັງກຳເນີນການຢູ່."
 
@@ -1327,11 +1332,6 @@ msgid "Old password confirmation required"
 msgstr "ຈຳເປັນຕ້ອງມີການຢືນຢັນລະຫັດຜ່ານເກົ່າ"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "ປາກົດວ່າທ່ານກຳລັງຮຽກເບິ່ງເວັບໄຊນີ້ໂດຍບໍ່ມີຄວາມເປັນສ່ວນຕົວ ແລະ ຄວາມປອດໄພພິເສດ!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "ຂໍແນະນຳໃຫ້ທ່ານໄປເຂົ້າຊົມເວັບໄຊນີ້ຢ່າງຈິງຈັງໂດຍໃຊ້ແອັບທີ່ເອີ້ນວ່າ Tor Browser, ທີ່ມີການປົກປ້ອງຂໍ້ມູນລະບຸຕົວຕົນຂອງທ່ານ."
@@ -1341,9 +1341,6 @@ msgstr "ດາວໂຫຼດ Tor Browser"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "ຈາກນັ້ນ, ຄັດລອກ ແລະ ວາງທີ່ຢູ່ຕໍ່ໄປນີ້ເຂົ້າໃນ Tor Browser:"
-
-msgid "Enter a name for the copy"
-msgstr "ປ້ອນຊື່ສຳລັບການສຳເນົາ"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "ທ່ານໄດ້ຍື່ນລາຍງານແລ້ວບໍ? ປ້ອນໃບບິນຂອງທ່ານ."
@@ -1369,22 +1366,11 @@ msgstr "ເວລາອັບໂຫຼດໂດຍປະມານ:"
 msgid "Size:"
 msgstr "ຂະໜາດ:"
 
-msgid "The connection is not secure."
-msgstr "ການເຊື່ອມຕໍ່ບໍ່ມີຄວາມປອດໄພ."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "ຍັງບໍ່ໄດ້ກຳນົດຄ່າຂອງລະບົບສຳລັບການເຊື່ອມຕໍ່ HTTPS ແລະ ເພາະສະນັ້ນຈຶ່ງຄວນໃຊ້ເພື່ອຈຸດປະສົງໃນການທົດສອບເທົ່ານັ້ນ."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "ຜູ້ຮັບໄດ້ຮ້ອງຂໍໃຫ້ທ່ານຕື່ມແບບສອບຖາມເພີ່ມຕື່ມ."
 
 msgid "Fill the additional questionnaire"
 msgstr "ຕື່ມແບບສອບຖາມເພີ່ມຕື່ມ."
-
-msgid "Send"
-msgstr "ສົ່ງ"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "ອະນຸຍາດໃຫ້ຜູ້ແຈ້ງເບາະແສຂຽນຄຳຄິດເຫັນໄດ້"
@@ -1409,40 +1395,6 @@ msgstr "ອະນຸຍາດໃຫ້ຜູ້ແຈ້ງເບາະແສເ
 
 msgid "Allow the whistleblower to send messages"
 msgstr "ອະນຸຍາດໃຫ້ຜູ້ແຈ້ງເບາະແສສາມາດສົ່ງຂໍ້ຄວາມໄດ້"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "ທ່ານແນ່ໃຈບໍວ່າ ທ່ານຕ້ອງການລຶບລາຍງານ?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "ທຸກສິ່ງທຸກຢ່າງທີ່ກ່ຽວຂ້ອງກັບລາຍງານທີ່ເກັບໄວ້ໃນລະບົບຈະຖືກລຶບອອກ."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "ກະລຸນາຊາບວ່າ ທຸກສິ່ງຖືກເກັບໄວ້ຢູ່ນອອກລະບົບ ເຊັ່ນ: ໄຟລ໌ທີ່ທ່ານໄດ້ບັນທຶກໄວ້ໃນຄອມພິວເຕີຂອງທ່ານ, ຕ້ອງໄດ້ລຶບອອກດ້ວຍຕົນເອງ."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "ທ່ານແນ່ໃຈບໍວ່າ ທ່ານຕ້ອງການລຶບລາຍງານທີ່ທ່ານເລືອກ?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "ກະລຸນາກວດສອບໃຫ້ແນ່ໃຈວ່າຂໍ້ມູນທີ່ກ່ຽວຂ້ອງທັງໝົດຖືກລຶບອອກຢ່າງສົມບູນແລ້ວ ເພື່ອໃຫ້ຜູ້ຮັບຈະບໍ່ສາມາດເຂົ້າເບິ່ງໄດ້ອີກຕໍ່ໄປ."
-
-msgid "Please write a motivation for the reply"
-msgstr "ກະລຸນາຂຽນແຮງຈູງໃຈໃນການຕອບກັບ"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "ທ່ານແນ່ໃຈບໍວ່າ ທ່ານຕ້ອງການເລື່ອນວັນທີໝົດອາຍຸຂອງລາຍງານ?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "ການຢືນຢັນ, ໝາຍຄວາມວ່າທ່ານຈະເລື່ອນວັນທີໝົດອາຍຸໄປຍັງ:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "ທ່ານແນ່ໃຈບໍວ່າ ທ່ານຕ້ອງການເລື່ອນວັນໝົດອາຍຸສຳລັບລາຍງານທີ່ເລືອກທັງໝົດ?"
 
 msgid "Questionnaire answers"
 msgstr "ຄຳຕອບແບບສອບຖາມ"
@@ -1530,9 +1482,6 @@ msgstr "ການຢືນຢັນ"
 
 msgid "Invalid confirmation"
 msgstr "ການຢືນຢັນໃຊ້ບໍ່ໄດ້"
-
-msgid "Complete"
-msgstr "ສຳເລັດສົມບູນ"
 
 msgid "Invalid phone number"
 msgstr "ເບີໂທລະສັບໃຊ້ບໍ່ໄດ້"

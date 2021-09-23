@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -434,12 +434,6 @@ msgstr "Ensimmäinen"
 msgid "Last"
 msgstr "Viimeinen"
 
-msgid "Running"
-msgstr "Käynnissä"
-
-msgid "Not running"
-msgstr "Ei käynnissä"
-
 msgid "Send a test email to your email address."
 msgstr "Lähetä testisähköposti omaan sähköpostiosoitteeseen."
 
@@ -559,8 +553,8 @@ msgstr "Älä paljasta käyttäjien nimiä"
 msgid "Size limit for file attachments"
 msgstr "Liitetiedostojen kokorajoitus"
 
-msgid "in megabytes"
-msgstr "megatavuissa"
+msgid "megabytes"
+msgstr "megatavua"
 
 msgid "Enable HSTS preload"
 msgstr "Ota HSTS-esilataus käyttöön"
@@ -618,9 +612,6 @@ msgstr "Matala"
 
 msgid "High"
 msgstr "Korkea"
-
-msgid "megabytes"
-msgstr "megatavua"
 
 msgid "percentage"
 msgstr "prosenttia"
@@ -783,9 +774,6 @@ msgstr "Salli vihjeenantajien lähettää viestejä"
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Salli vihjeen antajien lisätä liitetiedostoja olemassaoleviin vihjeisiin"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Salli vastaanottajien lähettää tiedostoja vihjeiden lähettäjille"
 
 msgid "Additional questionnaire"
 msgstr "Täydentävä vihjelomake"
@@ -1215,32 +1203,20 @@ msgstr "Näytettävä teksti kun käyttäjä on tehnyt valinnan."
 msgid "Confirm"
 msgstr "Vahvista laajennus"
 
-msgid "Are you sure?"
-msgstr "Oletko varma?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "Tämä toiminto palauttaa järjestelmän alkuperäiset asetukset eikä sitä voi perua."
-
 msgid "Assign score points"
 msgstr "Käytä pisteytystä"
+
+msgid "Are you sure?"
+msgstr "Oletko varma?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Huomaa, että kaikki tiliin liittyvät tiedot poistetaan pysyvästi."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Tämä on palvelun esittelyversio, eikä se sovellu oikeiden vihjeiden lähettämiseen."
+msgid "Enable two factor authentication"
+msgstr "Ota käyttöön kaksivaiheinen kirjautuminen"
 
 msgid "Close"
 msgstr "Sulje"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Asenna kirjautumissovellus puhelimeesi"
-
-msgid "Scan the QR code with the app"
-msgstr "Skannaa QR-koodi puhelimen sovelluksella"
-
-msgid "Enable two factor authentication"
-msgstr "Ota käyttöön kaksivaiheinen kirjautuminen"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Lue ennen jatkamista huolellisesti dokumentaatio osoitteessa "
@@ -1252,6 +1228,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Tee kopio ja tallenna se turvalliseen paikkaan. Se on välttämätön, jos kadotat salasanasi ja haluat palauttaa pääsyn tilillesi ilman tietojen katoamista."
+
+msgid "Enter a name for the copy"
+msgstr "Kirjoita kopiolle nimi"
+
+msgid "Request support"
+msgstr "Tukipyyntö"
+
+msgid "Thank you."
+msgstr "Kiitos."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Vastaamme niin pian kuin mahdollista."
+
+msgid "Submit"
+msgstr "Lähetä"
+
+msgid "The connection is not secure."
+msgstr "Yhteys ei ole turvallinen."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Järjestelmän HTTPS-asetuksia ei ole vielä määritetty, joten sen käyttöä suositellaan ainoastaan koekäytössä."
+
+msgid "Please write a motivation for the reply"
+msgstr "Kirjoittaisitko vastauksen perustelun"
+
+msgid "Send"
+msgstr "Lähetä"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Vahvistamalla uusi vanhentumispäivämäärä siirtyy ajankohtaan: "
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Tämä on palvelun esittelyversio, eikä se sovellu oikeiden vihjeiden lähettämiseen."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Asenna kirjautumissovellus puhelimeesi"
+
+msgid "Scan the QR code with the app"
+msgstr "Skannaa QR-koodi puhelimen sovelluksella"
 
 msgid "Welcome!"
 msgstr "Tervetuloa!"
@@ -1307,18 +1324,6 @@ msgstr "Resurssiin on pääsy vain Tor-verkon sisällä"
 msgid "The upload request exceeds the size limit"
 msgstr "Lähetyspyyntö palvelimelle ylittää kokorajan"
 
-msgid "Request support"
-msgstr "Tukipyyntö"
-
-msgid "Thank you."
-msgstr "Kiitos."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Vastaamme niin pian kuin mahdollista."
-
-msgid "Submit"
-msgstr "Lähetä"
-
 msgid "Validation of email address change in progress."
 msgstr "Sähköpostiosoitteen vaihtamisen vahvistaminen käynnissä."
 
@@ -1335,11 +1340,6 @@ msgid "Old password confirmation required"
 msgstr "Vahvistus vanhalla salasanalla vaadittu"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Vaikuttaa siltä, että käytät palvelua ilman mitään erityisiä yksityisyyttäsi suojaavia ja turvallisuuttasi parantavia sovelluksia!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "Suosittelemme vahvasti käyttämään yksityisyyttäsi suojaavaa Tor-selainta."
@@ -1349,9 +1349,6 @@ msgstr "Lataa Tor-selain"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Jatka sitten palvelun käyttöä kopioimalla ja liittämällä seuraava osoite asentamasi Tor-selaimen osoiteriville:"
-
-msgid "Enter a name for the copy"
-msgstr "Kirjoita kopiolle nimi"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Oletko jo lähettänyt vihjeen? Kirjoita kuittauksesi."
@@ -1377,22 +1374,11 @@ msgstr "Arvioitu latausaika:"
 msgid "Size:"
 msgstr "Koko:"
 
-msgid "The connection is not secure."
-msgstr "Yhteys ei ole turvallinen."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Järjestelmän HTTPS-asetuksia ei ole vielä määritetty, joten sen käyttöä suositellaan ainoastaan koekäytössä."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Vastaanottajat ovat pyytäneet sinua täyttämään täydentävän vihjelomakkeen."
 
 msgid "Fill the additional questionnaire"
 msgstr "Täytä täydentävä vihjelomake"
-
-msgid "Send"
-msgstr "Lähetä"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Salli vihjeen antajan kirjoittaa kommentteja"
@@ -1417,40 +1403,6 @@ msgstr "Salli vihjeenantajan liittää vihjeeseen tiedostoja."
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Salli vihjeen antajan lähettää viestejä"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "Oletko varma, että haluat poistaa tämän vaiheen?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Kaikki palveluun tallennetut vihjeeseen liittyvät tiedot poistetaan palvelusta."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Muistahan, että kaikki palvelun ulkopuolelle, esim. omalle tietokoneellesi tallennetut tiedostot täytyy tuhota manuaalisesti."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Oletko varma, että haluat poistaa tämän vaiheen?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Huolehdi, että kaikki liittyvät tiedot on poistettu oikein eikä kenelläkään vastaanottajalla ole enää pääsyä niihin."
-
-msgid "Please write a motivation for the reply"
-msgstr "Kirjoittaisitko vastauksen perustelun"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Oletko varma, että haluat myöhentää vihjeen vanhenemispäivää?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Vahvistamalla uusi vanhentumispäivämäärä siirtyy ajankohtaan: "
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Oletko varma, että haluat siirtää kaikkien valitsemiesi vihjeiden vanhentumispäivämäärää myöhemmäksi?"
 
 msgid "Questionnaire answers"
 msgstr "Saapuneet vihjeet"
@@ -1538,9 +1490,6 @@ msgstr "Varmistus"
 
 msgid "Invalid confirmation"
 msgstr "Virheellinen varmistus"
-
-msgid "Complete"
-msgstr "Valmis"
 
 msgid "Invalid phone number"
 msgstr "Puhelinnumero ei kelpaa"

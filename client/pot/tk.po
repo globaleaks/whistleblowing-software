@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-20 17:03+0000\n"
-"Last-Translator: Jahan Taganova\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkmen (http://www.transifex.com/otf/globaleaks/language/tk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -425,12 +425,6 @@ msgstr "Ilki"
 msgid "Last"
 msgstr "Soňky"
 
-msgid "Running"
-msgstr "Işleýär"
-
-msgid "Not running"
-msgstr "Işlemeýär"
-
 msgid "Send a test email to your email address."
 msgstr "Synag email-i email salgyňyza iberiň."
 
@@ -550,8 +544,8 @@ msgstr "Ulanyjylaryň atlaryny paş etmäň"
 msgid "Size limit for file attachments"
 msgstr "Faýl goşundylarynyň ululygy"
 
-msgid "in megabytes"
-msgstr "megabaýtda"
+msgid "megabytes"
+msgstr "megabaýt"
 
 msgid "Enable HSTS preload"
 msgstr "HSTS ýüklemesini işlet"
@@ -609,9 +603,6 @@ msgstr "Pes"
 
 msgid "High"
 msgstr "Ýokary"
-
-msgid "megabytes"
-msgstr "megabaýt"
 
 msgid "percentage"
 msgstr "göterim"
@@ -774,9 +765,6 @@ msgstr "Gizlin habar ýetirijilere habar ibermäge rugsat beriň"
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Gizlin habar ýetirijilere bar bolan hasabatlara goşmaçalar goşmagy rugsat beriň"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Alyjylara gizlin habar ýetirijilere faýl ýüklemäge rugsat beriň"
 
 msgid "Additional questionnaire"
 msgstr "Goşmaça sowalnama"
@@ -1206,32 +1194,20 @@ msgstr "Ulanyjy opsiýany saýlandan soň görkezilen tekst."
 msgid "Confirm"
 msgstr "Tassykla"
 
-msgid "Are you sure?"
-msgstr "Ynamyňyz barmy?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "Bu operasiýa konfigurasiýany täzelär we yzyna gaýtaryp bolmaz."
-
 msgid "Assign score points"
 msgstr "Hasap ballaryny belläň "
+
+msgid "Are you sure?"
+msgstr "Ynamyňyz barmy?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Baglanyşykly maglumatlaryň ählisiniň hemişelik pozuljakdygyny ýadyňyzdan çykarmaň."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Bu demo platformasy, hakyky tabşyryşlar üçin ulanmaň."
+msgid "Enable two factor authentication"
+msgstr "Iki faktor tassyklanmagyny açyň"
 
 msgid "Close"
 msgstr "Ýap"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Telefonyňyzda tassyklaýjy programma guruň"
-
-msgid "Scan the QR code with the app"
-msgstr "Programma bilen QR koduny skanirläň"
-
-msgid "Enable two factor authentication"
-msgstr "Iki faktor tassyklanmagyny açyň"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Dowam etmezden ozal resminamalary üns bilen okaň:"
@@ -1243,6 +1219,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Göçürip alyň we howpsuz ýerde saklaň. Maglumat ýitirilmezden hasabyňyza girmegi dikeltmek üçin parolyňyzy ýitirseňiz zerur bolar."
+
+msgid "Enter a name for the copy"
+msgstr "Göçürmäniň adyny giriziň"
+
+msgid "Request support"
+msgstr "Goldaw soraň"
+
+msgid "Thank you."
+msgstr "Sagbol."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Mümkin boldugyça gysga wagtda size gaýdyp gelmäge synanyşarys."
+
+msgid "Submit"
+msgstr "Iber"
+
+msgid "The connection is not secure."
+msgstr "Baglanyşyk ygtybarly däl."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Platforma henizem HTTPS birikmeleri üçin düzülenok we şonuň üçin diňe test maksatly ulanylmaly."
+
+msgid "Please write a motivation for the reply"
+msgstr "Jogap üçin motiwasiýa ýazmagyňyzy haýyş edýäris"
+
+msgid "Send"
+msgstr "Iber"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Tassyklamak bilen, gutarýan senesiniň möhletini yza süýşürersiňiz:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Bu demo platformasy, hakyky tabşyryşlar üçin ulanmaň."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Telefonyňyzda tassyklaýjy programma guruň"
+
+msgid "Scan the QR code with the app"
+msgstr "Programma bilen QR koduny skanirläň"
 
 msgid "Welcome!"
 msgstr "Hoş geldiňiz!"
@@ -1298,18 +1315,6 @@ msgstr "Resurslara diňe Tor ulgamy arkaly girip bolýar"
 msgid "The upload request exceeds the size limit"
 msgstr "Ýükleme haýyşy çäklendirilen ölçeg ululykdan geçýär"
 
-msgid "Request support"
-msgstr "Goldaw soraň"
-
-msgid "Thank you."
-msgstr "Sagbol."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Mümkin boldugyça gysga wagtda size gaýdyp gelmäge synanyşarys."
-
-msgid "Submit"
-msgstr "Iber"
-
 msgid "Validation of email address change in progress."
 msgstr "Email salgysynyň üýtgemegini barlamak dowam edýär."
 
@@ -1326,11 +1331,6 @@ msgid "Old password confirmation required"
 msgstr "Köne paroly tassyklamak zerur"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Bu sahypany goşmaça gizlinlik we howpsuzlyk bolmazdan göz aýlanýan ýaly!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "Şahsyýetiňizi goraýan Tor Browser atly programmany ulanyp, bu sahypa girmegiňizi maslahat berýäris."
@@ -1340,9 +1340,6 @@ msgstr "Tor brauzerini göçürip alyň"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Soňra, aşakdaky adresi Tor brauzerine göçüriň:"
-
-msgid "Enter a name for the copy"
-msgstr "Göçürmäniň adyny giriziň"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Hasabat tabşyrdyňyzmy? Kwitansiýaňyzy giriziň"
@@ -1368,22 +1365,11 @@ msgstr "Takmynan ýükleme wagty:"
 msgid "Size:"
 msgstr "Ölçegi:"
 
-msgid "The connection is not secure."
-msgstr "Baglanyşyk ygtybarly däl."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Platforma henizem HTTPS birikmeleri üçin düzülenok we şonuň üçin diňe test maksatly ulanylmaly."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Alyjylar goşmaça sowalnama doldurmagyňyzy haýyş etdiler."
 
 msgid "Fill the additional questionnaire"
 msgstr "Goşmaça sowalnamany dolduryň"
-
-msgid "Send"
-msgstr "Iber"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Gizlin habar ýetirijilere teswir ýazmaga rugsat beriň"
@@ -1408,40 +1394,6 @@ msgstr "Gizlin habar ýetirijilere hasabata goşmaçalar goşmagyna rugsat beri�
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Gizlin habar ýetirijilere habar ibermäge rugsat beriň"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "Hasabaty pozmak isleýändigiňize ynanýarsyňyzmy?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Platformada saklanýan hasabat bilen baglanyşykly hemme zat pozular."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Platformada saklanýan hemme zat, meselem, kompýuteriňizde ýazdyran faýllaryňyz el bilen pozulmalydyr."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Saýlanan hasabatlary pozmak isleýändigiňize ynanýarsyňyzmy?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Alyjylaryň mundan beýläk girip bilmezligi üçin ähli degişli maglumatlaryň dogry öçürilendigine göz ýetiriň."
-
-msgid "Please write a motivation for the reply"
-msgstr "Jogap üçin motiwasiýa ýazmagyňyzy haýyş edýäris"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Hasabatyň möhletini yza süýşürmek isleýändigiňize ynanýarsyňyzmy?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Tassyklamak bilen, gutarýan senesiniň möhletini yza süýşürersiňiz:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Ahli saýlanan hasabatlaryň möhletini yza süýşürmek isleýändigiňize ynanýarsyňyzmy?"
 
 msgid "Questionnaire answers"
 msgstr "Sowalnama jogaplary"
@@ -1529,9 +1481,6 @@ msgstr "Tassyklama"
 
 msgid "Invalid confirmation"
 msgstr "Nädogry tassyklama"
-
-msgid "Complete"
-msgstr "Tamamlandy"
 
 msgid "Invalid phone number"
 msgstr "Nädogry telefon belgisi"

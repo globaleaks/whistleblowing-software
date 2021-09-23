@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
-"Last-Translator: zeritti <woodenmo@posteo.de>\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -436,12 +436,6 @@ msgstr "První"
 msgid "Last"
 msgstr "Poslední"
 
-msgid "Running"
-msgstr "Běží"
-
-msgid "Not running"
-msgstr "Neběží"
-
 msgid "Send a test email to your email address."
 msgstr "Poslat testovací email na Vaši emailovou adresu."
 
@@ -561,8 +555,8 @@ msgstr "Neodhalte jména uživatelů."
 msgid "Size limit for file attachments"
 msgstr "Limit velikosti pro přílohy"
 
-msgid "in megabytes"
-msgstr "v megabajtech"
+msgid "megabytes"
+msgstr "MB"
 
 msgid "Enable HSTS preload"
 msgstr "Povolit předběžné načítání HSTS"
@@ -620,9 +614,6 @@ msgstr "Nízký"
 
 msgid "High"
 msgstr "Vysoká"
-
-msgid "megabytes"
-msgstr "MB"
 
 msgid "percentage"
 msgstr "procenta"
@@ -785,9 +776,6 @@ msgstr "Povolit oznamovatelům posílat zprávy"
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Povolit oznamovatelům přidat přílohy k existujícím podáním"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Povolit příjemcům nahrát soubory pro oznamovatele"
 
 msgid "Additional questionnaire"
 msgstr "Dodatečný dotazník"
@@ -1217,32 +1205,20 @@ msgstr "Text bude zobrazen poté, co uživatel vybral jednu z možností."
 msgid "Confirm"
 msgstr "Potvrdit"
 
-msgid "Are you sure?"
-msgstr "Jste si jistý?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "Operace obnoví konfiguraci a tuto změnu nelze vrátit zpět."
-
 msgid "Assign score points"
 msgstr "Přidělit bodové skóre"
+
+msgid "Are you sure?"
+msgstr "Jste si jistý?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Vezměte prosím na vědomí, že všechna související data budou navždy smazána."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Toto je demo platforma, nepoužívejte ji prosím pro skutečné podání."
+msgid "Enable two factor authentication"
+msgstr "Povolit dvoufaktorové ověřování"
 
 msgid "Close"
 msgstr "Zavřít"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Nainstalujte si do telefonu ověřovací aplikaci"
-
-msgid "Scan the QR code with the app"
-msgstr "Naskenujte QR kód pomocí aplikace"
-
-msgid "Enable two factor authentication"
-msgstr "Povolit dvoufaktorové ověřování"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Než budete pokračovat, přečtěte si pozorně dokumentaci na adrese:"
@@ -1254,6 +1230,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Vytvořte kopii a uložte ji na bezpečném místě. Pokud ztratíte heslo, budete moci obnovit přístup ke svému účtu bez ztráty dat."
+
+msgid "Enter a name for the copy"
+msgstr "Zadejte název kopie"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr "Děkujeme Vám."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Pokusíme se vrátit se k Vám co nejdříve."
+
+msgid "Submit"
+msgstr "Odeslat"
+
+msgid "The connection is not secure."
+msgstr "Spojení není bezpečné."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Platforma stále není nakonfigurována pro připojení via HTTPS a měla by být použita pouze pro účely testování."
+
+msgid "Please write a motivation for the reply"
+msgstr "Prosím, napište zdůvodnění odpovědi."
+
+msgid "Send"
+msgstr "Odeslat"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Potvrzením odložíte datum expirace do:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Toto je demo platforma, nepoužívejte ji prosím pro skutečné podání."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Nainstalujte si do telefonu ověřovací aplikaci"
+
+msgid "Scan the QR code with the app"
+msgstr "Naskenujte QR kód pomocí aplikace"
 
 msgid "Welcome!"
 msgstr "Vítejte!"
@@ -1309,18 +1326,6 @@ msgstr "Zdroj může být přístupný pouze uvnitř sítě Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Požadavek na upload přesahuje povolenou velikost."
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr "Děkujeme Vám."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Pokusíme se vrátit se k Vám co nejdříve."
-
-msgid "Submit"
-msgstr "Odeslat"
-
 msgid "Validation of email address change in progress."
 msgstr "Ověření změny e-mailové adresy probíhá."
 
@@ -1337,11 +1342,6 @@ msgid "Old password confirmation required"
 msgstr "Požadováno potvrzení starého hesla"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Zdá se, že procházíte tuto stránku bez dodatečného zabezpečení soukromí!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "Důrazně doporučujme k návštěvě těchto stránek použít desktopovou aplikaci s názvem Tor Browser, která chrání vaši identitu."
@@ -1351,9 +1351,6 @@ msgstr "Stáhnout prohlížeč Tor"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Pak zkopírujte a vložte následující adresy do Tor prohlížeče:"
-
-msgid "Enter a name for the copy"
-msgstr "Zadejte název kopie"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Už jste podal podání? Zadejte své potvrzení."
@@ -1379,22 +1376,11 @@ msgstr "Odhadovaná doba nahravání:"
 msgid "Size:"
 msgstr "Velikost:"
 
-msgid "The connection is not secure."
-msgstr "Spojení není bezpečné."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Platforma stále není nakonfigurována pro připojení via HTTPS a měla by být použita pouze pro účely testování."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Příjemci požadují, abyste vyplnili dodatečný dotazník."
 
 msgid "Fill the additional questionnaire"
 msgstr "Vyplňte dodatečný dotazník"
-
-msgid "Send"
-msgstr "Odeslat"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Povolit oznamovateli psát komentáře"
@@ -1419,40 +1405,6 @@ msgstr "Povolit oznamovateli přidat přílohy k podáním"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Povolit oznamovateli posílat zprávy"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "Chcete opravdu smazat podání"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Vše týkající se tohoto podání bude smazáno."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Prosím, ujistěte se, že ste smazali všechna citlivá data, např. uložená na vašem počítači."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Chcete opravdu smazat vybraná podání?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Ujistěte se, že všechny související data jsou správně odstraněna, aby se k nim nebylo možné v budoucnosti dostat."
-
-msgid "Please write a motivation for the reply"
-msgstr "Prosím, napište zdůvodnění odpovědi."
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Jste si jist/a, že chcete odložit datum výmazu tohoto oznámení?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Potvrzením odložíte datum expirace do:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Jste si jist/a, že chcete odložit datum výmazu tu všech vybraných oznámení?"
 
 msgid "Questionnaire answers"
 msgstr "Odpovědi z dotazníků"
@@ -1540,9 +1492,6 @@ msgstr "Potvrzení"
 
 msgid "Invalid confirmation"
 msgstr "Neplatné potvrzení"
-
-msgid "Complete"
-msgstr "Dokončit"
 
 msgid "Invalid phone number"
 msgstr "Neplatné telefonní číslo"

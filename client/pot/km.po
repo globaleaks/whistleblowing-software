@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Khmer (http://www.transifex.com/otf/globaleaks/language/km/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -428,12 +428,6 @@ msgstr "ដំបូង"
 msgid "Last"
 msgstr "ក្រោយ"
 
-msgid "Running"
-msgstr "កំពុងដំណើរការ"
-
-msgid "Not running"
-msgstr "មិនដំណើរការ"
-
 msgid "Send a test email to your email address."
 msgstr "ផ្ញើអុីមែលសាកល្បងទៅអាសយដ្ឋានអុីមែលរបស់អ្នក។"
 
@@ -553,8 +547,8 @@ msgstr "មិនបង្ហាញឈ្មោះអ្នកប្រើប្
 msgid "Size limit for file attachments"
 msgstr "កំណត់ទំហំសម្រាប់ឯកសារភ្ជាប់"
 
-msgid "in megabytes"
-msgstr "គិតជាមេកាបៃ"
+msgid "megabytes"
+msgstr "មេកាបៃ"
 
 msgid "Enable HSTS preload"
 msgstr "បើកការផ្ទុកមុន HSTS"
@@ -612,9 +606,6 @@ msgstr "ទាប"
 
 msgid "High"
 msgstr "ខ្ពស់"
-
-msgid "megabytes"
-msgstr "មេកាបៃ"
 
 msgid "percentage"
 msgstr "ភាគរយ"
@@ -777,9 +768,6 @@ msgstr "អនុញ្ញាតអ្នករាយការណ៍អោយផ
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "អនុញ្ញាតអ្នករាយការណ៍បន្ថែមឯកសារភ្ជាប់ទៅរបាយការណ៍ដែលមានស្រាប់"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "អនុញ្ញាតអ្នកទទួលបញ្ជូនឯកសារទៅអ្នករាយការណ៍"
 
 msgid "Additional questionnaire"
 msgstr "កម្រងសំណួរបន្ថែម"
@@ -1209,32 +1197,20 @@ msgstr "អក្សរបង្ហាញ បន្ទាប់ពីអ្ន�
 msgid "Confirm"
 msgstr "យល់ព្រម"
 
-msgid "Are you sure?"
-msgstr "តើ​អ្នក​ប្រាកដ​ឬ?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "ប្រតិបត្តិការនេះ នឹងត្រលប់ការកំណត់សារឡើងវិញ និងមិនអាចបកក្រោយបានទេ។"
-
 msgid "Assign score points"
 msgstr "កំណត់ពិន្ទុ"
+
+msgid "Are you sure?"
+msgstr "តើ​អ្នក​ប្រាកដ​ឬ?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "សូមចំណាំថា រាល់ទិន្នន័យដែលពាក់ព័ន្ធ នឹងត្រូវលុបចោលជារៀងរហូត។"
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "នេះជាវាទិកាសាកល្បង សូមកុំប្រើប្រាស់វាសម្រាប់ការបញ្ជូនពិតប្រាកដ។"
+msgid "Enable two factor authentication"
+msgstr "បើកការផ្ទៀងផ្ទាត់ពីរកត្តា"
 
 msgid "Close"
 msgstr "បិទ"
-
-msgid "Install an authenticator app on your phone"
-msgstr "ដំឡើងកម្មវិធីសម្រាប់ផ្ទៀងផ្ទាត់នៅលើទូរស័ព្ទរបស់អ្នក"
-
-msgid "Scan the QR code with the app"
-msgstr "ស្កេនកូដ QR ជាមួយកម្មវិធីនេះ"
-
-msgid "Enable two factor authentication"
-msgstr "បើកការផ្ទៀងផ្ទាត់ពីរកត្តា"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "មុនពេលដំណើរការ សូមអានឯកសាររដោយយកចិត្តទុកដាក់នៅ៖"
@@ -1246,6 +1222,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "ចំលង និងរក្សាទុកនៅកន្លែងសុវត្ថិភាព។ វាមានសារៈសំខាន់ បើអ្នកបាត់បង់ពាក្យសម្ងាត់ ដើម្បីជួយអ្នកក្នុងការចូលប្រើប្រាស់គណនីឡើងវិញ ដោយមិនបាត់បង់ទិន្នន័យ។"
+
+msgid "Enter a name for the copy"
+msgstr "វាយបញ្ចូលឈ្មោះសម្រាប់ការចម្លង"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr "អរគុណ."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "យើងខ្ញុំនឹងព្យាយាមទាក់ទងអ្នកវិញឆាប់បំផុត។"
+
+msgid "Submit"
+msgstr "បញ្ជូន"
+
+msgid "The connection is not secure."
+msgstr "ការតភ្ជាប់នេះមិនមានសុវត្ថិភាពទេ។"
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "វេទិកានេះ​ មិនបានកំណត់សម្រាប់ការតភ្ជាប់ HTTPS និងគួរតែត្រូវបានប្រើប្រាស់សម្រាប់សាកល្បងតែប៉ុណ្ណោះ។​"
+
+msgid "Please write a motivation for the reply"
+msgstr "សូមសរសេរការលើកទឹកចិត្តមួយសម្រាប់ការឆ្លើយតប"
+
+msgid "Send"
+msgstr "បញ្ជូន"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "ដោយការបញ្ជាក់នេះ អ្នកនឹងពន្យាកាលបរិច្ឆេទផុតកំណត់ទៅ៖"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "នេះជាវាទិកាសាកល្បង សូមកុំប្រើប្រាស់វាសម្រាប់ការបញ្ជូនពិតប្រាកដ។"
+
+msgid "Install an authenticator app on your phone"
+msgstr "ដំឡើងកម្មវិធីសម្រាប់ផ្ទៀងផ្ទាត់នៅលើទូរស័ព្ទរបស់អ្នក"
+
+msgid "Scan the QR code with the app"
+msgstr "ស្កេនកូដ QR ជាមួយកម្មវិធីនេះ"
 
 msgid "Welcome!"
 msgstr "សូមស្វាគមន៍!"
@@ -1301,18 +1318,6 @@ msgstr "ធនធានអាចចូលប្រើប្រាស់បាន
 msgid "The upload request exceeds the size limit"
 msgstr "ការស្នើសុំបញ្ជូន​ លើសពីទំហំកំណត់"
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr "អរគុណ."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "យើងខ្ញុំនឹងព្យាយាមទាក់ទងអ្នកវិញឆាប់បំផុត។"
-
-msgid "Submit"
-msgstr "បញ្ជូន"
-
 msgid "Validation of email address change in progress."
 msgstr "សុពលភាពនៃការផ្លាស់ប្តូរអាសយដ្ឋានអុីមែលកំពុងដំណើរការ"
 
@@ -1329,11 +1334,6 @@ msgid "Old password confirmation required"
 msgstr "ទាមទារការបញ្ជាក់ពាក្យសម្ងាត់ចាស់"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "វាបង្ហាញថា អ្នកកំពុងរុករកគេហទំព័រ ដោយគ្មានការរក្សាឯកជនភាព និងសន្តិសុខ!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "អ្នកត្រូវបានណែនាំឱ្យចូលមើលគេហទំព័រនេះដោយប្រើកម្មវិធីដែលមានឈ្មោះថា Tor Browser ដែលការពារអត្តសញ្ញាណរបស់អ្នក។"
@@ -1343,9 +1343,6 @@ msgstr "ទាញយកកម្មវិធី Tor Browser"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "បន្ទាប់មក​ ចម្លង និងដាក់ភ្ជាប់អាសយដ្ឋានខាងក្រោម​ទៅក្នុងកម្មវិធី​ Tor Browser៖"
-
-msgid "Enter a name for the copy"
-msgstr "វាយបញ្ចូលឈ្មោះសម្រាប់ការចម្លង"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "តើអ្នកបានបំពេញរបាយការណ៍ហើយឬនៅ? វាយបញ្ចូលរបាយការណ៍របស់អ្នក។"
@@ -1371,22 +1368,11 @@ msgstr "រយៈពេលបញ្ជូលដោយប៉ាន់ស្មា
 msgid "Size:"
 msgstr "ទំហំ៖"
 
-msgid "The connection is not secure."
-msgstr "ការតភ្ជាប់នេះមិនមានសុវត្ថិភាពទេ។"
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "វេទិកានេះ​ មិនបានកំណត់សម្រាប់ការតភ្ជាប់ HTTPS និងគួរតែត្រូវបានប្រើប្រាស់សម្រាប់សាកល្បងតែប៉ុណ្ណោះ។​"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "អ្នកទទួលបានស្នើសុំអ្នកឲ្យបំពេញកម្រងសំណួរបន្ថែម។"
 
 msgid "Fill the additional questionnaire"
 msgstr "បំពេញកម្រងសំណួរបន្ថែម"
-
-msgid "Send"
-msgstr "បញ្ជូន"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "អនុញ្ញាតអ្នករាយការណ៍អោយសរសេរមតិយោបល់"
@@ -1411,40 +1397,6 @@ msgstr "អនុញ្ញាតអ្នករាយការណ៍បន្ថ
 
 msgid "Allow the whistleblower to send messages"
 msgstr "អនុញ្ញាតអ្នករាយការណ៍ឲ្យផ្ញើសារ"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "តើអ្នកប្រាកដទេថាអ្នកចង់លុបរបាយការណ៍នេះ?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "អ្វីៗដែលទាក់ទងនឹងរបាយការណ៍ដែលរក្សានៅលើវេទិកា នឹងត្រូវបានលុបចោល។"
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "សូមជ្រាបថាអ្វីៗទាំងអស់ដែលមិនបានរក្សារទុកនៅលើវេទិកានេះ ដូចជាឯកសារដែលអ្នកបានរក្សាទុកក្នុងកុំព្យូទ័ររបស់អ្នក គឺត្រូវតែលុបដោយខ្លួនឯង។"
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "តើអ្នកប្រាកដទេថាអ្នកចង់លុបរបាយការណ៍ដែលបានជ្រើសរើសនេះ?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "សូមប្រាកដថារាល់ទិន្នន័យពាក់ព័ន្ធទាំងអស់ ត្រូវបានលុបចោលយ៉ាងត្រឹមត្រូវ ដូច្នេះអ្នកទទួលនឹងមិនអាចចូលប្រើវាបានទៀតទេ។"
-
-msgid "Please write a motivation for the reply"
-msgstr "សូមសរសេរការលើកទឹកចិត្តមួយសម្រាប់ការឆ្លើយតប"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "តើអ្នកប្រាកដទេថាចង់ពន្យាពេលកាលបរិច្ឆេទផុតកំណត់របាយការណ៍?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "ដោយការបញ្ជាក់នេះ អ្នកនឹងពន្យាកាលបរិច្ឆេទផុតកំណត់ទៅ៖"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "តើអ្នកប្រាកដទេថាអ្នកចង់ពន្យាកាលបរិច្ឆេទផុតកំណត់ សម្រាប់របាយការណ៍ដែលបានជ្រើសរើសទាំងអស់?"
 
 msgid "Questionnaire answers"
 msgstr "ចម្លើយកម្រងសំណួរ"
@@ -1532,9 +1484,6 @@ msgstr "ការបញ្ជាក់"
 
 msgid "Invalid confirmation"
 msgstr "ការបញ្ជាក់មិនត្រឹមត្រូវ"
-
-msgid "Complete"
-msgstr "បញ្ចប់"
 
 msgid "Invalid phone number"
 msgstr "លេខទូរស័ព្ទមិនត្រឹមត្រូវ"

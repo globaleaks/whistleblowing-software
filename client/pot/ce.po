@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-18 20:33+0000\n"
-"Last-Translator: Chechen Linguist <translation@7geniusgroup.com>\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chechen (http://www.transifex.com/otf/globaleaks/language/ce/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -426,12 +426,6 @@ msgstr "Хьалхара"
 msgid "Last"
 msgstr "Тlаьххьара"
 
-msgid "Running"
-msgstr "Уьдуш"
-
-msgid "Not running"
-msgstr "Ца уьдуш"
-
 msgid "Send a test email to your email address."
 msgstr "Хьайн электронан почти тlе текстан электронан кехат дахьийта."
 
@@ -551,8 +545,8 @@ msgstr "Пайдаоьцучийн цlерш ма йаста"
 msgid "Size limit for file attachments"
 msgstr "Йукъайехкинчу файлийн барамна дозатохар"
 
-msgid "in megabytes"
-msgstr "мегабайташкахь"
+msgid "megabytes"
+msgstr "мегабайт"
 
 msgid "Enable HSTS preload"
 msgstr "HSTS хьалха чухlоттор латон"
@@ -610,9 +604,6 @@ msgstr "Лахара"
 
 msgid "High"
 msgstr "Лакхара"
-
-msgid "megabytes"
-msgstr "мегабайт"
 
 msgid "percentage"
 msgstr "процент"
@@ -775,9 +766,6 @@ msgstr "Хаамхошна кост-хаамаш бахьийта пурба д�
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Йолчу йолчу отчеташна йукъа хаамаш бахка хаамчашна магаде"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Схьаэцархошна магаде хаамчашна файлаш чуйаха"
 
 msgid "Additional questionnaire"
 msgstr "Тlетоьхна анкета"
@@ -1207,32 +1195,20 @@ msgstr "Пайдаоьцучо хlара таро хаьржинчул тlаьх
 msgid "Confirm"
 msgstr "Тlечlагlйан"
 
-msgid "Are you sure?"
-msgstr "Билггал тешна вуй?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "Кху даро битамаш йухабохур бу, цул тlаьхьа юхаметта а хlитталур бац."
-
 msgid "Assign score points"
 msgstr "Баллаш билгалде"
+
+msgid "Are you sure?"
+msgstr "Билггал тешна вуй?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Доьху, тидам бе, кхуьнца боьзна болу берриге а хаамаш меттахlитталур боцуш дlабовр бу."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Хlара гайтаман платформа йу, доьху, баккъал а долчу хьашташна цалелор."
+msgid "Enable two factor authentication"
+msgstr "Шинамуьран бакъталлар латон"
 
 msgid "Close"
 msgstr "Дlачlагlа"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Бакъталларан гlирс хьайн тилпон тlе хlоттабе"
-
-msgid "Scan the QR code with the app"
-msgstr "QR-кодан сурт даккха гlирсан гlоьнца"
-
-msgid "Enable two factor authentication"
-msgstr "Шинамуьран бакъталлар латон"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Болх кхидlа бале, доьху, кху адресца долу кехаташ деша:"
@@ -1244,6 +1220,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Копи а йай, чlагlаме йолчу меттехь lалашйе. Иза хьуна оьшур йу, нагахь ишар йайъахь, хаамаш дlа а ца бовш, хьайн чуйазваларан йозанна тlекхачархьама."
+
+msgid "Enter a name for the copy"
+msgstr "Копина цlе чуйазйе"
+
+msgid "Request support"
+msgstr "Гlо деха"
+
+msgid "Thank you."
+msgstr "Баркалла."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Мелла а сиха хьоьца зlене довла хьовсу."
+
+msgid "Submit"
+msgstr "Гайта"
+
+msgid "The connection is not secure."
+msgstr "Цхьанадозар кхерамзалла йоцуш дац."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "HTTPS-цхьаьнайозарна хlинца а кечйина йац платформа, цундела таллам баран lалашонца бен лелайойла дац."
+
+msgid "Please write a motivation for the reply"
+msgstr "Доьху, жоьпана догдаийтар йазде"
+
+msgid "Send"
+msgstr "Дахьийта"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Тlечlагlдича, ахь леларан хенан терахь дlатотту:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Хlара гайтаман платформа йу, доьху, баккъал а долчу хьашташна цалелор."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Бакъталларан гlирс хьайн тилпон тlе хlоттабе"
+
+msgid "Scan the QR code with the app"
+msgstr "QR-кодан сурт даккха гlирсан гlоьнца"
 
 msgid "Welcome!"
 msgstr "Марша вогlийла (йогlийла)!"
@@ -1299,18 +1316,6 @@ msgstr "Tor машанеухла бен тlекхочийла дац ресур�
 msgid "The upload request exceeds the size limit"
 msgstr "Бараман лаккхарчу тlегlанал тlехбаьлла чуйаккхаран хаттам"
 
-msgid "Request support"
-msgstr "Гlо деха"
-
-msgid "Thank you."
-msgstr "Баркалла."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Мелла а сиха хьоьца зlене довла хьовсу."
-
-msgid "Submit"
-msgstr "Гайта"
-
 msgid "Validation of email address change in progress."
 msgstr "Электронан почтин адрес хийцаран таллам бу беш."
 
@@ -1327,11 +1332,6 @@ msgid "Old password confirmation required"
 msgstr "Шира ишар тlечlагlйар оьшу"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Хетарехь, хьо кху сайте кхин тlетоьхна къайле йа кхерамзалла йа къайле ларйар доцуш хьожу! "
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "Хьуна тlедожжош хьоьху кху сайте хьайн долара хаамаш lалашбечу Tor Browser гlирсан гlоьнца хьажар."
@@ -1341,9 +1341,6 @@ msgstr "Tor браузер чуйаккха"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Цул тlаьхьа копи а йай, Tor браузер чу хlара адрес дилла:"
-
-msgid "Enter a name for the copy"
-msgstr "Копина цlе чуйазйе"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Ахь дlахьедар чуделлий? Хьайн квитанци чуйазде."
@@ -1369,22 +1366,11 @@ msgstr "Чуйахарна оьшур йу аьлла хета хан:"
 msgid "Size:"
 msgstr "Барам"
 
-msgid "The connection is not secure."
-msgstr "Цхьанадозар кхерамзалла йоцуш дац."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "HTTPS-цхьаьнайозарна хlинца а кечйина йац платформа, цундела таллам баран lалашонца бен лелайойла дац."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Схьаэцархоша дехна хьоьга тlетоьхна анкета яздар."
 
 msgid "Fill the additional questionnaire"
 msgstr "Тlетоьхна анкета йазде"
-
-msgid "Send"
-msgstr "Дахьийта"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Хаамчина бакъо ло хетарг довзийта"
@@ -1409,40 +1395,6 @@ msgstr "Хаамчина бакъо ло отчет йукъа хаамаш ба
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Хаамчина бакъо ло кост-хаамаш бахьийта."
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "Хьо тешна вуй (йуй) хьайна отчет дlайайъа лаьа аьлла?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Платформи тlехь lалашйечу отчетаца мел доьзнарг дlадойъур ду."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Доьху, тидаме эца, платформел арахьа lалашйеш мел йолу хlума, масала, ахь хьайн компьютер тlехь lалашйеш йолу файлаш, куьйга дlайайъа йезаш йу."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Хьо тешна вуй (йуй) хьайна йерриге а отчеташ дlайаха лаьа аьлла?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Доьху, таллам бе схьаэцархой кхин тlекхочур боцучу кепара берриге а файлаш дlабаьхна хиларан."
-
-msgid "Please write a motivation for the reply"
-msgstr "Доьху, жоьпана догдаийтар йазде"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Отчетан леларан хенан терахь дlататта лаьа аьлла тешна вуй (йуй) хьо?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Тlечlагlдича, ахь леларан хенан терахь дlатотту:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Леларан хенан терахь йерриге а отчеташна дlататта лаьа аьлла тешна вуй (йуй) хьо?"
 
 msgid "Questionnaire answers"
 msgstr "Хаттамна жоьпаш"
@@ -1530,9 +1482,6 @@ msgstr "Тlечlагlдар"
 
 msgid "Invalid confirmation"
 msgstr "Тlечlагlдар гlалате ду"
-
-msgid "Complete"
-msgstr "Кхачаме"
 
 msgid "Invalid phone number"
 msgstr "Тилпонан лоьмар нийса йац"

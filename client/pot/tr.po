@@ -30,8 +30,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 13:04+0000\n"
-"Last-Translator: Kaya Zeren <kayazeren@gmail.com>\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -451,12 +451,6 @@ msgstr "İlk"
 msgid "Last"
 msgstr "Son"
 
-msgid "Running"
-msgstr "Çalışıyor"
-
-msgid "Not running"
-msgstr "Çalışmıyor"
-
 msgid "Send a test email to your email address."
 msgstr "E-posta adresinize bir test e-postası gönderin."
 
@@ -576,7 +570,7 @@ msgstr "Kullanıcı isimlerini teşhir etme"
 msgid "Size limit for file attachments"
 msgstr "Dosya ekleri için boyut sınırı"
 
-msgid "in megabytes"
+msgid "megabytes"
 msgstr "megabyte"
 
 msgid "Enable HSTS preload"
@@ -635,9 +629,6 @@ msgstr "Düşük"
 
 msgid "High"
 msgstr "Yüksek"
-
-msgid "megabytes"
-msgstr "megabyte"
 
 msgid "percentage"
 msgstr "yüzde"
@@ -800,9 +791,6 @@ msgstr "İhbarcıların mesaj göndermesine izin verin"
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "İhbarcıların mevcut raporlara eklenti eklemelerine izin ver"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Alıcıların ihbarcılar için dosya yüklemelerine izin ver"
 
 msgid "Additional questionnaire"
 msgstr "Ek anket"
@@ -1232,32 +1220,20 @@ msgstr "Kullanıcı seçeneği seçtikten sonra görüntülenen metin."
 msgid "Confirm"
 msgstr "Onayla"
 
-msgid "Are you sure?"
-msgstr "Emin misiniz?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "İşlem yapılandırmayı sıfırlayacaktır ve geri alınamaz."
-
 msgid "Assign score points"
 msgstr "Puanları tahsis et"
+
+msgid "Are you sure?"
+msgstr "Emin misiniz?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Lütfen ilişkili bütün verinin kalıcı olarak silineceğini unutmayın."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Bu bir tanıtım platformudur, lütfen gerçek gönderimler için kullanmayın."
+msgid "Enable two factor authentication"
+msgstr "İki aşamalı kimlik doğrulamayı etkinleştirin"
 
 msgid "Close"
 msgstr "Kapat"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Telefonunuza kimlik doğrulayıcı bir uygulama yükleyin"
-
-msgid "Scan the QR code with the app"
-msgstr "QR kodunu uygulamayla taratın"
-
-msgid "Enable two factor authentication"
-msgstr "İki aşamalı kimlik doğrulamayı etkinleştirin"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Lütfen ilerlemeden önce belgelendirmeyi dikkatli bir şekilde okuyun."
@@ -1269,6 +1245,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Bir kopyasını alın ve güvenli bir yerde saklayın. Parolanızı yitirdiğinizde, veri kaybı yaşamdan hesabınıza erişmek için ihtiyacınız olacaktır."
+
+msgid "Enter a name for the copy"
+msgstr "Kopya için bir isim girin"
+
+msgid "Request support"
+msgstr "Destek isteyin"
+
+msgid "Thank you."
+msgstr "Teşekkürler."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "En yakın zamanda size geri dönmeye çalışacağız."
+
+msgid "Submit"
+msgstr "Gönder"
+
+msgid "The connection is not secure."
+msgstr "Bağlantı güvenli değil."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Platform henüz HTTPS bağlantıları için yapılandırılmamıştır, bu nedenle sadece deneme amacıyla kullanılmalıdır."
+
+msgid "Please write a motivation for the reply"
+msgstr "Lütfen bu yanıt için niyetinizi belirtin"
+
+msgid "Send"
+msgstr "Gönder"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Onaylayarak, gönderinin geçerlilik tarihini şu tarihe erteleyeceksiniz:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Bu bir tanıtım platformudur, lütfen gerçek gönderimler için kullanmayın."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Telefonunuza kimlik doğrulayıcı bir uygulama yükleyin"
+
+msgid "Scan the QR code with the app"
+msgstr "QR kodunu uygulamayla taratın"
 
 msgid "Welcome!"
 msgstr "Hoş Geldiniz!"
@@ -1324,18 +1341,6 @@ msgstr "Kaynak sadece Tor ağı içerisinden erişilebilir"
 msgid "The upload request exceeds the size limit"
 msgstr "Yükleme talebi boyut sınırlarını aşıyor"
 
-msgid "Request support"
-msgstr "Destek isteyin"
-
-msgid "Thank you."
-msgstr "Teşekkürler."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "En yakın zamanda size geri dönmeye çalışacağız."
-
-msgid "Submit"
-msgstr "Gönder"
-
 msgid "Validation of email address change in progress."
 msgstr "E-posta adresi değişikliği doğrulaması devam ediyor. "
 
@@ -1352,11 +1357,6 @@ msgid "Old password confirmation required"
 msgstr "Eski parola doğrulaması gerekli"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Siteyi başka hiç bir ekstra gizlilik ve güvenlik olmadan gezdiğiniz görünüyor."
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "Bu siteyi gezerken kimliğinizi gizleyen Tor Tarayıcı uygulamasını kullanmanızı şiddetle öneriyoruz."
@@ -1366,9 +1366,6 @@ msgstr "Tor Browser İndir"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Sonra, şu adresi kopyalayıp Tor Browser'a yapıştırın:"
-
-msgid "Enter a name for the copy"
-msgstr "Kopya için bir isim girin"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Zaten bir rapor sundunuz mu? Alındı bilgisini girin."
@@ -1394,22 +1391,11 @@ msgstr "Tahmini yükleme zamanı:"
 msgid "Size:"
 msgstr "Boyut:"
 
-msgid "The connection is not secure."
-msgstr "Bağlantı güvenli değil."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Platform henüz HTTPS bağlantıları için yapılandırılmamıştır, bu nedenle sadece deneme amacıyla kullanılmalıdır."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Alıcılar ek bir anket doldurmanızı talep ediyorlar."
 
 msgid "Fill the additional questionnaire"
 msgstr "Ek anketi doldurun."
-
-msgid "Send"
-msgstr "Gönder"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "İhbarcının yorum yazmasına izin verin"
@@ -1434,40 +1420,6 @@ msgstr "İhbarcının rapora eklentiler eklemesine izin ver"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "İhbarcının mesaj göndermesine izin verin"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "Raporu silmek istediğinizden emin misiniz?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Platformda saklanan rapora ilişkin her şey silinecektir."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Lütfen platform dışında saklanmış olan her şeyin, örneğin bilgisayarınıza kaydettiğiniz dosyaların, elle silinmesi gerektiğini unutmayın."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Seçili raporları silmek istediğinizden emin misiniz?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Lütfen tüm ilişkili verinin düzgün şekilde silindiğinden ve hiçbir alıcının artık erişemeyeceğinden emin olun."
-
-msgid "Please write a motivation for the reply"
-msgstr "Lütfen bu yanıt için niyetinizi belirtin"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Rapor zaman aşımını ertelemek istediğinizden emin misiniz?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Onaylayarak, gönderinin geçerlilik tarihini şu tarihe erteleyeceksiniz:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Seçili tüm raporlar için zaman aşımını ertelemek istediğinizden emin misiniz?"
 
 msgid "Questionnaire answers"
 msgstr "Anket cevapları"
@@ -1555,9 +1507,6 @@ msgstr "Doğrulama"
 
 msgid "Invalid confirmation"
 msgstr "Doğrulama geçersiz"
-
-msgid "Complete"
-msgstr "Tamamla"
 
 msgid "Invalid phone number"
 msgstr "Geçersiz telefon numarası"

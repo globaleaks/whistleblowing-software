@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-18 06:29+0000\n"
-"Last-Translator: Pavel Tsvetkov <pavel.tsvetkov@gmail.com>\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,7 +24,7 @@ msgstr ""
 "mime-version: 1.0\n"
 
 msgid "Log in"
-msgstr "Вход"
+msgstr "Влизане"
 
 msgid "Main configuration"
 msgstr "Основна конфигурация"
@@ -135,16 +135,16 @@ msgid "The whistleblower has not read the last update yet"
 msgstr "Подалият сигнал още не е прочел последната актуализация"
 
 msgid "Move up"
-msgstr "Премести нагоре"
+msgstr "Преместване нагоре"
 
 msgid "Move down"
-msgstr "Премести надолу"
+msgstr "Преместване надолу"
 
 msgid "Move left"
-msgstr "Премести наляво"
+msgstr "Преместване наляво"
 
 msgid "Move right"
-msgstr "Премести надясно"
+msgstr "Преместване надясно"
 
 msgid "Import"
 msgstr "Импортиране"
@@ -153,10 +153,10 @@ msgid "Export"
 msgstr "Експортиране"
 
 msgid "Save all"
-msgstr "Запазване на всички"
+msgstr "Запис на всички"
 
 msgid "Access control"
-msgstr "Контрол на достъпа"
+msgstr "Управление на достъпа"
 
 msgid "The connection has been secured with HTTPS ensuring confidentiality."
 msgstr "Връзката е защитена с HTTPS, което гарантира конфиденциалността."
@@ -209,16 +209,16 @@ msgid "User"
 msgstr "Потребител"
 
 msgid "Motivation"
-msgstr "Причина"
+msgstr "Мотивация"
 
 msgid "Status"
 msgstr "Статус"
 
 msgid "Request motivation"
-msgstr "Мотивация за заявката"
+msgstr "Мотивация на заявката"
 
 msgid "Reply motivation"
-msgstr "Причина за отговор"
+msgstr "Мотивация на отговора"
 
 msgid "Request status"
 msgstr "Статус на заявката"
@@ -233,10 +233,10 @@ msgid "Access requested"
 msgstr "Поискан е достъп"
 
 msgid "Request access to the whistleblower's identity"
-msgstr "Заявка на достъп до самоличността на подалия сигнал"
+msgstr "Заявка за достъп до самоличността на подалия сигнал"
 
 msgid "Please write a motivation"
-msgstr "Моля, мотивирайте се"
+msgstr "Моля, напишете мотивация"
 
 msgid "Reply to the request"
 msgstr "Отговор на заявката"
@@ -254,10 +254,10 @@ msgid "New request"
 msgstr "Нова заявка"
 
 msgid "Authorize"
-msgstr "Разрешавам"
+msgstr "Одобряване"
 
 msgid "Deny"
-msgstr "Отказвам"
+msgstr "Отказ"
 
 msgid "Deny access to the whistleblower's identity"
 msgstr "Отказване на достъп до самоличността на подалия сигнал"
@@ -281,22 +281,22 @@ msgid "Last update"
 msgstr "Последна актуализация"
 
 msgid "Disable notifications to administrators"
-msgstr "Изключване на известия до администратори"
+msgstr "Дезактивиране на известията до администраторите"
 
 msgid "Disable notifications to custodians"
 msgstr "Дезактивиране на известията до длъжностните лица по защита на данните"
 
 msgid "Disable notifications to recipients"
-msgstr "Изключване на известия до получатели"
+msgstr "Дезактивиране на известията до получателите"
 
 msgid "Score"
-msgstr "Резултат"
+msgstr "Оценка"
 
 msgid "Trigger question"
 msgstr "Активиране на въпрос"
 
 msgid "Triggered by score:"
-msgstr "Активирано от резултата"
+msgstr "Активирано от оценката"
 
 msgid "Weak"
 msgstr "Слаба"
@@ -349,7 +349,7 @@ msgid "Activities"
 msgstr "Действия"
 
 msgid "Reports"
-msgstr "Отчети"
+msgstr "Сигнали"
 
 msgid "Users"
 msgstr "Потребители"
@@ -364,13 +364,13 @@ msgid "File size not accepted."
 msgstr "Размерът на файла не е приет."
 
 msgid "Maximum file size is:"
-msgstr "Максимален размер на файл:"
+msgstr "Максималният размер на файла е:"
 
 msgid "Scheduled jobs"
 msgstr "Планирани задания"
 
 msgid "Sites management"
-msgstr "Управление на сайтовете"
+msgstr "Управление на сайтове"
 
 msgid "Regenerate"
 msgstr "Повторно генериране"
@@ -391,7 +391,7 @@ msgid "Use as default"
 msgstr "Използване по подразбиране"
 
 msgid "Create your whistleblowing platform"
-msgstr "Създайте своя платформа за подаване на сигнали"
+msgstr "Създайте платформата си за подаване на сигнали"
 
 msgid "Collapse"
 msgstr "Свиване"
@@ -421,10 +421,10 @@ msgid "Placeholder"
 msgstr "Контейнер"
 
 msgid "Print"
-msgstr "Печат"
+msgstr "Отпечатване"
 
 msgid "Previous"
-msgstr "Предишно"
+msgstr "Предишна"
 
 msgid "Next"
 msgstr "Следваща"
@@ -435,34 +435,28 @@ msgstr "Първа"
 msgid "Last"
 msgstr "Последна"
 
-msgid "Running"
-msgstr "Изпълнява се"
-
-msgid "Not running"
-msgstr "Не се изпълнява"
-
 msgid "Send a test email to your email address."
-msgstr "Изпращане на тестови имейл до имейл адреса Ви "
+msgstr "Изпратете тестов имейл до имейл адреса си."
 
 msgid "Block the submission"
 msgstr "Блокиране на подаването"
 
 msgid "Skip the recipient account creation."
-msgstr "Пропускане на създаването на акаунт на получателя"
+msgstr "Пропускане на създаването на акаунт на получателя."
 
 msgid "Send activation link"
 msgstr "Изпращане на линк за активиране"
 
 msgid "Password reset"
-msgstr "Смяна на паролата"
+msgstr "Нулиране на паролата"
 
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr "Един или повече получатели не са извършили първоначалното си вписване. Това означава, че те няма да получават отчети."
+msgstr "Един или повече получатели не са изпълнили първоначалното си влизане. Това означава, че те няма да получават сигнали."
 
 msgid "This user has not performed the first login yet."
-msgstr "Този потребител не е извършил първоначалното си вписване."
+msgstr "Този потребител не е извършил първоначалното си влизане."
 
 msgid "seconds"
 msgstr "секунди"
@@ -480,7 +474,7 @@ msgid "Logout"
 msgstr "Излизане"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr "Даване на възможност на този получател да разрешава достъп на потребители до отчети"
+msgstr "Даване на възможност на този получател да предоставя достъп на потребители до сигнали"
 
 msgid "Grant access"
 msgstr "Предоставяне на достъп"
@@ -489,10 +483,10 @@ msgid "Revoke access"
 msgstr "Анулиране на достъпа"
 
 msgid "File a report"
-msgstr "Картотекиране на отчет"
+msgstr "Картотекиране на сигнал"
 
 msgid "Select the context of your report:"
-msgstr "Изберете темата на подавания от Вас сигнал:"
+msgstr "Изберете темата на Вашия сигнал:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Преди да продължите, моля, задайте нова парола."
@@ -504,10 +498,10 @@ msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Избраната парола е твърде слаба. Валидната парола трябва да съдържа най-малко 10 разнообразни символа, от които поне една малка буква, главна буква, цифра или специален символ."
+msgstr "Избраната парола е твърде слаба. Валидната парола трябва да съдържа най-малко 10 различни символа, от които поне една малка буква, една главна буква, една цифра или един специален символ."
 
 msgid "The new password must be different from the current one."
-msgstr "Новата парола трябва да бъде различна от текущата."
+msgstr "Новата парола трябва да е различна от текущата."
 
 msgid "Type your new password again"
 msgstr "Въведете новата парола отново"
@@ -519,22 +513,22 @@ msgid "The new password must differ from the previous."
 msgstr "Новата парола трябва да се различава от предишната."
 
 msgid "Proceed"
-msgstr "Напред"
+msgstr "Продължаване"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr "Преди да продължите, моля, разрешете двустепенното удостоверяване"
+msgstr "Преди да продължите, моля, активирайте двустепенното удостоверяване"
 
 msgid "Disable submissions"
 msgstr "Дезактивиране на подаването на сигнали"
 
 msgid "Enable encryption"
-msgstr "Активиране на криптиране"
+msgstr "Активиране на шифроване"
 
 msgid "Enable administrators to change user passwords"
 msgstr "Разрешаване на администраторите да променят потребителски пароли"
 
 msgid "Administrators authorized to change user passwords:"
-msgstr "Администратори, разполагащи с разрешение да променят потребителски пароли:"
+msgstr "Администратори, упълномощени да променят потребителски пароли:"
 
 msgid "Enable multisite feature"
 msgstr "Активиране на функция за много сайтове"
@@ -543,10 +537,10 @@ msgid "Enable simplified login"
 msgstr "Активиране на опростено влизане"
 
 msgid "Enable search engines indexing"
-msgstr "Активиране на индексирането от търсачките"
+msgstr "Активиране на индексиране от търсачки"
 
 msgid "Enable the receipt hint"
-msgstr "Разрешаване на подсещане за разписка (код)"
+msgstr "Активиране на подсещане за разписка (код)"
 
 msgid "Default questionnaire"
 msgstr "Въпросник по подразбиране"
@@ -555,16 +549,16 @@ msgid "Show contexts in alphabetical order"
 msgstr "Показване на теми по азбучен ред"
 
 msgid "Do not expose users' names"
-msgstr "Не разкривайте имена на потребители"
+msgstr "Без разкриване на имената на потребителите"
 
 msgid "Size limit for file attachments"
 msgstr "Ограничение на размера за прикачени файлове"
 
-msgid "in megabytes"
-msgstr "в мегабайти"
+msgid "megabytes"
+msgstr "мегабайта"
 
 msgid "Enable HSTS preload"
-msgstr "Разрешаване на предварително зареждане по HSTS"
+msgstr "Активиране на предварително зареждане по HSTS"
 
 msgid "Require two factor authentication"
 msgstr "Задължително двустепенно удостоверяване"
@@ -577,13 +571,13 @@ msgid ""
 msgstr "От съображения за сигурност на равни интервали от време се изисква промяна на паролата"
 
 msgid "Set the value to 0 to disable this feature."
-msgstr "За да деактивирате тази функция, задайте стойност 0."
+msgstr "Задайте стойност 0, за да дезактивирате тази функция."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr "Брой дни, преди да уведомите потребителите за непрочетени сигнали"
+msgstr "Брой оставащи дни преди уведомяване на потребителите за непрочетени сигнали"
 
 msgid "Enable custodian user role"
-msgstr "Активириане на потребителска роля „длъжностно лице по защита на данните“"
+msgstr "Активиране на потребителска роля „длъжностно лице по защита на данните“"
 
 msgid "Enable scoring system"
 msgstr "Активиране на система за оценяване"
@@ -598,15 +592,15 @@ msgid "Log accesses of internal users"
 msgstr "Регистриране на достъпа на вътрешни потребители"
 
 msgid "Notify administrators of software problems"
-msgstr "Уведомяване на администраторите за софтуерни проблеми"
+msgstr "Уведомявай администраторите за софтуерни проблеми"
 
 msgid "Notify developers of software problems"
-msgstr "Уведомяване на програмистите за софтуерни проблеми"
+msgstr "Уведомявай програмистите за софтуерни проблеми"
 
 msgid ""
 "By enabling this feature, you will contribute to the development and "
 "security of the platform."
-msgstr "С активиране на тази функция, ще допринесете за разработването и сигурността на платформата."
+msgstr "С активирането на тази функция ще допринесете за разработването и сигурността на платформата."
 
 msgid "Save"
 msgstr "Записване"
@@ -620,9 +614,6 @@ msgstr "Ниско"
 msgid "High"
 msgstr "Високо"
 
-msgid "megabytes"
-msgstr "мегабайти"
-
 msgid "percentage"
 msgstr "процент"
 
@@ -630,7 +621,7 @@ msgid "Type"
 msgstr "Тип"
 
 msgid "Severity"
-msgstr "Сериозност"
+msgstr "Спешност"
 
 msgid "Object"
 msgstr "Обект"
@@ -675,10 +666,10 @@ msgid "Edit"
 msgstr "Редакция"
 
 msgid "Cancel"
-msgstr "Отказ"
+msgstr "Отмяна"
 
 msgid "Report statuses"
-msgstr "Статус на сигналите"
+msgstr "Статуси на сигналите"
 
 msgid "Logo"
 msgstr "Емблема"
@@ -693,10 +684,10 @@ msgid "Homepage title"
 msgstr "Заглавие на началната страница"
 
 msgid "Presentation"
-msgstr "Презентация"
+msgstr "Представяне"
 
 msgid "Question to solicit possible whistleblowers"
-msgstr "Въпрос за привличане на възможни податели на сигнали"
+msgstr "Задаване на въпрос за привличане на възможни податели на сигнали"
 
 msgid "Whistleblowing button"
 msgstr "Бутон за подаване на сигнал"
@@ -738,10 +729,10 @@ msgid "Hidden"
 msgstr "Скрито"
 
 msgid "Disabled"
-msgstr "Деактивирано"
+msgstr "Дезактивирано"
 
 msgid "Enabled"
-msgstr "Активиранo"
+msgstr "Активирано"
 
 msgid "Questionnaire"
 msgstr "Въпросник"
@@ -783,10 +774,7 @@ msgid "Allow whistleblowers to send messages"
 msgstr "Разрешаване на подателите на сигнали да изпращат съобщения"
 
 msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Разрешаване на подателите на сигнали да прикачват файлове към вече подадени сигнали"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Разрешаване на получателите да качват файлове към подателите на сигнали"
+msgstr "Разрешаване на подателите на сигнали да прикачват файлове към вече съществуващи сигнали"
 
 msgid "Additional questionnaire"
 msgstr "Допълнителен въпросник"
@@ -810,7 +798,7 @@ msgid "Assign the receipt only to reports reaching score:"
 msgstr "Присвояване на разписка (код) само на сигнали, достигнали резултат от:"
 
 msgid "Software version:"
-msgstr "Версия на софтуера:"
+msgstr "Софтуерна версия:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Ограничаване на достъпа до определени IP адреси"
@@ -883,7 +871,7 @@ msgstr "Нулиране"
 
 msgid ""
 "The platform supports the configuration of HTTPS through this interface."
-msgstr "Платформата поддържа конфигурирането на HTTPS през този интефейс."
+msgstr "Платформата поддържа конфигурирането на HTTPS през този интерфейс."
 
 msgid "Automatic configuration"
 msgstr "Автоматично конфигуриране"
@@ -892,7 +880,7 @@ msgid ""
 "Using automatic HTTPS configuration will handle the entire process of "
 "requesting, enabling and renewing certificates from the Let's Encrypt "
 "Certificate Authority."
-msgstr "Използването на автоматично конфигуриране на HTTPS  управлява целия процес по заявката, активирането и подновяването на сертификатите от сертифициращия орган Let's Encrypt."
+msgstr "Използването на автоматично конфигуриране на HTTPS управлява целия процес по заявката, активирането и подновяването на сертификатите от сертифициращия орган Let's Encrypt."
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
@@ -905,7 +893,7 @@ msgstr "Ръчно конфигуриране"
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
-msgstr "Съветникът за ръчно конфигуриране ще Ви насочва при настройката за HTTPS от алтернативен сертифициращ орган."
+msgstr "Съветникът за ръчно конфигуриране ще Ви ръководи в настройката на HTTPS от алтернативен сертифициращ орган."
 
 msgid "Auto-renewal"
 msgstr "Автоматично подновяване"
@@ -914,7 +902,7 @@ msgid "Tor Onion Service"
 msgstr "Услуга Tor Onion"
 
 msgid "Disable the privacy panel"
-msgstr "Деактивиране на панела за поверителност"
+msgstr "Дезактивиране на панела за поверителност"
 
 msgid "Enable custom privacy panel"
 msgstr "Активиране на потребителски панел за поверителност"
@@ -959,7 +947,7 @@ msgid "Password"
 msgstr "Парола"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr "Брой часове до изпращане на напомняне, че подаденият сигнал изтича"
+msgstr "Брой часове до изпращане на напомняне, че сигналът изтича"
 
 msgid "Test the configuration"
 msgstr "Тестване на конфигурацията"
@@ -968,7 +956,7 @@ msgid "Reset SMTP configuration"
 msgstr "Нулиране на SMTP конфигурацията"
 
 msgid "Reset notification templates to default"
-msgstr "Възстановяване на шаблоните за известия по подразбиране"
+msgstr "Възстановяване на шаблоните на известия по подразбиране"
 
 msgid "Template"
 msgstr "Шаблон"
@@ -989,13 +977,13 @@ msgid "Checkbox"
 msgstr "Квадратче за отметка"
 
 msgid "Terms of service"
-msgstr "Условия на услугата"
+msgstr "Условия за използване на услугата"
 
 msgid "Date range"
 msgstr "Диапазон от дати"
 
 msgid "Group of questions"
-msgstr "Група въпроси"
+msgstr "Група от въпроси"
 
 msgid "Row"
 msgstr "Ред"
@@ -1013,16 +1001,16 @@ msgid "Question group"
 msgstr "Група въпроси"
 
 msgid "Hint"
-msgstr "Съвет"
+msgstr "Подсказване"
 
 msgid "Required"
-msgstr "Задължително"
+msgstr "Изисква се"
 
 msgid "Accept multiple file uploads"
 msgstr "Приемане на качването на повече файлове"
 
 msgid "Accept multiple answers"
-msgstr "Примане на повече отговори"
+msgstr "Приемане на повече отговори"
 
 msgid "Template override"
 msgstr "Заместване на шаблона"
@@ -1034,7 +1022,7 @@ msgid "Text"
 msgstr "Текст"
 
 msgid "Checkbox label"
-msgstr "Етикет на квадратчето за отметка"
+msgstr "Етикет на квадратче за отметка"
 
 msgid "Add multimedia content"
 msgstr "Добавяне на мултимедийно съдържание"
@@ -1106,7 +1094,7 @@ msgid "Root domain used for secondary sites"
 msgstr "Главен домейн, използван за вторични сайтове"
 
 msgid "Use the first site for administrative purposes only"
-msgstr "Използвайте първия сайт само за администраторски цели"
+msgstr "Използване на първия сайт само за административни цели"
 
 msgid "Enable multi-site login"
 msgstr "Активиране на влизане в няколко сайта"
@@ -1115,7 +1103,7 @@ msgid "Allow users to sign up"
 msgstr "Позволяване на потребителите да се регистрират"
 
 msgid "Enable terms of service"
-msgstr "Активиране на условията на услугата"
+msgstr "Активиране на условията за използване на услугата"
 
 msgid "Title"
 msgstr "Заглавие"
@@ -1148,28 +1136,28 @@ msgid "Enable email notifications"
 msgstr "Активиране на имейл известия"
 
 msgid "Details of the PGP key:"
-msgstr "Информация за PGP ключа:"
+msgstr "Подробни данни за PGP ключа:"
 
 msgid "Fingerprint"
-msgstr "Отпечатък"
+msgstr "Пръстов отпечатък"
 
 msgid "Set up encryption by providing a PGP public key"
-msgstr "Настройване на криптиране чрез предоставяне на PGP публичен ключ"
+msgstr "Настройване на шифроване чрез предоставяне на PGP публичен ключ"
 
 msgid "Give this admin ability to change user passwords"
-msgstr "Разрешаване на този администратор да сменя паролите на потребителите"
+msgstr "Разрешаване на този администратор да сменя потребителски пароли"
 
 msgid "Forcefully selected"
-msgstr "Принудително избрано "
+msgstr "Принудително избрано"
 
 msgid "Allow the recipient to delete reports"
 msgstr "Разрешаване на получателите да изтриват сигнали"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Разрешаване на получателя да отложи датата на изтичане на сигнала"
+msgstr "Разрешаване на получателя да отлага датата на изтичане на сигнала"
 
 msgid "Give the user administrative access to the following features:"
-msgstr "Даване на потребителя на административен достъп до следните функции:"
+msgstr "Осигуряване на потребителя на административен достъп до следните функции:"
 
 msgid "Request date"
 msgstr "Дата на заявката"
@@ -1178,16 +1166,16 @@ msgid "Report date"
 msgstr "Дата на сигнала"
 
 msgid "Authorization"
-msgstr "Резрешение"
+msgstr "Разрешение"
 
 msgid "Requests"
 msgstr "Заявки"
 
 msgid "The validation link is either incorrect or has expired."
-msgstr "Линкът за валидиране е грешен или е изтекъл."
+msgstr "Линкът за проверка е грешен или изтекъл."
 
 msgid "Your new email address has been validated."
-msgstr "Новият Ви имейл адрес е валидиран."
+msgstr "Новият Ви имейл адрес е проверен."
 
 msgid "Forgot password?"
 msgstr "Забравена парола?"
@@ -1199,7 +1187,7 @@ msgid "Authentication failed"
 msgstr "Неуспешно удостоверяване"
 
 msgid "The code is either invalid or expired."
-msgstr "Кодът е невалиден или е изтекъл."
+msgstr "Кодът е невалиден или изтекъл."
 
 msgid "Site:"
 msgstr "Сайт:"
@@ -1216,32 +1204,20 @@ msgstr "Текст, който се показва, след като потре
 msgid "Confirm"
 msgstr "Потвърждаване"
 
-msgid "Are you sure?"
-msgstr "Сигурни ли сте?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "Операцията нулира конфигурацията и не може да се отмени."
-
 msgid "Assign score points"
-msgstr "Задаване на точки на оценката"
+msgstr "Задаване на точки за оценката"
+
+msgid "Are you sure?"
+msgstr "Наистина ли го искате?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Имайте предвид, че цялата свързана информация ще бъде окончателно изтрита."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Това е демоплатформа. Моля, не я използвайте за подаване на истински сигнали"
+msgid "Enable two factor authentication"
+msgstr "Активирайте двустепенно удостоверяване."
 
 msgid "Close"
 msgstr "Затваряне"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Инсталирайте приложение за удостоверяване на телефона си"
-
-msgid "Scan the QR code with the app"
-msgstr "Сканирайте QR кода с приложението"
-
-msgid "Enable two factor authentication"
-msgstr "Активирайте двустепенно удостоверяване."
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Преди да продължите, моля, прочетете внимателно документацията на:"
@@ -1252,7 +1228,48 @@ msgstr "Кодът за възстановяване на акаунта Ви е
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr "Направете копие и го съхранете на сигурно място. Ще Ви е нужно, ако загубите паролата за възстановяване на достъпа до акаунта си без загуба на данни"
+msgstr "Направете копие и го съхранявайте на сигурно място. Ако загубите паролата си, копието ще Ви е нужно, за да възстановите достъпа до акаунта си без загуба на данни."
+
+msgid "Enter a name for the copy"
+msgstr "Въведете име за копието"
+
+msgid "Request support"
+msgstr "Заявка за поддръжка"
+
+msgid "Thank you."
+msgstr "Благодарим Ви."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Ще се опитаме да се свържем с Вас възможно най-скоро."
+
+msgid "Submit"
+msgstr "Подаване"
+
+msgid "The connection is not secure."
+msgstr "Връзката не е защитена."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Платформата още не е конфигурирана за HTTPS връзки и следователно трябва да се използва само за целите на тестването."
+
+msgid "Please write a motivation for the reply"
+msgstr "Моля, напишете мотивация за отговора"
+
+msgid "Send"
+msgstr "Изпращане"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Като потвърдите, отлагате датата на изтичане до:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Това е демоплатформа. Моля, не я използвайте за подаване на истински сигнали."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Инсталирайте на телефона си приложение за удостоверяване"
+
+msgid "Scan the QR code with the app"
+msgstr "Сканирайте QR кода с приложението"
 
 msgid "Welcome!"
 msgstr "Добре дошли!"
@@ -1263,7 +1280,7 @@ msgstr "За потребителска документация, посетет
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
 " the software:"
-msgstr "Ако се нуждаете от техническа помощ, имате въпроси от общ характер или нови идеи за софтуера:"
+msgstr "Ако се нуждаете от техническа поддръжка, имате въпроси от общ характер или нови идеи за софтуера:"
 
 msgid ""
 "If you want to contribute to software development or report a bug, please "
@@ -1274,7 +1291,7 @@ msgid "Join our chat:"
 msgstr "Присъедините се към чата ни:"
 
 msgid "Follow the project on:"
-msgstr "Поледване на проекта на:"
+msgstr "Последване на проекта на:"
 
 msgid "Hint: How to hide your receipt"
 msgstr "Съвет: как да скриете разписката (кода) си"
@@ -1303,25 +1320,13 @@ msgid "The specified old password is not valid"
 msgstr "Посочената стара парола е невалидна"
 
 msgid "Resource can only be accessed via the Tor network"
-msgstr "Достъп до ресурса може да се осъществи само през мрежата на Tor"
+msgstr "Достъп до ресурса може да се осъществи само чрез мрежата на Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Заявеният за качване файл превишава ограничението за размер"
 
-msgid "Request support"
-msgstr "Заявка за поддръжка"
-
-msgid "Thank you."
-msgstr "Блгагодарим Ви."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Ще опитаме да се свържем с Вас възможно най-скоро."
-
-msgid "Submit"
-msgstr "Изпращане"
-
 msgid "Validation of email address change in progress."
-msgstr "В ход е валидиране на променен имейл адрес."
+msgstr "В ход е проверка на променен имейл адрес."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Проверете във „Входящи“ за допълнителни инструкции."
@@ -1336,11 +1341,6 @@ msgid "Old password confirmation required"
 msgstr "Изисква се потвърждаване на старата парола"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Изглежда разглеждате този сайт без допълнителна защита на поверителността и сигурността!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "Силно Ви препоръчваме да посещавате този сайт, като използвате браузъра Tor Browser, който скрива самоличността Ви."
@@ -1350,9 +1350,6 @@ msgstr "Изтегляне на Tor Browser"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "След това копирайте и поставете следния адрес в Tor Browser:"
-
-msgid "Enter a name for the copy"
-msgstr "Въведете име на копието"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Вече сте подали сигнал? Въведете разписката (кода) си"
@@ -1370,7 +1367,7 @@ msgid "Upload completed successfully!"
 msgstr "Качването завърши успешно!"
 
 msgid "Error while uploading files; check below for details."
-msgstr "Грешка при качване на файловете; проверете по-долу за подробна информация."
+msgstr "Грешка при качване на файловете. Проверете по-долу за подробна информация."
 
 msgid "Estimated upload time:"
 msgstr "Очаквано време за качване:"
@@ -1378,22 +1375,11 @@ msgstr "Очаквано време за качване:"
 msgid "Size:"
 msgstr "Размер:"
 
-msgid "The connection is not secure."
-msgstr "Връзката не е сигурна."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Платформата още не е конфигурирана за HTTPS връзки и следователно трябва да се използва само за провеждането на тестове."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr "Получателите Ви молят да попълните допълнителен въпросник."
+msgstr "Получателите Ви са поискали попълните допълнителен въпросник."
 
 msgid "Fill the additional questionnaire"
 msgstr "Попълване на допълнителния въпросник"
-
-msgid "Send"
-msgstr "Изпращане"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Разрешаване на подателя на сигнал да пише коментари"
@@ -1414,44 +1400,10 @@ msgid "File size"
 msgstr "Размер на файла"
 
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Разрешаване на подателя на сигнал да прикачва файлове към сигнала"
+msgstr "Разрешаване на подателя на сигнал да добавя прикачени файлове към сигнала"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Разрешаване на подателя на сигнал да изпраща съобщения"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "Наистина ли искате да изтриете сигнала?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Всичко, свързано с този сигнал, и съхранявано на платформата, ще се изтрие."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Имайте предвид, че трябва Вие да изтриете всичко съхранявано извън платформата, например файлове, които сте запазили на компютъра си."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Наистина ли искате да изтриете избраните сигнали?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Уверете се, че цялата свързана информация е правилно изтрита, така че получателите вече да не могат да осъществяват достъп до нея."
-
-msgid "Please write a motivation for the reply"
-msgstr "Моля, напишете мотивация за отговора"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Наистина ли желаете да отложите датата на изтичане на сигнала?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Като потвърдите, отлагате датата на изтичане до:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Наистина ли искате да отложите датата на изтичане за всички избрани сигнали?"
 
 msgid "Questionnaire answers"
 msgstr "Отговори на въпросника"
@@ -1490,11 +1442,11 @@ msgid ""
 msgstr "Въведете потребителското име на акаунта си или своя имейл адрес, за да заявите нулиране на паролата."
 
 msgid "Enter your email address to request a password reset."
-msgstr "Въведете имейл адреса си, за да заявите нулиране на паролата"
+msgstr "Въведете имейл адреса си, за да заявите нулиране на паролата."
 
 msgid ""
 "Enter you encryption recovery key to complete the password reset procedure"
-msgstr "Въведете своя ключ за възстановяване на шифроването, за да завършите процеса по нулиране на паролата"
+msgstr "Въведете ключа си за възстановяване на шифроването, за да завършите процедурата за нулиране на паролата"
 
 msgid "Password reset requested."
 msgstr "Заявено е нулиране на паролата."
@@ -1540,9 +1492,6 @@ msgstr "Потвърждение"
 msgid "Invalid confirmation"
 msgstr "Невалидно потвърждение"
 
-msgid "Complete"
-msgstr "Завършване"
-
 msgid "Invalid phone number"
 msgstr "Невалиден телефонен номер"
 
@@ -1556,13 +1505,13 @@ msgid "The specified input is not valid:"
 msgstr "Посочените входни данни са невалидни:"
 
 msgid "please enter a valid email address."
-msgstr "моля, въведете валиден имейл адрес"
+msgstr "моля, въведете валиден имейл адрес."
 
 msgid "please enter numbers only."
 msgstr "моля, въведете само цифри."
 
 msgid "Submissions disabled"
-msgstr "Подаването на сигнали е дезактивирано"
+msgstr "Подаването е дезактивирано"
 
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
@@ -1573,27 +1522,27 @@ msgid "Your report was successful."
 msgstr "Успешно подадохте сигнала си."
 
 msgid "Remember your receipt for this report."
-msgstr "Запомнете разписката (кода) за този сигнал"
+msgstr "Запомнете разписката (кода) си за този сигнал"
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Използвайте 16-цифрената разписка (код), за да влезете. Тя ще Ви позволи да преглеждате съобщенията, които Ви изпращаме, и да добавяте допълнителна информация."
+msgstr "Използвайте 16-цифрената разписка (код), за да влезете. Тя ще Ви позволи да преглеждате съобщенията, които Ви изпращаме, и да добавяте информация."
 
 msgid "View your report"
 msgstr "Прегледайте сигнала си"
 
 msgid "Recipient selection"
-msgstr "Избор на получатели"
+msgstr "Избор на получател(и)"
 
 msgid "Select the recipients of your report:"
-msgstr "Изберете получатели за сигнала си:"
+msgstr "Изберете получателите за сигнала си:"
 
 msgid "Recipients selected:"
-msgstr "Брой избрани получатели:"
+msgstr "Избрани получатели:"
 
 msgid "You have reached the maximum number of selectable recipients."
-msgstr "Достигнахте максималния брой на избрани получатели."
+msgstr "Достигнахте максималния избираем брой получатели."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1609,7 +1558,7 @@ msgid "You must select at least one recipient."
 msgstr "Трябва да изберете поне един получател."
 
 msgid "Waiting for the file(s) to finish uploading."
-msgstr "Изчаква се качването на на файла/файловете."
+msgstr "Изчаква се качването на файла или файловете."
 
 msgid "The following steps have errors:"
 msgstr "Следните стъпки съдържат грешки:"
@@ -1626,23 +1575,23 @@ msgid "Please choose a configuration profile:"
 msgstr "Моля, изберете конфигурационен профил:"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr "Направете възможно за този администратор да нулира потребителски пароли."
+msgstr "Даване на възможност на този администратор да нулира потребителски пароли."
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr "Препоръчваме да изберете тази опция, ако желаете да защитите данните от изгубване, в случай че получателите изгубят паролите си. От друга страна, не Ви съветваме да използвате тази функция, ако искате да настроите система, при която само получателите могат да осъществяват достъп до подадените сигнали."
+msgstr "Препоръчваме Ви да изберете тази опция, ако желаете да защитите данните от изгубване, в случай че получателите изгубят паролите си. От друга страна, не Ви съветваме да използвате тази функция, ако искате да настроите система, при която само получателите могат да осъществяват достъп до подадените сигнали."
 
 msgid "Please choose a different username."
-msgstr "Моля, изберете друго потребителско име"
+msgstr "Моля, изберете друго потребителско име."
 
 msgid "I have read and agree to the terms of the license."
 msgstr "Прочетох лицензионните условия и ги приемам."
 
 msgid "You have completed the platform wizard."
-msgstr "Успешно завършихте съветника на платформата."
+msgstr "Завършихте съветника на платформата."
 
 msgid "Fill out your report"
 msgstr "Попълнете сигнала си"
@@ -1654,7 +1603,7 @@ msgid "Describe your report in detail."
 msgstr "Опишете сигнала си подробно."
 
 msgid "Attach files relevant to the report."
-msgstr "Прикачете файлове, имащи отношение към сигнала."
+msgstr "Прикачете файлове, свързани със сигнала."
 
 msgid "Do you want to provide your identification information?"
 msgstr "Желаете ли да предоставите идентификационната си информация?"
@@ -1666,10 +1615,10 @@ msgid "Last name"
 msgstr "Фамилия"
 
 msgid "Alternative contact method"
-msgstr "Алтернативен начин за връзка"
+msgstr "Алтернативен метод за контакт"
 
 msgid "Other"
-msgstr "Други"
+msgstr "Друго"
 
 msgid "I prefer to be contacted via this platform only"
 msgstr "Предпочитам да се свързват с мен само чрез тази платформа"
@@ -1711,7 +1660,7 @@ msgid "To log in, visit:"
 msgstr "За да влезете, посетете:"
 
 msgid "Users' credentials:"
-msgstr "Идентификационни данни на потребителя:"
+msgstr "Идентификационни данни на потребителите:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "Платформата ще се изтрие автоматично на:"
@@ -1738,17 +1687,17 @@ msgstr "Дейностите с необичайна статистика са:"
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr "Сървърът не може да гарантира, че нов сигнал може да се сърхани, затова подаването на сигнали е дезактивирано."
+msgstr "Сървърът не може да гарантира, че нов сигнал може да се съхрани, затова подаването на сигнали е дезактивирано."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
 "the server."
-msgstr "Помислете дали да не помолите „Поддръжка“ за добавяне на допълнително дисково пространстрво на сървъра."
+msgstr "Помислете дали да не помолите „Поддръжка“ за добавяне на допълнително дисково пространство на сървъра."
 
 msgid ""
 "GlobaLeaks technology includes a server status checking component which will"
 " alert you in case something requires your attention."
-msgstr "Технологията на GlobaLeaks включва компонент за проверка на статуса на сървъра. Ще Ви уведомим, ако трябва да обърнете внимание на нещо."
+msgstr "Технологията на GlobaLeaks включва компонент за проверка на статуса на сървъра. Този компонент Ви уведомява, ако трябва да обърнете внимание на нещо."
 
 msgid ""
 "For more information, log in to the Administration interface and look at the"
@@ -1766,7 +1715,7 @@ msgstr "Този имейл Ви информира, че PGP ключът на 
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
 "notifications."
-msgstr "Без валиден PGP ключ системата не може да им изпраща криптирани уведомления."
+msgstr "Без валиден PGP ключ системата не може да им изпраща шифровани уведомления."
 
 msgid "PGP key expiration alert"
 msgstr "Предупреждение за изтичащ PGP ключ"
@@ -1804,7 +1753,7 @@ msgstr "Тестов имейл"
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr "Този имейл Ви уведомява, че е направена заявка за промяна на имейл адреса Ви на {NewEmailAddress}."
+msgstr "Този имейл Ви уведомява, че е направена заявка за смяна на имейл адреса Ви на {NewEmailAddress}."
 
 msgid "Click the following link to validate this change:"
 msgstr "Кликнете върху следния линк, за да потвърдите промяната:"
@@ -1846,7 +1795,7 @@ msgstr "Дата на изтичане: {ExpirationDate}"
 msgid ""
 "Without a valid certificate, the platform will be accessible in a secure way"
 " only via Tor."
-msgstr "Без валиден сертификат платформата e достъпна по сигурен начин само през Тор."
+msgstr "Без валиден сертификат платформата e достъпна по сигурен начин само чрез Тор."
 
 msgid "Log in to solve the issue."
 msgstr "Влезте, за да разрешите проблема."
@@ -1856,7 +1805,7 @@ msgstr "Предупреждение за изтичащ сертификат з
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
-msgstr "Автоматичното подновяване на сертификата за HTTPS, планирано за днес, току-що се провали."
+msgstr "Автоматичното подновяване на сертификата за HTTPS, планирано за днес, е неуспешно."
 
 msgid "The system will keep trying."
 msgstr "Системата ще продължи да опитва."
@@ -1867,10 +1816,10 @@ msgstr "Неуспешно подновяване на сертификат за
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr "С този имейл Ви уведомяваме, че длъжностното лице по защита на данните Ви е разрешило достъп до самоличността на подателя на сигнала с № {TipNum}."
+msgstr "С този имейл Ви уведомяваме, че длъжностното лице по защита на данните Ви е разрешило достъп до самоличността на подателя на сигнал № {TipNum}."
 
 msgid "The report can be accessed at:"
-msgstr "Достъп до заявката на:"
+msgstr "Можете да осъществите достъп до сигнала на:"
 
 msgid "Access to whistleblower's identity authorized"
 msgstr "Достъпът до самоличността на подателя на сигнал е разрешен"
@@ -1878,7 +1827,7 @@ msgstr "Достъпът до самоличността на подателя �
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr "С този имейл Ви уведомяваме, че длъжностното лице по защита на данните Ви е отказало достъп до самоличността на подателя на сигнал с № {TipNum}."
+msgstr "С този имейл Ви уведомяваме, че длъжностното лице по защита на данните Ви е отказало достъп до самоличността на подателя на сигнал № {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "Достъпът до самоличността на подателя на сигнал е отказан"
@@ -1886,10 +1835,10 @@ msgstr "Достъпът до самоличността на подателя �
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr "С този имейл Ви уведомяваме, че един от получателите изисква достъп до самоличността на подателя на сигнала с №  {TipNum}"
+msgstr "С този имейл Ви уведомяваме, че един от получателите изисква достъп до самоличността на подателя на сигнал № {TipNum}"
 
 msgid "The request can be accessed at:"
-msgstr "Достъп до заявката на:"
+msgstr "Можете да осъществите достъп до заявката на:"
 
 msgid "New request of access to a whistleblower's identity"
 msgstr "Нова заявка за достъп до самоличността на подател на сигнал"
@@ -1897,15 +1846,15 @@ msgstr "Нова заявка за достъп до самоличността 
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr "С този имейл Ви уведомяваме, че подателят на сигнала с №  {TipNum} е предоставил данни за самоличността си."
+msgstr "С този имейл Ви уведомяваме, че подателят на сигнал № {TipNum} е предоставил данни за самоличността си."
 
 msgid "The whistleblower has provided their identity"
-msgstr "Подателят на сигнал е предоставил данни за самоличността си."
+msgstr "Подателят на сигнал е предоставил данни за самоличността си"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr "Получавате този имейл, защото е заявено нулиране на паролата за акаунта: {Username}"
+msgstr "Получавате този имейл, защото е заявено нулиране на парола за акаунта: {Username}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
@@ -1931,7 +1880,7 @@ msgstr "Би следвало да удължите валидността му 
 msgid ""
 "Without a valid PGP key, the system won't be able to encrypt data provided "
 "to you."
-msgstr "Без валиден PGP ключ системата не може да криптира предоставяните Ви данни."
+msgstr "Без валиден PGP ключ системата не може да шифрова предоставяните Ви данни."
 
 msgid "Click the link to activate the platform:"
 msgstr "Кликнете върху линка, за да активирате платформата:"
@@ -1958,7 +1907,7 @@ msgstr "За инструкции относно софтуерните акту
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr " С този имейл Ви уведомяваме, че получателят Ви предоставя достъп до поне един сигнал."
+msgstr "С този имейл Ви уведомяваме, че получателят Ви предоставя достъп до поне един сигнал."
 
 msgid "New report"
 msgstr "Нов сигнал"
@@ -1983,7 +1932,7 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr "Моля, отделете специално внимание на информацията и на материала, съдържащи се тук. Моля, не забравяйте, че подателите на сигнали често се излагат на голям риск в името на общественото благо. Следователно материалът, предоставен в този сигнал, трябва да се счита за изключително важен."
+msgstr "Моля, отделете специално внимание на информацията и на материала, съдържащи се тук. Не забравяйте, че подателите на сигнали често се излагат на голям риск в името на общото благо. Следователно материалът, предоставен в този сигнал, трябва да се счита за изключително важен."
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Този имейл Ви известява за актуализиране на съществуващ сигнал."

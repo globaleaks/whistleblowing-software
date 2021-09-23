@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-17 10:49+0000\n"
+"PO-Revision-Date: 2021-09-23 21:10+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uighur (Cyrillic) (http://www.transifex.com/otf/globaleaks/language/ug@Cyrl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -426,12 +426,6 @@ msgstr "Баштики"
 msgid "Last"
 msgstr "Ахирқи"
 
-msgid "Running"
-msgstr "Иҗра қилиниватиду"
-
-msgid "Not running"
-msgstr "Иҗра қилинмайватиду"
-
 msgid "Send a test email to your email address."
 msgstr "Елхәт адресиңизгә синақ елхәт әвәтиң."
 
@@ -551,8 +545,8 @@ msgstr "Ишләткүчиләрниң намлирини ашкарилима"
 msgid "Size limit for file attachments"
 msgstr "Һөҗҗәт қошумчилири үчүн чоңлуқ чеки"
 
-msgid "in megabytes"
-msgstr "Мегабайтс билән"
+msgid "megabytes"
+msgstr "Мегабайтс"
 
 msgid "Enable HSTS preload"
 msgstr "HSTS алдин қачилашни қозғат"
@@ -610,9 +604,6 @@ msgstr "Төвән"
 
 msgid "High"
 msgstr "Йуқури"
-
-msgid "megabytes"
-msgstr "Мегабайтс"
 
 msgid "percentage"
 msgstr "Пирсәнти"
@@ -775,9 +766,6 @@ msgstr "Паш қилғучиларниң учур әвәтишигә рухсә
 
 msgid "Let whistleblowers add attachments onto existing reports"
 msgstr "Паш қилғучиларниң мәвҗут доклатларниң үстигә қошумчиларни қошушиға рухсәт қил"
-
-msgid "Let recipients upload files to whistleblowers"
-msgstr "Тапшуривалғучилар паш қилғучилар үчүн һөҗҗәт йүклийәлисун "
 
 msgid "Additional questionnaire"
 msgstr "Қошумчә рай синаш"
@@ -1207,32 +1195,20 @@ msgstr "Ишләткүчи талланмини таллиғандин кейи�
 msgid "Confirm"
 msgstr "Җәзимлә"
 
-msgid "Are you sure?"
-msgstr "Җәзим қиламсиз?"
-
-msgid "The operation will reset the configuration and cannot be undone."
-msgstr "Бу мәшғулат сәплимиләрни қайта сәпләйду вә буниңдин арқиға йанғили болмайду."
-
 msgid "Assign score points"
 msgstr "Номур нуқтилирини бәлгиләң"
+
+msgid "Are you sure?"
+msgstr "Җәзим қиламсиз?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Мунасивәтлик барлиқ санлиқ мәлуматларнң мәңгүлүк өчүрүрилидиғанлиқиға диққәт қилиң."
 
-msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Бу бир көрсәтмә супа, буни һәқиқий йолланмилар үчүн ишләтмәң."
+msgid "Enable two factor authentication"
+msgstr "Икки қәдәмлик тоғрулашни қозғат"
 
 msgid "Close"
 msgstr "Тақа"
-
-msgid "Install an authenticator app on your phone"
-msgstr "Телифониңизға бир дәлиллигүчи әп қачилаң"
-
-msgid "Scan the QR code with the app"
-msgstr "QR кодини бу әп билән таритиң"
-
-msgid "Enable two factor authentication"
-msgstr "Икки қәдәмлик тоғрулашни қозғат"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Давам қилиштин бурун бу йәрдики һөҗҗәтни әстайидил оқуң:"
@@ -1244,6 +1220,47 @@ msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
 msgstr "Бир купийәсини елиң вә ихәтәр йәрдә сақлаң. әгәр паролиңизни унтуп қелип, һесабитиңиздики мәлуматларни йоқатмастин зийарәт қилмақчи болғиниңизда лазим болғуси."
+
+msgid "Enter a name for the copy"
+msgstr "Купийә үчүн бир нам киргүзүң"
+
+msgid "Request support"
+msgstr ""
+
+msgid "Thank you."
+msgstr "Рәһмәт сизгә."
+
+msgid "We will try to get back to you as soon as possible."
+msgstr "Биз сизгә әң қисқа вақитта җавап қайтурушқа тиришимиз."
+
+msgid "Submit"
+msgstr "Йолла"
+
+msgid "The connection is not secure."
+msgstr "Бу уланма бихәтәр әмәс."
+
+msgid ""
+"The platform is still not configured for HTTPS connections and should "
+"therefore only be used for testing purposes."
+msgstr "Бу супиға техичә ҺТТПС бағлинишлири сәпләнмәпту вә шундақ болғачқа пәқәт синақ мәқситидила ишлитиш керәк."
+
+msgid "Please write a motivation for the reply"
+msgstr "Җава қайтуруштики бир мәқситиңизни йезиң"
+
+msgid "Send"
+msgstr "Әвәт"
+
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Җәзимлисиңиз, сүрүк чесласини бу күнгә кәйнигә сүргән болисиз:"
+
+msgid "This is a demo platform, please do not use it for real submissions."
+msgstr "Бу бир көрсәтмә супа, буни һәқиқий йолланмилар үчүн ишләтмәң."
+
+msgid "Install an authenticator app on your phone"
+msgstr "Телифониңизға бир дәлиллигүчи әп қачилаң"
+
+msgid "Scan the QR code with the app"
+msgstr "QR кодини бу әп билән таритиң"
 
 msgid "Welcome!"
 msgstr "Хош кәпсиз!"
@@ -1299,18 +1316,6 @@ msgstr "Мәнбәни пәқәт Tor тори биләнла зийарәт қ�
 msgid "The upload request exceeds the size limit"
 msgstr "Йүклимә тәлипи чоңлуқ чекидин ешип кәтти"
 
-msgid "Request support"
-msgstr ""
-
-msgid "Thank you."
-msgstr "Рәһмәт сизгә."
-
-msgid "We will try to get back to you as soon as possible."
-msgstr "Биз сизгә әң қисқа вақитта җавап қайтурушқа тиришимиз."
-
-msgid "Submit"
-msgstr "Йолла"
-
 msgid "Validation of email address change in progress."
 msgstr "Елхәт адреси өзгәртишни дәлилләш давам қиливатиду."
 
@@ -1327,11 +1332,6 @@ msgid "Old password confirmation required"
 msgstr "Кона паролни җәзимләш тәләп қилиниду"
 
 msgid ""
-"It appears that you are browsing this site without any extra privacy and "
-"security!"
-msgstr "Сиз бу бекәтни һечқандақ қошумчә шәхсийәт вә бихәтәрлик ишләтмәй кезиватқандәк қилисиз!"
-
-msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
 msgstr "Сизгә бу бекәтни Tor тор көргүчи исмлик, шәхсийитиңизни қоғдайдиған әпни ишлитип зийарәт қилишиңизни күчлүк тәвсийә қилимиз."
@@ -1341,9 +1341,6 @@ msgstr "Tor тор көргүчини чүшүрүң"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Арқидин, кәйнидики адресни көчүрүп, Tor тор көргүчигә чаплаң:"
-
-msgid "Enter a name for the copy"
-msgstr "Купийә үчүн бир нам киргүзүң"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Аллибурун бир доклат тошқузғанмитиңиз? талониңизни киргүзүң:"
@@ -1369,22 +1366,11 @@ msgstr "Тәхминән йүкләш вақти:"
 msgid "Size:"
 msgstr "Чоңлуқи:"
 
-msgid "The connection is not secure."
-msgstr "Бу уланма бихәтәр әмәс."
-
-msgid ""
-"The platform is still not configured for HTTPS connections and should "
-"therefore only be used for testing purposes."
-msgstr "Бу супиға техичә ҺТТПС бағлинишлири сәпләнмәпту вә шундақ болғачқа пәқәт синақ мәқситидила ишлитиш керәк."
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Тапшуривалғучилар сизниң бир қошумчә рай синашни тошқузишиңизни тәләп қилди."
 
 msgid "Fill the additional questionnaire"
 msgstr "Бу қошумчә рай синашни тошқуз"
-
-msgid "Send"
-msgstr "Әвәт"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Паш қилғучиниң баһа йезишигә рухсәт қил"
@@ -1409,40 +1395,6 @@ msgstr "Паш қилғучиниң доклатқа қошумчә қистур
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Паш қилғучиниң учур әвәтишигә рухсәт қил"
-
-msgid "Are you sure that you want to delete the report?"
-msgstr "Доклатни растинла өчүривәтмәкчимусиз?"
-
-msgid ""
-"Everything related to the report stored on the platform will be deleted."
-msgstr "Супида сақланған доклатқа мунасивәтлик һәрқандақ нәрсә өчүрүлиду."
-
-msgid ""
-"Please be aware that everything stored off the platform, e.g. files you have"
-" saved on your computer, must be deleted manually."
-msgstr "Шуниңға диққәт қилиңки, супида сақланмиған һәрқандақ нәрсә, мәсилән компйутериңизда сақланған һөҗҗәтләр, чоқум қол билән өчүрүлиши керәк."
-
-msgid "Are you sure that you want to delete the selected reports?"
-msgstr "Бу талланған доклатларни растинла өчүривәтмәкчимусиз?"
-
-msgid ""
-"Please make sure that all related data is properly deleted so that the "
-"recipients won't be able to further access to it."
-msgstr "Мунасивәтлик санлиқ мәлуматларниң тоғра өчүрүлгәнлики һәмдә тапшуривалғучилар әмди зийарәт қилалмайдиғанлиқини җәзмләштүрүң."
-
-msgid "Please write a motivation for the reply"
-msgstr "Җава қайтуруштики бир мәқситиңизни йезиң"
-
-msgid "Are you sure that you want to postpone the report expiration date?"
-msgstr "Доклатниң сүрүк чесласини кечиктүрмәкчи болғиниңизни җәзмләштүрәмсиз?"
-
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Җәзимлисиңиз, сүрүк чесласини бу күнгә кәйнигә сүргән болисиз:"
-
-msgid ""
-"Are you sure that you want to postpone the expiration date for all selected "
-"reports?"
-msgstr "Талланған барлиқ доклатларниң сүрүк чесласини кәйнигә сүрмәкчи болғиниңизни җәзмләштүрәмсиз?"
 
 msgid "Questionnaire answers"
 msgstr "Рай синаш җаваблири"
@@ -1530,9 +1482,6 @@ msgstr "Җәзмләң"
 
 msgid "Invalid confirmation"
 msgstr "Инавәтсиз җәзимләш"
-
-msgid "Complete"
-msgstr "Тамам"
 
 msgid "Invalid phone number"
 msgstr "Инавәтсиз телефон номури"
