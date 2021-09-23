@@ -43,7 +43,7 @@ GL.controller("TipCtrl",
         templateUrl: "views/modals/revoke_access.html",
         controller: "ConfirmableModalCtrl",
         resolve: {
-          arg: null,
+          arg: {},
           confirmFun: function() {
             return function(receiver_id) {
               var req = {
