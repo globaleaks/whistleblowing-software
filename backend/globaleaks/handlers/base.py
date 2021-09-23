@@ -33,6 +33,9 @@ def serve_file(request, fo):
         fo.close()
         request.finish()
 
+    if request.finished:
+        return
+
     filesender = FileSender().beginFileTransfer(fo, request)
 
     filesender.addBoth(on_finish)

@@ -249,6 +249,9 @@ class APIResourceWrapper(Resource):
                   or a normal `Exception`
         :param request: A `twisted.web.Request`
         """
+        if request.finished:
+            return
+
         if isinstance(e, NoResultFound):
             e = errors.ResourceNotFound()
         elif isinstance(e, errors.GLException):
@@ -272,11 +275,14 @@ class APIResourceWrapper(Resource):
 
         request.write(response.encode())
 
+        request.finish()
+
     def preprocess(self, request):
         request.headers = request.getAllHeaders()
         request.hostname = request.getRequestHostname()
         request.port = request.getHost().port
         request.multilang = False
+        request.finished = False
 
         if (not State.tenant_cache[1].wizard_done or
             request.hostname == b'localhost' or
@@ -325,10 +331,8 @@ class APIResourceWrapper(Resource):
 
         :return: empty `str` or `NOT_DONE_YET`
         """
-        request_finished = [False]
-
         def _finish(ret):
-            request_finished[0] = True
+            request.finished = True
 
         request.notifyFinish().addBoth(_finish)
 
@@ -405,21 +409,17 @@ class APIResourceWrapper(Resource):
 
         if self.handler.root_tenant_only and request.tid != 1:
             self.handle_exception(errors.ForbiddenOperation(), request)
-            return b''
+            return
 
         if self.handler.upload_handler and method == 'post':
             self.handler.process_file_upload()
             if self.handler.uploaded_file is None:
-                return b''
+                return
 
         @defer.inlineCallbacks
         def concludeHandlerFailure(err):
             self.handle_exception(err, request)
-
             yield self.handler.execution_check()
-
-            if not request_finished[0]:
-                request.finish()
 
         @defer.inlineCallbacks
         def concludeHandlerSuccess(ret):
@@ -430,18 +430,20 @@ class APIResourceWrapper(Resource):
             """
             yield self.handler.execution_check()
 
-            if not request_finished[0]:
-                if ret is not None:
-                    if isinstance(ret, (dict, list)):
-                        ret = json.dumps(ret, cls=JSONEncoder, separators=(',', ':'))
-                        request.setHeader(b'content-type', b'application/json')
+            if request.finished:
+                return
 
-                    if isinstance(ret, str):
-                        ret = ret.encode()
+            if ret is not None:
+                if isinstance(ret, (dict, list)):
+                    ret = json.dumps(ret, cls=JSONEncoder, separators=(',', ':'))
+                    request.setHeader(b'content-type', b'application/json')
 
-                    request.write(ret)
+                if isinstance(ret, str):
+                    ret = ret.encode()
 
-                request.finish()
+                request.write(ret)
+
+            request.finish()
 
         defer.maybeDeferred(f, self.handler, *groups).addCallbacks(concludeHandlerSuccess, concludeHandlerFailure)
 
