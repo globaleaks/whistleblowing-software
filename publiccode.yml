@@ -311,1070 +311,1405 @@ description:
       - documentation/images/recipient/reports.png
       - documentation/images/recipient/report.png
 usedBy:
-  - ACA Spa
-  - ACER Ferrara
-  - ACER Forlì Cesena
-  - ACER Rimini
-  - ACI
+  - A.s.l. Napoli 1 Centro
+  - Abbanoa
+  - Abc Latina
+  - Aca Spa
+  - Acer Ferrara
+  - Acer Forlì Cesena
+  - Acer Rimini
+  - Aci
   - Acimmagine S.r.l
-  - Acqualatina SPA
+  - Acimmagine Srl
+  - Acqualatina Spa
+  - Acque Veronesi Scarl
   - Acquedotto Pugliese
-  - Acque Veronesi SCARL
-  - ADISU – Agenzia per il Diritto allo Studio dell’Umbria
-  - ADISU Puglia
-  - ADSP Mar Tirreno Centro Settentrionale
-  - AEB Spa
-  - AEMME Linea Ambiente Srl
-  - AEMME Linea Distribuzione Srl
-  - AGEC – Azienda gestione Edifici Comunali Verona
-  - Agecontrol S.P.A.
-  - Agenzia della Mobilità Piemontese
-  - Agenzia di Controllo del Sistema Socio Sanitario Lombardo
-  - Agenzia In Liguria – Agenzia Regionale di Promozione Turistica
-  - Agenzia per l'Italia Digitale (AgID)
-  - AGRIS Sardegna – Agenzia regionale per la ricerca in agricoltura
-  - AIFA Agenzia Italiana del Farmaco
-  - AIR Mobilità Avellino
-  - ALES SpA
-  - ALFA Liguria
-  - Aliseo – Agenzia Ligure per gli studenti e l’orientamento
-  - AMA Rozzano Spa
-  - Ambito Territoriale Social N.3 AUSL BR/1
-  - AMGA Legnano Spa
-  - AMGAS Srl
-  - AMOS
-  - AMTAB – Azienda Mobilità e Trasporti Bari S.p.A.
-  - AMT SpA – Azienda Mobilità e Trasporti Verona
-  - ANSF - Agenzia Nazionale per la Sicurezza delle Ferrovie
-  - Antica Scuola dei Battuti
-  - ANVUR
-  - AOU Careggi
-  - AOU Ordine Mauriziano Torino
-  - AOU San Luigi Gonzaga di Orbassano
-  - ARCA Puglia Centrale
-  - AREA Azienda Regionale per l’Edilizia Abitativa
-  - Arechi Multiservice SPA
-  - AReSS Puglia
-  - AREUS Azienda Regionale Emergenza Urgenza Sardegna
+  - Adisu Puglia
+  - Adisu – Agenzia Per Il Diritto Allo Studio Dell’umbria
+  - Adsp Mar Tirreno Centro Settentrionale
+  - Aeb Spa
+  - Aemme Linea Ambiente Srl
+  - Aemme Linea Distribuzione Srl
+  - Agec – Azienda Gestione Edifici Comunali Verona
+  - Agecontrol S.p.a.
+  - Agecontrol Spa
+  - Agenzia Della Mobilità Piemontese
+  - Agenzia Di Controllo Del Sistema Socio Sanitario Lombardo
+  - Agenzia In Liguria – Agenzia Regionale Di Promozione Turistica
+  - Agenzia Per L'italia Digitale (Agid)
+  - Agenzia Regionale Di Sanità Toscana
+  - Agris Sardegna – Agenzia Regionale Per La Ricerca In Agricoltura
+  - Aifa Agenzia Italiana Del Farmaco
+  - Aimag Spa
+  - Air Mobilità Avellino
+  - Ales Spa
+  - Alfa Liguria
+  - Aliseo – Agenzia Ligure Per Gli Studenti E L’orientamento
+  - Ama Rozzano Spa
+  - Ambito Territoriale Social N.3 Ausl Br/1
+  - Amga Legnano Spa
+  - Amgas Srl
+  - Amicobus Cascina Srl
+  - Amiu Genova Spa
+  - Amos
+  - Amsa Srl
+  - Amt Spa – Azienda Mobilità E Trasporti Verona
+  - Amtab – Azienda Mobilità E Trasporti Bari S.p.a.
+  - Anpal Servizi Spa
+  - Ansf - Agenzia Nazionale Per La Sicurezza Delle Ferrovie
+  - Antica Scuola Dei Battuti
+  - Anvur
+  - Aou Careggi
+  - Aou Ordine Mauriziano Torino
+  - Aou San Luigi Gonzaga Di Orbassano
+  - Apt Basilicata
+  - Apt Servizi Srl
+  - Arca Puglia Centrale
+  - Arcea
+  - Area Azienda Regionale Per L’edilizia Abitativa
+  - Arechi Multiservice Spa
+  - Aress Puglia
+  - Areus Azienda Regionale Emergenza Urgenza Sardegna
   - Arexpo
+  - Arezzo Casa Spa
   - Arezzo Multiservizi Srl
-  - ARNAS Civico di Cristina Benfratelli
-  - ARNAS Garibaldi
-  - ARPA Agenzia Regionale per la Protezione dell’Ambiente Friuli Venezia Giulia
-  - ART-ER Attrattività Ricerca Territorio
-  - ASIA Azienda Speciale per l'Igiene Ambientale
-  - ASIS Trento
-  - ASL 1 Abruzzo
-  - ASL 1 Liguria – Imperiese
-  - ASL 2 Liguria – Savonese
-  - ASL 3 Liguria – Genovese
-  - ASL 4 Liguria – Chiavarese
-  - ASL 4 Teramo
-  - ASL 4 Torino
-  - ASL Bari
-  - ASL Barletta – Andria – Trani
-  - ASL Biella
-  - A.S.L. Napoli 1 Centro
-  - ASL Napoli 3 Sud
-  - ASL Torino 3
-  - ASL Verbano Cusio Ossola
-  - ASL Vercelli
-  - ASM Terni Spa
-  - ASPAL – Agenzia Sarda per le politiche del lavoro
-  - ASP Basso Lodigiano
-  - ASP Crotone
-  - ASP del Delta Ferrarese
-  - ASP Piccolomini-Sereni
-  - Associazione Oasi Maria SS. Onlus
-  - ASST Bergamo Est
-  - ASST Monza
-  - ASST Valle Olona
-  - Astea SPA
-  - ATAP S.P.A.
-  - ATC Piemonte Centrale
-  - ATER Belluno
-  - ATER Gorizia
-  - ATER Potenza
-  - ATER Teramo
-  - ATER Treviso
-  - ATER Umbria
-  - ATM Azienda Trasporti di Messina
-  - ATS Milano Città Metropolitana
-  - ATS Pavia
-  - ATS Sardegna
-  - ATS Val Padana
-  - Autorità di Bacino Laghi Garda e Idro
-  - Autorità di Sistema Portuale del Mare di Sardegna
-  - Autorità di Sistema Portuale del Mare di Sicilia Occidentale
-  - Autorità di sistema portuale del Mar Ligure Orientale
-  - Autorità Nazionale Anticorruzione (ANAC)
-  - Autorità per le Garanzie nelle Comunicazioni (AGCOM)
-  - Autorità portuale del Levante / Mar Adriatico Meridionale
+  - Arnas Civico Di Cristina Benfratelli
+  - Arnas Garibaldi
+  - Arpa Agenzia Regionale Per La Protezione Dell’ambiente Friuli Venezia Giulia
+  - Art-er Attrattività Ricerca Territorio
+  - Asfmc Bresso
+  - Asia Azienda Speciale Per L'igiene Ambientale
+  - Asips Caserta
+  - Asis Trento
+  - Asl 1 Abruzzo
+  - Asl 1 Liguria – Imperiese
+  - Asl 2 Liguria – Savonese
+  - Asl 3 Liguria – Genovese
+  - Asl 4 Liguria – Chiavarese
+  - Asl 4 Teramo
+  - Asl 4 Torino
+  - Asl Bari
+  - Asl Barletta – Andria – Trani
+  - Asl Biella
+  - Asl Napoli 3 Sud
+  - Asl Torino 3
+  - Asl Torino 5
+  - Asl Verbano Cusio Ossola
+  - Asl Vercelli
+  - Asm Codogno
+  - Asm Costruire Insieme
+  - Asm Terni Spa
+  - Asp Basso Lodigiano
+  - Asp Crotone
+  - Asp Del Delta Ferrarese
+  - Asp Piccolomini-sereni
+  - Aspal – Agenzia Sarda Per Le Politiche Del Lavoro
+  - Aspo Spa
+  - Associazione Oasi Maria Ss. Onlus
+  - Asst Bergamo Est
+  - Asst Grande Ospedale Metropolitano Niguarda
+  - Asst Monza
+  - Asst Valle Olona
+  - Astea Spa
+  - Atap S.p.a.
+  - Atc Piemonte Centrale
+  - Ater Belluno
+  - Ater Gorizia
+  - Ater Matera
+  - Ater Pordenone
+  - Ater Potenza
+  - Ater Teramo
+  - Ater Treviso
+  - Ater Udine
+  - Ater Umbria
+  - Atm Azienda Trasporti Di Messina
+  - Ats Milano Città Metropolitana
+  - Ats Pavia
+  - Ats Sardegna
+  - Ats Val Padana
+  - Autorità Di Bacino Laghi Garda E Idro
+  - Autorità Di Sistema Portuale Del Mar Ligure Orientale
+  - Autorità Di Sistema Portuale Del Mare Di Sardegna
+  - Autorità Di Sistema Portuale Del Mare Di Sicilia Occidentale
+  - Autorità Nazionale Anticorruzione (Anac)
+  - Autorità Per Le Garanzie Nelle Comunicazioni (Agcom)
+  - Autorità Portuale Del Levante / Mar Adriatico Meridionale
   - Autoservizi Irpini Spa
-  - Autostazione di Bologna Srl
-  - Avvocatura dello Stato
-  - Avvocatura dello Stato
+  - Autostazione Di Bologna Srl
+  - Avvocatura Dello Stato
   - Azienda Farmaceutica Municipalizzata Follonica
   - Azienda Metropolitana Trasporti Catania Spa
-  - Azienda Ospedaliera di Padova
-  - Azienda Ospedaliera di Perugia
+  - Azienda Ospedaliera Di Padova
+  - Azienda Ospedaliera Di Perugia
   - Azienda Ospedaliera Ospedali Riuniti Marche Nord
-  - Azienda Ospedaliera per l’Emergenza Cannizzaro
-  - Azienda Ospedaliera Policlinico Universitario “G. Martino”
+  - Azienda Ospedaliera Per L’emergenza Cannizzaro
+  - Azienda Ospedaliera Policlinico Universitario “g. Martino”
+  - Azienda Ospedaliera S. Croce E Carle Di Cuneo
   - Azienda Ospedaliera San Giovanni Moscati
-  - Azienda Ospedaliera Sant’Anna e San Sebastiano di Caserta
-  - Azienda Ospedaliera S. Croce e Carle di Cuneo
-  - Azienda Ospedaliera SS. Antonio e Biagio e Cesare Arrigo Alessandria
-  - Azienda Ospedaliero-Universitaria Consorziale Policlinico Bari
-  - Azienda-Ospedaliero Universitaria di Sassari
-  - Azienda Ospedaliero-Universitaria Ospedali Riuniti di Foggia
-  - Azienda Ospedaliero-Universitaria Policlinico Vittorio Emanuele di Catania
-  - Azienda Ospedaliero-Universitaria San Giovanni di Dio e Ruggi d’Aragona – Salerno
-  - Azienda per il Diritto agli Studi Universitari di Chieti
-  - Azienda Provinciale per i Servizi Sanitari Trento
+  - Azienda Ospedaliera San Pio
+  - Azienda Ospedaliera Sant’anna E San Sebastiano Di Caserta
+  - Azienda Ospedaliera Ss. Antonio E Biagio E Cesare Arrigo Alessandria
+  - Azienda Ospedaliero-universitaria Consorziale Policlinico Bari
+  - Azienda Ospedaliero-universitaria Ospedali Riuniti Di Foggia
+  - Azienda Ospedaliero-universitaria Policlinico Vittorio Emanuele Di Catania
+  - Azienda Ospedaliero-universitaria San Giovanni Di Dio E Ruggi D’aragona – Salerno
+  - Azienda Per Il Diritto Agli Studi Universitari Di Chieti
+  - Azienda Pisana Edilizia Sociale
+  - Azienda Provinciale Per I Servizi Sanitari Trento
   - Azienda Pubblici Servizi Aosta Spa
-  - Azienda Sanitaria Provinciale di Catania
-  - Azienda Sanitaria Provinciale di Palermo
-  - Azienda Sanitaria Provinciale di Ragusa
-  - Azienda Sanitaria Provinciale di Siracusa
+  - Azienda Sanitaria Provinciale Di Catania
+  - Azienda Sanitaria Provinciale Di Palermo
+  - Azienda Sanitaria Provinciale Di Ragusa
+  - Azienda Sanitaria Provinciale Di Siracusa
   - Azienda Sanitaria Universitaria Friuli Centrale
+  - Azienda Servizi Sociali Di Bolzano
   - Azienda Siciliana Trasporti
   - Azienda Sociale Castano
-  - Azienda Sociale del Legnanese (So.Le)
-  - Azienda Socio Sanitaria Territoriale (ASST) dei Sette Laghi Varese
-  - Azienda socio sanitaria territoriale (A.S.S.T.) Melegnano e della Martesana
-  - Azienda Socio-Sanitaria Territoriale di Pavia
+  - Azienda Sociale Del Legnanese (So.le)
+  - Azienda Socio Sanitaria Territoriale (A.s.s.t.) Melegnano E Della Martesana
+  - Azienda Socio Sanitaria Territoriale (Asst) Dei Sette Laghi Varese
+  - Azienda Socio-sanitaria Territoriale Di Pavia
   - Azienda Speciale Consortile Medio Olona
   - Azienda Speciale Farmacie Comunali Peschiera
-  - Azienda Speciale Pluriservizi di Magnago
-  - Azienda specializzata settore Multiservizi Spa
-  - Azienda Territoriale Energia e Servizi
+  - Azienda Speciale Pluriservizi Di Magnago
+  - Azienda Speciale Servizi Sanitari Vergiate
+  - Azienda Specializzata Settore Multiservizi Spa
+  - Azienda Territoriale Energia E Servizi
   - Azienda Trasporti Pubblici Nuoro
-  - Azienda ULSS 08 Berica
-  - Azienda ULSS 09 Scaligera
-  - Bari Multiservizi S.p.A.
-  - BIM del Chiese
-  - BMTI - Borsa Merci Telematica Italiana
+  - Azienda Ulss 08 Berica
+  - Azienda Ulss 09 Scaligera
+  - Azienda-ospedaliero Universitaria Di Sassari
+  - Bari Multiservizi S.p.a.
+  - Bim Del Chiese
+  - Bmti - Borsa Merci Telematica Italiana
+  - Bologna Welcome Srl
   - Brescia Infrastrutture Srl
-  - Brianzacque SRL
+  - Brianzacque Srl
   - Brindisi Multiservizi
-  - CADF Spa
-  - Caltaqua S.p.A.
-  - Camera Arbitrale di Milano
-  - Camera di Commercio Avellino
-  - Camera di Commercio Bari
-  - Camera di Commercio Benevento
-  - Camera di Commercio Caserta
-  - Camera di Commercio Catanzaro
-  - Camera di Commercio Firenze
-  - Camera di Commercio Maremma e Tirreno
-  - Camera di Commercio Milano Lodi Monza Brianza
-  - Camera di Commercio Pisa
-  - Camera di Commercio - Teramo
-  - CAMVO SPA
-  - Casa ATC Servizi srl
-  - Casa di Cura Policlinico Abano Terme
-  - Casinò Sanremo S.p.A.
+  - C.i.a.s.s. – Consorzio Isola Di Ariano Servizi Sociali
+  - Cadf Spa
+  - Caltaqua S.p.a.
+  - Camera Arbitrale Di Milano
+  - Camera Di Commercio - Teramo
+  - Camera Di Commercio Avellino
+  - Camera Di Commercio Bari
+  - Camera Di Commercio Benevento
+  - Camera Di Commercio Bologna
+  - Camera Di Commercio Caserta
+  - Camera Di Commercio Catanzaro
+  - Camera Di Commercio Firenze
+  - Camera Di Commercio Maremma E Tirreno
+  - Camera Di Commercio Milano Lodi Monza Brianza
+  - Camera Di Commercio Pisa
+  - Camera Di Commercio Vibo Valentia
+  - Camvo Spa
+  - Casa Atc Servizi Srl
+  - Casa Di Cura Policlinico Abano Terme
+  - Casa Di Riposo Cartigliano
+  - Casinò Di Sanremo S.p.a.
+  - Casinò Sanremo S.p.a.
   - Castiglione 2014 Azienda Speciale
   - Castiglione Olona Servizi
-  - CCIAA - L'Aquila
-  - CCIAA Roma
+  - Cciaa - L'aquila
+  - Cciaa Roma
   - Cemambiente Spa
-  - Centro Agro Alimentare di Napoli SCPA
+  - Centro Agro Alimentare Di Napoli Scpa
   - Centro Formativo Provinciale Giuseppe Zanardelli
   - Centro Marche Acqua
-  - Centro Studi delle Camere di Commercio Guglielmo Tagliacarne
-  - CEP Spa
-  - C.I.A.S.S. – Consorzio Isola di Ariano servizi sociali
-  - CIRA Centro Italiano Ricerche Aerospaziali
+  - Centro Studi Delle Camere Di Commercio Guglielmo Tagliacarne
+  - Cep Spa
+  - Cira Centro Italiano Ricerche Aerospaziali
+  - Ciss Borgomanero
   - Cisterna Ambiente Spa
-  - Città Metropolitana di Catania
-  - Città Metropolitana di Palermo
-  - Cogeser S.p.A.
-  - Collegio Geometri e Geometri Laureati della Provincia di Lecco
-  - Collegio Geometri e Geometri Laureati della Provincia di Milano
-  - Collegio Geometri e Geometri Laureati della Provincia di Rimini
-  - Collegio Geometri e Geometri Laureati della Provincia di Varese
-  - Collegio Nazionale dei Periti Agrari e dei Periti Agrari Laureati
-  - Collegio Provinciale Geometri e Geometri Laureati di Fermo
+  - Città Metropolitana Di Catania
+  - Città Metropolitana Di Firenze
+  - Città Metropolitana Di Palermo
+  - Cogeser S.p.a.
+  - Cogeser Spa
+  - Cogesi Scrl
+  - Collegio Geometri E Geometri Laureati Della Provincia Di Ancona
+  - Collegio Geometri E Geometri Laureati Della Provincia Di Lecco
+  - Collegio Geometri E Geometri Laureati Della Provincia Di Milano
+  - Collegio Geometri E Geometri Laureati Della Provincia Di Rimini
+  - Collegio Geometri E Geometri Laureati Della Provincia Di Roma
+  - Collegio Geometri E Geometri Laureati Della Provincia Di Varese
+  - Collegio Geometri Provincia Di Trento
+  - Collegio Nazionale Dei Periti Agrari E Dei Periti Agrari Laureati
+  - Collegio Nazionale Guide Alpine Italiane
+  - Collegio Provinciale Geometri E Geometri Laureati Di Fermo
   - Collegio Regionale Veneto Guide Alpine
+  - Comando Vigili Del Fuoco Di Latina
   - Commissario Ricostruzione Genova
-  - Comune di Abano Terme
-  - Comune di Aci Bonaccorsi
-  - Comune di Acqui Terme
-  - Comune di Agliana
-  - Comune di Agna
-  - Comune di Agropoli
-  - Comune di Airola
-  - Comune di Alà dei Sardi
-  - Comune di Albiano
-  - Comune di Albino
-  - Comune di Aldeno
-  - Comune di Alessandria
-  - Comune di Alghero
-  - Comune di Alia
-  - Comune di Alpago
-  - Comune di Altamura
-  - Comune di Altavalle
-  - Comune di Altopiano della Vigolana
-  - Comune di Alvignano
-  - Comune di Amblar-Don
-  - Comune di Ancona
-  - Comune di Andalo
-  - Comune di Andria
-  - Comune di Angera
-  - Comune di Anzio
-  - Comune di Aprilia
-  - Comune di Arcade
-  - Comune di Arco
-  - Comune di Arcugnano
-  - Comune di Arese
-  - Comune di Arezzo
-  - Comune di Arluno
-  - Comune di Arona
-  - Comune di Arre
-  - Comune di Ascoli Piceno
-  - Comune di Asolo
-  - Comune di Assisi
-  - Comune di Asti
-  - Comune di Atina
-  - Comune di Augusta
-  - Comune di Austis
-  - Comune di Avezzano
-  - Comune di Avio
-  - Comune di BacoliComune di Bacoli
-  - Comune di Bagnatica
-  - Comune di Bagnolo in Piano
-  - Comune di Bagolino
-  - Comune di Barasso
-  - Comune di Barberino Tavarnelle
-  - Comune di Baressa
-  - Comune di Bariano
-  - Comune di Bari Sardo
-  - Comune di Baselga di Piné
-  - Comune di Battaglia Terme
-  - Comune di Battipaglia
-  - Comune di Bellino
-  - Comune di Belmonte Mezzagno
-  - Comune di Benevento
-  - Comune di Besenello
-  - Comune di Bessude
-  - Comune di Biassono
-  - Comune di Bieno
-  - Comune di Bione
-  - Comune di Bitti
-  - Comune di Bocenago
-  - Comune di Bodio Lomnago
-  - Comune di Bolzano Vicentino
-  - Comune di Bonate Sotto
-  - Comune di Bonnanaro
-  - Comune di Borgo Chiave
-  - Comune di Borgo Chiese
-  - Comune di Borso del Grappa
-  - Comune di Bosco Chiesanuova
-  - Comune di Botticino
-  - Comune di Bovolone
-  - Comune di Brebbia
-  - Comune di Breda di Piave
-  - Comune di Brembate
-  - Comune di Brembate di Sopra
-  - Comune di Bresso
-  - Comune di Brindisi
-  - Comune di Brindisi Montagna
-  - Comune di Brugnera
-  - Comune di Brunello
-  - Comune di Bucine
-  - Comune di Busca
-  - Comune di Bussolengo
-  - Comune di Cadelbosco di Sopra
-  - Comune di Caderzone Terme
-  - Comune di Calatabiano
-  - Comune di Calcinato
-  - Comune di Calcio
-  - Comune di Caldes
-  - Comune di Caldogno
-  - Comune di Calenzano
-  - Comune di Calimera
-  - Comune di Calliano
-  - Comune di Caltanissetta
-  - Comune di Calto
-  - Comune di Calusco d’Adda
-  - Comune di Calvi dell’Umbria
-  - Comune di Campobello di Licata
-  - Comune di Canal San Bovo
-  - Comune di Canaro
-  - Comune di Canazei
-  - Comune di Cantagallo
-  - Comune di Capannori
-  - Comune di Capraia e Limite
-  - Comune di Caprie
-  - Comune di Capurso
-  - Comune di Carbonera
-  - Comune di Carosino
-  - Comune di Carpinone
-  - Comune di Carrara
-  - Comune di Carrara
-  - Comune di Carsoli
-  - Comune di Carzano
-  - Comune di Casalborgone
-  - Comune di Casale Litta
-  - Comune di Casale Marittimo
-  - Comune di Casaleone
-  - Comune di Casale sul Sile
-  - Comune di Casalgrande
-  - Comune di Casatenovo
-  - Comune di Casnate con Bernate
-  - Comune di Casnigo
-  - Comune di Casole d’Elsa
-  - Comune di Casoli
-  - Comune di Castelcucco
-  - Comune di Castel d’Azzano
-  - Comune di Castel Frentano
-  - Comune di Castelgomberto
-  - Comune di Castel Ivano
-  - Comune di Castellana Grotte
-  - Comune di Castellanza
-  - Comune di Castellarano
-  - Comune di Castello Molina di Fiemme
-  - Comune di Castelmassa
-  - Comune di Castelnovo di Sotto
-  - Comune di Castelnuovo
-  - Comune di Castelnuovo di Porto
-  - Comune di Castelnuovo di Val di Cecina
-  - Comune di Castiadas
-  - Comune di Castiglion Fibocchi
-  - Comune di Casto
-  - Comune di Castropignano
-  - Comune di Cavalese
-  - Comune di Cavasso Nuovo
-  - Comune di Cavedago
-  - Comune di Cavedine
-  - Comune di Cavizzana
-  - Comune di Cellere
-  - Comune di Cerea
-  - Comune di Cerignola
-  - Comune di Cernobbio
-  - Comune di Cernusco sul Naviglio
-  - Comune di Cerro Maggiore
-  - Comune di Cerro Veronese
-  - Comune di Cervarese Santa Croce
-  - Comune di Cesiomaggiore
-  - Comune di Chiavari
-  - Comune di Chioggia
-  - Comune di Chiusi
-  - Comune di Chivasso
-  - Comune di Ciampino
-  - Comune di Cigliano
-  - Comune di Cimone
-  - Comune di Cinisello Balsamo
-  - Comune di Cinte Tesino
-  - Comune di Ciserano
-  - Comune di Cittadella
-  - Comune di Città di Castello
-  - Comune di Civezzano
-  - Comune di Civitavecchia
-  - Comune di Cles
-  - Comune di Clusone
-  - Comune di Codrongianos
-  - Comune di Collebeato
-  - Comune di Colle d’Anchise
-  - Comune di Colleferro
-  - Comune di Collesalvetti
-  - Comune di Colle Umberto
-  - Comune di Colle Val D’Elsa
-  - Comune di Colognola ai Colli
-  - Comune di Cologno Monzese
-  - Comune di Comacchio
-  - Comune di Comano Terme
-  - Comune di Commezzadura
-  - Comune di Conegliano
-  - Comune di Contà
-  - Comune di Copparo
-  - Comune di Corato
-  - Comune di Corbetta
-  - Comune di Corbola
-  - Comune di Cornaredo
-  - Comune di Corsico
-  - Comune di Corsico
-  - Comune di Corte Franca
-  - Comune di Cortina d’Ampezzo
-  - Comune di Costa di Mezzate
-  - Comune di Costa Volpino
-  - Comune di Costigliole Saluzzo
-  - Comune di Cremenaga
-  - Comune di Cuggiono
-  - Comune di Curno
-  - Comune di Curti
-  - Comune di Cusano Milanino
-  - Comune di Dambel
-  - Comune di Daverio
-  - Comune di Delianuova
-  - Comune di Denno
-  - Comune di Dimaro Folgarida
-  - Comune di Drena
-  - Comune di Dro
-  - Comune di Este
-  - Comune di Fai della Paganella
-  - Comune di Falconara Marittima
-  - Comune di Farnese
-  - Comune di Ferentillo
-  - Comune di Fiesse
-  - Comune di Figline e Incisa Valdarno
-  - Comune di Finale Emilia
-  - Comune di Foligno
-  - Comune di Follina
-  - Comune di Fonni
-  - Comune di Fontanelle
-  - Comune di Formello
-  - Comune di Forte dei Marmi
-  - Comune di Fossalto
-  - Comune di Francavilla Fontana
-  - Comune di Frattamaggiore
-  - Comune di Fratta Polesine
-  - Comune di Frosinone
-  - Comune di Fucecchio
-  - Comune di Fumane
-  - Comune di Gaggiano
-  - Comune di Galatro
-  - Comune di Gallio
-  - Comune di Galtelli
-  - Comune di Garniga Terme
-  - Comune di Gavardo
-  - Comune di Gazoldo degli Ippoliti
-  - Comune di Gazzada Schianno
-  - Comune di Gazzaniga
-  - Comune di Gemona del Friuli
-  - Comune di Genazzano
-  - Comune di Genzano di Roma
-  - Comune di Giacciano con Baruchella
-  - Comune di Giavera del Montello
-  - Comune di Girasole
-  - Comune di Giustino
-  - Comune di Gonnosfanadiga
-  - Comune di Gonnosno’
-  - Comune di Gonnostramatza
-  - Comune di Gorizia
-  - Comune di Gorla Minore
-  - Comune di Gradoli
-  - Comune di Grezzana
-  - Comune di Grigno
-  - Comune di Grottaferrata
-  - Comune di Guardistallo
-  - Comune di Guarene
-  - Comune di Idro
-  - Comune di Iglesias
-  - Comune di Imer
-  - Comune di Impruneta
-  - Comune di Inzago
-  - Comune di Ischitella
-  - Comune di Iseo
-  - Comune di Isera
-  - Comune di Isnello
-  - Comune di Isola Rizza
-  - Comune di Ispica
-  - Comune di Istrana
-  - Comune di Jerago con Orago
-  - Comune di Jerzu
-  - Comune di Lallio
-  - Comune di Lanusei
-  - Comune di Latera
-  - Comune di Lauria
-  - Comune di Lavagna
-  - Comune di Lavagno
-  - Comune di Lavenone
-  - Comune di Legnago
-  - Comune di Lentate sul Seveso
-  - Comune di Levico Terme
-  - Comune di Liberi
-  - Comune di Lignano Sabbiadoro
-  - Comune di Limana
-  - Comune di Loculi
-  - Comune di Lodi
-  - Comune di Lona Lases
-  - Comune di Lonate Pozzolo
-  - Comune di Loreto
-  - Comune di Luras
-  - Comune di Lurate Caccivio
-  - Comune di Lusciano
-  - Comune di Luvinate
-  - Comune di Macchia d’Isernia
-  - Comune di Macerata Campania
-  - Comune di Madruzzo
-  - Comune di Magenta
-  - Comune di Malè
-  - Comune di Manerba del Garda
-  - Comune di Mansuè
-  - Comune di Mapello
-  - Comune di Marano Principato
-  - Comune di Marano Vicentino
-  - Comune di Mariana Mantovana
-  - Comune di Mariglianella
-  - Comune di Marino
-  - Comune di Marostica
-  - Comune di Marsaglia
-  - Comune di Marsala
-  - Comune di Marsico Nuovo
-  - Comune di Martina Franca
-  - Comune di Martinengo
-  - Comune di Martinsicuro
-  - Comune di Masainas
-  - Comune di Masi Torello
-  - Comune di Massa di Somma
-  - Comune di Massafra
-  - Comune di Matera
-  - Comune di Meda
-  - Comune di Melle
-  - Comune di Mesagne
-  - Comune di Mezzana
-  - Comune di Mezzano
-  - Comune di Mezzocorona
-  - Comune di Mezzolombardo
-  - Comune di Milano
-  - Comune di Milazzo
-  - Comune di Milzano
-  - Comune di Misterbianco
-  - Comune di Moena
-  - Comune di Mogoro
-  - Comune di Molfetta
-  - Comune di Molveno
-  - Comune di Mondovì
-  - Comune di Mondragone
-  - Comune di Monfumo
-  - Comune di Monte Argentario
-  - Comune di Montebelluna
-  - Comune di Montecatini Val di Cecina
-  - Comune di Montecchia di Crosara
-  - Comune di Montemurlo
-  - Comune di Monteroni di Lecce
-  - Comune di Montevarchi
-  - Comune di Monticello Conte Otto
-  - Comune di Montorfano
-  - Comune di Monza
-  - Comune di Morcone
-  - Comune di Moretta
-  - Comune di Mori
-  - Comune di Mornago
-  - Comune di Motta Sant’Anastasia
-  - Comune di Mozzanica
-  - Comune di Muros
-  - Comune di Muscoline
-  - Comune di Nago-Torbole
-  - Comune di Nave
-  - comune di Nettuno
-  - Comune di Nichelino
-  - Comune di Nogarole Rocca
-  - Comune di Nomi
-  - Comune di Novaledo
-  - Comune di Novella
-  - Comune di Novi Ligure
-  - Comune di Oderzo
-  - Comune di Oggiona con Santo Stefano
-  - Comune di Oliena
-  - Comune di Olmedo
-  - Comune di Olzai
-  - Comune di Ome
-  - Comune di Onano
-  - Comune di Onifai
-  - Comune di Opera
-  - Comune di Oppeano
-  - Comune di Orciano Pisano
-  - Comune di Orio al Serio
-  - Comune di Oristano
-  - Comune di Ortona
-  - Comune di Ospedaletto
-  - Comune di Ossana
-  - Comune di Ostiano
-  - Comune di Ottana
-  - Comune di Ottaviano
-  - Comune di Ovodda
-  - Comune di Paceco
-  - Comune di Padria
-  - Comune di Padula
-  - Comune di Pagazzano
-  - Comune di Palagiano
-  - Comune di Palau
-  - Comune di Palazzolo sull’Oglio
-  - Comune di Palestrina
-  - Comune di Palmi
-  - Comune di Panchià
-  - Comune di Pantigliate
-  - Comune di Partinico
-  - Comune di Pasiano di Pordenone
-  - Comune di Pauli Arbarei
-  - Comune di Pavia
-  - Comune di Pedavena
-  - Comune di Peio
-  - Comune di Pellizzano
-  - Comune di Pelugo
-  - Comune di Perdasdefogu
-  - Comune di Pergine Valsugana
-  - Comune di Pero
-  - Comune di Perugia
-  - Comune di Pesche
-  - Comune di Peschiera Borromeo
-  - Comune di Petilia Policastro
-  - Comune di Petruro Irpino
-  - Comune di Piacenza
-  - Comune di Pianezze
-  - Comune di Piasco
-  - Comune di Pietradefusi
-  - Comune di Pieve di Bono-Prezzo
-  - Comune di Pieve Tesino
-  - Comune di Pimentel
-  - Comune di Pinasca
-  - Comune di Pinzolo
-  - Comune di Pisciotta
-  - Comune di Pitigliano
-  - Comune di Piubega
-  - Comune di Ponsacco
-  - Comune di Ponteranica
-  - Comune di Ponte San Pietro
-  - Comune di Pontirolo Nuovo
-  - Comune di Ponti sul Mincio
-  - Comune di Ponzano Veneto
-  - Comune di Porcari
-  - Comune di Porcia
-  - Comune di Porte di Rendena
-  - Comune di Porto Ceresio
-  - Comune di Porto Viro
-  - Comune di Povegliano
-  - Comune di Povegliano Veronese
-  - Comune di Prarostino
-  - Comune di Prata di Pordenone
-  - Comune di Predaia
-  - Comune di Predazzo
-  - Comune di Presenzano
-  - Comune di Prevalle
-  - Comune di Primiero San Martino di Castrozza
-  - Comune di Proceno
-  - Comune di Provaglio Valsabbia
-  - Comune di Quartucciu
-  - Comune di Rabbi
-  - Comune di Randazzo
-  - Comune di Resana
-  - Comune di Rezzato
-  - Comune di Rho
-  - Comune di Riva del Garda
-  - Comune di Roccapalumba
-  - Comune di Romano di Lombardia
-  - Comune di Roncadelle
-  - Comune di Roncegno Terme
-  - Comune di Ronchi Valsugana
-  - Comune di Ronco all’Adige
-  - Comune di Ronzo-Chienis
-  - Comune di Rosignano Marittimo
-  - Comune di Rosolina
-  - Comune di Rovereto
-  - Comune di Roverè Veronese
-  - Comune di Rovigo
-  - Comune di Rozzano
-  - Comune di Rubiera
-  - Comune di Sadali
-  - Comune di Sagron Mils
-  - Comune di Salara
-  - Comune di Salizzole
-  - Comune di Saluzzo
-  - Comune di San Bellino
-  - Comune di San Casciano in Val di Pesa
-  - Comune di San Dorligo della Valle
-  - Comune di Sandrigo
-  - Comune di San Giorgio a Cremano
-  - Comune di San Giorgio in Bosco
-  - Comune di San Giorgio Ionico
-  - Comune di San Giovanni Ilarione
-  - Comune di San Giovanni Lupatoto
-  - Comune di San Giovanni Rotondo
-  - Comune di San Giovanni Suergiu
-  - Comune di San Giovanni Valdarno
-  - Comune di San Gregorio nelle Alpi
-  - Comune di San Lorenzo Dorsino
-  - Comune di San Martino al Tagliamento
-  - Comune di San Martino dall’Argine
-  - Comune di San Marzano di San Giuseppe
-  - Comune di San Michele all'Adige
-  - Comune di San Pietro di Morubio
-  - Comune di San Polo di Piave
-  - Comune di Sanremo
-  - Comune di San Rufo
-  - Comune di San Stino di Livenza
-  - Comune di Santa Fiora
-  - Comune di Santa Giustina
-  - Comune di Santa Lucia di Piave
-  - Comune di Santa Margherita Ligure
-  - Comune di Sant’Arsenio
-  - Comune di Sant’Elena
-  - Comune di Santo Stefano Ticino
-  - Comune di San Vittore Olona
-  - Comune di Sanza
-  - Comune di Sanzeno
-  - Comune di Sarconi
-  - Comune di Sardara
-  - Comune di Sarno
-  - Comune di Sarule
-  - Comune di Sarzana
-  - Comune di Sassano
-  - Comune di Scandiano
-  - Comune di Scorrano
-  - Comune di Segonzano
-  - Comune di Segrate
-  - Comune di Segusino
-  - Comune di Selargius
-  - Comune di Sella Giudicarie
-  - Comune di Sella Giudicarie
-  - Comune di Seniga
-  - Comune di Sennori
-  - Comune di Seregno
-  - Comune di Seren del Grappa
-  - Comune di Serle
-  - Comune di Serramanna
-  - Comune di Sesto Calende
-  - Comune di Sesto Fiorentino
-  - Comune di Sestu
-  - Comune di Settimo Milanese
-  - Comune di Siena
-  - Comune di Silea
-  - Comune di Siligo
-  - Comune di Sinnai
-  - Comune di Solferino
-  - Comune di Soresina
-  - Comune di Sorgà
-  - Comune di Sorgono
-  - Comune di Sossano
-  - Comune di Sovizzo
-  - Comune di Spiazzo
-  - Comune di S. Pietro Vernotico
-  - Comune di Spoltore
-  - Comune di Spoltore
-  - Comune di Spormaggiore
-  - Comune di Spresiano
-  - Comune di Stanghella
-  - Comune di Stenico
-  - Comune di Sternatia
-  - Comune di Stezzano
-  - Comune di Strembo
-  - Comune di Sulmona
-  - Comune di Supersano
-  - Comune di Susa
-  - Comune di Susegana
-  - Comune di Tambre
-  - Comune di Tarantasca
-  - Comune di Taranto
-  - Comune di Taurianova
-  - Comune di Tavazzano con Villavesco
-  - Comune di Teglio Veneto
-  - Comune di Telve
-  - Comune di Telve di Sopra
-  - Comune di Tempio Pausania
-  - Comune di Terlizzi
-  - Comune di Ternate
-  - Comune di Terracina
-  - Comune di Tertenia
-  - Comune di Tesero
-  - Comune di Tignale
-  - Comune di Tione di Trento
-  - Comune di Ton
-  - Comune di Torcegno
-  - Comune di Torella dei Lombardi
-  - Comune di Torino
-  - Comune di Torralba
-  - Comune di Torre Annunziata
-  - Comune di Tortolì
-  - Comune di Toscolano Maderno
-  - Comune di Trani
-  - Comune di Travedona Monate
-  - Comune di Trecenta
-  - Comune di Trento
-  - Comune di Treviglio
-  - Comune di Trevignano
-  - Comune di Tre Ville
-  - Comune di Treviso
-  - Comune di Trezzano sul Naviglio
-  - Comune di Tribano
-  - Comune di Triei
-  - Comune di Trissino
-  - Comune di Turri
-  - Comune di Ulassai
-  - Comune di Uri
-  - Comune di Urzulei
-  - Comune di Vaiano
-  - Comune di Valdaone
-  - Comune di Valdobbiadene
-  - Comune di Valentano
-  - Comune di Vallarsa
-  - Comune di Vallelaghi
-  - Comune di Vallio Terme
-  - Comune di Valmadrera
-  - Comune di Valmala
-  - Comune di Varazze
-  - Comune di Varese
-  - Comune di Velletri
-  - Comune di Venasca
-  - Comune di Verbania
-  - Comune di Verdellino
-  - Comune di Vermiglio
-  - Comune di Vernio
-  - Comune di Verona
-  - Comune di Verucchio
-  - Comune di Vestone
-  - Comune di Viagrande
-  - Comune di Viano
-  - Comune di Viareggio
-  - Comune di Vicenza
-  - Comune di Vignale Monferrato
-  - Comune di Vigodarzere
-  - Comune di Villabate
-  - Comune di Villacidro
-  - Comune di Villafalletto
-  - Comune di Villaputzu
-  - Comune di Villasalto
-  - Comune di Villasimius
-  - Comune di Ville D'Anaunia
-  - Comune di Vimodrone
-  - Comune di Vittorio Veneto
-  - Comune di Vittuone
-  - Comune di Vobarno
-  - Comune di Voghera
-  - Comune di Volano
-  - Comune di Volpago del Montello
-  - Comune di Zenson di Piave
-  - Comune di Zevio
-  - Comune di Ziano di Fiemme
-  - Comune General de Fascia
-  - Comune Ville di Fiemme
-  - Comunitą Alta Valsugana e Bersntol
-  - Comunità Alto Garda e Ledro
-  - Comunità della Val di Non
-  - Comunità della Vallagarina
-  - Comunità della Valle di Cembra
-  - Comunità della Valle di Sole
-  - Comunità delle Giudicarie
-  - Comunità di Primiero
+  - Comune Di Abano Terme
+  - Comune Di Aci Bonaccorsi
+  - Comune Di Acqui Terme
+  - Comune Di Agliana
+  - Comune Di Agna
+  - Comune Di Agordo
+  - Comune Di Agropoli
+  - Comune Di Airola
+  - Comune Di Albavilla
+  - Comune Di Albiano
+  - Comune Di Albignasego
+  - Comune Di Albino
+  - Comune Di Aldeno
+  - Comune Di Alessandria
+  - Comune Di Alessano
+  - Comune Di Alfianello
+  - Comune Di Alghero
+  - Comune Di Alia
+  - Comune Di Almenno San Salvatore
+  - Comune Di Alpago
+  - Comune Di Altamura
+  - Comune Di Altavalle
+  - Comune Di Altivole
+  - Comune Di Altopiano Della Vigolana
+  - Comune Di Alvignano
+  - Comune Di Alà Dei Sardi
+  - Comune Di Amblar-don
+  - Comune Di Ancona
+  - Comune Di Andalo
+  - Comune Di Andria
+  - Comune Di Angera
+  - Comune Di Anzio
+  - Comune Di Aprilia
+  - Comune Di Arcade
+  - Comune Di Arco
+  - Comune Di Arcugnano
+  - Comune Di Arese
+  - Comune Di Arezzo
+  - Comune Di Argelato
+  - Comune Di Arluno
+  - Comune Di Arona
+  - Comune Di Arre
+  - Comune Di Arrone
+  - Comune Di Arsiero
+  - Comune Di Arsiè
+  - Comune Di Arzana
+  - Comune Di Ascoli Piceno
+  - Comune Di Asolo
+  - Comune Di Assisi
+  - Comune Di Asti
+  - Comune Di Atina
+  - Comune Di Augusta
+  - Comune Di Austis
+  - Comune Di Avezzano
+  - Comune Di Avio
+  - Comune Di Bacolicomune Di Bacoli
+  - Comune Di Bagnatica
+  - Comune Di Bagnolo In Piano
+  - Comune Di Bagolino
+  - Comune Di Baiso
+  - Comune Di Barasso
+  - Comune Di Barberino Tavarnelle
+  - Comune Di Baressa
+  - Comune Di Barghe
+  - Comune Di Bari Sardo
+  - Comune Di Bariano
+  - Comune Di Barzio
+  - Comune Di Baselga Di Piné
+  - Comune Di Battaglia Terme
+  - Comune Di Battipaglia
+  - Comune Di Bedonia
+  - Comune Di Bellino
+  - Comune Di Belluno
+  - Comune Di Belmonte Mezzagno
+  - Comune Di Benevento
+  - Comune Di Bentivoglio
+  - Comune Di Besenello
+  - Comune Di Bessude
+  - Comune Di Biassono
+  - Comune Di Bieno
+  - Comune Di Bione
+  - Comune Di Bisenti
+  - Comune Di Bitti
+  - Comune Di Boara Pisani
+  - Comune Di Bocenago
+  - Comune Di Bodio Lomnago
+  - Comune Di Bollate
+  - Comune Di Bolzano Vicentino
+  - Comune Di Bonate Sotto
+  - Comune Di Bonnanaro
+  - Comune Di Bonorva
+  - Comune Di Borgo Chiave
+  - Comune Di Borgo Chiese
+  - Comune Di Borgo Lares
+  - Comune Di Borgo Valbelluna
+  - Comune Di Borgo Virgilio
+  - Comune Di Borso Del Grappa
+  - Comune Di Bosco Chiesanuova
+  - Comune Di Botticino
+  - Comune Di Bovezzo
+  - Comune Di Bovolone
+  - Comune Di Bra
+  - Comune Di Brebbia
+  - Comune Di Breda Di Piave
+  - Comune Di Bregnano
+  - Comune Di Brembate
+  - Comune Di Brembate Di Sopra
+  - Comune Di Bresso
+  - Comune Di Brindisi
+  - Comune Di Brindisi Montagna
+  - Comune Di Brivio
+  - Comune Di Broni
+  - Comune Di Brugnera
+  - Comune Di Brunello
+  - Comune Di Bucine
+  - Comune Di Busca
+  - Comune Di Bussolengo
+  - Comune Di Cadelbosco Di Sopra
+  - Comune Di Caderzone Terme
+  - Comune Di Calatabiano
+  - Comune Di Calcinato
+  - Comune Di Calcio
+  - Comune Di Calco
+  - Comune Di Caldes
+  - Comune Di Caldiero
+  - Comune Di Caldogno
+  - Comune Di Calenzano
+  - Comune Di Calimera
+  - Comune Di Calliano
+  - Comune Di Caltanissetta
+  - Comune Di Calto
+  - Comune Di Calusco D’adda
+  - Comune Di Calvi Dell’umbria
+  - Comune Di Campobasso
+  - Comune Di Campobello Di Licata
+  - Comune Di Canal San Bovo
+  - Comune Di Canaro
+  - Comune Di Canazei
+  - Comune Di Canneto Sull’oglio
+  - Comune Di Cantagallo
+  - Comune Di Canzo
+  - Comune Di Capannori
+  - Comune Di Capraia E Limite
+  - Comune Di Capralba
+  - Comune Di Caprie
+  - Comune Di Capurso
+  - Comune Di Carbonera
+  - Comune Di Carbonia
+  - Comune Di Carosino
+  - Comune Di Carpignano Salentino
+  - Comune Di Carpinone
+  - Comune Di Carrara
+  - Comune Di Carsoli
+  - Comune Di Carzano
+  - Comune Di Casalborgone
+  - Comune Di Casale Cremasco Vidolasco
+  - Comune Di Casale Litta
+  - Comune Di Casale Marittimo
+  - Comune Di Casale Sul Sile
+  - Comune Di Casaleone
+  - Comune Di Casaletto Spartano
+  - Comune Di Casalgrande
+  - Comune Di Casaluce
+  - Comune Di Casarile
+  - Comune Di Casatenovo
+  - Comune Di Casnate Con Bernate
+  - Comune Di Casnigo
+  - Comune Di Casole D’elsa
+  - Comune Di Casoli
+  - Comune Di Castagnaro
+  - Comune Di Castel D’ario
+  - Comune Di Castel D’azzano
+  - Comune Di Castel Frentano
+  - Comune Di Castel Ivano
+  - Comune Di Castel Maggiore
+  - Comune Di Castelcucco
+  - Comune Di Castelgomberto
+  - Comune Di Castellana Grotte
+  - Comune Di Castellanza
+  - Comune Di Castellarano
+  - Comune Di Castelli
+  - Comune Di Castello D’argile
+  - Comune Di Castello Molina Di Fiemme
+  - Comune Di Castelmassa
+  - Comune Di Castelnovo Di Sotto
+  - Comune Di Castelnuovo
+  - Comune Di Castelnuovo Di Porto
+  - Comune Di Castelnuovo Di Val Di Cecina
+  - Comune Di Castiadas
+  - Comune Di Castiglion Fibocchi
+  - Comune Di Casto
+  - Comune Di Castropignano
+  - Comune Di Cavalese
+  - Comune Di Cavasso Nuovo
+  - Comune Di Cavedago
+  - Comune Di Cavedine
+  - Comune Di Cavizzana
+  - Comune Di Cavour
+  - Comune Di Cecina
+  - Comune Di Cellere
+  - Comune Di Cerea
+  - Comune Di Cerignola
+  - Comune Di Cernobbio
+  - Comune Di Cernusco Sul Naviglio
+  - Comune Di Cerrina Monferrato
+  - Comune Di Cerro Maggiore
+  - Comune Di Cerro Veronese
+  - Comune Di Cervarese Santa Croce
+  - Comune Di Cervinara
+  - Comune Di Cesiomaggiore
+  - Comune Di Chiavari
+  - Comune Di Chies D’alpago
+  - Comune Di Chioggia
+  - Comune Di Chiusa Sclafani
+  - Comune Di Chiusi
+  - Comune Di Chivasso
+  - Comune Di Ciampino
+  - Comune Di Cigliano
+  - Comune Di Cimadolmo
+  - Comune Di Cimone
+  - Comune Di Cinisello Balsamo
+  - Comune Di Cinte Tesino
+  - Comune Di Ciserano
+  - Comune Di Cittadella
+  - Comune Di Città Di Castello
+  - Comune Di Civezzano
+  - Comune Di Civitavecchia
+  - Comune Di Cles
+  - Comune Di Clusone
+  - Comune Di Codrongianos
+  - Comune Di Colico
+  - Comune Di Colle D’anchise
+  - Comune Di Colle Umberto
+  - Comune Di Colle Val D’elsa
+  - Comune Di Collebeato
+  - Comune Di Colleferro
+  - Comune Di Collesalvetti
+  - Comune Di Cologno Monzese
+  - Comune Di Colognola Ai Colli
+  - Comune Di Comacchio
+  - Comune Di Comano Terme
+  - Comune Di Commezzadura
+  - Comune Di Cona
+  - Comune Di Conegliano
+  - Comune Di Contà
+  - Comune Di Copparo
+  - Comune Di Corato
+  - Comune Di Corbetta
+  - Comune Di Corbola
+  - Comune Di Cori
+  - Comune Di Cornaredo
+  - Comune Di Cornuda
+  - Comune Di Corsico
+  - Comune Di Corte Franca
+  - Comune Di Cortina D’ampezzo
+  - Comune Di Cossoine
+  - Comune Di Costa Di Mezzate
+  - Comune Di Costa Volpino
+  - Comune Di Costigliole Saluzzo
+  - Comune Di Cremenaga
+  - Comune Di Crespadoro
+  - Comune Di Cuggiono
+  - Comune Di Cuglieri
+  - Comune Di Curno
+  - Comune Di Curti
+  - Comune Di Cusano Milanino
+  - Comune Di Dambel
+  - Comune Di Daverio
+  - Comune Di Delianuova
+  - Comune Di Denno
+  - Comune Di Dimaro Folgarida
+  - Comune Di Dolianova
+  - Comune Di Drena
+  - Comune Di Dro
+  - Comune Di Dueville
+  - Comune Di Este
+  - Comune Di Fabbriche Di Vergemoli
+  - Comune Di Fabriano
+  - Comune Di Faggiano
+  - Comune Di Fai Della Paganella
+  - Comune Di Falconara Marittima
+  - Comune Di Farnese
+  - Comune Di Ferentillo
+  - Comune Di Fiesse
+  - Comune Di Figline E Incisa Valdarno
+  - Comune Di Finale Emilia
+  - Comune Di Foligno
+  - Comune Di Follina
+  - Comune Di Fonni
+  - Comune Di Fontanelle
+  - Comune Di Fontaniva
+  - Comune Di Formello
+  - Comune Di Forte Dei Marmi
+  - Comune Di Fossalto
+  - Comune Di Fragagnano
+  - Comune Di Francavilla Fontana
+  - Comune Di Fratta Polesine
+  - Comune Di Frattamaggiore
+  - Comune Di Frosinone
+  - Comune Di Fucecchio
+  - Comune Di Fumane
+  - Comune Di Gaggiano
+  - Comune Di Galatro
+  - Comune Di Galbiate
+  - Comune Di Gallicano
+  - Comune Di Galliera
+  - Comune Di Gallio
+  - Comune Di Galtelli
+  - Comune Di Gandino
+  - Comune Di Garbagnate Milanese
+  - Comune Di Gardone Val Trompia
+  - Comune Di Garniga Terme
+  - Comune Di Gavardo
+  - Comune Di Gazoldo Degli Ippoliti
+  - Comune Di Gazzada Schianno
+  - Comune Di Gazzaniga
+  - Comune Di Gemona Del Friuli
+  - Comune Di Genazzano
+  - Comune Di Genzano Di Roma
+  - Comune Di Giacciano Con Baruchella
+  - Comune Di Giavera Del Montello
+  - Comune Di Girasole
+  - Comune Di Giustino
+  - Comune Di Gonnosfanadiga
+  - Comune Di Gonnosno’
+  - Comune Di Gonnostramatza
+  - Comune Di Gonzaga
+  - Comune Di Gorizia
+  - Comune Di Gorla Minore
+  - Comune Di Gosaldo
+  - Comune Di Gradoli
+  - Comune Di Gravina In Puglia
+  - Comune Di Grezzana
+  - Comune Di Grigno
+  - Comune Di Grottaferrata
+  - Comune Di Gualdo Tadino
+  - Comune Di Guardistallo
+  - Comune Di Guarene
+  - Comune Di Guasila
+  - Comune Di Idro
+  - Comune Di Iglesias
+  - Comune Di Imer
+  - Comune Di Impruneta
+  - Comune Di Introbio
+  - Comune Di Inzago
+  - Comune Di Irgoli
+  - Comune Di Ischitella
+  - Comune Di Iseo
+  - Comune Di Isera
+  - Comune Di Isnello
+  - Comune Di Isola Rizza
+  - Comune Di Ispica
+  - Comune Di Istrana
+  - Comune Di Ittireddu
+  - Comune Di Jerago Con Orago
+  - Comune Di Jerzu
+  - Comune Di Lallio
+  - Comune Di Lamezia Terme
+  - Comune Di Lanusei
+  - Comune Di Latera
+  - Comune Di Lauria
+  - Comune Di Lavagna
+  - Comune Di Lavagno
+  - Comune Di Lavenone
+  - Comune Di Legnago
+  - Comune Di Lei
+  - Comune Di Lentate Sul Seveso
+  - Comune Di Lequile
+  - Comune Di Levico Terme
+  - Comune Di Liberi
+  - Comune Di Lignano Sabbiadoro
+  - Comune Di Limana
+  - Comune Di Limbiate
+  - Comune Di Loculi
+  - Comune Di Lodi
+  - Comune Di Loiano
+  - Comune Di Lona Lases
+  - Comune Di Lonate Pozzolo
+  - Comune Di Loreto
+  - Comune Di Lunano
+  - Comune Di Luras
+  - Comune Di Lurate Caccivio
+  - Comune Di Lusciano
+  - Comune Di Luvinate
+  - Comune Di Macchia D’isernia
+  - Comune Di Macerata Campania
+  - Comune Di Madruzzo
+  - Comune Di Magenta
+  - Comune Di Magomadas
+  - Comune Di Magreglio
+  - Comune Di Malgrate
+  - Comune Di Malè
+  - Comune Di Mandello Del Lario
+  - Comune Di Manerba Del Garda
+  - Comune Di Mansuè
+  - Comune Di Mapello
+  - Comune Di Marano Principato
+  - Comune Di Marano Vicentino
+  - Comune Di Mariana Mantovana
+  - Comune Di Mariano Comense
+  - Comune Di Mariglianella
+  - Comune Di Marino
+  - Comune Di Marostica
+  - Comune Di Marsaglia
+  - Comune Di Marsala
+  - Comune Di Marsico Nuovo
+  - Comune Di Martina Franca
+  - Comune Di Martinengo
+  - Comune Di Martinsicuro
+  - Comune Di Maruggio
+  - Comune Di Masainas
+  - Comune Di Maser
+  - Comune Di Masi Torello
+  - Comune Di Massa Di Somma
+  - Comune Di Massafra
+  - Comune Di Matera
+  - Comune Di Mazzè
+  - Comune Di Meda
+  - Comune Di Meduna Di Livenza
+  - Comune Di Melle
+  - Comune Di Mesagne
+  - Comune Di Mezzana
+  - Comune Di Mezzano
+  - Comune Di Mezzocorona
+  - Comune Di Mezzolombardo
+  - Comune Di Milano
+  - Comune Di Milazzo
+  - Comune Di Milzano
+  - Comune Di Minucciano
+  - Comune Di Mirabella Eclano
+  - Comune Di Misterbianco
+  - Comune Di Modolo
+  - Comune Di Moena
+  - Comune Di Mogoro
+  - Comune Di Molfetta
+  - Comune Di Molochio
+  - Comune Di Molveno
+  - Comune Di Mondovì
+  - Comune Di Mondragone
+  - Comune Di Moneglia
+  - Comune Di Monfumo
+  - Comune Di Monghidoro
+  - Comune Di Montaquila
+  - Comune Di Monte Argentario
+  - Comune Di Montebelluna
+  - Comune Di Montecarlo
+  - Comune Di Montecatini Val Di Cecina
+  - Comune Di Montecchia Di Crosara
+  - Comune Di Montecorvino Pugliano
+  - Comune Di Monteforte D’alpone
+  - Comune Di Montegaldella
+  - Comune Di Montello
+  - Comune Di Montemurlo
+  - Comune Di Monteroni Di Lecce
+  - Comune Di Montevarchi
+  - Comune Di Monticello Conte Otto
+  - Comune Di Montorfano
+  - Comune Di Montresta
+  - Comune Di Monza
+  - Comune Di Morcone
+  - Comune Di Moretta
+  - Comune Di Mori
+  - Comune Di Mornago
+  - Comune Di Motta Sant’anastasia
+  - Comune Di Mottola
+  - Comune Di Mozzanica
+  - Comune Di Mozzo
+  - Comune Di Muros
+  - Comune Di Muscoline
+  - Comune Di Nago-torbole
+  - Comune Di Nave
+  - Comune Di Nembro
+  - Comune Di Nettuno
+  - Comune Di Nichelino
+  - Comune Di Nogarole Rocca
+  - Comune Di Nomi
+  - Comune Di Novaledo
+  - Comune Di Nove
+  - Comune Di Novella
+  - Comune Di Novi Ligure
+  - Comune Di Nuoro
+  - Comune Di Oderzo
+  - Comune Di Oggiona Con Santo Stefano
+  - Comune Di Olbia
+  - Comune Di Oliena
+  - Comune Di Olmedo
+  - Comune Di Olzai
+  - Comune Di Ome
+  - Comune Di Onano
+  - Comune Di Onifai
+  - Comune Di Opera
+  - Comune Di Oppeano
+  - Comune Di Orciano Pisano
+  - Comune Di Orgiano
+  - Comune Di Orio Al Serio
+  - Comune Di Orio Litta
+  - Comune Di Oristano
+  - Comune Di Ornago
+  - Comune Di Orosei
+  - Comune Di Ortona
+  - Comune Di Ospedaletto
+  - Comune Di Ospitale Di Cadore
+  - Comune Di Ossana
+  - Comune Di Ostiano
+  - Comune Di Otricoli
+  - Comune Di Ottana
+  - Comune Di Ottaviano
+  - Comune Di Ovaro
+  - Comune Di Ovodda
+  - Comune Di Ozzano Dell’emilia
+  - Comune Di Paceco
+  - Comune Di Padria
+  - Comune Di Padula
+  - Comune Di Pagazzano
+  - Comune Di Paglieta
+  - Comune Di Paladina
+  - Comune Di Palagiano
+  - Comune Di Palau
+  - Comune Di Palazzolo Sull’oglio
+  - Comune Di Palestrina
+  - Comune Di Palmi
+  - Comune Di Panchià
+  - Comune Di Pantigliate
+  - Comune Di Partinico
+  - Comune Di Pasiano Di Pordenone
+  - Comune Di Pauli Arbarei
+  - Comune Di Pavia
+  - Comune Di Pecetto Torinese
+  - Comune Di Pedavena
+  - Comune Di Peio
+  - Comune Di Pellizzano
+  - Comune Di Pelugo
+  - Comune Di Perdasdefogu
+  - Comune Di Pergine Valsugana
+  - Comune Di Pernumia
+  - Comune Di Pero
+  - Comune Di Perugia
+  - Comune Di Pesche
+  - Comune Di Peschiera Borromeo
+  - Comune Di Pescolanciano
+  - Comune Di Petilia Policastro
+  - Comune Di Petruro Irpino
+  - Comune Di Piacenza
+  - Comune Di Piandimeleto
+  - Comune Di Pianezze
+  - Comune Di Piasco
+  - Comune Di Pietradefusi
+  - Comune Di Pieve Di Bono-prezzo
+  - Comune Di Pieve Di Cento
+  - Comune Di Pieve Tesino
+  - Comune Di Pimentel
+  - Comune Di Pinasca
+  - Comune Di Pinzolo
+  - Comune Di Pisa
+  - Comune Di Pisciotta
+  - Comune Di Pitigliano
+  - Comune Di Piubega
+  - Comune Di Pogliano Milanese
+  - Comune Di Polla
+  - Comune Di Pompei
+  - Comune Di Ponsacco
+  - Comune Di Ponte Lambro
+  - Comune Di Ponte Nelle Alpi
+  - Comune Di Ponte San Pietro
+  - Comune Di Ponteranica
+  - Comune Di Ponti Sul Mincio
+  - Comune Di Pontirolo Nuovo
+  - Comune Di Ponzano Veneto
+  - Comune Di Porcari
+  - Comune Di Porcia
+  - Comune Di Porte Di Rendena
+  - Comune Di Porto Ceresio
+  - Comune Di Porto Torres
+  - Comune Di Porto Viro
+  - Comune Di Potenza Picena
+  - Comune Di Povegliano
+  - Comune Di Povegliano Veronese
+  - Comune Di Pozzo D’adda
+  - Comune Di Prarostino
+  - Comune Di Prata Di Pordenone
+  - Comune Di Predaia
+  - Comune Di Predazzo
+  - Comune Di Premolo
+  - Comune Di Presenzano
+  - Comune Di Pressana
+  - Comune Di Prevalle
+  - Comune Di Primiero San Martino Di Castrozza
+  - Comune Di Proceno
+  - Comune Di Provaglio D’iseo
+  - Comune Di Provaglio Valsabbia
+  - Comune Di Quartucciu
+  - Comune Di Rabbi
+  - Comune Di Randazzo
+  - Comune Di Ravascletto
+  - Comune Di Raveo
+  - Comune Di Resana
+  - Comune Di Rezzato
+  - Comune Di Rho
+  - Comune Di Riva Del Garda
+  - Comune Di Rizziconi
+  - Comune Di Rocca Pietore
+  - Comune Di Roccapalumba
+  - Comune Di Roccapiemonte
+  - Comune Di Romana
+  - Comune Di Romano Canavese
+  - Comune Di Romano Di Lombardia
+  - Comune Di Roncadelle
+  - Comune Di Roncegno Terme
+  - Comune Di Ronchi Valsugana
+  - Comune Di Ronco All’adige
+  - Comune Di Roncola
+  - Comune Di Rondissone
+  - Comune Di Ronzo-chienis
+  - Comune Di Rosignano Marittimo
+  - Comune Di Rosolina
+  - Comune Di Rovereto
+  - Comune Di Roverè Veronese
+  - Comune Di Rovescala
+  - Comune Di Rovigo
+  - Comune Di Rozzano
+  - Comune Di Rubiana
+  - Comune Di Rubiera
+  - Comune Di S. Pietro Vernotico
+  - Comune Di Saccolongo
+  - Comune Di Sacile
+  - Comune Di Sadali
+  - Comune Di Sagron Mils
+  - Comune Di Salara
+  - Comune Di Salizzole
+  - Comune Di Saluzzo
+  - Comune Di Samassi
+  - Comune Di San Bellino
+  - Comune Di San Bonifacio
+  - Comune Di San Casciano In Val Di Pesa
+  - Comune Di San Dorligo Della Valle
+  - Comune Di San Giorgio A Cremano
+  - Comune Di San Giorgio Di Piano
+  - Comune Di San Giorgio In Bosco
+  - Comune Di San Giorgio Ionico
+  - Comune Di San Giorgio Morgeto
+  - Comune Di San Giovanni Ilarione
+  - Comune Di San Giovanni Lupatoto
+  - Comune Di San Giovanni Rotondo
+  - Comune Di San Giovanni Suergiu
+  - Comune Di San Giovanni Valdarno
+  - Comune Di San Gregorio Nelle Alpi
+  - Comune Di San Lorenzo Dorsino
+  - Comune Di San Martino Al Tagliamento
+  - Comune Di San Martino Dall’argine
+  - Comune Di San Marzano Di San Giuseppe
+  - Comune Di San Mauro La Bruca
+  - Comune Di San Michele All'adige
+  - Comune Di San Pietro Di Morubio
+  - Comune Di San Pietro In Casale
+  - Comune Di San Pietro Viminario
+  - Comune Di San Polo Di Piave
+  - Comune Di San Rufo
+  - Comune Di San Stino Di Livenza
+  - Comune Di San Vito Al Tagliamento
+  - Comune Di San Vittore Olona
+  - Comune Di Sandrigo
+  - Comune Di Sanremo
+  - Comune Di Santa Fiora
+  - Comune Di Santa Giustina
+  - Comune Di Santa Lucia Di Piave
+  - Comune Di Santa Margherita Ligure
+  - Comune Di Santa Maria Capua Vetere
+  - Comune Di Santo Stefano D’aveto
+  - Comune Di Santo Stefano Ticino
+  - Comune Di Sant’arsenio
+  - Comune Di Sant’elena
+  - Comune Di Sanza
+  - Comune Di Sanzeno
+  - Comune Di Sarcedo
+  - Comune Di Sarconi
+  - Comune Di Sardara
+  - Comune Di Sarno
+  - Comune Di Sarule
+  - Comune Di Sarzana
+  - Comune Di Sassano
+  - Comune Di Sassocorvaro Auditore
+  - Comune Di Savignone
+  - Comune Di Scandiano
+  - Comune Di Scorrano
+  - Comune Di Sedico
+  - Comune Di Sedriano
+  - Comune Di Segonzano
+  - Comune Di Segrate
+  - Comune Di Segusino
+  - Comune Di Selargius
+  - Comune Di Sella Giudicarie
+  - Comune Di Seniga
+  - Comune Di Senigallia
+  - Comune Di Senna Lodigiana
+  - Comune Di Sennori
+  - Comune Di Seregno
+  - Comune Di Seren Del Grappa
+  - Comune Di Serle
+  - Comune Di Serramanna
+  - Comune Di Sesto Calende
+  - Comune Di Sesto Fiorentino
+  - Comune Di Sestu
+  - Comune Di Settimo Milanese
+  - Comune Di Siena
+  - Comune Di Silea
+  - Comune Di Siligo
+  - Comune Di Sillano Giuncugnano
+  - Comune Di Sinnai
+  - Comune Di Sirtori
+  - Comune Di Solferino
+  - Comune Di Sondrio
+  - Comune Di Soresina
+  - Comune Di Sorgono
+  - Comune Di Sorgà
+  - Comune Di Sospirolo
+  - Comune Di Sossano
+  - Comune Di Sovizzo
+  - Comune Di Specchia
+  - Comune Di Spiazzo
+  - Comune Di Spoltore
+  - Comune Di Spormaggiore
+  - Comune Di Spresiano
+  - Comune Di Stanghella
+  - Comune Di Statte
+  - Comune Di Stazzona
+  - Comune Di Stenico
+  - Comune Di Sternatia
+  - Comune Di Stezzano
+  - Comune Di Strembo
+  - Comune Di Sulmona
+  - Comune Di Supersano
+  - Comune Di Surano
+  - Comune Di Susa
+  - Comune Di Susegana
+  - Comune Di Tambre
+  - Comune Di Tarantasca
+  - Comune Di Taranto
+  - Comune Di Taurianova
+  - Comune Di Tavazzano Con Villavesco
+  - Comune Di Teglio
+  - Comune Di Teglio Veneto
+  - Comune Di Telve
+  - Comune Di Telve Di Sopra
+  - Comune Di Tempio Pausania
+  - Comune Di Terlizzi
+  - Comune Di Ternate
+  - Comune Di Terracina
+  - Comune Di Terrassa Padovana
+  - Comune Di Tertenia
+  - Comune Di Tesero
+  - Comune Di Tignale
+  - Comune Di Tinnura
+  - Comune Di Tione Di Trento
+  - Comune Di Ton
+  - Comune Di Torcegno
+  - Comune Di Torella Dei Lombardi
+  - Comune Di Torino
+  - Comune Di Toritto
+  - Comune Di Torralba
+  - Comune Di Torre Annunziata
+  - Comune Di Tortolì
+  - Comune Di Toscolano Maderno
+  - Comune Di Toscolano Maderno​
+  - Comune Di Trana
+  - Comune Di Trani
+  - Comune Di Travedona Monate
+  - Comune Di Tre Ville
+  - Comune Di Trecenta
+  - Comune Di Trento
+  - Comune Di Tresignana
+  - Comune Di Tresivio
+  - Comune Di Tresnuraghes
+  - Comune Di Treviglio
+  - Comune Di Trevignano
+  - Comune Di Treviso
+  - Comune Di Trezzano Sul Naviglio
+  - Comune Di Tribano
+  - Comune Di Triei
+  - Comune Di Trissino
+  - Comune Di Turbigo
+  - Comune Di Turi
+  - Comune Di Turri
+  - Comune Di Ulassai
+  - Comune Di Uri
+  - Comune Di Urzulei
+  - Comune Di Usini
+  - Comune Di Vaiano
+  - Comune Di Val Brembilla
+  - Comune Di Val Liona
+  - Comune Di Valdaone
+  - Comune Di Valdobbiadene
+  - Comune Di Valentano
+  - Comune Di Vallarsa
+  - Comune Di Vallelaghi
+  - Comune Di Vallio Terme
+  - Comune Di Valmadrera
+  - Comune Di Valmala
+  - Comune Di Vanzaghello
+  - Comune Di Varazze
+  - Comune Di Varese
+  - Comune Di Velletri
+  - Comune Di Venasca
+  - Comune Di Verbania
+  - Comune Di Verdellino
+  - Comune Di Verdello
+  - Comune Di Vermezzo Con Zelo
+  - Comune Di Vermiglio
+  - Comune Di Vernate
+  - Comune Di Vernio
+  - Comune Di Verona
+  - Comune Di Verucchio
+  - Comune Di Vestone
+  - Comune Di Viagrande
+  - Comune Di Viano
+  - Comune Di Viareggio
+  - Comune Di Vicenza
+  - Comune Di Viganò
+  - Comune Di Vignale Monferrato
+  - Comune Di Vigodarzere
+  - Comune Di Villa Santina
+  - Comune Di Villabate
+  - Comune Di Villacidro
+  - Comune Di Villafalletto
+  - Comune Di Villanova Biellese
+  - Comune Di Villaputzu
+  - Comune Di Villaricca
+  - Comune Di Villasalto
+  - Comune Di Villasimius
+  - Comune Di Ville D'anaunia
+  - Comune Di Vimercate
+  - Comune Di Vimodrone
+  - Comune Di Vittorio Veneto
+  - Comune Di Vittuone
+  - Comune Di Vobarno
+  - Comune Di Voghera
+  - Comune Di Volano
+  - Comune Di Volpago Del Montello
+  - Comune Di Voltago Agordino
+  - Comune Di Zenson Di Piave
+  - Comune Di Zevio
+  - Comune Di Ziano Di Fiemme
+  - Comune Di Zibido San Giacomo
+  - Comune General De Fascia
+  - Comune Ville Di Fiemme
+  - Comunità Alto Garda E Ledro
+  - Comunità Della Val Di Non
+  - Comunità Della Vallagarina
+  - Comunità Della Valle Di Cembra
+  - Comunità Della Valle Di Sole
+  - Comunità Delle Giudicarie
+  - Comunità Di Montagna Del Gemonese
+  - Comunità Di Primiero
   - Comunità Montana Alta Irpinia
   - Comunità Montana Alta Tuscia Laziale
-  - Comunità Montana Alto Sangro Altopiano delle cinque miglia
-  - Comunità Montana del Piambello
-  - Comunità Montana Vallo di Diano
+  - Comunità Montana Alto Sangro Altopiano Delle Cinque Miglia
+  - Comunità Montana Del Piambello
+  - Comunità Montana Di Valle Sabbia
+  - Comunità Montana Valle Seriana
+  - Comunità Montana Valli Del Lario E Del Ceresio
+  - Comunità Montana Vallo Di Diano
+  - Comunità Montana Valtellina Di Sondrio
+  - Comunità Riviera Friulana
   - Comunità Rotaliana - Königsberg
-  - Comunità Territoriale della Val di Fiemme
-  - Comunità Valle dei Laghi
-  - Comunità Valsugana e Tesino
-  - Consiglio della Provincia Autonoma di Trento
+  - Comunità Territoriale Della Val Di Fiemme
+  - Comunità Valle Dei Laghi
+  - Comunità Valsugana E Tesino
+  - Comunitą Alta Valsugana E Bersntol
+  - Conser Vco Spa
+  - Conservatorio Di Musica Di Vicenza Arrigo Pedrollo
+  - Consiglio Della Provincia Autonoma Di Trento
   - Consiglio Regionale Abruzzo
-  - Consiglio Regionale della Calabria
-  - Consiglio Regionale delle Marche
+  - Consiglio Regionale Della Calabria
+  - Consiglio Regionale Delle Marche
   - Consorzio Acquedottistico Marsicano Spa
-  - Consorzio BIM del Chiese
+  - Consorzio Bim Del Chiese
   - Consorzio Bonifica Ticino Villoresi
   - Consorzio Brescia Mercati
-  - Consorzio Chierese per i servizi
+  - Consorzio Chierese Per I Servizi
+  - Consorzio Cimiteriale Tra I Comuni Di Frattamaggiore, Grumo Nevano E Frattaminore
   - Consorzio Costa Smeralda
-  - Consorzio dei Comuni Trentini
-  - Consorzio dell’Adda
-  - Consorzio di Bonifica della Sardegna Centrale
-  - Consorzio di Bonifica dell’Oristanese
-  - Consorzio di Bonifica del Nord Sardegna
+  - Consorzio Dei Comuni Trentini
+  - Consorzio Dell’adda
+  - Consorzio Di Bonifica Del Nord Sardegna
+  - Consorzio Di Bonifica Della Sardegna Centrale
+  - Consorzio Di Bonifica Della Sardegna Meridionale
+  - Consorzio Di Bonifica Dell’oristanese
   - Consorzio Industriale Provinciale Sassari
-  - Consorzio Interuniversitario Nazionale per la Scienza e Tecnologia dei Materiali
+  - Consorzio Interuniversitario Nazionale Per La Scienza E Tecnologia Dei Materiali
   - Consorzio Italbiotec
-  - Consorzio Servizi Ecologia ed Ambiente C.S.E.A.
+  - Consorzio Parco Alto Milanese
+  - Consorzio Per I Servizi Territoriali Del Noce
+  - Consorzio Servizi Ecologia Ed Ambiente C.s.e.a.
   - Consorzio Universitario Piceno
-  - Consorzio Zona Industriale e Porto Fluviale di Padova
+  - Consorzio Zona Industriale E Porto Fluviale Di Padova
   - Cordar Spa Biella Servizi
-  - Corte dei Conti
-  - Corte dei Conti
-  - CSBNO
-  - CTP – Compagnia Trasporti Pubblici di Napoli
-  - DINTEC – Consorzio per l’innovazione tecnologica
-  - EDISU – Ente per Il Diritto allo Studio Universitario del Piemonte
-  - Energie per la Città SPA
-  - Ente Nazionale RISI
+  - Corte Dei Conti
+  - Csbno
+  - Ctp – Compagnia Trasporti Pubblici Di Napoli
+  - Dintec – Consorzio Per L’innovazione Tecnologica
+  - Dsu Toscana – Agenzia Regionale Per Il Diritto Allo Studio Universitario Della Toscana
+  - Edilizia Provinciale Grossetana Spa
+  - Edisu – Ente Per Il Diritto Allo Studio Universitario Del Piemonte
+  - Energie Per La Città Spa
+  - Ente Di Decentramento Regionale Di Pordenone
+  - Ente Di Decentramento Regionale Di Trieste
+  - Ente Nazionale Risi
   - Ente Ospedaliero Ospedali Galliera
   - Ente Parco Nazionale Arcipelago Toscano
-  - Environment Park PA
-  - Equitalia Giustizia S.p.A.
-  - ESU-ARDSU di Venezia
-  - ETRA SpA
-  - Eurolavoro AFOL Ovest Milano
-  - F.I.L. Formazione Innovazione Lavoro SRL
+  - Environment Park Pa
+  - Equitalia Giustizia S.p.a.
+  - Erdis Marche
+  - Erp Lucca Srl
+  - Esu-ardsu Di Venezia
+  - Etra Spa
+  - Eurolavoro Afol Ovest Milano
+  - F.i.l. Formazione Innovazione Lavoro Srl
+  - Fasc – Fondo Agenti Corrieri E Spedizionieri
+  - Fil Formazione Innovazione Lavoro Srl
   - Film Commission Torino Piemonte
-  - Finaosta SPA – Finanziaria Regionale Valle d’Aosta
+  - Filse Spa
+  - Finaosta Spa – Finanziaria Regionale Valle D’aosta
   - Fiumicino Tributi
   - Fondazione Bruno Kessler
-  - Fondazione Clément Fillietroz – Osservatorio Astronomico della Valle d’Aosta
+  - Fondazione Carnevale Di Viareggio
+  - Fondazione Clément Fillietroz – Osservatorio Astronomico Della Valle D’aosta
   - Fondazione Festival Pucciniano
-  - Fondazione Montagna sicura – Montagne sûre
-  - Fondazione Scuola dei Beni e delle Attività Culturali
-  - Fondazione Teatro Comunale e Auditorium Bolzano
+  - Fondazione Montagna Sicura – Montagne Sûre
+  - Fondazione Regionale Per La Ricerca Biomedica
+  - Fondazione Scuola Apm
+  - Fondazione Scuola Dei Beni E Delle Attività Culturali
+  - Fondazione Teatro Comunale E Auditorium Bolzano
+  - Forma.temp
   - Formaper
-  - Forma.Temp
-  - GAL Sole Grano Terra
-  - GEAL Spa
-  - GEASC Gestione Aziendale Servizi Comunali
-  - GES Geo Energy Service Spa
-  - Grotte di Castellana srl
-  - Gruppo SACE
+  - Friuli Venezia Giulia Strade Spa
+  - Gal Sole Grano Terra
+  - Geal Spa
+  - Geasc Gestione Aziendale Servizi Comunali
+  - Ges Geo Energy Service Spa
+  - Grotte Di Castellana Srl
+  - Gruppo Sace
   - Hermes Servizi Metropolitani
-  - IACP (Istituto Autonomo Case Popolari) Caltanissetta
-  - ICE Agenzia per la promozione all’estero e l’internazionalizzazione delle imprese
-  - IC Outsourcing
+  - I.u.s.s. – Scuola Universitaria Superiore – Pavia
+  - Iacp (Istituto Autonomo Case Popolari) Caltanissetta
+  - Ic Outsourcing
+  - Ice Agenzia Per La Promozione All’estero E L’internazionalizzazione Delle Imprese
   - Igea Spa
   - Infrastrutture Venete Srl
-  - Innovhub Stazioni Sperimentali per l’Industria
+  - Innovhub Stazioni Sperimentali Per L’industria
   - Insiel
-  - Insieme per il Sociale
-  - Institut Agricole Regional (IAR) Aosta
-  - IPI Santa Maria della Pietà
-  - IRCCS Centro Neurolesi Bonino Pulejo
-  - IRCCS De Bellis Ente Ospedaliero Specializzato in Gastroenterologia
-  - IRCCS GASLINI
-  - IRFIS Finsicilla
-  - IRSAP Istituto regionale sviluppo attività produttive
-  - ISIN – Ispettorato Nazionale per la Sicurezza Nucleare e la Radioprotezione
-  - ISNART
-  - Istituti Raggruppati A.P.S.P. Pistoia
-  - Istituto Autonomo delle Case Popolari della Provincia di Palermo
+  - Insieme Per Il Sociale
+  - Institut Agricole Regional (Iar) Aosta
+  - Ipav Istituzioni Pubbliche Di Assistenza Veneziane
+  - Ipi Santa Maria Della Pietà
+  - Irccs Centro Neurolesi Bonino Pulejo
+  - Irccs De Bellis Ente Ospedaliero Specializzato In Gastroenterologia
+  - Irccs Gaslini
+  - Irfis Finsicilia
+  - Irfis Finsicilla
+  - Irpet Istituto Regionale Per La Programmazione Economica Della Toscana
+  - Irsap Istituto Regionale Sviluppo Attività Produttive
+  - Isin – Ispettorato Nazionale Per La Sicurezza Nucleare E La Radioprotezione
+  - Isnart
+  - Istituti Raggruppati A.p.s.p. Pistoia
+  - Istituto Autonomo Delle Case Popolari Della Provincia Di Palermo
   - Istituto Bon Bozzolla
-  - Istituto Trentino per l’Edilizia Abitativa SPA (ITEA SPA)
-  - Istituto Tumori Giovanni Paolo II – I.R.C.C.S di Bari
-  - Istituto Zooprofilattico Sperimentale della Sardegna
-  - Istituto Zooprofilattico Sperimentale delle Venezie
+  - Istituto Cesana Malanotti
+  - Istituto Trentino Per L’edilizia Abitativa Spa (Itea Spa)
+  - Istituto Tumori Giovanni Paolo Ii – I.r.c.c.s Di Bari
+  - Istituto Zooprofilattico Sperimentale Abruzzo E Molise Caporale
+  - Istituto Zooprofilattico Sperimentale Della Sardegna
+  - Istituto Zooprofilattico Sperimentale Delle Venezie
   - Istituto Zooprofilattico Sperimentale Sicilia
-  - Lario Reti Holding S.p.A.
-  - Lucca Crea srl
+  - Lario Reti Holding S.p.a.
+  - Libero Consorzio Comunale Di Caltanissetta
+  - Lido Del Garda Immobiliare Srl
+  - Ligurcapital Spa
+  - Liguria Patrimonio Srl
+  - Lucca Crea Srl
   - Lucca Holding Spa
-  - Lucca Riscossioni e Servizi
-  - Massa Tributi e Riscossioni
+  - Lucca Riscossioni E Servizi
+  - Massa Tributi E Riscossioni
   - Mefop Spa
+  - Messinaservizi Bene Comune
   - Metro Srl
-  - Ministero dela giustistia
-  - Ministero politiche agricole alimentari e forestali (MIPAAF)
+  - Ministero Dela Giustistia
+  - Ministero Politiche Agricole Alimentari E Forestali (Mipaaf)
+  - Mipaaf – Ministero Politiche Agricole Alimentari E Forestali
   - Mobilità Versilia – Mover Spa
-  - Monteriggioni AD 1213 srl
-  - O.P.S. Organizzazione Progetti e Servizi Chieti SPA
-  - Ordine degli Avvocati di Sondrio
-  - Ordine degli Ingegneri Provincia di Fermo
-  - Ordine degli Ingegneri Provincia di Matera
-  - Ordine degli Ingegneri Provincia di Pesaro e Urbino
-  - Ordine degli Ingegneri Provincia di Rimini
-  - Ordine degli Psicologi Emilia Romagna
-  - Ordine degli Psicologi Lazio
-  - Ordine dei Dottori Commercialisti e degli Esperti Contabili di Ancona
-  - Ordine dei Dottori Commercialisti e degli Esperti Contabili di Aosta
-  - Ordine dei Dottori Commercialisti e degli Esperti Contabili di Monza e Brianza
-  - Ordine dei Dottori Commercialisti e degli Esperti Contabili di Rimini
-  - Ordine dei Farmacisti Provincia di Vicenza
-  - Ordine Dottori Commercialisti Esperti Contabili Pesaro e Urbino
-  - Ordine Medici Chirurghi e Odontoiatri di Brescia
-  - Ordine Medici Chirurghi e Odontoiatri di Firenze
-  - Ordine Medici Chirurghi e  Odontoiatri di Lecco
-  - Ordine Medici Chirurghi e Odontoiatri di Pavia
-  - Ordine Professioni Infermieristiche Forlì e Cesena
+  - Montecatone Rehabilitation Institute Spa
+  - Monteriggioni Ad 1213 Srl
+  - Nord Milano Ambiente
+  - Nuove Acque
+  - O.p.s. Organizzazione Progetti E Servizi Chieti Spa
+  - Ordine Architetti P.p.e C. Della Provincia Di Ferrara
+  - Ordine Architetti P.p.e C. Della Provincia Di Forlì E Cesena
+  - Ordine Degli Assistenti Sociali Della Valle D’aosta
+  - Ordine Degli Avvocati Di Cuneo
+  - Ordine Degli Avvocati Di Sondrio
+  - Ordine Degli Ingegneri Provincia Di Fermo
+  - Ordine Degli Ingegneri Provincia Di Matera
+  - Ordine Degli Ingegneri Provincia Di Pesaro E Urbino
+  - Ordine Degli Ingegneri Provincia Di Rimini
+  - Ordine Degli Psicologi Emilia Romagna
+  - Ordine Degli Psicologi Lazio
+  - Ordine Dei Dottori Commercialisti E Degli Esperti Contabili Di Ancona
+  - Ordine Dei Dottori Commercialisti E Degli Esperti Contabili Di Aosta
+  - Ordine Dei Dottori Commercialisti E Degli Esperti Contabili Di Monza E Brianza
+  - Ordine Dei Dottori Commercialisti E Degli Esperti Contabili Di Rimini
+  - Ordine Dei Farmacisti Della Val D’aosta
+  - Ordine Dei Farmacisti Provincia Di Vicenza
+  - Ordine Dei Geologi Della Valle D’aosta
+  - Ordine Delle Professioni Infermieristiche Di Como
+  - Ordine Delle Professioni Infermieristiche Di Latina
+  - Ordine Dottori Commercialisti Esperti Contabili Pesaro E Urbino
+  - Ordine Medici Chirurghi E  Odontoiatri Di Lecco
+  - Ordine Medici Chirurghi E Odontoiatri Di Brescia
+  - Ordine Medici Chirurghi E Odontoiatri Di Cuneo
+  - Ordine Medici Chirurghi E Odontoiatri Di Firenze
+  - Ordine Medici Chirurghi E Odontoiatri Di Padova
+  - Ordine Medici Chirurghi E Odontoiatri Di Pavia
+  - Ordine Medici Chirurghi E Odontoiatri Di Reggio Calabria
+  - Ordine Medici Chirurghi E Odontoiatri Di Venezia
+  - Ordine Medici Veterinari Provincia Di Nuoro
+  - Ordine Professioni Infermieristiche Forlì E Cesena
   - Ordine Psicologi Marche
   - Ospedale Maggiore Novara
   - Ospedale Policlinico San Martino
   - Parcam Srl
-  - Parco Nazionale Arcipelago di la Maddalena
-  - Parco Nazionale d’Abruzzo Lazio e Molise
-  - Parco Nazionale delle Cinque Terre
-  - Parma Gestione Entrate SpA
+  - Parco Nazionale Arcipelago Di La Maddalena
+  - Parco Nazionale Delle Cinque Terre
+  - Parco Nazionale D’abruzzo Lazio E Molise
+  - Parma Gestione Entrate Spa
   - Pavia Acque
-  - Pensplan Centrum S.p.A.
-  - Pietrasanta Sviluppo SPA
-  - Politecnico di Bari
-  - Politecnico di Torino
-  - Porto Conte Ricerche
+  - Pensplan Centrum S.p.a.
+  - Pietrasanta Sviluppo Spa
+  - Politecnico Di Bari
+  - Politecnico Di Torino
   - Port Security Piombino
-  - Provincia dell’Aquila
-  - Provincia della Spezia
-  - Provincia di Avellino
-  - Provincia di Barletta-Andria-Trani
-  - Provincia di Chieti
-  - Provincia di Cosenza
-  - Provincia di Isernia
-  - Provincia di Livorno
-  - Provincia di Mantova
-  - Provincia di Massa Carrara
-  - Provincia di Modena
-  - Provincia di Nuoro
-  - Provincia di Pistoia
-  - Provincia di Potenza
-  - Provincia di Reggio Emilia
-  - Provincia di Rieti
-  - Provincia di Rovigo
-  - Provincia di Taranto
-  - Provincia di Trento
-  - Provincia di Trento – Dipartimento Istruzione
-  - Provincia di Varese
-  - Provincia di Vicenza
-  - Regione Autonoma Trentino-Alto Adige / Südtirol
+  - Porto Conte Ricerche
+  - Progetto Santa Margherita
+  - Promos Italia Scrl
+  - Proservice Spa
+  - Provincia Del Verbano Cusio Ossola
+  - Provincia Della Spezia
+  - Provincia Dell’aquila
+  - Provincia Di Avellino
+  - Provincia Di Barletta-andria-trani
+  - Provincia Di Belluno
+  - Provincia Di Chieti
+  - Provincia Di Cosenza
+  - Provincia Di Crotone
+  - Provincia Di Isernia
+  - Provincia Di Livorno
+  - Provincia Di Mantova
+  - Provincia Di Massa Carrara
+  - Provincia Di Modena
+  - Provincia Di Nuoro
+  - Provincia Di Parma
+  - Provincia Di Pistoia
+  - Provincia Di Potenza
+  - Provincia Di Reggio Emilia
+  - Provincia Di Rieti
+  - Provincia Di Rovigo
+  - Provincia Di Taranto
+  - Provincia Di Trento
+  - Provincia Di Trento – Dipartimento Istruzione
+  - Provincia Di Varese
+  - Provincia Di Vicenza
+  - Ptp Science Park Scarl
+  - Publicasa Spa
+  - Regione Autonoma Trentino-alto Adige / Südtirol
+  - Regione Friuli Venezia Giulia
   - Regione Sardegna
-  - SACE s.p.a
-  - Salerno Energia Distribuzione SPA
+  - S.e.fi. Srl
+  - Sace S.p.a
+  - Salerno Energia Distribuzione Spa
   - San Giovanni Servizi S.r.l.
-  - Sanitaservice Policlinico Bari srl
-  - SAP Alpignano
-  - Sardegna Foreste (FORESTAS)
+  - Sanitaservice Policlinico Bari Srl
+  - Sap Alpignano
+  - Sardegna Foreste (Forestas)
+  - Sardegna Ricerche
   - Scapigliato Srl
   - Scuola Normale Superiore
   - Secoval Srl
-  - S.E.FI. Srl
-  - Servizi Ambiente Energia Valle Sabbia srl
-  - Sidra SPA
-  - Sistema Sosta e Mobilità S.p.A.
-  - Società degli Interporti Siciliani Spa
-  - Società della Salute Amiata Senese e Val d'Orcia - Valdichiana Senese
+  - Servizi Ambiente Energia Valle Sabbia Srl
+  - Seus Scpa
+  - Sgs Malè Srl
+  - Sidra Spa
+  - Sistema Ambiente Spa
+  - Sistema Sosta E Mobilità S.p.a.
+  - Societe Infrastructure Valdotaines Srl
+  - Società Degli Interporti Siciliani Spa
+  - Società Della Salute Amiata Senese E Val D'orcia - Valdichiana Senese
   - Società Entrate Pisa Spa
   - Società Informatica Territoriale Belluno
   - Società Italiana Servizi Spa
-  - SOGESID
-  - Sotacarbo Società Tecnologie Avanzate Carbone SpA
-  - SRM – Reti e Mobilità Srl
+  - Società Per Cornigliano Spa
+  - Soelia Spa
+  - Sogesid
+  - Sotacarbo Società Tecnologie Avanzate Carbone Spa
+  - Spim Spa
+  - Srm – Reti E Mobilità Srl
   - Stazione Zoologica Anton Dohrn
-  - Strada dei Parchi S.p.A.
+  - Strada Dei Parchi S.p.a.
   - Sviluppo Toscana Spa
-  - TE.AM. TERAMO AMBIENTE S.P.A.
-  - Tecnopolis Parco Scientifico e Tecnologico
-  - Trentino Digitale S.p.A.
-  - Ufficio d’Ambito di Pavia
-  - ULSS 01 Dolomiti
-  - ULSS 03 Serenissima
-  - ULSS 04 Veneto orientale
-  - ULSS 05 Polesana
-  - ULSS 07 Pedemontana
+  - Te.am. Teramo Ambiente S.p.a.
+  - Teatro Pubblico Pugliese
+  - Tecnopolis Parco Scientifico E Tecnologico
+  - Tennacola Spa
+  - Trentino Digitale S.p.a.
+  - Trentino Mobilità Spa
+  - Trentino Riscossioni Spa
+  - Trentino Sviluppo Spa
+  - Ufficio D’ambito Di Pavia
+  - Ulss 01 Dolomiti
+  - Ulss 03 Serenissima
+  - Ulss 04 Veneto Orientale
+  - Ulss 05 Polesana
+  - Ulss 07 Pedemontana
+  - Umbria Digitale Scarl
+  - Umbria Salute E Servizi Scarl
   - Unione Collinare Canavesana
-  - Unione Comuni della Romagna Forlivese
-  - Unione Comuni del Sarrabus
-  - Unione dei Comuni della Val di Bisenzio
-  - Unione dei Comuni della Valle del Pardu e dei Tacchi Ogliastra Meridionale
-  - Unione dei comuni della Valtenesi
-  - Unione dei Comuni del Pratomagno
-  - Unione dei Comuni Destra Adige
-  - Unione dei Comuni Terre e Fiumi
-  - Unione delle Torri
-  - Unione di comuni del Basso Feltrino – Sette Ville
-  - Unione di comuni Lombarda Lonate Pozzolo e di Ferno
-  - Unione di comuni Terre del Serio
+  - Unione Comuni Del Sarrabus
+  - Unione Comuni Del Villanova
+  - Unione Comuni Della Romagna Forlivese
+  - Unione Comuni Modenesi Area Nord
+  - Unione Dei Comuni Circondario Empolese Valdelsa
+  - Unione Dei Comuni Del Pratomagno
+  - Unione Dei Comuni Della Val Di Bisenzio
+  - Unione Dei Comuni Della Valle Del Pardu E Dei Tacchi Ogliastra Meridionale
+  - Unione Dei Comuni Della Valtenesi
+  - Unione Dei Comuni Destra Adige
+  - Unione Dei Comuni I Nuraghi Di Monte Idda E Fanaris
+  - Unione Dei Comuni Pratiarcati
+  - Unione Dei Comuni Savena Idice
+  - Unione Dei Comuni Terre E Fiumi
+  - Unione Delle Torri
+  - Unione Di Comuni Alta Marmilla
+  - Unione Di Comuni Del Basso Feltrino – Sette Ville
+  - Unione Di Comuni Della Planargia
+  - Unione Di Comuni Lombarda Lonate Pozzolo E Di Ferno
+  - Unione Di Comuni Terre Del Serio
   - Unione Montana Alpago
+  - Unione Montana Cadore Longaronese Zoldo
   - Unione Montana Marosticense
-  - Unione Terra di Mezzo
+  - Unione Montana Val Belluna
+  - Unione Reno Galliera
+  - Unione Terra Di Mezzo
   - Unione Tresinaro Secchia
   - Uniontrasporti
-  - Università degli Studi della Campania "Luigi Vanvitelli"
-  - Università degli Studi del Sannio
-  - Università degli Studi di Bergamo
-  - Università degli Studi di Ferrara
-  - Università degli Studi di Napoli L’Orientale
-  - Università degli Studi di Padova
-  - Università degli Studi di Pavia
-  - Università degli Studi di Perugia
-  - Università degli Studi di Roma Tre
-  - Università degli Studi G. d'Annunzio
-  - Università della Valle d’Aosta
-  - USL Umbria n.2 Terni
-  - Valisannio – Azienda Speciale della Camera di Commercio di Benevento
+  - Università Degli Studi Del Salento
+  - Università Degli Studi Del Sannio
+  - Università Degli Studi Della Basilicata
+  - Università Degli Studi Della Campania "Luigi Vanvitelli"
+  - Università Degli Studi Di Bergamo
+  - Università Degli Studi Di Ferrara
+  - Università Degli Studi Di Genova
+  - Università Degli Studi Di Napoli L’orientale
+  - Università Degli Studi Di Padova
+  - Università Degli Studi Di Parma
+  - Università Degli Studi Di Pavia
+  - Università Degli Studi Di Perugia
+  - Università Degli Studi Di Roma Tre
+  - Università Degli Studi G. D'annunzio
+  - Università Della Valle D’aosta
+  - Usl Umbria N.2 Terni
+  - Valisannio – Azienda Speciale Della Camera Di Commercio Di Benevento
   - Valle Sabbia Solidale
-  - Veneto Acque SPA
+  - Veneto Acque Spa
   - Veneto Film Commission
-  - Venezia Spiagge S.p.A.
+  - Venezia Spiagge S.p.a.
   - Vi.abilità
   - Villaservice Spa
