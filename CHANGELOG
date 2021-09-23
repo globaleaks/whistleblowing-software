@@ -1,3 +1,9 @@
+Changes in version 4.3.1
+    Fix issues #2525, #2768, #3051, #3052
+    When key escrow is enabled activate user encryption as soon that users are created
+    Apply minor bugfixing of new interfaces
+    Update translations
+
 Changes in version 4.3.0
     Make it possible for recipients to add a new recipient to their submissions (#2595)
     Implement Request Support feature (#3035)
