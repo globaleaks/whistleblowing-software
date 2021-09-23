@@ -622,7 +622,7 @@ var GL = angular.module("GL", [
           elem = document.createElement("link");
           elem.setAttribute("id", "load-custom-favicon");
           elem.setAttribute("rel", "shortcut icon");
-          elem.setAttribute("href", $rootScope.public.node.favicon ? 's/favicon' : 'data/favicon.ico');
+          elem.setAttribute("href", $rootScope.public.node.favicon ? "s/favicon" : "data/favicon.ico");
           document.getElementsByTagName("head")[0].appendChild(elem);
         }
 
