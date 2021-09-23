@@ -15,7 +15,7 @@
       <a id="PreferencesLink" data-ng-href="#{{Authentication.session.preferencespage}}" data-uib-tooltip="{{'Preferences' | translate}}"><i class="fas fa-user"></i></a>
       <span class="text-separator">|</span>
     </span>
-    <span id="SupportLinkBox" data-ng-if="Authentication.session.role === 'recipient' ||  Authentication.session.role === 'custodian'">
+    <span id="SupportLinkBox" data-ng-if="Authentication.session && Authentication.session.role !== 'whistleblower'">
       <a id="SupportLink" href="" data-ng-click="Utils.openSupportModal()" data-uib-tooltip="{{'Request support' | translate}}"><i class="fas fa-life-ring"></i></a>
       <span class="text-separator">|</span>
     </span>
