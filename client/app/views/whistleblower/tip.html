@@ -16,17 +16,17 @@
   <div class="col-md-12" data-ng-include="'views/partials/tip_info.html'"></div>
 </div>
 <div class="row" data-ng-if="tip.context.show_recipients_details">
-  <div class"col-md-6" data-ng-include="'views/partials/tip_receiver_list.html'"></div>
+  <div class="col-md-12" data-ng-include="'views/partials/tip_receiver_list.html'"></div>
 </div>
 <div class="row">
-  <div class="col-md-6" data-ng-include="'views/partials/tip_questionnaire_answers.html'"></div>
-  <div class="col-md-6" data-ng-if="tip.enable_whistleblower_identity" data-ng-include="'views/whistleblower/whistleblower_identity.html'"></div>
-</div>
-<div class="row" data-ng-if="tip.enable_attachments">
-  <div class="col-md-6" data-ng-include="'views/partials/tip_files_whistleblower.html'"></div>
-</div>
-<div class="row" data-ng-if="tip.wbfiles.length">
-  <div class="col-md-6" data-ng-include="'views/partials/widget_wbfiles.html'"></div>
+  <div class="col-md-6">
+    <div data-ng-include="'views/partials/tip_questionnaire_answers.html'"></div>
+    <div data-ng-if="tip.enable_attachments" data-ng-include="'views/partials/tip_files_whistleblower.html'"></div>
+    <div data-ng-if="tip.wbfiles.length" data-ng-include="'views/partials/widget_wbfiles.html'"></div>
+  </div>
+  <div class="col-md-6">
+    <div data-ng-if="tip.enable_whistleblower_identity" data-ng-include="'views/whistleblower/whistleblower_identity.html'"></div>
+  </div>
 </div>
 <div class="row">
   <div class="col-md-6" data-ng-if="tip.context.enable_comments || tip.comments.length" data-ng-include="'views/partials/tip_comments.html'"></div>
