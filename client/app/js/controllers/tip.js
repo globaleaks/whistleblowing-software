@@ -81,7 +81,7 @@ GL.controller("TipCtrl",
     };
 
     $scope.preprocessTipAnswers = function(tip) {
-      var x, i, j, questionnaire, step;
+      var x, i, j, k, questionnaire, step;
 
       for (x=0; x<tip.questionnaires.length; x++) {
         questionnaire = tip.questionnaires[x];
@@ -111,7 +111,9 @@ GL.controller("TipCtrl",
               $scope.rows = fieldUtilities.splitRows($scope.fields);
               $scope.field = $scope.whistleblower_identity_field;
 
-              fieldUtilities.onAnswersUpdate($scope);
+              for (k=0; k<$scope.whistleblower_identity_field.children.length; k++) {
+                filterNotTriggeredField($scope.whistleblower_identity_field, $scope.whistleblower_identity_field.children[k], $scope.tip.data.whistleblower_identity);
+              }
             }
           }
         }
