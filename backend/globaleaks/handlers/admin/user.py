@@ -1,16 +1,19 @@
 # -*- coding: utf-8
+from twisted.internet.defer import inlineCallbacks
+
 from globaleaks import models
+from globaleaks.handlers.admin.operation import generate_password_reset_token
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.password_reset import db_generate_password_reset_token
 from globaleaks.handlers.user import db_get_user, \
+                                     db_set_user_password, \
                                      parse_pgp_options, \
                                      user_serialize_user
-
+from globaleaks.handlers.password_reset import db_generate_password_reset_token
 from globaleaks.models import fill_localized_keys
 from globaleaks.orm import db_del, db_log, transact, tw
 from globaleaks.rest import requests
 from globaleaks.state import State
-from globaleaks.utils.crypto import GCE, Base64Encoder
+from globaleaks.utils.crypto import GCE, Base64Encoder, generateRandomPassword
 from globaleaks.utils.utility import datetime_now, uuid4
 
 
@@ -43,12 +46,12 @@ def db_create_user(session, tid, request, language):
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)
 
+    if request['password']:
+        db_set_user_password(session, tid, user, request['password'], '')
+
     session.add(user)
 
     session.flush()
-
-    if request.get('send_account_activation_link', False):
-        db_generate_password_reset_token(session, user)
 
     return user
 
@@ -144,6 +147,7 @@ class UsersCollection(BaseHandler):
         """
         return tw(db_get_users, self.request.tid, None, self.request.language)
 
+    @inlineCallbacks
     def post(self):
         """
         Create a new user
@@ -151,7 +155,15 @@ class UsersCollection(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminUserDesc)
 
-        return create_user(self.request.tid, request, self.request.language)
+        if not request['password'] and self.session.ek:
+            request['password'] = generateRandomPassword(16)
+
+        user = yield create_user(self.request.tid, request, self.request.language)
+
+        if request['send_account_activation_link']:
+            yield generate_password_reset_token(self.request.tid, self.session, user['id'])
+
+        return user
 
 
 class UserInstance(BaseHandler):

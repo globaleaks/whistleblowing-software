@@ -115,14 +115,7 @@ def reset_templates(session, tid):
     ConfigL10NFactory(session, tid).reset('notification', load_appdata())
 
 
-@transact
-def generate_password_reset_token(session, tid, user_session, user_id):
-    user = session.query(User).filter(User.tid == tid, User.id == user_id).one_or_none()
-    if user is None:
-        return
-
-    db_generate_password_reset_token(session, user)
-
+def set_tmp_key(user_session, user):
     if user_session.ek and user.crypto_pub_key:
         crypto_escrow_prv_key = GCE.asymmetric_decrypt(user_session.cc, Base64Encoder.decode(user_session.ek))
 
@@ -133,7 +126,19 @@ def generate_password_reset_token(session, tid, user_session, user_id):
 
         enc_key = GCE.derive_key(user.reset_password_token.encode(), user.salt)
         key = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, user_cc))
-        State.TempKeys[user_id] = TempKey(key)
+        State.TempKeys[user.id] = TempKey(key)
+
+
+@transact
+def generate_password_reset_token(session, tid, user_session, user_id):
+    user = session.query(User).filter(User.tid == tid, User.id == user_id).one_or_none()
+    if user is None:
+        return
+
+    db_generate_password_reset_token(session, user)
+
+    if user_session.ek and user.crypto_pub_key:
+        set_tmp_key(user_session, user)
 
 
 class AdminOperationHandler(OperationHandler):

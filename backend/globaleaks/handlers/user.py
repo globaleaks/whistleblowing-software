@@ -10,7 +10,7 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.operation import OperationHandler
-from globaleaks.models import get_localized_values
+from globaleaks.models import config, get_localized_values
 from globaleaks.orm import db_get, db_log, transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
@@ -19,7 +19,10 @@ from globaleaks.utils.crypto import generateOtpSecret, generateRandomKey, totpVe
 from globaleaks.utils.utility import datetime_now, datetime_null
 
 
-def set_user_password(tid, user, password, cc):
+def db_set_user_password(session, tid, user, password, cc):
+    config_tenant_1 = config.ConfigFactory(session, 1)
+    config_tenant_n = config.ConfigFactory(session, tid)
+
     # Regenerate the password hash only if different from the best choice on the platform
     if user.hash_alg != 'ARGON2':
         user.hash_alg = 'ARGON2'
@@ -34,7 +37,7 @@ def set_user_password(tid, user, password, cc):
     user.password = password_hash
     user.password_change_date = datetime_now()
 
-    if not State.tenant_cache[tid].encryption and cc == '':
+    if not config_tenant_n.get_val('encryption') and cc == '':
         return None
 
     enc_key = GCE.derive_key(password.encode(), user.salt)
@@ -46,11 +49,14 @@ def set_user_password(tid, user, password, cc):
 
     user.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, cc))
 
-    if State.tenant_cache[1].crypto_escrow_pub_key:
-        user.crypto_escrow_bkp1_key = Base64Encoder.encode(GCE.asymmetric_encrypt(State.tenant_cache[1].crypto_escrow_pub_key, cc))
+    crypto_escrow_pub_key_tenant_1 = config_tenant_1.get_val('crypto_escrow_pub_key')
+    if crypto_escrow_pub_key_tenant_1:
+        user.crypto_escrow_bkp1_key = Base64Encoder.encode(GCE.asymmetric_encrypt(crypto_escrow_pub_key_tenant_1, cc))
 
-    if State.tenant_cache[tid].crypto_escrow_pub_key:
-        user.crypto_escrow_bkp2_key = Base64Encoder.encode(GCE.asymmetric_encrypt(State.tenant_cache[tid].crypto_escrow_pub_key, cc))
+    if tid != 1:
+        crypto_escrow_pub_key_tenant_n = config_tenant_n.get_val('crypto_escrow_pub_key')
+        if crypto_escrow_pub_key_tenant_n:
+            user.crypto_escrow_bkp2_key = Base64Encoder.encode(GCE.asymmetric_encrypt(crypto_escrow_pub_key_tenant_n, cc))
 
     return cc
 
@@ -198,7 +204,7 @@ def db_user_update_user(session, tid, user_session, request):
                                       user.password):
                 raise errors.InvalidOldPassword
 
-        user_session.cc = set_user_password(tid, user, request['password'], user_session.cc)
+        user_session.cc = db_set_user_password(session, tid, user, request['password'], user_session.cc)
 
         db_log(session, tid=tid, type='change_password', user_id=user.id, object_id=user.id)
 

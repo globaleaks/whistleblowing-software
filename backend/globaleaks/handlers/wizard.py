@@ -15,34 +15,6 @@ from globaleaks.utils.utility import datetime_now
 from globaleaks.utils.log import log
 
 
-def db_gen_user_keys(session, tid, user, password):
-    """
-    Transaction generating and saving user keys
-
-    :param session: An ORM session
-    :param tid: A tenant ID
-    :param user: A user object
-    :param password: A user's password
-    :return: A private key generated for the user
-    """
-    enc_key = GCE.derive_key(password.encode(), user.salt)
-    crypto_prv_key, user.crypto_pub_key = GCE.generate_keypair()
-    user.crypto_bkp_key, user.crypto_rec_key = GCE.generate_recovery_key(crypto_prv_key)
-    user.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, crypto_prv_key))
-
-    # Create an escrow backup for the root tenant
-    tid_1_escrow = config.ConfigFactory(session, 1).get_val('crypto_escrow_pub_key')
-    if tid_1_escrow:
-        user.crypto_escrow_bkp1_key = Base64Encoder.encode(GCE.asymmetric_encrypt(tid_1_escrow, crypto_prv_key))
-
-    # Create an escrow backup for the actual tenant
-    tid_n_escrow = config.ConfigFactory(session, tid).get_val('crypto_escrow_pub_key')
-    if tid_n_escrow:
-        user.crypto_escrow_bkp2_key = Base64Encoder.encode(GCE.asymmetric_encrypt(tid_n_escrow, crypto_prv_key))
-
-    return crypto_prv_key
-
-
 def db_wizard(session, tid, hostname, request):
     """
     Transaction for the handling of wizard request
@@ -87,6 +59,8 @@ def db_wizard(session, tid, hostname, request):
         if escrow:
             crypto_escrow_prv_key, crypto_escrow_pub_key = GCE.generate_keypair()
 
+            node.set_val('crypto_escrow_pub_key', crypto_escrow_pub_key)
+
             if  tid != 1 and root_tenant_node.get_val('crypto_escrow_pub_key'):
                 node.set_val('crypto_escrow_prv_key', Base64Encoder.encode(GCE.asymmetric_encrypt(root_tenant_node.get_val('crypto_escrow_pub_key'), crypto_escrow_prv_key)))
 
@@ -100,20 +74,14 @@ def db_wizard(session, tid, hostname, request):
         admin_desc['language'] = language
         admin_desc['role'] = 'admin'
         admin_desc['pgp_key_remove'] = False
-
         admin_user = db_create_user(session, tid, admin_desc, language)
-        admin_user.password = GCE.hash_password(request['admin_password'], admin_user.salt)
-        admin_user.password_change_needed = False
-        admin_user.password_change_date = date
 
-        if encryption:
-            if escrow:
-                node.set_val('crypto_escrow_pub_key', crypto_escrow_pub_key)
+        if tid == 1:
+            admin_user.password_change_needed = False
 
-            db_gen_user_keys(session, tid, admin_user, request['admin_password'])
-
-            if escrow:
-                admin_user.crypto_escrow_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(admin_user.crypto_pub_key, crypto_escrow_prv_key))
+        if encryption and escrow:
+            node.set_val('crypto_escrow_pub_key', crypto_escrow_pub_key)
+            admin_user.crypto_escrow_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(admin_user.crypto_pub_key, crypto_escrow_prv_key))
 
     if not request['skip_recipient_account_creation']:
         receiver_desc = models.User().dict(language)
@@ -128,12 +96,9 @@ def db_wizard(session, tid, hostname, request):
         receiver_desc['pgp_key_remove'] = False
         receiver_desc['send_account_activation_link'] = False
         receiver_user = db_create_user(session, tid, receiver_desc, language)
-        receiver_user.password = GCE.hash_password(receiver_desc['password'], receiver_user.salt)
-        receiver_user.password_change_needed = False
-        receiver_user.password_change_date = date
 
-        if encryption:
-            db_gen_user_keys(session, tid, receiver_user, receiver_desc['password'])
+        if tid == 1:
+            receiver_user.password_change_needed = False
 
     context_desc = models.Context().dict(language)
     context_desc['name'] = 'Default'
