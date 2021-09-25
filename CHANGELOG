@@ -1,3 +1,6 @@
+Changes in version 4.4.0
+    Bump database version to 56 to fix specific issue on db version 55
+
 Changes in version 4.3.2
     Fix regression on visualization on answers to fieldgroups introduced in 4.3.0 #3053
     Update translations
