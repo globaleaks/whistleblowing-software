@@ -275,14 +275,9 @@ class APIResourceWrapper(Resource):
 
         request.write(response.encode())
 
-        request.finish()
-
     def preprocess(self, request):
-        request.headers = request.getAllHeaders()
         request.hostname = request.getRequestHostname()
-        request.port = request.getHost().port
-        request.multilang = False
-        request.finished = False
+        request.headers = request.getAllHeaders()
 
         if (not State.tenant_cache[1].wizard_done or
             request.hostname == b'localhost' or
@@ -303,41 +298,6 @@ class APIResourceWrapper(Resource):
             if tid in State.tenant_cache:
                 request.tid, request.path = tid, groups[1]
 
-        request.client_ip = request.getClientIP()
-        if isinstance(request.client_ip, bytes):
-            request.client_ip = request.client_ip.decode()
-
-        # Handle IPv4 mapping on IPv6
-        if request.client_ip.startswith('::ffff:'):
-            request.client_ip = request.client_ip[7:]
-
-        request.client_using_tor = request.client_ip in State.tor_exit_set or \
-                                   request.port == 8083
-
-        if 'x-tor2web' in request.headers:
-            request.client_using_tor = False
-
-        request.client_ua = request.headers.get(b'user-agent', b'')
-
-        request.client_mobile = re.search(b'Mobi|Android', request.client_ua, re.IGNORECASE) is not None
-
-        request.language = self.detect_language(request)
-        if b'multilang' in request.args:
-            request.multilang = True
-
-    def render(self, request):
-        """
-        :param request: `twisted.web.Request`
-
-        :return: empty `str` or `NOT_DONE_YET`
-        """
-        def _finish(ret):
-            request.finished = True
-
-        request.notifyFinish().addBoth(_finish)
-
-        self.preprocess(request)
-
         if request.tid is None:
             # Tentative domain correction in relation to presence / absence of 'www.' prefix
             if not request.hostname.startswith(b'www.'):
@@ -353,10 +313,72 @@ class APIResourceWrapper(Resource):
                     request.redirect(b'http://' + tentative_hostname + b'/')
             else:
                 # Fallback on root tenant with error 400
-                request.tid = 1
-                request.setResponseCode(400)
+                request.tid = None
+                return
 
-            self.set_headers(request)
+        if request.tid is None or request.tid not in State.tenant_cache:
+            request.tid = None
+            return
+
+        request.client_ip = request.getClientIP()
+        if isinstance(request.client_ip, bytes):
+            request.client_ip = request.client_ip.decode()
+
+        # Handle IPv4 mapping on IPv6
+        if request.client_ip.startswith('::ffff:'):
+            request.client_ip = request.client_ip[7:]
+
+        request.client_ip = request.getClientIP()
+        if isinstance(request.client_ip, bytes):
+            request.client_ip = request.client_ip.decode()
+
+        # Handle IPv4 mapping on IPv6
+        if request.client_ip.startswith('::ffff:'):
+            request.client_ip = request.client_ip[7:]
+
+        request.port = request.getHost().port
+
+        request.client_using_tor = request.client_ip in State.tor_exit_set or \
+                                   request.port == 8083
+
+        if 'x-tor2web' in request.headers:
+            request.client_using_tor = False
+
+        request.client_ua = request.headers.get(b'user-agent', b'')
+
+        request.client_mobile = re.search(b'Mobi|Android', request.client_ua, re.IGNORECASE) is not None
+
+        request.language = self.detect_language(request)
+        if b'multilang' in request.args:
+            request.multilang = True
+
+
+    def render(self, request):
+        """
+        :param request: `twisted.web.Request`
+
+        :return: empty `str` or `NOT_DONE_YET`
+        """
+        def _finish(ret):
+            request.finished = True
+
+        request.notifyFinish().addBoth(_finish)
+
+        request.hostname = b''
+        request.headers = None
+        request.client_ip = b''
+        request.client_ua = b''
+        request.client_mobile = False
+        request.client_using_tor = False
+        request.port = 443
+        request.language = 'en'
+        request.multilang = False
+        request.finished = False
+
+        self.preprocess(request)
+
+        if request.tid is None:
+            request.setResponseCode(400)
             return b''
 
         self.set_headers(request)
@@ -409,17 +431,18 @@ class APIResourceWrapper(Resource):
 
         if self.handler.root_tenant_only and request.tid != 1:
             self.handle_exception(errors.ForbiddenOperation(), request)
-            return
+            return b''
 
         if self.handler.upload_handler and method == 'post':
             self.handler.process_file_upload()
             if self.handler.uploaded_file is None:
-                return
+                return b''
 
         @defer.inlineCallbacks
         def concludeHandlerFailure(err):
-            self.handle_exception(err, request)
             yield self.handler.execution_check()
+            self.handle_exception(err, request)
+            request.finish()
 
         @defer.inlineCallbacks
         def concludeHandlerSuccess(ret):
@@ -523,7 +546,6 @@ class APIResourceWrapper(Resource):
         request.setHeader(b'Content-Language', request.language)
 
     def detect_language(self, request):
-        tid = request.tid if request.tid else 1
         locales = []
         for language in request.headers.get(b'accept-language', b'').decode().split(","):
             parts = language.strip().split(";")
@@ -535,11 +557,11 @@ class APIResourceWrapper(Resource):
             else:
                 score = 1.0
 
-            if parts[0] in State.tenant_cache[tid].languages_enabled:
+            if parts[0] in State.tenant_cache[request.tid].languages_enabled:
                 locales.append((parts[0], score))
 
         if locales:
             locales.sort(key=lambda pair: pair[1], reverse=True)
             return locales[0][0]
 
-        return State.tenant_cache[tid].default_language
+        return State.tenant_cache[request.tid].default_language

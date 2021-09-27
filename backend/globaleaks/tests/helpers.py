@@ -476,7 +476,15 @@ def forge_request(uri=b'https://www.globaleaks.org/',
     request._serverName = host
 
     request.code = 200
+    request.hostname = b''
+    request.headers = None
     request.client_ip = b'127.0.0.1'
+    request.client_ua = b''
+    request.client_mobile = False
+    request.client_using_tor = False
+    request.port = 443
+    request.language = 'en'
+    request.multilang = False
 
     def isSecure():
         return False
@@ -998,7 +1006,9 @@ class TestHandler(TestGLWithPopulatedDB):
                                 body=body,
                                 client_addr=client_addr,
                                 method=b'GET')
+
         x = api.APIResourceWrapper()
+
         x.preprocess(request)
 
         if not getattr(handler_cls, 'decorated', False):
