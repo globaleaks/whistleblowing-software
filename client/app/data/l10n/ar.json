@@ -460,7 +460,7 @@
   "The provided reset token is invalid or expired.": "رمز إعادة التعيين الذي تم تقديمه غير صحيح أو منتهي.",
   "Enter your account's username or your email address to request a password reset.": "قم بكتابة إسم المستخدم أو عنوان البريد الإلكتروني الخاص بالحساب من أجل طلب إعادة تعيين كلمة المرور.",
   "Enter your email address to request a password reset.": "قم بكتابة عنوان البريد الإلكتروني من أجل طلب إعادة تعيين كلمة السر.",
-  "Enter you encryption recovery key to complete the password reset procedure": "قم بكتابة مفتاح الاستراداد المشفر الخاص بك من أجل إكمال عملية إعادة تعيين كلمة السر.",
+  "Enter your encryption recovery key to complete the password reset procedure": "قم بكتابة مفتاح الاستراداد المشفر الخاص بك من أجل إكمال عملية إعادة تعيين كلمة السر.",
   "Password reset requested.": "تم طلب إعادة تعيين كلمة السر.",
   "Access to the whistleblower's identity has been requested to the custodian.": "تمّ طلب الحصول على هوية المبلغ من الوصيّ.",
   "Date of the request": "تاريخ الطلب",

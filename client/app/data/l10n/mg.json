@@ -460,7 +460,7 @@
   "The provided reset token is invalid or expired.": "Le jeton de réinitialisation fourni est invalide ou expiré.",
   "Enter your account's username or your email address to request a password reset.": "Saisissez le nom d’utilisateur de votre compte ou votre adresse courriel pour demander une réinitialisation du mot de passe.",
   "Enter your email address to request a password reset.": "Enter your email address to request a password reset.",
-  "Enter you encryption recovery key to complete the password reset procedure": "Enter you encryption recovery key to complete the password reset procedure",
+  "Enter your encryption recovery key to complete the password reset procedure": "Enter your encryption recovery key to complete the password reset procedure",
   "Password reset requested.": "Une réinitialisation de mot de passe a été demandée.",
   "Access to the whistleblower's identity has been requested to the custodian.": "L’accès à l’identité du lanceur d’alerte a été demandé au gardien. ",
   "Date of the request": "Date de la demande",

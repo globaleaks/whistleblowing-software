@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"PO-Revision-Date: 2021-09-27 12:08+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bosnian (http://www.transifex.com/otf/globaleaks/language/bs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1439,7 +1439,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Unesite svoju email adresu da biste zatražili reset lozinke."
 
 msgid ""
-"Enter you encryption recovery key to complete the password reset procedure"
+"Enter your encryption recovery key to complete the password reset procedure"
 msgstr "Unesite svoj ključ za obnovu enkripcije da biste završili proces resetovanja lozinke"
 
 msgid "Password reset requested."
@@ -1490,7 +1490,7 @@ msgid "Invalid phone number"
 msgstr "Broj telefona nije važeći"
 
 msgid "The answer is too short"
-msgstr ""
+msgstr "Odgovor je prekratak"
 
 msgid "The specified input is not valid."
 msgstr "Navedeni unos nije važeći."

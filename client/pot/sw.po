@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"PO-Revision-Date: 2021-09-27 12:54+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swahili (http://www.transifex.com/otf/globaleaks/language/sw/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1436,7 +1436,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Ingiza anuani yako ya barua pepe kuomba kuweka upya neno la siri."
 
 msgid ""
-"Enter you encryption recovery key to complete the password reset procedure"
+"Enter your encryption recovery key to complete the password reset procedure"
 msgstr "Ingiza namba za kurudisha programu ya kuficha ili kukamilisha utaratibu wa kuweka upya neno la siri"
 
 msgid "Password reset requested."

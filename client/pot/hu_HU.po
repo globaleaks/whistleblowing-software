@@ -3,7 +3,7 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # benewfy <benewfy@gmail.com>, 2015
 # benewfy <benewfy@gmail.com>, 2015-2016
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2017-2018,2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2017-2018,2020-2021
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-23 21:10+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-09-27 16:57+0000\n"
+"Last-Translator: vargaviktor <viktor.varga@gmail.com>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -411,7 +411,7 @@ msgid "Select"
 msgstr "Kiválaszt"
 
 msgid "Deselect"
-msgstr ""
+msgstr "Kijelölés levétele"
 
 msgid "Surname"
 msgstr "Vezetéknév"
@@ -482,13 +482,13 @@ msgid "Logout"
 msgstr "Kilépés"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
+msgstr "Ennek a címzettnek képesség adása arra, hogy felhasználói hozzáférést adjon a riportokhoz"
 
 msgid "Grant access"
-msgstr ""
+msgstr "Hozzáférés adása"
 
 msgid "Revoke access"
-msgstr ""
+msgstr "Hozzáférés visszavonása"
 
 msgid "File a report"
 msgstr "Jelentés beküldése"
@@ -701,7 +701,7 @@ msgid "Whistleblowing button"
 msgstr "Szivárogtatás gomb"
 
 msgid "Disclaimer"
-msgstr ""
+msgstr "Nyilatkozat"
 
 msgid "Footer"
 msgstr "Élőláb"
@@ -893,7 +893,7 @@ msgstr "Az automatikus HTTPS konfiguráció az egész tanúsítvány igénylés,
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
 "hostname must have a DNS record referencing that address."
-msgstr ""
+msgstr "A platformnak hozzáférhetőnek kell lennie egy publikus IP címen és a kiválasztott hostnévnek DNS bejegyzéssel kell rendelkeznie arra a címre. "
 
 msgid "Manual configuration"
 msgstr "Manuális  konfigurálás"
@@ -1242,10 +1242,10 @@ msgid "Enter a name for the copy"
 msgstr "Adja meg a másolat nevét"
 
 msgid "Request support"
-msgstr ""
+msgstr "Támogatás kérése"
 
 msgid "Thank you."
-msgstr ""
+msgstr "Köszönjük."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Kapcsolatba lépünk Önnel, amint lehetséges."
@@ -1453,7 +1453,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Új jelszó kéréséhez adja meg az e-mailcímét."
 
 msgid ""
-"Enter you encryption recovery key to complete the password reset procedure"
+"Enter your encryption recovery key to complete the password reset procedure"
 msgstr "Írja be a titkosítás helyreállító kulcsot, hogy végre hajthassa a jelszó helyreállítás folyamatot."
 
 msgid "Password reset requested."
@@ -1623,7 +1623,7 @@ msgid "Last name"
 msgstr "Vezetéknév"
 
 msgid "Alternative contact method"
-msgstr ""
+msgstr "Alternatív kapcsolatfelvételi mód"
 
 msgid "Other"
 msgstr "Egyéb"
@@ -1915,7 +1915,7 @@ msgstr "Útmutatásért a frissítésekhez tekintse meg a kézikönyvet: {Update
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "Ez egy értesítő email arról, hogy a címzett hozzáférést adott egy vagy több riporthoz."
 
 msgid "New report"
 msgstr "Új jelentés"

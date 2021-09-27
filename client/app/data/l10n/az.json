@@ -460,7 +460,7 @@
   "The provided reset token is invalid or expired.": "Verilən sıfırlama tokeni etibarsızdır, ya da köhnədir.",
   "Enter your account's username or your email address to request a password reset.": "Parolunuzu yeniləmək üçün istifadəçi adı və ya emeyl ünvanınızı yazın.",
   "Enter your email address to request a password reset.": "Parolu yeniləmək üçün email ünvanınızı daxil edin.",
-  "Enter you encryption recovery key to complete the password reset procedure": "Parolu yeniləmə prosedurunu bitirmək üçün şifrəli sıfırlama kodunuzu daxil edin.",
+  "Enter your encryption recovery key to complete the password reset procedure": "Parolu yeniləmə prosedurunu bitirmək üçün şifrəli sıfırlama kodunuzu daxil edin.",
   "Password reset requested.": "Parolun yenilənməsi tələb edildi.",
   "Access to the whistleblower's identity has been requested to the custodian.": "Mühafizəçidən informasiya ötürənin kimliyinə giriş tələb olunur.",
   "Date of the request": "Sorğunun tarixi",

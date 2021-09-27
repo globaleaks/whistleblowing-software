@@ -460,7 +460,7 @@
   "The provided reset token is invalid or expired.": "Den indtastede nulstillingskode er ugyldig eller udløbet.",
   "Enter your account's username or your email address to request a password reset.": "Indtast din kontos brugernavn eller din e-mail-adresse for at nulstille din adgangskode.",
   "Enter your email address to request a password reset.": "Indtast din e-mail-adresse for at nulstille din adgangskode.",
-  "Enter you encryption recovery key to complete the password reset procedure": "Indtast din krypteringsnøgle for at færdiggøre adgangskodegendannelsesproceduren",
+  "Enter your encryption recovery key to complete the password reset procedure": "Indtast din krypteringsnøgle for at færdiggøre adgangskodegendannelsesproceduren",
   "Password reset requested.": "Der er anmodet om nulstilling af adgangskode.",
   "Access to the whistleblower's identity has been requested to the custodian.": "Forespørgsel om whistleblowerens identitet er blevet videregivet til den tilsynsførende.",
   "Date of the request": "Dato for forespørgslen",

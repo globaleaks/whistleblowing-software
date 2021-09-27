@@ -3,14 +3,14 @@
 # Emin Mastizada <emin@linux.com>, 2015
 # Fardin Shikhiyev <shihiyev@gmail.com>, 2015
 # fiore <salimova.gulnar@gmail.com>, 2017
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017-2018,2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017-2018,2020-2021
 # Nikafn <appone6@gmail.com>, 2016-2018,2021
 # ruzanna <ruzanna81@gmail.com>, 2021
 # ulkar!(($-2017 <ulkernatiqqizis@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"PO-Revision-Date: 2021-09-27 12:06+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1441,7 +1441,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Parolu yeniləmək üçün email ünvanınızı daxil edin."
 
 msgid ""
-"Enter you encryption recovery key to complete the password reset procedure"
+"Enter your encryption recovery key to complete the password reset procedure"
 msgstr "Parolu yeniləmə prosedurunu bitirmək üçün şifrəli sıfırlama kodunuzu daxil edin."
 
 msgid "Password reset requested."

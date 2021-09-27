@@ -460,7 +460,7 @@
   "The provided reset token is invalid or expired.": "توکن تنظیم مجدد یا معتبر نیست یا منقضی شده است.",
   "Enter your account's username or your email address to request a password reset.": "نام کاربری خود یا آدرس ایمیل را برای درخواست تنظیم مجدد پسورد وارد کنید.",
   "Enter your email address to request a password reset.": "برای درخواست تنظیم مجدد پسورد، آدرس ایمیل خود را وارد کنید.",
-  "Enter you encryption recovery key to complete the password reset procedure": "برای کامل کردن پروسه تنظیم مجدد پسورد، کلید بازیابی رمزگذاری خود را وارد کنید",
+  "Enter your encryption recovery key to complete the password reset procedure": "کلید بازیابی رمزگذاری خود را برای تکمیل روند بازنشانی گذرواژه وارد کنید",
   "Password reset requested.": "تنظیم مجدد پسورد درخواست شد.",
   "Access to the whistleblower's identity has been requested to the custodian.": "دسترسی به هویت افشاگر از متصدی درخواست شده است.",
   "Date of the request": "تاریخ درخواست",

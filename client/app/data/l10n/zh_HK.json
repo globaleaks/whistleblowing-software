@@ -460,7 +460,7 @@
   "The provided reset token is invalid or expired.": "所提供的重置令牌無效或過期。",
   "Enter your account's username or your email address to request a password reset.": "請輸入您的用戶名稱或電郵地址以重設密碼。",
   "Enter your email address to request a password reset.": "請輸入您的電郵地址以重設密碼。",
-  "Enter you encryption recovery key to complete the password reset procedure": "請輸入您的加密修復金鑰以完成密碼重置手續",
+  "Enter your encryption recovery key to complete the password reset procedure": "请输入加密恢复密钥，以完成密码重置流程",
   "Password reset requested.": "已請求重置密碼。",
   "Access to the whistleblower's identity has been requested to the custodian.": "已向保管人請求吹哨者的個人身份。",
   "Date of the request": "請求日期",

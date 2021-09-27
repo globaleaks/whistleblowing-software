@@ -460,7 +460,7 @@
   "The provided reset token is invalid or expired.": "Podany kod resetu jest nieprawidłowy lub wygasł.",
   "Enter your account's username or your email address to request a password reset.": "Podaj nazwę użytkownika lub adres email by zażądać resetu hasła.",
   "Enter your email address to request a password reset.": "Wprowadź swój adres email by zażądać resetu hasła.",
-  "Enter you encryption recovery key to complete the password reset procedure": "Wprowadź kod odzyskiwania szyfrowania by zakończyć procedurę resetu hasła",
+  "Enter your encryption recovery key to complete the password reset procedure": "Wprowadź kod odzyskiwania szyfrowania by zakończyć procedurę resetu hasła",
   "Password reset requested.": "Zażądano resetu hasła.",
   "Access to the whistleblower's identity has been requested to the custodian.": "Dozorca zażądał dostępu do tożsamości sygnalisty.",
   "Date of the request": "Data żądania",

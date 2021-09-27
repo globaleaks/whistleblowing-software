@@ -1,10 +1,12 @@
 # 
 # Translators:
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
 # Jahan Taganova, 2021
+# Muhammed Soltanov, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"PO-Revision-Date: 2021-09-27 12:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkmen (http://www.transifex.com/otf/globaleaks/language/tk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,7 +46,7 @@ msgid "Home"
 msgstr "Baş sahypa"
 
 msgid "Changelog"
-msgstr "Üýtgetme žurnaly"
+msgstr "Üýtgetme gündeligi"
 
 msgid "License"
 msgstr "Ygtyýarnama"
@@ -59,7 +61,7 @@ msgid "Anomalies"
 msgstr "Anomaliýalar"
 
 msgid "Preferences"
-msgstr "Saýlawlar"
+msgstr "Saýlamalar"
 
 msgid "Notification settings"
 msgstr "Duýduryş sazlamalary"
@@ -119,10 +121,10 @@ msgid "Preview"
 msgstr "Öňünden syn"
 
 msgid "The whistleblower has already read the last update"
-msgstr "Gizlin-habar ýetiriji soňky täzelenmäni eýýäm okady"
+msgstr "Gizlin habar ýetiriji soňky täzelenmäni eýýäm okady"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr "Gizlin-habar ýetiriji soňky täzelenmäni entek okamady"
+msgstr "Gizlin habar ýetiriji soňky täzelenmäni entek okamady"
 
 msgid "Move up"
 msgstr "Yokary çyk"
@@ -214,10 +216,10 @@ msgid "Request status"
 msgstr "Status ýagdaýy"
 
 msgid "Custodian"
-msgstr "Hossar"
+msgstr "Gözegçi"
 
 msgid "Identity"
-msgstr "Şahs"
+msgstr "Şahsyýet"
 
 msgid "Access requested"
 msgstr "Giriş soraldy"
@@ -232,7 +234,7 @@ msgid "Reply to the request"
 msgstr "Haýyşa jogap beriň"
 
 msgid "Authorized"
-msgstr "Ygtyýarly"
+msgstr "Ygtyýarlandyrylan"
 
 msgid "Denied"
 msgstr "Inkär edildi"
@@ -274,7 +276,7 @@ msgid "Disable notifications to administrators"
 msgstr "Dolandyryjylara bildirişleri öçüriň"
 
 msgid "Disable notifications to custodians"
-msgstr "Hossarlara bildirişleri öçüriň"
+msgstr "Gözegçilere bildirişleri öçüriň"
 
 msgid "Disable notifications to recipients"
 msgstr "Alyjylara bildirişleri öçüriň"
@@ -283,16 +285,16 @@ msgid "Score"
 msgstr "Bal"
 
 msgid "Trigger question"
-msgstr "Soragy gozga"
+msgstr "Soragy oýar"
 
 msgid "Triggered by score:"
-msgstr "Bal bilen gozgalan:"
+msgstr "Bal bilen oýarylan:"
 
 msgid "Weak"
 msgstr "Gowşak"
 
 msgid "Acceptable"
-msgstr "Kabul ederlikli"
+msgstr "Makul"
 
 msgid "Strong"
 msgstr "Güýçli"
@@ -301,7 +303,7 @@ msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Mazmuny saýlamak üçin interfeýsiň ýokarsynda görkezilen tekst"
 
 msgid "Silence email notifications"
-msgstr "Email habarnamalary dym"
+msgstr "Email habarnamalaryny dym"
 
 msgid "Turn on email notifications"
 msgstr "Email habarnamalaryny aç"
@@ -316,7 +318,7 @@ msgid "Custom"
 msgstr "Aýratyn"
 
 msgid "None"
-msgstr "Hiç zat"
+msgstr "None"
 
 msgid "Regular expression"
 msgstr "Yzygiderli aňlatma"
@@ -327,7 +329,7 @@ msgstr "Gözleg"
 msgid ""
 "This custom text is no longer displayed on the platform. The original text "
 "has either changed or been removed."
-msgstr "Bu adaty tekst indi platformada görkezilmeýär. Asyl tekst üýtgedi ýa-da aýryldy."
+msgstr "Bu adaty tekst indi platformada görkezilmeýär. Asyl tekst üýtgedildi ýa-da aýryldy."
 
 msgid "Audit log"
 msgstr "Gözegçilik gündeligi"
@@ -372,7 +374,7 @@ msgid "Enable email notifications for:"
 msgstr "Email habarnamalaryny açyň:"
 
 msgid "Disable"
-msgstr "Öçüriň"
+msgstr "Öçür"
 
 msgid "Remove"
 msgstr "Aýyr"
@@ -426,7 +428,7 @@ msgid "Last"
 msgstr "Soňky"
 
 msgid "Send a test email to your email address."
-msgstr "Synag email-i email salgyňyza iberiň."
+msgstr "Synag emaili email salgyňyza iberiň."
 
 msgid "Block the submission"
 msgstr "Ibermegi bloklaň"
@@ -435,7 +437,7 @@ msgid "Skip the recipient account creation."
 msgstr "Alyjynyň hasaby döretmekden geçiň."
 
 msgid "Send activation link"
-msgstr "Aktiwasiýa üçin link iber"
+msgstr "Işjeňleşdirme baglanyşygyny iber"
 
 msgid "Password reset"
 msgstr "Paroly täzeleýji"
@@ -443,10 +445,10 @@ msgstr "Paroly täzeleýji"
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr "Bir ýa-da birnäçe alyjy entek ilkinji girişi ýerine ýetirmedi. Diýmek, olar hasabatlary alyp bilmezler."
+msgstr "Bir ýa-da birnäçe alyjy entek ilkinji içeri girişi ýerine ýetirmedi. Diýmek, olar hasabatlary alyp bilmezler."
 
 msgid "This user has not performed the first login yet."
-msgstr "Bu ulanyjy entek ilkinji girişini ýerine ýetirmedi."
+msgstr "Bu ulanyjy entek ilkinji içeri girişini ýerine ýetirmedi."
 
 msgid "seconds"
 msgstr "sekunt"
@@ -464,13 +466,13 @@ msgid "Logout"
 msgstr "Içinden çyk"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr "Ulanyja hasabatlara girmek üçin bu alyja mümkinçilik beriň"
+msgstr "Bu alyja hasabatlara girmek üçin ulanyjy mümkinçiligini ber"
 
 msgid "Grant access"
-msgstr "Giriş ygtyýarnamasy"
+msgstr "Girişi ygtyýar ber"
 
 msgid "Revoke access"
-msgstr "Girişi ýatyryň"
+msgstr "Girişi ýatyr"
 
 msgid "File a report"
 msgstr "Hasabat beriň"
@@ -500,10 +502,10 @@ msgid "The two passwords do not match"
 msgstr "Iki parol gabat gelenok"
 
 msgid "The new password must differ from the previous."
-msgstr "Täze parol öňküsinden tapawutlanmalydyr."
+msgstr "Täze parol öňküsinden tapawutly bolmaly."
 
 msgid "Proceed"
-msgstr "Amal et"
+msgstr "Dowam et"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Dowam etmezden ozal iki faktor tassyklaýjyny işjeňleşdirmegiňizi haýyş edýäris."
@@ -515,7 +517,7 @@ msgid "Enable encryption"
 msgstr "Şifrlemegi işlet"
 
 msgid "Enable administrators to change user passwords"
-msgstr "Dolandyryjylara ulanyjy parollaryny üýtgetmäge mümkinçilik beriň"
+msgstr "Dolandyryjylara ulanyjy parollaryny üýtgetmäge mümkinçilik ber"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Ulanyjy parolyny üýtgetmäge ygtyýarly dolandyryjylar:"
@@ -527,10 +529,10 @@ msgid "Enable simplified login"
 msgstr "Ýönekeýleşdirilen girişi açyň"
 
 msgid "Enable search engines indexing"
-msgstr "Gözleg motorlaryny indeksirlemäge mümkinçilik beriň"
+msgstr "Gözleg motorlaryny indeksirlemäge mümkinçilik ber"
 
 msgid "Enable the receipt hint"
-msgstr "Kwitansiýa görkezmesini açyň"
+msgstr "Kwitansiýa görkezmesini aç"
 
 msgid "Default questionnaire"
 msgstr "Bellenen sowalnama"
@@ -567,13 +569,13 @@ msgid "Number of days till notifying unread reports to users"
 msgstr "Ulanyjylara okalmadyk hasabatlary habar berýänçä günleriň sany"
 
 msgid "Enable custodian user role"
-msgstr "Hossar ulanyjy roluny açyň"
+msgstr "Gözegçi ulanyjy roluny açyň"
 
 msgid "Enable scoring system"
-msgstr "Bal ulgamyny işjeňleşdiriň"
+msgstr "Bal ulgamyny aç"
 
 msgid "Enable private annotations"
-msgstr "Şahsy düşündirişleri açyň"
+msgstr "Şahsy düşündirişleri aç"
 
 msgid "Logging level"
 msgstr "Giriş derejesi"
@@ -582,10 +584,10 @@ msgid "Log accesses of internal users"
 msgstr "Içerki ulanyjylaryň giriş ýazgylary"
 
 msgid "Notify administrators of software problems"
-msgstr "Programma problemalary barada dolandyryjylara habar beriň"
+msgstr "Programma problemalary barada dolandyryjylara habar ber"
 
 msgid "Notify developers of software problems"
-msgstr "Programma problemalary barada döredijilere habar beriň"
+msgstr "Programma problemalary barada döredijilere habar ber"
 
 msgid ""
 "By enabling this feature, you will contribute to the development and "
@@ -596,7 +598,7 @@ msgid "Save"
 msgstr "Ýazdyr"
 
 msgid "Reset reports"
-msgstr "Hasabatlary täzeden düz"
+msgstr "Hasabatlary täzele"
 
 msgid "Low"
 msgstr "Pes"
@@ -620,7 +622,7 @@ msgid "ID"
 msgstr "ID"
 
 msgid "Username"
-msgstr "Ulanjyady"
+msgstr "Ulanjy ady"
 
 msgid "Role"
 msgstr "Rol"
@@ -656,7 +658,7 @@ msgid "Edit"
 msgstr "Düzet"
 
 msgid "Cancel"
-msgstr "Bes et"
+msgstr "Goýbolsun et"
 
 msgid "Report statuses"
 msgstr "Statuslary hasabat ber"
@@ -683,7 +685,7 @@ msgid "Whistleblowing button"
 msgstr "Gizlin habar yetirmek düwmesi"
 
 msgid "Disclaimer"
-msgstr "Düşündiriş"
+msgstr "Duýduryş"
 
 msgid "Footer"
 msgstr "Aşaky sözbaşy"
@@ -695,7 +697,7 @@ msgid "Download"
 msgstr "Göçürip al"
 
 msgid "Language:"
-msgstr "Dil"
+msgstr "Dil:"
 
 msgid "Add custom text"
 msgstr "Adaty tekst goşuň"
@@ -734,37 +736,37 @@ msgid "days"
 msgstr "günler"
 
 msgid "Show the questionnaire navigation interface"
-msgstr "Sowalnamanyň nawigasiýa interfeýsini görkeziň"
+msgstr "Sowalnamanyň nawigasiýa interfeýsini görkez"
 
 msgid "Allow whistleblowers to select their recipients"
-msgstr "Gizlin habar ýetirijilere alyjylaryny saýlamaga rugsat beriň"
+msgstr "Gizlin habar ýetirijilere alyjylaryny saýlamaga rugsat ber"
 
 msgid "Select all recipients by default"
-msgstr "Tertip boýunça ähli alyjylary saýlaň"
+msgstr "Tertip boýunça ähli alyjylary saýla"
 
 msgid "Maximum number of selectable recipients:"
 msgstr "Saýlanyp biljekleriň iň köp sany:"
 
 msgid "Show recipients in alphabetical order"
-msgstr "Alyjylary elipbiý tertibinde görkeziň"
+msgstr "Alyjylary elipbiý tertibinde görkez"
 
 msgid "Show recipient details on the status page of the report"
-msgstr "Hasabatyň ýagdaý sahypasynda alyjynyň jikme-jikliklerini görkeziň"
+msgstr "Hasabatyň ýagdaý sahypasynda alyjynyň jikme-jikliklerini görkez"
 
 msgid "Enable comments"
-msgstr "Teswirleri açyň"
+msgstr "Teswirleri aç"
 
 msgid "Allow whistleblowers to write comments"
-msgstr "Gizlin habar ýetirijilere teswir ýazmaga rugsat beriň"
+msgstr "Gizlin habar ýetirijilere teswir ýazmaga rugsat ber"
 
 msgid "Enable private messages"
-msgstr "Şahsy habarlary açyň"
+msgstr "Şahsy habarlary aç"
 
 msgid "Allow whistleblowers to send messages"
-msgstr "Gizlin habar ýetirijilere habar ibermäge rugsat beriň"
+msgstr "Gizlin habar ýetirijilere habar ibermäge rugsat ber"
 
 msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Gizlin habar ýetirijilere bar bolan hasabatlara goşmaçalar goşmagy rugsat beriň"
+msgstr "Gizlin habar ýetirijilere bar bolan hasabatlara goşmaçalar goşmagy rugsat ber"
 
 msgid "Additional questionnaire"
 msgstr "Goşmaça sowalnama"
@@ -782,22 +784,22 @@ msgid "Medium"
 msgstr "Ortaça"
 
 msgid "Customize the message shown in the receipt page"
-msgstr "Giriş sahypasynda görkezilen habary özleşdiriň"
+msgstr "Kwitansiýa sahypasynda görkezilen habary özleşdir"
 
 msgid "Assign the receipt only to reports reaching score:"
-msgstr "Diňe bala ýeten hasabatlara kwitansiýa belläň:"
+msgstr "Diňe bala ýeten hasabatlara kwitansiýa belle:"
 
 msgid "Software version:"
 msgstr "Programma wersiýasy:"
 
 msgid "Restrict access to specific IP addresses"
-msgstr "Belli bir IP adreslere girmegi çäklendiriň"
+msgstr "Belli bir IP adreslere girmegi çäklendir"
 
 msgid "Allowed IP addresses"
 msgstr "Rugsat berlen IP salgylar"
 
 msgid "Admin"
-msgstr "Administrator"
+msgstr "Admin"
 
 msgid "Recipient"
 msgstr "Alyjy"
@@ -845,19 +847,19 @@ msgid "Certificate"
 msgstr "Şahadatnama"
 
 msgid "Valid until:"
-msgstr "Şu wagta çenli hereket edýär:"
+msgstr "Şu wagta çenli:"
 
 msgid "Issuer:"
 msgstr "Beren:"
 
 msgid "Intermediate Certificates"
-msgstr "Orta resminamalara"
+msgstr "Orta Şahadatnamalar"
 
 msgid "Enable"
-msgstr "Açyk"
+msgstr "Aç"
 
 msgid "Reset"
-msgstr "Täzele"
+msgstr "Täzeden düz"
 
 msgid ""
 "The platform supports the configuration of HTTPS through this interface."
@@ -870,7 +872,7 @@ msgid ""
 "Using automatic HTTPS configuration will handle the entire process of "
 "requesting, enabling and renewing certificates from the Let's Encrypt "
 "Certificate Authority."
-msgstr "Awtomatiki HTTPS konfigurasiýasyny ulanmak, Şifrlenen Şahadatnamalar Edarasyndan şahadatnamalary talap etmek, ulanmak we täzelemek prosesini dolandyrar."
+msgstr "Awtomatiki HTTPS konfigurasiýasyny ulanmak, Şifrlenen Şahadatnamalar Häkimiýetinden şahadatnamalary talap etmek, ulanmak we täzelemek prosesini dolandyrar."
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
@@ -883,7 +885,7 @@ msgstr "El bilen edilýän konfigurasiýa"
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
-msgstr "El bilen konfigurasiýa düzeltmesi, alternatiw Şahadatnama Edarasyndan HTTPS gurmak arkaly size ýol görkezer."
+msgstr "El bilen konfigurasiýa düzeltmesi, alternatiw Şahadatnama Häkimiýetinden HTTPS gurmak arkaly size ýol görkezer."
 
 msgid "Auto-renewal"
 msgstr "Awto-täzelenme"
@@ -895,13 +897,13 @@ msgid "Disable the privacy panel"
 msgstr "Gizlinlik panelini öçür"
 
 msgid "Enable custom privacy panel"
-msgstr "Ýöriteleşdirilen gizlinlik panelini işlet"
+msgstr "Hususy gizlinlik panelini aç"
 
 msgid "Custom privacy panel"
 msgstr "Hususy gizlinlik paneli"
 
 msgid "Anonymize outgoing connections"
-msgstr "Çykýan baglanyşyklary anonimleşdiriň"
+msgstr "Çykýan baglanyşyklary anonimleşdir"
 
 msgid "Let the platform be reachable without Tor"
 msgstr "Tor-syz platforma elýeterli geçiş ber"
@@ -925,7 +927,7 @@ msgid "SMTP server port"
 msgstr "SMTP serwer porty"
 
 msgid "Security"
-msgstr "Gorag"
+msgstr "Howpsuzlyk"
 
 msgid "Warning"
 msgstr "Duýduryş"
@@ -937,7 +939,7 @@ msgid "Password"
 msgstr "Parol"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr " Duýduryş ibermezden ozal hasabatyň möhleti barada sagat sany:"
+msgstr "Duýduryş ibermezden ozal hasabatyň möhleti barada sagat sany:"
 
 msgid "Test the configuration"
 msgstr "Konfigurasiýany test et"
@@ -946,7 +948,7 @@ msgid "Reset SMTP configuration"
 msgstr "SMTP konfigurasiýasyny täzeden düz"
 
 msgid "Reset notification templates to default"
-msgstr "Nusga duýduryşlary asyl görnüşe täzeden düz"
+msgstr "Nusga duýduryşlaryny asyl görnüşe geçir"
 
 msgid "Template"
 msgstr "Nusga"
@@ -991,16 +993,16 @@ msgid "Question group"
 msgstr "Sorag topary"
 
 msgid "Hint"
-msgstr "Yşarat"
+msgstr "Ýaňzytma"
 
 msgid "Required"
 msgstr "Gerekli"
 
 msgid "Accept multiple file uploads"
-msgstr "Birnäçe faýl ýüklemesini kabul ediň"
+msgstr "Birnäçe faýl ýüklemesini kabul et"
 
 msgid "Accept multiple answers"
-msgstr "Birnäçe jogaplary kabul ediň"
+msgstr "Birnäçe jogaplary kabul et"
 
 msgid "Template override"
 msgstr "Nusgany ýok etmek"
@@ -1015,7 +1017,7 @@ msgid "Checkbox label"
 msgstr "Guty belligi"
 
 msgid "Add multimedia content"
-msgstr "Multimedia mazmunyny goş"
+msgstr "Multimedia mazmuny goş"
 
 msgid "Image"
 msgstr "Şekil"
@@ -1054,7 +1056,7 @@ msgid "Duplicate"
 msgstr "Göçürme"
 
 msgid "Steps"
-msgstr "Ädimleri"
+msgstr "Ädimler"
 
 msgid "Site settings"
 msgstr "Sahypanyň sazlamalary"
@@ -1081,13 +1083,13 @@ msgid "Creation date:"
 msgstr "Döredilen senesi:"
 
 msgid "Root domain used for secondary sites"
-msgstr "Ikinji derejeli saýtlar üçin ulanylýan kök domen"
+msgstr " Kök domain ikinji derejeli saýtlar üçin ulanyldy"
 
 msgid "Use the first site for administrative purposes only"
 msgstr "Ilkinji sahypany diňe administratiw maksatlar üçin ulanyň"
 
 msgid "Enable multi-site login"
-msgstr "Köpugurly girişi açyň"
+msgstr "Köpugurly girişi aç"
 
 msgid "Allow users to sign up"
 msgstr "Ulanyjylara ýazylmagyna rugsat beriň"
@@ -1099,13 +1101,13 @@ msgid "Title"
 msgstr "Sözbaşy"
 
 msgid "Send an account activation link to the user."
-msgstr "Ulanyja hasaby işjeňleşdiriji baglanyşygyny iberiň."
+msgstr "Ulanyja hasaby işjeňleşdiriji baglanyşygyny iber."
 
 msgid "Public name"
 msgstr "Umumy ady"
 
 msgid "Send reset link"
-msgstr "Täzeden baglanyşyk iberiň"
+msgstr "Täzeden düz baglanyşygyny iber"
 
 msgid "Set password"
 msgstr "Paroly belläň"
@@ -1114,7 +1116,7 @@ msgid "Disable two factor authentication"
 msgstr "Iki faktor tassyklanmagyny öçüriň"
 
 msgid "Force password change"
-msgstr "Paroly üýtgetmäge mejbur ediň"
+msgstr "Paroly üýtgetmegi mejbur ediň"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Ulanyjy indiki girişde parolyny üýtgetmäge mejbur bolar."
@@ -1123,7 +1125,7 @@ msgid "Language"
 msgstr "Dil"
 
 msgid "Enable email notifications"
-msgstr "Email habarnamalaryny açyň"
+msgstr "Email habarnamalaryny aç"
 
 msgid "Details of the PGP key:"
 msgstr "PGP açary barada jikme-jiklikler:"
@@ -1135,19 +1137,19 @@ msgid "Set up encryption by providing a PGP public key"
 msgstr "PGP umumy açary bilen şifrlemäni düzüň"
 
 msgid "Give this admin ability to change user passwords"
-msgstr "Ulanyjynyň parollaryny üýtgetmek üçin bu administrator ukybyny beriň"
+msgstr "Bu dolandyryja ulanyjynyň parollaryny üýtgetmek ukybyny beriň"
 
 msgid "Forcefully selected"
 msgstr "Mejbury saýlandy"
 
 msgid "Allow the recipient to delete reports"
-msgstr "Alyjynyň hasabatlary pozmagyna rugsat beriň"
+msgstr "Alyja hasabatlary pozmagy rugsat ber"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Alyjynyň hasabatyň möhletini yza süýşürmegine rugsat beriň"
+msgstr "Alyjynyň hasabatyň möhletini yza süýşürmegine rugsat ber"
 
 msgid "Give the user administrative access to the following features:"
-msgstr "Ulanyja aşakdaky aýratynlyklara administratiw ygtyýar beriň:"
+msgstr "Ulanyja aşakdaky aýratynlyklara administratiw ygtyýar ber:"
 
 msgid "Request date"
 msgstr "Talap senesi"
@@ -1183,7 +1185,7 @@ msgid "Site:"
 msgstr "Sahypa:"
 
 msgid "Please select your account:"
-msgstr "Hasabyňyzy saýlaň:"
+msgstr "Haýyş hasabyňyzy saýlaň:"
 
 msgid "Now type your password, then click 'Log in':"
 msgstr "Indi parolyňyzy ýazyň, soňra 'Içeri gir' düwmesine basyň:"
@@ -1316,7 +1318,7 @@ msgid "The upload request exceeds the size limit"
 msgstr "Ýükleme haýyşy çäklendirilen ölçeg ululykdan geçýär"
 
 msgid "Validation of email address change in progress."
-msgstr "Email salgysynyň üýtgemegini barlamak dowam edýär."
+msgstr "Email salgysyny üýtgetmek barlagy dowam edýär."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Goşmaça görkezmeler üçin poçta gutyňyzy barlaň."
@@ -1325,7 +1327,7 @@ msgid "Account recovery key"
 msgstr "Hasaby dikeltmek açary"
 
 msgid "Current password"
-msgstr "Hazirki parolynyz"
+msgstr "Hazirki parolyňyz"
 
 msgid "Old password confirmation required"
 msgstr "Köne paroly tassyklamak zerur"
@@ -1333,16 +1335,16 @@ msgstr "Köne paroly tassyklamak zerur"
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr "Şahsyýetiňizi goraýan Tor Browser atly programmany ulanyp, bu sahypa girmegiňizi maslahat berýäris."
+msgstr "Şahsyýetiňizi goraýan Tor Browser atly programmany ulanyp, bu sahypa girmegiňizi berk maslahat berilýär."
 
 msgid "Download the Tor Browser"
-msgstr "Tor brauzerini göçürip alyň"
+msgstr "Tor Browser göçürip alyň"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "Soňra, aşakdaky adresi Tor brauzerine göçüriň:"
+msgstr "Soňra, aşakdaky adresi Tor Browser-e göçüriň:"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "Hasabat tabşyrdyňyzmy? Kwitansiýaňyzy giriziň"
+msgstr "Hasabat tabşyrdyňyzmy? Kwitansiýaňyzy giriziň."
 
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Kwitansiýa nädogry ýa-da hasabatyň möhleti gutardy."
@@ -1375,10 +1377,10 @@ msgid "Allow the whistleblower to write comments"
 msgstr "Gizlin habar ýetirijilere teswir ýazmaga rugsat beriň"
 
 msgid "From:"
-msgstr "Kimden"
+msgstr "Kimden:"
 
 msgid "To:"
-msgstr "Kime"
+msgstr "Kime:"
 
 msgid "Filename"
 msgstr "Faýlyň ady"
@@ -1418,7 +1420,7 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr "\"Hasabyňyzy dikeltmek açaryny\" almak we ygtybarly saklamak üçin \"Saýlamalar\" bölümine girmegiňizi maslahat berýäris. Bu açar, parolyňyzy ýatdan çykaran halatynda platforma we maglumatlaryňyza girişiňizi dikeltmek üçin zerur bolar."
+msgstr "\"Hasap Dikeltmek Açary\" almak we ygtybarly saklamak üçin \"Saýlamalar\" bölümine girmegiňizi maslahat berýäris. Bu açar, parolyňyzy ýatdan çykaran halatynda platforma we maglumatlaryňyza girişiňizi dikeltmek üçin zerur bolar."
 
 msgid "The provided recovery key is invalid."
 msgstr "Berlen dikeldiş açary nädogry."
@@ -1435,7 +1437,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Parolyňyzy täzeden düzmek üçin email salgyňyzy giriziň."
 
 msgid ""
-"Enter you encryption recovery key to complete the password reset procedure"
+"Enter your encryption recovery key to complete the password reset procedure"
 msgstr "Paroly täzeden düzmek prosedurasyny tamamlamak üçin şifrlemek dikeldiş açaryny giriziň"
 
 msgid "Password reset requested."
@@ -1443,7 +1445,7 @@ msgstr "Paroly täzeden düzmek talap edildi."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
-msgstr "Hossardan gizlin habar ýetirijiň şahsyýet hasabyna girmek üçin haýyş edildi."
+msgstr "Gözegçiden gizlin habar ýetirijiň şahsyýet hasabyna girmek üçin haýyş edildi."
 
 msgid "Date of the request"
 msgstr "Haýyşyň senesi"
@@ -1461,7 +1463,7 @@ msgid "Success!"
 msgstr "Üstünlik!"
 
 msgid "Your whistleblowing platform is almost ready!"
-msgstr "Gizlin habar ýetiriji platformaňyz takmynan taýyn!"
+msgstr "Gizlin habar ýetiriji platformaňyz taýyn diýen ýaly!"
 
 msgid "Check your inbox to activate it."
 msgstr "Aktiwasiýa üçin poçta gutyňyzy barlaň."
@@ -1517,7 +1519,7 @@ msgstr "Bu hasabat üçin kwitansiýaňyzy ýatda saklaň."
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Girmek üçin 16 sanly kwitansiýany ulanyň. Size iberen habarlarymyzy görmäge we goşmaça maglumat goşmaga mümkinçilik berer."
+msgstr "Içeri girmek üçin 16 sanly kwitansiýany ulanyň. Size iberen habarlarymyzy görmäge we goşmaça maglumat goşmaga mümkinçilik berer."
 
 msgid "View your report"
 msgstr "Hasabatyňyzy görüň"
@@ -1542,13 +1544,13 @@ msgstr "Aşakdaky alyjylar hasabatyňyzy alarlar we yza saýlanyp bilinmez:"
 msgid ""
 "In this step the answers to the following questions are either missing or "
 "invalid:"
-msgstr "Bu ädimde aşakdaky soraglara jogap ýok ýa-da nädogry:"
+msgstr "Bu ädimde aşakdaky soraglara jogap ýitirim ýa-da nädogry:"
 
 msgid "You must select at least one recipient."
 msgstr "Iň azyndan bir alyjyny saýlamaly."
 
 msgid "Waiting for the file(s) to finish uploading."
-msgstr "Faýl (lar) ýüklemegiň gutarmagyna garaşýarys."
+msgstr "Faýl (lar) ýüklemegiň gutarmagyna garaşylýar."
 
 msgid "The following steps have errors:"
 msgstr "Aşakdaky ädimlerde ýalňyşlyklar bar:"
@@ -1572,7 +1574,7 @@ msgid ""
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr "Alyjylaryň parollaryny ýitiren ýagdaýynda maglumatlary ýitirmekden goramak isleseňiz, bu opsiýany saýlamagy maslahat berýäris. Başga bir tarapdan, diňe alyjylaryň tabşyryklara girip bilýän ulgamyny gurmak isleseňiz, bu aýratynlygy ulanmagy maslahat bermeris."
+msgstr "Alyjylaryň parollaryny ýitiren ýagdaýynda maglumatlary ýitirmekden goramak isleseňiz, bu opsiýany saýlamagy maslahat berýäris. Başga bir tarapdan, diňe alyjylaryň tabşyryklara girip bilýän ulgamyny gurmak isleseňiz, bu aýratynlygy ulanmagy maslahat bermeýäris."
 
 msgid "Please choose a different username."
 msgstr "Başga ulanyjy adyny saýlaň."
@@ -1611,7 +1613,7 @@ msgid "Other"
 msgstr "Başga"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr "Diňe şu platforma arkaly habarlaşmagy makul bildim"
+msgstr "Diňe şu platforma arkaly habarlaşmagy isleýärin"
 
 msgid "Dear {RecipientName},"
 msgstr "Hormatly {RecipientName},\n "
@@ -1647,7 +1649,7 @@ msgid "Your whistleblowing platform is now accessible at:"
 msgstr "Gizlin habar ýetiriji platformaňyz indi elýeterli:"
 
 msgid "To log in, visit:"
-msgstr "Içeri girmek üçin, giriň:"
+msgstr "Içeri girmek üçin:"
 
 msgid "Users' credentials:"
 msgstr "Ulanyjylaryň şahsyýetnamalary:"
@@ -1666,7 +1668,7 @@ msgid ""
 "This could be a sign of an attack (for example, someone flooding your server"
 " with bogus information) or just a usage spike due to an increased "
 "visibility of your project."
-msgstr "Bu hüjümiň alamaty bolup biler (mysal üçin, kimdir biri serweriňizi galp maglumatlar bilen doldurýar) ýa-da taslamaňyzyň göze görnüp duranlygy sebäpli ulanyş derejesi."
+msgstr "Bu hüjümiň alamaty bolup biler (mysal üçin, kimdir biri serweriňizi galp maglumatlar bilen doldurýar) ýa-da taslamaňyzyň göze görnüp duranlygy sebäpli ulanyş derejesiň artmagy."
 
 msgid "Examine the issue to determine whether it is legitimate or not."
 msgstr "Kanuny ýa-da bikanun däldigini kesgitlemek üçin meseläni gözden geçiriň."
@@ -1700,7 +1702,7 @@ msgstr "Anomaliýa tapyldy {NodeName}"
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
 "going to expire or has already expired:"
-msgstr "Bu, aşakdaky ulanyjylaryň PGP açarynyň wagty dolandygyny ýa-da eýýäm gutarandygyny habar bermek üçin email:"
+msgstr "Bu, aşakdaky ulanyjylaryň PGP açarynyň möhleti gutarýandygyny ýa-da eýýäm gutarandygyny habar bermek üçin email:"
 
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
@@ -1708,7 +1710,7 @@ msgid ""
 msgstr "Dogry PGP açary bolmasa ulgam şifrlenen habarnamalary iberip bilmez."
 
 msgid "PGP key expiration alert"
-msgstr "PGP açarynyň wagty dolma duýduryşy"
+msgstr "PGP açarynyň möhletiniň dolma duýduryşy"
 
 msgid "A new whistleblowing site has been registered."
 msgstr "Täze gizlin habar ýetiriji sahypa hasaba alyndy."
@@ -1788,7 +1790,7 @@ msgid ""
 msgstr "Dogry şahadatnamasyz platforma diňe Tor arkaly ygtybarly usulda elýeterli bolar."
 
 msgid "Log in to solve the issue."
-msgstr "Meseläni çözmek üçin içeri giriň."
+msgstr "Meseläni çözmek üçin içeri gir."
 
 msgid "Expiration alert for HTTPS certificate"
 msgstr "HTTPS şahadatnamasynyň möhleti barada duýduryş"
@@ -1806,7 +1808,7 @@ msgstr " HTTPS şahadatnamasynyň täzelenmegi şowsuz"
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr "Bu, hossaryň hasabat üçin gizlin habar ýetirijiniň şahsyýet hasabyna girmäge ygtyýar berendigini habar bermek üçin email {TipNum}."
+msgstr "Bu, gözegçiniň hasabat üçin gizlin habar ýetirijiniň şahsyýet hasabyna girmäge ygtyýar berendigini habar bermek üçin email {TipNum}."
 
 msgid "The report can be accessed at:"
 msgstr "Hasabata şu ýerden girip bilersiňiz:"
@@ -1817,7 +1819,7 @@ msgstr "Gizlin habar ýetirijiň şahsyýetine girmek ygtyýar berildi"
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr "Bu, hossaryň hasabat üçin gizlin habar ýetirijiniň şahsyýet hasabyna girmäge ret edendigi barada habar bermek üçin email {TipNum}."
+msgstr "Bu, gözegçiniň hasabat üçin gizlin habar ýetirijiniň şahsyýet hasabyna girmäge ret edendigi barada habar bermek üçin email {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "Gizlin habar ýetirijiň şahsyýetine girmek ret edildi"
@@ -1836,7 +1838,7 @@ msgstr "Gizlin habar ýetirijiň şahsyýetine girmek üçin täze haýyş"
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr "Bu, hasabat  {TipNum} üçin gizlin habar ýetirijiniň şahsyýetini üpjün edendigini habar bermek üçin email"
+msgstr "Bu, hasabat {TipNum} üçin gizlin habar ýetirijiniň şahsyýetini üpjün edendigini habar bermek üçin email"
 
 msgid "The whistleblower has provided their identity"
 msgstr "Gizlin habar ýetiriji şahsyýetini üpjün etdi"
@@ -1860,7 +1862,7 @@ msgstr "Paroly täzeden düzmek boýunça görkezmeler"
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
 "expired."
-msgstr "Bu, siziň PGP açarynyň wagty dolandygyny ýa-da eýýäm gutarandygyny habar bermek üçin email:"
+msgstr "Bu, siziň PGP açarynyň möhleti gutarýandygyny ýa-da eýýäm gutarandygyny habar bermek üçin email:"
 
 msgid ""
 "You should extend its validity and update the key present on the platform, "
@@ -1887,7 +1889,7 @@ msgstr "Platformany täzeläp durmak gowy howpsuzlyk amalydyr."
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "
 "change log at: {ChangeLogUrl}"
-msgstr "Täze wersiýadaky täze aýratynlyklar we näsazlyklary düzetmek üçin üýtgetmek gündeligine serediň: {ChangeLogUrl}"
+msgstr "Täze wersiýadaky täze aýratynlyklar we näsazlyklary düzetmek üçin üýtgetme gündeligine serediň: {ChangeLogUrl}"
 
 msgid ""
 "For instructions on software updates, please refer to the documentation at: "

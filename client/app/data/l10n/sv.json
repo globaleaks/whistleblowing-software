@@ -460,7 +460,7 @@
   "The provided reset token is invalid or expired.": "Det angivna återställningslösenordet är fel eller har gått ut.",
   "Enter your account's username or your email address to request a password reset.": "Ange användarnamnet för ditt konto eller din e-postadress för att begära om lösenordsåterställning.",
   "Enter your email address to request a password reset.": "Ange din e-postadress för din begäran om lösenordsåterställning.",
-  "Enter you encryption recovery key to complete the password reset procedure": "Ange din krypterade återställningskod för att slutföra förfarandet för lösenordsåterställning.",
+  "Enter your encryption recovery key to complete the password reset procedure": "Ange din krypterade återställningskod för att slutföra förfarandet för lösenordsåterställning.",
   "Password reset requested.": "Begäran om lösenordsåterställning mottagen.",
   "Access to the whistleblower's identity has been requested to the custodian.": "Åtkomst till visselblåsarens identitet har begärts av systemförvaltaren.",
   "Date of the request": "Datum för begäran",

@@ -460,7 +460,7 @@
   "The provided reset token is invalid or expired.": "Предоставленный маркер для сброса недействителен или истек срок его действия.",
   "Enter your account's username or your email address to request a password reset.": "Введите имя пользователя вашей учетной записи или ваш адрес электронной почты, чтобы отправить запрос на сброс пароля.",
   "Enter your email address to request a password reset.": "Введите ваш адрес электронной почты, чтобы отправить запрос на сброс пароля.",
-  "Enter you encryption recovery key to complete the password reset procedure": "Введите ваш ключ восстановления шифрования, чтобы завершить процедуру сброса пароля",
+  "Enter your encryption recovery key to complete the password reset procedure": "Введите ваш ключ восстановления шифрования, чтобы завершить процедуру сброса пароля",
   "Password reset requested.": "Запрошен сброс пароля.",
   "Access to the whistleblower's identity has been requested to the custodian.": "К хранителю поступил запрос о доступе к личности информатора.",
   "Date of the request": "Дата запроса",

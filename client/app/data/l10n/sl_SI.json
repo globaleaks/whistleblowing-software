@@ -460,7 +460,7 @@
   "The provided reset token is invalid or expired.": "Vneseno potrdilo za ponastavitev je neveljavno ali poteklo. ",
   "Enter your account's username or your email address to request a password reset.": "Vnesite uporabniško ime računa ali vaš e-naslov za ponastavitev gesla.",
   "Enter your email address to request a password reset.": "Vnesite e-naslov za ponastavitev gesla.",
-  "Enter you encryption recovery key to complete the password reset procedure": "Vnesite vaš šifrirani ključ za obnovo za zaključek postopka ponastavitve gesla.",
+  "Enter your encryption recovery key to complete the password reset procedure": "Vnesite vaš šifrirani ključ za obnovo za zaključek postopka ponastavitve gesla.",
   "Password reset requested.": "Zahteva za ponastavitev gesla oddana.",
   "Access to the whistleblower's identity has been requested to the custodian.": "Zahtevek za dostop do identitete žvižgača je bil posredovan skrbniku.",
   "Date of the request": "Datum zahtevka",

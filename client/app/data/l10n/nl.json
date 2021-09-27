@@ -460,7 +460,7 @@
   "The provided reset token is invalid or expired.": "De ingediende herstel token is ongeldig of verlopen.",
   "Enter your account's username or your email address to request a password reset.": "Voer de gebruikersnaam van je account, of je e-mailadres in om een wachtwoordherstel aan te vragen.",
   "Enter your email address to request a password reset.": "Voer je e-mailadres in om een wachtwoordherstel aan te vragen.",
-  "Enter you encryption recovery key to complete the password reset procedure": "Vul de herstelcode voor de versleuteling in om de wachtwoord reset procedure te voltooien",
+  "Enter your encryption recovery key to complete the password reset procedure": "Vul de herstelcode voor de versleuteling in om de wachtwoord reset procedure te voltooien",
   "Password reset requested.": "Wachtwoord veranderen aangevraagd.",
   "Access to the whistleblower's identity has been requested to the custodian.": "De toezichthouder heeft een aanvraag ingediend om toegang te krijgen tot de identiteit van de klokkenluider.",
   "Date of the request": "Datum aanvraag",

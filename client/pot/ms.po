@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"PO-Revision-Date: 2021-09-27 12:50+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malay (http://www.transifex.com/otf/globaleaks/language/ms/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1436,7 +1436,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Masukkan alamat e-mel anda untuk meminta penetapan semula kata laluan."
 
 msgid ""
-"Enter you encryption recovery key to complete the password reset procedure"
+"Enter your encryption recovery key to complete the password reset procedure"
 msgstr "Masukkan kunci pemulihan penyulitan anda untuk melengkapkan prosedur penetapan semula kata laluan"
 
 msgid "Password reset requested."

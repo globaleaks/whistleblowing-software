@@ -3,7 +3,7 @@
 # Andrew Yeh <admin@twngo.xyz>, 2017
 # Chi-Hsun Tsai, 2016-2018,2020
 # ff98sha, 2020
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2017,2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2017,2020-2021
 # iigmir <iigmir@hotmail.com>, 2015
 # Mingye Wang <arthur200126@gmail.com>, 2015
 # Sherry Yang <sherry@control4.com.tw>, 2015
@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"PO-Revision-Date: 2021-09-27 12:11+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1442,8 +1442,8 @@ msgid "Enter your email address to request a password reset."
 msgstr "請輸入電子郵件以重設密碼。"
 
 msgid ""
-"Enter you encryption recovery key to complete the password reset procedure"
-msgstr "請輸入加密復原密鑰來完成密碼重設手續"
+"Enter your encryption recovery key to complete the password reset procedure"
+msgstr "请输入加密恢复密钥，以完成密码重置流程"
 
 msgid "Password reset requested."
 msgstr "已請求重設密碼。"

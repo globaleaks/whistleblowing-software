@@ -460,7 +460,7 @@
   "The provided reset token is invalid or expired.": "Dodaný reset token je neplatný alebo vypršal.",
   "Enter your account's username or your email address to request a password reset.": "Vložte používateľské meno účtu alebo emailovú adresu a požiadajte o obnovenie hesla.",
   "Enter your email address to request a password reset.": "Zadajte svoju e-mailovú adresu pre reset hesla.",
-  "Enter you encryption recovery key to complete the password reset procedure": "Zadajte kľúč pre obnovenie šifrovanie a dokončite postup pre resetovanie hesla",
+  "Enter your encryption recovery key to complete the password reset procedure": "Zadajte kľúč pre obnovenie šifrovanie a dokončite postup pre resetovanie hesla",
   "Password reset requested.": "Vyžaduje sa obnovenie hesla.",
   "Access to the whistleblower's identity has been requested to the custodian.": "Správca bol požiadaný o prístup k identite oznamovateľa.",
   "Date of the request": "Dátum žiadosti",

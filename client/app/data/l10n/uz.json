@@ -460,7 +460,7 @@
   "The provided reset token is invalid or expired.": "Taqdim etilgan tiklash tokeni yaroqsiz yoki eskirgan.",
   "Enter your account's username or your email address to request a password reset.": "Parolni yangilash uchun hisobingizga ulangan foydalanuvchi nomi yoki email manzilingizni kiriting.",
   "Enter your email address to request a password reset.": "Parolni yangilash uchun email manzilingizni kiriting.",
-  "Enter you encryption recovery key to complete the password reset procedure": "Parolni yangilash jarayonini yakunlash uchun shifrlangan tiklash kalitini kiriting",
+  "Enter your encryption recovery key to complete the password reset procedure": "Parolni yangilash jarayonini yakunlash uchun shifrlangan tiklash kalitini kiriting",
   "Password reset requested.": "Parol yangilanishi soʻraldi.",
   "Access to the whistleblower's identity has been requested to the custodian.": "Himoyachi tomonidan oshkor qiluvchining shaxsiy axborotini koʻrishga ruxsat soʻraldi.",
   "Date of the request": "Soʻrov sanasi",

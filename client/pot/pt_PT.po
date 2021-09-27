@@ -8,7 +8,7 @@
 # Drew Melim <nokostya.translation@gmail.com>, 2014
 # e8f1a29f7bd45d2490d729ad149fc504_6eadd8e, 2015
 # Drew Melim <nokostya.translation@gmail.com>, 2014,2018
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2021
 # João Paulo Macedo Batalha <joao.batalha@transparencia.pt>, 2015
 # 425fe09b3064b9f906f637fff94056ae_a00ea56 <0fa3588fa89906bfcb3a354600956e0e_308047>, 2015-2016
 # Manuela Silva <mmsrs@sky.com>, 2020
@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"PO-Revision-Date: 2021-09-27 12:52+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1454,8 +1454,8 @@ msgid "Enter your email address to request a password reset."
 msgstr ""
 
 msgid ""
-"Enter you encryption recovery key to complete the password reset procedure"
-msgstr ""
+"Enter your encryption recovery key to complete the password reset procedure"
+msgstr "Insira sua chave de recuperação de criptografia para concluir o procedimento de redefinição de senha"
 
 msgid "Password reset requested."
 msgstr "Solicitada a reposição da palavra--passe."

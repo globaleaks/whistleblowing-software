@@ -460,7 +460,7 @@
   "The provided reset token is invalid or expired.": "সরবরাহকৃত রিসেট টোকেনটি অবৈধ বা মেয়াদোত্তীর্ণ।",
   "Enter your account's username or your email address to request a password reset.": "পাসওয়ার্ড পুনরায় সেট করার অনুরোধ করতে আপনার অ্যাকাউন্টের ব্যবহারকারীর নাম বা আপনার ইমেইল ঠিকানা লিখুন।",
   "Enter your email address to request a password reset.": "পাসওয়ার্ড পুনরায় সেট করার জন্য অনুরোধ করতে আপনার ইমেল ঠিকানা লিখুন।",
-  "Enter you encryption recovery key to complete the password reset procedure": "পাসওয়ার্ড পুনরায় সেট করার পদ্ধতিটি সম্পূর্ণ করতে আপনার এনক্রিপশন পুনরুদ্ধার কী লিখুন",
+  "Enter your encryption recovery key to complete the password reset procedure": "পাসওয়ার্ড পুনরায় সেট করার পদ্ধতিটি সম্পূর্ণ করতে আপনার এনক্রিপশন পুনরুদ্ধার কী লিখুন",
   "Password reset requested.": "পাসওয়ার্ড পুনরায় সেট করার অনুরোধ করা হয়েছে।",
   "Access to the whistleblower's identity has been requested to the custodian.": "হুইসেল ব্লোয়ারের পরিচয় অ্যাক্সেস করতে তত্ত্বাবধায়ক থেকে অনুরোধ করা হয়েছে।",
   "Date of the request": "অনুরোধের তারিখ",

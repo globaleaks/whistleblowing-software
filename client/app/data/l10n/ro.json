@@ -460,7 +460,7 @@
   "The provided reset token is invalid or expired.": "Codul de resetare introdus este invalid sau a expirat.",
   "Enter your account's username or your email address to request a password reset.": "Introdu numele de utilizator sau adresa de e-mail pentru a solicita o resetare a parolei.",
   "Enter your email address to request a password reset.": "Introdu adresa de e-mail pentru a solicita o resetare a parolei.",
-  "Enter you encryption recovery key to complete the password reset procedure": "Introdu cheia de recuperare a criptării pentru a finaliza procedura de resetare a parolei",
+  "Enter your encryption recovery key to complete the password reset procedure": "Introdu cheia de recuperare a criptării pentru a finaliza procedura de resetare a parolei",
   "Password reset requested.": "Este solicitată resetarea parolei.",
   "Access to the whistleblower's identity has been requested to the custodian.": "Accesul la identitatea avertizorului a fost solicitată custode.",
   "Date of the request": "Data solicitării",

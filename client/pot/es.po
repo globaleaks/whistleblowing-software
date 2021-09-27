@@ -36,7 +36,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"PO-Revision-Date: 2021-09-27 12:53+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -496,10 +496,10 @@ msgid "Logout"
 msgstr "Cerrar sesión"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
+msgstr "Dar a este destinatario la habilidad de conceder acceso de usuario a los informes"
 
 msgid "Grant access"
-msgstr ""
+msgstr "Conceder acceso"
 
 msgid "Revoke access"
 msgstr "Revocar acceso"
@@ -715,7 +715,7 @@ msgid "Whistleblowing button"
 msgstr "Botón de aporte de información"
 
 msgid "Disclaimer"
-msgstr ""
+msgstr "Descargo"
 
 msgid "Footer"
 msgstr "Pie de página"
@@ -1256,7 +1256,7 @@ msgid "Enter a name for the copy"
 msgstr "Introduce un nombre para la copia"
 
 msgid "Request support"
-msgstr ""
+msgstr "Solicitar ayuda"
 
 msgid "Thank you."
 msgstr "Gracias."
@@ -1467,7 +1467,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Introduce tu correo para solicitar un reseteo de su contraseña"
 
 msgid ""
-"Enter you encryption recovery key to complete the password reset procedure"
+"Enter your encryption recovery key to complete the password reset procedure"
 msgstr "Inserta tu código de recuperación cifrado para completar el trámite de recuperación de tu contraseña. "
 
 msgid "Password reset requested."
@@ -1637,7 +1637,7 @@ msgid "Last name"
 msgstr "Apellidos"
 
 msgid "Alternative contact method"
-msgstr ""
+msgstr "Método de contacto alternativo"
 
 msgid "Other"
 msgstr "Otro"
@@ -1929,7 +1929,7 @@ msgstr "Para instrucciones sobre actualizaciones del software, por favor, acude 
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "Este es un correo electrónico para notificarte que un destinatario te ha concedido acceso a uno o más informes."
 
 msgid "New report"
 msgstr "Nuevo reporte"

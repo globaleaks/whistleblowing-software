@@ -460,7 +460,7 @@
   "The provided reset token is invalid or expired.": "Uneseni token za resetovanje je neispravan ili je istekao.",
   "Enter your account's username or your email address to request a password reset.": "Unesite korisničko ime ili imejl adresu da zatražite resetovanje lozinke.",
   "Enter your email address to request a password reset.": "Unesite imejl adresu da zatražite resetovanje lozinke.",
-  "Enter you encryption recovery key to complete the password reset procedure": "Unesite ključ za oporavak šifrovanja da dovršite postupak resetovanja lozinke",
+  "Enter your encryption recovery key to complete the password reset procedure": "Unesi enkripcijski ključ za oporavak da bi dovršio postupak poništavanja lozinke",
   "Password reset requested.": "Zatraženo je resetovanje lozinke.",
   "Access to the whistleblower's identity has been requested to the custodian.": "Zahtev za pristup identitetu uzbunjivača je poslat čuvaru.",
   "Date of the request": "Datum zahteva",

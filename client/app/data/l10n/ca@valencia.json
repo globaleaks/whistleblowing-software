@@ -460,7 +460,7 @@
   "The provided reset token is invalid or expired.": "El token de reinicialització es invàlid o ha expirat.",
   "Enter your account's username or your email address to request a password reset.": "Introduïsca el seu nom d'usuari o la seua direcció de correu per a demanar una reinicialització de la contrasenya.",
   "Enter your email address to request a password reset.": "Introduïsca la seua direcció de correu per a sol.licitar la reinicialiltzació de la contrasenya.",
-  "Enter you encryption recovery key to complete the password reset procedure": "Introduïsca la clau de recuperació de xifrat per a completar el procedimient de restabliment de la contrasenya",
+  "Enter your encryption recovery key to complete the password reset procedure": "Enter your encryption recovery key to complete the password reset procedure",
   "Password reset requested.": "Reinicialització de la contrasenya.sol.licitada.",
   "Access to the whistleblower's identity has been requested to the custodian.": "El responsable ha demanat l'accés a la identitat de l'informador.",
   "Date of the request": "Data de la petició",

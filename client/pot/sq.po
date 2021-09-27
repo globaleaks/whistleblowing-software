@@ -1,15 +1,17 @@
 # 
 # Translators:
 # Anja Xhakani <anja@ura.design>, 2021
+# Besnik Bleta <besnik@programeshqip.org, 2021
+# Besnik Bleta <besnik@programeshqip.org>, 2021
 # Bujar Tafili, 2015
 # Bujar Tafili, 2015
 # Florent <fspahija@kdi-kosova.org>, 2021
 # F Nilaj <activisti@protonmail.com>, 2016
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"PO-Revision-Date: 2021-09-27 15:10+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,144 +24,144 @@ msgid "Log in"
 msgstr "Hyni"
 
 msgid "Main configuration"
-msgstr "Konfigurimi Tërësor"
+msgstr "Formësimi kryesor"
 
 msgid "Theme customization"
-msgstr "Përshtatja e Temës"
+msgstr "Përshtatje teme"
 
 msgid "Languages"
-msgstr "Gjuhët"
+msgstr "Gjuhë"
 
 msgid "Text customization"
-msgstr "Përshtatja e Tekstit"
+msgstr "Përshtatje teksti"
 
 msgid "Advanced settings"
-msgstr "Konfigurimi i përparuar"
+msgstr "Rregullime të mëtejshme"
 
 msgid "Question templates"
-msgstr "Pyetjet shabllon"
+msgstr "Gjedhe pyetjesh"
 
 msgid "Questionnaires"
-msgstr "Pyetësorët"
+msgstr "Pyetësorë"
 
 msgid "Add new questionnaire"
-msgstr "Shto pyetësor të ri"
+msgstr "Shtoni pyetësor të ri"
 
 msgid "Home"
-msgstr "Kryefaqe"
+msgstr "Kreu"
 
 msgid "Changelog"
-msgstr "Regjistri i ndryshimeve"
+msgstr "Regjistër ndryshimesh"
 
 msgid "License"
-msgstr "Lisencat"
+msgstr "Licencë"
 
 msgid "Notification templates"
-msgstr "Njoftimi shabllon"
+msgstr "Gjedhe njoftimesh"
 
 msgid "Delete"
-msgstr "Hiqeni"
+msgstr "Fshije"
 
 msgid "Anomalies"
-msgstr "Anomalitë"
+msgstr "Anomali"
 
 msgid "Preferences"
-msgstr "Parapëlqimet"
+msgstr "Parapëlqime"
 
 msgid "Notification settings"
-msgstr "Konfigurimi i njoftimit"
+msgstr "Rregullime njoftimesh"
 
 msgid "file unavailable"
-msgstr "skedari s'është i disponueshëm"
+msgstr "kartelë jo e passhme"
 
 msgid "Date"
-msgstr "Data"
+msgstr "Datë"
 
 msgid "Expiration date"
-msgstr "Data e Skadimit"
+msgstr "Datë skadimi"
 
 msgid "Last Access"
-msgstr "Qasja e Fundit"
+msgstr "Hyrja e Fundit"
 
 msgid "Files"
-msgstr "Skedarët"
+msgstr "Kartela"
 
 msgid "Comments"
 msgstr "Komente"
 
 msgid "Messages"
-msgstr "Mesazhet"
+msgstr "Mesazhe"
 
 msgid "Details"
-msgstr "Hollësitë"
+msgstr "Hollësi"
 
 msgid "Platform wizard"
-msgstr "Platforma e mençur"
+msgstr "Ndihmës platforme"
 
 msgid "CREDIT CARD"
-msgstr "KARTË KREDITI "
+msgstr "KARTË KREDITI"
 
 msgid "YOUR NAME"
 msgstr "EMRI JUAJ"
 
 msgid "Label the report"
-msgstr "Etiketoni raportin"
+msgstr "I vini raportimit një etiketë"
 
 msgid "Postpone the expiration date"
-msgstr "Shtyjë datën e skadimit"
+msgstr "Shtyjini datën e skadimit"
 
 msgid "Select all"
-msgstr "Selektoj të gjitha"
+msgstr "Përzgjidhi krejt"
 
 msgid "Deselect all"
-msgstr "Shpërzgjidhi të gjitha"
+msgstr "Shpërzgjidhi krejt"
 
 msgid "Refresh"
-msgstr "Rifresko"
+msgstr "Rifreskoje"
 
 msgid "Context"
 msgstr "Kontekst"
 
 msgid "Preview"
-msgstr "Shikim paraprak"
+msgstr "Parashiheni"
 
 msgid "The whistleblower has already read the last update"
-msgstr "Sinjalizuesi ka lexuar tashmë të rejat e fundit"
+msgstr "Nxjerrësi i së fshehtës e ka lexuar tashmë përditësimin e fundit"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr "Sinjalizuesi nuk i ka lexuar të rejat e fundit"
+msgstr "Nxjerrësi i së fshehtës s’e ka lexuar ende përditësimin e fundit"
 
 msgid "Move up"
-msgstr "Lëviz lartë"
+msgstr "Ngjite"
 
 msgid "Move down"
-msgstr "Lëviz poshtë"
+msgstr "Zbrite"
 
 msgid "Move left"
-msgstr "Lëviz Majtas"
+msgstr "Lëvize majtas"
 
 msgid "Move right"
-msgstr "Lëviz djathtas"
+msgstr "Lëvize djathtas"
 
 msgid "Import"
-msgstr "Importo"
+msgstr "Importoje"
 
 msgid "Export"
-msgstr "Eksporto"
+msgstr "Eksportoje"
 
 msgid "Save all"
-msgstr "Ruaj të gjitha"
+msgstr "Ruaji krejt"
 
 msgid "Access control"
-msgstr "Kontrolli i qasjes"
+msgstr "Kontroll hyrjesh"
 
 msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Lidhja është siguruar me HTTPS po ashtu është siguruar konfidencialitetin."
+msgstr "Lidhja është siguruar me HTTPS, duke garantuar fshehtësi."
 
 msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
-msgstr "Lidhja është siguruar me Tor po ashtu është siguruar konfidencialiteti dhe anonimiteti"
+msgstr "Lidhja është siguruar me Tor, duke garantuar fshehtësi dhe anonimitet."
 
 msgid "Number"
 msgstr "Numër"
@@ -168,19 +170,19 @@ msgid "Email"
 msgstr "Email"
 
 msgid "Regular expression validator"
-msgstr "Vlerësues i shprehjes së rregullt"
+msgstr "Vlerësues shprehjesh të rregullta"
 
 msgid "Minimum number of input characters"
-msgstr "Numri minimal i karaktereve që mund të futen"
+msgstr "Numër minimum shenjash që mund të jepen"
 
 msgid "Maximum number of input characters"
-msgstr "Numri maksimal i karaktereve që mund të futen"
+msgstr "Numër maksimum shenjash që mund të jepen"
 
 msgid "Earliest selectable date"
-msgstr "Datë e zgjedhur më heret"
+msgstr "Data më e hershme e përzgjedhshme"
 
 msgid "Latest selectable date"
-msgstr "Datë e zgjedhur së fundmi"
+msgstr "Data më e vonshme e përzgjedhshme"
 
 msgid "0 = auto"
 msgstr "0 = auto"
@@ -192,189 +194,189 @@ msgid "No"
 msgstr "Jo"
 
 msgid "Attachment"
-msgstr "Bashkëngjitur"
+msgstr "Bashkëngjitje"
 
 msgid "Attachments"
-msgstr "Bashkëngjitni"
+msgstr "Bashkëngjitje"
 
 msgid "Change your password"
-msgstr "Ndrysho fjalëkalimin tuaj"
+msgstr "Ndryshoni fjalëkalimin tuaj"
 
 msgid "User"
 msgstr "Përdorues"
 
 msgid "Motivation"
-msgstr "Arsye"
+msgstr "Motivim"
 
 msgid "Status"
-msgstr "Statusi"
+msgstr "Gjendje"
 
 msgid "Request motivation"
-msgstr "Kërkoni arsyet"
+msgstr "Motivim kërkese"
 
 msgid "Reply motivation"
-msgstr "Përgjigju arsyes"
+msgstr "Motivim përgjigjeje"
 
 msgid "Request status"
-msgstr "Statusi i kërkesës"
+msgstr "Gjendje kërkese"
 
 msgid "Custodian"
-msgstr "Kujdestar"
+msgstr "Ruajtës"
 
 msgid "Identity"
 msgstr "Identitet"
 
 msgid "Access requested"
-msgstr "Qasja e kërkuar"
+msgstr "U kërkua hyrje"
 
 msgid "Request access to the whistleblower's identity"
-msgstr "Kërko qasje tek identiteti i sinjalizuesit"
+msgstr "Kërko hyrje te identiteti i nxjerrësit të së fshehtës"
 
 msgid "Please write a motivation"
-msgstr "Ju lutem shkruani një arsye"
+msgstr "Ju lutemi, shkruani një motivim"
 
 msgid "Reply to the request"
-msgstr "Përgjigju kërkesës"
+msgstr "Përgjigjuni kërkesës"
 
 msgid "Authorized"
-msgstr "i autorizuar"
+msgstr "E autorizuar"
 
 msgid "Denied"
-msgstr "Mohuar"
+msgstr "E mohuar"
 
 msgid "Waiting for authorization"
-msgstr "Duke pritur autorizimin"
+msgstr "Po pritet për autorizim"
 
 msgid "New request"
 msgstr "Kërkesë e re"
 
 msgid "Authorize"
-msgstr "Autorizoj"
+msgstr "Autorizoje"
 
 msgid "Deny"
-msgstr "Mohoj"
+msgstr "Hidhe poshtë"
 
 msgid "Deny access to the whistleblower's identity"
-msgstr "Refuzojnë qasjen në identitetin e sinjalizuesit"
+msgstr "Hidhe poshtë kërkesën për hyrje te identiteti i nxjerrësit të së fshehtës"
 
 msgid "Authorize access to the whistleblower's identity"
-msgstr "Autorizojë qasje në identitetin e sinjalizuesit"
+msgstr "Autorizoni hyrje te identiteti i nxjerrësit të së fshehtës"
 
 msgid "Templates"
-msgstr "Shabllone"
+msgstr "Gjedhe"
 
 msgid "URL redirects"
-msgstr "Ridrejtimi i URL"
+msgstr "Ridrejtime URL-sh"
 
 msgid "Anomaly detection thresholds"
-msgstr "Pragjet e zbulimit të anomalisë"
+msgstr "Pragje pikasjeje anomalish"
 
 msgid "Available disk space"
-msgstr "Hapësirë ​​e disponueshme nëvdisk"
+msgstr "Hapësirë e gatshme në disk"
 
 msgid "Last update"
-msgstr "Përditësimi i fundit"
+msgstr "Përditësimi i fundit më"
 
 msgid "Disable notifications to administrators"
-msgstr "Çaktivizo njoftimet për administratorët"
+msgstr "Çaktivizo njoftimet për përgjegjësit"
 
 msgid "Disable notifications to custodians"
-msgstr "Çaktivizonjoftimet për kujdestarët"
+msgstr "Çaktivizoni njoftimet për ruajtësit"
 
 msgid "Disable notifications to recipients"
-msgstr "Çaktivizuar njoftimet për përfituesit"
+msgstr "Çaktivizo njoftimet për marrësit"
 
 msgid "Score"
-msgstr "Pikët"
+msgstr "Pikë"
 
 msgid "Trigger question"
-msgstr "Pyetja me qëllim"
+msgstr "Pyetje aktivizimi"
 
 msgid "Triggered by score:"
-msgstr "Pikët nga qëllimi"
+msgstr "Aktivizuar nga sa pikë:"
 
 msgid "Weak"
-msgstr "i dobët"
+msgstr "I dobët"
 
 msgid "Acceptable"
 msgstr "I pranueshëm"
 
 msgid "Strong"
-msgstr "i fortë"
+msgstr "I fortë"
 
 msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Tekst treguar në krye të ndërfaqes për zgjedhjen kontekstet"
+msgstr "Tekst i shfaqur në krye të ndërfaqes, për përzgjedhje kontekstesh"
 
 msgid "Silence email notifications"
-msgstr "Ndal njoftimet nga emaili"
+msgstr "Heshtoji njoftimet me email"
 
 msgid "Turn on email notifications"
-msgstr "Ndez njoftimet nga emaili"
+msgstr "Aktivizo njoftime me email"
 
 msgid "Input validation"
-msgstr "Vlefshmëria e të dhënave"
+msgstr "Vlerësim i çka jepet"
 
 msgid "Email address"
-msgstr "Adresa e E-postës"
+msgstr "Adresë email"
 
 msgid "Custom"
-msgstr "E personalizuar"
+msgstr "Vetjake"
 
 msgid "None"
 msgstr "Asnjë"
 
 msgid "Regular expression"
-msgstr "Shprehje të rregullta"
+msgstr "Shprehje e rregullt"
 
 msgid "Search"
-msgstr "Kërkoni"
+msgstr "Kërko"
 
 msgid ""
 "This custom text is no longer displayed on the platform. The original text "
 "has either changed or been removed."
-msgstr "Teksti i ndrysuar nuk mund të paraqitet në platëform. Më heret teksti origjinal është ndryshuar apo fshirë"
+msgstr "Ky tekst vetjak nuk shfaqet më te platforma. Ose teksti origjinal është ndryshuar, ose është hequr."
 
 msgid "Audit log"
-msgstr "Kontrolli i hyrjes"
+msgstr "Regjistër auditimi"
 
 msgid "Stats"
-msgstr "Statistikat"
+msgstr "Statistika"
 
 msgid "Activities"
-msgstr "Aktivitetet"
+msgstr "Veprimtari"
 
 msgid "Reports"
-msgstr "Raporte"
+msgstr "Raportime"
 
 msgid "Users"
-msgstr "Përdoruesit"
+msgstr "Përdorues"
 
 msgid "From"
-msgstr "Nga "
+msgstr "Nga"
 
 msgid "Number of downloads"
-msgstr "Numri i shkarkimeve"
+msgstr "Numër shkarkimesh"
 
 msgid "File size not accepted."
-msgstr "Madhësia e dokumenteve nuk është e pranueshme"
+msgstr "Madhësi kartele jo e pranuar."
 
 msgid "Maximum file size is:"
-msgstr "Maksimumi i madhësisë së dokumenteve "
+msgstr "Madhësia maksimum për kartela është:"
 
 msgid "Scheduled jobs"
-msgstr "Punët e planifikuara"
+msgstr "Akte të planifikuar"
 
 msgid "Sites management"
-msgstr "Menaxhimi i faqeve"
+msgstr "Administrim sajtesh"
 
 msgid "Regenerate"
-msgstr "Rigjenero"
+msgstr "Riprodhoji"
 
 msgid "Display options alphabetically"
-msgstr "Paraqit në rradhitje alfabetike mundësit"
+msgstr "Mundësitë shfaqi alfabetikisht"
 
 msgid "Enable email notifications for:"
-msgstr "Lejo njoftimet me email për:"
+msgstr "Aktivizo njoftime me email për:"
 
 msgid "Disable"
 msgstr "Çaktivizoje"
@@ -383,22 +385,22 @@ msgid "Remove"
 msgstr "Hiqe"
 
 msgid "Use as default"
-msgstr "Përdoreni si parazgjedhje"
+msgstr "Përdore si parazgjedhje"
 
 msgid "Create your whistleblowing platform"
-msgstr "Krijoni platformën tuaj për sinjalizues"
+msgstr "Krijoni platformën tuaj për nxjerrje të fshehtash"
 
 msgid "Collapse"
-msgstr "Palose"
+msgstr "Tkurre"
 
 msgid "Expand"
 msgstr "Zgjeroje"
 
 msgid "Select"
-msgstr "Përzgjidhni"
+msgstr "Përzgjidhe"
 
 msgid "Deselect"
-msgstr ""
+msgstr "Shpërzgjidhe"
 
 msgid "Surname"
 msgstr "Mbiemër"
@@ -407,16 +409,16 @@ msgid "New"
 msgstr "I ri"
 
 msgid "Opened"
-msgstr "E hapur"
+msgstr "I hapur"
 
 msgid "Closed"
-msgstr "Mbyllur"
+msgstr "I mbyllur"
 
 msgid "Placeholder"
-msgstr "Vendi i ruajtjes"
+msgstr "Vendmbajtëse"
 
 msgid "Print"
-msgstr "Printoni"
+msgstr "Shtype"
 
 msgid "Previous"
 msgstr "I mëparshmi"
@@ -431,60 +433,60 @@ msgid "Last"
 msgstr "I fundit"
 
 msgid "Send a test email to your email address."
-msgstr "Dërgo një email si test tek emaili yt"
+msgstr "Dërgoni një email provë te adresa juaj email."
 
 msgid "Block the submission"
-msgstr "Blloko paraqitjet"
+msgstr "Bllokoje parashtrimin"
 
 msgid "Skip the recipient account creation."
-msgstr "Kapërce krijimin e llogarisë së marrësit"
+msgstr "Anashkalo krijimin e llogarisë së marrësit."
 
 msgid "Send activation link"
-msgstr "Dërgo linkun për aktivizim"
+msgstr "Dërgo lidhje aktivizimi"
 
 msgid "Password reset"
-msgstr "Reseto fjalëkalimin"
+msgstr "Ricaktim fjalëkalimi"
 
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr "Njëri apo disa nga pranuesit janë kyçur ende. Kjo nënkupton që ata nuk do të pranojnë raporte."
+msgstr "Një ose disa marrës s’ka kryer ende hyrjen e parë. Kjo do të thotë se s’do të marrin raportime."
 
 msgid "This user has not performed the first login yet."
-msgstr "Ky përdorues nuk është kyçur ende."
+msgstr "Ky përdorues s’ka kryer ende hyrjen e parë."
 
 msgid "seconds"
-msgstr "sekonda "
+msgstr "sekonda"
 
 msgid "This domain name is not available."
-msgstr "Ky emër i domenit nuk është i qasshëm."
+msgstr "Ky emër përkatësie s’është i passhëm."
 
 msgid "Mark as important"
-msgstr ""
+msgstr "Vëri shenjë si i rëndësishëm"
 
 msgid "Copy to clipboard"
 msgstr "Kopjoje në të papastër"
 
 msgid "Logout"
-msgstr "Dilni"
+msgstr "Dalje"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
+msgstr "Jepi këtij marrësi aftësinë të akordojë hyrje përdoruesish te raportimet"
 
 msgid "Grant access"
-msgstr ""
+msgstr "Akordoji hyrje"
 
 msgid "Revoke access"
-msgstr ""
+msgstr "Shfuqizoji hyrjen"
 
 msgid "File a report"
-msgstr ""
+msgstr "Depozitoni një raportim"
 
 msgid "Select the context of your report:"
-msgstr ""
+msgstr "Përzgjidhni kontekstin e raportimit tuaj:"
 
 msgid "Before proceeding, please set a new password."
-msgstr "Para se të vazhdoni, ju lutem shkruani një fjalëkalim të ri."
+msgstr "Para se të shkoni më tej, ju lutemi, caktoni një fjalëkalim të ri."
 
 msgid "New password"
 msgstr "Fjalëkalim i ri"
@@ -493,133 +495,133 @@ msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Fjalëkalimi i përzgjedhur është shumë i lehtë. Një fjalëkalim i mirë do të duhet të përmbajë së paku 10 karaktere, të cilat janë të përbëra nga shkronja të mëdha dhe të vogla, numra dhe shenja."
+msgstr "Fjalëkalimi i zgjedhur është shumë i dobët. Një fjalëkalim i vlefshëm duhet të jetë të paktën 10 shenja i gjatë dhe të përmbajë një larmi shenjash, përfshi të paktën një shkronjë të vogël, një shkronjë të madhe, një numër dhe një shenjë speciale."
 
 msgid "The new password must be different from the current one."
-msgstr "Fjalëkalimi i ri duhet të jetë ndryshe nga ai që e keni tani."
+msgstr "Fjalëkalimi i ri duhet të jetë i ndryshëm nga ai i tanishmi."
 
 msgid "Type your new password again"
-msgstr "Shkruajeni sërish fjalëkalimin tuaj të ri"
+msgstr "Shtypni sërish fjalëkalimin tuaj të ri"
 
 msgid "The two passwords do not match"
-msgstr "Të dy fjalëkalimet nuk përputhen"
+msgstr "Dy fjalëkalimet s’përputhen"
 
 msgid "The new password must differ from the previous."
-msgstr "Fjalëkalimi i ri duhet të jetë ndryshe nga ai i kaluari."
+msgstr "Fjalëkalimi i ri duhet të jetë i ndryshëm nga i mëparshmi."
 
 msgid "Proceed"
-msgstr "Vazhdoni"
+msgstr "Kryeje"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr "Para se të vazhdoni, ju lutem aktivizoni dy mënyrat e sigurta të kyçjes."
+msgstr "Para se të ecet më tej, ju lutemi, aktivizoni mirëfilltësimin dyfaktorësh."
 
 msgid "Disable submissions"
-msgstr "Çaktivizo parashtresat "
+msgstr "Çaktivizo parashtrime"
 
 msgid "Enable encryption"
-msgstr "Lejoni enkriptimin"
+msgstr "Aktivizo fshehtëzim"
 
 msgid "Enable administrators to change user passwords"
-msgstr "Lejoni administratorin që të ndryshoj fjalëkalimet"
+msgstr "Aktivizo ndryshim fjalëkalimesh përdoruesish nga përgjegjësit"
 
 msgid "Administrators authorized to change user passwords:"
-msgstr "Administratori është i autorizuar për të ndryshuar fjalëkalimet:"
+msgstr "Përgjegjës të autorizuar për ndryshime fjalëkalimesh përdoruesish:"
 
 msgid "Enable multisite feature"
-msgstr "Lejoni tipare shumëfaqëshe"
+msgstr "Aktivizo veçorinë shumësajtësh"
 
 msgid "Enable simplified login"
-msgstr "Lejoni qasje të thjeshtësuar"
+msgstr "Aktivizo hyrje të thjeshtuar"
 
 msgid "Enable search engines indexing"
-msgstr "Mundësoni indeksimin e motorëve të kërkimit"
+msgstr "Aktivizo indeksim nga motorë kërkimesh"
 
 msgid "Enable the receipt hint"
-msgstr "Aktivizoni pranuesin e shenjës paralajmëruese"
+msgstr "Aktivizo ndihmëz dëftese"
 
 msgid "Default questionnaire"
-msgstr "Pyetësor i përzgjedhur"
+msgstr "Pyetësor parazgjedhje"
 
 msgid "Show contexts in alphabetical order"
-msgstr "Shfaqeni kontekstin të renditur alfabetikisht"
+msgstr "Kontekstet shfaqi në rend alfabetik"
 
 msgid "Do not expose users' names"
-msgstr "Mos ekspozo emrat e përdoruesve"
+msgstr "Mos ekspozo emra përdoruesish"
 
 msgid "Size limit for file attachments"
-msgstr "Kufiri Size për fotografi të bashkëngjitni skedarë"
+msgstr "Kufi madhësie për bashkëngjitje kartelash"
 
 msgid "megabytes"
-msgstr "megabajt"
+msgstr "megabajte"
 
 msgid "Enable HSTS preload"
-msgstr "Lejoni HSTS të parangarkohet"
+msgstr "Aktivizo parangarkim HSTS"
 
 msgid "Require two factor authentication"
-msgstr "Kërkohet aktivizimi i dy fazave të sigurisë"
+msgstr "Kërko doemos mirëfilltësim dyfaktorësh"
 
 msgid "Password change interval"
-msgstr "Ndryshimi i fjalëkalimit interval"
+msgstr "Interval ndryshimi fjalëkalimi"
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
-msgstr "Për çështje të sigurisë, fjalëkalimi duhet të ndryshohet rregullisht."
+msgstr "Për arsye sigurie, ndryshimet e fjalëkalimeve në intervale të rregullta janë të detyrueshme."
 
 msgid "Set the value to 0 to disable this feature."
-msgstr "Vendoseni vlerën 0 për ta deaktivizuar këtë veçori."
+msgstr "Për ta çaktivizuar këtë veçori, jepini vlerën 0."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr "Nummri i ditëve për të lajmëruar përdoruesit për raportet e palexuara"
+msgstr "Numër ditësh deri në njoftim të përdoruesve për raportime të palexuar"
 
 msgid "Enable custodian user role"
-msgstr "Mundëso përdoruesin të marr rol kujdestar"
+msgstr "Aktivizo rol përdoruesi ruajtës"
 
 msgid "Enable scoring system"
-msgstr "Mundëso të lëvizë sistemin"
+msgstr "Aktivizo sistem pikësh"
 
 msgid "Enable private annotations"
-msgstr "Mundëso shënimet private"
+msgstr "Aktivizo shënime private"
 
 msgid "Logging level"
-msgstr "Nivelet e qasjes"
+msgstr "Nivel regjistrimi"
 
 msgid "Log accesses of internal users"
-msgstr "Regjistro qasjet e përdoruesve të brendshëm"
+msgstr "Regjistro hyrje përdoruesish të brendshëm"
 
 msgid "Notify administrators of software problems"
-msgstr "Njofto administratorët për problemet e softuerit"
+msgstr "Njoftoji përgjegjësit për probleme software-i"
 
 msgid "Notify developers of software problems"
-msgstr "Njofto zhvilluesit e softuerit për problemet"
+msgstr "Njoftoji zhvilluesit për probleme software-i"
 
 msgid ""
 "By enabling this feature, you will contribute to the development and "
 "security of the platform."
-msgstr "Me aktivizimin e këtij funksioni ju do të kontribuoni në zhvillimin dhe sigurinë e platformës."
+msgstr "Duke aktivizuar këtë veçori, do të kontribuoni në zhvillimin dhe sigurinë e platformës."
 
 msgid "Save"
-msgstr "Ruajeni"
+msgstr "Ruaje"
 
 msgid "Reset reports"
-msgstr "Rivendos raportet"
+msgstr ""
 
 msgid "Low"
 msgstr "I ulët"
 
 msgid "High"
-msgstr "E lartë"
+msgstr "I lartë"
 
 msgid "percentage"
 msgstr "përqindje"
 
 msgid "Type"
-msgstr "Lloji"
+msgstr "Lloj"
 
 msgid "Severity"
-msgstr "Ashpërsia"
+msgstr "Rëndësi"
 
 msgid "Object"
-msgstr "Objket"
+msgstr "Objekt"
 
 msgid "ID"
 msgstr "ID"
@@ -628,399 +630,399 @@ msgid "Username"
 msgstr "Emër përdoruesi"
 
 msgid "Role"
-msgstr "rol"
+msgstr "Rol"
 
 msgid "Name"
-msgstr "Emri"
+msgstr "Emër"
 
 msgid "Creation date"
-msgstr "Data e Krijimit"
+msgstr "Datë krijimi"
 
 msgid "Last access"
-msgstr "Qasja e fundit"
+msgstr "Hyrja e fundit"
 
 msgid "Connection"
-msgstr "lidhje"
+msgstr "Lidhje"
 
 msgid "Whistleblower's last access"
-msgstr "Qasja e fundit e Sinjalizuesit"
+msgstr "Hyrja e fundit nga nxjerrës të fshehtash"
 
 msgid "Substatuses"
-msgstr "Zëvëndësuesit"
+msgstr "Nëngjendje"
 
 msgid "Add"
-msgstr "Shtoni"
+msgstr "Shtoje"
 
 msgid "Label"
-msgstr "Titull"
+msgstr "Etiketë"
 
 msgid "This field is mandatory"
 msgstr "Kjo fushë është e detyrueshme"
 
 msgid "Edit"
-msgstr "Redaktoni"
+msgstr "Përpunojeni"
 
 msgid "Cancel"
-msgstr "Anulojeni"
+msgstr "Anuloje"
 
 msgid "Report statuses"
-msgstr "Statusi i raportit"
+msgstr "Gjendje raportimesh"
 
 msgid "Logo"
-msgstr "Kyçje"
+msgstr "Stemë"
 
 msgid "Project name"
-msgstr "Emri i projektit"
+msgstr "Emër projekti"
 
 msgid "Description"
 msgstr "Përshkrim"
 
 msgid "Homepage title"
-msgstr "Titulli i Kryefaqes "
+msgstr "Titull faqeje hyrëse"
 
 msgid "Presentation"
-msgstr "Prezantim"
+msgstr "Paraqitje"
 
 msgid "Question to solicit possible whistleblowers"
-msgstr "Pyetje për të kërkuar informatorë të mundshëm"
+msgstr "Pyetje për tërheqje nxjerrësish të mundshëm të fshehtash"
 
 msgid "Whistleblowing button"
-msgstr "Butoni i Informimit"
+msgstr "Buton nxjerrjeje të fshehtash"
 
 msgid "Disclaimer"
-msgstr ""
+msgstr "Klauzolë"
 
 msgid "Footer"
-msgstr "Fundfaqja"
+msgstr "Fundfaqe"
 
 msgid "Upload"
-msgstr "Ngarkoni"
+msgstr "Ngarkoje"
 
 msgid "Download"
-msgstr "Shkarkoni"
+msgstr "Shkarkoje"
 
 msgid "Language:"
-msgstr "Gjuha:"
+msgstr "Gjuhë:"
 
 msgid "Add custom text"
-msgstr "Shto ndryshimet në tekst"
+msgstr "Shtoni tekst vetjak"
 
 msgid "Custom text"
-msgstr "Ndrysho tekstin"
+msgstr "Tekst vetjak"
 
 msgid "Original text"
 msgstr "Teksti origjinal"
 
 msgid "Original translation"
-msgstr "Përkethimi origjinal"
+msgstr "Përkthimi origjinal"
 
 msgid "Custom translation"
-msgstr "Përkthimi i ndryshuar"
+msgstr "Përkthim vetjak"
 
 msgid "Contexts"
-msgstr "Kontekstet"
+msgstr "Kontekste"
 
 msgid "Hidden"
-msgstr "Fshehur"
+msgstr "I fshehur"
 
 msgid "Disabled"
-msgstr "Paaftësuar"
+msgstr "I çaktivizuar"
 
 msgid "Enabled"
-msgstr "Mundësuar"
+msgstr "I aktivizuar"
 
 msgid "Questionnaire"
-msgstr "pyetësor"
+msgstr "Pyetësor"
 
 msgid "Recipients"
-msgstr "Marrësit"
+msgstr "Marrës"
 
 msgid "days"
-msgstr "ditët"
+msgstr "ditë"
 
 msgid "Show the questionnaire navigation interface"
-msgstr "Trego pyetësorin në nënfaqen që e kërkoni"
+msgstr "Shfaq ndërfaqe lëvizjeje nëpër pyetësor"
 
 msgid "Allow whistleblowers to select their recipients"
-msgstr "Lejo informatorët për të zgjedhur marrësit e tyre"
+msgstr "Lejoju nxjerrësve të të fshehtave të përzgjedhin marrësit e tyre"
 
 msgid "Select all recipients by default"
-msgstr "Përzgjidhni të gjithë marrësit përmes parazgjedhjes."
+msgstr "Si parazgjedhje, përzgjidhi krejt marrësit"
 
 msgid "Maximum number of selectable recipients:"
-msgstr "Numri maksimal i marrësve të përzgjedhshëm:"
+msgstr "Numër maksimum marrësish të përzgjedhshëm:"
 
 msgid "Show recipients in alphabetical order"
-msgstr "Shfaqini marrësit të renditur alfabetikisht"
+msgstr "Marrësit shfaqi në rend alfabetik"
 
 msgid "Show recipient details on the status page of the report"
-msgstr "Trego detajet e marrësit në faqen e statusit të dorëzimit"
+msgstr "Shfaq hollësi marrësi te faqja e gjendjes së raportimit"
 
 msgid "Enable comments"
 msgstr "Aktivizo komente"
 
 msgid "Allow whistleblowers to write comments"
-msgstr "Lejo informatorët për të shkruar komente"
+msgstr "Lejoju nxjerrësve të të fshehtave të shkruajnë komente"
 
 msgid "Enable private messages"
-msgstr "Mundësoni mesazhet private"
+msgstr "Aktivizo mesazhe private"
 
 msgid "Allow whistleblowers to send messages"
-msgstr "Lejo informatorët për të dërguar mesazhe"
+msgstr "Lejoju nxjerrësve të të fshehtave të dërgojnë mesazhe"
 
 msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Lejo informatorët për të shtuar të bashkëngjitni skedarë në aplikimet ekzistuese"
+msgstr "Lejoju nxjerrësve të të fshehtave të shtojnë bashkëngjitje te raportime ekzistuese"
 
 msgid "Additional questionnaire"
-msgstr "Pyetësor tjetër"
+msgstr "Pyetësor shtesë"
 
 msgid "Scoring system options"
-msgstr "Lundrim në mundsitë e sistemit"
+msgstr "Mundësi sistemi pikësh"
 
 msgid "Threshold"
-msgstr "Pragu"
+msgstr "Prag"
 
 msgid "Value"
-msgstr "Vlera"
+msgstr "Vlerë"
 
 msgid "Medium"
-msgstr "Mesëm"
+msgstr "Mesatar"
 
 msgid "Customize the message shown in the receipt page"
-msgstr "Ndrysho mesazhin që do të paraqitet në faqen pranuese"
+msgstr "Përshtatni mesazhin e shfaqur te faqja e dëftesës"
 
 msgid "Assign the receipt only to reports reaching score:"
-msgstr "Caktoni praim vetëm për raportet që arrijnë rezultatin:"
+msgstr "Përshoqërojani dëftesën vetëm raportimeve që kapin pikët:"
 
 msgid "Software version:"
-msgstr "version software:"
+msgstr "Version software-i:"
 
 msgid "Restrict access to specific IP addresses"
-msgstr "Kufizoni qasjen e IP-ve adresave specifike"
+msgstr "Kufizoju hyrjen adresave IP specifike"
 
 msgid "Allowed IP addresses"
-msgstr "Lejoni IP adresat"
+msgstr "Adresa IP të lejuara"
 
 msgid "Admin"
-msgstr "Administratore"
+msgstr "Përgjegjës"
 
 msgid "Recipient"
 msgstr "Marrës"
 
 msgid "Each entry must be separated with a comma."
-msgstr "Çdo hyrje duhet të ndahet me presje."
+msgstr "Çdo zë duhet të jetë i ndarë me një presje."
 
 msgid "Example:"
 msgstr "Shembull:"
 
 msgid "Hostname"
-msgstr "Emri i nikoqirit"
+msgstr "Strehëemër"
 
 msgid "Invalid input format."
-msgstr "Hyrje jashtë formatit."
+msgstr "Format i pavlefshëm dhëniesh."
 
 msgid "Input should be similar to:"
-msgstr "Hyrja duhet të jetëe njëjtë me:"
+msgstr "Ç’jepet, duhet të jetë e ngjashme me:"
 
 msgid "Country code"
-msgstr "Kodi i shtetit"
+msgstr "Kod vendi"
 
 msgid "City"
-msgstr "qytet"
+msgstr "Qytet"
 
 msgid "Organization"
-msgstr "Organizata"
+msgstr "Ent"
 
 msgid "Organizational unit"
-msgstr "Njësia e organizatës"
+msgstr "Njësi organizative"
 
 msgid "Invalid email address"
-msgstr "Adresës e-poste e pavlefshme"
+msgstr "Adresë email e pavlefshme"
 
 msgid "Generate"
-msgstr "Gjeneroni"
+msgstr "Prodhoje"
 
 msgid "Private Key"
 msgstr "Kyç Privat"
 
 msgid "Certificate Signing Request"
-msgstr "Certifikoni kërkesat për hyrje"
+msgstr "Kërkesë Nënshkrimi Dëshmie"
 
 msgid "Certificate"
-msgstr "Certifikata"
+msgstr "Dëshmi"
 
 msgid "Valid until:"
-msgstr "Valide deri me:"
+msgstr "E vlefshme deri më:"
 
 msgid "Issuer:"
-msgstr "Lëshuar nga:"
+msgstr "Lëshues:"
 
 msgid "Intermediate Certificates"
-msgstr "Certifikatë e ndërmjetme"
+msgstr "Dëshmi të Ndërmjetme"
 
 msgid "Enable"
-msgstr "Mundëso"
+msgstr "Aktivizoje"
 
 msgid "Reset"
-msgstr "Rivendoseni"
+msgstr "Ktheje te parazgjedhja"
 
 msgid ""
 "The platform supports the configuration of HTTPS through this interface."
-msgstr "Platëforma përkrah konfigurimin HTTPS përmes kësaj nënfaqe."
+msgstr "Platforma mbulon formësimin e HTTPS-së përmes kësaj ndërfaqeje."
 
 msgid "Automatic configuration"
-msgstr "Konfigurimi automatik"
+msgstr "Formësim i vetvetishëm"
 
 msgid ""
 "Using automatic HTTPS configuration will handle the entire process of "
 "requesting, enabling and renewing certificates from the Let's Encrypt "
 "Certificate Authority."
-msgstr ""
+msgstr "Duke përdorur formësimin e vetvetishëm të HTTPS-së do të arrihet kryerja e krejt procesit të kërkesës, aktivizimit dhe rinovimit të dëshmive prej autoritetit “Let’s Encrypt” të dëshmive."
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
 "hostname must have a DNS record referencing that address."
-msgstr ""
+msgstr "Platforma duhet të jetë e përdorshme përmes një adrese publike IP dhe strehëemri i përzgjedhur duhet të ketë një zë DNS përkatës që i referohet kësaj adrese."
 
 msgid "Manual configuration"
-msgstr "Konfigurimi manual"
+msgstr "Formësim dorazi"
 
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
-msgstr ""
+msgstr "Ndihmësi i formësimit dorazi do t’ju udhëheqë nëpër ujdisjen e HTTPS-së me një autoritet alternativ dëshmish."
 
 msgid "Auto-renewal"
-msgstr "Përtritje automatike"
+msgstr "Vetërinovim"
 
 msgid "Tor Onion Service"
-msgstr "Tor krye servisi"
+msgstr "Shërbim Onion Tor"
 
 msgid "Disable the privacy panel"
-msgstr "Paaftësoni panelin e privatësisë së përshtatur"
+msgstr "Çaktivizo panelin e privatësisë"
 
 msgid "Enable custom privacy panel"
-msgstr "Aftësoni panelin e privatësisë së përshtatur"
+msgstr "Aktivizo panel vetjak privatësie"
 
 msgid "Custom privacy panel"
-msgstr "Custom panel privacy"
+msgstr "Panel vetjak privatësie"
 
 msgid "Anonymize outgoing connections"
-msgstr "Anonimizoni lidhjet nga jashtë"
+msgstr "Anonimizo lidhjet ikëse"
 
 msgid "Let the platform be reachable without Tor"
-msgstr "Lejo platformen që të jetë e qasshme pa Tor"
+msgstr "Lejojeni platformën të jetë e përdorshme pa Tor"
 
 msgid "Roles enabled to use the platform without Tor"
-msgstr "Lejo rolet për përdorim të platformes pa Tor"
+msgstr "Role të aktivizuar për përdorim të platformës pa Tor"
 
 msgid "Whistleblower"
-msgstr "Informator"
+msgstr "Nxjerrës të fshehte"
 
 msgid "To"
 msgstr "Për"
 
 msgid "SMTP email address"
-msgstr "SMTP adresë e-mail"
+msgstr "Adresë email SMTP"
 
 msgid "SMTP server address"
-msgstr "Adresa e shërbyesit SMTP "
+msgstr "Adresë shërbyesi SMTP"
 
 msgid "SMTP server port"
-msgstr "Porta e shërbyesit SMTP "
+msgstr "Portë shërbyesi SMTP"
 
 msgid "Security"
 msgstr "Siguri"
 
 msgid "Warning"
-msgstr "paralajmërim"
+msgstr "Sinjalizim"
 
 msgid "Require authentication"
-msgstr "Kërkohet vërtetimi"
+msgstr "Kërko doemos mirëfilltësim"
 
 msgid "Password"
 msgstr "Fjalëkalim"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr "Koha e skadimit të njoftimit për orët përpara dërgimit të raportit"
+msgstr "Numër orësh përpara dërgimit të një sinjalizimi skadimi raportimi"
 
 msgid "Test the configuration"
-msgstr "Testo konfigurimin"
+msgstr "Provoni formësimin"
 
 msgid "Reset SMTP configuration"
-msgstr "Rinis SMTP konfiguriminin"
+msgstr "Rikthe te parazgjedhjet formësimin për SMTP-në"
 
 msgid "Reset notification templates to default"
-msgstr "Rivendosini hapat dhe fushat e paracaktuara"
+msgstr "Rikthe te parazgjedhjet gjedhe njoftimesh"
 
 msgid "Template"
-msgstr "shabllon"
+msgstr "Gjedhe"
 
 msgid "Question"
 msgstr "Pyetje"
 
 msgid "Single-line text input"
-msgstr "input text Single-line"
+msgstr "Dhënie teksti me një rresht"
 
 msgid "Multi-line text input"
-msgstr "input text Multi-line"
+msgstr "Dhënie teksti me shumë rreshta"
 
 msgid "Selection box"
-msgstr "box Selection"
+msgstr "Kutizë përzgjedhjesh"
 
 msgid "Checkbox"
-msgstr "checkbox"
+msgstr "Kutizë"
 
 msgid "Terms of service"
-msgstr "Kushtet e shërbimit"
+msgstr "Kushte shërbimi"
 
 msgid "Date range"
-msgstr "Diapazoni i të dhënave"
+msgstr "Interval datash"
 
 msgid "Group of questions"
-msgstr "Grupi i pyetjeve"
+msgstr "Grup pyetjesh"
 
 msgid "Row"
-msgstr "rresht"
+msgstr "Rresht"
 
 msgid "Column"
-msgstr "kolonë"
+msgstr "Shtyllë"
 
 msgid "Width"
-msgstr "gjerësi"
+msgstr "Gjerësi"
 
 msgid "Multiple choice input"
-msgstr "input Multiple zgjedhje"
+msgstr "Dhënie me zgjedhje të shumëfishtë"
 
 msgid "Question group"
-msgstr "grupi Pyetje"
+msgstr "Grup pyetjeje"
 
 msgid "Hint"
-msgstr "Sugjerim"
+msgstr "Ndihmëz"
 
 msgid "Required"
-msgstr "I kërkuar"
+msgstr "E domosdoshme"
 
 msgid "Accept multiple file uploads"
-msgstr "Pranoni ngarkimin e skedarëve të shumëfishtë"
+msgstr "Prano ngarkime të disa kartelave njëherësh"
 
 msgid "Accept multiple answers"
-msgstr "Pranohen disa përgjigje"
+msgstr "Prano disa përgjigje njëherësh"
 
 msgid "Template override"
-msgstr "Mbizotërim i shabllonit"
+msgstr "Anashkalim gjedheje"
 
 msgid "Phone number"
-msgstr "Numri i telefonit"
+msgstr "Numër telefoni"
 
 msgid "Text"
 msgstr "Tekst"
 
 msgid "Checkbox label"
-msgstr "Emërtimi i kutisë shënjuese"
+msgstr "Etiketë kutize"
 
 msgid "Add multimedia content"
-msgstr "Shto përmbajtje mediale"
+msgstr "Shtoni lëndë multimedia"
 
 msgid "Image"
 msgstr "Figurë"
@@ -1032,352 +1034,352 @@ msgid "Video"
 msgstr "Video"
 
 msgid "Trigger conditions"
-msgstr "Kushtet e shkarkimit"
+msgstr "Kushte aktivizimi"
 
 msgid "Sufficient"
 msgstr "Mjaftueshëm"
 
 msgid "Options"
-msgstr "Opsionet"
+msgstr "Mundësi"
 
 msgid "Addition"
-msgstr "Shtesë"
+msgstr "Shtim"
 
 msgid "Multiplier"
-msgstr "Shumëzues"
+msgstr "Shumëfishues"
 
 msgid "Questions"
-msgstr "Pyetjet"
+msgstr "Pyetje"
 
 msgid "Add new question"
-msgstr "Shto pyetje të re"
+msgstr "Shtoni pyetje të re"
 
 msgid "Add question from template"
-msgstr "Shto pyetje nga template"
+msgstr "Shtoni pyetje që nga gjedhe"
 
 msgid "Duplicate"
-msgstr "Kopjet"
+msgstr "Përsëdyte"
 
 msgid "Steps"
-msgstr "Hapat"
+msgstr "Hapa"
 
 msgid "Site settings"
-msgstr "Konfigurim i faqes"
+msgstr "Rregullime sajti"
 
 msgid "Case management"
-msgstr "Menaxhimi i rasteve"
+msgstr "Administrim rastesh"
 
 msgid "Network settings"
-msgstr "Konfigurimi i rrjetit"
+msgstr "Rregullime rrjeti"
 
 msgid "Sites"
-msgstr "Faqet"
+msgstr "Sajte"
 
 msgid "Mode:"
-msgstr "Formë:"
+msgstr "Mënyrë:"
 
 msgid "Configure"
-msgstr "Formësoni"
+msgstr "Formësojeni"
 
 msgid "Subdomain"
-msgstr "Nën domeni"
+msgstr "Nënpërkatësi"
 
 msgid "Creation date:"
-msgstr "Data e krijimit:"
+msgstr "Datë krijimi:"
 
 msgid "Root domain used for secondary sites"
-msgstr ""
+msgstr "Përkatësi rrënjë e përdorur për sajte dytësorë"
 
 msgid "Use the first site for administrative purposes only"
-msgstr ""
+msgstr "Sajtin e parë përdore vetëm për qëllime administrative"
 
 msgid "Enable multi-site login"
-msgstr ""
+msgstr "Aktivizo hyrje për shumë sajte"
 
 msgid "Allow users to sign up"
-msgstr ""
+msgstr "Lejoju përdoruesve të regjistrohen"
 
 msgid "Enable terms of service"
-msgstr ""
+msgstr "Aktivizo kushte shërbimi"
 
 msgid "Title"
-msgstr "Titulli"
+msgstr "Titull"
 
 msgid "Send an account activation link to the user."
-msgstr ""
+msgstr "Dërgojini përdoruesit një lidhje aktivizimi llogarie."
 
 msgid "Public name"
-msgstr "Emri publik"
+msgstr "Emër publik"
 
 msgid "Send reset link"
-msgstr ""
+msgstr "Dërgo lidhje ricaktimi"
 
 msgid "Set password"
-msgstr "Fute fjalëkalimin"
+msgstr "Caktoni fjalëkalim"
 
 msgid "Disable two factor authentication"
-msgstr ""
+msgstr "Çaktivizo mirëfilltësim dyfaktorësh"
 
 msgid "Force password change"
-msgstr "ndryshimi fjalëkalimin Force"
+msgstr "Detyro ndryshim fjalëkalimi"
 
 msgid "The user will be forced to change its password on next login."
-msgstr "Përdorues do të jetë e detyruar për të ndryshuar fjalëkalimin e tij në hyrje të ardhshëm."
+msgstr "Përdoruesi do të detyrohet të ndryshojë fjalëkalimin e tij gjatë hyrjes së ardhshme në llogari."
 
 msgid "Language"
-msgstr "Gjuha"
+msgstr "Gjuhë"
 
 msgid "Enable email notifications"
-msgstr ""
+msgstr "Aktivizo njoftime me email"
 
 msgid "Details of the PGP key:"
-msgstr "Detajet e kyç PGP:"
+msgstr "Hollësi të kyçit PGP:"
 
 msgid "Fingerprint"
-msgstr "Gjurma"
+msgstr "Shenja gishtash"
 
 msgid "Set up encryption by providing a PGP public key"
-msgstr "Ngritur encryption, duke siguruar një çelës publik PGP"
+msgstr "Ujdisni fshehtëzim duke dhënë një kyç publik PGP"
 
 msgid "Give this admin ability to change user passwords"
-msgstr ""
+msgstr "Jepi këtij përgjegjësi aftësinë të ndryshojë fjalëkalime përdoruesish"
 
 msgid "Forcefully selected"
-msgstr "zgjedhur me forcë"
+msgstr "E përzgjedhur me zor"
 
 msgid "Allow the recipient to delete reports"
-msgstr "Lejojnë përfituesit për të fshirë parashtresat"
+msgstr "Lejoje marrësit të fshijë raportime"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Lejo marrësi për të shtyrë datën e skadimit dorëzimit"
+msgstr "Lejoje marrësin të shtyjë datën e skadimit të raportimit"
 
 msgid "Give the user administrative access to the following features:"
-msgstr ""
+msgstr "Jepi përdoruesit hyrje përgjegjësi në veçoritë vijuese:"
 
 msgid "Request date"
-msgstr "date kërkesa"
+msgstr "Datë kërkese"
 
 msgid "Report date"
-msgstr ""
+msgstr "Datë raportimi"
 
 msgid "Authorization"
-msgstr "autorizim"
+msgstr "Autorizim"
 
 msgid "Requests"
-msgstr ""
+msgstr "Kërkesa"
 
 msgid "The validation link is either incorrect or has expired."
-msgstr ""
+msgstr "Ose lidhja e vlerësimit është e pasaktë, ose ka skaduar."
 
 msgid "Your new email address has been validated."
-msgstr ""
+msgstr "Adresa juaj e re email është vleftësuar."
 
 msgid "Forgot password?"
-msgstr ""
+msgstr "Harruat fjalëkalimin?"
 
 msgid "Enter the two factor authentication code"
-msgstr ""
+msgstr "Jepni kodin e mirëfilltësimit dyfaktorësh"
 
 msgid "Authentication failed"
-msgstr "Autentifikimi Dështoi"
+msgstr "Mirëfilltësimi dështoi"
 
 msgid "The code is either invalid or expired."
-msgstr ""
+msgstr "Ose kodi i dhënë është i pavlefshëm, ose ka skaduar."
 
 msgid "Site:"
-msgstr ""
+msgstr "Sajt:"
 
 msgid "Please select your account:"
-msgstr "Ju lutemi përzgjidhni llogarinë tuaj:"
+msgstr "Ju lutemi, përzgjidhni llogarinë tuaj:"
 
 msgid "Now type your password, then click 'Log in':"
-msgstr "Tani shkruani fjalëkalimin tuaj dhe klikoni \"Hyni\":"
+msgstr "Tani shtypni fjalëkalimin tuaj, mandej klikoni mbi “Hyni”:"
 
 msgid "Text shown after the user has selected the option."
-msgstr ""
+msgstr "Tekst i shfaqur pasi përdoruesi të ketë përzgjedhur këtë mundësi."
 
 msgid "Confirm"
-msgstr "Konfirmoni Zgjatjen"
+msgstr "Ripohojeni"
 
 msgid "Assign score points"
-msgstr "Cakto pike"
+msgstr "Caktoni pikë"
 
 msgid "Are you sure?"
-msgstr "A je i sigurt?"
+msgstr "Jeni i sigurt?"
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Ju lutemi kujdesuni që të gjitha të dhënat shoqëruese të hiqen siç duhet."
+msgstr "Ju lutemi, kini parasysh se krejt të dhënat e përshoqëruara do të fshihen përgjithmonë."
 
 msgid "Enable two factor authentication"
-msgstr ""
+msgstr "Aktivizo mirëfilltësim dyfaktorësh"
 
 msgid "Close"
 msgstr "Mbylle"
 
 msgid "Before proceeding please read carefully the documentation at:"
-msgstr ""
+msgstr "Përpara se të vazhdoni, ju lutemi, lexoni me kujdes dokumentimin, te:"
 
 msgid "Your account recovery key is:"
-msgstr ""
+msgstr "Kyçi juaj i rimarrjeve është:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr ""
+msgstr "Bëni një kopje dhe depozitojeni në një vend të parrezik. Do t’ju duhet, nëse humbni fjalëkalimin tuaj, për të rifituar hyrje në llogarinë tuaj pa humbje të dhënash."
 
 msgid "Enter a name for the copy"
-msgstr ""
+msgstr "Jepni një emër për kopjen"
 
 msgid "Request support"
-msgstr ""
+msgstr "Kërkoni asistencë"
 
 msgid "Thank you."
-msgstr ""
+msgstr "Faleminderit."
 
 msgid "We will try to get back to you as soon as possible."
-msgstr ""
+msgstr "Do të provojmë të lidhemi me ju sa më shpejt të jetë e mundur."
 
 msgid "Submit"
-msgstr "Parashtroni"
+msgstr "Parashtrojeni"
 
 msgid "The connection is not secure."
-msgstr ""
+msgstr "Lidhja s’është e siguruar."
 
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
-msgstr ""
+msgstr "Platforma ende s’është formësuar për lidhje HTTPS, ndaj duhet përdorur vetëm për qëllime testimi."
 
 msgid "Please write a motivation for the reply"
-msgstr "Ju lutem shkruani një motivim për përgjigjen"
+msgstr "Ju lutemi, shkruani një shtysë për përgjigjen"
 
 msgid "Send"
-msgstr "dërgoj"
+msgstr "Dërgoje"
 
 msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Duke konfirmuar, ju do të shtyjë datën e skadimit për:"
+msgstr "Duke e ripohuar, do ta shtyni datën e skadimit më:"
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr ""
+msgstr "Kjo është një platformë demonstrimi, ju lutemi, mos e përdorni për parashtrime të njëmendta."
 
 msgid "Install an authenticator app on your phone"
-msgstr ""
+msgstr "Instaloni në telefonin tuaj një aplikacion mirëfilltësimi"
 
 msgid "Scan the QR code with the app"
-msgstr ""
+msgstr "Skanoni kodin QR me aplikacionin"
 
 msgid "Welcome!"
-msgstr ""
+msgstr "Mirë se vini!"
 
 msgid "For the user documentation, visit:"
-msgstr ""
+msgstr "Për dokumentim për përdoruesit, vizitoni:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
 " the software:"
-msgstr ""
+msgstr "Nëse ju duhet asistencë teknike, keni pyetje të përgjithshme, ose keni ide të reja për software-in:"
 
 msgid ""
 "If you want to contribute to software development or report a bug, please "
 "open an issue in our ticketing system:"
-msgstr ""
+msgstr "Nëse doni të jepni ndihmesë në zhvillimin e software-it, ose të njoftoni një të metë, ju lutemi, hapni një çështje te sistemi ynë për të tilla:"
 
 msgid "Join our chat:"
-msgstr ""
+msgstr "Merrni pjesë në fjalosjen tonë:"
 
 msgid "Follow the project on:"
-msgstr ""
+msgstr "Ndiqeni projektin në:"
 
 msgid "Hint: How to hide your receipt"
-msgstr ""
+msgstr "Ndihmëz: Si të fshihni dëftesën tuaj"
 
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr ""
+msgstr "Një rrugë e dobishme për të fshehur dëftesën tuaj është ta shkruani diku si një numër karte krediti, domethënë, duke përfshirë edhe një datë skadimi."
 
 msgid "Error!"
-msgstr "Error!"
+msgstr "Gabim!"
 
 msgid "Internal server error"
-msgstr ""
+msgstr "Gabim i brendshëm shërbyesi"
 
 msgid "Error on input validation"
-msgstr ""
+msgstr "Gabim në vlerësim të çka jepet"
 
 msgid "Resource not found"
-msgstr ""
+msgstr "Burimi s’u gjet"
 
 msgid "Forbidden operation"
-msgstr ""
+msgstr "Veprim i ndaluar"
 
 msgid "The specified old password is not valid"
-msgstr "Fjalëkalimi i vjetër i specifikuar s'është i vlefshëm"
+msgstr "Fjalëkalimi i dikurshëm i dhënë s’është i vlefshëm"
 
 msgid "Resource can only be accessed via the Tor network"
-msgstr "Burimi mund të qaset vetëm përmes rrjetit Tor"
+msgstr "Burimi mund të përdoret vetëm përmes rrjetit Tor"
 
 msgid "The upload request exceeds the size limit"
-msgstr "Kërkesa për ngarkim e kalon kufirin e përmasës"
+msgstr "Kërkesa për ngarkim tejkalon kufirin për madhësitë"
 
 msgid "Validation of email address change in progress."
-msgstr ""
+msgstr "Vlerësimi i ndryshimit të adresës email në ecuri e sipër."
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
+msgstr "Për udhëzime të mëtejshme, ju lutemi, kontrolloni mesazhet tuaj të marrë."
 
 msgid "Account recovery key"
-msgstr ""
+msgstr "Kyç rimarrjesh llogarie"
 
 msgid "Current password"
 msgstr "Fjalëkalimi i tanishëm"
 
 msgid "Old password confirmation required"
-msgstr "Nevojitet konfirmimi i fjalëkalimit të vjetës"
+msgstr "Me ripohim doemos të fjalëkalimit të dikurshëm"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr ""
+msgstr "Këshilloheni me forcë ta vizitoni këtë sajt duke përdorur aplikacionin e quajtur Shfletues Tor, i cili mbron identitetin tuaj."
 
 msgid "Download the Tor Browser"
 msgstr "Shkarkoni Shfletuesin Tor"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "Më pas, kopjojeni dhe ngjiteni tek Shfletuesi Tor adresën në vijim:"
+msgstr "Mandej, kopjoni dhe ngjiteni adresën vijuese te Shfletuesi Tor:"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "A e keni bërë tashmë një parashtrim? Futni kodin e çelësit tuaj."
+msgstr "Keni parashtruar tashmë një raportim? Jepni dëftesën tuaj."
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr ""
+msgstr "Ose dëftesa është e pavlefshme, ose raportimi ka skaduar."
 
 msgid "Select a file or drag it here."
-msgstr ""
+msgstr "Përzgjidhni një kartelë ose tërhiqeni këtu."
 
 msgid "Uploading files…"
-msgstr ""
+msgstr "Po ngarkohen kartela…"
 
 msgid "Upload completed successfully!"
-msgstr "Ngarko përfunduar me sukses!"
+msgstr "Ngarkimi u plotësua me sukses!"
 
 msgid "Error while uploading files; check below for details."
-msgstr "Gabim gjatë ngarkoni fotografi; shikoni më poshtë për detaje."
+msgstr "Gabim teksa ngarkoheshin kartela; për hollësi, shihni më poshtë."
 
 msgid "Estimated upload time:"
-msgstr "Ora vlerësuar upload:"
+msgstr "Kohë ngarkimi përafërsisht:"
 
 msgid "Size:"
-msgstr ""
+msgstr "Madhësi:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr ""
+msgstr "Marrësit kanë kërkuar që të plotësoni një pyetësor shtesë."
 
 msgid "Fill the additional questionnaire"
-msgstr ""
+msgstr "Plotësoni pyetësorin shtesë"
 
 msgid "Allow the whistleblower to write comments"
-msgstr "Lejo whistleblower për të shkruar komente"
+msgstr "Lejoji nxjerrësit të të fshehtës të shkruajë komente"
 
 msgid "From:"
 msgstr "Nga:"
@@ -1386,177 +1388,177 @@ msgid "To:"
 msgstr "Për:"
 
 msgid "Filename"
-msgstr "Emri i skedarit"
+msgstr "Emër kartele"
 
 msgid "Upload date"
-msgstr "Data e Ngarkimit"
+msgstr "Datë ngarkimi"
 
 msgid "File size"
-msgstr "Përmasat e Skedarit"
+msgstr "Madhësi kartele"
 
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Lejo whistleblower për të shtuar të bashkëngjitni skedarë dorëzimit"
+msgstr "Lejoji nxjerrësit të së fshehtës të shtojë te raportimi bashkëngjitje"
 
 msgid "Allow the whistleblower to send messages"
-msgstr "Lejo whistleblower për të dërguar mesazhe"
+msgstr "Lejoji nxjerrësit të të fshehtës të dërgojë mesazhe"
 
 msgid "Questionnaire answers"
-msgstr "përgjigjet e pyetësorit"
+msgstr "Përgjigje pyetësori"
 
 msgid "Step"
 msgstr "Hap"
 
 msgid "Status:"
-msgstr "Gjëndja"
+msgstr "Gjendje:"
 
 msgid "Files attached by recipients"
-msgstr ""
+msgstr "Kartela të bashkëngjitura nga marrës"
 
 msgid "Upload a file:"
-msgstr ""
+msgstr "Ngarkoni një kartelë:"
 
 msgid "An update is available:"
-msgstr ""
+msgstr "Ka gati një përditësim:"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
+msgstr "Rekomandojmë që të përdorni ndarjen “Parapëlqime”, që të rimerrni “Kyç Rimarrjeje Llogarie” tuajin dhe ta depozitoni pa rrezik diku. Ky kyç do të jetë i nevojshëm për të rifituar hyrje te platforma dhe të dhënat tuaja, në rast se harroni fjalëkalimin tuaj."
 
 msgid "The provided recovery key is invalid."
-msgstr ""
+msgstr "Kyçi i rimarrjeve i dhënë është i pavlefshëm."
 
 msgid "The provided reset token is invalid or expired."
-msgstr ""
+msgstr "Token-i i dhënë për ricaktimin është i pavlefshëm, ose ka skaduar."
 
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr ""
+msgstr "Që të kërkoni ricaktim fjalëkalimi, jepni emër përdoruesi të llogarisë tuaj, ose adresën tuaj email."
 
 msgid "Enter your email address to request a password reset."
-msgstr ""
+msgstr "Që të kërkoni ricaktim fjalëkalimi, jepni adresën tuaj email."
 
 msgid ""
-"Enter you encryption recovery key to complete the password reset procedure"
-msgstr ""
+"Enter your encryption recovery key to complete the password reset procedure"
+msgstr "Që të plotësohet procedura e ricaktimit të fjalëkalimit, jepni kyçin tuaj të rimarrjes së fshehtëzimit"
 
 msgid "Password reset requested."
-msgstr ""
+msgstr "U kërkua ricaktim fjalëkalimi."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
-msgstr "Qasja në identitetin e Whistleblower i është kërkuar të kujdestarit."
+msgstr "Ruajtësit iu kërkua hyrje te identiteti i nxjerrësit të së fshehtës."
 
 msgid "Date of the request"
-msgstr "Data e kërkesës"
+msgstr "Datë e kërkesës"
 
 msgid "Show"
 msgstr "Shfaqe"
 
 msgid "Congratulations!"
-msgstr "Urime!"
+msgstr "Përgëzime!"
 
 msgid "You have completed the platform activation."
-msgstr ""
+msgstr "Keni plotësuar aktivizimin e platformës."
 
 msgid "Success!"
 msgstr "Sukses!"
 
 msgid "Your whistleblowing platform is almost ready!"
-msgstr ""
+msgstr "Platforma juaj për nxjerrje të fshehtash thuajse është gati!"
 
 msgid "Check your inbox to activate it."
-msgstr ""
+msgstr "Për ta aktivizuar, shihni te Të marrët tuaj."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr ""
+msgstr "Në mos u aktivizoftë brenda 24 orësh, platforma do të fshihet vetvetiu."
 
 msgid "Sign up"
 msgstr "Regjistrohuni"
 
 msgid "Domain"
-msgstr "Domen"
+msgstr "Përkatësi"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "Ripohim"
 
 msgid "Invalid confirmation"
-msgstr ""
+msgstr "Ripohim i pavlefshëm"
 
 msgid "Invalid phone number"
-msgstr ""
+msgstr "Numër telefoni i pavlefshëm"
 
 msgid "The answer is too short"
-msgstr ""
+msgstr "Përgjigja është shumë e shkurtër"
 
 msgid "The specified input is not valid."
-msgstr ""
+msgstr "Ç’u dha, s’është e vlefshme."
 
 msgid "The specified input is not valid:"
-msgstr ""
+msgstr "Ç’u dha, s’është e vlefshme:"
 
 msgid "please enter a valid email address."
-msgstr ""
+msgstr "ju lutemi, jepni një adresë email të vlefshme."
 
 msgid "please enter numbers only."
-msgstr ""
+msgstr "ju lutemi, jepni vetëm numra."
 
 msgid "Submissions disabled"
-msgstr ""
+msgstr "Parashtrimet të çaktivizuara"
 
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
-msgstr "Ju po lidheni me shërbyesin pa qenë anonim, ndërkohë që ky shërbyes pranon vetëm parashtrime anonime"
+msgstr "Po lidheni me shërbyesin pa anonimitet dhe ky shërbyes mbulon vetëm parashtrime anonime"
 
 msgid "Your report was successful."
-msgstr "Parashtrimi juaj ishte i suksesshëm."
+msgstr "Raportimi juaj qe i suksesshëm."
 
 msgid "Remember your receipt for this report."
-msgstr "Kujtojeni kodin e çelësit tuaj për këtë parashtrim."
+msgstr "Mos harroni dëftesën tuaj për këtë raportim."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Përdorni kodin e çelësit me 16 shifra për të hyrë. Kjo do t'ju lejojë të shihni çdo mesazh që ju kemi dërguar dhe, madje, që të shtoni informacion shtesë."
+msgstr "Për të bërë hyrjen, përdorni dëftesën me 16 shifra. Do t’ju lejojë të shihni çfarëdo mesazhesh që ju kemi dërguar dhe edhe të shtoni informacion shtesë."
 
 msgid "View your report"
-msgstr "Shiheni parashtrimin tuja"
+msgstr "Shiheni raportin tuaj"
 
 msgid "Recipient selection"
-msgstr "Përzgjedhja e marrësit"
+msgstr "Përzgjedhje marrësish"
 
 msgid "Select the recipients of your report:"
-msgstr ""
+msgstr "Përzgjidhni marrësit për raportimin tuaj:"
 
 msgid "Recipients selected:"
-msgstr "Marrësit e përzgjedhur:"
+msgstr "Marrës të përzgjedhur:"
 
 msgid "You have reached the maximum number of selectable recipients."
-msgstr ""
+msgstr "Keni mbërritur në numrin maksimum të marrësve të përzgjedhshëm."
 
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr ""
+msgstr "Marrësit vijues do ta marrin raportimin tuaj dhe për ta s’mund të hiqet përzgjedhja:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
 "invalid:"
-msgstr ""
+msgstr "Te ky hap, përgjigjet për pyetjet vijuese ose mungojnë, ose janë të pavlefshme:"
 
 msgid "You must select at least one recipient."
-msgstr ""
+msgstr "Duhet të përzgjidhni të paktën një marrës."
 
 msgid "Waiting for the file(s) to finish uploading."
-msgstr ""
+msgstr "Po pritet që të përfundojë ngarkimi i kartelës(ave)."
 
 msgid "The following steps have errors:"
-msgstr ""
+msgstr "Hapat vijues kanë gabime:"
 
 msgid "Hide"
 msgstr "Fshihe"
@@ -1564,362 +1566,362 @@ msgstr "Fshihe"
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
 "whistleblowing platform."
-msgstr ""
+msgstr "Procedura vijuese do t’ju udhëheqë hap pas hapi përgjatë krijimit të platformës tuaj për nxjerrje të fshehtash."
 
 msgid "Please choose a configuration profile:"
-msgstr ""
+msgstr "Ju lutemi, zgjidhni një profil formësimi:"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr ""
+msgstr "Bëj të mundur për këtë përgjegjës të ricaktoni fjalëkalime përdoruesish."
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr ""
+msgstr "Këshillojmë përzgjedhjen e kësaj mundësie, nëse do të donit të mbronit të dhënat nga humbja, për raste kur marrësit humbin fjalëkalimet e tyre. Më anë tjetër, nuk do ta këshillonim përdorimin e kësaj veçori, nëse doni të ujdisni një sistem në të cilin vetëm marrësit janë në gjendje të hyjnë te parashtrime."
 
 msgid "Please choose a different username."
-msgstr ""
+msgstr "Ju lutemi, zgjidhni një tjetër emër përdoruesi."
 
 msgid "I have read and agree to the terms of the license."
-msgstr ""
+msgstr "I kam lexuar dhe pajtohem me kushtet e licencës."
 
 msgid "You have completed the platform wizard."
-msgstr ""
+msgstr "Keni plotësuar hapat e ndihmësit të platformës."
 
 msgid "Fill out your report"
-msgstr ""
+msgstr "Plotësoni raportimin tuaj"
 
 msgid "Describe your report in a few words."
-msgstr "Përshkruajeni me pak fjalë parashtrimin tuaj"
+msgstr "Përshkruani me pak fjalë raportimin tuaj."
 
 msgid "Describe your report in detail."
-msgstr ".Përshkruajeni me pak fjalë parashtrimin tuaj."
+msgstr "Përshkruajeni hollësisht raportimin tuaj."
 
 msgid "Attach files relevant to the report."
-msgstr "Shtoni skedarët e rëndësishëm për parashtrimin."
+msgstr "Bashkëngjitini raportimit kartela që kanë lidhje."
 
 msgid "Do you want to provide your identification information?"
-msgstr "A doni për të siguruar të dhënat tuaja të identifikimit?"
+msgstr "Doni të jepni hollësi për identifikimin tuaj?"
 
 msgid "First name"
-msgstr "Emri"
+msgstr "Emër"
 
 msgid "Last name"
-msgstr "Mbiemri"
+msgstr "Mbiemër"
 
 msgid "Alternative contact method"
-msgstr ""
+msgstr "Metodë kontakti alternative"
 
 msgid "Other"
 msgstr "Tjetër"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr ""
+msgstr "Parapëlqej të kontaktohem vetëm përmes kësaj platforme"
 
 msgid "Dear {RecipientName},"
-msgstr "Dear {RecipientName},"
+msgstr "I dashur {RecipientName},"
 
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr ""
+msgstr "Po e merrni këtë email ngaqë për ju është krijuar një llogari përdoruesi te sistemi: {Site}"
 
 msgid "Username: {Username}"
-msgstr ""
+msgstr "Emër përdoruesi: {Username}"
 
 msgid "Activation link: {Url}"
-msgstr ""
+msgstr "Lidhje aktivizimi: {Url}"
 
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr ""
+msgstr "Ju lutemi, që të ecni më tej me aktivizimin e llogarisë dhe që të caktoni fjalëkalimin tuaj si përdorues, klikoni mbi lidhjen e aktivizimit."
 
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
-msgstr ""
+msgstr "Pas aktivizimi të suksesshëm, do të jeni në gjendje të përdorni sistemin përmes lidhjes vijuese: {LoginUrl}"
 
 msgid "Kind regards,"
-msgstr "Me respekt, "
+msgstr "Të fala,"
 
 msgid "Account activation"
-msgstr ""
+msgstr "Aktivizim llogarie"
 
 msgid "Your whistleblowing platform is now accessible at:"
-msgstr ""
+msgstr "Platforma juaj për nxjerrje të fshehtash tani mund të përdoret që nga:"
 
 msgid "To log in, visit:"
-msgstr ""
+msgstr "Që të bëni hyrjen, vizitoni:"
 
 msgid "Users' credentials:"
-msgstr ""
+msgstr "Kredenciale përdoruesish:"
 
 msgid "The platform will be automatically deleted on:"
-msgstr ""
+msgstr "Platforma do të fshihet automatikisht më:"
 
 msgid "Access instructions"
-msgstr ""
+msgstr "Udhëzime hyrjeje"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
-msgstr "Numri i aktiviteteve të zbuluara kohët e fundit duket të jetë më i lartë se zakonisht."
+msgstr "Numri i veprimtarive të pikasura së fundi duket më i madh se sa zakonisht."
 
 msgid ""
 "This could be a sign of an attack (for example, someone flooding your server"
 " with bogus information) or just a usage spike due to an increased "
 "visibility of your project."
-msgstr "Kjo mund të jetë një shenjë e një sulmi (për shembull, dikush përmbytjeve serverin tuaj me informacion fals), ose vetëm një gozhdë përdorimit për shkak të një rritje të shikimit të projektit tuaj."
+msgstr "Kjo mund të jetë shenjë e një sulmi (për shembull, dikush është duke përmbytur shërbyesin tuaj me informacione kot), ose thjesht një kulmim përdorimi për shkak të shtimit të dukshmërisë së projektit tuaj."
 
 msgid "Examine the issue to determine whether it is legitimate or not."
-msgstr ""
+msgstr "Shqyrtojeni çështjen, për të përcaktuar se është e ligjshme apo jo."
 
 msgid "The activities with unusual stats are:"
-msgstr "Aktivitetet me statistikat e pazakontë janë:"
+msgstr "Veprimtaritë me statistika të pazakonta janë:"
 
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr ""
+msgstr "Shërbyesi s’garanton dot se është depozituar një raportim i ri, ndaj parashtrimet janë çaktivizuar."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
 "the server."
-msgstr ""
+msgstr "Ju lutemi, shihni mundësinë e kërkimit asistencës tuaj teknike të krijojë më tepër hapësirë disku te shërbyesi."
 
 msgid ""
 "GlobaLeaks technology includes a server status checking component which will"
 " alert you in case something requires your attention."
-msgstr "teknologjia GlobaLeaks përfshin një komponent kontrolluar statusin server i cili do të lajmërojnë në rast se diçka kërkon vëmendjen tuaj."
+msgstr "Platforma GlobaLeaks përmban një përbërës kontrollimi gjendjeje shërbyesi, i cili do t’ju sinjalizojë, në rast se diçka lyp vëmendjen tuaj."
 
 msgid ""
 "For more information, log in to the Administration interface and look at the"
 " \"System Stats\" and \"Anomalies\" sections."
-msgstr "Për më shumë informacion, hyni në ndërfaqen e Administratës dhe të kërkoni në \"Statistika Sistemit\" dhe \"anomali\" seksione."
+msgstr "Për më tepër hollësi, bëni hyrjen te ndërfaqja e Përgjegjësit dhe shihni te ndarjet “Statistika Sistemi” dhe “Anomali”."
 
 msgid "Anomaly detected in {NodeName}"
-msgstr "zbuluar anomali në {NodeName}"
+msgstr "U pikas anomali te {NodeName}"
 
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
 "going to expire or has already expired:"
-msgstr "Kjo është një e-postë për t'ju njoftuar se çelësi PGP i përdoruesve në vijim do të skadojë ose tashmë është i skaduar:"
+msgstr "Ky është një email për t’ju bërë të ditur se kyçi PGP i përdoruesve vijues është duke skaduar, ose ka skaduar tashmë:"
 
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
 "notifications."
-msgstr "Pa një çelës PGP të vlefshëm, sistemi s'do mund t'u dërgojë atyre njoftime të shifruara."
+msgstr "Pa një kyç PGP të vlefshëm, sistemi s’do të jetë në gjendje t’u dërgojë njoftime të fshehtëzuara."
 
 msgid "PGP key expiration alert"
-msgstr "Alarm për Skadimin e Çelësit PGP"
+msgstr "Sinjalizim skadimi kyçi PGP"
 
 msgid "A new whistleblowing site has been registered."
-msgstr ""
+msgstr "U regjistrua sajt i ri nxjerrjeje të fshehtash."
 
 msgid "Registration data:"
-msgstr ""
+msgstr "Të dhëna regjistrimi:"
 
 msgid "Site: {Url}"
-msgstr ""
+msgstr "Sajt: {Url}"
 
 msgid "Name: {Name}"
-msgstr ""
+msgstr "Emër: {Name}"
 
 msgid "Email: {Email}"
-msgstr ""
+msgstr "Email: {Email}"
 
 msgid "New whistleblowing site registered"
-msgstr ""
+msgstr "U regjistrua sajt i ri nxjerrjeje të fshehtash"
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
-msgstr ""
+msgstr "Ky është një email provë i dërguar prej ndërfaqes administrative të platformës."
 
 msgid ""
 "Reception of this email indicates that the server was able to authenticate "
 "to and interact with the SMTP mail server."
-msgstr ""
+msgstr "Marrja e këtij email-i tregon se shërbyesi qe në gjendje të bëjë mirëfilltësimin dhe të ndërveprojë me shërbyesin SMTP të postës."
 
 msgid "Test email"
-msgstr ""
+msgstr "Email provë"
 
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr ""
+msgstr "Ky është një email për t’ju njoftuar se është bërë një kërkesë për të ndryshuar adresën tuaj email në {NewEmailAddress}."
 
 msgid "Click the following link to validate this change:"
-msgstr ""
+msgstr "Që ta miratoni këtë ndryshim, klikoni mbi lidhjen vijues:"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
 "system administrator."
-msgstr ""
+msgstr "Nëse s’e kërkuat këtë ndryshim, ndryshojeni fjalëkalimin tuaj dhe lidhuni me përgjegjësin e sistemit tuaj."
 
 msgid "Email change request"
-msgstr ""
+msgstr "Kërkesë ndryshimi email-i"
 
 msgid "From: {Author}"
-msgstr ""
+msgstr "Nga: {Author}"
 
 msgid "Date: {EventTime}"
-msgstr "Date: {EventTime}"
+msgstr "Datë: {EventTime}"
 
 msgid "From: Whistleblower"
-msgstr "From: Whistleblower"
+msgstr "Nga: Nxjerrës të fshehte"
 
 msgid "Date: {SubmissionDate}"
-msgstr "Date: {SubmissionDate}"
+msgstr "Datë: {SubmissionDate}"
 
 msgid "Label: {TipLabel}"
-msgstr "Label: {TipLabel}"
+msgstr "Etiketë: {TipLabel}"
 
 msgid "Status: {TipStatus}"
-msgstr ""
+msgstr "Gjendje: {TipStatus}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
-msgstr ""
+msgstr "Dëshmia HTTPS e ngarkuar te platforma është duke skaduar, ose ka skaduar tashmë."
 
 msgid "Expiration date: {ExpirationDate}"
-msgstr "Data e skadimit: {ExpirationDate}"
+msgstr "Datë skadimi: {ExpirationDate}"
 
 msgid ""
 "Without a valid certificate, the platform will be accessible in a secure way"
 " only via Tor."
-msgstr ""
+msgstr "Pa një dëshmi të vlefshme, platforma do të jetë e përdorshme në mënyrë të parrezik vetëm përmes Tor-it."
 
 msgid "Log in to solve the issue."
-msgstr ""
+msgstr "Që të zgjidhni problemin, bëni hyrjen."
 
 msgid "Expiration alert for HTTPS certificate"
-msgstr ""
+msgstr "Sinjalizim skadimi për dëshmi HTTPS"
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
-msgstr ""
+msgstr "Rinovimi i vetvetishëm i dëshmisë HTTPS, i planifikuar për sot, sapo dështoi."
 
 msgid "The system will keep trying."
-msgstr ""
+msgstr "Sistemi do të vazhdojë të provojë."
 
 msgid "Failed HTTPS certificate renewal"
-msgstr ""
+msgstr "Dështim rinovimi dëshmie HTTPS"
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr "Kjo është një e-mail për të njoftuar ju se një kujdestar ju ka autorizuar për të hyrë në identitetin wistleblowing për dorëzimin {TipNum}."
+msgstr "Ky është një email për t’ju njoftuar se një ruajtës ju ka autorizuar të njihni identitetin e nxjerrësit të së fshehtës për raportimin {TipNum}."
 
 msgid "The report can be accessed at:"
-msgstr "Parashtrimi është i qasshëm:"
+msgstr "Raportimi mund të shihet te:"
 
 msgid "Access to whistleblower's identity authorized"
-msgstr "Qasja në identitetin e informatorëve të autorizuar"
+msgstr "U autorizua hyrje te identitet nxjerrësi të fshehte"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr ""
+msgstr "Ky është një email për t’ju njoftuar se një ruajtës ju ka mohuar njohjen e identitetit të nxjerrësit të së fshehtës për raportimin {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
-msgstr "Qasja në identitetin Whistleblower mohoi"
+msgstr "U hodh poshtë hyrje te identitet nxjerrësi të fshehte"
 
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr "Kjo është një email që të ju njoftojmë se një marrës ka kërkuar qasje në identitetin e whistleblower s per paraqitjen {TipNum}"
+msgstr "Ky është një email për t’ju njoftuar se një marrës ka kërkuar hyrje te identiteti i nxjerrësit të së fshehtës për raportimin {TipNum}"
 
 msgid "The request can be accessed at:"
-msgstr "Kërkesa mund të arrihen:"
+msgstr "Kërkesa mund të shihet te:"
 
 msgid "New request of access to a whistleblower's identity"
-msgstr "Kërkesa e re e aksesit të identitetit të informatorëve të"
+msgstr "Kërkesë e re për hyrje te identiteti i një nxjerrësi të fshehtash"
 
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr "Kjo është një email që të ju njoftojmë se whistleblower për dorëzimin {TipNum} ka dhënë identitetin e tyre."
+msgstr "Ky është një email për t’ju njoftuar se nxjerrësi i të fshehtës për raportimin {TipNum} ka dhënë identitetin e vet."
 
 msgid "The whistleblower has provided their identity"
-msgstr "Whistleblower ka dhënë identitetin e tyre"
+msgstr "Nxjerrësi i të fshehtës ka dhënë identitetin e vet"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr ""
+msgstr "Këtë email po e merrni ngaqë është kërkuar ricaktim fjalëkalimi për llogarinë: {Username}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
 "email."
-msgstr ""
+msgstr "Nëse këtë kërkesë s’e bëtë ju, mund ta shpërfillni pa telashe dhe ta fshini këtë email."
 
 msgid "You can confirm your request by clicking the following link:"
-msgstr ""
+msgstr "Kërkesën tuaj mund ta ripohoni duke klikuar lidhjen vijuese:"
 
 msgid "Password reset instructions"
-msgstr ""
+msgstr "Udhëzime ricaktimi fjalëkalimi"
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
 "expired."
-msgstr "Kjo është një e-postë për t'ju njoftuar se çelësi juaj PGP po skadon ose tashmë është i skaduar."
+msgstr "Ky është një email për t’ju bërë të ditur se kyçi juaj PGP po skadon, ose ka skaduar tashmë."
 
 msgid ""
 "You should extend its validity and update the key present on the platform, "
 "or upload a new key."
-msgstr "Ju duhet të zgjasë vlefshmërinë e tij dhe përditësimin e pranishëm kyç në platformë, ose ngarkoni një çelës të ri."
+msgstr "Do të duhej ta zgjeroni vlefshmërinë e tij dhe të përditësoni kyçin e pranishëm te platforma, ose të ngarkoni një kyç të ri."
 
 msgid ""
 "Without a valid PGP key, the system won't be able to encrypt data provided "
 "to you."
-msgstr "Pa çelës vlefshme PGP, sistemi nuk do të jetë në gjendje të encrypt të dhënat e ofruara për ju."
+msgstr "Pa një kyç PGP të vlefshëm, sistemi s’do të jetë në gjendje të fshehtëzojë të dhëna që ju jepen."
 
 msgid "Click the link to activate the platform:"
-msgstr ""
+msgstr "Që të aktivizohet platforma, klikoni mbi lidhjen:"
 
 msgid "Activation"
-msgstr ""
+msgstr "Aktivizim"
 
 msgid "A software update is available."
-msgstr ""
+msgstr "Ka të gatshëm një përditësim software-i."
 
 msgid "It is good security practice to keep the platform up to date."
-msgstr ""
+msgstr "Mbajtja e platformës të përditësuar është një praktikë e dobishme."
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "
 "change log at: {ChangeLogUrl}"
-msgstr ""
+msgstr "Për të mësuar rreth veçorish të reja dhe ndreqje të metash në versionin e ri, shihni regjistrin e ndryshimeve te: {ChangeLogUrl}"
 
 msgid ""
 "For instructions on software updates, please refer to the documentation at: "
 "{UpdateGuideUrl}"
-msgstr ""
+msgstr "Për udhëzime rreth përditësimesh software-i, ju lutemi, referojuni dokumentimit te: {UpdateGuideUrl}"
 
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "Ky është një email për t’ju njoftuar se një marrës ju ka akorduar hyrje te një ose disa raportime."
 
 msgid "New report"
-msgstr ""
+msgstr "Raportim i ri"
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
-msgstr ""
+msgstr "Data më e hershme e skadimit është {EarliestExpirationDate}."
 
 msgid "Please remember to check them before they are deleted."
-msgstr ""
+msgstr "Ju lutemi, mos harroni t’i shihni, para se të fshihen."
 
 msgid "Some reports will expire soon"
-msgstr ""
+msgstr "Disa raportime do të skadojnë së shpejti"
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr "Kjo është një e-postë për t'ju njoftuar se një informator ju ka përzgjedhur si një marrës të vlefshëm, për parashtrimin e tij/saj të ri."
+msgstr "Ky është një email për t’ju njoftuar se një nxjerrës të fshehte ju ka përzgjedhur ju si një marrës të vlefshëm për raportimin e vet."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -1927,22 +1929,22 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr "Ata do të dëshironin që ju të përkushtoheshit veçanërisht ndaj informacionit dhe materialit që përmbahet këtu. Ju lutemi mos harroni që, në të mirë të interesit publik, shpesh informatorët e ekspozojnë veten ndaj një rreziku të madh.Kësisoj, materiali që ata ofrojnë me këtë sugjerim konfidencial duhet të konsiderohet me rëndësi të madhe."
+msgstr "Ju kërkohet të bëni kujdes të veçantë me informacionin dhe materialin që përmbahet këtu. Ju lutemi, mbani parasysh se nxjerrësit e të fshehtave, shpesh ekspozojnë veten ndaj rreziqesh të mëdha personale, për interesin e publikut. Ndaj materiali i dhënë brenda këtij raportimi duhet konsideruar si i rëndësie të madhe."
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr ""
+msgstr "Ky është një email për t’ju njoftuar se është përditësuar një raportim ekzistues."
 
 msgid "Report updated"
-msgstr ""
+msgstr "U përditësua raportim"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr ""
+msgstr "Ky email është për t’ju kujtuar praninë e raportimesh të palexuar ose të përditësuar."
 
 msgid "Reminder about unread or updated reports"
-msgstr ""
+msgstr "Kujtues për raportime të palexuar ose të përditësuar"
 
 msgid "Role: {Role}"
-msgstr ""
+msgstr "Rol: {Role}"
 
 msgid "Password: {Password}"
-msgstr ""
+msgstr "Fjalëkalim: {Password}"

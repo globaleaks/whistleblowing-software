@@ -460,7 +460,7 @@
   "The provided reset token is invalid or expired.": "Тәминләнгән әслигә қайтуруш бәлгиси инавәтсиз йаки сүрүки тошқан.",
   "Enter your account's username or your email address to request a password reset.": "Һесабат намиңиз йаки елхәт адресиңизни киргүзүп, паолиңизни қайта сәпләшни тәләп қилиң.",
   "Enter your email address to request a password reset.": "Елхәт адресиңизни киргүзүп паролиңизни қайта сәпләшни тәләп қилиң.",
-  "Enter you encryption recovery key to complete the password reset procedure": "Парол қайта сәпләш җәрйанини тамамлаш үчүн шифирләнгән әслигә кәлтүрүш ачқучини киргүзүң",
+  "Enter your encryption recovery key to complete the password reset procedure": "Парол қайта сәпләш җәрйанини тамамлаш үчүн шифирләнгән әслигә кәлтүрүш ачқучини киргүзүң",
   "Password reset requested.": "Паролиңизни қайта сәпләш тәләп қилинди.",
   "Access to the whistleblower's identity has been requested to the custodian.": "Сақлиғучи паш қилғучиниң кимлигини зийарәт қилишни тәләп қилди.",
   "Date of the request": "Telep qilghan chésla",

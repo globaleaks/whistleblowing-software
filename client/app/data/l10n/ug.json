@@ -460,7 +460,7 @@
   "The provided reset token is invalid or expired.": "تەمىنلەنگەن ئەسلىگە قايتۇرۇش بەلگىسى ئىناۋەتسىز ياكى سۈرۈكى توشقان.",
   "Enter your account's username or your email address to request a password reset.": "ھېسابات نامىڭىز ياكى ئېلخەت ئادرېسىڭىزنى كىرگۈزۈپ، پاولىڭىزنى قايتا سەپلەشنى تەلەپ قىلىڭ.",
   "Enter your email address to request a password reset.": "ئېلخەت ئادرېسىڭىزنى كىرگۈزۈپ پارولىڭىزنى قايتا سەپلەشنى تەلەپ قىلىڭ.",
-  "Enter you encryption recovery key to complete the password reset procedure": "پارول قايتا سەپلەش جەريانىنى تاماملاش ئۈچۈن شىفىرلەنگەن ئەسلىگە كەلتۈرۈش ئاچقۇچىنى كىرگۈزۈڭ",
+  "Enter your encryption recovery key to complete the password reset procedure": "پارول قايتا سەپلەش جەريانىنى تاماملاش ئۈچۈن شىفىرلەنگەن ئەسلىگە كەلتۈرۈش ئاچقۇچىنى كىرگۈزۈڭ",
   "Password reset requested.": "پارولىڭىزنى قايتا سەپلەش تەلەپ قىلىندى.",
   "Access to the whistleblower's identity has been requested to the custodian.": "ساقلىغۇچى پاش قىلغۇچىنىڭ كىملىگىنى زىيارەت قىلىشنى تەلەپ قىلدى.",
   "Date of the request": "تەلەپ قىلغان چېسلا",

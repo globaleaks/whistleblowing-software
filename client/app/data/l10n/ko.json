@@ -460,7 +460,7 @@
   "The provided reset token is invalid or expired.": "제공된 재설정 토큰이 유효하지 않거나 만료되었습니다.",
   "Enter your account's username or your email address to request a password reset.": "계정의 사용자 이름 또는 이메일 주소를 입력하여 비밀번호 재설정을 요청하십시오.",
   "Enter your email address to request a password reset.": "이메일 주소를 입력하여 비밀번호 재설정을 요청하십시오.",
-  "Enter you encryption recovery key to complete the password reset procedure": "비밀번호 재설정 절차를 완료하려면 암호화 복구 키를 입력하십시오",
+  "Enter your encryption recovery key to complete the password reset procedure": "비밀번호 재설정 절차를 완료하려면 암호화 복구 키를 입력하십시오",
   "Password reset requested.": "비밀번호 재설정이 요청되었습니다.",
   "Access to the whistleblower's identity has been requested to the custodian.": "내부 고발자의 신원 액세스 권한이 관리인에게 요청되었습니다.",
   "Date of the request": "요청 날짜",

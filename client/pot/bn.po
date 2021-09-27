@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-23 21:10+0000\n"
+"PO-Revision-Date: 2021-09-27 12:07+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bengali (http://www.transifex.com/otf/globaleaks/language/bn/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1440,7 +1440,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "পাসওয়ার্ড পুনরায় সেট করার জন্য অনুরোধ করতে আপনার ইমেল ঠিকানা লিখুন।"
 
 msgid ""
-"Enter you encryption recovery key to complete the password reset procedure"
+"Enter your encryption recovery key to complete the password reset procedure"
 msgstr "পাসওয়ার্ড পুনরায় সেট করার পদ্ধতিটি সম্পূর্ণ করতে আপনার এনক্রিপশন পুনরুদ্ধার কী লিখুন"
 
 msgid "Password reset requested."
