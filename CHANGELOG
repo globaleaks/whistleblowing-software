@@ -1,8 +1,13 @@
+Changes in version 4.4.1
+    Add support for Serbian (Montenegro) and Tatar language
+    Fix regression causing failure on file uploads and other mail exceptions (#3035)
+    Update translations
+
 Changes in version 4.4.0
     Bump database version to 56 to fix specific issue on db version 55
 
 Changes in version 4.3.2
-    Fix regression on visualization on answers to fieldgroups introduced in 4.3.0 #3053
+    Fix regression on visualization on answers to fieldgroups introduced in 4.3.0 (#3053)
     Update translations
 
 Changes in version 4.3.1
