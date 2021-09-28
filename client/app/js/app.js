@@ -563,7 +563,7 @@ var GL = angular.module("GL", [
 
     $rootScope.open_disclaimer_modal = function () {
       $uibModal.open({
-        templateUrl: "views/partials/disclaimer.html",
+        templateUrl: "views/modals/disclaimer.html",
         controller: "ConfirmableModalCtrl",
 	resolve: {
           arg: null,

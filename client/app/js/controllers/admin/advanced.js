@@ -22,7 +22,7 @@ controller("AdminAdvancedCtrl", ["$scope", function($scope) {
 
   $scope.toggleEncryption = function() {
     if ($scope.resources.node.encryption) {
-      $scope.Utils.openConfirmableModalDialog("views/partials/enable_encryption.html").then(
+      $scope.Utils.openConfirmableModalDialog("views/modals/enable_encryption.html").then(
       function() {
         $scope.resources.node.encryption = true;
         $scope.resources.node.escrow = false;
