@@ -84,6 +84,6 @@ class CertificateCheck(DailyJob):
 
     @inlineCallbacks
     def operation(self):
-        for tid in self.state.tenant_state:
+        for tid in self.state.tenant_state.keys():
             yield self.cert_expiration_checks(tid)
-            yield deferred_sleep(60)
+            yield deferred_sleep(5)
