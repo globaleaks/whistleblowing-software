@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 16:57+0000\n"
+"PO-Revision-Date: 2021-09-28 06:14+0000\n"
 "Last-Translator: vargaviktor <viktor.varga@gmail.com>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -482,7 +482,7 @@ msgid "Logout"
 msgstr "Kilépés"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr "Ennek a címzettnek képesség adása arra, hogy felhasználói hozzáférést adjon a riportokhoz"
+msgstr "Ennek a címzettnek képesség adása arra, hogy felhasználói hozzáférést adjon a jelentésekhez"
 
 msgid "Grant access"
 msgstr "Hozzáférés adása"
@@ -1915,7 +1915,7 @@ msgstr "Útmutatásért a frissítésekhez tekintse meg a kézikönyvet: {Update
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr "Ez egy értesítő email arról, hogy a címzett hozzáférést adott egy vagy több riporthoz."
+msgstr "Ez egy értesítő email arról, hogy a címzett hozzáférést adott egy vagy több jelentéshez."
 
 msgid "New report"
 msgstr "Új jelentés"

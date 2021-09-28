@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 13:10+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-09-29 09:52+0000\n"
+"Last-Translator: Timur Seber <seber.tatsoft@gmail.com>\n"
 "Language-Team: Tatar (http://www.transifex.com/otf/globaleaks/language/tt/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -150,12 +150,12 @@ msgid "Access control"
 msgstr "Керү белән идарә итү "
 
 msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr ""
+msgstr "Бәйләнеш хосусыйлыкны тәэмин итүче HTTPS протоколы белән сакланды."
 
 msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
-msgstr ""
+msgstr "Бәйләнеш хосусыйлыкны һәм анонимлыкны тәэмин итүче Tor белән сакланды."
 
 msgid "Number"
 msgstr "Сан"
@@ -507,7 +507,7 @@ msgid "Proceed"
 msgstr "Дәвам итү"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr ""
+msgstr "Башлау алдыннан зинһар, ике адымлы аутентификацияне кабызыгыз."
 
 msgid "Disable submissions"
 msgstr "Җибәрүне сүндерү"
@@ -750,7 +750,7 @@ msgid "Show recipients in alphabetical order"
 msgstr "Алучыларны алфавит тәртибендә күрсәтү"
 
 msgid "Show recipient details on the status page of the report"
-msgstr ""
+msgstr "Хисапның статус битендә алучы мәгълүматын күрсәтү "
 
 msgid "Enable comments"
 msgstr "Аңлатмаларны кабызу"
@@ -783,7 +783,7 @@ msgid "Medium"
 msgstr "Уртача"
 
 msgid "Customize the message shown in the receipt page"
-msgstr ""
+msgstr "Квитанция битендә күрсәтелгән хәбәрне көйләгез"
 
 msgid "Assign the receipt only to reports reaching score:"
 msgstr ""
@@ -804,7 +804,7 @@ msgid "Recipient"
 msgstr "Алучы"
 
 msgid "Each entry must be separated with a comma."
-msgstr ""
+msgstr "Һәр язма өтер белән аерылырга тиеш."
 
 msgid "Example:"
 msgstr "Мисал:"
@@ -1118,7 +1118,7 @@ msgid "Force password change"
 msgstr "Серсүзне мәҗбүри үзгәртү"
 
 msgid "The user will be forced to change its password on next login."
-msgstr ""
+msgstr "Кулланучы киләсе керүдә серсүзен үзгәртергә мәҗбүр булачак."
 
 msgid "Language"
 msgstr "Тел"
@@ -1133,7 +1133,7 @@ msgid "Fingerprint"
 msgstr "Бармак эзе"
 
 msgid "Set up encryption by providing a PGP public key"
-msgstr ""
+msgstr "PGP ачык ачкыч биреп шифрлау көйләү"
 
 msgid "Give this admin ability to change user passwords"
 msgstr "Бу администраторга кулланучы серсүзләрен үзгәртү мөмкинлеге бирегез"
@@ -1266,7 +1266,7 @@ msgid "Welcome!"
 msgstr "Рәхим итегез!"
 
 msgid "For the user documentation, visit:"
-msgstr ""
+msgstr "Кулланучының документлары өчен бу сайтка керегез:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
@@ -1340,7 +1340,7 @@ msgid "Download the Tor Browser"
 msgstr "Tor Browser-ны йөкләп алу"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr ""
+msgstr "Аннары, түбәндәге адресны күчермәләп, Tor Browser кушымтасына өстәгез:"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr ""
@@ -1546,10 +1546,10 @@ msgid ""
 msgstr ""
 
 msgid "You must select at least one recipient."
-msgstr ""
+msgstr "Сез ким дигәндә бер алучыны сайларга тиеш."
 
 msgid "Waiting for the file(s) to finish uploading."
-msgstr ""
+msgstr "Файл(-лар-)ны йөкләү тәмамлануын көтү."
 
 msgid "The following steps have errors:"
 msgstr "Киләсе адымнарда хаталар бар:"
@@ -1588,10 +1588,10 @@ msgid "Fill out your report"
 msgstr "Хисабыгызны тутырыгыз"
 
 msgid "Describe your report in a few words."
-msgstr ""
+msgstr "Хисапны берничә сүз белән сурәтләгез."
 
 msgid "Describe your report in detail."
-msgstr ""
+msgstr "Хисапны җентекләп сурәтләгез."
 
 msgid "Attach files relevant to the report."
 msgstr ""
@@ -1606,13 +1606,13 @@ msgid "Last name"
 msgstr "Фамилия"
 
 msgid "Alternative contact method"
-msgstr ""
+msgstr "Альтернатив элемтә ысулы"
 
 msgid "Other"
 msgstr "Башка"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr ""
+msgstr "Бу платформа аша гына элемтәгә керергә телим"
 
 msgid "Dear {RecipientName},"
 msgstr "Хөрмәтле {RecipientName},"
@@ -1696,20 +1696,20 @@ msgid ""
 msgstr ""
 
 msgid "Anomaly detected in {NodeName}"
-msgstr ""
+msgstr "{NodeName} эчендә аномалия ачыкланды"
 
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
 "going to expire or has already expired:"
-msgstr ""
+msgstr "Бу түбәндәге кулланучыларның PGP ачкыч вакыты чыгачак яки вакыты чыккан хәбәр итү өчен эл. почта:"
 
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
 "notifications."
-msgstr ""
+msgstr "Дөрес PGP ачкычы булмаса, система аларга шифрланган белдерүләр җибәрә алмаячак."
 
 msgid "PGP key expiration alert"
-msgstr ""
+msgstr "PGP ачкычының вакыты чыгу турында белдерү"
 
 msgid "A new whistleblowing site has been registered."
 msgstr "Мәгълүмат җиткерү өчен яңа сайт теркәлде."
@@ -1861,7 +1861,7 @@ msgstr "Серсүзне ташлату күрсәтмәләре"
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
 "expired."
-msgstr ""
+msgstr "Бу сезнең PGP ачкычыгызның вакыты чыгу яки вакыты чыккан хәбәр итү өчен эл. почта."
 
 msgid ""
 "You should extend its validity and update the key present on the platform, "

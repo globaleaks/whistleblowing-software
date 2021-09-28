@@ -455,7 +455,7 @@
   "Files attached by recipients": "File allegati dai riceventi",
   "Upload a file:": "Carica un file:",
   "An update is available:": "È disponibile un aggiornamento:",
-  "We recommend that you access the “Preferences” section in order to retrieve your “Account Recovery Key” and store it safely. This key will be necessary to recover your access to the platform and to your data in case you forget your password.": "Consigliamo di accedere alla sezione \"Preferenze\" al fine di recuperare la tua \"Account Recovery Key\" e farne una copia di sicurezza. Questa chiave sarà necessaria per ripristinare il tuo accesso alla piattaforma e ai tuoi dati nel caso tu dimenticassi la tua password.",
+  "We recommend that you access the “Preferences” section in order to retrieve your “Account Recovery Key” and store it safely. This key will be necessary to recover your access to the platform and to your data in case you forget your password.": "Consigliamo di accedere alla sezione \"Preferenze\" al fine di recuperare la tua \"Chiave di recupero account\" e farne una copia di sicurezza. Questa chiave sarà necessaria per ripristinare il tuo accesso alla piattaforma e ai tuoi dati nel caso tu dimenticassi la tua password.",
   "The provided recovery key is invalid.": "La chiave di recupero fornita non è corretta,",
   "The provided reset token is invalid or expired.": "Il token di reset fornito non è valido o è scaduto.",
   "Enter your account's username or your email address to request a password reset.": "Inserisci lo username legato al tuo account o la tua email per richiedere di reimpostare la password.",
