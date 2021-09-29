@@ -7,7 +7,7 @@ GL.controller("EnableTwoFactorAuthCtrl", ["$scope", "$http", "$location",
       "args": {}
     }}).then(function(data){
       $scope.two_factor_secret = data.data;
-      $scope.qrcode_string = "otpauth://totp/GlobaLeaks?secret=" + $scope.two_factor_secret;
+      $scope.qrcode_string = "otpauth://totp/" + $location.host() + "%20%28" + $scope.preferences.username + "%29?secret=" + $scope.two_factor_secret;
     });
 
     $scope.enable2FA = function() {
