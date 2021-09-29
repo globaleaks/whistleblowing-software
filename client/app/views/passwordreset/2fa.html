@@ -5,8 +5,12 @@
       <input class="form-control" data-ng-model="request.auth_code" type="text" size="6" maxlength="6" required />
     </div>
 
-    <button class="btn btn-primary" data-ng-disabled="request.auth_code.length !== 6" data-ng-click="submit()" type="submit">
-      <span data-translate>Proceed</span>
-    </button>
+    <div class="input-group">
+      <button class="btn btn-primary" data-ng-disabled="request.auth_code.length !== 6" data-ng-click="submit()" type="submit">
+        <span data-translate>Proceed</span>
+      </button>
+
+      <a class="btn" data-ng-click="Utils.openSupportModal()" data-uib-tooltip="{{'Request support' | translate}}"><i class="fas fa-life-ring"></i></a>
+    </div>
   </div>
 </div>

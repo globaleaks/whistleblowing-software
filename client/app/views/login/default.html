@@ -30,13 +30,18 @@
 <div data-ng-if="Authentication.authcoderequired">
   <div class="form-group">
     <label data-translate>Enter the two factor authentication code</label>
-    <input class="form-control" data-ng-model="loginData.loginAuthCode" type="text" size="6" maxlength="6" required />
   </div>
 
-  <button id="login-button" class="btn btn-primary" data-ng-disabled="Authentication.loginInProgress || loginForm.$invalid" data-ng-click="Authentication.login(0, loginData.loginUsername, loginData.loginPassword, loginData.loginAuthCode)" type="submit">
-    <i class="fas fa-sign-in-alt"></i>
-    <span data-translate>Log in</span>
-  </button>
+  <div class="input-group">
+    <input class="form-control" data-ng-model="loginData.loginAuthCode" type="text" size="6" maxlength="6" required />
 
-  <a class="btn" data-ng-click="Utils.openSupportModal()" data-uib-tooltip="{{'Request support' | translate}}"><i class="fas fa-life-ring"></i></a>
+    <div class="input-group-btn">
+      <button id="login-button" class="btn btn-primary" data-ng-disabled="Authentication.loginInProgress || loginForm.$invalid" data-ng-click="Authentication.login(0, loginData.loginUsername, loginData.loginPassword, loginData.loginAuthCode)" type="submit">
+        <i class="fas fa-sign-in-alt"></i>
+        <span data-translate>Log in</span>
+      </button>
+
+      <a class="btn" data-ng-click="Utils.openSupportModal()" data-uib-tooltip="{{'Request support' | translate}}"><i class="fas fa-life-ring"></i></a>
+    </div>
+  </div>
 </div>
