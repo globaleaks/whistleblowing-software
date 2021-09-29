@@ -1,3 +1,9 @@
+Changes in version 4.4.2
+    Apply minor bugfixing
+    Revise native language names
+    Add support for Bashkir language
+    Update translations
+
 Changes in version 4.4.1
     Add support for Serbian (Montenegro) and Tatar language
     Fix regression causing failure on file uploads and other mail exceptions (#3035)
