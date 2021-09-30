@@ -1,3 +1,12 @@
+Changes in version 4.4.3
+    Add NTP as package dependency on debian buster and ubuntu bionic
+    Simplify interface of questionnaire configuration when only one step
+    is present
+    Revise layout of login and 2fa pages
+    Fix functionality of self password recovery on the page that requires
+    the account recovery key
+    Update translations
+
 Changes in version 4.4.2
     Apply minor bugfixing
     Revise native language names
