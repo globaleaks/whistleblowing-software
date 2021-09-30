@@ -44,19 +44,18 @@ describe("admin add, configure and delete questionnaires", function() {
     // Open Questionnaire 1
     await element(by.xpath(".//*[text()='Questionnaire 1']")).click();
 
-    await add_step("Step 1");
     await add_step("Step 2");
     await add_step("Step 3");
 
     // Open Step 1
-    await element(by.xpath(".//*[text()='Step 1']")).click();
+    await element(by.xpath(".//*[text()='Step 2']")).click();
 
     for(var i=0; i<browser.gl.utils.vars.field_types.length; i++){
       await add_question(browser.gl.utils.vars.field_types[i]);
     }
 
     // Close Step 1
-    await element(by.xpath(".//*[text()='Step 1']")).click();
+    await element(by.xpath(".//*[text()='Step 2']")).click();
 
     // Delete Step 3
     await element.all(by.css("[data-ng-click=\"delStep(step); $event.stopPropagation();\"]")).get(2).click();
