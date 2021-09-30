@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-29 09:50+0000\n"
+"PO-Revision-Date: 2021-09-30 14:23+0000\n"
 "Last-Translator: Aigiz Kunafin\n"
 "Language-Team: Bashkir (http://www.transifex.com/otf/globaleaks/language/ba/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -937,16 +937,16 @@ msgid "Password"
 msgstr "Пароль"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr ""
+msgstr "Отчеттың ғәмәл мөҙҙәте сығыу тураһындағы иҫкәртмәне ебәрерҙән алдағы сәғәттәр һаны"
 
 msgid "Test the configuration"
-msgstr ""
+msgstr "Конфигурацияны тикшерергә"
 
 msgid "Reset SMTP configuration"
-msgstr ""
+msgstr "SMTP конфигурацияһын алып ташлау"
 
 msgid "Reset notification templates to default"
-msgstr ""
+msgstr "Йәшереп ҡалдырыу мөһимлегенең белдереүҙәре ҡалыптарын алып ташлау"
 
 msgid "Template"
 msgstr "Шаблон"
@@ -955,25 +955,25 @@ msgid "Question"
 msgstr "Һорау"
 
 msgid "Single-line text input"
-msgstr ""
+msgstr "Бер юллыҡ текст индереү"
 
 msgid "Multi-line text input"
-msgstr ""
+msgstr "Күп юллыҡ текст индереү"
 
 msgid "Selection box"
-msgstr ""
+msgstr "Һайлау  аҡланы"
 
 msgid "Checkbox"
-msgstr ""
+msgstr "Әләм"
 
 msgid "Terms of service"
-msgstr ""
+msgstr "Хеҙмәтләндереү шарттары"
 
 msgid "Date range"
-msgstr ""
+msgstr "Даталар диапазоны"
 
 msgid "Group of questions"
-msgstr ""
+msgstr "Һорауҙар төркөмө"
 
 msgid "Row"
 msgstr "Юл"
@@ -982,28 +982,28 @@ msgid "Column"
 msgstr "Колонка"
 
 msgid "Width"
-msgstr ""
+msgstr "Киңлеге"
 
 msgid "Multiple choice input"
-msgstr ""
+msgstr "Һайлау күплеге менән индереү"
 
 msgid "Question group"
-msgstr ""
+msgstr "Һорауҙар йыйылмаһы"
 
 msgid "Hint"
-msgstr ""
+msgstr "Һүҙ ярҙамы"
 
 msgid "Required"
 msgstr "Мотлаҡ"
 
 msgid "Accept multiple file uploads"
-msgstr ""
+msgstr "Бер нисә файлды йөкләргә рөхсәт итергә"
 
 msgid "Accept multiple answers"
-msgstr ""
+msgstr "Бер нисә яуапты ҡабул итеү"
 
 msgid "Template override"
-msgstr ""
+msgstr "Шаблонды яңынан билдәләү"
 
 msgid "Phone number"
 msgstr "Телефон номеры"
@@ -1012,10 +1012,10 @@ msgid "Text"
 msgstr "Текст"
 
 msgid "Checkbox label"
-msgstr ""
+msgstr "Әләм билдәһе"
 
 msgid "Add multimedia content"
-msgstr ""
+msgstr "Мульти-медия контентын өҫтәү"
 
 msgid "Image"
 msgstr "Һүрәт"
@@ -1027,438 +1027,438 @@ msgid "Video"
 msgstr "Видео"
 
 msgid "Trigger conditions"
-msgstr ""
+msgstr "Тоҡандырыу шарттары"
 
 msgid "Sufficient"
-msgstr ""
+msgstr "Ҡәнәғәтләнерлек"
 
 msgid "Options"
-msgstr ""
+msgstr "Дәүмәле"
 
 msgid "Addition"
-msgstr ""
+msgstr "Өҫтәлмә"
 
 msgid "Multiplier"
-msgstr ""
+msgstr "Мультипликатор"
 
 msgid "Questions"
 msgstr "Һорауҙар"
 
 msgid "Add new question"
-msgstr ""
+msgstr "Яңы һорау өҫтәргә"
 
 msgid "Add question from template"
-msgstr ""
+msgstr "Ҡалыптан һорау өҫтәү"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Дубликат"
 
 msgid "Steps"
 msgstr "Аҙымдар"
 
 msgid "Site settings"
-msgstr ""
+msgstr "Сайтты көйләү"
 
 msgid "Case management"
-msgstr ""
+msgstr "Кейс менән идара итеү"
 
 msgid "Network settings"
-msgstr ""
+msgstr "Селтәрҙе көйләү"
 
 msgid "Sites"
 msgstr "Сайттар"
 
 msgid "Mode:"
-msgstr ""
+msgstr "Режим"
 
 msgid "Configure"
-msgstr ""
+msgstr "Көйләргә"
 
 msgid "Subdomain"
-msgstr ""
+msgstr "Субдомен"
 
 msgid "Creation date:"
-msgstr ""
+msgstr "Барлыҡҡа килтереү датаһы"
 
 msgid "Root domain used for secondary sites"
-msgstr ""
+msgstr "Икенсел сайттар өсөн ҡулланылыусы тамыр домен"
 
 msgid "Use the first site for administrative purposes only"
-msgstr ""
+msgstr "Тәүге сайтты административ маҡсатта ғына ҡулланырға"
 
 msgid "Enable multi-site login"
-msgstr ""
+msgstr "Күп ҡулланышлы инеүҙе ҡабыҙырға"
 
 msgid "Allow users to sign up"
-msgstr ""
+msgstr "Ҡулланыусыларға теркәлеү рөхсәте бирергә"
 
 msgid "Enable terms of service"
-msgstr ""
+msgstr "Хеҙмәтләндереү шарттарын ҡабыҙырға"
 
 msgid "Title"
-msgstr ""
+msgstr "Исеме"
 
 msgid "Send an account activation link to the user."
-msgstr ""
+msgstr "Иҫәп яҙмаһын әүҙемләштереү өсөн, ҡулланыусыға һылтанма ебәрергә"
 
 msgid "Public name"
-msgstr ""
+msgstr "Танылған исеме"
 
 msgid "Send reset link"
-msgstr ""
+msgstr "Ташлау өсөн һылтанма ебәрергә"
 
 msgid "Set password"
 msgstr "Парольды өҫтәргә"
 
 msgid "Disable two factor authentication"
-msgstr ""
+msgstr "Ике факторлы аутентификацияны һүндерергә"
 
 msgid "Force password change"
-msgstr ""
+msgstr "Паролде мәжбүри алмаштыртыу"
 
 msgid "The user will be forced to change its password on next login."
-msgstr ""
+msgstr "Артабанғы ингәнендә ҡулланыусы  паролен алмаштырырға тейеш"
 
 msgid "Language"
 msgstr "Тел"
 
 msgid "Enable email notifications"
-msgstr ""
+msgstr "Электрон почта белдереүҙәрен ҡабыҙырға"
 
 msgid "Details of the PGP key:"
-msgstr ""
+msgstr "PGP-асҡыс хаҡында мәғлүмәт"
 
 msgid "Fingerprint"
-msgstr ""
+msgstr "Эҙ"
 
 msgid "Set up encryption by providing a PGP public key"
-msgstr ""
+msgstr "Аныҡ PGP-асҡыс мөмкинлегендә шифрлау ҡуйырға"
 
 msgid "Give this admin ability to change user passwords"
-msgstr ""
+msgstr "Администраторға ҡулланыусылар паролен үҙгәртергә мөмкинлек биреү"
 
 msgid "Forcefully selected"
-msgstr ""
+msgstr "Үтенес буйынса һайланды"
 
 msgid "Allow the recipient to delete reports"
-msgstr ""
+msgstr "Ҡабул итеүсегә отчеттарҙы юйыу рөхсәте биреү"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr ""
+msgstr "Ҡабул итеүсегә отчеттарҙың мөҙҙәт ғәмәле сығыуын кисектереүгә рөхсәт бирергә"
 
 msgid "Give the user administrative access to the following features:"
-msgstr ""
+msgstr "Ҡулланыусыға түбәндәге файлдарға инеү мөмкинлеге бирегеҙ"
 
 msgid "Request date"
-msgstr ""
+msgstr "Үтенес датаһы"
 
 msgid "Report date"
-msgstr ""
+msgstr "Отчет датаһы"
 
 msgid "Authorization"
-msgstr ""
+msgstr "Авторизация"
 
 msgid "Requests"
-msgstr ""
+msgstr "Үтенестәр"
 
 msgid "The validation link is either incorrect or has expired."
-msgstr ""
+msgstr "Һылтанма тикшереү өсөн дөрөҫ түгел йәки ғәмәл мөҙҙәте үткән"
 
 msgid "Your new email address has been validated."
-msgstr ""
+msgstr "Электрон почтағыҙҙың яңы адресы раҫланды"
 
 msgid "Forgot password?"
-msgstr ""
+msgstr "Паролде оноттоғоҙмо?"
 
 msgid "Enter the two factor authentication code"
-msgstr ""
+msgstr "Аутентификацияның ике факорлы кодын яҙығыҙ"
 
 msgid "Authentication failed"
-msgstr ""
+msgstr "Аутентификация хатаһы"
 
 msgid "The code is either invalid or expired."
-msgstr ""
+msgstr "Код дөрөҫ түгел йәки уның ғәмәл мөҙҙәте үткән"
 
 msgid "Site:"
-msgstr ""
+msgstr "Сайт"
 
 msgid "Please select your account:"
-msgstr ""
+msgstr "Иҫәп яҙмағыҙҙы күрһәтегеҙ"
 
 msgid "Now type your password, then click 'Log in':"
-msgstr ""
+msgstr "Хәҙер паролегеҙҙе яҙығыҙ, артабан \"Инеү\"гә баҫығыҙ"
 
 msgid "Text shown after the user has selected the option."
-msgstr ""
+msgstr "Ҡулланыусының опция һайлағандан һуң күрһәтеләсәк тексы"
 
 msgid "Confirm"
-msgstr ""
+msgstr "Раҫларға"
 
 msgid "Assign score points"
-msgstr ""
+msgstr "Баһаларға"
 
 msgid "Are you sure?"
-msgstr ""
+msgstr "Шикләнмәйһегеҙме?"
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr ""
+msgstr "Иғтибар: булғандарҙың барыһы ла ҡайтанан тергеҙелмәҫлек итеп юйыласаҡ"
 
 msgid "Enable two factor authentication"
-msgstr ""
+msgstr "Ике факторлы аутентификацияны ҡабыҙығыҙ"
 
 msgid "Close"
-msgstr ""
+msgstr "Ябырға"
 
 msgid "Before proceeding please read carefully the documentation at:"
-msgstr ""
+msgstr "Дауам итерҙән алда, сәхифәләге документация менән ныҡлап танышығыҙ"
 
 msgid "Your account recovery key is:"
-msgstr ""
+msgstr "Иҫәп яҙмаһын терҙеҙеү өсөн һеҙҙең асҡыс"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr ""
+msgstr "Күсермәһен эшләгеҙ һәм хәүефһеҙ урынға урынлаштырығыҙ. Әгәр паролегеҙҙе юғалтһағыҙ, ул һеҙгә, булғандарҙы юғалтмайынса ғына, һеҙҙең иҫәп яҙмағыҙға инеүгә рөхсәт алыр өсөн кәрәк буласаҡ"
 
 msgid "Enter a name for the copy"
-msgstr ""
+msgstr "Күсермәнең исемен яҙығыҙ"
 
 msgid "Request support"
-msgstr ""
+msgstr "Хуплауға үтенес ебәрергә"
 
 msgid "Thank you."
-msgstr ""
+msgstr "Рәхмәт."
 
 msgid "We will try to get back to you as soon as possible."
-msgstr ""
+msgstr "Яҡын арала һеҙҙең менән бәйләнешкә инергә тырышырбыҙ"
 
 msgid "Submit"
-msgstr ""
+msgstr "Тапшырырға"
 
 msgid "The connection is not secure."
-msgstr ""
+msgstr "Тоташтырыу ҡурсаланмаған"
 
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
-msgstr ""
+msgstr "Платформа HTTPS менән тоташтырыуға көйләнмәгән, шунлыҡтан бары тест үткәреү өсөн генә ҡулланырға тейеш"
 
 msgid "Please write a motivation for the reply"
-msgstr ""
+msgstr "Зинһар, яуап мотивацияһын күрһәтегеҙ"
 
 msgid "Send"
-msgstr ""
+msgstr "Ебәрергә"
 
 msgid "By confirming, you will postpone the expiration date to:"
-msgstr ""
+msgstr "Раҫланһа, мәғлүмәттәрҙең мөҙҙәте сығыуын түбәндәге ваҡытҡа арттыраһығыҙ:"
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr ""
+msgstr "Был демонстрация платформаһы, уны реаль документтар ебәреү өсөн файҙаланмағыҙ"
 
 msgid "Install an authenticator app on your phone"
-msgstr ""
+msgstr "Телефонығыҙға аутентификация өсөн ҡушымта ҡуйығыҙ"
 
 msgid "Scan the QR code with the app"
-msgstr ""
+msgstr "Ҡушымта ярҙамында QR-код сканын эшләгеҙ"
 
 msgid "Welcome!"
-msgstr ""
+msgstr "Рәхим итегеҙ!"
 
 msgid "For the user documentation, visit:"
-msgstr ""
+msgstr "Ҡулланыусының документтары менән түбәндәге биттәрҙә танышырға була"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
 " the software:"
-msgstr ""
+msgstr "Әгәр техник ярҙам талап ителһә, дөйөм һорауҙар булһа, программа тәьмин итеүенә тәҡдим булһа:"
 
 msgid ""
 "If you want to contribute to software development or report a bug, please "
 "open an issue in our ticketing system:"
-msgstr ""
+msgstr "Һеҙ программа тәьмин ителешен булдырыуҙа ҡатнашырға, хаталар тураһында хәбәр итергә теләһәгеҙ, зинһар, беҙҙең хуплау системаһына үтенес ебәрегеҙ"
 
 msgid "Join our chat:"
-msgstr ""
+msgstr "Беҙҙең чатҡа ҡушылыу"
 
 msgid "Follow the project on:"
-msgstr ""
+msgstr "Проект үҫешен күҙәтеп барығыҙ:"
 
 msgid "Hint: How to hide your receipt"
-msgstr ""
+msgstr "Кәңәш: ҡабул итеү  хаҡындағы квитанцияғыҙҙы нисек йәшерергә"
 
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr ""
+msgstr "Ҡабул итеү хаҡындағы квитанцияғыҙҙы ныҡлы йәшереү өсөн, уны, ғәмәл мөҙҙәте сығыу датаһын күрһәтеп,  кредит картаһы номеры кеүек яҙырға була,"
 
 msgid "Error!"
-msgstr ""
+msgstr "Хата"
 
 msgid "Internal server error"
-msgstr ""
+msgstr "Серверҙың эске хатаһы"
 
 msgid "Error on input validation"
-msgstr ""
+msgstr "Инеүҙе тикшергәндәге хата"
 
 msgid "Resource not found"
-msgstr ""
+msgstr "Ресурс табылманы"
 
 msgid "Forbidden operation"
-msgstr ""
+msgstr "Һоралған операция"
 
 msgid "The specified old password is not valid"
-msgstr ""
+msgstr "Күрһәтелгән элекке пароль дөрөҫ түгел"
 
 msgid "Resource can only be accessed via the Tor network"
-msgstr ""
+msgstr "Ресурсҡа инеү мөмкинлеге тик Tor селтәре аша"
 
 msgid "The upload request exceeds the size limit"
-msgstr ""
+msgstr "Серверға файлды йөкмәүгә үтенес ҡуйылған лимитты үтә"
 
 msgid "Validation of email address change in progress."
-msgstr ""
+msgstr "Электрон почта адресын үҙгәртеүгә тикшереү башҡарыла "
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
+msgstr "Почтағыҙҙы өҫтәлмә инструкциялар барлығын тикшерегеҙ "
 
 msgid "Account recovery key"
-msgstr ""
+msgstr "Иҫәп яҙмаһын тергеҙеүгә асҡыс"
 
 msgid "Current password"
-msgstr ""
+msgstr "Ғәмәлдәге пароль"
 
 msgid "Old password confirmation required"
-msgstr ""
+msgstr "Элекке паролде раҫларға кәрәк"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr ""
+msgstr "Һеҙгә,Tor Browser ҡулланып,  шәхси мәғлүмәттәрегеҙҙе ҡурсалаусы был сайтты күҙәтеп барырға тәҡдим ителә"
 
 msgid "Download the Tor Browser"
-msgstr ""
+msgstr "Tor Browser йөкмәү"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr ""
+msgstr "Артабан күсермәһен эшләгеҙ һәм Tor Browser адрес юлына түбәндәге адресты ҡуйығыҙ:"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr ""
+msgstr "Һеҙ отчет ебәрҙегеҙме? Үҙегеҙҙең квитанцияғыҙҙы индерегеҙ"
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr ""
+msgstr "Квитанция дөрөҫ түгел йәки отчеттың ғәмәл мөҙҙәте үткән"
 
 msgid "Select a file or drag it here."
-msgstr ""
+msgstr "Файл һайлағыҙ йәки уны бында күсерегеҙ "
 
 msgid "Uploading files…"
-msgstr ""
+msgstr "Файлдарҙы йөкмәргә"
 
 msgid "Upload completed successfully!"
-msgstr ""
+msgstr "Йөкмәү уңышлы тамамланды"
 
 msgid "Error while uploading files; check below for details."
-msgstr ""
+msgstr "Файлдарҙы йөкмәгәндәге хата; тәфсире түбәндә күрһәтелгән: "
 
 msgid "Estimated upload time:"
-msgstr ""
+msgstr "Йөкмәүгә бирелгән ваҡыт:"
 
 msgid "Size:"
-msgstr ""
+msgstr "Дәүмәл:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr ""
+msgstr "Ҡабул итеүселәр һеҙҙән өҫтәлмә һораулама тултырыуҙы үтенделәр"
 
 msgid "Fill the additional questionnaire"
-msgstr ""
+msgstr "Өҫтәлмә һораулама тултырыу"
 
 msgid "Allow the whistleblower to write comments"
-msgstr ""
+msgstr "Информаторға комментарийҙар өҫтәргә рөхсәт итергә"
 
 msgid "From:"
-msgstr ""
+msgstr "Ошонан"
 
 msgid "To:"
-msgstr ""
+msgstr "Быға"
 
 msgid "Filename"
-msgstr ""
+msgstr "Файл исеме"
 
 msgid "Upload date"
-msgstr ""
+msgstr "Йөкмәү датаһы"
 
 msgid "File size"
-msgstr ""
+msgstr "Файл дәүмәле"
 
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr ""
+msgstr "Информаторға ебәрелгән документарға ҡушымта өҫтәргә рөхсәт итергә"
 
 msgid "Allow the whistleblower to send messages"
-msgstr ""
+msgstr "Информаторға комментарийҙар ебәрергә рөхсәт итергә"
 
 msgid "Questionnaire answers"
-msgstr ""
+msgstr "Һорауламаның яуаптары"
 
 msgid "Step"
-msgstr ""
+msgstr "Аҙым"
 
 msgid "Status:"
-msgstr ""
+msgstr "Статус"
 
 msgid "Files attached by recipients"
-msgstr ""
+msgstr "Ҡабул итеүсе өҫтәгән файлдар"
 
 msgid "Upload a file:"
-msgstr ""
+msgstr "Файлды тейәргә:"
 
 msgid "An update is available:"
-msgstr ""
+msgstr "Яңыртыу асыҡ"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
+msgstr "\"Иҫәп яҙмаһын тергеҙеү өсөн асҡыс\" алыу һәм уны хәүефһеҙ урында һаҡлау өсөн, \"Көйләүҙәр\" бүлексәһенә инергә тәҡдим итәбеҙ. Был асҡыс, паролегеҙҙе онотҡан осраҡта, платформаға һәм мәғлүмәтегеҙгә рөхсәтте тергеҙеү өсөн кәрәк буласаҡ"
 
 msgid "The provided recovery key is invalid."
-msgstr ""
+msgstr "Күрһәтелгән тергеҙеү асҡысы дөрөҫ түгел"
 
 msgid "The provided reset token is invalid or expired."
-msgstr ""
+msgstr "Алып ташлау өсөн күрһәтелгән маркеры дөрөҫ түгел йәки уның ғәмәл мөҙҙәте уҙған"
 
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr ""
+msgstr "Паролде алып ташлауға үтенес ебәреү өсөн, иҫәп яҙмағыҙҙың ҡулланыусыһы исемен йәки электрон почтағыҙ адресын күрһәтегеҙ"
 
 msgid "Enter your email address to request a password reset."
-msgstr ""
+msgstr "Паролде алып ташлауға үтенес ебәреү өсөн, электрон почтағыҙҙың адресын күрһәтегеҙ"
 
 msgid ""
 "Enter your encryption recovery key to complete the password reset procedure"
-msgstr ""
+msgstr "Паролде алып ташлау процедураһын тамамлау өсөн, шифрлауҙы тергеҙеү асҡысын күрһәтегеҙ"
 
 msgid "Password reset requested."
-msgstr ""
+msgstr "Паролде алып ташлау һоралды"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
-msgstr ""
+msgstr "Һаҡлаусыға информатор шәхситенә рөхсәткә үтенес ебәрелде"
 
 msgid "Date of the request"
-msgstr ""
+msgstr "Үтенес датаһы"
 
 msgid "Show"
-msgstr ""
+msgstr "Күрһәтергә"
 
 msgid "Congratulations!"
-msgstr ""
+msgstr "Тәбрикләйбеҙ!"
 
 msgid "You have completed the platform activation."
-msgstr ""
+msgstr "Һеҙ платформаны әүҙемләштереүҙе тамамланығыҙ"
 
 msgid "Success!"
-msgstr ""
+msgstr "Булды!"
 
 msgid "Your whistleblowing platform is almost ready!"
 msgstr ""
@@ -1471,10 +1471,10 @@ msgid ""
 msgstr ""
 
 msgid "Sign up"
-msgstr ""
+msgstr "Инергә"
 
 msgid "Domain"
-msgstr ""
+msgstr "Домен"
 
 msgid "Confirmation"
 msgstr ""
@@ -1575,7 +1575,7 @@ msgid ""
 msgstr ""
 
 msgid "Please choose a different username."
-msgstr ""
+msgstr "Зинһар, икенсе исем һайлағыҙ."
 
 msgid "I have read and agree to the terms of the license."
 msgstr ""
@@ -1614,7 +1614,7 @@ msgid "I prefer to be contacted via this platform only"
 msgstr ""
 
 msgid "Dear {RecipientName},"
-msgstr ""
+msgstr "Хөрмәтле {RecipientName},"
 
 msgid ""
 "You're receiving this email because a user account has been created for you "
@@ -1622,7 +1622,7 @@ msgid ""
 msgstr ""
 
 msgid "Username: {Username}"
-msgstr ""
+msgstr "Логин: {Username}"
 
 msgid "Activation link: {Url}"
 msgstr ""
@@ -1757,16 +1757,16 @@ msgid "Email change request"
 msgstr ""
 
 msgid "From: {Author}"
-msgstr ""
+msgstr "Бынан: {Author}"
 
 msgid "Date: {EventTime}"
-msgstr ""
+msgstr "Дата: {EventTime}"
 
 msgid "From: Whistleblower"
 msgstr ""
 
 msgid "Date: {SubmissionDate}"
-msgstr ""
+msgstr "Дата: {SubmissionDate}"
 
 msgid "Label: {TipLabel}"
 msgstr ""
@@ -1900,7 +1900,7 @@ msgid ""
 msgstr ""
 
 msgid "New report"
-msgstr ""
+msgstr "Яңы отчет"
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr ""
@@ -1928,7 +1928,7 @@ msgid "This is an email to notify that an existing report has been updated."
 msgstr ""
 
 msgid "Report updated"
-msgstr ""
+msgstr "Отчет яңыртылды"
 
 msgid "This email is to remind you the presence of unread or updated reports."
 msgstr ""

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-29 09:52+0000\n"
+"PO-Revision-Date: 2021-09-30 11:40+0000\n"
 "Last-Translator: Timur Seber <seber.tatsoft@gmail.com>\n"
 "Language-Team: Tatar (http://www.transifex.com/otf/globaleaks/language/tt/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -290,7 +290,7 @@ msgid "Triggered by score:"
 msgstr "Исәп белән башланды:"
 
 msgid "Weak"
-msgstr "Көчсез"
+msgstr "Зәгыйфь"
 
 msgid "Acceptable"
 msgstr "Кабул итәрлек"
@@ -299,7 +299,7 @@ msgid "Strong"
 msgstr "Көчле"
 
 msgid "Text shown on top of the interface for selecting contexts"
-msgstr ""
+msgstr "Контекстны сайлау өчен интерфейс өстендә күрсәтелгән текст"
 
 msgid "Silence email notifications"
 msgstr "Эл. почта белдерүләр тавышны ябу"
@@ -328,7 +328,7 @@ msgstr "Эзләү"
 msgid ""
 "This custom text is no longer displayed on the platform. The original text "
 "has either changed or been removed."
-msgstr ""
+msgstr "Бу көйләүле текст платформада бүтән күрсәтелми. Башлангыч текст үзгәртелде яисә бетерелде."
 
 msgid "Audit log"
 msgstr "Аудит журналы"
@@ -444,7 +444,7 @@ msgstr "Паролны алыштыру"
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr ""
+msgstr "Бер яки берничә алучы әле беренче керүне башкармаган. Димәк, алар хисаплар алмаячаклар."
 
 msgid "This user has not performed the first login yet."
 msgstr "Бу кулланучы әле беренче керүне башкарылмады."
@@ -465,7 +465,7 @@ msgid "Logout"
 msgstr "Чыгу"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
+msgstr "Бу алучыга кулланучыларны хисапларга рөхсәт бирү мөмкинлеген бирү"
 
 msgid "Grant access"
 msgstr "Керү мөмкинлеген бирү"
@@ -489,7 +489,7 @@ msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr ""
+msgstr "Сайланган серсүз бик зәгыйфь. Дөрес серсүз кимендә 10 символ озын булырга тиеш һәм төрле символлар булырга тиеш, шул исәптән, кимендә юл хәреф, баш хәреф, сан һәм махсус символ."
 
 msgid "The new password must be different from the current one."
 msgstr "Яңа серсүз хәзерге серсүздән аерылырга тиеш."
@@ -531,7 +531,7 @@ msgid "Enable search engines indexing"
 msgstr "Эзләү системаларын индекслауны кабызу"
 
 msgid "Enable the receipt hint"
-msgstr ""
+msgstr "Алу турында киңәшнә кабызыгыз"
 
 msgid "Default questionnaire"
 msgstr "Килешенгәнчә сораулык"
@@ -559,13 +559,13 @@ msgstr "Серсүзне үзгәртү интервалы"
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
-msgstr ""
+msgstr "Иминлек сәбәпләре аркасында тәртипле рәвештә серсүзне үзгәртү таләп ителә."
 
 msgid "Set the value to 0 to disable this feature."
 msgstr "Бу функцияне сүндерү өчен кыйммәтне \"0\" итеп урнаштырыгыз."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr ""
+msgstr "Кулланучыларга укылмаган хисапларны турында белдерүгә кадәр көн саны"
 
 msgid "Enable custodian user role"
 msgstr "Саклаучы кулланучы ролен кабызу"
@@ -591,7 +591,7 @@ msgstr "Программа проблемалары турында җитешт�
 msgid ""
 "By enabling this feature, you will contribute to the development and "
 "security of the platform."
-msgstr ""
+msgstr "Бу функцияне кабызып, сез платформаның үсешенә һәм иминлекне өлеш кертәчәксез."
 
 msgid "Save"
 msgstr "Саклау"
@@ -786,13 +786,13 @@ msgid "Customize the message shown in the receipt page"
 msgstr "Квитанция битендә күрсәтелгән хәбәрне көйләгез"
 
 msgid "Assign the receipt only to reports reaching score:"
-msgstr ""
+msgstr "Квитанцияне җитәрлек исәп булган хисаплар өчен генә билгеләгез:"
 
 msgid "Software version:"
 msgstr "Программа тәэминаты версиясе:"
 
 msgid "Restrict access to specific IP addresses"
-msgstr ""
+msgstr "Билгеле IP адресларга керү мөмкинлеген чикләү"
 
 msgid "Allowed IP addresses"
 msgstr "Рөхсәт ителгән IP адреслары"
@@ -816,7 +816,7 @@ msgid "Invalid input format."
 msgstr "Яраксыз кертү форматы."
 
 msgid "Input should be similar to:"
-msgstr ""
+msgstr "Кертү охшаш булса кирәк:"
 
 msgid "Country code"
 msgstr "Ил коды"
@@ -862,7 +862,7 @@ msgstr "Ташлату"
 
 msgid ""
 "The platform supports the configuration of HTTPS through this interface."
-msgstr ""
+msgstr "Платформа бу интерфейс аша HTTPS конфигурациясен тәэмин итә."
 
 msgid "Automatic configuration"
 msgstr "Автоматик конфигурация"
@@ -871,7 +871,7 @@ msgid ""
 "Using automatic HTTPS configuration will handle the entire process of "
 "requesting, enabling and renewing certificates from the Let's Encrypt "
 "Certificate Authority."
-msgstr ""
+msgstr "Автоматик HTTPS конфигурациясен куллану - «Let's Encrypt Certificate Authority» үзәгеннән сертификатларны сорау, кабызу һәм яңарту процессы белән идарә итәчәк."
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
@@ -884,7 +884,7 @@ msgstr "Кулидарәле конфигурация"
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
-msgstr ""
+msgstr "Кулдан көйләү остасы сезгә альтернатив сертификат үзәгеннән HTTPS протоколын урнаштыру күрсәтмәләрен бирәчәк."
 
 msgid "Auto-renewal"
 msgstr "Автоматик яңарту"
@@ -908,7 +908,7 @@ msgid "Let the platform be reachable without Tor"
 msgstr "Tor-сыз платформага керергә рөхсәт итү"
 
 msgid "Roles enabled to use the platform without Tor"
-msgstr ""
+msgstr "Платформаны Tor-сыз куллану өчен рольләр кабызылды"
 
 msgid "Whistleblower"
 msgstr "Мәгълүмат җиткерүче"
@@ -938,7 +938,7 @@ msgid "Password"
 msgstr "Парол"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr ""
+msgstr "Хисапның вакыты чыгу турында белдерү җибәргәнче сәгатьләр саны"
 
 msgid "Test the configuration"
 msgstr "Конфигурацияне тикшерү"
@@ -1085,7 +1085,7 @@ msgid "Root domain used for secondary sites"
 msgstr "Икенчел сайтлар өчен тамыр домен кулланылды"
 
 msgid "Use the first site for administrative purposes only"
-msgstr ""
+msgstr "Беренче сайтны административ максатлар өчен генә куллану"
 
 msgid "Enable multi-site login"
 msgstr "Берничә сайтка керү мөмкинлеген рөхсәт итү"
@@ -1148,7 +1148,7 @@ msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Алучыга хисапның вакыты чыгу датасын кичектерергә рөхсәт итү"
 
 msgid "Give the user administrative access to the following features:"
-msgstr ""
+msgstr "Кулланучыга түбәндәге функцияләренә административ керү мөмкинлеген бирү:"
 
 msgid "Request date"
 msgstr "Сорау датасы"
@@ -1190,7 +1190,7 @@ msgid "Now type your password, then click 'Log in':"
 msgstr "Хәзер серсүзегезне кертегез һәм 'Керү' төймәсенә басыгыз:"
 
 msgid "Text shown after the user has selected the option."
-msgstr ""
+msgstr "Кулланучы опцияны сайлаганнан соң текст күрсәтелде."
 
 msgid "Confirm"
 msgstr "Раслау"
@@ -1202,7 +1202,7 @@ msgid "Are you sure?"
 msgstr "Моны раслыйсызмы?"
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr ""
+msgstr "Зинһар искә алыгыз, барлык бәйләнгән мәгълүматлар бөтенләй бетереләчәк."
 
 msgid "Enable two factor authentication"
 msgstr "Ике адымлы аутентификацияне кабызу"
@@ -1211,7 +1211,7 @@ msgid "Close"
 msgstr "Ябу"
 
 msgid "Before proceeding please read carefully the documentation at:"
-msgstr ""
+msgstr "Башлау алдыннан зинһар, документларны игътибар белән укыгыз:"
 
 msgid "Your account recovery key is:"
 msgstr "Сезнең хисапны коткару ачкычы:"
@@ -1219,7 +1219,7 @@ msgstr "Сезнең хисапны коткару ачкычы:"
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr ""
+msgstr "Күчермә төзегез һәм аны ышанычлы урында саклагыз. Әгәр дә серсүзегезне югалтсагыз, хисап язмагызга мәгълүматны югалтмыйча керү мөмкинлеген кайтару өчен кирәк булачак."
 
 msgid "Enter a name for the copy"
 msgstr "Күчереп алу өчен исем кертегез"
@@ -1231,7 +1231,7 @@ msgid "Thank you."
 msgstr "Рәхмәт."
 
 msgid "We will try to get back to you as soon as possible."
-msgstr ""
+msgstr "Без сезнең белән тиз арада элемтәгә керергә тырышырбыз."
 
 msgid "Submit"
 msgstr "Җибәрү"
@@ -1242,7 +1242,7 @@ msgstr "Бәйләнеш хәвефле."
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
-msgstr ""
+msgstr "Платформа әле HTTPS бәйләнешләре өчен көйләнмәгән һәм шуңа күрә тикшерү максатлары өчен гына кулланырга кирәк."
 
 msgid "Please write a motivation for the reply"
 msgstr "Зинһар, җавап өчен сәбәп языгыз"
@@ -1254,7 +1254,7 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr ""
+msgstr "Бу демо-платформа, зинһар, аны чын җибәрүләр өчен кулланмагыз."
 
 msgid "Install an authenticator app on your phone"
 msgstr "Телефоныгызда аутентификатор кушымтасын урнаштыру"
@@ -1271,7 +1271,7 @@ msgstr "Кулланучының документлары өчен бу сайт
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
 " the software:"
-msgstr ""
+msgstr "Әгәр сезгә техник ярдәм кирәк булса, гомуми сорауларыгыз бар, яисә программа тәэминаты өчен яңа идеяларыгыз бар:"
 
 msgid ""
 "If you want to contribute to software development or report a bug, please "
@@ -1282,15 +1282,15 @@ msgid "Join our chat:"
 msgstr "Безнең чатка кушылу:"
 
 msgid "Follow the project on:"
-msgstr ""
+msgstr "Проектка иярегез:"
 
 msgid "Hint: How to hide your receipt"
-msgstr ""
+msgstr "Киңәш: квитанцияне ничек яшерү"
 
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr ""
+msgstr "Квитанцияне яшерүнең файдалы ысулы - аны кредит картасы номерны итеп язу, ягъни вакыты чыгу датасын күрсәтү."
 
 msgid "Error!"
 msgstr "Хата!"
@@ -1311,7 +1311,7 @@ msgid "The specified old password is not valid"
 msgstr "Күрсәтелгән иске серсүз дөрес түгел"
 
 msgid "Resource can only be accessed via the Tor network"
-msgstr ""
+msgstr "Ресурсларга Tor челтәре аша гына кереп була"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Йөкләү соравы күләме чикне арттыра"
@@ -1343,7 +1343,7 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Аннары, түбәндәге адресны күчермәләп, Tor Browser кушымтасына өстәгез:"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr ""
+msgstr "Сез хисап бирдегезме? Квитанцияне кертегез."
 
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Квитанция дөрес түгел яки хисапның вакыты чыккан."
@@ -1358,7 +1358,7 @@ msgid "Upload completed successfully!"
 msgstr "Йөкләү уңышлы тәмамланды!"
 
 msgid "Error while uploading files; check below for details."
-msgstr ""
+msgstr "Файлларны йөкләгәндә хата килеп чыкты; тулырак мәгълумат өчен түбәндә карагыз."
 
 msgid "Estimated upload time:"
 msgstr "Калган йөкләү вакыты:"
@@ -1367,7 +1367,7 @@ msgid "Size:"
 msgstr "Зурлык:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr ""
+msgstr "Алучылар сездән өстәмә сораулыкны тутыруны таләп иттеләр."
 
 msgid "Fill the additional questionnaire"
 msgstr "Өстәмә сораулыкны тутыру"
@@ -1437,7 +1437,7 @@ msgstr "Серсүзне алыштыруны сорау өчен эл. почт
 
 msgid ""
 "Enter your encryption recovery key to complete the password reset procedure"
-msgstr ""
+msgstr "Серсүзне алыштыру процедурасын тәмамлау өчен шифрлау коткару ачкычын кертегез"
 
 msgid "Password reset requested."
 msgstr "Серсүзне ташлату соралды"
@@ -1469,7 +1469,7 @@ msgstr "Аны активлаштыру өчен \"Килгән\" папкагы
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr ""
+msgstr "Әгәр 24 сәгать эчендә активланган булмаса, платформа автоматик рәвештә бетереләчәк."
 
 msgid "Sign up"
 msgstr "Теркәлү"
@@ -1502,23 +1502,23 @@ msgid "please enter numbers only."
 msgstr "зинһар, саннарны генә кертегез."
 
 msgid "Submissions disabled"
-msgstr "Cүндерелгән җибәрүләр"
+msgstr "Җибәрүләр сүндерелде"
 
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
-msgstr ""
+msgstr "Сез серверга ачык рәвештә тоташыгыз һәм бу сервер аноним җибәрүләрне гына тәэмин итә."
 
 msgid "Your report was successful."
 msgstr "Сезнең хисабыгыз уңышлы булды."
 
 msgid "Remember your receipt for this report."
-msgstr ""
+msgstr "Бу хисап өчен квитанцияне истә калдыру"
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr ""
+msgstr "Керү өчен 16-санлы квитанцияне кулланыгыз. Сезгә җибәргән теләсә нинди хәбәр карарга, шулай ук өстәмә мәгълүмат өстәргә мөмкинлек бирәчәк."
 
 msgid "View your report"
 msgstr "Хисабыгызны карау"
@@ -1538,7 +1538,7 @@ msgstr "Сез сайланган алучыларның максималь са
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr ""
+msgstr "Түбәндәге алучылар хисабыгызны алачак һәм сайлап булмый:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1566,7 +1566,7 @@ msgid "Please choose a configuration profile:"
 msgstr "Зинһар, конфигурация профилен сайлагыз:"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr ""
+msgstr "Бу администраторга кулланучы серсүзләрен алыштырырга рөхсәт итегез."
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
@@ -1594,10 +1594,10 @@ msgid "Describe your report in detail."
 msgstr "Хисапны җентекләп сурәтләгез."
 
 msgid "Attach files relevant to the report."
-msgstr ""
+msgstr "Хисапка бәйле файлларны беркетегез."
 
 msgid "Do you want to provide your identification information?"
-msgstr ""
+msgstr "Сез үзегезнең тану мәгълүматыгызны бирергә телисезме?"
 
 msgid "First name"
 msgstr "Исем"
@@ -1636,7 +1636,7 @@ msgstr "Хисап язмасын активлаштыру һәм куллану
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
-msgstr ""
+msgstr "Уңышлы активлаштырудан соң сез системага түбәндәге сылтама ярдәмендә керә аласыз: {LoginUrl}"
 
 msgid "Kind regards,"
 msgstr "Хөрмәтләп,"
@@ -1654,10 +1654,10 @@ msgid "Users' credentials:"
 msgstr "Кулланучыларның xисап язмасы мәгълүматы:"
 
 msgid "The platform will be automatically deleted on:"
-msgstr ""
+msgstr "Платформа бу вакытта автоматик рәвештә бетереләчәк:"
 
 msgid "Access instructions"
-msgstr ""
+msgstr "Керү күрсәтмәләре"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
@@ -1744,7 +1744,7 @@ msgstr "Тикшерү хәбәр"
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr ""
+msgstr "Бу сезнең эл. почта адресыгызны {NewEmailAddress} итеп үзгәртү соравы ясалган турында хәбәр итү өчен эл. почта."
 
 msgid "Click the following link to validate this change:"
 msgstr "Бу үзгәрешне раслау өчен түбәндәге сылтамага чирттерегез:"
@@ -1778,7 +1778,7 @@ msgstr "Халәт: {TipStatus}"
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
-msgstr ""
+msgstr "Платформага йөкләнгән HTTPS сертификатының вакыты чыгып килә яки вакыты чыккан инде."
 
 msgid "Expiration date: {ExpirationDate}"
 msgstr "Вакыты чыга: {ExpirationDate}"
@@ -1786,20 +1786,20 @@ msgstr "Вакыты чыга: {ExpirationDate}"
 msgid ""
 "Without a valid certificate, the platform will be accessible in a secure way"
 " only via Tor."
-msgstr ""
+msgstr "Дөрес сертификат булмаса, платформа Tor аша гына имин рәвештә мөмкин булачак."
 
 msgid "Log in to solve the issue."
 msgstr "Мәсьәләне чишү өчен керегез."
 
 msgid "Expiration alert for HTTPS certificate"
-msgstr ""
+msgstr "HTTPS сертификатының вакыты чыгу турында белдерү"
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
-msgstr ""
+msgstr "Бүген өчен планлаштырылган HTTPS сертификатын автоматик рәвештә яңарту уңышсыз тәмамланды."
 
 msgid "The system will keep trying."
-msgstr ""
+msgstr "Система омтылышларны кабаталаячак."
 
 msgid "Failed HTTPS certificate renewal"
 msgstr "HTTPS сертификатын яңарту уңышсыз"
@@ -1871,7 +1871,7 @@ msgstr ""
 msgid ""
 "Without a valid PGP key, the system won't be able to encrypt data provided "
 "to you."
-msgstr ""
+msgstr "Дөрес PGP ачкычы булмаса, система сезгә бирелгән мәгълүматны шифрлый алмаячак."
 
 msgid "Click the link to activate the platform:"
 msgstr "Платформаны активлаштыру өчен бу сылтамага басыгыз:"
