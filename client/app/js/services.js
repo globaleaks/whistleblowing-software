@@ -756,8 +756,6 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       if ($location.path() === "/") {
         if ($rootScope.page === "tippage") {
           pt2 = "Report";
-        } else if ($rootScope.page === "signuppage") {
-          pt2 = "Create your whistleblowing platform";
         }
       } else {
         pt2 = $rootScope.header_title;

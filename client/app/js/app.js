@@ -154,7 +154,7 @@ var GL = angular.module("GL", [
       when("/activation", {
         templateUrl: "views/signup/activation.html",
         controller: "SignupActivationCtrl",
-        header_title: "Create your whistleblowing platform",
+        header_title: "Signup",
         resolve: {
           access: allKinds()
         }
