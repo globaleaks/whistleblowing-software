@@ -26,7 +26,7 @@ class GLException(Exception):
 
 class InternalServerError(GLException):
     """
-    The context_id used does not exist in the database.
+    Internal server error
     """
     error_code = 1
     status_code = 500  # Internal Server Error
