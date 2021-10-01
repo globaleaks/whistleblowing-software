@@ -27,7 +27,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:51+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -402,9 +402,6 @@ msgstr "پاک کردن"
 
 msgid "Use as default"
 msgstr "استفاده به صورت پیش‌فرض"
-
-msgid "Create your whistleblowing platform"
-msgstr "پلتفرم افشاگری خودتان را ایجاد کنید"
 
 msgid "Collapse"
 msgstr "بستن"
@@ -1226,14 +1223,17 @@ msgstr "آیا مطمئن هستید؟"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "لطفاً توجه داشته باشید که تمام داده‌های مرتبط برای همیشه از بین خواهند رفت."
 
-msgid "Enable two factor authentication"
-msgstr "فعال کردن احراز هویت دو عاملی"
-
 msgid "Close"
 msgstr "بستن"
 
+msgid "Enable two factor authentication"
+msgstr "فعال کردن احراز هویت دو عاملی"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "قبل از ادامه، لطفاً مستندات زیر را به دقت مطالعه کنید:"
+
+msgid "Account recovery key"
+msgstr "کلید بازیابی حساب کاربری"
 
 msgid "Your account recovery key is:"
 msgstr "کلید بازیابی حساب کاربری شما:"
@@ -1343,9 +1343,6 @@ msgstr "اعتبارسنجی تغییر نشانی ایمیل در حال انج
 
 msgid "Please check your inbox for further instructions."
 msgstr "لطفاً صندوق پیام‌های دریافتی خود را برای دستورالعمل‌های بیشتر بررسی کنید."
-
-msgid "Account recovery key"
-msgstr "کلید بازیابی حساب کاربری"
 
 msgid "Current password"
 msgstr "گذرواژهٔ فعلی"

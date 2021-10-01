@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:31+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -388,9 +388,6 @@ msgstr "Poista"
 
 msgid "Use as default"
 msgstr "Käytä oletusarvona"
-
-msgid "Create your whistleblowing platform"
-msgstr "Luo oma vihjepalvelu"
 
 msgid "Collapse"
 msgstr "Tiivistä"
@@ -1212,14 +1209,17 @@ msgstr "Oletko varma?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Huomaa, että kaikki tiliin liittyvät tiedot poistetaan pysyvästi."
 
-msgid "Enable two factor authentication"
-msgstr "Ota käyttöön kaksivaiheinen kirjautuminen"
-
 msgid "Close"
 msgstr "Sulje"
 
+msgid "Enable two factor authentication"
+msgstr "Ota käyttöön kaksivaiheinen kirjautuminen"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Lue ennen jatkamista huolellisesti dokumentaatio osoitteessa "
+
+msgid "Account recovery key"
+msgstr "Tilin palautusavain"
 
 msgid "Your account recovery key is:"
 msgstr "Tilisi palautusavain on:"
@@ -1329,9 +1329,6 @@ msgstr "Sähköpostiosoitteen vaihtamisen vahvistaminen käynnissä."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Lisäohjeita löydät sähköpostistasi."
-
-msgid "Account recovery key"
-msgstr "Tilin palautusavain"
 
 msgid "Current password"
 msgstr "Nykyinen salasana"

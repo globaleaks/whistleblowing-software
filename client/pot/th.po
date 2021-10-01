@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:00+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -388,9 +388,6 @@ msgstr "ลบ"
 
 msgid "Use as default"
 msgstr "ใช้เป็นค่าปริยาย"
-
-msgid "Create your whistleblowing platform"
-msgstr "สร้างแพลตฟอร์มแจ้งเบาะแสของคุณเอง"
 
 msgid "Collapse"
 msgstr "ยุบ"
@@ -1212,14 +1209,17 @@ msgstr "คุณแน่ใจหรือไม่?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "โปรดทราบว่าข้อมูลที่เชื่อมโยงกันทั้งหมดจะถูกลบออกอย่างถาวร"
 
-msgid "Enable two factor authentication"
-msgstr "เปิดใช้การยืนยันตัวตนแบบสองปัจจัย"
-
 msgid "Close"
 msgstr "ปิด"
 
+msgid "Enable two factor authentication"
+msgstr "เปิดใช้การยืนยันตัวตนแบบสองปัจจัย"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "ก่อนจะไปต่อ กรุณาอ่านเอกสารอย่างรอบคอบที่:"
+
+msgid "Account recovery key"
+msgstr "กุญแจกู้คืนบัญชี"
 
 msgid "Your account recovery key is:"
 msgstr "กุญแจกู้คืนบัญชีของคุณคือ:"
@@ -1329,9 +1329,6 @@ msgstr "กำลังดำเนินการตรวจความถู
 
 msgid "Please check your inbox for further instructions."
 msgstr "กรุณาดูกล่องขาเข้าของคุณสำหรับคำแนะนำต่อไป"
-
-msgid "Account recovery key"
-msgstr "กุญแจกู้คืนบัญชี"
 
 msgid "Current password"
 msgstr "รหัสผ่านปัจจุบัน"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 13:00+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tibetan (http://www.transifex.com/otf/globaleaks/language/bo/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -381,9 +381,6 @@ msgstr "ཕྱིར་འདོན།"
 
 msgid "Use as default"
 msgstr "རང་སོར་ཡོད་པའི་ཚུལ་དུ་བེད་སྤྱོད་བྱ།"
-
-msgid "Create your whistleblowing platform"
-msgstr "རང་ཉིད་ཀྱི་གསང་སྒྲོག་གླེང་སྟེགས་བཟོ་བསྐྲུན་བྱ།"
 
 msgid "Collapse"
 msgstr "རྡིབ།"
@@ -1205,14 +1202,17 @@ msgstr "ཁྱེད་རང་ངེས་བརྟན་ཡིན་ནམ།
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "འབྲེལ་འཛུགས་ཟིན་པའི་གཞི་གྲངས་ཆ་ཚང་གཏན་འཇགས་ངང་བསུབ་རྒྱུ་ཡིན་པས་ཐུགས་སྣང་གནང་རོགས།"
 
-msgid "Enable two factor authentication"
-msgstr "རིམ་པ་གཉིས་བཀའ་འཁྲོལ་ནུས་ལྡན་བཟོ།"
-
 msgid "Close"
 msgstr "སྒོ་རྒྱག"
 
+msgid "Enable two factor authentication"
+msgstr "རིམ་པ་གཉིས་བཀའ་འཁྲོལ་ནུས་ལྡན་བཟོ།"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "འགོ་འཛུགས་མ་བྱེད་གོང་གཤམ་འཁོད་སྟེང་ཡིག་ཆ་རྣམས་གཟབ་ནན་ངང་ཀློག་རོགས་གནང་།:"
+
+msgid "Account recovery key"
+msgstr "ཐོ་ཁོངས་བསྐྱར་གསོའི་མཐེབ།"
 
 msgid "Your account recovery key is:"
 msgstr "ཁྱེད་ཀྱི་ཐོ་ཁོངས་བསྐྱར་གསོའི་མཐེབ་ནི།:"
@@ -1322,9 +1322,6 @@ msgstr "གློག་འཕྲིན་ཁ་བྱང་བརྗེ་སྒ
 
 msgid "Please check your inbox for further instructions."
 msgstr "ལྷག་དོན་བཀོད་ཁྱབ་ཆེད་ཁྱེད་ཀྱི་འབྱོར་སྒམ་ཞིབ་བཤེར་གནང་རོགས།"
-
-msgid "Account recovery key"
-msgstr "ཐོ་ཁོངས་བསྐྱར་གསོའི་མཐེབ།"
 
 msgid "Current password"
 msgstr "ད་ལྟའི་གསང་ཡིག"

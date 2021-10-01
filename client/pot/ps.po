@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:51+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Pashto (http://www.transifex.com/otf/globaleaks/language/ps/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -380,9 +380,6 @@ msgstr "لري کول"
 
 msgid "Use as default"
 msgstr "په ډیفالټ حالت کارول"
-
-msgid "Create your whistleblowing platform"
-msgstr "د خپل افشاګر د پلیټفارم جوړول"
 
 msgid "Collapse"
 msgstr "ړنګول"
@@ -1204,14 +1201,17 @@ msgstr "ایا ډاډه یاست؟"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "د مهرباني له مخې دا درسره یادداشت کړئ چې ټول مل اطلاعات به د تل لپاره پاک کړل شي."
 
-msgid "Enable two factor authentication"
-msgstr "د دوه عامله تصدیق فعالول"
-
 msgid "Close"
 msgstr "بندول"
 
+msgid "Enable two factor authentication"
+msgstr "د دوه عامله تصدیق فعالول"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "تر وړاندې تګ مخکې د مهرباني له مخې مستند دلته په دقت سره ولولئ:"
+
+msgid "Account recovery key"
+msgstr "د اکاونټ د تر لاسه کولو رمز"
 
 msgid "Your account recovery key is:"
 msgstr "ستاسې د اکاونټ د تر لاسه کولو رمز دی:"
@@ -1321,9 +1321,6 @@ msgstr "د برېښنالیک پتې د بدلولو تایید د پرمختګ 
 
 msgid "Please check your inbox for further instructions."
 msgstr "مهرباني وکړئ د لا زیاتو لارښوونو لپاره خپل انباکس وګورئ."
-
-msgid "Account recovery key"
-msgstr "د اکاونټ د تر لاسه کولو رمز"
 
 msgid "Current password"
 msgstr "اوسنی پټ نوم"

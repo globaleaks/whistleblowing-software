@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-28 07:29+0000\n"
-"Last-Translator: Turdimurod Rakhmanov <turdimurot.rakhmonov@gmail.com>\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Kyrgyz (http://www.transifex.com/otf/globaleaks/language/ky/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -381,9 +381,6 @@ msgstr "Алып салуу"
 
 msgid "Use as default"
 msgstr "Кадимкидей катары колдонуу"
-
-msgid "Create your whistleblowing platform"
-msgstr "Кабарлоо платформаңызды түзүңүз"
 
 msgid "Collapse"
 msgstr "Жыгылуу"
@@ -1205,14 +1202,17 @@ msgstr "Чечимиңиз катуубу?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Эске алыңыз, байланышкан бардык маалыматтар биротоло жок кылынат."
 
-msgid "Enable two factor authentication"
-msgstr "Эки факторлуу аутентификация иштетилсин"
-
 msgid "Close"
 msgstr "Жабуу"
 
+msgid "Enable two factor authentication"
+msgstr "Эки факторлуу аутентификация иштетилсин"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Улантуудан мурун, төмөнкү документтерди кунт коюп окуңуз:"
+
+msgid "Account recovery key"
+msgstr "Аккаунтту калыбына келтирүү ачкычы"
 
 msgid "Your account recovery key is:"
 msgstr "Каттоо эсебиңизди калыбына келтирүү ачкычы:"
@@ -1322,9 +1322,6 @@ msgstr "Электрондук даректин өзгөрүүсү текшер�
 
 msgid "Please check your inbox for further instructions."
 msgstr "Кийинки инструкцияларды алуу үчүн сизге келген кат кутучасын текшериңиз."
-
-msgid "Account recovery key"
-msgstr "Аккаунтту калыбына келтирүү ачкычы"
 
 msgid "Current password"
 msgstr "Учурдагы сырсөз"

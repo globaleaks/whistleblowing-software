@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:31+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Estonian (http://www.transifex.com/otf/globaleaks/language/et/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -380,9 +380,6 @@ msgstr "Eemalda"
 
 msgid "Use as default"
 msgstr "Kasuta vaikimisi"
-
-msgid "Create your whistleblowing platform"
-msgstr "Oma vihjeandmise platvormi loomine"
 
 msgid "Collapse"
 msgstr "Ahenda"
@@ -1204,14 +1201,17 @@ msgstr "Kas olete kindel?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Võtke arvesse, et kõik seotud andmed kustutatakse jäädavalt."
 
-msgid "Enable two factor authentication"
-msgstr "Luba kaheastmeline autentimine"
-
 msgid "Close"
 msgstr "Sulge"
 
+msgid "Enable two factor authentication"
+msgstr "Luba kaheastmeline autentimine"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Enne jätkamist lugege hoolikalt dokumente aadressil:"
+
+msgid "Account recovery key"
+msgstr "Konto taastamise võti"
 
 msgid "Your account recovery key is:"
 msgstr "Teie konto taastamise võti on:"
@@ -1321,9 +1321,6 @@ msgstr "Meiliaadressi vahetust valideeritakse."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Täpsemate juhiste saamiseks vaadake oma sisendkausta."
-
-msgid "Account recovery key"
-msgstr "Konto taastamise võti"
 
 msgid "Current password"
 msgstr "Senine parool"

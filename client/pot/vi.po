@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 13:01+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -392,9 +392,6 @@ msgstr "Bỏ"
 
 msgid "Use as default"
 msgstr "Dùng như mặc định"
-
-msgid "Create your whistleblowing platform"
-msgstr "Tạo ra hệ thống tố giác của bạn"
 
 msgid "Collapse"
 msgstr "Thu gọn"
@@ -1216,14 +1213,17 @@ msgstr "Bạn có chắc không?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Xin lưu ý là tất cả các dữ liệu liên quan sẽ bị xóa vĩnh viễn"
 
-msgid "Enable two factor authentication"
-msgstr "Bật mở xác thực hai yếu tố"
-
 msgid "Close"
 msgstr "Đóng"
 
+msgid "Enable two factor authentication"
+msgstr "Bật mở xác thực hai yếu tố"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Trước khi tiếp tục, xin đọc kỹ tài liệu tại:"
+
+msgid "Account recovery key"
+msgstr "Chìa khóa khôi phục tài khoản"
 
 msgid "Your account recovery key is:"
 msgstr "Chìa khóa khôi phục tài khoản của bạn là:"
@@ -1333,9 +1333,6 @@ msgstr "Đang trong tiến trình kiểm nhận thay đổi địa chỉ email."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Xem hộp thư email của bạn để nhận thêm hướng dẫn"
-
-msgid "Account recovery key"
-msgstr "Chìa khóa khôi phục tài khoản"
 
 msgid "Current password"
 msgstr "Mật khẩu hiện tại"

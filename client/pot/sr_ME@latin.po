@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-29 07:57+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Serbian (Latin) (Montenegro) (http://www.transifex.com/otf/globaleaks/language/sr_ME@latin/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -379,9 +379,6 @@ msgstr "Ukloni"
 
 msgid "Use as default"
 msgstr "Koristi kao podrazumijevanu vrijednost"
-
-msgid "Create your whistleblowing platform"
-msgstr "Napravite svoju platformu za uzbunjivanje"
 
 msgid "Collapse"
 msgstr "Skupi"
@@ -1203,14 +1200,17 @@ msgstr "Da li ste sigurni?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Imajte u vidu da će svi povezani podaci biti trajno izbrisani."
 
-msgid "Enable two factor authentication"
-msgstr "Omogući dvostruku potvrdu identiteta"
-
 msgid "Close"
 msgstr "Zatvori"
 
+msgid "Enable two factor authentication"
+msgstr "Omogući dvostruku potvrdu identiteta"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Prije nego što nastavite, pažljivo pročitajte dokumentaciju na:"
+
+msgid "Account recovery key"
+msgstr "Ključ za oporavak naloga"
 
 msgid "Your account recovery key is:"
 msgstr "Vaš ključ za oporavak naloga je:"
@@ -1320,9 +1320,6 @@ msgstr "Validacija promjene adrese e-pošte je u toku."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Dodatna uputstva potražite u prijemnom sandučetu."
-
-msgid "Account recovery key"
-msgstr "Ključ za oporavak naloga"
 
 msgid "Current password"
 msgstr "Trenutna lozinka"

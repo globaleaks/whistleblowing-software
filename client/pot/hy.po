@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:06+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Armenian (http://www.transifex.com/otf/globaleaks/language/hy/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -381,9 +381,6 @@ msgstr "Հեռացնել"
 
 msgid "Use as default"
 msgstr "Օգտագործել որպես լռելյայն"
-
-msgid "Create your whistleblowing platform"
-msgstr "Ստեղծեք ձեր ազդարարման հարթակը"
 
 msgid "Collapse"
 msgstr "Փակել"
@@ -1205,14 +1202,17 @@ msgstr "Համոզվա՞ծ եք։"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Խնդրում ենք նկատի ունենալ, որ բոլոր հարակից տվյալները մշտապես կջնջվեն:"
 
-msgid "Enable two factor authentication"
-msgstr "Ակտիվացնել երկու գործոնով նույնականացումը"
-
 msgid "Close"
 msgstr "Փակել"
 
+msgid "Enable two factor authentication"
+msgstr "Ակտիվացնել երկու գործոնով նույնականացումը"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Շարունակելուց առաջ ուշադիր ծանոթացեք տվյալ էջի փաստաթղթերին. "
+
+msgid "Account recovery key"
+msgstr "Հաշվի վերականգնման բանալի"
 
 msgid "Your account recovery key is:"
 msgstr "Ձեր հաշվի վերականգնման բանալին է."
@@ -1322,9 +1322,6 @@ msgstr "Էլեկտրոնային հասցեն փոխելու հայցի վավե
 
 msgid "Please check your inbox for further instructions."
 msgstr "Խնդրում ենք ստուգել ձեր էլ.փոստի մուտքային հասցեն հետագա գործողությունների համար:"
-
-msgid "Account recovery key"
-msgstr "Հաշվի վերականգնման բանալի"
 
 msgid "Current password"
 msgstr "Ընթացիկ գաղտնաբառ"

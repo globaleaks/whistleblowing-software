@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:06+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -385,9 +385,6 @@ msgstr "Sil"
 
 msgid "Use as default"
 msgstr "Standart kimi istifadə et"
-
-msgid "Create your whistleblowing platform"
-msgstr "Məlumatlandırma platformanızı yaradın"
 
 msgid "Collapse"
 msgstr "Bitir"
@@ -1209,14 +1206,17 @@ msgstr "Əminsinizmi?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Xahiş edirik, bütün əlaqəli məlumatların həmişəlik silinəcəyini unutmayın."
 
-msgid "Enable two factor authentication"
-msgstr "İki pilləli təsdiqləməni işə salın"
-
 msgid "Close"
 msgstr "Bağla"
 
+msgid "Enable two factor authentication"
+msgstr "İki pilləli təsdiqləməni işə salın"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Davam etməzdən əvvəl sənədləşməni diqqətlə oxuyun:"
+
+msgid "Account recovery key"
+msgstr "Hesabı qaytarma açarı"
 
 msgid "Your account recovery key is:"
 msgstr "Hesabı qaytarma açarınız:"
@@ -1326,9 +1326,6 @@ msgstr "Emeyl ünvanın dəyişməsinin təsdiqi prosesi gedir."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Ətraflı məlumat üçün inboksunuza baxın."
-
-msgid "Account recovery key"
-msgstr "Hesabı qaytarma açarı"
 
 msgid "Current password"
 msgstr "İndiki şifrə"

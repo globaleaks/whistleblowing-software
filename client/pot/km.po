@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:48+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Khmer (http://www.transifex.com/otf/globaleaks/language/km/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -382,9 +382,6 @@ msgstr "លុបចេញ"
 
 msgid "Use as default"
 msgstr "ប្រើប្រាស់ជាលំនាំដើម"
-
-msgid "Create your whistleblowing platform"
-msgstr "បង្កើតវេទិការាយការណ៍របស់អ្នក"
 
 msgid "Collapse"
 msgstr "បង្រួម"
@@ -1206,14 +1203,17 @@ msgstr "តើ​អ្នក​ប្រាកដ​ឬ?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "សូមចំណាំថា រាល់ទិន្នន័យដែលពាក់ព័ន្ធ នឹងត្រូវលុបចោលជារៀងរហូត។"
 
-msgid "Enable two factor authentication"
-msgstr "បើកការផ្ទៀងផ្ទាត់ពីរកត្តា"
-
 msgid "Close"
 msgstr "បិទ"
 
+msgid "Enable two factor authentication"
+msgstr "បើកការផ្ទៀងផ្ទាត់ពីរកត្តា"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "មុនពេលដំណើរការ សូមអានឯកសាររដោយយកចិត្តទុកដាក់នៅ៖"
+
+msgid "Account recovery key"
+msgstr "លេខកូដសង្គ្រោះគណនី"
 
 msgid "Your account recovery key is:"
 msgstr "លេខកូដសង្គ្រោះគណនីរបស់អ្នកគឺ៖"
@@ -1323,9 +1323,6 @@ msgstr "សុពលភាពនៃការផ្លាស់ប្តូរអ
 
 msgid "Please check your inbox for further instructions."
 msgstr "សូមពិនិត្យប្រអប់សំបុត្ររបស់អ្នកសម្រាប់ការណែនាំបន្ថែម"
-
-msgid "Account recovery key"
-msgstr "លេខកូដសង្គ្រោះគណនី"
 
 msgid "Current password"
 msgstr "ពាក្យសម្ងាត់បច្ចុប្បន្ន"

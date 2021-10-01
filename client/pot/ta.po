@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 11:52+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -382,9 +382,6 @@ msgstr "நீக்கு"
 
 msgid "Use as default"
 msgstr "இயல்புநிலையாக பயன்படுத்தவும்"
-
-msgid "Create your whistleblowing platform"
-msgstr "உங்கள் விசிலடிக்கும் தளம் உருவாக்கவும்"
 
 msgid "Collapse"
 msgstr "சுருக்கு"
@@ -1206,13 +1203,16 @@ msgstr "நீ சொல்வது உறுதியா?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr ""
 
-msgid "Enable two factor authentication"
-msgstr ""
-
 msgid "Close"
 msgstr "நெருக்கமான"
 
+msgid "Enable two factor authentication"
+msgstr ""
+
 msgid "Before proceeding please read carefully the documentation at:"
+msgstr ""
+
+msgid "Account recovery key"
 msgstr ""
 
 msgid "Your account recovery key is:"
@@ -1323,9 +1323,6 @@ msgstr "மின்னஞ்சல் முகவரி மாற்றுவ�
 
 msgid "Please check your inbox for further instructions."
 msgstr "கூடுதல் வழிமுறைகளுக்கு உங்கள் இன்பாக்ஸை சோதனையிடு."
-
-msgid "Account recovery key"
-msgstr ""
 
 msgid "Current password"
 msgstr "தற்போதைய கடவுச்சொல்"

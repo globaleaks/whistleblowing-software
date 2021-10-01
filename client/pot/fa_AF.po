@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-28 05:25+0000\n"
-"Last-Translator: Sahar Maghsudi <maghsudi77@gmail.com>\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (Afghanistan) (http://www.transifex.com/otf/globaleaks/language/fa_AF/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -380,9 +380,6 @@ msgstr "حذف کردن"
 
 msgid "Use as default"
 msgstr "استفاده به صورت پیش فرض"
-
-msgid "Create your whistleblowing platform"
-msgstr "ایجاد پلتفورم افشاگری شخصی"
 
 msgid "Collapse"
 msgstr "جمع کردن"
@@ -1204,14 +1201,17 @@ msgstr "آیا مطمئن هستید؟"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "لطفاً توجه داشته باشید که تمام داده های مرتبط برای همیشه از بین خواهند رفت."
 
-msgid "Enable two factor authentication"
-msgstr "فعال سازی تأیید هویت دو عاملی"
-
 msgid "Close"
 msgstr "بستن"
 
+msgid "Enable two factor authentication"
+msgstr "فعال سازی تأیید هویت دو عاملی"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "لطفاً قبل از ادامه، مستندات را به دقت مطالعه کنید:"
+
+msgid "Account recovery key"
+msgstr "کلید بازیابی اکاونت"
 
 msgid "Your account recovery key is:"
 msgstr "کلید بازیابی اکاونت شما عبارت است از:"
@@ -1321,9 +1321,6 @@ msgstr "اعتبار سنجی تغییر آدرس ایمیل در حال انج�
 
 msgid "Please check your inbox for further instructions."
 msgstr "لطفاً اینباکس خود را برای طرزالعمل های بیشتر چک کنید."
-
-msgid "Account recovery key"
-msgstr "کلید بازیابی اکاونت"
 
 msgid "Current password"
 msgstr "پسورد فعلی"

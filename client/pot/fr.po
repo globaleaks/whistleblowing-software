@@ -39,8 +39,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:31+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-09-30 20:40+0000\n"
+"Last-Translator: AO <ao@localizationlab.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -414,9 +414,6 @@ msgstr "Supprimer"
 
 msgid "Use as default"
 msgstr "Utiliser comme valeur par défaut"
-
-msgid "Create your whistleblowing platform"
-msgstr "Créez votre plateforme de lancement d’alertes"
 
 msgid "Collapse"
 msgstr "Réduire"
@@ -1238,14 +1235,17 @@ msgstr "Confirmez-vous ?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Veuillez noter que toutes les données associées seront irrémédiablement supprimées."
 
-msgid "Enable two factor authentication"
-msgstr "Activer l’authentification à deux facteurs"
-
 msgid "Close"
 msgstr "Fermer"
 
+msgid "Enable two factor authentication"
+msgstr "Activer l’authentification à deux facteurs"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Avant de poursuivre, veuillez lire attentivement la documentation sur :"
+
+msgid "Account recovery key"
+msgstr "Clé de récupération du compte"
 
 msgid "Your account recovery key is:"
 msgstr "La clé de récupération de votre compte est :"
@@ -1355,9 +1355,6 @@ msgstr "La validation du changement d’adresse courriel est en cours."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Veuillez vérifier votre boîte de réception pour de plus amples instructions."
-
-msgid "Account recovery key"
-msgstr "Clé de récupération du compte"
 
 msgid "Current password"
 msgstr "Mot de passe actuel"
@@ -1471,7 +1468,7 @@ msgstr "Saisissez votre adresse courriel pour demander une réinitialisation du 
 
 msgid ""
 "Enter your encryption recovery key to complete the password reset procedure"
-msgstr "Saisissez votre clé de récupération de chiffrement pour achever la procédure de réinitialisation du mot de passe."
+msgstr "Saisissez votre clé de récupération de chiffrement pour finaliser la procédure de réinitialisation du mot de passe."
 
 msgid "Password reset requested."
 msgstr "Une réinitialisation de mot de passe a été demandée."

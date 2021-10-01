@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-28 06:14+0000\n"
-"Last-Translator: vargaviktor <viktor.varga@gmail.com>\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -397,9 +397,6 @@ msgstr "Eltávolít"
 
 msgid "Use as default"
 msgstr "Alapértelmezett"
-
-msgid "Create your whistleblowing platform"
-msgstr "Hozza létre a saját közérdekű bejelentő felületét"
 
 msgid "Collapse"
 msgstr "Összecsuk"
@@ -1221,14 +1218,17 @@ msgstr "Biztosan?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Kérjük figyeljen arra, hogy minden kapcsolódó adat véglegesen törlésre kerül."
 
-msgid "Enable two factor authentication"
-msgstr "Kétfaktoros azonosítás engedélyezése"
-
 msgid "Close"
 msgstr "Bezár"
 
+msgid "Enable two factor authentication"
+msgstr "Kétfaktoros azonosítás engedélyezése"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Mielőtt végrehajtja, kérjük olvassa el figyelmesen a dokumentációt itt:"
+
+msgid "Account recovery key"
+msgstr "Fiók visszaállító kulcs"
 
 msgid "Your account recovery key is:"
 msgstr "A fiókja visszaállító kulcsa a következő:"
@@ -1338,9 +1338,6 @@ msgstr "Az e-mailcím változtatás ellenőrzése folyamatban"
 
 msgid "Please check your inbox for further instructions."
 msgstr "Nézze meg a postaládáját a továbbiakért"
-
-msgid "Account recovery key"
-msgstr "Fiók visszaállító kulcs"
 
 msgid "Current password"
 msgstr "Jelenlegi jelszó"

@@ -24,7 +24,7 @@ class Token(object):
         self.solved = x.endswith(b'00')
 
         if not self.solved:
-            self.tokenlist.pop(self.id)
+            self.tokenlist.pop(self.id, None)
 
         return self.solved
 
@@ -56,7 +56,7 @@ class TokenList(TempDict):
         return ret
 
     def validate(self, key):
-        token = self.pop(key)
+        token = self.pop(key, None)
         if token is None:
             raise errors.InternalServerError("TokenFailure: Invalid token")
 

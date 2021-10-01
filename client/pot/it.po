@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-28 08:16+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -400,9 +400,6 @@ msgstr "Rimuovi"
 
 msgid "Use as default"
 msgstr "Usa come default"
-
-msgid "Create your whistleblowing platform"
-msgstr "Crea la tua piattaforma di whistleblowing"
 
 msgid "Collapse"
 msgstr "Collassa"
@@ -1224,14 +1221,17 @@ msgstr "Sei sicuro?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Si prega di notare che tutti i dati associati saranno cancellati definitivamente."
 
-msgid "Enable two factor authentication"
-msgstr "Abilita autenticazione a due fattori"
-
 msgid "Close"
 msgstr "Chiudi"
 
+msgid "Enable two factor authentication"
+msgstr "Abilita autenticazione a due fattori"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Prima di procedere ti invitiamo a leggere attenamente la documentazione disponibile all'indirizzo:"
+
+msgid "Account recovery key"
+msgstr "Chiave di recupero account"
 
 msgid "Your account recovery key is:"
 msgstr "La tua chiave di recupero account è:"
@@ -1341,9 +1341,6 @@ msgstr "Validazione del cambio di email in corso."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Controlla la tua casella di posta in arrivo per informazioni aggiuntive."
-
-msgid "Account recovery key"
-msgstr "Chiave di recupero account"
 
 msgid "Current password"
 msgstr "Password attuale"
@@ -1492,7 +1489,7 @@ msgid ""
 msgstr "Se non attivata entro 24 ore la piattaforma verrà cancellata automaticamente."
 
 msgid "Sign up"
-msgstr "Iscriviti"
+msgstr "Registrazione"
 
 msgid "Domain"
 msgstr "Dominio"

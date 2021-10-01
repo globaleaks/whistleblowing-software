@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:54+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -398,9 +398,6 @@ msgstr "Ta bort"
 
 msgid "Use as default"
 msgstr "Använd som standard"
-
-msgid "Create your whistleblowing platform"
-msgstr "Skapa en egen visselblåsarplattform"
 
 msgid "Collapse"
 msgstr "Fäll ihop"
@@ -1222,14 +1219,17 @@ msgstr "Är du säker?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Vänligen notera att alla tillhörande uppgifter kommer att tas bort permanent."
 
-msgid "Enable two factor authentication"
-msgstr "Tillåt tvåfaktorsautentisering"
-
 msgid "Close"
 msgstr "Stäng"
 
+msgid "Enable two factor authentication"
+msgstr "Tillåt tvåfaktorsautentisering"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Innan du går vidare ber vi dig noggrant läsa igenom informationsdokumenten på adressen:"
+
+msgid "Account recovery key"
+msgstr "Kod för kontoåterställning"
 
 msgid "Your account recovery key is:"
 msgstr "Din kod för kontoåterställning är:"
@@ -1339,9 +1339,6 @@ msgstr "Bekräftelse av ändrad e-postadress pågår."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Kontrollera din inkorg för att hitta ytterligare anvisningar."
-
-msgid "Account recovery key"
-msgstr "Kod för kontoåterställning"
 
 msgid "Current password"
 msgstr "Nuvarande lösenord"

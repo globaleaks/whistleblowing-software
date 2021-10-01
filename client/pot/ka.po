@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:31+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -380,9 +380,6 @@ msgstr "წაშლა"
 
 msgid "Use as default"
 msgstr "ნაგულისხმევად გამოყენება"
-
-msgid "Create your whistleblowing platform"
-msgstr "შექმენით თქვენი ინსტრუქტორის პლატფორმა"
 
 msgid "Collapse"
 msgstr "აკეცვა"
@@ -1204,14 +1201,17 @@ msgstr "დარწმუნებული ხარ?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "გთხოვთ გაითვალისწინეთ, რომ ყველა დაკავშირებული მონაცემები სამუდამოდ წაიშლება."
 
-msgid "Enable two factor authentication"
-msgstr "რფაქტორიანი ავტორიზაციის ჩართვა"
-
 msgid "Close"
 msgstr "დახურვა"
 
+msgid "Enable two factor authentication"
+msgstr "რფაქტორიანი ავტორიზაციის ჩართვა"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "გაგრძელებამდე ყურადღებით წაიკითხეთ დოკუმენტაცია:"
+
+msgid "Account recovery key"
+msgstr "ანგარიშის აღდგენის კოდი"
 
 msgid "Your account recovery key is:"
 msgstr "თქვენი ანგარიშის აღდგენის კოდია:"
@@ -1321,9 +1321,6 @@ msgstr "მიმდინარეობს ელფოსტის მის�
 
 msgid "Please check your inbox for further instructions."
 msgstr "შემდგომი ინსტრუქციებისთვის შეამოწმეთ თქვენი შემოსული წერილები."
-
-msgid "Account recovery key"
-msgstr "ანგარიშის აღდგენის კოდი"
 
 msgid "Current password"
 msgstr "მიმდინარე პაროლი"

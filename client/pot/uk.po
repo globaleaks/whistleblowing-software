@@ -24,7 +24,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:00+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -399,9 +399,6 @@ msgstr "Вилучити"
 
 msgid "Use as default"
 msgstr "Використовувати за замовчуванням"
-
-msgid "Create your whistleblowing platform"
-msgstr "Створіть платформу інформатора"
 
 msgid "Collapse"
 msgstr "Закрити"
@@ -1223,14 +1220,17 @@ msgstr "Ви впевнені?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Зверніть увагу, що всі пов'язані дані будуть безповоротно втрачені."
 
-msgid "Enable two factor authentication"
-msgstr "Увімкніть двофакторну аутентифікацію"
-
 msgid "Close"
 msgstr "Закрити"
 
+msgid "Enable two factor authentication"
+msgstr "Увімкніть двофакторну аутентифікацію"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Перш ніж продовжити, уважно ознайомтесь з документацією на сторінці:"
+
+msgid "Account recovery key"
+msgstr "Ключ для відновлення облікового запису"
 
 msgid "Your account recovery key is:"
 msgstr "Ваш ключ для відновлення облікового запису:"
@@ -1340,9 +1340,6 @@ msgstr "Перевірка зміни адреси електронної пош
 
 msgid "Please check your inbox for further instructions."
 msgstr "Будь ласка, перевірте вашу поштову скриньку для подальших інструкцій."
-
-msgid "Account recovery key"
-msgstr "Ключ для відновлення облікового запису"
 
 msgid "Current password"
 msgstr "Поточний пароль"

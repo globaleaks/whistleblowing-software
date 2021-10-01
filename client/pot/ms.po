@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:50+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malay (http://www.transifex.com/otf/globaleaks/language/ms/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -380,9 +380,6 @@ msgstr "Buang"
 
 msgid "Use as default"
 msgstr "Gunakan sebagai lalai"
-
-msgid "Create your whistleblowing platform"
-msgstr "Cipta platform pemberi maklumat anda"
 
 msgid "Collapse"
 msgstr "Runtuhkan"
@@ -1204,14 +1201,17 @@ msgstr "Adakah anda pasti?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Sila ambil perhatian bahawa semua data berkaitan akan dipadam secara kekal."
 
-msgid "Enable two factor authentication"
-msgstr "Dayakan pengesahan dua faktor"
-
 msgid "Close"
 msgstr "Tutup"
 
+msgid "Enable two factor authentication"
+msgstr "Dayakan pengesahan dua faktor"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Sebelum meneruskan, sila baca dokumentasi dengan teliti di:"
+
+msgid "Account recovery key"
+msgstr "Kunci pemulihan akaun"
 
 msgid "Your account recovery key is:"
 msgstr "Kunci pemulihan akaun anda ialah:"
@@ -1321,9 +1321,6 @@ msgstr "Pengesahan perubahan alamat e-mel sedang berjalan."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Sila periksa peti masuk anda untuk arahan selanjutnya."
-
-msgid "Account recovery key"
-msgstr "Kunci pemulihan akaun"
 
 msgid "Current password"
 msgstr "Kata laluan semasa"

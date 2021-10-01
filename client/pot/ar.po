@@ -29,7 +29,7 @@
 # lamine Kacimi <k_lamine27@yahoo.fr>, 2015
 # mohammad ali <ilir95palira@gmail.com>, 2017
 # Muhammad Elghdban <Mohamed.Elghdban@gmail.com>, 2020
-# Muna Hemoudi <muna@localizationlab.org>, 2021
+# Muna Hemoudi, 2021
 # nawaat <contact@nawaat.org>, 2014
 # ouss <oussjarrouse@gmail.com>, 2016
 # ouss <oussjarrouse@gmail.com>, 2016
@@ -44,8 +44,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-29 20:33+0000\n"
-"Last-Translator: Joe Arshat <j.arshat@psiphon.ca>\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -419,9 +419,6 @@ msgstr "حذف"
 
 msgid "Use as default"
 msgstr "التعيين كوضع افتراضي"
-
-msgid "Create your whistleblowing platform"
-msgstr "إنشاء منصة الابلاغ الخاصة بك. "
 
 msgid "Collapse"
 msgstr "طي"
@@ -1243,14 +1240,17 @@ msgstr "هل أنت متأكد؟"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "يرجى ملاحظة أنه سيتم حذف كل البيانات المتعلقة بشكل دائم."
 
-msgid "Enable two factor authentication"
-msgstr "فعّل الاستيثاق ذي المعاملين"
-
 msgid "Close"
 msgstr "‮إغلاق"
 
+msgid "Enable two factor authentication"
+msgstr "فعّل الاستيثاق ذي المعاملين"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "قبل المتابعة، يرجى قراءة التوثيق جيدا في:"
+
+msgid "Account recovery key"
+msgstr "مفتاح استرداد الحساب"
 
 msgid "Your account recovery key is:"
 msgstr "مفتاح الإسترداد لحسابك هو:"
@@ -1360,9 +1360,6 @@ msgstr "جارى التحقق من التغيير في عنوان البريد �
 
 msgid "Please check your inbox for further instructions."
 msgstr "الرجاء التحقق من بريدك الوارد للمزيد من التعليمات."
-
-msgid "Account recovery key"
-msgstr "مفتاح استرداد الحساب"
 
 msgid "Current password"
 msgstr "كلمة السر الحالية"

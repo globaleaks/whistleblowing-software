@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 13:01+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uighur (Latin) (http://www.transifex.com/otf/globaleaks/language/ug@Latin/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -380,9 +380,6 @@ msgstr "Öchür"
 
 msgid "Use as default"
 msgstr "Köngüldikidek ishlet"
-
-msgid "Create your whistleblowing platform"
-msgstr "Özingizning pash qilish supingizni qurung"
 
 msgid "Collapse"
 msgstr "Qatla"
@@ -1204,14 +1201,17 @@ msgstr "Jezim qilamsiz?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Munasiwetlik barliq sanliq melumatlarnng menggülük öchürürilidighanliqigha diqqet qiling."
 
-msgid "Enable two factor authentication"
-msgstr "Ikki qedemlik toghrulashni qozghat"
-
 msgid "Close"
 msgstr "Taqa"
 
+msgid "Enable two factor authentication"
+msgstr "Ikki qedemlik toghrulashni qozghat"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Dawam qilishtin burun bu yerdiki höjjetni estayidil oqung:"
+
+msgid "Account recovery key"
+msgstr "Hésap eslige keltürüsh achquchi"
 
 msgid "Your account recovery key is:"
 msgstr "Hésabatingizni eslige keltürüsh achquchi:"
@@ -1321,9 +1321,6 @@ msgstr "Élxet adrési özgertishni delillesh dawam qiliwatidu."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Téximu köp körsetmiler üchün élxet qobullash sanduqingizni tekshürüng."
-
-msgid "Account recovery key"
-msgstr "Hésap eslige keltürüsh achquchi"
 
 msgid "Current password"
 msgstr "Hazirqi parol"

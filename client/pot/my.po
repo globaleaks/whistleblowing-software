@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:10+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Burmese (http://www.transifex.com/otf/globaleaks/language/my/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -381,9 +381,6 @@ msgstr "ဖယ်ရှားမည်"
 
 msgid "Use as default"
 msgstr "ပုံသေမူလအတိုင်း အသုံးပြုပါ"
-
-msgid "Create your whistleblowing platform"
-msgstr "သင်၏ သတင်းပေးပလက်ဖောင်းကို ဖန်တီးပါ"
 
 msgid "Collapse"
 msgstr "ချုံ့မည်"
@@ -1205,14 +1202,17 @@ msgstr "သေချာပါသလား။"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "ကျေးဇူးပြု၍ ဆက်နွှယ်သော အချက်အလက်အားလုံးကို အပြီးတိုင် ဖျက်ပစ်မည်ဖြစ်ကြောင်း သတိပြုပါ။"
 
-msgid "Enable two factor authentication"
-msgstr "အဆင့်နှစ်ဆင့်ဖြင့် စစ်မှန်ကြောင်းသက်သေပြခြင်းကို ဖွင့်ပါ"
-
 msgid "Close"
 msgstr "ပိတ်မည်"
 
+msgid "Enable two factor authentication"
+msgstr "အဆင့်နှစ်ဆင့်ဖြင့် စစ်မှန်ကြောင်းသက်သေပြခြင်းကို ဖွင့်ပါ"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "ဆက်မလုပ်မီ ကျေးဇူးပြု၍ စာရွက်စာတမ်းကို ဂရုတစိုက် ဖတ်ပါ - "
+
+msgid "Account recovery key"
+msgstr "အကောင့်ပြန်လည်ရယူရန် စကားဝှက်သော့"
 
 msgid "Your account recovery key is:"
 msgstr "သင်၏ အကောင့် ပြန်လည်ရယူရန် စကားဝှက်သော့ -"
@@ -1322,9 +1322,6 @@ msgstr "အီးမေးလ်လိပ်စာ အပြောင်းအ�
 
 msgid "Please check your inbox for further instructions."
 msgstr "ထပ်မံ လမ်းညွှန်ချက်များအတွက် ကျေးဇူးပြု၍ သင်၏ စာတိုက်ကို စစ်ဆေးပါ။"
-
-msgid "Account recovery key"
-msgstr "အကောင့်ပြန်လည်ရယူရန် စကားဝှက်သော့"
 
 msgid "Current password"
 msgstr "လက်ရှိ စကားဝှက်"

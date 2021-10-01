@@ -30,7 +30,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:52+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -405,9 +405,6 @@ msgstr "Удалить"
 
 msgid "Use as default"
 msgstr "Использовать по умолчанию"
-
-msgid "Create your whistleblowing platform"
-msgstr "Создайте платформу информатора"
 
 msgid "Collapse"
 msgstr "Закрыть"
@@ -1229,14 +1226,17 @@ msgstr "Вы уверены?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Обратите внимание, что все связанные данные будут удалены без возможности восстановления."
 
-msgid "Enable two factor authentication"
-msgstr "Включите двухфакторную аутентификацию"
-
 msgid "Close"
 msgstr "Закрыть"
 
+msgid "Enable two factor authentication"
+msgstr "Включите двухфакторную аутентификацию"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Прежде чем продолжить, внимательно ознакомьтесь с документацией на странице:"
+
+msgid "Account recovery key"
+msgstr "Ключ для восстановления учетной записи"
 
 msgid "Your account recovery key is:"
 msgstr "Ваш ключ для восстановления учетной записи:"
@@ -1346,9 +1346,6 @@ msgstr "Осуществляется проверка изменения адр�
 
 msgid "Please check your inbox for further instructions."
 msgstr "Проверьте почту на предмет дополнительных инструкций."
-
-msgid "Account recovery key"
-msgstr "Ключ для восстановления учетной записи"
 
 msgid "Current password"
 msgstr "Текущий пароль"

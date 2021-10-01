@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 11:52+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malagasy (http://www.transifex.com/otf/globaleaks/language/mg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -395,9 +395,6 @@ msgstr "Supprimer"
 
 msgid "Use as default"
 msgstr "Utiliser comme valeur par défaut"
-
-msgid "Create your whistleblowing platform"
-msgstr "Créez votre plateforme de lancement d’alerte"
 
 msgid "Collapse"
 msgstr "Réduire"
@@ -1219,13 +1216,16 @@ msgstr "Êtes-vous certain ?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr ""
 
-msgid "Enable two factor authentication"
-msgstr "Activer l’authentification à deux facteurs"
-
 msgid "Close"
 msgstr ""
 
+msgid "Enable two factor authentication"
+msgstr "Activer l’authentification à deux facteurs"
+
 msgid "Before proceeding please read carefully the documentation at:"
+msgstr ""
+
+msgid "Account recovery key"
 msgstr ""
 
 msgid "Your account recovery key is:"
@@ -1336,9 +1336,6 @@ msgstr "La validation du changement d’adresse courriel est en cours."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Veuillez vérifier votre boîte de réception pour de plus amples instructions."
-
-msgid "Account recovery key"
-msgstr ""
 
 msgid "Current password"
 msgstr "Mot de passe actuel"

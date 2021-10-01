@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-28 08:39+0000\n"
-"Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -386,9 +386,6 @@ msgstr "Hiqe"
 
 msgid "Use as default"
 msgstr "Përdore si parazgjedhje"
-
-msgid "Create your whistleblowing platform"
-msgstr "Krijoni platformën tuaj për nxjerrje të fshehtash"
 
 msgid "Collapse"
 msgstr "Tkurre"
@@ -1210,14 +1207,17 @@ msgstr "Jeni i sigurt?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Ju lutemi, kini parasysh se krejt të dhënat e përshoqëruara do të fshihen përgjithmonë."
 
-msgid "Enable two factor authentication"
-msgstr "Aktivizo mirëfilltësim dyfaktorësh"
-
 msgid "Close"
 msgstr "Mbylle"
 
+msgid "Enable two factor authentication"
+msgstr "Aktivizo mirëfilltësim dyfaktorësh"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Përpara se të vazhdoni, ju lutemi, lexoni me kujdes dokumentimin, te:"
+
+msgid "Account recovery key"
+msgstr "Kyç rimarrjesh llogarie"
 
 msgid "Your account recovery key is:"
 msgstr "Kyçi juaj i rimarrjeve është:"
@@ -1327,9 +1327,6 @@ msgstr "Vlerësimi i ndryshimit të adresës email në ecuri e sipër."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Për udhëzime të mëtejshme, ju lutemi, kontrolloni mesazhet tuaj të marrë."
-
-msgid "Account recovery key"
-msgstr "Kyç rimarrjesh llogarie"
 
 msgid "Current password"
 msgstr "Fjalëkalimi i tanishëm"

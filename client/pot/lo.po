@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:49+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Lao (http://www.transifex.com/otf/globaleaks/language/lo/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -380,9 +380,6 @@ msgstr "ລຶບອອກ"
 
 msgid "Use as default"
 msgstr "ໃຊ້ເປັນຄ່າເລີ່ມຕົ້ນ"
-
-msgid "Create your whistleblowing platform"
-msgstr "ສ້າງລະບົບການແຈ້ງເບາະແສຂອງທ່ານ"
 
 msgid "Collapse"
 msgstr "ຫຍໍ້​ລົງ"
@@ -1204,14 +1201,17 @@ msgstr "ທ່ານ​ແນ່​ໃຈ​ບໍ?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "ກະລຸນາຊາບວ່າ ຂໍ້ມູນທີ່ກ່ຽວຂ້ອງທັງໝົດຈະຖືກລຶບຖິ້ມຢ່າງຖາວອນ."
 
-msgid "Enable two factor authentication"
-msgstr "ເປີດນຳໃຊ້ການຢືນຢັນແບບສອງຂັ້ນຕອນ"
-
 msgid "Close"
 msgstr "ປິດ"
 
+msgid "Enable two factor authentication"
+msgstr "ເປີດນຳໃຊ້ການຢືນຢັນແບບສອງຂັ້ນຕອນ"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "ກ່ອນຈະດຳເນີນການຕໍ່ ກະລຸນາອ່ານເອກະສານຢ່າງລະອຽດໄດ້ທີ່:"
+
+msgid "Account recovery key"
+msgstr "ລະຫັດກູ້ຄືນບັນຊີ"
 
 msgid "Your account recovery key is:"
 msgstr "ລະຫັດກູ້ຄືນບັນຊີຂອງທ່ານແມ່ນ:"
@@ -1321,9 +1321,6 @@ msgstr "ການກວດສອບຄວາມຖືກຕ້ອງຂອງກ
 
 msgid "Please check your inbox for further instructions."
 msgstr "ກະລຸນາກວດເບິ່ງກ່ອງຂໍ້ຄວາມເຂົ້າຂອງທ່ານ ສຳລັບຄຳແນະນຳເພີ່ມເຕີມ."
-
-msgid "Account recovery key"
-msgstr "ລະຫັດກູ້ຄືນບັນຊີ"
 
 msgid "Current password"
 msgstr "ລະ​ຫັດ​ຜ່ານປະ​ຈຸ​ບັນ"

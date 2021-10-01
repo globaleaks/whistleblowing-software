@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:48+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -384,9 +384,6 @@ msgstr "削除"
 
 msgid "Use as default"
 msgstr "デフォルトとして使用する"
-
-msgid "Create your whistleblowing platform"
-msgstr "あなたの内部告発プラットフォームを作成"
 
 msgid "Collapse"
 msgstr "折りたたむ"
@@ -1208,14 +1205,17 @@ msgstr "よろしいですか?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "すべての関連データが完全に失われますのでご注意ください。"
 
-msgid "Enable two factor authentication"
-msgstr "2要素認証を有効にする"
-
 msgid "Close"
 msgstr "閉じる"
 
+msgid "Enable two factor authentication"
+msgstr "2要素認証を有効にする"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "先に進む前に、次のドキュメントを注意深くお読みください:"
+
+msgid "Account recovery key"
+msgstr "アカウント回復鍵"
 
 msgid "Your account recovery key is:"
 msgstr "あなたのアカウントの回復鍵は:"
@@ -1325,9 +1325,6 @@ msgstr "メールアドレス変更の検証を処理しています。"
 
 msgid "Please check your inbox for further instructions."
 msgstr "詳しい手順については、受信トレイを確認してください。"
-
-msgid "Account recovery key"
-msgstr "アカウント回復鍵"
 
 msgid "Current password"
 msgstr "現在のパスワード"

@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:53+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -385,9 +385,6 @@ msgstr "Remove"
 
 msgid "Use as default"
 msgstr "Uporabi kot privzeto"
-
-msgid "Create your whistleblowing platform"
-msgstr "Ustvarite svojo platformo za prijave "
 
 msgid "Collapse"
 msgstr "Skrči"
@@ -1209,14 +1206,17 @@ msgstr "Ste prepričani ?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Vsi povezani podatki bodo trajno izbrisani."
 
-msgid "Enable two factor authentication"
-msgstr "Omogoči dvostopenjsko preverjanje"
-
 msgid "Close"
 msgstr "Close"
 
+msgid "Enable two factor authentication"
+msgstr "Omogoči dvostopenjsko preverjanje"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Pred nadaljevanjem natančno preberite dokumentacijo na:"
+
+msgid "Account recovery key"
+msgstr "Ključ za obnovo računa"
 
 msgid "Your account recovery key is:"
 msgstr "Ključ za obnovo vašega uporabniškega računa je:"
@@ -1326,9 +1326,6 @@ msgstr "Potrditev spremembe naslova e-pošte poteka."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Za nadaljnja navodila preverite vaš nabiralnik."
-
-msgid "Account recovery key"
-msgstr "Ključ za obnovo računa"
 
 msgid "Current password"
 msgstr "Trenutno geslo"

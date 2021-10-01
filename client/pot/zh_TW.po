@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:11+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -386,9 +386,6 @@ msgstr "刪除"
 
 msgid "Use as default"
 msgstr "以默認方式使用"
-
-msgid "Create your whistleblowing platform"
-msgstr "創建一個吹哨者揭密平台"
 
 msgid "Collapse"
 msgstr "崩潰"
@@ -1210,14 +1207,17 @@ msgstr "你確定嗎？"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "請注意所有相關的資料將會永久消失。"
 
-msgid "Enable two factor authentication"
-msgstr "啟用雙因子驗證"
-
 msgid "Close"
 msgstr "關閉"
 
+msgid "Enable two factor authentication"
+msgstr "啟用雙因子驗證"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "繼續下一步之前請先仔細閱讀此文件："
+
+msgid "Account recovery key"
+msgstr "帳號恢復密鑰"
 
 msgid "Your account recovery key is:"
 msgstr "帳號的恢復密鑰："
@@ -1327,9 +1327,6 @@ msgstr "正在查驗電郵地址變更"
 
 msgid "Please check your inbox for further instructions."
 msgstr "請檢查您的信箱取得進一步指示。"
-
-msgid "Account recovery key"
-msgstr "帳號恢復密鑰"
 
 msgid "Current password"
 msgstr "現用密碼"

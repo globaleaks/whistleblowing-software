@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:54+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tajik (http://www.transifex.com/otf/globaleaks/language/tg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -380,9 +380,6 @@ msgstr "Хориҷ кардан"
 
 msgid "Use as default"
 msgstr "Ҳамчун пешфарз истифода бурдан"
-
-msgid "Create your whistleblowing platform"
-msgstr "Платформаи хабаррасонии худро эҷод кардан"
 
 msgid "Collapse"
 msgstr "Пӯшидан"
@@ -1204,14 +1201,17 @@ msgstr "Шумо мутмаъин ҳастед?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Лутфан таваҷҷӯҳ кунед, ки тамоми маълумоти марбут ба таври ҳамешагӣ пок карда мешавад. "
 
-msgid "Enable two factor authentication"
-msgstr "Тасдиқкунандаи шахсияти ду омиларо фаъол кардан"
-
 msgid "Close"
 msgstr "Пӯшидан"
 
+msgid "Enable two factor authentication"
+msgstr "Тасдиқкунандаи шахсияти ду омиларо фаъол кардан"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Пеш аз идома додан, лутфан ҳуҷҷатҳои зеринро бодиққат хонед: "
+
+msgid "Account recovery key"
+msgstr "Калид барои барқарорсозии аккаунт"
 
 msgid "Your account recovery key is:"
 msgstr "Калиди барқарорсозии аккаунти шумо ин аст:"
@@ -1321,9 +1321,6 @@ msgstr "Тасдиқи тағйири суроғаи почтаи электро
 
 msgid "Please check your inbox for further instructions."
 msgstr "Барои дастури минбаъда лутфан паёмдони худро тафтиш намоед."
-
-msgid "Account recovery key"
-msgstr "Калид барои барқарорсозии аккаунт"
 
 msgid "Current password"
 msgstr "Гузарвожаи ҷорӣ"

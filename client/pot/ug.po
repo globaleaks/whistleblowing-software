@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 13:01+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uyghur (http://www.transifex.com/otf/globaleaks/language/ug/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -382,9 +382,6 @@ msgstr "ئۆچۈر"
 
 msgid "Use as default"
 msgstr "كۆڭۈلدىكىدەك ئىشلەت"
-
-msgid "Create your whistleblowing platform"
-msgstr "ئۆزىڭىزنىڭ پاش قىلىش سۇپىڭىزنى قۇرۇڭ"
 
 msgid "Collapse"
 msgstr "قاتلا"
@@ -1206,14 +1203,17 @@ msgstr "جەزىم قىلامسىز؟"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "مۇناسىۋەتلىك بارلىق سانلىق مەلۇماتلارنڭ مەڭگۈلۈك ئۆچۈرۈرىلىدىغانلىقىغا دىققەت قىلىڭ."
 
-msgid "Enable two factor authentication"
-msgstr "ئىككى قەدەملىك توغرۇلاشنى قوزغات"
-
 msgid "Close"
 msgstr "تاقا"
 
+msgid "Enable two factor authentication"
+msgstr "ئىككى قەدەملىك توغرۇلاشنى قوزغات"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "داۋام قىلىشتىن بۇرۇن بۇ يەردىكى ھۆججەتنى ئەستايىدىل ئوقۇڭ:"
+
+msgid "Account recovery key"
+msgstr "ھېساپ ئەسلىگە كەلتۈرۈش ئاچقۇچى"
 
 msgid "Your account recovery key is:"
 msgstr "ھېساباتىڭىزنى ئەسلىگە كەلتۈرۈش ئاچقۇچى:"
@@ -1323,9 +1323,6 @@ msgstr "ئېلخەت ئادرېسى ئۆزگەرتىشنى دەلىللەش دا
 
 msgid "Please check your inbox for further instructions."
 msgstr "تېخىمۇ كۆپ كۆرسەتمىلەر ئۈچۈن ئېلخەت قوبۇللاش ساندۇقىڭىزنى تەكشۈرۈڭ."
-
-msgid "Account recovery key"
-msgstr "ھېساپ ئەسلىگە كەلتۈرۈش ئاچقۇچى"
 
 msgid "Current password"
 msgstr "ھازىرقى پارول"

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 14:23+0000\n"
+"PO-Revision-Date: 2021-10-01 18:23+0000\n"
 "Last-Translator: Aigiz Kunafin\n"
 "Language-Team: Bashkir (http://www.transifex.com/otf/globaleaks/language/ba/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,7 +17,7 @@ msgid "Log in"
 msgstr "Инеү"
 
 msgid "Main configuration"
-msgstr "төп көйләү"
+msgstr "Төп көйләү"
 
 msgid "Theme customization"
 msgstr "Теманы көйләү"
@@ -56,7 +56,7 @@ msgid "Delete"
 msgstr "Юйырға"
 
 msgid "Anomalies"
-msgstr "Аномалия"
+msgstr "Аномалиялар"
 
 msgid "Preferences"
 msgstr "Көйләүҙәр"
@@ -379,9 +379,6 @@ msgstr "Юйырға"
 
 msgid "Use as default"
 msgstr "Йәшереп ҡалдырылған буйынса ҡулланыу"
-
-msgid "Create your whistleblowing platform"
-msgstr "Информаторҙың платформаһын булдырығыҙ"
 
 msgid "Collapse"
 msgstr "Ябырға"
@@ -1203,14 +1200,17 @@ msgstr "Шикләнмәйһегеҙме?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Иғтибар: булғандарҙың барыһы ла ҡайтанан тергеҙелмәҫлек итеп юйыласаҡ"
 
-msgid "Enable two factor authentication"
-msgstr "Ике факторлы аутентификацияны ҡабыҙығыҙ"
-
 msgid "Close"
 msgstr "Ябырға"
 
+msgid "Enable two factor authentication"
+msgstr "Ике факторлы аутентификацияны ҡабыҙығыҙ"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Дауам итерҙән алда, сәхифәләге документация менән ныҡлап танышығыҙ"
+
+msgid "Account recovery key"
+msgstr "Иҫәп яҙмаһын тергеҙеүгә асҡыс"
 
 msgid "Your account recovery key is:"
 msgstr "Иҫәп яҙмаһын терҙеҙеү өсөн һеҙҙең асҡыс"
@@ -1320,9 +1320,6 @@ msgstr "Электрон почта адресын үҙгәртеүгә тикш
 
 msgid "Please check your inbox for further instructions."
 msgstr "Почтағыҙҙы өҫтәлмә инструкциялар барлығын тикшерегеҙ "
-
-msgid "Account recovery key"
-msgstr "Иҫәп яҙмаһын тергеҙеүгә асҡыс"
 
 msgid "Current password"
 msgstr "Ғәмәлдәге пароль"
@@ -1461,14 +1458,14 @@ msgid "Success!"
 msgstr "Булды!"
 
 msgid "Your whistleblowing platform is almost ready!"
-msgstr ""
+msgstr "Платформағыҙ хәбәр ебәреү өсөн әҙер тиһәң дә була"
 
 msgid "Check your inbox to activate it."
-msgstr ""
+msgstr "Почтаны әүҙемләштереү өсөн, \"Кереш\" папкаһын ҡарағыҙ"
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr ""
+msgstr "Әгәр платформаны 24 сәғәт эсендә әүҙемләштермәһәгеҙ, ул автоматик рәүештә юйҙырыласаҡ"
 
 msgid "Sign up"
 msgstr "Инергә"
@@ -1477,81 +1474,81 @@ msgid "Domain"
 msgstr "Домен"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "Раҫлау"
 
 msgid "Invalid confirmation"
-msgstr ""
+msgstr "Яраҡһыҙ раҫлау"
 
 msgid "Invalid phone number"
-msgstr ""
+msgstr "Яраҡһыҙ телефон номеры"
 
 msgid "The answer is too short"
-msgstr ""
+msgstr "Яуап үтә ҡыҫҡа"
 
 msgid "The specified input is not valid."
-msgstr ""
+msgstr "Түбәндәге мәғлүмәттәр яраҡһыҙ"
 
 msgid "The specified input is not valid:"
-msgstr ""
+msgstr "Түбәндәге мәғлүмәттәр яраҡһыҙ"
 
 msgid "please enter a valid email address."
-msgstr ""
+msgstr "Зинһар, ғәмәлдәге электрон почта адресығыҙҙы күрһәтегеҙ"
 
 msgid "please enter numbers only."
-msgstr ""
+msgstr "Зинһар, тик цифрҙар ғына яҙығыҙ"
 
 msgid "Submissions disabled"
-msgstr ""
+msgstr "Ябыҡ материалдарҙы ҡуйыу"
 
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
-msgstr ""
+msgstr "Һеҙҙең серверға ҡушылыуығыҙ ананим түгел, был сервер тик аноним материалдар менән генә эшләй"
 
 msgid "Your report was successful."
-msgstr ""
+msgstr "Материалдарығыҙ тапшырылышы уңышлы үтте"
 
 msgid "Remember your receipt for this report."
-msgstr ""
+msgstr "Отчетығыҙ квитанцияһын хәтерегеҙҙә ҡалдырығыҙ"
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr ""
+msgstr "Системаға инеү өсөн 16 һандан торған квитанция ҡулланығыҙ. Был һеҙгә ебәрелгән бөтә хәбәрҙәрҙе лә уҡырға, мәғлүмәт өҫтәргә мөмкинлек бирәсәк"
 
 msgid "View your report"
-msgstr ""
+msgstr "Отчетығыҙҙы ҡарағыҙ"
 
 msgid "Recipient selection"
-msgstr ""
+msgstr "Ҡабул итеүсене һайлау"
 
 msgid "Select the recipients of your report:"
-msgstr ""
+msgstr "Отчетығыҙҙы ҡабул итеүселәрҙе һайлағыҙ"
 
 msgid "Recipients selected:"
-msgstr ""
+msgstr "Һайланҡан ҡабул итеүселәр"
 
 msgid "You have reached the maximum number of selectable recipients."
-msgstr ""
+msgstr "Һеҙ ҡабул итеүселәәрҙең максималь һанына еттегеҙ"
 
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr ""
+msgstr "Түбәндәге ҡабул итеүселәр отчетығыҙҙы аласаҡ, уларҙы һайлауҙы кисектереп булмай"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
 "invalid:"
-msgstr ""
+msgstr "Түбәндәге һорауҙарға яуаптар юҡ йәки уларҙың дөрөҫлөгө икеле"
 
 msgid "You must select at least one recipient."
-msgstr ""
+msgstr "Һеҙгә иң кәмендә бер ҡабул итеүсене һайлар кәрәк"
 
 msgid "Waiting for the file(s) to finish uploading."
-msgstr ""
+msgstr "Файлдар тейәлә"
 
 msgid "The following steps have errors:"
-msgstr ""
+msgstr "Түбәндәге ғәмәлдәрҙә хаталар киткән:"
 
 msgid "Hide"
 msgstr "Йәшерергә"
@@ -1559,44 +1556,44 @@ msgstr "Йәшерергә"
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
 "whistleblowing platform."
-msgstr ""
+msgstr "Түбәндәге эҙмә-эҙлекле процедура һеҙгә мәғлүмәт биреү өсөн платформа төҙөргә мөмкинлек бирәсәк"
 
 msgid "Please choose a configuration profile:"
-msgstr ""
+msgstr "Зинһар, конфигурацияның профилен һайлағыҙ"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr ""
+msgstr "Администраторға ҡулланыусыларҙың паролен алып ташларға мөмкинлек бирегеҙ"
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr ""
+msgstr "Ҡабул итеүселәрҙең паролдәрен юғалтыу ихтималлығы булып, үҙегеҙҙе мәғлүмәтте юғалтыуҙан ҡурсаларға теләһәгеҙ, һеҙгә был опцияны һайларға тәҡдим итәбеҙ. Икенсе яҡтан, әгәр системаны ебәрелгән материалдарға ҡулланыусылар  инерлек итеп көйләргә теләһәгеҙ,беҙ был функцияны тәҡдим итмәйбеҙ."
 
 msgid "Please choose a different username."
 msgstr "Зинһар, икенсе исем һайлағыҙ."
 
 msgid "I have read and agree to the terms of the license."
-msgstr ""
+msgstr "Лицензия шарттары менән таныштым һәм ризалығымды бирәм"
 
 msgid "You have completed the platform wizard."
-msgstr ""
+msgstr "Платформаны көйләү оҫтаһы менән эште тамамланығыҙ"
 
 msgid "Fill out your report"
-msgstr ""
+msgstr "Отчетығыҙҙы тултырығыҙ"
 
 msgid "Describe your report in a few words."
-msgstr ""
+msgstr "Отчетығыҙҙы ҡыҫҡаса сағылдырығыҙ"
 
 msgid "Describe your report in detail."
-msgstr ""
+msgstr "Отчетығыҙҙы ентекле сағылдырығыҙ"
 
 msgid "Attach files relevant to the report."
-msgstr ""
+msgstr "Отчетҡа тап килгән файлдарҙы һалығыҙ"
 
 msgid "Do you want to provide your identification information?"
-msgstr ""
+msgstr "Үҙегеҙ хаҡында мәғлүмәт ҡалдырырға теләйһегеҙме?"
 
 msgid "First name"
 msgstr "Исеме"
@@ -1605,13 +1602,13 @@ msgid "Last name"
 msgstr "Фамилияһы"
 
 msgid "Alternative contact method"
-msgstr ""
+msgstr "Бәләнештең альтернатив ысулы"
 
 msgid "Other"
 msgstr "Башҡа"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr ""
+msgstr "Минең менән тик платформа аша ғына бәйләнешкә инеүҙәренә өҫтөнлөк бирәм"
 
 msgid "Dear {RecipientName},"
 msgstr "Хөрмәтле {RecipientName},"
@@ -1619,99 +1616,99 @@ msgstr "Хөрмәтле {RecipientName},"
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr ""
+msgstr "Системала һеҙҙең өсөн иҫәп яҙмаһы булдырылғанлыҡтан, һеҙ был хәбәрҙе : {Site}"
 
 msgid "Username: {Username}"
 msgstr "Логин: {Username}"
 
 msgid "Activation link: {Url}"
-msgstr ""
+msgstr "Әүҙемләштереү өсөн : {Url}"
 
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr ""
+msgstr "Иҫәп яҙмаһын әүҙемләштерерҙән һәм үҙегеҙҙең ҡулланыусы паролен ҡуйырҙан алда,  әүҙәмлештереү һылтанмаһына баҫығыҙ"
 
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
-msgstr ""
+msgstr "Уңышлы әүҙемләштереүҙән һуң, {LoginUrl} һылтанмаһын ҡулланып, һеҙ системаға инә алаһығыҙ"
 
 msgid "Kind regards,"
-msgstr ""
+msgstr "Ихтирам менән:"
 
 msgid "Account activation"
-msgstr ""
+msgstr "Иҫәп яҙмаһын әүҙемләштереү"
 
 msgid "Your whistleblowing platform is now accessible at:"
-msgstr ""
+msgstr "Һеҙҙең мәғлүмәт платформаһына ошо адрес буйынса инергә була:"
 
 msgid "To log in, visit:"
-msgstr ""
+msgstr "Системаға инер өсөн сәхифәне асығыҙ"
 
 msgid "Users' credentials:"
-msgstr ""
+msgstr "Ҡулланыусының иҫәп мәғлүмәттәре:"
 
 msgid "The platform will be automatically deleted on:"
-msgstr ""
+msgstr "Платформа автоматик рәүештә юйыласаҡ"
 
 msgid "Access instructions"
-msgstr ""
+msgstr "Инеү өсөн инструкция"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
-msgstr ""
+msgstr "Күптән түгел табылған әүҙемлек күрһәткесе ҡәҙимгеһенән юғарыраҡ"
 
 msgid ""
 "This could be a sign of an attack (for example, someone flooding your server"
 " with bogus information) or just a usage spike due to an increased "
 "visibility of your project."
-msgstr ""
+msgstr "Был һөжүм билдәһе  (мәҫәлән, кемдер һеҙҙең серверға ялған мәғлүмәт тейәй) йәки һеҙҙең проекттың киң танылыуы арҡаһында ҡулланыуҙың иң юғары нөктәһе булырға мөмкин"
 
 msgid "Examine the issue to determine whether it is legitimate or not."
-msgstr ""
+msgstr "Эш нимәлә икәнен тикшерегеҙ: һүҙ ғәҙәти әүҙемлек тураһында барамы әллә юҡмы? "
 
 msgid "The activities with unusual stats are:"
-msgstr ""
+msgstr "Типик булмаған статистикалы әүҙемлек"
 
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr ""
+msgstr "Яңы отчеттың һаҡланыуына сервер гарантия бирмәй, шуға материалдар тапшырыу һүндерелде"
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
 "the server."
-msgstr ""
+msgstr "Сервер өсөн күберәк урын алыр өсөн, зинһар, техник хуплау хеҙмәтенә мөрәжәғәт итегеҙ"
 
 msgid ""
 "GlobaLeaks technology includes a server status checking component which will"
 " alert you in case something requires your attention."
-msgstr ""
+msgstr "GlobaLeaks технологияһы сервер торошон тикшереү компонентын да үҙ эсенә ала, әгәр нимәлер иғтибарығыҙҙы талап итһә, ул һеҙгә хәбәр итәсәк "
 
 msgid ""
 "For more information, log in to the Administration interface and look at the"
 " \"System Stats\" and \"Anomalies\" sections."
-msgstr ""
+msgstr "Мәғлүмәт алыу өсөн, администратор панелена инегеҙ ҙә \"Система статистикаһы\" һәм \"Аномалия\" бүлектәренә күсегеҙ"
 
 msgid "Anomaly detected in {NodeName}"
-msgstr ""
+msgstr "{NodeName}- та аномалия табылды"
 
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
 "going to expire or has already expired:"
-msgstr ""
+msgstr "Был хат аша түбәндәге ҡулланыусыларҙың PGP-асҡысының ғәмәл мөҙҙәте тиҙҙән үтәсәген йәки бөтөнләй сыҡҡанлығын хәбәр итәбеҙ"
 
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
 "notifications."
-msgstr ""
+msgstr "Ғәмәлдәге PGP-асҡысы булмай тороп, система һеҙгә шифрланған белдереүҙәр ебәрә алмай"
 
 msgid "PGP key expiration alert"
-msgstr ""
+msgstr "PGP-асҡысының ғәмәл мөҙҙәте сыҡҡаны хаҡындағы белдереүҙәр"
 
 msgid "A new whistleblowing site has been registered."
-msgstr ""
+msgstr "Хәбәр ебәреү өсөн яңы сайт теркәлде"
 
 msgid "Registration data:"
 msgstr "Теркәлгән дата:"
@@ -1726,19 +1723,19 @@ msgid "Email: {Email}"
 msgstr "Эл.адрес: {Email}"
 
 msgid "New whistleblowing site registered"
-msgstr ""
+msgstr "Хәбәр ебәреү өсөн яңы сайт теркәлде"
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
-msgstr ""
+msgstr "Был платформаның администрация интерфейсынан электрон хат"
 
 msgid ""
 "Reception of this email indicates that the server was able to authenticate "
 "to and interact with the SMTP mail server."
-msgstr ""
+msgstr "Уңышлы алынған хат серверҙың дөрөҫлөккә тап килгән тикшереү үткәнен һәм SMTP почта серверы менән аралаша алғанын аңлата"
 
 msgid "Test email"
-msgstr ""
+msgstr "Тәүге электрон хат"
 
 msgid ""
 "This is an email to notify you that a request has been made to change your "
@@ -1763,16 +1760,16 @@ msgid "Date: {EventTime}"
 msgstr "Дата: {EventTime}"
 
 msgid "From: Whistleblower"
-msgstr ""
+msgstr "Кемдән; информатор"
 
 msgid "Date: {SubmissionDate}"
 msgstr "Дата: {SubmissionDate}"
 
 msgid "Label: {TipLabel}"
-msgstr ""
+msgstr "Тамға: {TipLabel}"
 
 msgid "Status: {TipStatus}"
-msgstr ""
+msgstr "Статус: {TipStatus}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "

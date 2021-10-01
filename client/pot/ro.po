@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 13:15+0000\n"
-"Last-Translator: Claus A <claudiu.andrei.90@gmail.com>\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -395,9 +395,6 @@ msgstr "Elimină"
 
 msgid "Use as default"
 msgstr "Folosește ca setare standard"
-
-msgid "Create your whistleblowing platform"
-msgstr "Creează propria platformă destinată avertizării de integritate."
 
 msgid "Collapse"
 msgstr "Restrânge"
@@ -1219,14 +1216,17 @@ msgstr "Ești sigur(ă)?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Atenție, toate datele asociate vor fi șterse definitiv. "
 
-msgid "Enable two factor authentication"
-msgstr "Activează autentificarea în doi pași"
-
 msgid "Close"
 msgstr "Închide"
 
+msgid "Enable two factor authentication"
+msgstr "Activează autentificarea în doi pași"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Înainte de a începe, te rugăm să citești cu atenție documentația aici:  "
+
+msgid "Account recovery key"
+msgstr "Cheia de recuperare a contului"
 
 msgid "Your account recovery key is:"
 msgstr "Cheia de recuperare a contului tău este:"
@@ -1336,9 +1336,6 @@ msgstr "Validarea schimbării e-mailului este în desfășurare."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Te rugăm să îți verifici email-ul pentru instrucțiuni suplimentare."
-
-msgid "Account recovery key"
-msgstr "Cheia de recuperare a contului"
 
 msgid "Current password"
 msgstr "Parolă curentă"

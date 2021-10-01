@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:07+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bengali (http://www.transifex.com/otf/globaleaks/language/bn/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -384,9 +384,6 @@ msgstr "অপসারণ"
 
 msgid "Use as default"
 msgstr "ডিফল্ট হিসাবে ব্যবহার করুন"
-
-msgid "Create your whistleblowing platform"
-msgstr "আপনার হুইসেল ব্লোয়িং প্ল্যাটফর্ম তৈরি করুন"
 
 msgid "Collapse"
 msgstr "সঙ্কুচিত"
@@ -1208,14 +1205,17 @@ msgstr "আপনি কি নিশ্চিত?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "দয়া করে মনে রাখবেন যে সম্পর্কিত সমস্ত তথ্য স্থায়ীভাবে মুছে ফেলা হবে।"
 
-msgid "Enable two factor authentication"
-msgstr "টু ফ্যাক্টর অথেনটিকেশন সক্ষম করুন"
-
 msgid "Close"
 msgstr "বন্ধ"
 
+msgid "Enable two factor authentication"
+msgstr "টু ফ্যাক্টর অথেনটিকেশন সক্ষম করুন"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "এগিয়ে যাওয়ার আগে দয়া করে এখানে ডকুমেন্টেশনটি সাবধানতার সাথে পড়ুন:"
+
+msgid "Account recovery key"
+msgstr "অ্যাকাউন্ট পুনরুদ্ধারের চাবি"
 
 msgid "Your account recovery key is:"
 msgstr "আপনার অ্যাকাউন্ট পুনরুদ্ধারের চাবি:"
@@ -1325,9 +1325,6 @@ msgstr "ইমেল ঠিকানা যাচাইকরণের প্র
 
 msgid "Please check your inbox for further instructions."
 msgstr "আরও নির্দেশাবলীর জন্য আপনার ইনবক্স চেক করুন।"
-
-msgid "Account recovery key"
-msgstr "অ্যাকাউন্ট পুনরুদ্ধারের চাবি"
 
 msgid "Current password"
 msgstr "বর্তমান পাসওয়ার্ড"

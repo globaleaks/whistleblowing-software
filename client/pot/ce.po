@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:11+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chechen (http://www.transifex.com/otf/globaleaks/language/ce/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -380,9 +380,6 @@ msgstr "Дlадаха"
 
 msgid "Use as default"
 msgstr "Ша-шаха пайдаэца"
-
-msgid "Create your whistleblowing platform"
-msgstr "Йукъаралле хаамаш бан хьайн платформа кхолла"
 
 msgid "Collapse"
 msgstr "Дlахьарчон"
@@ -1204,14 +1201,17 @@ msgstr "Билггал тешна вуй?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Доьху, тидам бе, кхуьнца боьзна болу берриге а хаамаш меттахlитталур боцуш дlабовр бу."
 
-msgid "Enable two factor authentication"
-msgstr "Шинамуьран бакъталлар латон"
-
 msgid "Close"
 msgstr "Дlачlагlа"
 
+msgid "Enable two factor authentication"
+msgstr "Шинамуьран бакъталлар латон"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Болх кхидlа бале, доьху, кху адресца долу кехаташ деша:"
+
+msgid "Account recovery key"
+msgstr "Чуйазваларан йоза меттахlоттаран догlа"
 
 msgid "Your account recovery key is:"
 msgstr "Хьан чуйазваларан йоза меттахlотторан догlа:"
@@ -1321,9 +1321,6 @@ msgstr "Электронан почтин адрес хийцаран талла
 
 msgid "Please check your inbox for further instructions."
 msgstr "Доьху, кхидlа долу куьйгалла кхочушдархьама хьайн почтин йаьшка талла."
-
-msgid "Account recovery key"
-msgstr "Чуйазваларан йоза меттахlоттаран догlа"
 
 msgid "Current password"
 msgstr "Карара ишар"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:00+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkmen (http://www.transifex.com/otf/globaleaks/language/tk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -381,9 +381,6 @@ msgstr "Aýyr"
 
 msgid "Use as default"
 msgstr "Asyl görnüşde ulan"
-
-msgid "Create your whistleblowing platform"
-msgstr "Gizlin habar ýetiriji platformaňyzy dörediň"
 
 msgid "Collapse"
 msgstr "Dargat"
@@ -1205,14 +1202,17 @@ msgstr "Ynamyňyz barmy?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Baglanyşykly maglumatlaryň ählisiniň hemişelik pozuljakdygyny ýadyňyzdan çykarmaň."
 
-msgid "Enable two factor authentication"
-msgstr "Iki faktor tassyklanmagyny açyň"
-
 msgid "Close"
 msgstr "Ýap"
 
+msgid "Enable two factor authentication"
+msgstr "Iki faktor tassyklanmagyny açyň"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Dowam etmezden ozal resminamalary üns bilen okaň:"
+
+msgid "Account recovery key"
+msgstr "Hasaby dikeltmek açary"
 
 msgid "Your account recovery key is:"
 msgstr "Hasabyňyzy dikeltmek açary:"
@@ -1322,9 +1322,6 @@ msgstr "Email salgysyny üýtgetmek barlagy dowam edýär."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Goşmaça görkezmeler üçin poçta gutyňyzy barlaň."
-
-msgid "Account recovery key"
-msgstr "Hasaby dikeltmek açary"
 
 msgid "Current password"
 msgstr "Hazirki parolyňyz"

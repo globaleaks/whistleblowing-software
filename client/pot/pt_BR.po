@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:52+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -414,9 +414,6 @@ msgstr "Remover"
 
 msgid "Use as default"
 msgstr "Use como padrão"
-
-msgid "Create your whistleblowing platform"
-msgstr "Crie sua plataforma de denúncia"
 
 msgid "Collapse"
 msgstr "Colapso"
@@ -1238,14 +1235,17 @@ msgstr "Você tem certeza?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Observe que todos os dados associados serão excluídos permanentemente"
 
-msgid "Enable two factor authentication"
-msgstr "Ativar autenticação por dois fatores"
-
 msgid "Close"
 msgstr "Fechar"
 
+msgid "Enable two factor authentication"
+msgstr "Ativar autenticação por dois fatores"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Antes de continuar, leia atentamente a documentação em:"
+
+msgid "Account recovery key"
+msgstr "Chave de recuperação da conta"
 
 msgid "Your account recovery key is:"
 msgstr "A chave de recuperação da sua conta é:"
@@ -1355,9 +1355,6 @@ msgstr "Validation of email address change in progress."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Por favor, verifique sua caixa de entrada para mais instruções."
-
-msgid "Account recovery key"
-msgstr "Chave de recuperação da conta"
 
 msgid "Current password"
 msgstr "Senha atual"

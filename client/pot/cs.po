@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 11:52+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -390,9 +390,6 @@ msgstr "Odstranit"
 
 msgid "Use as default"
 msgstr "Použít jako výchozí"
-
-msgid "Create your whistleblowing platform"
-msgstr "Vytvořte svou vlastní whistleblowingovou platformu"
 
 msgid "Collapse"
 msgstr "Sbalit"
@@ -1214,14 +1211,17 @@ msgstr "Jste si jistý?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Vezměte prosím na vědomí, že všechna související data budou navždy smazána."
 
-msgid "Enable two factor authentication"
-msgstr "Povolit dvoufaktorové ověřování"
-
 msgid "Close"
 msgstr "Zavřít"
 
+msgid "Enable two factor authentication"
+msgstr "Povolit dvoufaktorové ověřování"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Než budete pokračovat, přečtěte si pozorně dokumentaci na adrese:"
+
+msgid "Account recovery key"
+msgstr "Klíč pro obnovení účtu"
 
 msgid "Your account recovery key is:"
 msgstr "Klíč pro obnovení Vašeho účtu je:"
@@ -1331,9 +1331,6 @@ msgstr "Ověření změny e-mailové adresy probíhá."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Prosím, zkontrolujte doručenou poštu pro další postup."
-
-msgid "Account recovery key"
-msgstr "Klíč pro obnovení účtu"
 
 msgid "Current password"
 msgstr "Současné heslo"

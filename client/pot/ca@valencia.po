@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 11:52+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca@valencia/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -392,9 +392,6 @@ msgstr "Suprimix"
 
 msgid "Use as default"
 msgstr "s'utilitza com a predeterminat"
-
-msgid "Create your whistleblowing platform"
-msgstr "Cree la seua plataforma de denúncies"
 
 msgid "Collapse"
 msgstr "Contraure"
@@ -1216,14 +1213,17 @@ msgstr "Està vosté segur?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Tingueu en compte que totes les dades associades se suprimiran definitivament."
 
-msgid "Enable two factor authentication"
-msgstr "Habilitar l'autenticació de doble factor"
-
 msgid "Close"
 msgstr "Tancar"
 
+msgid "Enable two factor authentication"
+msgstr "Habilitar l'autenticació de doble factor"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Abans de continuar, llegiu atentament la documentació a:"
+
+msgid "Account recovery key"
+msgstr "Clau de recuperació del compte"
 
 msgid "Your account recovery key is:"
 msgstr "La vostra clau de recuperació del compte és:"
@@ -1333,9 +1333,6 @@ msgstr "Validació del canvi de contrasenya en progrés."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Per favor, comprove el seu correu per a més instruccions."
-
-msgid "Account recovery key"
-msgstr "Clau de recuperació del compte"
 
 msgid "Current password"
 msgstr " Contrasenya actual"

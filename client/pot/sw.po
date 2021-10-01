@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:54+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swahili (http://www.transifex.com/otf/globaleaks/language/sw/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -380,9 +380,6 @@ msgstr "Ondoa"
 
 msgid "Use as default"
 msgstr "Tumia kama chaguo la msingi"
-
-msgid "Create your whistleblowing platform"
-msgstr "Unda jukwaa lako la kutoa taarifa za siri"
 
 msgid "Collapse"
 msgstr "Angusha"
@@ -1204,14 +1201,17 @@ msgstr "Una uhakika?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Tafadhali kumbuka kuwa data zote zinazohusiana zitafutwa kabisa."
 
-msgid "Enable two factor authentication"
-msgstr "Wezesha uthibitishaji wa mara mbili "
-
 msgid "Close"
 msgstr "Funga"
 
+msgid "Enable two factor authentication"
+msgstr "Wezesha uthibitishaji wa mara mbili "
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Kabla ya kuendelea tafadhali soma kwa uangalifu nyaraka kwenye:"
+
+msgid "Account recovery key"
+msgstr "Ufunguo wa kurejesha akaunti"
 
 msgid "Your account recovery key is:"
 msgstr "Ufunguo wako wa kurejesha akaunti ni:"
@@ -1321,9 +1321,6 @@ msgstr "Uthibitishaji wa mabadiliko ya anwani ya barua pepe unaendelea"
 
 msgid "Please check your inbox for further instructions."
 msgstr "Tafadhali angalia kisanduku chako cha kupokea ujumbe kwa maelekezo zaidi."
-
-msgid "Account recovery key"
-msgstr "Ufunguo wa kurejesha akaunti"
 
 msgid "Current password"
 msgstr "Neno la siri la sasa"

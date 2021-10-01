@@ -44,7 +44,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:31+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -419,9 +419,6 @@ msgstr "Verwijder"
 
 msgid "Use as default"
 msgstr "Markeer als standaard"
-
-msgid "Create your whistleblowing platform"
-msgstr "Creëer je eigen klokkenluidersplatform"
 
 msgid "Collapse"
 msgstr "Inklappen"
@@ -1243,14 +1240,17 @@ msgstr "Weet je het zeker?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Let op dat alle hiermee verbonden gegevens definitief verwijderd zullen worden."
 
-msgid "Enable two factor authentication"
-msgstr "Twee-factor-authenticatie inschakelen"
-
 msgid "Close"
 msgstr "Sluiten"
 
+msgid "Enable two factor authentication"
+msgstr "Twee-factor-authenticatie inschakelen"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Lees voor je doorgaat zorgvuldig de documentatie door op:"
+
+msgid "Account recovery key"
+msgstr "Herstelcode voor je account"
 
 msgid "Your account recovery key is:"
 msgstr "De herstelcode voor je account is:"
@@ -1360,9 +1360,6 @@ msgstr "Validatie van e-mail adres verandering wordt uitgevoerd."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Kijk in je e-mail postvak-in voor verdere instructies."
-
-msgid "Account recovery key"
-msgstr "Herstelcode voor je account"
 
 msgid "Current password"
 msgstr "Huidig wachtwoord"

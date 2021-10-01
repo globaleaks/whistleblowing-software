@@ -30,7 +30,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:00+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -405,9 +405,6 @@ msgstr "Sil"
 
 msgid "Use as default"
 msgstr "Varsayılan olarak kullan"
-
-msgid "Create your whistleblowing platform"
-msgstr "İhbar platformunuzu oluşturun"
 
 msgid "Collapse"
 msgstr "Çöküş"
@@ -1229,14 +1226,17 @@ msgstr "Emin misiniz?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Lütfen ilişkili bütün verinin kalıcı olarak silineceğini unutmayın."
 
-msgid "Enable two factor authentication"
-msgstr "İki aşamalı kimlik doğrulamayı etkinleştirin"
-
 msgid "Close"
 msgstr "Kapat"
 
+msgid "Enable two factor authentication"
+msgstr "İki aşamalı kimlik doğrulamayı etkinleştirin"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Lütfen ilerlemeden önce belgelendirmeyi dikkatli bir şekilde okuyun."
+
+msgid "Account recovery key"
+msgstr "Hesap kurtarma anahtarı"
 
 msgid "Your account recovery key is:"
 msgstr "Hesap kurtarma anahtarınız:"
@@ -1346,9 +1346,6 @@ msgstr "E-posta adresi değişikliği doğrulaması devam ediyor. "
 
 msgid "Please check your inbox for further instructions."
 msgstr "Daha fazla yönerge için lütfen gelen kutunuzu kontrol edin."
-
-msgid "Account recovery key"
-msgstr "Hesap kurtarma anahtarı"
 
 msgid "Current password"
 msgstr "Şimdiki parola"

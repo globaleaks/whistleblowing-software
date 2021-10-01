@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-27 12:29+0000\n"
+"PO-Revision-Date: 2021-09-30 16:26+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -387,9 +387,6 @@ msgstr "Fjern"
 
 msgid "Use as default"
 msgstr "Brug som standard"
-
-msgid "Create your whistleblowing platform"
-msgstr "Byg din whistleblower-platform"
 
 msgid "Collapse"
 msgstr "Fold sammen"
@@ -1211,14 +1208,17 @@ msgstr "Er du sikker?"
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Bemærk at alle tilknyttede data bliver slettet permanent."
 
-msgid "Enable two factor authentication"
-msgstr "Aktivér to-faktor-godkendelse"
-
 msgid "Close"
 msgstr "Luk"
 
+msgid "Enable two factor authentication"
+msgstr "Aktivér to-faktor-godkendelse"
+
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Før du forsætter, gennemlæs venligst dokumentationen grundigt"
+
+msgid "Account recovery key"
+msgstr "Kontogendannelsesnøgle"
 
 msgid "Your account recovery key is:"
 msgstr "Din kontogendannelsesnøgle er:"
@@ -1328,9 +1328,6 @@ msgstr "Godkendelse af skift af e-mail-adresse i gang."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Tjek venligst din indbakke for yderligere instruktioner."
-
-msgid "Account recovery key"
-msgstr "Kontogendannelsesnøgle"
 
 msgid "Current password"
 msgstr "Nuværende password"
