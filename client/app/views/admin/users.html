@@ -137,13 +137,10 @@
             <div class="form-group">
               <label data-translate>Password</label>
               <div>
-		      <span class="btn btn-outline-secondary" data-ng-click="resetUserPassword()" data-ng-if="user.last_login === '1970-01-01T00:00:00Z'">
+                <span class="btn btn-outline-secondary" data-ng-click="resetUserPassword()">
                   <i class="fas fa-sync"></i>
-                  <span data-translate>Send activation link</span>
-                </span>
-		<span class="btn btn-outline-secondary" data-ng-click="resetUserPassword()" data-ng-if="user.last_login !== '1970-01-01T00:00:00Z'">
-                  <i class="fas fa-sync"></i>
-                  <span data-translate>Send reset link</span>
+                  <span data-ng-if="user.last_login === '1970-01-01T00:00:00Z'" data-translate>Send activation link</span>
+                  <span data-ng-if="user.last_login !== '1970-01-01T00:00:00Z'" data-translate>Send reset link</span>
                 </span>
                 <span class="btn btn-outline-secondary"
                       data-ng-if="!user.encryption || preferences.escrow"

@@ -10,7 +10,7 @@ from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import user_serialize_user
-from globaleaks.orm import transact
+from globaleaks.orm import db_log, transact
 from globaleaks.rest import requests
 from globaleaks.sessions import Sessions
 from globaleaks.state import State
@@ -136,14 +136,18 @@ def validate_password_reset(session, reset_token, auth_code, recovery_key):
     # Require password change
     user.password_change_needed = True
 
-    session = Sessions.new(user.tid, user.id,
-                           user.tid, user.role,
-                           user.password_change_needed,
-                           user.two_factor_enable,
-                           prv_key,
-                           user.crypto_escrow_prv_key)
+    user.last_login = datetime_now()
 
-    return {'status': 'success', 'token': session.id}
+    session_id = Sessions.new(user.tid, user.id,
+                              user.tid, user.role,
+                              user.password_change_needed,
+                              user.two_factor_enable,
+                              prv_key,
+                              user.crypto_escrow_prv_key).id
+
+    db_log(session, tid=user.tid, type='login', user_id=user.id)
+
+    return {'status': 'success', 'token': session_id}
 
 
 class PasswordResetHandler(BaseHandler):
