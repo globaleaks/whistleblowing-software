@@ -816,6 +816,18 @@ var GL = angular.module("GL", [
            $rootScope.Authentication.loginRedirect(false);
          } else if (error.code === 4) {
            $rootScope.Authentication.authcoderequired = true;
+         } else if (error.code === 6) {
+           if ($rootScope.Authentication.session) {
+             if ($rootScope.Authentication.session.role !== 'whistleblower') {
+               $location.path($rootScope.Authentication.session.homepage);
+             } else {
+               $rootScope.Authentication.logout();
+             }
+           } else {
+             alert(1);
+             $rootScope.setPage("homepage");
+           }
+
          } else {
            $rootScope.errors.push(error);
          }

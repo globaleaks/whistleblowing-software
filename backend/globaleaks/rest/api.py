@@ -10,6 +10,7 @@ from sqlalchemy.orm.exc import NoResultFound
 
 from twisted.internet import defer
 from twisted.internet.abstract import isIPAddress, isIPv6Address
+from twisted.python.failure import Failure
 from twisted.web.resource import Resource
 from twisted.web.server import NOT_DONE_YET
 
@@ -252,12 +253,13 @@ class APIResourceWrapper(Resource):
         if request.finished:
             return
 
+        if isinstance(e, Failure):
+            e = e.value
+
         if isinstance(e, NoResultFound):
             e = errors.ResourceNotFound()
         elif isinstance(e, errors.GLException):
             pass
-        elif isinstance(e.value, errors.GLException):
-            e = e.value
         else:
             e.tid = request.tid
             e.url = request.hostname + request.path
