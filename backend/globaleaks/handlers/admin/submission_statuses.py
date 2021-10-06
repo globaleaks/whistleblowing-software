@@ -140,7 +140,7 @@ def order_substatus_elements(session, handler, req_args, *args, **kwargs):
     status_id = args[0]
 
     substatuses = session.query(models.SubmissionSubStatus) \
-                         .filter(models.SubmissionSubStatus.tid == self.request.tid,
+                         .filter(models.SubmissionSubStatus.tid == handler.request.tid,
                                  models.SubmissionSubStatus.submissionstatus_id == status_id)
 
     id_dict = {substatus.id: substatus for substatus in substatuses}
