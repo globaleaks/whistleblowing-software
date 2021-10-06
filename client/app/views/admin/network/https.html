@@ -12,9 +12,6 @@
         <button class="btn btn-primary" data-ng-click="Utils.applyConfig('set_hostname', resources.node.hostname, true)" data-ng-disabled="adminNetForm.$pristine" data-translate>Save</button>
       </span>
     </p>
-    <p class="text-danger" data-ng-show="adminNetForm.hostname.$error.pattern">
-      <span data-translate>Invalid input format.</span> <span data-translate>Input should be similar to:</span> <span>www.domain.tld</span>
-    </p>
   </form>
 </div>
 <div id="HTTPSSettings" data-ng-controller="AdminHTTPSConfigCtrl" data-ng-show="resources.node.hostname">
