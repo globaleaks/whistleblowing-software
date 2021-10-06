@@ -1,0 +1,36 @@
+<div class="form-group">
+  <label>
+    <span data-translate>Name</span><span>: </span>
+  </label>
+  <span>{{tenant.signup.name}}</span>
+</div>
+<div class="form-group">
+  <label>
+    <span data-translate>Surname</span><span>: </span>
+  </label>
+  <span>{{tenant.signup.surname}}</span>
+</div>
+<div class="form-group">
+  <label>
+    <span data-translate>Language</span><span>: </span>
+  </label>
+  <span>{{tenant.signup.language}}</span>
+</div>
+<div class="form-group">
+  <label>
+    <span data-translate>Email address</span><span>: </span>
+  </label>
+  <span>{{tenant.signup.email}}</span>
+</div>
+<div class="form-group">
+  <label>
+    <span data-translate>Use case</span><span>: </span>
+  </label>
+  <span data-ng-switch="tenant.signup.use_case">
+    <span data-ng-switch-when="anticorruption" data-translate>Anticorruption</span>
+    <span data-ng-switch-when="corporate_compliance" data-translate>Corporate compliance</span>
+    <span data-ng-switch-when="investigative_journalism" data-translate>Investigative journalism</span>
+    <span data-ng-switch-when="civic_activism" data-translate>Civic activism</span>
+    <span data-ng-switch-when="other">{{tenant.signup.use_case_other}}</span>
+  </span>
+</div>
