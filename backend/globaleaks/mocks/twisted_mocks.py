@@ -13,6 +13,8 @@ from twisted.web._http2 import H2Connection
 
 from zope.interface import implementer
 
+from globaleaks.rest.errors import InputValidationError
+
 
 def null_function(*args, **kw):
     pass
@@ -26,6 +28,9 @@ def mock_Request_getClientIP(self):
 
 
 def mock_Request_gotLength(self, length):
+    if length is not None and length > 2 * 1024 * 1024:
+        raise InputValidationError("Request exceeding max size of 2MB")
+
     self.content = StringIO()
 
 
