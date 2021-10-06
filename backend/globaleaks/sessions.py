@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
+from datetime import timedelta
 
 from globaleaks.settings import Settings
 from globaleaks.utils.crypto import generateRandomKey
 from globaleaks.utils.tempdict import TempDict
+from globaleaks.utils.utility import datetime_now
 
 
 class Session(object):
@@ -17,6 +19,8 @@ class Session(object):
         self.cc = cc
         self.ek = ek
         self.ms = ms
+        self.ratelimit_time = datetime_now()
+        self.ratelimit_count = 0
         self.expireCall = None
 
     def getTime(self):
@@ -48,6 +52,24 @@ class SessionsFactory(TempDict):
         self.revoke(tid, user_id)
         session = Session(tid, user_id, user_tid, user_role, pcn, two_factor, cc, ek, ms)
         self[session.id] = session
+        return session
+
+    def get(self, key):
+        now = datetime_now()
+        session = TempDict.get(self, key)
+        if session is None:
+            return
+
+        if session.user_role == 'whistleblower':
+            if now > session.ratelimit_time + timedelta(30):
+                session.ratelimit_time = now
+                session.ratelimit_count = 0
+
+            session.ratelimit_count += 1
+
+            if session.ratelimit_count > 20:
+                return
+
         return session
 
     def regenerate(self, session_id):
