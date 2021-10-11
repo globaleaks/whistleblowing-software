@@ -139,11 +139,7 @@ def perform_tips_operation(session, tid, user_id, user_cc, operation, args):
                                          models.ReceiverTip.id.in_(args['rtips']),
                                          models.InternalTip.id == models.ReceiverTip.internaltip_id)
 
-    if operation == 'postpone' and receiver.can_postpone_expiration:
-        for itip, _ in result:
-            db_postpone_expiration(session, itip)
-
-    elif operation == 'delete' and receiver.can_delete_submission:
+    if operation == 'delete' and receiver.can_delete_submission:
         itip_ids = []
 
         for itip, _ in result:
@@ -187,7 +183,7 @@ class Operations(BaseHandler):
     def put(self):
         request = self.validate_message(self.request.content.read(), requests.OpsDesc)
 
-        if request['operation'] not in ['delete', 'postpone', 'grant', 'revoke']:
+        if request['operation'] not in ['delete', 'grant', 'revoke']:
             raise errors.ForbiddenOperation
 
         return perform_tips_operation(self.request.tid,

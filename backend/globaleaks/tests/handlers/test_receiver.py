@@ -73,32 +73,6 @@ class TestOperations(helpers.TestHandlerWithPopulatedDB):
         yield self.test_model_count(models.ReceiverTip, 4)
 
     @inlineCallbacks
-    def test_put_postpone(self):
-        yield set_expiration_of_all_rtips_to_unlimited()
-
-        rtips = yield receiver.get_receivertips(1, self.dummyReceiver_1['id'], helpers.USER_PRV_KEY, 'en')
-        rtips_ids = [rtip['id'] for rtip in rtips]
-
-        postpone_map = {}
-        for rtip in rtips:
-            postpone_map[rtip['id']] = rtip['expiration_date']
-
-        data_request = {
-            'operation': 'postpone',
-            'args': {
-                'rtips': rtips_ids
-            }
-        }
-
-        handler = self.request(data_request, user_id=self.dummyReceiver_1['id'], role='receiver')
-        yield handler.put()
-
-        rtips = yield receiver.get_receivertips(1, self.dummyReceiver_1['id'], helpers.USER_PRV_KEY, 'en')
-
-        for rtip in rtips:
-            self.assertNotEqual(postpone_map[rtip['id']], rtip['expiration_date'])
-
-    @inlineCallbacks
     def test_put_delete(self):
         rtips = yield receiver.get_receivertips(1, self.dummyReceiver_1['id'], helpers.USER_PRV_KEY, 'en')
         rtips_ids = [rtip['id'] for rtip in rtips]

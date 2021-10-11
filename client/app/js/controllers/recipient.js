@@ -133,21 +133,6 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$q", "$http", "$locati
       })(i);
     }
   };
-
-  $scope.tip_postpone_selected = function () {
-    $uibModal.open({
-      templateUrl: "views/modals/confirmation.html",
-      controller: "TipBulkOperationsCtrl",
-      resolve: {
-        selected_tips: function () {
-          return $scope.selected_tips;
-        },
-        operation: function() {
-          return "postpone";
-        }
-      }
-    });
-  };
 }]).
 controller("TipBulkOperationsCtrl", ["$scope", "$http", "$location", "$uibModalInstance", "selected_tips", "operation",
   function ($scope, $http, $location, $uibModalInstance, selected_tips, operation) {
@@ -161,7 +146,7 @@ controller("TipBulkOperationsCtrl", ["$scope", "$http", "$location", "$uibModalI
   $scope.confirm = function () {
     $uibModalInstance.close();
 
-    if (["postpone", "delete"].indexOf(operation) === -1) {
+    if (["delete"].indexOf(operation) === -1) {
       return;
     }
 
