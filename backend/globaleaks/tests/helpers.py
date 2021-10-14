@@ -35,18 +35,18 @@ from globaleaks.handlers.admin.tenant import create as create_tenant
 from globaleaks.handlers.admin.user import create_user
 from globaleaks.handlers.token import generate_token
 from globaleaks.handlers.wizard import db_wizard
-from globaleaks.handlers.submission import create_submission, initialize_submission
+from globaleaks.handlers.submission import create_submission
 from globaleaks.models.config import db_set_config_variable
 from globaleaks.rest import decorators
 from globaleaks.rest.api import JSONEncoder
-from globaleaks.sessions import Sessions
+from globaleaks.sessions import initialize_submission_session, Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils import tempdict, token
 from globaleaks.utils.crypto import generateRandomKey, GCE
 from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.securetempfile import SecureTemporaryFile
-from globaleaks.utils.utility import datetime_null, datetime_now, sum_dicts
+from globaleaks.utils.utility import datetime_null, datetime_now, sum_dicts, uuid4
 from globaleaks.utils.log import log
 
 GCE.ALGORITM_CONFIGURATION['ARGON2']['OPSLIMIT'] = 1
@@ -718,7 +718,7 @@ class TestGL(unittest.TestCase):
         This emulates the file upload of an incomplete submission
         """
         for _ in range(n):
-            self.state.TempSubmissions[submission_id].files.append(self.get_dummy_file())
+            Sessions.get(submission_id).files.append(self.get_dummy_file())
 
     def pollute_events(self, number_of_times=10):
         for _ in range(number_of_times):
@@ -860,15 +860,15 @@ class TestGLWithPopulatedDB(TestGL):
         db_create_field(session, 1, reference_field, 'en')
 
     def perform_submission_start(self):
-        return initialize_submission()
+        return Sessions.new(1, uuid4(), 1, 'whistleblower', False, False, '', '')
 
     def perform_submission_uploads(self, submission_id):
         for _ in range(self.population_of_attachments):
-            self.state.TempSubmissions[submission_id].files.append(self.get_dummy_file())
+            Sessions.get(submission_id).files.append(self.get_dummy_file())
 
     @inlineCallbacks
-    def perform_submission_actions(self, submission_id):
-        temp_submission = self.state.TempSubmissions[submission_id]
+    def perform_submission_actions(self, session_id):
+        session = Sessions.get(session_id)
 
         self.dummySubmission['context_id'] = self.dummyContext['id']
         self.dummySubmission['receivers'] = self.dummyContext['receivers']
@@ -879,7 +879,7 @@ class TestGLWithPopulatedDB(TestGL):
 
         self.lastReceipt = (yield create_submission(1,
                                                    self.dummySubmission,
-                                                   temp_submission,
+                                                   session,
                                                    True))['receipt']
 
     @inlineCallbacks
@@ -912,17 +912,17 @@ class TestGLWithPopulatedDB(TestGL):
 
     @inlineCallbacks
     def perform_minimal_submission_actions(self):
-        submission = self.perform_submission_start()
-        self.perform_submission_uploads(submission['id'])
-        yield self.perform_submission_actions(submission['id'])
+        session = self.perform_submission_start()
+        self.perform_submission_uploads(session.id)
+        yield self.perform_submission_actions(session.id)
 
     @inlineCallbacks
     def perform_full_submission_actions(self):
         """Populates the DB with tips, comments, messages and files"""
         for x in range(self.population_of_submissions):
-            submission = self.perform_submission_start()
-            self.perform_submission_uploads(submission['id'])
-            yield self.perform_submission_actions(submission['id'])
+            session = self.perform_submission_start()
+            self.perform_submission_uploads(session.id)
+            yield self.perform_submission_actions(session.id)
 
         yield self.perform_post_submission_actions()
 
@@ -989,7 +989,11 @@ class TestHandler(TestGLWithPopulatedDB):
                 user_id = self.dummyCustodian['id']
 
         if role is not None:
-            session = Sessions.new(1, user_id, 1, role, False, False, USER_PRV_KEY, '')
+            if role == 'whistlebower':
+                session = initialize_submission_session()
+            else:
+                session = Sessions.new(1, user_id, 1, role, False, False, USER_PRV_KEY, '')
+
             headers[b'x-session'] = session.id.encode()
 
         # during unit tests a token is always provided to any handler

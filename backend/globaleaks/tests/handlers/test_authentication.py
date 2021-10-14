@@ -28,7 +28,6 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         })
         response = yield handler.post()
         self.assertTrue('session_id' in response)
-        self.assertEqual(len(Sessions), 1)
 
     @inlineCallbacks
     def test_successful_multitenant_login_switch(self):
@@ -59,7 +58,6 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         State.tenant_cache[1]['https_allowed']['admin'] = True
         response = yield handler.post()
         self.assertTrue('session_id' in response)
-        self.assertEqual(len(Sessions), 1)
 
     @inlineCallbacks
     def test_deny_login_in_https(self):
@@ -184,7 +182,6 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         }, client_addr=IPv4Address('TCP', '192.168.2.1', 12345))
         response = yield handler.post()
         self.assertTrue('session_id' in response)
-        self.assertEqual(len(Sessions), 1)
 
 
 class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
@@ -206,7 +203,6 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         handler.request.client_using_tor = True
         response = yield handler.post()
         self.assertTrue('session_id' in response)
-        self.assertEqual(len(Sessions), 1)
 
     @inlineCallbacks
     def test_accept_whistleblower_login_in_https(self):
@@ -217,7 +213,6 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         State.tenant_cache[1]['https_allowed']['whistleblower'] = True
         response = yield handler.post()
         self.assertTrue('session_id' in response)
-        self.assertEqual(len(Sessions), 1)
 
     @inlineCallbacks
     def test_deny_whistleblower_login_in_https(self):
@@ -287,7 +282,6 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
         response = yield handler.post()
         self.assertTrue(handler.session is None)
         self.assertTrue('session_id' in response)
-        self.assertEqual(len(Sessions), 1)
 
         self._handler = authentication.SessionHandler
 
@@ -295,7 +289,6 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
         session_id = response['session_id']
         handler = self.request({}, headers={'x-session': session_id})
         yield handler.delete()
-        self.assertEqual(len(Sessions), 0)
 
     @inlineCallbacks
     def test_successful_whistleblower_logout(self):
@@ -312,14 +305,12 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
         response = yield handler.post()
         self.assertTrue(handler.session is None)
         self.assertTrue('session_id' in response)
-        self.assertEqual(len(Sessions), 1)
 
         self._handler = authentication.SessionHandler
 
         # Logout
         handler = self.request({}, headers={'x-session': response['session_id']})
         yield handler.delete()
-        self.assertEqual(len(Sessions), 0)
 
 
 class TestTokenAuth(helpers.TestHandlerWithPopulatedDB):
@@ -342,4 +333,3 @@ class TestTokenAuth(helpers.TestHandlerWithPopulatedDB):
 
         response = yield handler.post()
         self.assertTrue('session_id' in response)
-        self.assertEqual(len(Sessions), 1)

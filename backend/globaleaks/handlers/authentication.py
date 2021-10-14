@@ -9,7 +9,7 @@ from globaleaks.handlers.base import connection_check, BaseHandler
 from globaleaks.models import InternalTip, User, WhistleblowerTip
 from globaleaks.orm import db_log, transact, tw
 from globaleaks.rest import errors, requests
-from globaleaks.sessions import Sessions
+from globaleaks.sessions import initialize_submission_session, Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.crypto import totpVerify, Base64Encoder, GCE
@@ -225,7 +225,10 @@ class ReceiptAuthHandler(BaseHandler):
         connection_check(self.request.tid, self.request.client_ip,
                          'whistleblower', self.request.client_using_tor)
 
-        session = yield login_whistleblower(self.request.tid, request['receipt'])
+        if request['receipt']:
+            session = yield login_whistleblower(self.request.tid, request['receipt'])
+        else:
+            session = initialize_submission_session(self.request.tid)
 
         returnValue(session.serialize())
 

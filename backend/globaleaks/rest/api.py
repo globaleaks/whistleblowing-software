@@ -79,9 +79,8 @@ api_spec = [
     (r'/api/token/' + requests.token_regexp, token.TokenInstance),
 
     # Submission Handlers
-    (r'/api/submission/', submission.SubmissionInstance),
-    (r'/api/submission/' + uuid_regexp, submission.SubmissionInstance),
-    (r'/api/submission/' + uuid_regexp + '/attachment', attachment.SubmissionAttachment),
+    (r'/api/submission', submission.SubmissionInstance),
+    (r'/api/submission/attachment', attachment.SubmissionAttachment),
 
     # Receiver Handlers
     (r'/api/recipient/operations', receiver.Operations),

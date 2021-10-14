@@ -1,17 +1,40 @@
 # -*- coding: utf-8
 import json
 
+from datetime import timedelta
 from twisted.internet import defer
 
 from globaleaks.rest import errors
 from globaleaks.rest.cache import Cache
 from globaleaks.state import State
 from globaleaks.utils.json import JSONEncoder
+from globaleaks.utils.utility import datetime_now
+
+
+def decorator_rate_limit(f):
+    def wrapper(self, *args, **kwargs):
+        if self.session:
+            now = datetime_now()
+            if now > self.session.ratelimit_time + timedelta(30):
+                self.session.ratelimit_time = now
+                self.session.ratelimit_count = 0
+
+            self.session.ratelimit_count += 1
+
+            period = max(now.timestamp() - self.session.ratelimit_time.timestamp(), 1)
+
+            if (self.session.ratelimit_count / period) > 5:
+                raise errors.NotAuthenticated
+
+        return f(self, *args, **kwargs)
+
+    return wrapper
+
 
 
 def decorator_require_token(f):
     def wrapper(self, *args, **kwargs):
-        if self.request.method in self.require_token and not self.token:
+        if self.require_token and not self.token:
             raise errors.InternalServerError("TokenFailure: Missing or invalid token")
 
         return f(self, *args, **kwargs)
@@ -105,5 +128,8 @@ def decorate_method(h, method):
         f = decorator_require_token(f)
 
     f = decorator_authentication(f, value)
+
+    if method in ['post', 'put', 'delete']
+        f = decorator_rate_limit(f)
 
     setattr(h, method, f)

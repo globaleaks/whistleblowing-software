@@ -1,45 +1,39 @@
 # -*- coding: utf-8 -*-
 import os
 
-from globaleaks.handlers import attachment, submission
-from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
+
+from globaleaks.handlers import attachment, submission
+from globaleaks.rest import errors
+from globaleaks.sessions import initialize_submission_session, Sessions
+from globaleaks.tests import helpers
 
 
 class TestSubmissionAttachment(helpers.TestHandlerWithPopulatedDB):
     _handler = attachment.SubmissionAttachment
 
-    def test_post_file_on_not_finalized_submission(self):
-        self.dummyToken = self.state.tokens.new(1)
-        self.dummyToken.solved = True
-
-        handler = self.request()
-
-        return handler.post(self.dummyToken.id)
-
     @inlineCallbacks
     def test_post_file_and_verify_deletion_after_submission_expiration(self):
-        submission_id = submission.initialize_submission()['id']
-
         for _ in range(3):
-            handler = self.request()
-            yield handler.post(submission_id)
+            handler = self.request(role='whistleblower')
+            yield handler.post()
 
         self.state.tokens.reactor.pump([1] * (self.state.tokens.timeout - 1))
 
-        for f in self.state.TempSubmissions[submission_id].files:
+        for f in Sessions.get(handler.session.id).files:
             path = os.path.abspath(os.path.join(self.state.settings.tmp_path, f['filename']))
             self.assertTrue(os.path.exists(path))
 
         self.state.tokens.reactor.advance(1)
 
-        for f in self.state.TempSubmissions[submission_id].files:
+        for f in Sessions.get(handler.session.id).files:
             path = os.path.abspath(os.path.join(self.state.settings.attachments_path, f['filename']))
             yield self.assertFalse(os.path.exists(path))
 
+    @inlineCallbacks
     def test_post_file_on_unexistent_submission(self):
         handler = self.request()
-        self.assertIsNone(handler.post('unexistent_submission'))
+        yield self.assertRaises(errors.NotAuthenticated, handler.post, 'unexistent_submission')
 
 
 class TestPostSubmissionAttachment(helpers.TestHandlerWithPopulatedDB):

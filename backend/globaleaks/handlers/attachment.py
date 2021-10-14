@@ -55,17 +55,13 @@ class SubmissionAttachment(BaseHandler):
     """
     Whistleblower interface to upload a new file for a non-finalized submission
     """
-    check_roles = 'any'
+    check_roles = 'whistleblower'
     upload_handler = True
 
-    def post(self, submission_id):
-        temp_submission = self.state.TempSubmissions.get(submission_id, None)
-        if temp_submission is None:
-            return
-
+    def post(self):
         self.uploaded_file['submission'] = True
 
-        temp_submission.files.append(self.uploaded_file)
+        self.session.files.append(self.uploaded_file)
 
 
 class PostSubmissionAttachment(SubmissionAttachment):

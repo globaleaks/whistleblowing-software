@@ -79,7 +79,6 @@ class StateClass(ObjectDict, metaclass=Singleton):
         self.tokens = TokenList(60)
         self.TempLogs = []
         self.TempKeys = TempDict(3600 * 72)
-        self.TempSubmissions = TempDict(3600)
         self.TempUploadFiles = TempDict(3600)
 
         self.shutdown = False

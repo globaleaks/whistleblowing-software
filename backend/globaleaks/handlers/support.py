@@ -11,7 +11,6 @@ class SupportHandler(BaseHandler):
     This handler is responsible of receiving support requests and forward them to administrators
     """
     check_roles = 'any'
-    require_token = [b'POST']
 
     def post(self):
         request = self.validate_message(self.request.content.read(),

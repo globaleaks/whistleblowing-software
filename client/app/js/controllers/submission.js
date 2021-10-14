@@ -159,7 +159,7 @@ GL.controller("SubmissionCtrl",
       return;
     }
 
-    return "api/submission/" + $scope.submission.id + "/attachment";
+    return "api/submission/attachment";
   };
 
   $scope.prepareSubmission = function(context) {

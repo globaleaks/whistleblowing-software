@@ -75,7 +75,9 @@ factory("Authentication",
           } else {
             // Override the auth_landing_page if a password change is needed
             if (self.session.role === "whistleblower") {
-              $rootScope.setPage("tippage");
+              if (password !== '') {
+                $rootScope.setPage("tippage");
+              }
             } else {
               $location.path(self.session.homepage);
             }
@@ -214,7 +216,7 @@ factory("TokenResource", ["GLResource", "glbcProofOfWork", function(GLResource, 
   });
 }]).
 factory("SubmissionResource", ["GLResource", function(GLResource) {
-  return new GLResource("api/submission/:id?token=:token_id", {id: "@id", token_id: "@token_id"});
+  return new GLResource("api/submission");
 }]).
 factory("FieldAttrs", ["$resource", function($resource) {
   return $resource("data/field_attrs.json");
@@ -228,8 +230,8 @@ factory("DATA_COUNTRIES_ITALY_PROVINCES", ["$resource", function($resource) {
 factory("DATA_COUNTRIES_ITALY_CITIES", ["$resource", function($resource) {
   return $resource("data/countries/it/comuni.json");
 }]).
-factory("Submission", ["$q", "GLResource", "$location", "$rootScope", "SubmissionResource", "TokenResource",
-    function($q, GLResource, $location, $rootScope, SubmissionResource, TokenResource) {
+factory("Submission", ["$q", "$location", "$rootScope", "Authentication", "GLResource", "SubmissionResource", "TokenResource",
+    function($q, $location, $rootScope, Authentication, GLResource, SubmissionResource, TokenResource) {
 
   return function(fn) {
     /**
@@ -291,7 +293,6 @@ factory("Submission", ["$q", "GLResource", "$location", "$rootScope", "Submissio
       self.setContextReceivers(context_id);
 
       self._submission = new SubmissionResource({
-        id: null,
         context_id: self.context.id,
         receivers: [],
         identity_provided: false,
@@ -301,12 +302,7 @@ factory("Submission", ["$q", "GLResource", "$location", "$rootScope", "Submissio
         removed_files: []
       });
 
-      new TokenResource().$get().then(function(token) {
-        new SubmissionResource().$save({"token_id": token.id}).then(function(ret) {
-          self.id = ret.id;
-          self._submission.id = ret.id;
-	});
-      });
+      Authentication.login(0, 'whistleblower', '');
     };
 
     /**
@@ -327,13 +323,11 @@ factory("Submission", ["$q", "GLResource", "$location", "$rootScope", "Submissio
         }
       });
 
-      return new TokenResource().$get().then(function(token) {
-        return self._submission.$update({"token_id": token.id}).then(function(result) {
-          if (result) {
-            $rootScope.receipt = self._submission.receipt;
-            $rootScope.setPage("receiptpage");
-          }
-        });
+      return self._submission.$save().then(function(result) {
+        if (result) {
+          $rootScope.receipt = self._submission.receipt;
+          $rootScope.setPage("receiptpage");
+        }
       });
     };
 
