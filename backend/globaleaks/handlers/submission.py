@@ -391,9 +391,9 @@ class SubmissionInstance(BaseHandler):
     The interface that creates, populates and finishes a submission.
     """
     check_roles = 'any'
-    require_token = [b'GET']
+    require_token = True
 
-    def get(self):
+    def post(self):
         return initialize_submission()
 
     def put(self, submission_id):

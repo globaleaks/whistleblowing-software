@@ -94,7 +94,7 @@ def prepare_tip_export(cc, tip_export):
 
 class ExportHandler(BaseHandler):
     check_roles = 'receiver'
-    require_token = [b'GET']
+    require_token = True
     handler_exec_time_threshold = 3600
 
     @inlineCallbacks

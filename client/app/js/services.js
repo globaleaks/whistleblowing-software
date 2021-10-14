@@ -302,7 +302,7 @@ factory("Submission", ["$q", "GLResource", "$location", "$rootScope", "Submissio
       });
 
       new TokenResource().$get().then(function(token) {
-        new SubmissionResource().$get({"token_id": token.id}).then(function(ret) {
+        new SubmissionResource().$save({"token_id": token.id}).then(function(ret) {
           self.id = ret.id;
           self._submission.id = ret.id;
 	});

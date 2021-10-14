@@ -64,7 +64,7 @@ def connection_check(tid, client_ip, role, client_using_tor):
 
 class BaseHandler(object):
     check_roles = 'admin'
-    require_token = []
+    require_token = False
     handler_exec_time_threshold = 120
     uniform_answer_time = False
     cache_resource = False

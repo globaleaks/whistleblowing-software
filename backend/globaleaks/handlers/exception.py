@@ -14,7 +14,7 @@ class ExceptionHandler(BaseHandler):
     and delivering them to the configured exception mail.
     """
     check_roles = 'any'
-    require_token = [b'POST']
+    require_token = True
 
     def post(self):
         request = self.validate_message(self.request.content.read(),
