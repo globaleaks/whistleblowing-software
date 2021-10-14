@@ -129,7 +129,7 @@ def decorate_method(h, method):
 
     f = decorator_authentication(f, value)
 
-    if method in ['post', 'put', 'delete']
+    if method in ['post', 'put', 'delete']:
         f = decorator_rate_limit(f)
 
     setattr(h, method, f)

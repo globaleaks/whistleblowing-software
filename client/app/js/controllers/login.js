@@ -15,12 +15,6 @@ function($scope, $location, $filter) {
     $scope.login_template = "views/login/receipt.html";
   } else if ($location.path() === "/login" && $scope.public.node.simplified_login) {
     $scope.login_template = "views/login/simplified.html";
-  } else if ($location.path() === "/multisitelogin" && $scope.public.node.multisite_login) {
-    $scope.login_template = "views/login/multisite.html";
-
-    if ($scope.public.node.mode === "whistleblowing.it") {
-      $scope.loginData.loginUsername = "recipient";
-    }
   } else {
     $scope.login_template = "views/login/default.html";
   }

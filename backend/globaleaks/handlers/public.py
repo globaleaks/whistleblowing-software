@@ -575,36 +575,6 @@ def db_get_receivers(session, tid, language):
     return [serialize_receiver(session, receiver, language, data) for receiver in receivers]
 
 
-def db_get_sites(session):
-    sites = []
-
-    root_tenant = ConfigFactory(session, 1)
-    root_domain = root_tenant.get_val('rootdomain')
-    root_onionservice = root_tenant.get_val('onionservice')
-
-    for tid in session.query(models.Tenant.id).filter(models.Tenant.active.is_(True)):
-        tenant = ConfigFactory(session, tid[0])
-
-        site = {
-            'id': tid[0],
-            'name': tenant.get_val('name'),
-            'hostname': tenant.get_val('hostname'),
-            'onionservice': tenant.get_val('onionservice')
-        }
-
-        sites.append(site)
-
-        if tid == 1 or tenant.get_val('mode') == 'default':
-            pass
-
-        subdomain = tenant.get_val('subdomain')
-        if subdomain:
-            site['hostname'] = subdomain + '.' + root_domain
-            site['onionservice'] = subdomain + '.' + root_onionservice
-
-    return sites
-
-
 @transact
 def get_public_resources(session, tid, language):
     """
@@ -633,9 +603,6 @@ def get_public_resources(session, tid, language):
     for context in db_get_contexts(session, tid, language):
         if not context['languages'] or language.lower() in [x.strip().lower() for x in context['languages'].split(',')]:
             ret['contexts'].append(context)
-
-    if tid == 1 and ret['node']['multisite_login']:
-        ret['sites'] = db_get_sites(session)
 
     return ret
 

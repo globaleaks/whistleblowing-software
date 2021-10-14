@@ -110,7 +110,6 @@ ConfigDescriptor = {
     'enable_custodian': Bool(default=False),
     'enable_scoring_system': Bool(default=False),
 
-    'multisite_login': Bool(default=False),
     'simplified_login': Bool(default=False),
 
     'enable_custom_privacy_badge': Bool(default=False),
@@ -183,7 +182,6 @@ ConfigFilters = {
         'enable_developers_exception_notification',
         'enable_custodian',
         'enable_scoring_system',
-        'multisite_login',
         'simplified_login',
         'enable_custom_privacy_badge',
         'show_contexts_in_alphabetical_order',
