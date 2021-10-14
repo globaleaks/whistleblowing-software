@@ -85,6 +85,12 @@ def db_fix_fields_attrs(session):
             db_del(session, models.FieldAttr, models.FieldAttr.id.in_(subquery))
 
     # Add keys to the db that have been added to field_attrs
+    attrs_name = set([attr_name[0] for attr_name in session.query(models.FieldAttr.name)])
+
+    for x in field_attrs:
+        for y in attrs_name:
+            field_attrs[x].pop(y, None)
+
     for field in session.query(models.Field):
         type = field.type if field.template_id is None else field.template_id
         attrs = field_attrs.get(type, {})
