@@ -39,7 +39,7 @@ class TestFileHandler(helpers.TestHandler):
         returnValue(response)
 
     @inlineCallbacks
-    def test_key_file(self):
+    def test_key_file_upload_invalid_key(self):
         n = 'key'
 
         yield self.get_and_check(n, False)
@@ -49,13 +49,27 @@ class TestFileHandler(helpers.TestHandler):
         handler = self.request({'name': 'key', 'content': bad_key}, role='admin')
         yield self.assertFailure(handler.post(n), errors.InputValidationError)
 
+    @inlineCallbacks
+    def test_key_file_upload_valid_key(self):
+        n = 'key'
+
+        yield self.get_and_check(n, False)
+
         # Upload a valid key
         good_key = self.valid_setup['key']
         handler = self.request({'name': 'key', 'content': good_key}, role='admin')
 
         yield handler.post(n)
 
-        response = yield self.get_and_check(n, True)
+        yield self.get_and_check(n, True)
+
+    @inlineCallbacks
+    def test_key_file_generate_and_delete(self):
+        n = 'key'
+
+        yield self.get_and_check(n, False)
+
+        handler = self.request({'name': 'key'}, role='admin')
 
         # Test key generation
         yield handler.put(n)
