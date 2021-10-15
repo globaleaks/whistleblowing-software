@@ -237,7 +237,7 @@ class APIResourceWrapper(Resource):
     def redirect_tor(self, request):
         request.redirect(b'http://' + State.tenant_cache[request.tid].onionnames[0] + request.path)
 
-    def handle_exception(self, e, request):
+    def handle_exception(self, exception, request):
         """
         handle_exception is a callback that decorators all deferreds in render
 
@@ -249,6 +249,8 @@ class APIResourceWrapper(Resource):
                   or a normal `Exception`
         :param request: A `twisted.web.Request`
         """
+        e = exception
+
         if request.finished:
             return
 
@@ -262,7 +264,7 @@ class APIResourceWrapper(Resource):
         else:
             e.tid = request.tid
             e.url = request.hostname + request.path
-            extract_exception_traceback_and_schedule_email(e)
+            extract_exception_traceback_and_schedule_email(exception)
             e = errors.InternalServerError('Unexpected')
 
         request.setResponseCode(e.status_code)
