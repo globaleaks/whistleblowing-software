@@ -214,7 +214,7 @@ def update_tip_submission_status(session, tid, user_id, rtip_id, status_id, subs
     :param status_id:  The new status ID
     :param substatus_id: A new substatus ID
     """
-    rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+    _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id)
 
@@ -361,9 +361,10 @@ def db_access_rtip(session, tid, user_id, rtip_id):
     :return: A model requested
     """
     return db_get(session,
-                  (models.ReceiverTip, models.InternalTip),
-                  (models.ReceiverTip.id == rtip_id,
-                   models.ReceiverTip.receiver_id == user_id,
+                  (models.User, models.ReceiverTip, models.InternalTip),
+                  (models.User.id == user_id,
+                   models.ReceiverTip.id == rtip_id,
+                   models.ReceiverTip.receiver_id == models.User.id,
                    models.ReceiverTip.internaltip_id == models.InternalTip.id,
                    models.InternalTip.tid == tid))
 
@@ -489,7 +490,7 @@ def db_get_rtip(session, tid, user_id, rtip_id, language):
     :param language: A language to be used for the serialization
     :return:  The serialized descriptor of the rtip
     """
-    rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+    _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     if itip.status == 'new':
         db_update_submission_status(session, tid, user_id, itip, 'opened', None)
@@ -562,14 +563,10 @@ def delete_rtip(session, tid, user_id, rtip_id):
     :param user_id: A user ID of the user performing the operation
     :param rtip_id: A rtip ID of the submission object of the operation
     """
-    receiver = db_get(session,
-                      models.User,
-                      models.User.id == user_id)
+    user, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    if not receiver.can_delete_submission:
+    if not user.can_delete_submission:
         raise errors.ForbiddenOperation
-
-    rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     db_delete_itip(session, itip.id)
 
@@ -587,14 +584,10 @@ def postpone_expiration(session, tid, user_id, rtip_id, expiration_date):
     :param rtip_id: A rtip ID of the submission object of the operation
     :param expiration_date: A new expiration date
     """
-    receiver = db_get(session,
-                      models.User,
-                      models.User.id == user_id)
+    user, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    if not receiver.can_postpone_expiration:
+    if not user.can_postpone_expiration:
         raise errors.ForbiddenOperation
-
-    rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     db_postpone_expiration(session, itip, expiration_date)
 
@@ -611,7 +604,7 @@ def set_internaltip_variable(session, tid, user_id, rtip_id, key, value):
     :param key: A key of the property to be set
     :param value: A value to be assigned to the property
     """
-    rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+    _, _, itip = db_access_rtip(session, tid, user_id, rtip_id)
     setattr(itip, key, value)
 
 
@@ -627,7 +620,7 @@ def set_receivertip_variable(session, tid, user_id, rtip_id, key, value):
     :param key: A key of the property to be set
     :param value: A value to be assigned to the property
     """
-    rtip, _ = db_access_rtip(session, tid, user_id, rtip_id)
+    _, rtip, _ = db_access_rtip(session, tid, user_id, rtip_id)
     setattr(rtip, key, value)
 
 
@@ -642,7 +635,7 @@ def update_label(session, tid, user_id, rtip_id, value):
     :param rtip_id: A rtip ID of the submission object of the operation
     :param value: A value to be assigned to the label property
     """
-    rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+    _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     if State.tenant_cache[tid].enable_private_annotations:
         setattr(rtip, 'label', value)
@@ -661,7 +654,7 @@ def update_important(session, tid, user_id, rtip_id, value):
     :param rtip_id: A rtip ID of the submission object of the operation
     :param value: A value to be assigned to important flag
     """
-    rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+    _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     if State.tenant_cache[tid].enable_private_annotations:
         setattr(rtip, 'important', value)
@@ -728,7 +721,7 @@ def create_identityaccessrequest(session, tid, user_id, rtip_id, request):
     :param rtip_id: A rtip_id ID of the rtip involved in the request
     :param request: The request data
     """
-    rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+    _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     custodian = session.query(models.User).filter(models.User.tid == tid, models.User.role == 'custodian', models.User.state == 'enabled').count() > 0
 
@@ -774,7 +767,7 @@ def create_comment(session, tid, user_id, rtip_id, content):
     :param content: The content of the comment
     :return: A serialized descriptor of the comment
     """
-    rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+    _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     itip.update_date = rtip.last_access = datetime_now()
 
@@ -807,7 +800,7 @@ def create_message(session, tid, user_id, rtip_id, content):
     :param content: The content of the message
     :return: A serialized descriptor of the message
     """
-    rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+    _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     itip.update_date = rtip.last_access = datetime_now()
 
