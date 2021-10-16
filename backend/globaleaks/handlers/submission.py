@@ -129,19 +129,6 @@ def db_archive_questionnaire_schema(session, questionnaire):
     return hash
 
 
-def db_get_itip_receiver_list(session, itip):
-    ret = []
-
-    for rtip in session.query(models.ReceiverTip).filter(models.ReceiverTip.internaltip_id == itip.id):
-        ret.append({
-            "id": rtip.receiver_id,
-            "last_access": rtip.last_access,
-            "access_counter": rtip.access_counter,
-        })
-
-    return ret
-
-
 def serialize_itip(session, internaltip, language):
     x = session.query(models.InternalTipAnswers, models.ArchivedSchema) \
                .filter(models.ArchivedSchema.hash == models.InternalTipAnswers.questionnaire_hash,
@@ -162,7 +149,6 @@ def serialize_itip(session, internaltip, language):
         'progressive': internaltip.progressive,
         'context_id': internaltip.context_id,
         'questionnaires': questionnaires,
-        'receivers': db_get_itip_receiver_list(session, internaltip),
         'https': internaltip.https,
         'mobile': internaltip.mobile,
         'enable_two_way_comments': internaltip.enable_two_way_comments,

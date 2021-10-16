@@ -20,6 +20,22 @@ from globaleaks.utils.log import log
 from globaleaks.utils.utility import datetime_now
 
 
+def db_get_itip_receiver_list(session, itip):
+    ret = []
+
+    for user, rtip in session.query(models.User, models.ReceiverTip) \
+                             .filter(models.User.id == models.ReceiverTip.receiver_id,
+                                     models.ReceiverTip.internaltip_id == itip.id):
+        ret.append({
+            "id": user.id,
+            "name": user.name,
+            "last_access": rtip.last_access,
+            "access_counter": rtip.access_counter
+        })
+
+    return ret
+
+
 def db_get_rfile_list(session, itip_id):
     ifiles = session.query(models.InternalFile) \
                     .filter(models.InternalFile.internaltip_id == itip_id,
@@ -56,6 +72,7 @@ def get_wbtip(session, itip_id, language):
 def serialize_wbtip(session, wbtip, itip, language):
     ret = serialize_usertip(session, itip, itip, language)
 
+    ret['receivers'] = db_get_itip_receiver_list(session, itip)
     ret['comments'] = db_get_itip_comment_list(session, itip.id)
     ret['messages'] = db_get_itip_message_list(session, itip.id)
     ret['rfiles'] = db_get_rfile_list(session, itip.id)

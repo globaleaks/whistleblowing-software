@@ -30,6 +30,22 @@ from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import get_expiration, datetime_now, datetime_never
 
 
+def db_get_itip_receiver_list(session, itip):
+    ret = []
+
+    for user, rtip in session.query(models.User, models.ReceiverTip) \
+                             .filter(models.User.id == models.ReceiverTip.receiver_id,
+                                     models.ReceiverTip.internaltip_id == itip.id):
+        ret.append({
+            "id": user.id,
+            "name": user.name,
+            "last_access": rtip.last_access,
+            "access_counter": rtip.access_counter
+        })
+
+    return ret
+
+
 def db_tip_grant_notification(session, user):
     """
     Transaction for the creation of notifications related to grant of access to report
@@ -317,6 +333,7 @@ def serialize_rtip(session, rtip, itip, language):
         ret['important'] = itip.important
         ret['label'] = itip.label
 
+    ret['receivers'] = db_get_itip_receiver_list(session, itip)
     ret['comments'] = db_get_itip_comment_list(session, itip.id)
     ret['messages'] = db_get_itip_message_list(session, rtip.id)
     ret['rfiles'] = db_receiver_get_rfile_list(session, rtip.id)
