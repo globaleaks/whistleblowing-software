@@ -332,10 +332,6 @@ controller("RTipWBFileUploadCtrl", ["$scope", "Authentication", "RTipDownloadWBF
     RTipDownloadWBFile(f).finally(reloadUI);
   };
 
-  $scope.showDeleteWBFile = function(f) {
-    return Authentication.session.user_id === f.author;
-  };
-
   $scope.deleteWBFile = function(f) {
     RTipWBFileResource.remove({"id":f.id}).$promise.finally(reloadUI);
   };
