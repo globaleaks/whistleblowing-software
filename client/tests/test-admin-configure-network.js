@@ -35,7 +35,6 @@ describe("admin configure https", function() {
     await csr_panel.element(by.model("csr_cfg.province")).sendKeys("Milano");
     await csr_panel.element(by.model("csr_cfg.city")).sendKeys("Lombardia");
     await csr_panel.element(by.model("csr_cfg.company")).sendKeys("GlobaLeaks");
-    await csr_panel.element(by.model("csr_cfg.department")).sendKeys("IT SEC");
     await csr_panel.element(by.model("csr_cfg.email")).sendKeys("admin@globaleaks.org");
 
     await browser.gl.utils.waitUntilClickable(by.id("csrSubmit"));
