@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tibetan (http://www.transifex.com/otf/globaleaks/language/bo/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -810,26 +810,20 @@ msgstr "དཔེར་ན།:"
 msgid "Hostname"
 msgstr "མགྲོན་བདག་མིང་།"
 
-msgid "Invalid input format."
-msgstr "ནང་འཇུག་རྣམ་དབྱིབས་མི་འཐད།"
+msgid "Organization"
+msgstr "ཚོགས་པ།"
 
-msgid "Input should be similar to:"
-msgstr "ནང་འཇུག་ངེས་པར་དུ་འདི་དང་འདྲ་མཚུངས་དགོས།:"
-
-msgid "Country code"
-msgstr "རྒྱལ་ཁབ་གསང་རྟགས།"
+msgid "Invalid email address"
+msgstr "གློག་འཕྲིན་ཁ་བྱང་མི་འཐད།"
 
 msgid "City"
 msgstr "གྲོང་ཁྱེར།"
 
-msgid "Organization"
-msgstr "ཚོགས་པ།"
+msgid "Country"
+msgstr "རྒྱལ་ཁབ།"
 
-msgid "Organizational unit"
-msgstr "ཚོགས་པའི་ཚན་པ།"
-
-msgid "Invalid email address"
-msgstr "གློག་འཕྲིན་ཁ་བྱང་མི་འཐད།"
+msgid "Country code"
+msgstr "རྒྱལ་ཁབ་གསང་རྟགས།"
 
 msgid "Generate"
 msgstr "འདོན་སྤེལ་བྱ།"
@@ -1085,9 +1079,6 @@ msgstr "དྲ་ཚིགས་གཞན་ཆེད་བེད་སྤྱོ
 msgid "Use the first site for administrative purposes only"
 msgstr "འཛིན་སྐྱོང་དགོས་དོན་ཁོ་ནའི་ཆེད་དྲ་ཚིགས་དང་པོ་དེ་བེད་སྤྱོད་བྱ།"
 
-msgid "Enable multi-site login"
-msgstr "དྲ་ཚིགས་སྣ་མང་ནང་འཛུལ་ནུས་ལྡན་བཟོ།"
-
 msgid "Allow users to sign up"
 msgstr "སྤྱོད་པ་པོར་ཐོ་འགོད་བྱེད་དུ་འཇུག"
 
@@ -1178,9 +1169,6 @@ msgstr "བཀའ་འཁྲོལ་མི་ཐུབ།"
 msgid "The code is either invalid or expired."
 msgstr "གསང་རྟགས་དེ་མི་འཐད་པའམ་དུས་ཡོལ་ཟིན་པ་གང་རུང་ཡིན་འདུག"
 
-msgid "Site:"
-msgstr "དྲ་ཚིགས།:"
-
 msgid "Please select your account:"
 msgstr "ཁྱེད་ཀྱི་ཐོ་ཁོངས་འདེམས་རོགས་གནང་།:"
 
@@ -1213,9 +1201,6 @@ msgstr "འགོ་འཛུགས་མ་བྱེད་གོང་གཤམ
 
 msgid "Account recovery key"
 msgstr "ཐོ་ཁོངས་བསྐྱར་གསོའི་མཐེབ།"
-
-msgid "Your account recovery key is:"
-msgstr "ཁྱེད་ཀྱི་ཐོ་ཁོངས་བསྐྱར་གསོའི་མཐེབ་ནི།:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1434,7 +1419,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "གསང་ཡིག་བསྐྱར་སྒྲིག་ཅིག་རེ་ཞུ་བྱེད་པར། ཁྱེད་ཀྱི་གློག་འཕྲིན་ཁ་བྱང་འཇུག"
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "གསང་ཡིག་བསྐྱར་སྒྲིག་རྒྱུད་རིམ་མཇུག་སྐྱེལ་བྱེད་པར། ཁྱེད་ཀྱི་གསང་སྡོམ་བསྐྱར་གསོའི་མཐེབ་འཇུག"
 
 msgid "Password reset requested."

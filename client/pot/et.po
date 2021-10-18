@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Estonian (http://www.transifex.com/otf/globaleaks/language/et/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -809,26 +809,20 @@ msgstr "Näide:"
 msgid "Hostname"
 msgstr "Hostinimi"
 
-msgid "Invalid input format."
-msgstr "Sobimatu sisestusvorming."
+msgid "Organization"
+msgstr "Organisatsioon"
 
-msgid "Input should be similar to:"
-msgstr "Sisestus peaks sarnanema järgmise kujuga:"
-
-msgid "Country code"
-msgstr "Riigikood"
+msgid "Invalid email address"
+msgstr "Vigane meiliaadress"
 
 msgid "City"
 msgstr "Linn"
 
-msgid "Organization"
-msgstr "Organisatsioon"
+msgid "Country"
+msgstr ""
 
-msgid "Organizational unit"
-msgstr "Organisatsiooniüksus"
-
-msgid "Invalid email address"
-msgstr "Vigane meiliaadress"
+msgid "Country code"
+msgstr "Riigikood"
 
 msgid "Generate"
 msgstr "Genereeri"
@@ -1084,9 +1078,6 @@ msgstr "Varusaitide puhul kasutatav juurdomeen"
 msgid "Use the first site for administrative purposes only"
 msgstr "Kasuta esimest saiti ainult administreerimiseks"
 
-msgid "Enable multi-site login"
-msgstr "Luba mitmest kohast sisselogimine"
-
 msgid "Allow users to sign up"
 msgstr "Luba kasutajate registreerumine"
 
@@ -1177,9 +1168,6 @@ msgstr "Autentimine nurjus"
 msgid "The code is either invalid or expired."
 msgstr "Kood on vale või aegunud."
 
-msgid "Site:"
-msgstr "Sait:"
-
 msgid "Please select your account:"
 msgstr "Valige oma konto:"
 
@@ -1212,9 +1200,6 @@ msgstr "Enne jätkamist lugege hoolikalt dokumente aadressil:"
 
 msgid "Account recovery key"
 msgstr "Konto taastamise võti"
-
-msgid "Your account recovery key is:"
-msgstr "Teie konto taastamise võti on:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1433,7 +1418,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Parooli lähtestamise taotlemiseks sisestage oma meiliaadress."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "Parooli lähtestamise lõpuleviimiseks sisestage krüpteeringu taastevõti."
 
 msgid "Password reset requested."

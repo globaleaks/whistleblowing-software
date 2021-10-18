@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -826,26 +826,20 @@ msgstr "Példa:"
 msgid "Hostname"
 msgstr "Kiszolgálónév"
 
-msgid "Invalid input format."
-msgstr "Érvénytelen formátum"
+msgid "Organization"
+msgstr "Szervezet"
 
-msgid "Input should be similar to:"
-msgstr "A megadandó adat hasonlóan kell kinézzen:"
-
-msgid "Country code"
-msgstr "Ország előhívó száma"
+msgid "Invalid email address"
+msgstr "Hibás emailcím"
 
 msgid "City"
 msgstr "Város"
 
-msgid "Organization"
-msgstr "Szervezet"
+msgid "Country"
+msgstr "Ország"
 
-msgid "Organizational unit"
-msgstr "Szervezeti egység"
-
-msgid "Invalid email address"
-msgstr "Hibás emailcím"
+msgid "Country code"
+msgstr "Ország előhívó száma"
 
 msgid "Generate"
 msgstr "Generálás"
@@ -1101,9 +1095,6 @@ msgstr "Gyökér domain használt a másodlagos oldalakhoz"
 msgid "Use the first site for administrative purposes only"
 msgstr "Az első oldalt kizárólag adminisztratív célokra használja."
 
-msgid "Enable multi-site login"
-msgstr "Multi-site login engedélyezése"
-
 msgid "Allow users to sign up"
 msgstr "Felhasználók feliratkozásának engedélyezése"
 
@@ -1194,9 +1185,6 @@ msgstr "Az azonosítás nem sikerült"
 msgid "The code is either invalid or expired."
 msgstr "A kód érvénytelen vagy lejárt."
 
-msgid "Site:"
-msgstr "Oldal:"
-
 msgid "Please select your account:"
 msgstr "Kérjük válassza ki fiókját:"
 
@@ -1229,9 +1217,6 @@ msgstr "Mielőtt végrehajtja, kérjük olvassa el figyelmesen a dokumentációt
 
 msgid "Account recovery key"
 msgstr "Fiók visszaállító kulcs"
-
-msgid "Your account recovery key is:"
-msgstr "A fiókja visszaállító kulcsa a következő:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1450,7 +1435,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Új jelszó kéréséhez adja meg az e-mailcímét."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "Írja be a titkosítás helyreállító kulcsot, hogy végre hajthassa a jelszó helyreállítás folyamatot."
 
 msgid "Password reset requested."

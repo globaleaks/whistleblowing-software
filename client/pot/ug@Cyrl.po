@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uighur (Cyrillic) (http://www.transifex.com/otf/globaleaks/language/ug@Cyrl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -391,7 +391,7 @@ msgid "Select"
 msgstr "Талла"
 
 msgid "Deselect"
-msgstr ""
+msgstr "Таллима"
 
 msgid "Surname"
 msgstr "Фамилә"
@@ -456,19 +456,19 @@ msgid "Mark as important"
 msgstr "Муһим дәп бәлгә қой"
 
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Чаплақ тахтисиға чапла"
 
 msgid "Logout"
 msgstr "Тизимдин чиқ"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
+msgstr "Бу тапшуривалғучиға ишләткүчиләргә доклатни зийарәт қилиш һоқуқи бериш иқтидари бәр"
 
 msgid "Grant access"
-msgstr ""
+msgstr "Һоқуқ бәр"
 
 msgid "Revoke access"
-msgstr ""
+msgstr "Һоқуқни қайтуривал"
 
 msgid "File a report"
 msgstr "Бир доклат йолла"
@@ -681,7 +681,7 @@ msgid "Whistleblowing button"
 msgstr "Паш қилиш кунупкиси"
 
 msgid "Disclaimer"
-msgstr ""
+msgstr "Мәсъул болмаслиқ байанати"
 
 msgid "Footer"
 msgstr "Бәт асти"
@@ -809,26 +809,20 @@ msgstr "Мәсилән:"
 msgid "Hostname"
 msgstr "Мулазиметир нами"
 
-msgid "Invalid input format."
-msgstr "Инавәтсиз киргүзүш шәкли"
+msgid "Organization"
+msgstr "Орган"
 
-msgid "Input should be similar to:"
-msgstr "Буниңға охшаш киргүзүш керәкти:"
-
-msgid "Country code"
-msgstr "Дөләт коди"
+msgid "Invalid email address"
+msgstr "Инавәтсиз елхәт адреси"
 
 msgid "City"
 msgstr "Шәһәр"
 
-msgid "Organization"
-msgstr "Орган"
+msgid "Country"
+msgstr "Дөләт"
 
-msgid "Organizational unit"
-msgstr "Organ bölümi"
-
-msgid "Invalid email address"
-msgstr "Инавәтсиз елхәт адреси"
+msgid "Country code"
+msgstr "Дөләт коди"
 
 msgid "Generate"
 msgstr "Һасиллаш"
@@ -1084,9 +1078,6 @@ msgstr "Иккиләмчи тор бекәтләргә ишлитилидиға�
 msgid "Use the first site for administrative purposes only"
 msgstr "Биринчи бекәтни пәқәтла башқуруш мәқситидә ишләт"
 
-msgid "Enable multi-site login"
-msgstr "Көп бекәт тизимға киришини қозғат"
-
 msgid "Allow users to sign up"
 msgstr "Ишләткүчиләрниң тизимлитишиға рухсәт қил"
 
@@ -1177,9 +1168,6 @@ msgstr "Тоғрулаш мәғлуп болди"
 msgid "The code is either invalid or expired."
 msgstr "Бу код инавәтсиз йаки сүрүки тошқан."
 
-msgid "Site:"
-msgstr "Бекәт:"
-
 msgid "Please select your account:"
 msgstr "Һесабиңизни таллаң:"
 
@@ -1213,9 +1201,6 @@ msgstr "Давам қилиштин бурун бу йәрдики һөҗҗәт�
 msgid "Account recovery key"
 msgstr "Һесап әслигә кәлтүрүш ачқучи"
 
-msgid "Your account recovery key is:"
-msgstr "Һесабатиңизни әслигә кәлтүрүш ачқучи:"
-
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
@@ -1225,7 +1210,7 @@ msgid "Enter a name for the copy"
 msgstr "Купийә үчүн бир нам киргүзүң"
 
 msgid "Request support"
-msgstr ""
+msgstr "Йардәм тәләп"
 
 msgid "Thank you."
 msgstr "Рәһмәт сизгә."
@@ -1433,8 +1418,8 @@ msgid "Enter your email address to request a password reset."
 msgstr "Елхәт адресиңизни киргүзүп паролиңизни қайта сәпләшни тәләп қилиң."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
-msgstr "Парол қайта сәпләш җәрйанини тамамлаш үчүн шифирләнгән әслигә кәлтүрүш ачқучини киргүзүң"
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "Паролни қайта сәпләш җәрйанини тамамлаш үчүн һесабатиңизниң әслигә кәлтүрүш ачқучини киргүзүң"
 
 msgid "Password reset requested."
 msgstr "Паролиңизни қайта сәпләш тәләп қилинди."
@@ -1603,13 +1588,13 @@ msgid "Last name"
 msgstr "Фамилиси"
 
 msgid "Alternative contact method"
-msgstr ""
+msgstr "Башқа алақә усули"
 
 msgid "Other"
 msgstr "Башқа"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr ""
+msgstr "Пәқәтла бу супа арқилиқ мениң билән алақилашсун"
 
 msgid "Dear {RecipientName},"
 msgstr "‏Қәдирлик {RecipientName},"
@@ -1895,7 +1880,7 @@ msgstr "Йумшақ детални йеңилаш көрсәтмиси үчүн
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "Бу елхәт сизгә тапшуривалғучиниң бир йаки бир нәччә доклатни зийарәт һоқуқи бәргәнликини уқтуруш үчүндур. "
 
 msgid "New report"
 msgstr "Йеңи доклат"

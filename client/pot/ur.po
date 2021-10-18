@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -819,26 +819,20 @@ msgstr "مثال:"
 msgid "Hostname"
 msgstr "ھوسٹ کا نام"
 
-msgid "Invalid input format."
-msgstr ""
+msgid "Organization"
+msgstr "Organization"
 
-msgid "Input should be similar to:"
-msgstr ""
-
-msgid "Country code"
-msgstr ""
+msgid "Invalid email address"
+msgstr "ناجائز ای میل پتہ"
 
 msgid "City"
 msgstr "شہر"
 
-msgid "Organization"
-msgstr "Organization"
+msgid "Country"
+msgstr "ملک"
 
-msgid "Organizational unit"
+msgid "Country code"
 msgstr ""
-
-msgid "Invalid email address"
-msgstr "ناجائز ای میل پتہ"
 
 msgid "Generate"
 msgstr "Generate"
@@ -1094,9 +1088,6 @@ msgstr ""
 msgid "Use the first site for administrative purposes only"
 msgstr ""
 
-msgid "Enable multi-site login"
-msgstr ""
-
 msgid "Allow users to sign up"
 msgstr ""
 
@@ -1187,9 +1178,6 @@ msgstr "ناکام استناد"
 msgid "The code is either invalid or expired."
 msgstr ""
 
-msgid "Site:"
-msgstr ""
-
 msgid "Please select your account:"
 msgstr "براہ مہربانی اپنا اکاؤنٹ منتخب کیجیے:"
 
@@ -1221,9 +1209,6 @@ msgid "Before proceeding please read carefully the documentation at:"
 msgstr ""
 
 msgid "Account recovery key"
-msgstr ""
-
-msgid "Your account recovery key is:"
 msgstr ""
 
 msgid ""
@@ -1443,7 +1428,7 @@ msgid "Enter your email address to request a password reset."
 msgstr ""
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr ""
 
 msgid "Password reset requested."

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Amharic (http://www.transifex.com/otf/globaleaks/language/am/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -809,26 +809,20 @@ msgstr "ምሳሌ፡"
 msgid "Hostname"
 msgstr "አስተናጋጅ ስም "
 
-msgid "Invalid input format."
-msgstr "የተሳሳተ ግብኣት ቅርጸት"
+msgid "Organization"
+msgstr "ድርጅት "
 
-msgid "Input should be similar to:"
-msgstr "ግቤት ከ--- ጋር ተመሳሳይ መሆን አለበት"
-
-msgid "Country code"
-msgstr "የአገር ኮድ"
+msgid "Invalid email address"
+msgstr "የተሳሳተ ኢሜል አድራሻ"
 
 msgid "City"
 msgstr "ከተማ"
 
-msgid "Organization"
-msgstr "ድርጅት "
+msgid "Country"
+msgstr "ሀገር"
 
-msgid "Organizational unit"
-msgstr "የድርጅት አሃድ"
-
-msgid "Invalid email address"
-msgstr "የተሳሳተ ኢሜል አድራሻ"
+msgid "Country code"
+msgstr "የአገር ኮድ"
 
 msgid "Generate"
 msgstr "ፍጠር"
@@ -1084,9 +1078,6 @@ msgstr "ለሁለተኛ ድረገጾች የሚያገለግል ስርወ ጎራ"
 msgid "Use the first site for administrative purposes only"
 msgstr "ለአስተዳደራዊ ጉዳዮች ብቻ የመጀመርያውን ድረገጽ ተጠቀሙ"
 
-msgid "Enable multi-site login"
-msgstr "ሕብረ ድረገጽ መግባት ያንቁ"
-
 msgid "Allow users to sign up"
 msgstr "ተጠቃሚዎች እንዲመዘገቡ ፍቀድ"
 
@@ -1177,9 +1168,6 @@ msgstr "ማረጋገጥ አልተሳካም"
 msgid "The code is either invalid or expired."
 msgstr "ኮዱ ተሳስቷል ወይም ተቃጥሏል፡፡"
 
-msgid "Site:"
-msgstr "ድረገጽ"
-
 msgid "Please select your account:"
 msgstr "መለያዎትን ምረጡ"
 
@@ -1212,9 +1200,6 @@ msgstr "ከመቀጠላችሁ በፊት --- ላይ ያለውን ሰነድ በጥ
 
 msgid "Account recovery key"
 msgstr "የመለያ መልሶ ማግኛ ቁልፍ"
-
-msgid "Your account recovery key is:"
-msgstr "የጠፋውን መለያችሁን መልሶ ማግኛ ቁልፉ፡"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1433,7 +1418,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "የይለፍቃል ቅያሪ ለመጠየቅ የኢሜል አድራሻችሁን አስገቡ፡፡"
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "የይለፍ ቃል መቀየር ሂደቱን ለማጠናቀቅ የማመስጠርያ መልሶ ማግኛ ቁልፋችሁን አስገቡ፡፡"
 
 msgid "Password reset requested."

@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -827,26 +827,20 @@ msgstr "Exempel:"
 msgid "Hostname"
 msgstr "Värdnamn"
 
-msgid "Invalid input format."
-msgstr "Ogiltigt inmatningsformat."
+msgid "Organization"
+msgstr "Organisation"
 
-msgid "Input should be similar to:"
-msgstr "Inmatade uppgifter ska motsvara:"
-
-msgid "Country code"
-msgstr "Landskod"
+msgid "Invalid email address"
+msgstr "Ogiltig e-postadress"
 
 msgid "City"
 msgstr "Stad"
 
-msgid "Organization"
-msgstr "Organisation"
+msgid "Country"
+msgstr "Land"
 
-msgid "Organizational unit"
-msgstr "Organisationsenhet"
-
-msgid "Invalid email address"
-msgstr "Ogiltig e-postadress"
+msgid "Country code"
+msgstr "Landskod"
 
 msgid "Generate"
 msgstr "Generera"
@@ -1102,9 +1096,6 @@ msgstr "Rotzon som används för sekundära webbplatser"
 msgid "Use the first site for administrative purposes only"
 msgstr "Använd den primära webbplatsen enbart för administrativa ändamål"
 
-msgid "Enable multi-site login"
-msgstr "Aktivera inloggning på flera webbplatser samtidigt"
-
 msgid "Allow users to sign up"
 msgstr "Tillåt användarna att registrera sig"
 
@@ -1195,9 +1186,6 @@ msgstr "Autentisering misslyckades"
 msgid "The code is either invalid or expired."
 msgstr "Koden är antingen fel eller så har den upphört att gälla."
 
-msgid "Site:"
-msgstr "Webbplats:"
-
 msgid "Please select your account:"
 msgstr "Vänligen välj ditt konto."
 
@@ -1230,9 +1218,6 @@ msgstr "Innan du går vidare ber vi dig noggrant läsa igenom informationsdokume
 
 msgid "Account recovery key"
 msgstr "Kod för kontoåterställning"
-
-msgid "Your account recovery key is:"
-msgstr "Din kod för kontoåterställning är:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1451,7 +1436,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Ange din e-postadress för din begäran om lösenordsåterställning."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "Ange din krypterade återställningskod för att slutföra förfarandet för lösenordsåterställning."
 
 msgid "Password reset requested."

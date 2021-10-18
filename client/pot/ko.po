@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -810,26 +810,20 @@ msgstr "예:"
 msgid "Hostname"
 msgstr "호스트 이름"
 
-msgid "Invalid input format."
-msgstr "유효하지 않은 입력 형식입니다."
+msgid "Organization"
+msgstr "조직"
 
-msgid "Input should be similar to:"
-msgstr "입력 내용과 유사한 사항:"
-
-msgid "Country code"
-msgstr "국가 코드"
+msgid "Invalid email address"
+msgstr "유효하지 않은 이메일 주소"
 
 msgid "City"
 msgstr "도시"
 
-msgid "Organization"
-msgstr "조직"
+msgid "Country"
+msgstr "국가"
 
-msgid "Organizational unit"
-msgstr "조직 단위"
-
-msgid "Invalid email address"
-msgstr "유효하지 않은 이메일 주소"
+msgid "Country code"
+msgstr "국가 코드"
 
 msgid "Generate"
 msgstr "생성"
@@ -1085,9 +1079,6 @@ msgstr "보조 사이트에 사용하는 루트 도메인"
 msgid "Use the first site for administrative purposes only"
 msgstr "관리용으로만 첫 사이트 사용"
 
-msgid "Enable multi-site login"
-msgstr "다중 사이트 로그인 허용"
-
 msgid "Allow users to sign up"
 msgstr "사용자가 가입하도록 허용"
 
@@ -1178,9 +1169,6 @@ msgstr "인증 실패"
 msgid "The code is either invalid or expired."
 msgstr "코드가 유효하지 않거나 만료되었습니다."
 
-msgid "Site:"
-msgstr "사이트:"
-
 msgid "Please select your account:"
 msgstr "계정을 선택하십시오."
 
@@ -1213,9 +1201,6 @@ msgstr "계속하기 전에 다음 문서를 주의 깊게 읽어보십시오."
 
 msgid "Account recovery key"
 msgstr "계정 복구 키"
-
-msgid "Your account recovery key is:"
-msgstr "계정 복구 키:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1434,7 +1419,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "이메일 주소를 입력하여 비밀번호 재설정을 요청하십시오."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "비밀번호 재설정 절차를 완료하려면 암호화 복구 키를 입력하십시오"
 
 msgid "Password reset requested."

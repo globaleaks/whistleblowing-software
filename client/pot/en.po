@@ -1,5 +1,6 @@
 # 
 # Translators:
+# a9eb828b2ee54fcf461b952290dc7714_32c3f02 <c5f53f2352e5f1df5429a18a23b721aa_268690>, 2015
 # Accounts-Payable - Alkemics, 2015
 # Antonio Trueba, 2016
 # Armando Vulcano Junior <vulcano@uol.com.br>, 2015
@@ -28,6 +29,7 @@
 # Mustafa J. Kadhem <safi2266@gmail.com>, 2015
 # Paolo Valier, 2016
 # Pedro M. Baeza <pedro.baeza@tecnativa.com>, 2015
+# Pedro M. Baeza <pedro.baeza@tecnativa.com>, 2015
 # Rudolf Schnapka <rs@techno-flex.de>, 2016
 # Rudolf Schnapka <schnapkar@golive-saar.de>, 2015
 # Mustafa J. Kadhem <safi2266@gmail.com>, 2015
@@ -40,7 +42,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: English (http://www.transifex.com/otf/globaleaks/language/en/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -844,26 +846,20 @@ msgstr "Example:"
 msgid "Hostname"
 msgstr "Hostname"
 
-msgid "Invalid input format."
-msgstr "Invalid input format."
+msgid "Organization"
+msgstr "Organization"
 
-msgid "Input should be similar to:"
-msgstr "Input should be similar to:"
-
-msgid "Country code"
-msgstr "Country code"
+msgid "Invalid email address"
+msgstr "Invalid email address"
 
 msgid "City"
 msgstr "City"
 
-msgid "Organization"
-msgstr "Organization"
+msgid "Country"
+msgstr "Country"
 
-msgid "Organizational unit"
-msgstr "Organizational unit"
-
-msgid "Invalid email address"
-msgstr "Invalid email address"
+msgid "Country code"
+msgstr "Country code"
 
 msgid "Generate"
 msgstr "Generate"
@@ -1119,9 +1115,6 @@ msgstr "Root domain used for secondary sites"
 msgid "Use the first site for administrative purposes only"
 msgstr "Use the first site for administrative purposes only"
 
-msgid "Enable multi-site login"
-msgstr "Enable multi-site login"
-
 msgid "Allow users to sign up"
 msgstr "Allow users to sign up"
 
@@ -1212,9 +1205,6 @@ msgstr "Authentication failed"
 msgid "The code is either invalid or expired."
 msgstr "The code is either invalid or expired."
 
-msgid "Site:"
-msgstr "Site:"
-
 msgid "Please select your account:"
 msgstr "Please select your account:"
 
@@ -1247,9 +1237,6 @@ msgstr "Before proceeding please read carefully the documentation at:"
 
 msgid "Account recovery key"
 msgstr "Account recovery key"
-
-msgid "Your account recovery key is:"
-msgstr "Your account recovery key is:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1468,8 +1455,8 @@ msgid "Enter your email address to request a password reset."
 msgstr "Enter your email address to request a password reset."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
-msgstr "Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "Enter your account recovery key to complete the password reset procedure"
 
 msgid "Password reset requested."
 msgstr "Password reset requested."

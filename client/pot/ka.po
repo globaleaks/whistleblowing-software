@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -809,26 +809,20 @@ msgstr "მაგალითად:"
 msgid "Hostname"
 msgstr "მასპინძლის სახელი"
 
-msgid "Invalid input format."
-msgstr "არასწორი შეყვანის ფორმატი."
+msgid "Organization"
+msgstr "ორგანიზაცია"
 
-msgid "Input should be similar to:"
-msgstr "შენატანი უნდა იყოს შემდეგის მსგავსი:"
-
-msgid "Country code"
-msgstr "ქვეყნის კოდი"
+msgid "Invalid email address"
+msgstr "ელფოსტის მისამართი არასწორია"
 
 msgid "City"
 msgstr "ქალაქი"
 
-msgid "Organization"
-msgstr "ორგანიზაცია"
+msgid "Country"
+msgstr "ქვეყანა"
 
-msgid "Organizational unit"
-msgstr "ორგანიზაციული ერთეული"
-
-msgid "Invalid email address"
-msgstr "ელფოსტის მისამართი არასწორია"
+msgid "Country code"
+msgstr "ქვეყნის კოდი"
 
 msgid "Generate"
 msgstr "გენერირება"
@@ -1084,9 +1078,6 @@ msgstr "მეორადი საიტებისთვის გამო�
 msgid "Use the first site for administrative purposes only"
 msgstr "პირველი საიტი გამოიყენეთ მხოლოდ ადმინისტრაციული მიზნებისთვის"
 
-msgid "Enable multi-site login"
-msgstr "მრავალსაიტიანი შესვლის ჩართვა"
-
 msgid "Allow users to sign up"
 msgstr "მომხმარებლებისთვის რეგისტრაციის ნების დართვა"
 
@@ -1177,9 +1168,6 @@ msgstr "ავთენტიფიკაცია წარუმატებ�
 msgid "The code is either invalid or expired."
 msgstr "კოდი არასწორია ან ვადაგასულია"
 
-msgid "Site:"
-msgstr "საიტი:"
-
 msgid "Please select your account:"
 msgstr "გთხოვთ, აირჩიოთ თქვენი ანგარიში:"
 
@@ -1212,9 +1200,6 @@ msgstr "გაგრძელებამდე ყურადღებით �
 
 msgid "Account recovery key"
 msgstr "ანგარიშის აღდგენის კოდი"
-
-msgid "Your account recovery key is:"
-msgstr "თქვენი ანგარიშის აღდგენის კოდია:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1433,7 +1418,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "პაროლის აღდგენის მოთხოვნისთვის, შეიყვანეთ თქვენი ელფოსტის მისამართი."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "პაროლის აღდგენის პროცედურის დასასრულებლად, შეიყვანეთ თქვენი დაშიფვრის აღდგენის კოდი"
 
 msgid "Password reset requested."

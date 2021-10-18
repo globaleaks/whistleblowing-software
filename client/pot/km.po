@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Khmer (http://www.transifex.com/otf/globaleaks/language/km/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -811,26 +811,20 @@ msgstr "ឧទាហរណ៍៖"
 msgid "Hostname"
 msgstr "ឈ្មោះម៉ាស៊ីន"
 
-msgid "Invalid input format."
-msgstr "ទម្រង់បញ្ចូលមិនត្រឹមត្រូវ។"
+msgid "Organization"
+msgstr "ស្ថាប័ន"
 
-msgid "Input should be similar to:"
-msgstr "ការបញ្ចូលគួរតែស្រដៀងនឹង៖"
-
-msgid "Country code"
-msgstr "កូដប្រទេស"
+msgid "Invalid email address"
+msgstr "អាសយដ្ឋានអុីមែលមិនត្រឹមត្រូវ"
 
 msgid "City"
 msgstr "ទីក្រុង"
 
-msgid "Organization"
-msgstr "ស្ថាប័ន"
+msgid "Country"
+msgstr "ប្រទេស"
 
-msgid "Organizational unit"
-msgstr "អង្គភាព"
-
-msgid "Invalid email address"
-msgstr "អាសយដ្ឋានអុីមែលមិនត្រឹមត្រូវ"
+msgid "Country code"
+msgstr "កូដប្រទេស"
 
 msgid "Generate"
 msgstr "បង្កើត"
@@ -1086,9 +1080,6 @@ msgstr "ឈ្មោះវេបសាយដើម ត្រូវបានប�
 msgid "Use the first site for administrative purposes only"
 msgstr "ប្រើប្រាស់ទំព័រដំបូង សម្រាប់តែគោលបំណងគ្រប់គ្រងតែប៉ុណ្ណោះ"
 
-msgid "Enable multi-site login"
-msgstr "បើកការចូលប្រើប្រាស់ទំព័រច្រើន"
-
 msgid "Allow users to sign up"
 msgstr "អនុញ្ញាតអ្នកប្រើប្រាស់ចុះឈ្មោះ"
 
@@ -1179,9 +1170,6 @@ msgstr "ការផ្ទៀងផ្ទាត់បរាជ័យ"
 msgid "The code is either invalid or expired."
 msgstr "លេខកូដនេះមិនត្រឹមត្រូវ ឬផុតកំណត់។"
 
-msgid "Site:"
-msgstr "គេហទំព័រ៖"
-
 msgid "Please select your account:"
 msgstr "សូមជ្រើសរើសគណនីរបស់អ្នក៖"
 
@@ -1214,9 +1202,6 @@ msgstr "មុនពេលដំណើរការ សូមអានឯកស�
 
 msgid "Account recovery key"
 msgstr "លេខកូដសង្គ្រោះគណនី"
-
-msgid "Your account recovery key is:"
-msgstr "លេខកូដសង្គ្រោះគណនីរបស់អ្នកគឺ៖"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1435,7 +1420,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "វាយបញ្ចូលអាសយដ្ឋានអុីមែលរបស់អ្នក ដើម្បីស្នើសុំការកំណត់ពាក្យសម្ងាត់សារឡើងវិញ។"
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "វាយបញ្ចូលលេខកូដសង្គ្រោះរបស់អ្នក ដើម្បីបញ្ចប់ដំណើរការកំណត់ពាក្យសម្ងាត់ឡើងវិញ"
 
 msgid "Password reset requested."

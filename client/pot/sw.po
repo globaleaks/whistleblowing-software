@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swahili (http://www.transifex.com/otf/globaleaks/language/sw/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -809,26 +809,20 @@ msgstr "Mfano:"
 msgid "Hostname"
 msgstr "Jina la mwenyeji"
 
-msgid "Invalid input format."
-msgstr "Muundo wa uingizaji ni batili."
+msgid "Organization"
+msgstr "Shirika"
 
-msgid "Input should be similar to:"
-msgstr "Ingizo zinapaswa kuwa sawa na:"
-
-msgid "Country code"
-msgstr "Nambari ya nchi"
+msgid "Invalid email address"
+msgstr "Anwani ya barua pepe si sahihi"
 
 msgid "City"
 msgstr "Jiji"
 
-msgid "Organization"
-msgstr "Shirika"
+msgid "Country"
+msgstr "Nchi"
 
-msgid "Organizational unit"
-msgstr "Kitengo cha Shirika"
-
-msgid "Invalid email address"
-msgstr "Anwani ya barua pepe si sahihi"
+msgid "Country code"
+msgstr "Nambari ya nchi"
 
 msgid "Generate"
 msgstr "Tengeneza"
@@ -1084,9 +1078,6 @@ msgstr "Kikoa cha mwanzo kinachotumiwa kwa tovuti zingine"
 msgid "Use the first site for administrative purposes only"
 msgstr "Tumia tovuti ya kwanza kwa madhumuni ya kiutawala tu"
 
-msgid "Enable multi-site login"
-msgstr "Wezesha kuingia kwa tovuti nyingi"
-
 msgid "Allow users to sign up"
 msgstr "Ruhusu watumiaji kujisajili"
 
@@ -1177,9 +1168,6 @@ msgstr "Uthibitishaji umeshindwa"
 msgid "The code is either invalid or expired."
 msgstr "Nambari ya idhini ni batili au imeisha muda."
 
-msgid "Site:"
-msgstr "Tovuti:"
-
 msgid "Please select your account:"
 msgstr "Tafadhali chagua akaunti yako:"
 
@@ -1212,9 +1200,6 @@ msgstr "Kabla ya kuendelea tafadhali soma kwa uangalifu nyaraka kwenye:"
 
 msgid "Account recovery key"
 msgstr "Ufunguo wa kurejesha akaunti"
-
-msgid "Your account recovery key is:"
-msgstr "Ufunguo wako wa kurejesha akaunti ni:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1433,7 +1418,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Ingiza anuani yako ya barua pepe kuomba kuweka upya neno la siri."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "Ingiza namba za kurudisha programu ya kuficha ili kukamilisha utaratibu wa kuweka upya neno la siri"
 
 msgid "Password reset requested."

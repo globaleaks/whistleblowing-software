@@ -1,11 +1,12 @@
 # 
 # Translators:
+# Aminjon Hasanov, 2021
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
 # Iftihor Muhtorov <i.muhtorov@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tajik (http://www.transifex.com/otf/globaleaks/language/tg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,19 +22,19 @@ msgid "Main configuration"
 msgstr "Намои асосӣ"
 
 msgid "Theme customization"
-msgstr "Ҷурсозии рунамо"
+msgstr "Ҷӯрсозии мавзуъ"
 
 msgid "Languages"
 msgstr "Забонҳо"
 
 msgid "Text customization"
-msgstr "Ҷурсозии матн"
+msgstr "Ҷӯрсозии матн"
 
 msgid "Advanced settings"
 msgstr "Танзимоти муфассал"
 
 msgid "Question templates"
-msgstr "Намунаҳои савол"
+msgstr "Намунаҳои саволҳо"
 
 msgid "Questionnaires"
 msgstr "Саволномаҳо"
@@ -90,7 +91,7 @@ msgid "Details"
 msgstr "Тафсилот"
 
 msgid "Platform wizard"
-msgstr "Ёвари барнома"
+msgstr "Устоди платформа"
 
 msgid "CREDIT CARD"
 msgstr "КОРТИ ҚАРЗӢ"
@@ -99,7 +100,7 @@ msgid "YOUR NAME"
 msgstr "НОМИ ШУМО"
 
 msgid "Label the report"
-msgstr "Гузоришро нишона гузоштан"
+msgstr "Гузоришро қайд кунед"
 
 msgid "Postpone the expiration date"
 msgstr "Ба таъхир гузоштани мӯҳлати итмоми эътибор "
@@ -120,10 +121,10 @@ msgid "Preview"
 msgstr "Намоиши пешакӣ"
 
 msgid "The whistleblower has already read the last update"
-msgstr "Хабардиҳанда аллакай бо маълумоти охирин шинос шуд "
+msgstr "Ифшогар аллакай хабари охиринро хондааст."
 
 msgid "The whistleblower has not read the last update yet"
-msgstr "Хабардиҳанда ҳоло бо маълумоти охирин шинос нашудааст "
+msgstr "Ифшогар аллакай хабари охиринро нахондааст."
 
 msgid "Move up"
 msgstr "Ба боло ҳаракат кардан"
@@ -150,12 +151,12 @@ msgid "Access control"
 msgstr "Назорати дастрасӣ"
 
 msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Алоқа бо махфияти HTTPS таъмин шудааст."
+msgstr "Пайваст бо HTTPS бехатар карда шуда, махфиятро таъмин менамояд."
 
 msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
-msgstr "Алоқа бо махфият ва анонимии Tor таъмин шудааст."
+msgstr "Пайваст бо Tor бехатар карда шуда, махфият ва анонимиро таъмин мекунад."
 
 msgid "Number"
 msgstr "Рақам"
@@ -164,19 +165,19 @@ msgid "Email"
 msgstr "Почтаи электронӣ"
 
 msgid "Regular expression validator"
-msgstr "Санҷиши ифодаи муқаррарӣ"
+msgstr "\"Василаи санҷиши ифодаи муқаррарӣ"
 
 msgid "Minimum number of input characters"
-msgstr "Шумораи камтарини рамзҳои воридшаванда"
+msgstr "Шумораи ҳадди ақали аломатҳои вуруд"
 
 msgid "Maximum number of input characters"
-msgstr "Шумораи зиёдтарини рамзҳои воридшаванда"
+msgstr "Шумораи ҳадди аксари аломатҳои вуруд"
 
 msgid "Earliest selectable date"
 msgstr "Барвақттарин санаи интихобшаванда "
 
 msgid "Latest selectable date"
-msgstr "Санаи ниҳоии интихобшаванда"
+msgstr "Санаи охирини интихобшаванда"
 
 msgid "0 = auto"
 msgstr "0 = худкор "
@@ -194,22 +195,22 @@ msgid "Attachments"
 msgstr "Замимаҳо "
 
 msgid "Change your password"
-msgstr "Рамзи худро иваз кардан"
+msgstr "Пароли худро тағйир диҳед"
 
 msgid "User"
 msgstr "Корбар"
 
 msgid "Motivation"
-msgstr "Далел"
+msgstr "Сабаб"
 
 msgid "Status"
 msgstr "Ҳолат"
 
 msgid "Request motivation"
-msgstr "Дархости далел"
+msgstr "Дархости сабаб"
 
 msgid "Reply motivation"
-msgstr "Далели ҷавоб додан"
+msgstr "Сабаби ҷавоб"
 
 msgid "Request status"
 msgstr "Дархости ҳолат "
@@ -227,7 +228,7 @@ msgid "Request access to the whistleblower's identity"
 msgstr "Дархости дастрасӣ ба шахсияти хабардиҳанда "
 
 msgid "Please write a motivation"
-msgstr "Лутфан далел нависед"
+msgstr "Лутфан сабабро нависед"
 
 msgid "Reply to the request"
 msgstr "Ба дархост ҷавоб додан"
@@ -254,7 +255,7 @@ msgid "Deny access to the whistleblower's identity"
 msgstr "Рад кардани дастрасӣ ба шахсияти хабардиҳанда "
 
 msgid "Authorize access to the whistleblower's identity"
-msgstr "Иҷозаи дастрасӣ ба шахсияти хабардиҳанда додан"
+msgstr "Иҷозат додани дастрасӣ ба шахсияти хабардиҳанда"
 
 msgid "Templates"
 msgstr "Намунаҳо"
@@ -809,26 +810,20 @@ msgstr "Намуна:"
 msgid "Hostname"
 msgstr "Номи хост"
 
-msgid "Invalid input format."
-msgstr "Қолаби вуруд нодуруст аст."
+msgid "Organization"
+msgstr "Ташкилот"
 
-msgid "Input should be similar to:"
-msgstr "Вуруд бояд монанд бошад бо:"
-
-msgid "Country code"
-msgstr "Рамзи кишвар"
+msgid "Invalid email address"
+msgstr "Суроғаи почтаи электронии нодуруст "
 
 msgid "City"
 msgstr "Шаҳр"
 
-msgid "Organization"
-msgstr "Ташкилот"
+msgid "Country"
+msgstr "Кишвар"
 
-msgid "Organizational unit"
-msgstr "Воҳиди ташкилӣ"
-
-msgid "Invalid email address"
-msgstr "Суроғаи почтаи электронии нодуруст "
+msgid "Country code"
+msgstr "Рамзи кишвар"
 
 msgid "Generate"
 msgstr "Ҳосил кардан"
@@ -837,7 +832,7 @@ msgid "Private Key"
 msgstr "Калиди махфӣ"
 
 msgid "Certificate Signing Request"
-msgstr "Дархости Имзои Гувоҳнома"
+msgstr "Дархости имзои гувоҳнома"
 
 msgid "Certificate"
 msgstr "Гувоҳнома"
@@ -1034,7 +1029,7 @@ msgid "Options"
 msgstr "Имконот"
 
 msgid "Addition"
-msgstr "Иловагӣ"
+msgstr "Ҷамъкунӣ"
 
 msgid "Multiplier"
 msgstr "Зарбкунанда"
@@ -1083,9 +1078,6 @@ msgstr "Домени решагӣ барои торнамоҳои дуюм ис�
 
 msgid "Use the first site for administrative purposes only"
 msgstr "Истифодаи торнамои якум танҳо бо мақсади маъмурӣ"
-
-msgid "Enable multi-site login"
-msgstr "Воридшавии якчанд торнаморо фаъол кардан"
 
 msgid "Allow users to sign up"
 msgstr "Ба корбарон иҷозаи сабти ном шуданро додан"
@@ -1177,9 +1169,6 @@ msgstr "Тасдиқи шахсият ноком шуд"
 msgid "The code is either invalid or expired."
 msgstr "Рамз нодуруст аст ё мӯҳлати нигоҳдориаш тамом шудааст."
 
-msgid "Site:"
-msgstr "Торнамо:"
-
 msgid "Please select your account:"
 msgstr "Лутфан аккаунти худро интихоб кунед:"
 
@@ -1212,9 +1201,6 @@ msgstr "Пеш аз идома додан, лутфан ҳуҷҷатҳои зе�
 
 msgid "Account recovery key"
 msgstr "Калид барои барқарорсозии аккаунт"
-
-msgid "Your account recovery key is:"
-msgstr "Калиди барқарорсозии аккаунти шумо ин аст:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1293,13 +1279,13 @@ msgid ""
 msgstr "Роҳи муфид барои пинҳон кардани расиди худ, навиштани он ба мисли рақами корти қарзӣ, масъалан бо дохил кардани мӯҳлати анҷоми эътибор мебошад."
 
 msgid "Error!"
-msgstr "Иштибоҳ!"
+msgstr "Хато!"
 
 msgid "Internal server error"
-msgstr "Иштибоҳи хадамоти дохилӣ"
+msgstr "Хатои сервери дохилӣ"
 
 msgid "Error on input validation"
-msgstr "Иштибоҳ дар тасдиқи вуруд"
+msgstr "Хато ҳангоми тасдиқи вуруд"
 
 msgid "Resource not found"
 msgstr "Манбаъ дарёфт нашуд"
@@ -1433,7 +1419,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Почтаи электронии худро барои дархости барқароркунии гузарвожа ворид намоед."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "Барои раванди барқароркунии гузарвожаро анҷом додан калиди барқароркунии рамзгузории худро ворид кунед"
 
 msgid "Password reset requested."
@@ -1499,7 +1485,7 @@ msgid "please enter numbers only."
 msgstr "лутфан танҳо рақамҳоро ворид намоед."
 
 msgid "Submissions disabled"
-msgstr "Ирсолҳо хомӯш карда шуд"
+msgstr "Ирсолҳо ғайрифаъол карда шуд"
 
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
@@ -1597,7 +1583,7 @@ msgid "Do you want to provide your identification information?"
 msgstr "Оё шумо мехоҳед, ки маълумоти шахсияти худро пешниҳод кунед?"
 
 msgid "First name"
-msgstr "Номи файл"
+msgstr "Ном"
 
 msgid "Last name"
 msgstr "Насаб"
@@ -1778,7 +1764,7 @@ msgid ""
 msgstr "Мӯҳлати аҳодатномаи HTTPS, ки дар барнома бор карда шудааст, ба охир мерасад ё аллакай тамом шудааст."
 
 msgid "Expiration date: {ExpirationDate}"
-msgstr "Санаи итмоми мӯҳлат: {ExpirationDate}"
+msgstr "Санаи анҷоми мӯҳлат: {ExpirationDate}"
 
 msgid ""
 "Without a valid certificate, the platform will be accessible in a secure way"
@@ -1871,7 +1857,7 @@ msgid ""
 msgstr "Бе калиди дурусти PGP, система наметавонад маълумоти ба шумо пешниҳодшударо рамзгузорӣ кунад."
 
 msgid "Click the link to activate the platform:"
-msgstr "Барои фаъолсозии барнома ин пайвандро пахш кунед:"
+msgstr "Барои фаъолсозии платформа ин пайвандро пахш кунед:"
 
 msgid "Activation"
 msgstr "Фаъолсозӣ"
@@ -1880,12 +1866,12 @@ msgid "A software update is available."
 msgstr "Навсозии нармафзор дастрас аст."
 
 msgid "It is good security practice to keep the platform up to date."
-msgstr "Барномаро ҳамавақт навсозӣ кардан амалияи хуби бехатарӣ аст."
+msgstr "Платформаро ҳамавақт навсозӣ кардан амалияи хуби бехатарӣ аст."
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "
 "change log at: {ChangeLogUrl}"
-msgstr "Барои гирифтани маълумот дар бораи хусусиятҳои нав ва ислоҳи хатогиҳо дар барориши нав, ба сабти тағирот муроҷиат кунед: {ChangeLogUrl}"
+msgstr "Барои гирифтани маълумот дар бораи хусусиятҳои нав ва ислоҳи нуқсонҳо дар версияи нав, ба сабти тағйирот муроҷиат кунед: {ChangeLogUrl}"
 
 msgid ""
 "For instructions on software updates, please refer to the documentation at: "
@@ -1895,7 +1881,7 @@ msgstr "Барои дастур оид ба навсозии нармафзор,
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr "Ин почтаи электронӣ шуморо огоҳ мекунад, ки гиранда ба шумо дастрасӣ ба як ё якчанд гузоришҳоро додааст."
+msgstr "Ин паёми электронӣ шуморо огоҳ мекунад, ки гиранда ба шумо дастрасӣ ба як ё якчанд гузоришҳоро додааст."
 
 msgid "New report"
 msgstr "Гузориши нав"
@@ -1923,16 +1909,16 @@ msgid ""
 msgstr "Аз шумо хоҳиш карда мешавад, ки ба маълумот ва маводи мавҷудбуда диққати махсус диҳед. Лутфан дар хотир доред, ки хабардиҳандагон аксар вақт ба хотири манфияти ҷомеа ба хатарҳои баланди шахсӣ дучор меоянд. Аз ин рӯ, маводи дар ин гузориш пешниҳодшуда бояд аҳамияти баланд дошта бошанд."
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr "Ин почтаи электронӣ хабар медиҳад, ки гузориши мавҷуд будаа нав карда шуд."
+msgstr "Ин паёми электронӣ хабар медиҳад, ки гузориши мавҷуд буда нав карда шуд."
 
 msgid "Report updated"
 msgstr "Гузориш нав карда шуд"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr "Ин почтаи электронӣ шуморо хотиррасон мекунад, ки гузоришҳои хонда нашуда ё навсозишуда мавҷуд мебошанд. "
+msgstr "Ин почтаи электронӣ шуморо хотиррасон мекунад, ки гузоришҳои хонданашуда ё навсозишуда мавҷуд мебошанд. "
 
 msgid "Reminder about unread or updated reports"
-msgstr "Ёддошт дар бораи гузоришҳои хонда нашуда ё навшуда"
+msgstr "Ёддошт дар бораи гузоришҳои хонданашуда ё навшуда"
 
 msgid "Role: {Role}"
 msgstr "Нақш: {Role}"

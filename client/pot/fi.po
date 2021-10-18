@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -470,13 +470,13 @@ msgid "Logout"
 msgstr "Kirjaudu ulos"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr "Salli tämän käyttäjän myöntää pääsyoikeuksia ilmoituksiin."
+msgstr "Salli tämän käyttäjän myöntää käyttöoikeuksia ilmoituksiin."
 
 msgid "Grant access"
-msgstr ""
+msgstr "Myönnä pääsy ilmoitukseen"
 
 msgid "Revoke access"
-msgstr ""
+msgstr "Peruuta pääsy ilmoitukseen"
 
 msgid "File a report"
 msgstr "Jätä ilmoitus"
@@ -817,26 +817,20 @@ msgstr "Esimerkiksi:"
 msgid "Hostname"
 msgstr "Tietokoneen nimi"
 
-msgid "Invalid input format."
-msgstr "Syötteen muoto ei kelpaa."
+msgid "Organization"
+msgstr "Organisaatio"
 
-msgid "Input should be similar to:"
-msgstr "Tekstikentän sallittu muoto: "
-
-msgid "Country code"
-msgstr "Maakoodi"
+msgid "Invalid email address"
+msgstr "Virheellinen sähköpostiosoite"
 
 msgid "City"
 msgstr "Kaupunki"
 
-msgid "Organization"
-msgstr "Organisaatio"
+msgid "Country"
+msgstr "Maa"
 
-msgid "Organizational unit"
-msgstr "Organisaatioyksikkö"
-
-msgid "Invalid email address"
-msgstr "Virheellinen sähköpostiosoite"
+msgid "Country code"
+msgstr "Maakoodi"
 
 msgid "Generate"
 msgstr "Generoi"
@@ -1092,9 +1086,6 @@ msgstr "Käytetään pääverkkotunnusta toissijaisille palveluille"
 msgid "Use the first site for administrative purposes only"
 msgstr "Käytä ensimmäistä sivustoa vain ylläpidollisiin tarkoituksiin"
 
-msgid "Enable multi-site login"
-msgstr "Salli samanaikainen kirjautuminen useaan järjestelmään"
-
 msgid "Allow users to sign up"
 msgstr "Salli käyttäjien rekisteröityä palveluun"
 
@@ -1185,9 +1176,6 @@ msgstr "Tunnistautuminen epäonnistui"
 msgid "The code is either invalid or expired."
 msgstr "Koodi on virheellinen tai sen käyttöaika on umpeutunut."
 
-msgid "Site:"
-msgstr "Palvelu:"
-
 msgid "Please select your account:"
 msgstr "Valitse tilisi:"
 
@@ -1220,9 +1208,6 @@ msgstr "Lue ennen jatkamista huolellisesti dokumentaatio osoitteessa "
 
 msgid "Account recovery key"
 msgstr "Tilin palautusavain"
-
-msgid "Your account recovery key is:"
-msgstr "Tilisi palautusavain on:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1441,7 +1426,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Kirjoita sähköpostiosoitteesi pyytääksesi salasanan nollaamista."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "Kirjoita vielä tietojen palauttamista varten käytettävä salausavaimesi"
 
 msgid "Password reset requested."

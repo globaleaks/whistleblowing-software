@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +23,7 @@ msgid "Main configuration"
 msgstr "Hovedoppsett"
 
 msgid "Theme customization"
-msgstr "Drakt-skreddersøm"
+msgstr "Tilpasning av tema"
 
 msgid "Languages"
 msgstr "Språk"
@@ -62,7 +62,7 @@ msgid "Anomalies"
 msgstr "Unormalheter"
 
 msgid "Preferences"
-msgstr "Innstillinger"
+msgstr "Preferanser"
 
 msgid "Notification settings"
 msgstr "Merknadsinnstillinger"
@@ -101,7 +101,7 @@ msgid "YOUR NAME"
 msgstr "DITT NAVN"
 
 msgid "Label the report"
-msgstr ""
+msgstr "Merk rapporten"
 
 msgid "Postpone the expiration date"
 msgstr "Utsett utløpsdato"
@@ -122,10 +122,10 @@ msgid "Preview"
 msgstr "Forhåndsvisning"
 
 msgid "The whistleblower has already read the last update"
-msgstr ""
+msgstr "Fløyteblåseren har allerede lest den siste oppdateringen"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr ""
+msgstr "Fløyteblåseren har ikke lest den siste oppdateringen ennå"
 
 msgid "Move up"
 msgstr "Flytt oppover"
@@ -143,7 +143,7 @@ msgid "Import"
 msgstr "Importer"
 
 msgid "Export"
-msgstr "Exporter"
+msgstr "Eksporter"
 
 msgid "Save all"
 msgstr "Lagre alle"
@@ -152,12 +152,12 @@ msgid "Access control"
 msgstr "Tilgangskontroll"
 
 msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr ""
+msgstr "Tilkoblingen er sikret med HTTPS for å sikre konfidensialitet."
 
 msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
-msgstr ""
+msgstr "Tilkoblingen er sikret med Tor for å sikre konfidensialitet og anonymitet."
 
 msgid "Number"
 msgstr "Nummer"
@@ -175,10 +175,10 @@ msgid "Maximum number of input characters"
 msgstr "Maksimalt antall inndata-karakterer"
 
 msgid "Earliest selectable date"
-msgstr "Tidligst valgbare dato"
+msgstr "Tidligst valgbar dato"
 
 msgid "Latest selectable date"
-msgstr "Senest valgbare dato"
+msgstr "Senest valgbar dato"
 
 msgid "0 = auto"
 msgstr "0 = auto"
@@ -226,7 +226,7 @@ msgid "Access requested"
 msgstr "Tilgang forespurt"
 
 msgid "Request access to the whistleblower's identity"
-msgstr "Forespør tilgang til fløyteblåsers sanne identitet"
+msgstr "Forespør tilgang til fløyteblåserens sanne identitet"
 
 msgid "Please write a motivation"
 msgstr "Skriv motivasjon for forespørsel"
@@ -256,13 +256,13 @@ msgid "Deny access to the whistleblower's identity"
 msgstr "Nekt tilgang til fløyteblåserens sanne identitet."
 
 msgid "Authorize access to the whistleblower's identity"
-msgstr "Tillat tilgang til fløyteblåsers sanne identitet"
+msgstr "Tillat tilgang til fløyteblåserens sanne identitet"
 
 msgid "Templates"
 msgstr "Maler"
 
 msgid "URL redirects"
-msgstr ""
+msgstr "URL-omdirigering"
 
 msgid "Anomaly detection thresholds"
 msgstr "Grenseverdi for rapportering av unormalheter"
@@ -274,13 +274,13 @@ msgid "Last update"
 msgstr "Siste oppdatering"
 
 msgid "Disable notifications to administrators"
-msgstr "Skru av merknader til administratorer"
+msgstr "Deaktiver merknader til administratorer"
 
 msgid "Disable notifications to custodians"
-msgstr "Skru av merknader til tillitspersoner"
+msgstr "Deaktiver merknader til tillitspersoner"
 
 msgid "Disable notifications to recipients"
-msgstr "Skru av merkander til mottakere"
+msgstr "Deaktiver merkander til mottakere"
 
 msgid "Score"
 msgstr "Poengsum"
@@ -289,7 +289,7 @@ msgid "Trigger question"
 msgstr "Oppfølgingsspørsmål"
 
 msgid "Triggered by score:"
-msgstr ""
+msgstr "Utløst av poengsum:"
 
 msgid "Weak"
 msgstr "Svakt"
@@ -304,10 +304,10 @@ msgid "Text shown on top of the interface for selecting contexts"
 msgstr "Tekst vist på toppen av grensesnittet for valg av bindeleddsinformasjon"
 
 msgid "Silence email notifications"
-msgstr "Skru av e-postmerknader"
+msgstr "Deaktiver e-postmerknader"
 
 msgid "Turn on email notifications"
-msgstr "Skru av e-postmerknader"
+msgstr "Aktiver e-postmerknader"
 
 msgid "Input validation"
 msgstr "Inndata-bekreftelse"
@@ -330,10 +330,10 @@ msgstr "Søk"
 msgid ""
 "This custom text is no longer displayed on the platform. The original text "
 "has either changed or been removed."
-msgstr "Denne egendefinerte teksten blir ikke lenger vist på plattformen. Den orginale nøkkelen har enten blitt endret eller fjernet."
+msgstr "Denne egendefinerte teksten blir ikke lenger vist på plattformen. Den opprinnelige nøkkelen har enten blitt endret eller fjernet."
 
 msgid "Audit log"
-msgstr ""
+msgstr "Revisjonslogg"
 
 msgid "Stats"
 msgstr "Statistikk"
@@ -342,7 +342,7 @@ msgid "Activities"
 msgstr "Aktivitet"
 
 msgid "Reports"
-msgstr ""
+msgstr "Rapporter"
 
 msgid "Users"
 msgstr "Brukere"
@@ -372,16 +372,16 @@ msgid "Display options alphabetically"
 msgstr "Vis valg alfabetisk"
 
 msgid "Enable email notifications for:"
-msgstr "Skru på e-postmerknader for:"
+msgstr "Aktiver e-postmerknader for:"
 
 msgid "Disable"
-msgstr "Skru av"
+msgstr "Deaktiver"
 
 msgid "Remove"
 msgstr "Fjern"
 
 msgid "Use as default"
-msgstr "Bruk som forvalg"
+msgstr "Bruk som standard"
 
 msgid "Collapse"
 msgstr "Fold sammen"
@@ -393,7 +393,7 @@ msgid "Select"
 msgstr "Velg"
 
 msgid "Deselect"
-msgstr ""
+msgstr "Fravelg"
 
 msgid "Surname"
 msgstr "Etternavn"
@@ -402,16 +402,16 @@ msgid "New"
 msgstr "Ny"
 
 msgid "Opened"
-msgstr ""
+msgstr "Åpnet"
 
 msgid "Closed"
-msgstr ""
+msgstr "Lukket"
 
 msgid "Placeholder"
-msgstr ""
+msgstr "Plassholder"
 
 msgid "Print"
-msgstr ""
+msgstr "Skrive ut"
 
 msgid "Previous"
 msgstr "Forrige"
@@ -429,33 +429,33 @@ msgid "Send a test email to your email address."
 msgstr "Send en test-e-post til din e-postadresse."
 
 msgid "Block the submission"
-msgstr ""
+msgstr "Blokker innsendelsen"
 
 msgid "Skip the recipient account creation."
-msgstr ""
+msgstr "Hopp over kontooprettelsen for mottakeren."
 
 msgid "Send activation link"
-msgstr ""
+msgstr "Send aktiveringslenke"
 
 msgid "Password reset"
-msgstr ""
+msgstr "Tilbakestilling av passord"
 
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr ""
+msgstr "En eller flere mottakere har ikke utført den første påloggingen ennå. Dette betyr at de ikke vil motta rapporter."
 
 msgid "This user has not performed the first login yet."
-msgstr ""
+msgstr "Brukeren har ikke utført den første påloggingen."
 
 msgid "seconds"
 msgstr "sekunder"
 
 msgid "This domain name is not available."
-msgstr ""
+msgstr "Domenenavnet er ikke tilgjengelig."
 
 msgid "Mark as important"
-msgstr ""
+msgstr "Marker som viktig"
 
 msgid "Copy to clipboard"
 msgstr "Kopier til utklippstavle"
@@ -464,22 +464,22 @@ msgid "Logout"
 msgstr "Logg ut"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
+msgstr "La mottakeren gi brukeren tilgang til rapporter"
 
 msgid "Grant access"
-msgstr ""
+msgstr "Gi tilgang"
 
 msgid "Revoke access"
-msgstr ""
+msgstr "Opphev tilgangen"
 
 msgid "File a report"
-msgstr ""
+msgstr "Legg inn en rapport"
 
 msgid "Select the context of your report:"
-msgstr ""
+msgstr "Velg konteksten for din rapport:"
 
 msgid "Before proceeding, please set a new password."
-msgstr ""
+msgstr "Innstill et nytt passord før du fortsetter."
 
 msgid "New password"
 msgstr "Nytt passord"
@@ -488,7 +488,7 @@ msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr ""
+msgstr "Det valgte passordet er for svakt. Et gyldig passord må ha minst 10 tegn og inneholde en rekke tegn, inkludert minst en liten bokstav, en stor bokstav, et tall og et spesialtegn."
 
 msgid "The new password must be different from the current one."
 msgstr "Det nye passordet må være forskjellig fra det gamle."
@@ -500,86 +500,86 @@ msgid "The two passwords do not match"
 msgstr "De to passordene samsvarer ikke"
 
 msgid "The new password must differ from the previous."
-msgstr ""
+msgstr "Det nye passordet må være annerledes enn det forrige."
 
 msgid "Proceed"
 msgstr "Fortsett"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr ""
+msgstr "Aktiver tofaktorautentisering før du fortsetter."
 
 msgid "Disable submissions"
-msgstr "Skru av innsendelser"
+msgstr "Deaktiver innsendelser"
 
 msgid "Enable encryption"
-msgstr ""
+msgstr "Aktiver kryptering"
 
 msgid "Enable administrators to change user passwords"
-msgstr ""
+msgstr "La administratorer endre brukerpassord"
 
 msgid "Administrators authorized to change user passwords:"
-msgstr ""
+msgstr "Administratorer autorisert til å endre brukerpassord:"
 
 msgid "Enable multisite feature"
-msgstr ""
+msgstr "Aktiver funksjon for flere nettsteder"
 
 msgid "Enable simplified login"
-msgstr ""
+msgstr "Aktiver forenklet innlogging"
 
 msgid "Enable search engines indexing"
-msgstr "Skru på søkemotor-indeksering"
+msgstr "Aktiver søkemotor-indeksering"
 
 msgid "Enable the receipt hint"
-msgstr ""
+msgstr "Aktiver kvitteringstipset"
 
 msgid "Default questionnaire"
-msgstr ""
+msgstr "Standard spørreskjema"
 
 msgid "Show contexts in alphabetical order"
 msgstr "Vis bindeleddsinformasjon i alfabetisk rekkefølge"
 
 msgid "Do not expose users' names"
-msgstr ""
+msgstr "Avslør ikke brukernavn"
 
 msgid "Size limit for file attachments"
 msgstr "Størrelsesgrense for vedlegg"
 
 msgid "megabytes"
-msgstr ""
+msgstr "megabyte"
 
 msgid "Enable HSTS preload"
-msgstr ""
+msgstr "Aktiver HSTS-forhåndsinnlasting"
 
 msgid "Require two factor authentication"
-msgstr ""
+msgstr "Krever tofaktorautentisering"
 
 msgid "Password change interval"
-msgstr ""
+msgstr "Intervall for passordendring"
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
-msgstr ""
+msgstr "Av sikkerhetshensyn er det nødvendig å endre passord med jevne mellomrom."
 
 msgid "Set the value to 0 to disable this feature."
-msgstr ""
+msgstr "Innstill verdien til 0 for å kunne deaktivere funksjonen."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr ""
+msgstr "Antall dager til de uleste rapportene blir varslet til brukerne"
 
 msgid "Enable custodian user role"
-msgstr ""
+msgstr "Slå på brukerrollen for tillitspersonen"
 
 msgid "Enable scoring system"
-msgstr ""
+msgstr "Aktiver poengsystem"
 
 msgid "Enable private annotations"
-msgstr ""
+msgstr "Aktiver private merknader"
 
 msgid "Logging level"
-msgstr ""
+msgstr "Nivå for logging"
 
 msgid "Log accesses of internal users"
-msgstr ""
+msgstr "Loggtilganger til interne brukere"
 
 msgid "Notify administrators of software problems"
 msgstr "Gi administratorer beskjed om programvareproblemer"
@@ -590,31 +590,31 @@ msgstr "Gi utviklere beskjed om programvareproblemer"
 msgid ""
 "By enabling this feature, you will contribute to the development and "
 "security of the platform."
-msgstr "Ved å skru på denne funksjonen, vil du bidra til utviklingen og sikkerheten av plattformen."
+msgstr "Ved å aktiverre denne funksjonen, vil du bidra til utviklingen og sikkerheten av plattformen."
 
 msgid "Save"
 msgstr "Lagre"
 
 msgid "Reset reports"
-msgstr ""
+msgstr "Tilbakestill rapporter"
 
 msgid "Low"
-msgstr ""
+msgstr "Lav"
 
 msgid "High"
-msgstr ""
+msgstr "Høy"
 
 msgid "percentage"
-msgstr ""
+msgstr "prosent"
 
 msgid "Type"
 msgstr "Type"
 
 msgid "Severity"
-msgstr ""
+msgstr "Alvorlighetsgrad"
 
 msgid "Object"
-msgstr ""
+msgstr "Objekt"
 
 msgid "ID"
 msgstr "ID"
@@ -638,10 +638,10 @@ msgid "Connection"
 msgstr "Tilkobling"
 
 msgid "Whistleblower's last access"
-msgstr ""
+msgstr "Siste tilgang til fløyteblåseren"
 
 msgid "Substatuses"
-msgstr ""
+msgstr "Delstatuser"
 
 msgid "Add"
 msgstr "Legg til"
@@ -659,7 +659,7 @@ msgid "Cancel"
 msgstr "Avbryt"
 
 msgid "Report statuses"
-msgstr ""
+msgstr "Rapporter statuser"
 
 msgid "Logo"
 msgstr "Logo"
@@ -680,10 +680,10 @@ msgid "Question to solicit possible whistleblowers"
 msgstr "Oppfordring til fløyteblåser"
 
 msgid "Whistleblowing button"
-msgstr "Fløyteblåsnings-knapp"
+msgstr "Fløyteblåsning-knapp"
 
 msgid "Disclaimer"
-msgstr ""
+msgstr "Ansvarsfraskrivelse"
 
 msgid "Footer"
 msgstr "Bunntekst"
@@ -716,13 +716,13 @@ msgid "Contexts"
 msgstr "Bindeleddsinformasjon"
 
 msgid "Hidden"
-msgstr ""
+msgstr "Skjult"
 
 msgid "Disabled"
-msgstr "Avskrudd"
+msgstr "Deaktivert"
 
 msgid "Enabled"
-msgstr "Påskrudd"
+msgstr "Aktivert"
 
 msgid "Questionnaire"
 msgstr "Spørreskjema"
@@ -734,7 +734,7 @@ msgid "days"
 msgstr "dager"
 
 msgid "Show the questionnaire navigation interface"
-msgstr ""
+msgstr "Vis grensesnittet for spørreskjemanavigasjon"
 
 msgid "Allow whistleblowers to select their recipients"
 msgstr "Tillat fløyteblåsere å velge sine mottagere"
@@ -749,31 +749,31 @@ msgid "Show recipients in alphabetical order"
 msgstr "Vis mottakere i alfabetisk rekkefølge"
 
 msgid "Show recipient details on the status page of the report"
-msgstr ""
+msgstr "Vis detaljer om mottakeren på statussiden til rapporten"
 
 msgid "Enable comments"
-msgstr "Skru på kommentarer"
+msgstr "Aktiver kommentarer"
 
 msgid "Allow whistleblowers to write comments"
 msgstr "Tillat fløyteblåsere å skrive kommentarer"
 
 msgid "Enable private messages"
-msgstr "Skru på privat korrespondanse"
+msgstr "Aktiver privat korrespondanse"
 
 msgid "Allow whistleblowers to send messages"
 msgstr "Tillat fløyteblåsere å sende meldinger"
 
 msgid "Let whistleblowers add attachments onto existing reports"
-msgstr ""
+msgstr "La fløyteblåsere legge til vedlegg i eksisterende rapporter"
 
 msgid "Additional questionnaire"
-msgstr ""
+msgstr "Ekstra spørreskjema"
 
 msgid "Scoring system options"
-msgstr ""
+msgstr "Alternativer for poengsystem"
 
 msgid "Threshold"
-msgstr ""
+msgstr "Terskel"
 
 msgid "Value"
 msgstr "Verdi"
@@ -782,19 +782,19 @@ msgid "Medium"
 msgstr "Middels"
 
 msgid "Customize the message shown in the receipt page"
-msgstr ""
+msgstr "Tilpass meldingen som vises på mottakssiden"
 
 msgid "Assign the receipt only to reports reaching score:"
-msgstr ""
+msgstr "Tilordne kvitteringen kun til rapporter som når poengsummen:"
 
 msgid "Software version:"
 msgstr "Programvareversjon:"
 
 msgid "Restrict access to specific IP addresses"
-msgstr ""
+msgstr "Begrens tilgangen til bestemte IP-adresser"
 
 msgid "Allowed IP addresses"
-msgstr ""
+msgstr "Tillatte IP-adresser"
 
 msgid "Admin"
 msgstr "Admin"
@@ -803,7 +803,7 @@ msgid "Recipient"
 msgstr "Mottaker"
 
 msgid "Each entry must be separated with a comma."
-msgstr ""
+msgstr "Hver oppføring må skilles ved å bruke komma."
 
 msgid "Example:"
 msgstr "Eksempel:"
@@ -811,26 +811,20 @@ msgstr "Eksempel:"
 msgid "Hostname"
 msgstr "Vertsnavn"
 
-msgid "Invalid input format."
-msgstr "Ugyldig inndata-format"
+msgid "Organization"
+msgstr "Organisasjon"
 
-msgid "Input should be similar to:"
-msgstr "Inndata bør ligne:"
-
-msgid "Country code"
-msgstr "Landskode"
+msgid "Invalid email address"
+msgstr "Ugyldig e-post-adresse"
 
 msgid "City"
 msgstr "Sted"
 
-msgid "Organization"
-msgstr "Organisasjon"
+msgid "Country"
+msgstr "Land"
 
-msgid "Organizational unit"
-msgstr "Organisatorisk enhet"
-
-msgid "Invalid email address"
-msgstr "Ugyldig e-post -adresse"
+msgid "Country code"
+msgstr "Landskode"
 
 msgid "Generate"
 msgstr "Generer"
@@ -854,7 +848,7 @@ msgid "Intermediate Certificates"
 msgstr "Midlertidige sertifikater"
 
 msgid "Enable"
-msgstr "Skru på"
+msgstr "Aktiver"
 
 msgid "Reset"
 msgstr "Tilbakestill"
@@ -870,12 +864,12 @@ msgid ""
 "Using automatic HTTPS configuration will handle the entire process of "
 "requesting, enabling and renewing certificates from the Let's Encrypt "
 "Certificate Authority."
-msgstr "Det automatiske oppsettet vil ta hånd om hele prosessen med å forespørre, skru på, og fornye HTTPS-sertifikater fra Let's Encrypt-sertifikatutstederen."
+msgstr "Det automatiske oppsettet vil ta hånd om hele prosessen med å forespørre, aktivere, og fornye HTTPS-sertifikater fra Let's Encrypt-sertifikatutstederen."
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
 "hostname must have a DNS record referencing that address."
-msgstr ""
+msgstr "Plattformen må kunne nås gjennom en offentlig IP-adresse, og det valgte vertsnavnet må ha en DNS-post som refererer til adressen."
 
 msgid "Manual configuration"
 msgstr "Manuelt oppsett"
@@ -892,10 +886,10 @@ msgid "Tor Onion Service"
 msgstr "Tor-løktjeneste"
 
 msgid "Disable the privacy panel"
-msgstr "Skru av personvernspanelet"
+msgstr "Deaktiver personvernspanelet"
 
 msgid "Enable custom privacy panel"
-msgstr "Skru på egentilpasset personvernspanel"
+msgstr "Aktiver egentilpasset personvernspanel"
 
 msgid "Custom privacy panel"
 msgstr "Egentilpasset personvernspanel"
@@ -907,22 +901,22 @@ msgid "Let the platform be reachable without Tor"
 msgstr "Tillat at plattformen nås uten Tor"
 
 msgid "Roles enabled to use the platform without Tor"
-msgstr ""
+msgstr "Roller aktivert for å kunne bruke plattformen uten Tor"
 
 msgid "Whistleblower"
-msgstr "Fløyteblåser/varsler"
+msgstr "Fløyteblåser"
 
 msgid "To"
 msgstr "Til"
 
 msgid "SMTP email address"
-msgstr "SMTP for e-postadresse"
+msgstr "SMTP-e-postadresse"
 
 msgid "SMTP server address"
-msgstr "SMTP tjener-adresse"
+msgstr "SMTP-serveradresse"
 
 msgid "SMTP server port"
-msgstr "SMTP tjener-port"
+msgstr "SMTP-serverport"
 
 msgid "Security"
 msgstr "Sikkerhet"
@@ -931,34 +925,34 @@ msgid "Warning"
 msgstr "Advarsel"
 
 msgid "Require authentication"
-msgstr ""
+msgstr "Krever autentisering"
 
 msgid "Password"
 msgstr "Passord"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr ""
+msgstr "Antall timer før utløpsvarsel for varselet gis"
 
 msgid "Test the configuration"
 msgstr "Test oppsettet"
 
 msgid "Reset SMTP configuration"
-msgstr ""
+msgstr "Tilbakestill SMTP-konfigurasjonen"
 
 msgid "Reset notification templates to default"
-msgstr "Tilbakestill merknadssmaler til forvalg"
+msgstr "Tilbakestill merknadssmaler til standard"
 
 msgid "Template"
 msgstr "Mal"
 
 msgid "Question"
-msgstr ""
+msgstr "Spørsmål"
 
 msgid "Single-line text input"
 msgstr "Énlinjes tekstfelt for inndata"
 
 msgid "Multi-line text input"
-msgstr "Flerlinjet tekstfelt for inndata"
+msgstr "Flerlinjes tekstfelt for inndata"
 
 msgid "Selection box"
 msgstr "Rullegardinsvalg"
@@ -970,7 +964,7 @@ msgid "Terms of service"
 msgstr "Tjenestevilkår"
 
 msgid "Date range"
-msgstr ""
+msgstr "Datointervall"
 
 msgid "Group of questions"
 msgstr "Spørsmålsgruppering"
@@ -1000,10 +994,10 @@ msgid "Accept multiple file uploads"
 msgstr "Tillat flerfoldige filopplastinger"
 
 msgid "Accept multiple answers"
-msgstr "Godta flere svar"
+msgstr "Tillat flere svar"
 
 msgid "Template override"
-msgstr ""
+msgstr "Maloverstyring"
 
 msgid "Phone number"
 msgstr "Telefonnummer"
@@ -1012,34 +1006,34 @@ msgid "Text"
 msgstr "Tekst"
 
 msgid "Checkbox label"
-msgstr ""
+msgstr "Etikett for avmerkingsboks"
 
 msgid "Add multimedia content"
-msgstr ""
+msgstr "Legg til multimediainnhold"
 
 msgid "Image"
-msgstr ""
+msgstr "Bilde"
 
 msgid "Audio"
-msgstr ""
+msgstr "Lyd"
 
 msgid "Video"
 msgstr "Video"
 
 msgid "Trigger conditions"
-msgstr ""
+msgstr "Utløserbetingelser"
 
 msgid "Sufficient"
-msgstr ""
+msgstr "Tilstrekkelig"
 
 msgid "Options"
 msgstr "Valg"
 
 msgid "Addition"
-msgstr ""
+msgstr "Tillegg"
 
 msgid "Multiplier"
-msgstr ""
+msgstr "Multiplikator"
 
 msgid "Questions"
 msgstr "Spørsmål"
@@ -1051,16 +1045,16 @@ msgid "Add question from template"
 msgstr "Legg til spørsmål fra mal"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Dupliser"
 
 msgid "Steps"
-msgstr "Steg"
+msgstr "Trinn"
 
 msgid "Site settings"
-msgstr ""
+msgstr "Innstillinger for nettsted"
 
 msgid "Case management"
-msgstr ""
+msgstr "Saksbehandling"
 
 msgid "Network settings"
 msgstr "Nettverksinnstillinger"
@@ -1069,10 +1063,10 @@ msgid "Sites"
 msgstr "Sider"
 
 msgid "Mode:"
-msgstr ""
+msgstr "Modus:"
 
 msgid "Configure"
-msgstr ""
+msgstr "Konfigurer"
 
 msgid "Subdomain"
 msgstr "Underdomene"
@@ -1084,34 +1078,31 @@ msgid "Root domain used for secondary sites"
 msgstr "Rotdomene brukt for sekundære sider"
 
 msgid "Use the first site for administrative purposes only"
-msgstr ""
-
-msgid "Enable multi-site login"
-msgstr ""
+msgstr "Bruk det første stedet kun til administrative formål"
 
 msgid "Allow users to sign up"
 msgstr "Tillat brukere å registrere seg"
 
 msgid "Enable terms of service"
-msgstr ""
+msgstr "Aktiver servicevilkår"
 
 msgid "Title"
 msgstr "Tittel"
 
 msgid "Send an account activation link to the user."
-msgstr ""
+msgstr "Send en lenke for kontoaktivering til brukeren."
 
 msgid "Public name"
-msgstr ""
+msgstr "Offentlig navn"
 
 msgid "Send reset link"
-msgstr ""
+msgstr "Send lenken for tilbakestilling"
 
 msgid "Set password"
 msgstr "Sett passord"
 
 msgid "Disable two factor authentication"
-msgstr ""
+msgstr "Deaktiver tofaktorautentisering"
 
 msgid "Force password change"
 msgstr "Påtving passordendring"
@@ -1123,7 +1114,7 @@ msgid "Language"
 msgstr "Språk"
 
 msgid "Enable email notifications"
-msgstr ""
+msgstr "Aktiver e-postvarsler"
 
 msgid "Details of the PGP key:"
 msgstr "Detaljer for PGP-nøkkel:"
@@ -1135,25 +1126,25 @@ msgid "Set up encryption by providing a PGP public key"
 msgstr "Sett opp kryptering ved å oppgi en offentlig PGP-nøkkel"
 
 msgid "Give this admin ability to change user passwords"
-msgstr ""
+msgstr "Gi administrator muligheten til å endre passord"
 
 msgid "Forcefully selected"
 msgstr "Påtvunget forvalg"
 
 msgid "Allow the recipient to delete reports"
-msgstr ""
+msgstr "Tillat mottakeren å slette rapporter"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr ""
+msgstr "Tillat mottakeren å utsette utløpsdatoen for rapporten"
 
 msgid "Give the user administrative access to the following features:"
-msgstr ""
+msgstr "Gi brukeren administrativ tilgang til følgende funksjoner:"
 
 msgid "Request date"
 msgstr "Forespør dato"
 
 msgid "Report date"
-msgstr ""
+msgstr "Dato for rapport"
 
 msgid "Authorization"
 msgstr "Godkjenning"
@@ -1162,37 +1153,34 @@ msgid "Requests"
 msgstr "Forespørsler"
 
 msgid "The validation link is either incorrect or has expired."
-msgstr ""
+msgstr "Valideringslenken er feil eller utløpt."
 
 msgid "Your new email address has been validated."
-msgstr ""
+msgstr "Den nye e-postadressen har blitt validert."
 
 msgid "Forgot password?"
-msgstr ""
+msgstr "Har du glemt passordet?"
 
 msgid "Enter the two factor authentication code"
-msgstr ""
+msgstr "Skriv inn koden for tofaktorautentisering"
 
 msgid "Authentication failed"
 msgstr "Identitetsbekreftelse feilet"
 
 msgid "The code is either invalid or expired."
-msgstr ""
-
-msgid "Site:"
-msgstr ""
+msgstr "Koden er ugyldig eller utløpt."
 
 msgid "Please select your account:"
 msgstr "Velg din konto:"
 
 msgid "Now type your password, then click 'Log in':"
-msgstr "Skriv inn ditt passord, trykk så 'logg inn':"
+msgstr "Skriv inn ditt passord, trykk så «logg inn»:"
 
 msgid "Text shown after the user has selected the option."
-msgstr ""
+msgstr "Tekst som vises etter at alternativet har blitt valgt av brukeren."
 
 msgid "Confirm"
-msgstr "Bekreft tillegg"
+msgstr "Bekreft"
 
 msgid "Assign score points"
 msgstr "Tildel poeng"
@@ -1201,39 +1189,36 @@ msgid "Are you sure?"
 msgstr "Er du sikker?"
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr ""
+msgstr "Merk at alle de tilknyttede dataene vil slettes permanent."
 
 msgid "Close"
 msgstr "Lukk"
 
 msgid "Enable two factor authentication"
-msgstr ""
+msgstr "Aktiver tofaktorautentisering"
 
 msgid "Before proceeding please read carefully the documentation at:"
-msgstr ""
+msgstr "Før du fortsetter, les dokumentasjonen nøye:"
 
 msgid "Account recovery key"
-msgstr ""
-
-msgid "Your account recovery key is:"
-msgstr ""
+msgstr "Nøkkel til kontogjenoppretting"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr ""
+msgstr "Ta en kopi og lagre den på et trygt sted. Du vil trenge dette i tilfelle du mister ditt passord for å kunne gjenopprette tilgangen til din konto uten tap av data."
 
 msgid "Enter a name for the copy"
-msgstr ""
+msgstr "Skriv inn et navn på kopien"
 
 msgid "Request support"
-msgstr ""
+msgstr "Be om støtte"
 
 msgid "Thank you."
-msgstr ""
+msgstr "Tusen takk."
 
 msgid "We will try to get back to you as soon as possible."
-msgstr ""
+msgstr "Vi kommer tilbake til deg så snart som mulig."
 
 msgid "Submit"
 msgstr "Send inn"
@@ -1256,19 +1241,19 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Ved å bekrefte vil du utsette utløpsdatoen til:"
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr ""
+msgstr "Dette er en demo-plattform. Den må ikke brukes for ekte innsendinger."
 
 msgid "Install an authenticator app on your phone"
-msgstr ""
+msgstr "Installer en autentiseringsapp på din telefon"
 
 msgid "Scan the QR code with the app"
-msgstr ""
+msgstr "Skann QR-koden med appen"
 
 msgid "Welcome!"
 msgstr "Velkommen!"
 
 msgid "For the user documentation, visit:"
-msgstr ""
+msgstr "For brukerdokumentasjon, gå til:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
@@ -1281,18 +1266,18 @@ msgid ""
 msgstr "Hvis du ønsker å bidra i programvareutvilingen eller innrapportere en feil, åpne en feilrapport på vår problemoversikt:"
 
 msgid "Join our chat:"
-msgstr ""
+msgstr "Bli med i vår chat:"
 
 msgid "Follow the project on:"
 msgstr "Følg prosjektet på:"
 
 msgid "Hint: How to hide your receipt"
-msgstr ""
+msgstr "Hint: Slik skjuler du din kvittering"
 
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr ""
+msgstr "En nyttig måte for å kunne skjule kvitteringen er å skrive den ned som et kredittkortnummer, f.eks. ved å inkludere en utløpsdato."
 
 msgid "Error!"
 msgstr "Feil!"
@@ -1322,7 +1307,7 @@ msgid "Validation of email address change in progress."
 msgstr "Bekreftelse av e-postendring underveis."
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
+msgstr "Sjekk innboksen for flere instruksjoner."
 
 msgid "Current password"
 msgstr "Gjeldende passord"
@@ -1333,22 +1318,22 @@ msgstr "Bekreftelse av gammelt passord påkrevd"
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr ""
+msgstr "Du anbefales på det sterkeste å besøke nettstedet med Tor Browser-appen, som beskytter din identitet."
 
 msgid "Download the Tor Browser"
 msgstr "Last ned Tor-nettleseren"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "Deretter, kopier og lim inn følgende adresse i den nå installerte  Tor-nettleseren:"
+msgstr "Deretter, kopier og lim inn følgende adresse i den nå installerte Tor-nettleseren:"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr ""
+msgstr "Har du allerede levert en rapport? Skriv inn din kvittering."
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr ""
+msgstr "Kvitteringen er ugyldig eller rapporten er utløpt."
 
 msgid "Select a file or drag it here."
-msgstr ""
+msgstr "Velg en fil, eller dra den her."
 
 msgid "Uploading files…"
 msgstr "Laster opp filer…"
@@ -1366,19 +1351,19 @@ msgid "Size:"
 msgstr "Størrelse:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr ""
+msgstr "Mottakere har bedt deg om å fylle ut et annet spørreskjema."
 
 msgid "Fill the additional questionnaire"
-msgstr ""
+msgstr "Fyll ut tilleggsspørreskjemaet"
 
 msgid "Allow the whistleblower to write comments"
 msgstr "Tillat fløyteblåseren å skrive kommentarer"
 
 msgid "From:"
-msgstr ""
+msgstr "Fra:"
 
 msgid "To:"
-msgstr ""
+msgstr "Til:"
 
 msgid "Filename"
 msgstr "Filnavn"
@@ -1390,7 +1375,7 @@ msgid "File size"
 msgstr "Filstørrelse"
 
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr ""
+msgstr "La fløyteblåseren legge til vedlegg i rapporten"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Tillat fløyteblåseren å sende meldinger"
@@ -1402,10 +1387,10 @@ msgid "Step"
 msgstr "Steg"
 
 msgid "Status:"
-msgstr ""
+msgstr "Status:"
 
 msgid "Files attached by recipients"
-msgstr "Filer vedlegt av mottakere"
+msgstr "Filer vedlagt av mottakere"
 
 msgid "Upload a file:"
 msgstr "Last opp en fil:"
@@ -1418,32 +1403,32 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
+msgstr "Vi anbefaler deg å gå til avsnittet «Preferanser» og få «Nøkkel til kontogjenoppretting» og lagre den trygt. Nøkkelen vil kreves for gjenoppretting av tilgangen til plattformen og til dine data i tilfelle du glemmer ditt passord."
 
 msgid "The provided recovery key is invalid."
-msgstr ""
+msgstr "Gjenopprettingsnøkkelen er ikke gyldig."
 
 msgid "The provided reset token is invalid or expired."
-msgstr ""
+msgstr "Det angitte tokenet for tilbakestilling er ugyldig eller utløpt."
 
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr ""
+msgstr "Skriv inn brukernavnet til din konto eller din e-postadresse hvis du ønsker å be om tilbakestilling av passord."
 
 msgid "Enter your email address to request a password reset."
-msgstr ""
+msgstr "Skriv inn din e-postadresse hvis du ønsker å be om tilbakestilling av passord."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr ""
 
 msgid "Password reset requested."
-msgstr ""
+msgstr "Det kreves tilbakestilling av passord."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
-msgstr "Tilgang til fløyteblåsers identitet har blitt forespurt av tillitsperson."
+msgstr "Tilgang til fløyteblåserens identitet har blitt forespurt av tillitsperson."
 
 msgid "Date of the request"
 msgstr "Dato for forespørsel"
@@ -1464,11 +1449,11 @@ msgid "Your whistleblowing platform is almost ready!"
 msgstr "Din fløyteblåserplattform er nesten klar!"
 
 msgid "Check your inbox to activate it."
-msgstr ""
+msgstr "Sjekk innboksen og aktiver den."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr ""
+msgstr "Hvis aktivering ikke skjer innen 24 timer, vil plattformen slettes automatisk."
 
 msgid "Sign up"
 msgstr "Registrer deg"
@@ -1477,19 +1462,19 @@ msgid "Domain"
 msgstr "Domene"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "Bekreftelse"
 
 msgid "Invalid confirmation"
-msgstr ""
+msgstr "Ugyldig bekreftelse"
 
 msgid "Invalid phone number"
-msgstr ""
+msgstr "Ugyldig telefonnummer"
 
 msgid "The answer is too short"
-msgstr ""
+msgstr "Svaret er for kort"
 
 msgid "The specified input is not valid."
-msgstr ""
+msgstr "Angitt inndata er ikke gyldig."
 
 msgid "The specified input is not valid:"
 msgstr "Angitt inndata er ikke gyldig:"
@@ -1501,7 +1486,7 @@ msgid "please enter numbers only."
 msgstr "bruk kun tall"
 
 msgid "Submissions disabled"
-msgstr "Innsendelser avskrudd"
+msgstr "Innsendelser deaktivert,"
 
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
@@ -1509,49 +1494,49 @@ msgid ""
 msgstr "Din tilknytning til tjeneren er ikke anonym, denne tjeneren støtter bare anonyme innsendelser"
 
 msgid "Your report was successful."
-msgstr ""
+msgstr "Din rapport lyktes."
 
 msgid "Remember your receipt for this report."
-msgstr ""
+msgstr "Husk din kvittering for denne rapporten."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr ""
+msgstr "Bruk kvitteringen på 16 sifre for pålogging. Du kan se alle meldingene som var sendt til deg, og legge til ekstra informasjon."
 
 msgid "View your report"
-msgstr ""
+msgstr "Se rapporten"
 
 msgid "Recipient selection"
 msgstr "Valg av mottaker"
 
 msgid "Select the recipients of your report:"
-msgstr ""
+msgstr "Velg mottakerne av rapporten din:"
 
 msgid "Recipients selected:"
 msgstr "Mottakere valgt:"
 
 msgid "You have reached the maximum number of selectable recipients."
-msgstr ""
+msgstr "Du har nådd maksimalt antall mottakere som kan velges."
 
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr ""
+msgstr "Følgende mottakere vil motta din rapport og kunne ikke fravelges:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
 "invalid:"
-msgstr "Disse spørsmålene har ugyldige eller manglende svar i dette steget."
+msgstr "Disse spørsmålene har ugyldige eller manglende svar i dette trinnet."
 
 msgid "You must select at least one recipient."
 msgstr "Du må velge ihvertfall én mottaker."
 
 msgid "Waiting for the file(s) to finish uploading."
-msgstr "Venter på at ei fil skal lastes opp."
+msgstr "Venter på at filen/filen(e) skal lastes opp."
 
 msgid "The following steps have errors:"
-msgstr "Følgende steg har feil:"
+msgstr "Følgende trinn har feil:"
 
 msgid "Hide"
 msgstr "Skjul"
@@ -1565,35 +1550,35 @@ msgid "Please choose a configuration profile:"
 msgstr "Velg en oppsettsprofil:"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr ""
+msgstr "La administratoren tilbakestille brukerpassord."
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr ""
+msgstr "Vår anbefaling er å velge alternativet hvis du ønsker å unngå tap av data i tilfelle mottakerne mister deres passord. På den annen side anbefaler vi ikke denne funksjonen i tilfelle du ønsker å konfigurere et system der kun mottakere har tilgang til innsendinger."
 
 msgid "Please choose a different username."
-msgstr ""
+msgstr "Velg et annet brukernavn."
 
 msgid "I have read and agree to the terms of the license."
-msgstr ""
+msgstr "Jeg har lest og godtar vilkårene i lisensen."
 
 msgid "You have completed the platform wizard."
 msgstr "Du har fullført plattformsveiviseren."
 
 msgid "Fill out your report"
-msgstr ""
+msgstr "Fyll ut din rapport"
 
 msgid "Describe your report in a few words."
-msgstr ""
+msgstr "Gi en kort beskrivelse av rapporten din"
 
 msgid "Describe your report in detail."
-msgstr ""
+msgstr "Gi en detaljert beskrivelse av rapporten din"
 
 msgid "Attach files relevant to the report."
-msgstr ""
+msgstr "Legg ved relevante filer til rapporten."
 
 msgid "Do you want to provide your identification information?"
 msgstr "Ønsker du å oppgi identifiserbar informasjon?"
@@ -1605,13 +1590,13 @@ msgid "Last name"
 msgstr "Etternavn"
 
 msgid "Alternative contact method"
-msgstr ""
+msgstr "Alternativ kontaktmetode"
 
 msgid "Other"
 msgstr "Annet"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr ""
+msgstr "Jeg foretrekker å bli kontaktet kun gjennom denne plattformen"
 
 msgid "Dear {RecipientName},"
 msgstr "Kjære {RecipientName},"
@@ -1619,29 +1604,29 @@ msgstr "Kjære {RecipientName},"
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr ""
+msgstr "Du mottar e-posten fordi en brukerkonto har blitt opprettet for deg på systemet: {Site}"
 
 msgid "Username: {Username}"
-msgstr ""
+msgstr "Brukernavn: {Username}"
 
 msgid "Activation link: {Url}"
-msgstr ""
+msgstr "Lenke for aktivering: {Url}"
 
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr ""
+msgstr "Klikk på aktiveringslenken for kontoaktiveringen og konfigurer ditt brukerpassord."
 
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
-msgstr ""
+msgstr "Etter aktivering vil du få tilgang til systemet gjennom følgende lenke: {LoginUrl}"
 
 msgid "Kind regards,"
 msgstr "Vennlig hilsen,"
 
 msgid "Account activation"
-msgstr ""
+msgstr "Kontoaktivering"
 
 msgid "Your whistleblowing platform is now accessible at:"
 msgstr "Din fløyteblåserplattform er nå tilgjengelig på:"
@@ -1666,7 +1651,7 @@ msgid ""
 "This could be a sign of an attack (for example, someone flooding your server"
 " with bogus information) or just a usage spike due to an increased "
 "visibility of your project."
-msgstr "Dette kan indikere angrep (eksempelvis at noen oversvømmer tjeneren med ugyldig informasjon) eller bare en brå økning i aktivitetsnivået på grunn av naturlige årsaker(, som synligheten til ditt prosjekt)."
+msgstr "Dette kan indikere angrep (eksempelvis at noen oversvømmer tjeneren med ugyldig informasjon) eller bare en brå økning i aktivitetsnivået på grunn av  økt synlighet til ditt prosjekt)."
 
 msgid "Examine the issue to determine whether it is legitimate or not."
 msgstr "Undersøk problemet for å bestemme hvorvidt det er legitimt eller skadelig."
@@ -1677,7 +1662,7 @@ msgstr "Hendelsesforløpet med uvanlige attributter er:"
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr ""
+msgstr "Serveren kan ikke garantere lagring av en ny rapport, så innleveringer var deaktivert."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
@@ -1687,12 +1672,12 @@ msgstr "Overvei å spørre din tekniske brukerstøtte om å frigjøre eller legg
 msgid ""
 "GlobaLeaks technology includes a server status checking component which will"
 " alert you in case something requires your attention."
-msgstr "Globaleaks-teknologi innheholder en komponent som sjekker statusen til tjeneren, denne vil holde deg underrettet om noe skulle behøve din oppmerksomhet."
+msgstr "Globaleaks-teknologi inneholder en komponent som sjekker statusen til tjeneren, denne vil holde deg underrettet om noe skulle behøve din oppmerksomhet."
 
 msgid ""
 "For more information, log in to the Administration interface and look at the"
 " \"System Stats\" and \"Anomalies\" sections."
-msgstr "Ytterligere informasjon tilgjengelig ved innlogging på administrasjonspanelet under seksjonene \"Systemstatistikk\" og \"Unormalheter\"."
+msgstr "Ytterligere informasjon tilgjengelig ved innlogging på administrasjonspanelet under seksjonene \\«Systemstatistikk\\» og \\«Unormalheter\\»."
 
 msgid "Anomaly detected in {NodeName}"
 msgstr "Unormalhet oppdaget i {NodeName}"
@@ -1717,7 +1702,7 @@ msgid "Registration data:"
 msgstr "Registreringsdata:"
 
 msgid "Site: {Url}"
-msgstr ""
+msgstr "Nettsted: {Url}"
 
 msgid "Name: {Name}"
 msgstr "Navn: {Name}"
@@ -1746,7 +1731,7 @@ msgid ""
 msgstr "Dette er en e-post til påminnelse om at en forespørsel har funnet sted om endring av din e-postadresse til {NewEmailAddress}."
 
 msgid "Click the following link to validate this change:"
-msgstr ""
+msgstr "Klikk på følgende lenke for validering av denne endringen:"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
@@ -1757,7 +1742,7 @@ msgid "Email change request"
 msgstr "E-postendringsforespørsel"
 
 msgid "From: {Author}"
-msgstr ""
+msgstr "Fra: {Author}"
 
 msgid "Date: {EventTime}"
 msgstr "Dato: {EventTime}"
@@ -1772,7 +1757,7 @@ msgid "Label: {TipLabel}"
 msgstr "Merkelapp: {TipLabel}"
 
 msgid "Status: {TipStatus}"
-msgstr ""
+msgstr "Status: {TipStatus}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
@@ -1795,21 +1780,21 @@ msgstr "Utløpsvarsel for HTTPS-sertifikat"
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
-msgstr ""
+msgstr "Den automatiske fornyelsen som ble planlagt i dag for HTTPS-sertifikatet mislyktes."
 
 msgid "The system will keep trying."
-msgstr ""
+msgstr "Systemet vil fortsette å prøve."
 
 msgid "Failed HTTPS certificate renewal"
-msgstr ""
+msgstr "Fornyelse av HTTPS-sertifikat mislyktes"
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr ""
+msgstr "Denne e-posten informerer deg om at en tillitsperson har autorisert deg til å få tilgang til fløyteblåserens sanne identitet for rapporten {TipNum}."
 
 msgid "The report can be accessed at:"
-msgstr ""
+msgstr "Få tilgang til rapporten på:"
 
 msgid "Access to whistleblower's identity authorized"
 msgstr "Tilgang til fløyteblåserens sanne identitet godkjent"
@@ -1817,7 +1802,7 @@ msgstr "Tilgang til fløyteblåserens sanne identitet godkjent"
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr ""
+msgstr "Denne e-posten informerer deg om at en tillitsperson har nektet deg tilgang tilgang til fløyteblåserens sanne identitet for rapporten {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "Nektet tilgang til fløyteblåserens sanne identitet"
@@ -1825,18 +1810,18 @@ msgstr "Nektet tilgang til fløyteblåserens sanne identitet"
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr ""
+msgstr "Denne e-posten informerer deg om at en mottaker har bedt om tilgang til fløyteblåserens sanne identitet for rapporten {TipNum}"
 
 msgid "The request can be accessed at:"
-msgstr ""
+msgstr "Få tilgang til forespørselen på:"
 
 msgid "New request of access to a whistleblower's identity"
-msgstr "Ny tilgangsforespørsel til en fløyteblåsers sanne identitet"
+msgstr "Ny tilgangsforespørsel til fløyteblåserens sanne identitet"
 
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr ""
+msgstr "Denne e-posten informerer deg om at fløyteblåseren for rapporten {TipNum} har oppgitt sin identitet."
 
 msgid "The whistleblower has provided their identity"
 msgstr "Fløyteblåseren har bekjentgjort sin sanne identitet"
@@ -1844,18 +1829,18 @@ msgstr "Fløyteblåseren har bekjentgjort sin sanne identitet"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr ""
+msgstr "Du mottar e-posten fordi det er bedt om tilbakestilling av passord for kontoen: {Username}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
 "email."
-msgstr ""
+msgstr "Hvis du ikke sendte forespørselen, kan du ignorere og slette denne e-posten."
 
 msgid "You can confirm your request by clicking the following link:"
-msgstr ""
+msgstr "Bekreft forespørselen ved å klikke på følgende lenke:"
 
 msgid "Password reset instructions"
-msgstr ""
+msgstr "Instruksjoner for tilbakestilling av passord"
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
@@ -1897,10 +1882,10 @@ msgstr "For instruks om programvareoppdateringer, henvend dem til dokumentasjone
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "Denne e-posten informerer deg om at en mottaker har gitt deg tilgang til en eller flere rapporter."
 
 msgid "New report"
-msgstr ""
+msgstr "Ny rapport"
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Den tidligste utløpsdatoen er {EarliestExpirationDate}."
@@ -1909,12 +1894,12 @@ msgid "Please remember to check them before they are deleted."
 msgstr "Husk å sjekke dem før de blir slettet."
 
 msgid "Some reports will expire soon"
-msgstr ""
+msgstr "Noen rapporter vil utløpe snart"
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr ""
+msgstr "Denne e-posten informerer deg om at en fløyteblåser har valgt deg som en verdifull mottaker av rapporten."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -1922,22 +1907,22 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr ""
+msgstr "Du må være spesielt oppmerksom på informasjonen og materialet i den. Husk at fløyteblåsere ofte utsetter seg for høy personlig risiko i allmennhetens interesse. Materialet i denne rapporten må betraktes som å ha stor betydning."
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr ""
+msgstr "Denne e-posten vil informere deg om at en eksisterende rapport har blitt oppdatert."
 
 msgid "Report updated"
-msgstr ""
+msgstr "Rapport oppdatert"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr ""
+msgstr "Denne e-posten minner deg om uleste eller oppdaterte rapporter."
 
 msgid "Reminder about unread or updated reports"
-msgstr ""
+msgstr "Påminnelse om uleste eller oppdaterte rapporter"
 
 msgid "Role: {Role}"
-msgstr ""
+msgstr "Rolle: {Role}"
 
 msgid "Password: {Password}"
-msgstr ""
+msgstr "Passord: {Password}"

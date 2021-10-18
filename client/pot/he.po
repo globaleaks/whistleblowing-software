@@ -9,6 +9,7 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # itaizand, 2020
 # ION, 2018-2020
+# itaizand, 2021
 # Jakub Jakubiak <jakub.jakubiak@gmail.com>, 2014
 # zxcsd <jenisjpl@gmail.com>, 2015
 # Magdalenaem <magdalena.morawiecka1@gmail.com>, 2015
@@ -19,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -113,7 +114,7 @@ msgid "YOUR NAME"
 msgstr "שמך"
 
 msgid "Label the report"
-msgstr ""
+msgstr "סווג את הדוח"
 
 msgid "Postpone the expiration date"
 msgstr "דחה את תאריך התפוגה"
@@ -414,7 +415,7 @@ msgid "New"
 msgstr "חדש"
 
 msgid "Opened"
-msgstr ""
+msgstr "נפתח"
 
 msgid "Closed"
 msgstr "סגור"
@@ -455,7 +456,7 @@ msgstr "איפוס סיסמה"
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr ""
+msgstr "נמען אחד או יותר לא ביצעו חיבור ראשוני. לכן, הם לא יקבלו דוחות"
 
 msgid "This user has not performed the first login yet."
 msgstr "המשתמש/ת עוד לא נרשמו "
@@ -464,10 +465,10 @@ msgid "seconds"
 msgstr "שניות"
 
 msgid "This domain name is not available."
-msgstr ""
+msgstr "שם הכתובת לא זמין"
 
 msgid "Mark as important"
-msgstr ""
+msgstr "סמן כחשוב"
 
 msgid "Copy to clipboard"
 msgstr "העתק ללוח גזירה"
@@ -476,10 +477,10 @@ msgid "Logout"
 msgstr "התנתק"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
+msgstr "תן לנמען יכלת לתת גישה למשתמשים אל הדוחות"
 
 msgid "Grant access"
-msgstr ""
+msgstr "תן גישה"
 
 msgid "Revoke access"
 msgstr ""
@@ -823,26 +824,20 @@ msgstr "דוגמה:"
 msgid "Hostname"
 msgstr "שם מארח"
 
-msgid "Invalid input format."
-msgstr ""
+msgid "Organization"
+msgstr "ארגון"
 
-msgid "Input should be similar to:"
-msgstr ""
-
-msgid "Country code"
-msgstr "קוד מדינה"
+msgid "Invalid email address"
+msgstr "כתובת דוא״ל בלתי תקפה"
 
 msgid "City"
 msgstr "עיר"
 
-msgid "Organization"
-msgstr "ארגון"
+msgid "Country"
+msgstr "מדינה"
 
-msgid "Organizational unit"
-msgstr "יחידת ארגון"
-
-msgid "Invalid email address"
-msgstr "כתובת דוא״ל בלתי תקפה"
+msgid "Country code"
+msgstr "קוד מדינה"
 
 msgid "Generate"
 msgstr "חולל"
@@ -1098,9 +1093,6 @@ msgstr ""
 msgid "Use the first site for administrative purposes only"
 msgstr ""
 
-msgid "Enable multi-site login"
-msgstr ""
-
 msgid "Allow users to sign up"
 msgstr "התר למשתמשים להירשם"
 
@@ -1191,9 +1183,6 @@ msgstr "אימות נכשל"
 msgid "The code is either invalid or expired."
 msgstr ""
 
-msgid "Site:"
-msgstr "אתר:"
-
 msgid "Please select your account:"
 msgstr "אנא בחר את חשבונך"
 
@@ -1225,9 +1214,6 @@ msgid "Before proceeding please read carefully the documentation at:"
 msgstr ""
 
 msgid "Account recovery key"
-msgstr ""
-
-msgid "Your account recovery key is:"
 msgstr ""
 
 msgid ""
@@ -1447,7 +1433,7 @@ msgid "Enter your email address to request a password reset."
 msgstr ""
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr ""
 
 msgid "Password reset requested."

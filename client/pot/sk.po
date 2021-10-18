@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -819,26 +819,20 @@ msgstr "Príklad:"
 msgid "Hostname"
 msgstr "Hostiteľské meno"
 
-msgid "Invalid input format."
-msgstr "Neplatný vstupný formát."
+msgid "Organization"
+msgstr "Organizácia"
 
-msgid "Input should be similar to:"
-msgstr "Vstup by mal byť podobný:"
-
-msgid "Country code"
-msgstr "Kód krajiny"
+msgid "Invalid email address"
+msgstr "Neplatná emailová adresa"
 
 msgid "City"
 msgstr "Mesto"
 
-msgid "Organization"
-msgstr "Organizácia"
+msgid "Country"
+msgstr "Štát"
 
-msgid "Organizational unit"
-msgstr "Organizačná jednotka"
-
-msgid "Invalid email address"
-msgstr "Neplatná emailová adresa"
+msgid "Country code"
+msgstr "Kód krajiny"
 
 msgid "Generate"
 msgstr "Generovať"
@@ -1094,9 +1088,6 @@ msgstr "Koreňová doména pre sekundárne stránky"
 msgid "Use the first site for administrative purposes only"
 msgstr "Prvú stranu použite len pre účely administrácie."
 
-msgid "Enable multi-site login"
-msgstr "Povoliť prihlásenie na viacero stránok"
-
 msgid "Allow users to sign up"
 msgstr "Povoliť používateľom registráciu"
 
@@ -1187,9 +1178,6 @@ msgstr "Overenie zlyhalo"
 msgid "The code is either invalid or expired."
 msgstr "Kód je neplatný alebo vypršal."
 
-msgid "Site:"
-msgstr "Stránka:"
-
 msgid "Please select your account:"
 msgstr "Vyberte, prosím, svoj účet:"
 
@@ -1222,9 +1210,6 @@ msgstr "Než budete pokračovať, prečítajte si pozorne dokumentáciu na adres
 
 msgid "Account recovery key"
 msgstr "Kľúč na obnovenie účtu"
-
-msgid "Your account recovery key is:"
-msgstr "Kľúč pre obnovenie Vášho účtu je:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1443,7 +1428,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Zadajte svoju e-mailovú adresu pre reset hesla."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "Zadajte kľúč pre obnovenie šifrovanie a dokončite postup pre resetovanie hesla"
 
 msgid "Password reset requested."

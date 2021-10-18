@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -813,26 +813,20 @@ msgstr "例:"
 msgid "Hostname"
 msgstr "ホスト名"
 
-msgid "Invalid input format."
-msgstr "不正な入力形式。"
+msgid "Organization"
+msgstr "組織"
 
-msgid "Input should be similar to:"
-msgstr "入力は次のようになります:"
-
-msgid "Country code"
-msgstr "国コード"
+msgid "Invalid email address"
+msgstr "無効なメールアドレスです"
 
 msgid "City"
 msgstr "市区町村"
 
-msgid "Organization"
-msgstr "組織"
+msgid "Country"
+msgstr "国"
 
-msgid "Organizational unit"
-msgstr "組織の単位"
-
-msgid "Invalid email address"
-msgstr "無効なメールアドレスです"
+msgid "Country code"
+msgstr "国コード"
 
 msgid "Generate"
 msgstr "生成"
@@ -1088,9 +1082,6 @@ msgstr "二番目のサイトで使用するルートドメイン"
 msgid "Use the first site for administrative purposes only"
 msgstr "管理目的に最初のサイトのみ使用する"
 
-msgid "Enable multi-site login"
-msgstr "マルチサイトログインを有効にする"
-
 msgid "Allow users to sign up"
 msgstr "ユーザーによるサインアップを許可"
 
@@ -1181,9 +1172,6 @@ msgstr "認証に失敗しました"
 msgid "The code is either invalid or expired."
 msgstr "コードが正しくないか、有効期限切れです。"
 
-msgid "Site:"
-msgstr "サイト:"
-
 msgid "Please select your account:"
 msgstr "あなたのアカウントを選択してください:"
 
@@ -1216,9 +1204,6 @@ msgstr "先に進む前に、次のドキュメントを注意深くお読みく
 
 msgid "Account recovery key"
 msgstr "アカウント回復鍵"
-
-msgid "Your account recovery key is:"
-msgstr "あなたのアカウントの回復鍵は:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1437,7 +1422,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "パスワードの再設定をリクエストするには、メールアドレスを入力してください。"
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "暗号化回復鍵を入力して、パスワードのリセット手順を完了してください"
 
 msgid "Password reset requested."

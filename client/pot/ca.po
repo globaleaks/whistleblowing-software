@@ -9,7 +9,7 @@
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2021
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
-# Joan Bitlloch <joanbit@gmail.com>, 2017-2020
+# Joan Bitlloch <joanbit@gmail.com>, 2017-2021
 # Joan Montané, 2020
 # Josep Anton Rius <j.rius.cat@gmail.com>, 2016
 # Maddish Falzoni <maddish@xnet-x.net>, 2016
@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -405,7 +405,7 @@ msgid "Select"
 msgstr "Selecciona"
 
 msgid "Deselect"
-msgstr ""
+msgstr "Desselecciona-ho"
 
 msgid "Surname"
 msgstr "Cognom"
@@ -467,7 +467,7 @@ msgid "This domain name is not available."
 msgstr "Aquest nom de domini no està disponible."
 
 msgid "Mark as important"
-msgstr ""
+msgstr "Destaca"
 
 msgid "Copy to clipboard"
 msgstr "Copia al porta-retalls"
@@ -476,16 +476,16 @@ msgid "Logout"
 msgstr "Tanca sessió"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
+msgstr "Doneu a aquest destinatari la possibilitat de concedir accés als usuaris als informes"
 
 msgid "Grant access"
-msgstr ""
+msgstr "Concedir accés"
 
 msgid "Revoke access"
 msgstr "Revoca l'accés"
 
 msgid "File a report"
-msgstr ""
+msgstr "Presentar un informe"
 
 msgid "Select the context of your report:"
 msgstr "Selecciona el context del teu informe:"
@@ -530,7 +530,7 @@ msgid "Enable administrators to change user passwords"
 msgstr "Habiliteu als administradors per canviar les contrasenyes d’usuari"
 
 msgid "Administrators authorized to change user passwords:"
-msgstr ""
+msgstr "Administradors autoritzats a canviar les contrasenyes dels usuaris:"
 
 msgid "Enable multisite feature"
 msgstr "Activa la funció multi lloc"
@@ -576,7 +576,7 @@ msgid "Set the value to 0 to disable this feature."
 msgstr "Establiu el valor a 0 per desactivar aquesta funció."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr ""
+msgstr "Nombre de dies fins a la notificació d'informes no llegits als usuaris"
 
 msgid "Enable custodian user role"
 msgstr "Activa el rol d'usuari de guardià"
@@ -585,7 +585,7 @@ msgid "Enable scoring system"
 msgstr "Activa el sistema de puntuació"
 
 msgid "Enable private annotations"
-msgstr ""
+msgstr "Activa les anotacions privades"
 
 msgid "Logging level"
 msgstr "Nivell de registre"
@@ -623,10 +623,10 @@ msgid "Type"
 msgstr "Tipus"
 
 msgid "Severity"
-msgstr ""
+msgstr "Gravetat"
 
 msgid "Object"
-msgstr ""
+msgstr "Objecte"
 
 msgid "ID"
 msgstr "Id."
@@ -695,7 +695,7 @@ msgid "Whistleblowing button"
 msgstr "Botó de l'informador"
 
 msgid "Disclaimer"
-msgstr ""
+msgstr "Exempció de responsabilitat"
 
 msgid "Footer"
 msgstr "Peu de pàgina"
@@ -823,26 +823,20 @@ msgstr "Exemple:"
 msgid "Hostname"
 msgstr "Domini"
 
-msgid "Invalid input format."
-msgstr "Format d'entrada no vàlid"
+msgid "Organization"
+msgstr "Organització"
 
-msgid "Input should be similar to:"
-msgstr "L'entrada hauria de ser similar a:"
-
-msgid "Country code"
-msgstr "Codi de país"
+msgid "Invalid email address"
+msgstr "Adreça electrònica no vàlida"
 
 msgid "City"
 msgstr "Població"
 
-msgid "Organization"
-msgstr "Organització"
+msgid "Country"
+msgstr "País"
 
-msgid "Organizational unit"
-msgstr "Unitat organitzativa"
-
-msgid "Invalid email address"
-msgstr "Adreça electrònica no vàlida"
+msgid "Country code"
+msgstr "Codi de país"
 
 msgid "Generate"
 msgstr "Genera"
@@ -1098,9 +1092,6 @@ msgstr "Domini arrel utilitzat per a llocs secundaris"
 msgid "Use the first site for administrative purposes only"
 msgstr "Utilitzeu el primer web només per a fins administratius"
 
-msgid "Enable multi-site login"
-msgstr "Permet l'inici de sessió simultani a diversos llocs"
-
 msgid "Allow users to sign up"
 msgstr "Permetre als usuaris registrar-se"
 
@@ -1159,7 +1150,7 @@ msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Permet al destinatari ajornar la data d'expiració de l'informe"
 
 msgid "Give the user administrative access to the following features:"
-msgstr ""
+msgstr "Doneu a l'usuari accés administratiu a les funcions següents:"
 
 msgid "Request date"
 msgstr "Data de sol·licitud"
@@ -1171,7 +1162,7 @@ msgid "Authorization"
 msgstr "Autorització"
 
 msgid "Requests"
-msgstr ""
+msgstr "Sol·licituds"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "El vincle de validació és incorrecte o ha caducat."
@@ -1190,9 +1181,6 @@ msgstr "Autentificació fallida"
 
 msgid "The code is either invalid or expired."
 msgstr "El codi és invàlid o l'enviament ha expirat."
-
-msgid "Site:"
-msgstr "Lloc web:"
 
 msgid "Please select your account:"
 msgstr "Si us plau, selecciona el teu compte:"
@@ -1227,9 +1215,6 @@ msgstr "Abans de continuar, llegiu atentament la documentació a:"
 msgid "Account recovery key"
 msgstr "Clau de recuperació del compte"
 
-msgid "Your account recovery key is:"
-msgstr "La vostra clau de recuperació del compte és:"
-
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
@@ -1239,10 +1224,10 @@ msgid "Enter a name for the copy"
 msgstr "Introduïu un nom per a la còpia"
 
 msgid "Request support"
-msgstr ""
+msgstr "Petició d'ajuda"
 
 msgid "Thank you."
-msgstr ""
+msgstr "Gràcies"
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "Intentarem donar resposta més aviat possible."
@@ -1345,7 +1330,7 @@ msgstr "Es requereix confirmació de l'anterior contrasenya"
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr ""
+msgstr "Us recomanem que visiteu aquest lloc mitjançant l'aplicació anomenada Tor Browser, que protegeix la vostra identitat."
 
 msgid "Download the Tor Browser"
 msgstr "Descarrega el navegador \"Tor\""
@@ -1430,7 +1415,7 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
+msgstr "Us recomanem que accediu a la secció \"Preferències\" per recuperar la vostra \"Clau de recuperació del compte\" i desar-la de manera segura. Aquesta clau serà necessària per recuperar el vostre accés a la plataforma i a les vostres dades en cas que oblideu la contrasenya."
 
 msgid "The provided recovery key is invalid."
 msgstr "La clau de recuperació proporcionada no és vàlida."
@@ -1447,8 +1432,8 @@ msgid "Enter your email address to request a password reset."
 msgstr "Introduïu la vostra adreça electrònica per sol·licitar la restauració de la contrasenya."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
-msgstr "Introduïu la clau de recuperació de xifratge per completar el procediment de restabliment de contrasenya"
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "Introduïu la clau de recuperació del compte per completar el procediment de restabliment de la contrasenya"
 
 msgid "Password reset requested."
 msgstr "S'ha sol·licitat la restauració de la contrasenya."
@@ -1498,7 +1483,7 @@ msgid "Invalid phone number"
 msgstr "Número de telèfon no vàlid"
 
 msgid "The answer is too short"
-msgstr "La respuesta es demasiado corta"
+msgstr "La resposta és massa curta"
 
 msgid "The specified input is not valid."
 msgstr "La informació que has introduït no és vàlida."
@@ -1538,7 +1523,7 @@ msgid "Recipient selection"
 msgstr "Selecciona el destinatari"
 
 msgid "Select the recipients of your report:"
-msgstr ""
+msgstr "Seleccioneu els destinataris de l'informe:"
 
 msgid "Recipients selected:"
 msgstr "Destinataris seleccionats:"
@@ -1549,7 +1534,7 @@ msgstr "Has arribat al límit de nombre màxim de destinataris permesos."
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr ""
+msgstr "Els destinataris següents rebran el vostre informe obligatòriament:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1577,20 +1562,20 @@ msgid "Please choose a configuration profile:"
 msgstr "Seleccioneu un perfil de configuració:"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr ""
+msgstr "Feu possible que aquest administrador restableixi les contrasenyes dels usuaris."
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr ""
+msgstr "Us recomanem que seleccioneu aquesta opció si voleu protegir les dades de la pèrdua en cas que els destinataris perdin la contrasenya. D'altra banda, no us aconsellaríem utilitzar aquesta funció si voleu configurar un sistema on només els destinataris puguin accedir als enviaments."
 
 msgid "Please choose a different username."
 msgstr "Seleccioneu un nom d’usuari diferent."
 
 msgid "I have read and agree to the terms of the license."
-msgstr ""
+msgstr "He llegit i accepto els termes de la llicència."
 
 msgid "You have completed the platform wizard."
 msgstr "Has completat amb èxit l'assistent de la plataforma."
@@ -1617,13 +1602,13 @@ msgid "Last name"
 msgstr "Cognom(s)"
 
 msgid "Alternative contact method"
-msgstr ""
+msgstr "Mètode de contacte alternatiu"
 
 msgid "Other"
 msgstr "Altres"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr ""
+msgstr "Prefereixo que em contactin només mitjançant aquesta plataforma"
 
 msgid "Dear {RecipientName},"
 msgstr "Benvolgut/uda {RecipientName},"
@@ -1909,7 +1894,7 @@ msgstr "Per obtenir instruccions sobre actualitzacions de programari, consulteu 
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "Aquest és un correu electrònic per notificar-vos que un destinatari us ha concedit accés a un o més informes."
 
 msgid "New report"
 msgstr "Nou informe"
@@ -1937,16 +1922,16 @@ msgid ""
 msgstr "Se us demana que presteu especial atenció a la informació i al material que conté. Tingueu en compte que els informadors sovint s'exposen a riscos personals elevats en interès del públic. Per tant, el material proporcionat dins d'aquest informe ha de ser considerat de gran importància."
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr ""
+msgstr "Es tracta d’un correu electrònic per notificar que s’ha actualitzat un informe existent."
 
 msgid "Report updated"
-msgstr ""
+msgstr "Informe actualitzat"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr ""
+msgstr "Aquest correu electrònic us recorda la presència d’informes no llegits o actualitzats."
 
 msgid "Reminder about unread or updated reports"
-msgstr ""
+msgstr "Recordatori sobre els informes no llegits o actualitzats"
 
 msgid "Role: {Role}"
 msgstr "Rol: {Role}"

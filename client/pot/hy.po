@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Armenian (http://www.transifex.com/otf/globaleaks/language/hy/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -810,26 +810,20 @@ msgstr "Օրինակ՝"
 msgid "Hostname"
 msgstr "Սերվերի հասցեն"
 
-msgid "Invalid input format."
-msgstr "Մուտքի անվավեր ձևաչափ:"
+msgid "Organization"
+msgstr "Կազմակերպություն"
 
-msgid "Input should be similar to:"
-msgstr "Մուտքը պետք է համանման լինի՝"
-
-msgid "Country code"
-msgstr "Երկրի կոդ"
+msgid "Invalid email address"
+msgstr "Անվավեր Էլեկտրոնային հասցե"
 
 msgid "City"
 msgstr "Քաղաք"
 
-msgid "Organization"
-msgstr "Կազմակերպություն"
+msgid "Country"
+msgstr ""
 
-msgid "Organizational unit"
-msgstr "Կազմակերպչական միավոր"
-
-msgid "Invalid email address"
-msgstr "Անվավեր Էլեկտրոնային հասցե"
+msgid "Country code"
+msgstr "Երկրի կոդ"
 
 msgid "Generate"
 msgstr "Գեներացնել"
@@ -1085,9 +1079,6 @@ msgstr "Արմատային դոմեն, որն օգտագործվում է երկ
 msgid "Use the first site for administrative purposes only"
 msgstr "Օգտագործել առաջին կայքը միայն վարչական նպատակներով"
 
-msgid "Enable multi-site login"
-msgstr "Թույլատրել մուտքը բազմակի կայքեր"
-
 msgid "Allow users to sign up"
 msgstr "Թույլատրել օգտատերերին գրանցվել"
 
@@ -1178,9 +1169,6 @@ msgstr "Նույնականացումը չհաջողվեց"
 msgid "The code is either invalid or expired."
 msgstr "Կոդն անվավեր է, կամ ժամկետանց:"
 
-msgid "Site:"
-msgstr "Կայք՝"
-
 msgid "Please select your account:"
 msgstr "Խնդրում ենք ընտրել ձեր հաշիվը."
 
@@ -1213,9 +1201,6 @@ msgstr "Շարունակելուց առաջ ուշադիր ծանոթացեք տ
 
 msgid "Account recovery key"
 msgstr "Հաշվի վերականգնման բանալի"
-
-msgid "Your account recovery key is:"
-msgstr "Ձեր հաշվի վերականգնման բանալին է."
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1434,7 +1419,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Գրեք ձեր էլեկտրոնային հասցեն՝ գաղտնաբառը վերականգնելու համար։"
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "Մուտքագրեք ձեր ծածկագրման վերականգնման բանալին՝ գաղտնաբառի վերականգնման ընթացակարգն ավարտելու համար"
 
 msgid "Password reset requested."

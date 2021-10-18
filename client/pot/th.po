@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -817,26 +817,20 @@ msgstr "ตัวอย่าง:"
 msgid "Hostname"
 msgstr "ชื่อโฮสต์"
 
-msgid "Invalid input format."
-msgstr "รูปแบบอินพุทไม่ถูกต้อง"
+msgid "Organization"
+msgstr "องค์กร"
 
-msgid "Input should be similar to:"
-msgstr "อินพุทควรมีลักษณะเดียวกับ:"
-
-msgid "Country code"
-msgstr "รหัสประเทศ"
+msgid "Invalid email address"
+msgstr "ที่อยู่อีเมลไม่ถูกต้อง"
 
 msgid "City"
 msgstr "เมือง"
 
-msgid "Organization"
-msgstr "องค์กร"
+msgid "Country"
+msgstr "ประเทศ"
 
-msgid "Organizational unit"
-msgstr "หน่วยภายในองค์กร"
-
-msgid "Invalid email address"
-msgstr "ที่อยู่อีเมลไม่ถูกต้อง"
+msgid "Country code"
+msgstr "รหัสประเทศ"
 
 msgid "Generate"
 msgstr "สร้าง"
@@ -1092,9 +1086,6 @@ msgstr "โดเมนรากถูกใช้สำหรับไซต์
 msgid "Use the first site for administrative purposes only"
 msgstr "ใช้งานเว็บไซต์แรกเพื่อจุดประสงค์ในการจัดการดูแลเท่านั้น"
 
-msgid "Enable multi-site login"
-msgstr "เปิดใช้งานการลงชื่อเข้าใช้แบบหลายเว็บไซต์"
-
 msgid "Allow users to sign up"
 msgstr "อนุญาตให้ผู้ใช้ลงชื่อสมัคร"
 
@@ -1185,9 +1176,6 @@ msgstr "การยืนยันตัวตนล้มเหลว"
 msgid "The code is either invalid or expired."
 msgstr "รหัสไม่ถูกต้องหรือหมดอายุแล้ว"
 
-msgid "Site:"
-msgstr "ไซต์:"
-
 msgid "Please select your account:"
 msgstr "กรุณาเลือกบัญชีของคุณ:"
 
@@ -1220,9 +1208,6 @@ msgstr "ก่อนจะไปต่อ กรุณาอ่านเอก�
 
 msgid "Account recovery key"
 msgstr "กุญแจกู้คืนบัญชี"
-
-msgid "Your account recovery key is:"
-msgstr "กุญแจกู้คืนบัญชีของคุณคือ:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1441,7 +1426,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "ใส่ที่อยู่อีเมลของคุณ เพื่อขอให้ล้างและตั้งรหัสผ่านใหม่"
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "ใส่กุญแจกู้คืนการเข้ารหัสลับของคุณ เพื่อทำให้กระบวนการตั้งรหัสผ่านใหม่สมบูรณ์"
 
 msgid "Password reset requested."

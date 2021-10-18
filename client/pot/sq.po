@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-10-16 16:49+0000\n"
+"Last-Translator: Anja Xhakani <anja@ura.design>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,7 +24,7 @@ msgid "Log in"
 msgstr "Hyni"
 
 msgid "Main configuration"
-msgstr "Formësimi kryesor"
+msgstr "Konfigurimi kryesor"
 
 msgid "Theme customization"
 msgstr "Përshtatje teme"
@@ -54,13 +54,13 @@ msgid "Changelog"
 msgstr "Regjistër ndryshimesh"
 
 msgid "License"
-msgstr "Licencë"
+msgstr "Licensë"
 
 msgid "Notification templates"
-msgstr "Gjedhe njoftimesh"
+msgstr "Shabllone njoftimesh"
 
 msgid "Delete"
-msgstr "Fshije"
+msgstr "Fshi"
 
 msgid "Anomalies"
 msgstr "Anomali"
@@ -72,7 +72,7 @@ msgid "Notification settings"
 msgstr "Rregullime njoftimesh"
 
 msgid "file unavailable"
-msgstr "kartelë jo e passhme"
+msgstr "Skedar i padisponueshëm"
 
 msgid "Date"
 msgstr "Datë"
@@ -84,7 +84,7 @@ msgid "Last Access"
 msgstr "Hyrja e Fundit"
 
 msgid "Files"
-msgstr "Kartela"
+msgstr "Skedarë"
 
 msgid "Comments"
 msgstr "Komente"
@@ -105,13 +105,13 @@ msgid "YOUR NAME"
 msgstr "EMRI JUAJ"
 
 msgid "Label the report"
-msgstr "I vini raportimit një etiketë"
+msgstr "Etiketo raportimin"
 
 msgid "Postpone the expiration date"
 msgstr "Shtyjini datën e skadimit"
 
 msgid "Select all"
-msgstr "Përzgjidhi krejt"
+msgstr "Përzgjidh të gjitha"
 
 msgid "Deselect all"
 msgstr "Shpërzgjidhi krejt"
@@ -212,7 +212,7 @@ msgid "Status"
 msgstr "Gjendje"
 
 msgid "Request motivation"
-msgstr "Motivim kërkese"
+msgstr "Kërko motivim"
 
 msgid "Reply motivation"
 msgstr "Motivim përgjigjeje"
@@ -254,16 +254,16 @@ msgid "Authorize"
 msgstr "Autorizoje"
 
 msgid "Deny"
-msgstr "Hidhe poshtë"
+msgstr "Refuzo"
 
 msgid "Deny access to the whistleblower's identity"
-msgstr "Hidhe poshtë kërkesën për hyrje te identiteti i nxjerrësit të së fshehtës"
+msgstr "Refuzo kërkesën për hyrje te identiteti i nxjerrësit të së fshehtës"
 
 msgid "Authorize access to the whistleblower's identity"
-msgstr "Autorizoni hyrje te identiteti i nxjerrësit të së fshehtës"
+msgstr "Autorizo hyrje te identiteti i nxjerrësit të së fshehtës"
 
 msgid "Templates"
-msgstr "Gjedhe"
+msgstr "Shabllone"
 
 msgid "URL redirects"
 msgstr "Ridrejtime URL-sh"
@@ -278,13 +278,13 @@ msgid "Last update"
 msgstr "Përditësimi i fundit më"
 
 msgid "Disable notifications to administrators"
-msgstr "Çaktivizo njoftimet për përgjegjësit"
+msgstr "Ç'aktivizo njoftimet për përgjegjësit"
 
 msgid "Disable notifications to custodians"
-msgstr "Çaktivizoni njoftimet për ruajtësit"
+msgstr "Ç'aktivizo njoftimet për ruajtësit"
 
 msgid "Disable notifications to recipients"
-msgstr "Çaktivizo njoftimet për marrësit"
+msgstr "Ç'aktivizo njoftimet për marrësit"
 
 msgid "Score"
 msgstr "Pikë"
@@ -314,13 +314,13 @@ msgid "Turn on email notifications"
 msgstr "Aktivizo njoftime me email"
 
 msgid "Input validation"
-msgstr "Vlerësim i çka jepet"
+msgstr "Vlerësim i hyrjeve"
 
 msgid "Email address"
 msgstr "Adresë email"
 
 msgid "Custom"
-msgstr "Vetjake"
+msgstr "Personalizo"
 
 msgid "None"
 msgstr "Asnjë"
@@ -337,7 +337,7 @@ msgid ""
 msgstr "Ky tekst vetjak nuk shfaqet më te platforma. Ose teksti origjinal është ndryshuar, ose është hequr."
 
 msgid "Audit log"
-msgstr ""
+msgstr "Regjistër auditimi"
 
 msgid "Stats"
 msgstr "Statistika"
@@ -358,19 +358,19 @@ msgid "Number of downloads"
 msgstr "Numër shkarkimesh"
 
 msgid "File size not accepted."
-msgstr "Madhësi kartele jo e pranuar."
+msgstr "Madhësi skedari e papranuar."
 
 msgid "Maximum file size is:"
-msgstr "Madhësia maksimum për kartela është:"
+msgstr "Madhësia maksimum për skedarët është:"
 
 msgid "Scheduled jobs"
-msgstr "Akte të planifikuar"
+msgstr "Akte të planifikuara"
 
 msgid "Sites management"
 msgstr "Administrim sajtesh"
 
 msgid "Regenerate"
-msgstr "Riprodhoji"
+msgstr "Riprodho"
 
 msgid "Display options alphabetically"
 msgstr "Mundësitë shfaqi alfabetikisht"
@@ -379,7 +379,7 @@ msgid "Enable email notifications for:"
 msgstr "Aktivizo njoftime me email për:"
 
 msgid "Disable"
-msgstr "Çaktivizoje"
+msgstr "Ç'aktivizo"
 
 msgid "Remove"
 msgstr "Hiqe"
@@ -394,10 +394,10 @@ msgid "Expand"
 msgstr "Zgjeroje"
 
 msgid "Select"
-msgstr "Përzgjidhe"
+msgstr "Përzgjidh"
 
 msgid "Deselect"
-msgstr "Shpërzgjidhe"
+msgstr "Shpërzgjidh"
 
 msgid "Surname"
 msgstr "Mbiemër"
@@ -415,7 +415,7 @@ msgid "Placeholder"
 msgstr "Vendmbajtëse"
 
 msgid "Print"
-msgstr "Shtype"
+msgstr "Shtyp"
 
 msgid "Previous"
 msgstr "I mëparshmi"
@@ -447,7 +447,7 @@ msgstr "Ricaktim fjalëkalimi"
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr "Një ose disa marrës s’ka kryer ende hyrjen e parë. Kjo do të thotë se s’do të marrin raportime."
+msgstr "Një ose disa marrës s’kanë kryer ende hyrjen e parë. Kjo do të thotë se s’do të marrin raportime."
 
 msgid "This user has not performed the first login yet."
 msgstr "Ky përdorues s’ka kryer ende hyrjen e parë."
@@ -456,13 +456,13 @@ msgid "seconds"
 msgstr "sekonda"
 
 msgid "This domain name is not available."
-msgstr "Ky emër përkatësie s’është i passhëm."
+msgstr "Ky emër përkatësie s’është i disponueshëm."
 
 msgid "Mark as important"
 msgstr "Vëri shenjë si i rëndësishëm"
 
 msgid "Copy to clipboard"
-msgstr "Kopjoje në të papastër"
+msgstr "Kopjoje në tabelë kopjesh"
 
 msgid "Logout"
 msgstr "Dalje"
@@ -507,13 +507,13 @@ msgid "The new password must differ from the previous."
 msgstr "Fjalëkalimi i ri duhet të jetë i ndryshëm nga i mëparshmi."
 
 msgid "Proceed"
-msgstr "Kryeje"
+msgstr "Vazhdo më tej"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr "Para se të ecet më tej, ju lutemi, aktivizoni mirëfilltësimin dyfaktorësh."
+msgstr "Para se të ecet më tej, ju lutemi, aktivizoni konfigurimin dyfaktorësh."
 
 msgid "Disable submissions"
-msgstr "Çaktivizo parashtrime"
+msgstr "Ç'aktivizo parashtrime"
 
 msgid "Enable encryption"
 msgstr "Aktivizo fshehtëzim"
@@ -815,26 +815,20 @@ msgstr "Shembull:"
 msgid "Hostname"
 msgstr "Strehëemër"
 
-msgid "Invalid input format."
-msgstr "Format i pavlefshëm dhëniesh."
+msgid "Organization"
+msgstr "Ent"
 
-msgid "Input should be similar to:"
-msgstr "Ç’jepet, duhet të jetë e ngjashme me:"
-
-msgid "Country code"
-msgstr "Kod vendi"
+msgid "Invalid email address"
+msgstr "Adresë email e pavlefshme"
 
 msgid "City"
 msgstr "Qytet"
 
-msgid "Organization"
-msgstr "Ent"
+msgid "Country"
+msgstr "Vendi"
 
-msgid "Organizational unit"
-msgstr "Njësi organizative"
-
-msgid "Invalid email address"
-msgstr "Adresë email e pavlefshme"
+msgid "Country code"
+msgstr "Kod vendi"
 
 msgid "Generate"
 msgstr "Prodhoje"
@@ -1090,9 +1084,6 @@ msgstr "Përkatësi rrënjë e përdorur për sajte dytësorë"
 msgid "Use the first site for administrative purposes only"
 msgstr "Sajtin e parë përdore vetëm për qëllime administrative"
 
-msgid "Enable multi-site login"
-msgstr "Aktivizo hyrje për shumë sajte"
-
 msgid "Allow users to sign up"
 msgstr "Lejoju përdoruesve të regjistrohen"
 
@@ -1183,9 +1174,6 @@ msgstr "Mirëfilltësimi dështoi"
 msgid "The code is either invalid or expired."
 msgstr "Ose kodi i dhënë është i pavlefshëm, ose ka skaduar."
 
-msgid "Site:"
-msgstr "Sajt:"
-
 msgid "Please select your account:"
 msgstr "Ju lutemi, përzgjidhni llogarinë tuaj:"
 
@@ -1218,9 +1206,6 @@ msgstr "Përpara se të vazhdoni, ju lutemi, lexoni me kujdes dokumentimin, te:"
 
 msgid "Account recovery key"
 msgstr "Kyç rimarrjesh llogarie"
-
-msgid "Your account recovery key is:"
-msgstr "Kyçi juaj i rimarrjeve është:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1305,7 +1290,7 @@ msgid "Internal server error"
 msgstr "Gabim i brendshëm shërbyesi"
 
 msgid "Error on input validation"
-msgstr "Gabim në vlerësim të çka jepet"
+msgstr "Gabim në vlerësim të të dhënave"
 
 msgid "Resource not found"
 msgstr "Burimi s’u gjet"
@@ -1323,7 +1308,7 @@ msgid "The upload request exceeds the size limit"
 msgstr "Kërkesa për ngarkim tejkalon kufirin për madhësitë"
 
 msgid "Validation of email address change in progress."
-msgstr "Vlerësimi i ndryshimit të adresës email në ecuri e sipër."
+msgstr "Miratimi i ndryshimit të adresës email në ecuri e sipër."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Për udhëzime të mëtejshme, ju lutemi, kontrolloni mesazhet tuaj të marrë."
@@ -1332,18 +1317,18 @@ msgid "Current password"
 msgstr "Fjalëkalimi i tanishëm"
 
 msgid "Old password confirmation required"
-msgstr "Me ripohim doemos të fjalëkalimit të dikurshëm"
+msgstr "E nevojshme të konfirmohet fjalëkalimi i vjetër"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr "Këshilloheni me forcë ta vizitoni këtë sajt duke përdorur aplikacionin e quajtur Shfletues Tor, i cili mbron identitetin tuaj."
+msgstr "Ju këshillojmë ta vizitoni këtë sajt duke përdorur aplikacionin e quajtur Shfletues Tor, i cili mbron identitetin tuaj."
 
 msgid "Download the Tor Browser"
 msgstr "Shkarkoni Shfletuesin Tor"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "Mandej, kopjoni dhe ngjiteni adresën vijuese te Shfletuesi Tor:"
+msgstr "Më tutje, kopjoni dhe ngjiteni adresën vijuese te Shfletuesi Tor:"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Keni parashtruar tashmë një raportim? Jepni dëftesën tuaj."
@@ -1352,22 +1337,22 @@ msgid "The receipt is either invalid or the report has expired."
 msgstr "Ose dëftesa është e pavlefshme, ose raportimi ka skaduar."
 
 msgid "Select a file or drag it here."
-msgstr "Përzgjidhni një kartelë ose tërhiqeni këtu."
+msgstr "Përzgjidh një kartelë ose tërhiqeni këtu."
 
 msgid "Uploading files…"
-msgstr "Po ngarkohen kartela…"
+msgstr "Po ngarkohen skedarët…"
 
 msgid "Upload completed successfully!"
 msgstr "Ngarkimi u plotësua me sukses!"
 
 msgid "Error while uploading files; check below for details."
-msgstr "Gabim teksa ngarkoheshin kartela; për hollësi, shihni më poshtë."
+msgstr "Gabim teksa ngarkoheshin skedarë; për hollësi, shihni më poshtë."
 
 msgid "Estimated upload time:"
 msgstr "Kohë ngarkimi përafërsisht:"
 
 msgid "Size:"
-msgstr "Madhësi:"
+msgstr "Madhësia:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Marrësit kanë kërkuar që të plotësoni një pyetësor shtesë."
@@ -1376,7 +1361,7 @@ msgid "Fill the additional questionnaire"
 msgstr "Plotësoni pyetësorin shtesë"
 
 msgid "Allow the whistleblower to write comments"
-msgstr "Lejoji nxjerrësit të të fshehtës të shkruajë komente"
+msgstr "Lejoji nxjerrësit të së fshehtës të shkruajë komente"
 
 msgid "From:"
 msgstr "Nga:"
@@ -1439,7 +1424,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Që të kërkoni ricaktim fjalëkalimi, jepni adresën tuaj email."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "Që të plotësohet procedura e ricaktimit të fjalëkalimit, jepni kyçin tuaj të rimarrjes së fshehtëzimit"
 
 msgid "Password reset requested."

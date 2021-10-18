@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uighur (Latin) (http://www.transifex.com/otf/globaleaks/language/ug@Latin/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -391,7 +391,7 @@ msgid "Select"
 msgstr "Talla"
 
 msgid "Deselect"
-msgstr ""
+msgstr "Tallima"
 
 msgid "Surname"
 msgstr "Famile"
@@ -456,19 +456,19 @@ msgid "Mark as important"
 msgstr "Muhim dep belge qoy"
 
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Chaplaq taxtisigha chapla"
 
 msgid "Logout"
 msgstr "Tizimdin chiq"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
+msgstr "Bu tapshuriwalghuchigha ishletküchilerge doklatni ziyaret qilish hoquqi bérish iqtidari ber"
 
 msgid "Grant access"
-msgstr ""
+msgstr "Hoquq ber"
 
 msgid "Revoke access"
-msgstr ""
+msgstr "Hoquqni qayturiwal"
 
 msgid "File a report"
 msgstr "Bir doklat yolla"
@@ -681,7 +681,7 @@ msgid "Whistleblowing button"
 msgstr "Pash qilish kunupkisi"
 
 msgid "Disclaimer"
-msgstr ""
+msgstr "Mes’ul bolmasliq bayanati"
 
 msgid "Footer"
 msgstr "Bet asti"
@@ -809,26 +809,20 @@ msgstr "Mesilen:"
 msgid "Hostname"
 msgstr "Mulazimétir nami"
 
-msgid "Invalid input format."
-msgstr "Inawetsiz kirgüzüsh shekli"
+msgid "Organization"
+msgstr "Organ"
 
-msgid "Input should be similar to:"
-msgstr "Buninggha oxshash kirgüzüsh kérekti:"
-
-msgid "Country code"
-msgstr "Dölet kodi"
+msgid "Invalid email address"
+msgstr "Inawetsiz élxet adrési"
 
 msgid "City"
 msgstr "Sheher"
 
-msgid "Organization"
-msgstr "Organ"
+msgid "Country"
+msgstr "Dölet"
 
-msgid "Organizational unit"
-msgstr "Organ bölümi"
-
-msgid "Invalid email address"
-msgstr "Inawetsiz élxet adrési"
+msgid "Country code"
+msgstr "Dölet kodi"
 
 msgid "Generate"
 msgstr "Hasillash"
@@ -873,7 +867,7 @@ msgstr "Aptumatik HTTPS seplimisini ishlitish,  Let's Encrypt orginidin guwahnam
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
 "hostname must have a DNS record referencing that address."
-msgstr "Бу супиға аммиви IP адреси билән бағланғили болиши вә талланған мулазиметер наминиң бу адресқа мунасип ДНС рекорти болуши керәк."
+msgstr "Bu supigha ammiwi IP adrési bilen baghlanghili bolishi we tallanghan mulazimétér namining bu adrésqa munasip DNS rékorti bolushi kérek."
 
 msgid "Manual configuration"
 msgstr "Qolda seplime"
@@ -1084,9 +1078,6 @@ msgstr "Ikkilemchi tor béketlerge ishlitilidighan yiltiz da’ire"
 msgid "Use the first site for administrative purposes only"
 msgstr "Birinchi béketni peqetla bashqurush meqsitide ishlet"
 
-msgid "Enable multi-site login"
-msgstr "Köp béket tizimgha kirishini qozghat"
-
 msgid "Allow users to sign up"
 msgstr "Ishletküchilerning tizimlitishigha ruxset qil"
 
@@ -1177,9 +1168,6 @@ msgstr "Toghrulash meghlup boldi"
 msgid "The code is either invalid or expired."
 msgstr "Bu kod inawetsiz yaki sürüki toshqan."
 
-msgid "Site:"
-msgstr "Béket:"
-
 msgid "Please select your account:"
 msgstr "Hésabingizni tallang:"
 
@@ -1213,9 +1201,6 @@ msgstr "Dawam qilishtin burun bu yerdiki höjjetni estayidil oqung:"
 msgid "Account recovery key"
 msgstr "Hésap eslige keltürüsh achquchi"
 
-msgid "Your account recovery key is:"
-msgstr "Hésabatingizni eslige keltürüsh achquchi:"
-
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
@@ -1225,7 +1210,7 @@ msgid "Enter a name for the copy"
 msgstr "Kupiye üchün bir nam kirgüzüng"
 
 msgid "Request support"
-msgstr ""
+msgstr "Yardem telep"
 
 msgid "Thank you."
 msgstr "Rehmet sizge."
@@ -1433,8 +1418,8 @@ msgid "Enter your email address to request a password reset."
 msgstr "Élxet adrésingizni kirgüzüp parolingizni qayta sepleshni telep qiling."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
-msgstr "Parol qayta seplesh jeryanini tamamlash üchün shifirlen’gen eslige keltürüsh achquchini kirgüzüng"
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "Parolni qayta seplesh jeryanini tamamlash üchün hésabatingizning eslige keltürüsh achquchini kirgüzüng"
 
 msgid "Password reset requested."
 msgstr "Parolingizni qayta seplesh telep qilindi."
@@ -1603,13 +1588,13 @@ msgid "Last name"
 msgstr "Familisi"
 
 msgid "Alternative contact method"
-msgstr ""
+msgstr "Bashqa alaqe usuli"
 
 msgid "Other"
 msgstr "Bashqa"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr ""
+msgstr "Peqetla bu supa arqiliq méning bilen alaqilashsun"
 
 msgid "Dear {RecipientName},"
 msgstr "‏Qedirlik {RecipientName},"
@@ -1895,7 +1880,7 @@ msgstr "Yumshaq détalni yéngilash körsetmisi üchün, bu yerdiki höjjetlerdi
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "Bu élxet sizge tapshuriwalghuchining bir yaki bir nechche doklatni ziyaret hoquqi bergenlikini uqturush üchündur."
 
 msgid "New report"
 msgstr "Yéngi doklat"

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uyghur (http://www.transifex.com/otf/globaleaks/language/ug/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -393,7 +393,7 @@ msgid "Select"
 msgstr "تاللا"
 
 msgid "Deselect"
-msgstr ""
+msgstr "تاللىما"
 
 msgid "Surname"
 msgstr "فامىلە"
@@ -464,13 +464,13 @@ msgid "Logout"
 msgstr "تىزىمدىن چىق"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
+msgstr "بۇ تاپشۇرىۋالغۇچىغا ئىشلەتكۈچىلەرگە دوكلاتنى زىيارەت قىلىش ھوقۇقى بېرىش ئىقتىدارى بەر"
 
 msgid "Grant access"
-msgstr ""
+msgstr "ھوقۇق بەر"
 
 msgid "Revoke access"
-msgstr ""
+msgstr "ھوقۇقنى قايتۇرىۋال"
 
 msgid "File a report"
 msgstr "بىر دوكلات يوللا"
@@ -683,7 +683,7 @@ msgid "Whistleblowing button"
 msgstr "پاش قىلىش كۇنۇپكىسى"
 
 msgid "Disclaimer"
-msgstr ""
+msgstr "مەسئۇل بولماسلىق باياناتى"
 
 msgid "Footer"
 msgstr "بەت ئاستى"
@@ -811,26 +811,20 @@ msgstr "مەسىلەن:"
 msgid "Hostname"
 msgstr "مۇلازىمېتىر نامى"
 
-msgid "Invalid input format."
-msgstr "ئىناۋەتسىز كىرگۈزۈش شەكلى"
+msgid "Organization"
+msgstr "ئورگان"
 
-msgid "Input should be similar to:"
-msgstr "بۇنىڭغا ئوخشاش كىرگۈزۈش كېرەكتى:"
-
-msgid "Country code"
-msgstr "دۆلەت كودى"
+msgid "Invalid email address"
+msgstr "ئىناۋەتسىز ئېلخەت ئادرېسى"
 
 msgid "City"
 msgstr "شەھەر"
 
-msgid "Organization"
-msgstr "ئورگان"
+msgid "Country"
+msgstr "دۆلەت"
 
-msgid "Organizational unit"
-msgstr "ئورگان بۆلۈمى"
-
-msgid "Invalid email address"
-msgstr "ئىناۋەتسىز ئېلخەت ئادرېسى"
+msgid "Country code"
+msgstr "دۆلەت كودى"
 
 msgid "Generate"
 msgstr "ھاسىللاش"
@@ -1086,9 +1080,6 @@ msgstr "ئىككىلەمچى تور بېكەتلەرگە ئىشلىتىلىدى�
 msgid "Use the first site for administrative purposes only"
 msgstr "بىرىنچى بېكەتنى پەقەتلا باشقۇرۇش مەقسىتىدە ئىشلەت"
 
-msgid "Enable multi-site login"
-msgstr "كۆپ بېكەت تىزىمغا كىرىشىنى قوزغات"
-
 msgid "Allow users to sign up"
 msgstr "ئىشلەتكۈچىلەرنىڭ تىزىملىتىشىغا رۇخسەت قىل"
 
@@ -1179,9 +1170,6 @@ msgstr "توغرۇلاش مەغلۇپ بولدى"
 msgid "The code is either invalid or expired."
 msgstr "بۇ كود ئىناۋەتسىز ياكى سۈرۈكى توشقان."
 
-msgid "Site:"
-msgstr "بېكەت:"
-
 msgid "Please select your account:"
 msgstr "ھېسابىڭىزنى تاللاڭ:"
 
@@ -1215,9 +1203,6 @@ msgstr "داۋام قىلىشتىن بۇرۇن بۇ يەردىكى ھۆججەت�
 msgid "Account recovery key"
 msgstr "ھېساپ ئەسلىگە كەلتۈرۈش ئاچقۇچى"
 
-msgid "Your account recovery key is:"
-msgstr "ھېساباتىڭىزنى ئەسلىگە كەلتۈرۈش ئاچقۇچى:"
-
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
@@ -1227,7 +1212,7 @@ msgid "Enter a name for the copy"
 msgstr "كۇپىيە ئۈچۈن بىر نام كىرگۈزۈڭ"
 
 msgid "Request support"
-msgstr ""
+msgstr "ياردەم تەلەپ"
 
 msgid "Thank you."
 msgstr "رەھمەت سىزگ."
@@ -1435,8 +1420,8 @@ msgid "Enter your email address to request a password reset."
 msgstr "ئېلخەت ئادرېسىڭىزنى كىرگۈزۈپ پارولىڭىزنى قايتا سەپلەشنى تەلەپ قىلىڭ."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
-msgstr "پارول قايتا سەپلەش جەريانىنى تاماملاش ئۈچۈن شىفىرلەنگەن ئەسلىگە كەلتۈرۈش ئاچقۇچىنى كىرگۈزۈڭ"
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "پارولنى قايتا سەپلەش جەريانىنى تاماملاش ئۈچۈن ھېساباتىڭىزنىڭ ئەسلىگە كەلتۈرۈش ئاچقۇچىنى كىرگۈزۈڭ"
 
 msgid "Password reset requested."
 msgstr "پارولىڭىزنى قايتا سەپلەش تەلەپ قىلىندى."
@@ -1605,7 +1590,7 @@ msgid "Last name"
 msgstr "فامىلىسى"
 
 msgid "Alternative contact method"
-msgstr ""
+msgstr "باشقا ئالاقە ئۇسۇلى"
 
 msgid "Other"
 msgstr "باشقا"
@@ -1897,7 +1882,7 @@ msgstr "يۇمشاق دېتالنى يېڭىلاش كۆرسەتمىسى ئۈچۈ
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "بۇ ئېلخەت سىزگە تاپشۇرىۋالغۇچىنىڭ بىر ياكى بىر نەچچە دوكلاتنى زىيارەت ھوقۇقى بەرگەنلىكىنى ئۇقتۇرۇش ئۈچۈندۇر."
 
 msgid "New report"
 msgstr "يېڭى دوكلات"

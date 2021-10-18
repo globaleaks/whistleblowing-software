@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Lao (http://www.transifex.com/otf/globaleaks/language/lo/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -809,26 +809,20 @@ msgstr "ຕົວຢ່າງ:"
 msgid "Hostname"
 msgstr "ຊື່ໂຮສ໌"
 
-msgid "Invalid input format."
-msgstr "ຮູບແບບການປ້ອນຂໍ້ມູນໃຊ້ບໍ່ໄດ້."
+msgid "Organization"
+msgstr "ອົງກອນ"
 
-msgid "Input should be similar to:"
-msgstr "ການປ້ອນຂໍ້ມູນຄວນຈະຄ້າຍຄືກັນກັບ:"
-
-msgid "Country code"
-msgstr "ລະຫັດປະເທດ"
+msgid "Invalid email address"
+msgstr "ທີ່ຢູ່ອີເມວໃຊ້ບໍ່ໄດ້"
 
 msgid "City"
 msgstr "ເມືອງ"
 
-msgid "Organization"
-msgstr "ອົງກອນ"
+msgid "Country"
+msgstr "ປະເທດ"
 
-msgid "Organizational unit"
-msgstr "ໜ່ວຍງານໃນອົງກອນ"
-
-msgid "Invalid email address"
-msgstr "ທີ່ຢູ່ອີເມວໃຊ້ບໍ່ໄດ້"
+msgid "Country code"
+msgstr "ລະຫັດປະເທດ"
 
 msgid "Generate"
 msgstr "ສ້າງ"
@@ -1084,9 +1078,6 @@ msgstr "ໂດເມນຫຼັກທີ່ໃຊ້ສຳລັບເວັບ
 msgid "Use the first site for administrative purposes only"
 msgstr "ໃຊ້ເວັບໄຊທຳອິດເພື່ອຈຸດປະສົງໃນການດູແລລະບົບເທົ່ານັ້ນ"
 
-msgid "Enable multi-site login"
-msgstr "ເປີດນຳໃຊ້ການລົງຊື່ເຂົ້າສູ່ຫຼາຍໆເວັບໄຊ"
-
 msgid "Allow users to sign up"
 msgstr "ອະນຸຍາດໃຫ້ຜູ້ໃຊ້ລົງທະບຽນ"
 
@@ -1177,9 +1168,6 @@ msgstr "ການຢືນຢັນຄວາມຖືກຕ້ອງບໍ່ສ
 msgid "The code is either invalid or expired."
 msgstr "ລະຫັດໃຊ້ບໍ່ໄດ້ ຫຼື ໝົດອາຍຸແລ້ວ."
 
-msgid "Site:"
-msgstr "ເວັບໄຊ:"
-
 msgid "Please select your account:"
 msgstr "ກະລຸນາເລືອກບັນຊີຂອງທ່ານ:"
 
@@ -1212,9 +1200,6 @@ msgstr "ກ່ອນຈະດຳເນີນການຕໍ່ ກະລຸນ�
 
 msgid "Account recovery key"
 msgstr "ລະຫັດກູ້ຄືນບັນຊີ"
-
-msgid "Your account recovery key is:"
-msgstr "ລະຫັດກູ້ຄືນບັນຊີຂອງທ່ານແມ່ນ:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1433,7 +1418,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "ປ້ອນທີ່ຢູ່ອີເມວຂອງທ່ານ ເພື່ອຮ້ອງຂໍການຕັ້ງລະຫັດຜ່ານຄືນໃໝ່."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "ປ້ອນລະຫັດການກູ້ຄືນການເຂົ້າລະຫັດລັບຂອງທ່ານ ເພື່ອໃຫ້ເຮັດສຳເລັດຂັ້ນຕອນການຕັ້ງລະຫັດຜ່ານຄືນໃໝ່"
 
 msgid "Password reset requested."

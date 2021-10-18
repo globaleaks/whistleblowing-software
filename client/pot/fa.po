@@ -27,7 +27,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -831,26 +831,20 @@ msgstr "نمونه:"
 msgid "Hostname"
 msgstr "نام میزبان"
 
-msgid "Invalid input format."
-msgstr "فرمت ورودی نامعتبر"
+msgid "Organization"
+msgstr "سازمان"
 
-msgid "Input should be similar to:"
-msgstr "ورودی باید مشابه باشد به:"
-
-msgid "Country code"
-msgstr "کد کشور"
+msgid "Invalid email address"
+msgstr "نشانی ایمیل نامعتبر"
 
 msgid "City"
 msgstr "شهر"
 
-msgid "Organization"
-msgstr "سازمان"
+msgid "Country"
+msgstr "کشور"
 
-msgid "Organizational unit"
-msgstr "واحد سازمانی"
-
-msgid "Invalid email address"
-msgstr "نشانی ایمیل نامعتبر"
+msgid "Country code"
+msgstr "کد کشور"
 
 msgid "Generate"
 msgstr "تولید"
@@ -1106,9 +1100,6 @@ msgstr "دامنهٔ ریشهٔ مورد استفاده برای سایت‌ها
 msgid "Use the first site for administrative purposes only"
 msgstr "از سایت اول فقط برای اهداف مدیریتی استفاده شود"
 
-msgid "Enable multi-site login"
-msgstr "فعال کردن ورود از چند سایت"
-
 msgid "Allow users to sign up"
 msgstr "اجازهٔ نام‌نویسی به کاربران"
 
@@ -1199,9 +1190,6 @@ msgstr "احراز هویت ناموفق بود"
 msgid "The code is either invalid or expired."
 msgstr "کد یا نامعتبر یا منقضی شده است."
 
-msgid "Site:"
-msgstr "سایت:"
-
 msgid "Please select your account:"
 msgstr "حساب کاربری خود را انتخاب کنید:"
 
@@ -1234,9 +1222,6 @@ msgstr "قبل از ادامه، لطفاً مستندات زیر را به دق
 
 msgid "Account recovery key"
 msgstr "کلید بازیابی حساب کاربری"
-
-msgid "Your account recovery key is:"
-msgstr "کلید بازیابی حساب کاربری شما:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1455,8 +1440,8 @@ msgid "Enter your email address to request a password reset."
 msgstr "ایمیل خود را برای درخواست بازنشانی گذرواژه وارد کنید."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
-msgstr "کلید بازیابی رمزگذاری خود را برای تکمیل روند بازنشانی گذرواژه وارد کنید"
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "کلید بازیابی حساب کاربری خود را برای تکمیل روند بازنشانی گذرواژه وارد کنید"
 
 msgid "Password reset requested."
 msgstr "بازنشانی گذرواژه درخواست شد."
@@ -1529,7 +1514,7 @@ msgid ""
 msgstr "شما در حال اتصال به سرور بدون قابلیت ناشناسی هستید و این سرور فقط از ارسال‌های ناشناس پشتیبانی می‌کند"
 
 msgid "Your report was successful."
-msgstr "گزارش شما با موفقیت انجام شد."
+msgstr "گزارش شما موفق بود."
 
 msgid "Remember your receipt for this report."
 msgstr "رسید خود را برای این گزارش به یاد داشته باشید."
@@ -1579,7 +1564,7 @@ msgstr "پنهان کردن"
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
 "whistleblowing platform."
-msgstr "رویهٔ مرحله-به-مرحله به شما در ایجاد پلتفرم افشاگری‌تان کمک خواهد کرد."
+msgstr "رویهٔ مرحله-به-مرحله زیر به شما در ایجاد پلتفرم افشاگری‌تان کمک خواهد کرد."
 
 msgid "Please choose a configuration profile:"
 msgstr "لطفاً یک پروفایل پیکربندی انتخاب کنید:"

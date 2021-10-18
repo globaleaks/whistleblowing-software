@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -813,26 +813,20 @@ msgstr "މިސާލު"
 msgid "Hostname"
 msgstr "ނެޓްވޯކަށް ވަންނަން ބޭނުންކުރާ ވަޞީލަތުގެ ނަން"
 
-msgid "Invalid input format."
-msgstr "އިންޕުޓް ފޯމެޓް ރަނގަޅެއްނޫން"
+msgid "Organization"
+msgstr "މުއައްސަސާ"
 
-msgid "Input should be similar to:"
-msgstr "އިންޕުޓް އެއްގޮތް ވާންޖެހެނީ"
-
-msgid "Country code"
-msgstr "ޤައުމުގެ ކޯޑް ނަމްބަރު"
+msgid "Invalid email address"
+msgstr "އީމެއިލް އެޑްރެސް ރަނގަޅެއްނޫން"
 
 msgid "City"
 msgstr "ރަށް/ސަހަރު"
 
-msgid "Organization"
-msgstr "މުއައްސަސާ"
+msgid "Country"
+msgstr ""
 
-msgid "Organizational unit"
-msgstr "މުއައްސަސާގެ ޔުނިޓް"
-
-msgid "Invalid email address"
-msgstr "އީމެއިލް އެޑްރެސް ރަނގަޅެއްނޫން"
+msgid "Country code"
+msgstr "ޤައުމުގެ ކޯޑް ނަމްބަރު"
 
 msgid "Generate"
 msgstr "އުފެއްދުން"
@@ -1088,9 +1082,6 @@ msgstr "ސެކަންޑަރީ ސައިޓްތަކުގައި ރޫޓް ޑޮމެއި�
 msgid "Use the first site for administrative purposes only"
 msgstr "ފުރަތަމަ ސައިޓް ބޭނުންކުރައްވާނީ އިދާރީ ބޭނުންތަކަށް އެކަނި"
 
-msgid "Enable multi-site login"
-msgstr "މަލްޓިސައިޓް ލޮގް އިން އޮންކުރަން"
-
 msgid "Allow users to sign up"
 msgstr "އިތުރު މީހުން ސައިން އަޕް ކުރުމުގެ ހުއްދަ ދިނުމަށް"
 
@@ -1181,9 +1172,6 @@ msgstr "ހުއްދަކަށަވަރުކުރުން ފެއިލްވެއްޖެ"
 msgid "The code is either invalid or expired."
 msgstr "ޖެއްސެވި ކޯޑް ނުރަނގަޅު ނުވަތަ އެކްސްޕަޔަރ ވެފައި"
 
-msgid "Site:"
-msgstr "ސައިޓް"
-
 msgid "Please select your account:"
 msgstr "ތިބާގެ އެކައުންޓް އިޚްތިޔާރުކުރައްވާ"
 
@@ -1216,9 +1204,6 @@ msgstr "ކުރިއަށް ދިޔުމުގެ ކުރިން: ގައިވާ ޑޮކިއ�
 
 msgid "Account recovery key"
 msgstr "އެކައުންޓް އަލުންހޯއްދަވަން ބޭނުންވާނެ ކީ"
-
-msgid "Your account recovery key is:"
-msgstr "ތިޔަފަރާތުގެ އެކައުންޓް އަލުންހޯއްދަވަން ބޭނުންވާނެ ކީ އަކީ: "
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1437,7 +1422,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "ޕާސްވޯޑް ރީސެޓްކުރައްވަން އެކައުންޓްގައި ބޭނުންކުރެއްވި އީމެއިލް އެޑްރެސް ޖައްސަވާ. "
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "ޕާސްވޯޑް ރީސެޓްކޮށް ނިންމުމަށް ލިބިފައިވާ 'އެންކްރިޕްޝަން ރިކަވަރީ ކީ' ޖައްސަވާ"
 
 msgid "Password reset requested."

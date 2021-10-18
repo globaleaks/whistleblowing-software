@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -815,26 +815,20 @@ msgstr "例子："
 msgid "Hostname"
 msgstr "主機名稱"
 
-msgid "Invalid input format."
-msgstr "無效的輸入格式"
+msgid "Organization"
+msgstr "組織"
 
-msgid "Input should be similar to:"
-msgstr "輪入應相這樣："
-
-msgid "Country code"
-msgstr "國碼"
+msgid "Invalid email address"
+msgstr "無效的電子信箱"
 
 msgid "City"
 msgstr "城市"
 
-msgid "Organization"
-msgstr "組織"
+msgid "Country"
+msgstr "國家"
 
-msgid "Organizational unit"
-msgstr "組織的單位"
-
-msgid "Invalid email address"
-msgstr "無效的電子信箱"
+msgid "Country code"
+msgstr "國碼"
 
 msgid "Generate"
 msgstr "產生"
@@ -1090,9 +1084,6 @@ msgstr "二級網站使用的根域名"
 msgid "Use the first site for administrative purposes only"
 msgstr "僅為管理目的才使用第一個網站"
 
-msgid "Enable multi-site login"
-msgstr "開啟多站台登入"
-
 msgid "Allow users to sign up"
 msgstr "可接受新用戶註冊"
 
@@ -1183,9 +1174,6 @@ msgstr "認證失敗"
 msgid "The code is either invalid or expired."
 msgstr "該代碼無效或已逾期"
 
-msgid "Site:"
-msgstr "網站:"
-
 msgid "Please select your account:"
 msgstr "請選擇你的帳號"
 
@@ -1218,9 +1206,6 @@ msgstr "繼續下一步之前請先仔細閱讀此文件："
 
 msgid "Account recovery key"
 msgstr "帳號恢復密鑰"
-
-msgid "Your account recovery key is:"
-msgstr "帳號的恢復密鑰："
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1439,7 +1424,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "請輸入電子郵件以重設密碼。"
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "请输入加密恢复密钥，以完成密码重置流程"
 
 msgid "Password reset requested."

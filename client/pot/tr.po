@@ -30,7 +30,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -834,26 +834,20 @@ msgstr "Örnek:"
 msgid "Hostname"
 msgstr "Makine adı"
 
-msgid "Invalid input format."
-msgstr "Geçersiz giriş biçimi."
+msgid "Organization"
+msgstr "Organizasyon"
 
-msgid "Input should be similar to:"
-msgstr "Giriş şuna benzemelidir:"
-
-msgid "Country code"
-msgstr "Ülke kodu"
+msgid "Invalid email address"
+msgstr "Geçersiz e-posta adresi"
 
 msgid "City"
 msgstr "Şehir"
 
-msgid "Organization"
-msgstr "Organizasyon"
+msgid "Country"
+msgstr "Ülke"
 
-msgid "Organizational unit"
-msgstr "Kuruluş birimi"
-
-msgid "Invalid email address"
-msgstr "Geçersiz e-posta adresi"
+msgid "Country code"
+msgstr "Ülke kodu"
 
 msgid "Generate"
 msgstr "Oluştur"
@@ -1109,9 +1103,6 @@ msgstr "İkincil siteler tarafından kullanılan kök alan"
 msgid "Use the first site for administrative purposes only"
 msgstr "İlk siteyi sadece yönetsel amaçlar için kullan"
 
-msgid "Enable multi-site login"
-msgstr "Çoklu site kullanıcı girişini etkinleştir"
-
 msgid "Allow users to sign up"
 msgstr "Kullanıcıların kayıt olmasına izin ver"
 
@@ -1202,9 +1193,6 @@ msgstr "Kimlik Doğrulama Başarısız"
 msgid "The code is either invalid or expired."
 msgstr "Kod geçersiz veya süresi dolmuş."
 
-msgid "Site:"
-msgstr "Site:"
-
 msgid "Please select your account:"
 msgstr "Lütfen hesabınızı seçin:"
 
@@ -1237,9 +1225,6 @@ msgstr "Lütfen ilerlemeden önce belgelendirmeyi dikkatli bir şekilde okuyun."
 
 msgid "Account recovery key"
 msgstr "Hesap kurtarma anahtarı"
-
-msgid "Your account recovery key is:"
-msgstr "Hesap kurtarma anahtarınız:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1458,7 +1443,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Parola sıfırlama isteği için e-posta adresinizi girin."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "Parola sıfırlama işlemini tamamlamak için şifreleme kurtarma anahtarınızı girin."
 
 msgid "Password reset requested."

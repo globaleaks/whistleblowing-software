@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-01 05:03+0000\n"
-"Last-Translator: Timur Seber <seber.tatsoft@gmail.com>\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tatar (http://www.transifex.com/otf/globaleaks/language/tt/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -809,26 +809,20 @@ msgstr "Мисал:"
 msgid "Hostname"
 msgstr "Хост исеме"
 
-msgid "Invalid input format."
-msgstr "Яраксыз кертү форматы."
+msgid "Organization"
+msgstr "Оешма"
 
-msgid "Input should be similar to:"
-msgstr "Кертү охшаш булса кирәк:"
-
-msgid "Country code"
-msgstr "Ил коды"
+msgid "Invalid email address"
+msgstr "Ярашсыз эл. почта адресы"
 
 msgid "City"
 msgstr "Шәһәр"
 
-msgid "Organization"
-msgstr "Оешма"
+msgid "Country"
+msgstr "Ил"
 
-msgid "Organizational unit"
-msgstr "Оештыру берәмлеге"
-
-msgid "Invalid email address"
-msgstr "Ярашсыз эл. почта адресы"
+msgid "Country code"
+msgstr "Ил коды"
 
 msgid "Generate"
 msgstr "Төзү"
@@ -1084,9 +1078,6 @@ msgstr "Икенчел сайтлар өчен тамыр домен кулла�
 msgid "Use the first site for administrative purposes only"
 msgstr "Беренче сайтны административ максатлар өчен генә куллану"
 
-msgid "Enable multi-site login"
-msgstr "Берничә сайтка керү мөмкинлеген рөхсәт итү"
-
 msgid "Allow users to sign up"
 msgstr "Кулланучыларга теркәлергә рөхсәт итү"
 
@@ -1177,9 +1168,6 @@ msgstr "Аутентификация уңышсыз тәмамланды"
 msgid "The code is either invalid or expired."
 msgstr "Код яраксыз яки вакыты чыккан."
 
-msgid "Site:"
-msgstr "Сайт:"
-
 msgid "Please select your account:"
 msgstr "Зинһар, хисап язмагызны сайлагыз:"
 
@@ -1212,9 +1200,6 @@ msgstr "Башлау алдыннан зинһар, документларны �
 
 msgid "Account recovery key"
 msgstr "Хисапны коткару ачкычы"
-
-msgid "Your account recovery key is:"
-msgstr "Сезнең хисапны коткару ачкычы:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1433,7 +1418,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Серсүзне алыштыруны сорау өчен эл. почта адресыгызны кертегез."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "Серсүзне алыштыру процедурасын тәмамлау өчен шифрлау коткару ачкычын кертегез"
 
 msgid "Password reset requested."
@@ -1490,7 +1475,7 @@ msgid "The specified input is not valid."
 msgstr "Күрсәтелгән кертү дөрес түгел."
 
 msgid "The specified input is not valid:"
-msgstr "The specified input is not valid:"
+msgstr "Күрсәтелгән кертү дөрес түгел:"
 
 msgid "please enter a valid email address."
 msgstr " дөрес эл. почта адресын кертегез."

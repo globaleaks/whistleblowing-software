@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -483,7 +483,7 @@ msgid "Logout"
 msgstr "Keluar"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr "Berikan penerima ini kemampuan untuk mengizinkan pengguna mengakses laporan"
+msgstr "Izinkan penerima ini untuk memberikan akses pengguna ke laporan"
 
 msgid "Grant access"
 msgstr ""
@@ -830,26 +830,20 @@ msgstr "Contoh:"
 msgid "Hostname"
 msgstr "Nama host"
 
-msgid "Invalid input format."
-msgstr "Format masukan tidak valid."
+msgid "Organization"
+msgstr "Organisasi"
 
-msgid "Input should be similar to:"
-msgstr "Masukan seharusnya mirip dengan:"
-
-msgid "Country code"
-msgstr "Kode Negara"
+msgid "Invalid email address"
+msgstr "Alamat surel tidak valid"
 
 msgid "City"
 msgstr "Kota"
 
-msgid "Organization"
-msgstr "Organisasi"
+msgid "Country"
+msgstr "Negara"
 
-msgid "Organizational unit"
-msgstr "Unit Organisasi"
-
-msgid "Invalid email address"
-msgstr "Alamat surel tidak valid"
+msgid "Country code"
+msgstr "Kode Negara"
 
 msgid "Generate"
 msgstr "Membuat"
@@ -1105,9 +1099,6 @@ msgstr "Domain awal yang digunakan untuk situs kedua"
 msgid "Use the first site for administrative purposes only"
 msgstr "Gunakan situs pertama hanya untuk tujuan administratif"
 
-msgid "Enable multi-site login"
-msgstr "Aktifkan fitur masuk ke multisitus"
-
 msgid "Allow users to sign up"
 msgstr "Izinkan pengguna untuk mendaftar"
 
@@ -1198,9 +1189,6 @@ msgstr "Autentikasi gagal"
 msgid "The code is either invalid or expired."
 msgstr "Kode tidak valid atau telah kedaluwarsa."
 
-msgid "Site:"
-msgstr "Situs:"
-
 msgid "Please select your account:"
 msgstr "Tolong pilih akun Anda"
 
@@ -1234,9 +1222,6 @@ msgstr "Sebelum melanjutkan mohon baca dokumentasi dengan seksama di:"
 msgid "Account recovery key"
 msgstr "Kunci pemulihan akun"
 
-msgid "Your account recovery key is:"
-msgstr "Kunci pemulihan akun Anda adalah:"
-
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
@@ -1246,7 +1231,7 @@ msgid "Enter a name for the copy"
 msgstr "Masukan nama untuk salinan"
 
 msgid "Request support"
-msgstr "Permintaan bantuan"
+msgstr "Permintaan dukungan"
 
 msgid "Thank you."
 msgstr "Terima kasih."
@@ -1454,8 +1439,8 @@ msgid "Enter your email address to request a password reset."
 msgstr "Masukkan alamat surel anda untuk meminta pengaturan ulang kata sandi."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
-msgstr "Masukkan kunci pemulihan enkripsi Anda untuk menyelesaikan prosedur pengaturan ulang kata sandi"
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "Masukkan kunci pemulihan akun Anda untuk menyelesaikan prosedur pengaturan ulang kata sandi"
 
 msgid "Password reset requested."
 msgstr "Pengaturan ulang kata sandi telah diminta "
@@ -1719,7 +1704,7 @@ msgstr "Anomali terdeteksi di {NodeName}"
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
 "going to expire or has already expired:"
-msgstr "Ini adalah surel  yang memberitahu Anda bahwa kunci PGP dari  pengguna berikut akan segera atau sudah berakhir:"
+msgstr "Surel ini memberi tahu Anda bahwa kunci PGP dari pengguna berikut akan segera atau sudah berakhir:"
 
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
@@ -1879,7 +1864,7 @@ msgstr "Instruksi pengaturan ulang kata sandi"
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
 "expired."
-msgstr "Ini adalah email untuk memberi tahu Anda bahwa kunci PGP Anda akan berakhir atau sudah kedaluwarsa."
+msgstr "Surel ini memberi tahu Anda bahwa kunci PGP Anda akan berakhir atau sudah kedaluwarsa."
 
 msgid ""
 "You should extend its validity and update the key present on the platform, "
@@ -1916,7 +1901,7 @@ msgstr "Untuk instruksi tentang pembaruan perangkat lunak, silakan lihat dokumen
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr "Ini adalah pesan untuk memberitahu Anda bahwa seorang penerima telah memberikan Anda akses ke satu atau beberapa laporan."
+msgstr "Surel ini memberi tahu Anda bahwa seorang penerima telah memberikan Anda akses ke satu atau beberapa laporan."
 
 msgid "New report"
 msgstr "Laporan baru"

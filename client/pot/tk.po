@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkmen (http://www.transifex.com/otf/globaleaks/language/tk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -810,26 +810,20 @@ msgstr "Mysal:"
 msgid "Hostname"
 msgstr "Host ady"
 
-msgid "Invalid input format."
-msgstr "Nädogry giriş formaty."
+msgid "Organization"
+msgstr "Gurama"
 
-msgid "Input should be similar to:"
-msgstr "Giriş şuňa meňzeş bolmaly:"
-
-msgid "Country code"
-msgstr "Döwlet kody"
+msgid "Invalid email address"
+msgstr "Nädogry email salgysy"
 
 msgid "City"
 msgstr "Şäher"
 
-msgid "Organization"
-msgstr "Gurama"
+msgid "Country"
+msgstr "Ýurt"
 
-msgid "Organizational unit"
-msgstr "Gurama bölümi"
-
-msgid "Invalid email address"
-msgstr "Nädogry email salgysy"
+msgid "Country code"
+msgstr "Döwlet kody"
 
 msgid "Generate"
 msgstr "Döret"
@@ -1085,9 +1079,6 @@ msgstr " Kök domain ikinji derejeli saýtlar üçin ulanyldy"
 msgid "Use the first site for administrative purposes only"
 msgstr "Ilkinji sahypany diňe administratiw maksatlar üçin ulanyň"
 
-msgid "Enable multi-site login"
-msgstr "Köpugurly girişi aç"
-
 msgid "Allow users to sign up"
 msgstr "Ulanyjylara ýazylmagyna rugsat beriň"
 
@@ -1178,9 +1169,6 @@ msgstr "Tassyklama şowsuz."
 msgid "The code is either invalid or expired."
 msgstr "Kod nädogry ýa-da möhleti gutardy."
 
-msgid "Site:"
-msgstr "Sahypa:"
-
 msgid "Please select your account:"
 msgstr "Haýyş hasabyňyzy saýlaň:"
 
@@ -1213,9 +1201,6 @@ msgstr "Dowam etmezden ozal resminamalary üns bilen okaň:"
 
 msgid "Account recovery key"
 msgstr "Hasaby dikeltmek açary"
-
-msgid "Your account recovery key is:"
-msgstr "Hasabyňyzy dikeltmek açary:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1434,8 +1419,8 @@ msgid "Enter your email address to request a password reset."
 msgstr "Parolyňyzy täzeden düzmek üçin email salgyňyzy giriziň."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
-msgstr "Paroly täzeden düzmek prosedurasyny tamamlamak üçin şifrlemek dikeldiş açaryny giriziň"
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "Paroly täzeden düzmek prosedurasyny tamamlamak üçin hasabyňyzy dikeltmek açaryny giriziň"
 
 msgid "Password reset requested."
 msgstr "Paroly täzeden düzmek talap edildi."

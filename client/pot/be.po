@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Belarusian (http://www.transifex.com/otf/globaleaks/language/be/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -810,26 +810,20 @@ msgstr "Прыклад:"
 msgid "Hostname"
 msgstr "Назва вузла"
 
-msgid "Invalid input format."
-msgstr "Няправільны фармат уводу."
+msgid "Organization"
+msgstr "Арганізацыя"
 
-msgid "Input should be similar to:"
-msgstr "Увод павінен быць падобны на:"
-
-msgid "Country code"
-msgstr "Код краіны"
+msgid "Invalid email address"
+msgstr "Нясапраўдны адрас электроннай пошты"
 
 msgid "City"
 msgstr "Горад"
 
-msgid "Organization"
-msgstr "Арганізацыя"
+msgid "Country"
+msgstr "Краіна"
 
-msgid "Organizational unit"
-msgstr "Арганізацыйная адзінка"
-
-msgid "Invalid email address"
-msgstr "Нясапраўдны адрас электроннай пошты"
+msgid "Country code"
+msgstr "Код краіны"
 
 msgid "Generate"
 msgstr "Стварыць"
@@ -1085,9 +1079,6 @@ msgstr "Каранёвы дамен, які выкарыстоўваецца д�
 msgid "Use the first site for administrative purposes only"
 msgstr "Выкарыстоўваць першы сайт толькі ў адміністратарскіх мэтах"
 
-msgid "Enable multi-site login"
-msgstr "Уключыць функцыю мултысайтавага ўваходу"
-
 msgid "Allow users to sign up"
 msgstr "Дазволіць рэгістрацыю карыстальнікаў"
 
@@ -1178,9 +1169,6 @@ msgstr "Памылка аўтэнтыфікацыі"
 msgid "The code is either invalid or expired."
 msgstr "Код або няправільны, або састарэлы."
 
-msgid "Site:"
-msgstr "Сайт:"
-
 msgid "Please select your account:"
 msgstr "Выберыце свой уліковы запіс:"
 
@@ -1213,9 +1201,6 @@ msgstr "Перад тым як працягнуць, уважліва прачы
 
 msgid "Account recovery key"
 msgstr "Ключ аднаўлення ўліковага запісу:"
-
-msgid "Your account recovery key is:"
-msgstr "Ключ аднаўлення вашага ўліковага запісу:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1434,7 +1419,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Увесці свой адрас электроннай пошты, каб зрабіць запыт на абнуленне пароля."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "Увядзіце шыфраваны ключ аднаўлення, каб завяршыць працэдуру абнулення пароля"
 
 msgid "Password reset requested."

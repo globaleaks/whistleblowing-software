@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca@valencia/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -821,26 +821,20 @@ msgstr "Exemple:"
 msgid "Hostname"
 msgstr "Domini"
 
-msgid "Invalid input format."
-msgstr "Format d'entrada no vàlid"
+msgid "Organization"
+msgstr "Organització"
 
-msgid "Input should be similar to:"
-msgstr "L'entrada hauria de ser similar a:"
-
-msgid "Country code"
-msgstr "Codi de país"
+msgid "Invalid email address"
+msgstr "Adreça electrònica no vàlida"
 
 msgid "City"
 msgstr "Població"
 
-msgid "Organization"
-msgstr "Organització"
+msgid "Country"
+msgstr "Estat"
 
-msgid "Organizational unit"
-msgstr "Unitat organitzativa"
-
-msgid "Invalid email address"
-msgstr "Adreça electrònica no vàlida"
+msgid "Country code"
+msgstr "Codi de país"
 
 msgid "Generate"
 msgstr "Genera"
@@ -1096,9 +1090,6 @@ msgstr "Domini arrel usat per pàgines secundàries"
 msgid "Use the first site for administrative purposes only"
 msgstr "Utilitzar el primer site només per a qüestions administratives"
 
-msgid "Enable multi-site login"
-msgstr "Permetre obrir sessió multi-lloc."
-
 msgid "Allow users to sign up"
 msgstr "Permet als usuaris connectar-se"
 
@@ -1189,9 +1180,6 @@ msgstr "Autenticació fallida"
 msgid "The code is either invalid or expired."
 msgstr "El codi es invàlid o ha caducat."
 
-msgid "Site:"
-msgstr "Lloc:"
-
 msgid "Please select your account:"
 msgstr "Per favor, seleccione el seu compte:"
 
@@ -1224,9 +1212,6 @@ msgstr "Abans de continuar, llegiu atentament la documentació a:"
 
 msgid "Account recovery key"
 msgstr "Clau de recuperació del compte"
-
-msgid "Your account recovery key is:"
-msgstr "La vostra clau de recuperació del compte és:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1445,8 +1430,8 @@ msgid "Enter your email address to request a password reset."
 msgstr "Introduïsca la seua direcció de correu per a sol.licitar la reinicialiltzació de la contrasenya."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
-msgstr ""
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "Introduïu la clau de recuperació de xifratge per completar el procediment de restabliment de contrasenya"
 
 msgid "Password reset requested."
 msgstr "Reinicialització de la contrasenya.sol.licitada."

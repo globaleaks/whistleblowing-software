@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 20:40+0000\n"
+"PO-Revision-Date: 2021-10-20 14:49+0000\n"
 "Last-Translator: AO <ao@localizationlab.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -843,26 +843,20 @@ msgstr "Exemple :"
 msgid "Hostname"
 msgstr "Nom d’hôte"
 
-msgid "Invalid input format."
-msgstr "Le format de saisie est invalide."
+msgid "Organization"
+msgstr "Organisation"
 
-msgid "Input should be similar to:"
-msgstr "L’entrée devrait être similaire à :"
-
-msgid "Country code"
-msgstr "Indicatif de pays"
+msgid "Invalid email address"
+msgstr "L’adresse courriel est invalide"
 
 msgid "City"
 msgstr "Ville"
 
-msgid "Organization"
-msgstr "Organisation"
+msgid "Country"
+msgstr "Pays"
 
-msgid "Organizational unit"
-msgstr "Unité organisationnelle"
-
-msgid "Invalid email address"
-msgstr "L’adresse courriel est invalide"
+msgid "Country code"
+msgstr "Indicatif de pays"
 
 msgid "Generate"
 msgstr "Générer"
@@ -1118,9 +1112,6 @@ msgstr "Domaine racine utilisé pour les sites secondaires"
 msgid "Use the first site for administrative purposes only"
 msgstr "N’utiliser le premier site qu’à des fins d’administration"
 
-msgid "Enable multi-site login"
-msgstr "Activer la connexion multisite"
-
 msgid "Allow users to sign up"
 msgstr "Permettre aux utilisateurs de s’inscrire"
 
@@ -1211,9 +1202,6 @@ msgstr "Échec d’authentification"
 msgid "The code is either invalid or expired."
 msgstr "Le côté est invalide ou expiré"
 
-msgid "Site:"
-msgstr "Site :"
-
 msgid "Please select your account:"
 msgstr "Veuillez sélectionner votre compte :"
 
@@ -1246,9 +1234,6 @@ msgstr "Avant de poursuivre, veuillez lire attentivement la documentation sur :
 
 msgid "Account recovery key"
 msgstr "Clé de récupération du compte"
-
-msgid "Your account recovery key is:"
-msgstr "La clé de récupération de votre compte est :"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1467,8 +1452,8 @@ msgid "Enter your email address to request a password reset."
 msgstr "Saisissez votre adresse courriel pour demander une réinitialisation du mot de passe."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
-msgstr "Saisissez votre clé de récupération de chiffrement pour finaliser la procédure de réinitialisation du mot de passe."
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "Saisissez votre clé de récupération pour finaliser la procédure de réinitialisation du mot de passe"
 
 msgid "Password reset requested."
 msgstr "Une réinitialisation de mot de passe a été demandée."

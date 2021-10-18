@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Serbian (Latin) (Montenegro) (http://www.transifex.com/otf/globaleaks/language/sr_ME@latin/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -808,26 +808,20 @@ msgstr "Primjer:"
 msgid "Hostname"
 msgstr "Ime hosta"
 
-msgid "Invalid input format."
-msgstr "Nevažeći format unosa."
+msgid "Organization"
+msgstr "Organizacija"
 
-msgid "Input should be similar to:"
-msgstr "Unos bi trebalo da bude kao:"
-
-msgid "Country code"
-msgstr "Pozivni broj za državu"
+msgid "Invalid email address"
+msgstr "Nevažeća adresa e-pošte"
 
 msgid "City"
 msgstr "Grad"
 
-msgid "Organization"
-msgstr "Organizacija"
+msgid "Country"
+msgstr ""
 
-msgid "Organizational unit"
-msgstr "Organizaciona jedinica"
-
-msgid "Invalid email address"
-msgstr "Nevažeća adresa e-pošte"
+msgid "Country code"
+msgstr "Pozivni broj za državu"
 
 msgid "Generate"
 msgstr "Generiši"
@@ -1083,9 +1077,6 @@ msgstr "Osnovni domen koji se koristi za sekundarne lokacije"
 msgid "Use the first site for administrative purposes only"
 msgstr "Koristi prvu lokaciju samo u administrativne svrhe"
 
-msgid "Enable multi-site login"
-msgstr "Omogući prijavu na više lokacija"
-
 msgid "Allow users to sign up"
 msgstr "Dozvoli korisnicima da se registruju"
 
@@ -1176,9 +1167,6 @@ msgstr "Potvrda identiteta nije uspjela"
 msgid "The code is either invalid or expired."
 msgstr "Kôd je nevažeći ili je istekao."
 
-msgid "Site:"
-msgstr "Lokacija:"
-
 msgid "Please select your account:"
 msgstr "Izaberite svoj nalog:"
 
@@ -1211,9 +1199,6 @@ msgstr "Prije nego što nastavite, pažljivo pročitajte dokumentaciju na:"
 
 msgid "Account recovery key"
 msgstr "Ključ za oporavak naloga"
-
-msgid "Your account recovery key is:"
-msgstr "Vaš ključ za oporavak naloga je:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1432,7 +1417,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Unesite svoju adresu e-pošte da biste zatražili poništavanje lozinke."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "Unesi enkripcijski ključ za oporavak da bi dovršio postupak poništavanja lozinke"
 
 msgid "Password reset requested."

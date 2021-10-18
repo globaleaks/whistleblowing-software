@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -843,26 +843,20 @@ msgstr "Exemplo:"
 msgid "Hostname"
 msgstr "Servidor"
 
-msgid "Invalid input format."
-msgstr "Inválido formato de entrada."
+msgid "Organization"
+msgstr "Organização"
 
-msgid "Input should be similar to:"
-msgstr "Entrada deveria ser semelhante a:"
-
-msgid "Country code"
-msgstr "Código do país"
+msgid "Invalid email address"
+msgstr "Endereço de email inválido"
 
 msgid "City"
 msgstr "Cidade"
 
-msgid "Organization"
-msgstr "Organização"
+msgid "Country"
+msgstr "País"
 
-msgid "Organizational unit"
-msgstr "Unidade organizacional"
-
-msgid "Invalid email address"
-msgstr "Endereço de email inválido"
+msgid "Country code"
+msgstr "Código do país"
 
 msgid "Generate"
 msgstr "Gerar"
@@ -1118,9 +1112,6 @@ msgstr "Domínio raiz usado para sites secundários"
 msgid "Use the first site for administrative purposes only"
 msgstr "Use o primeiro site somente para fins administrativos"
 
-msgid "Enable multi-site login"
-msgstr "Ativar o login em vários sites"
-
 msgid "Allow users to sign up"
 msgstr "Permitir que os usuários se inscrevam"
 
@@ -1211,9 +1202,6 @@ msgstr "Falha na Autenticação"
 msgid "The code is either invalid or expired."
 msgstr "O código é inválido ou expirou."
 
-msgid "Site:"
-msgstr "Site:"
-
 msgid "Please select your account:"
 msgstr "Por favor, selecione sua conta:"
 
@@ -1246,9 +1234,6 @@ msgstr "Antes de continuar, leia atentamente a documentação em:"
 
 msgid "Account recovery key"
 msgstr "Chave de recuperação da conta"
-
-msgid "Your account recovery key is:"
-msgstr "A chave de recuperação da sua conta é:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1467,7 +1452,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Digite seu endereço de e-mail para solicitar uma redefinição de senha."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "Insira sua chave de recuperação de criptografia para concluir o procedimento de redefinição de senha"
 
 msgid "Password reset requested."

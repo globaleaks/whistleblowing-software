@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Macedonian (http://www.transifex.com/otf/globaleaks/language/mk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -811,26 +811,20 @@ msgstr "Пример:"
 msgid "Hostname"
 msgstr "Име на домаќин"
 
-msgid "Invalid input format."
-msgstr "Невалиден внесен формат."
+msgid "Organization"
+msgstr "Организација"
 
-msgid "Input should be similar to:"
-msgstr "Внесот треба да биде сличен на:"
-
-msgid "Country code"
-msgstr "Код на држава"
+msgid "Invalid email address"
+msgstr "Невалидна адреса на е-пошта"
 
 msgid "City"
 msgstr "Град"
 
-msgid "Organization"
-msgstr "Организација"
+msgid "Country"
+msgstr "Земја"
 
-msgid "Organizational unit"
-msgstr "Организациска единица"
-
-msgid "Invalid email address"
-msgstr "Невалидна адреса на е-пошта"
+msgid "Country code"
+msgstr "Код на држава"
 
 msgid "Generate"
 msgstr "Генерирај"
@@ -1086,9 +1080,6 @@ msgstr "Коренски домен користен за секундарни �
 msgid "Use the first site for administrative purposes only"
 msgstr "Користи ја првата веб страна само за административни цели"
 
-msgid "Enable multi-site login"
-msgstr "Овозможи поврзување со повеќе веб страни"
-
 msgid "Allow users to sign up"
 msgstr "Дозволи им на корисниците да се регистрираат"
 
@@ -1179,9 +1170,6 @@ msgstr "Автентикацијата не успеа"
 msgid "The code is either invalid or expired."
 msgstr "Кодот е невалиден или истечен."
 
-msgid "Site:"
-msgstr "Веб страна:"
-
 msgid "Please select your account:"
 msgstr "Ве молиме изберете ја вашата сметка:"
 
@@ -1214,9 +1202,6 @@ msgstr "Пред да продолжите ве молиме внимателн�
 
 msgid "Account recovery key"
 msgstr "Клуч за враќање на сметка"
-
-msgid "Your account recovery key is:"
-msgstr "Вашиот клуч за враќање на сметка е:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1435,7 +1420,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Внесете ја вашата адреса на е-пошта за да побарате ресетирање на лозинката."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "Внесете го вашиот енкриптиран клуч за да ја завршите процедурата за ресетирање на лозинката"
 
 msgid "Password reset requested."

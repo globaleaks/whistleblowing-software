@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -821,26 +821,20 @@ msgstr "Thí dụ:"
 msgid "Hostname"
 msgstr "Tên máy chủ"
 
-msgid "Invalid input format."
-msgstr "Định dạng của dữ liệu nhập vào không hợp lệ"
+msgid "Organization"
+msgstr "Tổ chức"
 
-msgid "Input should be similar to:"
-msgstr "Dữ liệu nhập vào phải tương tự như:"
-
-msgid "Country code"
-msgstr "Mã quốc gia"
+msgid "Invalid email address"
+msgstr "Địa chỉ email không hợp lệ"
 
 msgid "City"
 msgstr "Thành phố"
 
-msgid "Organization"
-msgstr "Tổ chức"
+msgid "Country"
+msgstr "Quốc gia"
 
-msgid "Organizational unit"
-msgstr "Đơn vị tổ chức"
-
-msgid "Invalid email address"
-msgstr "Địa chỉ email không hợp lệ"
+msgid "Country code"
+msgstr "Mã quốc gia"
 
 msgid "Generate"
 msgstr "Tạo ra"
@@ -1096,9 +1090,6 @@ msgstr "Tên miền gốc dùng cho các trang web phụ"
 msgid "Use the first site for administrative purposes only"
 msgstr "Chỉ dùng trang web đầu tiên cho mục đích quản trị"
 
-msgid "Enable multi-site login"
-msgstr "Bật mở đăng nhập nhiều trang"
-
 msgid "Allow users to sign up"
 msgstr "Cho phép người dùng đăng ký"
 
@@ -1189,9 +1180,6 @@ msgstr "Xác thực thất bại"
 msgid "The code is either invalid or expired."
 msgstr "Mã số không hợp lệ hoặc đã hết hạn"
 
-msgid "Site:"
-msgstr "Trang web:"
-
 msgid "Please select your account:"
 msgstr "Xin chọn tài khoản của bạn:"
 
@@ -1224,9 +1212,6 @@ msgstr "Trước khi tiếp tục, xin đọc kỹ tài liệu tại:"
 
 msgid "Account recovery key"
 msgstr "Chìa khóa khôi phục tài khoản"
-
-msgid "Your account recovery key is:"
-msgstr "Chìa khóa khôi phục tài khoản của bạn là:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1445,7 +1430,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Nhập địa chỉ email của bạn để yêu cầu đặt lại mật khẩu."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "Nhập chìa khóa khôi phục của bạn để hoàn tất quy trình đặt lại mật khẩu"
 
 msgid "Password reset requested."

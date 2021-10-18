@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -824,26 +824,20 @@ msgstr "Exemplu:"
 msgid "Hostname"
 msgstr "Nume server "
 
-msgid "Invalid input format."
-msgstr "Datele introduse au format invalid"
+msgid "Organization"
+msgstr "Organizație"
 
-msgid "Input should be similar to:"
-msgstr "Inputul trebuie să fie similar cu:"
-
-msgid "Country code"
-msgstr "Codul țării"
+msgid "Invalid email address"
+msgstr "Adresă de e-mail invalidă"
 
 msgid "City"
 msgstr "Oraș"
 
-msgid "Organization"
-msgstr "Organizație"
+msgid "Country"
+msgstr "Ţara"
 
-msgid "Organizational unit"
-msgstr "Departament"
-
-msgid "Invalid email address"
-msgstr "Adresă de e-mail invalidă"
+msgid "Country code"
+msgstr "Codul țării"
 
 msgid "Generate"
 msgstr "Generează"
@@ -1099,9 +1093,6 @@ msgstr "Domeniu principal utilizat pentru website-urile secundare"
 msgid "Use the first site for administrative purposes only"
 msgstr "Folosește primul website doar pentru scopuri administrative"
 
-msgid "Enable multi-site login"
-msgstr "Activează autentificarea multi-site"
-
 msgid "Allow users to sign up"
 msgstr "Permite utilizatorilor să se înscrie"
 
@@ -1192,9 +1183,6 @@ msgstr "Autentificare eșuată"
 msgid "The code is either invalid or expired."
 msgstr "Codul este fie invalid, fie a expirat."
 
-msgid "Site:"
-msgstr "Website:"
-
 msgid "Please select your account:"
 msgstr "Te rugăm să îți selectezi contul:"
 
@@ -1227,9 +1215,6 @@ msgstr "Înainte de a începe, te rugăm să citești cu atenție documentația 
 
 msgid "Account recovery key"
 msgstr "Cheia de recuperare a contului"
-
-msgid "Your account recovery key is:"
-msgstr "Cheia de recuperare a contului tău este:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1448,8 +1433,8 @@ msgid "Enter your email address to request a password reset."
 msgstr "Introdu adresa de e-mail pentru a solicita o resetare a parolei."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
-msgstr "Introdu cheia de recuperare a criptării pentru a finaliza procedura de resetare a parolei"
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "Introdu cheia de recuperare a contului pentru a finaliza procedura de resetare a parolei"
 
 msgid "Password reset requested."
 msgstr "Este solicitată resetarea parolei."

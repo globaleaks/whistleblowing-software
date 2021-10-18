@@ -22,7 +22,7 @@
 # Lucrezia <luz.gatti@gmail.com>, 2013
 # Lucrezia <luz.gatti@gmail.com>, 2013
 # Manuel D. Serrat <manuel.serrat@antifraucv.es>, 2018-2019
-# miguel fuentes campo <mfc880@gmail.com>, 2020
+# migue802 <mfc880@gmail.com>, 2020
 # Nick Skelsey, 2016
 # Nick Skelsey, 2016
 # Lucrezia <luz.gatti@gmail.com>, 2013
@@ -36,7 +36,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -840,26 +840,20 @@ msgstr "Ejemplo:"
 msgid "Hostname"
 msgstr "Nombre del servidor "
 
-msgid "Invalid input format."
-msgstr "Formato de entrada no válido"
+msgid "Organization"
+msgstr "Organización"
 
-msgid "Input should be similar to:"
-msgstr "La entrada debe ser similar a:"
-
-msgid "Country code"
-msgstr "Código del país"
+msgid "Invalid email address"
+msgstr "Dirección de correo electrónico no válida"
 
 msgid "City"
 msgstr "Ciudad"
 
-msgid "Organization"
-msgstr "Organización"
+msgid "Country"
+msgstr "País"
 
-msgid "Organizational unit"
-msgstr "Unidad organizacional"
-
-msgid "Invalid email address"
-msgstr "Dirección de correo electrónico no válida"
+msgid "Country code"
+msgstr "Código del país"
 
 msgid "Generate"
 msgstr "Generar"
@@ -1115,9 +1109,6 @@ msgstr "Dominio raíz usado para sitios secundarios"
 msgid "Use the first site for administrative purposes only"
 msgstr "Utilizar la primera ubicación sólo para propósitos administrativos"
 
-msgid "Enable multi-site login"
-msgstr "Activar el inicio de sesión multi-sitio"
-
 msgid "Allow users to sign up"
 msgstr "Permitir registrarse a los usuarios"
 
@@ -1208,9 +1199,6 @@ msgstr "Autentificación fallida"
 msgid "The code is either invalid or expired."
 msgstr "El código es inválido o ha expirado."
 
-msgid "Site:"
-msgstr "Sitio:"
-
 msgid "Please select your account:"
 msgstr "Por favor, selecciona tu cuenta:"
 
@@ -1243,9 +1231,6 @@ msgstr "Antes de continuar, por favor lee cuidadosamente la documentación en:"
 
 msgid "Account recovery key"
 msgstr "Código de recuperación de la cuenta"
-
-msgid "Your account recovery key is:"
-msgstr "Tu código de recuperación de la cuenta es:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1464,7 +1449,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Introduce tu correo para solicitar un reseteo de su contraseña"
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "Inserta tu código de recuperación cifrado para completar el trámite de recuperación de tu contraseña. "
 
 msgid "Password reset requested."

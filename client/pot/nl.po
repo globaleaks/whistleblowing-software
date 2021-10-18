@@ -33,7 +33,7 @@
 # Paco Mens <mens@freepressunlimited.org>, 2019-2020
 # Teun Gautier <gautier@groene.nl>, 2013
 # Raf Rasenberg <raf@webconexus.nl>, 2019
-# Rianne FPU <verbeek@freepressunlimited.org>, 2020
+# Rianne FPU <verbeek@freepressunlimited.org>, 2020-2021
 # Robin van der Vliet <info@robinvandervliet.nl>, 2015
 # 8d98478d19376e343142c8c23c2a73b6_36c4a7f, 2015
 # SylvainFPU <mignot@freepressunlimited.org>, 2019-2021
@@ -44,7 +44,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -492,19 +492,19 @@ msgid "This domain name is not available."
 msgstr "Deze domeinnaam is niet beschikbaar."
 
 msgid "Mark as important"
-msgstr ""
+msgstr "Markeer als belangrijk"
 
 msgid "Copy to clipboard"
-msgstr "Kopiëren naar klembord"
+msgstr "Kopieer naar klembord"
 
 msgid "Logout"
 msgstr "Log uit"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
+msgstr "Geef deze ontvanger de mogelijkheid om gebruikers toegang te verlenen tot de meldingen"
 
 msgid "Grant access"
-msgstr ""
+msgstr "Toegang verlenen"
 
 msgid "Revoke access"
 msgstr "Toegang herroepen"
@@ -561,7 +561,7 @@ msgid "Enable multisite feature"
 msgstr "Functie voor meerdere-weblocaties inschakelen"
 
 msgid "Enable simplified login"
-msgstr "Vereenvoudigdelogin inschakelen"
+msgstr "Vereenvoudigde login inschakelen"
 
 msgid "Enable search engines indexing"
 msgstr "Zoekmachine-indexering inschakelen"
@@ -648,7 +648,7 @@ msgid "Type"
 msgstr "Type"
 
 msgid "Severity"
-msgstr "Belang"
+msgstr "Ernst"
 
 msgid "Object"
 msgstr "Voorwerp"
@@ -720,7 +720,7 @@ msgid "Whistleblowing button"
 msgstr "Klokkenluid-knop"
 
 msgid "Disclaimer"
-msgstr ""
+msgstr "Disclaimer"
 
 msgid "Footer"
 msgstr "Voettekst"
@@ -848,26 +848,20 @@ msgstr "Voorbeeld:"
 msgid "Hostname"
 msgstr "Hostnaam"
 
-msgid "Invalid input format."
-msgstr "Ongeldig invoerformaat."
+msgid "Organization"
+msgstr "Organisatie"
 
-msgid "Input should be similar to:"
-msgstr "Invoer moet lijken op:"
-
-msgid "Country code"
-msgstr "Landcode"
+msgid "Invalid email address"
+msgstr "Ongeldig e-mailadres"
 
 msgid "City"
 msgstr "Plaats"
 
-msgid "Organization"
-msgstr "Organisatie"
+msgid "Country"
+msgstr "Land"
 
-msgid "Organizational unit"
-msgstr "Organisatie-eenheid"
-
-msgid "Invalid email address"
-msgstr "Ongeldig e-mailadres"
+msgid "Country code"
+msgstr "Landcode"
 
 msgid "Generate"
 msgstr "Aanmaken"
@@ -1123,9 +1117,6 @@ msgstr "Hoofddomein welke wordt gebruikt voor secondaire weblocaties"
 msgid "Use the first site for administrative purposes only"
 msgstr "Gebruik de eerste weblocatie uitsluitend voor administratieve doeleinden"
 
-msgid "Enable multi-site login"
-msgstr "Meerdere-weblocatielogin inschakelen"
-
 msgid "Allow users to sign up"
 msgstr "Gebruikers toestaan zich in te schijven"
 
@@ -1216,9 +1207,6 @@ msgstr "Authenticatie is mislukt"
 msgid "The code is either invalid or expired."
 msgstr "De code is ofwel ongeldig of verlopen."
 
-msgid "Site:"
-msgstr "Weblocatie:"
-
 msgid "Please select your account:"
 msgstr "Selecteer je account:"
 
@@ -1252,9 +1240,6 @@ msgstr "Lees voor je doorgaat zorgvuldig de documentatie door op:"
 msgid "Account recovery key"
 msgstr "Herstelcode voor je account"
 
-msgid "Your account recovery key is:"
-msgstr "De herstelcode voor je account is:"
-
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
@@ -1264,7 +1249,7 @@ msgid "Enter a name for the copy"
 msgstr "Voer een naam in voor de kopie"
 
 msgid "Request support"
-msgstr ""
+msgstr "Vraag ondersteuning"
 
 msgid "Thank you."
 msgstr "Bedankt."
@@ -1472,7 +1457,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Voer je e-mailadres in om een wachtwoordherstel aan te vragen."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "Vul de herstelcode voor de versleuteling in om de wachtwoord reset procedure te voltooien"
 
 msgid "Password reset requested."
@@ -1642,13 +1627,13 @@ msgid "Last name"
 msgstr "Achternaam"
 
 msgid "Alternative contact method"
-msgstr ""
+msgstr "Alternative wijze van contact opnemen"
 
 msgid "Other"
-msgstr "Other"
+msgstr "Overig"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr ""
+msgstr "Ik word liever alleen via dit platform gecontacteerd"
 
 msgid "Dear {RecipientName},"
 msgstr "Beste {RecipientName},"
@@ -1934,7 +1919,7 @@ msgstr "Voor instructies bij nieuwe software versies, kun je de documentatie nas
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "Dit is een e-mail om u te informeren dat een ontvanger u toegang heeft verleend tot een of meer meldingen. "
 
 msgid "New report"
 msgstr "Nieuwe inzending"

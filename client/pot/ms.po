@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malay (http://www.transifex.com/otf/globaleaks/language/ms/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -809,26 +809,20 @@ msgstr "Contoh:"
 msgid "Hostname"
 msgstr "Nama hos"
 
-msgid "Invalid input format."
-msgstr "Format input tidak sah."
+msgid "Organization"
+msgstr "Organisasi"
 
-msgid "Input should be similar to:"
-msgstr "Input perlu serupa dengan:"
-
-msgid "Country code"
-msgstr "Kod negara"
+msgid "Invalid email address"
+msgstr "Alamat e-mel tidak sah"
 
 msgid "City"
 msgstr "Bandar"
 
-msgid "Organization"
-msgstr "Organisasi"
+msgid "Country"
+msgstr "Negara"
 
-msgid "Organizational unit"
-msgstr "Unit organisasi"
-
-msgid "Invalid email address"
-msgstr "Alamat e-mel tidak sah"
+msgid "Country code"
+msgstr "Kod negara"
 
 msgid "Generate"
 msgstr "Jana"
@@ -1084,9 +1078,6 @@ msgstr "Domain akar digunakan untuk laman sekunder"
 msgid "Use the first site for administrative purposes only"
 msgstr "Gunakan laman pertama untuk tujuan pentadbiran sahaja"
 
-msgid "Enable multi-site login"
-msgstr "Dayakan log masuk multilaman"
-
 msgid "Allow users to sign up"
 msgstr "Benarkan pengguna untuk mendaftar"
 
@@ -1177,9 +1168,6 @@ msgstr "Pengesahan gagal"
 msgid "The code is either invalid or expired."
 msgstr "Kod tidak sah atau tamat tempoh."
 
-msgid "Site:"
-msgstr "Laman:"
-
 msgid "Please select your account:"
 msgstr "Sila pilih akaun anda:"
 
@@ -1212,9 +1200,6 @@ msgstr "Sebelum meneruskan, sila baca dokumentasi dengan teliti di:"
 
 msgid "Account recovery key"
 msgstr "Kunci pemulihan akaun"
-
-msgid "Your account recovery key is:"
-msgstr "Kunci pemulihan akaun anda ialah:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1433,7 +1418,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Masukkan alamat e-mel anda untuk meminta penetapan semula kata laluan."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "Masukkan kunci pemulihan penyulitan anda untuk melengkapkan prosedur penetapan semula kata laluan"
 
 msgid "Password reset requested."

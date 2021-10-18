@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -408,7 +408,7 @@ msgid "Select"
 msgstr "选择"
 
 msgid "Deselect"
-msgstr ""
+msgstr "取消选中"
 
 msgid "Surname"
 msgstr "姓氏"
@@ -826,26 +826,20 @@ msgstr "例如："
 msgid "Hostname"
 msgstr "主机名称"
 
-msgid "Invalid input format."
-msgstr "无效的输入格式。"
+msgid "Organization"
+msgstr "组织"
 
-msgid "Input should be similar to:"
-msgstr "输入应该类似："
-
-msgid "Country code"
-msgstr "国家或地区代码"
+msgid "Invalid email address"
+msgstr "无效的电子邮件地址"
 
 msgid "City"
 msgstr "城市"
 
-msgid "Organization"
-msgstr "组织"
+msgid "Country"
+msgstr "国家"
 
-msgid "Organizational unit"
-msgstr "组织单位"
-
-msgid "Invalid email address"
-msgstr "无效的电子邮件地址"
+msgid "Country code"
+msgstr "国家或地区代码"
 
 msgid "Generate"
 msgstr "生成"
@@ -1101,9 +1095,6 @@ msgstr "辅助站点使用的根域"
 msgid "Use the first site for administrative purposes only"
 msgstr "第一个站点仅用作管理目的"
 
-msgid "Enable multi-site login"
-msgstr "启用多站点登录"
-
 msgid "Allow users to sign up"
 msgstr "允许用户注册"
 
@@ -1194,9 +1185,6 @@ msgstr "认证失败"
 msgid "The code is either invalid or expired."
 msgstr "该代码无效或已过期"
 
-msgid "Site:"
-msgstr "网站："
-
 msgid "Please select your account:"
 msgstr "请选择您的帐户："
 
@@ -1229,9 +1217,6 @@ msgstr "继续下一步之前请先仔细阅读此文档："
 
 msgid "Account recovery key"
 msgstr "帐户恢复密钥"
-
-msgid "Your account recovery key is:"
-msgstr "帐户恢复密钥："
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1450,7 +1435,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "请输入电子邮件地址以请求密码重置。"
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "请输入加密恢复密钥，以完成密码重置流程"
 
 msgid "Password reset requested."

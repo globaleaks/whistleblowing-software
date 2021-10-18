@@ -3,7 +3,7 @@
 # Alex Railean <ralienpp@gmail.com>, 2017
 # AlexVox, 2013
 # AlexVox, 2013
-# Andrey, 2020
+# Andrey, 2020-2021
 # Andrey Olykainen <andreyjktl@gmail.com>, 2015
 # Annie Bridges <anniebridges90@gmail.com>, 2014
 # Dina Solveig Jalkanen, 2017,2020
@@ -21,6 +21,7 @@
 # Lowrider <pams@imail.ru>, 2015
 # Pavel Shlyak <shlyakpavel@gmail.com>, 2015
 # Umar Hayat, 2016
+# Veranika Mazurkevich <v.mazurkievic@gmail.com>, 2021
 # Vitali Vovnenko, 2015
 # Vitaliy Grishenko, 2013
 # Vitaliy Grishenko, 2013-2015
@@ -30,7 +31,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -478,7 +479,7 @@ msgid "This domain name is not available."
 msgstr "Это доменное имя не доступно."
 
 msgid "Mark as important"
-msgstr ""
+msgstr "Отметить как важный"
 
 msgid "Copy to clipboard"
 msgstr "Скопировать в буфер обмена"
@@ -487,16 +488,16 @@ msgid "Logout"
 msgstr "Выход"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
+msgstr "Предоставить этому получателю возможность выдавать пользователям доступ к отчетам"
 
 msgid "Grant access"
-msgstr ""
+msgstr "Предоставить доступ"
 
 msgid "Revoke access"
 msgstr "Отозвать доступ"
 
 msgid "File a report"
-msgstr ""
+msgstr "Подать отчет"
 
 msgid "Select the context of your report:"
 msgstr "Выберите контекст для ваших материалов:"
@@ -587,7 +588,7 @@ msgid "Set the value to 0 to disable this feature."
 msgstr "Установите значение 0, чтобы отключить эту функцию."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr "Number of days till notifying users unread reports"
+msgstr "Количество дней до уведомления пользователей о непрочитанных отчетах"
 
 msgid "Enable custodian user role"
 msgstr "Включить роль пользователя-хранителя"
@@ -634,10 +635,10 @@ msgid "Type"
 msgstr "Тип"
 
 msgid "Severity"
-msgstr ""
+msgstr "Степень важности"
 
 msgid "Object"
-msgstr ""
+msgstr "Тема"
 
 msgid "ID"
 msgstr "ID"
@@ -706,7 +707,7 @@ msgid "Whistleblowing button"
 msgstr "Кнопка информирования"
 
 msgid "Disclaimer"
-msgstr ""
+msgstr "Отказ от ответственности"
 
 msgid "Footer"
 msgstr "Нижний колонтитул"
@@ -834,26 +835,20 @@ msgstr "Пример:"
 msgid "Hostname"
 msgstr "Имя хоста"
 
-msgid "Invalid input format."
-msgstr "Недопустимый формат ввода."
+msgid "Organization"
+msgstr "Организация"
 
-msgid "Input should be similar to:"
-msgstr "Ввод должен быть похож на:"
-
-msgid "Country code"
-msgstr "Код страны"
+msgid "Invalid email address"
+msgstr "Недействительный адрес эл. почты"
 
 msgid "City"
 msgstr "Город"
 
-msgid "Organization"
-msgstr "Организация"
+msgid "Country"
+msgstr "Страна"
 
-msgid "Organizational unit"
-msgstr "Подразделение организации"
-
-msgid "Invalid email address"
-msgstr "Недействительный адрес эл. почты"
+msgid "Country code"
+msgstr "Код страны"
 
 msgid "Generate"
 msgstr "Генерировать"
@@ -1109,9 +1104,6 @@ msgstr "Корневой домен, используемый для втори�
 msgid "Use the first site for administrative purposes only"
 msgstr "Использовать первый сайт только в административных целях"
 
-msgid "Enable multi-site login"
-msgstr "Включить многопользовательский вход"
-
 msgid "Allow users to sign up"
 msgstr "Разрешить пользователям регистрироваться"
 
@@ -1202,9 +1194,6 @@ msgstr "Ошибка аутентификации"
 msgid "The code is either invalid or expired."
 msgstr "Код недействителен или истек срок его действия."
 
-msgid "Site:"
-msgstr "Сайт:"
-
 msgid "Please select your account:"
 msgstr "Укажите вашу учётную запись:"
 
@@ -1238,9 +1227,6 @@ msgstr "Прежде чем продолжить, внимательно озн�
 msgid "Account recovery key"
 msgstr "Ключ для восстановления учетной записи"
 
-msgid "Your account recovery key is:"
-msgstr "Ваш ключ для восстановления учетной записи:"
-
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
@@ -1250,7 +1236,7 @@ msgid "Enter a name for the copy"
 msgstr "Введите имя копии"
 
 msgid "Request support"
-msgstr ""
+msgstr "Запросить поддержку"
 
 msgid "Thank you."
 msgstr "Спасибо."
@@ -1458,8 +1444,8 @@ msgid "Enter your email address to request a password reset."
 msgstr "Введите ваш адрес электронной почты, чтобы отправить запрос на сброс пароля."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
-msgstr "Введите ваш ключ восстановления шифрования, чтобы завершить процедуру сброса пароля"
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "Введите ваш ключ восстановления учетной записи, чтобы завершить процедуру сброса пароля"
 
 msgid "Password reset requested."
 msgstr "Запрошен сброс пароля."
@@ -1628,13 +1614,13 @@ msgid "Last name"
 msgstr "Фамилия"
 
 msgid "Alternative contact method"
-msgstr ""
+msgstr "Альтернативный способ связи"
 
 msgid "Other"
 msgstr "Другое"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr ""
+msgstr "Я предпочитаю, чтобы со мной связывались только через эту платформу"
 
 msgid "Dear {RecipientName},"
 msgstr "Дорогой(ая) {RecipientName},"
@@ -1920,7 +1906,7 @@ msgstr "Пожалуйста, прочитайте инструкции по у�
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "Этим электронным письмом уведомляем вас о том, что получатель предоставил вам доступ к одному или нескольким отчетам."
 
 msgid "New report"
 msgstr "Новый отчет"

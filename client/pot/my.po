@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-10-15 09:08+0000\n"
+"Last-Translator: MCIS\n"
 "Language-Team: Burmese (http://www.transifex.com/otf/globaleaks/language/my/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -392,7 +392,7 @@ msgid "Select"
 msgstr "ရွေးချယ်မည်"
 
 msgid "Deselect"
-msgstr ""
+msgstr "ရွေးချယ်မှုဖျက်ရန်"
 
 msgid "Surname"
 msgstr "မိသားစုအမည်"
@@ -682,7 +682,7 @@ msgid "Whistleblowing button"
 msgstr "သတင်းပေး ခလုတ်"
 
 msgid "Disclaimer"
-msgstr ""
+msgstr "မသက်ဆိုင်ကြောင်းရှင်းလင်းချက်"
 
 msgid "Footer"
 msgstr "အောက်ခြေ စာသား"
@@ -810,26 +810,20 @@ msgstr "ဥပမာ -"
 msgid "Hostname"
 msgstr "အထိုင်နေရာ အမည်"
 
-msgid "Invalid input format."
-msgstr "မှားယွင်းသော ထည့်သွင်းမှု ပုံစံ။"
+msgid "Organization"
+msgstr "အဖွဲ့အစည်း"
 
-msgid "Input should be similar to:"
-msgstr "ထည့်သွင်းမှုသည် ဆင်တူဖြစ်သင့်သည် - "
-
-msgid "Country code"
-msgstr "နိုင်ငံကုဒ်"
+msgid "Invalid email address"
+msgstr "မမှန်ကန်သော အီးမေးလ်လိပ်စာ"
 
 msgid "City"
 msgstr "မြို့"
 
-msgid "Organization"
-msgstr "အဖွဲ့အစည်း"
+msgid "Country"
+msgstr "နိုင်ငံ"
 
-msgid "Organizational unit"
-msgstr "အဖွဲ့အစည်း ယူနစ်"
-
-msgid "Invalid email address"
-msgstr "မမှန်ကန်သော အီးမေးလ်လိပ်စာ"
+msgid "Country code"
+msgstr "နိုင်ငံကုဒ်"
 
 msgid "Generate"
 msgstr "ထုတ်လုပ်သည်"
@@ -1085,9 +1079,6 @@ msgstr "ဒိုမိန်းခွဲများအတွက် အသု�
 msgid "Use the first site for administrative purposes only"
 msgstr "ပထမ ဝဘ်ဆိုက်ကို အုပ်ချုပ်မှုအတွက်သာ အသုံးပြုပါ"
 
-msgid "Enable multi-site login"
-msgstr "ဝက်ဆိုက်များစွာတွင် လော့အင်ဝင်ရန် ဖွင့်ပါ"
-
 msgid "Allow users to sign up"
 msgstr "အသုံးပြုသူများကို အကောင့်ဖွင့်ခွင့်ပြုပါ"
 
@@ -1178,9 +1169,6 @@ msgstr "စစ်မှန်ကြောင်းသက်သေပြခြင
 msgid "The code is either invalid or expired."
 msgstr "ကုဒ်သည် မမှန်ကန်ပါ (သို့) သက်တမ်းကုန်သွားသည်။"
 
-msgid "Site:"
-msgstr "ဝက်ဘ်ဆိုက် - "
-
 msgid "Please select your account:"
 msgstr "ကျေးဇူးပြု၍ သင့်အကောင့်ကို ရွေးချယ်ပါ - "
 
@@ -1213,9 +1201,6 @@ msgstr "ဆက်မလုပ်မီ ကျေးဇူးပြု၍ စာ�
 
 msgid "Account recovery key"
 msgstr "အကောင့်ပြန်လည်ရယူရန် စကားဝှက်သော့"
-
-msgid "Your account recovery key is:"
-msgstr "သင်၏ အကောင့် ပြန်လည်ရယူရန် စကားဝှက်သော့ -"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1434,7 +1419,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "စကားဝှက် ပြန်လည်သတ်မှတ်ခွင့် တောင်းဆိုရန် သင့်အီးမေးလ်လိပ်စာကို ရိုက်ထည့်ပါ။"
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "စကားဝှက်ကို ပြန်လည်ရယူခြင်း လုပ်ငန်းစဉ်အတွက် ကုဒ်ဖြင့်ပြောင်းပြီး ပြန်လည်ဖော်ယူမည့် စကားဝှက်သော့ကို ရိုက်ထည့်ပါ"
 
 msgid "Password reset requested."

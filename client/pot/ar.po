@@ -44,7 +44,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -848,26 +848,20 @@ msgstr "مثال"
 msgid "Hostname"
 msgstr "اسم المضيف"
 
-msgid "Invalid input format."
-msgstr "صيغة الإدخال غير صالحة."
+msgid "Organization"
+msgstr "منظمة"
 
-msgid "Input should be similar to:"
-msgstr "يجب أن يكون المدخل مشابها ل:"
-
-msgid "Country code"
-msgstr "مفتاح الدّولة"
+msgid "Invalid email address"
+msgstr "عنوان بريد إلكتروني غير صحيح"
 
 msgid "City"
 msgstr "المدينة"
 
-msgid "Organization"
-msgstr "منظمة"
+msgid "Country"
+msgstr "الدولة"
 
-msgid "Organizational unit"
-msgstr "وحدة تنظيمية"
-
-msgid "Invalid email address"
-msgstr "عنوان بريد إلكتروني غير صحيح"
+msgid "Country code"
+msgstr "مفتاح الدّولة"
 
 msgid "Generate"
 msgstr "توليد"
@@ -1123,9 +1117,6 @@ msgstr "النطاق الرئيسي المستخدم في المواقع الث�
 msgid "Use the first site for administrative purposes only"
 msgstr "استخدم الموقع الأول من أجل الأغراض الإدارية فقط"
 
-msgid "Enable multi-site login"
-msgstr "تمكين تسجيل الدخول لمواقع متعددة"
-
 msgid "Allow users to sign up"
 msgstr "السماح للمستخدمين بالاشتراك"
 
@@ -1216,9 +1207,6 @@ msgstr "فشلت المصادقة."
 msgid "The code is either invalid or expired."
 msgstr "إما أن الرمز غير صحيح أو انتهت صلاحيته."
 
-msgid "Site:"
-msgstr "الموقع:"
-
 msgid "Please select your account:"
 msgstr "الرجاء اختيار حسابك"
 
@@ -1251,9 +1239,6 @@ msgstr "قبل المتابعة، يرجى قراءة التوثيق جيدا ف
 
 msgid "Account recovery key"
 msgstr "مفتاح استرداد الحساب"
-
-msgid "Your account recovery key is:"
-msgstr "مفتاح الإسترداد لحسابك هو:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1472,8 +1457,8 @@ msgid "Enter your email address to request a password reset."
 msgstr "قم بكتابة عنوان البريد الإلكتروني من أجل طلب إعادة تعيين كلمة السر."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
-msgstr "قم بكتابة مفتاح الاستراداد المشفر الخاص بك من أجل إكمال عملية إعادة تعيين كلمة السر."
+"Enter your account recovery key to complete the password reset procedure"
+msgstr ""
 
 msgid "Password reset requested."
 msgstr "تم طلب إعادة تعيين كلمة السر."

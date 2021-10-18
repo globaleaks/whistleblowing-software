@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uzbek (http://www.transifex.com/otf/globaleaks/language/uz/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -811,26 +811,20 @@ msgstr "Masalan:"
 msgid "Hostname"
 msgstr "Host nomi"
 
-msgid "Invalid input format."
-msgstr "Yaroqsiz kiritish formati."
+msgid "Organization"
+msgstr "Tashkilot"
 
-msgid "Input should be similar to:"
-msgstr "Kiritish formati mana bu kabi boʻlsin:"
-
-msgid "Country code"
-msgstr "Mamlakat kodi"
+msgid "Invalid email address"
+msgstr "Yaroqsiz email manzil"
 
 msgid "City"
 msgstr "Shahar"
 
-msgid "Organization"
-msgstr "Tashkilot"
+msgid "Country"
+msgstr "Mamlakat"
 
-msgid "Organizational unit"
-msgstr "Tashkilot boʻlimi"
-
-msgid "Invalid email address"
-msgstr "Yaroqsiz email manzil"
+msgid "Country code"
+msgstr "Mamlakat kodi"
 
 msgid "Generate"
 msgstr "Yaratish"
@@ -1086,9 +1080,6 @@ msgstr "Ikkilamchi saytlarda ishlatiladigan asosiy domen"
 msgid "Use the first site for administrative purposes only"
 msgstr "Bosh saytni faqat boshqaruv maqsadlarida ishlating"
 
-msgid "Enable multi-site login"
-msgstr "Saytlararo kirish imkonini yoqish"
-
 msgid "Allow users to sign up"
 msgstr "Foydalanuvchilarga roʻyxatdan oʻtish imkonini berish"
 
@@ -1179,9 +1170,6 @@ msgstr "Hisob tasdiqlanmadi"
 msgid "The code is either invalid or expired."
 msgstr "Kod yaroqsiz yoki eskirgan."
 
-msgid "Site:"
-msgstr "Sayt:"
-
 msgid "Please select your account:"
 msgstr "Hisobingizni tanlang:"
 
@@ -1214,9 +1202,6 @@ msgstr "Davom ettirishdan oldin quyidagi texnik hujjatlar bilan tanishing:"
 
 msgid "Account recovery key"
 msgstr "Hisobni tiklash kaliti"
-
-msgid "Your account recovery key is:"
-msgstr "Hisobingizni tiklash kaliti:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1435,7 +1420,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Parolni yangilash uchun email manzilingizni kiriting."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "Parolni yangilash jarayonini yakunlash uchun shifrlangan tiklash kalitini kiriting"
 
 msgid "Password reset requested."

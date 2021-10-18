@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malagasy (http://www.transifex.com/otf/globaleaks/language/mg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -824,26 +824,20 @@ msgstr "Exemple :"
 msgid "Hostname"
 msgstr "Nom d’hôte"
 
-msgid "Invalid input format."
-msgstr "Le format de saisie est invalide."
+msgid "Organization"
+msgstr "Organisation"
 
-msgid "Input should be similar to:"
-msgstr "L’entrée devrait être similaire à :"
-
-msgid "Country code"
-msgstr "Code de pays"
+msgid "Invalid email address"
+msgstr "L’adresse courriel est invalide"
 
 msgid "City"
 msgstr "Ville"
 
-msgid "Organization"
-msgstr "Organisation"
+msgid "Country"
+msgstr ""
 
-msgid "Organizational unit"
-msgstr "Unité organisationnelle"
-
-msgid "Invalid email address"
-msgstr "L’adresse courriel est invalide"
+msgid "Country code"
+msgstr "Code de pays"
 
 msgid "Generate"
 msgstr "Générer"
@@ -1099,9 +1093,6 @@ msgstr "Domaine racine utilisé pour les sites secondaires"
 msgid "Use the first site for administrative purposes only"
 msgstr "N’utiliser le premier site qu’à des fins d’administration"
 
-msgid "Enable multi-site login"
-msgstr "Activer la connexion multisite"
-
 msgid "Allow users to sign up"
 msgstr "Permettre aux utilisateurs de s’inscrire"
 
@@ -1192,9 +1183,6 @@ msgstr "Échec lors de l’authentification"
 msgid "The code is either invalid or expired."
 msgstr "Le côté est invalide ou expiré"
 
-msgid "Site:"
-msgstr "Site :"
-
 msgid "Please select your account:"
 msgstr "Veuillez sélectionner votre compte :"
 
@@ -1226,9 +1214,6 @@ msgid "Before proceeding please read carefully the documentation at:"
 msgstr ""
 
 msgid "Account recovery key"
-msgstr ""
-
-msgid "Your account recovery key is:"
 msgstr ""
 
 msgid ""
@@ -1448,7 +1433,7 @@ msgid "Enter your email address to request a password reset."
 msgstr ""
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr ""
 
 msgid "Password reset requested."

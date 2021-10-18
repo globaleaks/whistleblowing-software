@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bengali (http://www.transifex.com/otf/globaleaks/language/bn/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -813,26 +813,20 @@ msgstr "উদাহরণ:"
 msgid "Hostname"
 msgstr "হোস্টনেম"
 
-msgid "Invalid input format."
-msgstr "অবৈধ ইনপুট ফর্ম্যাট।"
+msgid "Organization"
+msgstr "সংগঠন"
 
-msgid "Input should be similar to:"
-msgstr "ইনপুট এমন হওয়া উচিত:"
-
-msgid "Country code"
-msgstr "কান্ট্রি কোড"
+msgid "Invalid email address"
+msgstr "অকার্যকর ইমেইল ঠিকানা"
 
 msgid "City"
 msgstr "শহর"
 
-msgid "Organization"
-msgstr "সংগঠন"
+msgid "Country"
+msgstr "দেশ"
 
-msgid "Organizational unit"
-msgstr "সাংগঠনিক ইউনিট"
-
-msgid "Invalid email address"
-msgstr "অকার্যকর ইমেইল ঠিকানা"
+msgid "Country code"
+msgstr "কান্ট্রি কোড"
 
 msgid "Generate"
 msgstr "তৈরি করুন"
@@ -1088,9 +1082,6 @@ msgstr "আনুষঙ্গিক সাইটগুলির জন্য ব
 msgid "Use the first site for administrative purposes only"
 msgstr "প্রশাসনিক উদ্দেশ্যে শুধুমাত্র প্রথম সাইটটি ব্যবহার করুন"
 
-msgid "Enable multi-site login"
-msgstr "মাল্টি-সাইট লগইন সক্ষম করুন"
-
 msgid "Allow users to sign up"
 msgstr "ব্যবহারকারীদের সাইন আপ করার অনুমতি দিন"
 
@@ -1181,9 +1172,6 @@ msgstr "যাচাই করতে ব্যার্থ হয়েছে"
 msgid "The code is either invalid or expired."
 msgstr "কোডটি অবৈধ বা মেয়াদোত্তীর্ণ।"
 
-msgid "Site:"
-msgstr "সাইট:"
-
 msgid "Please select your account:"
 msgstr "আপনার অ্যাকাউন্টটি নির্বাচন করুন:"
 
@@ -1216,9 +1204,6 @@ msgstr "এগিয়ে যাওয়ার আগে দয়া কর�
 
 msgid "Account recovery key"
 msgstr "অ্যাকাউন্ট পুনরুদ্ধারের চাবি"
-
-msgid "Your account recovery key is:"
-msgstr "আপনার অ্যাকাউন্ট পুনরুদ্ধারের চাবি:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1437,7 +1422,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "পাসওয়ার্ড পুনরায় সেট করার জন্য অনুরোধ করতে আপনার ইমেল ঠিকানা লিখুন।"
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "পাসওয়ার্ড পুনরায় সেট করার পদ্ধতিটি সম্পূর্ণ করতে আপনার এনক্রিপশন পুনরুদ্ধার কী লিখুন"
 
 msgid "Password reset requested."

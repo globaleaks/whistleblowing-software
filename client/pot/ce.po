@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-16 12:03+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chechen (http://www.transifex.com/otf/globaleaks/language/ce/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -164,7 +164,7 @@ msgid "Email"
 msgstr "Email"
 
 msgid "Regular expression validator"
-msgstr "Рожехь болу гацтамаш нийса хилар талларан гlирс"
+msgstr "Рожехь болу гайтамаш нийса хилар талларан гlирс"
 
 msgid "Minimum number of input characters"
 msgstr "Чуйазйечу хьаьркийн лахара барам"
@@ -477,7 +477,7 @@ msgid "Select the context of your report:"
 msgstr "Хьайн отчетан маьlна харжа:"
 
 msgid "Before proceeding, please set a new password."
-msgstr "Айхьа кхид1а болх бале, доьзу, керла ишар хlоттор."
+msgstr "Айхьа кхидlа болх бале, доьзу, керла ишар хlоттор."
 
 msgid "New password"
 msgstr "Керла ишар"
@@ -606,7 +606,7 @@ msgid "percentage"
 msgstr "процент"
 
 msgid "Type"
-msgstr "тайпа"
+msgstr "Тайпа"
 
 msgid "Severity"
 msgstr "Луьралла"
@@ -809,26 +809,20 @@ msgstr "Масал:"
 msgid "Hostname"
 msgstr "Хостан цlе"
 
-msgid "Invalid input format."
-msgstr "Чуйаздаран нийса боцу барам."
+msgid "Organization"
+msgstr "Цхьаьнакхетаралла"
 
-msgid "Input should be similar to:"
-msgstr "Чохьаваларан хаамаш тера хила беза:"
-
-msgid "Country code"
-msgstr "Мехкан код"
+msgid "Invalid email address"
+msgstr "Электронан почтин адрес нийса дац"
 
 msgid "City"
 msgstr "Гlала"
 
-msgid "Organization"
-msgstr "Цхьаьнакхетаралла"
+msgid "Country"
+msgstr "Мохк"
 
-msgid "Organizational unit"
-msgstr "Цхьаьнакхетараллин дакъа"
-
-msgid "Invalid email address"
-msgstr "Электронан почтин адрес нийса дац"
+msgid "Country code"
+msgstr "Мехкан код"
 
 msgid "Generate"
 msgstr "Кхолла"
@@ -868,12 +862,12 @@ msgid ""
 "Using automatic HTTPS configuration will handle the entire process of "
 "requesting, enabling and renewing certificates from the Let's Encrypt "
 "Certificate Authority."
-msgstr "Использование автоматической настройки HTTPS нисдарш ша-шаха хиларх пайдаэцаро хаттаман йерриге а процесс кхочушйийр йу, шена йукъахь  Let's Encrypt сертификацин центрера сертификаташ карладахар а долуш."
+msgstr "HTTPS нисдарш ша-шаха хиларх пайдаэцаро хаттаман йерриге а процесс кхочушйийр йу, шена йукъахь  Let's Encrypt сертификацин центрера сертификаташ карладахар а долуш."
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
 "hostname must have a DNS record referencing that address."
-msgstr "Массарна тlекхочийла долчу IP-адресехула тlекхочийлехь хила йеза платформа, ткъа хостанн хаьржина цlе DNS цу аресна тlехьажош долу йоза долуш хила йеза."
+msgstr "Массарна тlекхочийла долчу IP-адресехула тlекхочийлехь хила йеза платформа, ткъа хостан хаьржина цlе DNS цу аресна тlехьажош долу йоза долуш хила йеза."
 
 msgid "Manual configuration"
 msgstr "Куьйга нисдарш"
@@ -1084,9 +1078,6 @@ msgstr "Шолгlачу сайташна лелош йолу ораман дом
 msgid "Use the first site for administrative purposes only"
 msgstr "Хьалхарчу сайтах урхалла даран lалашонца бен пайда ма эца"
 
-msgid "Enable multi-site login"
-msgstr "Масех сайта чувалар латаде"
-
 msgid "Allow users to sign up"
 msgstr "Пайдаоьцучарна чуйазбала магон"
 
@@ -1142,7 +1133,7 @@ msgid "Allow the recipient to delete reports"
 msgstr "Схьаэцархочунна отчеташ дlайайъа бакъо йала"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Сххьаэцархочунна отчетан леларан хенан терахь дlататта магон"
+msgstr "Схьаэцархочунна отчетан леларан хенан терахь дlататта магон"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Кху таронашна урхалчин тlекхочийла ло пайдаоьцучунна:"
@@ -1177,9 +1168,6 @@ msgstr "Бакъхилар талларан гlалат"
 msgid "The code is either invalid or expired."
 msgstr "Код йа нийса йац, йа леларан хан дlайаьлла."
 
-msgid "Site:"
-msgstr "Сайт:"
-
 msgid "Please select your account:"
 msgstr "Доьху, хьайн агlо харжар:"
 
@@ -1212,9 +1200,6 @@ msgstr "Болх кхидlа бале, доьху, кху адресца дол�
 
 msgid "Account recovery key"
 msgstr "Чуйазваларан йоза меттахlоттаран догlа"
-
-msgid "Your account recovery key is:"
-msgstr "Хьан чуйазваларан йоза меттахlотторан догlа:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1276,7 +1261,7 @@ msgstr "Нагахь хьуна технически гlо эшахь, хьан 
 msgid ""
 "If you want to contribute to software development or report a bug, please "
 "open an issue in our ticketing system:"
-msgstr "Прграммин кхачойара йукъа хьайн дакъа дилла йа гlалатах хаам бан хьуна лаахь, доьху, и кхачамбацар тхан билеташ дохкаран системехь схьаделлар:"
+msgstr "Программин кхачойар йукъа хьайн дакъа дилла йа гlалатах хаам бан хьуна лаахь, доьху, и кхачамбацар тхан билеташ дохкаран системехь схьаделлар:"
 
 msgid "Join our chat:"
 msgstr "Тхан чукеренна йукъакхета:"
@@ -1433,7 +1418,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Ишар йухайаккхар схьадехархьама хьайн электронан почтин адрес чуйазде."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "Ишар йухайаккхар чекхдаккхархьама къайле меттахlотторан догlа чуйазде"
 
 msgid "Password reset requested."
@@ -1540,7 +1525,7 @@ msgstr "Кху схьаэцархошка хьан отчет кхочур йу,
 msgid ""
 "In this step the answers to the following questions are either missing or "
 "invalid:"
-msgstr "Кху муьрехь рогlкрчу хаттаршна жоьпаш дац йа уьш нийса дац:"
+msgstr "Кху муьрехь рогlерчу хаттаршна жоьпаш дац йа уьш нийса дац:"
 
 msgid "You must select at least one recipient."
 msgstr "Цхьа схьаэцархо мукъа а харжа деза хьан."
@@ -1570,7 +1555,7 @@ msgid ""
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr "Оха хьехар до хьуна х1ара барам харжа, нагахь санна, хьайн хаамаш lалашбан хьуна лаахь, схьаэцархоша ишарш йайъича. Кхечу агlор, оха хьуна хьехар ца до, кху таронах пайдаэца, нагахь хьуна схьаэцархой бен ахь йохьуьйтучунна тlе ца кхочуш, система нисйан лаахь."
+msgstr "Оха хьехар до хьуна хlара барам харжа, нагахь санна, хьайн хаамаш lалашбан хьуна лаахь, схьаэцархоша ишарш йайъича. Кхечу агlор, оха хьуна хьехар ца до, кху таронах пайдаэца, нагахь хьуна схьаэцархой бен ахь йохьуьйтучунна тlе ца кхочуш, система нисйан лаахь."
 
 msgid "Please choose a different username."
 msgstr "Доьху, пайдаоьцучун кхин цlе харжа."
@@ -1749,7 +1734,7 @@ msgstr "Рогlера тlехьажорг тlетаlайе, и хийцам тl�
 msgid ""
 "If you didn't request this change, change your password and contact your "
 "system administrator."
-msgstr "Нагахь ахь и хийцам ца бехнехь, хьайн ишар хиций, системин урхалчига хаам бе."
+msgstr "Нагахь ахь и хийцам ца бехнехь, хьайн ишар хийций, системин урхалчига хаам бе."
 
 msgid "Email change request"
 msgstr "Электронан почта хийцарна дехар"
@@ -1901,7 +1886,7 @@ msgid "New report"
 msgstr "Керла отчет"
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
-msgstr "Леларан хан дlайаларан уггаре а хьалара терахь - {EarliestExpirationDate}."
+msgstr "Леларан хан дlайаларан уггаре а хьалхара терахь - {EarliestExpirationDate}."
 
 msgid "Please remember to check them before they are deleted."
 msgstr "Доьху, уьш талла диц ма де уьш дlайахале хьалха."

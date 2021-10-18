@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Kazakh (http://www.transifex.com/otf/globaleaks/language/kk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -810,26 +810,20 @@ msgstr "Үлгі:"
 msgid "Hostname"
 msgstr "Хост атауы"
 
-msgid "Invalid input format."
-msgstr "Енгізу форматы қате."
+msgid "Organization"
+msgstr "Ұйым"
 
-msgid "Input should be similar to:"
-msgstr "Кіріс деректері ұқсас болуы керек:"
-
-msgid "Country code"
-msgstr "Ел коды"
+msgid "Invalid email address"
+msgstr "Электрондық пошта мекенжайы қате"
 
 msgid "City"
 msgstr "Қала"
 
-msgid "Organization"
-msgstr "Ұйым"
+msgid "Country"
+msgstr "Ел"
 
-msgid "Organizational unit"
-msgstr "Ұйымдастыру бөлімі"
-
-msgid "Invalid email address"
-msgstr "Электрондық пошта мекенжайы қате"
+msgid "Country code"
+msgstr "Ел коды"
 
 msgid "Generate"
 msgstr "Құру"
@@ -1085,9 +1079,6 @@ msgstr "Қосымша сайттар үшін пайдаланылатын тү
 msgid "Use the first site for administrative purposes only"
 msgstr "Бірінші сайтты тек әкімшілік мақсатта пайдалану"
 
-msgid "Enable multi-site login"
-msgstr "Бірнеше сайтқа кіруді қосу"
-
 msgid "Allow users to sign up"
 msgstr "Пайдаланушыларға тіркелуге рұқсат ету"
 
@@ -1178,9 +1169,6 @@ msgstr "Аутентификация сәтсіз аяқталды"
 msgid "The code is either invalid or expired."
 msgstr "Код жарамсыз немесе мерзімі өтіп кеткен."
 
-msgid "Site:"
-msgstr "Сайт:"
-
 msgid "Please select your account:"
 msgstr "Есептік жазбаңызды таңдаңыз:"
 
@@ -1213,9 +1201,6 @@ msgstr "Жалғастырмас бұрын, құжаттаманы мұқият
 
 msgid "Account recovery key"
 msgstr "Есептік жазбаны қалпына келтіру кілті"
-
-msgid "Your account recovery key is:"
-msgstr "Есептік жазбаны қалпына келтіру кілті:"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
@@ -1434,8 +1419,8 @@ msgid "Enter your email address to request a password reset."
 msgstr "Құпиясөзді қалпына келтіруді сұрау үшін, электрондық пошта мекенжайын енгізіңіз."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
-msgstr "Құпиясөзді қалпына келтіру процедурасын аяқтау үшін, шифрлауды қалпына келтіру кілтін енгізіңіз."
+"Enter your account recovery key to complete the password reset procedure"
+msgstr "Құпиясөзді қалпына келтіру процедурасын аяқтау үшін, есептік жазбаны қалпына келтіру кілтін енгізіңіз."
 
 msgid "Password reset requested."
 msgstr "Құпиясөзді қалпына келтіру сұралды."

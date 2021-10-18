@@ -4,7 +4,7 @@
 # Aesthese, 2016
 # Bo Elkjaer <bo_elkjaer@riseup.net>, 2018,2020
 # Bo Elkjaer <bo_elkjaer@riseup.net>, 2018
-# Casper Petersen <casper_petersen@hotmail.com>, 2020
+# Casper Petersen <casper_petersen@hotmail.com>, 2020-2021
 # Denis Smajlović <deni@deni.dk>, 2019-2020
 # Denis Smajlović <deni@deni.dk>, 2019
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2018,2020-2021
@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-09-30 16:26+0000\n"
+"PO-Revision-Date: 2021-10-14 19:31+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -398,7 +398,7 @@ msgid "Select"
 msgstr "Vælg"
 
 msgid "Deselect"
-msgstr ""
+msgstr "Fravælg"
 
 msgid "Surname"
 msgstr "Efternavn"
@@ -460,7 +460,7 @@ msgid "This domain name is not available."
 msgstr "Domænenavnet er ikke tilgængeligt."
 
 msgid "Mark as important"
-msgstr ""
+msgstr "Markér som vigtig"
 
 msgid "Copy to clipboard"
 msgstr "Kopier til udklipsholder"
@@ -469,13 +469,13 @@ msgid "Logout"
 msgstr "Log ud"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
+msgstr "Giv denne modtager mulighed for at tildele brugeradgang til rapporter"
 
 msgid "Grant access"
-msgstr ""
+msgstr "Tildel adgang"
 
 msgid "Revoke access"
-msgstr ""
+msgstr "Fjern adgang"
 
 msgid "File a report"
 msgstr "Indsend en rapportering"
@@ -688,7 +688,7 @@ msgid "Whistleblowing button"
 msgstr "Whistleblower-knap"
 
 msgid "Disclaimer"
-msgstr ""
+msgstr "Forbehold"
 
 msgid "Footer"
 msgstr "Sidefod"
@@ -816,26 +816,20 @@ msgstr "Eksempel:"
 msgid "Hostname"
 msgstr "Hostnavn"
 
-msgid "Invalid input format."
-msgstr "Ugyldigt inputformat"
+msgid "Organization"
+msgstr "Organisation"
 
-msgid "Input should be similar to:"
-msgstr "Input skal svare til:"
-
-msgid "Country code"
-msgstr "Landekode"
+msgid "Invalid email address"
+msgstr "Ugyldig e-mail-adresse"
 
 msgid "City"
 msgstr "By"
 
-msgid "Organization"
-msgstr "Organisation"
+msgid "Country"
+msgstr "Land"
 
-msgid "Organizational unit"
-msgstr "Organisationsenhed"
-
-msgid "Invalid email address"
-msgstr "Ugyldig e-mail-adresse"
+msgid "Country code"
+msgstr "Landekode"
 
 msgid "Generate"
 msgstr "Generer"
@@ -1091,9 +1085,6 @@ msgstr "Primært domænenavn der anvendes til underliggende sider"
 msgid "Use the first site for administrative purposes only"
 msgstr "Brug kun den første side til administrative formål"
 
-msgid "Enable multi-site login"
-msgstr "Akivér multi-sitelogin"
-
 msgid "Allow users to sign up"
 msgstr "Tillad brugere at tilmelde sig"
 
@@ -1184,9 +1175,6 @@ msgstr "Godkendelse mislykkedes"
 msgid "The code is either invalid or expired."
 msgstr "Denne kode er enten forkert eller udløbet."
 
-msgid "Site:"
-msgstr "Side:"
-
 msgid "Please select your account:"
 msgstr "Vælg venligst din konto:"
 
@@ -1220,9 +1208,6 @@ msgstr "Før du forsætter, gennemlæs venligst dokumentationen grundigt"
 msgid "Account recovery key"
 msgstr "Kontogendannelsesnøgle"
 
-msgid "Your account recovery key is:"
-msgstr "Din kontogendannelsesnøgle er:"
-
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
@@ -1232,7 +1217,7 @@ msgid "Enter a name for the copy"
 msgstr "Indtast et navn på kopien"
 
 msgid "Request support"
-msgstr ""
+msgstr "Forespørg hjælp"
 
 msgid "Thank you."
 msgstr "Tak."
@@ -1440,7 +1425,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Indtast din e-mail-adresse for at nulstille din adgangskode."
 
 msgid ""
-"Enter your encryption recovery key to complete the password reset procedure"
+"Enter your account recovery key to complete the password reset procedure"
 msgstr "Indtast din krypteringsnøgle for at færdiggøre adgangskodegendannelsesproceduren"
 
 msgid "Password reset requested."
@@ -1610,13 +1595,13 @@ msgid "Last name"
 msgstr "Efternavn"
 
 msgid "Alternative contact method"
-msgstr ""
+msgstr "Alternativ kontaktmetode"
 
 msgid "Other"
 msgstr "Andet"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr ""
+msgstr "Jeg foretrækker kun at blive kontaktet via denne platform"
 
 msgid "Dear {RecipientName},"
 msgstr "Kære {RecipientName},"
@@ -1902,7 +1887,7 @@ msgstr "For instruktioner om opdatering af software, læs venligst dokumentation
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "Dette er en email for at notificere dig om, at en modtager har tildelt dig adgang til en eller flere rapporter"
 
 msgid "New report"
 msgstr "Ny indberetning"
