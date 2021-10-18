@@ -75,7 +75,7 @@ factory("Authentication",
           } else {
             // Override the auth_landing_page if a password change is needed
             if (self.session.role === "whistleblower") {
-              if (password !== '') {
+              if (password) {
                 $rootScope.setPage("tippage");
               }
             } else {
@@ -231,7 +231,7 @@ factory("DATA_COUNTRIES_ITALY_CITIES", ["$resource", function($resource) {
   return $resource("data/countries/it/comuni.json");
 }]).
 factory("Submission", ["$q", "$location", "$rootScope", "Authentication", "GLResource", "SubmissionResource", "TokenResource",
-    function($q, $location, $rootScope, Authentication, GLResource, SubmissionResource, TokenResource) {
+    function($q, $location, $rootScope, Authentication, GLResource, SubmissionResource) {
 
   return function(fn) {
     /**
@@ -302,7 +302,7 @@ factory("Submission", ["$q", "$location", "$rootScope", "Authentication", "GLRes
         removed_files: []
       });
 
-      Authentication.login(0, 'whistleblower', '');
+      Authentication.login(0, "whistleblower", "");
     };
 
     /**

@@ -818,7 +818,7 @@ var GL = angular.module("GL", [
            $rootScope.Authentication.authcoderequired = true;
          } else if (error.code === 6) {
            if ($rootScope.Authentication.session) {
-             if ($rootScope.Authentication.session.role !== 'whistleblower') {
+             if ($rootScope.Authentication.session.role !== "whistleblower") {
                $location.path($rootScope.Authentication.session.homepage);
              } else {
                $rootScope.Authentication.logout();

@@ -134,7 +134,7 @@ GL.controller("TipCtrl",
       $scope.tip = new WBTip(function(tip) {
         $scope.tip = tip;
         $scope.tip.context = $scope.contexts_by_id[$scope.tip.context_id];
-        $scope.tip.receivers_by_id = $rootScope.Utils.array_to_map($scope.tip.receivers);
+        $scope.tip.receivers_by_id = $scope.Utils.array_to_map($scope.tip.receivers);
         $scope.total_score = $scope.tip.total_score;
 
         $scope.ctx = "wbtip";
@@ -167,7 +167,7 @@ GL.controller("TipCtrl",
       $scope.tip = new RTip({id: $scope.tip_id}, function(tip) {
         $scope.tip = tip;
         $scope.tip.context = $scope.contexts_by_id[$scope.tip.context_id];
-        $scope.tip.receivers_by_id = $rootScope.Utils.array_to_map($scope.tip.receivers);
+        $scope.tip.receivers_by_id = $scope.Utils.array_to_map($scope.tip.receivers);
 
         $scope.total_score = $scope.tip.total_score;
         $scope.ctx = "rtip";
@@ -309,7 +309,7 @@ controller("TipOperationsCtrl",
       var req = {
         "operation": "postpone",
         "args": {
-          'value': $scope.args.expiration_date.getTime()
+          "value": $scope.args.expiration_date.getTime()
         }
       };
 

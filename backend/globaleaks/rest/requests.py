@@ -399,7 +399,6 @@ AdminCSRFileDesc = {
         'province': short_text_regexp,
         'city': short_text_regexp,
         'company': short_text_regexp,
-        'department': short_text_regexp,
         'email': email_regexp
     }
 }

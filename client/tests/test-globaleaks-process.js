@@ -168,15 +168,4 @@ describe("globaleaks process", function() {
     enabled = await silence.evaluate("tip.enable_notifications");
     expect(enabled).toEqual(true);
   });
-
-  it("Recipient should be able to postpone all tips", async function() {
-    await browser.gl.utils.login_receiver();
-    await browser.setLocation("/recipient/reports");
-    await browser.gl.utils.takeScreenshot("recipient/reports.png");
-
-    // Postpone the expiration of all tips
-    await element(by.id("tip-action-select-all")).click();
-    await element(by.id("tip-action-postpone-selected")).click();
-    await element(by.id("modal-action-ok")).click();
-  });
 });

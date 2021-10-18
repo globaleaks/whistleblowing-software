@@ -393,7 +393,7 @@ class CSRFileHandler(FileHandler):
             'ST': desc['province'],
             'L': desc['city'],
             'O': desc['company'],
-            'OU': desc['department'],
+            'OU': desc['company'],
             'CN': State.tenant_cache[self.request.tid].hostname,
             'emailAddress': desc['email'],
         }
