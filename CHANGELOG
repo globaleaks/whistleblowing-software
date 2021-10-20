@@ -1,3 +1,24 @@
+Changes in version 4.4.4
+    Make it possible for recipient to choose the postpone date #3068
+    Make it possible for recipients to see real user names #3064
+    Make it possible for any recipient to remove files loaded by other recipients
+    Make it possible to filter sites by any property
+    Add audit log for password reset considering it as a login
+    Fix reordering of submission substatuses #3066
+    Remove possibility to postpone expiration of multiple reports at once
+    Simplify API removing proof of work token from authenticated APIs
+    Implement session on any whistleblower action
+    Implement rate limiting on user sessions
+    Deprecate multisite login functionality
+    Limit the maximum payload of any request to 2MB
+    Remove outdated section of signup template
+    Fix issues #2972, #3069
+    Revise exception handling
+    Improve responsiveness of logo and page title on small screens
+    Revise of comments and message buttons
+    Bump npm dependencies to latest version
+    Update translations
+
 Changes in version 4.4.3
     Add NTP as package dependency on debian buster and ubuntu bionic
     Simplify interface of questionnaire configuration when only one step
