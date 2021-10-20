@@ -6,7 +6,19 @@
 </div>
 <div class="modal-body">
   <span data-translate>By confirming, you will postpone the expiration date to:</span>
-  <span>{{args.Utils.getPostponeDate(args.contexts_by_id[args.tip.context_id].tip_timetolive) | date:'dd-MM-yyyy HH:mm'}}</span>
+  <div class="input-group">
+    <input class="form-control inputelem"
+           type="text"
+           readonly="readonly"
+           data-ng-model="args.expiration_date"
+           data-ng-required="true"
+           data-ng-click="args.opened = true"
+           uib-datepicker-popup
+           datepicker-options="args.dateOptions"
+           is-open="args.opened"
+           show-button-bar="false" />
+    <span class="input-group-append" data-ng-click="args.opened = true"><i class="input-group-text fas fa-calendar"></i></span>
+  </div>
 </div>
 <div class="modal-footer">
   <button id="modal-action-ok" class="btn btn-primary" data-ng-click="confirm()">

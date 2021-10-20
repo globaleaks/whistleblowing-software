@@ -243,6 +243,12 @@ GL.controller("TipCtrl",
               tip: $scope.tip,
               operation: "postpone",
               contexts_by_id: $scope.contexts_by_id,
+              expiration_date: $scope.Utils.getPostponeDate($scope.contexts_by_id[$scope.tip.context_id].tip_timetolive),
+              dateOptions: {
+                minDate: new Date($scope.tip.expiration_date),
+                maxDate: $scope.Utils.getPostponeDate($scope.contexts_by_id[$scope.tip.context_id].tip_timetolive)
+              },
+              opened: false,
               Utils: $scope.Utils
             };
           }
@@ -300,13 +306,15 @@ controller("TipOperationsCtrl",
     if ($scope.args.operation === "postpone") {
       var req = {
         "operation": "postpone",
-        "args": {}
+        "args": {
+          'value': $scope.args.expiration_date.getTime()
+        }
       };
 
       return $http({method: "PUT", url: "api/rtips/" + args.tip.id, data: req}).then(function () {
         $scope.reload();
       });
-    } else if ($scope.args.operation === "delete") {
+    } else if (args.operation === "delete") {
       return $http({method: "DELETE", url: "api/rtips/" + args.tip.id, data:{}}).
         then(function() {
           $location.url("/recipient/reports");

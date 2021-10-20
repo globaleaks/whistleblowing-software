@@ -38,7 +38,9 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             self.assertTrue(rtip_desc['expiration_date'] == datetime_null())
             operation = {
               'operation': 'postpone',
-              'args': {}
+              'args': {
+                'value': 9999999999999999
+              }
             }
 
             handler = self.request(operation, role='receiver', user_id=rtip_desc['receiver_id'])

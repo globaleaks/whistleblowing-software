@@ -4,6 +4,8 @@
 import base64
 import os
 
+from datetime import datetime
+
 from twisted.internet.threads import deferToThread
 from twisted.internet.defer import inlineCallbacks, returnValue
 
@@ -508,19 +510,29 @@ def db_delete_itip(session, itip_id):
     db_del(session, models.InternalTip, models.InternalTip.id == itip_id)
 
 
-def db_postpone_expiration(session, itip):
+def db_postpone_expiration(session, itip, expiration_date):
     """
     Transaction for postponing the expiration of a submission
 
     :param session: An ORM session
     :param itip: A submission model to be postponed
     """
+    expiration_date = expiration_date / 1000
+    expiration_date = min(expiration_date, 32503680000)
+    expiration_date = datetime.utcfromtimestamp(expiration_date)
+
     context = session.query(models.Context).filter(models.Context.id == itip.context_id).one()
 
     if context.tip_timetolive > 0:
-        itip.expiration_date = get_expiration(context.tip_timetolive)
+        max_expiration_date = get_expiration(context.tip_timetolive)
     else:
-        itip.expiration_date = datetime_never()
+        max_expiration_date = datetime_never()
+
+    if expiration_date > max_expiration_date:
+        expiration_date = max_expiration_date
+
+    if expiration_date > itip.expiration_date:
+        itip.expiration_date = expiration_date
 
 
 @transact
@@ -548,7 +560,7 @@ def delete_rtip(session, tid, user_id, rtip_id):
 
 
 @transact
-def postpone_expiration(session, tid, user_id, rtip_id):
+def postpone_expiration(session, tid, user_id, rtip_id, expiration_date):
     """
     Transaction for postponing the expiration of a submission
 
@@ -556,6 +568,7 @@ def postpone_expiration(session, tid, user_id, rtip_id):
     :param tid: A tenant ID of the user performing the operation
     :param user_id: A user ID of the user performing the operation
     :param rtip_id: A rtip ID of the submission object of the operation
+    :param expiration_date: A new expiration date
     """
     receiver = db_get(session,
                       models.User,
@@ -566,7 +579,7 @@ def postpone_expiration(session, tid, user_id, rtip_id):
 
     rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    db_postpone_expiration(session, itip)
+    db_postpone_expiration(session, itip, expiration_date)
 
 
 @transact
@@ -839,7 +852,7 @@ class RTipInstance(OperationHandler):
         return {
           'grant': (RTipInstance.grant_tip_access, {'receiver': str}),
           'revoke': (RTipInstance.revoke_tip_access, {'receiver': str}),
-          'postpone': (RTipInstance.postpone_expiration, None),
+          'postpone': (RTipInstance.postpone_expiration, {'value': int}),
           'set': (RTipInstance.set_tip_val,
                   {'key': '^(enable_two_way_comments|enable_two_way_messages|enable_attachments|enable_notifications)$',
                    'value': bool}),
@@ -864,8 +877,8 @@ class RTipInstance(OperationHandler):
     def revoke_tip_access(self, req_args, rtip_id, *args, **kwargs):
         return revoke_tip_access(self.request.tid, self.session.user_id, rtip_id, req_args['receiver'])
 
-    def postpone_expiration(self, _, rtip_id, *args, **kwargs):
-        return postpone_expiration(self.request.tid, self.session.user_id, rtip_id)
+    def postpone_expiration(self, req_args, rtip_id, *args, **kwargs):
+        return postpone_expiration(self.request.tid, self.session.user_id, rtip_id, req_args['value'])
 
     def update_important(self, req_args, rtip_id, *args, **kwargs):
         return update_important(self.request.tid, self.session.user_id, rtip_id, req_args['value'])
