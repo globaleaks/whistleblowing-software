@@ -340,6 +340,7 @@ def db_create_submission(session, tid, request, user_session, client_using_tor):
     db_log(session, tid=tid, type='whistleblower_new_report')
 
     return {
+        'success': True,
         'receipt': receipt,
         'score': itip.total_score
     }
