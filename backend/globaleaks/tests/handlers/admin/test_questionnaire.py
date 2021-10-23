@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
 
-from sqlalchemy.exc import IntegrityError
-
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models

@@ -1,9 +1,6 @@
 # -*- coding: utf-8
 #
 # Handlers dealing with user preferences
-import base64
-import os
-
 from nacl.encoding import Base32Encoder, Base64Encoder
 from twisted.internet.defer import inlineCallbacks, returnValue
 

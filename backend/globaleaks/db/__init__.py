@@ -11,7 +11,6 @@ from globaleaks.handlers.admin.https import load_tls_dict_list
 from globaleaks.models import Base, Config
 from globaleaks.models.config_desc import ConfigFilters
 from globaleaks.orm import get_engine, get_session, make_db_uri, transact, transact_sync
-from globaleaks.sessions import Session
 from globaleaks.settings import Settings
 from globaleaks.state import State, TenantState
 from globaleaks.utils import fs

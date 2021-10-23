@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from datetime import timedelta
-
 from globaleaks.settings import Settings
 from globaleaks.utils.crypto import generateRandomKey
 from globaleaks.utils.tempdict import TempDict

@@ -7,8 +7,8 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
 
 from OpenSSL import SSL
-from OpenSSL.crypto import load_certificate, load_privatekey, FILETYPE_PEM, TYPE_RSA, \
-    PKey, dump_certificate_request, X509Req, _new_mem_buf
+from OpenSSL.crypto import load_certificate, load_privatekey, FILETYPE_PEM, \
+    dump_certificate_request, X509Req
 
 from twisted.internet import ssl
 
@@ -181,7 +181,6 @@ class TLSServerContextFactory(ssl.ContextFactory):
         :param key: String representation of the private key
         :param certificate: String representation of the certificate
         :param intermediate: String representation of the intermediate file
-        :param dh: String representation of the DH parameters
         """
         self.ctx = new_tls_server_context()
 

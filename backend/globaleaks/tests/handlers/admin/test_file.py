@@ -2,7 +2,6 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.admin import file
-from globaleaks.orm import tw
 from globaleaks.tests import helpers
 
 

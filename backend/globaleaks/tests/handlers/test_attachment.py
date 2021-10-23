@@ -3,7 +3,7 @@ import os
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.handlers import attachment, submission
+from globaleaks.handlers import attachment
 from globaleaks.rest import errors
 from globaleaks.sessions import initialize_submission_session, Sessions
 from globaleaks.tests import helpers

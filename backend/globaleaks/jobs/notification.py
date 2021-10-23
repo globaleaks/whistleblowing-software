@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 # Implement the notification of new submissions
-import copy
-
 import itertools
 
 from datetime import timedelta

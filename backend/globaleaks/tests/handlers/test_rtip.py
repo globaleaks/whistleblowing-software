@@ -4,10 +4,9 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers import rtip
-from globaleaks.handlers.token import generate_token
 from globaleaks.jobs.delivery import Delivery
 from globaleaks.tests import helpers
-from globaleaks.utils.utility import datetime_never, datetime_now, datetime_null
+from globaleaks.utils.utility import datetime_now, datetime_null
 
 
 class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):

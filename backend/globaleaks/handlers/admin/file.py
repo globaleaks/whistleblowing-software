@@ -2,7 +2,7 @@
 import os
 import re
 
-from sqlalchemy.sql.expression import not_, or_
+from sqlalchemy.sql.expression import or_
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models

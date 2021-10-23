@@ -7,7 +7,6 @@ import copy
 from globaleaks.models import config_desc
 from globaleaks.models.enums import *
 from globaleaks.models.properties import *
-from globaleaks.rest import errors
 from globaleaks.utils.utility import datetime_now, datetime_never, datetime_null
 
 

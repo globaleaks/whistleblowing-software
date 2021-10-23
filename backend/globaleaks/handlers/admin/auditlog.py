@@ -8,7 +8,6 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.state import State
-from globaleaks.utils.utility import datetime_now, iso_to_gregorian
 
 
 def serialize_log(log):

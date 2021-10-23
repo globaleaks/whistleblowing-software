@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import os
-
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.jobs import anomalies

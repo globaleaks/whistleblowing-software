@@ -1,8 +1,6 @@
 # -*- coding: utf-8
 from globaleaks import models
-from globaleaks.handlers.admin import user
 from globaleaks.handlers.admin.operation import AdminOperationHandler
-from globaleaks.orm import tw
 from globaleaks.jobs import delivery
 from globaleaks.tests import helpers
 

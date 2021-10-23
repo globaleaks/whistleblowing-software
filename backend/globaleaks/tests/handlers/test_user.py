@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*
 import base64
-import os
 import time
 
 from cryptography.hazmat.backends import default_backend
@@ -10,7 +9,6 @@ from cryptography.hazmat.primitives.hashes import SHA1
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers import admin, user
-from globaleaks.orm import tw
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_null

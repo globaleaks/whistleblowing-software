@@ -1,17 +1,12 @@
 # -*- coding: UTF-8
-import os
-
 from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import load_appdata, db_load_defaults
-from globaleaks.handlers.admin import file
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.wizard import db_wizard
 from globaleaks.models.config import db_set_config_variable, ConfigFactory
 from globaleaks.orm import db_del, db_get, transact
 from globaleaks.rest import requests
-from globaleaks.settings import Settings
-from globaleaks.utils.log import log
 
 
 def serialize_tenant(session, tenant):

@@ -82,9 +82,5 @@ class MigrationScript(MigrationBase):
                                     .filter(self.model_to['InternalTip'].context_id == self.model_to['Context'].id,
                                             self.model_to['Context'].tid == tenant.id)
             for itip in itips:
-                open_status_id = self.session_new.query(self.model_to['SubmissionStatus'].id)\
-                                                .filter(self.model_to['SubmissionStatus'].tid == tenant.id,
-                                                        self.model_to['SubmissionStatus'].system_usage.in_(['open', 'opened'])).one()[0]
-
                 itip.status = 'opened'
                 itip.substatus = ''

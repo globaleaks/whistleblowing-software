@@ -1,7 +1,7 @@
 # -*- coding: utf-8
 from twisted.internet.defer import inlineCallbacks, returnValue
 
-from globaleaks import __version__, models, utils, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
+from globaleaks import models, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.base import BaseHandler
