@@ -97,7 +97,7 @@ class BaseHandler(object):
                 if self.token.session is not None:
                     session_id = self.token.session.id.encode()
             except:
-                raise errors.InternalServerError("TokenFailure: Invalid")
+                pass
 
         if session_id is None:
             return
