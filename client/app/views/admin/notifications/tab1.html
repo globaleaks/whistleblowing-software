@@ -20,7 +20,6 @@
 
     <div class="form-group">
       <label data-translate>Security</label>
-      <span data-ng-show="resources.notification.smtp_security == 'PLAIN'" class="badge badge-warning" data-translate>Warning</span>
       <select class="form-control" data-ng-model="resources.notification.smtp_security">
         <option value="PLAIN">PLAIN</option>
         <option value="SSL">SMTPS</option>
@@ -31,7 +30,6 @@
     <div class="form-group">
       <input data-ng-model="resources.notification.smtp_authentication" type="checkbox">
       <label data-translate>Require authentication</label>
-      <span data-ng-show="!resources.notification.smtp_authentication" class="badge badge-warning" data-translate>Warning</span>
     </div>
 
     <div data-ng-show="resources.notification.smtp_authentication">
