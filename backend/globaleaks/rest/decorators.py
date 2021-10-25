@@ -13,9 +13,9 @@ from globaleaks.utils.utility import datetime_now
 
 def decorator_rate_limit(f):
     def wrapper(self, *args, **kwargs):
-        if self.session:
+        if self.session and self.session.user_role == 'whistleblower':
             now = datetime_now()
-            if now > self.session.ratelimit_time + timedelta(30):
+            if now > self.session.ratelimit_time + timedelta(seconds=30):
                 self.session.ratelimit_time = now
                 self.session.ratelimit_count = 0
 
