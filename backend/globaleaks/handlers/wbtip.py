@@ -7,6 +7,7 @@ from twisted.internet.threads import deferToThread
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
+from globaleaks.models.config import ConfigFactory
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list, WBFileHandler
 from globaleaks.handlers.submission import serialize_usertip, \
@@ -21,6 +22,8 @@ from globaleaks.utils.utility import datetime_now
 
 
 def db_get_itip_receiver_list(session, itip):
+    do_not_expose_users_names = ConfigFactory(session, itip.tid).get_val("do_not_expose_users_names")
+
     ret = []
 
     for user, rtip in session.query(models.User, models.ReceiverTip) \
@@ -28,7 +31,7 @@ def db_get_itip_receiver_list(session, itip):
                                      models.ReceiverTip.internaltip_id == itip.id):
         ret.append({
             "id": user.id,
-            "name": user.name,
+            "name": user.public_name if do_not_expose_users_names else user.name,
             "last_access": rtip.last_access,
             "access_counter": rtip.access_counter
         })
