@@ -210,9 +210,11 @@ class Notification(LoopingJob):
         for mail in mails:
             sent = yield self.state.sendmail(mail['tid'], mail['address'], mail['subject'], mail['body'])
             if sent:
+                delay = 1
                 yield tw(db_del, models.Mail, models.Mail.id == mail['id'])
             else:
                 delay = delay + 1 if delay < 10 else 10
+
             yield deferred_sleep(delay)
 
     @defer.inlineCallbacks
