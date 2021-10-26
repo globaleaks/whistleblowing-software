@@ -97,8 +97,6 @@ ConfigDescriptor = {
     'enable_receipt_hint': Bool(default=False),
     'enable_private_annotations': Bool(default=False),
 
-    'do_not_expose_users_names': Bool(default=False),
-
     'counter_submissions': Int(default=0),
 
     'enable_signup': Bool(default=False),
@@ -171,7 +169,6 @@ ConfigFilters = {
         'disable_privacy_badge',
         'enable_receipt_hint',
         'enable_private_annotations',
-        'do_not_expose_users_names',
         'enable_signup',
         'mode',
         'signup_tos1_enable',

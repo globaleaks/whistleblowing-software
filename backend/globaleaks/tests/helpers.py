@@ -313,7 +313,6 @@ class MockDict:
             'disable_privacy_badge': False,
             'enable_receipt_hint': False,
             'enable_private_annotations': False,
-            'do_not_expose_users_names': True,
             'timezone': 0,
             'default_language': 'en',
             'default_questionnaire': 'default',

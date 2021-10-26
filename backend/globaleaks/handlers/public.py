@@ -597,9 +597,6 @@ def get_public_resources(session, tid, language):
         if not State.tenant_cache[tid].simplified_login:
             receiver['username'] = ''
 
-        if ret['node']['do_not_expose_users_names']:
-            receiver['name'] = ret['node']['name']
-
     for context in db_get_contexts(session, tid, language):
         if not context['languages'] or language.lower() in [x.strip().lower() for x in context['languages'].split(',')]:
             ret['contexts'].append(context)

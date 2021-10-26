@@ -212,7 +212,6 @@ AdminNodeDesc = {
     'allow_indexing': bool,
     'disable_privacy_badge': bool,
     'enable_receipt_hint': bool,
-    'do_not_expose_users_names': bool,
     'disable_submissions': bool,
     'simplified_login': bool,
     'enable_custodian': bool,

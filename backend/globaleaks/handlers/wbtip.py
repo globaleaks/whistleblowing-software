@@ -22,8 +22,6 @@ from globaleaks.utils.utility import datetime_now
 
 
 def db_get_itip_receiver_list(session, itip):
-    do_not_expose_users_names = ConfigFactory(session, itip.tid).get_val("do_not_expose_users_names")
-
     ret = []
 
     for user, rtip in session.query(models.User, models.ReceiverTip) \
@@ -31,7 +29,7 @@ def db_get_itip_receiver_list(session, itip):
                                      models.ReceiverTip.internaltip_id == itip.id):
         ret.append({
             "id": user.id,
-            "name": user.public_name if do_not_expose_users_names else user.name,
+            "name": user.public_name,
             "last_access": rtip.last_access,
             "access_counter": rtip.access_counter
         })
