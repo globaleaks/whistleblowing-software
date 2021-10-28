@@ -146,7 +146,7 @@ def process_receiverfiles(state, files_maps):
 
         for rcounter, rf in enumerate(m['rfiles']):
             try:
-                if rf['pgp_key_public']:
+                if not m['key'] and rf['pgp_key_public']:
                     with sf.open('rb') as encrypted_file:
                         encrypt_file_with_pgp(state,
                                               encrypted_file,
