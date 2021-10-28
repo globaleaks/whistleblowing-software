@@ -177,7 +177,7 @@ do
     #SUCCESS
     echo "GlobaLeaks setup completed."
     TOR=$(gl-admin getvar onionservice)
-    echo "To proceed with the configuration you could now access the platvorm wizard at:"
+    echo "To proceed with the configuration you could now access the platform wizard at:"
     echo "+ http://$TOR (via the Tor Browser)"
     echo "+ http://127.0.0.1:8082"
     echo "+ http://0.0.0.0"
