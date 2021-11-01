@@ -1,15 +1,15 @@
 <label>{{admin_file.title}}</label>
 <div class="card.card-body uploadfile file-{{admin_file.varname}}"
-     flow-init="{target: 'api/admin/files/' + admin_file.varname}"
-     flow-files-submitted="$flow.upload()"
-     flow-file-success="reload()"
-     flow-file-single
+     data-flow-init="{target: 'api/admin/files/' + admin_file.varname}"
+     data-flow-files-submitted="$flow.upload()"
+     data-flow-file-success="reload()"
+     data-flow-file-single
      data-flow-drop
      extend-flow-valid-types="[admin_file.type]"
      extend-flow-valid-size="admin_file.size">
   <span data-ng-show="!public.node[admin_file.varname]">
     <div class="custom-file">
-      <input data-ng-attr-id="customFile-{{admin_file.varname}}" class="custom-file-input" type="file" flow-btn />
+      <input data-ng-attr-id="customFile-{{admin_file.varname}}" class="custom-file-input" type="file" data-flow-btn />
       <label class="btn btn-sm btn-primary" data-ng-attr-for="customFile-{{admin_file.varname}}">
         <i class="fas fa-upload"></i>
         <span data-translate>Upload</span>
