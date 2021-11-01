@@ -11,12 +11,12 @@
       <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs" data-ng-if="submission.context.show_steps_navigation_interface && submission.context.questionnaire.steps.length > 1">
         <li data-ng-if="submission.context.allow_recipients_selection" class="nav-item">
           <a id="receiver-selection-link" data-ng-class="{active: navigation === -1}" class="nav-link" data-ng-click="goToStep(-1)">
-            <span class="stepIndex" data-ng-class="{'stepIndexSelected': navigation === -1}">1</span> <span data-translate>Recipient selection</span>
+            <span class="StepIndex" data-ng-class="{'StepIndexSelected': navigation === -1}">1</span> <span class="StepLabel" data-translate>Recipient selection</span>
           </a>
         </li>
         <li data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'order'" data-ng-if="step.enabled" class="nav-item">
           <a id="step-{{$index}}-link" data-ng-class="{active: navigation === $index}" class="nav-link" data-ng-click="goToStep($index)">
-            <span class="stepIndex" data-ng-class="{'stepIndexSelected': navigation === $index}">{{$index + (submission.context.allow_recipients_selection ? 2 : 1)}}</span> <span>{{step.label}}</span>
+            <span class="StepIndex" data-ng-class="{'StepIndexSelected': navigation === $index}">{{$index + (submission.context.allow_recipients_selection ? 2 : 1)}}</span> <span class="StepLabel">{{step.label}}</span>
           </a>
         </li>
       </ul>

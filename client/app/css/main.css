@@ -558,7 +558,7 @@ input[type='file'] {
   width: max-content;
 }
 
-.stepIndex {
+.StepIndex {
   display: inline-block;
   color: #c8d1e0;
   width: 1.8rem;
@@ -571,17 +571,17 @@ input[type='file'] {
   text-align: center;
 }
 
-[dir='ltr'] .stepIndex,
+[dir='ltr'] .StepIndex,
 [dir='ltr'] #SubmissionButtons button {
   margin-right: 1em;
 }
 
-[dir='rtl'] .stepIndex,
+[dir='rtl'] .StepIndex,
 [dir='rtl'] #SubmissionButtons button {
   margin-left: 1em;
 }
 
-.stepIndexSelected {
+.StepIndexSelected {
   color: #ffffff;
   background-color: #377abc;
   border-color: #377abc;
@@ -768,6 +768,10 @@ text.axis-worktime {
 
 .TipLabel {
   color: #377abc;
+}
+
+.StepLabel {
+  text-transform: capitalize;
 }
 
 #SearchFilter {
