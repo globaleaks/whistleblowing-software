@@ -3,6 +3,7 @@
      flow-name="imageUploadObj.flow"
      flow-init="{target: 'api/admin/files/' + imageUploadId}"
      flow-files-submitted="$flow.upload()"
+     data-flow-drop
      extend-flow-valid-types="['png']">
   <label class="changePictureButton text-primary"
          for="imageFile"

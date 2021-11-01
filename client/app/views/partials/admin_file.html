@@ -4,12 +4,13 @@
      flow-files-submitted="$flow.upload()"
      flow-file-success="reload()"
      flow-file-single
+     data-flow-drop
      extend-flow-valid-types="[admin_file.type]"
      extend-flow-valid-size="admin_file.size">
   <span data-ng-show="!public.node[admin_file.varname]">
     <div class="custom-file">
-      <input id="customFile-{{admin_file.varname}}" class="custom-file-input" type="file" flow-btn />
-      <label class="btn btn-sm btn-primary" for="customFile-{{admin_file.varname}}">
+      <input data-ng-attr-id="customFile-{{admin_file.varname}}" class="custom-file-input" type="file" flow-btn />
+      <label class="btn btn-sm btn-primary" data-ng-attr-for="customFile-{{admin_file.varname}}">
         <i class="fas fa-upload"></i>
         <span data-translate>Upload</span>
       </label>
