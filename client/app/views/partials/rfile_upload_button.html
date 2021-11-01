@@ -11,8 +11,8 @@
        class="drag-drop">
     <div data-ng-if="field === undefined || field.multi_entry">
       <div class="custom-file">
-        <input id="customFile" class="custom-file-input" type="file" flow-btn />
-        <label class="btn btn-sm btn-outline-secondary" for="customFile">
+        <input data-ng-attr-id="customFile-{{fileinput}}" class="custom-file-input" type="file" flow-btn />
+        <label class="btn btn-sm btn-outline-secondary" data-ng-attr-for="customFile-{{fileinput}}">
           <i class="fas fa-upload"></i>
           <span data-translate>Upload</span>
 	</label>
@@ -21,12 +21,12 @@
     </div>
     <div data-ng-if="field !== undefined && !field.multi_entry">
       <div class="custom-file">
-        <input id="customFile" class="custom-file-input" data-ng-disabled="disabled" type="file" flow-btn flow-single-file>
-        <label class="btn btn-sm btn-outline-secondary" for="customFile">
+        <input id="customFile-{{fileinput}}" class="custom-file-input" data-ng-disabled="disabled" type="file" flow-btn flow-single-file>
+        <label class="btn btn-sm btn-outline-secondary" data-ng-attr-for="customFile-{{fileinput}}">
           <i class="fas fa-upload"></i>
           <span data-translate>Upload</span>
         </label>
-	<span class="mx-2" data-translate>Select a file or drag it here.</span>
+        <span class="mx-2" data-translate>Select a file or drag it here.</span>
       </div>
     </div>
     <div errors-upload></div>
