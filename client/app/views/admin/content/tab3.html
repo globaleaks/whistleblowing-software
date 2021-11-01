@@ -1,14 +1,14 @@
 <div class="row">
   <div class="col-md-12">
     <div class="form-group">
-      <div flow-init="{target: 'api/admin/files/custom'}"
-           flow-files-submitted="$flow.upload()"
-           flow-file-success="reload()"
+      <div data-flow-init="{target: 'api/admin/files/custom'}"
+           data-flow-files-submitted="$flow.upload()"
+           data-flow-file-success="reload()"
            extend-flow-valid-size="public.node.maximum_filesize*1024*1024">
         <span data-translate>Files</span>
         <span class="uploadfile file-custom">
           <span class="custom-file">
-            <input id="customFile" class="custom-file-input" type="file" flow-btn />
+            <input id="customFile" class="custom-file-input" type="file" data-flow-btn />
             <label class="btn btn-sm btn-primary" for="customFile">
               <i class="fas fa-upload"></i>
               <span data-translate>Upload</span>
