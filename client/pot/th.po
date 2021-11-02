@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -544,9 +544,6 @@ msgstr "แบบสอบถามมาตรฐาน"
 msgid "Show contexts in alphabetical order"
 msgstr "แสดงบริบทตามลำดับอักษร"
 
-msgid "Do not expose users' names"
-msgstr "อย่าเปิดเผยชื่อของผู้ใช้"
-
 msgid "Size limit for file attachments"
 msgstr "ขีดจำกัดขนาดเอกสารแนบ"
 
@@ -927,9 +924,6 @@ msgstr "พอร์ตเซิร์ฟเวอร์ SMTP"
 msgid "Security"
 msgstr "การรักษาความปลอดภัย"
 
-msgid "Warning"
-msgstr "คำเตือน"
-
 msgid "Require authentication"
 msgstr "ต้องใช้การยืนยันตัวตน"
 
@@ -1097,9 +1091,6 @@ msgstr "ชื่อเรื่อง"
 
 msgid "Send an account activation link to the user."
 msgstr "ส่งลิงก์ยืนยันการเปิดใช้บัญชีไปให้ผู้ใช้"
-
-msgid "Public name"
-msgstr "ชื่อสาธารณะ"
 
 msgid "Send reset link"
 msgstr "ส่งลิงก์รีเซ็ต"
@@ -1309,6 +1300,9 @@ msgstr "สามารถเข้าถึงทรัพยากรได้
 msgid "The upload request exceeds the size limit"
 msgstr "ขนาดการขออัปโหลดเกินขีดจำกัด"
 
+msgid "Public name"
+msgstr "ชื่อสาธารณะ"
+
 msgid "Validation of email address change in progress."
 msgstr "กำลังดำเนินการตรวจความถูกต้องของอีเมลของคุณ"
 
@@ -1320,6 +1314,9 @@ msgstr "รหัสผ่านปัจจุบัน"
 
 msgid "Old password confirmation required"
 msgstr "จำเป็นต้องยืนยันรหัสผ่านเก่า"
+
+msgid "Warning"
+msgstr "คำเตือน"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -550,9 +550,6 @@ msgstr "Qüestionari per defecte"
 msgid "Show contexts in alphabetical order"
 msgstr "Mostra contextos en ordre alfabètic"
 
-msgid "Do not expose users' names"
-msgstr "No mostrar els noms d'usuari"
-
 msgid "Size limit for file attachments"
 msgstr "Límit de mida per als arxius adjunts"
 
@@ -933,9 +930,6 @@ msgstr "Port del servidor SMTP"
 msgid "Security"
 msgstr "Seguretat"
 
-msgid "Warning"
-msgstr "Alerta"
-
 msgid "Require authentication"
 msgstr "Requereix autenticació"
 
@@ -1103,9 +1097,6 @@ msgstr "Títol"
 
 msgid "Send an account activation link to the user."
 msgstr "Envia un enllaç d’activació del compte a l’usuari."
-
-msgid "Public name"
-msgstr "Nom públic"
 
 msgid "Send reset link"
 msgstr "Envia l'enllaç de restabliment"
@@ -1315,6 +1306,9 @@ msgstr "Només es pot accedir a aquest recurs a través de la xarxa Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "La petició de pujada preval sobre els límits de volum de dades"
 
+msgid "Public name"
+msgstr "Nom públic"
+
 msgid "Validation of email address change in progress."
 msgstr "Validació del canvi d'adreça electrònica en progrés."
 
@@ -1326,6 +1320,9 @@ msgstr "Contrasenya actual"
 
 msgid "Old password confirmation required"
 msgstr "Es requereix confirmació de l'anterior contrasenya"
+
+msgid "Warning"
+msgstr "Alerta"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

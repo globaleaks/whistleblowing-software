@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-15 09:08+0000\n"
-"Last-Translator: MCIS\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Burmese (http://www.transifex.com/otf/globaleaks/language/my/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -537,9 +537,6 @@ msgstr "နဂိုမူလ မေးခွန်းလွှာ"
 msgid "Show contexts in alphabetical order"
 msgstr "အကြောင်းအရာများကို အက္ခရာစဉ်အတိုင်း ပြသပါ"
 
-msgid "Do not expose users' names"
-msgstr "အသုံးပြုသူများ၏ အမည်များကို မဖော်ပြပါနှင့်"
-
 msgid "Size limit for file attachments"
 msgstr "ပူးတွဲဖိုင်များအတွက် အရွယ်အစား ကန့်သတ်ချက်"
 
@@ -920,9 +917,6 @@ msgstr "SMTP ဆာဗာ ပေါ့တ်"
 msgid "Security"
 msgstr "လုံခြုံရေး"
 
-msgid "Warning"
-msgstr "သတိပေးချက်"
-
 msgid "Require authentication"
 msgstr "စစ်မှန်ကြောင်းသက်သေပြခြင်း လိုအပ်သည်"
 
@@ -1090,9 +1084,6 @@ msgstr "ခေါင်းစဉ်"
 
 msgid "Send an account activation link to the user."
 msgstr "အသုံးပြုသူထံ အကောင့် သက်ဝင်လုပ်ဆောင်မှု လင့် ပို့ပါ။"
-
-msgid "Public name"
-msgstr "အများဆိုင် အမည်"
 
 msgid "Send reset link"
 msgstr "ပြန်လည်သတ်မှတ်ရန် လင့် ပို့ပါ"
@@ -1302,6 +1293,9 @@ msgstr "ရင်းမြစ်ကို Tor ကွန်ရက်မှတစ�
 msgid "The upload request exceeds the size limit"
 msgstr "အပ်လုဒ် တောင်းဆိုမှုသည် အရွယ်အစား ကန့်သတ်ချက်ထက် ကျော်လွန်နေသည်"
 
+msgid "Public name"
+msgstr "အများဆိုင် အမည်"
+
 msgid "Validation of email address change in progress."
 msgstr "အီးမေးလ်လိပ်စာ အပြောင်းအလဲ အတည်ပြုနေသည်။"
 
@@ -1313,6 +1307,9 @@ msgstr "လက်ရှိ စကားဝှက်"
 
 msgid "Old password confirmation required"
 msgstr "စကားဝှက်အဟောင်းကို အတည်ပြုရန် လိုအပ်သည်"
+
+msgid "Warning"
+msgstr "သတိပေးချက်"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

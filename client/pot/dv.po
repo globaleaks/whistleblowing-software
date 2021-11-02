@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -540,9 +540,6 @@ msgstr "އާންމު ސުވާލުކަރުދާސް"
 msgid "Show contexts in alphabetical order"
 msgstr "ކޮންޓެކްސްޓް އޭ.ބީ.ސީ އަކުރުގެ އޯޑަރަށް ބަހާލަން"
 
-msgid "Do not expose users' names"
-msgstr ""
-
 msgid "Size limit for file attachments"
 msgstr "ފައިލް އެޓޭޗްމެންޓްގެ ސައިޒުގެ ތަފްސީލް"
 
@@ -923,9 +920,6 @@ msgstr "އެސްއެމްޓީޕީ ސަރވަރ ޕޯޓް"
 msgid "Security"
 msgstr "ސެކިއުރިޓީ"
 
-msgid "Warning"
-msgstr "އިންޒާރު"
-
 msgid "Require authentication"
 msgstr "ހުއްދަ އޮތްތޯ ބެލުމަށްޓަކައި"
 
@@ -1093,9 +1087,6 @@ msgstr "ލަގަބު"
 
 msgid "Send an account activation link to the user."
 msgstr "ބޭނުންކުރާ ފަރާތަށް އެކްޓިވޭޝަން ލިންކް ފޮނުއްވުމަށް"
-
-msgid "Public name"
-msgstr " އާންމުނަން"
 
 msgid "Send reset link"
 msgstr "ރީސެޓް ކުރަން ލިންކް ފޮނުވާ"
@@ -1305,6 +1296,9 @@ msgstr "ވަޞީލަތްތަކުގެ ބޭނުންކުރެވޭނީ ހަމައެކ
 msgid "The upload request exceeds the size limit"
 msgstr "އަޕްލޯޑް ކުރަން ބޭނުންވާ މީޑިއާގެ ސައިޒް ހުއްދަ ކުރެވިފައިވާ މިންވަރަށްވުރެ ބޮޑު"
 
+msgid "Public name"
+msgstr " އާންމުނަން"
+
 msgid "Validation of email address change in progress."
 msgstr "އީމެއިލް އެޑްރެސް ބަދަލުކުރުމުގެ މަސައްކަތް ކުރިޔަށް ދަނީ. "
 
@@ -1316,6 +1310,9 @@ msgstr "މިހާރު ބޭނުންކުރާ ޕާސްވޯޑް"
 
 msgid "Old password confirmation required"
 msgstr "ޔަގީންކުރުމަށް ކުރީގެ ޕާސްވޯޑް ބޭނުންވޭ "
+
+msgid "Warning"
+msgstr "އިންޒާރު"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Macedonian (http://www.transifex.com/otf/globaleaks/language/mk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -538,9 +538,6 @@ msgstr "Стандарден прашалник"
 msgid "Show contexts in alphabetical order"
 msgstr "Покажи ги содржините по азбучен ред"
 
-msgid "Do not expose users' names"
-msgstr "Не ги изложувај корисничките имиња"
-
 msgid "Size limit for file attachments"
 msgstr "Граница за големина на датотека за прилог"
 
@@ -921,9 +918,6 @@ msgstr " SMTP сервер порта"
 msgid "Security"
 msgstr "Безбедност"
 
-msgid "Warning"
-msgstr "Внимание"
-
 msgid "Require authentication"
 msgstr "Бара автентикација"
 
@@ -1091,9 +1085,6 @@ msgstr "Наслов"
 
 msgid "Send an account activation link to the user."
 msgstr "Испрати му на корисникот линк за активација на сметка."
-
-msgid "Public name"
-msgstr "Јавно име"
 
 msgid "Send reset link"
 msgstr "Испрати линк за ресетирање"
@@ -1303,6 +1294,9 @@ msgstr "На ресурсот може да му биде пристапено �
 msgid "The upload request exceeds the size limit"
 msgstr "Барањето за прикачувања го надмина ограничувањето за големина"
 
+msgid "Public name"
+msgstr "Јавно име"
+
 msgid "Validation of email address change in progress."
 msgstr "Потврдата за промена на адресата на е-поштата е во тек."
 
@@ -1314,6 +1308,9 @@ msgstr "Сегашна лозинка"
 
 msgid "Old password confirmation required"
 msgstr "Потребна е потврда на старата лозинка"
+
+msgid "Warning"
+msgstr "Внимание"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

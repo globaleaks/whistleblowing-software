@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -548,9 +548,6 @@ msgstr "Προκαθορισμένο ερωτηματολόγιο"
 msgid "Show contexts in alphabetical order"
 msgstr "Εμφάνιση θεματικών ενοτήτων με αλφαβητική σειρά"
 
-msgid "Do not expose users' names"
-msgstr "Μην εκθέσετε τα ονόματα των χρηστών"
-
 msgid "Size limit for file attachments"
 msgstr "Όριο μεγέθους για τα συνημμένα αρχεία"
 
@@ -931,9 +928,6 @@ msgstr "SMTP port διακομιστή"
 msgid "Security"
 msgstr "Ασφάλεια"
 
-msgid "Warning"
-msgstr "Προειδοποίηση"
-
 msgid "Require authentication"
 msgstr "Να απαιτείται αυθεντικοποίηση"
 
@@ -1101,9 +1095,6 @@ msgstr "Τίτλος"
 
 msgid "Send an account activation link to the user."
 msgstr "Αποστολή συνδέσμου ενεργοποίησης λογαριασμού στον χρήστη"
-
-msgid "Public name"
-msgstr "Δημόσιο όνομα"
 
 msgid "Send reset link"
 msgstr "Αποστολή συνδέσμου επαναφοράς"
@@ -1313,6 +1304,9 @@ msgstr "Το περιεχόμενο είναι προσβάσιμο μόνο μ�
 msgid "The upload request exceeds the size limit"
 msgstr "Το αίτημα ανεβάσματος ξεπερνά τα όρια μεγέθους"
 
+msgid "Public name"
+msgstr "Δημόσιο όνομα"
+
 msgid "Validation of email address change in progress."
 msgstr "Η επικύρωση της αλλαγής διεύθυνσης email είναι σε εξέλιξη."
 
@@ -1324,6 +1318,9 @@ msgstr "Τρέχων κωδικός πρόσβασης"
 
 msgid "Old password confirmation required"
 msgstr "Χρειάζεται επιβεβαίωση του παλιού κωδικού πρόσβασης"
+
+msgid "Warning"
+msgstr "Προειδοποίηση"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

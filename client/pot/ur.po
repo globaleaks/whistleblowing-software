@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -546,9 +546,6 @@ msgstr ""
 msgid "Show contexts in alphabetical order"
 msgstr "الفبائی ترتیب میں سیاق و سباق دکھائیں"
 
-msgid "Do not expose users' names"
-msgstr ""
-
 msgid "Size limit for file attachments"
 msgstr "فائل اٹیچمنٹ کے سائز کی حد"
 
@@ -929,9 +926,6 @@ msgstr "ایس ایم ٹی پی سرور کی پورٹ "
 msgid "Security"
 msgstr "سیکیورٹی"
 
-msgid "Warning"
-msgstr "انتباہ"
-
 msgid "Require authentication"
 msgstr ""
 
@@ -1099,9 +1093,6 @@ msgstr "عنوان"
 
 msgid "Send an account activation link to the user."
 msgstr ""
-
-msgid "Public name"
-msgstr "Public name"
 
 msgid "Send reset link"
 msgstr ""
@@ -1311,6 +1302,9 @@ msgstr " صرف ٹور نیٹ ورک کے اندررہتے ہوئے وسائل �
 msgid "The upload request exceeds the size limit"
 msgstr "اپ لوڈ کی درخواست سائز کی حد سے تجاوز کر گئی ہے"
 
+msgid "Public name"
+msgstr "Public name"
+
 msgid "Validation of email address change in progress."
 msgstr ""
 
@@ -1322,6 +1316,9 @@ msgstr "موجودہ پاسورڈ"
 
 msgid "Old password confirmation required"
 msgstr "پرانے پاس ورڈ کی تصدیق کی ضرورت ہے"
+
+msgid "Warning"
+msgstr "انتباہ"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

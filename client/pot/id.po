@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -557,9 +557,6 @@ msgstr "Kuesioner bawaan "
 msgid "Show contexts in alphabetical order"
 msgstr "Memperlihatkan konteks dalam urutan abjad "
 
-msgid "Do not expose users' names"
-msgstr "Jangan memperlihatkan nama pengguna"
-
 msgid "Size limit for file attachments"
 msgstr "Batasan ukuran untuk berkas lampiran "
 
@@ -940,9 +937,6 @@ msgstr "Port server SMTP"
 msgid "Security"
 msgstr "Keamanan"
 
-msgid "Warning"
-msgstr "Peringatan"
-
 msgid "Require authentication"
 msgstr "Autentikasi dibutuhkan"
 
@@ -1110,9 +1104,6 @@ msgstr "Judul"
 
 msgid "Send an account activation link to the user."
 msgstr "Kirim tautan aktivasi akun kepada pengguna."
-
-msgid "Public name"
-msgstr "Nama publik"
 
 msgid "Send reset link"
 msgstr "Kirim tautan pengaturan ulang"
@@ -1322,6 +1313,9 @@ msgstr "Sumber hanya dapat diakses melalui jaringan Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Permintaan unggahan melebihi batas ukuran"
 
+msgid "Public name"
+msgstr "Nama publik"
+
 msgid "Validation of email address change in progress."
 msgstr "Validasi perubahan alamat surel sedang berlangsung."
 
@@ -1333,6 +1327,9 @@ msgstr "Kata sandi saat ini"
 
 msgid "Old password confirmation required"
 msgstr "Konfirmasi kata sandi sebelumnya diperlukan"
+
+msgid "Warning"
+msgstr "Peringatan"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

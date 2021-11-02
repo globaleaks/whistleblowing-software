@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Galician (http://www.transifex.com/otf/globaleaks/language/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -539,9 +539,6 @@ msgstr "Cuestionario predeterminado"
 msgid "Show contexts in alphabetical order"
 msgstr "Mostrar contextos por orde alfabética"
 
-msgid "Do not expose users' names"
-msgstr ""
-
 msgid "Size limit for file attachments"
 msgstr "Límite de tamaño para ficheiros anexados"
 
@@ -922,9 +919,6 @@ msgstr "Porto do servidor SMTP"
 msgid "Security"
 msgstr "Seguridade"
 
-msgid "Warning"
-msgstr "Aviso"
-
 msgid "Require authentication"
 msgstr "Requirir autenticación"
 
@@ -1091,9 +1085,6 @@ msgid "Title"
 msgstr "Título"
 
 msgid "Send an account activation link to the user."
-msgstr ""
-
-msgid "Public name"
 msgstr ""
 
 msgid "Send reset link"
@@ -1304,6 +1295,9 @@ msgstr "Só se pode acceder ao recurso a través da rede Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "A solicitude de carga supera o límite de tamaño"
 
+msgid "Public name"
+msgstr ""
+
 msgid "Validation of email address change in progress."
 msgstr "Validación da modificación do enderezo de correo electrónico en progreso."
 
@@ -1315,6 +1309,9 @@ msgstr "Contrasinal actual"
 
 msgid "Old password confirmation required"
 msgstr "Necesítase unha confirmación de contrasinal antiga"
+
+msgid "Warning"
+msgstr "Aviso"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

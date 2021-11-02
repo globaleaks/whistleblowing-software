@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -540,9 +540,6 @@ msgstr "デフォルトのアンケート"
 msgid "Show contexts in alphabetical order"
 msgstr "コンテキストをアルファベット順に表示"
 
-msgid "Do not expose users' names"
-msgstr "ユーザーの名前を公開しない"
-
 msgid "Size limit for file attachments"
 msgstr "添付ファイルの制限サイズ"
 
@@ -923,9 +920,6 @@ msgstr "SMTPサーバーのポート"
 msgid "Security"
 msgstr "セキュリティ"
 
-msgid "Warning"
-msgstr "警告"
-
 msgid "Require authentication"
 msgstr "認証が必要"
 
@@ -1093,9 +1087,6 @@ msgstr "タイトル"
 
 msgid "Send an account activation link to the user."
 msgstr "アカウントの有効化リンクをユーザーに送信します。"
-
-msgid "Public name"
-msgstr "公開名"
 
 msgid "Send reset link"
 msgstr "リセットリンクを送信"
@@ -1305,6 +1296,9 @@ msgstr "リソースはTorネットワーク内でのみアクセスできます
 msgid "The upload request exceeds the size limit"
 msgstr "アップロードリクエストがサイズ制限を超過しました"
 
+msgid "Public name"
+msgstr "公開名"
+
 msgid "Validation of email address change in progress."
 msgstr "メールアドレス変更の検証を処理しています。"
 
@@ -1316,6 +1310,9 @@ msgstr "現在のパスワード"
 
 msgid "Old password confirmation required"
 msgstr "旧パスワードの確認が必要"
+
+msgid "Warning"
+msgstr "警告"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

@@ -4,6 +4,7 @@
 # Metafrasi <biuro@setara.eu>, 2016,2020-2021
 # Damian S., 2015
 # Damian S., 2015
+# Daniel Vaknine <vaknine.daniel@gmail.com>, 2021
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2021
 # Jakub Jakubiak <jakub.jakubiak@gmail.com>, 2014
 # Jakub Jakubiak <jakub.jakubiak@gmail.com>, 2014
@@ -21,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Polish (http://www.transifex.com/otf/globaleaks/language/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -487,7 +488,7 @@ msgid "Revoke access"
 msgstr "Odwołaj dostęp"
 
 msgid "File a report"
-msgstr " \nZłożyć zgłoszenie"
+msgstr " \nWyślij zgłoszenie"
 
 msgid "Select the context of your report:"
 msgstr "Wybierz kontekst swojego zgłoszenia:"
@@ -551,9 +552,6 @@ msgstr "Domyślna ankieta"
 
 msgid "Show contexts in alphabetical order"
 msgstr "Sortuj konteksty alfabetycznie"
-
-msgid "Do not expose users' names"
-msgstr "Nie wyświetlaj nazwisk użytkowników"
 
 msgid "Size limit for file attachments"
 msgstr "Limit wielkości załączników"
@@ -935,9 +933,6 @@ msgstr "Port serwera SMTP"
 msgid "Security"
 msgstr "Bezpieczeństwo"
 
-msgid "Warning"
-msgstr "Ostrzeżenie"
-
 msgid "Require authentication"
 msgstr "Wymaga uwierzytelnienia"
 
@@ -1105,9 +1100,6 @@ msgstr "Tytuł"
 
 msgid "Send an account activation link to the user."
 msgstr "Wyślij link aktywacyjny użytkownikowi."
-
-msgid "Public name"
-msgstr "Publiczna nazwa"
 
 msgid "Send reset link"
 msgstr "Wyślij link resetu hasła"
@@ -1317,6 +1309,9 @@ msgstr "Dostęp do zasobów możliwy tylko poprzez sieć Tor."
 msgid "The upload request exceeds the size limit"
 msgstr "Żądanie wysłania przekracza limit rozmiaru"
 
+msgid "Public name"
+msgstr "Publiczna nazwa"
+
 msgid "Validation of email address change in progress."
 msgstr "Weryfikacja zmiany adresu email w toku."
 
@@ -1328,6 +1323,9 @@ msgstr "Obecne hasło"
 
 msgid "Old password confirmation required"
 msgstr "Wymagane potwierdzenie starego hasła"
+
+msgid "Warning"
+msgstr "Ostrzeżenie"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
@@ -1341,7 +1339,7 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Potem skopiuj i wklej ten adres do Tor Browser:"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "Otworzyłeś już zgłoszenie? Wprowadź jego kod."
+msgstr "Wysłałeś / wysłałaś już zgłoszenie? Wprowadź jego kod."
 
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Kod zgłoszenia jest nieprawidłowy lub zgłoszenie wygasło."

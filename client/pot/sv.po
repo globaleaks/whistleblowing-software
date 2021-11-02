@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -554,9 +554,6 @@ msgstr "Standardfrågeformulär"
 msgid "Show contexts in alphabetical order"
 msgstr "Visa kontexter i alfabetisk ordning"
 
-msgid "Do not expose users' names"
-msgstr "Visa inte användarnas namn"
-
 msgid "Size limit for file attachments"
 msgstr "Storleksgräns för bifogade filer"
 
@@ -937,9 +934,6 @@ msgstr "SMTP-serverport"
 msgid "Security"
 msgstr "Säkerhet"
 
-msgid "Warning"
-msgstr "Varning"
-
 msgid "Require authentication"
 msgstr "Kräv autentisering"
 
@@ -1107,9 +1101,6 @@ msgstr "Titel"
 
 msgid "Send an account activation link to the user."
 msgstr "Skicka en länk för aktivering av kontot till användaren."
-
-msgid "Public name"
-msgstr "Offentligt namn"
 
 msgid "Send reset link"
 msgstr "Skicka återställningslänk"
@@ -1319,6 +1310,9 @@ msgstr "Resursen kan bara nås inom Tor-nätverket"
 msgid "The upload request exceeds the size limit"
 msgstr "Uppladdningen går över maxgränsen för antalet MB"
 
+msgid "Public name"
+msgstr "Offentligt namn"
+
 msgid "Validation of email address change in progress."
 msgstr "Bekräftelse av ändrad e-postadress pågår."
 
@@ -1330,6 +1324,9 @@ msgstr "Nuvarande lösenord"
 
 msgid "Old password confirmation required"
 msgstr "Kräv bekräftelse på gammalt lösenord"
+
+msgid "Warning"
+msgstr "Varning"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

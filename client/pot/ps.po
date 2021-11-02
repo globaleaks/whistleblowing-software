@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Pashto (http://www.transifex.com/otf/globaleaks/language/ps/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -536,9 +536,6 @@ msgstr "عادې پوښتنلیک"
 msgid "Show contexts in alphabetical order"
 msgstr "مطالب د الفبا د تورو په ترتیب وښیئ"
 
-msgid "Do not expose users' names"
-msgstr "د کارنونو نومونه مه ښکاره کوئ"
-
 msgid "Size limit for file attachments"
 msgstr "د فایل د ضمیمو لپاره د اندازې محدودیت"
 
@@ -919,9 +916,6 @@ msgstr "د SMTP د سرور پورت"
 msgid "Security"
 msgstr "امنیت"
 
-msgid "Warning"
-msgstr "خبرداری"
-
 msgid "Require authentication"
 msgstr "تصدیق ته اړتیا لري"
 
@@ -1089,9 +1083,6 @@ msgstr "عنوان"
 
 msgid "Send an account activation link to the user."
 msgstr "کارن ته د اکاونټ د فعالولو د لینک لیږل."
-
-msgid "Public name"
-msgstr "عام نوم"
 
 msgid "Send reset link"
 msgstr "د بیرته تنظیم کولو د لینک لیږل"
@@ -1301,6 +1292,9 @@ msgstr "سرچینو ته یوازې کېدای شي د Tor د شبکې له ل�
 msgid "The upload request exceeds the size limit"
 msgstr "د پورته کولو غوښتنه د ټاکل شوي اندازې له حد څخه زیاته ده"
 
+msgid "Public name"
+msgstr "عام نوم"
+
 msgid "Validation of email address change in progress."
 msgstr "د برېښنالیک پتې د بدلولو تایید د پرمختګ په حال کې ده."
 
@@ -1312,6 +1306,9 @@ msgstr "اوسنی پټ نوم"
 
 msgid "Old password confirmation required"
 msgstr "د پخواني پټ نوم تصدیق ته اړتیا ده"
+
+msgid "Warning"
+msgstr "خبرداری"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

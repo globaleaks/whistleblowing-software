@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tajik (http://www.transifex.com/otf/globaleaks/language/tg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -537,9 +537,6 @@ msgstr "Саволномаи пешфарз"
 msgid "Show contexts in alphabetical order"
 msgstr "Мавзӯҳоро бо тартиби алифбо нишон додан"
 
-msgid "Do not expose users' names"
-msgstr "Номи корбаронро ифшо накардан"
-
 msgid "Size limit for file attachments"
 msgstr "Маҳдудияти ҳаҷм барои файлҳои замимашаванда "
 
@@ -920,9 +917,6 @@ msgstr "Порти хадамоти SMTP"
 msgid "Security"
 msgstr "Амният"
 
-msgid "Warning"
-msgstr "Огоҳӣ"
-
 msgid "Require authentication"
 msgstr "Тасдиқи шахсиятро талаб кардан"
 
@@ -1090,9 +1084,6 @@ msgstr "Унвон"
 
 msgid "Send an account activation link to the user."
 msgstr "Ба корбар ирсол намудани пайванд барои фаъолсозии аккаунт."
-
-msgid "Public name"
-msgstr "Номи ҷамъиятӣ"
 
 msgid "Send reset link"
 msgstr "Ирсоли пайванд барои барқарорсозӣ"
@@ -1302,6 +1293,9 @@ msgstr "Дастрасӣ ба ин манбаъ танҳо тавассути ш
 msgid "The upload request exceeds the size limit"
 msgstr "Дархости боркунӣ аз ҳадди андозаи муқарраршуда зиёд аст"
 
+msgid "Public name"
+msgstr "Номи ҷамъиятӣ"
+
 msgid "Validation of email address change in progress."
 msgstr "Тасдиқи тағйири суроғаи почтаи электронӣ идома дорад."
 
@@ -1313,6 +1307,9 @@ msgstr "Гузарвожаи ҷорӣ"
 
 msgid "Old password confirmation required"
 msgstr "Тасдиқи гузарвожаи куҳна лозим аст"
+
+msgid "Warning"
+msgstr "Огоҳӣ"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -537,9 +537,6 @@ msgstr "기본 설문 조사"
 msgid "Show contexts in alphabetical order"
 msgstr "알파벳 순서로 컨텍스트 표시"
 
-msgid "Do not expose users' names"
-msgstr "사용자 이름을 노출하지 않습니다"
-
 msgid "Size limit for file attachments"
 msgstr "첨부 파일 크기 제한"
 
@@ -920,9 +917,6 @@ msgstr "SMTP 서버 포트"
 msgid "Security"
 msgstr "보안"
 
-msgid "Warning"
-msgstr "경고"
-
 msgid "Require authentication"
 msgstr "인증 필요"
 
@@ -1090,9 +1084,6 @@ msgstr "제목"
 
 msgid "Send an account activation link to the user."
 msgstr "사용자에게 계정 활성화 링크를 전송합니다."
-
-msgid "Public name"
-msgstr "공개 이름"
 
 msgid "Send reset link"
 msgstr "재설정 링크 전송"
@@ -1302,6 +1293,9 @@ msgstr "리소스는 Tor 네트워크를 통해서만 액세스할 수 있습니
 msgid "The upload request exceeds the size limit"
 msgstr "업로드 요청이 크기 제한을 초과합니다"
 
+msgid "Public name"
+msgstr "공개 이름"
+
 msgid "Validation of email address change in progress."
 msgstr "이메일 주소 변경 검증 진행 중입니다."
 
@@ -1313,6 +1307,9 @@ msgstr "현재 비밀번호"
 
 msgid "Old password confirmation required"
 msgstr "이전 비밀번호 확인 필요"
+
+msgid "Warning"
+msgstr "경고"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

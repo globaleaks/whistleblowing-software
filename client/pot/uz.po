@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uzbek (http://www.transifex.com/otf/globaleaks/language/uz/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -538,9 +538,6 @@ msgstr "Birlamchi savolnoma"
 msgid "Show contexts in alphabetical order"
 msgstr "Kontekstlarni alifbo tartibida chiqarish"
 
-msgid "Do not expose users' names"
-msgstr "Foydalanuvchilarning ismlari oshkor qilinmasin"
-
 msgid "Size limit for file attachments"
 msgstr "Fayl biriktirmalari hajmi limiti"
 
@@ -921,9 +918,6 @@ msgstr "SMTP server porti"
 msgid "Security"
 msgstr "Xavfsizlik"
 
-msgid "Warning"
-msgstr "Diqqat"
-
 msgid "Require authentication"
 msgstr "Hisob tekshiruvini talab qilish"
 
@@ -1091,9 +1085,6 @@ msgstr "Sarlavha"
 
 msgid "Send an account activation link to the user."
 msgstr "Foydalanuvchiga hisobini aktivatsiya qilish havolasini yuborish."
-
-msgid "Public name"
-msgstr "Rasmiy nomi"
 
 msgid "Send reset link"
 msgstr "Qayta tiklash havolasini yuborish"
@@ -1303,6 +1294,9 @@ msgstr "Manba faqatgina Tor tarmoq ulanishi orqali ochiladi"
 msgid "The upload request exceeds the size limit"
 msgstr "Yuklash soʻrovi belgilangan limitdan ortiq"
 
+msgid "Public name"
+msgstr "Rasmiy nomi"
+
 msgid "Validation of email address change in progress."
 msgstr "Email manzil oʻzgarishi tekshirilmoqda."
 
@@ -1314,6 +1308,9 @@ msgstr "Joriy parol"
 
 msgid "Old password confirmation required"
 msgstr "Eski parolni tasdiqlash lozim"
+
+msgid "Warning"
+msgstr "Diqqat"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

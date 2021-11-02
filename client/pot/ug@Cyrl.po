@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uighur (Cyrillic) (http://www.transifex.com/otf/globaleaks/language/ug@Cyrl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -536,9 +536,6 @@ msgstr "Көңүлдики рай синаш"
 msgid "Show contexts in alphabetical order"
 msgstr "Мәзмунларни елипбә тәртипи бойичә көрсәт"
 
-msgid "Do not expose users' names"
-msgstr "Ишләткүчиләрниң намлирини ашкарилима"
-
 msgid "Size limit for file attachments"
 msgstr "Һөҗҗәт қошумчилири үчүн чоңлуқ чеки"
 
@@ -919,9 +916,6 @@ msgstr "‏‏‏SMTP мулазиметер порти"
 msgid "Security"
 msgstr "Бихәтәрлик"
 
-msgid "Warning"
-msgstr "Агаһландуруш"
-
 msgid "Require authentication"
 msgstr "Кимлик тоғрулашни тәләп қилиду"
 
@@ -1089,9 +1083,6 @@ msgstr "Тема"
 
 msgid "Send an account activation link to the user."
 msgstr "Һесабат актиплаш уланмисини ишләткүчигә әвәт"
-
-msgid "Public name"
-msgstr "Аммиви нами"
 
 msgid "Send reset link"
 msgstr "Қайта сәпләш уланмисини әвәт"
@@ -1301,6 +1292,9 @@ msgstr "Мәнбәни пәқәт Tor тори биләнла зийарәт қ�
 msgid "The upload request exceeds the size limit"
 msgstr "Йүклимә тәлипи чоңлуқ чекидин ешип кәтти"
 
+msgid "Public name"
+msgstr "Аммиви нами"
+
 msgid "Validation of email address change in progress."
 msgstr "Елхәт адреси өзгәртишни дәлилләш давам қиливатиду."
 
@@ -1312,6 +1306,9 @@ msgstr "Һазирқи парол"
 
 msgid "Old password confirmation required"
 msgstr "Кона паролни җәзимләш тәләп қилиниду"
+
+msgid "Warning"
+msgstr "Агаһландуруш"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

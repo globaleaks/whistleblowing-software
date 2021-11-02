@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-16 12:03+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chechen (http://www.transifex.com/otf/globaleaks/language/ce/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -536,9 +536,6 @@ msgstr "Ша-шаха кхолладелла анкета"
 msgid "Show contexts in alphabetical order"
 msgstr "Маьlнаш абатан рогlехь гайта"
 
-msgid "Do not expose users' names"
-msgstr "Пайдаоьцучийн цlерш ма йаста"
-
 msgid "Size limit for file attachments"
 msgstr "Йукъайехкинчу файлийн барамна дозатохар"
 
@@ -919,9 +916,6 @@ msgstr "SMTP-серверан порт"
 msgid "Security"
 msgstr "Кхерамзалла"
 
-msgid "Warning"
-msgstr "Дlахьедар"
-
 msgid "Require authentication"
 msgstr "Бакъхилар таллар оьшу"
 
@@ -1089,9 +1083,6 @@ msgstr "Корта"
 
 msgid "Send an account activation link to the user."
 msgstr "Чуйазваларан йоза жигарадан тlехьажорг йахьийта пайдаоьцучунна."
-
-msgid "Public name"
-msgstr "Нахалахь лела цlе"
 
 msgid "Send reset link"
 msgstr "Йухайаккхарна тlехьажорг йахьийта"
@@ -1301,6 +1292,9 @@ msgstr "Tor машанеухла бен тlекхочийла дац ресур�
 msgid "The upload request exceeds the size limit"
 msgstr "Бараман лаккхарчу тlегlанал тlехбаьлла чуйаккхаран хаттам"
 
+msgid "Public name"
+msgstr "Нахалахь лела цlе"
+
 msgid "Validation of email address change in progress."
 msgstr "Электронан почтин адрес хийцаран таллам бу беш."
 
@@ -1312,6 +1306,9 @@ msgstr "Карара ишар"
 
 msgid "Old password confirmation required"
 msgstr "Шира ишар тlечlагlйар оьшу"
+
+msgid "Warning"
+msgstr "Дlахьедар"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

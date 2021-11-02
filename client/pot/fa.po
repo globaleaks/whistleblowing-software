@@ -27,7 +27,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -558,9 +558,6 @@ msgstr "پرسش‌نامهٔ پیش‌فرض"
 msgid "Show contexts in alphabetical order"
 msgstr "نمایش زمینه‌ها به ترتیب الفبا"
 
-msgid "Do not expose users' names"
-msgstr "نام‌های کاربران را نمایش ندهید"
-
 msgid "Size limit for file attachments"
 msgstr "محدودیت حجم برای فایل پیوست‌ها"
 
@@ -941,9 +938,6 @@ msgstr "درگاه سرور STMP"
 msgid "Security"
 msgstr "امنیت"
 
-msgid "Warning"
-msgstr "هشدار"
-
 msgid "Require authentication"
 msgstr "درخواست احراز هویت"
 
@@ -1111,9 +1105,6 @@ msgstr "عنوان"
 
 msgid "Send an account activation link to the user."
 msgstr "به کاربر یک پیوند فعال‌سازی حساب کاربری ارسال شود."
-
-msgid "Public name"
-msgstr "نام عمومی"
 
 msgid "Send reset link"
 msgstr "ارسال پیوند بازنشانی"
@@ -1323,6 +1314,9 @@ msgstr "منبع فقط از طریق شبکهٔ Tor قابل دسترس است"
 msgid "The upload request exceeds the size limit"
 msgstr "درخواست بارگذاری از محدودهٔ حجم مجاز بیشتر است"
 
+msgid "Public name"
+msgstr "نام عمومی"
+
 msgid "Validation of email address change in progress."
 msgstr "اعتبارسنجی تغییر نشانی ایمیل در حال انجام است."
 
@@ -1334,6 +1328,9 @@ msgstr "گذرواژهٔ فعلی"
 
 msgid "Old password confirmation required"
 msgstr "تأیید گذرواژهٔ قدیمی لازم است"
+
+msgid "Warning"
+msgstr "هشدار"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

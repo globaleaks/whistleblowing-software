@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bengali (http://www.transifex.com/otf/globaleaks/language/bn/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -540,9 +540,6 @@ msgstr "সাধারণ প্রশ্নাবলী"
 msgid "Show contexts in alphabetical order"
 msgstr "প্রসঙ্গগুলি বর্ণানুক্রমিক ক্রমে দেখান"
 
-msgid "Do not expose users' names"
-msgstr "ব্যবহারকারীর নাম প্রকাশ করবেন না"
-
 msgid "Size limit for file attachments"
 msgstr "ফাইল সংযুক্তির জন্য আকার সীমা"
 
@@ -923,9 +920,6 @@ msgstr "SMTP সার্ভার পোর্ট"
 msgid "Security"
 msgstr "সুরক্ষা"
 
-msgid "Warning"
-msgstr "সতর্কতা"
-
 msgid "Require authentication"
 msgstr "প্রমাণীকরণ প্রয়োজন"
 
@@ -1093,9 +1087,6 @@ msgstr "শিরোনাম"
 
 msgid "Send an account activation link to the user."
 msgstr "ব্যবহারকারীকে একটি অ্যাকাউন্ট সক্রিয়করণ লিঙ্ক প্রেরণ করুন।"
-
-msgid "Public name"
-msgstr "প্রকাশ্য নাম"
 
 msgid "Send reset link"
 msgstr "রিসেট লিঙ্ক প্রেরণ করুন"
@@ -1305,6 +1296,9 @@ msgstr "কেবলমাত্র টর নেটওয়ার্কের 
 msgid "The upload request exceeds the size limit"
 msgstr "আপলোডের অনুরোধটি আকারের সীমা অতিক্রম করেছে"
 
+msgid "Public name"
+msgstr "প্রকাশ্য নাম"
+
 msgid "Validation of email address change in progress."
 msgstr "ইমেল ঠিকানা যাচাইকরণের প্রক্রিয়া চলছে।"
 
@@ -1316,6 +1310,9 @@ msgstr "বর্তমান পাসওয়ার্ড"
 
 msgid "Old password confirmation required"
 msgstr "পুরানো পাসওয়ার্ড নিশ্চিতকরণ প্রয়োজন"
+
+msgid "Warning"
+msgstr "সতর্কতা"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

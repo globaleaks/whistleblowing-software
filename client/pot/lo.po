@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Lao (http://www.transifex.com/otf/globaleaks/language/lo/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -536,9 +536,6 @@ msgstr "ແບບສອບຖາມທີ່ເປັນຄ່າເລີ່ມ
 msgid "Show contexts in alphabetical order"
 msgstr "ສະແດງເນື້ອຫາຕາມລຳດັບຕົວອັກສອນ"
 
-msgid "Do not expose users' names"
-msgstr "ຫ້າມເປີດເຜີຍຊື່ຂອງຜູ້ໃຊ້"
-
 msgid "Size limit for file attachments"
 msgstr "ຂະໜາດຈຳກັດສຳລັບໄຟລ໌ຄັດຕິດ"
 
@@ -919,9 +916,6 @@ msgstr "ພອດທ໌ເຊີບເວີ SMTP"
 msgid "Security"
 msgstr "ຄວາມປອດໄພ"
 
-msgid "Warning"
-msgstr "ຄຳເຕືອນ"
-
 msgid "Require authentication"
 msgstr "ຕ້ອງມີການກວດສອບຄວາມຖືກຕ້ອງ"
 
@@ -1089,9 +1083,6 @@ msgstr "ຫົວຂໍ້"
 
 msgid "Send an account activation link to the user."
 msgstr "ສົ່ງລິ້ງເປີດໃຊ້ງານບັນຊີໄປໃຫ້ຜູ້ໃຊ້."
-
-msgid "Public name"
-msgstr "ຊື່ສາທາລະນະ"
 
 msgid "Send reset link"
 msgstr "ສົ່ງລິ້ງຕັ້ງລະຫັດຄືນໃໝ່"
@@ -1301,6 +1292,9 @@ msgstr "ສາມາດເຂົ້າເຖິງແຫຼ່ງຂໍ້ມູ
 msgid "The upload request exceeds the size limit"
 msgstr "ຄຳຮ້ອງຂໍການອັບໂຫຼດເກີນຂີດຈຳກັດຂອງຂະໜາດ"
 
+msgid "Public name"
+msgstr "ຊື່ສາທາລະນະ"
+
 msgid "Validation of email address change in progress."
 msgstr "ການກວດສອບຄວາມຖືກຕ້ອງຂອງການປ່ຽນແປງທີ່ຢູ່ອີເມວກຳລັງກຳເນີນການຢູ່."
 
@@ -1312,6 +1306,9 @@ msgstr "ລະ​ຫັດ​ຜ່ານປະ​ຈຸ​ບັນ"
 
 msgid "Old password confirmation required"
 msgstr "ຈຳເປັນຕ້ອງມີການຢືນຢັນລະຫັດຜ່ານເກົ່າ"
+
+msgid "Warning"
+msgstr "ຄຳເຕືອນ"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

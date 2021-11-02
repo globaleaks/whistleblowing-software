@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Belarusian (http://www.transifex.com/otf/globaleaks/language/be/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -537,9 +537,6 @@ msgstr "Анкета па змаўчанні"
 msgid "Show contexts in alphabetical order"
 msgstr "Паказваць кантэксты ў алфавітным парадку"
 
-msgid "Do not expose users' names"
-msgstr "Не паказваць імёны карыстальнікаў"
-
 msgid "Size limit for file attachments"
 msgstr "Абмежаванне памеру далучаных файлаў"
 
@@ -920,9 +917,6 @@ msgstr "SMTP порт сервера"
 msgid "Security"
 msgstr "Бяспека"
 
-msgid "Warning"
-msgstr "Увага"
-
 msgid "Require authentication"
 msgstr "Патрабуецца аўтэнтыфікацыя"
 
@@ -1090,9 +1084,6 @@ msgstr "Загаловак"
 
 msgid "Send an account activation link to the user."
 msgstr "Даслаць карыстальніку спасылку на актывацыю ўліковага запісу."
-
-msgid "Public name"
-msgstr "Публічнае імя"
 
 msgid "Send reset link"
 msgstr "Адправіць спасылку на абнуленне наладаў"
@@ -1302,6 +1293,9 @@ msgstr "Даступ да рэсурсу можна атрымаць тольк�
 msgid "The upload request exceeds the size limit"
 msgstr "Файл для загрузкі перавышае максімальны памер"
 
+msgid "Public name"
+msgstr "Публічнае імя"
+
 msgid "Validation of email address change in progress."
 msgstr "Ідзе валідацыя змены адраса электроннай пошты."
 
@@ -1313,6 +1307,9 @@ msgstr "Цяперашні пароль"
 
 msgid "Old password confirmation required"
 msgstr "Патрабуецца пацверджанне старога пароля"
+
+msgid "Warning"
+msgstr "Увага"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
