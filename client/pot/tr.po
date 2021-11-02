@@ -30,7 +30,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -561,9 +561,6 @@ msgstr "Varsayılan anket"
 msgid "Show contexts in alphabetical order"
 msgstr "Kategorileri alfabetik sıralı göster"
 
-msgid "Do not expose users' names"
-msgstr "Kullanıcı isimlerini teşhir etme"
-
 msgid "Size limit for file attachments"
 msgstr "Dosya ekleri için boyut sınırı"
 
@@ -944,9 +941,6 @@ msgstr "SMTP sunucu bağlantı noktası"
 msgid "Security"
 msgstr "Güvenlik"
 
-msgid "Warning"
-msgstr "Uyarı"
-
 msgid "Require authentication"
 msgstr "Kimlik doğrulama gerektir"
 
@@ -1114,9 +1108,6 @@ msgstr "Başlık"
 
 msgid "Send an account activation link to the user."
 msgstr "Kullanıcıya hesap etkinleştirme bağlantısı gönder"
-
-msgid "Public name"
-msgstr "Açık isim"
 
 msgid "Send reset link"
 msgstr "Sıfırlama bağlantısı gönder"
@@ -1326,6 +1317,9 @@ msgstr "Kaynak sadece Tor ağı içerisinden erişilebilir"
 msgid "The upload request exceeds the size limit"
 msgstr "Yükleme talebi boyut sınırlarını aşıyor"
 
+msgid "Public name"
+msgstr "Açık isim"
+
 msgid "Validation of email address change in progress."
 msgstr "E-posta adresi değişikliği doğrulaması devam ediyor. "
 
@@ -1337,6 +1331,9 @@ msgstr "Şimdiki parola"
 
 msgid "Old password confirmation required"
 msgstr "Eski parola doğrulaması gerekli"
+
+msgid "Warning"
+msgstr "Uyarı"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

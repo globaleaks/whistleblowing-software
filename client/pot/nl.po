@@ -44,7 +44,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -575,9 +575,6 @@ msgstr "Standaard vragenformulier"
 msgid "Show contexts in alphabetical order"
 msgstr "Toon contexten in alfabetische volgorde"
 
-msgid "Do not expose users' names"
-msgstr "Gebruikersnamen niet prijsgeven"
-
 msgid "Size limit for file attachments"
 msgstr "Maximale grootte voor bestandsbijlagen"
 
@@ -958,9 +955,6 @@ msgstr "SMTP-serverpoort"
 msgid "Security"
 msgstr "Beveiliging"
 
-msgid "Warning"
-msgstr "Waarschuwing"
-
 msgid "Require authentication"
 msgstr "Vereis authenticatie"
 
@@ -1128,9 +1122,6 @@ msgstr "Titel"
 
 msgid "Send an account activation link to the user."
 msgstr "Verstuur een account activatielink naar de gebruiker."
-
-msgid "Public name"
-msgstr "Publieke naam"
 
 msgid "Send reset link"
 msgstr "Verstuur reset link"
@@ -1340,6 +1331,9 @@ msgstr "Bron is alleen toegankelijk binnen het Tor-netwerk"
 msgid "The upload request exceeds the size limit"
 msgstr "De uploadaanvraag overstijgt de MB limiet"
 
+msgid "Public name"
+msgstr "Publieke naam"
+
 msgid "Validation of email address change in progress."
 msgstr "Validatie van e-mail adres verandering wordt uitgevoerd."
 
@@ -1351,6 +1345,9 @@ msgstr "Huidig wachtwoord"
 
 msgid "Old password confirmation required"
 msgstr "Bevestiging van oud wachtwoord vereist"
+
+msgid "Warning"
+msgstr "Waarschuwing"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

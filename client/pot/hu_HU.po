@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -553,9 +553,6 @@ msgstr "Alap kérdőív"
 msgid "Show contexts in alphabetical order"
 msgstr "A kategóriák megjelenítése betűrendben"
 
-msgid "Do not expose users' names"
-msgstr "Ne jelenítse meg a felhasználó neveket"
-
 msgid "Size limit for file attachments"
 msgstr "Mellékletek méretkorláta"
 
@@ -936,9 +933,6 @@ msgstr "SMTP kiszolgáló port"
 msgid "Security"
 msgstr "Biztonság"
 
-msgid "Warning"
-msgstr "Figyelem"
-
 msgid "Require authentication"
 msgstr "Jóváhagyást igényel"
 
@@ -1106,9 +1100,6 @@ msgstr "Cím"
 
 msgid "Send an account activation link to the user."
 msgstr "Felhasználói aktivációs link küldése"
-
-msgid "Public name"
-msgstr "Nyilvános elnevezés"
 
 msgid "Send reset link"
 msgstr "Visszaállító link küldése"
@@ -1318,6 +1309,9 @@ msgstr "A forrást csak a Tor hálózatán keresztül lehet elérni"
 msgid "The upload request exceeds the size limit"
 msgstr "A feltöltés meghadja a megengedett limitet"
 
+msgid "Public name"
+msgstr "Nyilvános elnevezés"
+
 msgid "Validation of email address change in progress."
 msgstr "Az e-mailcím változtatás ellenőrzése folyamatban"
 
@@ -1329,6 +1323,9 @@ msgstr "Jelenlegi jelszó"
 
 msgid "Old password confirmation required"
 msgstr "Régi jelszó megerősítése kötelező"
+
+msgid "Warning"
+msgstr "Figyelem"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

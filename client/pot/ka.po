@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -536,9 +536,6 @@ msgstr "ნაგულისხმევი კითხვარი"
 msgid "Show contexts in alphabetical order"
 msgstr "კონტექსტის ჩვენება ანბანის მიხედვით"
 
-msgid "Do not expose users' names"
-msgstr "არ გამჟღავნდეს მომხმარებლის სახელები"
-
 msgid "Size limit for file attachments"
 msgstr "დანართებისთვის ზომის ლიმიტი"
 
@@ -919,9 +916,6 @@ msgstr "SMTP სერვერის პორტი"
 msgid "Security"
 msgstr "უსაფრთხოება"
 
-msgid "Warning"
-msgstr "გაფრთხილება"
-
 msgid "Require authentication"
 msgstr "საჭიროა ავტორიზაცია"
 
@@ -1089,9 +1083,6 @@ msgstr "სათაური"
 
 msgid "Send an account activation link to the user."
 msgstr "მომხმარებლისთვის ანგარიშის გააქტიურების ბმულის გაგზავნა"
-
-msgid "Public name"
-msgstr "საჯარო სახელი"
 
 msgid "Send reset link"
 msgstr "გადატვირთვის ბმულის გაგზავნა"
@@ -1301,6 +1292,9 @@ msgstr "რესურსზე წვდომა შესაძლებე�
 msgid "The upload request exceeds the size limit"
 msgstr "ატვირთვის მოთხოვნა აღემატება ზომის ლიმიტს"
 
+msgid "Public name"
+msgstr "საჯარო სახელი"
+
 msgid "Validation of email address change in progress."
 msgstr "მიმდინარეობს ელფოსტის მისამართის ცვლილების შემოწმება."
 
@@ -1312,6 +1306,9 @@ msgstr "მიმდინარე პაროლი"
 
 msgid "Old password confirmation required"
 msgstr "მოითხოვება ძველი პაროლის დადასტურება"
+
+msgid "Warning"
+msgstr "გაფრთხილება"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

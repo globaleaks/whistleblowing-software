@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/otf/globaleaks/language/lt/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -536,9 +536,6 @@ msgstr "Numatytasis klausimynas"
 msgid "Show contexts in alphabetical order"
 msgstr "Rodyti kontekstus abėcėlės tvarka"
 
-msgid "Do not expose users' names"
-msgstr "Neatskleisti naudotojų vardų"
-
 msgid "Size limit for file attachments"
 msgstr "Pridedamų failų dydžio limitas"
 
@@ -919,9 +916,6 @@ msgstr ""
 msgid "Security"
 msgstr "Saugumas"
 
-msgid "Warning"
-msgstr "Įspėjimas"
-
 msgid "Require authentication"
 msgstr ""
 
@@ -1089,9 +1083,6 @@ msgstr "Antraštė"
 
 msgid "Send an account activation link to the user."
 msgstr "Siųsti paskyros aktyvacijos nuorodą naudotojui."
-
-msgid "Public name"
-msgstr "Viešas pavadinimas"
 
 msgid "Send reset link"
 msgstr ""
@@ -1301,6 +1292,9 @@ msgstr ""
 msgid "The upload request exceeds the size limit"
 msgstr ""
 
+msgid "Public name"
+msgstr "Viešas pavadinimas"
+
 msgid "Validation of email address change in progress."
 msgstr ""
 
@@ -1312,6 +1306,9 @@ msgstr "Dabartinis slaptažodis"
 
 msgid "Old password confirmation required"
 msgstr ""
+
+msgid "Warning"
+msgstr "Įspėjimas"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

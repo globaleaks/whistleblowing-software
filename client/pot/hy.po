@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-10-27 15:34+0000\n"
+"Last-Translator: Mariam Mansuryan <mariammansuryan17@gmail.com>\n"
 "Language-Team: Armenian (http://www.transifex.com/otf/globaleaks/language/hy/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -537,9 +537,6 @@ msgstr "Լռելյայն հարցաշար"
 msgid "Show contexts in alphabetical order"
 msgstr "Դասավորել համատեքստերն այբբենական կարգով"
 
-msgid "Do not expose users' names"
-msgstr "Չցուցադրել օգտատերերի անունները"
-
 msgid "Size limit for file attachments"
 msgstr "Ֆայլի կցորդների թույլատրելի չափ"
 
@@ -820,7 +817,7 @@ msgid "City"
 msgstr "Քաղաք"
 
 msgid "Country"
-msgstr ""
+msgstr "Երկիր"
 
 msgid "Country code"
 msgstr "Երկրի կոդ"
@@ -919,9 +916,6 @@ msgstr "SMTP սերվերի պորտ"
 
 msgid "Security"
 msgstr "Անվտանգություն"
-
-msgid "Warning"
-msgstr "Նախազգուշացում"
 
 msgid "Require authentication"
 msgstr "Պահանջել նույնականացում"
@@ -1090,9 +1084,6 @@ msgstr "Վերնագիր"
 
 msgid "Send an account activation link to the user."
 msgstr "Հղում ուղարկել օգտատիրոջը հաշիվն ակտիվացնելու համար:"
-
-msgid "Public name"
-msgstr "Հանրային անուն"
 
 msgid "Send reset link"
 msgstr "Ուղարկել վերականգնման հղում"
@@ -1302,6 +1293,9 @@ msgstr "Ռեսուրսը հասանելի է միայն Tor ցանցի միջո�
 msgid "The upload request exceeds the size limit"
 msgstr "Վերբեռնման հայտը գերազանցում է թույլատրելի չափը"
 
+msgid "Public name"
+msgstr "Հանրային անուն"
+
 msgid "Validation of email address change in progress."
 msgstr "Էլեկտրոնային հասցեն փոխելու հայցի վավերացումն ընթացքի մեջ է:"
 
@@ -1313,6 +1307,9 @@ msgstr "Ընթացիկ գաղտնաբառ"
 
 msgid "Old password confirmation required"
 msgstr "Պահանջվում է հին գաղտնաբառի հաստատում"
+
+msgid "Warning"
+msgstr "Նախազգուշացում"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

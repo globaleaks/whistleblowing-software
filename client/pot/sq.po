@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-16 16:49+0000\n"
-"Last-Translator: Anja Xhakani <anja@ura.design>\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -542,9 +542,6 @@ msgstr "Pyetësor parazgjedhje"
 msgid "Show contexts in alphabetical order"
 msgstr "Kontekstet shfaqi në rend alfabetik"
 
-msgid "Do not expose users' names"
-msgstr "Mos ekspozo emra përdoruesish"
-
 msgid "Size limit for file attachments"
 msgstr "Kufi madhësie për bashkëngjitje kartelash"
 
@@ -925,9 +922,6 @@ msgstr "Portë shërbyesi SMTP"
 msgid "Security"
 msgstr "Siguri"
 
-msgid "Warning"
-msgstr "Sinjalizim"
-
 msgid "Require authentication"
 msgstr "Kërko doemos mirëfilltësim"
 
@@ -1095,9 +1089,6 @@ msgstr "Titull"
 
 msgid "Send an account activation link to the user."
 msgstr "Dërgojini përdoruesit një lidhje aktivizimi llogarie."
-
-msgid "Public name"
-msgstr "Emër publik"
 
 msgid "Send reset link"
 msgstr "Dërgo lidhje ricaktimi"
@@ -1307,6 +1298,9 @@ msgstr "Burimi mund të përdoret vetëm përmes rrjetit Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Kërkesa për ngarkim tejkalon kufirin për madhësitë"
 
+msgid "Public name"
+msgstr "Emër publik"
+
 msgid "Validation of email address change in progress."
 msgstr "Miratimi i ndryshimit të adresës email në ecuri e sipër."
 
@@ -1318,6 +1312,9 @@ msgstr "Fjalëkalimi i tanishëm"
 
 msgid "Old password confirmation required"
 msgstr "E nevojshme të konfirmohet fjalëkalimi i vjetër"
+
+msgid "Warning"
+msgstr "Sinjalizim"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

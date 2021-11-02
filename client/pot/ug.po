@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uyghur (http://www.transifex.com/otf/globaleaks/language/ug/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -538,9 +538,6 @@ msgstr "كۆڭۈلدىكى راي سىناش"
 msgid "Show contexts in alphabetical order"
 msgstr "مەزمۇنلارنى ئېلىپبە تەرتىپى بويىچە كۆرسەت"
 
-msgid "Do not expose users' names"
-msgstr "ئىشلەتكۈچىلەرنىڭ ناملىرىنى ئاشكارىلىما"
-
 msgid "Size limit for file attachments"
 msgstr "ھۆججەت قوشۇمچىلىرى ئۈچۈن چوڭلۇق چېكى"
 
@@ -921,9 +918,6 @@ msgstr "‏‏‏‏SMTP مۇلازىمېتېر پورتى"
 msgid "Security"
 msgstr "بىخەتەرلىك"
 
-msgid "Warning"
-msgstr "ئاگاھلاندۇرۇش"
-
 msgid "Require authentication"
 msgstr "كىملىك توغرۇلاشنى تەلەپ قىلىدۇ"
 
@@ -1091,9 +1085,6 @@ msgstr "تېما"
 
 msgid "Send an account activation link to the user."
 msgstr "ھېسابات ئاكتىپلاش ئۇلانمىسىنى ئىشلەتكۈچىگە ئەۋەت"
-
-msgid "Public name"
-msgstr "ئاممىۋى نامى"
 
 msgid "Send reset link"
 msgstr "قايتا سەپلەش ئۇلانمىسىنى ئەۋەت"
@@ -1303,6 +1294,9 @@ msgstr "مەنبەنى پەقەت Tor تورى بىلەنلا زىيارەت ق�
 msgid "The upload request exceeds the size limit"
 msgstr "يۈكلىمە تەلىپى چوڭلۇق چېكىدىن ئېشىپ كەتتى"
 
+msgid "Public name"
+msgstr "ئاممىۋى نامى"
+
 msgid "Validation of email address change in progress."
 msgstr "ئېلخەت ئادرېسى ئۆزگەرتىشنى دەلىللەش داۋام قىلىۋاتىدۇ."
 
@@ -1314,6 +1308,9 @@ msgstr "ھازىرقى پارول"
 
 msgid "Old password confirmation required"
 msgstr "كونا پارولنى جەزىملەش تەلەپ قىلىنىدۇ"
+
+msgid "Warning"
+msgstr "ئاگاھلاندۇرۇش"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swahili (http://www.transifex.com/otf/globaleaks/language/sw/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -536,9 +536,6 @@ msgstr "Chaguo la msingi la dodoso"
 msgid "Show contexts in alphabetical order"
 msgstr "Onyesha muktadha kwa mpangilio wa alfabeti"
 
-msgid "Do not expose users' names"
-msgstr "Usionyeshe majina ya watumiaji"
-
 msgid "Size limit for file attachments"
 msgstr "Kikomo cha ukubwa wa viambatisho vya faili"
 
@@ -919,9 +916,6 @@ msgstr "Poti ya seva ya SMTP "
 msgid "Security"
 msgstr "Usalama"
 
-msgid "Warning"
-msgstr "Onyo"
-
 msgid "Require authentication"
 msgstr "Inahitaji uthibitishaji"
 
@@ -1089,9 +1083,6 @@ msgstr "Kichwa"
 
 msgid "Send an account activation link to the user."
 msgstr "Tuma kiunga cha uanzishaji wa akaunti kwa mtumiaji."
-
-msgid "Public name"
-msgstr "Jina la umma"
 
 msgid "Send reset link"
 msgstr "Tuma kiunga cha kuweka upya"
@@ -1301,6 +1292,9 @@ msgstr "Rasilimali zinaweza kupatikana tu kupitia mtandao wa Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Ombi la kupakia linazidi kikomo cha ukubwa"
 
+msgid "Public name"
+msgstr "Jina la umma"
+
 msgid "Validation of email address change in progress."
 msgstr "Uthibitishaji wa mabadiliko ya anwani ya barua pepe unaendelea"
 
@@ -1312,6 +1306,9 @@ msgstr "Neno la siri la sasa"
 
 msgid "Old password confirmation required"
 msgstr "Uthibitishaji wa nenosiri la zamani unahitajika"
+
+msgid "Warning"
+msgstr "Onyo"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

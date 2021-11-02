@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Khmer (http://www.transifex.com/otf/globaleaks/language/km/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -538,9 +538,6 @@ msgstr "កម្រងសំណួរលំនាំដើម"
 msgid "Show contexts in alphabetical order"
 msgstr "បង្ហាញបរិបទតាមលំដាប់អក្សរ"
 
-msgid "Do not expose users' names"
-msgstr "មិនបង្ហាញឈ្មោះអ្នកប្រើប្រាស់"
-
 msgid "Size limit for file attachments"
 msgstr "កំណត់ទំហំសម្រាប់ឯកសារភ្ជាប់"
 
@@ -921,9 +918,6 @@ msgstr "ច្រកម៉ាស៊ីនមេ SMTP"
 msgid "Security"
 msgstr "សន្តិសុខ"
 
-msgid "Warning"
-msgstr "ប្រយ័ត្ន"
-
 msgid "Require authentication"
 msgstr "ទាមទារការផ្ទៀងផ្ទាត់"
 
@@ -1091,9 +1085,6 @@ msgstr "ចំណង​ជើង"
 
 msgid "Send an account activation link to the user."
 msgstr "ផ្ញើតំណភ្ជាប់សម្រាប់បើកដំណើរការគណនីទៅកាន់អ្នកប្រើប្រាស់។"
-
-msgid "Public name"
-msgstr "ឈ្មោះសាធារណៈ"
 
 msgid "Send reset link"
 msgstr "ផ្ញើតំណភ្ជាប់កំណត់សារឡើងវិញ"
@@ -1303,6 +1294,9 @@ msgstr "ធនធានអាចចូលប្រើប្រាស់បាន
 msgid "The upload request exceeds the size limit"
 msgstr "ការស្នើសុំបញ្ជូន​ លើសពីទំហំកំណត់"
 
+msgid "Public name"
+msgstr "ឈ្មោះសាធារណៈ"
+
 msgid "Validation of email address change in progress."
 msgstr "សុពលភាពនៃការផ្លាស់ប្តូរអាសយដ្ឋានអុីមែលកំពុងដំណើរការ"
 
@@ -1314,6 +1308,9 @@ msgstr "ពាក្យសម្ងាត់បច្ចុប្បន្ន"
 
 msgid "Old password confirmation required"
 msgstr "ទាមទារការបញ្ជាក់ពាក្យសម្ងាត់ចាស់"
+
+msgid "Warning"
+msgstr "ប្រយ័ត្ន"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

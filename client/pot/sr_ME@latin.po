@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Serbian (Latin) (Montenegro) (http://www.transifex.com/otf/globaleaks/language/sr_ME@latin/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -535,9 +535,6 @@ msgstr "Podrazumijevani upitnik"
 msgid "Show contexts in alphabetical order"
 msgstr "Poređaj predmete po abecednom redu"
 
-msgid "Do not expose users' names"
-msgstr "Ne otkrivaj imena korisnika"
-
 msgid "Size limit for file attachments"
 msgstr "Ograničenje veličine priloženih datoteka u"
 
@@ -918,9 +915,6 @@ msgstr "Port SМТP servera"
 msgid "Security"
 msgstr "Sigurnost"
 
-msgid "Warning"
-msgstr "Upozorenje"
-
 msgid "Require authentication"
 msgstr "Zahtijeva potvrdu identiteta"
 
@@ -1088,9 +1082,6 @@ msgstr "Naslov"
 
 msgid "Send an account activation link to the user."
 msgstr "Pošaljite korisniku vezu za aktiviranje naloga."
-
-msgid "Public name"
-msgstr "Javno ime"
 
 msgid "Send reset link"
 msgstr "Pošalji vezu za resetovanje"
@@ -1300,6 +1291,9 @@ msgstr "Resursu se može pristupiti samo putem Tor mreže"
 msgid "The upload request exceeds the size limit"
 msgstr "Zahtjev za otpremanje premašuje ograničenje veličine"
 
+msgid "Public name"
+msgstr "Javno ime"
+
 msgid "Validation of email address change in progress."
 msgstr "Validacija promjene adrese e-pošte je u toku."
 
@@ -1311,6 +1305,9 @@ msgstr "Trenutna lozinka"
 
 msgid "Old password confirmation required"
 msgstr "Potrebna je potvrda stare lozinke"
+
+msgid "Warning"
+msgstr "Upozorenje"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

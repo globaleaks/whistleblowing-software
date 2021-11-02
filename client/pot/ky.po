@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Kyrgyz (http://www.transifex.com/otf/globaleaks/language/ky/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -537,9 +537,6 @@ msgstr "Демейки анкета"
 msgid "Show contexts in alphabetical order"
 msgstr "Контексттерди алфавиттик тартипте көрсөтүү"
 
-msgid "Do not expose users' names"
-msgstr "Колдонуучулардын аттарын ачыкка чыгарбаңыз"
-
 msgid "Size limit for file attachments"
 msgstr "Файлдын тиркемелеринин лимиттик өлчөмү"
 
@@ -920,9 +917,6 @@ msgstr "SMTP сервер порту"
 msgid "Security"
 msgstr "Коопсуздук"
 
-msgid "Warning"
-msgstr "Коркунуч"
-
 msgid "Require authentication"
 msgstr "Аутентификацияны талап кылуу"
 
@@ -1090,9 +1084,6 @@ msgstr "Башкы сөз"
 
 msgid "Send an account activation link to the user."
 msgstr "Колдонуучуга аккаунтунун активдештирүү шилтемесин жөнөтүңүз."
-
-msgid "Public name"
-msgstr "Жалпы аты"
 
 msgid "Send reset link"
 msgstr "Баштапкы абалга келтирүүчү шилтемени жөнөт"
@@ -1302,6 +1293,9 @@ msgstr "Ресурска Tor тармагы аркылуу гана кирүүг
 msgid "The upload request exceeds the size limit"
 msgstr "Жүктөөгө талап болгондун өлчөмү чегинен ашып кетти"
 
+msgid "Public name"
+msgstr "Жалпы аты"
+
 msgid "Validation of email address change in progress."
 msgstr "Электрондук даректин өзгөрүүсү текшерилип жатат."
 
@@ -1313,6 +1307,9 @@ msgstr "Учурдагы сырсөз"
 
 msgid "Old password confirmation required"
 msgstr "Эски сырсөздү ырастоо талап кылынат"
+
+msgid "Warning"
+msgstr "Коркунуч"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

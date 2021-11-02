@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Estonian (http://www.transifex.com/otf/globaleaks/language/et/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -536,9 +536,6 @@ msgstr "Standardankeet"
 msgid "Show contexts in alphabetical order"
 msgstr "Näita kontekste tähestiku järjekorras"
 
-msgid "Do not expose users' names"
-msgstr "Ära näita kasutajate nime"
-
 msgid "Size limit for file attachments"
 msgstr "Manusfailide mahupiirang"
 
@@ -919,9 +916,6 @@ msgstr "SMTP serveri port"
 msgid "Security"
 msgstr "Turvalisus"
 
-msgid "Warning"
-msgstr "Hoiatus"
-
 msgid "Require authentication"
 msgstr "Autentimine nõutav"
 
@@ -1089,9 +1083,6 @@ msgstr "Pealkiri"
 
 msgid "Send an account activation link to the user."
 msgstr "Saada kasutajale konto aktiveerimise link."
-
-msgid "Public name"
-msgstr "Avalik nimi"
 
 msgid "Send reset link"
 msgstr "Saada lähtestamislink"
@@ -1301,6 +1292,9 @@ msgstr "Ressursile pääseb ligi ainult Tor-i võrgu kaudu"
 msgid "The upload request exceeds the size limit"
 msgstr "Üleslaadimistaotlus ületab mahupiirangut"
 
+msgid "Public name"
+msgstr "Avalik nimi"
+
 msgid "Validation of email address change in progress."
 msgstr "Meiliaadressi vahetust valideeritakse."
 
@@ -1312,6 +1306,9 @@ msgstr "Senine parool"
 
 msgid "Old password confirmation required"
 msgstr "Vana parooli kinnitus on nõutav"
+
+msgid "Warning"
+msgstr "Hoiatus"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

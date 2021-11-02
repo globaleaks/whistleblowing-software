@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -551,9 +551,6 @@ msgstr "Chestionar standard"
 msgid "Show contexts in alphabetical order"
 msgstr "Afișează contextele în ordine alfabetică"
 
-msgid "Do not expose users' names"
-msgstr "Nu devoala numele utilizatorilor"
-
 msgid "Size limit for file attachments"
 msgstr "Dimensiunea maximă a fișierelor atașate"
 
@@ -934,9 +931,6 @@ msgstr "Port server SMTP"
 msgid "Security"
 msgstr "Securitate"
 
-msgid "Warning"
-msgstr "Avertizare"
-
 msgid "Require authentication"
 msgstr "Solicită autentificarea"
 
@@ -1104,9 +1098,6 @@ msgstr "Titlu"
 
 msgid "Send an account activation link to the user."
 msgstr "Trimite un link pentru activarea contului către utilizator."
-
-msgid "Public name"
-msgstr "Nume public"
 
 msgid "Send reset link"
 msgstr "Trimite linkul pentru resetare"
@@ -1316,6 +1307,9 @@ msgstr "Resursa poate fi accesată numai prin intermediul rețelei Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Atașamentul depășește dimensiunea maximă acceptată"
 
+msgid "Public name"
+msgstr "Nume public"
+
 msgid "Validation of email address change in progress."
 msgstr "Validarea schimbării e-mailului este în desfășurare."
 
@@ -1327,6 +1321,9 @@ msgstr "Parolă curentă"
 
 msgid "Old password confirmation required"
 msgstr "Confirmare parolă veche necesară"
+
+msgid "Warning"
+msgstr "Avertizare"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

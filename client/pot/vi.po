@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -548,9 +548,6 @@ msgstr "Bảng câu hỏi mặc định"
 msgid "Show contexts in alphabetical order"
 msgstr "Hiển thị đề tài theo thứ tự ABC"
 
-msgid "Do not expose users' names"
-msgstr "Không để lộ tên người dùng "
-
 msgid "Size limit for file attachments"
 msgstr "Kích thước giới hạn cho tập tin đính kèm"
 
@@ -931,9 +928,6 @@ msgstr "Cổng máy chủ SMTP"
 msgid "Security"
 msgstr "Bảo mật"
 
-msgid "Warning"
-msgstr "Cảnh báo"
-
 msgid "Require authentication"
 msgstr "Yêu cầu xác thực"
 
@@ -1101,9 +1095,6 @@ msgstr "Tựa đề"
 
 msgid "Send an account activation link to the user."
 msgstr "Gửi liên kết kích hoạt tài khoản người dùng"
-
-msgid "Public name"
-msgstr "Tên công khai"
 
 msgid "Send reset link"
 msgstr "Gửi liên kết đặt lại"
@@ -1313,6 +1304,9 @@ msgstr "Thông tin chỉ có thể truy cập được qua mạng Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Tập tin tải lên vượt quá giới hạn về kích thước"
 
+msgid "Public name"
+msgstr "Tên công khai"
+
 msgid "Validation of email address change in progress."
 msgstr "Đang trong tiến trình kiểm nhận thay đổi địa chỉ email."
 
@@ -1324,6 +1318,9 @@ msgstr "Mật khẩu hiện tại"
 
 msgid "Old password confirmation required"
 msgstr "Yêu cầu xác nhận mật khẩu cũ"
+
+msgid "Warning"
+msgstr "Cảnh báo"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

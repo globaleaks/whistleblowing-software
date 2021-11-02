@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Hong Kong) (http://www.transifex.com/otf/globaleaks/language/zh_HK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -537,9 +537,6 @@ msgstr "預設問卷"
 msgid "Show contexts in alphabetical order"
 msgstr "以字母順序顯示主題"
 
-msgid "Do not expose users' names"
-msgstr "隱藏使用者的名字"
-
 msgid "Size limit for file attachments"
 msgstr "附件檔案大小上限"
 
@@ -920,9 +917,6 @@ msgstr "SMTP 伺服器埠口"
 msgid "Security"
 msgstr "安全協定"
 
-msgid "Warning"
-msgstr "警告"
-
 msgid "Require authentication"
 msgstr "要求驗證"
 
@@ -1090,9 +1084,6 @@ msgstr "標題"
 
 msgid "Send an account activation link to the user."
 msgstr "傳送帳號啟動連結給使用者。"
-
-msgid "Public name"
-msgstr "公開顯示的名稱"
 
 msgid "Send reset link"
 msgstr "傳送重置連結"
@@ -1302,6 +1293,9 @@ msgstr "資源僅能透過 Tor 網路讀取"
 msgid "The upload request exceeds the size limit"
 msgstr "上傳請求超出檔案大小上限"
 
+msgid "Public name"
+msgstr "公開顯示的名稱"
+
 msgid "Validation of email address change in progress."
 msgstr "正在驗證更改的電郵地址。"
 
@@ -1313,6 +1307,9 @@ msgstr "現時密碼"
 
 msgid "Old password confirmation required"
 msgstr "請確認舊密碼"
+
+msgid "Warning"
+msgstr "警告"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

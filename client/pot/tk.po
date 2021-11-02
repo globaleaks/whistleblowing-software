@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkmen (http://www.transifex.com/otf/globaleaks/language/tk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -537,9 +537,6 @@ msgstr "Bellenen sowalnama"
 msgid "Show contexts in alphabetical order"
 msgstr "Mazmunlary elipbiý tertibinde görkeziň"
 
-msgid "Do not expose users' names"
-msgstr "Ulanyjylaryň atlaryny paş etmäň"
-
 msgid "Size limit for file attachments"
 msgstr "Faýl goşundylarynyň ululygy"
 
@@ -920,9 +917,6 @@ msgstr "SMTP serwer porty"
 msgid "Security"
 msgstr "Howpsuzlyk"
 
-msgid "Warning"
-msgstr "Duýduryş"
-
 msgid "Require authentication"
 msgstr "Tassyklamagy talap ediň"
 
@@ -1090,9 +1084,6 @@ msgstr "Sözbaşy"
 
 msgid "Send an account activation link to the user."
 msgstr "Ulanyja hasaby işjeňleşdiriji baglanyşygyny iber."
-
-msgid "Public name"
-msgstr "Umumy ady"
 
 msgid "Send reset link"
 msgstr "Täzeden düz baglanyşygyny iber"
@@ -1302,6 +1293,9 @@ msgstr "Resurslara diňe Tor ulgamy arkaly girip bolýar"
 msgid "The upload request exceeds the size limit"
 msgstr "Ýükleme haýyşy çäklendirilen ölçeg ululykdan geçýär"
 
+msgid "Public name"
+msgstr "Umumy ady"
+
 msgid "Validation of email address change in progress."
 msgstr "Email salgysyny üýtgetmek barlagy dowam edýär."
 
@@ -1313,6 +1307,9 @@ msgstr "Hazirki parolyňyz"
 
 msgid "Old password confirmation required"
 msgstr "Köne paroly tassyklamak zerur"
+
+msgid "Warning"
+msgstr "Duýduryş"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

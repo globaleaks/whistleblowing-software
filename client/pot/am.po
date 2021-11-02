@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-14 19:31+0000\n"
+"PO-Revision-Date: 2021-10-26 20:16+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Amharic (http://www.transifex.com/otf/globaleaks/language/am/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -536,9 +536,6 @@ msgstr "ነባሪ መጠይቅ"
 msgid "Show contexts in alphabetical order"
 msgstr "አገባበ ነገሮችን በፊደል ተራ ያሳዩ"
 
-msgid "Do not expose users' names"
-msgstr "የተጠቃሚዎችን ስሞች አታጋልጡ"
-
 msgid "Size limit for file attachments"
 msgstr "ለፋይል አባሪዎች የመጠን ገደብ"
 
@@ -919,9 +916,6 @@ msgstr "የኤስኤምቲፒ አገልጋይ ወደብ"
 msgid "Security"
 msgstr "ደህንነት "
 
-msgid "Warning"
-msgstr "ማስጠንቀቂያ"
-
 msgid "Require authentication"
 msgstr "ማረጋገጫ ጠይቅ"
 
@@ -1089,9 +1083,6 @@ msgstr "ርእስ "
 
 msgid "Send an account activation link to the user."
 msgstr "ለተጠቃሚዉ የመለያ ማንቂያ አገናኝ ላክ"
-
-msgid "Public name"
-msgstr "ይፋ ስም"
 
 msgid "Send reset link"
 msgstr "እንደገና ማስጀመርያ አገናኝ ላክ"
@@ -1301,6 +1292,9 @@ msgstr "ንብረቱ መዳረሻ በቶር ኔትዎርክ በኩል ብቻ ነ
 msgid "The upload request exceeds the size limit"
 msgstr "የጭነት ጥያቄው ከተፈቀደው ወሰን ያልፋል"
 
+msgid "Public name"
+msgstr "ይፋ ስም"
+
 msgid "Validation of email address change in progress."
 msgstr "የኢሜል አድራሻ ለውጥ ማረጋገጫ በሂደት ላይ"
 
@@ -1312,6 +1306,9 @@ msgstr "የአሁን ይለፍ ቃል"
 
 msgid "Old password confirmation required"
 msgstr "የአሮጌ ይለፍ ቃል ማረጋገጫ ያስፈልጋል"
+
+msgid "Warning"
+msgstr "ማስጠንቀቂያ"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
