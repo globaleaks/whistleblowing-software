@@ -1,3 +1,12 @@
+Changes in version 4.4.5
+    Revise rate limiting decorator limiting only whistleblowers' sessions #3076
+    Simplify handling of recipient public names
+    Fix possibility of adding multiple file questions
+    Make it possible to use drag and drop on admin file configurations
+    Fix issue #3075
+    Bump npm dependencies to latest version
+    Update translations
+
 Changes in version 4.4.4
     Make it possible for recipient to choose the postpone date #3068
     Make it possible for recipients to see real user names #3064
