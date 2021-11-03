@@ -3,7 +3,7 @@ GL.directive("a", function () {
     restrict: "E",
     link: function (scope, elem) {
       var href = angular.element(elem).attr("data-ng-href") || angular.element(elem).attr("href");
-      if (href && href.toLowerCase().startsWith("http")) {
+      if (href && href.toLowerCase().indexOf("http") === 0) {
         angular.element(elem).attr("target", "_blank");
         angular.element(elem).attr("referrer", "noopener noreferrer");
       }
