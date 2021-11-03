@@ -825,7 +825,6 @@ var GL = angular.module("GL", [
                $rootScope.Authentication.logout();
              }
            } else {
-             alert(1);
              $rootScope.setPage("homepage");
            }
 
