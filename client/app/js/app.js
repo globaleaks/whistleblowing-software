@@ -516,6 +516,7 @@ var GL = angular.module("GL", [
   run(["$rootScope", "$http", "$route", "$routeParams", "$window", "$location",  "$filter", "$translate", "$uibModal", "$templateCache", "Authentication", "PublicResource", "Utils", "AdminUtils", "fieldUtilities", "CONSTANTS", "GLTranslate", "Access",
       function($rootScope, $http, $route, $routeParams, $window, $location, $filter, $translate, $uibModal, $templateCache, Authentication, PublicResource, Utils, AdminUtils, fieldUtilities, CONSTANTS, GLTranslate, Access) {
     $rootScope.started = false;
+    $rootScope.page = 'homepage';
 
     $rootScope.Authentication = Authentication;
     $rootScope.GLTranslate = GLTranslate;

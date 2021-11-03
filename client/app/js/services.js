@@ -856,7 +856,10 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
     },
 
     showUserStatusBox: function() {
-      return $rootScope.public.node.wizard_done && angular.isDefined($rootScope.Authentication.session) && !$rootScope.Authentication.session.password_change_needed;
+      return $rootScope.public.node.wizard_done &&
+             $rootScope.page !== "submissionpage" &&
+             angular.isDefined($rootScope.Authentication.session) &&
+             !$rootScope.Authentication.session.password_change_needed;
     },
 
     showFilePreview: function(content_type) {
