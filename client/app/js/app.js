@@ -815,8 +815,6 @@ var GL = angular.module("GL", [
          /* 10: Not Authenticated */
          if (error.code === 10) {
            $rootScope.Authentication.loginRedirect(false);
-         } else if (error.code === 4) {
-           $rootScope.Authentication.authcoderequired = true;
          } else if (error.code === 6) {
            if ($rootScope.Authentication.session) {
              if ($rootScope.Authentication.session.role !== "whistleblower") {
@@ -828,9 +826,9 @@ var GL = angular.module("GL", [
              $rootScope.setPage("homepage");
            }
 
-         } else {
-           $rootScope.errors.push(error);
          }
+
+	 $rootScope.errors.push(error);
        }
 
        return $q.reject(response);

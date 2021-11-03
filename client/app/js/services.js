@@ -18,6 +18,8 @@ factory("Authentication",
       var self = this;
 
       self.loginInProgress = false;
+      self.requireAuthCode = false;
+      self.loginData = {};
 
       self.set_session = function(response) {
         response = response.data;
@@ -53,6 +55,12 @@ factory("Authentication",
         };
       };
 
+      self.reset = function() {
+	self.loginInProgress = false;
+	self.requireAuthCode = false;
+	self.loginData = {};
+      }
+
       self.login = function(tid, username, password, authcode, authtoken) {
         if (typeof authcode === "undefined") {
           authcode = "";
@@ -61,8 +69,7 @@ factory("Authentication",
         self.loginInProgress = true;
 
         var success_fn = function(response) {
-          // reset login status before returning
-          self.loginInProgress = false;
+          self.reset();
 
           if ("redirect" in response.data) {
             $window.location.replace(response.data.redirect);
@@ -86,25 +93,33 @@ factory("Authentication",
           $location.search("");
         };
 
+	var failure_fn = function(response) {
+          self.loginInProgress = false;
+
+          if (response.data && response.data.error_code) {
+            if (response.data.error_code === 4) {
+              self.requireAuthCode = true;
+            } else if (response.data.error_code === 13) {
+              ;
+            } else {
+              self.reset();
+            }
+          }
+        }
+
         return new TokenResource().$get().then(function(token) {
+          var promise;
           if (authtoken) {
-            return $http.post("api/tokenauth?token=" + token.id, {"authtoken": authtoken}).
-              then(success_fn, function() {
-                self.loginInProgress = false;
-              });
+            promise = $http.post("api/tokenauth?token=" + token.id, {"authtoken": authtoken});
           } else {
             if (username === "whistleblower") {
               password = password.replace(/\D/g,"");
-              return $http.post("api/receiptauth?token=" + token.id, {"receipt": password}).
-                then(success_fn, function() {
-                  self.loginInProgress = false;
-                });
+              promise = $http.post("api/receiptauth?token=" + token.id, {"receipt": password});
             } else {
-            return $http.post("api/authentication?token=" + token.id, {"tid": tid, "username": username, "password": password, "authcode": authcode}).
-              then(success_fn, function() {
-                self.loginInProgress = false;
-              });
+              promise = $http.post("api/authentication?token=" + token.id, {"tid": tid, "username": username, "password": password, "authcode": authcode});
             }
+
+            return promise.then(success_fn, failure_fn);
           }
         });
       };
@@ -118,7 +133,7 @@ factory("Authentication",
       self.logout = function() {
         var cb;
 
-        $rootScope.Authentication.authcoderequired = false;
+        $rootScope.Authentication.reset();
 
         if (self.session.role === "whistleblower") {
           cb = function() {
