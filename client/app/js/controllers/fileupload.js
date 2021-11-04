@@ -7,7 +7,7 @@ GL.factory("uploadUtils", ["$filter", function($filter) {
       angular.forEach(strs, function(s, i) {
         strs[i] = $filter("translate")(s);
       });
-      return strs[0] + " " + filename + " - " + strs[1] + " " + strs[2] + " " + $filter("byteFmt")(maxSize, 2);
+      return strs[0] + " " + filename + " - " + strs[1] + " " + $filter("byteFmt")(maxSize, 2);
     },
   };
 }]).
