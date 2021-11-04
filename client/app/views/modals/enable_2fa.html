@@ -19,7 +19,7 @@
         </div>
         <br />
         <div class="text-center">
-          <qrcode data-ng-if="totp.qrcode_string" data="{{totp.qrcode_string}}" version="2" error-correction-level="Q" size="300" color="#1d1f2a" background="#FFF"></qrcode>
+          <qrcode data-ng-if="totp.qrcode_string" data-uib-tooltip="{{'Copy to clipboard' | translate}}" data-ng-click="Utils.copyToClipboard(totp.secret);" data="{{totp.qrcode_string}}" version="2" error-correction-level="Q" size="300" color="#1d1f2a" background="#FFF"></qrcode>
           <div id="OTPSecretForm" data-ng-form="OTPSecretForm" class="form-inline">
             <div class="form-group d-block mx-auto">
               <div class="input-group">
