@@ -128,31 +128,14 @@ class TestUser2FAEnrollment(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_2fa(self):
-        # Disable 2FA even if already disabled
-        data_request = {
-            'operation': 'disable_2fa',
-            'args': {}
-        }
-
-        handler = self.request(data_request, role='receiver')
-
-        yield handler.put()
-
-        # Start enrollment for @FA
-        data_request = {
-            'operation': 'enable_2fa_step1',
-            'args': {}
-        }
-
-        handler = self.request(data_request, role='receiver')
-
-        totp_secret = yield handler.put()
+        totp_secret = 'B6IZ6BEH6BMWDBZ2ND7PGAQN2GIBVOVX'
 
         # Attempt enrolling for 2FA with an invalid token
         data_request = {
-            'operation': 'enable_2fa_step2',
+            'operation': 'enable_2fa',
             'args': {
-                'value': 'invalid_token'
+                'secret': totp_secret,
+                'token': 'invalid_token'
             }
         }
 
@@ -165,9 +148,10 @@ class TestUser2FAEnrollment(helpers.TestHandlerWithPopulatedDB):
         current_token = totp.generate(time.time()).decode()
 
         data_request = {
-            'operation': 'enable_2fa_step2',
+            'operation': 'enable_2fa',
             'args': {
-                'value': current_token
+                'secret': totp_secret,
+                'token': current_token
             }
         }
 

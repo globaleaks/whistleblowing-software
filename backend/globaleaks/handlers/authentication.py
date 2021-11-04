@@ -116,7 +116,7 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
 
     connection_check(tid, client_ip, user.role, client_using_tor)
 
-    if user.two_factor_enable:
+    if user.two_factor_secret:
         if authcode != '':
             # RFC 6238: step size 30 sec; valid_window = 1; total size of the window: 1.30 sec
             try:
@@ -146,7 +146,7 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
 
     db_log(session, tid=tid, type='login', user_id=user.id)
 
-    return Sessions.new(tid, user.id, user.tid, user.role, user.password_change_needed, user.two_factor_enable, crypto_prv_key, user.crypto_escrow_prv_key)
+    return Sessions.new(tid, user.id, user.tid, user.role, user.password_change_needed, user.two_factor_secret != '', crypto_prv_key, user.crypto_escrow_prv_key)
 
 
 class AuthenticationHandler(BaseHandler):

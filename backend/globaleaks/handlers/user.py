@@ -12,7 +12,7 @@ from globaleaks.orm import db_get, db_log, transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.pgp import PGPContext
-from globaleaks.utils.crypto import generateOtpSecret, generateRandomKey, totpVerify, GCE
+from globaleaks.utils.crypto import generateRandomKey, totpVerify, GCE
 from globaleaks.utils.utility import datetime_now, datetime_null
 
 
@@ -125,7 +125,7 @@ def user_serialize_user(session, user, language):
         'notification': user.notification,
         'encryption': user.crypto_pub_key != '',
         'escrow': user.crypto_escrow_prv_key != '',
-        'two_factor_enable': user.two_factor_enable,
+        'two_factor_enable': user.two_factor_secret != '',
         'forcefully_selected': user.forcefully_selected,
         'can_postpone_expiration': user.can_postpone_expiration,
         'can_delete_submission': user.can_delete_submission,
@@ -307,44 +307,26 @@ def get_recovery_key(session, tid, user_id, user_cc):
 
 
 @transact
-def enable_2fa_step1(session, tid, user_id):
-    """
-    Transact for the first step of 2fa enrollment (start)
-
-    :param session:
-    :param tid:
-    :param user_id:
-    :return:
-    """
-    user = db_get_user(session, tid, user_id)
-
-    if user.two_factor_secret:
-        return user.two_factor_secret
-
-    user.two_factor_secret = generateOtpSecret()
-
-    return user.two_factor_secret
-
-
-@transact
-def enable_2fa_step2(session, tid, user_id, token):
+def enable_2fa(session, tid, user_id, secret, token):
     """
     Transact for the first step of 2fa enrollment (completion)
 
     :param session: An ORM session
     :param tid: A tenant ID
     :param user_id: A user ID
-    :param token: A token for OTP authentication
+    :param secret: A two factor secret
+    :param token: The current two factor token
     """
     user = db_get_user(session, tid, user_id)
 
     # RFC 6238: step size 30 sec; valid_window = 1; total size of the window: 1.30 sec
     try:
-        totpVerify(user.two_factor_secret, token)
-    except:
+        totpVerify(secret, token)
+    except Exception:
         raise errors.InvalidTwoFactorAuthCode
 
     user.two_factor_enable = True
+    user.two_factor_secret = secret
 
 
 @transact
@@ -370,14 +352,11 @@ class UserOperationHandler(OperationHandler):
                                 self.session.user_id,
                                 self.session.cc)
 
-    def enable_2fa_step1(self, req_args, *args, **kwargs):
-        return enable_2fa_step1(self.session.user_tid,
-                                self.session.user_id)
-
-    def enable_2fa_step2(self, req_args, *args, **kwargs):
-        return enable_2fa_step2(self.session.user_tid,
-                                self.session.user_id,
-                                req_args['value'])
+    def enable_2fa(self, req_args, *args, **kwargs):
+        return enable_2fa(self.session.user_tid,
+                          self.session.user_id,
+                          req_args['secret'],
+                          req_args['token'])
 
     def disable_2fa(self, req_args, *args, **kwargs):
         return disable_2fa(self.session.user_tid,
@@ -386,7 +365,6 @@ class UserOperationHandler(OperationHandler):
     def operation_descriptors(self):
         return {
             'get_recovery_key': (UserOperationHandler.get_recovery_key, {}),
-            'enable_2fa_step1': (UserOperationHandler.enable_2fa_step1, {}),
-            'enable_2fa_step2': (UserOperationHandler.enable_2fa_step2, {'value': str}),
+            'enable_2fa': (UserOperationHandler.enable_2fa, {'secret': str, 'token': str}),
             'disable_2fa': (UserOperationHandler.disable_2fa, {})
         }

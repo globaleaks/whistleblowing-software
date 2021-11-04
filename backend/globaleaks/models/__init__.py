@@ -984,7 +984,6 @@ class _User(Model):
     can_grant_access_to_reports = Column(Boolean, default=False, nullable=False)
     can_edit_general_settings = Column(Boolean, default=False, nullable=False)
     readonly = Column(Boolean, default=False, nullable=False)
-    two_factor_enable = Column(Boolean, default=False, nullable=False)
     two_factor_secret = Column(UnicodeText(32), default='', nullable=False)
     reminder_date = Column(DateTime, default=datetime_null, nullable=False)
 
@@ -993,6 +992,9 @@ class _User(Model):
     pgp_key_public = Column(UnicodeText, default='', nullable=False)
     pgp_key_expiration = Column(DateTime, default=datetime_null, nullable=False)
     # END of PGP key fields
+
+    # TODO: Remove this unused field in next database migration
+    two_factor_enable = Column(Boolean, default=False, nullable=False)
 
     clicked_recovery_key = Column(Boolean, default=False, nullable=False)
 

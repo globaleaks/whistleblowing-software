@@ -60,14 +60,6 @@ def sha256(data: Union[bytes, str]) -> bytes:
     return _sha(hashes.SHA256(), data)
 
 
-def generateOtpSecret() -> str:
-    """
-    Return an OTP secret of 160bit encoded base32
-    """
-    symbols = list('ABCDEFGHIJKLMNOPQRSTUVWXYZ234567')
-    return ''.join(secrets.choice(symbols) for _ in range(32))
-
-
 def generateRandomKey() -> str:
     """
     Return a random secret of 256bits

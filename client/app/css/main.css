@@ -528,6 +528,11 @@ input[type='file'] {
   margin-bottom: 1em;
 }
 
+#OTPSecretForm input {
+  width: 26rem;
+  text-align: center;
+}
+
 .fieldAnswerEntryLabel::after {
   content: '';
   display: block;
