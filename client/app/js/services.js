@@ -1208,13 +1208,13 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
         var count = 0;
         var i;
 
+        field.enabled = false;
+
         if (parent !== null && !parent.enabled) {
-          field.enabled = false;
           return false;
         }
 
         if (field.triggered_by_score > score) {
-          field.enabled = false;
           return false;
         }
 
@@ -1247,7 +1247,6 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
             return true;
         }
 
-        field.enabled = false;
         return false;
       },
 

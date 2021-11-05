@@ -102,14 +102,17 @@ GL.controller("TipCtrl",
           while (j--) {
             if (step.children[j]["template_id"] === "whistleblower_identity") {
               $scope.whistleblower_identity_field = step.children[j];
+              $scope.whistleblower_identity_field.enabled = true;
               step.children.splice(j, 1);
               $scope.questionnaire = {
-                steps: [$scope.whistleblower_identity_field]
+                steps: [angular.copy($scope.whistleblower_identity_field)]
               };
 
               $scope.fields = $scope.questionnaire.steps[0].children;
               $scope.rows = fieldUtilities.splitRows($scope.fields);
               $scope.field = $scope.whistleblower_identity_field;
+
+              fieldUtilities.onAnswersUpdate($scope);
 
               for (k=0; k<$scope.whistleblower_identity_field.children.length; k++) {
                 filterNotTriggeredField($scope.whistleblower_identity_field, $scope.whistleblower_identity_field.children[k], $scope.tip.data.whistleblower_identity);
