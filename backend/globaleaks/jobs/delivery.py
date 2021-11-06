@@ -69,8 +69,7 @@ def file_delivery(session):
 
             receiverfiles_maps[ifile.id]['rfiles'].append({
                 'dst': os.path.abspath(os.path.join(Settings.attachments_path, receiverfile.filename)),
-                'pgp_key_public': user.pgp_key_public,
-                'pgp_key_fingerprint': user.pgp_key_fingerprint
+                'pgp_key_public': user.pgp_key_public
             })
 
     for wbfile, itip in session.query(models.WhistleblowerFile, models.InternalTip)\
@@ -95,17 +94,6 @@ def file_delivery(session):
         }
 
     return receiverfiles_maps, whistleblowerfiles_maps
-
-
-def encrypt_file_with_pgp(state, fd, key, fingerprint, dest_path):
-    """
-    Encrypt the file for a specific key
-    """
-    pgpctx = PGPContext(state.settings.tmp_path)
-
-    pgpctx.load_key(key)
-
-    pgpctx.encrypt_file(fingerprint, fd, dest_path)
 
 
 def write_plaintext_file(sf, dest_path):
@@ -148,11 +136,7 @@ def process_receiverfiles(state, files_maps):
             try:
                 if not m['key'] and rf['pgp_key_public']:
                     with sf.open('rb') as encrypted_file:
-                        encrypt_file_with_pgp(state,
-                                              encrypted_file,
-                                              rf['pgp_key_public'],
-                                              rf['pgp_key_fingerprint'],
-                                              rf['dst'])
+                        PGPContext(rf['pgp_key_public']).encrypt_file(encrypted_file, rf['dst'])
                 elif not os.path.exists(rf['dst']):
                     if m['key']:
                         write_encrypted_file(m['key'], sf, rf['dst'])

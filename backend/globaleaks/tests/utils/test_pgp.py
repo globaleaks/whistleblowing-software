@@ -16,11 +16,9 @@ class TestPGP(helpers.TestGL):
             'username': 'fake@username.net',
         }
 
-        pgpctx = PGPContext()
-        pgpctx.load_key(helpers.PGPKEYS['VALID_PGP_KEY1_PRV'])
+        pgpctx = PGPContext(helpers.PGPKEYS['VALID_PGP_KEY1_PRV'])
 
-        encrypted_body = pgpctx.encrypt_message(fake_receiver_desc['pgp_key_fingerprint'],
-                                                self.secret_content)
+        encrypted_body = pgpctx.encrypt_message(self.secret_content)
 
         self.assertEqual(str(pgpctx.gnupg.decrypt(encrypted_body)), self.secret_content)
 
@@ -35,23 +33,24 @@ class TestPGP(helpers.TestGL):
         }
 
         # these are the same lines used in delivery.py
-        pgpctx = PGPContext()
-        pgpctx.load_key(helpers.PGPKEYS['VALID_PGP_KEY1_PRV'])
+        pgpctx = PGPContext(helpers.PGPKEYS['VALID_PGP_KEY1_PRV'])
 
         with open(file_src, 'wb+') as f:
             f.write(self.secret_content.encode())
             f.seek(0)
 
-            pgpctx.encrypt_file(fake_receiver_desc['pgp_key_fingerprint'], f, file_dst)
+            pgpctx.encrypt_file(f, file_dst)
 
         with open(file_dst, 'rb') as f:
             self.assertEqual(str(pgpctx.gnupg.decrypt_file(f)), self.secret_content)
 
     def test_read_expirations(self):
-        pgpctx = PGPContext()
+        pgpctx = PGPContext(helpers.PGPKEYS['VALID_PGP_KEY1_PRV'])
 
-        self.assertEqual(pgpctx.load_key(helpers.PGPKEYS['VALID_PGP_KEY1_PRV'])['expiration'],
+        self.assertEqual(pgpctx.expiration,
                          datetime.utcfromtimestamp(0))
 
-        self.assertEqual(pgpctx.load_key(helpers.PGPKEYS['EXPIRED_PGP_KEY_PUB'])['expiration'],
+        pgpctx = PGPContext(helpers.PGPKEYS['EXPIRED_PGP_KEY_PUB'])
+
+        self.assertEqual(pgpctx.expiration,
                          datetime.utcfromtimestamp(1391012793))

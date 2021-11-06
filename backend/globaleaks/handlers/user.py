@@ -68,16 +68,11 @@ def parse_pgp_options(user, request):
     pgp_key_public = request['pgp_key_public']
     remove_key = request['pgp_key_remove']
 
-    k = None
     if not remove_key and pgp_key_public:
-        pgpctx = PGPContext(State.settings.tmp_path)
-
-        k = pgpctx.load_key(pgp_key_public)
-
-    if k is not None:
+        pgpctx = PGPContext(pgp_key_public)
         user.pgp_key_public = pgp_key_public
-        user.pgp_key_fingerprint = k['fingerprint']
-        user.pgp_key_expiration = k['expiration']
+        user.pgp_key_fingerprint = pgpctx.fingerprint
+        user.pgp_key_expiration = pgpctx.expiration
     else:
         user.pgp_key_public = ''
         user.pgp_key_fingerprint = ''

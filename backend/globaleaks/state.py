@@ -208,9 +208,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
             # Opportunisticly encrypt the mail body. NOTE that mails will go out
             # unencrypted if one address in the list does not have a public key set.
             if pgp_key_public:
-                pgpctx = PGPContext(self.settings.tmp_path)
-                fingerprint = pgpctx.load_key(pgp_key_public)['fingerprint']
-                mail_body = pgpctx.encrypt_message(fingerprint, mail_body)
+                mail_body = PGPContext(pgp_key_public).encrypt_message(mail_body)
 
             # avoid waiting for the notification to send and instead rely on threads to handle it
             tw(db_schedule_email, tid, mail_address, mail_subject, mail_body)
@@ -250,9 +248,8 @@ class StateClass(ObjectDict, metaclass=Singleton):
             # Opportunisticly encrypt the mail body. NOTE that mails will go out
             # unencrypted if one address in the list does not have a public key set.
             if pgp_key_public:
-                pgpctx = PGPContext(self.settings.tmp_path)
-                fingerprint = pgpctx.load_key(pgp_key_public)['fingerprint']
-                mail_body = pgpctx.encrypt_message(fingerprint, mail_body)
+                pgpctx = PGPContext(pgp_key_public)
+                mail_body = pgpctx.encrypt_message(mail_body)
 
             # avoid waiting for the notification to send and instead rely on threads to handle it
             tw(db_schedule_email, 1, mail_address, mail_subject, mail_body)
@@ -266,14 +263,12 @@ class StateClass(ObjectDict, metaclass=Singleton):
             self.onion_service_job.remove_unwanted_onion_services().addBoth(f)  # pylint: disable=no-member
 
     def format_and_send_mail(self, session, tid, user_desc, template_vars):
-        subject, body = Templating().get_mail_subject_and_body(template_vars)
+        mail_subject, mail_body = Templating().get_mail_subject_and_body(template_vars)
 
         if user_desc.get('pgp_key_public', ''):
-            pgpctx = PGPContext(self.settings.tmp_path)
-            fingerprint = pgpctx.load_key(user_desc['pgp_key_public'])['fingerprint']
-            body = pgpctx.encrypt_message(fingerprint, body)
+            mail_body = PGPContext(user_desc['pgp_key_public']).encrypt_message(mail_body)
 
-        db_schedule_email(session, tid, user_desc['mail_address'], subject, body)
+        db_schedule_email(session, tid, user_desc['mail_address'], mail_subject, mail_body)
 
     def get_tmp_file_by_name(self, filename):
         for k, v in self.TempUploadFiles.items():

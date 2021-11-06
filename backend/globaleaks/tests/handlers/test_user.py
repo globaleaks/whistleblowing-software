@@ -40,10 +40,6 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
 
         response = yield handler.get()
 
-        # check that the key is initialized at start
-
-        self.assertEqual(response['pgp_key_fingerprint'], '')
-
         # perform and test key update
         response['pgp_key_public'] = helpers.PGPKEYS['VALID_PGP_KEY2_PUB']
         response['pgp_key_remove'] = False
