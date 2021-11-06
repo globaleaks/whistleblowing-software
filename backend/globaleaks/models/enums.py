@@ -47,10 +47,3 @@ class EnumFieldOptionScoreType(_Enum):
 class EnumMessageType(_Enum):
     whistleblower = 0
     receiver = 1
-
-
-class EnumFileStatus(_Enum):
-    processing = 0
-    reference = 1
-    encrypted = 2
-    unavailable = 3

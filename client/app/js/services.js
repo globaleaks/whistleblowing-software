@@ -827,10 +827,6 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       return key;
     },
 
-    null_function: function() {
-      return true;
-    },
-
     getCardSize: function(num) {
       if (num < 2) {
         return "col-md-12";
