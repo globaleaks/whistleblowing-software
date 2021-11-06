@@ -58,6 +58,11 @@
                 data-ng-click="toggleEditing(); $event.stopPropagation();">
                 <span data-translate>Cancel</span>
               </button>
+              <button class="downloadButton btn btn-sm btn-outline-secondary"
+                data-ng-click="exportQuestion(field); $event.stopPropagation()">
+                <i class="fas fa-file-export"></i>
+                <span data-translate>Export</span>
+              </button>
               <button class="btn btn-sm btn-danger"
                 data-ng-if="field.editable"
 		data-ng-click="delField(field); $event.stopPropagation();">

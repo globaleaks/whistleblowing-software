@@ -33,6 +33,7 @@ def db_load_default_questionnaires(session):
         questionnaires.append(read_json_file(qfile))
         qids.append(questionnaires[-1]['id'])
 
+    db_del(session, models.Questionnaire, models.Questionnaire.id.in_(qids))
     db_del(session, models.Step, models.Step.questionnaire_id.in_(qids))
 
     for questionnaire in questionnaires:
@@ -53,6 +54,7 @@ def db_load_default_fields(session):
         questions.append(read_json_file(ffile))
         qids.append(questions[-1]['id'])
 
+    db_del(session, models.Field, models.Field.id.in_(qids))
     db_del(session, models.Field, models.Field.fieldgroup_id.in_(qids))
     db_del(session, models.FieldAttr, models.FieldAttr.field_id.in_(qids))
     db_del(session, models.FieldOption, models.FieldOption.field_id.in_(qids))

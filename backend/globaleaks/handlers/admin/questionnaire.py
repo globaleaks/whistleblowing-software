@@ -1,6 +1,4 @@
 # -*- coding: utf-8
-from twisted.internet.defer import inlineCallbacks, returnValue
-
 from globaleaks import models, QUESTIONNAIRE_EXPORT_VERSION
 from globaleaks.handlers.admin.step import db_create_step
 from globaleaks.handlers.base import BaseHandler
@@ -214,6 +212,12 @@ class QuestionnaireInstance(BaseHandler):
     check_roles = 'admin'
     invalidate_cache = True
 
+    def get(self, questionnaire_id):
+        """
+        Export questionnaire JSON
+        """
+        return tw(db_get_questionnaire, self.request.tid, questionnaire_id, None)
+
     def put(self, questionnaire_id):
         """
         Update the specified questionnaire.
@@ -235,16 +239,6 @@ class QuestionnaireInstance(BaseHandler):
                   models.Questionnaire,
                   (models.Questionnaire.tid == self.request.tid,
                    models.Questionnaire.id == questionnaire_id))
-
-    @inlineCallbacks
-    def get(self, questionnaire_id):
-        """
-        Export questionnaire JSON
-        """
-        q = yield tw(db_get_questionnaire, self.request.tid, questionnaire_id, None)
-        q['export_date'] = datetime_now()
-        q['export_version'] = QUESTIONNAIRE_EXPORT_VERSION
-        returnValue(q)
 
 
 class QuestionnareDuplication(BaseHandler):

@@ -382,7 +382,7 @@ def serialize_field_attr(attr, language):
     return ret
 
 
-def serialize_field(session, tid, field, language, data=None, serialize_templates=True):
+def serialize_field(session, tid, field, language, data=None, serialize_templates=False):
     """
     Serialize a field
 
@@ -411,7 +411,7 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
         for attr in data['attrs'].get(field.template_id, {}):
             attrs[attr.name] = serialize_field_attr(attr, language)
 
-    children = [serialize_field(session, tid, f, language) for f in data['fields'].get(f_to_serialize.id, [])]
+    children = [serialize_field(session, tid, f, language, data, serialize_templates=serialize_templates) for f in data['fields'].get(f_to_serialize.id, [])]
     children.sort(key=lambda f: (f['y'], f['x']))
 
     ret = {
@@ -439,7 +439,7 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
     return get_localized_values(ret, f_to_serialize, f_to_serialize.localized_keys, language)
 
 
-def serialize_step(session, tid, step, language, serialize_templates=True):
+def serialize_step(session, tid, step, language, serialize_templates=False):
     """
     Serialize a step.
 
@@ -454,7 +454,7 @@ def serialize_step(session, tid, step, language, serialize_templates=True):
 
     data = db_prepare_fields_serialization(session, children)
 
-    children = [serialize_field(session, tid, f, language, data, serialize_templates=serialize_templates) for f in children]
+    children = [serialize_field(session, tid, f, language, data, serialize_templates) for f in children]
     children.sort(key=lambda f: (f['y'], f['x']))
 
     ret = {
@@ -469,7 +469,7 @@ def serialize_step(session, tid, step, language, serialize_templates=True):
     return get_localized_values(ret, step, step.localized_keys, language)
 
 
-def serialize_questionnaire(session, tid, questionnaire, language, serialize_templates=True):
+def serialize_questionnaire(session, tid, questionnaire, language, serialize_templates=False):
     """
     Serialize a questionnaire.
 
@@ -523,7 +523,7 @@ def serialize_receiver(session, user, language, data=None):
     return get_localized_values(ret, user, user.localized_keys, language)
 
 
-def db_get_questionnaires(session, tid, language):
+def db_get_questionnaires(session, tid, language, serialize_templates=False):
     """
     Transaction that serialize the list of public questionnaires
 
@@ -538,7 +538,7 @@ def db_get_questionnaires(session, tid, language):
                                         models.Context.additional_questionnaire_id == models.Questionnaire.id),
                                     models.Context.tid == tid)
 
-    return [serialize_questionnaire(session, tid, questionnaire, language) for questionnaire in questionnaires]
+    return [serialize_questionnaire(session, tid, questionnaire, language, serialize_templates=serialize_templates) for questionnaire in questionnaires]
 
 
 def db_get_contexts(session, tid, language):
@@ -587,7 +587,7 @@ def get_public_resources(session, tid, language):
     """
     ret = {
         'node': db_serialize_node(session, tid, language),
-        'questionnaires': db_get_questionnaires(session, tid, language),
+        'questionnaires': db_get_questionnaires(session, tid, language, True),
         'submission_statuses': db_get_submission_statuses(session, tid, language),
         'receivers': db_get_receivers(session, tid, language),
         'contexts': []

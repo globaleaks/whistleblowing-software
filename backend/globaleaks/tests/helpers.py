@@ -197,7 +197,7 @@ def get_dummy_field():
 def get_dummy_fieldoption_list():
     return [
         {
-            'id': 'beefcafe-beef-cafe-beef-cafebeefcafe',
+            'id': uuid4(),
             'label': 'Cafe del mare',
             'order': 0,
             'score_points': 100,
@@ -208,7 +208,7 @@ def get_dummy_fieldoption_list():
             'block_submission': False
         },
         {
-            'id': 'feefbead-feef-bead-feef-feeffeefbead',
+            'id': uuid4(),
             'label': 'skrilx is here',
             'order': 0,
             'score_points': 97,

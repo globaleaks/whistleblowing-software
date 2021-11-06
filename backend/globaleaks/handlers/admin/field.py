@@ -5,10 +5,11 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_field, trigger_map
 from globaleaks.models import fill_localized_keys
-from globaleaks.orm import db_add, db_get, db_del, transact
+from globaleaks.orm import db_add, db_get, db_del, transact, tw
 from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
 from globaleaks.utils.fs import read_json_file
+from globaleaks.utils.utility import datetime_now
 
 
 def fieldtree_ancestors(session, field_id):
@@ -65,20 +66,22 @@ def db_update_fieldoption(session, field_id, fieldoption_id, option_dict, langua
     :param idx: The order index with reference to the other options set
     :return: The serialized descriptor of the option
     """
+    option_dict['fieldoption_id'] = fieldoption_id
     option_dict['field_id'] = field_id
+    option_dict['idx'] = idx
 
     fill_localized_keys(option_dict, models.FieldOption.localized_keys, language)
 
     o = None
     if fieldoption_id is not None:
-        o = session.query(models.FieldOption).filter(models.FieldOption.id == fieldoption_id).one_or_none()
+        o = session.query(models.FieldOption) \
+                   .filter(models.FieldOption.id == fieldoption_id,
+                           models.FieldOption.field_id == field_id).one_or_none()
 
     if o is None:
         o = db_add(session, models.FieldOption, option_dict)
     else:
         o.update(option_dict)
-
-    o.order = idx
 
     return o.id
 
@@ -124,7 +127,10 @@ def db_update_fieldattr(session, field_id, attr_name, attr_dict, language):
     if attr_dict['type'] == 'localized' and language is not None:
         fill_localized_keys(attr_dict, ['value'], language)
 
-    o = session.query(models.FieldAttr).filter(models.FieldAttr.field_id == field_id, models.FieldAttr.name == attr_name).one_or_none()
+    o = session.query(models.FieldAttr) \
+               .filter(models.FieldAttr.field_id == field_id,
+                       models.FieldAttr.name == attr_name).one_or_none()
+
     if o is None:
         attr_dict['id'] = ''
         o = db_add(session, models.FieldAttr, attr_dict)
@@ -187,6 +193,15 @@ def check_field_association(session, tid, request):
             raise errors.InputValidationError("Provided field association would cause recursion loop")
 
 
+def db_get_field(session, tid, field_id, language=None, data=None, serialize_templates=False):
+    field = db_get(session,
+                   models.Field,
+                   (models.Field.tid == tid,
+                    models.Field.id == field_id))
+
+    return serialize_field(session, tid, field, language, data, serialize_templates)
+
+
 def db_create_field(session, tid, request, language):
     """
     Transaction for creating a field
@@ -203,7 +218,17 @@ def db_create_field(session, tid, request, language):
 
     check_field_association(session, tid, request)
 
-    if request.get('template_id', '') != '':
+    if request.get('template_id', '') == '':
+        field = db_add(session, models.Field, request)
+        attrs = request.get('attrs')
+        options = request.get('options')
+
+        db_update_fieldattrs(session, field.id, attrs, language)
+        db_update_fieldoptions(session, field.id, options, language)
+
+        for trigger in request.get('triggered_by_options', []):
+            db_create_option_trigger(session, trigger['option'], 'field', field.id, trigger.get('sufficient', True))
+    else:
         if request['template_id'] == 'whistleblower_identity':
             if request.get('step_id', '') == '':
                 raise errors.InputValidationError("Cannot associate whistleblower identity field to a fieldgroup")
@@ -236,22 +261,10 @@ def db_create_field(session, tid, request, language):
 
         db_update_fieldattrs(session, field.id, attrs, None)
 
-    else:
-        field = db_add(session, models.Field, request)
-        attrs = request.get('attrs')
-        options = request.get('options')
-
-        db_update_fieldattrs(session, field.id, attrs, language)
-        db_update_fieldoptions(session, field.id, options, language)
-
-        for trigger in request.get('triggered_by_options', []):
-            db_create_option_trigger(session, trigger['option'], 'field', field.id, trigger.get('sufficient', True))
-
-    if field.instance != 'reference':
-        for c in request.get('children', []):
-            c['tid'] = field.tid
-            c['fieldgroup_id'] = field.id
-            db_create_field(session, tid, c, language)
+    for c in request.get('children', []):
+        c['tid'] = field.tid
+        c['fieldgroup_id'] = field.id
+        db_create_field(session, tid, c, language)
 
     return field
 
@@ -397,12 +410,22 @@ class FieldTemplatesCollection(BaseHandler):
 
         request = self.validate_message(self.request.content.read(), validator)
 
+        request['instance'] = 'template'
+        for k in ['fieldgroup_id', 'step_id', 'template_id', 'template_override_id', 'triggered_by_options']:
+            del request[k]
+
         return create_field(self.request.tid, request, language)
 
 
 class FieldTemplateInstance(BaseHandler):
     check_roles = 'admin'
     invalidate_cache = True
+
+    def get(self, field_id):
+        """
+        Export field template
+        """
+        return tw(db_get_field, self.request.tid, field_id, None)
 
     def put(self, field_id):
         """

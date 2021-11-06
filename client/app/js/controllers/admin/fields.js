@@ -1,5 +1,5 @@
-GL.controller("AdminFieldEditorCtrl", ["$scope",
-  function($scope) {
+GL.controller("AdminFieldEditorCtrl", ["$scope", "$http", "FileSaver",
+  function($scope, $http, FileSaver) {
     $scope.admin_receivers_by_id = $scope.Utils.array_to_map($scope.resources.users);
 
     $scope.editing = false;
@@ -197,12 +197,36 @@ GL.controller("AdminFieldEditorCtrl", ["$scope",
     $scope.assignScorePointsDialog = function(option) {
       return $scope.Utils.openConfirmableModalDialog("views/partials/assign_score_points.html", option, $scope);
     };
+
+    $scope.exportQuestion = function(obj) {
+      $http({
+        method: "GET",
+        url: "api/admin/fieldtemplates/" + obj.id,
+        responseType: "blob",
+      }).then(function (response) {
+        FileSaver.saveAs(response.data, obj.label + ".json");
+      });
+    };
   }
 ]).
-controller("AdminFieldTemplatesCtrl", ["$scope", "AdminFieldTemplateResource",
-  function($scope, AdminFieldTemplateResource) {
+controller("AdminFieldTemplatesCtrl", ["$scope", "$http", "AdminFieldTemplateResource",
+  function($scope, $http, AdminFieldTemplateResource) {
     $scope.fieldResource = AdminFieldTemplateResource;
     $scope.parsedFields = $scope.fieldUtilities.parseFields($scope.resources.fieldtemplates, {});
+
+    $scope.importQuestion = function(file) {
+      console.log(file);
+      $scope.Utils.readFileAsText(file).then(function(txt) {
+	console.log(txt);
+        return $http({
+          method: "POST",
+          url: "api/admin/fieldtemplates?multilang=1",
+          data: txt,
+        });
+      }).then(function() {
+         $scope.reload();
+      }, $scope.Utils.displayErrorMsg);
+    };
   }
 ]).
 controller("AdminFieldTemplatesAddCtrl", ["$scope",
