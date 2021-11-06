@@ -215,9 +215,15 @@ module.exports = function(grunt) {
               }
             },
             {
+              pattern: /cce5ff/ig,
+              replacement: function () {
+                return "eef5fc";
+              }
+            },
+            {
               pattern: /005cbf/ig,
               replacement: function () {
-                return "79B0e6";
+                return "79b0e6";
               }
             },
             {
@@ -269,24 +275,6 @@ module.exports = function(grunt) {
               }
             },
             {
-              pattern: /1c7430/ig,
-              replacement: function () {
-                return "fae38e";
-              }
-            },
-            {
-              pattern: /(ffc107|e0a800|d39e00)/ig,
-              replacement: function () {
-                return "ffd644";
-              }
-            },
-            {
-              pattern: /c69500/ig,
-              replacement: function () {
-                return "faf8f0";
-              }
-            },
-            {
               pattern: /dc3545/ig,
               replacement: function () {
                 return "b80d0d";
@@ -329,12 +317,6 @@ module.exports = function(grunt) {
               }
             },
             {
-              pattern: /fff3cd/ig,
-              replacement: function () {
-                return "fffcF1";
-              }
-            },
-            {
               pattern: /(b8daff|d6d8db|c3e6cb|f5c6cb|ffeeba)/ig,
               replacement: function () {
                 return "c8d1e0";
@@ -347,7 +329,7 @@ module.exports = function(grunt) {
               }
             },
             {
-              pattern: /(rgba\(0, 0, 0, \.03\)|rgba\(0, 0, 0, \.05\))/ig,
+              pattern: /(#e2e3e5|rgba\(0, 0, 0, \.03\)|rgba\(0, 0, 0, \.05\))/ig,
               replacement: function () {
                 return "#f5f7fa";
               }
