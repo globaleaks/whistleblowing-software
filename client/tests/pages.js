@@ -11,7 +11,7 @@ exports.receiver = function() {
     } else {
       var fs = require("fs");
       var pgp_key = fs.readFileSync(pgp_key_path, {encoding: "utf8", flag: "r"});
-      var pgpTxtArea = element(by.model("preferences.pgp_key_public"));
+      var pgpTxtArea = element(by.model("resources.preferences.pgp_key_public"));
       await pgpTxtArea.clear();
       await pgpTxtArea.sendKeys(pgp_key);
     }

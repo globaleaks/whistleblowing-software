@@ -8,8 +8,8 @@ describe("Recipient first login", function() {
   });
 
   it("should be able to change password from the default one", async function() {
-    await element(by.model("preferences.password")).sendKeys(browser.gl.utils.vars.user_password);
-    await element(by.model("preferences.check_password")).sendKeys(browser.gl.utils.vars.user_password);
+    await element(by.model("resources.preferences.password")).sendKeys(browser.gl.utils.vars.user_password);
+    await element(by.model("resources.preferences.check_password")).sendKeys(browser.gl.utils.vars.user_password);
     await element(by.css("[data-ng-click=\"save()\"]")).click();
     await browser.gl.utils.waitForUrl("/recipient/home");
   });
@@ -25,7 +25,7 @@ describe("Recipient first login", function() {
     await element(by.cssContainingText("button", "Account recovery key")).click();
     await browser.gl.utils.takeScreenshot("user/recoverykey.png");
     await element(by.cssContainingText("button", "Close")).click();
-    await element(by.model("preferences.two_factor_enable")).click();
+    await element(by.model("resources.preferences.two_factor")).click();
     await browser.gl.utils.takeScreenshot("user/2fa.png");
     await element(by.cssContainingText("button", "Close")).click();
   });
@@ -47,8 +47,8 @@ describe("Recipient2 first login", function() {
   });
 
   it("should be able to change password from the default one", async function() {
-    await element(by.model("preferences.password")).sendKeys(browser.gl.utils.vars.user_password);
-    await element(by.model("preferences.check_password")).sendKeys(browser.gl.utils.vars.user_password);
+    await element(by.model("resources.preferences.password")).sendKeys(browser.gl.utils.vars.user_password);
+    await element(by.model("resources.preferences.check_password")).sendKeys(browser.gl.utils.vars.user_password);
     await element(by.css("[data-ng-click=\"save()\"]")).click();
     await browser.gl.utils.waitForUrl("/recipient/home");
   });
@@ -60,8 +60,8 @@ describe("Custodian first login", function() {
   });
 
   it("should be able to change password from the default one", async function() {
-    await element(by.model("preferences.password")).sendKeys(browser.gl.utils.vars.user_password);
-    await element(by.model("preferences.check_password")).sendKeys(browser.gl.utils.vars.user_password);
+    await element(by.model("resources.preferences.password")).sendKeys(browser.gl.utils.vars.user_password);
+    await element(by.model("resources.preferences.check_password")).sendKeys(browser.gl.utils.vars.user_password);
     await element(by.css("[data-ng-click=\"save()\"]")).click();
     await browser.gl.utils.waitForUrl("/custodian/home");
   });
@@ -73,8 +73,8 @@ describe("Admin2 first login", function() {
   });
 
   it("should be able to change password from the default one", async function() {
-    await element(by.model("preferences.password")).sendKeys(browser.gl.utils.vars.user_password);
-    await element(by.model("preferences.check_password")).sendKeys(browser.gl.utils.vars.user_password);
+    await element(by.model("resources.preferences.password")).sendKeys(browser.gl.utils.vars.user_password);
+    await element(by.model("resources.preferences.check_password")).sendKeys(browser.gl.utils.vars.user_password);
     await element(by.css("[data-ng-click=\"save()\"]")).click();
     await browser.gl.utils.waitForUrl("/admin/home");
   });

@@ -9,6 +9,9 @@ describe("globaleaks process", function() {
     var wb = new browser.gl.pages.whistleblower();
     var receipt = await wb.performSubmission(true);
     receipts.unshift(receipt);
+
+    // Give time for delivery sched to run
+    await browser.sleep(5000);
   };
 
   it("Whistleblowers should be able to submit tips (1)", async function() {
@@ -43,6 +46,8 @@ describe("globaleaks process", function() {
     if (!browser.gl.utils.testFileUpload()) {
       return;
     }
+
+    await browser.gl.utils.takeScreenshot("before-bug.png");
 
     expect(await element.all(by.css(".tip-action-download-file")).count()).toEqual(2);
 
