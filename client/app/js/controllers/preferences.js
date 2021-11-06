@@ -12,7 +12,7 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$location", "$window
     ];
 
     UserPreferences.get().$promise.then(function(preferences) {
-      $rootScope.preferences = preferences;
+      $scope.preferences = preferences;
     });
 
     $scope.editingName = false;
@@ -58,16 +58,16 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$location", "$window
       $window.crypto.getRandomValues(array);
 
       $scope.totp = {
-        'qrcode_string': "",
-        'secret': "",
-        'edit': false
+        "qrcode_string": "",
+        "secret": "",
+        "edit": false
       };
 
       for (var i = 0; i < array.length; i++) {
         $scope.totp.secret += symbols[array[i]%symbols.length];
       }
 
-      $scope.$watch("totp.secret", function(new_val, old_val) {
+      $scope.$watch("totp.secret", function() {
         $scope.totp.qrcode_string = "otpauth://totp/" + $location.host() + "%20%28" + $scope.preferences.username + "%29?secret=" + $scope.totp.secret;
       });
 
@@ -124,7 +124,7 @@ controller("TwoFactorModalCtrl",
     });
   };
 
-  $scope.cancel = function(result) {
+  $scope.cancel = function() {
     return $uibModalInstance.dismiss("cancel");
   };
 }]);

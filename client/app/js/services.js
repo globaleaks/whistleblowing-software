@@ -59,7 +59,7 @@ factory("Authentication",
 	self.loginInProgress = false;
 	self.requireAuthCode = false;
 	self.loginData = {};
-      }
+      };
 
       self.login = function(tid, username, password, authcode, authtoken) {
         if (typeof authcode === "undefined") {
@@ -99,13 +99,11 @@ factory("Authentication",
           if (response.data && response.data.error_code) {
             if (response.data.error_code === 4) {
               self.requireAuthCode = true;
-            } else if (response.data.error_code === 13) {
-              ;
-            } else {
+            } else if (response.data.error_code !== 13) {
               self.reset();
             }
           }
-        }
+        };
 
         return new TokenResource().$get().then(function(token) {
           var promise;
