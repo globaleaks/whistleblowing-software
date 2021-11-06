@@ -16,6 +16,8 @@ Anonymity
 =========
 Users's anonymity is protected by means of the `Tor <https://www.torproject.org>`_ technology.
 
+The entire application considers to avoid logging of sensible metadata that could lead to identification of whistleblowers.
+
 Authentication
 ==============
 The confidentiality of the authentication is protected by either `Tor Onion Services v3 <https://www.torproject.org/docs/onion-services.html.en>`_ or `TLS version 1.2+ <https://en.wikipedia.org/wiki/Transport_Layer_Security>`_.
@@ -28,7 +30,7 @@ By accessing the login web interface, ``Administrators`` and ``Recipients`` need
 
 Receipt
 -------
-``Whistleblowers`` access their ``Reports`` by using a ``Receipt``, which is a randomly generated 16 digits sequence created by the Backend when the Report is first submitted. The reason of this format of 16 digits is that it resembles a standard phone number, making it easier for the whistleblower to conceal the receipt of their submission and give them plausible deniability on what is the significance of such digits.
+``Whistleblowers`` access their ``Reports`` by using a anonymous ``Receipts``, which are random generated 16 digits sequences created by the Backend when the Report is first submitted. The reason of this format of 16 digits is that it resembles a standard phone number, making it easier for the whistleblowers to conceal their receipts.
 
 Password Security
 =================
@@ -58,7 +60,7 @@ We encourage each end user to use `KeePassXC <https://keepassxc.org>`_ to genera
 
 Two Factor Authentication
 -------------------------
-The system implements Two Factor Authentication (2FA) based on TOTP based on `RFC 6238 <https://tools.ietf.org/rfc/rfc6238.txt>`_ algorithm and 160 bits secrets.
+The system implements Two Factor Authentication (2FA) based on ``TOTP`` based on `RFC 6238 <https://tools.ietf.org/rfc/rfc6238.txt>`_ algorithm and 160 bits secrets.
 
 Users are enabled to enroll for 2FA via their own preferences and administrators can optionally enforce this requirement.
 
@@ -80,7 +82,9 @@ Proof of Work on Login and Submissions
 --------------------------------------
 The system implements an automatic `Proof of Work <https://en.wikipedia.org/wiki/Proof_of_work>`_ on every login that requires every client to request a token, solve a computational problem before being able to perform a login or file a submission.
 
-The same mechanism is implemented on other user APIs (e.g. on user comments).
+Rate Limit on Anonymous Sessions
+--------------------------------
+The system implements rate limiting on whistleblowers' sessions preventing to execute more than 5 requests per second.
 
 Slowdown on Failed Login Attempts
 ---------------------------------
@@ -218,11 +222,11 @@ Network Security
 ================
 Connection Anonymity
 --------------------
-Users's anonymity is offered by means of the implementation of the [Tor](https://www.torproject.org/) technology. The application implements an ``Onion Service v3`` and advices users to use the Tor Browser when accessing to it.
+Users's anonymity is offered by means of the implementation of the `Tor <(https://www.torproject.org/>`_ technology. The application implements an ``Onion Service v3`` and advices users to use the Tor Browser when accessing to it.
 
 Connection Encryption
 ---------------------
-Users' connection is always encrypted, by means of the Tor Protocol while using the Tor Browser or by means of TLS when the application is accessed via a common browser.
+Users' connection is always encrypted, by means of the `Tor Protocol<https://www.torproject.org>`_ while using the Tor Browser or by means of `TLS <https://en.wikipedia.org/wiki/Transport_Layer_Security>`_ when the application is accessed via a common browser.
 
 The use of the ``Tor`` is recommended over HTTPS for its advanced properties of resistance to selective interception and censorship that would make it difficult for a third party to selectively capture or block access to the site to specific whistleblower or company department.
 
@@ -243,25 +247,27 @@ In particular only following ciphertexts are enabled:
   ECDHE-RSA-AES128-GCM-SHA256
 
 Network Sandboxing
-------------------
-The GlobaLeaks backend integrates ``iptables`` by default and implements strict firewall rules that only allow inbound and outbound connections from 127.0.0.1 (where Tor is running with Tor Onion Service).
+-------------------
+The GlobaLeaks backend integrates ``iptables`` by default and implements strict firewall rules that restrict network incoming network connection to HTTP and HTTPS connection on ports 80 and 443.
 
-As well it automatically applies network sandboxing to all outbound communications that get automatically ```torrified``` (sent through Tor), being outbound TCP connections or DNS-query for name resolution.
+In addition the application makes it possible to anonymize outgoing connections that could be configured to be sent through Tor.
 
 Data Encryption
 ===============
-The data, files, messages and metadata exchanged between whistleblowers and recipients is encrypted using the GlobaLeaks :doc:`EncryptionProtocol`.
+Submissions data, file attachment, messages and metadata exchanged between whistleblowers and recipients is encrypted using the GlobaLeaks :doc:`EncryptionProtocol`.
+
 In addition to this GlobaLeaks implements many other encryption components and the following is the set of the main libraries and their main usage:
 
 * `Python-NaCL <https://github.com/pyca/pynacl>`_: is used for implementing data encryption
 * `PyOpenSSL <https://github.com/pyca/pyopenssl>`_: is used for implementing HTTPS
 * `Python-Cryptography <https://cryptography.io>`_: is used for implementing authentication
-* `Python-GnuPG <http://pythonhosted.org/python-gnupg/index.html>`_: is used for encrypting email notifications
+* `Python-GnuPG <http://pythonhosted.org/python-gnupg/index.html>`_: is used for encrypting email notifications and file downloads by menas of ```PGP```
 
 Application Sandboxing
 ======================
 The GlobaLeaks backend integrates ``AppArmor`` by default and implements a strict sandboxing profile enabling the application to access only the strictly required files.
 As well the application does run under a dedicated user and group "globaleaks" with reduced privileges.
+
 
 DoS Resiliency
 ==============
