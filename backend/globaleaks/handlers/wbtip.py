@@ -256,7 +256,7 @@ class WBTipWBFileHandler(WBFileHandler):
 
         self.access_wbfile(session, wbfile)
 
-        return serializers.serialize_wbfile(session, wbfile), base64.b64decode(wbtip.crypto_tip_prv_key)
+        return serializers.serialize_wbfile(session, wbfile), base64.b64decode(wbtip.crypto_tip_prv_key), ''
 
 
 class WBTipIdentityHandler(BaseHandler):

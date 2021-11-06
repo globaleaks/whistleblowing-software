@@ -35,9 +35,9 @@ def file_delivery(session):
         filecode = src.split('.')[0]
 
         if itip.crypto_tip_pub_key:
-            itip.filename = "%s.encrypted" % filecode
+            ifile.filename = "%s.encrypted" % filecode
         else:
-            itip.filename = "%s.plain" % filecode
+            ifile.filename = "%s.plain" % filecode
 
         for rtip, user in session.query(models.ReceiverTip, models.User) \
                                  .filter(models.ReceiverTip.internaltip_id == ifile.internaltip_id,
@@ -45,6 +45,7 @@ def file_delivery(session):
             receiverfile = models.ReceiverFile()
             receiverfile.internalfile_id = ifile.id
             receiverfile.receivertip_id = rtip.id
+            receiverfile.filename = ifile.filename
 
             # https://github.com/globaleaks/GlobaLeaks/issues/444
             # avoid to mark the receiverfile as new if it is part of a submission
@@ -62,10 +63,8 @@ def file_delivery(session):
 
             if not itip.crypto_tip_pub_key and user.pgp_key_public:
                 receiverfile.filename = "%s.pgp" % generateRandomKey()
-                receiverfile.status = 'encrypted'
             else:
-                receiverfile.filename = itip.filename
-                receiverfile.status = 'reference'
+                receiverfile.filename = ifile.filename
 
             receiverfiles_maps[ifile.id]['rfiles'].append({
                 'dst': os.path.abspath(os.path.join(Settings.attachments_path, receiverfile.filename)),
@@ -134,14 +133,13 @@ def process_receiverfiles(state, files_maps):
 
         for rcounter, rf in enumerate(m['rfiles']):
             try:
-                if not m['key'] and rf['pgp_key_public']:
+                if m['key']:
+                    write_encrypted_file(m['key'], sf, rf['dst'])
+                elif rf['pgp_key_public']:
                     with sf.open('rb') as encrypted_file:
                         PGPContext(rf['pgp_key_public']).encrypt_file(encrypted_file, rf['dst'])
-                elif not os.path.exists(rf['dst']):
-                    if m['key']:
-                        write_encrypted_file(m['key'], sf, rf['dst'])
-                    else:
-                        write_plaintext_file(sf, rf['dst'])
+                else:
+                    write_plaintext_file(sf, rf['dst'])
             except:
                 pass
 

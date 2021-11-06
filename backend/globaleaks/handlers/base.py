@@ -7,6 +7,8 @@ import re
 
 from datetime import datetime
 
+from tempfile import NamedTemporaryFile
+
 from twisted.internet import abstract
 from twisted.protocols.basic import FileSender
 
@@ -17,6 +19,7 @@ from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.ip import check_ip
 from globaleaks.utils.log import log
+from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.utils.utility import datetime_now, deferred_sleep
 
@@ -282,7 +285,13 @@ class BaseHandler(object):
 
         return serve_file(self.request, fp)
 
-    def write_file_as_download(self, filename, fp):
+    def write_file_as_download(self, filename, fp, pgp_key=''):
+        if pgp_key:
+            filename += '.pgp'
+            _fp = fp
+            fp = NamedTemporaryFile()
+            PGPContext(pgp_key).encrypt_file(_fp, fp.name)
+
         if isinstance(fp, str):
             fp = self.open_file(fp)
 

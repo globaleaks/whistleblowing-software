@@ -761,7 +761,7 @@ class _ReceiverFile(Model):
     downloads = Column(Integer, default=0, nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
     new = Column(Boolean, default=True, nullable=False)
-    status = Column(Enum(EnumFileStatus), default='processing', nullable=False)
+    status = Column(Enum(EnumFileStatus), default='reference', nullable=False)
 
     @declared_attr
     def __table_args__(self):
