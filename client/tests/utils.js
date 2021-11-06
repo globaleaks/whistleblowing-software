@@ -129,8 +129,8 @@ exports.login_admin = async function(username, password, url, firstlogin) {
   url = url === undefined ? "/#/login" : url;
 
   await browser.get(url);
-  await element(by.model("loginData.loginUsername")).sendKeys(username);
-  await element(by.model("loginData.loginPassword")).sendKeys(password);
+  await element(by.model("Authentication.loginData.loginUsername")).sendKeys(username);
+  await element(by.model("Authentication.loginData.loginPassword")).sendKeys(password);
   await element(by.id("login-button")).click();
 
   if (firstlogin) {
@@ -149,8 +149,8 @@ exports.login_receiver = async function(username, password, url, firstlogin) {
   url = url === undefined ? "/#/login" : url;
 
   await browser.get(url);
-  await element(by.model("loginData.loginUsername")).sendKeys(username);
-  await element(by.model("loginData.loginPassword")).sendKeys(password);
+  await element(by.model("Authentication.loginData.loginUsername")).sendKeys(username);
+  await element(by.model("Authentication.loginData.loginPassword")).sendKeys(password);
   await element(by.id("login-button")).click();
 
   if (firstlogin) {
@@ -169,8 +169,8 @@ exports.login_custodian = async function(username, password, url, firstlogin) {
   url = url === undefined ? "/#/login" : url;
 
   await browser.get(url);
-  await element(by.model("loginData.loginUsername")).sendKeys(username);
-  await element(by.model("loginData.loginPassword")).sendKeys(password);
+  await element(by.model("Authentication.loginData.loginUsername")).sendKeys(username);
+  await element(by.model("Authentication.loginData.loginPassword")).sendKeys(password);
   await element(by.id("login-button")).click();
 
   if (firstlogin) {
