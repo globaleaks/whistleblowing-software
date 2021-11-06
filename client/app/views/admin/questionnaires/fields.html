@@ -359,7 +359,7 @@
                         <i class="fas fa-chevron-down"></i>
                       </button>
                       <span>
-                        <button class="btn btn-sm" data-ng-class="option.hint1 || option.hint2 ? 'btn-warning' : 'btn-outline-secondary'" data-ng-click="addOptionHintDialog(option)" data-uib-tooltip="{{'Hint' | translate}}">
+                        <button class="btn btn-sm" data-ng-class="option.hint1 || option.hint2 ? 'btn-primary' : 'btn-outline-secondary'" data-ng-click="addOptionHintDialog(option)" data-uib-tooltip="{{'Hint' | translate}}">
                           <i class="fas fa-question-circle"></i>
                         </button>
                       </span>
@@ -374,7 +374,7 @@
                         </button>
                       </span>
                       <span data-ng-if="resources.node.enable_scoring_system">
-                        <button class="btn btn-sm" data-ng-class="option.score_type !== 'none' ? 'btn-warning' : 'btn-outline-secondary'" data-ng-click="assignScorePointsDialog(option)" data-uib-tooltip="{{'Assign score points' | translate}}">
+                        <button class="btn btn-sm" data-ng-class="option.score_type !== 'none' ? 'btn-primary' : 'btn-outline-secondary'" data-ng-click="assignScorePointsDialog(option)" data-uib-tooltip="{{'Assign score points' | translate}}">
                           <i class="fas fa-bolt"></i>
                           <span data-ng-if="option.score_type !== 'none'">
                             <span> {{option.score_points}} </span>
