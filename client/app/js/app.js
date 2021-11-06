@@ -669,12 +669,6 @@ var GL = angular.module("GL", [
           }
         });
 
-        if ($rootScope.public.node.enable_experimental_features) {
-          $rootScope.isFieldTriggered = fieldUtilities.isFieldTriggered;
-        } else {
-          $rootScope.isFieldTriggered = $rootScope.null_function;
-        }
-
         GLTranslate.addNodeFacts($rootScope.public.node.default_language, $rootScope.public.node.languages_enabled);
         Utils.set_title();
 

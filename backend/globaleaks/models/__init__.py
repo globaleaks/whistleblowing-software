@@ -761,13 +761,11 @@ class _ReceiverFile(Model):
     downloads = Column(Integer, default=0, nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
     new = Column(Boolean, default=True, nullable=False)
-    status = Column(Enum(EnumFileStatus), default='reference', nullable=False)
 
     @declared_attr
     def __table_args__(self):
         return (ForeignKeyConstraint(['internalfile_id'], ['internalfile.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['receivertip_id'], ['receivertip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                CheckConstraint(self.status.in_(EnumFileStatus.keys())))
+                ForeignKeyConstraint(['receivertip_id'], ['receivertip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
 
 
 class _ReceiverTip(Model):
@@ -992,9 +990,6 @@ class _User(Model):
     pgp_key_public = Column(UnicodeText, default='', nullable=False)
     pgp_key_expiration = Column(DateTime, default=datetime_null, nullable=False)
     # END of PGP key fields
-
-    # TODO: Remove this unused field in next database migration
-    two_factor_enable = Column(Boolean, default=False, nullable=False)
 
     clicked_recovery_key = Column(Boolean, default=False, nullable=False)
 
