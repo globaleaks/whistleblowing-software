@@ -17,6 +17,7 @@ from globaleaks.handlers.user import user_serialize_user
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.utils.crypto import Base64Encoder, GCE
+from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, msdos_encode
 from globaleaks.utils.zipstream import ZipStream, ZipStreamProducer
@@ -55,7 +56,7 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
     if itip.status == 'new':
         db_update_submission_status(session, tid, user_id, itip, 'opened', None)
 
-    return serialize_rtip_export(session, user, rtip, itip, context, language)
+    return user.pgp_key_public, serialize_rtip_export(session, user, rtip, itip, context, language)
 
 
 @inlineCallbacks
@@ -99,17 +100,23 @@ class ExportHandler(BaseHandler):
 
     @inlineCallbacks
     def get(self, rtip_id):
-        tip_export = yield get_tip_export(self.request.tid,
-                                          self.session.user_id,
-                                          rtip_id,
-                                          self.request.language)
+        pgp_key, tip_export = yield get_tip_export(self.request.tid,
+                                                   self.session.user_id,
+                                                   rtip_id,
+                                                   self.request.language)
+
+        filename = "report-" + str(tip_export["tip"]["progressive"]) + ".zip"
 
         files = yield prepare_tip_export(self.session.cc, tip_export)
 
-        self.request.setHeader(b'X-Download-Options', b'noopen')
-        self.request.setHeader(b'Content-Type', b'application/octet-stream')
-        self.request.setHeader(b'Content-Disposition', b'attachment; filename="report-' + str(tip_export["tip"]["progressive"]).encode() + b'.zip"')
+        zipstream = ZipStream(files)
 
-        self.zip_stream = iter(ZipStream(files))
+        stf = SecureTemporaryFile(self.state.settings.tmp_path)
 
-        yield ZipStreamProducer(self, self.zip_stream).start()
+        with stf.open('w') as f:
+            for x in zipstream:
+                f.write(x)
+            f.finalize_write()
+
+        with stf.open('r') as f:
+            yield self.write_file_as_download(filename, f, pgp_key)

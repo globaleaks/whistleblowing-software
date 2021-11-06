@@ -543,7 +543,7 @@ def forge_request(uri=b'https://www.globaleaks.org/',
 
 class TestGL(unittest.TestCase):
     initialize_test_database_using_archived_db = True
-    pgp_configuration = 'NONE'
+    pgp_configuration = 'ALL'
 
     @inlineCallbacks
     def setUp(self):
@@ -600,9 +600,6 @@ class TestGL(unittest.TestCase):
         if self.pgp_configuration == 'ALL':
             self.dummyReceiver_1['pgp_key_public'] = PGPKEYS['VALID_PGP_KEY1_PUB']
             self.dummyReceiver_2['pgp_key_public'] = PGPKEYS['VALID_PGP_KEY2_PUB']
-        elif self.pgp_configuration == 'ONE_VALID_ONE_WITHOUT':
-            self.dummyReceiver_1['pgp_key_public'] = PGPKEYS['VALID_PGP_KEY1_PUB']
-            self.dummyReceiver_2['pgp_key_public'] = ''
         elif self.pgp_configuration == 'ONE_VALID_ONE_EXPIRED':
             self.dummyReceiver_1['pgp_key_public'] = PGPKEYS['VALID_PGP_KEY1_PUB']
             self.dummyReceiver_2['pgp_key_public'] = PGPKEYS['EXPIRED_PGP_KEY_PUB']

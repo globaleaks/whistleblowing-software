@@ -6,7 +6,7 @@ from twisted.internet.defer import inlineCallbacks
 
 
 class TestPGPCheckWithNoKeys(helpers.TestGLWithPopulatedDB):
-    pgp_configuration = 'ALL'
+    pgp_configuration = 'NONE'
 
     @inlineCallbacks
     def test_pgp_checkule(self):

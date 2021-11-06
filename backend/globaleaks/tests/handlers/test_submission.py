@@ -11,19 +11,12 @@ from globaleaks.sessions import initialize_submission_session
 from globaleaks.tests import helpers
 
 
-class TestSubmissionScenario1(helpers.TestHandlerWithPopulatedDB):
+class TestSubmission(helpers.TestHandlerWithPopulatedDB):
     _handler = SubmissionInstance
 
     complex_field_population = True
 
-    pgp_configuration = 'NONE'
-
     files_created = 6
-
-    counters_check = {
-        'encrypted': 0,
-        'reference': 6
-    }
 
     @inlineCallbacks
     def setUp(self):
@@ -73,20 +66,6 @@ class TestSubmissionScenario1(helpers.TestHandlerWithPopulatedDB):
         self.assertTrue(isinstance(self.rfi, list))
         self.assertEqual(len(self.rfi), self.files_created)
 
-        counters = {
-            'encrypted': 0,
-            'reference': 0
-        }
-
-        for i in range(self.files_created):
-            if self.rfi[i]['status'] not in counters:
-                counters[self.rfi[i]['status']] = 1
-            else:
-                counters[self.rfi[i]['status']] += 1
-
-        for key in self.counters_check:
-            self.assertEqual(counters[key], self.counters_check[key])
-
     @inlineCallbacks
     def test_update_submission(self):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
@@ -99,30 +78,3 @@ class TestSubmissionScenario1(helpers.TestHandlerWithPopulatedDB):
         wbtip_desc, _ = yield wbtip.get_wbtip(session.user_id, 'en')
 
         self.assertTrue('data' in wbtip_desc)
-
-
-class TestSubmissionScenario2(TestSubmissionScenario1):
-    pgp_configuration = 'ONE_VALID_ONE_EXPIRED'
-
-    counters_check = {
-        'encrypted': 6,
-        'reference': 0
-    }
-
-
-class TestSubmissionScenario3(TestSubmissionScenario1):
-    pgp_configuration = 'ONE_VALID_ONE_WITHOUT'
-
-    counters_check = {
-        'encrypted': 3,
-        'reference': 3
-    }
-
-
-class TestSubmissionScenario4(TestSubmissionScenario1):
-    pgp_configuration = 'ALL'
-
-    counters_check = {
-        'encrypted': 6,
-        'reference': 0
-    }

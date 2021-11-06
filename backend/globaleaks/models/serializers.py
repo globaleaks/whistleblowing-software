@@ -38,8 +38,7 @@ def serialize_rfile(session, rfile):
         'size': ifile.size,
         'type': ifile.content_type,
         'filename': rfile.filename,
-        'downloads': rfile.downloads,
-        'status': rfile.status
+        'downloads': rfile.downloads
     }
 
 
