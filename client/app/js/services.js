@@ -872,6 +872,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
 
     showUserStatusBox: function() {
       return $rootScope.public.node.wizard_done &&
+             $rootScope.page !== "homepage" &&
              $rootScope.page !== "submissionpage" &&
              angular.isDefined($rootScope.Authentication.session) &&
              !$rootScope.Authentication.session.password_change_needed;
