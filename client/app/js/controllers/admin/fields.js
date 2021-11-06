@@ -215,9 +215,7 @@ controller("AdminFieldTemplatesCtrl", ["$scope", "$http", "AdminFieldTemplateRes
     $scope.parsedFields = $scope.fieldUtilities.parseFields($scope.resources.fieldtemplates, {});
 
     $scope.importQuestion = function(file) {
-      console.log(file);
       $scope.Utils.readFileAsText(file).then(function(txt) {
-	console.log(txt);
         return $http({
           method: "POST",
           url: "api/admin/fieldtemplates?multilang=1",

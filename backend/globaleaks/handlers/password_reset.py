@@ -122,10 +122,9 @@ def validate_password_reset(session, reset_token, auth_code, recovery_key):
         except:
             return {'status': 'require_recovery_key'}
 
-    elif user.two_factor_enable:
-        two_factor_secret = user.two_factor_secret
+    elif user.two_factor_secret:
         try:
-            totpVerify(two_factor_secret, auth_code)
+            totpVerify(user.two_factor_secret, auth_code)
         except:
             return {'status': 'require_two_factor_authentication'}
 
@@ -141,7 +140,7 @@ def validate_password_reset(session, reset_token, auth_code, recovery_key):
     session_id = Sessions.new(user.tid, user.id,
                               user.tid, user.role,
                               user.password_change_needed,
-                              user.two_factor_enable,
+                              user.two_factor_secret != '',
                               prv_key,
                               user.crypto_escrow_prv_key).id
 

@@ -19,7 +19,8 @@
         "sha256": true,
         "StackTrace": true,
         "topojson": true,
-        "Uint8Array": true
+        "Uint8Array": true,
+        "Uint32Array": true
     },
     "parserOptions": {
         "ecmaVersion": 9
