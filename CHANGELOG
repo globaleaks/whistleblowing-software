@@ -1,3 +1,20 @@
+Changes in version 4.5.0
+    Fix internationalization of close button in support modal (#3084)
+    Fix regression on compatibility with Internet Explorer (#3085)
+    Avoid to show logout button on homepage and submission page
+    Show explicit logout link on whistleblower sessions
+    Revise login interface resetting inputs on failure
+    Make it possible to manually configure TOTP secret (#3088)
+    Add "Copy to clipboard" functionality on 2FA qrcode interface
+    Fix possibility to provide identity after submission
+    Always encrypt downloads with PGP when the user key is available (#3087)
+    Fix bug on invalidation of escrow key when enabling key escrow of secondary tenants
+    Always fetch user preferences when the user preferences are accessed
+    Fix issue #3086, #3090
+    Bump npm dependencies to latest versions
+    Improve request support feature by prepopulating the email field
+    Update translations
+
 Changes in version 4.4.5
     Revise rate limiting decorator limiting only whistleblowers' sessions #3076
     Simplify handling of recipient public names
