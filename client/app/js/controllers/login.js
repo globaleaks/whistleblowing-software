@@ -1,5 +1,5 @@
-GL.controller("LoginCtrl", ["$scope", "$location", "$filter",
-function($scope, $location, $filter) {
+GL.controller("LoginCtrl", ["$scope", "$location",
+function($scope, $location) {
   $scope.loginData = {
     loginUsername: "",
     loginPassword: "",
@@ -23,32 +23,5 @@ function($scope, $location, $filter) {
   if (token) {
     $scope.Authentication.login(0, "", "", "", token);
     return;
-  }
-
-  if ($scope.public.node.root_tenant) {
-    $scope.vars = {
-      "site": null
-    };
-
-    $scope.selectSite = function(item) {
-      $scope.vars.site = item;
-    };
-
-    $scope.refreshSelectableSites = function(search) {
-      $scope.selectableSites = [];
-
-      if (!$scope.public.sites) {
-        return;
-      }
-
-      search = search.toLowerCase();
-
-      $scope.selectableSites = $scope.public.sites.filter(function(item) {
-        var text = item.name + item.subdomain;
-        return text.toLowerCase().indexOf(search) !== -1 && item.id !== 1;
-      });
-
-      $scope.selectableSites = $filter("orderBy")($scope.selectableSites, "name");
-    };
   }
 }]);
