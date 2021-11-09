@@ -1,3 +1,7 @@
+Changes in version 4.5.1
+    Fix authenticaton on secondary tenants by root tenant users
+    (regression introduced in 4.5.0)
+
 Changes in version 4.5.0
     Fix internationalization of close button in support modal (#3084)
     Fix regression on compatibility with Internet Explorer (#3085)
