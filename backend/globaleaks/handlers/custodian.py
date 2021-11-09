@@ -61,6 +61,7 @@ def db_create_identity_access_reply_notifications(session, itip, rtip, iar):
     Transaction for the creation of notifications related to identity access replies
     :param session: An ORM session
     :param itip: A itip ID of the tip involved in the request
+    :param rtip: A rtip ID of the rtip involved in the request
     :param iar: A identity access request model
     """
     from globaleaks.handlers.rtip import serialize_rtip

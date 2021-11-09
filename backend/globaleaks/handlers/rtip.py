@@ -50,7 +50,7 @@ def db_tip_grant_notification(session, user):
     """
     Transaction for the creation of notifications related to grant of access to report
     :param session: An ORM session
-    :param itip: A user ID of the user to which the access is granted
+    :param user: A user to which send the notification
     """
     data = {
         'type': 'tip_access'
@@ -82,6 +82,7 @@ def db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, receiver_id)
     :param session: An ORM session
     :param tid: A tenant ID of the user performing the operation
     :param user_id: A user ID of the user performing the operation
+    :param user_id: A user crypto key
     :param itip: A itip reference of the itip on which perform the operation
     :param rtip: A rtip reference of the rtip on which perform the operation
     :param receiver_id: A user ID of the the user to which grant access to the report
@@ -181,6 +182,7 @@ def db_update_submission_status(session, tid, user_id, itip, status_id, substatu
     Transaction for registering a change of status of a submission
 
     :param session: An ORM session
+    :param tid: A tenant ID of the user performing the operation
     :param user_id: A user ID of the user changing the state
     :param itip:  The ID of the submission
     :param status_id:  The new status ID
@@ -531,6 +533,7 @@ def db_postpone_expiration(session, itip, expiration_date):
 
     :param session: An ORM session
     :param itip: A submission model to be postponed
+    :param expiration_date: The date timestamp to be set in milliseconds
     """
     expiration_date = expiration_date / 1000
     expiration_date = min(expiration_date, 32503680000)
@@ -673,7 +676,6 @@ def db_create_identityaccessrequest_notifications(session, itip, rtip, iar):
     """
     Transaction for the creation of notifications related to identity access requests
     :param session: An ORM session
-    :param tid: A tenant ID on which the request is issued
     :param itip: A itip ID of the tip involved in the request
     :param rtip: A rtip ID of the rtip involved in the request
     :param iar: A identity access request model

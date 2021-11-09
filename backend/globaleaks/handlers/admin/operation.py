@@ -58,6 +58,7 @@ def reset_submissions(session, tid, user_id):
 
     :param session: An ORM session
     :param tid: A tenant ID
+    :param user_id: The id of the user resetting submissions
     """
     session.query(Config).filter(Config.tid == tid, Config.var_name == 'counter_submissions').update({'value': 0})
 

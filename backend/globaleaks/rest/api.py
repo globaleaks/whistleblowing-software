@@ -245,7 +245,7 @@ class APIResourceWrapper(Resource):
         to the client and it spools a mail in the case the exception is unknown
         and unhandled.
 
-        :param e: A `Twisted.python.Failure` instance that wraps a `GLException`
+        :param exception: A `Twisted.python.Failure` instance that wraps a `GLException`
                   or a normal `Exception`
         :param request: A `twisted.web.Request`
         """
