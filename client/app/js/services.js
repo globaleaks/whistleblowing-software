@@ -106,9 +106,9 @@ factory("Authentication",
             } else {
               promise = $http.post("api/authentication?token=" + token.id, {"tid": tid, "username": username, "password": password, "authcode": authcode});
             }
-
-            return promise.then(success_fn, failure_fn);
           }
+
+          return promise.then(success_fn, failure_fn);
         });
       };
 
