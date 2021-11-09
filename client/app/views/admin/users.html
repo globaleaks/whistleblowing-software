@@ -138,13 +138,13 @@
                   <span data-ng-if="user.last_login !== '1970-01-01T00:00:00Z'" data-translate>Send reset link</span>
                 </span>
                 <span class="btn btn-outline-secondary"
-                      data-ng-if="!user.encryption || preferences.escrow"
+                      data-ng-if="!user.encryption || resources.preferences.escrow"
                       data-ng-init="user.newpassword = false"
                       data-ng-click="user.newpassword=!user.newpassword">
                   <i class="fas fa-edit"></i>
                   <span data-translate>Set password</span>
                 </span>
-                <span class="btn btn-danger" data-ng-if="user.two_factor_enable" data-ng-click="disable2FA()">
+                <span class="btn btn-danger" data-ng-if="user.two_factor" data-ng-click="disable2FA()">
                   <i class="fas fa-ban"></i>
                   <span data-translate>Disable two factor authentication</span>
                 </span>
@@ -220,7 +220,7 @@
         </div>
         <div class="row" data-ng-if="user.role === 'admin'">
           <div class="col-md-12">
-            <div class="form-group" data-ng-if="resources.node.escrow && user.encryption && preferences.escrow">
+            <div class="form-group" data-ng-if="resources.node.escrow && user.encryption && resources.preferences.escrow">
               <input data-ng-model="user.escrow" type="checkbox" data-ng-change="Utils.applyConfig('toggle_escrow', user.id)">
               <label data-translate>Give this admin ability to change user passwords</label>
             </div>

@@ -27,7 +27,7 @@ controller("AdminAdvancedCtrl", ["$scope", function($scope) {
         $scope.resources.node.encryption = true;
         $scope.resources.node.escrow = false;
         $scope.Utils.update($scope.resources.node, function() {
-          if(!$scope.preferences.encryption) {
+          if(!$scope.resources.preferences.encryption) {
             $scope.Authentication.logout();
           }
 	});

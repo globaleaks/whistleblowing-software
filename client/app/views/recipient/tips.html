@@ -26,7 +26,7 @@
 
       <span data-ng-if="selected_tips.length">
         <span id="tip-action-grant-access-selected"
-              data-ng-if="preferences.can_grant_access_to_reports"
+              data-ng-if="resources.preferences.can_grant_access_to_reports"
               data-ng-click="open_grant_access_modal()"
               data-uib-tooltip="{{'Grant access' | translate}}"
               class="btn btn-outline-secondary">
@@ -34,7 +34,7 @@
         </span>
 
         <span id="tip-action-revoke-access-selected"
-              data-ng-if="preferences.can_grant_access_to_reports"
+              data-ng-if="resources.preferences.can_grant_access_to_reports"
               data-ng-click="open_revoke_access_modal()"
               data-uib-tooltip="{{'Revoke access' | translate}}"
               class="btn btn-outline-secondary">
@@ -42,7 +42,7 @@
         </span>
 
         <span id="tip-action-delete-selected"
-              data-ng-if="preferences.can_delete_submission"
+              data-ng-if="resources.preferences.can_delete_submission"
               data-ng-click="tip_delete_selected()"
               data-uib-tooltip="{{'Delete' | translate}}"
               class="btn btn-outline-secondary">

@@ -36,7 +36,7 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$location", "$window
         "operation": "get_recovery_key",
         "args": {}
       }}).then(function(data){
-	$scope.preferences.clicked_recovery_key = true;
+	$scope.resources.preferences.clicked_recovery_key = true;
         $scope.erk = data.data.match(/.{1,4}/g).join("-");
         $uibModal.open({
           templateUrl: "views/modals/encryption_recovery_key.html",
@@ -52,27 +52,27 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$location", "$window
     };
 
     $scope.toggle2FA = function() {
-      var symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
-      var array = new Uint32Array(32);
+      if ($scope.resources.preferences.two_factor) {
+        $scope.resources.preferences.two_factor = false;
 
-      $window.crypto.getRandomValues(array);
+        var symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+        var array = new Uint32Array(32);
 
-      $scope.totp = {
-        "qrcode_string": "",
-        "secret": "",
-        "edit": false
-      };
+        $window.crypto.getRandomValues(array);
 
-      for (var i = 0; i < array.length; i++) {
-        $scope.totp.secret += symbols[array[i]%symbols.length];
-      }
+        $scope.totp = {
+          "qrcode_string": "",
+          "secret": "",
+          "edit": false
+        };
 
-      $scope.$watch("totp.secret", function() {
-        $scope.totp.qrcode_string = "otpauth://totp/" + $location.host() + "%20%28" + $scope.preferences.username + "%29?secret=" + $scope.totp.secret;
-      });
+        for (var i = 0; i < array.length; i++) {
+          $scope.totp.secret += symbols[array[i]%symbols.length];
+        }
 
-      if ($scope.preferences.two_factor_enable) {
-        $scope.preferences.two_factor_enable = false;
+        $scope.$watch("totp.secret", function() {
+          $scope.totp.qrcode_string = "otpauth://totp/" + $location.host() + "%20%28" + $scope.resources.preferences.username + "%29?secret=" + $scope.totp.secret;
+        });
 
         $uibModal.open({
           templateUrl: "views/modals/enable_2fa.html",
@@ -84,24 +84,25 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$location", "$window
           "operation": "disable_2fa",
           "args": {}
         }}).then(function() {
-          $scope.preferences.two_factor_enable = false;
+          $scope.resources.preferences.two_factor = false;
+          $scope.Authentication.session.two_factor = false;
         });
       }
     };
 
     $scope.save = function() {
-      if ($scope.preferences.pgp_key_remove) {
-        $scope.preferences.pgp_key_public = "";
+      if ($scope.resources.preferences.pgp_key_remove) {
+        $scope.resources.preferences.pgp_key_public = "";
       }
 
-      return $scope.preferences.$update(function() {
+      return $scope.resources.preferences.$update(function() {
         $scope.reload();
       });
     };
 
     $scope.loadPublicKeyFile = function(file) {
       $scope.Utils.readFileAsText(file).then(function(txt) {
-        $scope.preferences.pgp_key_public = txt;
+        $scope.resources.preferences.pgp_key_public = txt;
        }, $scope.Utils.displayErrorMsg);
     };
 }]).
@@ -119,7 +120,7 @@ controller("TwoFactorModalCtrl",
         "token": result
       }
     }}).then(function() {
-      $scope.preferences.two_factor_enable = true;
+      $scope.resources.preferences.two_factor = true;
       $uibModalInstance.dismiss("cancel");
     });
   };

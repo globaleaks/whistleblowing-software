@@ -14,10 +14,10 @@
       </label>
     </div>
 
-    <div data-ng-if="public.node.encryption && preferences.encryption">
+    <div data-ng-if="public.node.encryption && resources.preferences.encryption">
       <div class="form-group">
         <label>
-          <input data-ng-model="resources.node.escrow" type="checkbox" data-ng-disabled="resources.node.escrow && !preferences.escrow" />
+          <input data-ng-model="resources.node.escrow" type="checkbox" data-ng-disabled="resources.node.escrow && !resources.preferences.escrow" />
           <span data-translate>Enable administrators to change user passwords</span>
         </label>
       </div>

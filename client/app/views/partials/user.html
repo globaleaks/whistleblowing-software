@@ -4,7 +4,7 @@
   </div>
   <div id="LoginStatusBox" data-ng-if="Utils.showUserStatusBox()" class="float-right ml-1 mb-2">
     <span id="UsernameBox" data-ng-if="Authentication.session.role !== 'whistleblower'">
-      <label>{{preferences.name}}</label>
+      <label>{{resources.preferences.name}}</label>
       <span class="text-separator">|</span>
     </span>
     <span id="HomeLinkBox" data-ng-if="Authentication.session.role !== 'whistleblower'">

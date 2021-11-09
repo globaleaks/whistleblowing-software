@@ -1,34 +1,34 @@
-<form name="preferencesForm" id="PreferencesForm">
-  <div data-ng-if="preferences.picture" class="imageThumbnail">
-    <img class="receiverImg" alt="user picture" data-ng-src="/s/{{preferences.id}}" /><br />
+<form name="resources.preferences.orm" id="PreferencesForm">
+  <div data-ng-if="resources.preferences.picture" class="imageThumbnail">
+    <img class="receiverImg" alt="user picture" data-ng-src="/s/{{resources.preferences.id}}" /><br />
   </div>
-  <div id="Username"><label><span data-translate>Username</span>:</label> {{preferences.username }}</div>
-  <div id="Role"><label><span data-translate>Role</span>:</label> <span>{{Authentication.session.role_l10n()}}</span></div>
+  <div id="Username"><label><span data-translate>Username</span>:</label> {{resources.preferences.username }}</div>
+  <div id="Role"><label><span data-translate>Role</span>:</label> <span>{{Utils.role_l10n(Authentication.session.role)}}</span></div>
   <div id="Name"><label><span data-translate>Name</span>:</label>
     <span data-ng-if="!editingName">
-      <span>{{preferences.name }}</span>
+      <span>{{resources.preferences.name }}</span>
       <button class="btn btn-sm btn-outline-secondary"
               data-ng-show="!editingName"
               data-ng-click="toggleNameEditing(); $event.stopPropagation();">
         <span data-translate>Edit</span>
       </button>
     </span>
-    <input data-ng-if="editingName" class="form-control" name="name" data-ng-model="preferences.name" type="text" required />
+    <input data-ng-if="editingName" class="form-control" name="name" data-ng-model="resources.preferences.name" type="text" required />
   </div>
   <div id="PublicName"><label><span data-translate>Public name</span>:</label>
     <span data-ng-if="!editingPublicName">
-      <span>{{preferences.public_name }}</span>
+      <span>{{resources.preferences.public_name }}</span>
       <button class="btn btn-sm btn-outline-secondary"
               data-ng-show="!editingPublicName"
               data-ng-click="togglePublicNameEditing(); $event.stopPropagation();">
         <span data-translate>Edit</span>
       </button>
     </span>
-    <input data-ng-if="editingPublicName" class="form-control" name="public_name" data-ng-model="preferences.public_name" type="text" required />
+    <input data-ng-if="editingPublicName" class="form-control" name="public_name" data-ng-model="resources.preferences.public_name" type="text" required />
   </div>
   <div id="EmailAddress"><label><span data-translate>Email address</span>:</label>
     <div>
-      <span data-ng-if="!editingEmailAddress">{{preferences.mail_address}}</span>
+      <span data-ng-if="!editingEmailAddress">{{resources.preferences.mail_address}}</span>
       <button class="btn btn-sm btn-outline-secondary"
               data-ng-show="!editingEmailAddress"
               data-ng-click="toggleEmailAddressEditing(); $event.stopPropagation();">
@@ -37,56 +37,56 @@
     </div>
   </div>
   <div data-ng-if="editingEmailAddress">
-    <input class="form-control" name="mail_address" data-ng-model="preferences.mail_address" data-ng-pattern="CONSTANTS.email_regexp" type="email" data-ng-class="{'is-invalid': preferencesForm.$error.pattern}" />
+    <input class="form-control" name="mail_address" data-ng-model="resources.preferences.mail_address" data-ng-pattern="CONSTANTS.email_regexp" type="email" data-ng-class="{'is-invalid': resources.preferences.orm.$error.pattern}" />
   </div>
-  <div data-ng-if="!editingEmailAddress && preferences.change_email_address" class="alert alert-secondary">
+  <div data-ng-if="!editingEmailAddress && resources.preferences.change_email_address" class="alert alert-secondary">
     <div data-translate>Validation of email address change in progress.</div>
     <div data-translate>Please check your inbox for further instructions.</div>
   </div>
-  <div data-ng-if="preferences.description"><label data-translate>Description</label> {{preferences.description}}</div>
+  <div data-ng-if="resources.preferences.description"><label data-translate>Description</label> {{resources.preferences.description}}</div>
 
   <div id="Contexts" data-ng-if="Authentication.session.role === 'receiver' && public.contexts.length > 1">
     <label><span data-translate>Contexts</span></label>
-    <ul data-ng-repeat="context_id in preferences.contexts">
+    <ul data-ng-repeat="context_id in resources.preferences.contexts">
       <li>{{contexts_by_id[context_id].name}}</li>
     </ul>
   </div>
 
   <div id="Language" class="form-group" data-ng-if="languages_enabled_selector.length > 1">
     <label data-translate>Language</label>
-    <select class="form-control" data-ng-model="preferences.language" data-ng-options="item.code as item.native for item in languages_enabled_selector"></select>
+    <select class="form-control" data-ng-model="resources.preferences.language" data-ng-options="item.code as item.native for item in languages_enabled_selector"></select>
   </div>
 
   <div id="EnableNotifications" class="form-group" data-ng-if="(Authentication.session.role === 'admin' && !public.node.disable_admin_notification) ||
                                                                (Authentication.session.role === 'receiver' && !public.node.disable_receiver_notification) ||
                                                                (Authentication.session.role === 'custodian' && !public.node.disable_custodian_notification)">
-    <input data-ng-model="preferences.notification" type="checkbox">
+    <input data-ng-model="resources.preferences.notification" type="checkbox">
     <label data-translate>Enable email notifications</label>
   </div>
 
   <div class="form-group">
     <label>
-      <input data-ng-model="preferences.two_factor_enable" data-ng-change="toggle2FA()" type="checkbox" />
+      <input data-ng-model="resources.preferences.two_factor" data-ng-change="toggle2FA()" type="checkbox" />
       <span data-translate>Enable two factor authentication</span>
     </label>
   </div>
 
   <div id="EditPGP" data-ng-form="pgpkeyForm">
-    <div data-ng-show="preferences.pgp_key_fingerprint">
+    <div data-ng-show="resources.preferences.pgp_key_fingerprint">
       <div class="form-group">
         <label data-translate>Details of the PGP key:</label>
-        <div><span data-translate>Fingerprint</span>: <span>{{preferences.pgp_key_fingerprint}}</span></div>
-        <div><span data-translate>Expiration date</span>: {{preferences.pgp_key_expiration | date:"dd/MM/yyyy"}}</div>
+        <div><span data-translate>Fingerprint</span>: <span>{{resources.preferences.pgp_key_fingerprint}}</span></div>
+        <div><span data-translate>Expiration date</span>: {{resources.preferences.pgp_key_expiration | date:"dd/MM/yyyy"}}</div>
       </div>
       <div class="form-group">
-        <input data-ng-model="preferences.pgp_key_remove" type="checkbox">
+        <input data-ng-model="resources.preferences.pgp_key_remove" type="checkbox">
         <label data-translate>Remove</label>
       </div>
     </div>
-    <div data-ng-hide="preferences.pgp_key_fingerprint">
+    <div data-ng-hide="resources.preferences.pgp_key_fingerprint">
       <div class="position-relative">
         <label data-translate>Set up encryption by providing a PGP public key</label>
-        <textarea data-pgp-pubkey-validator="canBeEmpty" class="form-control" data-ng-model="preferences.pgp_key_public" data-ng-class="{'is-invalid': pgpkeyForm.$invalid}"></textarea>
+        <textarea data-pgp-pubkey-validator="canBeEmpty" class="form-control" data-ng-model="resources.preferences.pgp_key_public" data-ng-class="{'is-invalid': pgpkeyForm.$invalid}"></textarea>
         <label file-input="loadPublicKeyFile(file)" file-input-label="Select" class="btn btn-sm btn-outline-secondary textarea-btn"></label>
       </div>
     </div>
@@ -94,10 +94,10 @@
 
   <br />
 
-  <button type="submit" class="btn btn-primary" data-ng-click="save()" data-ng-disabled="preferencesForm.$invalid || pgpkeyForm.$invalid">
+  <button type="submit" class="btn btn-primary" data-ng-click="save()" data-ng-disabled="resources.preferences.orm.$invalid || pgpkeyForm.$invalid">
     <i class="fas fa-check"></i>
     <span data-translate>Save</span>
   </button>
 
-  <button data-ng-if="preferences.encryption" class="btn btn-outline-secondary" data-ng-click="getEncryptionRecoveryKey()" data-translate>Account recovery key</button>
+  <button data-ng-if="resources.preferences.encryption" class="btn btn-outline-secondary" data-ng-click="getEncryptionRecoveryKey()" data-translate>Account recovery key</button>
 </form>
