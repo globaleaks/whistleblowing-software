@@ -6,8 +6,8 @@
       <span data-translate>Current password</span>
       <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
     </label>
-    <input class="form-control" name="oldpassword" data-ng-model="preferences.old_password" type="password" autocomplete="off" data-ng-class="{'is-invalid': freferences.password && passwordChangeForm.oldpassword.$error.required}" required />
-    <p class="text-danger" data-ng-show="preferences.password && passwordChangeForm.oldpassword.$error.required">
+    <input class="form-control" name="oldpassword" data-ng-model="resources.preferences.old_password" type="password" autocomplete="off" data-ng-class="{'is-invalid': freferences.password && passwordChangeForm.oldpassword.$error.required}" required />
+    <p class="text-danger" data-ng-show="resources.preferences.password && passwordChangeForm.oldpassword.$error.required">
       <span data-translate>Old password confirmation required</span>
     </p>
   </div>
@@ -17,12 +17,12 @@
       <span data-translate>New password</span>
       <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
     </label>
-    <input class="form-control" name="password" data-ng-model="preferences.password" type="password" autocomplete="off" data-password-strength-validator data-ng-class="{'is-invalid': preferences.password && passwordChangeForm.password.$error.passwordStrengthValidator}" required />
+    <input class="form-control" name="password" data-ng-model="resources.preferences.password" type="password" autocomplete="off" data-password-strength-validator data-ng-class="{'is-invalid': resources.preferences.password && passwordChangeForm.password.$error.passwordStrengthValidator}" required />
     <password-meter data-ng-show="passwordStrengthScore" value="passwordStrengthScore"></password-meter>
     <div class="text-danger" data-ng-show="passwordStrengthScore && passwordStrengthScore < 2">
       <p data-translate>The chosen password is too weak. A valid password should be at least 10 characters long and contain a variety of characters including at least a lowercase character, a capital character, a number and a special character.</p>
      </div>
-    <div class="text-danger" data-ng-show="preferences.password && preferences.password === preferences.old_password">
+    <div class="text-danger" data-ng-show="resources.preferences.password && resources.preferences.password === resources.preferences.old_password">
       <p data-translate>The new password must be different from the current one.</p>
     </div>
   </div>
@@ -32,15 +32,15 @@
       <span data-translate>Type your new password again</span>
       <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
     </label>
-    <input class="form-control" name="checkpassword" data-ng-model="preferences.check_password" type="password" autocomplete="off" data-ng-class="{'is-invalid': preferences.password && !passwordChangeForm.password.$error && (passwordChangeForm.checkpassword.$error.required || preferences.password !== preferences.check_password)}" required/>
-    <p class="text-danger" data-ng-show="preferences.password && !passwordChangeForm.password.$error.passwordStrengthValidator && (preferences.password !== preferences.check_password)">
+    <input class="form-control" name="checkpassword" data-ng-model="resources.preferences.check_password" type="password" autocomplete="off" data-ng-class="{'is-invalid': resources.preferences.password && !passwordChangeForm.password.$error && (passwordChangeForm.checkpassword.$error.required || resources.preferences.password !== resources.preferences.check_password)}" required/>
+    <p class="text-danger" data-ng-show="resources.preferences.password && !passwordChangeForm.password.$error.passwordStrengthValidator && (resources.preferences.password !== resources.preferences.check_password)">
       <span data-translate>The two passwords do not match</span>
     </p>
   </div>
 
   <br />
 
-  <button type="submit" class="btn btn-primary" data-ng-disabled="passwordChangeForm.$invalid || passwordChangeForm.$pristine || preferences.password !== preferences.check_password || (preferences.password && preferences.password === preferences.old_password)" data-ng-click="save()">
+  <button type="submit" class="btn btn-primary" data-ng-disabled="passwordChangeForm.$invalid || passwordChangeForm.$pristine || resources.preferences.password !== resources.preferences.check_password || (resources.preferences.password && resources.preferences.password === resources.preferences.old_password)" data-ng-click="save()">
     <i class="fas fa-check"></i>
     <span data-translate>Save</span>
   </button>

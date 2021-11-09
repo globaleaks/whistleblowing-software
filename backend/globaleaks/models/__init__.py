@@ -1008,7 +1008,6 @@ class _User(Model):
                  'can_postpone_expiration',
                  'can_grant_access_to_reports',
                  'can_edit_general_settings',
-                 'two_factor_enable',
                  'forcefully_selected',
                  'readonly',
                  'clicked_recovery_key']

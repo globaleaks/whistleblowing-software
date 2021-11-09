@@ -120,7 +120,7 @@ def user_serialize_user(session, user, language):
         'notification': user.notification,
         'encryption': user.crypto_pub_key != '',
         'escrow': user.crypto_escrow_prv_key != '',
-        'two_factor_enable': user.two_factor_secret != '',
+        'two_factor': user.two_factor_secret != '',
         'forcefully_selected': user.forcefully_selected,
         'can_postpone_expiration': user.can_postpone_expiration,
         'can_delete_submission': user.can_delete_submission,
@@ -320,7 +320,6 @@ def enable_2fa(session, tid, user_id, secret, token):
     except Exception:
         raise errors.InvalidTwoFactorAuthCode
 
-    user.two_factor_enable = True
     user.two_factor_secret = secret
 
 
@@ -335,7 +334,6 @@ def disable_2fa(session, tid, user_id):
     """
     user = db_get_user(session, tid, user_id)
 
-    user.two_factor_enable = False
     user.two_factor_secret = ''
 
 

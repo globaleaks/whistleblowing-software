@@ -67,7 +67,7 @@ GL.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
             "value": $scope.user.id
           }
       }).then(function() {
-	$scope.user.two_factor_enable = false;
+	$scope.user.two_factor = false;
       });
     };
 }]).

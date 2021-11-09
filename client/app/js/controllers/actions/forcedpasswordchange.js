@@ -1,8 +1,7 @@
-GL
-.controller("ForcedPasswordChangeCtrl", ["$scope", "$location",
+GL.controller("ForcedPasswordChangeCtrl", ["$scope", "$location",
   function($scope, $location) {
     $scope.save = function () {
-      return $scope.preferences.$update(function () {
+      return $scope.resources.preferences.$update(function () {
         $scope.Authentication.session.password_change_needed = false;
         $location.path($scope.Authentication.session.homepage);
       });

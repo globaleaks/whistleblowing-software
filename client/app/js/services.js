@@ -12,8 +12,8 @@ GL.factory("GLResource", ["$resource", function($resource) {
   };
 }]).
 factory("Authentication",
-  ["$filter", "$http", "$location", "$window", "$routeParams", "$rootScope", "GLTranslate", "UserPreferences", "TokenResource",
-  function($filter, $http, $location, $window, $routeParams, $rootScope, GLTranslate, UserPreferences, TokenResource) {
+  ["$filter", "$http", "$location", "$window", "$routeParams", "$rootScope", "GLTranslate", "TokenResource",
+  function($filter, $http, $location, $window, $routeParams, $rootScope, GLTranslate, TokenResource) {
     function Session(){
       var self = this;
 
@@ -24,7 +24,7 @@ factory("Authentication",
       self.set_session = function(response) {
         response = response.data;
 
-        self.session = {
+        var session = {
           "id": response.session_id,
           "user_id": response.user_id,
           "role": response.role,
@@ -35,24 +35,14 @@ factory("Authentication",
           "preferencespage": ""
         };
 
-        function initPreferences(prefs) {
-          $rootScope.preferences = prefs;
-          GLTranslate.addUserPreference(prefs.language);
+        if (session.role !== "whistleblower") {
+          var role = session.role === "receiver" ? "recipient" : session.role;
+
+          session.homepage = "/" + role + "/home";
+          session.preferencespage = "/" + role + "/preferences";
         }
 
-        if (self.session.role !== "whistleblower") {
-          var role = self.session.role === "receiver" ? "recipient" : self.session.role;
-
-          self.session.homepage = "/" + role + "/home";
-          self.session.preferencespage = "/" + role + "/preferences";
-
-          UserPreferences.get().$promise.then(initPreferences);
-        }
-
-        self.session.role_l10n = function() {
-          var ret = self.session.role === "receiver" ? "recipient" : self.session.role;
-          return $filter("translate")(ret.charAt(0).toUpperCase() + ret.substr(1));
-        };
+        self.session = session;
       };
 
       self.reset = function() {
@@ -1062,6 +1052,11 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       }).then(function (response) {
         FileSaver.saveAs(response.data, filename);
       });
+    },
+
+    role_l10n: function(role) {
+        var ret = role === "receiver" ? "recipient" : role;
+        return $filter("translate")(ret.charAt(0).toUpperCase() + ret.substr(1));
     },
 
     applyConfig: function(cmd, value, refresh) {

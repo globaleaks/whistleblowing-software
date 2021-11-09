@@ -30,7 +30,7 @@
     </span>
 
     <span id="tip-action-grant-access"
-          data-ng-if="preferences.can_grant_access_to_reports"
+          data-ng-if="resources.preferences.can_grant_access_to_reports"
           data-ng-click="openGrantTipAccessModal()"
           data-uib-tooltip="{{'Grant access' | translate}}"
           class="btn btn-outline-secondary">
@@ -38,7 +38,7 @@
     </span>
 
     <span id="tip-action-revoke-access"
-          data-ng-if="preferences.can_grant_access_to_reports"
+          data-ng-if="resources.preferences.can_grant_access_to_reports"
           data-ng-click="openRevokeTipAccessModal()"
           data-uib-tooltip="{{'Revoke access' | translate}}"
           class="btn btn-outline-secondary">
@@ -46,7 +46,7 @@
     </span>
 
     <span id="tip-action-postpone"
-          data-ng-if="preferences.can_postpone_expiration && contexts_by_id[tip.context_id].tip_timetolive > 0"
+          data-ng-if="resources.preferences.can_postpone_expiration && contexts_by_id[tip.context_id].tip_timetolive > 0"
           data-ng-click="tip_postpone()"
           data-uib-tooltip="{{'Postpone the expiration date' | translate}}"
           class="btn btn-outline-secondary">
@@ -54,7 +54,7 @@
     </span>
 
     <span id="tip-action-delete"
-          data-ng-if="preferences.can_delete_submission"
+          data-ng-if="resources.preferences.can_delete_submission"
           data-ng-click="tip_delete()"
           data-uib-tooltip="{{'Delete' | translate}}"
           class="btn btn-outline-secondary">
