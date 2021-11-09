@@ -23,7 +23,7 @@ def db_update_enabled_languages(session, tid, languages, default_language):
 
     :param session: An ORM session
     :param tid: A tenant id
-    :param languages_enabled: The list of enabled languages
+    :param languages: The list of the languages to be enabled
     :param default_language: The language to be set as default
     """
     cur_enabled_langs = db_get_languages(session, tid)

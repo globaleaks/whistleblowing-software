@@ -129,6 +129,7 @@ def signup_activation(session, token, hostname, language):
 
     :param session: An ORM session
     :param token: A activation token
+    :param hostname: The choosen hostname
     :param language: A language of the request
     """
     config = ConfigFactory(session, 1)

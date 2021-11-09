@@ -530,6 +530,7 @@ def db_get_questionnaires(session, tid, language, serialize_templates=False):
     :param session: An ORM session
     :param tid: The tenant ID
     :param language: The language to be used for the serialization
+    :param serialize_templates: A boolean to require template serialization
     :return: A list of contexts descriptors
     """
     questionnaires = session.query(models.Questionnaire) \
