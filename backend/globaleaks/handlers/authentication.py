@@ -198,7 +198,7 @@ class TokenAuthHandler(BaseHandler):
 
         session = Sessions.get(request['authtoken'])
         if session is None or session.tid != self.request.tid:
-            yield tw(login_failure, self.request.tid, 0)
+            yield tw(db_login_failure, self.request.tid, 0)
 
         connection_check(self.request.tid, self.request.client_ip,
                          session.user_role, self.request.client_using_tor)
