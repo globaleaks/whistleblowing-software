@@ -704,7 +704,6 @@ var GL = angular.module("GL", [
     $rootScope.$watch("GLTranslate.state.language", function(new_val, old_val) {
       if(new_val !== old_val) {
 	if (old_val && old_val !== "*") {
-          $location.search("lang", new_val);
           GLTranslate.setLang(new_val);
           $rootScope.reload();
         }
@@ -714,6 +713,15 @@ var GL = angular.module("GL", [
     $rootScope.$on("$locationChangeStart", function() {
       var lang = $location.search().lang;
 
+      if (lang) {
+        $location.search('lang', null);
+
+        if (lang !== GLTranslate.state.language) {
+          $window.location.href = $location.absUrl();
+          $window.location.reload();
+        }
+      }
+
       if ($location.path() === "/" &&
           $rootScope.Authentication.session &&
           $rootScope.Authentication.session.role !== "whistleblower") {
@@ -721,11 +729,6 @@ var GL = angular.module("GL", [
 	// This is intended as protection in relation to possible XSS and XSRF
 	// on components implementing markdown and direct html input.
         $rootScope.Authentication.session = undefined;
-      }
-
-      if(lang && lang !== GLTranslate.state.language) {
-	$window.location.href = $location.absUrl();
-	$window.location.reload();
       }
     });
 
