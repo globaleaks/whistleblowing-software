@@ -123,6 +123,10 @@
               <div class="text-danger" data-ng-show="editUser.name.$error.required" data-translate>This field is mandatory</div>
             </div>
             <div class="form-group">
+              <label data-translate>Public name</label>
+              <input class="form-control" name="public_name" data-ng-model="user.public_name" type="text" required/>
+            </div>
+            <div class="form-group">
               <label data-translate>Email address</label>
               <input class="form-control" name="email" data-ng-model="user.mail_address" type="email"
                      data-ng-pattern="CONSTANTS.email_regexp" required/>
