@@ -325,7 +325,7 @@ var GL = angular.module("GL", [
         sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
-          resources: fetchResources("admin", ["auditlog", "jobs", "node", "preferences", "users"])
+          resources: fetchResources("admin", ["auditlog", "jobs", "node", "preferences", "tips", "users"])
         }
       }).
       when("/admin/sites", {
