@@ -195,9 +195,9 @@ The following is the HTTP header injected in this case:
 
 Anchor Tags and External URLs
 -----------------------------
-In addition to the protecton offered by the header ``Referrer-Policy: no-referrer`` that prevents to pass the referrer while visiting the application sets the rel attribute nooopener to each of the external links. This protects from execution of malicious content within the context of the application.
+The client opens external urls on a new tab independent from the application context by setting ``rel='noreferrer'`` and ``target='_blank'``` on every anchor tag.
 ::
-  <a href="url" rel="noopener">link title</a>
+  <a href="url" rel="noreferrer" target="_blank">link title</a>
 
 Input Validation
 ----------------
