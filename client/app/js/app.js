@@ -627,13 +627,8 @@ var GL = angular.module("GL", [
           }
         }
 
-        elem = document.getElementById("load-custom-favicon");
-        if (elem === null) {
-          elem = document.createElement("link");
-          elem.setAttribute("id", "load-custom-favicon");
-          elem.setAttribute("rel", "shortcut icon");
-          elem.setAttribute("href", $rootScope.public.node.favicon ? "s/favicon" : "data/favicon.ico");
-          document.getElementsByTagName("head")[0].appendChild(elem);
+        if ($rootScope.public.node.favicon) {
+          document.getElementById("favicon").setAttribute("href", "s/favicon");
         }
 
         $rootScope.contexts_by_id = $rootScope.Utils.array_to_map(result.contexts);
