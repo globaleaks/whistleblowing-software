@@ -132,7 +132,8 @@ def db_archive_questionnaire_schema(session, questionnaire):
 def serialize_itip(session, internaltip, language):
     x = session.query(models.InternalTipAnswers, models.ArchivedSchema) \
                .filter(models.ArchivedSchema.hash == models.InternalTipAnswers.questionnaire_hash,
-                       models.InternalTipAnswers.internaltip_id == internaltip.id)
+                       models.InternalTipAnswers.internaltip_id == internaltip.id) \
+               .order_by(models.InternalTipAnswers.creation_date.desc())
 
     questionnaires = []
     for ita, aqs in x:
