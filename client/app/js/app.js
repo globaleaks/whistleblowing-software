@@ -401,14 +401,6 @@ var GL = angular.module("GL", [
           access: noAuth()
         }
       }).
-      when("/multisitelogin", {
-        templateUrl: "views/login/main.html",
-        controller: "LoginCtrl",
-        header_title: "Log in",
-        resolve: {
-          access: noAuth()
-        }
-      }).
       when("/login/passwordreset", {
         templateUrl: "views/passwordreset/main.html",
         controller: "PasswordResetCtrl",
