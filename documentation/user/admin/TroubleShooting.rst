@@ -36,7 +36,7 @@ Depending on your setup. There are a few things that are usually the first thing
 
 ::
 
-  less /var/globleaks/logs/globaleaks.log
+  less /var/globleaks/log/globaleaks.log
 
 
 Log Files
@@ -47,7 +47,7 @@ There are a few useful logs and corresponding log files when GlobaLeaks is insta
 
 ::
 
-  /var/globaleaks/logs/globaleaks.log
+  /var/globaleaks/log/globaleaks.log
 
 
 The verbosity is configurable via the web interface of the software inside Advanced Settings.
