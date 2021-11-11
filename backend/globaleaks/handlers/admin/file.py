@@ -7,7 +7,6 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.user import can_edit_general_settings_or_raise
 from globaleaks.orm import db_get, db_del, transact, tw
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
@@ -98,14 +97,13 @@ class FileInstance(BaseHandler):
     upload_handler = True
 
     def permission_check(self, name):
-        if self.session.user_role == 'admin' or name == 'logo':
-            return can_edit_general_settings_or_raise(self)
-
-        raise errors.InvalidAuthentication
+        if self.session.user_role != 'admin' and \
+          not (name == 'logo' and self.session.has_permission('can_edit_general_settings')):
+            raise errors.InvalidAuthentication
 
     @inlineCallbacks
     def post(self, name):
-        yield self.permission_check(name)
+        self.permission_check(name)
 
         if name in special_files or re.match(requests.uuid_regexp, name):
             self.uploaded_file['name'] = name
@@ -125,7 +123,8 @@ class FileInstance(BaseHandler):
 
     @inlineCallbacks
     def delete(self, name):
-        yield self.permission_check(name)
+        self.permission_check(name)
+
         yield delete_file(self.request.tid, name)
 
 

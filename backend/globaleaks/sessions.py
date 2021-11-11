@@ -12,6 +12,7 @@ class Session(object):
         self.user_id = user_id
         self.user_tid = user_tid
         self.user_role = user_role
+        self.permissions = {}
         self.pcn = pcn
         self.two_factor = two_factor
         self.cc = cc
@@ -24,6 +25,9 @@ class Session(object):
 
     def getTime(self):
         return self.expireCall.getTime() if self.expireCall else 0
+
+    def has_permission(self, permission):
+        return self.permissions.get(permission, False)
 
     def serialize(self):
         return {

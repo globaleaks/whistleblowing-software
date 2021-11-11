@@ -6,7 +6,6 @@ from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import db_get_languages
-from globaleaks.handlers.user import can_edit_general_settings_or_raise
 from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
 from globaleaks.orm import db_del, db_get, tw
 from globaleaks.rest import errors, requests
@@ -158,16 +157,15 @@ class NodeInstance(BaseHandler):
     check_roles = 'user'
     invalidate_cache = True
 
-    @inlineCallbacks
     def determine_allow_config_filter(self):
-        """Determines what filters are allowed, else throws invalid authentication"""
         if self.session.user_role == 'admin':
             node = ('admin_node', requests.AdminNodeDesc)
-        else:
-            yield can_edit_general_settings_or_raise(self)
+        elif self.session.has_permission('can_edit_general_settings'):
             node = ('general_settings', requests.SiteSettingsDesc)
+        else:
+            raise errors.InvalidAuthentication
 
-        returnValue(node)
+        return node
 
     @inlineCallbacks
     def get(self):

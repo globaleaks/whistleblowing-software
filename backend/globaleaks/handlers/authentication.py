@@ -146,7 +146,12 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
 
     db_log(session, tid=tid, type='login', user_id=user.id)
 
-    return Sessions.new(tid, user.id, user.tid, user.role, user.password_change_needed, user.two_factor_secret != '', crypto_prv_key, user.crypto_escrow_prv_key)
+    session = Sessions.new(tid, user.id, user.tid, user.role, user.password_change_needed, user.two_factor_secret != '', crypto_prv_key, user.crypto_escrow_prv_key)
+
+    if user.role == 'receiver' and user.can_edit_general_settings:
+        session.permissions['can_edit_general_settings'] = True
+
+    return session
 
 
 class AuthenticationHandler(BaseHandler):

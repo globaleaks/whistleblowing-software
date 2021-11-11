@@ -10,12 +10,6 @@ from globaleaks.tests import helpers
 
 
 @transact
-def set_receiver_acl_flag_true(session, rcvr_id):
-    rcvr = session.query(models.User).filter_by(id=rcvr_id).first()
-    rcvr.can_edit_general_settings = True
-
-
-@transact
 def get_config_value(session, tid, config_key):
     config_value = session.query(models.Config).filter_by(var_name=config_key, tid=tid).first()
     return config_value.value
@@ -30,23 +24,6 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
         response = yield handler.get()
 
         self.assertTrue(response['version'], __version__)
-
-    @inlineCallbacks
-    def test_get_receiver_general_settings_acl(self):
-        """Confirm receivers can read general settings ACL"""
-        yield set_receiver_acl_flag_true(self.dummyReceiver_1['id'])
-
-        handler = self.request(user_id=self.dummyReceiver_1['id'], role='receiver')
-        response = yield handler.get()
-
-        self.assertNotIn('version', response)
-        self.assertIn('header_title_homepage', response)
-
-    @inlineCallbacks
-    def test_confirm_fail_receiver_acl_cleared(self):
-        handler = self.request(user_id=self.dummyReceiver_1['id'], role='receiver')
-        with self.assertRaises(InvalidAuthentication):
-            yield handler.get()
 
     @inlineCallbacks
     def test_put_update_node(self):
@@ -92,27 +69,3 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
 
         self.assertNotEqual('xxx', resp['hostname'])
         self.assertNotEqual('yyy', resp['onionservice'])
-
-    @inlineCallbacks
-    def test_receiver_general_settings_update_field(self):
-        """Confirm fields out of the receiver's set updates"""
-
-        yield set_receiver_acl_flag_true(self.dummyReceiver_1['id'])
-        self.dummyNode['header_title_homepage'] = "Whistleblowing Homepage"
-
-        handler = self.request(self.dummyNode, role='receiver')
-        resp = yield handler.put()
-        self.assertEqual("Whistleblowing Homepage", resp['header_title_homepage'])
-
-    @inlineCallbacks
-    def test_receiver_confirm_failure_for_priv_fields_updates(self):
-        """Confirm privelleged fields are ignored"""
-
-        yield set_receiver_acl_flag_true(self.dummyReceiver_1['id'])
-        self.dummyNode['smtp_server'] = 'not.a.real.smtpserver'
-
-        handler = self.request(self.dummyNode, role='receiver')
-        yield handler.put()
-
-        smtp_server = yield get_config_value(1, 'smtp_server')
-        self.assertNotEqual('not.a.real.smtpserver', smtp_server)

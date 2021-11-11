@@ -243,22 +243,6 @@ def update_user_settings(session, tid, user_session, request, language):
     return user_serialize_user(session, user, language)
 
 
-@inlineCallbacks
-def can_edit_general_settings_or_raise(handler):
-    """Determines if this user has ACL permissions to edit general settings"""
-    if handler.session.user_role == 'admin':
-        returnValue(True)
-    else:
-        # Get the full user so we can see what we can access
-        user = yield get_user(handler.session.user_tid,
-                              handler.session.user_id,
-                              handler.request.language)
-        if user['can_edit_general_settings'] is True:
-            returnValue(True)
-
-    raise errors.InvalidAuthentication
-
-
 class UserInstance(BaseHandler):
     """
     Handler that enables users to update their own setings
