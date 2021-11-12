@@ -53,53 +53,55 @@ controller("AdminGeneralSettingsCtrl", ["$scope", "$filter", "$http", "Files", "
       }
   ];
 
-  $scope.vars = {
-    "language_to_customize": $scope.public.node.default_language
-  };
+  if ($scope.Authentication.session.role === "admin") {
+    $scope.toggleLangSelect = function() {
+      $scope.showLangSelect = true;
+    };
 
-  $scope.get_l10n = function(lang) {
-    if (!lang) {
-      return;
-    }
+    $scope.langNotEnabledFilter = function(lang_obj) {
+      return $scope.resources.node.languages_enabled.indexOf(lang_obj.code) === -1;
+    };
 
-    $scope.custom_texts = AdminL10NResource.get({"lang": lang});
-    DefaultL10NResource.get({"lang": lang}, function(default_texts) {
-      var list = [];
-      for (var key in default_texts) {
-        if (default_texts.hasOwnProperty(key)) {
-          var value = default_texts[key];
-          if (value.length > 150) {
-            value = value.substr(0, 150) + "...";
-          }
-          list.push({"key": key, "value": value});
-        }
+    $scope.enableLanguage = function(lang_obj) {
+      $scope.resources.node.languages_enabled.push(lang_obj.code);
+    };
+
+    $scope.removeLang = function(idx, lang_code) {
+      if (lang_code === $scope.resources.node.default_language) { return; }
+      $scope.resources.node.languages_enabled.splice(idx, 1);
+    };
+
+    $scope.get_l10n = function(lang) {
+      if (!lang) {
+        return;
       }
 
-      $scope.default_texts = default_texts;
-      $scope.custom_texts_selector = $filter("orderBy")(list, "value");
-    });
-  };
+      $scope.custom_texts = AdminL10NResource.get({"lang": lang});
+      DefaultL10NResource.get({"lang": lang}, function(default_texts) {
+        var list = [];
+        for (var key in default_texts) {
+          if (default_texts.hasOwnProperty(key)) {
+            var value = default_texts[key];
+            if (value.length > 150) {
+              value = value.substr(0, 150) + "...";
+            }
+            list.push({"key": key, "value": value});
+          }
+        }
 
-  $scope.get_l10n($scope.vars.language_to_customize);
+        $scope.default_texts = default_texts;
+        $scope.custom_texts_selector = $filter("orderBy")(list, "value");
+      });
+    };
+
+    $scope.vars = {
+      "language_to_customize": $scope.public.node.default_language
+    };
+    
+    $scope.get_l10n($scope.vars.language_to_customize);
+  }
 
   $scope.files = [];
-
-  $scope.toggleLangSelect = function() {
-    $scope.showLangSelect = true;
-  };
-
-  $scope.langNotEnabledFilter = function(lang_obj) {
-    return $scope.resources.node.languages_enabled.indexOf(lang_obj.code) === -1;
-  };
-
-  $scope.enableLanguage = function(lang_obj) {
-    $scope.resources.node.languages_enabled.push(lang_obj.code);
-  };
-
-  $scope.removeLang = function(idx, lang_code) {
-    if (lang_code === $scope.resources.node.default_language) { return; }
-    $scope.resources.node.languages_enabled.splice(idx, 1);
-  };
 
   $scope.update_files = function () {
     var updated_files = Files.query(function () {
