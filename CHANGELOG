@@ -1,3 +1,7 @@
+Changes in version 4.5.3
+    Fix regression on Simplified Login when combined with 2FA
+    (regression introduced in 4.5.0)
+
 Changes in version 4.5.2
     Implement Cross-Origin-Opener-Policy (#3103)
     Make it possible for administrators to configure the public name of users (#3094)
