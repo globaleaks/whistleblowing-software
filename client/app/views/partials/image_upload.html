@@ -1,14 +1,17 @@
-<div class="imageUpload"
+<div id="projectImageLoader"
+     class="imageUpload"
      data-ng-controller="ImageUploadCtrl"
      data-flow-name="imageUploadObj.flow"
      data-flow-init="{target: 'api/admin/files/' + imageUploadId}"
      data-flow-files-submitted="$flow.upload()"
      data-flow-drop
      extend-flow-valid-types="['png']">
-  <label class="changePictureButton text-primary"
+  <label for="projectImageLoader"
+         class="changePictureButton text-primary"
          data-ng-if="!imageUploadModel[imageUploadModelAttr] && !imageUploadObj.flow.files.length"
          data-uib-tooltip="{{'Edit' | translate}}" data-flow-btn><i class="fas fa-edit"></i></label>
-  <label class="changePictureButton text-danger"
+  <label data-ng-attr-id="projectImageLoader"
+         class="changePictureButton text-danger"
          data-ng-click="deletePicture()"
          data-ng-if="!imageSrcId && (imageUploadModel[imageUploadModelAttr] || imageUploadObj.flow.files.length)"
          data-uib-tooltip="{{'Delete' | translate}}"><i class="fas fa-times"></i></label>
