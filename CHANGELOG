@@ -1,3 +1,13 @@
+Changes in version 4.5.2
+    Implement Cross-Origin-Opener-Policy (#3103)
+    Make it possible for administrators to configure the public name of users (#3094)
+    Open TOS attachments and TOS reference link on a new page (#3097)
+    Replace automatic link sanitizer with an explicit target=_blank directive
+    Fix audit log in relation to visualization of images for  users' 2fa status
+    Revise UI of project logo upload functionality removing double click issue
+    Always show hours and minutes on dates of file uploads
+    Fix issues #3093 and #3095, #3098, #3100, #3101, #3102
+
 Changes in version 4.5.1
     Fix authenticaton on secondary tenants by root tenant users
     (regression introduced in 4.5.0)
