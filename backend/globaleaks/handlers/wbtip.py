@@ -3,13 +3,14 @@
 # Handlers dealing with tip interface for whistleblowers (wbtip)
 import base64
 import json
+import os
 from twisted.internet.threads import deferToThread
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
 from globaleaks.models.config import ConfigFactory
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list, WBFileHandler
+from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list
 from globaleaks.handlers.submission import serialize_usertip, \
     decrypt_tip, db_set_internaltip_answers, db_get_questionnaire, \
     db_archive_questionnaire_schema, db_set_internaltip_data
@@ -17,6 +18,7 @@ from globaleaks.models import serializers
 from globaleaks.orm import db_get, transact
 from globaleaks.rest import requests
 from globaleaks.utils.crypto import GCE
+from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.log import log
 from globaleaks.utils.utility import datetime_now
 
@@ -227,21 +229,9 @@ class WBTipMessageCollection(BaseHandler):
         return create_message(self.request.tid, self.session.user_id, receiver_id, request['content'])
 
 
-class WBTipWBFileHandler(WBFileHandler):
+class WBTipWBFileHandler(BaseHandler):
     check_roles = 'whistleblower'
-
-    def user_can_access(self, session, tid, wbfile):
-        wbtip_id = session.query(models.InternalTip.id) \
-                          .filter(models.ReceiverTip.id == wbfile.receivertip_id,
-                                  models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                  models.InternalTip.tid == tid).one_or_none()
-
-        return wbtip_id is not None and self.session.user_id == wbtip_id[0]
-
-    def access_wbfile(self, session, wbfile):
-        wbfile.downloads += 1
-        log.debug("Download of file %s by whistleblower %s",
-                  wbfile.id, self.session.user_id)
+    handler_exec_time_threshold = 3600
 
     @transact
     def download_wbfile(self, session, tid, file_id):
@@ -249,14 +239,33 @@ class WBTipWBFileHandler(WBFileHandler):
                                (models.WhistleblowerFile, models.WhistleblowerTip),
                                (models.WhistleblowerFile.id == file_id,
                                 models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                                models.ReceiverTip.internaltip_id == models.WhistleblowerTip.id))
+                                models.ReceiverTip.internaltip_id == models.WhistleblowerTip.id,
+                                models.WhistleblowerTip.id == self.session.user_id))
 
-        if not self.user_can_access(session, tid, wbfile):
+        if not wbtip:
             raise errors.ResourceNotFound()
 
-        self.access_wbfile(session, wbfile)
+        wbfile.downloads += 1
+
+        log.debug("Download of file %s by whistleblower %s",
+                  wbfile.id, self.session.user_id)
 
         return serializers.serialize_wbfile(session, wbfile), base64.b64decode(wbtip.crypto_tip_prv_key), ''
+
+    @inlineCallbacks
+    def get(self, wbfile_id):
+        wbfile, tip_prv_key, pgp_key = yield self.download_wbfile(self.request.tid, wbfile_id)
+
+        filelocation = os.path.join(self.state.settings.attachments_path, wbfile['filename'])
+
+        directory_traversal_check(self.state.settings.attachments_path, filelocation)
+
+        if tip_prv_key:
+            tip_prv_key = GCE.asymmetric_decrypt(self.session.cc, tip_prv_key)
+            wbfile['name'] = GCE.asymmetric_decrypt(tip_prv_key, base64.b64decode(wbfile['name'].encode())).decode()
+            filelocation = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
+
+        yield self.write_file_as_download(wbfile['name'], filelocation, pgp_key)
 
 
 class WBTipIdentityHandler(BaseHandler):

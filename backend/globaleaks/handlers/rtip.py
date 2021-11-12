@@ -945,18 +945,13 @@ class WhistleblowerFileHandler(BaseHandler):
                   self.uploaded_file['name'])
 
 
-class WBFileHandler(BaseHandler):
+class RTipWBFileHandler(BaseHandler):
     """
-    This class is used in both RTip and WBTip to define a base for respective handlers
+    This handler lets the recipient download and delete wbfiles, which are files
+    intended for delivery to the whistleblower.
     """
     check_roles = 'receiver'
     handler_exec_time_threshold = 3600
-
-    def user_can_access(self, session, tid, wbfile):
-        raise NotImplementedError("This class defines the user_can_access interface.")
-
-    def access_wbfile(self, session, wbfile):
-        pass
 
     @transact
     def download_wbfile(self, session, tid, file_id):
@@ -975,17 +970,15 @@ class WBFileHandler(BaseHandler):
         if not rtip:
             raise errors.ResourceNotFound()
 
-        self.access_wbfile(session, wbfile)
-
         return serializers.serialize_wbfile(session, wbfile), base64.b64decode(rtip.crypto_tip_prv_key), pgp_key
 
     @inlineCallbacks
     def get(self, wbfile_id):
         wbfile, tip_prv_key, pgp_key = yield self.download_wbfile(self.request.tid, wbfile_id)
 
-        filelocation = os.path.join(Settings.attachments_path, wbfile['filename'])
+        filelocation = os.path.join(self.state.settings.attachments_path, wbfile['filename'])
 
-        directory_traversal_check(Settings.attachments_path, filelocation)
+        directory_traversal_check(self.state.settings.attachments_path, filelocation)
 
         if tip_prv_key:
             tip_prv_key = GCE.asymmetric_decrypt(self.session.cc, tip_prv_key)
@@ -993,27 +986,6 @@ class WBFileHandler(BaseHandler):
             filelocation = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
 
         yield self.write_file_as_download(wbfile['name'], filelocation, pgp_key)
-
-
-class RTipWBFileHandler(WBFileHandler):
-    """
-    This handler lets the recipient download and delete wbfiles, which are files
-    intended for delivery to the whistleblower.
-    """
-    check_roles = 'receiver'
-
-    def user_can_access(self, session, tid, wbfile):
-        internaltip_id = session.query(models.ReceiverTip.internaltip_id) \
-                                .filter(models.ReceiverTip.id == wbfile.receivertip_id,
-                                        models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                        models.InternalTip.tid == tid).one()[0]
-
-        users_ids = [x[0] for x in session.query(models.ReceiverTip.receiver_id)
-                                          .filter(models.ReceiverTip.internaltip_id == internaltip_id,
-                                                  models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                                  models.InternalTip.tid == tid)]
-
-        return self.session.user_id in users_ids
 
     def delete(self, file_id):
         """
@@ -1052,8 +1024,8 @@ class ReceiverFileDownload(BaseHandler):
     def get(self, rfile_id):
         rfile, tip_prv_key, pgp_key = yield self.download_rfile(self.request.tid, self.session.user_id, rfile_id)
 
-        filelocation = os.path.join(Settings.attachments_path, rfile['filename'])
-        directory_traversal_check(Settings.attachments_path, filelocation)
+        filelocation = os.path.join(self.state.settings.attachments_path, rfile['filename'])
+        directory_traversal_check(self.state.settings.attachments_path, filelocation)
 
         if tip_prv_key:
             tip_prv_key = GCE.asymmetric_decrypt(self.session.cc, tip_prv_key)
