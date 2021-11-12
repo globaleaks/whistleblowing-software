@@ -1,4 +1,4 @@
-<div data-ng-if="!Authentication.authcoderequired">
+<div data-ng-if="!Authentication.requireAuthCode">
   <div data-ng-if="public.receivers.length === 1">
     <div class="form-group" data-ng-init="loginData.loginUsername = public.receivers[0].username">
       <input class="form-control" name="label" placeholder="{{public.node.name}}" type="text" disabled />
@@ -44,7 +44,7 @@
   </div>
 </div>
 
-<div data-ng-if="Authentication.authcoderequired">
+<div data-ng-if="Authentication.requireAuthCode">
   <div class="form-group">
     <label data-translate>Enter the two factor authentication code</label>
     <input class="form-control" data-ng-model="loginData.loginAuthCode" type="text" size="6" maxlength="6" required />
