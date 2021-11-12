@@ -1055,8 +1055,14 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
     },
 
     role_l10n: function(role) {
-        var ret = role === "receiver" ? "recipient" : role;
-        return $filter("translate")(ret.charAt(0).toUpperCase() + ret.substr(1));
+      var ret = "";
+
+      if (role) {
+        ret = role === "receiver" ? "recipient" : role;
+        ret = $filter("translate")(ret.charAt(0).toUpperCase() + ret.substr(1));
+      }
+
+      return ret;
     },
 
     applyConfig: function(cmd, value, refresh) {
