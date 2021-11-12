@@ -950,7 +950,6 @@ class WBFileHandler(BaseHandler):
     This class is used in both RTip and WBTip to define a base for respective handlers
     """
     check_roles = 'receiver'
-    require_token = True
     handler_exec_time_threshold = 3600
 
     def user_can_access(self, session, tid, wbfile):
@@ -1028,7 +1027,6 @@ class ReceiverFileDownload(BaseHandler):
     This handler exposes rfiles for download.
     """
     check_roles = 'receiver'
-    require_token = True
     handler_exec_time_threshold = 3600
 
     @transact
