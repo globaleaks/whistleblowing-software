@@ -9,8 +9,8 @@ class TempDict(dict):
         self.timeout = timeout
         dict.__init__(self)
 
-    def __getitem__(self, key):
-        value = dict.__getitem__(self, key)
+    def get(self, key):
+        value = dict.get(self, key)
 
         if value and value.expireCall is not None:
             try:
