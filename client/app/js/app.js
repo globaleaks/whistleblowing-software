@@ -532,7 +532,6 @@ var GL = angular.module("GL", [
     $rootScope.CONSTANTS = CONSTANTS;
 
     $rootScope.showLoadingPanel = false;
-    $rootScope.errors = [];
 
     _flowFactoryProvider.defaults = {
       chunkSize: 1000 * 1024,
@@ -557,8 +556,8 @@ var GL = angular.module("GL", [
       $window.location = "/";
     };
 
-    $rootScope.closeAlert = function (list, index) {
-      list.splice(index, 1);
+    $rootScope.dismissError = function () {
+      delete $rootScope.error;
     };
 
     $rootScope.open_confidentiality_modal = function () {
@@ -731,7 +730,7 @@ var GL = angular.module("GL", [
 
     $rootScope.$on("$routeChangeSuccess", function (event, current) {
       if (current.$$route) {
-        $rootScope.errors.length = 0;
+        delete $rootScope.error;
         $rootScope.header_title = current.$$route.header_title;
         $rootScope.sidebar = current.$$route.sidebar;
 	Utils.set_title();
@@ -759,7 +758,8 @@ var GL = angular.module("GL", [
     };
 
     $rootScope.reload = function(new_path) {
-      $rootScope.errors.length = 0;
+      delete $rootScope.error;
+
       $rootScope.init().then(function() {
         $route.reload();
 
@@ -826,7 +826,7 @@ var GL = angular.module("GL", [
 
          }
 
-         $rootScope.errors.push(error);
+         $rootScope.error = error;
        }
 
        return $q.reject(response);
