@@ -37,7 +37,7 @@ class SettingsClass(object, metaclass=Singleton):
 
         self.working_path = '/var/globaleaks'
 
-        self.authentication_lifetime = 1800
+        self.authentication_lifetime = 3600
 
         self.accept_submissions = True
 
