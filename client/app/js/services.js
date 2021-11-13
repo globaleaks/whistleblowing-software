@@ -992,12 +992,11 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
     },
 
     displayErrorMsg: function(reason) {
-      var error = {
+      $rootScope.error = {
         "message": "local-failure",
         "arguments": [reason],
-        "code": 10,
+        "code": 10
       };
-      $rootScope.errors.push(error);
     },
 
     getSubmissionStatusText: function(status, substatus, submission_statuses) {

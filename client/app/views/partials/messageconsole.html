@@ -1,5 +1,5 @@
-<div data-ng-repeat="error in errors" data-ng-show="[4, 9, 11, 13].indexOf(error.code) === -1 ">
-  <div data-uib-alert class="alert-danger" close="closeAlert(errors, $index)" dismiss-on-timeout="3000">
+<div data-ng-if="error && [4, 9, 11, 13].indexOf(error.code) === -1 ">
+  <div data-uib-alert class="alert-danger" close="dismissError()" dismiss-on-timeout="3000">
     <!--
       We skip authentication errors (9) that are handled by the request interceptor.
     -->
