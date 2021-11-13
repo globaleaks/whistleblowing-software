@@ -111,7 +111,7 @@ controller("EmailValidationCtrl", [
 
 }]).
 controller("TwoFactorModalCtrl",
-           ["$scope", "$window", "$http", "$location", "$uibModalInstance", function($scope, $window, $http, $location, $uibModalInstance) {
+           ["$scope", "$http", "$uibModalInstance", function($scope, $http, $uibModalInstance) {
   $scope.confirm = function(result) {
     return $http({method: "PUT", url: "api/user/operations", data:{
       "operation": "enable_2fa",
