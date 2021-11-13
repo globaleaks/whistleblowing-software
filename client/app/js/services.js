@@ -143,9 +143,13 @@ factory("Authentication",
 
         if (source_path !== "/login") {
           $location.path("/login");
+
           if (!isLogout) {
             $location.search("src=" + source_path);
           }
+
+          $window.location = $location.absUrl();
+          $window.location.reload();
         }
       };
 
