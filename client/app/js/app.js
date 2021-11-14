@@ -5,6 +5,7 @@ var _flowFactoryProvider;
 var GL = angular.module("GL", [
     "angular.filter",
     "ngAria",
+    "ngIdle",
     "ngRoute",
     "ui.bootstrap",
     "ui.select",
@@ -519,8 +520,14 @@ var GL = angular.module("GL", [
     // Trick to move the flowFactoryProvider config inside run block.
     _flowFactoryProvider = flowFactoryProvider;
 }]).
-  run(["$rootScope", "$http", "$route", "$routeParams", "$window", "$location",  "$filter", "$translate", "$uibModal", "$templateCache", "Authentication", "PublicResource", "Utils", "AdminUtils", "fieldUtilities", "CONSTANTS", "GLTranslate", "Access",
-      function($rootScope, $http, $route, $routeParams, $window, $location, $filter, $translate, $uibModal, $templateCache, Authentication, PublicResource, Utils, AdminUtils, fieldUtilities, CONSTANTS, GLTranslate, Access) {
+  config(["IdleProvider", "KeepaliveProvider", "TitleProvider", function(IdleProvider, KeepaliveProvider, TitleProvider) {
+    IdleProvider.idle(300);
+    IdleProvider.timeout(3600);
+    KeepaliveProvider.interval(60);
+    TitleProvider.enabled(false);
+}]).
+  run(["$rootScope", "$http", "$route", "$routeParams", "$window", "$location",  "$filter", "$translate", "$uibModal", "$templateCache", "Idle", "Authentication", "SessionResource", "PublicResource", "Utils", "AdminUtils", "fieldUtilities", "CONSTANTS", "GLTranslate", "Access",
+      function($rootScope, $http, $route, $routeParams, $window, $location, $filter, $translate, $uibModal, $templateCache, Idle, Authentication, SessionResource, PublicResource, Utils, AdminUtils, fieldUtilities, CONSTANTS, GLTranslate, Access) {
     $rootScope.started = false;
     $rootScope.page = "homepage";
 
@@ -690,9 +697,15 @@ var GL = angular.module("GL", [
     });
 
     $rootScope.$watch(function() {
-      return $http.pendingRequests.length;
-    }, function(val) {
-      $rootScope.showLoadingPanel = val > 0;
+      var count=0;
+      for(var i=0; i<$http.pendingRequests.length; i++) {
+        if ($http.pendingRequests[i].url.indexOf("api/session") === -1) {
+          count += 1;
+        }
+      }
+      return count;
+    }, function(count) {
+      $rootScope.showLoadingPanel = count > 0;
     });
 
     $rootScope.$watch("GLTranslate.state.language", function(new_val, old_val) {
@@ -768,6 +781,20 @@ var GL = angular.module("GL", [
         }
       });
     };
+
+    $rootScope.$on("Keepalive", function() {
+      if ($rootScope.Authentication.session) {
+        return SessionResource.get();
+      }
+    });
+
+    $rootScope.$on('IdleTimeout', function() {
+      if ($rootScope.Authentication.session) {
+        return $rootScope.Authentication.logout();
+      }
+    });
+
+    Idle.watch();
 
     $rootScope.init();
 }]).
