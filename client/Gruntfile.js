@@ -71,6 +71,7 @@ module.exports = function(grunt) {
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-translate-loader-static-files/angular-translate-loader-static-files.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/file-saver/FileSaver.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/ng-csv/build/ng-csv.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/ng-idle/angular-idle.min.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/ng-showdown/dist/ng-showdown.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/qrcode-generator/qrcode.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/showdown/dist/showdown.js"], expand: true, flatten: true },

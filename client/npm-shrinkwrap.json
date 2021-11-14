@@ -29,6 +29,7 @@
         "fast-sha256": "1.3.0",
         "fontsource-metropolis": "4.0.0",
         "ng-csv": "0.3.6",
+        "ng-idle": "1.3.2",
         "ng-showdown": "1.1.0",
         "qrcode-generator": "1.4.4",
         "stacktrace-js": "2.0.2",
@@ -6014,6 +6015,14 @@
       "integrity": "sha1-qJzwLkw/oqWyTVwZmERD3afyddg=",
       "engines": {
         "node": ">=0.8.0"
+      }
+    },
+    "node_modules/ng-idle": {
+      "version": "1.3.2",
+      "resolved": "https://registry.npmjs.org/ng-idle/-/ng-idle-1.3.2.tgz",
+      "integrity": "sha1-c6TcwKbINgMQ0Tlt83a+a9CwqGc=",
+      "dependencies": {
+        "angular": "^1.2.0"
       }
     },
     "node_modules/ng-showdown": {
@@ -14725,6 +14734,14 @@
       "version": "0.3.6",
       "resolved": "https://registry.npmjs.org/ng-csv/-/ng-csv-0.3.6.tgz",
       "integrity": "sha1-qJzwLkw/oqWyTVwZmERD3afyddg="
+    },
+    "ng-idle": {
+      "version": "1.3.2",
+      "resolved": "https://registry.npmjs.org/ng-idle/-/ng-idle-1.3.2.tgz",
+      "integrity": "sha1-c6TcwKbINgMQ0Tlt83a+a9CwqGc=",
+      "requires": {
+        "angular": "^1.2.0"
+      }
     },
     "ng-showdown": {
       "version": "1.1.0",

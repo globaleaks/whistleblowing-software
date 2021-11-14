@@ -201,6 +201,9 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
   return Access;
 }]).
+factory("SessionResource", ["GLResource", function(GLResource) {
+  return new GLResource("api/session");
+}]).
 factory("PublicResource", ["GLResource", function(GLResource) {
   return new GLResource("api/public");
 }]).
