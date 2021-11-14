@@ -59,8 +59,8 @@
     "postcss-rtl": "1.7.3",
     "protractor": "7.0.0",
     "protractor-console-plugin": "0.1.1",
-    "stylelint": "14.0.1",
-    "stylelint-config-standard": "23.0.0",
+    "stylelint": "14.1.0",
+    "stylelint-config-standard": "24.0.0",
     "superagent": "6.1.0",
     "terser": "5.9.0"
   }
