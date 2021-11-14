@@ -721,7 +721,7 @@ var GL = angular.module("GL", [
       var lang = $location.search().lang;
 
       if (lang) {
-        $location.search('lang', null);
+        $location.search("lang", null);
 
         if (lang !== GLTranslate.state.language) {
           $window.location.href = $location.absUrl();
@@ -788,7 +788,7 @@ var GL = angular.module("GL", [
       }
     });
 
-    $rootScope.$on('IdleTimeout', function() {
+    $rootScope.$on("IdleTimeout", function() {
       if ($rootScope.Authentication.session) {
         return $rootScope.Authentication.logout();
       }
