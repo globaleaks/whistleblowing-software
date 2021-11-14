@@ -1,3 +1,8 @@
+Changes in version 4.5.4
+    Implement session keep-alive and check on session expiration
+    Fix issues #603, #2842, #3104, #3105, #3106
+    Bump npm dependencies to latest versions
+
 Changes in version 4.5.3
     Fix regression on Simplified Login when combined with 2FA
     (regression introduced in 4.5.0)
