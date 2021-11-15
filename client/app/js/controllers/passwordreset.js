@@ -15,8 +15,8 @@ controller("PasswordResetCompleteCtrl", ["$scope", "$location", "$http",
   function($scope, $location, $http) {
 
   $scope.request = {
-    "reset_token": $location.search().token,
-    "recovery_key": $location.search().recovery || "",
+    "reset_token": $scope.queryString.token || "",
+    "recovery_key": $scope.queryString.recovery || "",
     "auth_code": ""
   };
 

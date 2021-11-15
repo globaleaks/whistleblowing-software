@@ -479,8 +479,11 @@ var GL = angular.module("GL", [
   run(["$rootScope", "$http", "$route", "$routeParams", "$window", "$location",  "$filter", "$translate", "$uibModal", "$templateCache", "Idle", "Authentication", "SessionResource", "PublicResource", "Utils", "AdminUtils", "fieldUtilities", "CONSTANTS", "GLTranslate", "Access",
       function($rootScope, $http, $route, $routeParams, $window, $location, $filter, $translate, $uibModal, $templateCache, Idle, Authentication, SessionResource, PublicResource, Utils, AdminUtils, fieldUtilities, CONSTANTS, GLTranslate, Access) {
     $rootScope.started = false;
-    $rootScope.page = "homepage";
 
+    $rootScope.queryString = $location.search();
+    $location.search("");
+
+    $rootScope.page = "homepage";
     $rootScope.Authentication = Authentication;
     $rootScope.GLTranslate = GLTranslate;
     $rootScope.Utils = Utils;
@@ -668,11 +671,8 @@ var GL = angular.module("GL", [
     });
 
     $rootScope.$on("$locationChangeStart", function() {
-      var lang = $location.search().lang;
-
+      var lang = $rootScope.queryString.lang;
       if (lang) {
-        $location.search("lang", null);
-
         if (lang !== GLTranslate.state.language) {
           $window.location.href = $location.absUrl();
           $window.location.reload();
@@ -698,9 +698,6 @@ var GL = angular.module("GL", [
         $rootScope.sidebar = current.$$route.sidebar;
 	Utils.set_title();
       }
-
-      $rootScope.location_path = $location.path();
-      $rootScope.location_url = $location.absUrl();
     });
 
     $rootScope.$on("$routeChangeError", function(event, current, previous, rejection) {
@@ -741,7 +738,7 @@ var GL = angular.module("GL", [
 
     $rootScope.$on("IdleTimeout", function() {
       if ($rootScope.Authentication.session) {
-        return $rootScope.Authentication.logout();
+        return $rootScope.Authentication.loginRedirect(false);
       }
     });
 

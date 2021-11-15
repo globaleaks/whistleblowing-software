@@ -1,5 +1,4 @@
-GL.controller("LoginCtrl", ["$scope", "$location",
-function($scope, $location) {
+GL.controller("LoginCtrl", ["$scope", "$location", function($scope, $location) {
   $scope.loginData = {
     loginUsername: "",
     loginPassword: "",
@@ -19,9 +18,8 @@ function($scope, $location) {
     $scope.login_template = "views/login/default.html";
   }
 
-  var token = $location.search().token;
+  var token = $scope.queryString.token;
   if (token) {
     $scope.Authentication.login(0, "", "", "", token);
-    return;
   }
 }]);

@@ -4,7 +4,7 @@
     <i class="fas fa-times"></i>
   </button>
 </div>
-<div class="modal-body" data-ng-init="sent=false; arg.mail_address=resources.preferences.mail_address; arg.url=location_url">
+<div class="modal-body" data-ng-init="sent=false; arg.mail_address=resources.preferences.mail_address; arg.url=location.absUrl()">
   <form data-ng-hide="sent" name="SupportRequest" novalidate>
     <div class="form-group">
       <label data-translate>Email address</label>

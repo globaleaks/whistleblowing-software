@@ -12,8 +12,8 @@ GL.factory("GLResource", ["$resource", function($resource) {
   };
 }]).
 factory("Authentication",
-  ["$filter", "$http", "$location", "$window", "$routeParams", "$rootScope", "GLTranslate", "TokenResource",
-  function($filter, $http, $location, $window, $routeParams, $rootScope, GLTranslate, TokenResource) {
+  ["$filter", "$http", "$location", "$window", "$rootScope", "GLTranslate", "TokenResource",
+  function($filter, $http, $location, $window, $rootScope, GLTranslate, TokenResource) {
     function Session(){
       var self = this;
 
@@ -67,8 +67,9 @@ factory("Authentication",
 
           self.set_session(response);
 
-          if ($routeParams.src) {
-            $location.path($routeParams.src);
+          var src = $rootScope.queryString.src;
+          if (src) {
+            $location.path(src);
           } else {
             // Override the auth_landing_page if a password change is needed
             if (self.session.role === "whistleblower") {
@@ -80,7 +81,6 @@ factory("Authentication",
             }
           }
 
-          $location.search("");
         };
 
 	var failure_fn = function(response) {
@@ -145,7 +145,7 @@ factory("Authentication",
           $location.path("/login");
 
           if (!isLogout) {
-            $location.search("src=" + source_path);
+            $location.search("src", source_path);
           }
 
           $window.location = $location.absUrl();
@@ -1481,9 +1481,11 @@ factory("GLTranslate", ["$translate", "$location", "$window", "tmhDynamicLocale"
   initializeStartLanguage();
 
   function initializeStartLanguage() {
-    var queryLang = $location.search().lang;
-    if (angular.isDefined(queryLang) && validLang(queryLang)) {
-      facts.urlParam = queryLang;
+    var lang = $location.search().lang;
+    if (lang) {
+      if (validLang(lang)) {
+        facts.urlParam = lang;
+      }
     }
 
     determineLanguage();
