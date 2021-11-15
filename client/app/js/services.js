@@ -275,6 +275,11 @@ factory("Submission", ["$q", "$location", "$rootScope", "Authentication", "GLRes
 
       angular.forEach(self.context.receivers, function(receiver) {
         var r = $rootScope.receivers_by_id[receiver];
+
+        if (!r) {
+          return;
+        }
+
         self.receivers.push(r);
 
         if (r.forcefully_selected) {
