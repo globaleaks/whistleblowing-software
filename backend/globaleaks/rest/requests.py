@@ -566,6 +566,7 @@ SignupDesc = {
 
 SupportDesc = {
     'mail_address': str,
+    'url': str,
     'text': str
 }
 

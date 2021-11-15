@@ -750,6 +750,7 @@ var GL = angular.module("GL", [
       }
 
       $rootScope.location_path = $location.path();
+      $rootScope.location_url = $location.absUrl();
     });
 
     $rootScope.$on("$routeChangeError", function(event, current, previous, rejection) {

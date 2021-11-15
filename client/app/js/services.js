@@ -1032,7 +1032,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
 
     submitSupportRequest: function(data) {
       return new TokenResource().$get().then(function(token) {
-        return $http({method: "POST", url: "api/support?token=" + token.id, data:{"mail_address": data.mail_address, "text": data.text}});
+        return $http({method: "POST", url: "api/support?token=" + token.id, data:{"mail_address": data.mail_address, "text": data.text, "url": data.url}});
       });
     },
 
