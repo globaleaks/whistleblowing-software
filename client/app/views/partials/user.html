@@ -23,5 +23,5 @@
 	    <a id="LogoutLink" href="" data-ng-click="Authentication.logout()" data-uib-tooltip="{{'Logout' | translate}}"><i class="fas fa-sign-out-alt"></i><span data-ng-if="Authentication.session.role === 'whistleblower'"><span> </span><span data-translate>Logout</span></span></a>
     </span>
   </div>
-  <div id="WhistleblowerLoginBox" class="ml-1 mb-1" data-ng-if="location_path === '/submission'" data-ng-include="'views/partials/receipt.html'"></div>
+  <div id="WhistleblowerLoginBox" class="ml-1 mb-1" data-ng-if="location.path() === '/submission'" data-ng-include="'views/partials/receipt.html'"></div>
 </div>

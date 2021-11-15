@@ -1,12 +1,12 @@
-GL.controller("SignupCtrl", ["$scope", "$location", "$route", "$http", "Authentication", "DATA_COUNTRIES_ITALY_REGIONS", "DATA_COUNTRIES_ITALY_PROVINCES", "DATA_COUNTRIES_ITALY_CITIES",
-              function($scope, $location, $route, $http, Authentication, DATA_COUNTRIES_ITALY_REGIONS, DATA_COUNTRIES_ITALY_PROVINCES, DATA_COUNTRIES_ITALY_CITIES) {
+GL.controller("SignupCtrl", ["$scope", "$route", "$http", "Authentication", "DATA_COUNTRIES_ITALY_REGIONS", "DATA_COUNTRIES_ITALY_PROVINCES", "DATA_COUNTRIES_ITALY_CITIES",
+              function($scope, $route, $http, Authentication, DATA_COUNTRIES_ITALY_REGIONS, DATA_COUNTRIES_ITALY_PROVINCES, DATA_COUNTRIES_ITALY_CITIES) {
   if ($scope.public.node.mode === "whistleblowing.it") {
     $scope.data_countries_italy_regions = DATA_COUNTRIES_ITALY_REGIONS.query();
     $scope.data_countries_italy_provinces = DATA_COUNTRIES_ITALY_PROVINCES.query();
     $scope.data_countries_italy_cities = DATA_COUNTRIES_ITALY_CITIES.query();
   }
 
-  $scope.hostname = $location.search().hostname || "";
+  $scope.hostname = "";
 
   $scope.step = 1;
   $scope.signup = {
@@ -53,10 +53,9 @@ GL.controller("SignupCtrl", ["$scope", "$location", "$route", "$http", "Authenti
     });
   };
 }]).
-controller("SignupActivationCtrl", ["$scope", "$location", "$http",
-                    function($scope, $location, $http) {
-  var token = $location.search().token;
-
+controller("SignupActivationCtrl", ["$scope", "$http",
+                    function($scope, $http) {
+  var token = $scope.queryString.token;
   if (token) {
     $http.get("api/signup/" + token);
   }
