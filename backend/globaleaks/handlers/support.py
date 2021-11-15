@@ -17,6 +17,7 @@ class SupportHandler(BaseHandler):
                                         requests.SupportDesc)
 
         email = "From: %s\n\n" % request['mail_address']
+        email = "Site: %s\n\n" % request['url']
         email += "Request:\n%s" % request['text']
         self.state.schedule_support_email(self.request.tid, email)
         log.debug("Received support request and forwarded to administrators")
