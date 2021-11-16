@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chechen (http://www.transifex.com/otf/globaleaks/language/ce/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -342,6 +342,9 @@ msgstr "Жигаралла"
 msgid "Reports"
 msgstr "Отчеташ"
 
+msgid "Report"
+msgstr ""
+
 msgid "Users"
 msgstr "Пайдаоьцурш"
 
@@ -505,6 +508,9 @@ msgstr "Долон"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Кхидlа болх дlабахьале, доьху, шина муьран бакъталлар латор."
+
+msgid "Enable"
+msgstr "Латон"
 
 msgid "Disable submissions"
 msgstr "Йахьийтар дlадайъа"
@@ -842,9 +848,6 @@ msgstr "Арахоьцург:"
 msgid "Intermediate Certificates"
 msgstr "Йуккъера сертификаташ"
 
-msgid "Enable"
-msgstr "Латон"
-
 msgid "Reset"
 msgstr "Йухайаккха"
 
@@ -1084,6 +1087,9 @@ msgstr "Корта"
 msgid "Send an account activation link to the user."
 msgstr "Чуйазваларан йоза жигарадан тlехьажорг йахьийта пайдаоьцучунна."
 
+msgid "Public name"
+msgstr "Нахалахь лела цlе"
+
 msgid "Send reset link"
 msgstr "Йухайаккхарна тlехьажорг йахьийта"
 
@@ -1238,28 +1244,6 @@ msgstr "Бакъталларан гlирс хьайн тилпон тlе хlот
 msgid "Scan the QR code with the app"
 msgstr "QR-кодан сурт даккха гlирсан гlоьнца"
 
-msgid "Welcome!"
-msgstr "Марша вогlийла (йогlийла)!"
-
-msgid "For the user documentation, visit:"
-msgstr "Пайдаэцаран кехаташ тlекхачархьама, хьажа:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Нагахь хьуна технически гlо эшахь, хьан йукъара хаттарш йа программин кхачойарх керла ойланаш йалахь:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Программин кхачойар йукъа хьайн дакъа дилла йа гlалатах хаам бан хьуна лаахь, доьху, и кхачамбацар тхан билеташ дохкаран системехь схьаделлар:"
-
-msgid "Join our chat:"
-msgstr "Тхан чукеренна йукъакхета:"
-
-msgid "Follow the project on:"
-msgstr "Проектан кхидlа тидам бе:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Хьехар: квитанци къайла муха даккха деза"
 
@@ -1291,9 +1275,6 @@ msgstr "Tor машанеухла бен тlекхочийла дац ресур�
 
 msgid "The upload request exceeds the size limit"
 msgstr "Бараман лаккхарчу тlегlанал тlехбаьлла чуйаккхаран хаттам"
-
-msgid "Public name"
-msgstr "Нахалахь лела цlе"
 
 msgid "Validation of email address change in progress."
 msgstr "Электронан почтин адрес хийцаран таллам бу беш."
@@ -1389,6 +1370,28 @@ msgstr "Схьаэцархоша тlечlагlйина файлаш"
 
 msgid "Upload a file:"
 msgstr "Файлаш чуйаха:"
+
+msgid "Welcome!"
+msgstr "Марша вогlийла (йогlийла)!"
+
+msgid "For the user documentation, visit:"
+msgstr "Пайдаэцаран кехаташ тlекхачархьама, хьажа:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Нагахь хьуна технически гlо эшахь, хьан йукъара хаттарш йа программин кхачойарх керла ойланаш йалахь:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Программин кхачойар йукъа хьайн дакъа дилла йа гlалатах хаам бан хьуна лаахь, доьху, и кхачамбацар тхан билеташ дохкаран системехь схьаделлар:"
+
+msgid "Join our chat:"
+msgstr "Тхан чукеренна йукъакхета:"
+
+msgid "Follow the project on:"
+msgstr "Проектан кхидlа тидам бе:"
 
 msgid "An update is available:"
 msgstr "Тlекхочийлехь карладаккхар ду:"

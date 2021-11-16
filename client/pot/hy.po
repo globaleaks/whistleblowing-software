@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-27 15:34+0000\n"
-"Last-Translator: Mariam Mansuryan <mariammansuryan17@gmail.com>\n"
+"PO-Revision-Date: 2021-11-15 15:25+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Armenian (http://www.transifex.com/otf/globaleaks/language/hy/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -341,6 +341,9 @@ msgid "Activities"
 msgstr "Գործունեություն"
 
 msgid "Reports"
+msgstr "Զզեկույցը"
+
+msgid "Report"
 msgstr "Զեկույցներ"
 
 msgid "Users"
@@ -506,6 +509,9 @@ msgstr "Շարունակել"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Շարունակելուց առաջ խնդրում ենք ակտիվացնել երկու գործոնով նույնականացումը:"
+
+msgid "Enable"
+msgstr "Ակտիվացնել"
 
 msgid "Disable submissions"
 msgstr "Անջատել հրապարակումները"
@@ -843,9 +849,6 @@ msgstr "Թողարկող՝"
 msgid "Intermediate Certificates"
 msgstr "Միջանկյալ վկայագրեր"
 
-msgid "Enable"
-msgstr "Ակտիվացնել"
-
 msgid "Reset"
 msgstr "Վերակայել"
 
@@ -1085,6 +1088,9 @@ msgstr "Վերնագիր"
 msgid "Send an account activation link to the user."
 msgstr "Հղում ուղարկել օգտատիրոջը հաշիվն ակտիվացնելու համար:"
 
+msgid "Public name"
+msgstr "Հանրային անուն"
+
 msgid "Send reset link"
 msgstr "Ուղարկել վերականգնման հղում"
 
@@ -1239,28 +1245,6 @@ msgstr "Ներբեռնեք նույնականացման ծրագիր ձեր հե
 msgid "Scan the QR code with the app"
 msgstr "Ծրագրով սքանավորեք QR կոդը"
 
-msgid "Welcome!"
-msgstr "Բարի գալուստ"
-
-msgid "For the user documentation, visit:"
-msgstr "Օգտատերերին առնչվող դոկումենտացիայի համար այցելեք՝"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Եթե ​​ձեզ անհրաժեշտ է տեխնիկական աջակցություն, ունեք ընդհանուր հարցեր կամ ծրագրային ապահովումը բարելավելու նոր գաղափարներ."
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Եթե ​​ցանկանում եք մասնակցել ծրագրաշարի մշակմանը կամ հաղորդել սխալի մասին, խնդրում ենք բացել զեկույց մեր տոմսային համակարգում."
-
-msgid "Join our chat:"
-msgstr "Միանալ մեր չաթին."
-
-msgid "Follow the project on:"
-msgstr "Հետևեք նախագծի զարգացմանը."
-
 msgid "Hint: How to hide your receipt"
 msgstr "Հուշում՝ ինչպես թաքցնել ձեր անդորրագիրը"
 
@@ -1292,9 +1276,6 @@ msgstr "Ռեսուրսը հասանելի է միայն Tor ցանցի միջո�
 
 msgid "The upload request exceeds the size limit"
 msgstr "Վերբեռնման հայտը գերազանցում է թույլատրելի չափը"
-
-msgid "Public name"
-msgstr "Հանրային անուն"
 
 msgid "Validation of email address change in progress."
 msgstr "Էլեկտրոնային հասցեն փոխելու հայցի վավերացումն ընթացքի մեջ է:"
@@ -1390,6 +1371,28 @@ msgstr "Հասցեատերերի կողմից կցված ֆայլեր"
 
 msgid "Upload a file:"
 msgstr "Վերբեռնել ֆայլ"
+
+msgid "Welcome!"
+msgstr "Բարի գալուստ"
+
+msgid "For the user documentation, visit:"
+msgstr "Օգտատերերին առնչվող դոկումենտացիայի համար այցելեք՝"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Եթե ​​ձեզ անհրաժեշտ է տեխնիկական աջակցություն, ունեք ընդհանուր հարցեր կամ ծրագրային ապահովումը բարելավելու նոր գաղափարներ."
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Եթե ​​ցանկանում եք մասնակցել ծրագրաշարի մշակմանը կամ հաղորդել սխալի մասին, խնդրում ենք բացել զեկույց մեր տոմսային համակարգում."
+
+msgid "Join our chat:"
+msgstr "Միանալ մեր չաթին."
+
+msgid "Follow the project on:"
+msgstr "Հետևեք նախագծի զարգացմանը."
 
 msgid "An update is available:"
 msgstr "Հասանելի է թարմացում."

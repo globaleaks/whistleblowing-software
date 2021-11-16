@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-01 15:59+0000\n"
-"Last-Translator: erinm\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tatar (http://www.transifex.com/otf/globaleaks/language/tt/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -342,6 +342,9 @@ msgstr "Гамәлләр"
 msgid "Reports"
 msgstr "Хисаплар"
 
+msgid "Report"
+msgstr ""
+
 msgid "Users"
 msgstr "Кулланучылар"
 
@@ -505,6 +508,9 @@ msgstr "Дәвам итү"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Дәвам итәр алдыннан, зинһар, ике адымлы аутентификацияне кабызыгыз."
+
+msgid "Enable"
+msgstr "Кабызу"
 
 msgid "Disable submissions"
 msgstr "Документ җибәрүне сүндерү"
@@ -842,9 +848,6 @@ msgstr "Биргән орган:"
 msgid "Intermediate Certificates"
 msgstr "Арадаш сертификатлар"
 
-msgid "Enable"
-msgstr "Кабызу"
-
 msgid "Reset"
 msgstr "Ташлату"
 
@@ -1084,6 +1087,9 @@ msgstr "Башисем"
 msgid "Send an account activation link to the user."
 msgstr "Кулланучыга шәхси сәхифәсен активлаштыру сылтамасын җибәрү."
 
+msgid "Public name"
+msgstr "Ачык исем"
+
 msgid "Send reset link"
 msgstr "Ташлату сылтамасын җибәрү"
 
@@ -1238,28 +1244,6 @@ msgstr "Телефоныгызга аутентификация кушымтас
 msgid "Scan the QR code with the app"
 msgstr "Кушымта белән QR кодны сканерлагыз"
 
-msgid "Welcome!"
-msgstr "Рәхим итегез!"
-
-msgid "For the user documentation, visit:"
-msgstr "Кулланучының документлары өчен монда керегез:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Әгәр сезгә техник ярдәм кирәк булса, гомуми сорауларыгыз яисә программа өчен яңа идеяләрегез булса:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Әгәр сез программа үсешенә өлеш кертергә яки хата турында хәбәр итәргә теләсәгез, зинһар, безнең ярдәм системасына сорау җибәрегез:"
-
-msgid "Join our chat:"
-msgstr "Безнең чатка кушылу:"
-
-msgid "Follow the project on:"
-msgstr "Проектны монда күзәтеп барыгыз:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Киңәш: алу кодын ничек яшерергә"
 
@@ -1291,9 +1275,6 @@ msgstr "Ресурсларга Tor челтәре аша гына кереп б�
 
 msgid "The upload request exceeds the size limit"
 msgstr "Йөкләү өчен файл күләме билгеләнгән чиктән артык"
-
-msgid "Public name"
-msgstr "Ачык исем"
 
 msgid "Validation of email address change in progress."
 msgstr "Электрон почта адресын үзгәртүне тикшерү дәвам итә. "
@@ -1389,6 +1370,28 @@ msgstr "Алучылар тарафыннан кертелгән файллар"
 
 msgid "Upload a file:"
 msgstr "Файлны йөкләтеп җибәрү:"
+
+msgid "Welcome!"
+msgstr "Рәхим итегез!"
+
+msgid "For the user documentation, visit:"
+msgstr "Кулланучының документлары өчен монда керегез:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Әгәр сезгә техник ярдәм кирәк булса, гомуми сорауларыгыз яисә программа өчен яңа идеяләрегез булса:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Әгәр сез программа үсешенә өлеш кертергә яки хата турында хәбәр итәргә теләсәгез, зинһар, безнең ярдәм системасына сорау җибәрегез:"
+
+msgid "Join our chat:"
+msgstr "Безнең чатка кушылу:"
+
+msgid "Follow the project on:"
+msgstr "Проектны монда күзәтеп барыгыз:"
 
 msgid "An update is available:"
 msgstr "Яңарту мөмкинлеге бар"

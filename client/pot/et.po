@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:28+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Estonian (http://www.transifex.com/otf/globaleaks/language/et/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -342,6 +342,9 @@ msgstr "Tegevused"
 msgid "Reports"
 msgstr "Teated"
 
+msgid "Report"
+msgstr "Teate"
+
 msgid "Users"
 msgstr "Kasutajad"
 
@@ -505,6 +508,9 @@ msgstr "Jätka"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Enne jätkamist lubage kaheastmeline autentimine."
+
+msgid "Enable"
+msgstr "Luba"
 
 msgid "Disable submissions"
 msgstr "Keela teabeesitused"
@@ -842,9 +848,6 @@ msgstr "Väljaandja:"
 msgid "Intermediate Certificates"
 msgstr "Vahesertifikaat:"
 
-msgid "Enable"
-msgstr "Luba"
-
 msgid "Reset"
 msgstr "Lähtesta"
 
@@ -1084,6 +1087,9 @@ msgstr "Pealkiri"
 msgid "Send an account activation link to the user."
 msgstr "Saada kasutajale konto aktiveerimise link."
 
+msgid "Public name"
+msgstr "Avalik nimi"
+
 msgid "Send reset link"
 msgstr "Saada lähtestamislink"
 
@@ -1238,28 +1244,6 @@ msgstr "Installige oma telefoni autentimisrakendus"
 msgid "Scan the QR code with the app"
 msgstr "Skannige rakendusega QR-kood"
 
-msgid "Welcome!"
-msgstr "Tere tulemast!"
-
-msgid "For the user documentation, visit:"
-msgstr "Kasutaja dokumendid leiate aadressilt:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Kui vajate tehnilist tuge, teil on üldisi küsimusi või uusi ideid tarkvara arendamiseks:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Kui soovite kaasa aidata tarkvara arendamisele või teatada programmiveast, avage meie piletisüsteemis probleemikirje:"
-
-msgid "Join our chat:"
-msgstr "Liituge meie vestlusega:"
-
-msgid "Follow the project on:"
-msgstr "Jälgige projekti:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Vihje: kättesaamiskoodi peitmine"
 
@@ -1291,9 +1275,6 @@ msgstr "Ressursile pääseb ligi ainult Tor-i võrgu kaudu"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Üleslaadimistaotlus ületab mahupiirangut"
-
-msgid "Public name"
-msgstr "Avalik nimi"
 
 msgid "Validation of email address change in progress."
 msgstr "Meiliaadressi vahetust valideeritakse."
@@ -1389,6 +1370,28 @@ msgstr "Saajate lisatud failid"
 
 msgid "Upload a file:"
 msgstr "Faili üleslaadimine:"
+
+msgid "Welcome!"
+msgstr "Tere tulemast!"
+
+msgid "For the user documentation, visit:"
+msgstr "Kasutaja dokumendid leiate aadressilt:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Kui vajate tehnilist tuge, teil on üldisi küsimusi või uusi ideid tarkvara arendamiseks:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Kui soovite kaasa aidata tarkvara arendamisele või teatada programmiveast, avage meie piletisüsteemis probleemikirje:"
+
+msgid "Join our chat:"
+msgstr "Liituge meie vestlusega:"
+
+msgid "Follow the project on:"
+msgstr "Jälgige projekti:"
 
 msgid "An update is available:"
 msgstr "Värskendus on saadaval:"

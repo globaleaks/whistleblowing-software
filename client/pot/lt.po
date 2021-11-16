@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
+"Last-Translator: Marija Grinevičiūtė <marijagrineviciute@outlook.com>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/otf/globaleaks/language/lt/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -342,6 +342,9 @@ msgstr "Veiklos"
 msgid "Reports"
 msgstr "Pranešimai"
 
+msgid "Report"
+msgstr "Ataskaita"
+
 msgid "Users"
 msgstr "Naudotojai"
 
@@ -505,6 +508,9 @@ msgstr "Tęsti"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Prieš tęsdami įgalinkite dviejų veiksnių tapatybės nustatymo būdą."
+
+msgid "Enable"
+msgstr "Įjungti"
 
 msgid "Disable submissions"
 msgstr ""
@@ -842,9 +848,6 @@ msgstr "Išdavė:"
 msgid "Intermediate Certificates"
 msgstr ""
 
-msgid "Enable"
-msgstr "Įjungti"
-
 msgid "Reset"
 msgstr "Atstatyti"
 
@@ -1084,6 +1087,9 @@ msgstr "Antraštė"
 msgid "Send an account activation link to the user."
 msgstr "Siųsti paskyros aktyvacijos nuorodą naudotojui."
 
+msgid "Public name"
+msgstr "Viešas pavadinimas"
+
 msgid "Send reset link"
 msgstr ""
 
@@ -1238,28 +1244,6 @@ msgstr ""
 msgid "Scan the QR code with the app"
 msgstr ""
 
-msgid "Welcome!"
-msgstr "Sveiki!"
-
-msgid "For the user documentation, visit:"
-msgstr ""
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr ""
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr ""
-
-msgid "Join our chat:"
-msgstr ""
-
-msgid "Follow the project on:"
-msgstr ""
-
 msgid "Hint: How to hide your receipt"
 msgstr ""
 
@@ -1291,9 +1275,6 @@ msgstr ""
 
 msgid "The upload request exceeds the size limit"
 msgstr ""
-
-msgid "Public name"
-msgstr "Viešas pavadinimas"
 
 msgid "Validation of email address change in progress."
 msgstr ""
@@ -1388,6 +1369,28 @@ msgid "Files attached by recipients"
 msgstr ""
 
 msgid "Upload a file:"
+msgstr ""
+
+msgid "Welcome!"
+msgstr "Sveiki!"
+
+msgid "For the user documentation, visit:"
+msgstr ""
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr ""
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr ""
+
+msgid "Join our chat:"
+msgstr ""
+
+msgid "Follow the project on:"
 msgstr ""
 
 msgid "An update is available:"

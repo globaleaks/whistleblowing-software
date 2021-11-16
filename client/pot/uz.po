@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uzbek (http://www.transifex.com/otf/globaleaks/language/uz/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -344,6 +344,9 @@ msgstr "Faoliyat"
 msgid "Reports"
 msgstr "Xabarlar"
 
+msgid "Report"
+msgstr ""
+
 msgid "Users"
 msgstr "Foydalanuvchilar"
 
@@ -507,6 +510,9 @@ msgstr "Davom ettirish"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Davom etishdan oldin ikki bosqichli hisob tekshiruvini yoqing"
+
+msgid "Enable"
+msgstr "Yoqish"
 
 msgid "Disable submissions"
 msgstr "Joylanmalarni oʻchirish"
@@ -844,9 +850,6 @@ msgstr "Noshiri:"
 msgid "Intermediate Certificates"
 msgstr "Oraliq sertifikatlar"
 
-msgid "Enable"
-msgstr "Yoqish"
-
 msgid "Reset"
 msgstr "Qayta tiklash"
 
@@ -1086,6 +1089,9 @@ msgstr "Sarlavha"
 msgid "Send an account activation link to the user."
 msgstr "Foydalanuvchiga hisobini aktivatsiya qilish havolasini yuborish."
 
+msgid "Public name"
+msgstr "Rasmiy nomi"
+
 msgid "Send reset link"
 msgstr "Qayta tiklash havolasini yuborish"
 
@@ -1240,28 +1246,6 @@ msgstr "Telefonga autentifikator ilovasini oʻrnatish"
 msgid "Scan the QR code with the app"
 msgstr "QR kodni ilova yordamida skanerlang"
 
-msgid "Welcome!"
-msgstr "Xush kelibsiz!"
-
-msgid "For the user documentation, visit:"
-msgstr "Foydalanuvchilar uchun texnik hujjatlar:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Texnik koʻmak, dastur yuzasidan savollar va takliflar uchun:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Dasturiy taʼminot rivojiga hissa qoʻshish yoki xatoliklar haqida xabar qilish uchun bizning tiketlar tizimimizga tashrif buyuring:"
-
-msgid "Join our chat:"
-msgstr "Chatimizga qoʻshiling:"
-
-msgid "Follow the project on:"
-msgstr "Loyihani kuzating:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Bildirgi: Murojaat raqamini qanday yashirish mumkin"
 
@@ -1293,9 +1277,6 @@ msgstr "Manba faqatgina Tor tarmoq ulanishi orqali ochiladi"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Yuklash soʻrovi belgilangan limitdan ortiq"
-
-msgid "Public name"
-msgstr "Rasmiy nomi"
 
 msgid "Validation of email address change in progress."
 msgstr "Email manzil oʻzgarishi tekshirilmoqda."
@@ -1391,6 +1372,28 @@ msgstr "Qabul qiluvchilar biriktirgan fayllar"
 
 msgid "Upload a file:"
 msgstr "Fayl yuklash:"
+
+msgid "Welcome!"
+msgstr "Xush kelibsiz!"
+
+msgid "For the user documentation, visit:"
+msgstr "Foydalanuvchilar uchun texnik hujjatlar:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Texnik koʻmak, dastur yuzasidan savollar va takliflar uchun:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Dasturiy taʼminot rivojiga hissa qoʻshish yoki xatoliklar haqida xabar qilish uchun bizning tiketlar tizimimizga tashrif buyuring:"
+
+msgid "Join our chat:"
+msgstr "Chatimizga qoʻshiling:"
+
+msgid "Follow the project on:"
+msgstr "Loyihani kuzating:"
 
 msgid "An update is available:"
 msgstr "Yangilanish bor:"

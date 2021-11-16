@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Amharic (http://www.transifex.com/otf/globaleaks/language/am/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -342,6 +342,9 @@ msgstr "ትግበራዎች"
 msgid "Reports"
 msgstr "ዘገባዎች "
 
+msgid "Report"
+msgstr ""
+
 msgid "Users"
 msgstr "ተጠቃሚዎች "
 
@@ -505,6 +508,9 @@ msgstr "ቀጥል "
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "ከመቀጠልዎ በፊት ባለሁለት ደረጃ ማረጋገጫ ያንቁ"
+
+msgid "Enable"
+msgstr "ያንቁ"
 
 msgid "Disable submissions"
 msgstr "ማስረከብን ያቦዝኑ"
@@ -842,9 +848,6 @@ msgstr "አውጪ፡"
 msgid "Intermediate Certificates"
 msgstr "መካከለኛ ሰርቲፊኬቶች"
 
-msgid "Enable"
-msgstr "ያንቁ"
-
 msgid "Reset"
 msgstr "ዳግም አስጀምሩ "
 
@@ -1084,6 +1087,9 @@ msgstr "ርእስ "
 msgid "Send an account activation link to the user."
 msgstr "ለተጠቃሚዉ የመለያ ማንቂያ አገናኝ ላክ"
 
+msgid "Public name"
+msgstr "ይፋ ስም"
+
 msgid "Send reset link"
 msgstr "እንደገና ማስጀመርያ አገናኝ ላክ"
 
@@ -1238,28 +1244,6 @@ msgstr "ስልካችሁ ላይ የማረጋገጫ መተግበርያ ጫኑ"
 msgid "Scan the QR code with the app"
 msgstr "የኪውአር ኮዱን በመተግበርያው አንብቡ"
 
-msgid "Welcome!"
-msgstr "እንኳን ደህና መጡ！"
-
-msgid "For the user documentation, visit:"
-msgstr "ለተጠቃሚ ሰነድ የሚከተለውን ጎብኝ"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "ውያዊ ድጋፍ ከፈለጉ፣ ማንኛውም ጥያቄ ካሎት ወይም አዲስ ሃሳብ \n\nለሶፍትዌር ካሎት"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "ለሶፍትዌር ግንባታ አስተዋጽኦ ማደረግ ከፈለጉ ወይም የሶፍትዌር ሳንካ መጠቆም ከፈለጉ\n\nበትኬት ስርኣታችን ገብተው ሁኔታ ሙሉ"
-
-msgid "Join our chat:"
-msgstr "\"ቻታችንን ተቀላቀ"
-
-msgid "Follow the project on:"
-msgstr "ፕሮጀክቱን በ--- ተከታተሉ"
-
 msgid "Hint: How to hide your receipt"
 msgstr "ፍንጭ፡- ደረሰኛችሁን እንዴት መደበቅ እንደምትችሁ"
 
@@ -1291,9 +1275,6 @@ msgstr "ንብረቱ መዳረሻ በቶር ኔትዎርክ በኩል ብቻ ነ
 
 msgid "The upload request exceeds the size limit"
 msgstr "የጭነት ጥያቄው ከተፈቀደው ወሰን ያልፋል"
-
-msgid "Public name"
-msgstr "ይፋ ስም"
 
 msgid "Validation of email address change in progress."
 msgstr "የኢሜል አድራሻ ለውጥ ማረጋገጫ በሂደት ላይ"
@@ -1389,6 +1370,28 @@ msgstr "ለመረጃ ሰጪው የተያያዙ ፋይሎች"
 
 msgid "Upload a file:"
 msgstr "ፋይል ጫኑ፡-"
+
+msgid "Welcome!"
+msgstr "እንኳን ደህና መጡ！"
+
+msgid "For the user documentation, visit:"
+msgstr "ለተጠቃሚ ሰነድ የሚከተለውን ጎብኝ"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "ውያዊ ድጋፍ ከፈለጉ፣ ማንኛውም ጥያቄ ካሎት ወይም አዲስ ሃሳብ \n\nለሶፍትዌር ካሎት"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "ለሶፍትዌር ግንባታ አስተዋጽኦ ማደረግ ከፈለጉ ወይም የሶፍትዌር ሳንካ መጠቆም ከፈለጉ\n\nበትኬት ስርኣታችን ገብተው ሁኔታ ሙሉ"
+
+msgid "Join our chat:"
+msgstr "\"ቻታችንን ተቀላቀ"
+
+msgid "Follow the project on:"
+msgstr "ፕሮጀክቱን በ--- ተከታተሉ"
 
 msgid "An update is available:"
 msgstr "ማዘመኛ አለ"

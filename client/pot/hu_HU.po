@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-11-15 15:54+0000\n"
+"Last-Translator: vargaviktor <viktor.varga@gmail.com>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -359,6 +359,9 @@ msgstr "Aktivitások"
 msgid "Reports"
 msgstr "Jelentések"
 
+msgid "Report"
+msgstr "Jelentés"
+
 msgid "Users"
 msgstr "Felhasználók"
 
@@ -522,6 +525,9 @@ msgstr "Tovább"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Továbblépés előtt állíta be a 2-faktoros autentikációt"
+
+msgid "Enable"
+msgstr "Engedélyez"
 
 msgid "Disable submissions"
 msgstr "Feltöltéstek letiltása"
@@ -859,9 +865,6 @@ msgstr "Kiálította:"
 msgid "Intermediate Certificates"
 msgstr "Köztes igazolások"
 
-msgid "Enable"
-msgstr "Engedélyez"
-
 msgid "Reset"
 msgstr "Visszaállítás"
 
@@ -1101,6 +1104,9 @@ msgstr "Cím"
 msgid "Send an account activation link to the user."
 msgstr "Felhasználói aktivációs link küldése"
 
+msgid "Public name"
+msgstr "Nyilvános elnevezés"
+
 msgid "Send reset link"
 msgstr "Visszaállító link küldése"
 
@@ -1255,28 +1261,6 @@ msgstr "Telepítsen egy authentikátor appot a telefonjára"
 msgid "Scan the QR code with the app"
 msgstr "A QR kód beolvasása az app-pal"
 
-msgid "Welcome!"
-msgstr "Üdvözöljük!"
-
-msgid "For the user documentation, visit:"
-msgstr "A felhasználói útmutatóért látogasson ide:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Ha technikai támogatásra van szüksége, általános kérdése, vagy ötletei vannak a szoftverhez:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Ha szeretne hozzájárulni a fejlesztéshez vagy jelenteni egy hibát, kérjük nyisson egy hibajegyet a jegykezelő rendszerünkben:"
-
-msgid "Join our chat:"
-msgstr "Csatlakozzon a csevegésünkhöz: "
-
-msgid "Follow the project on:"
-msgstr "Kövesse a projektet itt:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Tipp: hogyan rejtse el a kulcs kódot"
 
@@ -1308,9 +1292,6 @@ msgstr "A forrást csak a Tor hálózatán keresztül lehet elérni"
 
 msgid "The upload request exceeds the size limit"
 msgstr "A feltöltés meghadja a megengedett limitet"
-
-msgid "Public name"
-msgstr "Nyilvános elnevezés"
 
 msgid "Validation of email address change in progress."
 msgstr "Az e-mailcím változtatás ellenőrzése folyamatban"
@@ -1406,6 +1387,28 @@ msgstr "Címzettek csatolt fájljai"
 
 msgid "Upload a file:"
 msgstr "Fájl feltöltése:"
+
+msgid "Welcome!"
+msgstr "Üdvözöljük!"
+
+msgid "For the user documentation, visit:"
+msgstr "A felhasználói útmutatóért látogasson ide:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Ha technikai támogatásra van szüksége, általános kérdése, vagy ötletei vannak a szoftverhez:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Ha szeretne hozzájárulni a fejlesztéshez vagy jelenteni egy hibát, kérjük nyisson egy hibajegyet a jegykezelő rendszerünkben:"
+
+msgid "Join our chat:"
+msgstr "Csatlakozzon a csevegésünkhöz: "
+
+msgid "Follow the project on:"
+msgstr "Kövesse a projektet itt:"
 
 msgid "An update is available:"
 msgstr "Frissítés elérhető:"

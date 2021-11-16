@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
+"Last-Translator: Lenka Ježková <lenka.jezkova@oziveni.cz>\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -352,6 +352,9 @@ msgstr "Aktivity"
 msgid "Reports"
 msgstr "Podání"
 
+msgid "Report"
+msgstr "Podání"
+
 msgid "Users"
 msgstr "Uživatelé"
 
@@ -515,6 +518,9 @@ msgstr "Provést"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Před pokračováním povolte dvoufaktorové ověření."
+
+msgid "Enable"
+msgstr "Povoleno"
 
 msgid "Disable submissions"
 msgstr "Zakázat podání"
@@ -852,9 +858,6 @@ msgstr "Vydavatel:"
 msgid "Intermediate Certificates"
 msgstr "Podřízený certifikát."
 
-msgid "Enable"
-msgstr "Povoleno"
-
 msgid "Reset"
 msgstr "Reset"
 
@@ -1094,6 +1097,9 @@ msgstr "Název"
 msgid "Send an account activation link to the user."
 msgstr "Poslat uživateli odkaz k aktivaci účtu."
 
+msgid "Public name"
+msgstr "Veřejné jméno"
+
 msgid "Send reset link"
 msgstr "Odeslat resetovací odkaz"
 
@@ -1248,28 +1254,6 @@ msgstr "Nainstalujte si do telefonu ověřovací aplikaci"
 msgid "Scan the QR code with the app"
 msgstr "Naskenujte QR kód pomocí aplikace"
 
-msgid "Welcome!"
-msgstr "Vítejte!"
-
-msgid "For the user documentation, visit:"
-msgstr "Pro uživatelskou dokumentaci navštivte:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Pokud potřebujete technickou podporu, máte obecné dotazy nebo máte nové nápady pro software:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Pokud chcete přispět k vývoji software nebo nahlásit chybu, založte, prosím, hlášení v našem ticket systému:"
-
-msgid "Join our chat:"
-msgstr "Připojte se k našemu chatu:"
-
-msgid "Follow the project on:"
-msgstr "Sledujte projekt na:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Nápověda: Jak skrýt váš kód"
 
@@ -1301,9 +1285,6 @@ msgstr "Zdroj může být přístupný pouze uvnitř sítě Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Požadavek na upload přesahuje povolenou velikost."
-
-msgid "Public name"
-msgstr "Veřejné jméno"
 
 msgid "Validation of email address change in progress."
 msgstr "Ověření změny e-mailové adresy probíhá."
@@ -1399,6 +1380,28 @@ msgstr "Přílohy od příjemců"
 
 msgid "Upload a file:"
 msgstr "Nahrání souboru:"
+
+msgid "Welcome!"
+msgstr "Vítejte!"
+
+msgid "For the user documentation, visit:"
+msgstr "Pro uživatelskou dokumentaci navštivte:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Pokud potřebujete technickou podporu, máte obecné dotazy nebo máte nové nápady pro software:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Pokud chcete přispět k vývoji software nebo nahlásit chybu, založte, prosím, hlášení v našem ticket systému:"
+
+msgid "Join our chat:"
+msgstr "Připojte se k našemu chatu:"
+
+msgid "Follow the project on:"
+msgstr "Sledujte projekt na:"
 
 msgid "An update is available:"
 msgstr "Je dostupná aktualizace:"

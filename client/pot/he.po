@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
+"Last-Translator: itaizand\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -357,6 +357,9 @@ msgstr "פעילויות"
 msgid "Reports"
 msgstr "דוחות"
 
+msgid "Report"
+msgstr "דוח"
+
 msgid "Users"
 msgstr "משתמשים"
 
@@ -520,6 +523,9 @@ msgstr "המשך"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "לפני שממשיכים, אנא תאפשר/י אימות דו-שלבי"
+
+msgid "Enable"
+msgstr "אפשר"
 
 msgid "Disable submissions"
 msgstr "השבת הגשות"
@@ -857,9 +863,6 @@ msgstr "מנפיק:"
 msgid "Intermediate Certificates"
 msgstr "תעודות ביניים"
 
-msgid "Enable"
-msgstr "אפשר"
-
 msgid "Reset"
 msgstr "אַפֵּס"
 
@@ -1099,6 +1102,9 @@ msgstr "כותרת"
 msgid "Send an account activation link to the user."
 msgstr "שלח קישור שיפעול חשבון אל המשתמש."
 
+msgid "Public name"
+msgstr "שם ציבורי"
+
 msgid "Send reset link"
 msgstr "שלח קישור איפוס"
 
@@ -1253,28 +1259,6 @@ msgstr "התקן יישום אימות בטלפון שלך"
 msgid "Scan the QR code with the app"
 msgstr "סרוק את קוד ה־QR עם היישום"
 
-msgid "Welcome!"
-msgstr "ברוך הבא!"
-
-msgid "For the user documentation, visit:"
-msgstr ""
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr ""
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr ""
-
-msgid "Join our chat:"
-msgstr "הצטרף אל ההתכתבות שלנו:"
-
-msgid "Follow the project on:"
-msgstr "עקוב אחר המיזם ב:"
-
 msgid "Hint: How to hide your receipt"
 msgstr ""
 
@@ -1306,9 +1290,6 @@ msgstr "משאב ניתן לגשת רק בתוך רשת Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "בקשת ההעלאה עולה על מגבלות הגודל"
-
-msgid "Public name"
-msgstr "שם ציבורי"
 
 msgid "Validation of email address change in progress."
 msgstr ""
@@ -1404,6 +1385,28 @@ msgstr ""
 
 msgid "Upload a file:"
 msgstr "העלה קובץ:"
+
+msgid "Welcome!"
+msgstr "ברוך הבא!"
+
+msgid "For the user documentation, visit:"
+msgstr ""
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr ""
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr ""
+
+msgid "Join our chat:"
+msgstr "הצטרף אל ההתכתבות שלנו:"
+
+msgid "Follow the project on:"
+msgstr "עקוב אחר המיזם ב:"
 
 msgid "An update is available:"
 msgstr "עדכון זמין:"

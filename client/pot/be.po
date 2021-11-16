@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Belarusian (http://www.transifex.com/otf/globaleaks/language/be/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -343,6 +343,9 @@ msgstr "Актыўнасць"
 msgid "Reports"
 msgstr "Справаздачы"
 
+msgid "Report"
+msgstr ""
+
 msgid "Users"
 msgstr "Карыстальнікі"
 
@@ -506,6 +509,9 @@ msgstr "Працягнуць"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Перад тым як працягнуць, к.л., уключыце двухфактарную аўтэнтыфікацыю."
+
+msgid "Enable"
+msgstr "Уключыць"
 
 msgid "Disable submissions"
 msgstr "Адключыць падачу матэрыялаў"
@@ -843,9 +849,6 @@ msgstr "Эмітэнт:"
 msgid "Intermediate Certificates"
 msgstr "Прамежкавыя сертыфікаты"
 
-msgid "Enable"
-msgstr "Уключыць"
-
 msgid "Reset"
 msgstr "Абнуліць"
 
@@ -1085,6 +1088,9 @@ msgstr "Загаловак"
 msgid "Send an account activation link to the user."
 msgstr "Даслаць карыстальніку спасылку на актывацыю ўліковага запісу."
 
+msgid "Public name"
+msgstr "Публічнае імя"
+
 msgid "Send reset link"
 msgstr "Адправіць спасылку на абнуленне наладаў"
 
@@ -1239,28 +1245,6 @@ msgstr "Усталяваць на свой тэлефон праграму аў�
 msgid "Scan the QR code with the app"
 msgstr " Адсканаваць QR-код з дапамогай прыкладання"
 
-msgid "Welcome!"
-msgstr "Вітаем!"
-
-msgid "For the user documentation, visit:"
-msgstr "Для атрымання дакументацыі карыстальніка наведайце:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Калі трэба тэхнічная падтрымка, ёсць агульныя пытанні ці ёсць новыя ідэі адносна праграмнага забеспячэння:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Калі вы хочаце зрабіць свой унёсак у распрацоўку праграмнага забеспячэння або паведаміць пра праблему, пакіньце паведамленне ў нашай сістэме адсочвання памылак:"
-
-msgid "Join our chat:"
-msgstr "Далучыцца да нашага чату"
-
-msgid "Follow the project on:"
-msgstr "Сачыць за нашым праектам на:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Падказка: Як схаваць ваш код"
 
@@ -1292,9 +1276,6 @@ msgstr "Даступ да рэсурсу можна атрымаць тольк�
 
 msgid "The upload request exceeds the size limit"
 msgstr "Файл для загрузкі перавышае максімальны памер"
-
-msgid "Public name"
-msgstr "Публічнае імя"
 
 msgid "Validation of email address change in progress."
 msgstr "Ідзе валідацыя змены адраса электроннай пошты."
@@ -1390,6 +1371,28 @@ msgstr "Файлы, далучаныя атрымальнікамі"
 
 msgid "Upload a file:"
 msgstr "Загрузіць файл"
+
+msgid "Welcome!"
+msgstr "Вітаем!"
+
+msgid "For the user documentation, visit:"
+msgstr "Для атрымання дакументацыі карыстальніка наведайце:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Калі трэба тэхнічная падтрымка, ёсць агульныя пытанні ці ёсць новыя ідэі адносна праграмнага забеспячэння:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Калі вы хочаце зрабіць свой унёсак у распрацоўку праграмнага забеспячэння або паведаміць пра праблему, пакіньце паведамленне ў нашай сістэме адсочвання памылак:"
+
+msgid "Join our chat:"
+msgstr "Далучыцца да нашага чату"
+
+msgid "Follow the project on:"
+msgstr "Сачыць за нашым праектам на:"
 
 msgid "An update is available:"
 msgstr "Абнаўленне даступнае"

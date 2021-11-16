@@ -44,8 +44,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
+"Last-Translator: Paco Mens <mens@freepressunlimited.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -381,6 +381,9 @@ msgstr "Activiteiten"
 msgid "Reports"
 msgstr "Inzendingen"
 
+msgid "Report"
+msgstr "Inzending"
+
 msgid "Users"
 msgstr "Gebruikers"
 
@@ -544,6 +547,9 @@ msgstr "Gaat u verder"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Zet two-factor-authentication aan voordat je verdergaat."
+
+msgid "Enable"
+msgstr "Inschakelen"
 
 msgid "Disable submissions"
 msgstr "Inzendingen uitschakelen"
@@ -881,9 +887,6 @@ msgstr "Uitgever:"
 msgid "Intermediate Certificates"
 msgstr "Tussenliggende certificaten"
 
-msgid "Enable"
-msgstr "Inschakelen"
-
 msgid "Reset"
 msgstr "Reset"
 
@@ -1123,6 +1126,9 @@ msgstr "Titel"
 msgid "Send an account activation link to the user."
 msgstr "Verstuur een account activatielink naar de gebruiker."
 
+msgid "Public name"
+msgstr "Publieke naam"
+
 msgid "Send reset link"
 msgstr "Verstuur reset link"
 
@@ -1277,28 +1283,6 @@ msgstr "Installeer een authenticatie app op je telefoon"
 msgid "Scan the QR code with the app"
 msgstr "Scan de QR code met de app"
 
-msgid "Welcome!"
-msgstr "Welkom"
-
-msgid "For the user documentation, visit:"
-msgstr "Voor de gebruikershandleiding, bezoek:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Indien u technische ondersteuning nodig heeft, algemene vragen of nieuwe ideeën heeft betreffende de software:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Indien u een bijdrage wilt leveren aan het ontwikkelen van de software of een fout wilt rapporteren kunt u dit doen door een nieuw ticket te openen in ons ticketsysteem:"
-
-msgid "Join our chat:"
-msgstr "Neem deel aan onze chat:"
-
-msgid "Follow the project on:"
-msgstr "Volg het project op:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Tip: Hoe onthoud ik deze sleutel code"
 
@@ -1330,9 +1314,6 @@ msgstr "Bron is alleen toegankelijk binnen het Tor-netwerk"
 
 msgid "The upload request exceeds the size limit"
 msgstr "De uploadaanvraag overstijgt de MB limiet"
-
-msgid "Public name"
-msgstr "Publieke naam"
 
 msgid "Validation of email address change in progress."
 msgstr "Validatie van e-mail adres verandering wordt uitgevoerd."
@@ -1428,6 +1409,28 @@ msgstr "Bestanden die door ontvangers zijn toegevoegd"
 
 msgid "Upload a file:"
 msgstr "Upload een bestand:"
+
+msgid "Welcome!"
+msgstr "Welkom"
+
+msgid "For the user documentation, visit:"
+msgstr "Voor de gebruikershandleiding, bezoek:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Indien u technische ondersteuning nodig heeft, algemene vragen of nieuwe ideeën heeft betreffende de software:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Indien u een bijdrage wilt leveren aan het ontwikkelen van de software of een fout wilt rapporteren kunt u dit doen door een nieuw ticket te openen in ons ticketsysteem:"
+
+msgid "Join our chat:"
+msgstr "Neem deel aan onze chat:"
+
+msgid "Follow the project on:"
+msgstr "Volg het project op:"
 
 msgid "An update is available:"
 msgstr "Een update is beschikbaar:"

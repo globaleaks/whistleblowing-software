@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malay (http://www.transifex.com/otf/globaleaks/language/ms/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -342,6 +342,9 @@ msgstr "Aktiviti"
 msgid "Reports"
 msgstr "Laporan"
 
+msgid "Report"
+msgstr ""
+
 msgid "Users"
 msgstr "Pengguna"
 
@@ -505,6 +508,9 @@ msgstr "Teruskan"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Sebelum meneruskan, sila dayakan pengesahan dua faktor."
+
+msgid "Enable"
+msgstr "Dayakan"
 
 msgid "Disable submissions"
 msgstr "Nyahdayakan penghantaran"
@@ -842,9 +848,6 @@ msgstr "Pengeluar:"
 msgid "Intermediate Certificates"
 msgstr "Sijil Pertengahan"
 
-msgid "Enable"
-msgstr "Dayakan"
-
 msgid "Reset"
 msgstr "Tetap Semula"
 
@@ -1084,6 +1087,9 @@ msgstr "Tajuk"
 msgid "Send an account activation link to the user."
 msgstr "Hantar pautan pengaktifan akaun kepada pengguna."
 
+msgid "Public name"
+msgstr "Nama awam"
+
 msgid "Send reset link"
 msgstr "Hantar pautan tetap semula"
 
@@ -1238,28 +1244,6 @@ msgstr "Pasang aplikasi pengesahan di telefon anda"
 msgid "Scan the QR code with the app"
 msgstr "Imbas kod QR dengan aplikasi"
 
-msgid "Welcome!"
-msgstr "Selamat datang!"
-
-msgid "For the user documentation, visit:"
-msgstr "Untuk dokumentasi pengguna, layari:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Jika anda perlukan sokongan teknikal, mempunyai soalan umum atau mempunyai idea baru untuk perisian:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Jika anda mahu menyumbang kepada pembangunan perisian atau melaporkan pepijat, sila buka isu dalam sistem tiket kami:"
-
-msgid "Join our chat:"
-msgstr "Sertai sembang kami:"
-
-msgid "Follow the project on:"
-msgstr "Ikuti projek di:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Bayangan: Cara menyembunyikan resit anda"
 
@@ -1291,9 +1275,6 @@ msgstr "Sumber hanya boleh diakses melalui rangkaian Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Permintaan muat naik melebihi had saiz"
-
-msgid "Public name"
-msgstr "Nama awam"
 
 msgid "Validation of email address change in progress."
 msgstr "Pengesahan perubahan alamat e-mel sedang berjalan."
@@ -1389,6 +1370,28 @@ msgstr "Fail dilampirkan oleh penerima"
 
 msgid "Upload a file:"
 msgstr "Muat naik fail:"
+
+msgid "Welcome!"
+msgstr "Selamat datang!"
+
+msgid "For the user documentation, visit:"
+msgstr "Untuk dokumentasi pengguna, layari:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Jika anda perlukan sokongan teknikal, mempunyai soalan umum atau mempunyai idea baru untuk perisian:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Jika anda mahu menyumbang kepada pembangunan perisian atau melaporkan pepijat, sila buka isu dalam sistem tiket kami:"
+
+msgid "Join our chat:"
+msgstr "Sertai sembang kami:"
+
+msgid "Follow the project on:"
+msgstr "Ikuti projek di:"
 
 msgid "An update is available:"
 msgstr "Kemas kini tersedia:"

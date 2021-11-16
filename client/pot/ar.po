@@ -44,8 +44,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
+"Last-Translator: Ahmed Essam\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -381,6 +381,9 @@ msgstr "الأنشطة"
 msgid "Reports"
 msgstr "التقارير"
 
+msgid "Report"
+msgstr "بلاغ"
+
 msgid "Users"
 msgstr "المستخدمون"
 
@@ -544,6 +547,9 @@ msgstr "مواصلة"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "قبل المتابعة، يرجى تمكين الإستيثاق ذو المعاملين."
+
+msgid "Enable"
+msgstr "تمكين"
 
 msgid "Disable submissions"
 msgstr "منع البلاغات"
@@ -881,9 +887,6 @@ msgstr "المُصدِر:"
 msgid "Intermediate Certificates"
 msgstr "شهادات الوساطة"
 
-msgid "Enable"
-msgstr "تمكين"
-
 msgid "Reset"
 msgstr "إعادة ضبط"
 
@@ -1123,6 +1126,9 @@ msgstr "العنوان"
 msgid "Send an account activation link to the user."
 msgstr "إرسال رابط تفعيل الحساب للمستخدم."
 
+msgid "Public name"
+msgstr "الاسم العام"
+
 msgid "Send reset link"
 msgstr "إرسال رابط اعادة التعيين"
 
@@ -1277,28 +1283,6 @@ msgstr "تثبيت تطبيق استيثاقي على هاتفك"
 msgid "Scan the QR code with the app"
 msgstr "امسح رمز QR باستخدام التطبيق"
 
-msgid "Welcome!"
-msgstr "مرحبا!"
-
-msgid "For the user documentation, visit:"
-msgstr "للاطلاع على وثائق المستخدم، قم بزيارة:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "إذا كنت بحاجة إلى الدعم التقني أو لديك أسئلة عامة أو أفكار جديدة للبرنامج:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "إذا كنت ترغب في المساهمة في تطوير البرمجيّة أو الإبلاغ عن عطب، يرجى التدوين على نظام التذاكر على Github:"
-
-msgid "Join our chat:"
-msgstr "انضم إلى دردشتنا:"
-
-msgid "Follow the project on:"
-msgstr "تابع المشروع على:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "إشارة: كيف تخفى إستلامك"
 
@@ -1330,9 +1314,6 @@ msgstr "يمكن الوصول إلى المحتوى فقط ضمن شبكة Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "الملفات المراد رفعها تتخطى السعة المسموح بها."
-
-msgid "Public name"
-msgstr "الاسم العام"
 
 msgid "Validation of email address change in progress."
 msgstr "جارى التحقق من التغيير في عنوان البريد الإلكتروني."
@@ -1428,6 +1409,28 @@ msgstr "الملفات المرفقة من قبل المتلقّين"
 
 msgid "Upload a file:"
 msgstr "رفع ملف:"
+
+msgid "Welcome!"
+msgstr "مرحبا!"
+
+msgid "For the user documentation, visit:"
+msgstr "للاطلاع على وثائق المستخدم، قم بزيارة:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "إذا كنت بحاجة إلى الدعم التقني أو لديك أسئلة عامة أو أفكار جديدة للبرنامج:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "إذا كنت ترغب في المساهمة في تطوير البرمجيّة أو الإبلاغ عن عطب، يرجى التدوين على نظام التذاكر على Github:"
+
+msgid "Join our chat:"
+msgstr "انضم إلى دردشتنا:"
+
+msgid "Follow the project on:"
+msgstr "تابع المشروع على:"
 
 msgid "An update is available:"
 msgstr "هنالك تحديث متوفّر:"

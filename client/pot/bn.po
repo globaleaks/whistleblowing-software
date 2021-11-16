@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bengali (http://www.transifex.com/otf/globaleaks/language/bn/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -346,6 +346,9 @@ msgstr "কার্যকলাপ"
 msgid "Reports"
 msgstr "রিপোর্টগুলি"
 
+msgid "Report"
+msgstr ""
+
 msgid "Users"
 msgstr "ব্যবহারকারীগণ"
 
@@ -509,6 +512,9 @@ msgstr "এগিয়ে যান"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "এগিয়ে যাওয়ার আগে, দয়া করে টু-ফ্যাক্টর অথেনটিকেশন সক্ষম করুন।"
+
+msgid "Enable"
+msgstr "সচল"
 
 msgid "Disable submissions"
 msgstr "জমাদান অক্ষম করুন"
@@ -846,9 +852,6 @@ msgstr "ইস্যুকারী:"
 msgid "Intermediate Certificates"
 msgstr "অন্তর্বর্তী সার্টিফিকেট"
 
-msgid "Enable"
-msgstr "সচল"
-
 msgid "Reset"
 msgstr "রিসেট"
 
@@ -1088,6 +1091,9 @@ msgstr "শিরোনাম"
 msgid "Send an account activation link to the user."
 msgstr "ব্যবহারকারীকে একটি অ্যাকাউন্ট সক্রিয়করণ লিঙ্ক প্রেরণ করুন।"
 
+msgid "Public name"
+msgstr "প্রকাশ্য নাম"
+
 msgid "Send reset link"
 msgstr "রিসেট লিঙ্ক প্রেরণ করুন"
 
@@ -1242,28 +1248,6 @@ msgstr "আপনার ফোনে একটি অথেনটিকেশন
 msgid "Scan the QR code with the app"
 msgstr "অ্যাপ্লিকেশনটির মাধ্যমে কিউআর কোডটি স্ক্যান করুন"
 
-msgid "Welcome!"
-msgstr "স্বাগতম!"
-
-msgid "For the user documentation, visit:"
-msgstr "ব্যবহারকারীর ডকুমেন্টেশনের জন্য, এখানে যান:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "আপনার যদি প্রযুক্তিগত সহায়তার প্রয়োজন হয়, সাধারণ প্রশ্ন থাকে বা সফ্টওয়্যারটির জন্য নতুন ধারণা পেয়ে থাকেনঃ"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "আপনি যদি সফ্টওয়্যার বিকাশে অবদান রাখতে চান বা কোনও বাগ রিপোর্ট করতে চান, দয়া করে আমাদের টিকিটিং সিস্টেমের মাধ্যমে জানানঃ"
-
-msgid "Join our chat:"
-msgstr "আমাদের আড্ডায় যোগ দিন:"
-
-msgid "Follow the project on:"
-msgstr "প্রকল্পটি অনুসরণ করুন:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "ইঙ্গিতঃ আপনার রসিদ কীভাবে গোপন করবেন"
 
@@ -1295,9 +1279,6 @@ msgstr "কেবলমাত্র টর নেটওয়ার্কের 
 
 msgid "The upload request exceeds the size limit"
 msgstr "আপলোডের অনুরোধটি আকারের সীমা অতিক্রম করেছে"
-
-msgid "Public name"
-msgstr "প্রকাশ্য নাম"
 
 msgid "Validation of email address change in progress."
 msgstr "ইমেল ঠিকানা যাচাইকরণের প্রক্রিয়া চলছে।"
@@ -1393,6 +1374,28 @@ msgstr "প্রাপকদের দ্বারা সংযুক্ত ফ
 
 msgid "Upload a file:"
 msgstr "একটি ফাইল আপলোড করুনঃ"
+
+msgid "Welcome!"
+msgstr "স্বাগতম!"
+
+msgid "For the user documentation, visit:"
+msgstr "ব্যবহারকারীর ডকুমেন্টেশনের জন্য, এখানে যান:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "আপনার যদি প্রযুক্তিগত সহায়তার প্রয়োজন হয়, সাধারণ প্রশ্ন থাকে বা সফ্টওয়্যারটির জন্য নতুন ধারণা পেয়ে থাকেনঃ"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "আপনি যদি সফ্টওয়্যার বিকাশে অবদান রাখতে চান বা কোনও বাগ রিপোর্ট করতে চান, দয়া করে আমাদের টিকিটিং সিস্টেমের মাধ্যমে জানানঃ"
+
+msgid "Join our chat:"
+msgstr "আমাদের আড্ডায় যোগ দিন:"
+
+msgid "Follow the project on:"
+msgstr "প্রকল্পটি অনুসরণ করুন:"
 
 msgid "An update is available:"
 msgstr "একটি আপডেট রয়েছে:"

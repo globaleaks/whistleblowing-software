@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
+"Last-Translator: Cristina Lupu <cristina@cji.ro>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -357,6 +357,9 @@ msgstr "Activități"
 msgid "Reports"
 msgstr "Sesizări"
 
+msgid "Report"
+msgstr "Sesizare"
+
 msgid "Users"
 msgstr "Utilizatori"
 
@@ -520,6 +523,9 @@ msgstr "Continuă"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Înainte de a începe, te rugăm să activezi autentificarea în doi pași."
+
+msgid "Enable"
+msgstr "Activează:"
 
 msgid "Disable submissions"
 msgstr "Dezactivează sesizările"
@@ -857,9 +863,6 @@ msgstr "Eliberat de:"
 msgid "Intermediate Certificates"
 msgstr "Certificate intermediare"
 
-msgid "Enable"
-msgstr "Activează:"
-
 msgid "Reset"
 msgstr "Resetează "
 
@@ -1099,6 +1102,9 @@ msgstr "Titlu"
 msgid "Send an account activation link to the user."
 msgstr "Trimite un link pentru activarea contului către utilizator."
 
+msgid "Public name"
+msgstr "Nume public"
+
 msgid "Send reset link"
 msgstr "Trimite linkul pentru resetare"
 
@@ -1253,28 +1259,6 @@ msgstr "Instalează pe telefon o aplicație pentru autentificare."
 msgid "Scan the QR code with the app"
 msgstr "Scanează codul QR cu aplicația"
 
-msgid "Welcome!"
-msgstr "Bine ai venit!"
-
-msgid "For the user documentation, visit:"
-msgstr "Pentru a vedea documentația necesară utilizatorilor, mergi la:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Dacă ai nevoie de suport tehnic, ai întrebări generale sau ai idei pentru software:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Dacă vrei să contribui la dezvoltarea software-ului sau dorești să raportezi o problemă, te rugăm să deschizi o sesizare:"
-
-msgid "Join our chat:"
-msgstr "Participă la discuția noastră:"
-
-msgid "Follow the project on:"
-msgstr "Urmărește proiectul pe: "
-
 msgid "Hint: How to hide your receipt"
 msgstr "Sfat: Cum să ascunzi numărul sesizării"
 
@@ -1306,9 +1290,6 @@ msgstr "Resursa poate fi accesată numai prin intermediul rețelei Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Atașamentul depășește dimensiunea maximă acceptată"
-
-msgid "Public name"
-msgstr "Nume public"
 
 msgid "Validation of email address change in progress."
 msgstr "Validarea schimbării e-mailului este în desfășurare."
@@ -1404,6 +1385,28 @@ msgstr "Fișiere atașate de către destinatari"
 
 msgid "Upload a file:"
 msgstr "Încarcă un fișier:"
+
+msgid "Welcome!"
+msgstr "Bine ai venit!"
+
+msgid "For the user documentation, visit:"
+msgstr "Pentru a vedea documentația necesară utilizatorilor, mergi la:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Dacă ai nevoie de suport tehnic, ai întrebări generale sau ai idei pentru software:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Dacă vrei să contribui la dezvoltarea software-ului sau dorești să raportezi o problemă, te rugăm să deschizi o sesizare:"
+
+msgid "Join our chat:"
+msgstr "Participă la discuția noastră:"
+
+msgid "Follow the project on:"
+msgstr "Urmărește proiectul pe: "
 
 msgid "An update is available:"
 msgstr "O nouă versiune este disponibilă"

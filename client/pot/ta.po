@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -344,6 +344,9 @@ msgstr "நடவடிக்கைகள்"
 msgid "Reports"
 msgstr ""
 
+msgid "Report"
+msgstr ""
+
 msgid "Users"
 msgstr "பயனர்கள்"
 
@@ -507,6 +510,9 @@ msgstr "தொடர்க"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr ""
+
+msgid "Enable"
+msgstr "செயல்படுத்து"
 
 msgid "Disable submissions"
 msgstr "சமர்ப்பிப்புகளை முடக்கு"
@@ -844,9 +850,6 @@ msgstr "வழங்குபவர்:"
 msgid "Intermediate Certificates"
 msgstr "இடைநிலை சான்றிதழ்கள்"
 
-msgid "Enable"
-msgstr "செயல்படுத்து"
-
 msgid "Reset"
 msgstr "மீட்டமை"
 
@@ -1086,6 +1089,9 @@ msgstr "தலைப்பு"
 msgid "Send an account activation link to the user."
 msgstr ""
 
+msgid "Public name"
+msgstr ""
+
 msgid "Send reset link"
 msgstr ""
 
@@ -1240,28 +1246,6 @@ msgstr ""
 msgid "Scan the QR code with the app"
 msgstr ""
 
-msgid "Welcome!"
-msgstr "வரவேற்பு!"
-
-msgid "For the user documentation, visit:"
-msgstr "பயனர் ஆவணங்களுக்கான, வருகை:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "உங்களுக்கு தொழில்நுட்ப ஆதரவு தேவைப்பட்டால், பொதுவான கேள்விகளைக் கொண்டிருங்கள், அல்லது மென்பொருளுக்கு புதிய யோசனைகள் இருக்க வேண்டும்:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "மென்பொருள் மேம்பாட்டிற்கு பங்களிக்கவோ அல்லது பிழை குறித்து புகாரளிக்க விரும்பினால், எங்கள் டிக்கெட் சிஸ்டத்தில் ஒரு சிக்கலைத் திறக்கவும்:"
-
-msgid "Join our chat:"
-msgstr ""
-
-msgid "Follow the project on:"
-msgstr "திட்டத்தை பின்பற்றவும்:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "குறிப்பு: உங்கள் ரசீது மறைக்க எப்படி"
 
@@ -1293,9 +1277,6 @@ msgstr "வள மட்டுமே தோர் நெட்வொர்
 
 msgid "The upload request exceeds the size limit"
 msgstr "பதிவேற்ற கோரிக்கை அளவு வரம்பை மீறுகிறது"
-
-msgid "Public name"
-msgstr ""
 
 msgid "Validation of email address change in progress."
 msgstr "மின்னஞ்சல் முகவரி மாற்றுவதற்கான மாற்றம் முன்னேற்றம்."
@@ -1391,6 +1372,28 @@ msgstr "பெறுநர்கள் இணைத்த கோப்புக�
 
 msgid "Upload a file:"
 msgstr "கோப்பு பதிவேற்று:"
+
+msgid "Welcome!"
+msgstr "வரவேற்பு!"
+
+msgid "For the user documentation, visit:"
+msgstr "பயனர் ஆவணங்களுக்கான, வருகை:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "உங்களுக்கு தொழில்நுட்ப ஆதரவு தேவைப்பட்டால், பொதுவான கேள்விகளைக் கொண்டிருங்கள், அல்லது மென்பொருளுக்கு புதிய யோசனைகள் இருக்க வேண்டும்:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "மென்பொருள் மேம்பாட்டிற்கு பங்களிக்கவோ அல்லது பிழை குறித்து புகாரளிக்க விரும்பினால், எங்கள் டிக்கெட் சிஸ்டத்தில் ஒரு சிக்கலைத் திறக்கவும்:"
+
+msgid "Join our chat:"
+msgstr ""
+
+msgid "Follow the project on:"
+msgstr "திட்டத்தை பின்பற்றவும்:"
 
 msgid "An update is available:"
 msgstr "புதுப்பிப்பு இருக்கிறது:"

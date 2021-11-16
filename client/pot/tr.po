@@ -30,8 +30,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
+"Last-Translator: T. E. Kalayci <tekrei@tutanota.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -367,6 +367,9 @@ msgstr "Etkinlikler"
 msgid "Reports"
 msgstr "Raporlar"
 
+msgid "Report"
+msgstr "Rapor"
+
 msgid "Users"
 msgstr "Kullanıcılar"
 
@@ -530,6 +533,9 @@ msgstr "Devam Et"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Devam etmeden önce, lütfen iki aşamalı doğrulamayı etkinleştirin."
+
+msgid "Enable"
+msgstr "Etkinleştir"
 
 msgid "Disable submissions"
 msgstr "Gönderimleri devre dışı bırak"
@@ -867,9 +873,6 @@ msgstr "Gönderen:"
 msgid "Intermediate Certificates"
 msgstr "Aracı Sertifikalar"
 
-msgid "Enable"
-msgstr "Etkinleştir"
-
 msgid "Reset"
 msgstr "Sıfırla"
 
@@ -1109,6 +1112,9 @@ msgstr "Başlık"
 msgid "Send an account activation link to the user."
 msgstr "Kullanıcıya hesap etkinleştirme bağlantısı gönder"
 
+msgid "Public name"
+msgstr "Açık isim"
+
 msgid "Send reset link"
 msgstr "Sıfırlama bağlantısı gönder"
 
@@ -1263,28 +1269,6 @@ msgstr "Telefonunuza kimlik doğrulayıcı bir uygulama yükleyin"
 msgid "Scan the QR code with the app"
 msgstr "QR kodunu uygulamayla taratın"
 
-msgid "Welcome!"
-msgstr "Hoş Geldiniz!"
-
-msgid "For the user documentation, visit:"
-msgstr "Kullanıcı belgeleri için ziyaret edin:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Eğer teknik desteğe ihtiyacınız, genel sorularınız veya yazılım için yeni fikirleriniz varsa: "
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Yazılım geliştirmeye katkı sağlamak veya hata bildirimi yapmak istiyorsanız, lütfen sorun bildirim sistemimizde bir bildirimde bulunun:"
-
-msgid "Join our chat:"
-msgstr "Sohbetimize katılın:"
-
-msgid "Follow the project on:"
-msgstr "Projeyi takip edin:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "İpucu: alındınızı nasıl saklayabilirsiniz"
 
@@ -1316,9 +1300,6 @@ msgstr "Kaynak sadece Tor ağı içerisinden erişilebilir"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Yükleme talebi boyut sınırlarını aşıyor"
-
-msgid "Public name"
-msgstr "Açık isim"
 
 msgid "Validation of email address change in progress."
 msgstr "E-posta adresi değişikliği doğrulaması devam ediyor. "
@@ -1414,6 +1395,28 @@ msgstr "Alıcılar tarafından eklenmiş dosyalar"
 
 msgid "Upload a file:"
 msgstr "Bir dosya yükle:"
+
+msgid "Welcome!"
+msgstr "Hoş Geldiniz!"
+
+msgid "For the user documentation, visit:"
+msgstr "Kullanıcı belgeleri için ziyaret edin:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Eğer teknik desteğe ihtiyacınız, genel sorularınız veya yazılım için yeni fikirleriniz varsa: "
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Yazılım geliştirmeye katkı sağlamak veya hata bildirimi yapmak istiyorsanız, lütfen sorun bildirim sistemimizde bir bildirimde bulunun:"
+
+msgid "Join our chat:"
+msgstr "Sohbetimize katılın:"
+
+msgid "Follow the project on:"
+msgstr "Projeyi takip edin:"
 
 msgid "An update is available:"
 msgstr "Bir güncelleme mevcut:"

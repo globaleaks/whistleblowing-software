@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tajik (http://www.transifex.com/otf/globaleaks/language/tg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -343,6 +343,9 @@ msgstr "Фаъолиятҳо"
 msgid "Reports"
 msgstr "Гузоришҳо"
 
+msgid "Report"
+msgstr ""
+
 msgid "Users"
 msgstr "Корбарон"
 
@@ -506,6 +509,9 @@ msgstr "Идома додан"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Пеш аз идома додан, лутфан тасдиқи шахсияти ду омиларо фаъол намоед."
+
+msgid "Enable"
+msgstr "Фаъол кардан"
 
 msgid "Disable submissions"
 msgstr "Ирсолҳоро лағв кардан"
@@ -843,9 +849,6 @@ msgstr "Содиркунанда:"
 msgid "Intermediate Certificates"
 msgstr "Гувоҳномаҳои Мобайнӣ"
 
-msgid "Enable"
-msgstr "Фаъол кардан"
-
 msgid "Reset"
 msgstr "Барқарор кардан"
 
@@ -1085,6 +1088,9 @@ msgstr "Унвон"
 msgid "Send an account activation link to the user."
 msgstr "Ба корбар ирсол намудани пайванд барои фаъолсозии аккаунт."
 
+msgid "Public name"
+msgstr "Номи ҷамъиятӣ"
+
 msgid "Send reset link"
 msgstr "Ирсоли пайванд барои барқарорсозӣ"
 
@@ -1239,28 +1245,6 @@ msgstr "Дар телефони худ нармафзори тасдиқкуна
 msgid "Scan the QR code with the app"
 msgstr "Рамзи QR-ро бо нармафзор скан кунед"
 
-msgid "Welcome!"
-msgstr "Марҳабо!"
-
-msgid "For the user documentation, visit:"
-msgstr "Барои ҳуҷҷатҳои корбар, аз ин ҷо дидан кунед:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Агар ба шумо дастгирии техникӣ лозим бошад, саволи умумӣ дошта бошед ва ё ақидаи нав барои нармафзор доред:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Агар шумо хоҳед, ки дар таҳияи нармафзор саҳм гузоред ва ё оиди камбудие хабар диҳед, лутфан дар системаи мо парванда кушоед:"
-
-msgid "Join our chat:"
-msgstr "Ба сӯҳбати мо ҳамроҳ шавед:"
-
-msgid "Follow the project on:"
-msgstr "Лоиҳаро пайгирӣ кунед:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Ишора: Чигуна расиди худро пинҳон кардан"
 
@@ -1292,9 +1276,6 @@ msgstr "Дастрасӣ ба ин манбаъ танҳо тавассути ш
 
 msgid "The upload request exceeds the size limit"
 msgstr "Дархости боркунӣ аз ҳадди андозаи муқарраршуда зиёд аст"
-
-msgid "Public name"
-msgstr "Номи ҷамъиятӣ"
 
 msgid "Validation of email address change in progress."
 msgstr "Тасдиқи тағйири суроғаи почтаи электронӣ идома дорад."
@@ -1390,6 +1371,28 @@ msgstr "Файлҳое, ки аз ҷониби гирандагон замима
 
 msgid "Upload a file:"
 msgstr "Боркунии файл:"
+
+msgid "Welcome!"
+msgstr "Марҳабо!"
+
+msgid "For the user documentation, visit:"
+msgstr "Барои ҳуҷҷатҳои корбар, аз ин ҷо дидан кунед:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Агар ба шумо дастгирии техникӣ лозим бошад, саволи умумӣ дошта бошед ва ё ақидаи нав барои нармафзор доред:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Агар шумо хоҳед, ки дар таҳияи нармафзор саҳм гузоред ва ё оиди камбудие хабар диҳед, лутфан дар системаи мо парванда кушоед:"
+
+msgid "Join our chat:"
+msgstr "Ба сӯҳбати мо ҳамроҳ шавед:"
+
+msgid "Follow the project on:"
+msgstr "Лоиҳаро пайгирӣ кунед:"
 
 msgid "An update is available:"
 msgstr "Навсозӣ дастрас аст: "

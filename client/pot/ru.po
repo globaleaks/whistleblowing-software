@@ -31,8 +31,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
+"Last-Translator: Andrey\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -368,6 +368,9 @@ msgstr "Активность"
 msgid "Reports"
 msgstr "Отчеты"
 
+msgid "Report"
+msgstr "Отчет"
+
 msgid "Users"
 msgstr "Пользователи"
 
@@ -531,6 +534,9 @@ msgstr "Продолжить"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Прежде чем продолжить, пожалуйста, включите двухфакторную аутентификацию."
+
+msgid "Enable"
+msgstr "Включить"
 
 msgid "Disable submissions"
 msgstr "Лишить возможности публиковать материалы"
@@ -868,9 +874,6 @@ msgstr "Источник:"
 msgid "Intermediate Certificates"
 msgstr "Промежуточные сертификаты"
 
-msgid "Enable"
-msgstr "Включить"
-
 msgid "Reset"
 msgstr "Сбросить"
 
@@ -1110,6 +1113,9 @@ msgstr "Заголовок"
 msgid "Send an account activation link to the user."
 msgstr "Отправить пользователю ссылку для активации учетной записи."
 
+msgid "Public name"
+msgstr "Публичное имя"
+
 msgid "Send reset link"
 msgstr "Отправить ссылку для сброса"
 
@@ -1264,28 +1270,6 @@ msgstr "Установите на свой телефон приложение �
 msgid "Scan the QR code with the app"
 msgstr "Отсканируйте QR-код с помощью приложения"
 
-msgid "Welcome!"
-msgstr "Добро пожаловать!"
-
-msgid "For the user documentation, visit:"
-msgstr "С документацией пользователя можно ознакомиться на странице:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Если вам необходима техническая поддержка, у вас возникли общие вопросы, есть предложения для программного обеспечения:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Если Вы хотите участвовать в разработке программного обеспечения или сообщить об ошибке, пожалуйста, отправьте запрос в нашу систему поддержки:"
-
-msgid "Join our chat:"
-msgstr "Присоединяйтесь к нашему чату:"
-
-msgid "Follow the project on:"
-msgstr "Следите за развитием проекта:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Совет: Как скрыть вашу квитанцию о получении"
 
@@ -1317,9 +1301,6 @@ msgstr "Доступ к ресурсу возможен только из сет
 
 msgid "The upload request exceeds the size limit"
 msgstr "Запрос на загрузку файла на сервер превышает установленный лимит"
-
-msgid "Public name"
-msgstr "Публичное имя"
 
 msgid "Validation of email address change in progress."
 msgstr "Осуществляется проверка изменения адреса электронной почты."
@@ -1415,6 +1396,28 @@ msgstr "Файлы, приложенные получателями"
 
 msgid "Upload a file:"
 msgstr "Загрузить файл на сервер:"
+
+msgid "Welcome!"
+msgstr "Добро пожаловать!"
+
+msgid "For the user documentation, visit:"
+msgstr "С документацией пользователя можно ознакомиться на странице:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Если вам необходима техническая поддержка, у вас возникли общие вопросы, есть предложения для программного обеспечения:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Если Вы хотите участвовать в разработке программного обеспечения или сообщить об ошибке, пожалуйста, отправьте запрос в нашу систему поддержки:"
+
+msgid "Join our chat:"
+msgstr "Присоединяйтесь к нашему чату:"
+
+msgid "Follow the project on:"
+msgstr "Следите за развитием проекта:"
 
 msgid "An update is available:"
 msgstr "Доступно обновление:"

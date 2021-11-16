@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Lao (http://www.transifex.com/otf/globaleaks/language/lo/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -342,6 +342,9 @@ msgstr "ກິດຈະກຳຕ່າງໆ"
 msgid "Reports"
 msgstr "ລາຍງານຕ່າງໆ"
 
+msgid "Report"
+msgstr ""
+
 msgid "Users"
 msgstr "ບັນດາຜູ້ໃຊ້"
 
@@ -505,6 +508,9 @@ msgstr "ດໍາເນີນການຕໍ່ໄປ"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "ກ່ອນທີ່ຈະດຳເນີນການຕໍ່ໄປ, ກະລຸນາເປີດນຳໃຊ້ການຢືນຢັນແບບສອງຂັ້ນຕອນ."
+
+msgid "Enable"
+msgstr "ເປີດນຳໃຊ້"
 
 msgid "Disable submissions"
 msgstr "ປິດໃຊ້ງານການສົ່ງ"
@@ -842,9 +848,6 @@ msgstr "ຜູ້ອອກ:"
 msgid "Intermediate Certificates"
 msgstr "ໃບຢັ້ງຢືນລະດັບກາງ"
 
-msgid "Enable"
-msgstr "ເປີດນຳໃຊ້"
-
 msgid "Reset"
 msgstr "ຕັ້ງຄືນໃໝ່"
 
@@ -1084,6 +1087,9 @@ msgstr "ຫົວຂໍ້"
 msgid "Send an account activation link to the user."
 msgstr "ສົ່ງລິ້ງເປີດໃຊ້ງານບັນຊີໄປໃຫ້ຜູ້ໃຊ້."
 
+msgid "Public name"
+msgstr "ຊື່ສາທາລະນະ"
+
 msgid "Send reset link"
 msgstr "ສົ່ງລິ້ງຕັ້ງລະຫັດຄືນໃໝ່"
 
@@ -1238,28 +1244,6 @@ msgstr "ຕິດຕັ້ງແອັບຢືນຢັນຄວາມຖືກ
 msgid "Scan the QR code with the app"
 msgstr "ສະແກນລະຫັດ QR ດ້ວຍແອັບ"
 
-msgid "Welcome!"
-msgstr "ຍິນດີຕ້ອນຮັບ!"
-
-msgid "For the user documentation, visit:"
-msgstr "ສຳລັບເອກະສານຂອງຜູ້ໃຊ້, ໃຫ້ເຂົ້າເບິ່ງ:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "ຖ້າທ່ານຕ້ອງການການຊ່ວຍເຫຼືອດ້ານເຕັກນິກ, ມີຄຳຖາມທົ່ວໄປ ຫຼື ມີແນວຄວາມຄິດໃໝ່ໆສຳລັບຊອບແວ:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "ຖ້າທ່ານຕ້ອງການປະກອບສ່ວນເຂົ້າໃນການພັດທະນາຊອບແວ ຫຼື ລາຍງານຂໍ້ບົກຜ່ອງ, ກະລຸນາຍົກບັນຫາຂຶ້ນມາໃນລະບົບການອອກປີ້ຂອງພວກເຮົາ:"
-
-msgid "Join our chat:"
-msgstr "ເຂົ້າຮ່ວມການສົນທະນາຂອງພວກເຮົາ:"
-
-msgid "Follow the project on:"
-msgstr "ຕິດຕາມໂຄງການທີ່:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "ຄຳແນະນໍາ: ວິທີການເຊື່ອງໃບບິນຂອງທ່ານ"
 
@@ -1291,9 +1275,6 @@ msgstr "ສາມາດເຂົ້າເຖິງແຫຼ່ງຂໍ້ມູ
 
 msgid "The upload request exceeds the size limit"
 msgstr "ຄຳຮ້ອງຂໍການອັບໂຫຼດເກີນຂີດຈຳກັດຂອງຂະໜາດ"
-
-msgid "Public name"
-msgstr "ຊື່ສາທາລະນະ"
 
 msgid "Validation of email address change in progress."
 msgstr "ການກວດສອບຄວາມຖືກຕ້ອງຂອງການປ່ຽນແປງທີ່ຢູ່ອີເມວກຳລັງກຳເນີນການຢູ່."
@@ -1389,6 +1370,28 @@ msgstr "ໄຟລ໌ທີ່ຜູ້ຮັບຄັດຕິດມາ"
 
 msgid "Upload a file:"
 msgstr "ອັບໂຫຼດໄຟລ໌:"
+
+msgid "Welcome!"
+msgstr "ຍິນດີຕ້ອນຮັບ!"
+
+msgid "For the user documentation, visit:"
+msgstr "ສຳລັບເອກະສານຂອງຜູ້ໃຊ້, ໃຫ້ເຂົ້າເບິ່ງ:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "ຖ້າທ່ານຕ້ອງການການຊ່ວຍເຫຼືອດ້ານເຕັກນິກ, ມີຄຳຖາມທົ່ວໄປ ຫຼື ມີແນວຄວາມຄິດໃໝ່ໆສຳລັບຊອບແວ:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "ຖ້າທ່ານຕ້ອງການປະກອບສ່ວນເຂົ້າໃນການພັດທະນາຊອບແວ ຫຼື ລາຍງານຂໍ້ບົກຜ່ອງ, ກະລຸນາຍົກບັນຫາຂຶ້ນມາໃນລະບົບການອອກປີ້ຂອງພວກເຮົາ:"
+
+msgid "Join our chat:"
+msgstr "ເຂົ້າຮ່ວມການສົນທະນາຂອງພວກເຮົາ:"
+
+msgid "Follow the project on:"
+msgstr "ຕິດຕາມໂຄງການທີ່:"
 
 msgid "An update is available:"
 msgstr "ມີການອັບເດດທີ່ພ້ອມແລ້ວ:"

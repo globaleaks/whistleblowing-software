@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -360,6 +360,9 @@ msgstr "Atividades"
 msgid "Reports"
 msgstr "Submissões"
 
+msgid "Report"
+msgstr "Submissão"
+
 msgid "Users"
 msgstr "Utilizadores"
 
@@ -523,6 +526,9 @@ msgstr "Prosseguir"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr ""
+
+msgid "Enable"
+msgstr "Ativar"
 
 msgid "Disable submissions"
 msgstr "Desativar submissões"
@@ -860,9 +866,6 @@ msgstr "Emissor:"
 msgid "Intermediate Certificates"
 msgstr "Certificados Intermediários"
 
-msgid "Enable"
-msgstr "Ativar"
-
 msgid "Reset"
 msgstr "Reiniciar"
 
@@ -1102,6 +1105,9 @@ msgstr "Título"
 msgid "Send an account activation link to the user."
 msgstr ""
 
+msgid "Public name"
+msgstr ""
+
 msgid "Send reset link"
 msgstr ""
 
@@ -1256,28 +1262,6 @@ msgstr ""
 msgid "Scan the QR code with the app"
 msgstr ""
 
-msgid "Welcome!"
-msgstr "Bem-vindo!"
-
-msgid "For the user documentation, visit:"
-msgstr ""
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Se precisar de apoio técnico, tiver questões gerais, ou novas ideias para o software: "
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Se quiser contribuir para o desenvolvimento do software ou comunicar um erro, por favor, abra um pedido no nosso sistema de pedidos:"
-
-msgid "Join our chat:"
-msgstr ""
-
-msgid "Follow the project on:"
-msgstr "Seguir o projeto em:"
-
 msgid "Hint: How to hide your receipt"
 msgstr ""
 
@@ -1309,9 +1293,6 @@ msgstr "Só é possível aceder a este recurso através da rede Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "O pedido de envio excede o tamanho máximo"
-
-msgid "Public name"
-msgstr ""
 
 msgid "Validation of email address change in progress."
 msgstr "Validação da alteração do endereço de e-mail em progresso."
@@ -1407,6 +1388,28 @@ msgstr "Ficheiros anexados pelos destinatários"
 
 msgid "Upload a file:"
 msgstr "Envie um ficheiro:"
+
+msgid "Welcome!"
+msgstr "Bem-vindo!"
+
+msgid "For the user documentation, visit:"
+msgstr ""
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Se precisar de apoio técnico, tiver questões gerais, ou novas ideias para o software: "
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Se quiser contribuir para o desenvolvimento do software ou comunicar um erro, por favor, abra um pedido no nosso sistema de pedidos:"
+
+msgid "Join our chat:"
+msgstr ""
+
+msgid "Follow the project on:"
+msgstr "Seguir o projeto em:"
 
 msgid "An update is available:"
 msgstr "Está disponível uma atualização:"

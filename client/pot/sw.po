@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swahili (http://www.transifex.com/otf/globaleaks/language/sw/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -342,6 +342,9 @@ msgstr "Shughuli"
 msgid "Reports"
 msgstr "Ripoti"
 
+msgid "Report"
+msgstr ""
+
 msgid "Users"
 msgstr "Watumiaji"
 
@@ -505,6 +508,9 @@ msgstr "Endelea"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Kabla ya kuendelea, tafadhali wezesha uthibitishaji wa pili."
+
+msgid "Enable"
+msgstr "Wezesha"
 
 msgid "Disable submissions"
 msgstr "Usiwezeshe mawasilisho"
@@ -842,9 +848,6 @@ msgstr "Issuer:"
 msgid "Intermediate Certificates"
 msgstr "Vyeti vya kati"
 
-msgid "Enable"
-msgstr "Wezesha"
-
 msgid "Reset"
 msgstr "Weka upya"
 
@@ -1084,6 +1087,9 @@ msgstr "Kichwa"
 msgid "Send an account activation link to the user."
 msgstr "Tuma kiunga cha uanzishaji wa akaunti kwa mtumiaji."
 
+msgid "Public name"
+msgstr "Jina la umma"
+
 msgid "Send reset link"
 msgstr "Tuma kiunga cha kuweka upya"
 
@@ -1238,28 +1244,6 @@ msgstr "Weka programu ya uthibitishaji kwenye simu yako"
 msgid "Scan the QR code with the app"
 msgstr "Changanua nambari ya QR na programu"
 
-msgid "Welcome!"
-msgstr "Karibu!"
-
-msgid "For the user documentation, visit:"
-msgstr "Kwa nyaraka za mtumiaji, tembelea:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Ikiwa unahitaji msaada wa kiufundi, ukiwa na maswali ya jumla, au uwe na maoni mapya juu ya\n\nprogramu:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Ikiwa unataka kuchangia uendelezaji wa programu au kuripoti kuhusu virusi katika programu, tafadhali\n\nfungua suala katika mfumo wetu wa tiketi:"
-
-msgid "Join our chat:"
-msgstr "Jiunge na chat yetu: "
-
-msgid "Follow the project on:"
-msgstr "Fuata mradi kwenye"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Dondoo: Jinsi ya kuficha risiti yako"
 
@@ -1291,9 +1275,6 @@ msgstr "Rasilimali zinaweza kupatikana tu kupitia mtandao wa Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Ombi la kupakia linazidi kikomo cha ukubwa"
-
-msgid "Public name"
-msgstr "Jina la umma"
 
 msgid "Validation of email address change in progress."
 msgstr "Uthibitishaji wa mabadiliko ya anwani ya barua pepe unaendelea"
@@ -1389,6 +1370,28 @@ msgstr ""
 
 msgid "Upload a file:"
 msgstr "Pakia faili:"
+
+msgid "Welcome!"
+msgstr "Karibu!"
+
+msgid "For the user documentation, visit:"
+msgstr "Kwa nyaraka za mtumiaji, tembelea:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Ikiwa unahitaji msaada wa kiufundi, ukiwa na maswali ya jumla, au uwe na maoni mapya juu ya\n\nprogramu:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Ikiwa unataka kuchangia uendelezaji wa programu au kuripoti kuhusu virusi katika programu, tafadhali\n\nfungua suala katika mfumo wetu wa tiketi:"
+
+msgid "Join our chat:"
+msgstr "Jiunge na chat yetu: "
+
+msgid "Follow the project on:"
+msgstr "Fuata mradi kwenye"
 
 msgid "An update is available:"
 msgstr "Huisho linapatikana:"
