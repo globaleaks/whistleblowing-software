@@ -237,6 +237,8 @@ GL.controller("SubmissionCtrl",
     return false;
   };
 
+  $scope.setPage("submissionpage");
+
   $scope.submission = new Submission(function() {
     var context = null;
 
