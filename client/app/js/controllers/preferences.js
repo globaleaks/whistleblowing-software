@@ -106,10 +106,6 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$location", "$window
        }, $scope.Utils.displayErrorMsg);
     };
 }]).
-controller("EmailValidationCtrl", [
-  function() {
-
-}]).
 controller("TwoFactorModalCtrl",
            ["$scope", "$http", "$uibModalInstance", function($scope, $http, $uibModalInstance) {
   $scope.confirm = function(result) {

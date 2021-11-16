@@ -413,12 +413,12 @@ var GL = angular.module("GL", [
       }).
       when("/email/validation/success", {
         templateUrl: "views/email_validation_success.html",
-        controller: "EmailValidationCtrl",
+        controller: "EmptyCtrl",
         header_title: ""
       }).
       when("/email/validation/failure", {
         templateUrl: "views/email_validation_failure.html",
-        controller: "EmailValidationCtrl",
+        controller: "EmptyCtrl",
         header_title: ""
       }).
       when("/", {
