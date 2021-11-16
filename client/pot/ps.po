@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Pashto (http://www.transifex.com/otf/globaleaks/language/ps/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -342,6 +342,9 @@ msgstr "فعالیتونه"
 msgid "Reports"
 msgstr "رپوټونه"
 
+msgid "Report"
+msgstr ""
+
 msgid "Users"
 msgstr "کارنونه"
 
@@ -505,6 +508,9 @@ msgstr "تر سره کول"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "له تر سره کولو وړاندې، د مهرباني له مخې دوه عامله تصدیق فعال کړئ."
+
+msgid "Enable"
+msgstr "فعالول"
 
 msgid "Disable submissions"
 msgstr "سپارل غیرفعال کړئ"
@@ -842,9 +848,6 @@ msgstr "صادرونکی:"
 msgid "Intermediate Certificates"
 msgstr "منځنی تصدیق لیک"
 
-msgid "Enable"
-msgstr "فعالول"
-
 msgid "Reset"
 msgstr "بیا یې تنظیم کړئ"
 
@@ -1084,6 +1087,9 @@ msgstr "عنوان"
 msgid "Send an account activation link to the user."
 msgstr "کارن ته د اکاونټ د فعالولو د لینک لیږل."
 
+msgid "Public name"
+msgstr "عام نوم"
+
 msgid "Send reset link"
 msgstr "د بیرته تنظیم کولو د لینک لیږل"
 
@@ -1238,28 +1244,6 @@ msgstr "په خپل ټلیفون کې یو تصدیق کوونکی اپلیکی�
 msgid "Scan the QR code with the app"
 msgstr "د QR کوډ په دې اپلیکیشن سره سکن کړئ"
 
-msgid "Welcome!"
-msgstr "ښه راغلاست!"
-
-msgid "For the user documentation, visit:"
-msgstr "د کارن د مستند کېدو لپاره دلته ورشئ:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "که چیرته تخنیکي مرستې ته اړتیا لرئ، عمومي پوښتنې لرئ یا د سافټ ویر لپاره نوې نظریې لرئ:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "که چیرته غواړئ چې د سافټ ویر له جوړولو سره مرسته وکړئ یا هم کوم bug رپوټ کړئ، نو بیا زموږ د ټیکټ کولو په سیستم کې موضوع پرانیزئ:"
-
-msgid "Join our chat:"
-msgstr "زموږ له چت سره یو ځای شئ:"
-
-msgid "Follow the project on:"
-msgstr "پروژه تعقیب کړئ په:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "اشاره: څرنګه خپل رسید پټ کړئ"
 
@@ -1291,9 +1275,6 @@ msgstr "سرچینو ته یوازې کېدای شي د Tor د شبکې له ل�
 
 msgid "The upload request exceeds the size limit"
 msgstr "د پورته کولو غوښتنه د ټاکل شوي اندازې له حد څخه زیاته ده"
-
-msgid "Public name"
-msgstr "عام نوم"
 
 msgid "Validation of email address change in progress."
 msgstr "د برېښنالیک پتې د بدلولو تایید د پرمختګ په حال کې ده."
@@ -1389,6 +1370,28 @@ msgstr "د تر لاسه کوونکو له خوا ضمیمه شوي فایلون
 
 msgid "Upload a file:"
 msgstr "د یوه فایل اپلوډ کول:"
+
+msgid "Welcome!"
+msgstr "ښه راغلاست!"
+
+msgid "For the user documentation, visit:"
+msgstr "د کارن د مستند کېدو لپاره دلته ورشئ:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "که چیرته تخنیکي مرستې ته اړتیا لرئ، عمومي پوښتنې لرئ یا د سافټ ویر لپاره نوې نظریې لرئ:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "که چیرته غواړئ چې د سافټ ویر له جوړولو سره مرسته وکړئ یا هم کوم bug رپوټ کړئ، نو بیا زموږ د ټیکټ کولو په سیستم کې موضوع پرانیزئ:"
+
+msgid "Join our chat:"
+msgstr "زموږ له چت سره یو ځای شئ:"
+
+msgid "Follow the project on:"
+msgstr "پروژه تعقیب کړئ په:"
 
 msgid "An update is available:"
 msgstr "یو نوی اپډیټ راغلی:"

@@ -24,7 +24,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -361,6 +361,9 @@ msgstr "Активність"
 msgid "Reports"
 msgstr "Звіти"
 
+msgid "Report"
+msgstr ""
+
 msgid "Users"
 msgstr "Користувачі"
 
@@ -524,6 +527,9 @@ msgstr "Продовжити"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Перед тим як продовжити, просимо включити двофакторну аутентифікацію."
+
+msgid "Enable"
+msgstr "Увімкнути"
 
 msgid "Disable submissions"
 msgstr "Відключити подання"
@@ -861,9 +867,6 @@ msgstr "Джерело:"
 msgid "Intermediate Certificates"
 msgstr "Проміжні Сертифікати"
 
-msgid "Enable"
-msgstr "Увімкнути"
-
 msgid "Reset"
 msgstr "Скинути налаштування"
 
@@ -1103,6 +1106,9 @@ msgstr "Заголовок"
 msgid "Send an account activation link to the user."
 msgstr "Надіслати користувачу посилання для активації облікового запису."
 
+msgid "Public name"
+msgstr "Публічне ім'я"
+
 msgid "Send reset link"
 msgstr "Надіслати посилання для скидання"
 
@@ -1257,28 +1263,6 @@ msgstr "Встановіть на свій телефон додаток для 
 msgid "Scan the QR code with the app"
 msgstr "Відскануйте QR-код за допомогою програми"
 
-msgid "Welcome!"
-msgstr "Ласкаво просимо!"
-
-msgid "For the user documentation, visit:"
-msgstr "З документацією користувача можна ознайомитися на сторінці:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Якщо вам необхідна технічна підтримка, у вас виникли загальні питання, або є пропозиції для удосконалення програмного забезпечення:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Якщо ви хочете брати участь в розробці програмного забезпечення або повідомити про помилку, будь ласка, надішліть запит у нашу систему підтримки:"
-
-msgid "Join our chat:"
-msgstr "Приєднуйтеся до нашого чату:"
-
-msgid "Follow the project on:"
-msgstr "Слідкуйте за розвитком проекту:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Підказка: Як приховати вашу квитанцію про отримання"
 
@@ -1310,9 +1294,6 @@ msgstr "Ресурс доступний лише через браузер Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Завантаження перевищує дозволений розмір"
-
-msgid "Public name"
-msgstr "Публічне ім'я"
 
 msgid "Validation of email address change in progress."
 msgstr "Перевірка зміни адреси електронної пошти в процесі."
@@ -1408,6 +1389,28 @@ msgstr "Файли, прикріплені отримувачами"
 
 msgid "Upload a file:"
 msgstr "Завантажити файл:"
+
+msgid "Welcome!"
+msgstr "Ласкаво просимо!"
+
+msgid "For the user documentation, visit:"
+msgstr "З документацією користувача можна ознайомитися на сторінці:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Якщо вам необхідна технічна підтримка, у вас виникли загальні питання, або є пропозиції для удосконалення програмного забезпечення:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Якщо ви хочете брати участь в розробці програмного забезпечення або повідомити про помилку, будь ласка, надішліть запит у нашу систему підтримки:"
+
+msgid "Join our chat:"
+msgstr "Приєднуйтеся до нашого чату:"
+
+msgid "Follow the project on:"
+msgstr "Слідкуйте за розвитком проекту:"
 
 msgid "An update is available:"
 msgstr "Доступне оновлення:"

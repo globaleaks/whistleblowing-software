@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
+"Last-Translator: Jorma Karvonen <karvonen.jorma@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -350,6 +350,9 @@ msgstr "Tapahtumat"
 msgid "Reports"
 msgstr "Ilmoitukset"
 
+msgid "Report"
+msgstr "Ilmoita"
+
 msgid "Users"
 msgstr "Käyttäjät"
 
@@ -513,6 +516,9 @@ msgstr "Jatka"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Voit jatkaa, kun olet ottanut käyttöösi kaksivaiheisen tunnistautumisen."
+
+msgid "Enable"
+msgstr "Ota käyttöön"
 
 msgid "Disable submissions"
 msgstr "Poista vihjeiden lähettäminen käytöstä"
@@ -850,9 +856,6 @@ msgstr "Julkaisija:"
 msgid "Intermediate Certificates"
 msgstr "Keskitason varmenteet (IC)"
 
-msgid "Enable"
-msgstr "Ota käyttöön"
-
 msgid "Reset"
 msgstr "Nollaa"
 
@@ -1092,6 +1095,9 @@ msgstr "Otsikko"
 msgid "Send an account activation link to the user."
 msgstr "Lähetä tilin aktivointilinkki käyttäjälle."
 
+msgid "Public name"
+msgstr "Julkinen nimi"
+
 msgid "Send reset link"
 msgstr "Lähetä nollauslinkki"
 
@@ -1246,28 +1252,6 @@ msgstr "Asenna kirjautumissovellus puhelimeesi"
 msgid "Scan the QR code with the app"
 msgstr "Skannaa QR-koodi puhelimen sovelluksella"
 
-msgid "Welcome!"
-msgstr "Tervetuloa!"
-
-msgid "For the user documentation, visit:"
-msgstr "Käyttöohjeet löydät osoitteesta: "
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Jos tarvitset teknistä tukea, sinulla on jokin palvelun käyttöön liittyvä kysymys tai uusi idea, vieraile osoitteessa "
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Jos haluat olla mukana ohjelmiston kehittämisessä tai ilmoittaa palvelun käyttöön liittyvästä virhetilanteesta, lähetä kuvaus parannusehdotuksesta tai virhetilanteesta kirjausjärjestelmäämme: "
-
-msgid "Join our chat:"
-msgstr "Liity chat-kanavallemme:"
-
-msgid "Follow the project on:"
-msgstr "Seuraa projektia osoitteessa "
-
 msgid "Hint: How to hide your receipt"
 msgstr "Vinkki: kuinka käsitellä kuittinumerosarjaa turvallisesti"
 
@@ -1299,9 +1283,6 @@ msgstr "Resurssiin on pääsy vain Tor-verkon sisällä"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Lähetyspyyntö palvelimelle ylittää kokorajan"
-
-msgid "Public name"
-msgstr "Julkinen nimi"
 
 msgid "Validation of email address change in progress."
 msgstr "Sähköpostiosoitteen vaihtamisen vahvistaminen käynnissä."
@@ -1397,6 +1378,28 @@ msgstr "Vastaanottajien lisäämät tiedostot"
 
 msgid "Upload a file:"
 msgstr "Lähetä tiedosto:"
+
+msgid "Welcome!"
+msgstr "Tervetuloa!"
+
+msgid "For the user documentation, visit:"
+msgstr "Käyttöohjeet löydät osoitteesta: "
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Jos tarvitset teknistä tukea, sinulla on jokin palvelun käyttöön liittyvä kysymys tai uusi idea, vieraile osoitteessa "
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Jos haluat olla mukana ohjelmiston kehittämisessä tai ilmoittaa palvelun käyttöön liittyvästä virhetilanteesta, lähetä kuvaus parannusehdotuksesta tai virhetilanteesta kirjausjärjestelmäämme: "
+
+msgid "Join our chat:"
+msgstr "Liity chat-kanavallemme:"
+
+msgid "Follow the project on:"
+msgstr "Seuraa projektia osoitteessa "
 
 msgid "An update is available:"
 msgstr "Uusi ohjelmistoversio saatavilla:"

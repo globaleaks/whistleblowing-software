@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Kyrgyz (http://www.transifex.com/otf/globaleaks/language/ky/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -343,6 +343,9 @@ msgstr "Иш-чаралар"
 msgid "Reports"
 msgstr "Отчеттор"
 
+msgid "Report"
+msgstr ""
+
 msgid "Users"
 msgstr "Колдонуучулар"
 
@@ -506,6 +509,9 @@ msgstr "Улантуу"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Улантуудан мурун, эки факторлук аутентификация процессин ишке киргизиңиз"
+
+msgid "Enable"
+msgstr "Мүмкүнчүлүк берүү"
 
 msgid "Disable submissions"
 msgstr "Жиберүүлөдү өчүрүү"
@@ -843,9 +849,6 @@ msgstr "Көйгөйдү ачкан:"
 msgid "Intermediate Certificates"
 msgstr "Убактылуу Сертификаттар"
 
-msgid "Enable"
-msgstr "Мүмкүнчүлүк берүү"
-
 msgid "Reset"
 msgstr "Баштапкы абалга кайтаруу"
 
@@ -1085,6 +1088,9 @@ msgstr "Башкы сөз"
 msgid "Send an account activation link to the user."
 msgstr "Колдонуучуга аккаунтунун активдештирүү шилтемесин жөнөтүңүз."
 
+msgid "Public name"
+msgstr "Жалпы аты"
+
 msgid "Send reset link"
 msgstr "Баштапкы абалга келтирүүчү шилтемени жөнөт"
 
@@ -1239,28 +1245,6 @@ msgstr "Телефонуңузга аныктыгын текшерүүчү ко�
 msgid "Scan the QR code with the app"
 msgstr "Колдонмо менен QR кодун сканерлеңиз"
 
-msgid "Welcome!"
-msgstr "Кош келиңиз!"
-
-msgid "For the user documentation, visit:"
-msgstr "Колдонуучунун документтери үчүн төмөнкүгө кириңиз:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Эгерде сиз техникалык колдоого муктаж болсоңуз, жалпы сурооңуз болсо же программалык жабдыктар боюнча жаңы идеяңыз болсо:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Эгерде сиз программалык камсыздоону иштеп чыгууга салым кошкуңуз келсе же ката тууралуу кабар бергиңиз келсе, анда биздин билеттер системасында көйгөй ачыңыз:"
-
-msgid "Join our chat:"
-msgstr "Биздин чатка кошулуңуз:"
-
-msgid "Follow the project on:"
-msgstr "Проектти ээрчүү:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Кеңеш: Дүмүрчөгүңүздү кантип жашыруу керек"
 
@@ -1292,9 +1276,6 @@ msgstr "Ресурска Tor тармагы аркылуу гана кирүүг
 
 msgid "The upload request exceeds the size limit"
 msgstr "Жүктөөгө талап болгондун өлчөмү чегинен ашып кетти"
-
-msgid "Public name"
-msgstr "Жалпы аты"
 
 msgid "Validation of email address change in progress."
 msgstr "Электрондук даректин өзгөрүүсү текшерилип жатат."
@@ -1390,6 +1371,28 @@ msgstr "Алуучулар тиркеген файлдар"
 
 msgid "Upload a file:"
 msgstr "Бул файлды жүктөө"
+
+msgid "Welcome!"
+msgstr "Кош келиңиз!"
+
+msgid "For the user documentation, visit:"
+msgstr "Колдонуучунун документтери үчүн төмөнкүгө кириңиз:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Эгерде сиз техникалык колдоого муктаж болсоңуз, жалпы сурооңуз болсо же программалык жабдыктар боюнча жаңы идеяңыз болсо:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Эгерде сиз программалык камсыздоону иштеп чыгууга салым кошкуңуз келсе же ката тууралуу кабар бергиңиз келсе, анда биздин билеттер системасында көйгөй ачыңыз:"
+
+msgid "Join our chat:"
+msgstr "Биздин чатка кошулуңуз:"
+
+msgid "Follow the project on:"
+msgstr "Проектти ээрчүү:"
 
 msgid "An update is available:"
 msgstr "Жаңыртуу жеткиликтүү"

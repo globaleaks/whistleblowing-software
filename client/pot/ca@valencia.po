@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:27+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca@valencia/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -354,6 +354,9 @@ msgstr "Activitats"
 msgid "Reports"
 msgstr "Informes"
 
+msgid "Report"
+msgstr "Informe"
+
 msgid "Users"
 msgstr "Usuaris"
 
@@ -517,6 +520,9 @@ msgstr "Procedir"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Abans de continuar, per favor active l'autenticació de doble factor."
+
+msgid "Enable"
+msgstr "Habilitar"
 
 msgid "Disable submissions"
 msgstr "Deshabilita els enviaments"
@@ -854,9 +860,6 @@ msgstr "Emissor:"
 msgid "Intermediate Certificates"
 msgstr "Certificats intermedis"
 
-msgid "Enable"
-msgstr "Habilitar"
-
 msgid "Reset"
 msgstr "Restablix"
 
@@ -1096,6 +1099,9 @@ msgstr "Títol"
 msgid "Send an account activation link to the user."
 msgstr "Envia un enllaç d'activació del compte a l'usuari."
 
+msgid "Public name"
+msgstr "Nom públic"
+
 msgid "Send reset link"
 msgstr "Envia l'enllaç de restabliment"
 
@@ -1250,28 +1256,6 @@ msgstr "Instal·lar una aplicació d'aunteticació al seu telèfon"
 msgid "Scan the QR code with the app"
 msgstr "Escanejar el codi QR amb l'aplicació"
 
-msgid "Welcome!"
-msgstr "Benvingut!"
-
-msgid "For the user documentation, visit:"
-msgstr "Per la documentació d'usuari, visite:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Si necessiteu assistència tècnica, teniu preguntes generals o teniu idees noves per al programari:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Si voleu contribuir al desenvolupament de programari o informar d'un error, obriu un cas en el nostre gestor d'incidències:"
-
-msgid "Join our chat:"
-msgstr "Uneix-te al nostre xat:"
-
-msgid "Follow the project on:"
-msgstr "Seguiu el projecte a:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Suggeriment: com recordar el seu codi"
 
@@ -1303,9 +1287,6 @@ msgstr "Només es pot accedir a aquest recurs mitjançant la xarxa Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "La sol·licitud de pujada excedeix el limit de dades"
-
-msgid "Public name"
-msgstr "Nom públic"
 
 msgid "Validation of email address change in progress."
 msgstr "Validació del canvi de contrasenya en progrés."
@@ -1401,6 +1382,28 @@ msgstr "Arxius adjuntats pels receptors"
 
 msgid "Upload a file:"
 msgstr "Pujar un fitxer:"
+
+msgid "Welcome!"
+msgstr "Benvingut!"
+
+msgid "For the user documentation, visit:"
+msgstr "Per la documentació d'usuari, visite:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Si necessiteu assistència tècnica, teniu preguntes generals o teniu idees noves per al programari:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Si voleu contribuir al desenvolupament de programari o informar d'un error, obriu un cas en el nostre gestor d'incidències:"
+
+msgid "Join our chat:"
+msgstr "Uneix-te al nostre xat:"
+
+msgid "Follow the project on:"
+msgstr "Seguiu el projecte a:"
 
 msgid "An update is available:"
 msgstr "Hi ha una actualització disponible:"

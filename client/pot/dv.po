@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
+"Last-Translator: Ruba Ali <rubaa.ali@gmail.com>\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -346,6 +346,9 @@ msgstr "އެކްޓިވިޓީސް"
 msgid "Reports"
 msgstr "ރިޕޯޓްތަށް"
 
+msgid "Report"
+msgstr "ރިޕޯޓު"
+
 msgid "Users"
 msgstr "ބޭނުންކުރާ ފަރާތްތަށް"
 
@@ -509,6 +512,9 @@ msgstr "ކުރިޔަށް"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "ކުރިއަށް ދިޔުމުގެ ކުރިން ޓޫ-ފެކްޓާ އޯތެންޓިކޭޝަން ހިޔާރުކުރައްވާ"
+
+msgid "Enable"
+msgstr "ހިންގުން"
 
 msgid "Disable submissions"
 msgstr "ސަބްމިޝަންސް ޑިސްއޭބަލްކުރަން"
@@ -846,9 +852,6 @@ msgstr "ދޫކުރިފަރާތް:"
 msgid "Intermediate Certificates"
 msgstr "މެދުމިންގަނޑުގެ ސަނަދު"
 
-msgid "Enable"
-msgstr "ހިންގުން"
-
 msgid "Reset"
 msgstr "އަލުންފެށުން"
 
@@ -1088,6 +1091,9 @@ msgstr "ލަގަބު"
 msgid "Send an account activation link to the user."
 msgstr "ބޭނުންކުރާ ފަރާތަށް އެކްޓިވޭޝަން ލިންކް ފޮނުއްވުމަށް"
 
+msgid "Public name"
+msgstr " އާންމުނަން"
+
 msgid "Send reset link"
 msgstr "ރީސެޓް ކުރަން ލިންކް ފޮނުވާ"
 
@@ -1242,28 +1248,6 @@ msgstr "ހުއްދަކަށަވަރުކުރާ އެޕްލިކޭޝަނެއް ފޯނ
 msgid "Scan the QR code with the app"
 msgstr "އެޕްލިކޭޝަނުން ކިއު އާރު ކޯޑު ސްކޭން ކުރައްވާ"
 
-msgid "Welcome!"
-msgstr "މަރުހަބާ"
-
-msgid "For the user documentation, visit:"
-msgstr "ޔޫސާ ޑޮކިއުމެންޓޭޝަން ވިދާޅުވާން: "
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "ޓެކްނިކަލް ސަޕޯޓް ބޭނުންފުޅު ނަމަ، ނުވަތަ އިތުރު ސުވާލަކަށް ޖަވާބު ހޯއްދަވަން އަދި ސޮފްޓްވެއަރއަށް ގެންނާނެ ހެޔޮ ބަދަލެއް ހުރިކަމަށް ފެންނަނަމަ: "
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "ސޮފްޓްވެއަރގައި މައްސަލައެއް އުޅޭކަން ފާހަގަވެއްޖެ ނަމަ، އަދިސޮފްޓްވެއަރގެ މައްސަލައެއް ރިޕޯޓު ކުރެއްވުމަށްއަޅުގަނޑުމެންގެ ޓިކެޓިންގް ސިސްޓަމްގައި އެކަން ފާހަގަކޮށް ޓިކެޓެއް ހުޅުވުމަށް: "
-
-msgid "Join our chat:"
-msgstr "ޗެޓް ކުރެއްވުމަށް:"
-
-msgid "Follow the project on:"
-msgstr "މި ޕްރޮޖެކްޓް ފޮލޯކުރުމަށް: "
-
 msgid "Hint: How to hide your receipt"
 msgstr "އިތުރު އެހީ: ރަޝީދު ފޮރުވާނެގޮތް"
 
@@ -1295,9 +1279,6 @@ msgstr "ވަޞީލަތްތަކުގެ ބޭނުންކުރެވޭނީ ހަމައެކ
 
 msgid "The upload request exceeds the size limit"
 msgstr "އަޕްލޯޑް ކުރަން ބޭނުންވާ މީޑިއާގެ ސައިޒް ހުއްދަ ކުރެވިފައިވާ މިންވަރަށްވުރެ ބޮޑު"
-
-msgid "Public name"
-msgstr " އާންމުނަން"
 
 msgid "Validation of email address change in progress."
 msgstr "އީމެއިލް އެޑްރެސް ބަދަލުކުރުމުގެ މަސައްކަތް ކުރިޔަށް ދަނީ. "
@@ -1393,6 +1374,28 @@ msgstr "ލިބިފައިވާ ފަރާތްކުން ހިމެނުއްވާފައިވ
 
 msgid "Upload a file:"
 msgstr "ފައިލް އަޕްލޯޑް ކުރުމަށް: "
+
+msgid "Welcome!"
+msgstr "މަރުހަބާ"
+
+msgid "For the user documentation, visit:"
+msgstr "ޔޫސާ ޑޮކިއުމެންޓޭޝަން ވިދާޅުވާން: "
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "ޓެކްނިކަލް ސަޕޯޓް ބޭނުންފުޅު ނަމަ، ނުވަތަ އިތުރު ސުވާލަކަށް ޖަވާބު ހޯއްދަވަން އަދި ސޮފްޓްވެއަރއަށް ގެންނާނެ ހެޔޮ ބަދަލެއް ހުރިކަމަށް ފެންނަނަމަ: "
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "ސޮފްޓްވެއަރގައި މައްސަލައެއް އުޅޭކަން ފާހަގަވެއްޖެ ނަމަ، އަދިސޮފްޓްވެއަރގެ މައްސަލައެއް ރިޕޯޓު ކުރެއްވުމަށްއަޅުގަނޑުމެންގެ ޓިކެޓިންގް ސިސްޓަމްގައި އެކަން ފާހަގަކޮށް ޓިކެޓެއް ހުޅުވުމަށް: "
+
+msgid "Join our chat:"
+msgstr "ޗެޓް ކުރެއްވުމަށް:"
+
+msgid "Follow the project on:"
+msgstr "މި ޕްރޮޖެކްޓް ފޮލޯކުރުމަށް: "
 
 msgid "An update is available:"
 msgstr "އަދާހަމަކުރުމެއް ތައްޔާރުވެފައި"

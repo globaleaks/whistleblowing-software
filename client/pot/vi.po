@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
+"Last-Translator: Trang Pham Thu <p.thutrang218@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -354,6 +354,9 @@ msgstr "Các hoạt động"
 msgid "Reports"
 msgstr "Báo cáo"
 
+msgid "Report"
+msgstr "Báo cáo"
+
 msgid "Users"
 msgstr "Người dùng"
 
@@ -517,6 +520,9 @@ msgstr "Tiếp tục"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Trước khi tiếp tục, hãy bật xác thực 2 yếu tố."
+
+msgid "Enable"
+msgstr "Bật mở"
 
 msgid "Disable submissions"
 msgstr "Tắt-không nhận báo cáo"
@@ -854,9 +860,6 @@ msgstr "Nơi cấp phát:"
 msgid "Intermediate Certificates"
 msgstr "Chứng chỉ Trung gian"
 
-msgid "Enable"
-msgstr "Bật mở"
-
 msgid "Reset"
 msgstr "Đặt lại"
 
@@ -1096,6 +1099,9 @@ msgstr "Tựa đề"
 msgid "Send an account activation link to the user."
 msgstr "Gửi liên kết kích hoạt tài khoản người dùng"
 
+msgid "Public name"
+msgstr "Tên công khai"
+
 msgid "Send reset link"
 msgstr "Gửi liên kết đặt lại"
 
@@ -1250,28 +1256,6 @@ msgstr "Cài đặt ứng dụng xác thực trên điện thoại của bạn"
 msgid "Scan the QR code with the app"
 msgstr "Quét mã QR với ứng dụng"
 
-msgid "Welcome!"
-msgstr "Chào mừng bạn!"
-
-msgid "For the user documentation, visit:"
-msgstr "Vào trang sau đây để xem cẩm nang sử dụng"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Nếu bạn cần hỗ trợ kỹ thuật, có câu hỏi chung hoặc có ý tưởng mới cho phần mềm:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Nếu bạn muốn đóng góp vào việc phát triển phần mềm hoặc báo cáo lỗi, vui lòng báo cáo trong hệ thống theo dõi vấn đề của chúng tôi:"
-
-msgid "Join our chat:"
-msgstr "Trò chuyện với chúng tôi:"
-
-msgid "Follow the project on:"
-msgstr "Theo dõi dự án trên:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Gợi ý: Cách ẩn biên nhận của bạn"
 
@@ -1303,9 +1287,6 @@ msgstr "Thông tin chỉ có thể truy cập được qua mạng Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Tập tin tải lên vượt quá giới hạn về kích thước"
-
-msgid "Public name"
-msgstr "Tên công khai"
 
 msgid "Validation of email address change in progress."
 msgstr "Đang trong tiến trình kiểm nhận thay đổi địa chỉ email."
@@ -1401,6 +1382,28 @@ msgstr "Tập tin do người nhận đính kèm"
 
 msgid "Upload a file:"
 msgstr "Tải lên tập tin:"
+
+msgid "Welcome!"
+msgstr "Chào mừng bạn!"
+
+msgid "For the user documentation, visit:"
+msgstr "Vào trang sau đây để xem cẩm nang sử dụng"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Nếu bạn cần hỗ trợ kỹ thuật, có câu hỏi chung hoặc có ý tưởng mới cho phần mềm:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Nếu bạn muốn đóng góp vào việc phát triển phần mềm hoặc báo cáo lỗi, vui lòng báo cáo trong hệ thống theo dõi vấn đề của chúng tôi:"
+
+msgid "Join our chat:"
+msgstr "Trò chuyện với chúng tôi:"
+
+msgid "Follow the project on:"
+msgstr "Theo dõi dự án trên:"
 
 msgid "An update is available:"
 msgstr "Bản cập nhật đã có:"

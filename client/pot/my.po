@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Burmese (http://www.transifex.com/otf/globaleaks/language/my/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -343,6 +343,9 @@ msgstr "အသုံးပြုမှုများ"
 msgid "Reports"
 msgstr "အစီရင်ခံစာများ"
 
+msgid "Report"
+msgstr ""
+
 msgid "Users"
 msgstr "အသုံးပြုသူများ"
 
@@ -506,6 +509,9 @@ msgstr "ဆက်လုပ်မည်"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "ဆက်မလုပ်မီ ကျေးဇူးပြု၍ အဆင့်နှစ်ဆင့်ဖြင့် စစ်မှန်ကြောင်းသက်သေပြခြင်းကို ဖွင့်ပါ။"
+
+msgid "Enable"
+msgstr "ဖွင့်မည်"
 
 msgid "Disable submissions"
 msgstr "တင်သွင်းမှုများကို ပိတ်ပါ"
@@ -843,9 +849,6 @@ msgstr "ထုတ်ပေးသူ - "
 msgid "Intermediate Certificates"
 msgstr "အလယ်အလတ်အဆင့် အသိအမှတ်ပြုလက်မှတ်များ"
 
-msgid "Enable"
-msgstr "ဖွင့်မည်"
-
 msgid "Reset"
 msgstr "ပြန်လည်သတ်မှတ်မည်"
 
@@ -1085,6 +1088,9 @@ msgstr "ခေါင်းစဉ်"
 msgid "Send an account activation link to the user."
 msgstr "အသုံးပြုသူထံ အကောင့် သက်ဝင်လုပ်ဆောင်မှု လင့် ပို့ပါ။"
 
+msgid "Public name"
+msgstr "အများဆိုင် အမည်"
+
 msgid "Send reset link"
 msgstr "ပြန်လည်သတ်မှတ်ရန် လင့် ပို့ပါ"
 
@@ -1239,28 +1245,6 @@ msgstr "သင့်ဖုန်းတွင် စစ်မှန်ကြေ�
 msgid "Scan the QR code with the app"
 msgstr "QR ကုဒ်ကို အက်ပ်ဖြင့် စကန်ဖတ်ပါ"
 
-msgid "Welcome!"
-msgstr "ကြိုဆိုပါသည်။"
-
-msgid "For the user documentation, visit:"
-msgstr "အသုံးပြုသူ စာရွက်စာတမ်းအတွက် ဝင်ကြည့်ရန် - "
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "သင် နည်းပညာဆိုင်ရာ အကူအညီ လိုအပ်လျှင်၊ ယေဘုယျ မေးခွန်းများရှိလျှင် (သို့) ဆော့ဝဲအတွက် အကြံဉာဏ်အသစ်များ ရှိလျှင် - "
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "သင်သည် ဆော့ဝဲ ဖွံ့ဖြိုးတိုးတက်မှုအတွက် ကူညီပံ့ပိုးလိုလျှင် (သို့) ချွတ်ယွင်းချက် တွေ့ကြောင်း တိုင်ကြားလိုလျှင် ကျေးဇူးပြု၍ ကျွန်ုပ်တို့၏ လက်မှတ်ထုတ်စနစ်တွင် ပြဿနာကို အသိပေးပါ -"
-
-msgid "Join our chat:"
-msgstr "ကျွန်ုပ်တို့နှင့် စကားစမြည်ပြောရန် - "
-
-msgid "Follow the project on:"
-msgstr "စီမံကိန်းကို လိုက်ပါ - "
-
 msgid "Hint: How to hide your receipt"
 msgstr "အရိပ်အမြွက် - သင့်လက်ခံဖြတ်ပိုင်းကို ဝှက်နည်း"
 
@@ -1292,9 +1276,6 @@ msgstr "ရင်းမြစ်ကို Tor ကွန်ရက်မှတစ�
 
 msgid "The upload request exceeds the size limit"
 msgstr "အပ်လုဒ် တောင်းဆိုမှုသည် အရွယ်အစား ကန့်သတ်ချက်ထက် ကျော်လွန်နေသည်"
-
-msgid "Public name"
-msgstr "အများဆိုင် အမည်"
 
 msgid "Validation of email address change in progress."
 msgstr "အီးမေးလ်လိပ်စာ အပြောင်းအလဲ အတည်ပြုနေသည်။"
@@ -1390,6 +1371,28 @@ msgstr "လက်ခံသူများက တွဲကပ်သော ဖိ�
 
 msgid "Upload a file:"
 msgstr "ဖိုင် အပ်လုဒ်လုပ်ပါ -"
+
+msgid "Welcome!"
+msgstr "ကြိုဆိုပါသည်။"
+
+msgid "For the user documentation, visit:"
+msgstr "အသုံးပြုသူ စာရွက်စာတမ်းအတွက် ဝင်ကြည့်ရန် - "
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "သင် နည်းပညာဆိုင်ရာ အကူအညီ လိုအပ်လျှင်၊ ယေဘုယျ မေးခွန်းများရှိလျှင် (သို့) ဆော့ဝဲအတွက် အကြံဉာဏ်အသစ်များ ရှိလျှင် - "
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "သင်သည် ဆော့ဝဲ ဖွံ့ဖြိုးတိုးတက်မှုအတွက် ကူညီပံ့ပိုးလိုလျှင် (သို့) ချွတ်ယွင်းချက် တွေ့ကြောင်း တိုင်ကြားလိုလျှင် ကျေးဇူးပြု၍ ကျွန်ုပ်တို့၏ လက်မှတ်ထုတ်စနစ်တွင် ပြဿနာကို အသိပေးပါ -"
+
+msgid "Join our chat:"
+msgstr "ကျွန်ုပ်တို့နှင့် စကားစမြည်ပြောရန် - "
+
+msgid "Follow the project on:"
+msgstr "စီမံကိန်းကို လိုက်ပါ - "
 
 msgid "An update is available:"
 msgstr "အပ်ဒိတ် ရရှိနိုင်သည် - "

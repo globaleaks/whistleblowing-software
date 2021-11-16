@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uyghur (http://www.transifex.com/otf/globaleaks/language/ug/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -344,6 +344,9 @@ msgstr "پائالىيەتلەر"
 msgid "Reports"
 msgstr "دوكلاتلار"
 
+msgid "Report"
+msgstr ""
+
 msgid "Users"
 msgstr "ئىشلەتكۈچىلەر"
 
@@ -507,6 +510,9 @@ msgstr "داۋاملاشتۇر"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "داۋام قىلىشتىن بۇرۇن، ئىككى قەدەملىك توغرۇلاشنى قوزغىتىڭ."
+
+msgid "Enable"
+msgstr "قوزغات"
 
 msgid "Disable submissions"
 msgstr "تاپشۇرۇشلارنى چەكلەش"
@@ -844,9 +850,6 @@ msgstr "تارقاتقۇچى:"
 msgid "Intermediate Certificates"
 msgstr "ئارىلىقتىكى گۇۋاھنامىلەر"
 
-msgid "Enable"
-msgstr "قوزغات"
-
 msgid "Reset"
 msgstr "قايتا سەپلە"
 
@@ -1086,6 +1089,9 @@ msgstr "تېما"
 msgid "Send an account activation link to the user."
 msgstr "ھېسابات ئاكتىپلاش ئۇلانمىسىنى ئىشلەتكۈچىگە ئەۋەت"
 
+msgid "Public name"
+msgstr "ئاممىۋى نامى"
+
 msgid "Send reset link"
 msgstr "قايتا سەپلەش ئۇلانمىسىنى ئەۋەت"
 
@@ -1240,28 +1246,6 @@ msgstr "تېلىفونىڭىزغا بىر دەلىللىگۈچى ئەپ قاچى
 msgid "Scan the QR code with the app"
 msgstr "QR كودىنى بۇ ئەپ بىلەن تارىتىڭ"
 
-msgid "Welcome!"
-msgstr "خوش كەپسىز!"
-
-msgid "For the user documentation, visit:"
-msgstr "ئىشلەتكۈچى ھۆججىتى ئۈچۈن بۇ يەرگە قاراڭ:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "ئەگەر تېخنىكىلىق قوللاشقا ئېھتىياجلىق بولسىڭىز ، ئادەتتىكى سوئاللىرىڭىز بولسا ياكى يۇمشاق دېتالغا مۇناسىۋەتلىك يېڭى پىكىرلىرىڭىز بولسا:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "‏يۇمشاق دېتال ئېچىشقا تۆھپە قوشماقچى ياكى كەمتۈك مەلۇم قىلماقچى بولسىڭىز ، خاتالىق مەلۇم  قىلىش سىستېمىمىزدىن بېلەت ئېچىڭ:"
-
-msgid "Join our chat:"
-msgstr "سوھبىتىمىزگە قېتىلىڭ:"
-
-msgid "Follow the project on:"
-msgstr "تۈرىمىزگە بۇ يەردىن ئەگىشىڭ:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "ئىشارەت: تالونىڭىزنى قانداق يوشۇرۇپ قويىسىز"
 
@@ -1293,9 +1277,6 @@ msgstr "مەنبەنى پەقەت Tor تورى بىلەنلا زىيارەت ق�
 
 msgid "The upload request exceeds the size limit"
 msgstr "يۈكلىمە تەلىپى چوڭلۇق چېكىدىن ئېشىپ كەتتى"
-
-msgid "Public name"
-msgstr "ئاممىۋى نامى"
 
 msgid "Validation of email address change in progress."
 msgstr "ئېلخەت ئادرېسى ئۆزگەرتىشنى دەلىللەش داۋام قىلىۋاتىدۇ."
@@ -1391,6 +1372,28 @@ msgstr "ھۆججەتلەر تاپشۇرىۋالغۇچىلار تەرىپىدىن
 
 msgid "Upload a file:"
 msgstr "بىر ھۆججەت يۈكلە:"
+
+msgid "Welcome!"
+msgstr "خوش كەپسىز!"
+
+msgid "For the user documentation, visit:"
+msgstr "ئىشلەتكۈچى ھۆججىتى ئۈچۈن بۇ يەرگە قاراڭ:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "ئەگەر تېخنىكىلىق قوللاشقا ئېھتىياجلىق بولسىڭىز ، ئادەتتىكى سوئاللىرىڭىز بولسا ياكى يۇمشاق دېتالغا مۇناسىۋەتلىك يېڭى پىكىرلىرىڭىز بولسا:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "‏يۇمشاق دېتال ئېچىشقا تۆھپە قوشماقچى ياكى كەمتۈك مەلۇم قىلماقچى بولسىڭىز ، خاتالىق مەلۇم  قىلىش سىستېمىمىزدىن بېلەت ئېچىڭ:"
+
+msgid "Join our chat:"
+msgstr "سوھبىتىمىزگە قېتىلىڭ:"
+
+msgid "Follow the project on:"
+msgstr "تۈرىمىزگە بۇ يەردىن ئەگىشىڭ:"
 
 msgid "An update is available:"
 msgstr "بىر يېڭىلانما بار:"

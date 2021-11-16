@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-03 01:43+0000\n"
-"Last-Translator: Andre Julian <andrejulian30@gmail.com>\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
+"Last-Translator: M Yusuf Fin <myusuffin@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -363,6 +363,9 @@ msgstr "Aktivitas"
 msgid "Reports"
 msgstr "Laporan"
 
+msgid "Report"
+msgstr "Laporan"
+
 msgid "Users"
 msgstr "Pengguna"
 
@@ -526,6 +529,9 @@ msgstr "Lanjutkan"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Sebelum melanjutkan, silakan aktifkan autentikasi dua faktor."
+
+msgid "Enable"
+msgstr "Aktifkan"
 
 msgid "Disable submissions"
 msgstr "Menonaktifkan kiriman"
@@ -863,9 +869,6 @@ msgstr "Penerbit:"
 msgid "Intermediate Certificates"
 msgstr "Sertifikat Menengah"
 
-msgid "Enable"
-msgstr "Aktifkan"
-
 msgid "Reset"
 msgstr "Atur ulang"
 
@@ -1105,6 +1108,9 @@ msgstr "Judul"
 msgid "Send an account activation link to the user."
 msgstr "Kirim tautan aktivasi akun kepada pengguna."
 
+msgid "Public name"
+msgstr "Nama publik"
+
 msgid "Send reset link"
 msgstr "Kirim tautan pengaturan ulang"
 
@@ -1259,28 +1265,6 @@ msgstr "Pasang aplikasi autentikator pada ponsel Anda"
 msgid "Scan the QR code with the app"
 msgstr "Pindai kode QR dengan aplikasi tersebut"
 
-msgid "Welcome!"
-msgstr "Selamat datang!"
-
-msgid "For the user documentation, visit:"
-msgstr "Untuk dokumentasi pengguna, kunjungi:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Jika Anda membutuhkan dukungan teknis, memiliki pertanyaan umum, atau ide baru untuk perangkat lunak:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Jika Anda ingin memberikan kontribusi untuk pengembangan perangkat lunak atau melaporkan sebuah gangguan, bukalah sebuah isu pada sistem tiket kami."
-
-msgid "Join our chat:"
-msgstr "Bergabung ke percakapan kami di:"
-
-msgid "Follow the project on:"
-msgstr "Ikuti proyek di:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Petunjuk: Bagaimana menyembunyikan tanda terima Anda"
 
@@ -1312,9 +1296,6 @@ msgstr "Sumber hanya dapat diakses melalui jaringan Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Permintaan unggahan melebihi batas ukuran"
-
-msgid "Public name"
-msgstr "Nama publik"
 
 msgid "Validation of email address change in progress."
 msgstr "Validasi perubahan alamat surel sedang berlangsung."
@@ -1410,6 +1391,28 @@ msgstr "Berkas yang dilampirkan oleh penerima "
 
 msgid "Upload a file:"
 msgstr "Mengunggah berkas: "
+
+msgid "Welcome!"
+msgstr "Selamat datang!"
+
+msgid "For the user documentation, visit:"
+msgstr "Untuk dokumentasi pengguna, kunjungi:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Jika Anda membutuhkan dukungan teknis, memiliki pertanyaan umum, atau ide baru untuk perangkat lunak:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Jika Anda ingin memberikan kontribusi untuk pengembangan perangkat lunak atau melaporkan sebuah gangguan, bukalah sebuah isu pada sistem tiket kami."
+
+msgid "Join our chat:"
+msgstr "Bergabung ke percakapan kami di:"
+
+msgid "Follow the project on:"
+msgstr "Ikuti proyek di:"
 
 msgid "An update is available:"
 msgstr "Pembaruan tersedia:"

@@ -36,7 +36,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -373,6 +373,9 @@ msgstr "Actividades"
 msgid "Reports"
 msgstr "Reportes"
 
+msgid "Report"
+msgstr "Reporte"
+
 msgid "Users"
 msgstr "Usuarios"
 
@@ -536,6 +539,9 @@ msgstr "Proceder"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Antes de continuar, activa el doble factor de autenticación, por favor."
+
+msgid "Enable"
+msgstr "Habilitar"
 
 msgid "Disable submissions"
 msgstr "Deshabilitar reportes"
@@ -873,9 +879,6 @@ msgstr "Emisor:"
 msgid "Intermediate Certificates"
 msgstr "Certificados intermedios"
 
-msgid "Enable"
-msgstr "Habilitar"
-
 msgid "Reset"
 msgstr "Restablecer"
 
@@ -1115,6 +1118,9 @@ msgstr "Título"
 msgid "Send an account activation link to the user."
 msgstr "Enviar enlace de activación de la cuenta al usuario."
 
+msgid "Public name"
+msgstr "Nombre público"
+
 msgid "Send reset link"
 msgstr "Enviar enlace de restablecimiento"
 
@@ -1269,28 +1275,6 @@ msgstr "Instalar una aplicación de autenticación en tu teléfono"
 msgid "Scan the QR code with the app"
 msgstr "Escanea el código QR con la aplicación "
 
-msgid "Welcome!"
-msgstr "¡Bienvenido!"
-
-msgid "For the user documentation, visit:"
-msgstr "Para la documentación de usuario, ir a:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Si necesitas soporte técnico, tienes preguntas generales, o tienes nuevas ideas para el software:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Si quieres contribuir al desarrollo del software o informar de un fallo, por favor, abre un asunto (issue) en nuestro sistema de tickets:"
-
-msgid "Join our chat:"
-msgstr "Únete a nuestro chat:"
-
-msgid "Follow the project on:"
-msgstr "Sigue el proyecto en:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Sugerencia: Cómo esconder tu recibo"
 
@@ -1322,9 +1306,6 @@ msgstr "Sólo se puede acceder a este recurso a través de la red Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "La petición de subida excede el límite de volumen de datos"
-
-msgid "Public name"
-msgstr "Nombre público"
 
 msgid "Validation of email address change in progress."
 msgstr "El proceso de validación de la dirección de correo está en progreso."
@@ -1420,6 +1401,28 @@ msgstr "Archivos adjuntados por los destinatarios"
 
 msgid "Upload a file:"
 msgstr "Subir un archivo:"
+
+msgid "Welcome!"
+msgstr "¡Bienvenido!"
+
+msgid "For the user documentation, visit:"
+msgstr "Para la documentación de usuario, ir a:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Si necesitas soporte técnico, tienes preguntas generales, o tienes nuevas ideas para el software:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Si quieres contribuir al desarrollo del software o informar de un fallo, por favor, abre un asunto (issue) en nuestro sistema de tickets:"
+
+msgid "Join our chat:"
+msgstr "Únete a nuestro chat:"
+
+msgid "Follow the project on:"
+msgstr "Sigue el proyecto en:"
 
 msgid "An update is available:"
 msgstr "Hay una actualización disponible:"

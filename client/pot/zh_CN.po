@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
+"Last-Translator: ff98sha\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -359,6 +359,9 @@ msgstr "活动"
 msgid "Reports"
 msgstr "报告"
 
+msgid "Report"
+msgstr "报告"
+
 msgid "Users"
 msgstr "用户"
 
@@ -522,6 +525,9 @@ msgstr "继续"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "请启用双重验证以继续。"
+
+msgid "Enable"
+msgstr "启用"
 
 msgid "Disable submissions"
 msgstr "禁用提交"
@@ -859,9 +865,6 @@ msgstr "颁发者："
 msgid "Intermediate Certificates"
 msgstr "中间证书"
 
-msgid "Enable"
-msgstr "启用"
-
 msgid "Reset"
 msgstr "重置"
 
@@ -1101,6 +1104,9 @@ msgstr "标题"
 msgid "Send an account activation link to the user."
 msgstr "发送帐户激活链接给用户。"
 
+msgid "Public name"
+msgstr "公开名称"
+
 msgid "Send reset link"
 msgstr "发送重置链接"
 
@@ -1255,28 +1261,6 @@ msgstr "在手机上安装验证应用"
 msgid "Scan the QR code with the app"
 msgstr "扫描该应用的二维码"
 
-msgid "Welcome!"
-msgstr "欢迎！"
-
-msgid "For the user documentation, visit:"
-msgstr "查看用户文档，请访问："
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "对于有关软件的技术支持、常规问题或新想法，可访问："
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "如果想要参与软件开发或提交程序漏洞，请在我们的票证系统中新建一个问题条目："
-
-msgid "Join our chat:"
-msgstr "加入聊天讨论："
-
-msgid "Follow the project on:"
-msgstr "关注该项目："
-
 msgid "Hint: How to hide your receipt"
 msgstr "提示：如何隐藏接收人"
 
@@ -1308,9 +1292,6 @@ msgstr "资源仅可通过 Tor 网络访问"
 
 msgid "The upload request exceeds the size limit"
 msgstr "上传请求超过文件大小限制"
-
-msgid "Public name"
-msgstr "公开名称"
 
 msgid "Validation of email address change in progress."
 msgstr "正在处理电子邮件地址更改验证。"
@@ -1406,6 +1387,28 @@ msgstr "接收人附加的文件"
 
 msgid "Upload a file:"
 msgstr "上传文件："
+
+msgid "Welcome!"
+msgstr "欢迎！"
+
+msgid "For the user documentation, visit:"
+msgstr "查看用户文档，请访问："
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "对于有关软件的技术支持、常规问题或新想法，可访问："
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "如果想要参与软件开发或提交程序漏洞，请在我们的票证系统中新建一个问题条目："
+
+msgid "Join our chat:"
+msgstr "加入聊天讨论："
+
+msgid "Follow the project on:"
+msgstr "关注该项目："
 
 msgid "An update is available:"
 msgstr "可用更新："

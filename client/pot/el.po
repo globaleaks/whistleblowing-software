@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
+"Last-Translator: Elektra M. <safiragon@yahoo.gr>\n"
 "Language-Team: Greek (http://www.transifex.com/otf/globaleaks/language/el/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -354,6 +354,9 @@ msgstr "Δραστηριότητες"
 msgid "Reports"
 msgstr "Αναφορές"
 
+msgid "Report"
+msgstr "Αναφορά"
+
 msgid "Users"
 msgstr "Χρήστες"
 
@@ -517,6 +520,9 @@ msgstr "Συνέχεια"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Πρίν προχωρήσετε, παρακαλώ ενεργοποιήστε την αυθεντικοποίηση δύο παραγόντων."
+
+msgid "Enable"
+msgstr "Ενεργοποίηση"
 
 msgid "Disable submissions"
 msgstr "Απενεργοποίηση καταχωρήσεων"
@@ -854,9 +860,6 @@ msgstr "Εκδότης:"
 msgid "Intermediate Certificates"
 msgstr "Ενδιάμεσα πιστοποιητικά"
 
-msgid "Enable"
-msgstr "Ενεργοποίηση"
-
 msgid "Reset"
 msgstr "Επαναφορά"
 
@@ -1096,6 +1099,9 @@ msgstr "Τίτλος"
 msgid "Send an account activation link to the user."
 msgstr "Αποστολή συνδέσμου ενεργοποίησης λογαριασμού στον χρήστη"
 
+msgid "Public name"
+msgstr "Δημόσιο όνομα"
+
 msgid "Send reset link"
 msgstr "Αποστολή συνδέσμου επαναφοράς"
 
@@ -1250,28 +1256,6 @@ msgstr "Εγκαταστήστε μια εφαρμογή αυθεντικοπο�
 msgid "Scan the QR code with the app"
 msgstr "Σκανάρετε τον κωδικό QR με την εφαρμογή"
 
-msgid "Welcome!"
-msgstr "Καλώς ήρθατε!"
-
-msgid "For the user documentation, visit:"
-msgstr "Για την τεκμηρίωση χρήστη, επισκευθείτε:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Αν χρειάζεστε τεχνική υποστήριξη, έχετε γενικές ερωτήσεις ή νέες ιδέες για το λογισμικό:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Αν θέλετε να συνεισφέρετε στην ανάπτυξη λογισμικού ή να αναφέρετε κάποιο σφάλμα παρακαλώ ανοίξτε ένα νέο ζήτημα στο σύστημα ζητημάτων:"
-
-msgid "Join our chat:"
-msgstr "Συμμετέχετε στη συζήτησή μας:"
-
-msgid "Follow the project on:"
-msgstr "Ακολουθήστε το έργο στο:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Υπόμνηση: Πως να κρύψετε το αποδεικτικό σας"
 
@@ -1303,9 +1287,6 @@ msgstr "Το περιεχόμενο είναι προσβάσιμο μόνο μ�
 
 msgid "The upload request exceeds the size limit"
 msgstr "Το αίτημα ανεβάσματος ξεπερνά τα όρια μεγέθους"
-
-msgid "Public name"
-msgstr "Δημόσιο όνομα"
 
 msgid "Validation of email address change in progress."
 msgstr "Η επικύρωση της αλλαγής διεύθυνσης email είναι σε εξέλιξη."
@@ -1401,6 +1382,28 @@ msgstr "Συνημμένα αρχεία από τους παραλήπτες"
 
 msgid "Upload a file:"
 msgstr "Ανεβάστε ένα αρχείο:"
+
+msgid "Welcome!"
+msgstr "Καλώς ήρθατε!"
+
+msgid "For the user documentation, visit:"
+msgstr "Για την τεκμηρίωση χρήστη, επισκευθείτε:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Αν χρειάζεστε τεχνική υποστήριξη, έχετε γενικές ερωτήσεις ή νέες ιδέες για το λογισμικό:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Αν θέλετε να συνεισφέρετε στην ανάπτυξη λογισμικού ή να αναφέρετε κάποιο σφάλμα παρακαλώ ανοίξτε ένα νέο ζήτημα στο σύστημα ζητημάτων:"
+
+msgid "Join our chat:"
+msgstr "Συμμετέχετε στη συζήτησή μας:"
+
+msgid "Follow the project on:"
+msgstr "Ακολουθήστε το έργο στο:"
 
 msgid "An update is available:"
 msgstr "Υπάρχει μια διαθέσιμη ενημέρωση:"

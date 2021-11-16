@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
+"Last-Translator: Naofumi <naofum@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -346,6 +346,9 @@ msgstr "活動"
 msgid "Reports"
 msgstr "報告書"
 
+msgid "Report"
+msgstr "報告"
+
 msgid "Users"
 msgstr "ユーザー"
 
@@ -509,6 +512,9 @@ msgstr "続行"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "次に進む前に、2要素認証を有効にしてください。"
+
+msgid "Enable"
+msgstr "有効"
 
 msgid "Disable submissions"
 msgstr "提出を無効にする"
@@ -846,9 +852,6 @@ msgstr "発行者:"
 msgid "Intermediate Certificates"
 msgstr "中間証明書"
 
-msgid "Enable"
-msgstr "有効"
-
 msgid "Reset"
 msgstr "リセット"
 
@@ -1088,6 +1091,9 @@ msgstr "タイトル"
 msgid "Send an account activation link to the user."
 msgstr "アカウントの有効化リンクをユーザーに送信します。"
 
+msgid "Public name"
+msgstr "公開名"
+
 msgid "Send reset link"
 msgstr "リセットリンクを送信"
 
@@ -1242,28 +1248,6 @@ msgstr "お使いの電話に認証アプリをインストールする"
 msgid "Scan the QR code with the app"
 msgstr "アプリでQRコードをスキャンしてください"
 
-msgid "Welcome!"
-msgstr "ようこそ!"
-
-msgid "For the user documentation, visit:"
-msgstr "ユーザードキュメントはこちら:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "技術サポートが必要な場合、一般的な質問がある場合、またはソフトウェアの新しいアイデアをお持ちの場合:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "ソフトウェア開発に貢献したり、バグを報告したい場合は、チケットシステムで問題を開いてください:"
-
-msgid "Join our chat:"
-msgstr "私たちのチャットに参加してください:"
-
-msgid "Follow the project on:"
-msgstr "プロジェクトをフォローしてください:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "ヒント: 受領番号を隠すには"
 
@@ -1295,9 +1279,6 @@ msgstr "リソースはTorネットワーク内でのみアクセスできます
 
 msgid "The upload request exceeds the size limit"
 msgstr "アップロードリクエストがサイズ制限を超過しました"
-
-msgid "Public name"
-msgstr "公開名"
 
 msgid "Validation of email address change in progress."
 msgstr "メールアドレス変更の検証を処理しています。"
@@ -1393,6 +1374,28 @@ msgstr "受信者が添付したファイル"
 
 msgid "Upload a file:"
 msgstr "ファイルをアップロード："
+
+msgid "Welcome!"
+msgstr "ようこそ!"
+
+msgid "For the user documentation, visit:"
+msgstr "ユーザードキュメントはこちら:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "技術サポートが必要な場合、一般的な質問がある場合、またはソフトウェアの新しいアイデアをお持ちの場合:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "ソフトウェア開発に貢献したり、バグを報告したい場合は、チケットシステムで問題を開いてください:"
+
+msgid "Join our chat:"
+msgstr "私たちのチャットに参加してください:"
+
+msgid "Follow the project on:"
+msgstr "プロジェクトをフォローしてください:"
 
 msgid "An update is available:"
 msgstr "アップデートが利用できます。"

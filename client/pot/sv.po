@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -360,6 +360,9 @@ msgstr "Aktiviteter"
 msgid "Reports"
 msgstr "Rapporter"
 
+msgid "Report"
+msgstr ""
+
 msgid "Users"
 msgstr "Användare"
 
@@ -523,6 +526,9 @@ msgstr "Gå vidare"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Vänligen aktivera tvåfaktorsautentisering innan du går vidare."
+
+msgid "Enable"
+msgstr "Aktivera"
 
 msgid "Disable submissions"
 msgstr "Inaktivera tips"
@@ -860,9 +866,6 @@ msgstr "Utfärdare:"
 msgid "Intermediate Certificates"
 msgstr "Mellanliggande certifikat"
 
-msgid "Enable"
-msgstr "Aktivera"
-
 msgid "Reset"
 msgstr "Återställ"
 
@@ -1102,6 +1105,9 @@ msgstr "Titel"
 msgid "Send an account activation link to the user."
 msgstr "Skicka en länk för aktivering av kontot till användaren."
 
+msgid "Public name"
+msgstr "Offentligt namn"
+
 msgid "Send reset link"
 msgstr "Skicka återställningslänk"
 
@@ -1256,28 +1262,6 @@ msgstr "Installera en autentiseringsapp på din smarttelefon"
 msgid "Scan the QR code with the app"
 msgstr "Scanna QR-koden med appen"
 
-msgid "Welcome!"
-msgstr "Välkommen!"
-
-msgid "For the user documentation, visit:"
-msgstr "För att hitta användardokumentation, gå in på sidan:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Om du behöver tekniskt stöd, har allmänna frågor eller nya idéer om mjukvaran, kontakta:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Om du vill bidra till programvaruutvecklingen eller rapportera om ett fel, får du gärna lämna en anmälan i vårt ärendesystem."
-
-msgid "Join our chat:"
-msgstr "Delta i vår chatt:"
-
-msgid "Follow the project on:"
-msgstr "Följ projektet på adressen:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Ledtråd: Hur du döljer ditt läskvitto"
 
@@ -1309,9 +1293,6 @@ msgstr "Resursen kan bara nås inom Tor-nätverket"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Uppladdningen går över maxgränsen för antalet MB"
-
-msgid "Public name"
-msgstr "Offentligt namn"
 
 msgid "Validation of email address change in progress."
 msgstr "Bekräftelse av ändrad e-postadress pågår."
@@ -1407,6 +1388,28 @@ msgstr "Filer som mottagarna bifogat"
 
 msgid "Upload a file:"
 msgstr "Ladda upp en fil:"
+
+msgid "Welcome!"
+msgstr "Välkommen!"
+
+msgid "For the user documentation, visit:"
+msgstr "För att hitta användardokumentation, gå in på sidan:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Om du behöver tekniskt stöd, har allmänna frågor eller nya idéer om mjukvaran, kontakta:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Om du vill bidra till programvaruutvecklingen eller rapportera om ett fel, får du gärna lämna en anmälan i vårt ärendesystem."
+
+msgid "Join our chat:"
+msgstr "Delta i vår chatt:"
+
+msgid "Follow the project on:"
+msgstr "Följ projektet på adressen:"
 
 msgid "An update is available:"
 msgstr "En uppdatering är tillgänglig:"

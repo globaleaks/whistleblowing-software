@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -343,6 +343,9 @@ msgstr "활동"
 msgid "Reports"
 msgstr "보고서"
 
+msgid "Report"
+msgstr ""
+
 msgid "Users"
 msgstr "사용자"
 
@@ -506,6 +509,9 @@ msgstr "계속"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "계속하기 전에 이중 요인 인증을 허용하십시오."
+
+msgid "Enable"
+msgstr "허용"
 
 msgid "Disable submissions"
 msgstr "제출 중단"
@@ -843,9 +849,6 @@ msgstr "발행자:"
 msgid "Intermediate Certificates"
 msgstr "중간 인증서"
 
-msgid "Enable"
-msgstr "허용"
-
 msgid "Reset"
 msgstr "재설정"
 
@@ -1085,6 +1088,9 @@ msgstr "제목"
 msgid "Send an account activation link to the user."
 msgstr "사용자에게 계정 활성화 링크를 전송합니다."
 
+msgid "Public name"
+msgstr "공개 이름"
+
 msgid "Send reset link"
 msgstr "재설정 링크 전송"
 
@@ -1239,28 +1245,6 @@ msgstr "휴대전화 인증 앱 설치"
 msgid "Scan the QR code with the app"
 msgstr "앱으로 QR 코드 촬영"
 
-msgid "Welcome!"
-msgstr "환영합니다!"
-
-msgid "For the user documentation, visit:"
-msgstr "사용자 문서는 다음을 방문하십시오."
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "기술 지원이 필요하거나, 일반 질문이 있거나 소프트웨어에 대한 새 아이디어가 있다면 다음으로 연락해 주십시오."
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "소프트웨어 개발에 기여하고 싶거나 버그를 보고하고 싶다면 당사 티켓 시스템에서 문제를 말씀해 주십시오."
-
-msgid "Join our chat:"
-msgstr "채팅 참여:"
-
-msgid "Follow the project on:"
-msgstr "프로젝트 팔로우:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "힌트: 키 코드를 숨기는 방법"
 
@@ -1292,9 +1276,6 @@ msgstr "리소스는 Tor 네트워크를 통해서만 액세스할 수 있습니
 
 msgid "The upload request exceeds the size limit"
 msgstr "업로드 요청이 크기 제한을 초과합니다"
-
-msgid "Public name"
-msgstr "공개 이름"
 
 msgid "Validation of email address change in progress."
 msgstr "이메일 주소 변경 검증 진행 중입니다."
@@ -1390,6 +1371,28 @@ msgstr "수신자별 첨부 파일"
 
 msgid "Upload a file:"
 msgstr "파일 업로드:"
+
+msgid "Welcome!"
+msgstr "환영합니다!"
+
+msgid "For the user documentation, visit:"
+msgstr "사용자 문서는 다음을 방문하십시오."
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "기술 지원이 필요하거나, 일반 질문이 있거나 소프트웨어에 대한 새 아이디어가 있다면 다음으로 연락해 주십시오."
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "소프트웨어 개발에 기여하고 싶거나 버그를 보고하고 싶다면 당사 티켓 시스템에서 문제를 말씀해 주십시오."
+
+msgid "Join our chat:"
+msgstr "채팅 참여:"
+
+msgid "Follow the project on:"
+msgstr "프로젝트 팔로우:"
 
 msgid "An update is available:"
 msgstr "업데이트 사용 가능:"

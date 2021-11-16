@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
+"Last-Translator: Casper Petersen <casper_petersen@hotmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -349,6 +349,9 @@ msgstr "Aktiviteter"
 msgid "Reports"
 msgstr "Indberetninger"
 
+msgid "Report"
+msgstr "Indberetning"
+
 msgid "Users"
 msgstr "Brugere"
 
@@ -512,6 +515,9 @@ msgstr "Fortsæt"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Aktivér venligst to-faktor-godkendelse inden du fortsætter."
+
+msgid "Enable"
+msgstr "Aktivér"
 
 msgid "Disable submissions"
 msgstr "Deaktiver indsendelser"
@@ -849,9 +855,6 @@ msgstr "Udsteder:"
 msgid "Intermediate Certificates"
 msgstr "Midlertidige certifikater"
 
-msgid "Enable"
-msgstr "Aktivér"
-
 msgid "Reset"
 msgstr "Nulstil"
 
@@ -1091,6 +1094,9 @@ msgstr "Titel"
 msgid "Send an account activation link to the user."
 msgstr "Send et kontoaktiveringslink til brugeren."
 
+msgid "Public name"
+msgstr "Offentligt navn"
+
 msgid "Send reset link"
 msgstr "Send gendannelseslink"
 
@@ -1245,28 +1251,6 @@ msgstr "Installér en autentificeringsapp på din telefon"
 msgid "Scan the QR code with the app"
 msgstr "Scan QR-koden med din mobile enhed."
 
-msgid "Welcome!"
-msgstr "Velkommen!"
-
-msgid "For the user documentation, visit:"
-msgstr "For brugerdokumentationen, besøg da:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Hvis du har brug for teknisk support, har generelle spørgsmål eller har nye forslag til softwaren:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Hvis du ønsker at bidrage til softwareudviklingen eller rapportere om en fejl, så vær venlig at åbne den som sag i vores ticketing system:"
-
-msgid "Join our chat:"
-msgstr "Deltag i vores chat:"
-
-msgid "Follow the project on:"
-msgstr "Følg projektet på:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Hint: Sådan gemmer du din kvittering"
 
@@ -1298,9 +1282,6 @@ msgstr "Denne ressource kan kun tilgås via Tor netværket"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Upload overstiger tilladt størrelse"
-
-msgid "Public name"
-msgstr "Offentligt navn"
 
 msgid "Validation of email address change in progress."
 msgstr "Godkendelse af skift af e-mail-adresse i gang."
@@ -1396,6 +1377,28 @@ msgstr "Filer der er vedhæftet af modtagere"
 
 msgid "Upload a file:"
 msgstr "Upload en fil:"
+
+msgid "Welcome!"
+msgstr "Velkommen!"
+
+msgid "For the user documentation, visit:"
+msgstr "For brugerdokumentationen, besøg da:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Hvis du har brug for teknisk support, har generelle spørgsmål eller har nye forslag til softwaren:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Hvis du ønsker at bidrage til softwareudviklingen eller rapportere om en fejl, så vær venlig at åbne den som sag i vores ticketing system:"
+
+msgid "Join our chat:"
+msgstr "Deltag i vores chat:"
+
+msgid "Follow the project on:"
+msgstr "Følg projektet på:"
 
 msgid "An update is available:"
 msgstr "Der er tilgængelige opdateringer:"

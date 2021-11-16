@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -352,6 +352,9 @@ msgstr "سرگرمیاں "
 msgid "Reports"
 msgstr "رپورٹس"
 
+msgid "Report"
+msgstr ""
+
 msgid "Users"
 msgstr "صارفین"
 
@@ -515,6 +518,9 @@ msgstr "آگے بڑھیے"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr ""
+
+msgid "Enable"
+msgstr "Enable"
 
 msgid "Disable submissions"
 msgstr "غیر فعال گذارشات"
@@ -852,9 +858,6 @@ msgstr ""
 msgid "Intermediate Certificates"
 msgstr ""
 
-msgid "Enable"
-msgstr "Enable"
-
 msgid "Reset"
 msgstr "ری سیٹ"
 
@@ -1094,6 +1097,9 @@ msgstr "عنوان"
 msgid "Send an account activation link to the user."
 msgstr ""
 
+msgid "Public name"
+msgstr "Public name"
+
 msgid "Send reset link"
 msgstr ""
 
@@ -1248,28 +1254,6 @@ msgstr ""
 msgid "Scan the QR code with the app"
 msgstr ""
 
-msgid "Welcome!"
-msgstr "خوش آمدید!"
-
-msgid "For the user documentation, visit:"
-msgstr ""
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr ""
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr ""
-
-msgid "Join our chat:"
-msgstr ""
-
-msgid "Follow the project on:"
-msgstr ""
-
 msgid "Hint: How to hide your receipt"
 msgstr ""
 
@@ -1301,9 +1285,6 @@ msgstr " صرف ٹور نیٹ ورک کے اندررہتے ہوئے وسائل �
 
 msgid "The upload request exceeds the size limit"
 msgstr "اپ لوڈ کی درخواست سائز کی حد سے تجاوز کر گئی ہے"
-
-msgid "Public name"
-msgstr "Public name"
 
 msgid "Validation of email address change in progress."
 msgstr ""
@@ -1398,6 +1379,28 @@ msgid "Files attached by recipients"
 msgstr ""
 
 msgid "Upload a file:"
+msgstr ""
+
+msgid "Welcome!"
+msgstr "خوش آمدید!"
+
+msgid "For the user documentation, visit:"
+msgstr ""
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr ""
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr ""
+
+msgid "Join our chat:"
+msgstr ""
+
+msgid "Follow the project on:"
 msgstr ""
 
 msgid "An update is available:"

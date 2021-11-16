@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-09 11:36+0000\n"
-"Last-Translator: Anja Xhakani <anja@ura.design>\n"
+"PO-Revision-Date: 2021-11-15 15:24+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -348,6 +348,9 @@ msgstr "Veprimtari"
 msgid "Reports"
 msgstr "Raportime"
 
+msgid "Report"
+msgstr "Raportim"
+
 msgid "Users"
 msgstr "Përdorues"
 
@@ -511,6 +514,9 @@ msgstr "Kryeje"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Para se të ecet më tej, ju lutemi, aktivizoni mirëfilltësimin dyfaktorësh."
+
+msgid "Enable"
+msgstr "Aktivizoje"
 
 msgid "Disable submissions"
 msgstr "Çaktivizo parashtrime"
@@ -848,9 +854,6 @@ msgstr "Lëshues:"
 msgid "Intermediate Certificates"
 msgstr "Dëshmi të Ndërmjetme"
 
-msgid "Enable"
-msgstr "Aktivizoje"
-
 msgid "Reset"
 msgstr "Ktheje te parazgjedhja"
 
@@ -1090,6 +1093,9 @@ msgstr "Titull"
 msgid "Send an account activation link to the user."
 msgstr "Dërgojini përdoruesit një lidhje aktivizimi llogarie."
 
+msgid "Public name"
+msgstr "Emër publik"
+
 msgid "Send reset link"
 msgstr "Dërgo lidhje ricaktimi"
 
@@ -1244,28 +1250,6 @@ msgstr "Instaloni në telefonin tuaj një aplikacion mirëfilltësimi"
 msgid "Scan the QR code with the app"
 msgstr "Skanoni kodin QR me aplikacionin"
 
-msgid "Welcome!"
-msgstr "Mirë se vini!"
-
-msgid "For the user documentation, visit:"
-msgstr "Për dokumentim për përdoruesit, vizitoni:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Nëse ju duhet asistencë teknike, keni pyetje të përgjithshme, ose keni ide të reja për software-in:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Nëse doni të jepni ndihmesë në zhvillimin e software-it, ose të njoftoni një të metë, ju lutemi, hapni një çështje te sistemi ynë për të tilla:"
-
-msgid "Join our chat:"
-msgstr "Merrni pjesë në fjalosjen tonë:"
-
-msgid "Follow the project on:"
-msgstr "Ndiqeni projektin në:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Ndihmëz: Si të fshihni dëftesën tuaj"
 
@@ -1297,9 +1281,6 @@ msgstr "Burimi mund të përdoret vetëm përmes rrjetit Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Kërkesa për ngarkim tejkalon kufirin për madhësitë"
-
-msgid "Public name"
-msgstr "Emër publik"
 
 msgid "Validation of email address change in progress."
 msgstr "Vlerësimi i ndryshimit të adresës email në ecuri e sipër."
@@ -1395,6 +1376,28 @@ msgstr "Kartela të bashkëngjitura nga marrës"
 
 msgid "Upload a file:"
 msgstr "Ngarkoni një kartelë:"
+
+msgid "Welcome!"
+msgstr "Mirë se vini!"
+
+msgid "For the user documentation, visit:"
+msgstr "Për dokumentim për përdoruesit, vizitoni:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Nëse ju duhet asistencë teknike, keni pyetje të përgjithshme, ose keni ide të reja për software-in:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Nëse doni të jepni ndihmesë në zhvillimin e software-it, ose të njoftoni një të metë, ju lutemi, hapni një çështje te sistemi ynë për të tilla:"
+
+msgid "Join our chat:"
+msgstr "Merrni pjesë në fjalosjen tonë:"
+
+msgid "Follow the project on:"
+msgstr "Ndiqeni projektin në:"
 
 msgid "An update is available:"
 msgstr "Ka një përditësim gati:"

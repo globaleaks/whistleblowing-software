@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -362,6 +362,9 @@ msgstr "Attività"
 msgid "Reports"
 msgstr "Segnalazioni"
 
+msgid "Report"
+msgstr "Segnalazione"
+
 msgid "Users"
 msgstr "Utenti"
 
@@ -525,6 +528,9 @@ msgstr "Procedi"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Prima di procedere, ti preghiamo di abilitare l'autenticazione a due fattori."
+
+msgid "Enable"
+msgstr "Abilita"
 
 msgid "Disable submissions"
 msgstr "Disabilita le segnalazioni"
@@ -862,9 +868,6 @@ msgstr "Rilasciato da:"
 msgid "Intermediate Certificates"
 msgstr "Certificati intermedi"
 
-msgid "Enable"
-msgstr "Abilita"
-
 msgid "Reset"
 msgstr "Resetta"
 
@@ -1104,6 +1107,9 @@ msgstr "Titolo"
 msgid "Send an account activation link to the user."
 msgstr "Invia un link di attivazione dell'account all'utente"
 
+msgid "Public name"
+msgstr "Nome pubblico"
+
 msgid "Send reset link"
 msgstr "Invia link di reset"
 
@@ -1258,28 +1264,6 @@ msgstr "Installa una applicazione di autenticazione sul tuo telefono"
 msgid "Scan the QR code with the app"
 msgstr "Scansiona i QR code con la applicazione"
 
-msgid "Welcome!"
-msgstr "Benvenuto!"
-
-msgid "For the user documentation, visit:"
-msgstr "Per la documentazione utente visita:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Se hai bisogno di supporto tecnico, hai domande generiche, o hai nuove idee per il software:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Per contribuire allo sviluppo del software o segnalare un bug, aprire una issue nel nostro sistema di ticketing:"
-
-msgid "Join our chat:"
-msgstr "Accedi alla nostra chat:"
-
-msgid "Follow the project on:"
-msgstr "Segui l'andamento del progetto su:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Suggerimento: Come nascondere la tua ricevuta"
 
@@ -1311,9 +1295,6 @@ msgstr "La risorsa può essere acceduta solo all'interno della rete Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "La richiesta di upload supera la dimensione massima in MB"
-
-msgid "Public name"
-msgstr "Nome pubblico"
 
 msgid "Validation of email address change in progress."
 msgstr "Validazione del cambio di email in corso."
@@ -1409,6 +1390,28 @@ msgstr "File allegati dai riceventi"
 
 msgid "Upload a file:"
 msgstr "Carica un file:"
+
+msgid "Welcome!"
+msgstr "Benvenuto!"
+
+msgid "For the user documentation, visit:"
+msgstr "Per la documentazione utente visita:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Se hai bisogno di supporto tecnico, hai domande generiche, o hai nuove idee per il software:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Per contribuire allo sviluppo del software o segnalare un bug, aprire una issue nel nostro sistema di ticketing:"
+
+msgid "Join our chat:"
+msgstr "Accedi alla nostra chat:"
+
+msgid "Follow the project on:"
+msgstr "Segui l'andamento del progetto su:"
 
 msgid "An update is available:"
 msgstr "È disponibile un aggiornamento:"

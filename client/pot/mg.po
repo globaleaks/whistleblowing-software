@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malagasy (http://www.transifex.com/otf/globaleaks/language/mg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -357,6 +357,9 @@ msgstr "Activités"
 msgid "Reports"
 msgstr "Envois"
 
+msgid "Report"
+msgstr "Envoi"
+
 msgid "Users"
 msgstr "Utilisateurs"
 
@@ -520,6 +523,9 @@ msgstr "Continuer"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr ""
+
+msgid "Enable"
+msgstr "Activer"
 
 msgid "Disable submissions"
 msgstr "Désactiver les envois"
@@ -857,9 +863,6 @@ msgstr "Émetteur :"
 msgid "Intermediate Certificates"
 msgstr "Certificats intermédiaires"
 
-msgid "Enable"
-msgstr "Activer"
-
 msgid "Reset"
 msgstr "Réinitialiser"
 
@@ -1099,6 +1102,9 @@ msgstr "Titre"
 msgid "Send an account activation link to the user."
 msgstr ""
 
+msgid "Public name"
+msgstr ""
+
 msgid "Send reset link"
 msgstr ""
 
@@ -1253,28 +1259,6 @@ msgstr ""
 msgid "Scan the QR code with the app"
 msgstr ""
 
-msgid "Welcome!"
-msgstr "Bienvenue !"
-
-msgid "For the user documentation, visit:"
-msgstr "Pour consulter la documentation utilisateur, visitez :"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Si vous souhaitez obtenir du soutien technique, si avez des questions d’ordre général ou une nouvelle idée pour le logiciel :"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Si vous souhaitez participer au développement logiciel ou signaler un bogue, veuillez créer un billet de problème sur notre système de suivi :"
-
-msgid "Join our chat:"
-msgstr ""
-
-msgid "Follow the project on:"
-msgstr "Suivez le projet sur :"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Astuce : Comment cacher votre reçu ?"
 
@@ -1306,9 +1290,6 @@ msgstr "L’accès à cette ressource ne peut se faire que par le réseau Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "La demande de téléversement dépasse la limite de taille"
-
-msgid "Public name"
-msgstr ""
 
 msgid "Validation of email address change in progress."
 msgstr "La validation du changement d’adresse courriel est en cours."
@@ -1404,6 +1385,28 @@ msgstr "Pièces jointes par les destinataires"
 
 msgid "Upload a file:"
 msgstr "Téléverser un fichier :"
+
+msgid "Welcome!"
+msgstr "Bienvenue !"
+
+msgid "For the user documentation, visit:"
+msgstr "Pour consulter la documentation utilisateur, visitez :"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Si vous souhaitez obtenir du soutien technique, si avez des questions d’ordre général ou une nouvelle idée pour le logiciel :"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Si vous souhaitez participer au développement logiciel ou signaler un bogue, veuillez créer un billet de problème sur notre système de suivi :"
+
+msgid "Join our chat:"
+msgstr ""
+
+msgid "Follow the project on:"
+msgstr "Suivez le projet sur :"
 
 msgid "An update is available:"
 msgstr "Une mise à jour est proposée :"

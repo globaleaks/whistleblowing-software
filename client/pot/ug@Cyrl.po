@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uighur (Cyrillic) (http://www.transifex.com/otf/globaleaks/language/ug@Cyrl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -342,6 +342,9 @@ msgstr "Паъалийәтләр"
 msgid "Reports"
 msgstr "Доклатлар"
 
+msgid "Report"
+msgstr ""
+
 msgid "Users"
 msgstr "Ишләткүчиләр"
 
@@ -505,6 +508,9 @@ msgstr "Давамлаштур"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Давам қилиштин бурун, икки қәдәмлик тоғрулашни қозғитиң."
+
+msgid "Enable"
+msgstr "Қозғат"
 
 msgid "Disable submissions"
 msgstr "Тапшурушларни чәкләш"
@@ -842,9 +848,6 @@ msgstr "Тарқатқучи:"
 msgid "Intermediate Certificates"
 msgstr "Арилиқтики гуваһнамиләр"
 
-msgid "Enable"
-msgstr "Қозғат"
-
 msgid "Reset"
 msgstr "Қайта сәплә"
 
@@ -1084,6 +1087,9 @@ msgstr "Тема"
 msgid "Send an account activation link to the user."
 msgstr "Һесабат актиплаш уланмисини ишләткүчигә әвәт"
 
+msgid "Public name"
+msgstr "Аммиви нами"
+
 msgid "Send reset link"
 msgstr "Қайта сәпләш уланмисини әвәт"
 
@@ -1238,28 +1244,6 @@ msgstr "Телифониңизға бир дәлиллигүчи әп қачил
 msgid "Scan the QR code with the app"
 msgstr "QR кодини бу әп билән таритиң"
 
-msgid "Welcome!"
-msgstr "Хош кәпсиз!"
-
-msgid "For the user documentation, visit:"
-msgstr "Ишләткүчи һөҗҗити үчүн бу йәргә қараң:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Әгәр техникилиқ қоллашқа еһтийаҗлиқ болсиңиз , адәттики соъаллириңиз болса йаки йумшақ деталға мунасивәтлик йеңи пикирлириңиз болса:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Йумшақ детал ечишқа төһпә қошмақчи йаки кәмтүк мәлум қилмақчи болсиңиз , хаталиқ мәлум  қилиш системисимиздин мәлумат ечиң:"
-
-msgid "Join our chat:"
-msgstr "Сөһбитимизгә қетилиң:"
-
-msgid "Follow the project on:"
-msgstr "Түримизгә бу йәрдин әгишиң:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Ишарәт: талониңизни қандақ йошуруп қойисиз"
 
@@ -1291,9 +1275,6 @@ msgstr "Мәнбәни пәқәт Tor тори биләнла зийарәт қ�
 
 msgid "The upload request exceeds the size limit"
 msgstr "Йүклимә тәлипи чоңлуқ чекидин ешип кәтти"
-
-msgid "Public name"
-msgstr "Аммиви нами"
 
 msgid "Validation of email address change in progress."
 msgstr "Елхәт адреси өзгәртишни дәлилләш давам қиливатиду."
@@ -1389,6 +1370,28 @@ msgstr "Һөҗҗәтләр тапшуривалғучилар тәрипидин
 
 msgid "Upload a file:"
 msgstr "Бир һөҗҗәт йүклә:"
+
+msgid "Welcome!"
+msgstr "Хош кәпсиз!"
+
+msgid "For the user documentation, visit:"
+msgstr "Ишләткүчи һөҗҗити үчүн бу йәргә қараң:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Әгәр техникилиқ қоллашқа еһтийаҗлиқ болсиңиз , адәттики соъаллириңиз болса йаки йумшақ деталға мунасивәтлик йеңи пикирлириңиз болса:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Йумшақ детал ечишқа төһпә қошмақчи йаки кәмтүк мәлум қилмақчи болсиңиз , хаталиқ мәлум  қилиш системисимиздин мәлумат ечиң:"
+
+msgid "Join our chat:"
+msgstr "Сөһбитимизгә қетилиң:"
+
+msgid "Follow the project on:"
+msgstr "Түримизгә бу йәрдин әгишиң:"
 
 msgid "An update is available:"
 msgstr "Бир йеңиланма бар:"

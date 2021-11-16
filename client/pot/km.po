@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Khmer (http://www.transifex.com/otf/globaleaks/language/km/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -344,6 +344,9 @@ msgstr "សកម្មភាព"
 msgid "Reports"
 msgstr "របាយការណ៍"
 
+msgid "Report"
+msgstr ""
+
 msgid "Users"
 msgstr "អ្នកប្រើប្រាស់"
 
@@ -507,6 +510,9 @@ msgstr "ដំណើរការ"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "មុនពេលដំណើរការ​ សូមបើកការផ្ទៀងផ្ទាត់ពីរកត្តា។"
+
+msgid "Enable"
+msgstr "បើក"
 
 msgid "Disable submissions"
 msgstr "បិទការដាក់បញ្ជូន"
@@ -844,9 +850,6 @@ msgstr "អ្នកចេញផ្សាយ៖"
 msgid "Intermediate Certificates"
 msgstr "វិញ្ញាបនប័ត្រកម្រិតមធ្យម"
 
-msgid "Enable"
-msgstr "បើក"
-
 msgid "Reset"
 msgstr "កំណត់​ឡើង​វិញ"
 
@@ -1086,6 +1089,9 @@ msgstr "ចំណង​ជើង"
 msgid "Send an account activation link to the user."
 msgstr "ផ្ញើតំណភ្ជាប់សម្រាប់បើកដំណើរការគណនីទៅកាន់អ្នកប្រើប្រាស់។"
 
+msgid "Public name"
+msgstr "ឈ្មោះសាធារណៈ"
+
 msgid "Send reset link"
 msgstr "ផ្ញើតំណភ្ជាប់កំណត់សារឡើងវិញ"
 
@@ -1240,28 +1246,6 @@ msgstr "ដំឡើងកម្មវិធីសម្រាប់ផ្ទៀ
 msgid "Scan the QR code with the app"
 msgstr "ស្កេនកូដ QR ជាមួយកម្មវិធីនេះ"
 
-msgid "Welcome!"
-msgstr "សូមស្វាគមន៍!"
-
-msgid "For the user documentation, visit:"
-msgstr "សម្រាប់ឯកសារអ្នកប្រើប្រាស់ សូមចូលទៅកាន់៖"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "បើអ្នកត្រូវការជំនួយបច្ចេកទេស មានសំណួរទូទៅ ឬមានគំនិតថ្មីសម្រាប់កម្មវិធី៖"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "បើអ្នកចង់ចូលរួមចំណែកក្នុងការអភិវឌ្ឍកម្មវិធី ឬរាយការណ៍អំពីកំហុស សូមលើកបញ្ហានៅក្នុងប្រព័ន្ធសំបុត្ររបស់យើង៖ "
-
-msgid "Join our chat:"
-msgstr "ចូលរួមការជជែករបស់យើង៖"
-
-msgid "Follow the project on:"
-msgstr "តាមដានគម្រោងនៅលើ៖"
-
 msgid "Hint: How to hide your receipt"
 msgstr "ជំនួយ៖ របៀបលាក់បង្កាន់ដៃរបស់អ្នក"
 
@@ -1293,9 +1277,6 @@ msgstr "ធនធានអាចចូលប្រើប្រាស់បាន
 
 msgid "The upload request exceeds the size limit"
 msgstr "ការស្នើសុំបញ្ជូន​ លើសពីទំហំកំណត់"
-
-msgid "Public name"
-msgstr "ឈ្មោះសាធារណៈ"
 
 msgid "Validation of email address change in progress."
 msgstr "សុពលភាពនៃការផ្លាស់ប្តូរអាសយដ្ឋានអុីមែលកំពុងដំណើរការ"
@@ -1391,6 +1372,28 @@ msgstr "ឯកសារភ្ជាប់ដោយអ្នកទទួល"
 
 msgid "Upload a file:"
 msgstr "បញ្ជូលឯកសារមួយ៖"
+
+msgid "Welcome!"
+msgstr "សូមស្វាគមន៍!"
+
+msgid "For the user documentation, visit:"
+msgstr "សម្រាប់ឯកសារអ្នកប្រើប្រាស់ សូមចូលទៅកាន់៖"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "បើអ្នកត្រូវការជំនួយបច្ចេកទេស មានសំណួរទូទៅ ឬមានគំនិតថ្មីសម្រាប់កម្មវិធី៖"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "បើអ្នកចង់ចូលរួមចំណែកក្នុងការអភិវឌ្ឍកម្មវិធី ឬរាយការណ៍អំពីកំហុស សូមលើកបញ្ហានៅក្នុងប្រព័ន្ធសំបុត្ររបស់យើង៖ "
+
+msgid "Join our chat:"
+msgstr "ចូលរួមការជជែករបស់យើង៖"
+
+msgid "Follow the project on:"
+msgstr "តាមដានគម្រោងនៅលើ៖"
 
 msgid "An update is available:"
 msgstr "មានបច្ចុប្បន្នភាពមួយ៖"

@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -347,6 +347,9 @@ msgstr "Aktivnosti"
 msgid "Reports"
 msgstr "Prijave"
 
+msgid "Report"
+msgstr ""
+
 msgid "Users"
 msgstr "Uporabniki"
 
@@ -510,6 +513,9 @@ msgstr "Nadaljuj"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Preden nadaljuješ, omogoči dvostopenjsko preverjanje pristnosti. "
+
+msgid "Enable"
+msgstr "Omogoči"
 
 msgid "Disable submissions"
 msgstr "Onemogoči prispevke"
@@ -847,9 +853,6 @@ msgstr "Izdajatelj:"
 msgid "Intermediate Certificates"
 msgstr "Vmesni certifikati"
 
-msgid "Enable"
-msgstr "Omogoči"
-
 msgid "Reset"
 msgstr "Ponastavi"
 
@@ -1089,6 +1092,9 @@ msgstr "Naslov"
 msgid "Send an account activation link to the user."
 msgstr "Pošljite uporabniku povezavo za aktivacijo računa."
 
+msgid "Public name"
+msgstr "Javno ime"
+
 msgid "Send reset link"
 msgstr "Pošlji povezavo za ponastavitev"
 
@@ -1243,28 +1249,6 @@ msgstr "V telefon namestite aplikacijo za preverjanje pristnosti"
 msgid "Scan the QR code with the app"
 msgstr "Preberite QR kodo z aplikacijo."
 
-msgid "Welcome!"
-msgstr "Dobrodošli!"
-
-msgid "For the user documentation, visit:"
-msgstr "Za uporabniško dokumentacijo obiščite:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Če potrebujete tehnično podoporo, imate splošna vprašanja ali nove ideje za programsko opremo:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Če želite prispevati k razvoju programske opreme ali prijaviti napako, opravite prijavo v našem sistemu."
-
-msgid "Join our chat:"
-msgstr "Pridruži se pogovoru:"
-
-msgid "Follow the project on:"
-msgstr "Spremljajte projekt na: "
-
 msgid "Hint: How to hide your receipt"
 msgstr "Namig, kako skriti vašo šifro ključa"
 
@@ -1296,9 +1280,6 @@ msgstr "Ta vir je dostopen le prek Tor omrežja"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Zahteva za pošiljanje datoteke presega velikostno omejitev"
-
-msgid "Public name"
-msgstr "Javno ime"
 
 msgid "Validation of email address change in progress."
 msgstr "Potrditev spremembe naslova e-pošte poteka."
@@ -1394,6 +1375,28 @@ msgstr "Datoteke, ki jih je dodal prejemnik"
 
 msgid "Upload a file:"
 msgstr "Naloži datoteko:"
+
+msgid "Welcome!"
+msgstr "Dobrodošli!"
+
+msgid "For the user documentation, visit:"
+msgstr "Za uporabniško dokumentacijo obiščite:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Če potrebujete tehnično podoporo, imate splošna vprašanja ali nove ideje za programsko opremo:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Če želite prispevati k razvoju programske opreme ali prijaviti napako, opravite prijavo v našem sistemu."
+
+msgid "Join our chat:"
+msgstr "Pridruži se pogovoru:"
+
+msgid "Follow the project on:"
+msgstr "Spremljajte projekt na: "
 
 msgid "An update is available:"
 msgstr "Na voljo je posodobitev:"

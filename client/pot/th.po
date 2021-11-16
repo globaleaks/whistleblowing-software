@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
+"Last-Translator: Arthit Suriyawongkul\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -350,6 +350,9 @@ msgstr "กิจกรรม"
 msgid "Reports"
 msgstr "รายงาน"
 
+msgid "Report"
+msgstr "รายงาน"
+
 msgid "Users"
 msgstr "ผู้ใช้"
 
@@ -513,6 +516,9 @@ msgstr "ดำเนินการ"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "ก่อนจะไปต่อ กรุณาเปิดใช้การยืนยันตัวตนสองชั้น"
+
+msgid "Enable"
+msgstr "เปิดใช้งาน"
 
 msgid "Disable submissions"
 msgstr "ปิดรับการส่ง"
@@ -850,9 +856,6 @@ msgstr "ผู้ออก:"
 msgid "Intermediate Certificates"
 msgstr "ใบรับรองขั้นกลาง"
 
-msgid "Enable"
-msgstr "เปิดใช้งาน"
-
 msgid "Reset"
 msgstr "รีเซ็ต"
 
@@ -1092,6 +1095,9 @@ msgstr "ชื่อเรื่อง"
 msgid "Send an account activation link to the user."
 msgstr "ส่งลิงก์ยืนยันการเปิดใช้บัญชีไปให้ผู้ใช้"
 
+msgid "Public name"
+msgstr "ชื่อสาธารณะ"
+
 msgid "Send reset link"
 msgstr "ส่งลิงก์รีเซ็ต"
 
@@ -1246,28 +1252,6 @@ msgstr "ติดตั้งแอปยืนยันตัวตนบนโ
 msgid "Scan the QR code with the app"
 msgstr "สแกนรหัส QR ด้วยแอป"
 
-msgid "Welcome!"
-msgstr "ยินดีต้อนรับ!"
-
-msgid "For the user documentation, visit:"
-msgstr "สำหรับเอกสารผู้ใช้ ไปที่:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "ถ้าคุณต้องการการสนับสนุนทางเทคนิค มีคำถามทั่วไป หรือมีความคิดใหม่ๆ สำหรับซอฟต์แวร์นี้"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "ถ้าคุณต้องการช่วยในการพัฒนาซอฟต์แวร์หรือรายงานข้อผิดพลาด กรุณาเปิดประเด็น (issue) ในระบบติดตามตั๋วงานของเรา:"
-
-msgid "Join our chat:"
-msgstr "เข้าร่วมการแชตกับเรา:"
-
-msgid "Follow the project on:"
-msgstr "ติดตามโครงการได้ที่:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "คำแนะนำ: จะซ่อนใบรับของคุณอย่างไร"
 
@@ -1299,9 +1283,6 @@ msgstr "สามารถเข้าถึงทรัพยากรได้
 
 msgid "The upload request exceeds the size limit"
 msgstr "ขนาดการขออัปโหลดเกินขีดจำกัด"
-
-msgid "Public name"
-msgstr "ชื่อสาธารณะ"
 
 msgid "Validation of email address change in progress."
 msgstr "กำลังดำเนินการตรวจความถูกต้องของอีเมลของคุณ"
@@ -1397,6 +1378,28 @@ msgstr "แฟ้มที่แนบมาโดยผู้รับ"
 
 msgid "Upload a file:"
 msgstr "อัปโหลดแฟ้ม:"
+
+msgid "Welcome!"
+msgstr "ยินดีต้อนรับ!"
+
+msgid "For the user documentation, visit:"
+msgstr "สำหรับเอกสารผู้ใช้ ไปที่:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "ถ้าคุณต้องการการสนับสนุนทางเทคนิค มีคำถามทั่วไป หรือมีความคิดใหม่ๆ สำหรับซอฟต์แวร์นี้"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "ถ้าคุณต้องการช่วยในการพัฒนาซอฟต์แวร์หรือรายงานข้อผิดพลาด กรุณาเปิดประเด็น (issue) ในระบบติดตามตั๋วงานของเรา:"
+
+msgid "Join our chat:"
+msgstr "เข้าร่วมการแชตกับเรา:"
+
+msgid "Follow the project on:"
+msgstr "ติดตามโครงการได้ที่:"
 
 msgid "An update is available:"
 msgstr "รายการอัปเดตพร้อมแล้ว:"

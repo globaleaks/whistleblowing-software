@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (Afghanistan) (http://www.transifex.com/otf/globaleaks/language/fa_AF/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -343,6 +343,9 @@ msgstr "فعالیت ها"
 msgid "Reports"
 msgstr "راپورها"
 
+msgid "Report"
+msgstr ""
+
 msgid "Users"
 msgstr "کاربران"
 
@@ -506,6 +509,9 @@ msgstr "ادامه بدهید"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "قبل از ادامه، لطفاً تأیید هویت دو عاملی را فعال کنید."
+
+msgid "Enable"
+msgstr "فعال"
 
 msgid "Disable submissions"
 msgstr "غیرفعال‌سازی ارسال"
@@ -843,9 +849,6 @@ msgstr "صادرکننده:"
 msgid "Intermediate Certificates"
 msgstr "تصدیق های واسطه"
 
-msgid "Enable"
-msgstr "فعال"
-
 msgid "Reset"
 msgstr "تنظیم دوباره"
 
@@ -1085,6 +1088,9 @@ msgstr "عنوان"
 msgid "Send an account activation link to the user."
 msgstr "ارسال لینک فعال‌ سازی اکاونت به کاربر."
 
+msgid "Public name"
+msgstr "نام عمومی"
+
 msgid "Send reset link"
 msgstr "ارسال لینک تنظیم مجدد "
 
@@ -1239,28 +1245,6 @@ msgstr "لطفاً یک اپلیکیشن تأیید هویت بر روی موب�
 msgid "Scan the QR code with the app"
 msgstr "QR کود را ذریعه اپلیکیشن اسکن کنید "
 
-msgid "Welcome!"
-msgstr "خوش آمدید!"
-
-msgid "For the user documentation, visit:"
-msgstr "برای مستندات کاربر، مراجعه کنید به:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "اگر به کمک تخنیکی ضرورت دارید، سؤال کلی دارید، یا یک ایده جدید برای نرم افزار دارید:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "اگر می خواهید در توسعه نرم افزار مشارکت داشته باشید یا باگی را راپور کنید، لطفاً یک موضوع در سیستم تیکت زدن ما باز کنید:"
-
-msgid "Join our chat:"
-msgstr "در چت ما اشتراک کنید:"
-
-msgid "Follow the project on:"
-msgstr "پروژه را در اینجا دنبال کنید:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "اشاره: چگونه رسید خود را پنهان کنید"
 
@@ -1292,9 +1276,6 @@ msgstr "منبع فقط با استفاده از شبکه Tor قابل دستر�
 
 msgid "The upload request exceeds the size limit"
 msgstr "سایز اپلود درخواستی بزرگتر از حد مجاز است"
-
-msgid "Public name"
-msgstr "نام عمومی"
 
 msgid "Validation of email address change in progress."
 msgstr "اعتبار سنجی تغییر آدرس ایمیل در حال انجام می باشد."
@@ -1390,6 +1371,28 @@ msgstr "فایل های ضمیمه شده توسط دریافت کنندگان"
 
 msgid "Upload a file:"
 msgstr "یک فایل اپلود کنید:"
+
+msgid "Welcome!"
+msgstr "خوش آمدید!"
+
+msgid "For the user documentation, visit:"
+msgstr "برای مستندات کاربر، مراجعه کنید به:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "اگر به کمک تخنیکی ضرورت دارید، سؤال کلی دارید، یا یک ایده جدید برای نرم افزار دارید:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "اگر می خواهید در توسعه نرم افزار مشارکت داشته باشید یا باگی را راپور کنید، لطفاً یک موضوع در سیستم تیکت زدن ما باز کنید:"
+
+msgid "Join our chat:"
+msgstr "در چت ما اشتراک کنید:"
+
+msgid "Follow the project on:"
+msgstr "پروژه را در اینجا دنبال کنید:"
 
 msgid "An update is available:"
 msgstr "یک اپدیت موجود می باشد:"

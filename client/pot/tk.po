@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-10-26 20:16+0000\n"
+"PO-Revision-Date: 2021-11-15 15:18+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkmen (http://www.transifex.com/otf/globaleaks/language/tk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -343,6 +343,9 @@ msgstr "Çäreler"
 msgid "Reports"
 msgstr "Hasabatlar"
 
+msgid "Report"
+msgstr ""
+
 msgid "Users"
 msgstr "Ulanyjylar"
 
@@ -506,6 +509,9 @@ msgstr "Dowam et"
 
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Dowam etmezden ozal iki faktor tassyklaýjyny işjeňleşdirmegiňizi haýyş edýäris."
+
+msgid "Enable"
+msgstr "Aç"
 
 msgid "Disable submissions"
 msgstr "Iberilenleri öçüriň"
@@ -843,9 +849,6 @@ msgstr "Beren:"
 msgid "Intermediate Certificates"
 msgstr "Orta Şahadatnamalar"
 
-msgid "Enable"
-msgstr "Aç"
-
 msgid "Reset"
 msgstr "Täzeden düz"
 
@@ -1085,6 +1088,9 @@ msgstr "Sözbaşy"
 msgid "Send an account activation link to the user."
 msgstr "Ulanyja hasaby işjeňleşdiriji baglanyşygyny iber."
 
+msgid "Public name"
+msgstr "Umumy ady"
+
 msgid "Send reset link"
 msgstr "Täzeden düz baglanyşygyny iber"
 
@@ -1239,28 +1245,6 @@ msgstr "Telefonyňyzda tassyklaýjy programma guruň"
 msgid "Scan the QR code with the app"
 msgstr "Programma bilen QR koduny skanirläň"
 
-msgid "Welcome!"
-msgstr "Hoş geldiňiz!"
-
-msgid "For the user documentation, visit:"
-msgstr "Ulanyjy resminamalary üçin:"
-
-msgid ""
-"If you need technical support, have general questions, or have new ideas for"
-" the software:"
-msgstr "Tehniki goldaw gerek bolsa, umumy soraglaryňyz ýa-da programma üpjünçiligi üçin täze pikirleriňiz bar bolsa:"
-
-msgid ""
-"If you want to contribute to software development or report a bug, please "
-"open an issue in our ticketing system:"
-msgstr "Programma üpjünçiligini ösdürmäge goşant goşmak ýa-da näsazlyk barada habar bermek isleseňiz, bilet ulgamymyzda bir mesele açyň:"
-
-msgid "Join our chat:"
-msgstr "Söhbetdeşligimize goşulyň:"
-
-msgid "Follow the project on:"
-msgstr "Proýekti yzarlaň:"
-
 msgid "Hint: How to hide your receipt"
 msgstr "Ýaňzytma: Kwitansiýany nädip gizlemeli"
 
@@ -1292,9 +1276,6 @@ msgstr "Resurslara diňe Tor ulgamy arkaly girip bolýar"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Ýükleme haýyşy çäklendirilen ölçeg ululykdan geçýär"
-
-msgid "Public name"
-msgstr "Umumy ady"
 
 msgid "Validation of email address change in progress."
 msgstr "Email salgysyny üýtgetmek barlagy dowam edýär."
@@ -1390,6 +1371,28 @@ msgstr "Alyjylar tarapyndan berkidilen faýllar"
 
 msgid "Upload a file:"
 msgstr "Faýl ýükle:"
+
+msgid "Welcome!"
+msgstr "Hoş geldiňiz!"
+
+msgid "For the user documentation, visit:"
+msgstr "Ulanyjy resminamalary üçin:"
+
+msgid ""
+"If you need technical support, have general questions, or have new ideas for"
+" the software:"
+msgstr "Tehniki goldaw gerek bolsa, umumy soraglaryňyz ýa-da programma üpjünçiligi üçin täze pikirleriňiz bar bolsa:"
+
+msgid ""
+"If you want to contribute to software development or report a bug, please "
+"open an issue in our ticketing system:"
+msgstr "Programma üpjünçiligini ösdürmäge goşant goşmak ýa-da näsazlyk barada habar bermek isleseňiz, bilet ulgamymyzda bir mesele açyň:"
+
+msgid "Join our chat:"
+msgstr "Söhbetdeşligimize goşulyň:"
+
+msgid "Follow the project on:"
+msgstr "Proýekti yzarlaň:"
 
 msgid "An update is available:"
 msgstr "Täzelenme bar:"
