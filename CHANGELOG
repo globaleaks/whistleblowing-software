@@ -1,3 +1,9 @@
+Changes in version 4.5.5
+    Add URL to support requests emails
+    Fixes issue #3108, #3109, #3110, #3111
+    Bump npm dependencies to latest versions
+    Update translations
+
 Changes in version 4.5.4
     Implement session keep-alive and check on session expiration
     Fix issues #603, #2842, #3104, #3105, #3106
