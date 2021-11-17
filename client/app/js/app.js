@@ -671,6 +671,8 @@ var GL = angular.module("GL", [
     });
 
     $rootScope.$on("$locationChangeStart", function() {
+      $rootScope.queryString = $location.search();
+
       var lang = $rootScope.queryString.lang;
       if (lang) {
         if (lang !== GLTranslate.state.language) {

@@ -11,8 +11,8 @@ GL.controller("PasswordResetCtrl", ["$scope", "$location", "$http",
     });
   };
 }]).
-controller("PasswordResetCompleteCtrl", ["$scope", "$location", "$http",
-  function($scope, $location, $http) {
+controller("PasswordResetCompleteCtrl", ["$scope", "$location", "$http", "$window",
+  function($scope, $location, $http, $window) {
 
   $scope.request = {
     "reset_token": $scope.queryString.token || "",
@@ -27,9 +27,9 @@ controller("PasswordResetCompleteCtrl", ["$scope", "$location", "$http",
       if(response.data.status === "success") {
         $location.url("/login?token=" + response.data.token);
       } else if (response.data.status === "require_recovery_key") {
-	$location.path("/password/reset/recovery");
+	$location.url("/password/reset/recovery");
       } else if (response.data.status === "require_two_factor_authentication") {
-	$location.path("/password/reset/2fa");
+	$location.url("/password/reset/2fa");
       } else {
 	$location.url("/login/passwordreset/failure/token");
       }
