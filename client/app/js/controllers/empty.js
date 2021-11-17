@@ -1,4 +1,4 @@
 GL.controller("Empty", [
   function() {
 
-}]),
+}]);
