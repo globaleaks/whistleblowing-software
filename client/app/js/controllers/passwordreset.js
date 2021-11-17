@@ -11,8 +11,8 @@ GL.controller("PasswordResetCtrl", ["$scope", "$location", "$http",
     });
   };
 }]).
-controller("PasswordResetCompleteCtrl", ["$scope", "$location", "$http", "$window",
-  function($scope, $location, $http, $window) {
+controller("PasswordResetCompleteCtrl", ["$scope", "$location", "$http",
+  function($scope, $location, $http) {
 
   $scope.request = {
     "reset_token": $scope.queryString.token || "",
