@@ -255,13 +255,11 @@ def db_serialize_node(session, tid, language):
     """
     languages = db_get_languages(session, tid)
     ret = ConfigFactory(session, tid).serialize('public_node')
-    ret.update(ConfigL10NFactory(session, tid,).serialize('node', language))
+    ret.update(ConfigL10NFactory(session, tid,).serialize('public_node', language))
 
     ret['root_tenant'] = tid == 1
     ret['languages_enabled'] = languages if ret['wizard_done'] else list(LANGUAGES_SUPPORTED_CODES)
     ret['languages_supported'] = LANGUAGES_SUPPORTED
-
-    ret['enable_custodian'] = session.query(models.User).filter(models.User.tid == tid, models.User.role == 'custodian', models.User.state == 'enabled').count() > 0
 
     for x in special_files:
         ret[x] = session.query(models.File.id).filter(models.File.tid == tid, models.File.name == x).one_or_none()
@@ -324,7 +322,6 @@ def serialize_context(session, context, language, data=None):
         'score_receipt_text_l': context.score_receipt_text_l,
         'score_receipt_text_m': context.score_receipt_text_m,
         'score_receipt_text_h': context.score_receipt_text_h,
-        'score_threshold_receipt': context.score_threshold_receipt,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
         'show_steps_navigation_interface': context.show_steps_navigation_interface,
         'questionnaire_id': context.questionnaire_id,
@@ -511,14 +508,12 @@ def serialize_receiver(session, user, language, data=None):
         'id': user.id,
         'username': user.username,
         'name': user.public_name,
-        'state': user.state,
-        'encryption': user.crypto_pub_key != '',
         'forcefully_selected': user.forcefully_selected,
-        'can_delete_submission': user.can_delete_submission,
-        'can_postpone_expiration': user.can_postpone_expiration,
-        'can_grant_access_to_reports': user.can_grant_access_to_reports,
         'picture': data['imgs'].get(user.id, False)
     }
+
+    if State.tenant_cache[user.tid].simplified_login:
+       ret['username'] = username.usernames
 
     return get_localized_values(ret, user, user.localized_keys, language)
 
@@ -593,10 +588,6 @@ def get_public_resources(session, tid, language):
         'receivers': db_get_receivers(session, tid, language),
         'contexts': []
     }
-
-    for receiver in ret['receivers']:
-        if not State.tenant_cache[tid].simplified_login:
-            receiver['username'] = ''
 
     for context in db_get_contexts(session, tid, language):
         if not context['languages'] or language.lower() in [x.strip().lower() for x in context['languages'].split(',')]:

@@ -12,7 +12,8 @@ class TestSupportionHandler(helpers.TestHandlerWithPopulatedDB):
     def test_post(self):
         request = {
             'mail_address': 'giovanni.pellerano@globaleaks.org',
-            'text': 'The email is to ask support for...'
+            'text': 'The email is to ask support for...',
+            'url': 'https://www.globaleaks.org'
         }
 
         yield self.test_model_count(models.Mail, 0)

@@ -408,26 +408,40 @@ AdminRedirectDesc = {
 }
 
 NodeDesc = {
-    'name': str,
-    'presentation': str,
-    'footer': str,
+    'adminonly': bool,
+    'contexts_clarification': str,
+    'custom_privacy_badge_text': str,
+    'default_language': str,
+    'default_questionnaire': str,
+    'disable_privacy_badge': bool,
+    'disable_submissions': bool,
     'disclaimer_text': str,
-    'hostname': hostname_regexp_or_empty,
-    'rootdomain': hostname_regexp_or_empty,
+    'enable_custom_privacy_badge': bool,
+    'enable_private_annotations': bool,
+    'enable_receipt_hint': bool,
+    'enable_scoring_system': bool,
+    'enable_signup': bool,
+    'footer': str,
+    'header_title_homepage': str,
+    'https_whistleblower': bool,
     'languages_enabled': [str],
     'languages_supported': list,
-    'default_language': str,
     'maximum_filesize': int,
-    'https_admin': bool,
-    'https_custodian': bool,
-    'https_whistleblower': bool,
-    'https_receiver': bool,
-    'allow_indexing': bool,
-    'disable_privacy_badge': bool,
-    'enable_receipt_hint': bool,
+    'name': str,
+    'presentation': str,
+    'rootdomain': hostname_regexp_or_empty,
+    'show_contexts_in_alphabetical_order': bool,
+    'signup_tos1_checkbox_label': str,
+    'signup_tos1_enable': bool,
+    'signup_tos1_text': str,
+    'signup_tos1_title': str,
+    'signup_tos2_checkbox_label': str,
+    'signup_tos2_enable': bool,
+    'signup_tos2_text': str,
+    'signup_tos2_title': str,
     'simplified_login': bool,
-    'enable_custom_privacy_badge': bool,
-    'custom_privacy_badge_text': str
+    'whistleblowing_button': str,
+    'whistleblowing_question': str
 }
 
 TipOverviewDesc = {
@@ -477,9 +491,6 @@ ReceiverDesc = {
     'name': str,
     'description': str,
     'id': uuid_regexp,
-    'state': user_state_regexp,
-    'can_delete_submission': bool,
-    'can_postpone_expiration': bool
 }
 
 ContextDesc = {

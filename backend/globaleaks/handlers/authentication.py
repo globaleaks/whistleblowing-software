@@ -184,7 +184,11 @@ class AuthenticationHandler(BaseHandler):
                 'redirect': 'https://%s/#/login?token=%s' % (State.tenant_cache[tid].hostname, session.id)
             })
 
-        returnValue(session.serialize())
+        ret = session.serialize()
+
+        ret['require_two_factor'] = self.state.tenant_cache[tid]['two_factor']
+
+        returnValue(ret)
 
 
 class TokenAuthHandler(BaseHandler):
