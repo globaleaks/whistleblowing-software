@@ -1,3 +1,10 @@
+Changes in version 4.5.6
+    Fix regression on password reset links introduced in 4.4.5
+    Optimize serialization of public API reducing set of exported keys
+    Open link for testing contexts on a new page
+    Improve password reset invalidating token at effective password change
+    Fix issue #3113
+
 Changes in version 4.5.5
     Add URL to support requests emails
     Fixes issue #3108, #3109, #3110, #3111
