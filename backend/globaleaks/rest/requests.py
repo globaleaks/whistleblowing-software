@@ -192,6 +192,7 @@ WhisleblowerIdentityAnswers = {
 
 AdminNodeDesc = {
     'name': str,
+    'description': str,
     'presentation': str,
     'footer': str,
     'disclaimer_text': str,
