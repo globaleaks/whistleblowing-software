@@ -32,8 +32,8 @@
         </div>
       </div>
       <div data-ng-if="!tip.iar || tip.iar.reply === 'denied'">
-        <button data-ng-if="public.node.enable_custodian" class="btn btn-sm btn-primary" data-ng-click="file_identity_access_request()" data-translate>Request access to the whistleblower's identity</button>
-        <button data-ng-if="!public.node.enable_custodian" class="btn btn-sm btn-primary" data-ng-click="access_identity()" data-translate>Show</button>
+        <button data-ng-if="tip.custodian" class="btn btn-sm btn-primary" data-ng-click="file_identity_access_request()" data-translate>Request access to the whistleblower's identity</button>
+        <button data-ng-if="!tip.custodian" class="btn btn-sm btn-primary" data-ng-click="access_identity()" data-translate>Show</button>
       </div>
     </div>
   </div>

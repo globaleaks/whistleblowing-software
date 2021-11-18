@@ -325,6 +325,8 @@ def serialize_rtip(session, rtip, itip, language):
     ret['id'] = rtip.id
     ret['receiver_id'] = user_id
 
+    ret['custodian'] = State.tenant_cache[itip.tid]['custodian']
+
     if State.tenant_cache[itip.tid].enable_private_annotations:
         ret['important'] = rtip.important
         ret['label'] = rtip.label

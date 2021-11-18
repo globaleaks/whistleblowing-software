@@ -37,7 +37,7 @@ class Session(object):
             'user_id': self.user_id,
             'user_tid': self.user_tid,
             'session_expiration': self.getTime(),
-            'password_change_needed': self.pcn,
+            'require_password_change': self.pcn,
             'two_factor': self.two_factor,
             'management_session': self.ms
         }

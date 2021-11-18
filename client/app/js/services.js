@@ -28,7 +28,8 @@ factory("Authentication",
           "id": response.session_id,
           "user_id": response.user_id,
           "role": response.role,
-          "password_change_needed": response.password_change_needed,
+          "require_password_change": response.require_password_change,
+          "require_two_factor": response.require_two_factor,
           "two_factor": response.two_factor,
           "management_session": response.management_session,
           "homepage": "",
@@ -807,9 +808,9 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       } else if ((path === "/" || path === "/submission") && $rootScope.public.node.adminonly && !$rootScope.Authentication.session) {
         $location.path("/admin");
       } else if ($rootScope.Authentication.session && $rootScope.Authentication.session.role !== "whistleblower") {
-        if ($rootScope.Authentication.session.password_change_needed) {
+        if ($rootScope.Authentication.session.require_password_change) {
           $location.path("/actions/forcedpasswordchange");
-        } else if ($rootScope.public.node.two_factor && !$rootScope.Authentication.session.two_factor) {
+        } else if ($rootScope.Authentication.session.require_two_factor && !$rootScope.Authentication.session.two_factor) {
           $location.path("/actions/forcedtwofactor");
         }
       }
@@ -871,7 +872,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
              $rootScope.page !== "homepage" &&
              $rootScope.page !== "submissionpage" &&
              angular.isDefined($rootScope.Authentication.session) &&
-             !$rootScope.Authentication.session.password_change_needed;
+             !$rootScope.Authentication.session.require_password_change;
     },
 
     showFilePreview: function(content_type) {

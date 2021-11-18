@@ -1,7 +1,7 @@
 <form name="passwordChangeForm">
   <input class="d-none" type="password" name="disable-autocomplete-hack" />
 
-  <div class="form-group" data-ng-if='!Authentication.session.password_change_needed'>
+  <div class="form-group" data-ng-if='!Authentication.session.require_password_change'>
     <label>
       <span data-translate>Current password</span>
       <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>

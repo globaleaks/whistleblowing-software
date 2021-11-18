@@ -50,17 +50,17 @@ def db_update_enabled_languages(session, tid, languages, default_language):
         db_del(session, models.EnabledLanguage, (models.EnabledLanguage.tid == tid, models.EnabledLanguage.name.in_(to_remove)))
 
 
-def db_admin_serialize_node(session, tid, language, config_node='admin_node'):
+def db_admin_serialize_node(session, tid, language, config='node'):
     """
     Transaction for fetching the node configuration as admin
 
     :param session: An ORM session
     :param tid: A tenant ID
     :param language: The language to be used on serialization
-    :param config_node: The set of variables to be serialized
+    :param config: The set of variables to be serialized
     :return: Return the serialized configuration for the specified tenant
     """
-    ret = ConfigFactory(session, tid).serialize(config_node)
+    ret = ConfigFactory(session, tid).serialize(config)
 
     logo = session.query(models.File.id).filter(models.File.tid == tid, models.File.name == 'logo').one_or_none()
 
@@ -78,7 +78,7 @@ def db_admin_serialize_node(session, tid, language, config_node='admin_node'):
     if 'version' in ret:
         ret['update_available'] = ret['version'] != ret['latest_version']
 
-    ret.update(ConfigL10NFactory(session, tid).serialize('node', language))
+    ret.update(ConfigL10NFactory(session, tid).serialize(config, language))
 
     return ret
 
@@ -172,11 +172,11 @@ class NodeInstance(BaseHandler):
         """
         Get the node infos.
         """
-        config_node = yield self.determine_allow_config_filter()
+        config = yield self.determine_allow_config_filter()
         serialized_node = yield tw(db_admin_serialize_node,
                                    self.request.tid,
                                    self.request.language,
-                                   config_node=config_node[0])
+                                   config=config[0])
         returnValue(serialized_node)
 
     @inlineCallbacks
@@ -184,10 +184,10 @@ class NodeInstance(BaseHandler):
         """
         Update the node infos.
         """
-        config_node = yield self.determine_allow_config_filter()
+        config = yield self.determine_allow_config_filter()
 
         request = yield self.validate_message(self.request.content.read(),
-                                              config_node[1])
+                                              config[1])
 
         serialized_node = yield tw(db_update_node,
                                    self.request.tid,

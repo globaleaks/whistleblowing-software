@@ -205,6 +205,11 @@ def db_refresh_tenant_cache(session, tid_list):
         for x in ['admin', 'custodian', 'receiver', 'whistleblower']:
             State.tenant_cache[tid]['https_allowed'][x] = State.tenant_cache[tid].get('https_' + x, True)
 
+        State.tenant_cache[tid]['custodian'] = session.query(models.User) \
+                                                     .filter(models.User.tid == tid,
+                                                             models.User.role == 'custodian',
+                                                             models.User.state == 'enabled').count() > 0
+
         if State.tenant_cache[tid].mode == 'whistleblowing.it':
             State.tenant_cache[tid]['https_preload'] = State.tenant_cache[1]['https_preload']
 
