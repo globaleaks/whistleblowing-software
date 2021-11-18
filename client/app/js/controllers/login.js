@@ -18,7 +18,7 @@ GL.controller("LoginCtrl", ["$scope", "$location", function($scope, $location) {
     $scope.login_template = "views/login/default.html";
   }
 
-  var token = $scope.queryString.token;
+  var token = $location.search().token;
   if (token) {
     $scope.Authentication.login(0, "", "", "", token);
   }

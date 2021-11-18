@@ -5,7 +5,7 @@ GL.controller("SubmissionCtrl",
 
   $scope.fieldUtilities = fieldUtilities;
 
-  $scope.context_id = $scope.queryString.context;
+  $scope.context_id = $location.search().context || "";
 
   $scope.context = undefined;
 
