@@ -12,7 +12,6 @@ from globaleaks.utils.utility import datetime_now
 @transact
 def set_reset_token(session, user_id, validation_token):
     user = db_get(session, models.User, models.User.id == user_id)
-    user.change_email_date = datetime_now()
     user.reset_password_token = validation_token
     user.reset_password_date = datetime_now()
 
