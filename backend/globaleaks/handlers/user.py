@@ -34,6 +34,10 @@ def db_set_user_password(session, tid, user, password, cc):
     user.password = password_hash
     user.password_change_date = datetime_now()
 
+    # Always void our reset_password_token at any password change
+    user.reset_password_token = None
+    user.reset_password_date = datetime_null()
+
     if not config_tenant_n.get_val('encryption') and cc == '':
         return None
 
