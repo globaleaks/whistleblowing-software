@@ -1,5 +1,5 @@
-GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$location", "$window", "$uibModal", "UserPreferences",
-  function($scope, $q, $http, $location, $window, $uibModal, UserPreferences) {
+GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$location", "$window", "$uibModal",
+  function($scope, $q, $http, $location, $window, $uibModal) {
     $scope.tabs = [
       {
         title: "Preferences",
@@ -10,10 +10,6 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$location", "$window
         template: "views/partials/preferences/tab2.html"
       }
     ];
-
-    UserPreferences.get().$promise.then(function(preferences) {
-      $scope.preferences = preferences;
-    });
 
     $scope.editingName = false;
     $scope.editingPublicName = false;
