@@ -300,6 +300,7 @@ ConfigFilters = {
         'signup_tos1_enable',
         'signup_tos2_enable',
         'simplified_login',
+        'subdomain',
         'wizard_done'
     ],
     'tenant': [
