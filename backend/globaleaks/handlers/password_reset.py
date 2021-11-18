@@ -128,9 +128,7 @@ def validate_password_reset(session, reset_token, auth_code, recovery_key):
         except:
             return {'status': 'require_two_factor_authentication'}
 
-    # Token is used, void it out
-    user.reset_password_token = None
-    user.reset_password_date = now
+    # Token will be marked as used only at effective password change
 
     # Require password change
     user.password_change_needed = True
