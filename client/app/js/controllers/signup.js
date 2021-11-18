@@ -53,9 +53,9 @@ GL.controller("SignupCtrl", ["$scope", "$route", "$http", "Authentication", "DAT
     });
   };
 }]).
-controller("SignupActivationCtrl", ["$scope", "$http",
-                    function($scope, $http) {
-  var token = $scope.queryString.token;
+controller("SignupActivationCtrl", ["$scope", "$http", "$location",
+                    function($scope, $http, $location) {
+  var token = $location.search().token;
   if (token) {
     $http.get("api/signup/" + token);
   }

@@ -68,7 +68,7 @@ factory("Authentication",
 
           self.set_session(response);
 
-          var src = $rootScope.queryString.src;
+          var src = $location.search().src;
           if (src) {
             $location.path(src);
           } else {

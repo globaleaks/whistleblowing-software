@@ -480,9 +480,6 @@ var GL = angular.module("GL", [
       function($rootScope, $http, $route, $routeParams, $window, $location, $filter, $translate, $uibModal, $templateCache, Idle, Authentication, SessionResource, PublicResource, Utils, AdminUtils, fieldUtilities, CONSTANTS, GLTranslate, Access) {
     $rootScope.started = false;
 
-    $rootScope.queryString = $location.search();
-    $location.search("");
-
     $rootScope.page = "homepage";
     $rootScope.Authentication = Authentication;
     $rootScope.GLTranslate = GLTranslate;
@@ -664,6 +661,7 @@ var GL = angular.module("GL", [
     $rootScope.$watch("GLTranslate.state.language", function(new_val, old_val) {
       if(new_val !== old_val) {
 	if (old_val && old_val !== "*") {
+          $location.search("lang", new_val);
           GLTranslate.setLang(new_val);
           $rootScope.reload();
         }
@@ -671,9 +669,7 @@ var GL = angular.module("GL", [
     });
 
     $rootScope.$on("$locationChangeStart", function() {
-      $rootScope.queryString = $location.search();
-
-      var lang = $rootScope.queryString.lang;
+      var lang = $location.search().lang;
       if (lang) {
         if (lang !== GLTranslate.state.language) {
           $window.location.href = $location.absUrl();
