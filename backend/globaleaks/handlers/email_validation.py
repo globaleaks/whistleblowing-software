@@ -9,7 +9,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import tw
-from globaleaks.utils.utility import datetime_now
+from globaleaks.utils.utility import datetime_now, datetime_null
 
 
 def db_validate_address_change(session, validation_token):
@@ -25,7 +25,7 @@ def db_validate_address_change(session, validation_token):
     user.mail_address = user.change_email_address
     user.change_email_token = None
     user.change_email_address = ''
-    user.change_email_date = datetime_now()
+    user.change_email_date = datetime_null()
 
     return True
 
