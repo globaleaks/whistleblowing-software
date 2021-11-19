@@ -513,7 +513,7 @@ def serialize_receiver(session, user, language, data=None):
     }
 
     if State.tenant_cache[user.tid].simplified_login:
-       ret['username'] = username.usernames
+       ret['username'] = user.username
 
     return get_localized_values(ret, user, user.localized_keys, language)
 
