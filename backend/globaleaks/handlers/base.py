@@ -295,7 +295,6 @@ class BaseHandler(object):
         if isinstance(fp, str):
             fp = self.open_file(fp)
 
-        self.request.setHeader(b'X-Download-Options', b'noopen')
         self.request.setHeader(b'Content-Type', b'application/octet-stream')
         self.request.setHeader(b'Content-Disposition',
                                'attachment; filename="%s"' % filename)
