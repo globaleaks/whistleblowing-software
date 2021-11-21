@@ -504,7 +504,6 @@ class APIResourceWrapper(Resource):
                               "font-src 'self' data:;"
                               "media-src 'self';"
                               "form-action 'self';"
-                              "block-all-mixed-content;"
                               "frame-ancestors 'none';")
 
             request.setHeader(b"Cross-Origin-Opener-Policy", "same-origin")
