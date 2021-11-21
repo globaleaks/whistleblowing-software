@@ -89,8 +89,7 @@ class TestAPI(TestGL):
             ('Server', 'GlobaLeaks'),
             ('X-Content-Type-Options', 'nosniff'),
             ('X-Check-Tor', 'False'),
-            ('X-Frame-Options', 'deny'),
-            ('X-XSS-Protection', '1; mode=block'),
+            ('X-Frame-Options', 'deny')
         ]
 
         for method, status_code in test_cases:
