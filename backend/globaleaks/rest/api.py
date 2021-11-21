@@ -521,9 +521,6 @@ class APIResourceWrapper(Resource):
         # Prevent the browsers to implement automatic mime type detection and execution.
         request.setHeader(b'X-Content-Type-Options', b'nosniff')
 
-        # Reduce possibility for XSS attacks
-        request.setHeader(b'X-XSS-Protection', b'1; mode=block')
-
         # Disable caching
         # As by RFC 7234 Cache-control: no-store is the main directive instructing to not
         # store any entry to be used for caching; this settings make it not necessary to
