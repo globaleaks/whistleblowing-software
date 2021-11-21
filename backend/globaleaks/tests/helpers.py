@@ -289,6 +289,7 @@ class MockDict:
 
         self.dummyNode = {
             'name': 'Please, set me: name/title',
+            'description': 'Platform description',
             'presentation': 'This is whæt æpp€ærs on top',
             'footer': 'check it out https://www.youtube.com/franksentus ;)',
             'disclaimer_text': '',
