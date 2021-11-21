@@ -134,7 +134,7 @@ Content-Security-Policy
 +++++++++++++++++++++++
 The backend implements the following `Content Security Policy (CSP) <https://en.wikipedia.org/wiki/Content_Security_Policy>`_:
 ::
-  Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:; media-src 'self'; form-action 'self'; frame-ancestors 'none'; block-all-mixed-content
+  Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:; media-src 'self'; form-action 'self'; frame-ancestors 'none'
   Cross-Origin-Opener-Policy: same-origin
 
 Permissions-Policy

@@ -79,7 +79,6 @@ class TestAPI(TestGL):
                                         'font-src \'self\' data:;'
                                         'media-src \'self\';'
                                         'form-action \'self\';'
-                                        'block-all-mixed-content;'
                                         'frame-ancestors \'none\';'),
             ('Permissions-Policy', "camera=(),"
                                    "document-domain=(),"
