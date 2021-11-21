@@ -161,12 +161,6 @@ When setting up Content-Type for the specific output, we avoid the automatic mim
 ::
   X-Content-Type-Options: nosniff
 
-X-XSS-Protection
-++++++++++++++++
-In addition in order to explicitly instruct browsers to enable XSS protections the Backend inject the following header:
-::
-  X-XSS-Protection: 1; mode=block
-
 Cache-Control
 +++++++++++++++++++++++++++++++++++++++++++++
 The backend by default sends the following headers to instruct client’s browsers to not store resources in their cache.
