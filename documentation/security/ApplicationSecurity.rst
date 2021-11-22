@@ -132,10 +132,27 @@ Administrators could optionally enable the preload functionality.
 
 Content-Security-Policy
 +++++++++++++++++++++++
-The backend implements the following `Content Security Policy (CSP) <https://en.wikipedia.org/wiki/Content_Security_Policy>`_:
+The backend implements the following `Content Security Policy (CSP) <https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP>`_:
 ::
   Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:; media-src 'self'; form-action 'self'; frame-ancestors 'none'
-  Cross-Origin-Opener-Policy: same-origin
+
+Cross-Origin-Embedder-Policy
+++++++++++++++++++++++++++++
+The backend implements the following `Cross-Origin-Embedder-Policy (COEP) <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy>`_:
+::
+  Cross-Origin-Embedder-Policy: require-corp
+
+Cross-Origin-Opener-Policy
+++++++++++++++++++++++++++
+The backend implements the following `Cross-Origin-Opener-Policy (COOP) <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy>`_:
+::
+  Cross-Origin-Resource-Policy: same-site
+
+Cross-Origin-Resource-Policy
+++++++++++++++++++++++++++++
+The backend implements the following `Cross-Origin-Resource-Policy (CORP) <https://developer.mozilla.org/en-US/docs/Web/HTTP/Cross-Origin_Resource_Policy>`_:
+::
+  Cross-Origin-Resource-Policy: same-site
 
 Permissions-Policy
 ++++++++++++++
