@@ -506,7 +506,9 @@ class APIResourceWrapper(Resource):
                               "form-action 'self';"
                               "frame-ancestors 'none';")
 
+            request.setHeader(b"Cross-Origin-Embedder-Policy", "require-corp")
             request.setHeader(b"Cross-Origin-Opener-Policy", "same-origin")
+            request.setHeader(b"Cross-Origin-Resource-Policy", "same-site")
 
         # Disable features that could be used to deanonymize the user
         request.setHeader(b'Permissions-Policy', b"camera=(),"
