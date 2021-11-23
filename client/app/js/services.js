@@ -1,9 +1,9 @@
 GL.factory("GLResource", ["$resource", function($resource) {
   return function(url, params, actions) {
     var defaults = {
-      get:    {method: "get"},
-      query:  {method: "get", isArray: true},
-      update: {method: "put"}
+      get:    {method: "GET"},
+      query:  {method: "GET", isArray: true},
+      update: {method: "PUT"}
     };
 
     actions = angular.extend(defaults, actions);
@@ -210,7 +210,7 @@ factory("PublicResource", ["GLResource", function(GLResource) {
 factory("TokenResource", ["GLResource", "glbcProofOfWork", function(GLResource, glbcProofOfWork) {
   return new GLResource("api/token/:id", {id: "@id"}, {
     get: {
-      method: "post",
+      method: "POST",
       interceptor: {
         response: function(response) {
           var token = response.resource;
