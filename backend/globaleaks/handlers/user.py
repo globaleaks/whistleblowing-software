@@ -135,6 +135,10 @@ def user_serialize_user(session, user, language):
         'contexts': contexts
     }
 
+    if State.tenant_cache[user.tid].two_factor and \
+      user.two_factor_secret == '':
+        ret['require_two_factor'] = True
+
     return get_localized_values(ret, user, user.localized_keys, language)
 
 
