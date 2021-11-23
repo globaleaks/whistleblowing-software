@@ -44,8 +44,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-15 15:18+0000\n"
-"Last-Translator: Ahmed Essam\n"
+"PO-Revision-Date: 2021-11-23 17:58+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1255,7 +1255,7 @@ msgid "We will try to get back to you as soon as possible."
 msgstr "سوف نسعى للاتصال بك مجددًا في أقرب وقت ممكن."
 
 msgid "Submit"
-msgstr "تقديم"
+msgstr "إرسال"
 
 msgid "The connection is not secure."
 msgstr "الاتصال غير آمن."
@@ -1342,7 +1342,7 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "ثمّ، انسخ والصق العنوان التالي في متصفّح Tor."
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "هل قدمت بلاغا سابقا؟ أدخل الاستلام الخاص بك."
+msgstr "هل قدمت بلاغا سابقا؟ أدخل رقم البلاغ."
 
 msgid "The receipt is either invalid or the report has expired."
 msgstr "إمّا أنّ الإستلام غير صالح أو أنّ صلاحيّة البلاغ انتهت."
