@@ -181,7 +181,7 @@ When setting up Content-Type for the specific output, we avoid the automatic mim
 Cache-Control
 +++++++++++++++++++++++++++++++++++++++++++++
 The backend by default sends the following headers to instruct client’s browsers to not store resources in their cache.
-As by section ``3. Storing Responses in Caches`` of `RFC 7234 <https://tools.ietf.org/html/rfc7234>`_ the platform uses the ``Cache-control`` HTTP header with the configuration ``no-store`` not instruct clients to store any entry to be used for caching; this settings make it not necessary to use any other headers like ``Pragma`` and ``Expires``.
+As by section ``3. Storing Responses in Caches`` of `RFC 7234 <https://tools.ietf.org/html/rfc7234>`_ the platform uses the ``Cache-control`` HTTP header with the configuration ``no-store`` to instruct clients disable any sort of data cache.
 ::
   Cache-Control: no-store
 
