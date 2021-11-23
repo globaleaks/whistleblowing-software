@@ -29,9 +29,8 @@ factory("Authentication",
           "user_id": response.user_id,
           "role": response.role,
           "require_password_change": response.require_password_change,
-          "require_two_factor": response.require_two_factor,
           "two_factor": response.two_factor,
-          "management_session": response.management_session,
+          "properties": response.properties,
           "homepage": "",
           "preferencespage": ""
         };
