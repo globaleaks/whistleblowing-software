@@ -37,7 +37,7 @@
     "ui-select": "0.19.8"
   },
   "devDependencies": {
-    "eslint": "8.2.0",
+    "eslint": "8.3.0",
     "gettext-parser": "4.2.0",
     "grunt": "1.4.1",
     "grunt-angular-templates": "1.2.0",
