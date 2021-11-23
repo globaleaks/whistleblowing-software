@@ -137,8 +137,6 @@ def validate_password_reset(session, reset_token, auth_code, recovery_key):
 
     session_id = Sessions.new(user.tid, user.id,
                               user.tid, user.role,
-                              user.password_change_needed,
-                              user.two_factor_secret != '',
                               prv_key,
                               user.crypto_escrow_prv_key).id
 
