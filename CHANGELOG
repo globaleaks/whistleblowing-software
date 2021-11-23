@@ -1,3 +1,9 @@
+Changes in version 4.5.7
+    Implement Cross-Origin-Embedder Policy
+    Implement Cross-Origin-Resource Policy
+    Fix issues #3117 and #3118
+    Update translations
+
 Changes in version 4.5.6
     Fix regression on password reset links introduced in 4.4.5
     Optimize serialization of public API reducing set of exported keys
