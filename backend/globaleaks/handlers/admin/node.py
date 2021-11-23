@@ -104,8 +104,9 @@ def db_update_node(session, tid, user_session, request, language):
     config.update('node', request)
 
     # Validate that IP addresses/ranges we're getting are goo
-    if 'ip_filter_admin' in request and request['ip_filter_admin_enable'] and request['ip_filter_admin']:
-        parse_csv_ip_ranges_to_ip_networks(request['ip_filter_admin'])
+    for k in ['admin', 'custodian', 'receiver']:
+        if 'ip_filter_' + k in request and request['ip_filter_' + k + '_enable'] and request['ip_filter_' + k]:
+            parse_csv_ip_ranges_to_ip_networks(request['ip_filter_' + k])
 
     if 'languages_enabled' in request and 'default_language' in request:
         db_update_enabled_languages(session,
