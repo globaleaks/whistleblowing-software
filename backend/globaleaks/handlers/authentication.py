@@ -90,7 +90,7 @@ def login_whistleblower(session, tid, receipt):
 
     db_log(session, tid=tid,  type='whistleblower_login')
 
-    return Sessions.new(tid, wbtip.id, tid, 'whistleblower', False, False, crypto_prv_key, '')
+    return Sessions.new(tid, wbtip.id, tid, 'whistleblower', crypto_prv_key)
 
 
 @transact
@@ -146,7 +146,7 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
 
     db_log(session, tid=tid, type='login', user_id=user.id)
 
-    session = Sessions.new(tid, user.id, user.tid, user.role, user.password_change_needed, user.two_factor_secret != '', crypto_prv_key, user.crypto_escrow_prv_key)
+    session = Sessions.new(tid, user.id, user.tid, user.role, crypto_prv_key, user.crypto_escrow_prv_key)
 
     if user.role == 'receiver' and user.can_edit_general_settings:
         session.permissions['can_edit_general_settings'] = True
@@ -282,10 +282,9 @@ class TenantAuthSwitchHandler(BaseHandler):
                                self.session.user_id,
                                self.session.user_tid,
                                self.session.user_role,
-                               False,
-                               True,
                                self.session.cc,
-                               self.session.ek,
-                               True)
+                               self.session.ek)
+
+        session.properties['management_session'] = True
 
         return {'redirect': '/t/%d/#/login?token=%s' % (tid, session.id)}
