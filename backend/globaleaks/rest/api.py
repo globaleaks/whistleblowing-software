@@ -32,7 +32,8 @@ from globaleaks.handlers import custodian, \
                                 signup, \
                                 sitemap, \
                                 support, \
-                                staticfile
+                                staticfile, \
+                                security
 
 from globaleaks.handlers.admin import context as admin_context
 from globaleaks.handlers.admin import field as admin_field
@@ -161,6 +162,7 @@ api_spec = [
     (r'/api/admin/config/acme/run', https.AcmeHandler),
 
     (r'/.well-known/acme-challenge/([a-zA-Z0-9_\-]{42,44})', https.AcmeChallengeHandler),
+    (r'/.well-known/security.txt', security.SecuritytxtHandler),
 
     # Special Files Handlers
     (r'/robots.txt', robots.RobotstxtHandler),
