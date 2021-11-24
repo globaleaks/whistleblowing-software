@@ -1,6 +1,11 @@
-# 
 # Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# Translators:
+# 246d1139de69599774b6470f9985ef39_d892e0d <60b88f371afdc474c95db754c714c9ed_161423>, 2014
+# a96921fef9a72b1bcbac1fc92cca715a, 2015
 # ِAbu <elsahookie@gmail.com>, 2013
+# Ahmed Essam, 2020
 # Ahmed Essam, 2020
 # amine_Acess <amine@accessnow.org>, 2013
 # amine_Acess <amine@accessnow.org>, 2013
@@ -11,6 +16,8 @@
 # 246d1139de69599774b6470f9985ef39_d892e0d <60b88f371afdc474c95db754c714c9ed_161423>, 2014
 # 246d1139de69599774b6470f9985ef39_d892e0d <60b88f371afdc474c95db754c714c9ed_161423>, 2014
 # Ashraf Damra <dr.d.ashraf@gmail.com>, 2015
+# b33a4006134bb6ee62b30fc0fac5cec6, 2014
+# b665ec457f7dbc468840c2b55b7422d3_ad81431 <382f1c68613d5cfe601c75d66e8ff0dd_51600>, 2013
 # nawaat <contact@nawaat.org>, 2014
 # Dragana Kaurin <dragana.kaurin@localizationlab.org>, 2014
 # Dragana Kaurin <dragana.kaurin@localizationlab.org>, 2014
@@ -29,14 +36,18 @@
 # lamine Kacimi <k_lamine27@yahoo.fr>, 2015
 # mohammad ali <ilir95palira@gmail.com>, 2017
 # Muhammad Elghdban <Mohamed.Elghdban@gmail.com>, 2020
+# Muhammad Elghdban <Mohamed.Elghdban@gmail.com>, 2020
+# Muna Hemoudi, 2021
 # Muna Hemoudi, 2021
 # nawaat <contact@nawaat.org>, 2014
 # ouss <oussjarrouse@gmail.com>, 2016
 # ouss <oussjarrouse@gmail.com>, 2016
 # ArchLord, 2013-2014
+# Raed667, 2013
 # Raed667, 2013-2015
 # Raed667, 2013
 # Rima Sghaier, 2015-2018
+# Rima Sghaier, 2019-2020
 # Rima Sghaier, 2020
 # Rima Sghaier, 2019
 # b665ec457f7dbc468840c2b55b7422d3_ad81431 <382f1c68613d5cfe601c75d66e8ff0dd_51600>, 2013
@@ -44,7 +55,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-23 17:58+0000\n"
+"PO-Revision-Date: 2021-11-24 14:35+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -512,8 +523,63 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
-msgid "File a report"
+msgid "Where did the facts happen?"
+msgstr "أين وقع الحادث؟"
+
+msgid "When did the facts happen?"
+msgstr "متى وقع الحادث؟"
+
+msgid "How are you involved in the reported facts?"
+msgstr "ما هي علاقتك في الحادث موضوع التقرير؟ "
+
+msgid "I’m a victim"
+msgstr "أنا ضحية"
+
+msgid "I’m involved in the facts"
+msgstr "أنا متورط في الحادث"
+
+msgid "I witnessed the facts in person"
+msgstr "لقد شاهدت الحادث شخصيًا"
+
+msgid "I was personally told by a direct witness"
+msgstr "قيل لي شخصيا من قبل شاهد مباشر"
+
+msgid "It is a rumor I heard"
+msgstr "شائعة - سمعت عنها"
+
+msgid "Do you have evidence to support your report?"
+msgstr "هل لديك ادلة تدعم تقريرك؟"
+
+msgid "Please attach the evidence to support your report."
+msgstr "الرجاء إرفاق الأدلة التي تدعم بلاغك"
+
+msgid "Please describe the evidence in detail."
+msgstr "يرجى وصف الصور أو الفيديو أو الأدلة الأخرى بالتفصيل"
+
+msgid ""
+"Thorough descriptions of submitted evidence enhances our ability to evaluate"
+" claims and investigate. Please take care to reference significant portions "
+"of any videos, images or documents submitted."
+msgstr "يساعد الوصف الدقيق للأدلة المقدمة من قدرة فريقنا على تقييم البلاغ والتحقق من الادلة. الرجاء الاشارة إلى المصدر الرئيسي للادلة التي ارفقتها سواء كانت فيديو أو صور أو مستندات."
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "هل أبلغت عن الحادث لجهات أخرى؟"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "يرجى ذكر الجهات التي تواصلت معها عن هذا الحادث"
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "هل قامت هذه الجهات بالتحقيق في تقريرك؟ إذا كان نعم، ما كانت النتائج؟"
+
+msgid "What is the outcome you want to achieve with our support?"
 msgstr ""
+
+msgid "File a report"
+msgstr "تقديم بلاغ"
 
 msgid "Select the context of your report:"
 msgstr "حدد سياق بلاغك:"
@@ -1608,7 +1674,7 @@ msgstr "لقد اتممتم معالج المنصّة بنجاح."
 msgid "Fill out your report"
 msgstr "املأ تقريرك"
 
-msgid "Describe your report in a few words."
+msgid "Please summarize your report in a few words."
 msgstr "الرجاء كتابة نبذة عن البلاغ."
 
 msgid "Describe your report in detail."

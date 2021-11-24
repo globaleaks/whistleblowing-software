@@ -1,7 +1,10 @@
-# 
+# Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
 # Translators:
 # Alexandre Girard <transifex@alexgirard.com>, 2013-2014
-# AO <ao@localizationlab.org>, 2018-2021
+# AO <ao@localizationlab.org>, 2015-2016,2018-2021
+# b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # marco calamari <marcoc@marcoc.it>, 2013
 # Charles Peltier <charles@cl-info.fr>, 2015
 # AO <ao@localizationlab.org>, 2015-2018
@@ -21,9 +24,11 @@
 # Rima Sghaier, 2016
 # rike, 2014
 # u <u@451f.org>, 2014
+# Rima Sghaier, 2016
 # Towinet, 2013-2015
 # Trans-fr, 2015
 # AO <ao@localizationlab.org>, 2015-2016
+# u <u@451f.org>, 2014
 # u <u@451f.org>, 2014
 # Yvette Agostini <mnemosyne@logioshermes.org>, 2015
 # Yvette Agostini <mnemosyne@logioshermes.org>, 2015
@@ -39,7 +44,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-23 17:39+0000\n"
+"PO-Revision-Date: 2021-11-24 14:56+0000\n"
 "Last-Translator: AO <ao@localizationlab.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -506,6 +511,61 @@ msgstr "Accorder l’accès"
 
 msgid "Revoke access"
 msgstr "Révoquer l’accès"
+
+msgid "Where did the facts happen?"
+msgstr "Où les faits se sont-ils produits ?"
+
+msgid "When did the facts happen?"
+msgstr "Quand les faits se sont-ils produits ?"
+
+msgid "How are you involved in the reported facts?"
+msgstr "Quelle est votre implication dans les faits rapportés ?"
+
+msgid "I’m a victim"
+msgstr "Je suis une victime"
+
+msgid "I’m involved in the facts"
+msgstr "Je suis impliqué dans les faits"
+
+msgid "I witnessed the facts in person"
+msgstr "J’ai été témoin des faits en personne"
+
+msgid "I was personally told by a direct witness"
+msgstr "Les faits m’ont été rapportés par un témoin direct"
+
+msgid "It is a rumor I heard"
+msgstr "C’est une rumeur que j’ai entendue "
+
+msgid "Do you have evidence to support your report?"
+msgstr ""
+
+msgid "Please attach the evidence to support your report."
+msgstr ""
+
+msgid "Please describe the evidence in detail."
+msgstr ""
+
+msgid ""
+"Thorough descriptions of submitted evidence enhances our ability to evaluate"
+" claims and investigate. Please take care to reference significant portions "
+"of any videos, images or documents submitted."
+msgstr ""
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr ""
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr ""
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr ""
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr ""
 
 msgid "File a report"
 msgstr "Remplir un signalement"
@@ -1603,8 +1663,8 @@ msgstr "Vous avez terminé avec succès l’assistant de la plateforme."
 msgid "Fill out your report"
 msgstr "Remplissez votre signalement"
 
-msgid "Describe your report in a few words."
-msgstr "Décrivez votre signalement en quelques mots."
+msgid "Please summarize your report in a few words."
+msgstr "Veuillez résumer votre signalement en quelques mots."
 
 msgid "Describe your report in detail."
 msgstr "Décrivez votre signalement en détail."

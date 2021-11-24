@@ -1,4 +1,6 @@
-# 
+# Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
 # Translators:
 # Christine Ivy <christineivy19@gmail.com>, 2021
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
@@ -6,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-15 15:18+0000\n"
+"PO-Revision-Date: 2021-11-24 14:38+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Burmese (http://www.transifex.com/otf/globaleaks/language/my/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -473,6 +475,61 @@ msgstr ""
 
 msgid "Revoke access"
 msgstr ""
+
+msgid "Where did the facts happen?"
+msgstr "ဘယ်နေရာတွင် အဖြစ်အပျက် ဖြစ်ပွားခဲ့သလဲ။"
+
+msgid "When did the facts happen?"
+msgstr "ဘယ်အချိန်တွင် အဖြစ်အပျက် ဖြစ်ပွားခဲ့သလဲ။"
+
+msgid "How are you involved in the reported facts?"
+msgstr "အစီရင်ခံထားသော အဖြစ်အပျက်တွင် သင်မည်သို့ ပါဝင်ပတ်သက်သလဲ။"
+
+msgid "I’m a victim"
+msgstr "ကျွန်ုပ်သည် ထိခိုက်နစ်နာသူ ဖြစ်သည်"
+
+msgid "I’m involved in the facts"
+msgstr "ကျွန်ုပ်သည် အဖြစ်အပျက်တွင် ပါဝင်ပတ်သက်သည်"
+
+msgid "I witnessed the facts in person"
+msgstr "ကျွန်ုပ်သည် အဖြစ်အပျက်ကို ကိုယ်တွေ့မြင်ခဲ့သည်"
+
+msgid "I was personally told by a direct witness"
+msgstr "ကျွန်ုပ်ကို မျက်မြင်သက်သေကိုယ်တိုင်က ပြောပြခဲ့သည်"
+
+msgid "It is a rumor I heard"
+msgstr "ကောလဟာလ--ဤအဖြစ်အပျက်အကြောင်း ကျွန်ုပ် ကြားဖူးသည်"
+
+msgid "Do you have evidence to support your report?"
+msgstr "သင့်အစီရင်ခံစာကို ထောက်ခံရန် သင့်တွင် သက်သေရှိပါသလား။"
+
+msgid "Please attach the evidence to support your report."
+msgstr "သင့်အစီရင်ခံစာကို ထောက်ခံမည့် သက်သေကို ပူးတွဲတင်ပြပါ။"
+
+msgid "Please describe the evidence in detail."
+msgstr "ကျေးဇူးပြု၍ သက်သေအကြောင်း အသေးစိတ်ဖော်ပြပါ။"
+
+msgid ""
+"Thorough descriptions of submitted evidence enhances our ability to evaluate"
+" claims and investigate. Please take care to reference significant portions "
+"of any videos, images or documents submitted."
+msgstr "တင်ပြထားသော သက်သေအကြောင်း ပြည့်စုံစွာဖော်ပြခြင်းက အဆိုတင်ပြချက်များကို အကဲဖြတ်ရန်နှင့် စုံစမ်းစစ်ဆေးရန် ကျွန်ုပ်တို့ကို အထောက်အကူပြုပါသည်။ ကျေးဇူးပြု၍ သက်သေအဖြစ် တင်ထားသည့် ဗီဒီယိုများ၊ ရုပ်ပုံများ (သို့) စာရွက်စာတမ်းများမှ အရေးကြီးအစိတ်အပိုင်းများကို ကိုးကားဖော်ပြပါ။"
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "သင်သည် ဤအဖြစ်အပျက်ကို အခြားအဖွဲ့အစည်းများထံ အစီရင်ခံထားပါသလား။"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "ကျေးဇူးပြု၍ ဤအဖြစ်အပျက်အကြောင်း သင်အကြောင်းကြားထားသည့် အဖွဲ့အစည်းများကို ဖော်ပြပါ။"
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "ဤအဖွဲ့အစည်းများသည် သင်၏ အဆိုတင်ပြမှုများကို စုံစမ်းစစ်ဆေးခဲ့သလား။ စစ်ဆေးခဲ့လျှင် မည်သည့်ရလဒ် ရခဲ့သလဲ။"
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "သင်မြင်တွေ့လိုသော/ရရှိလိုသော ရလဒ်မှာ ဘာလဲ။"
 
 msgid "File a report"
 msgstr "အစီရင်ခံစာ တင်ပါ"
@@ -1570,7 +1627,7 @@ msgstr "သင် ပလက်ဖောင်းဝိဇ္ဇာကို ပ�
 msgid "Fill out your report"
 msgstr "သင့်အစီရင်ခံစာကို ဖြည့်ပါ"
 
-msgid "Describe your report in a few words."
+msgid "Please summarize your report in a few words."
 msgstr "သင့်အစီရင်ခံစာအကြောင်း စာလုံးအနည်းငယ်ဖြင့် ဖော်ပြပါ။ "
 
 msgid "Describe your report in detail."

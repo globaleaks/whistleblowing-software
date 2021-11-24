@@ -1,4 +1,6 @@
-# 
+# Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
 # Translators:
 # Anja Xhakani <anja@ura.design>, 2021
 # Besnik Bleta <besnik@programeshqip.org, 2021
@@ -8,10 +10,13 @@
 # Florent <fspahija@kdi-kosova.org>, 2021
 # F Nilaj <activisti@protonmail.com>, 2016
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2021
+# Jakub Srna <jaksrn@gmail.com>, 2014
+# Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
+# Tibor Deak <deaktib@gmail.com>, 2019,2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-15 15:24+0000\n"
+"PO-Revision-Date: 2021-11-24 14:34+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,454 +26,454 @@ msgstr ""
 "mime-version: 1.0\n"
 
 msgid "Log in"
-msgstr "Hyni"
+msgstr "Prihlásiť sa"
 
 msgid "Main configuration"
-msgstr "Formësimi kryesor"
+msgstr "Hlavná konfigurácia"
 
 msgid "Theme customization"
-msgstr "Përshtatje teme"
+msgstr "Prispôsobenie témy"
 
 msgid "Languages"
-msgstr "Gjuhë"
+msgstr "Jazyky"
 
 msgid "Text customization"
-msgstr "Përshtatje teksti"
+msgstr "Prispôsobenie textu"
 
 msgid "Advanced settings"
-msgstr "Rregullime të mëtejshme"
+msgstr "Pokročilé nastavenia"
 
 msgid "Question templates"
-msgstr "Gjedhe pyetjesh"
+msgstr "Šablóny otázok"
 
 msgid "Questionnaires"
-msgstr "Pyetësorë"
+msgstr "Dotazníky"
 
 msgid "Add new questionnaire"
-msgstr "Shtoni pyetësor të ri"
+msgstr "Pridať nový dotazník"
 
 msgid "Home"
-msgstr "Kreu"
+msgstr "Domov"
 
 msgid "Changelog"
-msgstr "Regjistër ndryshimesh"
+msgstr "Posledné zmeny"
 
 msgid "License"
-msgstr "Licencë"
+msgstr "Licencia"
 
 msgid "Notification templates"
-msgstr "Gjedhe njoftimesh"
+msgstr "Šablóny upozornenia"
 
 msgid "Delete"
-msgstr "Fshije"
+msgstr "Odstrániť"
 
 msgid "Anomalies"
-msgstr "Anomali"
+msgstr "Anomálie"
 
 msgid "Preferences"
-msgstr "Parapëlqime"
+msgstr "Predvoľby"
 
 msgid "Notification settings"
-msgstr "Rregullime njoftimesh"
+msgstr "Nastavenie upozornení"
 
 msgid "file unavailable"
-msgstr "kartelë jo e passhme"
+msgstr "súbor nie je k dispozícii"
 
 msgid "Date"
-msgstr "Datë"
+msgstr "Dátum"
 
 msgid "Expiration date"
-msgstr "Datë skadimi"
+msgstr "Dátum vypršania platnosti"
 
 msgid "Last Access"
-msgstr "Hyrja e Fundit"
+msgstr "Posledný prístup"
 
 msgid "Files"
-msgstr "Kartela"
+msgstr "Súbory"
 
 msgid "Comments"
-msgstr "Komente"
+msgstr "Komentáre"
 
 msgid "Messages"
-msgstr "Mesazhe"
+msgstr "Správy"
 
 msgid "Details"
-msgstr "Hollësi"
+msgstr "Detaily"
 
 msgid "Platform wizard"
-msgstr "Ndihmës platforme"
+msgstr "Sprievodca platformou"
 
 msgid "CREDIT CARD"
-msgstr "KARTË KREDITI"
+msgstr "KREDITNÁ KARTA"
 
 msgid "YOUR NAME"
-msgstr "EMRI JUAJ"
+msgstr "VAŠE MENO"
 
 msgid "Label the report"
-msgstr "I vini raportimit një etiketë"
+msgstr "Označte oznámenie štítkom"
 
 msgid "Postpone the expiration date"
-msgstr "Shtyjini datën e skadimit"
+msgstr "Odložiť vypršanie platnosti"
 
 msgid "Select all"
-msgstr "Përzgjidhi krejt"
+msgstr "Označiť všetko"
 
 msgid "Deselect all"
-msgstr "Shpërzgjidhi krejt"
+msgstr "Neoznačiť nič"
 
 msgid "Refresh"
-msgstr "Rifreskoje"
+msgstr "Obnoviť"
 
 msgid "Context"
-msgstr "Kontekst"
+msgstr "Kontext"
 
 msgid "Preview"
-msgstr "Parashiheni"
+msgstr "Náhľad"
 
 msgid "The whistleblower has already read the last update"
-msgstr "Nxjerrësi i së fshehtës e ka lexuar tashmë përditësimin e fundit"
+msgstr "Oznamovateľ čítal poslednú aktualizáciu."
 
 msgid "The whistleblower has not read the last update yet"
-msgstr "Nxjerrësi i së fshehtës s’e ka lexuar ende përditësimin e fundit"
+msgstr "Oznamovateľ ešte nečítal poslednú aktualizáciu."
 
 msgid "Move up"
-msgstr "Ngjite"
+msgstr "Posunúť hore"
 
 msgid "Move down"
-msgstr "Zbrite"
+msgstr "Posunúť dole"
 
 msgid "Move left"
-msgstr "Lëvize majtas"
+msgstr "Posunúť doľava"
 
 msgid "Move right"
-msgstr "Lëvize djathtas"
+msgstr "Posunúť doprava"
 
 msgid "Import"
-msgstr "Importoje"
+msgstr "Import"
 
 msgid "Export"
-msgstr "Eksportoje"
+msgstr "Export"
 
 msgid "Save all"
-msgstr "Ruaji krejt"
+msgstr "Uložiť všetko"
 
 msgid "Access control"
-msgstr "Kontroll hyrjesh"
+msgstr "Riadenie prístupu"
 
 msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Lidhja është siguruar me HTTPS, duke garantuar fshehtësi."
+msgstr "Pripojenie bolo zabezpečené pomocou protokolu HTTPS, ktorý zabezpečuje dôvernosť."
 
 msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
-msgstr "Lidhja është siguruar me Tor, duke garantuar fshehtësi dhe anonimitet."
+msgstr "Pripojenie bolo zabezpečené pomocou Tor, čo zaisťuje dôvernosť a anonymitu."
 
 msgid "Number"
-msgstr "Numër"
+msgstr "Číslo"
 
 msgid "Email"
 msgstr "Email"
 
 msgid "Regular expression validator"
-msgstr "Vlerësues shprehjesh të rregullta"
+msgstr "Validátor regulárnych výrazov"
 
 msgid "Minimum number of input characters"
-msgstr "Numër minimum shenjash që mund të jepen"
+msgstr "Minimálny počet vstupných znakov"
 
 msgid "Maximum number of input characters"
-msgstr "Numër maksimum shenjash që mund të jepen"
+msgstr "Maximálny počet vstupných znakov"
 
 msgid "Earliest selectable date"
-msgstr "Data më e hershme e përzgjedhshme"
+msgstr "Najskorší možný dátum"
 
 msgid "Latest selectable date"
-msgstr "Data më e vonshme e përzgjedhshme"
+msgstr "Najneskorší možný dátum"
 
 msgid "0 = auto"
-msgstr "0 = auto"
+msgstr "0 = automaticky"
 
 msgid "Yes"
-msgstr "Po"
+msgstr "Áno"
 
 msgid "No"
-msgstr "Jo"
+msgstr "Nie"
 
 msgid "Attachment"
-msgstr "Bashkëngjitje"
+msgstr "Príloha"
 
 msgid "Attachments"
-msgstr "Bashkëngjitje"
+msgstr "Prílohy"
 
 msgid "Change your password"
-msgstr "Ndryshoni fjalëkalimin tuaj"
+msgstr "Zmeniť heslo"
 
 msgid "User"
-msgstr "Përdorues"
+msgstr "Používateľ"
 
 msgid "Motivation"
-msgstr "Motivim"
+msgstr "Motivácia"
 
 msgid "Status"
-msgstr "Gjendje"
+msgstr "Stav"
 
 msgid "Request motivation"
-msgstr "Motivim kërkese"
+msgstr "Motivácia žiadosti"
 
 msgid "Reply motivation"
-msgstr "Motivim përgjigjeje"
+msgstr "Zodpovedať motiváciu"
 
 msgid "Request status"
-msgstr "Gjendje kërkese"
+msgstr "Stav požiadavky"
 
 msgid "Custodian"
-msgstr "Ruajtës"
+msgstr "Správca"
 
 msgid "Identity"
-msgstr "Identitet"
+msgstr "Identita"
 
 msgid "Access requested"
-msgstr "U kërkua hyrje"
+msgstr "Vyžiadaný prístup"
 
 msgid "Request access to the whistleblower's identity"
-msgstr "Kërko hyrje te identiteti i nxjerrësit të së fshehtës"
+msgstr "Vyžiadaný prístup k identite oznamovateľa"
 
 msgid "Please write a motivation"
-msgstr "Ju lutemi, shkruani një motivim"
+msgstr "Prosím vyplňte motiváciu"
 
 msgid "Reply to the request"
-msgstr "Përgjigjuni kërkesës"
+msgstr "Odpovedať na požiadavku"
 
 msgid "Authorized"
-msgstr "E autorizuar"
+msgstr "Autorizovaný"
 
 msgid "Denied"
-msgstr "E mohuar"
+msgstr "Odmietnutý"
 
 msgid "Waiting for authorization"
-msgstr "Po pritet për autorizim"
+msgstr "Čaká sa na autorizáciu"
 
 msgid "New request"
-msgstr "Kërkesë e re"
+msgstr "Nová požiadavka"
 
 msgid "Authorize"
-msgstr "Autorizoje"
+msgstr "Autorizovať"
 
 msgid "Deny"
-msgstr "Hidhe poshtë"
+msgstr "Zamietnuť"
 
 msgid "Deny access to the whistleblower's identity"
-msgstr "Hidhe poshtë kërkesën për hyrje te identiteti i nxjerrësit të së fshehtës"
+msgstr "Zamietnuť prístup k identite oznamovateľa"
 
 msgid "Authorize access to the whistleblower's identity"
-msgstr "Autorizoni hyrje te identiteti i nxjerrësit të së fshehtës"
+msgstr "Povoliť prístup k identite oznamovateľa"
 
 msgid "Templates"
-msgstr "Gjedhe"
+msgstr "Šablóny"
 
 msgid "URL redirects"
-msgstr "Ridrejtime URL-sh"
+msgstr "Presmerovanie URL"
 
 msgid "Anomaly detection thresholds"
-msgstr "Pragje pikasjeje anomalish"
+msgstr "Prahové hodnoty detekcie anomálií"
 
 msgid "Available disk space"
-msgstr "Hapësirë e gatshme në disk"
+msgstr "Voľné miesto na disku"
 
 msgid "Last update"
-msgstr "Përditësimi i fundit më"
+msgstr "Posledná aktualizácia"
 
 msgid "Disable notifications to administrators"
-msgstr "Çaktivizo njoftimet për përgjegjësit"
+msgstr "Vypnúť notifikácie administrátorom"
 
 msgid "Disable notifications to custodians"
-msgstr "Çaktivizo njoftimet për ruajtësit"
+msgstr "Vypnúť notifikácie správcom"
 
 msgid "Disable notifications to recipients"
-msgstr "Çaktivizo njoftimet për marrësit"
+msgstr "Vypnúť notifikácie prijemcom"
 
 msgid "Score"
-msgstr "Pikë"
+msgstr "Skóre"
 
 msgid "Trigger question"
-msgstr "Pyetje aktivizimi"
+msgstr "Spúštacia otázka"
 
 msgid "Triggered by score:"
-msgstr "Aktivizuar nga sa pikë:"
+msgstr "Spustené na základe skóre:"
 
 msgid "Weak"
-msgstr "I dobët"
+msgstr "Slabé"
 
 msgid "Acceptable"
-msgstr "I pranueshëm"
+msgstr "Akceptovateľné"
 
 msgid "Strong"
-msgstr "I fortë"
+msgstr "Silné"
 
 msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Tekst i shfaqur në krye të ndërfaqes, për përzgjedhje kontekstesh"
+msgstr "Text zobrazený na vrchu rozhrania pre výber kontextov"
 
 msgid "Silence email notifications"
-msgstr "Heshtoji njoftimet me email"
+msgstr "Tiché emailové notifikácie"
 
 msgid "Turn on email notifications"
-msgstr "Aktivizo njoftime me email"
+msgstr "Zapnúť emailové notifikácie"
 
 msgid "Input validation"
-msgstr "Vlerësim i çka jepet"
+msgstr "Kontrola vstupu"
 
 msgid "Email address"
-msgstr "Adresë email"
+msgstr "Emailová adresa"
 
 msgid "Custom"
-msgstr "Vetjake"
+msgstr "Vlastné"
 
 msgid "None"
-msgstr "Asnjë"
+msgstr "Žiaden"
 
 msgid "Regular expression"
-msgstr "Shprehje e rregullt"
+msgstr "Regulárny výraz"
 
 msgid "Search"
-msgstr "Kërko"
+msgstr "Hľadať"
 
 msgid ""
 "This custom text is no longer displayed on the platform. The original text "
 "has either changed or been removed."
-msgstr "Ky tekst vetjak nuk shfaqet më në platformë. Ose teksti origjinal është ndryshuar, ose është hequr."
+msgstr "Tento upravený text sa naďalej v rozhraní nezobrazuje. Pôvodný text bol zmenený alebo presunutý."
 
 msgid "Audit log"
-msgstr "Regjistër auditimi"
+msgstr "audit log"
 
 msgid "Stats"
-msgstr "Statistika"
+msgstr "Štatistiky"
 
 msgid "Activities"
-msgstr "Veprimtari"
+msgstr "Aktivity"
 
 msgid "Reports"
-msgstr "Raportime"
+msgstr "Podania"
 
 msgid "Report"
-msgstr "Raportim"
+msgstr "Podanie"
 
 msgid "Users"
-msgstr "Përdorues"
+msgstr "Používatelia"
 
 msgid "From"
-msgstr "Nga"
+msgstr "Od"
 
 msgid "Number of downloads"
-msgstr "Numër shkarkimesh"
+msgstr "Počet stiahnutí"
 
 msgid "File size not accepted."
-msgstr "Madhësi kartele jo e pranuar."
+msgstr "Veľkosť súboru nie je akceptovaná."
 
 msgid "Maximum file size is:"
-msgstr "Madhësia maksimum për kartela është:"
+msgstr "Maximálna veľkosť súboru je:"
 
 msgid "Scheduled jobs"
-msgstr "Akte të planifikuar"
+msgstr "Plánované úlohy"
 
 msgid "Sites management"
-msgstr "Administrim sajtesh"
+msgstr "Správa stránok"
 
 msgid "Regenerate"
-msgstr "Riprodhoji"
+msgstr "Obnoviť"
 
 msgid "Display options alphabetically"
-msgstr "Mundësitë shfaqi alfabetikisht"
+msgstr "Zobraziť v abecednom poradí"
 
 msgid "Enable email notifications for:"
-msgstr "Aktivizo njoftime me email për:"
+msgstr "Povoliť emailové notifikácie pre:"
 
 msgid "Disable"
-msgstr "Çaktivizoje"
+msgstr "Zakázať"
 
 msgid "Remove"
-msgstr "Hiqe"
+msgstr "Odstrániť"
 
 msgid "Use as default"
-msgstr "Përdore si parazgjedhje"
+msgstr "Použiť ako prednastavené"
 
 msgid "Collapse"
-msgstr "Tkurre"
+msgstr "Zbaliť"
 
 msgid "Expand"
-msgstr "Zgjeroje"
+msgstr "Rozbaliť"
 
 msgid "Select"
-msgstr "Përzgjidhe"
+msgstr "Vyberte"
 
 msgid "Deselect"
 msgstr "Shpërzgjidhe"
 
 msgid "Surname"
-msgstr "Mbiemër"
+msgstr "Priezvisko"
 
 msgid "New"
-msgstr "I ri"
+msgstr "Nové"
 
 msgid "Opened"
-msgstr "I hapur"
+msgstr "Otvorené"
 
 msgid "Closed"
-msgstr "I mbyllur"
+msgstr "Zatvorené"
 
 msgid "Placeholder"
-msgstr "Vendmbajtëse"
+msgstr "Zástupný"
 
 msgid "Print"
-msgstr "Shtype"
+msgstr "Vytlačiť"
 
 msgid "Previous"
-msgstr "I mëparshmi"
+msgstr "Predchádzajúce"
 
 msgid "Next"
-msgstr "Pasuesi"
+msgstr "Ďalej"
 
 msgid "First"
-msgstr "I pari"
+msgstr "Prvé"
 
 msgid "Last"
-msgstr "I fundit"
+msgstr "Posledné"
 
 msgid "Send a test email to your email address."
-msgstr "Dërgoni një email provë te adresa juaj email."
+msgstr "Poslať testovací email na Vašu emailovú adresu."
 
 msgid "Block the submission"
-msgstr "Bllokoje parashtrimin"
+msgstr "Blokovať podanie"
 
 msgid "Skip the recipient account creation."
-msgstr "Anashkalo krijimin e llogarisë së marrësit."
+msgstr "Preskočiť vytvorenie účtu príjemcu."
 
 msgid "Send activation link"
-msgstr "Dërgo lidhje aktivizimi"
+msgstr "Odoslať odkaz k aktivácii."
 
 msgid "Password reset"
-msgstr "Ricaktim fjalëkalimi"
+msgstr "Resetovať heslo"
 
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr "Një ose disa marrës s’kanë kryer ende hyrjen e parë. Kjo do të thotë se s’do të marrin raportime."
+msgstr "Jeden alebo viacero príjemcov doteraz nevykonalo prvé prihlásenie. To znamená, že nebudú dostávať správy."
 
 msgid "This user has not performed the first login yet."
-msgstr "Ky përdorues s’ka kryer ende hyrjen e parë."
+msgstr "Tento používateľ zatiaľ nevykonal prvé prihlásenie."
 
 msgid "seconds"
-msgstr "sekonda"
+msgstr "sekúnd"
 
 msgid "This domain name is not available."
-msgstr "Ky emër përkatësie s’është i passhëm."
+msgstr "Tento názov domény nie je k dispozícii."
 
 msgid "Mark as important"
 msgstr "Vëri shenjë si i rëndësishëm"
 
 msgid "Copy to clipboard"
-msgstr "Kopjoje në të papastër"
+msgstr "Kopírovať do schránky"
 
 msgid "Logout"
-msgstr "Dalje"
+msgstr "Odhlásiť sa"
 
 msgid "Give this recipient ability to grant user access to reports"
 msgstr "Jepi këtij marrësi aftësinë të akordojë hyrje përdoruesish te raportimet"
@@ -479,143 +484,198 @@ msgstr "Akordoji hyrje"
 msgid "Revoke access"
 msgstr "Shfuqizoji hyrjen"
 
+msgid "Where did the facts happen?"
+msgstr "Ku ndodhën gjërat?"
+
+msgid "When did the facts happen?"
+msgstr "Ku ndodhën gjërat?"
+
+msgid "How are you involved in the reported facts?"
+msgstr "Si lidheni ju me gjërat e raportuara?"
+
+msgid "I’m a victim"
+msgstr "Jam viktimë"
+
+msgid "I’m involved in the facts"
+msgstr "Jam i përzierë me gjërat"
+
+msgid "I witnessed the facts in person"
+msgstr "I pashë gjërat me sytë e mi"
+
+msgid "I was personally told by a direct witness"
+msgstr "M’i ka treguar një dëshmitar i drejtpërdrejtë"
+
+msgid "It is a rumor I heard"
+msgstr "E kam me të dëgjuar"
+
+msgid "Do you have evidence to support your report?"
+msgstr "Keni fakte për të mbështetur raportimin tuaj?"
+
+msgid "Please attach the evidence to support your report."
+msgstr "Ju lutemi, bashkëngjitni faktet për të mbështetur raportimin tua."
+
+msgid "Please describe the evidence in detail."
+msgstr "Ju lutemi, përshkruajini hollësisht faktet."
+
+msgid ""
+"Thorough descriptions of submitted evidence enhances our ability to evaluate"
+" claims and investigate. Please take care to reference significant portions "
+"of any videos, images or documents submitted."
+msgstr "Përshkrimi shterues i fakteve të parashtruar zgjeron aftësinë tonë të peshojmë ç’pretendohet dhe të hetojmë. Ju lutemi, bëni kujdes të jepni referencë për pjesë domethënëse të çfarëdo videoje, figure apo dokumenti të parashtruar."
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "A i keni raportuar gjërat te të tjera ente dhe/ose individë?"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "Ju lutemi, radhitni entet dhe/ose individët që keni informuar mbi këto gjëra."
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "A i kanë hetuar pretendimet tuaja këto ente? Nëse po, ç’doli prej kësaj?"
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "Cili është përfundimi që doni të arrini me mbështetjen tonë?"
+
 msgid "File a report"
-msgstr "Depozitoni një raportim"
+msgstr "podať oznámenie"
 
 msgid "Select the context of your report:"
-msgstr "Përzgjidhni kontekstin e raportimit tuaj:"
+msgstr "Vyberte obsah správy:"
 
 msgid "Before proceeding, please set a new password."
-msgstr "Para se të shkoni më tej, ju lutemi, caktoni një fjalëkalim të ri."
+msgstr "Než budete pokračovať, nastavte prosím nové heslo."
 
 msgid "New password"
-msgstr "Fjalëkalim i ri"
+msgstr "Nové heslo"
 
 msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Fjalëkalimi i zgjedhur është shumë i dobët. Një fjalëkalim i vlefshëm duhet të jetë të paktën 10 shenja i gjatë dhe të përmbajë një larmi shenjash, përfshi të paktën një shkronjë të vogël, një shkronjë të madhe, një numër dhe një shenjë speciale."
+msgstr "Zvolené heslo je príliš slabé. Heslo by malo mať aspoň 10 znakov a malo by obsahovať malé písmeno, veľké písmeno, číslo a špeciálny znak."
 
 msgid "The new password must be different from the current one."
-msgstr "Fjalëkalimi i ri duhet të jetë i ndryshëm nga ai i tanishmi."
+msgstr "Nové heslo sa musí líšiť od aktuálneho."
 
 msgid "Type your new password again"
-msgstr "Shtypni sërish fjalëkalimin tuaj të ri"
+msgstr "Zadajte ešte raz Vaše nové heslo"
 
 msgid "The two passwords do not match"
-msgstr "Dy fjalëkalimet s’përputhen"
+msgstr "Heslá sa nezhodujú"
 
 msgid "The new password must differ from the previous."
-msgstr "Fjalëkalimi i ri duhet të jetë i ndryshëm nga i mëparshmi."
+msgstr "Nové heslo musí byť odlišné od predchádzajúceho."
 
 msgid "Proceed"
-msgstr "Kryeje"
+msgstr "Pokračovať"
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr "Para se të ecet më tej, ju lutemi, aktivizoni mirëfilltësimin dyfaktorësh."
+msgstr "Pred pokračovaním povoľte dvojfaktorové overenie."
 
 msgid "Enable"
-msgstr "Aktivizoje"
+msgstr "Povoliť"
 
 msgid "Disable submissions"
-msgstr "Çaktivizo parashtrime"
+msgstr "Zakázať podanie"
 
 msgid "Enable encryption"
-msgstr "Aktivizo fshehtëzim"
+msgstr "Povoliť šifrovanie"
 
 msgid "Enable administrators to change user passwords"
-msgstr "Aktivizo ndryshim fjalëkalimesh përdoruesish nga përgjegjësit"
+msgstr "Umožnite správcom meniť heslá užívateľov"
 
 msgid "Administrators authorized to change user passwords:"
-msgstr "Përgjegjës të autorizuar për ndryshime fjalëkalimesh përdoruesish:"
+msgstr "Správcovia majú oprávnenie na zmenu užívateľských hesiel:"
 
 msgid "Enable multisite feature"
-msgstr "Aktivizo veçorinë shumësajtësh"
+msgstr "Povoliť funkciu multisite"
 
 msgid "Enable simplified login"
-msgstr "Aktivizo hyrje të thjeshtuar"
+msgstr "Povoliť zjednodušené prihlásenie"
 
 msgid "Enable search engines indexing"
-msgstr "Aktivizo indeksim nga motorë kërkimesh"
+msgstr "Povoliť vyhľadávačom indexovanie"
 
 msgid "Enable the receipt hint"
-msgstr "Aktivizo ndihmëz dëftese"
+msgstr "Povoliť možnosť pre príjem"
 
 msgid "Default questionnaire"
-msgstr "Pyetësor parazgjedhje"
+msgstr "Prednastavený dotazník"
 
 msgid "Show contexts in alphabetical order"
-msgstr "Kontekstet shfaqi në rend alfabetik"
+msgstr "Ukázať kontexty v abecednom poradí"
 
 msgid "Size limit for file attachments"
-msgstr "Kufi madhësie për bashkëngjitje kartelash"
+msgstr "Limit veľkosti pre prílohy"
 
 msgid "megabytes"
-msgstr "megabajte"
+msgstr "MB"
 
 msgid "Enable HSTS preload"
-msgstr "Aktivizo parangarkim HSTS"
+msgstr "Povoliť predbežné načítanie HSTS"
 
 msgid "Require two factor authentication"
-msgstr "Kërko doemos mirëfilltësim dyfaktorësh"
+msgstr "Vyžaduje dvojfaktorové overenie"
 
 msgid "Password change interval"
-msgstr "Interval ndryshimi fjalëkalimi"
+msgstr "Interval zmeny hesla"
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
-msgstr "Për arsye sigurie, ndryshimet e fjalëkalimeve në intervale të rregullta janë të detyrueshme."
+msgstr "Z bezpečnostných dôvodov sú v pravidelných intervaloch vyžadované zmeny hesla."
 
 msgid "Set the value to 0 to disable this feature."
-msgstr "Për ta çaktivizuar këtë veçori, jepini vlerën 0."
+msgstr "Nastavte hodnotu na 0, ak chcete túto funkciu zakázať."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr "Numër ditësh deri në njoftim të përdoruesve për raportime të palexuar"
+msgstr "Počet dní do oznámenia neprečítaných správ používateľom"
 
 msgid "Enable custodian user role"
-msgstr "Aktivizo rol përdoruesi ruajtës"
+msgstr " Povoliť úlohu depozitára"
 
 msgid "Enable scoring system"
-msgstr "Aktivizo sistem pikësh"
+msgstr "Aktivovať systém hodnotenia"
 
 msgid "Enable private annotations"
-msgstr "Aktivizo shënime private"
+msgstr "Povoliť súkromné anotácie"
 
 msgid "Logging level"
-msgstr "Nivel regjistrimi"
+msgstr "Prihlasovacia úroveň"
 
 msgid "Log accesses of internal users"
-msgstr "Regjistro hyrje përdoruesish të brendshëm"
+msgstr "Prístupy interných používateľov"
 
 msgid "Notify administrators of software problems"
-msgstr "Njoftoji përgjegjësit për probleme software-i"
+msgstr "Notifikovať administrátorov o problémoch so softvérom"
 
 msgid "Notify developers of software problems"
-msgstr "Njoftoji zhvilluesit për probleme software-i"
+msgstr "Notifikovať vývojárov ohľadom problémov so softvérom"
 
 msgid ""
 "By enabling this feature, you will contribute to the development and "
 "security of the platform."
-msgstr "Duke aktivizuar këtë veçori, do të kontribuoni në zhvillimin dhe sigurinë e platformës."
+msgstr "Povolením tejto voľby budete prispievať k vývoji a zabezpečeniu tejto platformy."
 
 msgid "Save"
-msgstr "Ruaje"
+msgstr "Uložiť"
 
 msgid "Reset reports"
-msgstr "Ktheji raportimet te parazgjedhjet"
+msgstr "Resetujte podanie"
 
 msgid "Low"
-msgstr "I ulët"
+msgstr "Nízke"
 
 msgid "High"
-msgstr "I lartë"
+msgstr "Vysoká"
 
 msgid "percentage"
-msgstr "përqindje"
+msgstr "percenta"
 
 msgid "Type"
-msgstr "Lloj"
+msgstr "Typ"
 
 msgid "Severity"
 msgstr "Rëndësi"
@@ -627,1261 +687,1261 @@ msgid "ID"
 msgstr "ID"
 
 msgid "Username"
-msgstr "Emër përdoruesi"
+msgstr "Používateľské meno"
 
 msgid "Role"
-msgstr "Rol"
+msgstr "Role"
 
 msgid "Name"
-msgstr "Emër"
+msgstr "Meno"
 
 msgid "Creation date"
-msgstr "Datë krijimi"
+msgstr "Dátum vytvorenia"
 
 msgid "Last access"
-msgstr "Hyrja e fundit"
+msgstr "Posledný prístup"
 
 msgid "Connection"
-msgstr "Lidhje"
+msgstr "Spojenie"
 
 msgid "Whistleblower's last access"
-msgstr "Hyrja e fundit nga nxjerrës të fshehtash"
+msgstr "Posledný prístup oznamovateľa"
 
 msgid "Substatuses"
-msgstr "Nëngjendje"
+msgstr "Podstavy"
 
 msgid "Add"
-msgstr "Shtoje"
+msgstr "Pridať"
 
 msgid "Label"
-msgstr "Etiketë"
+msgstr "Štítok"
 
 msgid "This field is mandatory"
-msgstr "Kjo fushë është e detyrueshme"
+msgstr "Toto pole je povinné"
 
 msgid "Edit"
-msgstr "Përpunojeni"
+msgstr "Upraviť"
 
 msgid "Cancel"
-msgstr "Anuloje"
+msgstr "Zrušiť"
 
 msgid "Report statuses"
-msgstr "Gjendje raportimesh"
+msgstr "Stav podania"
 
 msgid "Logo"
-msgstr "Stemë"
+msgstr "Logo"
 
 msgid "Project name"
-msgstr "Emër projekti"
+msgstr "Názov projektu"
 
 msgid "Description"
-msgstr "Përshkrim"
+msgstr "Popis"
 
 msgid "Homepage title"
-msgstr "Titull faqeje hyrëse"
+msgstr "Názov domovskej stránky"
 
 msgid "Presentation"
-msgstr "Paraqitje"
+msgstr "Prezentácia"
 
 msgid "Question to solicit possible whistleblowers"
-msgstr "Pyetje për tërheqje nxjerrësish të mundshëm të fshehtash"
+msgstr "Otázky pre získavanie možných oznamovateľov"
 
 msgid "Whistleblowing button"
-msgstr "Buton nxjerrjeje të fshehtash"
+msgstr "Tlačidlo oznamovateľa"
 
 msgid "Disclaimer"
 msgstr "Klauzolë"
 
 msgid "Footer"
-msgstr "Fundfaqe"
+msgstr "Pätička"
 
 msgid "Upload"
-msgstr "Ngarkoje"
+msgstr "Načítať"
 
 msgid "Download"
-msgstr "Shkarkoje"
+msgstr "Stiahnuť"
 
 msgid "Language:"
-msgstr "Gjuhë:"
+msgstr "Jazyk:"
 
 msgid "Add custom text"
-msgstr "Shtoni tekst vetjak"
+msgstr "Pridať vlastný text"
 
 msgid "Custom text"
-msgstr "Tekst vetjak"
+msgstr "Vlastný text"
 
 msgid "Original text"
-msgstr "Teksti origjinal"
+msgstr "Originálny text"
 
 msgid "Original translation"
-msgstr "Përkthimi origjinal"
+msgstr "Originálny preklad"
 
 msgid "Custom translation"
-msgstr "Përkthim vetjak"
+msgstr "Vlastný preklad"
 
 msgid "Contexts"
-msgstr "Kontekste"
+msgstr "Kontexty"
 
 msgid "Hidden"
-msgstr "I fshehur"
+msgstr "Skrytý"
 
 msgid "Disabled"
-msgstr "I çaktivizuar"
+msgstr "Vypnuté"
 
 msgid "Enabled"
-msgstr "I aktivizuar"
+msgstr "Zapnuté"
 
 msgid "Questionnaire"
-msgstr "Pyetësor"
+msgstr "Dotazník"
 
 msgid "Recipients"
-msgstr "Marrës"
+msgstr "Príjemcovia"
 
 msgid "days"
-msgstr "ditë"
+msgstr "dní"
 
 msgid "Show the questionnaire navigation interface"
-msgstr "Shfaq ndërfaqe lëvizjeje nëpër pyetësor"
+msgstr "Zobraziť navigačné rozhranie dotazníku"
 
 msgid "Allow whistleblowers to select their recipients"
-msgstr "Lejoju nxjerrësve të të fshehtave të përzgjedhin marrësit e tyre"
+msgstr "Povoliť oznamovateľom zvoliť si ich príjemcov"
 
 msgid "Select all recipients by default"
-msgstr "Si parazgjedhje, përzgjidhi krejt marrësit"
+msgstr "Vyberte štandardne všetkých príjemcov"
 
 msgid "Maximum number of selectable recipients:"
-msgstr "Numër maksimum marrësish të përzgjedhshëm:"
+msgstr "Maximálny počet voliteľných príjemcov"
 
 msgid "Show recipients in alphabetical order"
-msgstr "Marrësit shfaqi në rend alfabetik"
+msgstr "Zobraziť príjemcov v abecednom poradí"
 
 msgid "Show recipient details on the status page of the report"
-msgstr "Shfaq hollësi marrësi te faqja e gjendjes së raportimit"
+msgstr "Zobraziť detaily o príjemcoch na stránke o stave podania"
 
 msgid "Enable comments"
-msgstr "Aktivizo komente"
+msgstr "Povoliť komentáre"
 
 msgid "Allow whistleblowers to write comments"
-msgstr "Lejoju nxjerrësve të të fshehtave të shkruajnë komente"
+msgstr "Povoliť oznamovateľom písať komentáre"
 
 msgid "Enable private messages"
-msgstr "Aktivizo mesazhe private"
+msgstr "Povoliť súkromné správy"
 
 msgid "Allow whistleblowers to send messages"
-msgstr "Lejoju nxjerrësve të të fshehtave të dërgojnë mesazhe"
+msgstr "Povoliť oznamovateľom posielať správy"
 
 msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Lejoju nxjerrësve të të fshehtave të shtojnë bashkëngjitje te raportime ekzistuese"
+msgstr "Povoliť oznamovateľom pridať prílohy k existujúcim podaniam"
 
 msgid "Additional questionnaire"
-msgstr "Pyetësor shtesë"
+msgstr "Dodatočný dotazník"
 
 msgid "Scoring system options"
-msgstr "Mundësi sistemi pikësh"
+msgstr "Možnosti bodovania systému"
 
 msgid "Threshold"
-msgstr "Prag"
+msgstr "Prah"
 
 msgid "Value"
-msgstr "Vlerë"
+msgstr "Hodnota"
 
 msgid "Medium"
-msgstr "Mesatar"
+msgstr "Stredná"
 
 msgid "Customize the message shown in the receipt page"
-msgstr "Përshtatni mesazhin e shfaqur te faqja e dëftesës"
+msgstr "Uprav správu zobrazenú na stránke s potvrdením"
 
 msgid "Assign the receipt only to reports reaching score:"
-msgstr "Përshoqërojani dëftesën vetëm raportimeve që kapin pikët:"
+msgstr "Priraď potvrdenie len ku skóre dostupnosti podaní"
 
 msgid "Software version:"
-msgstr "Version software-i:"
+msgstr "Verzia softvéru:"
 
 msgid "Restrict access to specific IP addresses"
-msgstr "Kufizoju hyrjen adresave IP specifike"
+msgstr "Obmedziť prístup k určitým IP adresám"
 
 msgid "Allowed IP addresses"
-msgstr "Adresa IP të lejuara"
+msgstr "Povolené IP adresy."
 
 msgid "Admin"
-msgstr "Përgjegjës"
+msgstr "Administrátor"
 
 msgid "Recipient"
-msgstr "Marrës"
+msgstr "Príjemca"
 
 msgid "Each entry must be separated with a comma."
-msgstr "Çdo zë duhet të jetë i ndarë me një presje."
+msgstr "Každá položka musí byť oddelená čiarkou."
 
 msgid "Example:"
-msgstr "Shembull:"
+msgstr "Príklad:"
 
 msgid "Hostname"
-msgstr "Strehëemër"
+msgstr "Hostiteľské meno"
 
 msgid "Organization"
-msgstr "Ent"
+msgstr "Organizácia"
 
 msgid "Invalid email address"
-msgstr "Adresë email e pavlefshme"
+msgstr "Neplatná emailová adresa"
 
 msgid "City"
-msgstr "Qytet"
+msgstr "Mesto"
 
 msgid "Country"
-msgstr "Vend"
+msgstr "Štát"
 
 msgid "Country code"
-msgstr "Kod vendi"
+msgstr "Kód krajiny"
 
 msgid "Generate"
-msgstr "Prodhoje"
+msgstr "Generovať"
 
 msgid "Private Key"
-msgstr "Kyç Privat"
+msgstr "Súkromný kľúč"
 
 msgid "Certificate Signing Request"
-msgstr "Kërkesë Nënshkrimi Dëshmie"
+msgstr "Žiadosť o podpis certifikátu"
 
 msgid "Certificate"
-msgstr "Dëshmi"
+msgstr "Certifikát"
 
 msgid "Valid until:"
-msgstr "E vlefshme deri më:"
+msgstr "Platný do:"
 
 msgid "Issuer:"
-msgstr "Lëshues:"
+msgstr "Vydavateľ:"
 
 msgid "Intermediate Certificates"
-msgstr "Dëshmi të Ndërmjetme"
+msgstr "Dočasný certifikát."
 
 msgid "Reset"
-msgstr "Ktheje te parazgjedhja"
+msgstr "Resetovať"
 
 msgid ""
 "The platform supports the configuration of HTTPS through this interface."
-msgstr "Platforma mbulon formësimin e HTTPS-së përmes kësaj ndërfaqeje."
+msgstr "Platforma podporuje konfiguráciu HTTPS prostredníctvom tohto rozhrania."
 
 msgid "Automatic configuration"
-msgstr "Formësim i vetvetishëm"
+msgstr "Automatická konfigurácia"
 
 msgid ""
 "Using automatic HTTPS configuration will handle the entire process of "
 "requesting, enabling and renewing certificates from the Let's Encrypt "
 "Certificate Authority."
-msgstr "Duke përdorur formësimin e vetvetishëm të HTTPS-së do të arrihet kryerja e krejt procesit të kërkesës, aktivizimit dhe rinovimit të dëshmive prej autoritetit “Let’s Encrypt” të dëshmive."
+msgstr "Použitie automatickej konfigurácie HTTPS zaistí celý proces vyžiadania, povolenia a obnovenia certifikátov od certifikačnej autority Let's Encrypt."
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
 "hostname must have a DNS record referencing that address."
-msgstr "Platforma duhet të jetë e përdorshme përmes një adrese publike IP dhe strehëemri i përzgjedhur duhet të ketë një zë DNS përkatës që i referohet kësaj adrese."
+msgstr "Platforma musí byť dostupná prostredníctvom verejnej IP adresy a zvolený názov hostiteľa musí mať zodpovedajúci záznam DNS, ktorý odkazuje na túto adresu."
 
 msgid "Manual configuration"
-msgstr "Formësim dorazi"
+msgstr "Manuálna konfigurácia"
 
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
-msgstr "Ndihmësi i formësimit dorazi do t’ju udhëheqë nëpër ujdisjen e HTTPS-së me një autoritet alternativ dëshmish."
+msgstr "Sprievodca manuálnou konfiguráciou vás prevedie nastavením protokolu HTTPS od alternatívnej certifikačnej autority."
 
 msgid "Auto-renewal"
-msgstr "Vetërinovim"
+msgstr "Automatické obnovenie"
 
 msgid "Tor Onion Service"
-msgstr "Shërbim Onion Tor"
+msgstr "Služba Tor Onion"
 
 msgid "Disable the privacy panel"
-msgstr "Çaktivizo panelin e privatësisë"
+msgstr "Zakázať osobitý panel"
 
 msgid "Enable custom privacy panel"
-msgstr "Aktivizo panel vetjak privatësie"
+msgstr "Povoliť používateľský panel"
 
 msgid "Custom privacy panel"
-msgstr "Panel vetjak privatësie"
+msgstr "Vlastný používateľský panel "
 
 msgid "Anonymize outgoing connections"
-msgstr "Anonimizo lidhjet ikëse"
+msgstr "Anonymizácia odchádzajúcich pripojení"
 
 msgid "Let the platform be reachable without Tor"
-msgstr "Lejojeni platformën të jetë e përdorshme pa Tor"
+msgstr "Povoliť dostupnosť bez Tor"
 
 msgid "Roles enabled to use the platform without Tor"
-msgstr "Role të aktivizuar për përdorim të platformës pa Tor"
+msgstr "Úlohy umožňujúce používanie platformy bez Tor"
 
 msgid "Whistleblower"
-msgstr "Nxjerrës të fshehte"
+msgstr "Oznamovateľ"
 
 msgid "To"
-msgstr "Për"
+msgstr "Komu"
 
 msgid "SMTP email address"
-msgstr "Adresë email SMTP"
+msgstr "Emailová adresa pre SMTP server"
 
 msgid "SMTP server address"
-msgstr "Adresë shërbyesi SMTP"
+msgstr "Adresa SMTP servera"
 
 msgid "SMTP server port"
-msgstr "Portë shërbyesi SMTP"
+msgstr "Port SMTP servera"
 
 msgid "Security"
-msgstr "Siguri"
+msgstr "Bezpečnosť"
 
 msgid "Require authentication"
-msgstr "Kërko doemos mirëfilltësim"
+msgstr "Vyžadovať overenie"
 
 msgid "Password"
-msgstr "Fjalëkalim"
+msgstr "Heslo"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr "Numër orësh përpara dërgimit të një sinjalizimi skadimi raportimi"
+msgstr "Počet hodín pred odoslaním upozornenia na exspiráciu"
 
 msgid "Test the configuration"
-msgstr "Provoni formësimin"
+msgstr "Testovať konfiguráciu"
 
 msgid "Reset SMTP configuration"
-msgstr "Rikthe te parazgjedhjet formësimin për SMTP-në"
+msgstr "Resetujte SMTP konfiguráciu"
 
 msgid "Reset notification templates to default"
-msgstr "Rikthe te parazgjedhjet gjedhe njoftimesh"
+msgstr "Obnoviť šablóny notifikácií na prednastavené hodnoty"
 
 msgid "Template"
-msgstr "Gjedhe"
+msgstr "Šablóna"
 
 msgid "Question"
-msgstr "Pyetje"
+msgstr "Otázka"
 
 msgid "Single-line text input"
-msgstr "Dhënie teksti me një rresht"
+msgstr "Jednoriadkový vstup"
 
 msgid "Multi-line text input"
-msgstr "Dhënie teksti me shumë rreshta"
+msgstr "Viacriadkový vstup"
 
 msgid "Selection box"
-msgstr "Kutizë përzgjedhjesh"
+msgstr "Výber možností"
 
 msgid "Checkbox"
-msgstr "Kutizë"
+msgstr "Zaškrtávacie políčka"
 
 msgid "Terms of service"
-msgstr "Kushte shërbimi"
+msgstr "Podmienky používania služby"
 
 msgid "Date range"
-msgstr "Interval datash"
+msgstr "Časové obdobie"
 
 msgid "Group of questions"
-msgstr "Grup pyetjesh"
+msgstr "Skupina otázok"
 
 msgid "Row"
-msgstr "Rresht"
+msgstr "Riadok"
 
 msgid "Column"
-msgstr "Shtyllë"
+msgstr "Stĺpec"
 
 msgid "Width"
-msgstr "Gjerësi"
+msgstr "Šírka"
 
 msgid "Multiple choice input"
-msgstr "Dhënie me zgjedhje të shumëfishtë"
+msgstr "Vstup z výberu možností"
 
 msgid "Question group"
-msgstr "Grup pyetjeje"
+msgstr "Skupina otázok"
 
 msgid "Hint"
-msgstr "Ndihmëz"
+msgstr "Nápoveda"
 
 msgid "Required"
-msgstr "E domosdoshme"
+msgstr "Požadované"
 
 msgid "Accept multiple file uploads"
-msgstr "Prano ngarkime të disa kartelave njëherësh"
+msgstr "Akceptovať príjem viacero nahrávok súborov "
 
 msgid "Accept multiple answers"
-msgstr "Prano disa përgjigje njëherësh"
+msgstr "Povoliť viacero odpovedí"
 
 msgid "Template override"
-msgstr "Anashkalim gjedheje"
+msgstr "Prepísanie šablóny"
 
 msgid "Phone number"
-msgstr "Numër telefoni"
+msgstr "Telefónne číslo"
 
 msgid "Text"
-msgstr "Tekst"
+msgstr "Text"
 
 msgid "Checkbox label"
-msgstr "Etiketë kutize"
+msgstr "Zaškrtávacie políčko"
 
 msgid "Add multimedia content"
-msgstr "Shtoni lëndë multimedia"
+msgstr "Pridajte multimediálny obsah"
 
 msgid "Image"
-msgstr "Figurë"
+msgstr "Obrázok"
 
 msgid "Audio"
-msgstr "Audio"
+msgstr "Zvuk"
 
 msgid "Video"
 msgstr "Video"
 
 msgid "Trigger conditions"
-msgstr "Kushte aktivizimi"
+msgstr "Prvotné podmienky"
 
 msgid "Sufficient"
-msgstr "Mjaftueshëm"
+msgstr "Dostatočný"
 
 msgid "Options"
-msgstr "Mundësi"
+msgstr "Predvoľby"
 
 msgid "Addition"
-msgstr "Shtim"
+msgstr "Pridanie"
 
 msgid "Multiplier"
-msgstr "Shumëfishues"
+msgstr "Multiplikátor"
 
 msgid "Questions"
-msgstr "Pyetje"
+msgstr "Otázky"
 
 msgid "Add new question"
-msgstr "Shtoni pyetje të re"
+msgstr "Pridať novú otázku"
 
 msgid "Add question from template"
-msgstr "Shtoni pyetje që nga gjedhe"
+msgstr "Pridať otázku podľa šablóny"
 
 msgid "Duplicate"
-msgstr "Përsëdyte"
+msgstr "Duplikovať"
 
 msgid "Steps"
-msgstr "Hapa"
+msgstr "Kroky"
 
 msgid "Site settings"
-msgstr "Rregullime sajti"
+msgstr "Nastavenie stránok"
 
 msgid "Case management"
-msgstr "Administrim rastesh"
+msgstr "Správa podaní"
 
 msgid "Network settings"
-msgstr "Rregullime rrjeti"
+msgstr "Nastavenie siete"
 
 msgid "Sites"
-msgstr "Sajte"
+msgstr "Stránky"
 
 msgid "Mode:"
-msgstr "Mënyrë:"
+msgstr "Režim:"
 
 msgid "Configure"
-msgstr "Formësojeni"
+msgstr "Nastavenie"
 
 msgid "Subdomain"
-msgstr "Nënpërkatësi"
+msgstr "Podstránky"
 
 msgid "Creation date:"
-msgstr "Datë krijimi:"
+msgstr "Dátum vytvorenia:"
 
 msgid "Root domain used for secondary sites"
-msgstr "Përkatësi rrënjë e përdorur për sajte dytësorë"
+msgstr "Koreňová doména pre sekundárne stránky"
 
 msgid "Use the first site for administrative purposes only"
-msgstr "Sajtin e parë përdore vetëm për qëllime administrative"
+msgstr "Prvú stranu použite len pre účely administrácie."
 
 msgid "Allow users to sign up"
-msgstr "Lejoju përdoruesve të regjistrohen"
+msgstr "Povoliť používateľom registráciu"
 
 msgid "Enable terms of service"
-msgstr "Aktivizo kushte shërbimi"
+msgstr "Povoliť zmluvné podmienky"
 
 msgid "Title"
-msgstr "Titull"
+msgstr "Názov"
 
 msgid "Send an account activation link to the user."
-msgstr "Dërgojini përdoruesit një lidhje aktivizimi llogarie."
+msgstr "Poslať užívateľovi odkaz k aktivácii účtu."
 
 msgid "Public name"
-msgstr "Emër publik"
+msgstr "Verejné meno"
 
 msgid "Send reset link"
-msgstr "Dërgo lidhje ricaktimi"
+msgstr "Odoslať odkaz k resetovaniu"
 
 msgid "Set password"
-msgstr "Caktoni fjalëkalim"
+msgstr "Nastaviť heslo"
 
 msgid "Disable two factor authentication"
-msgstr "Çaktivizo mirëfilltësim dyfaktorësh"
+msgstr "Zakázať dvojfaktorové overovanie"
 
 msgid "Force password change"
-msgstr "Detyro ndryshim fjalëkalimi"
+msgstr "Vynútiť zmenu hesla"
 
 msgid "The user will be forced to change its password on next login."
-msgstr "Përdoruesi do të detyrohet të ndryshojë fjalëkalimin e tij gjatë hyrjes së ardhshme në llogari."
+msgstr "Používateľ bude nútený zmeniť svoje heslo pri ďalšom prihlásení."
 
 msgid "Language"
-msgstr "Gjuhë"
+msgstr "Jazyk"
 
 msgid "Enable email notifications"
-msgstr "Aktivizo njoftime me email"
+msgstr "Povoliť emailové upozornenia"
 
 msgid "Details of the PGP key:"
-msgstr "Hollësi të kyçit PGP:"
+msgstr "Detaily PGP kľúča:"
 
 msgid "Fingerprint"
-msgstr "Shenja gishtash"
+msgstr "Odtlačok prsta"
 
 msgid "Set up encryption by providing a PGP public key"
-msgstr "Ujdisni fshehtëzim duke dhënë një kyç publik PGP"
+msgstr "Nastavte šifrovanie pomocou verejného kľúča PGP."
 
 msgid "Give this admin ability to change user passwords"
-msgstr "Jepi këtij përgjegjësi aftësinë të ndryshojë fjalëkalime përdoruesish"
+msgstr "Umožnite administrátorovi meniť používateľské heslá."
 
 msgid "Forcefully selected"
-msgstr "E përzgjedhur me zor"
+msgstr "Nastavené administrátorom"
 
 msgid "Allow the recipient to delete reports"
-msgstr "Lejoje marrësin të fshijë raportime"
+msgstr "Povoliť príjemcom zmazať podania"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Lejoje marrësin të shtyjë datën e skadimit të raportimit"
+msgstr "Umožniť príjemcovi odložiť dátum exspirácie podania"
 
 msgid "Give the user administrative access to the following features:"
-msgstr "Jepi përdoruesit hyrje përgjegjësi në veçoritë vijuese:"
+msgstr "Poskytnite používateľovi administratívny prístup k nasledujúcim funkciám:"
 
 msgid "Request date"
-msgstr "Datë kërkese"
+msgstr "Dátum žiadosti"
 
 msgid "Report date"
-msgstr "Datë raportimi"
+msgstr "Dátum podania"
 
 msgid "Authorization"
-msgstr "Autorizim"
+msgstr "Autorizácia"
 
 msgid "Requests"
-msgstr "Kërkesa"
+msgstr "Požiadavky"
 
 msgid "The validation link is either incorrect or has expired."
-msgstr "Ose lidhja e vlerësimit është e pasaktë, ose ka skaduar."
+msgstr "Odkaz na overenie je buď nesprávny, alebo vypršal."
 
 msgid "Your new email address has been validated."
-msgstr "Adresa juaj e re email është vleftësuar."
+msgstr "Vaša nová emailová adresa bola overená."
 
 msgid "Forgot password?"
-msgstr "Harruat fjalëkalimin?"
+msgstr "Zabudli ste heslo?"
 
 msgid "Enter the two factor authentication code"
-msgstr "Jepni kodin e mirëfilltësimit dyfaktorësh"
+msgstr "Zadajte dvojfaktorový overovací kód"
 
 msgid "Authentication failed"
-msgstr "Mirëfilltësimi dështoi"
+msgstr "Overenie zlyhalo"
 
 msgid "The code is either invalid or expired."
-msgstr "Ose kodi i dhënë është i pavlefshëm, ose ka skaduar."
+msgstr "Kód je neplatný alebo vypršal."
 
 msgid "Please select your account:"
-msgstr "Ju lutemi, përzgjidhni llogarinë tuaj:"
+msgstr "Vyberte, prosím, svoj účet:"
 
 msgid "Now type your password, then click 'Log in':"
-msgstr "Tani shtypni fjalëkalimin tuaj, mandej klikoni mbi “Hyni”:"
+msgstr "Teraz zadajte svoje heslo a kliknite na \"Prihlásiť sa\":"
 
 msgid "Text shown after the user has selected the option."
-msgstr "Tekst i shfaqur pasi përdoruesi të ketë përzgjedhur këtë mundësi."
+msgstr "Text bude zobrazený po tom, čo používateľ vybral jednu z možností."
 
 msgid "Confirm"
-msgstr "Ripohojeni"
+msgstr "Potvrdiť"
 
 msgid "Assign score points"
-msgstr "Caktoni pikë"
+msgstr "Prideliť bodové skóre"
 
 msgid "Are you sure?"
-msgstr "Jeni i sigurt?"
+msgstr "Ste si istý?"
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Ju lutemi, kini parasysh se krejt të dhënat e përshoqëruara do të fshihen përgjithmonë."
+msgstr "Upozorňujeme, že všetky súvisiace údaje budú natrvalo odstránené."
 
 msgid "Close"
-msgstr "Mbylle"
+msgstr "Zatvoriť"
 
 msgid "Enable two factor authentication"
-msgstr "Aktivizo mirëfilltësim dyfaktorësh"
+msgstr "Povoliť dvojfaktorovú autorizáciu"
 
 msgid "Before proceeding please read carefully the documentation at:"
-msgstr "Përpara se të vazhdoni, ju lutemi, lexoni me kujdes dokumentimin, te:"
+msgstr "Než budete pokračovať, prečítajte si pozorne dokumentáciu na adrese:"
 
 msgid "Account recovery key"
-msgstr "Kyç rimarrjesh llogarie"
+msgstr "Kľúč na obnovenie účtu"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr "Bëni një kopje dhe depozitojeni në një vend të parrezik. Do t’ju duhet, nëse humbni fjalëkalimin tuaj, për të rifituar hyrje në llogarinë tuaj pa humbje të dhënash."
+msgstr "Vytvorte kópiu a uložte ju na bezpečnom mieste. Ak stratíte heslo, budete môcť obnoviť prístup k svojmu účtu bez straty dát."
 
 msgid "Enter a name for the copy"
-msgstr "Jepni një emër për kopjen"
+msgstr "Zadajte názov kópie"
 
 msgid "Request support"
 msgstr "Kërkoni asistencë"
 
 msgid "Thank you."
-msgstr "Faleminderit."
+msgstr "Ďakujeme Vám."
 
 msgid "We will try to get back to you as soon as possible."
-msgstr "Do të provojmë të lidhemi me ju sa më shpejt të jetë e mundur."
+msgstr "Ozveme sa Vám hneď, ako to bude možné."
 
 msgid "Submit"
-msgstr "Parashtrojeni"
+msgstr "Odoslať"
 
 msgid "The connection is not secure."
-msgstr "Lidhja s’është e siguruar."
+msgstr "Spojenie nie je bezpečné."
 
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
-msgstr "Platforma ende s’është formësuar për lidhje HTTPS, ndaj duhet përdorur vetëm për qëllime testimi."
+msgstr "Platforma stále nie je nakonfigurovaná pre pripojenia HTTPS, a preto by sa mala používať iba na účely testovania."
 
 msgid "Please write a motivation for the reply"
-msgstr "Ju lutemi, shkruani një shtysë për përgjigjen"
+msgstr "Prosím, napíšte zdôvodnenie odpovede."
 
 msgid "Send"
-msgstr "Dërgoje"
+msgstr "Odoslať"
 
 msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Duke e ripohuar, do ta shtyni datën e skadimit më:"
+msgstr "Potvrdením odložíte dátum exspirácie do:"
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Kjo është një platformë demonstrimi, ju lutemi, mos e përdorni për parashtrime të njëmendta."
+msgstr "Toto je demo platforma, nepoužívajte ju prosím pre skutočné podanie."
 
 msgid "Install an authenticator app on your phone"
-msgstr "Instaloni në telefonin tuaj një aplikacion mirëfilltësimi"
+msgstr "Nainštalujte si do telefónu overovaciu aplikáciu"
 
 msgid "Scan the QR code with the app"
-msgstr "Skanoni kodin QR me aplikacionin"
+msgstr "Naskenujte QR kód pomocou aplikácie"
 
 msgid "Hint: How to hide your receipt"
-msgstr "Ndihmëz: Si të fshihni dëftesën tuaj"
+msgstr "Návod: Ako skryť váš kód"
 
 msgid ""
 "A useful way to hide your receipt is to write it down like a credit card "
 "number, i.e. by also including an expiration date."
-msgstr "Një rrugë e dobishme për të fshehur dëftesën tuaj është ta shkruani diku si një numër karte krediti, domethënë, duke përfshirë edhe një datë skadimi."
+msgstr "Odporúčaný spôsob, ako si uchovať prihlasovací kód, je zapísať si ho ako číslo kreditnej karty, tj. zahrnúť do neho dátum vypršania jeho platnosti."
 
 msgid "Error!"
-msgstr "Gabim!"
+msgstr "Chyba!"
 
 msgid "Internal server error"
-msgstr "Gabim i brendshëm shërbyesi"
+msgstr "Interná chyba servera"
 
 msgid "Error on input validation"
-msgstr "Gabim në vlerësim të çka jepet"
+msgstr "Chyba pri kontrole vstupu"
 
 msgid "Resource not found"
-msgstr "Burimi s’u gjet"
+msgstr "Zdroj nebol nájdený"
 
 msgid "Forbidden operation"
-msgstr "Veprim i ndaluar"
+msgstr "Nepovolená operácia"
 
 msgid "The specified old password is not valid"
-msgstr "Fjalëkalimi i dikurshëm i dhënë s’është i vlefshëm"
+msgstr "Zadané staré heslo je neplatné"
 
 msgid "Resource can only be accessed via the Tor network"
-msgstr "Burimi mund të përdoret vetëm përmes rrjetit Tor"
+msgstr "Zdroj je prístupný iba v rámci siete Tor"
 
 msgid "The upload request exceeds the size limit"
-msgstr "Kërkesa për ngarkim tejkalon kufirin për madhësitë"
+msgstr "Žiadosť na upload prekročila veľkostné limity"
 
 msgid "Validation of email address change in progress."
-msgstr "Vlerësimi i ndryshimit të adresës email në ecuri e sipër."
+msgstr "Prebieha overovanie zmeny emailovej adresy."
 
 msgid "Please check your inbox for further instructions."
-msgstr "Për udhëzime të mëtejshme, ju lutemi, kontrolloni mesazhet tuaj të marrë."
+msgstr "Pre ďalší postup skontrolujte, prosím, doručenú poštu."
 
 msgid "Current password"
-msgstr "Fjalëkalimi i tanishëm"
+msgstr "Aktuálne heslo"
 
 msgid "Old password confirmation required"
-msgstr "Me ripohim doemos të fjalëkalimit të dikurshëm"
+msgstr "Vyžaduje sa potvrdenie pomocou starého hesla"
 
 msgid "Warning"
-msgstr "Sinjalizim"
+msgstr "Varovanie"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr "Këshilloheni me forcë ta vizitoni këtë sajt duke përdorur aplikacionin e quajtur Shfletues Tor, i cili mbron identitetin tuaj."
+msgstr "Dôrazne odporúčame k návšteve týchto stránok použiť desktopovú aplikáciu s názvom Tor Browser, ktorá chráni vašu identitu."
 
 msgid "Download the Tor Browser"
-msgstr "Shkarkoni Shfletuesin Tor"
+msgstr "Stiahnúť prehliadač Tor Browser"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "Mandej, kopjoni dhe ngjiteni adresën vijuese te Shfletuesi Tor:"
+msgstr "Potom skopírujte a vložte nasledujúcu adresu do prehliadača Tor:"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "Keni parashtruar tashmë një raportim? Jepni dëftesën tuaj."
+msgstr "Už ste vyplnili podanie? Zadajte svoj prístupový kód."
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr "Ose dëftesa është e pavlefshme, ose raportimi ka skaduar."
+msgstr "Príjemca je buď neplatný, alebo uplynula platnosť podania."
 
 msgid "Select a file or drag it here."
-msgstr "Përzgjidhni një kartelë ose tërhiqeni këtu."
+msgstr "Vyberte súbor alebo ho sem pretiahnite."
 
 msgid "Uploading files…"
-msgstr "Po ngarkohen kartela…"
+msgstr "Nahrávam súbory..."
 
 msgid "Upload completed successfully!"
-msgstr "Ngarkimi u plotësua me sukses!"
+msgstr "Nahrávanie bolo úspešne dokončené!"
 
 msgid "Error while uploading files; check below for details."
-msgstr "Gabim teksa ngarkoheshin kartela; për hollësi, shihni më poshtë."
+msgstr "Chyba pri nahrávaní súborov. Podrobnosti nájdete nižšie."
 
 msgid "Estimated upload time:"
-msgstr "Kohë ngarkimi përafërsisht:"
+msgstr "Odhadovaný čas nahrávania:"
 
 msgid "Size:"
-msgstr "Madhësi:"
+msgstr "Veľkosť:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr "Marrësit kanë kërkuar që të plotësoni një pyetësor shtesë."
+msgstr "Príjemcovia požadujú, aby ste vyplnili dodatočný dotazník."
 
 msgid "Fill the additional questionnaire"
-msgstr "Plotësoni pyetësorin shtesë"
+msgstr "Vyplňte dodatočný dotazník"
 
 msgid "Allow the whistleblower to write comments"
-msgstr "Lejoji nxjerrësit të së fshehtës të shkruajë komente"
+msgstr "Povoliť oznamovateľovi písať komentáre"
 
 msgid "From:"
-msgstr "Nga:"
+msgstr "Od:"
 
 msgid "To:"
-msgstr "Për:"
+msgstr "Komu:"
 
 msgid "Filename"
-msgstr "Emër kartele"
+msgstr "Názov súboru"
 
 msgid "Upload date"
-msgstr "Datë ngarkimi"
+msgstr "Dátum nahrania"
 
 msgid "File size"
-msgstr "Madhësi kartele"
+msgstr "Veľkosť súboru"
 
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Lejoji nxjerrësit të së fshehtës të shtojë te raportimi bashkëngjitje"
+msgstr "Povoliť oznamovateľovi pripojiť prílohy k podaniu"
 
 msgid "Allow the whistleblower to send messages"
-msgstr "Lejoji nxjerrësit të të fshehtës të dërgojë mesazhe"
+msgstr "Povoliť oznamovateľovi posielať správy"
 
 msgid "Questionnaire answers"
-msgstr "Përgjigje pyetësori"
+msgstr "Odpovede z dotazníkov"
 
 msgid "Step"
-msgstr "Hap"
+msgstr "Krok"
 
 msgid "Status:"
-msgstr "Gjendje:"
+msgstr "Stav"
 
 msgid "Files attached by recipients"
-msgstr "Kartela të bashkëngjitura nga marrës"
+msgstr "Prílohy od príjemcov"
 
 msgid "Upload a file:"
-msgstr "Ngarkoni një kartelë:"
+msgstr "Nahrať súbor:"
 
 msgid "Welcome!"
-msgstr "Mirë se vini!"
+msgstr "Vitajte!"
 
 msgid "For the user documentation, visit:"
-msgstr "Për dokumentim për përdoruesit, vizitoni:"
+msgstr "Pre používateľskú dokumentáciu navštívte:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
 " the software:"
-msgstr "Nëse ju duhet asistencë teknike, keni pyetje të përgjithshme, ose keni ide të reja për software-in:"
+msgstr "Ak potrebujete technickú podporu, máte všeobecné otázky alebo máte nové nápady pre softvér:"
 
 msgid ""
 "If you want to contribute to software development or report a bug, please "
 "open an issue in our ticketing system:"
-msgstr "Nëse doni të jepni ndihmesë në zhvillimin e software-it, ose të njoftoni një të metë, ju lutemi, hapni një çështje te sistemi ynë për të tilla:"
+msgstr "Ak chcete prispieť k vývoju softvéru alebo nahlásiť chybu, založte, prosím, hlásenie v našom ticket systému:"
 
 msgid "Join our chat:"
-msgstr "Merrni pjesë në fjalosjen tonë:"
+msgstr "Pripojte sa k nášmu chatu:"
 
 msgid "Follow the project on:"
-msgstr "Ndiqeni projektin në:"
+msgstr "Sledujte projekt na:"
 
 msgid "An update is available:"
-msgstr "Ka një përditësim gati:"
+msgstr "Je dostupná aktualizácia:"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr "Rekomandojmë që të përdorni ndarjen “Parapëlqime”, që të rimerrni “Kyç Rimarrjeje Llogarie” tuajin dhe ta depozitoni pa rrezik diku. Ky kyç do të jetë i nevojshëm për të rifituar hyrje te platforma dhe të dhënat tuaja, në rast se harroni fjalëkalimin tuaj."
+msgstr "Odporúčame ísť do sekcie \"Preferencie\", aby ste získali \"Kľúč na obnovenie účtu\" a bezpečne ho uložili. Tento kľúč bude nevyhnutný pre obnovenie prístupu k platforme a k vašim údajom v prípade, že svoje heslo zabudnete."
 
 msgid "The provided recovery key is invalid."
-msgstr "Kyçi i rimarrjeve i dhënë është i pavlefshëm."
+msgstr "Zadaný obnovovací kľúč je neplatný."
 
 msgid "The provided reset token is invalid or expired."
-msgstr "Token-i i dhënë për ricaktimin është i pavlefshëm, ose ka skaduar."
+msgstr "Dodaný reset token je neplatný alebo vypršal."
 
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr "Që të kërkoni ricaktim fjalëkalimi, jepni emër përdoruesi të llogarisë tuaj, ose adresën tuaj email."
+msgstr "Vložte používateľské meno účtu alebo emailovú adresu a požiadajte o obnovenie hesla."
 
 msgid "Enter your email address to request a password reset."
-msgstr "Që të kërkoni ricaktim fjalëkalimi, jepni adresën tuaj email."
+msgstr "Zadajte svoju e-mailovú adresu pre reset hesla."
 
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
-msgstr "Që të plotësohet procedura e ricaktimit të fjalëkalimit, jepni kyçin tuaj të rimarrjes së llogarisë"
+msgstr "Zadajte kľúč pre obnovenie šifrovanie a dokončite postup pre resetovanie hesla"
 
 msgid "Password reset requested."
-msgstr "U kërkua ricaktim fjalëkalimi."
+msgstr "Vyžaduje sa obnovenie hesla."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
-msgstr "Ruajtësit iu kërkua hyrje te identiteti i nxjerrësit të së fshehtës."
+msgstr "Správca bol požiadaný o prístup k identite oznamovateľa."
 
 msgid "Date of the request"
-msgstr "Datë e kërkesës"
+msgstr "Dátum žiadosti"
 
 msgid "Show"
-msgstr "Shfaqe"
+msgstr "Zobraziť"
 
 msgid "Congratulations!"
-msgstr "Përgëzime!"
+msgstr "Gratulujeme!"
 
 msgid "You have completed the platform activation."
-msgstr "Keni plotësuar aktivizimin e platformës."
+msgstr "Práve ste dokončili aktiváciu platformy."
 
 msgid "Success!"
-msgstr "Sukses!"
+msgstr "Výborne!"
 
 msgid "Your whistleblowing platform is almost ready!"
-msgstr "Platforma juaj për nxjerrje të fshehtash thuajse është gati!"
+msgstr "Vaša whistleblowingová platforma je takmer hotová!"
 
 msgid "Check your inbox to activate it."
-msgstr "Për ta aktivizuar, shihni te Të marrët tuaj."
+msgstr "Skontrolujte svoju doručenú poštu pre aktiváciu."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr "Në mos u aktivizoftë brenda 24 orësh, platforma do të fshihet vetvetiu."
+msgstr "Pokiaľ nedôjde k aktivácii do 24 hodín, bude platforma automaticky odstránená."
 
 msgid "Sign up"
-msgstr "Regjistrohuni"
+msgstr "Zaregistrovať sa"
 
 msgid "Domain"
-msgstr "Përkatësi"
+msgstr "Doména"
 
 msgid "Confirmation"
-msgstr "Ripohim"
+msgstr "Potvrdenie"
 
 msgid "Invalid confirmation"
-msgstr "Ripohim i pavlefshëm"
+msgstr "Neplatné potvrdenie"
 
 msgid "Invalid phone number"
-msgstr "Numër telefoni i pavlefshëm"
+msgstr "Neplatné telefónne číslo"
 
 msgid "The answer is too short"
-msgstr "Përgjigja është shumë e shkurtër"
+msgstr "Odpoveď je príliš krátka."
 
 msgid "The specified input is not valid."
-msgstr "Ç’u dha, s’është e vlefshme."
+msgstr "Zadaný vstup nie je platný."
 
 msgid "The specified input is not valid:"
-msgstr "Ç’u dha, s’është e vlefshme:"
+msgstr "Zadaný vstup nie je platný:"
 
 msgid "please enter a valid email address."
-msgstr "ju lutemi, jepni një adresë email të vlefshme."
+msgstr "Prosím zadajte platnú emailovú adresu."
 
 msgid "please enter numbers only."
-msgstr "ju lutemi, jepni vetëm numra."
+msgstr "Zadajte, prosím, iba čísla."
 
 msgid "Submissions disabled"
-msgstr "Parashtrimet të çaktivizuara"
+msgstr "Podania zakázané"
 
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
-msgstr "Po lidheni me shërbyesin pa anonimitet dhe ky shërbyes mbulon vetëm parashtrime anonime"
+msgstr "K serveru sa pripájate neanonymne, pričom tento konkrétny server podporuje iba anonymné podania"
 
 msgid "Your report was successful."
-msgstr "Raportimi juaj qe i suksesshëm."
+msgstr "Vaše podanie prebehlo úspešne."
 
 msgid "Remember your receipt for this report."
-msgstr "Mos harroni dëftesën tuaj për këtë raportim."
+msgstr "Zapamätajte si potvrdenie o tomto podaní."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Për të bërë hyrjen, përdorni dëftesën me 16 shifra. Do t’ju lejojë të shihni çfarëdo mesazhesh që ju kemi dërguar dhe edhe të shtoni informacion shtesë."
+msgstr "Na prihlásenie použite 16-miestny kód. Umožní vám zobraziť všetky správy, ktoré sme vám poslali, a pridať ďalšie informácie."
 
 msgid "View your report"
-msgstr "Shiheni raportin tuaj"
+msgstr "Zobraziť podanie"
 
 msgid "Recipient selection"
-msgstr "Përzgjedhje marrësish"
+msgstr "Výber príjemcu"
 
 msgid "Select the recipients of your report:"
-msgstr "Përzgjidhni marrësit për raportimin tuaj:"
+msgstr "Vyberte príjemcov správy:"
 
 msgid "Recipients selected:"
-msgstr "Marrës të përzgjedhur:"
+msgstr "Vybraní príjemcovia:"
 
 msgid "You have reached the maximum number of selectable recipients."
-msgstr "Keni mbërritur në numrin maksimum të marrësve të përzgjedhshëm."
+msgstr "Dosiahli ste maximálneho počtu voliteľných príjemcov."
 
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr "Marrësit vijues do ta marrin raportimin tuaj dhe për ta s’mund të hiqet përzgjedhja:"
+msgstr "Nasledujúci príjemcovia dostanú vaše oznámenie a ich výber nemohol byť zrušený:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
 "invalid:"
-msgstr "Te ky hap, përgjigjet për pyetjet vijuese ose mungojnë, ose janë të pavlefshme:"
+msgstr "V tomto kroku sú odpovede na nasledujúce otázky buď chýbajúce, alebo neplatné:"
 
 msgid "You must select at least one recipient."
-msgstr "Duhet të përzgjidhni të paktën një marrës."
+msgstr "Musíte vybrať aspoň jedného príjemcu."
 
 msgid "Waiting for the file(s) to finish uploading."
-msgstr "Po pritet që të përfundojë ngarkimi i kartelës(ave)."
+msgstr "Čaká sa na dokončenie nahrávania súborov."
 
 msgid "The following steps have errors:"
-msgstr "Hapat vijues kanë gabime:"
+msgstr "Nasledujúce kroky sú chybné:"
 
 msgid "Hide"
-msgstr "Fshihe"
+msgstr "Skryť"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
 "whistleblowing platform."
-msgstr "Procedura vijuese do t’ju udhëheqë hap pas hapi përgjatë krijimit të platformës tuaj për nxjerrje të fshehtash."
+msgstr "Nasledujúci popis jednotlivých krokov vás prevedie vytvorením vašej whistleblowingovej platformy."
 
 msgid "Please choose a configuration profile:"
-msgstr "Ju lutemi, zgjidhni një profil formësimi:"
+msgstr "Prosím, vyberte profil konfigurácie:"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr "Bëj të mundur për këtë përgjegjës të ricaktojë fjalëkalime përdoruesish."
+msgstr "Umožněte tomuto administrátorovi resetovat uživatelská hesla."
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr "Këshillojmë përzgjedhjen e kësaj mundësie, nëse do të donit të mbronit të dhënat nga humbja, për raste kur marrësit humbin fjalëkalimet e tyre. Më anë tjetër, nuk do ta këshillonim përdorimin e kësaj veçori, nëse doni të ujdisni një sistem në të cilin vetëm marrësit janë në gjendje të hyjnë te parashtrime."
+msgstr "Odporúčame vybrať túto možnosť, ak chcete chrániť dáta pred stratou v situácii, keď príjemcovia stratí svoje heslá. Ale neodporúčame použiť túto funkciu, ak chcete nastaviť systém, kde majú prístup k podaním iba príjemcovi."
 
 msgid "Please choose a different username."
-msgstr "Ju lutemi, zgjidhni një tjetër emër përdoruesi."
+msgstr "Zvoľte prosím iné užívateľské meno."
 
 msgid "I have read and agree to the terms of the license."
-msgstr "I kam lexuar dhe pajtohem me kushtet e licencës."
+msgstr "Prečítal/-a som si podmienky licencie a súhlasím s nimi."
 
 msgid "You have completed the platform wizard."
-msgstr "Keni plotësuar hapat e ndihmësit të platformës."
+msgstr "Práve ste dokončili sprievodcu základným nastavením."
 
 msgid "Fill out your report"
-msgstr "Plotësoni raportimin tuaj"
+msgstr "Vyplňte Vaše podanie"
 
-msgid "Describe your report in a few words."
-msgstr "Përshkruani me pak fjalë raportimin tuaj."
+msgid "Please summarize your report in a few words."
+msgstr "Opíšte svoje podanie niekoľkými slovami."
 
 msgid "Describe your report in detail."
-msgstr "Përshkruajeni hollësisht raportimin tuaj."
+msgstr "Opíšte svoje podanie podrobne."
 
 msgid "Attach files relevant to the report."
-msgstr "Bashkëngjitini raportimit kartela që kanë lidhje."
+msgstr "Priložte súbory relevantné pre Vaše podanie."
 
 msgid "Do you want to provide your identification information?"
-msgstr "Doni të jepni hollësi për identifikimin tuaj?"
+msgstr "Chcete poskytnúť informácie o Vašej identite?"
 
 msgid "First name"
-msgstr "Emër"
+msgstr "Meno"
 
 msgid "Last name"
-msgstr "Mbiemër"
+msgstr "Priezvisko"
 
 msgid "Alternative contact method"
 msgstr "Metodë kontakti alternative"
 
 msgid "Other"
-msgstr "Tjetër"
+msgstr "Ďalší"
 
 msgid "I prefer to be contacted via this platform only"
 msgstr "Parapëlqej të kontaktohem vetëm përmes kësaj platforme"
 
 msgid "Dear {RecipientName},"
-msgstr "I dashur {RecipientName},"
+msgstr "Vážený/á {RecipientName},"
 
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr "Po e merrni këtë email ngaqë për ju është krijuar një llogari përdoruesi te sistemi: {Site}"
+msgstr "Tento e-mail ste dostali, pretože pre vás bol v systéme vytvorený užívateľský účet: {Site}"
 
 msgid "Username: {Username}"
-msgstr "Emër përdoruesi: {Username}"
+msgstr "Používateľské meno: {Username} "
 
 msgid "Activation link: {Url}"
-msgstr "Lidhje aktivizimi: {Url}"
+msgstr "Aktivačný odkaz: {Url}"
 
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr "Ju lutemi, që të ecet më tej me aktivizimin e llogarisë dhe që të caktoni fjalëkalimin tuaj si përdorues, klikoni mbi lidhjen e aktivizimit."
+msgstr "Kliknite na aktivačný odkaz, aby ste pokračovali k aktivácii účtu a nastavili svoje užívateľské heslo."
 
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
-msgstr "Pas aktivizimi të suksesshëm, do të jeni në gjendje të përdorni sistemin përmes lidhjes vijuese: {LoginUrl}"
+msgstr "Po úspešnej aktivácii budete mať prístup do systému pomocou nasledujúceho odkazu: {LoginUrl}"
 
 msgid "Kind regards,"
-msgstr "Të fala,"
+msgstr "S pozdravom,"
 
 msgid "Account activation"
-msgstr "Aktivizim llogarie"
+msgstr "Aktivácia účtu"
 
 msgid "Your whistleblowing platform is now accessible at:"
-msgstr "Platforma juaj për nxjerrje të fshehtash tani mund të përdoret që nga:"
+msgstr "Vaša whistleblowingová platforma je dostupná na:"
 
 msgid "To log in, visit:"
-msgstr "Që të bëni hyrjen, vizitoni:"
+msgstr "Ak sa chcete prihlásiť, navštívte stránku:"
 
 msgid "Users' credentials:"
-msgstr "Kredenciale përdoruesish:"
+msgstr "Poverovacie údaje používateľa:"
 
 msgid "The platform will be automatically deleted on:"
-msgstr "Platforma do të fshihet automatikisht më:"
+msgstr "Platforma bude automaticky zmazaná:"
 
 msgid "Access instructions"
-msgstr "Udhëzime hyrjeje"
+msgstr "Prístupové pokyny"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
-msgstr "Numri i veprimtarive të pikasura së fundi duket më i madh se sa zakonisht."
+msgstr "Bol zaznamenaný vyšší počet aktivít ako je obvyklé."
 
 msgid ""
 "This could be a sign of an attack (for example, someone flooding your server"
 " with bogus information) or just a usage spike due to an increased "
 "visibility of your project."
-msgstr "Kjo mund të jetë shenjë e një sulmi (për shembull, dikush është duke përmbytur shërbyesin tuaj me informacione kot), ose thjesht një kulmim përdorimi për shkak të shtimit të dukshmërisë së projektit tuaj."
+msgstr "Toto môže byť prejavom prebiehajúceho útoku (napríklad niekto zaplavuje Váš server falošnými informáciami) alebo môže ísť o obyčajný nárast popularity Vášho webu."
 
 msgid "Examine the issue to determine whether it is legitimate or not."
-msgstr "Shqyrtojeni çështjen, për të përcaktuar se është e ligjshme apo jo."
+msgstr "Preskúmať problém a zistiť, či je oprávnený alebo nie."
 
 msgid "The activities with unusual stats are:"
-msgstr "Veprimtaritë me statistika të pazakonta janë:"
+msgstr "Aktivity s neobvyklými štatistikami sú:"
 
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr "Shërbyesi s’garanton dot se është depozituar një raportim i ri, ndaj parashtrimet janë çaktivizuar."
+msgstr "Server nemohol zaručiť uloženie nového podania. Príjem ďalších podaní je preto zastavený."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
 "the server."
-msgstr "Ju lutemi, shihni mundësinë e kërkimit asistencës tuaj teknike të krijojë më tepër hapësirë disku te shërbyesi."
+msgstr "Prosím požiadajte vašu technickú podporu o rozšírenie dostupného priestoru na disku."
 
 msgid ""
 "GlobaLeaks technology includes a server status checking component which will"
 " alert you in case something requires your attention."
-msgstr "Platforma GlobaLeaks përmban një përbërës kontrollimi gjendjeje shërbyesi, i cili do t’ju sinjalizojë, në rast se diçka lyp vëmendjen tuaj."
+msgstr "Technológia GlobaLeaks zabezpečuje serverovú kontrolu stavu jednotlivých komponentov a upozorní Vás na prípadné situácie, ktoré vyžadujú Vašu zvýšenú pozornosť."
 
 msgid ""
 "For more information, log in to the Administration interface and look at the"
 " \"System Stats\" and \"Anomalies\" sections."
-msgstr "Për më tepër hollësi, bëni hyrjen te ndërfaqja e Përgjegjësit dhe shihni te ndarjet “Statistika Sistemi” dhe “Anomali”."
+msgstr "Pre viacej informácií sa prihláste do administrátorského rozhrania a pozrite si sekcie \"Systémové štatistiky\" a \"Anomálie\"."
 
 msgid "Anomaly detected in {NodeName}"
-msgstr "U pikas anomali te {NodeName}"
+msgstr "Zistená anomália na uzle {NodeName}."
 
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
 "going to expire or has already expired:"
-msgstr "Ky është një email për t’ju bërë të ditur se kyçi PGP i përdoruesve vijues është duke skaduar, ose ka skaduar tashmë:"
+msgstr "Toto je emailové upozornenie, že platnosť PGP kľúča týchto používateľov vypršala alebo onedlho vyprší:"
 
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
 "notifications."
-msgstr "Pa një kyç PGP të vlefshëm, sistemi s’do të jetë në gjendje t’u dërgojë njoftime të fshehtëzuara."
+msgstr "Bez platného PGP certifikátu systém nebude schopný odoslať šifrované upozornenie."
 
 msgid "PGP key expiration alert"
-msgstr "Sinjalizim skadimi kyçi PGP"
+msgstr "Upozornenie na vypršanie platnosti PGP certifikátu"
 
 msgid "A new whistleblowing site has been registered."
-msgstr "U regjistrua sajt i ri nxjerrjeje të fshehtash."
+msgstr "Bola zaregistrovaná nová whistleblowingová stránka."
 
 msgid "Registration data:"
-msgstr "Të dhëna regjistrimi:"
+msgstr "Registračné údaje:"
 
 msgid "Site: {Url}"
-msgstr "Sajt: {Url}"
+msgstr "Stránka: {Url}"
 
 msgid "Name: {Name}"
-msgstr "Emër: {Name}"
+msgstr "Meno: {Name}"
 
 msgid "Email: {Email}"
-msgstr "Email: {Email}"
+msgstr "Email: {Email} "
 
 msgid "New whistleblowing site registered"
-msgstr "U regjistrua sajt i ri nxjerrjeje të fshehtash"
+msgstr "Nová whistleblowingová stránka zaregistrovaná."
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
-msgstr "Ky është një email provë i dërguar prej ndërfaqes administrative të platformës."
+msgstr "Toto je testovací email odoslaný z administratívneho rozhrania."
 
 msgid ""
 "Reception of this email indicates that the server was able to authenticate "
 "to and interact with the SMTP mail server."
-msgstr "Marrja e këtij email-i tregon se shërbyesi qe në gjendje të bëjë mirëfilltësimin dhe të ndërveprojë me shërbyesin SMTP të postës."
+msgstr "Prijatie tohto emailu znamená, že server sa mohol prihlásiť na SMTP server a úspešne s ním komunikovať."
 
 msgid "Test email"
-msgstr "Email provë"
+msgstr "Testovací email"
 
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr "Ky është një email për t’ju njoftuar se është bërë një kërkesë për të ndryshuar adresën tuaj email në {NewEmailAddress}."
+msgstr "Toto je emailové upozornenie, že bola podaná žiadosť o zmenu Vašej emailovej adresy na {NewEmailAddress}."
 
 msgid "Click the following link to validate this change:"
-msgstr "Që ta miratoni këtë ndryshim, klikoni mbi lidhjen vijues:"
+msgstr "Zmenu potvrďte kliknutím na nasledujúci odkaz:"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
 "system administrator."
-msgstr "Nëse s’e kërkuat këtë ndryshim, ndryshojeni fjalëkalimin tuaj dhe lidhuni me përgjegjësin e sistemit tuaj."
+msgstr "Ak ste o túto zmenu nežiadali, zmeňte heslo a obráťte sa na správcu systému."
 
 msgid "Email change request"
-msgstr "Kërkesë ndryshimi email-i"
+msgstr "Žiadosť o zmenu emailu"
 
 msgid "From: {Author}"
-msgstr "Nga: {Author}"
+msgstr "Od: {Author}"
 
 msgid "Date: {EventTime}"
-msgstr "Datë: {EventTime}"
+msgstr "Dátum: {EventTime}"
 
 msgid "From: Whistleblower"
-msgstr "Nga: Nxjerrës të fshehte"
+msgstr "Od: Oznamovateľ"
 
 msgid "Date: {SubmissionDate}"
-msgstr "Datë: {SubmissionDate}"
+msgstr "Dátum: {SubmissionDate}"
 
 msgid "Label: {TipLabel}"
-msgstr "Etiketë: {TipLabel}"
+msgstr "Štítok: {TipLabel}"
 
 msgid "Status: {TipStatus}"
-msgstr "Gjendje: {TipStatus}"
+msgstr "Stav: {TipStatus}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
-msgstr "Dëshmia HTTPS e ngarkuar te platforma është duke skaduar, ose ka skaduar tashmë."
+msgstr "Certifikát HTTPS načítaný na platforme čoskoro vyprší alebo už vypršal."
 
 msgid "Expiration date: {ExpirationDate}"
-msgstr "Datë skadimi: {ExpirationDate}"
+msgstr "Doba exspirácie: {ExpirationDate}"
 
 msgid ""
 "Without a valid certificate, the platform will be accessible in a secure way"
 " only via Tor."
-msgstr "Pa një dëshmi të vlefshme, platforma do të jetë e përdorshme në mënyrë të parrezik vetëm përmes Tor-it."
+msgstr "Bez platného certifikátu bude platforma bezpečne prístupná iba prostredníctvom služby Tor."
 
 msgid "Log in to solve the issue."
-msgstr "Që të zgjidhni problemin, bëni hyrjen."
+msgstr "Prihláste sa pre vyriešenie problému."
 
 msgid "Expiration alert for HTTPS certificate"
-msgstr "Sinjalizim skadimi për dëshmi HTTPS"
+msgstr "Upozornenie na uplynutie platnosti certifikátu HTTPS"
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
-msgstr "Rinovimi i vetvetishëm i dëshmisë HTTPS, i planifikuar për sot, sapo dështoi."
+msgstr "Automatické obnovenie certifikátu HTTPS naplánované pre dnešok práve zlyhalo."
 
 msgid "The system will keep trying."
-msgstr "Sistemi do të vazhdojë të provojë."
+msgstr "Systém bude pokračovať v skúšaní."
 
 msgid "Failed HTTPS certificate renewal"
-msgstr "Dështim rinovimi dëshmie HTTPS"
+msgstr "Zlyhalo obnovenie certifikátu HTTPS"
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr "Ky është një email për t’ju njoftuar se një ruajtës ju ka autorizuar të njihni identitetin e nxjerrësit të së fshehtës për raportimin {TipNum}."
+msgstr "Toto je emailové upozornenie, že Vám správca povolil prístup k identite oznamovateľa podania {TipNum}."
 
 msgid "The report can be accessed at:"
-msgstr "Raportimi mund të shihet te:"
+msgstr "K tomuto podaniu máte prístup:"
 
 msgid "Access to whistleblower's identity authorized"
-msgstr "U autorizua hyrje te identitet nxjerrësi të fshehte"
+msgstr "Prístup k identite oznamovateľa bol schválený"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr "Ky është një email për t’ju njoftuar se një ruajtës ju ka mohuar njohjen e identitetit të nxjerrësit të së fshehtës për raportimin {TipNum}."
+msgstr "Toto je emailové upozornenie, že správca zamietol Váš prístup k identite oznamovateľa podania {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
-msgstr "U hodh poshtë hyrje te identitet nxjerrësi të fshehte"
+msgstr "Prístup k identifikácii oznamovateľa bol zamietnutý"
 
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr "Ky është një email për t’ju njoftuar se një marrës ka kërkuar hyrje te identiteti i nxjerrësit të së fshehtës për raportimin {TipNum}"
+msgstr "Toto je emailové upozornenie, že príjemca požaduje prístup k identite oznamovateľa podania {TipNum}."
 
 msgid "The request can be accessed at:"
-msgstr "Kërkesa mund të shihet te:"
+msgstr "Žiadosť je dostupná na:"
 
 msgid "New request of access to a whistleblower's identity"
-msgstr "Kërkesë e re për hyrje te identiteti i një nxjerrësi të fshehtash"
+msgstr "Nová žiadosť o prístup k identite oznamovateľa"
 
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr "Ky është një email për t’ju njoftuar se nxjerrësi i të fshehtës për raportimin {TipNum} ka dhënë identitetin e vet."
+msgstr "Toto je emailové upozornenie, že oznamovateľ podania {TipNum} poskytol svoju identitu."
 
 msgid "The whistleblower has provided their identity"
-msgstr "Nxjerrësi i të fshehtës ka dhënë identitetin e vet"
+msgstr "Oznamovateľ poskytol svoju identitu"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr "Këtë email po e merrni ngaqë është kërkuar ricaktim fjalëkalimi për llogarinë: {Username}"
+msgstr "Tento e-mail ste dostali, pretože bolo požadované resetovanie hesla pre konto: {Username}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
 "email."
-msgstr "Nëse këtë kërkesë s’e bëtë ju, mund ta shpërfillni pa telashe dhe ta fshini këtë email."
+msgstr "Ak ste túto žiadosť neodoslali, môžete tento email ignorovať a odstrániť."
 
 msgid "You can confirm your request by clicking the following link:"
-msgstr "Kërkesën tuaj mund ta ripohoni duke klikuar lidhjen vijuese:"
+msgstr "Svoju žiadosť môžete potvrdiť kliknutím na nasledujúci odkaz:"
 
 msgid "Password reset instructions"
-msgstr "Udhëzime ricaktimi fjalëkalimi"
+msgstr "Pokyny na obnovenie hesla"
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
 "expired."
-msgstr "Ky është një email për t’ju bërë të ditur se kyçi juaj PGP po skadon, ose ka skaduar tashmë."
+msgstr "Touto správou Vás chceme upozorniť, že Vášmu certifikátu vypršala či onedlho vyprší platnosť."
 
 msgid ""
 "You should extend its validity and update the key present on the platform, "
 "or upload a new key."
-msgstr "Do të duhej ta zgjeroni vlefshmërinë e tij dhe të përditësoni kyçin e pranishëm te platforma, ose të ngarkoni një kyç të ri."
+msgstr "Mali by ste predĺžiť jeho platnosť a aktualizovať súčasný kľúč alebo nahrať kľúč nový."
 
 msgid ""
 "Without a valid PGP key, the system won't be able to encrypt data provided "
 "to you."
-msgstr "Pa një kyç PGP të vlefshëm, sistemi s’do të jetë në gjendje të fshehtëzojë të dhëna që ju jepen."
+msgstr "Bez poskytnutia platného PGP kľúča nebude systém schopný zašifrovať s vami zdieľané dáta."
 
 msgid "Click the link to activate the platform:"
-msgstr "Që të aktivizohet platforma, klikoni mbi lidhjen:"
+msgstr "Pre dokončenie aktivácie platformy kliknite na odkaz:"
 
 msgid "Activation"
-msgstr "Aktivizim"
+msgstr "Aktivácia"
 
 msgid "A software update is available."
-msgstr "Ka të gatshëm një përditësim software-i."
+msgstr "Je k dispozícii aktualizácia softvéru."
 
 msgid "It is good security practice to keep the platform up to date."
-msgstr "Mbajtja e platformës të përditësuar është një praktikë e dobishme."
+msgstr "Odporúčaným bezpečnostným postupom je udržiavať platformu aktualizovanú na poslednú dostupnú verziu."
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "
 "change log at: {ChangeLogUrl}"
-msgstr "Për të mësuar rreth veçorish të reja dhe ndreqje të metash në versionin e ri, shihni regjistrin e ndryshimeve te: {ChangeLogUrl}"
+msgstr "Ak chcete získať informácie o nových funkciách a opravách v novej verzii, skontrolujte zoznam zmien na adrese: {ChangeLogUrl}"
 
 msgid ""
 "For instructions on software updates, please refer to the documentation at: "
 "{UpdateGuideUrl}"
-msgstr "Për udhëzime rreth përditësimesh software-i, ju lutemi, referojuni dokumentimit te: {UpdateGuideUrl}"
+msgstr "Pokyny týkajúce sa aktualizácií softvéru nájdete v dokumentácii na: {UpdateGuideUrl}"
 
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
@@ -1889,21 +1949,21 @@ msgid ""
 msgstr "Ky është një email për t’ju njoftuar se një marrës ju ka akorduar hyrje te një ose disa raportime."
 
 msgid "New report"
-msgstr "Raportim i ri"
+msgstr "Nové podanie"
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
-msgstr "Data më e hershme e skadimit është {EarliestExpirationDate}."
+msgstr "Najbližší deň vypršania platnosti je {EarliestExpirationDate}."
 
 msgid "Please remember to check them before they are deleted."
-msgstr "Ju lutemi, mos harroni t’i shihni, para se të fshihen."
+msgstr "Nezabudnite na ich kontrolu skôr, než budú odstránené.."
 
 msgid "Some reports will expire soon"
-msgstr "Disa raportime do të skadojnë së shpejti"
+msgstr "Niektoré podania čoskoro vypršia"
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr "Ky është një email për t’ju njoftuar se një nxjerrës të fshehte ju ka përzgjedhur ju si një marrës të vlefshëm për raportimin e vet."
+msgstr "Toto je emailové upozornenie, že Vás oznamovateľ vybral ako príjemcu podania."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -1911,22 +1971,22 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr "Ju kërkohet të bëni kujdes të veçantë me informacionin dhe materialin që përmbahet këtu. Ju lutemi, mbani parasysh se nxjerrësit e të fshehtave, shpesh ekspozojnë veten ndaj rreziqesh të mëdha personale, për interesin e publikut. Ndaj materiali i dhënë brenda këtij raportimi duhet konsideruar si i rëndësie të madhe."
+msgstr "Prosím, venujte zvláštnu pozornosť obsiahnutým informáciám a materiálom. Majte na pamäti, že oznamovatelia sa často vystavujú osobným rizikám v záujme verejnosti. Informácie poskytnuté v rámci tohto podania by preto mali byť považované za veľmi dôležité."
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr "Ky është një email për t’ju njoftuar se është përditësuar një raportim ekzistues."
+msgstr "Toto je e-mailové upozornenia o aktualizácii u existujúceho podaní."
 
 msgid "Report updated"
-msgstr "U përditësua raportim"
+msgstr "Oznámenie bolo aktualizované"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr "Ky email është për t’ju kujtuar praninë e raportimesh të palexuar ose të përditësuar."
+msgstr "Toto je e-mailové upozornenia na prítomnosť neprečítaných alebo aktualizovaných podaní."
 
 msgid "Reminder about unread or updated reports"
-msgstr "Kujtues për raportime të palexuar ose të përditësuar"
+msgstr "Pripomienka o neprečítaných alebo aktualizovaných podania"
 
 msgid "Role: {Role}"
-msgstr "Rol: {Role}"
+msgstr "Role: {Role}"
 
 msgid "Password: {Password}"
-msgstr "Fjalëkalim: {Password}"
+msgstr "Heslo: {Password}"

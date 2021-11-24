@@ -483,9 +483,6 @@ msgstr "Where did the facts happen?"
 msgid "When did the facts happen?"
 msgstr "When did the facts happen?"
 
-msgid "Please detail your report."
-msgstr "Please detail your report."
-
 msgid "How are you involved in the reported facts?"
 msgstr "How are you involved in the reported facts?"
 
@@ -504,9 +501,6 @@ msgstr "I was personally told by a direct witness"
 msgid "It is a rumor I heard"
 msgstr "It is a rumor I heard"
 
-msgid "What is your involvement in the reported facts?"
-msgstr "What is your involvement in the reported facts?"
-
 msgid "Do you have evidence to support your report?"
 msgstr "Do you have evidence to support your report?"
 
@@ -517,16 +511,13 @@ msgid "Please describe the evidence in detail."
 msgstr "Please describe the evidence in detail."
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to "
+"A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
 msgstr ""
-"Thorough descriptions of submitted evidence enhances our ability to "
+"A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-
-msgid "Please describe the source of the evidence."
-msgstr "Please describe the source of the evidence."
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
 msgstr "Have you reported the facts to other organizations and/or individuals?"
@@ -545,8 +536,8 @@ msgstr ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
 
-msgid "What is the outcome you want to see/achieve with our support?"
-msgstr "What is the outcome you want to see/achieve with our support?"
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "What is the outcome you want to achieve with our support?"
 
 msgid "File a report"
 msgstr "File a report"
@@ -1679,12 +1670,6 @@ msgstr "I have read and agree to the terms of the license."
 
 msgid "You have completed the platform wizard."
 msgstr "You have completed the platform wizard."
-
-msgid "Fill out your report"
-msgstr "Fill out your report"
-
-msgid "Describe your report in a few words."
-msgstr "Describe your report in a few words."
 
 msgid "Describe your report in detail."
 msgstr "Describe your report in detail."

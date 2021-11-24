@@ -1,5 +1,8 @@
-# 
 # Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# Translators:
+# a6c63d26ffa7dd0fcc8488aeda5e13cc_e98f1c4 <9c0e475b052551345b6783cce6a22315_95966>, 2014
 # Andriy Smulka <andriy.smulka@rocketmail.com>, 2021
 # Annie Bridges <anniebridges90@gmail.com>, 2014
 # Bogdan Lytvynovskyi <bogdan.lytvynovskyi@gmail.com>, 2014
@@ -20,11 +23,12 @@
 # SG, 2014
 # ukr, 2014-2018
 # Vitali Vovnenko, 2015
+# Vitali Vovnenko, 2015
 # Любомир <n.lyubomyr@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-15 15:18+0000\n"
+"PO-Revision-Date: 2021-11-24 15:04+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -491,6 +495,61 @@ msgstr "Дозволити доступ"
 
 msgid "Revoke access"
 msgstr "Відкликати доступ"
+
+msgid "Where did the facts happen?"
+msgstr ""
+
+msgid "When did the facts happen?"
+msgstr ""
+
+msgid "How are you involved in the reported facts?"
+msgstr ""
+
+msgid "I’m a victim"
+msgstr ""
+
+msgid "I’m involved in the facts"
+msgstr ""
+
+msgid "I witnessed the facts in person"
+msgstr ""
+
+msgid "I was personally told by a direct witness"
+msgstr ""
+
+msgid "It is a rumor I heard"
+msgstr ""
+
+msgid "Do you have evidence to support your report?"
+msgstr ""
+
+msgid "Please attach the evidence to support your report."
+msgstr ""
+
+msgid "Please describe the evidence in detail."
+msgstr ""
+
+msgid ""
+"Thorough descriptions of submitted evidence enhances our ability to evaluate"
+" claims and investigate. Please take care to reference significant portions "
+"of any videos, images or documents submitted."
+msgstr ""
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr ""
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr ""
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr ""
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr ""
 
 msgid "File a report"
 msgstr "Подати звіт"
@@ -1588,7 +1647,7 @@ msgstr "Ви закінчили роботу з майстром налашту�
 msgid "Fill out your report"
 msgstr "Заповніть свій звіт"
 
-msgid "Describe your report in a few words."
+msgid "Please summarize your report in a few words."
 msgstr "Опишіть кількома словами наданий вами звіт."
 
 msgid "Describe your report in detail."

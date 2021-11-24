@@ -1,12 +1,21 @@
-# 
+# Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
 # Translators:
 # Aminjon Hasanov, 2021
+# Aminjon Hasanov, 2021
+# Andrew Yeh <admin@twngo.xyz>, 2017
+# ff98sha, 2020
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
 # Iftihor Muhtorov <i.muhtorov@gmail.com>, 2021
+# Iftihor Muhtorov <i.muhtorov@gmail.com>, 2021
+# iigmir <iigmir@hotmail.com>, 2015
+# Mingye Wang <arthur200126@gmail.com>, 2015
+# Sherry Yang <sherry@control4.com.tw>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-15 15:18+0000\n"
+"PO-Revision-Date: 2021-11-24 15:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tajik (http://www.transifex.com/otf/globaleaks/language/tg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -344,7 +353,7 @@ msgid "Reports"
 msgstr "Гузоришҳо"
 
 msgid "Report"
-msgstr ""
+msgstr "報告"
 
 msgid "Users"
 msgstr "Корбарон"
@@ -473,6 +482,61 @@ msgstr "Дастрасӣ додан"
 
 msgid "Revoke access"
 msgstr "Дастрасиро бекор кардан"
+
+msgid "Where did the facts happen?"
+msgstr ""
+
+msgid "When did the facts happen?"
+msgstr ""
+
+msgid "How are you involved in the reported facts?"
+msgstr ""
+
+msgid "I’m a victim"
+msgstr ""
+
+msgid "I’m involved in the facts"
+msgstr ""
+
+msgid "I witnessed the facts in person"
+msgstr ""
+
+msgid "I was personally told by a direct witness"
+msgstr ""
+
+msgid "It is a rumor I heard"
+msgstr ""
+
+msgid "Do you have evidence to support your report?"
+msgstr ""
+
+msgid "Please attach the evidence to support your report."
+msgstr ""
+
+msgid "Please describe the evidence in detail."
+msgstr ""
+
+msgid ""
+"Thorough descriptions of submitted evidence enhances our ability to evaluate"
+" claims and investigate. Please take care to reference significant portions "
+"of any videos, images or documents submitted."
+msgstr ""
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr ""
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr ""
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr ""
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr ""
 
 msgid "File a report"
 msgstr "Таҳияи гузориш"
@@ -1570,7 +1634,7 @@ msgstr "Шумо кор бо ёвари барномаро анҷом додед
 msgid "Fill out your report"
 msgstr "Гузориши худро хонапурӣ намоед"
 
-msgid "Describe your report in a few words."
+msgid "Please summarize your report in a few words."
 msgstr "Гузориши худро бо чанд калима шарҳ диҳед."
 
 msgid "Describe your report in detail."
