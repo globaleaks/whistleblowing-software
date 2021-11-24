@@ -27,9 +27,9 @@ controller("PasswordResetCompleteCtrl", ["$scope", "$location", "$http",
       if(response.data.status === "success") {
         $location.url("/login?token=" + response.data.token);
       } else if (response.data.status === "require_recovery_key") {
-	$location.url("/password/reset/recovery");
+	$location.path("/password/reset/recovery");
       } else if (response.data.status === "require_two_factor_authentication") {
-	$location.url("/password/reset/2fa");
+	$location.path("/password/reset/2fa");
       } else {
 	$location.url("/login/passwordreset/failure/token");
       }
