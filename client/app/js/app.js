@@ -479,7 +479,7 @@ var GL = angular.module("GL", [
   config(["IdleProvider", "KeepaliveProvider", "TitleProvider", function(IdleProvider, KeepaliveProvider, TitleProvider) {
     IdleProvider.idle(300);
     IdleProvider.timeout(3600);
-    KeepaliveProvider.interval(60);
+    KeepaliveProvider.interval(600);
     TitleProvider.enabled(false);
 }]).
   run(["$rootScope", "$http", "$route", "$routeParams", "$window", "$location",  "$filter", "$translate", "$uibModal", "$templateCache", "Idle", "Authentication", "SessionResource", "PublicResource", "Utils", "AdminUtils", "fieldUtilities", "CONSTANTS", "GLTranslate", "Access",
