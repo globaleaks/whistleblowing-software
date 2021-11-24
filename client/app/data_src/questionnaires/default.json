@@ -4,7 +4,7 @@
   "steps": [
     {
       "label": {
-        "en": "Fill out your report"
+        "en": ""
       },
       "description": {
         "en": ""
@@ -18,7 +18,7 @@
           "type": "inputbox",
           "preview": true,
           "description": {
-            "en": "Describe your report in a few words."
+            "en": "Please summarize your report in a few words."
           },
           "hint": {
             "en": ""

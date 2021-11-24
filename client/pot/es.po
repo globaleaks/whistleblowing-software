@@ -1,13 +1,20 @@
-# 
 # Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# Translators:
+# 4b8fe8aa5774ddeb3c4c7817cd28f50e_d751ab4 <55c3bb72c999b01f254463d72e197fd7_99140>, 2013
 # Anatoli Pena <djanatoli@gmail.com>, 2016-2017
+# Anatoli Pena <djanatoli@gmail.com>, 2020
 # Anatoli Pena <djanatoli@gmail.com>, 2020
 # 4b8fe8aa5774ddeb3c4c7817cd28f50e_d751ab4 <55c3bb72c999b01f254463d72e197fd7_99140>, 2013
 # 4b8fe8aa5774ddeb3c4c7817cd28f50e_d751ab4 <55c3bb72c999b01f254463d72e197fd7_99140>, 2013
+# b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # B. K., 2015
 # B. K., 2015
+# cacu <carlosm2@riseup.net>, 2015,2017
 # cacu <carlosm2@riseup.net>, 2015
 # cacu <carlosm2@riseup.net>, 2015,2017
+# Eduardo Estrada, 2020
 # Eduardo Estrada, 2020
 # 4b8fe8aa5774ddeb3c4c7817cd28f50e_d751ab4 <55c3bb72c999b01f254463d72e197fd7_99140>, 2013
 # Federico Scrinzi <fox91@anche.no>, 2013
@@ -23,9 +30,11 @@
 # Lucrezia <luz.gatti@gmail.com>, 2013
 # Manuel D. Serrat <manuel.serrat@antifraucv.es>, 2018-2019
 # migue802 <mfc880@gmail.com>, 2020
+# migue802 <mfc880@gmail.com>, 2020
 # Nick Skelsey, 2016
 # Nick Skelsey, 2016
 # Lucrezia <luz.gatti@gmail.com>, 2013
+# RF <falcocom25@gmail.com>, 2015
 # RF <falcocom25@gmail.com>, 2015
 # strel, 2013-2018
 # Tommy Vega, 2015
@@ -36,7 +45,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-15 15:18+0000\n"
+"PO-Revision-Date: 2021-11-24 15:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -503,6 +512,61 @@ msgstr "Conceder acceso"
 
 msgid "Revoke access"
 msgstr "Revocar acceso"
+
+msgid "Where did the facts happen?"
+msgstr "¿Dónde ocurrieron los hechos?"
+
+msgid "When did the facts happen?"
+msgstr "¿Cuándo ocurrieron los hechos?"
+
+msgid "How are you involved in the reported facts?"
+msgstr "¿Cómo estás involucrado en los hechos reportados?"
+
+msgid "I’m a victim"
+msgstr "Soy una víctima"
+
+msgid "I’m involved in the facts"
+msgstr "Estoy involucrado en los hechos"
+
+msgid "I witnessed the facts in person"
+msgstr "Fuí testigo de los hechos en persona"
+
+msgid "I was personally told by a direct witness"
+msgstr "Me fué dicho personalmente por un testigo directo"
+
+msgid "It is a rumor I heard"
+msgstr "Es un rumor que escuché"
+
+msgid "Do you have evidence to support your report?"
+msgstr "¿Tienes evidencia para soportar tu reporte?"
+
+msgid "Please attach the evidence to support your report."
+msgstr "Por favor adjunta la evidencia para soportar tu reporte."
+
+msgid "Please describe the evidence in detail."
+msgstr "Por favor describe la evidencia en detalle."
+
+msgid ""
+"Thorough descriptions of submitted evidence enhances our ability to evaluate"
+" claims and investigate. Please take care to reference significant portions "
+"of any videos, images or documents submitted."
+msgstr "Las descripciones minuciosas de la evidencia enviada amplían nuestra habilidad para evaluar afirmaciones e investigar. Por favor tómate el cuidado de referenciar porciones significativas de cualquier vídeo, imagen o documento enviado."
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "¿Has reportado los hechos a otras organizaciones y/o individuos?"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "Por favor lista las organizaciones y/o individuos a los que has informado acerca de estos hechos."
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "Estas organizaciones, ¿han investigado tus afirmaciones? Si es así, ¿cuál fue el resultado?"
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "¿Cuál es el resultado que quieres lograr con nuestro soporte?"
 
 msgid "File a report"
 msgstr "Presentar un informe"
@@ -1600,7 +1664,7 @@ msgstr "Has completado con éxito el asistente de la plataforma."
 msgid "Fill out your report"
 msgstr "Completa los datos de la entrega"
 
-msgid "Describe your report in a few words."
+msgid "Please summarize your report in a few words."
 msgstr "Describe tu reporte en unas pocas palabras."
 
 msgid "Describe your report in detail."

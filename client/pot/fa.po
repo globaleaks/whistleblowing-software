@@ -1,10 +1,15 @@
-# 
 # Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# Translators:
+# 1bdf31d1c1e9cb24d6578874174ff2c7, 2016
+# 6d974eae263d7aab17b09900ac13d6de_bb09837, 2013
 # Ali, 2015
 # Ali, 2015
 # signal89, 2014
 # Ali, 2015
 # Amir A. <amir@armandis.com>, 2015
+# b0b47d46632b78a09a40de799fda9a65, 2019
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015,2017,2020-2021
 # Hamed Behravan <behravan.hamed@gmail.com>, 2015
 # Hamed Behravan <behravan.hamed@gmail.com>, 2015
@@ -18,17 +23,19 @@
 # Morpheus, 2013
 # Morpheus, 2013
 # Peyman A <pymnpe@gmail.com>, 2018
+# Reza Ghasemi, 2019
 # Reza Ghasemi, 2019-2020
 # signal89, 2014
 # signal89, 2014
 # b0b47d46632b78a09a40de799fda9a65, 2019
 # Vox <voxp@protonmail.com>, 2020
 # Xashyar, 2021
+# Xashyar, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-15 15:18+0000\n"
-"Last-Translator: Vox <voxp@protonmail.com>\n"
+"PO-Revision-Date: 2021-11-24 14:57+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -494,6 +501,61 @@ msgstr "اعطای دسترسی"
 
 msgid "Revoke access"
 msgstr "لغو دسترسی"
+
+msgid "Where did the facts happen?"
+msgstr ""
+
+msgid "When did the facts happen?"
+msgstr ""
+
+msgid "How are you involved in the reported facts?"
+msgstr ""
+
+msgid "I’m a victim"
+msgstr ""
+
+msgid "I’m involved in the facts"
+msgstr ""
+
+msgid "I witnessed the facts in person"
+msgstr ""
+
+msgid "I was personally told by a direct witness"
+msgstr ""
+
+msgid "It is a rumor I heard"
+msgstr ""
+
+msgid "Do you have evidence to support your report?"
+msgstr ""
+
+msgid "Please attach the evidence to support your report."
+msgstr ""
+
+msgid "Please describe the evidence in detail."
+msgstr ""
+
+msgid ""
+"Thorough descriptions of submitted evidence enhances our ability to evaluate"
+" claims and investigate. Please take care to reference significant portions "
+"of any videos, images or documents submitted."
+msgstr ""
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr ""
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr ""
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr ""
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr ""
 
 msgid "File a report"
 msgstr "تشکیل یک گزارش"
@@ -1591,7 +1653,7 @@ msgstr "شما مراحل دستیار پلتفرم را کامل کردید."
 msgid "Fill out your report"
 msgstr "گزارش خود را پر کنید"
 
-msgid "Describe your report in a few words."
+msgid "Please summarize your report in a few words."
 msgstr "گزارش خود را با چند کلمه توصیف کنید."
 
 msgid "Describe your report in detail."

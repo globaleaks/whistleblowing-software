@@ -1,6 +1,10 @@
-# 
+# Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
 # Translators:
 # Arthit Suriyawongkul, 2021
+# Arthit Suriyawongkul, 2021
+# b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # Arthit Suriyawongkul, 2020-2021
 # Cheer Zeng <cheerz6623@gmail.com>, 2021
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2018,2020-2021
@@ -13,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-15 15:18+0000\n"
-"Last-Translator: Arthit Suriyawongkul\n"
+"PO-Revision-Date: 2021-11-24 15:02+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -480,6 +484,61 @@ msgstr "มอบสิทธิเข้าถึง"
 
 msgid "Revoke access"
 msgstr "เพิกถอนการเข้าถึง"
+
+msgid "Where did the facts happen?"
+msgstr "เหตุการณ์ดังกล่าวเกิดขึ้นที่ใด?"
+
+msgid "When did the facts happen?"
+msgstr "เหตุการณ์ดังกล่าวเกิดขึ้นเมื่อใด?"
+
+msgid "How are you involved in the reported facts?"
+msgstr "คุณมีความเกี่ยวข้องกับเหตุที่รายงานอย่างไร?"
+
+msgid "I’m a victim"
+msgstr "ฉันเป็นผู้เสียหาย"
+
+msgid "I’m involved in the facts"
+msgstr "ฉันเป็นผู้เกี่ยวข้องในเหตุการณ์"
+
+msgid "I witnessed the facts in person"
+msgstr "ฉันเป็นพยานในเหตุการณ์"
+
+msgid "I was personally told by a direct witness"
+msgstr "ฉันได้รับคำบอกเล่าจากพยานในเหตุการณ์โดยตรง"
+
+msgid "It is a rumor I heard"
+msgstr "ข่าวลือ--ฉันได้ยินมา"
+
+msgid "Do you have evidence to support your report?"
+msgstr "คุณมีหลักฐานสนับสนุนการรายงานของคุณหรือไม่?"
+
+msgid "Please attach the evidence to support your report."
+msgstr "โปรดแนบหลักฐานสนับสนุนรายงานของคุณ"
+
+msgid "Please describe the evidence in detail."
+msgstr "โปรดอธิบายหลักฐานโดยละเอียด"
+
+msgid ""
+"Thorough descriptions of submitted evidence enhances our ability to evaluate"
+" claims and investigate. Please take care to reference significant portions "
+"of any videos, images or documents submitted."
+msgstr "คำอธิบายโดยละเอียดของหลักฐานที่ส่งเข้ามาจะช่วยเพิ่มขีดความสามารถของเราในการประเมินข้อเรียกร้องและการตรวจสอบ โปรดเลือกวิดีโอ ภาพ หรือเอกสารเฉพาะส่วนที่สำคัญเพื่อส่งมาเป็นหลักฐาน"
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "คุณได้รายงานเหตุการณ์ไปยังองค์กรอื่นบ้างหรือไม่?"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "โปรดระบุชื่อองค์กรที่คุณได้แจ้งเหตุการณ์นี้"
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "องค์กรเหล่านี้ตรวจสอบข้อเรียกร้องของคุณหรือไม่? ถ้าใช่ ผลลัพธ์เป็นอย่างไร?"
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "คุณอยากให้/เห็นผลลัพธ์ออกมาเป็นอย่างไร?"
 
 msgid "File a report"
 msgstr "ยื่นรายงาน"
@@ -1577,7 +1636,7 @@ msgstr "คุณได้ดำเนินการตัวช่วยตั
 msgid "Fill out your report"
 msgstr "กรอกรายงานของคุณ"
 
-msgid "Describe your report in a few words."
+msgid "Please summarize your report in a few words."
 msgstr "อธิบายรายงานของคุณในไม่กี่คำ"
 
 msgid "Describe your report in detail."

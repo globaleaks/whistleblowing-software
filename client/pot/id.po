@@ -1,5 +1,8 @@
-# 
 # Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# Translators:
+# Andrea Bras, 2018
 # Andrea Bras, 2018
 # Andre Julian <andrejulian30@gmail.com>, 2016-2017,2021
 # Arif Budiman <arifbudiman@gmail.com>, 2015
@@ -8,26 +11,29 @@
 # Caroline Dianty <Diantycaroline@gmail.com>, 2018
 # Clara Priscilia <clara.priscilia78@gmail.com>, 2018
 # Edo Imantaka, 2021
+# Edo Imantaka, 2021
 # Evanna Audrey <evanna.n.audrey@gmail.com>, 2021
 # Fransisca Susanti <susanti@jaring.id>, 2018
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017-2018,2020-2021
 # Helen Zhang <helen13zhang@gmail.com>, 2018
+# Ibnu Daru Aji, 2015
 # Ibnu Daru Aji, 2015
 # ical, 2018-2021
 # Imron Fauzi <imronfauzi@gmail.com>, 2015
 # Marcel Oomens <mail@marceloomens.com>, 2018
 # Margaret Megan <megan_marg@yahoo.com>, 2017
 # M. Miguel Adrian Pasha <m.miguel.ap@gmail.com>, 2018
+# M. Miguel Adrian Pasha <m.miguel.ap@gmail.com>, 2018
 # M Yusuf Fin <myusuffin@gmail.com>, 2018
-# M Yusuf Fin <myusuffin@gmail.com>, 2020
+# M Yusuf Fin <myusuffin@gmail.com>, 2018,2020
 # nirel dede <nireldede2710@gmail.com>, 2018
 # Oenang Dewi <oenangdewi@gmail.com>, 2018
 # Ratna Ariyanti <ratna.ariyanti@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-15 15:18+0000\n"
-"Last-Translator: M Yusuf Fin <myusuffin@gmail.com>\n"
+"PO-Revision-Date: 2021-11-24 14:49+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -493,6 +499,61 @@ msgstr "Memberikan akses"
 
 msgid "Revoke access"
 msgstr "Mencabut akses"
+
+msgid "Where did the facts happen?"
+msgstr ""
+
+msgid "When did the facts happen?"
+msgstr ""
+
+msgid "How are you involved in the reported facts?"
+msgstr ""
+
+msgid "I’m a victim"
+msgstr ""
+
+msgid "I’m involved in the facts"
+msgstr ""
+
+msgid "I witnessed the facts in person"
+msgstr ""
+
+msgid "I was personally told by a direct witness"
+msgstr ""
+
+msgid "It is a rumor I heard"
+msgstr ""
+
+msgid "Do you have evidence to support your report?"
+msgstr ""
+
+msgid "Please attach the evidence to support your report."
+msgstr ""
+
+msgid "Please describe the evidence in detail."
+msgstr ""
+
+msgid ""
+"Thorough descriptions of submitted evidence enhances our ability to evaluate"
+" claims and investigate. Please take care to reference significant portions "
+"of any videos, images or documents submitted."
+msgstr ""
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr ""
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr ""
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr ""
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr ""
 
 msgid "File a report"
 msgstr "Buat laporan"
@@ -1590,7 +1651,7 @@ msgstr "Anda telah menyelesaikan wisaya platform."
 msgid "Fill out your report"
 msgstr "Isi laporan Anda"
 
-msgid "Describe your report in a few words."
+msgid "Please summarize your report in a few words."
 msgstr "Deskripsikan laporan Anda dalam beberapa kata."
 
 msgid "Describe your report in detail."

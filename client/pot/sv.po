@@ -1,7 +1,11 @@
-# 
+# Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
 # Translators:
 # Daniel Vaknine <vaknine.daniel@gmail.com>, 2021
 # eckeman <eckeman@zoho.com>, 2020
+# eckeman <eckeman@zoho.com>, 2020
+# efef6ec5b435a041fce803c7f8af77d2_2341d43, 2018
 # ester.a <ester@virtualroad.org>, 2014
 # ester.a <ester@virtualroad.org>, 2014-2015
 # Eva Simonsson, 2020-2021
@@ -14,6 +18,7 @@
 # efef6ec5b435a041fce803c7f8af77d2_2341d43, 2018
 # Kristoffer Grundström <lovaren@gmail.com>, 2014
 # Kristoffer Grundström <lovaren@gmail.com>, 2014
+# Kristoffer Grundström <lovaren@gmail.com>, 2014
 # Linus Malmgren <linus@malmgren.nu>, 2015
 # martinedstrom <martin@martinedstrom.com>, 2014
 # martinedstrom <martin@martinedstrom.com>, 2014
@@ -23,7 +28,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-15 15:18+0000\n"
+"PO-Revision-Date: 2021-11-24 15:01+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -490,6 +495,61 @@ msgstr "Ge åtkomst"
 
 msgid "Revoke access"
 msgstr "Återkalla åtkomst"
+
+msgid "Where did the facts happen?"
+msgstr ""
+
+msgid "When did the facts happen?"
+msgstr ""
+
+msgid "How are you involved in the reported facts?"
+msgstr ""
+
+msgid "I’m a victim"
+msgstr ""
+
+msgid "I’m involved in the facts"
+msgstr ""
+
+msgid "I witnessed the facts in person"
+msgstr ""
+
+msgid "I was personally told by a direct witness"
+msgstr ""
+
+msgid "It is a rumor I heard"
+msgstr ""
+
+msgid "Do you have evidence to support your report?"
+msgstr ""
+
+msgid "Please attach the evidence to support your report."
+msgstr ""
+
+msgid "Please describe the evidence in detail."
+msgstr ""
+
+msgid ""
+"Thorough descriptions of submitted evidence enhances our ability to evaluate"
+" claims and investigate. Please take care to reference significant portions "
+"of any videos, images or documents submitted."
+msgstr ""
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr ""
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr ""
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr ""
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr ""
 
 msgid "File a report"
 msgstr "Lämna en rapport"
@@ -1587,7 +1647,7 @@ msgstr "Du har slutfört den guidade aktiveringen av plattformen."
 msgid "Fill out your report"
 msgstr "Fyll i din rapport"
 
-msgid "Describe your report in a few words."
+msgid "Please summarize your report in a few words."
 msgstr "Beskriv din rapport i korthet med några ord."
 
 msgid "Describe your report in detail."

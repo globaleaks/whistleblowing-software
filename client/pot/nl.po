@@ -1,12 +1,18 @@
-# 
 # Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# Translators:
+# 8523c193f9fc387ee9b7297da8db6363_acb8666 <7a74a1c67fd165f2a476b24d6beb7d58_282697>, 2015
+# 8d98478d19376e343142c8c23c2a73b6_36c4a7f, 2015
 # Anne Mügge <info@numijneigenwebsite.nl>, 2016-2017
+# b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # Barend <b.vanrijn@me.com>, 2015
 # tempuser1234 <c1160321@trbvm.com>, 2014
 # 8523c193f9fc387ee9b7297da8db6363_acb8666 <7a74a1c67fd165f2a476b24d6beb7d58_282697>, 2015
 # Douwe <douwe@greenhost.nl>, 2013
 # Douwe <douwe@greenhost.nl>, 2013
 # dragnadh, 2016-2017
+# erinm, 2021
 # erinm, 2021
 # tyfjoh, 2014
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2021
@@ -21,6 +27,7 @@
 # kwadronaut <kwadronaut@autistici.org>, 2017
 # Marcel Oomens <mail@marceloomens.com>, 2015-2017
 # Max van Dam <max@schipholwatch.nl>, 2020
+# Meteor0id, 2019
 # Meteor0id, 2019
 # Midgard, 2015
 # Mieke van Heesewijk <mieke@netdem.nl>, 2013
@@ -44,8 +51,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-15 15:18+0000\n"
-"Last-Translator: Paco Mens <mens@freepressunlimited.org>\n"
+"PO-Revision-Date: 2021-11-24 14:46+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -511,6 +518,61 @@ msgstr "Toegang verlenen"
 
 msgid "Revoke access"
 msgstr "Toegang herroepen"
+
+msgid "Where did the facts happen?"
+msgstr ""
+
+msgid "When did the facts happen?"
+msgstr ""
+
+msgid "How are you involved in the reported facts?"
+msgstr ""
+
+msgid "I’m a victim"
+msgstr ""
+
+msgid "I’m involved in the facts"
+msgstr ""
+
+msgid "I witnessed the facts in person"
+msgstr ""
+
+msgid "I was personally told by a direct witness"
+msgstr ""
+
+msgid "It is a rumor I heard"
+msgstr ""
+
+msgid "Do you have evidence to support your report?"
+msgstr ""
+
+msgid "Please attach the evidence to support your report."
+msgstr ""
+
+msgid "Please describe the evidence in detail."
+msgstr ""
+
+msgid ""
+"Thorough descriptions of submitted evidence enhances our ability to evaluate"
+" claims and investigate. Please take care to reference significant portions "
+"of any videos, images or documents submitted."
+msgstr ""
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr ""
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr ""
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr ""
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr ""
 
 msgid "File a report"
 msgstr "Dien een rapport in"
@@ -1608,7 +1670,7 @@ msgstr "Je hebt de wizard geheel doorlopen."
 msgid "Fill out your report"
 msgstr "Invullen van de inzending"
 
-msgid "Describe your report in a few words."
+msgid "Please summarize your report in a few words."
 msgstr "Beschrijf je inzending in een paar woorden."
 
 msgid "Describe your report in detail."

@@ -1,12 +1,15 @@
-# 
 # Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# Translators:
+# Adawcs, 2021
 # Adawcs, 2021
 # Cheer Zeng <cheerz6623@gmail.com>, 2021
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-15 15:18+0000\n"
+"PO-Revision-Date: 2021-11-24 14:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Hong Kong) (http://www.transifex.com/otf/globaleaks/language/zh_HK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -473,6 +476,61 @@ msgstr ""
 
 msgid "Revoke access"
 msgstr ""
+
+msgid "Where did the facts happen?"
+msgstr "事發於何處?"
+
+msgid "When did the facts happen?"
+msgstr "事發於何時?"
+
+msgid "How are you involved in the reported facts?"
+msgstr "你在所匯報的事件中有何參與?"
+
+msgid "I’m a victim"
+msgstr "我是受害人。"
+
+msgid "I’m involved in the facts"
+msgstr "我曾參與於事件中。"
+
+msgid "I witnessed the facts in person"
+msgstr "我親自目擊事件經過。"
+
+msgid "I was personally told by a direct witness"
+msgstr "我親自聽到目擊人士的描述。"
+
+msgid "It is a rumor I heard"
+msgstr "傳聞-我聽說得知。"
+
+msgid "Do you have evidence to support your report?"
+msgstr "你有否支持此匯報的佐證?"
+
+msgid "Please attach the evidence to support your report."
+msgstr "請就你的匯報附上佐證。"
+
+msgid "Please describe the evidence in detail."
+msgstr "請就佐證作詳細描述。"
+
+msgid ""
+"Thorough descriptions of submitted evidence enhances our ability to evaluate"
+" claims and investigate. Please take care to reference significant portions "
+"of any videos, images or documents submitted."
+msgstr "全面的佐證描述將有助我們檢視及調查舉報事件。請協助提供在影片、影象或文件中，需參照的重要部份。"
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "你曾否向其他機構匯報這事件?"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "請列出你曾匯報此事件的機構。"
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "這些機構有否就你的匯報進行調查？如有，其結果如何？"
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "你期望可實現/達致甚麼結果?"
 
 msgid "File a report"
 msgstr "提交報告"
@@ -1570,7 +1628,7 @@ msgstr "平台精靈設定已完成。"
 msgid "Fill out your report"
 msgstr "填寫您的報告"
 
-msgid "Describe your report in a few words."
+msgid "Please summarize your report in a few words."
 msgstr "報告撮要"
 
 msgid "Describe your report in detail."

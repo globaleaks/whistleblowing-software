@@ -1,13 +1,18 @@
-# 
+# Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
 # Translators:
 # Anh Phan <vietnamesel10n@gmail.com>, 2013
 # Anh Phan <vietnamesel10n@gmail.com>, 2013-2014
+# b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # Dong Quoc <huynhquocdong@gmail.com>, 2018-2019
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2016-2018,2020-2021
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # John, 2021
+# John, 2021
+# Nathan Tran, 2021
 # Nathan Tran, 2021
 # Ngoc <ngoc@simplysecure.org>, 2021
 # Anh Phan <vietnamesel10n@gmail.com>, 2013
@@ -17,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-15 15:18+0000\n"
-"Last-Translator: Trang Pham Thu <p.thutrang218@gmail.com>\n"
+"PO-Revision-Date: 2021-11-24 15:05+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -484,6 +489,61 @@ msgstr ""
 
 msgid "Revoke access"
 msgstr "Thu hồi quyền truy cập"
+
+msgid "Where did the facts happen?"
+msgstr "Sự cố xảy ra ở đâu?"
+
+msgid "When did the facts happen?"
+msgstr "Sự cố xảy ra lúc nào?"
+
+msgid "How are you involved in the reported facts?"
+msgstr "Mối liên hệ của bạn với sự cố được báo cáo là gì?"
+
+msgid "I’m a victim"
+msgstr "Tôi là nạn nhân"
+
+msgid "I’m involved in the facts"
+msgstr "Tôi có liên quan trong sự cố"
+
+msgid "I witnessed the facts in person"
+msgstr "Tôi chứng kiến tận mắt sự cố"
+
+msgid "I was personally told by a direct witness"
+msgstr "Tôi được một nhân chứng trực tiếp kể lại"
+
+msgid "It is a rumor I heard"
+msgstr "Tin đồn--Tôi nghe về việc này"
+
+msgid "Do you have evidence to support your report?"
+msgstr "Bạn có bằng chứng để hỗ trợ báo cáo của mình không?"
+
+msgid "Please attach the evidence to support your report."
+msgstr "Xin đính kèm bằng chứng để hỗ trợ báo cáo của mình."
+
+msgid "Please describe the evidence in detail."
+msgstr "Xin mô tả chi tiết bằng chứng."
+
+msgid ""
+"Thorough descriptions of submitted evidence enhances our ability to evaluate"
+" claims and investigate. Please take care to reference significant portions "
+"of any videos, images or documents submitted."
+msgstr "Ghi chú kỹ lưỡng của các bằng chứng nộp vào giúp gia tăng khả năng đánh giá lời khai và điều tra của chúng tôi. Xin vui lòng ghi rõ nguồn gốc của các phần quan trọng của bất kỳ video, ảnh hoặc tài liệu được nộp vào làm bằng chứng."
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "Bạn có đã báo cáo sự cố này cho các tổ chức khác không?"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "Xin liệt kê những tổ chức bạn đã thông báo về sự cố này."
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "Những tổ chức này có điều tra lời khai của bạn không? Nếu có, kết quả là gì?"
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "Kết quả mà bạn muốn thấy/đạt được là gì?"
 
 msgid "File a report"
 msgstr "Nộp báo cáo"
@@ -1581,7 +1641,7 @@ msgstr "Bạn đã hoàn tất trình hướng dẫn hệ thống."
 msgid "Fill out your report"
 msgstr "Điền vào báo cáo của bạn"
 
-msgid "Describe your report in a few words."
+msgid "Please summarize your report in a few words."
 msgstr "Mô tả ngắn gọn về báo cáo của bạn. "
 
 msgid "Describe your report in detail."

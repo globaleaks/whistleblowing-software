@@ -1,5 +1,8 @@
-# 
 # Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# Translators:
+# 25dcf36596cc573910517485ce7471d2_e63d9c6 <02fb85a8c2ff1359b9784c1b22793096_365094>, 2015
 # alfalb.as, 2015
 # e8f1a29f7bd45d2490d729ad149fc504_6eadd8e, 2015
 # alfalb_mansil, 2014
@@ -8,11 +11,14 @@
 # Drew Melim <nokostya.translation@gmail.com>, 2014
 # e8f1a29f7bd45d2490d729ad149fc504_6eadd8e, 2015
 # Drew Melim <nokostya.translation@gmail.com>, 2014,2018
+# e8f1a29f7bd45d2490d729ad149fc504_6eadd8e, 2015
+# fc2d9c36d73e741383fbbf46a4aac49f_013445b, 2014
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2021
 # João Paulo Macedo Batalha <joao.batalha@transparencia.pt>, 2015
 # 425fe09b3064b9f906f637fff94056ae_a00ea56 <0fa3588fa89906bfcb3a354600956e0e_308047>, 2015-2016
 # Manuela Silva <mmsrs@sky.com>, 2020
 # Manuela Silva <mmsrs@sky.com>, 2014-2018
+# Manuela Silva <mmsrs@sky.com>, 2019-2020
 # Mónica Marques <coelho_monica75@hotmail.com>, 2017
 # Manuela Silva <mmsrs@sky.com>, 2019
 # Drew Melim <nokostya.translation@gmail.com>, 2014-2015
@@ -23,7 +29,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-15 15:18+0000\n"
+"PO-Revision-Date: 2021-11-24 14:58+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -490,6 +496,61 @@ msgstr ""
 
 msgid "Revoke access"
 msgstr "Revogar acesso"
+
+msgid "Where did the facts happen?"
+msgstr ""
+
+msgid "When did the facts happen?"
+msgstr ""
+
+msgid "How are you involved in the reported facts?"
+msgstr ""
+
+msgid "I’m a victim"
+msgstr ""
+
+msgid "I’m involved in the facts"
+msgstr ""
+
+msgid "I witnessed the facts in person"
+msgstr ""
+
+msgid "I was personally told by a direct witness"
+msgstr ""
+
+msgid "It is a rumor I heard"
+msgstr ""
+
+msgid "Do you have evidence to support your report?"
+msgstr ""
+
+msgid "Please attach the evidence to support your report."
+msgstr ""
+
+msgid "Please describe the evidence in detail."
+msgstr ""
+
+msgid ""
+"Thorough descriptions of submitted evidence enhances our ability to evaluate"
+" claims and investigate. Please take care to reference significant portions "
+"of any videos, images or documents submitted."
+msgstr ""
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr ""
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr ""
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr ""
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr ""
 
 msgid "File a report"
 msgstr ""
@@ -1587,7 +1648,7 @@ msgstr "Deve concluir o assistente da plataforma."
 msgid "Fill out your report"
 msgstr "Preencha a sua submissão"
 
-msgid "Describe your report in a few words."
+msgid "Please summarize your report in a few words."
 msgstr "Descreva em algumas palavras a sua submissão."
 
 msgid "Describe your report in detail."

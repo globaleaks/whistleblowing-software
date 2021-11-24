@@ -1,9 +1,13 @@
-# 
+# Translators:
+# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
+# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
 # Translators:
 # Chi-Hsun Tsai, 2017
 # Chi-Hsun Tsai, 2017
 # ff98sha, 2020
+# ff98sha, 2020
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015,2017-2018,2020-2021
+# khi, 2021
 # khi, 2021
 # 91ca17e215222af3ff24b8eeb76640c7_f9deb57, 2013-2014
 # lin, 2014
@@ -18,12 +22,13 @@
 # Runzhe Liang <18051080098@163.com>, 2020
 # Scott Lai <sonyfaye@gmail.com>, 2018,2020
 # YFdyh000 <yfdyh000@gmail.com>, 2015
+# YFdyh000 <yfdyh000@gmail.com>, 2015
 # 刘位, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-15 15:18+0000\n"
-"Last-Translator: ff98sha\n"
+"PO-Revision-Date: 2021-11-24 14:44+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -489,6 +494,61 @@ msgstr ""
 
 msgid "Revoke access"
 msgstr ""
+
+msgid "Where did the facts happen?"
+msgstr "事件发生的地点？"
+
+msgid "When did the facts happen?"
+msgstr "事件发生的时间？"
+
+msgid "How are you involved in the reported facts?"
+msgstr "所报告的事件与您有何关系？"
+
+msgid "I’m a victim"
+msgstr "我是受害者"
+
+msgid "I’m involved in the facts"
+msgstr "我涉及该事件"
+
+msgid "I witnessed the facts in person"
+msgstr "我亲眼目睹该事件"
+
+msgid "I was personally told by a direct witness"
+msgstr "直接目击者亲自告知我"
+
+msgid "It is a rumor I heard"
+msgstr "传闻：我听到的"
+
+msgid "Do you have evidence to support your report?"
+msgstr "您是否可提供支持报告的证据？"
+
+msgid "Please attach the evidence to support your report."
+msgstr "请附加支持报告的证据？"
+
+msgid "Please describe the evidence in detail."
+msgstr "请详细描述证据。"
+
+msgid ""
+"Thorough descriptions of submitted evidence enhances our ability to evaluate"
+" claims and investigate. Please take care to reference significant portions "
+"of any videos, images or documents submitted."
+msgstr "对已提交证据进行详尽的说明，可提升我们对声明进行评估与调查的能力。对于作为证据提交的任何视频、图像或文档，请仔细描述其中关键的部分。"
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "您是否已向其他机构报告该事件？"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "请列出已收到该事件通知的机构？"
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "这些机构是否已对您的声明进行调查？如果是，结果如何？"
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "您想要看到或得到什么样的结果？"
 
 msgid "File a report"
 msgstr "提交报告"
@@ -1586,7 +1646,7 @@ msgstr "您已完成平台向导。"
 msgid "Fill out your report"
 msgstr "请填写您的报告"
 
-msgid "Describe your report in a few words."
+msgid "Please summarize your report in a few words."
 msgstr "请简单描述您的报告。"
 
 msgid "Describe your report in detail."
