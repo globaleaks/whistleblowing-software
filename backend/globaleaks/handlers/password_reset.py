@@ -111,7 +111,7 @@ def validate_password_reset(session, reset_token, auth_code, recovery_key):
     # If encryption is enabled require the recovery key
     if user.crypto_prv_key:
         try:
-            x = State.TempKeys.pop(user.id, None)
+            x = State.TempKeys.get(user.id)
             if x:
                 enc_key = GCE.derive_key(reset_token.encode(), user.salt)
                 prv_key = GCE.symmetric_decrypt(enc_key, Base64Encoder.decode(x.key))
@@ -128,7 +128,11 @@ def validate_password_reset(session, reset_token, auth_code, recovery_key):
         except:
             return {'status': 'require_two_factor_authentication'}
 
-    # Token will be marked as used only at effective password change
+    # Token and temporary key will be marked as used only at effective password change
+    # This is a necessity to get sure they are not invalidated on duplicated users clicks
+    # Their validity is cap to their own timeout set to 1 week.
+    # The code responsible for the invalidation is in the user.py handler and is triggered
+    # by any user or admin action of password change or new token generation.
 
     # Require password change
     user.password_change_needed = True

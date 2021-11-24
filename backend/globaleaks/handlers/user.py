@@ -37,6 +37,7 @@ def db_set_user_password(session, tid, user, password, cc):
     # Always void our reset_password_token at any password change
     user.reset_password_token = None
     user.reset_password_date = datetime_null()
+    State.TempKeys.pop(user.id, None)
 
     if not config_tenant_n.get_val('encryption') and cc == '':
         return None
