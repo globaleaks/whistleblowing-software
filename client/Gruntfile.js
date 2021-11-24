@@ -166,13 +166,13 @@ module.exports = function(grunt) {
         options: {
           replacements: [
             {
-              pattern: "src: url('../lib/webfonts/metropolis-all-400-normal.woff') format('woff');",
+              pattern: "src: url(\"../lib/webfonts/metropolis-all-400-normal.woff\") format(\"woff\");",
               replacement: function () {
                 return "src:url('" + fileToDataURI("tmp/lib/webfonts/metropolis-all-400-normal.woff") + "') format('woff');";
               }
             },
             {
-              pattern: "src: url('../lib/webfonts/metropolis-all-700-normal.woff') format('woff');",
+              pattern: "src: url(\"../lib/webfonts/metropolis-all-700-normal.woff\") format(\"woff\");",
               replacement: function () {
                 return "src:url('" + fileToDataURI("tmp/lib/webfonts/metropolis-all-700-normal.woff") + "') format('woff');";
               }

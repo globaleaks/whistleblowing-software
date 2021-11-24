@@ -26,6 +26,7 @@
         "angular-translate-loader-static-files": "2.19.0",
         "angular-translate-loader-url": "2.19.0",
         "bootstrap": "4.6.0",
+        "csslint": "^1.0.5",
         "fast-sha256": "1.3.0",
         "fontsource-metropolis": "4.0.0",
         "ng-csv": "0.3.6",
@@ -59,7 +60,7 @@
         "postcss-rtl": "1.7.3",
         "protractor": "7.0.0",
         "protractor-console-plugin": "0.1.1",
-        "stylelint": "14.1.0",
+        "stylelint": "^14.1.0",
         "stylelint-config-standard": "24.0.0",
         "superagent": "6.1.0",
         "terser": "5.10.0"
@@ -1667,6 +1668,14 @@
         "wrap-ansi": "^5.1.0"
       }
     },
+    "node_modules/clone": {
+      "version": "2.1.2",
+      "resolved": "https://registry.npmjs.org/clone/-/clone-2.1.2.tgz",
+      "integrity": "sha1-G39Ln1kfHo+DZwQBYANFoCiHQ18=",
+      "engines": {
+        "node": ">=0.8"
+      }
+    },
     "node_modules/clone-regexp": {
       "version": "2.2.0",
       "resolved": "https://registry.npmjs.org/clone-regexp/-/clone-regexp-2.2.0.tgz",
@@ -1863,6 +1872,21 @@
       },
       "engines": {
         "node": ">=4"
+      }
+    },
+    "node_modules/csslint": {
+      "version": "1.0.5",
+      "resolved": "https://registry.npmjs.org/csslint/-/csslint-1.0.5.tgz",
+      "integrity": "sha1-Gcw+2jIhYP0/cjKvHLKjYOiYouk=",
+      "dependencies": {
+        "clone": "~2.1.0",
+        "parserlib": "~1.1.1"
+      },
+      "bin": {
+        "csslint": "dist/cli.js"
+      },
+      "engines": {
+        "node": ">=0.10.0"
       }
     },
     "node_modules/dashdash": {
@@ -6987,6 +7011,11 @@
         "node": ">=0.10.0"
       }
     },
+    "node_modules/parserlib": {
+      "version": "1.1.1",
+      "resolved": "https://registry.npmjs.org/parserlib/-/parserlib-1.1.1.tgz",
+      "integrity": "sha1-pkz6ckBiQ0/fw1HJpOwtkrlMBvQ="
+    },
     "node_modules/path-exists": {
       "version": "3.0.0",
       "resolved": "https://registry.npmjs.org/path-exists/-/path-exists-3.0.0.tgz",
@@ -11291,6 +11320,11 @@
         "wrap-ansi": "^5.1.0"
       }
     },
+    "clone": {
+      "version": "2.1.2",
+      "resolved": "https://registry.npmjs.org/clone/-/clone-2.1.2.tgz",
+      "integrity": "sha1-G39Ln1kfHo+DZwQBYANFoCiHQ18="
+    },
     "clone-regexp": {
       "version": "2.2.0",
       "resolved": "https://registry.npmjs.org/clone-regexp/-/clone-regexp-2.2.0.tgz",
@@ -11457,6 +11491,15 @@
       "resolved": "https://registry.npmjs.org/cssesc/-/cssesc-3.0.0.tgz",
       "integrity": "sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==",
       "dev": true
+    },
+    "csslint": {
+      "version": "1.0.5",
+      "resolved": "https://registry.npmjs.org/csslint/-/csslint-1.0.5.tgz",
+      "integrity": "sha1-Gcw+2jIhYP0/cjKvHLKjYOiYouk=",
+      "requires": {
+        "clone": "~2.1.0",
+        "parserlib": "~1.1.1"
+      }
     },
     "dashdash": {
       "version": "1.14.1",
@@ -15502,6 +15545,11 @@
       "resolved": "https://registry.npmjs.org/parse-passwd/-/parse-passwd-1.0.0.tgz",
       "integrity": "sha1-bVuTSkVpk7I9N/QKOC1vFmao5cY=",
       "dev": true
+    },
+    "parserlib": {
+      "version": "1.1.1",
+      "resolved": "https://registry.npmjs.org/parserlib/-/parserlib-1.1.1.tgz",
+      "integrity": "sha1-pkz6ckBiQ0/fw1HJpOwtkrlMBvQ="
     },
     "path-exists": {
       "version": "3.0.0",

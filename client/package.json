@@ -26,6 +26,7 @@
     "angular-translate-loader-static-files": "2.19.0",
     "angular-translate-loader-url": "2.19.0",
     "bootstrap": "4.6.0",
+    "csslint": "^1.0.5",
     "fast-sha256": "1.3.0",
     "fontsource-metropolis": "4.0.0",
     "ng-csv": "0.3.6",
@@ -59,7 +60,7 @@
     "postcss-rtl": "1.7.3",
     "protractor": "7.0.0",
     "protractor-console-plugin": "0.1.1",
-    "stylelint": "14.1.0",
+    "stylelint": "^14.1.0",
     "stylelint-config-standard": "24.0.0",
     "superagent": "6.1.0",
     "terser": "5.10.0"
