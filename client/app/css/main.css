@@ -1,17 +1,17 @@
 @font-face {
-  font-family: 'Metropolis';
+  font-family: "Metropolis";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('../lib/webfonts/metropolis-all-400-normal.woff') format('woff');
+  src: url("../lib/webfonts/metropolis-all-400-normal.woff") format("woff");
 }
 
 @font-face {
-  font-family: 'Metropolis';
+  font-family: "Metropolis";
   font-style: bold;
   font-weight: 700;
   font-display: swap;
-  src: url('../lib/webfonts/metropolis-all-700-normal.woff') format('woff');
+  src: url("../lib/webfonts/metropolis-all-700-normal.woff") format("woff");
 }
 
 * {
@@ -26,9 +26,9 @@ body {
 }
 
 body {
-  background-color: #ffffff;
+  background-color: #fff;
   color: #1d1f2a;
-  font-family: 'Metropolis', Helvetica, Arial, sans-serif;
+  font-family: "Metropolis", Helvetica, Arial, sans-serif;
   font-size: 16px;
   min-height: 20rem;
 }
@@ -54,7 +54,7 @@ a:hover,
 }
 
 .visible-on-over {
-  opacity: .2;
+  opacity: 0.2;
 }
 
 .visible-on-over:hover {
@@ -63,7 +63,7 @@ a:hover,
 
 #Sidebar a {
   display: block;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 
 #Sidebar a.active,
@@ -81,7 +81,7 @@ a:hover,
 }
 
 [dir] .form-control:hover {
-  background-color: #ffffff;
+  background-color: #fff;
 }
 
 [dir] .form-control.is-valid,
@@ -151,7 +151,7 @@ a:hover,
 
 #HeaderBox::after {
   clear: both;
-  content: '';
+  content: "";
   display: block;
 }
 
@@ -176,7 +176,7 @@ a:hover,
 
 #PrivacyBadge {
   background-color: #1d1f24;
-  color: #ffffff;
+  color: #fff;
 }
 
 .tab-content {
@@ -235,11 +235,11 @@ a:hover,
   vertical-align: middle;
 }
 
-[dir='ltr'] #LogoBox {
+[dir="ltr"] #LogoBox {
   margin-right: 1em;
 }
 
-[dir='rtl'] #LogoBox {
+[dir="rtl"] #LogoBox {
   margin-left: 1em;
 }
 
@@ -256,13 +256,13 @@ a:hover,
   clear: both;
 }
 
-[dir='ltr'] #HeaderBox #WhistleblowerLoginBox form,
-[dir='ltr'] #HeaderBox #WhistleblowerLoginBox label {
+[dir="ltr"] #HeaderBox #WhistleblowerLoginBox form,
+[dir="ltr"] #HeaderBox #WhistleblowerLoginBox label {
   float: right;
 }
 
-[dir='rtl'] #HeaderBox #WhistleblowerLoginBox form,
-[dir='rtl'] #HeaderBox #WhistleblowerLoginBox label {
+[dir="rtl"] #HeaderBox #WhistleblowerLoginBox form,
+[dir="rtl"] #HeaderBox #WhistleblowerLoginBox label {
   float: left;
 }
 
@@ -271,11 +271,11 @@ a:hover,
   text-align: center;
 }
 
-[dir='ltr'] .nested {
+[dir="ltr"] .nested {
   padding-left: 1em;
 }
 
-[dir='rtl'] .nested {
+[dir="rtl"] .nested {
   padding-right: 1em;
 }
 
@@ -319,7 +319,8 @@ a:hover,
   margin-top: 1em;
 }
 
-.message, .messageWB {
+.message,
+.messageWB {
   padding: 1em;
   border: 1px solid #c8d1e0;
 }
@@ -373,8 +374,8 @@ a:hover,
   pointer-events: none;
   user-select: none;
   background-color: #1d1f2a;
-  opacity: .6;
-  filter: alpha(opacity=.6);
+  opacity: 0.6;
+  filter: alpha(opacity=0.6);
 }
 
 textarea.form-control {
@@ -386,15 +387,15 @@ textarea.form-control {
   top: 2rem;
 }
 
-[dir='rtl'] .textarea-btn {
+[dir="rtl"] .textarea-btn {
   left: 1rem;
 }
 
-[dir='ltr'] .textarea-btn {
+[dir="ltr"] .textarea-btn {
   right: 1rem;
 }
 
-input[type='file'] {
+input[type="file"] {
   position: absolute;
   visibility: hidden;
   width: 1px;
@@ -402,7 +403,7 @@ input[type='file'] {
 }
 
 .fa-none::before {
-  content: '\2122';
+  content: "\2122";
   color: transparent;
 }
 
@@ -430,12 +431,12 @@ input[type='file'] {
 
 .drag-drop {
   padding: 1em;
-  background-color: #F5F7FA;
-  border: 1px solid #C8D1E0;
+  background-color: #f5f7fa;
+  border: 1px solid #c8d1e0;
 }
 
 .drag-drop:hover {
-  background-color: #FFFFFF;
+  background-color: #fff;
   border-style: dashed;
 }
 
@@ -494,7 +495,7 @@ input[type='file'] {
   cursor: pointer;
   margin-bottom: 1em;
   padding: 1em;
-  background-color: #ffffff;
+  background-color: #fff;
   border: 1px solid #c8d1e0;
   border-radius: 5px;
 }
@@ -508,11 +509,11 @@ input[type='file'] {
   background-color: #f2dede;
 }
 
-[dir='ltr'] .selectCard {
+[dir="ltr"] .selectCard {
   text-align: left;
 }
 
-[dir='rtl'] .selectCard {
+[dir="rtl"] .selectCard {
   text-align: right;
 }
 
@@ -534,7 +535,7 @@ input[type='file'] {
 }
 
 .fieldAnswerEntryLabel::after {
-  content: '';
+  content: "";
   display: block;
   clear: both;
 }
@@ -568,26 +569,26 @@ input[type='file'] {
   color: #c8d1e0;
   width: 1.8rem;
   height: 1.8rem;
-  padding: .2rem 0;
+  padding: 0.2rem 0;
   border: 1px solid #c8d1e0;
   border-radius: 50%;
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-weight: bold;
   text-align: center;
 }
 
-[dir='ltr'] .StepIndex,
-[dir='ltr'] #SubmissionButtons button {
+[dir="ltr"] .StepIndex,
+[dir="ltr"] #SubmissionButtons button {
   margin-right: 1em;
 }
 
-[dir='rtl'] .StepIndex,
-[dir='rtl'] #SubmissionButtons button {
+[dir="rtl"] .StepIndex,
+[dir="rtl"] #SubmissionButtons button {
   margin-left: 1em;
 }
 
 .StepIndexSelected {
-  color: #ffffff;
+  color: #fff;
   background-color: #377abc;
   border-color: #377abc;
 }
@@ -597,14 +598,14 @@ input[type='file'] {
 }
 
 .question-body {
-  padding-bottom: .5em;
+  padding-bottom: 0.5em;
 }
 
-[dir='ltr'] .question .question {
+[dir="ltr"] .question .question {
   padding-left: 1em;
 }
 
-[dir='rtl'] .question .question {
+[dir="rtl"] .question .question {
   padding-right: 1em;
 }
 
@@ -623,11 +624,11 @@ input[type='file'] {
   padding: 1em;
 }
 
-[dir='ltr'] .fileButtons {
+[dir="ltr"] .fileButtons {
   text-align: right;
 }
 
-[dir='rtl'] .fileButtons {
+[dir="rtl"] .fileButtons {
   text-align: left;
 }
 
@@ -668,7 +669,7 @@ input[type='file'] {
 #LoginStatusBox,
 #WhistleblowerLoginBox {
   color: #1d1f2a;
-  background-color: #ffffff;
+  background-color: #fff;
   border-radius: 5px;
 }
 
@@ -698,23 +699,23 @@ input[type='file'] {
 #FieldsEditBox,
 #ContextAdvancedSettingsBox,
 #SubstateEditBox {
-  margin-top: .5em;
+  margin-top: 0.5em;
 }
 
 .addField,
 .addFieldFromTemplate {
   clear: both;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 
 .field {
   position: relative;
   border: 1px solid #c8d1e0;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 
 .fieldOption {
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 
 .selectionList {
@@ -736,7 +737,7 @@ text.axis-worktime {
   display: block;
   padding: 1em;
   font-family: monospace;
-  font-size: .8rem;
+  font-size: 0.8rem;
   color: #1d1f2a;
   background-color: #f5f7fa;
   border: 1px solid #c8d1e0;
@@ -748,18 +749,18 @@ text.axis-worktime {
 
 .non-default-language,
 .disabled-icon {
-  opacity: .2;
+  opacity: 0.2;
 }
 
 .non-default-language:hover {
   opacity: 1;
 }
 
-[dir='ltr'] .imageUpload .changePictureButton {
+[dir="ltr"] .imageUpload .changePictureButton {
   left: 1rem;
 }
 
-[dir='rtl'] .imageUpload .changePictureButton {
+[dir="rtl"] .imageUpload .changePictureButton {
   right: 1rem;
 }
 
@@ -780,24 +781,24 @@ text.axis-worktime {
 }
 
 #SearchFilter {
-  margin: 0 .5em;
+  margin: 0 0.5em;
 }
 
 tbody td {
   word-break: break-all;
 }
 
-html[dir='rtl'] input[type=email],
-html[dir='ltr'] input[type=email],
-html[dir='rtl'] #creditCard,
-html[dir='ltr'] #creditCard,
-html[dir='rtl'] #Receipt,
-html[dir='ltr'] #Receipt {
+html[dir="rtl"] input[type="email"],
+html[dir="ltr"] input[type="email"],
+html[dir="rtl"] #creditCard,
+html[dir="ltr"] #creditCard,
+html[dir="rtl"] #Receipt,
+html[dir="ltr"] #Receipt {
   direction: ltr;
 }
 
-[dir='rtl'] .fa,
-[dir='rtl'] .fas {
-  -webkit-transform: scaleX(-1);
+[dir="rtl"] .fa,
+[dir="rtl"] .fas {
+  transform: scaleX(-1);
   transform: scaleX(-1);
 }
