@@ -22,7 +22,7 @@
           <span data-ng-switch-when="denied" data-translate>Denied</span>
         </span>
       </div>
-      <div data-ng-if="tip.iar && tip.iar.reply == 'denied'"><label data-translate>Reply motivation</label>:<span>{{tip.last_iar.reply_motivation}}</span></div>
+      <div data-ng-if="tip.iar && tip.iar.reply == 'denied'"><label data-translate>Reply motivation</label>:<span>{{tip.iar.reply_motivation}}</span></div>
     </div>
     <span data-ng-if="!tip.data.whistleblower_identity_provided">-</span>
     <div data-ng-if="tip.data.whistleblower_identity_provided">
