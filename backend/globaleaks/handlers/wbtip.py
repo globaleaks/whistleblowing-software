@@ -210,6 +210,8 @@ def update_identity_information(session, tid, tip_id, identity_field_id, wbi, la
     itip.update_date = now
     itip.wb_last_access = now
 
+    db_notify_recipients_of_tip_update(session, itip.id)
+
 
 @transact
 def store_additional_questionnaire_answers(session, tid, tip_id, answers, language):
