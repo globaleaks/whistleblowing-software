@@ -26,6 +26,7 @@ from globaleaks.state import State
 from globaleaks.utils.crypto import GCE
 from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.log import log
+from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import get_expiration, datetime_now, datetime_never
 
@@ -65,6 +66,10 @@ def db_tip_grant_notification(session, user):
         data['notification'] = db_get_notification(session, 1, user.language)
 
     subject, body = Templating().get_mail_subject_and_body(data)
+
+    if data["user"]["pgp_key_public"]:
+        mail_subject = "..."
+        mail_body = PGPContext(data["user"]["pgp_key_public"]).encrypt_message(mail_body)
 
     session.add(models.Mail({
         'address': data['user']['mail_address'],
@@ -703,6 +708,10 @@ def db_create_identityaccessrequest_notifications(session, itip, rtip, iar):
             data['notification'] = db_get_notification(session, 1, user.language)
 
         subject, body = Templating().get_mail_subject_and_body(data)
+
+        if data['user']['pgp_key_public']:
+            subject = "..."
+            body = PGPContext(data['user']['pgp_key_public']).encrypt_message(body)
 
         session.add(models.Mail({
             'address': data['user']['mail_address'],

@@ -63,8 +63,8 @@ class MailGenerator(object):
 
         # If the receiver has encryption enabled encrypt the mail body
         if data['user']['pgp_key_public']:
-            pgpctx = PGPContext(data['user']['pgp_key_public'])
-            body = pgpctx.encrypt_message(body)
+            subject = "..."
+            body = PGPContext(data['user']['pgp_key_public']).encrypt_message(body)
 
         session.add(models.Mail({
             'address': data['user']['mail_address'],

@@ -70,6 +70,10 @@ def generate_admin_alert_mail(session, tid, alert):
 
         subject, body = Templating().get_mail_subject_and_body(data)
 
+        if user_desc['pgp_key_public']:
+            subject = "..."
+            body = PGPContext(user_desc['pgp_key_public']).encrypt_message(body)
+
         db_schedule_email(session, tid, user_desc['mail_address'], subject, body)
 
 
