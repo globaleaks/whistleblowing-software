@@ -12,7 +12,6 @@ from globaleaks.jobs.job import DailyJob
 from globaleaks.orm import transact
 from globaleaks.transactions import db_schedule_email
 from globaleaks.utils.log import log
-from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, datetime_null
 
@@ -46,10 +45,6 @@ class PGPCheck(DailyJob):
 
             subject, body = Templating().get_mail_subject_and_body(data)
 
-            if data['user']['pgp_key_public']:
-                subject = "..."
-                body = PGPContext(data['user']['pgp_key_public']).encrypt_message(body)
-
             db_schedule_email(session, tid, data['user']['mail_address'], subject, body)
 
     def prepare_user_pgp_alerts(self, session, tid, user_desc):
@@ -63,10 +58,6 @@ class PGPCheck(DailyJob):
         }
 
         subject, body = Templating().get_mail_subject_and_body(data)
-
-        if data['user']['pgp_key_public']:
-            subject = "..."
-            body = PGPContext(data['user']['pgp_key_public']).encrypt_message(body)
 
         db_schedule_email(session, tid, user_desc['mail_address'], subject, body)
 

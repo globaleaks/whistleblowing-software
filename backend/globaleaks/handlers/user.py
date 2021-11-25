@@ -228,7 +228,7 @@ def db_user_update_user(session, tid, user_session, request):
             'notification': db_get_notification(session, tid, user.language)
         }
 
-        State.format_and_send_mail(session, tid, user_desc, template_vars)
+        State.format_and_send_mail(session, tid, user_desc['mail_address'], template_vars)
 
     parse_pgp_options(user, request)
 

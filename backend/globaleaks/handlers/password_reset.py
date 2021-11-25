@@ -43,7 +43,7 @@ def db_generate_password_reset_token(session, user):
         'notification': db_get_notification(session, user.tid, user.language)
     }
 
-    State.format_and_send_mail(session, user.tid, user_desc, template_vars)
+    State.format_and_send_mail(session, user.tid, user_desc['mail_address'], template_vars)
 
 
 @transact

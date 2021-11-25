@@ -198,21 +198,26 @@ class StateClass(ObjectDict, metaclass=Singleton):
                         self.settings.socks_port)
 
     def schedule_support_email(self, tid, text):
-        mail_subject = "Support request"
+        _subject = "Support request"
         delivery_list = set.union(set(self.tenant_cache[1].notification.admin_list),
                                   set(self.tenant_cache[tid].notification.admin_list))
 
         for mail_address, pgp_key_public in delivery_list:
-            mail_body = text
+            subject = _subject
+            body = text
 
             # Opportunisticly encrypt the mail body. NOTE that mails will go out
             # unencrypted if one address in the list does not have a public key set.
             if pgp_key_public:
-                mail_subject = "..."
-                mail_body = PGPContext(pgp_key_public).encrypt_message(mail_body)
+                subject = "..."
+
+                try:
+                    body = PGPContext(pgp_key_public).encrypt_message(mail_body)
+                except:
+                    continue
 
             # avoid waiting for the notification to send and instead rely on threads to handle it
-            tw(db_schedule_email, tid, mail_address, mail_subject, mail_body)
+            tw(db_schedule_email, tid, mail_address, subject, body)
 
     def schedule_exception_email(self, tid, exception_text, *args):
         if not hasattr(self.tenant_cache[tid], 'notification'):
@@ -263,14 +268,10 @@ class StateClass(ObjectDict, metaclass=Singleton):
 
             self.onion_service_job.remove_unwanted_onion_services().addBoth(f)  # pylint: disable=no-member
 
-    def format_and_send_mail(self, session, tid, user_desc, template_vars):
+    def format_and_send_mail(self, session, tid, mail_address, template_vars):
         mail_subject, mail_body = Templating().get_mail_subject_and_body(template_vars)
 
-        if user_desc["pgp_key_public"]:
-            mail_subject = "..."
-            mail_body = PGPContext(user_desc["pgp_key_public"]).encrypt_message(mail_body)
-
-        db_schedule_email(session, tid, user_desc["mail_address"], mail_subject, mail_body)
+        db_schedule_email(session, tid, mail_address, mail_subject, mail_body)
 
     def get_tmp_file_by_name(self, filename):
         for k, v in self.TempUploadFiles.items():

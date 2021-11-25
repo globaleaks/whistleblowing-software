@@ -16,7 +16,6 @@ from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.job import DailyJob
 from globaleaks.orm import db_del, db_query, transact, tw
 from globaleaks.utils.fs import overwrite_and_remove
-from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, is_expired
 
@@ -66,10 +65,6 @@ class Cleaning(DailyJob):
             }
 
             subject, body = Templating().get_mail_subject_and_body(data)
-
-            if data["user"]["pgp_key_public"]:
-                subject = "..."
-                body = PGPContext(data["user"]["pgp_key_public"]).encrypt_message(body)
 
             session.add(models.Mail({
                 'tid': tid,

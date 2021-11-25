@@ -45,7 +45,7 @@ class CertificateCheck(DailyJob):
                 'user': user_desc,
             }
 
-            self.state.format_and_send_mail(session, tid, user_desc, template_vars)
+            self.state.format_and_send_mail(session, tid, user_desc['mail_address'], template_vars)
 
     @transact
     def cert_expiration_checks(self, session, tid):

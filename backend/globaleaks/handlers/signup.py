@@ -107,7 +107,7 @@ def signup(session, request, language):
         'signup': signup_dict
     }
 
-    State.format_and_send_mail(session, 1, {'mail_address': signup.email}, template_vars)
+    State.format_and_send_mail(session, 1, signup.email, template_vars)
 
     # Email 2 - Admin Notification
     for user_desc in db_get_users(session, 1, 'admin'):
@@ -119,7 +119,7 @@ def signup(session, request, language):
             'signup': signup_dict
         }
 
-        State.format_and_send_mail(session, 1, user_desc, template_vars)
+        State.format_and_send_mail(session, 1, user_desc['mail_address'], template_vars)
 
 
 @transact
@@ -184,7 +184,7 @@ def signup_activation(session, token, hostname, language):
         'password_recipient': wizard['receiver_password']
     }
 
-    State.format_and_send_mail(session, 1, {'mail_address': signup.email}, template_vars)
+    State.format_and_send_mail(session, 1, signup.email, template_vars)
 
     db_refresh_memory_variables(session, [signup.tid])
 

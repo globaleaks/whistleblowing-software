@@ -9,7 +9,6 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.orm import transact
 from globaleaks.rest import requests
-from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now
 
@@ -88,10 +87,6 @@ def db_create_identity_access_reply_notifications(session, itip, rtip, iar):
             data['notification'] = db_get_notification(session, 1, user.language)
 
         subject, body = Templating().get_mail_subject_and_body(data)
-
-        if data["user"]["pgp_key_public"]:
-            mail_subject = "..."
-            mail_body = PGPContext(data["user"]["pgp_key_public"]).encrypt_message(mail_body)
 
         session.add(models.Mail({
             'address': data['user']['mail_address'],

@@ -24,7 +24,6 @@ from globaleaks.rest import requests
 from globaleaks.utils.crypto import GCE
 from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.log import log
-from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now
 
@@ -49,10 +48,6 @@ def db_notify_recipients_of_tip_update(session, itip_id):
             data['notification'] = db_get_notification(session, 1, user.language)
 
         subject, body = Templating().get_mail_subject_and_body(data)
-
-        if data["user"]["pgp_key_public"]:
-            mail_subject = "..."
-            mail_body = PGPContext(data["user"]["pgp_key_public"]).encrypt_message(mail_body)
 
         session.add(models.Mail({
             'address': data['user']['mail_address'],

@@ -48,7 +48,7 @@ def evaluate_update_notification(session, state, latest_version):
             'user': user_desc,
         }
 
-        state.format_and_send_mail(session, 1, user_desc, template_vars)
+        state.format_and_send_mail(session, 1, user_desc['mail_address'], template_vars)
 
 
 class UpdateCheck(HourlyJob):
