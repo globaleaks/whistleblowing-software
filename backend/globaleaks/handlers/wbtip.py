@@ -9,18 +9,58 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
 from globaleaks.models.config import ConfigFactory
+from globaleaks.handlers.admin.node import db_admin_serialize_node
+from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list
 from globaleaks.handlers.submission import serialize_usertip, \
     decrypt_tip, db_set_internaltip_answers, db_get_questionnaire, \
     db_archive_questionnaire_schema, db_set_internaltip_data
+from globaleaks.handlers.rtip import serialize_rtip
+from globaleaks.handlers.user import user_serialize_user
 from globaleaks.models import serializers
 from globaleaks.orm import db_get, transact
 from globaleaks.rest import requests
 from globaleaks.utils.crypto import GCE
 from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.log import log
+from globaleaks.utils.pgp import PGPContext
+from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now
+
+
+def db_notify_recipients_of_tip_update(session, itip_id):
+    for user, rtip, itip in session.query(models.User, models.ReceiverTip, models.InternalTip) \
+                                   .filter(models.User.id == models.ReceiverTip.receiver_id,
+                                           models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                           models.InternalTip.id == itip_id):
+        data = {
+          'type': 'tip_update'
+        }
+
+        data['user'] = user_serialize_user(session, user, user.language)
+        data['tip'] = serialize_rtip(session, rtip, itip, user.language)
+
+        data['node'] = db_admin_serialize_node(session, user.tid, user.language)
+
+        if data['node']['mode'] == 'default':
+            data['notification'] = db_get_notification(session, user.tid, user.language)
+        else:
+            data['notification'] = db_get_notification(session, 1, user.language)
+
+        subject, body = Templating().get_mail_subject_and_body(data)
+
+        if data["user"]["pgp_key_public"]:
+            mail_subject = "..."
+            mail_body = PGPContext(data["user"]["pgp_key_public"]).encrypt_message(mail_body)
+
+        session.add(models.Mail({
+            'address': data['user']['mail_address'],
+            'subject': subject,
+            'body': body,
+            'tid': user.tid
+        }))
+
 
 
 def db_get_itip_receiver_list(session, itip):
@@ -189,6 +229,8 @@ def store_additional_questionnaire_answers(session, tid, tip_id, answers, langua
         answers = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(answers).encode())).decode()
 
     db_set_internaltip_answers(session, itip.id, questionnaire_hash, answers)
+
+    db_notify_recipients_of_tip_update(session, itip.id)
 
 
 class WBTipInstance(BaseHandler):
