@@ -414,6 +414,14 @@ controller("AdditionalQuestionnaireCtrl",
   };
 
   $scope.displayErrors = function() {
+    if (!($scope.validate[$scope.navigation])) {
+      return false;
+    }
+
+    if ($scope.displayStepErrors($scope.navigation)) {
+      return true;
+    }
+
     return false;
   };
 
