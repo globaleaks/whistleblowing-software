@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # benewfy <benewfy@gmail.com>, 2015
@@ -24,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 14:48+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -492,6 +490,9 @@ msgstr "Hozzáférés adása"
 msgid "Revoke access"
 msgstr "Hozzáférés visszavonása"
 
+msgid "Please summarize your report in a few words."
+msgstr "Írja le jelentését pár szóval."
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -526,9 +527,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1056,7 +1057,7 @@ msgstr "Kérdéscsoport"
 msgid "Hint"
 msgstr "Tipp"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Kötelező"
 
 msgid "Accept multiple file uploads"
@@ -1639,12 +1640,6 @@ msgstr "Elolvastam és elfogadom a licence feltételeket."
 
 msgid "You have completed the platform wizard."
 msgstr "Sikeresen befejezte a platform varázslót."
-
-msgid "Fill out your report"
-msgstr "Töltse ki a jelentését"
-
-msgid "Please summarize your report in a few words."
-msgstr "Írja le jelentését pár szóval."
 
 msgid "Describe your report in detail."
 msgstr "Írja le a jelentését részletesen."

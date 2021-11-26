@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Aminjon Hasanov, 2021
 # Aminjon Hasanov, 2021
@@ -15,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:01+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tajik (http://www.transifex.com/otf/globaleaks/language/tg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -483,6 +481,9 @@ msgstr "Дастрасӣ додан"
 msgid "Revoke access"
 msgstr "Дастрасиро бекор кардан"
 
+msgid "Please summarize your report in a few words."
+msgstr "Гузориши худро бо чанд калима шарҳ диҳед."
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -517,9 +518,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1047,7 +1048,7 @@ msgstr "Гурӯҳи савол"
 msgid "Hint"
 msgstr "Ишора"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Ҳатмӣ"
 
 msgid "Accept multiple file uploads"
@@ -1630,12 +1631,6 @@ msgstr "Ман шартҳои иҷозатномаро хондаам ва ба 
 
 msgid "You have completed the platform wizard."
 msgstr "Шумо кор бо ёвари барномаро анҷом додед."
-
-msgid "Fill out your report"
-msgstr "Гузориши худро хонапурӣ намоед"
-
-msgid "Please summarize your report in a few words."
-msgstr "Гузориши худро бо чанд калима шарҳ диҳед."
 
 msgid "Describe your report in detail."
 msgstr "Гузориши худро ба таври муфассал шарҳ диҳед."

@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Alex Railean <ralienpp@gmail.com>, 2017
 # AlexVox, 2013
@@ -36,7 +34,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 14:59+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -504,6 +502,9 @@ msgstr "Предоставить доступ"
 msgid "Revoke access"
 msgstr "Отозвать доступ"
 
+msgid "Please summarize your report in a few words."
+msgstr "Кратко опишите свой отчет."
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -538,9 +539,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1068,7 +1069,7 @@ msgstr "Группа вопросов"
 msgid "Hint"
 msgstr "Подсказка"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Обязательно"
 
 msgid "Accept multiple file uploads"
@@ -1651,12 +1652,6 @@ msgstr "Я прочитал условия лицензии и согласен 
 
 msgid "You have completed the platform wizard."
 msgstr "Вы завершили работу с мастером настройки платформы."
-
-msgid "Fill out your report"
-msgstr "Заполните свой отчет"
-
-msgid "Please summarize your report in a few words."
-msgstr "Кратко опишите свой отчет."
 
 msgid "Describe your report in detail."
 msgstr "Опишите свой отчет подробно."

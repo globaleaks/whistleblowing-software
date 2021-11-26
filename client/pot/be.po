@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Aleś Łahviniec <a.lahviniec@gmail.com>, 2021
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
@@ -8,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 14:37+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Belarusian (http://www.transifex.com/otf/globaleaks/language/be/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -476,6 +474,9 @@ msgstr "Даць доступ"
 msgid "Revoke access"
 msgstr "Адклікаць доступ"
 
+msgid "Please summarize your report in a few words."
+msgstr "Апішыце сваю справаздачу ў некалькіх словах."
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -510,9 +511,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1040,7 +1041,7 @@ msgstr "Група пытанняў"
 msgid "Hint"
 msgstr "Падказка"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Абавязкова"
 
 msgid "Accept multiple file uploads"
@@ -1623,12 +1624,6 @@ msgstr "Я прачытаў і згаджаюся з умовамі ліцэнз
 
 msgid "You have completed the platform wizard."
 msgstr "Вы завяршылі працу па стварэнні платформы."
-
-msgid "Fill out your report"
-msgstr "Запоўніць сваю справаздачу"
-
-msgid "Please summarize your report in a few words."
-msgstr "Апішыце сваю справаздачу ў некалькіх словах."
 
 msgid "Describe your report in detail."
 msgstr "Даць падрабязнае апісанне сваёй справаздачы."

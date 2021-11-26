@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Chi-Hsun Tsai, 2017
 # Chi-Hsun Tsai, 2017
@@ -27,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 14:44+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -495,6 +493,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
+msgid "Please summarize your report in a few words."
+msgstr "请简单描述您的报告。"
+
 msgid "Where did the facts happen?"
 msgstr "事件发生的地点？"
 
@@ -529,10 +530,10 @@ msgid "Please describe the evidence in detail."
 msgstr "请详细描述证据。"
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
-msgstr "对已提交证据进行详尽的说明，可提升我们对声明进行评估与调查的能力。对于作为证据提交的任何视频、图像或文档，请仔细描述其中关键的部分。"
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
 msgstr "您是否已向其他机构报告该事件？"
@@ -1059,7 +1060,7 @@ msgstr "问题组"
 msgid "Hint"
 msgstr "提示"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "必须"
 
 msgid "Accept multiple file uploads"
@@ -1642,12 +1643,6 @@ msgstr "我已阅读并同意授权条款。"
 
 msgid "You have completed the platform wizard."
 msgstr "您已完成平台向导。"
-
-msgid "Fill out your report"
-msgstr "请填写您的报告"
-
-msgid "Please summarize your report in a few words."
-msgstr "请简单描述您的报告。"
 
 msgid "Describe your report in detail."
 msgstr "请详述您的报告。"

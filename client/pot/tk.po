@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
 # Jahan Taganova, 2021
@@ -10,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:03+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkmen (http://www.transifex.com/otf/globaleaks/language/tk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -478,6 +476,9 @@ msgstr "Girişi ygtyýar ber"
 msgid "Revoke access"
 msgstr "Girişi ýatyr"
 
+msgid "Please summarize your report in a few words."
+msgstr "Hasabatyňyzy birnäçe söz bilen beýan ediň."
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -512,9 +513,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1042,7 +1043,7 @@ msgstr "Sorag topary"
 msgid "Hint"
 msgstr "Ýaňzytma"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Gerekli"
 
 msgid "Accept multiple file uploads"
@@ -1625,12 +1626,6 @@ msgstr "Ygtyýarnamanyň şertlerini okadym we razy."
 
 msgid "You have completed the platform wizard."
 msgstr "Platforma düzeltmesini tamamladyňyz."
-
-msgid "Fill out your report"
-msgstr "Hasabatyňyzy dolduryň"
-
-msgid "Please summarize your report in a few words."
-msgstr "Hasabatyňyzy birnäçe söz bilen beýan ediň."
 
 msgid "Describe your report in detail."
 msgstr "Hasabatyňyzy jikme-jik beýan ediň."

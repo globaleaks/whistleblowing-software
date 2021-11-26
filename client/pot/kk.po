@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
 # Gulnar <gulnar.freelance@gmail.com>, 2021
@@ -9,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 14:50+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Kazakh (http://www.transifex.com/otf/globaleaks/language/kk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -477,6 +475,9 @@ msgstr "Қатынасуға рұқсат беру"
 msgid "Revoke access"
 msgstr "Рұқсатты кері қайтару"
 
+msgid "Please summarize your report in a few words."
+msgstr "Есепті бірнеше сөзбен сипаттаңыз."
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -511,9 +512,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1041,7 +1042,7 @@ msgstr "Сұрақтар тобы"
 msgid "Hint"
 msgstr "Кеңес"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Талап етіледі"
 
 msgid "Accept multiple file uploads"
@@ -1624,12 +1625,6 @@ msgstr "Мен лицензия шарттарымен таныстым және
 
 msgid "You have completed the platform wizard."
 msgstr "Сіз платформа шеберімен жұмысты аяқтадыңыз."
-
-msgid "Fill out your report"
-msgstr "Есепті толтырыңыз"
-
-msgid "Please summarize your report in a few words."
-msgstr "Есепті бірнеше сөзбен сипаттаңыз."
 
 msgid "Describe your report in detail."
 msgstr "Есепті толығырақ сипаттаңыз."

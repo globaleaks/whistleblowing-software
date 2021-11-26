@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Andrea Lusuardi <uovobw@gmail.com>, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -29,7 +27,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 14:49+0000\n"
+"PO-Revision-Date: 2021-11-26 12:57+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -497,6 +495,9 @@ msgstr "Consenti accesso"
 msgid "Revoke access"
 msgstr "Revoca accesso"
 
+msgid "Please summarize your report in a few words."
+msgstr "Descrivi la tua segnalazione con poche parole."
+
 msgid "Where did the facts happen?"
 msgstr "Dove sono avvenuti i fatti?"
 
@@ -531,10 +532,10 @@ msgid "Please describe the evidence in detail."
 msgstr "Descrivi le prove nel dettaglio"
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
-msgstr "Descrizioni approfondite delle prove presentate migliorano la nostra capacità di valutare le affermazioni e di indagare. Si prega di fare riferimento a porzioni significative di qualsiasi video, immagine o documento inviato."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr "Una descrizione completa delle prove presentate migliora la nostra capacità di valutare i reclami e indagare. Si prega di fare riferimento a porzioni significative di qualsiasi video, immagine o documento inviato."
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
 msgstr "Hai segnalato i fatti ad altre organizzazioni o ad altri individui?"
@@ -1061,7 +1062,7 @@ msgstr "Gruppo di domande"
 msgid "Hint"
 msgstr "Suggerimento"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Obbligatorio"
 
 msgid "Accept multiple file uploads"
@@ -1644,12 +1645,6 @@ msgstr "Ho letto ed accetto i termini della licenza."
 
 msgid "You have completed the platform wizard."
 msgstr "La procedura guidata di installazione è stata completata con successo."
-
-msgid "Fill out your report"
-msgstr "Compila la tua segnalazione"
-
-msgid "Please summarize your report in a few words."
-msgstr "Descrivi la tua segnalazione con poche parole."
 
 msgid "Describe your report in detail."
 msgstr "Descrivi la tua segnalazione in dettaglio."

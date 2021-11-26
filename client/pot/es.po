@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # 4b8fe8aa5774ddeb3c4c7817cd28f50e_d751ab4 <55c3bb72c999b01f254463d72e197fd7_99140>, 2013
 # Anatoli Pena <djanatoli@gmail.com>, 2016-2017
@@ -45,8 +43,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-11-25 07:53+0000\n"
+"Last-Translator: Zuhualime Akoochimoya\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -513,6 +511,9 @@ msgstr "Conceder acceso"
 msgid "Revoke access"
 msgstr "Revocar acceso"
 
+msgid "Please summarize your report in a few words."
+msgstr "Describe tu reporte en unas pocas palabras."
+
 msgid "Where did the facts happen?"
 msgstr "¿Dónde ocurrieron los hechos?"
 
@@ -547,10 +548,10 @@ msgid "Please describe the evidence in detail."
 msgstr "Por favor describe la evidencia en detalle."
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
-msgstr "Las descripciones minuciosas de la evidencia enviada amplían nuestra habilidad para evaluar afirmaciones e investigar. Por favor tómate el cuidado de referenciar porciones significativas de cualquier vídeo, imagen o documento enviado."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr "Una descripción minuciosa de la evidencia enviada amplía nuestra habilidad para evaluar afirmaciones e investigar. Por favor tómate el cuidado de referenciar porciones significativas de cualquier vídeo, imagen o documento enviado."
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
 msgstr "¿Has reportado los hechos a otras organizaciones y/o individuos?"
@@ -1077,7 +1078,7 @@ msgstr "Grupo de preguntas"
 msgid "Hint"
 msgstr "Sugerencia"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Requerido"
 
 msgid "Accept multiple file uploads"
@@ -1660,12 +1661,6 @@ msgstr "He leído y estoy de acuerdo con los términos de la licencia."
 
 msgid "You have completed the platform wizard."
 msgstr "Has completado con éxito el asistente de la plataforma."
-
-msgid "Fill out your report"
-msgstr "Completa los datos de la entrega"
-
-msgid "Please summarize your report in a few words."
-msgstr "Describe tu reporte en unas pocas palabras."
 
 msgid "Describe your report in detail."
 msgstr "Describe tu reporte en detalle."

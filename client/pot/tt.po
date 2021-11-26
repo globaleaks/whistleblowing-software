@@ -1,13 +1,11 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
 # Timur Seber <seber.tatsoft@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:02+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tatar (http://www.transifex.com/otf/globaleaks/language/tt/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -475,6 +473,9 @@ msgstr "Керү мөмкинлеге бирү"
 msgid "Revoke access"
 msgstr "Керү мөмкинлеген бетерү"
 
+msgid "Please summarize your report in a few words."
+msgstr "Хисапны берничә сүз белән сурәтләп бирегез."
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -509,9 +510,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1039,7 +1040,7 @@ msgstr "Сораулар төркеме"
 msgid "Hint"
 msgstr "Ярдәм"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Таләп ителә"
 
 msgid "Accept multiple file uploads"
@@ -1622,12 +1623,6 @@ msgstr "Мин лицензия шартларын укыдым һәм алар�
 
 msgid "You have completed the platform wizard."
 msgstr "Платформа остасы белән көйләү эше тәмамланды"
-
-msgid "Fill out your report"
-msgstr "Хисабыгызны тутырыгыз"
-
-msgid "Please summarize your report in a few words."
-msgstr "Хисапны берничә сүз белән сурәтләп бирегез."
 
 msgid "Describe your report in detail."
 msgstr "Хисапны җентекләп сурәтләгез."

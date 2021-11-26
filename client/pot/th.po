@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Arthit Suriyawongkul, 2021
 # Arthit Suriyawongkul, 2021
@@ -17,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:02+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -485,6 +483,9 @@ msgstr "มอบสิทธิเข้าถึง"
 msgid "Revoke access"
 msgstr "เพิกถอนการเข้าถึง"
 
+msgid "Please summarize your report in a few words."
+msgstr "อธิบายรายงานของคุณในไม่กี่คำ"
+
 msgid "Where did the facts happen?"
 msgstr "เหตุการณ์ดังกล่าวเกิดขึ้นที่ใด?"
 
@@ -519,10 +520,10 @@ msgid "Please describe the evidence in detail."
 msgstr "โปรดอธิบายหลักฐานโดยละเอียด"
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
-msgstr "คำอธิบายโดยละเอียดของหลักฐานที่ส่งเข้ามาจะช่วยเพิ่มขีดความสามารถของเราในการประเมินข้อเรียกร้องและการตรวจสอบ โปรดเลือกวิดีโอ ภาพ หรือเอกสารเฉพาะส่วนที่สำคัญเพื่อส่งมาเป็นหลักฐาน"
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
 msgstr "คุณได้รายงานเหตุการณ์ไปยังองค์กรอื่นบ้างหรือไม่?"
@@ -1049,7 +1050,7 @@ msgstr "กลุ่มคำถาม"
 msgid "Hint"
 msgstr "คำแนะนำ"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "จำเป็นต้องใช้"
 
 msgid "Accept multiple file uploads"
@@ -1632,12 +1633,6 @@ msgstr "ฉันได้อ่านและยอมรับเงื่อ
 
 msgid "You have completed the platform wizard."
 msgstr "คุณได้ดำเนินการตัวช่วยตั้งค่าแพล็ตฟอร์มเสร็จสิ้นแล้ว"
-
-msgid "Fill out your report"
-msgstr "กรอกรายงานของคุณ"
-
-msgid "Please summarize your report in a few words."
-msgstr "อธิบายรายงานของคุณในไม่กี่คำ"
 
 msgid "Describe your report in detail."
 msgstr "อธิบายรายงานของคุณอย่างยละเอียด"

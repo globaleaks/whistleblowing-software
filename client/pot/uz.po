@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Adham Kurbanov <uz@zu.uz>, 2021
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
@@ -9,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:04+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uzbek (http://www.transifex.com/otf/globaleaks/language/uz/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -477,6 +475,9 @@ msgstr "Ruxsat berish"
 msgid "Revoke access"
 msgstr "Ruxsatni bekot qilish"
 
+msgid "Please summarize your report in a few words."
+msgstr "Xabaringizni bir nechta soʻz bilan ifodalang."
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -511,9 +512,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1041,7 +1042,7 @@ msgstr "Savol guruhi"
 msgid "Hint"
 msgstr "Bildirgi"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Majburiy"
 
 msgid "Accept multiple file uploads"
@@ -1624,12 +1625,6 @@ msgstr "Litsenziya shartlari bilan tanishdim va ularga roziman."
 
 msgid "You have completed the platform wizard."
 msgstr "Platformani sozlash jarayoni yakunlandi."
-
-msgid "Fill out your report"
-msgstr "Anonim xabaringizni toʻldiring"
-
-msgid "Please summarize your report in a few words."
-msgstr "Xabaringizni bir nechta soʻz bilan ifodalang."
 
 msgid "Describe your report in detail."
 msgstr "Xabaringiz haqida batafsil axborot bering."

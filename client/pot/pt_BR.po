@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # 0ed9961fdd2c469a85d0f0ef7ce7865b, 2014
 # Alexandre Pacheco Vieira <apvieira57@hotmail.com>, 2015
@@ -45,7 +43,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 14:58+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -513,6 +511,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr "Revogar acesso"
 
+msgid "Please summarize your report in a few words."
+msgstr "Descreva seu relatório em poucas palavras."
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -547,9 +548,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1077,7 +1078,7 @@ msgstr "Grupo de questionamentos"
 msgid "Hint"
 msgstr "Sugerir"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Obrigatório"
 
 msgid "Accept multiple file uploads"
@@ -1660,12 +1661,6 @@ msgstr "Eu li e concordo com os termos da licença."
 
 msgid "You have completed the platform wizard."
 msgstr "Você concluiu o assistente de plataforma."
-
-msgid "Fill out your report"
-msgstr "Preencha sua submissão"
-
-msgid "Please summarize your report in a few words."
-msgstr "Descreva seu relatório em poucas palavras."
 
 msgid "Describe your report in detail."
 msgstr "Descreva seu relatório em detalhes."

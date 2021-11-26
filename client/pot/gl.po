@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Francisco Huerta <francisco.huerta@davinci-ti.es>, 2019
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2020
@@ -11,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 14:31+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Galician (http://www.transifex.com/otf/globaleaks/language/gl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -479,6 +477,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr "Revogar acceso"
 
+msgid "Please summarize your report in a few words."
+msgstr ""
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -513,9 +514,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1043,7 +1044,7 @@ msgstr "Grupo de preguntas"
 msgid "Hint"
 msgstr "Suxestión"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Requerido"
 
 msgid "Accept multiple file uploads"
@@ -1626,12 +1627,6 @@ msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "Completou o asistente de plataforma."
-
-msgid "Fill out your report"
-msgstr ""
-
-msgid "Please summarize your report in a few words."
-msgstr ""
 
 msgid "Describe your report in detail."
 msgstr ""

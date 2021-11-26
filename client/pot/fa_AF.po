@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Afghan Translation Association (ATA) <atranslationa@gmail.com>, 2021
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
@@ -8,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 14:57+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (Afghanistan) (http://www.transifex.com/otf/globaleaks/language/fa_AF/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -476,6 +474,9 @@ msgstr "اعطای دسترسی"
 msgid "Revoke access"
 msgstr "لغو دسترسی"
 
+msgid "Please summarize your report in a few words."
+msgstr "راپور خود را در چند کلیمه توضیح دهید."
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -510,9 +511,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1040,7 +1041,7 @@ msgstr "گروپ سؤال   "
 msgid "Hint"
 msgstr "اشاره"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "حتمی"
 
 msgid "Accept multiple file uploads"
@@ -1623,12 +1624,6 @@ msgstr "من شرایط مجوز را خوانده ام و با آن موافق�
 
 msgid "You have completed the platform wizard."
 msgstr "شما رهنمون پلتفورم را کامل کرده اید."
-
-msgid "Fill out your report"
-msgstr "راپور خود را خانه پری کنید "
-
-msgid "Please summarize your report in a few words."
-msgstr "راپور خود را در چند کلیمه توضیح دهید."
 
 msgid "Describe your report in detail."
 msgstr "راپور خود را به صورت کامل تشریح کنید."

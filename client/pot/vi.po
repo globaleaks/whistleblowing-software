@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Anh Phan <vietnamesel10n@gmail.com>, 2013
 # Anh Phan <vietnamesel10n@gmail.com>, 2013-2014
@@ -22,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:05+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -490,6 +488,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr "Thu hồi quyền truy cập"
 
+msgid "Please summarize your report in a few words."
+msgstr "Mô tả ngắn gọn về báo cáo của bạn. "
+
 msgid "Where did the facts happen?"
 msgstr "Sự cố xảy ra ở đâu?"
 
@@ -524,10 +525,10 @@ msgid "Please describe the evidence in detail."
 msgstr "Xin mô tả chi tiết bằng chứng."
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
-msgstr "Ghi chú kỹ lưỡng của các bằng chứng nộp vào giúp gia tăng khả năng đánh giá lời khai và điều tra của chúng tôi. Xin vui lòng ghi rõ nguồn gốc của các phần quan trọng của bất kỳ video, ảnh hoặc tài liệu được nộp vào làm bằng chứng."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
 msgstr "Bạn có đã báo cáo sự cố này cho các tổ chức khác không?"
@@ -1054,7 +1055,7 @@ msgstr "Nhóm câu hỏi"
 msgid "Hint"
 msgstr "Gợi ý"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Phải có"
 
 msgid "Accept multiple file uploads"
@@ -1637,12 +1638,6 @@ msgstr "Tôi đã đọc và đồng ý với các điều khoản của giấy 
 
 msgid "You have completed the platform wizard."
 msgstr "Bạn đã hoàn tất trình hướng dẫn hệ thống."
-
-msgid "Fill out your report"
-msgstr "Điền vào báo cáo của bạn"
-
-msgid "Please summarize your report in a few words."
-msgstr "Mô tả ngắn gọn về báo cáo của bạn. "
 
 msgid "Describe your report in detail."
 msgstr "Mô tả một cách chi tiết về báo cáo của bạn."

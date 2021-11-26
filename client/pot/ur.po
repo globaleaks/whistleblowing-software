@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Annie Bridges <anniebridges90@gmail.com>, 2014
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
@@ -18,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:04+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -486,6 +484,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
+msgid "Please summarize your report in a few words."
+msgstr "چند الفاظ کے ساتھ آپ کی عرضی کو بیان کیجئے"
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -520,9 +521,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1050,7 +1051,7 @@ msgstr "سوال گروپ"
 msgid "Hint"
 msgstr "تجاویز"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "درکار"
 
 msgid "Accept multiple file uploads"
@@ -1633,12 +1634,6 @@ msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr ""
-
-msgid "Fill out your report"
-msgstr "اپنی گزارش پر کریں"
-
-msgid "Please summarize your report in a few words."
-msgstr "چند الفاظ کے ساتھ آپ کی عرضی کو بیان کیجئے"
 
 msgid "Describe your report in detail."
 msgstr ""

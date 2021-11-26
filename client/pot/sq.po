@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Anja Xhakani <anja@ura.design>, 2021
 # Besnik Bleta <besnik@programeshqip.org, 2021
@@ -16,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 14:34+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -484,6 +482,9 @@ msgstr "Akordoji hyrje"
 msgid "Revoke access"
 msgstr "Shfuqizoji hyrjen"
 
+msgid "Please summarize your report in a few words."
+msgstr "Opíšte svoje podanie niekoľkými slovami."
+
 msgid "Where did the facts happen?"
 msgstr "Ku ndodhën gjërat?"
 
@@ -518,10 +519,10 @@ msgid "Please describe the evidence in detail."
 msgstr "Ju lutemi, përshkruajini hollësisht faktet."
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
-msgstr "Përshkrimi shterues i fakteve të parashtruar zgjeron aftësinë tonë të peshojmë ç’pretendohet dhe të hetojmë. Ju lutemi, bëni kujdes të jepni referencë për pjesë domethënëse të çfarëdo videoje, figure apo dokumenti të parashtruar."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
 msgstr "A i keni raportuar gjërat te të tjera ente dhe/ose individë?"
@@ -1048,7 +1049,7 @@ msgstr "Skupina otázok"
 msgid "Hint"
 msgstr "Nápoveda"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Požadované"
 
 msgid "Accept multiple file uploads"
@@ -1631,12 +1632,6 @@ msgstr "Prečítal/-a som si podmienky licencie a súhlasím s nimi."
 
 msgid "You have completed the platform wizard."
 msgstr "Práve ste dokončili sprievodcu základným nastavením."
-
-msgid "Fill out your report"
-msgstr "Vyplňte Vaše podanie"
-
-msgid "Please summarize your report in a few words."
-msgstr "Opíšte svoje podanie niekoľkými slovami."
 
 msgid "Describe your report in detail."
 msgstr "Opíšte svoje podanie podrobne."

@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # ACCLARO_OnShape_KO_EDI1 <ACCLARO_OnShape_KO_EDI1@acclaro.com>, 2021
 # Changkyoon Kim <ocnblu@gmail.com>, 2015
@@ -8,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 14:50+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -476,6 +474,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr "권한 무효화"
 
+msgid "Please summarize your report in a few words."
+msgstr "몇 마디로 보고서를 설명해 주십시오."
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -510,9 +511,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1040,7 +1041,7 @@ msgstr "질문 그룹"
 msgid "Hint"
 msgstr "힌트"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "필수"
 
 msgid "Accept multiple file uploads"
@@ -1623,12 +1624,6 @@ msgstr "라이선스 약관을 읽었으며 이에 동의합니다."
 
 msgid "You have completed the platform wizard."
 msgstr "성공적으로 플랫폼 마법사를 완료했습니다."
-
-msgid "Fill out your report"
-msgstr "보고서 작성"
-
-msgid "Please summarize your report in a few words."
-msgstr "몇 마디로 보고서를 설명해 주십시오."
 
 msgid "Describe your report in detail."
 msgstr "보고서를 자세히 설명해 주십시오."

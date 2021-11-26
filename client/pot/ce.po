@@ -1,14 +1,13 @@
+# 
 # Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
-# Translators:
+# Aslan Doukaev, 2021
 # Chechen Linguist <translation@7geniusgroup.com>, 2021
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 14:44+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-11-26 12:30+0000\n"
+"Last-Translator: Aslan Doukaev\n"
 "Language-Team: Chechen (http://www.transifex.com/otf/globaleaks/language/ce/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,82 +16,82 @@ msgstr ""
 "mime-version: 1.0\n"
 
 msgid "Log in"
-msgstr "Чуйазвала"
+msgstr "Системи чувала"
 
 msgid "Main configuration"
-msgstr "Коьрта битамаш"
+msgstr "Коьрта конфигураци"
 
 msgid "Theme customization"
-msgstr "Тема нисйар"
+msgstr "Тема нисъяр"
 
 msgid "Languages"
 msgstr "Меттанаш"
 
 msgid "Text customization"
-msgstr "Текст нисйар"
+msgstr "Текст нисъяр"
 
 msgid "Advanced settings"
-msgstr "Тlетоьхна нисдарш"
+msgstr "Шорбина хIоттамаш"
 
 msgid "Question templates"
-msgstr "Хаттарийн кепаш"
+msgstr "Хаттаран шаблон"
 
 msgid "Questionnaires"
-msgstr "Хаттарийн гуламаш"
+msgstr "Хеттар"
 
 msgid "Add new questionnaire"
-msgstr "Керла анкета тlетоха"
+msgstr "Керла хеттар тlетоха"
 
 msgid "Home"
-msgstr "Йухавала"
+msgstr "ЦIа"
 
 msgid "Changelog"
 msgstr "Хийцамийн журнал"
 
 msgid "License"
-msgstr "Ханна йелла бакъо"
+msgstr "Лицензи"
 
 msgid "Notification templates"
-msgstr "Хаамбарийн кепаш"
+msgstr "Хаамбарийн шаблонш"
 
 msgid "Delete"
-msgstr "Дlайаккха"
+msgstr "Дlадаккха"
 
 msgid "Anomalies"
-msgstr "Барам тlера дlасатаlар"
+msgstr "Аномалеш"
 
 msgid "Preferences"
 msgstr "Гlолениг харжар"
 
 msgid "Notification settings"
-msgstr "Хаамбарш нисдар"
+msgstr "Хаамбарийн хIоттам"
 
 msgid "file unavailable"
-msgstr "Файл тlекхочийлехь йац"
+msgstr "файл тlекхочийлехь яц"
 
 msgid "Date"
-msgstr "Терахь"
+msgstr "Дата"
 
 msgid "Expiration date"
-msgstr "Леларан хан"
+msgstr "Чекхдолу хан"
 
 msgid "Last Access"
-msgstr "Тlаьххьара тlекхочийла"
+msgstr "Тlаьххьара тIекхачар"
 
 msgid "Files"
 msgstr "Файлаш"
 
 msgid "Comments"
-msgstr "Хетарг довзийтар"
+msgstr "Комменташ"
 
 msgid "Messages"
-msgstr "Кост-хаамаш"
+msgstr "Косташ"
 
 msgid "Details"
-msgstr "Ма-дарра"
+msgstr "Билгалонаш"
 
 msgid "Platform wizard"
-msgstr "Плотформин говзанча"
+msgstr "Платформин пхьар"
 
 msgid "CREDIT CARD"
 msgstr "КРЕДИТАН КАРТА"
@@ -101,84 +100,84 @@ msgid "YOUR NAME"
 msgstr "ХЬАН ЦlЕ"
 
 msgid "Label the report"
-msgstr "Отчет хlостаца билгалйе"
+msgstr "Рапорт тIе билгало хIоттае"
 
 msgid "Postpone the expiration date"
-msgstr "Леларан хан дlататта"
+msgstr "Чекхдолу хан дlататта"
 
 msgid "Select all"
-msgstr "Йерриге харжа"
+msgstr "Дерриг харжа"
 
 msgid "Deselect all"
-msgstr "Массеран харжам йухабаккха"
+msgstr "Дерриг харжар духаэца"
 
 msgid "Refresh"
-msgstr "Карлайаккха"
+msgstr "ЦӀинде"
 
 msgid "Context"
-msgstr "Маьlна"
+msgstr "Контекст"
 
 msgid "Preview"
-msgstr "Хьалха хьажар"
+msgstr "Юьхьанца хьажа"
 
 msgid "The whistleblower has already read the last update"
-msgstr "Хаамчас хlинцале йешна тlаьххьара карлайаьккхинарг"
+msgstr "Iорадаккхархочо хlинцале дешна тlаьххьара карладаккхар"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr "Хаамчас хlинца а ца йешна тlаьххьара карлайаьккхинарг"
+msgstr "Iорадаккхархочо хlинца а ца дешна тlаьххьара карладаккхар"
 
 msgid "Move up"
-msgstr "Хьалалиста"
+msgstr "Хьаладахийта"
 
 msgid "Move down"
-msgstr "Охьалиста"
+msgstr "Охьадахийта"
 
 msgid "Move left"
-msgstr "Аьрру агlор листа"
+msgstr "Аьрру агlор дахийта"
 
 msgid "Move right"
-msgstr "Аьтту агlор листа"
+msgstr "Аьтту агlор дахийта"
 
 msgid "Import"
-msgstr "Чуйаккхар"
+msgstr "Импорт е"
 
 msgid "Export"
-msgstr "Арайаккхар"
+msgstr "Экспорт е"
 
 msgid "Save all"
-msgstr "Йерриге lалашйан"
+msgstr "Дерриг дӀаӀалашде"
 
 msgid "Access control"
-msgstr "Тlекхачарна тергам латтор"
+msgstr "Тlекхочийлина урхалладар"
 
 msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Къайле ларйар кхочушдечу  HTTPS протоколан гlоьнца нисдина цхьаьнадозар."
+msgstr "Къайле кхочушъечу HTTPS протоколан гlоьнца Iалашъеш ю зIе."
 
 msgid ""
 "The connection has been secured with Tor ensuring confidentiality and "
 "anonymity."
-msgstr "Къайле а, къайлах цlе а ларйар кхочушдечу Tor гlоьнца нисдина цхьаьнадозар."
+msgstr "Къайле а, цIехьулъяррий кхочушъечу Tor-ан гlоьнца Iалашъеш ю зIе."
 
 msgid "Number"
 msgstr "Лоьмар"
 
 msgid "Email"
-msgstr "Email"
+msgstr "Электронан пошта"
 
 msgid "Regular expression validator"
 msgstr "Рожехь болу гайтамаш нийса хилар талларан гlирс"
 
 msgid "Minimum number of input characters"
-msgstr "Чуйазйечу хьаьркийн лахара барам"
+msgstr "Чудохучу хьаьркийн лахара терахь"
 
 msgid "Maximum number of input characters"
-msgstr "Чуйазйечу хьаьркийн лакхара барам"
+msgstr "Чудохучу хьаьркийн лакхара терахь"
 
 msgid "Earliest selectable date"
-msgstr "Хоржуш долу уггаре гергара терахь"
+msgstr "Харжа йишйолу уггар гергара терахь"
 
 msgid "Latest selectable date"
-msgstr "Хоржуш долу тlаьххьара терахь"
+msgstr "Харжа йишйолу уггар тlаьххьара терахь"
 
 msgid "0 = auto"
 msgstr "0 = авто"
@@ -190,49 +189,49 @@ msgid "No"
 msgstr "Хlан-хlа"
 
 msgid "Attachment"
-msgstr "Дозар"
+msgstr "Юкъайиллина файл"
 
 msgid "Attachments"
-msgstr "Йукъадиллар"
+msgstr "Юкъаехкина файлаш"
 
 msgid "Change your password"
-msgstr "Хьайн ишар хийца"
+msgstr "Хьайн парол хийца"
 
 msgid "User"
-msgstr "Пайдаоьцург"
+msgstr "Пайдаэцархо"
 
 msgid "Motivation"
-msgstr "Догдаийтар"
+msgstr "Мотиваци"
 
 msgid "Status"
-msgstr "Хьал"
+msgstr "Статус"
 
 msgid "Request motivation"
-msgstr "Хаттаман догдаийтар"
+msgstr "Хатта мотивацех лаьцна"
 
 msgid "Reply motivation"
-msgstr "Жоьпан догдаийтар"
+msgstr "Жоп ло мотивацех лаьцна"
 
 msgid "Request status"
-msgstr "Хаттаман хьал"
+msgstr "Хатта статусах лаьцна"
 
 msgid "Custodian"
 msgstr "lуналхо"
 
 msgid "Identity"
-msgstr "Цхьатера хилар"
+msgstr "ЦIе-юьхь"
 
 msgid "Access requested"
 msgstr "Тlекхочийла дехна"
 
 msgid "Request access to the whistleblower's identity"
-msgstr "Хаамхочунна тlекхочийла деха"
+msgstr "Iорадаккхархочун цIе-юьхьана тlекхачар деха"
 
 msgid "Please write a motivation"
-msgstr "Доьху, догдаийтар йазде"
+msgstr "Мотивацехь лаьцна яздехьа"
 
 msgid "Reply to the request"
-msgstr "Дехарна жоп"
+msgstr "Дехарна жоп луо"
 
 msgid "Authorized"
 msgstr "Векалвинарг"
@@ -475,6 +474,9 @@ msgstr "Тlекхочийла дала"
 msgid "Revoke access"
 msgstr "Тlекхочийла йухадаккха"
 
+msgid "Please summarize your report in a few words."
+msgstr "Хьайн отчет масех дашца йовзийта."
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -509,9 +511,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1039,7 +1041,7 @@ msgstr "Хаттарийн тоба"
 msgid "Hint"
 msgstr "Хьехар"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Тlедожориг"
 
 msgid "Accept multiple file uploads"
@@ -1622,12 +1624,6 @@ msgstr "Ас йеша а йешна, лицензин билламашца ре�
 
 msgid "You have completed the platform wizard."
 msgstr "Ахь платформин говзанчица болх дlаберзийна."
-
-msgid "Fill out your report"
-msgstr "Хьайн отчет чуйазйе"
-
-msgid "Please summarize your report in a few words."
-msgstr "Хьайн отчет масех дашца йовзийта."
 
 msgid "Describe your report in detail."
 msgstr "Хьайн отчет ма-йарра йовзийта."

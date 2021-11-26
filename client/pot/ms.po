@@ -1,13 +1,11 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Cheer Zeng <cheerz6623@gmail.com>, 2021
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 14:56+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malay (http://www.transifex.com/otf/globaleaks/language/ms/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -475,6 +473,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
+msgid "Please summarize your report in a few words."
+msgstr "Terangkan laporan anda dalam beberapa perkataan."
+
 msgid "Where did the facts happen?"
 msgstr "Di manakah kejadian ini berlaku?"
 
@@ -509,10 +510,10 @@ msgid "Please describe the evidence in detail."
 msgstr "Sila terangkan bahan bukti itu dengan terperinci."
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
-msgstr "Jika anda bukan orang yang mengambil imej dan video yang diserahkan sebagai bahan bukti, kami mesti memahami sumber imej dan video untuk digunakan dalam produk pelaporan, termasuk TV, radio, laman web dan media sosial."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
 msgstr "Adakah anda telah melaporkan kejadian ini kepada organisasi lain?"
@@ -1039,7 +1040,7 @@ msgstr "Kumpulan soalan"
 msgid "Hint"
 msgstr "Bayangan"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Diperlukan"
 
 msgid "Accept multiple file uploads"
@@ -1622,12 +1623,6 @@ msgstr "Saya telah membaca dan bersetuju dengan terma lesen."
 
 msgid "You have completed the platform wizard."
 msgstr "Anda telah melengkapkan wizard platform."
-
-msgid "Fill out your report"
-msgstr "Isikan laporan anda"
-
-msgid "Please summarize your report in a few words."
-msgstr "Terangkan laporan anda dalam beberapa perkataan."
 
 msgid "Describe your report in detail."
 msgstr "Terangkan laporan anda dalam butiran."

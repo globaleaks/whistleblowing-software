@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # 1bdf31d1c1e9cb24d6578874174ff2c7, 2016
 # 6d974eae263d7aab17b09900ac13d6de_bb09837, 2013
@@ -34,7 +32,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 14:57+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -502,6 +500,9 @@ msgstr "اعطای دسترسی"
 msgid "Revoke access"
 msgstr "لغو دسترسی"
 
+msgid "Please summarize your report in a few words."
+msgstr "گزارش خود را با چند کلمه توصیف کنید."
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -536,9 +537,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1066,7 +1067,7 @@ msgstr "گروه پرسش"
 msgid "Hint"
 msgstr "راهنمایی"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "لازم"
 
 msgid "Accept multiple file uploads"
@@ -1649,12 +1650,6 @@ msgstr "من شرایط گواهی‌نامه را خوانده‌ام و با �
 
 msgid "You have completed the platform wizard."
 msgstr "شما مراحل دستیار پلتفرم را کامل کردید."
-
-msgid "Fill out your report"
-msgstr "گزارش خود را پر کنید"
-
-msgid "Please summarize your report in a few words."
-msgstr "گزارش خود را با چند کلمه توصیف کنید."
 
 msgid "Describe your report in detail."
 msgstr "گزارش خود را با جزئیات شرح دهید."

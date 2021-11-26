@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Arda Büyükkaya <ardabuyukkaya@protonmail.com>, 2019
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -34,8 +32,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:03+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-11-25 17:58+0000\n"
+"Last-Translator: Kaya Zeren <kayazeren@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -502,60 +500,63 @@ msgstr "Erişim izni ver"
 msgid "Revoke access"
 msgstr "Erişim iznini kaldır"
 
+msgid "Please summarize your report in a few words."
+msgstr "Raporunuzu bir kaç kelimeyle tanımlayın."
+
 msgid "Where did the facts happen?"
-msgstr ""
+msgstr "Olaylar nerede gerçekleşti?"
 
 msgid "When did the facts happen?"
-msgstr ""
+msgstr "Olaylar ne zaman gerçekleşti?"
 
 msgid "How are you involved in the reported facts?"
-msgstr ""
+msgstr "Bildirilen olaylarla ilişkiniz nedir?"
 
 msgid "I’m a victim"
-msgstr ""
+msgstr "Mağdurum"
 
 msgid "I’m involved in the facts"
-msgstr ""
+msgstr "Olaylara katıldım"
 
 msgid "I witnessed the facts in person"
-msgstr ""
+msgstr "Olaylara doğrudan tanık oldum"
 
 msgid "I was personally told by a direct witness"
-msgstr ""
+msgstr "Olayların doğrudan tanığından duydum"
 
 msgid "It is a rumor I heard"
-msgstr ""
+msgstr "Olayın dedikodusunu duydum"
 
 msgid "Do you have evidence to support your report?"
-msgstr ""
+msgstr "Bildiriminizi destekleyecek bir kanıtınız var mı?"
 
 msgid "Please attach the evidence to support your report."
-msgstr ""
+msgstr "Lütfen bildiriminizi destekleyecek bir kanıt ekleyin."
 
 msgid "Please describe the evidence in detail."
-msgstr ""
+msgstr "Lütfen kanıt hakkında ayrıntılı bilgi verin."
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
-msgstr ""
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr "Sunulan kanıtların ayrıntılı açıklaması, iddiaları değerlendirmemize ve soruşturmamıza destek olur. Lütfen gönderilen tüm videoların, fotoğrafların veya belgelerin önemli kısımlarından referans vermeye özen gösterin."
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
+msgstr "Olayları başka kuruluşlara ve/veya kişilere bildirdiniz mi?"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr ""
+msgstr "Lütfen bu bilgiler hakkında bilgilendirdiğiniz kuruluş ve/veya kişileri listeleyin."
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr ""
+msgstr "Bu kuruluşlar iddialarınızı araştırdı mı? Öyleyse, sonuç ne oldu?"
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr ""
+msgstr "Vereceğimiz destek ile ulaşmak istediğiniz sonuç nedir?"
 
 msgid "File a report"
 msgstr "Bir bildirimde bulunun"
@@ -1066,7 +1067,7 @@ msgstr "Soru grubu"
 msgid "Hint"
 msgstr "İpucu"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Zorunlu"
 
 msgid "Accept multiple file uploads"
@@ -1649,12 +1650,6 @@ msgstr "Lisansın koşullarını okudum ve kabul ediyorum."
 
 msgid "You have completed the platform wizard."
 msgstr "Platform sihirbazını tamamladınız."
-
-msgid "Fill out your report"
-msgstr "Raporunuzu doldurun."
-
-msgid "Please summarize your report in a few words."
-msgstr "Raporunuzu bir kaç kelimeyle tanımlayın."
 
 msgid "Describe your report in detail."
 msgstr "Raporunuzu ayrıntılı olarak tanımlayın."

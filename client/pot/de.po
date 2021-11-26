@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # 5d82173c4528651ffb3192cfbc43353e_22888c7, 2015
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
@@ -53,7 +51,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 14:47+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -521,6 +519,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr "Zugriff widerufen"
 
+msgid "Please summarize your report in a few words."
+msgstr "Beschreiben Sie Ihren Bericht in wenigen Worten."
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -555,9 +556,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1085,7 +1086,7 @@ msgstr "Fragegruppe"
 msgid "Hint"
 msgstr "Hinweis"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Erforderlich"
 
 msgid "Accept multiple file uploads"
@@ -1668,12 +1669,6 @@ msgstr "Ich habe die Lizenzbedingungen gelesen und stimme ihnen zu."
 
 msgid "You have completed the platform wizard."
 msgstr "Sie haben den Plattform-Assistenten abgeschlossen."
-
-msgid "Fill out your report"
-msgstr "Füllen Sie Ihren Bericht aus"
-
-msgid "Please summarize your report in a few words."
-msgstr "Beschreiben Sie Ihren Bericht in wenigen Worten."
 
 msgid "Describe your report in detail."
 msgstr "Beschreiben Sie Ihren Bericht im Detail."

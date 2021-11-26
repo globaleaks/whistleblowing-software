@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # 9e05ce6ed18638013a42d704560b8907_c13c9ae, 2014
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2021
@@ -17,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 14:38+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -485,6 +483,9 @@ msgstr "Предоставяне на достъп"
 msgid "Revoke access"
 msgstr "Анулиране на достъпа"
 
+msgid "Please summarize your report in a few words."
+msgstr "Опишете сигнала си с няколко думи."
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -519,9 +520,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1049,7 +1050,7 @@ msgstr "Група въпроси"
 msgid "Hint"
 msgstr "Подсказване"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Изисква се"
 
 msgid "Accept multiple file uploads"
@@ -1632,12 +1633,6 @@ msgstr "Прочетох лицензионните условия и ги пр�
 
 msgid "You have completed the platform wizard."
 msgstr "Завършихте съветника на платформата."
-
-msgid "Fill out your report"
-msgstr "Попълнете сигнала си"
-
-msgid "Please summarize your report in a few words."
-msgstr "Опишете сигнала си с няколко думи."
 
 msgid "Describe your report in detail."
 msgstr "Опишете сигнала си подробно."

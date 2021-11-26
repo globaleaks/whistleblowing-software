@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # 246d1139de69599774b6470f9985ef39_d892e0d <60b88f371afdc474c95db754c714c9ed_161423>, 2014
 # a96921fef9a72b1bcbac1fc92cca715a, 2015
@@ -55,7 +53,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 14:35+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -523,6 +521,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
+msgid "Please summarize your report in a few words."
+msgstr "الرجاء كتابة نبذة عن البلاغ."
+
 msgid "Where did the facts happen?"
 msgstr "أين وقع الحادث؟"
 
@@ -557,10 +558,10 @@ msgid "Please describe the evidence in detail."
 msgstr "يرجى وصف الصور أو الفيديو أو الأدلة الأخرى بالتفصيل"
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
-msgstr "يساعد الوصف الدقيق للأدلة المقدمة من قدرة فريقنا على تقييم البلاغ والتحقق من الادلة. الرجاء الاشارة إلى المصدر الرئيسي للادلة التي ارفقتها سواء كانت فيديو أو صور أو مستندات."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
 msgstr "هل أبلغت عن الحادث لجهات أخرى؟"
@@ -1087,7 +1088,7 @@ msgstr "مجموعة الأسئلة"
 msgid "Hint"
 msgstr "تلميح"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "مطلوب"
 
 msgid "Accept multiple file uploads"
@@ -1670,12 +1671,6 @@ msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "لقد اتممتم معالج المنصّة بنجاح."
-
-msgid "Fill out your report"
-msgstr "املأ تقريرك"
-
-msgid "Please summarize your report in a few words."
-msgstr "الرجاء كتابة نبذة عن البلاغ."
 
 msgid "Describe your report in detail."
 msgstr "الرجاء وصف البلاغ بالتفصيل."

@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Aleksandra Blanusha <ablanusha@transparency.mk>, 2020-2021
 # Dimitar Poposki <poposkidimitar@gmail.com>, 2016
@@ -9,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 14:56+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Macedonian (http://www.transifex.com/otf/globaleaks/language/mk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -477,6 +475,9 @@ msgstr "Дозволен пристап"
 msgid "Revoke access"
 msgstr "Отповикај пристап"
 
+msgid "Please summarize your report in a few words."
+msgstr "Опишете го вашиот извештај со неколку зборови."
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -511,9 +512,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1041,7 +1042,7 @@ msgstr "Прашална група"
 msgid "Hint"
 msgstr "Помош"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Потребно"
 
 msgid "Accept multiple file uploads"
@@ -1624,12 +1625,6 @@ msgstr "Ги прочитав и се согласив со условите н�
 
 msgid "You have completed the platform wizard."
 msgstr "Го завршивте волшебникот на платформата."
-
-msgid "Fill out your report"
-msgstr "Пополнете го вашиот извештај"
-
-msgid "Please summarize your report in a few words."
-msgstr "Опишете го вашиот извештај со неколку зборови."
 
 msgid "Describe your report in detail."
 msgstr "Опишете го вашиот извештај во детали."

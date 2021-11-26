@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # 25dcf36596cc573910517485ce7471d2_e63d9c6 <02fb85a8c2ff1359b9784c1b22793096_365094>, 2015
 # alfalb.as, 2015
@@ -29,7 +27,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 14:58+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -497,6 +495,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr "Revogar acesso"
 
+msgid "Please summarize your report in a few words."
+msgstr "Descreva em algumas palavras a sua submissão."
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -531,9 +532,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1061,7 +1062,7 @@ msgstr "Grupo de questões"
 msgid "Hint"
 msgstr "Dica"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Obrigatório"
 
 msgid "Accept multiple file uploads"
@@ -1644,12 +1645,6 @@ msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "Deve concluir o assistente da plataforma."
-
-msgid "Fill out your report"
-msgstr "Preencha a sua submissão"
-
-msgid "Please summarize your report in a few words."
-msgstr "Descreva em algumas palavras a sua submissão."
 
 msgid "Describe your report in detail."
 msgstr "Descreva a sua submissão detalhadamente."

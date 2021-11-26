@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
 # Lobsang Gyatso Sither <lobsangsither@gmail.com>, 2021
@@ -8,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:02+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tibetan (http://www.transifex.com/otf/globaleaks/language/bo/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -476,6 +474,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
+msgid "Please summarize your report in a few words."
+msgstr "ཁྱེད་ཀྱི་སྙན་ཐོ་དེ་ཚིག་འབྲུ་འགའ་ཤས་ནང་འགྲེལ་བརྗོད་བྱ།"
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -510,9 +511,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1040,7 +1041,7 @@ msgstr "དྲི་བའི་སྡེ་ཚན།"
 msgid "Hint"
 msgstr "བརྡ་སྟོན།"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "ལྡན་དགོས།"
 
 msgid "Accept multiple file uploads"
@@ -1623,12 +1624,6 @@ msgstr "ངས་ཁྲིམས་མཐུན་ལག་འཁྱེར་ག
 
 msgid "You have completed the platform wizard."
 msgstr "ཁྱེད་ཀྱིས་གླེང་སྟེགས་ཝི་ཛཌ་མཇུག་སྐྱེལ་ཟིན་འདུག"
-
-msgid "Fill out your report"
-msgstr "ཁྱེད་ཀྱི་སྙན་ཐོ་འགེང་།"
-
-msgid "Please summarize your report in a few words."
-msgstr "ཁྱེད་ཀྱི་སྙན་ཐོ་དེ་ཚིག་འབྲུ་འགའ་ཤས་ནང་འགྲེལ་བརྗོད་བྱ།"
 
 msgid "Describe your report in detail."
 msgstr "ཁྱེད་ཀྱི་སྙན་ཐོ་དེ་ཞིབ་ཕྲ་འགྲེལ་བརྗོད་བྱ།"

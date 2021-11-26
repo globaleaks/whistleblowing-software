@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Chyngyz Monokbaev <monokbaev@gmail.com>, 2021
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
@@ -8,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 14:51+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Kyrgyz (http://www.transifex.com/otf/globaleaks/language/ky/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -476,6 +474,9 @@ msgstr "Уруксат берүү"
 msgid "Revoke access"
 msgstr "Кирүү мүмкүнчүлүгүн жокко чыгаруу"
 
+msgid "Please summarize your report in a few words."
+msgstr "Бир нече сөз менен отчетуңузду сүрөттөп бериңиз."
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -510,9 +511,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1040,7 +1041,7 @@ msgstr "Суроонун тобу"
 msgid "Hint"
 msgstr "Ишара"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Милдеттүү"
 
 msgid "Accept multiple file uploads"
@@ -1623,12 +1624,6 @@ msgstr "Мен лицензиянын шарттарын окуп чыктым �
 
 msgid "You have completed the platform wizard."
 msgstr "Платформа устаты менен ишти бүтүрдүңүз."
-
-msgid "Fill out your report"
-msgstr "Отчетуңузду толтуруңуз"
-
-msgid "Please summarize your report in a few words."
-msgstr "Бир нече сөз менен отчетуңузду сүрөттөп бериңиз."
 
 msgid "Describe your report in detail."
 msgstr "Отчетуңузду деталдуу түрдө кенен кылып сүрөттөп бериңиз."

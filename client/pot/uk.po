@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # a6c63d26ffa7dd0fcc8488aeda5e13cc_e98f1c4 <9c0e475b052551345b6783cce6a22315_95966>, 2014
 # Andriy Smulka <andriy.smulka@rocketmail.com>, 2021
@@ -28,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:04+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -496,6 +494,9 @@ msgstr "Дозволити доступ"
 msgid "Revoke access"
 msgstr "Відкликати доступ"
 
+msgid "Please summarize your report in a few words."
+msgstr "Опишіть кількома словами наданий вами звіт."
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -530,9 +531,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1060,7 +1061,7 @@ msgstr "Група питань"
 msgid "Hint"
 msgstr "Підказка"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Обов'язково"
 
 msgid "Accept multiple file uploads"
@@ -1643,12 +1644,6 @@ msgstr "Я прочитав умови ліцензії і погоджуюсь 
 
 msgid "You have completed the platform wizard."
 msgstr "Ви закінчили роботу з майстром налаштування платформи."
-
-msgid "Fill out your report"
-msgstr "Заповніть свій звіт"
-
-msgid "Please summarize your report in a few words."
-msgstr "Опишіть кількома словами наданий вами звіт."
 
 msgid "Describe your report in detail."
 msgstr "Опишіть наданий вами звіт детальніше"

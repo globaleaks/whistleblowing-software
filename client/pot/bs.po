@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Aleksandar Todorović (r3bl) <aleksandar@r3bl.me>, 2015
 # Aleksandar Todorović (r3bl) <aleksandar@r3bl.me>, 2015
@@ -12,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 14:39+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bosnian (http://www.transifex.com/otf/globaleaks/language/bs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -480,6 +478,9 @@ msgstr "Dodijeli pristup"
 msgid "Revoke access"
 msgstr "Ukini pristup"
 
+msgid "Please summarize your report in a few words."
+msgstr "Opišite svoju prijavu u nekoliko riječi."
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -514,9 +515,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1044,7 +1045,7 @@ msgstr "Grupa pitanja"
 msgid "Hint"
 msgstr "Natuknica"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Obavezno"
 
 msgid "Accept multiple file uploads"
@@ -1627,12 +1628,6 @@ msgstr "Pročitao/la sam uslove licence i slažem se sa njima."
 
 msgid "You have completed the platform wizard."
 msgstr "Uspješno ste završili postavke sa asistentom za platformu."
-
-msgid "Fill out your report"
-msgstr "Ispunite svoju prijavu"
-
-msgid "Please summarize your report in a few words."
-msgstr "Opišite svoju prijavu u nekoliko riječi."
 
 msgid "Describe your report in detail."
 msgstr "Detaljno opišite svoju prijavu."

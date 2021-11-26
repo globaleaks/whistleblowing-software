@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # code smite <codesmite@gmail.com>, 2021
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
@@ -13,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 14:37+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bengali (http://www.transifex.com/otf/globaleaks/language/bn/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -481,6 +479,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
+msgid "Please summarize your report in a few words."
+msgstr "আপনার রিপোর্টটি সংক্ষেপে বর্ণনা করুন।"
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -515,9 +516,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1045,7 +1046,7 @@ msgstr "প্রশ্নের গ্রুপ"
 msgid "Hint"
 msgstr "ইঙ্গিত"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "আবশ্যক"
 
 msgid "Accept multiple file uploads"
@@ -1628,12 +1629,6 @@ msgstr "আমি লাইসেন্সের শর্তাদি পড়
 
 msgid "You have completed the platform wizard."
 msgstr "আপনি প্ল্যাটফর্ম উইজার্ডটি শেষ করেছেন।"
-
-msgid "Fill out your report"
-msgstr "আপনার রিপোর্ট পূরণ করুন"
-
-msgid "Please summarize your report in a few words."
-msgstr "আপনার রিপোর্টটি সংক্ষেপে বর্ণনা করুন।"
 
 msgid "Describe your report in detail."
 msgstr "আপনার রিপোর্টটি বিশদভাবে বর্ণনা করুন।"

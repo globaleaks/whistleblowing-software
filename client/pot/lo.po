@@ -1,13 +1,11 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Cheer Zeng <cheerz6623@gmail.com>, 2021
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 14:54+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Lao (http://www.transifex.com/otf/globaleaks/language/lo/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -475,6 +473,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
+msgid "Please summarize your report in a few words."
+msgstr "ອະທິບາຍລາຍງານຂອງທ່ານແບບສັ້ນໆ."
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -509,9 +510,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1039,7 +1040,7 @@ msgstr "ກຸ່ມຄຳຖາມ"
 msgid "Hint"
 msgstr "ຄຳແນະນຳ"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "ຕ້ອງການ"
 
 msgid "Accept multiple file uploads"
@@ -1622,12 +1623,6 @@ msgstr "ຂ້າພະເຈົ້າໄດ້ອ່ານ ແລະ ຕົກ�
 
 msgid "You have completed the platform wizard."
 msgstr "ທ່ານໄດ້ສ້າງຕົວຊ່ວຍສ້າງລະບົບສຳເລັດແລ້ວ."
-
-msgid "Fill out your report"
-msgstr "ຕື່ມຂໍ້ມູນໃສ່ລາຍງານຂອງທ່ານ"
-
-msgid "Please summarize your report in a few words."
-msgstr "ອະທິບາຍລາຍງານຂອງທ່ານແບບສັ້ນໆ."
 
 msgid "Describe your report in detail."
 msgstr "ອະທິບາຍລາຍງານຂອງທ່ານໃຫ້ລະອຽດ."

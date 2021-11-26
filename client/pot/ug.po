@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Memeteli Niyaz <muhemmedeli.niyaz@gmail.com>, 2021
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
@@ -9,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:04+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uyghur (http://www.transifex.com/otf/globaleaks/language/ug/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -477,6 +475,9 @@ msgstr "ھوقۇق بەر"
 msgid "Revoke access"
 msgstr "ھوقۇقنى قايتۇرىۋال"
 
+msgid "Please summarize your report in a few words."
+msgstr "ئىككى ئېغىز گەپ بىلەن دوكلاتىڭىزنى چۈشەندۈرۈڭ."
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -511,9 +512,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1041,7 +1042,7 @@ msgstr "سۇئال گۇرۇپپىسى"
 msgid "Hint"
 msgstr "ئىشارەت"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "لازىملىق"
 
 msgid "Accept multiple file uploads"
@@ -1624,12 +1625,6 @@ msgstr "مەن ئىجازەت شەرتلىرىنى ئوقۇدۇم ھەمدە ق�
 
 msgid "You have completed the platform wizard."
 msgstr "سۇپا سېھىرگەرىنى پۈتتتۈردىڭىز."
-
-msgid "Fill out your report"
-msgstr "دوكلاتىڭىزنى توشقۇزۇڭ"
-
-msgid "Please summarize your report in a few words."
-msgstr "ئىككى ئېغىز گەپ بىلەن دوكلاتىڭىزنى چۈشەندۈرۈڭ."
 
 msgid "Describe your report in detail."
 msgstr "دوكلاتىڭىزنى تەپسىلىي چۈشەندۈرۈڭ."

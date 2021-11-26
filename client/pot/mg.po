@@ -1,9 +1,7 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # ANDRIAMALALA <luceidos22@gmail.com>, 2019
-# AO <ao@localizationlab.org>, 2015-2016
+# AO_LL <ao@localizationlab.org>, 2015-2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # Charles Peltier <charles@cl-info.fr>, 2015
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2020-2021
@@ -23,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 14:31+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malagasy (http://www.transifex.com/otf/globaleaks/language/mg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -491,6 +489,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
+msgid "Please summarize your report in a few words."
+msgstr ""
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -525,9 +526,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1055,7 +1056,7 @@ msgstr "Groupe de questions"
 msgid "Hint"
 msgstr "Infobulle"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Exigé"
 
 msgid "Accept multiple file uploads"
@@ -1638,12 +1639,6 @@ msgstr ""
 
 msgid "You have completed the platform wizard."
 msgstr "Vous avez terminé avec succès l’assistant de la plateforme."
-
-msgid "Fill out your report"
-msgstr "Remplissez votre dossier"
-
-msgid "Please summarize your report in a few words."
-msgstr ""
 
 msgid "Describe your report in detail."
 msgstr "Décrivez votre envoi en détail."

@@ -1,6 +1,4 @@
-# Translators:
-# danimaribeiro <danimaribeiro@gmail.com>, 2015-2016
-# Matjaz Mozetic <m.mozetic@matmoz.si>, 2015-2016
+# 
 # Translators:
 # Allan Nordhøy <epost@anotheragency.no>, 2014-2015
 # Allan Nordhøy <epost@anotheragency.no>, 2014-2018
@@ -9,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 14:57+0000\n"
+"PO-Revision-Date: 2021-11-24 15:40+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -477,6 +475,9 @@ msgstr "Gi tilgang"
 msgid "Revoke access"
 msgstr "Opphev tilgangen"
 
+msgid "Please summarize your report in a few words."
+msgstr "Gi en kort beskrivelse av rapporten din"
+
 msgid "Where did the facts happen?"
 msgstr ""
 
@@ -511,9 +512,9 @@ msgid "Please describe the evidence in detail."
 msgstr ""
 
 msgid ""
-"Thorough descriptions of submitted evidence enhances our ability to evaluate"
-" claims and investigate. Please take care to reference significant portions "
-"of any videos, images or documents submitted."
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
@@ -1041,7 +1042,7 @@ msgstr "Spørsmålsgruppe"
 msgid "Hint"
 msgstr "Hint"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Påkrevd"
 
 msgid "Accept multiple file uploads"
@@ -1624,12 +1625,6 @@ msgstr "Jeg har lest og godtar vilkårene i lisensen."
 
 msgid "You have completed the platform wizard."
 msgstr "Du har fullført plattformsveiviseren."
-
-msgid "Fill out your report"
-msgstr "Fyll ut din rapport"
-
-msgid "Please summarize your report in a few words."
-msgstr "Gi en kort beskrivelse av rapporten din"
 
 msgid "Describe your report in detail."
 msgstr "Gi en detaljert beskrivelse av rapporten din"
