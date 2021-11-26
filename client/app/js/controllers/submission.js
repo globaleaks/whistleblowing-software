@@ -265,6 +265,10 @@ GL.controller("SubmissionCtrl",
     $scope.$watch("answers", function () {
       fieldUtilities.onAnswersUpdate($scope);
     }, true);
+
+    $scope.$on("GL::uploadsUpdated", function () {
+      fieldUtilities.onAnswersUpdate($scope);
+    });
   });
 }]).
 controller("AdditionalQuestionnaireCtrl",
@@ -433,6 +437,10 @@ controller("AdditionalQuestionnaireCtrl",
   $scope.$watch("answers", function () {
     fieldUtilities.onAnswersUpdate($scope);
   }, true);
+
+  $scope.$on("GL::uploadsUpdated", function () {
+    fieldUtilities.onAnswersUpdate($scope);
+  });
 
   $scope.prepareSubmission();
   fieldUtilities.onAnswersUpdate($scope);

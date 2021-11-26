@@ -23,6 +23,10 @@ controller("RFileUploadCtrl", ["$scope", function($scope) {
       $scope.disabled = true;
     }
   });
+
+  $scope.$on("flow::fileSuccess", function () {
+    $scope.$emit("GL::uploadsUpdated");
+  });
 }]).
 controller("WBFileUploadCtrl", ["$scope", function($scope) {
   $scope.file_upload_description = "";

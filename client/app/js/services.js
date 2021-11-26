@@ -1092,6 +1092,8 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
           file.abort();
         }
       }
+
+      $rootScope.$broadcast("GL::uploadsUpdated", {});
     },
 
     notifyException: function(exception) {
@@ -1348,7 +1350,7 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
                 }
               }
             } else if (field.type === "fileupload") {
-              entry.required_status = field.required && !(scope.uploads[field.id] && scope.uploads[field.id].files.length);
+              entry.required_status = field.required && (!scope.uploads[field.id] || !scope.uploads[field.id].files.length);
             } else {
               entry.required_status = field.required && !entry["value"];
             }
