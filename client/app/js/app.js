@@ -510,7 +510,6 @@ var GL = angular.module("GL", [
     };
 
     $rootScope.setPage = function(page) {
-      $location.path("/");
       $rootScope.page = page;
       $rootScope.Utils.set_title();
     };

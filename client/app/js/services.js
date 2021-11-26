@@ -868,6 +868,10 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
              !$rootScope.Authentication.session.require_password_change;
     },
 
+    showWBLoginBox: function() {
+      return $location.path() === '/submission';
+    },
+
     showFilePreview: function(content_type) {
       var content_types = [
         "image/gif",
