@@ -759,34 +759,34 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
         return;
       }
 
-      var pt1 = $rootScope.public.node.name,
-          pt2 = $rootScope.public.node.header_title_homepage;
+      var projectTitle = $rootScope.public.node.name,
+          pageTitle = $rootScope.public.node.header_title_homepage;
 
       if ($location.path() === "/") {
         if ($rootScope.page === "tippage") {
-          pt2 = "Report";
+          pageTitle = "Report";
         }
       } else {
-        pt2 = $rootScope.header_title;
+        pageTitle = $rootScope.header_title;
       }
 
-      pt2 = pt2 === pt1 ? "" : pt2;
-      pt2 = $filter("translate")(pt2);
-
-      $rootScope.projectTitle = pt1;
-      $rootScope.pageTitle = pt2;
-
-      if (pt1 && pt2) {
-        $rootScope.pt = pt1 + " - " + pt2;
-      } else if (pt1) {
-        $rootScope.pt = pt1;
-      } else if (pt2) {
-        $rootScope.pt = pt2;
-      } else {
-        $rootScope.pt = "GlobaLeaks";
+      if (!projectTitle) {
+        projectTitle = "GLOBALEAKS";
       }
 
-      $window.document.title = $rootScope.pt;
+      if (!pageTitle) {
+        pageTitle = projectTitle;
+      }
+
+      $rootScope.projectTitle = $filter("translate")(projectTitle);
+      $rootScope.pageTitle = $filter("translate")(pageTitle);
+
+      $window.document.title = $rootScope.projectTitle;
+      if ($rootScope.projectTitle !== $rootScope.pageTitle) {
+        $window.document.title += " - " + $rootScope.pageTitle;
+        $rootScope.pageTitle = $rootScope.projectTitle + " - " + $rootScope.pageTitle;
+      }
+
       $window.document.getElementsByName("description")[0].content = $rootScope.public.node.description;
     },
 
