@@ -74,6 +74,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
         self.tenant_cache = {}
         self.tenant_hostname_id_map = {}
 
+        self.orm_tp = None
         self.set_orm_tp(ThreadPool(4, 16))
 
         self.tokens = TokenList(60)
