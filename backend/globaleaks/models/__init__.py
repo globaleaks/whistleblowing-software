@@ -221,7 +221,7 @@ class _Comment(Model):
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+        return ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
 
 class _Config(Model):
@@ -233,7 +233,7 @@ class _Config(Model):
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+        return ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
     def __init__(self, values=None):
         """
@@ -275,7 +275,7 @@ class _ConfigL10N(Model):
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['tid', 'lang'], ['enabledlanguage.tid', 'enabledlanguage.name'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+        return ForeignKeyConstraint(['tid', 'lang'], ['enabledlanguage.tid', 'enabledlanguage.name'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
     def __init__(self, values=None):
         if values is None:
@@ -392,7 +392,7 @@ class _CustomTexts(Model):
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+        return ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
 
 class _EnabledLanguage(Model):
@@ -405,7 +405,7 @@ class _EnabledLanguage(Model):
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+        return ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
 
 class _Field(Model):
@@ -503,7 +503,7 @@ class _FieldOption(Model):
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['field_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+        return ForeignKeyConstraint(['field_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
 
 class _FieldOptionTriggerField(Model):
@@ -585,7 +585,7 @@ class _IdentityAccessRequest(Model):
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['receivertip_id'], ['receivertip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+        return ForeignKeyConstraint(['receivertip_id'], ['receivertip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
 
 class _InternalFile(Model):
@@ -607,7 +607,7 @@ class _InternalFile(Model):
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+        return ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
 
 class _InternalTip(Model):
@@ -657,7 +657,7 @@ class _InternalTipAnswers(Model):
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+        return ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
 
 class _InternalTipData(Model):
@@ -691,7 +691,7 @@ class _Mail(Model):
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+        return ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
 
 class _Message(Model):
@@ -726,7 +726,7 @@ class _Questionnaire(Model):
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+        return ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
 
 class _ReceiverContext(Model):
@@ -838,7 +838,7 @@ class _Subscriber(Model):
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+        return ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
 
 class _Redirect(Model):
@@ -856,7 +856,7 @@ class _Redirect(Model):
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+        return ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
 
 class _Step(Model):
@@ -875,7 +875,7 @@ class _Step(Model):
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['questionnaire_id'], ['questionnaire.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+        return ForeignKeyConstraint(['questionnaire_id'], ['questionnaire.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
 
 class _SubmissionStatus(Model):
@@ -899,7 +899,7 @@ class _SubmissionStatus(Model):
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+        return ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
 
 class _SubmissionSubStatus(Model):
@@ -924,7 +924,7 @@ class _SubmissionSubStatus(Model):
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['tid', 'submissionstatus_id'], ['submissionstatus.tid', 'submissionstatus.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+        return ForeignKeyConstraint(['tid', 'submissionstatus_id'], ['submissionstatus.tid', 'submissionstatus.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
 
 class _Tenant(Model):
@@ -1044,7 +1044,7 @@ class _WhistleblowerFile(Model):
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['receivertip_id'], ['receivertip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),)
+        return ForeignKeyConstraint(['receivertip_id'], ['receivertip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
 
 class _WhistleblowerTip(Model):
