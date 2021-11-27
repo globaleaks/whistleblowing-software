@@ -731,9 +731,9 @@ def create_identityaccessrequest(session, tid, user_id, rtip_id, request):
     iar.receivertip_id = rtip.id
 
     if not custodian:
-       iar.reply_date = datetime_now()
-       iar.reply_user_id = user_id
-       iar.reply = 'authorized'
+        iar.reply_date = datetime_now()
+        iar.reply_user_id = user_id
+        iar.reply = 'authorized'
 
     session.add(iar)
     session.flush()
