@@ -11,6 +11,8 @@ crypto_backend = default_backend()
 
 class SecureTemporaryFile(object):
     file = None
+    fd = None
+    dec = None
 
     def __init__(self, filesdir):
         """
@@ -22,7 +24,6 @@ class SecureTemporaryFile(object):
         self.cipher = Cipher(algorithms.AES(self.key), modes.CTR(self.key_counter_nonce), backend=crypto_backend)
         self.filepath = os.path.join(filesdir, "%s.aes" % self.key_id)
         self.enc = self.cipher.encryptor()
-        self.dec = None
 
     def open(self, mode):
         if self.file is None:
