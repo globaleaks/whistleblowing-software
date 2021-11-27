@@ -51,7 +51,7 @@ class OnionService(Service):
     hs_map = {}
 
     def reset(self):
-        self.tor_con = None
+        self.tor_conn = None
         self.hs_map.clear()
 
     def stop(self):
