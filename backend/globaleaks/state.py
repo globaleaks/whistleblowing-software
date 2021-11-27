@@ -4,15 +4,12 @@ import re
 import sys
 import traceback
 
-from sqlalchemy import event
-
 from twisted.internet import defer
 from twisted.mail.smtp import SMTPError
 from twisted.python.failure import Failure
 from twisted.python.threadpool import ThreadPool
 
 from globaleaks import __version__, orm
-from globaleaks.models import AuditLog
 from globaleaks.orm import tw
 from globaleaks.settings import Settings
 from globaleaks.transactions import db_schedule_email

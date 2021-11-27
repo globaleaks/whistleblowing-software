@@ -8,7 +8,6 @@ from globaleaks.handlers.user import db_get_user, \
                                      db_set_user_password, \
                                      parse_pgp_options, \
                                      user_serialize_user
-from globaleaks.handlers.password_reset import db_generate_password_reset_token
 from globaleaks.models import fill_localized_keys
 from globaleaks.orm import db_del, db_log, transact, tw
 from globaleaks.rest import requests

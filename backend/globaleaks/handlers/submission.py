@@ -14,7 +14,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import sha256, Base64Encoder, GCE
 from globaleaks.utils.json import JSONEncoder
-from globaleaks.utils.utility import get_expiration, datetime_null, uuid4
+from globaleaks.utils.utility import get_expiration, datetime_null
 
 
 def decrypt_tip(user_key, tip_prv_key, tip):

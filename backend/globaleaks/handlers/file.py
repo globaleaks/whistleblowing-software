@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 #
 # Handlers exposing customization files
-import base64
 import os
 import urllib
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks import models
-from globaleaks.handlers.admin.file import get_file_id_by_name, special_files
+from globaleaks.handlers.admin.file import get_file_id_by_name
 from globaleaks.handlers.base import BaseHandler
 
 appfiles = {

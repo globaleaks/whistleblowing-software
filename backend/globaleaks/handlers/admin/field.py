@@ -9,7 +9,6 @@ from globaleaks.orm import db_add, db_get, db_del, transact, tw
 from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
 from globaleaks.utils.fs import read_json_file
-from globaleaks.utils.utility import datetime_now
 
 
 def fieldtree_ancestors(session, field_id):

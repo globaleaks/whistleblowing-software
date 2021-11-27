@@ -3,9 +3,9 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import __version__
 from globaleaks import models
-from globaleaks.handlers.admin import node, user
-from globaleaks.orm import transact, tw
-from globaleaks.rest.errors import InputValidationError, InvalidAuthentication
+from globaleaks.handlers.admin import node
+from globaleaks.orm import transact
+from globaleaks.rest.errors import InputValidationError
 from globaleaks.tests import helpers
 
 

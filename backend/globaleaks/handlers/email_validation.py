@@ -9,7 +9,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import tw
-from globaleaks.utils.utility import datetime_now, datetime_null
+from globaleaks.utils.utility import datetime_null
 
 
 def db_validate_address_change(session, validation_token):

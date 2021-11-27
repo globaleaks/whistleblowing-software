@@ -13,7 +13,7 @@ from twisted.internet import abstract
 from twisted.protocols.basic import FileSender
 
 from globaleaks.event import track_handler
-from globaleaks.rest import errors, requests
+from globaleaks.rest import errors
 from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State

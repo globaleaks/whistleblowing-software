@@ -1,6 +1,5 @@
 # -*- coding: utf-8
 # Implement a proof of work token to prevent resources exhaustion
-import os
 from datetime import timedelta
 
 from globaleaks.rest import errors

@@ -7,7 +7,6 @@ from globaleaks.jobs import delivery
 from globaleaks.models.config import db_set_config_variable
 from globaleaks.orm import tw
 from globaleaks.rest import errors
-from globaleaks.sessions import initialize_submission_session
 from globaleaks.tests import helpers
 
 

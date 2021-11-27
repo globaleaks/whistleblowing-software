@@ -20,7 +20,7 @@ from globaleaks.utils.crypto import Base64Encoder, GCE
 from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, msdos_encode
-from globaleaks.utils.zipstream import ZipStream, ZipStreamProducer
+from globaleaks.utils.zipstream import ZipStream
 
 
 def serialize_rtip_export(session, user, rtip, itip, context, language):

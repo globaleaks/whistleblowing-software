@@ -8,7 +8,7 @@ from globaleaks.handlers.admin.node import db_update_enabled_languages
 from globaleaks.handlers.admin.user import db_create_user
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import config, profiles
-from globaleaks.orm import db_get, tw
+from globaleaks.orm import tw
 from globaleaks.rest import requests, errors
 from globaleaks.utils.crypto import Base64Encoder, GCE
 from globaleaks.utils.utility import datetime_now

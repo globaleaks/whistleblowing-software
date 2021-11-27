@@ -10,7 +10,6 @@ from globaleaks.handlers.admin.file import special_files
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import get_localized_values
 from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
-from globaleaks.models.enums import EnumContextStatus
 from globaleaks.orm import db_get, db_query, transact
 from globaleaks.state import State
 
