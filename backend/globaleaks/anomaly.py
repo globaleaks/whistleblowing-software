@@ -96,7 +96,7 @@ class Alarm(object):
         This function update the Alarm level.
 
         """
-        self.number_of_anomalies = 0
+        number_of_anomalies = 0
 
         self.event_matrix.clear()
 
@@ -107,22 +107,22 @@ class Alarm(object):
         for event_name, threshold in ANOMALY_MAP.items():
             if event_name in self.event_matrix:
                 if self.event_matrix[event_name] > threshold:
-                    self.number_of_anomalies += 1
+                    number_of_anomalies += 1
 
         previous_activity_sl = self.alarm_levels['activity']
 
         log_function = log.debug
         self.alarm_levels['activity'] = 0
 
-        if self.number_of_anomalies == 1:
+        if number_of_anomalies == 1:
             log_function = log.info
             self.alarm_levels['activity'] = 1
-        elif self.number_of_anomalies > 1:
+        elif number_of_anomalies > 1:
             log_function = log.info
             self.alarm_levels['activity'] = 2
 
         # if there are some anomaly or we're nearby, record it.
-        if self.number_of_anomalies >= 1 or self.alarm_levels['activity'] >= 1:
+        if number_of_anomalies >= 1 or self.alarm_levels['activity'] >= 1:
             State.tenant_state[tid].AnomaliesQ.append(
                 [datetime_now(), self.event_matrix, self.alarm_levels['activity']])
 
