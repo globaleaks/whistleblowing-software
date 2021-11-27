@@ -559,7 +559,7 @@ SignupDesc = {
     'surname': str,
     'role': str,
     'phone': str,
-    'email': str,
+    'email': email_regexp,
     'organization_name': str,
     'organization_type': str,
     'organization_tax_code': str,
@@ -577,7 +577,7 @@ SignupDesc = {
 }
 
 SupportDesc = {
-    'mail_address': str,
+    'mail_address': email_regexp,
     'url': str,
     'text': str
 }
