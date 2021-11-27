@@ -364,7 +364,7 @@ class APIResourceWrapper(Resource):
 
         :return: empty `str` or `NOT_DONE_YET`
         """
-        def _finish(ret):
+        def _finish(_ret):
             request.finished = True
 
         request.notifyFinish().addBoth(_finish)

@@ -32,7 +32,7 @@ mimetypes.add_type('application/woff2', '.woff2')
 
 
 def serve_file(request, fo):
-    def on_finish(ignored):
+    def on_finish(_ignored):
         fo.close()
         request.finish()
 
