@@ -39,7 +39,7 @@ def db_get_itip_receiver_list(session, itip):
         ret.append({
             "id": user.id,
             "name": user.name,
-            "access_date", rtip.access_date,
+            "access_date": rtip.access_date,
             "last_access": rtip.last_access
         })
 
@@ -1014,7 +1014,8 @@ class ReceiverFileDownload(BaseHandler):
                                        models.ReceiverTip.internaltip_id == models.InternalTip.id,
                                        models.InternalTip.tid == tid))
 
-        rfile.last_access = datetime_now()
+        if rfile.access_date == datetime_null():
+            rfile.access_date = datetime_now()
 
         log.debug("Download of file %s by receiver %s" %
                   (rfile.internalfile_id, rtip.receiver_id))

@@ -755,7 +755,7 @@ class _ReceiverFile(Model):
     internalfile_id = Column(UnicodeText(36), nullable=False)
     receivertip_id = Column(UnicodeText(36), nullable=False)
     filename = Column(UnicodeText(255), nullable=False)
-    last_access = Column(DateTime, default=datetime_null, nullable=False)
+    access_date = Column(DateTime, default=datetime_null, nullable=False)
     new = Column(Boolean, default=True, nullable=False)
 
     @declared_attr
@@ -775,7 +775,7 @@ class _ReceiverTip(Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     internaltip_id = Column(UnicodeText(36), nullable=False)
     receiver_id = Column(UnicodeText(36), nullable=False)
-    access_date = Column(Datetime, default=datetime_null, nullable=False)
+    access_date = Column(DateTime, default=datetime_null, nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
     important = Column(Boolean, default=False, nullable=False)
     label = Column(UnicodeText, default='', nullable=False)

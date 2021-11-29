@@ -19,7 +19,7 @@ from globaleaks.rest import errors
 from globaleaks.utils.crypto import Base64Encoder, GCE
 from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import datetime_now, msdos_encode
+from globaleaks.utils.utility import datetime_now, datetime_null, msdos_encode
 from globaleaks.utils.zipstream import ZipStream
 
 
@@ -52,7 +52,7 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
         raise errors.ResourceNotFound()
 
     rtip.last_access = datetime_now()
-    if rtip.access_date == datetime_null()
+    if rtip.access_date == datetime_null():
         rtip.access_date = rtip.last_access
 
     if itip.status == 'new':
