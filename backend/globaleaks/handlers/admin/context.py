@@ -25,7 +25,6 @@ def admin_serialize_context(session, context, language):
     ret = {
         'id': context.id,
         'status': context.status,
-        'languages': context.languages,
         'tip_timetolive': context.tip_timetolive,
         'select_all_receivers': context.select_all_receivers,
         'maximum_selectable_receivers': context.maximum_selectable_receivers,

@@ -304,7 +304,6 @@ def serialize_context(session, context, language, data=None):
         'id': context.id,
         'status': context.status,
         'order': context.order,
-        'languages': context.languages,
         'tip_timetolive': context.tip_timetolive,
         'select_all_receivers': context.select_all_receivers,
         'maximum_selectable_receivers': context.maximum_selectable_receivers,
@@ -580,19 +579,13 @@ def get_public_resources(session, tid, language):
     :param language: The language to be used for serialization
     :return: The public API descriptor
     """
-    ret = {
+    return {
         'node': db_serialize_node(session, tid, language),
         'questionnaires': db_get_questionnaires(session, tid, language, True),
         'submission_statuses': db_get_submission_statuses(session, tid, language),
         'receivers': db_get_receivers(session, tid, language),
-        'contexts': []
+        'contexts': db_get_contexts(session, tid, language)
     }
-
-    for context in db_get_contexts(session, tid, language):
-        if not context['languages'] or language.lower() in [x.strip().lower() for x in context['languages'].split(',')]:
-            ret['contexts'].append(context)
-
-    return ret
 
 
 class PublicResource(BaseHandler):

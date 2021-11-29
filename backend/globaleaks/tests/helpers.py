@@ -260,7 +260,6 @@ class MockDict:
             'id': '',
             'name': 'Already localized name',
             'description': 'Already localized desc',
-            'languages': "en",
             'order': 0,
             'receivers': [],
             'questionnaire_id': 'default',

@@ -325,14 +325,12 @@ class _Context(Model):
     score_threshold_receipt = Column(Integer, default=0, nullable=False)
     questionnaire_id = Column(UnicodeText(36), default='default', nullable=False)
     additional_questionnaire_id = Column(UnicodeText(36))
-    languages = Column(UnicodeText, default='', nullable=False)
     status = Column(Enum(EnumContextStatus), default='hidden', nullable=False)
     order = Column(Integer, default=0, nullable=False)
 
     unicode_keys = [
         'questionnaire_id',
         'additional_questionnaire_id',
-        'languages',
         'status'
     ]
 
