@@ -11,7 +11,7 @@ Default choice is English, but many others lanaguages are available and more are
 
 .. image:: ../images/wizard/1.png
 
-Choose a name for Your Project
+Choose a Name for Your Project
 ------------------------------
 In the second section of the wizard configure the name of your project.
 
