@@ -244,6 +244,8 @@ The use of the ``Tor`` is recommended over HTTPS for its advanced properties of 
 
 The software enables as well easy setup of ``HTTPS`` offering both automatic setup via `Let'sEncrypt <https://letsencrypt.org/>`_ and manual setup.
 
+TLS Certificates are generated using using `NIST Curve P-384 <https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-4.pdf>`_.
+
 The configuration enables only ``TLS1.2+`` and is fine tuned and hardened to achieve `SSLLabs grade A+ <https://www.ssllabs.com/ssltest/analyze.html?d=try.globaleaks.org>`_.
 
 In particular only following ciphertexts are enabled:
