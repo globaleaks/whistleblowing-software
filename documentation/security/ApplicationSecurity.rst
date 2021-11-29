@@ -281,7 +281,6 @@ Application Sandboxing
 The GlobaLeaks backend integrates ``AppArmor`` by default and implements a strict sandboxing profile enabling the application to access only the strictly required files.
 As well the application does run under a dedicated user and group "globaleaks" with reduced privileges.
 
-
 DoS Resiliency
 ==============
 To avoid applicative and database denial of service, GlobaLeaks apply the following measures:
@@ -292,6 +291,14 @@ To avoid applicative and database denial of service, GlobaLeaks apply the follow
 
 Other Measures
 ==============
+Browser History and Forensic Traces
+-----------------------------------
+The whole application is designed keeping in mind to try to avoid or reduce the forensic traces left by whistleblowers on their devices while filing their reports.
+
+When the accessed via the Tor Browser, the browser guarantees that no persistent traces are left on the device of the user.
+
+In order to prevent or limit the forensic traces left in the browser history of the users accessing the platform via a common browser, the application avoids to change URI during whistleblower navigation. This has the effect to prevent the browser to log the activities performed by the user and offers high plausible deniability protection making the whistleblower appear as a simple visitor of the homepage and avoiding an actual evidence of any submission.
+
 Encryption of Temporary Files
 -----------------------------
 Files being uploaded and temporarily stored on the disk during the upload process are encrypted with a temporary, symmetric AES-key in order to avoid writing any part of an unencrypted file's data chunk to disk. The encryption is done in "streaming" by using ``AES 128bit`` in ``CTR mode``. The key files are stored in memory and are unique for each file being uploaded.
