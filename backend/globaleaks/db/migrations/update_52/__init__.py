@@ -101,7 +101,6 @@ class InternalTip_v_51(Model):
     enable_attachments = Column(Boolean, default=True, nullable=False)
     enable_whistleblower_identity = Column(Boolean, default=False, nullable=False)
     wb_last_access = Column(DateTime, default=datetime_now, nullable=False)
-    wb_access_counter = Column(Integer, default=0, nullable=False)
     status = Column(UnicodeText(36), nullable=True)
     substatus = Column(UnicodeText(36), nullable=True)
 
@@ -137,7 +136,6 @@ class ReceiverFile_v_51(Model):
     internalfile_id = Column(UnicodeText(36), nullable=False)
     receivertip_id = Column(UnicodeText(36), nullable=False)
     filename = Column(UnicodeText(255), nullable=False)
-    downloads = Column(Integer, default=0, nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
     new = Column(Boolean, default=True, nullable=False)
     status = Column(UnicodeText, default='processing', nullable=False)

@@ -111,7 +111,6 @@ class InternalTip_v_45(Model):
     enable_attachments = Column(Boolean, default=True, nullable=False)
     enable_whistleblower_identity = Column(Boolean, default=False, nullable=False)
     wb_last_access = Column(DateTime, default=datetime_now, nullable=False)
-    wb_access_counter = Column(Integer, default=0, nullable=False)
     status = Column(UnicodeText(36), nullable=True)
     substatus = Column(UnicodeText(36), nullable=True)
 
@@ -162,7 +161,6 @@ class WhistleblowerFile_v_45(Model):
     filename = Column(UnicodeText(255), nullable=False)
     size = Column(Integer, nullable=False)
     content_type = Column(UnicodeText, nullable=False)
-    downloads = Column(Integer, default=0, nullable=False)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
     description = Column(UnicodeText, nullable=False)

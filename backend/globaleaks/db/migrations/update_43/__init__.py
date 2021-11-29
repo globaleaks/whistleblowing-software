@@ -25,7 +25,6 @@ class InternalTip_v_42(Model):
     enable_attachments = Column(Boolean, default=True, nullable=False)
     enable_whistleblower_identity = Column(Boolean, default=False, nullable=False)
     wb_last_access = Column(DateTime, default=datetime_now, nullable=False)
-    wb_access_counter = Column(Integer, default=0, nullable=False)
     status = Column(UnicodeText(36), nullable=False)
     substatus = Column(UnicodeText(36), nullable=True)
 

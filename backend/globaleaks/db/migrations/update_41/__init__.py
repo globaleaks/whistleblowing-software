@@ -40,7 +40,6 @@ class InternalTip_v_40(Model):
     enable_whistleblower_identity = Column(Boolean, default=False, nullable=False)
     receipt_hash = Column(UnicodeText(128), nullable=False)
     wb_last_access = Column(DateTime, default=datetime_now, nullable=False)
-    wb_access_counter = Column(Integer, default=0, nullable=False)
 
 
 class ReceiverFile_v_40(Model):
@@ -50,7 +49,6 @@ class ReceiverFile_v_40(Model):
     receivertip_id = Column(UnicodeText(36))
     file_path = Column(UnicodeText)
     size = Column(Integer)
-    downloads = Column(Integer, default=0)
     last_access = Column(DateTime, default=datetime_null)
     new = Column(Integer, default=True)
     status = Column(UnicodeText)
@@ -62,7 +60,6 @@ class ReceiverTip_v_40(Model):
     internaltip_id = Column(UnicodeText(36), nullable=False)
     receiver_id = Column(UnicodeText(36), nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
-    access_counter = Column(Integer, default=0, nullable=False)
     label = Column(UnicodeText, default='', nullable=False)
     can_access_whistleblower_identity = Column(Boolean, default=True, nullable=False)
     new = Column(Integer, default=True, nullable=False)
@@ -99,7 +96,6 @@ class WhistleblowerFile_v_40(Model):
     file_path = Column(UnicodeText, nullable=False)
     size = Column(Integer, nullable=False)
     content_type = Column(UnicodeText, nullable=False)
-    downloads = Column(Integer, default=0, nullable=False)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
     description = Column(UnicodeText, nullable=False)

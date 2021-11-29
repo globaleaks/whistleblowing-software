@@ -66,8 +66,7 @@ def db_get_itip_receiver_list(session, itip):
         ret.append({
             "id": user.id,
             "name": user.public_name,
-            "last_access": rtip.last_access,
-            "access_counter": rtip.access_counter
+            "last_access": rtip.last_access
         })
 
     return ret
@@ -95,7 +94,6 @@ def db_get_wbtip(session, itip_id, language):
                          (models.WhistleblowerTip.id == models.InternalTip.id,
                           models.InternalTip.id == itip_id))
 
-    itip.wb_access_counter += 1
     itip.wb_last_access = datetime_now()
 
     return serialize_wbtip(session, wbtip, itip, language), base64.b64decode(wbtip.crypto_tip_prv_key)
@@ -282,8 +280,6 @@ class WBTipWBFileHandler(BaseHandler):
 
         if not wbtip:
             raise errors.ResourceNotFound()
-
-        wbfile.downloads += 1
 
         log.debug("Download of file %s by whistleblower %s",
                   wbfile.id, self.session.user_id)

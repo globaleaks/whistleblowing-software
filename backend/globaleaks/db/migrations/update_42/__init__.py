@@ -31,7 +31,6 @@ class InternalTip_v_41(Model):
     enable_whistleblower_identity = Column(Boolean, default=False, nullable=False)
     receipt_hash = Column(UnicodeText(128), nullable=False)
     wb_last_access = Column(DateTime, default=datetime_now, nullable=False)
-    wb_access_counter = Column(Integer, default=0, nullable=False)
 
 
 class MigrationScript(MigrationBase):

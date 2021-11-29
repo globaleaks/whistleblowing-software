@@ -187,7 +187,6 @@ class InternalTip_v_38(Model):
     enable_attachments = Column(Boolean, default=True)
     enable_whistleblower_identity = Column(Boolean, default=False)
     wb_last_access = Column(DateTime, default=datetime_now)
-    wb_access_counter = Column(Integer, default=0)
 
 
 class Mail_v_38(Model):
@@ -211,7 +210,6 @@ class ReceiverTip_v_38(Model):
     internaltip_id = Column(UnicodeText(36))
     receiver_id = Column(UnicodeText(36))
     last_access = Column(DateTime, default=datetime_null)
-    access_counter = Column(Integer, default=0)
     label = Column(UnicodeText, default='')
     can_access_whistleblower_identity = Column(Boolean, default=True)
     new = Column(Integer, default=True)
@@ -240,7 +238,6 @@ class ReceiverFile_v_38(Model):
     receivertip_id = Column(UnicodeText(36))
     file_path = Column(UnicodeText)
     size = Column(Integer)
-    downloads = Column(Integer, default=0)
     last_access = Column(DateTime, default=datetime_null)
     new = Column(Integer, default=True)
     status = Column(UnicodeText)
@@ -322,7 +319,6 @@ class WhistleblowerFile_v_38(Model):
     file_path = Column(UnicodeText)
     size = Column(Integer)
     content_type = Column(UnicodeText)
-    downloads = Column(Integer, default=0)
     creation_date = Column(DateTime, default=datetime_now)
     last_access = Column(DateTime, default=datetime_null)
     description = Column(UnicodeText)

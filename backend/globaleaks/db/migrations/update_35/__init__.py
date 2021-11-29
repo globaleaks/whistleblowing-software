@@ -10,7 +10,6 @@ class WhistleblowerTip_v_34(models.Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     internaltip_id = Column(UnicodeText(36))
     receipt_hash = Column(UnicodeText)
-    access_counter = Column(Integer, default=0)
 
 
 class InternalTip_v_34(models.Model):

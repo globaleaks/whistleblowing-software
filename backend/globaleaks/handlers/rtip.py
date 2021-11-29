@@ -39,8 +39,7 @@ def db_get_itip_receiver_list(session, itip):
         ret.append({
             "id": user.id,
             "name": user.name,
-            "last_access": rtip.last_access,
-            "access_counter": rtip.access_counter
+            "last_access": rtip.last_access
         })
 
     return ret
@@ -239,7 +238,6 @@ def receiver_serialize_rfile(session, rfile):
         'type': ifile.content_type,
         'creation_date': ifile.creation_date,
         'size': ifile.size,
-        'downloads': rfile.downloads,
         'path': os.path.join(Settings.attachments_path, rfile.filename)
     }
 
@@ -264,7 +262,6 @@ def receiver_serialize_wbfile(session, wbfile):
         'description': wbfile.description,
         'size': wbfile.size,
         'type': wbfile.content_type,
-        'downloads': wbfile.downloads,
         'author': rtip.receiver_id,
         'path': os.path.join(Settings.attachments_path, wbfile.filename)
     }
@@ -496,7 +493,6 @@ def db_get_rtip(session, tid, user_id, rtip_id, language):
     if itip.status == 'new':
         db_update_submission_status(session, tid, user_id, itip, 'opened', None)
 
-    rtip.access_counter += 1
     rtip.last_access = datetime_now()
 
     db_log(session, tid=tid, type='access_report', user_id=user_id, object_id=itip.id)
@@ -1014,11 +1010,10 @@ class ReceiverFileDownload(BaseHandler):
                                        models.ReceiverTip.internaltip_id == models.InternalTip.id,
                                        models.InternalTip.tid == tid))
 
-        log.debug("Download of file %s by receiver %s (%d)" %
-                  (rfile.internalfile_id, rtip.receiver_id, rfile.downloads))
-
         rfile.last_access = datetime_now()
-        rfile.downloads += 1
+
+        log.debug("Download of file %s by receiver %s" %
+                  (rfile.internalfile_id, rtip.receiver_id))
 
         return serializers.serialize_rfile(session, rfile), base64.b64decode(rtip.crypto_tip_prv_key), pgp_key
 

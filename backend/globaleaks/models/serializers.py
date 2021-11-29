@@ -37,8 +37,7 @@ def serialize_rfile(session, rfile):
         'name': ifile.name,
         'size': ifile.size,
         'type': ifile.content_type,
-        'filename': rfile.filename,
-        'downloads': rfile.downloads
+        'filename': rfile.filename
     }
 
 
@@ -61,7 +60,6 @@ def serialize_wbfile(session, wbfile):
         'type': wbfile.content_type,
         'filename': wbfile.filename,
         'description': wbfile.description,
-        'downloads': wbfile.downloads,
         'author': receiver_id
     }
 
