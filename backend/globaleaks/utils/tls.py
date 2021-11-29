@@ -39,7 +39,7 @@ class ValidationException(Exception):
 
 
 def gen_ecc_key(bits):
-    key = ec.generate_private_key(ec.SECP256R1(), default_backend())
+    key = ec.generate_private_key(ec.SECP384R1(), default_backend())
 
     key = key.private_bytes(
         encoding=serialization.Encoding.PEM,
