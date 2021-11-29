@@ -179,9 +179,8 @@ When setting up Content-Type for the specific output, we avoid the automatic mim
   X-Content-Type-Options: nosniff
 
 Cache-Control
-+++++++++++++++++++++++++++++++++++++++++++++
-The backend by default sends the following headers to instruct client’s browsers to not store resources in their cache.
-As by section ``3. Storing Responses in Caches`` of `RFC 7234 <https://tools.ietf.org/html/rfc7234>`_ the platform uses the ``Cache-control`` HTTP header with the configuration ``no-store`` to instruct clients disable any sort of data cache.
++++++++++++++
+To prevent or limit the the forensic traces left on the device used by whistleblowers and in the devices involved in the communication the platform, as by section ``3. Storing Responses in Caches`` of `RFC 7234 <https://tools.ietf.org/html/rfc7234>`_ the platform uses the ``Cache-control`` HTTP header with the configuration ``no-store`` to instruct clients and possible network proxies to disable any sort of data cache.
 ::
   Cache-Control: no-store
 
