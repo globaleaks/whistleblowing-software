@@ -52,6 +52,8 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
         raise errors.ResourceNotFound()
 
     rtip.last_access = datetime_now()
+    if rtip.access_date == datetime_null()
+        rtip.access_date = rtip.last_access
 
     if itip.status == 'new':
         db_update_submission_status(session, tid, user_id, itip, 'opened', None)

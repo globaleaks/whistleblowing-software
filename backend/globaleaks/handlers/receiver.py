@@ -64,6 +64,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
             'id': rtip.id,
             'itip_id': itip.id,
             'creation_date': itip.creation_date,
+            'access_date': rtip.access_date,
             'last_access': rtip.last_access,
             'wb_last_access': itip.wb_last_access,
             'update_date': itip.update_date,

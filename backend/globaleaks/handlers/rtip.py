@@ -27,7 +27,7 @@ from globaleaks.utils.crypto import GCE
 from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.log import log
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import get_expiration, datetime_now, datetime_never
+from globaleaks.utils.utility import get_expiration, datetime_now, datetime_null, datetime_never
 
 
 def db_get_itip_receiver_list(session, itip):
@@ -39,6 +39,7 @@ def db_get_itip_receiver_list(session, itip):
         ret.append({
             "id": user.id,
             "name": user.name,
+            "access_date", rtip.access_date,
             "last_access": rtip.last_access
         })
 
@@ -494,6 +495,9 @@ def db_get_rtip(session, tid, user_id, rtip_id, language):
         db_update_submission_status(session, tid, user_id, itip, 'opened', None)
 
     rtip.last_access = datetime_now()
+    if rtip.access_date == datetime_null():
+        rtip.access_date = rtip.last_access
+
 
     db_log(session, tid=tid, type='access_report', user_id=user_id, object_id=itip.id)
 
