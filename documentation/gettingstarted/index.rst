@@ -8,3 +8,4 @@ Getting Started
     Glossary.rst
     Features.rst
     Requirements.rst
+    SupportedBrowsers.rst
