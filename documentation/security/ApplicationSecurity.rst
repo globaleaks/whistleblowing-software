@@ -292,12 +292,22 @@ To avoid applicative and database denial of service, GlobaLeaks apply the follow
 Other Measures
 ==============
 Browser History and Forensic Traces
------------------------------------
+------------------------------------
 The whole application is designed keeping in mind to try to avoid or reduce the forensic traces left by whistleblowers on their devices while filing their reports.
 
 When the accessed via the Tor Browser, the browser guarantees that no persistent traces are left on the device of the user.
 
 In order to prevent or limit the forensic traces left in the browser history of the users accessing the platform via a common browser, the application avoids to change URI during whistleblower navigation. This has the effect to prevent the browser to log the activities performed by the user and offers high plausible deniability protection making the whistleblower appear as a simple visitor of the homepage and avoiding an actual evidence of any submission.
+
+Secure File Download
+--------------------
+Malware Isolation
+-----------------
+Any attachment file uploaded by anonymous whistleblowers could possibly contain malware. To support users to download a copy of the report and protect them while transfering files to an air-gapped machine in ordr to access them, the export functionality of reports provides files wrapped in a safe Zip archive.
+
+Download Encryption
+-------------------
+Any attachment file uploaded by anonymous whistlblowers is protected and stored on the application server with an automated :doc:`Requirements </security/Encryption Protocol>`. To protect at rest files downloaded by recipients on their own computers, the platforms offers users the possibility to load their own PGP key; whenever users load their own PGP key, their downloads will be served encrypted.
 
 Encryption of Temporary Files
 -----------------------------
