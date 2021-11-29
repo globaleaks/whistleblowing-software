@@ -7,6 +7,7 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
 
 from OpenSSL import SSL
+from OpenSSL._util import lib as _lib, ffi as _ffi
 from OpenSSL.crypto import load_certificate, load_privatekey, FILETYPE_PEM, \
     dump_certificate_request, X509Req
 
@@ -194,6 +195,11 @@ class TLSServerContextFactory(ssl.ContextFactory):
 
         key = load_privatekey(FILETYPE_PEM, key)
         self.ctx.use_privatekey(key)
+
+        # Configure ECDH with CURVE NID_secp384r1
+        ecdh = _lib.EC_KEY_new_by_curve_name(715)  # pylint: disable=no-member
+        ecdh = _ffi.gc(ecdh, _lib.EC_KEY_free)  # pylint: disable=no-member
+        _lib.SSL_CTX_set_tmp_ecdh(self.ctx._context, ecdh)  # pylint: disable=no-member
 
     def getContext(self):
         return self.ctx
