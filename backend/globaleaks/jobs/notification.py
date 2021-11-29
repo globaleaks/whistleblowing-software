@@ -140,16 +140,11 @@ class MailGenerator(object):
 
             mailcount += 1
 
-        for user in session.query(models.User).filter(and_(models.User.reminder_date < now - timedelta(reminder_time),
-                                                           or_(and_(models.User.id == models.ReceiverTip.receiver_id,
-                                                                    models.ReceiverTip.access_counter == 0,
-                                                                    models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                                                    models.InternalTip.creation_date < now - timedelta(reminder_time))),
-                                                               and_(models.User.id == models.ReceiverTip.receiver_id,
-                                                                    models.ReceiverTip.last_access < models.InternalTip.update_date,
-                                                                    models.ReceiverTip.internaltip_id == models.InternalTip.id,
-
-                                                                    models.InternalTip.update_date < now - timedelta(reminder_time)))).distinct():
+        for user in session.query(models.User).filter(models.User.reminder_date < now - timedelta(reminder_time),
+                                                      models.User.id == models.ReceiverTip.receiver_id,
+                                                      models.ReceiverTip.last_access < models.InternalTip.update_date,
+                                                      models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                                      models.InternalTip.update_date < now - timedelta(reminder_time)).distinct():
             tid = user.tid
 
             if tid in silent_tids:
