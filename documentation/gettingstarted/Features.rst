@@ -6,7 +6,7 @@ User Features
 
 - Multi-user system with customizable user roles (whistleblower, recipient, administrator)
 - Entirely manageable from a web administration interface
-- Support for `more than 60 languages <https://www.transifex.com/otf/globaleaks>`_ with support for Right-to-Left (RTL)
+- Support for `more than 90 languages <https://www.transifex.com/otf/globaleaks>`_ with support for Right-to-Left (RTL)
 - Let whistleblowers decide if and when to confidentially declare their identity
 - Exchange multimedia files with whistleblower
 - Chat with Whistleblower to discuss the report
