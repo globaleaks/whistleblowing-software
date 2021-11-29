@@ -312,7 +312,6 @@ class MockDict:
             'allow_indexing': False,
             'disable_submissions': False,
             'disable_privacy_badge': False,
-            'enable_receipt_hint': False,
             'enable_private_annotations': False,
             'timezone': 0,
             'default_language': 'en',
