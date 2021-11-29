@@ -6,12 +6,14 @@ We recommend the usage of the `Tor Browser <https://www.torproject.org/>`_ that 
 
 Other supported browsers are:
 
-* Mozilla Firefox >= 38
-* Google Chrome >= 45
-* Brave >= 1.20.110
-* Edge (any)
-* Internet Explorer 11
-* Safari: >= 8
-* iOS >= 9
-* Android >= 4.4
+.. csv-table::
+   :header: "Browser", "Version"
 
+   "Mozilla Firefox", ">= 38"
+   "Google Chrome", ">= 45"
+   "Brave", ">= 1.20.110"
+   "Edge", "any"
+   "Internet Explorer", "11"
+   "Safari", ">= 8"
+   "iOS", ">= 9"
+   "Android", ">= 4.4"

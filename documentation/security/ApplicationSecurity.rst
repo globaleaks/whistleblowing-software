@@ -302,11 +302,11 @@ In order to prevent or limit the forensic traces left in the browser history of 
 Secure File Download
 --------------------
 Malware Isolation
------------------
++++++++++++++++++
 Any attachment file uploaded by anonymous whistleblowers could possibly contain malware. To support users to download a copy of the report and protect them while transfering files to an air-gapped machine in ordr to access them, the export functionality of reports provides files wrapped in a safe Zip archive.
 
 Download Encryption
--------------------
++++++++++++++++++++
 Any attachment file uploaded by anonymous whistlblowers is protected and stored on the application server with an automated :doc:`Requirements </security/Encryption Protocol>`. To protect at rest files downloaded by recipients on their own computers, the platforms offers users the possibility to load their own PGP key; whenever users load their own PGP key, their downloads will be served encrypted.
 
 Encryption of Temporary Files
