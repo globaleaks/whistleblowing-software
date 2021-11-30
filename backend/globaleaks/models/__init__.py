@@ -1033,7 +1033,7 @@ class _WhistleblowerFile(Model):
     size = Column(Integer, nullable=False)
     content_type = Column(UnicodeText, nullable=False)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
-    last_access = Column(DateTime, default=datetime_null, nullable=False)
+    access_date = Column(DateTime, default=datetime_null, nullable=False)
     description = Column(UnicodeText, nullable=False)
     new = Column(Boolean, default=True, nullable=False)
 

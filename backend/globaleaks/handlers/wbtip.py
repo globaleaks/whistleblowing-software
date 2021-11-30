@@ -24,7 +24,7 @@ from globaleaks.utils.crypto import GCE
 from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.log import log
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import datetime_now
+from globaleaks.utils.utility import datetime_now, datetime_null
 
 
 def db_notify_recipients_of_tip_update(session, itip_id):
@@ -280,6 +280,9 @@ class WBTipWBFileHandler(BaseHandler):
 
         if not wbtip:
             raise errors.ResourceNotFound()
+
+        if wbfile.access_date == datetime_null():
+            wbfile.access_date = datetime_now()
 
         log.debug("Download of file %s by whistleblower %s",
                   wbfile.id, self.session.user_id)
