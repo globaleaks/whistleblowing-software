@@ -71,7 +71,6 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$q", "$http", "$locati
     });
   };
 
-
   $scope.exportTip = RTipExport;
 
   $scope.selected_tips = [];
@@ -84,12 +83,12 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$q", "$http", "$locati
   };
 
   $scope.toggle_star = function(tip) {
-    tip.important = !tip.important;
-
     return $http({method: "PUT",
                   url: "api/rtips/" + tip.id,
-                  data: {"operation": "update_important",
-                         "args": {"value": tip.important}}});
+                  data: {"operation": "set",
+                         "args": {"key": "important", "value": !tip.important}}}).then(function() {
+      tip.important = !tip.important;
+    });
   };
 
   $scope.deselect_all = function () {

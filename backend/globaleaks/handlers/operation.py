@@ -13,12 +13,8 @@ class OperationHandler(BaseHandler):
     def put(self, *args, **kwargs):
         request = self.validate_message(self.request.content.read(), requests.OpsDesc)
 
-        op_desc = self.operation_descriptors().get(request['operation'], None)
-        if op_desc is None:
+        func = self.operation_descriptors().get(request['operation'], None)
+        if func is None:
             raise errors.InputValidationError('Invalid command')
-
-        func, obj_validator = op_desc
-        if obj_validator is not None:
-            self.validate_jmessage(request['args'], obj_validator)
 
         return func(self, request['args'], *args, **kwargs)

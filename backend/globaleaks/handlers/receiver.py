@@ -60,7 +60,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
 
             answers = json.loads(GCE.asymmetric_decrypt(tip_key, base64.b64decode(answers.encode())).decode())
 
-        data = {
+        rtip_summary_list.append({
             'id': rtip.id,
             'itip_id': itip.id,
             'creation_date': itip.creation_date,
@@ -70,6 +70,8 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
             'update_date': itip.update_date,
             'expiration_date': itip.expiration_date,
             'progressive': itip.progressive,
+            'important': itip.important,
+            'label': itip.label,
             'updated': rtip.last_access < itip.update_date,
             'context_id': itip.context_id,
             'https': itip.https,
@@ -78,16 +80,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
             'score': itip.total_score,
             'status': itip.status,
             'substatus': itip.substatus
-        }
-
-        if State.tenant_cache[tid].enable_private_annotations:
-            data['important'] = rtip.important
-            data['label'] = rtip.label
-        else:
-            data['important'] = itip.important
-            data['label'] = itip.label
-
-        rtip_summary_list.append(data)
+        })
 
     # Fetch messages count
     for rtip_id, count in session.query(models.ReceiverTip.id,

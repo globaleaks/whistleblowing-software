@@ -324,14 +324,8 @@ def serialize_rtip(session, rtip, itip, language):
     ret['receiver_id'] = user_id
 
     ret['custodian'] = State.tenant_cache[itip.tid]['custodian']
-
-    if State.tenant_cache[itip.tid].enable_private_annotations:
-        ret['important'] = rtip.important
-        ret['label'] = rtip.label
-    else:
-        ret['important'] = itip.important
-        ret['label'] = itip.label
-
+    ret['important'] = itip.important
+    ret['label'] = itip.label
     ret['receivers'] = db_get_itip_receiver_list(session, itip)
     ret['comments'] = db_get_itip_comment_list(session, itip.id)
     ret['messages'] = db_get_itip_message_list(session, rtip.id)
@@ -469,7 +463,6 @@ def register_wbfile_on_db(session, tid, rtip_id, uploaded_file):
     new_file.description = uploaded_file['description']
     new_file.content_type = uploaded_file['type']
     new_file.size = uploaded_file['size']
-
     new_file.receivertip_id = rtip_id
     new_file.filename = uploaded_file['filename']
 
@@ -624,44 +617,6 @@ def set_receivertip_variable(session, tid, user_id, rtip_id, key, value):
     """
     _, rtip, _ = db_access_rtip(session, tid, user_id, rtip_id)
     setattr(rtip, key, value)
-
-
-@transact
-def update_label(session, tid, user_id, rtip_id, value):
-    """
-    Transaction for setting the label of a submission
-
-    :param session: An ORM session
-    :param tid: A tenant ID of the user performing the operation
-    :param user_id: A user ID of the user performing the operation
-    :param rtip_id: A rtip ID of the submission object of the operation
-    :param value: A value to be assigned to the label property
-    """
-    _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
-
-    if State.tenant_cache[tid].enable_private_annotations:
-        setattr(rtip, 'label', value)
-    else:
-        setattr(itip, 'label', value)
-
-
-@transact
-def update_important(session, tid, user_id, rtip_id, value):
-    """
-    Transaction for setting the important flag of a submission
-
-    :param session: An ORM session
-    :param tid: A tenant ID of the user performing the operation
-    :param user_id: A user ID of the user performing the operation
-    :param rtip_id: A rtip ID of the submission object of the operation
-    :param value: A value to be assigned to important flag
-    """
-    _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
-
-    if State.tenant_cache[tid].enable_private_annotations:
-        setattr(rtip, 'important', value)
-    else:
-        setattr(itip, 'important', value)
 
 
 def db_get_itip_comment_list(session, itip_id):
@@ -861,16 +816,11 @@ class RTipInstance(OperationHandler):
 
     def operation_descriptors(self):
         return {
-          'grant': (RTipInstance.grant_tip_access, {'receiver': str}),
-          'revoke': (RTipInstance.revoke_tip_access, {'receiver': str}),
-          'postpone': (RTipInstance.postpone_expiration, {'value': int}),
-          'set': (RTipInstance.set_tip_val,
-                  {'key': '^(enable_two_way_comments|enable_two_way_messages|enable_attachments|enable_notifications)$',
-                   'value': bool}),
-          'update_label': (RTipInstance.update_label, {'value': str}),
-          'update_important': (RTipInstance.update_important, {'value': bool}),
-          'update_status': (RTipInstance.update_submission_status, {'status': str,
-                                                                    'substatus': str})
+          'grant': RTipInstance.grant_tip_access,
+          'revoke': RTipInstance.revoke_tip_access,
+          'postpone': RTipInstance.postpone_expiration,
+          'set': RTipInstance.set_tip_val,
+          'update_status': RTipInstance.update_submission_status
         }
 
     def set_tip_val(self, req_args, rtip_id, *args, **kwargs):
@@ -890,12 +840,6 @@ class RTipInstance(OperationHandler):
 
     def postpone_expiration(self, req_args, rtip_id, *args, **kwargs):
         return postpone_expiration(self.request.tid, self.session.user_id, rtip_id, req_args['value'])
-
-    def update_important(self, req_args, rtip_id, *args, **kwargs):
-        return update_important(self.request.tid, self.session.user_id, rtip_id, req_args['value'])
-
-    def update_label(self, req_args, rtip_id, *args, **kwargs):
-        return update_label(self.request.tid, self.session.user_id, rtip_id, req_args['value'])
 
     def update_submission_status(self, req_args, rtip_id, *args, **kwargs):
         return update_tip_submission_status(self.request.tid, self.session.user_id, rtip_id,

@@ -350,7 +350,7 @@ class UserOperationHandler(OperationHandler):
 
     def operation_descriptors(self):
         return {
-            'get_recovery_key': (UserOperationHandler.get_recovery_key, {}),
-            'enable_2fa': (UserOperationHandler.enable_2fa, {'secret': str, 'token': str}),
-            'disable_2fa': (UserOperationHandler.disable_2fa, {})
+            'get_recovery_key': UserOperationHandler.get_recovery_key,
+            'enable_2fa': UserOperationHandler.enable_2fa,
+            'disable_2fa': UserOperationHandler.disable_2fa
         }

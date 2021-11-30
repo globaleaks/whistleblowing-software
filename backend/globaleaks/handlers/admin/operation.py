@@ -210,13 +210,13 @@ class AdminOperationHandler(OperationHandler):
 
     def operation_descriptors(self):
         return {
-            'disable_2fa': (AdminOperationHandler.disable_2fa, {'value': str}),
-            'reset_onion_private_key': (AdminOperationHandler.reset_onion_private_key, {}),
-            'reset_smtp_settings': (AdminOperationHandler.reset_smtp_settings, {}),
-            'reset_submissions': (AdminOperationHandler.reset_submissions, {}),
-            'reset_user_password': (AdminOperationHandler.reset_user_password, {'value': str}),
-            'set_hostname': (AdminOperationHandler.set_hostname, {'value': str}),
-            'test_mail': (AdminOperationHandler.test_mail, {}),
-            'toggle_escrow': (AdminOperationHandler.toggle_escrow, {'value': str}),
-            'reset_templates': (AdminOperationHandler.reset_templates, {})
+            'disable_2fa': AdminOperationHandler.disable_2fa,
+            'reset_onion_private_key': AdminOperationHandler.reset_onion_private_key,
+            'reset_smtp_settings': AdminOperationHandler.reset_smtp_settings,
+            'reset_submissions': AdminOperationHandler.reset_submissions,
+            'reset_user_password': AdminOperationHandler.reset_user_password,
+            'set_hostname': AdminOperationHandler.set_hostname,
+            'test_mail': AdminOperationHandler.test_mail,
+            'toggle_escrow': AdminOperationHandler.toggle_escrow,
+            'reset_templates': AdminOperationHandler.reset_templates
         }

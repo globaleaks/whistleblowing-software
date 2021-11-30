@@ -419,12 +419,6 @@ factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipMessageResource", "
         return $http({method: "PUT", url: "api/rtips/" + tip.id, data: req});
       };
 
-      tip.updateLabel = function(label) {
-        return tip.operation("update_label", {"value": label}).then(function () {
-          $rootScope.reload();
-        });
-      };
-
       tip.updateSubmissionStatus = function() {
         return tip.operation("update_status", {"status": tip.status, "substatus": tip.substatus ? tip.substatus : ""}).then(function () {
           $rootScope.reload();

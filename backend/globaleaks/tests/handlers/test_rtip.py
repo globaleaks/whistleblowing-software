@@ -155,31 +155,17 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
     def test_put_enable_attachments(self):
         return self.switch_enabler('enable_attachments')
 
-    @inlineCallbacks
-    def test_update_important(self):
-        rtip_descs = yield self.get_rtips()
-        for rtip_desc in rtip_descs:
-            operation = {
-              'operation': 'update_important',
-              'args': {
-                'value': True
-              }
-            }
-
-            handler = self.request(operation, role='receiver', user_id=rtip_desc['receiver_id'])
-            yield handler.put(rtip_desc['id'])
-            self.assertEqual(handler.request.code, 200)
-
-            response = yield handler.get(rtip_desc['id'])
-            self.assertEqual(response['important'], operation['args']['value'])
+    def test_put_mark_important(self):
+        return self.switch_enabler('important')
 
     @inlineCallbacks
     def test_update_label(self):
         rtip_descs = yield self.get_rtips()
         for rtip_desc in rtip_descs:
             operation = {
-              'operation': 'update_label',
+              'operation': 'set',
               'args': {
+                'key': 'label',
                 'value': 'PASSANTEDIPROFESSIONE'
               }
             }
