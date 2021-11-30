@@ -74,7 +74,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
             'label': itip.label,
             'updated': rtip.last_access < itip.update_date,
             'context_id': itip.context_id,
-            'https': itip.https,
+            'tor': itip.tor,
             'questionnaire': db_serialize_archived_questionnaire_schema(aqs.schema, language),
             'answers': answers,
             'score': itip.total_score,

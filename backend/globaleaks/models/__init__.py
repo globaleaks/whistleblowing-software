@@ -620,7 +620,7 @@ class _InternalTip(Model):
     update_date = Column(DateTime, default=datetime_now, nullable=False)
     context_id = Column(UnicodeText(36), nullable=False)
     progressive = Column(Integer, default=0, nullable=False)
-    https = Column(Boolean, default=False, nullable=False)
+    tor = Column(Boolean, default=False, nullable=False)
     mobile = Column(Boolean, default=False, nullable=False)
     total_score = Column(Integer, default=0, nullable=False)
     expiration_date = Column(DateTime, default=datetime_never, nullable=False)

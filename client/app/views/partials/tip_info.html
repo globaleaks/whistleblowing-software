@@ -46,7 +46,7 @@
         </th>
         <th class="TipInfoConnection" data-ng-if="Authentication.session.role === 'receiver'">
           <i class="fas fa-network-wired"></i>
-          <span data-translate>Connection</span>
+          <span>Tor</span>
         </th>
         <th class="TipInfoSubmissionStatus">
           <i class="fas fa-dot-circle"></i>
@@ -75,10 +75,7 @@
              data-uib-tooltip="{{'The whistleblower has not read the last update yet' | translate }}"></i>
         </td>
         <td class="TipInfoConnection" data-ng-if="Authentication.session.role === 'receiver'">
-            <span data-ng-if="tip.https"
-                  data-uib-tooltip="{{'The connection has been secured with HTTPS ensuring confidentiality.' | translate}}">HTTPS</span>
-          <span data-ng-if="!tip.https"
-                data-uib-tooltip="{{'The connection has been secured with Tor ensuring confidentiality and anonymity.' | translate}}">Tor</span>
+          <i data-ng-if="tip.tor" class="fas fa-check"></i>
         </td>
 	<td class="TipInfoSubmissionStatus">{{tip.submissionStatusStr}}</td>
         <td class="TipInfoScore" data-ng-if="Authentication.session.role === 'receiver' && public.node.enable_scoring_system" data-ng-switch="tip.score">

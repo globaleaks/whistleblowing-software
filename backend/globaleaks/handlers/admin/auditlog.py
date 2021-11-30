@@ -70,7 +70,7 @@ def get_tips(session, tid):
             'context_id': itip.context_id,
             'status': itip.status,
             'substatus': itip.substatus,
-            'tor': not itip.https,
+            'tor': itip.tor,
             'comments': comments_by_itip.get(itip.id, 0),
             'messages': messages_by_itip.get(itip.id, 0),
             'files': files_by_itip.get(itip.id, 0),

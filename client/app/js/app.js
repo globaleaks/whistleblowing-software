@@ -612,7 +612,6 @@ var GL = angular.module("GL", [
         });
 
         $rootScope.connection = {
-          "https": $location.protocol() === "https",
           "tor": getResponseHeaders()["X-Check-Tor"] === "true" || $location.host().match(/\.onion$/),
         };
 

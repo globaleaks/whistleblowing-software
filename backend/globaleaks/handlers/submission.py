@@ -150,7 +150,7 @@ def serialize_itip(session, internaltip, language):
         'progressive': internaltip.progressive,
         'context_id': internaltip.context_id,
         'questionnaires': questionnaires,
-        'https': internaltip.https,
+        'tor': internaltip.tor,
         'mobile': internaltip.mobile,
         'enable_two_way_comments': internaltip.enable_two_way_comments,
         'enable_two_way_messages': internaltip.enable_two_way_messages,
@@ -245,8 +245,7 @@ def db_create_submission(session, tid, request, user_session, client_using_tor):
     # Evaluate the score level
     itip.total_score = request['total_score']
 
-    # The status https is used to keep track of the security level adopted by the whistleblower
-    itip.https = not client_using_tor
+    itip.tor = client_using_tor
     itip.mobile = request['mobile']
 
     itip.context_id = context.id
