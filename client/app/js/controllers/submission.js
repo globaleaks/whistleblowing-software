@@ -13,7 +13,7 @@ GL.controller("SubmissionCtrl",
 
   $scope.validate = {};
 
-  $scope.total_score = 0;
+  $scope.score = 0;
 
   $scope.singleStepForm = function() {
     return $scope.firstStepIndex() === $scope.lastStepIndex();
@@ -61,7 +61,7 @@ GL.controller("SubmissionCtrl",
     var last_enabled = 0;
 
     for (var i = 0; i < $scope.questionnaire.steps.length; i++) {
-      if (fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
+      if (fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.score)) {
         last_enabled = i;
       }
     }
@@ -121,7 +121,7 @@ GL.controller("SubmissionCtrl",
     if ($scope.hasNextStep()) {
       $scope.vars.submissionForm.$dirty = false;
       for (var i = $scope.navigation + 1; i <= $scope.lastStepIndex(); i++) {
-        if (fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
+        if (fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.score)) {
           $scope.navigation = i;
           $scope.Utils.scrollToTop();
           return;
@@ -134,7 +134,7 @@ GL.controller("SubmissionCtrl",
     if ($scope.hasPreviousStep()) {
       $scope.vars.submissionForm.$dirty = false;
       for (var i = $scope.navigation - 1; i >= $scope.firstStepIndex(); i--) {
-        if (i === -1 || fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
+        if (i === -1 || fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.score)) {
           $scope.navigation = i;
           $scope.Utils.scrollToTop();
           return;
@@ -282,7 +282,7 @@ controller("AdditionalQuestionnaireCtrl",
 
   $scope.validate = {};
 
-  $scope.total_score = 0;
+  $scope.score = 0;
 
   $scope.singleStepForm = function() {
     return $scope.firstStepIndex() === $scope.lastStepIndex();
@@ -353,7 +353,7 @@ controller("AdditionalQuestionnaireCtrl",
     if ($scope.hasNextStep()) {
       $scope.vars.submissionForm.$dirty = false;
       for (var i = $scope.navigation + 1; i <= $scope.lastStepIndex(); i++) {
-        if (fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
+        if (fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.score)) {
           $scope.navigation = i;
           $scope.Utils.scrollToTop();
           return;
@@ -366,7 +366,7 @@ controller("AdditionalQuestionnaireCtrl",
     if ($scope.hasPreviousStep()) {
       $scope.vars.submissionForm.$dirty = false;
       for (var i = $scope.navigation - 1; i >= $scope.firstStepIndex(); i--) {
-        if (i === -1 || fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
+        if (i === -1 || fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.score)) {
           $scope.navigation = i;
           $scope.Utils.scrollToTop();
           return;

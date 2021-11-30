@@ -693,7 +693,7 @@ class TestGL(unittest.TestCase):
             'receivers': context['receivers'],
             'removed_files': [],
             'identity_provided': False,
-            'total_score': 0,
+            'score': 0,
             'answers': answers
         })
 
@@ -867,7 +867,7 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummySubmission['receivers'] = self.dummyContext['receivers']
         self.dummySubmission['identity_provided'] = False
         self.dummySubmission['answers'] = yield self.fill_random_answers(self.dummyContext['questionnaire_id'])
-        self.dummySubmission['total_score'] = 0
+        self.dummySubmission['score'] = 0
         self.dummySubmission['removed_files'] = []
 
         self.lastReceipt = (yield create_submission(1,

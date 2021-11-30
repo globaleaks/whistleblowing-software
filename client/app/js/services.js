@@ -313,7 +313,7 @@ factory("Submission", ["$q", "$location", "$rootScope", "Authentication", "GLRes
         identity_provided: false,
         answers: {},
         answer: 0,
-        total_score: 0,
+        score: 0,
         removed_files: []
       });
 
@@ -1252,7 +1252,7 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
 
       calculateScore: function(scope, field, entry) {
         var self = this;
-        var total_score, i;
+        var score, i;
 
         if (["selectbox", "multichoice"].indexOf(field.type) > -1) {
           for(i=0; i<field.options.length; i++) {
@@ -1284,14 +1284,14 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
           return;
         }
 
-        total_score = scope.points_to_sum * scope.points_to_mul;
+        score = scope.points_to_sum * scope.points_to_mul;
 
-        if (total_score < scope.context.score_threshold_medium) {
-          scope.total_score = 1;
-        } else if (total_score < scope.context.score_threshold_high) {
-          scope.total_score = 2;
+        if (score < scope.context.score_threshold_medium) {
+          scope.score = 1;
+        } else if (score < scope.context.score_threshold_high) {
+          scope.score = 2;
         } else {
-          scope.total_score = 3;
+          scope.score = 3;
         }
       },
 
@@ -1300,7 +1300,7 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
         var self = this;
 
         angular.forEach(list, function(field) {
-          if (self.isFieldTriggered(parent, field, scope.answers, scope.total_score)) {
+          if (self.isFieldTriggered(parent, field, scope.answers, scope.score)) {
             if (!(field.id in answers)) {
               answers[field.id] = [{}];
             }
@@ -1385,7 +1385,7 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
       onAnswersUpdate: function(scope) {
         var self = this;
         scope.block_submission = false;
-        scope.total_score = 0;
+        scope.score = 0;
         scope.points_to_sum = 0;
         scope.points_to_mul = 1;
 
@@ -1398,13 +1398,13 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
         }
 
         angular.forEach(scope.questionnaire.steps, function(step) {
-          step.enabled = self.isFieldTriggered(null, step, scope.answers, scope.total_score);
+          step.enabled = self.isFieldTriggered(null, step, scope.answers, scope.score);
 
           self.updateAnswers(scope, step, step.children, scope.answers);
         });
 
         if (scope.context) {
-          scope.submission._submission.total_score = scope.total_score;
+          scope.submission._submission.score = scope.score;
           scope.submission.blocked = scope.block_submission;
         }
       },

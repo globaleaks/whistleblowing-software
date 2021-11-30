@@ -73,7 +73,7 @@ GL.controller("TipCtrl",
 
     var filterNotTriggeredField = function(parent, field, answers) {
       var i;
-      if (fieldUtilities.isFieldTriggered(parent, field, answers, $scope.tip.total_score)) {
+      if (fieldUtilities.isFieldTriggered(parent, field, answers, $scope.tip.score)) {
         for(i=0; i<field.children.length; i++) {
           filterNotTriggeredField(field, field.children[i], answers);
         }
@@ -89,7 +89,7 @@ GL.controller("TipCtrl",
 
         for (i=0; i<questionnaire.steps.length; i++) {
           step = questionnaire.steps[i];
-          if (fieldUtilities.isFieldTriggered(null, step, questionnaire.answers, $scope.tip.total_score)) {
+          if (fieldUtilities.isFieldTriggered(null, step, questionnaire.answers, $scope.tip.score)) {
             for (j=0; j<step.children.length; j++) {
               filterNotTriggeredField(step, step.children[j], questionnaire.answers);
             }
@@ -138,7 +138,7 @@ GL.controller("TipCtrl",
         $scope.tip = tip;
         $scope.tip.context = $scope.contexts_by_id[$scope.tip.context_id];
         $scope.tip.receivers_by_id = $scope.Utils.array_to_map($scope.tip.receivers);
-        $scope.total_score = $scope.tip.total_score;
+        $scope.score = $scope.tip.score;
 
         $scope.ctx = "wbtip";
         $scope.preprocessTipAnswers(tip);
@@ -172,7 +172,7 @@ GL.controller("TipCtrl",
         $scope.tip.context = $scope.contexts_by_id[$scope.tip.context_id];
         $scope.tip.receivers_by_id = $scope.Utils.array_to_map($scope.tip.receivers);
 
-        $scope.total_score = $scope.tip.total_score;
+        $scope.score = $scope.tip.score;
         $scope.ctx = "rtip";
         $scope.preprocessTipAnswers(tip);
 
@@ -291,7 +291,7 @@ GL.controller("TipCtrl",
       });
     };
 
-    $scope.total_score = 0;
+    $scope.score = 0;
 
     $scope.$watch("answers", function () {
       fieldUtilities.onAnswersUpdate($scope);

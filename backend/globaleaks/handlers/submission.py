@@ -157,7 +157,7 @@ def serialize_itip(session, internaltip, language):
         'enable_attachments': internaltip.enable_attachments,
         'enable_whistleblower_identity': internaltip.enable_whistleblower_identity,
         'wb_last_access': internaltip.wb_last_access,
-        'score': internaltip.total_score,
+        'score': internaltip.score,
         'status': internaltip.status,
         'substatus': internaltip.substatus
     }
@@ -243,7 +243,7 @@ def db_create_submission(session, tid, request, user_session, client_using_tor):
         itip.expiration_date = get_expiration(context.tip_timetolive)
 
     # Evaluate the score level
-    itip.total_score = request['total_score']
+    itip.score = request['score']
 
     itip.tor = client_using_tor
     itip.mobile = request['mobile']
@@ -267,8 +267,8 @@ def db_create_submission(session, tid, request, user_session, client_using_tor):
     # Evaluate if the whistleblower tip should be generated
     if ((not State.tenant_cache[tid].enable_scoring_system) or
         (context.score_threshold_receipt == 0) or
-        (context.score_threshold_receipt == 1 and itip.total_score >= 2) or
-        (context.score_threshold_receipt == 2 and itip.total_score == 3)):
+        (context.score_threshold_receipt == 1 and itip.score >= 2) or
+        (context.score_threshold_receipt == 2 and itip.score == 3)):
 
         receipt = GCE.generate_receipt()
         receipt_salt = State.tenant_cache[tid].receipt_salt
@@ -342,7 +342,7 @@ def db_create_submission(session, tid, request, user_session, client_using_tor):
     return {
         'success': True,
         'receipt': receipt,
-        'score': itip.total_score
+        'score': itip.score
     }
 
 

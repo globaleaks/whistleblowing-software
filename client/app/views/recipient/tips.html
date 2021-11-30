@@ -167,10 +167,10 @@
             </span>
           </th>
           <th class="TipInfoScore" data-ng-if="public.node.enable_scoring_system">
-            <span data-ng-click="$parent.sortKey = 'total_score'; sortReverse = !sortReverse">
+            <span data-ng-click="$parent.sortKey = 'score'; sortReverse = !sortReverse">
               <i class="fas fa-flash"></i>
               <span data-translate>Score</span>
-              <span data-ng-show="$parent.sortKey == 'total_score'">
+              <span data-ng-show="$parent.sortKey == 'score'">
                 <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
                 <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
               </span>

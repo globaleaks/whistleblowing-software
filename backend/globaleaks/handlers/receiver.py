@@ -77,7 +77,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
             'tor': itip.tor,
             'questionnaire': db_serialize_archived_questionnaire_schema(aqs.schema, language),
             'answers': answers,
-            'score': itip.total_score,
+            'score': itip.score,
             'status': itip.status,
             'substatus': itip.substatus
         })

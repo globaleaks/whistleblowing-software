@@ -120,7 +120,7 @@ SubmissionDesc = {
     'identity_provided': bool,
     'removed_files': list,
     'answers': dict,
-    'total_score': int
+    'score': int
 }
 
 AdminUserDesc = {
