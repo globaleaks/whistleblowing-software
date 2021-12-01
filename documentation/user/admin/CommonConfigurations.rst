@@ -51,14 +51,6 @@ Configure Recipients
 The Recipient is the person that will receive and process the data that whistleblowers input in the platform.
 You can have one or multiple Recipients per Context, and also have one Recipient that can access to multiple Contexts. The platform is very flexible on this and allows you to define in very detail your whistleblowing system and procedure.
 
-Configure Questionnaires
-------------------------
-TODO
-
-Configure Contexts
-------------------
-TODO
-
 Customize the Graphic Layout
 ----------------------------
 Example 1: Custom Background

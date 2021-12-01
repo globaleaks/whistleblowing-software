@@ -233,11 +233,11 @@ Network Security
 ================
 Connection Anonymity
 --------------------
-Users's anonymity is offered by means of the implementation of the `Tor <(https://www.torproject.org/>`_ technology. The application implements an ``Onion Service v3`` and advices users to use the Tor Browser when accessing to it.
+Users's anonymity is offered by means of the implementation of the `Tor <https://www.torproject.org/>`_ technology. The application implements an ``Onion Service v3`` and advices users to use the Tor Browser when accessing to it.
 
 Connection Encryption
 ---------------------
-Users' connection is always encrypted, by means of the `Tor Protocol<https://www.torproject.org>`_ while using the Tor Browser or by means of `TLS <https://en.wikipedia.org/wiki/Transport_Layer_Security>`_ when the application is accessed via a common browser.
+Users' connection is always encrypted, by means of the `Tor Protocol <https://www.torproject.org>`_ while using the Tor Browser or by means of `TLS <https://en.wikipedia.org/wiki/Transport_Layer_Security>`_ when the application is accessed via a common browser.
 
 The use of the ``Tor`` is recommended over HTTPS for its advanced properties of resistance to selective interception and censorship that would make it difficult for a third party to selectively capture or block access to the site to specific whistleblower or company department.
 

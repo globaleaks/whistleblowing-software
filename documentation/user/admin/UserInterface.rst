@@ -94,14 +94,6 @@ The software offers the possibility to create users with the following roles:
 
    2. Recipients
 
-Administrators
-++++++++++++++
-TODO
-
-Recipients
-++++++++++++++
-TODO
-
 Questionnaires
 --------------
 This section is where whistleblowing questionnaires could be created and managed.
@@ -168,24 +160,6 @@ Each of the software question types make it possible to configure the following 
   Required: Set this field if you want this question to be mandatory
 
   Preview: Set this field if you want the answers to this question to appear in the preview section of the  list 
-
-Question Properties by Question Type
-....................................
-Single and Multi Line Text Input
-++++++++++++++++++++++++++++++++
-TODO
-
-Selection Box, Multiple Choice Input, Checkbox
-++++++++++++++++++++++++++++++++++++++++++++++
-TODO
-
-Question Groups
-...............
-TODO
-
-Conditional Questions
-.....................
-TODO
 
 Contexts
 --------
@@ -309,17 +283,13 @@ Here you can configure URL Redirects.
 
 Advanced Settings
 -----------------
-TODO
-
 .. image:: ../../images/admin/advanced_settings.png
 
 .. image:: ../../images/admin/anomaly_thresholds.png
 
 Audit Log
 ---------
-TODO
-
-.. image:: ../../images/admin/audit_log_stats.png
+.. image:: ../../images/admin/audit_log.png
 
 .. image:: ../../images/admin/audit_log_activities.png
 
