@@ -862,7 +862,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
     },
 
     showWBLoginBox: function() {
-      return $location.path() === '/submission';
+      return $location.path() === "/submission";
     },
 
     showFilePreview: function(content_type) {
