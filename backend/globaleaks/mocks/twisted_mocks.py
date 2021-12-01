@@ -34,6 +34,11 @@ def mock_Request_gotLength(self, length):
     self.content = StringIO()
 
 
+def mock_Request_redirect(self, url):
+    self.setResponseCode(301)
+    self.setHeader(b"location", url)
+
+
 _orig_request_write = Request.write
 
 
@@ -53,6 +58,7 @@ def mock_CramMD5ClientAuthenticator_challengeResponse(self, secret, chal):
 Request.getClientIP = mock_Request_getClientIP
 Request.gotLength = mock_Request_gotLength
 Request.parseCookies = null_function
+Request.redirect = mock_Request_redirect
 Request.write = mock_Request_write
 
 CramMD5ClientAuthenticator.challengeResponse = mock_CramMD5ClientAuthenticator_challengeResponse
