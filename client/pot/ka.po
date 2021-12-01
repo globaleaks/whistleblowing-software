@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -148,14 +148,6 @@ msgstr "ყველას შენახვა"
 
 msgid "Access control"
 msgstr "წვდომის მართვა"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "კონფიდენციალურობის უზრუნველსაყოფად კავშირი დაცულია HTTPS პროტოკოლით."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "კონფიდენციალურობის და ანონიმურობის უზრუნველსაყოფად კავშირი დაცულია Tor-ის მეშვეობით."
 
 msgid "Number"
 msgstr "ნომერი"
@@ -591,9 +583,6 @@ msgstr "გამარტივებული შესვლის ჩარ�
 msgid "Enable search engines indexing"
 msgstr "საძიებო სისტემებში ინდექსირების ჩართვა"
 
-msgid "Enable the receipt hint"
-msgstr "მიღების მინიშნების ჩართვა"
-
 msgid "Default questionnaire"
 msgstr "ნაგულისხმევი კითხვარი"
 
@@ -630,9 +619,6 @@ msgstr "ინსტრუქტორის მომხმარებლი�
 
 msgid "Enable scoring system"
 msgstr "ქულების დათვლის სისტემის ჩართვა"
-
-msgid "Enable private annotations"
-msgstr "პირადი ანოტაციების ჩართვა"
 
 msgid "Logging level"
 msgstr "შესვლის დონე"
@@ -692,9 +678,6 @@ msgstr "შექმნის თარიღი"
 
 msgid "Last access"
 msgstr "ბოლო შესვლა"
-
-msgid "Connection"
-msgstr "კავშირი"
 
 msgid "Whistleblower's last access"
 msgstr "ინსტრუქტორის ბოლო წვდომა"
@@ -1040,7 +1023,7 @@ msgstr "შეკითხვის ჯგუფი"
 msgid "Hint"
 msgstr "მინიშნება"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "მოთხოვნილი"
 
 msgid "Accept multiple file uploads"
@@ -1301,14 +1284,6 @@ msgstr "დააინსტალირეთ ავტორიზაცი�
 
 msgid "Scan the QR code with the app"
 msgstr "დაასკანირეთ QR კოდი აპის მეშვეობით"
-
-msgid "Hint: How to hide your receipt"
-msgstr "მინიშნება: როგორ დაფაროთ თქვენი ქვითარი"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "თქვენი ქვითრის დაფარვის სასარგებლო ხერხია ჩაწეროთ ის, როგორც საკრედიტო ბარათის ნომერი, ანუ მოქმედების ვადის ჩათვლით."
 
 msgid "Error!"
 msgstr "შეცდომა!"

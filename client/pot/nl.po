@@ -49,7 +49,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -192,14 +192,6 @@ msgstr "Alles opslaan"
 
 msgid "Access control"
 msgstr "Toegangscontrole"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "De verbinding is beveiligd met HTTPS om de veiligheid te waarborgen."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "De verbinding is beveiligd met Tor om de veiligheid en anonimiteit te waarborgen."
 
 msgid "Number"
 msgstr "Nummer"
@@ -635,9 +627,6 @@ msgstr "Vereenvoudigde login inschakelen"
 msgid "Enable search engines indexing"
 msgstr "Zoekmachine-indexering inschakelen"
 
-msgid "Enable the receipt hint"
-msgstr "Ontvangst-hint inschakelen"
-
 msgid "Default questionnaire"
 msgstr "Standaard vragenformulier"
 
@@ -674,9 +663,6 @@ msgstr "Activeer de custodian gebruikersrol"
 
 msgid "Enable scoring system"
 msgstr "Waarderingssysteem inschakelen"
-
-msgid "Enable private annotations"
-msgstr "Schakel privé-annotaties in"
 
 msgid "Logging level"
 msgstr "Niveau van loggen"
@@ -736,9 +722,6 @@ msgstr "Datum van aanmaken"
 
 msgid "Last access"
 msgstr "Laatste toegang"
-
-msgid "Connection"
-msgstr "Verbinding"
 
 msgid "Whistleblower's last access"
 msgstr "Laatste toegang van de klokkenluider"
@@ -1084,7 +1067,7 @@ msgstr "Vragengroep"
 msgid "Hint"
 msgstr "Hint"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Vereist"
 
 msgid "Accept multiple file uploads"
@@ -1345,14 +1328,6 @@ msgstr "Installeer een authenticatie app op je telefoon"
 
 msgid "Scan the QR code with the app"
 msgstr "Scan de QR code met de app"
-
-msgid "Hint: How to hide your receipt"
-msgstr "Tip: Hoe onthoud ik deze sleutel code"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Een handige manier om dit te onthouden is door het op te schrijven in de vorm van een creditcard nummer. Vergeet niet de vervaldatum erbij te schrijven."
 
 msgid "Error!"
 msgstr "Mislukt!"

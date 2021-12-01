@@ -2,6 +2,7 @@
 # Translators:
 # Alexandre Girard <transifex@alexgirard.com>, 2013-2014
 # AO_LL <ao@localizationlab.org>, 2015-2016,2018-2021
+# AO_LL <ao@localizationlab.org>, 2015-2016,2021
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # marco calamari <marcoc@marcoc.it>, 2013
 # Charles Peltier <charles@cl-info.fr>, 2015
@@ -42,7 +43,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-26 12:57+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -185,14 +186,6 @@ msgstr "Tout enregistrer"
 
 msgid "Access control"
 msgstr "Contrôle de l’accès"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "La connexion a été sécurisée avec HTTPS afin de garantir la confidentialité de vos données."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "La connexion utilisé a été sécurisée avec Tor afin de garantir la confidentialité de vos données et votre anonymat."
 
 msgid "Number"
 msgstr "Nombre"
@@ -628,9 +621,6 @@ msgstr "Activer la connexion simplifiée"
 msgid "Enable search engines indexing"
 msgstr "Activer l’indexation par les moteurs de recherche"
 
-msgid "Enable the receipt hint"
-msgstr "Désactiver l’indice de reçu"
-
 msgid "Default questionnaire"
 msgstr "Questionnaire par défaut"
 
@@ -667,9 +657,6 @@ msgstr "Activer le rôle de gardien"
 
 msgid "Enable scoring system"
 msgstr "Activer le système d’évaluation"
-
-msgid "Enable private annotations"
-msgstr "Activer les annotations privées"
 
 msgid "Logging level"
 msgstr "Niveau de journalisation"
@@ -729,9 +716,6 @@ msgstr "Date de création"
 
 msgid "Last access"
 msgstr "Dernier accès"
-
-msgid "Connection"
-msgstr "Connexion"
 
 msgid "Whistleblower's last access"
 msgstr "Dernière connexion du lanceur d'alerte"
@@ -1077,8 +1061,8 @@ msgstr "Groupe de questions"
 msgid "Hint"
 msgstr "Indice"
 
-msgid "Mandatory"
-msgstr "Exigé"
+msgid "Required"
+msgstr "Requis"
 
 msgid "Accept multiple file uploads"
 msgstr "Accepter le téléversement de plusieurs fichiers"
@@ -1338,14 +1322,6 @@ msgstr "Installez une appli d’authentification sur votre téléphone"
 
 msgid "Scan the QR code with the app"
 msgstr "Balayez le code QR avec l’appli"
-
-msgid "Hint: How to hide your receipt"
-msgstr "Astuce : Comment cacher votre reçu"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Une bonne manière de cacher votre reçu est de le noter comme un numéro de carte de crédit, c.-à-d. en ajoutant aussi une date d’expiration."
 
 msgid "Error!"
 msgstr "Erreur."

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Estonian (http://www.transifex.com/otf/globaleaks/language/et/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -148,14 +148,6 @@ msgstr "Salvesta kõik"
 
 msgid "Access control"
 msgstr "Pääsu reguleerimine"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Ühendus on turvatud konfidentsiaalsust tagava HTTPS-iga."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "Ühendus on turvatud konfidentsiaalsust ja anonüümsust tagava Tor-iga."
 
 msgid "Number"
 msgstr "Number"
@@ -591,9 +583,6 @@ msgstr ""
 msgid "Enable search engines indexing"
 msgstr "Luba indekseerimine otsimootorite jaoks"
 
-msgid "Enable the receipt hint"
-msgstr "Luba kättesaamisvihje"
-
 msgid "Default questionnaire"
 msgstr "Standardankeet"
 
@@ -630,9 +619,6 @@ msgstr "Luba hoidja kasutajaroll"
 
 msgid "Enable scoring system"
 msgstr "Luba punktisüsteem"
-
-msgid "Enable private annotations"
-msgstr ""
 
 msgid "Logging level"
 msgstr "Registreerimistase"
@@ -692,9 +678,6 @@ msgstr "Loomise kuupäev:"
 
 msgid "Last access"
 msgstr "Viimane sisselogimine"
-
-msgid "Connection"
-msgstr "Ühendus"
 
 msgid "Whistleblower's last access"
 msgstr "Vihjeandja viimane sisselogimine"
@@ -1040,7 +1023,7 @@ msgstr "Küsimuste rühm"
 msgid "Hint"
 msgstr "Vihje"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Nõutav"
 
 msgid "Accept multiple file uploads"
@@ -1301,14 +1284,6 @@ msgstr "Installige oma telefoni autentimisrakendus"
 
 msgid "Scan the QR code with the app"
 msgstr "Skannige rakendusega QR-kood"
-
-msgid "Hint: How to hide your receipt"
-msgstr "Vihje: kättesaamiskoodi peitmine"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Kasulik meetod kättesaamiskoodi peitmiseks on kirjutada see üles nagu krediitkaardi number, st koos aegumiskuupäevaga."
 
 msgid "Error!"
 msgstr "Tõrge!"

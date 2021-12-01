@@ -34,7 +34,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -177,14 +177,6 @@ msgstr "Сохранить всё"
 
 msgid "Access control"
 msgstr "Контроль доступа"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Соединение было защищено протоколом HTTPS для обеспечения конфиденциальности."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "Соединение было защищено Tor для обеспечения конфиденциальности и анонимности."
 
 msgid "Number"
 msgstr "Номер"
@@ -620,9 +612,6 @@ msgstr "Позволить упрощенный вход"
 msgid "Enable search engines indexing"
 msgstr "Включить индексирование поисковых систем"
 
-msgid "Enable the receipt hint"
-msgstr "Включите отчет о получении"
-
 msgid "Default questionnaire"
 msgstr "Стандартный опросник"
 
@@ -659,9 +648,6 @@ msgstr "Включить роль пользователя-хранителя"
 
 msgid "Enable scoring system"
 msgstr "Включить скоринговую систему"
-
-msgid "Enable private annotations"
-msgstr "Включить частные аннотации"
 
 msgid "Logging level"
 msgstr "Уровень записи логов"
@@ -721,9 +707,6 @@ msgstr "Дата создания"
 
 msgid "Last access"
 msgstr "Последний доступ"
-
-msgid "Connection"
-msgstr "Соединение"
 
 msgid "Whistleblower's last access"
 msgstr "Последний доступ информатора"
@@ -1069,7 +1052,7 @@ msgstr "Группа вопросов"
 msgid "Hint"
 msgstr "Подсказка"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Обязательно"
 
 msgid "Accept multiple file uploads"
@@ -1330,14 +1313,6 @@ msgstr "Установите на свой телефон приложение �
 
 msgid "Scan the QR code with the app"
 msgstr "Отсканируйте QR-код с помощью приложения"
-
-msgid "Hint: How to hide your receipt"
-msgstr "Совет: Как скрыть вашу квитанцию о получении"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Чтобы эффективно скрыть вашу квитанцию о получении, можно записать ее подобно номеру кредитной карты, указав при этом дату истечения срока действия."
 
 msgid "Error!"
 msgstr "Ошибка!"

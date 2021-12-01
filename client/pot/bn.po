@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Bengali (http://www.transifex.com/otf/globaleaks/language/bn/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -154,14 +154,6 @@ msgstr "সব সংরক্ষণ করুন"
 
 msgid "Access control"
 msgstr "প্রবেশাধিকার নিয়ন্ত্রণ"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "গোপনীয়তা নিশ্চিত করে HTTPS এর মাধ্যমে সংযোগটি সুরক্ষিত করা হয়েছে।"
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "Tor এর মাধ্যমে গোপনীয়তা এবং বেনামী থাকার বিষয়টি নিশ্চিত করে সংযোগটি সুরক্ষিত করা হয়েছে।"
 
 msgid "Number"
 msgstr "নাম্বার"
@@ -483,59 +475,59 @@ msgid "Please summarize your report in a few words."
 msgstr "আপনার রিপোর্টটি সংক্ষেপে বর্ণনা করুন।"
 
 msgid "Where did the facts happen?"
-msgstr ""
+msgstr "ঘটনাটি কোথায় ঘটেছে?"
 
 msgid "When did the facts happen?"
-msgstr ""
+msgstr "ঘটনাটি কখন ঘটেছে?"
 
 msgid "How are you involved in the reported facts?"
-msgstr ""
+msgstr "রিপোর্ট করা ঘটনার সাথে আপনার সম্পর্ক কী?"
 
 msgid "I’m a victim"
-msgstr ""
+msgstr "আমি একজন ক্ষতিগ্রস্ত ব্যক্তি"
 
 msgid "I’m involved in the facts"
-msgstr ""
+msgstr "আমি ঘটনার সাথে জড়িত"
 
 msgid "I witnessed the facts in person"
-msgstr ""
+msgstr "আমি ব্যক্তিগতভাবে ঘটনা প্রত্যক্ষ করেছি"
 
 msgid "I was personally told by a direct witness"
-msgstr ""
+msgstr "একজন প্রত্যক্ষদর্শী আমাকে সরাসরি বলেছে"
 
 msgid "It is a rumor I heard"
-msgstr ""
+msgstr "এটি গুজব - আমি এটা সম্পর্কে শুনেছি"
 
 msgid "Do you have evidence to support your report?"
-msgstr ""
+msgstr "আপনার রিপোর্টকে সমর্থন করার মত আপনার কাছে কোন প্রমাণ আছে?"
 
 msgid "Please attach the evidence to support your report."
-msgstr ""
+msgstr "দয়া করে আপনার রিপোর্টের স্বপক্ষে প্রমাণ সংযুক্ত করুন।"
 
 msgid "Please describe the evidence in detail."
-msgstr ""
+msgstr "অনুগ্রহ করে প্রমাণ সম্পর্কে বিস্তারিত বর্ণনা করুন।"
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr ""
+msgstr "উপস্থাপিত প্রমাণ সম্পর্কে বিস্তারিত বিবরণ আমাদের দাবি মূল্যায়ন এবং তদন্ত করার ক্ষমতা বৃদ্ধি করে। দয়া করে প্রমাণ হিসেবে জমা দেওয়া কোনো ভিডিও, ছবি বা নথির সংশ্লিষ্ট অংশ উল্লেখ করুন।"
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
+msgstr "আপনি কি অন্যান্য সংস্থার কাছে ঘটনাটি রিপোর্ট করেছেন?"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr ""
+msgstr "অনুগ্রহ করে এই ঘটনা সম্পর্কে আপনি যেসব প্রতিষ্ঠানকে অবহিত করেছেন তার তালিকা দিন।"
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr ""
+msgstr "এই সংস্থাগুলি কি আপনার দাবির তদন্ত করেছে? যদি তাই হয়, ফলাফল কি ছিল?"
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr ""
+msgstr "আপনি কি ফলাফল দেঅর্জন করতে চান?"
 
 msgid "File a report"
 msgstr "একটি রিপোর্ট জমা দিন"
@@ -597,9 +589,6 @@ msgstr "সিম্পল লগইন সক্ষম করুন"
 msgid "Enable search engines indexing"
 msgstr "সার্চ ইঞ্জিনগুলিতে সূচীকরণ সক্ষম করুন"
 
-msgid "Enable the receipt hint"
-msgstr "প্রাপ্তির ইঙ্গিত সক্ষম করুন"
-
 msgid "Default questionnaire"
 msgstr "সাধারণ প্রশ্নাবলী"
 
@@ -636,9 +625,6 @@ msgstr "তত্ত্বাবধায়ক ব্যবহারকারী�
 
 msgid "Enable scoring system"
 msgstr "স্কোরিং সিস্টেম সক্ষম করুন"
-
-msgid "Enable private annotations"
-msgstr "ব্যক্তিগত পাদটীকাগুলি সক্ষম করুন"
 
 msgid "Logging level"
 msgstr "লগিংয়ের স্তর"
@@ -698,9 +684,6 @@ msgstr "তৈরির তারিখ"
 
 msgid "Last access"
 msgstr "শেষবার প্রবেশ"
-
-msgid "Connection"
-msgstr "সংযোগ"
 
 msgid "Whistleblower's last access"
 msgstr "হুইসেল ব্লোয়ারের শেষবার প্রবেশ"
@@ -1046,7 +1029,7 @@ msgstr "প্রশ্নের গ্রুপ"
 msgid "Hint"
 msgstr "ইঙ্গিত"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "আবশ্যক"
 
 msgid "Accept multiple file uploads"
@@ -1307,14 +1290,6 @@ msgstr "আপনার ফোনে একটি অথেনটিকেশন
 
 msgid "Scan the QR code with the app"
 msgstr "অ্যাপ্লিকেশনটির মাধ্যমে কিউআর কোডটি স্ক্যান করুন"
-
-msgid "Hint: How to hide your receipt"
-msgstr "ইঙ্গিতঃ আপনার রসিদ কীভাবে গোপন করবেন"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "আপনার রসিদটি গোপন করার একটি কার্যকর উপায় হ'ল এটি ক্রেডিট কার্ড নম্বরের মতো লিখে রাখা, অথবা-একটি মেয়াদোত্তীরণের তারিখ যুক্ত করে।"
 
 msgid "Error!"
 msgstr "ত্রুটি!"

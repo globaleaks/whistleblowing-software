@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tajik (http://www.transifex.com/otf/globaleaks/language/tg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -156,14 +156,6 @@ msgstr "Ҳамаро ҳифз кардан"
 
 msgid "Access control"
 msgstr "Назорати дастрасӣ"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Пайваст бо HTTPS бехатар карда шуда, махфиятро таъмин менамояд."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "Пайваст бо Tor бехатар карда шуда, махфият ва анонимиро таъмин мекунад."
 
 msgid "Number"
 msgstr "Рақам"
@@ -599,9 +591,6 @@ msgstr "Воридшавии соддагардонидашударо фаъол
 msgid "Enable search engines indexing"
 msgstr "Индексатсияи системаҳои ҷустуҷӯро фаъол сохтан"
 
-msgid "Enable the receipt hint"
-msgstr "Ишораи расидро фаъол кардан"
-
 msgid "Default questionnaire"
 msgstr "Саволномаи пешфарз"
 
@@ -638,9 +627,6 @@ msgstr "Нақши муҳофиз-корбарро фаъол кардан"
 
 msgid "Enable scoring system"
 msgstr "Низоми ҳисоби холҳоро фаъол сохтан"
-
-msgid "Enable private annotations"
-msgstr "Эзоҳҳои махфиро фаъол сохтан"
 
 msgid "Logging level"
 msgstr "Дараҷаи қайдшавӣ"
@@ -700,9 +686,6 @@ msgstr "Санаи эҷод"
 
 msgid "Last access"
 msgstr "Дастрасии охирин"
-
-msgid "Connection"
-msgstr "Алоқа"
 
 msgid "Whistleblower's last access"
 msgstr "Дастрасии охирини хабардиҳанда"
@@ -1048,7 +1031,7 @@ msgstr "Гурӯҳи савол"
 msgid "Hint"
 msgstr "Ишора"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Ҳатмӣ"
 
 msgid "Accept multiple file uploads"
@@ -1309,14 +1292,6 @@ msgstr "Дар телефони худ нармафзори тасдиқкуна
 
 msgid "Scan the QR code with the app"
 msgstr "Рамзи QR-ро бо нармафзор скан кунед"
-
-msgid "Hint: How to hide your receipt"
-msgstr "Ишора: Чигуна расиди худро пинҳон кардан"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Роҳи муфид барои пинҳон кардани расиди худ, навиштани он ба мисли рақами корти қарзӣ, масъалан бо дохил кардани мӯҳлати анҷоми эътибор мебошад."
 
 msgid "Error!"
 msgstr "Хато!"

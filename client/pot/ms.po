@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malay (http://www.transifex.com/otf/globaleaks/language/ms/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -148,14 +148,6 @@ msgstr "Simpan semua"
 
 msgid "Access control"
 msgstr "Kawalan akses"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Sambungan ini telah dilindungi dengan HTTPS memastikan kerahsiaan."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "Sambungan telah dilindungi dengan Tor memastikan kerahsiaan dan ketanpanamaan."
 
 msgid "Number"
 msgstr "Nombor"
@@ -513,7 +505,7 @@ msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr ""
+msgstr "Jika anda bukan orang yang mengambil imej dan video yang diserahkan sebagai bahan bukti, kami mesti memahami sumber imej dan video untuk digunakan dalam produk pelaporan, termasuk TV, radio, laman web dan media sosial."
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
 msgstr "Adakah anda telah melaporkan kejadian ini kepada organisasi lain?"
@@ -591,9 +583,6 @@ msgstr "Dayakan log masuk diringkaskan"
 msgid "Enable search engines indexing"
 msgstr "Dayakan pengindeksan enjin carian"
 
-msgid "Enable the receipt hint"
-msgstr "Dayakan bayangan resit"
-
 msgid "Default questionnaire"
 msgstr "Soal selidik lalai"
 
@@ -630,9 +619,6 @@ msgstr "Dayakan peranan pengguna penjaga"
 
 msgid "Enable scoring system"
 msgstr "Dayakan sistem pemarkahan"
-
-msgid "Enable private annotations"
-msgstr "Dayakan anotasi peribadi"
 
 msgid "Logging level"
 msgstr "Tahap log"
@@ -692,9 +678,6 @@ msgstr "Tarikh penciptaan"
 
 msgid "Last access"
 msgstr "Akses terakhir"
-
-msgid "Connection"
-msgstr "Sambungan"
 
 msgid "Whistleblower's last access"
 msgstr "Akses terakhir pemberi maklumat"
@@ -1040,7 +1023,7 @@ msgstr "Kumpulan soalan"
 msgid "Hint"
 msgstr "Bayangan"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Diperlukan"
 
 msgid "Accept multiple file uploads"
@@ -1301,14 +1284,6 @@ msgstr "Pasang aplikasi pengesahan di telefon anda"
 
 msgid "Scan the QR code with the app"
 msgstr "Imbas kod QR dengan aplikasi"
-
-msgid "Hint: How to hide your receipt"
-msgstr "Bayangan: Cara menyembunyikan resit anda"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Cara berguna untuk menyembunyikan resit anda untuk menulis nombor kad kredit, cth. dengan juga menyertakan tarikh tamat tempoh."
 
 msgid "Error!"
 msgstr "Ralat!"

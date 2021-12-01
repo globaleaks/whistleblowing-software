@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Kazakh (http://www.transifex.com/otf/globaleaks/language/kk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -150,14 +150,6 @@ msgstr "Барлығын сақтау"
 
 msgid "Access control"
 msgstr "Қатынасты басқару"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Байланыс құпиялылықты қамтамасыз ететін HTTPS протоколы арқылы қорғалған."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "Байланыс құпиялылық пен анонимдікті қамтамасыз ететін «Tor» бағдарламалық құралы арқылы қорғалған."
 
 msgid "Number"
 msgstr "Сан"
@@ -593,9 +585,6 @@ msgstr "Жеңілдетілген кіруді іске қосу"
 msgid "Enable search engines indexing"
 msgstr "Іздеу жүйелерінің индекстеуін қосу"
 
-msgid "Enable the receipt hint"
-msgstr "Алу туралы кеңесті қосу"
-
 msgid "Default questionnaire"
 msgstr "Әдепкі сауалнама"
 
@@ -632,9 +621,6 @@ msgstr "Сақтағыш пайдаланушы рөлін іске қосу"
 
 msgid "Enable scoring system"
 msgstr "Ұпайларды санау жүйесін іске қосу"
-
-msgid "Enable private annotations"
-msgstr "Жеке аннотацияларды қосу"
 
 msgid "Logging level"
 msgstr "Журнал жүргізу деңгейі"
@@ -694,9 +680,6 @@ msgstr "Жасалған күні"
 
 msgid "Last access"
 msgstr "Соңғы қатынасу"
-
-msgid "Connection"
-msgstr "Байланыс"
 
 msgid "Whistleblower's last access"
 msgstr "Хабарлаушының соңғы рет қатынасуы"
@@ -1042,7 +1025,7 @@ msgstr "Сұрақтар тобы"
 msgid "Hint"
 msgstr "Кеңес"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Талап етіледі"
 
 msgid "Accept multiple file uploads"
@@ -1303,14 +1286,6 @@ msgstr "Телефонға аутентификатор қолданбасын �
 
 msgid "Scan the QR code with the app"
 msgstr "QR кодын қолданба арқылы сканерлеу"
-
-msgid "Hint: How to hide your receipt"
-msgstr "Кеңес: түбіртекті қалай жасыруға болады"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Түбіртекті жасырудың пайдалы әдісі - оны несие картасының нөмірі ретінде жазу, яғни жарамдылық мерзімін де көрсету."
 
 msgid "Error!"
 msgstr "Қате!"

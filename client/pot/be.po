@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Belarusian (http://www.transifex.com/otf/globaleaks/language/be/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -149,14 +149,6 @@ msgstr "Захаваць усё"
 
 msgid "Access control"
 msgstr "Кантрольная панэль"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Злучэнне адбываецца праз HTTPS, што забяспечвае канфедэнцыйнасць."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "Злучэнне адбываецца праз Tor, што забяспечвае канфедэнцыйнасць і ананімнасць."
 
 msgid "Number"
 msgstr "Нумар"
@@ -592,9 +584,6 @@ msgstr "Уключыць спрошаны ўваход"
 msgid "Enable search engines indexing"
 msgstr "Уключыць індэксацыю пошукавых сістэм"
 
-msgid "Enable the receipt hint"
-msgstr "Уключыць уведамленне аб атрыманні"
-
 msgid "Default questionnaire"
 msgstr "Анкета па змаўчанні"
 
@@ -631,9 +620,6 @@ msgstr "Уключыць ролю захавальніка"
 
 msgid "Enable scoring system"
 msgstr "Уключыць сістэму налічэння балаў"
-
-msgid "Enable private annotations"
-msgstr "Уключыць канфідэнцыйныя анатацыі"
 
 msgid "Logging level"
 msgstr "Узровень рэгістрацыі"
@@ -693,9 +679,6 @@ msgstr "Дата стварэння"
 
 msgid "Last access"
 msgstr "Апошні доступ"
-
-msgid "Connection"
-msgstr "Злучэнне"
 
 msgid "Whistleblower's last access"
 msgstr "Апошні заход на платформу выкрывальніка"
@@ -1041,7 +1024,7 @@ msgstr "Група пытанняў"
 msgid "Hint"
 msgstr "Падказка"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Абавязкова"
 
 msgid "Accept multiple file uploads"
@@ -1302,14 +1285,6 @@ msgstr "Усталяваць на свой тэлефон праграму аў�
 
 msgid "Scan the QR code with the app"
 msgstr " Адсканаваць QR-код з дапамогай прыкладання"
-
-msgid "Hint: How to hide your receipt"
-msgstr "Падказка: Як схаваць ваш код"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Зручны спосаб схаваць код - запісаць яго як нумар крэдытнай карты, гэта значыць уключыць таксама сканчэнне тэрміну дзеяння."
 
 msgid "Error!"
 msgstr "Памылка!"

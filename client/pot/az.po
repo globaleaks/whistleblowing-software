@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -155,14 +155,6 @@ msgstr "Hamısını saxla"
 
 msgid "Access control"
 msgstr "Giriş kontrolu"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Əlaqə, məxfiliyi təmin edən HTTPS ilə qorunur."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "Əlaqə, məxfiliyi və anonimliyi təmin edən Tor ilə qorunur."
 
 msgid "Number"
 msgstr "Say"
@@ -598,9 +590,6 @@ msgstr "Sadə girişi işə salın"
 msgid "Enable search engines indexing"
 msgstr "Axtarış motorlarının indeksləşməsini aktivləşdirin"
 
-msgid "Enable the receipt hint"
-msgstr "Hesabat işarəsini aktiv edin"
-
 msgid "Default questionnaire"
 msgstr "Standart sorğu"
 
@@ -637,9 +626,6 @@ msgstr "Mühafizəçinin istifadəçi rolunu işə salın"
 
 msgid "Enable scoring system"
 msgstr "Qiymətləndirmə sistemini işə salın"
-
-msgid "Enable private annotations"
-msgstr "Şəxsi qeydləri açın"
 
 msgid "Logging level"
 msgstr "Giriş səviyyəsi"
@@ -699,9 +685,6 @@ msgstr "Yaradılma tarixi"
 
 msgid "Last access"
 msgstr "Son giriş "
-
-msgid "Connection"
-msgstr "Bağlantı"
 
 msgid "Whistleblower's last access"
 msgstr "Məlumatlandıranın son girişi"
@@ -1047,7 +1030,7 @@ msgstr "Sual qrupu"
 msgid "Hint"
 msgstr "Göstəriş"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Tələb edilir"
 
 msgid "Accept multiple file uploads"
@@ -1308,14 +1291,6 @@ msgstr "Telefona təsdiqləmə tətbiqi yükləyin"
 
 msgid "Scan the QR code with the app"
 msgstr "QR kodunu tətbiqlə skan edin"
-
-msgid "Hint: How to hide your receipt"
-msgstr "Göstəriş: Şifrənizi necə gizlədə bilərsiz?"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Şifrənizi gizlətmək üçün onu hardasa, məsələn, bank kartı məlumatı kimi qeyd edin, son istifadə tarixini də əlavə edin. "
 
 msgid "Error!"
 msgstr "Səhv!"

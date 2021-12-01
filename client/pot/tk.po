@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkmen (http://www.transifex.com/otf/globaleaks/language/tk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -151,14 +151,6 @@ msgstr "Ählisini sakla"
 
 msgid "Access control"
 msgstr "Giriş gözegçiligi"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Baglanyşyk, gizlinligi üpjün edýän HTTPS bilen üpjün edildi."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "Baglanyşyk, anonimlik we gizlinligi üpjün edýän Tor bilen üpjün edildi."
 
 msgid "Number"
 msgstr "San"
@@ -594,9 +586,6 @@ msgstr "Ýönekeýleşdirilen girişi açyň"
 msgid "Enable search engines indexing"
 msgstr "Gözleg motorlaryny indeksirlemäge mümkinçilik ber"
 
-msgid "Enable the receipt hint"
-msgstr "Kwitansiýa görkezmesini aç"
-
 msgid "Default questionnaire"
 msgstr "Bellenen sowalnama"
 
@@ -633,9 +622,6 @@ msgstr "Gözegçi ulanyjy roluny açyň"
 
 msgid "Enable scoring system"
 msgstr "Bal ulgamyny aç"
-
-msgid "Enable private annotations"
-msgstr "Şahsy düşündirişleri aç"
 
 msgid "Logging level"
 msgstr "Giriş derejesi"
@@ -695,9 +681,6 @@ msgstr "Döredilen senesi"
 
 msgid "Last access"
 msgstr "Iň soňky giriş"
-
-msgid "Connection"
-msgstr "Birikdirme"
 
 msgid "Whistleblower's last access"
 msgstr "Gizlin habar yetirijiniň soňky girişi"
@@ -1043,7 +1026,7 @@ msgstr "Sorag topary"
 msgid "Hint"
 msgstr "Ýaňzytma"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Gerekli"
 
 msgid "Accept multiple file uploads"
@@ -1304,14 +1287,6 @@ msgstr "Telefonyňyzda tassyklaýjy programma guruň"
 
 msgid "Scan the QR code with the app"
 msgstr "Programma bilen QR koduny skanirläň"
-
-msgid "Hint: How to hide your receipt"
-msgstr "Ýaňzytma: Kwitansiýany nädip gizlemeli"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Kwitansiýany gizlemegiň peýdaly usuly, ony kredit kartoçkasynyň belgisi ýaly ýazmakdyr, ýagny gutarýan möhletini goşmak bilen."
 
 msgid "Error!"
 msgstr "Näsazlyk:"

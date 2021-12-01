@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -163,14 +163,6 @@ msgstr "Lưu tất cả"
 
 msgid "Access control"
 msgstr "Kiểm soát truy cập"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Kết nối dùng HTTPS để đảm bảo tính bảo mật"
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "Kết nối dùng Tor để đảm bảo tính bảo mật và ẩn danh"
 
 msgid "Number"
 msgstr "Số"
@@ -606,9 +598,6 @@ msgstr "Bật mở đăng nhập đơn giản"
 msgid "Enable search engines indexing"
 msgstr "Bật công cụ tìm kiếm lập chỉ mục"
 
-msgid "Enable the receipt hint"
-msgstr "Bật mở gợi ý cho biên nhận"
-
 msgid "Default questionnaire"
 msgstr "Bảng câu hỏi mặc định"
 
@@ -645,9 +634,6 @@ msgstr "Bật mở vai trò người bảo quản"
 
 msgid "Enable scoring system"
 msgstr "Bật mở hệ thống tính điểm"
-
-msgid "Enable private annotations"
-msgstr "Bật mở chú thích riêng"
 
 msgid "Logging level"
 msgstr "Mức độ ghi sổ"
@@ -707,9 +693,6 @@ msgstr "Ngày thành lập"
 
 msgid "Last access"
 msgstr "Lần truy cập cuối"
-
-msgid "Connection"
-msgstr "Kết nối"
 
 msgid "Whistleblower's last access"
 msgstr "Lần truy cập cuối của người tố giác"
@@ -1055,7 +1038,7 @@ msgstr "Nhóm câu hỏi"
 msgid "Hint"
 msgstr "Gợi ý"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Phải có"
 
 msgid "Accept multiple file uploads"
@@ -1316,14 +1299,6 @@ msgstr "Cài đặt ứng dụng xác thực trên điện thoại của bạn"
 
 msgid "Scan the QR code with the app"
 msgstr "Quét mã QR với ứng dụng"
-
-msgid "Hint: How to hide your receipt"
-msgstr "Gợi ý: Cách ẩn biên nhận của bạn"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Một cách hữu ích để ẩn biên lai của bạn là viết nó ra như số thẻ tín dụng, tức là bao gồm cả ngày hết hạn."
 
 msgid "Error!"
 msgstr "Lỗi!"

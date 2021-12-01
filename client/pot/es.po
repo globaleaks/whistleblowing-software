@@ -43,8 +43,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-25 07:53+0000\n"
-"Last-Translator: Zuhualime Akoochimoya\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -186,14 +186,6 @@ msgstr "Guardar todo"
 
 msgid "Access control"
 msgstr "Control de acceso"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "La conexión ha sido asegurado con HTTPS garantizando la confidencialidad."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "La conexión ha sido asegurada con Tor garantizando la confidencialidad y el anonimato."
 
 msgid "Number"
 msgstr "Número"
@@ -629,9 +621,6 @@ msgstr "Activar el inicio de sesión simplificado"
 msgid "Enable search engines indexing"
 msgstr "Habilitar indexación por los motores de búsqueda"
 
-msgid "Enable the receipt hint"
-msgstr "Permitir la notificación de recepción"
-
 msgid "Default questionnaire"
 msgstr "Cuestionario por defecto"
 
@@ -668,9 +657,6 @@ msgstr "Habilitar el rol de usuario Custodio"
 
 msgid "Enable scoring system"
 msgstr "Habilitar sistema de puntuación"
-
-msgid "Enable private annotations"
-msgstr "Habilitar anotaciones privadas"
 
 msgid "Logging level"
 msgstr "Nivel de registro "
@@ -730,9 +716,6 @@ msgstr "Fecha de creación"
 
 msgid "Last access"
 msgstr "Último acceso"
-
-msgid "Connection"
-msgstr "Conexión"
 
 msgid "Whistleblower's last access"
 msgstr "Último acceso del informante"
@@ -1078,7 +1061,7 @@ msgstr "Grupo de preguntas"
 msgid "Hint"
 msgstr "Sugerencia"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Requerido"
 
 msgid "Accept multiple file uploads"
@@ -1339,14 +1322,6 @@ msgstr "Instalar una aplicación de autenticación en tu teléfono"
 
 msgid "Scan the QR code with the app"
 msgstr "Escanea el código QR con la aplicación "
-
-msgid "Hint: How to hide your receipt"
-msgstr "Sugerencia: Cómo esconder tu recibo"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Una manera útil de esconder tu recibo es escribirlo como un número de tarjeta de crédito, esto es, incluyendo también una fecha de expiración."
 
 msgid "Error!"
 msgstr "¡Error!"

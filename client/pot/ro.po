@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -164,14 +164,6 @@ msgstr "Salvează tot"
 
 msgid "Access control"
 msgstr "Control acces"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Conexiunea a fost securizată prin HTTPS pentru a asigura confidențialitatea."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "Conexiunea a fost asigurată cu Tor pentru a asigura confidențialitatea și anonimatul."
 
 msgid "Number"
 msgstr "Număr"
@@ -607,9 +599,6 @@ msgstr "Activează autentificarea simplificată"
 msgid "Enable search engines indexing"
 msgstr "Activează indexarea pentru motoarele de căutare"
 
-msgid "Enable the receipt hint"
-msgstr "Activează indiciul pentru codul de înregistrare"
-
 msgid "Default questionnaire"
 msgstr "Chestionar standard"
 
@@ -646,9 +635,6 @@ msgstr "Activează rolul de custode al utilizatorului"
 
 msgid "Enable scoring system"
 msgstr "Activează sistemul de evaluare"
-
-msgid "Enable private annotations"
-msgstr "Activează adnotările private"
 
 msgid "Logging level"
 msgstr "Nivel logare"
@@ -708,9 +694,6 @@ msgstr "Data creării"
 
 msgid "Last access"
 msgstr "Ultima accesare"
-
-msgid "Connection"
-msgstr "Conexiune"
 
 msgid "Whistleblower's last access"
 msgstr "Ultima accesare de către avertizorul de integritate"
@@ -1056,7 +1039,7 @@ msgstr "Grup de întrebări"
 msgid "Hint"
 msgstr "Indiciu"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Obligatoriu"
 
 msgid "Accept multiple file uploads"
@@ -1317,14 +1300,6 @@ msgstr "Instalează pe telefon o aplicație pentru autentificare."
 
 msgid "Scan the QR code with the app"
 msgstr "Scanează codul QR cu aplicația"
-
-msgid "Hint: How to hide your receipt"
-msgstr "Sfat: Cum să ascunzi numărul sesizării"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Un mod bun de a ascunde numărul sesizării este să îl notezi pe o bucată de hârtie precum un număr de card (să includă și o dată de expirare)."
 
 msgid "Error!"
 msgstr "Eroare!"

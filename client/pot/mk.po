@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Macedonian (http://www.transifex.com/otf/globaleaks/language/mk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -150,14 +150,6 @@ msgstr "Зачувај се"
 
 msgid "Access control"
 msgstr "Контролен пристап"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Конекцијата беше обезбедена со HTTPS обезбедувајќи доверливост."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "Конекцијата беше обезбедена со Tor обезбедувајќи доверливост и анонимност."
 
 msgid "Number"
 msgstr "Број"
@@ -593,9 +585,6 @@ msgstr "Овозможи упростено најавување"
 msgid "Enable search engines indexing"
 msgstr "Овозможи индексирање на пребарувачите"
 
-msgid "Enable the receipt hint"
-msgstr "Овозможи помош за потврда"
-
 msgid "Default questionnaire"
 msgstr "Стандарден прашалник"
 
@@ -632,9 +621,6 @@ msgstr "Овозможи корисничка улога на чувар"
 
 msgid "Enable scoring system"
 msgstr "Овозможи систем на бодување"
-
-msgid "Enable private annotations"
-msgstr "Овозможи приватни прибелешки"
 
 msgid "Logging level"
 msgstr "Степен на најавување"
@@ -694,9 +680,6 @@ msgstr "Датум на создавање"
 
 msgid "Last access"
 msgstr "Последен пристап"
-
-msgid "Connection"
-msgstr "Поврзување"
 
 msgid "Whistleblower's last access"
 msgstr "Последен пристап на свиркачот"
@@ -1042,7 +1025,7 @@ msgstr "Прашална група"
 msgid "Hint"
 msgstr "Помош"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Потребно"
 
 msgid "Accept multiple file uploads"
@@ -1303,14 +1286,6 @@ msgstr "Инсталирајте апликација за автентикац�
 
 msgid "Scan the QR code with the app"
 msgstr "Скенирај го QR кодот со апликацијата"
-
-msgid "Hint: How to hide your receipt"
-msgstr "Помош: Како да ја сокриете вашата потврда"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Корисен начин за да ја сокриете вашата потврда е да ја запишете како број на кредитна картичка, т.е. исто така вклучувајќи го и датумот на важност."
 
 msgid "Error!"
 msgstr "Грешка!"

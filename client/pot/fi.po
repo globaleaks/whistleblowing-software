@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -156,14 +156,6 @@ msgstr "Tallenna kaikki"
 
 msgid "Access control"
 msgstr "Käyttöoikeuksien hallinta"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Tämä yhteys on varmennettu HTTPS-yhteykäytännöllä luottamuksellisuuden varmistamiseksi."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "Tämä yhteys on varmennettu Tor-yhteydellä luottamuksellisuuden ja nimettömyyden varmistamiseksi."
 
 msgid "Number"
 msgstr "Numero"
@@ -599,9 +591,6 @@ msgstr "Ota käyttöön helpotettu kirjautuminen"
 msgid "Enable search engines indexing"
 msgstr "Ota käyttöön hakukoneiden indeksointi"
 
-msgid "Enable the receipt hint"
-msgstr "Ota kuittivinkki käyttöön"
-
 msgid "Default questionnaire"
 msgstr "Oletuslomake"
 
@@ -638,9 +627,6 @@ msgstr "Ota käyttöön valvontarooli"
 
 msgid "Enable scoring system"
 msgstr "Ota käyttöön pisteytysjärjestelmä"
-
-msgid "Enable private annotations"
-msgstr "Salli yksityiset kommentit"
 
 msgid "Logging level"
 msgstr "Kirjautumistaso"
@@ -700,9 +686,6 @@ msgstr "Luontipäivämäärä"
 
 msgid "Last access"
 msgstr "Viimeksi luettu"
-
-msgid "Connection"
-msgstr "Yhteys"
 
 msgid "Whistleblower's last access"
 msgstr "Ilmiantajan viimeisin kirjautumisajankohta"
@@ -1048,7 +1031,7 @@ msgstr "Kysymysryhmä"
 msgid "Hint"
 msgstr "Vinkki"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Pakollinen"
 
 msgid "Accept multiple file uploads"
@@ -1309,14 +1292,6 @@ msgstr "Asenna kirjautumissovellus puhelimeesi"
 
 msgid "Scan the QR code with the app"
 msgstr "Skannaa QR-koodi puhelimen sovelluksella"
-
-msgid "Hint: How to hide your receipt"
-msgstr "Vinkki: kuinka käsitellä kuittinumerosarjaa turvallisesti"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Kätevä tapa käsitellä salaista kuittinumerosarjaa turvallisesti on kirjoittaa se muistiin kuten luottokorttinumero. Toisin sanoen, sinun kannattaa sisällyttää numerosarjan yhteyteen myös vanhentumispäivämäärä."
 
 msgid "Error!"
 msgstr "Virhe!"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Burmese (http://www.transifex.com/otf/globaleaks/language/my/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -149,14 +149,6 @@ msgstr "အားလုံးကို သိမ်းရန်"
 
 msgid "Access control"
 msgstr "ဝင်ရောက်ခွင့် ထိန်းချုပ်မှု"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "ချိတ်ဆက်ခြင်းကို HTTPS ဖြင့် ကာကွယ်ထားသောကြောင့် လုံခြုံစိတ်ချမှု ရှိစေသည်။"
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "ချိတ်ဆက်ခြင်းကို Tor ဖြင့် ကာကွယ်ထားသောကြောင့် လုံခြုံစိတ်ချမှုရှိပြီး အမည်မသိနိုင်ပါ။"
 
 msgid "Number"
 msgstr "နံပါတ်"
@@ -514,7 +506,7 @@ msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr ""
+msgstr "တင်ပြထားသော သက်သေအကြောင်း ပြည့်စုံစွာဖော်ပြခြင်းက အဆိုတင်ပြချက်များကို အကဲဖြတ်ရန်နှင့် စုံစမ်းစစ်ဆေးရန် ကျွန်ုပ်တို့ကို အထောက်အကူပြုပါသည်။ ကျေးဇူးပြု၍ သက်သေအဖြစ် တင်ထားသည့် ဗီဒီယိုများ၊ ရုပ်ပုံများ (သို့) စာရွက်စာတမ်းများမှ အရေးကြီးအစိတ်အပိုင်းများကို ကိုးကားဖော်ပြပါ။"
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
 msgstr "သင်သည် ဤအဖြစ်အပျက်ကို အခြားအဖွဲ့အစည်းများထံ အစီရင်ခံထားပါသလား။"
@@ -592,9 +584,6 @@ msgstr "ရိုးရှင်းသော အကောင့်ဝင်မ�
 msgid "Enable search engines indexing"
 msgstr "ရှာဖွေရေးအင်ဂျင် အညွှန်းစီစဉ်ခြင်းကို ဖွင့်ပါ"
 
-msgid "Enable the receipt hint"
-msgstr "လက်ခံပြေစာ အရိပ်အမြွက် ဖွင့်ပါ"
-
 msgid "Default questionnaire"
 msgstr "နဂိုမူလ မေးခွန်းလွှာ"
 
@@ -631,9 +620,6 @@ msgstr "အုပ်ထိန်းသူအဖြစ် အသုံးပြ�
 
 msgid "Enable scoring system"
 msgstr "အမှတ်ပေးစနစ်ကို ဖွင့်ပါ"
-
-msgid "Enable private annotations"
-msgstr "သီးသန့် မှတ်ချက်များကို ဖွင့်ပါ"
 
 msgid "Logging level"
 msgstr "စာရင်းမှတ်ခြင်း အဆင့်"
@@ -693,9 +679,6 @@ msgstr "ဖန်တီးသည့်နေ့စွဲ"
 
 msgid "Last access"
 msgstr "နောက်ဆုံး အသုံးပြုခြင်း"
-
-msgid "Connection"
-msgstr "ချိတ်ဆက်ခြင်း"
 
 msgid "Whistleblower's last access"
 msgstr "သတင်းပေးသူ၏ နောက်ဆုံး အသုံးပြုခြင်း"
@@ -1041,7 +1024,7 @@ msgstr "မေးခွန်းအုပ်စု"
 msgid "Hint"
 msgstr "အရိပ်အမြွက်"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "လိုအပ်ခဲ့သည်"
 
 msgid "Accept multiple file uploads"
@@ -1302,14 +1285,6 @@ msgstr "သင့်ဖုန်းတွင် စစ်မှန်ကြေ�
 
 msgid "Scan the QR code with the app"
 msgstr "QR ကုဒ်ကို အက်ပ်ဖြင့် စကန်ဖတ်ပါ"
-
-msgid "Hint: How to hide your receipt"
-msgstr "အရိပ်အမြွက် - သင့်လက်ခံဖြတ်ပိုင်းကို ဝှက်နည်း"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "သင့်လက်ခံဖြတ်ပိုင်းကို ဖုံးကွယ်ရန် အသုံးဝင်သော နည်းလမ်းတစ်ခုမှာ သက်တမ်းကုန်ဆုံးရက် ထည့်ခြင်းဖြင့် အကြွေးဝယ်ကတ် နံပါတ်ကဲ့သို့ ချရေးခြင်း ဖြစ်သည်။"
 
 msgid "Error!"
 msgstr "မှားနေသည်။"

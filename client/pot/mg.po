@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Malagasy (http://www.transifex.com/otf/globaleaks/language/mg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -164,14 +164,6 @@ msgstr "Tout enregistrer"
 
 msgid "Access control"
 msgstr ""
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "La connexion a été sécurisée avec HTTPS afin de garantir la confidentialité de vos données."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "La connexion a été sécurisée avec Tor afin de garantir la confidentialité de vos données et votre anonymat."
 
 msgid "Number"
 msgstr "Nombre"
@@ -607,9 +599,6 @@ msgstr "Activer la connexion simplifiée"
 msgid "Enable search engines indexing"
 msgstr "Activer l’indexation par les moteurs de recherche"
 
-msgid "Enable the receipt hint"
-msgstr ""
-
 msgid "Default questionnaire"
 msgstr "Questionnaire par défaut"
 
@@ -646,9 +635,6 @@ msgstr ""
 
 msgid "Enable scoring system"
 msgstr "Activer le système d’évaluation"
-
-msgid "Enable private annotations"
-msgstr ""
 
 msgid "Logging level"
 msgstr "Niveau de journalisation"
@@ -708,9 +694,6 @@ msgstr "Daty namoronana azy"
 
 msgid "Last access"
 msgstr "Dernier accès"
-
-msgid "Connection"
-msgstr "Fidirana"
 
 msgid "Whistleblower's last access"
 msgstr ""
@@ -1056,7 +1039,7 @@ msgstr "Groupe de questions"
 msgid "Hint"
 msgstr "Infobulle"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Exigé"
 
 msgid "Accept multiple file uploads"
@@ -1317,14 +1300,6 @@ msgstr ""
 
 msgid "Scan the QR code with the app"
 msgstr ""
-
-msgid "Hint: How to hide your receipt"
-msgstr "Astuce : Comment cacher votre reçu ?"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Une bonne manière de cacher votre reçu est de le noter comme un numéro de carte de crédit, c.-à-d. en ajoutant aussi une date d’expiration."
 
 msgid "Error!"
 msgstr "Erreur !"

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -149,14 +149,6 @@ msgid "Save all"
 msgstr "அனைத்தையும் சேமி"
 
 msgid "Access control"
-msgstr ""
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "இந்த சமர்ப்பிப்பு அனுப்ப பயன்படுத்தப்படுகிறது இணைப்பு, HTTPS இரகசியத்தன்மை உறுதி பெறப்பட்டுள்ளது."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
 msgstr ""
 
 msgid "Number"
@@ -593,9 +585,6 @@ msgstr "எளிய உள்நுழைவை இயக்கவும்"
 msgid "Enable search engines indexing"
 msgstr "தேடுபொறிகள் திருப்பு இயக்கு"
 
-msgid "Enable the receipt hint"
-msgstr ""
-
 msgid "Default questionnaire"
 msgstr "இயல்புநிலை கேள்வித்தாள்"
 
@@ -632,9 +621,6 @@ msgstr ""
 
 msgid "Enable scoring system"
 msgstr "ஸ்கோரிங் அமைப்பை இயக்கு"
-
-msgid "Enable private annotations"
-msgstr ""
 
 msgid "Logging level"
 msgstr "பதிவு நிலை"
@@ -694,9 +680,6 @@ msgstr "உருவாக்கிய தேதி"
 
 msgid "Last access"
 msgstr "கடைசியாக அணுகியது"
-
-msgid "Connection"
-msgstr "இணைப்பு"
 
 msgid "Whistleblower's last access"
 msgstr ""
@@ -1042,7 +1025,7 @@ msgstr "கேள்வி குழு"
 msgid "Hint"
 msgstr "சாடைக்குறிப்பு"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "தேவையான"
 
 msgid "Accept multiple file uploads"
@@ -1303,14 +1286,6 @@ msgstr ""
 
 msgid "Scan the QR code with the app"
 msgstr ""
-
-msgid "Hint: How to hide your receipt"
-msgstr "குறிப்பு: உங்கள் ரசீது மறைக்க எப்படி"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "உங்கள் ரசீது மறைக்க ஒரு பயனுள்ள வழி கடன் அட்டை எண் போன்றவற்றை எழுதுவது, அதாவது காலாவதி தேதியை உள்ளடக்கியது."
 
 msgid "Error!"
 msgstr "பிழை!"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -149,14 +149,6 @@ msgstr "모두 저장"
 
 msgid "Access control"
 msgstr "액세스 제어"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "본 연결은 기밀성을 보장하는 HTTPS로 보호되고 있습니다."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "본 연결은 기밀성과 익명성을 보장하는 Tor로 보호되고 있습니다."
 
 msgid "Number"
 msgstr "번호"
@@ -478,59 +470,59 @@ msgid "Please summarize your report in a few words."
 msgstr "몇 마디로 보고서를 설명해 주십시오."
 
 msgid "Where did the facts happen?"
-msgstr ""
+msgstr "사건은 어디에서 일어났습니까?"
 
 msgid "When did the facts happen?"
-msgstr ""
+msgstr "사건은 언제 일어났습니까?"
 
 msgid "How are you involved in the reported facts?"
-msgstr ""
+msgstr "보고된 사건에서 귀하는 어떻게 개입되어 있습니까?"
 
 msgid "I’m a victim"
-msgstr ""
+msgstr "저는 피해자입니다."
 
 msgid "I’m involved in the facts"
-msgstr ""
+msgstr "저는 사건에 연루되었습니다."
 
 msgid "I witnessed the facts in person"
-msgstr ""
+msgstr "저는 사건의 직접적 증인입니다."
 
 msgid "I was personally told by a direct witness"
-msgstr ""
+msgstr "저는 직접적 증인으로부터 개인적으로 사건에 관한 이야기를 들었습니다."
 
 msgid "It is a rumor I heard"
-msgstr ""
+msgstr "저는 사건에 관한 소문을 들었습니다."
 
 msgid "Do you have evidence to support your report?"
-msgstr ""
+msgstr "귀하의 보고를 뒷받침할 증거가 있습니까?"
 
 msgid "Please attach the evidence to support your report."
-msgstr ""
+msgstr "귀하의 보고를 뒷받침할 증거를 첨부해 주십시오."
 
 msgid "Please describe the evidence in detail."
-msgstr ""
+msgstr "증거에 관해 자세히 설명해 주십시오."
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr ""
+msgstr "제출된 증거에 관한 자세한 설명은 귀하의 주장을 평가하고 조사하는 데 큰 도움이 됩니다. 증거로 제출한 동영상, 이미지 또는 문서를 최대한 참고 자료로 사용하려고 노력하십시오."
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
+msgstr "귀하는 해당 사건을 다른 기관에 보고했습니까?"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr ""
+msgstr "귀하가 본 사건에 관해 알린 조직을 나열해 주십시오."
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr ""
+msgstr "해당 기관에서 귀하의 주장을 조사했습니까? 그렇다면 결과는 어땠습니까?"
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr ""
+msgstr "귀하가 보고 싶거나 달성하고 싶은 결과는 무엇입니까?"
 
 msgid "File a report"
 msgstr "보고서 보관"
@@ -592,9 +584,6 @@ msgstr "단순 로그인 허용"
 msgid "Enable search engines indexing"
 msgstr "검색 엔진 인덱싱을 사용하도록 허용"
 
-msgid "Enable the receipt hint"
-msgstr "키 코드 힌트 허용"
-
 msgid "Default questionnaire"
 msgstr "기본 설문 조사"
 
@@ -631,9 +620,6 @@ msgstr "관리인 사용자 역할 허용"
 
 msgid "Enable scoring system"
 msgstr "채점 시스템 허용"
-
-msgid "Enable private annotations"
-msgstr "개인 주석 허용"
 
 msgid "Logging level"
 msgstr "기록 수준"
@@ -693,9 +679,6 @@ msgstr "생성 날짜"
 
 msgid "Last access"
 msgstr "마지막 액세스"
-
-msgid "Connection"
-msgstr "연결"
 
 msgid "Whistleblower's last access"
 msgstr "마지막 내부 고발자 액세스"
@@ -1041,7 +1024,7 @@ msgstr "질문 그룹"
 msgid "Hint"
 msgstr "힌트"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "필수"
 
 msgid "Accept multiple file uploads"
@@ -1302,14 +1285,6 @@ msgstr "휴대전화 인증 앱 설치"
 
 msgid "Scan the QR code with the app"
 msgstr "앱으로 QR 코드 촬영"
-
-msgid "Hint: How to hide your receipt"
-msgstr "힌트: 키 코드를 숨기는 방법"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "읽었는지를 알지 못하도록 할 수 있는 유용한 방법은 만료 기간을 포함하는 등의 방법과 함께 신용카드 번호 같이 적어놓는 것입니다."
 
 msgid "Error!"
 msgstr "오류!"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Persian (Afghanistan) (http://www.transifex.com/otf/globaleaks/language/fa_AF/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -149,14 +149,6 @@ msgstr "ذخیره همه"
 
 msgid "Access control"
 msgstr "کنترول دسترسی"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "اتصال با HTTPS ایمن شده تا محرمانه بودن تضمین شود."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "اتصال با Tor ایمن شده تا محرمانه بودن و ناشناس ماندن تضمین شود."
 
 msgid "Number"
 msgstr "شماره"
@@ -592,9 +584,6 @@ msgstr "فعال سازی ورود ساده "
 msgid "Enable search engines indexing"
 msgstr "فعال کردن ایندکس گذاری موتورهای جستجو"
 
-msgid "Enable the receipt hint"
-msgstr "فعال کردن اعلان رسید"
-
 msgid "Default questionnaire"
 msgstr "پرسشنامه عادی"
 
@@ -631,9 +620,6 @@ msgstr "فعال سازی نقش کاربر نگهبان"
 
 msgid "Enable scoring system"
 msgstr "فعال سازی سیستم امتیازدهی"
-
-msgid "Enable private annotations"
-msgstr "فعال‌ سازی حاشیه نویسی های خصوصی"
 
 msgid "Logging level"
 msgstr "سطح ثبت وقایع"
@@ -693,9 +679,6 @@ msgstr "تاریخ ساخت "
 
 msgid "Last access"
 msgstr "آخرین دسترسی"
-
-msgid "Connection"
-msgstr "اتصال"
 
 msgid "Whistleblower's last access"
 msgstr "آخرین دسترسی افشاگر "
@@ -1041,7 +1024,7 @@ msgstr "گروپ سؤال   "
 msgid "Hint"
 msgstr "اشاره"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "حتمی"
 
 msgid "Accept multiple file uploads"
@@ -1302,14 +1285,6 @@ msgstr "لطفاً یک اپلیکیشن تأیید هویت بر روی موب�
 
 msgid "Scan the QR code with the app"
 msgstr "QR کود را ذریعه اپلیکیشن اسکن کنید "
-
-msgid "Hint: How to hide your receipt"
-msgstr "اشاره: چگونه رسید خود را پنهان کنید"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "یک راه موثر برای پنهان کردن رسید خود، نوشتن آن مانند نمبر کردیت کارت می باشد، شما می توانید تاریخ انقضای آن را نیزیادداشت کنید."
 
 msgid "Error!"
 msgstr "خطا!"

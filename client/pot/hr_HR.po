@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -153,14 +153,6 @@ msgstr "Spremi sve"
 
 msgid "Access control"
 msgstr "Kontrola pristupa"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Veza je osigurana HTTPS-om čime se osigurava povjerljivost."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "Veza je osigurana Tor-om čime se osigurava povjerljivost i anonimnost."
 
 msgid "Number"
 msgstr "Broj"
@@ -596,9 +588,6 @@ msgstr "Omogući pojednostavljenu prijavu"
 msgid "Enable search engines indexing"
 msgstr "Omogući indeksiranje tražilica"
 
-msgid "Enable the receipt hint"
-msgstr "Omogući savjet za potvrdu"
-
 msgid "Default questionnaire"
 msgstr "Zadani upitnik"
 
@@ -635,9 +624,6 @@ msgstr "Omogući ulogu skrbnika"
 
 msgid "Enable scoring system"
 msgstr "Omogući bodovanje"
-
-msgid "Enable private annotations"
-msgstr ""
 
 msgid "Logging level"
 msgstr "Razina zapisa"
@@ -697,9 +683,6 @@ msgstr "Datum stvaranja"
 
 msgid "Last access"
 msgstr "Posljednji pristup"
-
-msgid "Connection"
-msgstr "Veza"
 
 msgid "Whistleblower's last access"
 msgstr "Posljednji pristup zviždača"
@@ -1045,7 +1028,7 @@ msgstr "Grupa pitanja"
 msgid "Hint"
 msgstr "Podsjetnik"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Potrebno"
 
 msgid "Accept multiple file uploads"
@@ -1306,14 +1289,6 @@ msgstr "Instalirajte autentikacijsku aplikaciju na svoj telefon"
 
 msgid "Scan the QR code with the app"
 msgstr "Skenirajte QR kod aplikacijom"
-
-msgid "Hint: How to hide your receipt"
-msgstr "Savjet: Kako da sakrijete svoju potvrdu"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Efikasan način sakrivanja potvrde je da ju zapišete kao broj kreditne kartice, dodajući izmišljeni datum isteka."
 
 msgid "Error!"
 msgstr "Pogreška!"

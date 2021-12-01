@@ -51,7 +51,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -194,14 +194,6 @@ msgstr "Alles speichern"
 
 msgid "Access control"
 msgstr "Zugriffskontrolle"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Die Verbindung wurde mit HTTPS gesichert, um die Vertraulichkeit zu gewährleisten."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "Die Verbindung wurde mit Tor gesichert, wobei Vertraulichkeit und Anonymität gewährleistet sind."
 
 msgid "Number"
 msgstr "Nummer"
@@ -502,7 +494,7 @@ msgid "This domain name is not available."
 msgstr "Dieser Domainname ist nicht verfügbar."
 
 msgid "Mark as important"
-msgstr ""
+msgstr "Als wichtig markieren"
 
 msgid "Copy to clipboard"
 msgstr "In die Zwischenablage kopieren"
@@ -514,7 +506,7 @@ msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
 msgid "Grant access"
-msgstr ""
+msgstr "Zugriff gewähren"
 
 msgid "Revoke access"
 msgstr "Zugriff widerufen"
@@ -523,37 +515,37 @@ msgid "Please summarize your report in a few words."
 msgstr "Beschreiben Sie Ihren Bericht in wenigen Worten."
 
 msgid "Where did the facts happen?"
-msgstr ""
+msgstr "Wo hat sich der Sachverhalt zugetragen?"
 
 msgid "When did the facts happen?"
-msgstr ""
+msgstr "Wann hat sich der Sachverhalt zugetragen?"
 
 msgid "How are you involved in the reported facts?"
-msgstr ""
+msgstr "Wie sind Sie an den berichteten Sachverhalten beteiligt?"
 
 msgid "I’m a victim"
-msgstr ""
+msgstr "Ich bin ein Opfer"
 
 msgid "I’m involved in the facts"
-msgstr ""
+msgstr "Ich bin in die Sachverhalte involviert"
 
 msgid "I witnessed the facts in person"
-msgstr ""
+msgstr "Ich habe den Sachverhalt persönlich erlebt"
 
 msgid "I was personally told by a direct witness"
-msgstr ""
+msgstr "Ein Zeuge hat mir persönlich gesagt"
 
 msgid "It is a rumor I heard"
-msgstr ""
+msgstr "Es ist ein Gerücht, das ich gehört habe"
 
 msgid "Do you have evidence to support your report?"
-msgstr ""
+msgstr "Haben Sie Beweise, um Ihren Bericht zu untermauern?"
 
 msgid "Please attach the evidence to support your report."
-msgstr ""
+msgstr "Bitte hängen Sie Ihrem Bericht die entsprechenden Beweise an."
 
 msgid "Please describe the evidence in detail."
-msgstr ""
+msgstr "Bitte beschreiben Sie die Beweise im Detail."
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
@@ -562,7 +554,7 @@ msgid ""
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
+msgstr "Haben Sie den Sachverhalt anderen Organisationen und/oder Personen gemeldet?"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
@@ -637,9 +629,6 @@ msgstr "Vereinfachte Anmeldung aktivieren"
 msgid "Enable search engines indexing"
 msgstr "Suchmaschinenindizierung aktivieren"
 
-msgid "Enable the receipt hint"
-msgstr "Den Empfangsbestätigungshinweis aktivieren"
-
 msgid "Default questionnaire"
 msgstr "Standardfragebogen"
 
@@ -676,9 +665,6 @@ msgstr "Benutzerrolle Verwalter aktivieren"
 
 msgid "Enable scoring system"
 msgstr "Bewertungssystem aktivieren"
-
-msgid "Enable private annotations"
-msgstr "Private Anmerkungen aktivieren"
 
 msgid "Logging level"
 msgstr "Protokollierungsstufe"
@@ -739,9 +725,6 @@ msgstr "Erstellungsdatum"
 msgid "Last access"
 msgstr "Letzter Zugriff"
 
-msgid "Connection"
-msgstr "Verbindung"
-
 msgid "Whistleblower's last access"
 msgstr "Letzer Zugriff des Hinweisgebers"
 
@@ -788,7 +771,7 @@ msgid "Whistleblowing button"
 msgstr "Schaltfläche Hinweisgeben"
 
 msgid "Disclaimer"
-msgstr ""
+msgstr "Haftungsausschluss"
 
 msgid "Footer"
 msgstr "Fußzeile"
@@ -1086,7 +1069,7 @@ msgstr "Fragegruppe"
 msgid "Hint"
 msgstr "Hinweis"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Erforderlich"
 
 msgid "Accept multiple file uploads"
@@ -1347,14 +1330,6 @@ msgstr "Eine Authentifizierungs-App auf Ihrem Smartphone installieren"
 
 msgid "Scan the QR code with the app"
 msgstr "Scannen Sie den QR-Code mit der App."
-
-msgid "Hint: How to hide your receipt"
-msgstr "Hinweis: Wie Sie Ihre Empfangsbestätigung verstecken"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Eine praktische Möglichkeit Ihren Schlüssel-Code zu verstecken, ist ihn wie eine Kreditkartennummer aufzuschreiben, d.h. auch ein Ablaufdatum hinzuzufügen."
 
 msgid "Error!"
 msgstr "Fehler!"
@@ -1686,7 +1661,7 @@ msgid "Last name"
 msgstr "Nachname"
 
 msgid "Alternative contact method"
-msgstr ""
+msgstr "Alternative Kontaktmethode"
 
 msgid "Other"
 msgstr "Sonstige"

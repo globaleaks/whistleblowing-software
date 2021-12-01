@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Amharic (http://www.transifex.com/otf/globaleaks/language/am/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -149,14 +149,6 @@ msgstr "ሁሉን አስቀምጥ"
 
 msgid "Access control"
 msgstr "መድረሻ መቆጣጠርያ"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "ግንኙነቱ ምስጢራዊነቱን በማረጋገጥ በኤችቲቲፒኤስ  ተጠብቋል"
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "ግንኙነቱ ምስጢራዊነቱን እና ስምአልባነቱን በማረጋገጥ በኤችቲቲፒኤስ\n\nተጠብቋል"
 
 msgid "Number"
 msgstr "ቁጥር"
@@ -592,9 +584,6 @@ msgstr ""
 msgid "Enable search engines indexing"
 msgstr "የፍለጋ ግርግም ማውጫ ያንቁ"
 
-msgid "Enable the receipt hint"
-msgstr "የደረሰኝ ፍንጩን ያንቁ"
-
 msgid "Default questionnaire"
 msgstr "ነባሪ መጠይቅ"
 
@@ -631,9 +620,6 @@ msgstr "የሞግዚት ተጠቃሚ ሚናን ያንቁ"
 
 msgid "Enable scoring system"
 msgstr "የውጤት ስርኣት ያንቁ"
-
-msgid "Enable private annotations"
-msgstr "የግል ስያሜዎችን ያቁ"
 
 msgid "Logging level"
 msgstr "የመግባት ደረጃ"
@@ -693,9 +679,6 @@ msgstr "የፍጥረት ቀን፡"
 
 msgid "Last access"
 msgstr "የመጨረሻ መዳረሻ"
-
-msgid "Connection"
-msgstr "ግንኙነት"
 
 msgid "Whistleblower's last access"
 msgstr "የመረጃ ሰጪው የመጨረሻ መዳረሻ"
@@ -1041,7 +1024,7 @@ msgstr "የጥያቄ ቡድን"
 msgid "Hint"
 msgstr "ፍንጭ"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "አስፈላጊ"
 
 msgid "Accept multiple file uploads"
@@ -1302,14 +1285,6 @@ msgstr "ስልካችሁ ላይ የማረጋገጫ መተግበርያ ጫኑ"
 
 msgid "Scan the QR code with the app"
 msgstr "የኪውአር ኮዱን በመተግበርያው አንብቡ"
-
-msgid "Hint: How to hide your receipt"
-msgstr "ፍንጭ፡- ደረሰኛችሁን እንዴት መደበቅ እንደምትችሁ"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "ደረሰኛችሁን ለመደበቅ ጥሩው መንገድ እንደ ዱቤ ካርድ ቁጥር\n\nመፃፍ ነው፣ ማለትም የመቃጠያ ቀን ጨምሩበት"
 
 msgid "Error!"
 msgstr "ስህተት!"

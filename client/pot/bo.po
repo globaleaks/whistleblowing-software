@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tibetan (http://www.transifex.com/otf/globaleaks/language/bo/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -149,14 +149,6 @@ msgstr "ཆ་ཚང་ཉར་ཚགས་བྱ།"
 
 msgid "Access control"
 msgstr "ལྟ་སྤྱོད་ཚོད་འཛིན།"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "སྦྲེལ་མཐུད་དེ་ HTTPS ལྷན་བཙན་སྲུང་བྱེད་ཡོད་པས་གསང་རྒྱ་ངེས་བརྟན་བྱེད་ཀྱི་ཡོད།"
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "སྦྲེལ་མཐུད་དེ་ Tor ལྷན་བཙན་སྲུང་བྱེད་ཡོད་པས་གསང་རྒྱ་དང་མིང་མེད་ངེས་བརྟན་བྱེད་ཀྱི་ཡོད།"
 
 msgid "Number"
 msgstr "ཨང་གྲངས།"
@@ -478,59 +470,59 @@ msgid "Please summarize your report in a few words."
 msgstr "ཁྱེད་ཀྱི་སྙན་ཐོ་དེ་ཚིག་འབྲུ་འགའ་ཤས་ནང་འགྲེལ་བརྗོད་བྱ།"
 
 msgid "Where did the facts happen?"
-msgstr ""
+msgstr "དོན་རྐྱེན་དེ་གང་དུ་བྱུང་ངམ།"
 
 msgid "When did the facts happen?"
-msgstr ""
+msgstr "དོན་རྐྱེན་དེ་ག་དུས་བྱུང་ངམ།"
 
 msgid "How are you involved in the reported facts?"
-msgstr ""
+msgstr "ཐོ་འགོད་བྱས་པའི་དོན་རྐྱེན་དེའི་ནང་ཁྱེད་ཀྱི་ཐེ་ཇུས་གང་ཡིན་ནམ།"
 
 msgid "I’m a victim"
-msgstr ""
+msgstr "ང་ནི་གནོད་འཚེ་ཕོག་ཡུལ་ཞིག་ཡིན།"
 
 msgid "I’m involved in the facts"
-msgstr ""
+msgstr "དོན་རྐྱེན་དེའི་ནང་ངའི་ཐེ་ཇུས་ཡོད།"
 
 msgid "I witnessed the facts in person"
-msgstr ""
+msgstr "ངས་དོན་རྐྱེན་དེ་དངོས་སུ་མཐོང་བྱུང་།"
 
 msgid "I was personally told by a direct witness"
-msgstr ""
+msgstr "ང་ལ་དཔང་པོ་དངོས་ཤིག་གི་ཐད་ཀར་བརྗོད་བྱུང་།"
 
 msgid "It is a rumor I heard"
-msgstr ""
+msgstr "དཀྲོག་གཏམ།--ངས་དེའི་སྐོར་ཐོས་བྱུང་།"
 
 msgid "Do you have evidence to support your report?"
-msgstr ""
+msgstr "ཁྱེད་ལ་སོ་སོའི་གསར་འགྱུར་དེ་རྒྱབ་སྐྱོར་བྱེད་པའི་དཔང་རྟགས་ཡོད་དམ།"
 
 msgid "Please attach the evidence to support your report."
-msgstr ""
+msgstr "ཁྱེད་ཀྱི་གསར་འགྱུར་ལ་རྒྱབ་སྐྱོར་བྱེད་པའི་དཔང་རྟགས་མཉམ་སྦྱར་གནང་རོགས།"
 
 msgid "Please describe the evidence in detail."
-msgstr ""
+msgstr "དཔང་རྟགས་དེ་ཞིབ་ཕྲ་འགྲེལ་བརྗོད་གནང་རོགས།"
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr ""
+msgstr "འབུལ་ལམ་ཞུས་པའི་དཔང་རྟགས་ཀྱི་འགྲེལ་བརྗོད་དག་དཔྱིས་ཕྱིན་པ་ཡོད་པས་ཡིན་ཚུལ་བརྗོད་པ་དག་ཞིབ་དཔྱོད་བྱེད་རྒྱུ་དང་ཞིབ་འཇུག་བྱེད་པར་ང་ཚོའི་ནུས་པ་གོང་མཐོར་བྱེད་པ་ཡིན། དཔང་རྟགས་ཚུལ་དུ་འབུལ་ལམ་ཞུས་པའི་བརྙན་ནམ། འདྲ་པར། ཡང་ན་ཡིག་ཆ་གང་ཞིག་གི་ཆ་ཤས་ཚད་ཐུབ་ཅིག་འབྲེལ་སྦྱོར་གནང་བར་ཡིད་གཟབ་གནང་རོགས། "
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
+msgstr "ཁྱེད་ཀྱིས་གསར་འགྱུར་དེ་ཚོགས་པ་གཞན་ལ་སྙན་སེང་ཞུས་ཡོད་དམ།"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr ""
+msgstr "ཁྱེད་ཀྱིས་དོན་རྐྱེན་འདིའི་སྐོར་གནས་ཚུལ་བརྗོད་པའི་ཚོགས་པ་དག་གི་མིང་འདོན་གནང་རོགས།"
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr ""
+msgstr "ཚོགས་པ་འདི་དག་གིས་ཁྱེད་ཀྱིས་ཡིན་ཚུལ་བརྗོད་པ་དག་ལ་ཞིབ་འཇུག་བྱེད་སོང་ངམ། གལ་ཏེ་བྱས་ཡོད་ཚེ། གྲུབ་འབྲས་གང་ཡིན་ནམ།"
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr ""
+msgstr "ཁྱེད་ཀྱི་གྲུབ་འབྲས་གང་མཐོང་འདོད་ཡོད་ནམ།"
 
 msgid "File a report"
 msgstr "སྙན་ཞུ་ཞིག་ཞུ་གཏུག་བྱ།"
@@ -592,9 +584,6 @@ msgstr "སྟབས་བདེའི་ནང་འཛུལ་ནུས་ལ
 msgid "Enable search engines indexing"
 msgstr "འཚོལ་ཞིབ་ཨིན་ཇེན་གྱི་དཀར་ཆག་ནུས་ལྡན་བཟོ།"
 
-msgid "Enable the receipt hint"
-msgstr "འབྱོར་བརྡ་ནུས་ལྡན་བཟོ།"
-
 msgid "Default questionnaire"
 msgstr "རང་སོར་ནས་ཡོད་པའི་དྲི་ཚན།"
 
@@ -631,9 +620,6 @@ msgstr "བདག་གཉེར་སྤྱོད་པ་པོའི་འག
 
 msgid "Enable scoring system"
 msgstr "ཨང་ཐོབ་ལམ་ལུགས་ནུས་ལྡན་བཟོ།"
-
-msgid "Enable private annotations"
-msgstr "སྒེར་གྱི་མཆན་འགྲེལ་ནུས་ལྡན་བཟོ།"
 
 msgid "Logging level"
 msgstr "ཐོ་འགོད་རིམ་པ།"
@@ -693,9 +679,6 @@ msgstr "བཟོ་བསྐྲུན་ཚེས་གྲངས།"
 
 msgid "Last access"
 msgstr "ལྟ་སྤྱོད་མཐའ་མ།"
-
-msgid "Connection"
-msgstr "སྦྲེལ་མཐུད།"
 
 msgid "Whistleblower's last access"
 msgstr "གསང་སྒྲོག་པའི་ལྟ་སྤྱོད་མཐའ་མ།"
@@ -1041,7 +1024,7 @@ msgstr "དྲི་བའི་སྡེ་ཚན།"
 msgid "Hint"
 msgstr "བརྡ་སྟོན།"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "ལྡན་དགོས།"
 
 msgid "Accept multiple file uploads"
@@ -1302,14 +1285,6 @@ msgstr "ཁྱེད་ཀྱི་ཁ་པར་སྟེང་བཀའ་འ
 
 msgid "Scan the QR code with the app"
 msgstr "ཉེར་སྤྱོད་ལྷན་ QR གསང་རྟགས་འཚག་སེལ་བྱ།"
-
-msgid "Hint: How to hide your receipt"
-msgstr "བརྡ་སྟོན།: ཁྱེད་ཀྱི་འབྱོར་འཛིན་སྦས་སྐུང་བྱ་ཚུལ།"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "ཁྱེད་ཀྱི་འབྱོར་འཛིན་སྦས་སྐུང་བྱེད་པའི་ཐབས་ལམ་བེད་སྤྱོད་ལྡན་པ་ཞིག་ནི་བུན་བྱང་ཨང་གྲངས་ལྟར་འབྲི་རྒྱུ་ཡིན་ཞིང་། དེའི་ནང་དུས་ཡོལ་ཚེས་གྲངས་ཡང་འཚུད་དགོས། "
 
 msgid "Error!"
 msgstr "ནོར་སྐྱོན།"

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swahili (http://www.transifex.com/otf/globaleaks/language/sw/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -148,14 +148,6 @@ msgstr "Hifadhi zote"
 
 msgid "Access control"
 msgstr "Dhibiti ufikiaji"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Uunganisho umelindwa  na HTTPS kuhakikisha usiri."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "Uunganisho umelindwa na Tor kuhakikisha usiri na\n\nkujulikana."
 
 msgid "Number"
 msgstr "Namba"
@@ -591,9 +583,6 @@ msgstr "Wezesha uingiaji rahisi"
 msgid "Enable search engines indexing"
 msgstr "Wezesha kivinjari cha kutafuta"
 
-msgid "Enable the receipt hint"
-msgstr "Wezesha kidokezo cha kupokea"
-
 msgid "Default questionnaire"
 msgstr "Chaguo la msingi la dodoso"
 
@@ -630,9 +619,6 @@ msgstr "Wezesha sehemu ya jukumu la Mwangalizi"
 
 msgid "Enable scoring system"
 msgstr "Wezesha mfumo wa upataji wa alama"
-
-msgid "Enable private annotations"
-msgstr "Wezesha lebo za kibinafsi"
 
 msgid "Logging level"
 msgstr "Kiwango cha kuingia"
@@ -692,9 +678,6 @@ msgstr ""
 
 msgid "Last access"
 msgstr "Mara ya mwisho kuingia"
-
-msgid "Connection"
-msgstr "Mwunganisho"
 
 msgid "Whistleblower's last access"
 msgstr "Mara ya mwisho kwa mtoa taarifa za siri kuingia"
@@ -1040,7 +1023,7 @@ msgstr "Kundi la swali"
 msgid "Hint"
 msgstr "Kidokezo"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Inahitajika"
 
 msgid "Accept multiple file uploads"
@@ -1301,14 +1284,6 @@ msgstr "Weka programu ya uthibitishaji kwenye simu yako"
 
 msgid "Scan the QR code with the app"
 msgstr "Changanua nambari ya QR na programu"
-
-msgid "Hint: How to hide your receipt"
-msgstr "Dondoo: Jinsi ya kuficha risiti yako"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Njia muhimu ya kuficha risiti yako ni kuiandika kama namba ya kadi ya mkopo\n\n i.e. kwa kujumuisha pia tarehe ya muda wake wa kuisha."
 
 msgid "Error!"
 msgstr "Kosa!"

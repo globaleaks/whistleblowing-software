@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -153,14 +153,6 @@ msgstr "Shrani vse"
 
 msgid "Access control"
 msgstr "Seznam sprememb"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Povezava je varovana s protokolom HTTPS in zagotavlja zaupnost."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "Povezava je varovana z brskalnikom Tor in zagotavlja zaupnost ter anonimnost."
 
 msgid "Number"
 msgstr "Številka"
@@ -596,9 +588,6 @@ msgstr "Omogoči poenostavljen vpis"
 msgid "Enable search engines indexing"
 msgstr "Omogoči indeksiranje iskalnikom"
 
-msgid "Enable the receipt hint"
-msgstr "Omogoči namig za potrdilo"
-
 msgid "Default questionnaire"
 msgstr "Privzeti vprašalnik"
 
@@ -635,9 +624,6 @@ msgstr "Omogoči skrbniško uporabniško vlogo"
 
 msgid "Enable scoring system"
 msgstr "Omogoči sistem točkovanja"
-
-msgid "Enable private annotations"
-msgstr "Omogoči zasebne opombe"
 
 msgid "Logging level"
 msgstr "Stopnja opozorila"
@@ -697,9 +683,6 @@ msgstr "Datum vnosa"
 
 msgid "Last access"
 msgstr "Zadnji dostop"
-
-msgid "Connection"
-msgstr "Povezava"
 
 msgid "Whistleblower's last access"
 msgstr "Prijaviteljev zadnji dostop"
@@ -1045,7 +1028,7 @@ msgstr "Skupina vprašanj"
 msgid "Hint"
 msgstr "Namig"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Zahtevano"
 
 msgid "Accept multiple file uploads"
@@ -1306,14 +1289,6 @@ msgstr "V telefon namestite aplikacijo za preverjanje pristnosti"
 
 msgid "Scan the QR code with the app"
 msgstr "Preberite QR kodo z aplikacijo."
-
-msgid "Hint: How to hide your receipt"
-msgstr "Namig, kako skriti vašo šifro ključa"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Uporaben način, da prikrijete kodo, ki ste jo prejeli ob oddaji prijave, je, da jo zapišete kot številko kreditne kartice, torej z datumom poteka veljavnosti vred.\n "
 
 msgid "Error!"
 msgstr "Napaka!"

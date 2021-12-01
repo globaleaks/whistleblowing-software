@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Tatar (http://www.transifex.com/otf/globaleaks/language/tt/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -148,14 +148,6 @@ msgstr "Барысын да саклау"
 
 msgid "Access control"
 msgstr "Керү белән идарә итү "
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Бәйләнеш хосусыйлыкны тәэмин итүче HTTPS протоколы белән сакланды."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "Бәйләнеш хосусыйлыкны һәм анонимлыкны тәэмин итүче Tor белән сакланды."
 
 msgid "Number"
 msgstr "Сан"
@@ -591,9 +583,6 @@ msgstr "Гадиләштерелгән керүне кабызу"
 msgid "Enable search engines indexing"
 msgstr "Эзләү системаларында индекслануны кабызу"
 
-msgid "Enable the receipt hint"
-msgstr "Код алу өчен киңәшне кабызыгыз"
-
 msgid "Default questionnaire"
 msgstr "Килешенгәнчә сораулык"
 
@@ -630,9 +619,6 @@ msgstr "Кулланучы өчен җаваплы зат ролен кабыз�
 
 msgid "Enable scoring system"
 msgstr "Баллы бәяләү системасын кабызу"
-
-msgid "Enable private annotations"
-msgstr "Хосусый аннотацияләрне кабызу"
 
 msgid "Logging level"
 msgstr "Протокол алып бару дәрәҗәсе"
@@ -692,9 +678,6 @@ msgstr "Төзү датасы"
 
 msgid "Last access"
 msgstr "Cоңгы керү"
-
-msgid "Connection"
-msgstr "Тоташу"
 
 msgid "Whistleblower's last access"
 msgstr "Мәгълүмат җиткерүченең соңгы керүе"
@@ -1040,7 +1023,7 @@ msgstr "Сораулар төркеме"
 msgid "Hint"
 msgstr "Ярдәм"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Таләп ителә"
 
 msgid "Accept multiple file uploads"
@@ -1301,14 +1284,6 @@ msgstr "Телефоныгызга аутентификация кушымтас
 
 msgid "Scan the QR code with the app"
 msgstr "Кушымта белән QR кодны сканерлагыз"
-
-msgid "Hint: How to hide your receipt"
-msgstr "Киңәш: алу кодын ничек яшерергә"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Алу кодын яшерүнең файдалы ысулы - аны кредит картасы номеры итеп язу, ягъни анда вакыты чыгу датасын күрсәтү."
 
 msgid "Error!"
 msgstr "Хата!"

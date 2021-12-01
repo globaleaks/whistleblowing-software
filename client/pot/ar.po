@@ -53,7 +53,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -196,14 +196,6 @@ msgstr "تخزين الكل"
 
 msgid "Access control"
 msgstr "سيطرة الوصول"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "تمّ تأمين الاتصال المستخدم لارسال البلاغ ب HTTPS لضمان السرّية."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr " تم تأمين الاتصال لإرسال هذا التقديم ب Tor لضمان السرية وعدم الكشف عن هويتك."
 
 msgid "Number"
 msgstr "رقم"
@@ -639,9 +631,6 @@ msgstr "تمكين تسجيل دخول مبسط"
 msgid "Enable search engines indexing"
 msgstr "تفعيل فهرسة محركات البحث"
 
-msgid "Enable the receipt hint"
-msgstr "تمكين إشارة الإستلام"
-
 msgid "Default questionnaire"
 msgstr "الاستطلاع الإفتراضي"
 
@@ -678,9 +667,6 @@ msgstr "تمكين دور المستخدم الوصي"
 
 msgid "Enable scoring system"
 msgstr "تمكين نظام تسجيل النقاط"
-
-msgid "Enable private annotations"
-msgstr ""
 
 msgid "Logging level"
 msgstr "مستوى التسجيل"
@@ -740,9 +726,6 @@ msgstr "تاريخ الانشاء"
 
 msgid "Last access"
 msgstr "آخر دخول"
-
-msgid "Connection"
-msgstr "اتصال"
 
 msgid "Whistleblower's last access"
 msgstr "ﺁخر دخول لـ WB"
@@ -1088,7 +1071,7 @@ msgstr "مجموعة الأسئلة"
 msgid "Hint"
 msgstr "تلميح"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "مطلوب"
 
 msgid "Accept multiple file uploads"
@@ -1349,14 +1332,6 @@ msgstr "تثبيت تطبيق استيثاقي على هاتفك"
 
 msgid "Scan the QR code with the app"
 msgstr "امسح رمز QR باستخدام التطبيق"
-
-msgid "Hint: How to hide your receipt"
-msgstr "إشارة: كيف تخفى إستلامك"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "كتابة الإستلام وكأنه رقم كارت التأمين، أي كتابته مع تاريخ انتهاء الصلاحية، هى طريقة فعالة لاخفائه."
 
 msgid "Error!"
 msgstr "خطأ!"

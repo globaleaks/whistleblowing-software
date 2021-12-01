@@ -30,7 +30,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -173,14 +173,6 @@ msgstr "Simpan semua"
 
 msgid "Access control"
 msgstr "Kendali akses"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Sambungan telah diamankan dengan HTTPS untuk menjamin kerahasiaan."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "Sambungan telah diamankan dengan Tor untuk menjamin kerahasiaan dan anonimitas."
 
 msgid "Number"
 msgstr "Nomor"
@@ -502,59 +494,59 @@ msgid "Please summarize your report in a few words."
 msgstr "Deskripsikan laporan Anda dalam beberapa kata."
 
 msgid "Where did the facts happen?"
-msgstr ""
+msgstr "Di mana insiden itu terjadi?"
 
 msgid "When did the facts happen?"
-msgstr ""
+msgstr "Kapan insiden itu terjadi?"
 
 msgid "How are you involved in the reported facts?"
-msgstr ""
+msgstr "Apa keterlibatan Anda dalam insiden yang dilaporkan?"
 
 msgid "I’m a victim"
-msgstr ""
+msgstr "Saya korban"
 
 msgid "I’m involved in the facts"
-msgstr ""
+msgstr "Saya terlibat dalam insiden itu"
 
 msgid "I witnessed the facts in person"
-msgstr ""
+msgstr "Saya menyaksikan insiden itu secara langsung"
 
 msgid "I was personally told by a direct witness"
-msgstr ""
+msgstr "Saya pribadi diberitahu oleh saksi langsung"
 
 msgid "It is a rumor I heard"
-msgstr ""
+msgstr "Saya mendengar rumor tentang itu"
 
 msgid "Do you have evidence to support your report?"
-msgstr ""
+msgstr "Apakah Anda memiliki bukti untuk mendukung laporan Anda?"
 
 msgid "Please attach the evidence to support your report."
-msgstr ""
+msgstr "Silakan lampirkan bukti untuk mendukung laporan Anda."
 
 msgid "Please describe the evidence in detail."
-msgstr ""
+msgstr "Silakan jelaskan bukti secara rinci."
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr ""
+msgstr "Deskripsi menyeluruh dari bukti yang dikirimkan dapat meningkatkan kemampuan kami untuk mengevaluasi klaim dan menyelidiki. Dimohon untuk berhati-hati dalam merujuk bagian penting dari setiap video, gambar, atau dokumen yang dikirimkan sebagai bukti."
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
+msgstr "Sudahkah Anda melaporkan insiden tersebut ke organisasi lainnya?"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr ""
+msgstr "Sebutkan organisasi yang telah Anda informasikan tentang insiden ini."
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr ""
+msgstr "Apakah organisasi tersebut menyelidiki klaim Anda? Jika demikian, apa hasilnya?"
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr ""
+msgstr "Di mana insiden itu terjadi?"
 
 msgid "File a report"
 msgstr "Buat laporan"
@@ -616,9 +608,6 @@ msgstr "Aktifkan metode masuk yang mudah"
 msgid "Enable search engines indexing"
 msgstr "Aktifkan pengindeksan mesin pencari"
 
-msgid "Enable the receipt hint"
-msgstr "Aktifkan petunjuk tanda terima"
-
 msgid "Default questionnaire"
 msgstr "Kuesioner bawaan "
 
@@ -655,9 +644,6 @@ msgstr "Aktifkan peran pihak penjaga"
 
 msgid "Enable scoring system"
 msgstr "Aktifkan sistem skor"
-
-msgid "Enable private annotations"
-msgstr "Aktifkan anotasi pribadi"
 
 msgid "Logging level"
 msgstr "Tingkat pencatatan"
@@ -717,9 +703,6 @@ msgstr "Tanggal pembuatan"
 
 msgid "Last access"
 msgstr "Akses terakhir"
-
-msgid "Connection"
-msgstr "Koneksi"
 
 msgid "Whistleblower's last access"
 msgstr "Akses terakhir informan publik"
@@ -1065,8 +1048,8 @@ msgstr "Kelompok pertanyaan"
 msgid "Hint"
 msgstr "Petunjuk"
 
-msgid "Mandatory"
-msgstr "Memerlukan"
+msgid "Required"
+msgstr "Wajib"
 
 msgid "Accept multiple file uploads"
 msgstr "Menerima unggahan banyak berkas"
@@ -1326,14 +1309,6 @@ msgstr "Pasang aplikasi autentikator pada ponsel Anda"
 
 msgid "Scan the QR code with the app"
 msgstr "Pindai kode QR dengan aplikasi tersebut"
-
-msgid "Hint: How to hide your receipt"
-msgstr "Petunjuk: Bagaimana menyembunyikan tanda terima Anda"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Cara yang baik untuk menyembunyikan tanda terima Anda adalah dengan menuliskannya seperti nomor kartu kredit, termasuk tanggal kedaluwarsanya. "
 
 msgid "Error!"
 msgstr "Gagal!"

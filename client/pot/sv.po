@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -169,14 +169,6 @@ msgstr "Spara allt"
 
 msgid "Access control"
 msgstr "Åtkomstkontroll"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Anslutningen har säkrats med HTTPS, som garanterar sekretess."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "Anslutningen har säkrats med Tor, som garanterar sekretess och anonymitet."
 
 msgid "Number"
 msgstr "Nummer"
@@ -612,9 +604,6 @@ msgstr "Aktivera förenklad inloggning"
 msgid "Enable search engines indexing"
 msgstr "Aktivera sökmotorindexering"
 
-msgid "Enable the receipt hint"
-msgstr "Aktivera tips om mottaget meddelande"
-
 msgid "Default questionnaire"
 msgstr "Standardfrågeformulär"
 
@@ -651,9 +640,6 @@ msgstr "Aktivera användarrollen som systemförvaltare"
 
 msgid "Enable scoring system"
 msgstr "Aktivera system med poängsättning"
-
-msgid "Enable private annotations"
-msgstr "Aktivera privata anteckningar"
 
 msgid "Logging level"
 msgstr "Loggningsnivå"
@@ -713,9 +699,6 @@ msgstr "Datum för skapande"
 
 msgid "Last access"
 msgstr "Senaste åtkomst"
-
-msgid "Connection"
-msgstr "Förbindelse"
 
 msgid "Whistleblower's last access"
 msgstr "Tidpunkt för visselblåsarens senaste besök"
@@ -1061,7 +1044,7 @@ msgstr "Frågegrupp"
 msgid "Hint"
 msgstr "Ledtråd"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Obligatorisk"
 
 msgid "Accept multiple file uploads"
@@ -1322,14 +1305,6 @@ msgstr "Installera en autentiseringsapp på din smarttelefon"
 
 msgid "Scan the QR code with the app"
 msgstr "Scanna QR-koden med appen"
-
-msgid "Hint: How to hide your receipt"
-msgstr "Ledtråd: Hur du döljer ditt läskvitto"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Ett bra sätt att dölja ditt läskvitto är att skriva ner det som ett kreditkortsnummer, dvs. genom att även inbegripa ett utgångsdatum."
 
 msgid "Error!"
 msgstr "Fel!"

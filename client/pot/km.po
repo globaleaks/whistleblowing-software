@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Khmer (http://www.transifex.com/otf/globaleaks/language/km/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -151,14 +151,6 @@ msgstr "រក្សាទុកទាំងអស់"
 
 msgid "Access control"
 msgstr "គ្រប់គ្រងការប្រើប្រាស់"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "ការតភ្ជាប់ត្រូវបានរក្សាសុវត្ថិភាពជាមួយ HTTPS ដោយធានានូវការសម្ងាត់។"
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "ការតភ្ជាប់មានសុវត្ថិភាពជាមួយ Tor ដោយធានាការសម្ងាត់ និងមានភាពអនាមិក។"
 
 msgid "Number"
 msgstr "លេខ"
@@ -480,59 +472,59 @@ msgid "Please summarize your report in a few words."
 msgstr "ពណ៌នារបាយកាណ៍របស់អ្នក​ ដោយប្រើពីរ បីពាក្យ។"
 
 msgid "Where did the facts happen?"
-msgstr ""
+msgstr "តើហេតុការណ៍នេះ កើតឡើងនៅឯណា?"
 
 msgid "When did the facts happen?"
-msgstr ""
+msgstr "តើហេតុការណ៍នេះ កើតឡើងនៅពេលណា?"
 
 msgid "How are you involved in the reported facts?"
-msgstr ""
+msgstr "តើអ្នកមានពាក់ព័ន្ធអ្វីខ្លះនៅក្នុងហេតុការណ៍ដែលបានរាយការណ៍?"
 
 msgid "I’m a victim"
-msgstr ""
+msgstr "ខ្ញុំជាជនរងគ្រោះ"
 
 msgid "I’m involved in the facts"
-msgstr ""
+msgstr "ខ្ញុំជាប់ពាក់ព័ន្ធក្នុងហេតុការណ៍នេះ"
 
 msgid "I witnessed the facts in person"
-msgstr ""
+msgstr "ខ្ញុំបានឃើញហេតុការណ៍នេះដោយផ្ទាល់"
 
 msgid "I was personally told by a direct witness"
-msgstr ""
+msgstr "ខ្ញុំត្រូវបានប្រាប់ដោយសាក្សីផ្ទាល់"
 
 msgid "It is a rumor I heard"
-msgstr ""
+msgstr "ពាក្យចចាមអារាម--ខ្ញុំបានឮអំពីវា"
 
 msgid "Do you have evidence to support your report?"
-msgstr ""
+msgstr "តើអ្នកមានភស្តុតាងដើម្បីគាំទ្ររបាយការណ៍របស់អ្នកឬទេ?"
 
 msgid "Please attach the evidence to support your report."
-msgstr ""
+msgstr "សូមភ្ជាប់ភស្តុតាង ដើម្បីគាំទ្ររបាយការណ៍របស់អ្នក។"
 
 msgid "Please describe the evidence in detail."
-msgstr ""
+msgstr "សូមពណ៌នាភស្តុតាងដោយលម្អិត។"
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr ""
+msgstr "ការពិពណ៌នាយ៉ាងលម្អិត នៃភស្តុតាងដែលបានដាក់បញ្ជូន ពង្រឹងសមត្ថភាពយើងខ្ញុំ ដើម្បីវាយតម្លៃការអះអាង និងស៊ើបអង្កេត។ សូមថែរក្សាឯកសារយោងផ្នែកសំខាន់ៗនៃវីដេអូណាមួយ រូបភាព ឬឯកសារដែលបានដាក់បញ្ជូនជាភស្តុតាង។"
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
+msgstr "តើអ្នកធ្លាប់រាយការណ៍ហេតុការណ៍ទៅកាន់ស្ថាប័នណាទេ?"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr ""
+msgstr "សូមរាយឈ្មោះស្ថាប័នដែលអ្នកបានជូនដំណឹងអំពីហេតុការណ៍នេះ។"
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr ""
+msgstr "តើស្ថាប័នទាំងនេះបានស៊ើបអង្កេតការអះអាងរបស់អ្នកឬទេ? បើមាន តើលទ្ធផលយ៉ាងណា? "
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr ""
+msgstr "តើលទ្ធផលបែបណាដែលអ្នកចង់បាន/ទទួលបាន?"
 
 msgid "File a report"
 msgstr "បញ្ចូលរបាយការណ៍"
@@ -594,9 +586,6 @@ msgstr "បើកការចូលសាមញ្ញ"
 msgid "Enable search engines indexing"
 msgstr "បើកការផ្ទុកម៉ាស៊ីនស្វែងរក"
 
-msgid "Enable the receipt hint"
-msgstr "បើកជំនួយទទួល"
-
 msgid "Default questionnaire"
 msgstr "កម្រងសំណួរលំនាំដើម"
 
@@ -633,9 +622,6 @@ msgstr "បើកតួនាទីជាអ្នកប្រើប្រាស
 
 msgid "Enable scoring system"
 msgstr "បើកប្រព័ន្ធដាក់ពិន្ទុ"
-
-msgid "Enable private annotations"
-msgstr "បើកចំណារពន្យល់ឯកជន"
 
 msgid "Logging level"
 msgstr "កម្រិតការចូលប្រើប្រាស់"
@@ -695,9 +681,6 @@ msgstr "កាលបរិច្ឆេទបង្កើត"
 
 msgid "Last access"
 msgstr "ចូលប្រើប្រាស់ចុងក្រោយ"
-
-msgid "Connection"
-msgstr "ការតភ្ជាប់"
 
 msgid "Whistleblower's last access"
 msgstr "ការចូលប្រើប្រាស់ចុងកក្រោយរបស់អ្នករាយការណ៍"
@@ -1043,7 +1026,7 @@ msgstr "ក្រុមសំណួរ"
 msgid "Hint"
 msgstr "ជំនួយ"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "ទាមទារ"
 
 msgid "Accept multiple file uploads"
@@ -1304,14 +1287,6 @@ msgstr "ដំឡើងកម្មវិធីសម្រាប់ផ្ទៀ
 
 msgid "Scan the QR code with the app"
 msgstr "ស្កេនកូដ QR ជាមួយកម្មវិធីនេះ"
-
-msgid "Hint: How to hide your receipt"
-msgstr "ជំនួយ៖ របៀបលាក់បង្កាន់ដៃរបស់អ្នក"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "វិធីមានប្រសិទ្ធភាពដើម្បីលាក់បង្កាន់ដៃរបស់អ្នក គឺត្រូវកត់ទុកដូចលេខកាតឥណទាន ឧទា. ដោយរួមបញ្ចូលកាលបរិច្ឆេទផុតកំណត់ផងដែរ។"
 
 msgid "Error!"
 msgstr "បញ្ហា!"

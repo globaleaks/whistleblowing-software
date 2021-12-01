@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Pashto (http://www.transifex.com/otf/globaleaks/language/ps/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -148,14 +148,6 @@ msgstr "ټول ثبت کړه"
 
 msgid "Access control"
 msgstr "د لاسرسي کنټرول"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "دغه اتصال په HTTPS سره خوندي شوی چې د محرمیت تضمین کوي"
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "دغه اتصال په Tor سره خوندي شوی چې د محرمیبت او ناشناسي تضمین کوي"
 
 msgid "Number"
 msgstr "شمېره"
@@ -591,9 +583,6 @@ msgstr "ساده دننه کېدل فعال کړئ"
 msgid "Enable search engines indexing"
 msgstr "د پلټنې د انجنونو د شاخص فعالول"
 
-msgid "Enable the receipt hint"
-msgstr "د تر لاسه کولو د نښې فعالول"
-
 msgid "Default questionnaire"
 msgstr "عادې پوښتنلیک"
 
@@ -630,9 +619,6 @@ msgstr "د ساتونکي کارن د رول فعالول"
 
 msgid "Enable scoring system"
 msgstr "د نمرې ورکولو د سیستم فعالول"
-
-msgid "Enable private annotations"
-msgstr "شخصي تشریحات فعال کړئ"
 
 msgid "Logging level"
 msgstr "د ننوتلو کچه"
@@ -692,9 +678,6 @@ msgstr "د جوړولو نېټه"
 
 msgid "Last access"
 msgstr "وروستی لاسرسی"
-
-msgid "Connection"
-msgstr "اتصال"
 
 msgid "Whistleblower's last access"
 msgstr "د افشاګر وروستی لاسرسی"
@@ -1040,7 +1023,7 @@ msgstr "د پوښتې ګروپ"
 msgid "Hint"
 msgstr "اشاره"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "حتمي دي"
 
 msgid "Accept multiple file uploads"
@@ -1301,14 +1284,6 @@ msgstr "په خپل ټلیفون کې یو تصدیق کوونکی اپلیکی�
 
 msgid "Scan the QR code with the app"
 msgstr "د QR کوډ په دې اپلیکیشن سره سکن کړئ"
-
-msgid "Hint: How to hide your receipt"
-msgstr "اشاره: څرنګه خپل رسید پټ کړئ"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "د خپل رسید د پټولو لپاره ګټوره لاره دا ده چې هغه لکه د کریډيټ کارت نمبر په څیر ولیکو، د بېلګې په توګه د انقضاء د نېټې په ګډون."
 
 msgid "Error!"
 msgstr "تیروتنه!"

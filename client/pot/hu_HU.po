@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -165,14 +165,6 @@ msgstr "Összes mentése"
 
 msgid "Access control"
 msgstr "Hozzáférés kezelése"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "A kapcsolat HTTPS-sel védett, így biztosítja a titkosságot."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "A kapcsolat Tor-ral védett, így biztosítja a titkosságot és az anonimitást."
 
 msgid "Number"
 msgstr "Szám"
@@ -608,9 +600,6 @@ msgstr "Egyszerűsített login engedélyezése"
 msgid "Enable search engines indexing"
 msgstr "Keresőmotorok indexelésének engedélyezése"
 
-msgid "Enable the receipt hint"
-msgstr "Nyugtázás engedélyezése"
-
 msgid "Default questionnaire"
 msgstr "Alap kérdőív"
 
@@ -647,9 +636,6 @@ msgstr "Kezelő felhasználó típus engedélyezése"
 
 msgid "Enable scoring system"
 msgstr "Pontozási rendszer engedélyezése"
-
-msgid "Enable private annotations"
-msgstr "Privát megjegyzések engedélyezése"
 
 msgid "Logging level"
 msgstr "Log szint"
@@ -709,9 +695,6 @@ msgstr "Létrehozás ideje"
 
 msgid "Last access"
 msgstr "Legutóbbi hozzáférés"
-
-msgid "Connection"
-msgstr "Kapcsolat"
 
 msgid "Whistleblower's last access"
 msgstr "A bejelentő utolsó belépési időpontja"
@@ -1057,7 +1040,7 @@ msgstr "Kérdéscsoport"
 msgid "Hint"
 msgstr "Tipp"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Kötelező"
 
 msgid "Accept multiple file uploads"
@@ -1318,14 +1301,6 @@ msgstr "Telepítsen egy authentikátor appot a telefonjára"
 
 msgid "Scan the QR code with the app"
 msgstr "A QR kód beolvasása az app-pal"
-
-msgid "Hint: How to hide your receipt"
-msgstr "Tipp: hogyan rejtse el a kulcs kódot"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Hasznos módja lehet a visszaigazolás elrejtésének, ha úgy írja le mint egy hitelkártya számot, pl. mellé ír egy lejárati dátumot."
 
 msgid "Error!"
 msgstr "Hiba!"

@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -159,14 +159,6 @@ msgstr "سب محفوظ کریں"
 
 msgid "Access control"
 msgstr "رسائی کااختیار"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "رازداری کے لیے یہ رابطہ HTTPS کےساتھ محفوظ کر لیا گیا ہے"
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "رازداری ا ورگمنامی کے لیے یہ رابطہTorکےساتھ محفوظ کر لیا گیا ہے"
 
 msgid "Number"
 msgstr "عدد"
@@ -602,9 +594,6 @@ msgstr ""
 msgid "Enable search engines indexing"
 msgstr "سرچ انجن اشاریہ سازی فعال کیجیے"
 
-msgid "Enable the receipt hint"
-msgstr ""
-
 msgid "Default questionnaire"
 msgstr ""
 
@@ -640,9 +629,6 @@ msgid "Enable custodian user role"
 msgstr ""
 
 msgid "Enable scoring system"
-msgstr ""
-
-msgid "Enable private annotations"
 msgstr ""
 
 msgid "Logging level"
@@ -703,9 +689,6 @@ msgstr "تاریخِ تخلیق"
 
 msgid "Last access"
 msgstr "آخری رسائی"
-
-msgid "Connection"
-msgstr "کنکشن"
 
 msgid "Whistleblower's last access"
 msgstr ""
@@ -1051,7 +1034,7 @@ msgstr "سوال گروپ"
 msgid "Hint"
 msgstr "تجاویز"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "درکار"
 
 msgid "Accept multiple file uploads"
@@ -1311,14 +1294,6 @@ msgid "Install an authenticator app on your phone"
 msgstr ""
 
 msgid "Scan the QR code with the app"
-msgstr ""
-
-msgid "Hint: How to hide your receipt"
-msgstr ""
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
 msgstr ""
 
 msgid "Error!"

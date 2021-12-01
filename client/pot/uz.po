@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uzbek (http://www.transifex.com/otf/globaleaks/language/uz/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -150,14 +150,6 @@ msgstr "Barchasini saqlash"
 
 msgid "Access control"
 msgstr "Ruxsat boshqaruvi"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Maxfiylikni taʼminlash maqsadida ulanish HTTPS protokolida shifrlandi."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "Maxfiylik va anonimlikni taʼminlash maqsadida ulanish Tor protokolida shifrlandi."
 
 msgid "Number"
 msgstr "Raqam"
@@ -593,9 +585,6 @@ msgstr "Soddalashtirilgan kirishni yoqish"
 msgid "Enable search engines indexing"
 msgstr "Qidiruv tizimlari indeksatsiyasiga ruxsat berish"
 
-msgid "Enable the receipt hint"
-msgstr "Qabul bildirgisini yoqish"
-
 msgid "Default questionnaire"
 msgstr "Birlamchi savolnoma"
 
@@ -632,9 +621,6 @@ msgstr "Himoyachi foydalanuvchi vakolatini yoqish"
 
 msgid "Enable scoring system"
 msgstr "Ballar tizimini yoqish"
-
-msgid "Enable private annotations"
-msgstr "Yopiq matnli izohlarni yoqish"
 
 msgid "Logging level"
 msgstr "Jurnal darajasi"
@@ -694,9 +680,6 @@ msgstr "Yaratilgan sanasi"
 
 msgid "Last access"
 msgstr "Oxirgi ochilgan vaqti"
-
-msgid "Connection"
-msgstr "Aloqa"
 
 msgid "Whistleblower's last access"
 msgstr "Oshkor qiluvchining oxirgi kirgan vaqti"
@@ -1042,7 +1025,7 @@ msgstr "Savol guruhi"
 msgid "Hint"
 msgstr "Bildirgi"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Majburiy"
 
 msgid "Accept multiple file uploads"
@@ -1303,14 +1286,6 @@ msgstr "Telefonga autentifikator ilovasini oʻrnatish"
 
 msgid "Scan the QR code with the app"
 msgstr "QR kodni ilova yordamida skanerlang"
-
-msgid "Hint: How to hide your receipt"
-msgstr "Bildirgi: Murojaat raqamini qanday yashirish mumkin"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Murojaat raqamini yashirishning oddiy usuli, kredit karta raqami kabi muddati bilan biror joyga yozib olishdir."
 
 msgid "Error!"
 msgstr "Xato!"

@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -157,14 +157,6 @@ msgstr "Uložiť všetko"
 
 msgid "Access control"
 msgstr "Riadenie prístupu"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Pripojenie bolo zabezpečené pomocou protokolu HTTPS, ktorý zabezpečuje dôvernosť."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "Pripojenie bolo zabezpečené pomocou Tor, čo zaisťuje dôvernosť a anonymitu."
 
 msgid "Number"
 msgstr "Číslo"
@@ -600,9 +592,6 @@ msgstr "Povoliť zjednodušené prihlásenie"
 msgid "Enable search engines indexing"
 msgstr "Povoliť vyhľadávačom indexovanie"
 
-msgid "Enable the receipt hint"
-msgstr "Povoliť možnosť pre príjem"
-
 msgid "Default questionnaire"
 msgstr "Prednastavený dotazník"
 
@@ -639,9 +628,6 @@ msgstr " Povoliť úlohu depozitára"
 
 msgid "Enable scoring system"
 msgstr "Aktivovať systém hodnotenia"
-
-msgid "Enable private annotations"
-msgstr "Povoliť súkromné anotácie"
 
 msgid "Logging level"
 msgstr "Prihlasovacia úroveň"
@@ -701,9 +687,6 @@ msgstr "Dátum vytvorenia"
 
 msgid "Last access"
 msgstr "Posledný prístup"
-
-msgid "Connection"
-msgstr "Spojenie"
 
 msgid "Whistleblower's last access"
 msgstr "Posledný prístup oznamovateľa"
@@ -1049,7 +1032,7 @@ msgstr "Skupina otázok"
 msgid "Hint"
 msgstr "Nápoveda"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Požadované"
 
 msgid "Accept multiple file uploads"
@@ -1310,14 +1293,6 @@ msgstr "Nainštalujte si do telefónu overovaciu aplikáciu"
 
 msgid "Scan the QR code with the app"
 msgstr "Naskenujte QR kód pomocou aplikácie"
-
-msgid "Hint: How to hide your receipt"
-msgstr "Návod: Ako skryť váš kód"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Odporúčaný spôsob, ako si uchovať prihlasovací kód, je zapísať si ho ako číslo kreditnej karty, tj. zahrnúť do neho dátum vypršania jeho platnosti."
 
 msgid "Error!"
 msgstr "Chyba!"

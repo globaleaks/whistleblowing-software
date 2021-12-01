@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca@valencia/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -161,14 +161,6 @@ msgstr "Guarde-ho tot"
 
 msgid "Access control"
 msgstr "Control d'accés"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "La connexió s'ha assegurat amb HTTPS per garantir la confidencialitat."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "La connexió ha sigut protegida amb Tor per garantir la seua confidencialitat i l'anonimat."
 
 msgid "Number"
 msgstr "Número"
@@ -604,9 +596,6 @@ msgstr "Activar inici de sessió simplificat"
 msgid "Enable search engines indexing"
 msgstr "Habilita els motors de cerca d'indexació"
 
-msgid "Enable the receipt hint"
-msgstr "Activa el suggeriment de recepció"
-
 msgid "Default questionnaire"
 msgstr "Qüestionari per defecte"
 
@@ -643,9 +632,6 @@ msgstr "Activar el rol d'usuari Custodi"
 
 msgid "Enable scoring system"
 msgstr "Activar el sistema de puntuacions"
-
-msgid "Enable private annotations"
-msgstr ""
 
 msgid "Logging level"
 msgstr "Nivell de log"
@@ -705,9 +691,6 @@ msgstr "Data de creació"
 
 msgid "Last access"
 msgstr "últim accés"
-
-msgid "Connection"
-msgstr "Connexió"
 
 msgid "Whistleblower's last access"
 msgstr ""
@@ -1053,7 +1036,7 @@ msgstr "Grup de preguntes"
 msgid "Hint"
 msgstr "Suggeriment"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Requerit"
 
 msgid "Accept multiple file uploads"
@@ -1314,14 +1297,6 @@ msgstr "Instal·lar una aplicació d'aunteticació al seu telèfon"
 
 msgid "Scan the QR code with the app"
 msgstr "Escanejar el codi QR amb l'aplicació"
-
-msgid "Hint: How to hide your receipt"
-msgstr "Suggeriment: com recordar el seu codi"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Un manera útil d'amagar el codi és anotar-lo com si fóra el número d'una targeta de crèdit i, per exemple, afegir també una data de caducitat."
 
 msgid "Error!"
 msgstr "Error!"

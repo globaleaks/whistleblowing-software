@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Uighur (Latin) (http://www.transifex.com/otf/globaleaks/language/ug@Latin/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -148,14 +148,6 @@ msgstr "Hemmini saqla"
 
 msgid "Access control"
 msgstr "Ziyaret kontroli"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Ulanmingizning bixeterligi HTTPS ning mexpiyetlik kapaliti arqiling saqliniwatidu."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "Ulanmingizning bixeterligi Tor ning mexpiyetlik we namsizliq kapaliti arqiling saqliniwatidu."
 
 msgid "Number"
 msgstr "San"
@@ -591,9 +583,6 @@ msgstr "Addilashqan tizimgha kirishni qozghat"
 msgid "Enable search engines indexing"
 msgstr "Axturush matorlirining indékislishini qozghat"
 
-msgid "Enable the receipt hint"
-msgstr "Talon isharitini qozghat"
-
 msgid "Default questionnaire"
 msgstr "Köngüldiki ray sinash"
 
@@ -630,9 +619,6 @@ msgstr "Saqlighuchi ishletküchi rolini qozghat"
 
 msgid "Enable scoring system"
 msgstr "Nomur qoyüsh sistémisini qozghat"
-
-msgid "Enable private annotations"
-msgstr "Shexsiy izahatlarni qozghat"
 
 msgid "Logging level"
 msgstr "Xatirige élish sewiyesi"
@@ -692,9 +678,6 @@ msgstr "Qurulghan chésla"
 
 msgid "Last access"
 msgstr "Axirqi ziyaret"
-
-msgid "Connection"
-msgstr "Baghlinishi"
 
 msgid "Whistleblower's last access"
 msgstr "Pash qilghuchining axirqi ziyariti"
@@ -1040,7 +1023,7 @@ msgstr "Su’al guruppisi"
 msgid "Hint"
 msgstr "Isharet"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Lazimliq"
 
 msgid "Accept multiple file uploads"
@@ -1301,14 +1284,6 @@ msgstr "Télifoningizgha bir delilligüchi ep qachilang"
 
 msgid "Scan the QR code with the app"
 msgstr "QR kodini bu ep bilen tariting"
-
-msgid "Hint: How to hide your receipt"
-msgstr "Isharet: taloningizni qandaq yoshurup qoyisiz"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Talon yoshurushning bir qollinishchan usuli uni inawetlik karta nomurigha oxshash, sürük chéslasi bilen qoshup bir yerge yézip qoyush."
 
 msgid "Error!"
 msgstr "Xataliq!"

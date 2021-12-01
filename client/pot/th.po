@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -158,14 +158,6 @@ msgstr "บันทึกทั้งหมด"
 
 msgid "Access control"
 msgstr "การควบคุมการเข้าถึง"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "การเชื่อมต่อได้รับการรักษาความปลอดภัยด้วย HTTPS เพื่อรับรองการรักษาความลับ"
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "การเชื่อมต่อได้รับการรักษาความปลอดภัยด้วย Tor เพื่อรับรองการรักษาความลับและการรักษาความเป็นนิรนาม"
 
 msgid "Number"
 msgstr "จำนวน"
@@ -523,7 +515,7 @@ msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr ""
+msgstr "คำอธิบายโดยละเอียดของหลักฐานที่ส่งเข้ามาจะช่วยเพิ่มขีดความสามารถของเราในการประเมินข้อเรียกร้องและการตรวจสอบ โปรดเลือกวิดีโอ ภาพ หรือเอกสารเฉพาะส่วนที่สำคัญเพื่อส่งมาเป็นหลักฐาน"
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
 msgstr "คุณได้รายงานเหตุการณ์ไปยังองค์กรอื่นบ้างหรือไม่?"
@@ -601,9 +593,6 @@ msgstr "เปิดใช้งานการลงชื่อเข้าใ
 msgid "Enable search engines indexing"
 msgstr "เปิดใช้การสร้างดัชนีเครื่องมือค้นหา"
 
-msgid "Enable the receipt hint"
-msgstr "เปิดใช้คำแนะนำเรื่องใบรับ"
-
 msgid "Default questionnaire"
 msgstr "แบบสอบถามมาตรฐาน"
 
@@ -640,9 +629,6 @@ msgstr "เปิดใช้บทบาทผู้พิทักษ์"
 
 msgid "Enable scoring system"
 msgstr "เปิดใช้งานระบบให้คะแนน"
-
-msgid "Enable private annotations"
-msgstr "เปิดใช้การเติมคำอธิบายส่วนตัว"
 
 msgid "Logging level"
 msgstr "ระดับการบันทึก"
@@ -702,9 +688,6 @@ msgstr "วันที่สร้าง"
 
 msgid "Last access"
 msgstr "เข้าถึงล่าสุด"
-
-msgid "Connection"
-msgstr "การเชื่อมต่อ"
 
 msgid "Whistleblower's last access"
 msgstr "การเข้าถึงของผู้แจ้งเบาะแสล่าสุด"
@@ -1050,7 +1033,7 @@ msgstr "กลุ่มคำถาม"
 msgid "Hint"
 msgstr "คำแนะนำ"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "จำเป็นต้องใช้"
 
 msgid "Accept multiple file uploads"
@@ -1311,14 +1294,6 @@ msgstr "ติดตั้งแอปยืนยันตัวตนบนโ
 
 msgid "Scan the QR code with the app"
 msgstr "สแกนรหัส QR ด้วยแอป"
-
-msgid "Hint: How to hide your receipt"
-msgstr "คำแนะนำ: จะซ่อนใบรับของคุณอย่างไร"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "วิธีหนึ่งที่คุณจะซ่อนเลขใบรับของคุณได้ก็คือ เขียนมันเหมือนเขียนเลขบัตรเครดิต นั่นคือให้เขียนวันหมดอายุเข้าไปด้วย"
 
 msgid "Error!"
 msgstr "ข้อผิดพลาด!"

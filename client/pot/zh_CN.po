@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -168,14 +168,6 @@ msgstr "全部保存"
 
 msgid "Access control"
 msgstr "访问控制"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "连接使用安全的 HTTPS，确保机密。"
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "连接使用安全的 Tor，确保机密和匿名。"
 
 msgid "Number"
 msgstr "数字"
@@ -611,9 +603,6 @@ msgstr "启用简易登录"
 msgid "Enable search engines indexing"
 msgstr "启用搜索引擎索引"
 
-msgid "Enable the receipt hint"
-msgstr "启用接收人提示"
-
 msgid "Default questionnaire"
 msgstr "默认问卷"
 
@@ -650,9 +639,6 @@ msgstr "启用保管人用户角色"
 
 msgid "Enable scoring system"
 msgstr "启用评分系统"
-
-msgid "Enable private annotations"
-msgstr "启用私人注释"
 
 msgid "Logging level"
 msgstr "日志记录级别"
@@ -712,9 +698,6 @@ msgstr "创建日期"
 
 msgid "Last access"
 msgstr "上次访问"
-
-msgid "Connection"
-msgstr "连接"
 
 msgid "Whistleblower's last access"
 msgstr "揭发者上次访问"
@@ -1060,7 +1043,7 @@ msgstr "问题组"
 msgid "Hint"
 msgstr "提示"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "必须"
 
 msgid "Accept multiple file uploads"
@@ -1321,14 +1304,6 @@ msgstr "在手机上安装验证应用"
 
 msgid "Scan the QR code with the app"
 msgstr "扫描该应用的二维码"
-
-msgid "Hint: How to hide your receipt"
-msgstr "提示：如何隐藏接收人"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "一种保管回执的有效方式是将其记下来，类似信用卡号码，这表示还要记下过期日期。"
 
 msgid "Error!"
 msgstr "出错！"

@@ -2,14 +2,16 @@
 # Translators:
 # A P <petrovski.albert@gmail.com>, 2016
 # Filip Parag, 2021
+# Filip Parag, 2021
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2021
 # Ivan Petrovic <ivan@ipplus.rs>, 2013-2014
+# Natasa Stankovic, 2021
 # Natasa Stankovic, 2021
 # Natasa Stankovic, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Serbian (Latin) (Serbia) (http://www.transifex.com/otf/globaleaks/language/sr_RS@latin/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -152,14 +154,6 @@ msgstr "Sačuvaj sve"
 
 msgid "Access control"
 msgstr "Kontrola pristupa"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Veza je zaštićena HTTPS protokolom, koji obezbeđuje poverljivost."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "Veza je zaštićena u pregledaču Tor, koji obezbeđuje poverljivost i anonimnost."
 
 msgid "Number"
 msgstr "Brој"
@@ -595,9 +589,6 @@ msgstr "Uključi pojednostavljeno prijavljivanje"
 msgid "Enable search engines indexing"
 msgstr "Omogući indeksiranje od strane pretraživača"
 
-msgid "Enable the receipt hint"
-msgstr "Uključi podsetnik za potvrdni broj"
-
 msgid "Default questionnaire"
 msgstr "Podrazumevani upitnik"
 
@@ -634,9 +625,6 @@ msgstr "Uključi korisničku ulogu čuvara"
 
 msgid "Enable scoring system"
 msgstr "Uključi sistem ocenjivanja"
-
-msgid "Enable private annotations"
-msgstr "Uključi privatne beleške"
 
 msgid "Logging level"
 msgstr "Stepen vođenja evidencije"
@@ -696,9 +684,6 @@ msgstr "Datum kreiranja"
 
 msgid "Last access"
 msgstr "Poslednji pristup"
-
-msgid "Connection"
-msgstr "Veza"
 
 msgid "Whistleblower's last access"
 msgstr "Poslednji pristup uzbunjivača"
@@ -1044,7 +1029,7 @@ msgstr "Skup pitanja"
 msgid "Hint"
 msgstr "Podsetnik"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Оbаvеznо"
 
 msgid "Accept multiple file uploads"
@@ -1305,14 +1290,6 @@ msgstr "Instalirajte aplikaciju za potvrdu identiteta na telefonu"
 
 msgid "Scan the QR code with the app"
 msgstr "Skenirajte QR kod pomoću aplikacije"
-
-msgid "Hint: How to hide your receipt"
-msgstr "Savet: Kako da sakrijete potvrdni broj"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Jednostavan način da sakrijete potvrdni broj jeste da ga zapišete u obliku broja kreditne kartice, sa izmišljenim datumom isteka."
 
 msgid "Error!"
 msgstr "Greška!"

@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -155,14 +155,6 @@ msgstr "儲存全部"
 
 msgid "Access control"
 msgstr "存取控制"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "連線已安全地透過 HTTPS 以確保其私密性。"
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "連線已安全地透由 Tor 網路以確保其私密與匿名。"
 
 msgid "Number"
 msgstr "數字"
@@ -598,9 +590,6 @@ msgstr "開啟簡易登入"
 msgid "Enable search engines indexing"
 msgstr "可讓搜尋引擎進行索引"
 
-msgid "Enable the receipt hint"
-msgstr "啟動收件人提示"
-
 msgid "Default questionnaire"
 msgstr "預設的問卷"
 
@@ -637,9 +626,6 @@ msgstr "啟動保管人的用戶角色"
 
 msgid "Enable scoring system"
 msgstr "啟用評分系統"
-
-msgid "Enable private annotations"
-msgstr ""
 
 msgid "Logging level"
 msgstr "登入層級"
@@ -699,9 +685,6 @@ msgstr "創建日期"
 
 msgid "Last access"
 msgstr "最近讀取"
-
-msgid "Connection"
-msgstr "連接"
 
 msgid "Whistleblower's last access"
 msgstr "吹哨者上回讀取"
@@ -1047,7 +1030,7 @@ msgstr "問題群組"
 msgid "Hint"
 msgstr "提示"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "必要"
 
 msgid "Accept multiple file uploads"
@@ -1308,14 +1291,6 @@ msgstr "在手機上安裝驗證應用程式"
 
 msgid "Scan the QR code with the app"
 msgstr "透過應用程式掃描 QR  碼"
-
-msgid "Hint: How to hide your receipt"
-msgstr "提示：如何隱藏收件人"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "最好收藏收據票號的方式是寫成如信用卡號資訊, 例如還包括到期日。"
 
 msgid "Error!"
 msgstr "出錯"

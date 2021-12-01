@@ -32,8 +32,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-25 17:58+0000\n"
-"Last-Translator: Kaya Zeren <kayazeren@gmail.com>\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -175,14 +175,6 @@ msgstr "Tümünü kaydet"
 
 msgid "Access control"
 msgstr "Erişim denetimi"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "Bağlantının, mahremiyeti güvence altına alacak şekilde HTTPS ile güvenliği sağlanmıştır."
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "Bağlantının, mahremiyet ve anonimliği sağlayacak şekilde Tor ile güvenliği sağlanmıştır."
 
 msgid "Number"
 msgstr "Sayı"
@@ -618,9 +610,6 @@ msgstr "Kolaylaştırılmış kullanıcı girişini etkinleştir"
 msgid "Enable search engines indexing"
 msgstr "Arama motoru dizinlemeyi etkinleştir"
 
-msgid "Enable the receipt hint"
-msgstr "Alındı ipucunu etkinleştir"
-
 msgid "Default questionnaire"
 msgstr "Varsayılan anket"
 
@@ -657,9 +646,6 @@ msgstr "Koruyucu kullanıcı rolünü etkinleştir"
 
 msgid "Enable scoring system"
 msgstr "Skorlama sistemini etkinleştir"
-
-msgid "Enable private annotations"
-msgstr "Özel notları etkinleştir"
 
 msgid "Logging level"
 msgstr "Günlük düzeyi"
@@ -719,9 +705,6 @@ msgstr "Oluşturulma tarihi"
 
 msgid "Last access"
 msgstr "Son erişim"
-
-msgid "Connection"
-msgstr "Bağlantı"
 
 msgid "Whistleblower's last access"
 msgstr "İhbarcının son erişimi"
@@ -1067,7 +1050,7 @@ msgstr "Soru grubu"
 msgid "Hint"
 msgstr "İpucu"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "Zorunlu"
 
 msgid "Accept multiple file uploads"
@@ -1328,14 +1311,6 @@ msgstr "Telefonunuza kimlik doğrulayıcı bir uygulama yükleyin"
 
 msgid "Scan the QR code with the app"
 msgstr "QR kodunu uygulamayla taratın"
-
-msgid "Hint: How to hide your receipt"
-msgstr "İpucu: alındınızı nasıl saklayabilirsiniz"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "Alındınızı saklamanın kullanışlı bir yolu onu kredi kartı numarası gibi, son kullanma tarihiyle birlikte, bir yere yazmaktır."
 
 msgid "Error!"
 msgstr "Hata!"

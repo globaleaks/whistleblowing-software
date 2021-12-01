@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-11-24 15:40+0000\n"
+"PO-Revision-Date: 2021-12-01 12:15+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -152,14 +152,6 @@ msgstr "އެއްކޮށް ރައްކާކުރެއްވުމަށް"
 
 msgid "Access control"
 msgstr "އެކްސެސް ކޮންޓްރޯލް"
-
-msgid "The connection has been secured with HTTPS ensuring confidentiality."
-msgstr "ބޭނުންކުރައްވާ ކަނެކްޝަންގެ ރައްކާތެރިކަން ވަނީ އެޗް.ޓީ.ޓީ.ޕީ.އެސް އިން ކަށަވަރުކޮއްފައި. "
-
-msgid ""
-"The connection has been secured with Tor ensuring confidentiality and "
-"anonymity."
-msgstr "ބޭނުންކުރައްވާ ކަނެކްޝަންގެ ރައްކާތެރިކަން ވަނީ ޓޯރ އިން ކަށަވަރުކޮއްފައި. "
 
 msgid "Number"
 msgstr "ނަންބަރު"
@@ -595,9 +587,6 @@ msgstr "ސިންޕްލިފައިޑް ލޮގް އިން އޮން ކުރަން"
 msgid "Enable search engines indexing"
 msgstr "ސަރޗް އިންޖިންތަކުގައި އިންޑެކްސް ކުރުމަށް"
 
-msgid "Enable the receipt hint"
-msgstr "ރަޝީދުގެ ހިންޓް އޮން ކުރުމަށް"
-
 msgid "Default questionnaire"
 msgstr "އާންމު ސުވާލުކަރުދާސް"
 
@@ -634,9 +623,6 @@ msgstr "ކަސްޓޯޑިއަން ޔޫސާގެ  ރޯލް އޮންކުރަން"
 
 msgid "Enable scoring system"
 msgstr "ސްކޯރިން ސިސްޓަމް އޮންކުރަން"
-
-msgid "Enable private annotations"
-msgstr ""
 
 msgid "Logging level"
 msgstr "ލޮގިންގް ލެވަލް"
@@ -696,9 +682,6 @@ msgstr ""
 
 msgid "Last access"
 msgstr "ހުށައެޅުމުގެ ކުރިން އެންމެ ފަހު އެކްސެސް"
-
-msgid "Connection"
-msgstr "ކަނެކްޝަން"
 
 msgid "Whistleblower's last access"
 msgstr ""
@@ -1044,7 +1027,7 @@ msgstr "ސުވާލުގެ ގިންތި/ގުރޫޕް"
 msgid "Hint"
 msgstr "އިތުރުއެހީ"
 
-msgid "Mandatory"
+msgid "Required"
 msgstr "ކޮންމެހެން މަޖުބޫރުބައެއް"
 
 msgid "Accept multiple file uploads"
@@ -1305,14 +1288,6 @@ msgstr "ހުއްދަކަށަވަރުކުރާ އެޕްލިކޭޝަނެއް ފޯނ
 
 msgid "Scan the QR code with the app"
 msgstr "އެޕްލިކޭޝަނުން ކިއު އާރު ކޯޑު ސްކޭން ކުރައްވާ"
-
-msgid "Hint: How to hide your receipt"
-msgstr "އިތުރު އެހީ: ރަޝީދު ފޮރުވާނެގޮތް"
-
-msgid ""
-"A useful way to hide your receipt is to write it down like a credit card "
-"number, i.e. by also including an expiration date."
-msgstr "މިސާލަކަށް ރަޝީދުގެ ކޯޑް ފޮރުވުމަށް ކްރެޑިޓް ކާޑް ނަންބަރެއްހެން (ހަދަހަދައިގެން ދުވަސްހަމަވާނެ ތާރީހަކާއި އެކު) ލިޔެފައި ބޭންދުން އެއީ ރަޝީދު ފޮރުވާނެ އަދި ހަނދާން ބަހައްޓާނެ ރައްކާތެރިގޮތެއް. "
 
 msgid "Error!"
 msgstr "މައްސަލައެއް އެބައުޅޭ! "
