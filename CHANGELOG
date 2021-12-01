@@ -1,3 +1,31 @@
+Changes in version 4.6.0
+    Adopt ECC keys of 384bits
+    Modify ECDH configuration to use curve NID_secp384r1
+    Implement securitytxt (#2647)
+    Register first access to files by whistleblowers
+    Register first access to files by recipients
+    Register first access to reports by recipients
+    Optimize database removing unused attributes
+    Add email validation on Signup and Support requests
+    Revise code relate to mandatory-check on file uploads
+    Make it possible to require whistleblowers to upload files
+    before proceeding with the completion of the submission (#3116)
+    Revise code relate to mandatory-check on file uploads
+    Notify recipients when whistleblowers disclose their own identity
+    Notify recipients when whistleblowers fills the secondary questionnaire
+    Always strip the email subject when sending PGP encrypted emails
+    Add Brave to the list of supported browsers (#3121)
+    Correct Github donation link (#3120)
+    Add support for Crimean Turkish translation
+    Update translations
+    [doc] Add Secure File Download measures section
+    [doc] Add Browser History and Forensic Traces section
+    [doc] Add TLS certificate keys section
+    [doc] Revise section about Cache-Control header
+    [doc] Revise application glossary
+    [doc] Add documentation about supported browsers
+    [doc] Update number of supported languages
+
 Changes in version 4.5.8
     Fix self reset password regression introduced in 4.4.5
     Set session keepalive period to 5 minutes
