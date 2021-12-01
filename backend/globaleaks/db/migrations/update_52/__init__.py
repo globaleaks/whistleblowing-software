@@ -300,7 +300,6 @@ class MigrationScript(MigrationBase):
             self.session_new.add(self.model_to['Config']({'tid': t.id, 'var_name': 'encryption', 'value': False}))
             self.session_new.add(self.model_to['Config']({'tid': t.id, 'var_name': 'escrow', 'value': False}))
 
-            # Preserve existing configuration for existing sites
             x = self.model_to['Config']()
             x.tid = t.id
             x.var_name = 'enable_private_labels'

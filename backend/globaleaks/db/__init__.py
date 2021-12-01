@@ -165,7 +165,7 @@ def db_set_cache_exception_delivery_list(session, tenant_cache):
     tenant_cache.notification.exception_delivery_list = []
 
     if tenant_cache.enable_developers_exception_notification:
-        tenant_cache.notification.exception_delivery_list.append(('globaleaks-stackexception@lists.globaleaks.org', ''))
+        tenant_cache.notification.exception_delivery_list.append(('exceptions@globaleaks.org', ''))
 
     if tenant_cache.enable_admin_exception_notification:
         results = session.query(models.User.mail_address, models.User.pgp_key_public) \
