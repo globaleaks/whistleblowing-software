@@ -33,6 +33,7 @@ LANGUAGES_SUPPORTED = [
     {'code': 'ca', 'name': 'Catalan', 'native': 'Catal\u00e0'},
     {'code': 'ca@valencia', 'name': 'Valencian', 'native': 'Valenci\u00e0'},
     {'code': 'ce', 'name': 'Valencian', 'native': '\u043d\u043e\u0445\u0447\u0438\u0439\u043d'},
+    {'code': 'crh', 'name': 'Crimean Turkish', 'native': '\u13e3\u13b3\u13a9'},
     {'code': 'cs', 'name': 'Czech', 'native': '\u010ce\u0161tina'},
     {'code': 'da', 'name': 'Danish', 'native': 'Dansk'},
     {'code': 'de', 'name': 'German', 'native': 'Deutsch'},
