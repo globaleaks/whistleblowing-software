@@ -1,3 +1,7 @@
+Changes in version 4.6.1
+    Fix regression in 4.6.0 preventing to visualize reports labels
+    Update translations
+
 Changes in version 4.6.0
     Adopt ECC keys of 384bits
     Modify ECDH configuration to use curve NID_secp384r1
