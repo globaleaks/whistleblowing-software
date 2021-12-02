@@ -327,7 +327,7 @@
   "Multiple choice input": "ການປ້ອນຂໍ້ມູນແບບມີຫຼາຍທາງເລືອກ",
   "Question group": "ກຸ່ມຄຳຖາມ",
   "Hint": "ຄຳແນະນຳ",
-  "Required": "ຕ້ອງການ",
+  "Mandatory": "ຕ້ອງການ",
   "Accept multiple file uploads": "ຍອມຮັບການອັບໂຫຼດຫຼາຍໆໄຟລ໌",
   "Accept multiple answers": "ຍອມຮັບຫຼາຍໆຄຳຕອບ",
   "Template override": "ການທັບຊ້ອນແບບແມ່ແບບ",

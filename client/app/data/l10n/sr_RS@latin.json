@@ -327,7 +327,7 @@
   "Multiple choice input": "Unos sa višestrukim izborom",
   "Question group": "Skup pitanja",
   "Hint": "Podsetnik",
-  "Required": "Оbаvеznо",
+  "Mandatory": "Оbаvеznо",
   "Accept multiple file uploads": "Dozvoli otpremanje više datoteka",
   "Accept multiple answers": "Prihvati više odgovora",
   "Template override": "Zamena šablona",

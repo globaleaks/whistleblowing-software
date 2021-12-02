@@ -327,7 +327,7 @@
   "Multiple choice input": "Bir nechta tanlov oynasi",
   "Question group": "Savol guruhi",
   "Hint": "Bildirgi",
-  "Required": "Majburiy",
+  "Mandatory": "Majburiy",
   "Accept multiple file uploads": "Bir nechta fayllar yuklanmasini qabul qilish",
   "Accept multiple answers": "Bir nechta javoblarni qabul qilish",
   "Template override": "Andozani qayta belgilash",

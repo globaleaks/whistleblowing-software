@@ -327,7 +327,7 @@
   "Multiple choice input": "Multiple choice input",
   "Question group": "Klausimo grupė",
   "Hint": "Užuomina",
-  "Required": "Būtina",
+  "Mandatory": "Mandatory",
   "Accept multiple file uploads": "Accept multiple file uploads",
   "Accept multiple answers": "Accept multiple answers",
   "Template override": "Template override",

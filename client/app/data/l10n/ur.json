@@ -327,7 +327,7 @@
   "Multiple choice input": "ایک سے زیادہ پسند کی ان پٹ",
   "Question group": "سوال گروپ",
   "Hint": "تجاویز",
-  "Required": "درکار",
+  "Mandatory": "درکار",
   "Accept multiple file uploads": "ایک سے زائد فائلز اپ لوڈ کیے جانا قبول ہے",
   "Accept multiple answers": "Accept multiple answers",
   "Template override": "Template override",

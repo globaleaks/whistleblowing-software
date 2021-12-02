@@ -327,7 +327,7 @@
   "Multiple choice input": "Masukan pilihan ganda",
   "Question group": "Kelompok pertanyaan",
   "Hint": "Petunjuk",
-  "Required": "Wajib",
+  "Mandatory": "Memerlukan",
   "Accept multiple file uploads": "Menerima unggahan banyak berkas",
   "Accept multiple answers": "Menerima banyak jawaban",
   "Template override": "Penggantian format",

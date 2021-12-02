@@ -327,7 +327,7 @@
   "Multiple choice input": "შენატანის მრავლობითი არჩევანი",
   "Question group": "შეკითხვის ჯგუფი",
   "Hint": "მინიშნება",
-  "Required": "მოთხოვნილი",
+  "Mandatory": "მოთხოვნილი",
   "Accept multiple file uploads": "მრავლობითი ფაილების ატვირთვის მიღება",
   "Accept multiple answers": "მრავლობითი პასუხების მიღება",
   "Template override": "შაბლონზე გადაწერა",

@@ -327,7 +327,7 @@
   "Multiple choice input": "ورودی چند گزینه ای",
   "Question group": "گروپ سؤال   ",
   "Hint": "اشاره",
-  "Required": "حتمی",
+  "Mandatory": "حتمی",
   "Accept multiple file uploads": "قبول اپلود فایل های متعدد",
   "Accept multiple answers": "قبول جواب های متعدد",
   "Template override": "لغو قالب",

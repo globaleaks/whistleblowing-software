@@ -327,7 +327,7 @@
   "Multiple choice input": "إدخال متعدد الاختيارات",
   "Question group": "مجموعة الأسئلة",
   "Hint": "تلميح",
-  "Required": "مطلوب",
+  "Mandatory": "مطلوب",
   "Accept multiple file uploads": "قبول رفع ملفات متعددة",
   "Accept multiple answers": "قبول اجابات متعددة",
   "Template override": "تجاوز القالب",

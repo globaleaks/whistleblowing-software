@@ -327,7 +327,7 @@
   "Multiple choice input": "Nút tùy chọn",
   "Question group": "Nhóm câu hỏi",
   "Hint": "Gợi ý",
-  "Required": "Phải có",
+  "Mandatory": "Phải có",
   "Accept multiple file uploads": "Chấp nhận nhiều tập tin tải lên",
   "Accept multiple answers": "Chấp nhận nhiều câu trả lời",
   "Template override": "Ghi đè lên bản mẫu",

@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-01 12:15+0000\n"
+"PO-Revision-Date: 2021-12-02 08:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1040,7 +1040,7 @@ msgstr "Kérdéscsoport"
 msgid "Hint"
 msgstr "Tipp"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "Kötelező"
 
 msgid "Accept multiple file uploads"

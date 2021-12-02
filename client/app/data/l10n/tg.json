@@ -327,7 +327,7 @@
   "Multiple choice input": "Вуруди якчандинтихоба ",
   "Question group": "Гурӯҳи савол",
   "Hint": "Ишора",
-  "Required": "Ҳатмӣ",
+  "Mandatory": "Ҳатмӣ",
   "Accept multiple file uploads": "Боркунии якчанд файлро қабул кардан",
   "Accept multiple answers": "Якчанд ҷавобҳоро қабул кардан",
   "Template override": "Лағв кардани намуна",

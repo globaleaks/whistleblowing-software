@@ -327,7 +327,7 @@
   "Multiple choice input": "Дукхаллин харжаман чуяздар",
   "Question group": "Хаттарийн гулам",
   "Hint": "Къадор",
-  "Required": "Тlедожориг",
+  "Mandatory": "Тlедожийна",
   "Accept multiple file uploads": "Масех файл дIахIоттор тlеэца",
   "Accept multiple answers": "Масех жоп тlеэца",
   "Template override": "Шаблон юхаяккхар",

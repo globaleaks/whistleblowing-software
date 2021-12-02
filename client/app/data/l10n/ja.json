@@ -327,7 +327,7 @@
   "Multiple choice input": "複数選択入力",
   "Question group": "質問グループ",
   "Hint": "ヒント",
-  "Required": "必須",
+  "Mandatory": "必須",
   "Accept multiple file uploads": "複数ファイルのアップロードを受け付ける",
   "Accept multiple answers": "複数の回答を受け付ける",
   "Template override": "テンプレートの上書き",

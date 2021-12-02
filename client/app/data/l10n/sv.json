@@ -327,7 +327,7 @@
   "Multiple choice input": "Inmatning av flervalsfråga",
   "Question group": "Frågegrupp",
   "Hint": "Ledtråd",
-  "Required": "Obligatorisk",
+  "Mandatory": "Obligatorisk",
   "Accept multiple file uploads": "Tillåt uppladning av flera filer",
   "Accept multiple answers": "Tillåt flera olika svar",
   "Template override": "Hoppa över mallen",

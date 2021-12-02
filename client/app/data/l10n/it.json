@@ -327,7 +327,7 @@
   "Multiple choice input": "Scelta multipla",
   "Question group": "Gruppo di domande",
   "Hint": "Suggerimento",
-  "Required": "Obbligatorio",
+  "Mandatory": "Obbligatorio",
   "Accept multiple file uploads": "Accetta multipli file upload",
   "Accept multiple answers": "Accetta più di una risposta",
   "Template override": "Sostituisci template",

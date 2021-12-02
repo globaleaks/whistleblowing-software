@@ -327,7 +327,7 @@
   "Multiple choice input": "பல தேர்வு உள்ளீடு",
   "Question group": "கேள்வி குழு",
   "Hint": "சாடைக்குறிப்பு",
-  "Required": "தேவையான",
+  "Mandatory": "தேவையான",
   "Accept multiple file uploads": "பல கோப்பு பதிவேற்றங்கள் ஏற்கவும்",
   "Accept multiple answers": "பல பதில்களை ஏற்கவும்",
   "Template override": "டெம்ப்ளேட் மேலெழுதும்",

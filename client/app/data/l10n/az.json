@@ -327,7 +327,7 @@
   "Multiple choice input": "Çoxseçimli giriş",
   "Question group": "Sual qrupu",
   "Hint": "Göstəriş",
-  "Required": "Tələb edilir",
+  "Mandatory": "Tələb edilir",
   "Accept multiple file uploads": "Eyni vaxtda müxtəlif fayl yükləmələrini qəbul et",
   "Accept multiple answers": "Müxtəlif cavabları qəbul et",
   "Template override": "Şablonun ləğvi",

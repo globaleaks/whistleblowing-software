@@ -327,7 +327,7 @@
   "Multiple choice input": "Vnos možnosti izbire",
   "Question group": "Skupina vprašanj",
   "Hint": "Namig",
-  "Required": "Zahtevano",
+  "Mandatory": "Zahtevano",
   "Accept multiple file uploads": "Dovoli nalaganje več datotek",
   "Accept multiple answers": "Sprejmi več možnih odgovorov",
   "Template override": "Ne upoštevaj predloge",

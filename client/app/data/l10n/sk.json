@@ -327,7 +327,7 @@
   "Multiple choice input": "Vstup z výberu možností",
   "Question group": "Skupina otázok",
   "Hint": "Nápoveda",
-  "Required": "Požadované",
+  "Mandatory": "Požadované",
   "Accept multiple file uploads": "Akceptovať príjem viacero nahrávok súborov ",
   "Accept multiple answers": "Povoliť viacero odpovedí",
   "Template override": "Prepísanie šablóny",

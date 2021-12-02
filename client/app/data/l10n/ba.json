@@ -327,7 +327,7 @@
   "Multiple choice input": "Һайлау күплеге менән индереү",
   "Question group": "Һорауҙар йыйылмаһы",
   "Hint": "Һүҙ ярҙамы",
-  "Required": "Мотлаҡ",
+  "Mandatory": "Мотлаҡ",
   "Accept multiple file uploads": "Бер нисә файлды тейәргә рөхсәт итергә",
   "Accept multiple answers": "Бер нисә яуапты ҡабул итеү",
   "Template override": "Шаблонды яңынан билдәләү",

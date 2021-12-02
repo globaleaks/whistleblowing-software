@@ -327,7 +327,7 @@
   "Multiple choice input": "كۆپتىن تاللاپ كىرگۈزۈش",
   "Question group": "سۇئال گۇرۇپپىسى",
   "Hint": "ئىشارەت",
-  "Required": "لازىملىق",
+  "Mandatory": "لازىملىق",
   "Accept multiple file uploads": "كۆپ ھۆججەت يۈكلەشنى قوبۇل قىل",
   "Accept multiple answers": "كۆپ جاۋاپنى قوبۇل قىل",
   "Template override": "قېلىىپنىڭ ئۈستىگە ياز",

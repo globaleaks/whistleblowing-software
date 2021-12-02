@@ -327,7 +327,7 @@
   "Multiple choice input": "Monivalinta",
   "Question group": "Kysymysryhmä",
   "Hint": "Vinkki",
-  "Required": "Pakollinen",
+  "Mandatory": "Pakollinen",
   "Accept multiple file uploads": "Hyväksy useiden tiedostojen siirto kerralla",
   "Accept multiple answers": "Salli useita vastauksia",
   "Template override": "Mallipohjan korvaus",

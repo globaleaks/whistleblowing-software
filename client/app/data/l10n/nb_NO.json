@@ -327,7 +327,7 @@
   "Multiple choice input": "Flervalg",
   "Question group": "Spørsmålsgruppe",
   "Hint": "Hint",
-  "Required": "Påkrevd",
+  "Mandatory": "Påkrevd",
   "Accept multiple file uploads": "Tillat flerfoldige filopplastinger",
   "Accept multiple answers": "Tillat flere svar",
   "Template override": "Maloverstyring",

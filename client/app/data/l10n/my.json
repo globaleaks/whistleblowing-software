@@ -327,7 +327,7 @@
   "Multiple choice input": "အဖြေမှန်ရွေး ထည့်သွင်းမှု",
   "Question group": "မေးခွန်းအုပ်စု",
   "Hint": "အရိပ်အမြွက်",
-  "Required": "လိုအပ်ခဲ့သည်",
+  "Mandatory": "လိုအပ်ခဲ့သည်",
   "Accept multiple file uploads": "ဖိုင်များစွာ အပ်လုဒ်လုပ်ခြင်းကို လက်ခံမည်",
   "Accept multiple answers": "အဖြေများစွာကို လက်ခံမည်",
   "Template override": "ပုံစံပြား ပယ်ဖျက်ခြင်း",

@@ -327,7 +327,7 @@
   "Multiple choice input": "Εισαγωγή πολλαπλής επιλογής",
   "Question group": "Ομάδα ερωτήσεων",
   "Hint": "Συμβουλή",
-  "Required": "Απαιτείται",
+  "Mandatory": "Απαιτείται",
   "Accept multiple file uploads": "Αποδοχή ανεβάσματος πολλαπλών αρχείων",
   "Accept multiple answers": "Αποδοχή πολλαπλών απαντήσεων",
   "Template override": "Παράκαμψη προτύπου",

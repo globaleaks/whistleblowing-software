@@ -327,7 +327,7 @@
   "Multiple choice input": "Meerkeuzevraag",
   "Question group": "Vragengroep",
   "Hint": "Hint",
-  "Required": "Vereist",
+  "Mandatory": "Vereist",
   "Accept multiple file uploads": "Aanvaard uploads van meerdere bestanden",
   "Accept multiple answers": "Aanvaard meerdere antwoorden",
   "Template override": "Sjabloon overschrijven",

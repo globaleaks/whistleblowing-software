@@ -327,7 +327,7 @@
   "Multiple choice input": "Valikvastused",
   "Question group": "Küsimuste rühm",
   "Hint": "Vihje",
-  "Required": "Nõutav",
+  "Mandatory": "Nõutav",
   "Accept multiple file uploads": "Luba üles laadida mitu faili",
   "Accept multiple answers": "Luba mitu vastust",
   "Template override": "Malli ülekirjutamine",

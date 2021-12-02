@@ -327,7 +327,7 @@
   "Multiple choice input": "ګڼ غوراویز ورودي",
   "Question group": "د پوښتې ګروپ",
   "Hint": "اشاره",
-  "Required": "حتمي دي",
+  "Mandatory": "حتمي دي",
   "Accept multiple file uploads": "د ګڼو فایلونو د پورته کولو منل",
   "Accept multiple answers": "د ګڼو ځوابونو منل",
   "Template override": "د ټیمپلیټ لغوه کول",

@@ -327,7 +327,7 @@
   "Multiple choice input": "Берничә вариантта кертү",
   "Question group": "Сораулар төркеме",
   "Hint": "Ярдәм",
-  "Required": "Таләп ителә",
+  "Mandatory": "Таләп ителә",
   "Accept multiple file uploads": "Берничә файл йөкләүне рөхсәт итү",
   "Accept multiple answers": "Берничә җавапны кабул итү",
   "Template override": "Өлгене үзгәртеп язу",

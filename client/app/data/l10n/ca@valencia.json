@@ -327,7 +327,7 @@
   "Multiple choice input": "Entrada de selecció múltiple",
   "Question group": "Grup de preguntes",
   "Hint": "Suggeriment",
-  "Required": "Requerit",
+  "Mandatory": "Requerit",
   "Accept multiple file uploads": "Accepta pujades múltiples de fitxers",
   "Accept multiple answers": "Acceptar múltiples respostes",
   "Template override": "Sobreescriure plantilla",

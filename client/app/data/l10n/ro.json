@@ -327,7 +327,7 @@
   "Multiple choice input": "Input cu alegere multiplă",
   "Question group": "Grup de întrebări",
   "Hint": "Indiciu",
-  "Required": "Obligatoriu",
+  "Mandatory": "Obligatoriu",
   "Accept multiple file uploads": "Acceptă încărcări de fișiere multiple",
   "Accept multiple answers": "Acceptă răspunsuri multiple",
   "Template override": "Suprascrie șablonul",

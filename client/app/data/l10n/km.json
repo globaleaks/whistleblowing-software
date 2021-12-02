@@ -327,7 +327,7 @@
   "Multiple choice input": "ការបញ្ចូលជម្រើសច្រើន",
   "Question group": "ក្រុមសំណួរ",
   "Hint": "ជំនួយ",
-  "Required": "ទាមទារ",
+  "Mandatory": "ទាមទារ",
   "Accept multiple file uploads": "ទទួលយកការបញ្ជូនឯកសារច្រើន",
   "Accept multiple answers": "ទទួលយកចម្លើយច្រើន",
   "Template override": "គំរូជាន់គ្នា",

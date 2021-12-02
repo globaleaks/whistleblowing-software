@@ -327,7 +327,7 @@
   "Multiple choice input": "Multiple-choice input",
   "Question group": "Spørgsmåls-gruppe",
   "Hint": "Tips",
-  "Required": "Obligatorisk",
+  "Mandatory": "Obligatorisk",
   "Accept multiple file uploads": "Tillad upload af flere filer",
   "Accept multiple answers": "Tillad flere svar",
   "Template override": "Tilsidesæt skabelon",

@@ -327,7 +327,7 @@
   "Multiple choice input": "Көптин таллап киргүзүш",
   "Question group": "Суъал гурупписи",
   "Hint": "Isharet",
-  "Required": "Лазимлиқ",
+  "Mandatory": "Лазимлиқ",
   "Accept multiple file uploads": "Көп һөҗҗәт йүкләшни қобул қил",
   "Accept multiple answers": "Көп җавапни қобул қил",
   "Template override": "Қелиипниң үстигә йаз",

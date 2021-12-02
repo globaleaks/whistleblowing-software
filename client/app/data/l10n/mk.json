@@ -327,7 +327,7 @@
   "Multiple choice input": "Внес со повеќекратен избор",
   "Question group": "Прашална група",
   "Hint": "Помош",
-  "Required": "Потребно",
+  "Mandatory": "Потребно",
   "Accept multiple file uploads": "Прифати прикачувања на повеќе датотеки",
   "Accept multiple answers": "Прифати повеќе одговори",
   "Template override": "Отфрлање на шаблонот",

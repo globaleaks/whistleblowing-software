@@ -327,7 +327,7 @@
   "Multiple choice input": "གདམ་ག་སྣ་མང་ནང་འཇུག",
   "Question group": "དྲི་བའི་སྡེ་ཚན།",
   "Hint": "བརྡ་སྟོན།",
-  "Required": "ལྡན་དགོས།",
+  "Mandatory": "ལྡན་དགོས།",
   "Accept multiple file uploads": "ཡིག་ཆ་སྣ་མང་ཡར་འཇུག་ཁས་ལེན་བྱ།",
   "Accept multiple answers": "ལན་འདེབས་སྣ་མང་ཁས་ལེན་བྱ།",
   "Template override": "མ་དཔེ་ཟུར་འཇུག",

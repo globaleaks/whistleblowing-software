@@ -327,7 +327,7 @@
   "Multiple choice input": "Бірнеше таңдауды енгізу",
   "Question group": "Сұрақтар тобы",
   "Hint": "Кеңес",
-  "Required": "Талап етіледі",
+  "Mandatory": "Талап етіледі",
   "Accept multiple file uploads": "Бірнеше файлды жүктеп салуды қабылдау",
   "Accept multiple answers": "Бірнеше жауапты қабылдау",
   "Template override": "Үлгіні қабыл алмау",

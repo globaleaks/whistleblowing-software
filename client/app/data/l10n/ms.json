@@ -327,7 +327,7 @@
   "Multiple choice input": "Input pilihan pelbagai",
   "Question group": "Kumpulan soalan",
   "Hint": "Bayangan",
-  "Required": "Diperlukan",
+  "Mandatory": "Diperlukan",
   "Accept multiple file uploads": "Terima pelbagai muat naik fail",
   "Accept multiple answers": "Terima pelbagai jawapan",
   "Template override": "Ganti templat",

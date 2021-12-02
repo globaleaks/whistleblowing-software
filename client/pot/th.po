@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-01 12:15+0000\n"
+"PO-Revision-Date: 2021-12-02 08:00+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1033,7 +1033,7 @@ msgstr "กลุ่มคำถาม"
 msgid "Hint"
 msgstr "คำแนะนำ"
 
-msgid "Required"
+msgid "Mandatory"
 msgstr "จำเป็นต้องใช้"
 
 msgid "Accept multiple file uploads"

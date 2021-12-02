@@ -327,7 +327,7 @@
   "Multiple choice input": "Köptin tallap kirgüzüsh",
   "Question group": "Su’al guruppisi",
   "Hint": "Isharet",
-  "Required": "Lazimliq",
+  "Mandatory": "Lazimliq",
   "Accept multiple file uploads": "Köp höjjet yükleshni qobul qil",
   "Accept multiple answers": "Köp jawapni qobul qil",
   "Template override": "Qéliipning üstige yaz",

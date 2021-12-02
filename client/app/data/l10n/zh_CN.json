@@ -327,7 +327,7 @@
   "Multiple choice input": "多选项输入",
   "Question group": "问题组",
   "Hint": "提示",
-  "Required": "必须",
+  "Mandatory": "必须",
   "Accept multiple file uploads": "接受上传多个文件",
   "Accept multiple answers": "接受多个答案",
   "Template override": "模板覆盖",

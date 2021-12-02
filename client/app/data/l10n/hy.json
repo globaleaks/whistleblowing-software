@@ -327,7 +327,7 @@
   "Multiple choice input": "Բազմակի ընտրության մուտքագրում",
   "Question group": "Հարցերի խումբ",
   "Hint": "Հուշում",
-  "Required": "Պարտադիր",
+  "Mandatory": "Պարտադիր",
   "Accept multiple file uploads": "Ընդունել բազմակի ֆայլերի վերբեռնումը",
   "Accept multiple answers": "Ընդունել բազմակի պատասխաններ",
   "Template override": "Վերացնել ձևանմուշը",

@@ -327,7 +327,7 @@
   "Multiple choice input": "여러 선택 입력",
   "Question group": "질문 그룹",
   "Hint": "힌트",
-  "Required": "필수",
+  "Mandatory": "필수",
   "Accept multiple file uploads": "다중 파일 업로드 허용",
   "Accept multiple answers": "다중 답변 허용",
   "Template override": "템플릿 오버라이드",

@@ -327,7 +327,7 @@
   "Multiple choice input": "একাধিক পছন্দ ইনপুট",
   "Question group": "প্রশ্নের গ্রুপ",
   "Hint": "ইঙ্গিত",
-  "Required": "আবশ্যক",
+  "Mandatory": "আবশ্যক",
   "Accept multiple file uploads": "একাধিক ফাইল আপলোড গ্রহণ করুন",
   "Accept multiple answers": "একাধিক জবাব গ্রহণ করুন",
   "Template override": "টেমপ্লেট অগ্রাহ্য করা",

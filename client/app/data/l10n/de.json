@@ -327,7 +327,7 @@
   "Multiple choice input": "Mehrfachauswahleingabe",
   "Question group": "Fragegruppe",
   "Hint": "Hinweis",
-  "Required": "Erforderlich",
+  "Mandatory": "Erforderlich",
   "Accept multiple file uploads": "Mehrere Dateien zum Hochladen akzeptieren",
   "Accept multiple answers": "Mehrere Antworten akzeptieren",
   "Template override": "Vorlagen überschreiben",

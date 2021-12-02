@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-01 12:15+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-12-02 09:48+0000\n"
+"Last-Translator: Ethem Sahibi\n"
 "Language-Team: Crimean Turkish (http://www.transifex.com/otf/globaleaks/language/crh/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1022,8 +1022,8 @@ msgstr "Суаллер группасы"
 msgid "Hint"
 msgstr "Ярдым"
 
-msgid "Required"
-msgstr "Мытлакъа"
+msgid "Mandatory"
+msgstr ""
 
 msgid "Accept multiple file uploads"
 msgstr "Бир къач файлнынъ юклемесине изин бермек"
@@ -1035,895 +1035,895 @@ msgid "Template override"
 msgstr "Шаблонны лягъу этмек"
 
 msgid "Phone number"
-msgstr ""
+msgstr "Телефон номерасы"
 
 msgid "Text"
-msgstr ""
+msgstr "Метин"
 
 msgid "Checkbox label"
-msgstr ""
+msgstr "Байрачыкъ ишарети"
 
 msgid "Add multimedia content"
-msgstr ""
+msgstr "Мультимедия контентини къошмакъ"
 
 msgid "Image"
-msgstr ""
+msgstr "Ресим"
 
 msgid "Audio"
-msgstr ""
+msgstr "Аудио"
 
 msgid "Video"
-msgstr ""
+msgstr "Видео"
 
 msgid "Trigger conditions"
-msgstr ""
+msgstr "Ишлетюв шартлары"
 
 msgid "Sufficient"
-msgstr ""
+msgstr "Етерли"
 
 msgid "Options"
-msgstr ""
+msgstr "Параметрлер"
 
 msgid "Addition"
-msgstr ""
+msgstr "Къошма"
 
 msgid "Multiplier"
-msgstr ""
+msgstr "Чарпкъан"
 
 msgid "Questions"
-msgstr ""
+msgstr "Суаллер"
 
 msgid "Add new question"
-msgstr ""
+msgstr " Янъы  суал къошмакъ"
 
 msgid "Add question from template"
-msgstr ""
+msgstr "Шаблондан янъы суал къошмакъ"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Дубликат"
 
 msgid "Steps"
-msgstr ""
+msgstr "Адымлар"
 
 msgid "Site settings"
-msgstr ""
+msgstr "Сайт сазламалар"
 
 msgid "Case management"
-msgstr ""
+msgstr "Дава идаре этилюви"
 
 msgid "Network settings"
-msgstr ""
+msgstr "Агъын сазламалар"
 
 msgid "Sites"
-msgstr ""
+msgstr "Сайтлар"
 
 msgid "Mode:"
-msgstr ""
+msgstr "Режим:"
 
 msgid "Configure"
-msgstr ""
+msgstr "Сазлама"
 
 msgid "Subdomain"
-msgstr ""
+msgstr "Субдомен"
 
 msgid "Creation date:"
-msgstr ""
+msgstr "Яратма тарихи:"
 
 msgid "Root domain used for secondary sites"
-msgstr ""
+msgstr "Экинджи дереджели сайтлар ичюн къулланылгъан тамыр домен"
 
 msgid "Use the first site for administrative purposes only"
-msgstr ""
+msgstr "Биринджи сайтны тек административ макъсад иле къулланмакъ"
 
 msgid "Allow users to sign up"
-msgstr ""
+msgstr "Къулланыджылыргъа къайд олунмагъа изин бермек"
 
 msgid "Enable terms of service"
-msgstr ""
+msgstr "Хызмет этме шартларыны ишлетмек"
 
 msgid "Title"
-msgstr ""
+msgstr "Серлева"
 
 msgid "Send an account activation link to the user."
-msgstr ""
+msgstr "Къулланыджыгъа эсап активациясы ичюн ссылка ёлламакъ."
 
 msgid "Public name"
-msgstr ""
+msgstr "Ичтимаий ад"
 
 msgid "Send reset link"
-msgstr ""
+msgstr "Сыфырлама ичюн ссылка ёлламакъ"
 
 msgid "Set password"
-msgstr ""
+msgstr "Пароль бельгилемек"
 
 msgid "Disable two factor authentication"
-msgstr ""
+msgstr "Эки факторлы аутентицикацияны сёндюрмек"
 
 msgid "Force password change"
-msgstr ""
+msgstr "Меджбурий пароль денъиштирмеси"
 
 msgid "The user will be forced to change its password on next login."
-msgstr ""
+msgstr "Къулланыджы невбеттеки кириште паролини денъиштирмеге меджбур оладжакъ."
 
 msgid "Language"
-msgstr ""
+msgstr "Тиль"
 
 msgid "Enable email notifications"
-msgstr ""
+msgstr "Электрон почта бильдирмелерни ишлетмек"
 
 msgid "Details of the PGP key:"
-msgstr ""
+msgstr "PGP-анахтар акъкъында малюмат:"
 
 msgid "Fingerprint"
-msgstr ""
+msgstr "Пармакъ изи"
 
 msgid "Set up encryption by providing a PGP public key"
-msgstr ""
+msgstr "Ачыкъ PGP-анахтарны берип, шифр бельгилемек"
 
 msgid "Give this admin ability to change user passwords"
-msgstr ""
+msgstr "Идареджиге къулланыджы пароллерни денъиштирмеге имкян бермек"
 
 msgid "Forcefully selected"
-msgstr ""
+msgstr "Джебрен сайланды"
 
 msgid "Allow the recipient to delete reports"
-msgstr ""
+msgstr "Алыджыгъа эсабатларны ёкъ этмеге изин бермек"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr ""
+msgstr "Алыджыгъа эсабат битме муддетини кечиктирмеге изин бермек"
 
 msgid "Give the user administrative access to the following features:"
-msgstr ""
+msgstr "Къулланыджыгъа невбеттеки функцияларгъа административ иришимни беринъиз:"
 
 msgid "Request date"
-msgstr ""
+msgstr "Соратма тарихи"
 
 msgid "Report date"
-msgstr ""
+msgstr "Эсабат тарихи"
 
 msgid "Authorization"
-msgstr ""
+msgstr "Авторизация"
 
 msgid "Requests"
-msgstr ""
+msgstr "Соратмалар"
 
 msgid "The validation link is either incorrect or has expired."
-msgstr ""
+msgstr "Тешкерме ссылкасы догъру дегиль я да онынъ муддети битти."
 
 msgid "Your new email address has been validated."
-msgstr ""
+msgstr "Электрон почтанъызнынъ янъы адреси тасдикъланды."
 
 msgid "Forgot password?"
-msgstr ""
+msgstr "Парольни унуттынъызмы?"
 
 msgid "Enter the two factor authentication code"
-msgstr ""
+msgstr "Эки факторлы аутентификацияны кирсетинъиз"
 
 msgid "Authentication failed"
-msgstr ""
+msgstr "Аутентификация хатасы"
 
 msgid "The code is either invalid or expired."
-msgstr ""
+msgstr "Код керчек дегиль я да онынъ муддети битти."
 
 msgid "Please select your account:"
-msgstr ""
+msgstr "Эсабынъызны бельгиленъиз:"
 
 msgid "Now type your password, then click 'Log in':"
-msgstr ""
+msgstr "Энди паролинъизни язып, «Кириш» нокътасына басынъыз:"
 
 msgid "Text shown after the user has selected the option."
-msgstr ""
+msgstr "Къулланыджы опцияны сайлагъан сонъ косьтерильген метин."
 
 msgid "Confirm"
-msgstr ""
+msgstr "Тасдикъламакъ"
 
 msgid "Assign score points"
-msgstr ""
+msgstr "Къыймет кесмек"
 
 msgid "Are you sure?"
-msgstr ""
+msgstr "Эминсинъизми?"
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr ""
+msgstr "Дикъкъат этинъиз, бутюн алякъадар малюматлар гъайрыдан тикленмеге имкяны олмайып, ёкъ этиледжек."
 
 msgid "Close"
-msgstr ""
+msgstr "Къапатмакъ"
 
 msgid "Enable two factor authentication"
-msgstr ""
+msgstr "Эки факторлы аутентификацияны ишлетинъиз"
 
 msgid "Before proceeding please read carefully the documentation at:"
-msgstr ""
+msgstr "Девам этмезден эвель, дикъкъатнен саифедеки весикъаларнен таныш олунъыз:"
 
 msgid "Account recovery key"
-msgstr ""
+msgstr "Эсапны гъайрыдан къурмакъ ичюн анахтар"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr ""
+msgstr "Копия япып, оны телюкесиз ерге ерлештиринъиз. Эгер паролинъизни джойсанъыз, копиядаки малюматлар джойылмайып, эсабынъызнен иришимни гъайрыдан къурмакъ ичюн керек олур."
 
 msgid "Enter a name for the copy"
-msgstr ""
+msgstr "Копия адыны кирсетинъиз"
 
 msgid "Request support"
-msgstr ""
+msgstr "Ярдым соратмакъ"
 
 msgid "Thank you."
-msgstr ""
+msgstr "Сагъ олунъыз."
 
 msgid "We will try to get back to you as soon as possible."
-msgstr ""
+msgstr "Якъын вакъытта сизнен багъланмагъа тырышаджакъмыз."
 
 msgid "Submit"
-msgstr ""
+msgstr "Еткизмек "
 
 msgid "The connection is not secure."
-msgstr ""
+msgstr "Багъланты къорчаланмагъан."
 
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
-msgstr ""
+msgstr "Платформа HTTPS бирлешмеси ичюн сазлаштырылмагъан, бу себептен о тек тест ичюн къулланылмакъ керек."
 
 msgid "Please write a motivation for the reply"
-msgstr ""
+msgstr "Лютфен, джевапнынъ мотивациясыны бельгиленъиз"
 
 msgid "Send"
-msgstr ""
+msgstr "Ёлламакъ"
 
 msgid "By confirming, you will postpone the expiration date to:"
-msgstr ""
+msgstr "Тасдикъ олунса, сиз сонъ къулланма тарихини бу шекильде узатырсынъыз:"
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr ""
+msgstr "Бу косьтерме платформасыдыр, оны керчек весикъаларнынъ берильмеси ичюн къулланманъыз."
 
 msgid "Install an authenticator app on your phone"
-msgstr ""
+msgstr "Телефонынъызгъа аутентификация илявесини ерлештиринъиз"
 
 msgid "Scan the QR code with the app"
-msgstr ""
+msgstr "Иляве ярдымынен QR-кодны сканер этинъиз"
 
 msgid "Error!"
-msgstr ""
+msgstr "Хата!"
 
 msgid "Internal server error"
-msgstr ""
+msgstr "Сервернинъ ичтеки хатасы"
 
 msgid "Error on input validation"
-msgstr ""
+msgstr "Кириш тешкерме эснасында хата олды"
 
 msgid "Resource not found"
-msgstr ""
+msgstr "Ресурс тапылмады"
 
 msgid "Forbidden operation"
-msgstr ""
+msgstr "Ясакъ арекет"
 
 msgid "The specified old password is not valid"
-msgstr ""
+msgstr "Къайд этильген эски пароль догъру дегиль"
 
 msgid "Resource can only be accessed via the Tor network"
-msgstr ""
+msgstr "Ресурскъа иришим тек Tor агъындан мумкюндир"
 
 msgid "The upload request exceeds the size limit"
-msgstr ""
+msgstr "Серверге файл юклемесине соратма тайин этильген лимиттен устюндир"
 
 msgid "Validation of email address change in progress."
-msgstr ""
+msgstr "Электрон почта адреси денъишмесининъ тешкермеси эда этиле."
 
 msgid "Please check your inbox for further instructions."
-msgstr ""
+msgstr "Къошма талиматлар ичюн почтанъызны тешкеринъиз."
 
 msgid "Current password"
-msgstr ""
+msgstr "Шимдики пароль"
 
 msgid "Old password confirmation required"
-msgstr ""
+msgstr "Эски парольнинъ тасдикъ этильмеси керек"
 
 msgid "Warning"
-msgstr ""
+msgstr "Хабердар этюв"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr ""
+msgstr "Бу сайтны зиярет эткенде шахсий малюматларынъызны къорчалагъан Tor Browser къулланмагъа тевсие этиле."
 
 msgid "Download the Tor Browser"
-msgstr ""
+msgstr "Tor Browser эндирмек"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr ""
+msgstr "Сонъра Tor Browser адрес сатырына невбеттеки адресни копиялап, ерлештиринъиз:"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr ""
+msgstr "Сиз энди эсабатны тапшырдынъызмы? Озь квитанциянъызны кирсетинъиз."
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr ""
+msgstr "Квитанция керчек дегиль я да эсабат къулланма тарихи битти."
 
 msgid "Select a file or drag it here."
-msgstr ""
+msgstr "Файлны сайланъыз я да оны мында чекинъиз."
 
 msgid "Uploading files…"
-msgstr ""
+msgstr "Файллар юкленмеси…"
 
 msgid "Upload completed successfully!"
-msgstr ""
+msgstr "Юкленме мувафакъиетнен тамамланды!"
 
 msgid "Error while uploading files; check below for details."
-msgstr ""
+msgstr "Файллар юкленмесинде хата; тафсилятлар тюпте косьтерильди."
 
 msgid "Estimated upload time:"
-msgstr ""
+msgstr "Юкленменинъ вакъыты:"
 
 msgid "Size:"
-msgstr ""
+msgstr "Ольчю:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr ""
+msgstr "Алыджылар сизни къошма суаллер джедвелини толдурмагъа риджа эттилер."
 
 msgid "Fill the additional questionnaire"
-msgstr ""
+msgstr "Къошма суаллер джедвелини толдурмакъ"
 
 msgid "Allow the whistleblower to write comments"
-msgstr ""
+msgstr "Малюмат бериджиге изаатларны къошмагъа изин бермек"
 
 msgid "From:"
-msgstr ""
+msgstr "Кимден:"
 
 msgid "To:"
-msgstr ""
+msgstr "Кимге:"
 
 msgid "Filename"
-msgstr ""
+msgstr "Файл ады"
 
 msgid "Upload date"
-msgstr ""
+msgstr "Юкленме тарихи"
 
 msgid "File size"
-msgstr ""
+msgstr "Файл ольчюси"
 
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr ""
+msgstr "Малюмат бериджиге берильген весикъаларгъа илявелерни къошмагъа изин бермек"
 
 msgid "Allow the whistleblower to send messages"
-msgstr ""
+msgstr "Малюмат бериджиге беянатларны ёлламагъа изин бермек"
 
 msgid "Questionnaire answers"
-msgstr ""
+msgstr "Суаллер джедвелининъ джеваплары"
 
 msgid "Step"
-msgstr ""
+msgstr "Адым"
 
 msgid "Status:"
-msgstr ""
+msgstr "Статус:"
 
 msgid "Files attached by recipients"
-msgstr ""
+msgstr "Алыджылар тарафындан иляве этильген файллар"
 
 msgid "Upload a file:"
-msgstr ""
+msgstr "Файлны юклемек:"
 
 msgid "Welcome!"
-msgstr ""
+msgstr "Хош кельдинъиз!"
 
 msgid "For the user documentation, visit:"
-msgstr ""
+msgstr "Къулланыджы весикъаларынен невбеттеки саифеде таныш олмагъа мумкюн:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
 " the software:"
-msgstr ""
+msgstr "Сизге техникий ярдым керек олса, я да умумий суаллеринъиз пейда олды, программа теминаты ичюн теклифлер олса:"
 
 msgid ""
 "If you want to contribute to software development or report a bug, please "
 "open an issue in our ticketing system:"
-msgstr ""
+msgstr "Сиз программа теминаты ишленмесинде иштирак этмеге я да хата акъкъында хабер этмеге истесенъиз, лютфен, бизим дестек системамызгъа соратма ёлланъыз:"
 
 msgid "Join our chat:"
-msgstr ""
+msgstr "Чатымызгъа къошулынъыз:"
 
 msgid "Follow the project on:"
-msgstr ""
+msgstr "Лейханынъ инкишафыны козетинъиз:"
 
 msgid "An update is available:"
-msgstr ""
+msgstr "Янъартма мевджуттир:"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
+msgstr "«Сазламалар» болюгине кирип, «эсапны гъайрыдан къурма анахтары»ны алынъыз ве оны телюкесиз ерде сакъланъыз. Бу анахтар платформагъа иришимни гъайрыдан къурмакъ ве парольни унутсанъыз бильгилеринъизге иришмек керекли олур."
 
 msgid "The provided recovery key is invalid."
-msgstr ""
+msgstr "Теклиф этильген гъайрыдан тикленме анахтары догъру дегиль."
 
 msgid "The provided reset token is invalid or expired."
-msgstr ""
+msgstr "Сыфырламакъ ичюн теклиф этильген маркер догъру дегиль я да онынъ къулланма тарихи кечти."
 
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr ""
+msgstr "Пароль сыфырламасы ичюн соратманы ёлламакъ ичюн эсап къулланыджынынъ адыны я да электрон почта адресинъизни язынъыз."
 
 msgid "Enter your email address to request a password reset."
-msgstr ""
+msgstr "Пароль сыфырламасы ичюн соратманы ёлламакъ ичюн электрон почта адресинъизни язынъыз."
 
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
-msgstr ""
+msgstr "Пароль сыфырламасы процедураны битирмек ичюн эсапны янъыдан къурма анахтарыны язынъыз"
 
 msgid "Password reset requested."
-msgstr ""
+msgstr "Пароль сыфырламасы соратылды."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
-msgstr ""
+msgstr "Къоруйыджыгъа малюмат бериджининъ шахсиетине иришим акъкъында соратма кельди."
 
 msgid "Date of the request"
-msgstr ""
+msgstr "Соратма тарихи"
 
 msgid "Show"
-msgstr ""
+msgstr "Косьтермек"
 
 msgid "Congratulations!"
-msgstr ""
+msgstr "Хайырлаймыз!"
 
 msgid "You have completed the platform activation."
-msgstr ""
+msgstr "Сиз платформа активациясыны битирдинъиз."
 
 msgid "Success!"
-msgstr ""
+msgstr "Мувафакъиетнен битирильди!"
 
 msgid "Your whistleblowing platform is almost ready!"
-msgstr ""
+msgstr "Платформанъыз малюмат бермек ичюн аман-аман азыр!"
 
 msgid "Check your inbox to activate it."
-msgstr ""
+msgstr "Почтанъызда «Кельген мектюплер» папкасыны активация япмакъ ичюн тешкеринъиз."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr ""
+msgstr "Эгер платформа 24 саатте активация япылмаса, о автоматик шекильде ёкъ этиледжек."
 
 msgid "Sign up"
-msgstr ""
+msgstr "Къайд олмакъ"
 
 msgid "Domain"
-msgstr ""
+msgstr "Домен"
 
 msgid "Confirmation"
-msgstr ""
+msgstr "Тасдикъ"
 
 msgid "Invalid confirmation"
-msgstr ""
+msgstr "Тасдикъ догъру дегиль"
 
 msgid "Invalid phone number"
-msgstr ""
+msgstr "Телефон номерасы догъру дегиль"
 
 msgid "The answer is too short"
-msgstr ""
+msgstr "Джевап пек къыскъа"
 
 msgid "The specified input is not valid."
-msgstr ""
+msgstr "Невбеттеки малюматлар керчек дегиль."
 
 msgid "The specified input is not valid:"
-msgstr ""
+msgstr "Невбеттеки малюматлар керчек дегиль:"
 
 msgid "please enter a valid email address."
-msgstr ""
+msgstr "лютфен, электрон почтанъызнынъ керчек адресини язынъыз."
 
 msgid "please enter numbers only."
-msgstr ""
+msgstr "лютфен, тек ракъамлар язынъыз."
 
 msgid "Submissions disabled"
-msgstr ""
+msgstr "Малюмат берильмеси сёндюрильди"
 
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
-msgstr ""
+msgstr "Сиз серверге аноним шекильде къошулмайсынъыз, бу сервер тек аноним малюматларны дестеклей"
 
 msgid "Your report was successful."
-msgstr ""
+msgstr "Малюматынъызнынъ берильмеси мувафакъиетнен екюнленди."
 
 msgid "Remember your receipt for this report."
-msgstr ""
+msgstr "Эсабатынъызнынъ квитанциясыны акъылда тутунъыз."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr ""
+msgstr "Системагъа кирмек ичюн 16 ишаретли квитанцияны къулланынъыз. Бойледже, сиз бизден кельген эр бир месажны бакъып олурсынъыз ве малюмат къошарсынъыз."
 
 msgid "View your report"
-msgstr ""
+msgstr "Эсабатынъызны бакъып чыкъынъыз"
 
 msgid "Recipient selection"
-msgstr ""
+msgstr "Алыджы сайламасы"
 
 msgid "Select the recipients of your report:"
-msgstr ""
+msgstr "Эсабатынъызнынъ алыджыларыны сайланъыз:"
 
 msgid "Recipients selected:"
-msgstr ""
+msgstr "Сайлангъан алыджылар:"
 
 msgid "You have reached the maximum number of selectable recipients."
-msgstr ""
+msgstr "Сиз алыджыларнынъ максималь сайысыны къулландынъыз."
 
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr ""
+msgstr "Сайламаны лягъу этмеге имкян олмагъан невбеттеки алыджылар эсабатынъызны алырлар:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
 "invalid:"
-msgstr ""
+msgstr "Невбеттеки суаллерге джевап берильмеди я да джеваплар догъру дегиль:"
 
 msgid "You must select at least one recipient."
-msgstr ""
+msgstr "Сиз энъ азындан бир алыджыны сайламакъ керексинъиз."
 
 msgid "Waiting for the file(s) to finish uploading."
-msgstr ""
+msgstr "Файл(лар) юклене."
 
 msgid "The following steps have errors:"
-msgstr ""
+msgstr "Невбеттеки арекетлерде хата япылды:"
 
 msgid "Hide"
-msgstr ""
+msgstr "Гизлемек"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
 "whistleblowing platform."
-msgstr ""
+msgstr "Невбеттеки адым-адым япыладжакъ процедура сизге малюмат бермек платформаны мейдангъа кетирмеге имкян берир."
 
 msgid "Please choose a configuration profile:"
-msgstr ""
+msgstr "Лютфен, конфигурация профилини сайланъыз:"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr ""
+msgstr "Бу идареджиге къулланыджы пароллерни атып ташламагъа имкяныны яратынъыз."
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr ""
+msgstr "Алыджылар пароллерни джойсалар, амма малюматлар джоюлмамасыны истесенъиз бу опцияны сайламагъа тевсие этемиз. Башкъа тарафтан, система сазламасында берильген малюматларгъа иришим тек алыджыларда олсун деп, биз бу функцияны къулланмагъа тевсие этмеймиз."
 
 msgid "Please choose a different username."
-msgstr ""
+msgstr "Башкъа къулланыджы адыны сайланъыз."
 
 msgid "I have read and agree to the terms of the license."
-msgstr ""
+msgstr "Мен лицензия шартларыны окъудым ве оларнен разым."
 
 msgid "You have completed the platform wizard."
-msgstr ""
+msgstr "Сиз  платформанынъ сазлама устасынен ишини битирдинъиз."
 
 msgid "Describe your report in detail."
-msgstr ""
+msgstr "Эсабатынъызны тафсилятлы тариф этинъиз."
 
 msgid "Attach files relevant to the report."
-msgstr ""
+msgstr "Эсабаткъа уйгъун файлларны иляве этинъиз."
 
 msgid "Do you want to provide your identification information?"
-msgstr ""
+msgstr "Сиз озюнъиз акъкъында малюмат къалдырмакъ истейсинъизми?"
 
 msgid "First name"
-msgstr ""
+msgstr "Ад"
 
 msgid "Last name"
-msgstr ""
+msgstr "Сойад"
 
 msgid "Alternative contact method"
-msgstr ""
+msgstr "Багънынъ альтернатив усулы"
 
 msgid "Other"
-msgstr ""
+msgstr "Башкъа"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr ""
+msgstr "Меннен тек платформа аркъалы багълангъанларыны истейим"
 
 msgid "Dear {RecipientName},"
-msgstr ""
+msgstr "Азиз {RecipientName},"
 
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr ""
+msgstr "Системада сиз ичюн эсап мейдангъа кетирильгени ичюн сиз бу месажны алдынъыз: {Site}"
 
 msgid "Username: {Username}"
-msgstr ""
+msgstr "Къулланыджы ады: {Username}"
 
 msgid "Activation link: {Url}"
-msgstr ""
+msgstr "Активация ичюн ссылка: {Url}"
 
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr ""
+msgstr "Эсапнынъ активациясына башламакъ ичюн активация ссылкасына басынъыз ве къулланыджы паролинъизни бельгиленъиз."
 
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
-msgstr ""
+msgstr "Мувафакъиетли активациядан сонъ сиз невбеттеки ссылканы къулланып, системагъа кире билесинъиз: {LoginUrl}"
 
 msgid "Kind regards,"
-msgstr ""
+msgstr "Сайгъы иле,"
 
 msgid "Account activation"
-msgstr ""
+msgstr "Эсап активациясы"
 
 msgid "Your whistleblowing platform is now accessible at:"
-msgstr ""
+msgstr "Малюмат берме платформанъызгъа бу адрес вастасынен иришмеге мумкюн:"
 
 msgid "To log in, visit:"
-msgstr ""
+msgstr "Системаларгъа кирмек ичюн саифени ачынъыз:"
 
 msgid "Users' credentials:"
-msgstr ""
+msgstr "Къулланыджыларнынъ эсаплары:"
 
 msgid "The platform will be automatically deleted on:"
-msgstr ""
+msgstr "Платформа автоматик шекильде ёкъ этиледжек:"
 
 msgid "Access instructions"
-msgstr ""
+msgstr "Иришим талиматлары"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
-msgstr ""
+msgstr "Якъын вакъытта кешиф этильген активлик косьтергичи нормальден даа юксек эди."
 
 msgid ""
 "This could be a sign of an attack (for example, someone flooding your server"
 " with bogus information) or just a usage spike due to an increased "
 "visibility of your project."
-msgstr ""
+msgstr "Бу атака алямети ола билир (меселя, бириси серверинъизге сахте малюмат юклей) я да лейханъыз популяр олып, максималь къулланмасынен багълы."
 
 msgid "Examine the issue to determine whether it is legitimate or not."
-msgstr ""
+msgstr "Бу нормаль активлик я да ёкъ, яни меселе неде олгъаныны тешкеринъиз."
 
 msgid "The activities with unusual stats are:"
-msgstr ""
+msgstr "Типик олмагъан статистикалы активлик:"
 
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr ""
+msgstr "Сервер янъы эсабат сакълавына кефиль оламаз, бу себептен малюматлар берильмеси сёндюрильди."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
 "the server."
-msgstr ""
+msgstr "Серверде диск аланы даа зияде олсун деп, лютфен, техник дестек хызметине мураджаат этинъиз."
 
 msgid ""
 "GlobaLeaks technology includes a server status checking component which will"
 " alert you in case something requires your attention."
-msgstr ""
+msgstr "GlobaLeaks технологиялары озюнде сервер вазиетининъ тешкерме компонентини къаплап ала. Эгер бир де бир шей дикъкъатынъызны талап этсе, бу компонент бильдиреджек."
 
 msgid ""
 "For more information, log in to the Administration interface and look at the"
 " \"System Stats\" and \"Anomalies\" sections."
-msgstr ""
+msgstr "Малюмат алмакъ ичюн идареджи панелине «Системанынъ статистикасы» ве «Аномалиялар» болюклерине киринъиз."
 
 msgid "Anomaly detected in {NodeName}"
-msgstr ""
+msgstr "Аномалия белли этильди {NodeName} "
 
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
 "going to expire or has already expired:"
-msgstr ""
+msgstr "Бу мектюп иле невбеттеки къулланыджыларнынъ PGP-анахтарларында къулланма муддети якъын вакъытта битеджеги я да энди биткени акъкъында хабер этемиз:"
 
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
 "notifications."
-msgstr ""
+msgstr "Кечерли PGP-анахтар олмадан система шифреленген бильдирмелерни ёллап оламай."
 
 msgid "PGP key expiration alert"
-msgstr ""
+msgstr "PGP-анахтарнынъ къулланма муддети биткени акъкъында бильдирме"
 
 msgid "A new whistleblowing site has been registered."
-msgstr ""
+msgstr "Малюмат бермек ичюн янъы сайт къайд этильди."
 
 msgid "Registration data:"
-msgstr ""
+msgstr "Къайд этильген малюматлар:"
 
 msgid "Site: {Url}"
-msgstr ""
+msgstr "Сайт: {Url}"
 
 msgid "Name: {Name}"
-msgstr ""
+msgstr "Ад: {Name}"
 
 msgid "Email: {Email}"
-msgstr ""
+msgstr "Электрон почта: {Email}"
 
 msgid "New whistleblowing site registered"
-msgstr ""
+msgstr "Малюмат бермек ичюн янъы сайт къайд олунгъан"
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
-msgstr ""
+msgstr "Бу платформанынъ идаре этме интерфейсинден денъеме электрон мектюп."
 
 msgid ""
 "Reception of this email indicates that the server was able to authenticate "
 "to and interact with the SMTP mail server."
-msgstr ""
+msgstr "Мувафакъиетли мектюп алгъанынъыз сервер тешкермени кечип, акъикъийлигини исбатлагъаныны ве SMTP почта сервери иле язышмагъа имкяны олгъаныны косьтере."
 
 msgid "Test email"
-msgstr ""
+msgstr "Денъеме электрон мектюп"
 
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr ""
+msgstr "Бу месаж иле электрон почта адресинъиз бойле адреске {NewEmailAddress} денъишмеси ичюн соратма ёлланылгъаныны хабердар этемиз."
 
 msgid "Click the following link to validate this change:"
-msgstr ""
+msgstr "Бу денъишмени тасдикъламакъ ичюн невбеттеки ссылкагъа басынъыз:"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
 "system administrator."
-msgstr ""
+msgstr "Эгер сиз бу денъишмени соратмадынъыз, паролинъизни денъиштирип, озь систематик идареджинъизге мураджаат этинъиз."
 
 msgid "Email change request"
-msgstr ""
+msgstr "Электрон почта адресининъ денъишюви акъкъында соратма"
 
 msgid "From: {Author}"
-msgstr ""
+msgstr "Кимден: {Author}"
 
 msgid "Date: {EventTime}"
-msgstr ""
+msgstr "Тарих: {EventTime}"
 
 msgid "From: Whistleblower"
-msgstr ""
+msgstr "Кимден: Малюмат бериджи"
 
 msgid "Date: {SubmissionDate}"
-msgstr ""
+msgstr "Тарих: {SubmissionDate}"
 
 msgid "Label: {TipLabel}"
-msgstr ""
+msgstr "Ишарет: {TipLabel}"
 
 msgid "Status: {TipStatus}"
-msgstr ""
+msgstr "Статус: {TipStatus}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
-msgstr ""
+msgstr "HTTPS сертификатынынъ къулланма тарихи якъын вакъытта битеджек я да энди битти."
 
 msgid "Expiration date: {ExpirationDate}"
-msgstr ""
+msgstr "Къулланма тарихи: {ExpirationDate}"
 
 msgid ""
 "Without a valid certificate, the platform will be accessible in a secure way"
 " only via Tor."
-msgstr ""
+msgstr "Керчек сертификат олмадан системагъа телюкесиз кириш тек Tor вастасынен япыла билир."
 
 msgid "Log in to solve the issue."
-msgstr ""
+msgstr "Бу суальни чезмек ичюн системагъа киринъиз."
 
 msgid "Expiration alert for HTTPS certificate"
-msgstr ""
+msgstr "HTTPS сертификатынынъ къулланма тарихи биткени акъкъында бильдирме"
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
-msgstr ""
+msgstr "Бугуньге планлаштырылгъан HTTPS сертификатынынъ автоматик янъартылмасы мувафакъиетсиздир."
 
 msgid "The system will keep trying."
-msgstr ""
+msgstr "Янъартылма ынтылувлары девам этиледжек."
 
 msgid "Failed HTTPS certificate renewal"
-msgstr ""
+msgstr "HTTPS сертификатынынъ янъартылмасы мувафакъиетсиздир"
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr ""
+msgstr "Бу месажнен къоруйыджы эсабатнен {TipNum} багълы олгъан малюмат бериджининъ шахсиетине иришимге изин бергенини хабер этемиз."
 
 msgid "The report can be accessed at:"
-msgstr ""
+msgstr "Эсабат бу саифеде мевджут:"
 
 msgid "Access to whistleblower's identity authorized"
-msgstr ""
+msgstr "Малюмат бериджининъ шахсиетине иришимге изин берильди"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr ""
+msgstr "Бу месажнен къоруйыджы эсабатнен {TipNum} багълы олгъан малюмат бериджининъ шахсиетине иришимге изин бермегенини хабер этемиз. "
 
 msgid "Access to whistleblower's identity denied"
-msgstr ""
+msgstr "Малюмат бериджи шахсиетине иришим ред этильди"
 
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr ""
+msgstr "Бу месажнен алыджы эсабатнен {TipNum} багълы олгъан малюмат бериджининъ шахсиетине иришимни сораткъаныны хабер этемиз"
 
 msgid "The request can be accessed at:"
-msgstr ""
+msgstr "Соратма саифеде мевджут:"
 
 msgid "New request of access to a whistleblower's identity"
-msgstr ""
+msgstr "Малюмат бериджининъ шахсиетине иришимни эльде этмек ичюн янъы соратма "
 
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr ""
+msgstr "Бу месаж иле эсабат берген {TipNum} малюмат бериджи озю акъкъында бильгилерни бергенини хабер этемиз."
 
 msgid "The whistleblower has provided their identity"
-msgstr ""
+msgstr "Малюмат бериджи озю акъкъында бильгилерни берди"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr ""
+msgstr "Эсап {Username} паролинъизни сыфырламакъ ичюн соратма олгъаны ичюн бу месажны алдынъыз"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
 "email."
-msgstr ""
+msgstr "Эгер сиз бу соратманы ёлламадынъыз, месажгъа дикъкъат этменъиз ве оны ёкъ этинъиз."
 
 msgid "You can confirm your request by clicking the following link:"
-msgstr ""
+msgstr "Ссылкагъа басып, адресинъизни тасдикъланъыз:"
 
 msgid "Password reset instructions"
-msgstr ""
+msgstr "Пароль сыфырламасы талиматлары"
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
 "expired."
-msgstr ""
+msgstr "Бу мектюп иле PGP-анахтарнынъ къулланма муддети якъын вакъытта битеджеги я да биткени акъкъында бильдиремиз."
 
 msgid ""
 "You should extend its validity and update the key present on the platform, "
 "or upload a new key."
-msgstr ""
+msgstr "Сиз платформада ишлетильген анахтарнынъ къулланма тарихини узатмакъ ве янъартмакъ я да янъысыны юклемек керексинъиз."
 
 msgid ""
 "Without a valid PGP key, the system won't be able to encrypt data provided "
 "to you."
-msgstr ""
+msgstr "Кечерли PGP-анахтар олмадан система сизге берильген малюматларны шифре этип оламайджакъ."
 
 msgid "Click the link to activate the platform:"
-msgstr ""
+msgstr "Платформаны активация япмакъ ичюн ссылкагъа басынъыз:"
 
 msgid "Activation"
-msgstr ""
+msgstr "Активация"
 
 msgid "A software update is available."
-msgstr ""
+msgstr "Программа теминатынынъ янъартмасы мевджуттир."
 
 msgid "It is good security practice to keep the platform up to date."
-msgstr ""
+msgstr "Яхшы телюкесизлик системасыны сакъламакъ ичюн программа теминатыны янъартынъыз."
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "
 "change log at: {ChangeLogUrl}"
-msgstr ""
+msgstr "Хаталарнынъ янъы функциялары ве оларнынъ тюзетильмелери акъкъында денъишмелер журналынынъ янъы версиясында окъунъыз: {ChangeLogUrl} "
 
 msgid ""
 "For instructions on software updates, please refer to the documentation at: "
 "{UpdateGuideUrl}"
-msgstr ""
+msgstr "Лютфен, весикъаларда программа теминаты янъартмаларынынъ ерлештирильмеси акъкъында талиматларыны окъунъыз: {UpdateGuideUrl}"
 
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "Бу электрон мектюпнен алыджы бир я да бир къач эсабаткъа иришим бергенини хабер этемиз."
 
 msgid "New report"
-msgstr ""
+msgstr "Янъы эсабат"
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
-msgstr ""
+msgstr "Энъ эрте къулланма тарихи {EarliestExpirationDate}."
 
 msgid "Please remember to check them before they are deleted."
-msgstr ""
+msgstr "Лютфен, олар программа иле ёкъ этильмегенине къадар оларны тешкермеге унутманъыз."
 
 msgid "Some reports will expire soon"
-msgstr ""
+msgstr "Бир къач эсабатларнынъ къулланма тарихи якъында битеджек"
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr ""
+msgstr "Бу мектюпнен малюмат бериджи сизни эсабатынынъ муим алыджысы оларакъ сайлагъаныны хабер этемиз."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -1931,22 +1931,22 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr ""
+msgstr "Лютфен, мектюптеки олгъан бильги ве малюматларгъа айрыджа дикъкъат этинъиз. Малюмат бериджилер джемиетнинъ меракълары ичюн озьлерини джиддий телюкеге огъраткъанларыны козь огюнде тутунъыз. Бу себептен эсабатта олгъан малюматлар гъает муим сайыла."
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr ""
+msgstr "Бу мектюп бар олгъан эсабат янъартылгъаны акъкъында хабер этмек ичюн ёлланылды."
 
 msgid "Report updated"
-msgstr ""
+msgstr "Эсабат янъартылды"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr ""
+msgstr "Бу мектюп сизге окъулмагъан я да янъартылгъан эсабатлар бар олгъаны акъкъында хатырлатмакъ ичюн ёлланылды."
 
 msgid "Reminder about unread or updated reports"
-msgstr ""
+msgstr "Окъулмагъан я да янъартылгъан эсабатлар акъкъында хатырлатма"
 
 msgid "Role: {Role}"
-msgstr ""
+msgstr "Роль: {Role} "
 
 msgid "Password: {Password}"
-msgstr ""
+msgstr "Пароль: {Password}"

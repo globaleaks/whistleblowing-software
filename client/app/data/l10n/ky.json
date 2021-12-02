@@ -327,7 +327,7 @@
   "Multiple choice input": "Көптөн тандамалуу кириш",
   "Question group": "Суроонун тобу",
   "Hint": "Ишара",
-  "Required": "Милдеттүү",
+  "Mandatory": "Милдеттүү",
   "Accept multiple file uploads": "Бир нече файлды жүктөөнү кабыл алыңыз",
   "Accept multiple answers": "Бир нече жоопту кабыл алыңыз",
   "Template override": "Шаблон жокко чыгарылды",

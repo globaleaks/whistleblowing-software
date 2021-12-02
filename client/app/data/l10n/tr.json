@@ -327,7 +327,7 @@
   "Multiple choice input": "Çoktan seçmeli giriş",
   "Question group": "Soru grubu",
   "Hint": "İpucu",
-  "Required": "Zorunlu",
+  "Mandatory": "Zorunlu",
   "Accept multiple file uploads": "Birden fazla dosya kabul et",
   "Accept multiple answers": "Birden fazla yanıt kabul et",
   "Template override": "Şablon üzerine yazma",

@@ -327,7 +327,7 @@
   "Multiple choice input": "Több választásos bevitel",
   "Question group": "Kérdéscsoport",
   "Hint": "Tipp",
-  "Required": "Kötelező",
+  "Mandatory": "Kötelező",
   "Accept multiple file uploads": "Több fájlos feltöltések fogadása",
   "Accept multiple answers": "Több válasz fogadása",
   "Template override": "Template felülírása",

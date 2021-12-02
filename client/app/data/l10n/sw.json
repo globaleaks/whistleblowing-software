@@ -327,7 +327,7 @@
   "Multiple choice input": "Maingizo ya chaguo nyingi ",
   "Question group": "Kundi la swali",
   "Hint": "Kidokezo",
-  "Required": "Inahitajika",
+  "Mandatory": "Inahitajika",
   "Accept multiple file uploads": "Kubali upakiaji wa faili nyingi",
   "Accept multiple answers": "Kubali majibu mengi",
   "Template override": "Batilisha kiolezo",
