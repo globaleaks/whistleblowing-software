@@ -1,6 +1,5 @@
 # -*- coding: UTF-8
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.handlers.admin.operation import db_reset_smtp_settings
 from globaleaks.models import Model
 from globaleaks.models.enums import *
 from globaleaks.models.properties import *
