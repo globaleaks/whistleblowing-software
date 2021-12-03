@@ -215,7 +215,8 @@ var GL = angular.module("GL", [
         controller: "ReceiverTipsCtrl",
         header_title: "Reports",
         resolve: {
-          access: requireAuth("receiver")
+          access: requireAuth("receiver"),
+          resources: fetchResources("receiver", ["preferences"])
         }
       }).
       when("/admin/home", {
