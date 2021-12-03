@@ -28,14 +28,40 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
     :param language: The language to be used during data serialization
     :return: A list of submissions descriptors
     """
-    rtip_summary_list = []
-
-    rtip_ids = []
-    itip_ids = []
+    ret = {
+      'questionnaires': {},
+      'rtips': []
+    }
 
     messages_by_rtip = {}
     comments_by_itip = {}
     files_by_itip = {}
+
+    # Fetch messages count
+    for rtip_id, count in session.query(models.ReceiverTip.id,
+                                        func.count(distinct(models.Message.id))) \
+                                 .filter(models.ReceiverTip == receiver_id,
+                                         models.Message.receivertip_id == models.ReceiverTip.id) \
+                                 .group_by(models.ReceiverTip.id):
+        messages_by_rtip[rtip_id] = count
+
+    # Fetch comments count
+    for itip_id, count in session.query(models.InternalTip.id,
+                                        func.count(distinct(models.Comment.id))) \
+                                 .filter(models.ReceiverTip.receiver_id == receiver_id,
+                                         models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                         models.Comment.internaltip_id == models.InternalTip.id) \
+                                 .group_by(models.InternalTip.id):
+        comments_by_itip[itip_id] = count
+
+    # Fetch files count
+    for itip_id, count in session.query(models.InternalTip.id,
+                                        func.count(distinct(models.InternalFile.id))) \
+                                 .filter(models.ReceiverTip.receiver_id == receiver_id,
+                                         models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                         models.InternalFile.internaltip_id == models.InternalTip.id) \
+                                 .group_by(models.InternalTip.id):
+        files_by_itip[itip_id] = count
 
     # Fetch rtip, internaltip and associated questionnaire schema
     for rtip, itip, answers, aqs in session.query(models.ReceiverTip,
@@ -44,23 +70,18 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
                                                   models.ArchivedSchema) \
                                            .filter(models.ReceiverTip.receiver_id == receiver_id,
                                                    models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                                   models.InternalTipAnswers.internaltip_id == models.InternalTip.id,
-                                                   models.ArchivedSchema.hash == models.InternalTipAnswers.questionnaire_hash,
-                                                   models.InternalTip.tid == tid) \
-                                           .order_by(models.InternalTip.progressive.desc(), models.InternalTipAnswers.creation_date.asc()):
-        if rtip.id in rtip_ids:
-            continue
-
-        rtip_ids.append(rtip.id)
-        itip_ids.append(itip.id)
-
+                                                   models.InternalTipAnswers.internaltip_id == models.ReceiverTip.internaltip_id,
+                                                   models.InternalTipAnswers.questionnaire_hash == models.ArchivedSchema.hash) \
+                                           .order_by(models.InternalTip.update_date.desc()):
         answers = answers.answers
         if itip.crypto_tip_pub_key:
             tip_key = GCE.asymmetric_decrypt(user_key, base64.b64decode(rtip.crypto_tip_prv_key))
-
             answers = json.loads(GCE.asymmetric_decrypt(tip_key, base64.b64decode(answers.encode())).decode())
 
-        rtip_summary_list.append({
+        if aqs.hash not in ret['questionnaires']:
+            ret['questionnaires'][aqs.hash] = db_serialize_archived_questionnaire_schema(aqs.schema, language)
+
+        ret['rtips'].append({
             'id': rtip.id,
             'itip_id': itip.id,
             'creation_date': itip.creation_date,
@@ -75,43 +96,17 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
             'updated': rtip.last_access < itip.update_date,
             'context_id': itip.context_id,
             'tor': itip.tor,
-            'questionnaire': db_serialize_archived_questionnaire_schema(aqs.schema, language),
+            'questionnaire': aqs.hash,
             'answers': answers,
             'score': itip.score,
             'status': itip.status,
-            'substatus': itip.substatus
+            'substatus': itip.substatus,
+            'file_count': files_by_itip.get(itip.id, 0),
+            'comment_count': comments_by_itip.get(itip.id, 0),
+            'message_count': messages_by_rtip.get(rtip.id, 0)
         })
 
-    # Fetch messages count
-    for rtip_id, count in session.query(models.ReceiverTip.id,
-                                        func.count(distinct(models.Message.id))) \
-                                 .filter(models.Message.receivertip_id == models.ReceiverTip.id,
-                                         models.ReceiverTip.id.in_(rtip_ids)) \
-                                 .group_by(models.ReceiverTip.id):
-        messages_by_rtip[rtip_id] = count
-
-    # Fetch comments count
-    for itip_id, count in session.query(models.InternalTip.id,
-                                        func.count(distinct(models.Comment.id))) \
-                                 .filter(models.Comment.internaltip_id == models.InternalTip.id,
-                                         models.InternalTip.id.in_(itip_ids)) \
-                                 .group_by(models.InternalTip.id):
-        comments_by_itip[itip_id] = count
-
-    # Fetch attachment count
-    for itip_id, count in session.query(models.InternalTip.id,
-                                        func.count(distinct(models.InternalFile.id))) \
-                                 .filter(models.InternalFile.internaltip_id == models.InternalTip.id,
-                                         models.InternalTip.id.in_(itip_ids)) \
-                                 .group_by(models.InternalTip.id):
-        files_by_itip[itip_id] = count
-
-    for elem in rtip_summary_list:
-        elem['file_count'] = files_by_itip.get(elem['itip_id'], 0)
-        elem['comment_count'] = comments_by_itip.get(elem['itip_id'], 0)
-        elem['message_count'] = messages_by_rtip.get(elem['id'], 0)
-
-    return rtip_summary_list
+    return ret
 
 
 @transact

@@ -1,18 +1,17 @@
-GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$q", "$http", "$location", "$uibModal", "$window", "RTipExport", "ReceiverTips", "TokenResource",
-  function($scope, $filter, $q, $http, $location, $uibModal, $window, RTipExport, ReceiverTips, TokenResource) {
+GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "$uibModal", "$window", "RTipExport", "TokenResource",
+  function($scope, $filter, $http, $location, $uibModal, $window, RTipExport, TokenResource) {
   $scope.search = undefined;
   $scope.currentPage = 1;
   $scope.itemsPerPage = 20;
 
-  $scope.tips = ReceiverTips.query(function(tips) {
-    angular.forEach(tips, function(tip) {
-      tip.context = $scope.contexts_by_id[tip.context_id];
-      tip.context_name = tip.context.name;
-      tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText(tip.status, tip.substatus, $scope.submission_statuses);
-    });
+  angular.forEach($scope.resources.rtips.rtips, function(tip) {
+    tip.context = $scope.contexts_by_id[tip.context_id];
+    tip.context_name = tip.context.name;
+    tip.questionnaire = $scope.resources.rtips.questionnaires[tip.questionnaire];
+    tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText(tip.status, tip.substatus, $scope.submission_statuses);
   });
 
-  $scope.filteredTips = $scope.tips;
+  $scope.filteredTips = $scope.resources.rtips.rtips;
 
   $scope.$watch("search", function (value) {
     if (typeof value !== "undefined") {
