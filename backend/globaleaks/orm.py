@@ -45,6 +45,8 @@ def get_engine(db_uri=None, foreign_keys=True):
 
     @event.listens_for(engine, "connect")
     def do_connect(conn, connection_record):
+        conn.execute('pragma temp_store=MEMORY')
+
         if foreign_keys:
             conn.execute('pragma foreign_keys=ON')
 
