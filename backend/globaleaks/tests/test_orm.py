@@ -14,6 +14,7 @@ class TestORM(helpers.TestGL):
         self.assertEqual(session.execute("PRAGMA foreign_keys").fetchone()[0], 1)  # ON
         self.assertEqual(session.execute("PRAGMA secure_delete").fetchone()[0], 1)  # ON
         self.assertEqual(session.execute("PRAGMA auto_vacuum").fetchone()[0], 1)   # FULL
+        self.assertEqual(session.execute("PRAGMA automatic_index").fetchone()[0], 1) # ON
 
     @transact
     def _transact_with_success(self, session):

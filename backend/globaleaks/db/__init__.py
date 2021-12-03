@@ -49,6 +49,7 @@ def create_db():
     engine.execute('PRAGMA foreign_keys = ON')
     engine.execute('PRAGMA secure_delete = ON')
     engine.execute('PRAGMA auto_vacuum = FULL')
+    engine.execute('PRAGMA automatic_index = ON')
     Base.metadata.create_all(engine)
 
 
