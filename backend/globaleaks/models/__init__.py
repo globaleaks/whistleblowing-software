@@ -213,7 +213,7 @@ class _Comment(Model):
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
-    internaltip_id = Column(UnicodeText(36), nullable=False)
+    internaltip_id = Column(UnicodeText(36), nullable=False, index=True)
     author_id = Column(UnicodeText(36))
     content = Column(UnicodeText, nullable=False)
     type = Column(UnicodeText, nullable=False)
@@ -422,8 +422,8 @@ class _Field(Model):
     preview = Column(Boolean, default=False, nullable=False)
     multi_entry = Column(Boolean, default=False, nullable=False)
     triggered_by_score = Column(Integer, default=0, nullable=False)
-    step_id = Column(UnicodeText(36))
-    fieldgroup_id = Column(UnicodeText(36))
+    step_id = Column(UnicodeText(36), index=True)
+    fieldgroup_id = Column(UnicodeText(36), index=True)
     type = Column(UnicodeText, default='inputbox', nullable=False)
     instance = Column(Enum(EnumFieldInstance), default='instance', nullable=False)
     template_id = Column(UnicodeText(36))
@@ -449,7 +449,7 @@ class _FieldAttr(Model):
     __tablename__ = 'fieldattr'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-    field_id = Column(UnicodeText(36), nullable=False)
+    field_id = Column(UnicodeText(36), nullable=False, index=True)
     name = Column(UnicodeText, nullable=False)
     type = Column(Enum(EnumFieldAttrType), nullable=False)
     value = Column(JSON, default=dict, nullable=False)
@@ -483,7 +483,7 @@ class _FieldOption(Model):
     __tablename__ = 'fieldoption'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-    field_id = Column(UnicodeText(36), nullable=False)
+    field_id = Column(UnicodeText(36), nullable=False, index=True)
     order = Column(Integer, default=0, nullable=False)
     label = Column(JSON, default=dict, nullable=False)
     hint1 = Column(JSON, default=dict, nullable=False)
@@ -572,8 +572,7 @@ class _IdentityAccessRequest(Model):
     __tablename__ = 'identityaccessrequest'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-
-    receivertip_id = Column(UnicodeText(36), nullable=False)
+    receivertip_id = Column(UnicodeText(36), nullable=False, index=True)
     request_date = Column(DateTime, default=datetime_now, nullable=False)
     request_motivation = Column(UnicodeText, default='')
     reply_date = Column(DateTime, default=datetime_null, nullable=False)
@@ -593,9 +592,8 @@ class _InternalFile(Model):
     __tablename__ = 'internalfile'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
-    internaltip_id = Column(UnicodeText(36), nullable=False)
+    internaltip_id = Column(UnicodeText(36), nullable=False, index=True)
     name = Column(UnicodeText, nullable=False)
     filename = Column(UnicodeText, default='', nullable=False)
     content_type = Column(JSON, default='', nullable=False)
@@ -647,7 +645,7 @@ class _InternalTipAnswers(Model):
     """
     __tablename__ = 'internaltipanswers'
 
-    internaltip_id = Column(UnicodeText(36), primary_key=True)
+    internaltip_id = Column(UnicodeText(36), primary_key=True, index=True)
     questionnaire_hash = Column(UnicodeText(64), primary_key=True)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     answers = Column(JSON, default=dict, nullable=False)
@@ -700,7 +698,7 @@ class _Message(Model):
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
-    receivertip_id = Column(UnicodeText(36), nullable=False)
+    receivertip_id = Column(UnicodeText(36), nullable=False, index=True)
     content = Column(UnicodeText, nullable=False)
     type = Column(Enum(EnumMessageType), nullable=False)
     new = Column(Boolean, default=True, nullable=False)
@@ -753,7 +751,7 @@ class _ReceiverFile(Model):
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     internalfile_id = Column(UnicodeText(36), nullable=False)
-    receivertip_id = Column(UnicodeText(36), nullable=False)
+    receivertip_id = Column(UnicodeText(36), nullable=False, index=True)
     filename = Column(UnicodeText(255), nullable=False)
     access_date = Column(DateTime, default=datetime_null, nullable=False)
     new = Column(Boolean, default=True, nullable=False)
@@ -774,7 +772,7 @@ class _ReceiverTip(Model):
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     internaltip_id = Column(UnicodeText(36), nullable=False)
-    receiver_id = Column(UnicodeText(36), nullable=False)
+    receiver_id = Column(UnicodeText(36), nullable=False, index=True)
     access_date = Column(DateTime, default=datetime_null, nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
     new = Column(Boolean, default=True, nullable=False)
@@ -857,7 +855,7 @@ class _Step(Model):
     __tablename__ = 'step'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    questionnaire_id = Column(UnicodeText(36), nullable=False)
+    questionnaire_id = Column(UnicodeText(36), nullable=False, index=True)
     label = Column(JSON, default=dict, nullable=False)
     description = Column(JSON, default=dict, nullable=False)
     triggered_by_score = Column(Integer, default=0, nullable=False)
@@ -1025,7 +1023,7 @@ class _WhistleblowerFile(Model):
     __tablename__ = 'whistleblowerfile'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    receivertip_id = Column(UnicodeText(36), nullable=False)
+    receivertip_id = Column(UnicodeText(36), nullable=False, index=True)
     name = Column(UnicodeText, nullable=False)
     filename = Column(UnicodeText(255), unique=True, nullable=False)
     size = Column(Integer, nullable=False)
