@@ -250,9 +250,6 @@ class MigrationScript(MigrationBase):
             self.session_new.add(obj)
             self.entries_count['Config'] += 1
 
-        for obj in self.session_new.query(self.model_from['WhistleblowerTip']):
-            obj.hash_alg = 'SCRYPT'
-
         ids = [id[0] for id in self.session_old.query(self.model_from['Field'].id)
                                                .filter(self.model_from['Field'].template_id == 'whistleblower_identity')]
 

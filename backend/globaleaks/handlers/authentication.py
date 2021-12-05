@@ -62,23 +62,15 @@ def login_whistleblower(session, tid, receipt):
     :param receipt: A provided receipt
     :return: Returns a user session in case of success
     """
-    x = None
+    hash = GCE.hash_password(receipt, State.tenant_cache[tid].receipt_salt, "ARGON2")
 
-    algorithms = [x[0] for x in session.query(WhistleblowerTip.hash_alg).filter(WhistleblowerTip.tid == tid).distinct()]
+    itip, wbtip = session.query(InternalTip, WhistleblowerTip) \
+                  .filter(WhistleblowerTip.receipt_hash == hash,
+                          WhistleblowerTip.tid == tid,
+                          InternalTip.id == WhistleblowerTip.id).one_or_none()
 
-    if algorithms:
-        hashes = [GCE.hash_password(receipt, State.tenant_cache[tid].receipt_salt, alg) for alg in algorithms]
-
-        x = session.query(WhistleblowerTip, InternalTip) \
-                   .filter(WhistleblowerTip.receipt_hash.in_(hashes),
-                           WhistleblowerTip.tid == tid,
-                           InternalTip.id == WhistleblowerTip.id).one_or_none()
-
-    if x is None:
+    if itip is None:
         db_login_failure(session, tid, 1)
-
-    wbtip = x[0]
-    itip = x[1]
 
     itip.wb_last_access = datetime_now()
 

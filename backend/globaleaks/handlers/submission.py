@@ -276,7 +276,6 @@ def db_create_submission(session, tid, request, user_session, client_using_tor):
         wbtip = models.WhistleblowerTip()
         wbtip.id = itip.id
         wbtip.tid = tid
-        wbtip.hash_alg = 'ARGON2'
         wbtip.receipt_hash = GCE.hash_password(receipt, receipt_salt)
 
         # Evaluate if the whistleblower tip should be encrypted

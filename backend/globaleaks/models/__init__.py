@@ -1044,7 +1044,6 @@ class _WhistleblowerTip(Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     tid = Column(Integer, default=1, nullable=False)
     receipt_hash = Column(UnicodeText(128), nullable=False)
-    hash_alg = Column(UnicodeText, default='ARGON2', nullable=False)
     crypto_prv_key = Column(UnicodeText(84), default='', nullable=False)
     crypto_pub_key = Column(UnicodeText(56), default='', nullable=False)
     crypto_tip_prv_key = Column(UnicodeText(84), default='', nullable=False)
