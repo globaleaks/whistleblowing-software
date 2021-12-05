@@ -36,6 +36,7 @@ from globaleaks.handlers.admin.user import create_user
 from globaleaks.handlers.token import generate_token
 from globaleaks.handlers.wizard import db_wizard
 from globaleaks.handlers.submission import create_submission
+from globaleaks.models import serializers
 from globaleaks.models.config import db_set_config_variable
 from globaleaks.rest import decorators
 from globaleaks.rest.api import JSONEncoder
@@ -724,31 +725,26 @@ class TestGL(unittest.TestCase):
     @transact
     def get_rtips(self, session):
         ret = []
-        for r, i in session.query(models.ReceiverTip, models.InternalTip) \
+        for i, r in session.query(models.InternalTip, models.ReceiverTip) \
                          .filter(models.ReceiverTip.internaltip_id == models.InternalTip.id,
                                  models.InternalTip.tid == 1):
-            ret.append(rtip.serialize_rtip(session, r, i, 'en'))
+            ret.append(serializers.serialize_rtip(session, i, r, 'en'))
 
         return ret
 
     @transact
     def get_rfiles(self, session, rtip_id):
-        return [{'id': rfile.id} for rfile in session.query(models.ReceiverFile).filter(models.ReceiverFile.receivertip_id == rtip_id,
-                                                                                        models.ReceiverTip.id == rtip_id,
-                                                                                        models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                                                                        models.InternalTip.tid == 1)]
+        return [x[0] for x in session.query(models.ReceiverFile.id) \
+                                     .filter(models.ReceiverFile.receivertip_id == rtip_id)]
 
     @transact
     def get_wbtips(self, session):
         ret = []
-        for w, i in session.query(models.WhistleblowerTip, models.InternalTip) \
-                           .filter(models.WhistleblowerTip.id == models.InternalTip.id,
-                                   models.InternalTip.tid == 1):
-            x = wbtip.serialize_wbtip(session, w, i, 'en')
+        for i in session.query(models.InternalTip) \
+                        .filter(models.InternalTip.tid == 1):
+            x = serializers.serialize_wbtip(session, i, 'en')
             x['receivers_ids'] = list(zip(*session.query(models.ReceiverTip.receiver_id)
-                                           .filter(models.ReceiverTip.internaltip_id == i.id,
-                                                   models.InternalTip.id == i.id,
-                                                   models.InternalTip.tid == 1)))[0]
+                                           .filter(models.ReceiverTip.internaltip_id == i.id)))[0]
             ret.append(x)
 
         return ret
@@ -760,27 +756,6 @@ class TestGL(unittest.TestCase):
                                                              models.ReceiverTip.internaltip_id == wbtip_id,
                                                              models.InternalTip.id == wbtip_id,
                                                              models.InternalTip.tid == 1)]
-
-    @transact
-    def get_internalfiles_by_receipt(self, session, receipt):
-        hashed_receipt = GCE.hash_password(receipt, State.tenant_cache[1].receipt_salt)
-
-        ifiles = session.query(models.InternalFile) \
-                        .filter(models.InternalFile.internaltip_id == models.WhistleblowerTip.id,
-                                models.WhistleblowerTip.receipt_hash == hashed_receipt)
-
-        return [models.serializers.serialize_ifile(session, ifile) for ifile in ifiles]
-
-    @transact
-    def get_receiverfiles_by_receipt(self, session, receipt):
-        hashed_receipt = GCE.hash_password(receipt, State.tenant_cache[1].receipt_salt)
-
-        rfiles = session.query(models.ReceiverFile) \
-                        .filter(models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
-                                models.ReceiverTip.internaltip_id == models.WhistleblowerTip.id,
-                                models.WhistleblowerTip.receipt_hash == hashed_receipt)
-
-        return [models.serializers.serialize_rfile(session, rfile) for rfile in rfiles]
 
     def db_test_model_count(self, session, model, n):
         self.assertEqual(session.query(model).count(), n)
@@ -921,7 +896,7 @@ class TestGLWithPopulatedDB(TestGL):
 
     @transact
     def force_wbtip_expiration(self, session):
-        session.query(models.InternalTip).update({'wb_last_access': datetime_null()})
+        session.query(models.InternalTip).update({'last_access': datetime_null()})
 
     @transact
     def force_itip_expiration(self, session):

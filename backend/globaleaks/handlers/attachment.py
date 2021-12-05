@@ -31,7 +31,7 @@ def register_ifile_on_db(session, tid, internaltip_id, uploaded_file):
                           models.InternalTip.tid == tid).one()
 
     itip.update_date = now
-    itip.wb_last_access = now
+    itip.last_access = now
 
     if itip.crypto_tip_pub_key:
         for k in ['name', 'type', 'size']:

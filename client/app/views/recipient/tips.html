@@ -216,9 +216,9 @@
             <span data-ng-if="Utils.isNever(tip.expiration_date)">-</span>
           </td>
           <td class="TipInfoLastAccess">
-            <i data-ng-if="tip.wb_last_access >= tip.update_date" class="fas fa-check"
-               data-uib-tooltip="{{'The whistleblower has already read the last update' | translate }} ({{tip.wb_last_access | date:'dd-MM-yyyy HH:mm'}})"></i>
-            <i data-ng-if="tip.wb_last_access < tip.update_date" class="fas fa-times"
+            <i data-ng-if="tip.last_access >= tip.update_date" class="fas fa-check"
+               data-uib-tooltip="{{'The whistleblower has already read the last update' | translate }} ({{tip.last_access | date:'dd-MM-yyyy HH:mm'}})"></i>
+            <i data-ng-if="tip.last_access < tip.update_date" class="fas fa-times"
                data-uib-tooltip="{{'The whistleblower has not read the last update yet' | translate }}"></i>
           </td>
           <td class="TipInfoPreview">

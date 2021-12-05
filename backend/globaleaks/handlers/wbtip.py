@@ -11,11 +11,9 @@ from globaleaks import models
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list
-from globaleaks.handlers.submission import serialize_usertip, \
-    decrypt_tip, db_set_internaltip_answers, db_get_questionnaire, \
+from globaleaks.handlers.submission import decrypt_tip, \
+    db_set_internaltip_answers, db_get_questionnaire, \
     db_archive_questionnaire_schema, db_set_internaltip_data
-from globaleaks.handlers.rtip import serialize_rtip
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.models import serializers
 from globaleaks.orm import db_get, transact
@@ -37,7 +35,7 @@ def db_notify_recipients_of_tip_update(session, itip_id):
         }
 
         data['user'] = user_serialize_user(session, user, user.language)
-        data['tip'] = serialize_rtip(session, rtip, itip, user.language)
+        data['tip'] = serializers.serialize_rtip(session, itip, rtip, user.language)
 
         data['node'] = db_admin_serialize_node(session, user.tid, user.language)
 
@@ -56,47 +54,12 @@ def db_notify_recipients_of_tip_update(session, itip_id):
         }))
 
 
-
-def db_get_itip_receiver_list(session, itip):
-    ret = []
-
-    for user, rtip in session.query(models.User, models.ReceiverTip) \
-                             .filter(models.User.id == models.ReceiverTip.receiver_id,
-                                     models.ReceiverTip.internaltip_id == itip.id):
-        ret.append({
-            "id": user.id,
-            "name": user.public_name,
-            "last_access": rtip.last_access
-        })
-
-    return ret
-
-
-def db_get_rfile_list(session, itip_id):
-    ifiles = session.query(models.InternalFile) \
-                    .filter(models.InternalFile.internaltip_id == itip_id,
-                            models.InternalTip.id == itip_id)
-
-    return [serializers.serialize_ifile(session, ifile) for ifile in ifiles]
-
-
-def db_get_wbfile_list(session, itip_id):
-    wbfiles = session.query(models.WhistleblowerFile) \
-                     .filter(models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                             models.ReceiverTip.internaltip_id == itip_id)
-
-    return [serializers.serialize_wbfile(session, wbfile) for wbfile in wbfiles]
-
-
 def db_get_wbtip(session, itip_id, language):
-    wbtip, itip = db_get(session,
-                         (models.WhistleblowerTip, models.InternalTip),
-                         (models.WhistleblowerTip.id == models.InternalTip.id,
-                          models.InternalTip.id == itip_id))
+    itip = db_get(session, models.InternalTip, models.InternalTip.id == itip_id)
 
-    itip.wb_last_access = datetime_now()
+    itip.last_access = datetime_now()
 
-    return serialize_wbtip(session, wbtip, itip, language), base64.b64decode(wbtip.crypto_tip_prv_key)
+    return serializers.serialize_wbtip(session, itip, language), base64.b64decode(itip.crypto_tip_prv_key)
 
 
 @transact
@@ -104,69 +67,46 @@ def get_wbtip(session, itip_id, language):
     return db_get_wbtip(session, itip_id, language)
 
 
-def serialize_wbtip(session, wbtip, itip, language):
-    ret = serialize_usertip(session, itip, itip, language)
-
-    ret['receivers'] = db_get_itip_receiver_list(session, itip)
-    ret['comments'] = db_get_itip_comment_list(session, itip.id)
-    ret['messages'] = db_get_itip_message_list(session, itip.id)
-    ret['rfiles'] = db_get_rfile_list(session, itip.id)
-    ret['wbfiles'] = db_get_wbfile_list(session, itip.id)
-
-    return ret
-
-
 @transact
-def create_comment(session, tid, wbtip_id, content):
-    wbtip, itip = db_get(session,
-                         (models.WhistleblowerTip, models.InternalTip),
-                         (models.WhistleblowerTip.id == wbtip_id,
-                          models.InternalTip.id == models.WhistleblowerTip.id,
-                          models.InternalTip.enable_two_way_comments.is_(True),
-                          models.InternalTip.status != 'closed',
-                          models.InternalTip.tid == tid))
+def create_comment(session, tid, itip_id, content):
+    itip = db_get(session,
+                  models.InternalTip,
+                  (models.InternalTip.id == itip_id,
+                   models.InternalTip.enable_two_way_comments.is_(True),
+                   models.InternalTip.status != 'closed',
+                   models.InternalTip.tid == tid))
 
-    itip.update_date = itip.wb_last_access = datetime_now()
+    itip.update_date = itip.last_access = datetime_now()
 
     _content = content
     if itip.crypto_tip_pub_key:
         _content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
 
     comment = models.Comment()
-    comment.internaltip_id = wbtip_id
+    comment.internaltip_id = itip_id
     comment.type = 'whistleblower'
     comment.content = _content
     session.add(comment)
     session.flush()
 
-    ret = serialize_comment(session, comment)
+    ret = serializers.serialize_comment(session, comment)
     ret['content'] = content
 
     return ret
 
 
-def db_get_itip_message_list(session, wbtip_id):
-    messages = session.query(models.Message) \
-                      .filter(models.Message.receivertip_id == models.ReceiverTip.id,
-                              models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                              models.InternalTip.id == wbtip_id)
-
-    return [serialize_message(session, message) for message in messages]
-
-
 @transact
-def create_message(session, tid, wbtip_id, receiver_id, content):
-    wbtip, itip, rtip_id = db_get(session,
-                                  (models.WhistleblowerTip, models.InternalTip, models.ReceiverTip.id),
-                                  (models.WhistleblowerTip.id == wbtip_id,
-                                   models.ReceiverTip.internaltip_id == wbtip_id,
-                                   models.ReceiverTip.receiver_id == receiver_id,
-                                   models.InternalTip.id == models.WhistleblowerTip.id,
-                                   models.InternalTip.enable_two_way_messages.is_(True),
-                                   models.InternalTip.status != 'closed',
-                                   models.InternalTip.tid == tid))
+def create_message(session, tid, itip_id, receiver_id, content):
+    itip, rtip_id = db_get(session,
+                           (models.InternalTip, models.ReceiverTip.id),
+                           (models.InternalTip.id == itip_id,
+                            models.ReceiverTip.internaltip_id == itip_id,
+                            models.ReceiverTip.receiver_id == receiver_id,
+                            models.InternalTip.enable_two_way_messages.is_(True),
+                            models.InternalTip.status != 'closed',
+                            models.InternalTip.tid == tid))
 
-    itip.update_date = itip.wb_last_access = datetime_now()
+    itip.update_date = itip.last_access = datetime_now()
 
     _content = content
     if itip.crypto_tip_pub_key:
@@ -179,9 +119,8 @@ def create_message(session, tid, wbtip_id, receiver_id, content):
     session.add(msg)
     session.flush()
 
-    ret = serialize_message(session, msg)
+    ret = serializers.serialize_message(session, msg)
     ret['content'] = content
-
     return ret
 
 
@@ -200,7 +139,7 @@ def update_identity_information(session, tid, tip_id, identity_field_id, wbi, la
 
     now = datetime_now()
     itip.update_date = now
-    itip.wb_last_access = now
+    itip.last_access = now
 
     db_notify_recipients_of_tip_update(session, itip.id)
 
@@ -225,6 +164,7 @@ def store_additional_questionnaire_answers(session, tid, tip_id, answers, langua
     db_set_internaltip_answers(session, itip.id, questionnaire_hash, answers)
 
     db_notify_recipients_of_tip_update(session, itip.id)
+
 
 
 class WBTipInstance(BaseHandler):
@@ -272,11 +212,11 @@ class WBTipWBFileHandler(BaseHandler):
     @transact
     def download_wbfile(self, session, tid, file_id):
         wbfile, wbtip = db_get(session,
-                               (models.WhistleblowerFile, models.WhistleblowerTip),
+                               (models.WhistleblowerFile, models.InternalTip),
                                (models.WhistleblowerFile.id == file_id,
                                 models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                                models.ReceiverTip.internaltip_id == models.WhistleblowerTip.id,
-                                models.WhistleblowerTip.id == self.session.user_id))
+                                models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                models.InternalTip.id == self.session.user_id))
 
         if not wbtip:
             raise errors.ResourceNotFound()
@@ -287,22 +227,21 @@ class WBTipWBFileHandler(BaseHandler):
         log.debug("Download of file %s by whistleblower %s",
                   wbfile.id, self.session.user_id)
 
-        return serializers.serialize_wbfile(session, wbfile), base64.b64decode(wbtip.crypto_tip_prv_key), ''
+        return wbfile.name, wbfile.filename, base64.b64decode(wbtip.crypto_tip_prv_key), ''
 
     @inlineCallbacks
     def get(self, wbfile_id):
-        wbfile, tip_prv_key, pgp_key = yield self.download_wbfile(self.request.tid, wbfile_id)
+        name, filelocation, tip_prv_key, pgp_key = yield self.download_wbfile(self.request.tid, wbfile_id)
 
-        filelocation = os.path.join(self.state.settings.attachments_path, wbfile['filename'])
-
+        filelocation = os.path.join(self.state.settings.attachments_path, filelocation)
         directory_traversal_check(self.state.settings.attachments_path, filelocation)
 
         if tip_prv_key:
             tip_prv_key = GCE.asymmetric_decrypt(self.session.cc, tip_prv_key)
-            wbfile['name'] = GCE.asymmetric_decrypt(tip_prv_key, base64.b64decode(wbfile['name'].encode())).decode()
+            name = GCE.asymmetric_decrypt(tip_prv_key, base64.b64decode(name.encode())).decode()
             filelocation = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
 
-        yield self.write_file_as_download(wbfile['name'], filelocation, pgp_key)
+        yield self.write_file_as_download(name, filelocation, pgp_key)
 
 
 class WBTipIdentityHandler(BaseHandler):

@@ -57,14 +57,6 @@ class TestSubmission(helpers.TestHandlerWithPopulatedDB):
 
         yield delivery.Delivery().run()
 
-        self.fil = yield self.get_internalfiles_by_receipt(receipt)
-        self.assertTrue(isinstance(self.fil, list))
-        self.assertEqual(len(self.fil), 3)
-
-        self.rfi = yield self.get_receiverfiles_by_receipt(receipt)
-        self.assertTrue(isinstance(self.rfi, list))
-        self.assertEqual(len(self.rfi), self.files_created)
-
     @inlineCallbacks
     def test_update_submission(self):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])

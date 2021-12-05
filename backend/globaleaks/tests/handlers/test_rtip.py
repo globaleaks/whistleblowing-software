@@ -276,10 +276,10 @@ class TestReceiverFileDownload(helpers.TestHandlerWithPopulatedDB):
 
         rtip_descs = yield self.get_rtips()
         for rtip_desc in rtip_descs:
-            rfiles_desc = yield self.get_rfiles(rtip_desc['id'])
-            for rfile_desc in rfiles_desc:
+            rfile_ids = yield self.get_rfiles(rtip_desc['id'])
+            for rfile_id in rfile_ids:
                 handler = self.request(role='receiver', user_id=rtip_desc['receiver_id'])
-                yield handler.get(rfile_desc['id'])
+                yield handler.get(rfile_id)
                 self.assertNotEqual(handler.request.getResponseBody(), '')
 
 

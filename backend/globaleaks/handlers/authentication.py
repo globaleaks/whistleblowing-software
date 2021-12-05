@@ -6,7 +6,7 @@ from random import SystemRandom
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.handlers.base import connection_check, BaseHandler
-from globaleaks.models import InternalTip, User, WhistleblowerTip
+from globaleaks.models import InternalTip, User
 from globaleaks.orm import db_log, transact, tw
 from globaleaks.rest import errors, requests
 from globaleaks.sessions import initialize_submission_session, Sessions
@@ -64,10 +64,9 @@ def login_whistleblower(session, tid, receipt):
     """
     hash = GCE.hash_password(receipt, State.tenant_cache[tid].receipt_salt, "ARGON2")
 
-    itip, wbtip = session.query(InternalTip, WhistleblowerTip) \
-                  .filter(WhistleblowerTip.receipt_hash == hash,
-                          WhistleblowerTip.tid == tid,
-                          InternalTip.id == WhistleblowerTip.id).one_or_none()
+    itip = session.query(InternalTip) \
+                  .filter(InternalTip.tid == tid,
+                          InternalTip.receipt_hash == hash).one_or_none()
 
     if itip is None:
         db_login_failure(session, tid, 1)
@@ -75,13 +74,13 @@ def login_whistleblower(session, tid, receipt):
     itip.wb_last_access = datetime_now()
 
     crypto_prv_key = ''
-    if wbtip.crypto_prv_key:
+    if itip.crypto_pub_key:
         user_key = GCE.derive_key(receipt.encode(), State.tenant_cache[tid].receipt_salt)
-        crypto_prv_key = GCE.symmetric_decrypt(user_key, Base64Encoder.decode(wbtip.crypto_prv_key))
+        crypto_prv_key = GCE.symmetric_decrypt(user_key, Base64Encoder.decode(itip.crypto_prv_key))
 
     db_log(session, tid=tid,  type='whistleblower_login')
 
-    return Sessions.new(tid, wbtip.id, tid, 'whistleblower', crypto_prv_key)
+    return Sessions.new(tid, itip.id, tid, 'whistleblower', crypto_prv_key)
 
 
 @transact

@@ -14,9 +14,8 @@ from globaleaks.handlers.admin.context import admin_serialize_context
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.custodian import serialize_identityaccessrequest
 from globaleaks.handlers.operation import OperationHandler
-from globaleaks.handlers.submission import db_create_receivertip, decrypt_tip, serialize_usertip
+from globaleaks.handlers.submission import db_create_receivertip, decrypt_tip
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.models import serializers
 from globaleaks.orm import db_get, db_del, db_log, transact
@@ -28,22 +27,6 @@ from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.log import log
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import get_expiration, datetime_now, datetime_null, datetime_never
-
-
-def db_get_itip_receiver_list(session, itip):
-    ret = []
-
-    for user, rtip in session.query(models.User, models.ReceiverTip) \
-                             .filter(models.User.id == models.ReceiverTip.receiver_id,
-                                     models.ReceiverTip.internaltip_id == itip.id):
-        ret.append({
-            "id": user.id,
-            "name": user.name,
-            "access_date": rtip.access_date,
-            "last_access": rtip.last_access
-        })
-
-    return ret
 
 
 def db_tip_grant_notification(session, user):
@@ -219,130 +202,6 @@ def update_tip_submission_status(session, tid, user_id, rtip_id, status_id, subs
     db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id)
 
 
-def receiver_serialize_rfile(session, rfile):
-    """
-    Transaction returning a serialized descriptor of an rfile
-
-    :param session: An ORM session
-    :param rfile: A model to be serialized
-    :return: A serialized description of the model specified
-    """
-    ifile = session.query(models.InternalFile) \
-                   .filter(models.InternalFile.id == rfile.internalfile_id).one_or_none()
-
-    return {
-        'id': rfile.id,
-        'internalfile_id': ifile.id,
-        'href': "/rtip/" + rfile.receivertip_id + "/download/" + rfile.id,
-        'name': ifile.name,
-        'filename': rfile.filename,
-        'type': ifile.content_type,
-        'creation_date': ifile.creation_date,
-        'size': ifile.size,
-        'path': os.path.join(Settings.attachments_path, rfile.filename)
-    }
-
-
-def receiver_serialize_wbfile(session, wbfile):
-    """
-    Transaction returning a serialized descriptor of an wbfile
-
-    :param session: An ORM session
-    :param wbfile: A model to be serialized
-    :return: A serialized description of the model specified
-    """
-    rtip = db_get(session,
-                  models.ReceiverTip,
-                  models.ReceiverTip.id == wbfile.receivertip_id)
-
-    return {
-        'id': wbfile.id,
-        'creation_date': wbfile.creation_date,
-        'name': wbfile.name,
-        'filename': wbfile.filename,
-        'description': wbfile.description,
-        'size': wbfile.size,
-        'type': wbfile.content_type,
-        'author': rtip.receiver_id,
-        'path': os.path.join(Settings.attachments_path, wbfile.filename)
-    }
-
-
-def serialize_comment(session, comment):
-    """
-    Transaction returning a serialized descriptor of a comment
-
-    :param session: An ORM session
-    :param comment: A model to be serialized
-    :return: A serialized description of the model specified
-    """
-    return {
-        'id': comment.id,
-        'type': comment.type,
-        'creation_date': comment.creation_date,
-        'content': comment.content,
-        'author': comment.author_id
-    }
-
-
-def serialize_message(session, message):
-    """
-    Transaction returning a serialized descriptor of a message
-
-    :param session: An ORM session
-    :param message: A model to be serialized
-    :return: A serialized description of the model specified
-    """
-    receiver_involved_id = session.query(models.ReceiverTip.receiver_id) \
-                                  .filter(models.ReceiverTip.id == models.Message.receivertip_id,
-                                          models.Message.id == message.id).one()
-
-    return {
-        'id': message.id,
-        'type': message.type,
-        'creation_date': message.creation_date,
-        'content': message.content,
-        'receiver_involved_id': receiver_involved_id
-    }
-
-
-def serialize_rtip(session, rtip, itip, language):
-    """
-    Transaction returning a serialized descriptor of a tip
-
-    :param session: An ORM session
-    :param rtip: A model to be serialized
-    :param itip: A itip object referenced by the model to be serialized
-    :param language: A language of the serialization
-    :return: A serialized description of the model specified
-    """
-    user_id = rtip.receiver_id
-
-    ret = serialize_usertip(session, rtip, itip, language)
-
-    ret['id'] = rtip.id
-    ret['receiver_id'] = user_id
-
-    ret['custodian'] = State.tenant_cache[itip.tid]['custodian']
-    ret['important'] = itip.important
-    ret['label'] = itip.label
-    ret['receivers'] = db_get_itip_receiver_list(session, itip)
-    ret['comments'] = db_get_itip_comment_list(session, itip.id)
-    ret['messages'] = db_get_itip_message_list(session, rtip.id)
-    ret['rfiles'] = db_receiver_get_rfile_list(session, rtip.id)
-    ret['wbfiles'] = db_receiver_get_wbfile_list(session, itip.id)
-    ret['iar'] = db_get_rtip_identityaccessrequest(session, rtip.id)
-    ret['enable_notifications'] = rtip.enable_notifications
-
-    if 'whistleblower_identity' in ret['data']:
-        ret['data']['whistleblower_identity_provided'] = True
-
-        if ret['iar'] is None or ret['iar']['reply'] == 'denied':
-            del ret['data']['whistleblower_identity']
-
-    return ret
-
-
 def db_access_rtip(session, tid, user_id, rtip_id):
     """
     Transaction retrieving an rtip and performing basic access checks
@@ -383,53 +242,6 @@ def db_access_wbfile(session, tid, user_id, wbfile_id):
                    models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
                    models.ReceiverTip.internaltip_id.in_(itips_ids),
                    models.InternalTip.tid == tid))
-
-
-def db_receiver_get_rfile_list(session, rtip_id):
-    """
-    Transaction retrieving the list of rfiles attached to an rtip
-
-    :param session: An ORM session
-    :param rtip_id: A rtip ID
-    :return: A list of serializations of the retrieved models
-    """
-    rfiles = session.query(models.ReceiverFile) \
-                    .filter(models.ReceiverFile.receivertip_id == rtip_id)
-
-    return [receiver_serialize_rfile(session, rfile) for rfile in rfiles]
-
-
-@transact
-def receiver_get_rfile_list(session, rtip_id):
-    """
-    Transaction retrieving the list of rfiles attached to an rtip
-
-    :param session: An ORM session
-    :param rtip_id: A rtip ID
-    :return: A list of serializations of the retrieved models
-    """
-    return db_receiver_get_rfile_list(session, rtip_id)
-
-
-def db_receiver_get_wbfile_list(session, itip_id):
-    """
-    Transaction retrieving the list of rfiles attached to an itip
-
-    :param session: An ORM session
-    :param itip_id: A itip ID
-    :return: A list of serializations of the retrieved models
-    """
-    rtips = session.query(models.ReceiverTip) \
-                   .filter(models.ReceiverTip.internaltip_id == itip_id)
-
-    rtips_ids = [rt.id for rt in rtips]
-
-    wbfiles = []
-    if rtips_ids:
-        wbfiles = session.query(models.WhistleblowerFile) \
-                         .filter(models.WhistleblowerFile.receivertip_id.in_(rtips_ids))
-
-    return [receiver_serialize_wbfile(session, wbfile) for wbfile in wbfiles]
 
 
 @transact
@@ -494,7 +306,7 @@ def db_get_rtip(session, tid, user_id, rtip_id, language):
 
     db_log(session, tid=tid, type='access_report', user_id=user_id, object_id=itip.id)
 
-    return serialize_rtip(session, rtip, itip, language), base64.b64decode(rtip.crypto_tip_prv_key)
+    return serializers.serialize_rtip(session, itip, rtip, language), base64.b64decode(rtip.crypto_tip_prv_key)
 
 
 @transact
@@ -619,16 +431,6 @@ def set_receivertip_variable(session, tid, user_id, rtip_id, key, value):
     setattr(rtip, key, value)
 
 
-def db_get_itip_comment_list(session, itip_id):
-    """
-    Transaction for retrieving the list of comments associated to a submission
-    :param session: An ORM session
-    :param itip_id: A submission object of the request
-    :return: A serialized descriptor of the comments
-    """
-    return [serialize_comment(session, comment) for comment in session.query(models.Comment).filter(models.Comment.internaltip_id == itip_id)]
-
-
 def db_create_identityaccessrequest_notifications(session, itip, rtip, iar):
     """
     Transaction for the creation of notifications related to identity access requests
@@ -647,9 +449,9 @@ def db_create_identityaccessrequest_notifications(session, itip, rtip, iar):
         }
 
         data['user'] = user_serialize_user(session, user, user.language)
-        data['tip'] = serialize_rtip(session, rtip, itip, user.language)
+        data['tip'] = serializers.serialize_rtip(session, itip, rtip, user.language)
         data['context'] = admin_serialize_context(session, context, user.language)
-        data['iar'] = serialize_identityaccessrequest(session, iar)
+        data['iar'] = serializers.serialize_identityaccessrequest(session, iar)
         data['node'] = db_admin_serialize_node(session, itip.tid, user.language)
 
         if data['node']['mode'] == 'default':
@@ -695,21 +497,7 @@ def create_identityaccessrequest(session, tid, user_id, rtip_id, request):
 
     db_create_identityaccessrequest_notifications(session, itip, rtip, iar)
 
-    return serialize_identityaccessrequest(session, iar)
-
-
-def db_get_rtip_identityaccessrequest(session, rtip_id):
-    """
-    Transaction for retrieving the last identity access request associated to an rtip
-    :param session: An ORM session
-    :param rtip_id: An rtip ID
-    :return: The last identity access request associated to the specified rtip
-    """
-    iar = session.query(models.IdentityAccessRequest).filter(models.IdentityAccessRequest.receivertip_id == rtip_id).order_by(models.IdentityAccessRequest.request_date.desc()).first()
-    if iar is None:
-        return None
-
-    return serialize_identityaccessrequest(session, iar)
+    return serializers.serialize_identityaccessrequest(session, iar)
 
 
 @transact
@@ -739,10 +527,10 @@ def create_comment(session, tid, user_id, rtip_id, content):
     session.add(comment)
     session.flush()
 
-    ret = serialize_comment(session, comment)
+    ret = serializers.serialize_comment(session, comment)
     ret['content'] = content
-
     return ret
+
 
 
 @transact
@@ -771,19 +559,9 @@ def create_message(session, tid, user_id, rtip_id, content):
     session.add(msg)
     session.flush()
 
-    ret = serialize_message(session, msg)
+    ret = serializers.serialize_message(session, msg)
     ret['content'] = content
     return ret
-
-
-def db_get_itip_message_list(session, rtip_id):
-    """
-    Transact for retrieving the list of comments associated to a tip
-    :param session: An ORM session
-    :param rtip_id: An rtip ID
-    :return: A serialized list of descriptors of messages associated to the specified rtip
-    """
-    return [serialize_message(session, message) for message in session.query(models.Message).filter(models.Message.receivertip_id == rtip_id)]
 
 
 @transact
@@ -903,12 +681,12 @@ class RTipWBFileHandler(BaseHandler):
     def download_wbfile(self, session, tid, file_id):
         wbfile, wbtip, pgp_key = db_get(session,
                                         (models.WhistleblowerFile,
-                                         models.WhistleblowerTip,
+                                         models.InternalTip,
                                          models.User.pgp_key_public),
                                         (models.User.id == models.ReceiverTip.receiver_id,
                                          models.WhistleblowerFile.id == file_id,
                                          models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                                         models.ReceiverTip.internaltip_id == models.WhistleblowerTip.id))
+                                         models.ReceiverTip.internaltip_id == models.InternalTip.id))
 
         rtip = session.query(models.ReceiverTip) \
                       .filter(models.ReceiverTip.receiver_id == self.session.user_id,
@@ -916,22 +694,21 @@ class RTipWBFileHandler(BaseHandler):
         if not rtip:
             raise errors.ResourceNotFound()
 
-        return serializers.serialize_wbfile(session, wbfile), base64.b64decode(rtip.crypto_tip_prv_key), pgp_key
+        return wbfile.name, wbfile.filename, base64.b64decode(rtip.crypto_tip_prv_key), pgp_key
 
     @inlineCallbacks
     def get(self, wbfile_id):
-        wbfile, tip_prv_key, pgp_key = yield self.download_wbfile(self.request.tid, wbfile_id)
+        name, filename, pgp_key = yield self.download_wbfile(self.request.tid, wbfile_id)
 
-        filelocation = os.path.join(self.state.settings.attachments_path, wbfile['filename'])
-
+        filelocation = os.path.join(self.state.settings.attachments_path, filename)
         directory_traversal_check(self.state.settings.attachments_path, filelocation)
 
         if tip_prv_key:
             tip_prv_key = GCE.asymmetric_decrypt(self.session.cc, tip_prv_key)
-            wbfile['name'] = GCE.asymmetric_decrypt(tip_prv_key, base64.b64decode(wbfile['name'].encode())).decode()
+            name = GCE.asymmetric_decrypt(tip_prv_key, base64.b64decode(name.encode())).decode()
             filelocation = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
 
-        yield self.write_file_as_download(wbfile['name'], filelocation, pgp_key)
+        yield self.write_file_as_download(name, filelocation, pgp_key)
 
     def delete(self, file_id):
         """
@@ -949,14 +726,16 @@ class ReceiverFileDownload(BaseHandler):
 
     @transact
     def download_rfile(self, session, tid, user_id, file_id):
-        rfile, rtip, pgp_key = db_get(session,
-                                      (models.ReceiverFile, models.ReceiverTip, models.User.pgp_key_public),
-                                      (models.User.id == user_id,
-                                       models.ReceiverFile.id == file_id,
-                                       models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
-                                       models.ReceiverTip.receiver_id == user_id,
-                                       models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                       models.InternalTip.tid == tid))
+        rfile, ifile, rtip, pgp_key = db_get(session,
+                                             (models.ReceiverFile,
+                                              models.InternalFile,
+                                              models.ReceiverTip,
+                                              models.User.pgp_key_public),
+                                             (models.User.id == user_id,
+                                              models.ReceiverTip.receiver_id == user_id,
+                                              models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
+                                              models.ReceiverFile.internalfile_id == models.InternalFile.id,
+                                              models.ReceiverFile.id == file_id))
 
         if rfile.access_date == datetime_null():
             rfile.access_date = datetime_now()
@@ -964,26 +743,26 @@ class ReceiverFileDownload(BaseHandler):
         log.debug("Download of file %s by receiver %s" %
                   (rfile.internalfile_id, rtip.receiver_id))
 
-        return serializers.serialize_rfile(session, rfile), base64.b64decode(rtip.crypto_tip_prv_key), pgp_key
+        return ifile.name, rfile.filename, base64.b64decode(rtip.crypto_tip_prv_key), pgp_key
 
     @inlineCallbacks
     def get(self, rfile_id):
-        rfile, tip_prv_key, pgp_key = yield self.download_rfile(self.request.tid, self.session.user_id, rfile_id)
+        name, filename, tip_prv_key, pgp_key = yield self.download_rfile(self.request.tid, self.session.user_id, rfile_id)
 
-        filelocation = os.path.join(self.state.settings.attachments_path, rfile['filename'])
+        filelocation = os.path.join(self.state.settings.attachments_path, filename)
         directory_traversal_check(self.state.settings.attachments_path, filelocation)
 
         if tip_prv_key:
             tip_prv_key = GCE.asymmetric_decrypt(self.session.cc, tip_prv_key)
-            rfile['name'] = GCE.asymmetric_decrypt(tip_prv_key, base64.b64decode(rfile['name'].encode())).decode()
+            name = GCE.asymmetric_decrypt(tip_prv_key, base64.b64decode(name.encode())).decode()
 
         if filelocation.endswith('.encrypted'):
             filelocation = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
         elif 'pgp' in filelocation:
             pgp_key = ''
-            rfile['name'] += ".pgp"
+            name += ".pgp"
 
-        yield self.write_file_as_download(rfile['name'], filelocation, pgp_key)
+        yield self.write_file_as_download(name, filelocation, pgp_key)
 
 
 class IdentityAccessRequestsCollection(BaseHandler):

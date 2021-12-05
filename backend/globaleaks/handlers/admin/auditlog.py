@@ -74,7 +74,7 @@ def get_tips(session, tid):
             'comments': comments_by_itip.get(itip.id, 0),
             'messages': messages_by_itip.get(itip.id, 0),
             'files': files_by_itip.get(itip.id, 0),
-            'wb_last_access': itip.wb_last_access
+            'last_access': itip.last_access
         })
 
     return tips

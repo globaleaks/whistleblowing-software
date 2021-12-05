@@ -9,7 +9,7 @@ from sqlalchemy.sql.expression import distinct, func
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_grant_tip_access, db_revoke_tip_access
-from globaleaks.handlers.submission import db_serialize_archived_questionnaire_schema
+from globaleaks.models import serializers
 from globaleaks.orm import db_get, db_del, db_log, transact
 from globaleaks.rest import requests, errors
 from globaleaks.state import State
@@ -40,7 +40,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
     # Fetch messages count
     for rtip_id, count in session.query(models.ReceiverTip.id,
                                         func.count(distinct(models.Message.id))) \
-                                 .filter(models.ReceiverTip == receiver_id,
+                                 .filter(models.ReceiverTip.receiver_id == receiver_id,
                                          models.Message.receivertip_id == models.ReceiverTip.id) \
                                  .group_by(models.ReceiverTip.id):
         messages_by_rtip[rtip_id] = count
@@ -79,7 +79,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
             answers = json.loads(GCE.asymmetric_decrypt(tip_key, base64.b64decode(answers.encode())).decode())
 
         if aqs.hash not in ret['questionnaires']:
-            ret['questionnaires'][aqs.hash] = db_serialize_archived_questionnaire_schema(aqs.schema, language)
+            ret['questionnaires'][aqs.hash] = serializers.serialize_archived_questionnaire_schema(aqs.schema, language)
 
         ret['rtips'].append({
             'id': rtip.id,
@@ -87,7 +87,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
             'creation_date': itip.creation_date,
             'access_date': rtip.access_date,
             'last_access': rtip.last_access,
-            'wb_last_access': itip.wb_last_access,
+            'last_access': itip.last_access,
             'update_date': itip.update_date,
             'expiration_date': itip.expiration_date,
             'progressive': itip.progressive,

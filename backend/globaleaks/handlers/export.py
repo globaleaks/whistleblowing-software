@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # API handling export of submissions
+import os
 from io import BytesIO
 from twisted.internet.defer import inlineCallbacks
 from twisted.internet.threads import deferToThread
@@ -11,20 +12,23 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import db_get_submission_statuses
-from globaleaks.handlers.rtip import db_update_submission_status, serialize_rtip
+from globaleaks.handlers.rtip import db_update_submission_status
 from globaleaks.handlers.submission import decrypt_tip
 from globaleaks.handlers.user import user_serialize_user
+from globaleaks.models import serializers
 from globaleaks.orm import transact
 from globaleaks.rest import errors
+from globaleaks.settings import Settings
 from globaleaks.utils.crypto import Base64Encoder, GCE
+from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, datetime_null, msdos_encode
 from globaleaks.utils.zipstream import ZipStream
 
 
-def serialize_rtip_export(session, user, rtip, itip, context, language):
-    rtip_dict = serialize_rtip(session, rtip, itip, language)
+def serialize_rtip_export(session, user, itip, rtip, context, language):
+    rtip_dict = serializers.serialize_rtip(session, itip, rtip, language)
 
     return {
         'type': 'export_template',
@@ -58,25 +62,27 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
     if itip.status == 'new':
         db_update_submission_status(session, tid, user_id, itip, 'opened', None)
 
-    return user.pgp_key_public, serialize_rtip_export(session, user, rtip, itip, context, language)
+    return user.pgp_key_public, serialize_rtip_export(session, user, itip, rtip, context, language)
 
 
 @inlineCallbacks
 def prepare_tip_export(cc, tip_export):
-    files = tip_export['tip']['rfiles'] + tip_export['tip']['wbfiles']
+    files = tip_export['tip']['ifiles'] + tip_export['tip']['wbfiles']
 
     if tip_export['crypto_tip_prv_key']:
         tip_export['tip'] = yield deferToThread(decrypt_tip, cc, tip_export['crypto_tip_prv_key'], tip_export['tip'])
 
-        for file_dict in tip_export['tip']['rfiles'] + tip_export['tip']['wbfiles']:
+        for file_dict in tip_export['tip']['ifiles'] + tip_export['tip']['wbfiles']:
             if file_dict.get('status', '') == 'encrypted':
                 continue
 
             tip_prv_key = GCE.asymmetric_decrypt(cc, tip_export['crypto_tip_prv_key'])
-            file_dict['fo'] = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, file_dict['path'])
-            del file_dict['path']
+            filelocation = os.path.join(Settings.attachments_path, file_dict['filename'])
+            directory_traversal_check(Settings.attachments_path, filelocation)
+            file_dict['fo'] = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
+            del filelocation
 
-    for file_dict in tip_export['tip'].pop('rfiles'):
+    for file_dict in tip_export['tip'].pop('ifiles'):
         file_dict['name'] = 'files/' + file_dict['name']
         if file_dict.get('status', '') == 'encrypted':
             file_dict['name'] += '.pgp'

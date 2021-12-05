@@ -10,9 +10,9 @@ from twisted.internet import defer
 from globaleaks import models
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
-from globaleaks.handlers.rtip import serialize_rtip
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.job import LoopingJob
+from globaleaks.models import serializers
 from globaleaks.orm import db_del, transact, tw
 from globaleaks.utils.log import log
 from globaleaks.utils.templating import Templating
@@ -132,7 +132,7 @@ class MailGenerator(object):
                     data = {'type': 'tip_update'}
 
                 data['user'] = user_serialize_user(session, user, user.language)
-                data['tip'] = serialize_rtip(session, rtip, itip, user.language)
+                data['tip'] = serializers.serialize_rtip(session, itip, rtip, user.language)
 
                 self.process_mail_creation(session, tid, data)
             except:

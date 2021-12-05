@@ -8,7 +8,6 @@ import json
 from globaleaks import models
 from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
 from globaleaks.handlers.base import connection_check, BaseHandler
-from globaleaks.models import get_localized_values
 from globaleaks.orm import db_get, db_log, transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
@@ -35,7 +34,7 @@ def decrypt_tip(user_key, tip_prv_key, tip):
     for x in tip['comments'] + tip['messages']:
         x['content'] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(x['content'].encode())).decode()
 
-    for x in tip['wbfiles'] + tip['rfiles']:
+    for x in tip['ifiles'] + tip['wbfiles']:
         for k in ['name', 'description', 'type', 'size']:
             if k in x:
                 x[k] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(x[k].encode())).decode()
@@ -81,41 +80,6 @@ def db_assign_submission_progressive(session, tid):
     return counter.value
 
 
-def _db_serialize_archived_field_recursively(field, language):
-    for key, _ in field.get('attrs', {}).items():
-        if key not in field['attrs']:
-            continue
-
-        if 'type' not in field['attrs'][key]:
-            continue
-
-        if field['attrs'][key]['type'] == 'localized':
-            if language in field['attrs'][key].get('value', []):
-                field['attrs'][key]['value'] = field['attrs'][key]['value'][language]
-            else:
-                field['attrs'][key]['value'] = ""
-
-    for o in field.get('options', []):
-        get_localized_values(o, o, models.FieldOption.localized_keys, language)
-
-    for c in field.get('children', []):
-        _db_serialize_archived_field_recursively(c, language)
-
-    return get_localized_values(field, field, models.Field.localized_keys, language)
-
-
-def db_serialize_archived_questionnaire_schema(questionnaire_schema, language):
-    questionnaire = copy.deepcopy(questionnaire_schema)
-
-    for step in questionnaire:
-        for field in step['children']:
-            _db_serialize_archived_field_recursively(field, language)
-
-        get_localized_values(step, step, models.Step.localized_keys, language)
-
-    return questionnaire
-
-
 def db_archive_questionnaire_schema(session, questionnaire):
     hash = str(sha256(json.dumps(questionnaire, sort_keys=True)))
     if session.query(models.ArchivedSchema).filter(models.ArchivedSchema.hash == hash).count():
@@ -127,52 +91,6 @@ def db_archive_questionnaire_schema(session, questionnaire):
     session.add(aqs)
 
     return hash
-
-
-def serialize_itip(session, internaltip, language):
-    x = session.query(models.InternalTipAnswers, models.ArchivedSchema) \
-               .filter(models.ArchivedSchema.hash == models.InternalTipAnswers.questionnaire_hash,
-                       models.InternalTipAnswers.internaltip_id == internaltip.id) \
-               .order_by(models.InternalTipAnswers.creation_date.desc())
-
-    questionnaires = []
-    for ita, aqs in x:
-        questionnaires.append({
-            'steps': db_serialize_archived_questionnaire_schema(aqs.schema, language),
-            'answers': ita.answers
-        })
-
-    return {
-        'id': internaltip.id,
-        'creation_date': internaltip.creation_date,
-        'update_date': internaltip.update_date,
-        'expiration_date': internaltip.expiration_date,
-        'progressive': internaltip.progressive,
-        'context_id': internaltip.context_id,
-        'questionnaires': questionnaires,
-        'tor': internaltip.tor,
-        'mobile': internaltip.mobile,
-        'enable_two_way_comments': internaltip.enable_two_way_comments,
-        'enable_two_way_messages': internaltip.enable_two_way_messages,
-        'enable_attachments': internaltip.enable_attachments,
-        'enable_whistleblower_identity': internaltip.enable_whistleblower_identity,
-        'wb_last_access': internaltip.wb_last_access,
-        'score': internaltip.score,
-        'status': internaltip.status,
-        'substatus': internaltip.substatus
-    }
-
-
-def serialize_usertip(session, usertip, itip, language):
-    ret = serialize_itip(session, itip, language)
-    ret['id'] = usertip.id
-    ret['internaltip_id'] = itip.id
-    ret['data'] = {}
-
-    for itd in session.query(models.InternalTipData).filter(models.InternalTipData.internaltip_id == itip.id):
-        ret['data'][itd.key] = itd.value
-
-    return ret
 
 
 def db_create_receivertip(session, receiver, internaltip, enc_key):
@@ -261,34 +179,25 @@ def db_create_submission(session, tid, request, user_session, client_using_tor):
     if whistleblower_identity is not None:
         itip.enable_whistleblower_identity = True
 
+    receipt = GCE.generate_receipt()
+    itip.receipt_hash = GCE.hash_password(receipt, State.tenant_cache[tid].receipt_salt)
+
     session.add(itip)
     session.flush()
 
-    # Evaluate if the whistleblower tip should be generated
-    if ((not State.tenant_cache[tid].enable_scoring_system) or
-        (context.score_threshold_receipt == 0) or
+    # Evaluate if the whistleblower tip should be encrypted
+    if crypto_is_available:
+        crypto_tip_prv_key, itip.crypto_tip_pub_key = GCE.generate_keypair()
+        wb_key = GCE.derive_key(receipt.encode(), State.tenant_cache[tid].receipt_salt)
+        wb_prv_key, wb_pub_key = GCE.generate_keypair()
+        itip.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(wb_key, wb_prv_key))
+        itip.crypto_pub_key = wb_pub_key
+        itip.crypto_tip_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(wb_pub_key, crypto_tip_prv_key))
+
+    # Evaluate if the whistleblower should get a receipt or not:
+    if ((State.tenant_cache[tid].enable_scoring_system) and
         (context.score_threshold_receipt == 1 and itip.score >= 2) or
         (context.score_threshold_receipt == 2 and itip.score == 3)):
-
-        receipt = GCE.generate_receipt()
-        receipt_salt = State.tenant_cache[tid].receipt_salt
-
-        wbtip = models.WhistleblowerTip()
-        wbtip.id = itip.id
-        wbtip.tid = tid
-        wbtip.receipt_hash = GCE.hash_password(receipt, receipt_salt)
-
-        # Evaluate if the whistleblower tip should be encrypted
-        if crypto_is_available:
-            crypto_tip_prv_key, itip.crypto_tip_pub_key = GCE.generate_keypair()
-            wb_key = GCE.derive_key(receipt.encode(), receipt_salt)
-            wb_prv_key, wb_pub_key = GCE.generate_keypair()
-            wbtip.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(wb_key, wb_prv_key))
-            wbtip.crypto_pub_key = wb_pub_key
-            wbtip.crypto_tip_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(wb_pub_key, crypto_tip_prv_key))
-
-        session.add(wbtip)
-    else:
         receipt = ''
 
     # Apply special handling to the whistleblower identity question

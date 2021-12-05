@@ -25,10 +25,11 @@ class TestTipsCollection(helpers.TestHandlerWithPopulatedDB):
     def test_get(self):
         handler = self.request(user_id=self.dummyReceiver_1['id'], role='receiver')
         ret = yield handler.get()
-        for idx in range(len(ret)):
-            self.assertEqual(ret[idx]['file_count'], 2)
-            self.assertEqual(ret[idx]['comment_count'], 3)
-            self.assertEqual(ret[idx]['message_count'], 2)
+        rtips = ret['rtips']
+        for idx in range(len(rtips)):
+            self.assertEqual(rtips[idx]['file_count'], 2)
+            self.assertEqual(rtips[idx]['comment_count'], 3)
+            self.assertEqual(rtips[idx]['message_count'], 2)
 
 
 class TestOperations(helpers.TestHandlerWithPopulatedDB):
@@ -42,7 +43,7 @@ class TestOperations(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_put_revoke_and_grant(self):
         rtips = yield receiver.get_receivertips(1, self.dummyReceiver_1['id'], helpers.USER_PRV_KEY, 'en')
-        rtips_ids = [rtip['id'] for rtip in rtips]
+        rtips_ids = [rtip['id'] for rtip in rtips['rtips']]
 
         yield self.test_model_count(models.ReceiverTip, 4)
 
@@ -75,7 +76,7 @@ class TestOperations(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_put_delete(self):
         rtips = yield receiver.get_receivertips(1, self.dummyReceiver_1['id'], helpers.USER_PRV_KEY, 'en')
-        rtips_ids = [rtip['id'] for rtip in rtips]
+        rtips_ids = [rtip['id'] for rtip in rtips['rtips']]
 
         data_request = {
             'operation': 'delete',
@@ -89,4 +90,4 @@ class TestOperations(helpers.TestHandlerWithPopulatedDB):
 
         rtips = yield receiver.get_receivertips(1, self.dummyReceiver_1['id'], helpers.USER_PRV_KEY, 'en')
 
-        self.assertEqual(len(rtips), 0)
+        self.assertEqual(len(rtips['rtips']), 0)

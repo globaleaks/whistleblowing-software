@@ -32,20 +32,12 @@ class notifTemplateTest(helpers.TestGLWithPopulatedDB):
 
         data['comments'] = data['tip']['comments']
         data['messages'] = data['tip']['messages']
-        data['files'] = yield rtip.receiver_get_rfile_list(data['tip']['id'])
 
         for key in ['tip', 'comment', 'message', 'file']:
             if key == 'tip':
                 data['type'] = 'tip'
             else:
                 data['type'] = 'tip_update'
-
-            if key == 'comment':
-                data['update'] = data['comments'][0]
-            elif key == 'message':
-                data['update'] = data['messages'][0]
-            elif key == 'file':
-                data['update'] = data['files'][0]
 
             template = ''.join(supported_template_types[data['type']].keyword_list)
             Templating().format_template(template, data)

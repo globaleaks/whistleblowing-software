@@ -7,7 +7,7 @@
     </span>
   </div>
   <div class="card-body" data-ng-show="!collapsed">
-    <div data-ng-show="tip.rfiles.length" class="table-responsive">
+    <div data-ng-show="tip.ifiles.length" class="table-responsive">
       <table class="table table-striped" id="fileList">
         <thead>
           <tr>
@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody id="fileListBody">
-          <tr id="file-{{$index}}" data-ng-repeat="file in tip.rfiles">
+          <tr id="file-{{$index}}" data-ng-repeat="file in tip.ifiles">
             <td>{{file.name}}</td>
             <td>
               <button class="btn btn-sm btn-primary tip-action-download-file"

@@ -628,15 +628,20 @@ class _InternalTip(Model):
     enable_whistleblower_identity = Column(Boolean, default=False, nullable=False)
     important = Column(Boolean, default=False, nullable=False)
     label = Column(UnicodeText, default='', nullable=False)
-    wb_last_access = Column(DateTime, default=datetime_now, nullable=False)
+    last_access = Column(DateTime, default=datetime_now, nullable=False)
     status = Column(UnicodeText(36), nullable=True)
     substatus = Column(UnicodeText(36), nullable=True)
     crypto_tip_pub_key = Column(UnicodeText(56), default='', nullable=False)
+    crypto_tip_prv_key = Column(UnicodeText(84), default='', nullable=False)
+    receipt_hash = Column(UnicodeText(128), nullable=False)
+    crypto_prv_key = Column(UnicodeText(84), default='', nullable=False)
+    crypto_pub_key = Column(UnicodeText(56), default='', nullable=False)
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                UniqueConstraint('tid', 'progressive'))
+        return (UniqueConstraint('tid', 'progressive'),
+                UniqueConstraint('tid', 'receipt_hash'),
+                ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
 
 
 class _InternalTipAnswers(Model):
@@ -1038,23 +1043,6 @@ class _WhistleblowerFile(Model):
         return ForeignKeyConstraint(['receivertip_id'], ['receivertip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
 
-class _WhistleblowerTip(Model):
-    __tablename__ = 'whistleblowertip'
-
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    tid = Column(Integer, default=1, nullable=False)
-    receipt_hash = Column(UnicodeText(128), nullable=False)
-    crypto_prv_key = Column(UnicodeText(84), default='', nullable=False)
-    crypto_pub_key = Column(UnicodeText(56), default='', nullable=False)
-    crypto_tip_prv_key = Column(UnicodeText(84), default='', nullable=False)
-
-    @declared_attr
-    def __table_args__(self):
-        return (UniqueConstraint('tid', 'receipt_hash'),
-                ForeignKeyConstraint(['id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
-
-
 class ArchivedSchema(_ArchivedSchema, Base):
     pass
 
@@ -1184,8 +1172,4 @@ class User(_User, Base):
 
 
 class WhistleblowerFile(_WhistleblowerFile, Base):
-    pass
-
-
-class WhistleblowerTip(_WhistleblowerTip, Base):
     pass
