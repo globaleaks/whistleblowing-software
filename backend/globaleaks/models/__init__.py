@@ -520,8 +520,8 @@ class _FieldOptionTriggerField(Model):
 class _FieldOptionTriggerStep(Model):
     __tablename__ = 'fieldoptiontriggerstep'
 
-    option_id = Column(UnicodeText(36), primary_key=True, nullable=False)
-    object_id = Column(UnicodeText(36), primary_key=True, nullable=False)
+    option_id = Column(UnicodeText(36), primary_key=True)
+    object_id = Column(UnicodeText(36), primary_key=True)
     sufficient = Column(Boolean, default=True, nullable=False)
 
     @declared_attr
