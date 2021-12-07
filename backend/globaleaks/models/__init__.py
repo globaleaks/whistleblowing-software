@@ -631,9 +631,9 @@ class _InternalTip(Model):
     last_access = Column(DateTime, default=datetime_now, nullable=False)
     status = Column(UnicodeText(36), nullable=True)
     substatus = Column(UnicodeText(36), nullable=True)
+    receipt_hash = Column(UnicodeText(128), nullable=False)
     crypto_tip_pub_key = Column(UnicodeText(56), default='', nullable=False)
     crypto_tip_prv_key = Column(UnicodeText(84), default='', nullable=False)
-    receipt_hash = Column(UnicodeText(128), nullable=False)
     crypto_prv_key = Column(UnicodeText(84), default='', nullable=False)
     crypto_pub_key = Column(UnicodeText(56), default='', nullable=False)
 
