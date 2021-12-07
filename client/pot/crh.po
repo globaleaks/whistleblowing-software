@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-02 09:48+0000\n"
+"PO-Revision-Date: 2021-12-06 07:58+0000\n"
 "Last-Translator: Ethem Sahibi\n"
 "Language-Team: Crimean Turkish (http://www.transifex.com/otf/globaleaks/language/crh/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,7 +65,7 @@ msgid "Notification settings"
 msgstr "Бильдирме сазламалары"
 
 msgid "file unavailable"
-msgstr "Файлге иришильмез"
+msgstr "файлге иришильмез"
 
 msgid "Date"
 msgstr "Тарих"
@@ -74,7 +74,7 @@ msgid "Expiration date"
 msgstr "Сонъ къулланма тарихи"
 
 msgid "Last Access"
-msgstr "Сонъ иришим"
+msgstr "Сонъ Иришим"
 
 msgid "Files"
 msgstr "Файллар"
@@ -248,7 +248,7 @@ msgid "Authorize access to the whistleblower's identity"
 msgstr "Малюмат бериджи шахсиетине иришимге изин бермек"
 
 msgid "Templates"
-msgstr "Шаблон"
+msgstr "Шаблонлар"
 
 msgid "URL redirects"
 msgstr "URL ёнетмелери"
@@ -441,7 +441,7 @@ msgid "This user has not performed the first login yet."
 msgstr "Бу къулланыджы биринджи киришни даа япмады."
 
 msgid "seconds"
-msgstr "Сание"
+msgstr "сание"
 
 msgid "This domain name is not available."
 msgstr "Бу домен адына иришильмез."
@@ -592,7 +592,7 @@ msgid "Size limit for file attachments"
 msgstr "Илявелер ичюн ольчю сынъыры"
 
 msgid "megabytes"
-msgstr "Мегабайт"
+msgstr "мегабайтлар"
 
 msgid "Enable HSTS preload"
 msgstr "HSTS эвель юклемесини ишлетмек"
@@ -772,7 +772,7 @@ msgid "Recipients"
 msgstr "Алыджылар"
 
 msgid "days"
-msgstr "кунь"
+msgstr "куньлер"
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Суаллер джедвели идаре этме интерфейсини косьтермек"
@@ -1023,7 +1023,7 @@ msgid "Hint"
 msgstr "Ярдым"
 
 msgid "Mandatory"
-msgstr ""
+msgstr "Меджбурий"
 
 msgid "Accept multiple file uploads"
 msgstr "Бир къач файлнынъ юклемесине изин бермек"

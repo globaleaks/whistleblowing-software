@@ -51,8 +51,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-02 08:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-12-08 14:16+0000\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -503,7 +503,7 @@ msgid "Logout"
 msgstr "Abmelden"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
+msgstr "Geben Sie diesem Empfänger die Möglichkeit, Benutzern Zugriff auf Berichte zu gewähren"
 
 msgid "Grant access"
 msgstr "Zugriff gewähren"
@@ -559,7 +559,7 @@ msgstr "Haben Sie den Sachverhalt anderen Organisationen und/oder Personen gemel
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr ""
+msgstr "Bitte nennen Sie die Organisationen und/oder Personen, die Sie über diese Sachverhalte informiert haben."
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
@@ -567,7 +567,7 @@ msgid ""
 msgstr ""
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr ""
+msgstr "Welches Ergebnis möchten Sie mit unserer Unterstützung erreichen?"
 
 msgid "File a report"
 msgstr ""
@@ -1220,7 +1220,7 @@ msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Empfängern das Hinausschieben des Ablaufdatums des Hinweises erlauben"
 
 msgid "Give the user administrative access to the following features:"
-msgstr ""
+msgstr "Geben Sie dem Benutzer administrativen Zugriff auf die folgenden Funktionen:"
 
 msgid "Request date"
 msgstr "Anfragedatum"
@@ -1667,7 +1667,7 @@ msgid "Other"
 msgstr "Sonstige"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr ""
+msgstr "Ich ziehe es vor, nur über diese Plattform kontaktiert zu werden"
 
 msgid "Dear {RecipientName},"
 msgstr "Sehr geehrte(r) {RecipientName},"
@@ -1953,7 +1953,7 @@ msgstr "Hinweise zu Softwareaktualisierungen finden Sie in der Dokumentation unt
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "Dies ist eine E-Mail, die Sie darüber informiert, dass ein Empfänger Ihnen Zugriff auf einen oder mehrere Berichte gewährt hat."
 
 msgid "New report"
 msgstr "Neuer Bericht"
