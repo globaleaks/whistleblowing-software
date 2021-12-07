@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-02 08:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-12-03 09:16+0000\n"
+"Last-Translator: Max Moiseev <max.moiseev@chamber.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -343,7 +343,7 @@ msgid "Reports"
 msgstr "Ilmoitukset"
 
 msgid "Report"
-msgstr "Ilmoita"
+msgstr "ilmoitusIlmoita"
 
 msgid "Users"
 msgstr "Käyttäjät"
@@ -1460,7 +1460,7 @@ msgstr "Kirjoita sähköpostiosoitteesi pyytääksesi salasanan nollaamista."
 
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
-msgstr "Kirjoita vielä tietojen palauttamista varten käytettävä salausavaimesi"
+msgstr "Syötä salasanan palautusavain"
 
 msgid "Password reset requested."
 msgstr "Salasanan nollaus pyydetty."
