@@ -133,6 +133,8 @@ def new_tls_server_context():
 
     ctx.set_options(SSL.OP_NO_SSLv2 |
                     SSL.OP_NO_SSLv3 |
+                    SSL.OP_NO_TLSv1 |
+                    SSL.OP_NO_TLSv1_1 |
                     SSL.OP_CIPHER_SERVER_PREFERENCE |
                     SSL.OP_PRIORITIZE_CHACHA |
                     SSL.OP_SINGLE_ECDH_USE |
@@ -152,6 +154,8 @@ def new_tls_client_context():
 
     ctx.set_options(SSL.OP_NO_SSLv2 |
                     SSL.OP_NO_SSLv3 |
+                    SSL.OP_NO_TLSv1 |
+                    SSL.OP_NO_TLSv1_1 |
                     SSL.OP_SINGLE_ECDH_USE |
                     SSL.OP_NO_COMPRESSION |
                     SSL.OP_NO_RENEGOTIATION)
