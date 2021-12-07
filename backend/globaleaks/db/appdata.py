@@ -10,6 +10,20 @@ from globaleaks.settings import Settings
 from globaleaks.utils.fs import read_json_file
 
 
+def extract_ids(obj, ret=[]):
+    """
+    Utility function to extract ids from questionnaires
+    and questions data structures.
+    """
+    if obj.get('id', None):
+        ret.append(obj['id'])
+
+    for c in obj['children']:
+        ret = extract_ids(c, ret)
+
+    return ret
+
+
 def load_appdata():
     """
     Utility function to load the application data file
@@ -27,14 +41,22 @@ def db_load_default_questionnaires(session):
     qfiles = [os.path.join(Settings.questionnaires_path, path)
               for path in os.listdir(Settings.questionnaires_path)]
     questionnaires = []
-    qids = []
+    ids = []
 
     for qfile in qfiles:
         questionnaires.append(read_json_file(qfile))
-        qids.append(questionnaires[-1]['id'])
+        ids.append(questionnaires[-1]['id'])
 
-    db_del(session, models.Questionnaire, models.Questionnaire.id.in_(qids))
-    db_del(session, models.Step, models.Step.questionnaire_id.in_(qids))
+        for s in questionnaires[-1]['steps']:
+            extract_ids(s, ids)
+
+    db_del(session, models.Questionnaire, models.Questionnaire.id.in_(ids))
+    db_del(session, models.Step, models.Step.questionnaire_id.in_(ids))
+    db_del(session, models.Field, models.Field.id.in_(ids))
+    db_del(session, models.FieldAttr, models.FieldAttr.field_id.in_(ids))
+    db_del(session, models.FieldOption, models.FieldOption.field_id.in_(ids))
+    db_del(session, models.FieldOptionTriggerField, models.FieldOptionTriggerField.object_id.in_(ids))
+    db_del(session, models.FieldOptionTriggerStep, models.FieldOptionTriggerStep.object_id.in_(ids))
 
     for questionnaire in questionnaires:
         db_create_questionnaire(session, 1, questionnaire, None)
@@ -48,16 +70,17 @@ def db_load_default_fields(session):
     ffiles = [os.path.join(Settings.questions_path, path)
               for path in os.listdir(Settings.questions_path)]
     questions = []
-    qids = []
+    ids = []
 
     for ffile in ffiles:
         questions.append(read_json_file(ffile))
-        qids.append(questions[-1]['id'])
+        extract_ids(questions[-1], ids)
 
-    db_del(session, models.Field, models.Field.id.in_(qids))
-    db_del(session, models.Field, models.Field.fieldgroup_id.in_(qids))
-    db_del(session, models.FieldAttr, models.FieldAttr.field_id.in_(qids))
-    db_del(session, models.FieldOption, models.FieldOption.field_id.in_(qids))
+    db_del(session, models.Field, models.Field.id.in_(ids))
+    db_del(session, models.FieldAttr, models.FieldAttr.field_id.in_(ids))
+    db_del(session, models.FieldOption, models.FieldOption.field_id.in_(ids))
+    db_del(session, models.FieldOptionTriggerField, models.FieldOptionTriggerField.object_id.in_(ids))
+    db_del(session, models.FieldOptionTriggerStep, models.FieldOptionTriggerStep.object_id.in_(ids))
 
     for question in questions:
         db_create_field(session, 1, question, None)
