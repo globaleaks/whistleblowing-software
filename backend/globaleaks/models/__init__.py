@@ -211,7 +211,7 @@ class _Comment(Model):
     """
     __tablename__ = 'comment'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     internaltip_id = Column(UnicodeText(36), nullable=False, index=True)
     author_id = Column(UnicodeText(36))
@@ -396,8 +396,8 @@ class _CustomTexts(Model):
 class _EnabledLanguage(Model):
     __tablename__ = 'enabledlanguage'
 
-    tid = Column(Integer, primary_key=True, default=1, nullable=False)
-    name = Column(UnicodeText(12), primary_key=True, nullable=False)
+    tid = Column(Integer, primary_key=True, default=1)
+    name = Column(UnicodeText(12), primary_key=True)
 
     unicode_keys = ['name']
 
@@ -448,7 +448,7 @@ class _Field(Model):
 class _FieldAttr(Model):
     __tablename__ = 'fieldattr'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     field_id = Column(UnicodeText(36), nullable=False, index=True)
     name = Column(UnicodeText, nullable=False)
     type = Column(Enum(EnumFieldAttrType), nullable=False)
@@ -482,7 +482,7 @@ class _FieldAttr(Model):
 class _FieldOption(Model):
     __tablename__ = 'fieldoption'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     field_id = Column(UnicodeText(36), nullable=False, index=True)
     order = Column(Integer, default=0, nullable=False)
     label = Column(JSON, default=dict, nullable=False)
@@ -555,7 +555,7 @@ class _AuditLog(Model):
     __tablename__ = 'auditlog'
 
     tid = Column(Integer, default=1)
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     date = Column(DateTime, default=datetime_now, nullable=False)
     type = Column(UnicodeText(24), default='', nullable=False)
     severity = Column(Integer, default=0, nullable=False)
@@ -571,7 +571,7 @@ class _IdentityAccessRequest(Model):
     """
     __tablename__ = 'identityaccessrequest'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     receivertip_id = Column(UnicodeText(36), nullable=False, index=True)
     request_date = Column(DateTime, default=datetime_now, nullable=False)
     request_motivation = Column(UnicodeText, default='')
@@ -650,7 +650,7 @@ class _InternalTipAnswers(Model):
     """
     __tablename__ = 'internaltipanswers'
 
-    internaltip_id = Column(UnicodeText(36), primary_key=True, index=True)
+    internaltip_id = Column(UnicodeText(36), primary_key=True)
     questionnaire_hash = Column(UnicodeText(64), primary_key=True)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     answers = Column(JSON, default=dict, nullable=False)
@@ -793,7 +793,7 @@ class _ReceiverTip(Model):
 class _Subscriber(Model):
     __tablename__ = 'subscriber'
 
-    tid = Column(Integer, primary_key=True, nullable=False)
+    tid = Column(Integer, primary_key=True)
     subdomain = Column(UnicodeText, unique=True, nullable=False)
     language = Column(UnicodeText(12), nullable=False)
     name = Column(UnicodeText, nullable=False)
@@ -882,7 +882,7 @@ class _SubmissionStatus(Model):
     __tablename__ = 'submissionstatus'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    tid = Column(Integer, primary_key=True, default=1, nullable=False)
+    tid = Column(Integer, primary_key=True, default=1)
     label = Column(JSON, default=dict, nullable=False)
     tip_timetolive = Column(Integer, default=90, nullable=False)
     tip_timetolive_override = Column(Boolean, default=False, nullable=False)
@@ -906,7 +906,7 @@ class _SubmissionSubStatus(Model):
     __tablename__ = 'submissionsubstatus'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    tid = Column(Integer, primary_key=True, default=1, nullable=False)
+    tid = Column(Integer, primary_key=True, default=1)
     submissionstatus_id = Column(UnicodeText(36), nullable=False)
     label = Column(JSON, default=dict, nullable=False)
     tip_timetolive = Column(Integer, default=90, nullable=False)
@@ -930,7 +930,7 @@ class _Tenant(Model):
     """
     __tablename__ = 'tenant'
 
-    id = Column(Integer, primary_key=True, nullable=False)
+    id = Column(Integer, primary_key=True)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     active = Column(Boolean, default=False, nullable=False)
 
