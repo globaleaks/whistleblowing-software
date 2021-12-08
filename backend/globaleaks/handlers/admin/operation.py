@@ -1,4 +1,5 @@
 # -*- coding: utf-8
+import os
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.db import db_refresh_memory_variables
@@ -116,18 +117,23 @@ def reset_templates(session, tid):
     ConfigL10NFactory(session, tid).reset('notification', load_appdata())
 
 
-def set_tmp_key(user_session, user):
-    if user_session.ek and user.crypto_pub_key:
-        crypto_escrow_prv_key = GCE.asymmetric_decrypt(user_session.cc, Base64Encoder.decode(user_session.ek))
+def set_tmp_key(user_session, user, token):
+    crypto_escrow_prv_key = GCE.asymmetric_decrypt(user_session.cc, Base64Encoder.decode(user_session.ek))
 
-        if user_session.user_tid == 1:
-            user_cc = GCE.asymmetric_decrypt(crypto_escrow_prv_key, Base64Encoder.decode(user.crypto_escrow_bkp1_key))
-        else:
-            user_cc = GCE.asymmetric_decrypt(crypto_escrow_prv_key, Base64Encoder.decode(user.crypto_escrow_bkp2_key))
+    if user_session.user_tid == 1:
+        user_cc = GCE.asymmetric_decrypt(crypto_escrow_prv_key, Base64Encoder.decode(user.crypto_escrow_bkp1_key))
+    else:
+        user_cc = GCE.asymmetric_decrypt(crypto_escrow_prv_key, Base64Encoder.decode(user.crypto_escrow_bkp2_key))
 
-        enc_key = GCE.derive_key(user.reset_password_token.encode(), user.salt)
-        key = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, user_cc))
-        State.TempKeys[user.id] = TempKey(key)
+    enc_key = GCE.derive_key(token, user.salt)
+    key = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, user_cc))
+
+    try:
+        with open(os.path.abspath(os.path.join(State.settings.ramdisk_path, token)), "ab") as f:
+            f.write(b":")
+            f.write(key)
+    except:
+        pass
 
 
 @transact
@@ -136,10 +142,10 @@ def generate_password_reset_token(session, tid, user_session, user_id):
     if user is None:
         return
 
-    db_generate_password_reset_token(session, user)
+    token = db_generate_password_reset_token(session, user)
 
     if user_session.ek and user.crypto_pub_key:
-        set_tmp_key(user_session, user)
+        set_tmp_key(user_session, user, token)
 
 
 class AdminOperationHandler(OperationHandler):

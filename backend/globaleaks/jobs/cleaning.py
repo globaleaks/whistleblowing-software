@@ -131,6 +131,13 @@ class Cleaning(DailyJob):
             if is_expired(timestamp, days=1):
                 srm(path)
 
+        # Delete the outdated ramdisk tokens older than 1 week
+        for f in os.listdir(self.state.settings.ramdisk_path):
+            path = os.path.join(self.state.settings.ramdisk_path, f)
+            timestamp = datetime.fromtimestamp(os.path.getmtime(path))
+            if is_expired(timestamp, days=7):
+                srm(path)
+
     @inlineCallbacks
     def operation(self):
         yield self.clean()

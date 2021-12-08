@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 from datetime import datetime, timedelta
 
 from nacl.encoding import Base32Encoder, Base64Encoder
@@ -15,6 +16,7 @@ from globaleaks.rest import requests
 from globaleaks.sessions import Sessions
 from globaleaks.state import State
 from globaleaks.utils.crypto import generateRandomKey, totpVerify, GCE
+from globaleaks.utils.fs import srm
 from globaleaks.utils.utility import datetime_now, datetime_null
 
 
@@ -25,8 +27,7 @@ def db_generate_password_reset_token(session, user):
     :param session: An ORM session
     :param user: The user for which issuing a password reset token
     """
-    user.reset_password_token = generateRandomKey()
-    user.reset_password_date = datetime_now()
+    token = generateRandomKey()
 
     if user.last_login > datetime_null():
         template = 'password_reset_validation'
@@ -35,15 +36,23 @@ def db_generate_password_reset_token(session, user):
 
     user_desc = user_serialize_user(session, user, user.language)
 
+    try:
+        with open(os.path.abspath(os.path.join(State.settings.ramdisk_path, token)), "wb") as f:
+            f.write(user.id.encode())
+    except:
+        pass
+
     template_vars = {
         'type': template,
         'user': user_desc,
-        'reset_token': user.reset_password_token,
+        'reset_token': token,
         'node': db_admin_serialize_node(session, user.tid, user.language),
         'notification': db_get_notification(session, user.tid, user.language)
     }
 
     State.format_and_send_mail(session, user.tid, user_desc['mail_address'], template_vars)
+
+    return token
 
 
 @transact
@@ -99,22 +108,24 @@ def validate_password_reset(session, reset_token, auth_code, recovery_key):
     now = datetime.now()
     prv_key = ''
 
-    user = session.query(models.User).filter(
-        models.User.reset_password_token == reset_token,
-        models.User.reset_password_date >= now - timedelta(hours=168)
-    ).one_or_none()
+    user_id = key = None
 
-    # If the authentication token is invalid
+    try:
+        with open(os.path.abspath(os.path.join(State.settings.ramdisk_path, reset_token)), "r") as f:
+            user_id, key = f.read().split(":")
+    except:
+        return {'status': 'invalid_reset_token_provided'}
+
+    user = session.query(models.User).filter(models.User.id == user_id).one_or_none()
     if user is None:
         return {'status': 'invalid_reset_token_provided'}
 
     # If encryption is enabled require the recovery key
     if user.crypto_prv_key:
         try:
-            x = State.TempKeys.get(user.id)
-            if x:
-                enc_key = GCE.derive_key(reset_token.encode(), user.salt)
-                prv_key = GCE.symmetric_decrypt(enc_key, Base64Encoder.decode(x.key))
+            if key:
+                enc_key = GCE.derive_key(reset_token, user.salt)
+                prv_key = GCE.symmetric_decrypt(enc_key, Base64Encoder.decode(key))
             else:
                 recovery_key = recovery_key.replace('-', '').upper() + '===='
                 recovery_key = Base32Encoder.decode(recovery_key.encode())
@@ -128,11 +139,7 @@ def validate_password_reset(session, reset_token, auth_code, recovery_key):
         except:
             return {'status': 'require_two_factor_authentication'}
 
-    # Token and temporary key will be marked as used only at effective password change
-    # This is a necessity to get sure they are not invalidated on duplicated users clicks
-    # Their validity is cap to their own timeout set to 1 week.
-    # The code responsible for the invalidation is in the user.py handler and is triggered
-    # by any user or admin action of password change or new token generation.
+    srm(os.path.abspath(os.path.join(State.settings.ramdisk_path, reset_token)))
 
     # Require password change
     user.password_change_needed = True

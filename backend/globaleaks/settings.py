@@ -35,6 +35,7 @@ class SettingsClass(object, metaclass=Singleton):
         self.src_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
         self.backend_script = os.path.abspath(os.path.join(self.src_path, 'globaleaks/backend.py'))
 
+        self.ramdisk_path = '/dev/shm/globaleaks'
         self.working_path = '/var/globaleaks'
 
         self.authentication_lifetime = 3600
