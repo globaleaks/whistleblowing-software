@@ -1,3 +1,16 @@
+Changes in version 4.7.0
+    Revise TLS configuration by specifically disabling TLS1 and TLS1.1 on SMTP connections
+    Decouple encryption keys of submissions from encryption keys of files
+    Optimize database and API for fetching reports summaries #3125
+    Optimize database by setting sqlite temp_store to memory on every new connection (#3125)
+    Optimize database enabling automatic indexing is enabled on sqlite database (#3125)
+    Fix migration of questions generated from templates by running migrations with foreign keys
+    Fix loading of receipt page when context id is provided within the uri
+    Modify grant tip access function to show real users' names (#3127)
+    Bump npm dependencies to latest version
+    Update translations
+    [doc] Update ER representation of the database
+
 Changes in version 4.6.1
     Fix regression in 4.6.0 preventing to visualize reports labels
     Update translations
