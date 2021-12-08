@@ -21,52 +21,66 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
   });
 
   $scope.open_grant_access_modal = function () {
-    $uibModal.open({
-    templateUrl: "views/modals/grant_access.html",
-      controller: "ConfirmableModalCtrl",
-      resolve: {
-        arg: {},
-        confirmFun: function() {
-          return function(receiver_id) {
-            var req = {
-              operation: "grant",
-              args: {
-                rtips: $scope.selected_tips,
-                receiver: receiver_id
-              }
+    $http({method: "PUT", url: "api/user/operations", data:{
+      "operation": "get_users_names",
+      "args": {}
+    }}).then(function(response) {
+      $uibModal.open({
+      templateUrl: "views/modals/grant_access.html",
+        controller: "ConfirmableModalCtrl",
+        resolve: {
+          arg: {
+            users_names: response.data
+          },
+          confirmFun: function() {
+            return function(receiver_id) {
+              var req = {
+                operation: "grant",
+                args: {
+                  rtips: $scope.selected_tips,
+                  receiver: receiver_id
+                }
+              };
+             return $http({method: "PUT", url: "api/recipient/operations", data: req}).then(function () {
+                $scope.reload();
+              });
             };
-           return $http({method: "PUT", url: "api/recipient/operations", data: req}).then(function () {
-              $scope.reload();
-            });
-          };
-        },
-        cancelFun: null
-      }
+          },
+          cancelFun: null
+        }
+      });
     });
   };
 
   $scope.open_revoke_access_modal = function () {
-    $uibModal.open({
-    templateUrl: "views/modals/revoke_access.html",
-      controller: "ConfirmableModalCtrl",
-      resolve: {
-        arg: {},
-        confirmFun: function() {
-          return function(receiver_id) {
-            var req = {
-              operation: "revoke",
-              args: {
-                rtips: $scope.selected_tips,
-                receiver: receiver_id
-              }
+    $http({method: "PUT", url: "api/user/operations", data:{
+      "operation": "get_users_names",
+      "args": {}
+    }}).then(function(response) {
+      $uibModal.open({
+      templateUrl: "views/modals/revoke_access.html",
+        controller: "ConfirmableModalCtrl",
+        resolve: {
+          arg: {
+            users_names: response.data
+          },
+          confirmFun: function() {
+            return function(receiver_id) {
+              var req = {
+                operation: "revoke",
+                args: {
+                  rtips: $scope.selected_tips,
+                  receiver: receiver_id
+                }
+              };
+             return $http({method: "PUT", url: "api/recipient/operations", data: req}).then(function () {
+                $scope.reload();
+              });
             };
-           return $http({method: "PUT", url: "api/recipient/operations", data: req}).then(function () {
-              $scope.reload();
-            });
-          };
-        },
-        cancelFun: null
-      }
+          },
+          cancelFun: null
+        }
+      });
     });
   };
 

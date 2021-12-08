@@ -273,6 +273,17 @@ class UserInstance(BaseHandler):
                                     self.request.language)
 
 
+
+@transact
+def get_users_names(session, tid, user_id):
+    ret = {}
+
+    for user_id, user_name in session.query(models.User.id, models.User.name).filter(models.User.tid == tid):
+        ret[user_id] = user_name
+
+    return ret
+
+
 @transact
 def get_recovery_key(session, tid, user_id, user_cc):
     """
@@ -333,6 +344,10 @@ def disable_2fa(session, tid, user_id):
 class UserOperationHandler(OperationHandler):
     check_roles = 'user'
 
+    def get_users_names(self, req_args, *args, **kwargs):
+        return get_users_names(self.session.user_tid,
+                               self.session.user_id)
+
     def get_recovery_key(self, req_args, *args, **kwargs):
         return get_recovery_key(self.session.user_tid,
                                 self.session.user_id,
@@ -350,6 +365,7 @@ class UserOperationHandler(OperationHandler):
 
     def operation_descriptors(self):
         return {
+            'get_users_names': UserOperationHandler.get_users_names,
             'get_recovery_key': UserOperationHandler.get_recovery_key,
             'enable_2fa': UserOperationHandler.enable_2fa,
             'disable_2fa': UserOperationHandler.disable_2fa
