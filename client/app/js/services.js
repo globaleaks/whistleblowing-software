@@ -764,7 +764,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       }
 
       if (!projectTitle) {
-        projectTitle = "GLOBALEAKS";
+        projectTitle = "";
       }
 
       if (!pageTitle) {
@@ -777,7 +777,6 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       $window.document.title = $rootScope.projectTitle;
       if ($rootScope.projectTitle !== $rootScope.pageTitle) {
         $window.document.title += " - " + $rootScope.pageTitle;
-        $rootScope.pageTitle = $rootScope.projectTitle + " - " + $rootScope.pageTitle;
       }
 
       $window.document.getElementsByName("description")[0].content = $rootScope.public.node.description;
