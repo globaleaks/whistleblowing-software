@@ -632,10 +632,11 @@ class _InternalTip(Model):
     status = Column(UnicodeText(36), nullable=True)
     substatus = Column(UnicodeText(36), nullable=True)
     receipt_hash = Column(UnicodeText(128), nullable=False)
-    crypto_tip_pub_key = Column(UnicodeText(56), default='', nullable=False)
-    crypto_tip_prv_key = Column(UnicodeText(84), default='', nullable=False)
     crypto_prv_key = Column(UnicodeText(84), default='', nullable=False)
     crypto_pub_key = Column(UnicodeText(56), default='', nullable=False)
+    crypto_tip_pub_key = Column(UnicodeText(56), default='', nullable=False)
+    crypto_tip_prv_key = Column(UnicodeText(84), default='', nullable=False)
+    crypto_files_pub_key = Column(UnicodeText(56), default='', nullable=False)
 
     @declared_attr
     def __table_args__(self):
@@ -783,6 +784,7 @@ class _ReceiverTip(Model):
     new = Column(Boolean, default=True, nullable=False)
     enable_notifications = Column(Boolean, default=True, nullable=False)
     crypto_tip_prv_key = Column(UnicodeText(84), default='', nullable=False)
+    crypto_files_prv_key = Column(UnicodeText(84), default='', nullable=False)
 
     @declared_attr
     def __table_args__(self):

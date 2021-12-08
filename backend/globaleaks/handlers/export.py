@@ -36,6 +36,7 @@ def serialize_rtip_export(session, user, itip, rtip, context, language):
         'notification': db_get_notification(session, user.tid, language),
         'tip': rtip_dict,
         'crypto_tip_prv_key': Base64Encoder.decode(rtip.crypto_tip_prv_key),
+        'crypto_files_prv_key': Base64Encoder.decode(rtip.crypto_files_prv_key),
         'user': user_serialize_user(session, user, language),
         'context': admin_serialize_context(session, context, language),
         'submission_statuses': db_get_submission_statuses(session, user.tid, language)
@@ -48,7 +49,7 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
                                        .filter(models.User.id == user_id,
                                                models.User.tid == tid,
                                                models.ReceiverTip.id == rtip_id,
-                                               models.ReceiverTip.receiver_id == user_id,
+                                               models.ReceiverTip.receiver_id == models.User.id,
                                                models.InternalTip.id == models.ReceiverTip.internaltip_id,
                                                models.Context.id == models.InternalTip.context_id).one_or_none()
 
@@ -67,22 +68,32 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
 
 @inlineCallbacks
 def prepare_tip_export(cc, tip_export):
-    files = tip_export['tip']['ifiles'] + tip_export['tip']['wbfiles']
+    files = tip_export['tip']['rfiles'] + tip_export['tip']['wbfiles']
 
     if tip_export['crypto_tip_prv_key']:
         tip_export['tip'] = yield deferToThread(decrypt_tip, cc, tip_export['crypto_tip_prv_key'], tip_export['tip'])
 
-        for file_dict in tip_export['tip']['ifiles'] + tip_export['tip']['wbfiles']:
+        for file_dict in tip_export['tip']['rfiles']:
             if file_dict.get('status', '') == 'encrypted':
                 continue
 
-            tip_prv_key = GCE.asymmetric_decrypt(cc, tip_export['crypto_tip_prv_key'])
+            files_prv_key = GCE.asymmetric_decrypt(cc, tip_export['crypto_files_prv_key'])
+            filelocation = os.path.join(Settings.attachments_path, file_dict['filename'])
+            directory_traversal_check(Settings.attachments_path, filelocation)
+            file_dict['fo'] = GCE.streaming_encryption_open('DECRYPT', files_prv_key, filelocation)
+            del filelocation
+
+        for file_dict in tip_export['tip']['wbfiles']:
+            if file_dict.get('status', '') == 'encrypted':
+                continue
+
+            files_prv_key = GCE.asymmetric_decrypt(cc, tip_export['crypto_tip_prv_key'])
             filelocation = os.path.join(Settings.attachments_path, file_dict['filename'])
             directory_traversal_check(Settings.attachments_path, filelocation)
             file_dict['fo'] = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
             del filelocation
 
-    for file_dict in tip_export['tip'].pop('ifiles'):
+    for file_dict in tip_export['tip'].pop('rfiles'):
         file_dict['name'] = 'files/' + file_dict['name']
         if file_dict.get('status', '') == 'encrypted':
             file_dict['name'] += '.pgp'

@@ -34,7 +34,7 @@ def decrypt_tip(user_key, tip_prv_key, tip):
     for x in tip['comments'] + tip['messages']:
         x['content'] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(x['content'].encode())).decode()
 
-    for x in tip['ifiles'] + tip['wbfiles']:
+    for x in tip['rfiles'] + tip['wbfiles']:
         for k in ['name', 'description', 'type', 'size']:
             if k in x:
                 x[k] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(x[k].encode())).decode()
@@ -93,14 +93,15 @@ def db_archive_questionnaire_schema(session, questionnaire):
     return hash
 
 
-def db_create_receivertip(session, receiver, internaltip, enc_key):
+def db_create_receivertip(session, receiver, internaltip, tip_enc_key, files_enc_key):
     """
     Create a receiver tip for the specified receiver
     """
     receivertip = models.ReceiverTip()
     receivertip.internaltip_id = internaltip.id
     receivertip.receiver_id = receiver.id
-    receivertip.crypto_tip_prv_key = Base64Encoder.encode(enc_key)
+    receivertip.crypto_tip_prv_key = Base64Encoder.encode(tip_enc_key)
+    receivertip.crypto_files_prv_key = Base64Encoder.encode(files_enc_key)
     session.add(receivertip)
     session.flush()
     return receivertip
@@ -188,6 +189,7 @@ def db_create_submission(session, tid, request, user_session, client_using_tor):
     # Evaluate if the whistleblower tip should be encrypted
     if crypto_is_available:
         crypto_tip_prv_key, itip.crypto_tip_pub_key = GCE.generate_keypair()
+        crypto_files_prv_key, itip.crypto_files_pub_key = GCE.generate_keypair()
         wb_key = GCE.derive_key(receipt.encode(), State.tenant_cache[tid].receipt_salt)
         wb_prv_key, wb_pub_key = GCE.generate_keypair()
         itip.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(wb_key, wb_prv_key))
@@ -240,10 +242,12 @@ def db_create_submission(session, tid, request, user_session, client_using_tor):
     for user in receivers:
         if crypto_is_available:
             _tip_key = GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_tip_prv_key)
+            _files_key = GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_files_prv_key)
         else:
             _tip_key = b''
+            _files_key = b''
 
-        db_create_receivertip(session, user, itip, _tip_key)
+        db_create_receivertip(session, user, itip, _tip_key, _files_key)
 
     db_log(session, tid=tid, type='whistleblower_new_report')
 

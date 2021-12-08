@@ -34,7 +34,7 @@ def file_delivery(session):
         src = ifile.filename
         filecode = src.split('.')[0]
 
-        if itip.crypto_tip_pub_key:
+        if itip.crypto_files_pub_key:
             ifile.filename = "%s.encrypted" % filecode
         else:
             ifile.filename = "%s.plain" % filecode
@@ -56,12 +56,12 @@ def file_delivery(session):
 
             if ifile.id not in receiverfiles_maps:
                 receiverfiles_maps[ifile.id] = {
+                    'key': itip.crypto_files_pub_key,
                     'src': src,
-                    'key': itip.crypto_tip_pub_key,
                     'rfiles': []
                 }
 
-            if not itip.crypto_tip_pub_key and user.pgp_key_public:
+            if not itip.crypto_files_pub_key and user.pgp_key_public:
                 receiverfile.filename = "%s.pgp" % generateRandomKey()
             else:
                 receiverfile.filename = ifile.filename

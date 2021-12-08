@@ -123,6 +123,7 @@ def serialize_rfile(session, ifile, rfile):
     Transaction for serializing rfile
 
     :param session: An ORM session
+    :param ifile: The ifile to be serialized
     :param rfile: The rfile to be serialized
     :return: The serialized rfile
     """
@@ -132,7 +133,7 @@ def serialize_rfile(session, ifile, rfile):
         'name': ifile.name,
         'size': ifile.size,
         'type': ifile.content_type,
-        'filename': ifile.filename
+        'filename': rfile.filename
     }
 
 
@@ -189,7 +190,7 @@ def serialize_itip(session, internaltip, language):
         'receivers': [],
         'messages': [],
         'comments': [],
-        'ifiles': [],
+        'rfiles': [],
         'wbfiles': [],
         'data': {}
     }
@@ -197,10 +198,6 @@ def serialize_itip(session, internaltip, language):
     for comment in session.query(models.Comment) \
                           .filter(models.Comment.internaltip_id == internaltip.id):
         ret['comments'].append(serialize_comment(session, comment))
-
-    for ifile in session.query(models.InternalFile) \
-                        .filter(models.InternalFile.internaltip_id == internaltip.id):
-        ret['ifiles'].append(serialize_ifile(session, ifile))
 
     for wbfile in session.query(models.WhistleblowerFile) \
                          .filter(models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
@@ -211,6 +208,7 @@ def serialize_itip(session, internaltip, language):
         ret['data'][itd.key] = itd.value
 
     return ret
+
 
 
 def serialize_rtip(session, itip, rtip, language):
@@ -263,6 +261,11 @@ def serialize_rtip(session, itip, rtip, language):
         if ret['iar'] is None or ret['iar']['reply'] == 'denied':
             del ret['data']['whistleblower_identity']
 
+    for ifile, rfile in session.query(models.InternalFile, models.ReceiverFile) \
+                               .filter(models.InternalFile.id == models.ReceiverFile.internalfile_id,
+                                       models.ReceiverFile.receivertip_id == rtip.id):
+        ret['rfiles'].append(serialize_rfile(session, ifile, rfile))
+
     return ret
 
 
@@ -282,6 +285,10 @@ def serialize_wbtip(session, itip, language):
                                   models.ReceiverTip.internaltip_id == models.InternalTip.id,
                                   models.InternalTip.id == itip.id):
         ret['messages'].append(serialize_message(session, message))
+
+    for ifile in session.query(models.InternalFile) \
+                        .filter(models.InternalFile.internaltip_id == itip.id):
+        ret['rfiles'].append(serialize_ifile(session, ifile))
 
     return ret
 

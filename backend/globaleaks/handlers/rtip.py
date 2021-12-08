@@ -57,7 +57,6 @@ def db_tip_grant_notification(session, user):
     }))
 
 
-
 def db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, receiver_id):
     """
     Transaction for granting a user access to a report
@@ -87,10 +86,12 @@ def db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, receiver_id)
     if itip.crypto_tip_pub_key:
         _tip_key = GCE.asymmetric_decrypt(user_cc, base64.b64decode(rtip.crypto_tip_prv_key))
         _tip_key = GCE.asymmetric_encrypt(new_receiver.crypto_pub_key, _tip_key)
+        _files_key = GCE.asymmetric_decrypt(user_cc, base64.b64decode(rtip.crypto_files_prv_key))
+        _files_key = GCE.asymmetric_encrypt(new_receiver.crypto_pub_key, _files_key)
     else:
-        _tip_key = b''
+        _tip_key = _files_key = b''
 
-    new_rtip = db_create_receivertip(session, new_receiver, itip, _tip_key)
+    new_rtip = db_create_receivertip(session, new_receiver, itip, _tip_key, _files_key)
     new_rtip.new = False
 
     rfiles = session.query(models.ReceiverFile) \
@@ -302,7 +303,6 @@ def db_get_rtip(session, tid, user_id, rtip_id, language):
     rtip.last_access = datetime_now()
     if rtip.access_date == datetime_null():
         rtip.access_date = rtip.last_access
-
 
     db_log(session, tid=tid, type='access_report', user_id=user_id, object_id=itip.id)
 
@@ -654,6 +654,55 @@ class ReceiverMsgCollection(BaseHandler):
         return create_message(self.request.tid, self.session.user_id, rtip_id, request['content'])
 
 
+class ReceiverFileDownload(BaseHandler):
+    """
+    This handler exposes rfiles for download.
+    """
+    check_roles = 'receiver'
+    handler_exec_time_threshold = 3600
+
+    @transact
+    def download_rfile(self, session, tid, user_id, file_id):
+        rfile, ifile, rtip, pgp_key = db_get(session,
+                                             (models.ReceiverFile,
+                                              models.InternalFile,
+                                              models.ReceiverTip,
+                                              models.User.pgp_key_public),
+                                             (models.ReceiverTip.receiver_id == models.User.id,
+                                              models.ReceiverTip.id == models.ReceiverFile.receivertip_id,
+                                              models.InternalFile.id == models.ReceiverFile.internalfile_id,
+                                              models.ReceiverFile.id == file_id,
+                                              models.User.id == user_id))
+
+        if rfile.access_date == datetime_null():
+            rfile.access_date = datetime_now()
+
+        log.debug("Download of file %s by receiver %s" %
+                  (rfile.internalfile_id, rtip.receiver_id))
+
+        return ifile.name, rfile.filename, base64.b64decode(rtip.crypto_tip_prv_key), base64.b64decode(rtip.crypto_files_prv_key), pgp_key
+
+    @inlineCallbacks
+    def get(self, rfile_id):
+        name, filename, tip_prv_key, files_prv_key, pgp_key = yield self.download_rfile(self.request.tid, self.session.user_id, rfile_id)
+
+        filelocation = os.path.join(self.state.settings.attachments_path, filename)
+        directory_traversal_check(self.state.settings.attachments_path, filelocation)
+
+        if tip_prv_key:
+            tip_prv_key = GCE.asymmetric_decrypt(self.session.cc, tip_prv_key)
+            files_prv_key = GCE.asymmetric_decrypt(self.session.cc, files_prv_key)
+            name = GCE.asymmetric_decrypt(tip_prv_key, base64.b64decode(name.encode())).decode()
+
+        if filelocation.endswith('.encrypted'):
+            filelocation = GCE.streaming_encryption_open('DECRYPT', files_prv_key, filelocation)
+        elif 'pgp' in filelocation:
+            pgp_key = ''
+            name += ".pgp"
+
+        yield self.write_file_as_download(name, filelocation, pgp_key)
+
+
 class WhistleblowerFileHandler(BaseHandler):
     """
     Receiver interface to upload a file intended for the whistleblower
@@ -694,7 +743,7 @@ class RTipWBFileHandler(BaseHandler):
         if not rtip:
             raise errors.ResourceNotFound()
 
-        return wbfile.name, wbfile.filename, base64.b64decode(rtip.crypto_tip_prv_key), pgp_key
+        return wbfile.name, wbfile.filename, base64.b64decode(rtip.crypto_files_prv_key), pgp_key
 
     @inlineCallbacks
     def get(self, wbfile_id):
@@ -715,54 +764,6 @@ class RTipWBFileHandler(BaseHandler):
         This interface allow the recipient to set the description of a WhistleblowerFile
         """
         return delete_wbfile(self.request.tid, self.session.user_id, file_id)
-
-
-class ReceiverFileDownload(BaseHandler):
-    """
-    This handler exposes rfiles for download.
-    """
-    check_roles = 'receiver'
-    handler_exec_time_threshold = 3600
-
-    @transact
-    def download_rfile(self, session, tid, user_id, file_id):
-        rfile, ifile, rtip, pgp_key = db_get(session,
-                                             (models.ReceiverFile,
-                                              models.InternalFile,
-                                              models.ReceiverTip,
-                                              models.User.pgp_key_public),
-                                             (models.User.id == user_id,
-                                              models.ReceiverTip.receiver_id == user_id,
-                                              models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
-                                              models.ReceiverFile.internalfile_id == models.InternalFile.id,
-                                              models.ReceiverFile.id == file_id))
-
-        if rfile.access_date == datetime_null():
-            rfile.access_date = datetime_now()
-
-        log.debug("Download of file %s by receiver %s" %
-                  (rfile.internalfile_id, rtip.receiver_id))
-
-        return ifile.name, rfile.filename, base64.b64decode(rtip.crypto_tip_prv_key), pgp_key
-
-    @inlineCallbacks
-    def get(self, rfile_id):
-        name, filename, tip_prv_key, pgp_key = yield self.download_rfile(self.request.tid, self.session.user_id, rfile_id)
-
-        filelocation = os.path.join(self.state.settings.attachments_path, filename)
-        directory_traversal_check(self.state.settings.attachments_path, filelocation)
-
-        if tip_prv_key:
-            tip_prv_key = GCE.asymmetric_decrypt(self.session.cc, tip_prv_key)
-            name = GCE.asymmetric_decrypt(tip_prv_key, base64.b64decode(name.encode())).decode()
-
-        if filelocation.endswith('.encrypted'):
-            filelocation = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
-        elif 'pgp' in filelocation:
-            pgp_key = ''
-            name += ".pgp"
-
-        yield self.write_file_as_download(name, filelocation, pgp_key)
 
 
 class IdentityAccessRequestsCollection(BaseHandler):
