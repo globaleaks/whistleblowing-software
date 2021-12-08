@@ -131,7 +131,7 @@ def sync_clean_untracked_files(session):
             file_to_remove = os.path.join(Settings.attachments_path, filesystem_file)
             log.debug('Removing untracked file: %s', file_to_remove)
             try:
-                fs.overwrite_and_remove(file_to_remove)
+                fs.srm(file_to_remove)
             except OSError:
                 log.err('Failed to remove untracked file', file_to_remove)
 

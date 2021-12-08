@@ -15,7 +15,7 @@ from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.job import DailyJob
 from globaleaks.orm import db_del, db_query, transact, tw
-from globaleaks.utils.fs import overwrite_and_remove
+from globaleaks.utils.fs import srm
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, is_expired
 
@@ -110,7 +110,7 @@ class Cleaning(DailyJob):
             path = os.path.join(self.state.settings.files_path, f)
             timestamp = datetime.fromtimestamp(os.path.getmtime(path))
             if is_expired(timestamp, days=1):
-                overwrite_and_remove(path)
+                srm(path)
 
     def perform_secure_deletion_of_attachments(self, valid_files):
         # Delete the attachment files not associated to the database
@@ -121,7 +121,7 @@ class Cleaning(DailyJob):
             path = os.path.join(self.state.settings.attachments_path, f)
             timestamp = datetime.fromtimestamp(os.path.getmtime(path))
             if is_expired(timestamp, days=1):
-                overwrite_and_remove(path)
+                srm(path)
 
     def perform_secure_deletion_of_temporary_files(self):
         # Delete the outdated temp files if older than 1 day
@@ -129,7 +129,7 @@ class Cleaning(DailyJob):
             path = os.path.join(self.state.settings.tmp_path, f)
             timestamp = datetime.fromtimestamp(os.path.getmtime(path))
             if is_expired(timestamp, days=1):
-                overwrite_and_remove(path)
+                srm(path)
 
     @inlineCallbacks
     def operation(self):

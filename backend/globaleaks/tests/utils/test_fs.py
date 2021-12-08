@@ -19,7 +19,7 @@ class TestFilesystemUtilities(helpers.TestGL):
         valid_access = os.path.join(Settings.files_path, "valid.txt")
         fs.directory_traversal_check(Settings.files_path, valid_access)
 
-    def test_overwrite_and_remove(self):
+    def test_srm(self):
         path = os.path.join(Settings.working_path, "antani.txt")
 
         f = open(path, "wb")
@@ -29,6 +29,6 @@ class TestFilesystemUtilities(helpers.TestGL):
 
         self.assertTrue(os.path.isfile(path))
 
-        fs.overwrite_and_remove(path, 10)
+        fs.srm(path, 10)
 
         self.assertFalse(os.path.isfile(path))

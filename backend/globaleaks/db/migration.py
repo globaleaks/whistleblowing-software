@@ -66,7 +66,7 @@ from globaleaks.db.migrations.update_60 import InternalTip_v_59, ReceiverTip_v_5
 from globaleaks.orm import get_engine, get_session, make_db_uri
 from globaleaks.models import config, Base
 from globaleaks.settings import Settings
-from globaleaks.utils.fs import overwrite_and_remove
+from globaleaks.utils.fs import srm
 from globaleaks.utils.log import log
 from globaleaks.utils.utility import datetime_now
 
@@ -294,7 +294,7 @@ def perform_migration(version):
         shutil.copy(new_db_file, final_db_file)
 
         if orig_db_file != final_db_file:
-            overwrite_and_remove(orig_db_file)
+            srm(orig_db_file)
 
         path = os.path.join(Settings.working_path, 'db')
         if os.path.exists(path):
@@ -302,7 +302,7 @@ def perform_migration(version):
 
         # Always cleanup the temporary directory used for the migration
         for f in os.listdir(tmpdir):
-            overwrite_and_remove(os.path.join(tmpdir, f))
+            srm(os.path.join(tmpdir, f))
 
         shutil.rmtree(tmpdir)
 

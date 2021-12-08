@@ -8,7 +8,7 @@ from globaleaks.rest import errors
 from globaleaks.utils.log import log
 
 
-def overwrite_and_remove(absolutefpath, iterations_number=1):
+def srm(absolutefpath, iterations_number=1):
     """
     Overwrite the file with all_zeros, all_ones, random patterns
 
