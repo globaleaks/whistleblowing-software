@@ -74,7 +74,7 @@ def db_wizard(session, tid, hostname, request):
         admin_desc['language'] = language
         admin_desc['role'] = 'admin'
         admin_desc['pgp_key_remove'] = False
-        admin_user = db_create_user(session, tid, admin_desc, language)
+        admin_user = db_create_user(session, tid, None, admin_desc, language)
 
         if tid == 1:
             admin_user.password_change_needed = False
@@ -95,7 +95,7 @@ def db_wizard(session, tid, hostname, request):
         receiver_desc['role'] = 'receiver'
         receiver_desc['pgp_key_remove'] = False
         receiver_desc['send_account_activation_link'] = False
-        receiver_user = db_create_user(session, tid, receiver_desc, language)
+        receiver_user = db_create_user(session, tid, None, receiver_desc, language)
 
         if tid == 1:
             receiver_user.password_change_needed = False
@@ -109,7 +109,7 @@ def db_wizard(session, tid, hostname, request):
     else:
         context_desc['receivers'] = []
 
-    context = db_create_context(session, tid, context_desc, language)
+    context = db_create_context(session, tid, None, context_desc, language)
 
     # Root tenants initialization terminates here
 

@@ -59,7 +59,7 @@ def db_load_default_questionnaires(session):
     db_del(session, models.FieldOptionTriggerStep, models.FieldOptionTriggerStep.object_id.in_(ids))
 
     for questionnaire in questionnaires:
-        db_create_questionnaire(session, 1, questionnaire, None)
+        db_create_questionnaire(session, 1, None, questionnaire, None)
 
 
 def db_load_default_fields(session):

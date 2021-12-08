@@ -32,7 +32,6 @@ def fail_startup(excep):
 
 
 class Request(server.Request):
-    session = None
     log_ip_and_ua = False
 
 

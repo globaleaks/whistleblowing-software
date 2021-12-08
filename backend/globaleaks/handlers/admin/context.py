@@ -134,7 +134,7 @@ def fill_context_request(tid, request, language):
     return request
 
 
-def db_create_context(session, tid, request, language):
+def db_create_context(session, tid, user_session, request, language):
     """
     Transaction for creating a context
 
@@ -154,7 +154,7 @@ def db_create_context(session, tid, request, language):
 
 
 @transact
-def create_context(session, tid, request, language):
+def create_context(session, tid, user_session, request, language):
     """
     Transaction for creating a context
 
@@ -164,7 +164,7 @@ def create_context(session, tid, request, language):
     :param language: The request language
     :return: A serialized descriptor of the context
     """
-    context = db_create_context(session, tid, request, language)
+    context = db_create_context(session, tid, user_session, request, language)
 
     return admin_serialize_context(session, context, language)
 
@@ -244,7 +244,7 @@ class ContextsCollection(OperationHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminContextDesc)
 
-        return create_context(self.request.tid, request, self.request.language)
+        return create_context(self.request.tid, self.session, request, self.request.language)
 
     def order_elements(self, req_args, *args, **kwargs):
         return order_elements(self.request.tid, req_args['ids'])

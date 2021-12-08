@@ -32,7 +32,7 @@ def db_get_questionnaire(session, tid, questionnaire_id, language, serialize_tem
     return serialize_questionnaire(session, tid, questionnaire, language, serialize_templates=serialize_templates)
 
 
-def db_create_questionnaire(session, tid, questionnaire_dict, language):
+def db_create_questionnaire(session, tid, user_session, questionnaire_dict, language):
     fill_localized_keys(questionnaire_dict,
                         models.Questionnaire.localized_keys, language)
 
@@ -58,7 +58,7 @@ def db_create_questionnaire(session, tid, questionnaire_dict, language):
 
 
 @transact
-def create_questionnaire(session, tid, request, language):
+def create_questionnaire(session, tid, user_session, request, language):
     """
     Updates the specified questionnaire. If the key receivers is specified we remove
     the current receivers of the Questionnaire and reset set it to the new specified
@@ -70,7 +70,7 @@ def create_questionnaire(session, tid, request, language):
     :param language: The language of the request
     :return: A serialized descriptor of the questionnaire
     """
-    questionnaire = db_create_questionnaire(session, tid, request, language)
+    questionnaire = db_create_questionnaire(session, tid, user_session, request, language)
 
     return serialize_questionnaire(session, tid, questionnaire, language)
 
@@ -101,7 +101,7 @@ def db_update_questionnaire(session, tid, questionnaire_id, request, language):
 
 
 @transact
-def duplicate_questionnaire(session, tid, questionnaire_id, new_name):
+def duplicate_questionnaire(session, tid, user_session, questionnaire_id, new_name):
     """
     Transaction for duplicating an existing questionnaire
 
@@ -179,7 +179,7 @@ def duplicate_questionnaire(session, tid, questionnaire_id, new_name):
 
     q['name'] = new_name
 
-    db_create_questionnaire(session, tid, q, None)
+    db_create_questionnaire(session, tid, user_session, q, None)
 
 
 class QuestionnairesCollection(BaseHandler):
@@ -205,7 +205,7 @@ class QuestionnairesCollection(BaseHandler):
 
         request = self.validate_message(self.request.content.read(), validator)
 
-        return create_questionnaire(self.request.tid, request, language)
+        return create_questionnaire(self.request.tid, self.session, request, language)
 
 
 class QuestionnaireInstance(BaseHandler):
@@ -254,5 +254,6 @@ class QuestionnareDuplication(BaseHandler):
                                         requests.QuestionnaireDuplicationDesc)
 
         return duplicate_questionnaire(self.request.tid,
+                                       self.session,
                                        request['questionnaire_id'],
                                        request['new_name'])

@@ -785,20 +785,20 @@ class TestGLWithPopulatedDB(TestGL):
     @inlineCallbacks
     def fill_data(self):
         # fill_data/create_admin
-        self.dummyAdmin = yield create_user(1, self.dummyAdmin, 'en')
+        self.dummyAdmin = yield create_user(1, None, self.dummyAdmin, 'en')
 
         # fill_data/create_custodian
-        self.dummyCustodian = yield create_user(1, self.dummyCustodian, 'en')
+        self.dummyCustodian = yield create_user(1, None, self.dummyCustodian, 'en')
 
         # fill_data/create_receiver
-        self.dummyReceiver_1 = yield create_user(1, self.dummyReceiver_1, 'en')
-        self.dummyReceiver_2 = yield create_user(1, self.dummyReceiver_2, 'en')
+        self.dummyReceiver_1 = yield create_user(1, None, self.dummyReceiver_1, 'en')
+        self.dummyReceiver_2 = yield create_user(1, None, self.dummyReceiver_2, 'en')
 
         yield mock_users_keys()
 
         # fill_data/create_context
         self.dummyContext['receivers'] = [self.dummyReceiver_1['id'], self.dummyReceiver_2['id']]
-        self.dummyContext = yield create_context(1, self.dummyContext, 'en')
+        self.dummyContext = yield create_context(1, None, self.dummyContext, 'en')
 
         self.dummyQuestionnaire = yield tw(db_get_questionnaire, 1, self.dummyContext['questionnaire_id'], 'en')
 
@@ -927,6 +927,7 @@ class TestHandler(TestGLWithPopulatedDB):
     # }
 
     def setUp(self):
+        self.session = None
         return TestGL.setUp(self)
 
     def request(self, body='', uri=b'https://www.globaleaks.org/',
@@ -1017,7 +1018,7 @@ class TestCollectionHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        yield self._test_desc['create'](1, data, 'en')
+        yield self._test_desc['create'](1, self.session, data, 'en')
 
         handler = self.request(role='admin')
 
@@ -1051,7 +1052,7 @@ class TestInstanceHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        data = yield self._test_desc['create'](1, data, 'en')
+        data = yield self._test_desc['create'](1, self.session, data, 'en')
 
         handler = self.request(data, role='admin')
 
@@ -1065,7 +1066,7 @@ class TestInstanceHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        data = yield self._test_desc['create'](1, data, 'en')
+        data = yield self._test_desc['create'](1, self.session, data, 'en')
 
         for k, v in self._test_desc['data'].items():
             data[k] = v
@@ -1085,7 +1086,7 @@ class TestInstanceHandler(TestHandler):
 
         data = self.get_dummy_request()
 
-        data = yield self._test_desc['create'](1, data, 'en')
+        data = yield self._test_desc['create'](1, self.session, data, 'en')
 
         handler = self.request(data, role='admin')
 

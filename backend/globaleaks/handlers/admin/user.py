@@ -16,7 +16,7 @@ from globaleaks.utils.crypto import GCE, Base64Encoder, generateRandomPassword
 from globaleaks.utils.utility import datetime_now, uuid4
 
 
-def db_create_user(session, tid, request, language):
+def db_create_user(session, tid, user_session, request, language):
     """
     Transaction for creating a new user
 
@@ -56,7 +56,7 @@ def db_create_user(session, tid, request, language):
 
 
 @transact
-def create_user(session, tid, request, language):
+def create_user(session, tid, user_session, request, language):
     """
     Transaction for creating a new user
 
@@ -66,7 +66,7 @@ def create_user(session, tid, request, language):
     :param language: The language of the request
     :return: The serialized descriptor of the created object
     """
-    return user_serialize_user(session, db_create_user(session, tid, request, language), language)
+    return user_serialize_user(session, db_create_user(session, tid, user_session, request, language), language)
 
 
 def db_admin_update_user(session, tid, user_session, user_id, request, language):
@@ -157,7 +157,7 @@ class UsersCollection(BaseHandler):
         if not request['password'] and self.session.ek:
             request['password'] = generateRandomPassword(16)
 
-        user = yield create_user(self.request.tid, request, self.request.language)
+        user = yield create_user(self.request.tid, None, request, self.request.language)
 
         if request['send_account_activation_link']:
             yield generate_password_reset_token(self.request.tid, self.session, user['id'])
