@@ -35,6 +35,9 @@ def srm(absolutefpath, iterations_number=1):
                 f.write(pattern)
                 count += len(pattern)
 
+    if not os.path.exists(absolutefpath):
+        return
+
     try:
         # in the following loop, the file is open and closed on purpose, to trigger flush operations
         all_0 = b"\x00" * 4096  # 4kb of zeros
