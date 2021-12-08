@@ -52,8 +52,6 @@ class User_v_42(Model):
     change_email_address = Column(UnicodeText, default='', nullable=False)
     change_email_token = Column(UnicodeText, unique=True, nullable=True)
     change_email_date = Column(DateTime, default=datetime_never, nullable=False)
-    reset_password_token = Column(UnicodeText, unique=True, nullable=True)
-    reset_password_date = Column(UnicodeText, default=datetime_never, nullable=False)
     pgp_key_fingerprint = Column(UnicodeText, default='', nullable=False)
     pgp_key_public = Column(UnicodeText, default='', nullable=False)
     pgp_key_expiration = Column(DateTime, default=datetime_null, nullable=False)

@@ -105,14 +105,14 @@ def validate_password_reset(session, reset_token, auth_code, recovery_key):
     :param recovery_key: An encryption recovery key (optional)
     :return: A descriptor describing the result of the operation
     """
+    user_id = None
     now = datetime.now()
     prv_key = ''
 
-    user_id = key = None
-
     try:
         with open(os.path.abspath(os.path.join(State.settings.ramdisk_path, reset_token)), "r") as f:
-            user_id, key = f.read().split(":")
+            token = f.read()
+            user_id = token.split(":")[0]
     except:
         return {'status': 'invalid_reset_token_provided'}
 
@@ -123,9 +123,14 @@ def validate_password_reset(session, reset_token, auth_code, recovery_key):
     # If encryption is enabled require the recovery key
     if user.crypto_prv_key:
         try:
-            if key:
+            try:
+                prv_key = token.split(":")[1]
+            except:
+                pass
+
+            if prv_key:
                 enc_key = GCE.derive_key(reset_token, user.salt)
-                prv_key = GCE.symmetric_decrypt(enc_key, Base64Encoder.decode(key))
+                prv_key = GCE.symmetric_decrypt(enc_key, Base64Encoder.decode(prv_key))
             else:
                 recovery_key = recovery_key.replace('-', '').upper() + '===='
                 recovery_key = Base32Encoder.decode(recovery_key.encode())

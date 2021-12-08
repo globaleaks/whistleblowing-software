@@ -1,18 +1,13 @@
 # -*- coding: utf-8 -*-
+import os
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers import password_reset
 from globaleaks.orm import db_get, transact
+from globaleaks.state import State
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_now
-
-
-@transact
-def set_reset_token(session, user_id, validation_token):
-    user = db_get(session, models.User, models.User.id == user_id)
-    user.reset_password_token = validation_token
-    user.reset_password_date = datetime_now()
 
 
 class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
@@ -33,10 +28,13 @@ class TestPasswordResetInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put(self):
-        yield set_reset_token(
-            self.dummyReceiver_1['id'],
-            u"valid_reset_token"
-        )
+        valid_reset_token = 'valid_reset_token'
+
+        try:
+            with open(os.path.abspath(os.path.join(State.settings.ramdisk_path, valid_reset_token)), "w") as f:
+                f.write(self.dummyReceiver_1['id'])
+        except:
+            pass
 
         # Wrong token
         handler = self.request({'reset_token': 'wrong_token', 'recovery_key': '', 'auth_code': ''})

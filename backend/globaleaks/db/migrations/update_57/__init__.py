@@ -35,8 +35,6 @@ class User_v_56(Model):
     change_email_address = Column(UnicodeText, default='', nullable=False)
     change_email_token = Column(UnicodeText, unique=True, nullable=True)
     change_email_date = Column(DateTime, default=datetime_null, nullable=False)
-    reset_password_token = Column(UnicodeText, unique=True, nullable=True)
-    reset_password_date = Column(UnicodeText, default=datetime_null, nullable=False)
     notification = Column(Boolean, default=True, nullable=False)
     forcefully_selected = Column(Boolean, default=False, nullable=False)
     can_delete_submission = Column(Boolean, default=False, nullable=False)
