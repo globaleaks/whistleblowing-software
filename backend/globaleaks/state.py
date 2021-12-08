@@ -85,7 +85,6 @@ class StateClass(ObjectDict, metaclass=Singleton):
         os.umask(0o77)
         self.settings.eval_paths()
         self.create_directories()
-        self.cleaning_dead_files()
 
     def set_orm_tp(self, orm_tp):
         self.orm_tp = orm_tp
@@ -130,38 +129,6 @@ class StateClass(ObjectDict, metaclass=Singleton):
                         self.settings.tmp_path,
                         self.settings.log_path]:
             self.create_directory(dirpath)
-
-    def cleaning_dead_files(self):
-        """
-        This function is called at the start of GlobaLeaks, in
-        bin/globaleaks, and checks if the file is present in
-        temporally_encrypted_dir
-        """
-        # temporary .aes files must be simply deleted
-        for f in os.listdir(self.settings.tmp_path):
-            path = os.path.join(self.settings.tmp_path, f)
-            log.debug("Removing old temporary file: %s", path)
-
-            try:
-                os.remove(path)
-            except OSError as excep:
-                log.debug("Error while evaluating removal for %s: %s", path, excep.strerror)
-
-        # temporary .aes files with lost keys can be deleted
-        # while temporary .aes files with valid current key
-        # will be automagically handled by delivery sched.
-        keypath = os.path.join(self.settings.tmp_path, self.settings.AES_keyfile_prefix)
-
-        for f in os.listdir(self.settings.attachments_path):
-            path = os.path.join(self.settings.attachments_path, f)
-            try:
-                result = re.compile(self.settings.AES_file_regexp).match(f)
-                if result is not None:
-                    if not os.path.isfile("%s%s" % (keypath, result.group(1))):
-                        log.debug("Removing old encrypted file (lost key): %s", path)
-                        os.remove(path)
-            except Exception as excep:
-                log.debug("Error while evaluating removal for %s: %s", path, excep)
 
     def reset_hourly(self):
         for tid in self.tenant_state:
