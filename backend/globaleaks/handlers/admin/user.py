@@ -52,7 +52,15 @@ def db_create_user(session, tid, user_session, request, language):
 
     session.flush()
 
+    if user_session:
+        db_log(session, tid=tid, type='add_user', user_id=user_session.user_id, object_id=user.id)
+
     return user
+
+
+def db_delete_user(session, tid, user_session, user_id):
+    db_del(session, models.User, (models.User.tid == tid, models.User.id == user_id))
+    db_log(session, tid=tid, type='delete_user', user_id=user_session.user_id, object_id=user_id)
 
 
 @transact
@@ -186,7 +194,4 @@ class UserInstance(BaseHandler):
         """
         Delete the specified user.
         """
-        return tw(db_del,
-                  models.User,
-                  (models.User.tid == self.request.tid,
-                   models.User.id == user_id))
+        return tw(db_delete_user, self.request.tid, self.session, user_id)
