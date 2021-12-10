@@ -16,7 +16,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
   $scope.$watch("search", function (value) {
     if (typeof value !== "undefined") {
       $scope.currentPage = 1;
-      $scope.filteredTips = $filter("filter")($scope.tips, value);
+      $scope.filteredTips = $filter("filter")($scope.resources.rtips.rtips, value);
     }
   });
 

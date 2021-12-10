@@ -9,7 +9,7 @@
       </a>
 
       <span id="tip-action-select-all"
-            data-ng-if="selected_tips.length !== tips.length"
+            data-ng-if="selected_tips.length !== resources.rtips.rtips.length"
             data-ng-click="select_all()"
             data-uib-tooltip="{{'Select all' | translate}}"
             class="btn btn-outline-secondary">
@@ -17,7 +17,7 @@
       </span>
 
       <span id="tip-action-select-all"
-            data-ng-if="selected_tips.length === tips.length"
+            data-ng-if="selected_tips.length === resources.rtips.rtips.length"
             data-ng-click="deselect_all()"
             data-uib-tooltip="{{'Deselect all' | translate}}"
             class="btn btn-outline-secondary">
