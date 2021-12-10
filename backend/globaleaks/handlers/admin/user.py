@@ -53,7 +53,7 @@ def db_create_user(session, tid, user_session, request, language):
     session.flush()
 
     if user_session:
-        db_log(session, tid=tid, type='add_user', user_id=user_session.user_id, object_id=user.id)
+        db_log(session, tid=tid, type='create_user', user_id=user_session.user_id, object_id=user.id)
 
     return user
 
@@ -165,7 +165,7 @@ class UsersCollection(BaseHandler):
         if not request['password'] and self.session.ek:
             request['password'] = generateRandomPassword(16)
 
-        user = yield create_user(self.request.tid, None, request, self.request.language)
+        user = yield create_user(self.request.tid, self.session, request, self.request.language)
 
         if request['send_account_activation_link']:
             yield generate_password_reset_token(self.request.tid, self.session, user['id'])
