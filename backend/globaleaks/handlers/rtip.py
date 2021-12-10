@@ -743,11 +743,11 @@ class RTipWBFileHandler(BaseHandler):
         if not rtip:
             raise errors.ResourceNotFound()
 
-        return wbfile.name, wbfile.filename, base64.b64decode(rtip.crypto_files_prv_key), pgp_key
+        return wbfile.name, wbfile.filename, base64.b64decode(rtip.crypto_tip_prv_key), pgp_key
 
     @inlineCallbacks
     def get(self, wbfile_id):
-        name, filename, pgp_key = yield self.download_wbfile(self.request.tid, wbfile_id)
+        name, filename, tip_prv_key, pgp_key = yield self.download_wbfile(self.request.tid, wbfile_id)
 
         filelocation = os.path.join(self.state.settings.attachments_path, filename)
         directory_traversal_check(self.state.settings.attachments_path, filelocation)
