@@ -108,7 +108,7 @@ for TARGET in $TARGETS; do
   if [ $NOSIGN -eq 1 ]; then
     debuild -i -us -uc -b
   else
-    debuild
+    debuild -b
   fi
 
   cd ../../../
