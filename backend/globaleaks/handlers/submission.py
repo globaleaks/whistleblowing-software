@@ -81,7 +81,7 @@ def db_assign_submission_progressive(session, tid):
 
 
 def db_archive_questionnaire_schema(session, questionnaire):
-    hash = str(sha256(json.dumps(questionnaire, sort_keys=True)))
+    hash = sha256(json.dumps(questionnaire, sort_keys=True)).decode("utf-8")
     if session.query(models.ArchivedSchema).filter(models.ArchivedSchema.hash == hash).count():
         return hash
 
