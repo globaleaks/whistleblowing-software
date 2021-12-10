@@ -1,6 +1,12 @@
+globaleaks (4.7.2) stable; urgency=medium
+
+  * New stable release
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Fri, 10 Dec 2021 14:28:52 +0100
+
 globaleaks (4.7.1) stable; urgency=medium
 
-  * Non-maintainer upload.
+  * New stable release
 
  -- GlobaLeaks software signing key <info@globaleaks.org>  Fri, 10 Dec 2021 12:29:39 +0100
 
