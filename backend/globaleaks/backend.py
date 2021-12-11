@@ -91,6 +91,12 @@ class Service(service.Service):
                              0o700,
                              0o600)
 
+        fix_file_permissions(Settings.ramdisk_path,
+                             Settings.uid,
+                             Settings.gid,
+                             0o700,
+                             0o600)
+
         drop_privileges(Settings.user, Settings.uid, Settings.gid)
 
         reactor.callLater(0, self.deferred_start)
