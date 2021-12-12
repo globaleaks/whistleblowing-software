@@ -713,8 +713,6 @@ class Templating(object):
         body = self.format_template(body_template, data)
 
         if 'user' in data and data['user']['pgp_key_public']:
-            subject = "..."
-
             try:
                 body = PGPContext(data['user']['pgp_key_public']).encrypt_message(body)
             except:

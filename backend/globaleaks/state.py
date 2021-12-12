@@ -164,19 +164,16 @@ class StateClass(ObjectDict, metaclass=Singleton):
                         self.settings.socks_port)
 
     def schedule_support_email(self, tid, text):
-        _subject = "Support request"
+        subject = "Support request"
         delivery_list = set.union(set(self.tenant_cache[1].notification.admin_list),
                                   set(self.tenant_cache[tid].notification.admin_list))
 
         for mail_address, pgp_key_public in delivery_list:
-            subject = _subject
             body = text
 
             # Opportunisticly encrypt the mail body. NOTE that mails will go out
             # unencrypted if one address in the list does not have a public key set.
             if pgp_key_public:
-                subject = "..."
-
                 try:
                     body = PGPContext(pgp_key_public).encrypt_message(mail_body)
                 except:
@@ -220,7 +217,6 @@ class StateClass(ObjectDict, metaclass=Singleton):
             # Opportunisticly encrypt the mail body. NOTE that mails will go out
             # unencrypted if one address in the list does not have a public key set.
             if pgp_key_public:
-                mail_subject = "..."
                 mail_body = PGPContext(pgp_key_public).encrypt_message(mail_body)
 
             # avoid waiting for the notification to send and instead rely on threads to handle it
