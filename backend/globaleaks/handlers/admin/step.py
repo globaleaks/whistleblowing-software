@@ -104,13 +104,7 @@ class StepCollection(OperationHandler):
 
     def operation_descriptors(self):
         return {
-            'order_elements': (
-                order_elements,
-                {
-                    'questionnaire_id': requests.uuid_regexp,
-                    'ids': [str],
-                }
-            )
+            'order_elements': order_elements
         }
 
 

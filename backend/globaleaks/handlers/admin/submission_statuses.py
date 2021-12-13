@@ -165,7 +165,7 @@ class SubmissionStatusCollection(OperationHandler):
 
     def operation_descriptors(self):
         return {
-            'order_elements': (order_status_elements, {'ids': [str]}),
+            'order_elements': order_status_elements
         }
 
 

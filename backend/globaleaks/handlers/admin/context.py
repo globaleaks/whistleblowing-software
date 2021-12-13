@@ -251,7 +251,7 @@ class ContextsCollection(OperationHandler):
 
     def operation_descriptors(self):
         return {
-            'order_elements': (ContextsCollection.order_elements, {'ids': [str]}),
+            'order_elements': ContextsCollection.order_elements
         }
 
 
