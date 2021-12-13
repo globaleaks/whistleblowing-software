@@ -1,3 +1,7 @@
+Changes in version 4.7.4
+    Fix regression on generation of PGP encrypted emails
+    Update translations
+
 Changes in version 4.7.3
     Revise apparmor script fixing permissions to generate password reset token
     Avoid to encrypt email subjects as in releases before 4.6.0
