@@ -11,6 +11,7 @@ from twisted.internet.abstract import isIPAddress
 
 from globaleaks import __version__
 from globaleaks.rest import errors
+from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.utility import datetime_to_pretty_str, \
     datetime_to_day_str, \
     bytes_to_pretty_str, \
