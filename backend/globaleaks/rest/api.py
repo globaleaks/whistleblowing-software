@@ -357,7 +357,6 @@ class APIResourceWrapper(Resource):
         if b'multilang' in request.args:
             request.multilang = True
 
-
     def render(self, request):
         """
         :param request: `twisted.web.Request`
@@ -447,6 +446,10 @@ class APIResourceWrapper(Resource):
         def concludeHandlerFailure(err):
             yield self.handler.execution_check()
             self.handle_exception(err, request)
+
+            if request.finished:
+                return
+
             request.finish()
 
         @defer.inlineCallbacks
