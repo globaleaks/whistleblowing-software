@@ -763,20 +763,14 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
         pageTitle = $rootScope.header_title;
       }
 
-      if (!projectTitle) {
-        projectTitle = "";
-      }
-
-      if (!pageTitle) {
-        pageTitle = projectTitle;
-      }
-
       $rootScope.projectTitle = $filter("translate")(projectTitle);
       $rootScope.pageTitle = $filter("translate")(pageTitle);
 
-      $window.document.title = $rootScope.projectTitle;
-      if ($rootScope.projectTitle !== $rootScope.pageTitle) {
-        $window.document.title += " - " + $rootScope.pageTitle;
+      if ($rootScope.projectTitle === $rootScope.pageTitle) {
+	$rootScope.pageTitle = "";
+        $window.document.title = $rootScope.projectTitle;
+      } else {
+        $window.document.title = $rootScope.projectTitle + " - " + $rootScope.pageTitle;
       }
 
       $window.document.getElementsByName("description")[0].content = $rootScope.public.node.description;
