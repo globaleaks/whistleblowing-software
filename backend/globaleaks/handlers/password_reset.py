@@ -16,7 +16,6 @@ from globaleaks.rest import requests
 from globaleaks.sessions import Sessions
 from globaleaks.state import State
 from globaleaks.utils.crypto import generateRandomKey, totpVerify, GCE
-from globaleaks.utils.fs import srm
 from globaleaks.utils.utility import datetime_now, datetime_null
 
 
@@ -144,21 +143,21 @@ def validate_password_reset(session, reset_token, auth_code, recovery_key):
         except:
             return {'status': 'require_two_factor_authentication'}
 
-    srm(os.path.abspath(os.path.join(State.settings.ramdisk_path, reset_token)))
-
     # Require password change
     user.password_change_needed = True
 
     user.last_login = datetime_now()
 
-    session_id = Sessions.new(user.tid, user.id,
-                              user.tid, user.role,
-                              prv_key,
-                              user.crypto_escrow_prv_key).id
+    user_session = Sessions.new(user.tid, user.id,
+                           user.tid, user.role,
+                           prv_key,
+                           user.crypto_escrow_prv_key)
+
+    user_session.properties['reset_token'] = reset_token
 
     db_log(session, tid=user.tid, type='login', user_id=user.id)
 
-    return {'status': 'success', 'token': session_id}
+    return {'status': 'success', 'token': user_session.id}
 
 
 class PasswordResetHandler(BaseHandler):

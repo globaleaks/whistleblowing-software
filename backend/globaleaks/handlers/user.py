@@ -1,6 +1,7 @@
 # -*- coding: utf-8
 #
 # Handlers dealing with user preferences
+import os
 from nacl.encoding import Base32Encoder, Base64Encoder
 from twisted.internet.defer import returnValue
 
@@ -11,8 +12,9 @@ from globaleaks.models import config, get_localized_values
 from globaleaks.orm import db_get, db_log, transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
-from globaleaks.utils.pgp import PGPContext
+from globaleaks.utils.fs import srm
 from globaleaks.utils.crypto import generateRandomKey, totpVerify, GCE
+from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.utility import datetime_now, datetime_null
 
 
@@ -201,6 +203,11 @@ def db_user_update_user(session, tid, user_session, request):
                 raise errors.InvalidOldPassword
 
         user_session.cc = db_set_user_password(session, tid, user, request['password'], user_session.cc)
+
+        reset_token = user_session.properties.get('reset_token')
+        if reset_token:
+            srm(os.path.abspath(os.path.join(State.settings.ramdisk_path, reset_token)))
+            del user_session.properties['reset_token']
 
         db_log(session, tid=tid, type='change_password', user_id=user.id, object_id=user.id)
 
