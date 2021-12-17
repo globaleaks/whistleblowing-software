@@ -27,7 +27,7 @@
         </div>
         <div data-ng-show="navigation !== -1" data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'order'" data-ng-controller="SubmissionStepCtrl" data-ng-if="step.enabled">
           <div id="{{stepId}}" data-ng-form="{{stepId}}" class="SubmissionStep" data-ng-show="navigation === $index">
-            <div class="description" data-ng-if="step.description">{{step.description}}</div>
+            <div data-ng-if="step.description" class="description" data-markdown-to-html="step.description"></div>
             <div data-ng-include="'views/whistleblower/form.html'"></div>
           </div>
         </div>
