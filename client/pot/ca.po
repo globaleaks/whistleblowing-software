@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-02 08:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-12-17 11:36+0000\n"
+"Last-Translator: Joan Bitlloch <joanbit@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -485,59 +485,59 @@ msgid "Please summarize your report in a few words."
 msgstr "Descriu el teu informe en poques paraules."
 
 msgid "Where did the facts happen?"
-msgstr ""
+msgstr "On van passar els fets?"
 
 msgid "When did the facts happen?"
-msgstr ""
+msgstr "Quan van passar els fets?"
 
 msgid "How are you involved in the reported facts?"
-msgstr ""
+msgstr "Com estàs implicat en els fets denunciats?"
 
 msgid "I’m a victim"
-msgstr ""
+msgstr "Sóc una víctima"
 
 msgid "I’m involved in the facts"
-msgstr ""
+msgstr "Estic involucrat en els fets"
 
 msgid "I witnessed the facts in person"
-msgstr ""
+msgstr "Vaig presenciar els fets en persona"
 
 msgid "I was personally told by a direct witness"
-msgstr ""
+msgstr "M'ho va dir personalment un testimoni directe"
 
 msgid "It is a rumor I heard"
-msgstr ""
+msgstr "És un rumor que vaig sentir"
 
 msgid "Do you have evidence to support your report?"
-msgstr ""
+msgstr "Tens proves que avalen el teu informe?"
 
 msgid "Please attach the evidence to support your report."
-msgstr ""
+msgstr "Si us plau, adjunteu les proves que avalen el vostre informe."
 
 msgid "Please describe the evidence in detail."
-msgstr ""
+msgstr "Si us plau, descrigui l'evidència amb detall."
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr ""
+msgstr "Una descripció completa de les proves presentades millora la nostra capacitat per avaluar les reclamacions i investigar. Si us plau, tingueu cura de fer referència a parts importants de qualsevol vídeo, imatge o document enviat."
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
+msgstr "Has denunciat els fets a altres organitzacions i/o persones?"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr ""
+msgstr "Enumereu les organitzacions i/o persones que heu informat sobre aquests fets."
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr ""
+msgstr "Aquestes organitzacions han investigat les vostres afirmacions? Si és així, quin va ser el resultat?"
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr ""
+msgstr "Quin és el resultat que voleu aconseguir amb el nostre suport?"
 
 msgid "File a report"
 msgstr "Presentar un informe"

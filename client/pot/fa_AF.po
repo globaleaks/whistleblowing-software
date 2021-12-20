@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-02 08:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-12-15 09:15+0000\n"
+"Last-Translator: Afghan Translation Association (ATA) <atranslationa@gmail.com>\n"
 "Language-Team: Persian (Afghanistan) (http://www.transifex.com/otf/globaleaks/language/fa_AF/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -467,62 +467,62 @@ msgid "Revoke access"
 msgstr "لغو دسترسی"
 
 msgid "Please summarize your report in a few words."
-msgstr "راپور خود را در چند کلیمه توضیح دهید."
+msgstr "راپور خود را در چند کلیمه خلاصه سازید."
 
 msgid "Where did the facts happen?"
-msgstr ""
+msgstr "این حقایق در کجا رخ دادند؟"
 
 msgid "When did the facts happen?"
-msgstr ""
+msgstr "این حقایق چه زمانی رخ دادند؟"
 
 msgid "How are you involved in the reported facts?"
-msgstr ""
+msgstr "در حقایق گزارش شده چگونه درگیر هستید؟"
 
 msgid "I’m a victim"
-msgstr ""
+msgstr "من یک قربانی هستم"
 
 msgid "I’m involved in the facts"
-msgstr ""
+msgstr "من درگیر حقایق هستم"
 
 msgid "I witnessed the facts in person"
-msgstr ""
+msgstr "من شخصا شاهد حقایق بودم"
 
 msgid "I was personally told by a direct witness"
-msgstr ""
+msgstr "من شخصا از یک شاهد مستقیم شنیدم"
 
 msgid "It is a rumor I heard"
-msgstr ""
+msgstr "شایعه‌ای است که شنیدم"
 
 msgid "Do you have evidence to support your report?"
-msgstr ""
+msgstr "آیا مدرکی برای پشتیبانی از گزارش خود دارید؟"
 
 msgid "Please attach the evidence to support your report."
-msgstr ""
+msgstr "لطفا شواهد را برای پشتیبانی گزارش خود ضمیمه کنید."
 
 msgid "Please describe the evidence in detail."
-msgstr ""
+msgstr "لطفا شواهد را با جزئیات بیان کنید."
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr ""
+msgstr "شرح کامل شواهد ارائه شده توانایی ما را برای ارزیابی ادعاها و تحقیق افزایش می‌دهد. لطفا توجه داشته باشید که بخش قابل توجهی از ویدیوها، تصاویر یا اسناد ارسال شده را ارجاع دهید."
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
+msgstr "آیا حقایق را به سازمان ها و یا افراد دیگر گزارش کرده‌اید؟"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr ""
+msgstr "لطفا سازمان‌ها و یا افرادی را که در مورد این حقایق اطلاع داده‌اید فهرست کنید."
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr ""
+msgstr "آیا این سازمان‌ها ادعاهای شما را بررسی کرده‌اند؟ اگر چنین است، نتیجه چه بوده است؟"
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr ""
+msgstr "نتیجه‌ای که می خواهید با حمایت ما به دست آورید چیست؟"
 
 msgid "File a report"
 msgstr "ترتیب یک راپور"
@@ -1025,7 +1025,7 @@ msgid "Hint"
 msgstr "اشاره"
 
 msgid "Mandatory"
-msgstr "حتمی"
+msgstr "الزامی"
 
 msgid "Accept multiple file uploads"
 msgstr "قبول اپلود فایل های متعدد"

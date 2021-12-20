@@ -21,13 +21,13 @@
 # Andrea Lusuardi <uovobw@gmail.com>, 2013
 # Yvette Agostini <mnemosyne@logioshermes.org>, 2015
 # yvette.agostini <yvette.agostini@gmail.com>, 2013
-# Yvette Agostini <mnemosyne@logioshermes.org>, 2015,2017
+# Yvette Agostini <mnemosyne@logioshermes.org>, 2015,2017,2021
 # yvette.agostini <yvette.agostini@gmail.com>, 2013
 # yvette.agostini <yvette.agostini@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-02 08:00+0000\n"
+"PO-Revision-Date: 2021-12-15 10:44+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -488,7 +488,7 @@ msgid "Revoke access"
 msgstr "Revoca accesso"
 
 msgid "Please summarize your report in a few words."
-msgstr "Descrivi la tua segnalazione con poche parole."
+msgstr "Descrivi in poche parole la tua segnalazione. "
 
 msgid "Where did the facts happen?"
 msgstr "Dove sono avvenuti i fatti?"
@@ -535,7 +535,7 @@ msgstr "Hai segnalato i fatti ad altre organizzazioni o ad altri individui?"
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr "Indicaquali organizzazioni e/o individui hai informato dei fatti."
+msgstr "Indica quali organizzazioni e/o individui hai informato dei fatti. "
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
@@ -543,7 +543,7 @@ msgid ""
 msgstr "Queste organizzazioni hanno poi investigato quanto hai riportato? Se sì, con che risultato?"
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr "Qual'è il risultato che vorresti ottenere con il nostro supporto?"
+msgstr "Qual è il risultato che vorresti ottenere con il nostro supporto?"
 
 msgid "File a report"
 msgstr "Invia una segnalazione"

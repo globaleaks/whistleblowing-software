@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-02 08:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-12-15 06:27+0000\n"
+"Last-Translator: Casper Petersen <casper_petersen@hotmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -476,59 +476,59 @@ msgid "Please summarize your report in a few words."
 msgstr "Beskriv i få ord din indberetning."
 
 msgid "Where did the facts happen?"
-msgstr ""
+msgstr "Hvor skete hændelsen?"
 
 msgid "When did the facts happen?"
-msgstr ""
+msgstr "Hvornår skete hændelsen?"
 
 msgid "How are you involved in the reported facts?"
-msgstr ""
+msgstr "Hvordan er du involveret i de rapporterede fakta?"
 
 msgid "I’m a victim"
-msgstr ""
+msgstr "Jeg er et offer"
 
 msgid "I’m involved in the facts"
-msgstr ""
+msgstr "Jeg er involveret i de rapporterede fakta"
 
 msgid "I witnessed the facts in person"
-msgstr ""
+msgstr "Jeg oplevede hændelsen personligt"
 
 msgid "I was personally told by a direct witness"
-msgstr ""
+msgstr "Jeg blev personligt fortalt om hændelsen af et direkte vidne"
 
 msgid "It is a rumor I heard"
-msgstr ""
+msgstr "Det er et rygte jeg har hørt"
 
 msgid "Do you have evidence to support your report?"
-msgstr ""
+msgstr "Har du bevismateriale der kan understøtte din indberetning?"
 
 msgid "Please attach the evidence to support your report."
-msgstr ""
+msgstr "Vedhæft venligst det bevismateriale der kan understøtte din indberetning."
 
 msgid "Please describe the evidence in detail."
-msgstr ""
+msgstr "Beskriv venligst detaljeret bevismaterialet."
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr ""
+msgstr "En detaljeret beskrivelse af det fremsendte bevismateriale øger vores evne til at evaluere påstanden og undersøge din indberetning nærmere. Tag dig venligst tid til at beskrive vigtige dele af alle videoer, billeder eller dokumenter der indberettes."
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
+msgstr "Har du rapporteret hændelsen til andre organisationer og/eller individer?"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr ""
+msgstr "Notér venligst de organisationer og/eller individer som du har informeret om hændelsen."
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr ""
+msgstr "Har disse organisationer undersøgt din påstand? Hvis ja, hvad var udfaldet?"
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr ""
+msgstr "Hvilket udfald ønsker du at opnå med vores hjælp?"
 
 msgid "File a report"
 msgstr "Indsend en rapportering"

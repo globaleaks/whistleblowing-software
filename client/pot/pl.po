@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-02 08:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-12-14 18:27+0000\n"
+"Last-Translator: Metafrasi <biuro@setara.eu>\n"
 "Language-Team: Polish (http://www.transifex.com/otf/globaleaks/language/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -489,59 +489,59 @@ msgid "Please summarize your report in a few words."
 msgstr "Podsumuj swoje zgłoszenie w kilku słowach."
 
 msgid "Where did the facts happen?"
-msgstr ""
+msgstr "Gdzie miały miejsce te zdarzenia?"
 
 msgid "When did the facts happen?"
-msgstr ""
+msgstr "Kiedy miały miejsce te zdarzenia?"
 
 msgid "How are you involved in the reported facts?"
-msgstr ""
+msgstr "Jaki jest Pana(-i) udział w zgłaszanych zdarzeniach?"
 
 msgid "I’m a victim"
-msgstr ""
+msgstr "Jestem ofiarą."
 
 msgid "I’m involved in the facts"
-msgstr ""
+msgstr "Brałem(-am) udział w zdarzeniach."
 
 msgid "I witnessed the facts in person"
-msgstr ""
+msgstr "Byłem(-am) osobiście świadkiem zdarzeń."
 
 msgid "I was personally told by a direct witness"
-msgstr ""
+msgstr "Opowiedział(-a) mi o nich osobiście naoczny świadek."
 
 msgid "It is a rumor I heard"
-msgstr ""
+msgstr "To pogłoska, którą słyszałem(-am)."
 
 msgid "Do you have evidence to support your report?"
-msgstr ""
+msgstr "Czy ma Pan(i) dowody na poparcie zgłoszenia?"
 
 msgid "Please attach the evidence to support your report."
-msgstr ""
+msgstr "Prosimy o załączenie dowodów na poparcie zgłoszenia."
 
 msgid "Please describe the evidence in detail."
-msgstr ""
+msgstr "Prosimy o szczegółowe opisanie dowodów."
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr ""
+msgstr "Dokładny opis przesłanych dowodów ułatwia nam ich ocenę i dochodzenie. Prosimy o uważne odniesienie się do dużej części przesłanych nagrań wideo, obrazów i dokumentów."
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
+msgstr "Czy zgłosił(a) Pan(i) zdarzenia innej organizacji i/lub osobom?"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr ""
+msgstr "Prosimy o podanie organizacji i/lub osób, które poinformował(a) Pan(i) o przedmiotowych zdarzeniach."
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr ""
+msgstr "Czy wspomniane organizacje zbadały Pana(-i) zgłoszenie? Jeśli tak, z jakim rezultatem?"
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr ""
+msgstr "Jaki rezultat chciałby(-aby) Pan(i) uzyskać z naszym wsparciem?"
 
 msgid "File a report"
 msgstr " \nWyślij zgłoszenie"

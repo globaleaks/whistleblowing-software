@@ -18,6 +18,7 @@
 # Kristoffer Grundström <lovaren@gmail.com>, 2014
 # Kristoffer Grundström <lovaren@gmail.com>, 2014
 # Linus Malmgren <linus@malmgren.nu>, 2015
+# Måns Skogman <mans.skogman@hotmail.com>, 2021
 # martinedstrom <martin@martinedstrom.com>, 2014
 # martinedstrom <martin@martinedstrom.com>, 2014
 # Robert Gravsjö <roppert@gmail.com>, 2014
@@ -26,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-03 09:18+0000\n"
-"Last-Translator: Max Moiseev <max.moiseev@chamber.fi>\n"
+"PO-Revision-Date: 2021-12-17 20:15+0000\n"
+"Last-Translator: Måns Skogman <mans.skogman@hotmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -318,7 +319,7 @@ msgid "Silence email notifications"
 msgstr "Stäng av e-postaviseringar"
 
 msgid "Turn on email notifications"
-msgstr "Koppla på e-postaviseringar"
+msgstr "Sätt på e-postaviseringar"
 
 msgid "Input validation"
 msgstr "Inmatningsvalidering"
@@ -356,7 +357,7 @@ msgid "Reports"
 msgstr "Rapporter"
 
 msgid "Report"
-msgstr ""
+msgstr "Rapport"
 
 msgid "Users"
 msgstr "Användare"
@@ -478,71 +479,71 @@ msgid "Logout"
 msgstr "Logga ut"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
+msgstr "Ge mottagaren möjlighet att ge användare tillgång till rapporter"
 
 msgid "Grant access"
 msgstr "Ge åtkomst"
 
 msgid "Revoke access"
-msgstr "Återkalla åtkomst"
+msgstr "Återkalla tillgång"
 
 msgid "Please summarize your report in a few words."
-msgstr "Beskriv din rapport i korthet med några ord."
+msgstr "Summera din rapport med några ord."
 
 msgid "Where did the facts happen?"
-msgstr ""
+msgstr "Var inträffade dessa händelser?"
 
 msgid "When did the facts happen?"
-msgstr ""
+msgstr "När inträffade dessa händelser?"
 
 msgid "How are you involved in the reported facts?"
-msgstr ""
+msgstr "Hur är du involverad i de rapporterade händelserna?"
 
 msgid "I’m a victim"
-msgstr ""
+msgstr "Jag är ett offer"
 
 msgid "I’m involved in the facts"
-msgstr ""
+msgstr "Jag är involverad i dessa händelser"
 
 msgid "I witnessed the facts in person"
-msgstr ""
+msgstr "Jag bevittnade personligen händelserna "
 
 msgid "I was personally told by a direct witness"
-msgstr ""
+msgstr "Jag fick personligen höra av ett direkt vittne"
 
 msgid "It is a rumor I heard"
-msgstr ""
+msgstr "Det är ett rykte som jag har hört"
 
 msgid "Do you have evidence to support your report?"
-msgstr ""
+msgstr "Har du bevis som stärker din rapport?"
 
 msgid "Please attach the evidence to support your report."
-msgstr ""
+msgstr "Vänligen bifoga bevisen för att stärka din rapport."
 
 msgid "Please describe the evidence in detail."
-msgstr ""
+msgstr "Vänligen beskriv bevisen i detalj."
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr ""
+msgstr "En noggrann beskrivning av det inlämnade beviset hjälper oss att utvärdera påståenden och att undersöka. Vänligen var nog med att referera till betydande delar av videor, bilder eller dokument som skickas in."
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
+msgstr "Har du rapporterat händelserna till andra organisationer och/eller individer?"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr ""
+msgstr "Vänligen lista upp organisationerna och/eller personerna som du har informerat om händelserna till."
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr ""
+msgstr "Har dessa organisationer undersökt dina påståenden? Om så, vad var resultatet?"
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr ""
+msgstr "Vad är resultatet du vill uppnå med vår support?"
 
 msgid "File a report"
 msgstr "Lämna en rapport"
@@ -746,7 +747,7 @@ msgid "Whistleblowing button"
 msgstr "Visselblåsarknapp"
 
 msgid "Disclaimer"
-msgstr ""
+msgstr "Varning"
 
 msgid "Footer"
 msgstr "Sidfot"
@@ -929,7 +930,7 @@ msgstr "Genom att använda automatisk HTTPS-konfigurering kan du hantera hela f�
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
 "hostname must have a DNS record referencing that address."
-msgstr "Plattformen ska kunna nås genom en offentlig IP-adress och det valda värdnamnet ska ha en motsvarande DNS-post som hänvisar till denna adress."
+msgstr "Plattformen måste kunna nås genom en offentlig IP-adress och det valda värdnamnet ska ha en motsvarande DNS-post som hänvisar till denna adress."
 
 msgid "Manual configuration"
 msgstr "Manuell konfiguration"
@@ -1473,7 +1474,7 @@ msgstr "Ange din e-postadress för din begäran om lösenordsåterställning."
 
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
-msgstr "Ange din krypterade återställningskod för att slutföra förfarandet för lösenordsåterställning."
+msgstr "Ange din återställningskod för att slutföra lösenordsåterställning."
 
 msgid "Password reset requested."
 msgstr "Begäran om lösenordsåterställning mottagen."
@@ -1928,7 +1929,7 @@ msgstr "För att hitta instruktioner om uppdateringar av mjukvaran, se användar
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "Detta mail är för att uppmärksamma dig på att en mottagare har gett dig tillgång till en eller fler rapporter."
 
 msgid "New report"
 msgstr "Ny rapport"

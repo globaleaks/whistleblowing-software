@@ -18,15 +18,15 @@
 # Qiaoyi Fang <selinaf1917@yahoo.com>, 2018
 # QinWeijie <qinweijie@live.com>, 2014
 # Runzhe Liang <18051080098@163.com>, 2020
-# Scott Lai <sonyfaye@gmail.com>, 2018,2020
+# Scott Lai <sonyfaye@gmail.com>, 2018,2020-2021
 # YFdyh000 <yfdyh000@gmail.com>, 2015
 # YFdyh000 <yfdyh000@gmail.com>, 2015
 # 刘位, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-02 08:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-12-15 12:49+0000\n"
+"Last-Translator: Scott Lai <sonyfaye@gmail.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -525,7 +525,7 @@ msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr ""
+msgstr "对已提交证据进行详尽的说明，可提升我们对声明进行评估与调查的能力。对于作为证据提交的任何视频、图像或文档，请仔细描述其中关键的部分。"
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
 msgstr "您是否已向其他机构报告该事件？"

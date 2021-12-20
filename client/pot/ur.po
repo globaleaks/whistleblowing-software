@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-02 08:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-12-15 05:13+0000\n"
+"Last-Translator: Shaheer Munir Shah <shaheer@transparency.org.pk>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -486,7 +486,7 @@ msgid "When did the facts happen?"
 msgstr ""
 
 msgid "How are you involved in the reported facts?"
-msgstr ""
+msgstr "آپ رپورٹ شدہ حقائق میں کیسے شامل ہیں؟"
 
 msgid "I’m a victim"
 msgstr ""
@@ -501,16 +501,16 @@ msgid "I was personally told by a direct witness"
 msgstr ""
 
 msgid "It is a rumor I heard"
-msgstr ""
+msgstr "یہ ایک افواہ ہے جو میں نے سنی ہے"
 
 msgid "Do you have evidence to support your report?"
-msgstr ""
+msgstr "کیا آپ کے پاس اپنی رپورٹ کی حمایت کرنے کے ثبوت ہیں؟"
 
 msgid "Please attach the evidence to support your report."
-msgstr ""
+msgstr "براہ کرم اپنی رپورٹ کی تائید کے لیے ثبوت منسلک کریں۔"
 
 msgid "Please describe the evidence in detail."
-msgstr ""
+msgstr "براہ کرم شواہد کو تفصیل سے بیان کریں۔"
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
@@ -519,7 +519,7 @@ msgid ""
 msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
+msgstr "کیا آپ نے دیگر اداروں اور/یا افراد کو حقائق کی اطلاع دی ہے؟"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "

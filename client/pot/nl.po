@@ -49,8 +49,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-02 08:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-12-15 00:19+0000\n"
+"Last-Translator: Rianne FPU <verbeek@freepressunlimited.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -513,59 +513,59 @@ msgid "Please summarize your report in a few words."
 msgstr "Beschrijf je inzending in een paar woorden."
 
 msgid "Where did the facts happen?"
-msgstr ""
+msgstr "Waar is zijn de feiten gebeurd?"
 
 msgid "When did the facts happen?"
-msgstr ""
+msgstr "Wanneer zijn de feiten gebeurd?"
 
 msgid "How are you involved in the reported facts?"
-msgstr ""
+msgstr "Hoe ben je betrokken bij de ingezonden feiten?"
 
 msgid "I’m a victim"
-msgstr ""
+msgstr "Ik ben een slachtoffer"
 
 msgid "I’m involved in the facts"
-msgstr ""
+msgstr "Ik ben betrokken bij de feiten"
 
 msgid "I witnessed the facts in person"
-msgstr ""
+msgstr "Ik was persoonlijk getuige van de feiten"
 
 msgid "I was personally told by a direct witness"
-msgstr ""
+msgstr "Het werd mij persoonlijk verteld door een getuige"
 
 msgid "It is a rumor I heard"
-msgstr ""
+msgstr "Het was een gerucht dat ik hoorde"
 
 msgid "Do you have evidence to support your report?"
-msgstr ""
+msgstr "Heb je bewijzen die jouw inzending ondersteunen?"
 
 msgid "Please attach the evidence to support your report."
-msgstr ""
+msgstr "Voeg alsjeblieft bewijsmateriaal toe aan je inzending."
 
 msgid "Please describe the evidence in detail."
-msgstr ""
+msgstr "Beschrijf alsjeblieft het bewijsmateriaal in detail."
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr ""
+msgstr "Een gedetailleerde beschrijving van het ingediende bewijsmateriaal verbetert ons vermogen om claims te evalueren en te onderzoeken. Zorg ervoor dat je verwijst naar belangrijke delen van de ingediende video's, afbeeldingen of documenten."
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
+msgstr "Heb je de feiten ook bij andere organisaties en/of individuen gerapporteerd?"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr ""
+msgstr "Vermeld alsjeblieft de organisaties en/of individuen die je over deze feiten hebt geïnformeerd. "
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr ""
+msgstr "Hebben deze organisaties jouw claims onderzocht? Zoja, wat het het resultaat?"
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr ""
+msgstr "Wat is het resultaat dat je hoopt te bereiken met onze ondersteuning?"
 
 msgid "File a report"
 msgstr "Dien een rapport in"

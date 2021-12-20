@@ -12,6 +12,7 @@
 # cacu <carlosm2@riseup.net>, 2015,2017
 # cacu <carlosm2@riseup.net>, 2015
 # cacu <carlosm2@riseup.net>, 2015,2017
+# Cesar Perez Guarda <kurvduam@gmail.com>, 2021
 # Eduardo Estrada, 2020
 # Eduardo Estrada, 2020
 # 4b8fe8aa5774ddeb3c4c7817cd28f50e_d751ab4 <55c3bb72c999b01f254463d72e197fd7_99140>, 2013
@@ -43,8 +44,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-02 08:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-12-16 00:02+0000\n"
+"Last-Translator: Zuhualime Akoochimoya\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -495,7 +496,7 @@ msgid "Logout"
 msgstr "Cerrar sesión"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr "Dar a este destinatario la habilidad de conceder acceso de usuario a los informes"
+msgstr "Dar a este destinatario la facultad de conceder acceso de usuario a los informes"
 
 msgid "Grant access"
 msgstr "Conceder acceso"
@@ -522,28 +523,28 @@ msgid "I’m involved in the facts"
 msgstr "Estoy involucrado en los hechos"
 
 msgid "I witnessed the facts in person"
-msgstr "Fuí testigo de los hechos en persona"
+msgstr "Fui testigo directo de los hechos"
 
 msgid "I was personally told by a direct witness"
-msgstr "Me fué dicho personalmente por un testigo directo"
+msgstr "Un testigo directo me lo contó personalmente"
 
 msgid "It is a rumor I heard"
 msgstr "Es un rumor que escuché"
 
 msgid "Do you have evidence to support your report?"
-msgstr "¿Tienes evidencia para soportar tu reporte?"
+msgstr "¿Tienes evidencia que apoye tu reporte?"
 
 msgid "Please attach the evidence to support your report."
 msgstr "Por favor adjunta la evidencia para soportar tu reporte."
 
 msgid "Please describe the evidence in detail."
-msgstr "Por favor describe la evidencia en detalle."
+msgstr "Por favor describe la evidencia detalladamente."
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr "Una descripción minuciosa de la evidencia enviada amplía nuestra habilidad para evaluar afirmaciones e investigar. Por favor tómate el cuidado de referenciar porciones significativas de cualquier vídeo, imagen o documento enviado."
+msgstr "Una descripción minuciosa de la evidencia enviada nos permitirá evaluar las declaraciones e investigar de mejor manera. Por favor preocúpate por mencionar las fuentes de las partes significativas de cualquier video, imagen o documento enviado."
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
 msgstr "¿Has reportado los hechos a otras organizaciones y/o individuos?"
@@ -551,15 +552,15 @@ msgstr "¿Has reportado los hechos a otras organizaciones y/o individuos?"
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr "Por favor lista las organizaciones y/o individuos a los que has informado acerca de estos hechos."
+msgstr "Por favor enumera las organizaciones y/o individuos a los que has informado acerca de estos hechos."
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr "Estas organizaciones, ¿han investigado tus afirmaciones? Si es así, ¿cuál fue el resultado?"
+msgstr "¿Estas organizaciones han investigado tus afirmaciones? Si es así, ¿cuál fue el resultado?"
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr "¿Cuál es el resultado que quieres lograr con nuestro soporte?"
+msgstr "¿Qué resultado quieres lograr con nuestro apoyo?"
 
 msgid "File a report"
 msgstr "Presentar un informe"
@@ -610,7 +611,7 @@ msgid "Enable administrators to change user passwords"
 msgstr "Permitir a los administradores cambiar las contraseñas de usuario"
 
 msgid "Administrators authorized to change user passwords:"
-msgstr "Administradores autorizados a cambiar las contraseñas de usuario:"
+msgstr "Administradores autorizados para cambiar las contraseñas de usuario:"
 
 msgid "Enable multisite feature"
 msgstr "Activar las funcionalidades multi-sitio"
@@ -650,7 +651,7 @@ msgid "Set the value to 0 to disable this feature."
 msgstr "Fija el valor a 0 para desactivar esta funcionalidad."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr "Cantidad de días hasta notificar a usuarios acerca de reportes no leídos."
+msgstr "Días de plazo para notificar a usuarios acerca de reportes no leídos."
 
 msgid "Enable custodian user role"
 msgstr "Habilitar el rol de usuario Custodio"
@@ -829,7 +830,7 @@ msgid "Show recipients in alphabetical order"
 msgstr "Mostrar destinatarios por orden alfabético"
 
 msgid "Show recipient details on the status page of the report"
-msgstr "Mostrar detalles del destinatario en la página de estado de la entrega"
+msgstr "Mostrar detalles del destinatario en la página de estado del reporte"
 
 msgid "Enable comments"
 msgstr "Habilitar comentarios"
@@ -1005,7 +1006,7 @@ msgid "Password"
 msgstr "Contraseña"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr "Numero de horas antes de enviar una alerta de caducidad de la entrega"
+msgstr "Número de horas antes de enviar una alerta de caducidad del reporte"
 
 msgid "Test the configuration"
 msgstr "Prueba la configuración"
@@ -1212,7 +1213,7 @@ msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Permitir al receptor posponer la fecha de vencimiento de "
 
 msgid "Give the user administrative access to the following features:"
-msgstr "Far al usuario acceso administrativo a las siguientes características:"
+msgstr "Dar al usuario acceso administrativo a las siguientes características:"
 
 msgid "Request date"
 msgstr "Solicitar fecha"
@@ -1224,7 +1225,7 @@ msgid "Authorization"
 msgstr "Autorización"
 
 msgid "Requests"
-msgstr "Peticiones"
+msgstr "Solicitudes"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "El enlace de validación es incorrecto o ha expirado."
@@ -1374,7 +1375,7 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Luego, copia y pega la siguiente dirección en el Navegador Tor:"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "¿Ya has compartido información? Introduce tu código."
+msgstr "¿Ya has ingresado un reporte? Introduce tu código de recepción."
 
 msgid "The receipt is either invalid or the report has expired."
 msgstr "El código es inválido o bien el reporte ha expirado"
@@ -1472,7 +1473,7 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr "Recomendamos que accedas a la sección “Preferencias” con el fin de descargar tu “Clave de Recuperación de Cuenta” y almacenarla en forma segura. Esta clave será necesaria para recuperar tu acceso a la plataforma y tus datos, en caso que olvides tu contraseña."
+msgstr "Recomendamos que accedas a la sección “Preferencias” para descargar tu “Clave de Recuperación de Cuenta” y almacenarla en forma segura. Esta clave será necesaria para recuperar tu acceso a la plataforma y tus datos, en caso de que olvides tu contraseña."
 
 msgid "The provided recovery key is invalid."
 msgstr "El código subministrado es invalido"
@@ -1490,7 +1491,7 @@ msgstr "Introduce tu correo para solicitar un reseteo de su contraseña"
 
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
-msgstr "Inserta tu código de recuperación cifrado para completar el trámite de recuperación de tu contraseña. "
+msgstr "Ingresa tu clave de recuperación de cuenta para completar el procedimiento de restablecimiento de tu contraseña. "
 
 msgid "Password reset requested."
 msgstr "Solicitada la reinicialización de contraseña"
@@ -1549,10 +1550,10 @@ msgid "The specified input is not valid:"
 msgstr "La entrada especificada no es válida:"
 
 msgid "please enter a valid email address."
-msgstr "por favor, introduce una dirección de correo electrónico válida."
+msgstr "por favor, ingresa una dirección de correo electrónico válida."
 
 msgid "please enter numbers only."
-msgstr "por favor, introduce únicamente números."
+msgstr "por favor, ingresa únicamente números."
 
 msgid "Submissions disabled"
 msgstr "Reportes deshabilitados."
@@ -1563,7 +1564,7 @@ msgid ""
 msgstr "Te estas conectando al servidor de forma no anónima y este nodo sólo soporta reportes anónimos"
 
 msgid "Your report was successful."
-msgstr "¡Tu reporte se completó con éxito!"
+msgstr "Tu reporte se completó con éxito"
 
 msgid "Remember your receipt for this report."
 msgstr "Recuerda tu código para este reporte."
@@ -1619,14 +1620,14 @@ msgid "Please choose a configuration profile:"
 msgstr "Por favor, escoge un perfil de configuración:"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr "Hacer posible para este administrador restablecer contraseñas de usuario."
+msgstr "Permitir a este administrador restablecer contraseñas de usuario."
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr "Aconsejamos seleccionar esta opción si quisieras proteger los datos, para que no sean perdidos si se dá la situación de que los receptores pierdan sus contraseñas. Por otro lado, no aconsejaríamos usar esta característica si quieres establecer un sistema donde solo los receptores son capaces de acceder a los envíos."
+msgstr "Aconsejamos seleccionar esta opción si quieres evitar que los datos se pierdan en el caso de que los destinatarios pierdan sus contraseñas. Por otro lado, desaconsejamos usarla si quieres establecer un sistema donde solo a los destinatarios se les permita acceder a los envíos."
 
 msgid "Please choose a different username."
 msgstr "Por favor escoge otro nombre de usuario."
@@ -1667,7 +1668,7 @@ msgstr "Estimado {RecipientName},"
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr "Estás recibiendo este correo electrónico porque una cuenta de usuario ha sido creada para ti en el sistema: {Site}"
+msgstr "Estás recibiendo este correo electrónico porque se ha creado una cuenta de usuario para tí en el sistema: {Site}"
 
 msgid "Username: {Username}"
 msgstr "Nombre de usuario: {Username}"
@@ -1683,7 +1684,7 @@ msgstr "Por favor haz clic en el enlace para continuar con la activación de la 
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
-msgstr "Después de una activación exitosa podrás acceder al sistema mediante el siguiente enlace: {LoginUrl}"
+msgstr "Después de una activación exitosa podrás acceder al sistema a través del siguiente enlace: {LoginUrl}"
 
 msgid "Kind regards,"
 msgstr "Saludos cordiales,"
@@ -1692,7 +1693,7 @@ msgid "Account activation"
 msgstr "Activación de la cuenta"
 
 msgid "Your whistleblowing platform is now accessible at:"
-msgstr "Tu plataforma para alertadores está accesible en:"
+msgstr "Tu plataforma para informantes está accesible ahora en:"
 
 msgid "To log in, visit:"
 msgstr "Para iniciar sesión, visita:"
@@ -1725,7 +1726,7 @@ msgstr "Las actividades con estadísticas inusuales son:"
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr "El servidor no puede garantizar que un nuevo reporte se pueda almacenar, así que los reportes han sido deshabilitados."
+msgstr "El servidor no puede garantizar que se pueda almacenar un nuevo reporte, y por lo tanto los envíos han sido deshabilitados."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
@@ -1854,10 +1855,10 @@ msgstr "Renovación del certificado fallada"
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr "Este es un correo para notificarte de que un custodio te ha autorizado a acceder a la identidad del alertador para el reporte {TipNum}."
+msgstr "Este correo electrónico es para notificarte que un custodio te ha autorizado a acceder a la identidad del informamante para el reporte {TipNum}."
 
 msgid "The report can be accessed at:"
-msgstr "El reporte puede ser accedido desde"
+msgstr "El reporte puede ser accedido desde:"
 
 msgid "Access to whistleblower's identity authorized"
 msgstr "Acceso a la identidad del alertador autorizada"
@@ -1865,7 +1866,7 @@ msgstr "Acceso a la identidad del alertador autorizada"
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr "Este es un correo para notificarte de que un custodio te ha autorizado a acceder a la identidad del alertador para el reporte {TipNum}."
+msgstr "Este correo electrónico es para notificarte que un custodio te ha negado el acceso a la identidad del informante para el reporte {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "Acceso a la identidad del alertador denegado"
@@ -1873,7 +1874,7 @@ msgstr "Acceso a la identidad del alertador denegado"
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr "Este es un correo electrónico para notificarte que un destinatario ha solicitado acceder a la identidad del alertador para el reporte {TipNum}"
+msgstr "Este correo electrónico es para notificarte que un destinatario ha solicitado acceder a la identidad del informante para el reporte {TipNum}"
 
 msgid "The request can be accessed at:"
 msgstr "La petición puede ser accedida desde:"
@@ -1884,7 +1885,7 @@ msgstr "Nueva petición de acceso a la identidad de un alertador"
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr "Este es un correo electrónico para notificarte que el alertador ha proporcionado su identidad para el reporte {TipNum}"
+msgstr "Este correo electrónico es para notificarte que el informante para el reporte {TipNum} ha proporcionado su identidad."
 
 msgid "The whistleblower has provided their identity"
 msgstr "El alertador ha proporcionado su identidad"
@@ -1945,7 +1946,7 @@ msgstr "Para instrucciones sobre actualizaciones del software, por favor, acude 
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr "Este es un correo electrónico para notificarte que un destinatario te ha concedido acceso a uno o más informes."
+msgstr "Este correo electrónico es para notificarte que un destinatario te ha concedido acceso a uno o más reportes."
 
 msgid "New report"
 msgstr "Nuevo reporte"
@@ -1957,12 +1958,12 @@ msgid "Please remember to check them before they are deleted."
 msgstr "Por favor, acuérdate de revisarlas antes de que sean borradas."
 
 msgid "Some reports will expire soon"
-msgstr "Algunos reportes caducarán pronto"
+msgstr "Algunos informes caducarán pronto"
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr "Este es un correo electrónico para notificarte que un alertador le ha seleccionado como un destinatario valioso para su reporte"
+msgstr "Este correo electrónico es para notificarte que un informante te ha seleccionado como un destinatario valioso de su reporte"
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -1970,16 +1971,16 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr "Se te pide que prestes especial atención a la información y al material contenido en su interior. Por favor, recuerda que los alertadores a menudo se exponen a si mismos a altos niveles de riesgos personales en interés del público. Por lo tanto, el material proporcionado en este reporte se debe considerar de alta importancia."
+msgstr "Te pedimos que prestes especial atención a la información y al material contenido en su interior. Por favor recuerda que los informantes a menudo se exponen a altos niveles de riesgo personal en favor del interés público, por lo que el material proporcionado en este reporte se debe considerar de alta importancia."
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr "Este es un correo electrónico para notificar que un reporte existente ha sido actualizado."
+msgstr "Este correo electrónico es para notificar que un reporte existente ha sido actualizado."
 
 msgid "Report updated"
 msgstr "Reporte actualizado"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr "Este correo electrónico es para notificarte que existen reportes no leídos o actualizados."
+msgstr "Este correo electrónico es para recordarte que existen reportes no leídos o actualizados."
 
 msgid "Reminder about unread or updated reports"
 msgstr "Recordatorio acerca de reportes no leídos o actualizados."

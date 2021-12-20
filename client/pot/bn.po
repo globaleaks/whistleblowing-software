@@ -5,14 +5,15 @@
 # Mahmud Numan <mahmudnuman@gmail.com>, 2017
 # Nafiur Rahman, 2020
 # Nafiur Rahman, 2020
+# Nafiur Rahman, 2021
 # shawkat khan, 2021
 # shawkat khan, 2021
 # Tasneem Khalil <tasneem.khalil@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-02 08:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-12-16 07:36+0000\n"
+"Last-Translator: Nafiur Rahman\n"
 "Language-Team: Bengali (http://www.transifex.com/otf/globaleaks/language/bn/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -475,31 +476,31 @@ msgid "Please summarize your report in a few words."
 msgstr "আপনার রিপোর্টটি সংক্ষেপে বর্ণনা করুন।"
 
 msgid "Where did the facts happen?"
-msgstr "ঘটনাটি কোথায় ঘটেছে?"
+msgstr "ঘটনা কোথায় ঘটেছে?"
 
 msgid "When did the facts happen?"
-msgstr "ঘটনাটি কখন ঘটেছে?"
+msgstr "ঘটনা কখন ঘটেছে?"
 
 msgid "How are you involved in the reported facts?"
 msgstr "রিপোর্ট করা ঘটনার সাথে আপনার সম্পর্ক কী?"
 
 msgid "I’m a victim"
-msgstr "আমি একজন ক্ষতিগ্রস্ত ব্যক্তি"
+msgstr "আমি ক্ষতিগ্রস্ত ব্যক্তি"
 
 msgid "I’m involved in the facts"
 msgstr "আমি ঘটনার সাথে জড়িত"
 
 msgid "I witnessed the facts in person"
-msgstr "আমি ব্যক্তিগতভাবে ঘটনা প্রত্যক্ষ করেছি"
+msgstr "আমি নিজের চোখে ঘটনা ঘটতে দেখেছি"
 
 msgid "I was personally told by a direct witness"
 msgstr "একজন প্রত্যক্ষদর্শী আমাকে সরাসরি বলেছে"
 
 msgid "It is a rumor I heard"
-msgstr "এটি গুজব - আমি এটা সম্পর্কে শুনেছি"
+msgstr "এই গুজবটি আমি লোকমুখে শুনেছি"
 
 msgid "Do you have evidence to support your report?"
-msgstr "আপনার রিপোর্টকে সমর্থন করার মত আপনার কাছে কোন প্রমাণ আছে?"
+msgstr "আপনার রিপোর্টকে সমর্থন করার মত আপনার কাছে কোনো প্রমাণ আছে?"
 
 msgid "Please attach the evidence to support your report."
 msgstr "দয়া করে আপনার রিপোর্টের স্বপক্ষে প্রমাণ সংযুক্ত করুন।"
@@ -511,23 +512,23 @@ msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr "উপস্থাপিত প্রমাণ সম্পর্কে বিস্তারিত বিবরণ আমাদের দাবি মূল্যায়ন এবং তদন্ত করার ক্ষমতা বৃদ্ধি করে। দয়া করে প্রমাণ হিসেবে জমা দেওয়া কোনো ভিডিও, ছবি বা নথির সংশ্লিষ্ট অংশ উল্লেখ করুন।"
+msgstr "উপস্থাপিত প্রমাণের খুঁটিনাটি বিবরণ দিলে আমাদের পক্ষে আরও ভালভাবে দাবি মূল্যায়ন ও তদন্ত করা সম্ভব হয়। দয়া করে প্রমাণ হিসেবে জমা দেওয়া ভিডিও, ছবি বা নথির পর্যাপ্ত পরিমাণ সংশ্লিষ্ট অংশ উল্লেখ করুন।"
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr "আপনি কি অন্যান্য সংস্থার কাছে ঘটনাটি রিপোর্ট করেছেন?"
+msgstr "আপনি কি অন্যান্য সংস্থা ও/বা ব্যক্তির কাছে ঘটনা রিপোর্ট করেছেন?"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr "অনুগ্রহ করে এই ঘটনা সম্পর্কে আপনি যেসব প্রতিষ্ঠানকে অবহিত করেছেন তার তালিকা দিন।"
+msgstr "ঘটনা সম্পর্কে আপনি যেসব সংস্থা ও/বা ব্যক্তিকে জানিয়েছেন অনুগ্রহ করে তার তালিকা দিন।"
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr "এই সংস্থাগুলি কি আপনার দাবির তদন্ত করেছে? যদি তাই হয়, ফলাফল কি ছিল?"
+msgstr "এই সংস্থাগুলো কি আপনার দাবির তদন্ত করেছে? করে থাকলে, ফলাফল কী ছিল?"
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr "আপনি কি ফলাফল দেঅর্জন করতে চান?"
+msgstr "আমাদের সমর্থনের সহায়তায় আপনি কী ফল অর্জন করতে চান?"
 
 msgid "File a report"
 msgstr "একটি রিপোর্ট জমা দিন"

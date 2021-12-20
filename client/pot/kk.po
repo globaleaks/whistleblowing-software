@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-02 08:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-12-18 21:36+0000\n"
+"Last-Translator: Zangar Batyrkhan <zangar.kazakh@gmail.com>\n"
 "Language-Team: Kazakh (http://www.transifex.com/otf/globaleaks/language/kk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -471,59 +471,59 @@ msgid "Please summarize your report in a few words."
 msgstr "Есепті бірнеше сөзбен сипаттаңыз."
 
 msgid "Where did the facts happen?"
-msgstr ""
+msgstr "Фактілер қайда орын алды?"
 
 msgid "When did the facts happen?"
-msgstr ""
+msgstr "Фактілер қашан орын алды?"
 
 msgid "How are you involved in the reported facts?"
-msgstr ""
+msgstr "Хабарланған фактілерге қандай қатысыңыз бар?"
 
 msgid "I’m a victim"
-msgstr ""
+msgstr "Мен жәбірленушімін"
 
 msgid "I’m involved in the facts"
-msgstr ""
+msgstr "Менің фактілерге қатысым бар"
 
 msgid "I witnessed the facts in person"
-msgstr ""
+msgstr "Фактілерге өз көзіммен куә болдым"
 
 msgid "I was personally told by a direct witness"
-msgstr ""
+msgstr "Тікелей куәгер маған жеке айтты"
 
 msgid "It is a rumor I heard"
-msgstr ""
+msgstr "Бұл мен естіген өсек"
 
 msgid "Do you have evidence to support your report?"
-msgstr ""
+msgstr "Есебіңізді растайтын дәлеліңіз бар ма?"
 
 msgid "Please attach the evidence to support your report."
-msgstr ""
+msgstr "Есебіңізді растайтын дәлелді тіркеңіз."
 
 msgid "Please describe the evidence in detail."
-msgstr ""
+msgstr "Дәлелдерді толықтай сипаттаңыз."
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr ""
+msgstr "Ұсынылған дәлелдердің толық сипаттамасы біз үшін шағымдарды бағалау және тергеу қабілетін арттыруға көмектеседі. Жіберілген бейнелердің, кескіндердің немесе құжаттардың маңызды бөліктеріне сілтеме жасауды ұмытпаңыз."
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
+msgstr "Фактілерді басқа ұйымдарға және/немесе жеке тұлғаларға хабарладыңыз ба?"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr ""
+msgstr "Сізден осы фактілер туралы мәлімет алған ұйымдарды және/немесе жеке тұлғаларды тізімдеңіз."
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr ""
+msgstr "Бұл ұйымдар сіздің шағымдарыңызды тексерді ме? Олай болса, нәтиже қандай болды?"
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr ""
+msgstr "Біздің қолдауымызбен қандай нәтижеге қол жеткізгіңіз келеді?"
 
 msgid "File a report"
 msgstr "Есеп беру"
