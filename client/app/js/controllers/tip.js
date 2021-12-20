@@ -56,7 +56,7 @@ GL.controller("TipCtrl",
           resolve: {
             arg: {
               users_names: response.data
-	    },
+            },
             confirmFun: function() {
               return function(receiver_id) {
                 var req = {
