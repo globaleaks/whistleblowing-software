@@ -1,3 +1,10 @@
+Changes in version 4.7.5
+    Make it possible to restart the application
+    without invalidating password reset tokens
+    Make it possible to customize Steps descriptions with markdown
+    Bump npm dependencies to latest versions
+    Update translations
+
 Changes in version 4.7.4
     Fix regression on generation of PGP encrypted emails
     Update translations
