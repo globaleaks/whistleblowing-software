@@ -7,13 +7,13 @@
 # John Wild <ac@elephantleague.org>, 2015
 # Jorma Karvonen <karvonen.jorma@gmail.com>, 2015,2017,2020
 # Juha Nurmi <juha.nurmi@ahmia.fi>, 2015
-# Max Moiseev <max.moiseev@chamber.fi>, 2020-2021
+# Max Moiseev <max.moiseev@chamber.fi>, 2020-2022
 # Panu Ahvenharju, 2018-2020
 # Sami Kuusisto <sami@6sto.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-03 09:16+0000\n"
+"PO-Revision-Date: 2022-01-03 10:18+0000\n"
 "Last-Translator: Max Moiseev <max.moiseev@chamber.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -343,7 +343,7 @@ msgid "Reports"
 msgstr "Ilmoitukset"
 
 msgid "Report"
-msgstr "ilmoitusIlmoita"
+msgstr "ilmoitus"
 
 msgid "Users"
 msgstr "Käyttäjät"

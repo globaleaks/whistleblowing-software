@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-02 08:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2021-12-22 12:33+0000\n"
+"Last-Translator: Любомир <n.lyubomyr@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -356,7 +356,7 @@ msgid "Reports"
 msgstr "Звіти"
 
 msgid "Report"
-msgstr ""
+msgstr "Звіт"
 
 msgid "Users"
 msgstr "Користувачі"
@@ -490,59 +490,59 @@ msgid "Please summarize your report in a few words."
 msgstr "Опишіть кількома словами наданий вами звіт."
 
 msgid "Where did the facts happen?"
-msgstr ""
+msgstr "Де відбулися факти?"
 
 msgid "When did the facts happen?"
-msgstr ""
+msgstr "Коли відбулися факти?"
 
 msgid "How are you involved in the reported facts?"
-msgstr ""
+msgstr "Яким чином ви були причетні до повідомлених фактів?"
 
 msgid "I’m a victim"
-msgstr ""
+msgstr "Я жертва"
 
 msgid "I’m involved in the facts"
-msgstr ""
+msgstr "Я причетний до фактів"
 
 msgid "I witnessed the facts in person"
-msgstr ""
+msgstr "Я особисто був свідком фактів"
 
 msgid "I was personally told by a direct witness"
-msgstr ""
+msgstr "Мені особисто розповів безпосередній свідок"
 
 msgid "It is a rumor I heard"
-msgstr ""
+msgstr "Це чутки, які я чув"
 
 msgid "Do you have evidence to support your report?"
-msgstr ""
+msgstr "Чи є у вас докази на підтвердження вашого звіту?"
 
 msgid "Please attach the evidence to support your report."
-msgstr ""
+msgstr "Будь ласка, додайте докази на підтримку вашого звіту."
 
 msgid "Please describe the evidence in detail."
-msgstr ""
+msgstr "Будь ласка, опишіть детально  докази в деталях."
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr ""
+msgstr "Ретельний опис поданих доказів покращує нашу здатність оцінювати претензії та проводити розслідування. Будь ласка, подбайте про посилання на значну частину будь-яких надісланих відео, зображень або документів."
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
+msgstr "Чи повідомляли ви про факти іншим організаціям та/або особам?"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr ""
+msgstr "Будь ласка, перерахуйте організації та/або осіб, яких ви повідомили про ці факти."
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr ""
+msgstr "Ці організації розслідували ваші заяви? Якщо так, то який був результат?"
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr ""
+msgstr "Якого результату ви хочете досягти з нашою підтримкою?"
 
 msgid "File a report"
 msgstr "Подати звіт"
