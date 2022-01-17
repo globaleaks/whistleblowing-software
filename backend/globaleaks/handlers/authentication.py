@@ -101,7 +101,7 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
                                       User.state == 'enabled',
                                       User.tid == tid).one_or_none()
 
-    if not user:
+    if not user or not GCE.check_password(user.hash_alg, password, user.salt, user.password):
         db_login_failure(session, tid, 0)
 
     connection_check(tid, client_ip, user.role, client_using_tor)
@@ -115,9 +115,6 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
                 raise errors.InvalidTwoFactorAuthCode
         else:
             raise errors.TwoFactorAuthCodeRequired
-
-    if not GCE.check_password(user.hash_alg, password, user.salt, user.password):
-        db_login_failure(session, tid, 0)
 
     crypto_prv_key = ''
     if user.crypto_prv_key:
