@@ -495,6 +495,7 @@ var GL = angular.module("GL", [
     $rootScope.fieldUtilities = fieldUtilities;
     $rootScope.AdminUtils = AdminUtils;
     $rootScope.CONSTANTS = CONSTANTS;
+    $rootScope.location = $location;
 
     $rootScope.showLoadingPanel = false;
 
