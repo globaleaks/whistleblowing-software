@@ -64,6 +64,7 @@ def get_tips(session, tid):
     for itip in session.query(models.InternalTip).filter(models.InternalTip.tid == tid):
         tips.append({
             'id': itip.id,
+            'progressive': itip.progressive,
             'creation_date': itip.creation_date,
             'last_update': itip.update_date,
             'expiration_date': itip.expiration_date,
