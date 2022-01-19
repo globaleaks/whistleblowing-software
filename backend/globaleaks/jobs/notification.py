@@ -168,11 +168,11 @@ class MailGenerator(object):
 @transact
 def get_mails_from_the_pool(session):
     """
-    Fetch up to 20 email from the pool of email to be sent
+    Fetch up to 100 email from the pool of email to be sent
     """
     ret = []
 
-    for mail in session.query(models.Mail).order_by(models.Mail.creation_date).limit(20):
+    for mail in session.query(models.Mail).order_by(models.Mail.creation_date).limit(100):
         ret.append({
             'id': mail.id,
             'address': mail.address,
@@ -193,17 +193,13 @@ class Notification(LoopingJob):
 
     @defer.inlineCallbacks
     def spool_emails(self):
-        delay = 1
         mails = yield get_mails_from_the_pool()
         for mail in mails:
             sent = yield self.state.sendmail(mail['tid'], mail['address'], mail['subject'], mail['body'])
             if sent:
-                delay = 1
                 yield tw(db_del, models.Mail, models.Mail.id == mail['id'])
-            else:
-                delay = delay + 1 if delay < 10 else 10
 
-            yield deferred_sleep(delay)
+            yield deferred_sleep(1)
 
     @defer.inlineCallbacks
     def operation(self):
