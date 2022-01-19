@@ -28,7 +28,23 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(user_id=self.dummyReceiver_1['id'], role='receiver')
 
         response = yield handler.get()
-        response['password'] = 'new 1337 password!'
+        response['old_password'] = helpers.VALID_PASSWORD1
+
+        weak_passwords = [
+            'invalidpassword1!', # no uppercase characters
+            'INVALIDPASSWORD1!', # no lowercase characters
+            'invalidPassword!!', # no number characters
+            'invalidPassword11', # no symbol characters
+            'shortP1!'           # short password below 10 characters
+        ]
+
+        for password in weak_passwords:
+            response['password'] = password
+            handler = self.request(response, user_id=self.dummyReceiver_1['id'], role='receiver')
+            yield self.assertFailure(handler.put(), errors.InputValidationError)
+
+        response = yield handler.get()
+        response['password'] = 'validPassword1!'
         response['old_password'] = helpers.VALID_PASSWORD1
 
         handler = self.request(response, user_id=self.dummyReceiver_1['id'], role='receiver')
