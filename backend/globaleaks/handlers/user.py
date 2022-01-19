@@ -18,6 +18,14 @@ from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.utility import datetime_now, datetime_null
 
 
+def check_password_strength(password):
+    return len(password) >= 10 and \
+           any(char.isdigit() for char in password) and \
+           any(char.isupper() for char in password) and \
+           any(char.islower() for char in password) and \
+           any(not char.isalnum() for char in password)
+
+
 def db_set_user_password(session, tid, user, password, cc):
     config_tenant_1 = config.ConfigFactory(session, 1)
     config_tenant_n = config.ConfigFactory(session, tid)
@@ -28,6 +36,9 @@ def db_set_user_password(session, tid, user, password, cc):
         user.salt = GCE.generate_salt()
 
     password_hash = GCE.hash_password(password, user.salt)
+
+    if not check_password_strength(password):
+        raise errors.InputValidationError("The password is too weak")
 
     # Check that the new password is different form the current password
     if user.password == password_hash:
