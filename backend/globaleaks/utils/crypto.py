@@ -3,6 +3,7 @@ import base64
 import binascii
 import os
 import random
+import secrets
 import string
 import struct
 import time
@@ -69,8 +70,28 @@ def generateRandomKey() -> str:
 def generateRandomPassword(N: int) -> str:
     """
     Return a random password
+
+    The random password generated have the following qualities:
+       Is long at least 10 characters randomly choosen in a set of 72 accessible characters
+       Contains at least a lowercase ascii letter
+       Contains at least an uppercase ascii letter
+       Contains at least a symbol in a selction of 10 common and accessible symbols
     """
-    return ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(N))
+    if N < 10:
+        N = 10
+
+    accessible_special_symbols = "!?@#+-/\*="
+    accessible_symbols_set = string.ascii_letters + string.digits + accessible_special_symbols
+
+    password = ''.join(random.SystemRandom().choice(accessible_symbols_set) for _ in range(N))
+    password += random.SystemRandom().choice(string.ascii_lowercase)
+    password += random.SystemRandom().choice(string.ascii_uppercase)
+    password += random.SystemRandom().choice(string.digits)
+    password += random.SystemRandom().choice(usable_symbols)
+
+    password = ''.join(random.sample(password, N))
+
+    return password
 
 
 def generate2FA():
