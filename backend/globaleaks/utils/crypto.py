@@ -83,11 +83,11 @@ def generateRandomPassword(N: int) -> str:
     accessible_special_symbols = "!?@#+-/\*="
     accessible_symbols_set = string.ascii_letters + string.digits + accessible_special_symbols
 
-    password = ''.join(random.SystemRandom().choice(accessible_symbols_set) for _ in range(N))
+    password = ''.join(random.SystemRandom().choice(accessible_symbols_set) for _ in range(N-4))
     password += random.SystemRandom().choice(string.ascii_lowercase)
     password += random.SystemRandom().choice(string.ascii_uppercase)
     password += random.SystemRandom().choice(string.digits)
-    password += random.SystemRandom().choice(usable_symbols)
+    password += random.SystemRandom().choice(accessible_special_symbols)
 
     password = ''.join(random.sample(password, N))
 
