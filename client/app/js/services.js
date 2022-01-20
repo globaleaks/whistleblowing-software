@@ -923,7 +923,10 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
 
     isUploading: function(uploads) {
       for (var key in uploads) {
-        if (uploads[key].files.length && uploads[key].progress() !== 1) {
+        if (uploads[key] &&
+            uploads[key].files &&
+            uploads[key].files.length &&
+            uploads[key].progress() !== 1) {
           return true;
         }
       }
