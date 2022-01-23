@@ -1,3 +1,10 @@
+Changes in version 4.7.7
+    Add report progressive number to audit log (#3145)
+    Implement serverside validation of password strength (#3150)
+    Fix issues #3146 and #3149
+    Bump npm dependencies to latest version
+    Update translations
+
 Changes in version 4.7.6
     Fix regression #3135
     Bump npm dependencies to latest version
