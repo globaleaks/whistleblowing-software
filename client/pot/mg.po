@@ -1,7 +1,7 @@
 # 
 # Translators:
 # ANDRIAMALALA <luceidos22@gmail.com>, 2019
-# AO_LL <ao@localizationlab.org>, 2015-2016
+# AO <ao@localizationlab.org>, 2015-2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # Charles Peltier <charles@cl-info.fr>, 2015
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2020-2021
