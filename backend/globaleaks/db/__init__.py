@@ -147,31 +147,18 @@ def sync_initialize_snimap(session):
             State.snimap.load(cfg['tid'], cfg)
 
 
-def db_set_cache_admin_list(session, tid, tenant_cache):
+def db_set_cache_admin_list(session, tids):
     """
     Constructs and sets a list of (email_addr, public_key) pairs of administrators
     """
-    tenant_cache.notification.admin_list = []
+    for tid in tids:
+        State.tenant_cache[tid].notification.admin_list = []
 
-    results = session.query(models.User.mail_address, models.User.pgp_key_public) \
-                     .filter(models.User.tid == tid, models.User.state == 'enabled', models.User.role == 'admin')
-    tenant_cache.notification.admin_list.extend([(mail, pub_key) for mail, pub_key in results])
-
-
-def db_set_cache_exception_delivery_list(session, tenant_cache):
-    """
-    Constructs and sets a list of (email_addr, public_key) pairs
-    that will receive errors from the platform.
-    """
-    tenant_cache.notification.exception_delivery_list = []
-
-    if tenant_cache.enable_developers_exception_notification:
-        tenant_cache.notification.exception_delivery_list.append(('exceptions@globaleaks.org', ''))
-
-    if tenant_cache.enable_admin_exception_notification:
-        results = session.query(models.User.mail_address, models.User.pgp_key_public) \
-                         .filter(models.User.tid == 1, models.User.state == 'enabled', models.User.role == 'admin')
-        tenant_cache.notification.exception_delivery_list.extend([(mail, pub_key) for mail, pub_key in results])
+    for tid, mail, pub_key in session.query(models.User.tid, models.User.mail_address, models.User.pgp_key_public) \
+                                     .filter(models.User.state == 'enabled',
+                                             models.User.role == 'admin',
+                                             models.User.notification.is_(True)):
+        State.tenant_cache[tid].notification.admin_list.extend([(mail, pub_key)])
 
 
 def db_refresh_tenant_cache(session, tid_list):
@@ -196,6 +183,7 @@ def db_refresh_tenant_cache(session, tid_list):
         State.tenant_cache[tid]['ip_filter'] = {}
         State.tenant_cache[tid]['https_allowed'] = {}
         State.tenant_cache[tid]['redirects'] = {}
+        State.tenant_cache[tid]['custodian'] = False
 
         for x in [('admin', 'ip_filter_admin_enable', 'ip_filter_admin'),
                   ('custodian', 'ip_filter_custodian_enable', 'ip_filter_custodian'),
@@ -206,13 +194,13 @@ def db_refresh_tenant_cache(session, tid_list):
         for x in ['admin', 'custodian', 'receiver', 'whistleblower']:
             State.tenant_cache[tid]['https_allowed'][x] = State.tenant_cache[tid].get('https_' + x, True)
 
-        State.tenant_cache[tid]['custodian'] = session.query(models.User) \
-                                                     .filter(models.User.tid == tid,
-                                                             models.User.role == 'custodian',
-                                                             models.User.state == 'enabled').count() > 0
-
         if State.tenant_cache[tid].mode == 'whistleblowing.it':
             State.tenant_cache[tid]['https_preload'] = State.tenant_cache[1]['https_preload']
+
+    for custodian in session.query(models.User) \
+                            .filter(models.User.role == 'custodian',
+                                    models.User.state == 'enabled'):
+        State.tenant_cache[custodian.tid]['custodian'] = True
 
     for redirect in session.query(models.Redirect).filter(models.Redirect.tid.in_(tid_list)):
         State.tenant_cache[redirect.tid]['redirects'][redirect.path1] = redirect.path2
@@ -241,8 +229,7 @@ def db_refresh_memory_variables(session, to_refresh=None):
     else:
         to_refresh = [tid for tid in to_refresh if tid in active_tids]
 
-    if not len(to_refresh):
-        return
+    to_refresh = sorted(to_refresh)
 
     db_refresh_tenant_cache(session, to_refresh)
 
@@ -256,9 +243,6 @@ def db_refresh_memory_variables(session, to_refresh=None):
 
         if tid == 1:
             log.setloglevel(tenant.log_level)
-            db_set_cache_exception_delivery_list(session, tenant)
-
-        db_set_cache_admin_list(session, tid, tenant)
 
         if tenant.hostname:
             tenant.hostnames.append(tenant.hostname.encode())
@@ -277,6 +261,8 @@ def db_refresh_memory_variables(session, to_refresh=None):
                 tenant.onionnames.append('{}.{}'.format(tenant.subdomain, root_tenant.onionservice).encode())
 
         State.tenant_hostname_id_map.update({h: tid for h in tenant.hostnames + tenant.onionnames})
+
+    db_set_cache_admin_list(session, to_refresh)
 
 
 @transact

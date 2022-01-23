@@ -205,7 +205,11 @@ class StateClass(ObjectDict, metaclass=Singleton):
         self.exceptions_email_count += 1
 
         mail_subject = "GlobaLeaks Exception"
-        delivery_list = self.tenant_cache[1].notification.exception_delivery_list
+        delivery_list = self.tenant_cache[1].notification.admin_list + \
+                        self.tenant_cache[tid].notification.admin_list
+
+        if self.tenant_cache[1].enable_developers_exception_notification:
+            delivery_list.append(('exceptions@globaleaks.org', ''))
 
         for mail_address, pgp_key_public in delivery_list:
             mail_body = "Platform: %s\nHost: %s (%s)\nVersion: %s\n\n%s" % (self.tenant_cache[tid].name,
