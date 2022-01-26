@@ -147,66 +147,7 @@ def sync_initialize_snimap(session):
             State.snimap.load(cfg['tid'], cfg)
 
 
-def db_set_cache_admin_list(session, tids):
-    """
-    Constructs and sets a list of (email_addr, public_key) pairs of administrators
-    """
-    for tid in tids:
-        State.tenant_cache[tid].notification.admin_list = []
-
-    for tid, mail, pub_key in session.query(models.User.tid, models.User.mail_address, models.User.pgp_key_public) \
-                                     .filter(models.User.state == 'enabled',
-                                             models.User.role == 'admin',
-                                             models.User.notification.is_(True)):
-        State.tenant_cache[tid].notification.admin_list.extend([(mail, pub_key)])
-
-
-def db_refresh_tenant_cache(session, tid_list):
-    """
-    This routine loads in memory few variables of node and notification tables
-    that are subject to high usage.
-    """
-    for cfg in session.query(Config).filter(Config.tid.in_(tid_list)):
-        tenant_cache = State.tenant_cache[cfg.tid]
-
-        if cfg.var_name in ConfigFilters['node']:
-            tenant_cache[cfg.var_name] = cfg.value
-        elif cfg.var_name in ConfigFilters['notification']:
-            tenant_cache.setdefault('notification', ObjectDict())
-            tenant_cache['notification'][cfg.var_name] = cfg.value
-
-    for tid, lang in session.query(models.EnabledLanguage.tid, models.EnabledLanguage.name)\
-            .filter(models.EnabledLanguage.tid.in_(tid_list)):
-        State.tenant_cache[tid].setdefault('languages_enabled', []).append(lang)
-
-    for tid in tid_list:
-        State.tenant_cache[tid]['ip_filter'] = {}
-        State.tenant_cache[tid]['https_allowed'] = {}
-        State.tenant_cache[tid]['redirects'] = {}
-        State.tenant_cache[tid]['custodian'] = False
-
-        for x in [('admin', 'ip_filter_admin_enable', 'ip_filter_admin'),
-                  ('custodian', 'ip_filter_custodian_enable', 'ip_filter_custodian'),
-                  ('receiver', 'ip_filter_receiver_enable', 'ip_filter_receiver')]:
-            if State.tenant_cache[tid][x[1]]:
-                State.tenant_cache[tid]['ip_filter'][x[0]] = State.tenant_cache[tid][x[2]]
-
-        for x in ['admin', 'custodian', 'receiver', 'whistleblower']:
-            State.tenant_cache[tid]['https_allowed'][x] = State.tenant_cache[tid].get('https_' + x, True)
-
-        if State.tenant_cache[tid].mode == 'whistleblowing.it':
-            State.tenant_cache[tid]['https_preload'] = State.tenant_cache[1]['https_preload']
-
-    for custodian in session.query(models.User) \
-                            .filter(models.User.role == 'custodian',
-                                    models.User.state == 'enabled'):
-        State.tenant_cache[custodian.tid]['custodian'] = True
-
-    for redirect in session.query(models.Redirect).filter(models.Redirect.tid.in_(tid_list)):
-        State.tenant_cache[redirect.tid]['redirects'][redirect.path1] = redirect.path2
-
-
-def db_refresh_memory_variables(session, to_refresh=None):
+def db_refresh_memory_variables(session, tids=None):
     active_tids = set([tid[0] for tid in session.query(models.Tenant.id).filter(models.Tenant.active.is_(True))])
 
     cached_tids = set(State.tenant_state.keys())
@@ -219,57 +160,104 @@ def db_refresh_memory_variables(session, to_refresh=None):
         if tid in State.tenant_cache:
             del State.tenant_cache[tid]
 
-    # Add tenants that have been enabled
-    for tid in active_tids - cached_tids:
-        State.tenant_state[tid] = TenantState(State)
-        State.tenant_cache[tid] = ObjectDict()
-
-    if to_refresh is None or 1 in to_refresh:
-        to_refresh = active_tids
+    if tids is None or 1 in tids:
+        tids = active_tids
     else:
-        to_refresh = [tid for tid in to_refresh if tid in active_tids]
+        tids = [tid for tid in tids if tid in active_tids]
 
-    to_refresh = sorted(to_refresh)
+    tids = sorted(tids)
 
-    db_refresh_tenant_cache(session, to_refresh)
+    for tid in tids:
+        if tid not in State.tenant_state:
+            State.tenant_state[tid] = TenantState(State)
 
-    root_tenant = State.tenant_cache[1]
+        if tid not in State.tenant_cache:
+            State.tenant_cache[tid] = ObjectDict()
 
-    for tid in to_refresh:
-        tenant = State.tenant_cache[tid]
+        tenant_cache = State.tenant_cache[tid]
+        root_tenant_cache = State.tenant_cache[1]
 
-        tenant.hostnames = []
-        tenant.onionnames = []
+        tenant_cache['ip_filter'] = {}
+        tenant_cache['https_allowed'] = {}
+        tenant_cache['redirects'] = {}
+        tenant_cache['custodian'] = False
+        tenant_cache['notification'] = ObjectDict()
+        tenant_cache['notification'].admin_list = []
+        tenant_cache['hostnames'] = []
+        tenant_cache['onionnames'] = []
+
+    for tid, lang in session.query(models.EnabledLanguage.tid, models.EnabledLanguage.name)\
+                            .filter(models.EnabledLanguage.tid.in_(tids)):
+        State.tenant_cache[tid].setdefault('languages_enabled', []).append(lang)
+
+    for cfg in session.query(Config).filter(Config.tid.in_(tids)):
+        tenant_cache = State.tenant_cache[cfg.tid]
+
+        if cfg.var_name in ConfigFilters['node']:
+            tenant_cache[cfg.var_name] = cfg.value
+        elif cfg.var_name in ConfigFilters['notification']:
+            tenant_cache['notification'][cfg.var_name] = cfg.value
+
+    for tid, mail, pub_key in session.query(models.User.tid, models.User.mail_address, models.User.pgp_key_public) \
+                                     .filter(models.User.state == 'enabled',
+                                             models.User.role == 'admin',
+                                             models.User.notification.is_(True),
+                                             models.User.tid == models.Tenant.id,
+                                             models.Tenant.active.is_(True)):
+        State.tenant_cache[tid].notification.admin_list.extend([(mail, pub_key)])
+
+    for custodian in session.query(models.User) \
+                            .filter(models.User.role == 'custodian',
+                                    models.User.state == 'enabled',
+                                    models.User.tid.in_(tids)):
+        State.tenant_cache[custodian.tid]['custodian'] = True
+
+    for redirect in session.query(models.Redirect).filter(models.Redirect.tid.in_(tids)):
+        State.tenant_cache[redirect.tid]['redirects'][redirect.path1] = redirect.path2
+
+    for tid in tids:
+        tenant_cache = State.tenant_cache[tid]
+
+        for x in [('admin', 'ip_filter_admin_enable', 'ip_filter_admin'),
+                  ('custodian', 'ip_filter_custodian_enable', 'ip_filter_custodian'),
+                  ('receiver', 'ip_filter_receiver_enable', 'ip_filter_receiver')]:
+            if tenant_cache[x[1]]:
+                tenant_cache['ip_filter'][x[0]] = tenant_cache[x[2]]
+
+        for x in ['admin', 'custodian', 'receiver', 'whistleblower']:
+            tenant_cache['https_allowed'][x] = State.tenant_cache[tid].get('https_' + x, True)
+
+        if State.tenant_cache[tid].mode == 'whistleblowing.it':
+            tenant_cache['https_preload'] = State.tenant_cache[1]['https_preload']
 
         if tid == 1:
-            log.setloglevel(tenant.log_level)
+            log.setloglevel(tenant_cache.log_level)
 
-        if tenant.hostname:
-            tenant.hostnames.append(tenant.hostname.encode())
+        if tenant_cache.hostname:
+            tenant_cache.hostnames.append(tenant_cache.hostname.encode())
 
-        if tenant.onionservice:
-            tenant.onionnames.append(tenant.onionservice.encode())
+        if tenant_cache.onionservice:
+            tenant_cache.onionnames.append(tenant_cache.onionservice.encode())
 
-        if not tenant.onionservice and root_tenant.onionservice:
-            tenant.onionservice = tenant.subdomain + '.' + root_tenant.onionservice
+        if not tenant_cache.onionservice and root_tenant_cache.onionservice:
+            tenant_cache.onionservice = tenant_cache.subdomain + '.' + root_tenant_cache.onionservice
 
-        if tenant.subdomain:
-            if root_tenant.rootdomain:
-                tenant.hostnames.append('{}.{}'.format(tenant.subdomain, root_tenant.rootdomain).encode())
+        if tenant_cache.subdomain:
+            if root_tenant_cache.rootdomain:
+                tenant_cache.hostnames.append('{}.{}'.format(tenant_cache.subdomain, root_tenant_cache.rootdomain).encode())
 
-            if root_tenant.onionservice:
-                tenant.onionnames.append('{}.{}'.format(tenant.subdomain, root_tenant.onionservice).encode())
+            if root_tenant_cache.onionservice:
+                tenant_cache.onionnames.append('{}.{}'.format(tenant_cache.subdomain, root_tenant_cache.onionservice).encode())
 
-        State.tenant_hostname_id_map.update({h: tid for h in tenant.hostnames + tenant.onionnames})
+        State.tenant_hostname_id_map.update({h: tid for h in tenant_cache.hostnames + tenant_cache.onionnames})
 
-    db_set_cache_admin_list(session, to_refresh)
 
 
 @transact
-def refresh_memory_variables(session, to_refresh=None):
-    return db_refresh_memory_variables(session, to_refresh)
+def refresh_memory_variables(session, tids=None):
+    return db_refresh_memory_variables(session, tids)
 
 
 @transact_sync
-def sync_refresh_memory_variables(session, to_refresh=None):
-    return db_refresh_memory_variables(session, to_refresh)
+def sync_refresh_memory_variables(session, tids=None):
+    return db_refresh_memory_variables(session, tids)
