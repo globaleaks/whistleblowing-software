@@ -2,7 +2,7 @@
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
-from globaleaks.db import db_refresh_memory_variables
+from globaleaks.db import db_refresh_tenant_cache
 from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import db_get_languages
@@ -146,7 +146,7 @@ def db_update_node(session, tid, user_session, request, language):
         config.set_val('crypto_escrow_pub_key', '')
         config.set_val('crypto_escrow_prv_key', '')
 
-    db_refresh_memory_variables(session, [tid])
+    db_refresh_tenant_cache(session, [tid])
 
     if tid == 1:
         log.setloglevel(config.get_val('log_level'))

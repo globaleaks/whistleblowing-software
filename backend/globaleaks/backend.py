@@ -13,7 +13,7 @@ from globaleaks.jobs import job, jobs_list
 from globaleaks.services import onion
 
 from globaleaks.db import create_db, init_db, update_db, \
-    sync_refresh_memory_variables, sync_clean_untracked_files, sync_initialize_snimap
+    sync_refresh_tenant_cache, sync_clean_untracked_files, sync_initialize_snimap
 from globaleaks.rest.api import APIResourceWrapper
 from globaleaks.settings import Settings
 from globaleaks.state import State
@@ -152,7 +152,7 @@ class Service(service.Service):
             init_db()
 
         sync_clean_untracked_files()
-        sync_refresh_memory_variables()
+        sync_refresh_tenant_cache()
         sync_initialize_snimap()
 
         self.state.orm_tp.start()

@@ -147,7 +147,7 @@ def sync_initialize_snimap(session):
             State.snimap.load(cfg['tid'], cfg)
 
 
-def db_refresh_memory_variables(session, tids=None):
+def db_refresh_tenant_cache(session, tids=None):
     active_tids = set([tid[0] for tid in session.query(models.Tenant.id).filter(models.Tenant.active.is_(True))])
 
     cached_tids = set(State.tenant_state.keys())
@@ -202,8 +202,7 @@ def db_refresh_memory_variables(session, tids=None):
                                      .filter(models.User.state == 'enabled',
                                              models.User.role == 'admin',
                                              models.User.notification.is_(True),
-                                             models.User.tid == models.Tenant.id,
-                                             models.Tenant.active.is_(True)):
+                                             models.User.tid.in_(tids)):
         State.tenant_cache[tid].notification.admin_list.extend([(mail, pub_key)])
 
     for custodian in session.query(models.User) \
@@ -252,12 +251,11 @@ def db_refresh_memory_variables(session, tids=None):
         State.tenant_hostname_id_map.update({h: tid for h in tenant_cache.hostnames + tenant_cache.onionnames})
 
 
-
 @transact
-def refresh_memory_variables(session, tids=None):
-    return db_refresh_memory_variables(session, tids)
+def refresh_tenant_cache(session, tids=None):
+    return db_refresh_tenant_cache(session, tids)
 
 
 @transact_sync
-def sync_refresh_memory_variables(session, tids=None):
-    return db_refresh_memory_variables(session, tids)
+def sync_refresh_tenant_cache(session, tids=None):
+    return db_refresh_tenant_cache(session, tids)

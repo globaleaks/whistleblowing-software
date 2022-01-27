@@ -568,7 +568,7 @@ class TestGL(unittest.TestCase):
 
         yield self.set_hostnames(1)
 
-        yield db.refresh_memory_variables()
+        yield db.refresh_tenant_cache()
 
         self.state.reset_hourly()
 
@@ -780,7 +780,7 @@ class TestGLWithPopulatedDB(TestGL):
     def setUp(self):
         yield TestGL.setUp(self)
         yield self.fill_data()
-        yield db.refresh_memory_variables()
+        yield db.refresh_tenant_cache()
 
     @inlineCallbacks
     def fill_data(self):

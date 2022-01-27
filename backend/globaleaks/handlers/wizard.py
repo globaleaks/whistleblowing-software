@@ -2,7 +2,7 @@
 #
 # Handlers implementing platform wizard
 from globaleaks import models
-from globaleaks.db import db_refresh_memory_variables
+from globaleaks.db import db_refresh_tenant_cache
 from globaleaks.handlers.admin.context import db_create_context
 from globaleaks.handlers.admin.node import db_update_enabled_languages
 from globaleaks.handlers.admin.user import db_create_user
@@ -114,7 +114,7 @@ def db_wizard(session, tid, hostname, request):
     # Root tenants initialization terminates here
 
     if tid == 1:
-        db_refresh_memory_variables(session, [tid])
+        db_refresh_tenant_cache(session, [tid])
         return
 
     # Secondary tenants initialization starts here
@@ -156,7 +156,7 @@ def db_wizard(session, tid, hostname, request):
     if mode == 'whistleblowing.it':
         node.set_val('simplified_login', True)
 
-    db_refresh_memory_variables(session, [tid])
+    db_refresh_tenant_cache(session, [tid])
 
 
 class Wizard(BaseHandler):

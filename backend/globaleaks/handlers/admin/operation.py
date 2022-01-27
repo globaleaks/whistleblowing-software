@@ -2,7 +2,7 @@
 import os
 from twisted.internet.defer import inlineCallbacks, returnValue
 
-from globaleaks.db import db_refresh_memory_variables
+from globaleaks.db import db_refresh_tenant_cache
 from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
@@ -185,7 +185,7 @@ class AdminOperationHandler(OperationHandler):
     def set_hostname(self, req_args, *args, **kwargs):
         yield check_hostname(self.request.tid, req_args['value'])
         yield tw(db_set_config_variable, self.request.tid, 'hostname', req_args['value'])
-        yield tw(db_refresh_memory_variables, [self.request.tid])
+        yield tw(db_refresh_tenant_cache, [self.request.tid])
         self.state.tenant_cache[self.request.tid].hostname = req_args['value']
 
     @inlineCallbacks

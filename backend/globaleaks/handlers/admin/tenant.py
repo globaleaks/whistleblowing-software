@@ -1,6 +1,6 @@
 # -*- coding: UTF-8
 from globaleaks import models
-from globaleaks.db import db_refresh_memory_variables
+from globaleaks.db import db_refresh_tenant_cache
 from globaleaks.db.appdata import load_appdata, db_load_defaults
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.wizard import db_wizard
@@ -67,7 +67,7 @@ def db_create(session, desc):
 
     db_initialize_tenant_submission_statuses(session, t.id)
 
-    db_refresh_memory_variables(session, [t.id])
+    db_refresh_tenant_cache(session, [t.id])
 
     return t
 
@@ -118,7 +118,7 @@ def update(session, tid, request):
     for var in ['mode', 'name', 'subdomain']:
         db_set_config_variable(session, tid, var, request[var])
 
-    db_refresh_memory_variables(session, [t.id])
+    db_refresh_tenant_cache(session, [t.id])
 
     return serialize_tenant(session, t)
 
@@ -126,7 +126,7 @@ def update(session, tid, request):
 @transact
 def delete(session, tid):
     db_del(session, models.Tenant, models.Tenant.id == tid)
-    db_refresh_memory_variables(session, [tid])
+    db_refresh_tenant_cache(session, [tid])
 
 
 class TenantCollection(BaseHandler):
