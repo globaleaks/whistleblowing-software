@@ -232,7 +232,7 @@ def db_refresh_tenant_cache(session, tids=None):
         if tid == 1:
             log.setloglevel(tenant_cache.log_level)
 
-        if tenant_cache.hostname:
+        if tenant_cache.hostname and tenant_cache.reachable_via_web:
             tenant_cache.hostnames.append(tenant_cache.hostname.encode())
 
         if tenant_cache.onionservice:
@@ -242,7 +242,7 @@ def db_refresh_tenant_cache(session, tids=None):
             tenant_cache.onionservice = tenant_cache.subdomain + '.' + root_tenant_cache.onionservice
 
         if tenant_cache.subdomain:
-            if root_tenant_cache.rootdomain:
+            if root_tenant_cache.rootdomain and tenant_cache.reachable_via_web:
                 tenant_cache.hostnames.append('{}.{}'.format(tenant_cache.subdomain, root_tenant_cache.rootdomain).encode())
 
             if root_tenant_cache.onionservice:
