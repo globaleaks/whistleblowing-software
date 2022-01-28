@@ -69,6 +69,8 @@ class StateClass(ObjectDict, metaclass=Singleton):
 
         self.tenant_state = {}
         self.tenant_cache = {}
+
+        self.tenant_uuid_id_map = {}
         self.tenant_hostname_id_map = {}
 
         self.orm_tp = None

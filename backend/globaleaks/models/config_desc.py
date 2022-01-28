@@ -1,6 +1,7 @@
 # -*- coding: utf-8
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.utils.crypto import GCE
+from globaleaks.utils.utility import uuid4
 
 
 class Item:
@@ -107,6 +108,7 @@ ConfigDescriptor = {
     'version': Unicode(default=str(__version__)),
     'version_db': Int(default=DATABASE_VERSION),
     'wizard_done': Bool(default=False),
+    'uuid': Unicode(default=uuid4)
 }
 
 ConfigFilters = {
@@ -176,7 +178,8 @@ ConfigFilters = {
         'unread_reminder_time',
         'version',
         'version_db',
-        'wizard_done'
+        'wizard_done',
+        'uuid'
     ],
     'admin_node': [
         'acme',
@@ -241,7 +244,8 @@ ConfigFilters = {
         'unread_reminder_time',
         'version',
         'version_db',
-        'wizard_done'
+        'wizard_done',
+        'uuid'
     ],
     'general_settings': [
         'default_language',

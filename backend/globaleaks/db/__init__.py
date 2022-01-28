@@ -214,6 +214,9 @@ def db_refresh_tenant_cache(session, tids=None):
     for redirect in session.query(models.Redirect).filter(models.Redirect.tid.in_(tids)):
         State.tenant_cache[redirect.tid]['redirects'][redirect.path1] = redirect.path2
 
+    State.tenant_uuid_id_map = {}
+    State.tenant_hostname_id_map = {}
+
     for tid in tids:
         tenant_cache = State.tenant_cache[tid]
 
@@ -248,6 +251,7 @@ def db_refresh_tenant_cache(session, tids=None):
             if root_tenant_cache.onionservice:
                 tenant_cache.onionnames.append('{}.{}'.format(tenant_cache.subdomain, root_tenant_cache.onionservice).encode())
 
+        State.tenant_uuid_id_map[tenant_cache.uuid] = tid
         State.tenant_hostname_id_map.update({h: tid for h in tenant_cache.hostnames + tenant_cache.onionnames})
 
 

@@ -292,14 +292,13 @@ class APIResourceWrapper(Resource):
         else:
             request.tid = State.tenant_hostname_id_map.get(request.hostname, None)
 
+        match = None
         if request.tid == 1:
-            match = re.match(b'^/t/([0-9]+)(/.*)', request.path)
-        else:
-            match = re.match(b'^/t/(1)(/.*)', request.path)
+            match = re.match(b'^/t/([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})(/.*)', request.path)
 
         if match is not None:
             groups = match.groups()
-            tid = int(groups[0])
+            tid = State.tenant_uuid_id_map[groups[0].decode()]
             if tid in State.tenant_cache:
                 request.tid, request.path = tid, groups[1]
 

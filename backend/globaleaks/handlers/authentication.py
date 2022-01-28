@@ -274,4 +274,4 @@ class TenantAuthSwitchHandler(BaseHandler):
 
         session.properties['management_session'] = True
 
-        return {'redirect': '/t/%d/#/login?token=%s' % (tid, session.id)}
+        return {'redirect': '/t/%s/#/login?token=%s' % (State.tenant_cache[tid].uuid, session.id)}
