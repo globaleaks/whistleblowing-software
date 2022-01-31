@@ -72,6 +72,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
 
         self.tenant_uuid_id_map = {}
         self.tenant_hostname_id_map = {}
+        self.tenant_subdomain_id_map = {}
 
         self.orm_tp = None
         self.set_orm_tp(ThreadPool(4, 16))

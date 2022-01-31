@@ -254,6 +254,9 @@ def db_refresh_tenant_cache(session, tids=None):
 
         tenant_hostname_id_map.update({h: tid for h in tenant_cache.hostnames + tenant_cache.onionnames})
 
+        if tenant_cache.subdomain:
+            tenant_subdomain_id_map[tenant_cache.subdomain] = tid
+
     State.tenant_uuid_id_map = tenant_uuid_id_map
     State.tenant_hostname_id_map = tenant_hostname_id_map
     State.tenant_subdomain_id_map = tenant_subdomain_id_map
