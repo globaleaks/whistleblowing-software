@@ -64,6 +64,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
         files_by_itip[itip_id] = count
 
     # Fetch rtip, internaltip and associated questionnaire schema
+    rtips_ids = {}
     for rtip, itip, answers, aqs in session.query(models.ReceiverTip,
                                                   models.InternalTip,
                                                   models.InternalTipAnswers,
@@ -72,7 +73,12 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
                                                    models.InternalTip.id == models.ReceiverTip.internaltip_id,
                                                    models.InternalTipAnswers.internaltip_id == models.ReceiverTip.internaltip_id,
                                                    models.InternalTipAnswers.questionnaire_hash == models.ArchivedSchema.hash) \
-                                           .order_by(models.InternalTip.update_date.desc()):
+                                           .order_by(models.InternalTipAnswers.creation_date.asc()):
+        if rtip.id in rtips_ids:
+            continue
+
+        rtips_ids[rtip.id] = True
+
         answers = answers.answers
         if itip.crypto_tip_pub_key:
             tip_key = GCE.asymmetric_decrypt(user_key, base64.b64decode(rtip.crypto_tip_prv_key))
