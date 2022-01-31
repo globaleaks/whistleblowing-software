@@ -3,6 +3,9 @@
     <label class="form-check-inline"><input class="inputelem" type="radio" name="whistleblower_identity_radio_1" data-ng-model="submission._submission.identity_provided" data-ng-value="true" /><span data-translate>Yes</span></label>
     <label class="form-check-inline"><input class="inputelem" type="radio" name="whistleblober_identity_radio_1" data-ng-model="submission._submission.identity_provided" data-ng-value="false" /><span data-translate>No</span></label>
   </div>
+  <div data-ng-if="submission._submission.identity_provided === false && field.attrs.text_shown_upon_negative_answer.value" class="alert alert-secondary">
+    <div>{{field.attrs.text_shown_upon_negative_answer.value}}</div>
+  </div>
   <div data-ng-if="submission._submission.identity_provided === true">
     <div data-ng-include="'views/whistleblower/form.html'"></div>
   </div>

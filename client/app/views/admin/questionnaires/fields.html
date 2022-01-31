@@ -277,6 +277,14 @@
                 <input data-ng-model="field.required" type="checkbox">
                 <label data-translate>Mandatory</label>
               </div>
+              <div data-ng-if="!field.required">
+                <div class="form-group">
+                  <label data-translate>Text shown upon negative answer</label>
+                  <div>
+                    <textarea class="form-control" data-ng-model="field.attrs.text_shown_upon_negative_answer.value"></textarea>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
