@@ -310,6 +310,10 @@ GL.controller("TipCtrl",
     $scope.$watch("answers", function () {
       fieldUtilities.onAnswersUpdate($scope);
     }, true);
+
+    $scope.$on("GL::uploadsUpdated", function () {
+      fieldUtilities.onAnswersUpdate($scope);
+    });
 }]).
 controller("TipOperationsCtrl",
   ["$scope", "$http", "$location", "$uibModalInstance", "args",
