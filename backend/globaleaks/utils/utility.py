@@ -31,7 +31,12 @@ def fix_file_permissions(path, uid, gid, dchmod, fchmod):
     """
     Recursively fix file permissions on a given path
     """
+    exceptions = ['lost+found']
+
     def fix(path):
+        if os.path.basename(path) in exceptions:
+            return
+
         os.chown(path, uid, gid)
         if os.path.isfile(path):
             os.chmod(path, 0o600)
