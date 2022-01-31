@@ -179,7 +179,7 @@ GL.controller("AdminFieldEditorCtrl", ["$scope", "$http", "FileSaver",
     };
 
     $scope.addOptionHintDialog = function(option) {
-      return $scope.Utils.openConfirmableModalDialog("views/partials/add_option_hint.html", option, $scope);
+      return $scope.Utils.openConfirmableModalDialog("views/modals/add_option_hint.html", option, $scope);
     };
 
     $scope.triggerReceiverDialog = function(option) {
@@ -191,11 +191,11 @@ GL.controller("AdminFieldEditorCtrl", ["$scope", "$http", "FileSaver",
         return option.trigger_receiver.indexOf(item.id) === -1;
       };
 
-      return $scope.Utils.openConfirmableModalDialog("views/partials/trigger_receiver.html", option, $scope);
+      return $scope.Utils.openConfirmableModalDialog("views/modals/trigger_receiver.html", option, $scope);
     };
 
     $scope.assignScorePointsDialog = function(option) {
-      return $scope.Utils.openConfirmableModalDialog("views/partials/assign_score_points.html", option, $scope);
+      return $scope.Utils.openConfirmableModalDialog("views/modals/assign_score_points.html", option, $scope);
     };
 
     $scope.exportQuestion = function(obj) {
