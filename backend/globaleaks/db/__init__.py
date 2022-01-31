@@ -232,9 +232,6 @@ def db_refresh_tenant_cache(session, tids=None):
         if State.tenant_cache[tid].mode == 'whistleblowing.it':
             tenant_cache['https_preload'] = State.tenant_cache[1]['https_preload']
 
-        if tid == 1:
-            log.setloglevel(tenant_cache.log_level)
-
         if tenant_cache.hostname and tenant_cache.reachable_via_web:
             tenant_cache.hostnames.append(tenant_cache.hostname.encode())
 
@@ -253,6 +250,9 @@ def db_refresh_tenant_cache(session, tids=None):
 
         State.tenant_uuid_id_map[tenant_cache.uuid] = tid
         State.tenant_hostname_id_map.update({h: tid for h in tenant_cache.hostnames + tenant_cache.onionnames})
+
+    if 1 in tids:
+        log.setloglevel(State.tenant_cache[1].log_level)
 
 
 @transact
