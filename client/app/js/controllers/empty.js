@@ -1,4 +1,1 @@
-GL.controller("Empty", [
-  function() {
-
-}]);
+GL.controller("EmptyCtrl", [function() {}]);
