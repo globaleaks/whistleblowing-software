@@ -250,6 +250,7 @@ def db_refresh_tenant_cache(session, tids=None):
     tenant_subdomain_id_map = {}
 
     for tid in active_tids:
+        tenant_cache = State.tenant_cache[tid]
         tenant_uuid_id_map[tenant_cache.uuid] = tid
 
         tenant_hostname_id_map.update({h: tid for h in tenant_cache.hostnames + tenant_cache.onionnames})
