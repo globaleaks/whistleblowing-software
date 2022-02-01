@@ -338,6 +338,7 @@
   "Image": "Слика",
   "Audio": "Аудио",
   "Video": "Видео",
+  "Text shown upon negative answer": "Прикажан текст по негативен одговор ",
   "Trigger conditions": "Услови за активирање",
   "Sufficient": "Доволно",
   "Options": "Опции",

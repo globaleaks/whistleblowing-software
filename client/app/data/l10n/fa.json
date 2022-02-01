@@ -338,6 +338,7 @@
   "Image": "تصویر",
   "Audio": "صوت",
   "Video": "ویدئو",
+  "Text shown upon negative answer": "نمایش متن در هنگام پاسخ منفی",
   "Trigger conditions": "شرایط انشعاب",
   "Sufficient": "کافی",
   "Options": "گزینه‌ها",

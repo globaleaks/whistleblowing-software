@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-15 05:13+0000\n"
-"Last-Translator: Shaheer Munir Shah <shaheer@transparency.org.pk>\n"
+"PO-Revision-Date: 2022-01-31 15:54+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1066,6 +1066,9 @@ msgstr ""
 
 msgid "Video"
 msgstr "Video"
+
+msgid "Text shown upon negative answer"
+msgstr ""
 
 msgid "Trigger conditions"
 msgstr ""

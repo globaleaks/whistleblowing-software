@@ -51,7 +51,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-12 12:21+0000\n"
+"PO-Revision-Date: 2022-01-31 15:54+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1101,6 +1101,9 @@ msgstr "Audio"
 
 msgid "Video"
 msgstr "Video"
+
+msgid "Text shown upon negative answer"
+msgstr "Text wird bei negativer Antwort angezeigt"
 
 msgid "Trigger conditions"
 msgstr "Auslösebedingungen"

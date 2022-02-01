@@ -32,8 +32,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-02 08:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2022-01-31 15:54+0000\n"
+"Last-Translator: T. E. Kalayci <tekrei@tutanota.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1082,6 +1082,9 @@ msgstr "Ses"
 
 msgid "Video"
 msgstr "Görüntü"
+
+msgid "Text shown upon negative answer"
+msgstr "Olumsuz yanıtta görüntülenen metin"
 
 msgid "Trigger conditions"
 msgstr "Tetikleme koşulları"

@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-15 12:49+0000\n"
-"Last-Translator: Scott Lai <sonyfaye@gmail.com>\n"
+"PO-Revision-Date: 2022-01-31 15:54+0000\n"
+"Last-Translator: khi\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1075,6 +1075,9 @@ msgstr "音频"
 
 msgid "Video"
 msgstr "视频"
+
+msgid "Text shown upon negative answer"
+msgstr "否定回答时显示的文本"
 
 msgid "Trigger conditions"
 msgstr "触发条件"

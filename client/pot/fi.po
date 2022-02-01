@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2022-01-03 10:18+0000\n"
-"Last-Translator: Max Moiseev <max.moiseev@chamber.fi>\n"
+"PO-Revision-Date: 2022-01-31 15:54+0000\n"
+"Last-Translator: Panu Ahvenharju\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1063,6 +1063,9 @@ msgstr "Ääni"
 
 msgid "Video"
 msgstr "Video"
+
+msgid "Text shown upon negative answer"
+msgstr "Kielteisen vastauksen yhteydessä näytettävä teksti"
 
 msgid "Trigger conditions"
 msgstr "Jatkokysymyksen valinnat"

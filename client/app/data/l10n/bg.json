@@ -338,6 +338,7 @@
   "Image": "Изображение",
   "Audio": "Аудио",
   "Video": "Видео",
+  "Text shown upon negative answer": "Текст за показване при отрицателен отговор",
   "Trigger conditions": "Условия за задействане",
   "Sufficient": "Достатъчно",
   "Options": "Опции",

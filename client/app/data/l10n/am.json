@@ -338,6 +338,7 @@
   "Image": "ምስል",
   "Audio": "ድምጽ",
   "Video": "ተንቀሳቃሽ ምስል",
+  "Text shown upon negative answer": "በአሉታዊ መልስ ጊዜ የሚታይ ጽሑፍ",
   "Trigger conditions": "ሁኔታዎችን ቀስቅስ",
   "Sufficient": "በቂ",
   "Options": "አማራጮች ",

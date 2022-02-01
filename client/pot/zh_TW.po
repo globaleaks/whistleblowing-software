@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-02 08:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2022-01-31 15:54+0000\n"
+"Last-Translator: Chi-Hsun Tsai\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1062,6 +1062,9 @@ msgstr "聲音"
 
 msgid "Video"
 msgstr "影片"
+
+msgid "Text shown upon negative answer"
+msgstr "否定答案會顯示的文字"
 
 msgid "Trigger conditions"
 msgstr "觸發的情況"

@@ -338,6 +338,7 @@
   "Image": "སྣང་བརྙན།",
   "Audio": "སྒྲ།",
   "Video": "བརྙན།",
+  "Text shown upon negative answer": "ལན་འདེབས་ནོར་བའི་ཐོག་ཡི་གེ་སྟོན་པ།",
   "Trigger conditions": "དོགས་ཟོན་ཆ་རྐྱེན།",
   "Sufficient": "འདང་ངེས།",
   "Options": "གདམ་ག",

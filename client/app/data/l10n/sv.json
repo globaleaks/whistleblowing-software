@@ -338,6 +338,7 @@
   "Image": "Bild",
   "Audio": "Ljud",
   "Video": "Video",
+  "Text shown upon negative answer": "Text som visas efter nekande svar",
   "Trigger conditions": "Tröskelvillkor",
   "Sufficient": "Tillräckligt",
   "Options": "Alternativ",

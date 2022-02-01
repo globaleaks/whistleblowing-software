@@ -338,6 +338,7 @@
   "Image": "Afbeelding",
   "Audio": "Geluid",
   "Video": "Film/Beeld",
+  "Text shown upon negative answer": "Tekst welke wordt getoond bij een ontkennend antwoord",
   "Trigger conditions": "Initiatie-voorwaarden",
   "Sufficient": "Voldoende",
   "Options": "Opties",

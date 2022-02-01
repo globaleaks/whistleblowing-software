@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-02 08:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2022-01-31 15:54+0000\n"
+"Last-Translator: ACCLARO_OnShape_KO_EDI1 <ACCLARO_OnShape_KO_EDI1@acclaro.com>\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1056,6 +1056,9 @@ msgstr "오디오"
 
 msgid "Video"
 msgstr "동영상"
+
+msgid "Text shown upon negative answer"
+msgstr "부정적 답변에 대해 표시되는 텍스트"
 
 msgid "Trigger conditions"
 msgstr "트리거 조건"

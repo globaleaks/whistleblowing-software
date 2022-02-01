@@ -32,8 +32,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-14 07:33+0000\n"
-"Last-Translator: Vox <voxp@protonmail.com>\n"
+"PO-Revision-Date: 2022-01-31 15:54+0000\n"
+"Last-Translator: Reza Ghasemi\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1082,6 +1082,9 @@ msgstr "صوت"
 
 msgid "Video"
 msgstr "ویدئو"
+
+msgid "Text shown upon negative answer"
+msgstr "نمایش متن در هنگام پاسخ منفی"
 
 msgid "Trigger conditions"
 msgstr "شرایط انشعاب"

@@ -2,7 +2,7 @@
 # Translators:
 # Anja Xhakani <anja@ura.design>, 2021
 # Besnik Bleta <besnik@programeshqip.org, 2021
-# Besnik Bleta <besnik@programeshqip.org>, 2021
+# Besnik Bleta <besnik@programeshqip.org>, 2021-2022
 # Bujar Tafili, 2015
 # Bujar Tafili, 2015
 # Florent <fspahija@kdi-kosova.org>, 2021-2022
@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2022-01-20 14:16+0000\n"
-"Last-Translator: Florent <fspahija@kdi-kosova.org>\n"
+"PO-Revision-Date: 2022-01-31 18:45+0000\n"
+"Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -42,10 +42,10 @@ msgid "Advanced settings"
 msgstr "Rregullime të mëtejshme"
 
 msgid "Question templates"
-msgstr "Pyetjet shabllon"
+msgstr "Gjedhe pyetjesh"
 
 msgid "Questionnaires"
-msgstr "Pyetësorët"
+msgstr "Pyetësorë"
 
 msgid "Add new questionnaire"
 msgstr "Shtoni pyetësor të ri"
@@ -60,7 +60,7 @@ msgid "License"
 msgstr "Licencë"
 
 msgid "Notification templates"
-msgstr "Njoftime shabllon"
+msgstr "Gjedhe njoftimesh"
 
 msgid "Delete"
 msgstr "Fshije"
@@ -75,7 +75,7 @@ msgid "Notification settings"
 msgstr "Rregullime njoftimesh"
 
 msgid "file unavailable"
-msgstr "Dokument i paqasshem"
+msgstr "kartelë jo e passhme"
 
 msgid "Date"
 msgstr "Datë"
@@ -87,61 +87,61 @@ msgid "Last Access"
 msgstr "Hyrja e Fundit"
 
 msgid "Files"
-msgstr "Dokumentet"
+msgstr "Kartela"
 
 msgid "Comments"
 msgstr "Komente"
 
 msgid "Messages"
-msgstr "Mesazhe "
+msgstr "Mesazhe"
 
 msgid "Details"
-msgstr "Hollësi "
+msgstr "Hollësi"
 
 msgid "Platform wizard"
-msgstr "Ndihmës platforme "
+msgstr "Ndihmës platforme"
 
 msgid "CREDIT CARD"
-msgstr "KARTË KREDITI "
+msgstr "KARTË KREDITI"
 
 msgid "YOUR NAME"
-msgstr "EMRI JUAJ "
+msgstr "EMRI JUAJ"
 
 msgid "Label the report"
-msgstr "Etiketo raportimin"
+msgstr "I vini raportimit një etiketë"
 
 msgid "Postpone the expiration date"
 msgstr "Shtyjini datën e skadimit"
 
 msgid "Select all"
-msgstr "Përzgjidhi krejt "
+msgstr "Përzgjidhi krejt"
 
 msgid "Deselect all"
-msgstr "Shpërzgjidhi krejt "
+msgstr "Shpërzgjidhi krejt"
 
 msgid "Refresh"
-msgstr "Rifreskoje "
+msgstr "Rifreskoje"
 
 msgid "Context"
-msgstr "Kontekst "
+msgstr "Kontekst"
 
 msgid "Preview"
-msgstr "Parashiheni "
+msgstr "Parashiheni"
 
 msgid "The whistleblower has already read the last update"
-msgstr "Sinjalizuesi ka lexuar tashmë të rejat e fundit"
+msgstr "Nxjerrësi i së fshehtës e ka lexuar tashmë përditësimin e fundit"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr "Sinjalizuesi nuk i ka lexuar të rejat e fundit"
+msgstr "Nxjerrësi i së fshehtës s’e ka lexuar ende përditësimin e fundit"
 
 msgid "Move up"
-msgstr "Lëviz lartë"
+msgstr "Ngjite"
 
 msgid "Move down"
-msgstr "Lëviz poshtë"
+msgstr "Zbrite"
 
 msgid "Move left"
-msgstr "Lëvize majtas "
+msgstr "Lëvize majtas"
 
 msgid "Move right"
 msgstr "Lëvize djathtas"
@@ -475,7 +475,7 @@ msgid "Revoke access"
 msgstr "Shfuqizoji hyrjen"
 
 msgid "Please summarize your report in a few words."
-msgstr "Ju lutemi, përmblidheni në pak fjalë raportimin tuaj."
+msgstr "Ju lutemi, përmblidhni në pak fjalë raportimin tuaj."
 
 msgid "Where did the facts happen?"
 msgstr "Ku ndodhën gjërat?"
@@ -860,10 +860,10 @@ msgid "Example:"
 msgstr "Shembull:"
 
 msgid "Hostname"
-msgstr "Emri i nikoqirit"
+msgstr "Strehëemër"
 
 msgid "Organization"
-msgstr "Organizata"
+msgstr "Ent"
 
 msgid "Invalid email address"
 msgstr "Adresë email e pavlefshme"
@@ -1064,6 +1064,9 @@ msgstr "Audio"
 
 msgid "Video"
 msgstr "Video"
+
+msgid "Text shown upon negative answer"
+msgstr "Tekst i shfaqur në rast përgjigjeje negative"
 
 msgid "Trigger conditions"
 msgstr "Kushte aktivizimi"
@@ -1331,7 +1334,7 @@ msgid "Old password confirmation required"
 msgstr "Me ripohim doemos të fjalëkalimit të dikurshëm"
 
 msgid "Warning"
-msgstr "Paralajmërim"
+msgstr "Sinjalizim"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

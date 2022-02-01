@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-02 08:00+0000\n"
+"PO-Revision-Date: 2022-01-31 15:54+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Serbian (Latin) (Serbia) (http://www.transifex.com/otf/globaleaks/language/sr_RS@latin/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1061,6 +1061,9 @@ msgstr "Zvučni zapis"
 
 msgid "Video"
 msgstr "Video zapis"
+
+msgid "Text shown upon negative answer"
+msgstr ""
 
 msgid "Trigger conditions"
 msgstr "Uslovi prikazivanja"

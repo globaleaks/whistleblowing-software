@@ -338,6 +338,7 @@
   "Image": "Pilt",
   "Audio": "Heli",
   "Video": "Video",
+  "Text shown upon negative answer": "Eitava vastuse korral näidatav tekst",
   "Trigger conditions": "Käivitustingimused",
   "Sufficient": "Piisav",
   "Options": "Suvandid",

@@ -338,6 +338,7 @@
   "Image": "圖片",
   "Audio": "音訊",
   "Video": "影片",
+  "Text shown upon negative answer": "收到否定答案時所顯示的文字",
   "Trigger conditions": "觸發條件",
   "Sufficient": "足夠",
   "Options": "選項",

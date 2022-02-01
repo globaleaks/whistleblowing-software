@@ -30,8 +30,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-02 08:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2022-01-31 15:54+0000\n"
+"Last-Translator: Fransisca Susanti <susanti@jaring.id>\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1080,6 +1080,9 @@ msgstr "Audio"
 
 msgid "Video"
 msgstr "Video "
+
+msgid "Text shown upon negative answer"
+msgstr "Teks akan ditampilkan setelah jawaban negatif"
 
 msgid "Trigger conditions"
 msgstr "Kondisi pemicu"

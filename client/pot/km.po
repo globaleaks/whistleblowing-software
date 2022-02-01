@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-02 08:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2022-01-31 15:54+0000\n"
+"Last-Translator: Ty Sok <sokty2@gmail.com>\n"
 "Language-Team: Khmer (http://www.transifex.com/otf/globaleaks/language/km/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1058,6 +1058,9 @@ msgstr "សំឡេង"
 
 msgid "Video"
 msgstr "វីដេអូ"
+
+msgid "Text shown upon negative answer"
+msgstr "អក្សរបង្ហាញតាមចម្លើយអវិជ្ជមាន"
 
 msgid "Trigger conditions"
 msgstr "ភាពសំខាន់នៃស្ថានភាព"

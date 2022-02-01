@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-15 06:27+0000\n"
-"Last-Translator: Casper Petersen <casper_petersen@hotmail.com>\n"
+"PO-Revision-Date: 2022-01-31 15:54+0000\n"
+"Last-Translator: Bo Elkjaer <bo_elkjaer@riseup.net>\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1062,6 +1062,9 @@ msgstr "Lyd"
 
 msgid "Video"
 msgstr "Video"
+
+msgid "Text shown upon negative answer"
+msgstr "Tekst der vises ved negativt svar"
 
 msgid "Trigger conditions"
 msgstr "Udløsningsbetingelser"

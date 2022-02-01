@@ -338,6 +338,7 @@
   "Image": "Imagen",
   "Audio": "Audio",
   "Video": "Vídeo",
+  "Text shown upon negative answer": "Texto a mostrar si la respuesta es negativa",
   "Trigger conditions": "Condiciones de activación",
   "Sufficient": "Suficiente",
   "Options": "Opciones",

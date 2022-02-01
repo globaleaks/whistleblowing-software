@@ -338,6 +338,7 @@
   "Image": "Kuva",
   "Audio": "Ääni",
   "Video": "Video",
+  "Text shown upon negative answer": "Kielteisen vastauksen yhteydessä näytettävä teksti",
   "Trigger conditions": "Jatkokysymyksen valinnat",
   "Sufficient": "Riittävä",
   "Options": "Valinnat",

@@ -338,6 +338,7 @@
   "Image": "Рәсим",
   "Audio": "Үн",
   "Video": "Син",
+  "Text shown upon negative answer": "Сәлбий җавабта көрситилидиған текист",
   "Trigger conditions": "Қозғитилиш шәртләр",
   "Sufficient": "Йетәрлик",
   "Options": "Таллашлар",

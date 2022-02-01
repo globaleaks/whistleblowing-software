@@ -338,6 +338,7 @@
   "Image": "Gambar",
   "Audio": "Audio",
   "Video": "Video ",
+  "Text shown upon negative answer": "Teks akan ditampilkan setelah jawaban negatif",
   "Trigger conditions": "Kondisi pemicu",
   "Sufficient": "Cukup",
   "Options": "Opsi",

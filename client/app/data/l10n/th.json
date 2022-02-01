@@ -338,6 +338,7 @@
   "Image": "ภาพ",
   "Audio": "เสียง",
   "Video": "วิดีโอ",
+  "Text shown upon negative answer": "ข้อความแสดงเมื่อได้คำตอบปฏิเสธ",
   "Trigger conditions": "เงื่อนไขเริ่มทำงาน",
   "Sufficient": "เพียงพอ",
   "Options": "ตัวเลือก",

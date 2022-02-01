@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-17 20:15+0000\n"
-"Last-Translator: Måns Skogman <mans.skogman@hotmail.com>\n"
+"PO-Revision-Date: 2022-01-31 15:54+0000\n"
+"Last-Translator: Max Moiseev <max.moiseev@chamber.fi>\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1077,6 +1077,9 @@ msgstr "Ljud"
 
 msgid "Video"
 msgstr "Video"
+
+msgid "Text shown upon negative answer"
+msgstr "Text som visas efter nekande svar"
 
 msgid "Trigger conditions"
 msgstr "Tröskelvillkor"

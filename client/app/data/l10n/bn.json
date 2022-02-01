@@ -338,6 +338,7 @@
   "Image": "ছবি",
   "Audio": "অডিও",
   "Video": "ভিডিও",
+  "Text shown upon negative answer": "নেতিবাচক উত্তরের উপরে যে লেখা প্রদর্শিত হবে",
   "Trigger conditions": "ট্রিগারের শর্তাবলি",
   "Sufficient": "যথেষ্ট",
   "Options": "বিকল্প",

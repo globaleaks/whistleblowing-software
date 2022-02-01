@@ -338,6 +338,7 @@
   "Image": "이미지",
   "Audio": "오디오",
   "Video": "동영상",
+  "Text shown upon negative answer": "부정적 답변에 대해 표시되는 텍스트",
   "Trigger conditions": "트리거 조건",
   "Sufficient": "충분",
   "Options": "옵션",

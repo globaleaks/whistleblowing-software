@@ -26,8 +26,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-22 12:33+0000\n"
-"Last-Translator: Любомир <n.lyubomyr@gmail.com>\n"
+"PO-Revision-Date: 2022-01-31 15:54+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1076,6 +1076,9 @@ msgstr "Аудіо"
 
 msgid "Video"
 msgstr "Відео"
+
+msgid "Text shown upon negative answer"
+msgstr ""
 
 msgid "Trigger conditions"
 msgstr "Умови запуску"

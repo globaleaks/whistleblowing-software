@@ -338,6 +338,7 @@
   "Image": "Rasm",
   "Audio": "Audio",
   "Video": "Video",
+  "Text shown upon negative answer": "Text shown upon negative answer",
   "Trigger conditions": "Shartlar bajarilishi",
   "Sufficient": "Yetarli",
   "Options": "Parametrlar",

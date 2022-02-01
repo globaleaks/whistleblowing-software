@@ -338,6 +338,7 @@
   "Image": "Obrázek",
   "Audio": "Audio",
   "Video": "Video",
+  "Text shown upon negative answer": "Text zobrazený při záporné odpovědi",
   "Trigger conditions": "Podmínky spuštění",
   "Sufficient": "Dostatečný",
   "Options": "Volby",

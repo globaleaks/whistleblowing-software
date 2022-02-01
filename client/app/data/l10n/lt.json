@@ -338,6 +338,7 @@
   "Image": "Paveikslas",
   "Audio": "Garso įrašas",
   "Video": "Vaizdo įrašas",
+  "Text shown upon negative answer": "Tekstas rodomas gavus neigiamą atsakymą",
   "Trigger conditions": "Trigger conditions",
   "Sufficient": "Pakankama",
   "Options": "Parinktys",

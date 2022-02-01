@@ -338,6 +338,7 @@
   "Image": "画像",
   "Audio": "オーディオ",
   "Video": "ビデオ",
+  "Text shown upon negative answer": "否定的な回答に表示されるテキスト",
   "Trigger conditions": "トリガー条件",
   "Sufficient": "十分",
   "Options": "オプション",

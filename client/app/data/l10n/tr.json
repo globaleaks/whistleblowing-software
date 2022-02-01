@@ -338,6 +338,7 @@
   "Image": "Görüntü",
   "Audio": "Ses",
   "Video": "Görüntü",
+  "Text shown upon negative answer": "Olumsuz yanıtta görüntülenen metin",
   "Trigger conditions": "Tetikleme koşulları",
   "Sufficient": "Yeterli",
   "Options": "Seçenekler",

@@ -338,6 +338,7 @@
   "Image": "Hình ảnh",
   "Audio": "Âm Thanh",
   "Video": "Video",
+  "Text shown upon negative answer": "Văn bản hiển thị khi câu trả lời là không.",
   "Trigger conditions": "Điều kiện để khởi động",
   "Sufficient": "Đủ",
   "Options": "Tùy chọn",

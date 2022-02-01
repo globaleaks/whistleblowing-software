@@ -338,6 +338,7 @@
   "Image": "Slika",
   "Audio": "Zvok",
   "Video": "Video",
+  "Text shown upon negative answer": "Prikazano besedilo ob negativnem odgovoru",
   "Trigger conditions": "Pogoji za sproženje",
   "Sufficient": "Zadosten pogoj",
   "Options": "Možnosti",

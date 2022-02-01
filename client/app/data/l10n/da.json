@@ -338,6 +338,7 @@
   "Image": "Billede",
   "Audio": "Lyd",
   "Video": "Video",
+  "Text shown upon negative answer": "Tekst der vises ved negativt svar",
   "Trigger conditions": "Udløsningsbetingelser",
   "Sufficient": "Tilstrækkelig",
   "Options": "Valgmuligheder",

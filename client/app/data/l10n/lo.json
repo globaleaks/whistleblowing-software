@@ -338,6 +338,7 @@
   "Image": "ຮູບພາບ",
   "Audio": "ສຽງ",
   "Video": "ວິດີໂອ",
+  "Text shown upon negative answer": "ຂໍ້ຄວາມທີ່ຈະສະແດງເມື່ອມີຄຳຕອບທາງລົບ",
   "Trigger conditions": "ເງື່ອນໄຂໃນການກະຕຸ້ນ",
   "Sufficient": "ພຽງພໍ",
   "Options": "ຕົວເລືອກ",

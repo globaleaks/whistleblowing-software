@@ -338,6 +338,7 @@
   "Image": "kép",
   "Audio": "hanganyag",
   "Video": "videó",
+  "Text shown upon negative answer": "Megjelenítendő szöveg negatív válasz esetén",
   "Trigger conditions": "Trigger feltételek",
   "Sufficient": "elegendő",
   "Options": "Beállítások",

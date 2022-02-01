@@ -338,6 +338,7 @@
   "Image": "رەسىم",
   "Audio": "ئۈن",
   "Video": "سىن",
+  "Text shown upon negative answer": "سەلبىي جاۋابتا كۆرسىتىلىدىغان تېكىست",
   "Trigger conditions": "قوزغىتىلىش شەرتلەر",
   "Sufficient": "يېتەرلىك",
   "Options": "تاللاشلار",

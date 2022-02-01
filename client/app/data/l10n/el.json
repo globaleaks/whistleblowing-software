@@ -338,6 +338,7 @@
   "Image": "Εικόνα",
   "Audio": "Ηχητικό",
   "Video": "Βίντεο",
+  "Text shown upon negative answer": "Κείμενο που εμφανίζεται με την αρνητική απάντηση",
   "Trigger conditions": "Συνθήκες ενεργοποίησης",
   "Sufficient": "Επαρκής",
   "Options": "Επιλογές ",

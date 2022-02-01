@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2021-12-02 08:00+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2022-01-31 15:54+0000\n"
+"Last-Translator: Marija Grinevičiūtė <marijagrineviciute@outlook.com>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/otf/globaleaks/language/lt/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1055,6 +1055,9 @@ msgstr "Garso įrašas"
 
 msgid "Video"
 msgstr "Vaizdo įrašas"
+
+msgid "Text shown upon negative answer"
+msgstr "Tekstas rodomas gavus neigiamą atsakymą"
 
 msgid "Trigger conditions"
 msgstr ""

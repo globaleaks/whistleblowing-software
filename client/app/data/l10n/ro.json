@@ -338,6 +338,7 @@
   "Image": "Imagine",
   "Audio": "Audio",
   "Video": "Video",
+  "Text shown upon negative answer": "Text afișat atunci când răspunsul este negativ",
   "Trigger conditions": "Condiții de declanșare",
   "Sufficient": "Suficient",
   "Options": "Opțiuni",

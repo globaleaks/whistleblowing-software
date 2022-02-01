@@ -338,6 +338,7 @@
   "Image": "Изображение",
   "Audio": "Аудио",
   "Video": "Видео",
+  "Text shown upon negative answer": "Текст при отрицательном ответе",
   "Trigger conditions": "Условия запуска",
   "Sufficient": "Достаточное",
   "Options": "Параметры",

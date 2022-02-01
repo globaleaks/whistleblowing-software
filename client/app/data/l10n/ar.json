@@ -338,6 +338,7 @@
   "Image": "صورة",
   "Audio": "الصوت",
   "Video": "الفيديو",
+  "Text shown upon negative answer": "النص الذي يظهر عند الإجابة السلبية",
   "Trigger conditions": "الظروف المحفزة",
   "Sufficient": "الكافي",
   "Options": "خيارات",
