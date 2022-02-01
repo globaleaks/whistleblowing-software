@@ -11,12 +11,12 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
     tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText(tip.status, tip.substatus, $scope.submission_statuses);
   });
 
-  $scope.filteredTips = $filter("orderBy")(scope.resources.rtips.rtips, "update_date");
+  $scope.filteredTips = $filter("orderBy")($scope.resources.rtips.rtips, "update_date");
 
   $scope.$watch("search", function (value) {
     if (typeof value !== "undefined") {
       $scope.currentPage = 1;
-      $scope.filteredTips = filter("orderBy")($filter("filter")($scope.resources.rtips.rtips, value), "update_date");
+      $scope.filteredTips = $filter("orderBy")($filter("filter")($scope.resources.rtips.rtips, value), "update_date");
     }
   });
 
