@@ -18,7 +18,7 @@
     <div data-ng-if="tip.data.whistleblower_identity">
       <dd data-ng-repeat="field in whistleblower_identity_field.children | orderBy:['y', 'x']">
         <span data-ng-init="fieldAnswers=tip.data.whistleblower_identity" data-ng-include="'views/partials/tip_field.html'"></span>
-      <dd>
+      </dd>
     </div>
     <div data-ng-if="tip.status !== 'closed' && !tip.data.whistleblower_identity">
       <div data-ng-form="f">
