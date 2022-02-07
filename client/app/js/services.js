@@ -260,7 +260,6 @@ factory("Submission", ["$q", "$location", "$rootScope", "Authentication", "GLRes
     self.mandatory_receivers = 0;
     self.optional_receivers = 0;
     self.selected_receivers = {};
-    self.done = false;
 
     self.setContextReceivers = function(context_id) {
       self.context = $rootScope.contexts_by_id[context_id];
@@ -329,8 +328,6 @@ factory("Submission", ["$q", "$location", "$rootScope", "Authentication", "GLRes
      * whistleblower.
      */
     self.submit = function() {
-      self.done = true;
-
       self._submission.receivers = [];
       angular.forEach(self.selected_receivers, function(selected, id){
         if (selected) {
@@ -913,25 +910,85 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       }
     },
 
+    getUploadsNumber: function(uploads) {
+      var count = 0;
+
+      for (var key in uploads) {
+        if (uploads[key] && uploads[key].files) {
+          count += uploads[key].files.length;
+        }
+      }
+
+      return count;
+    },
+
     getUploadStatus: function(uploads) {
-      if (uploads.progress() !== 1) {
-        return "uploading";
+      for (var key in uploads) {
+        if (uploads[key] &&
+            uploads[key].progress &&
+            uploads[key].progress() !== 1) {
+          return "uploading";
+        }
       }
 
       return "finished";
     },
 
+    getUploadStatusPercentage: function(uploads) {
+      var n = 0;
+      var percentage = 0;
+      for (var key in uploads) {
+        if (uploads[key] && uploads[key].progress) {
+          n += 1;
+          percentage += uploads[key].progress();
+        }
+      }
+
+      return (percentage / n) * 100;
+    },
+
+    getRemainingUploadTime: function(uploads) {
+      var count = 0;
+
+      for (var key in uploads) {
+        if (uploads[key] && uploads[key].timeRemaining) {
+          count += uploads[key].timeRemaining();
+        }
+      }
+
+      return count;
+    },
+
     isUploading: function(uploads) {
       for (var key in uploads) {
         if (uploads[key] &&
-            uploads[key].files &&
-            uploads[key].files.length &&
-            uploads[key].progress() !== 1) {
+            uploads[key].isUploading &&
+            uploads[key].isUploading()) {
           return true;
         }
       }
 
       return false;
+    },
+
+    hasPausedFileUploads: function(uploads) {
+      if (uploads["status_page"]) {
+        for (var i=0; i < uploads["status_page"].files.length; i++) {
+          if (uploads["status_page"].files[i].paused) {
+            return true;
+          }
+        }
+      }
+
+      return false;
+    },
+
+    resumeFileUploads: function(uploads) {
+      for (var key in uploads) {
+        if (uploads[key]) {
+          uploads[key].resume();
+        }
+      }
     },
 
     openConfirmableModalDialog: function(template, arg, scope) {

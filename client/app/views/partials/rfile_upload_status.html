@@ -1,20 +1,7 @@
 <div data-ng-if="uploads[fileinput].files.length" data-flow-init>
-  <div data-ng-switch="Utils.getUploadStatus(uploads[fileinput])">
-    <span data-ng-switch-when="uploading" data-translate>Uploading files…</span>
-    <span data-ng-switch-when="finished" data-translate>Upload completed successfully!</span>
-    <span data-ng-switch-when="error" data-translate>Error while uploading files; check below for details.</span>
-  </div>
-  <div id="FileUpoloadsInfo">
-    <div data-ng-show="uploads[fileinput].progress() !== 1">
-	    <span data-translate>Estimated upload time:</span> <span>{{uploads[fileinput].timeRemaining()}} </span><span data-translate>seconds</span>
-      <div class="progress progress-striped" data-ng-class="active">
-        <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" data-ng-style="{width: (uploads[fileinput].progress() * 100) + '%'}"></div>
-      </div>
-    </div>
-  </div>
   <div data-flow-name="flow" class="row">
-    <div data-ng-repeat="file in uploads[fileinput].files" data-ng-hide="hideUploadWhenFinished === true && file.isComplete() && !file.error" data-ng-class="{'col-md-12': uploads[fileinput].files.length === 1, 'col-md-6': uploads[fileinput].files.length > 1}">
-      <div class="fileUploadBox mb-5">
+    <div data-ng-repeat="file in uploads[fileinput].files" data-ng-hide="hideUploadWhenFinished === true && file.isComplete() && !file.error" data-ng-class="{'col-md-12': uploads[fileinput].files.length === 1, 'col-md-6 col-sm-12': uploads[fileinput].files.length > 1}">
+      <div class="fileUploadBox mt-2 mb-2">
         <div class="row">
           <div class="col-md-4">
             <div class="filePreview">
@@ -32,13 +19,13 @@
                     <i class="fas fa-ban-circle"></i>
                   </div>
                   <div class="fileUploadIcon" data-ng-show="!file.error && !file.isComplete()">
-                    <i class="fas fa-clock"></i>
+                    <i class="fas fa-file"></i>
                   </div>
                   <div class="fileUploadIcon" data-ng-show="!file.error && file.isComplete()">
                     <i class="fas fa-check"></i>
                   </div>
                 </div>
-                <div class="fileUploadProgress progress progress-striped">
+		<div class="fileUploadProgress progress progress-striped" data-ng-class="{'invisible': file.paused}">
                   <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" data-ng-style="{'width': (file.progress() * 100) + '%'}"></div>
                 </div>
               </div>

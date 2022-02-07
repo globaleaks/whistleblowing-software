@@ -53,6 +53,10 @@ a:hover,
   word-break: break-all;
 }
 
+.invisible {
+  opacity: 0;
+}
+
 .visible-on-over {
   opacity: 0.2;
 }

@@ -23,6 +23,7 @@
     <div data-ng-if="tip.status !== 'closed' && !tip.data.whistleblower_identity">
       <div data-ng-form="f">
         <div data-ng-include="'views/whistleblower/fields/whistleblower_identity.html'"></div>
+        <div data-ng-include="'views/partials/rfiles_upload_status.html'"></div>
 	<div id="SubmitBox" data-ng-if="submission._submission.identity_provided">
           <button id="SubmitButton" class="btn btn-primary float-right" data-ng-click="provideIdentityInformation(whistleblower_identity_field.id, answers)" data-ng-disabled="f.$invalid" type="submit">
             <i id="SubmitIconOK" class="fas fa-check"></i>

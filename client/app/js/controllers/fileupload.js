@@ -14,7 +14,9 @@ GL.factory("uploadUtils", ["$filter", function($filter) {
 controller("RFileUploadCtrl", ["$scope", function($scope) {
   $scope.disabled = false;
 
-  $scope.$on("flow::fileAdded", function () {
+  $scope.$on("flow::fileAdded", function (event, $flow, flowFile) {
+    flowFile.pause();
+
     $scope.file_error_msgs = [];
 
     if (typeof $scope.field !== "undefined" && !$scope.field.multi_entry) {

@@ -165,6 +165,7 @@ GL.controller("SubmissionCtrl",
   };
 
   $scope.prepareSubmission = function(context) {
+    $scope.done = false;
     $scope.answers = {};
     $scope.uploads = {};
     $scope.context = context;
@@ -184,14 +185,30 @@ GL.controller("SubmissionCtrl",
   };
 
   $scope.completeSubmission = function() {
+    $scope.done = true;
+
     if (!$scope.runValidation()) {
       return;
     }
 
     $scope.submission._submission.answers = $scope.answers;
-    return $scope.submission.submit();
-  };
 
+    $scope.Utils.resumeFileUploads($scope.uploads);
+
+    $scope.interval = $interval(function() {
+      for (var key in $scope.uploads) {
+        if ($scope.uploads[key] &&
+            $scope.uploads[key].isUploading() &&
+            $scope.uploads[key].isUploading()) {
+          return;
+        }
+      }
+
+      $interval.cancel($scope.interval);
+
+      return $scope.submission.submit();
+    }, 1000);
+  };
 
   $scope.stepForm = function(index) {
     if (index !== -1) {
@@ -384,6 +401,7 @@ controller("AdditionalQuestionnaireCtrl",
   };
 
   $scope.prepareSubmission = function() {
+    $scope.done = false;
     $scope.answers = {};
     $scope.uploads = {};
     $scope.questionnaire = $scope.tip.additional_questionnaire;
@@ -391,6 +409,8 @@ controller("AdditionalQuestionnaireCtrl",
   };
 
   $scope.completeSubmission = function() {
+    $scope.done = true;
+
     $scope.validate[$scope.navigation] = true;
 
     if (!$scope.checkForInvalidFields()) {
@@ -398,11 +418,30 @@ controller("AdditionalQuestionnaireCtrl",
       return;
     }
 
-    return $http.post("api/wbtip/" + $scope.tip.id + "/update",
-                      {"cmd": "additional_questionnaire", "answers": $scope.answers}).
-        then(function(){
-          $scope.reload();
-        });
+    for (var key in $scope.uploads) {
+        if ($scope.uploads[key]) {
+          $scope.uploads[key].resume();
+        }
+    }
+
+    $scope.interval = $interval(function() {
+      for (var key in $scope.uploads) {
+        if ($scope.uploads[key] &&
+            $scope.uploads[key].isUploading &&
+            $scope.uploads[key].isUploading()) {
+          return;
+        }
+      }
+
+      $interval.cancel($scope.interval);
+
+      return $http.post("api/wbtip/" + $scope.tip.id + "/update",
+                        {"cmd": "additional_questionnaire", "answers": $scope.answers}).
+          then(function(){
+            $scope.reload();
+          });
+
+    }, 1000);
   };
 
   $scope.stepForm = function(index) {

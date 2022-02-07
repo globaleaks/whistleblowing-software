@@ -30,9 +30,15 @@
     <br />
     <div data-ng-if="tip.status !== 'closed'">
       <div data-ng-include="'views/partials/rfile_upload_button.html'"></div>
-      <br />
-      <div class="row">
-        <div class="col-md-6" data-ng-include="'views/partials/rfile_upload_status.html'"></div>
+      <div data-ng-include="'views/partials/rfile_upload_status.html'"></div>
+      <div data-ng-show="Utils.hasPausedFileUploads(uploads)">
+        <button class="btn btn-sm btn-outline-secondary" data-ng-click="Utils.resumeFileUploads(uploads)">
+          <i class="fas fa-upload"></i>
+          <span data-translate>Confirm</span>
+        </button>
+      </div>
+      <div data-ng-show="Utils.isUploading(uploads)">
+        <div data-ng-include="'views/partials/rfiles_upload_status.html'"></div>
       </div>
     </div>
   </div>

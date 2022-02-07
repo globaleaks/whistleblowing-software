@@ -1,6 +1,6 @@
 GL.controller("TipCtrl",
-  ["$scope", "$location", "$filter", "$http", "$routeParams", "$uibModal", "Authentication", "RTip", "WBTip", "RTipExport", "RTipDownloadRFile", "WBTipDownloadFile", "fieldUtilities",
-  function($scope, $location, $filter, $http, $routeParams, $uibModal, Authentication, RTip, WBTip, RTipExport, RTipDownloadRFile, WBTipDownloadFile, fieldUtilities) {
+  ["$scope", "$location", "$filter", "$http", "$interval", "$routeParams", "$uibModal", "Authentication", "RTip", "WBTip", "RTipExport", "RTipDownloadRFile", "WBTipDownloadFile", "fieldUtilities",
+  function($scope, $location, $filter, $http, $interval, $routeParams, $uibModal, Authentication, RTip, WBTip, RTipExport, RTipDownloadRFile, WBTipDownloadFile, fieldUtilities) {
     $scope.fieldUtilities = fieldUtilities;
     $scope.tip_id = $routeParams.tip_id;
 
@@ -168,11 +168,30 @@ GL.controller("TipCtrl",
         $scope.submission._submission = tip;
 
         $scope.provideIdentityInformation = function(identity_field_id, identity_field_answers) {
-          return $http.post("api/wbtip/" + $scope.tip.id + "/provideidentityinformation",
-                            {"identity_field_id": identity_field_id, "identity_field_answers": identity_field_answers}).
-              then(function(){
-                $scope.reload();
-              });
+          for (var key in $scope.uploads) {
+            if ($scope.uploads[key]) {
+              $scope.uploads[key].resume();
+            }
+          }
+
+          $scope.interval = $interval(function() {
+            for (var key in $scope.uploads) {
+              if ($scope.uploads[key] &&
+                  $scope.uploads[key].isUploading() &&
+                  $scope.uploads[key].isUploading()) {
+                return;
+              }
+            }
+
+            $interval.cancel($scope.interval);
+
+            return $http.post("api/wbtip/" + $scope.tip.id + "/provideidentityinformation",
+                              {"identity_field_id": identity_field_id, "identity_field_answers": identity_field_answers}).
+                then(function(){
+                  $scope.reload();
+                });
+
+          }, 1000);
         };
 
         if (tip.receivers.length === 1 && tip.msg_receiver_selected === null) {
@@ -198,7 +217,6 @@ GL.controller("TipCtrl",
         $scope.tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText($scope.tip.status, $scope.tip.substatus, $scope.submission_statuses);
       });
     }
-
 
     $scope.editLabel = function() {
       $scope.showEditLabelInput = true;
@@ -388,4 +406,10 @@ controller("IdentityAccessRequestCtrl",
         $scope.reload();
       });
   };
+}]).
+controller("WhistleblowerFilesCtrl", ["$scope", function ($scope) {
+  $scope.uploads = {};
+}]).
+controller("WhistleblowerIdentityFormCtrl", ["$scope", function ($scope) {
+  $scope.uploads = {};
 }]);
