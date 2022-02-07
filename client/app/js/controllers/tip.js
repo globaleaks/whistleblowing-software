@@ -124,7 +124,6 @@ GL.controller("TipCtrl",
 
               $scope.fields = $scope.questionnaire.steps[0].children;
               $scope.rows = fieldUtilities.splitRows($scope.fields);
-              $scope.field = $scope.whistleblower_identity_field;
 
               fieldUtilities.onAnswersUpdate($scope);
 
