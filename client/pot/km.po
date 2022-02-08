@@ -2,8 +2,8 @@
 # Translators:
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
 # Kanika, 2021
-# Kanika, 2021
-# Kanika, 2021
+# b490494caa0236b9908792b2f9977c3e_14d9832, 2021
+# b490494caa0236b9908792b2f9977c3e_14d9832, 2021
 # Ty Sok <sokty2@gmail.com>, 2021
 msgid ""
 msgstr ""

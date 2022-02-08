@@ -1,12 +1,12 @@
 # 
 # Translators:
 # Aleś Łahviniec <a.lahviniec@gmail.com>, 2021
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022
 # Veranika Mazurkevich <v.mazurkievic@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2022-01-31 15:54+0000\n"
+"PO-Revision-Date: 2022-02-07 22:28+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Belarusian (http://www.transifex.com/otf/globaleaks/language/be/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,7 +16,7 @@ msgstr ""
 "mime-version: 1.0\n"
 
 msgid "Log in"
-msgstr "Увайсці"
+msgstr "Увайсьці"
 
 msgid "Main configuration"
 msgstr "Асноўная канфігурацыя"
@@ -1340,7 +1340,7 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Затым скапіяваць і ўставіць наступны адрас у Tor Browser:"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "Вы ўжо загрузілі справаздачу? Увесці код."
+msgstr "Вы ўжо паведамілі інфармацыю? Увесьці код, каб працягнуць размову"
 
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Код або няправільны, або састарэлы."

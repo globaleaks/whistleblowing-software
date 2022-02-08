@@ -1,5 +1,5 @@
 {
-  "Log in": "Увайсці",
+  "Log in": "Увайсьці",
   "Main configuration": "Асноўная канфігурацыя",
   "Theme customization": "Налады тэмы",
   "Languages": "Мовы",
@@ -430,7 +430,7 @@
   "You are strongly advised to visit this site using the app called Tor Browser, that protects your identity.": "Настойліва раім наведваць гэты сайт з дапамогай прыкладання пад назвай Tor Browser, якое абараняе інфармацыю пра вашу асобу.",
   "Download the Tor Browser": "Спампаваць Tor Browser",
   "Then, copy and paste the following address into the Tor Browser:": "Затым скапіяваць і ўставіць наступны адрас у Tor Browser:",
-  "Have you already filed a report? Enter your receipt.": "Вы ўжо загрузілі справаздачу? Увесці код.",
+  "Have you already filed a report? Enter your receipt.": "Вы ўжо паведамілі інфармацыю? Увесьці код, каб працягнуць размову",
   "The receipt is either invalid or the report has expired.": "Код або няправільны, або састарэлы.",
   "Select a file or drag it here.": "Выбраць файл або перацягнуць яго сюды.",
   "Uploading files…": "Загрузка файлаў...",
