@@ -23,7 +23,7 @@ def db_get_questionnaires(session, tid, language):
     return [serialize_questionnaire(session, tid, questionnaire, language) for questionnaire in questionnaires]
 
 
-def db_get_questionnaire(session, tid, questionnaire_id, language, serialize_templates=True):
+def db_get_questionnaire(session, tid, questionnaire_id, language, serialize_templates=False):
     questionnaire = db_get(session,
                            models.Questionnaire,
                            (models.Questionnaire.tid.in_({1, tid}),
