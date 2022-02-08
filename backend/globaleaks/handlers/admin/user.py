@@ -13,7 +13,7 @@ from globaleaks.orm import db_del, db_log, transact, tw
 from globaleaks.rest import requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import GCE, Base64Encoder, generateRandomPassword
-from globaleaks.utils.utility import datetime_now, uuid4
+from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
 
 
 def db_create_user(session, tid, user_session, request, language):
@@ -93,8 +93,6 @@ def db_admin_update_user(session, tid, user_session, user_id, request, language)
 
     user = db_get_user(session, tid, user_id)
 
-    user.update(request)
-
     password = request['password']
     if password and (not user.crypto_pub_key or user_session.ek):
         if user.crypto_pub_key and user_session.ek:
@@ -117,8 +115,15 @@ def db_admin_update_user(session, tid, user_session, user_id, request, language)
 
         db_log(session, tid=tid, type='change_password', user_id=user_session.user_id, object_id=user_id)
 
+    if request['mail_address'] != user.mail_address:
+        user.change_email_token = None
+        user.change_email_address = ''
+        user.change_email_date = datetime_null()
+
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)
+
+    user.update(request)
 
     return user_serialize_user(session, user, language)
 
