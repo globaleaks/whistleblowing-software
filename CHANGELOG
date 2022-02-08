@@ -1,3 +1,6 @@
+Changes in version 4.7.9
+    Avoid to serialize templates when exporting questionnaire
+
 Changes in version 4.7.8
     Make it possible for secondary tenants to not be exposed via Tor (#3155)
     Reimplement tenant api removing direct acces by tenant number
