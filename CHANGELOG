@@ -1,3 +1,18 @@
+Changes in version 4.7.8
+    Make it possible for secondary tenants to not be exposed via Tor (#3155)
+    Reimplement tenant api removing direct acces by tenant number
+    Make it possible to access secondary tenants via /t/subdomain path
+    Restore possibility to provide a message to users that
+    decide to not provide their identity
+    Improve questionnaire template UI marking template questions
+    with "Template" type (#3156)
+    Add exception on permission checks for directory 'lost+found' (#3159)
+    Fix regression on advanced field options configurations (#3154)
+    Enable users to review file uploads before effective upload
+    Fix issues #3157, #3160
+    Bump npm dependencies to latest version
+    Update translations
+
 Changes in version 4.7.7
     Add report progressive number to audit log (#3145)
     Implement serverside validation of password strength (#3150)
