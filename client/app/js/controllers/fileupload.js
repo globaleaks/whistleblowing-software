@@ -18,12 +18,6 @@ controller("RFileUploadCtrl", ["$scope", function($scope) {
     flowFile.pause();
 
     $scope.file_error_msgs = [];
-
-    if (typeof $scope.field !== "undefined" && !$scope.field.multi_entry) {
-      // if the field allows to load only one file disable the button
-      // as soon as a file is loaded.
-      $scope.disabled = true;
-    }
   });
 
   $scope.$on("flow::fileSuccess", function () {

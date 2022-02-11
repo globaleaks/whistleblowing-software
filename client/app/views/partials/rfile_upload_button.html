@@ -21,7 +21,7 @@
     </div>
     <div data-ng-if="field !== undefined && !field.multi_entry">
       <div class="custom-file">
-        <input id="customFile-{{fileinput}}" data-ng-model="_fakemodel[fileinput]" class="custom-file-input inputelem" data-ng-disabled="disabled" type="file" data-ng-required="field && field.required && entry.required_status" data-flow-btn data-flow-single-file />
+        <input id="customFile-{{fileinput}}" data-ng-model="_fakemodel[fileinput]" class="custom-file-input inputelem" data-ng-disabled="uploads[field.id].files.length" type="file" data-ng-required="field && field.required && entry.required_status" data-flow-btn data-flow-single-file />
         <label class="btn btn-sm btn-outline-secondary" data-ng-attr-for="customFile-{{fileinput}}">
           <i class="fas fa-upload"></i>
           <span data-translate>Upload</span>
