@@ -2,8 +2,8 @@
   <div class="card-header clearfix" data-ng-click="collapsed = !collapsed" data-ng-keypress="eventDismiss(); $event.stopPropagation();">
     <span data-translate>Attachments</span>
     <span class="float-right">
-      <i data-ng-if="!collapsed" class="fas fa-chevron-up" data-uib-tooltip="{{'Collapse' | translate}}"></i>
-      <i data-ng-if="collapsed" class="fas fa-chevron-down" data-uib-tooltip="{{'Expand' | translate}}"></i>
+      <i data-ng-if="!collapsed" class="fa-solid fa-chevron-up" data-uib-tooltip="{{'Collapse' | translate}}"></i>
+      <i data-ng-if="collapsed" class="fa-solid fa-chevron-down" data-uib-tooltip="{{'Expand' | translate}}"></i>
     </span>
   </div>
   <div class="card-body" data-ng-show="!collapsed">
@@ -33,7 +33,7 @@
       <div data-ng-include="'views/partials/rfile_upload_status.html'"></div>
       <div data-ng-show="Utils.hasPausedFileUploads(uploads)">
         <button class="btn btn-sm btn-outline-secondary" data-ng-click="Utils.resumeFileUploads(uploads)">
-          <i class="fas fa-upload"></i>
+          <i class="fa-solid fa-upload"></i>
           <span data-translate>Confirm</span>
         </button>
       </div>

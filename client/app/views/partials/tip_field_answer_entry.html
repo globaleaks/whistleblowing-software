@@ -2,7 +2,7 @@
   <span data-ng-if="entry" data-ng-switch-when="checkbox">
     <div data-ng-repeat="(k, v) in entry">
       <div data-ng-repeat="option in field.options" data-ng-if="k === option.id && v === true">
-        <i class="fas fa-check-square"></i>
+        <i class="fa-solid fa-check-square"></i>
         <span>{{option.label}}</span>
       </div>
     </div>
@@ -19,8 +19,8 @@
   <span data-ng-if="entry['value']" data-ng-switch-when="daterange"><span data-translate>From:</span> {{entry['value'] | split:':':0 | date:'dd-MM-yyyy'}} <span data-translate>To:</span> {{entry['value'] | split:':':1 | date:'dd-MM-yyyy'}}</span>
 
   <span data-ng-if="entry['value']" data-ng-switch-when="tos">
-    <i data-ng-if="entry['value'] === true" class="fas fa-check-square"></i>
-    <i data-ng-if="entry['value'] === false" class="far fa-square"></i>
+    <i data-ng-if="entry['value'] === true" class="fa-solid fa-check-square"></i>
+    <i data-ng-if="entry['value'] === false" class="fa-solid fa-square"></i>
   </span>
 
   <span data-ng-if="entry" data-ng-switch-when="fieldgroup">

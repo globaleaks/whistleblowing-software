@@ -2,7 +2,7 @@
   <div>
     <span data-translate>Users</span>
     <button class="btn btn-sm btn-primary show-add-user-btn" data-ng-click="toggleAddUser()">
-      <i class="fas fa-plus"></i>
+      <i class="fa-solid fa-plus"></i>
       <span data-translate>Add</span>
     </button>
   </div>
@@ -50,7 +50,7 @@
       <div class="form-group">
         <button id="add-btn" class="btn btn-primary" data-ng-disabled="newUser.$invalid"
                 data-ng-click="add_user(); toggleAddUser()" type="submit">
-          <i class="fas fa-plus"></i>
+          <i class="fa-solid fa-plus"></i>
           <span data-translate>Add</span>
         </button>
       </div>
@@ -72,7 +72,7 @@
           </span>
           <span class="badge badge-secondary" data-ng-if="user.state === 'disabled'" data-translate>Disabled</span>
 	  <span class="badge badge-default" data-ng-if="resources.node.encryption && !user.encryption" data-uib-tooltip="{{'This user has not performed the first login yet.' | translate}}">
-	    <i class="fas fa-exclamation-circle"></i>
+	    <i class="fa-solid fa-exclamation-circle"></i>
 	  </span>
         </span>
         <span class="col-md-5 clearfix">
@@ -137,7 +137,7 @@
               <label data-translate>Password</label>
               <div>
                 <span class="btn btn-outline-secondary" data-ng-click="resetUserPassword()">
-                  <i class="fas fa-sync"></i>
+                  <i class="fa-solid fa-sync"></i>
                   <span data-ng-if="user.last_login === '1970-01-01T00:00:00Z'" data-translate>Send activation link</span>
                   <span data-ng-if="user.last_login !== '1970-01-01T00:00:00Z'" data-translate>Send reset link</span>
                 </span>
@@ -145,11 +145,11 @@
                       data-ng-if="!user.encryption || resources.preferences.escrow"
                       data-ng-init="user.newpassword = false"
                       data-ng-click="user.newpassword=!user.newpassword">
-                  <i class="fas fa-edit"></i>
+                  <i class="fa-solid fa-edit"></i>
                   <span data-translate>Set password</span>
                 </span>
                 <span class="btn btn-danger" data-ng-if="user.two_factor" data-ng-click="disable2FA()">
-                  <i class="fas fa-ban"></i>
+                  <i class="fa-solid fa-ban"></i>
                   <span data-translate>Disable two factor authentication</span>
                 </span>
               </div>

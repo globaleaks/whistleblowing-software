@@ -35,13 +35,13 @@
     </div>
     <div id="SubmissionButtons">
       <button id="PreviousStepButton" class="btn btn-outline-secondary" data-ng-show="hasPreviousStep()" data-ng-click="decrementStep()">
-        <i class="fas fa-arrow-circle-left"></i>
+        <i class="fa-solid fa-arrow-circle-left"></i>
         <span data-translate>Previous</span>
       </button>
 
       <button id="NextStepButton" class="btn btn-outline-secondary" data-ng-show="hasNextStep()" data-ng-disabled="submission.blocked" data-ng-click="incrementStep()">
         <span data-translate>Next</span>
-        <i class="fas fa-arrow-circle-right"></i>
+        <i class="fa-solid fa-arrow-circle-right"></i>
       </button>
       <div data-ng-show="!hasNextStep() && done" data-ng-include="'views/partials/rfiles_upload_status.html'"></div>
       <button id="SubmitButton" class="btn btn-primary" data-ng-show="!hasNextStep()" data-ng-click="completeSubmission()" data-ng-disabled="!Authentication.session || submission.blocked || done" type="submit" data-translate>Submit</button>

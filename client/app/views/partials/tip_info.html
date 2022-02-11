@@ -7,7 +7,7 @@
             <input id="assignLabelInput" type="text" class="form-control" data-ng-attr-placeholder="{{'Label' | translate}}" data-ng-model="tip.label" />
             <span class="input-group-append" data-uib-tooltip="{{'Label the report' | translate}}">
               <button id="assignLabelButton" class="btn btn-primary" data-ng-click="updateLabel(tip.label)">
-                <i class="fas fa-tag"></i>
+                <i class="fa-solid fa-tag"></i>
               </button>
             </span>
           </span>
@@ -23,37 +23,37 @@
       <thead>
       <tr>
         <th class="TipInfoID" data-ng-if="Authentication.session.role === 'receiver'">
-          <i class="fas fa-hashtag"></i>
+          <i class="fa-solid fa-hashtag"></i>
         </th>
         <th class="TipInfoContext" data-ng-if="public.contexts.length > 1">
-          <i class="fas fa-inbox"></i>
+          <i class="fa-solid fa-inbox"></i>
           <span data-translate>Context</span>
         </th>
         <th class="TipInfoSubmissionDate">
-          <i class="fas fa-clock"></i>
+          <i class="fa-solid fa-clock"></i>
           <span data-translate>Date</span>
         </th>
         <th class="TipInfoLastUpdate">
-          <i class="fas fa-clock"></i>
+          <i class="fa-solid fa-clock"></i>
           <span data-translate>Last update</span>
         </th>
         <th class="TipInfoExpirationDate">
-          <i class="fas fa-hourglass"></i>
+          <i class="fa-solid fa-hourglass"></i>
           <span data-translate>Expiration date</span>
         </th>
         <th class="TipInfoReadReceipt" data-ng-if="Authentication.session.role === 'receiver'">
-          <i class="fas fa-eye"></i>
+          <i class="fa-solid fa-eye"></i>
         </th>
         <th class="TipInfoConnection" data-ng-if="Authentication.session.role === 'receiver'">
-          <i class="fas fa-network-wired"></i>
+          <i class="fa-solid fa-network-wired"></i>
           <span>Tor</span>
         </th>
         <th class="TipInfoSubmissionStatus">
-          <i class="fas fa-dot-circle"></i>
+          <i class="fa-solid fa-dot-circle"></i>
           <span data-translate>Status</span>
         </th>
         <th class="TipInfoScore" data-ng-if="Authentication.session.role === 'receiver' && public.node.enable_scoring_system">
-          <i class="fas fa-flash"></i>
+          <i class="fa-solid fa-flash"></i>
           <span data-translate>Score</span>
         </th>
       </tr>
@@ -69,14 +69,14 @@
           <span data-ng-if="Utils.isNever(tip.expiration_date)">-</span>
         </td>
         <td class="TipInfoLastAccess" data-ng-if="Authentication.session.role === 'receiver'">
-          <i data-ng-if="tip.last_access >= tip.update_date" class="fas fa-check"
+          <i data-ng-if="tip.last_access >= tip.update_date" class="fa-solid fa-check"
              data-uib-tooltip="{{'The whistleblower has already read the last update' | translate }} ({{tip.last_access | date:'dd-MM-yyyy HH:mm'}})"></i>
-          <i data-ng-if="tip.last_access < tip.update_date" class="fas fa-times"
+          <i data-ng-if="tip.last_access < tip.update_date" class="fa-solid fa-times"
              data-uib-tooltip="{{'The whistleblower has not read the last update yet' | translate }}"></i>
         </td>
         <td class="TipInfoConnection" data-ng-if="Authentication.session.role === 'receiver'">
-          <i data-ng-if="tip.tor" class="fas fa-check"></i>
-          <i data-ng-if="!tip.tor" class="fas fa-times"></i>
+          <i data-ng-if="tip.tor" class="fa-solid fa-check"></i>
+          <i data-ng-if="!tip.tor" class="fa-solid fa-times"></i>
         </td>
 	<td class="TipInfoSubmissionStatus">{{tip.submissionStatusStr}}</td>
         <td class="TipInfoScore" data-ng-if="Authentication.session.role === 'receiver' && public.node.enable_scoring_system" data-ng-switch="tip.score">

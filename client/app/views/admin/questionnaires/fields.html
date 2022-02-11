@@ -29,16 +29,16 @@
               <span data-ng-if="field.template_id" data-translate>Template</span>
             </span>
             <span data-ng-if="field.preview" class="badge badge-default">
-              <span data-uib-tooltip="{{'Preview' | translate}}"><i class="fas fa-list-alt"></i></span>
+              <span data-uib-tooltip="{{'Preview' | translate}}"><i class="fa-solid fa-list-alt"></i></span>
             </span>
             <span data-ng-if="field.multi_entry" class="badge badge-default">
               <span data-ng-switch="field.type">
-                <span data-ng-switch-when="fileupload" data-uib-tooltip="{{'Accept multiple file uploads' | translate}}"><i class="fas fa-option-horizontal"></i></span>
-                <span data-ng-switch-default data-uib-tooltip="{{'Accept multiple answers for the field' | translate}}"><i class="fas fa-option-horizontal"></i></span>
+                <span data-ng-switch-when="fileupload" data-uib-tooltip="{{'Accept multiple file uploads' | translate}}"><i class="fa-solid fa-option-horizontal"></i></span>
+                <span data-ng-switch-default data-uib-tooltip="{{'Accept multiple answers for the field' | translate}}"><i class="fa-solid fa-option-horizontal"></i></span>
               </span>
             </span>
             <span data-ng-if="field.required" class="badge badge-danger">
-              <span data-uib-tooltip="{{'Mandatory' | translate}}"><i class="fas fa-asterisk"></i></span>
+              <span data-uib-tooltip="{{'Mandatory' | translate}}"><i class="fa-solid fa-asterisk"></i></span>
             </span>
           </span>
           <span class="col-md-6 clearfix" data-ng-if="field.editable">
@@ -61,7 +61,7 @@
               </button>
               <button class="downloadButton btn btn-sm btn-outline-secondary"
                 data-ng-click="exportQuestion(field); $event.stopPropagation()">
-                <i class="fas fa-file-export"></i>
+                <i class="fa-solid fa-file-export"></i>
                 <span data-translate>Export</span>
               </button>
               <button class="btn btn-sm btn-danger"
@@ -71,16 +71,16 @@
               </button>
               <span data-ng-if="field.step_id || field.fieldgroup_id">
                 <button class="btn btn-sm btn-primary" data-ng-click="moveLeftAndSave(field); $event.stopPropagation();" data-uib-tooltip="{{'Move left' | translate}}">
-                  <i class="fas fa-chevron-left"></i>
+                  <i class="fa-solid fa-chevron-left"></i>
                 </button>
                 <button class="btn btn-sm btn-primary" data-ng-click="moveRightAndSave(field); $event.stopPropagation();" data-uib-tooltip="{{'Move right' | translate}}">
-                  <i class="fas fa-chevron-right"></i>
+                  <i class="fa-solid fa-chevron-right"></i>
                 </button>
                 <button class="btn btn-sm btn-primary" data-ng-click="moveUpAndSave(field); $event.stopPropagation();" data-uib-tooltip="{{'Move up' | translate}}">
-                  <i class="fas fa-chevron-up"></i>
+                  <i class="fa-solid fa-chevron-up"></i>
                 </button>
                 <button class="btn btn-sm btn-primary" data-ng-click="moveDownAndSave(field); $event.stopPropagation();" data-uib-tooltip="{{'Move down' | translate}}">
-                  <i class="fas fa-chevron-down"></i>
+                  <i class="fa-solid fa-chevron-down"></i>
                 </button>
               </span>
             </span>
@@ -244,10 +244,10 @@
                       <span>{{field.attrs.min_date.value | date:'dd-MM-yyyy'}}</span>
                       <button class="btn btn-sm btn-danger"
                               data-ng-click="field.attrs.min_date.value = ''; $event.stopPropagation();">
-                        <i class="fas fa-times"></i>
+                        <i class="fa-solid fa-times"></i>
                       </button>
                     </span>
-                    <button data-ng-show="field.attrs.min_date.value === ''" type="button" class="btn btn-sm btn-outline-secondary"><i class="fas fa-calendar"></i></button>
+                    <button data-ng-show="field.attrs.min_date.value === ''" type="button" class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-calendar"></i></button>
                   </div>
                 </div>
                 <div class="form-group">
@@ -261,10 +261,10 @@
                       <span>{{field.attrs.max_date.value | date:'dd-MM-yyyy'}}</span>
                       <button class="btn btn-sm btn-danger"
                               data-ng-click="field.attrs.max_date.value = ''; $event.stopPropagation();">
-                        <i class="fas fa-times"></i>
+                        <i class="fa-solid fa-times"></i>
                       </button>
                     </span>
-                    <button data-ng-show="field.attrs.max_date.value === ''" type="button" class="btn btn-sm btn-outline-secondary"><i class="fas fa-calendar"></i></button>
+                    <button data-ng-show="field.attrs.max_date.value === ''" type="button" class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-calendar"></i></button>
                   </div>
                 </div>
               </div>
@@ -303,7 +303,7 @@
               <label>
                 <span data-translate>Trigger conditions</span>
                 <button class="btn btn-sm btn-primary show-add-question-btn" data-ng-click="toggleAddTrigger()">
-                  <i class="fas fa-plus"></i>
+                  <i class="fa-solid fa-plus"></i>
                   <span data-translate>Add</span>
                 </button>
               </label>
@@ -324,14 +324,14 @@
                   </div>
                 <div class="form-group">
                   <button id="add-step-btn" class="btn btn-primary" data-ng-disabled="!new_trigger.field || !new_trigger.option" data-ng-click="addTrigger()">
-                    <i class="fas fa-plus"></i>
+                    <i class="fa-solid fa-plus"></i>
                     <span data-translate>Add</span>
                   </button>
                 </div>
               </div>
               <div data-ng-repeat="trigger in field.triggered_by_options" class="nested">
                 <button class="btn btn-sm btn-danger" data-ng-click="delTrigger(trigger)">
-                  <i class="fas fa-times"></i>
+                  <i class="fa-solid fa-times"></i>
                 </button>
                 <span>{{parsedFields.fields_by_id[trigger.field].label}}</span>: <span>{{parsedFields.options_by_id[trigger.option].label}}</span> <span data-ng-if='trigger.sufficient'>(<span data-translate>Sufficient</span>)</span>
               </div>
@@ -344,7 +344,7 @@
               <label>
                 <span data-translate>Options</span>
                 <button class="btn btn-sm btn-primary show-add-question-btn" data-ng-click="addOption()">
-                  <i class="fas fa-plus"></i>
+                  <i class="fa-solid fa-plus"></i>
                   <span data-translate>Add</span>
                 </button>
               </label>
@@ -359,32 +359,32 @@
                     </div>
                     <div class="col-md-5">
                       <button class="btn btn-sm btn-danger" data-ng-click="delOption(option)">
-                        <i class="fas fa-times"></i>
+                        <i class="fa-solid fa-times"></i>
                       </button>
                       <button data-ng-disabled="$first" class="btn btn-sm btn-primary" data-ng-click="moveOptionUp($index);" data-uib-tooltip="{{'Move up' | translate}}">
-                        <i class="fas fa-chevron-up"></i>
+                        <i class="fa-solid fa-chevron-up"></i>
                       </button>
                       <button data-ng-disabled="$last" class="btn btn-sm btn-primary" data-ng-click="moveOptionDown($index);" data-uib-tooltip="{{'Move down' | translate}}">
-                        <i class="fas fa-chevron-down"></i>
+                        <i class="fa-solid fa-chevron-down"></i>
                       </button>
                       <span>
                         <button class="btn btn-sm" data-ng-class="option.hint1 || option.hint2 ? 'btn-primary' : 'btn-outline-secondary'" data-ng-click="addOptionHintDialog(option)" data-uib-tooltip="{{'Hint' | translate}}">
-                          <i class="fas fa-question-circle"></i>
+                          <i class="fa-solid fa-question-circle"></i>
                         </button>
                       </span>
                       <span>
                         <button class="btn btn-sm" data-ng-class="option.block_submission ? 'btn-danger' : 'btn-outline-secondary'" data-ng-click="flipBlockSubmission(option)" data-uib-tooltip="{{'Block the submission' | translate}}">
-                          <i class="fas fa-ban"></i>
+                          <i class="fa-solid fa-ban"></i>
                         </button>
                       </span>
                       <span>
                         <button class="btn btn-sm" data-ng-class="option.trigger_receiver.length ? 'btn-primary' : 'btn-outline-secondary'" data-ng-click="triggerReceiverDialog(option)" data-uib-tooltip="{{'Recipients' | translate}}">
-                          <i class="fas fa-user"></i>
+                          <i class="fa-solid fa-user"></i>
                         </button>
                       </span>
                       <span data-ng-if="resources.node.enable_scoring_system">
                         <button class="btn btn-sm" data-ng-class="option.score_type !== 'none' ? 'btn-primary' : 'btn-outline-secondary'" data-ng-click="assignScorePointsDialog(option)" data-uib-tooltip="{{'Assign score points' | translate}}">
-                          <i class="fas fa-bolt"></i>
+                          <i class="fa-solid fa-bolt"></i>
                           <span data-ng-if="option.score_type !== 'none'">
                             <span> {{option.score_points}} </span>
                             <span data-ng-switch="option.score_type">
@@ -407,11 +407,11 @@
               <div>
                 <span data-translate>Questions</span>
                 <button class="btn btn-sm btn-primary show-add-question-btn" data-ng-click="toggleAddQuestion()">
-                  <i class="fas fa-plus"></i>
+                  <i class="fa-solid fa-plus"></i>
                   <span data-translate>Add new question</span>
                 </button>
                 <button class="btn btn-sm btn-primary show-add-question-from-template-btn" data-ng-click="toggleAddQuestionFromTemplate()" data-ng-if="resources.fieldtemplates.length">
-                  <i class="fas fa-plus"></i>
+                  <i class="fa-solid fa-plus"></i>
                   <span data-translate>Add question from template</span>
                 </button>
               </div>

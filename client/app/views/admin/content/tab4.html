@@ -5,7 +5,7 @@
     <div class="form-group">
       <label data-translate>Languages</label>
       <button class="btn btn-sm btn-primary add-language-btn" data-ng-click="toggleLangSelect()">
-        <i class="fas fa-plus"></i>
+        <i class="fa-solid fa-plus"></i>
         <span data-translate>Add</span>
       </button>
       <div>
@@ -27,17 +27,17 @@
           <li data-ng-repeat="lang_code in resources.node.languages_enabled">
             <span class="action-btns">
               <span data-ng-if="lang_code === resources.node.default_language" class="default-language">
-                <i class="fas fa-check"></i>
+                <i class="fa-solid fa-check"></i>
               </span>
               <span data-ng-if="lang_code !== resources.node.default_language" class="non-default-language"
                 data-uib-tooltip="{{'Use as default' | translate}}"
                 data-ng-click="resources.node.default_language = lang_code">
-                <i class="fas fa-check"></i>
+                <i class="fa-solid fa-check"></i>
               </span>
               <span data-ng-if="lang_code !== resources.node.default_language" data-ng-click="removeLang($index, lang_code)" data-uib-tooltip="{{'Remove' | translate}}" class="remove-lang-btn">
-                <i class="fas fa-times"></i>
+                <i class="fa-solid fa-times"></i>
               </span>
-              <i data-ng-if="lang_code === resources.node.default_language" class="fas fa-times disabled-icon"></i>
+              <i data-ng-if="lang_code === resources.node.default_language" class="fa-solid fa-times disabled-icon"></i>
             </span>
             <label>{{languages_supported[lang_code]['name']}} [{{lang_code}}]</label>
           </li>
@@ -48,7 +48,7 @@
       <button class="btn btn-primary"
               data-ng-disabled="contentForm.$invalid"
               data-ng-click="updateNode()" type="submit">
-        <i class="fas fa-check"></i>
+        <i class="fa-solid fa-check"></i>
         <span data-translate>Save</span>
       </button>
     </div>

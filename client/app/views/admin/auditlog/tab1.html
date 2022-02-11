@@ -32,8 +32,8 @@
       boundary-links="true"
       force-ellipses="true"></ul>
 </div>
-<button class="btn btn-sm btn-link" type="button" ng-csv="resources.auditlog" csv-label='true' filename="auditlog.csv"><i class="fa fa-download"></i> <span data-translate>Export</span></button>
+<button class="btn btn-sm btn-link" type="button" ng-csv="resources.auditlog" csv-label='true' filename="auditlog.csv"><i class="fa-solid fa-download"></i> <span data-translate>Export</span></button>
 <span data-ng-if="resources.node.root_tenant">
-  <a class="btn btn-sm btn-link" type="button" data-ng-click="Utils.download('globaleaks.log', '/api/admin/auditlog/debug')"><i class="fa fa-download"></i> <span>globaleaks.log</span></a>
-  <a class="btn btn-sm btn-link" type="button" data-ng-click="Utils.download('access.log', '/api/admin/auditlog/access')"><i class="fa fa-download"></i> <span>access.log</span></a>
+  <a class="btn btn-sm btn-link" type="button" data-ng-click="Utils.download('globaleaks.log', '/api/admin/auditlog/debug')"><i class="fa-solid fa-download"></i> <span>globaleaks.log</span></a>
+  <a class="btn btn-sm btn-link" type="button" data-ng-click="Utils.download('access.log', '/api/admin/auditlog/access')"><i class="fa-solid fa-download"></i> <span>access.log</span></a>
 </span>

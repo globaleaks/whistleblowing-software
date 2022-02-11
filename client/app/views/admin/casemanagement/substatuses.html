@@ -3,7 +3,7 @@
     <span class="col-md-8">
       <span data-translate>Substatuses</span>
       <button class="btn btn-sm btn-primary" data-ng-click="toggleAddSubstatus()">
-        <i class="fas fa-plus"></i>
+        <i class="fa-solid fa-plus"></i>
         <span data-translate>Add</span>
       </button>
     </span>
@@ -27,7 +27,7 @@
             <div class="form-group clearfix">
               <button class="float-left btn btn-primary" data-ng-disabled="newSubstatus.$invalid"
                       data-ng-click="addSubmissionSubStatus(); toggleAddSubstatus()">
-                <i class="fas fa-plus"></i>
+                <i class="fa-solid fa-plus"></i>
                 <span data-translate>Add</span>
               </button>
             </div>
@@ -47,10 +47,10 @@
             <span class="col-md-5 clearfix">
               <span class="float-right">
                 <button data-ng-if="!$first" class="btn btn-sm btn-primary" data-ng-click="moveSsUp($event, $index)" data-uib-tooltip="{{'Move up' | translate}}">
-                  <i class="fas fa-chevron-up"></i>
+                  <i class="fa-solid fa-chevron-up"></i>
                 </button>
                 <button data-ng-if="!$last" class="btn btn-sm btn-primary" data-ng-click="moveSsDown($event, $index)" data-uib-tooltip="{{'Move down' | translate}}">
-                  <i class="fas fa-chevron-down"></i>
+                  <i class="fa-solid fa-chevron-down"></i>
                 </button>
                 <button class="btn btn-sm btn-outline-secondary" data-ng-show="!substatus_editing"
                         data-ng-click="toggleSubstatusEditing(); $event.stopPropagation();">

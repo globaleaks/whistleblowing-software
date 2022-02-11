@@ -2,7 +2,7 @@
   <div>
     <span data-translate>Report statuses</span>
     <button class="btn btn-sm btn-primary show-add-user-btn" data-ng-click="toggleAddStatus()">
-      <i class="fas fa-plus"></i>
+      <i class="fa-solid fa-plus"></i>
       <span data-translate>Add</span>
     </button>
   </div>
@@ -20,7 +20,7 @@
       <div class="form-group">
         <button id="add-btn" class="btn btn-primary" data-ng-disabled="newSubmissionStatus.$invalid" data-ng-click="addSubmissionStatus(); toggleAddStatus()"
           type="submit">
-          <i class="fas fa-plus"></i>
+          <i class="fa-solid fa-plus"></i>
           <span data-translate>Add</span>
         </button>
       </div>
@@ -35,10 +35,10 @@
             <span class="col-md-5 clearfix">
               <span class="float-right">
                 <button data-ng-if="!$first" class="btn btn-sm btn-primary" data-ng-click="moveUp($event, $index)" data-uib-tooltip="{{'Move up' | translate}}">
-                  <i class="fas fa-chevron-up"></i>
+                  <i class="fa-solid fa-chevron-up"></i>
                 </button>
                 <button data-ng-if="!$last" class="btn btn-sm btn-primary" data-ng-click="moveDown($event, $index)" data-uib-tooltip="{{'Move down' | translate}}">
-                  <i class="fas fa-chevron-down"></i>
+                  <i class="fa-solid fa-chevron-down"></i>
                 </button>
                 <button class="btn btn-sm btn-outline-secondary" data-ng-show="isEditable() && !editing" data-ng-click="toggleEditing(); $event.stopPropagation();">
                   <span data-translate>Edit</span>

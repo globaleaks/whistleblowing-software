@@ -5,7 +5,7 @@
          href="#/recipient/home"
          data-uib-tooltip="{{'Home' | translate}}"
          class="btn btn-outline-secondary">
-        <i class="fas fa-arrow-left"></i>
+        <i class="fa-solid fa-arrow-left"></i>
       </a>
 
       <span id="tip-action-select-all"
@@ -13,7 +13,7 @@
             data-ng-click="select_all()"
             data-uib-tooltip="{{'Select all' | translate}}"
             class="btn btn-outline-secondary">
-        <i class="far fa-square"></i>
+        <i class="fa-solid fa-square"></i>
       </span>
 
       <span id="tip-action-select-all"
@@ -21,7 +21,7 @@
             data-ng-click="deselect_all()"
             data-uib-tooltip="{{'Deselect all' | translate}}"
             class="btn btn-outline-secondary">
-        <i class="fas fa-check-square"></i>
+        <i class="fa-solid fa-check-square"></i>
       </span>
 
       <span data-ng-if="selected_tips.length">
@@ -30,7 +30,7 @@
               data-ng-click="open_grant_access_modal()"
               data-uib-tooltip="{{'Grant access' | translate}}"
               class="btn btn-outline-secondary">
-          <i class="fas fa-user-plus"></i>
+          <i class="fa-solid fa-user-plus"></i>
         </span>
 
         <span id="tip-action-revoke-access-selected"
@@ -38,7 +38,7 @@
               data-ng-click="open_revoke_access_modal()"
               data-uib-tooltip="{{'Revoke access' | translate}}"
               class="btn btn-outline-secondary">
-          <i class="fas fa-user-minus"></i>
+          <i class="fa-solid fa-user-minus"></i>
         </span>
 
         <span id="tip-action-delete-selected"
@@ -46,14 +46,14 @@
               data-ng-click="tip_delete_selected()"
               data-uib-tooltip="{{'Delete' | translate}}"
               class="btn btn-outline-secondary">
-          <i class="fas fa-trash"></i>
+          <i class="fa-solid fa-trash"></i>
         </span>
 
         <span id="tip-action-export-selected"
               data-ng-click="tips_export()"
               data-uib-tooltip="{{'Export' | translate}}"
               class="btn btn-outline-secondary">
-          <i class="fas fa-save"></i>
+          <i class="fa-solid fa-save"></i>
         </span>
       </span>
 
@@ -61,7 +61,7 @@
             data-ng-click="reload()"
             data-uib-tooltip="{{'Refresh' | translate}}"
             class="btn btn-outline-secondary">
-        <i class="fas fa-sync"></i>
+        <i class="fa-solid fa-sync"></i>
       </span>
 
       <span id="SearchFilter" class="form-group float-right">
@@ -69,7 +69,7 @@
           <input type="text" class="form-control" data-ng-attr-placeholder="{{'Search' | translate}}"
                  data-ng-model="search">
             <div class="input-group-append">
-            <span class="input-group-text"><i class="fas fa-search"></i></span>
+            <span class="input-group-text"><i class="fa-solid fa-search"></i></span>
           </div>
         </div>
       </span>
@@ -84,95 +84,95 @@
         <tr>
           <th></th>
           <th data-ng-click="sortKey = 'important'; sortReverse = !sortReverse">
-            <i class="fas fa-star" ></i>
+            <i class="fa-solid fa-star" ></i>
             <span data-ng-show="sortKey == 'important'">
-              <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
-              <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
+              <span data-ng-show="!sortReverse" class="fa-solid fa-caret-down"></span>
+              <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
             </span>
           </th>
           <th class="TipInfoID" data-ng-click="sortKey = 'id'; sortReverse = !sortReverse">
-            <i class="fas fa-hashtag"></i>
+            <i class="fa-solid fa-hashtag"></i>
             <span data-ng-show="sortKey == 'id'">
-              <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
-              <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
+              <span data-ng-show="!sortReverse" class="fa-solid fa-caret-down"></span>
+              <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
             </span>
           </th>
           <th class="TipInfoContext" data-ng-if="public.contexts.length > 1">
             <span data-ng-click="sortKey = 'context_name'; sortReverse = !sortReverse">
-              <i class="fas fa-inbox"></i>
+              <i class="fa-solid fa-inbox"></i>
               <span data-translate>Context</span>
               <span data-ng-show="sortKey == 'context_name'">
-                <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
-                <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
+                <span data-ng-show="!sortReverse" class="fa-solid fa-caret-down"></span>
+                <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
             </span>
           </th>
           <th class="TipInfoLabel">
             <span data-ng-click="sortKey = 'label'; sortReverse = !sortReverse">
-              <i class="fas fa-tag"></i>
+              <i class="fa-solid fa-tag"></i>
               <span data-translate>Label</span>
               <span data-ng-show="sortKey == 'label'">
-                <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
-                <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
+                <span data-ng-show="!sortReverse" class="fa-solid fa-caret-down"></span>
+                <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
             </span>
           </th>
           <th class="TipInfoStatus">
             <span data-ng-click="sortKey = 'submissionStatusStr'; sortReverse = !sortReverse">
-              <i class="fas fa-dot-circle"></i>
+              <i class="fa-solid fa-dot-circle"></i>
               <span data-translate>Status</span>
               <span data-ng-show="sortKey == 'submissionStatusStr'">
-                <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
-                <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
+                <span data-ng-show="!sortReverse" class="fa-solid fa-caret-down"></span>
+                <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
             </span>
           </th>
           <th class="TipInfoSubmissionDate">
             <span data-ng-click="sortKey = 'creation_date'; sortReverse = !sortReverse">
-              <i class="fas fa-clock"></i>
+              <i class="fa-solid fa-clock"></i>
               <span data-translate>Report date</span>
               <span data-ng-show="sortKey == 'creation_date'">
-                <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
-                <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
+                <span data-ng-show="!sortReverse" class="fa-solid fa-caret-down"></span>
+                <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
             </span>
           </th>
           <th class="TipInfoUpdateDate">
             <span data-ng-click="sortKey = 'update_date'; sortReverse = !sortReverse">
-              <i class="fas fa-clock"></i>
+              <i class="fa-solid fa-clock"></i>
               <span data-translate>Last update</span>
               <span data-ng-show="sortKey == 'update_date'">
-                <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
-                <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
+                <span data-ng-show="!sortReverse" class="fa-solid fa-caret-down"></span>
+                <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
             </span>
           </th>
           <th class="TipInfoExpirationDate">
             <span data-ng-click="sortKey = 'expiration_date'; sortReverse = !sortReverse">
-              <i class="fas fa-hourglass"></i>
+              <i class="fa-solid fa-hourglass"></i>
               <span data-translate>Expiration date</span>
               <span data-ng-show="sortKey == 'expiration_date'">
-                <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
-                <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
+                <span data-ng-show="!sortReverse" class="fa-solid fa-caret-down"></span>
+                <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
             </span>
           </th>
           <th class="TipInfoReadReceipt">
-            <i class="fas fa-eye"></i>
+            <i class="fa-solid fa-eye"></i>
           </th>
           <th class="TipInfoPreview">
             <span>
-              <i class="fas fa-list-alt"></i>
+              <i class="fa-solid fa-list-alt"></i>
               <span data-translate>Preview</span>
             </span>
           </th>
           <th class="TipInfoScore" data-ng-if="public.node.enable_scoring_system">
             <span data-ng-click="$parent.sortKey = 'score'; sortReverse = !sortReverse">
-              <i class="fas fa-flash"></i>
+              <i class="fa-solid fa-flash"></i>
               <span data-translate>Score</span>
               <span data-ng-show="$parent.sortKey == 'score'">
-                <span data-ng-show="!sortReverse" class="fas fa-caret-down"></span>
-                <span data-ng-show="sortReverse" class="fas fa-caret-up"></span>
+                <span data-ng-show="!sortReverse" class="fa-solid fa-caret-down"></span>
+                <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
             </span>
           </th>
@@ -186,23 +186,23 @@
           <td>
             <span class="btn btn-sm btn-outline-secondary" data-ng-if="isSelected(tip.id)"
                   data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
-              <i class="fas fa-check-square"></i>
+              <i class="fa-solid fa-check-square"></i>
             </span>
             <span class="btn btn-sm btn-outline-secondary" data-ng-if="!isSelected(tip.id)"
                   data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
-              <i class="far fa-square"></i>
+              <i class="fa-solid fa-square"></i>
             </span>
             <span name="TipExport"
                   data-ng-click="exportTip(tip); $event.stopPropagation()"
                   data-uib-tooltip="{{'Export' | translate}}"
                   novalidate>
               <button id="tip-action-export" class="btn btn-sm btn-outline-secondary">
-                <i class="fas fa-save"></i>
+                <i class="fa-solid fa-save"></i>
               </button>
             </span>
           </td>
           <td data-uib-tooltip="{{'Mark as important' | translate }}">
-            <i class="fas fa-star text-warning" data-ng-click="toggle_star(tip); $event.stopPropagation();" data-ng-class="{'visible-on-over': !tip.important}"></i>
+            <i class="fa-solid fa-star text-warning" data-ng-click="toggle_star(tip); $event.stopPropagation();" data-ng-class="{'visible-on-over': !tip.important}"></i>
           </td>
           <td class="TipInfoID">{{tip.progressive}}</td>
           <td class="TipInfoContext" data-ng-if="public.contexts.length > 1">{{tip.context_name}}</td>
@@ -216,16 +216,16 @@
             <span data-ng-if="Utils.isNever(tip.expiration_date)">-</span>
           </td>
           <td class="TipInfoLastAccess">
-            <i data-ng-if="tip.last_access >= tip.update_date" class="fas fa-check"
+            <i data-ng-if="tip.last_access >= tip.update_date" class="fa-solid fa-check"
                data-uib-tooltip="{{'The whistleblower has already read the last update' | translate }} ({{tip.last_access | date:'dd-MM-yyyy HH:mm'}})"></i>
-            <i data-ng-if="tip.last_access < tip.update_date" class="fas fa-times"
+            <i data-ng-if="tip.last_access < tip.update_date" class="fa-solid fa-times"
                data-uib-tooltip="{{'The whistleblower has not read the last update yet' | translate }}"></i>
           </td>
           <td class="TipInfoPreview">
             <div data-ng-if="tip.file_count || tip.comment_count || tip.message_count">
-              <span data-ng-if="tip.file_count" data-uib-tooltip="{{'Files' | translate}}"><i class="fas fa-file text-secondary"></i>: {{tip.file_count}}</span>
-              <span data-ng-if="tip.comment_count" data-uib-tooltip="{{'Comments' | translate}}"><i class="fas fa-comment text-secondary"></i>: {{tip.comment_count}}</span>
-              <span data-ng-if="tip.message_count" data-uib-tooltip="{{'Messages' | translate}}"><i class="fas fa-envelope text-secondary"></i>: {{tip.message_count}}</span>
+              <span data-ng-if="tip.file_count" data-uib-tooltip="{{'Files' | translate}}"><i class="fa-solid fa-file text-secondary"></i>: {{tip.file_count}}</span>
+              <span data-ng-if="tip.comment_count" data-uib-tooltip="{{'Comments' | translate}}"><i class="fa-solid fa-comment text-secondary"></i>: {{tip.comment_count}}</span>
+              <span data-ng-if="tip.message_count" data-uib-tooltip="{{'Messages' | translate}}"><i class="fa-solid fa-envelope text-secondary"></i>: {{tip.message_count}}</span>
             </div>
             <div class="preview">
               <div data-ng-repeat="step in tip.questionnaire" data-ng-init="fieldAnswers = tip.answers; preview=true">

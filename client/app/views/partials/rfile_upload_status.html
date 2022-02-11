@@ -10,19 +10,19 @@
               </div>
               <div class="fileButtons">
                 <div data-ng-if="page === 'submissionpage' || !file.isComplete()" class="removeFileButton text-danger">
-                  <div class="btn btn-sm btn-danger" data-ng-click="Utils.removeFile(submission, uploads[fileinput].files, file)"><i class="fas fa-times"></i></div>
+                  <div class="btn btn-sm btn-danger" data-ng-click="Utils.removeFile(submission, uploads[fileinput].files, file)"><i class="fa-solid fa-times"></i></div>
                 </div>
               </div>
               <div class="fileUpload">
                 <div>
                   <div class="fileUploadIcon" data-ng-show="file.error">
-                    <i class="fas fa-ban-circle"></i>
+                    <i class="fa-solid fa-ban-circle"></i>
                   </div>
                   <div class="fileUploadIcon" data-ng-show="!file.error && !file.isComplete()">
-                    <i class="fas fa-file"></i>
+                    <i class="fa-solid fa-file"></i>
                   </div>
                   <div class="fileUploadIcon" data-ng-show="!file.error && file.isComplete()">
-                    <i class="fas fa-check"></i>
+                    <i class="fa-solid fa-check"></i>
                   </div>
                 </div>
 		<div class="fileUploadProgress progress progress-striped" data-ng-class="{'invisible': file.paused}">

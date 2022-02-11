@@ -2,7 +2,7 @@
   <div class="form-group">
     <div class="input-group">
       <div class="input-group-prepend">
-        <span class="input-group-text"><i class="fas fa-user"></i></span>
+        <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
       </div>
       <input class="form-control" name="username" placeholder="{{'Username' | translate}}" data-ng-model="Authentication.loginData.loginUsername" type="text" required />
     </div>
@@ -11,14 +11,14 @@
   <div class="form-group">
     <div class="input-group">
       <div class="input-group-prepend">
-        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+        <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
       </div>
       <input class="form-control" name="password" placeholder="{{'Password' | translate}}" data-ng-model="Authentication.loginData.loginPassword" type="password" required />
     </div>
   </div>
 
   <button id="login-button" class="btn btn-primary" data-ng-disabled="Authentication.loginInProgress || loginForm.$invalid" data-ng-click="Authentication.login(0, Authentication.loginData.loginUsername, Authentication.loginData.loginPassword)" type="submit">
-    <i class="fas fa-sign-in-alt"></i>
+    <i class="fa-solid fa-sign-in-alt"></i>
     <span data-translate>Log in</span>
   </button>
 
@@ -37,11 +37,11 @@
 
     <div class="input-group-btn">
       <button id="login-button" class="btn btn-primary" data-ng-disabled="Authentication.loginInProgress || loginForm.$invalid" data-ng-click="Authentication.login(0, Authentication.loginData.loginUsername, Authentication.loginData.loginPassword, Authentication.loginData.loginAuthCode)" type="submit">
-        <i class="fas fa-sign-in-alt"></i>
+        <i class="fa-solid fa-sign-in-alt"></i>
         <span data-translate>Log in</span>
       </button>
 
-      <a class="btn" data-ng-click="Utils.openSupportModal()" data-uib-tooltip="{{'Request support' | translate}}"><i class="fas fa-life-ring"></i></a>
+      <a class="btn" data-ng-click="Utils.openSupportModal()" data-uib-tooltip="{{'Request support' | translate}}"><i class="fa-solid fa-life-ring"></i></a>
     </div>
   </div>
 </div>

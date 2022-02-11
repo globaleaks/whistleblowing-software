@@ -1,7 +1,7 @@
 <div class="modal-header">
   <div class="modal-title" data-translate>Recipients</div>
   <button type="button" class="close" data-ng-click="cancel()">
-    <i class="fas fa-times"></i>
+    <i class="fa-solid fa-times"></i>
   </button>
 </div>
 <div class="modal-body">
@@ -20,7 +20,7 @@
       <li data-ng-repeat="user in arg.trigger_receiver">
         <span class="action-btns">
           <span data-ng-click="arg.trigger_receiver.splice($index, 1)" data-uib-tooltip="{{'Remove' | translate}}">
-            <i class="fas fa-times"></i>
+            <i class="fa-solid fa-times"></i>
           </span>
         </span>
         <span>{{admin_receivers_by_id[user].name}}</span>
@@ -30,15 +30,15 @@
 </div>
 <div class="modal-footer">
   <button id="modal-action-ok" class="btn btn-primary" data-ng-click="confirm()">
-    <i class="fas fa-check"></i>
+    <i class="fa-solid fa-check"></i>
     <span data-translate>Confirm</span>
   </button>
   <button id="modal-action-ok" class="btn btn-danger" data-ng-click="arg.trigger_receiver = []; cancel()">
-    <i class="fas fa-check"></i>
+    <i class="fa-solid fa-check"></i>
     <span data-translate>Reset</span>
   </button>
   <button id="modal-action-cancel" class="btn btn-outline-secondary" data-ng-click="cancel()">
-    <i class="fas fa-times"></i>
+    <i class="fa-solid fa-times"></i>
     <span data-translate>Cancel</span>
   </button>
 </div>

@@ -37,7 +37,7 @@
               <span data-ng-bind-html="option.label | highlight: $select.search"></span>
             </ui-select-choices>
           </ui-select>
-          <span class="input-append" data-ng-click="entry['value']='';" data-ng-disabled="!entry['value']" data-ng-if="entry['value']"><i class="input-group-text fas fa-times-circle"></i></span>
+          <span class="input-append" data-ng-click="entry['value']='';" data-ng-disabled="!entry['value']" data-ng-if="entry['value']"><i class="input-group-text fa-solid fa-times-circle"></i></span>
         </div>
       </div>
       <div data-ng-switch-when="multichoice">
@@ -74,7 +74,7 @@
                  datepicker-options="dateOptions"
                  is-open="status.opened"
                  show-button-bar="false" />
-          <span class="input-group-append" data-ng-click="open()"><i class="input-group-text fas fa-calendar"></i></span>
+          <span class="input-group-append" data-ng-click="open()"><i class="input-group-text fa-solid fa-calendar"></i></span>
         </div>
       </div>
       <div data-ng-switch-when="daterange" class="form-inline">
@@ -95,7 +95,7 @@
                    datepicker-options="dateOptions1"
                    is-open="status.openedStart"
                    show-button-bar="false" />
-            <span class="input-group-append" data-ng-click="openStart()"><i class="input-group-text fas fa-calendar"></i></span>
+            <span class="input-group-append" data-ng-click="openStart()"><i class="input-group-text fa-solid fa-calendar"></i></span>
           </div>
         </span>
         <span class="form-group mx-1" data-ng-if="daterange.start">
@@ -115,11 +115,11 @@
                    datepicker-options="dateOptions2"
                    is-open="status.openedEnd"
 		   show-button-bar="false" />
-            <span class="input-group-append" data-ng-click="openEnd()"><i class="input-group-text fas fa-calendar"></i></span>
+            <span class="input-group-append" data-ng-click="openEnd()"><i class="input-group-text fa-solid fa-calendar"></i></span>
           </div>
         </span>
         <span class="ml-1" data-ng-if="daterange.start">
-          <button type="button" class="btn btn-outline-secondary" ng-click="clear()"><i class="fas fa-times-circle"></i></button>
+          <button type="button" class="btn btn-outline-secondary" ng-click="clear()"><i class="fa-solid fa-times-circle"></i></button>
         </span>
       </div>
       <div data-ng-switch-when="tos">
@@ -194,9 +194,9 @@
   </div>
   <div data-ng-if="field.type !== 'inputbox' && field.type !== 'textarea' && entry.required_status && displayErrors()" class="text-danger" data-translate>This field is mandatory</div>
   <div data-ng-if="field.type === 'selectbox'" data-ng-repeat="option in field.options">
-    <div data-ng-show="option.set && option.hint1"><i class="fas fa-info-circle"></i> {{option.hint1}}</div>
+    <div data-ng-show="option.set && option.hint1"><i class="fa-solid fa-info-circle"></i> {{option.hint1}}</div>
   </div>
   <div data-ng-repeat="option in field.options">
-    <div data-ng-show="option.set && option.hint2" data-ng-class="{'text-danger': option.block_submission}"><i class="fas fa-info-circle"></i> {{option.hint2}}</div>
+    <div data-ng-show="option.set && option.hint2" data-ng-class="{'text-danger': option.block_submission}"><i class="fa-solid fa-info-circle"></i> {{option.hint2}}</div>
   </div>
 </div>

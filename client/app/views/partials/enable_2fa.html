@@ -20,8 +20,8 @@
           <div class="form-group d-block mx-auto">
             <div class="input-group">
               <input class="form-control" data-ng-class="{'is-invalid': OTPSecretForm.$invalid}" name="secret" data-ng-model="totp.secret" data-ng-disabled="!totp.edit" type="text" data-ng-minlength=32 data-ng-maxlength="32" maxlength="32" size="32" required />
-             <span  data-ng-if="totp.edit" class="input-group-append" data-ng-click="OTPSecretForm.$valid && (totp.edit=!totp.edit)" data-uib-tooltip="{{'Save' | translate}}"><button class="btn btn-secondary" data-ng-disabled="OTPSecretForm.$invalid"><i class="fas fa-save"></i></button></span>
-             <span  data-ng-if="!totp.edit" class="input-group-append" data-ng-click="totp.edit=!totp.edit" data-uib-tooltip="{{'Edit' | translate}}"><button class="btn btn-secondary" data-ng-disabled="totp.secret.length !== 32"><i class="fas fa-edit"></i></button></span>
+             <span  data-ng-if="totp.edit" class="input-group-append" data-ng-click="OTPSecretForm.$valid && (totp.edit=!totp.edit)" data-uib-tooltip="{{'Save' | translate}}"><button class="btn btn-secondary" data-ng-disabled="OTPSecretForm.$invalid"><i class="fa-solid fa-save"></i></button></span>
+             <span  data-ng-if="!totp.edit" class="input-group-append" data-ng-click="totp.edit=!totp.edit" data-uib-tooltip="{{'Edit' | translate}}"><button class="btn btn-secondary" data-ng-disabled="totp.secret.length !== 32"><i class="fa-solid fa-edit"></i></button></span>
            </div>
           </div>
         </div>

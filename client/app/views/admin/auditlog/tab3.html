@@ -1,7 +1,7 @@
 <table id="ReportsTable" class="table table-condensed table-striped">
   <thead>
     <tr>
-      <th><i class="fas fa-hashtag"></i></th>
+      <th><i class="fa-solid fa-hashtag"></i></th>
       <th data-translate>Date</th>
       <th data-translate>Last update</th>
       <th data-translate>Expiration date</th>
@@ -22,7 +22,7 @@
       <td>{{tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</td>
       <td>{{contexts_by_id[tip.context_id]['name']}}</td>
       <td>{{Utils.getSubmissionStatusText(tip.status, tip.substatus, submission_statuses)}}</td>
-      <td><i data-ng-if="itip.tor" class="fas fa-check"></i></td>
+      <td><i data-ng-if="itip.tor" class="fa-solid fa-check"></i></td>
       <td>{{tip.comments}}</td>
       <td>{{tip.messages}}</td>
       <td>{{tip.files}}</td>
@@ -44,4 +44,4 @@
       boundary-links="true"
       force-ellipses="true"></ul>
 </div>
-<button class="btn btn-sm btn-link" type="button" ng-csv="resources.tips" csv-label='true' filename="reports.csv"><i class="fa fa-download"></i> <span data-translate>Export</span></button>
+<button class="btn btn-sm btn-link" type="button" ng-csv="resources.tips" csv-label='true' filename="reports.csv"><i class="fa-solid fa-download"></i> <span data-translate>Export</span></button>
