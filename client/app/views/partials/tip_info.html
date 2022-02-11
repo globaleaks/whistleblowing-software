@@ -76,6 +76,7 @@
         </td>
         <td class="TipInfoConnection" data-ng-if="Authentication.session.role === 'receiver'">
           <i data-ng-if="tip.tor" class="fas fa-check"></i>
+          <i data-ng-if="!tip.tor" class="fas fa-times"></i>
         </td>
 	<td class="TipInfoSubmissionStatus">{{tip.submissionStatusStr}}</td>
         <td class="TipInfoScore" data-ng-if="Authentication.session.role === 'receiver' && public.node.enable_scoring_system" data-ng-switch="tip.score">
