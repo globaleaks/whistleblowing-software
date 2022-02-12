@@ -7,25 +7,6 @@ module.exports = function(grunt) {
     gettextParser = require("gettext-parser"),
     Gettext = require("node-gettext");
 
-  var fileToDataURI = function(filepath) {
-    try {
-      var mimeMap = {
-        "css": "text/css",
-        "ico": "image/x-icon",
-        "js": "application/javascript",
-        "png": "image/png",
-        "woff": "application/woff"
-      };
-
-      var ext = filepath.split(".").pop();
-      var mimetype = (ext in mimeMap) ? mimeMap[ext] : "application/octet-stream";
-
-      return "data:" + mimetype + ";charset=utf-8;base64," + new Buffer(fs.readFileSync(filepath)).toString("base64");
-    } catch (e) {
-      return filepath;
-    }
-  };
-
   grunt.initConfig({
     eslint: {
       options: {
@@ -79,8 +60,8 @@ module.exports = function(grunt) {
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/ui-bootstrap4/dist/ui-bootstrap-tpls.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/ui-select/dist/select.js"], expand: true, flatten: true },
           { dest: "app/lib/js/locale", cwd: ".", src: ["node_modules/angular-i18n/angular-locale*"], expand: true, flatten: true },
-          { dest: "app/lib/webfonts", cwd: ".", src: ["node_modules/fontsource-metropolis/files/*"], expand: true, flatten: true },
-          { dest: "app/lib/webfonts", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/webfonts/*"], expand: true, flatten: true }
+          { dest: "app/webfonts", cwd: ".", src: ["node_modules/fontsource-metropolis/files/*"], expand: true, flatten: true },
+          { dest: "app/webfonts", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/webfonts/*"], expand: true, flatten: true }
         ]
       },
       build: {
@@ -97,7 +78,8 @@ module.exports = function(grunt) {
               "css/styles.css",
               "js/scripts.js",
               "data/**",
-              "lib/js/locale/**"
+              "lib/js/locale/**",
+              "webfonts/**"
             ],
             expand: true,
             flatten: false
@@ -165,38 +147,6 @@ module.exports = function(grunt) {
         },
         options: {
           replacements: [
-            {
-              pattern: "src: url(\"../lib/webfonts/metropolis-all-400-normal.woff\") format(\"woff\");",
-              replacement: function () {
-                return "src:url('" + fileToDataURI("tmp/lib/webfonts/metropolis-all-400-normal.woff") + "') format('woff');";
-              }
-            },
-            {
-              pattern: "src: url(\"../lib/webfonts/metropolis-all-700-normal.woff\") format(\"woff\");",
-              replacement: function () {
-                return "src:url('" + fileToDataURI("tmp/lib/webfonts/metropolis-all-700-normal.woff") + "') format('woff');";
-              }
-            },
-            {
-              pattern: "src: url(\"../webfonts/fa-regular-400.eot\");",
-              replacement: ""
-            },
-            {
-              pattern: "src: url(\"../webfonts/fa-regular-400.eot?#iefix\") format(\"embedded-opentype\"), url(\"../webfonts/fa-regular-400.woff2\") format(\"woff2\"), url(\"../webfonts/fa-regular-400.woff\") format(\"woff\"), url(\"../webfonts/fa-regular-400.ttf\") format(\"truetype\"), url(\"../webfonts/fa-regular-400.svg#fontawesome\") format(\"svg\"); }",
-              replacement: function () {
-                return "src:url('" + fileToDataURI("tmp/lib/webfonts/fa-regular-400.woff") + "') format('woff'); }";
-              }
-            },
-            {
-              pattern: "src: url(\"../webfonts/fa-solid-900.eot\");",
-              replacement: ""
-            },
-            {
-              pattern: "src: url(\"../webfonts/fa-solid-900.eot?#iefix\") format(\"embedded-opentype\"), url(\"../webfonts/fa-solid-900.woff2\") format(\"woff2\"), url(\"../webfonts/fa-solid-900.woff\") format(\"woff\"), url(\"../webfonts/fa-solid-900.ttf\") format(\"truetype\"), url(\"../webfonts/fa-solid-900.svg#fontawesome\") format(\"svg\"); }",
-              replacement: function () {
-                return "src:url('" + fileToDataURI("tmp/lib/webfonts/fa-solid-900.woff") + "') format('woff'); }";
-              }
-            },
             {
               pattern: /(0056b3|007bff|17a2b8|28a745|34ce57)/ig,
               replacement: function () {
