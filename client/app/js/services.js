@@ -312,8 +312,7 @@ factory("Submission", ["$q", "$location", "$rootScope", "Authentication", "GLRes
         identity_provided: false,
         answers: {},
         answer: 0,
-        score: 0,
-        removed_files: []
+        score: 0
       });
 
       Authentication.login(0, "whistleblower", "");
@@ -1133,10 +1132,6 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
     },
 
     removeFile: function (submission, list, file) {
-      if (typeof submission._submission.removed_files !== "undefined") {
-        submission._submission.removed_files.push(String(file.uniqueIdentifier));
-      }
-
       for (var i = list.length - 1; i >= 0; i--) {
         if (list[i] === file) {
           list.splice(i, 1);
