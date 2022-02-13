@@ -175,7 +175,6 @@ def db_refresh_tenant_cache(session, tids=None):
             State.tenant_cache[tid] = ObjectDict()
 
         tenant_cache = State.tenant_cache[tid]
-        root_tenant_cache = State.tenant_cache[1]
 
         tenant_cache['ip_filter'] = {}
         tenant_cache['https_allowed'] = {}
@@ -185,6 +184,8 @@ def db_refresh_tenant_cache(session, tids=None):
         tenant_cache['notification'].admin_list = []
         tenant_cache['hostnames'] = []
         tenant_cache['onionnames'] = []
+
+    root_tenant_cache = State.tenant_cache[1]
 
     for tid, lang in session.query(models.EnabledLanguage.tid, models.EnabledLanguage.name)\
                             .filter(models.EnabledLanguage.tid.in_(tids)):

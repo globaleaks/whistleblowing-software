@@ -341,7 +341,7 @@ def update_field(session, tid, field_id, field, language):
     Transaction for updating a field
     :param session: An ORM session
     :param tid: The tenant ID
-    :param field_d: A field ID of the field to be updated
+    :param field_id: A field ID of the field to be updated
     :param field: A descriptor of field configuration
     :param language: The language of the request
     :return: The serialized descriptor of the updated field

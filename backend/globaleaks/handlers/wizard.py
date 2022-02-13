@@ -11,7 +11,6 @@ from globaleaks.models import config, profiles
 from globaleaks.orm import tw
 from globaleaks.rest import requests, errors
 from globaleaks.utils.crypto import Base64Encoder, GCE
-from globaleaks.utils.utility import datetime_now
 from globaleaks.utils.log import log
 
 
@@ -23,8 +22,6 @@ def db_wizard(session, tid, hostname, request):
     :param tid: A tenant ID
     :param request: A user request
     """
-    date = datetime_now()
-
     language = request['node_language']
 
     root_tenant_node = config.ConfigFactory(session, 1)
@@ -75,9 +72,7 @@ def db_wizard(session, tid, hostname, request):
         admin_desc['role'] = 'admin'
         admin_desc['pgp_key_remove'] = False
         admin_user = db_create_user(session, tid, None, admin_desc, language)
-
-        if tid == 1:
-            admin_user.password_change_needed = False
+        admin_user.password_change_needed = (tid != 1)
 
         if encryption and escrow:
             node.set_val('crypto_escrow_pub_key', crypto_escrow_pub_key)
@@ -96,9 +91,7 @@ def db_wizard(session, tid, hostname, request):
         receiver_desc['pgp_key_remove'] = False
         receiver_desc['send_account_activation_link'] = False
         receiver_user = db_create_user(session, tid, None, receiver_desc, language)
-
-        if tid == 1:
-            receiver_user.password_change_needed = False
+        receiver_user.password_change_needed = (tid != 1)
 
     context_desc = models.Context().dict(language)
     context_desc['name'] = 'Default'
@@ -124,12 +117,6 @@ def db_wizard(session, tid, hostname, request):
     if mode != 'default':
         node.set_val('hostname', node.get_val('subdomain') + '.' + root_tenant_node.get_val('rootdomain'))
         node.set_val('tor', False)
-
-        if not request['skip_recipient_account_creation']:
-            admin_user.password_change_needed = True
-
-        if not request['skip_recipient_account_creation']:
-            receiver_user.password_change_needed = True
 
     if mode in ['whistleblowing.it', 'eat']:
         for varname in ['anonymize_outgoing_connections',

@@ -197,7 +197,7 @@ def db_create_submission(session, tid, request, user_session, client_using_tor):
         itip.crypto_tip_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(wb_pub_key, crypto_tip_prv_key))
 
     # Evaluate if the whistleblower should get a receipt or not:
-    if ((State.tenant_cache[tid].enable_scoring_system) and
+    if (State.tenant_cache[tid].enable_scoring_system and
         (context.score_threshold_receipt == 1 and itip.score >= 2) or
         (context.score_threshold_receipt == 2 and itip.score == 3)):
         receipt = ''
