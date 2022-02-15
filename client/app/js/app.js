@@ -446,6 +446,14 @@ var GL = angular.module("GL", [
     $translateProvider.useInterpolation("noopInterpolation");
     $translateProvider.useSanitizeValueStrategy("escape");
 }]).
+  config(['uibDatepickerConfig', function (uibDatepickerConfig) {
+    console.log(uibDatepickerConfig);
+    uibDatepickerConfig.datepickerPopup = "dd-MM-yyyy";
+}]).
+  config(['uibDatepickerPopupConfig', function (uibDatepickerPopupConfig) {
+    console.log(uibDatepickerPopupConfig);
+    uibDatepickerPopupConfig.datepickerPopup = "dd-MM-yyyy";
+}]).
   config(["$uibModalProvider", function($uibModalProvider) {
     $uibModalProvider.options.animation = false;
     $uibModalProvider.options.backdrop = "static";
