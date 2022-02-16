@@ -788,10 +788,6 @@ text.axis-worktime {
   margin: 0 0.5em;
 }
 
-tbody td {
-  word-break: break-all;
-}
-
 html[dir="rtl"] input[type="email"],
 html[dir="ltr"] input[type="email"],
 html[dir="rtl"] #creditCard,
