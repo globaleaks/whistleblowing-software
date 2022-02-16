@@ -338,14 +338,6 @@ class APIResourceWrapper(Resource):
         if request.client_ip.startswith('::ffff:'):
             request.client_ip = request.client_ip[7:]
 
-        request.client_ip = request.getClientIP()
-        if isinstance(request.client_ip, bytes):
-            request.client_ip = request.client_ip.decode()
-
-        # Handle IPv4 mapping on IPv6
-        if request.client_ip.startswith('::ffff:'):
-            request.client_ip = request.client_ip[7:]
-
         request.port = request.getHost().port
 
         request.client_using_tor = request.client_ip in State.tor_exit_set or \
