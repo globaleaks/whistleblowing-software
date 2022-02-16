@@ -6,5 +6,7 @@
   .popover *,
   .popover .arrow,
   .fa-collapse-down,
-  .fa-fullscreen { display: none; }
+  .fa-fullscreen {
+    display: none;
+  }
 }

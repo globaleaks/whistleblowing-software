@@ -1,5 +1,5 @@
 @font-face {
-  font-family: "Metropolis";
+  font-family: Metropolis;
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -7,7 +7,7 @@
 }
 
 @font-face {
-  font-family: "Metropolis";
+  font-family: Metropolis;
   font-style: bold;
   font-weight: 700;
   font-display: swap;
@@ -28,7 +28,7 @@ body {
 body {
   background-color: #fff;
   color: #1d1f2a;
-  font-family: "Metropolis", Helvetica, Arial, sans-serif;
+  font-family: Metropolis, Helvetica, Arial, sans-serif;
   font-size: 16px;
   min-height: 20rem;
 }
@@ -63,19 +63,6 @@ a:hover,
 
 .visible-on-over:hover {
   opacity: 1;
-}
-
-#Sidebar a {
-  display: block;
-  margin-bottom: 0.5em;
-}
-
-#Sidebar a.active,
-#Sidebar a:active.active,
-#Sidebar a:hover.active,
-#Sidebar a:focus.active {
-  border-bottom: 1px solid #c8d1e0;
-  width: max-content;
 }
 
 [dir] .form-control,
@@ -139,6 +126,30 @@ a:hover,
 
 [dir] .btn {
   font-weight: bold;
+}
+
+.nav,
+.pagination,
+.carousel,
+.card-title a {
+  cursor: pointer;
+}
+
+.card {
+  margin-bottom: 1em;
+}
+
+#Sidebar a {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+#Sidebar a.active,
+#Sidebar a:active.active,
+#Sidebar a:hover.active,
+#Sidebar a:focus.active {
+  border-bottom: 1px solid #c8d1e0;
+  width: max-content;
 }
 
 #PageContent {
@@ -252,24 +263,6 @@ a:hover,
   text-align: center;
 }
 
-#HeaderBox #WhistleblowerLoginBox {
-  clear: both;
-}
-
-#HeaderBox #WhistleblowerLoginBox form {
-  clear: both;
-}
-
-[dir="ltr"] #HeaderBox #WhistleblowerLoginBox form,
-[dir="ltr"] #HeaderBox #WhistleblowerLoginBox label {
-  float: right;
-}
-
-[dir="rtl"] #HeaderBox #WhistleblowerLoginBox form,
-[dir="rtl"] #HeaderBox #WhistleblowerLoginBox label {
-  float: left;
-}
-
 .recoverykeyinput {
   width: 64rem;
   text-align: center;
@@ -362,8 +355,13 @@ a:hover,
 
 @keyframes fadeinout {
   0%,
-  100% { opacity: 0; }
-  50% { opacity: 1; }
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 .file-info-row {
@@ -379,7 +377,6 @@ a:hover,
   user-select: none;
   background-color: #1d1f2a;
   opacity: 0.6;
-  filter: alpha(opacity=0.6);
 }
 
 textarea.form-control {
@@ -414,17 +411,6 @@ input[type="file"] {
 .sup {
   vertical-align: super;
   font-size: smaller;
-}
-
-.nav,
-.pagination,
-.carousel,
-.card-title a {
-  cursor: pointer;
-}
-
-.card {
-  margin-bottom: 1em;
 }
 
 @media (min-width: 768px) {
@@ -677,6 +663,24 @@ input[type="file"] {
   border-radius: 5px;
 }
 
+#HeaderBox #WhistleblowerLoginBox {
+  clear: both;
+}
+
+#HeaderBox #WhistleblowerLoginBox form {
+  clear: both;
+}
+
+[dir="ltr"] #HeaderBox #WhistleblowerLoginBox form,
+[dir="ltr"] #HeaderBox #WhistleblowerLoginBox label {
+  float: right;
+}
+
+[dir="rtl"] #HeaderBox #WhistleblowerLoginBox form,
+[dir="rtl"] #HeaderBox #WhistleblowerLoginBox label {
+  float: left;
+}
+
 #FooterBox {
   background-color: #f5f7fa;
   text-align: center;
@@ -695,7 +699,7 @@ input[type="file"] {
   min-width: 20rem;
   z-index: 10;
   top: 1rem;
-  padding: 0 5eem;
+  padding: 0 5em;
 }
 
 #StepAddBox,
