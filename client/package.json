@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "eslint": "8.9.0",
-    "gettext-parser": "4.2.0",
+    "gettext-parser": "5.0.0",
     "grunt": "1.4.1",
     "grunt-angular-templates": "1.2.0",
     "grunt-confirm": "1.0.8",
@@ -60,7 +60,7 @@
     "postcss-rtl": "1.7.3",
     "protractor": "7.0.0",
     "protractor-console-plugin": "0.1.1",
-    "stylelint": "14.5.0",
+    "stylelint": "14.5.1",
     "stylelint-config-standard": "25.0.0",
     "superagent": "7.1.1",
     "terser": "5.10.0"
