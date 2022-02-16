@@ -366,7 +366,7 @@ module.exports = function(grunt) {
 
     stylelint: {
       options: {
-        configFile: ".stylelintrc",
+        configFile: ".stylelintrc.json",
         formatter: "string",
         ignoreDisables: false,
         failOnError: true,
