@@ -118,7 +118,6 @@ SubmissionDesc = {
     'context_id': uuid_regexp,
     'receivers': [uuid_regexp],
     'identity_provided': bool,
-    'removed_files': list,
     'answers': dict,
     'score': int
 }
