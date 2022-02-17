@@ -118,7 +118,7 @@ def db_create_submission(session, tid, request, user_session, client_using_tor):
                                      models.Questionnaire.id == models.Context.questionnaire_id))
 
     answers = request['answers']
-    steps = db_get_questionnaire(session, tid, questionnaire.id, None)['steps']
+    steps = db_get_questionnaire(session, tid, questionnaire.id, None, True)['steps']
     questionnaire_hash = db_archive_questionnaire_schema(session, steps)
 
     crypto_tip_pub_key = ''
