@@ -68,93 +68,15 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6 form-group">
-      <label>Come sei venuto a conoscenza del progetto?</label>
-      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
-      <div>
-        <select name="hear_channel" class="custom-select" data-ng-model="signup.hear_channel" required>
-          <option value="" selected="selected"></option>
-          <option value="option1">Convegno di settore</option>
-          <option value="option2">Media</option>
-          <option value="option3">Motori di ricerca</option>
-          <option value="option4">Passaparola</option>
-          <option value="option5">Social media</option>
-          <option value="other">Altro</option>
-        </select>
-      </div>
-    </div>
-  </div>
-  <br />
-  <div class="row">
     <div class="col-md-12">
       <label class="title">Dati ente:</label>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6 form-group">
+    <div class="col-md-12 form-group">
       <label>Nome</label>
       <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <input name="organization_name" class="form-control" data-ng-model="signup.organization_name" type="text" data-ng-change="updateSubdomain()" required>
-    </div>
-    <div class="col-md-6 form-group">
-      <label>Tipo</label>
-      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
-      <div>
-        <select name="organization_type" class="custom-select" data-ng-model="signup.organization_type" required>
-          <option value="" selected="selected"></option>
-          <option value="L10">Agenzie ed enti per il turismo</option>
-          <option value="L19">Agenzie ed enti regionali del lavoro</option>
-          <option value="L13">Agenzie ed enti regionali di sviluppo agricolo</option>
-          <option value="L2">Agenzie ed enti regionali per la formazione, la ricerca e l'ambiente</option>
-          <option value="C10">Agenzie fiscali</option>
-          <option value="L20">Agenzie regionali e provinciale per la rappresentanza negoziale</option>
-          <option value="L21">Agenzie regionali per le erogazioni in agricoltura</option>
-          <option value="L22">Agenzie regionali sanitarie</option>
-          <option value="L15">Agenzie, enti e consorzi pubblici per il diritto allo studio universitario</option>
-          <option value="L1">Altri enti locali</option>
-          <option value="C13">Automobile club federati ACI</option>
-          <option value="C5">Autorità amministrative indipendenti</option>
-          <option value="L23">Autorità di ambito territoriale ottimale</option>
-          <option value="L40">Autorità di bacino</option>
-          <option value="L11">Autorità portuali</option>
-          <option value="L39">Aziende e consorzi pubblici territoriali per l'edilizia residenziale</option>
-          <option value="L46">Aziende ed amministrazioni dello stato ad ordinamento autonomo</option>
-          <option value="L8">Aziende ospedaliere, aziende ospedaliere universitarie, policlinici e istituti di ricovero e cura a carattere scientifico pubblici</option>
-          <option value="L34">Aziende pubbliche di servizi alla persona</option>
-          <option value="L7">Aziende sanitarie locali</option>
-          <option value="L35">Camere di commercio, industria, artigianato e agricoltura e loro unioni regionali</option>
-          <option value="L45">Città metropolitane</option>
-          <option value="L6">Comuni e loro consorzi e associazioni</option>
-          <option value="L12">Comunità montane e loro consorzi e associazioni</option>
-          <option value="L24">Consorzi di bacino imbrifero montano</option>
-          <option value="L28">Consorzi interuniversitari di ricerca</option>
-          <option value="L42">Consorzi per l'area di sviluppo industriale</option>
-          <option value="L36">Consorzi tra amministrazioni locali</option>
-          <option value="L44">Enti di regolazione dei servizi idrici e o dei rifiuti</option>
-          <option value="C8">Enti e istituzioni di ricerca pubblici</option>
-          <option value="SCECP">Enti nazionali di previdenza ed assistenza sociale in conto economico consolidato</option>
-          <option value="C3">Enti pubblici non economici</option>
-          <option value="C7">Enti pubblici produttori di servizi assistenziali, ricreativi e culturali </option>
-          <option value="C14">Federazioni nazionali, ordini, collegi e consigli professionali</option>
-          <option value="L16">Fondazioni lirico sinfoniche</option>
-          <option value="C11">Forze di polizia ad ordinamento civile e militare per la tutela dell'ordine e della sicurezza pubblica</option>
-          <option value="GPS">Gestori di pubblici servizi</option>
-          <option value="L33">Istituti di istruzione statale di ogni ordine e grado</option>
-          <option value="C12">Istituti zooprofilattici sperimentali</option>
-          <option value="L43">Istituzioni per l'alta formazione artistica, musicale e coreutica - AFAM</option>
-          <option value="C2">Organi costituzionali e di rilievo costituzionale</option>
-          <option value="L38">Parchi nazionali, consorzi e enti gestori di parchi e aree naturali protette</option>
-          <option value="C1">Presidenza del consiglio dei ministri, ministeri e avvocatura dello stato</option>
-          <option value="L5">Province e loro consorzi e associazioni</option>
-          <option value="L4">Regioni, province autonome e loro consorzi e associazioni</option>
-          <option value="SCEC">Società in conto economico consolidato</option>
-          <option value="SP">Società partecipata</option>
-          <option value="L31">Teatri stabili ad iniziativa pubblica</option>
-          <option value="L18">Unioni di comuni e loro consorzi e associazioni</option>
-          <option value="L17">Università e istituti di istruzione universitaria pubblici</option>
-          <option value="OTHER">Altro</option>
-        </select>
-      </div>
     </div>
   </div>
   <div class="row">
@@ -216,45 +138,6 @@
           <option data-ng-repeat="x in data_countries_italy_cities | filter:{'id_provincia': signup.organization_location3}:true" value="{{x.id}}">{{x.nome}}</option>
           <option value=""></option>
         </select>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12 form-group">
-      <label>Numero dipendenti</label>
-      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
-      <div class="row">
-        <div class="col-md-6">
-          <select name="organization_number_employees" class="custom-select" data-ng-model="signup.organization_number_employees" required>
-            <option value="" selected="selected"></option>
-            <option value="option1">0-15</option>
-            <option value="option2">15 - 100</option>
-            <option value="option3">100 - 1.000</option>
-            <option value="option4">1.000 - 5.000</option>
-            <option value="option5">5.000 - 10.000</option>
-            <option value="option6">&gt; 10.000</option>
-          </select>
-	</div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12 form-group">
-      <label>Numero utenti</label>
-      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
-      <div class="fieldDescription">Per numero utenti si intende il bacino di riferimento dell’ente, per un comune sono i cittadini, per una ASL sono gli utenti del servizio sanitario di pertinenza, per l’università gli iscritti, etc.</div>
-      <div class="row">
-        <div class="col-md-6">
-          <select name="organization_number_users" class="custom-select" data-ng-model="signup.organization_number_users" required>
-            <option value="" selected="selected"></option>
-            <option value="option1">0 - 500</option>
-            <option value="option2">500 - 5.000</option>
-            <option value="option3">5.000 - 50.000</option>
-            <option value="option4">50.000 - 100.000</option>
-            <option value="option5">100.000 - 500.000</option>
-            <option value="option6">&gt; 500.000</option>
-          </select>
-	</div>
       </div>
     </div>
   </div>
