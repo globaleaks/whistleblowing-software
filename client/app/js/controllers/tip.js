@@ -283,7 +283,7 @@ GL.controller("TipCtrl",
               expiration_date: $scope.Utils.getPostponeDate($scope.contexts_by_id[$scope.tip.context_id].tip_timetolive),
               dateOptions: {
                 minDate: new Date($scope.tip.expiration_date),
-                maxDate: $scope.Utils.getPostponeDate($scope.contexts_by_id[$scope.tip.context_id].tip_timetolive * 2)
+                maxDate: $scope.Utils.getPostponeDate(Math.max(365, $scope.contexts_by_id[$scope.tip.context_id].tip_timetolive * 2))
               },
               opened: false,
               Utils: $scope.Utils
