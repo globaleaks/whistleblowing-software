@@ -1,3 +1,14 @@
+Changes in version 4.7.11
+    Revise revoke access functionality to show real users' names
+    Fix issues #3171, #3175
+    Bump FontAwesome from 5 to 6
+    Bump npm dependencies to latest versions
+    Stop including fonts inside minified css
+    Revise postpone feature in relation to #3166
+    Bump npm dependencies to latest versions
+    Update translations
+    [doc] Update documentation images
+
 Changes in version 4.7.10
     Fix regression on files uploads introduced in 4.7.8
 
