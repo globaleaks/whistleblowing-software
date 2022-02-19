@@ -291,8 +291,6 @@ Audit Log
 ---------
 .. image:: ../../images/admin/audit_log.png
 
-.. image:: ../../images/admin/audit_log_activities.png
-
 .. image:: ../../images/admin/audit_log_users.png
 
 .. image:: ../../images/admin/audit_log_reports.png
