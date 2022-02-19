@@ -134,7 +134,7 @@ Content-Security-Policy
 +++++++++++++++++++++++
 The backend implements the following `Content Security Policy (CSP) <https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP>`_:
 ::
-  Content-Security-Policy: default-src 'none'; script-src 'self'; connect-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:; media-src 'self'; form-action 'self'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:; form-action 'self'; frame-ancestors 'none';
 
 Cross-Origin-Embedder-Policy
 ++++++++++++++++++++++++++++
