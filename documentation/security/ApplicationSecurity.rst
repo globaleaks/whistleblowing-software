@@ -261,7 +261,7 @@ In particular only following ciphertexts are enabled:
 
 Network Sandboxing
 -------------------
-The GlobaLeaks backend integrates ``iptables`` by default and implements strict firewall rules that restrict network incoming network connection to HTTP and HTTPS connection on ports 80 and 443.
+The GlobaLeaks backend integrates `iptables <https://www.netfilter.org/>`_ by default and implements strict firewall rules that restrict network incoming network connection to HTTP and HTTPS connection on ports 80 and 443.
 
 In addition the application makes it possible to anonymize outgoing connections that could be configured to be sent through Tor.
 
