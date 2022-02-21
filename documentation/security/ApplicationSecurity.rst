@@ -278,7 +278,7 @@ In addition to this GlobaLeaks implements many other encryption components and t
 
 Application Sandboxing
 ======================
-The GlobaLeaks backend integrates ``AppArmor`` by default and implements a strict sandboxing profile enabling the application to access only the strictly required files.
+The GlobaLeaks backend integrates `AppArmor <https://apparmor.net/>`_ by default and implements a strict sandboxing profile enabling the application to access only the strictly required files.
 As well the application does run under a dedicated user and group "globaleaks" with reduced privileges.
 
 DoS Resiliency
