@@ -349,7 +349,7 @@ def db_postpone_expiration(session, itip, expiration_date):
     context = session.query(models.Context).filter(models.Context.id == itip.context_id).one()
 
     if context.tip_timetolive > 0:
-        max_expiration_date = get_expiration(Math.max(365, context.tip_timetolive * 2))
+        max_expiration_date = get_expiration(max(365, context.tip_timetolive * 2))
     else:
         max_expiration_date = datetime_never()
 
