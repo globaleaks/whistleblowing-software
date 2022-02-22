@@ -261,7 +261,8 @@ class APIResourceWrapper(Resource):
 
         if isinstance(e, NoResultFound):
             e = errors.ResourceNotFound()
-        elif isinstance(e, errors.GLException):
+        elif (isinstance(e, errors.GLException) or
+              "Producer was not unregistered for" in str(e)):
             pass
         else:
             e.tid = request.tid
@@ -269,16 +270,17 @@ class APIResourceWrapper(Resource):
             extract_exception_traceback_and_schedule_email(exception)
             e = errors.InternalServerError('Unexpected')
 
-        request.setResponseCode(e.status_code)
-        request.setHeader(b'content-type', b'application/json')
+        if isinstance(e, errors.GLException):
+          request.setResponseCode(e.status_code)
+          request.setHeader(b'content-type', b'application/json')
 
-        response = json.dumps({
-            'error_message': e.reason,
-            'error_code': e.error_code,
-            'arguments': getattr(e, 'arguments', [])
-        })
+          response = json.dumps({
+              'error_message': e.reason,
+              'error_code': e.error_code,
+              'arguments': getattr(e, 'arguments', [])
+          })
 
-        request.write(response.encode())
+          request.write(response.encode())
 
     def preprocess(self, request):
         request.hostname = request.getRequestHostname()
