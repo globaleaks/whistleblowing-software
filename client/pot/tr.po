@@ -15,7 +15,7 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # uskumru, 2013
-# Kaya Zeren <kayazeren@gmail.com>, 2020-2021
+# Kaya Zeren <kayazeren@gmail.com>, 2020-2022
 # msare <mervesareakin@gmail.com>, 2014
 # On the Line Turkiye <onthelineturkiye@gmail.com>, 2016
 # Ozgur Yasin <yasinaydin@korsanparti.org>, 2014
@@ -32,8 +32,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2022-01-31 15:54+0000\n"
-"Last-Translator: T. E. Kalayci <tekrei@tutanota.com>\n"
+"PO-Revision-Date: 2022-02-20 11:52+0000\n"
+"Last-Translator: Kaya Zeren <kayazeren@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -279,7 +279,7 @@ msgid "Templates"
 msgstr "Şablonlar"
 
 msgid "URL redirects"
-msgstr "URL yönlendirmeleri"
+msgstr "Adres yönlendirmeleri"
 
 msgid "Anomaly detection thresholds"
 msgstr "Anormallik tespit sınırı"
@@ -306,7 +306,7 @@ msgid "Trigger question"
 msgstr "Tetikleyici soru"
 
 msgid "Triggered by score:"
-msgstr "Skorla tetikle:"
+msgstr "Tetiklenme puanı:"
 
 msgid "Weak"
 msgstr "Zayıf"
@@ -350,7 +350,7 @@ msgid ""
 msgstr "Bu özel metin artık platformda görüntülenmiyor. Orijinal metin değiştirildi veya kaldırıldı."
 
 msgid "Audit log"
-msgstr "Denetim kaydı"
+msgstr "Denetim günlüğü"
 
 msgid "Stats"
 msgstr "İstatistikler"
@@ -428,7 +428,7 @@ msgid "Closed"
 msgstr "Kapatıldı"
 
 msgid "Placeholder"
-msgstr "Yer tutucu"
+msgstr "Yer belirteci"
 
 msgid "Print"
 msgstr "Yazdır"
@@ -463,16 +463,16 @@ msgstr "Parola sıfırlama"
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr "Bir veya daha fazla alıcı henüz ilk girişini gerçekleştirmemiş. Bu nedenle raporları alamayacaklardır."
+msgstr "Bir veya daha fazla alıcı henüz hiç oturum açmamış. Bu nedenle raporları alamazlar."
 
 msgid "This user has not performed the first login yet."
-msgstr "Bu kullanıcı henüz ilk girişini yapmamıştır."
+msgstr "Bu kullanıcı henüz hiç oturum açmamış."
 
 msgid "seconds"
 msgstr "saniye"
 
 msgid "This domain name is not available."
-msgstr "Bu alan adı mevcut değil."
+msgstr "Bu etki alanı kullanılamıyor."
 
 msgid "Mark as important"
 msgstr "Önemli olarak işaretle"
@@ -566,7 +566,7 @@ msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Seçilen parola oldukça zayıf. Geçerli bir parola en az 10 karakter uzunluğunda olmalı ve en az bir küçük harf, bir büyük harf, bir sayı ve bir özel karakter içeren çeşitli karakterlerden oluşmalıdır."
+msgstr "Yazılan parola oldukça zayıf. Geçerli bir parola en az 10 karakter uzunluğunda olmalı ve en az bir küçük harf, bir büyük harf, bir sayı ve bir özel karakter içermelidir."
 
 msgid "The new password must be different from the current one."
 msgstr "Yeni parola, geçerli paroladan farklı olmalıdır."
@@ -623,20 +623,20 @@ msgid "megabytes"
 msgstr "megabyte"
 
 msgid "Enable HSTS preload"
-msgstr "HSTS önyüklemeyi etkinleştir"
+msgstr "HSTS ön yüklemeyi etkinleştir"
 
 msgid "Require two factor authentication"
-msgstr "İki aşamalı doğrulamayı zorunlu kıl"
+msgstr "İki aşamalı doğrulama zorunlu olsun"
 
 msgid "Password change interval"
 msgstr "Parola değiştirme aralığı"
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
-msgstr "Güvenlik nedeniyle, düzenli aralıklarla parola değişikliği gerekmektedir."
+msgstr "Güvenlik nedeniyle, parola düzenli aralıklarla değiştirilmelidir."
 
 msgid "Set the value to 0 to disable this feature."
-msgstr "Bu özelliği devre dışı bırakmak için değerini 0 olarak ayarlayın."
+msgstr "Bu özelliği devre dışı bırakmak 0 olarak ayarlayın."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Okunmamış bildirimler için kullanıcıların bilgilendirilmesine kadar geçecek gün sayısı"
@@ -645,24 +645,24 @@ msgid "Enable custodian user role"
 msgstr "Koruyucu kullanıcı rolünü etkinleştir"
 
 msgid "Enable scoring system"
-msgstr "Skorlama sistemini etkinleştir"
+msgstr "Puan sistemini etkinleştir"
 
 msgid "Logging level"
 msgstr "Günlük düzeyi"
 
 msgid "Log accesses of internal users"
-msgstr "Dahili kullanıcıların günlük erişimleri"
+msgstr "İç kullanıcıların erişimleri günlüğe kaydedilsin"
 
 msgid "Notify administrators of software problems"
-msgstr " Yazılım sorunlarını yöneticilere bildir"
+msgstr " Yazılım sorunları yöneticilere bildirilsin"
 
 msgid "Notify developers of software problems"
-msgstr "Yazılım sorunlarını geliştiricilere bildir"
+msgstr "Yazılım sorunları geliştiricilere bildirilsin"
 
 msgid ""
 "By enabling this feature, you will contribute to the development and "
 "security of the platform."
-msgstr "Bu özelliği etkinleştirdiğinizde, platformun geliştirilmesi ve güvenliğine katkı sağlamış olacaksınız."
+msgstr "Bu seçenek etkinleştirildiğinde, platformun geliştirilmesi ve güvenliğine katkıda bulunursunuz."
 
 msgid "Save"
 msgstr "Kaydet"
@@ -710,7 +710,7 @@ msgid "Whistleblower's last access"
 msgstr "İhbarcının son erişimi"
 
 msgid "Substatuses"
-msgstr "Altdurumlar"
+msgstr "Alt durumlar"
 
 msgid "Add"
 msgstr "Ekle"
@@ -839,7 +839,7 @@ msgid "Additional questionnaire"
 msgstr "Ek anket"
 
 msgid "Scoring system options"
-msgstr "Skorlama sistem seçenekleri"
+msgstr "Puan sistemi seçenekleri"
 
 msgid "Threshold"
 msgstr "Eşik"
@@ -854,7 +854,7 @@ msgid "Customize the message shown in the receipt page"
 msgstr "Alındı sayfasında görüntülenen mesajı uyarla"
 
 msgid "Assign the receipt only to reports reaching score:"
-msgstr "Alındıyı sadece şu skora ulaşan raporlara tahsis et:"
+msgstr "Alındı yalnızca şu puanı alan raporlara atansın:"
 
 msgid "Software version:"
 msgstr "Yazılım versiyonu"

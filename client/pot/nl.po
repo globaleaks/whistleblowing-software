@@ -39,7 +39,7 @@
 # Teun Gautier <gautier@groene.nl>, 2013
 # Raf Rasenberg <raf@webconexus.nl>, 2019
 # Rianne FPU <verbeek@freepressunlimited.org>, 2020-2021
-# Robin van der Vliet <info@robinvandervliet.nl>, 2015
+# Robin van der Vliet <info@robinvandervliet.com>, 2015
 # 8d98478d19376e343142c8c23c2a73b6_36c4a7f, 2015
 # SylvainFPU <mignot@freepressunlimited.org>, 2019-2021
 # tempuser1234 <c1160321@trbvm.com>, 2014
