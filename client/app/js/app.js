@@ -798,6 +798,7 @@ var GL = angular.module("GL", [
 
          /* 10: Not Authenticated */
          if (error.code === 10) {
+           $rootScope.Authentication.reset();
            $rootScope.Authentication.loginRedirect(false);
          } else if (error.code === 6 && $rootScope.Authentication.session) {
            if ($rootScope.Authentication.session.role !== "whistleblower") {
