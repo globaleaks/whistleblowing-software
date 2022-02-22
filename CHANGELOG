@@ -1,3 +1,15 @@
+Changes in version 4.7.12
+    Filter recurring meaningless exceptions from Twisted from notification
+    Prevent users to revoke their own access to reports (#3182)
+    Optimize Content Security Policy
+    Fix regression on report postpone feature introduced in 4.7.11
+    Fix issue #3180
+    Bump npm dependencies to latest versions
+    Update translations
+    [doc] Update documentation about CSP
+    [doc] Add reference link for AppArmor
+    [doc] Add reference link for iptables
+
 Changes in version 4.7.11
     Revise revoke access functionality to show real users' names
     Fix issues #3171, #3175
