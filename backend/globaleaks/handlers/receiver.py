@@ -144,12 +144,12 @@ def perform_tips_operation(session, tid, user_id, user_cc, operation, args):
         db_del(session, models.InternalTip, models.InternalTip.id.in_(itip_ids))
 
     elif operation == 'grant' and receiver.can_grant_access_to_reports:
-        for itip, rtip in result:
-            db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, args['receiver'])
+        for _, rtip in result:
+            db_grant_tip_access(session, tid, user_id, user_cc, rtip.id, args['receiver'])
 
     elif operation == 'revoke' and receiver.can_grant_access_to_reports:
-        for itip, _ in result:
-            db_revoke_tip_access(session, tid, user_id, itip, args['receiver'])
+        for _, rtip in result:
+            db_revoke_tip_access(session, tid, user_id, rtip.id, args['receiver'])
 
     else:
         raise errors.ForbiddenOperation

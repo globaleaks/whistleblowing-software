@@ -18,7 +18,7 @@ from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.submission import db_create_receivertip, decrypt_tip
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.models import serializers
-from globaleaks.orm import db_get, db_del, db_log, transact
+from globaleaks.orm import db_get, db_del, db_log, transact, tw
 from globaleaks.rest import errors, requests
 from globaleaks.settings import Settings
 from globaleaks.state import State
@@ -57,7 +57,7 @@ def db_tip_grant_notification(session, user):
     }))
 
 
-def db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, receiver_id):
+def db_grant_tip_access(session, tid, user_id, user_cc, rtip_id, receiver_id):
     """
     Transaction for granting a user access to a report
 
@@ -65,10 +65,17 @@ def db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, receiver_id)
     :param tid: A tenant ID of the user performing the operation
     :param user_id: A user ID of the user performing the operation
     :param user_id: A user crypto key
-    :param itip: A itip reference of the itip on which perform the operation
-    :param rtip: A rtip reference of the rtip on which perform the operation
+    :param rtip: A rtip_id of the rtip on which perform the operation
     :param receiver_id: A user ID of the the user to which grant access to the report
     """
+    receiver, itip, rtip = session.query(models.User, models.InternalTip, models.ReceiverTip) \
+                                  .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                                          models.ReceiverTip.id == rtip_id,
+                                          models.User.id == models.ReceiverTip.receiver_id).one()
+    if user_id == receiver_id or not receiver.can_grant_access_to_reports:
+        raise errors.ForbiddenOperation
+
+
     existing = session.query(models.ReceiverTip).filter(models.ReceiverTip.receiver_id == receiver_id,
                                                         models.ReceiverTip.internaltip_id == itip.id).one_or_none()
 
@@ -110,32 +117,24 @@ def db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, receiver_id)
     db_log(session, tid=tid, type='grant_access', user_id=user_id, object_id=itip.id)
 
 
-@transact
-def grant_tip_access(session, tid, user_id, user_cc, rtip_id, receiver_id):
-    receiver, itip, rtip = session.query(models.User, models.InternalTip, models.ReceiverTip) \
-                        .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                models.ReceiverTip.id == rtip_id,
-                                models.User.id == models.ReceiverTip.receiver_id).one()
-    if not receiver.can_grant_access_to_reports:
-        raise errors.ForbiddenOperation
-
-    itip, rtip = session.query(models.InternalTip, models.ReceiverTip) \
-                        .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                models.ReceiverTip.id == rtip_id).one()
-
-    return db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, receiver_id)
-
-
-def db_revoke_tip_access(session, tid, user_id, itip, receiver_id):
+def db_revoke_tip_access(session, tid, user_id, rtip_id, receiver_id):
     """
     Transaction for revoking a user access to a report
 
     :param session: An ORM session
     :param tid: A tenant ID of the user performing the operation
     :param user_id: A user ID of the user performing the operation
-    :param itip: A itip reference of the submission object of the operation
+    :param rtip_id: A rtip_id  of the submission object of the operation
     :param receiver_id: A user ID of the the user to which revoke access to the report
     """
+    receiver, itip = session.query(models.User, models.InternalTip) \
+                            .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                                    models.ReceiverTip.id == rtip_id,
+                                    models.User.id == models.ReceiverTip.receiver_id).one()
+
+    if user_id == receiver_id or not receiver.can_grant_access_to_reports:
+        raise errors.ForbiddenOperation
+
     rtip = session.query(models.ReceiverTip) \
                   .filter(models.ReceiverTip.internaltip_id == itip.id,
                           models.ReceiverTip.receiver_id == receiver_id).one_or_none()
@@ -147,18 +146,6 @@ def db_revoke_tip_access(session, tid, user_id, itip, receiver_id):
 
     db_log(session, tid=tid, type='revoke_access', user_id=user_id, object_id=itip.id)
 
-
-@transact
-def revoke_tip_access(session, tid, user_id, rtip_id, receiver_id):
-    receiver, itip = session.query(models.User, models.InternalTip) \
-                        .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                models.ReceiverTip.id == rtip_id,
-                                models.User.id == models.ReceiverTip.receiver_id).one()
-
-    if not receiver.can_grant_access_to_reports:
-        raise errors.ForbiddenOperation
-
-    return db_revoke_tip_access(session, tid, user_id, itip, receiver_id)
 
 
 def db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id):
@@ -611,10 +598,10 @@ class RTipInstance(OperationHandler):
         return set_internaltip_variable(self.request.tid, self.session.user_id, rtip_id, key, value)
 
     def grant_tip_access(self, req_args, rtip_id, *args, **kwargs):
-        return grant_tip_access(self.request.tid, self.session.user_id, self.session.cc, rtip_id, req_args['receiver'])
+        return tw(db_grant_tip_access, self.request.tid, self.session.user_id, self.session.cc, rtip_id, req_args['receiver'])
 
     def revoke_tip_access(self, req_args, rtip_id, *args, **kwargs):
-        return revoke_tip_access(self.request.tid, self.session.user_id, rtip_id, req_args['receiver'])
+        return tw(db_revoke_tip_access, self.request.tid, self.session.user_id, rtip_id, req_args['receiver'])
 
     def postpone_expiration(self, req_args, rtip_id, *args, **kwargs):
         return postpone_expiration(self.request.tid, self.session.user_id, rtip_id, req_args['value'])
