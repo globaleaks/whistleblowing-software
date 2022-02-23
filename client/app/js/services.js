@@ -49,7 +49,6 @@ factory("Authentication",
 	self.loginInProgress = false;
 	self.requireAuthCode = false;
 	self.loginData = {};
-        self.deleteSession();
       };
 
       self.login = function(tid, username, password, authcode, authtoken) {
