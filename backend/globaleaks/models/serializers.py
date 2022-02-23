@@ -228,7 +228,7 @@ def serialize_rtip(session, itip, rtip, language):
     ret['id'] = rtip.id
     ret['internaltip_id'] = itip.id
     ret['receiver_id'] = user_id
-    ret['custodian'] = State.tenant_cache[itip.tid]['custodian']
+    ret['custodian'] = State.tenant_cache[itip.tid]['enable_custodian']
     ret['important'] = itip.important
     ret['label'] = itip.label
 

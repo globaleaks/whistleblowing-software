@@ -10,10 +10,10 @@
   <textarea class="form-control" data-ng-model="request_motivation" data-ng-attr-placeholder="{{'Request motivation' | translate}}"></textarea>
 </div>
 <div class="modal-footer">
-  <span id="modal-action-ok" class="btn btn-primary" data-ng-disabled="request_motivation == undefined || request_motivation == ''" data-ng-click="confirm()">
+  <button id="modal-action-ok" class="btn btn-primary" data-ng-disabled="!request_motivation" data-ng-click="confirm()">
     <i class="fa-solid fa-check"></i>
     <span data-translate>Send</span>
-  </span>
+  </button>
   <span id="modal-action-cancel" class="btn btn-outline-secondary" data-ng-click="cancel()">
     <i class="fa-solid fa-times"></i>
     <span data-translate>Cancel</span>
