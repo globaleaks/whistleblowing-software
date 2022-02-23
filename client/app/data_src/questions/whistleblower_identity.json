@@ -181,12 +181,21 @@
           "score_type":"none",
           "score_points":0,
           "label":{
+            "en":"I prefer to be contacted via this platform only"
+          },
+          "id":"identity_alternative_contact_method_platform"
+        },
+        {
+          "order":1,
+          "score_type":"none",
+          "score_points":0,
+          "label":{
             "en":"Email address"
           },
           "id":"identity_alternative_contact_method_email"
         },
         {
-          "order":1,
+          "order":2,
           "score_type":"none",
           "score_points":0,
           "label":{
@@ -195,22 +204,13 @@
           "id":"identity_alternative_contact_method_phone"
         },
         {
-          "order":2,
+          "order":3,
           "score_type":"none",
           "score_points":0,
           "label":{
             "en":"Other"
           },
           "id":"identity_alternative_contact_method_other"
-        },
-        {
-          "order":3,
-          "score_type":"none",
-          "score_points":0,
-          "label":{
-            "en":"I prefer to be contacted via this platform only"
-          },
-          "id":"identity_alternative_contact_method_platform"
         }
       ],
       "children":[
