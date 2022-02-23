@@ -1,3 +1,7 @@
+Changes in version 4.7.13
+    Fix wrong release numbering stating 4.7.12 is still 4.7.11
+    Bump npm dependencies to latest versions
+
 Changes in version 4.7.12
     Filter recurring meaningless exceptions from Twisted from notification
     Prevent users to revoke their own access to reports (#3182)
