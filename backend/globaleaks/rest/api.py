@@ -261,8 +261,7 @@ class APIResourceWrapper(Resource):
 
         if isinstance(e, NoResultFound):
             e = errors.ResourceNotFound()
-        elif (isinstance(e, errors.GLException) or
-              "Producer was not unregistered for" in str(e)):
+        elif isinstance(e, errors.GLException):
             pass
         else:
             e.tid = request.tid

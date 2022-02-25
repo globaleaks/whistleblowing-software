@@ -40,8 +40,6 @@ def mock_Request_redirect(self, url):
 
 
 _orig_request_write = Request.write
-
-
 def mock_Request_write(self, data):
     # Backport Twisted #9410 from  19.7.0
     if self._disconnected:

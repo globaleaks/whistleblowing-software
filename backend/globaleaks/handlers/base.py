@@ -32,18 +32,23 @@ mimetypes.add_type('application/woff2', '.woff2')
 
 
 def serve_file(request, fo):
-    def on_finish(_ignored):
+    filesender = FileSender()
+
+    def on_success(byte):
         fo.close()
-        request.finish()
+
+    def on_error(error):
+        filesender.consumer.unregisterProducer()
+        fo.close()
 
     if request.finished:
         return
 
-    filesender = FileSender().beginFileTransfer(fo, request)
+    d = filesender.beginFileTransfer(fo, request)
+    d.addCallback(on_success)
+    d.addErrback(on_error)
 
-    filesender.addBoth(on_finish)
-
-    return filesender
+    return d
 
 
 
