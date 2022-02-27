@@ -3,11 +3,11 @@
 # Memeteli Niyaz <muhemmedeli.niyaz@gmail.com>, 2021
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
 # Memeteli Niyaz <muhemmedeli.niyaz@gmail.com>, 2021
-# Tughluq Qutluq <tugkutluk@gmail.com>, 2021
+# Tughluq Qutluq <tugkutluk@gmail.com>, 2021-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2022-02-22 15:30+0000\n"
+"PO-Revision-Date: 2022-02-26 20:47+0000\n"
 "Last-Translator: Tughluq Qutluq <tugkutluk@gmail.com>\n"
 "Language-Team: Uyghur (http://www.transifex.com/otf/globaleaks/language/ug/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -101,7 +101,7 @@ msgid "YOUR NAME"
 msgstr "نامىڭىز"
 
 msgid "Label the report"
-msgstr "دوكلاتقا بەلگە سال"
+msgstr "مەلۇماتقا بەلگە قوي"
 
 msgid "Postpone the expiration date"
 msgstr "سۈرۈك چېسلاسىنى كەينىگە سۈر"
@@ -334,7 +334,7 @@ msgid "Activities"
 msgstr "پائالىيەتلەر"
 
 msgid "Reports"
-msgstr "دوكلاتلار"
+msgstr "مەلۇماتلار"
 
 msgid "Report"
 msgstr ""
@@ -438,7 +438,7 @@ msgstr "پارولنى قايتا سەپلە"
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr "بىر ياكى بىردىن كۆپ تاپشۇرىۋالغۇچىلار تېخىچە تۇنجى تىزىمغا كىرىشنى ئىجرا قىلماپتۇ. بۇ ئۇلار دوكلاتلارنى تاپشۇرىۋالالمايدۇ، دېگەنلىك."
+msgstr "بىر ياكى بىردىن كۆپ تاپشۇرىۋالغۇچىلار تېخىچە تۇنجى تىزىمغا كىرىشنى ئىجرا قىلماپتۇ. بۇ ئۇلار مەلۇماتلارنى تاپشۇرىۋالالمايدۇ، دېگەنلىك."
 
 msgid "This user has not performed the first login yet."
 msgstr "بۇ ئىشلەتكۈچى تېخىچە تۇنجى تىزىمغا كىرىشنى ئىجرا قىلماپتۇ."
@@ -459,7 +459,7 @@ msgid "Logout"
 msgstr "تىزىمدىن چىق"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr "بۇ تاپشۇرىۋالغۇچىغا ئىشلەتكۈچىلەرگە دوكلاتنى زىيارەت قىلىش ھوقۇقى بېرىش ئىقتىدارى بەر"
+msgstr "بۇ تاپشۇرىۋالغۇچىغا ئىشلەتكۈچىلەرگە مەلۇماتنى زىيارەت قىلىش ھوقۇقى بېرىش ئىقتىدارى بەر"
 
 msgid "Grant access"
 msgstr "ھوقۇق بەر"
@@ -468,7 +468,7 @@ msgid "Revoke access"
 msgstr "ھوقۇقنى قايتۇرىۋال"
 
 msgid "Please summarize your report in a few words."
-msgstr "ئىككى ئېغىز گەپ بىلەن دوكلاتىڭىزنى چۈشەندۈرۈڭ."
+msgstr "ئىككى ئېغىز گەپ بىلەن مەلۇماتىڭىزنى چۈشەندۈرۈڭ."
 
 msgid "Where did the facts happen?"
 msgstr ""
@@ -526,10 +526,10 @@ msgid "What is the outcome you want to achieve with our support?"
 msgstr ""
 
 msgid "File a report"
-msgstr "بىر دوكلات يوللا"
+msgstr "بىر مەلۇمات يوللا"
 
 msgid "Select the context of your report:"
-msgstr "دوكلاتىڭىزنىڭ مەزمۇنىنى تاللاڭ:"
+msgstr "مەلۇماتىڭىزنىڭ مەزمۇنىنى تاللاڭ:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "بىر تەرەپ قىلىشتىن بۇرۇن، يېڭى بىر پارول بەلگىلەڭ."
@@ -614,7 +614,7 @@ msgid "Set the value to 0 to disable this feature."
 msgstr "بۇ ئىقتىدارنى چەكلەش ئۈچۈن قىممىتىنى 0 قىلىپ بېكىتىڭ."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr "ئوقۇلمىغان دوكلاتلارنى ئىشلەتكۈچىلەرگە ئۇقتۇرغىچە ئۆتىدىغان كۈن سانى"
+msgstr "ئوقۇلمىغان مەلۇماتلارنى ئىشلەتكۈچىلەرگە ئۇقتۇرغىچە ئۆتىدىغان كۈن سانى"
 
 msgid "Enable custodian user role"
 msgstr "ساقلىغۇچى ئىشلەتكۈچى رولىنى قوزغات"
@@ -643,7 +643,7 @@ msgid "Save"
 msgstr "ساقلا"
 
 msgid "Reset reports"
-msgstr "دوكلاتلارنى قايتا سەپلەش"
+msgstr "مەلۇماتلارنى قايتا سەپلەش"
 
 msgid "Low"
 msgstr "تۆۋەن"
@@ -703,7 +703,7 @@ msgid "Cancel"
 msgstr "ۋاز كەچ"
 
 msgid "Report statuses"
-msgstr "دوكلات ھالەتلىرى"
+msgstr "مەلۇمات ھالەتلىرى"
 
 msgid "Logo"
 msgstr "تۇغ"
@@ -793,7 +793,7 @@ msgid "Show recipients in alphabetical order"
 msgstr "تاپشۇرىۋالغۇچىلارنى ئېلىپبە تەرتىپى بويىچە كۆرسەت"
 
 msgid "Show recipient details on the status page of the report"
-msgstr "تاپشۇرىۋالغۇچىنىڭ تەپسىلى ئەھۋالىنى دوكلاتنىڭ ھالەت بېتىدە كۆرسەت"
+msgstr "تاپشۇرىۋالغۇچىنىڭ تەپسىلى ئەھۋالىنى مەلۇماتنىڭ ھالەت بېتىدە كۆرسەت"
 
 msgid "Enable comments"
 msgstr "باھالاشنى قوزغات"
@@ -808,7 +808,7 @@ msgid "Allow whistleblowers to send messages"
 msgstr "پاش قىلغۇچىلارنىڭ ئۇچۇر ئەۋەتىشىگە رۇخسەت قىل"
 
 msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "پاش قىلغۇچىلارنىڭ مەۋجۇت دوكلاتلارنىڭ ئۈستىگە قوشۇمچىلارنى قوشۇشىغا رۇخسەت قىل"
+msgstr "پاش قىلغۇچىلارنىڭ مەۋجۇت مەلۇماتلارنىڭ ئۈستىگە قوشۇمچىلارنى قوشۇشىغا رۇخسەت قىل"
 
 msgid "Additional questionnaire"
 msgstr "قوشۇمچە راي سىناش"
@@ -829,7 +829,7 @@ msgid "Customize the message shown in the receipt page"
 msgstr "تالون بېتىدە كۆرسىتىلىدىغان ئۇچۇرنى خاسلاشتۇر"
 
 msgid "Assign the receipt only to reports reaching score:"
-msgstr "پەقەت نومۇرى يەتكەن دوكلاتلارغىلا تالون تەقسىملە:"
+msgstr "پەقەت نومۇرى يەتكەن مەلۇماتلارغىلا تالون تەقسىملە:"
 
 msgid "Software version:"
 msgstr "يۇمشاق دېتال نەشرى:"
@@ -1173,10 +1173,10 @@ msgid "Forcefully selected"
 msgstr "مەجبۇرىي تاللاندى"
 
 msgid "Allow the recipient to delete reports"
-msgstr "تاپشۇرىۋالغۇچىلارنىڭ دوكلاتلارنى ئۆچۈرىشىگە رۇخسەت قىل"
+msgstr "تاپشۇرىۋالغۇچىلارنىڭ مەلۇماتلارنى ئۆچۈرىشىگە رۇخسەت قىل"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr "تاپشۇرىۋالغۇچىنىڭ دوكلات سۈرۈكىنى كەينىگە سۈرىشىگە رۇخسەت قىل"
+msgstr "تاپشۇرىۋالغۇچىنىڭ مەلۇمات سۈرۈكىنى كەينىگە سۈرىشىگە رۇخسەت قىل"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "تۆۋەندىكى ئىقتىدارلار ئۈچۈن ئىشلەتكۈچىلەرگە باشقۇرغۇچى زىيارەت ھوقۇقى بەر:"
@@ -1185,7 +1185,7 @@ msgid "Request date"
 msgstr "تەلەپ چېسلاسى"
 
 msgid "Report date"
-msgstr "دوكلات چېسلاسى"
+msgstr "مەلۇمات چېسلاسى"
 
 msgid "Authorization"
 msgstr "ھوقۇق"
@@ -1341,10 +1341,10 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "ئارقىدىن، كەينىدىكى ئادرېسنى كۆچۈرۈپ، Tor تور كۆرگۈچىگە چاپلاڭ:"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "ئاللىبۇرۇن بىر دوكلات توشقۇزغانمىتىڭىز؟ تالونىڭىزنى كىرگۈزۈڭ:"
+msgstr "توشقۇزغان بىر مەلۇماتىڭىز بارمىتى؟ تالونىڭىزنى كىرگۈزۈڭ:"
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr "تالونىڭز ئىناۋەتسىز ياكى دوكلاتىڭىزنىڭ سۈرۈكى توشۈپ كەتكەن."
+msgstr "تالونىڭز ئىناۋەتسىز ياكى مەلۇماتىڭىزنىڭ سۈرۈكى توشۈپ كەتكەن."
 
 msgid "Select a file or drag it here."
 msgstr "بىر ھۆججەت تاللاڭ ياكى بۇ يەرگە سۆرەپ تاشلاڭ."
@@ -1389,7 +1389,7 @@ msgid "File size"
 msgstr "ھۆججەت چوڭلۇقى"
 
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr "پاش قىلغۇچىنىڭ دوكلاتقا قوشۇمچە قىستۇرىشىغا رۇخسەت قىل"
+msgstr "پاش قىلغۇچىنىڭ مەلۇماتقا قوشۇمچە قىستۇرىشىغا رۇخسەت قىل"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "پاش قىلغۇچىنىڭ ئۇچۇر ئەۋەتىشىگە رۇخسەت قىل"
@@ -1530,10 +1530,10 @@ msgid ""
 msgstr "سىز مۇلازىمېتىرغا نامسىزلاشماي تۇرۇپ ئۇلىنىۋاتىسىز، ھەمدە بۇ مۇلازىمېتىر پەقەت نامسىز يوللاشنىلا قوللايدۇ"
 
 msgid "Your report was successful."
-msgstr "دوكلاتىڭىز مۇۋەپپىقىيەتلىك بولدى."
+msgstr "مەلۇماتىڭىز مۇۋەپپىقىيەتلىك بولدى."
 
 msgid "Remember your receipt for this report."
-msgstr "بۇ دوكلاتنىڭ تالونىنى ئېسىڭىزدە تۇتۇڭ."
+msgstr "بۇ مەلۇماتنىڭ تالونىنى ئېسىڭىزدە تۇتۇڭ."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
@@ -1541,13 +1541,13 @@ msgid ""
 msgstr "تىزىمغا كىرىش ئۈچۈن 16 خانىلىق تالون كودىنى ئىشلىتىڭ. ئۇ سىزنىڭ بىز ئەۋەتكەن ھەرقانداق ئۇچۇرنى كۆرۈشىڭىز، ھەمدە قوشۇمچە ئۇچۇر قوشۇشىڭىزغا رۇخسەت قىلىدۇ."
 
 msgid "View your report"
-msgstr "دوكلاتىڭىزنى كۆرۈڭ"
+msgstr "مەلۇماتىڭىزنى كۆرۈڭ"
 
 msgid "Recipient selection"
 msgstr "تاپشۇرىۋالغۇچى تاللاش"
 
 msgid "Select the recipients of your report:"
-msgstr "دوكلاتىڭىزنى تاپشۇرىۋالغۇچىلارنى تاللاڭ"
+msgstr "مەلۇماتىڭىزنى تاپشۇرىۋالغۇچىلارنى تاللاڭ"
 
 msgid "Recipients selected:"
 msgstr "تاللانغان تاپشۇرىۋالغۇچىلار:"
@@ -1558,7 +1558,7 @@ msgstr "تاللاشقا بولىدىغان تاپشۇرىۋالغۇچىلار �
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr "تۆۋەندىكى تاپشۇرىۋالغۇچىلار سىزنىڭ دوكلاتىڭىزنى تاشۇرىۋالىدۇ ۋە تاللاشتىن قالدۇرالمايسىز:"
+msgstr "تۆۋەندىكى تاپشۇرىۋالغۇچىلار سىزنىڭ مەلۇماتىڭىزنى تاشۇرىۋالىدۇ ۋە تاللاشتىن قالدۇرالمايسىز:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1608,7 +1608,7 @@ msgid "Describe your report in detail."
 msgstr "دوكلاتىڭىزنى تەپسىلىي چۈشەندۈرۈڭ."
 
 msgid "Attach files relevant to the report."
-msgstr "دوكلاتقا مۇناسىۋەتلىك ھۆججەتلەرنى قوشۇڭ."
+msgstr "مەلۇماتقا مۇناسىۋەتلىك ھۆججەتلەرنى قوشۇڭ."
 
 msgid "Do you want to provide your identification information?"
 msgstr "كىملىك ئۇچۇرلىرىڭىزنى تەمىنلەشنى خالامسىز؟"
@@ -1692,7 +1692,7 @@ msgstr "بىنورمال پائالىيەتلەرنىڭ ئىستاتىستىكى
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr "مۇلازىمېتېر يېڭى دوكلاتنىڭ ساقلىنىشىغا كاپالەتلىك قىلالمىغاچقا، يوللاش توختۇتۇپ قويۇلدى."
+msgstr "مۇلازىمېتېر يېڭى مەلۇماتنىڭ ساقلىنىشىغا كاپالەتلىك قىلالمىغاچقا، يوللاش توختۇتۇپ قويۇلدى."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
@@ -1821,10 +1821,10 @@ msgstr "‏HTTPS گۇۋاھنامىسىنى يېڭىلاش مەغلۇپ بولد
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr "بۇ ئېلخەت سىزگە ساقلىغۇچىنىڭ {TipNum} لۇق دوكلاتنىڭ پاش قىلغۇچى كىملىكىنى زىيارەت قىلىشنىڭىزغا ھوقۇق بەرگەنلىكىنى ئۇقتۇرۇش ئۈچۈندۇر."
+msgstr "بۇ ئېلخەت سىزگە ساقلىغۇچىنىڭ {TipNum} لۇق مەلۇماتنىڭ پاش قىلغۇچى كىملىكىنى زىيارەت قىلىشنىڭىزغا ھوقۇق بەرگەنلىكىنى ئۇقتۇرۇش ئۈچۈندۇر."
 
 msgid "The report can be accessed at:"
-msgstr "دوكلاتنى بۇ يەردىن كۆرەلەيسىز:"
+msgstr "مەلۇماتنى بۇ يەردىن كۆرەلەيسىز:"
 
 msgid "Access to whistleblower's identity authorized"
 msgstr "پاش قىلغۇچىنىڭ كىملىكىنى زىيارەت قىلىشقا ھوقۇق بېرىلدى"
@@ -1832,7 +1832,7 @@ msgstr "پاش قىلغۇچىنىڭ كىملىكىنى زىيارەت قىلىش
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr "بۇ ئېلخەت سىزگە ساقلىغۇچىنىڭ {TipNum} لۇق دوكلاتىنىڭ پاش قىلغۇچى كىملىكىنى زىيارەت قىلىشنىڭىزنى رەت قىلغىنىنى ئۇقتۇرۇش ئۈچۈندۇر."
+msgstr "بۇ ئېلخەت سىزگە ساقلىغۇچىنىڭ {TipNum} لۇق مەلۇماتىنىڭ پاش قىلغۇچى كىملىكىنى زىيارەت قىلىشنىڭىزنى رەت قىلغىنىنى ئۇقتۇرۇش ئۈچۈندۇر."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "پاش قىلغۇچىنىڭ كىملىكىنى زىيارەت قىلىش رەت قىلىندى"
@@ -1840,7 +1840,7 @@ msgstr "پاش قىلغۇچىنىڭ كىملىكىنى زىيارەت قىلىش
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr "بۇ ئېلخەت سىزگە تاپشۇرىۋالغۇچىنىڭ {TipNum} لۇق دوكلاتنىڭ پاش قىلغۇچىسىنىڭ كىملىكىنى زىيارەت قىلىشنى تەلەپ قىلغىنىنى ئۇقتۇرۇش ئۈچۈندۇر."
+msgstr "بۇ ئېلخەت سىزگە تاپشۇرىۋالغۇچىنىڭ {TipNum} لۇق مەلۇماتنىڭ پاش قىلغۇچىسىنىڭ كىملىكىنى زىيارەت قىلىشنى تەلەپ قىلغىنىنى ئۇقتۇرۇش ئۈچۈندۇر."
 
 msgid "The request can be accessed at:"
 msgstr "تەلەپنى بۇ يەردىن كۆرەلەيسىز:"
@@ -1851,7 +1851,7 @@ msgstr "پاش قىلغۇچىنىڭ كىملىكىنى زىيارەت قىلىش
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr "بۇ ئېلخەت سىزگە {TipNum} لۇق دوكلاتنىڭ پاش قىلغۇچىسىنىڭ ئۆز كىملكىنى تەمىنلىگەنلىكىنى ئۇقتۇرۇش ئۈچۈندۇر. "
+msgstr "بۇ ئېلخەت سىزگە {TipNum} لۇق مەلۇماتنىڭ پاش قىلغۇچىسىنىڭ ئۆز كىملكىنى تەمىنلىگەنلىكىنى ئۇقتۇرۇش ئۈچۈندۇر. "
 
 msgid "The whistleblower has provided their identity"
 msgstr "بۇ پاش قىلغۇچىلار ئۆز كىملىكلىرىنى تەمىنلىگەن."
@@ -1912,10 +1912,10 @@ msgstr "يۇمشاق دېتالنى يېڭىلاش كۆرسەتمىسى ئۈچۈ
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr "بۇ ئېلخەت سىزگە تاپشۇرىۋالغۇچىنىڭ بىر ياكى بىر نەچچە دوكلاتنى زىيارەت ھوقۇقى بەرگەنلىكىنى ئۇقتۇرۇش ئۈچۈندۇر."
+msgstr "بۇ ئېلخەت سىزگە تاپشۇرىۋالغۇچىنىڭ بىر ياكى بىر نەچچە مەلۇماتنى زىيارەت ھوقۇقى بەرگەنلىكىنى ئۇقتۇرۇش ئۈچۈندۇر."
 
 msgid "New report"
-msgstr "يېڭى دوكلات"
+msgstr "يېڭى مەلۇمات"
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "ئەڭ بۇرۇنقى سۈرۈك ۋاقتى: {EarliestExpirationDate}."
@@ -1924,12 +1924,12 @@ msgid "Please remember to check them before they are deleted."
 msgstr "ئۆچۈرۈلۈشتىن بۇرۇن ئۇلارنى تەكشۈرۈشنى ئۇنۇتماڭ."
 
 msgid "Some reports will expire soon"
-msgstr "بەزى دوكلاتلارنىڭ يېقىندا سۈرىكى توشىدۇ"
+msgstr "بەزى مەلۇماتلارنىڭ يېقىندا سۈرىكى توشىدۇ"
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr "بۇ ئېلخەت، بىر پاش قىلغۇچىنىڭ سىزنى ئۆز دوكلاتىدا قىممەتلىك تاپشۇرىۋالغۇچى، دەپ تاللىغانلىقىنى ئۇقتۇرۇش ئۈچۈندۇر."
+msgstr "بۇ ئېلخەت، بىر پاش قىلغۇچىنىڭ سىزنى ئۆز مەلۇماتىدا قىممەتلىك تاپشۇرىۋالغۇچى، دەپ تاللىغانلىقىنى ئۇقتۇرۇش ئۈچۈندۇر."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -1937,19 +1937,19 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr "بۇ يەردىكى ئۇچۇرلار ۋە ماتېرىياللارغا ئالاھىدە ئەھمىيەت بېرىشىڭىز تەلەپ قىلىنىدۇ. ئېسىڭىزدە بولسۇنكى ، پاش قىلغۇچىلار كۆپىنچە ئومۇمنىڭ مەنپەئەتى ئۈچۈن چوڭ خەتەرگە تەۋەككۈل قىلىدۇ. سۇڭا بۇ دوكلاتتا تەمىنلەنگەن ماتېرىياللارنى ئىنتايىن مۇھىم، دەپ قارىلىشى كېرەك."
+msgstr "بۇ يەردىكى ئۇچۇرلار ۋە ماتېرىياللارغا ئالاھىدە ئەھمىيەت بېرىشىڭىز تەلەپ قىلىنىدۇ. ئېسىڭىزدە بولسۇنكى ، پاش قىلغۇچىلار كۆپىنچە ئومۇمنىڭ مەنپەئەتى ئۈچۈن چوڭ خەتەرگە تەۋەككۈل قىلىدۇ. سۇڭا بۇ مەلۇماتتا تەمىنلەنگەن ماتېرىياللار ئىنتايىن مۇھىم، دەپ قارىلىشى كېرەك."
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr "بۇ ئېلخەت سىزگە بىر مەۋجۇت دوكلاتنىڭ يېڭىلانغانلىقىنى ئۇقتۇرۇش ئۈچۈندۇر."
+msgstr "بۇ ئېلخەت سىزگە بىر مەۋجۇت مەلۇماتنىڭ يېڭىلانغانلىقىنى ئۇقتۇرۇش ئۈچۈندۇر."
 
 msgid "Report updated"
-msgstr "دوكلات يېڭىلاندى"
+msgstr "مەلۇمات يېڭىلاندى"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr "بۇ ئېلخەت سىزگە نۆۋەتتىكى ئوقۇلمىغان ياكى يېڭىلانغان دوكلاتلارنى خاتىرىلىتىش ئۈچۈندۇر."
+msgstr "بۇ ئېلخەت سىزگە نۆۋەتتىكى ئوقۇلمىغان ياكى يېڭىلانغان مەلۇماتلارنى خاتىرىلىتىش ئۈچۈندۇر."
 
 msgid "Reminder about unread or updated reports"
-msgstr "ئوقۇلمىغان ياكى يېڭىلانغان دوكلاتلارنى خاتىرىلاتقۇچى"
+msgstr "ئوقۇلمىغان ياكى يېڭىلانغان مەلۇماتارنى خاتىرىلاتقۇچى"
 
 msgid "Role: {Role}"
 msgstr "رولى: {Role}"

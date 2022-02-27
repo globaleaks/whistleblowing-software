@@ -1,11 +1,11 @@
 # 
 # Translators:
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
-# Tughluq Qutluq <tugkutluk@gmail.com>, 2021
+# Tughluq Qutluq <tugkutluk@gmail.com>, 2021-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2022-01-31 15:54+0000\n"
+"PO-Revision-Date: 2022-02-26 21:02+0000\n"
 "Last-Translator: Tughluq Qutluq <tugkutluk@gmail.com>\n"
 "Language-Team: Uighur (Cyrillic) (http://www.transifex.com/otf/globaleaks/language/ug@Cyrl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -99,7 +99,7 @@ msgid "YOUR NAME"
 msgstr "Намиңиз"
 
 msgid "Label the report"
-msgstr "Доклатқа бәлгә сал"
+msgstr "мәлуматқа бәлгә сал"
 
 msgid "Postpone the expiration date"
 msgstr "Сүрүк чесласини кәйнигә сүр"
@@ -332,7 +332,7 @@ msgid "Activities"
 msgstr "Паъалийәтләр"
 
 msgid "Reports"
-msgstr "Доклатлар"
+msgstr "Мәлуматлар"
 
 msgid "Report"
 msgstr ""
@@ -1947,7 +1947,7 @@ msgid "This email is to remind you the presence of unread or updated reports."
 msgstr "Бу елхәт сизгә нөвәттики оқулмиған йаки йеңиланған доклатларни хатирилитиш үчүндур."
 
 msgid "Reminder about unread or updated reports"
-msgstr "Оқулмиған йаки йеңиланған доклатларни хатирилатқучи"
+msgstr "Оқулмиған йаки йеңиланған мәлуматларни хатирилатқучи."
 
 msgid "Role: {Role}"
 msgstr "Роли: {Role}"

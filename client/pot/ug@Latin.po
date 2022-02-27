@@ -1,11 +1,11 @@
 # 
 # Translators:
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
-# Tughluq Qutluq <tugkutluk@gmail.com>, 2021
+# Tughluq Qutluq <tugkutluk@gmail.com>, 2021-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2022-01-31 15:54+0000\n"
+"PO-Revision-Date: 2022-02-26 20:59+0000\n"
 "Last-Translator: Tughluq Qutluq <tugkutluk@gmail.com>\n"
 "Language-Team: Uighur (Latin) (http://www.transifex.com/otf/globaleaks/language/ug@Latin/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -99,7 +99,7 @@ msgid "YOUR NAME"
 msgstr "Namingiz"
 
 msgid "Label the report"
-msgstr "Doklatqa belge sal"
+msgstr "Melumatqa belge sal"
 
 msgid "Postpone the expiration date"
 msgstr "Sürük chéslasini keynige sür"
@@ -332,7 +332,7 @@ msgid "Activities"
 msgstr "Pa’aliyetler"
 
 msgid "Reports"
-msgstr "Doklatlar"
+msgstr "Melumatlar"
 
 msgid "Report"
 msgstr ""
@@ -436,7 +436,7 @@ msgstr "Parolni qayta seple"
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr "Bir yaki birdin köp tapshuriwalghuchilar téxiche tunji tizimgha kirishni ijra qilmaptu. Bu ular doklatlarni tapshuriwalalmaydu, dégenlik."
+msgstr "Bir yaki birdin köp tapshuriwalghuchilar téxiche tunji tizimgha kirishni ijra qilmaptu. Bu ular melumatlarni tapshuriwalalmaydu, dégenlik."
 
 msgid "This user has not performed the first login yet."
 msgstr "Bu ishletküchi téxiche tunji tizimgha kirishni ijra qilmaptu."
@@ -457,7 +457,7 @@ msgid "Logout"
 msgstr "Tizimdin chiq"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr "Bu tapshuriwalghuchigha ishletküchilerge doklatni ziyaret qilish hoquqi bérish iqtidari ber"
+msgstr "Bu tapshuriwalghuchigha ishletküchilerge melumatni ziyaret qilish hoquqi bérish iqtidari ber"
 
 msgid "Grant access"
 msgstr "Hoquq ber"
@@ -466,7 +466,7 @@ msgid "Revoke access"
 msgstr "Hoquqni qayturiwal"
 
 msgid "Please summarize your report in a few words."
-msgstr "Ikki éghiz gep bilen doklatingizni chüshendürüng."
+msgstr "Ikki éghiz gep bilen melumatingizni chüshendürüng."
 
 msgid "Where did the facts happen?"
 msgstr ""
@@ -524,10 +524,10 @@ msgid "What is the outcome you want to achieve with our support?"
 msgstr ""
 
 msgid "File a report"
-msgstr "Bir doklat yolla"
+msgstr "Bir melumat yolla"
 
 msgid "Select the context of your report:"
-msgstr "Doklatingizning mezmunini tallang:"
+msgstr "Melumatingizning mezmunini tallang:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Bir terep qilishtin burun, yéngi bir parol belgileng."
@@ -612,7 +612,7 @@ msgid "Set the value to 0 to disable this feature."
 msgstr "Bu iqtidarni cheklesh üchün qimmitini 0 qilip békiting."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr "Oqulmighan doklatlarni ishletküchilerge uqturghiche ötidighan kün sani"
+msgstr "Oqulmighan melumatlarni ishletküchilerge uqturghiche ötidighan kün sani"
 
 msgid "Enable custodian user role"
 msgstr "Saqlighuchi ishletküchi rolini qozghat"
@@ -641,7 +641,7 @@ msgid "Save"
 msgstr "Saqla"
 
 msgid "Reset reports"
-msgstr "Doklatlarni qayta seplesh"
+msgstr "Melumatlarni qayta seplesh"
 
 msgid "Low"
 msgstr "Töwen"
@@ -791,7 +791,7 @@ msgid "Show recipients in alphabetical order"
 msgstr "Tapshuriwalghuchilarni élipbe tertipi boyiche körset"
 
 msgid "Show recipient details on the status page of the report"
-msgstr "Tapshuriwalghuchining tepsili ehwalini doklatning halet bétide körset"
+msgstr "Tapshuriwalghuchining tepsili ehwalini melumatning halet bétide körset"
 
 msgid "Enable comments"
 msgstr "Bahalashni qozghat"
@@ -806,7 +806,7 @@ msgid "Allow whistleblowers to send messages"
 msgstr "Pash qilghuchilarning uchur ewetishige ruxset qil"
 
 msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Pash qilghuchilarning mewjut doklatlarning üstige qoshumchilarni qoshushigha ruxset qil"
+msgstr "Pash qilghuchilarning mewjut melumatlarning üstige qoshumchilarni qoshushigha ruxset qil"
 
 msgid "Additional questionnaire"
 msgstr "Qoshumche ray sinash"
@@ -827,7 +827,7 @@ msgid "Customize the message shown in the receipt page"
 msgstr "Talon bétide körsitilidighan uchurni xaslashtur"
 
 msgid "Assign the receipt only to reports reaching score:"
-msgstr "Peqet nomuri yetken doklatlarghila talon teqsimle:"
+msgstr "Peqet nomuri yetken melumatlarghila talon teqsimle:"
 
 msgid "Software version:"
 msgstr "Yumshaq détal neshri:"
@@ -967,7 +967,7 @@ msgid "Password"
 msgstr "Parol"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr "Doklatning sürüki toshqanliq agahlandurush ewetishtin burunqi sa’et sani"
+msgstr "Melumatning sürüki toshqanliq agahlandurush ewetishtin burunqi sa’et sani"
 
 msgid "Test the configuration"
 msgstr "Seplimlilerni sinash"
@@ -1171,10 +1171,10 @@ msgid "Forcefully selected"
 msgstr "Mejburiy tallandi"
 
 msgid "Allow the recipient to delete reports"
-msgstr "Tapshuriwalghuchilarning doklatlarni öchürishige ruxset qil"
+msgstr "Tapshuriwalghuchilarning melumatlarni öchürishige ruxset qil"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Tapshuriwalghuchining doklat sürükini keynige sürishige ruxset qil"
+msgstr "Tapshuriwalghuchining melumat sürükini keynige sürishige ruxset qil"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Töwendiki iqtidarlar üchün ishletküchilerge bashqurghuchi ziyaret hoquqi ber:"
@@ -1183,7 +1183,7 @@ msgid "Request date"
 msgstr "Telep chéslasi"
 
 msgid "Report date"
-msgstr "Doklat chéslasi"
+msgstr "Melumat chéslasi"
 
 msgid "Authorization"
 msgstr "Hoquq"
@@ -1339,10 +1339,10 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Arqidin, keynidiki adrésni köchürüp, Tor tor körgüchige chaplang:"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "Alliburun bir doklat toshquzghanmitingiz? taloningizni kirgüzüng:"
+msgstr "Alliburun bir melumat toshquzghanmitingiz? taloningizni kirgüzüng:"
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr "Taloningz inawetsiz yaki doklatingizning sürüki toshüp ketken."
+msgstr "Taloningz inawetsiz yaki melumatingizning sürüki toshüp ketken."
 
 msgid "Select a file or drag it here."
 msgstr "Bir höjjet tallang yaki bu yerge sörep tashlang."
@@ -1387,7 +1387,7 @@ msgid "File size"
 msgstr "Höjjet chongluqi"
 
 msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Pash qilghuchining doklatqa qoshumche qisturishigha ruxset qil"
+msgstr "Pash qilghuchining melumatqa qoshumche qisturishigha ruxset qil"
 
 msgid "Allow the whistleblower to send messages"
 msgstr "Pash qilghuchining uchur ewetishige ruxset qil"
@@ -1528,10 +1528,10 @@ msgid ""
 msgstr "Siz mulazimétirgha namsizlashmay turup uliniwatisiz, hemde bu mulazimétir peqet namsiz yollashnila qollaydu"
 
 msgid "Your report was successful."
-msgstr "Doklatingiz muweppiqiyetlik boldi."
+msgstr "Melumatingiz muweppiqiyetlik boldi."
 
 msgid "Remember your receipt for this report."
-msgstr "Bu doklatning talonini ésingizde tutung."
+msgstr "Bu melumatning talonini ésingizde tutung."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
@@ -1539,13 +1539,13 @@ msgid ""
 msgstr "Tizimgha kirish üchün 16 xaniliq talon kodini ishliting. u sizning biz ewetken herqandaq uchurni körüshingiz, hemde qoshumche uchur qoshushingizgha ruxset qilidu."
 
 msgid "View your report"
-msgstr "Doklatingizni körüng"
+msgstr "Melumatingizni körüng"
 
 msgid "Recipient selection"
 msgstr "Tapshuriwalghuchi tallash"
 
 msgid "Select the recipients of your report:"
-msgstr "Doklatingizni tapshuriwalghuchilarni tallang"
+msgstr "Melumatingizni tapshuriwalghuchilarni tallang"
 
 msgid "Recipients selected:"
 msgstr "Tallan’ghan tapshuriwalghuchilar:"
@@ -1556,7 +1556,7 @@ msgstr "Tallashqa bolidighan tapshuriwalghuchilar san chékige yettingiz."
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr "Töwendiki tapshuriwalghuchilar sizning doklatingizni tashuriwalidu we tallashtin qalduralmaysiz:"
+msgstr "Töwendiki tapshuriwalghuchilar sizning melumatingizni tashuriwalidu we tallashtin qalduralmaysiz:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1603,10 +1603,10 @@ msgid "You have completed the platform wizard."
 msgstr "Supa séhirgerini pütttürdingiz."
 
 msgid "Describe your report in detail."
-msgstr "Doklatingizni tepsiliy chüshendürüng."
+msgstr "Melumatingizni tepsiliy chüshendürüng."
 
 msgid "Attach files relevant to the report."
-msgstr "Doklatqa munasiwetlik höjjetlerni qoshung."
+msgstr "Melumatqa munasiwetlik höjjetlerni qoshung."
 
 msgid "Do you want to provide your identification information?"
 msgstr "Kimlik uchurliringizni teminleshni xalamsiz?"
@@ -1690,7 +1690,7 @@ msgstr "Binormal pa’aliyetlerning istatistikisi bular:"
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr "Mulazimétér yéngi doklatning saqlinishigha kapaletlik qilalmighachqa, yollash toxtutup qoyuldi."
+msgstr "Mulazimétér yéngi melumatning saqlinishigha kapaletlik qilalmighachqa, yollash toxtutup qoyuldi."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
@@ -1819,10 +1819,10 @@ msgstr "‏HTTPS guwahnamisini yéngilash meghlup boldi."
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr "Bu élxet sizge saqlighuchining {TipNum} luq doklatning pash qilghuchi kimlikini ziyaret qilishningizgha hoquq bergenlikini uqturush üchündur."
+msgstr "Bu élxet sizge saqlighuchining {TipNum} luq melumatning pash qilghuchi kimlikini ziyaret qilishningizgha hoquq bergenlikini uqturush üchündur."
 
 msgid "The report can be accessed at:"
-msgstr "Doklatni bu yerdin köreleysiz:"
+msgstr "Melumatni bu yerdin köreleysiz:"
 
 msgid "Access to whistleblower's identity authorized"
 msgstr "Pash qilghuchining kimlikini ziyaret qilishqa hoquq bérildi"
@@ -1830,7 +1830,7 @@ msgstr "Pash qilghuchining kimlikini ziyaret qilishqa hoquq bérildi"
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr "Bu élxet sizge saqlighuchining {TipNum} luq doklatining pash qilghuchi kimlikini ziyaret qilishningizni ret qilghinini uqturush üchündur."
+msgstr "Bu élxet sizge saqlighuchining {TipNum} luq melumatining pash qilghuchi kimlikini ziyaret qilishningizni ret qilghinini uqturush üchündur."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "Pash qilghuchining kimlikini ziyaret qilish ret qilindi"
@@ -1838,7 +1838,7 @@ msgstr "Pash qilghuchining kimlikini ziyaret qilish ret qilindi"
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr "Bu élxet sizge tapshuriwalghuchining {TipNum} luq doklatning pash qilghuchisining kimlikini ziyaret qilishni telep qilghinini uqturush üchündur."
+msgstr "Bu élxet sizge tapshuriwalghuchining {TipNum} luq melumatning pash qilghuchisining kimlikini ziyaret qilishni telep qilghinini uqturush üchündur."
 
 msgid "The request can be accessed at:"
 msgstr "Telepni bu yerdin köreleysiz:"
@@ -1849,7 +1849,7 @@ msgstr "Pash qilghuchining kimlikini ziyaret qilish yéngi telipi"
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr "Bu élxet sizge {TipNum} luq doklatning pash qilghuchisining öz kimlkini teminligenlikini uqturush üchündur. "
+msgstr "Bu élxet sizge {TipNum} luq melumatning pash qilghuchisining öz kimlkini teminligenlikini uqturush üchündur. "
 
 msgid "The whistleblower has provided their identity"
 msgstr "Bu pash qilghuchilar öz kimliklirini teminligen."
@@ -1910,10 +1910,10 @@ msgstr "Yumshaq détalni yéngilash körsetmisi üchün, bu yerdiki höjjetlerdi
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr "Bu élxet sizge tapshuriwalghuchining bir yaki bir nechche doklatni ziyaret hoquqi bergenlikini uqturush üchündur."
+msgstr "Bu élxet sizge tapshuriwalghuchining bir yaki bir nechche melumatni ziyaret hoquqi bergenlikini uqturush üchündur."
 
 msgid "New report"
-msgstr "Yéngi doklat"
+msgstr "Yéngi melumat"
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Eng burunqi sürük waqti: {EarliestExpirationDate}."
@@ -1922,12 +1922,12 @@ msgid "Please remember to check them before they are deleted."
 msgstr "Öchürülüshtin burun ularni tekshürüshni unutmang."
 
 msgid "Some reports will expire soon"
-msgstr "Bezi doklatlarning yéqinda süriki toshidu"
+msgstr "Bezi melumatlarning yéqinda süriki toshidu"
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr "Bu élxet, bir pash qilghuchining sizni öz doklatida qimmetlik tapshuriwalghuchi, dep tallighanliqini uqturush üchündur."
+msgstr "Bu élxet, bir pash qilghuchining sizni öz melumatida qimmetlik tapshuriwalghuchi, dep tallighanliqini uqturush üchündur."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -1935,19 +1935,19 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr "Bu yerdiki uchurlar we matériyallargha alahide ehmiyet bérishingiz telep qilinidu. ésingizde bolsunki , pash qilghuchilar köpinche omumning menpe’eti üchün chong xeterge tewekkül qilidu. Shunga bu doklatta teminlen’gen matériyallarni intayin muhim, dep qarilishi kérek."
+msgstr "Bu yerdiki uchurlar we matériyallargha alahide ehmiyet bérishingiz telep qilinidu. ésingizde bolsunki , pash qilghuchilar köpinche omumning menpe’eti üchün chong xeterge tewekkül qilidu. Shunga bu melumatta teminlen’gen matériyallarni intayin muhim, dep qarilishi kérek."
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr "Bu élxet sizge bir mewjut doklatning yéngilan’ghanliqini uqturush üchündur."
+msgstr "Bu élxet sizge bir mewjut melumatning yéngilan’ghanliqini uqturush üchündur."
 
 msgid "Report updated"
-msgstr "Doklat yéngilandi"
+msgstr "Melumat yéngilandi"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr "Bu élxet sizge nöwettiki oqulmighan yaki yéngilan’ghan doklatlarni xatirilitish üchündur."
+msgstr "Bu élxet sizge nöwettiki oqulmighan yaki yéngilan’ghan melumatlarni xatirilitish üchündur."
 
 msgid "Reminder about unread or updated reports"
-msgstr "Oqulmighan yaki yéngilan’ghan doklatlarni xatirilatquchi"
+msgstr "Oqulmighan yaki yéngilan’ghan melumatlarni xatirilatquchi"
 
 msgid "Role: {Role}"
 msgstr "Roli: {Role}"

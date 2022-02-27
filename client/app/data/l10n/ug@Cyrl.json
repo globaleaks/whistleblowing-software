@@ -27,7 +27,7 @@
   "Platform wizard": "Супа сеһиргәри",
   "CREDIT CARD": "Инавәтлик карт",
   "YOUR NAME": "Намиңиз",
-  "Label the report": "Доклатқа бәлгә сал",
+  "Label the report": "мәлуматқа бәлгә сал",
   "Postpone the expiration date": "Сүрүк чесласини кәйнигә сүр",
   "Select all": "Һәммини талла",
   "Deselect all": "Һәммини бикар қил",
@@ -104,7 +104,7 @@
   "Audit log": "Мупәттиш хатириси",
   "Stats": "Истатистика",
   "Activities": "Паъалийәтләр",
-  "Reports": "Доклатлар",
+  "Reports": "Мәлуматлар",
   "Report": "Report",
   "Users": "Ишләткүчиләр",
   "From": "Җәдвәл",
@@ -602,7 +602,7 @@
   "This is an email to notify that an existing report has been updated.": "Бу елхәт сизгә бир мәвҗут доклатниң йеңиланғанлиқини уқтуруш үчүндур.",
   "Report updated": "Доклат йеңиланди",
   "This email is to remind you the presence of unread or updated reports.": "Бу елхәт сизгә нөвәттики оқулмиған йаки йеңиланған доклатларни хатирилитиш үчүндур.",
-  "Reminder about unread or updated reports": "Оқулмиған йаки йеңиланған доклатларни хатирилатқучи",
+  "Reminder about unread or updated reports": "Оқулмиған йаки йеңиланған мәлуматларни хатирилатқучи.",
   "Role: {Role}": "Роли: {Role}",
   "Password: {Password}": "Парол: {Password}"
 }
