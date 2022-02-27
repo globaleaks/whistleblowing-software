@@ -1,3 +1,7 @@
+Changes in version 4.7.15
+    Fix exception on interrupted connections (#2706)
+    Bump npm dependencies to lates versions
+
 Changes in version 4.7.14
     Fix incorrect bump of bootstrap library to version 5
     Fix exception on logout introducted in 4.7.12
