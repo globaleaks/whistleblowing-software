@@ -27,10 +27,4 @@ if which pycompile >/dev/null 2>&1; then
   pycompile -p globaleaks
 fi
 
-# raise haveged default water mark to 4067 bits
-# for the reason for the 4067 bits see:
-#   - https://github.com/globaleaks/GlobaLeaks/issues/1722
-sed -i 's/DAEMON_ARGS="-w 1024"/DAEMON_ARGS="-w 4067"/g' /etc/default/haveged
-service haveged restart
-
 #DEBHELPER#
