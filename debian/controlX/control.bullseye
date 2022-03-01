@@ -23,7 +23,6 @@ Depends:
   apparmor,
   apparmor-utils,
   gnupg,
-  haveged,
   iptables,
   lsb-base,
   python3:any,
