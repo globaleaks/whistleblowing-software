@@ -55,7 +55,7 @@
     "grunt-usemin": "3.1.1",
     "gruntify-eslint": "5.0.0",
     "node-gettext": "3.0.0",
-    "npm-check-updates": "12.4.0",
+    "npm-check-updates": "12.5.0",
     "nyc": "15.1.0",
     "postcss-rtl": "1.7.3",
     "protractor": "7.0.0",
@@ -63,6 +63,6 @@
     "stylelint": "14.5.3",
     "stylelint-config-standard": "25.0.0",
     "superagent": "7.1.1",
-    "terser": "5.11.0"
+    "terser": "5.12.0"
   }
 }
