@@ -1,3 +1,6 @@
+Changes in version 4.7.17
+    This version just fixes version numbering
+
 Changes in version 4.7.16
     Deprecate haveged on systems running kernel >= 5.6 (#3184)
     Deprecate outdated and unused code related to old version of haveged #1722
