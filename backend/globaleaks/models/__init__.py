@@ -157,8 +157,11 @@ class Model(object):
                 setattr(self, k, values[k])
 
         for k in getattr(self, 'optional_references'):
-            if k in values and values[k]:
-                setattr(self, k, values[k])
+            if k in values:
+                if values[k]:
+                    setattr(self, k, values[k])
+                else:
+                    setattr(self, k, None)
 
     def __setattr__(self, name, value):
         if isinstance(value, bytes):
