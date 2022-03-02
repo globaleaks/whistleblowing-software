@@ -1,3 +1,10 @@
+Changes in version 4.7.16
+    Deprecate haveged on systems running kernel >= 5.6 (#3184)
+    Deprecate outdated and unused code related to old version of haveged #1722
+    Make it possible to reset template override setting (#2908)
+    Fix regression on #3116
+    Bump npm dependencies to latest versions
+
 Changes in version 4.7.15
     Fix exception on interrupted connections (#2706)
     Bump npm dependencies to lates versions
