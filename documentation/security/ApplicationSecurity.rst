@@ -340,8 +340,6 @@ Entropy Sources
 ---------------
 The main source of entropy for the platform is ``/dev/urandom``.
 
-In order to increase the entropy available on the system the system integrates the usage of the `Haveged <http://www.issihosts.com/haveged/>`_ daemon.
-
 UUIDv4 Randomness
 -----------------
 Resources in the system like submissions and files are identified by a UUIDv4 in order to not be guessable by an external user and limit possible attacks.
