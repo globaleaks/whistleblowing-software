@@ -125,7 +125,7 @@ def duplicate_questionnaire(session, tid, user_session, questionnaire_id, new_na
         id_map[field['id']] = new_child_id
         field['id'] = new_child_id
 
-        # Tweak the fiel in order to make a raw copy
+        # Tweak the field in order to make a raw copy
         field['instance'] = 'instance'
         field['template_id'] = field['template_override_id'] = ''
 
