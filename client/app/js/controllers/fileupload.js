@@ -18,9 +18,7 @@ controller("RFileUploadCtrl", ["$scope", function($scope) {
     flowFile.pause();
 
     $scope.file_error_msgs = [];
-  });
 
-  $scope.$on("flow::fileSuccess", function () {
     $scope.$emit("GL::uploadsUpdated");
   });
 }]).

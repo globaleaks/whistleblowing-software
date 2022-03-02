@@ -185,11 +185,13 @@ GL.controller("SubmissionCtrl",
   };
 
   $scope.completeSubmission = function() {
-    $scope.done = true;
+    fieldUtilities.onAnswersUpdate($scope);
 
     if (!$scope.runValidation()) {
       return;
     }
+
+    $scope.done = true;
 
     $scope.submission._submission.answers = $scope.answers;
 
@@ -409,7 +411,7 @@ controller("AdditionalQuestionnaireCtrl",
   };
 
   $scope.completeSubmission = function() {
-    $scope.done = true;
+    fieldUtilities.onAnswersUpdate($scope);
 
     $scope.validate[$scope.navigation] = true;
 
@@ -417,6 +419,8 @@ controller("AdditionalQuestionnaireCtrl",
       $scope.Utils.scrollToTop();
       return;
     }
+
+    $scope.done = true;
 
     for (var key in $scope.uploads) {
         if ($scope.uploads[key]) {
