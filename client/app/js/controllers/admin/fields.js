@@ -43,6 +43,10 @@ GL.controller("AdminFieldEditorCtrl", ["$scope", "$http", "FileSaver",
     };
 
     $scope.showOptions = function(field) {
+      if (field.instance === 'reference') {
+        return false;
+      }
+
       if (["checkbox", "selectbox", "multichoice"].indexOf(field.type) > -1) {
         return true;
       }

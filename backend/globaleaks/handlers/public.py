@@ -393,9 +393,9 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
         data = db_prepare_fields_serialization(session, [field])
 
     f_to_serialize = field
-    if field.template_override_id is not None and serialize_templates is True:
+    if field.template_override_id is not None:
         f_to_serialize = session.query(models.Field).filter(models.Field.id == field.template_override_id).one_or_none()
-    elif field.template_id is not None and serialize_templates is True:
+    elif field.template_id is not None:
         f_to_serialize = session.query(models.Field).filter(models.Field.id == field.template_id).one_or_none()
 
     attrs = {}
@@ -406,8 +406,10 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
         for attr in data['attrs'].get(field.template_id, {}):
             attrs[attr.name] = serialize_field_attr(attr, language)
 
-    children = [serialize_field(session, tid, f, language, data, serialize_templates=serialize_templates) for f in data['fields'].get(f_to_serialize.id, [])]
-    children.sort(key=lambda f: (f['y'], f['x']))
+    children = []
+    if field.instance != 'reference' or serialize_templates:
+        children = [serialize_field(session, tid, f, language, data, serialize_templates=serialize_templates) for f in data['fields'].get(f_to_serialize.id, [])]
+        children.sort(key=lambda f: (f['y'], f['x']))
 
     ret = {
         'id': field.id,
@@ -418,7 +420,7 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
         'template_override_id': field.template_override_id if field.template_override_id else '',
         'step_id': field.step_id if field.step_id else '',
         'fieldgroup_id': field.fieldgroup_id if field.fieldgroup_id else '',
-        'multi_entry': f_to_serialize.multi_entry,
+        'multi_entry': field.multi_entry,
         'required': field.required,
         'preview': field.preview,
         'attrs': attrs,
