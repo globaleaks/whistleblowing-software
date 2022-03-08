@@ -291,14 +291,14 @@ class BaseHandler(object):
         return serve_file(self.request, fp)
 
     def write_file_as_download(self, filename, fp, pgp_key=''):
+        if isinstance(fp, str):
+            fp = self.open_file(fp)
+
         if pgp_key:
             filename += '.pgp'
             _fp = fp
             fp = NamedTemporaryFile()
             PGPContext(pgp_key).encrypt_file(_fp, fp.name)
-
-        if isinstance(fp, str):
-            fp = self.open_file(fp)
 
         self.request.setHeader(b'Content-Type', b'application/octet-stream')
         self.request.setHeader(b'Content-Disposition',
