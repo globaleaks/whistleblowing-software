@@ -518,6 +518,10 @@ var GL = angular.module("GL", [
       }
     };
 
+    _flowFactoryProvider.on('catchAll', function (event) {
+      $rootScope.$broadcast("GL::uploadsUpdated");
+    });
+
     $rootScope.setPage = function(page) {
       $rootScope.page = page;
       $rootScope.Utils.set_title();
