@@ -64,8 +64,8 @@ def db_grant_tip_access(session, tid, user_id, user_cc, rtip_id, receiver_id):
     :param session: An ORM session
     :param tid: A tenant ID of the user performing the operation
     :param user_id: A user ID of the user performing the operation
-    :param user_id: A user crypto key
-    :param rtip: A rtip_id of the rtip on which perform the operation
+    :param user_cc: A user crypto key
+    :param rtip_id: A rtip_id of the rtip on which perform the operation
     :param receiver_id: A user ID of the the user to which grant access to the report
     """
     receiver, itip, rtip = session.query(models.User, models.InternalTip, models.ReceiverTip) \
