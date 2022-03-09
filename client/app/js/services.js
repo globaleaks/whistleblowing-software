@@ -75,6 +75,7 @@ factory("Authentication",
             if (self.session.role === "whistleblower") {
               if (password) {
                 $rootScope.setPage("tippage");
+                $location.path("/");
               }
             } else {
               $location.path(self.session.homepage);
