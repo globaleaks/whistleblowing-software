@@ -358,11 +358,6 @@ class APIResourceWrapper(Resource):
 
         :return: empty `str` or `NOT_DONE_YET`
         """
-        def _finish(_ret):
-            request.finished = True
-
-        request.notifyFinish().addBoth(_finish)
-
         request.hostname = b''
         request.headers = None
         request.client_ip = b''
@@ -471,7 +466,13 @@ class APIResourceWrapper(Resource):
 
             request.finish()
 
-        defer.maybeDeferred(f, self.handler, *groups).addCallbacks(concludeHandlerSuccess, concludeHandlerFailure)
+        d = defer.maybeDeferred(f, self.handler, *groups).addCallbacks(concludeHandlerSuccess, concludeHandlerFailure)
+
+        def _finish(_ret):
+            request.finished = True
+
+        request.notifyFinish().addBoth(_finish)
+        request.notifyFinish().addErrback(lambda _: d.cancel())
 
         return NOT_DONE_YET
 
