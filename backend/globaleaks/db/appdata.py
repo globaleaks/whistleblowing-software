@@ -77,6 +77,7 @@ def db_load_default_fields(session):
         extract_ids(questions[-1], ids)
 
     db_del(session, models.Field, models.Field.id.in_(ids))
+    db_del(session, models.Field, models.Field.fieldgroup_id.in_(ids))
     db_del(session, models.FieldAttr, models.FieldAttr.field_id.in_(ids))
     db_del(session, models.FieldOption, models.FieldOption.field_id.in_(ids))
     db_del(session, models.FieldOptionTriggerField, models.FieldOptionTriggerField.object_id.in_(ids))
