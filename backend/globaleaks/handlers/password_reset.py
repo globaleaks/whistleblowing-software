@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 
 from nacl.encoding import Base32Encoder, Base64Encoder
 
-from sqlalchemy import or_
+from sqlalchemy import func, or_
 
 from globaleaks import models
 from globaleaks.handlers.admin.notification import db_get_notification
@@ -82,8 +82,8 @@ def generate_password_reset_token_by_username_or_mail(session, tid, username_or_
     :return: A descriptor of the result
     """
     users = session.query(models.User).filter(
-      or_(models.User.username == username_or_email,
-          models.User.mail_address == username_or_email),
+      or_(func.lower(models.User.username) == username_or_email.lower(),
+          func.lower(models.User.mail_address) == username_or_email.lower()),
       models.User.tid == tid
     ).distinct()
 
