@@ -33,7 +33,7 @@
   ],
   "children":[
     {
-      "id":"identity_name",
+      "id":"question_whistleblower_identity_name",
       "label":{
         "en":"First name"
       },
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "id":"identity_surname",
+      "id":"question_whistleblower_identity_surname",
       "label":{
         "en":"Last name"
       },
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "id":"identity_alternative_contact_method",
+      "id":"question_whistleblower_identity_alternative_contact_method",
       "label":{
         "en":"Alternative contact method"
       },
@@ -183,7 +183,7 @@
           "label":{
             "en":"I prefer to be contacted via this platform only"
           },
-          "id":"identity_alternative_contact_method_platform"
+          "id":"question_whistleblower_identity_alternative_contact_method_platform"
         },
         {
           "order":1,
@@ -192,7 +192,7 @@
           "label":{
             "en":"Email address"
           },
-          "id":"identity_alternative_contact_method_email"
+          "id":"question_whistleblower_identity_alternative_contact_method_email"
         },
         {
           "order":2,
@@ -201,7 +201,7 @@
           "label":{
             "en":"Phone number"
           },
-          "id":"identity_alternative_contact_method_phone"
+          "id":"question_whistleblower_identity_alternative_contact_method_phone"
         },
         {
           "order":3,
@@ -210,14 +210,14 @@
           "label":{
             "en":"Other"
           },
-          "id":"identity_alternative_contact_method_other"
+          "id":"question_whistleblower_identity_alternative_contact_method_other"
         }
       ],
       "children":[
       ]
     },
     {
-      "id":"identity_email",
+      "id":"question_whistleblower_identity_email",
       "label":{
         "en":"Email address"
       },
@@ -260,8 +260,8 @@
       "triggered_by_score":0,
       "triggered_by_options":[
         {
-          "field":"identity_alternative_contact_method",
-          "option":"identity_alternative_contact_method_email",
+          "field":"question_whistleblower_identity_alternative_contact_method",
+          "option":"question_whistleblower_identity_alternative_contact_method_email",
           "sufficient":true
         }
       ],
@@ -274,7 +274,7 @@
       ]
     },
     {
-      "id":"identity_phone",
+      "id":"question_whistleblower_identity_phone",
       "label":{
         "en":"Phone number"
       },
@@ -317,8 +317,8 @@
       "triggered_by_score":0,
       "triggered_by_options":[
         {
-          "field":"identity_alternative_contact_method",
-          "option":"identity_alternative_contact_method_phone",
+          "field":"question_whistleblower_identity_alternative_contact_method",
+          "option":"question_whistleblower_identity_alternative_contact_method_phone",
           "sufficient":true
         }
       ],
@@ -331,7 +331,7 @@
       ]
     },
     {
-      "id":"identity_other",
+      "id":"question_whistleblower_identity_other",
       "label":{
         "en":"Other"
       },
@@ -374,8 +374,8 @@
       "triggered_by_score":0,
       "triggered_by_options":[
         {
-          "field":"identity_alternative_contact_method",
-          "option":"identity_alternative_contact_method_other",
+          "field":"question_whistleblower_identity_alternative_contact_method",
+          "option":"question_whistleblower_identity_alternative_contact_method_other",
           "sufficient":true
         }
       ],
