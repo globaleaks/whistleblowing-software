@@ -30,7 +30,7 @@ Legal Features
 - Whistleblower identity conditional reporting workflow
 - Manage conflict of interest in the reporting workflow
 - Custodian functionality to authorize access to whistleblower identity
-- Compliant with `ISO 37002 <https://www.iso.org/standard/65035.html>`_ and `EU Directive 2019/1937 <https://eur-lex.europa.eu/legal-content/en/TXT/?uri=CELEX%3A32019L1937>`_
+- Designed in adherence with `ISO 37002 <https://www.iso.org/standard/65035.html>`_ and `EU Directive 2019/1937 <https://eur-lex.europa.eu/legal-content/en/TXT/?uri=CELEX%3A32019L1937>`_
 - GDPR privacy by design
 - GDPR configurable data retention policies
 - GDPR compliant subscriber module for new users of SaaS services
@@ -70,8 +70,7 @@ Technical Features
 - Support for self-service signup for whistleblowing SaaS service setup
 - Support for Linux operating system (`Debian <https://www.debian.org/>`_/`Ubuntu <https://ubuntu.com/>`_)
 - Deb Packaging with repository for update/upgrades
-- Fully self-contained application (no web or application servers needed)
-- Easy integration of the platform with existing websites and intranets
+- Fully self-contained application
+- Easy integration of the platform with existing websites
 - `HTTP/2 <https://tools.ietf.org/html/rfc7540>`_ support
 - Rest API
-- Provisioning API
