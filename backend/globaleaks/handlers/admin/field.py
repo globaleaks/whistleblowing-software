@@ -131,12 +131,11 @@ def db_update_fieldattr(session, field_id, attr_name, attr_dict, language):
                        models.FieldAttr.name == attr_name).one_or_none()
 
     if o is None:
-        attr_dict['id'] = ''
         o = db_add(session, models.FieldAttr, attr_dict)
     else:
         o.update(attr_dict)
 
-    return o.id
+    return o.name
 
 
 def db_update_fieldattrs(session, field_id, field_attrs, language):
@@ -148,19 +147,15 @@ def db_update_fieldattrs(session, field_id, field_attrs, language):
     :param field_attrs: The list of fieldattrs to be updated
     :param language: The language of the request
     """
-    attrs_ids = [db_update_fieldattr(session, field_id, attr_name, attr, language) for attr_name, attr in field_attrs.items()]
+    attrs_names = [db_update_fieldattr(session, field_id, attr_name, attr, language) for attr_name, attr in field_attrs.items()]
 
-    if not attrs_ids:
+    if not attrs_names:
         return
 
-    subquery = session.query(models.FieldAttr.id) \
-                      .filter(models.FieldAttr.field_id == field_id,
-                              not_(models.FieldAttr.id.in_(attrs_ids))) \
-                      .subquery()
-
-    db_del(session,
-           models.FieldAttr,
-           models.FieldAttr.id.in_(subquery))
+    session.query(models.FieldAttr) \
+           .filter(models.FieldAttr.field_id == field_id,
+                   not_(models.FieldAttr.name.in_(attrs_names))) \
+           .delete(synchronize_session=False)
 
 
 def check_field_association(session, tid, request):

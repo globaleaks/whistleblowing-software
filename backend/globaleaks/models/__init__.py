@@ -451,9 +451,8 @@ class _Field(Model):
 class _FieldAttr(Model):
     __tablename__ = 'fieldattr'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    field_id = Column(UnicodeText(36), nullable=False, index=True)
-    name = Column(UnicodeText, nullable=False)
+    field_id = Column(UnicodeText(36), primary_key=True)
+    name = Column(UnicodeText, primary_key=True)
     type = Column(Enum(EnumFieldAttrType), nullable=False)
     value = Column(JSON, default=dict, nullable=False)
 
@@ -461,7 +460,8 @@ class _FieldAttr(Model):
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['field_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+        return (UniqueConstraint('field_id', 'name'),
+                ForeignKeyConstraint(['field_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 CheckConstraint(self.type.in_(EnumFieldAttrType.keys())))
 
     def update(self, values=None):

@@ -360,7 +360,6 @@ def serialize_field_attr(attr, language):
     :return: The serialized resource
     """
     ret = {
-        'id': attr.id,
         'name': attr.name,
         'type': attr.type,
         'value': attr.value

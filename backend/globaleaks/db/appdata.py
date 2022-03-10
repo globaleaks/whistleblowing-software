@@ -106,9 +106,8 @@ def db_fix_fields_attrs(session):
                       models.Field.type == field_type, \
                       models.Field.template_id.is_(None)
 
-            subquery = session.query(models.FieldAttr.id).filter(*_filter).subquery()
-
-            db_del(session, models.FieldAttr, models.FieldAttr.id.in_(subquery))
+            for x in session.query(models.FieldAttr).filter(*_filter):
+                session.delete(x)
 
     # Add keys to the db that have been added to field_attrs
     attrs_name = set([attr_name[0] for attr_name in session.query(models.FieldAttr.name)])
