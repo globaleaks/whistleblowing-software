@@ -193,7 +193,7 @@
   "Password change interval": "Interval promjene lozinke",
   "For security reasons, password changes are required at regular intervals.": "Iz sigurnosnih razloga potrebne su promjene lozinke u redovnim intervalima.",
   "Set the value to 0 to disable this feature.": "Postavite vrijednost na 0 kako bi onemogućili ovu značajku.",
-  "Number of days till notifying unread reports to users": "Number of days till notifying unread reports to users",
+  "Number of days till notifying unread reports to users": "Koliko dana se korisnike obavještava o nepročitanim prijavama",
   "Enable custodian user role": "Omogući ulogu skrbnika",
   "Enable scoring system": "Omogući bodovanje",
   "Logging level": "Razina zapisa",
@@ -601,7 +601,7 @@
   "You are asked to pay special attention to the information and material contained therein. Please keep in mind that whistleblowers often expose themselves to high personal risks in the interest of the public. Therefore the material provided within this report should be considered to be of high importance.": "Od Vas se traži da obratite posebnu pozornost na informacije i materijal sadržan unutra. Imajte na umu da se zviždači često izlažu visokom osobnom riziku u korist javnosti, stoga smatrajte materijal koji se nalazi unutar prijave materijalom od visoke važnosti.",
   "This is an email to notify that an existing report has been updated.": "Ovo je email kojim Vas obavještavamo da je postojeća prijava ažurirana.",
   "Report updated": "Prijava ažurirana",
-  "This email is to remind you the presence of unread or updated reports.": "This email is to remind you the presence of unread or updated reports.",
+  "This email is to remind you the presence of unread or updated reports.": "Ovaj email je tu da vas pdosjeti na nepročitane ili ažurirane prijave.",
   "Reminder about unread or updated reports": "Podsjetnik o nepročitanim ili ažuriranim prijavama",
   "Role: {Role}": "Uloga: {Role}",
   "Password: {Password}": "Lozinka: {Password}"

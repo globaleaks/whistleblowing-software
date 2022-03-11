@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2022-01-31 15:54+0000\n"
-"Last-Translator: Chi-Hsun Tsai\n"
+"PO-Revision-Date: 2022-03-09 05:53+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/otf/globaleaks/language/zh_TW/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -663,7 +663,7 @@ msgid "Type"
 msgstr "類型"
 
 msgid "Severity"
-msgstr ""
+msgstr "严重性"
 
 msgid "Object"
 msgstr ""
@@ -1261,7 +1261,7 @@ msgid "Request support"
 msgstr ""
 
 msgid "Thank you."
-msgstr ""
+msgstr "谢谢。"
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "我們會盡快回覆。"

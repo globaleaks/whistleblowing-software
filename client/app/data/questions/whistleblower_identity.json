@@ -104,7 +104,7 @@
   "options": [],
   "children": [
     {
-      "id": "identity_name",
+      "id": "question_whistleblower_identity_name",
       "label": {
         "en": "First name",
         "am": "የራሶት ስም",
@@ -227,7 +227,7 @@
       "children": []
     },
     {
-      "id": "identity_surname",
+      "id": "question_whistleblower_identity_surname",
       "label": {
         "en": "Last name",
         "am": "የአባት ስም",
@@ -350,7 +350,7 @@
       "children": []
     },
     {
-      "id": "identity_alternative_contact_method",
+      "id": "question_whistleblower_identity_alternative_contact_method",
       "label": {
         "en": "Alternative contact method",
         "am": "Alternative contact method",
@@ -543,7 +543,7 @@
             "zh_HK": "I prefer to be contacted via this platform only",
             "zh_TW": "I prefer to be contacted via this platform only"
           },
-          "id": "identity_alternative_contact_method_platform"
+          "id": "question_whistleblower_identity_alternative_contact_method_platform"
         },
         {
           "order": 1,
@@ -626,7 +626,7 @@
             "zh_HK": "電郵地址",
             "zh_TW": "電子信箱"
           },
-          "id": "identity_alternative_contact_method_email"
+          "id": "question_whistleblower_identity_alternative_contact_method_email"
         },
         {
           "order": 2,
@@ -709,7 +709,7 @@
             "zh_HK": "電話號碼",
             "zh_TW": "電話號碼"
           },
-          "id": "identity_alternative_contact_method_phone"
+          "id": "question_whistleblower_identity_alternative_contact_method_phone"
         },
         {
           "order": 3,
@@ -792,13 +792,13 @@
             "zh_HK": "其他",
             "zh_TW": "其它"
           },
-          "id": "identity_alternative_contact_method_other"
+          "id": "question_whistleblower_identity_alternative_contact_method_other"
         }
       ],
       "children": []
     },
     {
-      "id": "identity_email",
+      "id": "question_whistleblower_identity_email",
       "label": {
         "en": "Email address",
         "am": "የኢሜል አድራሻ",
@@ -915,8 +915,8 @@
       "triggered_by_score": 0,
       "triggered_by_options": [
         {
-          "field": "identity_alternative_contact_method",
-          "option": "identity_alternative_contact_method_email",
+          "field": "question_whistleblower_identity_alternative_contact_method",
+          "option": "question_whistleblower_identity_alternative_contact_method_email",
           "sufficient": true
         }
       ],
@@ -927,7 +927,7 @@
       "children": []
     },
     {
-      "id": "identity_phone",
+      "id": "question_whistleblower_identity_phone",
       "label": {
         "en": "Phone number",
         "am": "ስልክ ቁጥር",
@@ -1044,8 +1044,8 @@
       "triggered_by_score": 0,
       "triggered_by_options": [
         {
-          "field": "identity_alternative_contact_method",
-          "option": "identity_alternative_contact_method_phone",
+          "field": "question_whistleblower_identity_alternative_contact_method",
+          "option": "question_whistleblower_identity_alternative_contact_method_phone",
           "sufficient": true
         }
       ],
@@ -1056,7 +1056,7 @@
       "children": []
     },
     {
-      "id": "identity_other",
+      "id": "question_whistleblower_identity_other",
       "label": {
         "en": "Other",
         "am": "ሌላ",
@@ -1173,8 +1173,8 @@
       "triggered_by_score": 0,
       "triggered_by_options": [
         {
-          "field": "identity_alternative_contact_method",
-          "option": "identity_alternative_contact_method_other",
+          "field": "question_whistleblower_identity_alternative_contact_method",
+          "option": "question_whistleblower_identity_alternative_contact_method_other",
           "sufficient": true
         }
       ],

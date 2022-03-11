@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2022-02-10 16:47+0000\n"
+"PO-Revision-Date: 2022-03-02 21:13+0000\n"
 "Last-Translator: Igor <lyricaltumor@gmail.com>\n"
 "Language-Team: Croatian (Croatia) (http://www.transifex.com/otf/globaleaks/language/hr_HR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -617,7 +617,7 @@ msgid "Set the value to 0 to disable this feature."
 msgstr "Postavite vrijednost na 0 kako bi onemogućili ovu značajku."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr ""
+msgstr "Koliko dana se korisnike obavještava o nepročitanim prijavama"
 
 msgid "Enable custodian user role"
 msgstr "Omogući ulogu skrbnika"
@@ -1949,7 +1949,7 @@ msgid "Report updated"
 msgstr "Prijava ažurirana"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr ""
+msgstr "Ovaj email je tu da vas pdosjeti na nepročitane ili ažurirane prijave."
 
 msgid "Reminder about unread or updated reports"
 msgstr "Podsjetnik o nepročitanim ili ažuriranim prijavama"
