@@ -38,8 +38,8 @@
     "ui-select": "0.19.8"
   },
   "devDependencies": {
-    "eslint": "8.10.0",
-    "gettext-parser": "5.0.0",
+    "eslint": "8.11.0",
+    "gettext-parser": "5.1.0",
     "grunt": "1.4.1",
     "grunt-angular-templates": "1.2.0",
     "grunt-confirm": "1.0.8",
@@ -55,7 +55,7 @@
     "grunt-usemin": "3.1.1",
     "gruntify-eslint": "5.0.0",
     "node-gettext": "3.0.0",
-    "npm-check-updates": "12.5.0",
+    "npm-check-updates": "12.5.3",
     "nyc": "15.1.0",
     "postcss-rtl": "1.7.3",
     "protractor": "7.0.0",
