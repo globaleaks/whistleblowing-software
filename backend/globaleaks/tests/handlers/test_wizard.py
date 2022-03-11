@@ -20,5 +20,4 @@ class TestWizard(helpers.TestHandler):
         yield self.test_model_count(models.User, 2)
 
         # should fail if the wizard has been already completed
-        handler = self.request(self.dummyWizard)
         yield self.assertFailure(handler.post(), errors.ForbiddenOperation)

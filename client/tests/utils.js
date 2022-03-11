@@ -7,6 +7,7 @@ exports.vars = {
     "Single-line text input",
     "Multi-line text input",
     "Selection box",
+    "Multiple choice input",
     "Checkbox",
     "Attachment",
     "Terms of service",

@@ -32,7 +32,7 @@
       <div data-ng-include="'views/partials/rfile_upload_button.html'"></div>
       <div data-ng-include="'views/partials/rfile_upload_status.html'"></div>
       <div data-ng-show="Utils.hasPausedFileUploads(uploads)">
-        <button class="btn btn-sm btn-outline-secondary" data-ng-click="Utils.resumeFileUploads(uploads)">
+        <button id="files-action-confirm" class="btn btn-sm btn-outline-secondary" data-ng-click="Utils.resumeFileUploads(uploads)">
           <i class="fa-solid fa-upload"></i>
           <span data-translate>Confirm</span>
         </button>

@@ -4,7 +4,7 @@ describe("Admin configure custom CSS", function() {
       return;
     }
 
-    var customCSSFile = browser.gl.utils.makeTestFilePath("custom_css.css");
+    var customCSSFile = browser.gl.utils.makeTestFilePath("style.css");
 
     await browser.setLocation("admin/content");
 

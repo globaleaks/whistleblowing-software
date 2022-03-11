@@ -34,7 +34,7 @@ describe("globaleaks process", function() {
 
     await browser.setLocation("/status/" + id);
 
-    expect(await element(by.xpath("//*[contains(text(),'title')]")).getText()).toEqual("title");
+    expect(await element(by.xpath("//*[contains(text(),'summary')]")).getText()).toEqual("summary");
 
     await element(by.model("tip.label")).sendKeys("Important");
     await element(by.id("assignLabelButton")).click();
@@ -94,9 +94,10 @@ describe("globaleaks process", function() {
 
     await browser.gl.utils.login_whistleblower(receipts[0]);
 
-    var fileToUpload = browser.gl.utils.makeTestFilePath("antani.txt");
+    var fileToUpload = browser.gl.utils.makeTestFilePath("evidence-3");
     await element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload);
-    await browser.gl.utils.waitUntilPresent(by.cssContainingText("span", "Upload completed successfully!"));
+    await element(by.id("files-action-confirm")).click();
+    await browser.gl.utils.waitUntilPresent(by.css(".progress-bar-complete"));
 
     await browser.gl.utils.logout();
   });

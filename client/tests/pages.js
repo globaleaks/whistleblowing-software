@@ -34,15 +34,26 @@ exports.whistleblower = function() {
     await browser.gl.utils.takeScreenshot("whistleblower/home.png");
     await element(by.id("WhistleblowingButton")).click();
     await browser.gl.utils.waitUntilPresent(by.id("SubmissionForm"));
-    await element(by.id("step-0")).element(by.id("step-0-field-0-0-input-0")).sendKeys("title");
-    await element(by.id("step-0")).element(by.id("step-0-field-1-0-input-0")).sendKeys("description");
+    await element(by.id("step-0")).element(by.id("step-0-field-0-0-input-0")).sendKeys("summary");
+    await element(by.id("step-0")).element(by.id("step-0-field-1-0-input-0")).sendKeys("detail");
+    await element(by.id("step-0")).element(by.id("step-0-field-2-0-input-0")).sendKeys("...");
+    await element(by.id("step-0")).element(by.id("step-0-field-2-1-input-0")).sendKeys("...");
+
+    await element.all(by.id("step-0-field-3-0-input-0")).first().element(by.xpath(".//*[text()='I witnessed the facts in person']")).click();
+    await element.all(by.id("step-0-field-4-0-input-0")).first().element(by.xpath(".//*[text()='Yes']")).click();
+
+    await element(by.id("step-0")).element(by.id("step-0-field-6-0-input-0")).sendKeys("...");
 
     if (uploadFiles && browser.gl.utils.testFileUpload()) {
-      var fileToUpload1 = browser.gl.utils.makeTestFilePath("antani.txt");
-      var fileToUpload2 = browser.gl.utils.makeTestFilePath("unknown.filetype");
-      await element(by.id("step-0")).element(by.id("step-0-field-2-0")).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload1);
-      await element(by.id("step-0")).element(by.id("step-0-field-2-0")).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload2);
+      var fileToUpload1 = browser.gl.utils.makeTestFilePath("evidence-1");
+      var fileToUpload2 = browser.gl.utils.makeTestFilePath("evidence-2");
+      await element(by.id("step-0")).element(by.id("step-0-field-5-0-input-0")).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload1);
+      await element(by.id("step-0")).element(by.id("step-0-field-5-0-input-0")).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload2);
     }
+
+    await element.all(by.id("step-0-field-7-0-input-0")).first().element(by.xpath(".//*[text()='No']")).click();
+
+    await element(by.id("step-0")).element(by.id("step-0-field-10-0-input-0")).sendKeys("...");
 
     await browser.gl.utils.waitUntilClickable(by.id("SubmitButton"));
 
