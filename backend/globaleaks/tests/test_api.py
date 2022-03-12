@@ -71,13 +71,11 @@ class TestAPI(TestGL):
             ('Cache-control', 'no-store'),
             ('Content-Language', 'en'),
             ('Content-Security-Policy', 'base-uri \'none\';'
-                                        'default-src \'none\';'
-                                        'connect-src \'self\';'
+                                        'default-src \'self\';'
                                         'style-src \'self\' \'sha256-fwyo2zCGlh85NfN4rQUlpLM7MB5cry/1AEDA/G9mQJ8=\';'
                                         'script-src \'self\' \'sha256-IYBZitj/YWbzjFFnwLPjJJmMGdSj923kzu2tdCxLKdU=\';'
                                         'img-src \'self\' data:;'
                                         'font-src \'self\' data:;'
-                                        'media-src \'self\';'
                                         'form-action \'self\';'
                                         'frame-ancestors \'none\';'),
             ('Permissions-Policy', "camera=(),"
