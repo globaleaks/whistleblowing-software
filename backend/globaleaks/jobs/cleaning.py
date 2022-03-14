@@ -14,7 +14,7 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.job import DailyJob
-from globaleaks.orm import db_del, db_query, transact, tw
+from globaleaks.orm import db_del, db_log, db_query, transact, tw
 from globaleaks.utils.fs import srm
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, is_expired
@@ -35,6 +35,9 @@ class Cleaning(DailyJob):
         itips_ids = [id[0] for id in session.query(models.InternalTip.id).filter(models.InternalTip.expiration_date < datetime_now())]
         if itips_ids:
             db_del(session, models.InternalTip, models.InternalTip.id.in_(itips_ids))
+
+        for itip_id in itips_ids:
+            db_log(session, tid=1, type='delete_report', user_id='system', object_id=itip_id)
 
     def db_check_for_expiring_submissions(self, session, tid):
         threshold = datetime_now() + timedelta(hours=self.state.tenant_cache[tid].notification.tip_expiration_threshold)
