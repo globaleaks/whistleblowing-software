@@ -11,6 +11,7 @@ from sqlalchemy.orm import sessionmaker
 from globaleaks import __version__, models, \
     DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, LANGUAGES_SUPPORTED_CODES
 from globaleaks.db.appdata import load_appdata, db_load_defaults
+from globaleaks.orm import db_log
 
 from globaleaks.db.migrations.update_40 import \
     FieldAnswer_v_39, FieldAnswerGroup_v_39
@@ -146,7 +147,13 @@ def perform_data_update(db_file):
         raise Exception("FATAL: cannot complete the upgrade because the support for some of the enabled languages is currently incomplete (%s)\n" % removed_languages)
 
     try:
-        if config.ConfigFactory(session, 1).get_val('version') != __version__:
+        original_version = config.ConfigFactory(session, 1).get_val('version')
+        if original_version != __version__:
+            for tid in [t[0] for t in session.query(models.Tenant.id)]:
+                config.update_defaults(session, tid, appdata)
+
+            db_load_defaults(session)
+
             session.query(models.Config).filter_by(var_name='version') \
                    .update({'value': __version__, 'update_date': now})
 
@@ -156,10 +163,7 @@ def perform_data_update(db_file):
             session.query(models.Config).filter_by(var_name='version_db') \
                    .update({'value': DATABASE_VERSION, 'update_date': now})
 
-            for tid in [t[0] for t in session.query(models.Tenant.id)]:
-                config.update_defaults(session, tid, appdata)
-
-            db_load_defaults(session)
+            db_log(session, tid=1, type='version_update', user_id='system', data={'from': original_version, 'to': __version__})
 
         session.commit()
     except:
