@@ -1,3 +1,20 @@
+Changes in version 4.8.0
+    Improve audit log adding entry for reports deleted automatically by the system
+    Improve audit log adding information about software updates (#3194)
+    Improve self password reset feature making caseinsensitive email lookup
+    Cancel deferred processing when client connection is closed
+    Fix visualization of buttons for ordering contexts
+    Fix failure on pgp encryption of wbfiles for recipients
+    Hide no-configurable options from referenced fields templates instances
+    Add missing multichoice input choice on fields creation
+    Update default globaleaks questionnaire
+    Optimize database removing id attribute on fieldattr model
+    Fix issue #3193
+    Bump npm dependencies to latest versions
+    Update translations
+    [doc] Revise features documentation
+    [doc] Update documentation images
+
 Changes in version 4.7.17
     This version just fixes version numbering
 
