@@ -48,42 +48,41 @@ class CertificateCheck(DailyJob):
             self.state.format_and_send_mail(session, tid, user_desc['mail_address'], template_vars)
 
     @transact
-    def cert_expiration_checks(self, session, tid):
-        now = datetime.now()
+    def renew_certificate(self, session, tid):
+        try:
+            db_acme_cert_request(session, tid)
+        except Exception as e:
+            log.err('Automatic HTTPS renewal failed (%s)', e, tid=tid)
+            return False
 
-        priv_fact = models.config.ConfigFactory(session, tid)
-
-        if not priv_fact.get_val('https_enabled'):
-            return
-
-        cert = load_certificate(FILETYPE_PEM, priv_fact.get_val('https_cert'))
-        expiration_date = letsencrypt.convert_asn1_date(cert.get_notAfter())
-
-        # Acme renewal checks
-        if priv_fact.get_val('acme') and now > expiration_date - timedelta(self.acme_try_renewal):
-            try:
-                db_acme_cert_request(session, tid)
-            except Exception as exc:
-                log.err('Automatic HTTPS renewal failed: %s', exc, tid=tid)
-
-                # Send an email to the admin cause this requires user intervention
-                if now > expiration_date - timedelta(self.notify_expr_within) and \
-                   not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
-                    self.certificate_mail_creation(session, 'https_certificate_renewal_failure', tid, expiration_date)
-
-            tls_config = load_tls_config(session, tid)
-
-            self.state.snimap.unload(tid)
-            self.state.snimap.load(tid, tls_config)
-
-        # Regular certificates expiration checks
-        elif now > expiration_date - timedelta(self.notify_expr_within):
-            log.info('The HTTPS Certificate is expiring on %s', expiration_date, tid=tid)
-            if not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
-                self.certificate_mail_creation(session, 'https_certificate_expiration', tid, expiration_date)
+        return load_tls_config(session, tid)
 
     @inlineCallbacks
     def operation(self):
+        now = datetime.now()
+
         for tid in self.state.tenant_state.keys():
-            yield self.cert_expiration_checks(tid)
-            yield deferred_sleep(5)
+            if not self.state.tenant_cache[tid]['https_enabled']:
+                continue
+
+            cert = load_certificate(FILETYPE_PEM, self.state.tenant_cache[tid]['https_cert'])
+            expiration_date = letsencrypt.convert_asn1_date(cert.get_notAfter())
+            if self.state.tenant_cache[tid]['acme'] and now > expiration_date - timedelta(self.acme_try_renewal):
+                tls_config = yield self.renew_certificate(tid)
+
+                if tls_config:
+                    self.state.snimap.unload(tid)
+                    self.state.snimap.load(tid, tls_config)
+                else:
+                    # Send an email to the admin cause this requires user intervention
+                    if now > expiration_date - timedelta(self.notify_expr_within) and \
+                        not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
+                        self.certificate_mail_creation(session, 'https_certificate_renewal_failure', tid, expiration_date)
+
+                yield deferred_sleep(1)
+
+            # Regular certificates expiration checks
+            elif now > expiration_date - timedelta(self.notify_expr_within):
+                log.info('The HTTPS Certificate is expiring on %s', expiration_date, tid=tid)
+                if not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
+                    self.certificate_mail_creation(session, 'https_certificate_expiration', tid, expiration_date)
