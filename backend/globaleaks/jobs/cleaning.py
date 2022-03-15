@@ -32,12 +32,16 @@ class Cleaning(DailyJob):
         if expired InternalTips are found, it removes that along with
         all the related DB entries comment and tip related.
         """
-        itips_ids = [id[0] for id in session.query(models.InternalTip.id).filter(models.InternalTip.expiration_date < datetime_now())]
-        if itips_ids:
-            db_del(session, models.InternalTip, models.InternalTip.id.in_(itips_ids))
+        itips_ids = []
 
-        for itip_id in itips_ids:
-            db_log(session, tid=1, type='delete_report', user_id='system', object_id=itip_id)
+        results = session.query(models.InternalTip.id, models.InternalTip.tid).filter(models.InternalTip.expiration_date < datetime_now()).all()
+        for result in results:
+            itips_ids.append(result[0])
+
+        db_del(session, models.InternalTip, models.InternalTip.id.in_(itips_ids))
+
+        for result in results:
+            db_log(session, tid=result[1], type='delete_report', user_id='system', object_id=result[0])
 
     def db_check_for_expiring_submissions(self, session, tid):
         threshold = datetime_now() + timedelta(hours=self.state.tenant_cache[tid].notification.tip_expiration_threshold)
