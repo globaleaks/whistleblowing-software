@@ -24,7 +24,6 @@ from globaleaks.utils.sni import SNIMap
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.token import TokenList
-from globaleaks.utils.tor_exit_set import TorExitSet
 from globaleaks.utils.utility import datetime_now
 
 
@@ -48,8 +47,6 @@ class TenantState(object):
 class StateClass(ObjectDict, metaclass=Singleton):
     def __init__(self):
         self.settings = Settings
-
-        self.tor_exit_set = TorExitSet()
 
         self.https_socks = []
         self.http_socks = []

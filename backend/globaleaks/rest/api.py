@@ -341,8 +341,7 @@ class APIResourceWrapper(Resource):
 
         request.port = request.getHost().port
 
-        request.client_using_tor = request.client_ip in State.tor_exit_set or \
-                                   request.port == 8083
+        request.client_using_tor = request.port == 8083
 
         request.client_ua = request.headers.get(b'user-agent', b'')
 
