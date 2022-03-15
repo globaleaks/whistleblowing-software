@@ -18,7 +18,7 @@ from globaleaks.utils import letsencrypt, tls
 from globaleaks.utils.log import log
 
 
-def load_tls_dict(session, tid):
+def load_tls_config(session, tid):
     """
     Transaction for loading the TLS configuration of a tenant
 
@@ -38,8 +38,8 @@ def load_tls_dict(session, tid):
     }
 
 
-def load_tls_dict_list(session):
-    return [load_tls_dict(session, tid[0]) for tid in session.query(models.Tenant.id).filter(models.Tenant.active.is_(True))]
+def load_tls_config_list(session):
+    return [load_tls_config(session, tid[0]) for tid in session.query(models.Tenant.id).filter(models.Tenant.active.is_(True))]
 
 
 def db_create_acme_key(session, tid):
@@ -93,7 +93,7 @@ class FileResource(object):
 
 @transact
 def create_file_https_key(session, tid, raw_data):
-    db_cfg = load_tls_dict(session, tid)
+    db_cfg = load_tls_config(session, tid)
     db_cfg['ssl_key'] = raw_data
 
     config = ConfigFactory(session, tid)
@@ -107,7 +107,7 @@ def create_file_https_key(session, tid, raw_data):
 
 @transact
 def create_file_https_cert(session, tid, raw_data):
-    db_cfg = load_tls_dict(session, tid)
+    db_cfg = load_tls_config(session, tid)
     db_cfg['ssl_cert'] = raw_data
 
     config = ConfigFactory(session, tid)
@@ -122,7 +122,7 @@ def create_file_https_cert(session, tid, raw_data):
 
 @transact
 def create_file_https_chain(session, tid, raw_data):
-    db_cfg = load_tls_dict(session, tid)
+    db_cfg = load_tls_config(session, tid)
     db_cfg['ssl_intermediate'] = raw_data
 
     config = ConfigFactory(session, tid)
@@ -330,7 +330,7 @@ def try_to_enable_https(session, tid):
     config = ConfigFactory(session, tid)
 
     cv = tls.ChainValidator()
-    tls_config = load_tls_dict(session, tid)
+    tls_config = load_tls_config(session, tid)
     tls_config['https_enabled'] = False
 
     ok, _ = cv.validate(tls_config)
@@ -407,7 +407,7 @@ class CSRFileHandler(FileHandler):
     @staticmethod
     @transact
     def perform_action(session, tid, csr_fields):
-        db_cfg = load_tls_dict(session, tid)
+        db_cfg = load_tls_config(session, tid)
 
         pkv = tls.PrivKeyValidator()
         ok, _ = pkv.validate(db_cfg)

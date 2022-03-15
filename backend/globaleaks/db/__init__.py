@@ -7,7 +7,7 @@ import warnings
 from sqlalchemy import exc as sa_exc
 
 from globaleaks import models, DATABASE_VERSION
-from globaleaks.handlers.admin.https import load_tls_dict_list
+from globaleaks.handlers.admin.https import load_tls_config_list
 from globaleaks.models import Base, Config
 from globaleaks.models.config_desc import ConfigFilters
 from globaleaks.orm import get_engine, get_session, make_db_uri, transact, transact_sync
@@ -142,7 +142,7 @@ def sync_initialize_snimap(session):
     Transaction for loading TLS certificates and initialize the SNI map
     :param session: An ORM session
     """
-    for cfg in load_tls_dict_list(session):
+    for cfg in load_tls_config_list(session):
         if cfg['https_enabled']:
             State.snimap.load(cfg['tid'], cfg)
 

@@ -7,7 +7,7 @@ from OpenSSL.crypto import load_certificate, FILETYPE_PEM
 
 
 from globaleaks import models
-from globaleaks.handlers.admin.https import db_acme_cert_request, load_tls_dict
+from globaleaks.handlers.admin.https import db_acme_cert_request, load_tls_config
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.user import db_get_users
@@ -71,7 +71,7 @@ class CertificateCheck(DailyJob):
                    not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
                     self.certificate_mail_creation(session, 'https_certificate_renewal_failure', tid, expiration_date)
 
-            tls_config = load_tls_dict(session, tid)
+            tls_config = load_tls_config(session, tid)
 
             self.state.snimap.unload(tid)
             self.state.snimap.load(tid, tls_config)
