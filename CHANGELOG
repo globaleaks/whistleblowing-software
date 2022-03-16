@@ -1,3 +1,11 @@
+Changes in version 4.8.1
+    Improve performances of https renewal job
+    Revise audit log marking system' report deletion by tenant
+    Ensure that the local copy of the receipt is deleted after logout
+    Deprecate outdated Tor check based on check.torproject.org
+    Bump npm dependencies to latest versions
+    Update translations
+
 Changes in version 4.8.0
     Improve audit log adding entry for reports deleted automatically by the system
     Improve audit log adding information about software updates (#3194)
