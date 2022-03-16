@@ -11,7 +11,7 @@
       "dependencies": {
         "@flowjs/flow.js": "2.14.1",
         "@flowjs/ng-flow": "2.7.8",
-        "@fortawesome/fontawesome-free": "6.0.0",
+        "@fortawesome/fontawesome-free": "6.1.0",
         "angular": "1.8.2",
         "angular-aria": "1.8.2",
         "angular-dynamic-locale": "0.1.37",
@@ -39,7 +39,7 @@
       },
       "devDependencies": {
         "eslint": "8.11.0",
-        "gettext-parser": "5.1.0",
+        "gettext-parser": "5.1.1",
         "grunt": "1.4.1",
         "grunt-angular-templates": "1.2.0",
         "grunt-confirm": "1.0.8",
@@ -60,10 +60,10 @@
         "postcss-rtl": "1.7.3",
         "protractor": "7.0.0",
         "protractor-console-plugin": "0.1.1",
-        "stylelint": "14.5.3",
+        "stylelint": "14.6.0",
         "stylelint-config-standard": "25.0.0",
         "superagent": "7.1.1",
-        "terser": "5.12.0"
+        "terser": "5.12.1"
       }
     },
     "node_modules/@babel/code-frame": {
@@ -375,9 +375,9 @@
       "integrity": "sha512-zO6jNvz41oMOJj9+1N+vLT0ytitbCtuGABJQRzQDOPXyRMmlSXfJ7om5oYOztyUFrr4jDpE4QFPt+r2/RFceCg=="
     },
     "node_modules/@fortawesome/fontawesome-free": {
-      "version": "6.0.0",
-      "resolved": "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-6.0.0.tgz",
-      "integrity": "sha512-6LB4PYBST1Rx40klypw1SmSDArjFOcfBf2LeX9Zg5EKJT2eXiyiJq+CyBYKeXyK0sXS2FsCJWSPr/luyhuvh0Q==",
+      "version": "6.1.0",
+      "resolved": "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-6.1.0.tgz",
+      "integrity": "sha512-OgM74M6+Q7BuKAj8r+VfzwjnIGZrY62R4ipbiDvBW4FA0mLnB3yeuV/2bW63j+zppGyTvBp/3jqXp9ZXy43nFw==",
       "hasInstallScript": true,
       "engines": {
         "node": ">=6"
@@ -3147,9 +3147,9 @@
       }
     },
     "node_modules/gettext-parser": {
-      "version": "5.1.0",
-      "resolved": "https://registry.npmjs.org/gettext-parser/-/gettext-parser-5.1.0.tgz",
-      "integrity": "sha512-nP2AXqgs0rm6DrIYeQd7oo+xVE4ARCfixSIKQCawzVUTLatZ6Y+J+HMcejA+D6OYYLt/wPWVOBbKfzRkiL8WOQ==",
+      "version": "5.1.1",
+      "resolved": "https://registry.npmjs.org/gettext-parser/-/gettext-parser-5.1.1.tgz",
+      "integrity": "sha512-keMdDVK4ytiz+7oarKzenNO9tNOmjiTF26b2ZvQmJmei7Ll4nEoQQdrlLJbcKS3kHg2AI3/B1LdhHjHWO4A4Mg==",
       "dev": true,
       "dependencies": {
         "content-type": "^1.0.4",
@@ -6113,9 +6113,9 @@
       "dev": true
     },
     "node_modules/nanoid": {
-      "version": "3.2.0",
-      "resolved": "https://registry.npmjs.org/nanoid/-/nanoid-3.2.0.tgz",
-      "integrity": "sha512-fmsZYa9lpn69Ad5eDn7FMcnnSR+8R34W9qJEijxYhTbfOWzr22n1QxCMzXLK+ODyW2973V3Fux959iQoUxzUIA==",
+      "version": "3.3.1",
+      "resolved": "https://registry.npmjs.org/nanoid/-/nanoid-3.3.1.tgz",
+      "integrity": "sha512-n6Vs/3KGyxPQd6uO0eH4Bv0ojGSUvuLlIHtC3Y0kEO23YRge8H9x1GCzLn28YX0H66pMkxuaeESFq4tKISKwdw==",
       "dev": true,
       "bin": {
         "nanoid": "bin/nanoid.cjs"
@@ -9088,9 +9088,9 @@
       "dev": true
     },
     "node_modules/stylelint": {
-      "version": "14.5.3",
-      "resolved": "https://registry.npmjs.org/stylelint/-/stylelint-14.5.3.tgz",
-      "integrity": "sha512-omHETL+kGHR+fCXFK1SkZD/A+emCP9esggAdWEl8GPjTNeyRYj+H6uetRDcU+7E451zwWiUYGVAX+lApsAZgsQ==",
+      "version": "14.6.0",
+      "resolved": "https://registry.npmjs.org/stylelint/-/stylelint-14.6.0.tgz",
+      "integrity": "sha512-Xk2sqXYPi9nXgq70nBiZkbQm/QOOKd83NBTaBE1fXEWAEeRlgHnKC/E7kJFlT6K0SaNDOK5yIvR7GFPGsNLuOg==",
       "dev": true,
       "dependencies": {
         "balanced-match": "^2.0.0",
@@ -9118,7 +9118,7 @@
         "normalize-path": "^3.0.0",
         "normalize-selector": "^0.2.0",
         "picocolors": "^1.0.0",
-        "postcss": "^8.4.6",
+        "postcss": "^8.4.12",
         "postcss-media-query-parser": "^0.2.3",
         "postcss-resolve-nested-selector": "^0.1.1",
         "postcss-safe-parser": "^6.0.0",
@@ -9280,21 +9280,27 @@
       }
     },
     "node_modules/stylelint/node_modules/postcss": {
-      "version": "8.4.6",
-      "resolved": "https://registry.npmjs.org/postcss/-/postcss-8.4.6.tgz",
-      "integrity": "sha512-OovjwIzs9Te46vlEx7+uXB0PLijpwjXGKXjVGGPIGubGpq7uh5Xgf6D6FiJ/SzJMBosHDp6a2hiXOS97iBXcaA==",
+      "version": "8.4.12",
+      "resolved": "https://registry.npmjs.org/postcss/-/postcss-8.4.12.tgz",
+      "integrity": "sha512-lg6eITwYe9v6Hr5CncVbK70SoioNQIq81nsaG86ev5hAidQvmOeETBqs7jm43K2F5/Ley3ytDtriImV6TpNiSg==",
       "dev": true,
+      "funding": [
+        {
+          "type": "opencollective",
+          "url": "https://opencollective.com/postcss/"
+        },
+        {
+          "type": "tidelift",
+          "url": "https://tidelift.com/funding/github/npm/postcss"
+        }
+      ],
       "dependencies": {
-        "nanoid": "^3.2.0",
+        "nanoid": "^3.3.1",
         "picocolors": "^1.0.0",
         "source-map-js": "^1.0.2"
       },
       "engines": {
         "node": "^10 || ^12 || >=14"
-      },
-      "funding": {
-        "type": "opencollective",
-        "url": "https://opencollective.com/postcss/"
       }
     },
     "node_modules/stylelint/node_modules/postcss-safe-parser": {
@@ -9582,9 +9588,9 @@
       }
     },
     "node_modules/terser": {
-      "version": "5.12.0",
-      "resolved": "https://registry.npmjs.org/terser/-/terser-5.12.0.tgz",
-      "integrity": "sha512-R3AUhNBGWiFc77HXag+1fXpAxTAFRQTJemlJKjAgD9r8xXTpjNKqIXwHM/o7Rh+O0kUJtS3WQVdBeMKFk5sw9A==",
+      "version": "5.12.1",
+      "resolved": "https://registry.npmjs.org/terser/-/terser-5.12.1.tgz",
+      "integrity": "sha512-NXbs+7nisos5E+yXwAD+y7zrcTkMqb0dEJxIGtSKPdCBzopf7ni4odPul2aechpV7EXNvOudYOX2bb5tln1jbQ==",
       "dev": true,
       "dependencies": {
         "acorn": "^8.5.0",
@@ -10500,9 +10506,9 @@
       "integrity": "sha512-zO6jNvz41oMOJj9+1N+vLT0ytitbCtuGABJQRzQDOPXyRMmlSXfJ7om5oYOztyUFrr4jDpE4QFPt+r2/RFceCg=="
     },
     "@fortawesome/fontawesome-free": {
-      "version": "6.0.0",
-      "resolved": "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-6.0.0.tgz",
-      "integrity": "sha512-6LB4PYBST1Rx40klypw1SmSDArjFOcfBf2LeX9Zg5EKJT2eXiyiJq+CyBYKeXyK0sXS2FsCJWSPr/luyhuvh0Q=="
+      "version": "6.1.0",
+      "resolved": "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-6.1.0.tgz",
+      "integrity": "sha512-OgM74M6+Q7BuKAj8r+VfzwjnIGZrY62R4ipbiDvBW4FA0mLnB3yeuV/2bW63j+zppGyTvBp/3jqXp9ZXy43nFw=="
     },
     "@gar/promisify": {
       "version": "1.1.3",
@@ -12735,9 +12741,9 @@
       }
     },
     "gettext-parser": {
-      "version": "5.1.0",
-      "resolved": "https://registry.npmjs.org/gettext-parser/-/gettext-parser-5.1.0.tgz",
-      "integrity": "sha512-nP2AXqgs0rm6DrIYeQd7oo+xVE4ARCfixSIKQCawzVUTLatZ6Y+J+HMcejA+D6OYYLt/wPWVOBbKfzRkiL8WOQ==",
+      "version": "5.1.1",
+      "resolved": "https://registry.npmjs.org/gettext-parser/-/gettext-parser-5.1.1.tgz",
+      "integrity": "sha512-keMdDVK4ytiz+7oarKzenNO9tNOmjiTF26b2ZvQmJmei7Ll4nEoQQdrlLJbcKS3kHg2AI3/B1LdhHjHWO4A4Mg==",
       "dev": true,
       "requires": {
         "content-type": "^1.0.4",
@@ -15065,9 +15071,9 @@
       "dev": true
     },
     "nanoid": {
-      "version": "3.2.0",
-      "resolved": "https://registry.npmjs.org/nanoid/-/nanoid-3.2.0.tgz",
-      "integrity": "sha512-fmsZYa9lpn69Ad5eDn7FMcnnSR+8R34W9qJEijxYhTbfOWzr22n1QxCMzXLK+ODyW2973V3Fux959iQoUxzUIA==",
+      "version": "3.3.1",
+      "resolved": "https://registry.npmjs.org/nanoid/-/nanoid-3.3.1.tgz",
+      "integrity": "sha512-n6Vs/3KGyxPQd6uO0eH4Bv0ojGSUvuLlIHtC3Y0kEO23YRge8H9x1GCzLn28YX0H66pMkxuaeESFq4tKISKwdw==",
       "dev": true
     },
     "natural-compare": {
@@ -17415,9 +17421,9 @@
       "dev": true
     },
     "stylelint": {
-      "version": "14.5.3",
-      "resolved": "https://registry.npmjs.org/stylelint/-/stylelint-14.5.3.tgz",
-      "integrity": "sha512-omHETL+kGHR+fCXFK1SkZD/A+emCP9esggAdWEl8GPjTNeyRYj+H6uetRDcU+7E451zwWiUYGVAX+lApsAZgsQ==",
+      "version": "14.6.0",
+      "resolved": "https://registry.npmjs.org/stylelint/-/stylelint-14.6.0.tgz",
+      "integrity": "sha512-Xk2sqXYPi9nXgq70nBiZkbQm/QOOKd83NBTaBE1fXEWAEeRlgHnKC/E7kJFlT6K0SaNDOK5yIvR7GFPGsNLuOg==",
       "dev": true,
       "requires": {
         "balanced-match": "^2.0.0",
@@ -17445,7 +17451,7 @@
         "normalize-path": "^3.0.0",
         "normalize-selector": "^0.2.0",
         "picocolors": "^1.0.0",
-        "postcss": "^8.4.6",
+        "postcss": "^8.4.12",
         "postcss-media-query-parser": "^0.2.3",
         "postcss-resolve-nested-selector": "^0.1.1",
         "postcss-safe-parser": "^6.0.0",
@@ -17546,12 +17552,12 @@
           "dev": true
         },
         "postcss": {
-          "version": "8.4.6",
-          "resolved": "https://registry.npmjs.org/postcss/-/postcss-8.4.6.tgz",
-          "integrity": "sha512-OovjwIzs9Te46vlEx7+uXB0PLijpwjXGKXjVGGPIGubGpq7uh5Xgf6D6FiJ/SzJMBosHDp6a2hiXOS97iBXcaA==",
+          "version": "8.4.12",
+          "resolved": "https://registry.npmjs.org/postcss/-/postcss-8.4.12.tgz",
+          "integrity": "sha512-lg6eITwYe9v6Hr5CncVbK70SoioNQIq81nsaG86ev5hAidQvmOeETBqs7jm43K2F5/Ley3ytDtriImV6TpNiSg==",
           "dev": true,
           "requires": {
-            "nanoid": "^3.2.0",
+            "nanoid": "^3.3.1",
             "picocolors": "^1.0.0",
             "source-map-js": "^1.0.2"
           }
@@ -17795,9 +17801,9 @@
       }
     },
     "terser": {
-      "version": "5.12.0",
-      "resolved": "https://registry.npmjs.org/terser/-/terser-5.12.0.tgz",
-      "integrity": "sha512-R3AUhNBGWiFc77HXag+1fXpAxTAFRQTJemlJKjAgD9r8xXTpjNKqIXwHM/o7Rh+O0kUJtS3WQVdBeMKFk5sw9A==",
+      "version": "5.12.1",
+      "resolved": "https://registry.npmjs.org/terser/-/terser-5.12.1.tgz",
+      "integrity": "sha512-NXbs+7nisos5E+yXwAD+y7zrcTkMqb0dEJxIGtSKPdCBzopf7ni4odPul2aechpV7EXNvOudYOX2bb5tln1jbQ==",
       "dev": true,
       "requires": {
         "acorn": "^8.5.0",

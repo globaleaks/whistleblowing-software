@@ -11,7 +11,7 @@
   "dependencies": {
     "@flowjs/flow.js": "2.14.1",
     "@flowjs/ng-flow": "2.7.8",
-    "@fortawesome/fontawesome-free": "6.0.0",
+    "@fortawesome/fontawesome-free": "6.1.0",
     "angular": "1.8.2",
     "angular-aria": "1.8.2",
     "angular-dynamic-locale": "0.1.37",
@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "eslint": "8.11.0",
-    "gettext-parser": "5.1.0",
+    "gettext-parser": "5.1.1",
     "grunt": "1.4.1",
     "grunt-angular-templates": "1.2.0",
     "grunt-confirm": "1.0.8",
@@ -60,9 +60,9 @@
     "postcss-rtl": "1.7.3",
     "protractor": "7.0.0",
     "protractor-console-plugin": "0.1.1",
-    "stylelint": "14.5.3",
+    "stylelint": "14.6.0",
     "stylelint-config-standard": "25.0.0",
     "superagent": "7.1.1",
-    "terser": "5.12.0"
+    "terser": "5.12.1"
   }
 }
