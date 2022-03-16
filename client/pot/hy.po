@@ -2,13 +2,13 @@
 # Translators:
 # Aigiz Kunafin, 2021
 # Artur Papyan <angry.root@gmail.com>, 2021
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022
 # Mariam Mansuryan <mariammansuryan17@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2022-01-31 15:54+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2013-05-29 17:59+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022\n"
 "Language-Team: Armenian (http://www.transifex.com/otf/globaleaks/language/hy/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -471,59 +471,59 @@ msgid "Please summarize your report in a few words."
 msgstr "Մի քանի բառով նկարագրեք ձեր զեկույցը։"
 
 msgid "Where did the facts happen?"
-msgstr ""
+msgstr "Որտե՞ղ են փաստերը տեղի ունեցել։"
 
 msgid "When did the facts happen?"
-msgstr ""
+msgstr "Ե՞րբ են փաստերը տեղի ունեցել։"
 
 msgid "How are you involved in the reported facts?"
-msgstr ""
+msgstr "Ինչպե՞ս եք դուք ներգրավված նշված փաստերում։"
 
 msgid "I’m a victim"
-msgstr ""
+msgstr "Ես զոհ եմ"
 
 msgid "I’m involved in the facts"
-msgstr ""
+msgstr "Ես նեգրավված եմ"
 
 msgid "I witnessed the facts in person"
-msgstr ""
+msgstr "Ես անձամբ ականատես եմ եղել"
 
 msgid "I was personally told by a direct witness"
-msgstr ""
+msgstr "Ինձ անձամբ ասել է ականատեսներից մեկը"
 
 msgid "It is a rumor I heard"
-msgstr ""
+msgstr "Բամբասանք եմ լսել"
 
 msgid "Do you have evidence to support your report?"
-msgstr ""
+msgstr "Ունե՞ք ձեր հաղորդումը հաստատող ապացույցներ։"
 
 msgid "Please attach the evidence to support your report."
-msgstr ""
+msgstr "Илтимос, ҳисоботингизни тасдиқловчи далилларни илова қилинг."
 
 msgid "Please describe the evidence in detail."
-msgstr ""
+msgstr "Խնդրում ենք մանրամասն նկարագրել ապացույցները։"
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr ""
+msgstr "Ուղարկված ապացույցների մանրամասն նկարագրությունն ընդլայնում է պնդումները գնահատելու և հետաքննելու մեր կարողությունը։ Խնդրում ենք հնարավորինս ներառել մեծածավալ տեսանյութեր, լուսանկարներ և փաստաթղթեր։"
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
+msgstr "Сиз бошқа ташкилотлар ва/ёки шахсларга бу фактлар ҳақида хабар бердингизми?"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr ""
+msgstr "Խնդրում ենք թվարկեք այն կազմակերպություններին և/կամ անհատներին ում տեղեկացրել եք այս փաստերի մասին"
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr ""
+msgstr "Արդյո՞ք այդ կազմակերպությունները հետաքննել են ձեր պնդումները։ Եթե այո, ապա ի՞նչ արդյունք է եղել։"
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr ""
+msgstr "Ի՞նչ արդյունք եք ակնկալում ունենալ մեր օգնությամբ"
 
 msgid "File a report"
 msgstr "Հաշվետվություն ներկայացնել"

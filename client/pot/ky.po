@@ -1,13 +1,13 @@
 # 
 # Translators:
 # Chyngyz Monokbaev <monokbaev@gmail.com>, 2021
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022
 # Turdimurod Rakhmanov <turdimurot.rakhmonov@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2022-01-31 15:54+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>\n"
+"PO-Revision-Date: 2013-05-29 17:59+0000\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022\n"
 "Language-Team: Kyrgyz (http://www.transifex.com/otf/globaleaks/language/ky/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -470,59 +470,59 @@ msgid "Please summarize your report in a few words."
 msgstr "Бир нече сөз менен отчетуңузду сүрөттөп бериңиз."
 
 msgid "Where did the facts happen?"
-msgstr ""
+msgstr "Ал окуя кайда болду?"
 
 msgid "When did the facts happen?"
-msgstr ""
+msgstr "Ал окуя качан болду?"
 
 msgid "How are you involved in the reported facts?"
-msgstr ""
+msgstr "Сиз ал окуяга кандай тиешеңиз бар?"
 
 msgid "I’m a victim"
-msgstr ""
+msgstr "Мен курманмын."
 
 msgid "I’m involved in the facts"
-msgstr ""
+msgstr "Мен окуянын катышуучусумун."
 
 msgid "I witnessed the facts in person"
-msgstr ""
+msgstr "Мен окуянын катышуучусумун."
 
 msgid "I was personally told by a direct witness"
-msgstr ""
+msgstr "Мага ал окуянын күбөсүү айтты."
 
 msgid "It is a rumor I heard"
-msgstr ""
+msgstr "Бул мен уккан ушак."
 
 msgid "Do you have evidence to support your report?"
-msgstr ""
+msgstr "Бул окуяны тастыктаган далилиңиз барбы?"
 
 msgid "Please attach the evidence to support your report."
-msgstr ""
+msgstr "Окуя туралуу болгон далилдерди тиркеңиз."
 
 msgid "Please describe the evidence in detail."
-msgstr ""
+msgstr "Болгон далилдерди сүрөттөп берсеңиз."
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr ""
+msgstr "Тапшырылган далилдердин кылдат сүрөттөлүшүү биздин дооматтарды баалоо жана иликтөө жөндөмүбүзгө жардам. Тапшырылган видеолордун, сүрөттөрдүн же документтердин олуттуу бөлүгүнө шилтеме жасоо сураныч."
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
+msgstr "Сиз бул окуя менен башка башка адамдар жана/же уюмдарг менен бөлүштүңүз беле?"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr ""
+msgstr "Бул окуя тууралуу бөлүшкөн уюмдарды жана/же адамдарды болсо, тизмелеп бериңиз. "
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr ""
+msgstr "Ал уюмдар сиздин дооматтарыңызды иликтеди беле? Андай болсо, жыйынтыгы кандай болду эле? "
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr ""
+msgstr " Биздин колдообуз менен кандай жыйынтыкка жетүүнү каалайсыз? "
 
 msgid "File a report"
 msgstr "Отчет жазыңыз"
