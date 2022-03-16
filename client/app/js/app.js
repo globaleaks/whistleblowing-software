@@ -518,7 +518,7 @@ var GL = angular.module("GL", [
       }
     };
 
-    _flowFactoryProvider.on('catchAll', function (event) {
+    _flowFactoryProvider.on("catchAll", function (event) {
       $rootScope.$broadcast("GL::uploadsUpdated");
     });
 

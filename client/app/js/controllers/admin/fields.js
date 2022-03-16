@@ -43,7 +43,7 @@ GL.controller("AdminFieldEditorCtrl", ["$scope", "$http", "FileSaver",
     };
 
     $scope.showOptions = function(field) {
-      if (field.instance === 'reference') {
+      if (field.instance === "reference") {
         return false;
       }
 
