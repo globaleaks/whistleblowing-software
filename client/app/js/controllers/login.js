@@ -10,9 +10,7 @@ GL.controller("LoginCtrl", ["$scope", "$location", function($scope, $location) {
     $location.path($scope.Authentication.session.homepage);
   }
 
-  if ($location.path() === "/receipt") {
-    $scope.login_template = "views/login/receipt.html";
-  } else if ($location.path() === "/login" && $scope.public.node.simplified_login) {
+  if ($scope.public.node.simplified_login) {
     $scope.login_template = "views/login/simplified.html";
   } else {
     $scope.login_template = "views/login/default.html";
