@@ -8,5 +8,5 @@ GL.controller("ReceiptCtrl", ["$scope", function($scope) {
            receipt.substr(4, 4) + " " +
            receipt.substr(8, 4) + " " +
            receipt.substr(12, 4);
-  }($scope.receipt);
+  }($scope.Authentication.session.receipt);
 }]);

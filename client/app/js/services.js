@@ -338,7 +338,7 @@ factory("Submission", ["$q", "$location", "$rootScope", "Authentication", "GLRes
       return self._submission.$save().then(function(result) {
         if (result && result.success) {
           $location.path("/");
-          $rootScope.receipt = result.receipt;
+          $rootScope.Authentication.session.receipt = result.receipt;
           $rootScope.setPage("receiptpage");
         }
       });
