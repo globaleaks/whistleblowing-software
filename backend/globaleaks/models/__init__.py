@@ -208,6 +208,23 @@ class _ArchivedSchema(Model):
     unicode_keys = ['hash']
 
 
+class _AuditLog(Model):
+    """
+    This model contains audit logs
+    """
+    __tablename__ = 'auditlog'
+    __table_args__ = {'sqlite_autoincrement': True}
+
+    id = Column(Integer, primary_key=True)
+    tid = Column(Integer, default=1)
+    date = Column(DateTime, default=datetime_now, nullable=False)
+    type = Column(UnicodeText(24), default='', nullable=False)
+    severity = Column(Integer, default=0, nullable=False)
+    user_id = Column(UnicodeText(36), nullable=True)
+    object_id = Column(UnicodeText(36), nullable=True)
+    data = Column(JSON, nullable=True)
+
+
 class _Comment(Model):
     """
     This table handle the comment collection, has an InternalTip referenced
@@ -549,23 +566,6 @@ class _File(Model):
     def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 UniqueConstraint('tid', 'name'))
-
-
-class _AuditLog(Model):
-    """
-    This model contains audit logs
-    """
-    __tablename__ = 'auditlog'
-    __table_args__ = {'sqlite_autoincrement': True}
-
-    tid = Column(Integer, default=1)
-    id = Column(Integer, primary_key=True, default=1)
-    date = Column(DateTime, default=datetime_now, nullable=False)
-    type = Column(UnicodeText(24), default='', nullable=False)
-    severity = Column(Integer, default=0, nullable=False)
-    user_id = Column(UnicodeText(36), nullable=True)
-    object_id = Column(UnicodeText(36), nullable=True)
-    data = Column(JSON, nullable=True)
 
 
 class _IdentityAccessRequest(Model):
