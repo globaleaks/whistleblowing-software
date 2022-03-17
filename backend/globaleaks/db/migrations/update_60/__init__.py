@@ -67,7 +67,7 @@ class User_v_50(Model):
     description = Column(JSON, default=dict, nullable=False)
     public_name = Column(UnicodeText, default='', nullable=False)
     role = Column(Enum(EnumUserRole), default='receiver', nullable=False)
-    state = Column(Enum(EnumUserState), default='enabled', nullable=False)
+    state = Column(Integer, default=1, nullable=False)
     last_login = Column(DateTime, default=datetime_null, nullable=False)
     mail_address = Column(UnicodeText, default='', nullable=False)
     language = Column(UnicodeText(12), nullable=False)

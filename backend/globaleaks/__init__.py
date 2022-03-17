@@ -10,7 +10,7 @@ __copyright__ = '2011-2022 - GlobaLeaks'
 __version__ = '4.8.1'
 __license__ = 'AGPL-3.0'
 
-DATABASE_VERSION = 61
+DATABASE_VERSION = 62
 FIRST_DATABASE_VERSION_SUPPORTED = 39
 
 # Add new languages as they are supported here! To do this retrieve the name of
