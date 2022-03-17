@@ -556,9 +556,10 @@ class _AuditLog(Model):
     This model contains audit logs
     """
     __tablename__ = 'auditlog'
+    __table_args__ = {'sqlite_autoincrement': True}
 
     tid = Column(Integer, default=1)
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    id = Column(Integer, primary_key=True, default=1)
     date = Column(DateTime, default=datetime_now, nullable=False)
     type = Column(UnicodeText(24), default='', nullable=False)
     severity = Column(Integer, default=0, nullable=False)
