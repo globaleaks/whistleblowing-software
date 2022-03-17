@@ -940,6 +940,8 @@ class _Tenant(Model):
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     active = Column(Boolean, default=False, nullable=False)
 
+    __table_args__ = {'sqlite_autoincrement': True}
+
     bool_keys = ['active']
 
 
