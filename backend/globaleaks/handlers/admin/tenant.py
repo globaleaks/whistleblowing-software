@@ -4,26 +4,10 @@ from globaleaks.db import db_refresh_tenant_cache
 from globaleaks.db.appdata import load_appdata, db_load_defaults
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.wizard import db_wizard
-from globaleaks.models.config import db_set_config_variable, ConfigFactory
+from globaleaks.models import serializers
+from globaleaks.models.config import db_set_config_variable
 from globaleaks.orm import db_del, db_get, transact
 from globaleaks.rest import requests
-
-
-def serialize_tenant(session, tenant):
-    ret = {
-      'id': tenant.id,
-      'creation_date': tenant.creation_date,
-      'active': tenant.active
-    }
-
-    ret.update(ConfigFactory(session, tenant.id).serialize('tenant'))
-
-    signup = session.query(models.Subscriber).filter(models.Subscriber.tid == tenant.id).one_or_none()
-    if signup is not None:
-        from globaleaks.handlers.signup import serialize_signup
-        ret['signup'] = serialize_signup(signup)
-
-    return ret
 
 
 def db_initialize_tenant_submission_statuses(session, tid):
@@ -74,7 +58,7 @@ def db_create(session, desc):
 
 @transact
 def create(session, desc, *args, **kwargs):
-    return serialize_tenant(session, db_create(session, desc, *args, **kwargs))
+    return serializers.serialize_tenant(session, db_create(session, desc, *args, **kwargs))
 
 
 @transact
@@ -92,11 +76,19 @@ def create_and_initialize(session, desc, *args, **kwargs):
 
     db_wizard(session, tenant.id, '', wizard)
 
-    return serialize_tenant(session, tenant)
+    return serializers.serialize_tenant(session, tenant)
 
 
 def db_get_tenant_list(session):
-    return [serialize_tenant(session, t) for t in session.query(models.Tenant)]
+    ret = []
+
+    for t, s in session.query(models.Tenant, models.Subscriber).join(models.Subscriber, models.Subscriber.tid == models.Tenant.id, isouter=True):
+        ret.append(serializers.serialize_tenant(session, t))
+
+        if s:
+            ret[-1]['signup'] = serializers.serialize_signup(s)
+
+    return ret
 
 
 @transact
@@ -106,7 +98,7 @@ def get_tenant_list(session):
 
 @transact
 def get(session, tid):
-    return serialize_tenant(session, db_get(session, models.Tenant, models.Tenant.id == tid))
+    return serializers.serialize_tenant(session, db_get(session, models.Tenant, models.Tenant.id == tid))
 
 
 @transact
@@ -120,7 +112,7 @@ def update(session, tid, request):
 
     db_refresh_tenant_cache(session, [t.id])
 
-    return serialize_tenant(session, t)
+    return serializers.serialize_tenant(session, t)
 
 
 @transact

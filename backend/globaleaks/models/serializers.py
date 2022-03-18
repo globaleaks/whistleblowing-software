@@ -1,6 +1,7 @@
 # -*- coding: utf-8
 import copy
 from globaleaks import models
+from globaleaks.models.config import ConfigFactory
 from globaleaks.state import State
 
 
@@ -305,3 +306,48 @@ def serialize_redirect(redirect):
         'path1': redirect.path1,
         'path2': redirect.path2
     }
+
+
+def serialize_signup(signup):
+    """
+    Transaction serializing the signup descriptor
+
+    :param signup: A signup model
+    :return: A serialization of the provided model
+    """
+    return {
+        'name': signup.name,
+        'surname': signup.surname,
+        'role': signup.role,
+        'email': signup.email,
+        'phone': signup.phone,
+        'subdomain': signup.subdomain,
+        'language': signup.language,
+        'activation_token': signup.activation_token,
+        'registration_date': signup.registration_date,
+        'organization_name': signup.organization_name,
+        'organization_type': signup.organization_type,
+        'organization.tax_code': signup.organization_tax_code,
+        'organization_vat_code': signup.organization_vat_code,
+        'organization_location1': signup.organization_location1,
+        'organization_location2': signup.organization_location2,
+        'organization_location3': signup.organization_location3,
+        'organization_location4': signup.organization_location4,
+        'organization_site': signup.organization_site,
+        'organization_number_employees': signup.organization_number_employees,
+        'organization_number_users': signup.organization_number_users,
+        'tos1': signup.tos1,
+        'tos2': signup.tos2
+    }
+
+
+def serialize_tenant(session, tenant):
+    ret = {
+      'id': tenant.id,
+      'creation_date': tenant.creation_date,
+      'active': tenant.active
+    }
+
+    ret.update(ConfigFactory(session, tenant.id).serialize('tenant'))
+
+    return ret
