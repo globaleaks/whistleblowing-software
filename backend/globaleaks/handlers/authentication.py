@@ -3,7 +3,6 @@
 # Handlers dealing with platform authentication
 from datetime import timedelta
 from random import SystemRandom
-from sqlalchemy import func
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.handlers.base import connection_check, BaseHandler

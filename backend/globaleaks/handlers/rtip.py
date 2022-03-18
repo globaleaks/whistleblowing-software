@@ -20,7 +20,6 @@ from globaleaks.handlers.user import user_serialize_user
 from globaleaks.models import serializers
 from globaleaks.orm import db_get, db_del, db_log, transact, tw
 from globaleaks.rest import errors, requests
-from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.crypto import GCE
 from globaleaks.utils.fs import directory_traversal_check

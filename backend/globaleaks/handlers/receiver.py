@@ -12,7 +12,6 @@ from globaleaks.handlers.rtip import db_grant_tip_access, db_revoke_tip_access
 from globaleaks.models import serializers
 from globaleaks.orm import db_get, db_del, db_log, transact
 from globaleaks.rest import requests, errors
-from globaleaks.state import State
 from globaleaks.utils.crypto import GCE
 
 
@@ -92,7 +91,6 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
             'itip_id': itip.id,
             'creation_date': itip.creation_date,
             'access_date': rtip.access_date,
-            'last_access': rtip.last_access,
             'last_access': itip.last_access,
             'update_date': itip.update_date,
             'expiration_date': itip.expiration_date,

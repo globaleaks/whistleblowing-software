@@ -2,7 +2,6 @@
 #
 # Handlerse dealing with submission interface
 import base64
-import copy
 import json
 
 from globaleaks import models

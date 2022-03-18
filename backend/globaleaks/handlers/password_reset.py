@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from nacl.encoding import Base32Encoder, Base64Encoder
 

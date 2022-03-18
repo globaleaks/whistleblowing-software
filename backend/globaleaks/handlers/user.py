@@ -3,7 +3,6 @@
 # Handlers dealing with user preferences
 import os
 from nacl.encoding import Base32Encoder, Base64Encoder
-from twisted.internet.defer import returnValue
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler

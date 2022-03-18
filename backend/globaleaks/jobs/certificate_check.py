@@ -5,8 +5,6 @@ from twisted.internet.defer import inlineCallbacks
 
 from OpenSSL.crypto import load_certificate, FILETYPE_PEM
 
-
-from globaleaks import models
 from globaleaks.handlers.admin.https import db_acme_cert_request, load_tls_config
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
