@@ -14,12 +14,6 @@ class EnumUserRole(_Enum):
     custodian = 2
 
 
-class EnumContextStatus(_Enum):
-    disabled = 0
-    enabled = 1
-    hidden = 2
-
-
 class EnumFieldInstance(_Enum):
     instance = 0
     template = 1

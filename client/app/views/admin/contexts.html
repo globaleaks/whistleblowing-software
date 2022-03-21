@@ -32,8 +32,7 @@
         <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
           <span class="col-md-7">
             <span>{{context.name}}</span>
-            <span class="badge badge-secondary" data-ng-if="context.status === 'hidden'" data-translate>Hidden</span>
-            <span class="badge badge-secondary" data-ng-if="context.status === 'disabled'" data-translate>Disabled</span>
+	    <span class="badge badge-secondary" data-ng-if="context.hidden === 'hidden'" data-translate>Hidden</span>
           </span>
           <span class="col-md-5 clearfix">
             <span class="float-right">
@@ -83,14 +82,6 @@
                 <label data-translate>Name</label>
                 <input name="name" class="form-control" data-ng-model="context.name" type="text" required>
                 <div class="text-danger" data-ng-show="editContext.name.$error.required" data-translate>This field is mandatory</div>
-              </div>
-              <div class="form-group">
-                <label data-translate>Status</label>
-                <select class="form-control" data-ng-model="context.status">
-                  <option value="enabled" data-translate>Enabled</option>
-                  <option value="hidden" data-translate>Hidden</option>
-                  <option value="disabled" data-translate>Disabled</option>
-                </select>
               </div>
               <div class="form-group">
                 <label data-translate>Description</label>
@@ -159,6 +150,10 @@
                       </span>
                   <div data-translate>Set the value to 0 to disable this feature.</div>
                 </div>
+              </div>
+              <div class="form-group">
+                <input data-ng-model="context.hidden" type="checkbox" />
+                <label data-translate>Hidden</label>
               </div>
             </div>
           </div>

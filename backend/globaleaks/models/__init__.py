@@ -345,13 +345,12 @@ class _Context(Model):
     score_threshold_receipt = Column(Integer, default=0, nullable=False)
     questionnaire_id = Column(UnicodeText(36), default='default', nullable=False)
     additional_questionnaire_id = Column(UnicodeText(36))
-    status = Column(Enum(EnumContextStatus), default='hidden', nullable=False)
+    hidden = Column(Boolean, default=False, nullable=False)
     order = Column(Integer, default=0, nullable=False)
 
     unicode_keys = [
         'questionnaire_id',
-        'additional_questionnaire_id',
-        'status'
+        'additional_questionnaire_id'
     ]
 
     localized_keys = [
@@ -372,6 +371,7 @@ class _Context(Model):
     ]
 
     bool_keys = [
+        'hidden',
         'select_all_receivers',
         'show_context',
         'show_recipients_details',
@@ -391,8 +391,7 @@ class _Context(Model):
     @declared_attr
     def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['questionnaire_id'], ['questionnaire.id'], deferrable=True, initially='DEFERRED'),
-                CheckConstraint(self.status.in_(EnumContextStatus.keys())))
+                ForeignKeyConstraint(['questionnaire_id'], ['questionnaire.id'], deferrable=True, initially='DEFERRED'))
 
 
 class _CustomTexts(Model):
