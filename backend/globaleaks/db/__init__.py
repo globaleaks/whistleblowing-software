@@ -200,15 +200,15 @@ def db_refresh_tenant_cache(session, tids=None):
             tenant_cache['notification'][cfg.var_name] = cfg.value
 
     for tid, mail, pub_key in session.query(models.User.tid, models.User.mail_address, models.User.pgp_key_public) \
-                                     .filter(models.User.state == 'enabled',
-                                             models.User.role == 'admin',
+                                     .filter(models.User.role == 'admin',
+                                             models.User.enabled.is_(True),
                                              models.User.notification.is_(True),
                                              models.User.tid.in_(tids)):
         State.tenant_cache[tid].notification.admin_list.extend([(mail, pub_key)])
 
     for custodian in session.query(models.User) \
                             .filter(models.User.role == 'custodian',
-                                    models.User.state == 'enabled',
+                                    models.User.enabled.is_(True),
                                     models.User.tid.in_(tids)):
         State.tenant_cache[custodian.tid]['custodian'] = True
 

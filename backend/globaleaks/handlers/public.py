@@ -302,7 +302,7 @@ def serialize_context(session, context, language, data=None):
     """
     ret = {
         'id': context.id,
-        'status': context.status,
+        'hidden': context.hidden,
         'order': context.order,
         'tip_timetolive': context.tip_timetolive,
         'select_all_receivers': context.select_all_receivers,

@@ -237,7 +237,7 @@ class MockDict:
             'old_password': '',
             'salt': VALID_SALT1,
             'role': 'receiver',
-            'state': 'enabled',
+            'enabled': True,
             'name': 'Generic User',
             'description': 'King MockDummy',
             'last_login': '1970-01-01 00:00:00.000000',
@@ -618,7 +618,7 @@ class TestGL(unittest.TestCase):
         new_u['name'] = new_u['public_name'] = new_u['mail_address'] = "%s@%s.xxx" % (username, username)
         new_u['description'] = ''
         new_u['password'] = VALID_PASSWORD1
-        new_u['state'] = 'enabled'
+        new_u['enabled'] = True
         new_u['salt'] = VALID_SALT1
 
         return new_u

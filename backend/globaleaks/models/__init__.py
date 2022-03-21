@@ -954,7 +954,7 @@ class _User(Model):
     description = Column(JSON, default=dict, nullable=False)
     public_name = Column(UnicodeText, default='', nullable=False)
     role = Column(Enum(EnumUserRole), default='receiver', nullable=False)
-    state = Column(Enum(EnumUserState), default='enabled', nullable=False)
+    enabled = Column(Boolean, default=True, nullable=False)
     last_login = Column(DateTime, default=datetime_null, nullable=False)
     mail_address = Column(UnicodeText, default='', nullable=False)
     language = Column(UnicodeText(12), nullable=False)
@@ -988,7 +988,7 @@ class _User(Model):
 
     clicked_recovery_key = Column(Boolean, default=False, nullable=False)
 
-    unicode_keys = ['username', 'role', 'state',
+    unicode_keys = ['username', 'role',
                     'language', 'mail_address',
                     'name', 'public_name',
                     'language', 'change_email_address',
@@ -997,7 +997,8 @@ class _User(Model):
 
     localized_keys = ['description']
 
-    bool_keys = ['password_change_needed',
+    bool_keys = ['enabled',
+                 'password_change_needed',
                  'notification',
                  'can_delete_submission',
                  'can_postpone_expiration',
@@ -1013,8 +1014,7 @@ class _User(Model):
     def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 UniqueConstraint('tid', 'username'),
-                CheckConstraint(self.role.in_(EnumUserRole.keys())),
-                CheckConstraint(self.state.in_(EnumUserState.keys())))
+                CheckConstraint(self.role.in_(EnumUserRole.keys())))
 
 
 class _WhistleblowerFile(Model):

@@ -17,7 +17,6 @@ key_regexp_or_empty = r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9
 uuid_regexp = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$'
 uuid_regexp_or_empty = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$|^$'
 user_role_regexp = r'^(admin|custodian|receiver)$'
-user_state_regexp = r'^(enabled|disabled)$'
 email_regexp = r'^(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100})$'
 email_regexp_or_empty = r'^(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100})$|^$'
 hostname_regexp = r'^[0-9a-z\-\.]+$'
@@ -131,7 +130,7 @@ AdminUserDesc = {
     'password': str,
     'old_password': str,
     'password_change_needed': bool,
-    'state': user_state_regexp,
+    'enabled': bool,
     'mail_address': email_regexp,
     'pgp_key_remove': bool,
     'pgp_key_fingerprint': str,

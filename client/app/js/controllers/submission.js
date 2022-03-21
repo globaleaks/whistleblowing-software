@@ -21,7 +21,7 @@ GL.controller("SubmissionCtrl",
 
   $scope.contextsOrderPredicate = $scope.public.node.show_contexts_in_alphabetical_order ? "name" : "order";
 
-  $scope.selectable_contexts = $filter("filter")($scope.public.contexts, {"status": "enabled"});
+  $scope.selectable_contexts = $filter("filter")($scope.public.contexts, {"hidden": false});
   $scope.selectable_contexts = $filter("orderBy")($scope.selectable_contexts, $scope.contextsOrderPredicate);
 
   $scope.selectContext = function(context) {

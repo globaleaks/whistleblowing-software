@@ -569,7 +569,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
     new_context: function() {
       var context = new AdminContextResource();
       context.id = "";
-      context.status = "hidden";
+      context.hidden = true;
       context.name = "";
       context.description = "";
       context.order = 0;
@@ -681,11 +681,10 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       user.id = "";
       user.username = "";
       user.role = "receiver";
-      user.state = "enable";
+      user.enabled = true;
       user.password = "";
       user.old_password = "";
       user.password_change_needed = true;
-      user.state = "enabled";
       user.name = "";
       user.description = "";
       user.public_name = "";

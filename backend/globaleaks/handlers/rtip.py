@@ -467,7 +467,7 @@ def create_identityaccessrequest(session, tid, user_id, rtip_id, request):
     """
     _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    custodian = session.query(models.User).filter(models.User.tid == tid, models.User.role == 'custodian', models.User.state == 'enabled').count() > 0
+    custodian = session.query(models.User).filter(models.User.tid == tid, models.User.role == 'custodian').count() > 0
 
     iar = models.IdentityAccessRequest()
     iar.request_motivation = request['request_motivation']

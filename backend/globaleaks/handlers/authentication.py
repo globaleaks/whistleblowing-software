@@ -98,7 +98,7 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
     :return: Returns a user session in case of success
     """
     user = session.query(User).filter(User.username == username,
-                                      User.state == 'enabled',
+                                      User.enabled.is_(True),
                                       User.tid == tid).one_or_none()
 
     if not user or not GCE.check_password(user.hash_alg, password, user.salt, user.password):
