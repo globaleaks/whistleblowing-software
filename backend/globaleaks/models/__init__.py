@@ -890,14 +890,11 @@ class _SubmissionStatus(Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     tid = Column(Integer, primary_key=True, default=1)
     label = Column(JSON, default=dict, nullable=False)
-    tip_timetolive = Column(Integer, default=90, nullable=False)
-    tip_timetolive_override = Column(Boolean, default=False, nullable=False)
     receivers = Column(JSON, default=list, nullable=False)
     order = Column(Integer, default=0, nullable=False)
 
     localized_keys = ['label']
-    int_keys = ['order', 'tip_timetolive']
-    bool_keys = ['tip_timetolive_override']
+    int_keys = ['order']
     json_keys = ['receivers']
 
     @declared_attr
@@ -915,15 +912,10 @@ class _SubmissionSubStatus(Model):
     tid = Column(Integer, primary_key=True, default=1)
     submissionstatus_id = Column(UnicodeText(36), nullable=False)
     label = Column(JSON, default=dict, nullable=False)
-    tip_timetolive = Column(Integer, default=90, nullable=False)
-    tip_timetolive_override = Column(Boolean, default=False, nullable=False)
-    receivers = Column(JSON, default=list, nullable=False)
     order = Column(Integer, default=0, nullable=False)
 
     localized_keys = ['label']
-    int_keys = ['order', 'tip_timetolive']
-    bool_keys = ['tip_timetolive_override']
-    json_keys = ['receivers']
+    int_keys = ['order']
 
     @declared_attr
     def __table_args__(self):
