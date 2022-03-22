@@ -214,7 +214,7 @@ def perform_migration(version):
             j = version - FIRST_DATABASE_VERSION_SUPPORTED
             session_old = get_session(make_db_uri(old_db_file))
 
-            engine = get_engine(make_db_uri(new_db_file), foreign_keys=False)
+            engine = get_engine(make_db_uri(new_db_file), foreign_keys=False, orm_lockdown=False)
             if FIRST_DATABASE_VERSION_SUPPORTED + j + 1 == DATABASE_VERSION:
                 Base.metadata.create_all(engine)
             else:

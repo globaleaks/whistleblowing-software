@@ -45,7 +45,7 @@ def create_db():
     """
     Utility function to create a new database
     """
-    engine = get_engine()
+    engine = get_engine(orm_lockdown=False)
     engine.execute('PRAGMA foreign_keys = ON')
     engine.execute('PRAGMA secure_delete = ON')
     engine.execute('PRAGMA auto_vacuum = FULL')
@@ -57,7 +57,7 @@ def compact_db():
     """
     Execute VACUUM command to deallocate database space
     """
-    engine = get_engine()
+    engine = get_engine(orm_lockdown=False)
     engine.execute('VACUUM')
 
 

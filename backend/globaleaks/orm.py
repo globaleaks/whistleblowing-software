@@ -3,6 +3,7 @@ import collections
 import random
 import time
 import warnings
+import sqlite3
 
 from sqlalchemy import create_engine, event
 from sqlalchemy.exc import OperationalError, SAWarning
@@ -36,18 +37,37 @@ def get_db_uri():
     return _DB_URI
 
 
-def get_engine(db_uri=None, foreign_keys=True):
+def get_engine(db_uri=None, foreign_keys=True, orm_lockdown=True):
     if db_uri is None:
         db_uri = get_db_uri()
 
     engine = create_engine(db_uri, connect_args={'timeout': 30}, echo=_ORM_DEBUG)
 
+    def authorizer_callback(action, table, column, sql_location, ignore):
+        if action in [sqlite3.SQLITE_DELETE,
+                      sqlite3.SQLITE_INSERT,
+                      sqlite3.SQLITE_READ,
+                      sqlite3.SQLITE_SELECT,
+                      sqlite3.SQLITE_TRANSACTION,
+                      sqlite3.SQLITE_UPDATE] or \
+           (action == sqlite3.SQLITE_FUNCTION and column in ['count',
+                                                             'lower',
+                                                             'min',
+                                                             'max']):
+            return sqlite3.SQLITE_OK
+        else:
+            return sqlite3.SQLITE_DENY
+
     @event.listens_for(engine, "connect")
     def do_connect(conn, connection_record):
-        conn.execute('pragma temp_store=MEMORY')
+        conn.execute('PRAGMA trusted_schema=OFF')
+        conn.execute('PRAGMA temp_store=MEMORY')
 
         if foreign_keys:
-            conn.execute('pragma foreign_keys=ON')
+            conn.execute('PRAGMA foreign_keys=ON')
+
+        if orm_lockdown:
+            conn.set_authorizer(authorizer_callback)
 
     return engine
 
