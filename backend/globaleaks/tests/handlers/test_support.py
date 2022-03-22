@@ -5,7 +5,7 @@ from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
 
 
-class TestSupportionHandler(helpers.TestHandlerWithPopulatedDB):
+class TestSupportHandler(helpers.TestHandlerWithPopulatedDB):
     _handler = support.SupportHandler
 
     @inlineCallbacks
