@@ -9,14 +9,6 @@ class TestORM(helpers.TestGL):
     initialize_test_database_using_archived_db = False
 
     @transact
-    def _verify_pragmas(self, session):
-        # Verify setting enabled in the sqlite db
-        self.assertEqual(session.execute("PRAGMA foreign_keys").fetchone()[0], 1)  # ON
-        self.assertEqual(session.execute("PRAGMA secure_delete").fetchone()[0], 1)  # ON
-        self.assertEqual(session.execute("PRAGMA auto_vacuum").fetchone()[0], 1)   # FULL
-        self.assertEqual(session.execute("PRAGMA automatic_index").fetchone()[0], 1) # ON
-
-    @transact
     def _transact_with_success(self, session):
         self.db_add_config(session)
 
@@ -27,10 +19,6 @@ class TestORM(helpers.TestGL):
 
     def db_add_config(self, session):
         session.add(Tenant())
-
-    @inlineCallbacks
-    def test_pragmas(self):
-        yield self._verify_pragmas()
 
     @inlineCallbacks
     def test_transact_with_stuff(self):
