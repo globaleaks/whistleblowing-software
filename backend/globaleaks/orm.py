@@ -14,11 +14,10 @@ from twisted.internet.threads import deferToThreadPool
 from globaleaks.models import AuditLog
 
 
-_DEBUG = False
-_DB_URI = 'sqlite:'
-_THREAD_POOL = None
-
-TRANSACTION_RETRIES = 20
+_ORM_DEBUG = False
+_ORM_DB_URI = 'sqlite:'
+_ORM_THREAD_POOL = None
+_ORM_TRANSACTION_RETRIES = 20
 
 
 warnings.filterwarnings('ignore', '.', SAWarning)
@@ -41,7 +40,7 @@ def get_engine(db_uri=None, foreign_keys=True):
     if db_uri is None:
         db_uri = get_db_uri()
 
-    engine = create_engine(db_uri, connect_args={'timeout': 30}, echo=_DEBUG)
+    engine = create_engine(db_uri, connect_args={'timeout': 30}, echo=_ORM_DEBUG)
 
     @event.listens_for(engine, "connect")
     def do_connect(conn, connection_record):
@@ -59,17 +58,17 @@ def get_session(db_uri=None, foreign_keys=True):
 
 
 def enable_orm_debug():
-    global _DEBUG
-    _DEBUG = True
+    global _ORM_DEBUG
+    _ORM_DEBUG = True
 
 
 def set_thread_pool(thread_pool):
-    global _THREAD_POOL
-    _THREAD_POOL = thread_pool
+    global _ORM_THREAD_POOL
+    _ORM_THREAD_POOL = thread_pool
 
 
 def get_thread_pool():
-    return _THREAD_POOL
+    return _ORM_THREAD_POOL
 
 
 def db_add(session, model_class, model_fields):
@@ -159,7 +158,7 @@ class transact(object):
 
                     retries += 1
 
-                    if retries >= TRANSACTION_RETRIES:
+                    if retries >= _ORM_TRANSACTION_RETRIES:
                         raise Exception("Transaction failed with too many retries")
 
                     time.sleep(0.2 * random.uniform(1, 2 ** retries))
