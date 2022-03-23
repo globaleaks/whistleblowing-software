@@ -18,20 +18,26 @@ from globaleaks.utils.crypto import GCE, generateRandomPassword
 
 
 def check_file(f):
-    if not os.path.isfile(f):
-        print("Missing file: {}".format(f), file=sys.stderr)
-    try:
-        with open(f, 'r'):
-            pass
-    except IOError as err:
-        print(err, file=sys.stderr)
-        sys.exit(1)
+    if not os.path.isfile(f) or not os.access(f, os.R_OK):
+        raise RuntimeError("Missing or inaccessible file: {}".format(f))
 
 
 def check_dir(d):
     if not os.path.isdir(d):
-        print("Missing dir: {}".format(d), file=sys.stderr)
-        sys.exit(1)
+        raise RuntimeError("Missing or inaccessible dir: {}".format(d))
+
+
+def check_db(d):
+    check_dir(args.workdir)
+
+    db_version, db_path = get_db_file(args.workdir)
+
+    if db_version <= 0:
+        return
+
+    check_file(db_path)
+
+    return db_path
 
 
 def default_backup_path():
@@ -92,7 +98,7 @@ def restore(args):
     sp.check_call("find %s -type f -exec shred -vzn 3 {} \;" % args.workdir, shell=True)
 
     print("Extracting the archive {}".format(args.backuppath))
-    sp.check_call(["tar", "-xf", args.backuppath, "-C", '/var/globaleaks'])
+    sp.check_call(["tar", "-xf", args.backuppath, "-C", args.workdir])
 
     if must_stop: sp.check_call("service globaleaks start", shell=True)
 
@@ -100,13 +106,7 @@ def restore(args):
 
 
 def reset_pass(args):
-    check_dir(args.dbpath)
-    db_version, db_path = get_db_file(args.dbpath)
-
-    if db_version <= 0:
-        return
-
-    check_file(db_path)
+    db_path = check_db(args.workdir)
 
     salt = GCE.generate_salt()
 
@@ -135,71 +135,49 @@ def reset_pass(args):
 
 
 def get_var(args):
-    check_dir(args.dbpath)
-    db_version, db_path = get_db_file(args.dbpath)
+    db_path = check_db(args.workdir)
 
-    if db_version <= 0:
-        return
+    QUERY = "SELECT value FROM config WHERE var_name=? AND tid=?;"
 
-    check_file(db_path)
-    try:
-        QUERY = "SELECT value FROM config WHERE var_name=? AND tid=?;"
+    conn = sqlite3.connect(db_path)
+    c = conn.cursor()
+    c.execute(QUERY, (args.varname, args.tid))
+    ret = c.fetchone()
+    if ret is None:
+        print("Failed to read value of var '{}'.".format(args.varname))
+        sys.exit(1)
 
-        conn = sqlite3.connect(db_path)
-        c = conn.cursor()
-        c.execute(QUERY, (args.varname, args.tid))
-        ret = c.fetchone()
-        if ret is None:
-            print("Failed to read value of var '{}'.".format(args.varname))
-            sys.exit(1)
+    conn.close()
 
-        conn.close()
-
-        print(json.loads(str(ret[0])))
-    except Exception as e:
-        # This string is dumped into stdout to ensure an exact string match
-        # will fail
-        print("ERROR")
-        raise e
+    print(json.loads(str(ret[0])))
 
 
 def set_var(args, silent=False):
-    check_dir(args.dbpath)
-    db_version, db_path = get_db_file(args.dbpath)
+    db_path = check_db(args.workdir)
 
-    if db_version <= 0:
-        return
+    if args.value == 'True':
+        args.value = True
+    elif args.value == 'False':
+        args.value = False
 
-    check_file(db_path)
-    try:
-        if args.value == 'True':
-            args.value = True
-        elif args.value == 'False':
-            args.value = False
+    value = json.dumps(args.value)
 
-        value = json.dumps(args.value)
+    QUERY = "UPDATE config SET value=? WHERE var_name=? AND tid=?;"
 
-        QUERY = "UPDATE config SET value=? WHERE var_name=? AND tid=?;"
+    conn = sqlite3.connect(db_path)
+    c = conn.cursor()
+    c.execute(QUERY, (value, args.varname, args.tid))
+    conn.commit()
+    conn.close()
 
-        conn = sqlite3.connect(db_path)
-        c = conn.cursor()
-        c.execute(QUERY, (value, args.varname, args.tid))
-        conn.commit()
-        conn.close()
-
-        if not silent:
-            print("Success! {} set to '{}'".format(args.varname, args.value))
-
-    except Exception as e:
-        # This string is dumped into stdout to ensure an exact string match
-        # will fail
-        print("ERROR")
-        raise e
+    if not silent:
+        print("Success! {} set to '{}'".format(args.varname, args.value))
 
 
-def add_db_path_arg(parser):
-    parser.add_argument("--dbpath",
-                        help="the path to the globaleaks db directory",
+def add_workingdir_path_arg(parser):
+    parser.add_argument("-w",
+                        "--workdir",
+                        help="the directory that hosts the globaleaks data storage",
                         default=Settings.working_path)
 
 Settings.eval_paths()
@@ -210,43 +188,45 @@ parser = argparse.ArgumentParser(prog="gl-admin",
 subp = parser.add_subparsers(title="commands")
 
 bck_p = subp.add_parser("backup", help="create a backup of the setup")
-bck_p.add_argument("-w", "--workdir", help="the location of dynamic globaleaks content",
-                   default=Settings.working_path)
+add_workingdir_path_arg(bck_p)
 bck_p.add_argument("backuppath", nargs="?", help="the path and name of the backup",
                    default=default_backup_path())
 bck_p.set_defaults(func=backup)
 
 res_p = subp.add_parser("restore", help="restore a backup of the setup")
-res_p.add_argument("-w", "--workdir", help="the location of dynamic gl content",
-                   default=Settings.working_path)
+add_workingdir_path_arg(res_p)
 res_p.add_argument("backuppath", nargs="?", help="the path and name of the backup",
                    default=default_backup_path())
 res_p.set_defaults(func=restore)
 
 pw_p = subp.add_parser("resetpass", help="reset a user's password")
-add_db_path_arg(pw_p)
+add_workingdir_path_arg(pw_p)
 pw_p.add_argument("--tid", help="the tenant id", default='1', type=int)
-pw_p.add_argument("username", help="the username used to login into GL")
+pw_p.add_argument("username")
 pw_p.add_argument("password", nargs="?", help="if not set a random password is generated",
                   default=generateRandomPassword(16))
 pw_p.set_defaults(func=reset_pass)
 
 rv_p = subp.add_parser("getvar", help="get database config variable")
-add_db_path_arg(rv_p)
+add_workingdir_path_arg(rv_p)
 rv_p.add_argument("--tid", help="the tenant id", default='1', type=int)
 rv_p.add_argument("varname", help="the name of the config var", default='version', type=str)
 rv_p.set_defaults(func=get_var)
 
 sv_p = subp.add_parser("setvar", help="set database config variable")
-add_db_path_arg(sv_p)
+add_workingdir_path_arg(sv_p)
 sv_p.add_argument("--tid", help="the tenant id", default='1', type=int)
 sv_p.add_argument("varname", help="the name of the config var", type=str)
 sv_p.add_argument("value", help="value which must be of the correct type Bool(0|1), Int(0-9^9), String(everything else)")
 sv_p.set_defaults(func=set_var)
 
 if __name__ == '__main__':
-    args = parser.parse_args()
-    if hasattr(args, 'func'):
-        args.func(args)
-    else:
-        parser.print_help()
+    try:
+        args = parser.parse_args()
+        if hasattr(args, 'func'):
+            args.func(args)
+        else:
+            parser.print_help()
+
+    except Exception as exc:
+        print("ERROR: {}".format(exc))
