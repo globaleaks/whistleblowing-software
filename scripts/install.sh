@@ -169,6 +169,8 @@ fi
 last_command "startup"
 last_status "0"
 
+sleep 5
+
 i=0
 while [ $i -lt 30 ]
 do
