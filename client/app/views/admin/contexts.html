@@ -117,25 +117,23 @@
                 <ol class="selectionList">
                   <li data-ng-repeat="receiver in context.receivers">
                     <span data-ng-controller="AdminContextReceiverSelectorCtrl">
-                      <span class="action-btns">
-                        <span data-ng-if="!context.show_receivers_in_alphabetical_order">
-                          <span data-ng-if="!$first" data-ng-click="moveUp($index)"
-                                data-uib-tooltip="{{'Move up' | translate}}">
-                            <i class="fa-solid fa-chevron-up"></i>
-                          </span>
-                          <i data-ng-if="$first || $last" class="fa-solid fa-none"></i>
-                          <span data-ng-if="!$last" data-ng-click="moveDown($index)"
-                                data-uib-tooltip="{{'Move down' | translate}}">
-                            <i class="fa-solid fa-chevron-down"></i>
-                          </span>
+                      <span data-ng-if="!context.show_receivers_in_alphabetical_order">
+                        <span data-ng-if="!$first" data-ng-click="moveUp($index)"
+                              data-uib-tooltip="{{'Move up' | translate}}">
+                          <i class="fa-solid fa-chevron-up"></i>
                         </span>
-                        <span data-ng-click="context.receivers.splice($index, 1)"
-                              data-uib-tooltip="{{'Remove' | translate}}">
-                          <i class="fa-solid fa-times"></i>
+                        <i data-ng-if="$first || $last" class="fa-solid fa-none"></i>
+                        <span data-ng-if="!$last" data-ng-click="moveDown($index)"
+                              data-uib-tooltip="{{'Move down' | translate}}">
+                          <i class="fa-solid fa-chevron-down"></i>
                         </span>
                       </span>
-                      <span>{{admin_receivers_by_id[receiver].name}}</span>
+                      <span data-ng-click="context.receivers.splice($index, 1)"
+                            data-uib-tooltip="{{'Remove' | translate}}">
+                        <i class="fa-solid fa-times"></i>
+                      </span>
                     </span>
+                    <span>{{admin_receivers_by_id[receiver].name}}</span>
                   </li>
                 </ol>
               </div>
