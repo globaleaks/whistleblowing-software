@@ -21,6 +21,15 @@ _ORM_THREAD_POOL = None
 _ORM_TRANSACTION_RETRIES = 20
 
 
+SQLITE_DELETE=9
+SQLITE_FUNCTION=31
+SQLITE_INSERT=18
+SQLITE_READ=20
+SQLITE_SELECT=21
+SQLITE_TRANSACTION=22
+SQLITE_UPDATE=23
+
+
 warnings.filterwarnings('ignore', '.', SAWarning)
 
 
@@ -44,16 +53,16 @@ def get_engine(db_uri=None, foreign_keys=True, orm_lockdown=True):
     engine = create_engine(db_uri, connect_args={'timeout': 30}, echo=_ORM_DEBUG)
 
     def authorizer_callback(action, table, column, sql_location, ignore):
-        if action in [sqlite3.SQLITE_DELETE,
-                      sqlite3.SQLITE_INSERT,
-                      sqlite3.SQLITE_READ,
-                      sqlite3.SQLITE_SELECT,
-                      sqlite3.SQLITE_TRANSACTION,
-                      sqlite3.SQLITE_UPDATE] or \
-           (action == sqlite3.SQLITE_FUNCTION and column in ['count',
-                                                             'lower',
-                                                             'min',
-                                                             'max']):
+        if action in [SQLITE_DELETE,
+                      SQLITE_INSERT,
+                      SQLITE_READ,
+                      SQLITE_SELECT,
+                      SQLITE_TRANSACTION,
+                      SQLITE_UPDATE] or \
+           (action == SQLITE_FUNCTION and column in ['count',
+                                                     'lower',
+                                                     'min',
+                                                     'max']):
             return sqlite3.SQLITE_OK
         else:
             return sqlite3.SQLITE_DENY
