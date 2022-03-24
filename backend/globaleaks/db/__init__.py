@@ -4,7 +4,7 @@ import sys
 import traceback
 import warnings
 
-from sqlalchemy import exc as sa_exc
+from sqlalchemy.exc import SAWarning
 
 from globaleaks import models, DATABASE_VERSION
 from globaleaks.handlers.admin.https import load_tls_config_list
@@ -83,7 +83,7 @@ def update_db():
     try:
         with warnings.catch_warnings():
             from globaleaks.db import migration
-            warnings.simplefilter("ignore", category=sa_exc.SAWarning)
+            warnings.simplefilter("ignore", category=SAWarning)
 
             log.err('Found an already initialized database version: %d', db_version)
 
