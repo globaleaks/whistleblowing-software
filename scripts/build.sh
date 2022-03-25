@@ -3,7 +3,7 @@
 set -e
 
 TARGETS="bullseye buster focal bionic"
-DISTRIBUTION="buster"
+DISTRIBUTION="bullseye"
 TAG="main"
 LOCAL_ENV=0
 NOSIGN=0
