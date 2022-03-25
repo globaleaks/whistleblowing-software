@@ -103,7 +103,7 @@ class MigrationScript(MigrationBase):
                 if key != 'id':
                     setattr(new_obj, key, getattr(old_obj, key))
 
-                self.session_new.add(new_obj)
+            self.session_new.add(new_obj)
 
     def migrate_Context(self):
         for old_obj in self.session_old.query(self.model_from['Context']):
@@ -114,7 +114,7 @@ class MigrationScript(MigrationBase):
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
-                self.session_new.add(new_obj)
+            self.session_new.add(new_obj)
 
     def migrate_User(self):
         for old_obj in self.session_old.query(self.model_from['User']):
@@ -125,4 +125,4 @@ class MigrationScript(MigrationBase):
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
-                self.session_new.add(new_obj)
+            self.session_new.add(new_obj)
