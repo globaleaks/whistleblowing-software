@@ -117,7 +117,7 @@ class MigrationScript(MigrationBase):
                 if not new_obj.receipt_hash:
                     new_obj.receipt_hash = GCE.generate_receipt()
 
-                self.session_new.add(new_obj)
+            self.session_new.add(new_obj)
 
     def migrate_ReceiverTip(self):
         for old_obj in self.session_old.query(self.model_from['ReceiverTip']):
@@ -128,4 +128,4 @@ class MigrationScript(MigrationBase):
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
-                self.session_new.add(new_obj)
+            self.session_new.add(new_obj)
