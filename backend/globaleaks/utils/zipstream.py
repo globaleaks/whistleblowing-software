@@ -15,6 +15,8 @@ import zlib
 from twisted.internet import abstract
 from twisted.internet.defer import Deferred
 
+from globaleaks.utils.crypto import GCE
+
 __all__ = ["ZipStream"]
 
 ZIP64_LIMIT = (1 << 31) - 1
@@ -200,18 +202,14 @@ class ZipStream(object):
 
         yield header
 
-        with fo:
-            while True:
-                buf = fo.read(8 * 1024)
-                if not buf:
-                    break
+        while True:
+             buf = fo.read(8 * 1024)
+             if not buf:
+               break
 
-                yield self.zipinfo_update(zipinfo, cmpr, buf)
+             yield self.zipinfo_update(zipinfo, cmpr, buf)
 
         yield self.zipinfo_close(zipinfo, cmpr)
-
-    def zip_file(self, filepath, arcname):
-        return self.zip_fo(open(filepath, "rb"), arcname)
 
     def archive_footer(self):
         """
@@ -304,13 +302,18 @@ class ZipStream(object):
     def __iter__(self):
         for f in self.files:
             try:
-                if 'fo' in f:
-                    for data in self.zip_fo(f['fo'], f['name']):
-                        yield data
-
-                elif 'path' in f:
-                    for data in self.zip_file(f['path'], f['name']):
-                        yield data
+                if 'key' in f:
+                    with GCE.streaming_encryption_open('DECRYPT', f['key'], f['path']) as fo:
+                        for data in self.zip_fo(fo, f['name']):
+                            yield data
+                elif 'fo' in f:
+                    with f['fo']:
+                        for data in self.zip_fo(f['fo'], f['name']):
+                            yield data
+                else:
+                    with open(f['path'], "rb") as fo:
+                        for data in self.zip_fo(fo, f['name']):
+                            yield data
             except:
                 pass
 

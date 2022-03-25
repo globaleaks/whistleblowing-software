@@ -80,7 +80,8 @@ def prepare_tip_export(cc, tip_export):
             files_prv_key = GCE.asymmetric_decrypt(cc, tip_export['crypto_files_prv_key'])
             filelocation = os.path.join(Settings.attachments_path, file_dict['filename'])
             directory_traversal_check(Settings.attachments_path, filelocation)
-            file_dict['fo'] = GCE.streaming_encryption_open('DECRYPT', files_prv_key, filelocation)
+            file_dict['key'] = files_prv_key
+            file_dict['path'] = filelocation
             del filelocation
 
         for file_dict in tip_export['tip']['wbfiles']:
@@ -90,7 +91,8 @@ def prepare_tip_export(cc, tip_export):
             tip_prv_key = GCE.asymmetric_decrypt(cc, tip_export['crypto_tip_prv_key'])
             filelocation = os.path.join(Settings.attachments_path, file_dict['filename'])
             directory_traversal_check(Settings.attachments_path, filelocation)
-            file_dict['fo'] = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
+            file_dict['key'] = tip_prv_key
+            file_dict['path'] = filelocation
             del filelocation
 
     for file_dict in tip_export['tip'].pop('rfiles'):
