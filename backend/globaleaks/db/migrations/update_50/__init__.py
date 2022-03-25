@@ -61,7 +61,7 @@ class MigrationScript(MigrationBase):
     def migrate_SubmissionStatus(self):
         for old_obj in self.session_old.query(self.model_from['SubmissionStatus']):
             new_obj = self.model_to['SubmissionStatus']()
-            for key in new_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
                 setattr(new_obj, key, getattr(old_obj, key))
 
             if old_obj.system_defined:
@@ -77,7 +77,7 @@ class MigrationScript(MigrationBase):
     def migrate_SubmissionSubStatus(self):
         for old_obj in self.session_old.query(self.model_from['SubmissionSubStatus']):
             new_obj = self.model_to['SubmissionSubStatus']()
-            for key in new_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
                 if key == 'tid':
                     p_model = self.model_from['SubmissionStatus']
                     p = self.session_old.query(p_model).filter(p_model.id == old_obj.submissionstatus_id).one()
@@ -93,7 +93,7 @@ class MigrationScript(MigrationBase):
     def migrate_User(self):
         for old_obj in self.session_old.query(self.model_from['User']):
             new_obj = self.model_to['User']()
-            for key in new_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
                 if hasattr(old_obj, key):
                     setattr(new_obj, key, getattr(old_obj, key))
 

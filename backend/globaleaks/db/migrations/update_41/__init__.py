@@ -111,10 +111,10 @@ class MigrationScript(MigrationBase):
             for old_obj in old_objs:
                 i += 1
                 new_obj = self.model_to['InternalTip']()
-                for key in new_obj.__table__.columns._data.keys():
+                for key in new_obj.__mapper__.column_attrs.keys():
                     if key == 'progressive':
                         new_obj.progressive = i
-                    elif key in old_obj.__table__.columns._data.keys():
+                    elif key in old_obj.__mapper__.column_attrs.keys():
                         setattr(new_obj, key, getattr(old_obj, key))
 
                 self.session_new.add(new_obj)
@@ -122,7 +122,7 @@ class MigrationScript(MigrationBase):
     def _migrateFile(self, model):
         for old_obj in self.session_old.query(self.model_from[model]):
             new_obj = self.model_to[model]()
-            for key in new_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
                 if key == 'filename':
                     new_obj.filename = os.path.basename(old_obj.file_path)
                 else:

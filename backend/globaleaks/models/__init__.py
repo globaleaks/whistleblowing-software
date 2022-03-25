@@ -104,7 +104,7 @@ class Model(object):
     def __init__(self, values=None):
         self.update(values)
 
-        self.properties = self.__table__.columns._data.keys()
+        self.properties = self.__mapper__.column_attrs.keys()
 
     def update(self, values=None):
         """

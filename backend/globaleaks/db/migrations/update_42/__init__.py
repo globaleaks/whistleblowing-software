@@ -37,7 +37,7 @@ class MigrationScript(MigrationBase):
     def migrate_FieldAttr(self):
         for old_obj in self.session_old.query(self.model_from['FieldAttr']):
             new_obj = self.model_to['FieldAttr']()
-            for key in new_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
                 setattr(new_obj, key, getattr(old_obj, key))
 
             if old_obj.name == 'agreement_statement':
@@ -48,10 +48,10 @@ class MigrationScript(MigrationBase):
     def migrate_InternalTip(self):
         for old_obj in self.session_old.query(self.model_from['InternalTip']):
             new_obj = self.model_to['InternalTip']()
-            for key in new_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
                 if key == 'status' or key == 'substatus':
                     new_obj.status = 'new'
-                elif key in old_obj.__table__.columns._data.keys():
+                elif key in old_obj.__mapper__.column_attrs.keys():
                     setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)

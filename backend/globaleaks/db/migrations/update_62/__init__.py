@@ -99,7 +99,7 @@ class MigrationScript(MigrationBase):
     def migrate_AuditLog(self):
         for old_obj in self.session_old.query(self.model_from['AuditLog']):
             new_obj = self.model_to['AuditLog']()
-            for key in new_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
                 if key != 'id':
                     setattr(new_obj, key, getattr(old_obj, key))
 
@@ -108,7 +108,7 @@ class MigrationScript(MigrationBase):
     def migrate_Context(self):
         for old_obj in self.session_old.query(self.model_from['Context']):
             new_obj = self.model_to['Context']()
-            for key in new_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
                 if key == 'hidden':
                     setattr(new_obj, key, getattr(old_obj, 'status') != 1)
                 else:
@@ -121,7 +121,7 @@ class MigrationScript(MigrationBase):
 
         for old_obj in self.session_old.query(self.model_from['InternalTip']):
             new_obj = self.model_to['InternalTip']()
-            for key in new_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
                 if key == 'context_id' and old_obj.context_id not in ctx_ids:
                     setattr(new_obj, key, ctx_ids[0])
                 else:
@@ -132,7 +132,7 @@ class MigrationScript(MigrationBase):
     def migrate_User(self):
         for old_obj in self.session_old.query(self.model_from['User']):
             new_obj = self.model_to['User']()
-            for key in new_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
                 if key == 'enabled':
                     setattr(new_obj, key, getattr(old_obj, 'state') == 1)
                 else:

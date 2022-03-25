@@ -78,7 +78,7 @@ class MigrationScript(MigrationBase):
 
         for old_obj in self.session_old.query(self.model_from['InternalTip']):
             new_obj = self.model_to['InternalTip']()
-            for key in new_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
                 if key == 'tor':
                     setattr(new_obj, key, not getattr(old_obj, 'https'))
                 elif key == 'score':
@@ -110,7 +110,7 @@ class MigrationScript(MigrationBase):
         for model in ['ReceiverTip', 'ReceiverFile', 'WhistleblowerFile']:
             for old_obj in self.session_old.query(self.model_from[model]):
                 new_obj = self.model_to[model]()
-                for key in new_obj.__table__.columns._data.keys():
+                for key in new_obj.__mapper__.column_attrs.keys():
                     if key == 'access_date':
                         setattr(new_obj, key, getattr(old_obj, 'last_access'))
                     else:

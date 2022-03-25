@@ -169,7 +169,7 @@ class MigrationScript(MigrationBase):
     def _migrate_Config(self, name):
         for old_obj in self.session_old.query(self.model_from[name]):
             new_obj = self.model_to[name]()
-            for key in new_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
                 if key == 'update_date':
                     if old_obj.customized:
                         new_obj.update_date = datetime_now()
@@ -191,7 +191,7 @@ class MigrationScript(MigrationBase):
             filenames[old_obj.filename] = True
 
             new_obj = self.model_to[name]()
-            for key in new_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
                 setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
@@ -205,7 +205,7 @@ class MigrationScript(MigrationBase):
     def migrate_Context(self):
         for old_obj in self.session_old.query(self.model_from['Context']):
             new_obj = self.model_to['Context']()
-            for key in new_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
                 if key == 'status':
                     new_obj.status = 1 if old_obj.show_context else 2
                 elif hasattr(old_obj, key):
@@ -217,7 +217,7 @@ class MigrationScript(MigrationBase):
         ids = {}
         for old_obj in self.session_old.query(self.model_from['InternalTip']):
             new_obj = self.model_to['InternalTip']()
-            for key in new_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
                 setattr(new_obj, key, getattr(old_obj, key))
 
             if new_obj.progressive in ids:
@@ -237,7 +237,7 @@ class MigrationScript(MigrationBase):
         for old_obj in self.session_old.query(self.model_from['User']):
             receiver = self.session_old.query(self.model_from['Receiver']).filter(self.model_from['Receiver'].id == old_obj.id).one_or_none()
             new_obj = self.model_to['User']()
-            for key in new_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
                 if key in ['can_delete_submission', 'can_postpone_expiration']:
                     if receiver is not None:
                         setattr(new_obj, key, getattr(receiver, key))

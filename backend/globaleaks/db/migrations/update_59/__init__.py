@@ -24,7 +24,7 @@ class MigrationScript(MigrationBase):
     def migrate_InternalTip(self):
         for old_obj in self.session_old.query(self.model_from['InternalTip']):
             new_obj = self.model_to['InternalTip']()
-            for key in new_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
                 setattr(new_obj, key, getattr(old_obj, key))
 
             for old_rtip in self.session_old.query(self.model_from['ReceiverTip']) \

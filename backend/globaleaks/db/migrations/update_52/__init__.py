@@ -218,8 +218,8 @@ class MigrationScript(MigrationBase):
     def migrate_Context(self):
         for old_obj in self.session_old.query(self.model_from['Context']):
             new_obj = self.model_to['Context']()
-            for key in new_obj.__table__.columns._data.keys():
-                if key not in old_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
+                if key not in old_obj.__mapper__.column_attrs.keys():
                     continue
 
                 value = getattr(old_obj, key)
@@ -239,8 +239,8 @@ class MigrationScript(MigrationBase):
     def migrate_FieldAttr(self):
         for old_obj in self.session_old.query(self.model_from['FieldAttr']):
             new_obj = self.model_to['FieldAttr']()
-            for key in new_obj.__table__.columns._data.keys():
-                if key in old_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
+                if key in old_obj.__mapper__.column_attrs.keys():
                     setattr(new_obj, key, getattr(old_obj, key))
 
             if new_obj.name == 'attachment_url':
@@ -261,7 +261,7 @@ class MigrationScript(MigrationBase):
 
         for old_obj in self.session_old.query(self.model_from['User']):
             new_obj = self.model_to['User']()
-            for key in new_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
                 if key.startswith('crypto_') or key == 'readonly' or key == 'two_factor_secret':
                     continue
 

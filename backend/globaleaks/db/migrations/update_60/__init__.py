@@ -103,12 +103,12 @@ class MigrationScript(MigrationBase):
 
         for old_obj in self.session_old.query(self.model_from['InternalTip']):
             new_obj = self.model_to['InternalTip']()
-            for key in new_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
                 if key == 'crypto_files_pub_key':
                     new_obj.crypto_files_pub_key = old_obj.crypto_tip_pub_key
                 elif key == 'last_access':
                     new_obj.last_access = old_obj.wb_last_access
-                elif key not in old_obj.__table__.columns._data.keys():
+                elif key not in old_obj.__mapper__.column_attrs.keys():
                     if old_obj.id in wbtips_by_id:
                        setattr(new_obj, key, getattr(wbtips_by_id[old_obj.id], key))
                 else:
@@ -122,7 +122,7 @@ class MigrationScript(MigrationBase):
     def migrate_ReceiverTip(self):
         for old_obj in self.session_old.query(self.model_from['ReceiverTip']):
             new_obj = self.model_to['ReceiverTip']()
-            for key in new_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
                 if key == 'crypto_files_prv_key':
                     new_obj.crypto_files_prv_key = old_obj.crypto_tip_prv_key
                 else:

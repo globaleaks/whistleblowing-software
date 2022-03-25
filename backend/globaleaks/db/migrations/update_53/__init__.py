@@ -136,8 +136,8 @@ class MigrationScript(MigrationBase):
     def migrate_Context(self):
         for old_obj in self.session_old.query(self.model_from['Context']):
             new_obj = self.model_to['Context']()
-            for key in new_obj.__table__.columns._data.keys():
-                if key not in old_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
+                if key not in old_obj.__mapper__.column_attrs.keys():
                     continue
 
                 value = getattr(old_obj, key)
@@ -154,7 +154,7 @@ class MigrationScript(MigrationBase):
             self.entries_count['Config'] += 1
 
             new_obj = self.model_to['Tenant']()
-            for key in new_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
                 setattr(new_obj, key, getattr(old_obj, key))
 
             for key in ['subdomain']:
@@ -169,11 +169,11 @@ class MigrationScript(MigrationBase):
     def migrate_Subscriber(self):
         for old_obj in self.session_old.query(self.model_from['Subscriber']):
             new_obj = self.model_to['Subscriber']()
-            for key in new_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
                 if key == 'activation_token' and old_obj.activation_token == '':
                     new_obj.activation_token = None
 
-                if key in old_obj.__table__.columns._data.keys():
+                if key in old_obj.__mapper__.column_attrs.keys():
                     setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
@@ -181,7 +181,7 @@ class MigrationScript(MigrationBase):
     def migrate_User(self):
         for old_obj in self.session_old.query(self.model_from['User']):
             new_obj = self.model_to['User']()
-            for key in new_obj.__table__.columns._data.keys():
+            for key in new_obj.__mapper__.column_attrs.keys():
                 if key == 'forcefully_selected':
                     new_obj.forcefully_selected = old_obj.recipient_configuration == 1
                 if hasattr(old_obj, key):
