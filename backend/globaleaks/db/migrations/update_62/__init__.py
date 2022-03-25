@@ -116,6 +116,19 @@ class MigrationScript(MigrationBase):
 
             self.session_new.add(new_obj)
 
+    def migrate_InternalTip(self):
+        ctx_ids = [c[0] for c in self.session_old.query(self.model_from['Context'].id).all()]
+
+        for old_obj in self.session_old.query(self.model_from['InternalTip']):
+            new_obj = self.model_to['InternalTip']()
+            for key in new_obj.__table__.columns._data.keys():
+                if key == 'context_id' and old_obj.context_id not in ctx_ids:
+                    setattr(new_obj, key, ctx_ids[0])
+                else:
+                    setattr(new_obj, key, getattr(old_obj, key))
+
+            self.session_new.add(new_obj)
+
     def migrate_User(self):
         for old_obj in self.session_old.query(self.model_from['User']):
             new_obj = self.model_to['User']()
