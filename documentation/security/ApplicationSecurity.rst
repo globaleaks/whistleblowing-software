@@ -30,7 +30,7 @@ By accessing the login web interface, ``Administrators`` and ``Recipients`` need
 
 Receipt
 -------
-``Whistleblowers`` access their ``Reports`` by using a anonymous ``Receipts``, which are random generated 16 digits sequences created by the Backend when the Report is first submitted. The reason of this format of 16 digits is that it resembles a standard phone number, making it easier for the whistleblowers to conceal their receipts.
+``Whistleblowers`` access their ``Reports`` by using an anonymous ``Receipts``, which are random generated 16 digits sequences created by the Backend when the Report is first submitted. The reason of this format of 16 digits is that it resembles a standard phone number, making it easier for the whistleblowers to conceal their receipts.
 
 Password Security
 =================
@@ -101,8 +101,6 @@ When this button is clicked, users are invited to enter their username or an ema
 By clicking the link received by email the user is then invited to configure a new email different from the previous.
 
 In case encryption is enabled on the system, a user clicking on the reset link would have first to insert their ``Account Recovery Key`` and only in case of correct insertion the user will be enabled to set a new password.
-
-In case 2FA is enabled on the system, a user clicking on the reset link would have first to insert an authentication code taken from the authentication API.
 
 Web Application Security
 ========================
@@ -221,7 +219,7 @@ As well a set of rules are applied to each request type to limit possible attack
 
 On the Client
 +++++++++++++
-The client implement strict validation of the rendered content by using the angular component `ngSanitize.$sanitize <http://docs.angularjs.org/api/ngSanitize.$sanitize>`_
+The client implements strict validation of the rendered content by using the angular component `ngSanitize.$sanitize <http://docs.angularjs.org/api/ngSanitize.$sanitize>`_
 
 Form Autocomplete OFF
 ---------------------
@@ -274,7 +272,7 @@ In addition to this GlobaLeaks implements many other encryption components and t
 * `Python-NaCL <https://github.com/pyca/pynacl>`_: is used for implementing data encryption
 * `PyOpenSSL <https://github.com/pyca/pyopenssl>`_: is used for implementing HTTPS
 * `Python-Cryptography <https://cryptography.io>`_: is used for implementing authentication
-* `Python-GnuPG <http://pythonhosted.org/python-gnupg/index.html>`_: is used for encrypting email notifications and file downloads by menas of ```PGP```
+* `Python-GnuPG <http://pythonhosted.org/python-gnupg/index.html>`_: is used for encrypting email notifications and file downloads by means of ```PGP```
 
 Application Sandboxing
 ======================
