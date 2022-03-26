@@ -1,12 +1,11 @@
-====================
+======================
 Continuous Integration
-====================
-The globaleaks codebase is continuously tested for bug within a complete continuous integration lifecycle implemented.
+======================
+The GlobaLeaks codebase is continuously tested for bug within a complete continuous integration lifecycle implemented.
 
 Testes are performed at every commit by:
 
 * performing static and dynamic testing on `TravisCI <https://travis-ci.org/github/globaleaks/GlobaLeaks>`_;
-* performing end2end tests on `SauceLabs <https://saucelabs.com/u/globaleaks>`_ to ensure compatibility with common browsers;
 * tracking tests coverage and code quality with `Codacy <https://app.codacy.com/manual/GlobaLeaks/GlobaLeaks>`_.
 
 Unit Tests
