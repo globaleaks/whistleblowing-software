@@ -4,7 +4,10 @@ import re
 import sys
 import traceback
 
-from twisted.internet.defer import succeed, AlreadyCalledError
+from acme.errors import ValidationError
+
+from twisted.internet.defer import succeed, AlreadyCalledError, CancelledError
+from twisted.internet.error import ConnectionLost, DNSLookupError, TimeoutError
 from twisted.mail.smtp import SMTPError
 from twisted.python.failure import Failure
 from twisted.python.threadpool import ThreadPool
@@ -26,6 +29,17 @@ from globaleaks.utils.templating import Templating
 from globaleaks.utils.token import TokenList
 from globaleaks.utils.utility import datetime_now
 
+
+silenced_exceptions = (
+  AlreadyCalledError,
+  CancelledError,
+  ConnectionLost,
+  DNSLookupError,
+  GeneratorExit,
+  SMTPError,
+  TimeoutError,
+  ValidationError
+)
 
 def getAlarm(state):
     from globaleaks.anomaly import Alarm
@@ -251,9 +265,7 @@ def mail_exception_handler(etype, value, tback):
     This would be enabled only in the testing phase and testing release,
     not in production release.
     """
-    if isinstance(value, (GeneratorExit,
-                          AlreadyCalledError,
-                          SMTPError)) or \
+    if isinstance(value, silenced_exceptions) or \
         (etype == AssertionError and value.message == "Request closed"):
         # we need to bypass email notification for some exception that:
         # 1) raise frequently or lie in a twisted bug;
