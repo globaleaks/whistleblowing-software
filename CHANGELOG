@@ -1,3 +1,26 @@
+Changes in version 4.9.0
+    Silence notification of common exceptions
+    Prepare packaging for Ubuntu Jammy (#3185)
+    Fix visibility of reports related to deleted contexts (#3209)
+    Fix export failure for reports with large number of attachments (#3212)
+    Fix compatibility with both SQLAlchemy 1.3 and 1.4
+    Add migration script 62
+    Add archived db version 62 used for tested purposes
+    Implement SQLITE lockdown state (#3206)
+    Simplify configuration of context hidden status
+    Simplify configuration of users enabled status
+    Deliver submissions also to recipients which account have been disabled
+    Remove database support for incomplete features #2523 and #2552
+    Fix regression on notification of certificate renewal failure introduced in 4.8.1
+    Add autoincrement property to Tenant ID attribute (#3197)
+    Change the type of the ID attribute of Audit Log to be an autoincremented integer (#3198)
+    Bump npm dependencies to latest versions
+    Update translations
+    [doc] Update documentation images
+    [doc] Update ER representation of the database
+    [doc] Update documentation in relation to application testing
+    [doc] Add documentation about hardened database configuration
+
 Changes in version 4.8.1
     Improve performances of https renewal job
     Revise audit log marking system' report deletion by tenant
