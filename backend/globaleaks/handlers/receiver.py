@@ -174,7 +174,7 @@ class Operations(BaseHandler):
     check_roles = 'receiver'
 
     def put(self):
-        request = self.validate_message(self.request.content.read(), requests.OpsDesc)
+        request = self.validate_request(self.request.content.read(), requests.OpsDesc)
 
         if request['operation'] not in ['delete', 'grant', 'revoke']:
             raise errors.ForbiddenOperation

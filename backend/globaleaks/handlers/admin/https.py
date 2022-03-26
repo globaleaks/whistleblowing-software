@@ -285,7 +285,7 @@ class FileHandler(BaseHandler):
 
     @inlineCallbacks
     def post(self, name):
-        req = self.validate_message(self.request.content.read(),
+        req = self.validate_request(self.request.content.read(),
                                     requests.AdminTLSCfgFileResourceDesc)
 
         if name == 'key':
@@ -384,7 +384,7 @@ class CSRFileHandler(FileHandler):
 
     @inlineCallbacks
     def post(self, name):
-        request = self.validate_message(self.request.content.read(),
+        request = self.validate_request(self.request.content.read(),
                                         requests.AdminCSRFileDesc)
 
         desc = request['content']

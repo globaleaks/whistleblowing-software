@@ -13,7 +13,7 @@ class SupportHandler(BaseHandler):
     check_roles = 'any'
 
     def post(self):
-        request = self.validate_message(self.request.content.read(),
+        request = self.validate_request(self.request.content.read(),
                                         requests.SupportDesc)
 
         email = "From: %s\n\n" % request['mail_address']

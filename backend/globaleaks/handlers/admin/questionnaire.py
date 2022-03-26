@@ -203,7 +203,7 @@ class QuestionnairesCollection(BaseHandler):
             language = self.request.language
             validator = requests.AdminQuestionnaireDesc
 
-        request = self.validate_message(self.request.content.read(), validator)
+        request = self.validate_request(self.request.content.read(), validator)
 
         return create_questionnaire(self.request.tid, self.session, request, language)
 
@@ -222,7 +222,7 @@ class QuestionnaireInstance(BaseHandler):
         """
         Update the specified questionnaire.
         """
-        request = self.validate_message(self.request.content.read(),
+        request = self.validate_request(self.request.content.read(),
                                         requests.AdminQuestionnaireDesc)
 
         return tw(db_update_questionnaire,
@@ -250,7 +250,7 @@ class QuestionnareDuplication(BaseHandler):
         Duplicates a questionnaire
         """
 
-        request = self.validate_message(self.request.content.read(),
+        request = self.validate_request(self.request.content.read(),
                                         requests.QuestionnaireDuplicationDesc)
 
         return duplicate_questionnaire(self.request.tid,

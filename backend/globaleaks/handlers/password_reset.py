@@ -165,14 +165,14 @@ class PasswordResetHandler(BaseHandler):
     check_roles = 'any'
 
     def post(self):
-        request = self.validate_message(self.request.content.read(),
+        request = self.validate_request(self.request.content.read(),
                                         requests.PasswordReset1Desc)
 
         return generate_password_reset_token_by_username_or_mail(self.request.tid,
                                                                  request['username'])
 
     def put(self):
-        request = self.validate_message(self.request.content.read(),
+        request = self.validate_request(self.request.content.read(),
                                         requests.PasswordReset2Desc)
 
         return validate_password_reset(request['reset_token'],

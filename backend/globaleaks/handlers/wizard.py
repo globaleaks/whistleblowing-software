@@ -154,7 +154,7 @@ class Wizard(BaseHandler):
     invalidate_cache = True
 
     def post(self):
-        request = self.validate_message(self.request.content.read(),
+        request = self.validate_request(self.request.content.read(),
                                         requests.WizardDesc)
 
         if self.request.hostname not in self.state.tenant_hostname_id_map:

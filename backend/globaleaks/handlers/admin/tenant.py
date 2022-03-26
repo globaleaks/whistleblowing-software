@@ -137,7 +137,7 @@ class TenantCollection(BaseHandler):
         """
         Create a new tenant
         """
-        request = self.validate_message(self.request.content.read(),
+        request = self.validate_request(self.request.content.read(),
                                         requests.AdminTenantDesc)
 
         return create_and_initialize(request)
@@ -160,7 +160,7 @@ class TenantInstance(BaseHandler):
         """
         tid = int(tid)
 
-        request = self.validate_message(self.request.content.read(),
+        request = self.validate_request(self.request.content.read(),
                                         requests.AdminTenantDesc)
 
         return update(int(tid), request)

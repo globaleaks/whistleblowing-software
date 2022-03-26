@@ -151,7 +151,7 @@ class AuthenticationHandler(BaseHandler):
 
     @inlineCallbacks
     def post(self):
-        request = self.validate_message(self.request.content.read(), requests.AuthDesc)
+        request = self.validate_request(self.request.content.read(), requests.AuthDesc)
 
         tid = int(request['tid'])
         if tid == 0:
@@ -188,7 +188,7 @@ class TokenAuthHandler(BaseHandler):
 
     @inlineCallbacks
     def post(self):
-        request = self.validate_message(self.request.content.read(), requests.TokenAuthDesc)
+        request = self.validate_request(self.request.content.read(), requests.TokenAuthDesc)
 
         yield login_delay(self.request.tid)
 
@@ -214,7 +214,7 @@ class ReceiptAuthHandler(BaseHandler):
 
     @inlineCallbacks
     def post(self):
-        request = self.validate_message(self.request.content.read(), requests.ReceiptAuthDesc)
+        request = self.validate_request(self.request.content.read(), requests.ReceiptAuthDesc)
 
         yield login_delay(self.request.tid)
 

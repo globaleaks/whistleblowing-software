@@ -103,7 +103,7 @@ class IdentityAccessRequestInstance(BaseHandler):
         return get_identityaccessrequest(self.request.tid, identityaccessrequest_id)
 
     def put(self, identityaccessrequest_id):
-        request = self.validate_message(self.request.content.read(), requests.CustodianIdentityAccessRequestDesc)
+        request = self.validate_request(self.request.content.read(), requests.CustodianIdentityAccessRequestDesc)
 
         return update_identityaccessrequest(self.request.tid,
                                             self.session.user_id,

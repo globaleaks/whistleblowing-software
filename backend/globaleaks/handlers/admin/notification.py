@@ -48,7 +48,7 @@ class NotificationInstance(BaseHandler):
         """
         Changes the node notification settings.
         """
-        request = self.validate_message(self.request.content.read(),
+        request = self.validate_request(self.request.content.read(),
                                         requests.AdminNotificationDesc)
 
         return update_notification(self.request.tid, request, self.request.language)

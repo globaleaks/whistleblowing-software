@@ -277,7 +277,7 @@ class UserInstance(BaseHandler):
                         self.request.language)
 
     def put(self):
-        request = self.validate_message(self.request.content.read(), requests.UserUserDesc)
+        request = self.validate_request(self.request.content.read(), requests.UserUserDesc)
 
         return update_user_settings(self.session.user_tid,
                                     self.session,

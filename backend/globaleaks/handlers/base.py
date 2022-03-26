@@ -166,7 +166,7 @@ class BaseHandler(object):
 
         # value as "{foo:bar}"
         elif isinstance(type, collections.Mapping):
-            retval = BaseHandler.validate_jmessage(value, type)
+            retval = BaseHandler.validate_request(value, type)
             if not retval:
                 log.err("-- Invalid JSON/dict [%s] expected %s", value, type)
 
@@ -190,19 +190,25 @@ class BaseHandler(object):
         return retval
 
     @staticmethod
-    def validate_jmessage(jmessage, message_template):
+    def validate_request(request, request_template):
         """
-        Takes a string that represents a JSON messages and checks to see if it
-        conforms to the message type it is supposed to be.
+        Takes a string that represents a JSON requests and checks to see if it
+        conforms to the request type it is supposed to be.
 
-        This message must be either a dict or a list. This function may be called
+        This request must be either a dict or a list. This function may be called
         recursively to validate sub-parameters that are also go GLType.
         """
-        if isinstance(message_template, dict):
+        if not isinstance(request, (dict, list)):
+            try:
+                request = json.loads(request)
+            except:
+                raise errors.InputValidationError()
+
+        if isinstance(request_template, dict):
             success_check = 0
             keys_to_strip = []
-            for key, value in jmessage.items():
-                if key not in message_template:
+            for key, value in request.items():
+                if key not in request_template:
                     # strip whatever is not validated
                     #
                     # reminder: it's not possible to raise an exception for the
@@ -216,56 +222,40 @@ class BaseHandler(object):
                     keys_to_strip.append(key)
                     continue
 
-                if not BaseHandler.validate_type(value, message_template[key]):
+                if not BaseHandler.validate_type(value, request_template[key]):
                     log.err("Received key %s: type validation fail", key)
                     raise errors.InputValidationError("Key (%s) type validation failure" % key)
                 success_check += 1
 
             for key in keys_to_strip:
-                del jmessage[key]
+                del request[key]
 
-            for key, value in message_template.items():
-                if key not in jmessage:
+            for key, value in request_template.items():
+                if key not in request:
                     log.debug("Key %s expected but missing!", key)
                     log.debug("Received schema %s - Expected %s",
-                              jmessage.keys(), message_template.keys())
+                              request.keys(), request_template.keys())
                     raise errors.InputValidationError("Missing key %s" % key)
 
-                if not BaseHandler.validate_type(jmessage[key], value):
+                if not BaseHandler.validate_type(request[key], value):
                     log.err("Expected key: %s type validation failure", key)
                     raise errors.InputValidationError("Key (%s) double validation failure" % key)
 
-                if isinstance(message_template[key], (dict, list)) and message_template[key]:
-                    BaseHandler.validate_jmessage(jmessage[key], message_template[key])
+                if isinstance(request_template[key], (dict, list)) and request_template[key]:
+                    BaseHandler.validate_request(request[key], request_template[key])
 
                 success_check += 1
 
-            if success_check != len(message_template) * 2:
+            if success_check != len(request_template) * 2:
                 log.err("Success counter double check failure: %d", success_check)
                 raise errors.InputValidationError("Success counter double check failure")
 
-            return True
-
-        elif isinstance(message_template, list):
-            if not all(BaseHandler.validate_type(x, message_template[0]) for x in jmessage):
+        elif isinstance(request_template, list):
+            if not all(BaseHandler.validate_type(x, request_template[0]) for x in request):
                 raise errors.InputValidationError("Not every element in %s is %s" %
-                                                  (jmessage, message_template[0]))
-            return True
+                                                  (request, request_template[0]))
 
-        else:
-            raise errors.InputValidationError("invalid json massage: expected dict or list")
-
-    @staticmethod
-    def validate_message(message, message_template):
-        try:
-            jmessage = json.loads(message)
-        except ValueError:
-            raise errors.InputValidationError("Invalid JSON format")
-
-        if BaseHandler.validate_jmessage(jmessage, message_template):
-            return jmessage
-
-        raise errors.InputValidationError("Unexpected condition!?")
+        return request
 
     def redirect(self, url):
         self.request.setResponseCode(301)

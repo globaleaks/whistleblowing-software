@@ -187,7 +187,7 @@ class NodeInstance(BaseHandler):
         """
         config = yield self.determine_allow_config_filter()
 
-        request = yield self.validate_message(self.request.content.read(),
+        request = yield self.validate_request(self.request.content.read(),
                                               config[1])
 
         serialized_node = yield tw(db_update_node,

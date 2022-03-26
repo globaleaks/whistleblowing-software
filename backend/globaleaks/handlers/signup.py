@@ -166,7 +166,7 @@ class Signup(BaseHandler):
     root_tenant_only = True
 
     def post(self):
-        request = self.validate_message(self.request.content.read(),
+        request = self.validate_request(self.request.content.read(),
                                         requests.SignupDesc)
 
         request['client_ip_address'] = self.request.client_ip

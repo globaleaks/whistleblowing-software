@@ -11,7 +11,7 @@ class OperationHandler(BaseHandler):
         raise NotImplementedError
 
     def put(self, *args, **kwargs):
-        request = self.validate_message(self.request.content.read(), requests.OpsDesc)
+        request = self.validate_request(self.request.content.read(), requests.OpsDesc)
 
         func = self.operation_descriptors().get(request['operation'], None)
         if func is None:

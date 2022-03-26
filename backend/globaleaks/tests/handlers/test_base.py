@@ -18,31 +18,31 @@ class BaseHandlerMock(BaseHandler):
 class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
     _handler = BaseHandlerMock
 
-    def test_validate_jmessage_valid(self):
+    def test_validate_request_valid(self):
         dummy_message = {'spam': 'ham', 'firstd': {3: 4}, 'fields': "CIAOCIAO", 'nest': [{1: 2, 3: 4}]}
-        dummy_message_template = {'spam': str, 'firstd': dict, 'fields': '\w+', 'nest': [dict]}
+        dummy_request_template = {'spam': str, 'firstd': dict, 'fields': '\w+', 'nest': [dict]}
 
-        self.assertTrue(BaseHandler.validate_jmessage(dummy_message, dummy_message_template))
+        self.assertTrue(BaseHandler.validate_request(dummy_message, dummy_request_template))
 
-    def test_validate_jmessage_invalid(self):
+    def test_validate_request_invalid(self):
         dummy_message = {}
-        dummy_message_template = {'spam': str, 'firstd': dict, 'fields': '\w+', 'nest': [dict]}
+        dummy_request_template = {'spam': str, 'firstd': dict, 'fields': '\w+', 'nest': [dict]}
 
         self.assertRaises(InputValidationError,
-                          BaseHandler.validate_jmessage, dummy_message, dummy_message_template)
+                          BaseHandler.validate_request, dummy_message, dummy_request_template)
 
-    def test_validate_message_valid(self):
+    def test_validate_request_valid(self):
         dummy_json = json.dumps({'spam': 'ham'})
-        dummy_message_template = {'spam': str}
+        dummy_request_template = {'spam': str}
 
-        self.assertEqual(json.loads(dummy_json), BaseHandler.validate_message(dummy_json, dummy_message_template))
+        self.assertEqual(json.loads(dummy_json), BaseHandler.validate_request(dummy_json, dummy_request_template))
 
-    def test_validate_message_invalid(self):
+    def test_validate_request_invalid(self):
         dummy_json = json.dumps({'spam': 'ham'})
-        dummy_message_template = {'spam': dict}
+        dummy_request_template = {'spam': dict}
 
         self.assertRaises(InputValidationError,
-                          BaseHandler.validate_message, dummy_json, dummy_message_template)
+                          BaseHandler.validate_request, dummy_json, dummy_request_template)
 
     def test_validate_type_valid(self):
         self.assertTrue(BaseHandler.validate_type('foca', str))

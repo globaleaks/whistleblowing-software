@@ -66,7 +66,7 @@ class RedirectCollection(BaseHandler):
         """
         Create a new redirect
         """
-        request = self.validate_message(self.request.content.read(), requests.AdminRedirectDesc)
+        request = self.validate_request(self.request.content.read(), requests.AdminRedirectDesc)
 
         redirect = yield create(self.request.tid, request)
 

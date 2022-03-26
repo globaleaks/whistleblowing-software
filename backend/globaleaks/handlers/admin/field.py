@@ -404,7 +404,7 @@ class FieldTemplatesCollection(BaseHandler):
             language = self.request.language
             validator = requests.AdminFieldDesc
 
-        request = self.validate_message(self.request.content.read(), validator)
+        request = self.validate_request(self.request.content.read(), validator)
 
         request['instance'] = 'template'
         for k in ['fieldgroup_id', 'step_id', 'template_id', 'template_override_id', 'triggered_by_options']:
@@ -427,7 +427,7 @@ class FieldTemplateInstance(BaseHandler):
         """
         Update a field template
         """
-        request = self.validate_message(self.request.content.read(),
+        request = self.validate_request(self.request.content.read(),
                                         requests.AdminFieldDesc)
 
         return update_field(self.request.tid,
@@ -450,7 +450,7 @@ class FieldsCollection(BaseHandler):
         """
         Create a field.
         """
-        request = self.validate_message(self.request.content.read(),
+        request = self.validate_request(self.request.content.read(),
                                         requests.AdminFieldDesc)
 
         return create_field(self.request.tid,
@@ -466,7 +466,7 @@ class FieldInstance(BaseHandler):
         """
         Update a field.
         """
-        request = self.validate_message(self.request.content.read(),
+        request = self.validate_request(self.request.content.read(),
                                         requests.AdminFieldDesc)
 
         return update_field(self.request.tid,

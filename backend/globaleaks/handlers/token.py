@@ -31,7 +31,7 @@ class TokenInstance(BaseHandler):
     check_roles = 'any'
 
     def put(self, token_id):
-        request = self.validate_message(self.request.content.read(), requests.TokenAnswerDesc)
+        request = self.validate_request(self.request.content.read(), requests.TokenAnswerDesc)
 
         token = self.state.tokens.get(token_id)
         if token is None or self.request.tid != token.tid:

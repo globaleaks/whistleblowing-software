@@ -190,7 +190,7 @@ class WBTipCommentCollection(BaseHandler):
     check_roles = 'whistleblower'
 
     def post(self):
-        request = self.validate_message(self.request.content.read(), requests.CommentDesc)
+        request = self.validate_request(self.request.content.read(), requests.CommentDesc)
         return create_comment(self.request.tid, self.session.user_id, request['content'])
 
 
@@ -201,7 +201,7 @@ class WBTipMessageCollection(BaseHandler):
     check_roles = 'whistleblower'
 
     def post(self, receiver_id):
-        request = self.validate_message(self.request.content.read(), requests.CommentDesc)
+        request = self.validate_request(self.request.content.read(), requests.CommentDesc)
         return create_message(self.request.tid, self.session.user_id, receiver_id, request['content'])
 
 
@@ -251,7 +251,7 @@ class WBTipIdentityHandler(BaseHandler):
     check_roles = 'whistleblower'
 
     def post(self, tip_id):
-        request = self.validate_message(self.request.content.read(), requests.WhisleblowerIdentityAnswers)
+        request = self.validate_request(self.request.content.read(), requests.WhisleblowerIdentityAnswers)
 
         return update_identity_information(self.request.tid,
                                            tip_id,
@@ -267,7 +267,7 @@ class WBTipAdditionalQuestionnaire(BaseHandler):
     check_roles = 'whistleblower'
 
     def post(self, tip_id):
-        request = self.validate_message(self.request.content.read(), requests.AdditionalQuestionnaireAnswers)
+        request = self.validate_request(self.request.content.read(), requests.AdditionalQuestionnaireAnswers)
 
         return store_additional_questionnaire_answers(self.request.tid,
                                                       tip_id,

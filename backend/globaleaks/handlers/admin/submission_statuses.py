@@ -158,7 +158,7 @@ class SubmissionStatusCollection(OperationHandler):
         return tw(db_get_submission_statuses, self.request.tid, self.request.language)
 
     def post(self):
-        request = self.validate_message(self.request.content.read(),
+        request = self.validate_request(self.request.content.read(),
                                         requests.SubmissionStatusDesc)
 
         return tw(db_create_submission_status, self.request.tid, request, self.request.language)
@@ -174,7 +174,7 @@ class SubmissionStatusInstance(BaseHandler):
     invalidate_cache = True
 
     def put(self, status_id):
-        request = self.validate_message(self.request.content.read(),
+        request = self.validate_request(self.request.content.read(),
                                         requests.SubmissionStatusDesc)
 
         return tw(db_update_submission_status, self.request.tid, status_id, request, self.request.language)
@@ -201,7 +201,7 @@ class SubmissionSubStatusCollection(OperationHandler):
         returnValue(submission_status['substatuses'])
 
     def post(self, status_id):
-        request = self.validate_message(self.request.content.read(),
+        request = self.validate_request(self.request.content.read(),
                                         requests.SubmissionSubStatusDesc)
 
         return tw(db_create_submission_substatus, self.request.tid, status_id, request, self.request.language)
@@ -217,7 +217,7 @@ class SubmissionSubStatusInstance(BaseHandler):
     invalidate_cache = True
 
     def put(self, status_id, substatus_id):
-        request = self.validate_message(self.request.content.read(),
+        request = self.validate_request(self.request.content.read(),
                                         requests.SubmissionSubStatusDesc)
 
         return tw(db_update_submission_substatus,

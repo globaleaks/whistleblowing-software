@@ -97,7 +97,7 @@ class StepCollection(OperationHandler):
     invalidate_cache = True
 
     def post(self):
-        request = self.validate_message(self.request.content.read(),
+        request = self.validate_request(self.request.content.read(),
                                         requests.AdminStepDesc)
 
         return tw(db_create_step, self.request.tid, request, self.request.language)
@@ -113,7 +113,7 @@ class StepInstance(BaseHandler):
     invalidate_cache = True
 
     def put(self, step_id):
-        request = self.validate_message(self.request.content.read(),
+        request = self.validate_request(self.request.content.read(),
                                         requests.AdminStepDesc)
 
         return tw(db_update_step, self.request.tid, step_id, request, self.request.language)

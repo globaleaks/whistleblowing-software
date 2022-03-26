@@ -16,7 +16,7 @@ class ExceptionHandler(BaseHandler):
     check_roles = 'any'
 
     def post(self):
-        request = self.validate_message(self.request.content.read(),
+        request = self.validate_request(self.request.content.read(),
                                         requests.ExceptionDesc)
 
         exception_email = "URL: %s\n\n" % request['errorUrl']

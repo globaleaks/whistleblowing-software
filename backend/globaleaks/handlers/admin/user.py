@@ -164,7 +164,7 @@ class UsersCollection(BaseHandler):
         """
         Create a new user
         """
-        request = self.validate_message(self.request.content.read(),
+        request = self.validate_request(self.request.content.read(),
                                         requests.AdminUserDesc)
 
         if not request['password'] and self.session.ek:
@@ -186,7 +186,7 @@ class UserInstance(BaseHandler):
         """
         Update the specified user.
         """
-        request = self.validate_message(self.request.content.read(), requests.AdminUserDesc)
+        request = self.validate_request(self.request.content.read(), requests.AdminUserDesc)
 
         return tw(db_admin_update_user,
                   self.request.tid,

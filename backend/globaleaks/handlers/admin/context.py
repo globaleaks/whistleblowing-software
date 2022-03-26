@@ -241,7 +241,7 @@ class ContextsCollection(OperationHandler):
         """
         Create a new context.
         """
-        request = self.validate_message(self.request.content.read(),
+        request = self.validate_request(self.request.content.read(),
                                         requests.AdminContextDesc)
 
         return create_context(self.request.tid, self.session, request, self.request.language)
@@ -263,7 +263,7 @@ class ContextInstance(BaseHandler):
         """
         Update the specified context.
         """
-        request = self.validate_message(self.request.content.read(),
+        request = self.validate_request(self.request.content.read(),
                                         requests.AdminContextDesc)
 
         return update_context(self.request.tid,

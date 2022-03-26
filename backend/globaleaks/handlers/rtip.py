@@ -623,7 +623,7 @@ class RTipCommentCollection(BaseHandler):
     check_roles = 'receiver'
 
     def post(self, rtip_id):
-        request = self.validate_message(self.request.content.read(), requests.CommentDesc)
+        request = self.validate_request(self.request.content.read(), requests.CommentDesc)
 
         return create_comment(self.request.tid, self.session.user_id, rtip_id, request['content'])
 
@@ -635,7 +635,7 @@ class ReceiverMsgCollection(BaseHandler):
     check_roles = 'receiver'
 
     def post(self, rtip_id):
-        request = self.validate_message(self.request.content.read(), requests.CommentDesc)
+        request = self.validate_request(self.request.content.read(), requests.CommentDesc)
 
         return create_message(self.request.tid, self.session.user_id, rtip_id, request['content'])
 
@@ -759,7 +759,7 @@ class IdentityAccessRequestsCollection(BaseHandler):
     check_roles = 'receiver'
 
     def post(self, rtip_id):
-        request = self.validate_message(self.request.content.read(), requests.ReceiverIdentityAccessRequestDesc)
+        request = self.validate_request(self.request.content.read(), requests.ReceiverIdentityAccessRequestDesc)
 
         return create_identityaccessrequest(self.request.tid,
                                             self.session.user_id,

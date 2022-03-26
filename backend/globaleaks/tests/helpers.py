@@ -682,7 +682,7 @@ class TestGL(unittest.TestCase):
         """
         this may works until the content of the fields do not start to be validated. like
         numbers shall contain only number, and not URL.
-        This validation would not be implemented in validate_jmessage but in structures.Fields
+        This validation would not be implemented in validate_request but in structures.Fields
 
         need to be enhanced generating appropriate data based on the fields.type
         """

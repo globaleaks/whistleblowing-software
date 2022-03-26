@@ -274,7 +274,7 @@ class SubmissionInstance(BaseHandler):
         if not self.state.accept_submissions or self.state.tenant_cache[self.request.tid]['disable_submissions']:
             raise errors.SubmissionDisabled
 
-        request = self.validate_message(self.request.content.read(), requests.SubmissionDesc)
+        request = self.validate_request(self.request.content.read(), requests.SubmissionDesc)
 
         request['mobile'] = self.request.client_mobile
 
