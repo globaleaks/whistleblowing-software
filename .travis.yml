@@ -5,10 +5,8 @@ addons:
   chrome: stable
 env:
   global:
-  - secure: EVObCafLubboW7PQ69OhLI9qSMWDUYuL8EvXCX2MsBzlgX1W6cc62IJbKV87EHOnu/2KgHXYNVYN4rmydVbOU+nMHwtryf8+utNcyuDp40kKoNjWhWue++AheXgAjUt1lON4/kiZ5gxEupQeEXDPvP/5LrUuDUEQRwJa6pbivD8=
-  - secure: KOpU31rbmwrjGovRX769F9H1/+KdtB5KJfMKIMRZPTeaH/zrlUDaTh9lBOkAFD1S/0nagsrXIUq9e9PJD3pEWze09VUK0mivCl96/ZXFt605UJXSKgWvZNJdRLexzwPhHd/MDzbMqTfrAlN6x9OSA5uIOaGzaQSZjkXjed8IkRk=
   - secure: bx4jocxpUDAveKsuCZuJ1zRrHcCY3C05Gr8sd+X0d0wnuh61QwPj+7q35Y+PVRVCjkcpbiUJ1JrfK4jvNoJUdY1hLUwd8NttgE4wfDDVjCUQGJecwkYG22PKvlImP/z+WpvzcELb+tyPpQ/V3vfldbLRIILwkPfwC1W5Kj87pv8=
-#Tokens order: SAUSE_USERNAME, SAUCE_TOKEN, CODACY_PROJECT_TOKEN
+#Tokens: CODACY_PROJECT_TOKEN
 matrix:
   fast_finish: true
   include:
