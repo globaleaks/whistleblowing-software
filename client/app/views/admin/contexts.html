@@ -32,7 +32,7 @@
         <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
           <span class="col-md-7">
             <span>{{context.name}}</span>
-	    <span class="badge badge-secondary" data-ng-if="context.hidden === 'hidden'" data-translate>Hidden</span>
+	    <span class="badge badge-secondary" data-ng-if="context.hidden" data-translate>Hidden</span>
           </span>
           <span class="col-md-5 clearfix">
             <span class="float-right">
