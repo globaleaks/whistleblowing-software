@@ -64,7 +64,7 @@ The system implements Two Factor Authentication (2FA) based on ``TOTP`` based on
 
 Users are enabled to enroll for 2FA via their own preferences and administrators can optionally enforce this requirement.
 
-We recommend using FreeOTP available `for Android <https://play.google.com/store/apps/details?id=org.fedorahosted.freeotp>`_ and `for iOS <https://apps.apple.com/us/app/freeotp-authenticator/id872559395>`_.
+We recommend using `FreeOTP <https://freeotp.github.io/>`_ available `for Android <https://play.google.com/store/apps/details?id=org.fedorahosted.freeotp>`_ and `for iOS <https://apps.apple.com/us/app/freeotp-authenticator/id872559395>`_.
 
 Password Change on First Login
 ------------------------------
