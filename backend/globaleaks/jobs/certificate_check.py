@@ -28,6 +28,7 @@ class CertificateCheck(DailyJob):
     notify_expr_within = 7
     acme_try_renewal = 14
 
+    @transact
     def certificate_mail_creation(self, session, mail_type, tid, expiration_date):
         for user_desc in db_get_users(session, tid, 'admin'):
             if not user_desc['notification']:
@@ -75,7 +76,7 @@ class CertificateCheck(DailyJob):
                     # Send an email to the admin cause this requires user intervention
                     if now > expiration_date - timedelta(self.notify_expr_within) and \
                         not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
-                        self.certificate_mail_creation(session, 'https_certificate_renewal_failure', tid, expiration_date)
+                        yield self.certificate_mail_creation('https_certificate_renewal_failure', tid, expiration_date)
 
                 yield deferred_sleep(1)
 
@@ -83,4 +84,4 @@ class CertificateCheck(DailyJob):
             elif now > expiration_date - timedelta(self.notify_expr_within):
                 log.info('The HTTPS Certificate is expiring on %s', expiration_date, tid=tid)
                 if not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
-                    self.certificate_mail_creation(session, 'https_certificate_expiration', tid, expiration_date)
+                    yield self.certificate_mail_creation('https_certificate_expiration', tid, expiration_date)
