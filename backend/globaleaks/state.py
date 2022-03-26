@@ -4,7 +4,7 @@ import re
 import sys
 import traceback
 
-from twisted.internet import defer
+from twisted.internet.defer import succeed, AlreadyCalledError
 from twisted.mail.smtp import SMTPError
 from twisted.python.failure import Failure
 from twisted.python.threadpool import ThreadPool
@@ -142,7 +142,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
 
     def sendmail(self, tid, to_address, subject, body):
         if self.settings.disable_notifications:
-            return defer.succeed(True)
+            return succeed(True)
 
         if self.tenant_cache[tid].mode != 'default':
             tid = 1
@@ -252,7 +252,7 @@ def mail_exception_handler(etype, value, tback):
     not in production release.
     """
     if isinstance(value, (GeneratorExit,
-                          defer.AlreadyCalledError,
+                          AlreadyCalledError,
                           SMTPError)) or \
         (etype == AssertionError and value.message == "Request closed"):
         # we need to bypass email notification for some exception that:
