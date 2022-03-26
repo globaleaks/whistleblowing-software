@@ -281,6 +281,43 @@ Application Sandboxing
 The GlobaLeaks backend integrates `AppArmor <https://apparmor.net/>`_ by default and implements a strict sandboxing profile enabling the application to access only the strictly required files.
 As well the application does run under a dedicated user and group "globaleaks" with reduced privileges.
 
+Database Security
+=================
+The GlobaLeaks backend implements an hardened local SQLite database accessed via the SQLAlchemy ORM.
+
+This design choice is selected in order to ensure that the application could fully control its configuration implementing a large set of security measures in adhrerence to the `security recomendations by  SQLite <https://sqlite.org/security.html>`_
+
+Secure Deletion
+---------------
+The GlobaLeaks backend enables a SQLite capability for secure deletion that automatically makes the database overwrite the data upon each delete query:
+::
+  PRAGMA secure_delete = ON
+
+Auto Vacuum
+-----------
+The platform enables a SQLite capability for automatic vacuum of deleted entries with automatic recall of unused pages:
+::
+  PRAGMA auto_vacuum = FULL
+
+Limited Database Trust
+----------------------
+The GlobaLeaks backend utilizes the SQLite `trusted_schema <https://www.sqlite.org/src/doc/latest/doc/trusted-schema.md>`_ pragma to limit the trust put on the database in order to limit exploitation on which the database could be maliciously corrupted by an attacker.
+::
+  PRAGMA trusted_schema = OFF
+
+Limited Database Functionalities
+--------------------------------
+The GlobaLeaks backend runs specific SQLite functionalities to reduce the types of queries to the ones necessary to run the application and reduce the possibilities of explotation in case of successfull SQL injection attacks.
+
+This is implemented by using the ```conn.set_authorizer``` API and using a strict authorizer callback that authorizes the execution of a limited set of SQL instructions:
+::
+  SQLITE_FUNCTION: count, lower, min, max
+  SQLITE_INSERT
+  SQLITE_READ,
+  SQLITE_SELECT
+  SQLITE_TRANSACTION
+  SQLITE_UPDATE
+
 DoS Resiliency
 ==============
 To avoid applicative and database denial of service, GlobaLeaks apply the following measures:
@@ -322,13 +359,6 @@ The overwrite routine is performed by a periodic scheduler and acts as following
 * A first overwrite writes 0 on the whole file;
 * A second overwrite writes 1 on the whole file;
 * A third overwrite writes random bytes on the whole file.
-
-Secure Deletion of Database Entries
------------------------------------
-The platform enables the SQLite capability for secure deletion that automatically makes the database overwrite the data upon each delete query:
-::
-  PRAGMA secure_delete = ON
-  PRAGMA auto_vacuum = FULL
 
 Exception Logging and Redaction
 -------------------------------
