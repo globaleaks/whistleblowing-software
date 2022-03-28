@@ -784,6 +784,7 @@ class _ReceiverTip(Model):
     receiver_id = Column(UnicodeText(36), nullable=False, index=True)
     access_date = Column(DateTime, default=datetime_null, nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
+    last_notification = Column(DateTime, default=datetime_null, nullable=False)
     new = Column(Boolean, default=True, nullable=False)
     enable_notifications = Column(Boolean, default=True, nullable=False)
     crypto_tip_prv_key = Column(UnicodeText(84), default='', nullable=False)
