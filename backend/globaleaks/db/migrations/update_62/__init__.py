@@ -51,6 +51,20 @@ class Context_v_61(Model):
     order = Column(Integer, default=0, nullable=False)
 
 
+class ReceiverTip_v_61(Model):
+    __tablename__ = 'receivertip'
+
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    internaltip_id = Column(UnicodeText(36), nullable=False)
+    receiver_id = Column(UnicodeText(36), nullable=False, index=True)
+    access_date = Column(DateTime, default=datetime_null, nullable=False)
+    last_access = Column(DateTime, default=datetime_null, nullable=False)
+    new = Column(Boolean, default=True, nullable=False)
+    enable_notifications = Column(Boolean, default=True, nullable=False)
+    crypto_tip_prv_key = Column(UnicodeText(84), default='', nullable=False)
+    crypto_files_prv_key = Column(UnicodeText(84), default='', nullable=False)
+
+
 class User_v_61(Model):
     __tablename__ = 'user'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)

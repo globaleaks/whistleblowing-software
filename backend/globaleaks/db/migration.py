@@ -52,7 +52,7 @@ from globaleaks.db.migrations.update_58 import InternalTip_v_57, \
     ReceiverFile_v_57, ReceiverTip_v_57, WhistleblowerFile_v_57
 from globaleaks.db.migrations.update_59 import ReceiverTip_v_58
 from globaleaks.db.migrations.update_60 import InternalTip_v_59, ReceiverTip_v_59, WhistleblowerTip_v_59
-from globaleaks.db.migrations.update_62 import AuditLog_v_61, Context_v_61, User_v_61
+from globaleaks.db.migrations.update_62 import AuditLog_v_61, Context_v_61, ReceiverTip_v_61, User_v_61
 
 from globaleaks.orm import get_engine, get_session, make_db_uri
 from globaleaks.models import config, Base
@@ -91,7 +91,7 @@ migration_mapping = OrderedDict([
     ('Receiver', [Receiver_v_44, 0, 0, 0, 0, 0, Receiver_v_45, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
     ('ReceiverContext', [ReceiverContext_v_51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._ReceiverContext, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('ReceiverFile', [ReceiverFile_v_40, 0, ReceiverFile_v_44, 0, 0, 0, ReceiverFile_v_51, 0, 0, 0, 0, 0, 0, ReceiverFile_v_57, 0, 0, 0, 0, 0, models._ReceiverFile, 0, 0, 0, 0]),
-    ('ReceiverTip', [ReceiverTip_v_40, 0, ReceiverTip_v_44, 0, 0, 0, ReceiverTip_v_52, 0, 0, 0, 0, 0, 0, 0, ReceiverTip_v_57, 0, 0, 0, 0, ReceiverTip_v_58, ReceiverTip_v_59, models._ReceiverTip, 0, 0]),
+    ('ReceiverTip', [ReceiverTip_v_40, 0, ReceiverTip_v_44, 0, 0, 0, ReceiverTip_v_52, 0, 0, 0, 0, 0, 0, 0, ReceiverTip_v_57, 0, 0, 0, 0, ReceiverTip_v_58, ReceiverTip_v_59, ReceiverTip_v_61, 0, models._ReceiverTip]),
     ('Redirect', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._Redirect, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('SubmissionStatus', [-1, -1, -1, SubmissionStatus_v_46, 0, 0, 0, 0, SubmissionStatus_v_49, 0, 0, SubmissionStatus_v_51, 0, models._SubmissionStatus, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('SubmissionSubStatus', [-1, -1, -1, SubmissionSubStatus_v_46, 0, 0, 0, 0, SubmissionSubStatus_v_49, 0, 0, SubmissionSubStatus_v_51, 0, models._SubmissionSubStatus, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
