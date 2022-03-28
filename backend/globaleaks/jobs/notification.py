@@ -114,7 +114,8 @@ class MailGenerator(object):
 
             if (rtips_ids.get(rtip.id, False) or tid in silent_tids) or \
                (isinstance(obj, models.Comment) and obj.type != 'whistleblower' and obj.author_id == user.id) or \
-               (isinstance(obj, models.Message) and obj.type == 'receiver'):
+               (isinstance(obj, models.Message) and obj.type == 'receiver') or \
+               (rtip.last_notification > rtip.last_access):
                 obj.new = False
                 continue
 
@@ -122,6 +123,7 @@ class MailGenerator(object):
                 continue
 
             obj.new = False
+            rtip.last_notification = now
 
             rtips_ids[rtip.id] = True
 
