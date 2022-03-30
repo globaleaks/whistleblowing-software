@@ -201,7 +201,7 @@
               </button>
             </span>
           </td>
-          <td data-uib-tooltip="{{'Mark as important' | translate }}">
+          <td data-uib-tooltip="{{'Mark as important' | translate}}">
             <i class="fa-solid fa-star text-warning" data-ng-click="toggle_star(tip); $event.stopPropagation();" data-ng-class="{'visible-on-over': !tip.important}"></i>
           </td>
           <td class="TipInfoID">{{tip.progressive}}</td>
@@ -217,9 +217,9 @@
           </td>
           <td class="TipInfoLastAccess">
             <i data-ng-if="tip.last_access >= tip.update_date" class="fa-solid fa-check"
-               data-uib-tooltip="{{'The whistleblower has already read the last update' | translate }} ({{tip.last_access | date:'dd-MM-yyyy HH:mm'}})"></i>
+               data-uib-tooltip="{{'The whistleblower has already read the last update' | translate}} ({{tip.last_access | date:'dd-MM-yyyy HH:mm'}})"></i>
             <i data-ng-if="tip.last_access < tip.update_date" class="fa-solid fa-times"
-               data-uib-tooltip="{{'The whistleblower has not read the last update yet' | translate }}"></i>
+               data-uib-tooltip="{{'The whistleblower has not read the last update yet' | translate}}"></i>
           </td>
           <td class="TipInfoPreview">
             <div data-ng-if="tip.file_count || tip.comment_count || tip.message_count">

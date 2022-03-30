@@ -2,11 +2,11 @@
   <div data-ng-if="resources.preferences.picture" class="imageThumbnail">
     <img class="receiverImg" alt="user picture" data-ng-src="/s/{{resources.preferences.id}}" /><br />
   </div>
-  <div id="Username"><label><span data-translate>Username</span>:</label> {{resources.preferences.username }}</div>
+  <div id="Username"><label><span data-translate>Username</span>:</label> {{resources.preferences.username}}</div>
   <div id="Role"><label><span data-translate>Role</span>:</label> <span>{{Utils.role_l10n(Authentication.session.role)}}</span></div>
   <div id="Name"><label><span data-translate>Name</span>:</label>
     <span data-ng-if="!editingName">
-      <span>{{resources.preferences.name }}</span>
+      <span>{{resources.preferences.name}}</span>
       <button class="btn btn-sm btn-outline-secondary"
               data-ng-show="!editingName"
               data-ng-click="toggleNameEditing(); $event.stopPropagation();">
@@ -17,7 +17,7 @@
   </div>
   <div id="PublicName"><label><span data-translate>Public name</span>:</label>
     <span data-ng-if="!editingPublicName">
-      <span>{{resources.preferences.public_name }}</span>
+      <span>{{resources.preferences.public_name}}</span>
       <button class="btn btn-sm btn-outline-secondary"
               data-ng-show="!editingPublicName"
               data-ng-click="togglePublicNameEditing(); $event.stopPropagation();">

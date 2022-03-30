@@ -62,8 +62,8 @@
       <span data-translate>Certificate</span>
       <span>(PEM)</span>
       <span data-ng-show="tls_config.files.cert.set" class="badge badge-primary">
-        <span data-translate>Valid until:</span> {{ tls_config.files.cert.expiration_date | date:'dd-MM-yyyy HH:mm' }}
-        <span data-translate>Issuer:</span> <b>{{ tls_config.files.cert.issuer }}</b>
+        <span data-translate>Valid until:</span> {{tls_config.files.cert.expiration_date | date:'dd-MM-yyyy HH:mm'}}
+        <span data-translate>Issuer:</span> <b>{{tls_config.files.cert.issuer}}</b>
       </span>
       <span class="float-right">
         <span class="file-upload" data-ng-if="!tls_config.files.cert.set">
@@ -88,8 +88,8 @@
       <span data-translate>Intermediate Certificates</span>
       <span>(PEM)</span>
       <span data-ng-show="tls_config.files.chain.set" class="badge badge-primary">
-        <span data-translate>Valid until:</span> {{ tls_config.files.chain.expiration_date | date:'dd-MM-yyyy HH:mm' }}
-        <span data-translate>Issuer:</span> <b>{{ tls_config.files.chain.issuer }}</b>
+        <span data-translate>Valid until:</span> {{tls_config.files.chain.expiration_date | date:'dd-MM-yyyy HH:mm'}}
+        <span data-translate>Issuer:</span> <b>{{tls_config.files.chain.issuer}}</b>
       </span>
       <div class="float-right">
         <span class="file-upload" data-ng-if="!tls_config.files.chain.set">
