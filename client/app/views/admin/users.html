@@ -70,7 +70,7 @@
               <span data-ng-switch-when="custodian" data-translate>Custodian</span>
             </span>
           </span>
-          <span class="badge badge-secondary" data-ng-if="user.state === 'disabled'" data-translate>Disabled</span>
+          <span class="badge badge-secondary" data-ng-if="!user.enabled" data-translate>Disabled</span>
 	  <span class="badge badge-default" data-ng-if="resources.node.encryption && !user.encryption" data-uib-tooltip="{{'This user has not performed the first login yet.' | translate}}">
 	    <i class="fa-solid fa-exclamation-circle"></i>
 	  </span>
