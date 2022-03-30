@@ -71,7 +71,6 @@ describe("globaleaks process", function() {
     var c = await element(by.id("comment-0")).element(by.css(".preformatted")).getText();
 
     expect(c).toContain(comment);
-    await browser.gl.utils.logout("/login");
   });
 
   it("Whistleblower should be able to read the comment from the receiver and reply", async function() {
@@ -98,8 +97,6 @@ describe("globaleaks process", function() {
     await element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload);
     await element(by.id("files-action-confirm")).click();
     await browser.gl.utils.waitUntilPresent(by.css(".progress-bar-complete"));
-
-    await browser.gl.utils.logout();
   });
 
   it("Recipient should be able to start a private discussion with the whistleblower", async function() {
@@ -119,8 +116,6 @@ describe("globaleaks process", function() {
     expect(m).toContain(message);
 
     await browser.gl.utils.takeScreenshot("recipient/report.png");
-
-    await browser.gl.utils.logout("/login");
   });
 
   it("Whistleblower should be able to read the private message from the receiver and reply", async function() {
