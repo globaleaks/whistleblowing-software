@@ -278,7 +278,7 @@ class CertValidator(CtxValidator):
 
         certs = split_pem_chain(certificate)
         if len(certs) != 1:
-            raise ValidationException('Invalide certificate')
+            raise ValidationException('Invalid certificate')
 
         x509 = load_certificate(FILETYPE_PEM, certificate)
 
@@ -299,7 +299,7 @@ class ChainValidator(CtxValidator):
         chain = split_pem_chain(cfg['ssl_intermediate'])
 
         if cfg['ssl_intermediate'] == cfg['ssl_cert']:
-            raise ValidationException('Invalide certificate chain')
+            raise ValidationException('Invalid certificate chain')
 
         for cert in chain:
             x509 = load_certificate(FILETYPE_PEM, cert)
