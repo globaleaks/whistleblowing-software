@@ -338,11 +338,6 @@ class _Context(Model):
     show_receivers_in_alphabetical_order = Column(Boolean, default=True, nullable=False)
     score_threshold_high = Column(Integer, default=0, nullable=False)
     score_threshold_medium = Column(Integer, default=0, nullable=False)
-    score_receipt_text_custom = Column(Boolean, default=False, nullable=False)
-    score_receipt_text_l = Column(JSON, default=dict, nullable=False)
-    score_receipt_text_m = Column(JSON, default=dict, nullable=False)
-    score_receipt_text_h = Column(JSON, default=dict, nullable=False)
-    score_threshold_receipt = Column(Integer, default=0, nullable=False)
     questionnaire_id = Column(UnicodeText(36), default='default', nullable=False)
     additional_questionnaire_id = Column(UnicodeText(36))
     hidden = Column(Boolean, default=False, nullable=False)
@@ -355,10 +350,7 @@ class _Context(Model):
 
     localized_keys = [
         'name',
-        'description',
-        'score_receipt_text_l',
-        'score_receipt_text_m',
-        'score_receipt_text_h'
+        'description'
     ]
 
     int_keys = [
@@ -366,8 +358,7 @@ class _Context(Model):
         'maximum_selectable_receivers',
         'order',
         'score_threshold_high',
-        'score_threshold_medium',
-        'score_threshold_receipt',
+        'score_threshold_medium'
     ]
 
     bool_keys = [
@@ -382,8 +373,7 @@ class _Context(Model):
         'enable_messages',
         'enable_two_way_comments',
         'enable_two_way_messages',
-        'enable_attachments',
-        'score_receipt_text_custom'
+        'enable_attachments'
     ]
 
     list_keys = ['receivers']

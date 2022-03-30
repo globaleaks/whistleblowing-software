@@ -195,12 +195,6 @@ def db_create_submission(session, tid, request, user_session, client_using_tor):
         itip.crypto_pub_key = wb_pub_key
         itip.crypto_tip_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(wb_pub_key, crypto_tip_prv_key))
 
-    # Evaluate if the whistleblower should get a receipt or not:
-    if (State.tenant_cache[tid].enable_scoring_system and
-        (context.score_threshold_receipt == 1 and itip.score >= 2) or
-        (context.score_threshold_receipt == 2 and itip.score == 3)):
-        receipt = ''
-
     # Apply special handling to the whistleblower identity question
     if itip.enable_whistleblower_identity and request['identity_provided'] and answers[whistleblower_identity.id]:
         if crypto_is_available:
@@ -247,11 +241,7 @@ def db_create_submission(session, tid, request, user_session, client_using_tor):
 
     db_log(session, tid=tid, type='whistleblower_new_report')
 
-    return {
-        'success': True,
-        'receipt': receipt,
-        'score': itip.score
-    }
+    return {'receipt': receipt}
 
 
 @transact
