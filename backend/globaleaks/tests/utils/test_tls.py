@@ -17,7 +17,7 @@ def get_valid_setup():
     valid_setup_files = {
         'key': 'key.pem',
         'cert': 'cert.pem',
-        'chain': 'chains/comodo.pem'
+        'chain': 'chain.pem'
     }
 
     d = {'hostname': 'localhost:9999'}
@@ -148,7 +148,7 @@ class TestObjectValidators(TestCase):
         self.cfg['ssl_key'] = self.valid_setup['key'].encode()
         self.cfg['ssl_cert'] = self.valid_setup['cert'].encode()
 
-        p = os.path.join(self.test_data_dir, 'valid', 'chains/comodo.pem')
+        p = os.path.join(self.test_data_dir, 'valid', 'chain.pem')
         with open(p, 'rb') as f:
             self.cfg['ssl_intermediate'] = f.read()
 
@@ -192,7 +192,7 @@ class TestObjectValidators(TestCase):
             ('invalid/glbc_le_stage_cert.pem', 1),
             ('invalid/expired_cert.pem', 1),
             ('invalid/le-staging-chain.pem', 1),
-            ('valid/chains/comodo.pem', 2),
+            ('valid/chain.pem', 2),
         ]
 
         for chain_path, chain_len in test_cases:
