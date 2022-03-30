@@ -217,7 +217,8 @@ class APIResourceWrapper(Resource):
             self._registry.append((re.compile(pattern), handler, args))
 
     def should_redirect_https(self, request):
-        if State.tenant_cache[request.tid].https_enabled and \
+        if (State.tenant_cache[1].https_enabled or
+            State.tenant_cache[request.tid].https_enabled) and \
            not request.isSecure() and \
            request.client_ip not in State.settings.local_hosts and \
            b'acme-challenge' not in request.path:
