@@ -762,12 +762,6 @@ msgstr "Kanallar"
 msgid "Hidden"
 msgstr "Yashirin"
 
-msgid "Disabled"
-msgstr "Yoqilmagan"
-
-msgid "Enabled"
-msgstr "Yoniq"
-
 msgid "Questionnaire"
 msgstr "Savolnomalar"
 
@@ -798,17 +792,17 @@ msgstr "Qabul qiluvchi tafsilotlarini anonim xabarning holati sahifasida chiqari
 msgid "Enable comments"
 msgstr "Fikrlarni yoqish"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Oshkor qiluvchilarga fikr bildirish imkonini berish"
+msgid "Allow the whistleblower to write comments"
+msgstr "Oshkor qiluvchilar fikr bildirishiga ruxsat berish"
 
 msgid "Enable private messages"
 msgstr "Shaxsiy xabarlarni yoqish"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Oshkor qiluvchilarga shaxsiy xabar yuborish imkonini berish"
+msgid "Allow the whistleblower to send messages"
+msgstr "Oshkor qiluvchilar xabar yuborishiga ruxsat berish"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Oshkor qiluvchilarga mavjud anonim xabarlarga fayl biriktirish imkonini berish"
+msgid "Allow the whistleblower to add attachments"
+msgstr ""
 
 msgid "Additional questionnaire"
 msgstr "Qoʻshimcha savolnomalar"
@@ -836,6 +830,9 @@ msgstr "Dasturiy taʼminot versiyasi:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Quyidagi IP manzillardan kirishni taqiqlash"
+
+msgid "Enabled"
+msgstr "Yoniq"
 
 msgid "Allowed IP addresses"
 msgstr "Ruxsat etilgan IP manzillar"
@@ -920,6 +917,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Mustaqil konfiguratsiya vositasi yordamida HTTPS protokolini muqobil Sertifikatlash idorasi yordamida sozlash mumkin."
 
+msgid "Disabled"
+msgstr "Yoqilmagan"
+
 msgid "Auto-renewal"
 msgstr "Avto-yangilanishi"
 
@@ -995,6 +995,9 @@ msgstr "Bir nechta qatorli matn oynasi"
 msgid "Selection box"
 msgstr "Belgilash maydoni"
 
+msgid "Multiple choice input"
+msgstr "Bir nechta tanlov oynasi"
+
 msgid "Checkbox"
 msgstr "Belgilash katakchasi"
 
@@ -1015,9 +1018,6 @@ msgstr "Ustun"
 
 msgid "Width"
 msgstr "Eni"
-
-msgid "Multiple choice input"
-msgstr "Bir nechta tanlov oynasi"
 
 msgid "Question group"
 msgstr "Savol guruhi"
@@ -1349,29 +1349,23 @@ msgstr "Anonim xabar yaroqsiz yoki uning muddati eskirgan."
 msgid "Select a file or drag it here."
 msgstr "Fayl tanlang yoki shu yerga tortib tashlang."
 
+msgid "Size:"
+msgstr "Hajmi:"
+
 msgid "Uploading files…"
 msgstr "Fayllar yuklanmoqda…"
 
 msgid "Upload completed successfully!"
 msgstr "Fayllar yuklandi!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Fayllarni yuklashda xatolik yuz berdi, quyidagi xato tafsilotini tekshiring."
-
 msgid "Estimated upload time:"
 msgstr "Taxminiy yuklash vaqti:"
-
-msgid "Size:"
-msgstr "Hajmi:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Qabul qiluvchilar qoʻshimcha savolnomani toʻldirishingizni soʻradi."
 
 msgid "Fill the additional questionnaire"
 msgstr "Qoʻshimcha savolnomani toʻldirish"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Oshkor qiluvchilar fikr bildirishiga ruxsat berish"
 
 msgid "From:"
 msgstr "Kimdan:"
@@ -1387,12 +1381,6 @@ msgstr "Yuklangan vaqti"
 
 msgid "File size"
 msgstr "Fayl hajmi"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Oshkor qiluvchilar anonim xabarlarida fayl biriktirishlariga ruxsat berish"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Oshkor qiluvchilar xabar yuborishiga ruxsat berish"
 
 msgid "Questionnaire answers"
 msgstr "Savolnomaga javoblar"
@@ -1607,8 +1595,11 @@ msgstr "Platformani sozlash jarayoni yakunlandi."
 msgid "Describe your report in detail."
 msgstr "Xabaringiz haqida batafsil axborot bering."
 
-msgid "Attach files relevant to the report."
-msgstr "Xabaringizga aloqador fayllarni biriktiring."
+msgid "I'm a victim"
+msgstr "Мен қурбонман"
+
+msgid "I'm involved in the facts"
+msgstr "Мен фактларга алоқадорман"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Shaxsiy axoborotingiz taqdim qilinsinmi?"
@@ -1622,11 +1613,11 @@ msgstr "Sharifi"
 msgid "Alternative contact method"
 msgstr "Muqobil bogʻlanish usuli"
 
-msgid "Other"
-msgstr "Boshqa"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Men bilan faqat shu platformada bogʻlanilsin"
+
+msgid "Other"
+msgstr "Boshqa"
 
 msgid "Dear {RecipientName},"
 msgstr "Hurmatli {RecipientName},"

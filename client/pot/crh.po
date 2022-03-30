@@ -1,11 +1,12 @@
 # 
 # Translators:
 # Ethem Sahibi, 2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2022
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Ethem Sahibi, 2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2022\n"
 "Language-Team: Crimean Turkish (http://www.transifex.com/otf/globaleaks/language/crh/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -759,12 +760,6 @@ msgstr "Контекстлер"
 msgid "Hidden"
 msgstr "Гизли"
 
-msgid "Disabled"
-msgstr "Сёндюрильди"
-
-msgid "Enabled"
-msgstr "Ишлетильди"
-
 msgid "Questionnaire"
 msgstr "Суаллер джедвели"
 
@@ -795,17 +790,17 @@ msgstr "Малюмат берме вазиети саифесинде алыдж
 msgid "Enable comments"
 msgstr "Изаатларны ишлетмек"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Малюмат бериджилерге изаатларны къошмагъа изин бермек"
+msgid "Allow the whistleblower to write comments"
+msgstr "Малюмат бериджиге изаатларны къошмагъа изин бермек"
 
 msgid "Enable private messages"
 msgstr "Шахсий месажларны ишлетмек"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Малюмат бериджилерге месажларны ёлламагъа изин бермек"
+msgid "Allow the whistleblower to send messages"
+msgstr "Малюмат бериджиге беянатларны ёлламагъа изин бермек"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Малюмат бериджилерге олгъан эсабатларгъа илявелерни къошмагъа изин бермек"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Малюмат бериджиге берильген весикъаларгъа илявелерни къошмагъа изин бермек"
 
 msgid "Additional questionnaire"
 msgstr "Къошма суаллер джедвели"
@@ -833,6 +828,9 @@ msgstr "Программа теминаты версиясы:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Белли бир IP-адреслерге иришимни сынъырламакъ"
+
+msgid "Enabled"
+msgstr "Ишлетильди"
 
 msgid "Allowed IP addresses"
 msgstr "Къабиль IP-адреслер"
@@ -917,6 +915,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Эль сазламасы устасы альтернитив Сертификация Меркезинден HTTPS сазламасына имкян берип, сизни конфигурация джерьянындан кечирир."
 
+msgid "Disabled"
+msgstr "Сёндюрильди"
+
 msgid "Auto-renewal"
 msgstr "Автоматик девам эттирме"
 
@@ -992,6 +993,9 @@ msgstr "Чокъ сатырлы метин кириши"
 msgid "Selection box"
 msgstr "Сайлама саасы"
 
+msgid "Multiple choice input"
+msgstr "Чокъ сайламалы кириш"
+
 msgid "Checkbox"
 msgstr "Байрачыкъ"
 
@@ -1012,9 +1016,6 @@ msgstr "Сутун"
 
 msgid "Width"
 msgstr "Кенълик"
-
-msgid "Multiple choice input"
-msgstr "Чокъ сайламалы кириш"
 
 msgid "Question group"
 msgstr "Суаллер группасы"
@@ -1346,29 +1347,23 @@ msgstr "Квитанция керчек дегиль я да эсабат къу
 msgid "Select a file or drag it here."
 msgstr "Файлны сайланъыз я да оны мында чекинъиз."
 
+msgid "Size:"
+msgstr "Ольчю:"
+
 msgid "Uploading files…"
 msgstr "Файллар юкленмеси…"
 
 msgid "Upload completed successfully!"
 msgstr "Юкленме мувафакъиетнен тамамланды!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Файллар юкленмесинде хата; тафсилятлар тюпте косьтерильди."
-
 msgid "Estimated upload time:"
 msgstr "Юкленменинъ вакъыты:"
-
-msgid "Size:"
-msgstr "Ольчю:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Алыджылар сизни къошма суаллер джедвелини толдурмагъа риджа эттилер."
 
 msgid "Fill the additional questionnaire"
 msgstr "Къошма суаллер джедвелини толдурмакъ"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Малюмат бериджиге изаатларны къошмагъа изин бермек"
 
 msgid "From:"
 msgstr "Кимден:"
@@ -1384,12 +1379,6 @@ msgstr "Юкленме тарихи"
 
 msgid "File size"
 msgstr "Файл ольчюси"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Малюмат бериджиге берильген весикъаларгъа илявелерни къошмагъа изин бермек"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Малюмат бериджиге беянатларны ёлламагъа изин бермек"
 
 msgid "Questionnaire answers"
 msgstr "Суаллер джедвелининъ джеваплары"
@@ -1604,8 +1593,11 @@ msgstr "Сиз  платформанынъ сазлама устасынен и
 msgid "Describe your report in detail."
 msgstr "Эсабатынъызны тафсилятлы тариф этинъиз."
 
-msgid "Attach files relevant to the report."
-msgstr "Эсабаткъа уйгъун файлларны иляве этинъиз."
+msgid "I'm a victim"
+msgstr "Мен бунынъ къурбаны олам"
+
+msgid "I'm involved in the facts"
+msgstr "Мен фактларгъа алякъадарым"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Сиз озюнъиз акъкъында малюмат къалдырмакъ истейсинъизми?"
@@ -1619,11 +1611,11 @@ msgstr "Сойад"
 msgid "Alternative contact method"
 msgstr "Багънынъ альтернатив усулы"
 
-msgid "Other"
-msgstr "Башкъа"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Меннен тек платформа аркъалы багълангъанларыны истейим"
+
+msgid "Other"
+msgstr "Башкъа"
 
 msgid "Dear {RecipientName},"
 msgstr "Азиз {RecipientName},"

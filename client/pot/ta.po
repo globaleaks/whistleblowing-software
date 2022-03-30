@@ -1,14 +1,14 @@
 # 
 # Translators:
 # Bala Subramaniyan <balapandu222@hotmail.com>, 2018-2019
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2017,2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2017,2020,2022
 # git12a <git12@openmailbox.org>, 2015
 # Sivarajah Bagerathan <bagerathan@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Sivarajah Bagerathan <bagerathan@gmail.com>, 2013\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2017,2020,2022\n"
 "Language-Team: Tamil (http://www.transifex.com/otf/globaleaks/language/ta/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -762,12 +762,6 @@ msgstr "சூழல்"
 msgid "Hidden"
 msgstr "மறைக்கப்பட்ட"
 
-msgid "Disabled"
-msgstr "முடக்கப்பட்டது"
-
-msgid "Enabled"
-msgstr "இயக்கப்பட்டது"
-
 msgid "Questionnaire"
 msgstr "கேள்வித்தாள்"
 
@@ -798,17 +792,17 @@ msgstr "சமர்ப்பிக்கும் நிலையை பக்�
 msgid "Enable comments"
 msgstr "கருத்துகளை இயக்கு"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "இம்மாதிரி கருத்துக்கள் எழுத அனுமதி"
+msgid "Allow the whistleblower to write comments"
+msgstr "தகவல் தெரிவிப்பவர் கருத்துக்கள் எழுத அனுமதி"
 
 msgid "Enable private messages"
 msgstr "தனியார் செய்திகளை இயக்கு"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "இம்மாதிரி செய்திகளை அனுப்ப அனுமதிக்க"
+msgid "Allow the whistleblower to send messages"
+msgstr "தகவல் தெரிவிப்பவர் செய்திகளை அனுப்ப அனுமதிக்க"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "விசில்ப்ளேவர்கள் ஏற்கனவே உள்ள சமர்ப்பிப்புகளில் இணைப்புகளை சேர்க்கட்டும்"
+msgid "Allow the whistleblower to add attachments"
+msgstr "தகவல் தெரிவிப்பவர் சமர்ப்பிப்பு இணைப்புகளை சேர்க்க அனுமதி"
 
 msgid "Additional questionnaire"
 msgstr "கூடுதல் கேள்வித்தாள்"
@@ -836,6 +830,9 @@ msgstr "மென்பொருள் பதிப்பு:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "குறிப்பிட்ட ஐபி முகவரிகளுக்கு அணுகல் கட்டுப்படுத்தவும்"
+
+msgid "Enabled"
+msgstr "இயக்கப்பட்டது"
 
 msgid "Allowed IP addresses"
 msgstr ""
@@ -920,6 +917,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "கையேடு கட்டமைப்பு வழிகாட்டி ஒரு மாற்று சான்றிதழ் ஆணையத்திலிருந்து HTTPS அமைப்பின் மூலம் உங்களுக்கு வழிகாட்டும்."
 
+msgid "Disabled"
+msgstr "முடக்கப்பட்டது"
+
 msgid "Auto-renewal"
 msgstr "ஆட்டோ புதுப்பித்தல்"
 
@@ -995,6 +995,9 @@ msgstr "பல வரி உரை உள்ளீடு"
 msgid "Selection box"
 msgstr "தேர்வு பெட்டியில்"
 
+msgid "Multiple choice input"
+msgstr "பல தேர்வு உள்ளீடு"
+
 msgid "Checkbox"
 msgstr "பெட்டியை"
 
@@ -1015,9 +1018,6 @@ msgstr "வரிசை"
 
 msgid "Width"
 msgstr "அகலம்"
-
-msgid "Multiple choice input"
-msgstr "பல தேர்வு உள்ளீடு"
 
 msgid "Question group"
 msgstr "கேள்வி குழு"
@@ -1349,29 +1349,23 @@ msgstr "ரசீது தவறானது அல்லது சமர்ப
 msgid "Select a file or drag it here."
 msgstr ""
 
+msgid "Size:"
+msgstr "அளவு:"
+
 msgid "Uploading files…"
 msgstr "கோப்புகளை பதிவேற்றுகிறது ..."
 
 msgid "Upload completed successfully!"
 msgstr "பதிவேற்றம் வெற்றிகரமாக நிறைவு!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "கோப்புகளை பதிவேற்ற போது பிழை; விவரங்கள் கீழே பார்க்கலாம்."
-
 msgid "Estimated upload time:"
 msgstr "கணக்கிடப்பட்ட பதிவேற்ற நேரம்:"
-
-msgid "Size:"
-msgstr "அளவு:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "கூடுதல் கேள்வித்தாள் நிரப்ப நிர்பந்திக்கப்பட்டவர்கள் உங்களிடம் கேட்டுள்ளனர்."
 
 msgid "Fill the additional questionnaire"
 msgstr "கூடுதல் கேள்வித்தாளை நிரப்புக"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "தகவல் தெரிவிப்பவர் கருத்துக்கள் எழுத அனுமதி"
 
 msgid "From:"
 msgstr ""
@@ -1387,12 +1381,6 @@ msgstr "பதிவேற்ற தேதி"
 
 msgid "File size"
 msgstr "கோப்பின் அளவு"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "தகவல் தெரிவிப்பவர் சமர்ப்பிப்பு இணைப்புகளை சேர்க்க அனுமதி"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "தகவல் தெரிவிப்பவர் செய்திகளை அனுப்ப அனுமதிக்க"
 
 msgid "Questionnaire answers"
 msgstr "கேள்வித்தாள் பதில்களை"
@@ -1607,8 +1595,11 @@ msgstr "நீங்கள் மேடையில் வழிகாட்ட�
 msgid "Describe your report in detail."
 msgstr ""
 
-msgid "Attach files relevant to the report."
-msgstr "சமர்ப்பிப்புக்கு தொடர்புடைய கோப்புகளை இணைக்கவும்."
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "நீங்கள் உங்கள் அடையாள தகவல் வழங்க வேண்டும் என்று விரும்புகிறீர்கள்?"
@@ -1622,11 +1613,11 @@ msgstr "கடைசி பெயர்"
 msgid "Alternative contact method"
 msgstr ""
 
-msgid "Other"
-msgstr "மற்ற"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr ""
+
+msgid "Other"
+msgstr "மற்ற"
 
 msgid "Dear {RecipientName},"
 msgstr "அன்பே {RecipientName},"

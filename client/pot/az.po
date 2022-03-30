@@ -4,7 +4,7 @@
 # Emin Mastizada <emin@linux.com>, 2015
 # Fardin Shikhiyev <shihiyev@gmail.com>, 2015
 # fiore <salimova.gulnar@gmail.com>, 2017
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017-2018,2020-2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017-2018,2020-2022
 # Nikafn <appone6@gmail.com>, 2016-2018,2021
 # ruzanna <ruzanna81@gmail.com>, 2021
 # ruzanna <ruzanna81@gmail.com>, 2021
@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: ulkar!(($-2017 <ulkernatiqqizis@gmail.com>, 2017\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017-2018,2020-2022\n"
 "Language-Team: Azerbaijani (http://www.transifex.com/otf/globaleaks/language/az/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -767,12 +767,6 @@ msgstr "Kontekst"
 msgid "Hidden"
 msgstr "Gizli"
 
-msgid "Disabled"
-msgstr "Sönülüdür"
-
-msgid "Enabled"
-msgstr "Aktivdir"
-
 msgid "Questionnaire"
 msgstr "Sorğu"
 
@@ -803,17 +797,17 @@ msgstr "Alıcı haqda məlumatları hesabatın status səhifəsində göstərin 
 msgid "Enable comments"
 msgstr "Şərhləri aktiv edin"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "İnformasiya ötürənlərin şəhr yazmasına icazə verin"
+msgid "Allow the whistleblower to write comments"
+msgstr "İnformasiya ötürənlərin şərh yazmasına icazə verin"
 
 msgid "Enable private messages"
 msgstr "Şəxsi mesajları aktiv edin"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "İnformasiya ötürənlərin mesaj göndərməsinə icazə verin"
+msgid "Allow the whistleblower to send messages"
+msgstr "İnformasiya ötürənin mesaj göndərməsinə icazə verin"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "İnformasiya ötürənlərin mövcud təqdimatlara əlavələr etməsinə icazə verin"
+msgid "Allow the whistleblower to add attachments"
+msgstr "İnformasiya ötürənin hesabata əlavələr etməsinə icazə verin"
 
 msgid "Additional questionnaire"
 msgstr "Əlavə sorğu"
@@ -841,6 +835,9 @@ msgstr "Proqram versiyası:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Xüsusi İP ünvanlara girişi qadağa edin"
+
+msgid "Enabled"
+msgstr "Aktivdir"
 
 msgid "Allowed IP addresses"
 msgstr "İcazəli İP ünvanlar"
@@ -925,6 +922,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Alternativ Sertifikat Səlahiyyətindən istifadə etməklə HTTPS quraşdırarkən manual quraşdırma funksiyası sizə kömək edəcək."
 
+msgid "Disabled"
+msgstr "Sönülüdür"
+
 msgid "Auto-renewal"
 msgstr "Avto yeniləmə"
 
@@ -1000,6 +1000,9 @@ msgstr "Çoxsətirli mətn girişi"
 msgid "Selection box"
 msgstr "Seçim qutusu"
 
+msgid "Multiple choice input"
+msgstr "Çoxseçimli giriş"
+
 msgid "Checkbox"
 msgstr "Yoxlama qutusu"
 
@@ -1020,9 +1023,6 @@ msgstr "Sütun"
 
 msgid "Width"
 msgstr "En"
-
-msgid "Multiple choice input"
-msgstr "Çoxseçimli giriş"
 
 msgid "Question group"
 msgstr "Sual qrupu"
@@ -1354,29 +1354,23 @@ msgstr "Açar şifrə etibarsızdır, ya da hesabat müddəti başa çatıb."
 msgid "Select a file or drag it here."
 msgstr "Faylı seçin, yaxud bura sürüşdürün."
 
+msgid "Size:"
+msgstr "Ölçü:"
+
 msgid "Uploading files…"
 msgstr "Fayllar yüklənir..."
 
 msgid "Upload completed successfully!"
 msgstr "Yükləmə uğurla başa çatdı!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Fayl yüklənərkən səhvə yol verilib; ətraflı məlumat üçün aşağı baxın."
-
 msgid "Estimated upload time:"
 msgstr "Təxmini yükləmə müddəti:"
-
-msgid "Size:"
-msgstr "Ölçü:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Alıcılar əlavə sorğu anketini doldurmağınızı istəyirlər."
 
 msgid "Fill the additional questionnaire"
 msgstr "Əlavə sorğu anketini doldurun"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "İnformasiya ötürənlərin şərh yazmasına icazə verin"
 
 msgid "From:"
 msgstr "Etibarən:"
@@ -1392,12 +1386,6 @@ msgstr "Yüklənmə tarixi"
 
 msgid "File size"
 msgstr "Faylın ölçüsü"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "İnformasiya ötürənin hesabata əlavələr etməsinə icazə verin"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "İnformasiya ötürənin mesaj göndərməsinə icazə verin"
 
 msgid "Questionnaire answers"
 msgstr "Sorğunun cavabları"
@@ -1612,8 +1600,11 @@ msgstr "Platforma hazırdır. "
 msgid "Describe your report in detail."
 msgstr "Təqdimatınızı təfərrüatı ilə təsvir edin."
 
-msgid "Attach files relevant to the report."
-msgstr "Təqdimatla əlaqəli faylları əlavə edin"
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "Özünüz haqda məlumat vermək istəyirsizmi?"
@@ -1627,11 +1618,11 @@ msgstr "Soyad"
 msgid "Alternative contact method"
 msgstr "Alternativ əlaqə "
 
-msgid "Other"
-msgstr "Digər"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Yalnız bu platforma vasitəsiylə əlaqə saxlanmasına üstünlük verirəm"
+
+msgid "Other"
+msgstr "Digər"
 
 msgid "Dear {RecipientName},"
 msgstr "Əziz {RecipientName}, "

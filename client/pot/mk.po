@@ -2,13 +2,13 @@
 # Translators:
 # Aleksandra Blanusha <ablanusha@transparency.mk>, 2020-2021
 # Dimitar Poposki <poposkidimitar@gmail.com>, 2016
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2020-2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2020-2022
 # Zarko Gjurov <zarkogjurov@gmail.com>, 2017-2018,2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Dimitar Poposki <poposkidimitar@gmail.com>, 2016\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2020-2022\n"
 "Language-Team: Macedonian (http://www.transifex.com/otf/globaleaks/language/mk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -762,12 +762,6 @@ msgstr "Содржини"
 msgid "Hidden"
 msgstr "Сокриено"
 
-msgid "Disabled"
-msgstr "Оневозможено"
-
-msgid "Enabled"
-msgstr "Овозможено"
-
 msgid "Questionnaire"
 msgstr "Прашалник"
 
@@ -798,17 +792,17 @@ msgstr "Прикажи ги деталите за примачот на стат
 msgid "Enable comments"
 msgstr "Овозможи коментари"
 
-msgid "Allow whistleblowers to write comments"
+msgid "Allow the whistleblower to write comments"
 msgstr "Дозволи им на свиркачите да пишуваат коментари"
 
 msgid "Enable private messages"
 msgstr "Овозможи приватни пораки"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Овозможи им на свиркачите да испраќаат пораки"
+msgid "Allow the whistleblower to send messages"
+msgstr "Дозволи им на свиркачите да испраќаат пораки"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Дозволи им на свиркачите да додаваат прилози на веќепостоечките извештаи"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Дозволи им на свиркачите да додаваат прилози на извештајот"
 
 msgid "Additional questionnaire"
 msgstr "Дополнителен прашалник"
@@ -836,6 +830,9 @@ msgstr " Верзија на софтвер:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Ограничи пристап на одредени IP адреси"
+
+msgid "Enabled"
+msgstr "Овозможено"
 
 msgid "Allowed IP addresses"
 msgstr " Дозволени IP адреси"
@@ -920,6 +917,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Волшебникот за рачно прилагодување ќе ве води низ поставувањето на HTTPS од алтернативен издавач на сертификати."
 
+msgid "Disabled"
+msgstr "Оневозможено"
+
 msgid "Auto-renewal"
 msgstr "Авто-обновување"
 
@@ -995,6 +995,9 @@ msgstr "Внесување текст со повеќе линии"
 msgid "Selection box"
 msgstr "Избирачка кутија"
 
+msgid "Multiple choice input"
+msgstr "Внес со повеќекратен избор"
+
 msgid "Checkbox"
 msgstr "Поле за избор"
 
@@ -1015,9 +1018,6 @@ msgstr "Колона"
 
 msgid "Width"
 msgstr "Ширина"
-
-msgid "Multiple choice input"
-msgstr "Внес со повеќекратен избор"
 
 msgid "Question group"
 msgstr "Прашална група"
@@ -1349,29 +1349,23 @@ msgstr "Потврдата не е валидна или извештајот е
 msgid "Select a file or drag it here."
 msgstr "Избери датотека или повлечи ја овде."
 
+msgid "Size:"
+msgstr "Големина:"
+
 msgid "Uploading files…"
 msgstr "Прикачување датотеки..."
 
 msgid "Upload completed successfully!"
 msgstr "Прикачувањето заврши успешно!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Грешка при прикачувањето на датотеки; провери подолу за детали."
-
 msgid "Estimated upload time:"
 msgstr "Проценето време за прикачување:"
-
-msgid "Size:"
-msgstr "Големина:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Примачите ви побараа да пополните дополнителен прашалник."
 
 msgid "Fill the additional questionnaire"
 msgstr "Пополни го дополнителниот прашалник"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Дозволи им на свиркачите да пишуваат коментари"
 
 msgid "From:"
 msgstr "Од:"
@@ -1387,12 +1381,6 @@ msgstr "Датум на прикачување"
 
 msgid "File size"
 msgstr "Големина на датотека"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Дозволи им на свиркачите да додаваат прилози на извештајот"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Дозволи им на свиркачите да испраќаат пораки"
 
 msgid "Questionnaire answers"
 msgstr "Одговори на прашалник"
@@ -1607,8 +1595,11 @@ msgstr "Го завршивте волшебникот на платформат
 msgid "Describe your report in detail."
 msgstr "Опишете го вашиот извештај во детали."
 
-msgid "Attach files relevant to the report."
-msgstr "Прикачи датотеки релевантни за извештајот."
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "Дали сакате да ги обезбедите вашите информации за идентификација? "
@@ -1622,11 +1613,11 @@ msgstr "Презиме"
 msgid "Alternative contact method"
 msgstr "Алтернативен метод за контакт"
 
-msgid "Other"
-msgstr "Друго"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Преферирам да бидам контактиран само преку оваа платформа"
+
+msgid "Other"
+msgstr "Друго"
 
 msgid "Dear {RecipientName},"
 msgstr "Драг {RecipientName}, "

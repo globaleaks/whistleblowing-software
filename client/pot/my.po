@@ -1,13 +1,13 @@
 # 
 # Translators:
 # Christine Ivy <christineivy19@gmail.com>, 2021
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022
 # Tun Tun Aung <tuntunaung@codingclassroom.org>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022\n"
 "Language-Team: Burmese (http://www.transifex.com/otf/globaleaks/language/my/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -761,12 +761,6 @@ msgstr "အကြောင်းအရာများ"
 msgid "Hidden"
 msgstr "ဝှက်ထားသည်"
 
-msgid "Disabled"
-msgstr "ပိတ်ထားသည်"
-
-msgid "Enabled"
-msgstr "ဖွင့်ထားသည်"
-
 msgid "Questionnaire"
 msgstr "မေးခွန်းလွှာ"
 
@@ -797,17 +791,17 @@ msgstr "လက်ခံသူ အသေးစိတ်များကို အ�
 msgid "Enable comments"
 msgstr "မှတ်ချက်များကို ဖွင့်ပါ"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "သတင်းပေးသူများအား မှတ်ချက်များ ရေးသားခွင့်ပြုပါ"
+msgid "Allow the whistleblower to write comments"
+msgstr "သတင်းပေးသူအား မှတ်ချက်များ ရေးသားခွင့်ပြုပါ"
 
 msgid "Enable private messages"
 msgstr "သီးသန့် မက်ဆေ့ချ်များကို ဖွင့်ပါ"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "သတင်းပေးသူများအား မက်ဆေ့ခ်ျများ ပို့ခွင့်ပြုပါ"
+msgid "Allow the whistleblower to send messages"
+msgstr "သတင်းပေးသူအား မက်ဆေ့များ ပို့ခွင့်ပြုပါ"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "သတင်းပေးသူများအား လက်ရှိ အစီရင်ခံစာများတွင် ပူးတွဲဖိုင်များကို ထည့်ခွင့်ပြုပါ"
+msgid "Allow the whistleblower to add attachments"
+msgstr "သတင်းပေးသူအား အစီရင်ခံစာတွင် ပူးတွဲဖိုင်များ ထည့်ခွင့်ပြုပါ"
 
 msgid "Additional questionnaire"
 msgstr "အပိုဆောင်း မေးခွန်းလွှာ"
@@ -835,6 +829,9 @@ msgstr "ဆော့ဝဲ ဗားရှင်း - "
 
 msgid "Restrict access to specific IP addresses"
 msgstr "တိကျသော IP လိပ်စာများကို အသုံးပြုခြင်း ကန့်သတ်ပါ"
+
+msgid "Enabled"
+msgstr "ဖွင့်ထားသည်"
 
 msgid "Allowed IP addresses"
 msgstr "ခွင့်ပြုထားသော IP လိပ်စာများ"
@@ -919,6 +916,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "ကိုယ်တိုင် အစိတ်အပိုင်းများ ဖွဲ့စည်းသည့် ဝိဇ္ဇာသည် အခြား အသိအမှတ်ပြု အာဏာပိုင်ထံမှ HTTPS ကို သတ်မှတ်ခြင်းဖြင့် သင့်အား လမ်းညွှန်ပါမည်။"
 
+msgid "Disabled"
+msgstr "ပိတ်ထားသည်"
+
 msgid "Auto-renewal"
 msgstr "အော်တို သက်တမ်းတိုးခြင်း"
 
@@ -994,6 +994,9 @@ msgstr "စာကြောင်းများစွာ စာသားထည�
 msgid "Selection box"
 msgstr "ရွေးချယ်မှု အကွက်"
 
+msgid "Multiple choice input"
+msgstr "အဖြေမှန်ရွေး ထည့်သွင်းမှု"
+
 msgid "Checkbox"
 msgstr "အမှန်ခြစ် အကွက်"
 
@@ -1014,9 +1017,6 @@ msgstr "ကော်လံ"
 
 msgid "Width"
 msgstr "အကျယ်"
-
-msgid "Multiple choice input"
-msgstr "အဖြေမှန်ရွေး ထည့်သွင်းမှု"
 
 msgid "Question group"
 msgstr "မေးခွန်းအုပ်စု"
@@ -1348,29 +1348,23 @@ msgstr "လက်ခံဖြတ်ပိုင်းသည် မမှန်�
 msgid "Select a file or drag it here."
 msgstr "ဖိုင်တစ်ခုကို ရွေးချယ်ပါ (သို့) ၎င်းကို ဆွဲယူပါ။"
 
+msgid "Size:"
+msgstr "အရွယ်အစား - "
+
 msgid "Uploading files…"
 msgstr "ဖိုင်များ အပ်လုဒ်လုပ်နေသည်…"
 
 msgid "Upload completed successfully!"
 msgstr "အောင်မြင်စွာ အပ်လုဒ်လုပ်ပြီးပါပြီ။"
 
-msgid "Error while uploading files; check below for details."
-msgstr "ဖိုင်များ အပ်လုဒ်လုပ်နေစဉ် ပြဿနာ ဖြစ်ပေါ်သည်။ အသေးစိတ်ကို အောက်တွင် စစ်ဆေးပါ။"
-
 msgid "Estimated upload time:"
 msgstr "အပ်လုဒ်လုပ်ရန် ကြာချိန် ခန့်မှန်းချက် -"
-
-msgid "Size:"
-msgstr "အရွယ်အစား - "
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "လက်ခံသူများက သင့်အား အပိုဆောင်း မေးခွန်းလွှာဖြည့်ရန် တောင်းဆိုထားသည်။"
 
 msgid "Fill the additional questionnaire"
 msgstr "အပိုဆောင်း မေးခွန်းလွှာ ဖြည့်ပါ"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "သတင်းပေးသူအား မှတ်ချက်များ ရေးသားခွင့်ပြုပါ"
 
 msgid "From:"
 msgstr "မှ -"
@@ -1386,12 +1380,6 @@ msgstr "အပ်လုဒ်လုပ်သည့် နေ့စွဲ-"
 
 msgid "File size"
 msgstr "ဖိုင် အရွယ်အစား"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "သတင်းပေးသူအား အစီရင်ခံစာတွင် ပူးတွဲဖိုင်များ ထည့်ခွင့်ပြုပါ"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "သတင်းပေးသူအား မက်ဆေ့များ ပို့ခွင့်ပြုပါ"
 
 msgid "Questionnaire answers"
 msgstr "မေးခွန်းလွှာ အဖြေများ"
@@ -1606,8 +1594,11 @@ msgstr "သင် ပလက်ဖောင်းဝိဇ္ဇာကို ပ�
 msgid "Describe your report in detail."
 msgstr "သင့်အစီရင်ခံစာကို အသေးစိတ် ဖော်ပြပါ။"
 
-msgid "Attach files relevant to the report."
-msgstr "အစီရင်ခံစာနှင့် သက်ဆိုင်သည့် ဖိုင်များကို တွဲကပ်ပါ။ "
+msgid "I'm a victim"
+msgstr "ကျွန်ုပ်သည် ထိခိုက်နစ်နာသူ ဖြစ်သည်"
+
+msgid "I'm involved in the facts"
+msgstr "ကျွန်ုပ်သည် အဖြစ်အပျက်တွင် ပါဝင်ပတ်သက်သည်"
 
 msgid "Do you want to provide your identification information?"
 msgstr "သင့်မှတ်ပုံတင် အချက်အလက်ကို ပေးလိုပါသလား။"
@@ -1621,11 +1612,11 @@ msgstr "အမည် နောက်ဆုံးစာလုံး"
 msgid "Alternative contact method"
 msgstr ""
 
-msgid "Other"
-msgstr "အခြား"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr ""
+
+msgid "Other"
+msgstr "အခြား"
 
 msgid "Dear {RecipientName},"
 msgstr "ချစ်ခင်ရပါသော {RecipientName}"

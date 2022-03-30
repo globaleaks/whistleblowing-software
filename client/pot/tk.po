@@ -1,6 +1,6 @@
 # 
 # Translators:
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022
 # Jahan Taganova, 2021
 # Jahan Taganova, 2021
 # Muhammed Soltanov, 2021
@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Muhammed Soltanov, 2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022\n"
 "Language-Team: Turkmen (http://www.transifex.com/otf/globaleaks/language/tk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -763,12 +763,6 @@ msgstr "Kontekstler"
 msgid "Hidden"
 msgstr "Gizlenen"
 
-msgid "Disabled"
-msgstr "Ýapyk"
-
-msgid "Enabled"
-msgstr "Açyk"
-
 msgid "Questionnaire"
 msgstr "Sowalnama"
 
@@ -799,17 +793,17 @@ msgstr "Hasabatyň ýagdaý sahypasynda alyjynyň jikme-jikliklerini görkez"
 msgid "Enable comments"
 msgstr "Teswirleri aç"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Gizlin habar ýetirijilere teswir ýazmaga rugsat ber"
+msgid "Allow the whistleblower to write comments"
+msgstr "Gizlin habar ýetirijilere teswir ýazmaga rugsat beriň"
 
 msgid "Enable private messages"
 msgstr "Şahsy habarlary aç"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Gizlin habar ýetirijilere habar ibermäge rugsat ber"
+msgid "Allow the whistleblower to send messages"
+msgstr "Gizlin habar ýetirijilere habar ibermäge rugsat beriň"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Gizlin habar ýetirijilere bar bolan hasabatlara goşmaçalar goşmagy rugsat ber"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Gizlin habar ýetirijilere hasabata goşmaçalar goşmagyna rugsat beriň"
 
 msgid "Additional questionnaire"
 msgstr "Goşmaça sowalnama"
@@ -837,6 +831,9 @@ msgstr "Programma wersiýasy:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Belli bir IP adreslere girmegi çäklendir"
+
+msgid "Enabled"
+msgstr "Açyk"
 
 msgid "Allowed IP addresses"
 msgstr "Rugsat berlen IP salgylar"
@@ -921,6 +918,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "El bilen konfigurasiýa düzeltmesi, alternatiw Şahadatnama Häkimiýetinden HTTPS gurmak arkaly size ýol görkezer."
 
+msgid "Disabled"
+msgstr "Ýapyk"
+
 msgid "Auto-renewal"
 msgstr "Awto-täzelenme"
 
@@ -996,6 +996,9 @@ msgstr "Köp setirli tekst giriş"
 msgid "Selection box"
 msgstr "Saýlama gutusy"
 
+msgid "Multiple choice input"
+msgstr "Birnäçe saýlaw giriş"
+
 msgid "Checkbox"
 msgstr "Bellik gutusy"
 
@@ -1016,9 +1019,6 @@ msgstr "Sütün"
 
 msgid "Width"
 msgstr "In"
-
-msgid "Multiple choice input"
-msgstr "Birnäçe saýlaw giriş"
 
 msgid "Question group"
 msgstr "Sorag topary"
@@ -1350,29 +1350,23 @@ msgstr "Kwitansiýa nädogry ýa-da hasabatyň möhleti gutardy."
 msgid "Select a file or drag it here."
 msgstr "Faýl saýlaň ýa-da şu ýere goşuň."
 
+msgid "Size:"
+msgstr "Ölçegi:"
+
 msgid "Uploading files…"
 msgstr "Faýllar ýüklenýär..."
 
 msgid "Upload completed successfully!"
 msgstr "Ýüklemek üstünlikli tamamlandy!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Faýl ýüklemekde säwlik;  jikme-jiklikleri üçin aşakda barlaň."
-
 msgid "Estimated upload time:"
 msgstr "Takmynan ýükleme wagty:"
-
-msgid "Size:"
-msgstr "Ölçegi:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Alyjylar goşmaça sowalnama doldurmagyňyzy haýyş etdiler."
 
 msgid "Fill the additional questionnaire"
 msgstr "Goşmaça sowalnamany dolduryň"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Gizlin habar ýetirijilere teswir ýazmaga rugsat beriň"
 
 msgid "From:"
 msgstr "Kimden:"
@@ -1388,12 +1382,6 @@ msgstr "Ýükleme senesi"
 
 msgid "File size"
 msgstr "Faýlyň ululygy"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Gizlin habar ýetirijilere hasabata goşmaçalar goşmagyna rugsat beriň"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Gizlin habar ýetirijilere habar ibermäge rugsat beriň"
 
 msgid "Questionnaire answers"
 msgstr "Sowalnama jogaplary"
@@ -1608,8 +1596,11 @@ msgstr "Platforma düzeltmesini tamamladyňyz."
 msgid "Describe your report in detail."
 msgstr "Hasabatyňyzy jikme-jik beýan ediň."
 
-msgid "Attach files relevant to the report."
-msgstr "Hasabat bilen baglanyşykly faýllary goşuň."
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "Şahsyýetiňiz barada maglumat bermek isleýärsiňizmi?"
@@ -1623,11 +1614,11 @@ msgstr "Familiýasy"
 msgid "Alternative contact method"
 msgstr "Alternatiw aragatnaşyk usuly"
 
-msgid "Other"
-msgstr "Başga"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Diňe şu platforma arkaly habarlaşmagy isleýärin"
+
+msgid "Other"
+msgstr "Başga"
 
 msgid "Dear {RecipientName},"
 msgstr "Hormatly {RecipientName},\n "

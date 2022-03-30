@@ -1,6 +1,6 @@
 # 
 # Translators:
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022
 # Gulnar <gulnar.freelance@gmail.com>, 2021
 # Gulnar <gulnar.freelance@gmail.com>, 2021
 # Zangar Batyrkhan <zangar.kazakh@gmail.com>, 2021
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Zangar Batyrkhan <zangar.kazakh@gmail.com>, 2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022\n"
 "Language-Team: Kazakh (http://www.transifex.com/otf/globaleaks/language/kk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -762,12 +762,6 @@ msgstr "Мәнмәтіндер"
 msgid "Hidden"
 msgstr "Жасырын"
 
-msgid "Disabled"
-msgstr "Өшірілген"
-
-msgid "Enabled"
-msgstr "Қосылған"
-
 msgid "Questionnaire"
 msgstr "Сауалнама"
 
@@ -798,17 +792,17 @@ msgstr "Есеп күйі бетінде алушы мәліметтерін к�
 msgid "Enable comments"
 msgstr "Пікірлерді қосу"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Хабарлаушыға пікір қалдыруға рұқсат ету"
+msgid "Allow the whistleblower to write comments"
+msgstr "Хабарлаушыға түсініктеме жазуға рұқсат ету"
 
 msgid "Enable private messages"
 msgstr "Жеке хабарларды қосу"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Хабарлаушыға хабар жіберуге рұқсат ету"
+msgid "Allow the whistleblower to send messages"
+msgstr "Хабарлаушыға хабарлар жіберуге рұқсат ету"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Хабарлаушыға бар есептерге тіркемелерді қосуға рұқсат ету"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Хабарлаушыға есепке тіркемелер қосуға рұқсат беру"
 
 msgid "Additional questionnaire"
 msgstr "Қосымша сауалнама"
@@ -836,6 +830,9 @@ msgstr "Бағдарламалық жасақтама нұсқасы:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Нақты IP мекенжайларына қатынасуды шектеу"
+
+msgid "Enabled"
+msgstr "Қосылған"
 
 msgid "Allowed IP addresses"
 msgstr "Рұқсат етілген IP мекенжайлары"
@@ -920,6 +917,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Қолмен баптау шебері сізге баламалы куәліктер орталығынан HTTPS протоколын орнату бойынша нұсқау беретін болады."
 
+msgid "Disabled"
+msgstr "Өшірілген"
+
 msgid "Auto-renewal"
 msgstr "Автоматты түрде жаңарту"
 
@@ -995,6 +995,9 @@ msgstr "Көп жолды мәтінді енгізу"
 msgid "Selection box"
 msgstr "Таңдау өрісі"
 
+msgid "Multiple choice input"
+msgstr "Бірнеше таңдауды енгізу"
+
 msgid "Checkbox"
 msgstr "Құсбелгі"
 
@@ -1015,9 +1018,6 @@ msgstr "Баған"
 
 msgid "Width"
 msgstr "Ені"
-
-msgid "Multiple choice input"
-msgstr "Бірнеше таңдауды енгізу"
 
 msgid "Question group"
 msgstr "Сұрақтар тобы"
@@ -1349,29 +1349,23 @@ msgstr "Түбіртек жарамсыз немесе есеп мерзімі �
 msgid "Select a file or drag it here."
 msgstr "Файлды таңдаңыз немесе оны осында сүйреп әкеліңіз."
 
+msgid "Size:"
+msgstr "Өлшемі:"
+
 msgid "Uploading files…"
 msgstr "Файлдар жүктеп салынуда…"
 
 msgid "Upload completed successfully!"
 msgstr "Жүктеп салу сәтті аяқталды!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Файлдарды жүктеп салу кезінде қате орын алды; толық ақпарат үшін, төмендегі ақпаратты қараңыз."
-
 msgid "Estimated upload time:"
 msgstr "Болжалды жүктеп салу уақыты:"
-
-msgid "Size:"
-msgstr "Өлшемі:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Алушылар сізден қосымша сауалнаманы толтыруды сұрады."
 
 msgid "Fill the additional questionnaire"
 msgstr "Қосымша сауалнаманы толтыру"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Хабарлаушыға түсініктеме жазуға рұқсат ету"
 
 msgid "From:"
 msgstr "Жіберуші:"
@@ -1387,12 +1381,6 @@ msgstr "Жүктеп салу күні"
 
 msgid "File size"
 msgstr "Файл өлшемі"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Хабарлаушыға есепке тіркемелер қосуға рұқсат беру"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Хабарлаушыға хабарлар жіберуге рұқсат ету"
 
 msgid "Questionnaire answers"
 msgstr "Сауалнама жауаптары"
@@ -1607,8 +1595,11 @@ msgstr "Сіз платформа шеберімен жұмысты аяқтад
 msgid "Describe your report in detail."
 msgstr "Есепті толығырақ сипаттаңыз."
 
-msgid "Attach files relevant to the report."
-msgstr "Есепке қатысты файлдарды тіркеңіз."
+msgid "I'm a victim"
+msgstr "Мен жәбірленушімін"
+
+msgid "I'm involved in the facts"
+msgstr "Менің фактілерге қатысым бар"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Сәйкестендіру ақпаратын бергіңіз келе ме?"
@@ -1622,11 +1613,11 @@ msgstr "Тегі"
 msgid "Alternative contact method"
 msgstr "Балама байланыс әдісі"
 
-msgid "Other"
-msgstr "Басқа"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Мен тек осы платформа арқылы хабарласуды жөн көремін"
+
+msgid "Other"
+msgstr "Басқа"
 
 msgid "Dear {RecipientName},"
 msgstr "Құрметті {RecipientName},"

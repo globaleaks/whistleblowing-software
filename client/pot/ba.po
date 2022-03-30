@@ -2,12 +2,12 @@
 # Translators:
 # Aigiz Kunafin, 2021
 # Aigiz Kunafin, 2021
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022\n"
 "Language-Team: Bashkir (http://www.transifex.com/otf/globaleaks/language/ba/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -761,12 +761,6 @@ msgstr "Контекст"
 msgid "Hidden"
 msgstr "Йәшерен"
 
-msgid "Disabled"
-msgstr "Һүндерелгән"
-
-msgid "Enabled"
-msgstr "Ҡабыҙылған"
-
 msgid "Questionnaire"
 msgstr "Һораулама"
 
@@ -797,17 +791,17 @@ msgstr "Материал ебәреү торошо битендә ҡабул и�
 msgid "Enable comments"
 msgstr "Комментарийҙарҙы ҡабыҙыу"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Информаторҙарға комментарий өҫтәргә рөхсәт итеү"
+msgid "Allow the whistleblower to write comments"
+msgstr "Информаторға комментарийҙар өҫтәргә рөхсәт итергә"
 
 msgid "Enable private messages"
 msgstr "Шәхси хәбәрҙәрҙе файҙаланыу"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Информаторҙарға хәбәрҙәр ебәрергә рөхсәт итеү"
+msgid "Allow the whistleblower to send messages"
+msgstr "Информаторға комментарийҙар ебәрергә рөхсәт итергә"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Информаторҙарға булған отчеттарға ҡушымта өҫтәргә рөхсәт итеү"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Информаторға ебәрелгән документарға ҡушымта өҫтәргә рөхсәт итергә"
 
 msgid "Additional questionnaire"
 msgstr "Өҫтәлмә һораулама"
@@ -835,6 +829,9 @@ msgstr "Программа тәьминиәте версияһы:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Ҡайһы бер IP-адрестарына инеү мөмкинлеген сикләү"
+
+msgid "Enabled"
+msgstr "Ҡабыҙылған"
 
 msgid "Allowed IP addresses"
 msgstr "Рөхсәт ителгән IP-адрес"
@@ -919,6 +916,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Сертификация альтернатив үҙәктең HTTPS-ын көйләүгә мөмкинлек биреп, ҡул ярҙамында көйләү оҫтаһы һеҙҙе конфигурация процесы аша үткәрәсәк"
 
+msgid "Disabled"
+msgstr "Һүндерелгән"
+
 msgid "Auto-renewal"
 msgstr "Автоматик оҙайтыу"
 
@@ -994,6 +994,9 @@ msgstr "Күп юллыҡ текст"
 msgid "Selection box"
 msgstr "Һайлау  аҡланы"
 
+msgid "Multiple choice input"
+msgstr "Һайлау күплеге менән индереү"
+
 msgid "Checkbox"
 msgstr "Әләм"
 
@@ -1014,9 +1017,6 @@ msgstr "Колонка"
 
 msgid "Width"
 msgstr "Киңлеге"
-
-msgid "Multiple choice input"
-msgstr "Һайлау күплеге менән индереү"
 
 msgid "Question group"
 msgstr "Һорауҙар йыйылмаһы"
@@ -1348,29 +1348,23 @@ msgstr "Квитанция дөрөҫ түгел йәки отчеттың ғә�
 msgid "Select a file or drag it here."
 msgstr "Файл һайлағыҙ йәки уны бында күсерегеҙ "
 
+msgid "Size:"
+msgstr "Дәүмәл:"
+
 msgid "Uploading files…"
 msgstr "Файлдарҙы тейәргә"
 
 msgid "Upload completed successfully!"
 msgstr "Тейәү уңышлы тамамланды"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Файлдарҙы тейәү хатаһы; тәфсире түбәндә күрһәтелгән: "
-
 msgid "Estimated upload time:"
 msgstr "Тейәүгә бирелгән ваҡыт:"
-
-msgid "Size:"
-msgstr "Дәүмәл:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Ҡабул итеүселәр һеҙҙән өҫтәлмә һораулама тултырыуҙы үтенделәр"
 
 msgid "Fill the additional questionnaire"
 msgstr "Өҫтәлмә һораулама тултырыу"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Информаторға комментарийҙар өҫтәргә рөхсәт итергә"
 
 msgid "From:"
 msgstr "Ошонан"
@@ -1386,12 +1380,6 @@ msgstr "Тейәү датаһы"
 
 msgid "File size"
 msgstr "Файл дәүмәле"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Информаторға ебәрелгән документарға ҡушымта өҫтәргә рөхсәт итергә"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Информаторға комментарийҙар ебәрергә рөхсәт итергә"
 
 msgid "Questionnaire answers"
 msgstr "Һорауламаның яуаптары"
@@ -1606,8 +1594,11 @@ msgstr "Платформаны көйләү оҫтаһы менән эште т�
 msgid "Describe your report in detail."
 msgstr "Отчетығыҙҙы ентекле сағылдырығыҙ"
 
-msgid "Attach files relevant to the report."
-msgstr "Отчетҡа тап килгән файлдарҙы һалығыҙ"
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "Үҙегеҙ хаҡында мәғлүмәт ҡалдырырға теләйһегеҙме?"
@@ -1621,11 +1612,11 @@ msgstr "Фамилияһы"
 msgid "Alternative contact method"
 msgstr "Бәләнештең альтернатив ысулы"
 
-msgid "Other"
-msgstr "Башҡа"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Минең менән тик платформа аша ғына бәйләнешкә инеүҙәренә өҫтөнлөк бирәм"
+
+msgid "Other"
+msgstr "Башҡа"
 
 msgid "Dear {RecipientName},"
 msgstr "Хөрмәтле {RecipientName},"

@@ -24,7 +24,7 @@
 # Eduardo Bonsi, 2013
 # Eduardo Bonsi, 2013-2014
 # fc2d9c36d73e741383fbbf46a4aac49f_013445b, 2014
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2022
 # Hamilton Junior Mendes Lopes <gigas_x_141@hotmail.com>, 2015
 # Hellen Cristina Silva <hlncrsilva@gmail.com>, 2015
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -44,7 +44,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Welington Silva <welington.manoels@gmail.com>, 2015\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2022\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -798,12 +798,6 @@ msgstr "Assuntos"
 msgid "Hidden"
 msgstr "Oculto"
 
-msgid "Disabled"
-msgstr "Desabilitado"
-
-msgid "Enabled"
-msgstr "Habilitado"
-
 msgid "Questionnaire"
 msgstr "Questionário"
 
@@ -834,17 +828,17 @@ msgstr "Mostrar detalhes do destinatário na página de status da submissão"
 msgid "Enable comments"
 msgstr "Habilitar comentários"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Permitir que os delatores escrevam comentários"
+msgid "Allow the whistleblower to write comments"
+msgstr "Permitir que o delator escreva comentários"
 
 msgid "Enable private messages"
 msgstr "Habilitar mensagens privadas"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Permitir que os delatores enviem mensagens"
+msgid "Allow the whistleblower to send messages"
+msgstr "Permitir que o delator envie mensagens"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Permitir que os delatores adicionem anexos em submissões existentes"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Permitir o delator adicionar anexos a submissão"
 
 msgid "Additional questionnaire"
 msgstr "Questionário Adicional"
@@ -872,6 +866,9 @@ msgstr "Versão do software:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Restringir o acesso a endereços de IP específicos"
+
+msgid "Enabled"
+msgstr "Habilitado"
 
 msgid "Allowed IP addresses"
 msgstr "Endereços de IP permitidos"
@@ -956,6 +953,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "O assistente de configuração manual lhe auxiliará por meio da inicialização de HTTPS a partir de uma Autoridade Certificadora alternativa."
 
+msgid "Disabled"
+msgstr "Desabilitado"
+
 msgid "Auto-renewal"
 msgstr "Renovação automática"
 
@@ -1031,6 +1031,9 @@ msgstr "Entrada de texto de múltiplas linhas"
 msgid "Selection box"
 msgstr "Caixa de seleção"
 
+msgid "Multiple choice input"
+msgstr "Entrada de múltiplas escolhas"
+
 msgid "Checkbox"
 msgstr "Caixa de seleção"
 
@@ -1051,9 +1054,6 @@ msgstr "Coluna"
 
 msgid "Width"
 msgstr "Largura"
-
-msgid "Multiple choice input"
-msgstr "Entrada de múltiplas escolhas"
 
 msgid "Question group"
 msgstr "Grupo de questionamentos"
@@ -1385,29 +1385,23 @@ msgstr "O recibo é inválido ou o envio expirou."
 msgid "Select a file or drag it here."
 msgstr "Selecione um arquivo ou arraste-o aqui."
 
+msgid "Size:"
+msgstr "Tamanho:"
+
 msgid "Uploading files…"
 msgstr "Subindo arquivos..."
 
 msgid "Upload completed successfully!"
 msgstr "Carregamento realizado com sucesso!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Erro ao carregar arquivos; conferir detalhes abaixo."
-
 msgid "Estimated upload time:"
 msgstr "Tempo estimado do upload:"
-
-msgid "Size:"
-msgstr "Tamanho:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Os destinatários solicitaram que você preenche um questionário adicional."
 
 msgid "Fill the additional questionnaire"
 msgstr "Preencha o questionário adicional"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Permitir que o delator escreva comentários"
 
 msgid "From:"
 msgstr "De:"
@@ -1423,12 +1417,6 @@ msgstr "Submeter Data"
 
 msgid "File size"
 msgstr "Tamanho do arquivo"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Permitir o delator adicionar anexos a submissão"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Permitir que o delator envie mensagens"
 
 msgid "Questionnaire answers"
 msgstr "Respostas ao questionário"
@@ -1643,8 +1631,11 @@ msgstr "Você concluiu o assistente de plataforma."
 msgid "Describe your report in detail."
 msgstr "Descreva seu relatório em detalhes."
 
-msgid "Attach files relevant to the report."
-msgstr "Anexe arquivos relevantes ao relatório."
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "Você deseja fornecer informações sobre a sua identidade?"
@@ -1658,11 +1649,11 @@ msgstr "Último nome"
 msgid "Alternative contact method"
 msgstr ""
 
-msgid "Other"
-msgstr "Outro"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr ""
+
+msgid "Other"
+msgstr "Outro"
 
 msgid "Dear {RecipientName},"
 msgstr "Prezado/a {RecipientName},"

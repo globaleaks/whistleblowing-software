@@ -4,7 +4,7 @@
 # AO <ao@localizationlab.org>, 2015-2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # Charles Peltier <charles@cl-info.fr>, 2015
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2020-2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2020-2022
 # Jean-Yves Toumit <saiolar-c@yahoo.fr>, 2013
 # kwadronaut <kwadronaut@autistici.org>, 2015
 # marco calamari <marcoc@marcoc.it>, 2013
@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: yvette.agostini <yvette.agostini@gmail.com>, 2013\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2020-2022\n"
 "Language-Team: Malagasy (http://www.transifex.com/otf/globaleaks/language/mg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -776,12 +776,6 @@ msgstr "Contextes"
 msgid "Hidden"
 msgstr "Caché"
 
-msgid "Disabled"
-msgstr "Désactivé"
-
-msgid "Enabled"
-msgstr "Activé"
-
 msgid "Questionnaire"
 msgstr "Questionnaire"
 
@@ -812,17 +806,17 @@ msgstr "Montrer les détails concernant les destinataires sur la page d’état 
 msgid "Enable comments"
 msgstr "Activer les commentaires"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Permettre aux lanceurs d’alerte de rédiger des commentaires"
+msgid "Allow the whistleblower to write comments"
+msgstr "Permettre au lanceur d’alerte de rédiger des commentaires"
 
 msgid "Enable private messages"
 msgstr "Activer les messages privés"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Permettre aux lanceurs d’alerte d’envoyer des messages"
+msgid "Allow the whistleblower to send messages"
+msgstr "Permettre au lanceur d’alerte d’envoyer des messages"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Permettre aux lanceurs d’alerte d’ajouter des fichiers joints aux envois existants"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Permettre au lanceur d’alerte d’ajouter des fichiers joints à l’envoi"
 
 msgid "Additional questionnaire"
 msgstr "Questionnaire supplémentaire"
@@ -850,6 +844,9 @@ msgstr "Version du logiciel :"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Réserver l’accès à des adresses IP précises"
+
+msgid "Enabled"
+msgstr "Activé"
 
 msgid "Allowed IP addresses"
 msgstr ""
@@ -934,6 +931,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "L’assistant de configuration vous guidera dans les étapes de paramétrage de HTTPS à partir d’une autorité de certification alternative."
 
+msgid "Disabled"
+msgstr "Désactivé"
+
 msgid "Auto-renewal"
 msgstr "Renouvellement automatique"
 
@@ -1009,6 +1009,9 @@ msgstr "Saisie de texte multiligne"
 msgid "Selection box"
 msgstr "Case de sélection"
 
+msgid "Multiple choice input"
+msgstr ""
+
 msgid "Checkbox"
 msgstr "Case à cocher "
 
@@ -1029,9 +1032,6 @@ msgstr "Colonne"
 
 msgid "Width"
 msgstr "Largeur"
-
-msgid "Multiple choice input"
-msgstr ""
 
 msgid "Question group"
 msgstr "Groupe de questions"
@@ -1363,29 +1363,23 @@ msgstr "Soit le reçu est invalide soit votre envoi a expiré."
 msgid "Select a file or drag it here."
 msgstr ""
 
+msgid "Size:"
+msgstr "Taille :"
+
 msgid "Uploading files…"
 msgstr "Téléversement des fichiers…"
 
 msgid "Upload completed successfully!"
 msgstr "Ny fandefasana ireo rakitra fanavaozana dia tafita soa aman-tsara!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Erreur de téléversement des fichiers ; voir les détails ci-dessous."
-
 msgid "Estimated upload time:"
 msgstr "Durée de téléversement estimée :"
-
-msgid "Size:"
-msgstr "Taille :"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Les destinataires ont demandé à ce que vous remplissiez un questionnaire supplémentaire."
 
 msgid "Fill the additional questionnaire"
 msgstr "Remplir le questionnaire supplémentaire"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Permettre au lanceur d’alerte de rédiger des commentaires"
 
 msgid "From:"
 msgstr "Avy amin'i:"
@@ -1401,12 +1395,6 @@ msgstr "Date de téléversement"
 
 msgid "File size"
 msgstr "Taille du fichier"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Permettre au lanceur d’alerte d’ajouter des fichiers joints à l’envoi"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Permettre au lanceur d’alerte d’envoyer des messages"
 
 msgid "Questionnaire answers"
 msgstr "Valin'ireo fanontaniana"
@@ -1621,8 +1609,11 @@ msgstr "Vous avez terminé avec succès l’assistant de la plateforme."
 msgid "Describe your report in detail."
 msgstr "Décrivez votre envoi en détail."
 
-msgid "Attach files relevant to the report."
-msgstr "Alefaso eto ireo porofo mivaingana anananao."
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "Voulez-vous fournir vos renseignements d’identification ?"
@@ -1636,11 +1627,11 @@ msgstr "Nom de famille"
 msgid "Alternative contact method"
 msgstr ""
 
-msgid "Other"
-msgstr "Autre"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr ""
+
+msgid "Other"
+msgstr "Autre"
 
 msgid "Dear {RecipientName},"
 msgstr "Cher, chère {RecipientName},"

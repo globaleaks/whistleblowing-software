@@ -3,12 +3,12 @@
 # Aslan Doukaev, 2021
 # Aslan Doukaev, 2021
 # Chechen Linguist <translation@7geniusgroup.com>, 2021
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Aslan Doukaev, 2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022\n"
 "Language-Team: Chechen (http://www.transifex.com/otf/globaleaks/language/ce/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -762,12 +762,6 @@ msgstr "Контексташ"
 msgid "Hidden"
 msgstr "Хьулдина"
 
-msgid "Disabled"
-msgstr "Магийна доцу"
-
-msgid "Enabled"
-msgstr "Магийна"
-
 msgid "Questionnaire"
 msgstr "Хеттар"
 
@@ -798,17 +792,17 @@ msgstr "ДIаэцархочун билгалонаш гайта аьрзнийн
 msgid "Enable comments"
 msgstr "Комменташ магае"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Iорадаккхархошна комменташ язъян бакъо луо"
+msgid "Allow the whistleblower to write comments"
+msgstr "Iорадаккхархочунна бакъо ло комменташ язъян"
 
 msgid "Enable private messages"
 msgstr "Шайлахьдолу косташ магаде"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Iорадаккхархошна косташ дахьийтар магаде"
+msgid "Allow the whistleblower to send messages"
+msgstr "Iорадаккхархочунна бакъо ло косташ дахьийта."
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Iорадаккхархошна долушдолчу орзана юкъаехкина файлаш тIетоха магаде"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Iорадаккхархочунна магийта орзана тIе юкъаехкина файлаш тIетоха"
 
 msgid "Additional questionnaire"
 msgstr "ТIеоьшуш долу хеттар"
@@ -836,6 +830,9 @@ msgstr "Софтан верси:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Билггалчу IP-адресашна тlекхачарна доза тоха"
+
+msgid "Enabled"
+msgstr "Магийна"
 
 msgid "Allowed IP addresses"
 msgstr "Магийна IP-адресаш"
@@ -920,6 +917,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Куьйга конфигурацин пхьеро гойтур ду, HTTPS алтернативе Certificate Authority чуьра муха дIахIотто еза."
 
+msgid "Disabled"
+msgstr "Магийна доцу"
+
 msgid "Auto-renewal"
 msgstr "Шашах юхацIиндар"
 
@@ -995,6 +995,9 @@ msgstr "ТIекIал могӀанан текст чуязъяр"
 msgid "Selection box"
 msgstr "Харжаман хас"
 
+msgid "Multiple choice input"
+msgstr "Дукхаллин харжаман чуяздар"
+
 msgid "Checkbox"
 msgstr "Кор"
 
@@ -1015,9 +1018,6 @@ msgstr "Ирх-аса"
 
 msgid "Width"
 msgstr "Шоралла"
-
-msgid "Multiple choice input"
-msgstr "Дукхаллин харжаман чуяздар"
 
 msgid "Question group"
 msgstr "Хаттарийн гулам"
@@ -1349,29 +1349,23 @@ msgstr "Квитанци я бакъ дац, я цуьнан леларан ха
 msgid "Select a file or drag it here."
 msgstr "Файл харжа я кхуза схьатакхае."
 
+msgid "Size:"
+msgstr "Барам"
+
 msgid "Uploading files…"
 msgstr "Файлаш дIахIоттайо..."
 
 msgid "Upload completed successfully!"
 msgstr "ДIахIоттор кхиамца чекхдаьлла!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Файлаш дIахIотторехь гlалат ду; ма-дарра хьажа лахахь."
-
 msgid "Estimated upload time:"
 msgstr "ДIахIотторехь герггарчу хьесапехь оьшу хан:"
-
-msgid "Size:"
-msgstr "Барам"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "ДIаэцархоша дехна хьоьга тIеоьшу хеттар яздан."
 
 msgid "Fill the additional questionnaire"
 msgstr "ТIеоьшуш долу хеттар язде"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Iорадаккхархочунна бакъо ло комменташ язъян"
 
 msgid "From:"
 msgstr "Хьаьнгара:"
@@ -1387,12 +1381,6 @@ msgstr "ДIахIотторан дата"
 
 msgid "File size"
 msgstr "Файлан барам"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Iорадаккхархочунна магийта орзана тIе юкъаехкина файлаш тIетоха"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Iорадаккхархочунна бакъо ло косташ дахьийта."
 
 msgid "Questionnaire answers"
 msgstr "Хеттаршна жоьпаш"
@@ -1607,8 +1595,11 @@ msgstr "Хьо платформин пхьерах чекхваьлла."
 msgid "Describe your report in detail."
 msgstr "Хьайн орзан сурт хIоттаде, юкъах хIума ца дуьтуш."
 
-msgid "Attach files relevant to the report."
-msgstr "Орзах хьакхалуш йолу файлаш юкъаяхка."
+msgid "I'm a victim"
+msgstr "Со вуон тIедеанарг ву/ю"
+
+msgid "I'm involved in the facts"
+msgstr "Хиллачун юккъехь ву/ю со"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Хьайн цIарх лаьцна информаци яла лаьий хьуна?"
@@ -1622,11 +1613,11 @@ msgstr "Доьзалан цlе"
 msgid "Alternative contact method"
 msgstr "ЗIене вала кхин кеп"
 
-msgid "Other"
-msgstr "Кхиниг"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Кху платформехула бен ца лаьа суна сайца зlене дийлийта"
+
+msgid "Other"
+msgstr "Кхиниг"
 
 msgid "Dear {RecipientName},"
 msgstr "Хьомсара {RecipientName},"

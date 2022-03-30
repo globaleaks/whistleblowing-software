@@ -1,12 +1,12 @@
 # 
 # Translators:
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2020,2022
 # Marija Grinevičiūtė <marijagrineviciute@outlook.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Marija Grinevičiūtė <marijagrineviciute@outlook.com>, 2020\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2020,2022\n"
 "Language-Team: Lithuanian (http://www.transifex.com/otf/globaleaks/language/lt/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -760,12 +760,6 @@ msgstr "Kontekstai"
 msgid "Hidden"
 msgstr "Paslėpta"
 
-msgid "Disabled"
-msgstr "Išjungta"
-
-msgid "Enabled"
-msgstr "Įgalinta"
-
 msgid "Questionnaire"
 msgstr "Klausimynas"
 
@@ -796,17 +790,17 @@ msgstr "Rodyti gavėjo informaciją pranešimo statuso puslapyje"
 msgid "Enable comments"
 msgstr "Įgalinti komentarus"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Leisti pranešėjams rašyti komentarus"
+msgid "Allow the whistleblower to write comments"
+msgstr "Leisti pranešėjui rašyti komentarus"
 
 msgid "Enable private messages"
 msgstr "Įgalinti privačias žinutes"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Leisti pranešėjams siųsti žinutes"
+msgid "Allow the whistleblower to send messages"
+msgstr "Leisti pranešėjui siųsti žinutes"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Leisti pranešėjams prisegti priedų prie esamų pranešimų"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Leisti pranešėjui prie pranešimo pridėti priedų"
 
 msgid "Additional questionnaire"
 msgstr "Papildomas klausimynas"
@@ -834,6 +828,9 @@ msgstr "Programinės įrangos versija:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Apriboti prieigą tam tikriems IP adresams"
+
+msgid "Enabled"
+msgstr "Įgalinta"
 
 msgid "Allowed IP addresses"
 msgstr "Leidžiami IP adresai"
@@ -918,6 +915,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Rankinės konfigūracijos vedlys padės jums nustatyti HTTPS iš alternatyvios sertifikavimo institucijos."
 
+msgid "Disabled"
+msgstr "Išjungta"
+
 msgid "Auto-renewal"
 msgstr "Automatinis atnaujinimas"
 
@@ -993,6 +993,9 @@ msgstr "Keleto eilučių teksto įvestis"
 msgid "Selection box"
 msgstr "Pasirinkimo laukas"
 
+msgid "Multiple choice input"
+msgstr "Kelių pasirinkimų įvestis"
+
 msgid "Checkbox"
 msgstr "Žymėjimo laukas"
 
@@ -1013,9 +1016,6 @@ msgstr "Stulpelis"
 
 msgid "Width"
 msgstr "Plotis"
-
-msgid "Multiple choice input"
-msgstr "Kelių pasirinkimų įvestis"
 
 msgid "Question group"
 msgstr "Klausimo grupė"
@@ -1347,29 +1347,23 @@ msgstr "Pranešimo patvirtinimas neteisingas arba pranešimas nebegalioja."
 msgid "Select a file or drag it here."
 msgstr "Pasirinkite failą arba vilkite jį čia."
 
+msgid "Size:"
+msgstr "Dydis:"
+
 msgid "Uploading files…"
 msgstr "Failai įkeliami..."
 
 msgid "Upload completed successfully!"
 msgstr "Įkėlimas baigtas sėkmingai!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Klaida įkeliant failus; išsamesnės informacijos ieškokite žemiau."
-
 msgid "Estimated upload time:"
 msgstr "Numatomas įkėlimo laikas:"
-
-msgid "Size:"
-msgstr "Dydis:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Gavėjai paprašė jūsų užpildyti papildomą klausimyną."
 
 msgid "Fill the additional questionnaire"
 msgstr "Pildykite papildomą klausimyną"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Leisti pranešėjui rašyti komentarus"
 
 msgid "From:"
 msgstr "Nuo:"
@@ -1385,12 +1379,6 @@ msgstr "Įkėlimo data"
 
 msgid "File size"
 msgstr "Failo dydis"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Leisti pranešėjui prie pranešimo pridėti priedų"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Leisti pranešėjui siųsti žinutes"
 
 msgid "Questionnaire answers"
 msgstr "Klausimyno atsakymai"
@@ -1605,8 +1593,11 @@ msgstr "Baigėte platformos vedlio procedūrą."
 msgid "Describe your report in detail."
 msgstr "Išsamiai aprašykite savo pranešimą."
 
-msgid "Attach files relevant to the report."
-msgstr "Pridėkite su pranešimu susijusias bylas."
+msgid "I'm a victim"
+msgstr "Esu auka"
+
+msgid "I'm involved in the facts"
+msgstr "Esu įsitraukęs į faktus"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Ar norite pateikti savo identifikavimo informaciją?"
@@ -1620,11 +1611,11 @@ msgstr "Pavardė"
 msgid "Alternative contact method"
 msgstr "Alternatyvus kontakto metodas"
 
-msgid "Other"
-msgstr "Kita"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Pageidauju, kad su manimi būtų susisiekta tik per šią platformą"
+
+msgid "Other"
+msgstr "Kita"
 
 msgid "Dear {RecipientName},"
 msgstr "Gerb. {RecipientName},"

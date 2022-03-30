@@ -7,7 +7,7 @@
 # Mihai, 2014
 # Claus A <claudiu.andrei.90@gmail.com>, 2021
 # Cristina Lupu <cristina@cji.ro>, 2019-2021
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2022
 # Inpresentia I., 2016
 # Inpresentia I., 2016
 # Matei Imola <imolam11@gmail.com>, 2016
@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Zisiz <angi.tapoca@gmail.com>, 2015\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2022\n"
 "Language-Team: Romanian (http://www.transifex.com/otf/globaleaks/language/ro/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -776,12 +776,6 @@ msgstr "Contexte"
 msgid "Hidden"
 msgstr "Ascuns"
 
-msgid "Disabled"
-msgstr "Dezactivat"
-
-msgid "Enabled"
-msgstr "Activat"
-
 msgid "Questionnaire"
 msgstr "Chestionar"
 
@@ -812,17 +806,17 @@ msgstr "Afișează detaliile destinatarului pe pagina care prezintă statusul se
 msgid "Enable comments"
 msgstr "Activează comentariile"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Permite avertizorilor să scrie comentarii"
+msgid "Allow the whistleblower to write comments"
+msgstr "Permite avertizorului să scrie comentarii"
 
 msgid "Enable private messages"
 msgstr "Activează mesajele private"
 
-msgid "Allow whistleblowers to send messages"
+msgid "Allow the whistleblower to send messages"
 msgstr "Permite avertizorilor să trimită mesaje"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Permite avertizorilor să adauge fișiere la sesizări deja existente"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Permite avertizorului să adauge atașamente sesizării"
 
 msgid "Additional questionnaire"
 msgstr "Chestionar suplimentar"
@@ -850,6 +844,9 @@ msgstr "Versiune software:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Permite accesul doar anumitor adrese IP"
+
+msgid "Enabled"
+msgstr "Activat"
 
 msgid "Allowed IP addresses"
 msgstr "Adrese IP permise"
@@ -934,6 +931,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Asistentul pentru configurare manuală vă va ghida de-a lungul procesului de instalare a HTTPS de la o altă Autoritate de Certificare."
 
+msgid "Disabled"
+msgstr "Dezactivat"
+
 msgid "Auto-renewal"
 msgstr "Reînnoire automată"
 
@@ -1009,6 +1009,9 @@ msgstr "Introducere text pe mai multe linii"
 msgid "Selection box"
 msgstr "Caseta de selecție"
 
+msgid "Multiple choice input"
+msgstr "Input cu alegere multiplă"
+
 msgid "Checkbox"
 msgstr "Casetă de bifat"
 
@@ -1029,9 +1032,6 @@ msgstr "Coloană"
 
 msgid "Width"
 msgstr "Lăţime"
-
-msgid "Multiple choice input"
-msgstr "Input cu alegere multiplă"
 
 msgid "Question group"
 msgstr "Grup de întrebări"
@@ -1363,29 +1363,23 @@ msgstr "Acest cod este fie invalid, fie sesizarea a expirat."
 msgid "Select a file or drag it here."
 msgstr "Selectează un fișier sau trage-l aici."
 
+msgid "Size:"
+msgstr "Dimensiune:"
+
 msgid "Uploading files…"
 msgstr "Fișierele se încarcă"
 
 msgid "Upload completed successfully!"
 msgstr "Încărcare finalizată cu succes!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Eroare la încărcarea fișierelor; uită-te mai jos pentru detalii."
-
 msgid "Estimated upload time:"
 msgstr "Timpul estimat pentru încărcare:"
-
-msgid "Size:"
-msgstr "Dimensiune:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Destinatarii ți-au solicitat să completezi un chestionar suplimentar."
 
 msgid "Fill the additional questionnaire"
 msgstr "Completează chestionarul suplimentar"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Permite avertizorului să scrie comentarii"
 
 msgid "From:"
 msgstr "De la:"
@@ -1401,12 +1395,6 @@ msgstr "Data încărcării"
 
 msgid "File size"
 msgstr "Mărime fișier"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Permite avertizorului să adauge atașamente sesizării"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Permite avertizorilor să trimită mesaje"
 
 msgid "Questionnaire answers"
 msgstr "Răspunsuri la chestionar"
@@ -1621,8 +1609,11 @@ msgstr "Ai finalizat procesul de configurare a platformei"
 msgid "Describe your report in detail."
 msgstr "Descrie sesizarea în detaliu."
 
-msgid "Attach files relevant to the report."
-msgstr "Atașează fișiere relevante pentru sesizare."
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "Vrei să oferi informații care să permită identificarea ta?"
@@ -1636,11 +1627,11 @@ msgstr "Nume"
 msgid "Alternative contact method"
 msgstr "Metodă de contact alternativă"
 
-msgid "Other"
-msgstr "Alta"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Prefer să fiu contactat doar prin intermediul acestei platforme"
+
+msgid "Other"
+msgstr "Alta"
 
 msgid "Dear {RecipientName},"
 msgstr "Bună ziua, {RecipientName},"

@@ -1,12 +1,12 @@
 # 
 # Translators:
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2018,2020-2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2018,2020-2022
 # Tina Paatashvili <tina.paatashvili@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Tina Paatashvili <tina.paatashvili@gmail.com>, 2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2018,2020-2022\n"
 "Language-Team: Georgian (http://www.transifex.com/otf/globaleaks/language/ka/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -760,12 +760,6 @@ msgstr "კონტექსტი"
 msgid "Hidden"
 msgstr "დაფარული"
 
-msgid "Disabled"
-msgstr "გამორთული"
-
-msgid "Enabled"
-msgstr "ჩართული"
-
 msgid "Questionnaire"
 msgstr "კითხვარი"
 
@@ -796,17 +790,17 @@ msgstr "მიმღების დეტალების ჩვენებ�
 msgid "Enable comments"
 msgstr "კომენტარების ჩართვა"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "ინსტრუქტორზე წვდომის დაშვება დაწეროს კომენტარები"
+msgid "Allow the whistleblower to write comments"
+msgstr "დართეთ ნება ინტრუქტორმა დააკომენტაროს"
 
 msgid "Enable private messages"
 msgstr "პირადი შეტყობინებების ჩართვა"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "ინსტრუქტორზე წვდომის დაშვება გაგზავნოს შეტყობინებები"
+msgid "Allow the whistleblower to send messages"
+msgstr "დართთ ნება ინსტრუქტორს გაგზავნოს შეტყობინებები"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "ინსტრუქტორზე წვდომის დაშვება დაამატოს დანართები არსებულ ანგარიშებს"
+msgid "Allow the whistleblower to add attachments"
+msgstr "დართეთ ნება ინსტრუქტორს დაამატოს ანგარიშზე დანართები"
 
 msgid "Additional questionnaire"
 msgstr "დამატებითი კითხვარი"
@@ -834,6 +828,9 @@ msgstr "პროგრამული უზრუნველყოფის �
 
 msgid "Restrict access to specific IP addresses"
 msgstr "კონკრეტულ IP მისამართებზე წვდომის შეზღუდვა"
+
+msgid "Enabled"
+msgstr "ჩართული"
 
 msgid "Allowed IP addresses"
 msgstr "ნებადართული IP მისამართები"
@@ -918,6 +915,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "მანუალური კონფიგურაციის ოსტატი დაგეხმარებათ HTTPS  პროტოკოლის დაყენების პროცესში ალტერნატიული სერტიფიკაციის ორგანოდან."
 
+msgid "Disabled"
+msgstr "გამორთული"
+
 msgid "Auto-renewal"
 msgstr "ავტომატური განახლება"
 
@@ -993,6 +993,9 @@ msgstr "მრავალხაზიანი ტექსტუალურ�
 msgid "Selection box"
 msgstr "არჩევის უჯრა"
 
+msgid "Multiple choice input"
+msgstr "შენატანის მრავლობითი არჩევანი"
+
 msgid "Checkbox"
 msgstr "მოსანიშნი უჯრა"
 
@@ -1013,9 +1016,6 @@ msgstr "სვეტი"
 
 msgid "Width"
 msgstr "სიგანე"
-
-msgid "Multiple choice input"
-msgstr "შენატანის მრავლობითი არჩევანი"
 
 msgid "Question group"
 msgstr "შეკითხვის ჯგუფი"
@@ -1347,29 +1347,23 @@ msgstr "მიმღები არასწორია ან მოხსე
 msgid "Select a file or drag it here."
 msgstr "აირჩიეთ ფაილი ან გადმოიტანეთ აქ."
 
+msgid "Size:"
+msgstr "ზომა:"
+
 msgid "Uploading files…"
 msgstr "ფაილები იტვირთება…"
 
 msgid "Upload completed successfully!"
 msgstr "ატვირთვა წარმატებით დასრულდა!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "ფაილების ატვირთვის შესაძლებლობა; შეამოწმეთ ქვემოთ დეტალები."
-
 msgid "Estimated upload time:"
 msgstr "ატვირთვის სავარაუდო დრო:"
-
-msgid "Size:"
-msgstr "ზომა:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "მიმღებებმა მოითხოვეს, რომ თქვენ შეავსოთ დამატებითი კითხვარი."
 
 msgid "Fill the additional questionnaire"
 msgstr "შეავსეთ დამატებითი კითხვარი"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "დართეთ ნება ინტრუქტორმა დააკომენტაროს"
 
 msgid "From:"
 msgstr "ვისგან:"
@@ -1385,12 +1379,6 @@ msgstr "ატვირთვის თარიღი"
 
 msgid "File size"
 msgstr "ფაილის ზომა"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "დართეთ ნება ინსტრუქტორს დაამატოს ანგარიშზე დანართები"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "დართთ ნება ინსტრუქტორს გაგზავნოს შეტყობინებები"
 
 msgid "Questionnaire answers"
 msgstr "კითხვარის პასუხები"
@@ -1605,8 +1593,11 @@ msgstr "თქვენ დაასრულეთ პლატფორმი�
 msgid "Describe your report in detail."
 msgstr "აღწერეთ თქვენი ანგარიში დეტალურად."
 
-msgid "Attach files relevant to the report."
-msgstr "შესაბამის ანგარიშზე ფაილების მიმაგრება."
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "გსურთ მიეთითოს თქვენი საიდენტიფიკაციო ინფორმაცია?"
@@ -1620,11 +1611,11 @@ msgstr "გვარი"
 msgid "Alternative contact method"
 msgstr "ალტერნატიული საკონტაქტო ხერხი"
 
-msgid "Other"
-msgstr "სხვა"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "მე მირჩევნია დამიკავშირდნენ მხოლოდ ამ პორტალის მეშვეობით"
+
+msgid "Other"
+msgstr "სხვა"
 
 msgid "Dear {RecipientName},"
 msgstr "ძვირფასო {RecipientName}"

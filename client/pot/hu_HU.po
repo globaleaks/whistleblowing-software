@@ -3,7 +3,7 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # benewfy <benewfy@gmail.com>, 2015
 # benewfy <benewfy@gmail.com>, 2015-2016
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2017-2018,2020-2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2017-2018,2020-2022
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: vargaviktor <viktor.varga@gmail.com>, 2014\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2017-2018,2020-2022\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -777,12 +777,6 @@ msgstr "Kontextusok"
 msgid "Hidden"
 msgstr "Rejtett"
 
-msgid "Disabled"
-msgstr "Leiltva"
-
-msgid "Enabled"
-msgstr "Engedélyezve"
-
 msgid "Questionnaire"
 msgstr "Kérdőívek"
 
@@ -813,17 +807,17 @@ msgstr "A címzettek adatainak megjelenítése a jelentés státusz oldalán"
 msgid "Enable comments"
 msgstr "Megjegyzések engedélyezése"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "A bejelentő számára a megjegyzések írásának engedélyezése"
+msgid "Allow the whistleblower to write comments"
+msgstr "A bejelentő írhat megjegyzéseket"
 
 msgid "Enable private messages"
 msgstr "Privát üzenetek engedélyezése"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "A bejelentő számára az üzenetek  írásának engedélyezése"
+msgid "Allow the whistleblower to send messages"
+msgstr "A bejelentő küldhet üzeneteket"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Engedélyezi a bejelentőknek, hogy mellékleteket adjanak hozzá már létező beadványokhoz"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Engedélyezi a bejelentőknek, hogy mellékleteket adjanak hozzá a beadványhoz"
 
 msgid "Additional questionnaire"
 msgstr "További kérdőívek"
@@ -851,6 +845,9 @@ msgstr "Szoftver verzió:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Hozzáférés korlátozása bizonyos IP címekre"
+
+msgid "Enabled"
+msgstr "Engedélyezve"
 
 msgid "Allowed IP addresses"
 msgstr "Engedélyezett IP címek"
@@ -935,6 +932,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "A kézi beállítás varázsló átvezeti a telepítés lépésein, ahhoz, hogy beállíthasson egy HTTPS tanúsítványt, ami egy másik kiadótól származik."
 
+msgid "Disabled"
+msgstr "Leiltva"
+
 msgid "Auto-renewal"
 msgstr "Auto-megújítás"
 
@@ -1010,6 +1010,9 @@ msgstr "Többsoros szövegbevitel"
 msgid "Selection box"
 msgstr "Választómező"
 
+msgid "Multiple choice input"
+msgstr "Több választásos bevitel"
+
 msgid "Checkbox"
 msgstr "Jelölőnégyzet"
 
@@ -1030,9 +1033,6 @@ msgstr "Oszlop"
 
 msgid "Width"
 msgstr "Szélesség"
-
-msgid "Multiple choice input"
-msgstr "Több választásos bevitel"
 
 msgid "Question group"
 msgstr "Kérdéscsoport"
@@ -1364,29 +1364,23 @@ msgstr "A kulcs kód vagy nem érvényes,vagy a beküldés lejárt."
 msgid "Select a file or drag it here."
 msgstr "Válasszon ki egy fájlt a számítógépéről vagy húzza ide"
 
+msgid "Size:"
+msgstr "Méret"
+
 msgid "Uploading files…"
 msgstr "Fájlok feltöltése…"
 
 msgid "Upload completed successfully!"
 msgstr "A feltöltés sikeresen befejeződött!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Hiba a fájlok felötlésekor; részleteket alább talál."
-
 msgid "Estimated upload time:"
 msgstr "Becsült feltöltési idő:"
-
-msgid "Size:"
-msgstr "Méret"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "A címzettek igényelték, hogy töltsön ki egy további kérdőívet."
 
 msgid "Fill the additional questionnaire"
 msgstr "Kérjük, töltse ki a kérdőívet"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "A bejelentő írhat megjegyzéseket"
 
 msgid "From:"
 msgstr "Feladó:"
@@ -1402,12 +1396,6 @@ msgstr "Feltötlés ideje"
 
 msgid "File size"
 msgstr "Fájlméret"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Engedélyezi a bejelentőknek, hogy mellékleteket adjanak hozzá a beadványhoz"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "A bejelentő küldhet üzeneteket"
 
 msgid "Questionnaire answers"
 msgstr "Kérdőív válaszok"
@@ -1622,8 +1610,11 @@ msgstr "Sikeresen befejezte a platform varázslót."
 msgid "Describe your report in detail."
 msgstr "Írja le a jelentését részletesen."
 
-msgid "Attach files relevant to the report."
-msgstr "Csatoljon a jelentéshez kapcsolódó fájlokat."
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "Meg szeretné adni az azonosítási információit?"
@@ -1637,11 +1628,11 @@ msgstr "Vezetéknév"
 msgid "Alternative contact method"
 msgstr "Alternatív kapcsolatfelvételi mód"
 
-msgid "Other"
-msgstr "Egyéb"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Kizárólag ezen a platformon keresztüli kapcsolatfelvételt preferálom"
+
+msgid "Other"
+msgstr "Egyéb"
 
 msgid "Dear {RecipientName},"
 msgstr "Kedves {RecipientName},"

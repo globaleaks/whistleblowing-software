@@ -1,7 +1,7 @@
 # 
 # Translators:
 # code smite <codesmite@gmail.com>, 2021
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022
 # Mahmud Numan <mahmudnuman@gmail.com>, 2017
 # Nafiur Rahman, 2020
 # Nafiur Rahman, 2020
@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Nafiur Rahman, 2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022\n"
 "Language-Team: Bengali (http://www.transifex.com/otf/globaleaks/language/bn/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -767,12 +767,6 @@ msgstr "প্রসঙ্গ"
 msgid "Hidden"
 msgstr "গোপন"
 
-msgid "Disabled"
-msgstr "নিষ্ক্রিয়"
-
-msgid "Enabled"
-msgstr "সক্রিয় করা"
-
 msgid "Questionnaire"
 msgstr "প্রশ্নাবলী"
 
@@ -803,17 +797,17 @@ msgstr "প্রতিবেদনের অবস্থা পৃষ্ঠা�
 msgid "Enable comments"
 msgstr "মন্তব্য সক্ষম করুন"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "হুইসেল ব্লোয়ারদের মন্তব্য লেখার অনুমতি দিন"
+msgid "Allow the whistleblower to write comments"
+msgstr "হুইসেল ব্লোয়ারকে মন্তব্য লেখার অনুমতি দিন"
 
 msgid "Enable private messages"
 msgstr "ব্যক্তিগত বার্তা সক্ষম করুন"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "হুইসেল ব্লোয়ারদের বার্তা প্রেরণের অনুমতি দিন"
+msgid "Allow the whistleblower to send messages"
+msgstr "হুইসেল ব্লোয়ারকে বার্তা প্রেরণের অনুমতি দিন"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "হুইসেল ব্লোয়ারদের বিদ্যমান রিপোর্টে সংযুক্তি যুক্ত করতে দিন"
+msgid "Allow the whistleblower to add attachments"
+msgstr "হুইসেল ব্লোয়ারকে প্রতিবেদনে সংযুক্তি যুক্ত করতে দিন"
 
 msgid "Additional questionnaire"
 msgstr "অতিরিক্ত প্রশ্নাবলী"
@@ -841,6 +835,9 @@ msgstr "সফ্টওয়্যার সংস্করণ:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "নির্দিষ্ট আইপি ঠিকানাগুলিতে প্রবেশ সীমাবদ্ধ করুন"
+
+msgid "Enabled"
+msgstr "সক্রিয় করা"
 
 msgid "Allowed IP addresses"
 msgstr "অনুমোদিত আইপি ঠিকানা"
@@ -925,6 +922,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "ম্যানুয়াল কনফিগারেশন উইজার্ড আপনাকে বিকল্প সার্টিফিকেট কর্তৃপক্ষের HTTPS সেটআপ করার জন্য নির্দেশনা প্রদান করবে।"
 
+msgid "Disabled"
+msgstr "নিষ্ক্রিয়"
+
 msgid "Auto-renewal"
 msgstr "স্বয়ংক্রিয় নবায়ন"
 
@@ -1000,6 +1000,9 @@ msgstr "একাধিক-লাইন লেখার স্থান"
 msgid "Selection box"
 msgstr "নির্বাচন বক্স"
 
+msgid "Multiple choice input"
+msgstr "একাধিক পছন্দ ইনপুট"
+
 msgid "Checkbox"
 msgstr "চেকবক্স"
 
@@ -1020,9 +1023,6 @@ msgstr "কলাম"
 
 msgid "Width"
 msgstr "প্রস্থ"
-
-msgid "Multiple choice input"
-msgstr "একাধিক পছন্দ ইনপুট"
 
 msgid "Question group"
 msgstr "প্রশ্নের গ্রুপ"
@@ -1354,29 +1354,23 @@ msgstr "রসিদটি অবৈধ বা রিপোর্টের ম�
 msgid "Select a file or drag it here."
 msgstr "একটি ফাইল নির্বাচন করুন বা এটিকে এখানে টেনে আনুন।"
 
+msgid "Size:"
+msgstr "আকার:"
+
 msgid "Uploading files…"
 msgstr "ফাইলগুলি আপলোড হচ্ছে ..."
 
 msgid "Upload completed successfully!"
 msgstr "আপলোড সফলভাবে শেষ হয়েছে!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "ফাইল আপলোড করার সময় ত্রুটি ঘটেছে; বিশদ জানতে নীচে পরীক্ষা করুন।"
-
 msgid "Estimated upload time:"
 msgstr "আনুমানিক আপলোড সময়:"
-
-msgid "Size:"
-msgstr "আকার:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "প্রাপকরা আপনাকে একটি অতিরিক্ত প্রশ্নপত্র পূরণ করার জন্য অনুরোধ করেছেন।"
 
 msgid "Fill the additional questionnaire"
 msgstr "অতিরিক্ত প্রশ্নাবলী পূরণ করুন"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "হুইসেল ব্লোয়ারকে মন্তব্য লেখার অনুমতি দিন"
 
 msgid "From:"
 msgstr "থেকে:"
@@ -1392,12 +1386,6 @@ msgstr "আপলোডের তারিখ"
 
 msgid "File size"
 msgstr "ফাইলের আকার"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "হুইসেল ব্লোয়ারকে প্রতিবেদনে সংযুক্তি যুক্ত করতে দিন"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "হুইসেল ব্লোয়ারকে বার্তা প্রেরণের অনুমতি দিন"
 
 msgid "Questionnaire answers"
 msgstr "প্রশ্নের উত্তরসমূহ"
@@ -1612,8 +1600,11 @@ msgstr "আপনি প্ল্যাটফর্ম উইজার্ডট�
 msgid "Describe your report in detail."
 msgstr "আপনার রিপোর্টটি বিশদভাবে বর্ণনা করুন।"
 
-msgid "Attach files relevant to the report."
-msgstr "রিপোর্টের সাথে সম্পর্কিত ফাইলগুলি সংযুক্ত করুন।"
+msgid "I'm a victim"
+msgstr "আমি ক্ষতিগ্রস্ত ব্যক্তি"
+
+msgid "I'm involved in the facts"
+msgstr "আমি ঘটনার সাথে জড়িত"
 
 msgid "Do you want to provide your identification information?"
 msgstr "আপনি কি আপনার পরিচয় সম্পর্কিত তথ্য সরবরাহ করতে চান?"
@@ -1627,11 +1618,11 @@ msgstr "নামের শেষাংশ"
 msgid "Alternative contact method"
 msgstr ""
 
-msgid "Other"
-msgstr "অন্যান্য"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr ""
+
+msgid "Other"
+msgstr "অন্যান্য"
 
 msgid "Dear {RecipientName},"
 msgstr "প্রিয় {RecipientName},"

@@ -761,12 +761,6 @@ msgstr "Контексттер"
 msgid "Hidden"
 msgstr "Жашырылган"
 
-msgid "Disabled"
-msgstr "Өчүрүлдү"
-
-msgid "Enabled"
-msgstr "Күйгүзүлдү"
-
 msgid "Questionnaire"
 msgstr "Анкета"
 
@@ -797,17 +791,17 @@ msgstr "Отчеттун статус баракчасында алуучуну�
 msgid "Enable comments"
 msgstr "Комментарий калтыруу мүмкүнчүлүгүн ишке киргизүү"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Кабарчыларга комментарий калтырууга уруксат бериңиз"
+msgid "Allow the whistleblower to write comments"
+msgstr "Кабарчыга комментарий жазууга уруксат берүү"
 
 msgid "Enable private messages"
 msgstr "Жеке билдирүү мүмкүнчүлүгүн ишке киргизүү"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Кабарчыларга билдирүү жиберүүгө уруксат бериңиз"
+msgid "Allow the whistleblower to send messages"
+msgstr "Кабарчыга билдирүү жиберүүгө уруксат берүү"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Кабарчыларга отчетко тиркеме кошуу мүмкүнчүлүгүн бериңиз"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Кабарчыга отчетко тиркеме кошууга уруксат берүү"
 
 msgid "Additional questionnaire"
 msgstr "Кошумча анкета"
@@ -835,6 +829,9 @@ msgstr "Программалык камсыздоо версиясы:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Белгилүү бир IP даректерине кирүүнү чектөө"
+
+msgid "Enabled"
+msgstr "Күйгүзүлдү"
 
 msgid "Allowed IP addresses"
 msgstr "Уруксат берилген IP даректери"
@@ -919,6 +916,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Кол менен конфигурациялоо устаты сизге альтернативдүү күбөлүк органынан HTTPS ти орнотууга жардам берет."
 
+msgid "Disabled"
+msgstr "Өчүрүлдү"
+
 msgid "Auto-renewal"
 msgstr "Автоматтык жаңыртүү"
 
@@ -994,6 +994,9 @@ msgstr "Көп саптуу текст киргизүү"
 msgid "Selection box"
 msgstr "Тандоо кутусу"
 
+msgid "Multiple choice input"
+msgstr "Көптөн тандамалуу кириш"
+
 msgid "Checkbox"
 msgstr "Белгилөө кутусу"
 
@@ -1014,9 +1017,6 @@ msgstr "Сап"
 
 msgid "Width"
 msgstr "Кеңи"
-
-msgid "Multiple choice input"
-msgstr "Көптөн тандамалуу кириш"
 
 msgid "Question group"
 msgstr "Суроонун тобу"
@@ -1348,29 +1348,23 @@ msgstr "Квитанция жараксыз же болбосо отчеттун
 msgid "Select a file or drag it here."
 msgstr "Файлды тандаңыз же бул жерге сүйрөңүз."
 
+msgid "Size:"
+msgstr "Өлчөм:"
+
 msgid "Uploading files…"
 msgstr "Файлдар жүктөлүүдө…"
 
 msgid "Upload completed successfully!"
 msgstr "Жүктөө ийгиликтүү аяктады!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Файлдарды жүктөөдө ката кетти; деталдары төмөндө."
-
 msgid "Estimated upload time:"
 msgstr "Болжолдуу жүктөө убактысы:"
-
-msgid "Size:"
-msgstr "Өлчөм:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Алуучулар сизден кошумча анкетаны толтурууңузду суранышты."
 
 msgid "Fill the additional questionnaire"
 msgstr "Кошумча анкетаны толтуруңуз"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Кабарчыга комментарий жазууга уруксат берүү"
 
 msgid "From:"
 msgstr "Баштап:"
@@ -1386,12 +1380,6 @@ msgstr "Жүктөө датасы"
 
 msgid "File size"
 msgstr "Файлдын өлчөмү"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Кабарчыга отчетко тиркеме кошууга уруксат берүү"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Кабарчыга билдирүү жиберүүгө уруксат берүү"
 
 msgid "Questionnaire answers"
 msgstr "Анкетанын жооптору"
@@ -1606,8 +1594,11 @@ msgstr "Платформа устаты менен ишти бүтүрдүңүз
 msgid "Describe your report in detail."
 msgstr "Отчетуңузду деталдуу түрдө кенен кылып сүрөттөп бериңиз."
 
-msgid "Attach files relevant to the report."
-msgstr "Отчетко тиешелүү файлдарды тиркеңиз."
+msgid "I'm a victim"
+msgstr "Мен курманмын."
+
+msgid "I'm involved in the facts"
+msgstr "Мен окуянын катышуучусумун."
 
 msgid "Do you want to provide your identification information?"
 msgstr "Өздүгүңүздү тастыктоочу маалыматты бергиңиз келеби?"
@@ -1621,11 +1612,11 @@ msgstr "Фамилия"
 msgid "Alternative contact method"
 msgstr "Алтернативдүү байланыш методу"
 
-msgid "Other"
-msgstr "Башка"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Мен бул платформа аркылуу гана байланышууну каалайм"
+
+msgid "Other"
+msgstr "Башка"
 
 msgid "Dear {RecipientName},"
 msgstr "Урматтуу {RecipientName},"

@@ -13,7 +13,7 @@
 # erinm, 2021
 # erinm, 2021
 # tyfjoh, 2014
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2022
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -50,7 +50,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Rianne FPU <verbeek@freepressunlimited.org>, 2020-2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2022\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -804,12 +804,6 @@ msgstr "Categorieën"
 msgid "Hidden"
 msgstr "Verborgen"
 
-msgid "Disabled"
-msgstr "Uitgeschakeld"
-
-msgid "Enabled"
-msgstr "Ingeschakeld"
-
 msgid "Questionnaire"
 msgstr "Vragenformulier"
 
@@ -840,17 +834,17 @@ msgstr "Toon details van de ontvanger op de status-pagina van de inzending"
 msgid "Enable comments"
 msgstr "Reacties inschakelen"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Klokkenluiders toestaan reacties achter te laten"
+msgid "Allow the whistleblower to write comments"
+msgstr "De klokkenluider toestaan reacties achter te laten"
 
 msgid "Enable private messages"
 msgstr "Privé-berichten inschakelen"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Klokkenluiders toestaan berichten de versturen"
+msgid "Allow the whistleblower to send messages"
+msgstr "De klokkenluider toestaan berichten te versturen"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Klokkenluiders toestaan bestanden toe te voegen aan bestaande tips"
+msgid "Allow the whistleblower to add attachments"
+msgstr "De klokkenluider toestaan bestanden toe te voegen aan een inzending"
 
 msgid "Additional questionnaire"
 msgstr "Toegevoegde vragenformulier"
@@ -878,6 +872,9 @@ msgstr "Softwareversie:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Beperk toegang voor specifieke IP-adressen"
+
+msgid "Enabled"
+msgstr "Ingeschakeld"
 
 msgid "Allowed IP addresses"
 msgstr "Toegestane IP-adressen"
@@ -962,6 +959,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "De wizard voor handmatige configuratie leidt u door de inrichting van HTTPS van een alternatieve certificeringsinstelling. "
 
+msgid "Disabled"
+msgstr "Uitgeschakeld"
+
 msgid "Auto-renewal"
 msgstr "Auto-hernieuwing"
 
@@ -1037,6 +1037,9 @@ msgstr "Meerdere regels tekst"
 msgid "Selection box"
 msgstr "Vinkje"
 
+msgid "Multiple choice input"
+msgstr "Meerkeuzevraag"
+
 msgid "Checkbox"
 msgstr "Selectievakje"
 
@@ -1057,9 +1060,6 @@ msgstr "Kolom"
 
 msgid "Width"
 msgstr "Breedte"
-
-msgid "Multiple choice input"
-msgstr "Meerkeuzevraag"
 
 msgid "Question group"
 msgstr "Vragengroep"
@@ -1391,29 +1391,23 @@ msgstr "De code is of ongeldig ofwel verlopen."
 msgid "Select a file or drag it here."
 msgstr "Selecteer een bestand of sleep het hierheen."
 
+msgid "Size:"
+msgstr "Grootte:"
+
 msgid "Uploading files…"
 msgstr "Uploaden bestanden..."
 
 msgid "Upload completed successfully!"
 msgstr "Upload voltooien is gelukt!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Fout tijdens uploaden van bestanden; check onderstaande details."
-
 msgid "Estimated upload time:"
 msgstr "Geschatte tijd voor uploaden:"
-
-msgid "Size:"
-msgstr "Grootte:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Ontvangers hebben je verzocht dat je een additionele vragenlijst invult."
 
 msgid "Fill the additional questionnaire"
 msgstr "De toegevoegde vragenlijst invullen"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "De klokkenluider toestaan reacties achter te laten"
 
 msgid "From:"
 msgstr "Van:"
@@ -1429,12 +1423,6 @@ msgstr "Upload datum"
 
 msgid "File size"
 msgstr "Bestandsgrootte"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "De klokkenluider toestaan bestanden toe te voegen aan een inzending"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "De klokkenluider toestaan berichten te versturen"
 
 msgid "Questionnaire answers"
 msgstr "Antwoorden vragenformulier"
@@ -1649,8 +1637,11 @@ msgstr "Je hebt de wizard geheel doorlopen."
 msgid "Describe your report in detail."
 msgstr "Geef een gedetailleerde beschrijving van je inzending."
 
-msgid "Attach files relevant to the report."
-msgstr "Voeg bestanden te welke relevant zijn voor de inzending."
+msgid "I'm a victim"
+msgstr "Ik ben een slachtoffer"
+
+msgid "I'm involved in the facts"
+msgstr "Ik ben betrokken bij de feiten"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Wil je je identificeren?"
@@ -1664,11 +1655,11 @@ msgstr "Achternaam"
 msgid "Alternative contact method"
 msgstr "Alternative wijze van contact opnemen"
 
-msgid "Other"
-msgstr "Overig"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Ik word liever alleen via dit platform gecontacteerd"
+
+msgid "Other"
+msgstr "Overig"
 
 msgid "Dear {RecipientName},"
 msgstr "Beste {RecipientName},"

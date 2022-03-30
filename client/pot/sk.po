@@ -1,7 +1,7 @@
 # 
 # Translators:
 # Daša Matúšová, 2016-2017
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2018-2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2018-2022
 # Jakub Srna <jaksrn@gmail.com>, 2013-2014
 # Jakub Srna <jaksrn@gmail.com>, 2014
 # Jakub Srna <jaksrn@gmail.com>, 2014
@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Tibor Deak <deaktib@gmail.com>, 2019,2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2018-2022\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -770,12 +770,6 @@ msgstr "Kontexty"
 msgid "Hidden"
 msgstr "Skrytý"
 
-msgid "Disabled"
-msgstr "Vypnuté"
-
-msgid "Enabled"
-msgstr "Zapnuté"
-
 msgid "Questionnaire"
 msgstr "Dotazník"
 
@@ -806,17 +800,17 @@ msgstr "Zobraziť detaily o príjemcoch na stránke o stave podania"
 msgid "Enable comments"
 msgstr "Povoliť komentáre"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Povoliť oznamovateľom písať komentáre"
+msgid "Allow the whistleblower to write comments"
+msgstr "Povoliť oznamovateľovi písať komentáre"
 
 msgid "Enable private messages"
 msgstr "Povoliť súkromné správy"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Povoliť oznamovateľom posielať správy"
+msgid "Allow the whistleblower to send messages"
+msgstr "Povoliť oznamovateľovi posielať správy"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Povoliť oznamovateľom pridať prílohy k existujúcim podaniam"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Povoliť oznamovateľovi pripojiť prílohy k podaniu"
 
 msgid "Additional questionnaire"
 msgstr "Dodatočný dotazník"
@@ -844,6 +838,9 @@ msgstr "Verzia softvéru:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Obmedziť prístup k určitým IP adresám"
+
+msgid "Enabled"
+msgstr "Zapnuté"
 
 msgid "Allowed IP addresses"
 msgstr "Povolené IP adresy."
@@ -928,6 +925,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Sprievodca manuálnou konfiguráciou vás prevedie nastavením protokolu HTTPS od alternatívnej certifikačnej autority."
 
+msgid "Disabled"
+msgstr "Vypnuté"
+
 msgid "Auto-renewal"
 msgstr "Automatické obnovenie"
 
@@ -1003,6 +1003,9 @@ msgstr "Viacriadkový vstup"
 msgid "Selection box"
 msgstr "Výber možností"
 
+msgid "Multiple choice input"
+msgstr "Vstup z výberu možností"
+
 msgid "Checkbox"
 msgstr "Zaškrtávacie políčka"
 
@@ -1023,9 +1026,6 @@ msgstr "Stĺpec"
 
 msgid "Width"
 msgstr "Šírka"
-
-msgid "Multiple choice input"
-msgstr "Vstup z výberu možností"
 
 msgid "Question group"
 msgstr "Skupina otázok"
@@ -1357,29 +1357,23 @@ msgstr "Príjemca je buď neplatný, alebo uplynula platnosť podania."
 msgid "Select a file or drag it here."
 msgstr "Vyberte súbor alebo ho sem pretiahnite."
 
+msgid "Size:"
+msgstr "Veľkosť:"
+
 msgid "Uploading files…"
 msgstr "Nahrávam súbory..."
 
 msgid "Upload completed successfully!"
 msgstr "Nahrávanie bolo úspešne dokončené!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Chyba pri nahrávaní súborov. Podrobnosti nájdete nižšie."
-
 msgid "Estimated upload time:"
 msgstr "Odhadovaný čas nahrávania:"
-
-msgid "Size:"
-msgstr "Veľkosť:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Príjemcovia požadujú, aby ste vyplnili dodatočný dotazník."
 
 msgid "Fill the additional questionnaire"
 msgstr "Vyplňte dodatočný dotazník"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Povoliť oznamovateľovi písať komentáre"
 
 msgid "From:"
 msgstr "Od:"
@@ -1395,12 +1389,6 @@ msgstr "Dátum nahrania"
 
 msgid "File size"
 msgstr "Veľkosť súboru"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Povoliť oznamovateľovi pripojiť prílohy k podaniu"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Povoliť oznamovateľovi posielať správy"
 
 msgid "Questionnaire answers"
 msgstr "Odpovede z dotazníkov"
@@ -1615,8 +1603,11 @@ msgstr "Práve ste dokončili sprievodcu základným nastavením."
 msgid "Describe your report in detail."
 msgstr "Opíšte svoje podanie podrobne."
 
-msgid "Attach files relevant to the report."
-msgstr "Priložte súbory relevantné pre Vaše podanie."
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "Chcete poskytnúť informácie o Vašej identite?"
@@ -1630,11 +1621,11 @@ msgstr "Priezvisko"
 msgid "Alternative contact method"
 msgstr ""
 
-msgid "Other"
-msgstr "Ďalší"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr ""
+
+msgid "Other"
+msgstr "Ďalší"
 
 msgid "Dear {RecipientName},"
 msgstr "Vážený/á {RecipientName},"

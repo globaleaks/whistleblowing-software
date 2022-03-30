@@ -1,12 +1,12 @@
 # 
 # Translators:
 # Cheer Zeng <cheerz6623@gmail.com>, 2021
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022\n"
 "Language-Team: Malay (http://www.transifex.com/otf/globaleaks/language/ms/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -760,12 +760,6 @@ msgstr "Konteks"
 msgid "Hidden"
 msgstr "Tersembunyi"
 
-msgid "Disabled"
-msgstr "Dinyahdayakan"
-
-msgid "Enabled"
-msgstr "Didayakan"
-
 msgid "Questionnaire"
 msgstr "Soal selidik"
 
@@ -796,17 +790,17 @@ msgstr "Tunjukkan butiran penerima di halaman status laporan"
 msgid "Enable comments"
 msgstr "Dayakan komen"
 
-msgid "Allow whistleblowers to write comments"
+msgid "Allow the whistleblower to write comments"
 msgstr "Benarkan pemberi maklumat menulis komen"
 
 msgid "Enable private messages"
 msgstr "Dayakan mesej peribadi"
 
-msgid "Allow whistleblowers to send messages"
+msgid "Allow the whistleblower to send messages"
 msgstr "Benarkan pemberi maklumat menghantar mesej"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Benarkan pemberi maklumat menambah lampiran kepada laporan sedia ada"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Benarkan pemberi maklumat menambah lampiran kepada laporan"
 
 msgid "Additional questionnaire"
 msgstr "Soal selidik tambahan"
@@ -834,6 +828,9 @@ msgstr "Versi perisian:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Sekat akses kepada alamat IP tertentu"
+
+msgid "Enabled"
+msgstr "Didayakan"
 
 msgid "Allowed IP addresses"
 msgstr "Alamat IP dibenarkan"
@@ -918,6 +915,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Wizard konfigurasi manual akan memandu anda melalui persediaan HTTPS daripada Certificate Authority alternatif."
 
+msgid "Disabled"
+msgstr "Dinyahdayakan"
+
 msgid "Auto-renewal"
 msgstr "Pembaharuan automatik"
 
@@ -993,6 +993,9 @@ msgstr "Input teks garis pelbagai"
 msgid "Selection box"
 msgstr "Kotak pilihan"
 
+msgid "Multiple choice input"
+msgstr "Input pilihan pelbagai"
+
 msgid "Checkbox"
 msgstr "Kotak semak"
 
@@ -1013,9 +1016,6 @@ msgstr "Lajur"
 
 msgid "Width"
 msgstr "Lebar"
-
-msgid "Multiple choice input"
-msgstr "Input pilihan pelbagai"
 
 msgid "Question group"
 msgstr "Kumpulan soalan"
@@ -1347,29 +1347,23 @@ msgstr "Resit tidak sah atau laporan telah tamat tempoh."
 msgid "Select a file or drag it here."
 msgstr "Pilih fail atau seret di sini."
 
+msgid "Size:"
+msgstr "Saiz:"
+
 msgid "Uploading files…"
 msgstr "Memuat naik fail…"
 
 msgid "Upload completed successfully!"
 msgstr "Muat naik berjaya dilengkapkan!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Ralat semasa memuat naik fail; periksa di bawah untuk butiran."
-
 msgid "Estimated upload time:"
 msgstr "Anggaran masa muat naik:"
-
-msgid "Size:"
-msgstr "Saiz:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Penerima telah meminta anda mengisi soal selidik tambahan."
 
 msgid "Fill the additional questionnaire"
 msgstr "Isikan soal selidik tambahan"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Benarkan pemberi maklumat menulis komen"
 
 msgid "From:"
 msgstr "Daripada:"
@@ -1385,12 +1379,6 @@ msgstr "Tarikh muat naik"
 
 msgid "File size"
 msgstr "Saiz fail"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Benarkan pemberi maklumat menambah lampiran kepada laporan"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Benarkan pemberi maklumat menghantar mesej"
 
 msgid "Questionnaire answers"
 msgstr "Jawapan soal selidik"
@@ -1605,8 +1593,11 @@ msgstr "Anda telah melengkapkan wizard platform."
 msgid "Describe your report in detail."
 msgstr "Terangkan laporan anda dalam butiran."
 
-msgid "Attach files relevant to the report."
-msgstr "Lampirkan fail yang relevan dengan laporan."
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "Adakah anda mahu menyediakan maklumat pengenalan anda?"
@@ -1620,11 +1611,11 @@ msgstr "Nama akhir"
 msgid "Alternative contact method"
 msgstr ""
 
-msgid "Other"
-msgstr "Lain-lain"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr ""
+
+msgid "Other"
+msgstr "Lain-lain"
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} yang dihormati,"

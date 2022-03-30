@@ -762,12 +762,6 @@ msgstr "Համատեքստեր"
 msgid "Hidden"
 msgstr "Թաքնված"
 
-msgid "Disabled"
-msgstr "Արգելափակված"
-
-msgid "Enabled"
-msgstr "Ակտիվացված"
-
 msgid "Questionnaire"
 msgstr "Հարցաշար"
 
@@ -798,17 +792,17 @@ msgstr "Ցույց տալ հասցեատիրոջ տվյալները զեկույ
 msgid "Enable comments"
 msgstr "Թույլատրել մեկնաբանությունները"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Թույլ տալ ազդարարներին մեկնաբանություններ գրել"
+msgid "Allow the whistleblower to write comments"
+msgstr "Թույլ տալ իրազեկչին մեկնաբանություններ գրել"
 
 msgid "Enable private messages"
 msgstr "Թույլատրել անձնական հաղորդագրությունները"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Թույլ տալ, որ ազդարարները հաղորդագրություններ ուղարկեն"
+msgid "Allow the whistleblower to send messages"
+msgstr "Թույլ տալ, որ ազդարարը հաղորդագրություններ ուղարկի"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Թույլ տալ ազդարարներին ֆայլեր կցել առկա զեկույցներին"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Թույլ տալ ազդարարին ֆայլեր կցել զեկույցին"
 
 msgid "Additional questionnaire"
 msgstr "Հավելյալ հարցաշար"
@@ -836,6 +830,9 @@ msgstr "Ծրագրաշարի տարբերակ՝"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Սահմանափակել որոշակի IP հասցեների մուտքը"
+
+msgid "Enabled"
+msgstr "Ակտիվացված"
 
 msgid "Allowed IP addresses"
 msgstr "Թույլատրված IP հասցեներ"
@@ -920,6 +917,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Մանուալ կարգավորման հրաշագործը Ձեզ ուղղություն ցույց կտա այլընտրանքային Սերտիֆիկացման Մարմնի միջոցով HTTPS-ի կարգավորման հարցում։"
 
+msgid "Disabled"
+msgstr "Արգելափակված"
+
 msgid "Auto-renewal"
 msgstr "Ավտոմատ թարմացում"
 
@@ -995,6 +995,9 @@ msgstr "Բազմակի տողերի մուտքագրում"
 msgid "Selection box"
 msgstr "Հնարավոր տարբերակներ"
 
+msgid "Multiple choice input"
+msgstr "Բազմակի ընտրության մուտքագրում"
+
 msgid "Checkbox"
 msgstr "Նշատուփ"
 
@@ -1015,9 +1018,6 @@ msgstr "Սյունակ"
 
 msgid "Width"
 msgstr "Լայնություն"
-
-msgid "Multiple choice input"
-msgstr "Բազմակի ընտրության մուտքագրում"
 
 msgid "Question group"
 msgstr "Հարցերի խումբ"
@@ -1349,29 +1349,23 @@ msgstr "Անդորրագիրն անվավեր է, կամ ժամկետանց:"
 msgid "Select a file or drag it here."
 msgstr "Ընտրեք ֆայլ կամ մկնիկով քաշեք այն այստեղ:"
 
+msgid "Size:"
+msgstr "Չափ՝"
+
 msgid "Uploading files…"
 msgstr "Ֆայլերի վերբեռնում…"
 
 msgid "Upload completed successfully!"
 msgstr "Վերբեռնումը հաջողվեց:"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Սխալ՝ ֆայլերը վերբեռնելիս; մանրամասների համար ստուգեք ստորև:"
-
 msgid "Estimated upload time:"
 msgstr "Վերբեռնման մոտավոր ժամանակը՝"
-
-msgid "Size:"
-msgstr "Չափ՝"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Հասցեատերերը ձեզ խնդրել են լրացնել հավելյալ հարցաշար:"
 
 msgid "Fill the additional questionnaire"
 msgstr "Լրացնել հավելյալ հարցաշարը"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Թույլ տալ իրազեկչին մեկնաբանություններ գրել"
 
 msgid "From:"
 msgstr "Ումից՝"
@@ -1387,12 +1381,6 @@ msgstr "Վերբեռնման ամսաթիվը"
 
 msgid "File size"
 msgstr "Ֆայլի չափը"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Թույլ տալ ազդարարին ֆայլեր կցել զեկույցին"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Թույլ տալ, որ ազդարարը հաղորդագրություններ ուղարկի"
 
 msgid "Questionnaire answers"
 msgstr "Հարցաշարի պատասխաններ"
@@ -1607,8 +1595,11 @@ msgstr "Դուք ավարտեցիք հարթակի նախապատրաստում�
 msgid "Describe your report in detail."
 msgstr "Մանրամասն նկարագրեք ձեր զեկույցը։"
 
-msgid "Attach files relevant to the report."
-msgstr "Կցեք զեկույցին վերաբերվող ֆայլեր:"
+msgid "I'm a victim"
+msgstr "Ես զոհ եմ"
+
+msgid "I'm involved in the facts"
+msgstr "Ես նեգրավված եմ"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Ցանկանու՞մ եք տրամադրել ձեր նույնականացման տվյալները:"
@@ -1622,11 +1613,11 @@ msgstr "Ազգանուն"
 msgid "Alternative contact method"
 msgstr "Ձեզ հետ կապվելու այլ միջոց"
 
-msgid "Other"
-msgstr "Այլ"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Ես նախընտրում եմ կապվել միայն այս հարթակի միջոցով"
+
+msgid "Other"
+msgstr "Այլ"
 
 msgid "Dear {RecipientName},"
 msgstr "Հարգելի {RecipientName},"

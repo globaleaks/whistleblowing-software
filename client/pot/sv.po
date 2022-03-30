@@ -1,5 +1,6 @@
 # 
 # Translators:
+# Daniel Vaknine, 2022
 # Daniel Vaknine <vaknine.daniel@gmail.com>, 2021
 # eckeman <eckeman@zoho.com>, 2020
 # eckeman <eckeman@zoho.com>, 2020
@@ -9,7 +10,7 @@
 # Eva Simonsson, 2020-2021
 # flipchan <fkalebo@gmail.com>, 2017
 # flipchan <fkalebo@gmail.com>, 2017
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017,2020-2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017,2020-2022
 # Henrik Mattsson-Mårn <h@reglage.net>, 2016-2017,2020
 # John Andersson <johnandersson86@hotmail.com>, 2015
 # Jonas Hedberg <jonas@hedberg2.se>, 2015
@@ -28,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Måns Skogman <mans.skogman@hotmail.com>, 2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017,2020-2022\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -76,13 +77,13 @@ msgid "Notification templates"
 msgstr "Aviseringsmallar"
 
 msgid "Delete"
-msgstr "Ta bort"
+msgstr "Radera"
 
 msgid "Anomalies"
 msgstr "Avvikelser"
 
 msgid "Preferences"
-msgstr "Förvalda inställningar"
+msgstr "Inställningar"
 
 msgid "Notification settings"
 msgstr "Aviseringsinställningar"
@@ -103,7 +104,7 @@ msgid "Files"
 msgstr "Filer"
 
 msgid "Comments"
-msgstr "Kommentarer"
+msgstr "Chatt"
 
 msgid "Messages"
 msgstr "Meddelanden"
@@ -133,7 +134,7 @@ msgid "Deselect all"
 msgstr "Avmarkera alla"
 
 msgid "Refresh"
-msgstr "Uppdatera"
+msgstr "Ladda om sidan"
 
 msgid "Context"
 msgstr "Kontext"
@@ -470,7 +471,7 @@ msgid "This domain name is not available."
 msgstr "Detta domännamn är inte tillgängligt."
 
 msgid "Mark as important"
-msgstr "Markera som viktigt"
+msgstr "Stjärnmarkera"
 
 msgid "Copy to clipboard"
 msgstr "Kopiera till urklipp"
@@ -485,7 +486,7 @@ msgid "Grant access"
 msgstr "Ge åtkomst"
 
 msgid "Revoke access"
-msgstr "Återkalla tillgång"
+msgstr "Återkalla åtkomst"
 
 msgid "Please summarize your report in a few words."
 msgstr "Summera din rapport med några ord."
@@ -753,7 +754,7 @@ msgid "Footer"
 msgstr "Sidfot"
 
 msgid "Upload"
-msgstr "Ladda"
+msgstr "Ladda upp"
 
 msgid "Download"
 msgstr "Ladda ned"
@@ -781,12 +782,6 @@ msgstr "Kontexter"
 
 msgid "Hidden"
 msgstr "Dold"
-
-msgid "Disabled"
-msgstr "Inaktiverad"
-
-msgid "Enabled"
-msgstr "Aktiverad"
 
 msgid "Questionnaire"
 msgstr "Frågeformulär"
@@ -816,19 +811,19 @@ msgid "Show recipient details on the status page of the report"
 msgstr "Visa uppgifter om mottagarna överst på rapportstatussidan"
 
 msgid "Enable comments"
-msgstr "Aktivera kommentarer"
+msgstr "Aktivera chatt"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Tillåt att visselblåsarna skriver kommentarer"
+msgid "Allow the whistleblower to write comments"
+msgstr "Tillåt att visselblåsaren skriver kommentarer i chatten"
 
 msgid "Enable private messages"
 msgstr "Aktivera privata meddelanden"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Tillåt att visselblåsarna skickar meddelanden"
+msgid "Allow the whistleblower to send messages"
+msgstr "Tillåt att visselblåsaren skickar meddelanden"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Låt visselblåsarna lägga till bilagor till befintliga rapporter"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Tillåt att visselblåsaren lägger till bilagor till rapporten"
 
 msgid "Additional questionnaire"
 msgstr "Ytterligare frågeformulär"
@@ -856,6 +851,9 @@ msgstr "Mjukvaruversion:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Begränsa åtkomst till specifika IP-adresser"
+
+msgid "Enabled"
+msgstr "Aktiverad"
 
 msgid "Allowed IP addresses"
 msgstr "Tillåtna IP-adresser"
@@ -940,6 +938,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Den manuella konfigurationsguiden kommer att leda dig igenom installationen av HTTPS från en alternativ certifikatutfärdare."
 
+msgid "Disabled"
+msgstr "Inaktiverad"
+
 msgid "Auto-renewal"
 msgstr "Automatisk förnyelse"
 
@@ -1015,6 +1016,9 @@ msgstr "Flerradig textinmatning"
 msgid "Selection box"
 msgstr "Ruta för val av alternativ"
 
+msgid "Multiple choice input"
+msgstr "Inmatning av flervalsfråga"
+
 msgid "Checkbox"
 msgstr "Kryssruta"
 
@@ -1035,9 +1039,6 @@ msgstr "Kolumn"
 
 msgid "Width"
 msgstr "Bredd"
-
-msgid "Multiple choice input"
-msgstr "Inmatning av flervalsfråga"
 
 msgid "Question group"
 msgstr "Frågegrupp"
@@ -1148,7 +1149,7 @@ msgid "Enable terms of service"
 msgstr "Aktivera användarvillkor"
 
 msgid "Title"
-msgstr "Titel"
+msgstr "Rubrik"
 
 msgid "Send an account activation link to the user."
 msgstr "Skicka en länk för aktivering av kontot till användaren."
@@ -1369,29 +1370,23 @@ msgstr "Antingen är läskvittot ogiltigt eller så har rapporten upphört att g
 msgid "Select a file or drag it here."
 msgstr "Välj en fil eller släpa den hit."
 
+msgid "Size:"
+msgstr "Storlek:"
+
 msgid "Uploading files…"
 msgstr "Laddar upp filer..."
 
 msgid "Upload completed successfully!"
 msgstr "Filuppladdning klar!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Fel vid uppladdning av filer; se närmare information nedan."
-
 msgid "Estimated upload time:"
 msgstr "Uppskattad uppladdningstid:"
-
-msgid "Size:"
-msgstr "Storlek:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Mottagarna har bett dig fylla i ytterligare ett frågeformulär."
 
 msgid "Fill the additional questionnaire"
 msgstr "Fyll i det ytterligare frågeformuläret"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Tillåt att visselblåsaren skriver kommentarer"
 
 msgid "From:"
 msgstr "Från:"
@@ -1407,12 +1402,6 @@ msgstr "Datum för uppladdning"
 
 msgid "File size"
 msgstr "Filstorlek"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Tillåt att visselblåsaren lägger till bilagor till rapporten"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Tillåt att visselblåsaren skickar meddelanden"
 
 msgid "Questionnaire answers"
 msgstr "Svar på frågeformuläret"
@@ -1459,7 +1448,7 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr "Vi rekommenderar att du går in på fliken ”Förvalda inställningar” för att hämta din ”Kod för kontoåterställning” och därefter kan du spara koden på ett säkert ställe. Denna kod behövs för att återställa åtkomsten till plattformen och dina uppgifter i händelse av att du glömmer ditt lösenord."
+msgstr "Vi rekommenderar att du går in på fliken ”Inställningar” för att hämta din ”Kod för kontoåterställning” och därefter kan du spara koden på ett säkert ställe. Denna kod behövs för att återställa åtkomsten till plattformen och dina uppgifter i händelse av att du glömmer ditt lösenord."
 
 msgid "The provided recovery key is invalid."
 msgstr "Den angivna återställningskoden är fel."
@@ -1627,8 +1616,11 @@ msgstr "Du har slutfört den guidade aktiveringen av plattformen."
 msgid "Describe your report in detail."
 msgstr "Beskriv din rapport mer i detalj."
 
-msgid "Attach files relevant to the report."
-msgstr "Bifoga relevanta filer till rapporten."
+msgid "I'm a victim"
+msgstr "Jag är ett offer"
+
+msgid "I'm involved in the facts"
+msgstr "Jag är involverad i dessa händelser"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Vill du ge oss dina identifieringsuppgifter?"
@@ -1642,11 +1634,11 @@ msgstr "Efternamn"
 msgid "Alternative contact method"
 msgstr "Alternativ kontaktmetod"
 
-msgid "Other"
-msgstr "Annat"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Jag föredrar att bli kontaktad endast via denna plattform"
+
+msgid "Other"
+msgstr "Annat"
 
 msgid "Dear {RecipientName},"
 msgstr "Bästa {RecipientName},"

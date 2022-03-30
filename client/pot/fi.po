@@ -2,7 +2,7 @@
 # Translators:
 # Akseli Pihlajamaa <akselijuhanipihlajamaa@gmail.com>, 2020-2021
 # Eva Simonsson, 2020-2021
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018,2020-2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018,2020-2022
 # Jaakko Korhonen <jaakko.korhonen@gmail.com>, 2018
 # John Wild <ac@elephantleague.org>, 2015
 # Jorma Karvonen <karvonen.jorma@gmail.com>, 2015,2017,2020
@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Max Moiseev <max.moiseev@chamber.fi>, 2020-2022\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018,2020-2022\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -768,12 +768,6 @@ msgstr "Aiheet"
 msgid "Hidden"
 msgstr "Piilotettu"
 
-msgid "Disabled"
-msgstr "Otettu pois käytöstä"
-
-msgid "Enabled"
-msgstr "Käytössä"
-
 msgid "Questionnaire"
 msgstr "Vihjelomake"
 
@@ -804,17 +798,17 @@ msgstr "Näytä vastaanottajan tiedot Vihjeen tila -sivulla"
 msgid "Enable comments"
 msgstr "Ota käyttöön kommentit"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Salli vihjeenantajien kirjoittaa kommentteja"
+msgid "Allow the whistleblower to write comments"
+msgstr "Salli vihjeen antajan kirjoittaa kommentteja"
 
 msgid "Enable private messages"
 msgstr "Ota käyttöön yksityisviestit"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Salli vihjeenantajien lähettää viestejä"
+msgid "Allow the whistleblower to send messages"
+msgstr "Salli vihjeen antajan lähettää viestejä"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Salli vihjeen antajien lisätä liitetiedostoja olemassaoleviin vihjeisiin"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Salli vihjeenantajan liittää vihjeeseen tiedostoja."
 
 msgid "Additional questionnaire"
 msgstr "Täydentävä vihjelomake"
@@ -842,6 +836,9 @@ msgstr "Käytössä oleva ohjelmistoversio:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Estä pääsy tietyistä IP-osoitteista"
+
+msgid "Enabled"
+msgstr "Käytössä"
 
 msgid "Allowed IP addresses"
 msgstr "Sallitut IP-osoitteet"
@@ -926,6 +923,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Manuaaliasetusten avustettu asennustoiminto auttaa sinua asentamaan vaihtoehtoisen varmenneviranomaisen tarjoaman HTTPS-yhteyden."
 
+msgid "Disabled"
+msgstr "Otettu pois käytöstä"
+
 msgid "Auto-renewal"
 msgstr "Automaattinen uusiminen"
 
@@ -1001,6 +1001,9 @@ msgstr "Monirivinen tekstikenttä"
 msgid "Selection box"
 msgstr "Valintalaatikko"
 
+msgid "Multiple choice input"
+msgstr "Monivalinta"
+
 msgid "Checkbox"
 msgstr "Valintaruutu"
 
@@ -1021,9 +1024,6 @@ msgstr "Sarake"
 
 msgid "Width"
 msgstr "Leveys"
-
-msgid "Multiple choice input"
-msgstr "Monivalinta"
 
 msgid "Question group"
 msgstr "Kysymysryhmä"
@@ -1355,29 +1355,23 @@ msgstr "Kuitti on virheellinen tai lähetys on vanhentunut."
 msgid "Select a file or drag it here."
 msgstr "Valitse tiedosto tai raahaa se tähän."
 
+msgid "Size:"
+msgstr "Koko:"
+
 msgid "Uploading files…"
 msgstr "Kopioidaan tiedostoja palvelimelle..."
 
 msgid "Upload completed successfully!"
 msgstr "Tiedostojen kopiointi palvelimelle onnistui!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Tiedostoja lähettäessä tapahtui virhe. Katso tarkemmat tiedot alhaalta."
-
 msgid "Estimated upload time:"
 msgstr "Arvioitu latausaika:"
-
-msgid "Size:"
-msgstr "Koko:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Vastaanottajat ovat pyytäneet sinua täyttämään täydentävän vihjelomakkeen."
 
 msgid "Fill the additional questionnaire"
 msgstr "Täytä täydentävä vihjelomake"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Salli vihjeen antajan kirjoittaa kommentteja"
 
 msgid "From:"
 msgstr "Lähettäjä:"
@@ -1393,12 +1387,6 @@ msgstr "Latauspäivä"
 
 msgid "File size"
 msgstr "Tiedostokoko"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Salli vihjeenantajan liittää vihjeeseen tiedostoja."
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Salli vihjeen antajan lähettää viestejä"
 
 msgid "Questionnaire answers"
 msgstr "Saapuneet vihjeet"
@@ -1613,8 +1601,11 @@ msgstr "Palvelun avustettu käyttöönotto valmis."
 msgid "Describe your report in detail."
 msgstr "Kuvaile lähetyksesi muutamalla sanalla."
 
-msgid "Attach files relevant to the report."
-msgstr "Liitä tiedostot siihen liittyvään lähetykseen."
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "Haluatko luovuttaa henkilötietosi?"
@@ -1628,11 +1619,11 @@ msgstr "Sukunimi"
 msgid "Alternative contact method"
 msgstr "Vaihtoehtoinen yhteydenottotapa"
 
-msgid "Other"
-msgstr "Muut"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Toivon, että minuun otetaan yhteyttä vain tämän palvelun kautta"
+
+msgid "Other"
+msgstr "Muut"
 
 msgid "Dear {RecipientName},"
 msgstr "Hyvä {RecipientName},"

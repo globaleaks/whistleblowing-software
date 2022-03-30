@@ -761,12 +761,6 @@ msgstr "Кантэксты"
 msgid "Hidden"
 msgstr "Схаваны"
 
-msgid "Disabled"
-msgstr "Адключаны"
-
-msgid "Enabled"
-msgstr "Уключаны"
-
 msgid "Questionnaire"
 msgstr "Анкета"
 
@@ -797,17 +791,17 @@ msgstr "Паказваць падрабязную інфармацыю пра а
 msgid "Enable comments"
 msgstr "Дазволіць каментары"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Дазволіць выкрывальнікам пакідаць каментары"
+msgid "Allow the whistleblower to write comments"
+msgstr "Дазволіць выкрывальніку пакідаць каментары"
 
 msgid "Enable private messages"
 msgstr "Уключыць канфідэнцыйныя паведамленні"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Дазволіць выкрывальнікам дасылаць паведамленні"
+msgid "Allow the whistleblower to send messages"
+msgstr "Дазволіць выкрывальніку адпраўляць паведамленні"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Дазволіць выкрывальнікам дадаваць далучаныя файлы да існуючых справаздачаў"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Дазволіць выкрывальніку дадаваць да справаздачы далучаныя файлы "
 
 msgid "Additional questionnaire"
 msgstr "Дадатковая анкета"
@@ -835,6 +829,9 @@ msgstr "Версія праграмнага абсталявання"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Абмежаваць доступ толькі для адмысловых IP адрасаў"
+
+msgid "Enabled"
+msgstr "Уключаны"
 
 msgid "Allowed IP addresses"
 msgstr "Дазволеныя IP адрасы"
@@ -919,6 +916,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Майстар канфігурацыі ўручную правядзе вас праз налададжванне HTTPS з альтэрнатыўнага цэнтра па сертыфікацыі."
 
+msgid "Disabled"
+msgstr "Адключаны"
+
 msgid "Auto-renewal"
 msgstr "Аўта-аднаўленне"
 
@@ -994,6 +994,9 @@ msgstr "Шматрадковы ўвод тэксту"
 msgid "Selection box"
 msgstr "Поле выбару"
 
+msgid "Multiple choice input"
+msgstr "Увод з множным выбарам"
+
 msgid "Checkbox"
 msgstr "Сцяжок"
 
@@ -1014,9 +1017,6 @@ msgstr "Калонка"
 
 msgid "Width"
 msgstr "Шырыня"
-
-msgid "Multiple choice input"
-msgstr "Увод з множным выбарам"
 
 msgid "Question group"
 msgstr "Група пытанняў"
@@ -1348,29 +1348,23 @@ msgstr "Код або няправільны, або састарэлы."
 msgid "Select a file or drag it here."
 msgstr "Выбраць файл або перацягнуць яго сюды."
 
+msgid "Size:"
+msgstr "Памер:"
+
 msgid "Uploading files…"
 msgstr "Загрузка файлаў..."
 
 msgid "Upload completed successfully!"
 msgstr "Загрузка паспяхова завершаная!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Памылка пры загрузцы файлаў; дэталі ніжэй."
-
 msgid "Estimated upload time:"
 msgstr "Разліковы час загрузкі:"
-
-msgid "Size:"
-msgstr "Памер:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Атрымальнікі зрабілі вам запыт запоўніць дадатковую анкету."
 
 msgid "Fill the additional questionnaire"
 msgstr "Запоўніць дадатковую анкету."
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Дазволіць выкрывальніку пакідаць каментары"
 
 msgid "From:"
 msgstr "Ад:"
@@ -1386,12 +1380,6 @@ msgstr "Дата загрузкі"
 
 msgid "File size"
 msgstr "Памер файлу"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Дазволіць выкрывальніку дадаваць да справаздачы далучаныя файлы "
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Дазволіць выкрывальніку адпраўляць паведамленні"
 
 msgid "Questionnaire answers"
 msgstr "Адказы на пытанні анкеты"
@@ -1606,8 +1594,11 @@ msgstr "Вы завяршылі працу па стварэнні платфо�
 msgid "Describe your report in detail."
 msgstr "Даць падрабязнае апісанне сваёй справаздачы."
 
-msgid "Attach files relevant to the report."
-msgstr "Далучыць файлы, якія маюць дачыненне да справаздачы."
+msgid "I'm a victim"
+msgstr "Я - ахвяра"
+
+msgid "I'm involved in the facts"
+msgstr "Я маю непасрэднае дачыненне да гэтых фактаў"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Вы хочаце ідэнтыфікаваць сябе?"
@@ -1621,11 +1612,11 @@ msgstr "Прозвішча"
 msgid "Alternative contact method"
 msgstr "Альтэрнатыўны спосаб кантакту"
 
-msgid "Other"
-msgstr "Іншае"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Пажадана кантактавацца са мною толькі праз гэтую платформу"
+
+msgid "Other"
+msgstr "Іншае"
 
 msgid "Dear {RecipientName},"
 msgstr "Паважаны {RecipientName},"

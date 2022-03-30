@@ -1,11 +1,11 @@
 # 
 # Translators:
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022\n"
 "Language-Team: Serbian (Latin) (Montenegro) (http://www.transifex.com/otf/globaleaks/language/sr_ME@latin/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -759,12 +759,6 @@ msgstr "Konteksti"
 msgid "Hidden"
 msgstr "Sakriveno"
 
-msgid "Disabled"
-msgstr "Onemogućeno"
-
-msgid "Enabled"
-msgstr "Omogućeno"
-
 msgid "Questionnaire"
 msgstr "Upitnik"
 
@@ -795,17 +789,17 @@ msgstr "Prikaži podatke primaoca na stranici statusa prijava"
 msgid "Enable comments"
 msgstr "Omogući komentare"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Dozvoli uzbunjivačima da pišu komentare"
+msgid "Allow the whistleblower to write comments"
+msgstr "Dozvolite uzbunjivaču da piše komentare"
 
 msgid "Enable private messages"
 msgstr "Omogući privatne poruke"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Dozvoli uzbunjivačima da šalju poruke"
+msgid "Allow the whistleblower to send messages"
+msgstr "Dozvoli uzbunjivaču da šalje poruke"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Neka uzbunjivači dodaju priloge u postojeće prijave"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Dozvoli uzbunjivaču da dodaje priloge u prijavu"
 
 msgid "Additional questionnaire"
 msgstr "Dodatni upitnik"
@@ -833,6 +827,9 @@ msgstr "Verzija softvera:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Ograniči pristup na određene IP adrese"
+
+msgid "Enabled"
+msgstr "Omogućeno"
 
 msgid "Allowed IP addresses"
 msgstr "Dozvoljene IP adrese"
@@ -917,6 +914,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Vodič za ručno podešavanje će vas sprovesti kroz podešavanje HTTPS sertifikata sa alternativnim autoritetom za izdavanje sertifikata."
 
+msgid "Disabled"
+msgstr "Onemogućeno"
+
 msgid "Auto-renewal"
 msgstr "Automatska obnova"
 
@@ -992,6 +992,9 @@ msgstr "Unos teksta sa više redova"
 msgid "Selection box"
 msgstr "Okvir za izbor"
 
+msgid "Multiple choice input"
+msgstr "Unos sa više izbora"
+
 msgid "Checkbox"
 msgstr "Polje za potvrdu"
 
@@ -1012,9 +1015,6 @@ msgstr "Kolona"
 
 msgid "Width"
 msgstr "Širina"
-
-msgid "Multiple choice input"
-msgstr "Unos sa više izbora"
 
 msgid "Question group"
 msgstr "Grupa pitanja"
@@ -1346,29 +1346,23 @@ msgstr "Potvrda prijema je nevažeća ili je prijava istekla."
 msgid "Select a file or drag it here."
 msgstr "Izaberite datoteku ili je prevucite ovdje."
 
+msgid "Size:"
+msgstr "Veličina:"
+
 msgid "Uploading files…"
 msgstr "Otpremaju se datoteke…"
 
 msgid "Upload completed successfully!"
 msgstr "Otpremanje je uspješno završeno!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Greška pri otpremanju datoteka; u nastavku pogledajte detalje."
-
 msgid "Estimated upload time:"
 msgstr "Predviđeno vrijeme otpremanja:"
-
-msgid "Size:"
-msgstr "Veličina:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Primaoci su zatražili da popunite dodatni upitnik."
 
 msgid "Fill the additional questionnaire"
 msgstr "Popunite dodatni upitnik"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Dozvolite uzbunjivaču da piše komentare"
 
 msgid "From:"
 msgstr "Od:"
@@ -1384,12 +1378,6 @@ msgstr "Datum otpremanja"
 
 msgid "File size"
 msgstr "Veličina datoteke"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Dozvoli uzbunjivaču da dodaje priloge u prijavu"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Dozvoli uzbunjivaču da šalje poruke"
 
 msgid "Questionnaire answers"
 msgstr "Odgovori na upitnik"
@@ -1604,8 +1592,11 @@ msgstr "Dovršen je čarobnjak za platformu."
 msgid "Describe your report in detail."
 msgstr "Detaljno opišite svoju prijavu."
 
-msgid "Attach files relevant to the report."
-msgstr "Priložite datoteke relevantne za prijavu."
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "Da li želite da date svoje identifikacione podatke?"
@@ -1619,11 +1610,11 @@ msgstr "Prezime"
 msgid "Alternative contact method"
 msgstr "Alternativni način kontakta"
 
-msgid "Other"
-msgstr "Ostalo"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Više volim da me kontaktiraju samo putem ove platforme"
+
+msgid "Other"
+msgstr "Ostalo"
 
 msgid "Dear {RecipientName},"
 msgstr "Poštovani {RecipientName},"

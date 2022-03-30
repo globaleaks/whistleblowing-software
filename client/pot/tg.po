@@ -4,7 +4,7 @@
 # Aminjon Hasanov, 2021
 # Andrew Yeh <admin@twngo.xyz>, 2017
 # ff98sha, 2020
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022
 # Iftihor Muhtorov <i.muhtorov@gmail.com>, 2021
 # Iftihor Muhtorov <i.muhtorov@gmail.com>, 2021
 # iigmir <iigmir@hotmail.com>, 2015
@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Sherry Yang <sherry@control4.com.tw>, 2015\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022\n"
 "Language-Team: Tajik (http://www.transifex.com/otf/globaleaks/language/tg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -768,12 +768,6 @@ msgstr "Мавзӯҳо"
 msgid "Hidden"
 msgstr "Маҳфуз"
 
-msgid "Disabled"
-msgstr "Хомӯш шуда"
-
-msgid "Enabled"
-msgstr "Фаъол шуда"
-
 msgid "Questionnaire"
 msgstr "Саволнома"
 
@@ -804,17 +798,17 @@ msgstr "Маълумот оид ба гирандаро дар саҳифаи ҳ
 msgid "Enable comments"
 msgstr "Шарҳҳоро фаъол кардан"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Ба хабардиҳандагон иҷозаи шарҳ навистанро додан"
+msgid "Allow the whistleblower to write comments"
+msgstr "Ба хабардиҳанда иҷозаи навиштани шарҳҳоро додан"
 
 msgid "Enable private messages"
 msgstr "Паёмҳои махфиро фаъол кардан"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Ба хабардиҳандагон иҷозаи ирсоли паёмҳоро додан"
+msgid "Allow the whistleblower to send messages"
+msgstr "Ба хабардиҳанда иҷозаи ирсоли паём додан"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Ба хабардиҳандагон иҷозаи илова кардани замима ба гузориши мавҷудбуда додан"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Ба хабардиҳанда иҷозаи илова кардани замима ба гузориш додан"
 
 msgid "Additional questionnaire"
 msgstr "Саволномаи иловагӣ"
@@ -842,6 +836,9 @@ msgstr "Барориши нармафзор:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Дастрасӣ ба IP суроғаҳои муайянро маҳдуд кардан"
+
+msgid "Enabled"
+msgstr "Фаъол шуда"
 
 msgid "Allowed IP addresses"
 msgstr "IP суроғаҳои иҷозашуда"
@@ -926,6 +923,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Ёвари танзимоти дастӣ шуморо дар сохтани HTTPS аз Маркази Гувоҳномаи алтернативӣ роҳнамоӣ мекунад.  "
 
+msgid "Disabled"
+msgstr "Хомӯш шуда"
+
 msgid "Auto-renewal"
 msgstr "Азнавшавии худкор"
 
@@ -1001,6 +1001,9 @@ msgstr "Вуруди матни бисёрсатра"
 msgid "Selection box"
 msgstr "Қуттии интихоб"
 
+msgid "Multiple choice input"
+msgstr "Вуруди якчандинтихоба "
+
 msgid "Checkbox"
 msgstr "Қуттии қайдкунӣ"
 
@@ -1021,9 +1024,6 @@ msgstr "Сутун"
 
 msgid "Width"
 msgstr "Паҳноӣ"
-
-msgid "Multiple choice input"
-msgstr "Вуруди якчандинтихоба "
 
 msgid "Question group"
 msgstr "Гурӯҳи савол"
@@ -1355,29 +1355,23 @@ msgstr "Расид беэътибор аст ё мӯҳлати эътибори 
 msgid "Select a file or drag it here."
 msgstr "Файлро интихоб кунед ё ба ин ҷо кашед."
 
+msgid "Size:"
+msgstr "Андоза:"
+
 msgid "Uploading files…"
 msgstr "Боркунии файлҳо..."
 
 msgid "Upload completed successfully!"
 msgstr "Боркунӣ бомуваффақият анҷом ёфт!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Иштибоҳ ҳангоми боркунии файлҳо, бо маълумоти зерин шинос шавед."
-
 msgid "Estimated upload time:"
 msgstr "Вақти тахминии боркунӣ:"
-
-msgid "Size:"
-msgstr "Андоза:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Гирандагон аз шумо дархост кардаанд саволномаи иловагиро пур намоед."
 
 msgid "Fill the additional questionnaire"
 msgstr "Пур кардани саволномаи иловагӣ"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Ба хабардиҳанда иҷозаи навиштани шарҳҳоро додан"
 
 msgid "From:"
 msgstr "Аз:"
@@ -1393,12 +1387,6 @@ msgstr "Санаи боркунӣ"
 
 msgid "File size"
 msgstr "Ҳаҷми файл"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Ба хабардиҳанда иҷозаи илова кардани замима ба гузориш додан"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Ба хабардиҳанда иҷозаи ирсоли паём додан"
 
 msgid "Questionnaire answers"
 msgstr "Ҷавобҳои саволнома"
@@ -1613,8 +1601,11 @@ msgstr "Шумо кор бо ёвари барномаро анҷом додед
 msgid "Describe your report in detail."
 msgstr "Гузориши худро ба таври муфассал шарҳ диҳед."
 
-msgid "Attach files relevant to the report."
-msgstr "Файлҳои марбут ба гузоришро замима кунед."
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "Оё шумо мехоҳед, ки маълумоти шахсияти худро пешниҳод кунед?"
@@ -1628,11 +1619,11 @@ msgstr "Насаб"
 msgid "Alternative contact method"
 msgstr "Усули алтернативии тамос"
 
-msgid "Other"
-msgstr "Дигар"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Ман тамосро танҳо тавассути ин барнома афзал мешуморам"
+
+msgid "Other"
+msgstr "Дигар"
 
 msgid "Dear {RecipientName},"
 msgstr "Муҳтарам {RecipientName},"

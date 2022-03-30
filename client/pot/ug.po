@@ -762,12 +762,6 @@ msgstr "مەزمۇنلار"
 msgid "Hidden"
 msgstr "يوشۇرۇن"
 
-msgid "Disabled"
-msgstr "چەكلەنگەن"
-
-msgid "Enabled"
-msgstr "قوزغىتىلغان"
-
 msgid "Questionnaire"
 msgstr "راي سىناش"
 
@@ -798,17 +792,17 @@ msgstr "تاپشۇرىۋالغۇچىنىڭ تەپسىلى ئەھۋالىنى م�
 msgid "Enable comments"
 msgstr "باھالاشنى قوزغات"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "باش قىلغۇچىلارنىڭ باھا يېزىشىغا رۇخسەت قىل"
+msgid "Allow the whistleblower to write comments"
+msgstr "پاش قىلغۇچىنىڭ باھا يېزىشىگە رۇخسەت قىل"
 
 msgid "Enable private messages"
 msgstr "شەخسىي ئۇچۇرلارنى قوزغات"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "پاش قىلغۇچىلارنىڭ ئۇچۇر ئەۋەتىشىگە رۇخسەت قىل"
+msgid "Allow the whistleblower to send messages"
+msgstr "پاش قىلغۇچىنىڭ ئۇچۇر ئەۋەتىشىگە رۇخسەت قىل"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "پاش قىلغۇچىلارنىڭ مەۋجۇت مەلۇماتلارنىڭ ئۈستىگە قوشۇمچىلارنى قوشۇشىغا رۇخسەت قىل"
+msgid "Allow the whistleblower to add attachments"
+msgstr ""
 
 msgid "Additional questionnaire"
 msgstr "قوشۇمچە راي سىناش"
@@ -836,6 +830,9 @@ msgstr "يۇمشاق دېتال نەشرى:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "زىيارەت قىلىشنى بەلگىلەنگەن IP ئادرېسلىرى بىلەنلا چەكلە"
+
+msgid "Enabled"
+msgstr "قوزغىتىلغان"
 
 msgid "Allowed IP addresses"
 msgstr "رۇخسەت قىلىنغان IP ئادرېسلىرى"
@@ -920,6 +917,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "قولدا سەپلەش سېھىرگەرى سىزنىڭ HTTPS سەپلىمىسنى باشقا بىر گۇۋاھنامە ئورگىنى ئارقىلىق سەپلىشىڭىزگە يېتەكچىلىك قىلىدۇ."
 
+msgid "Disabled"
+msgstr "چەكلەنگەن"
+
 msgid "Auto-renewal"
 msgstr "ئاپتۇماتىك يېڭىلاش"
 
@@ -995,6 +995,9 @@ msgstr "كۆپ قۇرلۇق تېكىست كىرگۈزۈش"
 msgid "Selection box"
 msgstr "تاللاش رامكىسى"
 
+msgid "Multiple choice input"
+msgstr "كۆپتىن تاللاپ كىرگۈزۈش"
+
 msgid "Checkbox"
 msgstr "تەستىق رامكىسى"
 
@@ -1015,9 +1018,6 @@ msgstr "ستون"
 
 msgid "Width"
 msgstr "كەڭلىكى"
-
-msgid "Multiple choice input"
-msgstr "كۆپتىن تاللاپ كىرگۈزۈش"
 
 msgid "Question group"
 msgstr "سۇئال گۇرۇپپىسى"
@@ -1349,29 +1349,23 @@ msgstr "تالونىڭز ئىناۋەتسىز ياكى مەلۇماتىڭىزن�
 msgid "Select a file or drag it here."
 msgstr "بىر ھۆججەت تاللاڭ ياكى بۇ يەرگە سۆرەپ تاشلاڭ."
 
+msgid "Size:"
+msgstr "چوڭلۇقى:"
+
 msgid "Uploading files…"
 msgstr "يۈكلىنىۋاتقان ھۆججەتلەر…"
 
 msgid "Upload completed successfully!"
 msgstr "يۈكلەش مۇۋەپپىقىيەتلىك تاماملاندى!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "ھۆججەتلەرنى يۈكلەۋاتقاندا خاتالىق چىقتى، تەپسىلاتىنى تۆۋەندىن تەكشۈرۈڭ."
-
 msgid "Estimated upload time:"
 msgstr "تەخمىنەن يۈكلەش ۋاقتى:"
-
-msgid "Size:"
-msgstr "چوڭلۇقى:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "تاپشۇرىۋالغۇچىلار سىزنىڭ بىر قوشۇمچە راي سىناشنى توشقۇزىشىڭىزنى تەلەپ قىلدى."
 
 msgid "Fill the additional questionnaire"
 msgstr "بۇ قوشۇمچە راي سىناشنى توشقۇز"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "پاش قىلغۇچىنىڭ باھا يېزىشىگە رۇخسەت قىل"
 
 msgid "From:"
 msgstr "ئەۋەتكۈچى:"
@@ -1387,12 +1381,6 @@ msgstr "يۈكلەنگەن چېسلا"
 
 msgid "File size"
 msgstr "ھۆججەت چوڭلۇقى"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "پاش قىلغۇچىنىڭ مەلۇماتقا قوشۇمچە قىستۇرىشىغا رۇخسەت قىل"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "پاش قىلغۇچىنىڭ ئۇچۇر ئەۋەتىشىگە رۇخسەت قىل"
 
 msgid "Questionnaire answers"
 msgstr "راي سىناش جاۋابلىرى"
@@ -1607,8 +1595,11 @@ msgstr "سۇپا سېھىرگەرىنى پۈتتتۈردىڭىز."
 msgid "Describe your report in detail."
 msgstr "دوكلاتىڭىزنى تەپسىلىي چۈشەندۈرۈڭ."
 
-msgid "Attach files relevant to the report."
-msgstr "مەلۇماتقا مۇناسىۋەتلىك ھۆججەتلەرنى قوشۇڭ."
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "كىملىك ئۇچۇرلىرىڭىزنى تەمىنلەشنى خالامسىز؟"
@@ -1622,11 +1613,11 @@ msgstr "فامىلىسى"
 msgid "Alternative contact method"
 msgstr "باشقا ئالاقە ئۇسۇلى"
 
-msgid "Other"
-msgstr "باشقا"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "پەقەتلا بۇ سۇپا ئارقىلىق مېنىڭ بىلەن ئالاقىلاشسۇن "
+
+msgid "Other"
+msgstr "باشقا"
 
 msgid "Dear {RecipientName},"
 msgstr "‏قەدىرلىك {RecipientName}،"

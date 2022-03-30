@@ -769,12 +769,6 @@ msgstr "Kontekste"
 msgid "Hidden"
 msgstr "I fshehur"
 
-msgid "Disabled"
-msgstr "I çaktivizuar"
-
-msgid "Enabled"
-msgstr "I aktivizuar"
-
 msgid "Questionnaire"
 msgstr "Pyetësor"
 
@@ -805,17 +799,17 @@ msgstr "Shfaq hollësi marrësi te faqja e gjendjes së raportimit"
 msgid "Enable comments"
 msgstr "Aktivizo komente"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Lejoju nxjerrësve të të fshehtave të shkruajnë komente"
+msgid "Allow the whistleblower to write comments"
+msgstr "Lejoji nxjerrësit të së fshehtës të shkruajë komente"
 
 msgid "Enable private messages"
 msgstr "Aktivizo mesazhe private"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Lejoju nxjerrësve të të fshehtave të dërgojnë mesazhe"
+msgid "Allow the whistleblower to send messages"
+msgstr "Lejoji nxjerrësit të të fshehtës të dërgojë mesazhe"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Lejoju nxjerrësve të të fshehtave të shtojnë bashkëngjitje te raportime ekzistuese"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Lejoji nxjerrësit të së fshehtës të shtojë te raportimi bashkëngjitje"
 
 msgid "Additional questionnaire"
 msgstr "Pyetësor shtesë"
@@ -843,6 +837,9 @@ msgstr "Version software-i:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Kufizoju hyrjen adresave IP specifike"
+
+msgid "Enabled"
+msgstr "I aktivizuar"
 
 msgid "Allowed IP addresses"
 msgstr "Adresa IP të lejuara"
@@ -927,6 +924,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Ndihmësi i formësimit dorazi do t’ju udhëheqë nëpër ujdisjen e HTTPS-së me një autoritet alternativ dëshmish."
 
+msgid "Disabled"
+msgstr "I çaktivizuar"
+
 msgid "Auto-renewal"
 msgstr "Vetërinovim"
 
@@ -1002,6 +1002,9 @@ msgstr "Dhënie teksti me shumë rreshta"
 msgid "Selection box"
 msgstr "Kutizë përzgjedhjesh"
 
+msgid "Multiple choice input"
+msgstr "Dhënie me zgjedhje të shumëfishtë"
+
 msgid "Checkbox"
 msgstr "Kutizë"
 
@@ -1022,9 +1025,6 @@ msgstr "Shtyllë"
 
 msgid "Width"
 msgstr "Gjerësi"
-
-msgid "Multiple choice input"
-msgstr "Dhënie me zgjedhje të shumëfishtë"
 
 msgid "Question group"
 msgstr "Grup pyetjeje"
@@ -1356,29 +1356,23 @@ msgstr "Ose dëftesa është e pavlefshme, ose raportimi ka skaduar."
 msgid "Select a file or drag it here."
 msgstr "Përzgjidhni një kartelë ose tërhiqeni këtu."
 
+msgid "Size:"
+msgstr "Madhësi:"
+
 msgid "Uploading files…"
 msgstr "Po ngarkohen kartela…"
 
 msgid "Upload completed successfully!"
 msgstr "Ngarkimi u plotësua me sukses!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Gabim teksa ngarkoheshin kartela; për hollësi, shihni më poshtë."
-
 msgid "Estimated upload time:"
 msgstr "Kohë ngarkimi përafërsisht:"
-
-msgid "Size:"
-msgstr "Madhësi:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Marrësit kanë kërkuar që të plotësoni një pyetësor shtesë."
 
 msgid "Fill the additional questionnaire"
 msgstr "Plotësoni pyetësorin shtesë"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Lejoji nxjerrësit të së fshehtës të shkruajë komente"
 
 msgid "From:"
 msgstr "Nga:"
@@ -1394,12 +1388,6 @@ msgstr "Datë ngarkimi"
 
 msgid "File size"
 msgstr "Madhësi kartele"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Lejoji nxjerrësit të së fshehtës të shtojë te raportimi bashkëngjitje"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Lejoji nxjerrësit të të fshehtës të dërgojë mesazhe"
 
 msgid "Questionnaire answers"
 msgstr "Përgjigje pyetësori"
@@ -1614,8 +1602,11 @@ msgstr "Keni plotësuar hapat e ndihmësit të platformës."
 msgid "Describe your report in detail."
 msgstr "Përshkruajeni hollësisht raportimin tuaj."
 
-msgid "Attach files relevant to the report."
-msgstr "Bashkëngjitini raportimit kartela që kanë lidhje."
+msgid "I'm a victim"
+msgstr "Jam viktimë"
+
+msgid "I'm involved in the facts"
+msgstr "Jam i përzierë me gjërat"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Doni të jepni hollësi për identifikimin tuaj?"
@@ -1629,11 +1620,11 @@ msgstr "Mbiemër"
 msgid "Alternative contact method"
 msgstr "Metodë kontakti alternative"
 
-msgid "Other"
-msgstr "Tjetër"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Parapëlqej të kontaktohem vetëm përmes kësaj platforme"
+
+msgid "Other"
+msgstr "Tjetër"
 
 msgid "Dear {RecipientName},"
 msgstr "I dashur {RecipientName},"

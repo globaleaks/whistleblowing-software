@@ -2,12 +2,12 @@
 # Translators:
 # ACCLARO_OnShape_KO_EDI1 <ACCLARO_OnShape_KO_EDI1@acclaro.com>, 2021
 # Changkyoon Kim <ocnblu@gmail.com>, 2015
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2018,2020-2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2018,2020-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2018,2020-2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2016-2018,2020-2022\n"
 "Language-Team: Korean (http://www.transifex.com/otf/globaleaks/language/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -761,12 +761,6 @@ msgstr "컨텍스트"
 msgid "Hidden"
 msgstr "숨김"
 
-msgid "Disabled"
-msgstr "중단됨"
-
-msgid "Enabled"
-msgstr "허용돔"
-
 msgid "Questionnaire"
 msgstr "설문 조사"
 
@@ -797,17 +791,17 @@ msgstr "보고서 상태 페이지에서 수신자 세부 정보 표시"
 msgid "Enable comments"
 msgstr "댓글 허용"
 
-msgid "Allow whistleblowers to write comments"
+msgid "Allow the whistleblower to write comments"
 msgstr "내부 고발자가 댓글을 작성하도록 허용"
 
 msgid "Enable private messages"
 msgstr "비공개 메시지 허용"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "내부 고발자가 메시지를 전송하도록 허용"
+msgid "Allow the whistleblower to send messages"
+msgstr "내부 고발자가 메시지를 전송할 수 있도록 허용"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "내부 고발자가 기존 보고서에 첨부 파일을 추가할 수 있도록 허용"
+msgid "Allow the whistleblower to add attachments"
+msgstr "내부 고발자가 보고서에 첨부 파일을 추가하도록 허용"
 
 msgid "Additional questionnaire"
 msgstr "추가 설문 조사"
@@ -835,6 +829,9 @@ msgstr "소프트웨어 버전:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "특정 IP 주소 액세스 제한"
+
+msgid "Enabled"
+msgstr "허용돔"
 
 msgid "Allowed IP addresses"
 msgstr "허용된 IP 주소"
@@ -919,6 +916,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "수동 구성 마법사가 대체 인증서 권한의 HTTPS 설치를 안내합니다."
 
+msgid "Disabled"
+msgstr "중단됨"
+
 msgid "Auto-renewal"
 msgstr "자동 갱신"
 
@@ -994,6 +994,9 @@ msgstr "여러 줄의 텍스트 입력"
 msgid "Selection box"
 msgstr "선택 상자"
 
+msgid "Multiple choice input"
+msgstr "여러 선택 입력"
+
 msgid "Checkbox"
 msgstr "체크박스"
 
@@ -1014,9 +1017,6 @@ msgstr "칼럼"
 
 msgid "Width"
 msgstr "너비"
-
-msgid "Multiple choice input"
-msgstr "여러 선택 입력"
 
 msgid "Question group"
 msgstr "질문 그룹"
@@ -1348,29 +1348,23 @@ msgstr "수신이 유효하지 않거나 만료되었습니다."
 msgid "Select a file or drag it here."
 msgstr "파일을 선택하거나 여기에 드래그하십시오."
 
+msgid "Size:"
+msgstr "크기:"
+
 msgid "Uploading files…"
 msgstr "파일 업로드 중..."
 
 msgid "Upload completed successfully!"
 msgstr "업로드를 성공적으로 완료했습니다!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "파일을 업로드하는 동안 오류가 발생했습니다. 자세한 내용은 다음을 확인하십시오."
-
 msgid "Estimated upload time:"
 msgstr "예상 업로드 시간:"
-
-msgid "Size:"
-msgstr "크기:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "수신자가 추가 설문 조사를 작성할 것을 요청했습니다."
 
 msgid "Fill the additional questionnaire"
 msgstr "추가 설문 조사 작성"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "내부 고발자가 댓글을 작성하도록 허용"
 
 msgid "From:"
 msgstr "발신자:"
@@ -1386,12 +1380,6 @@ msgstr "업로드 날짜"
 
 msgid "File size"
 msgstr "파일 크기"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "내부 고발자가 보고서에 첨부 파일을 추가하도록 허용"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "내부 고발자가 메시지를 전송할 수 있도록 허용"
 
 msgid "Questionnaire answers"
 msgstr "설문 조사 답변"
@@ -1606,8 +1594,11 @@ msgstr "성공적으로 플랫폼 마법사를 완료했습니다."
 msgid "Describe your report in detail."
 msgstr "보고서를 자세히 설명해 주십시오."
 
-msgid "Attach files relevant to the report."
-msgstr "보고서와 관련된 파일을 첨부하십시오."
+msgid "I'm a victim"
+msgstr "저는 피해자입니다."
+
+msgid "I'm involved in the facts"
+msgstr "저는 사건에 연루되었습니다."
 
 msgid "Do you want to provide your identification information?"
 msgstr "사용자의 식별 정보를 제공하시겠습니까?"
@@ -1621,11 +1612,11 @@ msgstr "성"
 msgid "Alternative contact method"
 msgstr ""
 
-msgid "Other"
-msgstr "기타"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr ""
+
+msgid "Other"
+msgstr "기타"
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} 님,"

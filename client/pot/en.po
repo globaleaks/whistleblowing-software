@@ -797,12 +797,6 @@ msgstr "Contexts"
 msgid "Hidden"
 msgstr "Hidden"
 
-msgid "Disabled"
-msgstr "Disabled"
-
-msgid "Enabled"
-msgstr "Enabled"
-
 msgid "Questionnaire"
 msgstr "Questionnaire"
 
@@ -833,17 +827,17 @@ msgstr "Show recipient details on the status page of the report"
 msgid "Enable comments"
 msgstr "Enable comments"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Allow whistleblowers to write comments"
+msgid "Allow the whistleblower to write comments"
+msgstr "Allow the whistleblower to write comments"
 
 msgid "Enable private messages"
 msgstr "Enable private messages"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Allow whistleblowers to send messages"
+msgid "Allow the whistleblower to send messages"
+msgstr "Allow the whistleblower to send messages"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Let whistleblowers add attachments onto existing reports"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Allow the whistleblower to add attachments"
 
 msgid "Additional questionnaire"
 msgstr "Additional questionnaire"
@@ -871,6 +865,9 @@ msgstr "Software version:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Restrict access to specific IP addresses"
+
+msgid "Enabled"
+msgstr "Enabled"
 
 msgid "Allowed IP addresses"
 msgstr "Allowed IP addresses"
@@ -955,6 +952,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "The manual configuration wizard will guide you through the setup of HTTPS from an alternative Certificate Authority."
 
+msgid "Disabled"
+msgstr "Disabled"
+
 msgid "Auto-renewal"
 msgstr "Auto-renewal"
 
@@ -1030,6 +1030,9 @@ msgstr "Multi-line text input"
 msgid "Selection box"
 msgstr "Selection box"
 
+msgid "Multiple choice input"
+msgstr "Multiple choice input"
+
 msgid "Checkbox"
 msgstr "Checkbox"
 
@@ -1050,9 +1053,6 @@ msgstr "Column"
 
 msgid "Width"
 msgstr "Width"
-
-msgid "Multiple choice input"
-msgstr "Multiple choice input"
 
 msgid "Question group"
 msgstr "Question group"
@@ -1384,29 +1384,23 @@ msgstr "The receipt is either invalid or the report has expired."
 msgid "Select a file or drag it here."
 msgstr "Select a file or drag it here."
 
+msgid "Size:"
+msgstr "Size:"
+
 msgid "Uploading files…"
 msgstr "Uploading files…"
 
 msgid "Upload completed successfully!"
 msgstr "Upload completed successfully!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Error while uploading files; check below for details."
-
 msgid "Estimated upload time:"
 msgstr "Estimated upload time:"
-
-msgid "Size:"
-msgstr "Size:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Recipients have requested you to fill an additional questionnaire."
 
 msgid "Fill the additional questionnaire"
 msgstr "Fill the additional questionnaire"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Allow the whistleblower to write comments"
 
 msgid "From:"
 msgstr "From:"
@@ -1422,12 +1416,6 @@ msgstr "Upload date"
 
 msgid "File size"
 msgstr "File size"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Allow the whistleblower to add attachments to the report"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Allow the whistleblower to send messages"
 
 msgid "Questionnaire answers"
 msgstr "Questionnaire answers"
@@ -1642,8 +1630,11 @@ msgstr "You have completed the platform wizard."
 msgid "Describe your report in detail."
 msgstr "Describe your report in detail."
 
-msgid "Attach files relevant to the report."
-msgstr "Attach files relevant to the report."
+msgid "I'm a victim"
+msgstr "I'm a victim"
+
+msgid "I'm involved in the facts"
+msgstr "I'm involved in the facts"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Do you want to provide your identification information?"
@@ -1657,11 +1648,11 @@ msgstr "Last name"
 msgid "Alternative contact method"
 msgstr "Alternative contact method"
 
-msgid "Other"
-msgstr "Other"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "I prefer to be contacted via this platform only"
+
+msgid "Other"
+msgstr "Other"
 
 msgid "Dear {RecipientName},"
 msgstr "Dear {RecipientName},"

@@ -1,12 +1,12 @@
 # 
 # Translators:
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022
 # Suzanne Ferguson, 2020-2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022\n"
 "Language-Team: Swahili (http://www.transifex.com/otf/globaleaks/language/sw/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -760,12 +760,6 @@ msgstr "Muktadha"
 msgid "Hidden"
 msgstr "Fichwa"
 
-msgid "Disabled"
-msgstr "Haijawezeshwa"
-
-msgid "Enabled"
-msgstr "Imewezeshwa"
-
 msgid "Questionnaire"
 msgstr "Dodoso"
 
@@ -796,17 +790,17 @@ msgstr "Onyesha maelezo ya mpokeaji kwenye ukurasa wa hali ya ripoti"
 msgid "Enable comments"
 msgstr "Wezesha maoni "
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Ruhusu watoa taarifa za siri waandike maoni "
+msgid "Allow the whistleblower to write comments"
+msgstr "Ruhusu mtoa taarifa ya siri kuandika maoni."
 
 msgid "Enable private messages"
 msgstr "Wezesha ujumbe wa faragha "
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Ruhusu watoa taarifa za siri kutuma ujumba"
+msgid "Allow the whistleblower to send messages"
+msgstr "Ruhusu mtoa taarifa ya siri kutuma ujumbe"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Wacha watoa taarifa za siri waongeze viambatisho kwenye ripoti zilizopo"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Ruhusu mtoa taarifa ya siri kuongeza viambatanisho kwenye ripoti"
 
 msgid "Additional questionnaire"
 msgstr "Dodoso la nyongeza"
@@ -834,6 +828,9 @@ msgstr "Toleo la programu:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Zuia ufikiaji wa anwani maalum za IP"
+
+msgid "Enabled"
+msgstr "Imewezeshwa"
 
 msgid "Allowed IP addresses"
 msgstr "Anuani za IP zilizoruhusiwa"
@@ -918,6 +915,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Programu saidizi ya usanidi wa mwongozo itakuongoza kupitia usanidi wa HTTPS\n\nkutoka kwa Mamlaka mbadala ya Cheti."
 
+msgid "Disabled"
+msgstr "Haijawezeshwa"
+
 msgid "Auto-renewal"
 msgstr "Uhuishaji kiotomatiki"
 
@@ -993,6 +993,9 @@ msgstr "Uingizaji wa maandishi katika mistari mingi"
 msgid "Selection box"
 msgstr "Kisanduku cha kuchagua"
 
+msgid "Multiple choice input"
+msgstr "Maingizo ya chaguo nyingi "
+
 msgid "Checkbox"
 msgstr "Kisanduku cha kuangalia"
 
@@ -1013,9 +1016,6 @@ msgstr "Safu wima"
 
 msgid "Width"
 msgstr "Upana"
-
-msgid "Multiple choice input"
-msgstr "Maingizo ya chaguo nyingi "
 
 msgid "Question group"
 msgstr "Kundi la swali"
@@ -1347,29 +1347,23 @@ msgstr "Risiti aidha ni batili au ripoti imekwisha muda."
 msgid "Select a file or drag it here."
 msgstr "Chagua faili au liburuze hapa."
 
+msgid "Size:"
+msgstr "Ukubwa:"
+
 msgid "Uploading files…"
 msgstr "Inapakia mafaili… "
 
 msgid "Upload completed successfully!"
 msgstr "Upakiaji umekamilika kwa mafanikio! "
 
-msgid "Error while uploading files; check below for details."
-msgstr "Upakiaji umekamilika kwa mafanikio! "
-
 msgid "Estimated upload time:"
 msgstr "Wakati uliokadiriwa wa kupakia:"
-
-msgid "Size:"
-msgstr "Ukubwa:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Wapokeaji wamekuomba ujaze hadidu za nyongeza."
 
 msgid "Fill the additional questionnaire"
 msgstr "Jaza dodoso za nyongeza"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Ruhusu mtoa taarifa ya siri kuandika maoni."
 
 msgid "From:"
 msgstr "Kutoka:"
@@ -1385,12 +1379,6 @@ msgstr "Tarehe ya kupakiwa"
 
 msgid "File size"
 msgstr "Ukubwa wa faili"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Ruhusu mtoa taarifa ya siri kuongeza viambatanisho kwenye ripoti"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Ruhusu mtoa taarifa ya siri kutuma ujumbe"
 
 msgid "Questionnaire answers"
 msgstr "Majibu ya dodoso"
@@ -1605,8 +1593,11 @@ msgstr "Umemaliza kujaza programu ya jukwa."
 msgid "Describe your report in detail."
 msgstr "Elezea ripoti yako kwa kina."
 
-msgid "Attach files relevant to the report."
-msgstr "Ambatanisha faili zinazohusiana na ripoti."
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "Je, unataka kutoa taarifa zako za kukutambua?"
@@ -1620,11 +1611,11 @@ msgstr "Jina la mwisho"
 msgid "Alternative contact method"
 msgstr ""
 
-msgid "Other"
-msgstr "Mengineyo"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr ""
+
+msgid "Other"
+msgstr "Mengineyo"
 
 msgid "Dear {RecipientName},"
 msgstr "Kwako {RecipientName}"

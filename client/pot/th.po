@@ -5,7 +5,7 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # Arthit Suriyawongkul, 2020-2021
 # Cheer Zeng <cheerz6623@gmail.com>, 2021
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2018,2020-2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2018,2020-2022
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # Ingo Dettmar <ingo.dettmar@gmail.com>, 2014,2017
@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2018,2020-2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2018,2020-2022\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -770,12 +770,6 @@ msgstr "บริบท"
 msgid "Hidden"
 msgstr "ถูกซ่อนอยู่"
 
-msgid "Disabled"
-msgstr "ปิดใช้งาน"
-
-msgid "Enabled"
-msgstr "เปิดใช้งาน"
-
 msgid "Questionnaire"
 msgstr "แบบสอบถาม"
 
@@ -806,17 +800,17 @@ msgstr "แสดงรายละเอียดของผู้รับใ
 msgid "Enable comments"
 msgstr "เปิดใช้งานการแสดงความคิดเห็น"
 
-msgid "Allow whistleblowers to write comments"
+msgid "Allow the whistleblower to write comments"
 msgstr "อนุญาตให้ผู้แจ้งเบาะแสเขียนความคิดเห็น"
 
 msgid "Enable private messages"
 msgstr "เปิดใช้งานข้อความส่วนตัว"
 
-msgid "Allow whistleblowers to send messages"
+msgid "Allow the whistleblower to send messages"
 msgstr "อนุญาตให้ผู้แจ้งเบาะแสส่งข้อความ"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "อนุญาตให้ผู้แจ้งเบาะแสเพิ่มเอกสารแนบในรายงานที่มีอยู่"
+msgid "Allow the whistleblower to add attachments"
+msgstr "อนุญาตให้ผู้แจ้งเบาะแสแนบแฟ้มในรายงาน"
 
 msgid "Additional questionnaire"
 msgstr "แบบสอบถามเพิ่มเติม"
@@ -844,6 +838,9 @@ msgstr "เวอร์ชันซอฟต์แวร์:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "อนุญาตให้เข้าถึงได้เฉพาะจากที่อยู่ไอพีที่เจาะจง"
+
+msgid "Enabled"
+msgstr "เปิดใช้งาน"
 
 msgid "Allowed IP addresses"
 msgstr "อนุญาตที่อยู่ไอพี"
@@ -928,6 +925,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "ตัวช่วยการปรับค่าด้วยตัวเองจะแนะนำคุณไปทีละขั้น เพื่อช่วยให้คุณติดตั้ง HTTPS โดยใช้ Certificate Authority เจ้าอื่น"
 
+msgid "Disabled"
+msgstr "ปิดใช้งาน"
+
 msgid "Auto-renewal"
 msgstr "ต่ออายุอัตโนมัติ"
 
@@ -1003,6 +1003,9 @@ msgstr "อินพุทข้อความหลายบรรทัด"
 msgid "Selection box"
 msgstr "กล่องตัวเลือก"
 
+msgid "Multiple choice input"
+msgstr "อินพุทหลายตัวเลือก"
+
 msgid "Checkbox"
 msgstr "ช่องกาเครื่องหมาย"
 
@@ -1023,9 +1026,6 @@ msgstr "คอลัมน์"
 
 msgid "Width"
 msgstr "ความกว้าง"
-
-msgid "Multiple choice input"
-msgstr "อินพุทหลายตัวเลือก"
 
 msgid "Question group"
 msgstr "กลุ่มคำถาม"
@@ -1357,29 +1357,23 @@ msgstr "ใบรับนั้นไม่ถูกต้อง หรือ�
 msgid "Select a file or drag it here."
 msgstr "เลือกแฟ้มหรือลากและวางที่นี่"
 
+msgid "Size:"
+msgstr "ขนาด:"
+
 msgid "Uploading files…"
 msgstr " กำลังอัปโหลดแฟ้ม..."
 
 msgid "Upload completed successfully!"
 msgstr "อัปโหลดเสร็จแล้ว!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "เกิดข้อผิดพลาดขณะอัปโหลดแฟ้ม; ตรวจสอบรายละเอียดด้านล่าง"
-
 msgid "Estimated upload time:"
 msgstr "เวลาในการอัปโหลดโดยประมาณ:"
-
-msgid "Size:"
-msgstr "ขนาด:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "ผู้รับได้ร้องขอให้คุณกรอกแบบสอบถามเพิ่มเติม"
 
 msgid "Fill the additional questionnaire"
 msgstr "กรอกแบบสอบถามเพิ่มเติม"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "อนุญาตให้ผู้แจ้งเบาะแสเขียนความคิดเห็น"
 
 msgid "From:"
 msgstr "จาก:"
@@ -1395,12 +1389,6 @@ msgstr "วันที่อัปโหลด"
 
 msgid "File size"
 msgstr "ขนาดแฟ้ม"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "อนุญาตให้ผู้แจ้งเบาะแสแนบแฟ้มในรายงาน"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "อนุญาตให้ผู้แจ้งเบาะแสส่งข้อความ"
 
 msgid "Questionnaire answers"
 msgstr "คำตอบของแบบสอบถาม"
@@ -1615,8 +1603,11 @@ msgstr "คุณได้ดำเนินการตัวช่วยตั
 msgid "Describe your report in detail."
 msgstr "อธิบายรายงานของคุณอย่างยละเอียด"
 
-msgid "Attach files relevant to the report."
-msgstr "แนบแฟ้มที่เกี่ยวข้องกับรายงาน"
+msgid "I'm a victim"
+msgstr "ฉันเป็นผู้เสียหาย"
+
+msgid "I'm involved in the facts"
+msgstr "ฉันเป็นผู้เกี่ยวข้องในเหตุการณ์"
 
 msgid "Do you want to provide your identification information?"
 msgstr "คุณต้องการให้ข้อมูลที่ระบุตัวตนของคุณหรือไม่"
@@ -1630,11 +1621,11 @@ msgstr "นามสกุล"
 msgid "Alternative contact method"
 msgstr "วิธีติดต่ออื่น"
 
-msgid "Other"
-msgstr "อื่นๆ"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "ฉันอยากให้ติดต่อผ่านแพลตฟอร์มนี้เท่านั้น"
+
+msgid "Other"
+msgstr "อื่นๆ"
 
 msgid "Dear {RecipientName},"
 msgstr "เรียน {RecipientName}"

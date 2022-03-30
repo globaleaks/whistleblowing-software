@@ -7,13 +7,13 @@
 # Casper Petersen <casper_petersen@hotmail.com>, 2020-2021
 # Denis Smajlović <deni@deni.dk>, 2019-2020
 # Denis Smajlović <deni@deni.dk>, 2019
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2018,2020-2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2018,2020-2022
 # Noah Böhme <noah0907@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Casper Petersen <casper_petersen@hotmail.com>, 2020-2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2018,2020-2022\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -767,12 +767,6 @@ msgstr "Sammenhænge"
 msgid "Hidden"
 msgstr "Skjult"
 
-msgid "Disabled"
-msgstr "Deaktiveret"
-
-msgid "Enabled"
-msgstr "Aktiveret"
-
 msgid "Questionnaire"
 msgstr "Spørgeskema"
 
@@ -803,17 +797,17 @@ msgstr "Vis modtagerdetaljer på statussiden for indleveringen"
 msgid "Enable comments"
 msgstr "Aktivér kommentarer"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Tillad whistleblowere at skrive kommentarer"
+msgid "Allow the whistleblower to write comments"
+msgstr "Tillad whistlebloweren at skrive kommentarer"
 
 msgid "Enable private messages"
 msgstr "Aktivér private meddelelser"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Tillad whistleblowere at sende beskeder"
+msgid "Allow the whistleblower to send messages"
+msgstr "Tillad whistlebloweren at sende beskeder"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Tillad at whistleblowere kan tilføje vedhæftelser til eksisterende indsendelser"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Tillad whistlebloweren at tilføje vedhæftelser til indsendelsen"
 
 msgid "Additional questionnaire"
 msgstr "Ekstra spørgeskema"
@@ -841,6 +835,9 @@ msgstr "Software version:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Begræns adgang til specifikke IP-numre"
+
+msgid "Enabled"
+msgstr "Aktiveret"
 
 msgid "Allowed IP addresses"
 msgstr "Tilladte IP-adresser"
@@ -925,6 +922,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Den manuelle konfigurationsguide fører dig gennem opsætningen af HTTPS med en anden Certificate Authority."
 
+msgid "Disabled"
+msgstr "Deaktiveret"
+
 msgid "Auto-renewal"
 msgstr "Automatisk fornyelse"
 
@@ -1000,6 +1000,9 @@ msgstr "Flere linjers tekst-input"
 msgid "Selection box"
 msgstr "Markeringsboks"
 
+msgid "Multiple choice input"
+msgstr "Multiple-choice input"
+
 msgid "Checkbox"
 msgstr "Afkrydsningsfelt"
 
@@ -1020,9 +1023,6 @@ msgstr "Kolonne"
 
 msgid "Width"
 msgstr "Bredde"
-
-msgid "Multiple choice input"
-msgstr "Multiple-choice input"
 
 msgid "Question group"
 msgstr "Spørgsmåls-gruppe"
@@ -1354,29 +1354,23 @@ msgstr "Nøglekoden er enten forkert eller indsendelsen er udløbet."
 msgid "Select a file or drag it here."
 msgstr "Vælg en fil eller flyt den hertil."
 
+msgid "Size:"
+msgstr "Størrelse:"
+
 msgid "Uploading files…"
 msgstr "Uploader filer..."
 
 msgid "Upload completed successfully!"
 msgstr "Upload gennemført med succes!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Fejl ved upload af filer. Se nedenfor for detaljer."
-
 msgid "Estimated upload time:"
 msgstr "Anslået tid til upload:"
-
-msgid "Size:"
-msgstr "Størrelse:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Modtagere har anmodet dig om at udfylde et ekstra spørgeskema."
 
 msgid "Fill the additional questionnaire"
 msgstr "Udfyld det ekstra spørgeskema"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Tillad whistlebloweren at skrive kommentarer"
 
 msgid "From:"
 msgstr "Fra:"
@@ -1392,12 +1386,6 @@ msgstr "Upload dato"
 
 msgid "File size"
 msgstr "Filstørrelse"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Tillad whistlebloweren at tilføje vedhæftelser til indsendelsen"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Tillad whistlebloweren at sende beskeder"
 
 msgid "Questionnaire answers"
 msgstr "Svar på spørgeskemaet"
@@ -1612,8 +1600,11 @@ msgstr "Du har gennemført platformguiden."
 msgid "Describe your report in detail."
 msgstr "Beskriv din indberetning detaljeret."
 
-msgid "Attach files relevant to the report."
-msgstr "Vedhæft filer som er relevante for indberetningen."
+msgid "I'm a victim"
+msgstr "Jeg er et offer"
+
+msgid "I'm involved in the facts"
+msgstr "Jeg er involveret i de rapporterede fakta"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Ønsker du at give oplysninger om din identitet?"
@@ -1627,11 +1618,11 @@ msgstr "Efternavn"
 msgid "Alternative contact method"
 msgstr "Alternativ kontaktmetode"
 
-msgid "Other"
-msgstr "Andet"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Jeg foretrækker kun at blive kontaktet via denne platform"
+
+msgid "Other"
+msgstr "Andet"
 
 msgid "Dear {RecipientName},"
 msgstr "Kære {RecipientName},"

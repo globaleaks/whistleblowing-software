@@ -11,7 +11,7 @@
 # Erdoğan Şahin, 2016
 # Erdoğan Şahin, 2016-2017
 # Erdoğan Şahin, 2016
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # uskumru, 2013
@@ -787,12 +787,6 @@ msgstr "Kategoriler"
 msgid "Hidden"
 msgstr "Gizli"
 
-msgid "Disabled"
-msgstr "Devre Dışı"
-
-msgid "Enabled"
-msgstr "Etkin"
-
 msgid "Questionnaire"
 msgstr "Anket"
 
@@ -823,17 +817,17 @@ msgstr "Rapor durum sayfasında alıcı ayrıntılarını görüntüle"
 msgid "Enable comments"
 msgstr "Yorumları etkinleştir"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "İhbarcıların yorum yazmasına izin verin"
+msgid "Allow the whistleblower to write comments"
+msgstr "İhbarcının yorum yazmasına izin verin"
 
 msgid "Enable private messages"
 msgstr "Özel mesajları etkinleştir"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "İhbarcıların mesaj göndermesine izin verin"
+msgid "Allow the whistleblower to send messages"
+msgstr "İhbarcının mesaj göndermesine izin verin"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "İhbarcıların mevcut raporlara eklenti eklemelerine izin ver"
+msgid "Allow the whistleblower to add attachments"
+msgstr "İhbarcının rapora eklentiler eklemesine izin ver"
 
 msgid "Additional questionnaire"
 msgstr "Ek anket"
@@ -861,6 +855,9 @@ msgstr "Yazılım versiyonu"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Erişimi belirli IP adresleriyle sınırla"
+
+msgid "Enabled"
+msgstr "Etkin"
 
 msgid "Allowed IP addresses"
 msgstr "İzin verilen IP Adresleri"
@@ -945,6 +942,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Elle yapılandırma sihirbazı, HTTPS seçeneğinin alternatif bir Sertifika Otoritesiyle kurulmasında size rehberlik edecektir."
 
+msgid "Disabled"
+msgstr "Devre Dışı"
+
 msgid "Auto-renewal"
 msgstr "Otomatik yenileme"
 
@@ -1020,6 +1020,9 @@ msgstr "Çok satırlı yazı girişi"
 msgid "Selection box"
 msgstr "Seçim kutusu"
 
+msgid "Multiple choice input"
+msgstr "Çoktan seçmeli giriş"
+
 msgid "Checkbox"
 msgstr "Onay kutusu"
 
@@ -1040,9 +1043,6 @@ msgstr "Sütun"
 
 msgid "Width"
 msgstr "Genişlik"
-
-msgid "Multiple choice input"
-msgstr "Çoktan seçmeli giriş"
 
 msgid "Question group"
 msgstr "Soru grubu"
@@ -1374,29 +1374,23 @@ msgstr "Alındı bilgisi geçersiz veya raporun süresi doldu."
 msgid "Select a file or drag it here."
 msgstr "Bir dosya seçin veya buraya taşıyın."
 
+msgid "Size:"
+msgstr "Boyut:"
+
 msgid "Uploading files…"
 msgstr "Dosyalar yükleniyor..."
 
 msgid "Upload completed successfully!"
 msgstr "Yükleme başarıyla tamamlandı!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Yükleme sırasında bir hata oluştu; aşağıda detayları görebilirsiniz."
-
 msgid "Estimated upload time:"
 msgstr "Tahmini yükleme zamanı:"
-
-msgid "Size:"
-msgstr "Boyut:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Alıcılar ek bir anket doldurmanızı talep ediyorlar."
 
 msgid "Fill the additional questionnaire"
 msgstr "Ek anketi doldurun."
-
-msgid "Allow the whistleblower to write comments"
-msgstr "İhbarcının yorum yazmasına izin verin"
 
 msgid "From:"
 msgstr "Gönderen:"
@@ -1412,12 +1406,6 @@ msgstr "Yükleme Tarihi"
 
 msgid "File size"
 msgstr "Dosya Boyutu"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "İhbarcının rapora eklentiler eklemesine izin ver"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "İhbarcının mesaj göndermesine izin verin"
 
 msgid "Questionnaire answers"
 msgstr "Anket cevapları"
@@ -1632,8 +1620,11 @@ msgstr "Platform sihirbazını tamamladınız."
 msgid "Describe your report in detail."
 msgstr "Raporunuzu ayrıntılı olarak tanımlayın."
 
-msgid "Attach files relevant to the report."
-msgstr "Raporla ilişkili dosyaları ekleyin."
+msgid "I'm a victim"
+msgstr "Mağdurum"
+
+msgid "I'm involved in the facts"
+msgstr "Olaylara katıldım"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Kimlik bilgilerinizi girmek istiyor musunuz?"
@@ -1647,11 +1638,11 @@ msgstr "Soyisim"
 msgid "Alternative contact method"
 msgstr "Alternatif iletişim yöntemi"
 
-msgid "Other"
-msgstr "Diğer"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Bu platformda sadece şu şekilde iletişim kurulmasını istiyorum: "
+
+msgid "Other"
+msgstr "Diğer"
 
 msgid "Dear {RecipientName},"
 msgstr "Sayın {RecipientName},"

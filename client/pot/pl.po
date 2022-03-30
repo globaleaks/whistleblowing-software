@@ -6,7 +6,7 @@
 # Damian S., 2015
 # Damian S., 2015
 # Daniel Vaknine <vaknine.daniel@gmail.com>, 2021
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022
 # Jakub Jakubiak <jakub.jakubiak@gmail.com>, 2014
 # Jakub Jakubiak <jakub.jakubiak@gmail.com>, 2014
 # Magdalenaem <magdalena.morawiecka1@gmail.com>, 2015
@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Metafrasi <biuro@setara.eu>, 2016,2020-2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022\n"
 "Language-Team: Polish (http://www.transifex.com/otf/globaleaks/language/pl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -780,12 +780,6 @@ msgstr "Konteksty"
 msgid "Hidden"
 msgstr "Ukryty"
 
-msgid "Disabled"
-msgstr "Wyłączone"
-
-msgid "Enabled"
-msgstr "Włączone"
-
 msgid "Questionnaire"
 msgstr "Ankieta"
 
@@ -816,17 +810,17 @@ msgstr "Pokaż szczegóły odbiorców na stronie statusu zgłoszenia"
 msgid "Enable comments"
 msgstr "Włącz komentarze"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Sygnaliści mogą pisać komentarze"
+msgid "Allow the whistleblower to write comments"
+msgstr "Sygnalista może pisać komentarze"
 
 msgid "Enable private messages"
 msgstr "Włącz wiadomości prywatne"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Sygnaliści mogą wysyłać wiadomości"
+msgid "Allow the whistleblower to send messages"
+msgstr "Sygnalista może wysyłać wiadomości"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Sygnaliści mogą dodawać załączniki do istniejących zgłoszeń"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Sygnaliści mogą dodawać załączniki"
 
 msgid "Additional questionnaire"
 msgstr "Dodatkowa ankieta"
@@ -854,6 +848,9 @@ msgstr "Wersja oprogramowania:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Ogranicz dostęp do określonych adresów IP"
+
+msgid "Enabled"
+msgstr "Włączone"
 
 msgid "Allowed IP addresses"
 msgstr "Dozwolone adresy IP"
@@ -938,6 +935,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Kreator konfiguracji ręcznej przeprowadzi Cię przez konfigurację HTTPS od alternatywnego organu certyfikującego."
 
+msgid "Disabled"
+msgstr "Wyłączone"
+
 msgid "Auto-renewal"
 msgstr "Automatyczne odnawianie"
 
@@ -1013,6 +1013,9 @@ msgstr "Wielolinijkowe pole z tekstem"
 msgid "Selection box"
 msgstr "Pole wyboru"
 
+msgid "Multiple choice input"
+msgstr "Pole wielokrotnego wyboru"
+
 msgid "Checkbox"
 msgstr "Pole wyboru"
 
@@ -1033,9 +1036,6 @@ msgstr "Kolumna"
 
 msgid "Width"
 msgstr "Szerokość"
-
-msgid "Multiple choice input"
-msgstr "Pole wielokrotnego wyboru"
 
 msgid "Question group"
 msgstr "Grupa pytań"
@@ -1367,29 +1367,23 @@ msgstr "Kod zgłoszenia jest nieprawidłowy lub zgłoszenie wygasło."
 msgid "Select a file or drag it here."
 msgstr "Wybierz lub przeciągnij plik."
 
+msgid "Size:"
+msgstr "Wielkość:"
+
 msgid "Uploading files…"
 msgstr "Ładowanie plików..."
 
 msgid "Upload completed successfully!"
 msgstr "Przesyłanie zakończono pomyślnie."
 
-msgid "Error while uploading files; check below for details."
-msgstr "Błąd przesyłania plików; zobacz niżej szczegóły."
-
 msgid "Estimated upload time:"
 msgstr "Szacowany czas przesyłania:"
-
-msgid "Size:"
-msgstr "Wielkość:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Odbiorcy proszą cię byś wypełnił/a dodatkową ankietę."
 
 msgid "Fill the additional questionnaire"
 msgstr "Wypełnij dodatkową ankietę"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Sygnalista może pisać komentarze"
 
 msgid "From:"
 msgstr "Od:"
@@ -1405,12 +1399,6 @@ msgstr "Data Wysłania"
 
 msgid "File size"
 msgstr "Rozmiar Pliku"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Sygnaliści mogą dodawać załączniki"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Sygnalista może wysyłać wiadomości"
 
 msgid "Questionnaire answers"
 msgstr "Odpowiedzi ankiety"
@@ -1625,8 +1613,11 @@ msgstr "Skończyłeś(aś) kroki kreatora platformy."
 msgid "Describe your report in detail."
 msgstr "Opisz szczegółowo swoje zgłoszenie."
 
-msgid "Attach files relevant to the report."
-msgstr "Dodaj załączniki do zgłoszenia"
+msgid "I'm a victim"
+msgstr "Jestem ofiarą."
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "Czy chcesz podać nam dane identyfikacyjne?"
@@ -1640,11 +1631,11 @@ msgstr "Nazwisko"
 msgid "Alternative contact method"
 msgstr "Alternatywna metoda kontaktowania się"
 
-msgid "Other"
-msgstr "Inne"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Wolę, żeby kontaktowano się ze mną tylko przez tę platformę."
+
+msgid "Other"
+msgstr "Inne"
 
 msgid "Dear {RecipientName},"
 msgstr "Szanowny(a) {RecipientName},"

@@ -5,7 +5,7 @@
 # Annie Bridges <anniebridges90@gmail.com>, 2014
 # Bogdan Lytvynovskyi <bogdan.lytvynovskyi@gmail.com>, 2014
 # EugeneNemo <eugeye@gmail.com>, 2014
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018,2020-2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018,2020-2022
 # jonny_nut, 2014
 # jonny_nut, 2014
 # kyrylkov <kyrylkov@gmail.com>, 2013,2015
@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Любомир <n.lyubomyr@gmail.com>, 2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018,2020-2022\n"
 "Language-Team: Ukrainian (http://www.transifex.com/otf/globaleaks/language/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -781,12 +781,6 @@ msgstr "Контексти"
 msgid "Hidden"
 msgstr "Прихований"
 
-msgid "Disabled"
-msgstr "Вимкнено"
-
-msgid "Enabled"
-msgstr "Увімкнений"
-
 msgid "Questionnaire"
 msgstr "Анкета"
 
@@ -817,17 +811,17 @@ msgstr "Показати дані отримувача на сторінці с�
 msgid "Enable comments"
 msgstr "Увімкнути коментарі"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Дозволити інформаторам коментувати"
+msgid "Allow the whistleblower to write comments"
+msgstr "Дозволити інформатору коментувати"
 
 msgid "Enable private messages"
 msgstr "Увімкнути приватні повідомлення"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Дозволити інформаторам надсилати повідомлення"
+msgid "Allow the whistleblower to send messages"
+msgstr "Дозволити інформатору надсилати повідомлення"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Дозволити інформаторам додавати файли з матеріалами до існуючих звітів"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Дозволити інформаторам додавати файли до звіту"
 
 msgid "Additional questionnaire"
 msgstr "Додаткова анкета"
@@ -855,6 +849,9 @@ msgstr "Версія програмного забезпечення:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Обмежити доступу до певних IP-адрес"
+
+msgid "Enabled"
+msgstr "Увімкнений"
 
 msgid "Allowed IP addresses"
 msgstr "Дозволені IP-адреси"
@@ -939,6 +936,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Майстер ручної настройки проведе вас через процес налаштування HTTPS з альтернативного Центру Сертифікації."
 
+msgid "Disabled"
+msgstr "Вимкнено"
+
 msgid "Auto-renewal"
 msgstr "Автоматичне оновлення"
 
@@ -1014,6 +1014,9 @@ msgstr "Введення тексту багатьма рядками"
 msgid "Selection box"
 msgstr "Поле вибору"
 
+msgid "Multiple choice input"
+msgstr "Ввід з множинним вибором варіантів"
+
 msgid "Checkbox"
 msgstr " Прапорець"
 
@@ -1034,9 +1037,6 @@ msgstr "Колонка"
 
 msgid "Width"
 msgstr "Ширина"
-
-msgid "Multiple choice input"
-msgstr "Ввід з множинним вибором варіантів"
 
 msgid "Question group"
 msgstr "Група питань"
@@ -1368,29 +1368,23 @@ msgstr "Квитанція недійсна, або термін дії звіт
 msgid "Select a file or drag it here."
 msgstr "Виберіть файл або перетягніть його сюди."
 
+msgid "Size:"
+msgstr "Розмір:"
+
 msgid "Uploading files…"
 msgstr "Файли завантажуються…"
 
 msgid "Upload completed successfully!"
 msgstr "Завантаженння успішно завершено!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Помилка при завантаженні файлів; перевірте подробиці нижче."
-
 msgid "Estimated upload time:"
 msgstr "Приблизний час завантаження"
-
-msgid "Size:"
-msgstr "Розмір:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Отримувачі попросили вас заповнити додаткову анкету."
 
 msgid "Fill the additional questionnaire"
 msgstr "Заповнити додаткову анкету"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Дозволити інформатору коментувати"
 
 msgid "From:"
 msgstr "Від:"
@@ -1406,12 +1400,6 @@ msgstr "Дата завантаження"
 
 msgid "File size"
 msgstr "Розмір файлу"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Дозволити інформаторам додавати файли до звіту"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Дозволити інформатору надсилати повідомлення"
 
 msgid "Questionnaire answers"
 msgstr "Відповіді на питання анкети"
@@ -1626,8 +1614,11 @@ msgstr "Ви закінчили роботу з майстром налашту�
 msgid "Describe your report in detail."
 msgstr "Опишіть наданий вами звіт детальніше"
 
-msgid "Attach files relevant to the report."
-msgstr "Прикріпити файли, що пов'язані зі звітом."
+msgid "I'm a victim"
+msgstr "Я жертва"
+
+msgid "I'm involved in the facts"
+msgstr "Я причетний до фактів"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Ви бажаєте залишити інформацію про себе?"
@@ -1641,11 +1632,11 @@ msgstr "Прізвище"
 msgid "Alternative contact method"
 msgstr "Альтернативні контактні дані "
 
-msgid "Other"
-msgstr "Інше"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Я вважаю за краще контактувати лише через цю платформу"
+
+msgid "Other"
+msgstr "Інше"
 
 msgid "Dear {RecipientName},"
 msgstr "Шановний {RecipientName},"

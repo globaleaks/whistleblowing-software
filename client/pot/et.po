@@ -1,12 +1,12 @@
 # 
 # Translators:
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022
 # Max Moiseev <max.moiseev@chamber.fi>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Max Moiseev <max.moiseev@chamber.fi>, 2020\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022\n"
 "Language-Team: Estonian (http://www.transifex.com/otf/globaleaks/language/et/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -760,12 +760,6 @@ msgstr "Kontekstid"
 msgid "Hidden"
 msgstr "Peidetud"
 
-msgid "Disabled"
-msgstr "Keelatud"
-
-msgid "Enabled"
-msgstr "Lubatud"
-
 msgid "Questionnaire"
 msgstr "Ankeet"
 
@@ -796,17 +790,17 @@ msgstr "Näita saajate üksikasju teate staatuselehel"
 msgid "Enable comments"
 msgstr "Luba kommentaarid"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Luba vihjeandjatel kommentaare kirjutada"
+msgid "Allow the whistleblower to write comments"
+msgstr "Luba vihjeandjal kommentaare kirjutada"
 
 msgid "Enable private messages"
 msgstr "Luba privaatsõnumid"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Luba vihjeandjatel sõnumeid saata"
+msgid "Allow the whistleblower to send messages"
+msgstr "Luba vihjeandjal sõnumeid saata"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Luba vihjeandjatel olemasolevatele teadetele manuseid lisada"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Luba vihjeandjal teatele manuseid lisada"
 
 msgid "Additional questionnaire"
 msgstr "Täiendav ankeet"
@@ -834,6 +828,9 @@ msgstr "Tarkvara versioon:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Anna juurdepääsuõigus ainult kindlatele IP-aadressidele"
+
+msgid "Enabled"
+msgstr "Lubatud"
 
 msgid "Allowed IP addresses"
 msgstr "Lubatud IP-aadressid"
@@ -918,6 +915,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Manuaalse seadistamise viisard juhatab teid läbi alternatiivse sertimisasutuse HTTPS-i seadistamise protsessi"
 
+msgid "Disabled"
+msgstr "Keelatud"
+
 msgid "Auto-renewal"
 msgstr "Automaatne uuendamine"
 
@@ -993,6 +993,9 @@ msgstr "Teksti sisestus mitmel real"
 msgid "Selection box"
 msgstr "Valikukast"
 
+msgid "Multiple choice input"
+msgstr "Valikvastused"
+
 msgid "Checkbox"
 msgstr "Märkeruut"
 
@@ -1013,9 +1016,6 @@ msgstr "Veerg"
 
 msgid "Width"
 msgstr "Laius"
-
-msgid "Multiple choice input"
-msgstr "Valikvastused"
 
 msgid "Question group"
 msgstr "Küsimuste rühm"
@@ -1347,29 +1347,23 @@ msgstr "Kättesaamiskood on kehtetu või teade on aegunud."
 msgid "Select a file or drag it here."
 msgstr "Valige fail või lohistage see siia."
 
+msgid "Size:"
+msgstr "Maht:"
+
 msgid "Uploading files…"
 msgstr "Failide üleslaadimine..."
 
 msgid "Upload completed successfully!"
 msgstr "Üleslaadimine õnnestus!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Tõrge failide üleslaadimisel; täpsem teave allpool."
-
 msgid "Estimated upload time:"
 msgstr "Hinnanguline üleslaadimisaeg:"
-
-msgid "Size:"
-msgstr "Maht:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Saajad on soovinud, et täidaksite täiendava ankeedi."
 
 msgid "Fill the additional questionnaire"
 msgstr "Täiendavat ankeeti täitma"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Luba vihjeandjal kommentaare kirjutada"
 
 msgid "From:"
 msgstr "Saatja:"
@@ -1385,12 +1379,6 @@ msgstr "Üleslaadimise kuupäev"
 
 msgid "File size"
 msgstr "Failimaht"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Luba vihjeandjal teatele manuseid lisada"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Luba vihjeandjal sõnumeid saata"
 
 msgid "Questionnaire answers"
 msgstr "Ankeetide vastused"
@@ -1605,8 +1593,11 @@ msgstr "Olete platvormi viisardi läbinud."
 msgid "Describe your report in detail."
 msgstr "Kirjeldage oma teadet üksikasjalikult."
 
-msgid "Attach files relevant to the report."
-msgstr "Lisage teatega seotud faile."
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "Kas soovite esitada oma isikuandmeid?"
@@ -1620,11 +1611,11 @@ msgstr "Perekonnanimi"
 msgid "Alternative contact method"
 msgstr ""
 
-msgid "Other"
-msgstr "Muu"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr ""
+
+msgid "Other"
+msgstr "Muu"
 
 msgid "Dear {RecipientName},"
 msgstr "Austatud {RecipientName}!"

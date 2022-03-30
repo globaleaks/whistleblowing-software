@@ -1,12 +1,12 @@
 # 
 # Translators:
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022
 # Tughluq Qutluq <tugkutluk@gmail.com>, 2021-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Tughluq Qutluq <tugkutluk@gmail.com>, 2021-2022\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022\n"
 "Language-Team: Uighur (Latin) (http://www.transifex.com/otf/globaleaks/language/ug@Latin/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -760,12 +760,6 @@ msgstr "Mezmunlar"
 msgid "Hidden"
 msgstr "Yoshurun"
 
-msgid "Disabled"
-msgstr "Cheklen’gen"
-
-msgid "Enabled"
-msgstr "Qozghitilghan"
-
 msgid "Questionnaire"
 msgstr "Ray sinash"
 
@@ -796,17 +790,17 @@ msgstr "Tapshuriwalghuchining tepsili ehwalini melumatning halet bétide körset
 msgid "Enable comments"
 msgstr "Bahalashni qozghat"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Bash qilghuchilarning baha yézishigha ruxset qil"
+msgid "Allow the whistleblower to write comments"
+msgstr "Pash qilghuchining baha yézishige ruxset qil"
 
 msgid "Enable private messages"
 msgstr "Shexsiy uchurlarni qozghat"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Pash qilghuchilarning uchur ewetishige ruxset qil"
+msgid "Allow the whistleblower to send messages"
+msgstr "Pash qilghuchining uchur ewetishige ruxset qil"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Pash qilghuchilarning mewjut melumatlarning üstige qoshumchilarni qoshushigha ruxset qil"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Pash qilghuchining melumatqa qoshumche qisturishigha ruxset qil"
 
 msgid "Additional questionnaire"
 msgstr "Qoshumche ray sinash"
@@ -834,6 +828,9 @@ msgstr "Yumshaq détal neshri:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Ziyaret qilishni belgilen’gen IP adrésliri bilenla chekle"
+
+msgid "Enabled"
+msgstr "Qozghitilghan"
 
 msgid "Allowed IP addresses"
 msgstr "Ruxset qilin’ghan IP adrésliri"
@@ -918,6 +915,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Qolda seplesh séhirgeri sizning HTTPS seplimisni bashqa bir guwahname orgini arqiliq seplishingizge yétekchilik qilidu."
 
+msgid "Disabled"
+msgstr "Cheklen’gen"
+
 msgid "Auto-renewal"
 msgstr "Aptumatik yéngilash"
 
@@ -993,6 +993,9 @@ msgstr "Köp qurluq tékist kirgüzüsh"
 msgid "Selection box"
 msgstr "Tallash ramkisi"
 
+msgid "Multiple choice input"
+msgstr "Köptin tallap kirgüzüsh"
+
 msgid "Checkbox"
 msgstr "Testiq ramkisi"
 
@@ -1013,9 +1016,6 @@ msgstr "Ston"
 
 msgid "Width"
 msgstr "Kengliki"
-
-msgid "Multiple choice input"
-msgstr "Köptin tallap kirgüzüsh"
 
 msgid "Question group"
 msgstr "Su’al guruppisi"
@@ -1347,29 +1347,23 @@ msgstr "Taloningz inawetsiz yaki melumatingizning sürüki toshüp ketken."
 msgid "Select a file or drag it here."
 msgstr "Bir höjjet tallang yaki bu yerge sörep tashlang."
 
+msgid "Size:"
+msgstr "Chongluqi:"
+
 msgid "Uploading files…"
 msgstr "Yükliniwatqan höjjetler…"
 
 msgid "Upload completed successfully!"
 msgstr "Yüklesh muweppiqiyetlik tamamlandi!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Höjjetlerni yüklewatqanda xataliq chiqti, tepsilatini töwendin tekshürüng."
-
 msgid "Estimated upload time:"
 msgstr "Texminen yüklesh waqti:"
-
-msgid "Size:"
-msgstr "Chongluqi:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Tapshuriwalghuchilar sizning bir qoshumche ray sinashni toshquzishingizni telep qildi."
 
 msgid "Fill the additional questionnaire"
 msgstr "Bu qoshumche ray sinashni toshquz"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Pash qilghuchining baha yézishige ruxset qil"
 
 msgid "From:"
 msgstr "Ewetküchi:"
@@ -1385,12 +1379,6 @@ msgstr "Yüklen’gen chésla"
 
 msgid "File size"
 msgstr "Höjjet chongluqi"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Pash qilghuchining melumatqa qoshumche qisturishigha ruxset qil"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Pash qilghuchining uchur ewetishige ruxset qil"
 
 msgid "Questionnaire answers"
 msgstr "Ray sinash jawabliri"
@@ -1605,8 +1593,11 @@ msgstr "Supa séhirgerini pütttürdingiz."
 msgid "Describe your report in detail."
 msgstr "Melumatingizni tepsiliy chüshendürüng."
 
-msgid "Attach files relevant to the report."
-msgstr "Melumatqa munasiwetlik höjjetlerni qoshung."
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "Kimlik uchurliringizni teminleshni xalamsiz?"
@@ -1620,11 +1611,11 @@ msgstr "Familisi"
 msgid "Alternative contact method"
 msgstr "Bashqa alaqe usuli"
 
-msgid "Other"
-msgstr "Bashqa"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Peqetla bu supa arqiliq méning bilen alaqilashsun"
+
+msgid "Other"
+msgstr "Bashqa"
 
 msgid "Dear {RecipientName},"
 msgstr "‏Qedirlik {RecipientName},"

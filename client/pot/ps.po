@@ -1,12 +1,12 @@
 # 
 # Translators:
 # Afghan Translation Association (ATA) <atranslationa@gmail.com>, 2021
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022\n"
 "Language-Team: Pashto (http://www.transifex.com/otf/globaleaks/language/ps/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -760,12 +760,6 @@ msgstr "زمینې"
 msgid "Hidden"
 msgstr "پټ شوي"
 
-msgid "Disabled"
-msgstr "غیرفعال"
-
-msgid "Enabled"
-msgstr "فعال"
-
 msgid "Questionnaire"
 msgstr "پوښتنلیک"
 
@@ -796,17 +790,17 @@ msgstr "د تر لاسه کوونکي جزئیات د رپوټ د پاڼې په 
 msgid "Enable comments"
 msgstr "تبصرې فعالې کړئ"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "افشاګرانو ته اجازه ورکړئ تر څو تبصرې ولیکي"
+msgid "Allow the whistleblower to write comments"
+msgstr "افشاګر ته اجازه ورکړئ تر څو تبصرې ولیکي"
 
 msgid "Enable private messages"
 msgstr "خصوصي پیغامونه فعال کړئ"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "افشاګرانو ته اجازه ورکړئ تر څو پیغامونه ولیږي"
+msgid "Allow the whistleblower to send messages"
+msgstr "افشاګر ته اجازه ورکړئ تر څو پیغامونه ولیږي"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "افشاګرانو ته اجازه ورکړئ تر څو له شته رپوټونو سره ضمیمې اضافه کړي"
+msgid "Allow the whistleblower to add attachments"
+msgstr "افشاګر ته اجازه ورکړئ چې له دې رپوټ سره ضمیمې اضافه کړي"
 
 msgid "Additional questionnaire"
 msgstr "اضافي پوښتنلیکونه"
@@ -834,6 +828,9 @@ msgstr "د سافټ ویر نسخه:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "مشخص د IP پتو ته لاسرسی محدود کړئ"
+
+msgid "Enabled"
+msgstr "فعال"
 
 msgid "Allowed IP addresses"
 msgstr "مجاز IP پتې"
@@ -918,6 +915,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "د لاسي کانفیګوریشن ویزرډ به تاسې له یوه بدیل Certificate Authority څخه د HTTPS نصبولو ته هدایت کړي."
 
+msgid "Disabled"
+msgstr "غیرفعال"
+
 msgid "Auto-renewal"
 msgstr "اتومات نوي کېدل"
 
@@ -993,6 +993,9 @@ msgstr "د ګڼو کرښو متن ورودي"
 msgid "Selection box"
 msgstr "د انتخابولو باکس"
 
+msgid "Multiple choice input"
+msgstr "ګڼ غوراویز ورودي"
+
 msgid "Checkbox"
 msgstr "چیک باکس"
 
@@ -1013,9 +1016,6 @@ msgstr "ستون"
 
 msgid "Width"
 msgstr "سور"
-
-msgid "Multiple choice input"
-msgstr "ګڼ غوراویز ورودي"
 
 msgid "Question group"
 msgstr "د پوښتې ګروپ"
@@ -1347,29 +1347,23 @@ msgstr "یا رسید ناسم دی یا رپوټ انقضاء شوی."
 msgid "Select a file or drag it here."
 msgstr "یو فایل وټاکئ یا دلته یې را کش کړئ."
 
+msgid "Size:"
+msgstr "اندازه:"
+
 msgid "Uploading files…"
 msgstr "د فایلونو پورته کول..."
 
 msgid "Upload completed successfully!"
 msgstr "پورته کول په بریا سره بشپړ شو!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "د فایلونو د پورته کولو په وخت کې تیروتنه شوې؛ د جزئیاتو لپاره لاندې وګورئ."
-
 msgid "Estimated upload time:"
 msgstr "د پورته کولو اټکلیز وخت:"
-
-msgid "Size:"
-msgstr "اندازه:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "تر لاسه کوونکو له تاسې غوښتي تر څو یو اضافي پوښتنلیک ډک کړي."
 
 msgid "Fill the additional questionnaire"
 msgstr "اضافي پوښتنلیک ډک کړئ"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "افشاګر ته اجازه ورکړئ تر څو تبصرې ولیکي"
 
 msgid "From:"
 msgstr "له خوا:"
@@ -1385,12 +1379,6 @@ msgstr "د نېټې پورته کول"
 
 msgid "File size"
 msgstr "د فایل اندازه"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "افشاګر ته اجازه ورکړئ چې له دې رپوټ سره ضمیمې اضافه کړي"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "افشاګر ته اجازه ورکړئ تر څو پیغامونه ولیږي"
 
 msgid "Questionnaire answers"
 msgstr "د پوښتنلیک ځوابونه"
@@ -1605,8 +1593,11 @@ msgstr "تاسې د پلټفارم ویزرډ بشپړ کړ."
 msgid "Describe your report in detail."
 msgstr "خپل رپوټ په جزئیاتو سره تشریح کړئ."
 
-msgid "Attach files relevant to the report."
-msgstr "له رپوټ سره اړوند فایلونه ضمیمه کړئ."
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "ایا غواړئ چې خپل د پیژندګلوي معلومات ورکړئ؟"
@@ -1620,11 +1611,11 @@ msgstr "تخلص"
 msgid "Alternative contact method"
 msgstr "د بدیلې اړیکې میتود"
 
-msgid "Other"
-msgstr "نور"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "زه غواړم چې یوازې د همدې پلټفارم له لارې را سره اړیکه ونیول شي"
+
+msgid "Other"
+msgstr "نور"
 
 msgid "Dear {RecipientName},"
 msgstr "ښاغلی/اغلې {RecipientName}،"

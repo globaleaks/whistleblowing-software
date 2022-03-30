@@ -2,13 +2,13 @@
 # Translators:
 # Allan Nordhøy <epost@anotheragency.no>, 2014-2015
 # Allan Nordhøy <epost@anotheragency.no>, 2014-2018
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2022
 # Allan Nordhøy <epost@anotheragency.no>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>, 2014-2018\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2022\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://www.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -762,12 +762,6 @@ msgstr "Bindeleddsinformasjon"
 msgid "Hidden"
 msgstr "Skjult"
 
-msgid "Disabled"
-msgstr "Deaktivert"
-
-msgid "Enabled"
-msgstr "Aktivert"
-
 msgid "Questionnaire"
 msgstr "Spørreskjema"
 
@@ -798,17 +792,17 @@ msgstr "Vis detaljer om mottakeren på statussiden til rapporten"
 msgid "Enable comments"
 msgstr "Aktiver kommentarer"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Tillat fløyteblåsere å skrive kommentarer"
+msgid "Allow the whistleblower to write comments"
+msgstr "Tillat fløyteblåseren å skrive kommentarer"
 
 msgid "Enable private messages"
 msgstr "Aktiver privat korrespondanse"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Tillat fløyteblåsere å sende meldinger"
+msgid "Allow the whistleblower to send messages"
+msgstr "Tillat fløyteblåseren å sende meldinger"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "La fløyteblåsere legge til vedlegg i eksisterende rapporter"
+msgid "Allow the whistleblower to add attachments"
+msgstr "La fløyteblåseren legge til vedlegg i rapporten"
 
 msgid "Additional questionnaire"
 msgstr "Ekstra spørreskjema"
@@ -836,6 +830,9 @@ msgstr "Programvareversjon:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Begrens tilgangen til bestemte IP-adresser"
+
+msgid "Enabled"
+msgstr "Aktivert"
 
 msgid "Allowed IP addresses"
 msgstr "Tillatte IP-adresser"
@@ -920,6 +917,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Veiviseren vil geleide deg gjennom manuelt oppsett av HTTPS og validering derav på vegne av en alternativ sertifikatsmyndighet."
 
+msgid "Disabled"
+msgstr "Deaktivert"
+
 msgid "Auto-renewal"
 msgstr "Automatisk fornyelse"
 
@@ -995,6 +995,9 @@ msgstr "Flerlinjes tekstfelt for inndata"
 msgid "Selection box"
 msgstr "Rullegardinsvalg"
 
+msgid "Multiple choice input"
+msgstr "Flervalg"
+
 msgid "Checkbox"
 msgstr "Avkryssingsboks"
 
@@ -1015,9 +1018,6 @@ msgstr "Kolonne"
 
 msgid "Width"
 msgstr "Bredde"
-
-msgid "Multiple choice input"
-msgstr "Flervalg"
 
 msgid "Question group"
 msgstr "Spørsmålsgruppe"
@@ -1349,29 +1349,23 @@ msgstr "Kvitteringen er ugyldig eller rapporten er utløpt."
 msgid "Select a file or drag it here."
 msgstr "Velg en fil, eller dra den her."
 
+msgid "Size:"
+msgstr "Størrelse:"
+
 msgid "Uploading files…"
 msgstr "Laster opp filer…"
 
 msgid "Upload completed successfully!"
 msgstr "Opplasting fullført."
 
-msgid "Error while uploading files; check below for details."
-msgstr "Feil under opplasting av filer; se detaljer nedenfor."
-
 msgid "Estimated upload time:"
 msgstr "Forventet opplastingstid:"
-
-msgid "Size:"
-msgstr "Størrelse:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Mottakere har bedt deg om å fylle ut et annet spørreskjema."
 
 msgid "Fill the additional questionnaire"
 msgstr "Fyll ut tilleggsspørreskjemaet"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Tillat fløyteblåseren å skrive kommentarer"
 
 msgid "From:"
 msgstr "Fra:"
@@ -1387,12 +1381,6 @@ msgstr "Opplastingsdato"
 
 msgid "File size"
 msgstr "Filstørrelse"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "La fløyteblåseren legge til vedlegg i rapporten"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Tillat fløyteblåseren å sende meldinger"
 
 msgid "Questionnaire answers"
 msgstr "Svar oppgitt for spørreskjema"
@@ -1607,8 +1595,11 @@ msgstr "Du har fullført plattformsveiviseren."
 msgid "Describe your report in detail."
 msgstr "Gi en detaljert beskrivelse av rapporten din"
 
-msgid "Attach files relevant to the report."
-msgstr "Legg ved relevante filer til rapporten."
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "Ønsker du å oppgi identifiserbar informasjon?"
@@ -1622,11 +1613,11 @@ msgstr "Etternavn"
 msgid "Alternative contact method"
 msgstr "Alternativ kontaktmetode"
 
-msgid "Other"
-msgstr "Annet"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Jeg foretrekker å bli kontaktet kun gjennom denne plattformen"
+
+msgid "Other"
+msgstr "Annet"
 
 msgid "Dear {RecipientName},"
 msgstr "Kjære {RecipientName},"

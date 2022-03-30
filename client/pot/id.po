@@ -12,7 +12,7 @@
 # Edo Imantaka, 2021
 # Evanna Audrey <evanna.n.audrey@gmail.com>, 2021
 # Fransisca Susanti <susanti@jaring.id>, 2018
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017-2018,2020-2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017-2018,2020-2022
 # Helen Zhang <helen13zhang@gmail.com>, 2018
 # Ibnu Daru Aji, 2015
 # Ibnu Daru Aji, 2015
@@ -31,7 +31,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017-2018,2020-2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017-2018,2020-2022\n"
 "Language-Team: Indonesian (http://www.transifex.com/otf/globaleaks/language/id/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -785,12 +785,6 @@ msgstr "Konteks"
 msgid "Hidden"
 msgstr "Tersembunyi"
 
-msgid "Disabled"
-msgstr "Nonaktifkan"
-
-msgid "Enabled"
-msgstr "Aktifkan"
-
 msgid "Questionnaire"
 msgstr "Kuesioner"
 
@@ -821,17 +815,17 @@ msgstr "Tunjukkan detail penerima pada laman status laporan"
 msgid "Enable comments"
 msgstr "Aktifkan komentar"
 
-msgid "Allow whistleblowers to write comments"
+msgid "Allow the whistleblower to write comments"
 msgstr "Izinkan informan publik untuk menulis komentar"
 
 msgid "Enable private messages"
 msgstr "Aktifkan pesan pribadi"
 
-msgid "Allow whistleblowers to send messages"
+msgid "Allow the whistleblower to send messages"
 msgstr "Izinkan informan publik untuk mengirim pesan"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Izinkan informan publik untuk menambahkan lampiran pada laporan yang sudah ada"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Izinkan informan publik untuk menambahkan lampiran ke dalam laporan"
 
 msgid "Additional questionnaire"
 msgstr "Kuesioner tambahan"
@@ -859,6 +853,9 @@ msgstr "Versi perangkat lunak: "
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Batasi akses ke alamat IP tertentu"
+
+msgid "Enabled"
+msgstr "Aktifkan"
 
 msgid "Allowed IP addresses"
 msgstr "Alamat IP yang diizinkan"
@@ -943,6 +940,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Wisaya konfigurasi manual akan memandu Anda ke pengaturan HTTPS dari otoritas yang mengeluarkan sertifikat alternatif. "
 
+msgid "Disabled"
+msgstr "Nonaktifkan"
+
 msgid "Auto-renewal"
 msgstr "Pembaruan otomatis"
 
@@ -1018,6 +1018,9 @@ msgstr "Masukan teks lebih dari satu baris"
 msgid "Selection box"
 msgstr "Kotak pilihan"
 
+msgid "Multiple choice input"
+msgstr "Masukan pilihan ganda"
+
 msgid "Checkbox"
 msgstr "Kotak centang"
 
@@ -1038,9 +1041,6 @@ msgstr "Kolom"
 
 msgid "Width"
 msgstr "Lebar"
-
-msgid "Multiple choice input"
-msgstr "Masukan pilihan ganda"
 
 msgid "Question group"
 msgstr "Kelompok pertanyaan"
@@ -1372,29 +1372,23 @@ msgstr "Tanda terima tidak valid atau laporan telah kedaluwarsa."
 msgid "Select a file or drag it here."
 msgstr "Pilih berkas atau seret ke sini."
 
+msgid "Size:"
+msgstr "Ukuran:"
+
 msgid "Uploading files…"
 msgstr "Mengunggah berkas..."
 
 msgid "Upload completed successfully!"
 msgstr "Unggahan selesai dengan sukses!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Gagal saat mengunggah berkas; cek di bawah untuk lebih detail"
-
 msgid "Estimated upload time:"
 msgstr "Perkiraan waktu mengunggah:"
-
-msgid "Size:"
-msgstr "Ukuran:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Penerima meminta Anda untuk mengisi kuesioner tambahan."
 
 msgid "Fill the additional questionnaire"
 msgstr "Isi kuesioner tambahan"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Izinkan informan publik untuk menulis komentar"
 
 msgid "From:"
 msgstr "Dari:"
@@ -1410,12 +1404,6 @@ msgstr "Tanggal unggahan"
 
 msgid "File size"
 msgstr "Ukuran berkas"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Izinkan informan publik untuk menambahkan lampiran ke dalam laporan"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Izinkan informan publik untuk mengirim pesan"
 
 msgid "Questionnaire answers"
 msgstr "Jawaban kuesioner"
@@ -1630,8 +1618,11 @@ msgstr "Anda telah menyelesaikan wisaya platform."
 msgid "Describe your report in detail."
 msgstr "Deskripsikan laporan Anda secara detail."
 
-msgid "Attach files relevant to the report."
-msgstr "Lampirkan berkas yang relevan dengan laporan."
+msgid "I'm a victim"
+msgstr "Saya korban"
+
+msgid "I'm involved in the facts"
+msgstr "Saya terlibat dalam insiden itu"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Apakah Anda ingin memberikan informasi identifikasi Anda?"
@@ -1645,11 +1636,11 @@ msgstr "Nama Belakang"
 msgid "Alternative contact method"
 msgstr "Kontak alternatif"
 
-msgid "Other"
-msgstr "Lainnya"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Saya memilih untuk dihubungi hanya melalui platform ini"
+
+msgid "Other"
+msgstr "Lainnya"
 
 msgid "Dear {RecipientName},"
 msgstr "Yang terhormat {RecipientName},"

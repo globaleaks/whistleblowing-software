@@ -3,14 +3,14 @@
 # Abdulla Shaheed <evenexzero@gmail.com>, 2019
 # Afrah Mohamed <myza.afrah@gmail.com>, 2020
 # Ahmed Naushad <nwshadh@gmail.com>, 2020
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2020-2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2020-2022
 # Hussain Iyad <huseniyad@gmail.com>, 2020
 # Ruba Ali <rubaa.ali@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Ruba Ali <rubaa.ali@gmail.com>, 2020\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2020-2022\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -764,12 +764,6 @@ msgstr "ރިޢާޔަތްކުރެވޭ ހާލަތު"
 msgid "Hidden"
 msgstr "ފޮރުވާފައި"
 
-msgid "Disabled"
-msgstr "ހުއްޓުވާލުން"
-
-msgid "Enabled"
-msgstr "ހިންގުވާލުން"
-
 msgid "Questionnaire"
 msgstr "ސުވާލުކަރުދާސް"
 
@@ -800,17 +794,17 @@ msgstr "ރިޕޯޓުގެ ސްޓޭޓަސް ސަފްޙާގެ ރިޕޯޓް ލިބޭ
 msgid "Enable comments"
 msgstr "ކޮމެންޓްސް އޮންކުރަން"
 
-msgid "Allow whistleblowers to write comments"
+msgid "Allow the whistleblower to write comments"
 msgstr "ކޮމެންޓްސް ލިޔުމުގެ ޙުއްދަ ވިސިލްބްލޯވާރ އަށް ދިނުމަށް. "
 
 msgid "Enable private messages"
 msgstr "ވަކިން މެސެޖުކުރެއްވުމަށް މިބައި  އިޚްިޔާރުކުރައްވާ"
 
-msgid "Allow whistleblowers to send messages"
+msgid "Allow the whistleblower to send messages"
 msgstr "މެސެޖު ފޮނުވުމުގެ ޙުއްދަ ވިސިލްބްލޯވާރ އަށް ދިނުމަށް. "
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "ކުރީގެ ރިޕޯޓްތަކުގައި އާ ފައިލްތަށް ހިމެނުމުގެ ޙުއްދަ ވިސިލްބްލޯވާރސް އަށް ދިނުމަށް. "
+msgid "Allow the whistleblower to add attachments"
+msgstr "ރިޕޯޓުގައި އާ ފައިލްތަށް ހިމެނުމުގެ ޙުއްދަ ވިސިލްބްލޯވާރ އަށް ދިނުމަށް. "
 
 msgid "Additional questionnaire"
 msgstr "އިތުރު ސުވާލުކަރުދާސް"
@@ -838,6 +832,9 @@ msgstr "ސޮޕްޓްވެއަރގެ ވާރޝަން"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "ވަކި އައިޕީ އެޑްރެސްތަަަކަކަށް އެކަނި ވަނުމަށް ހުއްދުކުރުން"
+
+msgid "Enabled"
+msgstr "ހިންގުވާލުން"
 
 msgid "Allowed IP addresses"
 msgstr ""
@@ -922,6 +919,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "މެނުއަލް ކޮންފިގަރޭޝަން ވިޒަރޑް ބޭނުންކޮއްގެން އެހެން ސެޓިފިކޭޓް އޮތޯރިޓީއަކުން އެޗް.ޓީ.ޓީ.ޕީ.އެސް ސެޓްއަޕް ކުރެވޭނެ. "
 
+msgid "Disabled"
+msgstr "ހުއްޓުވާލުން"
+
 msgid "Auto-renewal"
 msgstr "ގަވައިދުން އާކުރެވިގެންދިއުން"
 
@@ -997,6 +997,9 @@ msgstr "ގިނަ ފޮޅުވަތްތަކުން މެސެޖެއް ދިނުން"
 msgid "Selection box"
 msgstr "އިޚްތިޔާތުކުރާ ގޮޅި"
 
+msgid "Multiple choice input"
+msgstr "ގިނަ އިޚްތިޔާރުތަކެއް ޖެއްސެވުމަށް"
+
 msgid "Checkbox"
 msgstr "ފާހަގަޖަހާ ގޮޅި"
 
@@ -1017,9 +1020,6 @@ msgstr "ކޮލަމް"
 
 msgid "Width"
 msgstr "ފުޅާމިން"
-
-msgid "Multiple choice input"
-msgstr "ގިނަ އިޚްތިޔާރުތަކެއް ޖެއްސެވުމަށް"
 
 msgid "Question group"
 msgstr "ސުވާލުގެ ގިންތި/ގުރޫޕް"
@@ -1351,29 +1351,23 @@ msgstr "ޖެއްސެވި ރަޝީދުގެ ކޯޑް ނުރަނގަޅު ނުވަތ
 msgid "Select a file or drag it here."
 msgstr "ފައިލް އެއް ހިޔާރުކުރައްވާ. ނުވަތަ ދަމާގެނެސް މިތަނަށް ވައްޓާލައްވާ "
 
+msgid "Size:"
+msgstr "ސައިޒު:"
+
 msgid "Uploading files…"
 msgstr "ފައިލްތަށް އަޕްލޯޑުވަނީ...."
 
 msgid "Upload completed successfully!"
 msgstr "ފައިލްތައް އަޕްލޯޑް ވެއްޖެ!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "ފައިލްތައް އަޕްލޯޑްވުމުގައި މައްސަލައެއް އެބައުޅޭ. އިތުރު މައުލޫއްމާތު ހޯއްދެވުމަށް: "
-
 msgid "Estimated upload time:"
 msgstr "އަޕްލޯޑްވާން ނަގާނެކަމަށް ލަފާކުރެވޭ ގަޑި: "
-
-msgid "Size:"
-msgstr "ސައިޒު:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "ރިޕޯޓް ލިބިލެއްވި ފަރާތްތަކުން އިތުރު ސަުވާލު ކަރުދާހަކަށް ޖަވާބުދިނުމަށް އެދިއްޖެ. "
 
 msgid "Fill the additional questionnaire"
 msgstr "އިތުރު ސުވާލުކަރުދާހަށް ޖަވާބު ދޭން. "
-
-msgid "Allow the whistleblower to write comments"
-msgstr "ކޮމެންޓްސް ލިޔުމުގެ ޙުއްދަ ވިސިލްބްލޯވާރ އަށް ދިނުމަށް. "
 
 msgid "From:"
 msgstr "ފޮނުވިފަރާތް:"
@@ -1389,12 +1383,6 @@ msgstr "ފައިލް އަޕްލޯޑް ކުރެއްވި ތާރީޙް."
 
 msgid "File size"
 msgstr "ފައިލްގެ ސައިޒު"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "ރިޕޯޓުގައި އާ ފައިލްތަށް ހިމެނުމުގެ ޙުއްދަ ވިސިލްބްލޯވާރ އަށް ދިނުމަށް. "
-
-msgid "Allow the whistleblower to send messages"
-msgstr "މެސެޖު ފޮނުވުމުގެ ޙުއްދަ ވިސިލްބްލޯވާރ އަށް ދިނުމަށް. "
 
 msgid "Questionnaire answers"
 msgstr "ސާވޭ ސުވާލުކަރުދާހުގެ ސުވާލުތައް"
@@ -1609,8 +1597,11 @@ msgstr "ޕްލެޓްފޯމް ވިޒާޑް މިހާރު ތިވަނީ ފުރިހަ
 msgid "Describe your report in detail."
 msgstr "ރިޕޯޓާއި ގުޅޭ މަޢުލޫމާތުދެއްވާ"
 
-msgid "Attach files relevant to the report."
-msgstr "މި ރިޕޯޓާއި ގުޅުންހުރި ފައިލްތަތް އެޓޭޗް ކުރައްވާ. "
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "ތިޔަ ބޭފުޅާގެ އައިޑެންޓިފިކޭޝަން މަޢުލޫމާތު ޙިއްޞާކުރަން ބޭނުންފުޅުވޭތޯ؟"
@@ -1624,11 +1615,11 @@ msgstr "އާއިލީ ނަން "
 msgid "Alternative contact method"
 msgstr ""
 
-msgid "Other"
-msgstr "އެހެނިހެން"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr ""
+
+msgid "Other"
+msgstr "އެހެނިހެން"
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} އަށް، "

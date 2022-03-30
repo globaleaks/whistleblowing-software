@@ -5,7 +5,7 @@
 # Damian S., 2015
 # DarLink <darlink@gmail.com>, 2015,2020
 # DarLink <darlink@gmail.com>, 2015,2020
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2019
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2019,2022
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # itaizand, 2020
@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: zxcsd <jenisjpl@gmail.com>, 2015\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2019,2022\n"
 "Language-Team: Hebrew (http://www.transifex.com/otf/globaleaks/language/he/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -777,12 +777,6 @@ msgstr "הקשרים"
 msgid "Hidden"
 msgstr "מוסתר"
 
-msgid "Disabled"
-msgstr "מושבת"
-
-msgid "Enabled"
-msgstr "מאופשר"
-
 msgid "Questionnaire"
 msgstr "שְׁאֵלוֹן"
 
@@ -813,17 +807,17 @@ msgstr ""
 msgid "Enable comments"
 msgstr "אפשר הערות"
 
-msgid "Allow whistleblowers to write comments"
-msgstr ""
+msgid "Allow the whistleblower to write comments"
+msgstr "התר לחושף השחיתות לכתוב תגובות"
 
 msgid "Enable private messages"
 msgstr "אפשר הודעות פרטיות"
 
-msgid "Allow whistleblowers to send messages"
-msgstr ""
+msgid "Allow the whistleblower to send messages"
+msgstr "התר לחושף השחיתות לשלוח הודעות"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr ""
+msgid "Allow the whistleblower to add attachments"
+msgstr "התר לחושף השחיתות להוסיף צרופות אל ההגשה"
 
 msgid "Additional questionnaire"
 msgstr ""
@@ -851,6 +845,9 @@ msgstr "גרסת תוכנה:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr ""
+
+msgid "Enabled"
+msgstr "מאופשר"
 
 msgid "Allowed IP addresses"
 msgstr ""
@@ -935,6 +932,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr ""
 
+msgid "Disabled"
+msgstr "מושבת"
+
 msgid "Auto-renewal"
 msgstr "חידוש אוטומטי"
 
@@ -1010,6 +1010,9 @@ msgstr "קלט טקסט רב-קוי"
 msgid "Selection box"
 msgstr "תיבת בחירה"
 
+msgid "Multiple choice input"
+msgstr "קלט אמריקאיות"
+
 msgid "Checkbox"
 msgstr "תיבת סימון"
 
@@ -1030,9 +1033,6 @@ msgstr "עמודה"
 
 msgid "Width"
 msgstr "רוחב"
-
-msgid "Multiple choice input"
-msgstr "קלט אמריקאיות"
 
 msgid "Question group"
 msgstr "קבוצת שאלה"
@@ -1364,29 +1364,23 @@ msgstr ""
 msgid "Select a file or drag it here."
 msgstr ""
 
+msgid "Size:"
+msgstr "גודל:"
+
 msgid "Uploading files…"
 msgstr "מעלה קבצים..."
 
 msgid "Upload completed successfully!"
 msgstr "הטעינה הושלמה בהצלחה!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "שגיאה בעת העלאת קבצים; לבדוק להלן."
-
 msgid "Estimated upload time:"
 msgstr "זמן העלאה משוער:"
-
-msgid "Size:"
-msgstr "גודל:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr ""
 
 msgid "Fill the additional questionnaire"
 msgstr ""
-
-msgid "Allow the whistleblower to write comments"
-msgstr "התר לחושף השחיתות לכתוב תגובות"
 
 msgid "From:"
 msgstr "מ:"
@@ -1402,12 +1396,6 @@ msgstr "תאריך העלאה"
 
 msgid "File size"
 msgstr "גודל קובץ"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr ""
-
-msgid "Allow the whistleblower to send messages"
-msgstr "התר לחושף השחיתות לשלוח הודעות"
 
 msgid "Questionnaire answers"
 msgstr "תשובות לשאלון"
@@ -1622,7 +1610,10 @@ msgstr "אתה בהצלחה סיימת את אשף הפלטפורמה."
 msgid "Describe your report in detail."
 msgstr ""
 
-msgid "Attach files relevant to the report."
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
 msgstr ""
 
 msgid "Do you want to provide your identification information?"
@@ -1637,11 +1628,11 @@ msgstr "שם משפחה"
 msgid "Alternative contact method"
 msgstr ""
 
-msgid "Other"
-msgstr "אחר"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr ""
+
+msgid "Other"
+msgstr "אחר"
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} היקר,"

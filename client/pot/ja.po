@@ -1,7 +1,7 @@
 # 
 # Translators:
 # 432cfded806ff6b7fe5774185a19126f_b5bc177, 2013
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2022
 # Masayuki Hatta <mhatta@mhatta.org>, 2014
 # Naofumi <naofum@gmail.com>, 2015-2021
 # Naofumi <naofum@gmail.com>, 2015
@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: 432cfded806ff6b7fe5774185a19126f_b5bc177, 2013\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2022\n"
 "Language-Team: Japanese (http://www.transifex.com/otf/globaleaks/language/ja/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -765,12 +765,6 @@ msgstr "コンテキスト"
 msgid "Hidden"
 msgstr "非表示"
 
-msgid "Disabled"
-msgstr "無効"
-
-msgid "Enabled"
-msgstr "有効"
-
 msgid "Questionnaire"
 msgstr "アンケート"
 
@@ -801,17 +795,17 @@ msgstr "報告の状況ページで受信者の詳細を表示する"
 msgid "Enable comments"
 msgstr "コメントを有効にする"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "内部告発者が、コメントを書くことを許可"
+msgid "Allow the whistleblower to write comments"
+msgstr "その内部告発者が、コメントを書くことを許可"
 
 msgid "Enable private messages"
 msgstr "プライベートメッセージを有効にする"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "内部告発者が、メッセージを送信することを許可"
+msgid "Allow the whistleblower to send messages"
+msgstr "その内部告発者が、メッセージを送信することを許可"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "内部告発者が、既存の報告に添付ファイルを追加することを許可する"
+msgid "Allow the whistleblower to add attachments"
+msgstr "その内部告発者が、報告に添付ファイルを追加することを許可する"
 
 msgid "Additional questionnaire"
 msgstr "追加のアンケート"
@@ -839,6 +833,9 @@ msgstr "ソフトウェア バージョン:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "特定のIPアドレスにアクセスを制限する"
+
+msgid "Enabled"
+msgstr "有効"
 
 msgid "Allowed IP addresses"
 msgstr "許可される IP アドレス"
@@ -923,6 +920,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "手動設定ウィザードは、代替認証局からの HTTPS の設定をガイドします。"
 
+msgid "Disabled"
+msgstr "無効"
+
 msgid "Auto-renewal"
 msgstr "自動更新"
 
@@ -998,6 +998,9 @@ msgstr "複数行のテキスト入力"
 msgid "Selection box"
 msgstr "選択ボックス"
 
+msgid "Multiple choice input"
+msgstr "複数選択入力"
+
 msgid "Checkbox"
 msgstr "チェックボックス"
 
@@ -1018,9 +1021,6 @@ msgstr "列"
 
 msgid "Width"
 msgstr "幅"
-
-msgid "Multiple choice input"
-msgstr "複数選択入力"
 
 msgid "Question group"
 msgstr "質問グループ"
@@ -1352,29 +1352,23 @@ msgstr "受領番号が無効であるか、報告が有効期限切れです。
 msgid "Select a file or drag it here."
 msgstr "ファイルを選択するか、ここにドラッグしてください。"
 
+msgid "Size:"
+msgstr "サイズ："
+
 msgid "Uploading files…"
 msgstr "ファイルのアップロード中…"
 
 msgid "Upload completed successfully!"
 msgstr "アップロードが正常に完了しました!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "ファイルのアップロード時にエラー。詳細は下記を確認してください。"
-
 msgid "Estimated upload time:"
 msgstr "見積アップロード時間:"
-
-msgid "Size:"
-msgstr "サイズ："
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "受領者があなたに追加のアンケートを記入するよう依頼しました。"
 
 msgid "Fill the additional questionnaire"
 msgstr "追加のアンケートを入力してください"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "その内部告発者が、コメントを書くことを許可"
 
 msgid "From:"
 msgstr "差出人:"
@@ -1390,12 +1384,6 @@ msgstr "アップロード日"
 
 msgid "File size"
 msgstr "ファイルのサイズ"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "その内部告発者が、報告に添付ファイルを追加することを許可する"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "その内部告発者が、メッセージを送信することを許可"
 
 msgid "Questionnaire answers"
 msgstr "アンケート回答"
@@ -1610,8 +1598,11 @@ msgstr "プラットフォーム ウィザードを完了しました。"
 msgid "Describe your report in detail."
 msgstr "詳細に報告を説明してください。"
 
-msgid "Attach files relevant to the report."
-msgstr "報告に関連したファイルを添付してください。"
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "あなたの身元情報を提供しますか?"
@@ -1625,11 +1616,11 @@ msgstr "姓"
 msgid "Alternative contact method"
 msgstr ""
 
-msgid "Other"
-msgstr "その他"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr ""
+
+msgid "Other"
+msgstr "その他"
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} 様"

@@ -3,12 +3,12 @@
 # Adawcs, 2021
 # Adawcs, 2021
 # Cheer Zeng <cheerz6623@gmail.com>, 2021
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022\n"
 "Language-Team: Chinese (Hong Kong) (http://www.transifex.com/otf/globaleaks/language/zh_HK/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -762,12 +762,6 @@ msgstr "主題"
 msgid "Hidden"
 msgstr "已隱藏"
 
-msgid "Disabled"
-msgstr "已停用"
-
-msgid "Enabled"
-msgstr "已啟用"
-
 msgid "Questionnaire"
 msgstr "問卷"
 
@@ -798,17 +792,17 @@ msgstr "在報告的狀態頁面顯示接收者資料"
 msgid "Enable comments"
 msgstr "啟用註釋"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "允許吹哨者撰寫註釋"
+msgid "Allow the whistleblower to write comments"
+msgstr "允許此吹哨者撰寫註釋"
 
 msgid "Enable private messages"
 msgstr "啟用私人訊息"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "允許吹哨者傳送訊息"
+msgid "Allow the whistleblower to send messages"
+msgstr "允許此吹哨者傳送訊息"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "吹哨者可在現有報告內新增附件"
+msgid "Allow the whistleblower to add attachments"
+msgstr "吹哨者可在提交報告時新增附件"
 
 msgid "Additional questionnaire"
 msgstr "附加問卷"
@@ -836,6 +830,9 @@ msgstr "軟件版本："
 
 msgid "Restrict access to specific IP addresses"
 msgstr "限制指定 IP 地址才可登入此平台"
+
+msgid "Enabled"
+msgstr "已啟用"
 
 msgid "Allowed IP addresses"
 msgstr "IP 地址白名單"
@@ -920,6 +917,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "手動配置精靈會引導您，透過另外的憑證頒發機構設置 HTTPS 憑證。"
 
+msgid "Disabled"
+msgstr "已停用"
+
 msgid "Auto-renewal"
 msgstr "自動更新"
 
@@ -995,6 +995,9 @@ msgstr "多行文字輸入"
 msgid "Selection box"
 msgstr "選擇框"
 
+msgid "Multiple choice input"
+msgstr "多項選擇題"
+
 msgid "Checkbox"
 msgstr "複選框"
 
@@ -1015,9 +1018,6 @@ msgstr "列"
 
 msgid "Width"
 msgstr "寬"
-
-msgid "Multiple choice input"
-msgstr "多項選擇題"
 
 msgid "Question group"
 msgstr "問題組"
@@ -1349,29 +1349,23 @@ msgstr "收據號碼無效或報告已到期。"
 msgid "Select a file or drag it here."
 msgstr "選取檔案或將其拖曳到此處。"
 
+msgid "Size:"
+msgstr "大小：   "
+
 msgid "Uploading files…"
 msgstr "檔案上傳中……"
 
 msgid "Upload completed successfully!"
 msgstr "檔案已成功上傳！"
 
-msgid "Error while uploading files; check below for details."
-msgstr "上傳檔案時發生錯誤；請查看以下資訊了解詳情。"
-
 msgid "Estimated upload time:"
 msgstr "預計上傳時間："
-
-msgid "Size:"
-msgstr "大小：   "
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "接收者想請您填寫一份附加問卷。"
 
 msgid "Fill the additional questionnaire"
 msgstr "填寫附加問卷"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "允許此吹哨者撰寫註釋"
 
 msgid "From:"
 msgstr "寄件人："
@@ -1387,12 +1381,6 @@ msgstr "上傳日期"
 
 msgid "File size"
 msgstr "檔案大小"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "吹哨者可在提交報告時新增附件"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "允許此吹哨者傳送訊息"
 
 msgid "Questionnaire answers"
 msgstr "問卷答覆"
@@ -1607,8 +1595,11 @@ msgstr "平台精靈設定已完成。"
 msgid "Describe your report in detail."
 msgstr "請詳細描述您的報告。"
 
-msgid "Attach files relevant to the report."
-msgstr "附上有關此報告的檔案"
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "您想提供您的個人身份資料嗎？"
@@ -1622,11 +1613,11 @@ msgstr "姓"
 msgid "Alternative contact method"
 msgstr ""
 
-msgid "Other"
-msgstr "其他"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr ""
+
+msgid "Other"
+msgstr "其他"
 
 msgid "Dear {RecipientName},"
 msgstr "尊敬的 {RecipientName}，"

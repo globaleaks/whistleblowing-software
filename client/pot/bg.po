@@ -1,7 +1,7 @@
 # 
 # Translators:
 # 9e05ce6ed18638013a42d704560b8907_c13c9ae, 2014
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2022
 # Ivo, 2015-2020
 # Kaloyan Doichinov, 2014
 # 9e05ce6ed18638013a42d704560b8907_c13c9ae, 2014
@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Vladislav Stoyanov <vlado1972@yahoo.com>, 2019\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2022\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -770,12 +770,6 @@ msgstr "Теми"
 msgid "Hidden"
 msgstr "Скрито"
 
-msgid "Disabled"
-msgstr "Дезактивирано"
-
-msgid "Enabled"
-msgstr "Активирано"
-
 msgid "Questionnaire"
 msgstr "Въпросник"
 
@@ -806,17 +800,17 @@ msgstr "Показване на данни за получателите на с
 msgid "Enable comments"
 msgstr "Активиране на коментари"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Разрешаване на подателите на сигнали да пишат коментари"
+msgid "Allow the whistleblower to write comments"
+msgstr "Разрешаване на подателя на сигнал да пише коментари"
 
 msgid "Enable private messages"
 msgstr "Активиране на лични съобщения"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Разрешаване на подателите на сигнали да изпращат съобщения"
+msgid "Allow the whistleblower to send messages"
+msgstr "Разрешаване на подателя на сигнал да изпраща съобщения"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Разрешаване на подателите на сигнали да прикачват файлове към вече съществуващи сигнали"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Разрешаване на подателя на сигнал да добавя прикачени файлове към сигнала"
 
 msgid "Additional questionnaire"
 msgstr "Допълнителен въпросник"
@@ -844,6 +838,9 @@ msgstr "Софтуерна версия:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Ограничаване на достъпа до определени IP адреси"
+
+msgid "Enabled"
+msgstr "Активирано"
 
 msgid "Allowed IP addresses"
 msgstr "Разрешени IP адреси"
@@ -928,6 +925,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "Съветникът за ръчно конфигуриране ще Ви ръководи в настройката на HTTPS от алтернативен сертифициращ орган."
 
+msgid "Disabled"
+msgstr "Дезактивирано"
+
 msgid "Auto-renewal"
 msgstr "Автоматично подновяване"
 
@@ -1003,6 +1003,9 @@ msgstr "Въвеждане на текст на няколко реда"
 msgid "Selection box"
 msgstr "Поле за избор"
 
+msgid "Multiple choice input"
+msgstr "Въвеждане с множествен избор"
+
 msgid "Checkbox"
 msgstr "Квадратче за отметка"
 
@@ -1023,9 +1026,6 @@ msgstr "Колона"
 
 msgid "Width"
 msgstr "Ширина"
-
-msgid "Multiple choice input"
-msgstr "Въвеждане с множествен избор"
 
 msgid "Question group"
 msgstr "Група въпроси"
@@ -1357,29 +1357,23 @@ msgstr "Тази разписка (код) е невалидна или пода
 msgid "Select a file or drag it here."
 msgstr "Изберете файл или го плъзнете тук"
 
+msgid "Size:"
+msgstr "Размер:"
+
 msgid "Uploading files…"
 msgstr "Файловете се качват..."
 
 msgid "Upload completed successfully!"
 msgstr "Качването завърши успешно!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Грешка при качване на файловете. Проверете по-долу за подробна информация."
-
 msgid "Estimated upload time:"
 msgstr "Очаквано време за качване:"
-
-msgid "Size:"
-msgstr "Размер:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Получателите Ви са поискали попълните допълнителен въпросник."
 
 msgid "Fill the additional questionnaire"
 msgstr "Попълване на допълнителния въпросник"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Разрешаване на подателя на сигнал да пише коментари"
 
 msgid "From:"
 msgstr "От:"
@@ -1395,12 +1389,6 @@ msgstr "Дата на качване"
 
 msgid "File size"
 msgstr "Размер на файла"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Разрешаване на подателя на сигнал да добавя прикачени файлове към сигнала"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Разрешаване на подателя на сигнал да изпраща съобщения"
 
 msgid "Questionnaire answers"
 msgstr "Отговори на въпросника"
@@ -1615,8 +1603,11 @@ msgstr "Завършихте съветника на платформата."
 msgid "Describe your report in detail."
 msgstr "Опишете сигнала си подробно."
 
-msgid "Attach files relevant to the report."
-msgstr "Прикачете файлове, свързани със сигнала."
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "Желаете ли да предоставите идентификационната си информация?"
@@ -1630,11 +1621,11 @@ msgstr "Фамилия"
 msgid "Alternative contact method"
 msgstr "Алтернативен метод за контакт"
 
-msgid "Other"
-msgstr "Друго"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Предпочитам да се свързват с мен само чрез тази платформа"
+
+msgid "Other"
+msgstr "Друго"
 
 msgid "Dear {RecipientName},"
 msgstr "Уважаеми(а) {RecipientName},"

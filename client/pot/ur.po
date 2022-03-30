@@ -3,7 +3,7 @@
 # Annie Bridges <anniebridges90@gmail.com>, 2014
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # Furhan Hussain <furhan@bytesforall.pk>, 2014-2015
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018,2020
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018,2020,2022
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # iram hassan <iramhassan136@gmail.com>, 2020
@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Shaheer Munir Shah <shaheer@transparency.org.pk>, 2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018,2020,2022\n"
 "Language-Team: Urdu (http://www.transifex.com/otf/globaleaks/language/ur/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -771,12 +771,6 @@ msgstr "سیاق و سباق"
 msgid "Hidden"
 msgstr "Hidden"
 
-msgid "Disabled"
-msgstr "غیر فعال"
-
-msgid "Enabled"
-msgstr "فعال"
-
 msgid "Questionnaire"
 msgstr "سوالنامہ"
 
@@ -807,17 +801,17 @@ msgstr "جمع کرانے کی حیثیت کے صفحے پر وصول کنندہ
 msgid "Enable comments"
 msgstr "تبصرے فعال کریں"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "مخبر کو تبصرے لکھنے کے کی اجازت دیں"
+msgid "Allow the whistleblower to write comments"
+msgstr "مخبر کو تبصرے لکھنے کے لئے کی اجازت دیں"
 
 msgid "Enable private messages"
 msgstr "ذاتی پیغامات کو فعال کریں"
 
-msgid "Allow whistleblowers to send messages"
+msgid "Allow the whistleblower to send messages"
 msgstr "مخبر کو پیغامات بھیجنے کی اجازت دیں"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "مخبر کو موجودہ گذارشات پر منسلکات شامل کرنے کی اجازت دیں"
+msgid "Allow the whistleblower to add attachments"
+msgstr "مخبر کو اٹیچمنٹ شامل کرنے کی اجازت دیں"
 
 msgid "Additional questionnaire"
 msgstr ""
@@ -845,6 +839,9 @@ msgstr "سافٹ ویئر ورژن:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr ""
+
+msgid "Enabled"
+msgstr "فعال"
 
 msgid "Allowed IP addresses"
 msgstr ""
@@ -929,6 +926,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr ""
 
+msgid "Disabled"
+msgstr "غیر فعال"
+
 msgid "Auto-renewal"
 msgstr ""
 
@@ -1004,6 +1004,9 @@ msgstr "کثیر لائن متن کی ان پٹ"
 msgid "Selection box"
 msgstr "انتخاب کے باکس"
 
+msgid "Multiple choice input"
+msgstr "ایک سے زیادہ پسند کی ان پٹ"
+
 msgid "Checkbox"
 msgstr "چیک باکس"
 
@@ -1024,9 +1027,6 @@ msgstr "کالم"
 
 msgid "Width"
 msgstr "چوڑائی"
-
-msgid "Multiple choice input"
-msgstr "ایک سے زیادہ پسند کی ان پٹ"
 
 msgid "Question group"
 msgstr "سوال گروپ"
@@ -1358,29 +1358,23 @@ msgstr "کلیدی کوڈ یا تو قابلِ قبول نہیں یا داخل �
 msgid "Select a file or drag it here."
 msgstr ""
 
+msgid "Size:"
+msgstr "Size:"
+
 msgid "Uploading files…"
 msgstr "فائلیں اپ لوڈ ہو رہی ہیں۔۔۔ "
 
 msgid "Upload completed successfully!"
 msgstr "اپ لوڈ کریں کامیابی کے ساتھ مکمل!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "خرابی فائلوں کو اپ لوڈ کرتے ہوئے؛ تفصیلات کے لئے ذیل میں چیک."
-
 msgid "Estimated upload time:"
 msgstr "متوقع اپ لوڈ کے لئے وقت:"
-
-msgid "Size:"
-msgstr "Size:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr ""
 
 msgid "Fill the additional questionnaire"
 msgstr ""
-
-msgid "Allow the whistleblower to write comments"
-msgstr "مخبر کو تبصرے لکھنے کے لئے کی اجازت دیں"
 
 msgid "From:"
 msgstr "From:"
@@ -1396,12 +1390,6 @@ msgstr "اپ لوڈ کی تاریخ"
 
 msgid "File size"
 msgstr "فائل کا سائز"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "مخبر کو اٹیچمنٹ شامل کرنے کی اجازت دیں"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "مخبر کو پیغامات بھیجنے کی اجازت دیں"
 
 msgid "Questionnaire answers"
 msgstr "سوالنامہ کے جوابات"
@@ -1616,8 +1604,11 @@ msgstr ""
 msgid "Describe your report in detail."
 msgstr ""
 
-msgid "Attach files relevant to the report."
-msgstr "منسلک فائلیں داخل کردہ گذارشات سے متعلق ہیں"
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "کیا آپ اپنی شناخت کی معلومات فراہم کرنا چاہتے ہیں؟"
@@ -1631,11 +1622,11 @@ msgstr "آخری نام"
 msgid "Alternative contact method"
 msgstr ""
 
-msgid "Other"
-msgstr "دیگر"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr ""
+
+msgid "Other"
+msgstr "دیگر"
 
 msgid "Dear {RecipientName},"
 msgstr "محترم{RecipientName}،"

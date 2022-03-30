@@ -1,13 +1,13 @@
 # 
 # Translators:
 # Afghan Translation Association (ATA) <atranslationa@gmail.com>, 2021
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022
 # Sahar Maghsudi <maghsudi77@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Afghan Translation Association (ATA) <atranslationa@gmail.com>, 2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022\n"
 "Language-Team: Persian (Afghanistan) (http://www.transifex.com/otf/globaleaks/language/fa_AF/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -761,12 +761,6 @@ msgstr "محتوای متنی"
 msgid "Hidden"
 msgstr "پنهان"
 
-msgid "Disabled"
-msgstr "غیر فعال"
-
-msgid "Enabled"
-msgstr "فعال"
-
 msgid "Questionnaire"
 msgstr "پرسشنامه"
 
@@ -797,17 +791,17 @@ msgstr "نمایش جزئیات دریافت کننده روی صفحه وضعی
 msgid "Enable comments"
 msgstr "فعال کردن تبصره ها"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "اجازه به افشاگران برای نوشتن تبصره ها"
+msgid "Allow the whistleblower to write comments"
+msgstr "به افشاگر اجازه نوشتن تبصره ها داده شود"
 
 msgid "Enable private messages"
 msgstr "فعال سازی پیام های خصوصی"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "اجازه به افشاگران برای ارسال پیام "
+msgid "Allow the whistleblower to send messages"
+msgstr "به افشاگر اجازه ارسال پیام داده شود"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "اجازه به افشاگران برای افزودن ضمیمه‌ به راپور موجود"
+msgid "Allow the whistleblower to add attachments"
+msgstr "به افشاگر اجازه اضافه کردن ضمیمه به این راپور داده شود"
 
 msgid "Additional questionnaire"
 msgstr "پرسشنامه اضافی"
@@ -835,6 +829,9 @@ msgstr "نسخه نرم‌افزار: "
 
 msgid "Restrict access to specific IP addresses"
 msgstr "محدود کردن دسترسی به آدرس های مشخص IP"
+
+msgid "Enabled"
+msgstr "فعال"
 
 msgid "Allowed IP addresses"
 msgstr "آدرس های IP مجاز"
@@ -919,6 +916,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "رهنمون پیکربندی دستی، شما را در نصب HTTPS از یک مرجع صدور تصدیق دیگر راهنمایی خواهد کرد."
 
+msgid "Disabled"
+msgstr "غیر فعال"
+
 msgid "Auto-renewal"
 msgstr "تمدید اتوماتیک"
 
@@ -994,6 +994,9 @@ msgstr "ورودی متن چند خطی   "
 msgid "Selection box"
 msgstr "جعبه انتخاب"
 
+msgid "Multiple choice input"
+msgstr "ورودی چند گزینه ای"
+
 msgid "Checkbox"
 msgstr "چک باکس "
 
@@ -1014,9 +1017,6 @@ msgstr "ستون"
 
 msgid "Width"
 msgstr "عرض"
-
-msgid "Multiple choice input"
-msgstr "ورودی چند گزینه ای"
 
 msgid "Question group"
 msgstr "گروپ سؤال   "
@@ -1348,29 +1348,23 @@ msgstr "یا رسید نامعتبر است یا راپور منقضی شده ا
 msgid "Select a file or drag it here."
 msgstr "فایل را انتخاب کرده و یا آن را به اینجا بکشید."
 
+msgid "Size:"
+msgstr "اندازه:"
+
 msgid "Uploading files…"
 msgstr "در حال اپلود فایل ها..."
 
 msgid "Upload completed successfully!"
 msgstr "اپلود با موفقیت انجام شد!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "خطا در اپلود فایل ها؛ جزئیات را در پایین بررسی کنید."
-
 msgid "Estimated upload time:"
 msgstr "زمان تخمینی برای اپلود:"
-
-msgid "Size:"
-msgstr "اندازه:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "دریافت کنندگان از شما می خواهند تا یک پرسشنامه اضافی را پر کنید."
 
 msgid "Fill the additional questionnaire"
 msgstr "پرسشنامه اضافی را پر کنید"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "به افشاگر اجازه نوشتن تبصره ها داده شود"
 
 msgid "From:"
 msgstr "از:"
@@ -1386,12 +1380,6 @@ msgstr "تاریخ اپلود"
 
 msgid "File size"
 msgstr "اندازه فایل"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "به افشاگر اجازه اضافه کردن ضمیمه به این راپور داده شود"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "به افشاگر اجازه ارسال پیام داده شود"
 
 msgid "Questionnaire answers"
 msgstr "پاسخ‌های پرسشنامه"
@@ -1606,8 +1594,11 @@ msgstr "شما رهنمون پلتفورم را کامل کرده اید."
 msgid "Describe your report in detail."
 msgstr "راپور خود را به صورت کامل تشریح کنید."
 
-msgid "Attach files relevant to the report."
-msgstr "فایل های مرتبط با راپور را ضمیمه کنید."
+msgid "I'm a victim"
+msgstr "من یک قربانی هستم"
+
+msgid "I'm involved in the facts"
+msgstr "من درگیر حقایق هستم"
 
 msgid "Do you want to provide your identification information?"
 msgstr "آیا میخواهید معلوماتی که هویت شما را مشخص می کنند، ارائه دهید؟"
@@ -1621,11 +1612,11 @@ msgstr "نام خانوداگی"
 msgid "Alternative contact method"
 msgstr "روش جایگزین برقراری تماس"
 
-msgid "Other"
-msgstr "دیگر"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "من ترجیح می‌دهم که تنها از طریق این پلتفورم با من تماس گرفته شود"
+
+msgid "Other"
+msgstr "دیگر"
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} گرامی،"

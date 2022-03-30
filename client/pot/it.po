@@ -3,7 +3,7 @@
 # Andrea Lusuardi <uovobw@gmail.com>, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # marco calamari <marcoc@marcoc.it>, 2013
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2022
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013-2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2022\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -238,7 +238,7 @@ msgid "Access requested"
 msgstr "Accesso richiesto"
 
 msgid "Request access to the whistleblower's identity"
-msgstr "Richiesta di accesso all'identità del whistleblower"
+msgstr "Richiesta di accesso all'identità del segnalante"
 
 msgid "Please write a motivation"
 msgstr "Inserire una motivazione"
@@ -265,10 +265,10 @@ msgid "Deny"
 msgstr "Nega"
 
 msgid "Deny access to the whistleblower's identity"
-msgstr "Nega accesso all'identità del whistleblower"
+msgstr "Nega accesso all'identità del segnalante"
 
 msgid "Authorize access to the whistleblower's identity"
-msgstr "Autorizza l'accesso all'identità del whistleblower"
+msgstr "Autorizza l'accesso all'identità del segnalante"
 
 msgid "Templates"
 msgstr "Modelli"
@@ -782,12 +782,6 @@ msgstr "Contesti"
 msgid "Hidden"
 msgstr "Nascosto"
 
-msgid "Disabled"
-msgstr "Disabilitato"
-
-msgid "Enabled"
-msgstr "Abilitato"
-
 msgid "Questionnaire"
 msgstr "Questionario"
 
@@ -801,7 +795,7 @@ msgid "Show the questionnaire navigation interface"
 msgstr "Mostra l'interfaccia di navigazione del questionario"
 
 msgid "Allow whistleblowers to select their recipients"
-msgstr "Abilita i whistleblower a selezionare i propri destinatari"
+msgstr "Abilita i segnalanti a selezionare i propri destinatari"
 
 msgid "Select all recipients by default"
 msgstr "Seleziona tutti i riceventi come default"
@@ -818,17 +812,17 @@ msgstr "Mostra i dettagli dei riceventi sulla pagina di stato della segnalazione
 msgid "Enable comments"
 msgstr "Abilita i commenti"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "Permetti ai whistleblower di scrivere commenti"
+msgid "Allow the whistleblower to write comments"
+msgstr "Permetti al segnalante di scrivere commenti"
 
 msgid "Enable private messages"
 msgstr "Abilita messaggi privati"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "Permetti ai whistleblower di scrivere messaggi"
+msgid "Allow the whistleblower to send messages"
+msgstr "Permetti al segnalante di inviare messaggi"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "Permetti ai whistleblower di aggiungere allegati alle segnalazioni esistenti"
+msgid "Allow the whistleblower to add attachments"
+msgstr "Permetti al segnalante di aggiungere allegati alla segnalazione"
 
 msgid "Additional questionnaire"
 msgstr "Questionario aggiuntivo"
@@ -856,6 +850,9 @@ msgstr "Versione del software:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "Restringi l'accesso a specifici indirizzi IP"
+
+msgid "Enabled"
+msgstr "Abilitato"
 
 msgid "Allowed IP addresses"
 msgstr "Indirizzi IP autorizzati"
@@ -940,6 +937,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "La procedura di configurazione manuale ti guiderà alla abilitazione di HTTPS tramite una Certification Authority alternativa."
 
+msgid "Disabled"
+msgstr "Disabilitato"
+
 msgid "Auto-renewal"
 msgstr "Rinnovo automatico"
 
@@ -1015,6 +1015,9 @@ msgstr "Campo di testo multi linea"
 msgid "Selection box"
 msgstr "Casella di selezione"
 
+msgid "Multiple choice input"
+msgstr "Scelta multipla"
+
 msgid "Checkbox"
 msgstr "Casella di controllo"
 
@@ -1035,9 +1038,6 @@ msgstr "Colonna"
 
 msgid "Width"
 msgstr "Larghezza"
-
-msgid "Multiple choice input"
-msgstr "Scelta multipla"
 
 msgid "Question group"
 msgstr "Gruppo di domande"
@@ -1369,29 +1369,23 @@ msgstr "La ricevuta inserita non è valida o la segnalazione è scaduta."
 msgid "Select a file or drag it here."
 msgstr "Seleziona un file o trascinalo quì"
 
+msgid "Size:"
+msgstr "Dimensione:"
+
 msgid "Uploading files…"
 msgstr "Caricamento dei file…"
 
 msgid "Upload completed successfully!"
 msgstr "Caricamento completato con successo!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "Errore durante il caricamento dei file; controllare sotto per i dettagli."
-
 msgid "Estimated upload time:"
 msgstr "Tempo stimato per il caricamento"
-
-msgid "Size:"
-msgstr "Dimensione:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "I riceventi ti richiedono di riempire un ultreriore questionario."
 
 msgid "Fill the additional questionnaire"
 msgstr "Compila il questionario aggiuntivo"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Permetti al whistleblower di scrivere commenti"
 
 msgid "From:"
 msgstr "Da:"
@@ -1407,12 +1401,6 @@ msgstr "Data di caricamento"
 
 msgid "File size"
 msgstr "Dimensione del file"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "Permetti al segnalante di aggiungere allegati alla segnalazione"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Permetti al whistleblower di inviare messaggi"
 
 msgid "Questionnaire answers"
 msgstr "Risposte al questionario"
@@ -1484,7 +1472,7 @@ msgstr "Richiesta di password reset completata."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
-msgstr "L'accesso all'identità del whistleblower è stato richiesto al custode."
+msgstr "L'accesso all'identità del segnalante è stato richiesto al custode."
 
 msgid "Date of the request"
 msgstr "Data della richiesta"
@@ -1627,8 +1615,11 @@ msgstr "La procedura guidata di installazione è stata completata con successo."
 msgid "Describe your report in detail."
 msgstr "Descrivi la tua segnalazione in dettaglio."
 
-msgid "Attach files relevant to the report."
-msgstr "Allega file rilevanti per la segnalazione."
+msgid "I'm a victim"
+msgstr "Sono una vittima"
+
+msgid "I'm involved in the facts"
+msgstr "Sono coinvolto/a nei fatti"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Vuoi fornire i tuoi dati identificativi?"
@@ -1642,11 +1633,11 @@ msgstr "Cognome"
 msgid "Alternative contact method"
 msgstr "Metodo di contatto alternativo"
 
-msgid "Other"
-msgstr "Altro"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "Preferisco essere contattato eclusivamente tramite questa piattaforma"
+
+msgid "Other"
+msgstr "Altro"
 
 msgid "Dear {RecipientName},"
 msgstr "Gentile {RecipientName}"
@@ -1841,32 +1832,32 @@ msgstr "Fallimento nel rinnovo del certificato HTTPS"
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr "Con la presente email ti notifichiamo che un custode ti ha autorizzato ad accedere all'identità del whistleblower per la segnalazione {TipNum}."
+msgstr "Con la presente email ti notifichiamo che un custode ti ha autorizzato ad accedere all'identità del segnalante per la segnalazione {TipNum}."
 
 msgid "The report can be accessed at:"
 msgstr "La segnalazione può essere acceduta:"
 
 msgid "Access to whistleblower's identity authorized"
-msgstr "Accesso all'identità del whistleblower autorizzato"
+msgstr "Accesso all'identità del segnalante autorizzato"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr "Con la presente email ti notifichiamo che un custode ti ha negato l'accesso all'identità del whistleblower per la segnalazione {TipNum}"
+msgstr "Con la presente email ti notifichiamo che un custode ti ha negato l'accesso all'identità del segnalante per la segnalazione {TipNum}"
 
 msgid "Access to whistleblower's identity denied"
-msgstr "Accesso all'identità del whistleblower negato"
+msgstr "Accesso all'identità del segnalante negato"
 
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr "Questa email è per informarti che un ricevente ha richiesto accesso all'identità del whistleblower per la segnalazione {TipNum}"
+msgstr "Questa email è per informarti che un ricevente ha richiesto accesso all'identità del segnalante per la segnalazione {TipNum}"
 
 msgid "The request can be accessed at:"
 msgstr "La richiesta può  essere acceduta:"
 
 msgid "New request of access to a whistleblower's identity"
-msgstr "Nuova richiesta di accesso all'identità di un whistleblower"
+msgstr "Nuova richiesta di accesso all'identità di un segnalante"
 
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
@@ -1874,7 +1865,7 @@ msgid ""
 msgstr "Con la presente email ti notifichiamo che il segnalante della segnalazione {TipNum} ha fornito la sua identità."
 
 msgid "The whistleblower has provided their identity"
-msgstr "Il whistleblower ha fornito la propria identià"
+msgstr "Il segnalante ha fornito la propria identità"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
@@ -1949,7 +1940,7 @@ msgstr "Alcune delle segnalazioni stanno per scadere"
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr "Con la presente email ti notifichiamo che un whistleblower ti ha selezionato come destinatario di interesse per la propria segnalazione."
+msgstr "Con la presente email ti notifichiamo che un segnalante ti ha selezionato come destinatario di interesse per la propria segnalazione."
 
 msgid ""
 "You are asked to pay special attention to the information and material "

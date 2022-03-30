@@ -8,7 +8,7 @@
 # Ali, 2015
 # Amir A. <amir@armandis.com>, 2015
 # b0b47d46632b78a09a40de799fda9a65, 2019
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015,2017,2020-2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015,2017,2020-2022
 # Hamed Behravan <behravan.hamed@gmail.com>, 2015
 # Hamed Behravan <behravan.hamed@gmail.com>, 2015
 # 1bdf31d1c1e9cb24d6578874174ff2c7, 2016
@@ -33,7 +33,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Vox <voxp@protonmail.com>, 2020-2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015,2017,2020-2022\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -787,12 +787,6 @@ msgstr "متن‌ها"
 msgid "Hidden"
 msgstr "پنهان"
 
-msgid "Disabled"
-msgstr "غیرفعال"
-
-msgid "Enabled"
-msgstr "فعال"
-
 msgid "Questionnaire"
 msgstr "پرسش‌نامه"
 
@@ -823,17 +817,17 @@ msgstr "نمایش جزئیات گیرنده روی صفحهٔ وضعیت گزا
 msgid "Enable comments"
 msgstr "فعال کردن نظرات"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "اجازهٔ نوشتن نظرات برای افشاگران"
+msgid "Allow the whistleblower to write comments"
+msgstr "به افشاگر اجازهٔ نوشتن نظرات داده شود"
 
 msgid "Enable private messages"
 msgstr "فعال کردن پیام‌های خصوصی"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "اجازهٔ ارسال پیام به افشاگران"
+msgid "Allow the whistleblower to send messages"
+msgstr "به افشاگر اجازهٔ ارسال پیام دهید"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "اجازه به افشاگران تا پیوست‌ها را به گزارش‌های فعلی اضافه کنند"
+msgid "Allow the whistleblower to add attachments"
+msgstr "به افشاگر اجازهٔ افزودن پیوست‌ها به گزارش داده شود"
 
 msgid "Additional questionnaire"
 msgstr "پرسش‌نامهٔ اضافی"
@@ -861,6 +855,9 @@ msgstr "نسخهٔ نرم‌افزار:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "محدود کردن دسترسی به نشانی‌های IP خاص"
+
+msgid "Enabled"
+msgstr "فعال"
 
 msgid "Allowed IP addresses"
 msgstr "نشانی‌های IP مجاز"
@@ -945,6 +942,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "دستیار پیکربندی دستی شما را در نصب HTTPS از یک مرجع صدور گواهی جایگزین راهنمایی خواهد کرد."
 
+msgid "Disabled"
+msgstr "غیرفعال"
+
 msgid "Auto-renewal"
 msgstr "تمدید-خودکار"
 
@@ -1020,6 +1020,9 @@ msgstr "ورودی متن چند-خطی"
 msgid "Selection box"
 msgstr "جعبهٔ انتخاب"
 
+msgid "Multiple choice input"
+msgstr "ورودی چندگزینه‌ای"
+
 msgid "Checkbox"
 msgstr "جعبهٔ انتخاب"
 
@@ -1040,9 +1043,6 @@ msgstr "ستون"
 
 msgid "Width"
 msgstr "عرض"
-
-msgid "Multiple choice input"
-msgstr "ورودی چندگزینه‌ای"
 
 msgid "Question group"
 msgstr "گروه پرسش"
@@ -1374,29 +1374,23 @@ msgstr "رسید یا نامعتبر است یا گزارش منقضی شده ا
 msgid "Select a file or drag it here."
 msgstr "یک فایل را انتخاب کنید یا به اینجا بکشید."
 
+msgid "Size:"
+msgstr "حجم:"
+
 msgid "Uploading files…"
 msgstr "در حال بارگذاری فایل‌ها..."
 
 msgid "Upload completed successfully!"
 msgstr "بارگذاری با موفقیت انجام شد!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "خطا هنگام بارگذاری فایل‌ها؛ پایین را برای جزئیات بررسی کنید."
-
 msgid "Estimated upload time:"
 msgstr "زمان برآورد شده برای بارگذاری:"
-
-msgid "Size:"
-msgstr "حجم:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "گیرندگان از شما درخواست کردند تا یک پرسش‌نامهٔ اضافی را پر کنید."
 
 msgid "Fill the additional questionnaire"
 msgstr "پر کردن پرسش‌نامهٔ اضافی"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "به افشاگر اجازهٔ نوشتن نظرات داده شود"
 
 msgid "From:"
 msgstr "از:"
@@ -1412,12 +1406,6 @@ msgstr "روز بارگذاری"
 
 msgid "File size"
 msgstr "حجم فایل"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "به افشاگر اجازهٔ افزودن پیوست‌ها به گزارش داده شود"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "به افشاگر اجازهٔ ارسال پیام دهید"
 
 msgid "Questionnaire answers"
 msgstr "پاسخ‌های پرسش‌نامه"
@@ -1632,8 +1620,11 @@ msgstr "شما مراحل دستیار پلتفرم را کامل کردید."
 msgid "Describe your report in detail."
 msgstr "گزارش خود را با جزئیات شرح دهید."
 
-msgid "Attach files relevant to the report."
-msgstr "فایل‌های مرتبط با گزارش را پیوست کنید."
+msgid "I'm a victim"
+msgstr "من یک قربانی‌ام"
+
+msgid "I'm involved in the facts"
+msgstr "من درگیر حقایق هستم"
 
 msgid "Do you want to provide your identification information?"
 msgstr "آیا می‌خواهید اطلاعات شناسایی هویت خود را ارائه دهید؟"
@@ -1647,11 +1638,11 @@ msgstr "نام خانوادگی"
 msgid "Alternative contact method"
 msgstr "روش تماس جایگزین"
 
-msgid "Other"
-msgstr "دیگر"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr "من ترجیح می‌دهم که تنها از طریق این پلتفرم با من تماس گرفته شود"
+
+msgid "Other"
+msgstr "دیگر"
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} عزیز،"

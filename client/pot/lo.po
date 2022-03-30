@@ -1,12 +1,12 @@
 # 
 # Translators:
 # Cheer Zeng <cheerz6623@gmail.com>, 2021
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022\n"
 "Language-Team: Lao (http://www.transifex.com/otf/globaleaks/language/lo/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -760,12 +760,6 @@ msgstr "ເນື້ອຫາຕ່າງໆ"
 msgid "Hidden"
 msgstr "ເຊື່ອງໄວ້"
 
-msgid "Disabled"
-msgstr "ປິດໃຊ້ງານແລ້ວ"
-
-msgid "Enabled"
-msgstr "ເປີດນຳໃຊ້ແລ້ວ"
-
 msgid "Questionnaire"
 msgstr "ແບບສອບຖາມ"
 
@@ -796,17 +790,17 @@ msgstr "ສະແດງລາຍລະອຽດຕ່າງໆຂອງຜູ້
 msgid "Enable comments"
 msgstr "ເປີດນຳໃຊ້ຄຳຄິດເຫັນ"
 
-msgid "Allow whistleblowers to write comments"
+msgid "Allow the whistleblower to write comments"
 msgstr "ອະນຸຍາດໃຫ້ຜູ້ແຈ້ງເບາະແສຂຽນຄຳຄິດເຫັນໄດ້"
 
 msgid "Enable private messages"
 msgstr "ເປີດນຳໃຊ້ຂໍ້ຄວາມສ່ວນຕົວ"
 
-msgid "Allow whistleblowers to send messages"
+msgid "Allow the whistleblower to send messages"
 msgstr "ອະນຸຍາດໃຫ້ຜູ້ແຈ້ງເບາະແສສາມາດສົ່ງຂໍ້ຄວາມໄດ້"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "ອະນຸຍາດໃຫ້ຜູ້ແຈ້ງເບາະແສເພີ່ມເອກະສານຄັດຕິດຕື່ມໃສ່ລາຍງານທີ່ມີຢູ່ແລ້ວ"
+msgid "Allow the whistleblower to add attachments"
+msgstr "ອະນຸຍາດໃຫ້ຜູ້ແຈ້ງເບາະແສເພີ່ມເອກະສານຄັດຕິດຕື່ມໃສ່ລາຍງານ"
 
 msgid "Additional questionnaire"
 msgstr "ແບບສອບຖາມເພີ່ມຕື່ມ"
@@ -834,6 +828,9 @@ msgstr "ເວີຊັນຂອງຊອບແວ:"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "ຈຳກັດການເຂົ້າເຖິງທີ່ຢູ່ IP ສະເພາະ"
+
+msgid "Enabled"
+msgstr "ເປີດນຳໃຊ້ແລ້ວ"
 
 msgid "Allowed IP addresses"
 msgstr "ທີ່ຢູ່ IP ທີ່ໄດ້ຮັບການອະນຸຍາດ"
@@ -918,6 +915,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "ຕົວຊ່ວຍໃນການກຳນົດຄ່າດ້ວຍຕົນເອງຈະນຳພາທ່ານຜ່ານການຕັ້ງຄ່າ HTTPS ຈາກອົງການອອກໃບຢັ້ງຢືນທາງເລືອກ."
 
+msgid "Disabled"
+msgstr "ປິດໃຊ້ງານແລ້ວ"
+
 msgid "Auto-renewal"
 msgstr "ການຕໍ່ອາຍຸອັດຕະໂນມັດ"
 
@@ -993,6 +993,9 @@ msgstr "ການປ້ອນຂໍ້ຄວາມແບບຫຼາຍແຖວ
 msgid "Selection box"
 msgstr "ກ່ອງເລືອກ"
 
+msgid "Multiple choice input"
+msgstr "ການປ້ອນຂໍ້ມູນແບບມີຫຼາຍທາງເລືອກ"
+
 msgid "Checkbox"
 msgstr "ກ່ອງໃສ່ເຄື່ອງໝາຍເອົາ"
 
@@ -1013,9 +1016,6 @@ msgstr "ຖັນ"
 
 msgid "Width"
 msgstr "ຄວາມກ້ວາງ"
-
-msgid "Multiple choice input"
-msgstr "ການປ້ອນຂໍ້ມູນແບບມີຫຼາຍທາງເລືອກ"
 
 msgid "Question group"
 msgstr "ກຸ່ມຄຳຖາມ"
@@ -1347,29 +1347,23 @@ msgstr "ໃບບິນແມ່ນໃຊ້ບໍ່ໄດ້ ຫຼື ກາ�
 msgid "Select a file or drag it here."
 msgstr "ເລືອກໄຟລ໌ ຫຼື ລາກມັນໃສ່ບ່ອນນີ້."
 
+msgid "Size:"
+msgstr "ຂະໜາດ:"
+
 msgid "Uploading files…"
 msgstr "ກຳລັງອັບໂຫຼດໄຟລ໌…"
 
 msgid "Upload completed successfully!"
 msgstr "ການອັບໂຫຼດສຳເລັດຮຽບຮ້ອຍແລ້ວ!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "ເກີດຂໍ້ຜິດພາດໃນຂະນະທີ່ກຳລັງອັບໂຫຼດໄຟລ໌; ກວດເບິ່ງລາຍລະອຽດຢູ່ຂ້າງລຸ່ມນີ້."
-
 msgid "Estimated upload time:"
 msgstr "ເວລາອັບໂຫຼດໂດຍປະມານ:"
-
-msgid "Size:"
-msgstr "ຂະໜາດ:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "ຜູ້ຮັບໄດ້ຮ້ອງຂໍໃຫ້ທ່ານຕື່ມແບບສອບຖາມເພີ່ມຕື່ມ."
 
 msgid "Fill the additional questionnaire"
 msgstr "ຕື່ມແບບສອບຖາມເພີ່ມຕື່ມ."
-
-msgid "Allow the whistleblower to write comments"
-msgstr "ອະນຸຍາດໃຫ້ຜູ້ແຈ້ງເບາະແສຂຽນຄຳຄິດເຫັນໄດ້"
 
 msgid "From:"
 msgstr "ຈາກ:"
@@ -1385,12 +1379,6 @@ msgstr "ວັນທີອັບໂຫຼດ"
 
 msgid "File size"
 msgstr "ຂະໜາດໄຟລ໌"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "ອະນຸຍາດໃຫ້ຜູ້ແຈ້ງເບາະແສເພີ່ມເອກະສານຄັດຕິດຕື່ມໃສ່ລາຍງານ"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "ອະນຸຍາດໃຫ້ຜູ້ແຈ້ງເບາະແສສາມາດສົ່ງຂໍ້ຄວາມໄດ້"
 
 msgid "Questionnaire answers"
 msgstr "ຄຳຕອບແບບສອບຖາມ"
@@ -1605,8 +1593,11 @@ msgstr "ທ່ານໄດ້ສ້າງຕົວຊ່ວຍສ້າງລະ
 msgid "Describe your report in detail."
 msgstr "ອະທິບາຍລາຍງານຂອງທ່ານໃຫ້ລະອຽດ."
 
-msgid "Attach files relevant to the report."
-msgstr "ຄັດຕິດໄຟລ໌ເອະກະສານທີ່ກ່ຽວຂ້ອງກັບລາຍງານ."
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "ທ່ານຕ້ອງການໃຫ້ຂໍ້ມູນປະຈຳຕົວຂອງທ່ານບໍ?"
@@ -1620,11 +1611,11 @@ msgstr "ນາມສະກຸນ"
 msgid "Alternative contact method"
 msgstr ""
 
-msgid "Other"
-msgstr "ອື່ນໆ"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr ""
+
+msgid "Other"
+msgstr "ອື່ນໆ"
 
 msgid "Dear {RecipientName},"
 msgstr "ຮຽນທ່ານ {RecipientName} ທີ່ຮັກແພງ,"

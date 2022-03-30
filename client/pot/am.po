@@ -1,13 +1,13 @@
 # 
 # Translators:
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2020-2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2020-2022
 # Suzanne Ferguson, 2020
 # Suzanne Ferguson, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Suzanne Ferguson, 2020\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2020-2022\n"
 "Language-Team: Amharic (http://www.transifex.com/otf/globaleaks/language/am/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -761,12 +761,6 @@ msgstr "አገባበ ነገር"
 msgid "Hidden"
 msgstr "የተደበቀ"
 
-msgid "Disabled"
-msgstr "የቦዘነ"
-
-msgid "Enabled"
-msgstr "ነቅቷል"
-
 msgid "Questionnaire"
 msgstr "መጠይቅ"
 
@@ -797,17 +791,17 @@ msgstr "የተቀባዮችን ዝርዝር መረጃ በሪፖርቱ ሁኔታ �
 msgid "Enable comments"
 msgstr "አስተያየት አንቃ"
 
-msgid "Allow whistleblowers to write comments"
-msgstr "መረጃ ሰጪዎች አስተያየት እንዲጽፉ ፍቀድ"
+msgid "Allow the whistleblower to write comments"
+msgstr "መረጃ ሰጪው አስተያየት እንዲሰጥ ፍቀዱ"
 
 msgid "Enable private messages"
 msgstr "የግል ምልእክቶችን አንቃ"
 
-msgid "Allow whistleblowers to send messages"
-msgstr "መረጃ ሰጪዎች መልእክት እንዲልኩ ፍቀድ"
+msgid "Allow the whistleblower to send messages"
+msgstr "መረጃ ሰጪው መልእክት እንዲልክ ፍቀድ"
 
-msgid "Let whistleblowers add attachments onto existing reports"
-msgstr "መረጃ ሰጪዎች ያሉ ሪፖርቶች ላይ አባሪ አንዲጨምሩ አስችል"
+msgid "Allow the whistleblower to add attachments"
+msgstr "መረጃ ሰጪው ሪፖርቱ ላይ አባሪ እንዲጨምር ፍቀድ"
 
 msgid "Additional questionnaire"
 msgstr "ተጨማሪ መጠይቅ"
@@ -835,6 +829,9 @@ msgstr "የሶፍትዌር ስሪት"
 
 msgid "Restrict access to specific IP addresses"
 msgstr "መዳረሻን ለተወሰኑ አይፒ አድራሻዎች ይወስኑ"
+
+msgid "Enabled"
+msgstr "ነቅቷል"
 
 msgid "Allowed IP addresses"
 msgstr "የተፈቀዱ አይፒ አድራሻዎች"
@@ -919,6 +916,9 @@ msgid ""
 "from an alternative Certificate Authority."
 msgstr "በእጅ ማዋቀሪያው አዋቂ ኤችቲቲፒኤስን ከአማራጭ የሰርቲፊኬት ስልጣን በመነሳት ለማዋቀር ይመራችኋል"
 
+msgid "Disabled"
+msgstr "የቦዘነ"
+
 msgid "Auto-renewal"
 msgstr "ራስአድስ"
 
@@ -994,6 +994,9 @@ msgstr "ባለብዙ መስመር ጽሑፍ ግቤት"
 msgid "Selection box"
 msgstr "የምርጫ ሳጥን"
 
+msgid "Multiple choice input"
+msgstr "የምርጫ ግቤት"
+
 msgid "Checkbox"
 msgstr "የማመልከቻ ሳጥን"
 
@@ -1014,9 +1017,6 @@ msgstr "አምድ"
 
 msgid "Width"
 msgstr "ወርድ"
-
-msgid "Multiple choice input"
-msgstr "የምርጫ ግቤት"
 
 msgid "Question group"
 msgstr "የጥያቄ ቡድን"
@@ -1348,29 +1348,23 @@ msgstr "ደረሰኙ የተሳሳተ ነው ወይም ሪፖርቱ ተቃጥሏ�
 msgid "Select a file or drag it here."
 msgstr "ፋይል ምረጡ ወይም እዚህ ጎትቱ፡፡"
 
+msgid "Size:"
+msgstr "መጠን"
+
 msgid "Uploading files…"
 msgstr "ፋይል በመጫን ላይ…"
 
 msgid "Upload completed successfully!"
 msgstr "ጭነት በስኬት ተጠናቋል!"
 
-msgid "Error while uploading files; check below for details."
-msgstr "ፋይል በመጫን ላይ ስህተት፤ ለዝርዝሩ ከታች ተመልከቱ፡፡"
-
 msgid "Estimated upload time:"
 msgstr "የጭነት ጊዜ በግምት፡፡"
-
-msgid "Size:"
-msgstr "መጠን"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "ተቀባዮች ተጨማሪ መጠይቅ እንዲሞሉ ጠይቀዋል፡፡"
 
 msgid "Fill the additional questionnaire"
 msgstr "ተጨማሪ መጠይቁን ይሙሉ"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "መረጃ ሰጪው አስተያየት እንዲሰጥ ፍቀዱ"
 
 msgid "From:"
 msgstr "ከ"
@@ -1386,12 +1380,6 @@ msgstr "የጭነት ቀን"
 
 msgid "File size"
 msgstr "የፋይል መጠን"
-
-msgid "Allow the whistleblower to add attachments to the report"
-msgstr "መረጃ ሰጪው ሪፖርቱ ላይ አባሪ እንዲጨምር ፍቀድ"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "መረጃ ሰጪው መልእክት እንዲልክ ፍቀድ"
 
 msgid "Questionnaire answers"
 msgstr "የመጠይቅ መልሶች"
@@ -1606,8 +1594,11 @@ msgstr "የመሳርያ ስርኣቱን አዋቂ አጠናቀዋል፡፡"
 msgid "Describe your report in detail."
 msgstr "ሪፖርትዎን በዝርዝር ይግለጹ፡፡"
 
-msgid "Attach files relevant to the report."
-msgstr "ለሪፖርቱ ጠቃሚ የሆኑ ፋይሎችን አባሪ ያድርጉ፡፡"
+msgid "I'm a victim"
+msgstr ""
+
+msgid "I'm involved in the facts"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
 msgstr "የመታወቂያ መረጃዎን መስጠት ይፈልጋሉ?"
@@ -1621,11 +1612,11 @@ msgstr "የአባት ስም"
 msgid "Alternative contact method"
 msgstr ""
 
-msgid "Other"
-msgstr "ሌላ"
-
 msgid "I prefer to be contacted via this platform only"
 msgstr ""
+
+msgid "Other"
+msgstr "ሌላ"
 
 msgid "Dear {RecipientName},"
 msgstr "ውድ {RecipientName},"
