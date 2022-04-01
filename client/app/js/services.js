@@ -42,7 +42,11 @@ factory("Authentication",
           session.preferencespage = "/" + role + "/preferences";
         }
 
-        self.session = session;
+        if (!self.session) {
+          self.session = session;
+        } else {
+          self.session.id = session.id;
+        }
       };
 
       self.reset = function() {
