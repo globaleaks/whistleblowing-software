@@ -84,8 +84,6 @@ def db_wizard(session, tid, hostname, request):
         receiver_desc['name'] = request['receiver_name']
         receiver_desc['password'] = request['receiver_password']
         receiver_desc['mail_address'] = request['receiver_mail_address']
-        receiver_desc['can_delete_submission'] = True
-        receiver_desc['can_postpone_expiration'] = True
         receiver_desc['language'] = language
         receiver_desc['role'] = 'receiver'
         receiver_desc['pgp_key_remove'] = False

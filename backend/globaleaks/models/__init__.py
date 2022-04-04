@@ -963,7 +963,7 @@ class _User(Model):
     notification = Column(Boolean, default=True, nullable=False)
     forcefully_selected = Column(Boolean, default=False, nullable=False)
     can_delete_submission = Column(Boolean, default=False, nullable=False)
-    can_postpone_expiration = Column(Boolean, default=False, nullable=False)
+    can_postpone_expiration = Column(Boolean, default=True, nullable=False)
     can_grant_access_to_reports = Column(Boolean, default=False, nullable=False)
     can_edit_general_settings = Column(Boolean, default=False, nullable=False)
     readonly = Column(Boolean, default=False, nullable=False)
