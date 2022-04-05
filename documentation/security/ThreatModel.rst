@@ -3,7 +3,7 @@ Threat Model
 ============
 GlobaLeaks is an free and open source whistleblowing framework that can be used in many different usage scenarios that may require very different approaches to obtain at the same time strong security and high usability. This two requirements are necessary to safely handle a whistleblowing procedure by protecting whistleblowers and at the same time achieve specific project goals. For this reasons considering the variety of different use cases and risks the software supports the possibility to be configured o respond to the specific threat model here detailed.
 
-This document is intended to be used by organizations intending to implement a whistleblowing procedure based on Globaleaks and support the analysis and understanding of the threat model of the context of use and of the risks involved and guide users through the selection of the practices to be used within their own project.
+This document is intended to be used by organizations that want to implement a whistleblowing procedure based on Globaleaks and support the analysis and comprehension of the specific threat model of their context of use and of the risks involved and guide users through the selection of the best practices to be used within their own project.
 
 Actors Matrix
 =============
