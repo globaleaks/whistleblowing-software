@@ -1,7 +1,7 @@
 ============
 Threat Model
 ============
-GlobaLeaks is an free and open source whistleblowing framework that can be used in many different usage scenarios that may require very different approaches to obtain at the same time strong security and high usability. This two requirements are necessary to safely handle a whistleblowing procedure by protecting whistleblowers and at the same time achieve specific project goals. For this reasons considering the variety of different use cases and risks the software supports the possibility to be configured o respond to the specific threat model here detailed.
+GlobaLeaks is an free and open source whistleblowing software that can be used in many different usage scenarios that may require very different approaches to obtain at the same time strong security and high usability. This two requirements are necessary to safely handle a whistleblowing procedure by protecting whistleblowers and at the same time achieve specific project goals. For this reasons considering the variety of different use cases and risks the software supports the possibility to be configured o respond to the specific threat model here detailed.
 
 This document is intended to be used by organizations that want to implement a whistleblowing procedure based on Globaleaks and support the analysis and comprehension of the specific threat model of their context of use and of the risks involved and guide users through the selection of the best practices to be used within their own project.
 
@@ -10,13 +10,13 @@ Users Matrix
 As a first step we define the type of users that can interact with a GlobaLeaks platform.
 
 .. csv-table::
-   :header: "User, "Definition"
+   :header: "User", "Definition"
 
-   "Whistleblower", "The user who submits an anonymous report through the GlobaLeaks platform. Whistleblowers are persons in a wide range of different threat models depending on the usage scenario and the nature of information being submitted."
-   "Recipient", "The user (person or organization) receiving the anonymous report submitted by the Whistleblower. The recipients act reasonably in good faith, e.g. if any of them were to give their credentials or private information to the attacker, that would be unreasonable."
-   "Administrator", "The user (person or organization) that is running the GlobaLeaks platform. Administrator may not represent the same entity running, promoting and managing the whistleblowing initiatives (e.g., hosted solutions, multiple stakeholders projects, etc). The Administrator has to be considered in all scenarios described as a trusted entity with reference to the identity and the data exchanged by users."
+   "Whistleblower", "The user who submits an anonymous report through the platform. Whistleblowers are persons operating in a wide range of different threat models depending on the usage scenario and the nature of information being submitted."
+   "Recipient", "The user receiving anonymous reports submitted by Whistleblowers and responsible for their analysis. Recipients act reasonably in good faith and have to be considered in all scenarios described as trusted party with reference to the protection of Whistleblowers' and the confidentiality of the information by them communicated."
+   "Administrator", "The users supporting the setup, the management and monitoring the security of the platform. Administrator may not represent the same entity running, promoting and managing the whistleblowing initiatives (e.g., hosted solutions, multiple stakeholders projects, etc). The Administrator has to be considered in all scenarios described as a trusted entity. They do not have direct access to reports and they are responsible for advising Recipients on the best practices to be adopted in their work."
 
-It’s highly relevant to apply each of the security measures always in relationship to the users using GlobaLeaks, while always considering the security and usability tradeoff.
+It's highly relevant to apply each of the security measures always in relationship to the users using the platorm, trying to identify an adequate security and usability tradeoff.
 
 Anonymity Matrix
 ================
@@ -25,10 +25,10 @@ The anonymity of different users must be differentiated and classified depending
 .. csv-table::
    :header: "User", "Definition"
 
-   "Anonymous", "User's identity and their location cannot be disclosed."
-   "Confidential", "The system is designed to remove or limit any recording of identifiable information that when registered is maintained encrypted and managed confidentially."
+   "Anonymous", "The user has accessed the platform via the Tor Browser and following the best practices for protecting their identity reducing to the maximum the possibility that a system involved in the operation has tracked their activities and their own IP address. The user has not provided any information about their own identity to Recipients."
+   "Confidential", "The user has used the platform by using a common browser. In this case, third parties could have logged their IP address during their operations but the platform has protected the content of their communication. The user may have possibly opted for disclosing confidentially their own identity to Recipients."
 
-Different uses of GlobaLeaks must consider the requirements for different users in the anonymity matrix. The Anonymity level is reported in the user interface, with the aim of making the user aware of it. The Administrator can configure the Anonymity level required for each user.
+The platform always reports to users their current anonymity state and inform them about the best practices for accessing anonymously via the Tor Browser. Depending on the use case Administrators could possibly enforce the requirement that Whistleblowers could file reports only by using the Tor Browser.
 
 Communication Security Matrix
 =============================
@@ -36,19 +36,9 @@ The security of communication with respect to third party transmission monitorin
 
 .. csv-table::
    :header: "Security level", "Description"
-   "High security", "The communication is encrypted end-to-end with the GlobaLeaks platform and no third party is in a condition to eavesdrop the communication."
-   "Medium security", "The communication is encrypted end-to-end with the GlobaLeaks platform. A third party able to manipulate HTTPS security (e.g., Govt re-issuing TLS cert) is in a condition to eavesdrop the communication. If HTTPS security is guaranteed, Monitoring  user’s communication’s line or the GlobaLeaks platform communication’s line is not possible."
-   "No security", "The communication is not encrypted at all. Monitoring the communication’s line of the user or of the GlobaLeaks platform is possible."
+   "High security", "Tor is used and the communication is encrypted end-to-end with the GlobaLeaks platform and no third party is in a condition to eavesdrop the communication."
+   "Medium security", "HTTPS is used and the communication is encrypted end-to-end with the GlobaLeaks platform. A third party able to manipulate HTTPS security (e.g., Govt re-issuing TLS cert) is in a condition to eavesdrop the communication. If HTTPS security is guaranteed, Monitoring  user's communication's line or the GlobaLeaks platform communication's line is not possible."
 
-The following matrix applies the previous definition related to different architectural implementations of GlobaLeaks software:
-
-.. csv-table::
-   :header: "Communication security matrix", "Tor", "HTTPS"
-   :header: "User", "Definition"
-
-   "Security Level", "High security", "Medium security"
-
-Identity Disclosure Matrix
 ==========================
 Independently of the anonymity matrix, various users may decide to, or be required to disclose or not disclose their identity.
 
@@ -57,8 +47,7 @@ Independently of the anonymity matrix, various users may decide to, or be requir
    :header: "User", "Definition"
 
    "Undisclosed", "The user's identity is not disclosed and its disclosure is not likely."
-   "Partially disclosed (pseudonym)", "The user operates under a pseudonym while interacting with the platform."
-   "Optionally disclosed", "The user’s identity is by default not disclosed, but they are given the chance to disclose it on a voluntary basis (e.g., in some workflows an anonymous tip-off MAY receive a follow-up, while a formal report with identity disclosed MUST receive a follow-up)."
+   "Optionally disclosed", "The user's identity is by default not disclosed, but they are given the chance to disclose it on a voluntary basis (e.g., in some workflows an anonymous tip-off MAY receive a follow-up, while a formal report with identity disclosed MUST receive a follow-up)."
    "Disclosed", "The user decides to, or is required to, disclose their identity to other users."
 
 Identity disclosure is a highly relevant topic, because even in an Anonymous High security environment, identity disclosure may be an valuable option for specific whistleblowing initiative workflows.
@@ -81,9 +70,9 @@ In this section you will find examples that show how different anonymity levels 
    :header: "Use case", "Description"
 
    "Media outlet", "A Media outlet, whose identity is disclosed, decides to start a Whistleblowing initiative. The outlet's recipients are disclosed to Whistleblowers, so that they can trust a specific journalist rather than the outlet itself. Full anonymity must be assured to whistleblowers and their identity cannot be disclosed in connection with anonymous submissions. The whistleblower MAY choose to willingly disclose their identity (e.g. when the journalist's source-protection record is trusted)."
-   "Corporate compliance", "A Corporation needs to implement transparency, or anti-bribery law compliance, by promoting its initiatives to employees, consultants and providers. The recipients are partially disclosed because they are represented by different divisions of the “Internal Audit” business unit of the company. The Whistleblower is guaranteed full anonymity, but they can optionally disclose their identity (tip off vs formal report)."
-   "Human Rights Activism Initiative", "A Human Rights Group starts a Whistleblowing initiative to spot human rights violations in a dangerous place. The organization requires anonymity to avoid retaliations and takedowns, and operates under a Pseudonym. The Recipients MUST not be disclosed to the Whistleblowers, but a Partial Disclosure by pseudonym can be acceptable in order to give proper trust to “Who the whistleblower is submitting to” . The Whistleblower MUST be guaranteed anonymity and their identity cannot be disclosed."
-   "Citizen media initiative", "A Citizen media initiative with it’s own public identity wants to collect reports on a specific topic (political, environmental malpractice, corruption, etc) in a medium-low risk operational context. The recipients could be public or use Pseudonym in order to avoid complete exposure. The Whistleblower, if the topic is not life-threatening, can be allowed to submit also in a Confidential way to lower the entrance barrier."
+   "Corporate compliance", "A Corporation needs to implement transparency, or anti-bribery law compliance, by promoting its initiatives to employees, consultants and providers. The recipients are part of a division of the company (e.g. Internal Audit office). The Whistleblower is guaranteed full anonymity, but they can optionally disclose their identity."
+   "Human Rights Activism Initiative", "A Human Rights Group starts a Whistleblowing initiative to spot human rights violations in a dangerous place. The organization requires anonymity to avoid retaliations and takedowns, and operates under a pseudonym. The Recipients MUST not be disclosed to the Whistleblowers, but a Partial Disclosure by pseudonym can be acceptable in order to give proper trust to “Who the whistleblower is submitting to” . The Whistleblower MUST be guaranteed anonymity and their identity cannot be disclosed."
+   "Citizen media initiative", "A Citizen media initiative with it's own public identity wants to collect reports on a specific topic (political, environmental malpractice, corruption, etc) in a medium-low risk operational context. The recipients could be public or use Pseudonym in order to avoid complete exposure. The Whistleblower, if the topic is not life-threatening, can be allowed to submit also in a Confidential way to lower the entrance barrier."
 
 Below we show how different usage scenarios can require different anonymity levels, communication security requirements and identity disclosures for different users.
 
@@ -135,11 +124,11 @@ In this section we highlight several threats that require specific explanation.
 
 Browser History and Cache
 -------------------------
-GlobaLeaks tries to avoid, by using properly crafted HTTP headers and other tricks, leaking information into any user’s browser history or cache. This privacy feature cannot guarantee the safety of the user against a forensics analysis of their browser cache and/or history, but it is provided as an additional safety measure.
+GlobaLeaks tries to avoid, by using properly crafted HTTP headers and other techniques, leaking information into any user's browser history or cache. This privacy feature cannot guarantee the safety of the user against a forensics analysis of their browser cache and/or history, but it is provided as an additional safety measure.
 
 Metadata
 --------
-Every file can contain metadata related to the author or the whistleblower. The cleanup of metadata of submitted files is a particular topic that attempts to protect an “unaware” whistleblower from leaking information in a document that may put their anonymity at risk. In the context of GlobaLeaks, by default no automatic metadata cleanup is implemented because metadata is considered fundamental in the evidence preservation. For that reason metadata cleanup is an optional operation that coulld be suggested to Whistleblowers or operated by Recipients when sharing the document with other persons. A valuable software resource for this aim is the `Metadata Anonymization Toolkit <https://0xacab.org/jvoisin/mat2>`_
+Every file can contain metadata related to the author or the whistleblower. The cleanup of metadata of submitted files is a particular topic that attempts to protect an “unaware” whistleblower from including information in a document that may put their anonymity at risk. In the context of GlobaLeaks, by default no automatic metadata cleanup is implemented because metadata is considered fundamental part of the original evidence that shall be preserved and not invalidated. For this reason metadata cleanup is an optional operation that could be suggested to Whistleblowers or operated by Recipients when sharing the document with other persons. When sharing files to external third parties Recipients are invited to print the document and provide a hard copy. This process is helpful to ensure that recipients only share what they see without risking to share sensitive information contained in the metadata of the files of which they may not be aware of. To get to know more about metadata and the best practices on redacting metadata from digital files we recommend reading the article `Everything you wanted to know about media metadata, but were afraid to ask <https://freedom.press/training/everything-you-wanted-know-about-media-metadata-were-afraid-ask/>`_ by Harlo Holmes. A valuable tool supporting these advanced procedures is the `Metadata Anonymization Toolkit <https://0xacab.org/jvoisin/mat2>`_
 
 Malware and Trojans
 -------------------
