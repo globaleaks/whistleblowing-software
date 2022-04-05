@@ -5,30 +5,30 @@ GlobaLeaks is an free and open source whistleblowing framework that can be used 
 
 This document is intended to be used by organizations that want to implement a whistleblowing procedure based on Globaleaks and support the analysis and comprehension of the specific threat model of their context of use and of the risks involved and guide users through the selection of the best practices to be used within their own project.
 
-Actors Matrix
-=============
-As a first step we define the actors, which are the users that interact with a GlobaLeaks platform.
+Users Matrix
+============
+As a first step we define the type of users that can interact with a GlobaLeaks platform.
 
 .. csv-table::
-   :header: "Actor", "Definition"
+   :header: "User, "Definition"
 
    "Whistleblower", "The user who submits an anonymous report through the GlobaLeaks platform. Whistleblowers are persons in a wide range of different threat models depending on the usage scenario and the nature of information being submitted."
    "Recipient", "The user (person or organization) receiving the anonymous report submitted by the Whistleblower. The recipients act reasonably in good faith, e.g. if any of them were to give their credentials or private information to the attacker, that would be unreasonable."
-   "Administrator", "The user (person or organization) that is running the GlobaLeaks platform. Administrator may not represent the same entity running, promoting and managing the whistleblowing initiatives (e.g., hosted solutions, multiple stakeholders projects, etc). The Administrator has to be considered in all scenarios described as a trusted entity with reference to the identity and the data exchanged by actors."
+   "Administrator", "The user (person or organization) that is running the GlobaLeaks platform. Administrator may not represent the same entity running, promoting and managing the whistleblowing initiatives (e.g., hosted solutions, multiple stakeholders projects, etc). The Administrator has to be considered in all scenarios described as a trusted entity with reference to the identity and the data exchanged by users."
 
-It’s highly relevant to apply each of the security measures always in relationship to the actors using GlobaLeaks, while always considering the security and usability tradeoff.
+It’s highly relevant to apply each of the security measures always in relationship to the users using GlobaLeaks, while always considering the security and usability tradeoff.
 
 Anonymity Matrix
 ================
-The anonymity of different actors must be differentiated and classified depending on the context of use represented by the following definitions:
+The anonymity of different users must be differentiated and classified depending on the context of use represented by the following definitions:
 
 .. csv-table::
-   :header: "Actor", "Definition"
+   :header: "User", "Definition"
 
-   "Anonymous", "Actor's identity and their location cannot be disclosed."
+   "Anonymous", "User's identity and their location cannot be disclosed."
    "Confidential", "The system is designed to remove or limit any recording of identifiable information that when registered is maintained encrypted and managed confidentially."
 
-Different uses of GlobaLeaks must consider the requirements for different actors in the anonymity matrix. The Anonymity level is reported in the user interface, with the aim of making the user aware of it. The Administrator can configure the Anonymity level required for each actor.
+Different uses of GlobaLeaks must consider the requirements for different users in the anonymity matrix. The Anonymity level is reported in the user interface, with the aim of making the user aware of it. The Administrator can configure the Anonymity level required for each user.
 
 Communication Security Matrix
 =============================
@@ -37,34 +37,34 @@ The security of communication with respect to third party transmission monitorin
 .. csv-table::
    :header: "Security level", "Description"
    "High security", "The communication is encrypted end-to-end with the GlobaLeaks platform and no third party is in a condition to eavesdrop the communication."
-   "Medium security", "The communication is encrypted end-to-end with the GlobaLeaks platform. A third party able to manipulate HTTPS security (e.g., Govt re-issuing TLS cert) is in a condition to eavesdrop the communication. If HTTPS security is guaranteed, Monitoring  actor’s communication’s line or the GlobaLeaks platform communication’s line is not possible."
-   "No security", "The communication is not encrypted at all. Monitoring the communication’s line of the actor or of the GlobaLeaks platform is possible."
+   "Medium security", "The communication is encrypted end-to-end with the GlobaLeaks platform. A third party able to manipulate HTTPS security (e.g., Govt re-issuing TLS cert) is in a condition to eavesdrop the communication. If HTTPS security is guaranteed, Monitoring  user’s communication’s line or the GlobaLeaks platform communication’s line is not possible."
+   "No security", "The communication is not encrypted at all. Monitoring the communication’s line of the user or of the GlobaLeaks platform is possible."
 
 The following matrix applies the previous definition related to different architectural implementations of GlobaLeaks software:
 
 .. csv-table::
    :header: "Communication security matrix", "Tor", "HTTPS"
-   :header: "Actor", "Definition"
+   :header: "User", "Definition"
 
    "Security Level", "High security", "Medium security"
 
 Identity Disclosure Matrix
 ==========================
-Independently of the anonymity matrix, various actors may decide to, or be required to disclose or not disclose their identity.
+Independently of the anonymity matrix, various users may decide to, or be required to disclose or not disclose their identity.
 
 .. csv-table::
    :header: "Identity disclosure matrix", "Definition"
-   :header: "Actor", "Definition"
+   :header: "User", "Definition"
 
-   "Undisclosed", "The actor's identity is not disclosed and its disclosure is not likely."
-   "Partially disclosed (pseudonym)", "The actor operates under a pseudonym while interacting with the platform."
-   "Optionally disclosed", "The actor’s identity is by default not disclosed, but they are given the chance to disclose it on a voluntary basis (e.g., in some workflows an anonymous tip-off MAY receive a follow-up, while a formal report with identity disclosed MUST receive a follow-up)."  
-   "Disclosed", "The actor decides to, or is required to, disclose their identity to other actors."
+   "Undisclosed", "The user's identity is not disclosed and its disclosure is not likely."
+   "Partially disclosed (pseudonym)", "The user operates under a pseudonym while interacting with the platform."
+   "Optionally disclosed", "The user’s identity is by default not disclosed, but they are given the chance to disclose it on a voluntary basis (e.g., in some workflows an anonymous tip-off MAY receive a follow-up, while a formal report with identity disclosed MUST receive a follow-up)."
+   "Disclosed", "The user decides to, or is required to, disclose their identity to other users."
 
 Identity disclosure is a highly relevant topic, because even in an Anonymous High security environment, identity disclosure may be an valuable option for specific whistleblowing initiative workflows.
 
-If an actor starts dealing with an Anonymity set “Anonymous” and with an “Undisclosed Identity” they can always decide, at a later stage, to disclose their identity. The opposite is not possible.
-This is one of the key considerations to provide actors protection around GlobaLeaks.
+If a user starts dealing with an Anonymity set “Anonymous” and with an “Undisclosed Identity” they can always decide, at a later stage, to disclose their identity. The opposite is not possible.
+This is one of the key considerations to provide users protection around GlobaLeaks.
 
 Voluntary identity disclosure may be required in certain whisteblowing procedures because, generally:
 
@@ -75,7 +75,7 @@ The “MAY” vs. “MUST” is with respect to the actions of recipients and is
 
 Usage Scenarios Matrix
 ======================
-In this section you will find examples that show how different anonymity levels of different actors can be mixed together depending on the context of use.
+In this section you will find examples that show how different anonymity levels of different users can be mixed together depending on the context of use.
 
 .. csv-table::
    :header: "Use case", "Description"
@@ -85,12 +85,12 @@ In this section you will find examples that show how different anonymity levels 
    "Human Rights Activism Initiative", "A Human Rights Group starts a Whistleblowing initiative to spot human rights violations in a dangerous place. The organization requires anonymity to avoid retaliations and takedowns, and operates under a Pseudonym. The Recipients MUST not be disclosed to the Whistleblowers, but a Partial Disclosure by pseudonym can be acceptable in order to give proper trust to “Who the whistleblower is submitting to” . The Whistleblower MUST be guaranteed anonymity and their identity cannot be disclosed."
    "Citizen media initiative", "A Citizen media initiative with it’s own public identity wants to collect reports on a specific topic (political, environmental malpractice, corruption, etc) in a medium-low risk operational context. The recipients could be public or use Pseudonym in order to avoid complete exposure. The Whistleblower, if the topic is not life-threatening, can be allowed to submit also in a Confidential way to lower the entrance barrier."
 
-Below we show how different usage scenarios can require different anonymity levels, communication security requirements and identity disclosures for different actors.
+Below we show how different usage scenarios can require different anonymity levels, communication security requirements and identity disclosures for different users.
 
-GlobaLeaks, through its user interface, will enable each actor with appropriate security awareness information, and will enforce specific requirements to specific actors by the application of clear configuration guidelines.
+GlobaLeaks, through its user interface, will enable each user with appropriate security awareness information, and will enforce specific requirements to specific users by the application of clear configuration guidelines.
 
 .. csv-table::
-   :header: "Scenario", "Actor", "Anonymity level", "Identity disclosure", "Communication security"
+   :header: "Scenario", "User", "Anonymity level", "Identity disclosure", "Communication security"
 
    "Media outlet", "Whistleblower", "Anonymous", "Undisclosed", "High security"
    "", "Recipient", "No anonymity", "Disclosed", "Medium security"
@@ -135,7 +135,7 @@ In this section we highlight several threats that require specific explanation.
 
 Browser History and Cache
 -------------------------
-GlobaLeaks tries to avoid, by using properly crafted HTTP headers and other tricks, leaking information into any actor’s browser history or cache. This privacy feature cannot guarantee the safety of the user against a forensics analysis of their browser cache and/or history, but it is provided as an additional safety measure.
+GlobaLeaks tries to avoid, by using properly crafted HTTP headers and other tricks, leaking information into any user’s browser history or cache. This privacy feature cannot guarantee the safety of the user against a forensics analysis of their browser cache and/or history, but it is provided as an additional safety measure.
 
 Metadata
 --------
@@ -163,7 +163,7 @@ GlobaLeaks implements by default a strict data retention policy of 90 days to en
 
 Human Negligence
 ----------------
-While we do provide the Administrator the ability to fine tune their security related configurations, and while we do continuously inform the actors about their security related context at every step of interactions, GlobaLeaks cannot protect against any major security threats coming from human negligence. For example, if a Whistleblower submits data that a third party (carrying on an ex-post facto investigation) can use to identify them as the unique owner or recent viewer of that data, then the Whistleblower cannot be protected by GlobaLeaks.
+While we do provide the Administrator the ability to fine tune their security related configurations, and while we do continuously inform the users about their security related context at every step of interactions, GlobaLeaks cannot protect against any major security threats coming from human negligence. For example, if a Whistleblower submits data that a third party (carrying on an ex-post facto investigation) can use to identify them as the unique owner or recent viewer of that data, then the Whistleblower cannot be protected by GlobaLeaks.
 
 Advanced Traffic Analysis
 -------------------------
