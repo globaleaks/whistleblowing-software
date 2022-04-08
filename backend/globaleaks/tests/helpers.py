@@ -33,7 +33,6 @@ from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
 from globaleaks.handlers.admin.step import db_create_step
 from globaleaks.handlers.admin.tenant import create as create_tenant
 from globaleaks.handlers.admin.user import create_user
-from globaleaks.handlers.token import generate_token
 from globaleaks.handlers.wizard import db_wizard
 from globaleaks.handlers.submission import create_submission
 from globaleaks.models import serializers
@@ -47,6 +46,7 @@ from globaleaks.utils import tempdict
 from globaleaks.utils.crypto import generateRandomKey, GCE
 from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.securetempfile import SecureTemporaryFile
+from globaleaks.utils.token import Token
 from globaleaks.utils.utility import datetime_null, datetime_now, sum_dicts, uuid4
 from globaleaks.utils.log import log
 
@@ -666,17 +666,6 @@ class TestGL(unittest.TestCase):
 
         return answers
 
-    def getToken(self):
-        token = self.state.tokens.new(1)
-
-        self.state.tokens.pop(token.id)
-        token.id = "PBmL2WGq8w8luxOjgH38MjqSti0WfL9YAfQYJddnxp"
-        self.state.tokens[token.id] = token
-
-        token.creation_date = datetime_now() - timedelta(seconds=2)
-        token.answer = 406
-        return token
-
     @inlineCallbacks
     def get_dummy_submission(self, context_id):
         """
@@ -966,9 +955,11 @@ class TestHandler(TestGLWithPopulatedDB):
             headers[b'x-session'] = session.id.encode()
 
         # during unit tests a token is always provided to any handler
-        token = generate_token(1, session)
-        self.state.tokens[token['id']].solved = True
-        args[b'token'] = [token['id'].encode()]
+        token = self.state.tokens.new(1)
+        self.state.tokens.pop(token.id)
+        token.id = "PBmL2WGq8w8luxOjgH38MjqSti0WfL9YAfQYJddnxp" # answer: 406
+        self.state.tokens[token.id] = token
+        headers[b'x-token'] = b"PBmL2WGq8w8luxOjgH38MjqSti0WfL9YAfQYJddnxp:406"
 
         if handler_cls is None:
             handler_cls = self._handler

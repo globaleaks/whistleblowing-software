@@ -34,7 +34,7 @@ def decorator_rate_limit(f):
 
 def decorator_require_token(f):
     def wrapper(self, *args, **kwargs):
-        if self.require_token and not self.token:
+        if not self.session and not self.request.uri.startswith(b"/api/token") and not self.token:
             raise errors.InternalServerError("TokenFailure: Missing or invalid token")
 
         return f(self, *args, **kwargs)
@@ -124,12 +124,10 @@ def decorate_method(h, method):
             if h.refresh_connection_endpoints:
                 f = decorator_refresh_connection_endpoints(f)
 
-    if h.require_token:
-        f = decorator_require_token(f)
-
     f = decorator_authentication(f, value)
 
-    if method in ['post', 'put', 'delete']:
+    if method not in ['get', 'options'] or h.require_token:
+        f = decorator_require_token(f)
         f = decorator_rate_limit(f)
 
     setattr(h, method, f)

@@ -12,8 +12,8 @@ GL.factory("GLResource", ["$resource", function($resource) {
   };
 }]).
 factory("Authentication",
-  ["$filter", "$http", "$location", "$window", "$rootScope", "GLTranslate", "TokenResource",
-  function($filter, $http, $location, $window, $rootScope, GLTranslate, TokenResource) {
+  ["$filter", "$http", "$location", "$window", "$rootScope", "GLTranslate",
+  function($filter, $http, $location, $window, $rootScope, GLTranslate) {
     function Session(){
       var self = this;
 
@@ -100,21 +100,19 @@ factory("Authentication",
           }
         };
 
-        return new TokenResource().$get().then(function(token) {
-          var promise;
-          if (authtoken) {
-            promise = $http.post("api/tokenauth?token=" + token.id, {"authtoken": authtoken});
+        var promise;
+        if (authtoken) {
+          promise = $http.post("api/tokenauth", {"authtoken": authtoken});
+        } else {
+          if (username === "whistleblower") {
+            password = password.replace(/\D/g,"");
+            promise = $http.post("api/receiptauth", {"receipt": password});
           } else {
-            if (username === "whistleblower") {
-              password = password.replace(/\D/g,"");
-              promise = $http.post("api/receiptauth?token=" + token.id, {"receipt": password});
-            } else {
-              promise = $http.post("api/authentication?token=" + token.id, {"tid": tid, "username": username, "password": password, "authcode": authcode});
-            }
+            promise = $http.post("api/authentication", {"tid": tid, "username": username, "password": password, "authcode": authcode});
           }
+        }
 
-          return promise.then(success_fn, failure_fn);
-        });
+        return promise.then(success_fn, failure_fn);
       };
 
       self.deleteSession = function() {
@@ -221,9 +219,7 @@ factory("TokenResource", ["GLResource", "glbcProofOfWork", function(GLResource, 
           var token = response.resource;
           return glbcProofOfWork.proofOfWork(token.id).then(function(result) {
             token.answer = result;
-            return token.$update().then(function(token) {
-              return token;
-            });
+            return token;
           });
         }
       }
@@ -245,7 +241,7 @@ factory("DATA_COUNTRIES_ITALY_PROVINCES", ["$resource", function($resource) {
 factory("DATA_COUNTRIES_ITALY_CITIES", ["$resource", function($resource) {
   return $resource("data/countries/it/comuni.json");
 }]).
-factory("Submission", ["$q", "$location", "$rootScope", "Authentication", "GLResource", "SubmissionResource", "TokenResource",
+factory("Submission", ["$q", "$location", "$rootScope", "Authentication", "GLResource", "SubmissionResource",
     function($q, $location, $rootScope, Authentication, GLResource, SubmissionResource) {
 
   return function(fn) {
@@ -358,28 +354,22 @@ factory("RTipCommentResource", ["GLResource", function(GLResource) {
 factory("RTipMessageResource", ["GLResource", function(GLResource) {
   return new GLResource("api/rtips/:id/messages", {id: "@id"});
 }]).
-factory("RTipDownloadRFile", ["$http", "$window", "TokenResource", function($http, $window, TokenResource) {
+factory("RTipDownloadRFile", ["Utils", function(Utils) {
   return function(file) {
-    return new TokenResource().$get().then(function(token) {
-      $window.open("api/rfile/" + file.id + "?token=" + token.id);
-    });
+    Utils.download("api/rfile/" + file.id);
   };
 }]).
 factory("RTipWBFileResource", ["GLResource", function(GLResource) {
   return new GLResource("api/wbfile/:id", {id: "@id"});
 }]).
-factory("RTipDownloadWBFile", ["$http", "$window", "TokenResource", function($http, $window, TokenResource) {
+factory("RTipDownloadWBFile", ["Utils", function(Utils) {
   return function(file) {
-    return new TokenResource().$get().then(function(token) {
-      $window.open("api/wbfile/" + file.id + "?token=" + token.id);
-    });
+    Utils.download("api/wbfile/" + file.id);
   };
 }]).
-factory("RTipExport", ["$http", "$window", "TokenResource", function($http, $window, TokenResource) {
+factory("RTipExport", ["Utils", function(Utils) {
   return function(tip) {
-    return new TokenResource().$get().then(function(token) {
-      $window.open("api/rtips/" + tip.id + "/export?token=" + token.id);
-    });
+    Utils.download("api/rtips/" + tip.id + "/export");
   };
 }]).
 factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipMessageResource", "RTipCommentResource",
@@ -444,11 +434,9 @@ factory("WBTipCommentResource", ["GLResource", function(GLResource) {
 factory("WBTipMessageResource", ["GLResource", function(GLResource) {
   return new GLResource("api/wbtip/messages/:id", {id: "@id"});
 }]).
-factory("WBTipDownloadFile", ["$http", "$window", "TokenResource", function($http, $window, TokenResource) {
+factory("WBTipDownloadFile", ["Utils", function(Utils) {
   return function(file) {
-    return new TokenResource().$get().then(function(token) {
-      $window.open("api/wbtip/wbfile/" + file.id + "?token=" + token.id);
-    });
+    Utils.downoad("api/wbtip/wbfile/" + file.id);
   };
 }]).
 factory("WBTip", ["$rootScope", "WBTipResource", "WBTipCommentResource", "WBTipMessageResource",
@@ -1052,6 +1040,12 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       };
     },
 
+    download: function(url) {
+      return new TokenResource().$get().then(function(token) {
+        $window.open(url + "?token=" + token.id);
+      });
+    },
+
     getSubmissionStatusText: function(status, substatus, submission_statuses) {
       var text;
       for (var i = 0; i < submission_statuses.length; i++) {
@@ -1077,9 +1071,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
     },
 
     submitSupportRequest: function(data) {
-      return new TokenResource().$get().then(function(token) {
-        return $http({method: "POST", url: "api/support?token=" + token.id, data:{"mail_address": data.mail_address, "text": data.text, "url": $location.absUrl()}});
-      });
+      return $http({method: "POST", url: "api/support", data:{"mail_address": data.mail_address, "text": data.text, "url": $location.absUrl()}});
     },
 
     print: function() {
@@ -1150,9 +1142,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
         return s.replace(uuid4RE, uuid4Empt).replace(emailRE, emailEmpt);
       }
 
-      return new TokenResource().$get().then(function(token) {
-        return $http.post("api/exception?token=" + token.id, scrub(exception));
-      });
+      return $http.post("api/exception", scrub(exception));
     }
   };
 }]).

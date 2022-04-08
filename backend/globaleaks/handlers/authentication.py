@@ -146,7 +146,6 @@ class AuthenticationHandler(BaseHandler):
     Login handler for admins and recipents and custodians
     """
     check_roles = 'any'
-    require_token = True
     uniform_answer_time = True
 
     @inlineCallbacks
@@ -183,7 +182,6 @@ class TokenAuthHandler(BaseHandler):
     Login handler for token based authentication
     """
     check_roles = 'any'
-    require_token = True
     uniform_answer_time = True
 
     @inlineCallbacks
@@ -209,7 +207,6 @@ class ReceiptAuthHandler(BaseHandler):
     Receipt handler used by whistleblowers
     """
     check_roles = 'any'
-    require_token = True
     uniform_answer_time = True
 
     @inlineCallbacks

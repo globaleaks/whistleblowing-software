@@ -765,10 +765,18 @@ var GL = angular.module("GL", [
     return {
      "request": function(config) {
        var $rootScope = $injector.get("$rootScope");
+       var TokenResource = $injector.get("TokenResource");
 
        angular.extend(config.headers, $rootScope.Authentication.get_headers());
 
-       return config;
+       if (!$rootScope.Authentication.session && (config.url.substr(0, 9) !== "api/token") && (["DELETE", "POST", "PUT"].indexOf(config.method) !== -1)) {
+         return new TokenResource().$get().then(function(token) {
+           angular.extend(config.headers, {"x-token": token.id + ":" + token.answer});
+           return config;
+         });
+       } else {
+         return config;
+       }
      },
      "responseError": function(response) {
        /*/

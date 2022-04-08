@@ -16,20 +16,6 @@ class TestToken(helpers.TestGL):
 
         yield anomalies.Anomalies().run()
 
-    def test_proof_of_work_wrong_answer(self):
-        token = self.getToken()
-
-        self.assertFalse(token.update(0))
-        # validate with right value: OK
-        self.assertRaises(Exception, self.state.tokens.validate, token.id)
-
-    def test_proof_of_work_right_answer(self):
-        token = self.getToken()
-
-        # validate with right value: OK
-        self.assertTrue(token.update(token.answer))
-        self.state.tokens.validate(token.id)
-
     def test_tokens_garbage_collected(self):
         self.assertTrue(len(self.state.tokens) == 0)
 

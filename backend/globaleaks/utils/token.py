@@ -15,17 +15,6 @@ class Token(object):
         self.id = generateRandomKey()
         self.session = None
         self.creation_date = datetime_now()
-        self.solved = False
-
-    def update(self, answer):
-        resolved = "%s%d" % (self.id, answer)
-        x = sha256(resolved.encode())
-        self.solved = x.endswith(b'00')
-
-        if not self.solved:
-            self.tokenlist.pop(self.id, None)
-
-        return self.solved
 
     def serialize(self):
         return {
@@ -41,7 +30,6 @@ class TokenList(TempDict):
 
         if session is not None:
             token.session = session
-            token.solved = True
 
         self[token.id] = token
 
@@ -54,16 +42,17 @@ class TokenList(TempDict):
 
         return ret
 
-    def validate(self, key):
-        token = self.pop(key, None)
-        if token is None:
+    def validate(self, token_answer):
+        try:
+            key, answer = token_answer.split(b":")
+            token = self.pop(key.decode())
+
+            if datetime_now() > token.creation_date + timedelta(seconds=self.timeout):
+                raise errors.InternalServerError("TokenFailure: Token is expired")
+
+            if not sha256(key + answer).endswith(b'00'):
+                raise errors.InternalServerError("TokenFailure: Token is not solved")
+        except:
             raise errors.InternalServerError("TokenFailure: Invalid token")
-
-        if not token.solved:
-            raise errors.InternalServerError("TokenFailure: Token is not solved")
-
-        end = token.creation_date + timedelta(seconds=self.timeout)
-        if datetime_now() > end:
-            raise errors.InternalServerError("TokenFailure: Token is expired")
 
         return token

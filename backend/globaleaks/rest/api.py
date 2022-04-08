@@ -76,8 +76,7 @@ api_spec = [
     (r'/api/user/operations', user.UserOperationHandler),
 
     # Token Handlers
-    (r'/api/token', token.TokenCreate),
-    (r'/api/token/' + requests.token_regexp, token.TokenInstance),
+    (r'/api/token', token.TokenHandler),
 
     # Submission Handlers
     (r'/api/submission', submission.SubmissionInstance),
