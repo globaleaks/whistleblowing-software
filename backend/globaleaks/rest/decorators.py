@@ -12,6 +12,7 @@ from globaleaks.utils.utility import datetime_now
 
 
 def decorator_rate_limit(f):
+    # Decorator that enforces rate limiting on authenticated whistleblowers' sessions
     def wrapper(self, *args, **kwargs):
         if self.session and self.session.user_role == 'whistleblower':
             now = datetime_now()
@@ -33,6 +34,7 @@ def decorator_rate_limit(f):
 
 
 def decorator_require_token(f):
+    # Decorator that ensures a proof of work token is included in any non authenticated request
     def wrapper(self, *args, **kwargs):
         if not self.session and not self.request.uri.startswith(b"/api/token") and not self.token:
             raise errors.InternalServerError("TokenFailure: Missing or invalid token")
@@ -43,6 +45,7 @@ def decorator_require_token(f):
 
 
 def decorator_authentication(f, roles):
+    # Decorator that performs role checks on the user session
     def wrapper(self, *args, **kwargs):
         if (('any' in roles) or
             ((self.session and self.session.tid == self.request.tid) and
@@ -58,6 +61,7 @@ def decorator_authentication(f, roles):
 
 
 def decorator_cache_get(f):
+    # Decorator that checks if the requests resource is cached
     def wrapper(self, *args, **kwargs):
         c = Cache.get(self.request.tid, self.request.path, self.request.language)
         if c is None:
@@ -84,6 +88,7 @@ def decorator_cache_get(f):
 
 
 def decorator_cache_invalidate(f):
+    # Decorator that invalidates the requests cache
     def wrapper(self, *args, **kwargs):
         if self.invalidate_cache:
             Cache.invalidate(self.request.tid)
@@ -94,6 +99,7 @@ def decorator_cache_invalidate(f):
 
 
 def decorator_refresh_connection_endpoints(f):
+    # Decorator that reloads connection endpoints
     def wrapper(self, *args, **kwargs):
         d = defer.maybeDeferred(f, self, *args, **kwargs)
 
