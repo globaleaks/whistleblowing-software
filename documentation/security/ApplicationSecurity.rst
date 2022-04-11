@@ -320,14 +320,15 @@ DoS Resiliency
 ==============
 To avoid applicative and database denial of service, GlobaLeaks apply the following measures:
 
-* It tries to limit the possibility of automating any operation by requiring human interaction (e.g. with the implementation of proof of work)
+* It tries to limit the possibility of automating any operation by implement a proof of work on each unauthenticared request (hashcash)
+* It applies rete limiting on any authenticated session
 * It is written to limit the possibility of triggering CPU intensive routines by an external user (e.g. by implementing limits on queries and jobs execution time)
 * It implements monitoring of each activity trying to implement detection of attacks and implement proactively security measures to prevent DoS (e.g. implementing slowdown on fast-operations)
 
 Other Measures
 ==============
 Browser History and Forensic Traces
-------------------------------------
+-----------------------------------
 The whole application is designed keeping in mind to try to avoid or reduce the forensic traces left by whistleblowers on their devices while filing their reports.
 
 When the accessed via the Tor Browser, the browser guarantees that no persistent traces are left on the device of the user.
