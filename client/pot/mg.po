@@ -6,7 +6,7 @@
 # Charles Peltier <charles@cl-info.fr>, 2015
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2020-2022
 # Jean-Yves Toumit <saiolar-c@yahoo.fr>, 2013
-# kwadronaut <kwadronaut@autistici.org>, 2015
+# kwadronaut <kwadronaut@chocovax.net>, 2015
 # marco calamari <marcoc@marcoc.it>, 2013
 # Myriam Gineste <yleane.myriam@gmail.com>, 2014
 # Pierre <prjolivet@yahoo.fr>, 2015

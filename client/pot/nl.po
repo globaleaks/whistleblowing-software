@@ -22,7 +22,7 @@
 # J <drwhax@2600nl.net>, 2014
 # J <drwhax@2600nl.net>, 2013-2014
 # Just ATranslater <transifex@weinand.nl>, 2017
-# kwadronaut <kwadronaut@autistici.org>, 2017
+# kwadronaut <kwadronaut@chocovax.net>, 2017
 # Marcel Oomens <mail@marceloomens.com>, 2015-2017
 # Max van Dam <max@schipholwatch.nl>, 2020
 # Meteor0id, 2019

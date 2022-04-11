@@ -1346,7 +1346,7 @@ msgid "Old password confirmation required"
 msgstr "Вимагається підтвердження старого паролю"
 
 msgid "Warning"
-msgstr "Увага!"
+msgstr "Попередження"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
@@ -1357,7 +1357,7 @@ msgid "Download the Tor Browser"
 msgstr "Завантажити Tor браузер"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "Потім скопіюйте і вставте адресу у Tor Browser:"
+msgstr "Потім зкопіюйте та вставте наступну адресу у Tor Browser:"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Ви вже надавали звіт? Вкажіть номер квитанції."
