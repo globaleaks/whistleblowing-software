@@ -89,7 +89,6 @@ class StateClass(ObjectDict, metaclass=Singleton):
         self.set_orm_tp(ThreadPool(4, 16))
 
         self.tokens = TokenList(60)
-        self.TempLogs = []
         self.TempKeys = TempDict(3600 * 72)
         self.TempUploadFiles = TempDict(3600)
 
