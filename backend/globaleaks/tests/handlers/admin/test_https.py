@@ -13,7 +13,7 @@ from globaleaks.utils.letsencrypt import ChallTok
 
 
 @inlineCallbacks
-def set_init_params(tls_config):
+def set_init_params():
     hostname = 'localhost:9999'
     yield tw(config.db_set_config_variable, 1, 'hostname', hostname)
     State.tenant_cache[1].hostname = hostname
@@ -24,9 +24,8 @@ class TestFileHandler(helpers.TestHandler):
 
     @inlineCallbacks
     def setUp(self):
-        self.valid_setup = test_tls.get_valid_setup()
         yield super(TestFileHandler, self).setUp()
-        yield set_init_params(self.valid_setup)
+        yield set_init_params()
 
     @inlineCallbacks
     def get_and_check(self, name, is_set):
@@ -56,7 +55,7 @@ class TestFileHandler(helpers.TestHandler):
         yield self.get_and_check(n, False)
 
         # Upload a valid key
-        good_key = self.valid_setup['key']
+        good_key = helpers.HTTPS_DATA['key']
         handler = self.request({'name': 'key', 'content': good_key}, role='admin')
 
         yield handler.post(n)
@@ -90,7 +89,7 @@ class TestFileHandler(helpers.TestHandler):
         yield self.get_and_check(n, False)
 
         # Upload a valid key
-        handler = self.request({'name': 'key', 'content': self.valid_setup['key']}, role='admin')
+        handler = self.request({'name': 'key', 'content': helpers.HTTPS_DATA['key']}, role='admin')
         yield handler.post('key')
 
         # Test bad cert
@@ -99,7 +98,7 @@ class TestFileHandler(helpers.TestHandler):
         yield self.assertFailure(handler.post(n), errors.InputValidationError)
 
         # Upload a valid cert
-        body = {'name': 'cert', 'content': self.valid_setup[n]}
+        body = {'name': 'cert', 'content': helpers.HTTPS_DATA[n]}
         handler = self.request(body, role='admin')
         yield handler.post(n)
 
@@ -107,7 +106,7 @@ class TestFileHandler(helpers.TestHandler):
 
         handler = self.request(role='admin')
         response = yield handler.get(n)
-        self.assertEqual(response, self.valid_setup[n])
+        self.assertEqual(response, helpers.HTTPS_DATA[n])
 
         # Finally delete the cert
         yield handler.delete(n)
@@ -120,16 +119,16 @@ class TestFileHandler(helpers.TestHandler):
         yield self.get_and_check(n, False)
 
         # Upload a valid key
-        handler = self.request({'name': 'key', 'content': self.valid_setup['key']}, role='admin')
+        handler = self.request({'name': 'key', 'content': helpers.HTTPS_DATA['key']}, role='admin')
         yield handler.post('key')
 
         # Upload a valid chain
-        handler = self.request({'name': 'cert', 'content': self.valid_setup['cert']}, role='admin')
+        handler = self.request({'name': 'cert', 'content': helpers.HTTPS_DATA['cert']}, role='admin')
         yield handler.post('cert')
 
         State.tenant_cache[1].hostname = 'localhost'
 
-        body = {'name': 'chain', 'content': self.valid_setup[n]}
+        body = {'name': 'chain', 'content': helpers.HTTPS_DATA[n]}
         handler = self.request(body, role='admin')
 
         yield handler.post(n)
@@ -137,7 +136,7 @@ class TestFileHandler(helpers.TestHandler):
 
         handler = self.request(role='admin')
         response = yield handler.get(n)
-        self.assertEqual(response, self.valid_setup[n])
+        self.assertEqual(response, helpers.HTTPS_DATA[n])
 
         yield handler.delete(n)
         yield self.get_and_check(n, False)
@@ -148,12 +147,11 @@ class TestConfigHandler(helpers.TestHandler):
 
     @inlineCallbacks
     def test_all_methods(self):
-        valid_setup = test_tls.get_valid_setup()
-        yield set_init_params(valid_setup)
+        yield set_init_params()
 
-        yield https.create_file_https_key(1, valid_setup['key'])
-        yield https.create_file_https_cert(1, valid_setup['cert'])
-        yield https.create_file_https_chain(1, valid_setup['chain'])
+        yield https.create_file_https_key(1, helpers.HTTPS_DATA['key'])
+        yield https.create_file_https_cert(1, helpers.HTTPS_DATA['cert'])
+        yield https.create_file_https_chain(1, helpers.HTTPS_DATA['chain'])
 
         handler = self.request(role='admin')
 
@@ -175,9 +173,8 @@ class TestCSRHandler(helpers.TestHandler):
     def test_post(self):
         n = 'csr'
 
-        valid_setup = test_tls.get_valid_setup()
-        yield set_init_params(valid_setup)
-        yield https.create_file_https_key(1, valid_setup['key'])
+        yield set_init_params()
+        yield https.create_file_https_key(1, helpers.HTTPS_DATA['key'])
         State.tenant_cache[1].hostname = 'notreal.ns.com'
 
         d = {

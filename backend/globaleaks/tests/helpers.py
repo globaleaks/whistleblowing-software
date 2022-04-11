@@ -36,7 +36,7 @@ from globaleaks.handlers.admin.user import create_user
 from globaleaks.handlers.wizard import db_wizard
 from globaleaks.handlers.submission import create_submission
 from globaleaks.models import serializers
-from globaleaks.models.config import db_set_config_variable
+from globaleaks.models.config import db_set_config_variable, ConfigFactory
 from globaleaks.rest import decorators
 from globaleaks.rest.api import JSONEncoder
 from globaleaks.sessions import initialize_submission_session, Sessions
@@ -102,6 +102,19 @@ for filename in os.listdir(kp):
 
 
 log.print = mock_nullfunction
+
+
+HTTPS_DATA = {
+  'key': 'key.pem',
+  'cert': 'cert.pem',
+  'chain': 'chain.pem'
+}
+
+
+HTTPS_DATA_DIR = os.path.join(DATA_DIR, 'https')
+for k, fname in HTTPS_DATA.items():
+    with open(os.path.join(HTTPS_DATA_DIR, 'valid', fname), 'r') as fd:
+        HTTPS_DATA[k] = fd.read()
 
 
 class FakeThreadPool(object):
