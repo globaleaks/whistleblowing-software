@@ -191,6 +191,9 @@ directive("pgpPubkeyValidator", function() {
   // attrs is the list of directives on the element
   // model is the model controller attached to the form
   function link(scope, elem, attrs, model) {
+    var key_start = "-----BEGIN PGP PUBLIC KEY BLOCK-----";
+    var key_end = "-----END PGP PUBLIC KEY BLOCK-----";
+
     scope.canBeEmpty = scope.pgpPubkeyValidator === "canBeEmpty";
 
     // modelValue is the models value, viewVal is displayed on the page.
@@ -206,7 +209,7 @@ directive("pgpPubkeyValidator", function() {
         return true;
       }
 
-      return modelVal.startsWith("-----BEGIN PGP PUBLIC KEY BLOCK-----") && modelVal.endsWith("-----END PGP PUBLIC KEY BLOCK-----");
+      return modelVal.substr(0, key_start.length) === key_start && modelVal.substr(modelVal.length - key_end.length, modelVal.length) === key_end;
     };
   }
   // Return a Directive Definition Object for angular to compile
