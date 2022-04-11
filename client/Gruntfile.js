@@ -29,6 +29,7 @@ module.exports = function(grunt) {
     copy: {
       sources: {
         files: [
+          { dest: "app/license.txt", cwd: ".", src: ["../LICENSE"], expand: false, flatten: true },
           { dest: "app/lib/css/", cwd: ".", src: ["node_modules/angular/angular-csp.css"], expand: true, flatten: true },
           { dest: "app/lib/css/", cwd: ".", src: ["node_modules/ui-bootstrap4/dist/ui-bootstrap-csp.css"], expand: true, flatten: true },
           { dest: "app/lib/css/", cwd: ".", src: ["node_modules/bootstrap/dist/css/bootstrap.css"], expand: true, flatten: true },
