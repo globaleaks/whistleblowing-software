@@ -1096,7 +1096,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       }
     },
 
-    download: function(filename, url) {
+    saveAs: function(filename, url) {
       return $http({
         method: "GET",
         url: url,
