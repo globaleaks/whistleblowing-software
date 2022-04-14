@@ -88,8 +88,8 @@ echo "Detected OS: $DISTRO - $DISTRO_CODENAME"
 last_command "check_distro"
 
 if echo "$DISTRO_CODENAME" | grep -vqE "^bullseye$" ; then
-  echo "WARNING: GlobaLeaks is actively developed and tested specifically for Debian 11 (Bullseye)"
-  echo "WARNING: The software lifecycle of the platform includes full support for all Debian and Ubuntu LTS versions starting from Debian 10 and Ubuntu 20.04"
+  echo "WARNING: The GlobaLeaks software lifecycle includes full support for all Debian and Ubuntu LTS versions starting from Debian 10 and Ubuntu 20.04"
+  echo "WARNING: The currently recommended distribution is: Debian 11 (Bullseye)"
 
   prompt_for_continuation
 fi
@@ -128,8 +128,8 @@ echo " + required TCP sockets open"
 # Depending on the intention of the user to proceed anyhow installing on
 # a not supported distro we using the experimental package if it exists
 # or Buster as fallback.
-if echo "$DISTRO_CODENAME" | grep -vqE "^(bullseye|buster|focal|bionic)$"; then
-  # In case of unsupported platforms we fallback on Bionic
+if echo "$DISTRO_CODENAME" | grep -vqE "^(bionic|bullseye|buster|focal|jammy)$"; then
+  # In case of unsupported platforms we fallback on Bullseye
   echo "No packages available for the current distribution; the install script will use the Buster repository."
   DISTRO="Debian"
   DISTRO_CODENAME="bullseye"
