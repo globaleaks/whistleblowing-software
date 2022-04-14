@@ -1,3 +1,13 @@
+Changes in version 4.9.1
+    Complete bugfixing for new package for Ubuntu Jammy 22.04
+    Extend proof of work protection to every not authenticated request != GET, OPTIONS
+    Change default user permissions removing delete priviledge
+    Fix regression on feature #2915
+    Bump npm dependencies to latest versions
+    Update translations
+    [doc] Update Threat Model texts
+    [doc] Update Application Security document in relation to hashcash policy on unauthenticated requests
+
 Changes in version 4.9.0
     Silence notification of common exceptions
     Prepare packaging for Ubuntu Jammy (#3185)
