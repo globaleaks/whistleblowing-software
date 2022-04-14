@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import collections
 import json
 import mimetypes
 import os
@@ -162,7 +161,7 @@ class BaseHandler(object):
                 log.err("-- Invalid python_type, in [%s] expected %s", value, type)
 
         # value as "{foo:bar}"
-        elif isinstance(type, collections.Mapping):
+        elif isinstance(type, dict):
             retval = BaseHandler.validate_request(value, type)
             if not retval:
                 log.err("-- Invalid JSON/dict [%s] expected %s", value, type)
@@ -174,7 +173,7 @@ class BaseHandler(object):
                 log.err("-- Failed Match in regexp [%s] against %s", value, type)
 
         # value as "[ type ]"
-        elif isinstance(type, collections.Iterable):
+        elif isinstance(type, list):
             # empty list is ok
             if not value:
                 retval = True

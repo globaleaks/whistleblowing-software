@@ -1,5 +1,4 @@
 # -*- coding: utf-8
-import collections
 import random
 import time
 import warnings
@@ -108,7 +107,7 @@ def db_add(session, model_class, model_fields):
 
 
 def db_query(session, selector, filter=None):
-    if isinstance(selector, collections.Iterable):
+    if isinstance(selector, tuple):
         q = session.query(*selector)
     else:
         q = session.query(selector)
@@ -116,7 +115,7 @@ def db_query(session, selector, filter=None):
     if filter is None:
         return q
 
-    if isinstance(filter, collections.Iterable):
+    if isinstance(filter, tuple):
         return q.filter(*filter)
     else:
         return q.filter(filter)
