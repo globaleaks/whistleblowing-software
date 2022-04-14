@@ -4,7 +4,7 @@ chardet==4.0.0
 cffi==1.15.0
 cryptography==3.4.8
 h2==4.1.0
-idna==3.3
+idna==2.10
 priority==1.3.0
 pyopenSSL==21.0.0
 pyasn1==0.4.8
