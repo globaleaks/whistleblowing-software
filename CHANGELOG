@@ -1,3 +1,6 @@
+Changes in version 4.9.2
+    Fix regression on Export/Download of Files introduced in 4.9.1
+
 Changes in version 4.9.1
     Complete bugfixing for new package for Ubuntu Jammy 22.04
     Extend proof of work protection to every not authenticated request != GET, OPTIONS
