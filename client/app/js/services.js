@@ -1042,7 +1042,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
 
     download: function(url) {
       return new TokenResource().$get().then(function(token) {
-        $window.open(url + "?token=" + token.id);
+        $window.open(url + "?token=" + token.id + ":" + token.answer);
       });
     },
 

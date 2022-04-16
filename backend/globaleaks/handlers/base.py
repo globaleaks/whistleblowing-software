@@ -96,8 +96,12 @@ class BaseHandler(object):
         # Check session header
         session_id = self.request.headers.get(b'x-session')
 
-        # Check token header
+        # Check token header and arg
         token = self.request.headers.get(b'x-token')
+        token_arg = self.request.args.get(b"token")
+        if token_arg:
+            token = token_arg[0]
+
         if token:
             self.token = self.state.tokens.validate(token)
             if self.token.session is not None:

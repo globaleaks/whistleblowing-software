@@ -1,5 +1,5 @@
-GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "$uibModal", "RTipExport",
-  function($scope, $filter, $http, $location, $uibModal, RTipExport) {
+GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "$uibModal", "$window", "RTipExport", "TokenResource",
+  function($scope, $filter, $http, $location, $uibModal, $window, RTipExport, TokenResource) {
   $scope.search = undefined;
   $scope.currentPage = 1;
   $scope.itemsPerPage = 20;
@@ -139,7 +139,9 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
   $scope.tips_export = function () {
     for(var i=0; i<$scope.selected_tips.length; i++) {
       (function(i) {
-        return $http.post("api/rtips/" + $scope.selected_tips[i] + "/export");
+        new TokenResource().$get().then(function(token) {
+          return $window.open("api/rtips/" + $scope.selected_tips[i] + "/export?token=" + token.id + ":" + token.answer);
+        });
       })(i);
     }
   };
