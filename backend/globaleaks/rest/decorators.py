@@ -36,7 +36,7 @@ def decorator_rate_limit(f):
 def decorator_require_token(f):
     # Decorator that ensures a proof of work token is included in any non authenticated request
     def wrapper(self, *args, **kwargs):
-        if not self.session and not self.request.uri.startswith(b"/api/token") and not self.token:
+        if not self.session and not self.request.uri.endswith(b"/api/token") and not self.token:
             raise errors.InternalServerError("TokenFailure: Missing or invalid token")
 
         return f(self, *args, **kwargs)
