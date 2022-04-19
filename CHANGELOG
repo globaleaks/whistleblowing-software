@@ -1,3 +1,8 @@
+Changes in version 4.9.3
+    Fix regression on Tenant Auth Switch introduced in 4.9.1
+    Bump npm dependencies to latest versions
+    Update translations
+
 Changes in version 4.9.2
     Fix regression on Export/Download of Files introduced in 4.9.1
 
