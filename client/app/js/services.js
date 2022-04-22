@@ -436,7 +436,7 @@ factory("WBTipMessageResource", ["GLResource", function(GLResource) {
 }]).
 factory("WBTipDownloadFile", ["Utils", function(Utils) {
   return function(file) {
-    Utils.downoad("api/wbtip/wbfile/" + file.id);
+    Utils.download("api/wbtip/wbfile/" + file.id);
   };
 }]).
 factory("WBTip", ["$rootScope", "WBTipResource", "WBTipCommentResource", "WBTipMessageResource",
