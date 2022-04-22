@@ -60,7 +60,7 @@ LANGUAGES_SUPPORTED = [
     {'code': 'ko', 'name': 'Korean', 'native': '\ud55c\uad6d\uc5b4'},
     {'code': 'ky', 'name': 'Kyrgyz', 'native': '\u043a\u044b\u0440\u0433\u044b\u0437\u0447\u0430'},
     {'code': 'lo', 'name': 'Lao', 'native': '\u0ea5\u0eb2\u0ea7'},
-    {'code': 'lt', 'name': 'Latvian', 'native': 'Lietuvių'},
+    {'code': 'lt', 'name': 'Lithuanian', 'native': 'Lietuvių'},
     {'code': 'mg', 'name': 'Malagasy', 'native': 'Malagasy'},
     {'code': 'mk', 'name': 'Macedonian', 'native': '\u043c\u0430\u043a\u0435\u0434\u043e\u043d\u0441\u043a\u0438'},
     {'code': 'ms', 'name': 'Malay', 'native': 'Bahasa Melayu'},
