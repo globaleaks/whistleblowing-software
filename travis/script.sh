@@ -77,30 +77,31 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   sudo mkdir -p "$chroot/build"
   sudo cp -R $TRAVIS_BUILD_DIR/ "$chroot/build"
   export LC_ALL=en_US.utf8
+  export DEBIAN_FRONTEND=noninteractive
 
   if [ $DISTRIBUTION = "bullseye" ]; then
-    sudo debootstrap --arch=amd64 bullseye "$chroot" http://deb.debian.org/debian/
-    sudo su -c 'echo "deb http://deb.debian.org/debian bullseye main contrib" > /tmp/globaleaks_chroot/etc/apt/sources.list'
-    sudo su -c 'echo "deb http://deb.debian.org/debian bullseye main contrib" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
+    sudo -E debootstrap --arch=amd64 bullseye "$chroot" http://deb.debian.org/debian/
+    sudo -E su -c 'echo "deb http://deb.debian.org/debian bullseye main contrib" > /tmp/globaleaks_chroot/etc/apt/sources.list'
+    sudo -E su -c 'echo "deb http://deb.debian.org/debian bullseye main contrib" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
   elif [ $DISTRIBUTION = "focal" ]; then
-    sudo debootstrap --arch=amd64 focal "$chroot" http://archive.ubuntu.com/ubuntu/
-    sudo su -c 'echo "deb http://archive.ubuntu.com/ubuntu focal main universe" > /tmp/globaleaks_chroot/etc/apt/sources.list'
-    sudo su -c 'echo "deb http://archive.ubuntu.com/ubuntu focal-updates main universe" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
+    sudo -E debootstrap --arch=amd64 focal "$chroot" http://archive.ubuntu.com/ubuntu/
+    sudo -E su -c 'echo "deb http://archive.ubuntu.com/ubuntu focal main universe" > /tmp/globaleaks_chroot/etc/apt/sources.list'
+    sudo -E su -c 'echo "deb http://archive.ubuntu.com/ubuntu focal-updates main universe" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
   fi
 
-  sudo mount --rbind /proc "$chroot/proc"
-  sudo mount --rbind /sys "$chroot/sys"
+  sudo -E mount --rbind /proc "$chroot/proc"
+  sudo -E mount --rbind /sys "$chroot/sys"
 
-  sudo chroot "$chroot" apt-get update -y
-  sudo chroot "$chroot" apt-get upgrade -y
+  sudo -E chroot "$chroot" apt-get update -y
+  sudo -E chroot "$chroot" apt-get upgrade -y
 
-  sudo chroot "$chroot" apt-get install -y lsb-release locales sudo
+  sudo -E chroot "$chroot" apt-get install -y lsb-release locales sudo
 
-  sudo su -c 'echo "en_US.UTF-8 UTF-8" >> /tmp/globaleaks_chroot/etc/locale.gen'
-  sudo chroot "$chroot" locale-gen
+  sudo -E su -c 'echo "en_US.UTF-8 UTF-8" >> /tmp/globaleaks_chroot/etc/locale.gen'
+  sudo -E chroot "$chroot" locale-gen
 
-  sudo chroot "$chroot" useradd -m builduser
-  sudo su -c 'echo "builduser ALL=NOPASSWD: ALL" >> "$chroot"/etc/sudoers'
-  sudo chroot "$chroot" chown builduser -R /build
-  sudo chroot "$chroot" su - builduser /bin/bash -c '/build/GlobaLeaks/travis/build_and_install.sh'
+  sudo -E chroot "$chroot" useradd -m builduser
+  sudo -E su -c 'echo "builduser ALL=NOPASSWD: ALL" >> "$chroot"/etc/sudoers'
+  sudo -E chroot "$chroot" chown builduser -R /build
+  sudo -E chroot "$chroot" su - builduser /bin/bash -c '/build/GlobaLeaks/travis/build_and_install.sh'
 fi
