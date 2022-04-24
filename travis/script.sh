@@ -78,18 +78,14 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   sudo cp -R $TRAVIS_BUILD_DIR/ "$chroot/build"
   export LC_ALL=en_US.utf8
 
-  if [ $DISTRIBUTION = "focal" ]; then
-    sudo debootstrap --arch=amd64 focal "$chroot" http://archive.ubuntu.com/ubuntu/
-    sudo su -c 'echo "deb http://archive.ubuntu.com/ubuntu focal main universe" > /tmp/globaleaks_chroot/etc/apt/sources.list'
-    sudo su -c 'echo "deb http://archive.ubuntu.com/ubuntu focal-updates main universe" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
-  elif [ $DISTRIBUTION = "buster" ]; then
-    sudo debootstrap --arch=amd64 buster "$chroot" http://deb.debian.org/debian/
-    sudo su -c 'echo "deb http://deb.debian.org/debian buster main contrib" > /tmp/globaleaks_chroot/etc/apt/sources.list'
-    sudo su -c 'echo "deb http://deb.debian.org/debian buster main contrib" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
-  elif [ $DISTRIBUTION = "bullseye" ]; then
+  if [ $DISTRIBUTION = "bullseye" ]; then
     sudo debootstrap --arch=amd64 bullseye "$chroot" http://deb.debian.org/debian/
     sudo su -c 'echo "deb http://deb.debian.org/debian bullseye main contrib" > /tmp/globaleaks_chroot/etc/apt/sources.list'
     sudo su -c 'echo "deb http://deb.debian.org/debian bullseye main contrib" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
+  elif [ $DISTRIBUTION = "focal" ]; then
+    sudo debootstrap --arch=amd64 focal "$chroot" http://archive.ubuntu.com/ubuntu/
+    sudo su -c 'echo "deb http://archive.ubuntu.com/ubuntu focal main universe" > /tmp/globaleaks_chroot/etc/apt/sources.list'
+    sudo su -c 'echo "deb http://archive.ubuntu.com/ubuntu focal-updates main universe" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
   fi
 
   sudo mount --rbind /proc "$chroot/proc"
