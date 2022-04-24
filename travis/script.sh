@@ -74,7 +74,7 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   sudo apt-get install -y debootstrap
 
   export chroot="/tmp/globaleaks_chroot/"
-  mkdir -p "$chroot/build"
+  sudo mkdir -p "$chroot/build"
   sudo cp -R $TRAVIS_BUILD_DIR/ "$chroot/build"
   export LC_ALL=en_US.utf8
 
