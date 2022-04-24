@@ -10,12 +10,10 @@ sudo apt-get -y update
 
 sudo apt-get -y install curl git debhelper devscripts dh-apparmor dh-python python3-dev python3-pip python3-setuptools python3-sphinx
 
-curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add -
-echo "deb https://deb.nodesource.com/node_12.x $distro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
-echo "deb-src https://deb.nodesource.com/node_12.x $distro main" | sudo tee -a /etc/apt/sources.list.d/nodesource.list
-
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 sudo apt-get update
-sudo apt-get -y install nodejs
+sudo apt-get install -y nodejs
+
 sed -ie 's/key_bits = 2048/key_bits = 512/g' backend/globaleaks/settings.py
 sed -ie 's/csr_sign_bits = 512/csr_sign_bits = 256/g' backend/globaleaks/settings.py
 rm debian/control backend/requirements.txt
