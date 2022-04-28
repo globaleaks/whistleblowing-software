@@ -477,59 +477,59 @@ msgid "Please summarize your report in a few words."
 msgstr "Гузориши худро бо чанд калима шарҳ диҳед."
 
 msgid "Where did the facts happen?"
-msgstr ""
+msgstr "Ин дар куҷо рӯй дод?"
 
 msgid "When did the facts happen?"
-msgstr ""
+msgstr "Ин кай рӯй дод?"
 
 msgid "How are you involved in the reported facts?"
-msgstr ""
+msgstr "Шумо дар ин воқеа чӣ нақшу ҷойгоҳ доштед?"
 
 msgid "I’m a victim"
-msgstr ""
+msgstr "Ман қурбонӣ шудам."
 
 msgid "I’m involved in the facts"
-msgstr ""
+msgstr "Ман дар воқеа шарик будам."
 
 msgid "I witnessed the facts in person"
-msgstr ""
+msgstr "Ман шоҳиди айнии воқеа ҳастам."
 
 msgid "I was personally told by a direct witness"
-msgstr ""
+msgstr "Ман инро аз шоҳиди айнии воқеа шунидам."
 
 msgid "It is a rumor I heard"
-msgstr ""
+msgstr "Ин овоза ба гӯши ман расид."
 
 msgid "Do you have evidence to support your report?"
-msgstr ""
+msgstr "Шумо далелҳое доред, ки гуфтаҳояттонро исбот кунанд?"
 
 msgid "Please attach the evidence to support your report."
-msgstr ""
+msgstr "Лутфан далелҳои худро замима кунед."
 
 msgid "Please describe the evidence in detail."
-msgstr ""
+msgstr "Хоҳиш, далелро ба ҳамаи ҷузъиёташ шарҳ диҳед."
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr ""
+msgstr "Агар далелҳои пешниҳодшударо бо ҳамаи хурдтарин ҷузъиёт тавсиф кунед ба мо имконияти хубе медиҳед, ки воқеаро пурра ва беҳтар таҳқиқ намоем. Лутфан то метавонед ҳар лаҳзаи видеоҳои пешниҳодшуда ё аку ҳуҷҷатҳоро бароямон рушану сода шарҳ диҳед."
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
+msgstr "Шумо дар ин бора ба мақомот ё касонни дигар низ гузориш додаед?"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr ""
+msgstr "Хоҳишмандем, номи ҳамаи ташкилот ё одамонеро, ки барояшон дар ин бора хабар додаед, ин ҷо нависед."
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr ""
+msgstr "Он мақомот ё одамон гузориши шуморо таҳқиқ карданд ва натиҷаи кори онҳо чӣ буд?"
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr ""
+msgstr "Шумо бо ёрмандии мо ба чӣ натиҷа расидан мехоҳед?"
 
 msgid "File a report"
 msgstr "Таҳияи гузориш"

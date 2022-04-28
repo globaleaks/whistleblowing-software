@@ -4,9 +4,9 @@
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022
 # Hellowin, 2022
 # Jahan Taganova, 2021
-# Jahan Taganova, 2021
+# taganoid, 2021
 # Muhammed Soltanov, 2021
-# Muhammed Soltanov, 2021
+# Soltan Terjime, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"

@@ -16,6 +16,7 @@
 # Cleber de Souza Corrêa <cscorrea@gmail.com>, 2014
 # Communia <ameaneantie@riseup.net>, 2016
 # danielcn <deo.daniel@gmail.com>, 2013
+# Daniel Vaknine, 2022
 # Danton Medrado, 2013
 # Danton Medrado, 2013-2015
 # danielcn <deo.daniel@gmail.com>, 2013
@@ -44,7 +45,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2022\n"
+"Last-Translator: Daniel Vaknine, 2022\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -424,7 +425,7 @@ msgid "Select"
 msgstr "Selecionar"
 
 msgid "Deselect"
-msgstr ""
+msgstr "Desmarcar"
 
 msgid "Surname"
 msgstr "Sobrenome"
@@ -486,7 +487,7 @@ msgid "This domain name is not available."
 msgstr "Este nome de domínio não está disponível."
 
 msgid "Mark as important"
-msgstr ""
+msgstr "Marcar como importante"
 
 msgid "Copy to clipboard"
 msgstr "Copiar para área de transferência"
@@ -495,10 +496,10 @@ msgid "Logout"
 msgstr "Sair"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
+msgstr "Dê a este destinatário a capacidade de conceder acesso ao usuário aos relatórios"
 
 msgid "Grant access"
-msgstr ""
+msgstr "Garantir acesso"
 
 msgid "Revoke access"
 msgstr "Revogar acesso"
@@ -507,62 +508,62 @@ msgid "Please summarize your report in a few words."
 msgstr "Descreva seu relatório em poucas palavras."
 
 msgid "Where did the facts happen?"
-msgstr ""
+msgstr "Onde os fatos aconteceram?"
 
 msgid "When did the facts happen?"
-msgstr ""
+msgstr "Quando os fatos aconteceram?"
 
 msgid "How are you involved in the reported facts?"
-msgstr ""
+msgstr "Como você está envolvido nos fatos relatados?"
 
 msgid "I’m a victim"
-msgstr ""
+msgstr "Eu sou uma vítima"
 
 msgid "I’m involved in the facts"
-msgstr ""
+msgstr "Eu estou envolvido nos fatos"
 
 msgid "I witnessed the facts in person"
-msgstr ""
+msgstr "Testemunhei pessoalmente os fatos"
 
 msgid "I was personally told by a direct witness"
-msgstr ""
+msgstr "Fui pessoalmente informado por uma testemunha direta"
 
 msgid "It is a rumor I heard"
-msgstr ""
+msgstr "É um rumor que eu ouvi"
 
 msgid "Do you have evidence to support your report?"
-msgstr ""
+msgstr "Você tem provas para apoiar seu relatório?"
 
 msgid "Please attach the evidence to support your report."
-msgstr ""
+msgstr "Por favor, anexe as provas para apoiar seu relatório."
 
 msgid "Please describe the evidence in detail."
-msgstr ""
+msgstr "Por favor, descreva as provas em detalhes."
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr ""
+msgstr "Uma descrição completa das provas apresentadas aumenta nossa capacidade de avaliar reclamações e investigar. Por favor, tenha o cuidado de fazer referência a partes significativas de quaisquer vídeos, imagens ou documentos apresentados."
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
+msgstr "Você já relatou os fatos a outras organizações e/ou indivíduos?"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr ""
+msgstr "Por favor, liste as organizações e/ou indivíduos que você informou sobre estes fatos."
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr ""
+msgstr "Estas organizações investigaram suas reclamações? Em caso afirmativo, qual foi o resultado?"
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr ""
+msgstr "Qual é o resultado que você quer alcançar com nosso apoio?"
 
 msgid "File a report"
-msgstr ""
+msgstr "Apresentar um relatório"
 
 msgid "Select the context of your report:"
 msgstr "Selecionar o assunto do seu envio:"
@@ -650,7 +651,7 @@ msgid "Set the value to 0 to disable this feature."
 msgstr "Defina o valor como 0 para desativar esse recurso."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr ""
+msgstr "Número de dias até a notificação de relatórios não lidos aos usuários"
 
 msgid "Enable custodian user role"
 msgstr "Ativar função de usuário custodiante"
@@ -697,7 +698,7 @@ msgid "Severity"
 msgstr "Severidade"
 
 msgid "Object"
-msgstr ""
+msgstr "Objeto"
 
 msgid "ID"
 msgstr "ID"
@@ -763,7 +764,7 @@ msgid "Whistleblowing button"
 msgstr "Botão de Denúncia"
 
 msgid "Disclaimer"
-msgstr ""
+msgstr "Isenção de responsabilidade"
 
 msgid "Footer"
 msgstr "Rodapé"
@@ -1215,7 +1216,7 @@ msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Permitir o destinatário a postergar a data de expiração da submissão"
 
 msgid "Give the user administrative access to the following features:"
-msgstr ""
+msgstr "Dê ao usuário acesso administrativo aos seguintes recursos:"
 
 msgid "Request date"
 msgstr "Data da solicitação"
@@ -1289,7 +1290,7 @@ msgid "Enter a name for the copy"
 msgstr "Digite um nome para a cópia"
 
 msgid "Request support"
-msgstr ""
+msgstr "Solicite apoio"
 
 msgid "Thank you."
 msgstr "Obrigado."
@@ -1571,7 +1572,7 @@ msgid "Recipient selection"
 msgstr "Seleção de destinatário"
 
 msgid "Select the recipients of your report:"
-msgstr ""
+msgstr "Selecione os destinatários de seu relatório:"
 
 msgid "Recipients selected:"
 msgstr "Destinatários selecionados:"
@@ -1582,7 +1583,7 @@ msgstr "Você atingiu o número máximo de destinatários selecionáveis."
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr ""
+msgstr "Os seguintes destinatários receberão seu relatório e não poderão ser desmarcados:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1617,7 +1618,7 @@ msgid ""
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr ""
+msgstr "Aconselhamos selecionar esta opção se você quiser proteger os dados contra perda na situação em que os destinatários perdem suas senhas. Por outro lado, não aconselhamos usar esse recurso se você deseja configurar um sistema em que apenas os destinatários possam acessar os envios."
 
 msgid "Please choose a different username."
 msgstr "Por favor, escolha um nome de usuário diferente."
@@ -1632,10 +1633,10 @@ msgid "Describe your report in detail."
 msgstr "Descreva seu relatório em detalhes."
 
 msgid "I'm a victim"
-msgstr ""
+msgstr "Eu sou uma vítima"
 
 msgid "I'm involved in the facts"
-msgstr ""
+msgstr "Eu estou envolvido nos fatos"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Você deseja fornecer informações sobre a sua identidade?"
@@ -1647,10 +1648,10 @@ msgid "Last name"
 msgstr "Último nome"
 
 msgid "Alternative contact method"
-msgstr ""
+msgstr "Método de contato alternativo"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr ""
+msgstr "Prefiro ser contatado apenas através desta plataforma"
 
 msgid "Other"
 msgstr "Outro"
@@ -1939,7 +1940,7 @@ msgstr "Para obter instruções sobre atualizações de software, consulte a doc
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "Este é um e-mail para notificá-lo de que um destinatário lhe concedeu acesso a um ou mais relatórios."
 
 msgid "New report"
 msgstr "Novo relatório"
@@ -1967,16 +1968,16 @@ msgid ""
 msgstr "Você é solicitado a prestar atenção especial às informações e materiais nela contidos. Lembre-se de que os denunciantes geralmente se expõem a altos riscos pessoais no interesse do público. Portanto, o material fornecido neste relatório deve ser considerado de alta importância."
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr ""
+msgstr "Este é um e-mail para notificar que um relatório existente foi atualizado."
 
 msgid "Report updated"
-msgstr ""
+msgstr "Relatório atualizado"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr ""
+msgstr "Este e-mail é para lembrá-lo da presença de relatórios não lidos ou atualizados."
 
 msgid "Reminder about unread or updated reports"
-msgstr ""
+msgstr "Lembrete sobre relatórios não lidos ou atualizados"
 
 msgid "Role: {Role}"
 msgstr "Função: {Role}"
