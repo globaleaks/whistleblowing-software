@@ -368,7 +368,7 @@ controller("RTipWBFileUploadCtrl", ["$scope", "Authentication", "RTipDownloadWBF
   var reloadUI = function (){ $scope.reload(); };
 
   $scope.downloadWBFile = function(f) {
-    RTipDownloadWBFile(f).finally(reloadUI);
+    RTipDownloadWBFile(f);
   };
 
   $scope.deleteWBFile = function(f) {
