@@ -1,3 +1,8 @@
+Changes in version 4.9.5
+    Fix exception triggered when recipients download their own files (#3220)
+    Bump npm dependencies to latest versions
+    Update translations
+
 Changes in version 4.9.4
     Fix regression on download of files uploaded by recipients introduced in 4.9.1
     Fix regression on simplified login introduced in 4.9.0
