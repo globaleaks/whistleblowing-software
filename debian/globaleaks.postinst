@@ -2,13 +2,6 @@
 # This is the post installation script for globaleaks
 set -e
 
-DISTRO="unknown"
-DISTRO_CODENAME="unknown"
-if which lsb_release >/dev/null; then
-  DISTRO="$(lsb_release -is)"
-  DISTRO_CODENAME="$(lsb_release -cs)"
-fi
-
 # Create globaleaks user and add the user to required groups
 if ! id -u globaleaks >/dev/null 2>&1; then
   adduser --quiet \
