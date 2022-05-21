@@ -27,8 +27,8 @@ def load_onion_service(tor_conn, tid, hostname, key):
     config = TorConfig(tor_conn.protocol)
 
     def init_callback(onion):
-        if tid in State.tenant_state:
-            State.tenant_state[tid].ephs = onion
+        if tid in State.tenants:
+            State.tenants[tid].ephs = onion
 
         log.err('Initialization of onion-service %s completed.', onion.hostname, tid=tid)
 
@@ -53,9 +53,9 @@ class OnionService(Service):
         return tor_conn.protocol.quit()
 
     def load_all_onion_services(self):
-        for tid in self.state.tenant_cache:
-            if self.state.tenant_cache[tid].tor and not hasattr(self.state.tenant_state[tid], 'ephs'):
-                load_onion_service(self.tor_conn, tid, self.state.tenant_cache[tid].onionservice, self.state.tenant_cache[tid].tor_onion_key)
+        for tid in self.state.tenants:
+            if self.state.tenants[tid].cache.tor and not hasattr(self.state.tenants[tid], 'ephs'):
+                load_onion_service(self.tor_conn, tid, self.state.tenants[tid].cache.onionservice, self.state.tenants[tid].cache.tor_onion_key)
 
     def operation(self):
         restart_deferred = Deferred()

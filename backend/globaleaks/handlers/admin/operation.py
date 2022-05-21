@@ -200,12 +200,12 @@ class AdminOperationHandler(OperationHandler):
         yield check_hostname(self.request.tid, req_args['value'])
         yield tw(db_set_config_variable, self.request.tid, 'hostname', req_args['value'])
         yield tw(db_refresh_tenant_cache, [self.request.tid])
-        self.state.tenant_cache[self.request.tid].hostname = req_args['value']
+        self.state.tenants[self.request.tid].cache.hostname = req_args['value']
 
     @inlineCallbacks
     def test_mail(self, req_args, *args, **kwargs):
         tid = self.request.tid
-        language = self.state.tenant_cache[tid].default_language
+        language = self.state.tenants[tid].cache.default_language
 
         user = yield get_user(self.session.user_tid,
                               self.session.user_id,

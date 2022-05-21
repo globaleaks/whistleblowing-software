@@ -41,10 +41,9 @@ from globaleaks.rest import decorators
 from globaleaks.rest.api import JSONEncoder
 from globaleaks.sessions import initialize_submission_session, Sessions
 from globaleaks.settings import Settings
-from globaleaks.state import State
+from globaleaks.state import State, TenantState
 from globaleaks.utils import tempdict
 from globaleaks.utils.crypto import generateRandomKey, GCE
-from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.utils.token import Token
 from globaleaks.utils.utility import datetime_null, datetime_now, sum_dicts, uuid4
@@ -148,9 +147,9 @@ def init_state():
     orm.set_thread_pool(FakeThreadPool())
 
     State.settings.enable_api_cache = False
-    State.tenant_cache[1] = ObjectDict()
-    State.tenant_cache[1].hostname = 'www.globaleaks.org'
-    State.tenant_cache[1].encryption = True
+    State.tenants[1] = TenantState()
+    State.tenants[1].cache.hostname = 'www.globaleaks.org'
+    State.tenants[1].cache.encryption = True
 
     State.init_environment()
 
@@ -721,8 +720,8 @@ class TestGL(unittest.TestCase):
             for event_obj in event.events_monitored:
                 for x in range(2):
                     e = event.Event(event_obj, timedelta(seconds=1.0 * x))
-                    self.state.tenant_state[1].RecentEventQ.append(e)
-                    self.state.tenant_state[1].EventQ.append(e)
+                    self.state.tenants[1].RecentEventQ.append(e)
+                    self.state.tenants[1].EventQ.append(e)
 
     @transact
     def get_rtips(self, session):
@@ -906,7 +905,7 @@ class TestGLWithPopulatedDB(TestGL):
 
     @transact
     def set_itips_near_to_expire(self, session):
-        date = datetime_now() + timedelta(hours=self.state.tenant_cache[1].notification.tip_expiration_threshold - 1)
+        date = datetime_now() + timedelta(hours=self.state.tenants[1].cache.notification.tip_expiration_threshold - 1)
         session.query(models.InternalTip).update({'expiration_date': date})
 
     @transact

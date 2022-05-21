@@ -28,26 +28,26 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes):
 
     def info_msg_0():
         return "free_disk_megabytes <= %d or free_disk_percentage <= %d" % \
-               (State.tenant_cache[1].threshold_free_disk_megabytes_high,
-                State.tenant_cache[1].threshold_free_disk_percentage_high)
+               (State.tenants[1].cache.threshold_free_disk_megabytes_high,
+                State.tenants[1].cache.threshold_free_disk_percentage_high)
 
     def info_msg_1():
         return "free_disk_megabytes <= %d or free_disk_percentage <= %d" % \
-               (State.tenant_cache[1].threshold_free_disk_megabytes_low,
-                State.tenant_cache[1].threshold_free_disk_percentage_low)
+               (State.tenants[1].cache.threshold_free_disk_megabytes_low,
+                State.tenants[1].cache.threshold_free_disk_percentage_low)
 
     # list of bad conditions ordered starting from the worst case scenario
     return [
         {
-            'condition': free_disk_megabytes <= State.tenant_cache[1].threshold_free_disk_megabytes_high or
-                         free_disk_percentage <= State.tenant_cache[1].threshold_free_disk_percentage_high,
+            'condition': free_disk_megabytes <= State.tenants[1].cache.threshold_free_disk_megabytes_high or
+                         free_disk_percentage <= State.tenants[1].cache.threshold_free_disk_percentage_high,
             'info_msg': info_msg_0,
             'alarm_level': 2,
             'accept_submissions': False
         },
         {
-            'condition': free_disk_megabytes <= State.tenant_cache[1].threshold_free_disk_megabytes_low or
-                         free_disk_percentage <= State.tenant_cache[1].threshold_free_disk_percentage_low,
+            'condition': free_disk_megabytes <= State.tenants[1].cache.threshold_free_disk_megabytes_low or
+                         free_disk_percentage <= State.tenants[1].cache.threshold_free_disk_percentage_low,
             'info_msg': info_msg_1,
             'alarm_level': 1,
             'accept_submissions': True
@@ -74,9 +74,7 @@ def generate_admin_alert_mail(session, tid, alert):
 
 
 class Alarm(object):
-    def __init__(self, state):
-        self.state = state
-
+    def __init__(self):
         self.last_alarm_email = datetime_null()
 
         self.event_matrix = {}
@@ -100,7 +98,7 @@ class Alarm(object):
 
         self.event_matrix.clear()
 
-        for event in State.tenant_state[tid].RecentEventQ:
+        for event in State.tenants[tid].RecentEventQ:
             self.event_matrix.setdefault(event.event_type, 0)
             self.event_matrix[event.event_type] += 1
 
@@ -123,7 +121,7 @@ class Alarm(object):
 
         # if there are some anomaly or we're nearby, record it.
         if number_of_anomalies >= 1 or self.alarm_levels['activity'] >= 1:
-            State.tenant_state[tid].AnomaliesQ.append(
+            State.tenants[tid].AnomaliesQ.append(
                 [datetime_now(), self.event_matrix, self.alarm_levels['activity']])
 
         if previous_activity_sl != self.alarm_levels['activity']:
@@ -131,7 +129,7 @@ class Alarm(object):
                          (previous_activity_sl,
                           self.alarm_levels['activity']))
 
-        if State.tenant_cache[1].notification.disable_admin_notification_emails:
+        if State.tenants[1].cache.notification.disable_admin_notification_emails:
             return
 
         if not (self.alarm_levels['activity'] or self.alarm_levels['disk_space']):
@@ -163,7 +161,7 @@ class Alarm(object):
         https://github.com/globaleaks/GlobaLeaks/issues/297
         https://github.com/globaleaks/GlobaLeaks/issues/872
         """
-        self.measured_freespace, self.measured_totalspace = get_disk_space(self.state.settings.working_path)
+        self.measured_freespace, self.measured_totalspace = get_disk_space(State.settings.working_path)
 
         disk_space = 0
         disk_message = ""
@@ -212,7 +210,7 @@ class Alarm(object):
 
 @inlineCallbacks
 def check_anomalies():
-    State.tenant_state[1].Alarm.check_disk_anomalies()
+    State.tenants[1].Alarm.check_disk_anomalies()
 
-    for tid in State.tenant_state:
-        yield State.tenant_state[tid].Alarm.check_tenant_anomalies(tid)
+    for tid in State.tenants:
+        yield State.tenants[tid].Alarm.check_tenant_anomalies(tid)

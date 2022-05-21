@@ -573,7 +573,7 @@ class RTipInstance(OperationHandler):
     def get(self, tip_id):
         tip, crypto_tip_prv_key = yield get_rtip(self.request.tid, self.session.user_id, tip_id, self.request.language)
 
-        if State.tenant_cache[self.request.tid].encryption and crypto_tip_prv_key:
+        if State.tenants[self.request.tid].cache.encryption and crypto_tip_prv_key:
             tip = yield deferToThread(decrypt_tip, self.session.cc, crypto_tip_prv_key, tip)
 
         returnValue(tip)

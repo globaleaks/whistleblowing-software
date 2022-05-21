@@ -22,7 +22,7 @@ packages = b"Package: globaleaks\n" \
 class TestUpdateCheck(helpers.TestGLWithPopulatedDB):
     @inlineCallbacks
     def test_refresh_works(self):
-        State.tenant_cache[1].anonymize_outgoing_connections = False
+        State.tenants[1].cache.anonymize_outgoing_connections = False
 
         yield tw(config.db_set_config_variable, 1, 'latest_version', __version__)
         yield self.test_model_count(models.Mail, 0)

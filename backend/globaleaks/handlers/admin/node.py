@@ -70,8 +70,8 @@ def db_admin_serialize_node(session, tid, language, config='node'):
         'languages_supported': LANGUAGES_SUPPORTED,
         'languages_enabled': db_get_languages(session, tid),
         'root_tenant': tid == 1,
-        'https_possible': tid == 1 or State.tenant_cache[1].reachable_via_web,
-        'encryption_possible': tid == 1 or State.tenant_cache[1].encryption,
+        'https_possible': tid == 1 or State.tenants[1].cache.reachable_via_web,
+        'encryption_possible': tid == 1 or State.tenants[1].cache.encryption,
         'logo': True if logo else False
     })
 

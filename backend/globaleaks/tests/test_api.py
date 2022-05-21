@@ -118,10 +118,10 @@ class TestAPI(TestGL):
         self.assertEqual(request.responseCode, 302)
 
         # Remote HTTP connection not coming from Tor should be redirected to HTTPS
-        State.tenant_cache[1].https_enabled = True
+        State.tenants[1].cache.https_enabled = True
         request = forge_request(uri=b'http://www.globaleaks.org/public', client_addr=IPv4Address('TCP', '8.8.8.8', 12345))
         self.api.render(request)
         self.assertFalse(request.client_using_tor)
         self.assertEqual(request.responseCode, 302)
         self.assertEqual(request.responseHeaders.getRawHeaders('location')[0], 'https://www.globaleaks.org/public')
-        State.tenant_cache[1].https_enabled = False
+        State.tenants[1].cache.https_enabled = False

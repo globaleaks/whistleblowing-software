@@ -60,11 +60,11 @@ def connection_check(tid, client_ip, role, client_using_tor):
     :param role: A user role
     :param client_using_tor: A boolean for signaling Tor use
     """
-    ip_filter = State.tenant_cache[tid]['ip_filter'].get(role)
+    ip_filter = State.tenants[tid].cache['ip_filter'].get(role)
     if ip_filter and not check_ip(client_ip, ip_filter):
         raise errors.AccessLocationInvalid
 
-    https_allowed = State.tenant_cache[tid]['https_allowed'].get(role)
+    https_allowed = State.tenants[tid].cache['https_allowed'].get(role)
     if not https_allowed and not client_using_tor:
         raise errors.TorNetworkRequired
 
@@ -117,7 +117,7 @@ class BaseHandler(object):
         self.session = session
 
         if self.session.user_role != 'whistleblower' and \
-           self.state.tenant_cache[1].get('log_accesses_of_internal_users', False):
+           self.state.tenants[1].cache.get('log_accesses_of_internal_users', False):
              self.request.log_ip_and_ua = True
 
         return self.session
@@ -303,10 +303,10 @@ class BaseHandler(object):
         file_id = self.request.args[b'flowIdentifier'][0].decode()
 
         chunk_size = len(self.request.args[b'file'][0])
-        if ((chunk_size // (1024 * 1024)) > self.state.tenant_cache[self.request.tid].maximum_filesize or
-            (total_file_size // (1024 * 1024)) > self.state.tenant_cache[self.request.tid].maximum_filesize):
+        if ((chunk_size // (1024 * 1024)) > self.state.tenants[self.request.tid].cache.maximum_filesize or
+            (total_file_size // (1024 * 1024)) > self.state.tenants[self.request.tid].cache.maximum_filesize):
             log.err("File upload request rejected: file too big", tid=self.request.tid)
-            raise errors.FileTooBig(self.state.tenant_cache[self.request.tid].maximum_filesize)
+            raise errors.FileTooBig(self.state.tenants[self.request.tid].cache.maximum_filesize)
 
         if file_id not in self.state.TempUploadFiles:
             self.state.TempUploadFiles[file_id] = SecureTemporaryFile(Settings.tmp_path)

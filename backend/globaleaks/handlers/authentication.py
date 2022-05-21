@@ -62,7 +62,7 @@ def login_whistleblower(session, tid, receipt):
     :param receipt: A provided receipt
     :return: Returns a user session in case of success
     """
-    hash = GCE.hash_password(receipt, State.tenant_cache[tid].receipt_salt, "ARGON2")
+    hash = GCE.hash_password(receipt, State.tenants[tid].cache.receipt_salt, "ARGON2")
 
     itip = session.query(InternalTip) \
                   .filter(InternalTip.tid == tid,
@@ -75,7 +75,7 @@ def login_whistleblower(session, tid, receipt):
 
     crypto_prv_key = ''
     if itip.crypto_pub_key:
-        user_key = GCE.derive_key(receipt.encode(), State.tenant_cache[tid].receipt_salt)
+        user_key = GCE.derive_key(receipt.encode(), State.tenants[tid].cache.receipt_salt)
         crypto_prv_key = GCE.symmetric_decrypt(user_key, Base64Encoder.decode(itip.crypto_prv_key))
 
     db_log(session, tid=tid,  type='whistleblower_login')
@@ -120,13 +120,13 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
     if user.crypto_prv_key:
         user_key = GCE.derive_key(password.encode(), user.salt)
         crypto_prv_key = GCE.symmetric_decrypt(user_key, Base64Encoder.decode(user.crypto_prv_key))
-    elif State.tenant_cache[tid].encryption:
+    elif State.tenants[tid].cache.encryption:
         # Force the password change on which the user key will be created
         user.password_change_needed = True
 
     # Require password change if password change threshold is exceeded
-    if State.tenant_cache[tid].password_change_period > 0 and \
-       user.password_change_date < datetime_now() - timedelta(days=State.tenant_cache[tid].password_change_period):
+    if State.tenants[tid].cache.password_change_period > 0 and \
+       user.password_change_date < datetime_now() - timedelta(days=State.tenants[tid].cache.password_change_period):
         user.password_change_needed = True
 
     user.last_login = datetime_now()
@@ -167,12 +167,12 @@ class AuthenticationHandler(BaseHandler):
 
         if tid != self.request.tid:
             returnValue({
-                'redirect': 'https://%s/#/login?token=%s' % (State.tenant_cache[tid].hostname, session.id)
+                'redirect': 'https://%s/#/login?token=%s' % (State.tenants[tid].cache.hostname, session.id)
             })
 
         ret = session.serialize()
 
-        ret['require_two_factor'] = self.state.tenant_cache[tid]['two_factor']
+        ret['require_two_factor'] = self.state.tenants[tid].cache['two_factor']
 
         returnValue(ret)
 
@@ -271,4 +271,4 @@ class TenantAuthSwitchHandler(BaseHandler):
 
         session.properties['management_session'] = True
 
-        return {'redirect': '/t/%s/#/login?token=%s' % (State.tenant_cache[tid].uuid, session.id)}
+        return {'redirect': '/t/%s/#/login?token=%s' % (State.tenants[tid].cache.uuid, session.id)}

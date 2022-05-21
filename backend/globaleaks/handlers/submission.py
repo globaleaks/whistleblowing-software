@@ -180,7 +180,7 @@ def db_create_submission(session, tid, request, user_session, client_using_tor):
         itip.enable_whistleblower_identity = True
 
     receipt = GCE.generate_receipt()
-    itip.receipt_hash = GCE.hash_password(receipt, State.tenant_cache[tid].receipt_salt)
+    itip.receipt_hash = GCE.hash_password(receipt, State.tenants[tid].cache.receipt_salt)
 
     session.add(itip)
     session.flush()
@@ -189,7 +189,7 @@ def db_create_submission(session, tid, request, user_session, client_using_tor):
     if crypto_is_available:
         crypto_tip_prv_key, itip.crypto_tip_pub_key = GCE.generate_keypair()
         crypto_files_prv_key, itip.crypto_files_pub_key = GCE.generate_keypair()
-        wb_key = GCE.derive_key(receipt.encode(), State.tenant_cache[tid].receipt_salt)
+        wb_key = GCE.derive_key(receipt.encode(), State.tenants[tid].cache.receipt_salt)
         wb_prv_key, wb_pub_key = GCE.generate_keypair()
         itip.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(wb_key, wb_prv_key))
         itip.crypto_pub_key = wb_pub_key
@@ -261,7 +261,7 @@ class SubmissionInstance(BaseHandler):
         """
         connection_check(self.request.tid, self.request.client_ip, 'whistleblower', self.request.client_using_tor)
 
-        if not self.state.accept_submissions or self.state.tenant_cache[self.request.tid]['disable_submissions']:
+        if not self.state.accept_submissions or self.state.tenants[self.request.tid].cache['disable_submissions']:
             raise errors.SubmissionDisabled
 
         request = self.validate_request(self.request.content.read(), requests.SubmissionDesc)

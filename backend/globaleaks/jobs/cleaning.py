@@ -44,7 +44,7 @@ class Cleaning(DailyJob):
             db_log(session, tid=result[1], type='delete_report', user_id='system', object_id=result[0])
 
     def db_check_for_expiring_submissions(self, session, tid):
-        threshold = datetime_now() + timedelta(hours=self.state.tenant_cache[tid].notification.tip_expiration_threshold)
+        threshold = datetime_now() + timedelta(hours=self.state.tenants[tid].cache.notification.tip_expiration_threshold)
 
         result = session.query(models.User, func.count(models.InternalTip.id), func.min(models.InternalTip.expiration_date)) \
                         .filter(models.InternalTip.tid == tid,
@@ -149,7 +149,7 @@ class Cleaning(DailyJob):
     def operation(self):
         yield self.clean()
 
-        for tid in self.state.tenant_state:
+        for tid in self.state.tenants:
             yield tw(self.db_check_for_expiring_submissions, tid)
 
         valid_files = yield self.get_files_list()

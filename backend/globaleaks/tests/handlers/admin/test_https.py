@@ -16,7 +16,7 @@ from globaleaks.utils.letsencrypt import ChallTok
 def set_init_params():
     hostname = 'localhost:9999'
     yield tw(config.db_set_config_variable, 1, 'hostname', hostname)
-    State.tenant_cache[1].hostname = hostname
+    State.tenants[1].cache.hostname = hostname
 
 
 class TestFileHandler(helpers.TestHandler):
@@ -126,7 +126,7 @@ class TestFileHandler(helpers.TestHandler):
         handler = self.request({'name': 'cert', 'content': helpers.HTTPS_DATA['cert']}, role='admin')
         yield handler.post('cert')
 
-        State.tenant_cache[1].hostname = 'localhost'
+        State.tenants[1].cache.hostname = 'localhost'
 
         body = {'name': 'chain', 'content': helpers.HTTPS_DATA[n]}
         handler = self.request(body, role='admin')
@@ -175,7 +175,7 @@ class TestCSRHandler(helpers.TestHandler):
 
         yield set_init_params()
         yield https.create_file_https_key(1, helpers.HTTPS_DATA['key'])
-        State.tenant_cache[1].hostname = 'notreal.ns.com'
+        State.tenants[1].cache.hostname = 'notreal.ns.com'
 
         d = {
             'country': 'it',
@@ -210,7 +210,7 @@ class TestAcmeChallengeHandler(helpers.TestHandler):
         v = '{}.5vh2ZRCJGmNUKEEBn-SN6esbMnSl1w8ZT0LDUwexTAM'.format(tok)
         ct = ChallTok(v)
 
-        State.tenant_state[1].acme_tmp_chall_dict[tok] = ct
+        State.tenants[1].acme_tmp_chall_dict[tok] = ct
 
         handler = self.request()
         resp = yield handler.get(tok)

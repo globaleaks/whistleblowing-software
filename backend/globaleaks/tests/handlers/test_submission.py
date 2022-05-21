@@ -21,7 +21,7 @@ class TestSubmission(helpers.TestHandlerWithPopulatedDB):
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
         yield tw(db_set_config_variable, 1, 'encryption', False)
-        self.state.tenant_cache[1].encryption = False
+        self.state.tenants[1].cache.encryption = False
 
     @inlineCallbacks
     def create_submission(self, request):

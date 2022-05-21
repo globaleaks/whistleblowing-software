@@ -74,10 +74,11 @@ class MailGenerator(object):
         rtips_ids = {}
         silent_tids = []
 
-        reminder_time = self.state.tenant_cache[1].unread_reminder_time if 1 in self.state.tenant_cache else 7
+        reminder_time = self.state.tenants[1].cache.unread_reminder_time if 1 in self.state.tenants else 7
 
-        for tid, cache_item in self.state.tenant_cache.items():
-            if cache_item.notification and cache_item.notification.disable_receiver_notification_emails:
+        for tid in self.state.tenants:
+            cache = self.state.tenants[tid].cache
+            if cache.notification and cache.disable_receiver_notification_emails:
                 silent_tids.append(tid)
 
         results1 = session.query(models.User, models.ReceiverTip, models.InternalTip, models.ReceiverTip) \

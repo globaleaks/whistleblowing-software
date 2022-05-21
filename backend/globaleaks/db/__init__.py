@@ -150,18 +150,27 @@ def sync_initialize_snimap(session):
 def db_refresh_tenant_cache(session, tids=None):
     active_tids = set([tid[0] for tid in session.query(models.Tenant.id).filter(models.Tenant.active.is_(True))])
 
-    cached_tids = set(State.tenant_state.keys())
+    cached_tids = set(State.tenants.keys())
+
+    disabled_tids = cached_tids - active_tids
 
     # Remove tenants that have been disabled
-    for tid in cached_tids - active_tids:
-        if tid in State.tenant_state:
-            if hasattr(State.tenant_state[tid], 'ephs'):
-               State.tenant_state[tid].ephs.remove()
+    for tid in disabled_tids:
+        if tid in State.tenants:
+            tenant_cache = State.tenants[tid].cache
 
-            del State.tenant_state[tid]
+            del State.tenant_uuid_id_map[tenant_cache.uuid]
+            del State.tenant_subdomain_id_map[tenant_cache.subdomain]
 
-        if tid in State.tenant_cache:
-            del State.tenant_cache[tid]
+            for h in tenant_cache.hostnames + tenant_cache.onionnames:
+                del State.tenant_hostname_id_map[h]
+
+            State.snimap.unload(tid)
+
+            if hasattr(State.tenants[tid], 'ephs'):
+               State.tenants[tid].ephs.remove()
+
+            del State.tenants[tid]
 
     if tids is None or 1 in tids:
         tids = active_tids
@@ -171,13 +180,10 @@ def db_refresh_tenant_cache(session, tids=None):
     tids = sorted(tids)
 
     for tid in tids:
-        if tid not in State.tenant_state:
-            State.tenant_state[tid] = TenantState(State)
+        if tid not in State.tenants:
+            State.tenants[tid] = TenantState()
 
-        if tid not in State.tenant_cache:
-            State.tenant_cache[tid] = ObjectDict()
-
-        tenant_cache = State.tenant_cache[tid]
+        tenant_cache = State.tenants[tid].cache
 
         tenant_cache['ip_filter'] = {}
         tenant_cache['https_allowed'] = {}
@@ -188,14 +194,14 @@ def db_refresh_tenant_cache(session, tids=None):
         tenant_cache['hostnames'] = []
         tenant_cache['onionnames'] = []
 
-    root_tenant_cache = State.tenant_cache[1]
+    root_tenant_cache = State.tenants[1].cache
 
     for tid, lang in session.query(models.EnabledLanguage.tid, models.EnabledLanguage.name)\
                             .filter(models.EnabledLanguage.tid.in_(tids)):
-        State.tenant_cache[tid].setdefault('languages_enabled', []).append(lang)
+        State.tenants[tid].cache.setdefault('languages_enabled', []).append(lang)
 
     for cfg in session.query(Config).filter(Config.tid.in_(tids)):
-        tenant_cache = State.tenant_cache[cfg.tid]
+        tenant_cache = State.tenants[cfg.tid].cache
 
         if cfg.var_name in ConfigFilters['node']:
             tenant_cache[cfg.var_name] = cfg.value
@@ -207,19 +213,21 @@ def db_refresh_tenant_cache(session, tids=None):
                                              models.User.enabled.is_(True),
                                              models.User.notification.is_(True),
                                              models.User.tid.in_(tids)):
-        State.tenant_cache[tid].notification.admin_list.extend([(mail, pub_key)])
+        State.tenants[tid].cache.notification.admin_list.extend([(mail, pub_key)])
 
     for custodian in session.query(models.User) \
                             .filter(models.User.role == 'custodian',
                                     models.User.enabled.is_(True),
                                     models.User.tid.in_(tids)):
-        State.tenant_cache[custodian.tid]['custodian'] = True
+        State.tenants[custodian.tid].cache['custodian'] = True
 
     for redirect in session.query(models.Redirect).filter(models.Redirect.tid.in_(tids)):
-        State.tenant_cache[redirect.tid]['redirects'][redirect.path1] = redirect.path2
+        State.tenants[redirect.tid].cache['redirects'][redirect.path1] = redirect.path2
 
     for tid in tids:
-        tenant_cache = State.tenant_cache[tid]
+        tenant_cache = State.tenants[tid].cache
+
+        State.tenant_uuid_id_map[tenant_cache.uuid] = tid
 
         for x in [('admin', 'ip_filter_admin_enable', 'ip_filter_admin'),
                   ('custodian', 'ip_filter_custodian_enable', 'ip_filter_custodian'),
@@ -228,10 +236,10 @@ def db_refresh_tenant_cache(session, tids=None):
                 tenant_cache['ip_filter'][x[0]] = tenant_cache[x[2]]
 
         for x in ['admin', 'custodian', 'receiver', 'whistleblower']:
-            tenant_cache['https_allowed'][x] = State.tenant_cache[tid].get('https_' + x, True)
+            tenant_cache['https_allowed'][x] = tenant_cache.get('https_' + x, True)
 
-        if State.tenant_cache[tid].mode == 'whistleblowing.it':
-            tenant_cache['https_preload'] = State.tenant_cache[1]['https_preload']
+        if State.tenants[tid].cache.mode != 'default':
+            tenant_cache['https_preload'] = root_tenant_cache['https_preload']
 
         if tenant_cache.hostname and tenant_cache.reachable_via_web:
             tenant_cache.hostnames.append(tenant_cache.hostname.encode())
@@ -243,34 +251,21 @@ def db_refresh_tenant_cache(session, tids=None):
             tenant_cache.onionservice = tenant_cache.subdomain + '.' + root_tenant_cache.onionservice
 
         if tenant_cache.subdomain:
+            State.tenant_subdomain_id_map[tenant_cache.subdomain] = tid
+
             if root_tenant_cache.rootdomain and tenant_cache.reachable_via_web:
                 tenant_cache.hostnames.append('{}.{}'.format(tenant_cache.subdomain, root_tenant_cache.rootdomain).encode())
 
             if root_tenant_cache.onionservice:
                 tenant_cache.onionnames.append('{}.{}'.format(tenant_cache.subdomain, root_tenant_cache.onionservice).encode())
 
-    tenant_uuid_id_map = {}
-    tenant_hostname_id_map = {}
-    tenant_subdomain_id_map = {}
-
-    for tid in active_tids:
-        tenant_cache = State.tenant_cache[tid]
-        tenant_uuid_id_map[tenant_cache.uuid] = tid
-
-        tenant_hostname_id_map.update({h: tid for h in tenant_cache.hostnames + tenant_cache.onionnames})
-
-        if tenant_cache.subdomain:
-            tenant_subdomain_id_map[tenant_cache.subdomain] = tid
-
-    State.tenant_uuid_id_map = tenant_uuid_id_map
-    State.tenant_hostname_id_map = tenant_hostname_id_map
-    State.tenant_subdomain_id_map = tenant_subdomain_id_map
+        State.tenant_hostname_id_map.update({h: tid for h in tenant_cache.hostnames + tenant_cache.onionnames})
 
     if getattr(State, 'onion_service'):
         State.onion_service.load_all_onion_services()
 
     if 1 in tids:
-        log.setloglevel(State.tenant_cache[1].log_level)
+        log.setloglevel(State.tenants[1].cache.log_level)
 
 
 @transact

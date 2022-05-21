@@ -13,7 +13,7 @@ class TestRobotstxtHandlerHandler(helpers.TestHandler):
     def test_get_with_indexing_disabled(self):
         handler = self.request()
 
-        State.tenant_cache[1].allow_indexing = False
+        State.tenants[1].cache.allow_indexing = False
 
         response = yield handler.get()
 
@@ -24,8 +24,8 @@ class TestRobotstxtHandlerHandler(helpers.TestHandler):
     def test_get_with_indexing_enabled(self):
         handler = self.request()
 
-        State.tenant_cache[1].allow_indexing = True
-        State.tenant_cache[1].hostname = "www.globaleaks.org"
+        State.tenants[1].cache.allow_indexing = True
+        State.tenants[1].cache.hostname = "www.globaleaks.org"
 
         response = yield handler.get()
 

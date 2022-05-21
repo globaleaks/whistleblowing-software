@@ -181,12 +181,12 @@ class Service(service.Service):
     def print_listening_interfaces(self):
         print("GlobaLeaks is now running and accessible at the following urls:")
 
-        tenant_cache = self.state.tenant_cache[1]
+        tenant_cache = self.state.tenants[1].cache
 
         if self.state.settings.devel_mode:
             print("- [HTTP]\t--> http://127.0.0.1:8082")
 
-        elif self.state.tenant_cache[1].reachable_via_web:
+        elif tenant_cache.reachable_via_web:
             hostname = tenant_cache.hostname if tenant_cache.hostname else '0.0.0.0'
             print("- [HTTP]\t--> http://%s" % hostname)
             if tenant_cache.https_enabled:

@@ -507,7 +507,7 @@ def serialize_receiver(session, user, language, data=None):
         'picture': data['imgs'].get(user.id, False)
     }
 
-    if State.tenant_cache[user.tid].simplified_login:
+    if State.tenants[user.tid].cache.simplified_login:
        ret['username'] = user.username
 
     return get_localized_values(ret, user, user.localized_keys, language)

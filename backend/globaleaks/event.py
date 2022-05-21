@@ -68,6 +68,6 @@ def track_handler(handler):
     for event in events_monitored:
         if event['handler_check'](handler):
             e = Event(event, handler.request.execution_time)
-            State.tenant_state[tid].RecentEventQ.append(e)
-            State.tenant_state[tid].EventQ.append(e)
+            State.tenants[tid].RecentEventQ.append(e)
+            State.tenants[tid].EventQ.append(e)
             break

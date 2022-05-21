@@ -143,7 +143,7 @@ def user_serialize_user(session, user, language):
         'contexts': contexts
     }
 
-    if State.tenant_cache[user.tid].two_factor and \
+    if State.tenants[user.tid].cache.two_factor and \
       user.two_factor_secret == '':
         ret['require_two_factor'] = True
 
@@ -198,7 +198,7 @@ def db_user_update_user(session, tid, user_session, request):
                   models.User,
                   models.User.id == user_session.user_id)
 
-    user.language = request.get('language', State.tenant_cache[tid].default_language)
+    user.language = request.get('language', State.tenants[tid].cache.default_language)
     user.name = request['name']
     user.public_name = request['public_name'] if request['public_name'] else request['name']
 

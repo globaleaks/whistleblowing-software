@@ -99,7 +99,7 @@ class RecentEventsCollection(BaseHandler):
     check_roles = 'admin'
 
     def get(self):
-        templist = [e.serialize() for e in State.tenant_state[self.request.tid].EventQ]
+        templist = [e.serialize() for e in State.tenants[self.request.tid].EventQ]
 
         templist.sort(key=operator.itemgetter('creation_date'))
 

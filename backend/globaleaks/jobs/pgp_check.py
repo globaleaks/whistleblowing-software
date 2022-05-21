@@ -65,7 +65,7 @@ class PGPCheck(DailyJob):
     def perform_pgp_validation_checks(self, session):
         tenant_expiry_map = {1: []}
 
-        for user in db_get_expired_or_expiring_pgp_users(session, self.state.tenant_cache.keys()):
+        for user in db_get_expired_or_expiring_pgp_users(session, self.state.tenants.keys()):
             user_desc = user_serialize_user(session, user, user.language)
             tenant_expiry_map.setdefault(user.tid, []).append(user_desc)
 
@@ -79,7 +79,7 @@ class PGPCheck(DailyJob):
             for user_desc in expired_or_expiring:
                 self.prepare_user_pgp_alerts(session, tid, user_desc)
 
-            if self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
+            if self.state.tenants[tid].cache.notification.disable_admin_notification_emails:
                 continue
 
             if expired_or_expiring:

@@ -115,7 +115,7 @@ def create_file_https_cert(session, tid, raw_data):
     ok, _ = pkv.validate(db_cfg)
     if ok:
         config.set_val('https_cert', raw_data)
-        State.tenant_cache[tid].https_cert = raw_data
+        State.tenants[tid].cache.https_cert = raw_data
 
     return ok
 
@@ -130,7 +130,7 @@ def create_file_https_chain(session, tid, raw_data):
     ok, _ = pkv.validate(db_cfg)
     if ok:
         config.set_val('https_chain', raw_data)
-        State.tenant_cache[tid].https_intermediate = raw_data
+        State.tenants[tid].cache.https_intermediate = raw_data
 
     return ok
 
@@ -184,7 +184,7 @@ class CertFileRes(FileResource):
     @transact
     def delete_file(session, tid):
         ConfigFactory(session, tid).set_val('https_cert', '')
-        State.tenant_cache[tid].https_cert = ''
+        State.tenants[tid].cache.https_cert = ''
 
     @staticmethod
     @transact
@@ -338,14 +338,14 @@ def try_to_enable_https(session, tid):
         raise errors.InputValidationError()
 
     config.set_val('https_enabled', True)
-    State.tenant_cache[tid].https_enabled = True
+    State.tenants[tid].cache.https_enabled = True
     State.snimap.load(tid, tls_config)
 
 
 @transact
 def disable_https(session, tid):
     ConfigFactory(session, tid).set_val('https_enabled', False)
-    State.tenant_cache[tid].https_enabled = False
+    State.tenants[tid].cache.https_enabled = False
     State.snimap.unload(tid)
 
 
@@ -360,7 +360,7 @@ def reset_https_config(session, tid):
     config.set_val('acme', False)
     config.set_val('acme_accnt_key', '')
 
-    State.tenant_cache[tid].https_enabled = False
+    State.tenants[tid].cache.https_enabled = False
 
 
 class ConfigHandler(BaseHandler):
@@ -394,7 +394,7 @@ class CSRFileHandler(FileHandler):
             'L': desc['city'],
             'O': desc['company'],
             'OU': desc['company'],
-            'CN': State.tenant_cache[self.request.tid].hostname,
+            'CN': State.tenants[self.request.tid].cache.hostname,
             'emailAddress': desc['email'],
         }
 
@@ -426,7 +426,7 @@ class CSRFileHandler(FileHandler):
 
 def db_acme_cert_request(session, tid):
     priv_fact = ConfigFactory(session, tid)
-    hostname = State.tenant_cache[tid].hostname
+    hostname = State.tenants[tid].cache.hostname
 
     raw_accnt_key = priv_fact.get_val('acme_accnt_key')
     if not raw_accnt_key:
@@ -444,13 +444,13 @@ def db_acme_cert_request(session, tid):
     cert_str, chain_str = letsencrypt.request_new_certificate(hostname,
                                                               accnt_key,
                                                               key,
-                                                              State.tenant_state[tid].acme_tmp_chall_dict,
+                                                              State.tenants[tid].acme_tmp_chall_dict,
                                                               Settings.acme_directory_url)
 
     priv_fact.set_val('https_cert', cert_str)
     priv_fact.set_val('https_chain', chain_str)
-    State.tenant_cache[tid].https_cert = cert_str
-    State.tenant_cache[tid].https_chain = chain_str
+    State.tenants[tid].cache.https_cert = cert_str
+    State.tenants[tid].cache.https_chain = chain_str
 
 
 class AcmeHandler(BaseHandler):
@@ -466,7 +466,7 @@ class AcmeChallengeHandler(BaseHandler):
     check_roles = 'any'
 
     def get(self, token):
-        tmp_chall_dict = State.tenant_state[self.request.tid].acme_tmp_chall_dict
+        tmp_chall_dict = State.tenants[self.request.tid].acme_tmp_chall_dict
         if token in tmp_chall_dict:
             log.info('Responding to valid .well-known request [%d]', self.request.tid)
             return tmp_chall_dict[token].tok

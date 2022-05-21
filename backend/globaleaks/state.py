@@ -41,21 +41,23 @@ silenced_exceptions = (
   ValidationError
 )
 
-def getAlarm(state):
-    from globaleaks.anomaly import Alarm
-    return Alarm(state)
-
 
 class TenantState(object):
-    def __init__(self, state):
-        self.RecentEventQ = []
-        self.EventQ = []
-        self.AnomaliesQ = []
+    def __init__(self):
+        self.cache = ObjectDict()
 
         # An ACME challenge will have 5 minutes to resolve
         self.acme_tmp_chall_dict = TempDict(300)
 
-        self.Alarm = getAlarm(state)
+        self.reset_events()
+
+    def reset_events(self):
+        from globaleaks.anomaly import Alarm
+
+        self.RecentEventQ = []
+        self.EventQ = []
+        self.AnomaliesQ = []
+        self.Alarm = Alarm()
 
 
 class StateClass(ObjectDict, metaclass=Singleton):
@@ -78,8 +80,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
 
         self.accept_submissions = True
 
-        self.tenant_state = {}
-        self.tenant_cache = {}
+        self.tenants = {}
 
         self.tenant_uuid_id_map = {}
         self.tenant_hostname_id_map = {}
@@ -104,7 +105,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
         orm.set_thread_pool(orm_tp)
 
     def get_agent(self):
-        if self.tenant_cache[1].anonymize_outgoing_connections:
+        if self.tenants[1].cache.anonymize_outgoing_connections:
             return get_tor_agent(self.settings.socks_host, self.settings.socks_port)
 
         return get_web_agent()
@@ -145,8 +146,8 @@ class StateClass(ObjectDict, metaclass=Singleton):
             self.create_directory(dirpath)
 
     def reset_hourly(self):
-        for tid in self.tenant_state:
-            self.tenant_state[tid] = TenantState(self)
+        for tid in self.stenant:
+            self.tenants[tid].reset_events()
 
         self.exceptions.clear()
         self.exceptions_email_count = 0
@@ -157,29 +158,29 @@ class StateClass(ObjectDict, metaclass=Singleton):
         if self.settings.disable_notifications:
             return succeed(True)
 
-        if self.tenant_cache[tid].mode != 'default':
+        if self.tenants[tid].cache.mode != 'default':
             tid = 1
 
         return sendmail(tid,
-                        self.tenant_cache[tid].notification.smtp_server,
-                        self.tenant_cache[tid].notification.smtp_port,
-                        self.tenant_cache[tid].notification.smtp_security,
-                        self.tenant_cache[tid].notification.smtp_authentication,
-                        self.tenant_cache[tid].notification.smtp_username,
-                        self.tenant_cache[tid].notification.smtp_password,
-                        self.tenant_cache[tid].name,
-                        self.tenant_cache[tid].notification.smtp_source_email,
+                        self.tenants[tid].cache.notification.smtp_server,
+                        self.tenants[tid].cache.notification.smtp_port,
+                        self.tenants[tid].cache.notification.smtp_security,
+                        self.tenants[tid].cache.notification.smtp_authentication,
+                        self.tenants[tid].cache.notification.smtp_username,
+                        self.tenants[tid].cache.notification.smtp_password,
+                        self.tenants[tid].cache.name,
+                        self.tenants[tid].cache.notification.smtp_source_email,
                         to_address,
-                        self.tenant_cache[tid].name + ' - ' + subject,
+                        self.tenants[tid].cache.name + ' - ' + subject,
                         body,
-                        self.tenant_cache[1].anonymize_outgoing_connections,
+                        self.tenants[1].cache.anonymize_outgoing_connections,
                         self.settings.socks_host,
                         self.settings.socks_port)
 
     def schedule_support_email(self, tid, text):
         subject = "Support request"
-        delivery_list = set.union(set(self.tenant_cache[1].notification.admin_list),
-                                  set(self.tenant_cache[tid].notification.admin_list))
+        delivery_list = set.union(set(self.tenants[1].cache.notification.admin_list),
+                                  set(self.tenants[tid].cache.notification.admin_list))
 
         for mail_address, pgp_key_public in delivery_list:
             body = text
@@ -196,7 +197,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
             tw(db_schedule_email, tid, mail_address, subject, body)
 
     def schedule_exception_email(self, tid, exception_text, *args):
-        if not hasattr(self.tenant_cache[tid], 'notification'):
+        if not hasattr(self.tenants[tid].cache, 'notification'):
             log.err("Error: Cannot send mail exception before complete initialization.")
             return
 
@@ -218,16 +219,16 @@ class StateClass(ObjectDict, metaclass=Singleton):
         self.exceptions_email_count += 1
 
         mail_subject = "GlobaLeaks Exception"
-        delivery_list = self.tenant_cache[1].notification.admin_list + \
-                        self.tenant_cache[tid].notification.admin_list
+        delivery_list = self.tenants[1].cache.notification.admin_list + \
+                        self.tenants[tid].cache.notification.admin_list
 
-        if self.tenant_cache[1].enable_developers_exception_notification:
+        if self.tenants[1].cache.enable_developers_exception_notification:
             delivery_list.append(('exceptions@globaleaks.org', ''))
 
         for mail_address, pgp_key_public in delivery_list:
-            mail_body = "Platform: %s\nHost: %s (%s)\nVersion: %s\n\n%s" % (self.tenant_cache[tid].name,
-                                                                            self.tenant_cache[tid].hostname,
-                                                                            self.tenant_cache[tid].onionservice,
+            mail_body = "Platform: %s\nHost: %s (%s)\nVersion: %s\n\n%s" % (self.tenants[tid].cache.name,
+                                                                            self.tenants[tid].cache.hostname,
+                                                                            self.tenants[tid].cache.onionservice,
                                                                             __version__,
                                                                             exception_text)
 

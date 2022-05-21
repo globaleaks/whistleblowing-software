@@ -216,8 +216,8 @@ class APIResourceWrapper(Resource):
             self._registry.append((re.compile(pattern), handler, args))
 
     def should_redirect_https(self, request):
-        if (State.tenant_cache[1].https_enabled or
-            State.tenant_cache[request.tid].https_enabled) and \
+        if (State.tenants[1].cache.https_enabled or
+            State.tenants[request.tid].cache.https_enabled) and \
            not request.isSecure() and \
            request.client_ip not in State.settings.local_hosts and \
            b'acme-challenge' not in request.path:
@@ -227,17 +227,17 @@ class APIResourceWrapper(Resource):
 
     def should_redirect_tor(self, request):
         if request.client_using_tor and \
-           State.tenant_cache[request.tid].onionnames and \
-           request.hostname != State.tenant_cache[request.tid].onionnames[0]:
+           State.tenants[request.tid].cache.onionnames and \
+           request.hostname != State.tenants[request.tid].cache.onionnames[0]:
             return True
 
         return False
 
     def redirect_https(self, request):
-        request.redirect(b'https://' + State.tenant_cache[request.tid].hostname.encode() + request.path)
+        request.redirect(b'https://' + State.tenants[request.tid].cache.hostname.encode() + request.path)
 
     def redirect_tor(self, request):
-        request.redirect(b'http://' + State.tenant_cache[request.tid].onionnames[0] + request.path)
+        request.redirect(b'http://' + State.tenants[request.tid].cache.onionnames[0] + request.path)
 
     def handle_exception(self, exception, request):
         """
@@ -285,13 +285,13 @@ class APIResourceWrapper(Resource):
         request.hostname = request.getRequestHostname()
         request.headers = request.getAllHeaders()
 
-        if (not State.tenant_cache[1].wizard_done or
+        if (not State.tenants[1].cache.wizard_done or
             request.hostname == b'localhost' or
             isIPAddress(request.hostname) or
             isIPv6Address(request.hostname)):
             request.tid = 1
         else:
-            request.tid = State.tenant_hostname_id_map.get(request.hostname, None)
+            request.tid = State.tenants_hostname_id_map.get(request.hostname, None)
 
         if request.tid == 1:
             try:
@@ -300,11 +300,11 @@ class APIResourceWrapper(Resource):
 
                 if match1 is not None:
                     groups = match1.groups()
-                    tid = State.tenant_uuid_id_map[groups[0].decode()]
+                    tid = State.tenants_uuid_id_map[groups[0].decode()]
                     request.tid, request.path = tid, groups[1]
                 elif match2 is not None:
                     groups = match2.groups()
-                    tid = State.tenant_subdomain_id_map[groups[0].decode()]
+                    tid = State.tenants_subdomain_id_map[groups[0].decode()]
                     request.tid, request.path = tid, groups[1]
             except:
                 pass
@@ -316,9 +316,9 @@ class APIResourceWrapper(Resource):
             else:
                 tentative_hostname = request.hostname[4:]
 
-            if tentative_hostname in State.tenant_hostname_id_map:
-                request.tid = State.tenant_hostname_id_map[tentative_hostname]
-                if State.tenant_cache[request.tid].https_enabled:
+            if tentative_hostname in State.tenants_hostname_id_map:
+                request.tid = State.tenants_hostname_id_map[tentative_hostname]
+                if State.tenants[request.tid].cache.https_enabled:
                     request.redirect(b'https://' + tentative_hostname + b'/')
                 else:
                     request.redirect(b'http://' + tentative_hostname + b'/')
@@ -327,7 +327,7 @@ class APIResourceWrapper(Resource):
                 request.tid = None
                 return
 
-        if request.tid is None or request.tid not in State.tenant_cache:
+        if request.tid is None or request.tid not in State.tenants:
             request.tid = None
             return
 
@@ -386,8 +386,8 @@ class APIResourceWrapper(Resource):
 
         request_path = request.path.decode()
 
-        if request_path in State.tenant_cache[request.tid]['redirects']:
-            request.redirect(State.tenant_cache[request.tid]['redirects'][request_path])
+        if request_path in State.tenants[request.tid].cache['redirects']:
+            request.redirect(State.tenants[request.tid].cache['redirects'][request_path])
             return b''
 
         match = None
@@ -479,15 +479,15 @@ class APIResourceWrapper(Resource):
         request.setHeader(b'Server', b'GlobaLeaks')
 
         if request.isSecure():
-            if State.tenant_cache[request.tid].https_preload:
+            if State.tenants[request.tid].cache.https_preload:
                 request.setHeader(b'Strict-Transport-Security',
                                   b'max-age=31536000; includeSubDomains; preload')
             else:
                 request.setHeader(b'Strict-Transport-Security',
                                   b'max-age=31536000; includeSubDomains')
 
-            if State.tenant_cache[request.tid].onionservice:
-                request.setHeader(b'Onion-Location', b'http://' + State.tenant_cache[request.tid].onionservice.encode() + request.path)
+            if State.tenants[request.tid].cache.onionservice:
+                request.setHeader(b'Onion-Location', b'http://' + State.tenants[request.tid].cache.onionservice.encode() + request.path)
 
         # The possibility of disabling the Content-Security-Policy is
         # necessary for two main reasons:
@@ -534,7 +534,7 @@ class APIResourceWrapper(Resource):
         request.setHeader(b'Referrer-Policy', b'no-referrer')
 
         # to avoid Robots spidering, indexing, caching
-        if State.tenant_cache[request.tid].allow_indexing:
+        if State.tenants[request.tid].cache.allow_indexing:
             request.setHeader(b'X-Robots-Tag', b'noarchive')
         else:
             request.setHeader(b'X-Robots-Tag', b'noindex')
@@ -558,11 +558,11 @@ class APIResourceWrapper(Resource):
             else:
                 score = 1.0
 
-            if parts[0] in State.tenant_cache[request.tid].languages_enabled:
+            if parts[0] in State.tenants[request.tid].cache.languages_enabled:
                 locales.append((parts[0], score))
 
         if locales:
             locales.sort(key=lambda pair: pair[1], reverse=True)
             return locales[0][0]
 
-        return State.tenant_cache[request.tid].default_language
+        return State.tenants[request.tid].cache.default_language

@@ -28,12 +28,12 @@ def update_redirects_state(tid):
 
     :param tid: The tenant for which configure the redirects
     """
-    State.tenant_cache[tid]['redirects'] = {}
+    State.tenants[tid].cache['redirects'] = {}
 
     redirects = yield get_redirect_list(tid)
 
     for redirect in redirects:
-        State.tenant_cache[tid]['redirects'][redirect['path1']] = redirect['path2']
+        State.tenants[tid].cache['redirects'][redirect['path1']] = redirect['path2']
 
 
 @transact

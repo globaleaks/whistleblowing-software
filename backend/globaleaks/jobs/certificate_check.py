@@ -60,13 +60,13 @@ class CertificateCheck(DailyJob):
     def operation(self):
         now = datetime.now()
 
-        for tid in self.state.tenant_state.keys():
-            if not self.state.tenant_cache[tid]['https_enabled']:
+        for tid in self.state.tenants.keys():
+            if not self.state.tenants[tid].cache['https_enabled']:
                 continue
 
-            cert = load_certificate(FILETYPE_PEM, self.state.tenant_cache[tid]['https_cert'])
+            cert = load_certificate(FILETYPE_PEM, self.state.tenants[tid].cache['https_cert'])
             expiration_date = letsencrypt.convert_asn1_date(cert.get_notAfter())
-            if self.state.tenant_cache[tid]['acme'] and now > expiration_date - timedelta(self.acme_try_renewal):
+            if self.state.tenants[tid].cache['acme'] and now > expiration_date - timedelta(self.acme_try_renewal):
                 tls_config = yield self.renew_certificate(tid)
 
                 if tls_config:
@@ -75,7 +75,7 @@ class CertificateCheck(DailyJob):
                 else:
                     # Send an email to the admin cause this requires user intervention
                     if now > expiration_date - timedelta(self.notify_expr_within) and \
-                        not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
+                        not self.state.tenants[tid].cache.notification.disable_admin_notification_emails:
                         yield self.certificate_mail_creation('https_certificate_renewal_failure', tid, expiration_date)
 
                 yield deferred_sleep(1)
@@ -83,5 +83,5 @@ class CertificateCheck(DailyJob):
             # Regular certificates expiration checks
             elif now > expiration_date - timedelta(self.notify_expr_within):
                 log.info('The HTTPS Certificate is expiring on %s', expiration_date, tid=tid)
-                if not self.state.tenant_cache[tid].notification.disable_admin_notification_emails:
+                if not self.state.tenants[tid].cache.notification.disable_admin_notification_emails:
                     yield self.certificate_mail_creation('https_certificate_expiration', tid, expiration_date)
