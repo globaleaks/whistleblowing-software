@@ -748,7 +748,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       $rootScope.projectTitle = $filter("translate")(projectTitle);
       $rootScope.pageTitle = $filter("translate")(pageTitle);
 
-      if ($rootScope.projectTitle === $rootScope.pageTitle) {
+      if (!$rootScope.pageTitle || $rootScope.projectTitle === $rootScope.pageTitle) {
 	$rootScope.pageTitle = "";
         $window.document.title = $rootScope.projectTitle;
       } else {
