@@ -70,7 +70,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
         self.jobs = []
         self.jobs_monitor = None
         self.services = []
-        self.onion_service_job = None
+        self.onion_service = None
 
         self.exceptions = {}
         self.exceptions_email_count = 0
@@ -238,14 +238,6 @@ class StateClass(ObjectDict, metaclass=Singleton):
 
             # avoid waiting for the notification to send and instead rely on threads to handle it
             tw(db_schedule_email, 1, mail_address, mail_subject, mail_body)
-
-    def refresh_connection_endpoints(self):
-        # Remove selected onion services and add missing services
-        if self.onion_service_job is not None:
-            def f(*args):
-                return self.onion_service_job.add_all_onion_services()
-
-            self.onion_service_job.remove_unwanted_onion_services().addBoth(f)  # pylint: disable=no-member
 
     def format_and_send_mail(self, session, tid, mail_address, template_vars):
         mail_subject, mail_body = Templating().get_mail_subject_and_body(template_vars)

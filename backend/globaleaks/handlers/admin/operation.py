@@ -13,7 +13,6 @@ from globaleaks.models import Config, InternalTip, User
 from globaleaks.models.config import db_set_config_variable, ConfigFactory, ConfigL10NFactory
 from globaleaks.orm import db_del, db_log, transact, tw
 from globaleaks.rest import errors
-from globaleaks.services.onion import set_onion_service_info, get_onion_service_info
 from globaleaks.state import State
 from globaleaks.utils.crypto import Base64Encoder, GCE
 from globaleaks.utils.onion import generate_onion_service_v3
@@ -50,6 +49,21 @@ def check_hostname(session, tid, hostname):
 
     if hostname in existing_hostnames:
         raise errors.InputValidationError('Hostname already reserved')
+
+
+@transact
+def get_onion_service_info(session, tid):
+    node = ConfigFactory(session, tid)
+    hostname = node.get_val('onionservice')
+    key = node.get_val('tor_onion_key')
+    return tid, hostname, key
+
+
+@transact
+def set_onion_service_info(session, tid, hostname, key):
+    node = ConfigFactory(session, tid)
+    node.set_val('onionservice', hostname)
+    node.set_val('tor_onion_key', key)
 
 
 @transact
@@ -170,8 +184,8 @@ class AdminOperationHandler(OperationHandler):
     def reset_onion_private_key(self, req_args, *args, **kargs):
         hostname, key = generate_onion_service_v3()
         yield set_onion_service_info(self.request.tid, hostname, key)
-        yield self.state.onion_service_job.add_onion_service(self.request.tid, hostname, key)
-        yield self.state.onion_service_job.remove_unwanted_onion_services()
+        yield self.state.onion_service.add_onion_service(self.request.tid, hostname, key)
+        yield self.state.onion_service.remove_unwanted_onion_services()
 
         onion_details = yield get_onion_service_info(self.request.tid)
         returnValue({

@@ -155,6 +155,9 @@ def db_refresh_tenant_cache(session, tids=None):
     # Remove tenants that have been disabled
     for tid in cached_tids - active_tids:
         if tid in State.tenant_state:
+            if hasattr(State.tenant_state[tid], 'ephs'):
+               State.tenant_state[tid].ephs.remove()
+
             del State.tenant_state[tid]
 
         if tid in State.tenant_cache:
@@ -262,6 +265,9 @@ def db_refresh_tenant_cache(session, tids=None):
     State.tenant_uuid_id_map = tenant_uuid_id_map
     State.tenant_hostname_id_map = tenant_hostname_id_map
     State.tenant_subdomain_id_map = tenant_subdomain_id_map
+
+    if getattr(State, 'onion_service'):
+        State.onion_service.load_all_onion_services()
 
     if 1 in tids:
         log.setloglevel(State.tenant_cache[1].log_level)

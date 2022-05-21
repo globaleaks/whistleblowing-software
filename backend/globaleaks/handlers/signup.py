@@ -182,7 +182,6 @@ class SignupActivation(BaseHandler):
     check_roles = 'any'
     invalidate_cache = False
     root_tenant_only = True
-    refresh_connection_endpoints = True
 
     def get(self, token):
         return signup_activation(token, self.request.hostname, self.request.language)

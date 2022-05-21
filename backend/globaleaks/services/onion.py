@@ -5,54 +5,42 @@ import os
 from txtorcon import build_local_tor_connection
 from twisted.internet import reactor
 from twisted.internet.defer import Deferred, inlineCallbacks, returnValue
+from txtorcon import TorConfig
+from txtorcon.onion import EphemeralOnionService
 
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
 from globaleaks.services.service import Service
 from globaleaks.state import State
-from globaleaks.utils.utility import deferred_sleep
 from globaleaks.utils.log import log
-
-from txtorcon.torconfig import EphemeralHiddenService
+from globaleaks.utils.utility import deferred_sleep
 
 
 __all__ = ['OnionService']
 
 
-@transact
-def get_onion_service_info(session, tid):
-    return db_get_onion_service_info(session, tid)
+def load_onion_service(tor_conn, tid, hostname, key):
+    hs_loc = '80 localhost:8083'
 
+    log.err('Setting up the onion service %s', hostname, tid=tid)
 
-@transact
-def set_onion_service_info(session, tid, hostname, key):
-    node = ConfigFactory(session, tid)
-    node.set_val('onionservice', hostname)
-    node.set_val('tor_onion_key', key)
+    config = TorConfig(tor_conn.protocol)
 
+    def init_callback(onion):
+        if tid in State.tenant_state:
+            State.tenant_state[tid].ephs = onion
 
-def db_get_onion_service_info(session, tid):
-    node = ConfigFactory(session, tid)
+        log.err('Initialization of onion-service %s completed.', onion.hostname, tid=tid)
 
-    hostname = node.get_val('onionservice')
-    key = node.get_val('tor_onion_key')
-
-    return tid, hostname, key
-
-
-@transact
-def list_onion_service_info(session):
-    return [db_get_onion_service_info(session, tid) for tid in State.tenant_cache if State.tenant_cache[tid].tor]
+    return EphemeralOnionService.create(reactor, config, [hs_loc]).addCallbacks(init_callback)  # pylint: disable=no-member
 
 
 class OnionService(Service):
     print_startup_error = True
     tor_conn = None
-    hs_map = {}
 
     def reset(self):
         self.tor_conn = None
-        self.hs_map.clear()
 
     def stop(self):
         super(OnionService, self).stop()
@@ -64,73 +52,16 @@ class OnionService(Service):
         self.tor_conn = None
         return tor_conn.protocol.quit()
 
-    @inlineCallbacks
-    def add_all_onion_services(self):
-        if self.tor_conn is None:
-            return
-
-        hostname_key_list = yield list_onion_service_info()
-        for tid, hostname, key in hostname_key_list:
-            if hostname and hostname not in self.hs_map:
-                yield self.add_onion_service(tid, hostname, key)
-
-    def add_onion_service(self, tid, hostname, key):
-        if self.tor_conn is None:
-            return
-
-        hs_loc = '80 localhost:8083'
-
-        log.info('Setting up the onion service %s', hostname, tid=tid)
-
-        ephs = EphemeralHiddenService(hs_loc, key)
-
-        self.hs_map[hostname] = ephs
-
-        def init_callback(ret):
-            log.err('Initialization of onion-service %s completed.', ephs.hostname, tid=tid)
-
-        return ephs.add_to_tor(self.tor_conn.protocol).addCallbacks(init_callback)  # pylint: disable=no-member
-
-    @inlineCallbacks
-    def remove_unwanted_onion_services(self):
-        # Collect the list of all onion services listed by tor then remove all of them
-        # that are not present in the tenant cache ensuring that OnionService.hs_map is
-        # kept up to date.
-        running_services = yield self.get_all_onion_services()
-
-        tenant_services = {State.tenant_cache[tid].onionservice for tid in State.tenant_cache}
-
-        for onion_addr in running_services:
-            ephs = None
-            if onion_addr not in tenant_services and onion_addr in self.hs_map:
-                ephs = self.hs_map.pop(onion_addr)
-
-            if ephs is not None:
-                log.info('Removing onion address %s', ephs.hostname)
-                yield ephs.remove_from_tor(self.tor_conn.protocol)
-
-    @inlineCallbacks
-    def get_all_onion_services(self):
-        if self.tor_conn is None:
-            returnValue([])
-
-        ret = yield self.tor_conn.protocol.get_info('onions/current')
-        if ret == '':
-            running_services = []
-        else:
-            x = ret.get('onions/current', '').strip().split('\n')
-            running_services = [r+'.onion' for r in x]
-
-        returnValue(running_services)
+    def load_all_onion_services(self):
+        for tid in self.state.tenant_cache:
+            if self.state.tenant_cache[tid].tor and not hasattr(self.state.tenant_state[tid], 'ephs'):
+                load_onion_service(self.tor_conn, tid, self.state.tenant_cache[tid].onionservice, self.state.tenant_cache[tid].tor_onion_key)
 
     def operation(self):
         restart_deferred = Deferred()
 
         control_socket = '/var/run/tor/control'
 
-        self.reset()
-
-        @inlineCallbacks
         def startup_callback(tor_conn):
             self.print_startup_error = True
             self.tor_conn = tor_conn
@@ -138,7 +69,7 @@ class OnionService(Service):
 
             log.err('Successfully connected to Tor control port')
 
-            yield self.add_all_onion_services()
+            self.load_all_onion_services()
 
         def startup_errback(err):
             if self.print_startup_error:

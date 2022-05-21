@@ -98,20 +98,6 @@ def decorator_cache_invalidate(f):
     return wrapper
 
 
-def decorator_refresh_connection_endpoints(f):
-    # Decorator that reloads connection endpoints
-    def wrapper(self, *args, **kwargs):
-        d = defer.maybeDeferred(f, self, *args, **kwargs)
-
-        def callback(data):
-            self.state.refresh_connection_endpoints()
-            return data
-
-        return d.addCallback(callback)
-
-    return wrapper
-
-
 def decorate_method(h, method):
     value = getattr(h, 'check_roles')
     if isinstance(value, str):
@@ -126,9 +112,6 @@ def decorate_method(h, method):
         else:
             if h.invalidate_cache:
                 f = decorator_cache_invalidate(f)
-
-            if h.refresh_connection_endpoints:
-                f = decorator_refresh_connection_endpoints(f)
 
     f = decorator_authentication(f, value)
 

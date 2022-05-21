@@ -122,9 +122,8 @@ class Service(service.Service):
         for j in jobs_list:
             self.state.jobs.append(j())
 
-        self.state.onion_service_job = onion.OnionService()
-        # The only service job currently is the OnionService
-        self.state.services.append(self.state.onion_service_job)
+        self.state.onion_service = onion.OnionService()
+        self.state.services.append(self.state.onion_service)
 
         self.state.jobs_monitor = job.JobsMonitor(self.state.jobs)
 
