@@ -41,7 +41,7 @@
         </div>
       </div>
       <div data-ng-switch-when="multichoice">
-        <div data-ng-repeat="option in field.options | orderBy:'order'" id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" name="{{'input-' +  entryIndex}}">
+        <div data-ng-repeat="option in field.options | orderBy:'order'" name="{{'input-' +  entryIndex}}">
           <input class="form-control-input inputelem" type="radio" id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}-option-{{$index}}" data-ng-model="entry['value']" value="{{option.id}}" data-ng-required="field.required" />
           <span data-uib-tooltip="{{option.hint1}}" class="form-control-label" data-ng-class="{'text-underline': option.hint1}">{{option.label}}</span>
         </div>
