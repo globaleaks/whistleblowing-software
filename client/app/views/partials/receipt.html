@@ -1,8 +1,8 @@
-<label id="WhistleblowerLoginQuestion" for="receipt" data-translate>Have you already filed a report? Enter your receipt.</label>
+<label id="WhistleblowerLoginQuestion" for="receipt-input" data-translate>Have you already filed a report? Enter your receipt.</label>
 <form id="WhistleblowerLoginForm" class="form-inline" autocomplete="off" novalidate>
   <div class="form-group d-block mx-auto">
     <div class="input-group">
-      <input class="form-control" type="text" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" size="19" data-ng-model="formatted_receipt" name="receipt" receiptvalidator>
+      <input id="receipt-input" class="form-control" type="text" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" size="19" data-ng-model="formatted_receipt" name="receipt-input" receiptvalidator>
       <span class="input-group-append">
         <button id="ReceiptButton"
                 data-ng-click="Authentication.login(0, 'whistleblower', formatted_receipt)" class="btn btn-primary"
