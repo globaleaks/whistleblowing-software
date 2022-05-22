@@ -10,7 +10,7 @@
 # Dina Solveig Jalkanen, 2017,2020
 # Dina Solveig Jalkanen, 2017,2020
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2016-2018,2020-2022
-# Hellowin, 2022
+# aylar b, 2022
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -36,7 +36,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Hellowin, 2022\n"
+"Last-Translator: aylar b, 2022\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -495,64 +495,6 @@ msgstr "Предоставить доступ"
 msgid "Revoke access"
 msgstr "Отозвать доступ"
 
-msgid "Please summarize your report in a few words."
-msgstr "Кратко опишите свой отчет."
-
-msgid "Where did the facts happen?"
-msgstr "Где произошли события?"
-
-msgid "When did the facts happen?"
-msgstr "Когда произошли события?"
-
-msgid "How are you involved in the reported facts?"
-msgstr "Как вы причастны к сообщаемым событиям?"
-
-msgid "I’m a victim"
-msgstr "Я жертва"
-
-msgid "I’m involved in the facts"
-msgstr "Я причастен к событиям"
-
-msgid "I witnessed the facts in person"
-msgstr "Я был свидетелем событий лично"
-
-msgid "I was personally told by a direct witness"
-msgstr "Мне лично рассказал непосредственный свидетель"
-
-msgid "It is a rumor I heard"
-msgstr "Я слышал об этом"
-
-msgid "Do you have evidence to support your report?"
-msgstr "Есть ли у вас доказательства в поддержку вашего уведомления?"
-
-msgid "Please attach the evidence to support your report."
-msgstr "Приложите доказательство в поддержку вашего уведомления."
-
-msgid "Please describe the evidence in detail."
-msgstr "Опишите доказательство в деталях."
-
-msgid ""
-"A thorough description of the submitted evidence enhances our ability to "
-"evaluate claims and investigate. Please take care to reference significant "
-"portions of any videos, images or documents submitted."
-msgstr "Тщательное описание представленного доказательства повышает нашу способность оценивать претензии и проводить расследования. Старайтесь ссылаться на значительную часть любых представленных видео, изображений или документов."
-
-msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr "Сообщали ли вы о событиях в другие организации и/или другим лицам?"
-
-msgid ""
-"Please list the organizations and/or individuals you have informed about "
-"these facts."
-msgstr "Перечислите организации и/или лица, которым вы сообщили об этих событиях."
-
-msgid ""
-"Have these organizations investigated your claims? If so, what was the "
-"outcome?"
-msgstr "Расследовали ли эти организации ваши претензии? Если да, каков результат?"
-
-msgid "What is the outcome you want to achieve with our support?"
-msgstr "Какого результата вы хотите добиться с нашей поддержкой?"
-
 msgid "File a report"
 msgstr "Подать отчет"
 
@@ -846,12 +788,6 @@ msgstr "Значение"
 
 msgid "Medium"
 msgstr "Средний"
-
-msgid "Customize the message shown in the receipt page"
-msgstr "Настроить сообщение, отображаемое на странице получения."
-
-msgid "Assign the receipt only to reports reaching score:"
-msgstr "Присвоить квитанцию о получении только отчетам, получившим оценку:"
 
 msgid "Software version:"
 msgstr "Версия программного обеспечения:"
@@ -1620,14 +1556,66 @@ msgstr "Я прочитал условия лицензии и согласен 
 msgid "You have completed the platform wizard."
 msgstr "Вы завершили работу с мастером настройки платформы."
 
+msgid "Please summarize your report in a few words."
+msgstr "Кратко опишите свой отчет."
+
 msgid "Describe your report in detail."
 msgstr "Опишите свой отчет подробно."
+
+msgid "Where did the facts happen?"
+msgstr "Где произошли события?"
+
+msgid "When did the facts happen?"
+msgstr "Когда произошли события?"
 
 msgid "I'm a victim"
 msgstr "Я жертва"
 
 msgid "I'm involved in the facts"
 msgstr "Я вовлечен в события"
+
+msgid "I witnessed the facts in person"
+msgstr "Я был свидетелем событий лично"
+
+msgid "I was personally told by a direct witness"
+msgstr "Мне лично рассказал непосредственный свидетель"
+
+msgid "It is a rumor I heard"
+msgstr "Я слышал об этом"
+
+msgid "How are you involved in the reported facts?"
+msgstr "Как вы причастны к сообщаемым событиям?"
+
+msgid "Do you have evidence to support your report?"
+msgstr "Есть ли у вас доказательства в поддержку вашего уведомления?"
+
+msgid "Please attach the evidence to support your report."
+msgstr "Приложите доказательство в поддержку вашего уведомления."
+
+msgid "Please describe the evidence in detail."
+msgstr "Опишите доказательство в деталях."
+
+msgid ""
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr "Тщательное описание представленного доказательства повышает нашу способность оценивать претензии и проводить расследования. Старайтесь ссылаться на значительную часть любых представленных видео, изображений или документов."
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "Сообщали ли вы о событиях в другие организации и/или другим лицам?"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "Перечислите организации и/или лица, которым вы сообщили об этих событиях."
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "Расследовали ли эти организации ваши претензии? Если да, каков результат?"
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "Какого результата вы хотите добиться с нашей поддержкой?"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Вы хотите оставить информацию о себе?"

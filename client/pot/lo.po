@@ -465,64 +465,6 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
-msgid "Please summarize your report in a few words."
-msgstr "ອະທິບາຍລາຍງານຂອງທ່ານແບບສັ້ນໆ."
-
-msgid "Where did the facts happen?"
-msgstr "ເຫດການເກີດຂຶ້ນຢູ່ໃສ?"
-
-msgid "When did the facts happen?"
-msgstr "ເຫດການດັ່ງກ່າວເກີດຂຶ້ນເມື່ອໃດ?"
-
-msgid "How are you involved in the reported facts?"
-msgstr "ເຈົ້າມີສ່ວນຮ່ວມແນວໃດກັບເຫດການທີ່ໄດ້ລາຍງານ?"
-
-msgid "I’m a victim"
-msgstr "ຂ້ອຍເປັນຜູ້ເຄາະຮ້າຍ"
-
-msgid "I’m involved in the facts"
-msgstr "ຂ້ອຍມີສ່ວນຮ່ວມໃນເຫດການ"
-
-msgid "I witnessed the facts in person"
-msgstr "ຂ້ອຍໄດ້ເຫັນເຫດການດ້ວຍຕົວເອງ"
-
-msgid "I was personally told by a direct witness"
-msgstr "ຂ້ອຍເອງໄດ້ຖືກບອກໂດຍພະຍານໂດຍກົງ"
-
-msgid "It is a rumor I heard"
-msgstr "ຂ່າວລື-ຂ້ອຍໄດ້ຍິນກ່ຽວກັບມັນ"
-
-msgid "Do you have evidence to support your report?"
-msgstr "ເຈົ້າມີຫຼັກຖານເພື່ອອ້າງອີງການລາຍງານຂອງເຈົ້າບໍ?"
-
-msgid "Please attach the evidence to support your report."
-msgstr "ກະລຸນາຄັດຕິດຫຼັກຖານເພື່ອອ້າງອີງການລາຍງານຂອງເຈົ້າ."
-
-msgid "Please describe the evidence in detail."
-msgstr "ກະລຸນາອະທິບາຍຫຼັກຖານໂດຍລະອຽດ."
-
-msgid ""
-"A thorough description of the submitted evidence enhances our ability to "
-"evaluate claims and investigate. Please take care to reference significant "
-"portions of any videos, images or documents submitted."
-msgstr "ການອະທິບາຍຢ່າງລະອຽດກ່ຽວກັບຫຼັກຖານທີ່ສົ່ງເຂົ້າມາຈະຊ່ວຍເພີ່ມຄວາມສາມາດຂອງພວກເຮົາໃນການປະເມີນການຮຽກຮ້ອງແລະສືບສວນ. ຄວນລະມັດລະວັງການອ້າງອີງສ່ວນສຳຄັນຂອງວິດີໂອ, ຮູບພາບຫຼື ເອກະສານອື່ນໆ ທີ່ສົ່ງມາເປັນຫຼັກຖານ."
-
-msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr "ເຈົ້າໄດ້ລາຍງານເຫດການດັ່ງກ່າວຕໍ່ອົງການຈັດຕັ້ງອື່ນແລ້ວບໍ?"
-
-msgid ""
-"Please list the organizations and/or individuals you have informed about "
-"these facts."
-msgstr "Sila senaraikan nama organisasi yang anda telak maklumkan tentang kejadian ini."
-
-msgid ""
-"Have these organizations investigated your claims? If so, what was the "
-"outcome?"
-msgstr "ອົງກອນເຫຼົ່ານັ້ນໄດ້ສືບສວນການຮ້ອງຂໍຂອງເຈົ້າ ຫຼື ບໍ? ຖ້າໄດ້ສືບສວນ, ຜົນເປັນແນວໃດ?"
-
-msgid "What is the outcome you want to achieve with our support?"
-msgstr "ຜົນໄດ້ຮັບທີ່ເຈົ້າຢາກເຫັນ/ປະສົບຜົນສໍາເລັດແມ່ນຫຍັງ?"
-
 msgid "File a report"
 msgstr "ຍື່ນລາຍງານ"
 
@@ -816,12 +758,6 @@ msgstr "ຄ່າ"
 
 msgid "Medium"
 msgstr "ຂະໜາດກາງ"
-
-msgid "Customize the message shown in the receipt page"
-msgstr "ປັບແຕ່ງຂໍ້ຄວາມທີ່ສະແດງຢູ່ໃນໜ້າໃບບິນ"
-
-msgid "Assign the receipt only to reports reaching score:"
-msgstr "ມອບໃບບິນໃຫ້ແກ່ລາຍງານທີ່ໄດ້ຄະແນນຮອດເທົ່ານັ້ນ:"
 
 msgid "Software version:"
 msgstr "ເວີຊັນຂອງຊອບແວ:"
@@ -1590,14 +1526,66 @@ msgstr "ຂ້າພະເຈົ້າໄດ້ອ່ານ ແລະ ຕົກ�
 msgid "You have completed the platform wizard."
 msgstr "ທ່ານໄດ້ສ້າງຕົວຊ່ວຍສ້າງລະບົບສຳເລັດແລ້ວ."
 
+msgid "Please summarize your report in a few words."
+msgstr "ອະທິບາຍລາຍງານຂອງທ່ານແບບສັ້ນໆ."
+
 msgid "Describe your report in detail."
 msgstr "ອະທິບາຍລາຍງານຂອງທ່ານໃຫ້ລະອຽດ."
+
+msgid "Where did the facts happen?"
+msgstr "ເຫດການເກີດຂຶ້ນຢູ່ໃສ?"
+
+msgid "When did the facts happen?"
+msgstr "ເຫດການດັ່ງກ່າວເກີດຂຶ້ນເມື່ອໃດ?"
 
 msgid "I'm a victim"
 msgstr ""
 
 msgid "I'm involved in the facts"
 msgstr ""
+
+msgid "I witnessed the facts in person"
+msgstr "ຂ້ອຍໄດ້ເຫັນເຫດການດ້ວຍຕົວເອງ"
+
+msgid "I was personally told by a direct witness"
+msgstr "ຂ້ອຍເອງໄດ້ຖືກບອກໂດຍພະຍານໂດຍກົງ"
+
+msgid "It is a rumor I heard"
+msgstr "ຂ່າວລື-ຂ້ອຍໄດ້ຍິນກ່ຽວກັບມັນ"
+
+msgid "How are you involved in the reported facts?"
+msgstr "ເຈົ້າມີສ່ວນຮ່ວມແນວໃດກັບເຫດການທີ່ໄດ້ລາຍງານ?"
+
+msgid "Do you have evidence to support your report?"
+msgstr "ເຈົ້າມີຫຼັກຖານເພື່ອອ້າງອີງການລາຍງານຂອງເຈົ້າບໍ?"
+
+msgid "Please attach the evidence to support your report."
+msgstr "ກະລຸນາຄັດຕິດຫຼັກຖານເພື່ອອ້າງອີງການລາຍງານຂອງເຈົ້າ."
+
+msgid "Please describe the evidence in detail."
+msgstr "ກະລຸນາອະທິບາຍຫຼັກຖານໂດຍລະອຽດ."
+
+msgid ""
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr "ການອະທິບາຍຢ່າງລະອຽດກ່ຽວກັບຫຼັກຖານທີ່ສົ່ງເຂົ້າມາຈະຊ່ວຍເພີ່ມຄວາມສາມາດຂອງພວກເຮົາໃນການປະເມີນການຮຽກຮ້ອງແລະສືບສວນ. ຄວນລະມັດລະວັງການອ້າງອີງສ່ວນສຳຄັນຂອງວິດີໂອ, ຮູບພາບຫຼື ເອກະສານອື່ນໆ ທີ່ສົ່ງມາເປັນຫຼັກຖານ."
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "ເຈົ້າໄດ້ລາຍງານເຫດການດັ່ງກ່າວຕໍ່ອົງການຈັດຕັ້ງອື່ນແລ້ວບໍ?"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "Sila senaraikan nama organisasi yang anda telak maklumkan tentang kejadian ini."
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "ອົງກອນເຫຼົ່ານັ້ນໄດ້ສືບສວນການຮ້ອງຂໍຂອງເຈົ້າ ຫຼື ບໍ? ຖ້າໄດ້ສືບສວນ, ຜົນເປັນແນວໃດ?"
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "ຜົນໄດ້ຮັບທີ່ເຈົ້າຢາກເຫັນ/ປະສົບຜົນສໍາເລັດແມ່ນຫຍັງ?"
 
 msgid "Do you want to provide your identification information?"
 msgstr "ທ່ານຕ້ອງການໃຫ້ຂໍ້ມູນປະຈຳຕົວຂອງທ່ານບໍ?"

@@ -45,12 +45,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Daniel Vaknine, 2022\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2022\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 "mime-version: 1.0\n"
 
 msgid "Log in"
@@ -63,7 +63,7 @@ msgid "Theme customization"
 msgstr "Personalização do Tema"
 
 msgid "Languages"
-msgstr "Linguagens"
+msgstr "Idiomas"
 
 msgid "Text customization"
 msgstr "Personalização do texto"
@@ -81,10 +81,10 @@ msgid "Add new questionnaire"
 msgstr "Adicionar um novo questionário"
 
 msgid "Home"
-msgstr "Principal"
+msgstr "Página principal"
 
 msgid "Changelog"
-msgstr "Registro de alterações"
+msgstr "Registo de alterações"
 
 msgid "License"
 msgstr "Licença"
@@ -105,7 +105,7 @@ msgid "Notification settings"
 msgstr "Configurações de notificações"
 
 msgid "file unavailable"
-msgstr "arquivo não disponível"
+msgstr "ficheiro indisponível"
 
 msgid "Date"
 msgstr "Data"
@@ -117,7 +117,7 @@ msgid "Last Access"
 msgstr "Último Acesso"
 
 msgid "Files"
-msgstr "Arquivos"
+msgstr "Ficheiros"
 
 msgid "Comments"
 msgstr "Comentários"
@@ -138,7 +138,7 @@ msgid "YOUR NAME"
 msgstr "SEU NOME"
 
 msgid "Label the report"
-msgstr "Rotular a submissão"
+msgstr "Etiquetar o relatório"
 
 msgid "Postpone the expiration date"
 msgstr "Adiar a data de expiração"
@@ -147,7 +147,7 @@ msgid "Select all"
 msgstr "Selecione todas"
 
 msgid "Deselect all"
-msgstr " Desmarque todas"
+msgstr " Desmarque todas "
 
 msgid "Refresh"
 msgstr "Atualizar"
@@ -192,7 +192,7 @@ msgid "Number"
 msgstr "Número"
 
 msgid "Email"
-msgstr "Email"
+msgstr "E-mail"
 
 msgid "Regular expression validator"
 msgstr "Validador de expressão regular"
@@ -204,7 +204,7 @@ msgid "Maximum number of input characters"
 msgstr "Número máximo de caracteres"
 
 msgid "Earliest selectable date"
-msgstr "Data mais antiga a selecionar"
+msgstr "Primeira data selecionável"
 
 msgid "Latest selectable date"
 msgstr "Data mais recente a selecionar"
@@ -225,10 +225,10 @@ msgid "Attachments"
 msgstr "Anexos"
 
 msgid "Change your password"
-msgstr "Modificar sua senha"
+msgstr "Modificar a sua palavra-passe"
 
 msgid "User"
-msgstr "Usuário"
+msgstr "Utilizador"
 
 msgid "Motivation"
 msgstr "Motivação"
@@ -255,7 +255,7 @@ msgid "Access requested"
 msgstr "Acesso requerido"
 
 msgid "Request access to the whistleblower's identity"
-msgstr "Pedir acesso à identidade do delator"
+msgstr "Pedir acesso à identidade do denunciante"
 
 msgid "Please write a motivation"
 msgstr "Por favor, escreva uma motivação"
@@ -282,10 +282,10 @@ msgid "Deny"
 msgstr "Negar"
 
 msgid "Deny access to the whistleblower's identity"
-msgstr "Negar acesso à identidade do delator"
+msgstr "Negar acesso à identidade do denunciante"
 
 msgid "Authorize access to the whistleblower's identity"
-msgstr "Autorizar acesso à identidade do delator"
+msgstr "Autorizar acesso à identidade do denunciante"
 
 msgid "Templates"
 msgstr "Modelos"
@@ -318,7 +318,7 @@ msgid "Trigger question"
 msgstr "Ativar questão"
 
 msgid "Triggered by score:"
-msgstr "Desencadeada pela pontuação:"
+msgstr "Disparado por pontuação:"
 
 msgid "Weak"
 msgstr "Fraca"
@@ -330,22 +330,22 @@ msgid "Strong"
 msgstr "Forte"
 
 msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Texto exibido no início da página de seleção de assuntos"
+msgstr "Texto exibido no início da página para seleção de assuntos"
 
 msgid "Silence email notifications"
 msgstr "Desabilitar notificações de e-mails"
 
 msgid "Turn on email notifications"
-msgstr "Habilitar notificacao de e-mails"
+msgstr "Habilitar notificação de e-mails"
 
 msgid "Input validation"
-msgstr "Preencher validacao "
+msgstr "Validação de entrada"
 
 msgid "Email address"
-msgstr "Endereço de Email"
+msgstr "Endereço de E-mail"
 
 msgid "Custom"
-msgstr "Pessoa usuária"
+msgstr "Personalizado"
 
 msgid "None"
 msgstr "Nenhum"
@@ -359,7 +359,7 @@ msgstr "Pesquisa"
 msgid ""
 "This custom text is no longer displayed on the platform. The original text "
 "has either changed or been removed."
-msgstr "Este texto personalizado não é mais listado na plataforma. O texto original ou foi alterado ou removido."
+msgstr "Este texto personalizado não é mais exibido na plataforma. O texto original mudou ou foi removido."
 
 msgid "Audit log"
 msgstr "Log de auditoria"
@@ -377,7 +377,7 @@ msgid "Report"
 msgstr "Relatório"
 
 msgid "Users"
-msgstr "Usuários"
+msgstr "Utilizador"
 
 msgid "From"
 msgstr "De"
@@ -386,13 +386,13 @@ msgid "Number of downloads"
 msgstr "Número de downloads"
 
 msgid "File size not accepted."
-msgstr "Tamanho do arquivo não permitido."
+msgstr "Tamanho de ficheiro não aceite."
 
 msgid "Maximum file size is:"
-msgstr "Máximo tamanho do arquivo é:"
+msgstr "Tamanho máximo do ficheiro:"
 
 msgid "Scheduled jobs"
-msgstr "Tarefas programadas"
+msgstr "Trabalhos agendados"
 
 msgid "Sites management"
 msgstr "Gerenciamento de sites"
@@ -401,7 +401,7 @@ msgid "Regenerate"
 msgstr "Regenerar"
 
 msgid "Display options alphabetically"
-msgstr "Exibir opções alfabeticamente"
+msgstr "Exibir opções em ordem alfabética"
 
 msgid "Enable email notifications for:"
 msgstr "Ativar notificações de e-mail para:"
@@ -440,7 +440,7 @@ msgid "Closed"
 msgstr "Fechado"
 
 msgid "Placeholder"
-msgstr "Placeholder"
+msgstr "Localizador"
 
 msgid "Print"
 msgstr "Imprimir"
@@ -458,19 +458,19 @@ msgid "Last"
 msgstr "Último"
 
 msgid "Send a test email to your email address."
-msgstr "Enviar um e-mail de teste para o seu endereco e-mail"
+msgstr "Enviar um e-mail de teste para o seu endereço e-mail"
 
 msgid "Block the submission"
 msgstr "Bloquear a submissão"
 
 msgid "Skip the recipient account creation."
-msgstr "Ignore a criação da conta do destinatário."
+msgstr "Pule a criação da conta do destinatário."
 
 msgid "Send activation link"
 msgstr "Enviar link de ativação"
 
 msgid "Password reset"
-msgstr "Redefinição de senha"
+msgstr "Redefinição de palavra-passe"
 
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
@@ -478,7 +478,7 @@ msgid ""
 msgstr "Um ou mais destinatários ainda não realizaram o primeiro login. Isso significa que eles não receberão relatórios."
 
 msgid "This user has not performed the first login yet."
-msgstr "Este usuário ainda não realizou o primeiro login."
+msgstr "Este utilizador ainda não realizou o primeiro login."
 
 msgid "seconds"
 msgstr "segundos"
@@ -496,71 +496,13 @@ msgid "Logout"
 msgstr "Sair"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr "Dê a este destinatário a capacidade de conceder acesso ao usuário aos relatórios"
+msgstr "Dê a este destinatário a capacidade de conceder ao utilizador acesso aos relatórios"
 
 msgid "Grant access"
 msgstr "Garantir acesso"
 
 msgid "Revoke access"
 msgstr "Revogar acesso"
-
-msgid "Please summarize your report in a few words."
-msgstr "Descreva seu relatório em poucas palavras."
-
-msgid "Where did the facts happen?"
-msgstr "Onde os fatos aconteceram?"
-
-msgid "When did the facts happen?"
-msgstr "Quando os fatos aconteceram?"
-
-msgid "How are you involved in the reported facts?"
-msgstr "Como você está envolvido nos fatos relatados?"
-
-msgid "I’m a victim"
-msgstr "Eu sou uma vítima"
-
-msgid "I’m involved in the facts"
-msgstr "Eu estou envolvido nos fatos"
-
-msgid "I witnessed the facts in person"
-msgstr "Testemunhei pessoalmente os fatos"
-
-msgid "I was personally told by a direct witness"
-msgstr "Fui pessoalmente informado por uma testemunha direta"
-
-msgid "It is a rumor I heard"
-msgstr "É um rumor que eu ouvi"
-
-msgid "Do you have evidence to support your report?"
-msgstr "Você tem provas para apoiar seu relatório?"
-
-msgid "Please attach the evidence to support your report."
-msgstr "Por favor, anexe as provas para apoiar seu relatório."
-
-msgid "Please describe the evidence in detail."
-msgstr "Por favor, descreva as provas em detalhes."
-
-msgid ""
-"A thorough description of the submitted evidence enhances our ability to "
-"evaluate claims and investigate. Please take care to reference significant "
-"portions of any videos, images or documents submitted."
-msgstr "Uma descrição completa das provas apresentadas aumenta nossa capacidade de avaliar reclamações e investigar. Por favor, tenha o cuidado de fazer referência a partes significativas de quaisquer vídeos, imagens ou documentos apresentados."
-
-msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr "Você já relatou os fatos a outras organizações e/ou indivíduos?"
-
-msgid ""
-"Please list the organizations and/or individuals you have informed about "
-"these facts."
-msgstr "Por favor, liste as organizações e/ou indivíduos que você informou sobre estes fatos."
-
-msgid ""
-"Have these organizations investigated your claims? If so, what was the "
-"outcome?"
-msgstr "Estas organizações investigaram suas reclamações? Em caso afirmativo, qual foi o resultado?"
-
-msgid "What is the outcome you want to achieve with our support?"
-msgstr "Qual é o resultado que você quer alcançar com nosso apoio?"
 
 msgid "File a report"
 msgstr "Apresentar um relatório"
@@ -569,28 +511,28 @@ msgid "Select the context of your report:"
 msgstr "Selecionar o assunto do seu envio:"
 
 msgid "Before proceeding, please set a new password."
-msgstr "Antes de continuar, defina uma nova senha."
+msgstr "Antes de continuar, defina uma nova palavra-passe."
 
 msgid "New password"
-msgstr "Nova senha"
+msgstr "Nova palavra-passe"
 
 msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "A senha escolhida é muito fraca. Uma senha válida deve ter pelo menos 10 caracteres e conter uma variedade de caracteres, incluindo pelo menos um caractere minúsculo, um caractere maiúsculo, um número e um caractere especial."
+msgstr "A palavra-passe escolhida é muito fraca. Uma senha válida deve ter pelo menos 10 caracteres e conter uma variedade de caracteres, incluindo pelo menos um caractere minúsculo, um caractere maiúsculo, um número e um caractere especial."
 
 msgid "The new password must be different from the current one."
-msgstr "A nova senha deve ser diferente da atual."
+msgstr "A nova palavra-passe deve ser diferente da atual."
 
 msgid "Type your new password again"
-msgstr "Digite sua senha novamente"
+msgstr "Digite a sua palavra-passe novamente"
 
 msgid "The two passwords do not match"
-msgstr "As duas senhas não coincidem"
+msgstr "As duas palavras-passe não coincidem"
 
 msgid "The new password must differ from the previous."
-msgstr "A nova senha deve ser diferente da anterior."
+msgstr "A nova palavra-passe deve ser diferente da anterior."
 
 msgid "Proceed"
 msgstr "Prosseguir"
@@ -602,16 +544,16 @@ msgid "Enable"
 msgstr "Ativar"
 
 msgid "Disable submissions"
-msgstr "Desativas envios"
+msgstr "Desativar envios"
 
 msgid "Enable encryption"
 msgstr "Ativar criptografia"
 
 msgid "Enable administrators to change user passwords"
-msgstr "Permitir que administradores alterem senhas de usuários"
+msgstr "Permitir que administradores alterem as palavras-passe de utilizadores"
 
 msgid "Administrators authorized to change user passwords:"
-msgstr "Administradores autorizados a mudar as senhas dos usuários:"
+msgstr "Administradores autorizados a mudar as palavra -passe dos utilizadores:"
 
 msgid "Enable multisite feature"
 msgstr "Ativar recurso multisite"
@@ -629,32 +571,32 @@ msgid "Show contexts in alphabetical order"
 msgstr "Mostrar assuntos em ordem alfabética"
 
 msgid "Size limit for file attachments"
-msgstr "Limite de tamanho para arquivos anexados"
+msgstr "Limite de tamanho para anexos de ficheiro"
 
 msgid "megabytes"
 msgstr "megabytes"
 
 msgid "Enable HSTS preload"
-msgstr "Ativar pré-carregamento do HSTS"
+msgstr "Ativar pré-carregamento HSTS"
 
 msgid "Require two factor authentication"
 msgstr "Exigir autenticação de dois fatores"
 
 msgid "Password change interval"
-msgstr "Intervalo de alteração de senha"
+msgstr "Intervalo de alteração de palavra-passe"
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
-msgstr "Por motivos de segurança, alterações de senha são necessárias em intervalos regulares."
+msgstr "Por motivos de segurança, alterações de palavra-passe são necessárias em intervalos regulares."
 
 msgid "Set the value to 0 to disable this feature."
 msgstr "Defina o valor como 0 para desativar esse recurso."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr "Número de dias até a notificação de relatórios não lidos aos usuários"
+msgstr "Número de dias até a notificação aos utilizadores das denúncias não lidas"
 
 msgid "Enable custodian user role"
-msgstr "Ativar função de usuário custodiante"
+msgstr "Ativar função de utilizador responsável"
 
 msgid "Enable scoring system"
 msgstr "Ativar sistema de pontuação"
@@ -663,18 +605,18 @@ msgid "Logging level"
 msgstr "Nível de registro"
 
 msgid "Log accesses of internal users"
-msgstr "Acessos de log de usuários internos"
+msgstr "Log de acessos de utilizadores internos"
 
 msgid "Notify administrators of software problems"
-msgstr "Notificar administradores de problemas de software"
+msgstr "Notificar administradores sobre problemas de software"
 
 msgid "Notify developers of software problems"
-msgstr "Notificar desenvolvedores de problemas de software"
+msgstr "Notificar desenvolvedores sobre problemas de software"
 
 msgid ""
 "By enabling this feature, you will contribute to the development and "
 "security of the platform."
-msgstr "Ao ativar esse recurso, você contribuirá para o desenvolvimento e a segurança da plataforma."
+msgstr "Ao ativar esta funcionalidade, irá contribuir para o desenvolvimento e segurança da plataforma."
 
 msgid "Save"
 msgstr "Salvar"
@@ -695,7 +637,7 @@ msgid "Type"
 msgstr "Tipo"
 
 msgid "Severity"
-msgstr "Severidade"
+msgstr "Gravidade"
 
 msgid "Object"
 msgstr "Objeto"
@@ -704,7 +646,7 @@ msgid "ID"
 msgstr "ID"
 
 msgid "Username"
-msgstr "Usuário"
+msgstr "Utilizador"
 
 msgid "Role"
 msgstr "Cargo/Função"
@@ -719,10 +661,10 @@ msgid "Last access"
 msgstr "Último acesso"
 
 msgid "Whistleblower's last access"
-msgstr "WB Último Acesso"
+msgstr "Último acesso do denunciante"
 
 msgid "Substatuses"
-msgstr "Substatuses"
+msgstr "Status do pedido"
 
 msgid "Add"
 msgstr "Adicionar"
@@ -776,7 +718,7 @@ msgid "Download"
 msgstr "Baixar"
 
 msgid "Language:"
-msgstr "Linguagem:"
+msgstr "Idioma:"
 
 msgid "Add custom text"
 msgstr "Adicionar texto personalizado"
@@ -812,7 +754,7 @@ msgid "Show the questionnaire navigation interface"
 msgstr "Mostrar a interface de navegação do questionário"
 
 msgid "Allow whistleblowers to select their recipients"
-msgstr "Permitir que os delatores selecionem seus destinatários"
+msgstr "Permitir que os denunciantes selecionem seus destinatários"
 
 msgid "Select all recipients by default"
 msgstr "Selecione todos os destinatários por padrão"
@@ -824,22 +766,22 @@ msgid "Show recipients in alphabetical order"
 msgstr "Mostrar destinatários em ordem alfabética"
 
 msgid "Show recipient details on the status page of the report"
-msgstr "Mostrar detalhes do destinatário na página de status da submissão"
+msgstr "Mostrar detalhes do destinatário na página de status da denúncia"
 
 msgid "Enable comments"
 msgstr "Habilitar comentários"
 
 msgid "Allow the whistleblower to write comments"
-msgstr "Permitir que o delator escreva comentários"
+msgstr "Permitir que o denunciante escreva comentários"
 
 msgid "Enable private messages"
 msgstr "Habilitar mensagens privadas"
 
 msgid "Allow the whistleblower to send messages"
-msgstr "Permitir que o delator envie mensagens"
+msgstr "Permitir que o denunciante envie mensagens"
 
 msgid "Allow the whistleblower to add attachments"
-msgstr "Permitir o delator adicionar anexos a submissão"
+msgstr "Permitir que o denunciante adicione anexos"
 
 msgid "Additional questionnaire"
 msgstr "Questionário Adicional"
@@ -855,12 +797,6 @@ msgstr "Valor"
 
 msgid "Medium"
 msgstr "Média "
-
-msgid "Customize the message shown in the receipt page"
-msgstr "Personalize a mensagem mostrada na página de recibo"
-
-msgid "Assign the receipt only to reports reaching score:"
-msgstr "Atribuir o recibo somente aos envios que atingirem a pontuação:"
 
 msgid "Software version:"
 msgstr "Versão do software:"
@@ -893,7 +829,7 @@ msgid "Organization"
 msgstr "Organização"
 
 msgid "Invalid email address"
-msgstr "Endereço de email inválido"
+msgstr "Endereço de e-mail inválido"
 
 msgid "City"
 msgstr "Cidade"
@@ -911,7 +847,7 @@ msgid "Private Key"
 msgstr "Chave privada"
 
 msgid "Certificate Signing Request"
-msgstr "Solicitação de Assinatura de Certificado"
+msgstr "Solicitação de Assinatura de Certificado Digital"
 
 msgid "Certificate"
 msgstr "Certificado"
@@ -944,7 +880,7 @@ msgstr "Usando a configuração automática de HTTPS cuidará de todo o processo
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
 "hostname must have a DNS record referencing that address."
-msgstr "A plataforma pode ser acessada por meio de um endereço IP público e o servidor selecionado deve ter um registro de DNS correspondente que referencia aquele IP."
+msgstr "A plataforma pode ser acessível através de um endereço IP público e o servidor selecionado deve ter um registo de DNS que faça referência a esse endereço."
 
 msgid "Manual configuration"
 msgstr "Configuração manual"
@@ -952,7 +888,7 @@ msgstr "Configuração manual"
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
-msgstr "O assistente de configuração manual lhe auxiliará por meio da inicialização de HTTPS a partir de uma Autoridade Certificadora alternativa."
+msgstr "O assistente de configuração manual irá guiá-lo através da configuração de HTTPS a partir de uma Autoridade Certificadora alternativa. "
 
 msgid "Disabled"
 msgstr "Desabilitado"
@@ -961,7 +897,7 @@ msgid "Auto-renewal"
 msgstr "Renovação automática"
 
 msgid "Tor Onion Service"
-msgstr "Serviço Onion do Tor"
+msgstr "Serviço Tor Onion"
 
 msgid "Disable the privacy panel"
 msgstr "Desativar o painel de privacidade"
@@ -988,7 +924,7 @@ msgid "To"
 msgstr "Para"
 
 msgid "SMTP email address"
-msgstr "email do SMTP"
+msgstr "e-mail do SMTP"
 
 msgid "SMTP server address"
 msgstr "Endereço do servidor SMTP"
@@ -1003,10 +939,10 @@ msgid "Require authentication"
 msgstr "Requer autenticação"
 
 msgid "Password"
-msgstr "Senha"
+msgstr "Palavra-passe"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr "Número de horas antes alertar sobre a expiração do envio"
+msgstr "Número de horas antes alertar sobre a expiração do relatório"
 
 msgid "Test the configuration"
 msgstr "Testar a configuração"
@@ -1057,7 +993,7 @@ msgid "Width"
 msgstr "Largura"
 
 msgid "Question group"
-msgstr "Grupo de questionamentos"
+msgstr "Grupo de perguntas"
 
 msgid "Hint"
 msgstr "Sugerir"
@@ -1066,7 +1002,7 @@ msgid "Mandatory"
 msgstr "Obrigatório"
 
 msgid "Accept multiple file uploads"
-msgstr "Aceitar envio de múltiplos arquivos"
+msgstr "Aceitar envios de múltiplos ficheiros"
 
 msgid "Accept multiple answers"
 msgstr "Aceite várias respostas"
@@ -1099,7 +1035,7 @@ msgid "Text shown upon negative answer"
 msgstr "Texto mostrado após resposta negativa"
 
 msgid "Trigger conditions"
-msgstr "Condições de gatilho"
+msgstr "Condições de disparo"
 
 msgid "Sufficient"
 msgstr "Suficiente"
@@ -1120,7 +1056,7 @@ msgid "Add new question"
 msgstr "Adicionar nova pergunta"
 
 msgid "Add question from template"
-msgstr "Adicionar pergunta do template"
+msgstr "Adicionar pergunta do modelo"
 
 msgid "Duplicate"
 msgstr "Duplicado"
@@ -1159,7 +1095,7 @@ msgid "Use the first site for administrative purposes only"
 msgstr "Use o primeiro site somente para fins administrativos"
 
 msgid "Allow users to sign up"
-msgstr "Permitir que os usuários se inscrevam"
+msgstr "Permitir que os utilizadores se inscrevam"
 
 msgid "Enable terms of service"
 msgstr "Ativar termos de serviço"
@@ -1168,7 +1104,7 @@ msgid "Title"
 msgstr "Título"
 
 msgid "Send an account activation link to the user."
-msgstr "Envie um link de ativação da conta para o usuário."
+msgstr "Envie um link de ativação da conta para o utilizador."
 
 msgid "Public name"
 msgstr "Nome público"
@@ -1183,10 +1119,10 @@ msgid "Disable two factor authentication"
 msgstr "Desativar autenticação de dois fatores"
 
 msgid "Force password change"
-msgstr "Forçar mudança de senha"
+msgstr "Forçar mudança de palavra-passe"
 
 msgid "The user will be forced to change its password on next login."
-msgstr "O usuário será forçado a alterar a sua senha na próxima autenticação."
+msgstr "O utilizador será forçado a alterar sua palavra-passe no próximo login."
 
 msgid "Language"
 msgstr "Idioma"
@@ -1201,13 +1137,13 @@ msgid "Fingerprint"
 msgstr "Impressão digital"
 
 msgid "Set up encryption by providing a PGP public key"
-msgstr "Definir criptografia pelo fornecimento de uma chave pública PGP"
+msgstr "Configure a criptografia fornecendo uma chave pública PGP"
 
 msgid "Give this admin ability to change user passwords"
-msgstr "Dar a esse administrador a capacidade de alterar senhas de usuário"
+msgstr "Dar a esse administrador a capacidade de alterar palavras-passe de utilizador"
 
 msgid "Forcefully selected"
-msgstr "Forçosamente selecionado"
+msgstr "Selecionado à força "
 
 msgid "Allow the recipient to delete reports"
 msgstr "Permitir que os destinatários apaguem as denúncias"
@@ -1216,7 +1152,7 @@ msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Permitir o destinatário a postergar a data de expiração da submissão"
 
 msgid "Give the user administrative access to the following features:"
-msgstr "Dê ao usuário acesso administrativo aos seguintes recursos:"
+msgstr "Dê ao utilizador acesso administrativo aos seguintes recursos:"
 
 msgid "Request date"
 msgstr "Data da solicitação"
@@ -1234,10 +1170,10 @@ msgid "The validation link is either incorrect or has expired."
 msgstr "O link de validação está incorreto ou expirou."
 
 msgid "Your new email address has been validated."
-msgstr "Seu novo endereço de e-mail foi validado."
+msgstr "O seu novo endereço de e-mail foi validado."
 
 msgid "Forgot password?"
-msgstr "Esqueceu a senha?"
+msgstr "Esqueceu a palavra-passe?"
 
 msgid "Enter the two factor authentication code"
 msgstr "Digite o código de autenticação de dois fatores"
@@ -1249,22 +1185,22 @@ msgid "The code is either invalid or expired."
 msgstr "O código é inválido ou expirou."
 
 msgid "Please select your account:"
-msgstr "Por favor, selecione sua conta:"
+msgstr "Por favor, selecione a sua conta:"
 
 msgid "Now type your password, then click 'Log in':"
-msgstr "Agora digite sua senha e clique em 'Acessar':"
+msgstr "Agora digite a sua palavra-passe e clique em 'Acessar':"
 
 msgid "Text shown after the user has selected the option."
-msgstr "Texto mostrado depois que o usuário selecionou a opção."
+msgstr "Texto mostrado depois que o utilizador selecionou a opção."
 
 msgid "Confirm"
-msgstr "Confirmar Extensão"
+msgstr "Confirmar"
 
 msgid "Assign score points"
-msgstr "Atribuir pontos de pontuação"
+msgstr "Atribuir pontos"
 
 msgid "Are you sure?"
-msgstr "Você tem certeza?"
+msgstr "Tem a certeza?"
 
 msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Observe que todos os dados associados serão excluídos permanentemente"
@@ -1284,7 +1220,7 @@ msgstr "Chave de recuperação da conta"
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr "Faça uma cópia e guarde-a em um local seguro. Será necessário se você perder sua senha para recuperar o acesso à sua conta sem perda de dados."
+msgstr "Faça uma cópia e guarde-a num local seguro. Será necessário, se perder a sua palavra-chave, recuperar o acesso à sua conta sem perda de dados."
 
 msgid "Enter a name for the copy"
 msgstr "Digite um nome para a cópia"
@@ -1296,7 +1232,7 @@ msgid "Thank you."
 msgstr "Obrigado."
 
 msgid "We will try to get back to you as soon as possible."
-msgstr "Nós tentaremos entrar em contato com você o mais breve possível."
+msgstr "Nós tentaremos contactar-vos o mais rapidamente possível. "
 
 msgid "Submit"
 msgstr "Submeter"
@@ -1316,7 +1252,7 @@ msgid "Send"
 msgstr "Enviar"
 
 msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Ao confirmar, você adiará a data de expiração para:"
+msgstr "Ao confirmar, adiará a data de expiração para:"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Esta é uma plataforma de demonstração, não a utilize para envios reais."
@@ -1325,7 +1261,7 @@ msgid "Install an authenticator app on your phone"
 msgstr "Instale um aplicativo autenticador no seu telefone"
 
 msgid "Scan the QR code with the app"
-msgstr "Digitalize o código QR com o aplicativo"
+msgstr "Digitalize o QR code com o aplicativo"
 
 msgid "Error!"
 msgstr "Erro!"
@@ -1343,7 +1279,7 @@ msgid "Forbidden operation"
 msgstr "Operação Proibida"
 
 msgid "The specified old password is not valid"
-msgstr "A senha antiga especificada não é válida"
+msgstr "A palavra-passe antiga especificada não é válida"
 
 msgid "Resource can only be accessed via the Tor network"
 msgstr "Recurso só pode ser acessado dentro da rede Tor"
@@ -1352,16 +1288,16 @@ msgid "The upload request exceeds the size limit"
 msgstr "O pedido de envio excede os limites de tamanho"
 
 msgid "Validation of email address change in progress."
-msgstr "Validation of email address change in progress."
+msgstr "Validação de alteração de endereço de e-mail em andamento."
 
 msgid "Please check your inbox for further instructions."
-msgstr "Por favor, verifique sua caixa de entrada para mais instruções."
+msgstr "Por favor, verifique a sua caixa de entrada para mais instruções."
 
 msgid "Current password"
-msgstr "Senha atual"
+msgstr "Palavra-passe atual"
 
 msgid "Old password confirmation required"
-msgstr "Requer confirmação da senha antiga"
+msgstr "Requer confirmação da palavra-passe antiga"
 
 msgid "Warning"
 msgstr "Alerta"
@@ -1369,7 +1305,7 @@ msgstr "Alerta"
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr "Você é fortemente aconselhado a visitar este site usando o aplicativo chamado Tor Browser, que protege sua identidade."
+msgstr "Aconselhamo-lo a visitar este site utilizando a aplicação chamada Tor Browser, que protege a sua identidade."
 
 msgid "Download the Tor Browser"
 msgstr "Baixe o Navegador Tor"
@@ -1378,28 +1314,28 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Em seguida, copie e cole o seguinte endereço no Tor Browser instalado:"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "Você já preencheu um formulário? Digite seu recibo."
+msgstr "Já apresentou um relatório? Digite o seu recibo."
 
 msgid "The receipt is either invalid or the report has expired."
 msgstr "O recibo é inválido ou o envio expirou."
 
 msgid "Select a file or drag it here."
-msgstr "Selecione um arquivo ou arraste-o aqui."
+msgstr "Selecione um ficheiro ou arraste-o aqui."
 
 msgid "Size:"
 msgstr "Tamanho:"
 
 msgid "Uploading files…"
-msgstr "Subindo arquivos..."
+msgstr "A carregar ficheiros..."
 
 msgid "Upload completed successfully!"
-msgstr "Carregamento realizado com sucesso!"
+msgstr "Upload concluído com sucesso!"
 
 msgid "Estimated upload time:"
 msgstr "Tempo estimado do upload:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr "Os destinatários solicitaram que você preenche um questionário adicional."
+msgstr "Os destinatários solicitaram-lhe que preencha um questionário adicional."
 
 msgid "Fill the additional questionnaire"
 msgstr "Preencha o questionário adicional"
@@ -1411,13 +1347,13 @@ msgid "To:"
 msgstr "Para:"
 
 msgid "Filename"
-msgstr "Nome do Arquivo"
+msgstr "Nome do ficheiro"
 
 msgid "Upload date"
-msgstr "Submeter Data"
+msgstr "Data de Upload"
 
 msgid "File size"
-msgstr "Tamanho do arquivo"
+msgstr "Tamanho do ficheiro"
 
 msgid "Questionnaire answers"
 msgstr "Respostas ao questionário"
@@ -1429,26 +1365,26 @@ msgid "Status:"
 msgstr "Status:"
 
 msgid "Files attached by recipients"
-msgstr "Arquivos anexados por destinatários"
+msgstr "Ficheiros anexados por destinatários"
 
 msgid "Upload a file:"
-msgstr "Inserir um arquivo:"
+msgstr "Inserir um ficheiro:"
 
 msgid "Welcome!"
-msgstr "Bem vindo!"
+msgstr "Bem-vindo!"
 
 msgid "For the user documentation, visit:"
-msgstr "Para a documentação do usuário, visite:"
+msgstr "Para a documentação do utilizador, visite:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
 " the software:"
-msgstr "Se Você precisar de assistência técnica, ou tem questionamentos gerais, ou até mesmo com noivas ideias para o software:"
+msgstr "Se precisar de apoio técnico, tiver perguntas gerais ou se tiver noivas ideias para o software:"
 
 msgid ""
 "If you want to contribute to software development or report a bug, please "
 "open an issue in our ticketing system:"
-msgstr "Se Você deseja contribuir no desenvolvimento do software ou reportar um bug, favor abrir um questionamento em nosso sistema de casos:"
+msgstr "Se quiser contribuir para o desenvolvimento de software ou comunicar um bug, por favor abra um questionamento em nosso sistema de casos:"
 
 msgid "Join our chat:"
 msgstr "Junte-se ao nosso chat:"
@@ -1464,7 +1400,7 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr "Recomendamos que você acesse a seção \"Preferências\" a fim de recuperar sua \"Chave de Recuperação de Conta\" e armazená-la com segurança. Esta chave será necessária para recuperar seu acesso à plataforma e aos seus dados, caso você esqueça sua senha."
+msgstr "Recomendamos-lhe que acesse à secção \"Preferências\" a fim de recuperar a sua \"chave de recuperação de conta\" e armazená-la em segurança. Esta chave será necessária para recuperar o seu acesso à plataforma e aos seus dados no caso de se esquecer da sua palavra-passe."
 
 msgid "The provided recovery key is invalid."
 msgstr "A chave de recuperação fornecida é inválida."
@@ -1475,21 +1411,21 @@ msgstr "O token de redefinição fornecido é inválido ou expirou."
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr "Digite o nome de usuário da sua conta ou seu endereço de e-mail para solicitar uma redefinição de senha."
+msgstr "Digite o nome de utilizador da sua conta ou o seu endereço de e-mail para solicitar uma redefinição de palavra-passe."
 
 msgid "Enter your email address to request a password reset."
-msgstr "Digite seu endereço de e-mail para solicitar uma redefinição de senha."
+msgstr "Digite o seu endereço de e-mail para solicitar a redefinição de uma palavra-passe."
 
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
-msgstr "Insira sua chave de recuperação de criptografia para concluir o procedimento de redefinição de senha"
+msgstr "Insira a chave de recuperação da sua conta para completar o procedimento de redefinição da palavra-passe."
 
 msgid "Password reset requested."
-msgstr "Redefinição de senha solicitada."
+msgstr "Redefinição de palavra-passe solicitada."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
-msgstr "Acesso à identidade de um delator foi solicitado ao curador."
+msgstr "O acesso à identidade do denunciante foi solicitado ao responsável."
 
 msgid "Date of the request"
 msgstr "Data do pedido"
@@ -1501,20 +1437,20 @@ msgid "Congratulations!"
 msgstr "Parabéns!"
 
 msgid "You have completed the platform activation."
-msgstr "Você concluiu a ativação da plataforma."
+msgstr "Concluiu a ativação da plataforma."
 
 msgid "Success!"
 msgstr "Sucesso!"
 
 msgid "Your whistleblowing platform is almost ready!"
-msgstr "Sua plataforma de denúncia está quase pronta!"
+msgstr "A sua plataforma de denúncia está quase pronta!"
 
 msgid "Check your inbox to activate it."
-msgstr "Verifique sua caixa de entrada para ativá-la."
+msgstr "Verifique a sua caixa de entrada para ativá-la."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr "Se não for ativado dentro de 24 horas, a plataforma será automaticamente excluída."
+msgstr "Se não for ativada dentro de 24 horas, a plataforma será automaticamente excluída."
 
 msgid "Sign up"
 msgstr "Cadastrar"
@@ -1541,38 +1477,38 @@ msgid "The specified input is not valid:"
 msgstr "A entrada especificada não é válida:"
 
 msgid "please enter a valid email address."
-msgstr "favor digitar um email válido"
+msgstr "por favor digite um e-mail válido"
 
 msgid "please enter numbers only."
-msgstr "favor digitar somente números"
+msgstr "por favor digite somente números"
 
 msgid "Submissions disabled"
-msgstr "Submissões desabilitadas"
+msgstr "Envios desabilitados"
 
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
-msgstr "Você está se conectando a este dispositivo publicamente e este dispositivo suporta apenas submissões anônimas"
+msgstr "Está se conectar-se a este servidor sem anonimato e este servidor suporta apenas relatórios anónimos."
 
 msgid "Your report was successful."
-msgstr "Submissão feita com sucesso."
+msgstr "A sua denúncia foi enviada com sucesso."
 
 msgid "Remember your receipt for this report."
-msgstr "Lembre-se de seu recibo para este envio."
+msgstr "Lembre-se de seu código para esta denúncia."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Use o recibo de 16 dígitos para fazer o login. Ele permitirá que você veja todas as mensagens que lhe enviamos e também para adicionar informações extras."
+msgstr "Utilize o código de 16 dígitos para fazer o login. Isto permitir-lhe-á ver quaisquer mensagens que lhe enviámos, e também acrescentar informações extra."
 
 msgid "View your report"
-msgstr "Veja sua submissão"
+msgstr "Veja a sua denúncia."
 
 msgid "Recipient selection"
 msgstr "Seleção de destinatário"
 
 msgid "Select the recipients of your report:"
-msgstr "Selecione os destinatários de seu relatório:"
+msgstr "Selecione os destinatários da sua denúncia:"
 
 msgid "Recipients selected:"
 msgstr "Destinatários selecionados:"
@@ -1583,21 +1519,21 @@ msgstr "Você atingiu o número máximo de destinatários selecionáveis."
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr "Os seguintes destinatários receberão seu relatório e não poderão ser desmarcados:"
+msgstr "Os seguintes destinatários receberão o seu relatório e não poderão ser desmarcados:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
 "invalid:"
-msgstr "Neste passo as respostas às seguintes perguntas ou estão ausentes ou inválidas:"
+msgstr "Neste etapa, as respostas às seguintes perguntas ou estão em falta ou são inválidas:"
 
 msgid "You must select at least one recipient."
-msgstr "Você deve selecionar pelo menos um destinatário."
+msgstr "Deve selecionar pelo menos um destinatário."
 
 msgid "Waiting for the file(s) to finish uploading."
-msgstr "Aguardando a finalização de descarga do(s) arquivos(s)."
+msgstr "À espera que o(s) ficheiro(s) acabe(m) de ser carregado(s)."
 
 msgid "The following steps have errors:"
-msgstr "Os seguintes passos possuem erros:"
+msgstr "Os seguintes passos têm erros:"
 
 msgid "Hide"
 msgstr "Ocultar"
@@ -1605,41 +1541,93 @@ msgstr "Ocultar"
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
 "whistleblowing platform."
-msgstr "O seguinte procedimento passo a passo orientará você ao criar sua plataforma de denúncia de irregularidades."
+msgstr "O seguinte procedimento passo a passo irá guiá-lo através da criação da sua plataforma de denúncia de irregularidades."
 
 msgid "Please choose a configuration profile:"
 msgstr "Por favor, escolha um perfil de configuração:"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr "Tornar possível a este administrador redefinir as senhas dos usuários."
+msgstr "Permita que este administrador redefina as palavras-passe dos utilizadores."
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr "Aconselhamos selecionar esta opção se você quiser proteger os dados contra perda na situação em que os destinatários perdem suas senhas. Por outro lado, não aconselhamos usar esse recurso se você deseja configurar um sistema em que apenas os destinatários possam acessar os envios."
+msgstr "Aconselhamos a seleção desta opção se desejar proteger os dados de serem perdidos na situação em que os destinatários perdem as suas palavras-passe. Por outro lado, não aconselhamos a utilização desta funcionalidade se pretender configurar um sistema em que apenas os destinatários possam ter acesso aos dados enviados."
 
 msgid "Please choose a different username."
-msgstr "Por favor, escolha um nome de usuário diferente."
+msgstr "Por favor, escolha um nome de utilizador diferente."
 
 msgid "I have read and agree to the terms of the license."
 msgstr "Eu li e concordo com os termos da licença."
 
 msgid "You have completed the platform wizard."
-msgstr "Você concluiu o assistente de plataforma."
+msgstr "Concluiu o assistente de plataforma."
+
+msgid "Please summarize your report in a few words."
+msgstr "Descreva a sua denúncia em poucas palavras."
 
 msgid "Describe your report in detail."
-msgstr "Descreva seu relatório em detalhes."
+msgstr "Descreva a sua denúncia em detalhes."
+
+msgid "Where did the facts happen?"
+msgstr "Onde os fatos aconteceram?"
+
+msgid "When did the facts happen?"
+msgstr "Quando os fatos aconteceram?"
 
 msgid "I'm a victim"
-msgstr "Eu sou uma vítima"
+msgstr "Eu sou a vítima"
 
 msgid "I'm involved in the facts"
 msgstr "Eu estou envolvido nos fatos"
 
+msgid "I witnessed the facts in person"
+msgstr "Testemunhei pessoalmente os fatos"
+
+msgid "I was personally told by a direct witness"
+msgstr "Fui pessoalmente informado por uma testemunha direta"
+
+msgid "It is a rumor I heard"
+msgstr "É um rumor que eu ouvi"
+
+msgid "How are you involved in the reported facts?"
+msgstr "Como está envolvido nos fatos relatados?"
+
+msgid "Do you have evidence to support your report?"
+msgstr "Tem provas para apoiar sua denúncia?"
+
+msgid "Please attach the evidence to support your report."
+msgstr "Por favor, anexe as provas para apoiar a sua denúncia."
+
+msgid "Please describe the evidence in detail."
+msgstr "Por favor, descreva as provas em detalhes."
+
+msgid ""
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr "Uma descrição completa das provas apresentadas aumenta a nossa capacidade de avaliar as alegações e investigar. Por favor, tenha o cuidado de referir porções significativas de quaisquer vídeos, imagens ou documentos apresentados."
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "Relatou os fatos a outras organizações e/ou indivíduos?"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "Por favor, liste as organizações e/ou indivíduos que tenha informado sobre estes fatos."
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "Estas organizações investigaram as suas reclamações? Em caso afirmativo, qual foi o resultado?"
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "Qual é o resultado que pretende alcançar com nosso apoio?"
+
 msgid "Do you want to provide your identification information?"
-msgstr "Você deseja fornecer informações sobre a sua identidade?"
+msgstr "Deseja fornecer informações sobre a sua identidade?"
 
 msgid "First name"
 msgstr "Primeiro nome"
@@ -1662,10 +1650,10 @@ msgstr "Prezado/a {RecipientName},"
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr "Você está recebendo este e-mail porque uma conta de usuário foi criada para você no sistema: {Site}"
+msgstr "Está a receber este e-mail porque foi criada uma conta de utilizador para si no sistema: {Site}"
 
 msgid "Username: {Username}"
-msgstr "Nome de usuário: {Username}"
+msgstr "Nome de utilizador: {Username}"
 
 msgid "Activation link: {Url}"
 msgstr "Link de ativação: {Url}"
@@ -1673,12 +1661,12 @@ msgstr "Link de ativação: {Url}"
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr "Clique no link de ativação para prosseguir com a ativação da conta e definir sua senha de usuário."
+msgstr "Clique no link de ativação para proceder à ativação da conta e definir a sua palavra-passe de utilizador."
 
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
-msgstr "Após a ativação bem-sucedida, você poderá acessar o sistema através do seguinte link: {LoginUrl}"
+msgstr "Após uma ativação bem sucedida, poderá acessar ao sistema através da seguinte link: {LoginUrl}"
 
 msgid "Kind regards,"
 msgstr "Atenciosamente,"
@@ -1687,13 +1675,13 @@ msgid "Account activation"
 msgstr "Ativação de conta"
 
 msgid "Your whistleblowing platform is now accessible at:"
-msgstr "Sua plataforma de denúncia está agora acessível em:"
+msgstr "A sua plataforma de denúncia está agora acessível em:"
 
 msgid "To log in, visit:"
-msgstr "Para entrar, visite:"
+msgstr "Para iniciar sessão, visite:"
 
 msgid "Users' credentials:"
-msgstr "Credenciais dos usuários:"
+msgstr "Credenciais dos utiizadores:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "A plataforma será automaticamente excluída em:"
@@ -1725,7 +1713,7 @@ msgstr "O servidor não pode garantir que um novo relatório possa ser armazenad
 msgid ""
 "Please consider asking your technical support to create more disk space on "
 "the server."
-msgstr "Por favor, considere pedir seu suporte técnico para criar mais espaço em disco no servidor."
+msgstr "Por favor, considere pedir ao seu suporte técnico para criar mais espaço em disco no servidor."
 
 msgid ""
 "GlobaLeaks technology includes a server status checking component which will"
@@ -1735,7 +1723,7 @@ msgstr "A tecnologia GlobaLeaks inclui um componente de verificação de status 
 msgid ""
 "For more information, log in to the Administration interface and look at the"
 " \"System Stats\" and \"Anomalies\" sections."
-msgstr "Para obter mais informações, acesse a interface de administração e verifique as 'Estatísticas do Sistema' e as seções 'Anomalias'."
+msgstr "Para obter mais informações, conecte na página de Administração e consulte as 'Estatísticas do Sistema' e as seções 'Anomalias'."
 
 msgid "Anomaly detected in {NodeName}"
 msgstr "Anomalia detectada em {NodeName}"
@@ -1743,7 +1731,7 @@ msgstr "Anomalia detectada em {NodeName}"
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
 "going to expire or has already expired:"
-msgstr "Este é um email para informá-lo de que a chave PGP dos seguintes usuários está prestes a expirar ou já expirou:"
+msgstr "Este é um e-mail para informá-lo de que a chave PGP dos seguintes utilizadores está prestes a expirar ou já expirou:"
 
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
@@ -1786,7 +1774,7 @@ msgstr "E-mail de teste"
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr "Este é um e-mail para notificá-lo de que uma solicitação foi feita para alterar seu endereço de e-mail para {NewEmailAddress}."
+msgstr "Este é um e-mail para o notificar de que foi feito um pedido para alterar o seu endereço de e-mail para {NewEmailAddress}."
 
 msgid "Click the following link to validate this change:"
 msgstr "Clique no link a seguir para validar essa alteração:"
@@ -1794,7 +1782,7 @@ msgstr "Clique no link a seguir para validar essa alteração:"
 msgid ""
 "If you didn't request this change, change your password and contact your "
 "system administrator."
-msgstr "Se você não solicitou essa alteração, altere sua senha e entre em contato com o administrador do sistema."
+msgstr "Se não solicitou essa alteração, altere sua palavra-passe e contacte o administrador do sistema."
 
 msgid "Email change request"
 msgstr "Solicitação de mudança de e-mail"
@@ -1806,13 +1794,13 @@ msgid "Date: {EventTime}"
 msgstr "Data: {EventTime}"
 
 msgid "From: Whistleblower"
-msgstr "De: Delator"
+msgstr "De: Denunciante"
 
 msgid "Date: {SubmissionDate}"
 msgstr "Data: {SubmissionDate}"
 
 msgid "Label: {TipLabel}"
-msgstr "Títulol: {TipLabel}"
+msgstr "Título: {TipLabel}"
 
 msgid "Status: {TipStatus}"
 msgstr "Status: {TipStatus}"
@@ -1820,7 +1808,7 @@ msgstr "Status: {TipStatus}"
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
-msgstr "O certificado HTTPS carregado na plataforma está prestes a ou já expirou."
+msgstr "O certificado HTTPS carregado na plataforma está prestes a expirar ou já expirou."
 
 msgid "Expiration date: {ExpirationDate}"
 msgstr "Data de expiração: {ExpirationDate}"
@@ -1828,10 +1816,10 @@ msgstr "Data de expiração: {ExpirationDate}"
 msgid ""
 "Without a valid certificate, the platform will be accessible in a secure way"
 " only via Tor."
-msgstr "Sem um certificado digital válido, a plataforma estará acessível de forma segura somente com o navegador Tor."
+msgstr "Sem um certificado digital válido, a plataforma só será acessível de forma segura através do navegador Tor."
 
 msgid "Log in to solve the issue."
-msgstr "Entrar para resolver a questão."
+msgstr "Faça o login para resolver o problema."
 
 msgid "Expiration alert for HTTPS certificate"
 msgstr "Alerta de certificado HTTPS expirado"
@@ -1844,37 +1832,37 @@ msgid "The system will keep trying."
 msgstr "O sistema continuará tentando."
 
 msgid "Failed HTTPS certificate renewal"
-msgstr "Renovação de certificado HTTPS com falha"
+msgstr "Falha na renovação do certificado HTTPS"
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr "Este é um e-mail para notificá-lo de que um custodiante autorizou você a acessar a identidade de denúncia do relatório {TipNum}."
+msgstr "Este é um e-mail para o notificar de que um custodiante o autorizou a acessar à identidade do denunciante do relatório {TipNum}."
 
 msgid "The report can be accessed at:"
 msgstr "O relatório pode ser acessado em:"
 
 msgid "Access to whistleblower's identity authorized"
-msgstr "Acesso autorizado à identidade de um delator"
+msgstr "Acesso autorizado à identidade de um denunciante"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr "Este é um e-mail para notificá-lo de que um custodiante negou o acesso à identidade de denúncia do relatório {TipNum}."
+msgstr "Este é um e-mail para o notificar de que um administrador o negou a acessar à identidade do denunciante do relatório {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
-msgstr "Acesso negado à identidade de um delator"
+msgstr "Acesso negado à identidade de um denunciante"
 
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr "Este é um email para notificá-lo de que um destinatário solicitou acesso à identidade do denunciante para o relatório {TipNum}"
+msgstr "Este é um e-mail para o notificar de que um administrador o solicitou acessar à identidade do denunciante do relatório {TipNum}."
 
 msgid "The request can be accessed at:"
 msgstr "A solicitação pode ser acessada em:"
 
 msgid "New request of access to a whistleblower's identity"
-msgstr "Novo pedido de acesso à identidade de um delator"
+msgstr "Novo pedido de acesso à identidade de um denunciante"
 
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
@@ -1882,23 +1870,23 @@ msgid ""
 msgstr "Este é um email para notificá-lo de que o denunciante do relatório {TipNum} forneceu sua identidade."
 
 msgid "The whistleblower has provided their identity"
-msgstr "O delator forneceu a sua identidade"
+msgstr "O denunciante forneceu a sua identidade"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr "Você está recebendo este e-mail porque uma redefinição de senha foi solicitada para a conta: {Username}"
+msgstr "Está a receber este e-mail porque foi solicitada uma redefinição de palavra-passe para a conta: {Username}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
 "email."
-msgstr "Se você não fez essa solicitação, ignore e exclua este e-mail com segurança."
+msgstr "Se não fez este pedido, pode ignorar e apagar este e-mail em segurança."
 
 msgid "You can confirm your request by clicking the following link:"
-msgstr "Você pode confirmar sua solicitação clicando no seguinte link:"
+msgstr "Pode confirmar o seu pedido clicando no seguinte link:"
 
 msgid "Password reset instructions"
-msgstr "Instruções de redefinição de senha"
+msgstr "Instruções de redefinição de palavra-passe"
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
@@ -1908,12 +1896,12 @@ msgstr "Este email é para informá-lo que a sua chave PGP está expirando ou j�
 msgid ""
 "You should extend its validity and update the key present on the platform, "
 "or upload a new key."
-msgstr "Você deveria estender a validade e atualizar a chave presente na plataforma, ou descarregar uma nova chave."
+msgstr "Deverá prolongar a sua validade e atualizar a chave presente na plataforma ou carregar uma nova chave."
 
 msgid ""
 "Without a valid PGP key, the system won't be able to encrypt data provided "
 "to you."
-msgstr "Sem uma chave PGP válida, o sistema não será capaz de cifrar dados fornecidos a Você."
+msgstr "Sem uma chave PGP válida, o sistema não será capaz de enviar-lhes notificações criptografadas."
 
 msgid "Click the link to activate the platform:"
 msgstr "Clique no link para ativar a plataforma:"
@@ -1930,7 +1918,7 @@ msgstr "É uma boa prática de segurança manter a plataforma atualizada."
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "
 "change log at: {ChangeLogUrl}"
-msgstr "Para saber mais sobre novos recursos e correções de bugs na nova versão, consulte o log de alterações em: {ChangeLogUrl}"
+msgstr "Para conhecer as novas funcionalidades e correções de bugs na nova versão, consulte o registo de alterações em {ChangeLogUrl}"
 
 msgid ""
 "For instructions on software updates, please refer to the documentation at: "
@@ -1957,7 +1945,7 @@ msgstr "Alguns relatórios expiram em breve"
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr "Este é um email para notificá-lo de que um denunciante o selecionou como um destinatário valioso do relatório."
+msgstr "Este é um e-mail para o notificar que um denunciante o selecionou como destinatário importante da sua denúncia."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -1965,7 +1953,7 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr "Você é solicitado a prestar atenção especial às informações e materiais nela contidos. Lembre-se de que os denunciantes geralmente se expõem a altos riscos pessoais no interesse do público. Portanto, o material fornecido neste relatório deve ser considerado de alta importância."
+msgstr "É-lhe pedido que preste especial atenção à informação e ao material aí contido. Tenha em mente que os denunciantes se expõem frequentemente a riscos pessoais elevados, no interesse do público. Por conseguinte, o material fornecido nesta denúncia deve ser considerado de grande importância."
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Este é um e-mail para notificar que um relatório existente foi atualizado."
@@ -1983,4 +1971,4 @@ msgid "Role: {Role}"
 msgstr "Função: {Role}"
 
 msgid "Password: {Password}"
-msgstr "Senha: {Password}"
+msgstr "Palavra-passe: {Password}"

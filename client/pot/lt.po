@@ -465,64 +465,6 @@ msgstr "Suteikti prieigą"
 msgid "Revoke access"
 msgstr "Atšaukti prieigą"
 
-msgid "Please summarize your report in a few words."
-msgstr "Savo pranešimą apibendrinkite keliais žodžiais."
-
-msgid "Where did the facts happen?"
-msgstr "Kur šie faktai įvyko?"
-
-msgid "When did the facts happen?"
-msgstr "Kada šie faktai įvyko?"
-
-msgid "How are you involved in the reported facts?"
-msgstr "Kaip esate susijęs su pranešamais faktais?"
-
-msgid "I’m a victim"
-msgstr "Esu auka"
-
-msgid "I’m involved in the facts"
-msgstr "Esu įsitraukęs į faktus"
-
-msgid "I witnessed the facts in person"
-msgstr "Asmeniškai mačiau šiuos faktus"
-
-msgid "I was personally told by a direct witness"
-msgstr "Man asmeniškai papasakojo tiesioginis liudytojas"
-
-msgid "It is a rumor I heard"
-msgstr "Girdėjau gandą"
-
-msgid "Do you have evidence to support your report?"
-msgstr "Ar turite įrodymų savo pranešimui pagrįsti?"
-
-msgid "Please attach the evidence to support your report."
-msgstr "Pridėkite pranešimą pagrindžiančių įrodymų."
-
-msgid "Please describe the evidence in detail."
-msgstr "Išsamiai aprašykite įrodymus."
-
-msgid ""
-"A thorough description of the submitted evidence enhances our ability to "
-"evaluate claims and investigate. Please take care to reference significant "
-"portions of any videos, images or documents submitted."
-msgstr "Išsamus pateiktų įrodymų aprašymas leidžia mums geriau įvertinti skundus ir atlikti tyrimą. Atkreipkite dėmesį, kad pateiktuose vaizdo įrašuose, nuotraukose ar dokumentuose būtų pateiktos nuorodos į svarbias jų dalis."
-
-msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr "Ar apie faktus pranešėte kitoms organizacijoms ir (arba) asmenims?"
-
-msgid ""
-"Please list the organizations and/or individuals you have informed about "
-"these facts."
-msgstr "Išvardinkite organizacijas ir (arba) asmenis, kuriems apie šiuos faktus pranešėte."
-
-msgid ""
-"Have these organizations investigated your claims? If so, what was the "
-"outcome?"
-msgstr "Ar šios organizacijos tyrė jūsų skundus? Jei taip, kokie rezultatai?"
-
-msgid "What is the outcome you want to achieve with our support?"
-msgstr "Kokį rezultato tikitės su mūsų pagalba?"
-
 msgid "File a report"
 msgstr "Teikti pranešimą"
 
@@ -816,12 +758,6 @@ msgstr "Vertė"
 
 msgid "Medium"
 msgstr "Vidutinis"
-
-msgid "Customize the message shown in the receipt page"
-msgstr "Tinkinti pranešimo patvirtinimo puslapyje rodomą pranešimą"
-
-msgid "Assign the receipt only to reports reaching score:"
-msgstr "Patvirtintais pranešimais laikykite tik tuos pranešimus, kurie pasiekia rezultatą:"
 
 msgid "Software version:"
 msgstr "Programinės įrangos versija:"
@@ -1590,14 +1526,66 @@ msgstr "Licencijos sąlygas perskaičiau ir su jomis sutinku."
 msgid "You have completed the platform wizard."
 msgstr "Baigėte platformos vedlio procedūrą."
 
+msgid "Please summarize your report in a few words."
+msgstr "Savo pranešimą apibendrinkite keliais žodžiais."
+
 msgid "Describe your report in detail."
 msgstr "Išsamiai aprašykite savo pranešimą."
+
+msgid "Where did the facts happen?"
+msgstr "Kur šie faktai įvyko?"
+
+msgid "When did the facts happen?"
+msgstr "Kada šie faktai įvyko?"
 
 msgid "I'm a victim"
 msgstr "Esu auka"
 
 msgid "I'm involved in the facts"
 msgstr "Esu įsitraukęs į faktus"
+
+msgid "I witnessed the facts in person"
+msgstr "Asmeniškai mačiau šiuos faktus"
+
+msgid "I was personally told by a direct witness"
+msgstr "Man asmeniškai papasakojo tiesioginis liudytojas"
+
+msgid "It is a rumor I heard"
+msgstr "Girdėjau gandą"
+
+msgid "How are you involved in the reported facts?"
+msgstr "Kaip esate susijęs su pranešamais faktais?"
+
+msgid "Do you have evidence to support your report?"
+msgstr "Ar turite įrodymų savo pranešimui pagrįsti?"
+
+msgid "Please attach the evidence to support your report."
+msgstr "Pridėkite pranešimą pagrindžiančių įrodymų."
+
+msgid "Please describe the evidence in detail."
+msgstr "Išsamiai aprašykite įrodymus."
+
+msgid ""
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr "Išsamus pateiktų įrodymų aprašymas leidžia mums geriau įvertinti skundus ir atlikti tyrimą. Atkreipkite dėmesį, kad pateiktuose vaizdo įrašuose, nuotraukose ar dokumentuose būtų pateiktos nuorodos į svarbias jų dalis."
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "Ar apie faktus pranešėte kitoms organizacijoms ir (arba) asmenims?"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "Išvardinkite organizacijas ir (arba) asmenis, kuriems apie šiuos faktus pranešėte."
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "Ar šios organizacijos tyrė jūsų skundus? Jei taip, kokie rezultatai?"
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "Kokį rezultato tikitės su mūsų pagalba?"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Ar norite pateikti savo identifikavimo informaciją?"

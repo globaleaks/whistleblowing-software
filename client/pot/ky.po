@@ -466,64 +466,6 @@ msgstr "Уруксат берүү"
 msgid "Revoke access"
 msgstr "Кирүү мүмкүнчүлүгүн жокко чыгаруу"
 
-msgid "Please summarize your report in a few words."
-msgstr "Бир нече сөз менен отчетуңузду сүрөттөп бериңиз."
-
-msgid "Where did the facts happen?"
-msgstr "Ал окуя кайда болду?"
-
-msgid "When did the facts happen?"
-msgstr "Ал окуя качан болду?"
-
-msgid "How are you involved in the reported facts?"
-msgstr "Сиз ал окуяга кандай тиешеңиз бар?"
-
-msgid "I’m a victim"
-msgstr "Мен курманмын."
-
-msgid "I’m involved in the facts"
-msgstr "Мен окуянын катышуучусумун."
-
-msgid "I witnessed the facts in person"
-msgstr "Мен окуянын катышуучусумун."
-
-msgid "I was personally told by a direct witness"
-msgstr "Мага ал окуянын күбөсүү айтты."
-
-msgid "It is a rumor I heard"
-msgstr "Бул мен уккан ушак."
-
-msgid "Do you have evidence to support your report?"
-msgstr "Бул окуяны тастыктаган далилиңиз барбы?"
-
-msgid "Please attach the evidence to support your report."
-msgstr "Окуя туралуу болгон далилдерди тиркеңиз."
-
-msgid "Please describe the evidence in detail."
-msgstr "Болгон далилдерди сүрөттөп берсеңиз."
-
-msgid ""
-"A thorough description of the submitted evidence enhances our ability to "
-"evaluate claims and investigate. Please take care to reference significant "
-"portions of any videos, images or documents submitted."
-msgstr "Тапшырылган далилдердин кылдат сүрөттөлүшүү биздин дооматтарды баалоо жана иликтөө жөндөмүбүзгө жардам. Тапшырылган видеолордун, сүрөттөрдүн же документтердин олуттуу бөлүгүнө шилтеме жасоо сураныч."
-
-msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr "Сиз бул окуя менен башка башка адамдар жана/же уюмдарг менен бөлүштүңүз беле?"
-
-msgid ""
-"Please list the organizations and/or individuals you have informed about "
-"these facts."
-msgstr "Бул окуя тууралуу бөлүшкөн уюмдарды жана/же адамдарды болсо, тизмелеп бериңиз. "
-
-msgid ""
-"Have these organizations investigated your claims? If so, what was the "
-"outcome?"
-msgstr "Ал уюмдар сиздин дооматтарыңызды иликтеди беле? Андай болсо, жыйынтыгы кандай болду эле? "
-
-msgid "What is the outcome you want to achieve with our support?"
-msgstr " Биздин колдообуз менен кандай жыйынтыкка жетүүнү каалайсыз? "
-
 msgid "File a report"
 msgstr "Отчет жазыңыз"
 
@@ -817,12 +759,6 @@ msgstr "Көлөм"
 
 msgid "Medium"
 msgstr "Орточо"
-
-msgid "Customize the message shown in the receipt page"
-msgstr "Квитанция баракчасында көрсөтүлө турган билдирүүнү жөнгө салыңыз"
-
-msgid "Assign the receipt only to reports reaching score:"
-msgstr "Дүмүрчөктү баллга жеткен отчетторго гана тапшырыңыз:"
 
 msgid "Software version:"
 msgstr "Программалык камсыздоо версиясы:"
@@ -1591,14 +1527,66 @@ msgstr "Мен лицензиянын шарттарын окуп чыктым �
 msgid "You have completed the platform wizard."
 msgstr "Платформа устаты менен ишти бүтүрдүңүз."
 
+msgid "Please summarize your report in a few words."
+msgstr "Бир нече сөз менен отчетуңузду сүрөттөп бериңиз."
+
 msgid "Describe your report in detail."
 msgstr "Отчетуңузду деталдуу түрдө кенен кылып сүрөттөп бериңиз."
+
+msgid "Where did the facts happen?"
+msgstr "Ал окуя кайда болду?"
+
+msgid "When did the facts happen?"
+msgstr "Ал окуя качан болду?"
 
 msgid "I'm a victim"
 msgstr "Мен курманмын."
 
 msgid "I'm involved in the facts"
 msgstr "Мен окуянын катышуучусумун."
+
+msgid "I witnessed the facts in person"
+msgstr "Мен окуянын катышуучусумун."
+
+msgid "I was personally told by a direct witness"
+msgstr "Мага ал окуянын күбөсүү айтты."
+
+msgid "It is a rumor I heard"
+msgstr "Бул мен уккан ушак."
+
+msgid "How are you involved in the reported facts?"
+msgstr "Сиз ал окуяга кандай тиешеңиз бар?"
+
+msgid "Do you have evidence to support your report?"
+msgstr "Бул окуяны тастыктаган далилиңиз барбы?"
+
+msgid "Please attach the evidence to support your report."
+msgstr "Окуя туралуу болгон далилдерди тиркеңиз."
+
+msgid "Please describe the evidence in detail."
+msgstr "Болгон далилдерди сүрөттөп берсеңиз."
+
+msgid ""
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr "Тапшырылган далилдердин кылдат сүрөттөлүшүү биздин дооматтарды баалоо жана иликтөө жөндөмүбүзгө жардам. Тапшырылган видеолордун, сүрөттөрдүн же документтердин олуттуу бөлүгүнө шилтеме жасоо сураныч."
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "Сиз бул окуя менен башка башка адамдар жана/же уюмдарг менен бөлүштүңүз беле?"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "Бул окуя тууралуу бөлүшкөн уюмдарды жана/же адамдарды болсо, тизмелеп бериңиз. "
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "Ал уюмдар сиздин дооматтарыңызды иликтеди беле? Андай болсо, жыйынтыгы кандай болду эле? "
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr " Биздин колдообуз менен кандай жыйынтыкка жетүүнү каалайсыз? "
 
 msgid "Do you want to provide your identification information?"
 msgstr "Өздүгүңүздү тастыктоочу маалыматты бергиңиз келеби?"

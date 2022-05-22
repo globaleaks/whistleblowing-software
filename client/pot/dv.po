@@ -3,6 +3,7 @@
 # Abdulla Shaheed <evenexzero@gmail.com>, 2019
 # Afrah Mohamed <myza.afrah@gmail.com>, 2020
 # Ahmed Naushad <nwshadh@gmail.com>, 2020
+# Fathimath Raula Ali, 2022
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2020-2022
 # Hussain Iyad <huseniyad@gmail.com>, 2020
 # Ruba Ali <rubaa.ali@gmail.com>, 2020
@@ -10,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2020-2022\n"
+"Last-Translator: Fathimath Raula Ali, 2022\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -390,7 +391,7 @@ msgid "Select"
 msgstr "ހިޔާރުކުރަން"
 
 msgid "Deselect"
-msgstr ""
+msgstr "ޑިސެލެކްޓް ކުރާށެވެ/ ހިޔާރުނުކުރައްވާ"
 
 msgid "Surname"
 msgstr "އާއިލީ ނަން"
@@ -449,86 +450,28 @@ msgid "seconds"
 msgstr "ސިކުންތު "
 
 msgid "This domain name is not available."
-msgstr ""
+msgstr "މި ޑޮމެއިން ނަމެއް ނުލިބެއެވެ"
 
 msgid "Mark as important"
-msgstr ""
+msgstr "މުހިއްމު އެއްޗެއްކަމުގައި ފާހަގަކުރުން"
 
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "ކްލިޕްބޯޑަށް ކޮޕީ ކުރާށެވެ"
 
 msgid "Logout"
 msgstr "ލޮގްއައުޓް"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
+msgstr "މި ލިބިގަންނަވާ ފަރާތަށް ރިޕޯޓްތަކަށް އެހެން މީހުންނަށް އެކްސެސް ދިނުމުގެ ޤާބިލުކަން ދިނު"
 
 msgid "Grant access"
-msgstr ""
+msgstr "އެކްސެސް ދިނުން"
 
 msgid "Revoke access"
-msgstr ""
-
-msgid "Please summarize your report in a few words."
-msgstr "ިރިޕޯޓާއި ގުޅޭ ކުރު މަޢުލޫމާތުކޮޅެއް ލިޔުއްވާ"
-
-msgid "Where did the facts happen?"
-msgstr ""
-
-msgid "When did the facts happen?"
-msgstr ""
-
-msgid "How are you involved in the reported facts?"
-msgstr ""
-
-msgid "I’m a victim"
-msgstr ""
-
-msgid "I’m involved in the facts"
-msgstr ""
-
-msgid "I witnessed the facts in person"
-msgstr ""
-
-msgid "I was personally told by a direct witness"
-msgstr ""
-
-msgid "It is a rumor I heard"
-msgstr ""
-
-msgid "Do you have evidence to support your report?"
-msgstr ""
-
-msgid "Please attach the evidence to support your report."
-msgstr ""
-
-msgid "Please describe the evidence in detail."
-msgstr ""
-
-msgid ""
-"A thorough description of the submitted evidence enhances our ability to "
-"evaluate claims and investigate. Please take care to reference significant "
-"portions of any videos, images or documents submitted."
-msgstr ""
-
-msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
-
-msgid ""
-"Please list the organizations and/or individuals you have informed about "
-"these facts."
-msgstr ""
-
-msgid ""
-"Have these organizations investigated your claims? If so, what was the "
-"outcome?"
-msgstr ""
-
-msgid "What is the outcome you want to achieve with our support?"
-msgstr ""
+msgstr "އެކްސެސް ބާތިލްކުރުން"
 
 msgid "File a report"
-msgstr ""
+msgstr "ރިޕޯޓެއް ފައިލް ކުރާށެވެ"
 
 msgid "Select the context of your report:"
 msgstr "ތިޔަ ފަރާތުގެ ރިޕޯޓްގެ ކޮއްޓެކްސްޓެ ހިޔާރުކުރައްވާ"
@@ -576,7 +519,7 @@ msgid "Enable administrators to change user passwords"
 msgstr "ބޭނުންކުރާ ފަރާތްތަކުގެ ޕާސްވޯޑް ބަދަލުކުރަން އެޑްމިނިސްޓްރޭޓަރސް އެނޭބަލް ކުރައްވާ. "
 
 msgid "Administrators authorized to change user passwords:"
-msgstr ""
+msgstr "ޔޫޒަރ ޕާސްވޯޑް ބަދަލުކުރުމުގެ ހުއްދަ ލިބިފައިވާ އެޑްމިނިސްޓްރޭޓަރުން:"
 
 msgid "Enable multisite feature"
 msgstr "މަލްޓިސައިޓް ފީޗާ އޮންކުރަން"
@@ -616,7 +559,7 @@ msgid "Set the value to 0 to disable this feature."
 msgstr "މި ފީޗާރޑިސްއޭބަލް ކުރުމަށް ވެލިއުގައި 0 ޖައްސަވާ"
 
 msgid "Number of days till notifying unread reports to users"
-msgstr ""
+msgstr "ނުކިޔާ ރިޕޯޓްތައް ޔޫޒަރުންނަށް އަންގަންޖެހޭ ދުވަސްތަކުގެ ބާކީ އަދަދު"
 
 msgid "Enable custodian user role"
 msgstr "ކަސްޓޯޑިއަން ޔޫސާގެ  ރޯލް އޮންކުރަން"
@@ -660,10 +603,10 @@ msgid "Type"
 msgstr "ބާވަތް"
 
 msgid "Severity"
-msgstr ""
+msgstr "މުހިއްމުކަން"
 
 msgid "Object"
-msgstr ""
+msgstr "އޮބްޖެކްޓް"
 
 msgid "ID"
 msgstr "އައިޑީ"
@@ -678,13 +621,13 @@ msgid "Name"
 msgstr "ނަން"
 
 msgid "Creation date"
-msgstr ""
+msgstr "އުފެއްދެވި ތާރީޚް"
 
 msgid "Last access"
 msgstr "ހުށައެޅުމުގެ ކުރިން އެންމެ ފަހު އެކްސެސް"
 
 msgid "Whistleblower's last access"
-msgstr ""
+msgstr "ވިސްލްބްލޯވަރގެ އެންމެ ފަހުގެ އެކްސެސް"
 
 msgid "Substatuses"
 msgstr "ސަބްސްޓޭޓަސަސް"
@@ -729,7 +672,7 @@ msgid "Whistleblowing button"
 msgstr "ވިސްލްބްލޯކުރުމަށް ފިއްތަވާ"
 
 msgid "Disclaimer"
-msgstr ""
+msgstr "ސަމާލުކަމަށް / ޑިސްކްލެއިމަރ"
 
 msgid "Footer"
 msgstr "ތިރީ ހަވާސާ"
@@ -821,12 +764,6 @@ msgstr "އަދަދު"
 msgid "Medium"
 msgstr "މެދުވަރަށް"
 
-msgid "Customize the message shown in the receipt page"
-msgstr "ރަޝީދުގެ ސަފްޙާގައި ފެންނަ މެސެޖަށް ބަދަލުގެނައުމަށް"
-
-msgid "Assign the receipt only to reports reaching score:"
-msgstr "މި ރަސީދު އެސައިން ކުރެވޭނީ ވަކި ސްކޯއެއް ހާސިލްކުރާ ރިޕޯޓްތަކަށް އެކަނި"
-
 msgid "Software version:"
 msgstr "ސޮޕްޓްވެއަރގެ ވާރޝަން"
 
@@ -837,7 +774,7 @@ msgid "Enabled"
 msgstr "ހިންގުވާލުން"
 
 msgid "Allowed IP addresses"
-msgstr ""
+msgstr "ހުއްދަ ލިބިފައިވާ އައިޕީ އެޑްރެސްތަކެވެ"
 
 msgid "Admin"
 msgstr "އެޑްމިން"
@@ -864,7 +801,7 @@ msgid "City"
 msgstr "ރަށް/ސަހަރު"
 
 msgid "Country"
-msgstr ""
+msgstr "ގައުމް"
 
 msgid "Country code"
 msgstr "ޤައުމުގެ ކޯޑް ނަމްބަރު"
@@ -909,7 +846,7 @@ msgstr "އޮޓަމެޓިކް އެޗް.ޓީ.ޓީ.ޕީ.އެސް ކޮންފިގަރ
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
 "hostname must have a DNS record referencing that address."
-msgstr ""
+msgstr "އެ ޕްލެޓްފޯމަށް ޕަބްލިކް އައިޕީ އެޑްރެހެއް މެދުވެރިކޮށް ވަދެވޭނެ ގޮތް ހެދުމާއި، ހޮވާފައިވާ ހޯސްޓް ނަމުގައި އެ އެޑްރެހަށް ރިފަރެންސް ކުރާ ޑީއެންއެސް ރެކޯޑެއް އޮންނަން ޖެހެއެވެ."
 
 msgid "Manual configuration"
 msgstr "މީހެއްގެ އެހީތެރިކަމާއެކު ރުކުރުވުން"
@@ -1115,7 +1052,7 @@ msgid "Subdomain"
 msgstr "ސަބްޑޮމެއިން"
 
 msgid "Creation date:"
-msgstr ""
+msgstr "އުފެއްދެވި ތާރީޚް"
 
 msgid "Root domain used for secondary sites"
 msgstr "ސެކަންޑަރީ ސައިޓްތަކުގައި ރޫޓް ޑޮމެއިން ބޭނުންކުރުން"
@@ -1181,7 +1118,7 @@ msgid "Allow the recipient to postpone the report expiration date"
 msgstr "ޚިދުމަތްލިބޭ ފަރާތަކަށް ރިޕޯޓްގެ މުއްދަތުހަމަވާ ތާރީޚް ފަސްކުރުމަށް ހުއްދަކުރުން"
 
 msgid "Give the user administrative access to the following features:"
-msgstr ""
+msgstr "ތިރީގައިވާ ފީޗާސްތަކަށް ޔޫޒަރަށް އެޑްމިނިސްޓްރޭޓިވް އެކްސެސް ދިނުން:"
 
 msgid "Request date"
 msgstr "ތާރީޚު ހޯއްދެވުމަށް އެދިލެއްވުމަށް"
@@ -1193,7 +1130,7 @@ msgid "Authorization"
 msgstr "އޮތޮރައިޒޭޝަން"
 
 msgid "Requests"
-msgstr ""
+msgstr "އެދުންތައް"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "ތިޔަ ބޭނުންފުޅު ކުރެއްވި ވެލިޑޭޝަން ލިންކް ނުރަނގަޅު ނުވަތަ އެކްސްޕަޔަރ ވެފައި"
@@ -1255,7 +1192,7 @@ msgid "Enter a name for the copy"
 msgstr "ކޮޕީއަށް ނަމެއް ހިޔާރުކުރައްވާ"
 
 msgid "Request support"
-msgstr ""
+msgstr "ސަޕޯޓަށް އެދިވަޑައިގަންނަވާށެވެ"
 
 msgid "Thank you."
 msgstr "ޝުކުރިއްޔާ."
@@ -1334,7 +1271,7 @@ msgstr "އިންޒާރު"
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr ""
+msgstr "ތިޔަބޭފުޅުންގެ އައިޑެންޓިޓީ ރައްކާތެރިކޮށްދޭ \"ޓޯ ބްރައުޒާ\" ކިޔާ އެޕް ބޭނުންކޮށްގެން މި ސައިޓަށް ޒިޔާރަތް ކުރުމަށް ވަރަށް ބޮޑަށް އިލްތިމާސް ކުރަމެވެ."
 
 msgid "Download the Tor Browser"
 msgstr "ޓޯރ ބްރައުޒަރ ޑައުންލޯޑްކުރުމަށް"
@@ -1429,7 +1366,7 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
+msgstr "\"އެކައުންޓް ރިކަވަރީ ކީ\" ހޯދައި ރައްކާތެރިކަމާއެކު ރައްކާކުރުމަށްޓަކައި \"ޕްރިފަރެންސް\" ބަޔަށް ވަނުމަށް އަޅުގަނޑުމެން ލަފާދެމެވެ. މި ކީ ބޭނުންވާނީ ޕާސްވޯޑް ހަނދާން ނެތިއްޖެ ހާލަތެއްގައި ޕްލެޓްފޯމަށް ވަދެވޭނެ ގޮތާއި ޑޭޓާއަށް ވަދެވޭނެ ގޮތްތައް އަނބުރާ ހޯދުމަށްޓަކައެވެ"
 
 msgid "The provided recovery key is invalid."
 msgstr "ފޯރުކޮށްދެއްވި ރިކަވަރީ ކީ  ރަނގަޅެއްނޫން"
@@ -1497,19 +1434,19 @@ msgid "Invalid phone number"
 msgstr "ފޯނު ނަމްބަރު ރަނގަޅެއްނޫން"
 
 msgid "The answer is too short"
-msgstr ""
+msgstr "ޖަވާބު މާ ކުރު"
 
 msgid "The specified input is not valid."
 msgstr "އިންޕުޓް ރަނގަޅެއް ނޫން. "
 
 msgid "The specified input is not valid:"
-msgstr ""
+msgstr "ކަނޑައެޅިފައިވާ އިންޕުޓް ސައްހައެއް ނޫން:"
 
 msgid "please enter a valid email address."
-msgstr ""
+msgstr "ސައްހަ އީމެއިލް އެޑްރެހެއް ޖައްސަވާށެވެ"
 
 msgid "please enter numbers only."
-msgstr ""
+msgstr "ހަމައެކަނި ނަންބަރު ޖައްސަވާށެވެ"
 
 msgid "Submissions disabled"
 msgstr "ސަބަމިޝަން އޮފް ކޮއްފައި. "
@@ -1537,7 +1474,7 @@ msgid "Recipient selection"
 msgstr "ޚިދުމަތްލިބޭ ފަރާތް ޚިޔާރުކުރައްވާ"
 
 msgid "Select the recipients of your report:"
-msgstr ""
+msgstr "ރިޕޯޓު ލިބޭ ފަރާތްތަ ޚިޔާރުކުރައްވާ"
 
 msgid "Recipients selected:"
 msgstr "ޚިދުމަތް ލިބޭ ފަރާތް ޚިޔާރުކުރެވިއްޖެ"
@@ -1548,7 +1485,7 @@ msgstr "އެންމެގިނަވެގެން އިޚްތިޔާރު ކުރެވޭނެ �
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr ""
+msgstr "ޚިޔާރުކުރައްވާފައި ފަރާތްތަކަށް ރިޕޯޓްލިބިވަޑައިގަންނަވާނެ އަދި އެފަރާތްތައް ބާތިލެއް ނުކުރެއްވޭނެ އެވެ."
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1576,32 +1513,84 @@ msgid "Please choose a configuration profile:"
 msgstr "ކޮންފިގަރޭޝަން ޕްރޮފައިލްއެއް ހިޔާރުކުރައްވާ: "
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr ""
+msgstr "އެޑްމިންއަށް ޕާސްވޯޑު ބަދަލު ކުރެވޭނެ ގޮތް ހައްދަވައި "
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr ""
+msgstr "މި އޮޕްޝަން އިޚްތިޔާރުކުރުމަށް ނަސޭހަތްތެރިވަނީ، މި އޮޕްޝަން ލިބޭ ފަރާތްތަކުގެ ޕާސްވޯޑް ގެއްލޭ ހާލަތުގައި ޑޭޓާ ގެއްލިގެން ދިޔަ ނުދިއުމަށް އެދޭނަމައެވެ. ހަމައެކަނި ސަބްމިޝަންތަކަށް އެކްސެސް ވެވޭ ގޮތަށް ސިސްޓަމް ސެޓަޕް ކުރަން ބޭނުންނަމަ މި ފީޗާ ބޭނުން ކުރުމަށް އަޅުގަނޑުމެން ލަފައެއް ނުދެން"
 
 msgid "Please choose a different username."
 msgstr "އެހެން ޔޫސާ ނަމެއް ބޭނުންކުރައްވާ"
 
 msgid "I have read and agree to the terms of the license."
-msgstr ""
+msgstr "ލައިސަންސްގެ ޝަރުތުތައް އަޅުގަނޑު ކިޔާފައި އަދި އެޔަށް އެއްބަސްވަން"
 
 msgid "You have completed the platform wizard."
 msgstr "ޕްލެޓްފޯމް ވިޒާޑް މިހާރު ތިވަނީ ފުރިހަމަ ކުރެވިފައި"
 
+msgid "Please summarize your report in a few words."
+msgstr "ިރިޕޯޓާއި ގުޅޭ ކުރު މަޢުލޫމާތުކޮޅެއް ލިޔުއްވާ"
+
 msgid "Describe your report in detail."
 msgstr "ރިޕޯޓާއި ގުޅޭ މަޢުލޫމާތުދެއްވާ"
 
+msgid "Where did the facts happen?"
+msgstr "ހަގީގަތް އެނގުނީ ކޮންތާކުން ހެއްޔެވެ؟ "
+
+msgid "When did the facts happen?"
+msgstr "ހަގީގަތް އެނގުނީ ކޮން އިރަކު ހެއްޔެވެ؟ "
+
 msgid "I'm a victim"
-msgstr ""
+msgstr "މީ ވިކްޓިމްއެއް"
 
 msgid "I'm involved in the facts"
-msgstr ""
+msgstr "ޙުމަތުގެ/ހަގީގަތުގެ ތޭރޭގައި އަޅޅުގަނޑު ހިމެނެއެވެ"
+
+msgid "I witnessed the facts in person"
+msgstr "އަޅުގަނޑު  އެ ޙަޤީޤަތްތައް/ތުޙުމަތްތައް ދެކުނިން"
+
+msgid "I was personally told by a direct witness"
+msgstr "އަޅުގަނޑަށް މައިލޫމާތު ލިބުނީ ސީދާ ހެކިވެރިޔަކު ފަރާތުން"
+
+msgid "It is a rumor I heard"
+msgstr "އަޅުގަނޑަށް އަޑުއިވުނު ވާހަކައެއް"
+
+msgid "How are you involved in the reported facts?"
+msgstr "ރިޕޯޓްކޮށްފައިވާ ހަގީގަތްތަކާ އޮތް ގުޅުމަކީ ކޮބާ؟"
+
+msgid "Do you have evidence to support your report?"
+msgstr "ތިބާގެ ރިޕޯޓަށް ބާރުދޭ ހެކި އެބަހުރިހެއްޔެވެ؟"
+
+msgid "Please attach the evidence to support your report."
+msgstr "ތިބާގެ ރިޕޯޓަށް ބާރުދޭ ހެކި ހުށައަޅާށެވެ. "
+
+msgid "Please describe the evidence in detail."
+msgstr "ހުށައަޅާފައިވާ ހެކި ތަފްޞީލުކޮށް ބަޔާންކުރާށެވެ."
+
+msgid ""
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr "ހުށަހެޅޭ ހެކިތަކުގެ ފުރިހަމަ ތަފްޞީލުކުރުމުން، ދަޢުވާތައް ބަލާ ތަޙުޤީޤުކުރުމުގެ ޤާބިލުކަން އިތުރުކޮށްދެއެވެ. ހުށަހެޅޭ އެއްވެސް ވީޑިއޯ، ފޮޓޯ ނުވަތަ ލިޔެކިޔުމެއްގެ މުހިންމު ބައިތައް ރެފަރެންސް ކުރުމަށް ސަމާލުވާށެވެ."
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "އެހެން ޖަމްޢިއްޔާތަކަށް އަދި/ނުވަތަ ވަކިވަކި ފަރުދުންނަށް އެ ޙަޤީޤަތްތައް/ތުޙުމަތްތައް ރިޕޯޓް ކުރެއްވިންތޯ؟"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "މި ޙަޤީޤަތްތަކުގެ/ތުޙުމަތްތަކުގެ މަޢުލޫމާތު ލިބިވަޑައިގެންފައިވާ ޖަމްޢިއްޔާތަކާއި އަދި/ނުވަތަ  ވަކިވަކި ފަރުދުންގެ ބަޔާން ކުރައްވާށެވެ"
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "މި ޖަމްޢިއްޔާތަކުން ތިޔަބޭފުޅުންގެ ދަޢުވާތައް ތަޙުޤީޤު ކޮށްފައިއެބަހުރިތޯ؟ އޭގެ ނަތީޖާއަކީ ކޮބައިތޯ؟"
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "ތިޔަބޭފުޅުން ހޯއްދަވަން ބޭނުންފުޅުވާ ނަތީޖާއަކީ ކޮބައިތޯ؟"
 
 msgid "Do you want to provide your identification information?"
 msgstr "ތިޔަ ބޭފުޅާގެ އައިޑެންޓިފިކޭޝަން މަޢުލޫމާތު ޙިއްޞާކުރަން ބޭނުންފުޅުވޭތޯ؟"
@@ -1613,10 +1602,10 @@ msgid "Last name"
 msgstr "އާއިލީ ނަން "
 
 msgid "Alternative contact method"
-msgstr ""
+msgstr "ގުޅުމަށް އިތުރު ނަމްބަރެއް"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr ""
+msgstr "އަޅުގަނޑު އިސްކަންދެނީ ހަމައެކަނި މި ޕްލެޓްފޯމް މެދުވެރިކޮށް ކުރިއަށް ގެންދިޔުމަށް"
 
 msgid "Other"
 msgstr "އެހެނިހެން"
@@ -1825,7 +1814,7 @@ msgstr "ވިސިލްބްލޯވަރގެ ފޮރުވިފައިވާ މައުލޫމާ
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr ""
+msgstr "މި އީމެއިލްގެ މަޤްޞަދަކީ ރިޕޯޓަށް ވިސްލްބްލޯކުރާ އައިޑެންޓިޓީ އަށް ކަސްޓޯޑިއަން އަކު އިންކާރު ކޮށްފައިވާ ކަން އެންގުން {ޓިޕްނަމްބަރ}."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "ވިސިލްބްލޯވަރގެ ފޮރުވިފައިވާ މައުލޫމާތު ލިބުމުގެ ޙުއްދައެއް ނުލިބޭ. "
@@ -1905,7 +1894,7 @@ msgstr "ސޮފްޓްވެއަރ އަޕްޑޭޓްސްގެ މައުލޫއްމާތު
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "މި އީމެއިލްގެ މަޤްޞަދަކީ ރިޕޯޓަކަށް ނުވަތަ ރިޕޯޓުތަކަކަށް އެކްސެސް ދީފައިވާކަން އެންގުން "
 
 msgid "New report"
 msgstr "އައު ރިޕޯޓް"
@@ -1933,16 +1922,16 @@ msgid ""
 msgstr "މީގައި ހިމެނޭ މައުލޫމާތާއި ތަކެއްޗަށް ޚާއްޞަ ސަމާލުކަމެއްދެއްވުން އެދެމެއެވެ.  ހަނދުމަފުޅު ބަހައްޓަވަންވީ ކަމަކީ ވިސިލްބްލޯވަރުންނަކީ އާންމު ލާބަޔާ މަންފާއަށްޓަކާ އެމީހުންގެ އަމިއްލަ ނަފުސު ވަރަށްބޮޑަށް ނުރައްކަލަށް ހުށަހެޅޭ ބަޔެއްކަމެވެ. އެހެންކަމުން މި ރިޕޯޓަށް ފޯރުކޮށްދީފައިވާ މަޢުލޫމާތަކީ އެންމެ މުހިންމު ކަމެއްދީގެން ބަލަހައްޓަންޖެހޭ ތަކެއްޗެވެ."
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr ""
+msgstr "މި އީމެއިލްގެ މަޤްޞަދަކީ ރިޕޯޓެއް އަޕްޑޭޓް ކުރެވިފައިވާކަން  އެންގުން"
 
 msgid "Report updated"
-msgstr ""
+msgstr "އަޕްޑޭޓް ކޮށްފައި"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr ""
+msgstr "މި އީމެއިލްގެ މަޤްޞަދަކީ ނުކިޔާ ނުވަތަ އަޕްޑޭޓް ކޮށްފައި ހުންނަ ރިޕޯޓްތައް ހުރިކަން ހަނދާން ކޮށްދިނުމެވެ."
 
 msgid "Reminder about unread or updated reports"
-msgstr ""
+msgstr "ނުކިޔާ ނުވަތަ އަޕްޑޭޓް ނުކުރާ ރިޕޯޓްތަކުގެ ހަނދާނީ އިއުލާން"
 
 msgid "Role: {Role}"
 msgstr "ރޯލު: {Role}"

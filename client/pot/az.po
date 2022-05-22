@@ -472,64 +472,6 @@ msgstr "Giriş ver"
 msgid "Revoke access"
 msgstr "Girişi ləğv et"
 
-msgid "Please summarize your report in a few words."
-msgstr "Təqdimatınızı bir neçə sözlə təsvir edin."
-
-msgid "Where did the facts happen?"
-msgstr "Hadisə harada baş verib?"
-
-msgid "When did the facts happen?"
-msgstr "Hadisə nə zaman baş verib?"
-
-msgid "How are you involved in the reported facts?"
-msgstr "Sizin bu hadisə ilə əlaqəniz nədir?"
-
-msgid "I’m a victim"
-msgstr "Mən zərərçəkənəm"
-
-msgid "I’m involved in the facts"
-msgstr "Hadisə ilə əlaqəm var"
-
-msgid "I witnessed the facts in person"
-msgstr "Özüm hadisəyə şahid olmuşam"
-
-msgid "I was personally told by a direct witness"
-msgstr "Hadisə şahidi özü mənə danışıb"
-
-msgid "It is a rumor I heard"
-msgstr "Söz-söhbət kimi başqalarından eşitmişəm"
-
-msgid "Do you have evidence to support your report?"
-msgstr "Hadisəni sübut üçün dəllilərin varmı? "
-
-msgid "Please attach the evidence to support your report."
-msgstr "Lütfən, xəbərə dair dəlili əlavə edin"
-
-msgid "Please describe the evidence in detail."
-msgstr "Lütfən, dəlili ətraflı izah edin"
-
-msgid ""
-"A thorough description of the submitted evidence enhances our ability to "
-"evaluate claims and investigate. Please take care to reference significant "
-"portions of any videos, images or documents submitted."
-msgstr "Dəlillərin ətraflı izahı iddiaları qiymətləndirmək və araşdırmaq imkanlarımızı artırır. Lütfən, göndərilən video, şəkil və ya sənədlərin, imkan daxilində, istinad mənbəyini göstərin."
-
-msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr "Hadisə barədə başqa qurum və ya insanlara məlumat vermisizmi? "
-
-msgid ""
-"Please list the organizations and/or individuals you have informed about "
-"these facts."
-msgstr "Hadisə barədə məlumat verdiyiniz başqa qurum və insanları sadalayın"
-
-msgid ""
-"Have these organizations investigated your claims? If so, what was the "
-"outcome?"
-msgstr "Bu qurumlar dediklərinizi araşdırdııbmı? Əgər araşdırıbsa, nəticəsi nədir? "
-
-msgid "What is the outcome you want to achieve with our support?"
-msgstr "Bizim dəstəyimizlə nail olmaq istədiyiniz nəticələr nədir? "
-
 msgid "File a report"
 msgstr "Hesabat göndər"
 
@@ -823,12 +765,6 @@ msgstr "Qiymət"
 
 msgid "Medium"
 msgstr "Orta"
-
-msgid "Customize the message shown in the receipt page"
-msgstr "Hesabat səhifəsindəki ismarışı dəyişdirin"
-
-msgid "Assign the receipt only to reports reaching score:"
-msgstr "Yalnız bu xala çatan hesabatların qəbzini təyin edin:"
 
 msgid "Software version:"
 msgstr "Proqram versiyası:"
@@ -1597,14 +1533,66 @@ msgstr "Lisenziya qaydalarını oxudum və razıyam."
 msgid "You have completed the platform wizard."
 msgstr "Platforma hazırdır. "
 
+msgid "Please summarize your report in a few words."
+msgstr "Təqdimatınızı bir neçə sözlə təsvir edin."
+
 msgid "Describe your report in detail."
 msgstr "Təqdimatınızı təfərrüatı ilə təsvir edin."
+
+msgid "Where did the facts happen?"
+msgstr "Hadisə harada baş verib?"
+
+msgid "When did the facts happen?"
+msgstr "Hadisə nə zaman baş verib?"
 
 msgid "I'm a victim"
 msgstr ""
 
 msgid "I'm involved in the facts"
 msgstr ""
+
+msgid "I witnessed the facts in person"
+msgstr "Özüm hadisəyə şahid olmuşam"
+
+msgid "I was personally told by a direct witness"
+msgstr "Hadisə şahidi özü mənə danışıb"
+
+msgid "It is a rumor I heard"
+msgstr "Söz-söhbət kimi başqalarından eşitmişəm"
+
+msgid "How are you involved in the reported facts?"
+msgstr "Sizin bu hadisə ilə əlaqəniz nədir?"
+
+msgid "Do you have evidence to support your report?"
+msgstr "Hadisəni sübut üçün dəllilərin varmı? "
+
+msgid "Please attach the evidence to support your report."
+msgstr "Lütfən, xəbərə dair dəlili əlavə edin"
+
+msgid "Please describe the evidence in detail."
+msgstr "Lütfən, dəlili ətraflı izah edin"
+
+msgid ""
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr "Dəlillərin ətraflı izahı iddiaları qiymətləndirmək və araşdırmaq imkanlarımızı artırır. Lütfən, göndərilən video, şəkil və ya sənədlərin, imkan daxilində, istinad mənbəyini göstərin."
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "Hadisə barədə başqa qurum və ya insanlara məlumat vermisizmi? "
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "Hadisə barədə məlumat verdiyiniz başqa qurum və insanları sadalayın"
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "Bu qurumlar dediklərinizi araşdırdııbmı? Əgər araşdırıbsa, nəticəsi nədir? "
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "Bizim dəstəyimizlə nail olmaq istədiyiniz nəticələr nədir? "
 
 msgid "Do you want to provide your identification information?"
 msgstr "Özünüz haqda məlumat vermək istəyirsizmi?"

@@ -465,64 +465,6 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
-msgid "Please summarize your report in a few words."
-msgstr "Terangkan laporan anda dalam beberapa perkataan."
-
-msgid "Where did the facts happen?"
-msgstr "Di manakah kejadian ini berlaku?"
-
-msgid "When did the facts happen?"
-msgstr "Bilakah kejadian ini berlaku?"
-
-msgid "How are you involved in the reported facts?"
-msgstr "Apakah peranan anda dalam kejadian yang dilaporkan?"
-
-msgid "I’m a victim"
-msgstr "Saya seorang mangsa"
-
-msgid "I’m involved in the facts"
-msgstr "Saya terlibat dalam kejadian tersebut"
-
-msgid "I witnessed the facts in person"
-msgstr "Saya menyaksikan kejadian tersebuat"
-
-msgid "I was personally told by a direct witness"
-msgstr "Saya telah diberitahu tentang kejadian tersebut oleh saksi langsung"
-
-msgid "It is a rumor I heard"
-msgstr "Khabar angin--Saya terdengar tentang perkara itu"
-
-msgid "Do you have evidence to support your report?"
-msgstr "Adakah anda mempunyai bukti untuk menyokong laporan anda?"
-
-msgid "Please attach the evidence to support your report."
-msgstr "Sila lampirkan bahan bukti untuk menyokong laporan anda."
-
-msgid "Please describe the evidence in detail."
-msgstr "Sila terangkan bahan bukti itu dengan terperinci."
-
-msgid ""
-"A thorough description of the submitted evidence enhances our ability to "
-"evaluate claims and investigate. Please take care to reference significant "
-"portions of any videos, images or documents submitted."
-msgstr "Jika anda bukan orang yang mengambil imej dan video yang diserahkan sebagai bahan bukti, kami mesti memahami sumber imej dan video untuk digunakan dalam produk pelaporan, termasuk TV, radio, laman web dan media sosial."
-
-msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr "Adakah anda telah melaporkan kejadian ini kepada organisasi lain?"
-
-msgid ""
-"Please list the organizations and/or individuals you have informed about "
-"these facts."
-msgstr "Sila senaraikan nama organisasi yang anda telak maklumkan tentang kejadian ini."
-
-msgid ""
-"Have these organizations investigated your claims? If so, what was the "
-"outcome?"
-msgstr "Adakah mana-mana organisasi ini menyiasat aduan anda? Jika ya, apakah hasilnya?"
-
-msgid "What is the outcome you want to achieve with our support?"
-msgstr "Apakah keputusan yang anda mahu dapati/peroleh?"
-
 msgid "File a report"
 msgstr "Failkan laporan"
 
@@ -816,12 +758,6 @@ msgstr "Nilai"
 
 msgid "Medium"
 msgstr "Medium"
-
-msgid "Customize the message shown in the receipt page"
-msgstr "Sesuaikan mesej yang ditunjukkan dalam halaman resit"
-
-msgid "Assign the receipt only to reports reaching score:"
-msgstr "Tugaskan resit hanya kepada laporan mencapai markah:"
 
 msgid "Software version:"
 msgstr "Versi perisian:"
@@ -1590,14 +1526,66 @@ msgstr "Saya telah membaca dan bersetuju dengan terma lesen."
 msgid "You have completed the platform wizard."
 msgstr "Anda telah melengkapkan wizard platform."
 
+msgid "Please summarize your report in a few words."
+msgstr "Terangkan laporan anda dalam beberapa perkataan."
+
 msgid "Describe your report in detail."
 msgstr "Terangkan laporan anda dalam butiran."
+
+msgid "Where did the facts happen?"
+msgstr "Di manakah kejadian ini berlaku?"
+
+msgid "When did the facts happen?"
+msgstr "Bilakah kejadian ini berlaku?"
 
 msgid "I'm a victim"
 msgstr ""
 
 msgid "I'm involved in the facts"
 msgstr ""
+
+msgid "I witnessed the facts in person"
+msgstr "Saya menyaksikan kejadian tersebuat"
+
+msgid "I was personally told by a direct witness"
+msgstr "Saya telah diberitahu tentang kejadian tersebut oleh saksi langsung"
+
+msgid "It is a rumor I heard"
+msgstr "Khabar angin--Saya terdengar tentang perkara itu"
+
+msgid "How are you involved in the reported facts?"
+msgstr "Apakah peranan anda dalam kejadian yang dilaporkan?"
+
+msgid "Do you have evidence to support your report?"
+msgstr "Adakah anda mempunyai bukti untuk menyokong laporan anda?"
+
+msgid "Please attach the evidence to support your report."
+msgstr "Sila lampirkan bahan bukti untuk menyokong laporan anda."
+
+msgid "Please describe the evidence in detail."
+msgstr "Sila terangkan bahan bukti itu dengan terperinci."
+
+msgid ""
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr "Jika anda bukan orang yang mengambil imej dan video yang diserahkan sebagai bahan bukti, kami mesti memahami sumber imej dan video untuk digunakan dalam produk pelaporan, termasuk TV, radio, laman web dan media sosial."
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "Adakah anda telah melaporkan kejadian ini kepada organisasi lain?"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "Sila senaraikan nama organisasi yang anda telak maklumkan tentang kejadian ini."
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "Adakah mana-mana organisasi ini menyiasat aduan anda? Jika ya, apakah hasilnya?"
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "Apakah keputusan yang anda mahu dapati/peroleh?"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Adakah anda mahu menyediakan maklumat pengenalan anda?"

@@ -467,64 +467,6 @@ msgstr "ТIекхача бакъо луо"
 msgid "Revoke access"
 msgstr "Тlекхочийла юхадаккха"
 
-msgid "Please summarize your report in a few words."
-msgstr "Хьайн арз масех дашца довзийтахь."
-
-msgid "Where did the facts happen?"
-msgstr "Стенгахь хилла иза?"
-
-msgid "When did the facts happen?"
-msgstr "Маца хилла иза?"
-
-msgid "How are you involved in the reported facts?"
-msgstr "Хьан хIун дакъа ду хиллачун юккъехь?"
-
-msgid "I’m a victim"
-msgstr "Со вуон тIедеанарг ву/ю"
-
-msgid "I’m involved in the facts"
-msgstr "Хиллачун юккъехь ву/ю со"
-
-msgid "I witnessed the facts in person"
-msgstr "Хилларг сан бIаьргашна гина"
-
-msgid "I was personally told by a direct witness"
-msgstr "Шен бIаьргашца гинчу тешо дийцина соьга иза"
-
-msgid "It is a rumor I heard"
-msgstr "Дуьйцуш, хезна суна и"
-
-msgid "Do you have evidence to support your report?"
-msgstr "Тоьшаллаш дуй хьан, хьайн арз тIечIагIдан?"
-
-msgid "Please attach the evidence to support your report."
-msgstr "Хьайн арз тIечIагIдан, тоьшаллаш юкъадахкахь."
-
-msgid "Please describe the evidence in detail."
-msgstr "Тоьшаллех лаьцна дийцахь, кегий хIуманаш юкъах ца дуьтуш"
-
-msgid ""
-"A thorough description of the submitted evidence enhances our ability to "
-"evaluate claims and investigate. Please take care to reference significant "
-"portions of any videos, images or documents submitted."
-msgstr "Чуделлачу тоьшаллин ма-дарра сурт хIотторо аьтто бийр бу тхан хааман мах хадо а, таллам бан а. Шайн ма-хуьллу видеошций, васташций, документашций тIечIагIбейша шайн хаам."
-
-msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr "Хьайн арз кхечу цхьаьнакхетараллашка я нахе дахьийтиний ахь?"
-
-msgid ""
-"Please list the organizations and/or individuals you have informed about "
-"these facts."
-msgstr "Хилларг дуьйцуш, ахь хаам бахьийтина долу цхьаьнакхетараллаш а, нах а балабехьа кхузахь."
-
-msgid ""
-"Have these organizations investigated your claims? If so, what was the "
-"outcome?"
-msgstr "Оцу цхьаьнакхетараллаша теллиний ахь чIагIдеш дерг? Теллинехь, жамI хIун бара?"
-
-msgid "What is the outcome you want to achieve with our support?"
-msgstr "Тхан гIорторца хIун Iалашоне кхача лууш ву/ю хьо?"
-
 msgid "File a report"
 msgstr "Арз чудала"
 
@@ -818,12 +760,6 @@ msgstr "Мехалла"
 
 msgid "Medium"
 msgstr "Юккъера"
-
-msgid "Customize the message shown in the receipt page"
-msgstr "Квитанцин агlона тlехь гуш долу кост бӀегӀийла де"
-
-msgid "Assign the receipt only to reports reaching score:"
-msgstr "Цхьана бараме кхаьчначу аьрзанашна тIе бен ма тоха квитанци: "
 
 msgid "Software version:"
 msgstr "Софтан верси:"
@@ -1592,14 +1528,66 @@ msgstr "Ас бешна лицензин билламаш, уьш тIеоьцу 
 msgid "You have completed the platform wizard."
 msgstr "Хьо платформин пхьерах чекхваьлла."
 
+msgid "Please summarize your report in a few words."
+msgstr "Хьайн арз масех дашца довзийтахь."
+
 msgid "Describe your report in detail."
 msgstr "Хьайн орзан сурт хIоттаде, юкъах хIума ца дуьтуш."
+
+msgid "Where did the facts happen?"
+msgstr "Стенгахь хилла иза?"
+
+msgid "When did the facts happen?"
+msgstr "Маца хилла иза?"
 
 msgid "I'm a victim"
 msgstr "Со вуон тIедеанарг ву/ю"
 
 msgid "I'm involved in the facts"
 msgstr "Хиллачун юккъехь ву/ю со"
+
+msgid "I witnessed the facts in person"
+msgstr "Хилларг сан бIаьргашна гина"
+
+msgid "I was personally told by a direct witness"
+msgstr "Шен бIаьргашца гинчу тешо дийцина соьга иза"
+
+msgid "It is a rumor I heard"
+msgstr "Дуьйцуш, хезна суна и"
+
+msgid "How are you involved in the reported facts?"
+msgstr "Хьан хIун дакъа ду хиллачун юккъехь?"
+
+msgid "Do you have evidence to support your report?"
+msgstr "Тоьшаллаш дуй хьан, хьайн арз тIечIагIдан?"
+
+msgid "Please attach the evidence to support your report."
+msgstr "Хьайн арз тIечIагIдан, тоьшаллаш юкъадахкахь."
+
+msgid "Please describe the evidence in detail."
+msgstr "Тоьшаллех лаьцна дийцахь, кегий хIуманаш юкъах ца дуьтуш"
+
+msgid ""
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr "Чуделлачу тоьшаллин ма-дарра сурт хIотторо аьтто бийр бу тхан хааман мах хадо а, таллам бан а. Шайн ма-хуьллу видеошций, васташций, документашций тIечIагIбейша шайн хаам."
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "Хьайн арз кхечу цхьаьнакхетараллашка я нахе дахьийтиний ахь?"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "Хилларг дуьйцуш, ахь хаам бахьийтина долу цхьаьнакхетараллаш а, нах а балабехьа кхузахь."
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "Оцу цхьаьнакхетараллаша теллиний ахь чIагIдеш дерг? Теллинехь, жамI хIун бара?"
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "Тхан гIорторца хIун Iалашоне кхача лууш ву/ю хьо?"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Хьайн цIарх лаьцна информаци яла лаьий хьуна?"

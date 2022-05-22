@@ -480,64 +480,6 @@ msgstr ""
 msgid "Revoke access"
 msgstr "Thu hồi quyền truy cập"
 
-msgid "Please summarize your report in a few words."
-msgstr "Mô tả ngắn gọn về báo cáo của bạn. "
-
-msgid "Where did the facts happen?"
-msgstr "Sự cố xảy ra ở đâu?"
-
-msgid "When did the facts happen?"
-msgstr "Sự cố xảy ra lúc nào?"
-
-msgid "How are you involved in the reported facts?"
-msgstr "Mối liên hệ của bạn với sự cố được báo cáo là gì?"
-
-msgid "I’m a victim"
-msgstr "Tôi là nạn nhân"
-
-msgid "I’m involved in the facts"
-msgstr "Tôi có liên quan trong sự cố"
-
-msgid "I witnessed the facts in person"
-msgstr "Tôi chứng kiến tận mắt sự cố"
-
-msgid "I was personally told by a direct witness"
-msgstr "Tôi được một nhân chứng trực tiếp kể lại"
-
-msgid "It is a rumor I heard"
-msgstr "Tin đồn--Tôi nghe về việc này"
-
-msgid "Do you have evidence to support your report?"
-msgstr "Bạn có bằng chứng để hỗ trợ báo cáo của mình không?"
-
-msgid "Please attach the evidence to support your report."
-msgstr "Xin đính kèm bằng chứng để hỗ trợ báo cáo của mình."
-
-msgid "Please describe the evidence in detail."
-msgstr "Xin mô tả chi tiết bằng chứng."
-
-msgid ""
-"A thorough description of the submitted evidence enhances our ability to "
-"evaluate claims and investigate. Please take care to reference significant "
-"portions of any videos, images or documents submitted."
-msgstr ""
-
-msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr "Bạn có đã báo cáo sự cố này cho các tổ chức khác không?"
-
-msgid ""
-"Please list the organizations and/or individuals you have informed about "
-"these facts."
-msgstr "Xin liệt kê những tổ chức bạn đã thông báo về sự cố này."
-
-msgid ""
-"Have these organizations investigated your claims? If so, what was the "
-"outcome?"
-msgstr "Những tổ chức này có điều tra lời khai của bạn không? Nếu có, kết quả là gì?"
-
-msgid "What is the outcome you want to achieve with our support?"
-msgstr "Kết quả mà bạn muốn thấy/đạt được là gì?"
-
 msgid "File a report"
 msgstr "Nộp báo cáo"
 
@@ -831,12 +773,6 @@ msgstr "Giá trị"
 
 msgid "Medium"
 msgstr "Vừa"
-
-msgid "Customize the message shown in the receipt page"
-msgstr "Tùy biến tin nhắn hiển thị trong trang biên nhận"
-
-msgid "Assign the receipt only to reports reaching score:"
-msgstr "Thêm biên nhận vào các báo cáo đạt điểm:"
 
 msgid "Software version:"
 msgstr "Phiên bản phần mềm:"
@@ -1605,14 +1541,66 @@ msgstr "Tôi đã đọc và đồng ý với các điều khoản của giấy 
 msgid "You have completed the platform wizard."
 msgstr "Bạn đã hoàn tất trình hướng dẫn hệ thống."
 
+msgid "Please summarize your report in a few words."
+msgstr "Mô tả ngắn gọn về báo cáo của bạn. "
+
 msgid "Describe your report in detail."
 msgstr "Mô tả một cách chi tiết về báo cáo của bạn."
+
+msgid "Where did the facts happen?"
+msgstr "Sự cố xảy ra ở đâu?"
+
+msgid "When did the facts happen?"
+msgstr "Sự cố xảy ra lúc nào?"
 
 msgid "I'm a victim"
 msgstr ""
 
 msgid "I'm involved in the facts"
 msgstr ""
+
+msgid "I witnessed the facts in person"
+msgstr "Tôi chứng kiến tận mắt sự cố"
+
+msgid "I was personally told by a direct witness"
+msgstr "Tôi được một nhân chứng trực tiếp kể lại"
+
+msgid "It is a rumor I heard"
+msgstr "Tin đồn--Tôi nghe về việc này"
+
+msgid "How are you involved in the reported facts?"
+msgstr "Mối liên hệ của bạn với sự cố được báo cáo là gì?"
+
+msgid "Do you have evidence to support your report?"
+msgstr "Bạn có bằng chứng để hỗ trợ báo cáo của mình không?"
+
+msgid "Please attach the evidence to support your report."
+msgstr "Xin đính kèm bằng chứng để hỗ trợ báo cáo của mình."
+
+msgid "Please describe the evidence in detail."
+msgstr "Xin mô tả chi tiết bằng chứng."
+
+msgid ""
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr ""
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "Bạn có đã báo cáo sự cố này cho các tổ chức khác không?"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "Xin liệt kê những tổ chức bạn đã thông báo về sự cố này."
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "Những tổ chức này có điều tra lời khai của bạn không? Nếu có, kết quả là gì?"
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "Kết quả mà bạn muốn thấy/đạt được là gì?"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Bạn muốn cung cấp thông tin về danh tính của bạn?"

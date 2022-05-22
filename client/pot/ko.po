@@ -466,64 +466,6 @@ msgstr ""
 msgid "Revoke access"
 msgstr "권한 무효화"
 
-msgid "Please summarize your report in a few words."
-msgstr "몇 마디로 보고서를 설명해 주십시오."
-
-msgid "Where did the facts happen?"
-msgstr "사건은 어디에서 일어났습니까?"
-
-msgid "When did the facts happen?"
-msgstr "사건은 언제 일어났습니까?"
-
-msgid "How are you involved in the reported facts?"
-msgstr "보고된 사건에서 귀하는 어떻게 개입되어 있습니까?"
-
-msgid "I’m a victim"
-msgstr "저는 피해자입니다."
-
-msgid "I’m involved in the facts"
-msgstr "저는 사건에 연루되었습니다."
-
-msgid "I witnessed the facts in person"
-msgstr "저는 사건의 직접적 증인입니다."
-
-msgid "I was personally told by a direct witness"
-msgstr "저는 직접적 증인으로부터 개인적으로 사건에 관한 이야기를 들었습니다."
-
-msgid "It is a rumor I heard"
-msgstr "저는 사건에 관한 소문을 들었습니다."
-
-msgid "Do you have evidence to support your report?"
-msgstr "귀하의 보고를 뒷받침할 증거가 있습니까?"
-
-msgid "Please attach the evidence to support your report."
-msgstr "귀하의 보고를 뒷받침할 증거를 첨부해 주십시오."
-
-msgid "Please describe the evidence in detail."
-msgstr "증거에 관해 자세히 설명해 주십시오."
-
-msgid ""
-"A thorough description of the submitted evidence enhances our ability to "
-"evaluate claims and investigate. Please take care to reference significant "
-"portions of any videos, images or documents submitted."
-msgstr "제출된 증거에 관한 자세한 설명은 귀하의 주장을 평가하고 조사하는 데 큰 도움이 됩니다. 증거로 제출한 동영상, 이미지 또는 문서를 최대한 참고 자료로 사용하려고 노력하십시오."
-
-msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr "귀하는 해당 사건을 다른 기관에 보고했습니까?"
-
-msgid ""
-"Please list the organizations and/or individuals you have informed about "
-"these facts."
-msgstr "귀하가 본 사건에 관해 알린 조직을 나열해 주십시오."
-
-msgid ""
-"Have these organizations investigated your claims? If so, what was the "
-"outcome?"
-msgstr "해당 기관에서 귀하의 주장을 조사했습니까? 그렇다면 결과는 어땠습니까?"
-
-msgid "What is the outcome you want to achieve with our support?"
-msgstr "귀하가 보고 싶거나 달성하고 싶은 결과는 무엇입니까?"
-
 msgid "File a report"
 msgstr "보고서 보관"
 
@@ -817,12 +759,6 @@ msgstr "값"
 
 msgid "Medium"
 msgstr "중간"
-
-msgid "Customize the message shown in the receipt page"
-msgstr "수신 페이지에 표시되는 메시지 사용자 정의"
-
-msgid "Assign the receipt only to reports reaching score:"
-msgstr "다음 점수에 도달한 보고서에만 수신 할당:"
 
 msgid "Software version:"
 msgstr "소프트웨어 버전:"
@@ -1591,14 +1527,66 @@ msgstr "라이선스 약관을 읽었으며 이에 동의합니다."
 msgid "You have completed the platform wizard."
 msgstr "성공적으로 플랫폼 마법사를 완료했습니다."
 
+msgid "Please summarize your report in a few words."
+msgstr "몇 마디로 보고서를 설명해 주십시오."
+
 msgid "Describe your report in detail."
 msgstr "보고서를 자세히 설명해 주십시오."
+
+msgid "Where did the facts happen?"
+msgstr "사건은 어디에서 일어났습니까?"
+
+msgid "When did the facts happen?"
+msgstr "사건은 언제 일어났습니까?"
 
 msgid "I'm a victim"
 msgstr "저는 피해자입니다."
 
 msgid "I'm involved in the facts"
 msgstr "저는 사건에 연루되었습니다."
+
+msgid "I witnessed the facts in person"
+msgstr "저는 사건의 직접적 증인입니다."
+
+msgid "I was personally told by a direct witness"
+msgstr "저는 직접적 증인으로부터 개인적으로 사건에 관한 이야기를 들었습니다."
+
+msgid "It is a rumor I heard"
+msgstr "저는 사건에 관한 소문을 들었습니다."
+
+msgid "How are you involved in the reported facts?"
+msgstr "보고된 사건에서 귀하는 어떻게 개입되어 있습니까?"
+
+msgid "Do you have evidence to support your report?"
+msgstr "귀하의 보고를 뒷받침할 증거가 있습니까?"
+
+msgid "Please attach the evidence to support your report."
+msgstr "귀하의 보고를 뒷받침할 증거를 첨부해 주십시오."
+
+msgid "Please describe the evidence in detail."
+msgstr "증거에 관해 자세히 설명해 주십시오."
+
+msgid ""
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr "제출된 증거에 관한 자세한 설명은 귀하의 주장을 평가하고 조사하는 데 큰 도움이 됩니다. 증거로 제출한 동영상, 이미지 또는 문서를 최대한 참고 자료로 사용하려고 노력하십시오."
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "귀하는 해당 사건을 다른 기관에 보고했습니까?"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "귀하가 본 사건에 관해 알린 조직을 나열해 주십시오."
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "해당 기관에서 귀하의 주장을 조사했습니까? 그렇다면 결과는 어땠습니까?"
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "귀하가 보고 싶거나 달성하고 싶은 결과는 무엇입니까?"
 
 msgid "Do you want to provide your identification information?"
 msgstr "사용자의 식별 정보를 제공하시겠습니까?"

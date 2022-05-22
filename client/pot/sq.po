@@ -474,64 +474,6 @@ msgstr "Akordoji hyrje"
 msgid "Revoke access"
 msgstr "Shfuqizoji hyrjen"
 
-msgid "Please summarize your report in a few words."
-msgstr "Ju lutemi, përmblidhni në pak fjalë raportimin tuaj."
-
-msgid "Where did the facts happen?"
-msgstr "Ku ndodhën gjërat?"
-
-msgid "When did the facts happen?"
-msgstr "Ku ndodhën gjërat?"
-
-msgid "How are you involved in the reported facts?"
-msgstr "Si lidheni ju me gjërat e raportuara?"
-
-msgid "I’m a victim"
-msgstr "Jam viktimë"
-
-msgid "I’m involved in the facts"
-msgstr "Jam i përzierë me gjërat"
-
-msgid "I witnessed the facts in person"
-msgstr "I pashë gjërat me sytë e mi"
-
-msgid "I was personally told by a direct witness"
-msgstr "M’i ka treguar një dëshmitar i drejtpërdrejtë"
-
-msgid "It is a rumor I heard"
-msgstr "E kam me të dëgjuar"
-
-msgid "Do you have evidence to support your report?"
-msgstr "Keni fakte për të mbështetur raportimin tuaj?"
-
-msgid "Please attach the evidence to support your report."
-msgstr "Ju lutemi, bashkëngjitni faktet për të mbështetur raportimin tua."
-
-msgid "Please describe the evidence in detail."
-msgstr "Ju lutemi, përshkruajini hollësisht faktet."
-
-msgid ""
-"A thorough description of the submitted evidence enhances our ability to "
-"evaluate claims and investigate. Please take care to reference significant "
-"portions of any videos, images or documents submitted."
-msgstr "Një përshkrim i plotë i fakteve të parashtruara thellon aftësinë tonë për të vlerësuar pretendimet dhe për të hetuar. Ju lutemi, bëni kujdes të jepni referenca për pjesë domethënëse të çfarëdo videoje, figurash ose dokumentesh të parashtruar."
-
-msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr "A i keni raportuar gjërat te të tjera ente dhe/ose individë?"
-
-msgid ""
-"Please list the organizations and/or individuals you have informed about "
-"these facts."
-msgstr "Ju lutemi, radhitni entet dhe/ose individët që keni informuar mbi këto gjëra."
-
-msgid ""
-"Have these organizations investigated your claims? If so, what was the "
-"outcome?"
-msgstr "A i kanë hetuar pretendimet tuaja këto ente? Nëse po, ç’doli prej kësaj?"
-
-msgid "What is the outcome you want to achieve with our support?"
-msgstr "Cili është përfundimi që doni të arrini me mbështetjen tonë?"
-
 msgid "File a report"
 msgstr "Depozitoni një raportim"
 
@@ -825,12 +767,6 @@ msgstr "Vlerë"
 
 msgid "Medium"
 msgstr "Mesatar"
-
-msgid "Customize the message shown in the receipt page"
-msgstr "Përshtatni mesazhin e shfaqur te faqja e dëftesës"
-
-msgid "Assign the receipt only to reports reaching score:"
-msgstr "Përshoqërojani dëftesën vetëm raportimeve që kapin pikët:"
 
 msgid "Software version:"
 msgstr "Version software-i:"
@@ -1599,14 +1535,66 @@ msgstr "I kam lexuar dhe pajtohem me kushtet e licencës."
 msgid "You have completed the platform wizard."
 msgstr "Keni plotësuar hapat e ndihmësit të platformës."
 
+msgid "Please summarize your report in a few words."
+msgstr "Ju lutemi, përmblidhni në pak fjalë raportimin tuaj."
+
 msgid "Describe your report in detail."
 msgstr "Përshkruajeni hollësisht raportimin tuaj."
+
+msgid "Where did the facts happen?"
+msgstr "Ku ndodhën gjërat?"
+
+msgid "When did the facts happen?"
+msgstr "Ku ndodhën gjërat?"
 
 msgid "I'm a victim"
 msgstr "Jam viktimë"
 
 msgid "I'm involved in the facts"
 msgstr "Jam i përzierë me gjërat"
+
+msgid "I witnessed the facts in person"
+msgstr "I pashë gjërat me sytë e mi"
+
+msgid "I was personally told by a direct witness"
+msgstr "M’i ka treguar një dëshmitar i drejtpërdrejtë"
+
+msgid "It is a rumor I heard"
+msgstr "E kam me të dëgjuar"
+
+msgid "How are you involved in the reported facts?"
+msgstr "Si lidheni ju me gjërat e raportuara?"
+
+msgid "Do you have evidence to support your report?"
+msgstr "Keni fakte për të mbështetur raportimin tuaj?"
+
+msgid "Please attach the evidence to support your report."
+msgstr "Ju lutemi, bashkëngjitni faktet për të mbështetur raportimin tua."
+
+msgid "Please describe the evidence in detail."
+msgstr "Ju lutemi, përshkruajini hollësisht faktet."
+
+msgid ""
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr "Një përshkrim i plotë i fakteve të parashtruara thellon aftësinë tonë për të vlerësuar pretendimet dhe për të hetuar. Ju lutemi, bëni kujdes të jepni referenca për pjesë domethënëse të çfarëdo videoje, figurash ose dokumentesh të parashtruar."
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "A i keni raportuar gjërat te të tjera ente dhe/ose individë?"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "Ju lutemi, radhitni entet dhe/ose individët që keni informuar mbi këto gjëra."
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "A i kanë hetuar pretendimet tuaja këto ente? Nëse po, ç’doli prej kësaj?"
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "Cili është përfundimi që doni të arrini me mbështetjen tonë?"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Doni të jepni hollësi për identifikimin tuaj?"

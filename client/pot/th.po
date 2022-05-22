@@ -475,64 +475,6 @@ msgstr "มอบสิทธิเข้าถึง"
 msgid "Revoke access"
 msgstr "เพิกถอนการเข้าถึง"
 
-msgid "Please summarize your report in a few words."
-msgstr "อธิบายรายงานของคุณในไม่กี่คำ"
-
-msgid "Where did the facts happen?"
-msgstr "เหตุการณ์ดังกล่าวเกิดขึ้นที่ใด?"
-
-msgid "When did the facts happen?"
-msgstr "เหตุการณ์ดังกล่าวเกิดขึ้นเมื่อใด?"
-
-msgid "How are you involved in the reported facts?"
-msgstr "คุณมีความเกี่ยวข้องกับเหตุที่รายงานอย่างไร?"
-
-msgid "I’m a victim"
-msgstr "ฉันเป็นผู้เสียหาย"
-
-msgid "I’m involved in the facts"
-msgstr "ฉันเป็นผู้เกี่ยวข้องในเหตุการณ์"
-
-msgid "I witnessed the facts in person"
-msgstr "ฉันเป็นพยานในเหตุการณ์"
-
-msgid "I was personally told by a direct witness"
-msgstr "ฉันได้รับคำบอกเล่าจากพยานในเหตุการณ์โดยตรง"
-
-msgid "It is a rumor I heard"
-msgstr "ข่าวลือ--ฉันได้ยินมา"
-
-msgid "Do you have evidence to support your report?"
-msgstr "คุณมีหลักฐานสนับสนุนการรายงานของคุณหรือไม่?"
-
-msgid "Please attach the evidence to support your report."
-msgstr "โปรดแนบหลักฐานสนับสนุนรายงานของคุณ"
-
-msgid "Please describe the evidence in detail."
-msgstr "โปรดอธิบายหลักฐานโดยละเอียด"
-
-msgid ""
-"A thorough description of the submitted evidence enhances our ability to "
-"evaluate claims and investigate. Please take care to reference significant "
-"portions of any videos, images or documents submitted."
-msgstr "คำอธิบายโดยละเอียดของหลักฐานที่ส่งเข้ามาจะช่วยเพิ่มขีดความสามารถของเราในการประเมินข้อเรียกร้องและการตรวจสอบ โปรดเลือกวิดีโอ ภาพ หรือเอกสารเฉพาะส่วนที่สำคัญเพื่อส่งมาเป็นหลักฐาน"
-
-msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr "คุณได้รายงานเหตุการณ์ไปยังองค์กรอื่นบ้างหรือไม่?"
-
-msgid ""
-"Please list the organizations and/or individuals you have informed about "
-"these facts."
-msgstr "โปรดระบุชื่อองค์กรที่คุณได้แจ้งเหตุการณ์นี้"
-
-msgid ""
-"Have these organizations investigated your claims? If so, what was the "
-"outcome?"
-msgstr "องค์กรเหล่านี้ตรวจสอบข้อเรียกร้องของคุณหรือไม่? ถ้าใช่ ผลลัพธ์เป็นอย่างไร?"
-
-msgid "What is the outcome you want to achieve with our support?"
-msgstr "คุณอยากให้/เห็นผลลัพธ์ออกมาเป็นอย่างไร?"
-
 msgid "File a report"
 msgstr "ยื่นรายงาน"
 
@@ -826,12 +768,6 @@ msgstr "ค่า"
 
 msgid "Medium"
 msgstr "กลาง"
-
-msgid "Customize the message shown in the receipt page"
-msgstr "ปรับแต่งข้อความที่แสดงบนหน้าใบรับ"
-
-msgid "Assign the receipt only to reports reaching score:"
-msgstr "กำหนดใบรับให้กับรายงานก็ต่อเมื่อคะแนนถึง:"
 
 msgid "Software version:"
 msgstr "เวอร์ชันซอฟต์แวร์:"
@@ -1600,14 +1536,66 @@ msgstr "ฉันได้อ่านและยอมรับเงื่อ
 msgid "You have completed the platform wizard."
 msgstr "คุณได้ดำเนินการตัวช่วยตั้งค่าแพล็ตฟอร์มเสร็จสิ้นแล้ว"
 
+msgid "Please summarize your report in a few words."
+msgstr "อธิบายรายงานของคุณในไม่กี่คำ"
+
 msgid "Describe your report in detail."
 msgstr "อธิบายรายงานของคุณอย่างยละเอียด"
+
+msgid "Where did the facts happen?"
+msgstr "เหตุการณ์ดังกล่าวเกิดขึ้นที่ใด?"
+
+msgid "When did the facts happen?"
+msgstr "เหตุการณ์ดังกล่าวเกิดขึ้นเมื่อใด?"
 
 msgid "I'm a victim"
 msgstr "ฉันเป็นผู้เสียหาย"
 
 msgid "I'm involved in the facts"
 msgstr "ฉันเป็นผู้เกี่ยวข้องในเหตุการณ์"
+
+msgid "I witnessed the facts in person"
+msgstr "ฉันเป็นพยานในเหตุการณ์"
+
+msgid "I was personally told by a direct witness"
+msgstr "ฉันได้รับคำบอกเล่าจากพยานในเหตุการณ์โดยตรง"
+
+msgid "It is a rumor I heard"
+msgstr "ข่าวลือ--ฉันได้ยินมา"
+
+msgid "How are you involved in the reported facts?"
+msgstr "คุณมีความเกี่ยวข้องกับเหตุที่รายงานอย่างไร?"
+
+msgid "Do you have evidence to support your report?"
+msgstr "คุณมีหลักฐานสนับสนุนการรายงานของคุณหรือไม่?"
+
+msgid "Please attach the evidence to support your report."
+msgstr "โปรดแนบหลักฐานสนับสนุนรายงานของคุณ"
+
+msgid "Please describe the evidence in detail."
+msgstr "โปรดอธิบายหลักฐานโดยละเอียด"
+
+msgid ""
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr "คำอธิบายโดยละเอียดของหลักฐานที่ส่งเข้ามาจะช่วยเพิ่มขีดความสามารถของเราในการประเมินข้อเรียกร้องและการตรวจสอบ โปรดเลือกวิดีโอ ภาพ หรือเอกสารเฉพาะส่วนที่สำคัญเพื่อส่งมาเป็นหลักฐาน"
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "คุณได้รายงานเหตุการณ์ไปยังองค์กรอื่นบ้างหรือไม่?"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "โปรดระบุชื่อองค์กรที่คุณได้แจ้งเหตุการณ์นี้"
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "องค์กรเหล่านี้ตรวจสอบข้อเรียกร้องของคุณหรือไม่? ถ้าใช่ ผลลัพธ์เป็นอย่างไร?"
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "คุณอยากให้/เห็นผลลัพธ์ออกมาเป็นอย่างไร?"
 
 msgid "Do you want to provide your identification information?"
 msgstr "คุณต้องการให้ข้อมูลที่ระบุตัวตนของคุณหรือไม่"

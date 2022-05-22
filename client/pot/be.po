@@ -466,64 +466,6 @@ msgstr "Даць доступ"
 msgid "Revoke access"
 msgstr "Адклікаць доступ"
 
-msgid "Please summarize your report in a few words."
-msgstr "Апішыце сваю справаздачу ў некалькіх словах."
-
-msgid "Where did the facts happen?"
-msgstr "Дзе мелі месца дадзеныя факты?"
-
-msgid "When did the facts happen?"
-msgstr "Калі мелі месца дадзеныя факты?"
-
-msgid "How are you involved in the reported facts?"
-msgstr "Якое дачыненне вы маеце да пералічаных фактаў?"
-
-msgid "I’m a victim"
-msgstr "Я - ахвяра"
-
-msgid "I’m involved in the facts"
-msgstr "Я маю непасрэднае дачыненне да гэтых фактаў"
-
-msgid "I witnessed the facts in person"
-msgstr "Я асабіста быў/ла сведкам гэтых фактаў"
-
-msgid "I was personally told by a direct witness"
-msgstr "Мне асабіста паведаміў/ла непасрэдны/ая сведка гэтых фактаў"
-
-msgid "It is a rumor I heard"
-msgstr "Да мяне даходзілі такія чуткі"
-
-msgid "Do you have evidence to support your report?"
-msgstr "Якія ў вас ёсць доказы ў падтрымку вашай справаздачы?"
-
-msgid "Please attach the evidence to support your report."
-msgstr "Калі ласка, далучыце доказы ў падтрымку вашай справаздачы."
-
-msgid "Please describe the evidence in detail."
-msgstr "Калі ласка, падрабязна апішыце наяўныя доказы."
-
-msgid ""
-"A thorough description of the submitted evidence enhances our ability to "
-"evaluate claims and investigate. Please take care to reference significant "
-"portions of any videos, images or documents submitted."
-msgstr "Дэталёвае апісанне прадстаўленых доказаў дазволіць нам лепш ацаніць звесткі пра злоўжыванні і іх расследаваць. Калі ласка, пастарайцеся даць добрае апісанне любых прадстаўленых вамі відэа, здымкаў або дакументаў."
-
-msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr "Ці вы паведамлялі пра гэтыя факты іншым арганізацыям і/або асобам?"
-
-msgid ""
-"Please list the organizations and/or individuals you have informed about "
-"these facts."
-msgstr "Калі ласка, пералічыце арганізацыі і/або асобаў, якіх вы праінфармавалі пра згаданыя факты."
-
-msgid ""
-"Have these organizations investigated your claims? If so, what was the "
-"outcome?"
-msgstr "Ці расследавалі гэтыя арганізацыі вашы звесткі пра злоўжыванні? Калі так, то які быў вынік?"
-
-msgid "What is the outcome you want to achieve with our support?"
-msgstr "Якога выніку вы хочаце дасягнуць з дапамогай нашай падтрымкі?"
-
 msgid "File a report"
 msgstr "Падаць справаздачу"
 
@@ -817,12 +759,6 @@ msgstr "Значэнне"
 
 msgid "Medium"
 msgstr "Сярэдняе"
-
-msgid "Customize the message shown in the receipt page"
-msgstr "Наладзьце паведамленне, якое адлюстроўваецца на старонцы пацверджання атрымання справаздачы"
-
-msgid "Assign the receipt only to reports reaching score:"
-msgstr "Выдаваць пацверджанне атрымання толькі для справаздач, якія набіраюць наступную колькасць балаў:"
 
 msgid "Software version:"
 msgstr "Версія праграмнага абсталявання"
@@ -1591,14 +1527,66 @@ msgstr "Я прачытаў і згаджаюся з умовамі ліцэнз
 msgid "You have completed the platform wizard."
 msgstr "Вы завяршылі працу па стварэнні платформы."
 
+msgid "Please summarize your report in a few words."
+msgstr "Апішыце сваю справаздачу ў некалькіх словах."
+
 msgid "Describe your report in detail."
 msgstr "Даць падрабязнае апісанне сваёй справаздачы."
+
+msgid "Where did the facts happen?"
+msgstr "Дзе мелі месца дадзеныя факты?"
+
+msgid "When did the facts happen?"
+msgstr "Калі мелі месца дадзеныя факты?"
 
 msgid "I'm a victim"
 msgstr "Я - ахвяра"
 
 msgid "I'm involved in the facts"
 msgstr "Я маю непасрэднае дачыненне да гэтых фактаў"
+
+msgid "I witnessed the facts in person"
+msgstr "Я асабіста быў/ла сведкам гэтых фактаў"
+
+msgid "I was personally told by a direct witness"
+msgstr "Мне асабіста паведаміў/ла непасрэдны/ая сведка гэтых фактаў"
+
+msgid "It is a rumor I heard"
+msgstr "Да мяне даходзілі такія чуткі"
+
+msgid "How are you involved in the reported facts?"
+msgstr "Якое дачыненне вы маеце да пералічаных фактаў?"
+
+msgid "Do you have evidence to support your report?"
+msgstr "Якія ў вас ёсць доказы ў падтрымку вашай справаздачы?"
+
+msgid "Please attach the evidence to support your report."
+msgstr "Калі ласка, далучыце доказы ў падтрымку вашай справаздачы."
+
+msgid "Please describe the evidence in detail."
+msgstr "Калі ласка, падрабязна апішыце наяўныя доказы."
+
+msgid ""
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr "Дэталёвае апісанне прадстаўленых доказаў дазволіць нам лепш ацаніць звесткі пра злоўжыванні і іх расследаваць. Калі ласка, пастарайцеся даць добрае апісанне любых прадстаўленых вамі відэа, здымкаў або дакументаў."
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "Ці вы паведамлялі пра гэтыя факты іншым арганізацыям і/або асобам?"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "Калі ласка, пералічыце арганізацыі і/або асобаў, якіх вы праінфармавалі пра згаданыя факты."
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "Ці расследавалі гэтыя арганізацыі вашы звесткі пра злоўжыванні? Калі так, то які быў вынік?"
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "Якога выніку вы хочаце дасягнуць з дапамогай нашай падтрымкі?"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Вы хочаце ідэнтыфікаваць сябе?"

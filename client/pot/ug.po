@@ -467,64 +467,6 @@ msgstr "ھوقۇق بەر"
 msgid "Revoke access"
 msgstr "ھوقۇقنى قايتۇرىۋال"
 
-msgid "Please summarize your report in a few words."
-msgstr "ئىككى ئېغىز گەپ بىلەن مەلۇماتىڭىزنى چۈشەندۈرۈڭ."
-
-msgid "Where did the facts happen?"
-msgstr ""
-
-msgid "When did the facts happen?"
-msgstr ""
-
-msgid "How are you involved in the reported facts?"
-msgstr ""
-
-msgid "I’m a victim"
-msgstr ""
-
-msgid "I’m involved in the facts"
-msgstr ""
-
-msgid "I witnessed the facts in person"
-msgstr ""
-
-msgid "I was personally told by a direct witness"
-msgstr ""
-
-msgid "It is a rumor I heard"
-msgstr ""
-
-msgid "Do you have evidence to support your report?"
-msgstr ""
-
-msgid "Please attach the evidence to support your report."
-msgstr ""
-
-msgid "Please describe the evidence in detail."
-msgstr ""
-
-msgid ""
-"A thorough description of the submitted evidence enhances our ability to "
-"evaluate claims and investigate. Please take care to reference significant "
-"portions of any videos, images or documents submitted."
-msgstr ""
-
-msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
-
-msgid ""
-"Please list the organizations and/or individuals you have informed about "
-"these facts."
-msgstr ""
-
-msgid ""
-"Have these organizations investigated your claims? If so, what was the "
-"outcome?"
-msgstr ""
-
-msgid "What is the outcome you want to achieve with our support?"
-msgstr ""
-
 msgid "File a report"
 msgstr "بىر مەلۇمات يوللا"
 
@@ -818,12 +760,6 @@ msgstr "قىممەت"
 
 msgid "Medium"
 msgstr "ئوتتۇرىھال"
-
-msgid "Customize the message shown in the receipt page"
-msgstr "تالون بېتىدە كۆرسىتىلىدىغان ئۇچۇرنى خاسلاشتۇر"
-
-msgid "Assign the receipt only to reports reaching score:"
-msgstr "پەقەت نومۇرى يەتكەن مەلۇماتلارغىلا تالون تەقسىملە:"
 
 msgid "Software version:"
 msgstr "يۇمشاق دېتال نەشرى:"
@@ -1592,13 +1528,65 @@ msgstr "مەن ئىجازەت شەرتلىرىنى ئوقۇدۇم ھەمدە ق�
 msgid "You have completed the platform wizard."
 msgstr "سۇپا سېھىرگەرىنى پۈتتتۈردىڭىز."
 
+msgid "Please summarize your report in a few words."
+msgstr "ئىككى ئېغىز گەپ بىلەن مەلۇماتىڭىزنى چۈشەندۈرۈڭ."
+
 msgid "Describe your report in detail."
 msgstr "دوكلاتىڭىزنى تەپسىلىي چۈشەندۈرۈڭ."
+
+msgid "Where did the facts happen?"
+msgstr ""
+
+msgid "When did the facts happen?"
+msgstr ""
 
 msgid "I'm a victim"
 msgstr ""
 
 msgid "I'm involved in the facts"
+msgstr ""
+
+msgid "I witnessed the facts in person"
+msgstr ""
+
+msgid "I was personally told by a direct witness"
+msgstr ""
+
+msgid "It is a rumor I heard"
+msgstr ""
+
+msgid "How are you involved in the reported facts?"
+msgstr ""
+
+msgid "Do you have evidence to support your report?"
+msgstr ""
+
+msgid "Please attach the evidence to support your report."
+msgstr ""
+
+msgid "Please describe the evidence in detail."
+msgstr ""
+
+msgid ""
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr ""
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr ""
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr ""
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr ""
+
+msgid "What is the outcome you want to achieve with our support?"
 msgstr ""
 
 msgid "Do you want to provide your identification information?"

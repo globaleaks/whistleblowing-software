@@ -465,64 +465,6 @@ msgstr "Иришимге изин бермек"
 msgid "Revoke access"
 msgstr "Иришимни ред этмек"
 
-msgid "Please summarize your report in a few words."
-msgstr "Эсабатынъызны къыскъадан тариф этинъиз."
-
-msgid "Where did the facts happen?"
-msgstr "Фактлар къайда олды?"
-
-msgid "When did the facts happen?"
-msgstr "Фактлар не заман олды?"
-
-msgid "How are you involved in the reported facts?"
-msgstr "Сиз хабер этильген фактларгъа насыл шекильде алякъадарсынъыз?"
-
-msgid "I’m a victim"
-msgstr "Мен бунынъ къурбаны олам"
-
-msgid "I’m involved in the facts"
-msgstr "Мен фактларгъа алякъадарым"
-
-msgid "I witnessed the facts in person"
-msgstr "Мен шахсен бу фактларнынъ шааты олдым"
-
-msgid "I was personally told by a direct witness"
-msgstr "Манъа буны шахсен шаат олгъан инсан айтты"
-
-msgid "It is a rumor I heard"
-msgstr "Бу мен эшиткен ошек"
-
-msgid "Do you have evidence to support your report?"
-msgstr "Эсабатынъызны тасдикълагъан делиллер бармы?"
-
-msgid "Please attach the evidence to support your report."
-msgstr "Эсабатынъызны исбатлагъан делиллерни иляве этинъиз."
-
-msgid "Please describe the evidence in detail."
-msgstr "Лютфен, делиллерни тафсилятлы тариф этинъиз."
-
-msgid ""
-"A thorough description of the submitted evidence enhances our ability to "
-"evaluate claims and investigate. Please take care to reference significant "
-"portions of any videos, images or documents submitted."
-msgstr "Кетирильген делиллернинъ тафсилятлы тарифи бизге иддиа ве такъикъатларгъа къыймет кесме имкянларыны кенишлете. Эр бир ёлланылгъан видео, ресим я да весикъаларнынъ муим къысмыны къайд этинъиз."
-
-msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr "Башкъа тешкилят ве / я да айры шахысларгъа фактларны айттынъызмы?"
-
-msgid ""
-"Please list the organizations and/or individuals you have informed about "
-"these facts."
-msgstr "Бу фактлар акъкъында хабер эткенинъиз тешкилят ве / я да айры шахысларны сайынъыз."
-
-msgid ""
-"Have these organizations investigated your claims? If so, what was the "
-"outcome?"
-msgstr "Бу тешкилятлар иддиаларынъызны тедкъикъ эттилерми? Эткен олсалар, нетиджеси насыл эди? "
-
-msgid "What is the outcome you want to achieve with our support?"
-msgstr "Ярдымымыз иле насыл нетиджеге иришмеге истейсинъиз?"
-
 msgid "File a report"
 msgstr "Эсабат бермек"
 
@@ -816,12 +758,6 @@ msgstr "Къыймет"
 
 msgid "Medium"
 msgstr "Орта"
-
-msgid "Customize the message shown in the receipt page"
-msgstr "Къабул саифесинде косьтерильген месажны сазлаштырмакъ"
-
-msgid "Assign the receipt only to reports reaching score:"
-msgstr "Тек бааларны алгъан эсабатларгъа алма квитанциясыны бермек:"
 
 msgid "Software version:"
 msgstr "Программа теминаты версиясы:"
@@ -1590,14 +1526,66 @@ msgstr "Мен лицензия шартларыны окъудым ве ола�
 msgid "You have completed the platform wizard."
 msgstr "Сиз  платформанынъ сазлама устасынен ишини битирдинъиз."
 
+msgid "Please summarize your report in a few words."
+msgstr "Эсабатынъызны къыскъадан тариф этинъиз."
+
 msgid "Describe your report in detail."
 msgstr "Эсабатынъызны тафсилятлы тариф этинъиз."
+
+msgid "Where did the facts happen?"
+msgstr "Фактлар къайда олды?"
+
+msgid "When did the facts happen?"
+msgstr "Фактлар не заман олды?"
 
 msgid "I'm a victim"
 msgstr "Мен бунынъ къурбаны олам"
 
 msgid "I'm involved in the facts"
 msgstr "Мен фактларгъа алякъадарым"
+
+msgid "I witnessed the facts in person"
+msgstr "Мен шахсен бу фактларнынъ шааты олдым"
+
+msgid "I was personally told by a direct witness"
+msgstr "Манъа буны шахсен шаат олгъан инсан айтты"
+
+msgid "It is a rumor I heard"
+msgstr "Бу мен эшиткен ошек"
+
+msgid "How are you involved in the reported facts?"
+msgstr "Сиз хабер этильген фактларгъа насыл шекильде алякъадарсынъыз?"
+
+msgid "Do you have evidence to support your report?"
+msgstr "Эсабатынъызны тасдикълагъан делиллер бармы?"
+
+msgid "Please attach the evidence to support your report."
+msgstr "Эсабатынъызны исбатлагъан делиллерни иляве этинъиз."
+
+msgid "Please describe the evidence in detail."
+msgstr "Лютфен, делиллерни тафсилятлы тариф этинъиз."
+
+msgid ""
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr "Кетирильген делиллернинъ тафсилятлы тарифи бизге иддиа ве такъикъатларгъа къыймет кесме имкянларыны кенишлете. Эр бир ёлланылгъан видео, ресим я да весикъаларнынъ муим къысмыны къайд этинъиз."
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "Башкъа тешкилят ве / я да айры шахысларгъа фактларны айттынъызмы?"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "Бу фактлар акъкъында хабер эткенинъиз тешкилят ве / я да айры шахысларны сайынъыз."
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "Бу тешкилятлар иддиаларынъызны тедкъикъ эттилерми? Эткен олсалар, нетиджеси насыл эди? "
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "Ярдымымыз иле насыл нетиджеге иришмеге истейсинъиз?"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Сиз озюнъиз акъкъында малюмат къалдырмакъ истейсинъизми?"

@@ -465,64 +465,6 @@ msgstr "د لاسرسي ورکول"
 msgid "Revoke access"
 msgstr "د لاسرسي لغوه کول"
 
-msgid "Please summarize your report in a few words."
-msgstr "خپل رپوټ په څو ټکو کې تشریح کړئ."
-
-msgid "Where did the facts happen?"
-msgstr "دا واقیعتونه چیرې پېښ شوي؟"
-
-msgid "When did the facts happen?"
-msgstr "دا واقیعتونه کله پېښ شوي؟"
-
-msgid "How are you involved in the reported facts?"
-msgstr "Сиз ал окуяга кандай тиешеңиз бар?"
-
-msgid "I’m a victim"
-msgstr "زه یو قرباني یم"
-
-msgid "I’m involved in the facts"
-msgstr "زه په پېښ شویو واقیعتونو کې ښکېل يم"
-
-msgid "I witnessed the facts in person"
-msgstr "زه خپله د واقیعتونو شاهد یم "
-
-msgid "I was personally told by a direct witness"
-msgstr "ماته خپله د عیني شاهد له خوا ویل شوي دي"
-
-msgid "It is a rumor I heard"
-msgstr "دا اوازه ده چې ما اوریدلې ده"
-
-msgid "Do you have evidence to support your report?"
-msgstr "تاسو د خپل راپور د ملاتړ لپاره شواهد لرئ؟"
-
-msgid "Please attach the evidence to support your report."
-msgstr "لطفاًً هغه شواهد ضمیمه کړئ چې ستاسو د راپور ملاتړ کوي."
-
-msgid "Please describe the evidence in detail."
-msgstr "لطفاً شواهد په جزییاتو تشریح کړئ. "
-
-msgid ""
-"A thorough description of the submitted evidence enhances our ability to "
-"evaluate claims and investigate. Please take care to reference significant "
-"portions of any videos, images or documents submitted."
-msgstr "د سپارل شویو شواهدو بشپړه تشریح د ادعاوو د اروزنې او څیړنې په برخه کې زموږ وړتیا زیاتوي. لطفاً پام مو وي چې د سپارل شویو ویډیوګانو، عکسونو او اسنادو د پام وړ برخو حواله ورکړئ. "
-
-msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr "ایا ددې واقیعتونو په اړه مو نورو سازمانونو او/یا اشخاصو ته راپور ورکړئ؟ "
-
-msgid ""
-"Please list the organizations and/or individuals you have informed about "
-"these facts."
-msgstr "لطفاً د هغو سازمانونو او/یا اشخاصو لیست ولیکئ چې تاسو په دې واقیعتونو خبر کړي دي."
-
-msgid ""
-"Have these organizations investigated your claims? If so, what was the "
-"outcome?"
-msgstr "ایا دې سازمانونو ستاسو ادعاوې څیړلي؟ که یې څېړلې وي پایلې یې څه وې؟ "
-
-msgid "What is the outcome you want to achieve with our support?"
-msgstr "تاسو زموږ په ملاتړ څه ډول یوه پایله غواړئ؟ "
-
 msgid "File a report"
 msgstr "د رپوټ ورکول"
 
@@ -816,12 +758,6 @@ msgstr "ارزښت"
 
 msgid "Medium"
 msgstr "منځنی"
-
-msgid "Customize the message shown in the receipt page"
-msgstr "د رسید په پاڼه کې ښودل شوی پیغام سفارشي کړئ"
-
-msgid "Assign the receipt only to reports reaching score:"
-msgstr "رسید یوازې د نمرو د تر لاسه کوونکو رپوټونو لپاره وګومارئ:"
 
 msgid "Software version:"
 msgstr "د سافټ ویر نسخه:"
@@ -1590,14 +1526,66 @@ msgstr "ما د جواز شرایط لوستي او ورسره هوکړه لرم
 msgid "You have completed the platform wizard."
 msgstr "تاسې د پلټفارم ویزرډ بشپړ کړ."
 
+msgid "Please summarize your report in a few words."
+msgstr "خپل رپوټ په څو ټکو کې تشریح کړئ."
+
 msgid "Describe your report in detail."
 msgstr "خپل رپوټ په جزئیاتو سره تشریح کړئ."
+
+msgid "Where did the facts happen?"
+msgstr "دا واقیعتونه چیرې پېښ شوي؟"
+
+msgid "When did the facts happen?"
+msgstr "دا واقیعتونه کله پېښ شوي؟"
 
 msgid "I'm a victim"
 msgstr ""
 
 msgid "I'm involved in the facts"
 msgstr ""
+
+msgid "I witnessed the facts in person"
+msgstr "زه خپله د واقیعتونو شاهد یم "
+
+msgid "I was personally told by a direct witness"
+msgstr "ماته خپله د عیني شاهد له خوا ویل شوي دي"
+
+msgid "It is a rumor I heard"
+msgstr "دا اوازه ده چې ما اوریدلې ده"
+
+msgid "How are you involved in the reported facts?"
+msgstr "Сиз ал окуяга кандай тиешеңиз бар?"
+
+msgid "Do you have evidence to support your report?"
+msgstr "تاسو د خپل راپور د ملاتړ لپاره شواهد لرئ؟"
+
+msgid "Please attach the evidence to support your report."
+msgstr "لطفاًً هغه شواهد ضمیمه کړئ چې ستاسو د راپور ملاتړ کوي."
+
+msgid "Please describe the evidence in detail."
+msgstr "لطفاً شواهد په جزییاتو تشریح کړئ. "
+
+msgid ""
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr "د سپارل شویو شواهدو بشپړه تشریح د ادعاوو د اروزنې او څیړنې په برخه کې زموږ وړتیا زیاتوي. لطفاً پام مو وي چې د سپارل شویو ویډیوګانو، عکسونو او اسنادو د پام وړ برخو حواله ورکړئ. "
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "ایا ددې واقیعتونو په اړه مو نورو سازمانونو او/یا اشخاصو ته راپور ورکړئ؟ "
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "لطفاً د هغو سازمانونو او/یا اشخاصو لیست ولیکئ چې تاسو په دې واقیعتونو خبر کړي دي."
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "ایا دې سازمانونو ستاسو ادعاوې څیړلي؟ که یې څېړلې وي پایلې یې څه وې؟ "
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "تاسو زموږ په ملاتړ څه ډول یوه پایله غواړئ؟ "
 
 msgid "Do you want to provide your identification information?"
 msgstr "ایا غواړئ چې خپل د پیژندګلوي معلومات ورکړئ؟"

@@ -49,7 +49,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 "mime-version: 1.0\n"
 
 msgid "Log in"
@@ -503,64 +503,6 @@ msgstr "Accorder l’accès"
 msgid "Revoke access"
 msgstr "Révoquer l’accès"
 
-msgid "Please summarize your report in a few words."
-msgstr "Veuillez résumer votre signalement en quelques mots."
-
-msgid "Where did the facts happen?"
-msgstr "Où les faits se sont-ils produits ?"
-
-msgid "When did the facts happen?"
-msgstr "Quand les faits se sont-ils produits ?"
-
-msgid "How are you involved in the reported facts?"
-msgstr "Quelle est votre implication dans les faits signalés ?"
-
-msgid "I’m a victim"
-msgstr "Je suis une victime"
-
-msgid "I’m involved in the facts"
-msgstr "Je suis impliqué dans les faits"
-
-msgid "I witnessed the facts in person"
-msgstr "J’ai été témoin des faits en personne"
-
-msgid "I was personally told by a direct witness"
-msgstr "Les faits m’ont été signalés par un témoin direct"
-
-msgid "It is a rumor I heard"
-msgstr "C’est une rumeur que j’ai entendue "
-
-msgid "Do you have evidence to support your report?"
-msgstr "Avez-vous une preuve pour étayer votre signalement ?"
-
-msgid "Please attach the evidence to support your report."
-msgstr "Veuillez joindre la preuve pour étayer votre signalement."
-
-msgid "Please describe the evidence in detail."
-msgstr "Veuillez décrire la preuve en détail."
-
-msgid ""
-"A thorough description of the submitted evidence enhances our ability to "
-"evaluate claims and investigate. Please take care to reference significant "
-"portions of any videos, images or documents submitted."
-msgstr "Une description détaillée de la preuve fournie augmente notre capacité à évaluer les affirmations et à les examiner. N’hésitez pas à souligner les parties importantes des vidéos, images ou documents envoyés."
-
-msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr "Avez-vous signalé les faits à d’autres organismes ou personnes ?"
-
-msgid ""
-"Please list the organizations and/or individuals you have informed about "
-"these facts."
-msgstr "Veuillez indiquer les organismes et personnes à qui vous avez signalé ces faits."
-
-msgid ""
-"Have these organizations investigated your claims? If so, what was the "
-"outcome?"
-msgstr "Ces organismes ont-ils examiné vos affirmations ? Dans l’affirmative, quels étaient des résultats ?"
-
-msgid "What is the outcome you want to achieve with our support?"
-msgstr "Quel résultat voulez-vous obtenir grâce à notre soutien ?"
-
 msgid "File a report"
 msgstr "Remplir un signalement"
 
@@ -854,12 +796,6 @@ msgstr "Valeur"
 
 msgid "Medium"
 msgstr "Moyen"
-
-msgid "Customize the message shown in the receipt page"
-msgstr "Personnaliser le message qui apparaît sur la page du reçu"
-
-msgid "Assign the receipt only to reports reaching score:"
-msgstr "N’attribuer le reçu qu’aux signalements qui atteignent ce pointage :"
 
 msgid "Software version:"
 msgstr "Version du logiciel :"
@@ -1628,14 +1564,66 @@ msgstr "J’ai lu et accepte les conditions de la licence."
 msgid "You have completed the platform wizard."
 msgstr "Vous avez terminé avec succès l’assistant de la plateforme."
 
+msgid "Please summarize your report in a few words."
+msgstr "Veuillez résumer votre signalement en quelques mots."
+
 msgid "Describe your report in detail."
 msgstr "Décrivez votre signalement en détail."
+
+msgid "Where did the facts happen?"
+msgstr "Où les faits se sont-ils produits ?"
+
+msgid "When did the facts happen?"
+msgstr "Quand les faits se sont-ils produits ?"
 
 msgid "I'm a victim"
 msgstr "Je suis une victime"
 
 msgid "I'm involved in the facts"
 msgstr "Je suis impliqué dans les faits"
+
+msgid "I witnessed the facts in person"
+msgstr "J’ai été témoin des faits en personne"
+
+msgid "I was personally told by a direct witness"
+msgstr "Les faits m’ont été signalés par un témoin direct"
+
+msgid "It is a rumor I heard"
+msgstr "C’est une rumeur que j’ai entendue "
+
+msgid "How are you involved in the reported facts?"
+msgstr "Quelle est votre implication dans les faits signalés ?"
+
+msgid "Do you have evidence to support your report?"
+msgstr "Avez-vous une preuve pour étayer votre signalement ?"
+
+msgid "Please attach the evidence to support your report."
+msgstr "Veuillez joindre la preuve pour étayer votre signalement."
+
+msgid "Please describe the evidence in detail."
+msgstr "Veuillez décrire la preuve en détail."
+
+msgid ""
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr "Une description détaillée de la preuve fournie augmente notre capacité à évaluer les affirmations et à les examiner. N’hésitez pas à souligner les parties importantes des vidéos, images ou documents envoyés."
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "Avez-vous signalé les faits à d’autres organismes ou personnes ?"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "Veuillez indiquer les organismes et personnes à qui vous avez signalé ces faits."
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "Ces organismes ont-ils examiné vos affirmations ? Dans l’affirmative, quels étaient des résultats ?"
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "Quel résultat voulez-vous obtenir grâce à notre soutien ?"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Voulez-vous fournir vos renseignements d’identification ?"

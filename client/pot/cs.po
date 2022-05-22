@@ -478,64 +478,6 @@ msgstr "Poskytnout přístup"
 msgid "Revoke access"
 msgstr "Odvolat přístup"
 
-msgid "Please summarize your report in a few words."
-msgstr "Popište své oznámení několika slovy."
-
-msgid "Where did the facts happen?"
-msgstr "Kde se to stalo?"
-
-msgid "When did the facts happen?"
-msgstr "Kdy se to stalo?"
-
-msgid "How are you involved in the reported facts?"
-msgstr "Jak jste zapojeni do uváděného oznámení?"
-
-msgid "I’m a victim"
-msgstr "Jsem oběť"
-
-msgid "I’m involved in the facts"
-msgstr "Jsem zapletený do faktů"
-
-msgid "I witnessed the facts in person"
-msgstr "Byl jsem svědkem"
-
-msgid "I was personally told by a direct witness"
-msgstr "Osobně mi to řekl svědek"
-
-msgid "It is a rumor I heard"
-msgstr "Je to fáma, kterou jsem slyšel"
-
-msgid "Do you have evidence to support your report?"
-msgstr "Máte důkazy na podporu svého oznámení?"
-
-msgid "Please attach the evidence to support your report."
-msgstr "Nahrajte soubory na podporu Vašeho oznámení."
-
-msgid "Please describe the evidence in detail."
-msgstr "Popiště Vaše oznámení do detailu."
-
-msgid ""
-"A thorough description of the submitted evidence enhances our ability to "
-"evaluate claims and investigate. Please take care to reference significant "
-"portions of any videos, images or documents submitted."
-msgstr "Důkladný popis předložených důkazů zvyšuje naši schopnost vyhodnotit nároky a prošetřit. Dávejte pozor, abyste odkazovali na významné části všech odeslaných videí, obrázků nebo dokumentů."
-
-msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr "Nahlásili jste skutečnosti jiným organizacím a/nebo osobám?"
-
-msgid ""
-"Please list the organizations and/or individuals you have informed about "
-"these facts."
-msgstr "Uveďte prosím organizace a/nebo osoby, které jste o těchto skutečnostech informovali."
-
-msgid ""
-"Have these organizations investigated your claims? If so, what was the "
-"outcome?"
-msgstr "Prošetřily tyto organizace vaše tvrzení? Pokud ano, jaký byl výsledek?"
-
-msgid "What is the outcome you want to achieve with our support?"
-msgstr "Jakého výsledku chcete s naší podporou dosáhnout?"
-
 msgid "File a report"
 msgstr "Podat oznámení"
 
@@ -829,12 +771,6 @@ msgstr "Hodnota"
 
 msgid "Medium"
 msgstr "Střední"
-
-msgid "Customize the message shown in the receipt page"
-msgstr "Upravte zprávu zobrazenou na stránce potvrzení příjmu"
-
-msgid "Assign the receipt only to reports reaching score:"
-msgstr "Přiřadit potvrzení pouze příspěvkům, které dosáhly skóre:"
 
 msgid "Software version:"
 msgstr "Verze software:"
@@ -1603,14 +1539,66 @@ msgstr "Přečetl/-a jsem si podmínky licence a souhlasím s nimi."
 msgid "You have completed the platform wizard."
 msgstr "Právě jste dokončili průvodce základním nastavením."
 
+msgid "Please summarize your report in a few words."
+msgstr "Popište své oznámení několika slovy."
+
 msgid "Describe your report in detail."
 msgstr "Podrobně popište své oznámení."
+
+msgid "Where did the facts happen?"
+msgstr "Kde se to stalo?"
+
+msgid "When did the facts happen?"
+msgstr "Kdy se to stalo?"
 
 msgid "I'm a victim"
 msgstr "Jsem oběť"
 
 msgid "I'm involved in the facts"
 msgstr "Jsem zapletený do faktů"
+
+msgid "I witnessed the facts in person"
+msgstr "Byl jsem svědkem"
+
+msgid "I was personally told by a direct witness"
+msgstr "Osobně mi to řekl svědek"
+
+msgid "It is a rumor I heard"
+msgstr "Je to fáma, kterou jsem slyšel"
+
+msgid "How are you involved in the reported facts?"
+msgstr "Jak jste zapojeni do uváděného oznámení?"
+
+msgid "Do you have evidence to support your report?"
+msgstr "Máte důkazy na podporu svého oznámení?"
+
+msgid "Please attach the evidence to support your report."
+msgstr "Nahrajte soubory na podporu Vašeho oznámení."
+
+msgid "Please describe the evidence in detail."
+msgstr "Popiště Vaše oznámení do detailu."
+
+msgid ""
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr "Důkladný popis předložených důkazů zvyšuje naši schopnost vyhodnotit nároky a prošetřit. Dávejte pozor, abyste odkazovali na významné části všech odeslaných videí, obrázků nebo dokumentů."
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "Nahlásili jste skutečnosti jiným organizacím a/nebo osobám?"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "Uveďte prosím organizace a/nebo osoby, které jste o těchto skutečnostech informovali."
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "Prošetřily tyto organizace vaše tvrzení? Pokud ano, jaký byl výsledek?"
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "Jakého výsledku chcete s naší podporou dosáhnout?"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Chcete poskytnout informace o Vaší identitě?"

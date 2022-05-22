@@ -10,13 +10,13 @@
 # niko <niko@tightwax.com>, 2013
 # Pavel Tsvetkov <pavel.tsvetkov@gmail.com>, 2021
 # Petya Antonova <gothfield@gmail.com>, 2015
-# Tsvetan Nikolov <slakware@gmail.com>, 2015
+# Tsvetan Nikolov <slakware@gmail.com>, 2015,2022
 # Vladislav Stoyanov <vlado1972@yahoo.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2022\n"
+"Last-Translator: Tsvetan Nikolov <slakware@gmail.com>, 2015,2022\n"
 "Language-Team: Bulgarian (http://www.transifex.com/otf/globaleaks/language/bg/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -475,64 +475,6 @@ msgstr "Предоставяне на достъп"
 msgid "Revoke access"
 msgstr "Анулиране на достъпа"
 
-msgid "Please summarize your report in a few words."
-msgstr "Опишете сигнала си с няколко думи."
-
-msgid "Where did the facts happen?"
-msgstr ""
-
-msgid "When did the facts happen?"
-msgstr ""
-
-msgid "How are you involved in the reported facts?"
-msgstr ""
-
-msgid "I’m a victim"
-msgstr ""
-
-msgid "I’m involved in the facts"
-msgstr ""
-
-msgid "I witnessed the facts in person"
-msgstr ""
-
-msgid "I was personally told by a direct witness"
-msgstr ""
-
-msgid "It is a rumor I heard"
-msgstr ""
-
-msgid "Do you have evidence to support your report?"
-msgstr ""
-
-msgid "Please attach the evidence to support your report."
-msgstr ""
-
-msgid "Please describe the evidence in detail."
-msgstr ""
-
-msgid ""
-"A thorough description of the submitted evidence enhances our ability to "
-"evaluate claims and investigate. Please take care to reference significant "
-"portions of any videos, images or documents submitted."
-msgstr ""
-
-msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
-
-msgid ""
-"Please list the organizations and/or individuals you have informed about "
-"these facts."
-msgstr ""
-
-msgid ""
-"Have these organizations investigated your claims? If so, what was the "
-"outcome?"
-msgstr ""
-
-msgid "What is the outcome you want to achieve with our support?"
-msgstr ""
-
 msgid "File a report"
 msgstr "Картотекиране на сигнал"
 
@@ -826,12 +768,6 @@ msgstr "Стойност"
 
 msgid "Medium"
 msgstr "Средно"
-
-msgid "Customize the message shown in the receipt page"
-msgstr "Персонализиране на съобщението, показвано на страницата на разписката (кода)"
-
-msgid "Assign the receipt only to reports reaching score:"
-msgstr "Присвояване на разписка (код) само на сигнали, достигнали резултат от:"
 
 msgid "Software version:"
 msgstr "Софтуерна версия:"
@@ -1600,14 +1536,66 @@ msgstr "Прочетох лицензионните условия и ги пр�
 msgid "You have completed the platform wizard."
 msgstr "Завършихте съветника на платформата."
 
+msgid "Please summarize your report in a few words."
+msgstr "Опишете сигнала си с няколко думи."
+
 msgid "Describe your report in detail."
 msgstr "Опишете сигнала си подробно."
 
+msgid "Where did the facts happen?"
+msgstr "Къде се случиха фактите?"
+
+msgid "When did the facts happen?"
+msgstr "Кога се случиха фактите?"
+
 msgid "I'm a victim"
-msgstr ""
+msgstr "Аз съм жертва"
 
 msgid "I'm involved in the facts"
-msgstr ""
+msgstr "Замесен съм във фактите"
+
+msgid "I witnessed the facts in person"
+msgstr "Лично станах свидетел на фактите"
+
+msgid "I was personally told by a direct witness"
+msgstr "На мен лично ми бе казано от пряк свидетел"
+
+msgid "It is a rumor I heard"
+msgstr "Това е слух, който аз чух"
+
+msgid "How are you involved in the reported facts?"
+msgstr "Как сте замесени в докладваните факти?"
+
+msgid "Do you have evidence to support your report?"
+msgstr "Имате ли доказателства в подкрепа на доклада си?"
+
+msgid "Please attach the evidence to support your report."
+msgstr "Моля, прикачете доказателствата в подкрепа на вашия доклад."
+
+msgid "Please describe the evidence in detail."
+msgstr "Моля, опишете подробно доказателствата."
+
+msgid ""
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr "Задълбоченото описание на представените доказателства подобрява способността ни да оценяваме твърденията и да разследваме. Моля, внимавайте да посочите значителни части от всички изпратени видеоклипове, изображения или документи."
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "Докладвали ли сте фактите на други организации и/или лица?"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "Моля, избройте организациите и/или лицата, които сте информирали за тези факти"
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "Тези организации разследвали ли са вашите твърдения? \nАко е така, какъв беше резултатът?"
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "Какъв е резултатът, който искате да постигнете с нашата подкрепа?"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Желаете ли да предоставите идентификационната си информация?"

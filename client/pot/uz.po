@@ -467,64 +467,6 @@ msgstr "Ruxsat berish"
 msgid "Revoke access"
 msgstr "Ruxsatni bekot qilish"
 
-msgid "Please summarize your report in a few words."
-msgstr "Xabaringizni bir nechta soʻz bilan ifodalang."
-
-msgid "Where did the facts happen?"
-msgstr "Фактлар қаерда содир бўлди?"
-
-msgid "When did the facts happen?"
-msgstr "Фактлар қачон содир бўлди?"
-
-msgid "How are you involved in the reported facts?"
-msgstr "Сиз хабар қилинаётган фактларга қандай алоқадорсиз?"
-
-msgid "I’m a victim"
-msgstr "Мен қурбонман"
-
-msgid "I’m involved in the facts"
-msgstr "Мен фактларга алоқадорман"
-
-msgid "I witnessed the facts in person"
-msgstr "Фактларга шахсан гувоҳ бўлдим"
-
-msgid "I was personally told by a direct witness"
-msgstr "Буни шахсан менга бевосита гувоҳ айтди"
-
-msgid "It is a rumor I heard"
-msgstr "Бу – мен эшитган миш-миш"
-
-msgid "Do you have evidence to support your report?"
-msgstr "Ҳисоботингизни тасдиқловчи далилларингиз борми?"
-
-msgid "Please attach the evidence to support your report."
-msgstr "Илтимос, ҳисоботингизни тасдиқловчи далилларни илова қилинг."
-
-msgid "Please describe the evidence in detail."
-msgstr "Илтимос, далилларни батафсил тасвирлаб беринг."
-
-msgid ""
-"A thorough description of the submitted evidence enhances our ability to "
-"evaluate claims and investigate. Please take care to reference significant "
-"portions of any videos, images or documents submitted."
-msgstr "Тақдим этилган далилларни тўлиқ тасвирлаб берсангиз, бу бизнинг даъволарни баҳолаш ва суриштирув ўтказиш қобилиятимизни оширади. Илтимос, тақдим этилган ҳар қандай видео, расм ёки ҳужжатларнинг муҳим қисмларини айтиб ўтинг."
-
-msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr "Сиз бошқа ташкилотлар ва/ёки шахсларга бу фактлар ҳақида хабар бердингизми?"
-
-msgid ""
-"Please list the organizations and/or individuals you have informed about "
-"these facts."
-msgstr "Илтимос, қайси ташкилотлар ва/ёки шахсларга ушбу фактлар ҳақида хабар берганингизни санаб ўтинг."
-
-msgid ""
-"Have these organizations investigated your claims? If so, what was the "
-"outcome?"
-msgstr "Ушбу ташкилотлар сизнинг даъволарингизни ўрганиб чиқдими? Агар шундай бўлса, натижа қандай бўлди?"
-
-msgid "What is the outcome you want to achieve with our support?"
-msgstr "Бизнинг ёрдамимиз билан қандай натижага эришмоқчисиз?"
-
 msgid "File a report"
 msgstr "Anonim xabar yuborish"
 
@@ -818,12 +760,6 @@ msgstr "Qiymati"
 
 msgid "Medium"
 msgstr "O‘rtacha"
-
-msgid "Customize the message shown in the receipt page"
-msgstr "Murojaat raqami sahifasida chiqadigan xabarni oʻzgartirish"
-
-msgid "Assign the receipt only to reports reaching score:"
-msgstr "Quyidagi ballik anonim xabarlarga faqat murojaat raqami berilsin:"
 
 msgid "Software version:"
 msgstr "Dasturiy taʼminot versiyasi:"
@@ -1592,14 +1528,66 @@ msgstr "Litsenziya shartlari bilan tanishdim va ularga roziman."
 msgid "You have completed the platform wizard."
 msgstr "Platformani sozlash jarayoni yakunlandi."
 
+msgid "Please summarize your report in a few words."
+msgstr "Xabaringizni bir nechta soʻz bilan ifodalang."
+
 msgid "Describe your report in detail."
 msgstr "Xabaringiz haqida batafsil axborot bering."
+
+msgid "Where did the facts happen?"
+msgstr "Фактлар қаерда содир бўлди?"
+
+msgid "When did the facts happen?"
+msgstr "Фактлар қачон содир бўлди?"
 
 msgid "I'm a victim"
 msgstr "Мен қурбонман"
 
 msgid "I'm involved in the facts"
 msgstr "Мен фактларга алоқадорман"
+
+msgid "I witnessed the facts in person"
+msgstr "Фактларга шахсан гувоҳ бўлдим"
+
+msgid "I was personally told by a direct witness"
+msgstr "Буни шахсан менга бевосита гувоҳ айтди"
+
+msgid "It is a rumor I heard"
+msgstr "Бу – мен эшитган миш-миш"
+
+msgid "How are you involved in the reported facts?"
+msgstr "Сиз хабар қилинаётган фактларга қандай алоқадорсиз?"
+
+msgid "Do you have evidence to support your report?"
+msgstr "Ҳисоботингизни тасдиқловчи далилларингиз борми?"
+
+msgid "Please attach the evidence to support your report."
+msgstr "Илтимос, ҳисоботингизни тасдиқловчи далилларни илова қилинг."
+
+msgid "Please describe the evidence in detail."
+msgstr "Илтимос, далилларни батафсил тасвирлаб беринг."
+
+msgid ""
+"A thorough description of the submitted evidence enhances our ability to "
+"evaluate claims and investigate. Please take care to reference significant "
+"portions of any videos, images or documents submitted."
+msgstr "Тақдим этилган далилларни тўлиқ тасвирлаб берсангиз, бу бизнинг даъволарни баҳолаш ва суриштирув ўтказиш қобилиятимизни оширади. Илтимос, тақдим этилган ҳар қандай видео, расм ёки ҳужжатларнинг муҳим қисмларини айтиб ўтинг."
+
+msgid "Have you reported the facts to other organizations and/or individuals?"
+msgstr "Сиз бошқа ташкилотлар ва/ёки шахсларга бу фактлар ҳақида хабар бердингизми?"
+
+msgid ""
+"Please list the organizations and/or individuals you have informed about "
+"these facts."
+msgstr "Илтимос, қайси ташкилотлар ва/ёки шахсларга ушбу фактлар ҳақида хабар берганингизни санаб ўтинг."
+
+msgid ""
+"Have these organizations investigated your claims? If so, what was the "
+"outcome?"
+msgstr "Ушбу ташкилотлар сизнинг даъволарингизни ўрганиб чиқдими? Агар шундай бўлса, натижа қандай бўлди?"
+
+msgid "What is the outcome you want to achieve with our support?"
+msgstr "Бизнинг ёрдамимиз билан қандай натижага эришмоқчисиз?"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Shaxsiy axoborotingiz taqdim qilinsinmi?"
