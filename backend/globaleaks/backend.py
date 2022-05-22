@@ -23,6 +23,10 @@ from globaleaks.utils.sock import listen_tcp_on_sock, listen_tls_on_sock, reserv
 from globaleaks.utils.utility import fix_file_permissions
 
 
+# Set Gzip Encoder compression level to 1 prioritizing speed over compression
+server.GzipEncoderFactory.compressLevel = 1
+
+
 def fail_startup(excep):
     log.err("ERROR: Cannot start GlobaLeaks. Please manually examine the exception.")
     log.err("EXCEPTION: %s", excep)
