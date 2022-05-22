@@ -1,3 +1,17 @@
+Changes in version 4.9.6
+    Improve resiliency of onion services setup and teardown
+    Optimize application state and tenants
+    Set Gzip Encoder compression level to 1 prioritizing speed over compression
+    Remove "-" character from <title> tag when the page title is not set
+    Remove duplicated IDs from submissions form (#3222)
+    Add aria label on "Plus" button for multi-answer questions (#3222)
+    Add aria label on "Close" button of disclaimer modal (#3222)
+    Add h1 tag on page title (#3222)
+    Add for attribute to labels referred to form inputs (#3222)
+    Improve accessibility of receipt interface interconnectin label and input (#3222)
+    Bump npm dependencies to latest versions
+    Update translations
+
 Changes in version 4.9.5
     Fix exception triggered when recipients download their own files (#3220)
     Bump npm dependencies to latest versions
