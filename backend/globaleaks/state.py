@@ -146,7 +146,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
             self.create_directory(dirpath)
 
     def reset_hourly(self):
-        for tid in self.stenant:
+        for tid in self.tenants:
             self.tenants[tid].reset_events()
 
         self.exceptions.clear()

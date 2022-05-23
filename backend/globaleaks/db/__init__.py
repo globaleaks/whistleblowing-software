@@ -159,11 +159,11 @@ def db_refresh_tenant_cache(session, tids=None):
         if tid in State.tenants:
             tenant_cache = State.tenants[tid].cache
 
-            del State.tenant_uuid_id_map[tenant_cache.uuid]
-            del State.tenant_subdomain_id_map[tenant_cache.subdomain]
+            State.tenant_uuid_id_map.pop(tenant_cache.uuid, None)
+            State.tenant_subdomain_id_map.pop(tenant_cache.subdomain, None)
 
             for h in tenant_cache.hostnames + tenant_cache.onionnames:
-                del State.tenant_hostname_id_map[h]
+                State.tenant_hostname_id_map.pop(h, None)
 
             State.snimap.unload(tid)
 
