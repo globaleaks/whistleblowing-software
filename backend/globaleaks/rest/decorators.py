@@ -99,9 +99,9 @@ def decorator_cache_invalidate(f):
 
 
 def decorate_method(h, method):
-    value = getattr(h, 'check_roles')
-    if isinstance(value, str):
-        value = {value}
+    roles = getattr(h, 'check_roles')
+    if isinstance(roles, str):
+        roles = {roles}
 
     f = getattr(h, method)
 
@@ -113,7 +113,7 @@ def decorate_method(h, method):
             if h.invalidate_cache:
                 f = decorator_cache_invalidate(f)
 
-    f = decorator_authentication(f, value)
+    f = decorator_authentication(f, roles)
 
     if method not in ['get', 'options'] or h.require_token:
         f = decorator_require_token(f)
