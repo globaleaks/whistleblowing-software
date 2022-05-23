@@ -71,7 +71,6 @@ def connection_check(tid, client_ip, role, client_using_tor):
 
 class BaseHandler(object):
     check_roles = 'admin'
-    require_token = False
     handler_exec_time_threshold = 120
     uniform_answer_time = False
     cache_resource = False
@@ -85,7 +84,8 @@ class BaseHandler(object):
         self.state = state
         self.request = request
         self.request.start_time = datetime.now()
-        self.token = False
+        self.token = None
+
         self.session = self.get_session()
 
     def get_session(self):
@@ -102,9 +102,12 @@ class BaseHandler(object):
             token = token_arg[0]
 
         if token:
-            self.token = self.state.tokens.validate(token)
-            if self.token.session is not None:
-                session_id = self.token.session.id.encode()
+            try:
+                self.token = self.state.tokens.validate(token)
+                if self.token.session is not None:
+                    session_id = self.token.session.id.encode()
+            except:
+                return
 
         if session_id is None:
             return

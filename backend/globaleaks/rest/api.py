@@ -208,8 +208,8 @@ class APIResourceWrapper(Resource):
 
             if not hasattr(handler, '_decorated'):
                 handler._decorated = True
-                for m in ['delete', 'head', 'get', 'put', 'post']:
-                    # options method is intentionally not considered here
+                for m in ['delete', 'get', 'put', 'post']:
+                    # head and options method is intentionally not considered here
                     if hasattr(handler, m):
                         decorators.decorate_method(handler, m)
 

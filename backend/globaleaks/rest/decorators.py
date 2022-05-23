@@ -33,11 +33,11 @@ def decorator_rate_limit(f):
 
 
 
-def decorator_require_token(f):
-    # Decorator that ensures a proof of work token is included in any non authenticated request
+def decorator_require_session_or_token(f):
+    # Decorator that ensures a token or a session is included in the request
     def wrapper(self, *args, **kwargs):
-        if not self.session and not self.request.uri.endswith(b"/api/token") and not self.token:
-            raise errors.InternalServerError("TokenFailure: Missing or invalid token")
+        if not self.request.uri.endswith(b"/api/token") and not self.token and not self.session:
+            raise errors.InternalServerError("Invalid request: No token and no session")
 
         return f(self, *args, **kwargs)
 
@@ -109,14 +109,15 @@ def decorate_method(h, method):
         if method == 'get':
             if h.cache_resource:
                 f = decorator_cache_get(f)
-        else:
+        elif method in ['delete', 'post', 'put']:
             if h.invalidate_cache:
                 f = decorator_cache_invalidate(f)
 
-    f = decorator_authentication(f, roles)
+    f = decorator_rate_limit(f)
 
-    if method not in ['get', 'options'] or h.require_token:
-        f = decorator_require_token(f)
-        f = decorator_rate_limit(f)
+    if method != 'get':
+        f = decorator_require_session_or_token(f)
+
+    f = decorator_authentication(f, roles)
 
     setattr(h, method, f)
