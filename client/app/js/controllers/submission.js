@@ -87,6 +87,8 @@ GL.controller("SubmissionCtrl",
 
   $scope.checkForInvalidFields = function() {
     for(var i = 0; i <= $scope.navigation; i++) {
+      $scope.validate[i] = true;
+
       if ($scope.questionnaire.steps[i].enabled) {
         // find the first invalid element
         var form = document.getElementById("step-" + i);
@@ -94,6 +96,7 @@ GL.controller("SubmissionCtrl",
 
         // if we find one, set focus
         if (firstInvalid) {
+          $scope.navigation = i;
           return false;
         }
       }
