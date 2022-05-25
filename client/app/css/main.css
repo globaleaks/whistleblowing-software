@@ -246,15 +246,11 @@ a:hover,
   margin: 1em;
 }
 
-#LogoBox {
-  vertical-align: middle;
-}
-
-[dir="ltr"] #LogoBox {
+[dir="ltr"] #LogoBox, [dir="ltr"] #TitleBox {
   margin-right: 1em;
 }
 
-[dir="rtl"] #LogoBox {
+[dir="rtl"] #LogoBox, [dir="rtl"] {
   margin-left: 1em;
 }
 
@@ -642,10 +638,8 @@ input[type="file"] {
 
 #TitleBox {
   font-size: 1.6rem;
-  line-height: 1;
   font-weight: bold;
   white-space: pre-wrap;
-  vertical-align: middle;
 }
 
 #LoginStatusBox {

@@ -745,14 +745,15 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
         pageTitle = $rootScope.header_title;
       }
 
-      $rootScope.projectTitle = $filter("translate")(projectTitle);
-      $rootScope.pageTitle = $filter("translate")(pageTitle);
+      pageTitle = $filter("translate")(pageTitle);
 
-      if (!$rootScope.pageTitle || $rootScope.projectTitle === $rootScope.pageTitle) {
-	$rootScope.pageTitle = "";
-        $window.document.title = $rootScope.projectTitle;
+      $rootScope.projectTitle = projectTitle !== "GLOBALEAKS" ? projectTitle : "";
+      $rootScope.pageTitle = pageTitle !== projectTitle ? pageTitle : "";
+
+      if (pageTitle) {
+        $window.document.title = projectTitle + " - " + pageTitle;
       } else {
-        $window.document.title = $rootScope.projectTitle + " - " + $rootScope.pageTitle;
+        $window.document.title = projectTitle;
       }
 
       $window.document.getElementsByName("description")[0].content = $rootScope.public.node.description;
