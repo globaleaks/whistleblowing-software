@@ -291,7 +291,7 @@ class APIResourceWrapper(Resource):
             isIPv6Address(request.hostname)):
             request.tid = 1
         else:
-            request.tid = State.tenants_hostname_id_map.get(request.hostname, None)
+            request.tid = State.tenant_hostname_id_map.get(request.hostname, None)
 
         if request.tid == 1:
             try:
@@ -300,11 +300,11 @@ class APIResourceWrapper(Resource):
 
                 if match1 is not None:
                     groups = match1.groups()
-                    tid = State.tenants_uuid_id_map[groups[0].decode()]
+                    tid = State.tenant_uuid_id_map[groups[0].decode()]
                     request.tid, request.path = tid, groups[1]
                 elif match2 is not None:
                     groups = match2.groups()
-                    tid = State.tenants_subdomain_id_map[groups[0].decode()]
+                    tid = State.tenant_subdomain_id_map[groups[0].decode()]
                     request.tid, request.path = tid, groups[1]
             except:
                 pass
@@ -316,8 +316,8 @@ class APIResourceWrapper(Resource):
             else:
                 tentative_hostname = request.hostname[4:]
 
-            if tentative_hostname in State.tenants_hostname_id_map:
-                request.tid = State.tenants_hostname_id_map[tentative_hostname]
+            if tentative_hostname in State.tenant_hostname_id_map:
+                request.tid = State.tenant_hostname_id_map[tentative_hostname]
                 if State.tenants[request.tid].cache.https_enabled:
                     request.redirect(b'https://' + tentative_hostname + b'/')
                 else:
