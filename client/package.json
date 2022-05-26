@@ -60,7 +60,7 @@
     "postcss-rtl": "1.7.3",
     "protractor": "7.0.0",
     "protractor-console-plugin": "0.1.1",
-    "stylelint": "14.8.3",
+    "stylelint": "14.8.5",
     "stylelint-config-standard": "25.0.0",
     "superagent": "7.1.3",
     "terser": "5.13.1"
