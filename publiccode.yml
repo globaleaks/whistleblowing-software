@@ -16,9 +16,6 @@ platforms:
   - ios
   - android
 categories:
-  - data-collection
-  - it-security
-  - website-builder
   - whistleblowing
 maintenance:
   type: community
