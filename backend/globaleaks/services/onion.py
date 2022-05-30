@@ -19,6 +19,9 @@ __all__ = ['OnionService']
 
 
 def load_onion_service(tor_conn, tid, hostname, key):
+    if tor_conn is None:
+        return
+
     onion_service = None
 
     hs_loc = '80 localhost:8083'
