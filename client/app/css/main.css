@@ -250,7 +250,7 @@ a:hover,
   margin-right: 1em;
 }
 
-[dir="rtl"] #LogoBox, [dir="rtl"] {
+[dir="rtl"] #LogoBox, [dir="rtl"] #TitleBox {
   margin-left: 1em;
 }
 
