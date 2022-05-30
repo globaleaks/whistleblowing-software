@@ -6,7 +6,6 @@ from txtorcon import build_local_tor_connection
 from twisted.internet import reactor
 from twisted.internet.defer import Deferred, inlineCallbacks, returnValue
 from txtorcon import TorConfig
-from txtorcon.onion import EphemeralOnionService
 
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact
@@ -20,19 +19,33 @@ __all__ = ['OnionService']
 
 
 def load_onion_service(tor_conn, tid, hostname, key):
+    onion_service = None
+
     hs_loc = '80 localhost:8083'
 
     log.err('Setting up the onion service %s', hostname, tid=tid)
 
     config = TorConfig(tor_conn.protocol)
 
-    def init_callback(onion):
+    def init_callback(ret):
+        nonlocal onion_service
+
+        if ret:
+            onion_service = ret
+
         if tid in State.tenants:
-            State.tenants[tid].ephs = onion
+            State.tenants[tid].ephs = onion_service
 
-        log.err('Initialization of onion-service %s completed.', onion.hostname, tid=tid)
+        log.err('Initialization of onion-service %s completed.', onion_service.hostname, tid=tid)
 
-    return EphemeralOnionService.create(reactor, config, [hs_loc]).addCallbacks(init_callback)  # pylint: disable=no-member
+    try:
+        from txtorcon.onion import EphemeralOnionService
+        onion_service = EphemeralOnionService.create(reactor, config, [hs_loc], private_key=key)
+        return onion_service.addCallbacks(init_callback)  # pylint: disable=no-member
+    except:
+        from txtorcon.torconfig import EphemeralHiddenService
+        onion_service = EphemeralHiddenService(hs_loc, key)
+        return onion_service.add_to_tor(tor_conn.protocol).addCallbacks(init_callback)  # pylint: disable=no-member
 
 
 class OnionService(Service):
