@@ -167,8 +167,7 @@ def db_refresh_tenant_cache(session, tids=None):
 
             State.snimap.unload(tid)
 
-            if hasattr(State.tenants[tid], 'ephs'):
-               State.tenants[tid].ephs.remove()
+            State.onion_service.unload_onion_service(tid)
 
             del State.tenants[tid]
 

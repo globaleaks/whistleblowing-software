@@ -18,39 +18,6 @@ from globaleaks.utils.utility import deferred_sleep
 __all__ = ['OnionService']
 
 
-def load_onion_service(tor_conn, tid, hostname, key):
-    if tor_conn is None:
-        return
-
-    onion_service = None
-
-    hs_loc = '80 localhost:8083'
-
-    log.err('Setting up the onion service %s', hostname, tid=tid)
-
-    config = TorConfig(tor_conn.protocol)
-
-    def init_callback(ret):
-        nonlocal onion_service
-
-        if ret:
-            onion_service = ret
-
-        if tid in State.tenants:
-            State.tenants[tid].ephs = onion_service
-
-        log.err('Initialization of onion-service %s completed.', onion_service.hostname, tid=tid)
-
-    try:
-        from txtorcon.onion import EphemeralOnionService
-        onion_service = EphemeralOnionService.create(reactor, config, [hs_loc], private_key=key)
-        return onion_service.addCallbacks(init_callback)  # pylint: disable=no-member
-    except:
-        from txtorcon.torconfig import EphemeralHiddenService
-        onion_service = EphemeralHiddenService(hs_loc, key)
-        return onion_service.add_to_tor(tor_conn.protocol).addCallbacks(init_callback)  # pylint: disable=no-member
-
-
 class OnionService(Service):
     print_startup_error = True
     tor_conn = None
@@ -68,10 +35,55 @@ class OnionService(Service):
         self.tor_conn = None
         return tor_conn.protocol.quit()
 
+    def load_onion_service(self, tid, hostname, key):
+        if self.tor_conn is None:
+            return
+
+        onion_service = None
+
+        hs_loc = '80 localhost:8083'
+
+        log.err('Setting up the onion service %s', hostname, tid=tid)
+
+        config = TorConfig(self.tor_conn.protocol)
+
+        def init_callback(ret):
+            nonlocal onion_service
+
+            if ret:
+                onion_service = ret
+
+            if tid in State.tenants:
+                State.tenants[tid].ephs = onion_service
+
+            log.err('Initialization of onion-service %s completed.', onion_service.hostname, tid=tid)
+
+        try:
+            from txtorcon.onion import EphemeralOnionServices
+            onion_service = EphemeralOnionService.create(reactor, config, [hs_loc], private_key=key)
+            return onion_service.addCallbacks(init_callback)  # pylint: disable=no-member
+        except:
+            from txtorcon.torconfig import EphemeralHiddenService
+            onion_service = EphemeralHiddenService(hs_loc, key)
+            return onion_service.add_to_tor(self.tor_conn.protocol).addCallbacks(init_callback)  # pylint: disable=no-member
+
     def load_all_onion_services(self):
+        if self.tor_conn is None:
+            return
+
         for tid in self.state.tenants:
             if self.state.tenants[tid].cache.tor and not hasattr(self.state.tenants[tid], 'ephs'):
-                load_onion_service(self.tor_conn, tid, self.state.tenants[tid].cache.onionservice, self.state.tenants[tid].cache.tor_onion_key)
+                self.load_onion_service(tid, self.state.tenants[tid].cache.onionservice, self.state.tenants[tid].cache.tor_onion_key)
+
+    def unload_onion_service(self, tid):
+        if self.tor_conn is None:
+            return
+
+        if hasattr(self.state.tenants[tid], 'ephs'):
+           try:
+               self.state.tenants[tid].ephs.remove()
+           except AttributeError:
+               yield self.state.tenants[tid].ephs.remove_from_tor(self.tor_conn.protocol)
 
     def operation(self):
         restart_deferred = Deferred()

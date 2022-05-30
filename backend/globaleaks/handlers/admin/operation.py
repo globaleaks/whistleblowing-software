@@ -52,14 +52,6 @@ def check_hostname(session, tid, hostname):
 
 
 @transact
-def get_onion_service_info(session, tid):
-    node = ConfigFactory(session, tid)
-    hostname = node.get_val('onionservice')
-    key = node.get_val('tor_onion_key')
-    return tid, hostname, key
-
-
-@transact
 def set_onion_service_info(session, tid, hostname, key):
     node = ConfigFactory(session, tid)
     node.set_val('onionservice', hostname)
@@ -182,14 +174,15 @@ class AdminOperationHandler(OperationHandler):
 
     @inlineCallbacks
     def reset_onion_private_key(self, req_args, *args, **kargs):
+        self.state.onion_service.unload_onion_service(self.request.tid)
+
         hostname, key = generate_onion_service_v3()
         yield set_onion_service_info(self.request.tid, hostname, key)
-        yield self.state.onion_service.add_onion_service(self.request.tid, hostname, key)
-        yield self.state.onion_service.remove_unwanted_onion_services()
 
-        onion_details = yield get_onion_service_info(self.request.tid)
+        yield self.state.onion_service.load_onion_service(self.request.tid, hostname, key)
+
         returnValue({
-            'onionservice': onion_details[1]
+            'onionservice': hostname
         })
 
     def reset_submissions(self, req_args, *args, **kwargs):
