@@ -108,7 +108,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
         orm.set_thread_pool(orm_tp)
 
     def get_agent(self):
-        if self.tenants[1].cache.anonymize_outgoing_connections:
+        if 1 not in self.tenants or self.tenants[1].cache.anonymize_outgoing_connections:
             return get_tor_agent(self.settings.socks_host, self.settings.socks_port)
 
         return get_web_agent()
@@ -253,6 +253,10 @@ class StateClass(ObjectDict, metaclass=Singleton):
             if os.path.basename(v.filepath) == filename:
                 return self.TempUploadFiles.pop(k)
 
+    def update_tor_exits_list(self):
+        net_agent = self.get_agent()
+        log.debug('Fetching list of Tor exit nodes')
+        return self.tor_exit_set.update(net_agent)
 
 def mail_exception_handler(etype, value, tback):
     """

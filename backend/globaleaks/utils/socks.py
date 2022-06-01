@@ -87,7 +87,7 @@ class SOCKS5ClientProtocol(ProtocolWrapper):
         # We implement only Anonymous access
         self.transport.write(struct.pack("!BB", 5, len(b"\x00")) + b"\x00")
 
-        self.transport.write(struct.pack("!BBBBB", 5, 1, 0, 3, len(self._host)) + self._host.encode('utf-8') + struct.pack("!H", self._port))
+        self.transport.write(struct.pack("!BBBBB", 5, 1, 0, 3, len(self._host)) + self._host + struct.pack("!H", self._port))
         self.wrappedProtocol.makeConnection(self)
 
         try:

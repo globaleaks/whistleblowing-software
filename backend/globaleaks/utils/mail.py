@@ -100,7 +100,7 @@ def sendmail(tid, smtp_host, smtp_port, security, authentication, username, pass
 
         if anonymize:
             socksProxy = TCP4ClientEndpoint(reactor, socks_host, socks_port, timeout=timeout)
-            endpoint = SOCKS5ClientEndpoint(smtp_host, smtp_port, socksProxy)
+            endpoint = SOCKS5ClientEndpoint(smtp_host.encode('utf-8'), smtp_port, socksProxy)
         else:
             endpoint = TCP4ClientEndpoint(reactor, smtp_host, smtp_port, timeout=timeout)
 
