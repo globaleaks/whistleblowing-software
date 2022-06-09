@@ -11,10 +11,6 @@
             <i class="fa-solid fa-cog"></i>
           <span data-translate>Generate</span>
         </button>
-        <button data-ng-if="tls_config.files.key.set" id="downloadKey" class="btn btn-sm btn-primary" data-ng-click="downloadFile(file_resources.key)">
-          <i class="fa-solid fa-file-export"></i>
-          <span data-translate>Download</span>
-        </button>
         <span data-ng-if="tls_config.files.key.set">
           <button id="deleteKey" class="btn btn-sm btn-danger" data-ng-click="deleteFile(file_resources.key)">
             <i class="fa-solid fa-times"></i>
@@ -70,10 +66,6 @@
           <label id="certUpload" file-input="postFile(file, file_resources.cert)" file-input-label="Upload" class="file-upload btn btn-sm btn-primary"></label>
         </span>
         <span data-ng-if="tls_config.files.cert.set">
-          <button id="downloadCert" class="btn btn-sm btn-primary" data-ng-click="downloadFile(file_resources.cert)">
-            <i class="fa-solid fa-file-export"></i>
-            <span data-translate>Download</span>
-          </button>
           <button id="deleteCert" class="btn btn-sm btn-danger" data-ng-click="deleteFile(file_resources.cert)">
             <i class="fa-solid fa-times"></i>
             <span data-translate>Delete</span>
@@ -96,10 +88,6 @@
           <label id="chainUpload" file-input="postFile(file, file_resources.chain)" file-input-label="Upload" class="file-upload btn btn-sm btn-primary"></label>
         </span>
         <span data-ng-if="tls_config.files.chain.set">
-          <button id="downloadChain" class="btn btn-sm btn-primary" data-ng-click="downloadFile(file_resources.chain)">
-            <i class="fa-solid fa-file-export"></i>
-            <span data-translate>Download</span>
-          </button>
           <button id="deleteChain" class="btn btn-sm btn-danger" data-ng-click="deleteFile(file_resources.chain)">
             <i class="fa-solid fa-times"></i>
             <span data-translate>Delete</span>

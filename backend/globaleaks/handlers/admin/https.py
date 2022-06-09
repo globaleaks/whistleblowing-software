@@ -166,11 +166,6 @@ class PrivKeyFileRes(FileResource):
         config.set_val('https_key', '')
 
     @staticmethod
-    @transact
-    def get_file(session, tid):
-        return ConfigFactory(session, tid).get_val('https_key')
-
-    @staticmethod
     def db_serialize(session, tid):
         config = ConfigFactory(session, tid)
 
@@ -185,11 +180,6 @@ class CertFileRes(FileResource):
     def delete_file(session, tid):
         ConfigFactory(session, tid).set_val('https_cert', '')
         State.tenants[tid].cache.https_cert = ''
-
-    @staticmethod
-    @transact
-    def get_file(session, tid):
-        return ConfigFactory(session, tid).get_val('https_cert')
 
     @staticmethod
     def db_serialize(session, tid):
@@ -217,11 +207,6 @@ class ChainFileRes(FileResource):
     @transact
     def delete_file(session, tid):
         ConfigFactory(session, tid).set_val('https_chain', '')
-
-    @staticmethod
-    @transact
-    def get_file(session, tid):
-        return ConfigFactory(session, tid).get_val('https_chain')
 
     @staticmethod
     def db_serialize(session, tid):
