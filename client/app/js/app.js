@@ -48,38 +48,6 @@ var GL = angular.module("GL", [
 
       return $delegate;
     }]);
-
-    $provide.decorator("$exceptionHandler", ["$delegate", "$injector", "stacktraceService", function ($delegate, $injector, stacktraceService) {
-      return function(exception, cause) {
-          var $rootScope = $injector.get("$rootScope");
-
-          if (typeof $rootScope.exceptions_count === "undefined") {
-            $rootScope.exceptions_count = 0;
-          }
-
-          $rootScope.exceptions_count += 1;
-
-          if ($rootScope.exceptions_count >= 3) {
-            // Give each client the ability to forward only the first 3 exceptions
-            // scattered; this is also important to avoid looping exceptions to
-            // cause looping POST requests.
-            return;
-          }
-
-          $delegate(exception, cause);
-
-          stacktraceService.fromError(exception).then(function(result) {
-            var errorData = angular.toJson({
-              errorUrl: $injector.get("$location").path(),
-              errorMessage: exception.toString(),
-              stackTrace: result,
-              agent: navigator.userAgent
-            });
-
-            return $rootScope.Utils.notifyException(errorData);
-          });
-      };
-    }]);
 }]).
   config(["$qProvider", function($qProvider) {
     $qProvider.errorOnUnhandledRejections(false);
@@ -787,20 +755,6 @@ var GL = angular.module("GL", [
        var $q = $injector.get("$q");
        var $location = $injector.get("$location");
 
-       if (response.status === 405) {
-         var errorData = angular.toJson({
-           errorUrl: $location.path(),
-           errorMessage: response.statusText,
-           stackTrace: [{
-             "url": response.config.url,
-             "method": response.config.method
-           }],
-           agent: navigator.userAgent
-         });
-
-         $rootScope.Utils.notifyException(errorData);
-       }
-
        if (response.data !== null) {
          var error = {
            "message": response.data.error_message,
@@ -846,9 +800,4 @@ var GL = angular.module("GL", [
       return value;
     }
   };
-}]).
-  factory("stacktraceService", function() {
-    return({
-      fromError: StackTrace.fromError
-    });
-});
+}]);

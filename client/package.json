@@ -33,7 +33,6 @@
     "ng-idle": "1.3.2",
     "ng-showdown": "1.1.0",
     "qrcode-generator": "1.4.4",
-    "stacktrace-js": "2.0.2",
     "ui-bootstrap4": "3.0.7",
     "ui-select": "0.19.8"
   },

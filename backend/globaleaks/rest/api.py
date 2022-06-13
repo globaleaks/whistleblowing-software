@@ -17,7 +17,6 @@ from twisted.web.server import NOT_DONE_YET
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.handlers import custodian, \
                                 email_validation, \
-                                exception, \
                                 file, \
                                 receiver, \
                                 password_reset, \
@@ -59,8 +58,6 @@ uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
 key_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}|[a-z_]{0,100})'
 
 api_spec = [
-    (r'/api/exception', exception.ExceptionHandler),
-
     # Authentication Handlers
     (r'/api/authentication', authentication.AuthenticationHandler),
     (r'/api/tokenauth', authentication.TokenAuthHandler),
