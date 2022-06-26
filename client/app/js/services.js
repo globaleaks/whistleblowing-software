@@ -737,11 +737,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       var projectTitle = $rootScope.public.node.name,
           pageTitle = $rootScope.public.node.header_title_homepage;
 
-      if ($location.path() === "/") {
-        if ($rootScope.page === "tippage") {
-          pageTitle = "Report";
-        }
-      } else {
+      if ($location.path() !== "/") {
         pageTitle = $rootScope.header_title;
       }
 
