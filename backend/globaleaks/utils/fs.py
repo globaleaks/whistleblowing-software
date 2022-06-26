@@ -91,7 +91,7 @@ def fix_file_permissions(path, uid, gid, dchmod, fchmod):
     exceptions = ['lost+found']
 
     def fix(path):
-        if os.path.basename(path) in exceptions:
+        if os.path.islink(path) or os.path.basename(path) in exceptions:
             return
 
         os.chown(path, uid, gid)
