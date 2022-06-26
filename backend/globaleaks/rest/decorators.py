@@ -113,10 +113,9 @@ def decorate_method(h, method):
             if h.invalidate_cache:
                 f = decorator_cache_invalidate(f)
 
-    f = decorator_rate_limit(f)
-
-    if method != 'get':
+    if method in ['delete', 'post', 'put']:
         f = decorator_require_session_or_token(f)
+        f = decorator_rate_limit(f)
 
     f = decorator_authentication(f, roles)
 
