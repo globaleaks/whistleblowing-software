@@ -24,6 +24,7 @@ class SecureTemporaryFile(object):
         self.cipher = Cipher(algorithms.AES(self.key), modes.CTR(self.key_counter_nonce), backend=crypto_backend)
         self.filepath = os.path.join(filesdir, "%s.aes" % self.key_id)
         self.enc = self.cipher.encryptor()
+        self.size = 0
 
     def open(self, mode):
         if self.file is None:
@@ -40,6 +41,7 @@ class SecureTemporaryFile(object):
             data = data.encode()
 
         self.fd.write(self.enc.update(data))
+        self.size += len(data)
 
     def finalize_write(self):
         self.fd.write(self.enc.finalize())

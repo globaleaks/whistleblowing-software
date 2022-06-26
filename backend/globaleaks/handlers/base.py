@@ -305,16 +305,18 @@ class BaseHandler(object):
         total_file_size = int(self.request.args[b'flowTotalSize'][0])
         file_id = self.request.args[b'flowIdentifier'][0].decode()
 
-        chunk_size = len(self.request.args[b'file'][0])
-        if ((chunk_size // (1024 * 1024)) > self.state.tenants[self.request.tid].cache.maximum_filesize or
-            (total_file_size // (1024 * 1024)) > self.state.tenants[self.request.tid].cache.maximum_filesize):
-            log.err("File upload request rejected: file too big", tid=self.request.tid)
-            raise errors.FileTooBig(self.state.tenants[self.request.tid].cache.maximum_filesize)
-
         if file_id not in self.state.TempUploadFiles:
             self.state.TempUploadFiles[file_id] = SecureTemporaryFile(Settings.tmp_path)
 
         f = self.state.TempUploadFiles[file_id]
+
+        chunk_size = len(self.request.args[b'file'][0])
+        if ((chunk_size // (1024 * 1024)) > self.state.tenants[self.request.tid].cache.maximum_filesize or
+            (total_file_size // (1024 * 1024)) > self.state.tenants[self.request.tid].cache.maximum_filesize or
+            f.size > self.state.tenants[self.request.tid].cache.maximum_filesize):
+            log.err("File upload request rejected: file too big", tid=self.request.tid)
+            raise errors.FileTooBig(self.state.tenants[self.request.tid].cache.maximum_filesize)
+
         with f.open('w') as f:
             f.write(self.request.args[b'file'][0])
 
