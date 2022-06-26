@@ -52,6 +52,8 @@ class TokenList(TempDict):
 
             if not sha256(key + answer).endswith(b'00'):
                 raise errors.InternalServerError("TokenFailure: Token is not solved")
+        except errors.InternalServerError:
+            raise
         except:
             raise errors.InternalServerError("TokenFailure: Invalid token")
 
