@@ -3,8 +3,6 @@
 #   *******
 #
 # Utility Functions
-import glob
-import os
 import re
 import uuid
 
@@ -25,27 +23,6 @@ def get_distribution_codename():
         pass
 
     return ""
-
-
-def fix_file_permissions(path, uid, gid, dchmod, fchmod):
-    """
-    Recursively fix file permissions on a given path
-    """
-    exceptions = ['lost+found']
-
-    def fix(path):
-        if os.path.basename(path) in exceptions:
-            return
-
-        os.chown(path, uid, gid)
-        if os.path.isfile(path):
-            os.chmod(path, 0o600)
-        else:
-            os.chmod(path, 0o700)
-
-    fix(path)
-    for item in glob.glob(path + '/*'):
-        fix_file_permissions(item, uid, gid, dchmod, fchmod)
 
 
 def uuid4():

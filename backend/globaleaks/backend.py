@@ -17,10 +17,10 @@ from globaleaks.db import create_db, init_db, update_db, \
 from globaleaks.rest.api import APIResourceWrapper
 from globaleaks.settings import Settings
 from globaleaks.state import State
+from globaleaks.utils.fs import fix_file_permissions
 from globaleaks.utils.log import log, openLogFile, logFormatter, LogObserver
 from globaleaks.utils.process import drop_privileges, set_proc_title
 from globaleaks.utils.sock import listen_tcp_on_sock, listen_tls_on_sock, reserve_port_for_ip
-from globaleaks.utils.utility import fix_file_permissions
 
 
 # Set Gzip Encoder compression level to 1 prioritizing speed over compression
