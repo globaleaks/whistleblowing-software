@@ -135,6 +135,7 @@ class SettingsClass(object, metaclass=Singleton):
         self.devel_mode = True
         self.key_bits = 1024
         self.acme_directory_url = 'https://acme-staging-v02.api.letsencrypt.org/directory'
+        self.bind_remote_ports = []
         self.working_path = os.path.join(self.src_path, 'workingdir')
 
     def load_cmdline_options(self, options):
