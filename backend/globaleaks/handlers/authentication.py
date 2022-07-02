@@ -3,6 +3,7 @@
 # Handlers dealing with platform authentication
 from datetime import timedelta
 from random import SystemRandom
+from sqlalchemy import or_
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.handlers.base import connection_check, BaseHandler
@@ -97,9 +98,15 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
     :param client_ip:  The client IP
     :return: Returns a user session in case of success
     """
-    user = session.query(User).filter(User.username == username,
-                                      User.enabled.is_(True),
-                                      User.tid == tid).one_or_none()
+    if tid in State.tenants and State.tenants[tid].cache.simplified_login:
+        user = session.query(User).filter(or_(User.id == username,
+                                              User.username == username),
+                                          User.enabled.is_(True),
+                                          User.tid == tid).one_or_none()
+    else:
+        user = session.query(User).filter(User.username == username,
+                                          User.enabled.is_(True),
+                                          User.tid == tid).one_or_none()
 
     if not user or not GCE.check_password(user.hash_alg, password, user.salt, user.password):
         db_login_failure(session, tid, 0)
