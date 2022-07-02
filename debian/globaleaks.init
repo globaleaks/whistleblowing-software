@@ -200,11 +200,12 @@ case "$1" in
     if start-stop-daemon --stop --quiet --pidfile $GLPID --name globaleaks; then
         log_action_end_msg 0 "already running"
     else
-        if [ "${APPARMOR_SANDBOXING}" -eq "1" ] &&
-           command -v aa-status > /dev/null &&
-           command -v aa-exec > /dev/null &&
-           [ -e /etc/apparmor.d/usr.bin/globaleaks ] && \
-           aa-status --enabled ; then
+        if [ "${APPARMOR_SANDBOXING}" -eq "1" ]; then
+            if ! command -v aa-status >/dev/null 2>&1  || ! aa-status --enabled ; then
+                log_failure_msg "GlobaLeaks Apparmor Sandboxing Failure: requires apparmor"
+                exit 1
+            fi
+
             AA_EXEC_PATH=$(command -v aa-exec)
             AA_EXEC="--startas $AA_EXEC_PATH"
             AA_EXEC_ARGS="--profile=user.bin.globaleaks -- $DAEMON"
@@ -212,6 +213,7 @@ case "$1" in
             AA_EXEC=""
             AA_EXEC_ARGS=""
         fi
+
         if start-stop-daemon \
             --start \
             --quiet \
