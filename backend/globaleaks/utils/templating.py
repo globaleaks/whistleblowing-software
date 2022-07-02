@@ -4,6 +4,7 @@
 # mainly in mail notifications.
 import collections
 import copy
+import re
 
 from datetime import datetime, timedelta
 
@@ -352,7 +353,7 @@ class TipKeyword(UserNodeKeyword):
     def Comments(self):
         comments = self.data.get('comments', [])
         if not len(comments):
-            return '{Blank}'
+            return ''
 
         ret = 'Comments:\n'
         ret += self.dump_messages(comments) + '\n'
@@ -361,7 +362,7 @@ class TipKeyword(UserNodeKeyword):
     def Messages(self):
         messages = self.data.get('messages', [])
         if not len(messages):
-            return '{Blank}'
+            return ''
 
         ret = 'Private messages:\n'
         ret += self.dump_messages(messages)
@@ -664,28 +665,16 @@ supported_template_types = {
 class Templating(object):
     def format_template(self, raw_template, data):
         keyword_converter = supported_template_types[data['type']](data)
-        for _ in range(3):
-            count = 0
 
-            for kw in keyword_converter.keyword_list:
-                if raw_template.count(kw):
-                    # if {SomeKeyword} matches, call keyword_converter.SomeKeyword function
-                    variable_content = getattr(keyword_converter, kw[1:-1])()
-                    raw_template = raw_template.replace(kw, variable_content)
+        for kw in keyword_converter.keyword_list:
+            if raw_template.count(kw):
+                # if {SomeKeyword} matches, call keyword_converter.SomeKeyword function
+                variable_content = getattr(keyword_converter, kw[1:-1])()
+                variable_content = re.sub("{", "(", variable_content)
+                variable_content = re.sub("}", ")", variable_content)
+                raw_template = raw_template.replace(kw, variable_content)
 
-                    count += 1
-
-            # remove lines with only {Blank}
-            raw_template = raw_template.replace('\n{Blank}\n', '\n')
-
-            # remove remaining $Blank% tokens
-            raw_template = raw_template.replace('\n{Blank}', '')
-
-            raw_template = raw_template.rstrip()
-
-            if count == 0:
-                # finally!
-                break
+        raw_template = raw_template.rstrip()
 
         return raw_template
 
