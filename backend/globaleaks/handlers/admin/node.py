@@ -13,7 +13,6 @@ from globaleaks.state import State
 from globaleaks.utils.crypto import Base64Encoder, GCE
 from globaleaks.utils.fs import read_file
 from globaleaks.utils.ip import parse_csv_ip_ranges_to_ip_networks
-from globaleaks.utils.log import log
 
 
 def db_update_enabled_languages(session, tid, languages, default_language):
@@ -41,7 +40,6 @@ def db_update_enabled_languages(session, tid, languages, default_language):
         if lang_code not in cur_enabled_langs:
             if appdata is None:
                 appdata = load_appdata()
-            log.debug("Adding a new lang %s" % lang_code)
             models.config.add_new_lang(session, tid, lang_code, appdata)
 
     to_remove = list(set(cur_enabled_langs) - set(languages))
