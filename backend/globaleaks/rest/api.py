@@ -431,7 +431,7 @@ class APIResourceWrapper(Resource):
 
         @defer.inlineCallbacks
         def concludeHandlerFailure(err):
-            yield self.handler.execution_check()
+            yield self.handler.check_execution_time()
             self.handle_exception(err, request)
 
             if request.finished:
@@ -446,7 +446,7 @@ class APIResourceWrapper(Resource):
 
             :param ret: A `dict`, `list`, `str`, `None` or something unexpected
             """
-            yield self.handler.execution_check()
+            yield self.handler.check_execution_time()
 
             if request.finished:
                 return

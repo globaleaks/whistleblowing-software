@@ -361,7 +361,7 @@ class BaseHandler(object):
         finally:
             self.uploaded_file['path'] = destination
 
-    def execution_check(self):
+    def check_execution_time(self):
         self.request.execution_time = datetime.now() - self.request.start_time
 
         if self.request.execution_time.seconds > self.handler_exec_time_threshold:
