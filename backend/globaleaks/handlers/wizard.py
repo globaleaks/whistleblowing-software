@@ -8,7 +8,7 @@ from globaleaks.handlers.admin.node import db_update_enabled_languages
 from globaleaks.handlers.admin.user import db_create_user
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import config, profiles
-from globaleaks.orm import tw
+from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.utils.crypto import Base64Encoder, GCE
 from globaleaks.utils.log import log
@@ -141,6 +141,11 @@ def db_wizard(session, tid, hostname, request):
     if mode == 'whistleblowing.it':
         node.set_val('simplified_login', True)
 
+
+@transact
+def wizard(session, tid, hostname, request):
+    t = db_wizard(session, tid, hostname, request)
+
     db_refresh_tenant_cache(session, [tid])
 
 
@@ -160,4 +165,4 @@ class Wizard(BaseHandler):
         else:
             hostname = ''
 
-        return tw(db_wizard, self.request.tid, hostname, request)
+        return wizard(self.request.tid, hostname, request)

@@ -59,7 +59,7 @@ class OnionService(Service):
             log.err('Initialization of onion-service %s completed.', onion_service.hostname, tid=tid)
 
         try:
-            from txtorcon.onion import EphemeralOnionServices
+            from txtorcon.onion import EphemeralOnionService
             onion_service = EphemeralOnionService.create(reactor, config, [hs_loc], private_key=key)
             return onion_service.addCallbacks(init_callback)  # pylint: disable=no-member
         except:
@@ -73,13 +73,15 @@ class OnionService(Service):
 
         for tid in self.state.tenants:
             if self.state.tenants[tid].cache.tor and not hasattr(self.state.tenants[tid], 'ephs'):
+                # Track that the onion service is starting
+                self.state.tenants[tid].ephs = False
                 self.load_onion_service(tid, self.state.tenants[tid].cache.onionservice, self.state.tenants[tid].cache.tor_onion_key)
 
     def unload_onion_service(self, tid):
         if self.tor_conn is None:
             return
 
-        if hasattr(self.state.tenants[tid], 'ephs'):
+        if hasattr(self.state.tenants[tid], 'ephs') and self.state.tenants[tid].ephs:
            try:
                self.state.tenants[tid].ephs.remove()
            except AttributeError:

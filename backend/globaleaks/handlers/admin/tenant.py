@@ -51,19 +51,21 @@ def db_create(session, desc):
 
     db_initialize_tenant_submission_statuses(session, t.id)
 
-    db_refresh_tenant_cache(session, [t.id])
-
     return t
 
 
 @transact
 def create(session, desc, *args, **kwargs):
-    return serializers.serialize_tenant(session, db_create(session, desc, *args, **kwargs))
+    t = db_create(session, desc, *args, **kwargs)
+
+    db_refresh_tenant_cache(session, [t.id])
+
+    return serializers.serialize_tenant(session, t)
 
 
 @transact
 def create_and_initialize(session, desc, *args, **kwargs):
-    tenant = db_create(session, desc, *args, **kwargs)
+    t = db_create(session, desc, *args, **kwargs)
 
     wizard = {
         'node_language': 'en',
@@ -74,9 +76,11 @@ def create_and_initialize(session, desc, *args, **kwargs):
         'enable_developers_exception_notification': True
     }
 
-    db_wizard(session, tenant.id, '', wizard)
+    db_wizard(session, t.id, '', wizard)
 
-    return serializers.serialize_tenant(session, tenant)
+    db_refresh_tenant_cache(session, [t.id])
+
+    return serializers.serialize_tenant(session, t)
 
 
 def db_get_tenant_list(session):
