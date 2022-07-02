@@ -477,12 +477,8 @@ class APIResourceWrapper(Resource):
         request.setHeader(b'Server', b'GlobaLeaks')
 
         if request.isSecure():
-            if State.tenants[request.tid].cache.https_preload:
-                request.setHeader(b'Strict-Transport-Security',
-                                  b'max-age=31536000; includeSubDomains; preload')
-            else:
-                request.setHeader(b'Strict-Transport-Security',
-                                  b'max-age=31536000; includeSubDomains')
+            request.setHeader(b'Strict-Transport-Security',
+                              b'max-age=31536000; includeSubDomains; preload')
 
             if State.tenants[request.tid].cache.onionservice:
                 request.setHeader(b'Onion-Location', b'http://' + State.tenants[request.tid].cache.onionservice.encode() + request.path)

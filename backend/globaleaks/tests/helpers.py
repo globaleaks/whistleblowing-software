@@ -320,7 +320,6 @@ class MockDict:
             'https_custodian': True,
             'https_whistleblower': True,
             'https_receiver': True,
-            'https_preload': True,
             'allow_indexing': False,
             'disable_submissions': False,
             'disable_privacy_badge': False,

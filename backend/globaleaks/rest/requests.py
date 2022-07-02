@@ -204,7 +204,6 @@ AdminNodeDesc = {
     'https_custodian': bool,
     'https_whistleblower': bool,
     'https_receiver': bool,
-    'https_preload': bool,
     'allow_indexing': bool,
     'disable_privacy_badge': bool,
     'disable_submissions': bool,

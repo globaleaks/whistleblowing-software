@@ -238,9 +238,6 @@ def db_refresh_tenant_cache(session, tids=None):
         for x in ['admin', 'custodian', 'receiver', 'whistleblower']:
             tenant_cache['https_allowed'][x] = tenant_cache.get('https_' + x, True)
 
-        if State.tenants[tid].cache.mode != 'default':
-            tenant_cache['https_preload'] = root_tenant_cache['https_preload']
-
         if tenant_cache.hostname and tenant_cache.reachable_via_web:
             tenant_cache.hostnames.append(tenant_cache.hostname.encode())
 
