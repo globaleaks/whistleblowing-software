@@ -68,8 +68,6 @@ def db_admin_serialize_node(session, tid, language, config='node'):
         'languages_supported': LANGUAGES_SUPPORTED,
         'languages_enabled': db_get_languages(session, tid),
         'root_tenant': tid == 1,
-        'https_possible': tid == 1 or State.tenants[1].cache.reachable_via_web,
-        'encryption_possible': tid == 1 or State.tenants[1].cache.encryption,
         'logo': True if logo else False
     })
 
@@ -95,6 +93,11 @@ def db_update_node(session, tid, user_session, request, language):
     root_config = ConfigFactory(session, 1)
 
     config = ConfigFactory(session, tid)
+
+    if tid != 1:
+        request['encryption'] = root_config.get_val('encryption') and request.get('encryption', False)
+
+    request['escrow'] = request.get('escrow', False) and request.get('encryption', False)
 
     enable_escrow = not config.get_val('escrow') and request.get('escrow', False)
     disable_escrow = user_session.ek and config.get_val('escrow') and not request.get('escrow', False)
