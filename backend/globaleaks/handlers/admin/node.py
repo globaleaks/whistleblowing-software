@@ -12,7 +12,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import Base64Encoder, GCE
 from globaleaks.utils.fs import read_file
-from globaleaks.utils.ip import parse_csv_ip_ranges_to_ip_networks
+from globaleaks.utils.log import log
 
 
 def db_update_enabled_languages(session, tid, languages, default_language):
@@ -68,6 +68,8 @@ def db_admin_serialize_node(session, tid, language, config='node'):
         'languages_supported': LANGUAGES_SUPPORTED,
         'languages_enabled': db_get_languages(session, tid),
         'root_tenant': tid == 1,
+        'https_possible': tid == 1 or State.tenants[1].cache.reachable_via_web,
+        'encryption_possible': tid == 1 or State.tenants[1].cache.encryption,
         'logo': True if logo else False
     })
 
@@ -94,20 +96,10 @@ def db_update_node(session, tid, user_session, request, language):
 
     config = ConfigFactory(session, tid)
 
-    if tid != 1:
-        request['encryption'] = root_config.get_val('encryption') and request.get('encryption', False)
-
-    request['escrow'] = request.get('escrow', False) and request.get('encryption', False)
-
     enable_escrow = not config.get_val('escrow') and request.get('escrow', False)
     disable_escrow = user_session.ek and config.get_val('escrow') and not request.get('escrow', False)
 
     config.update('node', request)
-
-    # Validate that IP addresses/ranges we're getting are goo
-    for k in ['admin', 'custodian', 'receiver']:
-        if 'ip_filter_' + k in request and request['ip_filter_' + k + '_enable'] and request['ip_filter_' + k]:
-            parse_csv_ip_ranges_to_ip_networks(request['ip_filter_' + k])
 
     if 'languages_enabled' in request and 'default_language' in request:
         db_update_enabled_languages(session,
@@ -134,7 +126,6 @@ def db_update_node(session, tid, user_session, request, language):
 
         if  tid != 1 and root_config.get_val('escrow'):
             config.set_val('crypto_escrow_prv_key', Base64Encoder.encode(GCE.asymmetric_encrypt(root_config.get_val('crypto_escrow_pub_key'), crypto_escrow_prv_key)))
-
 
     if disable_escrow:
         if tid == 1:
@@ -175,11 +166,13 @@ class NodeInstance(BaseHandler):
         Get the node infos.
         """
         config = yield self.determine_allow_config_filter()
-        serialized_node = yield tw(db_admin_serialize_node,
-                                   self.request.tid,
-                                   self.request.language,
-                                   config=config[0])
-        returnValue(serialized_node)
+
+        ret = yield tw(db_admin_serialize_node,
+                       self.request.tid,
+                       self.request.language,
+                       config=config[0])
+
+        returnValue(ret)
 
     @inlineCallbacks
     def put(self):
@@ -191,9 +184,10 @@ class NodeInstance(BaseHandler):
         request = yield self.validate_request(self.request.content.read(),
                                               config[1])
 
-        serialized_node = yield tw(db_update_node,
-                                   self.request.tid,
-                                   self.session,
-                                   request,
-                                   self.request.language)
-        returnValue(serialized_node)
+        ret = yield tw(db_update_node,
+                       self.request.tid,
+                       self.session,
+                       request,
+                       self.request.language)
+
+        returnValue(ret)

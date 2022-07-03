@@ -251,6 +251,7 @@ class CsrFileRes(FileResource):
 
 class FileHandler(BaseHandler):
     check_roles = 'admin'
+    root_tenant_or_management_only = True
 
     mapped_file_resources = {
         'key': PrivKeyFileRes,
@@ -350,6 +351,7 @@ def reset_https_config(session, tid):
 
 class ConfigHandler(BaseHandler):
     check_roles = 'admin'
+    root_tenant_or_management_only = True
 
     def get(self):
         return serialize_https_config_summary(self.request.tid)
@@ -366,6 +368,7 @@ class ConfigHandler(BaseHandler):
 
 class CSRFileHandler(FileHandler):
     check_roles = 'admin'
+    root_tenant_or_management_only = True
 
     @inlineCallbacks
     def post(self, name):
@@ -440,6 +443,7 @@ def db_acme_cert_request(session, tid):
 
 class AcmeHandler(BaseHandler):
     check_roles = 'admin'
+    root_tenant_or_management_only = True
 
     @inlineCallbacks
     def post(self):

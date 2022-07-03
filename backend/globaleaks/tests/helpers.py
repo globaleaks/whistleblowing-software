@@ -308,7 +308,6 @@ class MockDict:
             'whistleblowing_question': '',
             'whistleblowing_button': '',
             'hostname': 'www.globaleaks.org',
-            'onionservice': '',
             'rootdomain': 'antani.gov',
             'email': 'email@dummy.net',
             'languages_supported': [],  # ignored
@@ -316,10 +315,6 @@ class MockDict:
             'latest_version': __version__,
             'receipt_salt': '<<the Lannisters send their regards>>',
             'maximum_filesize': 30,
-            'https_admin': True,
-            'https_custodian': True,
-            'https_whistleblower': True,
-            'https_receiver': True,
             'allow_indexing': False,
             'disable_submissions': False,
             'disable_privacy_badge': False,
@@ -351,16 +346,8 @@ class MockDict:
             'threshold_free_disk_percentage_low': 10,
             'password_change_period': 90,
             'unread_reminder_time': 1,
-            'reachable_via_web': False,
-            'anonymize_outgoing_connections': False,
             'enable_admin_exception_notification': True,
             'enable_developers_exception_notification': True,
-            'ip_filter_admin': '',
-            'ip_filter_admin_enable': False,
-            'ip_filter_custodian': '',
-            'ip_filter_custodian_enable': False,
-            'ip_filter_receiver': '',
-            'ip_filter_receiver_enable': False,
             'counter_submissions': 0,
             'log_level': 'DEBUG',
             'log_accesses_of_internal_users': False,
@@ -372,6 +359,23 @@ class MockDict:
             'basic_auth': False,
             'basic_auth_username': '',
             'basic_auth_password': ''
+        }
+
+        self.dummyNetwork = {
+            'anonymize_outgoing_connections': True,
+            'hostname': 'www.globaleaks.org',
+            'https_admin': True,
+            'https_custodian': True,
+            'https_receiver': True,
+            'https_whistleblower': True,
+            'reachable_via_web': True,
+            'ip_filter_admin': '',
+            'ip_filter_admin_enable': False,
+            'ip_filter_custodian': '',
+            'ip_filter_custodian_enable': False,
+            'ip_filter_receiver': '',
+            'ip_filter_receiver_enable': False,
+            'reachable_via_web': True
         }
 
         self.dummyWizard = {
@@ -600,6 +604,7 @@ class TestGL(unittest.TestCase):
 
         self.dummyWizard = dummyStuff.dummyWizard
         self.dummySignup = dummyStuff.dummySignup
+        self.dummyNetwork = dummyStuff.dummyNetwork
         self.dummyContext = dummyStuff.dummyContext
         self.dummySubmission = dummyStuff.dummySubmission
         self.dummyAdmin = self.get_dummy_user('admin', 'admin')

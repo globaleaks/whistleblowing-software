@@ -34,7 +34,8 @@ class Session(object):
             'encryption': self.cc != '',
             'user_id': self.user_id,
             'user_tid': self.user_tid,
-            'session_expiration': self.getTime()
+            'session_expiration': self.getTime(),
+            'properties': self.properties
         }
 
 

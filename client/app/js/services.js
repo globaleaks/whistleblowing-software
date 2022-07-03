@@ -532,6 +532,9 @@ factory("AdminSubmissionSubStatusResource", ["GLResource", function(GLResource) 
 factory("AdminNodeResource", ["GLResource", function(GLResource) {
   return new GLResource("api/admin/node");
 }]).
+factory("AdminNetworkResource", ["GLResource", function(GLResource) {
+  return new GLResource("api/admin/network");
+}]).
 factory("AdminNotificationResource", ["GLResource", function(GLResource) {
   return new GLResource("api/admin/notification");
 }]).

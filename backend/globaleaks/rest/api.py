@@ -40,6 +40,7 @@ from globaleaks.handlers.admin import file as admin_file
 from globaleaks.handlers.admin import https
 from globaleaks.handlers.admin import l10n as admin_l10n
 from globaleaks.handlers.admin import node as admin_node
+from globaleaks.handlers.admin import network as admin_network
 from globaleaks.handlers.admin import notification as admin_notification
 from globaleaks.handlers.admin import operation as admin_operation
 from globaleaks.handlers.admin import questionnaire as admin_questionnaire
@@ -112,6 +113,7 @@ api_spec = [
 
     # Admin Handlers
     (r'/api/admin/node', admin_node.NodeInstance),
+    (r'/api/admin/network', admin_network.NetworkInstance),
     (r'/api/admin/users', admin_user.UsersCollection),
     (r'/api/admin/users/' + uuid_regexp, admin_user.UserInstance),
     (r'/api/admin/contexts', admin_context.ContextsCollection),
@@ -420,7 +422,14 @@ class APIResourceWrapper(Resource):
 
         request.setResponseCode(self.method_map[method])
 
-        if self.handler.root_tenant_only and request.tid != 1:
+        if self.handler.root_tenant_only and \
+                request.tid != 1:
+            self.handle_exception(errors.ForbiddenOperation(), request)
+            return b''
+
+        if self.handler.root_tenant_or_management_only and \
+                request.tid != 1 and \
+                not request.session.properties.get('management_session', False):
             self.handle_exception(errors.ForbiddenOperation(), request)
             return b''
 

@@ -53,6 +53,7 @@ def create(session, tid, request):
 
 class RedirectCollection(BaseHandler):
     check_roles = 'admin'
+    root_tenant_or_management_only = True
     invalidate_cache = True
 
     def get(self):
@@ -77,6 +78,7 @@ class RedirectCollection(BaseHandler):
 
 class RedirectInstance(BaseHandler):
     check_roles = 'admin'
+    root_tenant_or_management_only = True
     invalidate_cache = True
 
     @inlineCallbacks

@@ -60,12 +60,10 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_update_ignored_fields(self):
-        self.dummyNode['onionservice'] = 'xxx'
-        self.dummyNode['hostname'] = 'yyy'
+        self.dummyNode['version'] = 'xxx'
 
         handler = self.request(self.dummyNode, role='admin')
 
         resp = yield handler.put()
 
-        self.assertNotEqual('xxx', resp['hostname'])
-        self.assertNotEqual('yyy', resp['onionservice'])
+        self.assertNotEqual('version', resp['version'])

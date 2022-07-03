@@ -200,10 +200,6 @@ AdminNodeDesc = {
     'default_language': str,
     'default_questionnaire': str,
     'maximum_filesize': int,
-    'https_admin': bool,
-    'https_custodian': bool,
-    'https_whistleblower': bool,
-    'https_receiver': bool,
     'allow_indexing': bool,
     'disable_privacy_badge': bool,
     'disable_submissions': bool,
@@ -231,16 +227,8 @@ AdminNodeDesc = {
     'threshold_free_disk_percentage_low': int,
     'password_change_period': int,
     'unread_reminder_time': int,
-    'reachable_via_web': bool,
-    'anonymize_outgoing_connections': bool,
     'enable_admin_exception_notification': bool,
     'enable_developers_exception_notification': bool,
-    'ip_filter_admin_enable': bool,
-    'ip_filter_admin': str,
-    'ip_filter_custodian_enable': bool,
-    'ip_filter_custodian': str,
-    'ip_filter_receiver_enable': bool,
-    'ip_filter_receiver': str,
     'log_level': str,
     'log_accesses_of_internal_users': bool,
     'two_factor': bool,
@@ -248,6 +236,21 @@ AdminNodeDesc = {
     'escrow': bool,
     'multisite': bool,
     'adminonly': bool
+}
+
+AdminNetworkDesc = {
+    'https_admin': bool,
+    'https_custodian': bool,
+    'https_whistleblower': bool,
+    'https_receiver': bool,
+    'reachable_via_web': bool,
+    'anonymize_outgoing_connections': bool,
+    'ip_filter_admin_enable': bool,
+    'ip_filter_admin': str,
+    'ip_filter_custodian_enable': bool,
+    'ip_filter_custodian': str,
+    'ip_filter_receiver_enable': bool,
+    'ip_filter_receiver': str
 }
 
 AdminNotificationDesc = {

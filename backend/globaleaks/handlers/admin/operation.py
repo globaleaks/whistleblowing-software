@@ -174,6 +174,8 @@ class AdminOperationHandler(OperationHandler):
 
     @inlineCallbacks
     def reset_onion_private_key(self, req_args, *args, **kargs):
+        self.check_root_or_management_session()
+
         self.state.onion_service.unload_onion_service(self.request.tid)
 
         hostname, key = generate_onion_service_v3()
@@ -190,6 +192,8 @@ class AdminOperationHandler(OperationHandler):
 
     @inlineCallbacks
     def set_hostname(self, req_args, *args, **kwargs):
+        self.check_root_or_management_session()
+
         yield check_hostname(self.request.tid, req_args['value'])
         yield tw(db_set_config_variable, self.request.tid, 'hostname', req_args['value'])
         yield tw(db_refresh_tenant_cache, [self.request.tid])

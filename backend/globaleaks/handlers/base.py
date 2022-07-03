@@ -76,6 +76,7 @@ class BaseHandler(object):
     cache_resource = False
     invalidate_cache = False
     root_tenant_only = False
+    root_tenant_or_management_only = False
     upload_handler = False
     uploaded_file = None
 
@@ -360,6 +361,10 @@ class BaseHandler(object):
 
         finally:
             self.uploaded_file['path'] = destination
+
+    def check_root_or_management_session(self):
+        if self.request.tid != 1 and not (self.session and self.session.properties.get('management_session', False)):
+            errors.ForbiddenOperation()
 
     def check_execution_time(self):
         self.request.execution_time = datetime.now() - self.request.start_time

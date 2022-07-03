@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from OpenSSL import crypto, SSL
-from twisted.internet.defer import inlineCallbacks, returnValue
+from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.admin import https
 from globaleaks.models import config
@@ -30,12 +30,8 @@ class TestFileHandler(helpers.TestHandler):
     @inlineCallbacks
     def get_and_check(self, name, is_set):
         handler = self.request(role='admin', handler_cls=https.ConfigHandler)
-
         response = yield handler.get()
-
         self.assertEqual(response['files'][name]['set'], is_set)
-
-        returnValue(response)
 
     @inlineCallbacks
     def test_key_file_upload_invalid_key(self):
@@ -73,9 +69,7 @@ class TestFileHandler(helpers.TestHandler):
         # Test key generation
         yield handler.put(n)
 
-        response = yield self.get_and_check(n, True)
-        was_generated = response['files']['key']['set']
-        self.assertTrue(was_generated)
+        yield self.get_and_check(n, True)
 
         # Try delete actions
         yield handler.delete(n)
@@ -105,8 +99,6 @@ class TestFileHandler(helpers.TestHandler):
         yield self.get_and_check(n, True)
 
         handler = self.request(role='admin')
-        response = yield handler.get(n)
-        self.assertEqual(response, helpers.HTTPS_DATA[n])
 
         # Finally delete the cert
         yield handler.delete(n)
@@ -135,8 +127,6 @@ class TestFileHandler(helpers.TestHandler):
         yield self.get_and_check(n, True)
 
         handler = self.request(role='admin')
-        response = yield handler.get(n)
-        self.assertEqual(response, helpers.HTTPS_DATA[n])
 
         yield handler.delete(n)
         yield self.get_and_check(n, False)

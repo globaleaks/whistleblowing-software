@@ -5,16 +5,17 @@
       <input name="hostname"
              class="form-control"
              type="text"
-             data-ng-model="resources.node.hostname"
+             data-ng-model="hostname"
+	     data-ng-init="hostname=public.node.hostname"
              data-ng-pattern="CONSTANTS.hostname_regexp"
 	     data-ng-class="{'is-invalid': adminNetForm.hostname.$error.pattern}"/>
       <span class="input-group-append">
-        <button class="btn btn-primary" data-ng-click="Utils.applyConfig('set_hostname', resources.node.hostname, true)" data-ng-disabled="adminNetForm.$pristine" data-translate>Save</button>
+        <button class="btn btn-primary" data-ng-click="Utils.applyConfig('set_hostname', hostname, true)" data-ng-disabled="adminNetForm.$pristine" data-translate>Save</button>
       </span>
     </p>
   </form>
 </div>
-<div id="HTTPSSettings" data-ng-controller="AdminHTTPSConfigCtrl" data-ng-show="resources.node.hostname">
+<div id="HTTPSSettings" data-ng-controller="AdminHTTPSConfigCtrl" data-ng-show="public.node.hostname">
   <div class="card card-default">
     <div class="card-body" data-ng-switch="menuState">
       <div data-ng-switch-when="setup">
