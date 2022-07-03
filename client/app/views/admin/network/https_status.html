@@ -30,5 +30,6 @@
 </div>
 
 <hr />
-<button class="btn btn-danger" data-ng-click="toggleCfg()" data-translate>Disable</button>
+<button data-ng-if="!tls_config.enabled" class="btn btn-primary" data-ng-click="toggleCfg()" data-translate>Enable</button>
+<button data-ng-if="tls_config.enabled" class="btn btn-danger" data-ng-click="toggleCfg()" data-translate>Disable</button>
 <button class="btn btn-danger" data-ng-click="resetCfg()" data-translate>Reset</button>
