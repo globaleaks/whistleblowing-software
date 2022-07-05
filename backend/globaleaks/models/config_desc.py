@@ -221,7 +221,7 @@ ConfigFilters = {
         'version',
         'version_db',
         'wizard_done',
-        'uuid'
+        'uuid',
         'unread_reminder_time'
     ],
     'admin_network': [
