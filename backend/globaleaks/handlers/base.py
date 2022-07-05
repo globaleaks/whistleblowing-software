@@ -330,7 +330,7 @@ class BaseHandler(object):
         if mime_type is None:
             mime_type = 'application/octet-stream'
 
-        filename = self.request.args[b'flowFilename'][0].decode()
+        filename = os.path.basename(self.request.args[b'flowFilename'][0].decode())
 
         self.uploaded_file = {
             'id': file_id,
