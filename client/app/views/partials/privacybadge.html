@@ -19,7 +19,7 @@
     </div>
     <div data-ng-if="public.node.enable_custom_privacy_badge">
       <div id="PrivacyBoxTextBox" class="float-left">
-        <span id="PrivacyBadgeCustomText" data-ng-show="connection.privacy_badge_open" data-markdown-to-html="public.node.custom_privacy_badge_text"></span>
+        <span id="PrivacyBadgeCustomText" data-ng-show="connection.privacy_badge_open" data-markdown-to-html="public.node.custom_privacy_badge_text | stripHtml"></span>
       </div>
     </div>
     <div id="PrivacyBoxToggleButton" class="float-right" data-ng-if="!public.node.enable_custom_privacy_badge">
