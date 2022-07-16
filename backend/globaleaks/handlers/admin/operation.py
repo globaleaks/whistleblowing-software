@@ -19,12 +19,6 @@ from globaleaks.utils.onion import generate_onion_service_v3
 from globaleaks.utils.templating import Templating
 
 
-class TempKey(object):
-    def __init__(self, key):
-        self.key = key
-        self.expireCall = None
-
-
 @transact
 def check_hostname(session, tid, hostname):
     """
