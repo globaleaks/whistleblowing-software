@@ -1,11 +1,11 @@
-describe("admin configure https", function() {
+describe("admin configure network", function() {
   var files = {
     key: browser.gl.utils.makeTestFilePath("../../../backend/globaleaks/tests/data/https/valid/key.pem"),
     cert: browser.gl.utils.makeTestFilePath("../../../backend/globaleaks/tests/data/https/valid/cert.pem"),
     chain: browser.gl.utils.makeTestFilePath("../../../backend/globaleaks/tests/data/https/valid/chain.pem"),
   };
 
-  it("should interact with all ui elements", async function() {
+  it("should be able to configure https", async function() {
     var k_panel = element(by.css("div.card.key"));
     var csr_panel = element(by.css("div.card.csr"));
     var cert_panel = element(by.css("div.card.cert"));
@@ -16,9 +16,9 @@ describe("admin configure https", function() {
 
     await element(by.cssContainingText("a", "HTTPS")).click();
 
-    await element(by.model("resources.node.hostname")).clear();
-    await element(by.model("resources.node.hostname")).sendKeys("www.globaleaks.org");
-    await element(by.model("resources.node.hostname")).click();
+    await element(by.model("hostname")).clear();
+    await element(by.model("hostname")).sendKeys("www.globaleaks.org");
+    await element(by.model("hostname")).click();
 
     await element.all(by.cssContainingText("button", "Save")).get(0).click();
 
@@ -71,12 +71,6 @@ describe("admin configure https", function() {
 
       // Upload chain
       await element(by.css("div.card.chain input[type=\"file\"]")).sendKeys(files.chain);
-
-      // Download the cert and chain
-      if (browser.gl.utils.testFileDownload()) {
-        await cert_panel.element(by.id("downloadCert")).click();
-        await chain_panel.element(by.id("downloadChain")).click();
-      }
 
       // Delete chain, cert, key
       await chain_panel.element(by.id("deleteChain")).click();
