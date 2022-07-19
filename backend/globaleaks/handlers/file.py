@@ -8,6 +8,8 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.admin.file import get_file_id_by_name
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.utils.fs import directory_traversal_check
+
 
 appfiles = {
     'favicon': 'image/x-icon',
@@ -36,4 +38,5 @@ class FileHandler(BaseHandler):
             id = yield get_file_id_by_name(1, name)
 
         path = os.path.abspath(os.path.join(self.state.settings.files_path, id))
+        directory_traversal_check(self.state.settings.files_path, path)
         yield self.write_file(path, path)
