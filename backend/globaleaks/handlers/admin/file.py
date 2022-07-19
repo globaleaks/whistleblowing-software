@@ -96,14 +96,14 @@ class FileInstance(BaseHandler):
     invalidate_cache = True
     upload_handler = True
 
-    def permission_check(self, name):
+    def permission_check(self):
         if self.session.user_role != 'admin' and \
-          not (name == 'logo' and self.session.has_permission('can_edit_general_settings')):
+          not self.session.has_permission('can_edit_general_settings'):
             raise errors.InvalidAuthentication
 
     @inlineCallbacks
     def post(self, name):
-        self.permission_check(name)
+        self.permission_check()
 
         if name in special_files or re.match(requests.uuid_regexp, name):
             self.uploaded_file['name'] = name
@@ -123,7 +123,7 @@ class FileInstance(BaseHandler):
 
     @inlineCallbacks
     def delete(self, name):
-        self.permission_check(name)
+        self.permission_check()
 
         yield delete_file(self.request.tid, name)
 
