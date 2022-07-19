@@ -12,9 +12,10 @@ from globaleaks.orm import db_get, db_log, transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.fs import srm
-from globaleaks.utils.crypto import generateRandomKey, totpVerify, GCE
+from globaleaks.utils.crypto import generateRandomKey, GCE
 from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.utility import datetime_now, datetime_null
+
 
 
 def check_password_strength(password):
@@ -332,7 +333,7 @@ def enable_2fa(session, tid, user_id, secret, token):
 
     # RFC 6238: step size 30 sec; valid_window = 1; total size of the window: 1.30 sec
     try:
-        totpVerify(secret, token)
+        State.totp_verify(secret, token)
     except Exception:
         raise errors.InvalidTwoFactorAuthCode
 

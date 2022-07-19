@@ -15,7 +15,7 @@ from globaleaks.orm import db_log, transact
 from globaleaks.rest import requests
 from globaleaks.sessions import Sessions
 from globaleaks.state import State
-from globaleaks.utils.crypto import generateRandomKey, totpVerify, GCE
+from globaleaks.utils.crypto import generateRandomKey, GCE
 from globaleaks.utils.utility import datetime_now, datetime_null
 
 
@@ -139,7 +139,7 @@ def validate_password_reset(session, reset_token, auth_code, recovery_key):
 
     elif user.two_factor_secret:
         try:
-            totpVerify(user.two_factor_secret, auth_code)
+            State.totpVerify(user.two_factor_secret, auth_code)
         except:
             return {'status': 'require_two_factor_authentication'}
 

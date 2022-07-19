@@ -14,10 +14,11 @@ from twisted.python.threadpool import ThreadPool
 
 from globaleaks import __version__, orm
 from globaleaks.orm import tw
+from globaleaks.rest import errors
 from globaleaks.settings import Settings
 from globaleaks.transactions import db_schedule_email
 from globaleaks.utils.agent import get_tor_agent, get_web_agent
-from globaleaks.utils.crypto import sha256
+from globaleaks.utils.crypto import sha256, totpVerify
 from globaleaks.utils.log import log
 from globaleaks.utils.mail import sendmail
 from globaleaks.utils.objectdict import ObjectDict
@@ -94,6 +95,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
 
         self.tokens = TokenList(60)
         self.TempKeys = TempDict(3600 * 72)
+        self.TwoFactorTokens = TempDict(120)
         self.TempUploadFiles = TempDict(3600)
 
         self.shutdown = False
@@ -257,6 +259,22 @@ class StateClass(ObjectDict, metaclass=Singleton):
         net_agent = self.get_agent()
         log.debug('Fetching list of Tor exit nodes')
         return self.tor_exit_set.update(net_agent)
+
+    def totp_verify(self, secret, token):
+        class UsedToken(object):
+            def __init__(self, token):
+               self.token = token
+
+        # Check token reuse
+        previous_token = self.TwoFactorTokens.get(secret)
+        if previous_token and previous_token.token == token:
+            raise errors.InvalidTwoFactorAuthCode
+
+        totpVerify(secret, token)
+
+        # Register last used valid token
+        self.TwoFactorTokens[secret] = UsedToken(token)
+
 
 def mail_exception_handler(etype, value, tback):
     """

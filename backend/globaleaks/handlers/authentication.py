@@ -13,7 +13,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.sessions import initialize_submission_session, Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State
-from globaleaks.utils.crypto import totpVerify, Base64Encoder, GCE
+from globaleaks.utils.crypto import Base64Encoder, GCE
 from globaleaks.utils.utility import datetime_now, deferred_sleep
 
 
@@ -117,7 +117,7 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
         if authcode != '':
             # RFC 6238: step size 30 sec; valid_window = 1; total size of the window: 1.30 sec
             try:
-                totpVerify(user.two_factor_secret, authcode)
+                State.totpVerify(user.two_factor_secret, authcode)
             except:
                 raise errors.InvalidTwoFactorAuthCode
         else:
