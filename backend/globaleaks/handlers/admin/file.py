@@ -131,8 +131,15 @@ class FileInstance(BaseHandler):
 class FileCollection(BaseHandler):
     check_roles = 'user'
 
+    def permission_check(self):
+        if self.session.user_role != 'admin' and \
+          not self.session.has_permission('can_edit_general_settings'):
+            raise errors.InvalidAuthentication
+
     def get(self):
         """
         Return the list of files and their info
         """
+        self.permission_check()
+
         return get_files(self.request.tid)
