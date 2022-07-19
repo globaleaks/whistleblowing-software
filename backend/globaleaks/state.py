@@ -270,7 +270,10 @@ class StateClass(ObjectDict, metaclass=Singleton):
         if previous_token and previous_token.token == token:
             raise errors.InvalidTwoFactorAuthCode
 
-        totpVerify(secret, token)
+        try:
+            totpVerify(secret, token)
+        except:
+            raise errors.InvalidTwoFactorAuthCode
 
         # Register last used valid token
         self.TwoFactorTokens[secret] = UsedToken(token)

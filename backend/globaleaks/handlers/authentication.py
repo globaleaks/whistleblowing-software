@@ -114,14 +114,10 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
     connection_check(tid, client_ip, user.role, client_using_tor)
 
     if user.two_factor_secret:
-        if authcode != '':
-            # RFC 6238: step size 30 sec; valid_window = 1; total size of the window: 1.30 sec
-            try:
-                State.totpVerify(user.two_factor_secret, authcode)
-            except:
-                raise errors.InvalidTwoFactorAuthCode
-        else:
+        if authcode == '':
             raise errors.TwoFactorAuthCodeRequired
+
+        State.totpVerify(user.two_factor_secret, authcode)
 
     crypto_prv_key = ''
     if user.crypto_prv_key:
