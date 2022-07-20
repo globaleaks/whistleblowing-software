@@ -176,13 +176,8 @@ network_sandboxing_stop()
     log_action_end_msg 0
 }
 
-#
-# Function that queries the status of the daemon/service
-#
-case "$1" in
-  start)
-    log_daemon_msg "Starting GlobaLeaks daemon" "globaleaks"
-
+globaleaks_start()
+{
     if [ -n "$MAX_FILEDESCRIPTORS" ]; then
         ulimit -n "$MAX_FILEDESCRIPTORS"
     fi
@@ -190,12 +185,6 @@ case "$1" in
     ARGS="--ip=${LISTENING_IP}
           --user=${USERNAME}
           --working-path=${WORKING_DIR}"
-
-    if [[ "$NETWORK_SANDBOXING" -eq "1" ]]; then
-        network_sandboxing_start
-    fi
-
-    log_action_begin_msg "Starting $DESC"
 
     if start-stop-daemon --stop --quiet --pidfile $GLPID --name globaleaks; then
         log_action_end_msg 0 "already running"
@@ -206,32 +195,38 @@ case "$1" in
                 exit 1
             fi
 
-            AA_EXEC_PATH=$(command -v aa-exec)
-            AA_EXEC="--startas $AA_EXEC_PATH"
-            AA_EXEC_ARGS="--profile=user.bin.globaleaks -- $DAEMON"
+            if start-stop-daemon \
+                --start \
+                --quiet \
+                --pidfile $GLPID \
+                --startas $(command -v aa-exec) \
+                --exec $DAEMON \
+	        -- --profile=usr.bin.globaleaks $DAEMON $ARGS
+            then
+                log_action_end_msg 0
+            else
+                log_action_end_msg 1
+                exit 1
+            fi
         else
-            AA_EXEC=""
-            AA_EXEC_ARGS=""
-        fi
-
-        if start-stop-daemon \
-            --start \
-            --quiet \
-            --pidfile $GLPID \
-            $AA_EXEC \
-            --exec $DAEMON \
-	    -- $AA_EXEC_ARGS $ARGS
-        then
-            log_action_end_msg 0
-        else
-            log_action_end_msg 1
-            exit 1
+            if start-stop-daemon \
+                --start \
+                --quiet \
+                --pidfile $GLPID \
+                --exec $DAEMON \
+		-- $ARGS
+            then
+                log_action_end_msg 0
+            else
+                log_action_end_msg 1
+                exit 1
+            fi
         fi
     fi
-    ;;
-  stop)
-    log_action_begin_msg "Stopping $DESC"
+}
 
+globaleaks_stop()
+{
     pid=`cat $GLPID 2>/dev/null` || true
 
     if [ "$pid" -eq "0" ] || [ kill -0 pid >/dev/null 2<&- ]; then
@@ -241,10 +236,33 @@ case "$1" in
         wait_for_deaddaemon $pid
         log_end_msg 0 "stopped."
     fi
+}
+
+#
+# Function that queries the status of the daemon/service
+#
+case "$1" in
+  start)
+    log_daemon_msg "Starting GlobaLeaks daemon" "globaleaks"
+
+    log_action_begin_msg "Starting $DESC"
+
+    if [[ "$NETWORK_SANDBOXING" -eq "1" ]]; then
+        network_sandboxing_start
+    fi
+
+    globaleaks_start
+
+    ;;
+  stop)
+    log_action_begin_msg "Stopping $DESC"
+
 
     if [[ "$NETWORK_SANDBOXING" -eq "1" ]]; then
         network_sandboxing_stop
     fi
+
+    globaleaks_stop
     ;;
   status)
     if test ! -r $(dirname $GLPID); then
