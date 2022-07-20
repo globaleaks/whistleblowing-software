@@ -314,7 +314,7 @@ class BaseHandler(object):
         chunk_size = len(self.request.args[b'file'][0])
         if ((chunk_size // (1024 * 1024)) > self.state.tenants[self.request.tid].cache.maximum_filesize or
             (total_file_size // (1024 * 1024)) > self.state.tenants[self.request.tid].cache.maximum_filesize or
-            f.size > self.state.tenants[self.request.tid].cache.maximum_filesize):
+            f.size // (1024 * 1024) > self.state.tenants[self.request.tid].cache.maximum_filesize):
             log.err("File upload request rejected: file too big", tid=self.request.tid)
             raise errors.FileTooBig(self.state.tenants[self.request.tid].cache.maximum_filesize)
 
