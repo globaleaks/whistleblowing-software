@@ -139,7 +139,7 @@ def validate_password_reset(session, reset_token, auth_code, recovery_key):
 
     elif user.two_factor_secret:
         try:
-            State.totpVerify(user.two_factor_secret, auth_code)
+            State.totp_verify(user.two_factor_secret, auth_code)
         except:
             return {'status': 'require_two_factor_authentication'}
 

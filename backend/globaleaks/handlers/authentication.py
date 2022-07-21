@@ -117,7 +117,7 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
         if authcode == '':
             raise errors.TwoFactorAuthCodeRequired
 
-        State.totpVerify(user.two_factor_secret, authcode)
+        State.totp_verify(user.two_factor_secret, authcode)
 
     crypto_prv_key = ''
     if user.crypto_prv_key:
