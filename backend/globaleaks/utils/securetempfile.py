@@ -10,29 +10,28 @@ crypto_backend = default_backend()
 
 
 class SecureTemporaryFile(object):
-    file = None
-    fd = None
-    dec = None
-
     def __init__(self, filesdir):
         """
         Create the AES Key to encrypt the uploaded file and initialize the cipher
         """
+        self.fd = None
         self.key = os.urandom(32)
         self.key_id = generateRandomKey()
         self.key_counter_nonce = os.urandom(16)
         self.cipher = Cipher(algorithms.AES(self.key), modes.CTR(self.key_counter_nonce), backend=crypto_backend)
         self.filepath = os.path.join(filesdir, "%s.aes" % self.key_id)
-        self.enc = self.cipher.encryptor()
         self.size = 0
 
     def open(self, mode):
-        if self.file is None:
-            if mode == 'w':
-                self.fd = open(self.filepath, 'ab+')
-            else:
-                self.fd = open(self.filepath, 'rb')
-                self.dec = self.cipher.decryptor()
+        if self.fd is not None:
+            return
+
+        if mode == 'w':
+            self.fd = open(self.filepath, 'ab+')
+            self.encdec = self.cipher.encryptor()
+        else:
+            self.fd = open(self.filepath, 'rb')
+            self.encdec = self.cipher.decryptor()
 
         return self
 
@@ -40,11 +39,11 @@ class SecureTemporaryFile(object):
         if isinstance(data, str):
             data = data.encode()
 
-        self.fd.write(self.enc.update(data))
+        self.fd.write(self.encdec.update(data))
         self.size += len(data)
 
     def finalize_write(self):
-        self.fd.write(self.enc.finalize())
+        self.fd.write(self.encdec.finalize())
 
     def read(self, c=None):
         if c is None:
@@ -53,9 +52,9 @@ class SecureTemporaryFile(object):
             data = self.fd.read(c)
 
         if data:
-            return self.dec.update(data)
+            return self.encdec.update(data)
 
-        return self.dec.finalize()
+        return self.encdec.finalize()
 
     def close(self):
         if self.fd is not None:
