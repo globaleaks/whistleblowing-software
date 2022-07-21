@@ -37,25 +37,15 @@ def _convert_to_bytes(arg: Union[bytes, str]) -> bytes:
     return arg
 
 
-def _sha(alg: hashes.SHA256, data: Union[bytes, str]) -> bytes:
-    """
-    Perform the sha of the passed data
-    :param alg: A specific hash algorithm
-    :param data: A data to be hashed
-    :return: A hash value
-    """
-    h = hashes.Hash(alg, backend=crypto_backend)
-    h.update(_convert_to_bytes(data))
-    return binascii.b2a_hex(h.finalize())
-
-
 def sha256(data: Union[bytes, str]) -> bytes:
     """
-    Perform the sha256 of the passed thata
+    Perform the sha256 of the passed data
     :param data: A data to be hashed
     :return: A hash value
     """
-    return _sha(hashes.SHA256(), data)
+    h = hashes.Hash(hashes.SHA256(), backend=crypto_backend)
+    h.update(_convert_to_bytes(data))
+    return binascii.b2a_hex(h.finalize())
 
 
 def generateRandomKey() -> str:
