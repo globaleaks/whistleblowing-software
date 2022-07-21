@@ -8,7 +8,8 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.password_reset import db_generate_password_reset_token
-from globaleaks.handlers.user import db_get_user, disable_2fa, get_user
+from globaleaks.handlers.user import db_get_user, get_user
+from globaleaks.handlers.user.operation import disable_2fa
 from globaleaks.models import Config, InternalTip, User
 from globaleaks.models.config import db_set_config_variable, ConfigFactory, ConfigL10NFactory
 from globaleaks.orm import db_del, db_log, transact, tw

@@ -50,6 +50,7 @@ from globaleaks.handlers.admin import step as admin_step
 from globaleaks.handlers.admin import tenant as admin_tenant
 from globaleaks.handlers.admin import user as admin_user
 from globaleaks.handlers.admin import submission_statuses as admin_submission_statuses
+
 from globaleaks.rest import decorators, requests, errors
 from globaleaks.state import State, extract_exception_traceback_and_schedule_email
 from globaleaks.utils.json import JSONEncoder
@@ -71,7 +72,7 @@ api_spec = [
 
     # User Preferences Handler
     (r'/api/preferences', user.UserInstance),
-    (r'/api/user/operations', user.UserOperationHandler),
+    (r'/api/user/operations', user.operation.UserOperationHandler),
 
     # Token Handlers
     (r'/api/token', token.TokenHandler),

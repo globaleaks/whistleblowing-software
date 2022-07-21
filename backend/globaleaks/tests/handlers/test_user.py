@@ -122,7 +122,7 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
 
 
 class TestUserGetRecoveryKey(helpers.TestHandlerWithPopulatedDB):
-    _handler = user.UserOperationHandler
+    _handler = user.operation.UserOperationHandler
 
     def test_put(self):
         data_request = {
@@ -136,7 +136,7 @@ class TestUserGetRecoveryKey(helpers.TestHandlerWithPopulatedDB):
 
 
 class TestUser2FAEnrollment(helpers.TestHandlerWithPopulatedDB):
-    _handler = user.UserOperationHandler
+    _handler = user.operation.UserOperationHandler
 
     @inlineCallbacks
     def test_2fa(self):
