@@ -4,14 +4,14 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import models
 from globaleaks.handlers.admin.operation import generate_password_reset_token
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.user import db_get_user, \
-                                     db_set_user_password, \
+from globaleaks.handlers.user import db_set_user_password, \
                                      parse_pgp_options, \
                                      user_serialize_user
 from globaleaks.models import fill_localized_keys
 from globaleaks.orm import db_del, db_log, transact, tw
 from globaleaks.rest import requests
 from globaleaks.state import State
+from globaleaks.transactions import db_get_user
 from globaleaks.utils.crypto import GCE, Base64Encoder, generateRandomPassword
 from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
 

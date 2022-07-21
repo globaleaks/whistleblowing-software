@@ -5,10 +5,10 @@ from nacl.encoding import Base32Encoder, Base64Encoder
 
 from globaleaks import models
 from globaleaks.handlers.operation import OperationHandler
-from globaleaks.handlers.user import db_get_user
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.state import State
+from globaleaks.transactions import db_get_user
 from globaleaks.utils.crypto import GCE
 
 

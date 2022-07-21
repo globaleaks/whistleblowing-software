@@ -10,6 +10,7 @@ from globaleaks.models import config, get_localized_values
 from globaleaks.orm import db_get, db_log, transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
+from globaleaks.transactions import db_get_user
 from globaleaks.utils.fs import srm
 from globaleaks.utils.crypto import generateRandomKey, GCE
 from globaleaks.utils.pgp import PGPContext
@@ -148,21 +149,6 @@ def user_serialize_user(session, user, language):
         ret['require_two_factor'] = True
 
     return get_localized_values(ret, user, user.localized_keys, language)
-
-
-def db_get_user(session, tid, user_id):
-    """
-    Transaction for retrieving a user model given an id
-
-    :param session: An ORM session
-    :param tid: A tenant ID
-    :param user_id: A id of the user to retrieve
-    :return: A retrieved model
-    """
-    return db_get(session,
-                  models.User,
-                  (models.User.id == user_id,
-                   models.User.tid == tid))
 
 
 @transact
