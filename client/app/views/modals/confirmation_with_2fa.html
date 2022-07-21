@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <div class="modal-title" data-translate>Confirm</div>
+</div>
+<div class="modal-body">
+  <div class="form-group">
+    <div>
+      <span data-translate>Enter the two factor authentication code</span>
+    </div>
+    <input class="form-control" data-ng-model="secret" type="text" size="6" maxlength="6" />
+  </div>
+</div>
+<div class="modal-footer">
+ <button data-ng-click="confirm(secret)" data-ng-disabled="secret.length !== 6" class="btn btn-primary" data-translate>Confirm</button>
+ <button data-ng-click="cancel()" class="btn btn-light" data-translate>Close</button>
+</div>

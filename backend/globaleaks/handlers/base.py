@@ -12,10 +12,13 @@ from twisted.internet import abstract
 from twisted.protocols.basic import FileSender
 
 from globaleaks.event import track_handler
+from globaleaks.orm import transact_sync
 from globaleaks.rest import errors
 from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State
+from globaleaks.transactions import db_get_user
+from globaleaks.utils.crypto import GCE
 from globaleaks.utils.ip import check_ip
 from globaleaks.utils.log import log
 from globaleaks.utils.pgp import PGPContext
@@ -67,6 +70,21 @@ def connection_check(tid, client_ip, role, client_using_tor):
     https_allowed = State.tenants[tid].cache['https_allowed'].get(role)
     if not https_allowed and not client_using_tor:
         raise errors.TorNetworkRequired
+
+
+def db_confirmation_check(session, tid, user_id, secret):
+    user = db_get_user(session, tid, user_id)
+
+    if user.two_factor_secret:
+        State.totp_verify(user.two_factor_secret, secret)
+    else:
+        if not GCE.check_password(user.hash_alg, secret, user.salt, user.password):
+            raise errors.InvalidAuthentication
+
+
+@transact_sync
+def sync_confirmation_check(session, tid, user_id, secret):
+    return db_confirmation_check(session, tid, user_id, secret)
 
 
 class BaseHandler(object):
@@ -268,6 +286,12 @@ class BaseHandler(object):
     def check_file_presence(self, filepath):
         if not os.path.exists(filepath) or not os.path.isfile(filepath):
             raise errors.ResourceNotFound()
+
+    def check_confirmation(self):
+        tid = self.request.tid
+        user_id = self.session.user_id
+        secret = self.request.headers.get(b'x-confirmation', b'').decode()
+        sync_confirmation_check(tid, user_id, secret)
 
     def open_file(self, filepath):
         self.check_file_presence(filepath)

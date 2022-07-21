@@ -1071,6 +1071,34 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       $window.document.getElementsByTagName("body")[0].scrollIntoView();
     },
 
+    getConfirmation: function(confirmFun) {
+      var template = "views/modals/confirmation_with_password.html";
+      if ($rootScope.resources.preferences.two_factor) {
+        template = "views/modals/confirmation_with_2fa.html";
+      }
+
+      var openModal = function() {
+        $uibModal.open({
+          templateUrl: template,
+          controller: "ConfirmableModalCtrl",
+          resolve: {
+            arg: null,
+            confirmFun: function() {
+              return function(secret) {
+                confirmFun(secret).then(
+                  function() {},
+                  function() { openModal(); }
+                );
+	      };
+            },
+            cancelFun: null
+          },
+        });
+      };
+
+      openModal();
+    },
+
     copyToClipboard: function(data) {
       if ($window.navigator.clipboard && $window.isSecureContext) {
         $window.navigator.clipboard.writeText(data);

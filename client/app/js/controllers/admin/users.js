@@ -60,15 +60,28 @@ GL.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
     };
 
     $scope.disable2FA = function() {
-      $http.put(
-        "api/admin/config", {
-          "operation": "disable_2fa",
-          "args": {
-            "value": $scope.user.id
+      var confirm = function(secret) {
+        return $http.put(
+          "api/admin/config",
+	  {
+            "operation": "disable_2fa",
+            "args": {
+              "value": $scope.user.id
+            }
+          },
+          {
+            "headers": {
+              "x-confirmation": secret
+            }
           }
-      }).then(function() {
-	$scope.user.two_factor = false;
-      });
+        ).then(
+          function() {
+            $scope.user.two_factor = false;
+          }
+        );
+      }
+
+      return $scope.Utils.getConfirmation(confirm);
     };
 }]).
 controller("AdminUserAddCtrl", ["$scope",

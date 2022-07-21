@@ -28,29 +28,41 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$location", "$window
     };
 
     $scope.getEncryptionRecoveryKey = function() {
-      return $http({method: "PUT", url: "api/user/operations", data:{
-        "operation": "get_recovery_key",
-        "args": {}
-      }}).then(function(data){
-	$scope.resources.preferences.clicked_recovery_key = true;
-        $scope.erk = data.data.match(/.{1,4}/g).join("-");
-        $uibModal.open({
-          templateUrl: "views/modals/encryption_recovery_key.html",
-          controller: "ConfirmableModalCtrl",
-          scope: $scope,
-          resolve: {
-            arg: null,
-            confirmFun: null,
-            cancelFun: null
+      var confirm = function(secret) {
+        return $http({
+          method: "PUT",
+          url: "api/user/operations",
+          data:{
+            "operation": "get_recovery_key",
+            "args": {}
+	  },
+          headers: {
+            "x-confirmation": secret
           }
+        }).then(function(data){
+	  $scope.resources.preferences.clicked_recovery_key = true;
+          $scope.erk = data.data.match(/.{1,4}/g).join("-");
+          $uibModal.open({
+            templateUrl: "views/modals/encryption_recovery_key.html",
+            controller: "ConfirmableModalCtrl",
+            scope: $scope,
+            resolve: {
+              arg: null,
+              confirmFun: null,
+              cancelFun: null
+            }
+          });
         });
-      });
+      }
+
+      return $scope.Utils.getConfirmation(confirm);
     };
 
     $scope.toggle2FA = function() {
-      if ($scope.resources.preferences.two_factor) {
-        $scope.resources.preferences.two_factor = false;
+      // Do not change the value till the configuration is fully applied
+      $scope.resources.preferences.two_factor = !$scope.resources.preferences.two_factor;
 
+      if (!$scope.resources.preferences.two_factor) {
         var symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
         var array = new Uint32Array(32);
 
@@ -76,13 +88,25 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$location", "$window
           scope: $scope
         });
       } else {
-        return $http({method: "PUT", url: "api/user/operations", data:{
-          "operation": "disable_2fa",
-          "args": {}
-        }}).then(function() {
-          $scope.resources.preferences.two_factor = false;
-          $scope.Authentication.session.two_factor = false;
-        });
+        var confirm = function(secret) {
+          return $http({
+            method: "PUT",
+            url: "api/user/operations",
+            data: {
+              "operation": "disable_2fa",
+              "args": {}
+            },
+            headers: {
+              "x-confirmation": secret
+            }
+          }).then(
+            function() {
+              $scope.resources.preferences.two_factor = false;
+            }
+          );
+        }
+
+        return $scope.Utils.getConfirmation(confirm);
       }
     };
 
