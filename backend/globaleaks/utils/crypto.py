@@ -9,7 +9,6 @@ import time
 
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import constant_time, hashes
-from cryptography.hazmat.primitives.hashes import SHA1, SHA256
 from cryptography.hazmat.primitives.twofactor.totp import TOTP
 
 from nacl.encoding import Base64Encoder
@@ -38,7 +37,7 @@ def _convert_to_bytes(arg: Union[bytes, str]) -> bytes:
     return arg
 
 
-def _sha(alg: SHA256, data: Union[bytes, str]) -> bytes:
+def _sha(alg: hashes.SHA256, data: Union[bytes, str]) -> bytes:
     """
     Perform the sha of the passed data
     :param alg: A specific hash algorithm
@@ -98,7 +97,7 @@ def generate2FA():
 
 
 def totpVerify(secret: str, token: str) -> None:
-    totp = TOTP(base64.b32decode(secret), 6, SHA1(), 30, crypto_backend, enforce_key_length=False)
+    totp = TOTP(base64.b32decode(secret), 6, hashes.SHA1(), 30, crypto_backend, enforce_key_length=False)
     totp.verify(token.encode(), time.time())
 
 
