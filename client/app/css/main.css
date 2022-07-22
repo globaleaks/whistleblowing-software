@@ -371,7 +371,6 @@ a:hover,
 .disabled-interface {
   pointer-events: none;
   user-select: none;
-  background-color: #1d1f2a;
   opacity: 0.6;
 }
 
