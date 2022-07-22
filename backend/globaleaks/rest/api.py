@@ -488,20 +488,17 @@ class APIResourceWrapper(Resource):
             if State.tenants[request.tid].cache.onionservice:
                 request.setHeader(b'Onion-Location', b'http://' + State.tenants[request.tid].cache.onionservice.encode() + request.path)
 
-        # The possibility of disabling the Content-Security-Policy is
-        # necessary for two main reasons:
-        # - In order to evaluate code coverage with istanbuljs/nyc
-        # - In order to be able to manually retest if it is correctly implemented
         if not State.settings.disable_csp:
             request.setHeader(b'Content-Security-Policy',
-                              "base-uri 'none';"
-                              "default-src 'self';"
-                              "style-src 'self' 'sha256-fwyo2zCGlh85NfN4rQUlpLM7MB5cry/1AEDA/G9mQJ8=';"
-                              "script-src 'self' 'sha256-IYBZitj/YWbzjFFnwLPjJJmMGdSj923kzu2tdCxLKdU=';"
-                              "img-src 'self' data:;"
-                              "font-src 'self' data:;"
-                              "form-action 'self';"
-                              "frame-ancestors 'none';")
+                              b"base-uri 'none';"
+                              b"connect-src 'self';"
+                              b"default-src 'none';"
+                              b"font-src 'self' data:;"
+                              b"form-action 'none';"
+                              b"frame-ancestors 'none';"
+                              b"img-src 'self' data:;"
+                              b"script-src 'self' 'sha256-IYBZitj/YWbzjFFnwLPjJJmMGdSj923kzu2tdCxLKdU=';"
+                              b"style-src 'self' 'sha256-fwyo2zCGlh85NfN4rQUlpLM7MB5cry/1AEDA/G9mQJ8=';")
 
             request.setHeader(b"Cross-Origin-Embedder-Policy", "require-corp")
             request.setHeader(b"Cross-Origin-Opener-Policy", "same-origin")
