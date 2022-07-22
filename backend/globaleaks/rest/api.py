@@ -283,7 +283,15 @@ class APIResourceWrapper(Resource):
 
     def preprocess(self, request):
         request.hostname = request.getRequestHostname()
+        request.port = request.getHost().port
         request.headers = request.getAllHeaders()
+        request.client_ip = b''
+        request.client_ua = b''
+        request.client_mobile = False
+        request.client_using_tor = False
+        request.language = 'en'
+        request.multilang = False
+        request.finished = False
 
         if (not State.tenants[1].cache.wizard_done or
             request.hostname == b'localhost' or
@@ -339,8 +347,6 @@ class APIResourceWrapper(Resource):
         if request.client_ip.startswith('::ffff:'):
             request.client_ip = request.client_ip[7:]
 
-        request.port = request.getHost().port
-
         request.client_using_tor = request.client_ip in State.tor_exit_set or \
                                    request.port == 8083
 
@@ -358,17 +364,6 @@ class APIResourceWrapper(Resource):
 
         :return: empty `str` or `NOT_DONE_YET`
         """
-        request.hostname = b''
-        request.headers = None
-        request.client_ip = b''
-        request.client_ua = b''
-        request.client_mobile = False
-        request.client_using_tor = False
-        request.port = 443
-        request.language = 'en'
-        request.multilang = False
-        request.finished = False
-
         self.preprocess(request)
 
         if request.tid is None:
