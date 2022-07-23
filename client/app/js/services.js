@@ -22,18 +22,7 @@ factory("Authentication",
       self.loginData = {};
 
       self.set_session = function(response) {
-        response = response.data;
-
-        var session = {
-          "id": response.session_id,
-          "user_id": response.user_id,
-          "role": response.role,
-          "require_password_change": response.require_password_change,
-          "two_factor": response.two_factor,
-          "properties": response.properties,
-          "homepage": "",
-          "preferencespage": ""
-        };
+        var session = response.data;
 
         if (session.role !== "whistleblower") {
           var role = session.role === "receiver" ? "recipient" : session.role;

@@ -27,7 +27,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'authcode': '',
         })
         response = yield handler.post()
-        self.assertTrue('session_id' in response)
+        self.assertTrue('id' in response)
 
     @inlineCallbacks
     def test_successful_multitenant_login_switch(self):
@@ -41,7 +41,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         response = yield handler.post()
 
         auth_switch_handler = self.request({},
-                                           headers={'x-session': response['session_id']},
+                                           headers={'x-session': response['id']},
                                            handler_cls=authentication.TenantAuthSwitchHandler)
 
         response = yield auth_switch_handler.get(2)
@@ -57,7 +57,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         })
         State.tenants[1].cache['https_allowed']['admin'] = True
         response = yield handler.post()
-        self.assertTrue('session_id' in response)
+        self.assertTrue('id' in response)
 
     @inlineCallbacks
     def test_deny_login_in_https(self):
@@ -116,8 +116,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
         r2 = yield handler.post()
 
-        self.assertTrue(Sessions.get(r1['session_id']) is None)
-        self.assertTrue(Sessions.get(r2['session_id']) is not None)
+        self.assertTrue(Sessions.get(r1['id']) is None)
+        self.assertTrue(Sessions.get(r2['id']) is not None)
 
     @inlineCallbacks
     def test_session_is_revoked(self):
@@ -130,7 +130,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
         r1 = yield auth_handler.post()
 
-        user_handler = self.request({}, headers={'x-session': r1['session_id']},
+        user_handler = self.request({}, headers={'x-session': r1['id']},
                                         handler_cls=UserInstance)
 
         # The first_session is valid and the request should work
@@ -146,14 +146,14 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
         r2 = yield auth_handler.post()
 
-        user_handler = self.request({}, headers={'x-session': r1['session_id']},
+        user_handler = self.request({}, headers={'x-session': r1['id']},
                                         handler_cls=UserInstance)
 
         # The first_session should now deny access to authenticated resources
         yield self.assertRaises(errors.NotAuthenticated, user_handler.get)
 
         # The second_session should have no problems.
-        user_handler = self.request({}, headers={'x-session': r2['session_id']},
+        user_handler = self.request({}, headers={'x-session': r2['id']},
                                         handler_cls=UserInstance)
 
         yield user_handler.get()
@@ -181,7 +181,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'authcode': ''
         }, client_addr=IPv4Address('TCP', '192.168.2.1', 12345))
         response = yield handler.post()
-        self.assertTrue('session_id' in response)
+        self.assertTrue('id' in response)
 
 
 class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
@@ -202,7 +202,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         })
         handler.request.client_using_tor = True
         response = yield handler.post()
-        self.assertTrue('session_id' in response)
+        self.assertTrue('id' in response)
 
     @inlineCallbacks
     def test_accept_whistleblower_login_in_https(self):
@@ -212,7 +212,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         }, headers={'X-Tor2Web': 'whatever'})
         State.tenants[1].cache['https_allowed']['whistleblower'] = True
         response = yield handler.post()
-        self.assertTrue('session_id' in response)
+        self.assertTrue('id' in response)
 
     @inlineCallbacks
     def test_deny_whistleblower_login_in_https(self):
@@ -237,7 +237,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
 
         handler.request.client_using_tor = True
         response = yield handler.post()
-        first_id = response['session_id']
+        first_id = response['id']
 
         wbtip_handler = self.request(headers={'x-session': first_id},
                                      handler_cls=WBTipInstance)
@@ -248,7 +248,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         })
 
         response = yield handler.post()
-        second_id = response['session_id']
+        second_id = response['id']
 
         wbtip_handler = self.request(headers={'x-session': first_id},
                                      handler_cls=WBTipInstance)
@@ -281,12 +281,12 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
 
         response = yield handler.post()
         self.assertTrue(handler.session is None)
-        self.assertTrue('session_id' in response)
+        self.assertTrue('id' in response)
 
         self._handler = authentication.SessionHandler
 
         # Logout
-        session_id = response['session_id']
+        session_id = response['id']
         handler = self.request({}, headers={'x-session': session_id})
         yield handler.delete()
 
@@ -304,12 +304,12 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
 
         response = yield handler.post()
         self.assertTrue(handler.session is None)
-        self.assertTrue('session_id' in response)
+        self.assertTrue('id' in response)
 
         self._handler = authentication.SessionHandler
 
         # Logout
-        handler = self.request({}, headers={'x-session': response['session_id']})
+        handler = self.request({}, headers={'x-session': response['id']})
         yield handler.delete()
 
 
@@ -332,4 +332,4 @@ class TestTokenAuth(helpers.TestHandlerWithPopulatedDB):
         })
 
         response = yield handler.post()
-        self.assertTrue('session_id' in response)
+        self.assertTrue('id' in response)

@@ -146,7 +146,7 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
 
 class AuthenticationHandler(BaseHandler):
     """
-    Login handler for admins and recipents and custodians
+    Login handler for internal users
     """
     check_roles = 'any'
     uniform_answer_time = True
@@ -173,11 +173,7 @@ class AuthenticationHandler(BaseHandler):
                 'redirect': 'https://%s/#/login?token=%s' % (State.tenants[tid].cache.hostname, session.id)
             })
 
-        ret = session.serialize()
-
-        ret['require_two_factor'] = self.state.tenants[tid].cache['two_factor']
-
-        returnValue(ret)
+        returnValue(session.serialize())
 
 
 class TokenAuthHandler(BaseHandler):
@@ -207,7 +203,7 @@ class TokenAuthHandler(BaseHandler):
 
 class ReceiptAuthHandler(BaseHandler):
     """
-    Receipt handler used by whistleblowers
+    Receipt handler for whistleblowers
     """
     check_roles = 'any'
     uniform_answer_time = True

@@ -29,7 +29,7 @@ class Session(object):
 
     def serialize(self):
         return {
-            'session_id': self.id,
+            'id': self.id,
             'role': self.user_role,
             'encryption': self.cc != '',
             'user_id': self.user_id,
