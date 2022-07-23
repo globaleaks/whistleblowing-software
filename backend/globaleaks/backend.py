@@ -89,17 +89,12 @@ class Service(service.Service):
             elif port == 443:
                 self.state.https_socks += [sock]
 
-        fix_file_permissions(Settings.working_path,
-                             Settings.uid,
-                             Settings.gid,
-                             0o700,
-                             0o600)
-
-        fix_file_permissions(Settings.ramdisk_path,
-                             Settings.uid,
-                             Settings.gid,
-                             0o700,
-                             0o600)
+        for path in [Settings.working_path, Settings.ramdisk_path]:
+            fix_file_permissions(path,
+                                 Settings.uid,
+                                 Settings.gid,
+                                 0o700,
+                                 0o600)
 
         drop_privileges(Settings.user, Settings.uid, Settings.gid)
 
