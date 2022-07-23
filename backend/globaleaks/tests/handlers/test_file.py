@@ -11,7 +11,7 @@ class TestFileInstance(helpers.TestHandler):
     _handler = file.FileHandler
 
     @inlineCallbacks
-    def test_post(self):
+    def test_get(self):
         handler = self.request()
         yield self.assertFailure(handler.get(u'custom'), ResourceNotFound)
 
