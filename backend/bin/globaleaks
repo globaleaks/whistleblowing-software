@@ -88,8 +88,6 @@ if options.version:
 Settings.load_cmdline_options(options)
 State.init_environment()
 
-State.init_environment()
-
 args = ['-y', Settings.backend_script]
 if Settings.nodaemon:
     print("Going in background; log available at %s" % Settings.logfile)
