@@ -548,30 +548,32 @@ var GL = angular.module("GL", [
 
         $rootScope.public = result;
 
-        if ($rootScope.public.node.css) {
-          elem = document.getElementById("load-custom-css");
-          if (elem === null) {
-            elem = document.createElement("link");
-            elem.setAttribute("id", "load-custom-css");
-            elem.setAttribute("rel", "stylesheet");
-            elem.setAttribute("type", "text/css");
-            elem.setAttribute("href", "s/css");
-            document.getElementsByTagName("head")[0].appendChild(elem);
+        if ($window.location.pathname === '/') {
+          if ($rootScope.public.node.css) {
+            elem = document.getElementById("load-custom-css");
+            if (elem === null) {
+              elem = document.createElement("link");
+              elem.setAttribute("id", "load-custom-css");
+              elem.setAttribute("rel", "stylesheet");
+              elem.setAttribute("type", "text/css");
+              elem.setAttribute("href", "s/css");
+              document.getElementsByTagName("head")[0].appendChild(elem);
+            }
           }
-        }
 
-	if ($rootScope.public.node.script) {
-          elem = document.getElementById("load-custom-script");
-          if (elem === null) {
-            elem = document.createElement("script");
-            elem.setAttribute("id", "load-custom-script");
-            elem.setAttribute("src", "s/script");
-            document.getElementsByTagName("body")[0].appendChild(elem);
+	  if ($rootScope.public.node.script) {
+            elem = document.getElementById("load-custom-script");
+            if (elem === null) {
+              elem = document.createElement("script");
+              elem.setAttribute("id", "load-custom-script");
+              elem.setAttribute("src", "s/script");
+              document.getElementsByTagName("body")[0].appendChild(elem);
+            }
           }
-        }
 
-        if ($rootScope.public.node.favicon) {
-          document.getElementById("favicon").setAttribute("href", "s/favicon");
+          if ($rootScope.public.node.favicon) {
+            document.getElementById("favicon").setAttribute("href", "s/favicon");
+          }
         }
 
         $rootScope.contexts_by_id = $rootScope.Utils.array_to_map(result.contexts);
