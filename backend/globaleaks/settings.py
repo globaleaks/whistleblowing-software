@@ -100,16 +100,14 @@ class SettingsClass(object, metaclass=Singleton):
 
     def eval_paths(self):
         self.pidfile_path = os.path.join(self.working_path, 'globaleaks.pid')
-        self.files_path = os.path.abspath(os.path.join(self.working_path, 'files'))
 
-        self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
+        self.files_path = os.path.abspath(os.path.join(self.working_path, 'files'))
         self.attachments_path = os.path.abspath(os.path.join(self.working_path, 'attachments'))
         self.tmp_path = os.path.abspath(os.path.join(self.working_path, 'tmp'))
-        self.static_db_source = os.path.abspath(os.path.join(self.src_path, 'globaleaks', 'db'))
 
-        self.db_schema = os.path.join(self.static_db_source, 'sqlite.sql')
         self.db_file_path = os.path.abspath(os.path.join(self.working_path, 'globaleaks.db'))
 
+        self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
         self.accesslogfile = os.path.abspath(os.path.join(self.log_path, "access.log"))
 
