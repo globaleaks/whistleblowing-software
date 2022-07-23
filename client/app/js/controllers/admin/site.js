@@ -15,16 +15,12 @@ controller("AdminGeneralSettingsCtrl", ["$scope", "$filter", "$http", "Files", "
         template: "views/admin/content/tab2.html"
       },
       {
-        title: "Files",
+        title: "Languages",
         template: "views/admin/content/tab3.html"
       },
       {
-        title: "Languages",
-        template: "views/admin/content/tab4.html"
-      },
-      {
         title: "Text customization",
-        template: "views/admin/content/tab5.html"
+        template: "views/admin/content/tab4.html"
       }
     ]);
   }
@@ -40,13 +36,6 @@ controller("AdminGeneralSettingsCtrl", ["$scope", "$filter", "$http", "Files", "
         "title": "CSS",
         "varname": "css",
         "filename": "custom_stylesheet.css",
-        "size": "1048576"
-      },
-      {
-        "title": "JavaScript",
-        "varname": "script",
-        "filename": "custom_script.js",
-        "type": "js",
         "size": "1048576"
       }
   ];

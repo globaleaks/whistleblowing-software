@@ -144,6 +144,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
         """
         for dirpath in [self.settings.working_path,
                         self.settings.files_path,
+                        self.settings.scripts_path,
                         self.settings.attachments_path,
                         self.settings.ramdisk_path,
                         self.settings.tmp_path,

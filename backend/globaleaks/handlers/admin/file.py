@@ -15,7 +15,7 @@ from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.utility import uuid4
 
 
-special_files = ['css', 'favicon', 'logo', 'script']
+special_files = ['css', 'favicon', 'logo']
 
 
 @transact

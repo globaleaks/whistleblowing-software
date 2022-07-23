@@ -2,6 +2,7 @@
 #
 # Handlers dealing with public API exporting main platform configuration/resources
 import copy
+import os
 
 from sqlalchemy import or_
 
@@ -260,6 +261,7 @@ def db_serialize_node(session, tid, language):
     ret['languages_enabled'] = languages if ret['wizard_done'] else list(LANGUAGES_SUPPORTED_CODES)
     ret['languages_supported'] = LANGUAGES_SUPPORTED
 
+    ret['script'] = os.path.exists(os.path.abspath(os.path.join(State.settings.scripts_path, str(tid))))
     for x in special_files:
         ret[x] = session.query(models.File.id).filter(models.File.tid == tid, models.File.name == x).one_or_none()
 
@@ -284,6 +286,7 @@ def db_serialize_node(session, tid, language):
             ret['whistleblowing_button'] = root_tenant_l10n.get_val('whistleblowing_button', language)
             ret['disclaimer_text'] = root_tenant_l10n.get_val('disclaimer_text', language)
 
+            ret['script'] = os.path.exists(os.path.abspath(os.path.join(State.settings.scripts_path, str(tid))))
             for x in special_files:
                 if not ret[x]:
                     ret[x] = session.query(models.File.id).filter(models.File.tid == 1, models.File.name == x).one_or_none()

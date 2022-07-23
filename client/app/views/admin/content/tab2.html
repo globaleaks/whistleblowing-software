@@ -1,7 +1,42 @@
-<div class="row">
+<div class="row mt-4">
   <div class="col-md-12">
     <div class="form-group">
-      <div data-ng-repeat="admin_file in admin_files" data-ng-include="'views/partials/admin_file.html'"></div>
+      <div class="mb-2" data-ng-repeat="admin_file in admin_files" data-ng-include="'views/partials/admin_file.html'"></div>
+      <div class="mb-2"
+	   data-flow-init="{target: 'api/admin/files/custom'}"
+           data-flow-files-submitted="$flow.upload()"
+           data-flow-file-success="reload()"
+           extend-flow-valid-size="public.node.maximum_filesize*1024*1024">
+        <div data-translate>Files</div>
+        <div class="uploadfile file-custom">
+          <span class="custom-file">
+            <input id="customFile" class="custom-file-input" type="file" data-flow-btn />
+            <label class="btn btn-sm btn-primary" for="customFile">
+              <i class="fa-solid fa-upload"></i>
+              <span data-translate>Upload</span>
+            </label>
+          </span>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped" id="fileList">
+          <tbody id="fileListBody">
+            <tr data-ng-repeat="file in files | orderBy:'name'">
+              <td>{{file.name}}</td>
+              <td>
+                <a class="btn btn-sm btn-primary" data-ng-href="s/{{file.name}}" download="{{file.name}}">
+                  <i class="fa-solid fa-download"></i>
+                  <span data-translate>Download</span>
+                </a>
+                <button class="btn btn-sm btn-danger" data-ng-click="delete_file('api/admin/files/' + file.id)" data-single-click>
+                  <i class="fa-solid fa-trash"></i>
+                  <span data-translate>Delete</span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

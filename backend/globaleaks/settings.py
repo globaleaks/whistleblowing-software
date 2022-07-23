@@ -102,6 +102,7 @@ class SettingsClass(object, metaclass=Singleton):
         self.pidfile_path = os.path.join(self.working_path, 'globaleaks.pid')
 
         self.files_path = os.path.abspath(os.path.join(self.working_path, 'files'))
+        self.scripts_path = os.path.abspath(os.path.join(self.working_path, 'scripts'))
         self.attachments_path = os.path.abspath(os.path.join(self.working_path, 'attachments'))
         self.tmp_path = os.path.abspath(os.path.join(self.working_path, 'tmp'))
 
