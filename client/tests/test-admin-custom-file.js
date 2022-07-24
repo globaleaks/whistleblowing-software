@@ -10,7 +10,7 @@ describe("Admin upload custom file", function() {
 
     var customFile = browser.gl.utils.makeTestFilePath("antani.txt");
 
-    await element(by.css("span.file-custom")).element(by.css("input")).sendKeys(customFile);
+    await element(by.css("div.file-custom")).element(by.css("input")).sendKeys(customFile);
 
     await browser.gl.utils.waitUntilPresent(by.cssContainingText("label", "Project name"));
 

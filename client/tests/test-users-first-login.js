@@ -23,6 +23,8 @@ describe("Recipient first login", function() {
     await browser.gl.utils.waitForUrl("/recipient/preferences");
     await browser.gl.utils.takeScreenshot("user/preferences.png");
     await element(by.cssContainingText("button", "Account recovery key")).click();
+    await element(by.model("secret")).sendKeys(browser.gl.utils.vars.user_password);
+    await element(by.cssContainingText("button", "Confirm")).click();
     await browser.gl.utils.takeScreenshot("user/recoverykey.png");
     await element(by.cssContainingText("button", "Close")).click();
     await element(by.model("resources.preferences.two_factor")).click();
