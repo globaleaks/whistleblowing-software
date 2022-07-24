@@ -427,7 +427,7 @@ class APIResourceWrapper(Resource):
 
         if self.handler.root_tenant_or_management_only and \
                 request.tid != 1 and \
-                not request.session.properties.get('management_session', False):
+                not self.handler.session.properties.get('management_session', False):
             self.handle_exception(errors.ForbiddenOperation(), request)
             return b''
 
