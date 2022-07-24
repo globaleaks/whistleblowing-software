@@ -34,14 +34,12 @@ controller("AdminGeneralSettingsCtrl", ["$scope", "$filter", "$http", "Files", "
         "title": "Favicon",
         "varname": "favicon",
         "filename": "custom_favicon.ico",
-        "type": "ico",
         "size": "131072"
       },
       {
         "title": "CSS",
         "varname": "css",
         "filename": "custom_stylesheet.css",
-        "type": "css",
         "size": "1048576"
       },
       {

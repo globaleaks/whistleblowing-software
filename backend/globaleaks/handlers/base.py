@@ -79,6 +79,7 @@ class BaseHandler(object):
     root_tenant_or_management_only = False
     upload_handler = False
     uploaded_file = None
+    allowed_mimetypes = []
 
     def __init__(self, state, request):
         self.name = type(self).__name__
@@ -277,9 +278,12 @@ class BaseHandler(object):
         if isinstance(fp, str):
             fp = self.open_file(fp)
 
-        mime_type, _ = mimetypes.guess_type(filename)
-        if mime_type:
-            self.request.setHeader(b'Content-Type', mime_type)
+        mimetype, _ = mimetypes.guess_type(filename)
+
+        if mimetype not in self.allowed_mimetypes:
+            mimetype = 'application/octet-stream'
+
+        self.request.setHeader(b'Content-Type', mimetype)
 
         return serve_file(self.request, fp)
 
@@ -293,7 +297,7 @@ class BaseHandler(object):
             fp = NamedTemporaryFile()
             PGPContext(pgp_key).encrypt_file(_fp, fp.name)
 
-        self.request.setHeader(b'Content-Type', b'application/octet-stream')
+        self.request.setHeader(b'Content-Type', 'application/octet-stream')
         self.request.setHeader(b'Content-Disposition',
                                'attachment; filename="%s"' % filename)
 

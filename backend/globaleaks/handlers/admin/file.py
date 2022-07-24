@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import mimetypes
 import os
 import re
 
@@ -96,6 +97,14 @@ class FileInstance(BaseHandler):
     invalidate_cache = True
     upload_handler = True
 
+    allowed_mimetypes = [
+        'audio/mpeg',
+        'application/pdf',
+        'font/woff',
+        'image/png',
+        'video/mp4'
+    ]
+
     def permission_check(self):
         if self.session.user_role != 'admin' and \
           not self.session.has_permission('can_edit_general_settings'):
@@ -104,6 +113,16 @@ class FileInstance(BaseHandler):
     @inlineCallbacks
     def post(self, name):
         self.permission_check()
+
+        if name == 'css':
+            self.allowed_mimetypes = ['text/css']
+        elif name == 'favicon':
+            self.allowed_mimetypes = ['image/x-icon']
+        elif name == 'logo' or re.match(requests.uuid_regexp, name):
+            self.allowed_mimetypes = ['image/png']
+
+        if self.uploaded_file['type'] not in self.allowed_mimetypes:
+            raise errors.ForbiddenOperation()
 
         if name in special_files or re.match(requests.uuid_regexp, name):
             self.uploaded_file['name'] = name

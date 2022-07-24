@@ -12,26 +12,28 @@ from globaleaks.utils.fs import directory_traversal_check
 
 
 appfiles = {
-    'favicon': 'image/x-icon',
-    'logo': 'image/png',
-    'css': 'text/css',
-    'script': 'application/javascript'
+    'favicon': 'favicon.ico',
+    'logo': 'logo.png',
+    'css': 'custom.css',
 }
-
 
 class FileHandler(BaseHandler):
     """
     Handler that provide public access to configuration files
     """
     check_roles = 'any'
+    allowed_mimetypes = [
+        'audio/mpeg',
+        'font/woff',
+        'image/x-icon',
+        'image/png',
+        'text/css',
+        'video/mp4'
+    ]
 
     @inlineCallbacks
     def get(self, name):
         name = urllib.parse.unquote(name)
-        if name in appfiles:
-            self.request.setHeader(b'Content-Type', appfiles[name])
-        else:
-            self.request.setHeader(b'Content-Type', 'application/octet-stream')
 
         id = yield get_file_id_by_name(self.request.tid, name)
         if not id:
@@ -39,4 +41,8 @@ class FileHandler(BaseHandler):
 
         path = os.path.abspath(os.path.join(self.state.settings.files_path, id))
         directory_traversal_check(self.state.settings.files_path, path)
-        yield self.write_file(path, path)
+
+        if name in appfiles:
+            name = appfiles[name]
+
+        yield self.write_file(name, path)

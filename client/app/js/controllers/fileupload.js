@@ -36,15 +36,6 @@ controller("ImageUploadCtrl", ["$http", "$scope", "$rootScope", "uploadUtils", "
   $scope.Utils = Utils;
   $scope.imageUploadObj = {};
 
-  $scope.$on("flow::fileAdded", function (event, $flow, flowFile) {
-    $scope.file_error_msgs = [];
-    var validSize = $rootScope.public.node.maximum_filesize * 1024 * 1024;
-    if (flowFile.size > validSize) {
-      var errMsg = uploadUtils.translateInvalidSizeErr(flowFile.name, validSize);
-      $scope.file_error_msgs.push(errMsg);
-    }
-  });
-
   $scope.$on("flow::complete", function () {
     $scope.imageUploadModel[$scope.imageUploadModelAttr] = true;
   });

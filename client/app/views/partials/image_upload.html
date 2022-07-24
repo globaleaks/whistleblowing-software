@@ -4,8 +4,7 @@
      data-flow-name="imageUploadObj.flow"
      data-flow-init="{target: 'api/admin/files/' + imageUploadId}"
      data-flow-files-submitted="$flow.upload()"
-     data-flow-drop
-     extend-flow-valid-types="['png']">
+     data-flow-drop>
   <label for="projectImageLoader"
          class="changePictureButton text-primary"
          data-ng-if="!imageUploadModel[imageUploadModelAttr] && !imageUploadObj.flow.files.length"

@@ -10,6 +10,13 @@ from globaleaks.utils.fs import directory_traversal_check
 
 class StaticFileHandler(BaseHandler):
     check_roles = 'any'
+    allowed_mimetypes = [
+        'application/javascript',
+        'font/woff',
+        'image/png',
+        'text/css',
+        'text/html'
+    ]
 
     def __init__(self, state, request):
         BaseHandler.__init__(self, state, request)
@@ -21,10 +28,6 @@ class StaticFileHandler(BaseHandler):
             filename = 'index.html'
 
         abspath = os.path.abspath(os.path.join(self.root, filename))
-
         directory_traversal_check(self.root, abspath)
 
-        if os.path.exists(abspath) and os.path.isfile(abspath):
-            return self.write_file(filename, abspath)
-
-        raise errors.ResourceNotFound()
+        return self.write_file(filename, abspath)
