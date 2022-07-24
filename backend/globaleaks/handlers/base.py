@@ -25,13 +25,6 @@ from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.utils.utility import datetime_now, deferred_sleep
 
-# https://github.com/globaleaks/GlobaLeaks/issues/1601
-mimetypes.add_type('image/svg+xml', '.svg')
-mimetypes.add_type('application/vnd.ms-fontobject', '.eot')
-mimetypes.add_type('application/x-font-ttf', '.ttf')
-mimetypes.add_type('application/woff', '.woff')
-mimetypes.add_type('application/woff2', '.woff2')
-
 
 def serve_file(request, fo):
     filesender = FileSender()
