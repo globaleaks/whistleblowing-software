@@ -143,7 +143,7 @@ def initialize_config(session, tid, mode):
     if mode == 'default':
         variables['onionservice'], variables['tor_onion_key'] = generate_onion_service_v3()
 
-    if mode == 'whistleblowing.it':
+    if mode == 'wbpa':
         root_tenant_node = ConfigFactory(session, 1).serialize('node')
         for name in inherit_from_root_tenant:
             variables[name] = root_tenant_node[name]

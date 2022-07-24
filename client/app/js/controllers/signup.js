@@ -1,6 +1,6 @@
 GL.controller("SignupCtrl", ["$scope", "$route", "$http", "Authentication", "DATA_COUNTRIES_ITALY_REGIONS", "DATA_COUNTRIES_ITALY_PROVINCES", "DATA_COUNTRIES_ITALY_CITIES",
               function($scope, $route, $http, Authentication, DATA_COUNTRIES_ITALY_REGIONS, DATA_COUNTRIES_ITALY_PROVINCES, DATA_COUNTRIES_ITALY_CITIES) {
-  if ($scope.public.node.mode === "whistleblowing.it") {
+  if ($scope.public.node.mode === "wbpa") {
     $scope.data_countries_italy_regions = DATA_COUNTRIES_ITALY_REGIONS.query();
     $scope.data_countries_italy_provinces = DATA_COUNTRIES_ITALY_PROVINCES.query();
     $scope.data_countries_italy_cities = DATA_COUNTRIES_ITALY_CITIES.query();

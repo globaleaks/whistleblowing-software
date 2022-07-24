@@ -97,8 +97,6 @@ def db_wizard(session, tid, hostname, request):
 
     if not request['skip_recipient_account_creation']:
         context_desc['receivers'] = [receiver_user.id]
-    else:
-        context_desc['receivers'] = []
 
     context = db_create_context(session, tid, None, context_desc, language)
 
@@ -116,7 +114,9 @@ def db_wizard(session, tid, hostname, request):
         node.set_val('hostname', node.get_val('subdomain') + '.' + root_tenant_node.get_val('rootdomain'))
         node.set_val('tor', False)
 
-    if mode in ['whistleblowing.it', 'eat']:
+    if mode in ['wbpa']:
+        node.set_val('simplified_login', True)
+
         for varname in ['anonymize_outgoing_connections',
                         'password_change_period',
                         'default_questionnaire']:
@@ -136,10 +136,6 @@ def db_wizard(session, tid, hostname, request):
 
             # Set the recipient name equal to the node name
             receiver_user.name = receiver_user.public_name = request['node_name']
-
-    # Apply the specific fixes related to whistleblowing.it projects
-    if mode == 'whistleblowing.it':
-        node.set_val('simplified_login', True)
 
 
 @transact

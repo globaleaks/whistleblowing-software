@@ -65,7 +65,7 @@ class TestSignupActivation(helpers.TestHandler):
 
     @inlineCallbacks
     def test_valid_signup_in_wbpa_mode(self):
-        yield self._signup('whistleblowing.it')
+        yield self._signup('wbpa')
 
         yield self.test_model_count(models.User, 1)
 
