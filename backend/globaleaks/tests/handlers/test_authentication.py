@@ -207,9 +207,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_accept_whistleblower_login_in_https(self):
         yield self.perform_full_submission_actions()
-        handler = self.request({
-            'receipt': self.lastReceipt,
-        }, headers={'X-Tor2Web': 'whatever'})
+        handler = self.request({'receipt': self.lastReceipt})
         State.tenants[1].cache['https_allowed']['whistleblower'] = True
         response = yield handler.post()
         self.assertTrue('id' in response)
@@ -217,9 +215,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_deny_whistleblower_login_in_https(self):
         yield self.perform_full_submission_actions()
-        handler = self.request({
-            'receipt': self.lastReceipt
-        }, headers={'X-Tor2Web': 'whatever'})
+        handler = self.request({'receipt': self.lastReceipt})
         State.tenants[1].cache['https_allowed']['whistleblower'] = False
         yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
 
