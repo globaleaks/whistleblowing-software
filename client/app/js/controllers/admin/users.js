@@ -50,38 +50,11 @@ GL.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
     };
 
     $scope.resetUserPassword = function() {
-      return $http.put(
-        "api/admin/config", {
-          "operation": "reset_user_password",
-          "args": {
-            "value": $scope.user.id
-          }
-      });
+      $scope.Utils.runAdminOperation('reset_user_password', {'value': $scope.user.id});
     };
 
     $scope.disable2FA = function() {
-      var confirm = function(secret) {
-        return $http.put(
-          "api/admin/config",
-	  {
-            "operation": "disable_2fa",
-            "args": {
-              "value": $scope.user.id
-            }
-          },
-          {
-            "headers": {
-              "x-confirmation": secret
-            }
-          }
-        ).then(
-          function() {
-            $scope.user.two_factor = false;
-          }
-        );
-      }
-
-      return $scope.Utils.getConfirmation(confirm);
+      $scope.Utils.runAdminOperation('disable_2fa', {'value': $scope.user.id}, true);
     };
 
     $scope.toggleEscrow = function() {

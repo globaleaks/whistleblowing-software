@@ -16,7 +16,7 @@ controller("AdminAdvancedCtrl", ["$scope", function($scope) {
 
   $scope.resetSubmissions = function() {
     $scope.Utils.deleteDialog().then(function() {
-      return $scope.Utils.applyConfig("reset_submissions");
+      return $scope.Utils.runAdminOperation("reset_submissions");
     });
   };
 

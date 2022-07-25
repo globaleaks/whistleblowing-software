@@ -10,7 +10,7 @@
              data-ng-pattern="CONSTANTS.hostname_regexp"
 	     data-ng-class="{'is-invalid': adminNetForm.hostname.$error.pattern}"/>
       <span class="input-group-append">
-        <button class="btn btn-primary" data-ng-click="Utils.applyConfig('set_hostname', hostname, true)" data-ng-disabled="adminNetForm.$pristine" data-translate>Save</button>
+        <button class="btn btn-primary" data-ng-click="Utils.runAdminOperation('set_hostname', {'value': hostname}, true)" data-ng-disabled="adminNetForm.$pristine" data-translate>Save</button>
       </span>
     </p>
   </form>

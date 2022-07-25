@@ -15,6 +15,6 @@ controller("AdminMailCtrl", ["$scope", "AdminNotificationResource",
 
   $scope.updateThenTestMail = function() {
     AdminNotificationResource.update($scope.resources.notification)
-    .$promise.then(function() { return $scope.Utils.applyConfig("test_mail"); }, function() { });
+    .$promise.then(function() { return $scope.Utils.runAdminOperation("test_mail"); }, function() { });
   };
 }]);

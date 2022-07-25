@@ -20,7 +20,7 @@ controller("AdminNetworkCtrl", ["$scope", function($scope) {
   ];
 
   $scope.resetOnionPrivateKey = function() {
-    return $scope.Utils.applyConfig("reset_onion_private_key", {}, true);
+    return $scope.Utils.runAdminOperation("reset_onion_private_key", {}, true);
   };
 
   $scope.new_redirect = {};

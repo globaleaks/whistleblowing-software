@@ -84,11 +84,11 @@
         <i class="fa-solid fa-envelope"></i>
         <span data-translate>Test the configuration</span>
       </button>
-      <button data-ng-click="Utils.applyConfig('reset_smtp_settings', {}, true)"
+      <button data-ng-click="Utils.runAdminOperation('reset_smtp_settings', {}, true)"
               class="btn btn-primary">
         <span data-translate>Reset SMTP configuration</span>
       </button>
-      <button data-ng-click="Utils.applyConfig('reset_templates', {}, true)"
+      <button data-ng-click="Utils.runAdminOperation('reset_templates', {}, true)"
               class="btn btn-primary">
         <span data-translate>Reset notification templates to default</span>
       </button>

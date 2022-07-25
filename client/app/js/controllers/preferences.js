@@ -28,34 +28,20 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$location", "$window
     };
 
     $scope.getEncryptionRecoveryKey = function() {
-      var confirm = function(secret) {
-        return $http({
-          method: "PUT",
-          url: "api/user/operations",
-          data:{
-            "operation": "get_recovery_key",
-            "args": {}
-	  },
-          headers: {
-            "x-confirmation": secret
+      return $scope.Utils.runUserOperation('get_recovery_key', {}, false).then(function(data) {
+        $scope.resources.preferences.clicked_recovery_key = true;
+        $scope.erk = data.data.match(/.{1,4}/g).join("-");
+        return $uibModal.open({
+          templateUrl: "views/modals/encryption_recovery_key.html",
+          controller: "ConfirmableModalCtrl",
+          scope: $scope,
+          resolve: {
+            arg: null,
+            confirmFun: null,
+            cancelFun: null
           }
-        }).then(function(data){
-	  $scope.resources.preferences.clicked_recovery_key = true;
-          $scope.erk = data.data.match(/.{1,4}/g).join("-");
-          $uibModal.open({
-            templateUrl: "views/modals/encryption_recovery_key.html",
-            controller: "ConfirmableModalCtrl",
-            scope: $scope,
-            resolve: {
-              arg: null,
-              confirmFun: null,
-              cancelFun: null
-            }
-          });
         });
-      }
-
-      return $scope.Utils.getConfirmation(confirm);
+      });
     };
 
     $scope.toggle2FA = function() {
@@ -88,25 +74,7 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$location", "$window
           scope: $scope
         });
       } else {
-        var confirm = function(secret) {
-          return $http({
-            method: "PUT",
-            url: "api/user/operations",
-            data: {
-              "operation": "disable_2fa",
-              "args": {}
-            },
-            headers: {
-              "x-confirmation": secret
-            }
-          }).then(
-            function() {
-              $scope.resources.preferences.two_factor = false;
-            }
-          );
-        }
-
-        return $scope.Utils.getConfirmation(confirm);
+       $scope.Utils.runUserOperation('disable_2fa', {}, true);
       }
     };
 

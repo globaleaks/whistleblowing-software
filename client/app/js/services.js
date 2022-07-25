@@ -1078,7 +1078,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       }
 
       var openModal = function() {
-        $uibModal.open({
+        return $uibModal.open({
           templateUrl: template,
           controller: "ConfirmableModalCtrl",
           resolve: {
@@ -1126,58 +1126,68 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       return ret;
     },
 
-    applyConfig: function(cmd, value, refresh) {
+    runOperation: function(api, operation, args, refresh) {
       var self = this;
+      var deferred = $q.defer();
 
       var require_confirmation = [
+        "disable_2fa",
+        "get_recovery_key",
         "toggle_user_escrow"
       ];
 
-      if (require_confirmation.indexOf(cmd) !== -1) {
+      if (require_confirmation.indexOf(operation) !== -1) {
         var confirm = function(secret) {
           return $http({
             method: "PUT",
-            url: "api/admin/config",
+            url: api,
             data: {
-              "operation": cmd,
-              "args": {
-                "value": value
-              }
+              "operation": operation,
+              "args": args
             },
             headers: {
-              "x-confirmation": secret
+              "X-Confirmation": secret
             }
-          }).then(
-            function() {
-              if (refresh) {
-                $rootScope.reload();
-              }
-	    }
-	  );
-        }
-
-        return self.getConfirmation(confirm);
-      } else {
-        return $http({
-          method: "PUT",
-          url: "api/admin/config",
-          data: {
-            "operation": cmd,
-            "args": {
-              "value": value
-            }
-          },
-          headers: {
-            "x-confirmation": secret
-          }
-        }).then(
-          function() {
+          }).then(function(response) {
             if (refresh) {
               $rootScope.reload();
             }
+
+            deferred.resolve(response);
+	  });
+        }
+
+        self.getConfirmation(confirm);
+      } else {
+        $http({
+          method: "PUT",
+          url: api,
+          data: {
+            "operation": operation,
+            "args": args
           }
-        );
+        }).then(function(response) {
+          if (refresh) {
+            $rootScope.reload();
+          }
+
+          deferred.resolve(response);
+	});
       }
+
+      return deferred.promise;
+    },
+
+    runAdminOperation: function(operation, args, refresh) {
+      return this.runOperation('api/admin/config', operation, args, refresh);
+    },
+
+    runUserOperation: function(operation, args, refresh) {
+      return this.runOperation('api/user/operations', operation, args, refresh);
+    },
+
+    runRecipientOperation: function(operation, args, refresh) {
+      return this.runOperation('api/recipient/operations', operation, args, refresh);
     },
 
     removeFile: function (submission, list, file) {
