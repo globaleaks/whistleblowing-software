@@ -83,6 +83,13 @@ GL.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
 
       return $scope.Utils.getConfirmation(confirm);
     };
+
+    $scope.toggleEscrow = function() {
+      // do not toggle till confirmation;
+      $scope.user.escrow = !$scope.user.escrow;
+
+      $scope.Utils.runAdminOperation('toggle_escrow', {'value': $scope.user.id}, true);
+    }
 }]).
 controller("AdminUserAddCtrl", ["$scope",
   function($scope) {

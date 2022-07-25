@@ -222,7 +222,7 @@
         <div class="row" data-ng-if="user.role === 'admin'">
           <div class="col-md-12">
             <div class="form-group" data-ng-if="resources.node.escrow && user.encryption && resources.preferences.escrow">
-              <input data-ng-model="user.escrow" type="checkbox" data-ng-change="Utils.applyConfig('toggle_escrow', user.id)">
+              <input data-ng-model="user.escrow" type="checkbox" data-ng-change="toggleEscrow()">
               <label data-translate>Give this admin ability to change user passwords</label>
             </div>
           </div>

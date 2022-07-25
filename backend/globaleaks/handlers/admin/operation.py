@@ -157,6 +157,10 @@ class AdminOperationHandler(OperationHandler):
     check_roles = 'admin'
     invalidate_cache = True
 
+    require_confirmation = [
+        'toggle_escrow'
+    ]
+
     def reset_smtp_settings(self, req_args, *args, **kwargs):
         return reset_smtp_settings(self.request.tid)
 

@@ -1127,14 +1127,57 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
     },
 
     applyConfig: function(cmd, value, refresh) {
-      var req = {
-        "operation": cmd,
-        "args": {
-          "value": value
-        }
-      };
+      var self = this;
 
-      return $http({method: "PUT", url: "api/admin/config", data: req}).then(function() { if (refresh) { $rootScope.reload(); }});
+      var require_confirmation = [
+        "toggle_user_escrow"
+      ];
+
+      if (require_confirmation.indexOf(cmd) !== -1) {
+        var confirm = function(secret) {
+          return $http({
+            method: "PUT",
+            url: "api/admin/config",
+            data: {
+              "operation": cmd,
+              "args": {
+                "value": value
+              }
+            },
+            headers: {
+              "x-confirmation": secret
+            }
+          }).then(
+            function() {
+              if (refresh) {
+                $rootScope.reload();
+              }
+	    }
+	  );
+        }
+
+        return self.getConfirmation(confirm);
+      } else {
+        return $http({
+          method: "PUT",
+          url: "api/admin/config",
+          data: {
+            "operation": cmd,
+            "args": {
+              "value": value
+            }
+          },
+          headers: {
+            "x-confirmation": secret
+          }
+        }).then(
+          function() {
+            if (refresh) {
+              $rootScope.reload();
+            }
+          }
+        );
+      }
     },
 
     removeFile: function (submission, list, file) {
