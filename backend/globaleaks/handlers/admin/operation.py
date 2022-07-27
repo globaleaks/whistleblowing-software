@@ -2,6 +2,7 @@
 import os
 from twisted.internet.defer import inlineCallbacks, returnValue
 
+from globaleaks import models
 from globaleaks.db import db_refresh_tenant_cache
 from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.admin.node import db_admin_serialize_node
@@ -12,13 +13,18 @@ from globaleaks.handlers.user import get_user
 from globaleaks.handlers.user.operation import disable_2fa
 from globaleaks.models import Config, InternalTip, User
 from globaleaks.models.config import db_set_config_variable, ConfigFactory, ConfigL10NFactory
-from globaleaks.orm import db_del, db_log, transact, tw
+from globaleaks.orm import db_del, db_get, db_log, transact, tw
 from globaleaks.rest import errors
 from globaleaks.state import State
 from globaleaks.transactions import db_get_user
 from globaleaks.utils.crypto import Base64Encoder, GCE
 from globaleaks.utils.onion import generate_onion_service_v3
 from globaleaks.utils.templating import Templating
+
+
+@transact
+def enable_encryption(session, tid):
+    ConfigFactory(session, tid).set_val('encryption', True)
 
 
 @transact
@@ -71,7 +77,50 @@ def reset_submissions(session, tid, user_id):
 
 
 @transact
-def toggle_escrow(session, tid, user_session, user_id):
+def toggle_escrow(session, tid, user_session):
+    root_config = ConfigFactory(session, 1)
+
+    config = ConfigFactory(session, tid)
+    escrow = config.get_val('crypto_escrow_pub_key') != ''
+
+    if not escrow:
+        crypto_escrow_prv_key, crypto_escrow_pub_key = GCE.generate_keypair()
+        user = db_get(session, models.User, models.User.id == user_session.user_id)
+
+        config.set_val('crypto_escrow_pub_key', crypto_escrow_pub_key)
+
+        if user.tid == tid:
+            user_session.ek = user.crypto_escrow_prv_key
+            user.crypto_escrow_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_escrow_prv_key))
+
+        crypto_escrow_bkp_key = Base64Encoder.encode(GCE.asymmetric_encrypt(crypto_escrow_pub_key, user_session.cc))
+
+        if tid == 1:
+            user.crypto_escrow_bkp1_key = crypto_escrow_bkp_key
+            session.query(models.User).filter(models.User.id != user_session.user_id).update({'password_change_needed': True}, synchronize_session=False)
+        else:
+            user.crypto_escrow_bkp2_key = crypto_escrow_bkp_key
+            root_config_escrow = root_config.get_val('crypto_escrow_pub_key')
+            if root_config_escrow:
+                config.set_val('crypto_escrow_prv_key', Base64Encoder.encode(GCE.asymmetric_encrypt(root_config_escrow, crypto_escrow_prv_key)))
+
+            session.query(models.User).filter(models.User.tid == tid, models.User.id != user_session.user_id).update({'password_change_needed': True}, synchronize_session=False)
+
+
+    else:
+        if tid == 1:
+            session.query(models.User).update({'crypto_escrow_bkp1_key': ''}, synchronize_session=False)
+        else:
+            session.query(models.User).update({'crypto_escrow_bkp2_key': ''}, synchronize_session=False)
+
+        session.query(models.User).filter(models.User.tid == tid).update({'crypto_escrow_prv_key': ''}, synchronize_session=False)
+
+        config.set_val('crypto_escrow_pub_key', '')
+        config.set_val('crypto_escrow_prv_key', '')
+
+
+@transact
+def toggle_user_escrow(session, tid, user_session, user_id):
     """
     Transaction to toggle key escrow access for user an user given its id
 
@@ -157,9 +206,8 @@ class AdminOperationHandler(OperationHandler):
     check_roles = 'admin'
     invalidate_cache = True
 
-    require_confirmation = [
-        'toggle_escrow'
-    ]
+    def enable_encryption(self, req_args, *args, **kwargs):
+        return enable_encryption(self.request.tid)
 
     def reset_smtp_settings(self, req_args, *args, **kwargs):
         return reset_smtp_settings(self.request.tid)
@@ -196,7 +244,6 @@ class AdminOperationHandler(OperationHandler):
 
         yield check_hostname(self.request.tid, req_args['value'])
         yield tw(db_set_config_variable, self.request.tid, 'hostname', req_args['value'])
-        yield tw(db_refresh_tenant_cache, [self.request.tid])
         self.state.tenants[self.request.tid].cache.hostname = req_args['value']
 
     @inlineCallbacks
@@ -220,13 +267,17 @@ class AdminOperationHandler(OperationHandler):
         yield self.state.sendmail(tid, user['mail_address'], subject, body)
 
     def toggle_escrow(self, req_args, *args, **kwargs):
-        return toggle_escrow(self.request.tid, self.session, req_args['value'])
+        return toggle_escrow(self.request.tid, self.session)
+
+    def toggle_user_escrow(self, req_args, *args, **kwargs):
+        return toggle_user_escrow(self.request.tid, self.session, req_args['value'])
 
     def reset_templates(self, req_args):
         return reset_templates(self.request.tid)
 
     def operation_descriptors(self):
         return {
+            'enable_encryption': AdminOperationHandler.enable_encryption,
             'disable_2fa': AdminOperationHandler.disable_2fa,
             'reset_onion_private_key': AdminOperationHandler.reset_onion_private_key,
             'reset_smtp_settings': AdminOperationHandler.reset_smtp_settings,
@@ -235,5 +286,6 @@ class AdminOperationHandler(OperationHandler):
             'set_hostname': AdminOperationHandler.set_hostname,
             'test_mail': AdminOperationHandler.test_mail,
             'toggle_escrow': AdminOperationHandler.toggle_escrow,
+            'toggle_user_escrow': AdminOperationHandler.toggle_user_escrow,
             'reset_templates': AdminOperationHandler.reset_templates
         }

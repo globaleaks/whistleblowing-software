@@ -57,11 +57,11 @@ GL.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
       $scope.Utils.runAdminOperation('disable_2fa', {'value': $scope.user.id}, true);
     };
 
-    $scope.toggleEscrow = function() {
+    $scope.toggleUserEscrow = function() {
       // do not toggle till confirmation;
       $scope.user.escrow = !$scope.user.escrow;
 
-      $scope.Utils.runAdminOperation('toggle_escrow', {'value': $scope.user.id}, true);
+      $scope.Utils.runAdminOperation('toggle_user_escrow', {'value': $scope.user.id}, true);
     }
 }]).
 controller("AdminUserAddCtrl", ["$scope",

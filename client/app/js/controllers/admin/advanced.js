@@ -20,21 +20,33 @@ controller("AdminAdvancedCtrl", ["$scope", function($scope) {
     });
   };
 
-  $scope.toggleEncryption = function() {
-    if ($scope.resources.node.encryption) {
+  $scope.enableEncryption = function() {
+    // do not toggle till confirmation;
+    $scope.resources.node.encryption = false;
+
+    if (!$scope.resources.node.encryption) {
       $scope.Utils.openConfirmableModalDialog("views/modals/enable_encryption.html").then(
-      function() {
-        $scope.resources.node.encryption = true;
-        $scope.resources.node.escrow = false;
-        $scope.Utils.update($scope.resources.node, function() {
-          if(!$scope.resources.preferences.encryption) {
-            $scope.Authentication.logout();
-          }
-	});
-      },
-      function() {
-        $scope.resources.node.encryption = false;
-      });
+        function() {
+          return $scope.Utils.runAdminOperation('enable_encryption', {}, false).then(
+            function() {
+              $scope.Authentication.logout();
+            },
+            function() {}
+	  );
+        },
+        function() { }
+      );
     }
   };
+
+  $scope.toggleEscrow = function() {
+    // do not toggle till confirmation;
+    $scope.resources.node.escrow = !$scope.resources.node.escrow;
+    $scope.Utils.runAdminOperation('toggle_escrow', {}, true).then(
+      function() {
+        $scope.resources.preferences.escrow = $scope.resources.preferences.escrow;
+      },
+      function() {}
+    );
+  }
 }]);

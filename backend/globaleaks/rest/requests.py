@@ -233,7 +233,6 @@ AdminNodeDesc = {
     'log_accesses_of_internal_users': bool,
     'two_factor': bool,
     'encryption': bool,
-    'escrow': bool,
     'multisite': bool,
     'adminonly': bool
 }

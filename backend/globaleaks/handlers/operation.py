@@ -7,7 +7,13 @@ class OperationHandler(BaseHandler):
     """
     Base handler for implementing handlers for executing platform configuration
     """
-    require_confirmation = []
+    require_confirmation = [
+        'enable_encryption',
+        'disable_2fa',
+        'toggle_escrow',
+        'toggle_user_escrow',
+        'reset_submissions'
+    ]
 
     def operation_descriptors(self):
         raise NotImplementedError

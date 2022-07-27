@@ -7,7 +7,7 @@ from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import db_get_languages
 from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
-from globaleaks.orm import db_del, db_get, tw
+from globaleaks.orm import db_del, tw
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.utils.crypto import Base64Encoder, GCE
@@ -48,7 +48,7 @@ def db_update_enabled_languages(session, tid, languages, default_language):
         db_del(session, models.EnabledLanguage, (models.EnabledLanguage.tid == tid, models.EnabledLanguage.name.in_(to_remove)))
 
 
-def db_admin_serialize_node(session, tid, language, config='node'):
+def db_admin_serialize_node(session, tid, language, config_desc='node'):
     """
     Transaction for fetching the node configuration as admin
 
@@ -58,7 +58,9 @@ def db_admin_serialize_node(session, tid, language, config='node'):
     :param config: The set of variables to be serialized
     :return: Return the serialized configuration for the specified tenant
     """
-    ret = ConfigFactory(session, tid).serialize(config)
+    config = ConfigFactory(session, tid)
+
+    ret = config.serialize(config_desc)
 
     logo = session.query(models.File.id).filter(models.File.tid == tid, models.File.name == 'logo').one_or_none()
 
@@ -70,13 +72,14 @@ def db_admin_serialize_node(session, tid, language, config='node'):
         'root_tenant': tid == 1,
         'https_possible': tid == 1 or State.tenants[1].cache.reachable_via_web,
         'encryption_possible': tid == 1 or State.tenants[1].cache.encryption,
+        'escrow': config.get_val('crypto_escrow_pub_key') != '',
         'logo': True if logo else False
     })
 
     if 'version' in ret:
         ret['update_available'] = ret['version'] != ret['latest_version']
 
-    ret.update(ConfigL10NFactory(session, tid).serialize(config, language))
+    ret.update(ConfigL10NFactory(session, tid).serialize(config_desc, language))
 
     return ret
 
@@ -96,9 +99,6 @@ def db_update_node(session, tid, user_session, request, language):
 
     config = ConfigFactory(session, tid)
 
-    enable_escrow = not config.get_val('escrow') and request.get('escrow', False)
-    disable_escrow = user_session.ek and config.get_val('escrow') and not request.get('escrow', False)
-
     config.update('node', request)
 
     if 'languages_enabled' in request and 'default_language' in request:
@@ -109,34 +109,6 @@ def db_update_node(session, tid, user_session, request, language):
 
     if language in db_get_languages(session, tid):
         ConfigL10NFactory(session, tid).update('node', request, language)
-
-    if enable_escrow:
-        crypto_escrow_prv_key, crypto_escrow_pub_key = GCE.generate_keypair()
-        user = db_get(session, models.User, models.User.id == user_session.user_id)
-
-        if user.tid == tid:
-            user.crypto_escrow_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_escrow_prv_key))
-
-        if tid == 1:
-            session.query(models.User).update({'password_change_needed': True}, synchronize_session=False)
-        else:
-            session.query(models.User).filter(models.User.tid == tid).update({'password_change_needed': True}, synchronize_session=False)
-
-        config.set_val('crypto_escrow_pub_key', crypto_escrow_pub_key)
-
-        if  tid != 1 and root_config.get_val('escrow'):
-            config.set_val('crypto_escrow_prv_key', Base64Encoder.encode(GCE.asymmetric_encrypt(root_config.get_val('crypto_escrow_pub_key'), crypto_escrow_prv_key)))
-
-    if disable_escrow:
-        if tid == 1:
-            session.query(models.User).update({'crypto_escrow_bkp1_key': ''}, synchronize_session=False)
-        else:
-            session.query(models.User).update({'crypto_escrow_bkp2_key': ''}, synchronize_session=False)
-
-        session.query(models.User).filter(models.User.tid == tid).update({'crypto_escrow_prv_key': ''}, synchronize_session=False)
-
-        config.set_val('crypto_escrow_pub_key', '')
-        config.set_val('crypto_escrow_prv_key', '')
 
     db_refresh_tenant_cache(session, [tid])
 
@@ -170,7 +142,7 @@ class NodeInstance(BaseHandler):
         ret = yield tw(db_admin_serialize_node,
                        self.request.tid,
                        self.request.language,
-                       config=config[0])
+                       config_desc=config[0])
 
         returnValue(ret)
 

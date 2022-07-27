@@ -4,6 +4,7 @@ import json
 from datetime import timedelta
 from twisted.internet import defer
 
+from globaleaks.db import sync_refresh_tenant_cache
 from globaleaks.rest import errors
 from globaleaks.rest.cache import Cache
 from globaleaks.state import State
@@ -97,7 +98,13 @@ def decorator_cache_invalidate(f):
                 sync_refresh_tenant_cache([self.request.tid])
                 return result
 
-            d.addBoth(callback)
+            def errback(err):
+                Cache.invalidate(self.request.tid)
+                sync_refresh_tenant_cache([self.request.tid])
+                raise err
+
+            d.addCallback(callback)
+            d.addErrback(errback)
 
         return d
 

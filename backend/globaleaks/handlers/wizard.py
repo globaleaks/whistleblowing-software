@@ -33,7 +33,7 @@ def db_wizard(session, tid, hostname, request):
     else:
         node = config.ConfigFactory(session, tid)
         encryption = root_tenant_node.get_val('encryption')
-        escrow = root_tenant_node.get_val('escrow')
+        escrow = root_tenant_node.get_val('crypto_escrow_pub_key') != ''
 
     if node.get_val('wizard_done'):
         log.err("DANGER: Wizard already initialized!", tid=tid)
@@ -42,7 +42,6 @@ def db_wizard(session, tid, hostname, request):
     db_update_enabled_languages(session, tid, [language], language)
 
     node.set_val('encryption', encryption)
-    node.set_val('escrow', escrow)
 
     node.set_val('name', request['node_name'])
     node.set_val('default_language', language)
@@ -52,14 +51,13 @@ def db_wizard(session, tid, hostname, request):
 
     profiles.load_profile(session, tid, request['profile'])
 
-    if encryption:
-        if escrow:
-            crypto_escrow_prv_key, crypto_escrow_pub_key = GCE.generate_keypair()
+    if encryption and escrow:
+        crypto_escrow_prv_key, crypto_escrow_pub_key = GCE.generate_keypair()
 
-            node.set_val('crypto_escrow_pub_key', crypto_escrow_pub_key)
+        node.set_val('crypto_escrow_pub_key', crypto_escrow_pub_key)
 
-            if  tid != 1 and root_tenant_node.get_val('crypto_escrow_pub_key'):
-                node.set_val('crypto_escrow_prv_key', Base64Encoder.encode(GCE.asymmetric_encrypt(root_tenant_node.get_val('crypto_escrow_pub_key'), crypto_escrow_prv_key)))
+        if  tid != 1 and root_tenant_node.get_val('crypto_escrow_pub_key'):
+            node.set_val('crypto_escrow_prv_key', Base64Encoder.encode(GCE.asymmetric_encrypt(root_tenant_node.get_val('crypto_escrow_pub_key'), crypto_escrow_prv_key)))
 
     if not request['skip_admin_account_creation']:
         admin_desc = models.User().dict(language)

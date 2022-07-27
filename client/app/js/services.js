@@ -1131,8 +1131,10 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       var deferred = $q.defer();
 
       var require_confirmation = [
+        "enable_encryption",
         "disable_2fa",
         "get_recovery_key",
+        "toggle_escrow",
         "toggle_user_escrow"
       ];
 
@@ -1148,13 +1150,16 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
             headers: {
               "X-Confirmation": secret
             }
-          }).then(function(response) {
-            if (refresh) {
-              $rootScope.reload();
-            }
+          }).then(
+            function(response) {
+              if (refresh) {
+                $rootScope.reload();
+              }
 
-            deferred.resolve(response);
-	  });
+              deferred.resolve(response);
+	    },
+            function() { self.getConfirmation(confirm); }
+          );
         }
 
         self.getConfirmation(confirm);
@@ -1166,13 +1171,16 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
             "operation": operation,
             "args": args
           }
-        }).then(function(response) {
-          if (refresh) {
-            $rootScope.reload();
-          }
+        }).then(
+          function(response) {
+            if (refresh) {
+              $rootScope.reload();
+            }
 
-          deferred.resolve(response);
-	});
+            deferred.resolve(response);
+          },
+          function() {}
+	);
       }
 
       return deferred.promise;

@@ -82,11 +82,6 @@ def disable_2fa(session, tid, user_id):
 class UserOperationHandler(OperationHandler):
     check_roles = 'user'
 
-    require_confirmation = [
-      'disable_2fa',
-      'get_recovery_key'
-    ]
-
     def get_users_names(self, req_args, *args, **kwargs):
         return get_users_names(self.session.user_tid,
                                self.session.user_id)

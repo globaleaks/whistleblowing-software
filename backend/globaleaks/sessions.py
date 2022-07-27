@@ -31,7 +31,7 @@ class Session(object):
         return {
             'id': self.id,
             'role': self.user_role,
-            'encryption': self.cc != '',
+            'encryption': self.cc == '',
             'user_id': self.user_id,
             'user_tid': self.user_tid,
             'session_expiration': self.getTime(),
