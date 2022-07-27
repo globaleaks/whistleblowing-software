@@ -60,6 +60,6 @@ GL.controller("WizardCtrl", ["$scope", "$location", "$http", "Authentication", "
     "skip_admin_account_creation": false,
     "skip_recipient_account_creation": false,
     "profile": "default",
-    "enable_developers_exception_notification": true
+    "enable_developers_exception_notification": false
   };
 }]);
