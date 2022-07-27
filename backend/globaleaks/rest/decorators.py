@@ -88,12 +88,18 @@ def decorator_cache_get(f):
 
 
 def decorator_cache_invalidate(f):
-    # Decorator that invalidates the requests cache
     def wrapper(self, *args, **kwargs):
-        if self.invalidate_cache:
-            Cache.invalidate(self.request.tid)
+        d = defer.maybeDeferred(f, self, *args, **kwargs)
 
-        return f(self, *args, **kwargs)
+        if self.invalidate_cache:
+            def callback(result):
+                Cache.invalidate(self.request.tid)
+                sync_refresh_tenant_cache([self.request.tid])
+                return result
+
+            d.addBoth(callback)
+
+        return d
 
     return wrapper
 
