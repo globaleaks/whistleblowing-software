@@ -171,11 +171,16 @@ class TestUser2FAEnrollment(helpers.TestHandlerWithPopulatedDB):
 
         yield handler.put()
 
+        self.state.TwoFactorTokens.clear()
+
         data_request = {
             'operation': 'disable_2fa',
             'args': {}
         }
 
-        handler = self.request(data_request, role='receiver')
+
+        current_token = totp.generate(time.time()).decode()
+
+        handler = self.request(data_request, role='receiver', headers={'x-confirmation': current_token})
 
         yield handler.put()

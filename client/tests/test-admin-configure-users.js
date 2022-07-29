@@ -45,7 +45,7 @@ describe("admin add, configure, and delete users", function() {
     }
   });
 
-  it("should grant permissions to recipientson first recipient", async function() {
+  it("should grant permissions to first recipient", async function() {
     await element.all(by.className("userList")).then(async function(elements) {
       var editUsrForm = elements[3];
       await editUsrForm.element(by.cssContainingText("button", "Edit")).click();

@@ -2,6 +2,7 @@
 from globaleaks import models
 from globaleaks.handlers.admin.operation import AdminOperationHandler
 from globaleaks.jobs import delivery
+from globaleaks.rest import errors
 from globaleaks.tests import helpers
 
 from twisted.internet import defer
@@ -50,6 +51,10 @@ class TestAdminResetSubmissions(helpers.TestHandlerWithPopulatedDB):
 
         handler = self.request(data_request, role='admin')
 
+        yield self.assertRaises(errors.InvalidAuthentication, handler.put)
+
+        handler.require_confirmation = []
+
         yield handler.put()
 
         yield self.test_model_count(models.InternalTip, 0)
@@ -72,6 +77,8 @@ class TestAdminOperations(helpers.TestHandlerWithPopulatedDB):
 
         handler = self.request(data_request, role='admin')
 
+        handler.require_confirmation = []
+
         return handler.put()
 
     def test_admin_test_mail(self):
@@ -79,6 +86,9 @@ class TestAdminOperations(helpers.TestHandlerWithPopulatedDB):
 
     def test_admin_test_smtp_settings(self):
         return self._test_operation_handler('reset_smtp_settings')
+
+    def test_admin_test_toggle_escrow(self):
+        return self._test_operation_handler('toggle_escrow')
 
     def test_admin_test_reset_templates(self):
         return self._test_operation_handler('reset_templates')
