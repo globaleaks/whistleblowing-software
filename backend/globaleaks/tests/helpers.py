@@ -413,9 +413,9 @@ class MockDict:
 
 
 def get_dummy_file(content=None):
-    filename = generateRandomKey()
+    filename = generateRandomKey() + ".pdf"
 
-    content_type = 'application/octet'
+    content_type = 'application/pdf'
 
     if content is None:
         content = base64.b64decode(VALID_BASE64_IMG)

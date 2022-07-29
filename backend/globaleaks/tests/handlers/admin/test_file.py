@@ -12,12 +12,12 @@ class TestFileInstance(helpers.TestHandler):
     def test_post(self):
         handler = self.request({}, role='admin')
 
-        yield handler.post(u'antani')
+        yield handler.post(u'file.pdf')
 
     @inlineCallbacks
     def test_delete(self):
         handler = self.request({}, role='admin')
-        yield handler.delete(u'antani')
+        yield handler.delete(u'file.pdf')
 
 
 class TestFileCollection(helpers.TestHandler):

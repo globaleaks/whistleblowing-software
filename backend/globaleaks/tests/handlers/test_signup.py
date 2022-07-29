@@ -70,12 +70,6 @@ class TestSignupActivation(helpers.TestHandler):
         yield self.test_model_count(models.User, 1)
 
     @inlineCallbacks
-    def test_valid_signup_in_eat_mode(self):
-        yield self._signup('eat')
-
-        yield self.test_model_count(models.User, 1)
-
-    @inlineCallbacks
     def test_invalid_signup_with_invalid_activation_token(self):
         yield tw(db_set_config_variable, 1, 'enable_signup', True)
 
