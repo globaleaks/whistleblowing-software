@@ -326,16 +326,9 @@ def serialize_signup(signup):
         'activation_token': signup.activation_token,
         'registration_date': signup.registration_date,
         'organization_name': signup.organization_name,
-        'organization_type': signup.organization_type,
         'organization.tax_code': signup.organization_tax_code,
         'organization_vat_code': signup.organization_vat_code,
-        'organization_location1': signup.organization_location1,
-        'organization_location2': signup.organization_location2,
-        'organization_location3': signup.organization_location3,
-        'organization_location4': signup.organization_location4,
-        'organization_site': signup.organization_site,
-        'organization_number_employees': signup.organization_number_employees,
-        'organization_number_users': signup.organization_number_users,
+        'organization_location': signup.organization_location,
         'tos1': signup.tos1,
         'tos2': signup.tos2
     }

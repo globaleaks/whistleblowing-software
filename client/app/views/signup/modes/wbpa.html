@@ -6,36 +6,20 @@
   </div>
   <div class="row">
     <div class="col-md-6 form-group">
-      <label>Nome</label>
+      <label>Name</label>
       <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <input name="name" class="form-control" data-ng-model="signup.name" type="text" required>
     </div>
     <div class="col-md-6 form-group">
-      <label>Cognome</label>
+      <label>Surname</label>
       <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <input name="surname" class="form-control" data-ng-model="signup.surname" type="text" required>
     </div>
   </div>
   <div class="row">
     <div class="col-md-6 form-group">
-      <label>Ruolo</label>
-      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
-      <div>
-        <select name="role" class="custom-select" data-ng-model="signup.role" required>
-          <option value="" selected="selected"></option>
-          <option value="option1">Direttore generale</option>
-          <option value="option2">Responsabile ICT</option>
-          <option value="option3">Responsabile internal audit</option>
-          <option value="option4">Responsabile prevenzione corruzione</option>
-          <option value="other">Altro</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-md-6 form-group">
-      <label>Telefono</label> <span class="text-danger"
-                                    data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
-      <input name="phone" class="form-control" data-ng-model="signup.phone" type="text"
-             data-ng-pattern="CONSTANTS.phonenumber_regexp" required>
+      <label>Phone number</label> <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+      <input name="phone" class="form-control" data-ng-model="signup.phone" type="text" data-ng-pattern="CONSTANTS.phonenumber_regexp" required>
       <div class="text-danger" data-ng-show="signupForm.phone.$error.pattern">
         <span data-translate>Invalid phone number</span>
       </div>
@@ -44,7 +28,7 @@
   <div class="row">
     <div class="col-md-6 form-group">
       <label>
-        <span>Email di ruolo</span>
+        <span data-translate>Email address</span>
         <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       </label>
       <div>
@@ -56,7 +40,7 @@
     </div>
     <div class="col-md-6 form-group">
       <label>
-        <span>Email di ruolo (Conferma)</span>
+        <span data-translate>Email address</span> (<span data-translate>Confirm</span>)
         <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       </label>
       <div>
@@ -69,25 +53,32 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <label class="title">Dati ente:</label>
+      <label class="title" data-translate>Organization</label>
     </div>
   </div>
   <div class="row">
     <div class="col-md-12 form-group">
-      <label>Nome</label>
+      <label>Name</label>
       <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <input name="organization_name" class="form-control" data-ng-model="signup.organization_name" type="text" data-ng-change="updateSubdomain()" required>
     </div>
   </div>
   <div class="row">
+    <div class="col-md-12 form-group">
+      <label>Address</label>
+      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+      <input name="organization_location" class="form-control" data-ng-model="signup.organization_location" type="text" required>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-md-6 form-group">
-      <label>Codice fiscale</label>
+      <label>Fiscal code</label>
       <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <input name="tax_code" class="form-control" data-ng-model="signup.organization_tax_code" type="text"
              data-ng-required="!signup.organization_tax_code && !signup.organization_vat_code">
     </div>
     <div class="col-md-6 form-group">
-      <label>Partita IVA</label>
+      <label>Tax code</label>
       <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       <input name="vat_code" class="form-control" data-ng-model="signup.organization_vat_code" type="text"
              data-ng-required="!signup.organization_tax_code && !signup.organization_vat_code">
@@ -96,56 +87,15 @@
   <div class="row">
     <div class="col-md-12 form-group">
       <label>
-        <span>Questo sarà il sito di segnalazione del tuo ente:</span>
+        <span data-translate>Site</span>
         <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       </label>
-      <div class="fieldDescription">Se vuoi, puoi modificare l’indirizzo per il whistleblowing del tuo ente indicato qui sotto.</div>
       <div class="input-group">
         <input name="subdomain" class="form-control" data-ng-model="signup.subdomain" type="text"
                data-ng-pattern="/^[a-z0-9]+$/" required
                subdomainvalidator>
         <span class="input-group-append"><span class="input-group-text">.{{public.node.rootdomain}}</span></span>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4 form-group">
-      <label>Regione</label>
-      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
-      <div>
-        <select name="organization_location2" class="custom-select" data-ng-model="signup.organization_location2" required>
-          <option value="" selected="selected"></option>
-          <option data-ng-repeat="x in data_countries_italy_regions" value="{{x.id}}">{{x.nome}}</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-md-4 form-group">
-      <label>Provincia</label>
-      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
-      <div>
-        <select name="organization_location3" class="custom-select" data-ng-model="signup.organization_location3" data-ng-disabled="!signup.organization_location2" required>
-          <option value="" selected="selected"></option>
-          <option data-ng-repeat="x in data_countries_italy_provinces | filter:{'id_regione': signup.organization_location2}:true" value="{{x.id}}">{{x.nome}}</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-md-4 form-group">
-      <label>Città</label>
-      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
-      <div>
-        <select name="organization_location4" class="custom-select" data-ng-model="signup.organization_location4" data-ng-disabled="!signup.organization_location3" required>
-          <option value="" selected="selected"></option>
-          <option data-ng-repeat="x in data_countries_italy_cities | filter:{'id_provincia': signup.organization_location3}:true" value="{{x.id}}">{{x.nome}}</option>
-          <option value=""></option>
-        </select>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6 form-group">
-      <label>Sito ente</label>
-      <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
-      <input name="organization_site" class="form-control" data-ng-model="signup.organization_site" type="text" required>
     </div>
   </div>
   <br />

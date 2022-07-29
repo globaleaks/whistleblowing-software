@@ -1,10 +1,5 @@
-GL.controller("SignupCtrl", ["$scope", "$route", "$http", "Authentication", "DATA_COUNTRIES_ITALY_REGIONS", "DATA_COUNTRIES_ITALY_PROVINCES", "DATA_COUNTRIES_ITALY_CITIES",
-              function($scope, $route, $http, Authentication, DATA_COUNTRIES_ITALY_REGIONS, DATA_COUNTRIES_ITALY_PROVINCES, DATA_COUNTRIES_ITALY_CITIES) {
-  if ($scope.public.node.mode === "wbpa") {
-    $scope.data_countries_italy_regions = DATA_COUNTRIES_ITALY_REGIONS.query();
-    $scope.data_countries_italy_provinces = DATA_COUNTRIES_ITALY_PROVINCES.query();
-    $scope.data_countries_italy_cities = DATA_COUNTRIES_ITALY_CITIES.query();
-  }
+GL.controller("SignupCtrl", ["$scope", "$route", "$http", "Authentication",
+              function($scope, $route, $http, Authentication) {
 
   $scope.hostname = "";
 
@@ -20,14 +15,7 @@ GL.controller("SignupCtrl", ["$scope", "$route", "$http", "Authentication", "DAT
     "organization_type": "",
     "organization_tax_code": "",
     "organization_vat_code": "",
-    "organization_location1": "",
-    "organization_location2": "",
-    "organization_location3": "",
-    "organization_location4": "",
-    "organization_number_employees": "",
-    "organization_number_users": "",
-    "organization_site": "",
-    "hear_channel": "",
+    "organization_location": "",
     "tos1": false,
     "tos2": false
   };

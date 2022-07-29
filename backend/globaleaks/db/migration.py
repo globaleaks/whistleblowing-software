@@ -53,6 +53,7 @@ from globaleaks.db.migrations.update_58 import InternalTip_v_57, \
 from globaleaks.db.migrations.update_59 import ReceiverTip_v_58
 from globaleaks.db.migrations.update_60 import InternalTip_v_59, ReceiverTip_v_59, WhistleblowerTip_v_59
 from globaleaks.db.migrations.update_62 import AuditLog_v_61, Context_v_61, ReceiverTip_v_61, User_v_61
+from globaleaks.db.migrations.update_63 import Subscriber_v_62
 
 from globaleaks.orm import get_engine, get_session, make_db_uri
 from globaleaks.models import config, Base
@@ -97,7 +98,7 @@ migration_mapping = OrderedDict([
     ('SubmissionSubStatus', [-1, -1, -1, SubmissionSubStatus_v_46, 0, 0, 0, 0, SubmissionSubStatus_v_49, 0, 0, SubmissionSubStatus_v_51, 0, models._SubmissionSubStatus, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('SubmissionStatusChange', [-1, -1, -1, SubmissionStatusChange_v_54, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
     ('Step', [Step_v_44, 0, 0, 0, 0, 0, Step_v_51, 0, 0, 0, 0, 0, 0, models._Step, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('Subscriber', [-1, -1, -1, -1, -1, Subscriber_v_52, 0, 0, 0, 0, 0, 0, 0, 0, models._Subscriber, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('Subscriber', [-1, -1, -1, -1, -1, Subscriber_v_52, 0, 0, 0, 0, 0, 0, 0, 0, Subscriber_v_62, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._Subscriber]),
     ('Tenant', [Tenant_v_52, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._Tenant, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('User', [User_v_40, 0, User_v_42, 0, User_v_44, 0, User_v_45, User_v_49, 0, 0, 0, User_v_50, User_v_51, User_v_52, User_v_54, 0, User_v_56, 0, User_v_61, 0, 0, 0, 0, models._User, 0]),
     ('UserImg', [UserImg_v_53, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),

@@ -801,13 +801,7 @@ class _Subscriber(Model):
     organization_type = Column(UnicodeText, default='', nullable=False)
     organization_tax_code = Column(UnicodeText, default='', nullable=False)
     organization_vat_code = Column(UnicodeText, default='', nullable=False)
-    organization_location1 = Column(UnicodeText, default='', nullable=False)
-    organization_location2 = Column(UnicodeText, default='', nullable=False)
-    organization_location3 = Column(UnicodeText, default='', nullable=False)
-    organization_location4 = Column(UnicodeText, default='', nullable=False)
-    organization_site = Column(UnicodeText, default='', nullable=False)
-    organization_number_employees = Column(UnicodeText, default='', nullable=False)
-    organization_number_users = Column(UnicodeText, default='', nullable=False)
+    organization_location = Column(UnicodeText, default='', nullable=False)
     activation_token = Column(UnicodeText, unique=True, nullable=True)
     client_ip_address = Column(UnicodeText, nullable=False)
     client_user_agent = Column(UnicodeText, nullable=False)
@@ -819,10 +813,7 @@ class _Subscriber(Model):
                     'tax_code', 'vat_code',
                     'organization_name', 'organization_type',
                     'organization_tax_code', 'organization_vat_code',
-                    'organization_site',
-                    'organization_location1', 'organization_location2', 'organization_location3',
-                    'organization_location4',
-                    'organization_number_employees', 'organization_number_users',
+                    'organization_location',
                     'client_ip_address', 'client_user_agent']
 
     bool_keys = ['tos1', 'tos2']

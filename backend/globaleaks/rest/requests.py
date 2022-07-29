@@ -546,17 +546,9 @@ SignupDesc = {
     'phone': str,
     'email': email_regexp,
     'organization_name': str,
-    'organization_type': str,
     'organization_tax_code': str,
     'organization_vat_code': str,
-    'organization_location1': str,
-    'organization_location2': str,
-    'organization_location3': str,
-    'organization_location4': str,
-    'organization_site': str,
-    'organization_number_employees': str,
-    'organization_number_users': str,
-    'hear_channel': str,
+    'organization_location': str,
     'tos1': bool,
     'tos2': bool
 }
