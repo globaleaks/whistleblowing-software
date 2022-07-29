@@ -2,7 +2,6 @@
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
-from globaleaks.db import db_refresh_tenant_cache
 from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import db_get_languages
@@ -59,6 +58,7 @@ def db_admin_serialize_node(session, tid, language, config_desc='node'):
     :return: Return the serialized configuration for the specified tenant
     """
     config = ConfigFactory(session, tid)
+    root_config = ConfigFactory(session, tid)
 
     ret = config.serialize(config_desc)
 
@@ -70,8 +70,8 @@ def db_admin_serialize_node(session, tid, language, config_desc='node'):
         'languages_supported': LANGUAGES_SUPPORTED,
         'languages_enabled': db_get_languages(session, tid),
         'root_tenant': tid == 1,
-        'https_possible': tid == 1 or State.tenants[1].cache.reachable_via_web,
-        'encryption_possible': tid == 1 or State.tenants[1].cache.encryption,
+        'https_possible': tid == 1 or root_config.get_val('reachable_via_web'),
+        'encryption_possible': tid == 1 or root_config.get_val('encryption'),
         'escrow': config.get_val('crypto_escrow_pub_key') != '',
         'logo': True if logo else False
     })
@@ -109,8 +109,6 @@ def db_update_node(session, tid, user_session, request, language):
 
     if language in db_get_languages(session, tid):
         ConfigL10NFactory(session, tid).update('node', request, language)
-
-    db_refresh_tenant_cache(session, [tid])
 
     if tid == 1:
         log.setloglevel(config.get_val('log_level'))

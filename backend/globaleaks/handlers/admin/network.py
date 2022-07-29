@@ -1,7 +1,6 @@
 # -*- coding: utf-8
 from twisted.internet.defer import inlineCallbacks, returnValue
 
-from globaleaks.db import db_refresh_tenant_cache
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import tw
@@ -36,8 +35,6 @@ def db_update_network(session, tid, user_session, request):
             parse_csv_ip_ranges_to_ip_networks(request['ip_filter_' + k])
 
     ConfigFactory(session, tid).update('admin_network', request)
-
-    db_refresh_tenant_cache(session, [tid])
 
     return db_admin_serialize_network(session, tid)
 

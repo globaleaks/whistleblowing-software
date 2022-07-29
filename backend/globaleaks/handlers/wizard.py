@@ -2,7 +2,6 @@
 #
 # Handlers implementing platform wizard
 from globaleaks import models
-from globaleaks.db import db_refresh_tenant_cache
 from globaleaks.handlers.admin.context import db_create_context
 from globaleaks.handlers.admin.node import db_update_enabled_languages
 from globaleaks.handlers.admin.user import db_create_user
@@ -101,7 +100,6 @@ def db_wizard(session, tid, hostname, request):
     # Root tenants initialization terminates here
 
     if tid == 1:
-        db_refresh_tenant_cache(session, [tid])
         return
 
     # Secondary tenants initialization starts here
@@ -138,9 +136,7 @@ def db_wizard(session, tid, hostname, request):
 
 @transact
 def wizard(session, tid, hostname, request):
-    t = db_wizard(session, tid, hostname, request)
-
-    db_refresh_tenant_cache(session, [tid])
+    return db_wizard(session, tid, hostname, request)
 
 
 class Wizard(BaseHandler):

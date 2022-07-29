@@ -149,7 +149,6 @@ class TenantCollection(BaseHandler):
 class TenantInstance(BaseHandler):
     check_roles = 'admin'
     root_tenant_only = True
-    invalidate_cache = True
 
     def get(self, tid):
         tid = int(tid)
