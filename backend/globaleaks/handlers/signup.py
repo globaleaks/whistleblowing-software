@@ -162,7 +162,6 @@ class Signup(BaseHandler):
     Signup handler responsible of registration
     """
     check_roles = 'any'
-    invalidate_cache = False
     root_tenant_only = True
 
     def post(self):
@@ -180,7 +179,6 @@ class SignupActivation(BaseHandler):
     Signup handler responsible of activation
     """
     check_roles = 'any'
-    invalidate_cache = False
     root_tenant_only = True
 
     def get(self, token):
