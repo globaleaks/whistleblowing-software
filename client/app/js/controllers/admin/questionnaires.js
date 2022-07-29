@@ -14,14 +14,6 @@ GL.controller("AdminQuestionnaireCtrl",
 
   $scope.deleted_fields_ids = [];
 
-  $scope.resources.get_field_attrs = function(type) {
-    if (type in $scope.resources.field_attrs) {
-      return $scope.resources.field_attrs[type];
-    } else {
-      return {};
-    }
-  };
-
   $scope.showAddQuestionnaire = false;
   $scope.toggleAddQuestionnaire = function() {
     $scope.showAddQuestionnaire = !$scope.showAddQuestionnaire;

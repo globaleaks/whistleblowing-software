@@ -142,7 +142,6 @@ GL.controller("AdminFieldEditorCtrl", ["$scope", "$http", "FileSaver",
       var field = $scope.AdminUtils.new_field("", $scope.field.id);
       field.label = $scope.new_field.label;
       field.type = $scope.new_field.type;
-      field.attrs = $scope.resources.get_field_attrs(field.type);
       field.y = $scope.newItemOrder($scope.field.children, "y");
 
       field.instance = $scope.field.instance;
@@ -240,7 +239,6 @@ controller("AdminFieldTemplatesAddCtrl", ["$scope",
       field.instance = "template";
       field.label = $scope.new_field.label;
       field.type = $scope.new_field.type;
-      field.attrs = $scope.resources.get_field_attrs(field.type);
 
       field.$save(function(new_field){
         $scope.fields.push(new_field);

@@ -63,12 +63,11 @@ var GL = angular.module("GL", [
     }
 
     function fetchResources(role, lst) {
-      return ["$location", "$q", "$rootScope", "Access", "GLTranslate", "AdminAuditLogResource", "AdminContextResource", "AdminQuestionnaireResource", "AdminStepResource", "AdminFieldResource", "AdminFieldTemplateResource", "AdminUserResource", "AdminNodeResource", "AdminNetworkResource", "AdminNotificationResource", "AdminRedirectResource", "AdminTenantResource", "FieldAttrs", "TipsCollection", "JobsAuditLog", "AdminSubmissionStatusResource", "ReceiverTips", "UserPreferences", function($location, $q, $rootScope, Access, GLTranslate, AdminAuditLogResource, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminNodeResource, AdminNetworkResource, AdminNotificationResource, AdminRedirectResource, AdminTenantResource, FieldAttrs, TipsCollection, JobsAuditLog, AdminSubmissionStatusResource, ReceiverTips, UserPreferences) {
+      return ["$location", "$q", "$rootScope", "Access", "GLTranslate", "AdminAuditLogResource", "AdminContextResource", "AdminQuestionnaireResource", "AdminStepResource", "AdminFieldResource", "AdminFieldTemplateResource", "AdminUserResource", "AdminNodeResource", "AdminNetworkResource", "AdminNotificationResource", "AdminRedirectResource", "AdminTenantResource", "TipsCollection", "JobsAuditLog", "AdminSubmissionStatusResource", "ReceiverTips", "UserPreferences", function($location, $q, $rootScope, Access, GLTranslate, AdminAuditLogResource, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminNodeResource, AdminNetworkResource, AdminNotificationResource, AdminRedirectResource, AdminTenantResource, TipsCollection, JobsAuditLog, AdminSubmissionStatusResource, ReceiverTips, UserPreferences) {
         var resourcesPromises = {
           auditlog: function() { return AdminAuditLogResource.query().$promise; },
           node: function() { return AdminNodeResource.get().$promise; },
           contexts: function() { return AdminContextResource.query().$promise; },
-          field_attrs: function() { return FieldAttrs.get().$promise; },
           fieldtemplates: function() { return AdminFieldTemplateResource.query().$promise; },
           users: function() { return AdminUserResource.query().$promise; },
           network: function() { return AdminNetworkResource.get().$promise; },
@@ -236,7 +235,7 @@ var GL = angular.module("GL", [
         sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
-          resources: fetchResources("admin", ["fieldtemplates", "field_attrs", "node", "preferences", "questionnaires", "users"])
+          resources: fetchResources("admin", ["fieldtemplates", "node", "preferences", "questionnaires", "users"])
         }
       }).
       when("/admin/users", {

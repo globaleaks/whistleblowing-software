@@ -57,7 +57,6 @@ controller("AdminStepEditorCtrl", ["$scope", "$http", "AdminStepResource", "Admi
       var field = $scope.AdminUtils.new_field($scope.step.id, "");
       field.label = $scope.new_field.label;
       field.type = $scope.new_field.type;
-      field.attrs = $scope.resources.get_field_attrs(field.type);
       field.y = $scope.newItemOrder($scope.fields, "y");
 
       if (field.type === "fileupload") {

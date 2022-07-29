@@ -218,9 +218,6 @@ factory("TokenResource", ["GLResource", "glbcProofOfWork", function(GLResource, 
 factory("SubmissionResource", ["GLResource", function(GLResource) {
   return new GLResource("api/submission");
 }]).
-factory("FieldAttrs", ["$resource", function($resource) {
-  return $resource("data/field_attrs.json");
-}]).
 factory("Submission", ["$q", "$location", "$rootScope", "Authentication", "GLResource", "SubmissionResource",
     function($q, $location, $rootScope, Authentication, GLResource, SubmissionResource) {
 
