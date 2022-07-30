@@ -11,17 +11,17 @@
       "dependencies": {
         "@flowjs/flow.js": "2.14.1",
         "@flowjs/ng-flow": "2.7.8",
-        "@fortawesome/fontawesome-free": "6.1.1",
-        "angular": "1.8.2",
-        "angular-aria": "1.8.2",
+        "@fortawesome/fontawesome-free": "6.1.2",
+        "angular": "1.8.3",
+        "angular-aria": "1.8.3",
         "angular-dynamic-locale": "0.1.38",
         "angular-file-saver": "1.1.3",
         "angular-filter": "0.5.17",
-        "angular-i18n": "1.8.2",
+        "angular-i18n": "1.8.3",
         "angular-qrcode": "7.2.0",
-        "angular-resource": "1.8.2",
-        "angular-route": "1.8.2",
-        "angular-sanitize": "1.8.2",
+        "angular-resource": "1.8.3",
+        "angular-route": "1.8.3",
+        "angular-sanitize": "1.8.3",
         "angular-translate": "2.19.0",
         "angular-translate-loader-static-files": "2.19.0",
         "angular-translate-loader-url": "2.19.0",
@@ -54,7 +54,7 @@
         "grunt-usemin": "3.1.1",
         "gruntify-eslint": "5.0.0",
         "node-gettext": "3.0.0",
-        "npm-check-updates": "15.3.4",
+        "npm-check-updates": "16.0.3",
         "nyc": "15.1.0",
         "postcss-rtl": "1.7.3",
         "protractor": "7.0.0",
@@ -499,9 +499,9 @@
       "integrity": "sha512-zO6jNvz41oMOJj9+1N+vLT0ytitbCtuGABJQRzQDOPXyRMmlSXfJ7om5oYOztyUFrr4jDpE4QFPt+r2/RFceCg=="
     },
     "node_modules/@fortawesome/fontawesome-free": {
-      "version": "6.1.1",
-      "resolved": "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-6.1.1.tgz",
-      "integrity": "sha512-J/3yg2AIXc9wznaVqpHVX3Wa5jwKovVF0AMYSnbmcXTiL3PpRPfF58pzWucCwEiCJBp+hCNRLWClTomD8SseKg==",
+      "version": "6.1.2",
+      "resolved": "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-6.1.2.tgz",
+      "integrity": "sha512-XwWADtfdSN73/udaFm+1mnGIj/ShDZNFMe/PRoqv3FhQ4GNI2PUN70yFTPsjq65Lw2C9i4TG5/hTbxXIXVCiqQ==",
       "hasInstallScript": true,
       "engines": {
         "node": ">=6"
@@ -1094,15 +1094,15 @@
       }
     },
     "node_modules/angular": {
-      "version": "1.8.2",
-      "resolved": "https://registry.npmjs.org/angular/-/angular-1.8.2.tgz",
-      "integrity": "sha512-IauMOej2xEe7/7Ennahkbb5qd/HFADiNuLSESz9Q27inmi32zB0lnAsFeLEWcox3Gd1F6YhNd1CP7/9IukJ0Gw==",
+      "version": "1.8.3",
+      "resolved": "https://registry.npmjs.org/angular/-/angular-1.8.3.tgz",
+      "integrity": "sha512-5qjkWIQQVsHj4Sb5TcEs4WZWpFeVFHXwxEBHUhrny41D8UrBAd6T/6nPPAsLngJCReIOqi95W3mxdveveutpZw==",
       "deprecated": "For the actively supported Angular, see https://www.npmjs.com/package/@angular/core. AngularJS support has officially ended. For extended AngularJS support options, see https://goo.gle/angularjs-path-forward."
     },
     "node_modules/angular-aria": {
-      "version": "1.8.2",
-      "resolved": "https://registry.npmjs.org/angular-aria/-/angular-aria-1.8.2.tgz",
-      "integrity": "sha512-xWT1Lm+Xug2GM6nGNMioBP4hXt3sj2eGaExa4cVCZUYSVWezgyuD1RiLgzJzwTkBGYplHQUzQaz3yDY8jVI6yQ==",
+      "version": "1.8.3",
+      "resolved": "https://registry.npmjs.org/angular-aria/-/angular-aria-1.8.3.tgz",
+      "integrity": "sha512-qTXclmTW/KGw5JNKKQPcCKKq6hCBZ39jYINmLgMsjUHBAoxULaMRRTaRj/L2VTOjKvK5f9enkx+EUqRqzXDSFQ==",
       "deprecated": "For the actively supported Angular, see https://www.npmjs.com/package/@angular/core. AngularJS support has officially ended. For extended AngularJS support options, see https://goo.gle/angularjs-path-forward."
     },
     "node_modules/angular-dynamic-locale": {
@@ -1137,9 +1137,9 @@
       }
     },
     "node_modules/angular-i18n": {
-      "version": "1.8.2",
-      "resolved": "https://registry.npmjs.org/angular-i18n/-/angular-i18n-1.8.2.tgz",
-      "integrity": "sha512-IVXiWS0fWLnDPTy5z/iO/mVATE3/Eyj0aHEUrhSro8Dxtsv0iw6RLBATkawl4z7AZPX3eN6pqScd5dg56m0dpA==",
+      "version": "1.8.3",
+      "resolved": "https://registry.npmjs.org/angular-i18n/-/angular-i18n-1.8.3.tgz",
+      "integrity": "sha512-TWJXIRsq7Qkgyms5dHIgG3s2swn2YKGwJzrIC8u59P9BWV3+gorNhgXCR6nqutApldz7jGBmTNjMgpnF32CIVg==",
       "deprecated": "For the actively supported Angular, see https://www.npmjs.com/package/@angular/core. AngularJS support has officially ended. For extended AngularJS support options, see https://goo.gle/angularjs-path-forward."
     },
     "node_modules/angular-qrcode": {
@@ -1153,21 +1153,21 @@
       }
     },
     "node_modules/angular-resource": {
-      "version": "1.8.2",
-      "resolved": "https://registry.npmjs.org/angular-resource/-/angular-resource-1.8.2.tgz",
-      "integrity": "sha512-CbTu8ypkVZMBLm+Wd+jI9xR7QEVCeUgN8WXsr9Yi9l0s/8ZQa5kEIuYX3F/75Ej8Xs1Jp9DoKjAyvACI6Q8IJA==",
+      "version": "1.8.3",
+      "resolved": "https://registry.npmjs.org/angular-resource/-/angular-resource-1.8.3.tgz",
+      "integrity": "sha512-x3+4w2SyIDEIe6PUBTzcjDFI5MhZNWAPELUxkYK0QMOkOo4w3BN/qhpd+fO1deFiDS23mZKqT8kfctO1IDkCDA==",
       "deprecated": "For the actively supported Angular, see https://www.npmjs.com/package/@angular/core. AngularJS support has officially ended. For extended AngularJS support options, see https://goo.gle/angularjs-path-forward."
     },
     "node_modules/angular-route": {
-      "version": "1.8.2",
-      "resolved": "https://registry.npmjs.org/angular-route/-/angular-route-1.8.2.tgz",
-      "integrity": "sha512-49LJYxuaQ/ZDiu9dD2xo1LkazqObkGjw0a7dUF7UKCT8EELgBsMd6QrI6aEVGtI62ppkiFkxqmiV8fcwYdXpug==",
+      "version": "1.8.3",
+      "resolved": "https://registry.npmjs.org/angular-route/-/angular-route-1.8.3.tgz",
+      "integrity": "sha512-kpIcRmDR2+o1FxDVVYy8Rvfab86/7LDbOgTRb9T+X9ewPQiBRuDEnZtM3oJYBiQLvAXDYTJXHV48n/bGE9Mv2g==",
       "deprecated": "For the actively supported Angular, see https://www.npmjs.com/package/@angular/core. AngularJS support has officially ended. For extended AngularJS support options, see https://goo.gle/angularjs-path-forward."
     },
     "node_modules/angular-sanitize": {
-      "version": "1.8.2",
-      "resolved": "https://registry.npmjs.org/angular-sanitize/-/angular-sanitize-1.8.2.tgz",
-      "integrity": "sha512-OB6Goa+QN3byf5asQ7XRl7DKZejm/F/ZOqa9z1skqYVOWA2hoBxoCmt9E7+i7T/TbxZP5zYzKxNZVVJNu860Hg==",
+      "version": "1.8.3",
+      "resolved": "https://registry.npmjs.org/angular-sanitize/-/angular-sanitize-1.8.3.tgz",
+      "integrity": "sha512-2rxdqzlUVafUeWOwvY/FtyWk1pFTyCtzreeiTytG9m4smpuAEKaIJAjYeVwWsoV+nlTOcgpwV4W1OCmR+BQbUg==",
       "deprecated": "For the actively supported Angular, see https://www.npmjs.com/package/@angular/core. AngularJS support has officially ended. For extended AngularJS support options, see https://goo.gle/angularjs-path-forward."
     },
     "node_modules/angular-translate": {
@@ -6906,14 +6906,14 @@
       }
     },
     "node_modules/npm-check-updates": {
-      "version": "15.3.4",
-      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-15.3.4.tgz",
-      "integrity": "sha512-YZDcw0DFn5ggl7b9znZ7N0i+Q1HVIxW+eZlV7XvR+RIs367H+ytKCB4slAU33Bg9IljY7uv3dsFjV2npOt3GyA==",
+      "version": "16.0.3",
+      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-16.0.3.tgz",
+      "integrity": "sha512-oTCQ/USrDBruVOIRrnpxk4oW4H1mIJfcSta2/ffslKv6kqv4C22hP+ltZoRGu+1nhZ5dsDb/B8CoVyD27/Wm8w==",
       "dev": true,
       "dependencies": {
         "chalk": "^5.0.1",
         "cli-table": "^0.3.11",
-        "commander": "^9.3.0",
+        "commander": "^9.4.0",
         "fast-memoize": "^2.5.2",
         "find-up": "5.0.0",
         "fp-and-or": "^0.1.3",
@@ -6969,9 +6969,9 @@
       }
     },
     "node_modules/npm-check-updates/node_modules/commander": {
-      "version": "9.3.0",
-      "resolved": "https://registry.npmjs.org/commander/-/commander-9.3.0.tgz",
-      "integrity": "sha512-hv95iU5uXPbK83mjrJKuZyFM/LBAoCV/XhVGkS5Je6tl7sxr6A0ITMw5WoRV46/UaJ46Nllm3Xt7IaJhXTIkzw==",
+      "version": "9.4.0",
+      "resolved": "https://registry.npmjs.org/commander/-/commander-9.4.0.tgz",
+      "integrity": "sha512-sRPT+umqkz90UA8M1yqYfnHlZA7fF6nSphDtxeywPZ49ysjxDQybzk13CL+mXekDRG92skbcqCLVovuCusNmFw==",
       "dev": true,
       "engines": {
         "node": "^12.20.0 || >=14"
@@ -11201,9 +11201,9 @@
       "integrity": "sha512-zO6jNvz41oMOJj9+1N+vLT0ytitbCtuGABJQRzQDOPXyRMmlSXfJ7om5oYOztyUFrr4jDpE4QFPt+r2/RFceCg=="
     },
     "@fortawesome/fontawesome-free": {
-      "version": "6.1.1",
-      "resolved": "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-6.1.1.tgz",
-      "integrity": "sha512-J/3yg2AIXc9wznaVqpHVX3Wa5jwKovVF0AMYSnbmcXTiL3PpRPfF58pzWucCwEiCJBp+hCNRLWClTomD8SseKg=="
+      "version": "6.1.2",
+      "resolved": "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-6.1.2.tgz",
+      "integrity": "sha512-XwWADtfdSN73/udaFm+1mnGIj/ShDZNFMe/PRoqv3FhQ4GNI2PUN70yFTPsjq65Lw2C9i4TG5/hTbxXIXVCiqQ=="
     },
     "@gar/promisify": {
       "version": "1.1.3",
@@ -11676,14 +11676,14 @@
       }
     },
     "angular": {
-      "version": "1.8.2",
-      "resolved": "https://registry.npmjs.org/angular/-/angular-1.8.2.tgz",
-      "integrity": "sha512-IauMOej2xEe7/7Ennahkbb5qd/HFADiNuLSESz9Q27inmi32zB0lnAsFeLEWcox3Gd1F6YhNd1CP7/9IukJ0Gw=="
+      "version": "1.8.3",
+      "resolved": "https://registry.npmjs.org/angular/-/angular-1.8.3.tgz",
+      "integrity": "sha512-5qjkWIQQVsHj4Sb5TcEs4WZWpFeVFHXwxEBHUhrny41D8UrBAd6T/6nPPAsLngJCReIOqi95W3mxdveveutpZw=="
     },
     "angular-aria": {
-      "version": "1.8.2",
-      "resolved": "https://registry.npmjs.org/angular-aria/-/angular-aria-1.8.2.tgz",
-      "integrity": "sha512-xWT1Lm+Xug2GM6nGNMioBP4hXt3sj2eGaExa4cVCZUYSVWezgyuD1RiLgzJzwTkBGYplHQUzQaz3yDY8jVI6yQ=="
+      "version": "1.8.3",
+      "resolved": "https://registry.npmjs.org/angular-aria/-/angular-aria-1.8.3.tgz",
+      "integrity": "sha512-qTXclmTW/KGw5JNKKQPcCKKq6hCBZ39jYINmLgMsjUHBAoxULaMRRTaRj/L2VTOjKvK5f9enkx+EUqRqzXDSFQ=="
     },
     "angular-dynamic-locale": {
       "version": "0.1.38",
@@ -11711,9 +11711,9 @@
       }
     },
     "angular-i18n": {
-      "version": "1.8.2",
-      "resolved": "https://registry.npmjs.org/angular-i18n/-/angular-i18n-1.8.2.tgz",
-      "integrity": "sha512-IVXiWS0fWLnDPTy5z/iO/mVATE3/Eyj0aHEUrhSro8Dxtsv0iw6RLBATkawl4z7AZPX3eN6pqScd5dg56m0dpA=="
+      "version": "1.8.3",
+      "resolved": "https://registry.npmjs.org/angular-i18n/-/angular-i18n-1.8.3.tgz",
+      "integrity": "sha512-TWJXIRsq7Qkgyms5dHIgG3s2swn2YKGwJzrIC8u59P9BWV3+gorNhgXCR6nqutApldz7jGBmTNjMgpnF32CIVg=="
     },
     "angular-qrcode": {
       "version": "7.2.0",
@@ -11725,19 +11725,19 @@
       }
     },
     "angular-resource": {
-      "version": "1.8.2",
-      "resolved": "https://registry.npmjs.org/angular-resource/-/angular-resource-1.8.2.tgz",
-      "integrity": "sha512-CbTu8ypkVZMBLm+Wd+jI9xR7QEVCeUgN8WXsr9Yi9l0s/8ZQa5kEIuYX3F/75Ej8Xs1Jp9DoKjAyvACI6Q8IJA=="
+      "version": "1.8.3",
+      "resolved": "https://registry.npmjs.org/angular-resource/-/angular-resource-1.8.3.tgz",
+      "integrity": "sha512-x3+4w2SyIDEIe6PUBTzcjDFI5MhZNWAPELUxkYK0QMOkOo4w3BN/qhpd+fO1deFiDS23mZKqT8kfctO1IDkCDA=="
     },
     "angular-route": {
-      "version": "1.8.2",
-      "resolved": "https://registry.npmjs.org/angular-route/-/angular-route-1.8.2.tgz",
-      "integrity": "sha512-49LJYxuaQ/ZDiu9dD2xo1LkazqObkGjw0a7dUF7UKCT8EELgBsMd6QrI6aEVGtI62ppkiFkxqmiV8fcwYdXpug=="
+      "version": "1.8.3",
+      "resolved": "https://registry.npmjs.org/angular-route/-/angular-route-1.8.3.tgz",
+      "integrity": "sha512-kpIcRmDR2+o1FxDVVYy8Rvfab86/7LDbOgTRb9T+X9ewPQiBRuDEnZtM3oJYBiQLvAXDYTJXHV48n/bGE9Mv2g=="
     },
     "angular-sanitize": {
-      "version": "1.8.2",
-      "resolved": "https://registry.npmjs.org/angular-sanitize/-/angular-sanitize-1.8.2.tgz",
-      "integrity": "sha512-OB6Goa+QN3byf5asQ7XRl7DKZejm/F/ZOqa9z1skqYVOWA2hoBxoCmt9E7+i7T/TbxZP5zYzKxNZVVJNu860Hg=="
+      "version": "1.8.3",
+      "resolved": "https://registry.npmjs.org/angular-sanitize/-/angular-sanitize-1.8.3.tgz",
+      "integrity": "sha512-2rxdqzlUVafUeWOwvY/FtyWk1pFTyCtzreeiTytG9m4smpuAEKaIJAjYeVwWsoV+nlTOcgpwV4W1OCmR+BQbUg=="
     },
     "angular-translate": {
       "version": "2.19.0",
@@ -16153,14 +16153,14 @@
       }
     },
     "npm-check-updates": {
-      "version": "15.3.4",
-      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-15.3.4.tgz",
-      "integrity": "sha512-YZDcw0DFn5ggl7b9znZ7N0i+Q1HVIxW+eZlV7XvR+RIs367H+ytKCB4slAU33Bg9IljY7uv3dsFjV2npOt3GyA==",
+      "version": "16.0.3",
+      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-16.0.3.tgz",
+      "integrity": "sha512-oTCQ/USrDBruVOIRrnpxk4oW4H1mIJfcSta2/ffslKv6kqv4C22hP+ltZoRGu+1nhZ5dsDb/B8CoVyD27/Wm8w==",
       "dev": true,
       "requires": {
         "chalk": "^5.0.1",
         "cli-table": "^0.3.11",
-        "commander": "^9.3.0",
+        "commander": "^9.4.0",
         "fast-memoize": "^2.5.2",
         "find-up": "5.0.0",
         "fp-and-or": "^0.1.3",
@@ -16203,9 +16203,9 @@
           "dev": true
         },
         "commander": {
-          "version": "9.3.0",
-          "resolved": "https://registry.npmjs.org/commander/-/commander-9.3.0.tgz",
-          "integrity": "sha512-hv95iU5uXPbK83mjrJKuZyFM/LBAoCV/XhVGkS5Je6tl7sxr6A0ITMw5WoRV46/UaJ46Nllm3Xt7IaJhXTIkzw==",
+          "version": "9.4.0",
+          "resolved": "https://registry.npmjs.org/commander/-/commander-9.4.0.tgz",
+          "integrity": "sha512-sRPT+umqkz90UA8M1yqYfnHlZA7fF6nSphDtxeywPZ49ysjxDQybzk13CL+mXekDRG92skbcqCLVovuCusNmFw==",
           "dev": true
         },
         "minimatch": {
