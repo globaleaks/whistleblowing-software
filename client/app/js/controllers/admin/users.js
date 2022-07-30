@@ -86,7 +86,6 @@ controller("AdminUserAddCtrl", ["$scope",
       user.role = $scope.new_user.role;
       user.name = $scope.new_user.name;
       user.mail_address = $scope.new_user.email;
-      user.send_account_activation_link = $scope.new_user.send_account_activation_link;
       user.language = $scope.resources.node.default_language;
 
       user.$save(function(new_user){

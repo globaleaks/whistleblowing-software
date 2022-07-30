@@ -137,8 +137,7 @@ AdminUserDesc = {
     'can_delete_submission': bool,
     'can_postpone_expiration': bool,
     'can_grant_access_to_reports': bool,
-    'forcefully_selected': bool,
-    'send_account_activation_link': bool
+    'forcefully_selected': bool
 }
 
 UserUserDesc = {

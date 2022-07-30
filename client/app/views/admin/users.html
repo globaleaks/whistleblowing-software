@@ -42,12 +42,6 @@
         <div class="text-danger" data-ng-show="newUser.email.$error.pattern" data-translate>Invalid email address</div>
       </div>
       <div class="form-group">
-        <div class="form-check">
-          <input class="form-check-input inputelem" type="checkbox" data-ng-model="new_user.send_account_activation_link">
-          <span class="form-check-label" data-translate>Send an account activation link to the user.</span>
-        </div>
-      </div>
-      <div class="form-group">
         <button id="add-btn" class="btn btn-primary" data-ng-disabled="newUser.$invalid"
                 data-ng-click="add_user(); toggleAddUser()" type="submit">
           <i class="fa-solid fa-plus"></i>

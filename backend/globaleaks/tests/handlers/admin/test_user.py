@@ -13,8 +13,7 @@ class TestAdminCollection(helpers.TestCollectionHandler):
             'role': 'admin',
             'name': 'Mario Rossi',
             'mail_address': 'admin@theguardian.com',
-            'language': 'en',
-            'send_account_activation_link': False
+            'language': 'en'
         }
     }
 
@@ -50,8 +49,7 @@ class TestReceiverCollection(TestAdminCollection):
             'role': 'receiver',
             'name': 'Mario Rossi',
             'mail_address': 'receiver@theguardian.com',
-            'language': 'en',
-            'send_account_activation_link': False
+            'language': 'en'
         }
     }
 
@@ -78,8 +76,7 @@ class TestCustodianCollection(TestAdminCollection):
             'role': 'custodian',
             'name': 'Mario Rossi',
             'mail_address': 'custodian@theguardian.com',
-            'language': 'en',
-            'send_account_activation_link': False
+            'language': 'en'
         }
     }
 

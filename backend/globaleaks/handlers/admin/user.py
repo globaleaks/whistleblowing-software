@@ -172,9 +172,6 @@ class UsersCollection(BaseHandler):
 
         user = yield create_user(self.request.tid, self.session, request, self.request.language)
 
-        if request['send_account_activation_link']:
-            yield generate_password_reset_token(self.request.tid, self.session, user['id'])
-
         return user
 
 

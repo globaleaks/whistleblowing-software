@@ -80,7 +80,6 @@ def user_serialize_user(session, user, language):
         'can_grant_access_to_reports': user.can_grant_access_to_reports,
         'can_edit_general_settings': user.can_edit_general_settings,
         'clicked_recovery_key': user.clicked_recovery_key,
-        'send_account_activation_link': False,
         'contexts': contexts
     }
 

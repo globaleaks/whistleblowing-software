@@ -83,7 +83,6 @@ def db_wizard(session, tid, hostname, request):
         receiver_desc['language'] = language
         receiver_desc['role'] = 'receiver'
         receiver_desc['pgp_key_remove'] = False
-        receiver_desc['send_account_activation_link'] = False
         receiver_user = db_create_user(session, tid, None, receiver_desc, language)
         db_set_user_password(session, tid, receiver_user, request['receiver_password'])
         receiver_user.password_change_needed = (tid != 1)
