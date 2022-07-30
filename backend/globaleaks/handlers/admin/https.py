@@ -69,17 +69,17 @@ class FileResource(object):
     """
     @classmethod
     def perform_file_action(cls, tid):
-        raise errors.MethodNotImplemented()
+        raise errors.MethodNotImplemented
 
     @staticmethod
     @transact
     def get_file(session, tid):
-        raise errors.MethodNotImplemented()
+        raise errors.MethodNotImplemented
 
     @staticmethod
     @transact
     def delete_file(session, tid):
-        raise errors.MethodNotImplemented()
+        raise errors.MethodNotImplemented
 
     @classmethod
     @transact
@@ -88,7 +88,7 @@ class FileResource(object):
 
     @staticmethod
     def db_serialize(session, tid):
-        raise errors.MethodNotImplemented()
+        raise errors.MethodNotImplemented
 
 
 @transact
@@ -262,7 +262,7 @@ class FileHandler(BaseHandler):
 
     def get_file_res_or_raise(self, name):
         if name not in self.mapped_file_resources:
-            raise errors.MethodNotImplemented()
+            raise errors.MethodNotImplemented
 
         return self.mapped_file_resources[name]
 
@@ -284,7 +284,7 @@ class FileHandler(BaseHandler):
             ok = False
 
         if not ok:
-            raise errors.InputValidationError()
+            raise errors.InputValidationError
 
     @inlineCallbacks
     def put(self, name):
@@ -321,7 +321,7 @@ def try_to_enable_https(session, tid):
 
     ok, _ = cv.validate(tls_config)
     if not ok:
-        raise errors.InputValidationError()
+        raise errors.InputValidationError
 
     config.set_val('https_enabled', True)
     State.tenants[tid].cache.https_enabled = True
@@ -390,7 +390,7 @@ class CSRFileHandler(FileHandler):
 
         ok = yield create_file_https_csr(self.request.tid, csr_txt)
         if not ok:
-            raise errors.InputValidationError()
+            raise errors.InputValidationError
 
     @staticmethod
     @transact
@@ -400,7 +400,7 @@ class CSRFileHandler(FileHandler):
         pkv = tls.PrivKeyValidator()
         ok, _ = pkv.validate(db_cfg)
         if not ok:
-            raise errors.InputValidationError()
+            raise errors.InputValidationError
 
         key_pair = db_cfg['ssl_key']
         try:

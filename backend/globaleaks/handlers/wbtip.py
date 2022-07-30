@@ -219,7 +219,7 @@ class WBTipWBFileHandler(BaseHandler):
                                 models.InternalTip.id == self.session.user_id))
 
         if not wbtip:
-            raise errors.ResourceNotFound()
+            raise errors.ResourceNotFound
 
         if wbfile.access_date == datetime_null():
             wbfile.access_date = datetime_now()

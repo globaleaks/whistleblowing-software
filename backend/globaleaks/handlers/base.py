@@ -217,7 +217,7 @@ class BaseHandler(object):
             try:
                 request = json.loads(request)
             except:
-                raise errors.InputValidationError()
+                raise errors.InputValidationError
 
         if isinstance(request_template, dict):
             success_check = 0
@@ -278,7 +278,7 @@ class BaseHandler(object):
 
     def check_file_presence(self, filepath):
         if not os.path.exists(filepath) or not os.path.isfile(filepath):
-            raise errors.ResourceNotFound()
+            raise errors.ResourceNotFound
 
     def check_confirmation(self):
         tid = self.request.tid
@@ -385,7 +385,7 @@ class BaseHandler(object):
 
     def check_root_or_management_session(self):
         if self.request.tid != 1 and not (self.session and self.session.properties.get('management_session', False)):
-            errors.ForbiddenOperation()
+            errors.ForbiddenOperation
 
     def check_execution_time(self):
         self.request.execution_time = datetime.now() - self.request.start_time

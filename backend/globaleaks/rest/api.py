@@ -262,7 +262,7 @@ class APIResourceWrapper(Resource):
             e = e.value
 
         if isinstance(e, NoResultFound):
-            e = errors.ResourceNotFound()
+            e = errors.ResourceNotFound
         elif isinstance(e, errors.GLException):
             pass
         else:
@@ -398,7 +398,7 @@ class APIResourceWrapper(Resource):
                 break
 
         if match is None:
-            self.handle_exception(errors.ResourceNotFound(), request)
+            self.handle_exception(errors.ResourceNotFound, request)
             return b''
 
         method = request.method.lower().decode()
@@ -410,7 +410,7 @@ class APIResourceWrapper(Resource):
             return b''
 
         if method not in self.method_map.keys() or not hasattr(handler, method):
-            self.handle_exception(errors.MethodNotImplemented(), request)
+            self.handle_exception(errors.MethodNotImplemented, request)
             return b''
 
         f = getattr(handler, method)
@@ -422,13 +422,13 @@ class APIResourceWrapper(Resource):
 
         if self.handler.root_tenant_only and \
                 request.tid != 1:
-            self.handle_exception(errors.ForbiddenOperation(), request)
+            self.handle_exception(errors.ForbiddenOperation, request)
             return b''
 
         if self.handler.root_tenant_or_management_only and \
                 request.tid != 1 and \
                 not self.handler.session.properties.get('management_session', False):
-            self.handle_exception(errors.ForbiddenOperation(), request)
+            self.handle_exception(errors.ForbiddenOperation, request)
             return b''
 
         if self.handler.upload_handler and method == 'post':

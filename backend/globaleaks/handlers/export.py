@@ -54,7 +54,7 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
                                                models.Context.id == models.InternalTip.context_id).one_or_none()
 
     if not user:
-        raise errors.ResourceNotFound()
+        raise errors.ResourceNotFound
 
     rtip.last_access = datetime_now()
     if rtip.access_date == datetime_null():

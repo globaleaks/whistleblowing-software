@@ -17,7 +17,7 @@ class SitemapHandler(BaseHandler):
         Get the sitemap.xml
         """
         if not State.tenants[self.request.tid].cache.allow_indexing:
-            raise errors.ResourceNotFound()
+            raise errors.ResourceNotFound
 
         self.request.setHeader(b'Content-Type', b'text/xml')
 

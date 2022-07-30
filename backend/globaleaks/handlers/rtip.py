@@ -727,7 +727,7 @@ class RTipWBFileHandler(BaseHandler):
                       .filter(models.ReceiverTip.receiver_id == self.session.user_id,
                               models.ReceiverTip.internaltip_id == wbtip.id).one_or_none()
         if not rtip:
-            raise errors.ResourceNotFound()
+            raise errors.ResourceNotFound
 
         return wbfile.name, wbfile.filename, base64.b64decode(rtip.crypto_tip_prv_key), pgp_key
 

@@ -122,7 +122,7 @@ class FileInstance(BaseHandler):
             self.allowed_mimetypes = ['image/png']
 
         if self.uploaded_file['type'] not in self.allowed_mimetypes:
-            raise errors.ForbiddenOperation()
+            raise errors.ForbiddenOperation
 
         if name in special_files or re.match(requests.uuid_regexp, name):
             self.uploaded_file['name'] = name

@@ -168,18 +168,18 @@ def check_field_association(session, tid, request):
     """
     if request.get('fieldgroup_id', '') and session.query(models.Field).filter(models.Field.id == request['fieldgroup_id'],
                                                                                models.Field.tid != tid).count():
-        raise errors.InputValidationError()
+        raise errors.InputValidationError
 
     if request.get('template_id', '') and session.query(models.Field).filter(models.Field.id == request['template_id'],
                                                                              not_(models.Field.tid.in_(
                                                                                  {1, tid}))).count():
-        raise errors.InputValidationError()
+        raise errors.InputValidationError
 
     if request.get('step_id', '') and session.query(models.Field).filter(models.Step.id == request['step_id'],
                                                                          models.Questionnaire.id == models.Step.questionnaire_id,
                                                                          not_(models.Questionnaire.tid.in_(
                                                                              {1, tid}))).count():
-        raise errors.InputValidationError()
+        raise errors.InputValidationError
 
     if request.get('fieldgroup_id', ''):
         ancestors = set(fieldtree_ancestors(session, request['fieldgroup_id']))
