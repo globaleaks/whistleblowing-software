@@ -50,7 +50,7 @@ GL.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
     };
 
     $scope.resetUserPassword = function() {
-      $scope.Utils.runAdminOperation('reset_user_password', {'value': $scope.user.id});
+      $scope.Utils.runAdminOperation('send_password_reset_email', {'value': $scope.user.id});
     };
 
     $scope.disable2FA = function() {

@@ -215,7 +215,7 @@ class AdminOperationHandler(OperationHandler):
     def disable_2fa(self, req_args, *args, **kwargs):
         return disable_2fa(self.request.tid, req_args['value'])
 
-    def reset_user_password(self, req_args, *args, **kwargs):
+    def send_password_reset_email(self, req_args, *args, **kwargs):
         return generate_password_reset_token(self.request.tid,
                                              self.session,
                                              req_args['value'])
@@ -282,7 +282,7 @@ class AdminOperationHandler(OperationHandler):
             'reset_onion_private_key': AdminOperationHandler.reset_onion_private_key,
             'reset_smtp_settings': AdminOperationHandler.reset_smtp_settings,
             'reset_submissions': AdminOperationHandler.reset_submissions,
-            'reset_user_password': AdminOperationHandler.reset_user_password,
+            'send_password_reset_email': AdminOperationHandler.send_password_reset_email,
             'set_hostname': AdminOperationHandler.set_hostname,
             'test_mail': AdminOperationHandler.test_mail,
             'toggle_escrow': AdminOperationHandler.toggle_escrow,

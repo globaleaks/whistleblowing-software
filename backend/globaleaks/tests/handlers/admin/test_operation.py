@@ -14,7 +14,7 @@ class TestAdminPasswordReset(helpers.TestHandlerWithPopulatedDB):
     @defer.inlineCallbacks
     def test_put(self):
         data_request = {
-            'operation': 'reset_user_password',
+            'operation': 'send_password_reset_email',
             'args': {
                 'value': self.dummyReceiver_1['id']
             }
