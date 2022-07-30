@@ -9,6 +9,7 @@ from cryptography.hazmat.primitives.hashes import SHA1
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers import user
+from globaleaks.handlers.user.operation import UserOperationHandler
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_null
@@ -22,33 +23,6 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(user_id=self.dummyReceiver_1['id'], role='receiver')
 
         yield handler.get()
-
-    @inlineCallbacks
-    def test_put_change_password(self):
-        handler = self.request(user_id=self.dummyReceiver_1['id'], role='receiver')
-
-        response = yield handler.get()
-        response['old_password'] = helpers.VALID_PASSWORD1
-
-        weak_passwords = [
-            'invalidpassword1!', # no uppercase characters
-            'INVALIDPASSWORD1!', # no lowercase characters
-            'invalidPassword!!', # no number characters
-            'invalidPassword11', # no symbol characters
-            'shortP1!'           # short password below 10 characters
-        ]
-
-        for password in weak_passwords:
-            response['password'] = password
-            handler = self.request(response, user_id=self.dummyReceiver_1['id'], role='receiver')
-            yield self.assertFailure(handler.put(), errors.InputValidationError)
-
-        response = yield handler.get()
-        response['password'] = 'validPassword1!'
-        response['old_password'] = helpers.VALID_PASSWORD1
-
-        handler = self.request(response, user_id=self.dummyReceiver_1['id'], role='receiver')
-        yield handler.put()
 
     @inlineCallbacks
     def test_handler_update_key(self):
@@ -184,3 +158,42 @@ class TestUser2FAEnrollment(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(data_request, role='receiver', headers={'x-confirmation': current_token})
 
         yield handler.put()
+
+
+class TestUserOperations(helpers.TestHandlerWithPopulatedDB):
+    _handler = UserOperationHandler
+
+    def _test_operation_handler(self, operation, args={}):
+        data_request = {
+            'operation': operation,
+            'args': args
+        }
+
+        return self.request(data_request, role='receiver').put()
+
+    @inlineCallbacks
+    def test_user_test_change_password(self):
+        valid_password = 'validPassword1!'
+
+        weak_passwords = [
+            'invalidpassword1!', # no uppercase characters
+            'INVALIDPASSWORD1!', # no lowercase characters
+            'invalidPassword!!', # no number characters
+            'invalidPassword11', # no symbol characters
+            'shortP1!'           # short password below 10 characters
+        ]
+
+        for password in weak_passwords:
+            yield self.assertFailure(self._test_operation_handler('change_password',
+                                                                  {'password': password,
+                                                                   'old_password': helpers.VALID_PASSWORD1}),
+                                     errors.InputValidationError)
+
+        yield self.assertFailure(self._test_operation_handler('change_password',
+                                                              {'password': valid_password,
+                                                               'old_password': 'INVALID_OLD_PASSWORD'}),
+                                     errors.InvalidOldPassword)
+
+        yield self._test_operation_handler('change_password',
+                                           {'password': valid_password,
+                                            'old_password': helpers.VALID_PASSWORD1})

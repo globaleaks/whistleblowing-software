@@ -1,9 +1,15 @@
 GL.controller("ForcedPasswordChangeCtrl", ["$scope", "$location",
   function($scope, $location) {
-    $scope.save = function () {
-      return $scope.resources.preferences.$update(function () {
-        $scope.Authentication.session.require_password_change = false;
-        $location.path($scope.Authentication.session.homepage);
-      });
+    $scope.changePasswordArgs = {};
+
+    $scope.changePassword = function() {
+      return $scope.Utils.runUserOperation('change_password', $scope.changePasswordArgs).then(
+        function() {
+          $scope.Authentication.session.require_password_change = false;
+          $location.path($scope.Authentication.session.homepage);
+        },
+        function() {
+          $scope.changePasswordArgs = {};
+        });
     };
 }]);

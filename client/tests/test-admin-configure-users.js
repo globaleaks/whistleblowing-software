@@ -50,7 +50,6 @@ describe("admin add, configure, and delete users", function() {
       var editUsrForm = elements[3];
       await editUsrForm.element(by.cssContainingText("button", "Edit")).click();
       await element(by.model("user.can_delete_submission")).click();
-      await element(by.model("user.can_postpone_expiration")).click();
       await editUsrForm.element(by.cssContainingText("button", "Save")).click();
     });
   });
@@ -62,8 +61,8 @@ describe("admin add, configure, and delete users", function() {
 	var editUsrForm = elements[i];
         await editUsrForm.element(by.cssContainingText("button", "Edit")).click();
         await editUsrForm.all(by.cssContainingText("span", "Set password")).first().click();
-        await element(by.model("user.password")).sendKeys("Globaleaks123!");
-        await editUsrForm.element(by.cssContainingText("button", "Save")).click();
+        await element(by.model("setPasswordArgs.password")).sendKeys(browser.gl.utils.vars.init_password);
+        await editUsrForm.all(by.id("setPasswordButton")).first().click();
       });
     }
   });

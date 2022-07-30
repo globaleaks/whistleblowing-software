@@ -647,8 +647,6 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       user.username = "";
       user.role = "receiver";
       user.enabled = true;
-      user.password = "";
-      user.old_password = "";
       user.password_change_needed = true;
       user.name = "";
       user.description = "";

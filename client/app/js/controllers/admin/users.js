@@ -21,6 +21,10 @@ GL.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
 
     $scope.editing = false;
 
+    $scope.setPasswordArgs = {
+      'user_id': $scope.user.id
+    };
+
     $scope.toggleEditing = function () {
       $scope.editing = $scope.editing ^ 1;
     };
@@ -49,6 +53,13 @@ GL.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
       }, $scope.Utils.displayErrorMsg);
     };
 
+    $scope.setPassword = function() {
+      $scope.Utils.runAdminOperation('set_user_password', $scope.setPasswordArgs).then(function() {
+        $scope.user.newpassword = false;
+        $scope.setPasswordArgs.password = '';
+      });
+    };
+
     $scope.resetUserPassword = function() {
       $scope.Utils.runAdminOperation('send_password_reset_email', {'value': $scope.user.id});
     };
@@ -66,7 +77,7 @@ GL.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
 }]).
 controller("AdminUserAddCtrl", ["$scope",
   function($scope) {
-    $scope.new_user = {"send_account_activation_link": true};
+    $scope.new_user = {};
 
     $scope.add_user = function() {
       var user = new $scope.AdminUtils.new_user();
@@ -80,7 +91,7 @@ controller("AdminUserAddCtrl", ["$scope",
 
       user.$save(function(new_user){
         $scope.resources.users.push(new_user);
-        $scope.new_user = {"send_account_activation_link": true};
+        $scope.new_user = {};
       });
     };
 }]);

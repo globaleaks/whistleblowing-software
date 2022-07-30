@@ -21,7 +21,6 @@ class TestAdminCollection(helpers.TestCollectionHandler):
     def get_dummy_request(self):
         data = helpers.TestCollectionHandler.get_dummy_request(self)
         data['pgp_key_remove'] = False
-        data['old_password'] = ''
         return data
 
 
@@ -40,7 +39,6 @@ class TestAdminInstance(helpers.TestInstanceHandler):
     def get_dummy_request(self):
         data = helpers.TestInstanceHandler.get_dummy_request(self)
         data['pgp_key_remove'] = False
-        data['old_password'] = ''
         return data
 
 

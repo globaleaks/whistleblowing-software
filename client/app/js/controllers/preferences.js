@@ -15,6 +15,8 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$location", "$window
     $scope.editingPublicName = false;
     $scope.showEncryptionKey = false;
 
+    $scope.newPasswordArgs = {};
+
     $scope.toggleNameEditing = function () {
       $scope.editingName = !$scope.editingName;
     };
@@ -25,6 +27,12 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$location", "$window
 
     $scope.toggleEmailAddressEditing = function() {
       $scope.editingEmailAddress = !$scope.editingEmailAddress;
+    };
+    
+    $scope.changePassword = function() {
+      return $scope.Utils.runUserOperation('change_password', $scope.newPasswordArgs).then(function() {
+        $scope.newPasswordArgs = {};
+      });
     };
 
     $scope.getEncryptionRecoveryKey = function() {

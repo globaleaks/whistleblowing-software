@@ -4,13 +4,14 @@ var pgp_key_path = path.resolve("../backend/globaleaks/tests/data/gpg/VALID_PGP_
 
 describe("Recipient first login", function() {
   it("should require password change upon successful authentication", async function() {
-    await browser.gl.utils.login_receiver("Recipient", "Globaleaks123!", "/#/login", true);
+    await browser.gl.utils.login_receiver("Recipient", browser.gl.utils.vars.init_password, "/#/login", true);
   });
 
   it("should be able to change password from the default one", async function() {
-    await element(by.model("resources.preferences.password")).sendKeys(browser.gl.utils.vars.user_password);
-    await element(by.model("resources.preferences.check_password")).sendKeys(browser.gl.utils.vars.user_password);
-    await element(by.css("[data-ng-click=\"save()\"]")).click();
+    await element(by.model("changePasswordArgs.current")).sendKeys(browser.gl.utils.vars.init_password);
+    await element(by.model("changePasswordArgs.password")).sendKeys(browser.gl.utils.vars.user_password);
+    await element(by.model("changePasswordArgs.confirm")).sendKeys(browser.gl.utils.vars.user_password);
+    await element(by.css("[data-ng-click=\"changePassword()\"]")).click();
     await browser.gl.utils.waitForUrl("/recipient/home");
   });
 
@@ -45,39 +46,42 @@ describe("Recipient first login", function() {
 
 describe("Recipient2 first login", function() {
   it("should require password change upon successful authentication", async function() {
-    await browser.gl.utils.login_receiver("Recipient2", "Globaleaks123!", "/#/login", true);
+    await browser.gl.utils.login_receiver("Recipient2", browser.gl.utils.vars.init_password, "/#/login", true);
   });
 
   it("should be able to change password from the default one", async function() {
-    await element(by.model("resources.preferences.password")).sendKeys(browser.gl.utils.vars.user_password);
-    await element(by.model("resources.preferences.check_password")).sendKeys(browser.gl.utils.vars.user_password);
-    await element(by.css("[data-ng-click=\"save()\"]")).click();
+    await element(by.model("changePasswordArgs.current")).sendKeys(browser.gl.utils.vars.init_password);
+    await element(by.model("changePasswordArgs.password")).sendKeys(browser.gl.utils.vars.user_password);
+    await element(by.model("changePasswordArgs.confirm")).sendKeys(browser.gl.utils.vars.user_password);
+    await element(by.css("[data-ng-click=\"changePassword()\"]")).click();
     await browser.gl.utils.waitForUrl("/recipient/home");
   });
 });
 
 describe("Custodian first login", function() {
   it("should require password change upon successful authentication", async function() {
-    await browser.gl.utils.login_custodian("Custodian", "Globaleaks123!", "/#/login", true);
+    await browser.gl.utils.login_custodian("Custodian", browser.gl.utils.vars.init_password, "/#/login", true);
   });
 
   it("should be able to change password from the default one", async function() {
-    await element(by.model("resources.preferences.password")).sendKeys(browser.gl.utils.vars.user_password);
-    await element(by.model("resources.preferences.check_password")).sendKeys(browser.gl.utils.vars.user_password);
-    await element(by.css("[data-ng-click=\"save()\"]")).click();
+    await element(by.model("changePasswordArgs.current")).sendKeys(browser.gl.utils.vars.init_password);
+    await element(by.model("changePasswordArgs.password")).sendKeys(browser.gl.utils.vars.user_password);
+    await element(by.model("changePasswordArgs.confirm")).sendKeys(browser.gl.utils.vars.user_password);
+    await element(by.css("[data-ng-click=\"changePassword()\"]")).click();
     await browser.gl.utils.waitForUrl("/custodian/home");
   });
 });
 
 describe("Admin2 first login", function() {
   it("should require password change upon successful authentication", async function() {
-    await browser.gl.utils.login_custodian("Admin2", "Globaleaks123!", "/#/login", true);
+    await browser.gl.utils.login_custodian("Admin2", browser.gl.utils.vars.init_password, "/#/login", true);
   });
 
   it("should be able to change password from the default one", async function() {
-    await element(by.model("resources.preferences.password")).sendKeys(browser.gl.utils.vars.user_password);
-    await element(by.model("resources.preferences.check_password")).sendKeys(browser.gl.utils.vars.user_password);
-    await element(by.css("[data-ng-click=\"save()\"]")).click();
+    await element(by.model("changePasswordArgs.current")).sendKeys(browser.gl.utils.vars.init_password);
+    await element(by.model("changePasswordArgs.password")).sendKeys(browser.gl.utils.vars.user_password);
+    await element(by.model("changePasswordArgs.confirm")).sendKeys(browser.gl.utils.vars.user_password);
+    await element(by.css("[data-ng-click=\"changePassword()\"]")).click();
     await browser.gl.utils.waitForUrl("/admin/home");
   });
 });

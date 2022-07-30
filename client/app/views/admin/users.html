@@ -127,13 +127,17 @@
               <input class="form-control" name="public_name" data-ng-model="user.public_name" type="text" required/>
             </div>
             <div class="form-group">
+              <label data-translate>Description</label>
+              <textarea name="description" class="form-control" data-ng-model="user.description"></textarea>
+            </div>
+            <div class="form-group">
               <label data-translate>Email address</label>
               <input class="form-control" name="email" data-ng-model="user.mail_address" type="email"
                      data-ng-pattern="CONSTANTS.email_regexp" required/>
               <div class="text-danger" data-ng-show="editUser.email.$error.required" data-translate>This field is mandatory</div>
               <div class="text-danger" data-ng-show="editUser.email.$error.pattern" data-translate>Invalid email address</div>
             </div>
-            <div class="form-group">
+            <div class="form-group" data-ng-if="Authentication.session.user_id !== user.id">
               <label data-translate>Password</label>
               <div>
                 <span class="btn btn-outline-secondary" data-ng-click="resetUserPassword()">
@@ -148,16 +152,21 @@
                   <i class="fa-solid fa-edit"></i>
                   <span data-translate>Set password</span>
                 </span>
-                <span class="btn btn-danger" data-ng-if="user.two_factor" data-ng-click="disable2FA()">
-                  <i class="fa-solid fa-ban"></i>
-                  <span data-translate>Disable two factor authentication</span>
-                </span>
               </div>
               <div class="form-group" data-ng-if="user.newpassword" data-ng-form="userPasswordForm">
                 <input class="d-none" type="password" name="disable-autocomplete-hack" />
-                <input name="password" class="form-control" data-ng-model="user.password" type="password"
-                       data-ng-class="{'is-invalid': user.password && (!editUser.password.$error.passwordStrengthValidator && !userPasswordForm.password.$valid)}"
-                       autocomplete="off" data-password-strength-validator/>
+                <span class="input-group">
+                  <input name="password" class="form-control" data-ng-model="setPasswordArgs.password" type="password"
+                         data-ng-class="{'is-invalid': setPasswordArgs.password && (!userPasswordForm.password.$error.passwordStrengthValidator && !userPasswordForm.password.$valid)}"
+                         autocomplete="off" data-password-strength-validator/>
+                  <span class="input-group-append">
+                    <button id="setPasswordButton" class="btn btn-primary" data-ng-click="setPassword()">
+                      <i class="fa-solid fa-tag"></i>
+                      <span data-translate>Set password</span>
+                    </button>
+                  </span>
+                </span>
+
                 <password-meter data-ng-show="passwordStrengthScore" value="passwordStrengthScore"></password-meter>
                 <div class="text-danger" data-ng-show="passwordStrengthScore && passwordStrengthScore < 2">
                   <p data-translate>The chosen password is too weak. A valid password should be at least 10 characters long and contain a variety of characters including at least a lowercase character, a capital character, a number and a special character.</p>
@@ -171,14 +180,16 @@
             <div class="form-group">
               <input data-ng-model="user.password_change_needed" type="checkbox" />
               <label data-translate>Force password change</label>
-              <div data-ng-show="user.password_change_needed">
+              <div data-ng-show="changePasswordArgs.password_change_needed">
                 <span class="badge badge-primary" data-translate>Enabled</span>
                 <span data-translate>The user will be forced to change its password on next login.</span>
               </div>
             </div>
-            <div class="form-group">
-              <label data-translate>Description</label>
-              <textarea name="description" class="form-control" data-ng-model="user.description"></textarea>
+            <div class="form-group" data-ng-if="user.two_factor">
+              <span class="btn btn-danger" data-ng-click="disable2FA()">
+                <i class="fa-solid fa-ban"></i>
+                <span data-translate>Disable two factor authentication</span>
+              </span>
             </div>
             <div class="form-group">
               <label data-translate>Language</label>

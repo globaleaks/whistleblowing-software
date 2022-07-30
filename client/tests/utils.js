@@ -2,6 +2,7 @@ var fs = require("fs");
 var path = require("path");
 
 exports.vars = {
+  "init_password": "Qwerty321#",
   "user_password": "ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#",
   "field_types": [
     "Single-line text input",

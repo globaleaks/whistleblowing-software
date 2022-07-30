@@ -1,74 +1,16 @@
 # -*- coding: utf-8
 #
 # Handlers dealing with user preferences
-import os
-from nacl.encoding import Base64Encoder
-
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models import config, get_localized_values
+from globaleaks.models import get_localized_values
 from globaleaks.orm import db_get, db_log, transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.transactions import db_get_user
-from globaleaks.utils.fs import srm
-from globaleaks.utils.crypto import generateRandomKey, GCE
+from globaleaks.utils.crypto import generateRandomKey
 from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.utility import datetime_now, datetime_null
-
-
-
-def check_password_strength(password):
-    return len(password) >= 10 and \
-           any(char.isdigit() for char in password) and \
-           any(char.isupper() for char in password) and \
-           any(char.islower() for char in password) and \
-           any(not char.isalnum() for char in password)
-
-
-def db_set_user_password(session, tid, user, password, cc):
-    config_tenant_1 = config.ConfigFactory(session, 1)
-    config_tenant_n = config.ConfigFactory(session, tid)
-
-    # Regenerate the password hash only if different from the best choice on the platform
-    if user.hash_alg != 'ARGON2':
-        user.hash_alg = 'ARGON2'
-        user.salt = GCE.generate_salt()
-
-    password_hash = GCE.hash_password(password, user.salt)
-
-    if not check_password_strength(password):
-        raise errors.InputValidationError("The password is too weak")
-
-    # Check that the new password is different form the current password
-    if user.password == password_hash:
-        raise errors.PasswordReuseError
-
-    user.password = password_hash
-    user.password_change_date = datetime_now()
-
-    if not config_tenant_n.get_val('encryption') and cc == '':
-        return None
-
-    enc_key = GCE.derive_key(password.encode(), user.salt)
-    if not cc:
-        # The first password change triggers the generation
-        # of the user encryption private key and its backup
-        cc, user.crypto_pub_key = GCE.generate_keypair()
-        user.crypto_bkp_key, user.crypto_rec_key = GCE.generate_recovery_key(cc)
-
-    user.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, cc))
-
-    crypto_escrow_pub_key_tenant_1 = config_tenant_1.get_val('crypto_escrow_pub_key')
-    if crypto_escrow_pub_key_tenant_1:
-        user.crypto_escrow_bkp1_key = Base64Encoder.encode(GCE.asymmetric_encrypt(crypto_escrow_pub_key_tenant_1, cc))
-
-    if tid != 1:
-        crypto_escrow_pub_key_tenant_n = config_tenant_n.get_val('crypto_escrow_pub_key')
-        if crypto_escrow_pub_key_tenant_n:
-            user.crypto_escrow_bkp2_key = Base64Encoder.encode(GCE.asymmetric_encrypt(crypto_escrow_pub_key_tenant_n, cc))
-
-    return cc
 
 
 def parse_pgp_options(user, request):
@@ -110,8 +52,6 @@ def user_serialize_user(session, user, language):
         'id': user.id,
         'creation_date': user.creation_date,
         'username': user.username,
-        'password': '',
-        'old_password': '',
         'salt': '',
         'role': user.role,
         'enabled': user.enabled,
@@ -187,25 +127,6 @@ def db_user_update_user(session, tid, user_session, request):
     user.language = request.get('language', State.tenants[tid].cache.default_language)
     user.name = request['name']
     user.public_name = request['public_name'] if request['public_name'] else request['name']
-
-    if request['password']:
-        if user.password_change_needed:
-            user.password_change_needed = False
-        else:
-            if not GCE.check_password(user.hash_alg,
-                                      request['old_password'],
-                                      user.salt,
-                                      user.password):
-                raise errors.InvalidOldPassword
-
-        user_session.cc = db_set_user_password(session, tid, user, request['password'], user_session.cc)
-
-        reset_token = user_session.properties.get('reset_token')
-        if reset_token:
-            srm(os.path.abspath(os.path.join(State.settings.ramdisk_path, reset_token)))
-            del user_session.properties['reset_token']
-
-        db_log(session, tid=tid, type='change_password', user_id=user.id, object_id=user.id)
 
     # If the email address changed, send a validation email
     if request['mail_address'] != user.mail_address:

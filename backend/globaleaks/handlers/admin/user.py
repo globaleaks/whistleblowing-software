@@ -2,10 +2,10 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.handlers.admin.operation import generate_password_reset_token
+from globaleaks.handlers.admin.operation import db_set_user_password, \
+                                                generate_password_reset_token
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.user import db_set_user_password, \
-                                     parse_pgp_options, \
+from globaleaks.handlers.user import parse_pgp_options, \
                                      user_serialize_user
 from globaleaks.models import fill_localized_keys
 from globaleaks.orm import db_del, db_log, transact, tw
@@ -14,6 +14,31 @@ from globaleaks.state import State
 from globaleaks.transactions import db_get_user
 from globaleaks.utils.crypto import GCE, Base64Encoder, generateRandomPassword
 from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
+
+
+def db_set_user_password(session, tid, user, password):
+    config = models.config.ConfigFactory(session, tid)
+
+    user.password = GCE.hash_password(password, user.salt)
+    user.password_change_date = datetime_now()
+
+    if config.get_val('encryption'):
+        root_config = models.config.ConfigFactory(session, 1)
+
+        enc_key = GCE.derive_key(password.encode(), user.salt)
+        cc, user.crypto_pub_key = GCE.generate_keypair()
+        user.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, cc))
+        user.crypto_bkp_key, user.crypto_rec_key = GCE.generate_recovery_key(cc)
+
+        crypto_escrow_pub_key_tenant_1 = root_config.get_val('crypto_escrow_pub_key')
+        if crypto_escrow_pub_key_tenant_1:
+            user.crypto_escrow_bkp1_key = Base64Encoder.encode(GCE.asymmetric_encrypt(crypto_escrow_pub_key_tenant_1, cc))
+
+        if tid != 1:
+            crypto_escrow_pub_key_tenant_n = config.get_val('crypto_escrow_pub_key')
+            if crypto_escrow_pub_key_tenant_n:
+                user.crypto_escrow_bkp2_key = Base64Encoder.encode(GCE.asymmetric_encrypt(crypto_escrow_pub_key_tenant_n, cc))
+
 
 
 def db_create_user(session, tid, user_session, request, language):
@@ -45,8 +70,8 @@ def db_create_user(session, tid, user_session, request, language):
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)
 
-    if request['password']:
-        db_set_user_password(session, tid, user, request['password'], '')
+    if user_session and user_session.ek:
+        db_set_user_password(session, tid, user, generateRandomPassword(16))
 
     session.add(user)
 
@@ -92,28 +117,6 @@ def db_admin_update_user(session, tid, user_session, user_id, request, language)
     fill_localized_keys(request, models.User.localized_keys, language)
 
     user = db_get_user(session, tid, user_id)
-
-    password = request['password']
-    if password and (not user.crypto_pub_key or user_session.ek):
-        if user.crypto_pub_key and user_session.ek:
-            enc_key = GCE.derive_key(password.encode(), user.salt)
-            crypto_escrow_prv_key = GCE.asymmetric_decrypt(user_session.cc, Base64Encoder.decode(user_session.ek))
-
-            if user_session.user_tid == 1:
-                user_cc = GCE.asymmetric_decrypt(crypto_escrow_prv_key, Base64Encoder.decode(user.crypto_escrow_bkp1_key))
-            else:
-                user_cc = GCE.asymmetric_decrypt(crypto_escrow_prv_key, Base64Encoder.decode(user.crypto_escrow_bkp2_key))
-
-            user.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, user_cc))
-
-        if user.hash_alg != 'ARGON2':
-            user.hash_alg = 'ARGON2'
-            user.salt = GCE.generate_salt()
-
-        user.password = GCE.hash_password(password, user.salt)
-        user.password_change_date = datetime_now()
-
-        db_log(session, tid=tid, type='change_password', user_id=user_session.user_id, object_id=user_id)
 
     if request['mail_address'] != user.mail_address:
         user.change_email_token = None
@@ -166,9 +169,6 @@ class UsersCollection(BaseHandler):
         """
         request = self.validate_request(self.request.content.read(),
                                         requests.AdminUserDesc)
-
-        if not request['password'] and self.session.ek:
-            request['password'] = generateRandomPassword(16)
 
         user = yield create_user(self.request.tid, self.session, request, self.request.language)
 

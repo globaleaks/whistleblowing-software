@@ -20,6 +20,7 @@ from globaleaks.transactions import db_get_user
 from globaleaks.utils.crypto import Base64Encoder, GCE
 from globaleaks.utils.onion import generate_onion_service_v3
 from globaleaks.utils.templating import Templating
+from globaleaks.utils.utility import datetime_now
 
 
 @transact
@@ -168,6 +169,36 @@ def reset_templates(session, tid):
     ConfigL10NFactory(session, tid).reset('notification', load_appdata())
 
 
+def db_set_user_password(session, tid, user_session, user_id, password):
+    user = db_get_user(session, tid, user_id)
+
+    if password and (not user.crypto_pub_key or user_session.ek):
+        if user.crypto_pub_key and user_session.ek:
+            enc_key = GCE.derive_key(password.encode(), user.salt)
+            crypto_escrow_prv_key = GCE.asymmetric_decrypt(user_session.cc, Base64Encoder.decode(user_session.ek))
+
+            if user_session.user_tid == 1:
+                user_cc = GCE.asymmetric_decrypt(crypto_escrow_prv_key, Base64Encoder.decode(user.crypto_escrow_bkp1_key))
+            else:
+                user_cc = GCE.asymmetric_decrypt(crypto_escrow_prv_key, Base64Encoder.decode(user.crypto_escrow_bkp2_key))
+
+            user.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, user_cc))
+
+        if user.hash_alg != 'ARGON2':
+            user.hash_alg = 'ARGON2'
+            user.salt = GCE.generate_salt()
+
+        user.password = GCE.hash_password(password, user.salt)
+        user.password_change_date = datetime_now()
+        user.password_change_needed = True
+
+        db_log(session, tid=tid, type='change_password', user_id=user_session.user_id, object_id=user_id)
+
+@transact
+def set_user_password(session, tid, user_session, user_id, password):
+  return db_set_user_password(session, tid, user_session, user_id, password)
+
+
 def set_tmp_key(user_session, user, token):
     crypto_escrow_prv_key = GCE.asymmetric_decrypt(user_session.cc, Base64Encoder.decode(user_session.ek))
 
@@ -215,7 +246,19 @@ class AdminOperationHandler(OperationHandler):
     def disable_2fa(self, req_args, *args, **kwargs):
         return disable_2fa(self.request.tid, req_args['value'])
 
+    def set_user_password(self, req_args, *args, **kwargs):
+        if self.session.user_id == req_args['user_id']:
+            raise errors.ForbiddenOperation
+
+        return set_user_password(self.request.tid,
+                                 self.session,
+                                 req_args['user_id'],
+                                 req_args['password'])
+
     def send_password_reset_email(self, req_args, *args, **kwargs):
+        if self.session.user_id == req_args['value']:
+            raise errors.ForbiddenOperation
+
         return generate_password_reset_token(self.request.tid,
                                              self.session,
                                              req_args['value'])
@@ -282,6 +325,7 @@ class AdminOperationHandler(OperationHandler):
             'reset_onion_private_key': AdminOperationHandler.reset_onion_private_key,
             'reset_smtp_settings': AdminOperationHandler.reset_smtp_settings,
             'reset_submissions': AdminOperationHandler.reset_submissions,
+            'set_user_password': AdminOperationHandler.set_user_password,
             'send_password_reset_email': AdminOperationHandler.send_password_reset_email,
             'set_hostname': AdminOperationHandler.set_hostname,
             'test_mail': AdminOperationHandler.test_mail,

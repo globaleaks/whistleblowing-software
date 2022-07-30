@@ -69,10 +69,10 @@ class TestAdminResetSubmissions(helpers.TestHandlerWithPopulatedDB):
 class TestAdminOperations(helpers.TestHandlerWithPopulatedDB):
     _handler = AdminOperationHandler
 
-    def _test_operation_handler(self, operation):
+    def _test_operation_handler(self, operation, args={}):
         data_request = {
             'operation': operation,
-            'args': {}
+            'args': args
         }
 
         handler = self.request(data_request, role='admin')
@@ -83,6 +83,11 @@ class TestAdminOperations(helpers.TestHandlerWithPopulatedDB):
 
     def test_admin_test_mail(self):
         return self._test_operation_handler('test_mail')
+
+    def test_admin_test_set_user_password(self):
+        return self._test_operation_handler('set_user_password',
+                                           {'user_id': self.dummyReceiver_1['id'],
+                                            'password': 'GlobaLeaks123!'})
 
     def test_admin_test_smtp_settings(self):
         return self._test_operation_handler('reset_smtp_settings')
