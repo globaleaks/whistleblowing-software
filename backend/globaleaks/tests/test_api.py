@@ -55,7 +55,7 @@ class TestAPI(TestGL):
         request = forge_request(headers={'Accept-Language': 'antani1,antani2;q=0.8,antani3;q=0.6'})
         self.assertEqual(self.api.detect_language(request), 'en')
 
-    def test_status_codes_assigned(self):
+    def test_status_codes_and_headers(self):
         test_cases = [
             (b'', 501),
             (b'DELETE', 501),
@@ -70,14 +70,15 @@ class TestAPI(TestGL):
         server_headers = [
             ('Cache-control', 'no-store'),
             ('Content-Language', 'en'),
-            ('Content-Security-Policy', 'base-uri \'none\';'
-                                        'default-src \'self\';'
-                                        'style-src \'self\' \'sha256-fwyo2zCGlh85NfN4rQUlpLM7MB5cry/1AEDA/G9mQJ8=\';'
-                                        'script-src \'self\' \'sha256-IYBZitj/YWbzjFFnwLPjJJmMGdSj923kzu2tdCxLKdU=\';'
-                                        'img-src \'self\' data:;'
-                                        'font-src \'self\' data:;'
-                                        'form-action \'self\';'
-                                        'frame-ancestors \'none\';'),
+            ('Content-Security-Policy', 'base-uri \'none\';' \
+                                        'connect-src \'self\';' \
+                                        'default-src \'none\';' \
+                                        'font-src \'self\' data:;' \
+                                        'form-action \'none\';' \
+                                        'frame-ancestors \'none\';' \
+                                        'img-src \'self\' data:;' \
+                                        'script-src \'self\' \'sha256-IYBZitj/YWbzjFFnwLPjJJmMGdSj923kzu2tdCxLKdU=\';' \
+                                        'style-src \'self\' \'sha256-fwyo2zCGlh85NfN4rQUlpLM7MB5cry/1AEDA/G9mQJ8=\';'),
             ('Permissions-Policy', "camera=(),"
                                    "document-domain=(),"
                                    "fullscreen=(),"
