@@ -17,7 +17,6 @@ from globaleaks.db import create_db, init_db, update_db, \
 from globaleaks.rest.api import APIResourceWrapper
 from globaleaks.settings import Settings
 from globaleaks.state import State
-from globaleaks.utils.fs import fix_file_permissions
 from globaleaks.utils.log import log, openLogFile, logFormatter, LogObserver
 from globaleaks.utils.process import drop_privileges, set_proc_title
 from globaleaks.utils.sock import listen_tcp_on_sock, listen_tls_on_sock, reserve_port_for_ip
@@ -88,13 +87,6 @@ class Service(service.Service):
                 self.state.http_socks += [sock]
             elif port == 443:
                 self.state.https_socks += [sock]
-
-        for path in [Settings.working_path, Settings.ramdisk_path]:
-            fix_file_permissions(path,
-                                 Settings.uid,
-                                 Settings.gid,
-                                 0o700,
-                                 0o600)
 
         drop_privileges(Settings.user, Settings.uid, Settings.gid)
 
