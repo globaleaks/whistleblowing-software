@@ -22,7 +22,7 @@ GL.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
     $scope.editing = false;
 
     $scope.setPasswordArgs = {
-      'user_id': $scope.user.id
+      "user_id": $scope.user.id
     };
 
     $scope.toggleEditing = function () {
@@ -54,26 +54,26 @@ GL.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
     };
 
     $scope.setPassword = function() {
-      $scope.Utils.runAdminOperation('set_user_password', $scope.setPasswordArgs).then(function() {
+      $scope.Utils.runAdminOperation("set_user_password", $scope.setPasswordArgs).then(function() {
         $scope.user.newpassword = false;
-        $scope.setPasswordArgs.password = '';
+        $scope.setPasswordArgs.password = "";
       });
     };
 
     $scope.resetUserPassword = function() {
-      $scope.Utils.runAdminOperation('send_password_reset_email', {'value': $scope.user.id});
+      $scope.Utils.runAdminOperation("send_password_reset_email", {"value": $scope.user.id});
     };
 
     $scope.disable2FA = function() {
-      $scope.Utils.runAdminOperation('disable_2fa', {'value': $scope.user.id}, true);
+      $scope.Utils.runAdminOperation("disable_2fa", {"value": $scope.user.id}, true);
     };
 
     $scope.toggleUserEscrow = function() {
       // do not toggle till confirmation;
       $scope.user.escrow = !$scope.user.escrow;
 
-      $scope.Utils.runAdminOperation('toggle_user_escrow', {'value': $scope.user.id}, true);
-    }
+      $scope.Utils.runAdminOperation("toggle_user_escrow", {"value": $scope.user.id}, true);
+    };
 }]).
 controller("AdminUserAddCtrl", ["$scope",
   function($scope) {

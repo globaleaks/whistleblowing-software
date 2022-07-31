@@ -1074,7 +1074,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
                   function() {},
                   function() { openModal(); }
                 );
-	      };
+              };
             },
             cancelFun: null
           },
@@ -1142,10 +1142,10 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
               }
 
               deferred.resolve(response);
-	    },
+            },
             function() { self.getConfirmation(confirm); }
           );
-        }
+        };
 
         self.getConfirmation(confirm);
       } else {
@@ -1172,15 +1172,15 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
     },
 
     runAdminOperation: function(operation, args, refresh) {
-      return this.runOperation('api/admin/config', operation, args, refresh);
+      return this.runOperation("api/admin/config", operation, args, refresh);
     },
 
     runUserOperation: function(operation, args, refresh) {
-      return this.runOperation('api/user/operations', operation, args, refresh);
+      return this.runOperation("api/user/operations", operation, args, refresh);
     },
 
     runRecipientOperation: function(operation, args, refresh) {
-      return this.runOperation('api/recipient/operations', operation, args, refresh);
+      return this.runOperation("api/recipient/operations", operation, args, refresh);
     },
 
     removeFile: function (submission, list, file) {

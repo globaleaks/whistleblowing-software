@@ -21,7 +21,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
   });
 
   $scope.open_grant_access_modal = function () {
-    return $scope.Utils.runUserOperation('get_user_names', {}, false).then(function(response) {
+    return $scope.Utils.runUserOperation("get_user_names", {}, false).then(function(response) {
       $uibModal.open({
       templateUrl: "views/modals/grant_access.html",
         controller: "ConfirmableModalCtrl",
@@ -36,7 +36,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
                 receiver: receiver_id
               };
 
-              return $scope.Utils.runRecipientOperation('grant', args, true);
+              return $scope.Utils.runRecipientOperation("grant", args, true);
             };
           },
           cancelFun: null
@@ -46,7 +46,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
   };
 
   $scope.open_revoke_access_modal = function () {
-    return $scope.Utils.runUserOperation('get_user_names', {}, false).then(function(response) {
+    return $scope.Utils.runUserOperation("get_user_names", {}, false).then(function(response) {
       $uibModal.open({
       templateUrl: "views/modals/revoke_access.html",
         controller: "ConfirmableModalCtrl",
@@ -61,7 +61,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
                 receiver: receiver_id
               };
 
-              return $scope.Utils.runRecipientOperation('revoke', args, true);
+              return $scope.Utils.runRecipientOperation("revoke", args, true);
             };
           },
           cancelFun: null
@@ -155,6 +155,6 @@ controller("TipBulkOperationsCtrl", ["$scope", "$http", "$location", "$uibModalI
       return;
     }
 
-    return $scope.Utils.runRecipientOperation($scope.operation, {'rtips': $scope.selected_tips}, true);
+    return $scope.Utils.runRecipientOperation($scope.operation, {"rtips": $scope.selected_tips}, true);
   };
 }]);

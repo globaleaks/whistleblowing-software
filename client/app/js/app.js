@@ -547,7 +547,7 @@ var GL = angular.module("GL", [
 
         $rootScope.public = result;
 
-        if ($window.location.pathname === '/') {
+        if ($window.location.pathname === "/") {
           if ($rootScope.public.node.css) {
             elem = document.getElementById("load-custom-css");
             if (elem === null) {
@@ -560,7 +560,7 @@ var GL = angular.module("GL", [
             }
           }
 
-	  if ($rootScope.public.node.script) {
+          if ($rootScope.public.node.script) {
             elem = document.getElementById("load-custom-script");
             if (elem === null) {
               elem = document.createElement("script");

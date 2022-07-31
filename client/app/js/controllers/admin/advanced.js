@@ -27,12 +27,12 @@ controller("AdminAdvancedCtrl", ["$scope", function($scope) {
     if (!$scope.resources.node.encryption) {
       $scope.Utils.openConfirmableModalDialog("views/modals/enable_encryption.html").then(
         function() {
-          return $scope.Utils.runAdminOperation('enable_encryption', {}, false).then(
+          return $scope.Utils.runAdminOperation("enable_encryption", {}, false).then(
             function() {
               $scope.Authentication.logout();
             },
             function() {}
-	  );
+          );
         },
         function() { }
       );
@@ -42,11 +42,11 @@ controller("AdminAdvancedCtrl", ["$scope", function($scope) {
   $scope.toggleEscrow = function() {
     // do not toggle till confirmation;
     $scope.resources.node.escrow = !$scope.resources.node.escrow;
-    $scope.Utils.runAdminOperation('toggle_escrow', {}, true).then(
+    $scope.Utils.runAdminOperation("toggle_escrow", {}, true).then(
       function() {
-        $scope.resources.preferences.escrow = $scope.resources.preferences.escrow;
+        $scope.resources.preferences.escrow = !$scope.resources.preferences.escrow;
       },
       function() {}
     );
-  }
+  };
 }]);

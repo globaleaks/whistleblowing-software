@@ -1,5 +1,5 @@
-GL.controller("SignupCtrl", ["$scope", "$route", "$http", "Authentication",
-              function($scope, $route, $http, Authentication) {
+GL.controller("SignupCtrl", ["$scope", "$route", "$http",
+              function($scope, $route, $http) {
 
   $scope.hostname = "";
 

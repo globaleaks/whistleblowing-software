@@ -28,15 +28,15 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$location", "$window
     $scope.toggleEmailAddressEditing = function() {
       $scope.editingEmailAddress = !$scope.editingEmailAddress;
     };
-    
+
     $scope.changePassword = function() {
-      return $scope.Utils.runUserOperation('change_password', $scope.newPasswordArgs).then(function() {
+      return $scope.Utils.runUserOperation("change_password", $scope.newPasswordArgs).then(function() {
         $scope.newPasswordArgs = {};
       });
     };
 
     $scope.getEncryptionRecoveryKey = function() {
-      return $scope.Utils.runUserOperation('get_recovery_key', {}, false).then(function(data) {
+      return $scope.Utils.runUserOperation("get_recovery_key", {}, false).then(function(data) {
         $scope.resources.preferences.clicked_recovery_key = true;
         $scope.erk = data.data.match(/.{1,4}/g).join("-");
         return $uibModal.open({
@@ -82,7 +82,7 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$location", "$window
           scope: $scope
         });
       } else {
-       $scope.Utils.runUserOperation('disable_2fa', {}, true);
+       $scope.Utils.runUserOperation("disable_2fa", {}, true);
       }
     };
 
