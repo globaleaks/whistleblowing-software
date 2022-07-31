@@ -156,7 +156,10 @@ a:hover,
   flex: 1 0 auto;
 }
 
-#HeaderBox,
+#HeaderBox {
+  padding: 1em;
+}
+
 #ContentBox,
 #FooterBox,
 #DemoBadge,
@@ -244,14 +247,6 @@ a:hover,
 .LoginErrorBoxHomepage {
   display: inline-block;
   margin: 1em;
-}
-
-[dir="ltr"] #LogoBox, [dir="ltr"] #TitleBox {
-  margin-right: 1em;
-}
-
-[dir="rtl"] #LogoBox, [dir="rtl"] #TitleBox {
-  margin-left: 1em;
 }
 
 #WhistleblowerLoginForm input {
@@ -632,6 +627,10 @@ input[type="file"] {
  padding: 0;
  font-size:100%;
  font-weight: bold;
+}
+
+#LogoBox, #TitleBox {
+ margin: 1em 0;
 }
 
 #TitleBox {

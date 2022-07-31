@@ -1,12 +1,12 @@
 <header id="HeaderBox">
   <div class="row">
-    <div class="col-lg-9 col-md-12 float-left">
-     <div id="LogoBox" class="mt-1 mb-1" data-ng-click="setHomepage()">
+    <div id="HeaderBox1" class="col-auto mr-auto">
+     <div id="LogoBox" data-ng-click="setHomepage()">
        <img class="img-fluid'" alt="project logo" data-ng-src="{{public.node.logo ? 's/logo' : 'data/logo.png'}}" />
      </div>
-     <div id="TitleBox" class="mt-3 mb-1" data-ng-if="projectTitle || pageTitle"><h1><span id="ProjectTitle" data-ng-click="setHomepage()">{{projectTitle}}</span><span class="TitleSeparator" data-ng-if="projectTitle && pageTitle"> - </span><span id="PageTitle">{{pageTitle | translate}}</span></h1></div>
+     <div id="TitleBox" data-ng-if="projectTitle || pageTitle"><h1><span id="ProjectTitle" data-ng-click="setHomepage()">{{projectTitle}}</span><span class="TitleSeparator" data-ng-if="projectTitle && pageTitle"> - </span><span id="PageTitle">{{pageTitle | translate}}</span></h1></div>
     </div>
-    <div class="col-lg-3 col-md-12 float-right">
+    <div id="HeaderBox2" class="col-auto">
       <span id="UserBox" data-ng-include="'views/partials/user.html'"></span>
     </div>
   </div>
