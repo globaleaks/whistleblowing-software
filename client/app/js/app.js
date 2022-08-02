@@ -373,17 +373,7 @@ var GL = angular.module("GL", [
         header_title: "Password reset"
       }).
       when("/password/reset", {
-        templateUrl: "views/empty.html",
-        controller: "PasswordResetCompleteCtrl",
-        header_title: "Password reset"
-      }).
-      when("/password/reset/2fa", {
-        templateUrl: "views/passwordreset/2fa.html",
-        controller: "PasswordResetCompleteCtrl",
-        header_title: "Password reset"
-      }).
-      when("/password/reset/recovery", {
-        templateUrl: "views/passwordreset/recovery.html",
+        templateUrl: "views/passwordreset/reset.html",
         controller: "PasswordResetCompleteCtrl",
         header_title: "Password reset"
       }).

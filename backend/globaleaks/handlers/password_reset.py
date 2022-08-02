@@ -94,7 +94,7 @@ def generate_password_reset_token_by_username_or_mail(session, tid, username_or_
 
 
 @transact
-def validate_password_reset(session, reset_token, auth_code, recovery_key):
+def validate_password_reset(session, reset_token, recovery_key, auth_code):
     """
     Retrieves a user given a password reset validation token
 
@@ -137,7 +137,7 @@ def validate_password_reset(session, reset_token, auth_code, recovery_key):
         except:
             return {'status': 'require_recovery_key'}
 
-    elif user.two_factor_secret:
+    if user.two_factor_secret:
         try:
             State.totp_verify(user.two_factor_secret, auth_code)
         except:
@@ -176,5 +176,5 @@ class PasswordResetHandler(BaseHandler):
                                         requests.PasswordReset2Desc)
 
         return validate_password_reset(request['reset_token'],
-                                       request['auth_code'],
-                                       request['recovery_key'])
+                                       request['recovery_key'],
+                                       request['auth_code'])
