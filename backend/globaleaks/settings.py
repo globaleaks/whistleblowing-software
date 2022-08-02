@@ -24,7 +24,7 @@ class SettingsClass(object, metaclass=Singleton):
 
         self.bind_address = '::'
         self.bind_remote_ports = [80, 443]
-        self.bind_local_ports = [8082, 8083]
+        self.bind_local_ports = [8080, 8082, 8083, 8443]
 
         self.db_type = 'sqlite'
 

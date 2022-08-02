@@ -18,8 +18,7 @@ from globaleaks.rest.api import APIResourceWrapper
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.utils.log import log, openLogFile, logFormatter, LogObserver
-from globaleaks.utils.process import drop_privileges, set_proc_title
-from globaleaks.utils.sock import listen_tcp_on_sock, listen_tls_on_sock, reserve_port_for_ip
+from globaleaks.utils.sock import listen_tcp_on_sock, listen_tls_on_sock
 
 
 # Set Gzip Encoder compression level to 1 prioritizing speed over compression
@@ -49,8 +48,6 @@ class Service(service.Service):
     _shutdown = False
 
     def __init__(self):
-        set_proc_title('globaleaks')
-
         self.state = State
         self.arw = resource.EncodingResourceWrapper(APIResourceWrapper(), [server.GzipEncoderFactory()])
 
@@ -62,34 +59,6 @@ class Service(service.Service):
         self.api_factory.displayTracebacks = False
 
     def startService(self):
-        mask = 0
-        if Settings.devel_mode:
-            mask = 8000
-
-        # Allocate local ports
-        for port in Settings.bind_local_ports:
-            http_sock, fail = reserve_port_for_ip('127.0.0.1', port)
-            if fail is not None:
-                log.err("Could not reserve socket for %s (error: %s)",
-                        fail.args[0], fail.args[1])
-            else:
-                self.state.http_socks += [http_sock]
-
-        # Allocate remote ports
-        for port in Settings.bind_remote_ports:
-            sock, fail = reserve_port_for_ip(Settings.bind_address, port+mask)
-            if fail is not None:
-                log.err("Could not reserve socket for %s (error: %s)",
-                        fail.args[0], fail.args[1])
-                continue
-
-            if port == 80:
-                self.state.http_socks += [sock]
-            elif port == 443:
-                self.state.https_socks += [sock]
-
-        drop_privileges(Settings.user, Settings.uid, Settings.gid)
-
         reactor.callLater(0, self.deferred_start)
 
     def shutdown(self):

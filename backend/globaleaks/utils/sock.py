@@ -30,7 +30,7 @@ def open_socket_listen(ip, port):
     return s
 
 
-def reserve_port_for_ip(ip, port):
+def reserve_tcp_socket(ip, port):
     try:
         sock = open_socket_listen(ip, port)
         return [sock, None]

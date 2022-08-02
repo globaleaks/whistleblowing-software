@@ -25,6 +25,7 @@ from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.singleton import Singleton
 from globaleaks.utils.sni import SNIMap
+from globaleaks.utils.sock import reserve_tcp_socket
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.token import TokenList
@@ -150,6 +151,34 @@ class StateClass(ObjectDict, metaclass=Singleton):
                         self.settings.tmp_path,
                         self.settings.log_path]:
             self.create_directory(dirpath)
+
+
+    def bind_tcp_ports(self):
+        # Allocate remote ports
+        for port in self.settings.bind_remote_ports:
+            sock, fail = reserve_tcp_socket(self.settings.bind_address, port)
+            if fail is not None:
+                log.err("Could not reserve socket for %s (error: %s)",
+                        fail.args[0], fail.args[1])
+                continue
+
+            if port == 80:
+                self.http_socks += [sock]
+            elif port == 443:
+                self.https_socks += [sock]
+
+        # Allocate local ports
+        for port in self.settings.bind_local_ports:
+            sock, fail = reserve_tcp_socket('127.0.0.1', port)
+            if fail is not None:
+                log.err("Could not reserve socket for %s (error: %s)",
+                        fail.args[0], fail.args[1])
+                continue
+
+            if port == 8443:
+                self.http_socks += [sock]
+            else:
+                self.http_socks += [sock]
 
     def reset_hourly(self):
         for tid in self.tenants:
