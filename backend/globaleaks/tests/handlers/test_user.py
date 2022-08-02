@@ -186,14 +186,14 @@ class TestUserOperations(helpers.TestHandlerWithPopulatedDB):
         for password in weak_passwords:
             yield self.assertFailure(self._test_operation_handler('change_password',
                                                                   {'password': password,
-                                                                   'old_password': helpers.VALID_PASSWORD1}),
+                                                                   'current': helpers.VALID_PASSWORD1}),
                                      errors.InputValidationError)
 
         yield self.assertFailure(self._test_operation_handler('change_password',
                                                               {'password': valid_password,
-                                                               'old_password': 'INVALID_OLD_PASSWORD'}),
+                                                               'current': 'INVALID_OLD_PASSWORD'}),
                                      errors.InvalidOldPassword)
 
         yield self._test_operation_handler('change_password',
                                            {'password': valid_password,
-                                            'old_password': helpers.VALID_PASSWORD1})
+                                            'current': helpers.VALID_PASSWORD1})
