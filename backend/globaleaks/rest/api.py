@@ -3,6 +3,7 @@
 #   ***
 #
 #   This file defines the URI mapping for the GlobaLeaks API and its factory
+import inspect
 import json
 import re
 
@@ -253,10 +254,13 @@ class APIResourceWrapper(Resource):
                   or a normal `Exception`
         :param request: A `twisted.web.Request`
         """
-        e = exception
-
         if request.finished:
             return
+
+        e = exception
+
+        if inspect.isclass(e):
+            e = e()
 
         if isinstance(e, Failure):
             e = e.value
