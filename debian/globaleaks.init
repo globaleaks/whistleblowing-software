@@ -229,7 +229,7 @@ globaleaks_stop()
 {
     pid=`cat $GLPID 2>/dev/null` || true
 
-    if [ "$pid" -eq "0" ] || [ kill -0 pid >/dev/null 2<&- ]; then
+    if test ! -f $GLPID -o -z "$pid"; then
         log_end_msg 0 "not running."
     else
         kill -15 $pid >/dev/null 2<&-
