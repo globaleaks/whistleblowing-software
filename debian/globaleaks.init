@@ -182,6 +182,8 @@ globaleaks_start()
         ulimit -n "$MAX_FILEDESCRIPTORS"
     fi
 
+    mkdir -m 700 /dev/shm/globaleaks && chown $user:$user /dev/shm/globaleaks
+
     ARGS="--ip=${LISTENING_IP}
           --user=${USERNAME}
           --working-path=${WORKING_DIR}"
