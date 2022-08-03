@@ -31,6 +31,9 @@ cp backend/requirements/requirements-$distro.txt backend/requirements.txt
 
 cd client && npm install -d && ./node_modules/grunt/bin/grunt build && cd ..
 
+echo "NETWORK_SANDBOXING=0" > debian/default
+echo "APPARMOR_SANDBOXING=0" >> debian/default
+
 debuild -i -us -uc -b
 
 sudo mkdir -p /globaleaks/deb/
