@@ -483,30 +483,6 @@ msgstr "Përzgjidhni kontekstin e raportimit tuaj:"
 msgid "Before proceeding, please set a new password."
 msgstr "Para se të shkoni më tej, ju lutemi, caktoni një fjalëkalim të ri."
 
-msgid "New password"
-msgstr "Fjalëkalim i ri"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Fjalëkalimi i zgjedhur është shumë i dobët. Një fjalëkalim i vlefshëm duhet të jetë të paktën 10 shenja i gjatë dhe të përmbajë një larmi shenjash, përfshi të paktën një shkronjë të vogël, një shkronjë të madhe, një numër dhe një shenjë speciale."
-
-msgid "The new password must be different from the current one."
-msgstr "Fjalëkalimi i ri duhet të jetë i ndryshëm nga ai i tanishmi."
-
-msgid "Type your new password again"
-msgstr "Shtypni sërish fjalëkalimin tuaj të ri"
-
-msgid "The two passwords do not match"
-msgstr "Dy fjalëkalimet s’përputhen"
-
-msgid "The new password must differ from the previous."
-msgstr "Fjalëkalimi i ri duhet të jetë i ndryshëm nga i mëparshmi."
-
-msgid "Proceed"
-msgstr "Kryeje"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Para se të ecet më tej, ju lutemi, aktivizoni mirëfilltësimin dyfaktorësh."
 
@@ -546,9 +522,6 @@ msgstr "Kufi madhësie për bashkëngjitje kartelash"
 msgid "megabytes"
 msgstr "megabajte"
 
-msgid "Enable HSTS preload"
-msgstr "Aktivizo parangarkim HSTS"
-
 msgid "Require two factor authentication"
 msgstr "Kërko doemos mirëfilltësim dyfaktorësh"
 
@@ -564,6 +537,15 @@ msgstr "Për ta çaktivizuar këtë veçori, jepini vlerën 0."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Numër ditësh deri në njoftim të përdoruesve për raportime të palexuar"
+
+msgid "Disable the privacy panel"
+msgstr "Çaktivizo panelin e privatësisë"
+
+msgid "Enable custom privacy panel"
+msgstr "Aktivizo panel vetjak privatësie"
+
+msgid "Custom privacy panel"
+msgstr "Panel vetjak privatësie"
 
 msgid "Enable custodian user role"
 msgstr "Aktivizo rol përdoruesi ruajtës"
@@ -852,6 +834,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Platforma duhet të jetë e përdorshme përmes një adrese publike IP dhe strehëemri i përzgjedhur duhet të ketë një zë DNS përkatës që i referohet kësaj adrese."
 
+msgid "Proceed"
+msgstr "Kryeje"
+
 msgid "Manual configuration"
 msgstr "Formësim dorazi"
 
@@ -869,15 +854,6 @@ msgstr "Vetërinovim"
 msgid "Tor Onion Service"
 msgstr "Shërbim Onion Tor"
 
-msgid "Disable the privacy panel"
-msgstr "Çaktivizo panelin e privatësisë"
-
-msgid "Enable custom privacy panel"
-msgstr "Aktivizo panel vetjak privatësie"
-
-msgid "Custom privacy panel"
-msgstr "Panel vetjak privatësie"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonimizo lidhjet ikëse"
 
@@ -892,6 +868,11 @@ msgstr "Nxjerrës të fshehte"
 
 msgid "To"
 msgstr "Për"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr "Formësim parazgjedhje poste në përdorim. Ju lutemi, shihni mundësinë e përdorimit të një shërbyesi privat poste."
 
 msgid "SMTP email address"
 msgstr "Adresë email SMTP"
@@ -1073,9 +1054,6 @@ msgstr "Aktivizo kushte shërbimi"
 msgid "Title"
 msgstr "Titull"
 
-msgid "Send an account activation link to the user."
-msgstr "Dërgojini përdoruesit një lidhje aktivizimi llogarie."
-
 msgid "Public name"
 msgstr "Emër publik"
 
@@ -1085,14 +1063,20 @@ msgstr "Dërgo lidhje ricaktimi"
 msgid "Set password"
 msgstr "Caktoni fjalëkalim"
 
-msgid "Disable two factor authentication"
-msgstr "Çaktivizo mirëfilltësim dyfaktorësh"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Fjalëkalimi i zgjedhur është shumë i dobët. Një fjalëkalim i vlefshëm duhet të jetë të paktën 10 shenja i gjatë dhe të përmbajë një larmi shenjash, përfshi të paktën një shkronjë të vogël, një shkronjë të madhe, një numër dhe një shenjë speciale."
 
 msgid "Force password change"
 msgstr "Detyro ndryshim fjalëkalimi"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Përdoruesi do të detyrohet të ndryshojë fjalëkalimin e tij gjatë hyrjes së ardhshme në llogari."
+
+msgid "Disable two factor authentication"
+msgstr "Çaktivizo mirëfilltësim dyfaktorësh"
 
 msgid "Language"
 msgstr "Gjuhë"
@@ -1172,11 +1156,11 @@ msgstr "Caktoni pikë"
 msgid "Are you sure?"
 msgstr "Jeni i sigurt?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Ju lutemi, kini parasysh se krejt të dhënat e përshoqëruara do të fshihen përgjithmonë."
-
 msgid "Close"
 msgstr "Mbylle"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Ju lutemi, kini parasysh se krejt të dhënat e përshoqëruara do të fshihen përgjithmonë."
 
 msgid "Enable two factor authentication"
 msgstr "Aktivizo mirëfilltësim dyfaktorësh"
@@ -1257,17 +1241,26 @@ msgstr "Burimi mund të përdoret vetëm përmes rrjetit Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Kërkesa për ngarkim tejkalon kufirin për madhësitë"
 
+msgid "Current password"
+msgstr "Fjalëkalimi i tanishëm"
+
+msgid "New password"
+msgstr "Fjalëkalim i ri"
+
+msgid "The new password must be different from the current one."
+msgstr "Fjalëkalimi i ri duhet të jetë i ndryshëm nga ai i tanishmi."
+
+msgid "Type your new password again"
+msgstr "Shtypni sërish fjalëkalimin tuaj të ri"
+
+msgid "The two passwords do not match"
+msgstr "Dy fjalëkalimet s’përputhen"
+
 msgid "Validation of email address change in progress."
 msgstr "Vlerësimi i ndryshimit të adresës email në ecuri e sipër."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Për udhëzime të mëtejshme, ju lutemi, kontrolloni mesazhet tuaj të marrë."
-
-msgid "Current password"
-msgstr "Fjalëkalimi i tanishëm"
-
-msgid "Old password confirmation required"
-msgstr "Me ripohim doemos të fjalëkalimit të dikurshëm"
 
 msgid "Warning"
 msgstr "Sinjalizim"
@@ -1425,8 +1418,8 @@ msgstr "Në mos u aktivizoftë brenda 24 orësh, platforma do të fshihet vetvet
 msgid "Sign up"
 msgstr "Regjistrohuni"
 
-msgid "Domain"
-msgstr "Përkatësi"
+msgid "Site"
+msgstr "Webfaqe"
 
 msgid "Confirmation"
 msgstr "Ripohim"

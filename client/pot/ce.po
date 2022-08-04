@@ -476,30 +476,6 @@ msgstr "Хьайн орзан контекст харжа:"
 msgid "Before proceeding, please set a new password."
 msgstr "Кхин дIавахале, керла парол хIоттаехьа."
 
-msgid "New password"
-msgstr "Керла парол"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Хаьржина парол дукха гlийла ю. Магийна йолу парол лаххара а 10 тайп-тайпана хьаьрках латта езаш ю, шайна юккъехь жима элп а, доккха элп а, терахь а, леррина долу хьаьрк а долуш."
-
-msgid "The new password must be different from the current one."
-msgstr "Керла парол хьалхалерчух къаста езаш ю."
-
-msgid "Type your new password again"
-msgstr "Керла парол кхин цкъа а чуязъе"
-
-msgid "The two passwords do not match"
-msgstr "Хlара ши парол цхьаьнайогlуш яц"
-
-msgid "The new password must differ from the previous."
-msgstr "Керла парол хьалхалерчух къаьсташ хила еза."
-
-msgid "Proceed"
-msgstr "КхидIа дIагIо"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Кхин дIавахале, ши-факторан аутентификаци магаехьа."
 
@@ -539,9 +515,6 @@ msgstr "Юкъаехкинчу файлийн бараман доза"
 msgid "megabytes"
 msgstr "мегабайташ"
 
-msgid "Enable HSTS preload"
-msgstr "HSTS юьхьанцара схьаэцар магаде"
-
 msgid "Require two factor authentication"
 msgstr "Ши-факторан аутентификаци тӀейожае"
 
@@ -557,6 +530,15 @@ msgstr "ХIара башхало мага ца ян, маьIна 0 тIе хIот
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Пайдаэцархошна дешна доцчу аьрзнех дIахаьийта дисинчу денойн терахь"
+
+msgid "Disable the privacy panel"
+msgstr "Шайлахьйолу панел мага ма е"
+
+msgid "Enable custom privacy panel"
+msgstr "БIегIийла шайлахьйолу панел магае"
+
+msgid "Custom privacy panel"
+msgstr "БIегIийла шайлахьйолу панел"
 
 msgid "Enable custodian user role"
 msgstr "lуналхочунна пайдаэцархочун дакъа магаде"
@@ -845,6 +827,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Платформа диллинчу IP адресехула тlекхача йиш йолуш хила еза, ткъа хаьржинчу шедан цlеран DNS язор хила деза, и адрес балгадоккхуш."
 
+msgid "Proceed"
+msgstr "КхидIа дIагIо"
+
 msgid "Manual configuration"
 msgstr "Куьйга конфигураци"
 
@@ -862,15 +847,6 @@ msgstr "Шашах юхацIиндар"
 msgid "Tor Onion Service"
 msgstr "Tor Onion сервис"
 
-msgid "Disable the privacy panel"
-msgstr "Шайлахьйолу панел мага ма е"
-
-msgid "Enable custom privacy panel"
-msgstr "БIегIийла шайлахьйолу панел магае"
-
-msgid "Custom privacy panel"
-msgstr "БIегIийла шайлахьйолу панел"
-
 msgid "Anonymize outgoing connections"
 msgstr "Арайоьлху зIенаш хьулъе"
 
@@ -885,6 +861,11 @@ msgstr "Iорадаккхархо"
 
 msgid "To"
 msgstr "Хьаьнга"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP электронан поштин адрес"
@@ -1066,9 +1047,6 @@ msgstr "Сервисан билламаш магабе"
 msgid "Title"
 msgstr "ЦӀе"
 
-msgid "Send an account activation link to the user."
-msgstr "Аккаунтан активацин линк яхьийта пайдаэцархочунна"
-
 msgid "Public name"
 msgstr "Нахана евза цlе"
 
@@ -1078,14 +1056,20 @@ msgstr "Юхакирдаран линк яхьийта"
 msgid "Set password"
 msgstr "Парол хlоттае"
 
-msgid "Disable two factor authentication"
-msgstr "Ши-факторан аутентификаци мага ма е"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Хаьржина парол дукха гlийла ю. Магийна йолу парол лаххара а 10 тайп-тайпана хьаьрках латта езаш ю, шайна юккъехь жима элп а, доккха элп а, терахь а, леррина долу хьаьрк а долуш."
 
 msgid "Force password change"
 msgstr "Парол хийцар тIедилла"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Пайдаэцархочунна парол хийцар тIедиллина хир ду, юха системи чуволуш"
+
+msgid "Disable two factor authentication"
+msgstr "Ши-факторан аутентификаци мага ма е"
 
 msgid "Language"
 msgstr "Мотт"
@@ -1165,11 +1149,11 @@ msgstr "Баллаш хIиттае"
 msgid "Are you sure?"
 msgstr "Баккъал бахий ахь?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Тидам белаш, кхуьнца йоьзна йолу информаци меттахIотто йиш а йоцуш дIайоккхур ю."
-
 msgid "Close"
 msgstr "Дlачlагlа"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Тидам белаш, кхуьнца йоьзна йолу информаци меттахIотто йиш а йоцуш дIайоккхур ю."
 
 msgid "Enable two factor authentication"
 msgstr "Ши-факторан аутентификаци магае"
@@ -1250,17 +1234,26 @@ msgstr "Tor машанехула бен тlекхочийла дац ресур�
 msgid "The upload request exceeds the size limit"
 msgstr "Бараман лаккхарчу тlегlанал тlехдаьлла дIахIотторан дехар"
 
+msgid "Current password"
+msgstr "Карара парол"
+
+msgid "New password"
+msgstr "Керла парол"
+
+msgid "The new password must be different from the current one."
+msgstr "Керла парол хьалхалерчух къаста езаш ю."
+
+msgid "Type your new password again"
+msgstr "Керла парол кхин цкъа а чуязъе"
+
+msgid "The two passwords do not match"
+msgstr "Хlара ши парол цхьаьнайогlуш яц"
+
 msgid "Validation of email address change in progress."
 msgstr "Электронан поштин адрес хийцаран бакъдар дIадоьдуш ду."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Почтин яьшки чу хьажахь кхидlа долчу куьйгаллина."
-
-msgid "Current password"
-msgstr "Карара парол"
-
-msgid "Old password confirmation required"
-msgstr "Хьалхалера парол тlечlагlъян еза"
 
 msgid "Warning"
 msgstr "Варе"
@@ -1418,8 +1411,8 @@ msgstr "Платформина 24 сахьт далале активаци ца 
 msgid "Sign up"
 msgstr "Язлуо"
 
-msgid "Domain"
-msgstr "Домен"
+msgid "Site"
+msgstr ""
 
 msgid "Confirmation"
 msgstr "Тlечlагlдар"

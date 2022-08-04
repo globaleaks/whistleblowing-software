@@ -482,30 +482,6 @@ msgstr "Valitse vihjeen aihe:"
 msgid "Before proceeding, please set a new password."
 msgstr "Määritä uusi salasana ennen kuin jatkat."
 
-msgid "New password"
-msgstr "Uusi salasana"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Valitsemasi salasana on liian yksinkertainen. Salasanan täytyy olla vähintään 10 merkkiä pitkä ja sisältää vähintään yhden pienen ja ison kirjaimen sekä numeron ja erikoismerkin."
-
-msgid "The new password must be different from the current one."
-msgstr "Uusi salasana ei voi olla sama kuin parhaillaan käytössä oleva."
-
-msgid "Type your new password again"
-msgstr "Kirjoita uusi salasana uudelleen"
-
-msgid "The two passwords do not match"
-msgstr "Annetut salasanat eivät vastaa toisiaan"
-
-msgid "The new password must differ from the previous."
-msgstr "Uuden salasanan täytyy olla eri kuin edellisen."
-
-msgid "Proceed"
-msgstr "Jatka"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Voit jatkaa, kun olet ottanut käyttöösi kaksivaiheisen tunnistautumisen."
 
@@ -545,9 +521,6 @@ msgstr "Liitetiedostojen kokorajoitus"
 msgid "megabytes"
 msgstr "megatavua"
 
-msgid "Enable HSTS preload"
-msgstr "Ota HSTS-esilataus käyttöön"
-
 msgid "Require two factor authentication"
 msgstr "Kaksivaiheinen tunnistus vaaditaan"
 
@@ -563,6 +536,15 @@ msgstr "Ota toiminnallisuus pois käytöstä asettamalla arvoksi luku nolla (0).
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Aika (päivinä), jonka jälkeen käyttäjää muistutetaan uusista ilmoituksista"
+
+msgid "Disable the privacy panel"
+msgstr "Ota pois käytöstä yksityisyyskulkukortti"
+
+msgid "Enable custom privacy panel"
+msgstr "Ota käyttöön oma yksityisyyskulkukortti"
+
+msgid "Custom privacy panel"
+msgstr "Mukautettu yksityisyysasetusten hallintapaneeli"
 
 msgid "Enable custodian user role"
 msgstr "Ota käyttöön valvontarooli"
@@ -851,6 +833,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Palvelun täytyy olla tavoitettavissa julkisen IP-osoitteen kautta ja valitun tietokoneen nimen (hostname) nimipalvelinasetukset (DNS) täytyy osoittaa samaan IP-osoitteeseen."
 
+msgid "Proceed"
+msgstr "Jatka"
+
 msgid "Manual configuration"
 msgstr "Manuaalinen asetusten määritys"
 
@@ -868,15 +853,6 @@ msgstr "Automaattinen uusiminen"
 msgid "Tor Onion Service"
 msgstr "Tor Onion Service"
 
-msgid "Disable the privacy panel"
-msgstr "Ota pois käytöstä yksityisyyskulkukortti"
-
-msgid "Enable custom privacy panel"
-msgstr "Ota käyttöön oma yksityisyyskulkukortti"
-
-msgid "Custom privacy panel"
-msgstr "Mukautettu yksityisyysasetusten hallintapaneeli"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonymisoi yhteydet ulospäin"
 
@@ -891,6 +867,11 @@ msgstr "Vihjeenantaja"
 
 msgid "To"
 msgstr "Vastaanottaja"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP-sähköpostiosoite"
@@ -1072,9 +1053,6 @@ msgstr "Ota käyttöön palvelun käyttöehdot"
 msgid "Title"
 msgstr "Otsikko"
 
-msgid "Send an account activation link to the user."
-msgstr "Lähetä tilin aktivointilinkki käyttäjälle."
-
 msgid "Public name"
 msgstr "Julkinen nimi"
 
@@ -1084,14 +1062,20 @@ msgstr "Lähetä nollauslinkki"
 msgid "Set password"
 msgstr "Aseta salasana"
 
-msgid "Disable two factor authentication"
-msgstr "Poista kaksivaiheinen kirjautuminen käytöstä"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Valitsemasi salasana on liian yksinkertainen. Salasanan täytyy olla vähintään 10 merkkiä pitkä ja sisältää vähintään yhden pienen ja ison kirjaimen sekä numeron ja erikoismerkin."
 
 msgid "Force password change"
 msgstr "Pakota salasanan vaihto"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Käyttäjä pakotetaan vaihtamaan salasanansa seuraavan kirjautumisen yhteydessä."
+
+msgid "Disable two factor authentication"
+msgstr "Poista kaksivaiheinen kirjautuminen käytöstä"
 
 msgid "Language"
 msgstr "Kieli"
@@ -1171,11 +1155,11 @@ msgstr "Käytä pisteytystä"
 msgid "Are you sure?"
 msgstr "Oletko varma?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Huomaa, että kaikki tiliin liittyvät tiedot poistetaan pysyvästi."
-
 msgid "Close"
 msgstr "Sulje"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Huomaa, että kaikki tiliin liittyvät tiedot poistetaan pysyvästi."
 
 msgid "Enable two factor authentication"
 msgstr "Ota käyttöön kaksivaiheinen kirjautuminen"
@@ -1256,17 +1240,26 @@ msgstr "Resurssiin on pääsy vain Tor-verkon sisällä"
 msgid "The upload request exceeds the size limit"
 msgstr "Lähetyspyyntö palvelimelle ylittää kokorajan"
 
+msgid "Current password"
+msgstr "Nykyinen salasana"
+
+msgid "New password"
+msgstr "Uusi salasana"
+
+msgid "The new password must be different from the current one."
+msgstr "Uusi salasana ei voi olla sama kuin parhaillaan käytössä oleva."
+
+msgid "Type your new password again"
+msgstr "Kirjoita uusi salasana uudelleen"
+
+msgid "The two passwords do not match"
+msgstr "Annetut salasanat eivät vastaa toisiaan"
+
 msgid "Validation of email address change in progress."
 msgstr "Sähköpostiosoitteen vaihtamisen vahvistaminen käynnissä."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Lisäohjeita löydät sähköpostistasi."
-
-msgid "Current password"
-msgstr "Nykyinen salasana"
-
-msgid "Old password confirmation required"
-msgstr "Vahvistus vanhalla salasanalla vaadittu"
 
 msgid "Warning"
 msgstr "Varoitus"
@@ -1424,8 +1417,8 @@ msgstr "Sivusto tuhotaan automaattisesti, mikäli tunnusta ei aktivoida 24 tunni
 msgid "Sign up"
 msgstr "Rekisteröidy"
 
-msgid "Domain"
-msgstr "Verkkotunnus"
+msgid "Site"
+msgstr "Sivusto"
 
 msgid "Confirmation"
 msgstr "Varmistus"

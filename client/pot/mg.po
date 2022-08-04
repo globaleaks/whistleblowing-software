@@ -490,30 +490,6 @@ msgstr "Choisir le contexte de votre envoi :"
 msgid "Before proceeding, please set a new password."
 msgstr "Avant de continuer, veuillez définir un nouveau mot de passe."
 
-msgid "New password"
-msgstr "Nouveau mot de passe"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr ""
-
-msgid "The new password must be different from the current one."
-msgstr "Le nouveau mot de passe doit être différent de l’actuel."
-
-msgid "Type your new password again"
-msgstr "Saisissez votre nouveau mot de passe de nouveau"
-
-msgid "The two passwords do not match"
-msgstr "Les deux mots de passe ne correspondent pas"
-
-msgid "The new password must differ from the previous."
-msgstr ""
-
-msgid "Proceed"
-msgstr "Continuer"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr ""
 
@@ -553,9 +529,6 @@ msgstr "Limite de taille des fichiers joints"
 msgid "megabytes"
 msgstr ""
 
-msgid "Enable HSTS preload"
-msgstr ""
-
 msgid "Require two factor authentication"
 msgstr ""
 
@@ -571,6 +544,15 @@ msgstr "Définir la valeur à 0 pour désactiver cette fonction."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr ""
+
+msgid "Disable the privacy panel"
+msgstr "Désactiver le volet de confidentialité"
+
+msgid "Enable custom privacy panel"
+msgstr "Activer le volet de confidentialité personnalisée"
+
+msgid "Custom privacy panel"
+msgstr "Volet de confidentialité personnalisée"
 
 msgid "Enable custodian user role"
 msgstr ""
@@ -859,6 +841,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "La plateforme doit être accessible par une adresse IP publique et le nom d’hôte sélectionné doit avoir un enregistrement DNS correspondant qui fait référence à cette adresse."
 
+msgid "Proceed"
+msgstr "Continuer"
+
 msgid "Manual configuration"
 msgstr "Configuration manuelle"
 
@@ -876,15 +861,6 @@ msgstr "Renouvellement automatique"
 msgid "Tor Onion Service"
 msgstr "Service oignon Tor"
 
-msgid "Disable the privacy panel"
-msgstr "Désactiver le volet de confidentialité"
-
-msgid "Enable custom privacy panel"
-msgstr "Activer le volet de confidentialité personnalisée"
-
-msgid "Custom privacy panel"
-msgstr "Volet de confidentialité personnalisée"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonymiser les connexions sortantes"
 
@@ -899,6 +875,11 @@ msgstr "Lanceur d’alerte"
 
 msgid "To"
 msgstr "Hatramin'ny"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "Adresse courriel SMTP"
@@ -1080,9 +1061,6 @@ msgstr "Activer les conditions générales d’utilisation"
 msgid "Title"
 msgstr "Titre"
 
-msgid "Send an account activation link to the user."
-msgstr ""
-
 msgid "Public name"
 msgstr ""
 
@@ -1092,7 +1070,10 @@ msgstr ""
 msgid "Set password"
 msgstr ""
 
-msgid "Disable two factor authentication"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
 msgstr ""
 
 msgid "Force password change"
@@ -1100,6 +1081,9 @@ msgstr "Forcer un changement de mot de passe"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "L’utilisateur sera forcé de changer le mot de passe lors de la prochaine connexion."
+
+msgid "Disable two factor authentication"
+msgstr ""
 
 msgid "Language"
 msgstr "Langue"
@@ -1179,10 +1163,10 @@ msgstr "Attribuer un pointage"
 msgid "Are you sure?"
 msgstr "Êtes-vous certain ?"
 
-msgid "Please note that all the associated data will be permanently deleted."
+msgid "Close"
 msgstr ""
 
-msgid "Close"
+msgid "Please note that all the associated data will be permanently deleted."
 msgstr ""
 
 msgid "Enable two factor authentication"
@@ -1264,17 +1248,26 @@ msgstr "L’accès à cette ressource ne peut se faire que par le réseau Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "La demande de téléversement dépasse la limite de taille"
 
+msgid "Current password"
+msgstr "Mot de passe actuel"
+
+msgid "New password"
+msgstr "Nouveau mot de passe"
+
+msgid "The new password must be different from the current one."
+msgstr "Le nouveau mot de passe doit être différent de l’actuel."
+
+msgid "Type your new password again"
+msgstr "Saisissez votre nouveau mot de passe de nouveau"
+
+msgid "The two passwords do not match"
+msgstr "Les deux mots de passe ne correspondent pas"
+
 msgid "Validation of email address change in progress."
 msgstr "La validation du changement d’adresse courriel est en cours."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Veuillez vérifier votre boîte de réception pour de plus amples instructions."
-
-msgid "Current password"
-msgstr "Mot de passe actuel"
-
-msgid "Old password confirmation required"
-msgstr "La confirmation de l’ancien mot de passe est exigée"
 
 msgid "Warning"
 msgstr "Avertissement"
@@ -1432,8 +1425,8 @@ msgstr ""
 msgid "Sign up"
 msgstr "Inscription"
 
-msgid "Domain"
-msgstr "Domaine"
+msgid "Site"
+msgstr ""
 
 msgid "Confirmation"
 msgstr ""

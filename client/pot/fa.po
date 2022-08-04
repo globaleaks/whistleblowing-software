@@ -26,14 +26,14 @@
 # signal89, 2014
 # signal89, 2014
 # b0b47d46632b78a09a40de799fda9a65, 2019
-# Vox <voxp@protonmail.com>, 2020-2021
+# Vox <voxp@protonmail.com>, 2020-2022
 # Xashyar, 2021
 # Xashyar, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015,2017,2020-2022\n"
+"Last-Translator: Vox <voxp@protonmail.com>, 2020-2022\n"
 "Language-Team: Persian (http://www.transifex.com/otf/globaleaks/language/fa/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -501,30 +501,6 @@ msgstr "زمینهٔ گزارش خود را انتخاب کنید:"
 msgid "Before proceeding, please set a new password."
 msgstr "قبل از ادامه لطفاً یک گذرواژهٔ جدید تنظیم کنید."
 
-msgid "New password"
-msgstr "گذرواژهٔ جدید"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "گذرواژهٔ انتخابی بسیار ضعیف است. یک گذرواژهٔ معتبر باید حداقل به طول ۱۰ نویسه و دارای انواعی از نویسه‌ها شامل حداقل یک نویسه با حروف کوچک، یک نویسه با حروف بزرگ، یک عدد و یک نویسهٔ خاص باشد."
-
-msgid "The new password must be different from the current one."
-msgstr "گذرواژهٔ جدید باید با گذرواژهٔ فعلی متفاوت باشد."
-
-msgid "Type your new password again"
-msgstr "گذرواژهٔ جدیدتان را دوباره تایپ کنید"
-
-msgid "The two passwords do not match"
-msgstr "دو گذرواژه یکی نیستند"
-
-msgid "The new password must differ from the previous."
-msgstr "گذرواژهٔ جدید باید با گذرواژهٔ قبلی متفاوت باشد."
-
-msgid "Proceed"
-msgstr "ادامه"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "قبل از ادامه، لطفاً احراز هویت دو عاملی را فعال کنید."
 
@@ -564,9 +540,6 @@ msgstr "محدودیت حجم برای فایل پیوست‌ها"
 msgid "megabytes"
 msgstr "مگابایت"
 
-msgid "Enable HSTS preload"
-msgstr "فعال کردن HSTS preload"
-
 msgid "Require two factor authentication"
 msgstr "نیاز به احراز هویت دو عاملی"
 
@@ -582,6 +555,15 @@ msgstr "برای غیرفعال کردن این قابلیت مقدار را ر�
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "تعداد روزها تا اطلاع گزارش‌های خوانده نشده به کاربران"
+
+msgid "Disable the privacy panel"
+msgstr "غیرفعال کردن پنل حریم خصوصی"
+
+msgid "Enable custom privacy panel"
+msgstr "فعال کردن پنل حریم خصوصی سفارشی"
+
+msgid "Custom privacy panel"
+msgstr "پنل حریم خصوصی سفارشی"
 
 msgid "Enable custodian user role"
 msgstr "فعال کردن نقش کاربر سرپرست"
@@ -870,6 +852,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "پلتفرم باید از طریق یک نشانی IP عمومی قابل دسترس باشد و نام میزبان انتخاب شده باید یک رکورد DNS که به آن نشانی ارجاع دارد داشته باشد."
 
+msgid "Proceed"
+msgstr "ادامه"
+
 msgid "Manual configuration"
 msgstr "پیکربندی دستی"
 
@@ -887,15 +872,6 @@ msgstr "تمدید-خودکار"
 msgid "Tor Onion Service"
 msgstr "خدمات پیازی Tor"
 
-msgid "Disable the privacy panel"
-msgstr "غیرفعال کردن پنل حریم خصوصی"
-
-msgid "Enable custom privacy panel"
-msgstr "فعال کردن پنل حریم خصوصی سفارشی"
-
-msgid "Custom privacy panel"
-msgstr "پنل حریم خصوصی سفارشی"
-
 msgid "Anonymize outgoing connections"
 msgstr "ناشناس کردن اتصال‌های خروجی"
 
@@ -910,6 +886,11 @@ msgstr "افشاگر"
 
 msgid "To"
 msgstr "به"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr "پیکربندی پیش‌فرض ایمیل در حال استفاده است. لطفا از یک سرور ایمیل خصوصی استفاده کنید."
 
 msgid "SMTP email address"
 msgstr "نشانی ایمیل SMTP"
@@ -1091,9 +1072,6 @@ msgstr "فعال کردن شرایط خدمات"
 msgid "Title"
 msgstr "عنوان"
 
-msgid "Send an account activation link to the user."
-msgstr "به کاربر یک پیوند فعال‌سازی حساب کاربری ارسال شود."
-
 msgid "Public name"
 msgstr "نام عمومی"
 
@@ -1103,14 +1081,20 @@ msgstr "ارسال پیوند بازنشانی"
 msgid "Set password"
 msgstr "تنظیم گذرواژه"
 
-msgid "Disable two factor authentication"
-msgstr "غیرفعالسازی احراز هویت دو عاملی"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "گذرواژهٔ انتخابی بسیار ضعیف است. یک گذرواژهٔ معتبر باید حداقل به طول ۱۰ نویسه و دارای انواعی از نویسه‌ها شامل حداقل یک نویسه با حروف کوچک، یک نویسه با حروف بزرگ، یک عدد و یک نویسهٔ خاص باشد."
 
 msgid "Force password change"
 msgstr "اجبار به تغییر گذرواژه"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "کاربر مجبور خواهد شد تا گذرواژهٔ خود را در ورود بعدی تغییر دهد."
+
+msgid "Disable two factor authentication"
+msgstr "غیرفعالسازی احراز هویت دو عاملی"
 
 msgid "Language"
 msgstr "زبان"
@@ -1190,11 +1174,11 @@ msgstr "تخصیص امتیازها"
 msgid "Are you sure?"
 msgstr "آیا مطمئن هستید؟"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "لطفاً توجه داشته باشید که تمام داده‌های مرتبط برای همیشه از بین خواهند رفت."
-
 msgid "Close"
 msgstr "بستن"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "لطفاً توجه داشته باشید که تمام داده‌های مرتبط برای همیشه از بین خواهند رفت."
 
 msgid "Enable two factor authentication"
 msgstr "فعال کردن احراز هویت دو عاملی"
@@ -1275,17 +1259,26 @@ msgstr "منبع فقط از طریق شبکهٔ Tor قابل دسترس است"
 msgid "The upload request exceeds the size limit"
 msgstr "درخواست بارگذاری از محدودهٔ حجم مجاز بیشتر است"
 
+msgid "Current password"
+msgstr "گذرواژهٔ فعلی"
+
+msgid "New password"
+msgstr "گذرواژهٔ جدید"
+
+msgid "The new password must be different from the current one."
+msgstr "گذرواژهٔ جدید باید با گذرواژهٔ فعلی متفاوت باشد."
+
+msgid "Type your new password again"
+msgstr "گذرواژهٔ جدیدتان را دوباره تایپ کنید"
+
+msgid "The two passwords do not match"
+msgstr "دو گذرواژه یکی نیستند"
+
 msgid "Validation of email address change in progress."
 msgstr "اعتبارسنجی تغییر نشانی ایمیل در حال انجام است."
 
 msgid "Please check your inbox for further instructions."
 msgstr "لطفاً صندوق پیام‌های دریافتی خود را برای دستورالعمل‌های بیشتر بررسی کنید."
-
-msgid "Current password"
-msgstr "گذرواژهٔ فعلی"
-
-msgid "Old password confirmation required"
-msgstr "تأیید گذرواژهٔ قدیمی لازم است"
 
 msgid "Warning"
 msgstr "هشدار"
@@ -1443,8 +1436,8 @@ msgstr "در صورتی که طی ۲۴ ساعت ساعت فعال نشود پل�
 msgid "Sign up"
 msgstr "نام‌نویسی"
 
-msgid "Domain"
-msgstr "دامنه"
+msgid "Site"
+msgstr "پایگاه"
 
 msgid "Confirmation"
 msgstr "تأیید"

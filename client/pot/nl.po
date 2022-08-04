@@ -518,30 +518,6 @@ msgstr "Selecteer de context van uw inzending:"
 msgid "Before proceeding, please set a new password."
 msgstr "Voor je verdergaat, stel alsjeblieft een nieuw wachtwoord in."
 
-msgid "New password"
-msgstr "Nieuw wachtwoord"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Het gekozen wachtwoord is te zwak. Een goed wachtwoord moet tenminste 10 tekens bevatten, waaronder een hoofdletter, kleine letter, cijfer, en een symbool."
-
-msgid "The new password must be different from the current one."
-msgstr "Het nieuwe wachtwoord moet verschillen van het huidige."
-
-msgid "Type your new password again"
-msgstr "Typ je wachtwoord opnieuw"
-
-msgid "The two passwords do not match"
-msgstr "De wachtwoorden komen niet overeen"
-
-msgid "The new password must differ from the previous."
-msgstr "Het nieuwe wachtwoord moet anders zijn dan de vorige."
-
-msgid "Proceed"
-msgstr "Gaat u verder"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Zet two-factor-authentication aan voordat je verdergaat."
 
@@ -581,9 +557,6 @@ msgstr "Maximale grootte voor bestandsbijlagen"
 msgid "megabytes"
 msgstr "megabytes"
 
-msgid "Enable HSTS preload"
-msgstr "HSTS-preload inschakelen"
-
 msgid "Require two factor authentication"
 msgstr "Vereis two-factor-authentication"
 
@@ -599,6 +572,15 @@ msgstr "Stel de waarde in op 0 om deze functie uit te schakelen"
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Aantal dagen tot het melden van de ongelezen inzendingen aan gebruikers"
+
+msgid "Disable the privacy panel"
+msgstr "Privacy-paneel uitschakelen"
+
+msgid "Enable custom privacy panel"
+msgstr "Gepersonaliseerd privacy-paneel inschakelen"
+
+msgid "Custom privacy panel"
+msgstr "Gepersonaliseerd privacy-paneel"
 
 msgid "Enable custodian user role"
 msgstr "Activeer de custodian gebruikersrol"
@@ -887,6 +869,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Het platform moet bereikbaar zijn via een publiekelijk IP-adres en de geselecteerde hostname moet een DNS regel bevatten welke verwijst naar dat adres."
 
+msgid "Proceed"
+msgstr "Gaat u verder"
+
 msgid "Manual configuration"
 msgstr "Handmatige configuratie"
 
@@ -904,15 +889,6 @@ msgstr "Auto-hernieuwing"
 msgid "Tor Onion Service"
 msgstr "Tor-onion-dienst"
 
-msgid "Disable the privacy panel"
-msgstr "Privacy-paneel uitschakelen"
-
-msgid "Enable custom privacy panel"
-msgstr "Gepersonaliseerd privacy-paneel inschakelen"
-
-msgid "Custom privacy panel"
-msgstr "Gepersonaliseerd privacy-paneel"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonimiseer uitgaande verbindingen"
 
@@ -927,6 +903,11 @@ msgstr "Klokkenluider"
 
 msgid "To"
 msgstr "Aan"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP-e-mailadres"
@@ -1108,9 +1089,6 @@ msgstr "Gebruiksvoorwaarden inschakelen"
 msgid "Title"
 msgstr "Titel"
 
-msgid "Send an account activation link to the user."
-msgstr "Verstuur een account activatielink naar de gebruiker."
-
 msgid "Public name"
 msgstr "Publieke naam"
 
@@ -1120,14 +1098,20 @@ msgstr "Verstuur reset link"
 msgid "Set password"
 msgstr "Wachtwoord instellen"
 
-msgid "Disable two factor authentication"
-msgstr "Deactiveer two-factor-authentication"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Het gekozen wachtwoord is te zwak. Een goed wachtwoord moet tenminste 10 tekens bevatten, waaronder een hoofdletter, kleine letter, cijfer, en een symbool."
 
 msgid "Force password change"
 msgstr "Forceer wachtwoord verandering"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "De gebruiker moet zijn wachtwoord veranderen bij een volgende login."
+
+msgid "Disable two factor authentication"
+msgstr "Deactiveer two-factor-authentication"
 
 msgid "Language"
 msgstr "Taal"
@@ -1207,11 +1191,11 @@ msgstr "Scorepunten toekennen"
 msgid "Are you sure?"
 msgstr "Weet je het zeker?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Let op dat alle hiermee verbonden gegevens definitief verwijderd zullen worden."
-
 msgid "Close"
 msgstr "Sluiten"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Let op dat alle hiermee verbonden gegevens definitief verwijderd zullen worden."
 
 msgid "Enable two factor authentication"
 msgstr "Twee-factor-authenticatie inschakelen"
@@ -1292,17 +1276,26 @@ msgstr "Bron is alleen toegankelijk binnen het Tor-netwerk"
 msgid "The upload request exceeds the size limit"
 msgstr "De uploadaanvraag overstijgt de MB limiet"
 
+msgid "Current password"
+msgstr "Huidig wachtwoord"
+
+msgid "New password"
+msgstr "Nieuw wachtwoord"
+
+msgid "The new password must be different from the current one."
+msgstr "Het nieuwe wachtwoord moet verschillen van het huidige."
+
+msgid "Type your new password again"
+msgstr "Typ je wachtwoord opnieuw"
+
+msgid "The two passwords do not match"
+msgstr "De wachtwoorden komen niet overeen"
+
 msgid "Validation of email address change in progress."
 msgstr "Validatie van e-mail adres verandering wordt uitgevoerd."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Kijk in je e-mail postvak-in voor verdere instructies."
-
-msgid "Current password"
-msgstr "Huidig wachtwoord"
-
-msgid "Old password confirmation required"
-msgstr "Bevestiging van oud wachtwoord vereist"
 
 msgid "Warning"
 msgstr "Waarschuwing"
@@ -1460,8 +1453,8 @@ msgstr "Het platform wordt automatisch verwijderd als het niet binnen 24 uur wor
 msgid "Sign up"
 msgstr "Aanmelden"
 
-msgid "Domain"
-msgstr "Domein"
+msgid "Site"
+msgstr "Site"
 
 msgid "Confirmation"
 msgstr "Bevestiging"

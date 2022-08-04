@@ -487,30 +487,6 @@ msgstr "Επιλέξτε τη θεματική ενότητα της αναφο�
 msgid "Before proceeding, please set a new password."
 msgstr "Πριν συνεχίσετε, παρακαλώ ορίστε έναν νέο κωδικό πρόσβασης."
 
-msgid "New password"
-msgstr "Νέος κωδικός πρόσβασης"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Ο κωδικός που επιλέξατε είναι αρκετά αδύναμος. Ένας έγκυρος κωδικός πρέπει να αποτελείται από τουλάχιστον 10 χαρακτήρες και να περιλαμβάνει τουλάχιστον ένα πεζό χαρακτήρα, ένα κεφαλαίο χαρακτήρα, έναν αριθμό και ένα ειδικό χαρακτήρα."
-
-msgid "The new password must be different from the current one."
-msgstr "Ο νέος κωδικός πρόσβασης θα πρέπει να είναι διαφορετικός από τον τρέχοντα."
-
-msgid "Type your new password again"
-msgstr "Πληκτρολογήστε ξανά το νέο σας κωδικό πρόσβασης"
-
-msgid "The two passwords do not match"
-msgstr "Οι δύο κωδικοί πρόσβασης δεν ταιριάζουν"
-
-msgid "The new password must differ from the previous."
-msgstr "Ο νέος κωδικός πρέπει να διαφέρει από τον προηγούμενο. "
-
-msgid "Proceed"
-msgstr "Συνέχεια"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Πρίν προχωρήσετε, παρακαλώ ενεργοποιήστε την αυθεντικοποίηση δύο παραγόντων."
 
@@ -550,9 +526,6 @@ msgstr "Όριο μεγέθους για τα συνημμένα αρχεία"
 msgid "megabytes"
 msgstr "megabyte"
 
-msgid "Enable HSTS preload"
-msgstr "Επιτρέψτε την προφόρτωση HSTS"
-
 msgid "Require two factor authentication"
 msgstr "Απαιτείστε αυθεντικοποίηση δύο παραγόντων"
 
@@ -568,6 +541,15 @@ msgstr "Ορίστε την τιμή σε 0 για να απενεργοποιη
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Αριθμός ημερών μέχρι την ειδοποίηση των χρηστών για μη αναγνωσμένες αναφορές"
+
+msgid "Disable the privacy panel"
+msgstr "Απενεργοποιήστε το πλαίσιο προστασίας της ιδιωτικότητας "
+
+msgid "Enable custom privacy panel"
+msgstr "Ενεργοποιήστε το διακριτικό ιδιωτικότητας κατά προτίμηση"
+
+msgid "Custom privacy panel"
+msgstr "Πάνελ προσαρμοσμένης ιδιωτικότητας"
 
 msgid "Enable custodian user role"
 msgstr "Επιτρέψτε το ρόλο χρήστη του θεματοφύλακα"
@@ -856,6 +838,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Η πλατφόρμα θα πρέπει να είναι προσβάσιμη μέσω μιας δημόσιας διεύθυνσης IP και το επιλεγμένο hostname θα πρέπει να έχει μια αντίστοιχη εγγραφή DNS που να αναφέρεται σε αυτή την διεύθυνση."
 
+msgid "Proceed"
+msgstr "Συνέχεια"
+
 msgid "Manual configuration"
 msgstr "Χειροκίνητη παραμετροποίηση"
 
@@ -873,15 +858,6 @@ msgstr "Αυτόματη ανανέωση"
 msgid "Tor Onion Service"
 msgstr "Υπηρεσία Tor Onion"
 
-msgid "Disable the privacy panel"
-msgstr "Απενεργοποιήστε το πλαίσιο προστασίας της ιδιωτικότητας "
-
-msgid "Enable custom privacy panel"
-msgstr "Ενεργοποιήστε το διακριτικό ιδιωτικότητας κατά προτίμηση"
-
-msgid "Custom privacy panel"
-msgstr "Πάνελ προσαρμοσμένης ιδιωτικότητας"
-
 msgid "Anonymize outgoing connections"
 msgstr "Ανωνυμοποίηση εξερχόμενων συνδέσεων"
 
@@ -896,6 +872,11 @@ msgstr "Πρόσωπο που υποβάλλει αναφορά"
 
 msgid "To"
 msgstr "Προς "
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "Διεύθυνση ηλεκτρονικού ταχυδρομείου SMTP"
@@ -1077,9 +1058,6 @@ msgstr "Ενεργοποίηση όρων χρήσης"
 msgid "Title"
 msgstr "Τίτλος"
 
-msgid "Send an account activation link to the user."
-msgstr "Αποστολή συνδέσμου ενεργοποίησης λογαριασμού στον χρήστη"
-
 msgid "Public name"
 msgstr "Δημόσιο όνομα"
 
@@ -1089,14 +1067,20 @@ msgstr "Αποστολή συνδέσμου επαναφοράς"
 msgid "Set password"
 msgstr "Καθορισμός κωδικού"
 
-msgid "Disable two factor authentication"
-msgstr "Απενεργοποιείστε την αυθεντικοποίηση δύο παραγόντων"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Ο κωδικός που επιλέξατε είναι αρκετά αδύναμος. Ένας έγκυρος κωδικός πρέπει να αποτελείται από τουλάχιστον 10 χαρακτήρες και να περιλαμβάνει τουλάχιστον ένα πεζό χαρακτήρα, ένα κεφαλαίο χαρακτήρα, έναν αριθμό και ένα ειδικό χαρακτήρα."
 
 msgid "Force password change"
 msgstr "Εξαναγκασμός αλλαγής κωδικού πρόσβασης"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Ο χρήστης θα αναγκαστεί να αλλάξει τον κωδικό πρόσβασής του στην επόμενη σύνδεση."
+
+msgid "Disable two factor authentication"
+msgstr "Απενεργοποιείστε την αυθεντικοποίηση δύο παραγόντων"
 
 msgid "Language"
 msgstr "Γλώσσα "
@@ -1176,11 +1160,11 @@ msgstr "Ανάθεση πόντων βαθμολογίας"
 msgid "Are you sure?"
 msgstr "Είστε σίγουροι;"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Παρακαλούμε σημειώστε ότι όλα τα σχετικά δεδομένα θα χαθούν οριστικά."
-
 msgid "Close"
 msgstr "Κλείσιμο"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Παρακαλούμε σημειώστε ότι όλα τα σχετικά δεδομένα θα χαθούν οριστικά."
 
 msgid "Enable two factor authentication"
 msgstr "Ενεργοποίηση πιστοποίησης δυο παραγόντων"
@@ -1261,17 +1245,26 @@ msgstr "Το περιεχόμενο είναι προσβάσιμο μόνο μ�
 msgid "The upload request exceeds the size limit"
 msgstr "Το αίτημα ανεβάσματος ξεπερνά τα όρια μεγέθους"
 
+msgid "Current password"
+msgstr "Τρέχων κωδικός πρόσβασης"
+
+msgid "New password"
+msgstr "Νέος κωδικός πρόσβασης"
+
+msgid "The new password must be different from the current one."
+msgstr "Ο νέος κωδικός πρόσβασης θα πρέπει να είναι διαφορετικός από τον τρέχοντα."
+
+msgid "Type your new password again"
+msgstr "Πληκτρολογήστε ξανά το νέο σας κωδικό πρόσβασης"
+
+msgid "The two passwords do not match"
+msgstr "Οι δύο κωδικοί πρόσβασης δεν ταιριάζουν"
+
 msgid "Validation of email address change in progress."
 msgstr "Η επικύρωση της αλλαγής διεύθυνσης email είναι σε εξέλιξη."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Παρακαλώ ελέγξτε τα εισερχόμενά σας για περαιτέρω πληροφορίες."
-
-msgid "Current password"
-msgstr "Τρέχων κωδικός πρόσβασης"
-
-msgid "Old password confirmation required"
-msgstr "Χρειάζεται επιβεβαίωση του παλιού κωδικού πρόσβασης"
 
 msgid "Warning"
 msgstr "Προειδοποίηση"
@@ -1429,8 +1422,8 @@ msgstr "Αν δεν ενεργοποιηθεί εντός 24 ωρών η πλα�
 msgid "Sign up"
 msgstr "Εγγραφή"
 
-msgid "Domain"
-msgstr "Όνομα χώρου"
+msgid "Site"
+msgstr "Δικτυακός τόπος"
 
 msgid "Confirmation"
 msgstr "Επιβεβαίωση"

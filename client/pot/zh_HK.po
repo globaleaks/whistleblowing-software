@@ -476,30 +476,6 @@ msgstr "請選擇您的報告主題："
 msgid "Before proceeding, please set a new password."
 msgstr "在繼續之前，請更新您的密碼。"
 
-msgid "New password"
-msgstr "新密碼"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "密碼過弱。有效密碼必須有至少10個字元，並包含大小寫、數字和符號。"
-
-msgid "The new password must be different from the current one."
-msgstr "新密碼必須與現有密碼不同。"
-
-msgid "Type your new password again"
-msgstr "重新輸入您的新密碼"
-
-msgid "The two passwords do not match"
-msgstr "密碼不一致"
-
-msgid "The new password must differ from the previous."
-msgstr "新密碼必須與之前的舊密碼不同。"
-
-msgid "Proceed"
-msgstr "繼續"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "在繼續之前，請先啟用雙重認證。"
 
@@ -539,9 +515,6 @@ msgstr "附件檔案大小上限"
 msgid "megabytes"
 msgstr "MB"
 
-msgid "Enable HSTS preload"
-msgstr "啟用 HSTS 預載"
-
 msgid "Require two factor authentication"
 msgstr "啟用雙重認證"
 
@@ -557,6 +530,15 @@ msgstr "將值設為 0 以停用此功能。"
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "新報告有多少天未讀才通知使用者"
+
+msgid "Disable the privacy panel"
+msgstr "隱藏私隱通告"
+
+msgid "Enable custom privacy panel"
+msgstr "自訂平台頁首的私隱通告"
+
+msgid "Custom privacy panel"
+msgstr "自訂私隱通告內文"
 
 msgid "Enable custodian user role"
 msgstr "啟用保管人使用者身份"
@@ -845,6 +827,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "该平台必须可通过公共 IP 地址访问，并且所选主机名必须具有引用该地址的相应 DNS 记录。"
 
+msgid "Proceed"
+msgstr "繼續"
+
 msgid "Manual configuration"
 msgstr "手動配置"
 
@@ -862,15 +847,6 @@ msgstr "自動更新"
 msgid "Tor Onion Service"
 msgstr "Tor 匿名服務"
 
-msgid "Disable the privacy panel"
-msgstr "隱藏私隱通告"
-
-msgid "Enable custom privacy panel"
-msgstr "自訂平台頁首的私隱通告"
-
-msgid "Custom privacy panel"
-msgstr "自訂私隱通告內文"
-
 msgid "Anonymize outgoing connections"
 msgstr "將對外連接匿名化"
 
@@ -885,6 +861,11 @@ msgstr "吹哨者"
 
 msgid "To"
 msgstr "重新導向至"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP 電郵地址"
@@ -1066,9 +1047,6 @@ msgstr "使用服務條款"
 msgid "Title"
 msgstr "標題"
 
-msgid "Send an account activation link to the user."
-msgstr "傳送帳號啟動連結給使用者。"
-
 msgid "Public name"
 msgstr "公開顯示的名稱"
 
@@ -1078,14 +1056,20 @@ msgstr "傳送重置連結"
 msgid "Set password"
 msgstr "設置密碼"
 
-msgid "Disable two factor authentication"
-msgstr "停用雙重認證"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "密碼過弱。有效密碼必須有至少10個字元，並包含大小寫、數字和符號。"
 
 msgid "Force password change"
 msgstr "強制更改密碼"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "使用者在下次登入時必須更改密碼。"
+
+msgid "Disable two factor authentication"
+msgstr "停用雙重認證"
 
 msgid "Language"
 msgstr "語言"
@@ -1165,11 +1149,11 @@ msgstr "指定評分"
 msgid "Are you sure?"
 msgstr "您確定嗎？"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "請注意，所有相關資料將會被永久刪除。"
-
 msgid "Close"
 msgstr "關閉"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "請注意，所有相關資料將會被永久刪除。"
 
 msgid "Enable two factor authentication"
 msgstr "啟用雙重認證"
@@ -1250,17 +1234,26 @@ msgstr "資源僅能透過 Tor 網路讀取"
 msgid "The upload request exceeds the size limit"
 msgstr "上傳請求超出檔案大小上限"
 
+msgid "Current password"
+msgstr "現時密碼"
+
+msgid "New password"
+msgstr "新密碼"
+
+msgid "The new password must be different from the current one."
+msgstr "新密碼必須與現有密碼不同。"
+
+msgid "Type your new password again"
+msgstr "重新輸入您的新密碼"
+
+msgid "The two passwords do not match"
+msgstr "密碼不一致"
+
 msgid "Validation of email address change in progress."
 msgstr "正在驗證更改的電郵地址。"
 
 msgid "Please check your inbox for further instructions."
 msgstr "請檢查您的收件匣，以取得進一步指示。"
-
-msgid "Current password"
-msgstr "現時密碼"
-
-msgid "Old password confirmation required"
-msgstr "請確認舊密碼"
 
 msgid "Warning"
 msgstr "警告"
@@ -1418,8 +1411,8 @@ msgstr "如未能在 24 小時內完成啟動手續，平台將會被自動刪�
 msgid "Sign up"
 msgstr "註冊"
 
-msgid "Domain"
-msgstr "網域"
+msgid "Site"
+msgstr "網站"
 
 msgid "Confirmation"
 msgstr "確認"

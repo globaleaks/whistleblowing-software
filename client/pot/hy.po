@@ -476,30 +476,6 @@ msgstr "Ընտրել ձեր հաշվետվության համատեքստը."
 msgid "Before proceeding, please set a new password."
 msgstr "Նախքան շարունակելը նոր գաղտնաբառ ստեղծեք։"
 
-msgid "New password"
-msgstr "Նոր գաղտնաբառ"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Ձեր ընտրած գաղտնաբառը չափազանց թույլ է։ Գաղտնաբառը պետք է  կազմված լինի առնվազն 10 նիշից և պարունակի տարբեր նշաններ՝ ներառելյալ առնվազն մեկ փոքրատառ, մեկ մեծատառ, թվանշան և հատուկ նշան։"
-
-msgid "The new password must be different from the current one."
-msgstr "Նոր գաղտնաբառը պետք է տարբերվի ներկայինից։"
-
-msgid "Type your new password again"
-msgstr "Կրկին մուտքագրեք ձեր նոր գաղտնաբառը"
-
-msgid "The two passwords do not match"
-msgstr "Մուտքագրված գաղտնաբառերը չեն համընկնում"
-
-msgid "The new password must differ from the previous."
-msgstr "Նոր գաղտնաբառը պետք է տարբերվի նախորդից:"
-
-msgid "Proceed"
-msgstr "Շարունակել"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Շարունակելուց առաջ խնդրում ենք ակտիվացնել երկու գործոնով նույնականացումը:"
 
@@ -539,9 +515,6 @@ msgstr "Ֆայլի կցորդների թույլատրելի չափ"
 msgid "megabytes"
 msgstr "մեգաբայթեր"
 
-msgid "Enable HSTS preload"
-msgstr "Թույլատրել HSTS-ի նախաբեռնումը"
-
 msgid "Require two factor authentication"
 msgstr "Պահանջել երկու գործոնով նույնականացում"
 
@@ -557,6 +530,15 @@ msgstr "Այս գործառույթն արգելափակելու համար սա
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Օրերի քանակը մինչև օգտատերերին չկարդացված հաշվետվությունների մասին ծանուցելը"
+
+msgid "Disable the privacy panel"
+msgstr "Արգելափակել գաղտնիության կարգավորումների վահանակը"
+
+msgid "Enable custom privacy panel"
+msgstr "Ակտիվացնել անհատական գաղտնիության կարգավորումների վահանակը"
+
+msgid "Custom privacy panel"
+msgstr "Անհատական գաղտնիության կարգավորումների վահանակը"
 
 msgid "Enable custodian user role"
 msgstr "Ակտիվացնել վերահսկիչ օգտատիրոջ դերը"
@@ -845,6 +827,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Հարթակը պետք է հասանելի լինի հանրային IP հասցեի միջոցով, և ընտրված սերվերի հասցեն պետք է ունենա այդ հասցեին հղող DNS գրառում:"
 
+msgid "Proceed"
+msgstr "Շարունակել"
+
 msgid "Manual configuration"
 msgstr "Մանուալ կարգավորում"
 
@@ -862,15 +847,6 @@ msgstr "Ավտոմատ թարմացում"
 msgid "Tor Onion Service"
 msgstr "Tor Onion ծառայություն"
 
-msgid "Disable the privacy panel"
-msgstr "Արգելափակել գաղտնիության կարգավորումների վահանակը"
-
-msgid "Enable custom privacy panel"
-msgstr "Ակտիվացնել անհատական գաղտնիության կարգավորումների վահանակը"
-
-msgid "Custom privacy panel"
-msgstr "Անհատական գաղտնիության կարգավորումների վահանակը"
-
 msgid "Anonymize outgoing connections"
 msgstr "Անանուն դարձնել ելքային կապերը"
 
@@ -885,6 +861,11 @@ msgstr "Ազդարար"
 
 msgid "To"
 msgstr "Ում"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP էլեկտրոնային հասցե"
@@ -1066,9 +1047,6 @@ msgstr "Ակտիվացնել օգտագործման պայմանները"
 msgid "Title"
 msgstr "Վերնագիր"
 
-msgid "Send an account activation link to the user."
-msgstr "Հղում ուղարկել օգտատիրոջը հաշիվն ակտիվացնելու համար:"
-
 msgid "Public name"
 msgstr "Հանրային անուն"
 
@@ -1078,14 +1056,20 @@ msgstr "Ուղարկել վերականգնման հղում"
 msgid "Set password"
 msgstr "Սահմանել գաղտնաբառ"
 
-msgid "Disable two factor authentication"
-msgstr "Արգելափակել երկու գործոնով նույնականացումը"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Ձեր ընտրած գաղտնաբառը չափազանց թույլ է։ Գաղտնաբառը պետք է  կազմված լինի առնվազն 10 նիշից և պարունակի տարբեր նշաններ՝ ներառելյալ առնվազն մեկ փոքրատառ, մեկ մեծատառ, թվանշան և հատուկ նշան։"
 
 msgid "Force password change"
 msgstr "Պարտադրել գաղտնաբառի փոփոխություն"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Օգտվողը պետք է փոխի իր գաղտնաբառը հաջորդ անգամ մուտք գործելիս։"
+
+msgid "Disable two factor authentication"
+msgstr "Արգելափակել երկու գործոնով նույնականացումը"
 
 msgid "Language"
 msgstr "Լեզու"
@@ -1165,11 +1149,11 @@ msgstr "Գնահատել"
 msgid "Are you sure?"
 msgstr "Համոզվա՞ծ եք։"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Խնդրում ենք նկատի ունենալ, որ բոլոր հարակից տվյալները մշտապես կջնջվեն:"
-
 msgid "Close"
 msgstr "Փակել"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Խնդրում ենք նկատի ունենալ, որ բոլոր հարակից տվյալները մշտապես կջնջվեն:"
 
 msgid "Enable two factor authentication"
 msgstr "Ակտիվացնել երկու գործոնով նույնականացումը"
@@ -1250,17 +1234,26 @@ msgstr "Ռեսուրսը հասանելի է միայն Tor ցանցի միջո�
 msgid "The upload request exceeds the size limit"
 msgstr "Վերբեռնման հայտը գերազանցում է թույլատրելի չափը"
 
+msgid "Current password"
+msgstr "Ընթացիկ գաղտնաբառ"
+
+msgid "New password"
+msgstr "Նոր գաղտնաբառ"
+
+msgid "The new password must be different from the current one."
+msgstr "Նոր գաղտնաբառը պետք է տարբերվի ներկայինից։"
+
+msgid "Type your new password again"
+msgstr "Կրկին մուտքագրեք ձեր նոր գաղտնաբառը"
+
+msgid "The two passwords do not match"
+msgstr "Մուտքագրված գաղտնաբառերը չեն համընկնում"
+
 msgid "Validation of email address change in progress."
 msgstr "Էլեկտրոնային հասցեն փոխելու հայցի վավերացումն ընթացքի մեջ է:"
 
 msgid "Please check your inbox for further instructions."
 msgstr "Խնդրում ենք ստուգել ձեր էլ.փոստի մուտքային հասցեն հետագա գործողությունների համար:"
-
-msgid "Current password"
-msgstr "Ընթացիկ գաղտնաբառ"
-
-msgid "Old password confirmation required"
-msgstr "Պահանջվում է հին գաղտնաբառի հաստատում"
 
 msgid "Warning"
 msgstr "Նախազգուշացում"
@@ -1418,8 +1411,8 @@ msgstr "Եթե այն 24 ժամվա ընթացքում ակտիվացված չլ
 msgid "Sign up"
 msgstr "Գրանցվել"
 
-msgid "Domain"
-msgstr "Դոմեն"
+msgid "Site"
+msgstr "Կայք"
 
 msgid "Confirmation"
 msgstr "Վավերացում"

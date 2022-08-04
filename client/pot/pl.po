@@ -494,30 +494,6 @@ msgstr "Wybierz kontekst swojego zgłoszenia:"
 msgid "Before proceeding, please set a new password."
 msgstr "Przed przejściem dalej proszę ustawić nowe hasło."
 
-msgid "New password"
-msgstr "Nowe hasło"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Wybrane hasło jest zbyt słabe. Poprawne hasło powinno mieć przynajmniej 10 znaków i zawierać różne znaki, a przynajmniej jedną małą literę, jedną wielką literę, jedną cyfrę i znak specjalny."
-
-msgid "The new password must be different from the current one."
-msgstr "Nowe hasło musi być różne od poprzedniego"
-
-msgid "Type your new password again"
-msgstr "Wpisz jeszcze raz swoje nowe hasło"
-
-msgid "The two passwords do not match"
-msgstr "Te dwa hasła nie są takie same"
-
-msgid "The new password must differ from the previous."
-msgstr "Nowe hasło musi się różnić od poprzedniego."
-
-msgid "Proceed"
-msgstr "Kontynuuj"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Przed przejściem dalej proszę włączyć uwierzytelnianie dwuskładnikowe."
 
@@ -557,9 +533,6 @@ msgstr "Limit wielkości załączników"
 msgid "megabytes"
 msgstr "megabajty"
 
-msgid "Enable HSTS preload"
-msgstr "Włącz HSTS preloading"
-
 msgid "Require two factor authentication"
 msgstr "Wymagaj uwierzytelnienia dwuskładnikowego"
 
@@ -575,6 +548,15 @@ msgstr "Ustaw wartość na 0 by wyłączyć tę funkcję."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Liczba dni do wysłania powiadomień do użytkowników o nieprzeczytanych raportach"
+
+msgid "Disable the privacy panel"
+msgstr "Wyłącz panel prywatności"
+
+msgid "Enable custom privacy panel"
+msgstr "Włącz własne ustawienia prywatności"
+
+msgid "Custom privacy panel"
+msgstr "Własne ustawienia prywatności"
 
 msgid "Enable custodian user role"
 msgstr "Włącz rolę dozorcy"
@@ -863,6 +845,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Musi być możliwe dotarcie do platformy przez publiczny adres IP, a wybrana nazwa hosta musi mieć odpowiadający jej zapis DNS odnoszący się do tego adresu."
 
+msgid "Proceed"
+msgstr "Kontynuuj"
+
 msgid "Manual configuration"
 msgstr "Konfiguracja ręczna"
 
@@ -880,15 +865,6 @@ msgstr "Automatyczne odnawianie"
 msgid "Tor Onion Service"
 msgstr "Ukryta usługa Tor"
 
-msgid "Disable the privacy panel"
-msgstr "Wyłącz panel prywatności"
-
-msgid "Enable custom privacy panel"
-msgstr "Włącz własne ustawienia prywatności"
-
-msgid "Custom privacy panel"
-msgstr "Własne ustawienia prywatności"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonimizuj połączenia wychodzące"
 
@@ -903,6 +879,11 @@ msgstr "Sygnalista"
 
 msgid "To"
 msgstr "Do"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "Adres email SMTP"
@@ -1084,9 +1065,6 @@ msgstr "Włącz warunki świadczenia usług"
 msgid "Title"
 msgstr "Tytuł"
 
-msgid "Send an account activation link to the user."
-msgstr "Wyślij link aktywacyjny użytkownikowi."
-
 msgid "Public name"
 msgstr "Publiczna nazwa"
 
@@ -1096,14 +1074,20 @@ msgstr "Wyślij link resetu hasła"
 msgid "Set password"
 msgstr "Ustaw hasło"
 
-msgid "Disable two factor authentication"
-msgstr "Wyłącz uwierzytelnianie dwuskładnikowe"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Wybrane hasło jest zbyt słabe. Poprawne hasło powinno mieć przynajmniej 10 znaków i zawierać różne znaki, a przynajmniej jedną małą literę, jedną wielką literę, jedną cyfrę i znak specjalny."
 
 msgid "Force password change"
 msgstr "Wymuś zmianę hasła"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Użytkownik będzie musiał zmienić hasło przy następnym logowaniu."
+
+msgid "Disable two factor authentication"
+msgstr "Wyłącz uwierzytelnianie dwuskładnikowe"
 
 msgid "Language"
 msgstr "Język"
@@ -1183,11 +1167,11 @@ msgstr "Przypisz punkty"
 msgid "Are you sure?"
 msgstr "Jesteś pewien?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Zwróć uwagę na to, żę wszystkie powiązane dane zostaną nieodwracalnie usunięte."
-
 msgid "Close"
 msgstr "Zamknij"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Zwróć uwagę na to, żę wszystkie powiązane dane zostaną nieodwracalnie usunięte."
 
 msgid "Enable two factor authentication"
 msgstr "Włącz uwierzytelnianie dwuskładnikowe"
@@ -1268,17 +1252,26 @@ msgstr "Dostęp do zasobów możliwy tylko poprzez sieć Tor."
 msgid "The upload request exceeds the size limit"
 msgstr "Żądanie wysłania przekracza limit rozmiaru"
 
+msgid "Current password"
+msgstr "Obecne hasło"
+
+msgid "New password"
+msgstr "Nowe hasło"
+
+msgid "The new password must be different from the current one."
+msgstr "Nowe hasło musi być różne od poprzedniego"
+
+msgid "Type your new password again"
+msgstr "Wpisz jeszcze raz swoje nowe hasło"
+
+msgid "The two passwords do not match"
+msgstr "Te dwa hasła nie są takie same"
+
 msgid "Validation of email address change in progress."
 msgstr "Weryfikacja zmiany adresu email w toku."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Sprawdź skrzynkę odbiorczą dla dalszych instrukcji."
-
-msgid "Current password"
-msgstr "Obecne hasło"
-
-msgid "Old password confirmation required"
-msgstr "Wymagane potwierdzenie starego hasła"
 
 msgid "Warning"
 msgstr "Ostrzeżenie"
@@ -1436,8 +1429,8 @@ msgstr "Jeśli platforma nie zostanie aktywowana w ciągu 24 godzin to zostanie 
 msgid "Sign up"
 msgstr "Zarejestruj się"
 
-msgid "Domain"
-msgstr "Domena"
+msgid "Site"
+msgstr "Strona"
 
 msgid "Confirmation"
 msgstr "Potwierdzenie"

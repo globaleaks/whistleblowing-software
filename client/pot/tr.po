@@ -501,30 +501,6 @@ msgstr "Raporunuzun içeriğini seçin:"
 msgid "Before proceeding, please set a new password."
 msgstr "Devam etmeden önce, lütfen yeni bir parola ayarlayın."
 
-msgid "New password"
-msgstr "Yeni parola"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Yazılan parola oldukça zayıf. Geçerli bir parola en az 10 karakter uzunluğunda olmalı ve en az bir küçük harf, bir büyük harf, bir sayı ve bir özel karakter içermelidir."
-
-msgid "The new password must be different from the current one."
-msgstr "Yeni parola, geçerli paroladan farklı olmalıdır."
-
-msgid "Type your new password again"
-msgstr "Yeni şifrenizi tekrar girin"
-
-msgid "The two passwords do not match"
-msgstr "İki parola eşleşmiyor"
-
-msgid "The new password must differ from the previous."
-msgstr "Yeni parola öncekinden farklı olmalıdır."
-
-msgid "Proceed"
-msgstr "Devam Et"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Devam etmeden önce, lütfen iki aşamalı doğrulamayı etkinleştirin."
 
@@ -564,9 +540,6 @@ msgstr "Dosya ekleri için boyut sınırı"
 msgid "megabytes"
 msgstr "megabyte"
 
-msgid "Enable HSTS preload"
-msgstr "HSTS ön yüklemeyi etkinleştir"
-
 msgid "Require two factor authentication"
 msgstr "İki aşamalı doğrulama zorunlu olsun"
 
@@ -582,6 +555,15 @@ msgstr "Bu özelliği devre dışı bırakmak 0 olarak ayarlayın."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Okunmamış bildirimler için kullanıcıların bilgilendirilmesine kadar geçecek gün sayısı"
+
+msgid "Disable the privacy panel"
+msgstr "Gizlilik rozetini devre dışı bırak"
+
+msgid "Enable custom privacy panel"
+msgstr "Özel gizlilik panelini etkinleştir"
+
+msgid "Custom privacy panel"
+msgstr "Özel gizlilik paneli"
 
 msgid "Enable custodian user role"
 msgstr "Koruyucu kullanıcı rolünü etkinleştir"
@@ -870,6 +852,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Platform açık bir IP adresiyle erişilebilir olmalı ve seçilen sunucu adı, kendisine karşılık gelen, bu adrese işaret eden bir DNS kaydına sahip olmadır."
 
+msgid "Proceed"
+msgstr "Devam Et"
+
 msgid "Manual configuration"
 msgstr "Elle yapılandırma"
 
@@ -887,15 +872,6 @@ msgstr "Otomatik yenileme"
 msgid "Tor Onion Service"
 msgstr "Tor Onion Hizmeti"
 
-msgid "Disable the privacy panel"
-msgstr "Gizlilik rozetini devre dışı bırak"
-
-msgid "Enable custom privacy panel"
-msgstr "Özel gizlilik panelini etkinleştir"
-
-msgid "Custom privacy panel"
-msgstr "Özel gizlilik paneli"
-
 msgid "Anonymize outgoing connections"
 msgstr "Çıkış bağlantılarını anonimleştirme"
 
@@ -910,6 +886,11 @@ msgstr "İhbarcı"
 
 msgid "To"
 msgstr "Alıcı"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr "Varsayılan e-posta yapılandırması kullanılıyor. Lütfen özel bir e-posta sunucusu kullanmayı değerlendirin."
 
 msgid "SMTP email address"
 msgstr "SMTP e-posta adresi"
@@ -1091,9 +1072,6 @@ msgstr "Hizmet kullanım şartlarını etkinleştir"
 msgid "Title"
 msgstr "Başlık"
 
-msgid "Send an account activation link to the user."
-msgstr "Kullanıcıya hesap etkinleştirme bağlantısı gönder"
-
 msgid "Public name"
 msgstr "Açık isim"
 
@@ -1103,14 +1081,20 @@ msgstr "Sıfırlama bağlantısı gönder"
 msgid "Set password"
 msgstr "Parola ayarla"
 
-msgid "Disable two factor authentication"
-msgstr "İki aşamalı kimlik doğrulamayı etkisizleştir"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Yazılan parola oldukça zayıf. Geçerli bir parola en az 10 karakter uzunluğunda olmalı ve en az bir küçük harf, bir büyük harf, bir sayı ve bir özel karakter içermelidir."
 
 msgid "Force password change"
 msgstr "Şifre değişikliğine zorla"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Kullanıcı bir sonraki girişinde şifresini değiştirmeye zorlanacak."
+
+msgid "Disable two factor authentication"
+msgstr "İki aşamalı kimlik doğrulamayı etkisizleştir"
 
 msgid "Language"
 msgstr "Dil"
@@ -1190,11 +1174,11 @@ msgstr "Puanları tahsis et"
 msgid "Are you sure?"
 msgstr "Emin misiniz?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Lütfen ilişkili bütün verinin kalıcı olarak silineceğini unutmayın."
-
 msgid "Close"
 msgstr "Kapat"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Lütfen ilişkili bütün verinin kalıcı olarak silineceğini unutmayın."
 
 msgid "Enable two factor authentication"
 msgstr "İki aşamalı kimlik doğrulamayı etkinleştirin"
@@ -1275,17 +1259,26 @@ msgstr "Kaynak sadece Tor ağı içerisinden erişilebilir"
 msgid "The upload request exceeds the size limit"
 msgstr "Yükleme talebi boyut sınırlarını aşıyor"
 
+msgid "Current password"
+msgstr "Şimdiki parola"
+
+msgid "New password"
+msgstr "Yeni parola"
+
+msgid "The new password must be different from the current one."
+msgstr "Yeni parola, geçerli paroladan farklı olmalıdır."
+
+msgid "Type your new password again"
+msgstr "Yeni şifrenizi tekrar girin"
+
+msgid "The two passwords do not match"
+msgstr "İki parola eşleşmiyor"
+
 msgid "Validation of email address change in progress."
 msgstr "E-posta adresi değişikliği doğrulaması devam ediyor. "
 
 msgid "Please check your inbox for further instructions."
 msgstr "Daha fazla yönerge için lütfen gelen kutunuzu kontrol edin."
-
-msgid "Current password"
-msgstr "Şimdiki parola"
-
-msgid "Old password confirmation required"
-msgstr "Eski parola doğrulaması gerekli"
 
 msgid "Warning"
 msgstr "Uyarı"
@@ -1443,8 +1436,8 @@ msgstr "Platform 24 saat içerisinde etkinleştirilmediği durumda otomaitk olar
 msgid "Sign up"
 msgstr "Kayıt ol"
 
-msgid "Domain"
-msgstr "Alan Adı"
+msgid "Site"
+msgstr "Site"
 
 msgid "Confirmation"
 msgstr "Doğrulama"

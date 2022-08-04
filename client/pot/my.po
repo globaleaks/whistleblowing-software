@@ -475,30 +475,6 @@ msgstr "သင့်အစီရင်ခံစာ၏ အကြောင်း�
 msgid "Before proceeding, please set a new password."
 msgstr "ဆက်မလုပ်မီ ကျေးဇူးပြု၍ စကားဝှက်အသစ် သတ်မှတ်ပါ။ "
 
-msgid "New password"
-msgstr "စကား၀ှက်အသစ်"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "ရွေးချယ်ထားသော စကားဝှက်သည် အလွန်အားနည်းနေသည်။ တရားဝင် စကားဝှက်သည် အနည်းဆုံး စာလုံးရေ 10 လုံးရှိသင့်ပြီး အနည်းဆုံး စာလုံးအသေး၊ စာလုံးအကြီး၊ နံပါတ်နှင့် အထူးအက္ခရာများ ပါဝင်သော အက္ခရာအမျိုးမျိုး ပါဝင်သင့်သည်။"
-
-msgid "The new password must be different from the current one."
-msgstr "စကားဝှက်အသစ်သည် လက်ရှိ စကားဝှက်နှင့် ကွဲပြားရမည်။"
-
-msgid "Type your new password again"
-msgstr "သင်၏ စကားဝှက်အသစ်ကို ထပ်ရိုက်ပါ"
-
-msgid "The two passwords do not match"
-msgstr "စကားဝှက်နှစ်ခုသည် မတူညီပါ"
-
-msgid "The new password must differ from the previous."
-msgstr "စကားဝှက်အသစ်သည် ယခင်စကားဝှက်နှင့် မတူညီရပါ။ "
-
-msgid "Proceed"
-msgstr "ဆက်လုပ်မည်"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "ဆက်မလုပ်မီ ကျေးဇူးပြု၍ အဆင့်နှစ်ဆင့်ဖြင့် စစ်မှန်ကြောင်းသက်သေပြခြင်းကို ဖွင့်ပါ။"
 
@@ -538,9 +514,6 @@ msgstr "ပူးတွဲဖိုင်များအတွက် အရွ�
 msgid "megabytes"
 msgstr "မီဂါဘိုက်"
 
-msgid "Enable HSTS preload"
-msgstr "HSTS ကြိုတင်ခြင်း ဖွင့်ပါ"
-
 msgid "Require two factor authentication"
 msgstr "အဆင့်နှစ်ဆင့်ဖြင့် စစ်မှန်ကြောင်းသက်သေပြခြင်းကို လိုအပ်သည်"
 
@@ -556,6 +529,15 @@ msgstr "ဤလုပ်ဆောင်ချက်ကို ပိတ်ရန�
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "သုံးစွဲသူများအား မဖတ်ရသေးသော အစီရင်ခံစာများကို အကြောင်းမကြားမီ ရက်အရေအတွက်"
+
+msgid "Disable the privacy panel"
+msgstr "ကိုယ်ရေး အချက်အလက် မျက်နှာပြင်ကို ပိတ်ပါ"
+
+msgid "Enable custom privacy panel"
+msgstr "စိတ်ကြိုက် ကိုယ်ရေး အချက်အလက် မျက်နှာပြင်ကို ဖွင့်ပါ"
+
+msgid "Custom privacy panel"
+msgstr "စိတ်ကြိုက် ကိုယ်ရေး အချက်အလက် မျက်နှာပြင်"
 
 msgid "Enable custodian user role"
 msgstr "အုပ်ထိန်းသူအဖြစ် အသုံးပြုသူ အခန်းကဏ္ဍကို  ဖွင့်ပါ"
@@ -844,6 +826,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "ပလက်ဖောင်းကို အများပြည်သူဆိုင်ရာ IP လိပ်စာမှတစ်ဆင့် ရောက်ရှိနိုင်ပြီး ရွေးချယ်ထားသော အထိုင်နေရာအမည်တွင် ထိုလိပ်စာကို ရည်ညွှန်းသည့် သက်ဆိုင်ရာ DNS မှတ်တမ်း ရှိရမည်။"
 
+msgid "Proceed"
+msgstr "ဆက်လုပ်မည်"
+
 msgid "Manual configuration"
 msgstr "ကိုယ်တိုင် အစိတ်အပိုင်းများဖွဲ့စည်းပုံ"
 
@@ -861,15 +846,6 @@ msgstr "အော်တို သက်တမ်းတိုးခြင်း"
 msgid "Tor Onion Service"
 msgstr "Tor Onion ဝန်ဆောင်မှု"
 
-msgid "Disable the privacy panel"
-msgstr "ကိုယ်ရေး အချက်အလက် မျက်နှာပြင်ကို ပိတ်ပါ"
-
-msgid "Enable custom privacy panel"
-msgstr "စိတ်ကြိုက် ကိုယ်ရေး အချက်အလက် မျက်နှာပြင်ကို ဖွင့်ပါ"
-
-msgid "Custom privacy panel"
-msgstr "စိတ်ကြိုက် ကိုယ်ရေး အချက်အလက် မျက်နှာပြင်"
-
 msgid "Anonymize outgoing connections"
 msgstr " အထွက် ဆက်သွယ်မှုများအတွက် အမည်မသိပါစေနှင့်"
 
@@ -884,6 +860,11 @@ msgstr "သတင်းပေးသူ"
 
 msgid "To"
 msgstr "သို့"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP အီးမေးလ်လိပ်စာ"
@@ -1065,9 +1046,6 @@ msgstr "ဝန်ဆောင်မှု စည်းမျဉ်းမျာ�
 msgid "Title"
 msgstr "ခေါင်းစဉ်"
 
-msgid "Send an account activation link to the user."
-msgstr "အသုံးပြုသူထံ အကောင့် သက်ဝင်လုပ်ဆောင်မှု လင့် ပို့ပါ။"
-
 msgid "Public name"
 msgstr "အများဆိုင် အမည်"
 
@@ -1077,14 +1055,20 @@ msgstr "ပြန်လည်သတ်မှတ်ရန် လင့် ပိ�
 msgid "Set password"
 msgstr "စကားဝှက် သတ်မှတ်ပါ"
 
-msgid "Disable two factor authentication"
-msgstr "အဆင့်နှစ်ဆင့်ဖြင့် စစ်မှန်ကြောင်းသက်သေပြခြင်းကို ပိတ်ပါ"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "ရွေးချယ်ထားသော စကားဝှက်သည် အလွန်အားနည်းနေသည်။ တရားဝင် စကားဝှက်သည် အနည်းဆုံး စာလုံးရေ 10 လုံးရှိသင့်ပြီး အနည်းဆုံး စာလုံးအသေး၊ စာလုံးအကြီး၊ နံပါတ်နှင့် အထူးအက္ခရာများ ပါဝင်သော အက္ခရာအမျိုးမျိုး ပါဝင်သင့်သည်။"
 
 msgid "Force password change"
 msgstr "စကားဝှက်ကို အတင်းအကျပ် ပြောင်းလဲပါ"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "အသုံးပြုသူ နောက်တစ်ကြိမ် လော့အင်ဝင်ချိန်တွင် ၎င်း၏ စကားဝှက်ကို အတင်းအကျပ် ပြောင်းလဲခိုင်းပါမည်။"
+
+msgid "Disable two factor authentication"
+msgstr "အဆင့်နှစ်ဆင့်ဖြင့် စစ်မှန်ကြောင်းသက်သေပြခြင်းကို ပိတ်ပါ"
 
 msgid "Language"
 msgstr "ဘာသာစကား"
@@ -1164,11 +1148,11 @@ msgstr "ရမှတ်များကို သတ်မှတ်ပါ"
 msgid "Are you sure?"
 msgstr "သေချာပါသလား။"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "ကျေးဇူးပြု၍ ဆက်နွှယ်သော အချက်အလက်အားလုံးကို အပြီးတိုင် ဖျက်ပစ်မည်ဖြစ်ကြောင်း သတိပြုပါ။"
-
 msgid "Close"
 msgstr "ပိတ်မည်"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "ကျေးဇူးပြု၍ ဆက်နွှယ်သော အချက်အလက်အားလုံးကို အပြီးတိုင် ဖျက်ပစ်မည်ဖြစ်ကြောင်း သတိပြုပါ။"
 
 msgid "Enable two factor authentication"
 msgstr "အဆင့်နှစ်ဆင့်ဖြင့် စစ်မှန်ကြောင်းသက်သေပြခြင်းကို ဖွင့်ပါ"
@@ -1249,17 +1233,26 @@ msgstr "ရင်းမြစ်ကို Tor ကွန်ရက်မှတစ�
 msgid "The upload request exceeds the size limit"
 msgstr "အပ်လုဒ် တောင်းဆိုမှုသည် အရွယ်အစား ကန့်သတ်ချက်ထက် ကျော်လွန်နေသည်"
 
+msgid "Current password"
+msgstr "လက်ရှိ စကားဝှက်"
+
+msgid "New password"
+msgstr "စကား၀ှက်အသစ်"
+
+msgid "The new password must be different from the current one."
+msgstr "စကားဝှက်အသစ်သည် လက်ရှိ စကားဝှက်နှင့် ကွဲပြားရမည်။"
+
+msgid "Type your new password again"
+msgstr "သင်၏ စကားဝှက်အသစ်ကို ထပ်ရိုက်ပါ"
+
+msgid "The two passwords do not match"
+msgstr "စကားဝှက်နှစ်ခုသည် မတူညီပါ"
+
 msgid "Validation of email address change in progress."
 msgstr "အီးမေးလ်လိပ်စာ အပြောင်းအလဲ အတည်ပြုနေသည်။"
 
 msgid "Please check your inbox for further instructions."
 msgstr "ထပ်မံ လမ်းညွှန်ချက်များအတွက် ကျေးဇူးပြု၍ သင်၏ စာတိုက်ကို စစ်ဆေးပါ။"
-
-msgid "Current password"
-msgstr "လက်ရှိ စကားဝှက်"
-
-msgid "Old password confirmation required"
-msgstr "စကားဝှက်အဟောင်းကို အတည်ပြုရန် လိုအပ်သည်"
 
 msgid "Warning"
 msgstr "သတိပေးချက်"
@@ -1417,8 +1410,8 @@ msgstr "၂၄ နာရီအတွင်း သက်ဝင်မလုပ်�
 msgid "Sign up"
 msgstr "အကောင့်ဖွင့်ရန်"
 
-msgid "Domain"
-msgstr "ဒိုမိန်း"
+msgid "Site"
+msgstr "ဝက်ဘ်ဆိုက်"
 
 msgid "Confirmation"
 msgstr "အတည်ပြုရန်"

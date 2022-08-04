@@ -491,30 +491,6 @@ msgstr "בחר את ההקשר של הדוח שלך:"
 msgid "Before proceeding, please set a new password."
 msgstr "לפני שממשיכים, אנא קבע/י סיסמה חדשה"
 
-msgid "New password"
-msgstr "סיסמה חדשה"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "הסיסמה הנבחרת חלשה מדי. סיסמה תקפה אמורה להיות באורך 10 תווים לפחות ולהכיל מגוון תווים כולל לפחות אות קטנה, אות גדולה, מספר ותו מיוחד."
-
-msgid "The new password must be different from the current one."
-msgstr "הסיסמה החדשה צריכה להיות שונה מהנוכחית"
-
-msgid "Type your new password again"
-msgstr "הקלד את הסיסמה החדשה שוב"
-
-msgid "The two passwords do not match"
-msgstr "שתי הסיסמאות אינן תואמות"
-
-msgid "The new password must differ from the previous."
-msgstr "הסיסמה החדשה אמורה להיות שונה מהקודמת"
-
-msgid "Proceed"
-msgstr "המשך"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "לפני שממשיכים, אנא תאפשר/י אימות דו-שלבי"
 
@@ -554,9 +530,6 @@ msgstr "גודל גבול עבור קבצים מצורפים"
 msgid "megabytes"
 msgstr ""
 
-msgid "Enable HSTS preload"
-msgstr "אפשר קדם־טעינה HSTS"
-
 msgid "Require two factor authentication"
 msgstr "דרוש אימות דו־שלבי"
 
@@ -572,6 +545,15 @@ msgstr "קבע את הערך אל 0 והשבת מאפיין זה."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr ""
+
+msgid "Disable the privacy panel"
+msgstr "בטל תג הפרטיות"
+
+msgid "Enable custom privacy panel"
+msgstr "אפשר תג פרטיות מותאם אישית"
+
+msgid "Custom privacy panel"
+msgstr "לוח פרטיות מותאם אישית"
 
 msgid "Enable custodian user role"
 msgstr ""
@@ -860,6 +842,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr ""
 
+msgid "Proceed"
+msgstr "המשך"
+
 msgid "Manual configuration"
 msgstr "תצורה ידנית"
 
@@ -877,15 +862,6 @@ msgstr "חידוש אוטומטי"
 msgid "Tor Onion Service"
 msgstr "שירות בצל של Tor"
 
-msgid "Disable the privacy panel"
-msgstr "בטל תג הפרטיות"
-
-msgid "Enable custom privacy panel"
-msgstr "אפשר תג פרטיות מותאם אישית"
-
-msgid "Custom privacy panel"
-msgstr "לוח פרטיות מותאם אישית"
-
 msgid "Anonymize outgoing connections"
 msgstr ""
 
@@ -900,6 +876,11 @@ msgstr "חושף שחיתות"
 
 msgid "To"
 msgstr "אל"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "כתובת דוא״ל SMTP"
@@ -1081,9 +1062,6 @@ msgstr "אפשר תנאיי שירות"
 msgid "Title"
 msgstr "כותרת"
 
-msgid "Send an account activation link to the user."
-msgstr "שלח קישור שיפעול חשבון אל המשתמש."
-
 msgid "Public name"
 msgstr "שם ציבורי"
 
@@ -1093,14 +1071,20 @@ msgstr "שלח קישור איפוס"
 msgid "Set password"
 msgstr "קבע סיסמה"
 
-msgid "Disable two factor authentication"
-msgstr "השבת אימות דו־שלבי"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "הסיסמה הנבחרת חלשה מדי. סיסמה תקפה אמורה להיות באורך 10 תווים לפחות ולהכיל מגוון תווים כולל לפחות אות קטנה, אות גדולה, מספר ותו מיוחד."
 
 msgid "Force password change"
 msgstr "כפה שינוי סיסמה"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "המשתמש ייאלץ לשנות את הסיסמה שלו בכניסה הבאה."
+
+msgid "Disable two factor authentication"
+msgstr "השבת אימות דו־שלבי"
 
 msgid "Language"
 msgstr "שפה"
@@ -1180,11 +1164,11 @@ msgstr "הקצאת נקודות ציון"
 msgid "Are you sure?"
 msgstr "האם אתה בטוח?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr ""
-
 msgid "Close"
 msgstr "סגור"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr ""
 
 msgid "Enable two factor authentication"
 msgstr "אפשר אימות דו־שלבי"
@@ -1265,17 +1249,26 @@ msgstr "משאב ניתן לגשת רק בתוך רשת Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "בקשת ההעלאה עולה על מגבלות הגודל"
 
+msgid "Current password"
+msgstr "סיסמה נוכחית"
+
+msgid "New password"
+msgstr "סיסמה חדשה"
+
+msgid "The new password must be different from the current one."
+msgstr "הסיסמה החדשה צריכה להיות שונה מהנוכחית"
+
+msgid "Type your new password again"
+msgstr "הקלד את הסיסמה החדשה שוב"
+
+msgid "The two passwords do not match"
+msgstr "שתי הסיסמאות אינן תואמות"
+
 msgid "Validation of email address change in progress."
 msgstr ""
 
 msgid "Please check your inbox for further instructions."
 msgstr ""
-
-msgid "Current password"
-msgstr "סיסמה נוכחית"
-
-msgid "Old password confirmation required"
-msgstr "אישור סיסמה ישנה נדרש"
 
 msgid "Warning"
 msgstr "אזהרה"
@@ -1433,8 +1426,8 @@ msgstr ""
 msgid "Sign up"
 msgstr "הירשם"
 
-msgid "Domain"
-msgstr "תחום"
+msgid "Site"
+msgstr "אתר"
 
 msgid "Confirmation"
 msgstr "אישור"

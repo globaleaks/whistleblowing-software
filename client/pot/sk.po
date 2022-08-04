@@ -484,30 +484,6 @@ msgstr "Vyberte obsah správy:"
 msgid "Before proceeding, please set a new password."
 msgstr "Než budete pokračovať, nastavte prosím nové heslo."
 
-msgid "New password"
-msgstr "Nové heslo"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Zvolené heslo je príliš slabé. Heslo by malo mať aspoň 10 znakov a malo by obsahovať malé písmeno, veľké písmeno, číslo a špeciálny znak."
-
-msgid "The new password must be different from the current one."
-msgstr "Nové heslo sa musí líšiť od aktuálneho."
-
-msgid "Type your new password again"
-msgstr "Zadajte ešte raz Vaše nové heslo"
-
-msgid "The two passwords do not match"
-msgstr "Heslá sa nezhodujú"
-
-msgid "The new password must differ from the previous."
-msgstr "Nové heslo musí byť odlišné od predchádzajúceho."
-
-msgid "Proceed"
-msgstr "Pokračovať"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Pred pokračovaním povoľte dvojfaktorové overenie."
 
@@ -547,9 +523,6 @@ msgstr "Limit veľkosti pre prílohy"
 msgid "megabytes"
 msgstr "MB"
 
-msgid "Enable HSTS preload"
-msgstr "Povoliť predbežné načítanie HSTS"
-
 msgid "Require two factor authentication"
 msgstr "Vyžaduje dvojfaktorové overenie"
 
@@ -565,6 +538,15 @@ msgstr "Nastavte hodnotu na 0, ak chcete túto funkciu zakázať."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Počet dní do oznámenia neprečítaných správ používateľom"
+
+msgid "Disable the privacy panel"
+msgstr "Zakázať osobitý panel"
+
+msgid "Enable custom privacy panel"
+msgstr "Povoliť používateľský panel"
+
+msgid "Custom privacy panel"
+msgstr "Vlastný používateľský panel "
 
 msgid "Enable custodian user role"
 msgstr " Povoliť úlohu depozitára"
@@ -853,6 +835,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Platforma musí byť dostupná prostredníctvom verejnej IP adresy a zvolený názov hostiteľa musí mať zodpovedajúci záznam DNS, ktorý odkazuje na túto adresu."
 
+msgid "Proceed"
+msgstr "Pokračovať"
+
 msgid "Manual configuration"
 msgstr "Manuálna konfigurácia"
 
@@ -870,15 +855,6 @@ msgstr "Automatické obnovenie"
 msgid "Tor Onion Service"
 msgstr "Služba Tor Onion"
 
-msgid "Disable the privacy panel"
-msgstr "Zakázať osobitý panel"
-
-msgid "Enable custom privacy panel"
-msgstr "Povoliť používateľský panel"
-
-msgid "Custom privacy panel"
-msgstr "Vlastný používateľský panel "
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonymizácia odchádzajúcich pripojení"
 
@@ -893,6 +869,11 @@ msgstr "Oznamovateľ"
 
 msgid "To"
 msgstr "Komu"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "Emailová adresa pre SMTP server"
@@ -1074,9 +1055,6 @@ msgstr "Povoliť zmluvné podmienky"
 msgid "Title"
 msgstr "Názov"
 
-msgid "Send an account activation link to the user."
-msgstr "Poslať užívateľovi odkaz k aktivácii účtu."
-
 msgid "Public name"
 msgstr "Verejné meno"
 
@@ -1086,14 +1064,20 @@ msgstr "Odoslať odkaz k resetovaniu"
 msgid "Set password"
 msgstr "Nastaviť heslo"
 
-msgid "Disable two factor authentication"
-msgstr "Zakázať dvojfaktorové overovanie"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Zvolené heslo je príliš slabé. Heslo by malo mať aspoň 10 znakov a malo by obsahovať malé písmeno, veľké písmeno, číslo a špeciálny znak."
 
 msgid "Force password change"
 msgstr "Vynútiť zmenu hesla"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Používateľ bude nútený zmeniť svoje heslo pri ďalšom prihlásení."
+
+msgid "Disable two factor authentication"
+msgstr "Zakázať dvojfaktorové overovanie"
 
 msgid "Language"
 msgstr "Jazyk"
@@ -1173,11 +1157,11 @@ msgstr "Prideliť bodové skóre"
 msgid "Are you sure?"
 msgstr "Ste si istý?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Upozorňujeme, že všetky súvisiace údaje budú natrvalo odstránené."
-
 msgid "Close"
 msgstr "Zatvoriť"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Upozorňujeme, že všetky súvisiace údaje budú natrvalo odstránené."
 
 msgid "Enable two factor authentication"
 msgstr "Povoliť dvojfaktorovú autorizáciu"
@@ -1258,17 +1242,26 @@ msgstr "Zdroj je prístupný iba v rámci siete Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Žiadosť na upload prekročila veľkostné limity"
 
+msgid "Current password"
+msgstr "Aktuálne heslo"
+
+msgid "New password"
+msgstr "Nové heslo"
+
+msgid "The new password must be different from the current one."
+msgstr "Nové heslo sa musí líšiť od aktuálneho."
+
+msgid "Type your new password again"
+msgstr "Zadajte ešte raz Vaše nové heslo"
+
+msgid "The two passwords do not match"
+msgstr "Heslá sa nezhodujú"
+
 msgid "Validation of email address change in progress."
 msgstr "Prebieha overovanie zmeny emailovej adresy."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Pre ďalší postup skontrolujte, prosím, doručenú poštu."
-
-msgid "Current password"
-msgstr "Aktuálne heslo"
-
-msgid "Old password confirmation required"
-msgstr "Vyžaduje sa potvrdenie pomocou starého hesla"
 
 msgid "Warning"
 msgstr "Varovanie"
@@ -1426,8 +1419,8 @@ msgstr "Pokiaľ nedôjde k aktivácii do 24 hodín, bude platforma automaticky o
 msgid "Sign up"
 msgstr "Zaregistrovať sa"
 
-msgid "Domain"
-msgstr "Doména"
+msgid "Site"
+msgstr "Stránka"
 
 msgid "Confirmation"
 msgstr "Potvrdenie"

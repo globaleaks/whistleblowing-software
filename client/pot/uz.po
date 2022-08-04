@@ -476,30 +476,6 @@ msgstr "Xabaringiz kanalini tanlang:"
 msgid "Before proceeding, please set a new password."
 msgstr "Davom etishdan oldin yangi parol belgilang."
 
-msgid "New password"
-msgstr "Yangi parol"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Tanlangan parol juda zaif. Ishonchli parol kamida 10 ta kichik, katta, raqamli va maxsus belgilardan iborat boʻlsin."
-
-msgid "The new password must be different from the current one."
-msgstr "Yangi parol joriy paroldan farqli boʻlishi lozim."
-
-msgid "Type your new password again"
-msgstr "Yangi parolni qayta kiriting"
-
-msgid "The two passwords do not match"
-msgstr "Parollar bir xil emas"
-
-msgid "The new password must differ from the previous."
-msgstr "Yangi parol avvalgisidan farqli boʻlishi lozim."
-
-msgid "Proceed"
-msgstr "Davom ettirish"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Davom etishdan oldin ikki bosqichli hisob tekshiruvini yoqing"
 
@@ -539,9 +515,6 @@ msgstr "Fayl biriktirmalari hajmi limiti"
 msgid "megabytes"
 msgstr "megabayt"
 
-msgid "Enable HSTS preload"
-msgstr "HSTS oldindan yuklanishini yoqish"
-
 msgid "Require two factor authentication"
 msgstr "Ikki bosqichli hisob tekshiruvini talab qilish"
 
@@ -557,6 +530,15 @@ msgstr "Bu funksiya yoqilmasligi uchun 0 qiymatini belgilang."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Foydalanuvchilarga oʻqilmagan anonim xabarlar haqida necha kundan keyin xabar qilinsin"
+
+msgid "Disable the privacy panel"
+msgstr "Maxfiylik panelini faolsizlantirish"
+
+msgid "Enable custom privacy panel"
+msgstr "Maxsus maxfiylik panelini yoqish"
+
+msgid "Custom privacy panel"
+msgstr "Maxsus maxfiylik paneli"
 
 msgid "Enable custodian user role"
 msgstr "Himoyachi foydalanuvchi vakolatini yoqish"
@@ -845,6 +827,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Platforma ommaviy IP manzil orqali ochilishi va tanlangan host nomida shu manzilga yoʻnaltirilgan tegishli DNS qaydlari boʻlishi lozim."
 
+msgid "Proceed"
+msgstr "Davom ettirish"
+
 msgid "Manual configuration"
 msgstr "Mustaqil konfiguratsiya"
 
@@ -862,15 +847,6 @@ msgstr "Avto-yangilanishi"
 msgid "Tor Onion Service"
 msgstr "Tor Onion xizmati"
 
-msgid "Disable the privacy panel"
-msgstr "Maxfiylik panelini faolsizlantirish"
-
-msgid "Enable custom privacy panel"
-msgstr "Maxsus maxfiylik panelini yoqish"
-
-msgid "Custom privacy panel"
-msgstr "Maxsus maxfiylik paneli"
-
 msgid "Anonymize outgoing connections"
 msgstr "Chiquvchi ulanishlarni anonimlash"
 
@@ -885,6 +861,11 @@ msgstr "Oshkor qiluvchi"
 
 msgid "To"
 msgstr "Kimga:"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP email manzili"
@@ -1066,9 +1047,6 @@ msgstr "Xizmat shartlarini yoqish"
 msgid "Title"
 msgstr "Sarlavha"
 
-msgid "Send an account activation link to the user."
-msgstr "Foydalanuvchiga hisobini aktivatsiya qilish havolasini yuborish."
-
 msgid "Public name"
 msgstr "Rasmiy nomi"
 
@@ -1078,14 +1056,20 @@ msgstr "Qayta tiklash havolasini yuborish"
 msgid "Set password"
 msgstr "Parol belgilash"
 
-msgid "Disable two factor authentication"
-msgstr "Ikki bosqichli hisob tekshiruvini faolsizlantirish"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Tanlangan parol juda zaif. Ishonchli parol kamida 10 ta kichik, katta, raqamli va maxsus belgilardan iborat boʻlsin."
 
 msgid "Force password change"
 msgstr "Parol majburiy oʻzgartirilsin"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Foydalanuvchi keyingi safar kirganda parolini almashtirishga majbur boʻladi."
+
+msgid "Disable two factor authentication"
+msgstr "Ikki bosqichli hisob tekshiruvini faolsizlantirish"
 
 msgid "Language"
 msgstr "Til"
@@ -1165,11 +1149,11 @@ msgstr "Ballarni belgilash"
 msgid "Are you sure?"
 msgstr "Ishonchingiz komilmi?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Tegishli axborot butunlay oʻchib ketishini unutmang."
-
 msgid "Close"
 msgstr "Yopish"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Tegishli axborot butunlay oʻchib ketishini unutmang."
 
 msgid "Enable two factor authentication"
 msgstr "Ikki bosqichli hisob tekshiruvini yoqish"
@@ -1250,17 +1234,26 @@ msgstr "Manba faqatgina Tor tarmoq ulanishi orqali ochiladi"
 msgid "The upload request exceeds the size limit"
 msgstr "Yuklash soʻrovi belgilangan limitdan ortiq"
 
+msgid "Current password"
+msgstr "Joriy parol"
+
+msgid "New password"
+msgstr "Yangi parol"
+
+msgid "The new password must be different from the current one."
+msgstr "Yangi parol joriy paroldan farqli boʻlishi lozim."
+
+msgid "Type your new password again"
+msgstr "Yangi parolni qayta kiriting"
+
+msgid "The two passwords do not match"
+msgstr "Parollar bir xil emas"
+
 msgid "Validation of email address change in progress."
 msgstr "Email manzil oʻzgarishi tekshirilmoqda."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Keyingi qadamlar email manzilingizga yuborildi."
-
-msgid "Current password"
-msgstr "Joriy parol"
-
-msgid "Old password confirmation required"
-msgstr "Eski parolni tasdiqlash lozim"
 
 msgid "Warning"
 msgstr "Diqqat"
@@ -1418,8 +1411,8 @@ msgstr "Agar platforma 24 soat ichida aktivatsiya qilinmasa, u avtomatik oʻchir
 msgid "Sign up"
 msgstr "Roʻyxatdan oʻtish"
 
-msgid "Domain"
-msgstr "Domen"
+msgid "Site"
+msgstr ""
 
 msgid "Confirmation"
 msgstr "Tasdiqlash"

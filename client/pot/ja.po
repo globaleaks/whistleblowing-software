@@ -479,30 +479,6 @@ msgstr "報告のコンテキストを選択してください:"
 msgid "Before proceeding, please set a new password."
 msgstr "次に進む前に、新しいパスワードを設定してください。"
 
-msgid "New password"
-msgstr "新しいパスワード"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "選択したパスワードは弱すぎます。 有効なパスワードは10文字以上で、少なくとも小文字、大文字、数字、記号を含める必要があります。"
-
-msgid "The new password must be different from the current one."
-msgstr "新しいパスワードは、現在のものと異なっている必要があります。"
-
-msgid "Type your new password again"
-msgstr "新しいパスワードを再入力してください"
-
-msgid "The two passwords do not match"
-msgstr "二つのパスワードが一致しません"
-
-msgid "The new password must differ from the previous."
-msgstr "新しいパスワードは、前のものから変える必要があります。"
-
-msgid "Proceed"
-msgstr "続行"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "次に進む前に、2要素認証を有効にしてください。"
 
@@ -542,9 +518,6 @@ msgstr "添付ファイルの制限サイズ"
 msgid "megabytes"
 msgstr "メガバイトで"
 
-msgid "Enable HSTS preload"
-msgstr "HSTS プリロードを有効にする"
-
 msgid "Require two factor authentication"
 msgstr "2要素認証が必要です"
 
@@ -560,6 +533,15 @@ msgstr "この機能を無効にするには、値を0に設定します。"
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "未読の報告をユーザーに通知するまでの日数"
+
+msgid "Disable the privacy panel"
+msgstr "プライバシー・バッジを無効にする"
+
+msgid "Enable custom privacy panel"
+msgstr "カスタムのプライバシー・バッジを有効にする"
+
+msgid "Custom privacy panel"
+msgstr "プライバシー・バッジのカスタム"
 
 msgid "Enable custodian user role"
 msgstr "管理人のユーザー役割を有効にする"
@@ -848,6 +830,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "プラットフォームはパブリック IP アドレスでアクセス可能な必要があり、選択されたホスト名は、そのアドレスを参照する、対応する DNS レコードが必要です。"
 
+msgid "Proceed"
+msgstr "続行"
+
 msgid "Manual configuration"
 msgstr "手動設定"
 
@@ -865,15 +850,6 @@ msgstr "自動更新"
 msgid "Tor Onion Service"
 msgstr "Tor Onion サービス"
 
-msgid "Disable the privacy panel"
-msgstr "プライバシー・バッジを無効にする"
-
-msgid "Enable custom privacy panel"
-msgstr "カスタムのプライバシー・バッジを有効にする"
-
-msgid "Custom privacy panel"
-msgstr "プライバシー・バッジのカスタム"
-
 msgid "Anonymize outgoing connections"
 msgstr "発信の接続を匿名化"
 
@@ -888,6 +864,11 @@ msgstr "内部告発者"
 
 msgid "To"
 msgstr "宛先"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP メールアドレス"
@@ -1069,9 +1050,6 @@ msgstr "利用規約を有効にする"
 msgid "Title"
 msgstr "タイトル"
 
-msgid "Send an account activation link to the user."
-msgstr "アカウントの有効化リンクをユーザーに送信します。"
-
 msgid "Public name"
 msgstr "公開名"
 
@@ -1081,14 +1059,20 @@ msgstr "リセットリンクを送信"
 msgid "Set password"
 msgstr "パスワードを設定"
 
-msgid "Disable two factor authentication"
-msgstr "2要素認証を無効にする"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "選択したパスワードは弱すぎます。 有効なパスワードは10文字以上で、少なくとも小文字、大文字、数字、記号を含める必要があります。"
 
 msgid "Force password change"
 msgstr "強制的にパスワードを変更する"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "次回ログイン時に、受信者はパスワードを変更することを強制されます。"
+
+msgid "Disable two factor authentication"
+msgstr "2要素認証を無効にする"
 
 msgid "Language"
 msgstr "言語"
@@ -1168,11 +1152,11 @@ msgstr "スコアポイントを割り当て"
 msgid "Are you sure?"
 msgstr "よろしいですか?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "すべての関連データが完全に失われますのでご注意ください。"
-
 msgid "Close"
 msgstr "閉じる"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "すべての関連データが完全に失われますのでご注意ください。"
 
 msgid "Enable two factor authentication"
 msgstr "2要素認証を有効にする"
@@ -1253,17 +1237,26 @@ msgstr "リソースはTorネットワーク内でのみアクセスできます
 msgid "The upload request exceeds the size limit"
 msgstr "アップロードリクエストがサイズ制限を超過しました"
 
+msgid "Current password"
+msgstr "現在のパスワード"
+
+msgid "New password"
+msgstr "新しいパスワード"
+
+msgid "The new password must be different from the current one."
+msgstr "新しいパスワードは、現在のものと異なっている必要があります。"
+
+msgid "Type your new password again"
+msgstr "新しいパスワードを再入力してください"
+
+msgid "The two passwords do not match"
+msgstr "二つのパスワードが一致しません"
+
 msgid "Validation of email address change in progress."
 msgstr "メールアドレス変更の検証を処理しています。"
 
 msgid "Please check your inbox for further instructions."
 msgstr "詳しい手順については、受信トレイを確認してください。"
-
-msgid "Current password"
-msgstr "現在のパスワード"
-
-msgid "Old password confirmation required"
-msgstr "旧パスワードの確認が必要"
 
 msgid "Warning"
 msgstr "警告"
@@ -1421,8 +1414,8 @@ msgstr "24時間以内に有効にしない場合、プラットフォームは�
 msgid "Sign up"
 msgstr "登録"
 
-msgid "Domain"
-msgstr "ドメイン"
+msgid "Site"
+msgstr "サイト"
 
 msgid "Confirmation"
 msgstr "確認"

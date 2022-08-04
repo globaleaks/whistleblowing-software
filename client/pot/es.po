@@ -513,30 +513,6 @@ msgstr "Selecciona el contexto de tu reporte: "
 msgid "Before proceeding, please set a new password."
 msgstr "Antes de continuar, por favor establece una nueva contraseña."
 
-msgid "New password"
-msgstr "Nueva contraseña"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "La contraseña elegida es muy débil. Una contraseña valida debería contener al menos 10 caracteres y una variedad que incluya al menos minúsculas, mayusculas, un numero y un símbolo. (*!,-.$%)"
-
-msgid "The new password must be different from the current one."
-msgstr "La nueva contraseña tiene que ser distinta de la actual."
-
-msgid "Type your new password again"
-msgstr "Escribe otra vez tu nueva contraseña"
-
-msgid "The two passwords do not match"
-msgstr "Las dos contraseñas introducidas no coinciden"
-
-msgid "The new password must differ from the previous."
-msgstr "La nueva contraseña tiene que ser diferente de la anterior. "
-
-msgid "Proceed"
-msgstr "Proceder"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Antes de continuar, activa el doble factor de autenticación, por favor."
 
@@ -576,9 +552,6 @@ msgstr "Límite de tamaño para ficheros adjuntos"
 msgid "megabytes"
 msgstr "megabytes"
 
-msgid "Enable HSTS preload"
-msgstr "Permitir una precarga HSTS"
-
 msgid "Require two factor authentication"
 msgstr "Requerir autenticación de doble factor"
 
@@ -594,6 +567,15 @@ msgstr "Fija el valor a 0 para desactivar esta funcionalidad."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Días de plazo para notificar a usuarios acerca de reportes no leídos."
+
+msgid "Disable the privacy panel"
+msgstr "Deshabilitar el panel de privacidad"
+
+msgid "Enable custom privacy panel"
+msgstr "Habilitar panel de privacidad personalizado"
+
+msgid "Custom privacy panel"
+msgstr "Panel de privacidad personalizado"
 
 msgid "Enable custodian user role"
 msgstr "Habilitar el rol de usuario Custodio"
@@ -882,6 +864,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "La plataforma debe ser accesible a través de una dirección IP pública, y el nombre de equipo seleccionado debe tener un registro DNS correspondiente que referencie esa dirección."
 
+msgid "Proceed"
+msgstr "Proceder"
+
 msgid "Manual configuration"
 msgstr "Configuración manual"
 
@@ -899,15 +884,6 @@ msgstr "Auto-renovación"
 msgid "Tor Onion Service"
 msgstr "Servicio Tor Onion"
 
-msgid "Disable the privacy panel"
-msgstr "Deshabilitar el panel de privacidad"
-
-msgid "Enable custom privacy panel"
-msgstr "Habilitar panel de privacidad personalizado"
-
-msgid "Custom privacy panel"
-msgstr "Panel de privacidad personalizado"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonimizar las conexiones salientes"
 
@@ -922,6 +898,11 @@ msgstr "Alertador"
 
 msgid "To"
 msgstr "Para"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "Dirección de correo electrónico SMTP"
@@ -1103,9 +1084,6 @@ msgstr "Activar términos del servicio"
 msgid "Title"
 msgstr "Título"
 
-msgid "Send an account activation link to the user."
-msgstr "Enviar enlace de activación de la cuenta al usuario."
-
 msgid "Public name"
 msgstr "Nombre público"
 
@@ -1115,14 +1093,20 @@ msgstr "Enviar enlace de restablecimiento"
 msgid "Set password"
 msgstr "Establecer contraseña"
 
-msgid "Disable two factor authentication"
-msgstr "Desactivar la autenticación de doble factor"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "La contraseña elegida es muy débil. Una contraseña valida debería contener al menos 10 caracteres y una variedad que incluya al menos minúsculas, mayusculas, un numero y un símbolo. (*!,-.$%)"
 
 msgid "Force password change"
 msgstr "Forzar cambio de contraseña"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "El usuario será forzado a cambiar su contraseña en el próximo inicio de sesión."
+
+msgid "Disable two factor authentication"
+msgstr "Desactivar la autenticación de doble factor"
 
 msgid "Language"
 msgstr "Idioma"
@@ -1202,11 +1186,11 @@ msgstr "Asignar puntos a la puntuación"
 msgid "Are you sure?"
 msgstr "¿Estas seguro?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Por favor entiende que todos los datos asociados serán eliminados definitivamente."
-
 msgid "Close"
 msgstr "Cerrar"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Por favor entiende que todos los datos asociados serán eliminados definitivamente."
 
 msgid "Enable two factor authentication"
 msgstr "Habilitar autentificación de doble factor"
@@ -1287,17 +1271,26 @@ msgstr "Sólo se puede acceder a este recurso a través de la red Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "La petición de subida excede el límite de volumen de datos"
 
+msgid "Current password"
+msgstr "Contraseña actual"
+
+msgid "New password"
+msgstr "Nueva contraseña"
+
+msgid "The new password must be different from the current one."
+msgstr "La nueva contraseña tiene que ser distinta de la actual."
+
+msgid "Type your new password again"
+msgstr "Escribe otra vez tu nueva contraseña"
+
+msgid "The two passwords do not match"
+msgstr "Las dos contraseñas introducidas no coinciden"
+
 msgid "Validation of email address change in progress."
 msgstr "El proceso de validación de la dirección de correo está en progreso."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Por favor, comprueba tu correo para más instrucciones."
-
-msgid "Current password"
-msgstr "Contraseña actual"
-
-msgid "Old password confirmation required"
-msgstr "Se requiere confirmación de la anterior contraseña"
 
 msgid "Warning"
 msgstr "Advertencia"
@@ -1455,8 +1448,8 @@ msgstr "Si no se activa en las próximas 24 horas, la plataforma se borrará aut
 msgid "Sign up"
 msgstr "Registrarte"
 
-msgid "Domain"
-msgstr "Dominio"
+msgid "Site"
+msgstr "Sitio"
 
 msgid "Confirmation"
 msgstr "Confirmación"

@@ -475,30 +475,6 @@ msgstr "የሪፖርትዎትን አገባበ ነገር ይምረጡ"
 msgid "Before proceeding, please set a new password."
 msgstr "ከመቀጠልዎ በፊት አዲስ የይለፍ ቃል ያዘጋጁ"
 
-msgid "New password"
-msgstr "አዲስ የይለፍ ቃል "
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "የተመረጠው የይለፍ ቃል በጣም ደካማ ነው፡፡ ተቀባይነት ያለው የይለፍ ቃል ቢያንስ\n10 ቁምፊ እርዝመት እንዲኖረው እና የተለያዩ ቁምፊዎችን\nትንሹን እና ትልቁን የእንግሊዝኛ ፊደላት፣ ቁጥር እና አንድ ልዩ ቁምፊ መያዝ አለበት፡፡"
-
-msgid "The new password must be different from the current one."
-msgstr "አዲሱ የይለፍ ቃል አሁን ካለው የተለየ መሆን አለበት፡፡"
-
-msgid "Type your new password again"
-msgstr "አዲሱን የይለፍ ቃል እንደገና ይተይቡ"
-
-msgid "The two passwords do not match"
-msgstr "ሁለቱ የይለፍ ቃሎች አንድ አይደሉም"
-
-msgid "The new password must differ from the previous."
-msgstr "አዲሱ የይለፍ ቃል ከበፊተኛው የተለየ መሆን አለበት፡፡"
-
-msgid "Proceed"
-msgstr "ቀጥል "
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "ከመቀጠልዎ በፊት ባለሁለት ደረጃ ማረጋገጫ ያንቁ"
 
@@ -538,9 +514,6 @@ msgstr "ለፋይል አባሪዎች የመጠን ገደብ"
 msgid "megabytes"
 msgstr "ሜጋባይትስ"
 
-msgid "Enable HSTS preload"
-msgstr "የኤችቲኤስ ቅድመጫን ያንቁ"
-
 msgid "Require two factor authentication"
 msgstr "ባለ ሁለት ደረጃ ማረጋገጫ ይጠይቁ"
 
@@ -556,6 +529,15 @@ msgstr "ይህንን ባህርይ ለማቦዘን ዋጋውን 0 ያድርጉ"
 
 msgid "Number of days till notifying unread reports to users"
 msgstr ""
+
+msgid "Disable the privacy panel"
+msgstr "የግላዊነት ፓነሉን ያቦዝኑ"
+
+msgid "Enable custom privacy panel"
+msgstr "ብጁ የግላዊነት ፓነል ያዘጋጁ"
+
+msgid "Custom privacy panel"
+msgstr "ብጁ የግል መረጃ ጥበቃ"
 
 msgid "Enable custodian user role"
 msgstr "የሞግዚት ተጠቃሚ ሚናን ያንቁ"
@@ -844,6 +826,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "የመሳርያ ስርኣቱ በክፍት አይፒ አድረሻ መገኘት መቻል አለበት\n\nየአስተናጋጁ ስም አድራሻውን የሚያጣቅስ ተዛማጅ የዲኤንኤስ መዝገብ ሊኖረው ይገባል"
 
+msgid "Proceed"
+msgstr "ቀጥል "
+
 msgid "Manual configuration"
 msgstr "በእጅ ማዋቀር"
 
@@ -861,15 +846,6 @@ msgstr "ራስአድስ"
 msgid "Tor Onion Service"
 msgstr "ቶር ኦኒየን አገልግሎት"
 
-msgid "Disable the privacy panel"
-msgstr "የግላዊነት ፓነሉን ያቦዝኑ"
-
-msgid "Enable custom privacy panel"
-msgstr "ብጁ የግላዊነት ፓነል ያዘጋጁ"
-
-msgid "Custom privacy panel"
-msgstr "ብጁ የግል መረጃ ጥበቃ"
-
 msgid "Anonymize outgoing connections"
 msgstr "የሚወጡ ግንኙነቶችን ስም ሰውር"
 
@@ -884,6 +860,11 @@ msgstr "መረጃ ሰጪ"
 
 msgid "To"
 msgstr "ለ"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "የኤስኤምቲፕ ኢሜል አድራሻ"
@@ -1065,9 +1046,6 @@ msgstr "የአገልግሎት ደንቦችን አንቃ"
 msgid "Title"
 msgstr "ርእስ "
 
-msgid "Send an account activation link to the user."
-msgstr "ለተጠቃሚዉ የመለያ ማንቂያ አገናኝ ላክ"
-
 msgid "Public name"
 msgstr "ይፋ ስም"
 
@@ -1077,14 +1055,20 @@ msgstr "እንደገና ማስጀመርያ አገናኝ ላክ"
 msgid "Set password"
 msgstr "የይለፍ ቃል ያዘጋጁ"
 
-msgid "Disable two factor authentication"
-msgstr "ሁለት ደረጃ ማረጋገጫን ያቦዝኑ"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "የተመረጠው የይለፍ ቃል በጣም ደካማ ነው፡፡ ተቀባይነት ያለው የይለፍ ቃል ቢያንስ\n10 ቁምፊ እርዝመት እንዲኖረው እና የተለያዩ ቁምፊዎችን\nትንሹን እና ትልቁን የእንግሊዝኛ ፊደላት፣ ቁጥር እና አንድ ልዩ ቁምፊ መያዝ አለበት፡፡"
 
 msgid "Force password change"
 msgstr "የይለፍ ቃል ለውጥ አስገድድ"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "ተጠቃሚው ቀጥሎ ሲገባ የይለፍ ቃል ለመቀየር ይገደዳል"
+
+msgid "Disable two factor authentication"
+msgstr "ሁለት ደረጃ ማረጋገጫን ያቦዝኑ"
 
 msgid "Language"
 msgstr "ቋንቋ "
@@ -1164,11 +1148,11 @@ msgstr "የውጤት ነጥቦች መድብ"
 msgid "Are you sure?"
 msgstr "እርግጠኛ ነዎት?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "የተያያዙ ውሂቦች በሙሉ በቋሚነት እንደሚጠፉ ልብ በል፡፡"
-
 msgid "Close"
 msgstr "ዝጋ  "
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "የተያያዙ ውሂቦች በሙሉ በቋሚነት እንደሚጠፉ ልብ በል፡፡"
 
 msgid "Enable two factor authentication"
 msgstr "ሁለት ደረጃ ማረጋገጫ አንቁ"
@@ -1249,17 +1233,26 @@ msgstr "ንብረቱ መዳረሻ በቶር ኔትዎርክ በኩል ብቻ ነ
 msgid "The upload request exceeds the size limit"
 msgstr "የጭነት ጥያቄው ከተፈቀደው ወሰን ያልፋል"
 
+msgid "Current password"
+msgstr "የአሁን ይለፍ ቃል"
+
+msgid "New password"
+msgstr "አዲስ የይለፍ ቃል "
+
+msgid "The new password must be different from the current one."
+msgstr "አዲሱ የይለፍ ቃል አሁን ካለው የተለየ መሆን አለበት፡፡"
+
+msgid "Type your new password again"
+msgstr "አዲሱን የይለፍ ቃል እንደገና ይተይቡ"
+
+msgid "The two passwords do not match"
+msgstr "ሁለቱ የይለፍ ቃሎች አንድ አይደሉም"
+
 msgid "Validation of email address change in progress."
 msgstr "የኢሜል አድራሻ ለውጥ ማረጋገጫ በሂደት ላይ"
 
 msgid "Please check your inbox for further instructions."
 msgstr "ለተጨማሪ መመርያ የገቢ መልክት ሳጥነዎን እዩ"
-
-msgid "Current password"
-msgstr "የአሁን ይለፍ ቃል"
-
-msgid "Old password confirmation required"
-msgstr "የአሮጌ ይለፍ ቃል ማረጋገጫ ያስፈልጋል"
 
 msgid "Warning"
 msgstr "ማስጠንቀቂያ"
@@ -1417,8 +1410,8 @@ msgstr "በ24 ሰኣት ውስጥ ካልነቃ የመሳርያ ስርኣቱ በ�
 msgid "Sign up"
 msgstr "ተመዝገቡ"
 
-msgid "Domain"
-msgstr "ጎራ"
+msgid "Site"
+msgstr "ጣቢያ"
 
 msgid "Confirmation"
 msgstr "ማረጋገጫ"

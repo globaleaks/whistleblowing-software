@@ -3,7 +3,7 @@
 # 5d82173c4528651ffb3192cfbc43353e_22888c7, 2015
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # Charles Peltier <charles@cl-info.fr>, 2015
-# Ettore Atalan <atalanttore@googlemail.com>, 2014-2021
+# Ettore Atalan <atalanttore@googlemail.com>, 2014-2022
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
@@ -52,7 +52,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>, 2014-2022\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -520,30 +520,6 @@ msgstr "Wählen Sie den Kontext Ihres Berichts aus:"
 msgid "Before proceeding, please set a new password."
 msgstr "Bevor Sie fortfahren, legen Sie bitte ein neues Passwort fest."
 
-msgid "New password"
-msgstr "Neues Passwort"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Das ausgewählte Passwort ist zu schwach. Ein gültiges Passwort sollte zumindest 10 Zeichen lang sein und verschiedene Zeichen enthalten, zumindest einen Kleinbuchstaben, einen Großbuchstaben, eine Nummer und ein Sonderzeichen."
-
-msgid "The new password must be different from the current one."
-msgstr "Das neue Passwort muss anders als das aktuelle sein."
-
-msgid "Type your new password again"
-msgstr "Geben Sie Ihr neues Passwort erneut ein"
-
-msgid "The two passwords do not match"
-msgstr "Die zwei Passwörter stimmen nicht überein"
-
-msgid "The new password must differ from the previous."
-msgstr "Das neue Passwort muss sich vom bisherigen unterscheiden."
-
-msgid "Proceed"
-msgstr "Fortfahren"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Bevor Sie fortfahren, aktivieren Sie bitte die Zwei-Faktor-Authentifizierung."
 
@@ -583,9 +559,6 @@ msgstr "Größenbegrenzung für Dateianhänge"
 msgid "megabytes"
 msgstr "Megabyte"
 
-msgid "Enable HSTS preload"
-msgstr "HSTS-Vorladen aktivieren"
-
 msgid "Require two factor authentication"
 msgstr "Zwei-Faktor-Authentifizierung verlangen"
 
@@ -601,6 +574,15 @@ msgstr "Den Wert auf 0 setzen um die Funktion zu deaktivieren."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Anzahl der Tage bis zur Benachrichtigung der Benutzer über ungelesene Berichte"
+
+msgid "Disable the privacy panel"
+msgstr "Datenschutzpanel deaktivieren"
+
+msgid "Enable custom privacy panel"
+msgstr "Benutzerdefiniertes Datenschutzpanel aktivieren"
+
+msgid "Custom privacy panel"
+msgstr "Benutzerdefiniertes Datenschutzpanel"
 
 msgid "Enable custodian user role"
 msgstr "Benutzerrolle Verwalter aktivieren"
@@ -889,6 +871,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Die Plattform muss über eine öffentliche IP-Adresse erreichbar sein und der ausgewählte Hostname muss einen entsprechenden DNS-Eintrag haben, der auf diese Adresse verweist."
 
+msgid "Proceed"
+msgstr "Fortfahren"
+
 msgid "Manual configuration"
 msgstr "Manuelle Konfiguration"
 
@@ -906,15 +891,6 @@ msgstr "Automatische Erneuerung"
 msgid "Tor Onion Service"
 msgstr "Tor-Onion-Dienst"
 
-msgid "Disable the privacy panel"
-msgstr "Datenschutzpanel deaktivieren"
-
-msgid "Enable custom privacy panel"
-msgstr "Benutzerdefiniertes Datenschutzpanel aktivieren"
-
-msgid "Custom privacy panel"
-msgstr "Benutzerdefiniertes Datenschutzpanel"
-
 msgid "Anonymize outgoing connections"
 msgstr "Ausgehende Verbindungen anonymisieren"
 
@@ -929,6 +905,11 @@ msgstr "Hinweisgeber"
 
 msgid "To"
 msgstr "An "
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr "Standard-Mail-Konfiguration in Gebrauch. Bitte erwägen Sie die Verwendung eines privaten Mailservers."
 
 msgid "SMTP email address"
 msgstr "SMTP-E-Mail-Adresse"
@@ -1110,9 +1091,6 @@ msgstr "Nutzungsbedingungen aktivieren"
 msgid "Title"
 msgstr "Titel"
 
-msgid "Send an account activation link to the user."
-msgstr "Aktivierungslink senden zum Nutzer senden"
-
 msgid "Public name"
 msgstr "Öffentlicher Name"
 
@@ -1122,14 +1100,20 @@ msgstr "Rücksetzungslink senden"
 msgid "Set password"
 msgstr "Passwort festlegen"
 
-msgid "Disable two factor authentication"
-msgstr "Zwei-Faktor-Authentifizierung deaktivieren"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Das ausgewählte Passwort ist zu schwach. Ein gültiges Passwort sollte zumindest 10 Zeichen lang sein und verschiedene Zeichen enthalten, zumindest einen Kleinbuchstaben, einen Großbuchstaben, eine Nummer und ein Sonderzeichen."
 
 msgid "Force password change"
 msgstr "Passwortänderung erzwingen"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Der Benutzer wird gezwungen, das Passwort bei der nächsten Anmeldung zu ändern."
+
+msgid "Disable two factor authentication"
+msgstr "Zwei-Faktor-Authentifizierung deaktivieren"
 
 msgid "Language"
 msgstr "Sprache"
@@ -1209,11 +1193,11 @@ msgstr "Vergeben Sie Punkte"
 msgid "Are you sure?"
 msgstr "Sind Sie sicher?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Bitte beachten Sie, dass alle zugehörigen Daten unwiederbringlich verloren gehen."
-
 msgid "Close"
 msgstr "Schließen"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Bitte beachten Sie, dass alle zugehörigen Daten unwiederbringlich verloren gehen."
 
 msgid "Enable two factor authentication"
 msgstr "Zwei-Faktor-Authentifizierung aktivieren"
@@ -1294,17 +1278,26 @@ msgstr "Ressource kann ausschließlich über das Tor-Netzwerk aufgerufen werden"
 msgid "The upload request exceeds the size limit"
 msgstr "Der Upload überschreitet das eingestellte MB Limit."
 
+msgid "Current password"
+msgstr "Aktuelles Passwort"
+
+msgid "New password"
+msgstr "Neues Passwort"
+
+msgid "The new password must be different from the current one."
+msgstr "Das neue Passwort muss anders als das aktuelle sein."
+
+msgid "Type your new password again"
+msgstr "Geben Sie Ihr neues Passwort erneut ein"
+
+msgid "The two passwords do not match"
+msgstr "Die zwei Passwörter stimmen nicht überein"
+
 msgid "Validation of email address change in progress."
 msgstr "Validierung der E-Mail-Adressänderung in Arbeit."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Bitte prüfen Sie Ihren Posteingang auf weitere Anweisungen."
-
-msgid "Current password"
-msgstr "Aktuelles Passwort"
-
-msgid "Old password confirmation required"
-msgstr "Bestätigung des alten Passworts erforderlich"
 
 msgid "Warning"
 msgstr "Warnung"
@@ -1462,8 +1455,8 @@ msgstr "Falls nicht innerhalb von 24 Stunden aktiviert, wird die Plattform autom
 msgid "Sign up"
 msgstr "Registrieren"
 
-msgid "Domain"
-msgstr "Domain"
+msgid "Site"
+msgstr "Webseite"
 
 msgid "Confirmation"
 msgstr "Bestätigung"

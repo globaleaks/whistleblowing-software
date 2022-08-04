@@ -477,30 +477,6 @@ msgstr "ជ្រើសរើសបរិបទនៃរបាយការណ៍
 msgid "Before proceeding, please set a new password."
 msgstr "មុនពេលដំណើរការ​ សូមកំណត់ពាក្យសម្ងាត់ថ្មីមួយ។"
 
-msgid "New password"
-msgstr "ពាក្យ​សម្ងាត់​ថ្មី"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "ពាក្យសម្ងាត់នេះ ខ្សោយពេក។ ពាក្យសម្ងាត់ត្រឹមត្រូវ គួរមានយ៉ាងហោចណាស់​ ១០ ខ្ទង់ និងមានអក្សរចម្រុះដូចជា អក្សរតូច អក្សរធំ លេខ និងសញ្ញា។"
-
-msgid "The new password must be different from the current one."
-msgstr "ពាក្យសម្ងាត់ថ្មីត្រូវតែខុសពីពាក្យសម្ងាត់បច្ចុប្បន្ន។"
-
-msgid "Type your new password again"
-msgstr "វាយបញ្ចូលពាក្យសម្ងាត់ថ្មីរបស់អ្នកម្តងទៀត"
-
-msgid "The two passwords do not match"
-msgstr "ពាក្យសម្ងាត់ទាំងពីរមិនត្រូវគ្នា"
-
-msgid "The new password must differ from the previous."
-msgstr "ពាក្យសម្ងាត់ថ្មីត្រូវតែខុសពីមុន។"
-
-msgid "Proceed"
-msgstr "ដំណើរការ"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "មុនពេលដំណើរការ​ សូមបើកការផ្ទៀងផ្ទាត់ពីរកត្តា។"
 
@@ -540,9 +516,6 @@ msgstr "កំណត់ទំហំសម្រាប់ឯកសារភ្ជ
 msgid "megabytes"
 msgstr "មេកាបៃ"
 
-msgid "Enable HSTS preload"
-msgstr "បើកការផ្ទុកមុន HSTS"
-
 msgid "Require two factor authentication"
 msgstr "ទាមទារការផ្ទៀងផ្ទាត់ពីរកត្តា"
 
@@ -558,6 +531,15 @@ msgstr "កំណត់តម្លៃទៅ ០ ដើម្បីបិទម�
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "រយៈពេលដែលនៅសល់សម្រាប់ជូនដំណឹងពីរបាយការណ៍មិនទាន់អានទៅកាន់អ្នកប្រើប្រាស់"
+
+msgid "Disable the privacy panel"
+msgstr "បិទផ្ទាំងឯកជន"
+
+msgid "Enable custom privacy panel"
+msgstr "បើកកំណត់ផ្ទាំងឯកជន"
+
+msgid "Custom privacy panel"
+msgstr "កំណត់ផ្ទាំងឯកជន"
 
 msgid "Enable custodian user role"
 msgstr "បើកតួនាទីជាអ្នកប្រើប្រាស់ដល់អ្នកថែរក្សា"
@@ -846,6 +828,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "វេទិកាត្រូវតែចូលតាមអាសយដ្ឋាន IP សាធារណៈ ហើយឈ្មោះម៉ាស៊ីនដែលបានជ្រើសរើស ត្រូវមានកំណត់ត្រា​ DNS ត្រូវគ្នានឹងអាសយដ្ឋាននោះ។"
 
+msgid "Proceed"
+msgstr "ដំណើរការ"
+
 msgid "Manual configuration"
 msgstr "ការកំណត់ដោយខ្លួនឯង"
 
@@ -863,15 +848,6 @@ msgstr "បន្តដោយស្វ័យប្រវត្តិ"
 msgid "Tor Onion Service"
 msgstr "សេវាកម្ម Tor Onion"
 
-msgid "Disable the privacy panel"
-msgstr "បិទផ្ទាំងឯកជន"
-
-msgid "Enable custom privacy panel"
-msgstr "បើកកំណត់ផ្ទាំងឯកជន"
-
-msgid "Custom privacy panel"
-msgstr "កំណត់ផ្ទាំងឯកជន"
-
 msgid "Anonymize outgoing connections"
 msgstr "ការតភ្ជាប់ចេញក្រៅដោយអនាមិកភាព"
 
@@ -886,6 +862,11 @@ msgstr "អ្នករាយការណ៍"
 
 msgid "To"
 msgstr "ទៅកាន់"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "អាសយដ្ឋានអុីមែល SMTP"
@@ -1067,9 +1048,6 @@ msgstr "បើកលក្ខខណ្ឌនៃសេវាកម្ម"
 msgid "Title"
 msgstr "ចំណង​ជើង"
 
-msgid "Send an account activation link to the user."
-msgstr "ផ្ញើតំណភ្ជាប់សម្រាប់បើកដំណើរការគណនីទៅកាន់អ្នកប្រើប្រាស់។"
-
 msgid "Public name"
 msgstr "ឈ្មោះសាធារណៈ"
 
@@ -1079,14 +1057,20 @@ msgstr "ផ្ញើតំណភ្ជាប់កំណត់សារឡើង
 msgid "Set password"
 msgstr "កំណត់ពាក្យសម្ងាត់"
 
-msgid "Disable two factor authentication"
-msgstr "បិទការផ្ទៀងផ្ទាត់ពីរកត្តា"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "ពាក្យសម្ងាត់នេះ ខ្សោយពេក។ ពាក្យសម្ងាត់ត្រឹមត្រូវ គួរមានយ៉ាងហោចណាស់​ ១០ ខ្ទង់ និងមានអក្សរចម្រុះដូចជា អក្សរតូច អក្សរធំ លេខ និងសញ្ញា។"
 
 msgid "Force password change"
 msgstr "បង្ខំអោយផ្លាស់ប្តូរពាក្យសម្ងាត់"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "អ្នកប្រើប្រាស់នឹងត្រូវបង្ខំអោយផ្លាស់ប្តូរពាក្យសម្ងាត់ពេលចូលប្រើប្រាស់លើកក្រោយ។"
+
+msgid "Disable two factor authentication"
+msgstr "បិទការផ្ទៀងផ្ទាត់ពីរកត្តា"
 
 msgid "Language"
 msgstr "ភាសា"
@@ -1166,11 +1150,11 @@ msgstr "កំណត់ពិន្ទុ"
 msgid "Are you sure?"
 msgstr "តើ​អ្នក​ប្រាកដ​ឬ?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "សូមចំណាំថា រាល់ទិន្នន័យដែលពាក់ព័ន្ធ នឹងត្រូវលុបចោលជារៀងរហូត។"
-
 msgid "Close"
 msgstr "បិទ"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "សូមចំណាំថា រាល់ទិន្នន័យដែលពាក់ព័ន្ធ នឹងត្រូវលុបចោលជារៀងរហូត។"
 
 msgid "Enable two factor authentication"
 msgstr "បើកការផ្ទៀងផ្ទាត់ពីរកត្តា"
@@ -1251,17 +1235,26 @@ msgstr "ធនធានអាចចូលប្រើប្រាស់បាន
 msgid "The upload request exceeds the size limit"
 msgstr "ការស្នើសុំបញ្ជូន​ លើសពីទំហំកំណត់"
 
+msgid "Current password"
+msgstr "ពាក្យសម្ងាត់បច្ចុប្បន្ន"
+
+msgid "New password"
+msgstr "ពាក្យ​សម្ងាត់​ថ្មី"
+
+msgid "The new password must be different from the current one."
+msgstr "ពាក្យសម្ងាត់ថ្មីត្រូវតែខុសពីពាក្យសម្ងាត់បច្ចុប្បន្ន។"
+
+msgid "Type your new password again"
+msgstr "វាយបញ្ចូលពាក្យសម្ងាត់ថ្មីរបស់អ្នកម្តងទៀត"
+
+msgid "The two passwords do not match"
+msgstr "ពាក្យសម្ងាត់ទាំងពីរមិនត្រូវគ្នា"
+
 msgid "Validation of email address change in progress."
 msgstr "សុពលភាពនៃការផ្លាស់ប្តូរអាសយដ្ឋានអុីមែលកំពុងដំណើរការ"
 
 msgid "Please check your inbox for further instructions."
 msgstr "សូមពិនិត្យប្រអប់សំបុត្ររបស់អ្នកសម្រាប់ការណែនាំបន្ថែម"
-
-msgid "Current password"
-msgstr "ពាក្យសម្ងាត់បច្ចុប្បន្ន"
-
-msgid "Old password confirmation required"
-msgstr "ទាមទារការបញ្ជាក់ពាក្យសម្ងាត់ចាស់"
 
 msgid "Warning"
 msgstr "ប្រយ័ត្ន"
@@ -1419,8 +1412,8 @@ msgstr "បើមិនដាក់ដំណើរការក្នុងពេ
 msgid "Sign up"
 msgstr "ចុះឈ្មោះ"
 
-msgid "Domain"
-msgstr "ឈ្មោះវេបសាយ"
+msgid "Site"
+msgstr "តំបន់​បណ្ដាញ"
 
 msgid "Confirmation"
 msgstr "ការបញ្ជាក់"

@@ -478,30 +478,6 @@ msgstr ""
 msgid "Before proceeding, please set a new password."
 msgstr "Antes de continuar, estableza un novo contrasinal."
 
-msgid "New password"
-msgstr "Novo contrasinal"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr ""
-
-msgid "The new password must be different from the current one."
-msgstr "O novo contrasinal debe ser diferente do actual."
-
-msgid "Type your new password again"
-msgstr "Escriba outra vez o novo contrasinal  "
-
-msgid "The two passwords do not match"
-msgstr "Os dous contrasinais non coinciden"
-
-msgid "The new password must differ from the previous."
-msgstr ""
-
-msgid "Proceed"
-msgstr "Proceder"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr ""
 
@@ -541,9 +517,6 @@ msgstr "Límite de tamaño para ficheiros anexados"
 msgid "megabytes"
 msgstr ""
 
-msgid "Enable HSTS preload"
-msgstr ""
-
 msgid "Require two factor authentication"
 msgstr ""
 
@@ -559,6 +532,15 @@ msgstr "Establece o valor en 0 para desactivar esta función."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr ""
+
+msgid "Disable the privacy panel"
+msgstr "Desactivar o panel de privacidade"
+
+msgid "Enable custom privacy panel"
+msgstr "Habilita o panel de privacidade personalizado"
+
+msgid "Custom privacy panel"
+msgstr "Panel de privacidade personalizado"
 
 msgid "Enable custodian user role"
 msgstr ""
@@ -847,6 +829,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr ""
 
+msgid "Proceed"
+msgstr "Proceder"
+
 msgid "Manual configuration"
 msgstr "Configuración manual"
 
@@ -864,15 +849,6 @@ msgstr "Renovación automática"
 msgid "Tor Onion Service"
 msgstr "Servizo de Tor Onion"
 
-msgid "Disable the privacy panel"
-msgstr "Desactivar o panel de privacidade"
-
-msgid "Enable custom privacy panel"
-msgstr "Habilita o panel de privacidade personalizado"
-
-msgid "Custom privacy panel"
-msgstr "Panel de privacidade personalizado"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonimizar conexións saíntes"
 
@@ -887,6 +863,11 @@ msgstr "Denunciante"
 
 msgid "To"
 msgstr "Para"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "Enderezo de correo electrónico SMTP"
@@ -1068,9 +1049,6 @@ msgstr "Habilitar os termos do servizo"
 msgid "Title"
 msgstr "Título"
 
-msgid "Send an account activation link to the user."
-msgstr ""
-
 msgid "Public name"
 msgstr ""
 
@@ -1080,7 +1058,10 @@ msgstr ""
 msgid "Set password"
 msgstr "Establecer contrasinal"
 
-msgid "Disable two factor authentication"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
 msgstr ""
 
 msgid "Force password change"
@@ -1088,6 +1069,9 @@ msgstr "Forzar o cambio de contrasinal"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "O usuario verase obrigado a cambiar o seu contrasinal o próximo inicio de sesión."
+
+msgid "Disable two factor authentication"
+msgstr ""
 
 msgid "Language"
 msgstr "Lingua"
@@ -1167,11 +1151,11 @@ msgstr "Asignar puntos"
 msgid "Are you sure?"
 msgstr "Estás seguro?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr ""
-
 msgid "Close"
 msgstr "Pechar"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr ""
 
 msgid "Enable two factor authentication"
 msgstr "Activar a autenticación de dous factores"
@@ -1252,17 +1236,26 @@ msgstr "Só se pode acceder ao recurso a través da rede Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "A solicitude de carga supera o límite de tamaño"
 
+msgid "Current password"
+msgstr "Contrasinal actual"
+
+msgid "New password"
+msgstr "Novo contrasinal"
+
+msgid "The new password must be different from the current one."
+msgstr "O novo contrasinal debe ser diferente do actual."
+
+msgid "Type your new password again"
+msgstr "Escriba outra vez o novo contrasinal  "
+
+msgid "The two passwords do not match"
+msgstr "Os dous contrasinais non coinciden"
+
 msgid "Validation of email address change in progress."
 msgstr "Validación da modificación do enderezo de correo electrónico en progreso."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Comproba a túa caixa de entrada para obter máis instrucións."
-
-msgid "Current password"
-msgstr "Contrasinal actual"
-
-msgid "Old password confirmation required"
-msgstr "Necesítase unha confirmación de contrasinal antiga"
 
 msgid "Warning"
 msgstr "Aviso"
@@ -1420,8 +1413,8 @@ msgstr ""
 msgid "Sign up"
 msgstr "Rexistrarse "
 
-msgid "Domain"
-msgstr "Dominio"
+msgid "Site"
+msgstr "SItio"
 
 msgid "Confirmation"
 msgstr ""

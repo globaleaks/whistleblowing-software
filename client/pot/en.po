@@ -511,30 +511,6 @@ msgstr "Select the context of your report:"
 msgid "Before proceeding, please set a new password."
 msgstr "Before proceeding, please set a new password."
 
-msgid "New password"
-msgstr "New password"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "The chosen password is too weak. A valid password should be at least 10 characters long and contain a variety of characters including at least a lowercase character, a capital character, a number and a special character."
-
-msgid "The new password must be different from the current one."
-msgstr "The new password must be different from the current one."
-
-msgid "Type your new password again"
-msgstr "Type your new password again"
-
-msgid "The two passwords do not match"
-msgstr "The two passwords do not match"
-
-msgid "The new password must differ from the previous."
-msgstr "The new password must differ from the previous."
-
-msgid "Proceed"
-msgstr "Proceed"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Before proceeding, please enable the two factor authentication."
 
@@ -574,9 +550,6 @@ msgstr "Size limit for file attachments"
 msgid "megabytes"
 msgstr "megabytes"
 
-msgid "Enable HSTS preload"
-msgstr "Enable HSTS preload"
-
 msgid "Require two factor authentication"
 msgstr "Require two factor authentication"
 
@@ -592,6 +565,15 @@ msgstr "Set the value to 0 to disable this feature."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Number of days till notifying unread reports to users"
+
+msgid "Disable the privacy panel"
+msgstr "Disable the privacy panel"
+
+msgid "Enable custom privacy panel"
+msgstr "Enable custom privacy panel"
+
+msgid "Custom privacy panel"
+msgstr "Custom privacy panel"
 
 msgid "Enable custodian user role"
 msgstr "Enable custodian user role"
@@ -880,6 +862,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "The platform must be reachable through a public IP address and the selected hostname must have a DNS record referencing that address."
 
+msgid "Proceed"
+msgstr "Proceed"
+
 msgid "Manual configuration"
 msgstr "Manual configuration"
 
@@ -897,15 +882,6 @@ msgstr "Auto-renewal"
 msgid "Tor Onion Service"
 msgstr "Tor Onion Service"
 
-msgid "Disable the privacy panel"
-msgstr "Disable the privacy panel"
-
-msgid "Enable custom privacy panel"
-msgstr "Enable custom privacy panel"
-
-msgid "Custom privacy panel"
-msgstr "Custom privacy panel"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonymize outgoing connections"
 
@@ -920,6 +896,11 @@ msgstr "Whistleblower"
 
 msgid "To"
 msgstr "To"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr "Default mail configuration in use. Please consider using a private mail server."
 
 msgid "SMTP email address"
 msgstr "SMTP email address"
@@ -1101,9 +1082,6 @@ msgstr "Enable terms of service"
 msgid "Title"
 msgstr "Title"
 
-msgid "Send an account activation link to the user."
-msgstr "Send an account activation link to the user."
-
 msgid "Public name"
 msgstr "Public name"
 
@@ -1113,14 +1091,20 @@ msgstr "Send reset link"
 msgid "Set password"
 msgstr "Set password"
 
-msgid "Disable two factor authentication"
-msgstr "Disable two factor authentication"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "The chosen password is too weak. A valid password should be at least 10 characters long and contain a variety of characters including at least a lowercase character, a capital character, a number and a special character."
 
 msgid "Force password change"
 msgstr "Force password change"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "The user will be forced to change its password on next login."
+
+msgid "Disable two factor authentication"
+msgstr "Disable two factor authentication"
 
 msgid "Language"
 msgstr "Language"
@@ -1200,11 +1184,11 @@ msgstr "Assign score points"
 msgid "Are you sure?"
 msgstr "Are you sure?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Please note that all the associated data will be permanently deleted."
-
 msgid "Close"
 msgstr "Close"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Please note that all the associated data will be permanently deleted."
 
 msgid "Enable two factor authentication"
 msgstr "Enable two factor authentication"
@@ -1285,17 +1269,26 @@ msgstr "Resource can only be accessed via the Tor network"
 msgid "The upload request exceeds the size limit"
 msgstr "The upload request exceeds the size limit"
 
+msgid "Current password"
+msgstr "Current password"
+
+msgid "New password"
+msgstr "New password"
+
+msgid "The new password must be different from the current one."
+msgstr "The new password must be different from the current one."
+
+msgid "Type your new password again"
+msgstr "Type your new password again"
+
+msgid "The two passwords do not match"
+msgstr "The two passwords do not match"
+
 msgid "Validation of email address change in progress."
 msgstr "Validation of email address change in progress."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Please check your inbox for further instructions."
-
-msgid "Current password"
-msgstr "Current password"
-
-msgid "Old password confirmation required"
-msgstr "Old password confirmation required"
 
 msgid "Warning"
 msgstr "Warning"
@@ -1453,8 +1446,8 @@ msgstr "If not activated within 24 hours the platform will be automatically dele
 msgid "Sign up"
 msgstr "Sign up"
 
-msgid "Domain"
-msgstr "Domain"
+msgid "Site"
+msgstr "Site"
 
 msgid "Confirmation"
 msgstr "Confirmation"

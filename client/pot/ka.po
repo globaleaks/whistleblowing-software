@@ -474,30 +474,6 @@ msgstr "აირჩიეთ კონტექსტში თქვენი 
 msgid "Before proceeding, please set a new password."
 msgstr "გაგრძელებამდე, გთხოვთ დააყენოთ ახალი პაროლი."
 
-msgid "New password"
-msgstr "ახალი პაროლი"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "არჩეული პაროლი ძალიან სუსტია. სწორი პაროლი უნდა შედგებოდეს მინიმუმ 10 სიმბოლოსგან და შეიცავდეს სხვადასხვა სიმბოლოებს, მათ შორის მინიმუმ ერთი ქვედა რეგისტრის სიმბოლო, ზედა რეგისტრის სიმბოლო, რიცხვი და სპეციალური სიმბოლო."
-
-msgid "The new password must be different from the current one."
-msgstr "ახალი პაროლი უნდა განსხვავდებოდეს მიმდინარესგან."
-
-msgid "Type your new password again"
-msgstr "შეიტანეთ თქვენი ახალი პაროლი კიდევ ერთხელ"
-
-msgid "The two passwords do not match"
-msgstr "პაროლები არ ემთხვევა"
-
-msgid "The new password must differ from the previous."
-msgstr "ახალი პაროლი უნდა განსხვავდებოდეს წინა პაროლისგან."
-
-msgid "Proceed"
-msgstr "გაგრძელება"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "გაგრძელებამდე ჩართეთ ორფაქტორიანი ავტორიზაცია."
 
@@ -537,9 +513,6 @@ msgstr "დანართებისთვის ზომის ლიმი�
 msgid "megabytes"
 msgstr "მეგაბაიტები"
 
-msgid "Enable HSTS preload"
-msgstr "HSTS წინასწარი ჩატვირთვის ჩართვა"
-
 msgid "Require two factor authentication"
 msgstr "ორფაქტორიანი ავტორიზაციის მოთხოვნა"
 
@@ -555,6 +528,15 @@ msgstr "ამ ფუნქციის გამოსართავად მ
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "დღეების რაოდენობა მომხმარებლების შეტყობინებამდე წაუკითხავი ანგარიშების შესახებ"
+
+msgid "Disable the privacy panel"
+msgstr "კონფიდენციალურობის პანელის გამორთვა"
+
+msgid "Enable custom privacy panel"
+msgstr "კონფიდენციალურობის პანელი ჩართვა"
+
+msgid "Custom privacy panel"
+msgstr "მორგებული კონფიდენციალურობის პანელი"
 
 msgid "Enable custodian user role"
 msgstr "ინსტრუქტორის მომხმარებლის როლის ჩართვა"
@@ -843,6 +825,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "პლატფორმა უნდა იყოს მისაწვდომი საჯარო IP მისამართის მეშვეობით, ხოლო არჩეულ საკვანძო კომპიუტერის სახელს უნდა ქონდეს DNS ჩანაწერი ამ მისამართის მითითებით."
 
+msgid "Proceed"
+msgstr "გაგრძელება"
+
 msgid "Manual configuration"
 msgstr "მანუალური კონფიგურაცია"
 
@@ -860,15 +845,6 @@ msgstr "ავტომატური განახლება"
 msgid "Tor Onion Service"
 msgstr "Tor Onion სერვისი"
 
-msgid "Disable the privacy panel"
-msgstr "კონფიდენციალურობის პანელის გამორთვა"
-
-msgid "Enable custom privacy panel"
-msgstr "კონფიდენციალურობის პანელი ჩართვა"
-
-msgid "Custom privacy panel"
-msgstr "მორგებული კონფიდენციალურობის პანელი"
-
 msgid "Anonymize outgoing connections"
 msgstr "გამავალი კავშირების ანონიმიზაცია"
 
@@ -883,6 +859,11 @@ msgstr "დარღვევების შეტყობინების �
 
 msgid "To"
 msgstr "მიმღები"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP ელ-ფოსტის მისამართი"
@@ -1064,9 +1045,6 @@ msgstr "მომსახურების პირობების ჩა�
 msgid "Title"
 msgstr "სათაური"
 
-msgid "Send an account activation link to the user."
-msgstr "მომხმარებლისთვის ანგარიშის გააქტიურების ბმულის გაგზავნა"
-
 msgid "Public name"
 msgstr "საჯარო სახელი"
 
@@ -1076,14 +1054,20 @@ msgstr "გადატვირთვის ბმულის გაგზა�
 msgid "Set password"
 msgstr "პაროლის დაყენება"
 
-msgid "Disable two factor authentication"
-msgstr "ორფაქტორიანი ავტორიზაციის გამორთვა"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "არჩეული პაროლი ძალიან სუსტია. სწორი პაროლი უნდა შედგებოდეს მინიმუმ 10 სიმბოლოსგან და შეიცავდეს სხვადასხვა სიმბოლოებს, მათ შორის მინიმუმ ერთი ქვედა რეგისტრის სიმბოლო, ზედა რეგისტრის სიმბოლო, რიცხვი და სპეციალური სიმბოლო."
 
 msgid "Force password change"
 msgstr "პაროლის ცვლილების იძულება"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "მომხმარებელი იძულებული იქნება შეცვალოს თავისი პაროლის შემდეგი შესვლისას."
+
+msgid "Disable two factor authentication"
+msgstr "ორფაქტორიანი ავტორიზაციის გამორთვა"
 
 msgid "Language"
 msgstr "ენა"
@@ -1163,11 +1147,11 @@ msgstr "ქულათა რაოდენობის მინიჭებ�
 msgid "Are you sure?"
 msgstr "დარწმუნებული ხარ?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "გთხოვთ გაითვალისწინეთ, რომ ყველა დაკავშირებული მონაცემები სამუდამოდ წაიშლება."
-
 msgid "Close"
 msgstr "დახურვა"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "გთხოვთ გაითვალისწინეთ, რომ ყველა დაკავშირებული მონაცემები სამუდამოდ წაიშლება."
 
 msgid "Enable two factor authentication"
 msgstr "რფაქტორიანი ავტორიზაციის ჩართვა"
@@ -1248,17 +1232,26 @@ msgstr "რესურსზე წვდომა შესაძლებე�
 msgid "The upload request exceeds the size limit"
 msgstr "ატვირთვის მოთხოვნა აღემატება ზომის ლიმიტს"
 
+msgid "Current password"
+msgstr "მიმდინარე პაროლი"
+
+msgid "New password"
+msgstr "ახალი პაროლი"
+
+msgid "The new password must be different from the current one."
+msgstr "ახალი პაროლი უნდა განსხვავდებოდეს მიმდინარესგან."
+
+msgid "Type your new password again"
+msgstr "შეიტანეთ თქვენი ახალი პაროლი კიდევ ერთხელ"
+
+msgid "The two passwords do not match"
+msgstr "პაროლები არ ემთხვევა"
+
 msgid "Validation of email address change in progress."
 msgstr "მიმდინარეობს ელფოსტის მისამართის ცვლილების შემოწმება."
 
 msgid "Please check your inbox for further instructions."
 msgstr "შემდგომი ინსტრუქციებისთვის შეამოწმეთ თქვენი შემოსული წერილები."
-
-msgid "Current password"
-msgstr "მიმდინარე პაროლი"
-
-msgid "Old password confirmation required"
-msgstr "მოითხოვება ძველი პაროლის დადასტურება"
 
 msgid "Warning"
 msgstr "გაფრთხილება"
@@ -1416,8 +1409,8 @@ msgstr "თუ პლატფორმა არ გააქტიურდე
 msgid "Sign up"
 msgstr "შექმნა"
 
-msgid "Domain"
-msgstr "დომენი"
+msgid "Site"
+msgstr "საიტი"
 
 msgid "Confirmation"
 msgstr "დადასტურება"

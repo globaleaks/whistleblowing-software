@@ -489,30 +489,6 @@ msgstr "Chọn đề tài cho báo cáo của bạn:"
 msgid "Before proceeding, please set a new password."
 msgstr "Trước khi tiếp tục, hãy cài mật khẩu mới"
 
-msgid "New password"
-msgstr "Mật khẩu mới"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Mật khẩu được chọn quá yếu. Mật khẩu hợp lệ phải dài ít nhất 10 ký tự và có ít nhất một ký tự chữ thường, một ký tự viết hoa, một ký tự số và một ký tự đặc biệt"
-
-msgid "The new password must be different from the current one."
-msgstr "Mật khẩu mới phải khác mật khẩu hiện tại"
-
-msgid "Type your new password again"
-msgstr "Gõ vào mật khẩu mới của bạn lần nữa"
-
-msgid "The two passwords do not match"
-msgstr "Hai mật khẩu không khớp lẫn nhau"
-
-msgid "The new password must differ from the previous."
-msgstr "Mật khẩu mới phải khác mật khẩu trước đó"
-
-msgid "Proceed"
-msgstr "Tiếp tục"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Trước khi tiếp tục, hãy bật xác thực 2 yếu tố."
 
@@ -552,9 +528,6 @@ msgstr "Kích thước giới hạn cho tập tin đính kèm"
 msgid "megabytes"
 msgstr "megabytes"
 
-msgid "Enable HSTS preload"
-msgstr "Bật mở chức năng nạp trước HSTS"
-
 msgid "Require two factor authentication"
 msgstr "Yêu cầu xác thực 2 yếu tố"
 
@@ -570,6 +543,15 @@ msgstr "Đặt giá trị thành 0 để tắt tính năng này"
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Số ngày còn lại trước khi báo cho người dùng biết báo cáo chưa được đọc"
+
+msgid "Disable the privacy panel"
+msgstr "Tắt bảng thông tin bảo mật và riêng tư"
+
+msgid "Enable custom privacy panel"
+msgstr "Bật lên bảng thông tin tùy biến về bảo mật và riêng tư ở đầu trang"
+
+msgid "Custom privacy panel"
+msgstr "Bảng thông tin tùy biến về bảo mật và riêng tư"
 
 msgid "Enable custodian user role"
 msgstr "Bật mở vai trò người bảo quản"
@@ -858,6 +840,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Hệ thống phải truy cập được từ một địa chỉ IP công cộng và tên máy chủ được chọn phải có hồ sơ DNS tương ứng trong địa chỉ đó."
 
+msgid "Proceed"
+msgstr "Tiếp tục"
+
 msgid "Manual configuration"
 msgstr "Cấu hình tự làm"
 
@@ -875,15 +860,6 @@ msgstr "Tự động gia hạn"
 msgid "Tor Onion Service"
 msgstr "Dịch vụ Tor Onion"
 
-msgid "Disable the privacy panel"
-msgstr "Tắt bảng thông tin bảo mật và riêng tư"
-
-msgid "Enable custom privacy panel"
-msgstr "Bật lên bảng thông tin tùy biến về bảo mật và riêng tư ở đầu trang"
-
-msgid "Custom privacy panel"
-msgstr "Bảng thông tin tùy biến về bảo mật và riêng tư"
-
 msgid "Anonymize outgoing connections"
 msgstr "Ẩn danh các kết nối ra bên ngoài"
 
@@ -898,6 +874,11 @@ msgstr "Người tố giác"
 
 msgid "To"
 msgstr "Tới"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "Địa chỉ email SMTP"
@@ -1079,9 +1060,6 @@ msgstr "Bật mở điều khoản dịch vụ"
 msgid "Title"
 msgstr "Tựa đề"
 
-msgid "Send an account activation link to the user."
-msgstr "Gửi liên kết kích hoạt tài khoản người dùng"
-
 msgid "Public name"
 msgstr "Tên công khai"
 
@@ -1091,14 +1069,20 @@ msgstr "Gửi liên kết đặt lại"
 msgid "Set password"
 msgstr "Cài đặt mật khẩu"
 
-msgid "Disable two factor authentication"
-msgstr "Tắt xác thực 2 yếu tố "
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Mật khẩu được chọn quá yếu. Mật khẩu hợp lệ phải dài ít nhất 10 ký tự và có ít nhất một ký tự chữ thường, một ký tự viết hoa, một ký tự số và một ký tự đặc biệt"
 
 msgid "Force password change"
 msgstr "Buộc thay đổi mật khẩu"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Người dùng sẽ buộc phải thay đổi mật khẩu trong lần đăng nhập kế."
+
+msgid "Disable two factor authentication"
+msgstr "Tắt xác thực 2 yếu tố "
 
 msgid "Language"
 msgstr "Ngôn ngữ"
@@ -1178,11 +1162,11 @@ msgstr "Ấn định điểm"
 msgid "Are you sure?"
 msgstr "Bạn có chắc không?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Xin lưu ý là tất cả các dữ liệu liên quan sẽ bị xóa vĩnh viễn"
-
 msgid "Close"
 msgstr "Đóng"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Xin lưu ý là tất cả các dữ liệu liên quan sẽ bị xóa vĩnh viễn"
 
 msgid "Enable two factor authentication"
 msgstr "Bật mở xác thực hai yếu tố"
@@ -1263,17 +1247,26 @@ msgstr "Thông tin chỉ có thể truy cập được qua mạng Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Tập tin tải lên vượt quá giới hạn về kích thước"
 
+msgid "Current password"
+msgstr "Mật khẩu hiện tại"
+
+msgid "New password"
+msgstr "Mật khẩu mới"
+
+msgid "The new password must be different from the current one."
+msgstr "Mật khẩu mới phải khác mật khẩu hiện tại"
+
+msgid "Type your new password again"
+msgstr "Gõ vào mật khẩu mới của bạn lần nữa"
+
+msgid "The two passwords do not match"
+msgstr "Hai mật khẩu không khớp lẫn nhau"
+
 msgid "Validation of email address change in progress."
 msgstr "Đang trong tiến trình kiểm nhận thay đổi địa chỉ email."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Xem hộp thư email của bạn để nhận thêm hướng dẫn"
-
-msgid "Current password"
-msgstr "Mật khẩu hiện tại"
-
-msgid "Old password confirmation required"
-msgstr "Yêu cầu xác nhận mật khẩu cũ"
 
 msgid "Warning"
 msgstr "Cảnh báo"
@@ -1431,8 +1424,8 @@ msgstr "Nếu không được kích hoạt trong vòng 24 giờ, hệ thống s�
 msgid "Sign up"
 msgstr "Đăng ký"
 
-msgid "Domain"
-msgstr "Tên miền"
+msgid "Site"
+msgstr "Trang web"
 
 msgid "Confirmation"
 msgstr "Xác nhận"

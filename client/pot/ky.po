@@ -475,30 +475,6 @@ msgstr "Отчетуңуздун контекстин тандаңыз:"
 msgid "Before proceeding, please set a new password."
 msgstr "Улантуудан мурун, жаңы сырсөз коюңуз."
 
-msgid "New password"
-msgstr "Жаңы сыр сөз"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Тандалган сырсөз өтө алсыз. Жарактуу сырсөз кеминде 10 символдон турушу керек жана ар кандай тамгаларды камтышы керек, анын ичинде кичине тамга, баш тамга, сан жана өзгөчө белги."
-
-msgid "The new password must be different from the current one."
-msgstr "Жаңы сырсөз учурдагыдан айырмаланып турушу керек."
-
-msgid "Type your new password again"
-msgstr "Жаңы сыр сөзүңүздү кайра териңиз"
-
-msgid "The two passwords do not match"
-msgstr "Эки сыр сөз бири-бирине дал келбеди"
-
-msgid "The new password must differ from the previous."
-msgstr "Жаңы сыр сөз эскисинен айырмалануусу керек"
-
-msgid "Proceed"
-msgstr "Улантуу"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Улантуудан мурун, эки факторлук аутентификация процессин ишке киргизиңиз"
 
@@ -538,9 +514,6 @@ msgstr "Файлдын тиркемелеринин лимиттик өлчөм�
 msgid "megabytes"
 msgstr "мегабиттер"
 
-msgid "Enable HSTS preload"
-msgstr "HSTS алдын ала жүктөөнү иштетүү"
-
 msgid "Require two factor authentication"
 msgstr "Эки факторлуу аутентификацияны талап кылуу"
 
@@ -556,6 +529,15 @@ msgstr "Бул функцияны өчүрүү үчүн 0 маанисин ко�
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Колдонуучуларга окулбаган отчетторду билдирүүгө чейинки күндөрдүн саны"
+
+msgid "Disable the privacy panel"
+msgstr "Жөндөлүүчү купуялык панелин өчүрүү"
+
+msgid "Enable custom privacy panel"
+msgstr "Жеке купуялык панелин иштетүү"
+
+msgid "Custom privacy panel"
+msgstr "Жеке купуялык панели"
 
 msgid "Enable custodian user role"
 msgstr "Сактоочу колдонуучу ролун ишке киргизүү"
@@ -844,6 +826,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Платформа ачык IP дареги аркылуу жеткиликтүү болушу керек жана тандалган хосттун аты ошол дарекке шилтеме берген тиешелүү DNS жазуусуна ээ болушу керек."
 
+msgid "Proceed"
+msgstr "Улантуу"
+
 msgid "Manual configuration"
 msgstr "Кол менен жөндөө"
 
@@ -861,15 +846,6 @@ msgstr "Автоматтык жаңыртүү"
 msgid "Tor Onion Service"
 msgstr "Tor Onion Сервиси"
 
-msgid "Disable the privacy panel"
-msgstr "Жөндөлүүчү купуялык панелин өчүрүү"
-
-msgid "Enable custom privacy panel"
-msgstr "Жеке купуялык панелин иштетүү"
-
-msgid "Custom privacy panel"
-msgstr "Жеке купуялык панели"
-
 msgid "Anonymize outgoing connections"
 msgstr "Сыртка чыгуучу байланыщтарды жашыруу"
 
@@ -884,6 +860,11 @@ msgstr "Кабарчы"
 
 msgid "To"
 msgstr "Чейин"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP электрондук дарек"
@@ -1065,9 +1046,6 @@ msgstr "Тейлөө шарттарын иштетүү"
 msgid "Title"
 msgstr "Башкы сөз"
 
-msgid "Send an account activation link to the user."
-msgstr "Колдонуучуга аккаунтунун активдештирүү шилтемесин жөнөтүңүз."
-
 msgid "Public name"
 msgstr "Жалпы аты"
 
@@ -1077,14 +1055,20 @@ msgstr "Баштапкы абалга келтирүүчү шилтемени ж
 msgid "Set password"
 msgstr "Сыр сөз коюу"
 
-msgid "Disable two factor authentication"
-msgstr "Эки факторлуу аутентификацияны өчүрүү"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Тандалган сырсөз өтө алсыз. Жарактуу сырсөз кеминде 10 символдон турушу керек жана ар кандай тамгаларды камтышы керек, анын ичинде кичине тамга, баш тамга, сан жана өзгөчө белги."
 
 msgid "Force password change"
 msgstr "Сырсөздү мажбурлап өзгөртүү"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Колдонуучу кийинки кирүүдө паролду өзгөртүүгө аргасыз болот."
+
+msgid "Disable two factor authentication"
+msgstr "Эки факторлуу аутентификацияны өчүрүү"
 
 msgid "Language"
 msgstr "Тил"
@@ -1164,11 +1148,11 @@ msgstr "Упайлардын атаңыз"
 msgid "Are you sure?"
 msgstr "Чечимиңиз катуубу?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Эске алыңыз, байланышкан бардык маалыматтар биротоло жок кылынат."
-
 msgid "Close"
 msgstr "Жабуу"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Эске алыңыз, байланышкан бардык маалыматтар биротоло жок кылынат."
 
 msgid "Enable two factor authentication"
 msgstr "Эки факторлуу аутентификация иштетилсин"
@@ -1249,17 +1233,26 @@ msgstr "Ресурска Tor тармагы аркылуу гана кирүүг
 msgid "The upload request exceeds the size limit"
 msgstr "Жүктөөгө талап болгондун өлчөмү чегинен ашып кетти"
 
+msgid "Current password"
+msgstr "Учурдагы сырсөз"
+
+msgid "New password"
+msgstr "Жаңы сыр сөз"
+
+msgid "The new password must be different from the current one."
+msgstr "Жаңы сырсөз учурдагыдан айырмаланып турушу керек."
+
+msgid "Type your new password again"
+msgstr "Жаңы сыр сөзүңүздү кайра териңиз"
+
+msgid "The two passwords do not match"
+msgstr "Эки сыр сөз бири-бирине дал келбеди"
+
 msgid "Validation of email address change in progress."
 msgstr "Электрондук даректин өзгөрүүсү текшерилип жатат."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Кийинки инструкцияларды алуу үчүн сизге келген кат кутучасын текшериңиз."
-
-msgid "Current password"
-msgstr "Учурдагы сырсөз"
-
-msgid "Old password confirmation required"
-msgstr "Эски сырсөздү ырастоо талап кылынат"
 
 msgid "Warning"
 msgstr "Коркунуч"
@@ -1417,8 +1410,8 @@ msgstr "Эгерде 24 сааттын ичинде активдүү абалг�
 msgid "Sign up"
 msgstr "Катталуу"
 
-msgid "Domain"
-msgstr "Домен"
+msgid "Site"
+msgstr ""
 
 msgid "Confirmation"
 msgstr "Тастыктоо"

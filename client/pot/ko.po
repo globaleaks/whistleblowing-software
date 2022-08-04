@@ -475,30 +475,6 @@ msgstr "보고서 컨텍스트를 선택하십시오."
 msgid "Before proceeding, please set a new password."
 msgstr "계속하기 전에 새 비밀번호를 재설정하십시오."
 
-msgid "New password"
-msgstr "새 비밀번호"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "선택한 비밀번호가 너무 약합니다. 유효한 비밀번호는 최소 10자여야 하며, 하나의 소문자, 하나의 대문자, 하나의 숫자와 하나의 특수 문자를 포함한 문자로 구성되어야 합니다."
-
-msgid "The new password must be different from the current one."
-msgstr "새 비밀번호는 현재 비밀번호와 달라야 합니다."
-
-msgid "Type your new password again"
-msgstr "새 비밀번호를 다시 입력하십시오"
-
-msgid "The two passwords do not match"
-msgstr "두 비밀번호가 일치하지 않습니다"
-
-msgid "The new password must differ from the previous."
-msgstr "새 비밀번호는 이전 비밀번호와 달라야 합니다."
-
-msgid "Proceed"
-msgstr "계속"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "계속하기 전에 이중 요인 인증을 허용하십시오."
 
@@ -538,9 +514,6 @@ msgstr "첨부 파일 크기 제한"
 msgid "megabytes"
 msgstr "메가바이트"
 
-msgid "Enable HSTS preload"
-msgstr "HSTS 사전 로드 허용"
-
 msgid "Require two factor authentication"
 msgstr "이중 요인 인증 필요"
 
@@ -556,6 +529,15 @@ msgstr "값을 0으로 설정하여 기능을 중단하십시오."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "사용자에게 읽지 않은 보고서를 알릴 때까지의 일 수"
+
+msgid "Disable the privacy panel"
+msgstr "프라이버시 패널 사용 중단"
+
+msgid "Enable custom privacy panel"
+msgstr "사용자 정의 프라이버시 패널 허용"
+
+msgid "Custom privacy panel"
+msgstr "사용자 정의 프라이버시 패널"
 
 msgid "Enable custodian user role"
 msgstr "관리인 사용자 역할 허용"
@@ -844,6 +826,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "본 플랫폼은 공공 IP 주소로 액세스해야 하며 선택한 호스트 이름에는 해당 주소를 참조하는 해당 DNS 기록이 있어야 합니다."
 
+msgid "Proceed"
+msgstr "계속"
+
 msgid "Manual configuration"
 msgstr "수동 구성"
 
@@ -861,15 +846,6 @@ msgstr "자동 갱신"
 msgid "Tor Onion Service"
 msgstr "Tor Onion 서비스"
 
-msgid "Disable the privacy panel"
-msgstr "프라이버시 패널 사용 중단"
-
-msgid "Enable custom privacy panel"
-msgstr "사용자 정의 프라이버시 패널 허용"
-
-msgid "Custom privacy panel"
-msgstr "사용자 정의 프라이버시 패널"
-
 msgid "Anonymize outgoing connections"
 msgstr "발신 연결 익명화"
 
@@ -884,6 +860,11 @@ msgstr "내부 고발자"
 
 msgid "To"
 msgstr "수신자"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP 이메일 주소"
@@ -1065,9 +1046,6 @@ msgstr "서비스 약관 허용"
 msgid "Title"
 msgstr "제목"
 
-msgid "Send an account activation link to the user."
-msgstr "사용자에게 계정 활성화 링크를 전송합니다."
-
 msgid "Public name"
 msgstr "공개 이름"
 
@@ -1077,14 +1055,20 @@ msgstr "재설정 링크 전송"
 msgid "Set password"
 msgstr "패스워드 설정"
 
-msgid "Disable two factor authentication"
-msgstr "이중 요인 인증 중단"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "선택한 비밀번호가 너무 약합니다. 유효한 비밀번호는 최소 10자여야 하며, 하나의 소문자, 하나의 대문자, 하나의 숫자와 하나의 특수 문자를 포함한 문자로 구성되어야 합니다."
 
 msgid "Force password change"
 msgstr "강제 비밀번호 변경"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "사용자는 다음 로그인 시 비밀번호를 변경해야 합니다."
+
+msgid "Disable two factor authentication"
+msgstr "이중 요인 인증 중단"
 
 msgid "Language"
 msgstr "언어"
@@ -1164,11 +1148,11 @@ msgstr "점수 포인트 할당"
 msgid "Are you sure?"
 msgstr "계속하시겠습니까?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "모든 관련 데이터가 영구적으로 삭제된다는 점에 유의하십시오."
-
 msgid "Close"
 msgstr "종료"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "모든 관련 데이터가 영구적으로 삭제된다는 점에 유의하십시오."
 
 msgid "Enable two factor authentication"
 msgstr "이중 요인 인증 허용"
@@ -1249,17 +1233,26 @@ msgstr "리소스는 Tor 네트워크를 통해서만 액세스할 수 있습니
 msgid "The upload request exceeds the size limit"
 msgstr "업로드 요청이 크기 제한을 초과합니다"
 
+msgid "Current password"
+msgstr "현재 비밀번호"
+
+msgid "New password"
+msgstr "새 비밀번호"
+
+msgid "The new password must be different from the current one."
+msgstr "새 비밀번호는 현재 비밀번호와 달라야 합니다."
+
+msgid "Type your new password again"
+msgstr "새 비밀번호를 다시 입력하십시오"
+
+msgid "The two passwords do not match"
+msgstr "두 비밀번호가 일치하지 않습니다"
+
 msgid "Validation of email address change in progress."
 msgstr "이메일 주소 변경 검증 진행 중입니다."
 
 msgid "Please check your inbox for further instructions."
 msgstr "받은 편지함에서 자세한 지침을 확인하십시오."
-
-msgid "Current password"
-msgstr "현재 비밀번호"
-
-msgid "Old password confirmation required"
-msgstr "이전 비밀번호 확인 필요"
 
 msgid "Warning"
 msgstr "경고"
@@ -1417,8 +1410,8 @@ msgstr "24시간 이내에 활성화되지 않으면 플랫폼이 자동으로 �
 msgid "Sign up"
 msgstr "가입"
 
-msgid "Domain"
-msgstr "도메인"
+msgid "Site"
+msgstr "사이트"
 
 msgid "Confirmation"
 msgstr "확인"

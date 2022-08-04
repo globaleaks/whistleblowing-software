@@ -491,30 +491,6 @@ msgstr "Selecciona el context del teu informe:"
 msgid "Before proceeding, please set a new password."
 msgstr "Abans de continuar, estableixi una nova contrasenya."
 
-msgid "New password"
-msgstr "Contrasenya nova"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "La contrasenya escollida és massa feble. Una contrasenya vàlida hauria de tenir com a mínim 10 caràcters i ha de contenir una varietat de caràcters, incloent almenys un minúscula, un majúscula, un número i un caràcter especial."
-
-msgid "The new password must be different from the current one."
-msgstr "La nova contrasenya ha de ser diferent de l'actual."
-
-msgid "Type your new password again"
-msgstr "Escriu una altra vegada la nova contrasenya"
-
-msgid "The two passwords do not match"
-msgstr "Les dues contrasenyes introduides no coincideixen"
-
-msgid "The new password must differ from the previous."
-msgstr "La nova contrasenya ha de ser diferent de les prèvies."
-
-msgid "Proceed"
-msgstr "Procedir"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Abans de continuar, si-us-plau activa l'autenticació de dues passes"
 
@@ -554,9 +530,6 @@ msgstr "Límit de mida per als arxius adjunts"
 msgid "megabytes"
 msgstr "megabytes"
 
-msgid "Enable HSTS preload"
-msgstr "Activa la pre-càrrega HSTS"
-
 msgid "Require two factor authentication"
 msgstr "Requereix autenticació de dues passes"
 
@@ -572,6 +545,15 @@ msgstr "Establiu el valor a 0 per desactivar aquesta funció."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Nombre de dies fins a la notificació d'informes no llegits als usuaris"
+
+msgid "Disable the privacy panel"
+msgstr "Deshabilita el distintiu de privacitat "
+
+msgid "Enable custom privacy panel"
+msgstr "Habilita distintiu personalitzat de privacitat"
+
+msgid "Custom privacy panel"
+msgstr "Tauler de privacitat del client"
 
 msgid "Enable custodian user role"
 msgstr "Activa el rol d'usuari de guardià"
@@ -860,6 +842,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "La plataforma ha de ser accessible a través d'una adreça IP pública i el domini web seleccionat ha de tenir un registre DNS corresponent que faci referència a aquesta adreça."
 
+msgid "Proceed"
+msgstr "Procedir"
+
 msgid "Manual configuration"
 msgstr "Configuració manual"
 
@@ -877,15 +862,6 @@ msgstr "Renovació automàtica"
 msgid "Tor Onion Service"
 msgstr "Servei Tor Onion"
 
-msgid "Disable the privacy panel"
-msgstr "Deshabilita el distintiu de privacitat "
-
-msgid "Enable custom privacy panel"
-msgstr "Habilita distintiu personalitzat de privacitat"
-
-msgid "Custom privacy panel"
-msgstr "Tauler de privacitat del client"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonimitzar les connexions de sortida"
 
@@ -900,6 +876,11 @@ msgstr "Informador"
 
 msgid "To"
 msgstr "A"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "Adreça electrònica SMTP"
@@ -1081,9 +1062,6 @@ msgstr "Activa els termes del servei"
 msgid "Title"
 msgstr "Títol"
 
-msgid "Send an account activation link to the user."
-msgstr "Envia un enllaç d’activació del compte a l’usuari."
-
 msgid "Public name"
 msgstr "Nom públic"
 
@@ -1093,14 +1071,20 @@ msgstr "Envia l'enllaç de restabliment"
 msgid "Set password"
 msgstr "Estableix la contrasenya"
 
-msgid "Disable two factor authentication"
-msgstr "Desactiva l'autenticació de dues passes"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "La contrasenya escollida és massa feble. Una contrasenya vàlida hauria de tenir com a mínim 10 caràcters i ha de contenir una varietat de caràcters, incloent almenys un minúscula, un majúscula, un número i un caràcter especial."
 
 msgid "Force password change"
 msgstr "Força un canvi de contrasenya"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "L'usuari es veurà forçat a canviar la contrasenya la propera vegada que hi vulgui accedir."
+
+msgid "Disable two factor authentication"
+msgstr "Desactiva l'autenticació de dues passes"
 
 msgid "Language"
 msgstr "Idioma"
@@ -1180,11 +1164,11 @@ msgstr "Assigna puntuació"
 msgid "Are you sure?"
 msgstr "N'estàs segur?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Si us plau, sàpiga que totes les dades associades seran esborrades definitivament."
-
 msgid "Close"
 msgstr "Tanca"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Si us plau, sàpiga que totes les dades associades seran esborrades definitivament."
 
 msgid "Enable two factor authentication"
 msgstr "Activa l'autenticació de dues passes"
@@ -1265,17 +1249,26 @@ msgstr "Només es pot accedir a aquest recurs a través de la xarxa Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "La petició de pujada preval sobre els límits de volum de dades"
 
+msgid "Current password"
+msgstr "Contrasenya actual"
+
+msgid "New password"
+msgstr "Contrasenya nova"
+
+msgid "The new password must be different from the current one."
+msgstr "La nova contrasenya ha de ser diferent de l'actual."
+
+msgid "Type your new password again"
+msgstr "Escriu una altra vegada la nova contrasenya"
+
+msgid "The two passwords do not match"
+msgstr "Les dues contrasenyes introduides no coincideixen"
+
 msgid "Validation of email address change in progress."
 msgstr "Validació del canvi d'adreça electrònica en progrés."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Comproveu el vostre correu electrònic per obtenir més instruccions."
-
-msgid "Current password"
-msgstr "Contrasenya actual"
-
-msgid "Old password confirmation required"
-msgstr "Es requereix confirmació de l'anterior contrasenya"
 
 msgid "Warning"
 msgstr "Alerta"
@@ -1433,8 +1426,8 @@ msgstr "Si no s’activa en 24 hores, la plataforma s'eliminarà automàticament
 msgid "Sign up"
 msgstr "Registrar‐se"
 
-msgid "Domain"
-msgstr "Domini"
+msgid "Site"
+msgstr "Lloc"
 
 msgid "Confirmation"
 msgstr "Confirmació"

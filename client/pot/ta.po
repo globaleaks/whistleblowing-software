@@ -476,30 +476,6 @@ msgstr "உங்கள் சமர்ப்பிப்பு சூழலி�
 msgid "Before proceeding, please set a new password."
 msgstr "தொடருவதற்கு முன், புதிய கடவுச்சொல்லை அமைக்கவும்."
 
-msgid "New password"
-msgstr "புதிய கடவுச்சொல்"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr ""
-
-msgid "The new password must be different from the current one."
-msgstr "புதிய கடவுச்சொல் தற்போதைய ஒன்றிலிருந்து வேறுபட்டதாக இருக்க வேண்டும்."
-
-msgid "Type your new password again"
-msgstr "உங்கள் புதிய கடவுச்சொல்லை மீண்டும் தட்டச்சு"
-
-msgid "The two passwords do not match"
-msgstr "இரண்டு கடவுச்சொற்களும் ஒன்றாயில்லை"
-
-msgid "The new password must differ from the previous."
-msgstr ""
-
-msgid "Proceed"
-msgstr "தொடர்க"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr ""
 
@@ -539,9 +515,6 @@ msgstr "கோப்பு இணைப்புகளை அளவு எல
 msgid "megabytes"
 msgstr "மெகாபைட்"
 
-msgid "Enable HSTS preload"
-msgstr ""
-
 msgid "Require two factor authentication"
 msgstr ""
 
@@ -557,6 +530,15 @@ msgstr "இந்த அம்சத்தை முடக்க, மதிப�
 
 msgid "Number of days till notifying unread reports to users"
 msgstr ""
+
+msgid "Disable the privacy panel"
+msgstr "தனியுரிமை குழு முடக்கு"
+
+msgid "Enable custom privacy panel"
+msgstr "விருப்ப தனியுரிமை குழு இயக்கு"
+
+msgid "Custom privacy panel"
+msgstr "விருப்ப தனியுரிமை குழு"
 
 msgid "Enable custodian user role"
 msgstr ""
@@ -845,6 +827,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr ""
 
+msgid "Proceed"
+msgstr "தொடர்க"
+
 msgid "Manual configuration"
 msgstr "கையேடு கட்டமைப்பு"
 
@@ -862,15 +847,6 @@ msgstr "ஆட்டோ புதுப்பித்தல்"
 msgid "Tor Onion Service"
 msgstr "Tor Onion சேவை"
 
-msgid "Disable the privacy panel"
-msgstr "தனியுரிமை குழு முடக்கு"
-
-msgid "Enable custom privacy panel"
-msgstr "விருப்ப தனியுரிமை குழு இயக்கு"
-
-msgid "Custom privacy panel"
-msgstr "விருப்ப தனியுரிமை குழு"
-
 msgid "Anonymize outgoing connections"
 msgstr "வெளியேறும் இணைப்புகளை அநாமதேயப்படுத்து"
 
@@ -884,6 +860,11 @@ msgid "Whistleblower"
 msgstr "விசில் ப்ளோயர்"
 
 msgid "To"
+msgstr ""
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
 msgstr ""
 
 msgid "SMTP email address"
@@ -1066,9 +1047,6 @@ msgstr "சேவை விதிமுறைகளை இயக்கு"
 msgid "Title"
 msgstr "தலைப்பு"
 
-msgid "Send an account activation link to the user."
-msgstr ""
-
 msgid "Public name"
 msgstr ""
 
@@ -1078,7 +1056,10 @@ msgstr ""
 msgid "Set password"
 msgstr ""
 
-msgid "Disable two factor authentication"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
 msgstr ""
 
 msgid "Force password change"
@@ -1086,6 +1067,9 @@ msgstr "படை கடவுச்சொல்லை மாற்றம்"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "அடுத்த முறை பயனர் உள்நுழைவு அதன் கடவுச்சொல்லை மாற்ற வேண்டிய கட்டாயத்தில் இருக்கும்."
+
+msgid "Disable two factor authentication"
+msgstr ""
 
 msgid "Language"
 msgstr "மொழி"
@@ -1165,11 +1149,11 @@ msgstr "ஸ்கோர் புள்ளிகள் ஒதுக்க"
 msgid "Are you sure?"
 msgstr "நீ சொல்வது உறுதியா?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr ""
-
 msgid "Close"
 msgstr "நெருக்கமான"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr ""
 
 msgid "Enable two factor authentication"
 msgstr ""
@@ -1250,17 +1234,26 @@ msgstr "வள மட்டுமே தோர் நெட்வொர்
 msgid "The upload request exceeds the size limit"
 msgstr "பதிவேற்ற கோரிக்கை அளவு வரம்பை மீறுகிறது"
 
+msgid "Current password"
+msgstr "தற்போதைய கடவுச்சொல்"
+
+msgid "New password"
+msgstr "புதிய கடவுச்சொல்"
+
+msgid "The new password must be different from the current one."
+msgstr "புதிய கடவுச்சொல் தற்போதைய ஒன்றிலிருந்து வேறுபட்டதாக இருக்க வேண்டும்."
+
+msgid "Type your new password again"
+msgstr "உங்கள் புதிய கடவுச்சொல்லை மீண்டும் தட்டச்சு"
+
+msgid "The two passwords do not match"
+msgstr "இரண்டு கடவுச்சொற்களும் ஒன்றாயில்லை"
+
 msgid "Validation of email address change in progress."
 msgstr "மின்னஞ்சல் முகவரி மாற்றுவதற்கான மாற்றம் முன்னேற்றம்."
 
 msgid "Please check your inbox for further instructions."
 msgstr "கூடுதல் வழிமுறைகளுக்கு உங்கள் இன்பாக்ஸை சோதனையிடு."
-
-msgid "Current password"
-msgstr "தற்போதைய கடவுச்சொல்"
-
-msgid "Old password confirmation required"
-msgstr "பழைய கடவுச்சொல் உறுதிப்படுத்தல் அவசியம்"
 
 msgid "Warning"
 msgstr "எச்சரிக்கை"
@@ -1418,8 +1411,8 @@ msgstr ""
 msgid "Sign up"
 msgstr "டிஜிட்டல் கையெழுத்திட செய்க"
 
-msgid "Domain"
-msgstr "டொமைன்"
+msgid "Site"
+msgstr "தளம்"
 
 msgid "Confirmation"
 msgstr ""

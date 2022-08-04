@@ -522,30 +522,6 @@ msgstr "حدد سياق بلاغك:"
 msgid "Before proceeding, please set a new password."
 msgstr "قبل المتابعة، يرجى تغيير كلمة المرور الخاصة بك."
 
-msgid "New password"
-msgstr "كلمة السر الجديدة"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "كلمة السر المختارة ضعيفة للغاية. كلمة السر الصحيحة يجب أن يكون طولها على الأقل 10 حروف ومكونة من تشكيلة من الحروف تشمل على الأقل حرفا صغيرا وحرفا كبيرا ورقما وحرفا خاصا."
-
-msgid "The new password must be different from the current one."
-msgstr "لا بدّ أن تكون كلمة السر الجديدة مختلفة عن كلمة السر الحالية."
-
-msgid "Type your new password again"
-msgstr "أعد كتابة كلمة السرّ الجديدة"
-
-msgid "The two passwords do not match"
-msgstr "كلمتا السرّ لا تتطابقان "
-
-msgid "The new password must differ from the previous."
-msgstr "كلمة السر الجديدة يجب أن تختلف عن السابقة."
-
-msgid "Proceed"
-msgstr "مواصلة"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "قبل المتابعة، يرجى تمكين الإستيثاق ذو المعاملين."
 
@@ -585,9 +561,6 @@ msgstr "الحد الأقصى لحجم الملفات المرفقة"
 msgid "megabytes"
 msgstr "بالميغابايت"
 
-msgid "Enable HSTS preload"
-msgstr "تمكين التحميل المسبق HSTS"
-
 msgid "Require two factor authentication"
 msgstr "يستلزم الاستيثاق ذو المعاملين"
 
@@ -603,6 +576,15 @@ msgstr "اضبط القيمة على 0 لإلغاء تفعيل هذه الخاص
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "عدد الأيام حتى إبلاغ التقارير غير المقروءة للمستخدمين"
+
+msgid "Disable the privacy panel"
+msgstr "تعطيل شارة الخصوصية"
+
+msgid "Enable custom privacy panel"
+msgstr "تمكين شريط الخصوصيّة المخصّص"
+
+msgid "Custom privacy panel"
+msgstr "مخصص لوحة الخصوصية"
 
 msgid "Enable custodian user role"
 msgstr "تمكين دور المستخدم الوصي"
@@ -891,6 +873,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "يجب التمكن من الاتصال بالمنصة عبر عنوان بروتوكول الإنترنت العام، ويجب أن يتوافق الاسم المحدد للمضيف مع سجل نظام أسماء النطاقات الذي يشير إلى هذا العنوان."
 
+msgid "Proceed"
+msgstr "مواصلة"
+
 msgid "Manual configuration"
 msgstr "التهيئة اليدوية"
 
@@ -908,15 +893,6 @@ msgstr "تجديد تلقائي"
 msgid "Tor Onion Service"
 msgstr "خدمة Tor onion"
 
-msgid "Disable the privacy panel"
-msgstr "تعطيل شارة الخصوصية"
-
-msgid "Enable custom privacy panel"
-msgstr "تمكين شريط الخصوصيّة المخصّص"
-
-msgid "Custom privacy panel"
-msgstr "مخصص لوحة الخصوصية"
-
 msgid "Anonymize outgoing connections"
 msgstr "إخفاء هوية الاتصالات الصادرة"
 
@@ -931,6 +907,11 @@ msgstr "مبلّغ"
 
 msgid "To"
 msgstr "إلى"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "البريد الإلكتروني لبروتوكول نقل البريد الإلكتروني - SMTP"
@@ -1112,9 +1093,6 @@ msgstr "تمكين شروط الخدمة"
 msgid "Title"
 msgstr "العنوان"
 
-msgid "Send an account activation link to the user."
-msgstr "إرسال رابط تفعيل الحساب للمستخدم."
-
 msgid "Public name"
 msgstr "الاسم العام"
 
@@ -1124,14 +1102,20 @@ msgstr "إرسال رابط اعادة التعيين"
 msgid "Set password"
 msgstr "ضبط كلمة السر"
 
-msgid "Disable two factor authentication"
-msgstr "إلغاء تفعيل الإستيثاق ذي المعاملين"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "كلمة السر المختارة ضعيفة للغاية. كلمة السر الصحيحة يجب أن يكون طولها على الأقل 10 حروف ومكونة من تشكيلة من الحروف تشمل على الأقل حرفا صغيرا وحرفا كبيرا ورقما وحرفا خاصا."
 
 msgid "Force password change"
 msgstr " الاجبار على تغيير كلمة المرور "
 
 msgid "The user will be forced to change its password on next login."
 msgstr "سيضطر المستخدم إلى تغيير كلمة المرور الخاصة به عند تسجيل الدخول المقبل."
+
+msgid "Disable two factor authentication"
+msgstr "إلغاء تفعيل الإستيثاق ذي المعاملين"
 
 msgid "Language"
 msgstr "لغة"
@@ -1211,11 +1195,11 @@ msgstr "تخصيص نقاط المجموع"
 msgid "Are you sure?"
 msgstr "هل أنت متأكد؟"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "يرجى ملاحظة أنه سيتم حذف كل البيانات المتعلقة بشكل دائم."
-
 msgid "Close"
 msgstr "‮إغلاق"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "يرجى ملاحظة أنه سيتم حذف كل البيانات المتعلقة بشكل دائم."
 
 msgid "Enable two factor authentication"
 msgstr "فعّل الاستيثاق ذي المعاملين"
@@ -1296,17 +1280,26 @@ msgstr "يمكن الوصول إلى المحتوى فقط ضمن شبكة Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "الملفات المراد رفعها تتخطى السعة المسموح بها."
 
+msgid "Current password"
+msgstr "كلمة السر الحالية"
+
+msgid "New password"
+msgstr "كلمة السر الجديدة"
+
+msgid "The new password must be different from the current one."
+msgstr "لا بدّ أن تكون كلمة السر الجديدة مختلفة عن كلمة السر الحالية."
+
+msgid "Type your new password again"
+msgstr "أعد كتابة كلمة السرّ الجديدة"
+
+msgid "The two passwords do not match"
+msgstr "كلمتا السرّ لا تتطابقان "
+
 msgid "Validation of email address change in progress."
 msgstr "جارى التحقق من التغيير في عنوان البريد الإلكتروني."
 
 msgid "Please check your inbox for further instructions."
 msgstr "الرجاء التحقق من بريدك الوارد للمزيد من التعليمات."
-
-msgid "Current password"
-msgstr "كلمة السر الحالية"
-
-msgid "Old password confirmation required"
-msgstr "تأكيد كلمة المرور القديمةمطلوب"
 
 msgid "Warning"
 msgstr "تنبيه"
@@ -1464,8 +1457,8 @@ msgstr "إذا لم يتم التفعيل في خلال 24 ساعة، سيتم �
 msgid "Sign up"
 msgstr "تسجيل"
 
-msgid "Domain"
-msgstr "النطاق"
+msgid "Site"
+msgstr "موقع"
 
 msgid "Confirmation"
 msgstr "تأكيد"

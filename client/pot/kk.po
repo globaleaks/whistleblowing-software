@@ -476,30 +476,6 @@ msgstr "Есебіңіздің мәнмәтінін таңдаңыз:"
 msgid "Before proceeding, please set a new password."
 msgstr "Жалғастырмас бұрын, жаңа құпиясөз орнатыңыз."
 
-msgid "New password"
-msgstr "Жаңа құпиясөз"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Таңдалған құпиясөз тым жеңіл. Жарамды құпиясөз кемінде 10 таңбадан тұруы керек және әр түрлі таңбаларды, оның ішінде кіші әріпті, бас әріпті, санды және арнайы таңбаны қамтуы тиіс."
-
-msgid "The new password must be different from the current one."
-msgstr "Жаңа құпиясөз қолданыстағы құпиясөзден өзгеше болуы керек."
-
-msgid "Type your new password again"
-msgstr "Жаңа құпиясөзді қайта енгізіңіз"
-
-msgid "The two passwords do not match"
-msgstr "Екі құпиясөз бір-біріне сәйкес келмейді."
-
-msgid "The new password must differ from the previous."
-msgstr "Жаңа құпиясөз алдыңғыдан өзгеше болуы керек."
-
-msgid "Proceed"
-msgstr "Жалғастыру"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Жалғастырмас бұрын, екі факторлы аутентификацияны іске қосыңыз."
 
@@ -539,9 +515,6 @@ msgstr "Файл тіркемелерінің өлшемінің шектеуі"
 msgid "megabytes"
 msgstr "мегабайт"
 
-msgid "Enable HSTS preload"
-msgstr "HSTS алдын-ала жүктеуін қосу"
-
 msgid "Require two factor authentication"
 msgstr "Екі факторлы аутентификацияны талап ету"
 
@@ -557,6 +530,15 @@ msgstr "Бұл функцияны өшіру үшін «0» мәнін орна�
 
 msgid "Number of days till notifying unread reports to users"
 msgstr " Пайдаланушыларға оқылмаған есептер туралы хабарландырғанға дейінгі күндер саны"
+
+msgid "Disable the privacy panel"
+msgstr "Құпиялылық тақтасын өшіру"
+
+msgid "Enable custom privacy panel"
+msgstr "Реттелмелі құпиялылық тақтасын қосу"
+
+msgid "Custom privacy panel"
+msgstr "Реттелмелі құпиялылық тақтасы"
 
 msgid "Enable custodian user role"
 msgstr "Сақтағыш пайдаланушы рөлін іске қосу"
@@ -845,6 +827,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Платформа ашық IP арқылы қолжетімді болуы керек және таңдалған хост атауында осы мекенжайға сілтеме жасайтын тиісті DNS жазбасын қамтуы тиіс."
 
+msgid "Proceed"
+msgstr "Жалғастыру"
+
 msgid "Manual configuration"
 msgstr "Қолмен конфигурациялау"
 
@@ -862,15 +847,6 @@ msgstr "Автоматты түрде жаңарту"
 msgid "Tor Onion Service"
 msgstr "Tor Onion қызметі"
 
-msgid "Disable the privacy panel"
-msgstr "Құпиялылық тақтасын өшіру"
-
-msgid "Enable custom privacy panel"
-msgstr "Реттелмелі құпиялылық тақтасын қосу"
-
-msgid "Custom privacy panel"
-msgstr "Реттелмелі құпиялылық тақтасы"
-
 msgid "Anonymize outgoing connections"
 msgstr "Шығыс қосылымдарын жасыру"
 
@@ -885,6 +861,11 @@ msgstr "Хабарлаушы"
 
 msgid "To"
 msgstr "Алушы"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP электрондық пошта мекенжайы"
@@ -1066,9 +1047,6 @@ msgstr "Қызмет көрсету шарттарын қосу"
 msgid "Title"
 msgstr "Атауы"
 
-msgid "Send an account activation link to the user."
-msgstr "Пайдаланушыға есептік жазбаны іске қосу сілтемесін жіберу."
-
 msgid "Public name"
 msgstr "Жалпы атауы"
 
@@ -1078,14 +1056,20 @@ msgstr "Қалпына келтіру сілтемесін жіберу"
 msgid "Set password"
 msgstr "Құпиясөзді орнату"
 
-msgid "Disable two factor authentication"
-msgstr "Екі факторлы аутентификацияны өшіру"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Таңдалған құпиясөз тым жеңіл. Жарамды құпиясөз кемінде 10 таңбадан тұруы керек және әр түрлі таңбаларды, оның ішінде кіші әріпті, бас әріпті, санды және арнайы таңбаны қамтуы тиіс."
 
 msgid "Force password change"
 msgstr "Құпиясөзді мәжбүрлі түрде өзгерту"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Пайдаланушы келесі кірген кезде, құпиясөзді өзгертуге мәжбүр болады."
+
+msgid "Disable two factor authentication"
+msgstr "Екі факторлы аутентификацияны өшіру"
 
 msgid "Language"
 msgstr "Тіл"
@@ -1165,11 +1149,11 @@ msgstr "Ұпайларды тағайындау"
 msgid "Are you sure?"
 msgstr "Сенімдісіз бе?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Осыған байланысты барлық деректер біржола жойылатынына назар аударыңыз."
-
 msgid "Close"
 msgstr "Жабу"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Осыған байланысты барлық деректер біржола жойылатынына назар аударыңыз."
 
 msgid "Enable two factor authentication"
 msgstr "Екі факторлы аутентификацияны іске қосу"
@@ -1250,17 +1234,26 @@ msgstr "Ресурстарға Tor желісі арқылы ғана қол ж�
 msgid "The upload request exceeds the size limit"
 msgstr "Жүктеу сұранысы шекті мөлшерден асып тұр"
 
+msgid "Current password"
+msgstr "Ағымдағы құпиясөз"
+
+msgid "New password"
+msgstr "Жаңа құпиясөз"
+
+msgid "The new password must be different from the current one."
+msgstr "Жаңа құпиясөз қолданыстағы құпиясөзден өзгеше болуы керек."
+
+msgid "Type your new password again"
+msgstr "Жаңа құпиясөзді қайта енгізіңіз"
+
+msgid "The two passwords do not match"
+msgstr "Екі құпиясөз бір-біріне сәйкес келмейді."
+
 msgid "Validation of email address change in progress."
 msgstr "Электрондық пошта мекенжайының өзгеруі расталуда."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Қосымша нұсқаулар алу үшін, кіріс жәшігіңізді тексеріңіз."
-
-msgid "Current password"
-msgstr "Ағымдағы құпиясөз"
-
-msgid "Old password confirmation required"
-msgstr "Ескі құпиясөзді растау қажет"
 
 msgid "Warning"
 msgstr "Ескерту"
@@ -1418,8 +1411,8 @@ msgstr "Егер 24 сағат ішінде іске қосылмаса, пла�
 msgid "Sign up"
 msgstr "Тіркелу"
 
-msgid "Domain"
-msgstr "Домен"
+msgid "Site"
+msgstr ""
 
 msgid "Confirmation"
 msgstr "Растау"

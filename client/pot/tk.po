@@ -479,30 +479,6 @@ msgstr "Hasabatyňyzyň mazmunyny saýlaň:"
 msgid "Before proceeding, please set a new password."
 msgstr "Dowam etmezden ozal täze parol belläň."
 
-msgid "New password"
-msgstr "Täze parol"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Saýlanan parol gaty gowşak. Dogry parol azyndan 10 simwoldan ybarat bolmaly we iň azyndan kiçi harp, baş harp, san we aýratyn nyşan ýaly dürli nyşanlary öz içine almalydyr."
-
-msgid "The new password must be different from the current one."
-msgstr "Täze parol häzirki paroldan tapawutly bolmaly."
-
-msgid "Type your new password again"
-msgstr "Täze parolyňyzy täzeden ýazyň"
-
-msgid "The two passwords do not match"
-msgstr "Iki parol gabat gelenok"
-
-msgid "The new password must differ from the previous."
-msgstr "Täze parol öňküsinden tapawutly bolmaly."
-
-msgid "Proceed"
-msgstr "Dowam et"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Dowam etmezden ozal iki faktor tassyklaýjyny işjeňleşdirmegiňizi haýyş edýäris."
 
@@ -542,9 +518,6 @@ msgstr "Faýl goşundylarynyň ululygy"
 msgid "megabytes"
 msgstr "megabaýt"
 
-msgid "Enable HSTS preload"
-msgstr "HSTS ýüklemesini işlet"
-
 msgid "Require two factor authentication"
 msgstr "Iki faktor tassyklanmagyny talap ediň"
 
@@ -560,6 +533,15 @@ msgstr "Bu aýratynlygy öçürmek üçin sany 0-a belläň."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Ulanyjylara okalmadyk hasabatlary habar berýänçä günleriň sany"
+
+msgid "Disable the privacy panel"
+msgstr "Gizlinlik panelini öçür"
+
+msgid "Enable custom privacy panel"
+msgstr "Hususy gizlinlik panelini aç"
+
+msgid "Custom privacy panel"
+msgstr "Hususy gizlinlik paneli"
 
 msgid "Enable custodian user role"
 msgstr "Gözegçi ulanyjy roluny açyň"
@@ -848,6 +830,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Platforma köpçülige açyk IP adresi arkaly elýeterli bolmaly we saýlanan host adynda şol adrese salgylanýan DNS ýazgysy bolmaly."
 
+msgid "Proceed"
+msgstr "Dowam et"
+
 msgid "Manual configuration"
 msgstr "El bilen edilýän konfigurasiýa"
 
@@ -865,15 +850,6 @@ msgstr "Awto-täzelenme"
 msgid "Tor Onion Service"
 msgstr "Tor Onion Service"
 
-msgid "Disable the privacy panel"
-msgstr "Gizlinlik panelini öçür"
-
-msgid "Enable custom privacy panel"
-msgstr "Hususy gizlinlik panelini aç"
-
-msgid "Custom privacy panel"
-msgstr "Hususy gizlinlik paneli"
-
 msgid "Anonymize outgoing connections"
 msgstr "Çykýan baglanyşyklary anonimleşdir"
 
@@ -888,6 +864,11 @@ msgstr "Gizlin habar ýetiriji"
 
 msgid "To"
 msgstr "Kime"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP email salgysy"
@@ -1069,9 +1050,6 @@ msgstr "Hyzmat şertlerine rugsat beriň"
 msgid "Title"
 msgstr "Sözbaşy"
 
-msgid "Send an account activation link to the user."
-msgstr "Ulanyja hasaby işjeňleşdiriji baglanyşygyny iber."
-
 msgid "Public name"
 msgstr "Umumy ady"
 
@@ -1081,14 +1059,20 @@ msgstr "Täzeden düz baglanyşygyny iber"
 msgid "Set password"
 msgstr "Paroly belläň"
 
-msgid "Disable two factor authentication"
-msgstr "Iki faktor tassyklanmagyny öçüriň"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Saýlanan parol gaty gowşak. Dogry parol azyndan 10 simwoldan ybarat bolmaly we iň azyndan kiçi harp, baş harp, san we aýratyn nyşan ýaly dürli nyşanlary öz içine almalydyr."
 
 msgid "Force password change"
 msgstr "Paroly üýtgetmegi mejbur ediň"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Ulanyjy indiki girişde parolyny üýtgetmäge mejbur bolar."
+
+msgid "Disable two factor authentication"
+msgstr "Iki faktor tassyklanmagyny öçüriň"
 
 msgid "Language"
 msgstr "Dil"
@@ -1168,11 +1152,11 @@ msgstr "Hasap ballaryny belläň "
 msgid "Are you sure?"
 msgstr "Ynamyňyz barmy?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Baglanyşykly maglumatlaryň ählisiniň hemişelik pozuljakdygyny ýadyňyzdan çykarmaň."
-
 msgid "Close"
 msgstr "Ýap"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Baglanyşykly maglumatlaryň ählisiniň hemişelik pozuljakdygyny ýadyňyzdan çykarmaň."
 
 msgid "Enable two factor authentication"
 msgstr "Iki faktor tassyklanmagyny açyň"
@@ -1253,17 +1237,26 @@ msgstr "Resurslara diňe Tor ulgamy arkaly girip bolýar"
 msgid "The upload request exceeds the size limit"
 msgstr "Ýükleme haýyşy çäklendirilen ölçeg ululykdan geçýär"
 
+msgid "Current password"
+msgstr "Hazirki parolyňyz"
+
+msgid "New password"
+msgstr "Täze parol"
+
+msgid "The new password must be different from the current one."
+msgstr "Täze parol häzirki paroldan tapawutly bolmaly."
+
+msgid "Type your new password again"
+msgstr "Täze parolyňyzy täzeden ýazyň"
+
+msgid "The two passwords do not match"
+msgstr "Iki parol gabat gelenok"
+
 msgid "Validation of email address change in progress."
 msgstr "Email salgysyny üýtgetmek barlagy dowam edýär."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Goşmaça görkezmeler üçin poçta gutyňyzy barlaň."
-
-msgid "Current password"
-msgstr "Hazirki parolyňyz"
-
-msgid "Old password confirmation required"
-msgstr "Köne paroly tassyklamak zerur"
 
 msgid "Warning"
 msgstr "Duýduryş"
@@ -1421,8 +1414,8 @@ msgstr "24 sagadyň dowamynda işjeňleşdirilmese, platforma awtomatiki usulda 
 msgid "Sign up"
 msgstr "Ýazyl"
 
-msgid "Domain"
-msgstr "Domain"
+msgid "Site"
+msgstr ""
 
 msgid "Confirmation"
 msgstr "Tassyklama"

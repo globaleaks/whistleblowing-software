@@ -485,30 +485,6 @@ msgstr "اپنی گزارش کا سیاق و سباق کا انتخاب کریں
 msgid "Before proceeding, please set a new password."
 msgstr ""
 
-msgid "New password"
-msgstr "نیا پاس ورڈ"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr ""
-
-msgid "The new password must be different from the current one."
-msgstr ""
-
-msgid "Type your new password again"
-msgstr "اپنے نئے پاس ورڈ کا دوبارہ اندراج کریں"
-
-msgid "The two passwords do not match"
-msgstr "دونوں پاس ورڈز ایک جیسے نہیں ہیں"
-
-msgid "The new password must differ from the previous."
-msgstr ""
-
-msgid "Proceed"
-msgstr "آگے بڑھیے"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr ""
 
@@ -548,9 +524,6 @@ msgstr "فائل اٹیچمنٹ کے سائز کی حد"
 msgid "megabytes"
 msgstr "میگا بائٹ"
 
-msgid "Enable HSTS preload"
-msgstr ""
-
 msgid "Require two factor authentication"
 msgstr ""
 
@@ -566,6 +539,15 @@ msgstr ""
 
 msgid "Number of days till notifying unread reports to users"
 msgstr ""
+
+msgid "Disable the privacy panel"
+msgstr " پرائیویسی حصے کو غیر فعال کریں"
+
+msgid "Enable custom privacy panel"
+msgstr "روایتی پرائیویسی کے امیتازات فعال کریں"
+
+msgid "Custom privacy panel"
+msgstr "اپنی مرضی کی پرائیویسی کا پینل"
 
 msgid "Enable custodian user role"
 msgstr ""
@@ -854,6 +836,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr ""
 
+msgid "Proceed"
+msgstr "آگے بڑھیے"
+
 msgid "Manual configuration"
 msgstr ""
 
@@ -871,15 +856,6 @@ msgstr ""
 msgid "Tor Onion Service"
 msgstr ""
 
-msgid "Disable the privacy panel"
-msgstr " پرائیویسی حصے کو غیر فعال کریں"
-
-msgid "Enable custom privacy panel"
-msgstr "روایتی پرائیویسی کے امیتازات فعال کریں"
-
-msgid "Custom privacy panel"
-msgstr "اپنی مرضی کی پرائیویسی کا پینل"
-
 msgid "Anonymize outgoing connections"
 msgstr ""
 
@@ -894,6 +870,11 @@ msgstr "مخبر"
 
 msgid "To"
 msgstr "کی طرف"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP ای میل پتہ"
@@ -1075,9 +1056,6 @@ msgstr ""
 msgid "Title"
 msgstr "عنوان"
 
-msgid "Send an account activation link to the user."
-msgstr ""
-
 msgid "Public name"
 msgstr "Public name"
 
@@ -1087,7 +1065,10 @@ msgstr ""
 msgid "Set password"
 msgstr "Set password"
 
-msgid "Disable two factor authentication"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
 msgstr ""
 
 msgid "Force password change"
@@ -1095,6 +1076,9 @@ msgstr "فورس پاس ورڈ تبدیل کریں"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "صارف اگلے لاگ ان پر اپنا پاس ورڈ تبدیل کرنے کے لئے مجبور کیا جائے گا."
+
+msgid "Disable two factor authentication"
+msgstr ""
 
 msgid "Language"
 msgstr "زبان"
@@ -1174,11 +1158,11 @@ msgstr "سکور پوائنٹس مقرر کریں"
 msgid "Are you sure?"
 msgstr "کیا آپ کو یقین ہے؟"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "خیال رکھئے کہ تمام متعلقہ ڈیٹا مناسب طریقے سے خارج کر دیا جاتا ہے"
-
 msgid "Close"
 msgstr "بند کریں"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "خیال رکھئے کہ تمام متعلقہ ڈیٹا مناسب طریقے سے خارج کر دیا جاتا ہے"
 
 msgid "Enable two factor authentication"
 msgstr ""
@@ -1259,17 +1243,26 @@ msgstr " صرف ٹور نیٹ ورک کے اندررہتے ہوئے وسائل �
 msgid "The upload request exceeds the size limit"
 msgstr "اپ لوڈ کی درخواست سائز کی حد سے تجاوز کر گئی ہے"
 
+msgid "Current password"
+msgstr "موجودہ پاسورڈ"
+
+msgid "New password"
+msgstr "نیا پاس ورڈ"
+
+msgid "The new password must be different from the current one."
+msgstr ""
+
+msgid "Type your new password again"
+msgstr "اپنے نئے پاس ورڈ کا دوبارہ اندراج کریں"
+
+msgid "The two passwords do not match"
+msgstr "دونوں پاس ورڈز ایک جیسے نہیں ہیں"
+
 msgid "Validation of email address change in progress."
 msgstr ""
 
 msgid "Please check your inbox for further instructions."
 msgstr ""
-
-msgid "Current password"
-msgstr "موجودہ پاسورڈ"
-
-msgid "Old password confirmation required"
-msgstr "پرانے پاس ورڈ کی تصدیق کی ضرورت ہے"
 
 msgid "Warning"
 msgstr "انتباہ"
@@ -1427,8 +1420,8 @@ msgstr ""
 msgid "Sign up"
 msgstr "Sign up"
 
-msgid "Domain"
-msgstr "ڈومین"
+msgid "Site"
+msgstr "ویب سائٹ"
 
 msgid "Confirmation"
 msgstr "Confirmation"

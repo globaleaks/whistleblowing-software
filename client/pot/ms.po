@@ -474,30 +474,6 @@ msgstr "Pilih konteks laporan anda:"
 msgid "Before proceeding, please set a new password."
 msgstr "Sebelum meneruskan, sila tetapkan kata laluan baru."
 
-msgid "New password"
-msgstr "Kata laluan baru"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Kata laluan yang dipilih terlalu lemah. Kata laluan yang sah perlulah sekurang-kurangnya 10 aksara panjang dan mengandungi pelbagai aksara termasuk sekurang-kurangnya aksara huruf kecil, aksara huruf besar, nombor dan aksara khas."
-
-msgid "The new password must be different from the current one."
-msgstr "Kata laluan perlulah berbeza daripada kata laluan semasa."
-
-msgid "Type your new password again"
-msgstr "Taipkan kata laluan baru anda semula."
-
-msgid "The two passwords do not match"
-msgstr "Dua kata laluan ini tidak sepadan"
-
-msgid "The new password must differ from the previous."
-msgstr "Kata laluan perlulah berbeza daripada kata laluan sebelumnya."
-
-msgid "Proceed"
-msgstr "Teruskan"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Sebelum meneruskan, sila dayakan pengesahan dua faktor."
 
@@ -537,9 +513,6 @@ msgstr "Had saiz untuk lampiran fail"
 msgid "megabytes"
 msgstr "megabait"
 
-msgid "Enable HSTS preload"
-msgstr "Dayakan pramuatan HSTS"
-
 msgid "Require two factor authentication"
 msgstr "Memerlukan pengesahan dua faktor"
 
@@ -555,6 +528,15 @@ msgstr "Tetapkan nilai kepada 0 untuk menyahdayakan ciri ini."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Bilangan hari sehingga memberitahu laporan yang belum dibaca kepada pengguna"
+
+msgid "Disable the privacy panel"
+msgstr "Nyahdayakan panel privasi"
+
+msgid "Enable custom privacy panel"
+msgstr "Dayakan panel privasi tersuai"
+
+msgid "Custom privacy panel"
+msgstr "Panel privasi tersuai"
 
 msgid "Enable custodian user role"
 msgstr "Dayakan peranan pengguna penjaga"
@@ -843,6 +825,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Platform perlu boleh dicapai melalui alamat IP awam dan nama hos yang dipilih perlu mempunyai rekod DNS yang merujuk alamat tersebut."
 
+msgid "Proceed"
+msgstr "Teruskan"
+
 msgid "Manual configuration"
 msgstr "Konfigurasi manual"
 
@@ -860,15 +845,6 @@ msgstr "Pembaharuan automatik"
 msgid "Tor Onion Service"
 msgstr "Perkhidmatan Tor Onion"
 
-msgid "Disable the privacy panel"
-msgstr "Nyahdayakan panel privasi"
-
-msgid "Enable custom privacy panel"
-msgstr "Dayakan panel privasi tersuai"
-
-msgid "Custom privacy panel"
-msgstr "Panel privasi tersuai"
-
 msgid "Anonymize outgoing connections"
 msgstr "Tanpanamakan sambungan keluar"
 
@@ -883,6 +859,11 @@ msgstr "Pemberi maklumat"
 
 msgid "To"
 msgstr "Kepada"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "Alamat e-mel SMTP"
@@ -1064,9 +1045,6 @@ msgstr "Dayakan terma perkhidmatan"
 msgid "Title"
 msgstr "Tajuk"
 
-msgid "Send an account activation link to the user."
-msgstr "Hantar pautan pengaktifan akaun kepada pengguna."
-
 msgid "Public name"
 msgstr "Nama awam"
 
@@ -1076,14 +1054,20 @@ msgstr "Hantar pautan tetap semula"
 msgid "Set password"
 msgstr "Tetapkan kata laluan"
 
-msgid "Disable two factor authentication"
-msgstr "Nyahdayakan pengesahan dua faktor"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Kata laluan yang dipilih terlalu lemah. Kata laluan yang sah perlulah sekurang-kurangnya 10 aksara panjang dan mengandungi pelbagai aksara termasuk sekurang-kurangnya aksara huruf kecil, aksara huruf besar, nombor dan aksara khas."
 
 msgid "Force password change"
 msgstr "Paksa perubahan kata laluan"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Pengguna akan dipaksa untuk mengubah kata laluannya pada log masuk seterusnya."
+
+msgid "Disable two factor authentication"
+msgstr "Nyahdayakan pengesahan dua faktor"
 
 msgid "Language"
 msgstr "Bahasa"
@@ -1163,11 +1147,11 @@ msgstr "Tetapkan mata markah"
 msgid "Are you sure?"
 msgstr "Adakah anda pasti?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Sila ambil perhatian bahawa semua data berkaitan akan dipadam secara kekal."
-
 msgid "Close"
 msgstr "Tutup"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Sila ambil perhatian bahawa semua data berkaitan akan dipadam secara kekal."
 
 msgid "Enable two factor authentication"
 msgstr "Dayakan pengesahan dua faktor"
@@ -1248,17 +1232,26 @@ msgstr "Sumber hanya boleh diakses melalui rangkaian Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Permintaan muat naik melebihi had saiz"
 
+msgid "Current password"
+msgstr "Kata laluan semasa"
+
+msgid "New password"
+msgstr "Kata laluan baru"
+
+msgid "The new password must be different from the current one."
+msgstr "Kata laluan perlulah berbeza daripada kata laluan semasa."
+
+msgid "Type your new password again"
+msgstr "Taipkan kata laluan baru anda semula."
+
+msgid "The two passwords do not match"
+msgstr "Dua kata laluan ini tidak sepadan"
+
 msgid "Validation of email address change in progress."
 msgstr "Pengesahan perubahan alamat e-mel sedang berjalan."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Sila periksa peti masuk anda untuk arahan selanjutnya."
-
-msgid "Current password"
-msgstr "Kata laluan semasa"
-
-msgid "Old password confirmation required"
-msgstr "Pengesahan kata laluan lama diperlukan"
 
 msgid "Warning"
 msgstr "Amaran"
@@ -1416,8 +1409,8 @@ msgstr "Jika tidak diaktifkan dalam masa 24 jam, platform akan dipadam secara au
 msgid "Sign up"
 msgstr "Daftar"
 
-msgid "Domain"
-msgstr "Domain"
+msgid "Site"
+msgstr ""
 
 msgid "Confirmation"
 msgstr "Pengesahan"

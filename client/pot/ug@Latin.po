@@ -474,30 +474,6 @@ msgstr "Melumatingizning mezmunini tallang:"
 msgid "Before proceeding, please set a new password."
 msgstr "Bir terep qilishtin burun, yéngi bir parol belgileng."
 
-msgid "New password"
-msgstr "Yéngi parol"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Tallighan parolingiz bek ajiz. Bir inawetlik parol eng az dégende oxshash bolmighan 10 belge uzunliqida bolishi, eng az bir kichik herp, bir chong herp, bir reqem we bir alahide belgidin terkip tépishi kérek."
-
-msgid "The new password must be different from the current one."
-msgstr "Yéngi parol hazirqi paroldin perqliq bolishi lazim."
-
-msgid "Type your new password again"
-msgstr "Yéngi parolingizni tekrar kirgüzüng"
-
-msgid "The two passwords do not match"
-msgstr "Bu ikki parol oxshash emes"
-
-msgid "The new password must differ from the previous."
-msgstr "Yéngi parol choqum aldinqisidin perqliq bolishi kérek."
-
-msgid "Proceed"
-msgstr "Dawamlashtur"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Dawam qilishtin burun, ikki qedemlik toghrulashni qozghiting."
 
@@ -537,9 +513,6 @@ msgstr "Höjjet qoshumchiliri üchün chongluq chéki"
 msgid "megabytes"
 msgstr "Mégabayts"
 
-msgid "Enable HSTS preload"
-msgstr "HSTS aldin qachilashni qozghat"
-
 msgid "Require two factor authentication"
 msgstr "Ikki qedemlik toghrulashni telep qil"
 
@@ -555,6 +528,15 @@ msgstr "Bu iqtidarni cheklesh üchün qimmitini 0 qilip békiting."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Oqulmighan melumatlarni ishletküchilerge uqturghiche ötidighan kün sani"
+
+msgid "Disable the privacy panel"
+msgstr "Ixtiyari shexsiyet taxtisini chekle"
+
+msgid "Enable custom privacy panel"
+msgstr "Ixtiyari shexsiyet taxtisini qozghat"
+
+msgid "Custom privacy panel"
+msgstr "Ixtiyari shexsiyet taxtisi"
 
 msgid "Enable custodian user role"
 msgstr "Saqlighuchi ishletküchi rolini qozghat"
@@ -843,6 +825,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Bu supigha ammiwi IP adrési bilen baghlanghili bolishi we tallanghan mulazimétér namining bu adrésqa munasip DNS rékorti bolushi kérek."
 
+msgid "Proceed"
+msgstr "Dawamlashtur"
+
 msgid "Manual configuration"
 msgstr "Qolda seplime"
 
@@ -860,15 +845,6 @@ msgstr "Aptumatik yéngilash"
 msgid "Tor Onion Service"
 msgstr "‏Tor Onion mulazimiti"
 
-msgid "Disable the privacy panel"
-msgstr "Ixtiyari shexsiyet taxtisini chekle"
-
-msgid "Enable custom privacy panel"
-msgstr "Ixtiyari shexsiyet taxtisini qozghat"
-
-msgid "Custom privacy panel"
-msgstr "Ixtiyari shexsiyet taxtisi"
-
 msgid "Anonymize outgoing connections"
 msgstr "Sirtqa ulanmilarni namsizlashtur"
 
@@ -883,6 +859,11 @@ msgstr "Pash qilghuchi"
 
 msgid "To"
 msgstr "Tapshuriwalghuchi"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "‏SMTP élxet adrési"
@@ -1064,9 +1045,6 @@ msgstr "Mulazimet shertlirini qozghat"
 msgid "Title"
 msgstr "Téma"
 
-msgid "Send an account activation link to the user."
-msgstr "Hésabat aktiplash ulanmisini ishletküchige ewet"
-
 msgid "Public name"
 msgstr "Ammiwi nami"
 
@@ -1076,14 +1054,20 @@ msgstr "Qayta seplesh ulanmisini ewet"
 msgid "Set password"
 msgstr "Parol seplesh"
 
-msgid "Disable two factor authentication"
-msgstr "Ikki qedemlik toghrulashni toxtat"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Tallighan parolingiz bek ajiz. Bir inawetlik parol eng az dégende oxshash bolmighan 10 belge uzunliqida bolishi, eng az bir kichik herp, bir chong herp, bir reqem we bir alahide belgidin terkip tépishi kérek."
 
 msgid "Force password change"
 msgstr "Parol yéngilashqa mejburla"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Ishletküchiler kéyinki qétim tizimgha kirgende, parolini özgertishke mejburlinidu."
+
+msgid "Disable two factor authentication"
+msgstr "Ikki qedemlik toghrulashni toxtat"
 
 msgid "Language"
 msgstr "Til"
@@ -1163,11 +1147,11 @@ msgstr "Nomur nuqtilirini belgileng"
 msgid "Are you sure?"
 msgstr "Jezim qilamsiz?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Munasiwetlik barliq sanliq melumatlarnng menggülük öchürürilidighanliqigha diqqet qiling."
-
 msgid "Close"
 msgstr "Taqa"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Munasiwetlik barliq sanliq melumatlarnng menggülük öchürürilidighanliqigha diqqet qiling."
 
 msgid "Enable two factor authentication"
 msgstr "Ikki qedemlik toghrulashni qozghat"
@@ -1248,17 +1232,26 @@ msgstr "Menbeni peqet Tor tori bilenla ziyaret qilghili bolidu "
 msgid "The upload request exceeds the size limit"
 msgstr "Yüklime telipi chongluq chékidin éship ketti"
 
+msgid "Current password"
+msgstr "Hazirqi parol"
+
+msgid "New password"
+msgstr "Yéngi parol"
+
+msgid "The new password must be different from the current one."
+msgstr "Yéngi parol hazirqi paroldin perqliq bolishi lazim."
+
+msgid "Type your new password again"
+msgstr "Yéngi parolingizni tekrar kirgüzüng"
+
+msgid "The two passwords do not match"
+msgstr "Bu ikki parol oxshash emes"
+
 msgid "Validation of email address change in progress."
 msgstr "Élxet adrési özgertishni delillesh dawam qiliwatidu."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Téximu köp körsetmiler üchün élxet qobullash sanduqingizni tekshürüng."
-
-msgid "Current password"
-msgstr "Hazirqi parol"
-
-msgid "Old password confirmation required"
-msgstr "Kona parolni jezimlesh telep qilinidu"
 
 msgid "Warning"
 msgstr "Agahlandurush"
@@ -1416,8 +1409,8 @@ msgstr "Eger 24 sa’etkiche aktiplimisngiz, bu supa aptomatik öchürülidu."
 msgid "Sign up"
 msgstr "tizimliting"
 
-msgid "Domain"
-msgstr "Da’ire"
+msgid "Site"
+msgstr ""
 
 msgid "Confirmation"
 msgstr "Jezmleng"

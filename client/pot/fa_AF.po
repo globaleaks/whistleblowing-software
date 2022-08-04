@@ -475,30 +475,6 @@ msgstr "محتوای راپور خود را انتخاب کنید:"
 msgid "Before proceeding, please set a new password."
 msgstr "قبل از ادامه، لطفاً یک پسورد جدید تنظیم کنید."
 
-msgid "New password"
-msgstr "پسورد جدید"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "پسورد انتخابی بسیار ضعیف است. یک پسورد معتبر باید حداقل 10 کرکتر داشته باشد؛ بشمول حداقل یک کرکتر با حروف کوچک، یک کرکتر با حروف بزرگ، یک شماره و یک کرکتر خاص."
-
-msgid "The new password must be different from the current one."
-msgstr "پسورد جدید باید با پسورد فعلی فرق داشته باشد."
-
-msgid "Type your new password again"
-msgstr "پسور جدید خود را دوباره تایپ کنید"
-
-msgid "The two passwords do not match"
-msgstr "این دو پسورد یکسان نیستند"
-
-msgid "The new password must differ from the previous."
-msgstr "پسورد جدید باید با پسورد قبلی فرق داشته باشد."
-
-msgid "Proceed"
-msgstr "ادامه بدهید"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "قبل از ادامه، لطفاً تأیید هویت دو عاملی را فعال کنید."
 
@@ -538,9 +514,6 @@ msgstr "محدودیت حجم برای ضمیمه‌ها"
 msgid "megabytes"
 msgstr "میگابایت"
 
-msgid "Enable HSTS preload"
-msgstr "فعال سازی HSTS preload"
-
 msgid "Require two factor authentication"
 msgstr "نیاز به تأیید هویت دو عاملی"
 
@@ -556,6 +529,15 @@ msgstr "برای غیرفعال کردن این ویژگی، مقدار را 0 �
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "تعداد روزها تا زمان اطلاع راپورهای خوانده نشده به کاربران"
+
+msgid "Disable the privacy panel"
+msgstr "غیرفعال کردن پنل محرمیبت"
+
+msgid "Enable custom privacy panel"
+msgstr "فعال سازی پنل محرمیت سفارشی"
+
+msgid "Custom privacy panel"
+msgstr "پنل محرمیت سفارشی"
 
 msgid "Enable custodian user role"
 msgstr "فعال سازی نقش کاربر نگهبان"
@@ -844,6 +826,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "این پلتفورم باید از طریق یک آدرس IP عمومی قابل دسترسی باشد و همچنین نامِ میزبانِ انتخاب شده باید شامل یک رکورد DNS متناظر که به آن آدرس اشاره می کند، باشد."
 
+msgid "Proceed"
+msgstr "ادامه بدهید"
+
 msgid "Manual configuration"
 msgstr "پیکربندی دستی"
 
@@ -861,15 +846,6 @@ msgstr "تمدید اتوماتیک"
 msgid "Tor Onion Service"
 msgstr "خدمات Tor Onion"
 
-msgid "Disable the privacy panel"
-msgstr "غیرفعال کردن پنل محرمیبت"
-
-msgid "Enable custom privacy panel"
-msgstr "فعال سازی پنل محرمیت سفارشی"
-
-msgid "Custom privacy panel"
-msgstr "پنل محرمیت سفارشی"
-
 msgid "Anonymize outgoing connections"
 msgstr "ناشناس کردن اتصالات خروجی"
 
@@ -884,6 +860,11 @@ msgstr "افشاگر"
 
 msgid "To"
 msgstr "به"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "آدرس ایمیل SMTP"
@@ -1065,9 +1046,6 @@ msgstr "فعال سازی شرایط خدمات"
 msgid "Title"
 msgstr "عنوان"
 
-msgid "Send an account activation link to the user."
-msgstr "ارسال لینک فعال‌ سازی اکاونت به کاربر."
-
 msgid "Public name"
 msgstr "نام عمومی"
 
@@ -1077,14 +1055,20 @@ msgstr "ارسال لینک تنظیم مجدد "
 msgid "Set password"
 msgstr "تنظیم پسورد "
 
-msgid "Disable two factor authentication"
-msgstr "غیرفعالسازی تأیید هویت دو عاملی"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "پسورد انتخابی بسیار ضعیف است. یک پسورد معتبر باید حداقل 10 کرکتر داشته باشد؛ بشمول حداقل یک کرکتر با حروف کوچک، یک کرکتر با حروف بزرگ، یک شماره و یک کرکتر خاص."
 
 msgid "Force password change"
 msgstr "وادار به تغییر پسورد"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "کاربر مجبور است تا پسورد خود را در ورود بعدی تغییر دهد."
+
+msgid "Disable two factor authentication"
+msgstr "غیرفعالسازی تأیید هویت دو عاملی"
 
 msgid "Language"
 msgstr "لسان"
@@ -1164,11 +1148,11 @@ msgstr "تخصیص امتیاز"
 msgid "Are you sure?"
 msgstr "آیا مطمئن هستید؟"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "لطفاً توجه داشته باشید که تمام اطلاعات مرتبط برای همیشه از بین خواهند رفت."
-
 msgid "Close"
 msgstr "بستن"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "لطفاً توجه داشته باشید که تمام اطلاعات مرتبط برای همیشه از بین خواهند رفت."
 
 msgid "Enable two factor authentication"
 msgstr "فعال سازی تأیید هویت دو عاملی"
@@ -1249,17 +1233,26 @@ msgstr "منبع فقط با استفاده از شبکه Tor قابل دستر�
 msgid "The upload request exceeds the size limit"
 msgstr "سایز اپلود درخواستی بزرگتر از حد مجاز است"
 
+msgid "Current password"
+msgstr "پسورد فعلی"
+
+msgid "New password"
+msgstr "پسورد جدید"
+
+msgid "The new password must be different from the current one."
+msgstr "پسورد جدید باید با پسورد فعلی فرق داشته باشد."
+
+msgid "Type your new password again"
+msgstr "پسور جدید خود را دوباره تایپ کنید"
+
+msgid "The two passwords do not match"
+msgstr "این دو پسورد یکسان نیستند"
+
 msgid "Validation of email address change in progress."
 msgstr "اعتبار سنجی تغییر آدرس ایمیل در حال انجام می باشد."
 
 msgid "Please check your inbox for further instructions."
 msgstr "لطفاً اینباکس خود را برای طرزالعمل های بیشتر چک کنید."
-
-msgid "Current password"
-msgstr "پسورد فعلی"
-
-msgid "Old password confirmation required"
-msgstr "تایید پسورد قبلی لازم است"
 
 msgid "Warning"
 msgstr "هشدار"
@@ -1417,8 +1410,8 @@ msgstr "در صورتی که فعالسازی ظرف 24 ساعت صورت نپذ
 msgid "Sign up"
 msgstr "ثبت نام"
 
-msgid "Domain"
-msgstr "دامنه"
+msgid "Site"
+msgstr ""
 
 msgid "Confirmation"
 msgstr "تائیدیه"

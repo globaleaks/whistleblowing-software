@@ -497,30 +497,6 @@ msgstr "Välj kontext för din rapport:"
 msgid "Before proceeding, please set a new password."
 msgstr "Vänligen ställ in ett lösenord innan du går vidare."
 
-msgid "New password"
-msgstr "Nytt lösenord"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Det lösenord du valt är alltför svagt. Ett giltigt lösenord ska ha en längd på minst 10 tecken och det ska innehålla flera olika tecken, inklusive minst en liten bokstav, en stor bokstav, ett nummer och ett specialtecken."
-
-msgid "The new password must be different from the current one."
-msgstr "Det nya lösenordet ska vara annorlunda än ditt nuvarande."
-
-msgid "Type your new password again"
-msgstr "Skriv ditt nya lösenord igen"
-
-msgid "The two passwords do not match"
-msgstr "De två lösenorden matchade inte"
-
-msgid "The new password must differ from the previous."
-msgstr "Det nya lösenordet ska skilja sig från ditt nuvarande."
-
-msgid "Proceed"
-msgstr "Gå vidare"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Vänligen aktivera tvåfaktorsautentisering innan du går vidare."
 
@@ -560,9 +536,6 @@ msgstr "Storleksgräns för bifogade filer"
 msgid "megabytes"
 msgstr "megabytes"
 
-msgid "Enable HSTS preload"
-msgstr "Tillåt förladdning i HSTS"
-
 msgid "Require two factor authentication"
 msgstr "Kräv tvåfaktorsautentisering"
 
@@ -578,6 +551,15 @@ msgstr "Ange värdet 0 för att inaktivera denna funktion."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Antal dagar efter vilket användaren påminns om olästa rapporter"
+
+msgid "Disable the privacy panel"
+msgstr "Inaktivera integritetspanel"
+
+msgid "Enable custom privacy panel"
+msgstr "Aktivera egen integritetspanel"
+
+msgid "Custom privacy panel"
+msgstr "Egen integritetspanel"
 
 msgid "Enable custodian user role"
 msgstr "Aktivera användarrollen som systemförvaltare"
@@ -866,6 +848,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Plattformen måste kunna nås genom en offentlig IP-adress och det valda värdnamnet ska ha en motsvarande DNS-post som hänvisar till denna adress."
 
+msgid "Proceed"
+msgstr "Gå vidare"
+
 msgid "Manual configuration"
 msgstr "Manuell konfiguration"
 
@@ -883,15 +868,6 @@ msgstr "Automatisk förnyelse"
 msgid "Tor Onion Service"
 msgstr "Webbläsaren Tors onion-tjänst"
 
-msgid "Disable the privacy panel"
-msgstr "Inaktivera integritetspanel"
-
-msgid "Enable custom privacy panel"
-msgstr "Aktivera egen integritetspanel"
-
-msgid "Custom privacy panel"
-msgstr "Egen integritetspanel"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonymisera utgående anslutningar"
 
@@ -906,6 +882,11 @@ msgstr "Visselblåsare"
 
 msgid "To"
 msgstr "Till"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP-e-postadress"
@@ -1087,9 +1068,6 @@ msgstr "Aktivera användarvillkor"
 msgid "Title"
 msgstr "Rubrik"
 
-msgid "Send an account activation link to the user."
-msgstr "Skicka en länk för aktivering av kontot till användaren."
-
 msgid "Public name"
 msgstr "Offentligt namn"
 
@@ -1099,14 +1077,20 @@ msgstr "Skicka återställningslänk"
 msgid "Set password"
 msgstr "Ange lösenord"
 
-msgid "Disable two factor authentication"
-msgstr "Inaktivera tvåfaktorsautentisering"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Det lösenord du valt är alltför svagt. Ett giltigt lösenord ska ha en längd på minst 10 tecken och det ska innehålla flera olika tecken, inklusive minst en liten bokstav, en stor bokstav, ett nummer och ett specialtecken."
 
 msgid "Force password change"
 msgstr "Påtvinga ändring av lösenord"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Användaren är tvungen att ändra sitt lösenord vid nästa inloggning."
+
+msgid "Disable two factor authentication"
+msgstr "Inaktivera tvåfaktorsautentisering"
 
 msgid "Language"
 msgstr "Språk"
@@ -1186,11 +1170,11 @@ msgstr "Tilldela poängtal"
 msgid "Are you sure?"
 msgstr "Är du säker?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Vänligen notera att alla tillhörande uppgifter kommer att tas bort permanent."
-
 msgid "Close"
 msgstr "Stäng"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Vänligen notera att alla tillhörande uppgifter kommer att tas bort permanent."
 
 msgid "Enable two factor authentication"
 msgstr "Tillåt tvåfaktorsautentisering"
@@ -1271,17 +1255,26 @@ msgstr "Resursen kan bara nås inom Tor-nätverket"
 msgid "The upload request exceeds the size limit"
 msgstr "Uppladdningen går över maxgränsen för antalet MB"
 
+msgid "Current password"
+msgstr "Nuvarande lösenord"
+
+msgid "New password"
+msgstr "Nytt lösenord"
+
+msgid "The new password must be different from the current one."
+msgstr "Det nya lösenordet ska vara annorlunda än ditt nuvarande."
+
+msgid "Type your new password again"
+msgstr "Skriv ditt nya lösenord igen"
+
+msgid "The two passwords do not match"
+msgstr "De två lösenorden matchade inte"
+
 msgid "Validation of email address change in progress."
 msgstr "Bekräftelse av ändrad e-postadress pågår."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Kontrollera din inkorg för att hitta ytterligare anvisningar."
-
-msgid "Current password"
-msgstr "Nuvarande lösenord"
-
-msgid "Old password confirmation required"
-msgstr "Kräv bekräftelse på gammalt lösenord"
 
 msgid "Warning"
 msgstr "Varning"
@@ -1439,8 +1432,8 @@ msgstr "Om du inte aktiverar plattformen inom 24 timmar, kommer den att raderas
 msgid "Sign up"
 msgstr "Registrering"
 
-msgid "Domain"
-msgstr "Domän"
+msgid "Site"
+msgstr "Webbplats"
 
 msgid "Confirmation"
 msgstr "Bekräftelse"

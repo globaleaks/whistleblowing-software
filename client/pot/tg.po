@@ -482,30 +482,6 @@ msgstr "Мавзӯи гузориши худро интихоб кунед:"
 msgid "Before proceeding, please set a new password."
 msgstr "Пеш аз идома додан, лутфан гузарвожаи нав таъин кунед."
 
-msgid "New password"
-msgstr "Гузарвожаи нав"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Гузарвожаи интихобшуда хеле заиф аст. Гузарвожаи воқеъӣ бояд на кам аз 10 рамз дошта бошад ва дорои рамзҳои гуногуни калон ва хурд, шумора ва рамзи махсус дошта бошад."
-
-msgid "The new password must be different from the current one."
-msgstr "Гузарвожаи нав бояд аз гузарвожаи ҷорӣ фарқ кунад."
-
-msgid "Type your new password again"
-msgstr "Гузарвожаи нави худро бори дигар нависед."
-
-msgid "The two passwords do not match"
-msgstr "Ду гузарвожа мутобиқат намекунанд"
-
-msgid "The new password must differ from the previous."
-msgstr "Гузарвожаи нав бояд аз гузарвожаи қаблӣ фарқ кунад. "
-
-msgid "Proceed"
-msgstr "Идома додан"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Пеш аз идома додан, лутфан тасдиқи шахсияти ду омиларо фаъол намоед."
 
@@ -545,9 +521,6 @@ msgstr "Маҳдудияти ҳаҷм барои файлҳои замимаша
 msgid "megabytes"
 msgstr "мегабайтҳо"
 
-msgid "Enable HSTS preload"
-msgstr "Боркунии пешакии HSTS-ро фаъол кардан"
-
 msgid "Require two factor authentication"
 msgstr "Тасдиқи шахсияти ду омиларо талаб кардан"
 
@@ -563,6 +536,15 @@ msgstr "Барои хомӯш кардани ин функсия арзишро 
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Шумораи рӯзҳо то огоҳ кардани гузоришҳои хонда нашуда ба корбарон"
+
+msgid "Disable the privacy panel"
+msgstr "Панели махфиро хомӯш кардан"
+
+msgid "Enable custom privacy panel"
+msgstr "Панели махфии фармоиширо фаъол сохтан"
+
+msgid "Custom privacy panel"
+msgstr "Панели махфии фармоишӣ"
 
 msgid "Enable custodian user role"
 msgstr "Нақши муҳофиз-корбарро фаъол кардан"
@@ -851,6 +833,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Барнома бояд тавассути IP суроғаи ҷамъиятӣ дастрас бошад ва номи ҳости интихобшуда бояд дорои DNS сабти мувофиқ ба он суроға бошад. "
 
+msgid "Proceed"
+msgstr "Идома додан"
+
 msgid "Manual configuration"
 msgstr "Танзимоти дастӣ"
 
@@ -868,15 +853,6 @@ msgstr "Азнавшавии худкор"
 msgid "Tor Onion Service"
 msgstr "Хадамоти Tor Onion"
 
-msgid "Disable the privacy panel"
-msgstr "Панели махфиро хомӯш кардан"
-
-msgid "Enable custom privacy panel"
-msgstr "Панели махфии фармоиширо фаъол сохтан"
-
-msgid "Custom privacy panel"
-msgstr "Панели махфии фармоишӣ"
-
 msgid "Anonymize outgoing connections"
 msgstr "Алоқаҳои содиротиро номаълум кардан"
 
@@ -891,6 +867,11 @@ msgstr "Хабардиҳанда"
 
 msgid "To"
 msgstr "Ба"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "Суроғаи электронии SMTP"
@@ -1072,9 +1053,6 @@ msgstr "Шартҳои хизматрасониро фаъол сохтан"
 msgid "Title"
 msgstr "Унвон"
 
-msgid "Send an account activation link to the user."
-msgstr "Ба корбар ирсол намудани пайванд барои фаъолсозии аккаунт."
-
 msgid "Public name"
 msgstr "Номи ҷамъиятӣ"
 
@@ -1084,14 +1062,20 @@ msgstr "Ирсоли пайванд барои барқарорсозӣ"
 msgid "Set password"
 msgstr "Таъин кардани гузарвожа"
 
-msgid "Disable two factor authentication"
-msgstr "Тасдиқи шахсияти ду омиларо хомӯш кардан"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Гузарвожаи интихобшуда хеле заиф аст. Гузарвожаи воқеъӣ бояд на кам аз 10 рамз дошта бошад ва дорои рамзҳои гуногуни калон ва хурд, шумора ва рамзи махсус дошта бошад."
 
 msgid "Force password change"
 msgstr "Тағйири гузарвожаи маҷбурӣ"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Ҳангоми воридшавии навбатӣ корбар маҷбур карда мешавад, ки гузарвожаашро тағйир диҳад."
+
+msgid "Disable two factor authentication"
+msgstr "Тасдиқи шахсияти ду омиларо хомӯш кардан"
 
 msgid "Language"
 msgstr "Забон"
@@ -1171,11 +1155,11 @@ msgstr "Холҳоро муқаррар кардан"
 msgid "Are you sure?"
 msgstr "Шумо мутмаъин ҳастед?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Лутфан таваҷҷӯҳ кунед, ки тамоми маълумоти марбут ба таври ҳамешагӣ пок карда мешавад. "
-
 msgid "Close"
 msgstr "Пӯшидан"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Лутфан таваҷҷӯҳ кунед, ки тамоми маълумоти марбут ба таври ҳамешагӣ пок карда мешавад. "
 
 msgid "Enable two factor authentication"
 msgstr "Тасдиқкунандаи шахсияти ду омиларо фаъол кардан"
@@ -1256,17 +1240,26 @@ msgstr "Дастрасӣ ба ин манбаъ танҳо тавассути ш
 msgid "The upload request exceeds the size limit"
 msgstr "Дархости боркунӣ аз ҳадди андозаи муқарраршуда зиёд аст"
 
+msgid "Current password"
+msgstr "Гузарвожаи ҷорӣ"
+
+msgid "New password"
+msgstr "Гузарвожаи нав"
+
+msgid "The new password must be different from the current one."
+msgstr "Гузарвожаи нав бояд аз гузарвожаи ҷорӣ фарқ кунад."
+
+msgid "Type your new password again"
+msgstr "Гузарвожаи нави худро бори дигар нависед."
+
+msgid "The two passwords do not match"
+msgstr "Ду гузарвожа мутобиқат намекунанд"
+
 msgid "Validation of email address change in progress."
 msgstr "Тасдиқи тағйири суроғаи почтаи электронӣ идома дорад."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Барои дастури минбаъда лутфан паёмдони худро тафтиш намоед."
-
-msgid "Current password"
-msgstr "Гузарвожаи ҷорӣ"
-
-msgid "Old password confirmation required"
-msgstr "Тасдиқи гузарвожаи куҳна лозим аст"
 
 msgid "Warning"
 msgstr "Огоҳӣ"
@@ -1424,8 +1417,8 @@ msgstr "Агар давоми 24 соат фаъол нагардад, барн�
 msgid "Sign up"
 msgstr "Қайди ном шудан"
 
-msgid "Domain"
-msgstr "Домен"
+msgid "Site"
+msgstr ""
 
 msgid "Confirmation"
 msgstr "Тасдиқ кардан"

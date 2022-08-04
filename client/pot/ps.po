@@ -474,30 +474,6 @@ msgstr "د خپل رپوټ زمینه انتخاب کړئ:"
 msgid "Before proceeding, please set a new password."
 msgstr "مخکې تر دې چې وړاندې ولاړ شئ، مهرباني وکړئ یو نوی پټ نوم ورکړئ."
 
-msgid "New password"
-msgstr "نوی پټ نوم"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "غوره شوی پټ نوم ډېر ضعیف دی. یو اعتباري پټ نوم باید 10 کرکټرونه او هغه هم بېلابېل کرکټرونه ولري چې پکې کم تر کمه واړه توري، یو لوی توری، یوه شمېره او یو ځانګړی کرکټر پکې وي."
-
-msgid "The new password must be different from the current one."
-msgstr "نوی پټ نوم باید له اوسني پت نوم سره توپیر ولري."
-
-msgid "Type your new password again"
-msgstr "خپل نوی پټ نوم مو بیا ولیکئ"
-
-msgid "The two passwords do not match"
-msgstr "دغه دوه پټ نومونه سره برابر نه دي"
-
-msgid "The new password must differ from the previous."
-msgstr "نوی پټ نوم باید له پخواني څخه توپیر ولري."
-
-msgid "Proceed"
-msgstr "تر سره کول"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "له تر سره کولو وړاندې، د مهرباني له مخې دوه عامله تصدیق فعال کړئ."
 
@@ -537,9 +513,6 @@ msgstr "د فایل د ضمیمو لپاره د اندازې محدودیت"
 msgid "megabytes"
 msgstr "میګا بایټونه"
 
-msgid "Enable HSTS preload"
-msgstr "له وړاندې څخه د HSTS د ښکته کولو فعالول"
-
 msgid "Require two factor authentication"
 msgstr "دوه عامله تصدیق غواړي"
 
@@ -555,6 +528,15 @@ msgstr "مقدار 0 کړئ تر څو دغه ځانګړنه غیرفعاله ش�
 
 msgid "Number of days till notifying unread reports to users"
 msgstr " کارنونو ته د نالوستل شویو رپوټونو د خبر ورکولو د ورځو شمېر"
+
+msgid "Disable the privacy panel"
+msgstr "د محرمیت د پینل غیرفعالول"
+
+msgid "Enable custom privacy panel"
+msgstr "د سفارشي محرمیت د پینل فعالول"
+
+msgid "Custom privacy panel"
+msgstr "د سفارشي محرمیت پینل"
 
 msgid "Enable custodian user role"
 msgstr "د ساتونکي کارن د رول فعالول"
@@ -843,6 +825,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "دا پلټفارم باید د IP له یوه عامه پتې څخه د لاسرسي وړ وي او ټاکل شوی هاسټ نوم باید هغې پتې ته د ریفرنس ورکولو لپاره د DNS اسناد ولري."
 
+msgid "Proceed"
+msgstr "تر سره کول"
+
 msgid "Manual configuration"
 msgstr "لاسي کانفیګوریشن"
 
@@ -860,15 +845,6 @@ msgstr "اتومات نوي کېدل"
 msgid "Tor Onion Service"
 msgstr "د Tor Onion خدمت"
 
-msgid "Disable the privacy panel"
-msgstr "د محرمیت د پینل غیرفعالول"
-
-msgid "Enable custom privacy panel"
-msgstr "د سفارشي محرمیت د پینل فعالول"
-
-msgid "Custom privacy panel"
-msgstr "د سفارشي محرمیت پینل"
-
 msgid "Anonymize outgoing connections"
 msgstr "خروجي اتصالات ناپیژندانه کړئ"
 
@@ -883,6 +859,11 @@ msgstr "افشاګر"
 
 msgid "To"
 msgstr "لپاره"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "د SMTP برېښنالیک پته"
@@ -1064,9 +1045,6 @@ msgstr "د خدمت د شرایطو فعالول"
 msgid "Title"
 msgstr "عنوان"
 
-msgid "Send an account activation link to the user."
-msgstr "کارن ته د اکاونټ د فعالولو د لینک لیږل."
-
 msgid "Public name"
 msgstr "عام نوم"
 
@@ -1076,14 +1054,20 @@ msgstr "د بیرته تنظیم کولو د لینک لیږل"
 msgid "Set password"
 msgstr "د پټ نوم ورکول"
 
-msgid "Disable two factor authentication"
-msgstr "د دوه عامله تصدیق غیرفعالول"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "غوره شوی پټ نوم ډېر ضعیف دی. یو اعتباري پټ نوم باید 10 کرکټرونه او هغه هم بېلابېل کرکټرونه ولري چې پکې کم تر کمه واړه توري، یو لوی توری، یوه شمېره او یو ځانګړی کرکټر پکې وي."
 
 msgid "Force password change"
 msgstr "د پټ نوم د بدلولو لپاره اړ ایستل"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "کارن به اړ کړل شي تر څو خپل پټ نوم په راتلونکي دننه کېدو سره بدل کړي."
+
+msgid "Disable two factor authentication"
+msgstr "د دوه عامله تصدیق غیرفعالول"
 
 msgid "Language"
 msgstr "ژبه"
@@ -1163,11 +1147,11 @@ msgstr "د امتیازاتو د نمرو اختصاص"
 msgid "Are you sure?"
 msgstr "ایا ډاډه یاست؟"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "د مهرباني له مخې دا درسره یادداشت کړئ چې ټول مل اطلاعات به د تل لپاره پاک کړل شي."
-
 msgid "Close"
 msgstr "بندول"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "د مهرباني له مخې دا درسره یادداشت کړئ چې ټول مل اطلاعات به د تل لپاره پاک کړل شي."
 
 msgid "Enable two factor authentication"
 msgstr "د دوه عامله تصدیق فعالول"
@@ -1248,17 +1232,26 @@ msgstr "سرچینو ته یوازې کېدای شي د Tor د شبکې له ل�
 msgid "The upload request exceeds the size limit"
 msgstr "د پورته کولو غوښتنه د ټاکل شوي اندازې له حد څخه زیاته ده"
 
+msgid "Current password"
+msgstr "اوسنی پټ نوم"
+
+msgid "New password"
+msgstr "نوی پټ نوم"
+
+msgid "The new password must be different from the current one."
+msgstr "نوی پټ نوم باید له اوسني پت نوم سره توپیر ولري."
+
+msgid "Type your new password again"
+msgstr "خپل نوی پټ نوم مو بیا ولیکئ"
+
+msgid "The two passwords do not match"
+msgstr "دغه دوه پټ نومونه سره برابر نه دي"
+
 msgid "Validation of email address change in progress."
 msgstr "د برېښنالیک پتې د بدلولو تایید د پرمختګ په حال کې ده."
 
 msgid "Please check your inbox for further instructions."
 msgstr "مهرباني وکړئ د لا زیاتو لارښوونو لپاره خپل انباکس وګورئ."
-
-msgid "Current password"
-msgstr "اوسنی پټ نوم"
-
-msgid "Old password confirmation required"
-msgstr "د پخواني پټ نوم تصدیق ته اړتیا ده"
 
 msgid "Warning"
 msgstr "خبرداری"
@@ -1416,8 +1409,8 @@ msgstr "که چیرته په 24 ساعتونو کې دننه فعال نشي ن�
 msgid "Sign up"
 msgstr "نوم لیکنه"
 
-msgid "Domain"
-msgstr "ډومین"
+msgid "Site"
+msgstr ""
 
 msgid "Confirmation"
 msgstr "تصدیق"

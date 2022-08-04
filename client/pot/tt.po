@@ -474,30 +474,6 @@ msgstr "Хисабыгызның контекстын сайлагыз:"
 msgid "Before proceeding, please set a new password."
 msgstr "Дәвам итү өчен, зинһар, яңа серсүз урнаштырыгыз."
 
-msgid "New password"
-msgstr "Яңа пароль"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Сайланган серсүз бик зәгыйфь. Дөрес серсүз кимендә 10 символ озынлыкта булырга тиеш һәм төрле символлардан, шул исәптән, кимендә юл хәреф, баш хәреф, сан һәм махсус символдан торырга тиеш."
-
-msgid "The new password must be different from the current one."
-msgstr "Яңа серсүз хәзерге серсүздән аерылырга тиеш."
-
-msgid "Type your new password again"
-msgstr "Яңа серсүзегезне кабат кертегез"
-
-msgid "The two passwords do not match"
-msgstr "Ике серсүз туры килми"
-
-msgid "The new password must differ from the previous."
-msgstr "Яңа серсүз әүвәлге серсүздән аерылырга тиеш."
-
-msgid "Proceed"
-msgstr "Дәвам итү"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Дәвам итәр алдыннан, зинһар, ике адымлы аутентификацияне кабызыгыз."
 
@@ -537,9 +513,6 @@ msgstr "Файл кертелмәләр өчен күләмне чикләү"
 msgid "megabytes"
 msgstr "мегабайтлар"
 
-msgid "Enable HSTS preload"
-msgstr "Алдан HSTS йөкләүне кабызу"
-
 msgid "Require two factor authentication"
 msgstr "Ике адымлы аутентификация таләп ителә"
 
@@ -555,6 +528,15 @@ msgstr "Бу функцияне сүндерү өчен санны \"0\" ите�
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Кулланучыларга укылмаган хисаплар турында белдерүгә кадәр көн саны"
+
+msgid "Disable the privacy panel"
+msgstr "Хосусыйлык панелен сүндерү"
+
+msgid "Enable custom privacy panel"
+msgstr "Кулланучы хосусыйлык панелен кабызу"
+
+msgid "Custom privacy panel"
+msgstr "Хосусыйлык панелен шәхсиләштерергә"
 
 msgid "Enable custodian user role"
 msgstr "Кулланучы өчен җаваплы зат ролен кабызу"
@@ -843,6 +825,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Платформа ачык IP аша тоташырга тиеш, сайланган хост исемендә бу адреска сылтамалы тиешле DNS язмасы булырга тиеш. "
 
+msgid "Proceed"
+msgstr "Дәвам итү"
+
 msgid "Manual configuration"
 msgstr "Кулидарәле конфигурация"
 
@@ -860,15 +845,6 @@ msgstr "Автомат яңарту"
 msgid "Tor Onion Service"
 msgstr "Tor Onion хезмәте"
 
-msgid "Disable the privacy panel"
-msgstr "Хосусыйлык панелен сүндерү"
-
-msgid "Enable custom privacy panel"
-msgstr "Кулланучы хосусыйлык панелен кабызу"
-
-msgid "Custom privacy panel"
-msgstr "Хосусыйлык панелен шәхсиләштерергә"
-
 msgid "Anonymize outgoing connections"
 msgstr "Чыгыш бәйләнешләрне яшерү"
 
@@ -883,6 +859,11 @@ msgstr "Мәгълүмат җиткерүче"
 
 msgid "To"
 msgstr "Кемгә"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP электрон почта адресы"
@@ -1064,9 +1045,6 @@ msgstr "Куллану шартларын раслау"
 msgid "Title"
 msgstr "Башисем"
 
-msgid "Send an account activation link to the user."
-msgstr "Кулланучыга шәхси сәхифәсен активлаштыру сылтамасын җибәрү."
-
 msgid "Public name"
 msgstr "Ачык исем"
 
@@ -1076,14 +1054,20 @@ msgstr "Ташлату сылтамасын җибәрү"
 msgid "Set password"
 msgstr "Серсүзе урнаштыру"
 
-msgid "Disable two factor authentication"
-msgstr "Ике адымлы аутентификацияне cүндерү"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Сайланган серсүз бик зәгыйфь. Дөрес серсүз кимендә 10 символ озынлыкта булырга тиеш һәм төрле символлардан, шул исәптән, кимендә юл хәреф, баш хәреф, сан һәм махсус символдан торырга тиеш."
 
 msgid "Force password change"
 msgstr "Серсүзне мәҗбүри үзгәртү"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Кулланучы киләсе керүдә серсүзен үзгәртергә мәҗбүр булачак."
+
+msgid "Disable two factor authentication"
+msgstr "Ике адымлы аутентификацияне cүндерү"
 
 msgid "Language"
 msgstr "Тел"
@@ -1163,11 +1147,11 @@ msgstr "Бәяләмә баллары бирү"
 msgid "Are you sure?"
 msgstr "Моны раслыйсызмы?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Зинһар, барлык бәйләнгән мәгълүматларның бөтенләй бетереләчәген искә алыгыз."
-
 msgid "Close"
 msgstr "Ябу"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Зинһар, барлык бәйләнгән мәгълүматларның бөтенләй бетереләчәген искә алыгыз."
 
 msgid "Enable two factor authentication"
 msgstr "Ике адымлы аутентификацияне кабызу"
@@ -1248,17 +1232,26 @@ msgstr "Ресурсларга Tor челтәре аша гына кереп б�
 msgid "The upload request exceeds the size limit"
 msgstr "Йөкләү өчен файл күләме билгеләнгән чиктән артык"
 
+msgid "Current password"
+msgstr "Хәзерге серсүз"
+
+msgid "New password"
+msgstr "Яңа пароль"
+
+msgid "The new password must be different from the current one."
+msgstr "Яңа серсүз хәзерге серсүздән аерылырга тиеш."
+
+msgid "Type your new password again"
+msgstr "Яңа серсүзегезне кабат кертегез"
+
+msgid "The two passwords do not match"
+msgstr "Ике серсүз туры килми"
+
 msgid "Validation of email address change in progress."
 msgstr "Электрон почта адресын үзгәртүне тикшерү дәвам итә. "
 
 msgid "Please check your inbox for further instructions."
 msgstr "Зинһар, өстәмә күрсәтмәләр өчен \"Килгән хатлар\" папкагызны тикшерегез."
-
-msgid "Current password"
-msgstr "Хәзерге серсүз"
-
-msgid "Old password confirmation required"
-msgstr "Иске серсүзне раслау таләп ителә"
 
 msgid "Warning"
 msgstr "Кисәтү хәбәре"
@@ -1416,8 +1409,8 @@ msgstr "Әгәр 24 сәгать эчендә активлаштырылмаса
 msgid "Sign up"
 msgstr "Теркәлү"
 
-msgid "Domain"
-msgstr "Домен"
+msgid "Site"
+msgstr ""
 
 msgid "Confirmation"
 msgstr "Раслау"

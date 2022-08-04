@@ -474,30 +474,6 @@ msgstr "Доклатиңизниң мәзмунини таллаң:"
 msgid "Before proceeding, please set a new password."
 msgstr "Бир тәрәп қилиштин бурун, йеңи бир парол бәлгиләң."
 
-msgid "New password"
-msgstr "Йеңи парол"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Таллиған паролиңиз бәк аҗиз. Бир инавәтлик парол әң аз дегәндә охшаш болмиған 10 бәлгә узунлиқида болиши, әң аз бир кичик һәрп, бир чоң һәрп,бир рәқәм вә бир алаһидә бәлгидин тәркип тепиши керәк."
-
-msgid "The new password must be different from the current one."
-msgstr "Йеңи парол һазирқи паролдин пәрқлиқ болиши лазим."
-
-msgid "Type your new password again"
-msgstr "Йеңи паролиңизни тәкрар киргүзүң"
-
-msgid "The two passwords do not match"
-msgstr "Бу икки парол охшаш әмәс"
-
-msgid "The new password must differ from the previous."
-msgstr "Йеңи парол чоқум алдинқисидин пәрқлиқ болиши керәк."
-
-msgid "Proceed"
-msgstr "Давамлаштур"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Давам қилиштин бурун, икки қәдәмлик тоғрулашни қозғитиң."
 
@@ -537,9 +513,6 @@ msgstr "Һөҗҗәт қошумчилири үчүн чоңлуқ чеки"
 msgid "megabytes"
 msgstr "Мегабайтс"
 
-msgid "Enable HSTS preload"
-msgstr "HSTS алдин қачилашни қозғат"
-
 msgid "Require two factor authentication"
 msgstr "Икки қәдәмлик тоғрулашни тәләп қил"
 
@@ -555,6 +528,15 @@ msgstr "Бу иқтидарни чәкләш үчүн қиммитини 0 қи�
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Оқулмиған доклатларни ишләткүчиләргә уқтурғичә өтидиған күн сани"
+
+msgid "Disable the privacy panel"
+msgstr "Ихтийари шәхсийәт тахтисини чәклә"
+
+msgid "Enable custom privacy panel"
+msgstr "Ихтийари шәхсийәт тахтисини қозғат"
+
+msgid "Custom privacy panel"
+msgstr "Ихтийари шәхсийәт тахтиси"
 
 msgid "Enable custodian user role"
 msgstr "Сақлиғучи ишләткүчи ролини қозғат"
@@ -843,6 +825,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Бу супиға аммиви IP адреси билән бағланғили болиши вә талланған мулазиметер наминиң бу адресқа мунасип ДНС рекорти болуши керәк."
 
+msgid "Proceed"
+msgstr "Давамлаштур"
+
 msgid "Manual configuration"
 msgstr "Қолда сәплимә"
 
@@ -860,15 +845,6 @@ msgstr "Аптуматик йеңилаш"
 msgid "Tor Onion Service"
 msgstr "‏Tor Onion мулазимити"
 
-msgid "Disable the privacy panel"
-msgstr "Ихтийари шәхсийәт тахтисини чәклә"
-
-msgid "Enable custom privacy panel"
-msgstr "Ихтийари шәхсийәт тахтисини қозғат"
-
-msgid "Custom privacy panel"
-msgstr "Ихтийари шәхсийәт тахтиси"
-
 msgid "Anonymize outgoing connections"
 msgstr "Сиртқа уланмиларни намсизлаштур"
 
@@ -883,6 +859,11 @@ msgstr "Паш қилғучи"
 
 msgid "To"
 msgstr "Тапшуривалғучи"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "‏SMTP елхәт адреси"
@@ -1064,9 +1045,6 @@ msgstr "Мулазимәт шәртлирини қозғат"
 msgid "Title"
 msgstr "Тема"
 
-msgid "Send an account activation link to the user."
-msgstr "Һесабат актиплаш уланмисини ишләткүчигә әвәт"
-
 msgid "Public name"
 msgstr "Аммиви нами"
 
@@ -1076,14 +1054,20 @@ msgstr "Қайта сәпләш уланмисини әвәт"
 msgid "Set password"
 msgstr "Парол сәпләш"
 
-msgid "Disable two factor authentication"
-msgstr "Икки қәдәмлик тоғрулашни тохтат"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Таллиған паролиңиз бәк аҗиз. Бир инавәтлик парол әң аз дегәндә охшаш болмиған 10 бәлгә узунлиқида болиши, әң аз бир кичик һәрп, бир чоң һәрп,бир рәқәм вә бир алаһидә бәлгидин тәркип тепиши керәк."
 
 msgid "Force password change"
 msgstr "Парол йеңилашқа мәҗбурла"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Ишләткүчиләр кейинки қетим тизимға киргәндә, паролини өзгәртишкә мәҗбурлиниду."
+
+msgid "Disable two factor authentication"
+msgstr "Икки қәдәмлик тоғрулашни тохтат"
 
 msgid "Language"
 msgstr "Тил"
@@ -1163,11 +1147,11 @@ msgstr "Номур нуқтилирини бәлгиләң"
 msgid "Are you sure?"
 msgstr "Җәзим қиламсиз?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Мунасивәтлик барлиқ санлиқ мәлуматларнң мәңгүлүк өчүрүрилидиғанлиқиға диққәт қилиң."
-
 msgid "Close"
 msgstr "Тақа"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Мунасивәтлик барлиқ санлиқ мәлуматларнң мәңгүлүк өчүрүрилидиғанлиқиға диққәт қилиң."
 
 msgid "Enable two factor authentication"
 msgstr "Икки қәдәмлик тоғрулашни қозғат"
@@ -1248,17 +1232,26 @@ msgstr "Мәнбәни пәқәт Tor тори биләнла зийарәт қ�
 msgid "The upload request exceeds the size limit"
 msgstr "Йүклимә тәлипи чоңлуқ чекидин ешип кәтти"
 
+msgid "Current password"
+msgstr "Һазирқи парол"
+
+msgid "New password"
+msgstr "Йеңи парол"
+
+msgid "The new password must be different from the current one."
+msgstr "Йеңи парол һазирқи паролдин пәрқлиқ болиши лазим."
+
+msgid "Type your new password again"
+msgstr "Йеңи паролиңизни тәкрар киргүзүң"
+
+msgid "The two passwords do not match"
+msgstr "Бу икки парол охшаш әмәс"
+
 msgid "Validation of email address change in progress."
 msgstr "Елхәт адреси өзгәртишни дәлилләш давам қиливатиду."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Техиму көп көрсәтмиләр үчүн елхәт қобуллаш сандуқиңизни тәкшүрүң."
-
-msgid "Current password"
-msgstr "Һазирқи парол"
-
-msgid "Old password confirmation required"
-msgstr "Кона паролни җәзимләш тәләп қилиниду"
 
 msgid "Warning"
 msgstr "Агаһландуруш"
@@ -1416,8 +1409,8 @@ msgstr "Әгәр 24 саъәткичә актиплимисңиз, бу супа
 msgid "Sign up"
 msgstr "Тизимлитиң"
 
-msgid "Domain"
-msgstr "Даъирә"
+msgid "Site"
+msgstr ""
 
 msgid "Confirmation"
 msgstr "Җәзмләң"

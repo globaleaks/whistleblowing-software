@@ -474,30 +474,6 @@ msgstr ""
 msgid "Before proceeding, please set a new password."
 msgstr "Kabla ya kuendelea, tafadhali weka neno la siri jipya"
 
-msgid "New password"
-msgstr "Neno la siri jipya"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Neno la siri lililochaguliwa ni dhaifu sana. Neno la siri halali linapaswa kuwa angalau na herufi 10\n\nndefu na zijumuishe aina za herufi tofauti ikujumuisha angalau a\n\nherufi ndogo, herufi kubwa, namba na herufi maalumu."
-
-msgid "The new password must be different from the current one."
-msgstr "Neno la siri jipya lazima liwe tofauti na neon la siri la sasa."
-
-msgid "Type your new password again"
-msgstr "Andika neno lako la siri tena"
-
-msgid "The two passwords do not match"
-msgstr "Maneno hayo mawili ya siri hayaendani"
-
-msgid "The new password must differ from the previous."
-msgstr "."
-
-msgid "Proceed"
-msgstr "Endelea"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Kabla ya kuendelea, tafadhali wezesha uthibitishaji wa pili."
 
@@ -537,9 +513,6 @@ msgstr "Kikomo cha ukubwa wa viambatisho vya faili"
 msgid "megabytes"
 msgstr "megabiti"
 
-msgid "Enable HSTS preload"
-msgstr "Wezesha HSTS kupakia kabla"
-
 msgid "Require two factor authentication"
 msgstr "Inahitaji uthibitishaji wa mara ya pili "
 
@@ -555,6 +528,15 @@ msgstr "Weka 0 ili kutowezesha huduma hii."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr ""
+
+msgid "Disable the privacy panel"
+msgstr "Usiwezeshe paneli ya faragha"
+
+msgid "Enable custom privacy panel"
+msgstr "Wezesha paneli ya faragha maalum "
+
+msgid "Custom privacy panel"
+msgstr "paneli ya faragha"
 
 msgid "Enable custodian user role"
 msgstr "Wezesha sehemu ya jukumu la Mwangalizi"
@@ -843,6 +825,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Jukwaa lazima lifikiwe kupitia anwani ya IP ya umma na iliyochaguliwa jina la mwenyeji lazima liwe na rekodi inayolingana ya DNS inayorejelea anwani hiyo."
 
+msgid "Proceed"
+msgstr "Endelea"
+
 msgid "Manual configuration"
 msgstr "Usanidi wa mwongozo"
 
@@ -860,15 +845,6 @@ msgstr "Uhuishaji kiotomatiki"
 msgid "Tor Onion Service"
 msgstr "Huduma binafsi"
 
-msgid "Disable the privacy panel"
-msgstr "Usiwezeshe paneli ya faragha"
-
-msgid "Enable custom privacy panel"
-msgstr "Wezesha paneli ya faragha maalum "
-
-msgid "Custom privacy panel"
-msgstr "paneli ya faragha"
-
 msgid "Anonymize outgoing connections"
 msgstr "Fanya kutokujulikana viunganisho vinavyotoka nnje"
 
@@ -883,6 +859,11 @@ msgstr "Mtoa taarifa za siri"
 
 msgid "To"
 msgstr "Kwa"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "Anwani ya barua pepe ya SMTP"
@@ -1064,9 +1045,6 @@ msgstr "Wezesha masharti ya huduma"
 msgid "Title"
 msgstr "Kichwa"
 
-msgid "Send an account activation link to the user."
-msgstr "Tuma kiunga cha uanzishaji wa akaunti kwa mtumiaji."
-
 msgid "Public name"
 msgstr "Jina la umma"
 
@@ -1076,14 +1054,20 @@ msgstr "Tuma kiunga cha kuweka upya"
 msgid "Set password"
 msgstr "Weka nenosiri"
 
-msgid "Disable two factor authentication"
-msgstr "Usiwezeshe uthibitishaji wa mara mbili"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Neno la siri lililochaguliwa ni dhaifu sana. Neno la siri halali linapaswa kuwa angalau na herufi 10\n\nndefu na zijumuishe aina za herufi tofauti ikujumuisha angalau a\n\nherufi ndogo, herufi kubwa, namba na herufi maalumu."
 
 msgid "Force password change"
 msgstr "Lazimisha kubadilisha nenosiri"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Mtumiaji atalazimishwa kubadili neno siri lake pale atakapongia tena."
+
+msgid "Disable two factor authentication"
+msgstr "Usiwezeshe uthibitishaji wa mara mbili"
 
 msgid "Language"
 msgstr "Lugha"
@@ -1163,11 +1147,11 @@ msgstr "Weka alama za kupata"
 msgid "Are you sure?"
 msgstr "Una uhakika?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Tafadhali kumbuka kuwa data zote zinazohusiana zitafutwa kabisa."
-
 msgid "Close"
 msgstr "Funga"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Tafadhali kumbuka kuwa data zote zinazohusiana zitafutwa kabisa."
 
 msgid "Enable two factor authentication"
 msgstr "Wezesha uthibitishaji wa mara mbili "
@@ -1248,17 +1232,26 @@ msgstr "Rasilimali zinaweza kupatikana tu kupitia mtandao wa Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "Ombi la kupakia linazidi kikomo cha ukubwa"
 
+msgid "Current password"
+msgstr "Neno la siri la sasa"
+
+msgid "New password"
+msgstr "Neno la siri jipya"
+
+msgid "The new password must be different from the current one."
+msgstr "Neno la siri jipya lazima liwe tofauti na neon la siri la sasa."
+
+msgid "Type your new password again"
+msgstr "Andika neno lako la siri tena"
+
+msgid "The two passwords do not match"
+msgstr "Maneno hayo mawili ya siri hayaendani"
+
 msgid "Validation of email address change in progress."
 msgstr "Uthibitishaji wa mabadiliko ya anwani ya barua pepe unaendelea"
 
 msgid "Please check your inbox for further instructions."
 msgstr "Tafadhali angalia kisanduku chako cha kupokea ujumbe kwa maelekezo zaidi."
-
-msgid "Current password"
-msgstr "Neno la siri la sasa"
-
-msgid "Old password confirmation required"
-msgstr "Uthibitishaji wa nenosiri la zamani unahitajika"
 
 msgid "Warning"
 msgstr "Onyo"
@@ -1416,8 +1409,8 @@ msgstr "Kama haitahaishwa ndani ya masaa 24, jukwaa litafutwa automatiki."
 msgid "Sign up"
 msgstr "Sajili"
 
-msgid "Domain"
-msgstr "Kikoa"
+msgid "Site"
+msgstr ""
 
 msgid "Confirmation"
 msgstr "Uthibitisho"

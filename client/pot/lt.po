@@ -474,30 +474,6 @@ msgstr "Pasirinkite pranešimo kontekstą:"
 msgid "Before proceeding, please set a new password."
 msgstr "Prieš pradėdami sukurkite naują slaptažodį."
 
-msgid "New password"
-msgstr "Naujas slaptažodis"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Pasirinktas slaptažodis per silpnas. Tinkamą slaptažodį turi sudaryti bent 10 skirtingų simbolių, įskaitant bent vieną mažąją raidę, didžiąją raidę, skaičių ir specialųjį simbolį."
-
-msgid "The new password must be different from the current one."
-msgstr "Naujas slaptažodis privalo skirtis nuo dabartinio."
-
-msgid "Type your new password again"
-msgstr "Įveskite naują slaptažodį dar kartą"
-
-msgid "The two passwords do not match"
-msgstr "Įvesti slaptažodžiai nesutampa"
-
-msgid "The new password must differ from the previous."
-msgstr "Naujas slaptažodis privalo skirtis nuo ankstesnio."
-
-msgid "Proceed"
-msgstr "Tęsti"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Prieš tęsdami įgalinkite dviejų veiksnių tapatybės nustatymo būdą."
 
@@ -537,9 +513,6 @@ msgstr "Pridedamų failų dydžio limitas"
 msgid "megabytes"
 msgstr "megabaitai"
 
-msgid "Enable HSTS preload"
-msgstr "Įgalinti HSTS išankstinį įkėlimą"
-
 msgid "Require two factor authentication"
 msgstr "Reikalauti dviejų veiksnių tapatybės nustatymo"
 
@@ -555,6 +528,15 @@ msgstr "Norėdami išjungti šią funkciją, nustatykite vertę „0“."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Dienų skaičius iki įspėjimo naudotojams apie neperskaitytus pranešimus"
+
+msgid "Disable the privacy panel"
+msgstr "Išjungti privatumo skydelį"
+
+msgid "Enable custom privacy panel"
+msgstr "Įgalinti pasirinktinį privatumo skydelį"
+
+msgid "Custom privacy panel"
+msgstr "Pasirinktinis privatumo skydelis"
 
 msgid "Enable custodian user role"
 msgstr "Įgalinti saugotojo naudotojo funkciją"
@@ -843,6 +825,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Platforma turi būti pasiekiama per viešą IP adresą, o pasirinktas kompiuterio pavadinimas turi turėti tą adresą nurodantį DNS įrašą."
 
+msgid "Proceed"
+msgstr "Tęsti"
+
 msgid "Manual configuration"
 msgstr "Rankinė konfigūracija"
 
@@ -860,15 +845,6 @@ msgstr "Automatinis atnaujinimas"
 msgid "Tor Onion Service"
 msgstr "„Tor Onion“ paslauga"
 
-msgid "Disable the privacy panel"
-msgstr "Išjungti privatumo skydelį"
-
-msgid "Enable custom privacy panel"
-msgstr "Įgalinti pasirinktinį privatumo skydelį"
-
-msgid "Custom privacy panel"
-msgstr "Pasirinktinis privatumo skydelis"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonimizuoti išeinančius ryšius"
 
@@ -883,6 +859,11 @@ msgstr "Pranešėjas"
 
 msgid "To"
 msgstr "Kam"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP el. pašto adresas"
@@ -1064,9 +1045,6 @@ msgstr "Įgalinti paslaugų sąlygas"
 msgid "Title"
 msgstr "Antraštė"
 
-msgid "Send an account activation link to the user."
-msgstr "Siųsti paskyros aktyvavimo nuorodą naudotojui."
-
 msgid "Public name"
 msgstr "Viešas pavadinimas"
 
@@ -1076,14 +1054,20 @@ msgstr "Siųsti atkūrimo nuorodą"
 msgid "Set password"
 msgstr "Nustatyti slaptažodį"
 
-msgid "Disable two factor authentication"
-msgstr "Išjungti dviejų veiksnių tapatybės nustatymą"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Pasirinktas slaptažodis per silpnas. Tinkamą slaptažodį turi sudaryti bent 10 skirtingų simbolių, įskaitant bent vieną mažąją raidę, didžiąją raidę, skaičių ir specialųjį simbolį."
 
 msgid "Force password change"
 msgstr "Priversti pakeisti slaptažodį"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Kito prisijungimo metu naudotojas bus priverstas pakeisti slaptažodį."
+
+msgid "Disable two factor authentication"
+msgstr "Išjungti dviejų veiksnių tapatybės nustatymą"
 
 msgid "Language"
 msgstr "Kalba"
@@ -1163,11 +1147,11 @@ msgstr "Priskirti vertinimo taškus"
 msgid "Are you sure?"
 msgstr "Ar tikrai?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Atkreipkite dėmesį, kad visi susiję duomenys bus ištrinti visam laikui."
-
 msgid "Close"
 msgstr "Užverti"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Atkreipkite dėmesį, kad visi susiję duomenys bus ištrinti visam laikui."
 
 msgid "Enable two factor authentication"
 msgstr "Įjungti dviejų veiksnių tapatybės nustatymą"
@@ -1248,17 +1232,26 @@ msgstr "Resursą galima pasiekti tik per „Tor“ tinklą"
 msgid "The upload request exceeds the size limit"
 msgstr "Įkeliamas prašymas viršija dydžio limitą"
 
+msgid "Current password"
+msgstr "Dabartinis slaptažodis"
+
+msgid "New password"
+msgstr "Naujas slaptažodis"
+
+msgid "The new password must be different from the current one."
+msgstr "Naujas slaptažodis privalo skirtis nuo dabartinio."
+
+msgid "Type your new password again"
+msgstr "Įveskite naują slaptažodį dar kartą"
+
+msgid "The two passwords do not match"
+msgstr "Įvesti slaptažodžiai nesutampa"
+
 msgid "Validation of email address change in progress."
 msgstr "Vyksta el. pašto adreso keitimo patvirtinimas"
 
 msgid "Please check your inbox for further instructions."
 msgstr "Išsamesnių nurodymų ieškokite savo pašto dėžutėje."
-
-msgid "Current password"
-msgstr "Dabartinis slaptažodis"
-
-msgid "Old password confirmation required"
-msgstr "Reikia seno slaptažodžio patvirtinimo"
 
 msgid "Warning"
 msgstr "Įspėjimas"
@@ -1416,8 +1409,8 @@ msgstr "Jei platforma neaktyvinsite per 24 valandas, ji bus automatiškai ištri
 msgid "Sign up"
 msgstr "Registruotis"
 
-msgid "Domain"
-msgstr "Domenas"
+msgid "Site"
+msgstr "Tinklapis"
 
 msgid "Confirmation"
 msgstr "Patvirtinimas"

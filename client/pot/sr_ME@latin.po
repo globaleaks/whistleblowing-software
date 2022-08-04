@@ -473,30 +473,6 @@ msgstr "Izaberite kontekst svoje prijave:"
 msgid "Before proceeding, please set a new password."
 msgstr "Prije nego što nastavite, postavite novu lozinku."
 
-msgid "New password"
-msgstr "Nova lozinka"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Izabrana lozinka je preslaba. Važeća lozinka treba da ima najmanje 10 znakova i da sadrži različite znakove uključujući najmanje malo slovo, veliko slovo, broj i posebni znak."
-
-msgid "The new password must be different from the current one."
-msgstr "Nova lozinka mora se razlikovati od trenutne."
-
-msgid "Type your new password again"
-msgstr "Ponovo unesite novu lozinku"
-
-msgid "The two passwords do not match"
-msgstr "Dvije unijete lozinke se ne podudaraju"
-
-msgid "The new password must differ from the previous."
-msgstr "Nova lozinka mora se razlikovati od prethodne."
-
-msgid "Proceed"
-msgstr "Nastavi"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Prije nego što nastavite, omogućite dvostruku potvrdu identiteta."
 
@@ -536,9 +512,6 @@ msgstr "Ograničenje veličine priloženih datoteka u"
 msgid "megabytes"
 msgstr "megabajtima"
 
-msgid "Enable HSTS preload"
-msgstr "Uključi HSTS predučitavanje"
-
 msgid "Require two factor authentication"
 msgstr "Zahtijevaj dvostruku potvrdu identiteta"
 
@@ -554,6 +527,15 @@ msgstr "Postavite vrijednost na 0 da biste onemogućili ovu funkciju."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Broj dana do obavještavanja korisnika o nepročitanim prijavama"
+
+msgid "Disable the privacy panel"
+msgstr "Onemogući panel za privatnost"
+
+msgid "Enable custom privacy panel"
+msgstr "Omogući prilagođeni panel za privatnost"
+
+msgid "Custom privacy panel"
+msgstr "Prilagođeni panel za privatnost"
 
 msgid "Enable custodian user role"
 msgstr "Omogući korisničku ulogu čuvara"
@@ -842,6 +824,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Ova platforma mora biti dostupna putem javne IP adrese, a izabrano ime hosta mora imati odgovarajući DNS zapis koji upućuje na tu adresu."
 
+msgid "Proceed"
+msgstr "Nastavi"
+
 msgid "Manual configuration"
 msgstr "Ručno podešavanje"
 
@@ -859,15 +844,6 @@ msgstr "Automatska obnova"
 msgid "Tor Onion Service"
 msgstr "Usluga Tor Onion"
 
-msgid "Disable the privacy panel"
-msgstr "Onemogući panel za privatnost"
-
-msgid "Enable custom privacy panel"
-msgstr "Omogući prilagođeni panel za privatnost"
-
-msgid "Custom privacy panel"
-msgstr "Prilagođeni panel za privatnost"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonimizuj odlazne veze"
 
@@ -882,6 +858,11 @@ msgstr "Uzbunjivаč"
 
 msgid "To"
 msgstr "Do"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP adresa e-pošte"
@@ -1063,9 +1044,6 @@ msgstr "Omogući uslove korišćenja usluge"
 msgid "Title"
 msgstr "Naslov"
 
-msgid "Send an account activation link to the user."
-msgstr "Pošaljite korisniku vezu za aktiviranje naloga."
-
 msgid "Public name"
 msgstr "Javno ime"
 
@@ -1075,14 +1053,20 @@ msgstr "Pošalji vezu za resetovanje"
 msgid "Set password"
 msgstr "Postavi lozinku"
 
-msgid "Disable two factor authentication"
-msgstr "Onemogući dvostruku potvrdu identiteta"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Izabrana lozinka je preslaba. Važeća lozinka treba da ima najmanje 10 znakova i da sadrži različite znakove uključujući najmanje malo slovo, veliko slovo, broj i posebni znak."
 
 msgid "Force password change"
 msgstr "Nametni promjenu lozinke"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Korisnik će biti primoran da promijeni lozinku pri sljedećoj prijavi."
+
+msgid "Disable two factor authentication"
+msgstr "Onemogući dvostruku potvrdu identiteta"
 
 msgid "Language"
 msgstr "Jezik"
@@ -1162,11 +1146,11 @@ msgstr "Dodijeli bodove"
 msgid "Are you sure?"
 msgstr "Da li ste sigurni?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Imajte u vidu da će svi povezani podaci biti trajno izbrisani."
-
 msgid "Close"
 msgstr "Zatvori"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Imajte u vidu da će svi povezani podaci biti trajno izbrisani."
 
 msgid "Enable two factor authentication"
 msgstr "Omogući dvostruku potvrdu identiteta"
@@ -1247,17 +1231,26 @@ msgstr "Resursu se može pristupiti samo putem Tor mreže"
 msgid "The upload request exceeds the size limit"
 msgstr "Zahtjev za otpremanje premašuje ograničenje veličine"
 
+msgid "Current password"
+msgstr "Trenutna lozinka"
+
+msgid "New password"
+msgstr "Nova lozinka"
+
+msgid "The new password must be different from the current one."
+msgstr "Nova lozinka mora se razlikovati od trenutne."
+
+msgid "Type your new password again"
+msgstr "Ponovo unesite novu lozinku"
+
+msgid "The two passwords do not match"
+msgstr "Dvije unijete lozinke se ne podudaraju"
+
 msgid "Validation of email address change in progress."
 msgstr "Validacija promjene adrese e-pošte je u toku."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Dodatna uputstva potražite u prijemnom sandučetu."
-
-msgid "Current password"
-msgstr "Trenutna lozinka"
-
-msgid "Old password confirmation required"
-msgstr "Potrebna je potvrda stare lozinke"
 
 msgid "Warning"
 msgstr "Upozorenje"
@@ -1415,8 +1408,8 @@ msgstr "Ako se ne aktivira u roku od 24 sata, platforma će se automatski izbri
 msgid "Sign up"
 msgstr "Registrujte se"
 
-msgid "Domain"
-msgstr "Domen"
+msgid "Site"
+msgstr ""
 
 msgid "Confirmation"
 msgstr "Potvrda"

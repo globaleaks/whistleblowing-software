@@ -494,30 +494,6 @@ msgstr "请选择报告的上下文："
 msgid "Before proceeding, please set a new password."
 msgstr "请设置新密码以继续。"
 
-msgid "New password"
-msgstr "新密码"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "所选密码太弱。有效密码应至少包含 10 个多种字符，包括至少一个小写字母、一个大写字母、一个数字以及一个特殊符号。"
-
-msgid "The new password must be different from the current one."
-msgstr "新密码必须与当前密码不同。"
-
-msgid "Type your new password again"
-msgstr "再次输入密码"
-
-msgid "The two passwords do not match"
-msgstr "两个密码不匹配"
-
-msgid "The new password must differ from the previous."
-msgstr "新密码必须与之前的密码不同。"
-
-msgid "Proceed"
-msgstr "继续"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "请启用双重验证以继续。"
 
@@ -557,9 +533,6 @@ msgstr "文件附件大小限制"
 msgid "megabytes"
 msgstr "MB"
 
-msgid "Enable HSTS preload"
-msgstr "启用 HSTS 预载"
-
 msgid "Require two factor authentication"
 msgstr "要求双重验证"
 
@@ -575,6 +548,15 @@ msgstr "将该值设置为 0 以禁用该功能。"
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "向用户发送未读报告通知之前的天数"
+
+msgid "Disable the privacy panel"
+msgstr "禁用隐私面板"
+
+msgid "Enable custom privacy panel"
+msgstr "启用自定义隐私面板"
+
+msgid "Custom privacy panel"
+msgstr "自定义隐私面板"
 
 msgid "Enable custodian user role"
 msgstr "启用保管人用户角色"
@@ -863,6 +845,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "该平台必须可通过公共 IP 地址访问，并且所选主机名必须具有引用该地址的相应 DNS 记录。"
 
+msgid "Proceed"
+msgstr "继续"
+
 msgid "Manual configuration"
 msgstr "手动配置"
 
@@ -880,15 +865,6 @@ msgstr "自动续订"
 msgid "Tor Onion Service"
 msgstr "Tor Onion 服务"
 
-msgid "Disable the privacy panel"
-msgstr "禁用隐私面板"
-
-msgid "Enable custom privacy panel"
-msgstr "启用自定义隐私面板"
-
-msgid "Custom privacy panel"
-msgstr "自定义隐私面板"
-
 msgid "Anonymize outgoing connections"
 msgstr "匿名化传出连接"
 
@@ -903,6 +879,11 @@ msgstr "揭发者"
 
 msgid "To"
 msgstr "至"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP 电子邮件地址"
@@ -1084,9 +1065,6 @@ msgstr "启用服务条款"
 msgid "Title"
 msgstr "标题"
 
-msgid "Send an account activation link to the user."
-msgstr "发送帐户激活链接给用户。"
-
 msgid "Public name"
 msgstr "公开名称"
 
@@ -1096,14 +1074,20 @@ msgstr "发送重置链接"
 msgid "Set password"
 msgstr "设置密码"
 
-msgid "Disable two factor authentication"
-msgstr "禁用双重验证"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "所选密码太弱。有效密码应至少包含 10 个多种字符，包括至少一个小写字母、一个大写字母、一个数字以及一个特殊符号。"
 
 msgid "Force password change"
 msgstr "强制密码更改"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "在下次登录时，该用户将被强制更改密码。"
+
+msgid "Disable two factor authentication"
+msgstr "禁用双重验证"
 
 msgid "Language"
 msgstr "语言"
@@ -1183,11 +1167,11 @@ msgstr "分配分数"
 msgid "Are you sure?"
 msgstr "是否确定？"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "请注意，所有相关的数据将永久删除。"
-
 msgid "Close"
 msgstr "关闭"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "请注意，所有相关的数据将永久删除。"
 
 msgid "Enable two factor authentication"
 msgstr "启用双重验证"
@@ -1268,17 +1252,26 @@ msgstr "资源仅可通过 Tor 网络访问"
 msgid "The upload request exceeds the size limit"
 msgstr "上传请求超过文件大小限制"
 
+msgid "Current password"
+msgstr "当前密码"
+
+msgid "New password"
+msgstr "新密码"
+
+msgid "The new password must be different from the current one."
+msgstr "新密码必须与当前密码不同。"
+
+msgid "Type your new password again"
+msgstr "再次输入密码"
+
+msgid "The two passwords do not match"
+msgstr "两个密码不匹配"
+
 msgid "Validation of email address change in progress."
 msgstr "正在处理电子邮件地址更改验证。"
 
 msgid "Please check your inbox for further instructions."
 msgstr "请查看收件箱获取更多说明。"
-
-msgid "Current password"
-msgstr "当前密码"
-
-msgid "Old password confirmation required"
-msgstr "必须进行旧密码确认"
 
 msgid "Warning"
 msgstr "警告"
@@ -1436,8 +1429,8 @@ msgstr "如果未在 24 小时内完成激活，平台将自动删除。"
 msgid "Sign up"
 msgstr "注册"
 
-msgid "Domain"
-msgstr "域名"
+msgid "Site"
+msgstr "站点"
 
 msgid "Confirmation"
 msgstr "确认"

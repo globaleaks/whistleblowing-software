@@ -475,30 +475,6 @@ msgstr "Апішыце кантэкст вашай справаздачы:"
 msgid "Before proceeding, please set a new password."
 msgstr "Перад тым як працягнуць, к.л., стварыце новы пароль."
 
-msgid "New password"
-msgstr "Новы пароль"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Выбраны пароль занадта слабы. Дзейсны пароль павінен складацца з не менш чым 10 знакаў і ўтрымліваць разнастайныя знакі, у тым ліку, прынамсі, адну маленькую, адну вялікую літары, адну лічбу і адзін спецыяльны знак."
-
-msgid "The new password must be different from the current one."
-msgstr "Новы пароль павінен адрознівацца ад цяперашняга."
-
-msgid "Type your new password again"
-msgstr "Яшчэ раз набярыце ваш новы пароль"
-
-msgid "The two passwords do not match"
-msgstr "Паролі не супадаюць"
-
-msgid "The new password must differ from the previous."
-msgstr "Новы пароль павінен адрознівацца ад былога."
-
-msgid "Proceed"
-msgstr "Працягнуць"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Перад тым як працягнуць, к.л., уключыце двухфактарную аўтэнтыфікацыю."
 
@@ -538,9 +514,6 @@ msgstr "Абмежаванне памеру далучаных файлаў"
 msgid "megabytes"
 msgstr "мегабайты"
 
-msgid "Enable HSTS preload"
-msgstr "Уключыць папярэднюю загрузку HSTS"
-
 msgid "Require two factor authentication"
 msgstr "Патрабуецца двухфактарная аўтэнтыфікацыя"
 
@@ -556,6 +529,15 @@ msgstr "Каб адключыць гэтую функцыю, выбярыце з
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Колькасць дзён, што застаецца да апавяшчэння карыстальнікаў пра непрачытаныя справаздачы"
+
+msgid "Disable the privacy panel"
+msgstr "Адключыць панэль канфідэнцыйнасці"
+
+msgid "Enable custom privacy panel"
+msgstr "Уключыць карыстальніцкую панэль канфідэнцыйнасці"
+
+msgid "Custom privacy panel"
+msgstr "Карыстальніцкая панэль канфідэнцыйнасці"
 
 msgid "Enable custodian user role"
 msgstr "Уключыць ролю захавальніка"
@@ -844,6 +826,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Платформа павінна быць даступнай праз публічны IP -адрас, а абранае імя вузла павінна мець адпаведны запіс DNS, які скіроўвае на гэты адрас."
 
+msgid "Proceed"
+msgstr "Працягнуць"
+
 msgid "Manual configuration"
 msgstr "Ручная канфігурацыя"
 
@@ -861,15 +846,6 @@ msgstr "Аўта-аднаўленне"
 msgid "Tor Onion Service"
 msgstr "Сэрвіс Tor Onion"
 
-msgid "Disable the privacy panel"
-msgstr "Адключыць панэль канфідэнцыйнасці"
-
-msgid "Enable custom privacy panel"
-msgstr "Уключыць карыстальніцкую панэль канфідэнцыйнасці"
-
-msgid "Custom privacy panel"
-msgstr "Карыстальніцкая панэль канфідэнцыйнасці"
-
 msgid "Anonymize outgoing connections"
 msgstr "Ананімізаваць выходныя злучэнні"
 
@@ -884,6 +860,11 @@ msgstr "Выкрывальнік"
 
 msgid "To"
 msgstr "Каму"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP адрас электроннай пошты"
@@ -1065,9 +1046,6 @@ msgstr "Уключыць умовы выкарыстання"
 msgid "Title"
 msgstr "Загаловак"
 
-msgid "Send an account activation link to the user."
-msgstr "Даслаць карыстальніку спасылку на актывацыю ўліковага запісу."
-
 msgid "Public name"
 msgstr "Публічнае імя"
 
@@ -1077,14 +1055,20 @@ msgstr "Адправіць спасылку на абнуленне налада
 msgid "Set password"
 msgstr "Задаць пароль"
 
-msgid "Disable two factor authentication"
-msgstr "Адключыць двухфактарную аўтэнтыфікацыю"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Выбраны пароль занадта слабы. Дзейсны пароль павінен складацца з не менш чым 10 знакаў і ўтрымліваць разнастайныя знакі, у тым ліку, прынамсі, адну маленькую, адну вялікую літары, адну лічбу і адзін спецыяльны знак."
 
 msgid "Force password change"
 msgstr "Прымусовая змена паролю"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Карыстальнік будзе вымушаны змяніць пароль пры наступным уваходзе."
+
+msgid "Disable two factor authentication"
+msgstr "Адключыць двухфактарную аўтэнтыфікацыю"
 
 msgid "Language"
 msgstr "Мова"
@@ -1164,11 +1148,11 @@ msgstr "Налічыць балы"
 msgid "Are you sure?"
 msgstr "Упэўненыя?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Звярніце ўвагу, што ўсе спалучаныя дадзеныя будуць выдаленыя назаўжды."
-
 msgid "Close"
 msgstr "Зачыніць"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Звярніце ўвагу, што ўсе спалучаныя дадзеныя будуць выдаленыя назаўжды."
 
 msgid "Enable two factor authentication"
 msgstr "Уключыць двухфактарную аўтэнтыфікацыю"
@@ -1249,17 +1233,26 @@ msgstr "Даступ да рэсурсу можна атрымаць тольк�
 msgid "The upload request exceeds the size limit"
 msgstr "Файл для загрузкі перавышае максімальны памер"
 
+msgid "Current password"
+msgstr "Цяперашні пароль"
+
+msgid "New password"
+msgstr "Новы пароль"
+
+msgid "The new password must be different from the current one."
+msgstr "Новы пароль павінен адрознівацца ад цяперашняга."
+
+msgid "Type your new password again"
+msgstr "Яшчэ раз набярыце ваш новы пароль"
+
+msgid "The two passwords do not match"
+msgstr "Паролі не супадаюць"
+
 msgid "Validation of email address change in progress."
 msgstr "Ідзе валідацыя змены адраса электроннай пошты."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Для атрымання далейшых інструкцый праверце паштовую скрыню."
-
-msgid "Current password"
-msgstr "Цяперашні пароль"
-
-msgid "Old password confirmation required"
-msgstr "Патрабуецца пацверджанне старога пароля"
 
 msgid "Warning"
 msgstr "Увага"
@@ -1417,8 +1410,8 @@ msgstr "Калі яе не актываваць на працягу 24 гадз�
 msgid "Sign up"
 msgstr "Зарэгістравацца"
 
-msgid "Domain"
-msgstr "Дамен"
+msgid "Site"
+msgstr "Сайт"
 
 msgid "Confirmation"
 msgstr "Пацверджанне"

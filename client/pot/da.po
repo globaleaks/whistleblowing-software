@@ -481,30 +481,6 @@ msgstr "Vælg hvilken sammehæng din indsendelse indgår i."
 msgid "Before proceeding, please set a new password."
 msgstr "Før du fortsætter bedes du indstille en ny adgangskode."
 
-msgid "New password"
-msgstr "Ny adgangskode"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Den valgte adgangskode er for svag. En gyldig adgangskode bør være mindst 10 tegn lang og som minimum indeholde ét småt bogstav, ét stort bogstav, ét tal og ét specialtegn."
-
-msgid "The new password must be different from the current one."
-msgstr "Den nye adgangskode skal være forskellig fra den nuværende."
-
-msgid "Type your new password again"
-msgstr "Skriv din nye adgangskode igen"
-
-msgid "The two passwords do not match"
-msgstr "De to adgangskoder stemmer ikke overens"
-
-msgid "The new password must differ from the previous."
-msgstr "Den nye adgangskode skal være forskellige fra den gamle."
-
-msgid "Proceed"
-msgstr "Fortsæt"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Aktivér venligst to-faktor-godkendelse inden du fortsætter."
 
@@ -544,9 +520,6 @@ msgstr "Størrelsesgrænse for vedhæftede filer"
 msgid "megabytes"
 msgstr "megabyte"
 
-msgid "Enable HSTS preload"
-msgstr "Aktivér HTTPS preload"
-
 msgid "Require two factor authentication"
 msgstr "Kræv to-faktor-godkendelse"
 
@@ -562,6 +535,15 @@ msgstr "Sæt værdien til 0 for at deaktivere denne funktionalitet."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr " \nAntal dage indtil notifikation om ulæste rapporter til bliver sendt til brugerne"
+
+msgid "Disable the privacy panel"
+msgstr "Deaktiver privatlivspanelet"
+
+msgid "Enable custom privacy panel"
+msgstr "Aktivér brugertilpasset privatlivspanel"
+
+msgid "Custom privacy panel"
+msgstr "Brugertilpasset privatlivspanel"
 
 msgid "Enable custodian user role"
 msgstr "Aktivér kontoførende brugerrolle"
@@ -850,6 +832,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Platformen skal være tilgængelig via en offentlig IP-adresse og det valgte hostnavn skal have en tilsvarende DNS-record, der refererer til den adresse."
 
+msgid "Proceed"
+msgstr "Fortsæt"
+
 msgid "Manual configuration"
 msgstr "Manuel konfiguration"
 
@@ -867,15 +852,6 @@ msgstr "Automatisk fornyelse"
 msgid "Tor Onion Service"
 msgstr "Tor Onion Service"
 
-msgid "Disable the privacy panel"
-msgstr "Deaktiver privatlivspanelet"
-
-msgid "Enable custom privacy panel"
-msgstr "Aktivér brugertilpasset privatlivspanel"
-
-msgid "Custom privacy panel"
-msgstr "Brugertilpasset privatlivspanel"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonymiser udgående forbindelser"
 
@@ -890,6 +866,11 @@ msgstr "Whistleblower"
 
 msgid "To"
 msgstr "Til"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP e-mail-adresse"
@@ -1071,9 +1052,6 @@ msgstr "Aktivér servicebetingelserne"
 msgid "Title"
 msgstr "Titel"
 
-msgid "Send an account activation link to the user."
-msgstr "Send et kontoaktiveringslink til brugeren."
-
 msgid "Public name"
 msgstr "Offentligt navn"
 
@@ -1083,14 +1061,20 @@ msgstr "Send gendannelseslink"
 msgid "Set password"
 msgstr "Sæt adgangskode"
 
-msgid "Disable two factor authentication"
-msgstr "Deaktivér to-faktor-autentificering"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Den valgte adgangskode er for svag. En gyldig adgangskode bør være mindst 10 tegn lang og som minimum indeholde ét småt bogstav, ét stort bogstav, ét tal og ét specialtegn."
 
 msgid "Force password change"
 msgstr "Gennemtving skift af adgangskode"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Brugeren bliver tvunget til at skifte adgangskode ved næste login."
+
+msgid "Disable two factor authentication"
+msgstr "Deaktivér to-faktor-autentificering"
 
 msgid "Language"
 msgstr "Sprog"
@@ -1170,11 +1154,11 @@ msgstr "Tildel pointtal"
 msgid "Are you sure?"
 msgstr "Er du sikker?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Bemærk at alle tilknyttede data bliver slettet permanent."
-
 msgid "Close"
 msgstr "Luk"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Bemærk at alle tilknyttede data bliver slettet permanent."
 
 msgid "Enable two factor authentication"
 msgstr "Aktivér to-faktor-godkendelse"
@@ -1255,17 +1239,26 @@ msgstr "Denne ressource kan kun tilgås via Tor netværket"
 msgid "The upload request exceeds the size limit"
 msgstr "Upload overstiger tilladt størrelse"
 
+msgid "Current password"
+msgstr "Nuværende password"
+
+msgid "New password"
+msgstr "Ny adgangskode"
+
+msgid "The new password must be different from the current one."
+msgstr "Den nye adgangskode skal være forskellig fra den nuværende."
+
+msgid "Type your new password again"
+msgstr "Skriv din nye adgangskode igen"
+
+msgid "The two passwords do not match"
+msgstr "De to adgangskoder stemmer ikke overens"
+
 msgid "Validation of email address change in progress."
 msgstr "Godkendelse af skift af e-mail-adresse i gang."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Tjek venligst din indbakke for yderligere instruktioner."
-
-msgid "Current password"
-msgstr "Nuværende password"
-
-msgid "Old password confirmation required"
-msgstr "Der kræves bekræftelse af gammel adgangskode"
 
 msgid "Warning"
 msgstr "Advarsel"
@@ -1423,8 +1416,8 @@ msgstr "Hvis ikke aktiveret indenfor 24 timer vil platformen automatisk blive sl
 msgid "Sign up"
 msgstr "Tilmeld"
 
-msgid "Domain"
-msgstr "Domæne"
+msgid "Site"
+msgstr "Side"
 
 msgid "Confirmation"
 msgstr "Bekræftelse"

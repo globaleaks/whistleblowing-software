@@ -491,30 +491,6 @@ msgstr "Válassza ki a beküldés környezetét:"
 msgid "Before proceeding, please set a new password."
 msgstr "Továblépés előtt kérjük, állítson be új jelszót"
 
-msgid "New password"
-msgstr "Új jelszó"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "A kiválasztott jelszó nem elég erős. A jelszónak legalább 10 karakteresnek kell lennie, és tartalmaznia kell kis- és nagybetűket, számot és speciális karaktert is."
-
-msgid "The new password must be different from the current one."
-msgstr "Az új jelszó nem egyezhet meg az eddigivel"
-
-msgid "Type your new password again"
-msgstr "Gépelje be az új jelszavát újra"
-
-msgid "The two passwords do not match"
-msgstr "A két jelszó nem egyezik"
-
-msgid "The new password must differ from the previous."
-msgstr "Az új jelszó nem egyezhet meg korábbi jelszóval"
-
-msgid "Proceed"
-msgstr "Tovább"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Továbblépés előtt állíta be a 2-faktoros autentikációt"
 
@@ -554,9 +530,6 @@ msgstr "Mellékletek méretkorláta"
 msgid "megabytes"
 msgstr "megabájt"
 
-msgid "Enable HSTS preload"
-msgstr "HSTS betöltés engedélyezése"
-
 msgid "Require two factor authentication"
 msgstr "2-faktoros autentikáció szükséges"
 
@@ -572,6 +545,15 @@ msgstr "Állítsa az értéket 0-ra, hogy kikapcsolja ezt a funkciót."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Napok száma a felhasználóknak értesítés küldéséhez"
+
+msgid "Disable the privacy panel"
+msgstr "Adatvédelmi panel letiltása"
+
+msgid "Enable custom privacy panel"
+msgstr "Egyedi adatvédelmi panel engedélyezése"
+
+msgid "Custom privacy panel"
+msgstr "Egyéni adatvédelmi panel"
 
 msgid "Enable custodian user role"
 msgstr "Kezelő felhasználó típus engedélyezése"
@@ -860,6 +842,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "A platformnak hozzáférhetőnek kell lennie egy publikus IP címen és a kiválasztott hostnévnek DNS bejegyzéssel kell rendelkeznie arra a címre. "
 
+msgid "Proceed"
+msgstr "Tovább"
+
 msgid "Manual configuration"
 msgstr "Manuális  konfigurálás"
 
@@ -877,15 +862,6 @@ msgstr "Auto-megújítás"
 msgid "Tor Onion Service"
 msgstr "Tor Onion szolgáltatás"
 
-msgid "Disable the privacy panel"
-msgstr "Adatvédelmi panel letiltása"
-
-msgid "Enable custom privacy panel"
-msgstr "Egyedi adatvédelmi panel engedélyezése"
-
-msgid "Custom privacy panel"
-msgstr "Egyéni adatvédelmi panel"
-
 msgid "Anonymize outgoing connections"
 msgstr "Kimenő kapcsolatok anonimizálása"
 
@@ -900,6 +876,11 @@ msgstr "Bejelentő"
 
 msgid "To"
 msgstr "Címzett"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP email cím"
@@ -1081,9 +1062,6 @@ msgstr "Felhasználási feltételek engedélyezése"
 msgid "Title"
 msgstr "Cím"
 
-msgid "Send an account activation link to the user."
-msgstr "Felhasználói aktivációs link küldése"
-
 msgid "Public name"
 msgstr "Nyilvános elnevezés"
 
@@ -1093,14 +1071,20 @@ msgstr "Visszaállító link küldése"
 msgid "Set password"
 msgstr "Jelszó beállítása"
 
-msgid "Disable two factor authentication"
-msgstr "2-faktoros belépés kikapcsolása"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "A kiválasztott jelszó nem elég erős. A jelszónak legalább 10 karakteresnek kell lennie, és tartalmaznia kell kis- és nagybetűket, számot és speciális karaktert is."
 
 msgid "Force password change"
 msgstr "Jelszó változtatás kényszerítése"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "A felhasználó kényszeríve lesz, hogy megváltoztassa a jelszavát a következő bejelentkezéskor."
+
+msgid "Disable two factor authentication"
+msgstr "2-faktoros belépés kikapcsolása"
 
 msgid "Language"
 msgstr "Nyelv:"
@@ -1180,11 +1164,11 @@ msgstr "Pontszám hozzárendelése"
 msgid "Are you sure?"
 msgstr "Biztosan?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Kérjük figyeljen arra, hogy minden kapcsolódó adat véglegesen törlésre kerül."
-
 msgid "Close"
 msgstr "Bezár"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Kérjük figyeljen arra, hogy minden kapcsolódó adat véglegesen törlésre kerül."
 
 msgid "Enable two factor authentication"
 msgstr "Kétfaktoros azonosítás engedélyezése"
@@ -1265,17 +1249,26 @@ msgstr "A forrást csak a Tor hálózatán keresztül lehet elérni"
 msgid "The upload request exceeds the size limit"
 msgstr "A feltöltés meghadja a megengedett limitet"
 
+msgid "Current password"
+msgstr "Jelenlegi jelszó"
+
+msgid "New password"
+msgstr "Új jelszó"
+
+msgid "The new password must be different from the current one."
+msgstr "Az új jelszó nem egyezhet meg az eddigivel"
+
+msgid "Type your new password again"
+msgstr "Gépelje be az új jelszavát újra"
+
+msgid "The two passwords do not match"
+msgstr "A két jelszó nem egyezik"
+
 msgid "Validation of email address change in progress."
 msgstr "Az e-mailcím változtatás ellenőrzése folyamatban"
 
 msgid "Please check your inbox for further instructions."
 msgstr "Nézze meg a postaládáját a továbbiakért"
-
-msgid "Current password"
-msgstr "Jelenlegi jelszó"
-
-msgid "Old password confirmation required"
-msgstr "Régi jelszó megerősítése kötelező"
 
 msgid "Warning"
 msgstr "Figyelem"
@@ -1433,8 +1426,8 @@ msgstr "Ha 24 órán belül nem aktiválja a platformot, az automatikusan törl�
 msgid "Sign up"
 msgstr "Feliratkozás"
 
-msgid "Domain"
-msgstr "Domain"
+msgid "Site"
+msgstr ""
 
 msgid "Confirmation"
 msgstr "Megerősítés"

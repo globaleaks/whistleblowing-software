@@ -476,30 +476,6 @@ msgstr "Velg konteksten for din rapport:"
 msgid "Before proceeding, please set a new password."
 msgstr "Innstill et nytt passord før du fortsetter."
 
-msgid "New password"
-msgstr "Nytt passord"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Det valgte passordet er for svakt. Et gyldig passord må ha minst 10 tegn og inneholde en rekke tegn, inkludert minst en liten bokstav, en stor bokstav, et tall og et spesialtegn."
-
-msgid "The new password must be different from the current one."
-msgstr "Det nye passordet må være forskjellig fra det gamle."
-
-msgid "Type your new password again"
-msgstr "Skriv inn ditt nye passord igjen"
-
-msgid "The two passwords do not match"
-msgstr "De to passordene samsvarer ikke"
-
-msgid "The new password must differ from the previous."
-msgstr "Det nye passordet må være annerledes enn det forrige."
-
-msgid "Proceed"
-msgstr "Fortsett"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Aktiver tofaktorautentisering før du fortsetter."
 
@@ -539,9 +515,6 @@ msgstr "Størrelsesgrense for vedlegg"
 msgid "megabytes"
 msgstr "megabyte"
 
-msgid "Enable HSTS preload"
-msgstr "Aktiver HSTS-forhåndsinnlasting"
-
 msgid "Require two factor authentication"
 msgstr "Krever tofaktorautentisering"
 
@@ -557,6 +530,15 @@ msgstr "Innstill verdien til 0 for å kunne deaktivere funksjonen."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Antall dager til de uleste rapportene blir varslet til brukerne"
+
+msgid "Disable the privacy panel"
+msgstr "Deaktiver personvernspanelet"
+
+msgid "Enable custom privacy panel"
+msgstr "Aktiver egentilpasset personvernspanel"
+
+msgid "Custom privacy panel"
+msgstr "Egentilpasset personvernspanel"
 
 msgid "Enable custodian user role"
 msgstr "Slå på brukerrollen for tillitspersonen"
@@ -845,6 +827,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Plattformen må kunne nås gjennom en offentlig IP-adresse, og det valgte vertsnavnet må ha en DNS-post som refererer til adressen."
 
+msgid "Proceed"
+msgstr "Fortsett"
+
 msgid "Manual configuration"
 msgstr "Manuelt oppsett"
 
@@ -862,15 +847,6 @@ msgstr "Automatisk fornyelse"
 msgid "Tor Onion Service"
 msgstr "Tor-løktjeneste"
 
-msgid "Disable the privacy panel"
-msgstr "Deaktiver personvernspanelet"
-
-msgid "Enable custom privacy panel"
-msgstr "Aktiver egentilpasset personvernspanel"
-
-msgid "Custom privacy panel"
-msgstr "Egentilpasset personvernspanel"
-
 msgid "Anonymize outgoing connections"
 msgstr "Anonymiser utgående tilkoblinger"
 
@@ -885,6 +861,11 @@ msgstr "Fløyteblåser"
 
 msgid "To"
 msgstr "Til"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP-e-postadresse"
@@ -1066,9 +1047,6 @@ msgstr "Aktiver servicevilkår"
 msgid "Title"
 msgstr "Tittel"
 
-msgid "Send an account activation link to the user."
-msgstr "Send en lenke for kontoaktivering til brukeren."
-
 msgid "Public name"
 msgstr "Offentlig navn"
 
@@ -1078,14 +1056,20 @@ msgstr "Send lenken for tilbakestilling"
 msgid "Set password"
 msgstr "Sett passord"
 
-msgid "Disable two factor authentication"
-msgstr "Deaktiver tofaktorautentisering"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Det valgte passordet er for svakt. Et gyldig passord må ha minst 10 tegn og inneholde en rekke tegn, inkludert minst en liten bokstav, en stor bokstav, et tall og et spesialtegn."
 
 msgid "Force password change"
 msgstr "Påtving passordendring"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Mottakeren vil tvinges til å endre passordet sitt ved neste innlogging."
+
+msgid "Disable two factor authentication"
+msgstr "Deaktiver tofaktorautentisering"
 
 msgid "Language"
 msgstr "Språk"
@@ -1165,11 +1149,11 @@ msgstr "Tildel poeng"
 msgid "Are you sure?"
 msgstr "Er du sikker?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Merk at alle de tilknyttede dataene vil slettes permanent."
-
 msgid "Close"
 msgstr "Lukk"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Merk at alle de tilknyttede dataene vil slettes permanent."
 
 msgid "Enable two factor authentication"
 msgstr "Aktiver tofaktorautentisering"
@@ -1250,17 +1234,26 @@ msgstr "Ressurs kan nåes bare i Tor-nettverket"
 msgid "The upload request exceeds the size limit"
 msgstr "Opplastingsforespørselen overskrider størrelsesavgrensningen"
 
+msgid "Current password"
+msgstr "Gjeldende passord"
+
+msgid "New password"
+msgstr "Nytt passord"
+
+msgid "The new password must be different from the current one."
+msgstr "Det nye passordet må være forskjellig fra det gamle."
+
+msgid "Type your new password again"
+msgstr "Skriv inn ditt nye passord igjen"
+
+msgid "The two passwords do not match"
+msgstr "De to passordene samsvarer ikke"
+
 msgid "Validation of email address change in progress."
 msgstr "Bekreftelse av e-postendring underveis."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Sjekk innboksen for flere instruksjoner."
-
-msgid "Current password"
-msgstr "Gjeldende passord"
-
-msgid "Old password confirmation required"
-msgstr "Bekreftelse av gammelt passord påkrevd"
 
 msgid "Warning"
 msgstr "Advarsel"
@@ -1418,8 +1411,8 @@ msgstr "Hvis aktivering ikke skjer innen 24 timer, vil plattformen slettes autom
 msgid "Sign up"
 msgstr "Registrer deg"
 
-msgid "Domain"
-msgstr "Domene"
+msgid "Site"
+msgstr ""
 
 msgid "Confirmation"
 msgstr "Bekreftelse"

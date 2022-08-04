@@ -474,30 +474,6 @@ msgstr "Valige oma teate kontekst:"
 msgid "Before proceeding, please set a new password."
 msgstr "Enne jätkamist seadistage uus parool."
 
-msgid "New password"
-msgstr "Uus parool"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Valitud parool on liiga nõrk. Sobiv parool peaks sisaldama vähemalt 10 erinevat märki, sealhulgas vähemalt üks väiketäht, üks suurtäht, üks number ja üks erimärk."
-
-msgid "The new password must be different from the current one."
-msgstr "Uus parool peab senisest paroolist erinema."
-
-msgid "Type your new password again"
-msgstr "Korrake uut parooli"
-
-msgid "The two passwords do not match"
-msgstr "Paroolid ei ühti"
-
-msgid "The new password must differ from the previous."
-msgstr "Uus parool peab senisest erinema."
-
-msgid "Proceed"
-msgstr "Jätka"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Enne jätkamist lubage kaheastmeline autentimine."
 
@@ -537,9 +513,6 @@ msgstr "Manusfailide mahupiirang"
 msgid "megabytes"
 msgstr "megabaiti"
 
-msgid "Enable HSTS preload"
-msgstr "Luba HSTS-eellaadimine"
-
 msgid "Require two factor authentication"
 msgstr "Küsi kaheastmelist autentimist"
 
@@ -555,6 +528,15 @@ msgstr "Selle funktsiooni väljalülitamiseks määrake väärtuseks 0."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr ""
+
+msgid "Disable the privacy panel"
+msgstr "Keela andmekaitsepaneel"
+
+msgid "Enable custom privacy panel"
+msgstr "Luba kohandatud andmekaitsepaneel"
+
+msgid "Custom privacy panel"
+msgstr "Kohandatud andmekaitsepaneel"
 
 msgid "Enable custodian user role"
 msgstr "Luba hoidja kasutajaroll"
@@ -843,6 +825,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Platvorm peab olema avaliku IP-aadressi kaudu kättesaadav ning valitud hostinimel peab olema sellele aadressile viitav vastav DNS-i kirje."
 
+msgid "Proceed"
+msgstr "Jätka"
+
 msgid "Manual configuration"
 msgstr "Manuaalne seadistamine"
 
@@ -860,15 +845,6 @@ msgstr "Automaatne uuendamine"
 msgid "Tor Onion Service"
 msgstr "Teenus Tor Onion"
 
-msgid "Disable the privacy panel"
-msgstr "Keela andmekaitsepaneel"
-
-msgid "Enable custom privacy panel"
-msgstr "Luba kohandatud andmekaitsepaneel"
-
-msgid "Custom privacy panel"
-msgstr "Kohandatud andmekaitsepaneel"
-
 msgid "Anonymize outgoing connections"
 msgstr "Väljuvate ühenduste anonüümimine"
 
@@ -883,6 +859,11 @@ msgstr "Vihjeandja"
 
 msgid "To"
 msgstr "Saaja"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP meiliaadress"
@@ -1064,9 +1045,6 @@ msgstr "Luba teenusetingimused"
 msgid "Title"
 msgstr "Pealkiri"
 
-msgid "Send an account activation link to the user."
-msgstr "Saada kasutajale konto aktiveerimise link."
-
 msgid "Public name"
 msgstr "Avalik nimi"
 
@@ -1076,14 +1054,20 @@ msgstr "Saada lähtestamislink"
 msgid "Set password"
 msgstr "Määra parool"
 
-msgid "Disable two factor authentication"
-msgstr "Keela kaheastmeline autentimine"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Valitud parool on liiga nõrk. Sobiv parool peaks sisaldama vähemalt 10 erinevat märki, sealhulgas vähemalt üks väiketäht, üks suurtäht, üks number ja üks erimärk."
 
 msgid "Force password change"
 msgstr "Kohustuslik paroolivahetus"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Kasutaja peab järgmisel sisselogimisel parooli vahetama."
+
+msgid "Disable two factor authentication"
+msgstr "Keela kaheastmeline autentimine"
 
 msgid "Language"
 msgstr "Keel"
@@ -1163,11 +1147,11 @@ msgstr "Punktide andmine"
 msgid "Are you sure?"
 msgstr "Kas olete kindel?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Võtke arvesse, et kõik seotud andmed kustutatakse jäädavalt."
-
 msgid "Close"
 msgstr "Sulge"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Võtke arvesse, et kõik seotud andmed kustutatakse jäädavalt."
 
 msgid "Enable two factor authentication"
 msgstr "Luba kaheastmeline autentimine"
@@ -1248,17 +1232,26 @@ msgstr "Ressursile pääseb ligi ainult Tor-i võrgu kaudu"
 msgid "The upload request exceeds the size limit"
 msgstr "Üleslaadimistaotlus ületab mahupiirangut"
 
+msgid "Current password"
+msgstr "Senine parool"
+
+msgid "New password"
+msgstr "Uus parool"
+
+msgid "The new password must be different from the current one."
+msgstr "Uus parool peab senisest paroolist erinema."
+
+msgid "Type your new password again"
+msgstr "Korrake uut parooli"
+
+msgid "The two passwords do not match"
+msgstr "Paroolid ei ühti"
+
 msgid "Validation of email address change in progress."
 msgstr "Meiliaadressi vahetust valideeritakse."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Täpsemate juhiste saamiseks vaadake oma sisendkausta."
-
-msgid "Current password"
-msgstr "Senine parool"
-
-msgid "Old password confirmation required"
-msgstr "Vana parooli kinnitus on nõutav"
 
 msgid "Warning"
 msgstr "Hoiatus"
@@ -1416,8 +1409,8 @@ msgstr "Kui platvormi 24 tunni jooksul ei aktiveerita, kustutatakse see automaat
 msgid "Sign up"
 msgstr "Registreeru"
 
-msgid "Domain"
-msgstr "Domeen"
+msgid "Site"
+msgstr "Leht"
 
 msgid "Confirmation"
 msgstr "Kinnitus"

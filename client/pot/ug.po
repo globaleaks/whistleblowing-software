@@ -476,30 +476,6 @@ msgstr "مەلۇماتىڭىزنىڭ مەزمۇنىنى تاللاڭ:"
 msgid "Before proceeding, please set a new password."
 msgstr "بىر تەرەپ قىلىشتىن بۇرۇن، يېڭى بىر پارول بەلگىلەڭ."
 
-msgid "New password"
-msgstr "يېڭى پارول"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "تاللىغان پارولىڭىز بەك ئاجىز. بىر ئىناۋەتلىك پارول ئەڭ ئاز دېگەندە ئوخشاش بولمىغان 10 بەلگە ئۇزۇنلىقىدا بولىشى، ئەڭ ئاز بىر كىچىك ھەرپ، بىر چوڭ ھەرپ، بىر رەقەم ۋە بىر ئالاھىدە بەلگىدىن تەركىپ تېپىشى كېرەك."
-
-msgid "The new password must be different from the current one."
-msgstr "يېڭى پارول ھازىرقى پارولدىن پەرقلىق بولىشى لازىم."
-
-msgid "Type your new password again"
-msgstr "يېڭى پارولىڭىزنى تەكرار كىرگۈزۈڭ"
-
-msgid "The two passwords do not match"
-msgstr "بۇ ئىككى پارول ئوخشاش ئەمەس"
-
-msgid "The new password must differ from the previous."
-msgstr "يېڭى پارول چوقۇم ئالدىنقىسىدىن پەرقلىق بولىشى كېرەك."
-
-msgid "Proceed"
-msgstr "داۋاملاشتۇر"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "داۋام قىلىشتىن بۇرۇن، ئىككى قەدەملىك توغرۇلاشنى قوزغىتىڭ."
 
@@ -539,9 +515,6 @@ msgstr "ھۆججەت قوشۇمچىلىرى ئۈچۈن چوڭلۇق چېكى"
 msgid "megabytes"
 msgstr "مېگابايتس"
 
-msgid "Enable HSTS preload"
-msgstr "HSTS ئالدىن قاچىلاشنى قوزغات"
-
 msgid "Require two factor authentication"
 msgstr "ئىككى قەدەملىك توغرۇلاشنى تەلەپ قىل"
 
@@ -557,6 +530,15 @@ msgstr "بۇ ئىقتىدارنى چەكلەش ئۈچۈن قىممىتىنى 0 �
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "ئوقۇلمىغان مەلۇماتلارنى ئىشلەتكۈچىلەرگە ئۇقتۇرغىچە ئۆتىدىغان كۈن سانى"
+
+msgid "Disable the privacy panel"
+msgstr "ئىختىيارى شەخسىيەت تاختىسىنى چەكلە"
+
+msgid "Enable custom privacy panel"
+msgstr "ئىختىيارى شەخسىيەت تاختىسىنى قوزغات"
+
+msgid "Custom privacy panel"
+msgstr "ئىختىيارى شەخسىيەت تاختىسى"
 
 msgid "Enable custodian user role"
 msgstr "ساقلىغۇچى ئىشلەتكۈچى رولىنى قوزغات"
@@ -845,6 +827,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "بۇ سۇپىغا ئاممىۋى IP ئادرېسى بىلەن باغلانغىلى بولىشى ۋە تاللانغان مۇلازىمېتېر نامىنىڭ بۇ ئادرېسقا مۇناسىپ DNS رېكورتى بولۇشى كېرەك."
 
+msgid "Proceed"
+msgstr "داۋاملاشتۇر"
+
 msgid "Manual configuration"
 msgstr "قولدا سەپلىمە"
 
@@ -862,15 +847,6 @@ msgstr "ئاپتۇماتىك يېڭىلاش"
 msgid "Tor Onion Service"
 msgstr "‏Tor Onion مۇلازىمىتى"
 
-msgid "Disable the privacy panel"
-msgstr "ئىختىيارى شەخسىيەت تاختىسىنى چەكلە"
-
-msgid "Enable custom privacy panel"
-msgstr "ئىختىيارى شەخسىيەت تاختىسىنى قوزغات"
-
-msgid "Custom privacy panel"
-msgstr "ئىختىيارى شەخسىيەت تاختىسى"
-
 msgid "Anonymize outgoing connections"
 msgstr "سىرتقا ئۇلانمىلارنى نامسىزلاشتۇر"
 
@@ -885,6 +861,11 @@ msgstr "پاش قىلغۇچى"
 
 msgid "To"
 msgstr "تاپشۇرىۋالغۇچى"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "‏‏SMTP ئېلخەت ئادرېسى"
@@ -1066,9 +1047,6 @@ msgstr "مۇلازىمەت شەرتلىرىنى قوزغات"
 msgid "Title"
 msgstr "تېما"
 
-msgid "Send an account activation link to the user."
-msgstr "ھېسابات ئاكتىپلاش ئۇلانمىسىنى ئىشلەتكۈچىگە ئەۋەت"
-
 msgid "Public name"
 msgstr "ئاممىۋى نامى"
 
@@ -1078,14 +1056,20 @@ msgstr "قايتا سەپلەش ئۇلانمىسىنى ئەۋەت"
 msgid "Set password"
 msgstr "پارول سەپلەش"
 
-msgid "Disable two factor authentication"
-msgstr "ئىككى قەدەملىك توغرۇلاشنى توختات"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "تاللىغان پارولىڭىز بەك ئاجىز. بىر ئىناۋەتلىك پارول ئەڭ ئاز دېگەندە ئوخشاش بولمىغان 10 بەلگە ئۇزۇنلىقىدا بولىشى، ئەڭ ئاز بىر كىچىك ھەرپ، بىر چوڭ ھەرپ، بىر رەقەم ۋە بىر ئالاھىدە بەلگىدىن تەركىپ تېپىشى كېرەك."
 
 msgid "Force password change"
 msgstr "پارول يېڭىلاشقا مەجبۇرلا"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "ئىشلەتكۈچىلەر كېيىنكى قېتىم تىزىمغا كىرگەندە، پارولىنى ئۆزگەرتىشكە مەجبۇرلىنىدۇ."
+
+msgid "Disable two factor authentication"
+msgstr "ئىككى قەدەملىك توغرۇلاشنى توختات"
 
 msgid "Language"
 msgstr "تىل"
@@ -1165,11 +1149,11 @@ msgstr "نومۇر نۇقتىلىرىنى بەلگىلەڭ"
 msgid "Are you sure?"
 msgstr "جەزىم قىلامسىز؟"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "مۇناسىۋەتلىك بارلىق سانلىق مەلۇماتلارنڭ مەڭگۈلۈك ئۆچۈرۈرىلىدىغانلىقىغا دىققەت قىلىڭ."
-
 msgid "Close"
 msgstr "تاقا"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "مۇناسىۋەتلىك بارلىق سانلىق مەلۇماتلارنڭ مەڭگۈلۈك ئۆچۈرۈرىلىدىغانلىقىغا دىققەت قىلىڭ."
 
 msgid "Enable two factor authentication"
 msgstr "ئىككى قەدەملىك توغرۇلاشنى قوزغات"
@@ -1250,17 +1234,26 @@ msgstr "مەنبەنى پەقەت Tor تورى بىلەنلا زىيارەت ق�
 msgid "The upload request exceeds the size limit"
 msgstr "يۈكلىمە تەلىپى چوڭلۇق چېكىدىن ئېشىپ كەتتى"
 
+msgid "Current password"
+msgstr "ھازىرقى پارول"
+
+msgid "New password"
+msgstr "يېڭى پارول"
+
+msgid "The new password must be different from the current one."
+msgstr "يېڭى پارول ھازىرقى پارولدىن پەرقلىق بولىشى لازىم."
+
+msgid "Type your new password again"
+msgstr "يېڭى پارولىڭىزنى تەكرار كىرگۈزۈڭ"
+
+msgid "The two passwords do not match"
+msgstr "بۇ ئىككى پارول ئوخشاش ئەمەس"
+
 msgid "Validation of email address change in progress."
 msgstr "ئېلخەت ئادرېسى ئۆزگەرتىشنى دەلىللەش داۋام قىلىۋاتىدۇ."
 
 msgid "Please check your inbox for further instructions."
 msgstr "تېخىمۇ كۆپ كۆرسەتمىلەر ئۈچۈن ئېلخەت قوبۇللاش ساندۇقىڭىزنى تەكشۈرۈڭ."
-
-msgid "Current password"
-msgstr "ھازىرقى پارول"
-
-msgid "Old password confirmation required"
-msgstr "كونا پارولنى جەزىملەش تەلەپ قىلىنىدۇ"
 
 msgid "Warning"
 msgstr "ئاگاھلاندۇرۇش"
@@ -1418,8 +1411,8 @@ msgstr "ئەگەر 24 سائەتكىچە ئاكتىپلىمىسڭىز، بۇ س�
 msgid "Sign up"
 msgstr "تىزىملىتىڭ"
 
-msgid "Domain"
-msgstr "دائىرە"
+msgid "Site"
+msgstr ""
 
 msgid "Confirmation"
 msgstr "جەزملەڭ"

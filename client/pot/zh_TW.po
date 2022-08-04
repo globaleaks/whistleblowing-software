@@ -481,30 +481,6 @@ msgstr "選擇您報告合適的情況："
 msgid "Before proceeding, please set a new password."
 msgstr "繼續之前，請設一個新密碼。"
 
-msgid "New password"
-msgstr "新密碼"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "選用的密碼強度過弱，有效的密碼應至少有 10 碼字元且包含大小寫、數字或特殊符號之組合。"
-
-msgid "The new password must be different from the current one."
-msgstr "新密碼必須與舊密碼不同"
-
-msgid "Type your new password again"
-msgstr "重新輸入密碼"
-
-msgid "The two passwords do not match"
-msgstr "密碼不相符"
-
-msgid "The new password must differ from the previous."
-msgstr "新密碼須不同於之前的舊密碼。"
-
-msgid "Proceed"
-msgstr "進行"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "繼續之前，請先開啟雙因子驗證功能。"
 
@@ -544,9 +520,6 @@ msgstr "附件檔案的大小限制"
 msgid "megabytes"
 msgstr "MB"
 
-msgid "Enable HSTS preload"
-msgstr "開啟 HSTS 預載"
-
 msgid "Require two factor authentication"
 msgstr "要求雙因子驗證"
 
@@ -562,6 +535,15 @@ msgstr "將值設為 0  以取消此功能。"
 
 msgid "Number of days till notifying unread reports to users"
 msgstr ""
+
+msgid "Disable the privacy panel"
+msgstr "取消隱私面板"
+
+msgid "Enable custom privacy panel"
+msgstr "啟用自定的隱私面版"
+
+msgid "Custom privacy panel"
+msgstr "自定隱私面板"
 
 msgid "Enable custodian user role"
 msgstr "啟動保管人的用戶角色"
@@ -850,6 +832,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr ""
 
+msgid "Proceed"
+msgstr "進行"
+
 msgid "Manual configuration"
 msgstr "手動設定"
 
@@ -867,15 +852,6 @@ msgstr "自動更新"
 msgid "Tor Onion Service"
 msgstr "Tor 洋瞛服務 "
 
-msgid "Disable the privacy panel"
-msgstr "取消隱私面板"
-
-msgid "Enable custom privacy panel"
-msgstr "啟用自定的隱私面版"
-
-msgid "Custom privacy panel"
-msgstr "自定隱私面板"
-
 msgid "Anonymize outgoing connections"
 msgstr "匿名化對外連線 "
 
@@ -890,6 +866,11 @@ msgstr "吹哨揭密者"
 
 msgid "To"
 msgstr "給"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP 電子郵件"
@@ -1071,9 +1052,6 @@ msgstr "開啟服務條款"
 msgid "Title"
 msgstr "標題"
 
-msgid "Send an account activation link to the user."
-msgstr "傳送激活連結給該位用戶。"
-
 msgid "Public name"
 msgstr "公開名稱"
 
@@ -1083,14 +1061,20 @@ msgstr "傳送重置連結"
 msgid "Set password"
 msgstr "設定密碼"
 
-msgid "Disable two factor authentication"
-msgstr "關閉雙因子驗證"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "選用的密碼強度過弱，有效的密碼應至少有 10 碼字元且包含大小寫、數字或特殊符號之組合。"
 
 msgid "Force password change"
 msgstr "強迫變更密碼"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "使用者將在下回登入時更改密碼"
+
+msgid "Disable two factor authentication"
+msgstr "關閉雙因子驗證"
 
 msgid "Language"
 msgstr "語言"
@@ -1170,11 +1154,11 @@ msgstr "指定得分點數"
 msgid "Are you sure?"
 msgstr "你確定嗎？"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "請注意所有相關的資料將會永久消失。"
-
 msgid "Close"
 msgstr "關閉"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "請注意所有相關的資料將會永久消失。"
 
 msgid "Enable two factor authentication"
 msgstr "啟用雙因子驗證"
@@ -1255,17 +1239,26 @@ msgstr "資源僅能透過 TOR 網路讀取"
 msgid "The upload request exceeds the size limit"
 msgstr "上傳的請求超出檔案大小上限"
 
+msgid "Current password"
+msgstr "現用密碼"
+
+msgid "New password"
+msgstr "新密碼"
+
+msgid "The new password must be different from the current one."
+msgstr "新密碼必須與舊密碼不同"
+
+msgid "Type your new password again"
+msgstr "重新輸入密碼"
+
+msgid "The two passwords do not match"
+msgstr "密碼不相符"
+
 msgid "Validation of email address change in progress."
 msgstr "正在查驗電郵地址變更"
 
 msgid "Please check your inbox for further instructions."
 msgstr "請檢查您的信箱取得進一步指示。"
-
-msgid "Current password"
-msgstr "現用密碼"
-
-msgid "Old password confirmation required"
-msgstr "要求確認舊密碼"
 
 msgid "Warning"
 msgstr "警示"
@@ -1423,8 +1416,8 @@ msgstr "如未在 24 小時完成激活手續，平台會自動地刪除該份�
 msgid "Sign up"
 msgstr "註冊"
 
-msgid "Domain"
-msgstr "網域名"
+msgid "Site"
+msgstr "網址"
 
 msgid "Confirmation"
 msgstr "確認"

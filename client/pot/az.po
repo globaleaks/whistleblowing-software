@@ -481,30 +481,6 @@ msgstr "Hesabatın mövzusunu seç:"
 msgid "Before proceeding, please set a new password."
 msgstr "Davam etməzdən öncə yeni parol yaradın."
 
-msgid "New password"
-msgstr "Yeni şifrə"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Seçilmiş parol çox zəifdir. Etibarlı parol azı 10 müxtəlif işarədən, yəni kiçik hərflər, böyük hərflər, rəqəm və xüsusi işarələrdən ibarət olmalıdır."
-
-msgid "The new password must be different from the current one."
-msgstr "Yeni şifrə indiki şifrədən fəqrli olmalıdır."
-
-msgid "Type your new password again"
-msgstr "Yeni şifrənizi təzədən daxil edin"
-
-msgid "The two passwords do not match"
-msgstr "Şifrələr bir-birinə uyğun deyil"
-
-msgid "The new password must differ from the previous."
-msgstr "Yeni parol əvvəlkindən fərqlənməlidir."
-
-msgid "Proceed"
-msgstr "Davam edin"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Davam etməzdən öncə iki pilləli təsdiqləməni işə salın."
 
@@ -544,9 +520,6 @@ msgstr "Fayl əlavələrinin ölçü həddi"
 msgid "megabytes"
 msgstr "meqabaytlar"
 
-msgid "Enable HSTS preload"
-msgstr "HSTS yenidən yükləməni işə salın"
-
 msgid "Require two factor authentication"
 msgstr "İki pilləli təsdiqləmə tələb edin"
 
@@ -562,6 +535,15 @@ msgstr "Bu funksiyanı deaktiv etmək üçün ölçünü 0 kimi qeyd edin."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Oxunmamış hesabatları istifadəçilərin yadına salmaq üçün gün sayı"
+
+msgid "Disable the privacy panel"
+msgstr "Məxfilik panelini deaktiv edin"
+
+msgid "Enable custom privacy panel"
+msgstr "Fərdi məxfilik panelini aktiv edin"
+
+msgid "Custom privacy panel"
+msgstr "Fərdi məxfiik paneli"
 
 msgid "Enable custodian user role"
 msgstr "Mühafizəçinin istifadəçi rolunu işə salın"
@@ -850,6 +832,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Platformaya ümumi İP ünvanla keçmək mümkün olmalıdır və seçilmiş host adının həmin ünvana bağlı DNS qeydi olmalıdır."
 
+msgid "Proceed"
+msgstr "Davam edin"
+
 msgid "Manual configuration"
 msgstr "Manual quraşdırma"
 
@@ -867,15 +852,6 @@ msgstr "Avto yeniləmə"
 msgid "Tor Onion Service"
 msgstr "Tor Onion Xidməti"
 
-msgid "Disable the privacy panel"
-msgstr "Məxfilik panelini deaktiv edin"
-
-msgid "Enable custom privacy panel"
-msgstr "Fərdi məxfilik panelini aktiv edin"
-
-msgid "Custom privacy panel"
-msgstr "Fərdi məxfiik paneli"
-
 msgid "Anonymize outgoing connections"
 msgstr "Çıxış əlaqələri anonimləşdirin"
 
@@ -890,6 +866,11 @@ msgstr "İnformasiya ötürən"
 
 msgid "To"
 msgstr "Qədər"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP emeyl ünvanı"
@@ -1071,9 +1052,6 @@ msgstr "Qaydaları aktiv edin"
 msgid "Title"
 msgstr "Başlıq"
 
-msgid "Send an account activation link to the user."
-msgstr "Aktivləşdirmə linkini istifadəçiyə göndərin."
-
 msgid "Public name"
 msgstr "İctimai ad"
 
@@ -1083,14 +1061,20 @@ msgstr "Sıfırlama linkini göndərin"
 msgid "Set password"
 msgstr "Şifrə təyin edin"
 
-msgid "Disable two factor authentication"
-msgstr "İki pilləli təsdiqləməni deaktiv edin"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Seçilmiş parol çox zəifdir. Etibarlı parol azı 10 müxtəlif işarədən, yəni kiçik hərflər, böyük hərflər, rəqəm və xüsusi işarələrdən ibarət olmalıdır."
 
 msgid "Force password change"
 msgstr "Şifrəni dəyişdirin"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "İstifadəçi növbəti giriş zamanı şifrəsini dəyişməyə məcbur ediləcək."
+
+msgid "Disable two factor authentication"
+msgstr "İki pilləli təsdiqləməni deaktiv edin"
 
 msgid "Language"
 msgstr "Dil"
@@ -1170,11 +1154,11 @@ msgstr "Xalları təyin edin"
 msgid "Are you sure?"
 msgstr "Əminsinizmi?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Xahiş edirik, bütün əlaqəli məlumatların həmişəlik silinəcəyini unutmayın."
-
 msgid "Close"
 msgstr "Bağla"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Xahiş edirik, bütün əlaqəli məlumatların həmişəlik silinəcəyini unutmayın."
 
 msgid "Enable two factor authentication"
 msgstr "İki pilləli təsdiqləməni işə salın"
@@ -1255,17 +1239,26 @@ msgstr "Resursa giriş yalnız Tor şəbəkəsi vasitəsiylə mümkündür"
 msgid "The upload request exceeds the size limit"
 msgstr "Yükləmə tələbi ölçü həddini aşır"
 
+msgid "Current password"
+msgstr "İndiki şifrə"
+
+msgid "New password"
+msgstr "Yeni şifrə"
+
+msgid "The new password must be different from the current one."
+msgstr "Yeni şifrə indiki şifrədən fəqrli olmalıdır."
+
+msgid "Type your new password again"
+msgstr "Yeni şifrənizi təzədən daxil edin"
+
+msgid "The two passwords do not match"
+msgstr "Şifrələr bir-birinə uyğun deyil"
+
 msgid "Validation of email address change in progress."
 msgstr "Emeyl ünvanın dəyişməsinin təsdiqi prosesi gedir."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Ətraflı məlumat üçün inboksunuza baxın."
-
-msgid "Current password"
-msgstr "İndiki şifrə"
-
-msgid "Old password confirmation required"
-msgstr "Köhnə şifrənin təsdiqi tələb edilir"
 
 msgid "Warning"
 msgstr "Xəbərdarlıq"
@@ -1423,8 +1416,8 @@ msgstr "Platforma 24 saat ərzində aktivləşdirilməsə, avtomatik ləğv olun
 msgid "Sign up"
 msgstr "Qeydiyyat"
 
-msgid "Domain"
-msgstr "Domen"
+msgid "Site"
+msgstr "Sayt"
 
 msgid "Confirmation"
 msgstr "Təsdiqləmə"

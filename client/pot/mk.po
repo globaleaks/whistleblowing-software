@@ -476,30 +476,6 @@ msgstr "Изберете ја содржината/контекстот на в�
 msgid "Before proceeding, please set a new password."
 msgstr "Пред да продолжите, ве молиме поставете нова лозинка."
 
-msgid "New password"
-msgstr "Нова лозинка"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Избраната лозинка е преслаба. Валидната лозинка треба да биде долга најмалку 10 карактери и да содржи различни карактери вклучувајќи најмалку мала буква, голема буква, број и специјален карактер."
-
-msgid "The new password must be different from the current one."
-msgstr "Новата лозинка мора да биде различна од сегашната."
-
-msgid "Type your new password again"
-msgstr "Внесете ја вашата лозинка повторно"
-
-msgid "The two passwords do not match"
-msgstr "Двете лозинки не се исти"
-
-msgid "The new password must differ from the previous."
-msgstr "Новата лозинка мора да биде различна од претходната."
-
-msgid "Proceed"
-msgstr "Продолжи"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Пред да продолжите, ве молиме овозможете ја автентикацијата со два фактора."
 
@@ -539,9 +515,6 @@ msgstr "Граница за големина на датотека за прил
 msgid "megabytes"
 msgstr "мегабајти"
 
-msgid "Enable HSTS preload"
-msgstr "Овозможи претходно вчитување на HTTPS "
-
 msgid "Require two factor authentication"
 msgstr "Барај автентикација на два фактора"
 
@@ -557,6 +530,15 @@ msgstr "Поставете ја вредноста на 0 за да ја оне�
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Број на денови до известување на корисниците за непрочитани извештаи"
+
+msgid "Disable the privacy panel"
+msgstr "Оневозможи го панелот за приватност"
+
+msgid "Enable custom privacy panel"
+msgstr "Овозможи прилагоден панел за приватност"
+
+msgid "Custom privacy panel"
+msgstr "Прилагоден панел за приватност"
 
 msgid "Enable custodian user role"
 msgstr "Овозможи корисничка улога на чувар"
@@ -845,6 +827,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Оваа платформа мора да биде достапна преку јавни IP адреси и избраното име на домаќинот мора да има соодејствувачки DNS запис што се однесува на таа адреса."
 
+msgid "Proceed"
+msgstr "Продолжи"
+
 msgid "Manual configuration"
 msgstr "Рачно прилагодување"
 
@@ -862,15 +847,6 @@ msgstr "Авто-обновување"
 msgid "Tor Onion Service"
 msgstr " Tor Onion услуга"
 
-msgid "Disable the privacy panel"
-msgstr "Оневозможи го панелот за приватност"
-
-msgid "Enable custom privacy panel"
-msgstr "Овозможи прилагоден панел за приватност"
-
-msgid "Custom privacy panel"
-msgstr "Прилагоден панел за приватност"
-
 msgid "Anonymize outgoing connections"
 msgstr "Анонимизирани излезни поврзувања"
 
@@ -885,6 +861,11 @@ msgstr "Свиркач"
 
 msgid "To"
 msgstr "До"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP адреса на е-пошта"
@@ -1066,9 +1047,6 @@ msgstr "Овозможи услови за користење"
 msgid "Title"
 msgstr "Наслов"
 
-msgid "Send an account activation link to the user."
-msgstr "Испрати му на корисникот линк за активација на сметка."
-
 msgid "Public name"
 msgstr "Јавно име"
 
@@ -1078,14 +1056,20 @@ msgstr "Испрати линк за ресетирање"
 msgid "Set password"
 msgstr "Постави лозинка"
 
-msgid "Disable two factor authentication"
-msgstr "Оневозможи ја автентикацијата со два фактори"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Избраната лозинка е преслаба. Валидната лозинка треба да биде долга најмалку 10 карактери и да содржи различни карактери вклучувајќи најмалку мала буква, голема буква, број и специјален карактер."
 
 msgid "Force password change"
 msgstr "Принуди промена на лозинка"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Овој корисник ќе биде принуден да ја промени својата лозинка на следното најавување."
+
+msgid "Disable two factor authentication"
+msgstr "Оневозможи ја автентикацијата со два фактори"
 
 msgid "Language"
 msgstr "Јазик"
@@ -1165,11 +1149,11 @@ msgstr "Додели поени"
 msgid "Are you sure?"
 msgstr "Дали сте сигурни?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Ве молиме имајте во предвид дека сите поврзани податоци ќе бидат трајно избришани."
-
 msgid "Close"
 msgstr "Затвори"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Ве молиме имајте во предвид дека сите поврзани податоци ќе бидат трајно избришани."
 
 msgid "Enable two factor authentication"
 msgstr "Овозможи автентикација со два фактора"
@@ -1250,17 +1234,26 @@ msgstr "На ресурсот може да му биде пристапено �
 msgid "The upload request exceeds the size limit"
 msgstr "Барањето за прикачувања го надмина ограничувањето за големина"
 
+msgid "Current password"
+msgstr "Сегашна лозинка"
+
+msgid "New password"
+msgstr "Нова лозинка"
+
+msgid "The new password must be different from the current one."
+msgstr "Новата лозинка мора да биде различна од сегашната."
+
+msgid "Type your new password again"
+msgstr "Внесете ја вашата лозинка повторно"
+
+msgid "The two passwords do not match"
+msgstr "Двете лозинки не се исти"
+
 msgid "Validation of email address change in progress."
 msgstr "Потврдата за промена на адресата на е-поштата е во тек."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Ве молиме проверете го вашето дојдовно сандаче за понатамошни инструкции."
-
-msgid "Current password"
-msgstr "Сегашна лозинка"
-
-msgid "Old password confirmation required"
-msgstr "Потребна е потврда на старата лозинка"
 
 msgid "Warning"
 msgstr "Внимание"
@@ -1418,8 +1411,8 @@ msgstr "Ако платформата не биде активирана за 24
 msgid "Sign up"
 msgstr "Регистрирај се"
 
-msgid "Domain"
-msgstr "Домен"
+msgid "Site"
+msgstr ""
 
 msgid "Confirmation"
 msgstr "Потврда"

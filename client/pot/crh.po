@@ -474,30 +474,6 @@ msgstr "Малюматларынъыз ичюн контекст сайланъ�
 msgid "Before proceeding, please set a new password."
 msgstr "Девам этмезден эвель, лютфен, янъы пароль яратынъыз."
 
-msgid "New password"
-msgstr "Янъы пароль"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "Сайлангъан пароль пек зайыф. Къабул этиледжек пароль энъ азындан 10 ишареттен тешкиль олунмалы. Парольге чешит ишаретлер кирмели: кучюк ве буюк арифлер, ракъам ве хусусий ишарет."
-
-msgid "The new password must be different from the current one."
-msgstr "Янъы пароль эскисинден фаркъ этмек керек."
-
-msgid "Type your new password again"
-msgstr "Янъы паролинъизни янъыдан язынъыз"
-
-msgid "The two passwords do not match"
-msgstr "Язылгъан пароллер айны дегиль"
-
-msgid "The new password must differ from the previous."
-msgstr "Янъы пароль эвелькисинден фаркъ этмек керек."
-
-msgid "Proceed"
-msgstr "Девам этмек"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "Лютфен, девам этмезден эвель эки факторлы аутентификацияны ишлетинъиз."
 
@@ -537,9 +513,6 @@ msgstr "Илявелер ичюн ольчю сынъыры"
 msgid "megabytes"
 msgstr "мегабайтлар"
 
-msgid "Enable HSTS preload"
-msgstr "HSTS эвель юклемесини ишлетмек"
-
 msgid "Require two factor authentication"
 msgstr "Эки факторлы аутентификацияны талап этмек"
 
@@ -555,6 +528,15 @@ msgstr "Бу функцияны сёндюрмек ичюн 0 дёгмесине
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Къулланыджыларгъа эсабатлар окъунмамасыны хабердар этильмесине къадар олгъан куньлернинъ сайысы"
+
+msgid "Disable the privacy panel"
+msgstr "Гизлилик сазламалар панелини сёндюрмек"
+
+msgid "Enable custom privacy panel"
+msgstr "Гизлилик сазламалар панелини чалыштырмакъ"
+
+msgid "Custom privacy panel"
+msgstr "Гизлилик сазламалар панели "
 
 msgid "Enable custodian user role"
 msgstr "Къулланыджы-къоруйыджы ролюни ишлетмек"
@@ -843,6 +825,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "Платформа умумий IP-адрес аркъалы иришимде олмалы ве хостнынъ сайлангъан ады ичюн DNS-къайд этильмеси олмакъ керек."
 
+msgid "Proceed"
+msgstr "Девам этмек"
+
 msgid "Manual configuration"
 msgstr "Эль иле сазлама"
 
@@ -860,15 +845,6 @@ msgstr "Автоматик девам эттирме"
 msgid "Tor Onion Service"
 msgstr "Tor Onion сервиси"
 
-msgid "Disable the privacy panel"
-msgstr "Гизлилик сазламалар панелини сёндюрмек"
-
-msgid "Enable custom privacy panel"
-msgstr "Гизлилик сазламалар панелини чалыштырмакъ"
-
-msgid "Custom privacy panel"
-msgstr "Гизлилик сазламалар панели "
-
 msgid "Anonymize outgoing connections"
 msgstr "Чыкъкъан багълантыларны анонимлештирмек"
 
@@ -883,6 +859,11 @@ msgstr "Малюмат бериджи "
 
 msgid "To"
 msgstr "Кимге"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP электрон почта адреси "
@@ -1064,9 +1045,6 @@ msgstr "Хызмет этме шартларыны ишлетмек"
 msgid "Title"
 msgstr "Серлева"
 
-msgid "Send an account activation link to the user."
-msgstr "Къулланыджыгъа эсап активациясы ичюн ссылка ёлламакъ."
-
 msgid "Public name"
 msgstr "Ичтимаий ад"
 
@@ -1076,14 +1054,20 @@ msgstr "Сыфырлама ичюн ссылка ёлламакъ"
 msgid "Set password"
 msgstr "Пароль бельгилемек"
 
-msgid "Disable two factor authentication"
-msgstr "Эки факторлы аутентицикацияны сёндюрмек"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "Сайлангъан пароль пек зайыф. Къабул этиледжек пароль энъ азындан 10 ишареттен тешкиль олунмалы. Парольге чешит ишаретлер кирмели: кучюк ве буюк арифлер, ракъам ве хусусий ишарет."
 
 msgid "Force password change"
 msgstr "Меджбурий пароль денъиштирмеси"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Къулланыджы невбеттеки кириште паролини денъиштирмеге меджбур оладжакъ."
+
+msgid "Disable two factor authentication"
+msgstr "Эки факторлы аутентицикацияны сёндюрмек"
 
 msgid "Language"
 msgstr "Тиль"
@@ -1163,11 +1147,11 @@ msgstr "Къыймет кесмек"
 msgid "Are you sure?"
 msgstr "Эминсинъизми?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "Дикъкъат этинъиз, бутюн алякъадар малюматлар гъайрыдан тикленмеге имкяны олмайып, ёкъ этиледжек."
-
 msgid "Close"
 msgstr "Къапатмакъ"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "Дикъкъат этинъиз, бутюн алякъадар малюматлар гъайрыдан тикленмеге имкяны олмайып, ёкъ этиледжек."
 
 msgid "Enable two factor authentication"
 msgstr "Эки факторлы аутентификацияны ишлетинъиз"
@@ -1248,17 +1232,26 @@ msgstr "Ресурскъа иришим тек Tor агъындан мумкюн
 msgid "The upload request exceeds the size limit"
 msgstr "Серверге файл юклемесине соратма тайин этильген лимиттен устюндир"
 
+msgid "Current password"
+msgstr "Шимдики пароль"
+
+msgid "New password"
+msgstr "Янъы пароль"
+
+msgid "The new password must be different from the current one."
+msgstr "Янъы пароль эскисинден фаркъ этмек керек."
+
+msgid "Type your new password again"
+msgstr "Янъы паролинъизни янъыдан язынъыз"
+
+msgid "The two passwords do not match"
+msgstr "Язылгъан пароллер айны дегиль"
+
 msgid "Validation of email address change in progress."
 msgstr "Электрон почта адреси денъишмесининъ тешкермеси эда этиле."
 
 msgid "Please check your inbox for further instructions."
 msgstr "Къошма талиматлар ичюн почтанъызны тешкеринъиз."
-
-msgid "Current password"
-msgstr "Шимдики пароль"
-
-msgid "Old password confirmation required"
-msgstr "Эски парольнинъ тасдикъ этильмеси керек"
 
 msgid "Warning"
 msgstr "Хабердар этюв"
@@ -1416,8 +1409,8 @@ msgstr "Эгер платформа 24 саатте активация япыл�
 msgid "Sign up"
 msgstr "Къайд олмакъ"
 
-msgid "Domain"
-msgstr "Домен"
+msgid "Site"
+msgstr ""
 
 msgid "Confirmation"
 msgstr "Тасдикъ"

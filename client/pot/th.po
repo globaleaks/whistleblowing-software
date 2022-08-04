@@ -484,30 +484,6 @@ msgstr "เลือกบริบทของรายงานของคุ
 msgid "Before proceeding, please set a new password."
 msgstr "ก่อนจะไปต่อ กรุณาตั้งรหัสผ่านใหม่"
 
-msgid "New password"
-msgstr "รหัสผ่านใหม่"
-
-msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
-"characters long and contain a variety of characters including at least a "
-"lowercase character, a capital character, a number and a special character."
-msgstr "รหัสผ่านที่เลือกนั้นอ่อนแอเกินไป รหัสผ่านที่ใช้ได้ควรมีความยาวอย่างน้อย 10 ตัวอักษรและมีตัวอักษรหลากหลายชนิด มีอักษรพิมพ์เล็ก อักษรพิมพ์ใหญ่ ตัวเลข และสัญลักษณ์พิเศษอย่างน้อยอย่างละตัว"
-
-msgid "The new password must be different from the current one."
-msgstr "รหัสผ่านใหม่ต้องแตกต่างจากรหัสผ่านปัจจุบัน"
-
-msgid "Type your new password again"
-msgstr "พิมพ์รหัสผ่านใหม่ของคุณอีกครั้ง"
-
-msgid "The two passwords do not match"
-msgstr "รหัสผ่านสองชุดไม่ตรงกัน"
-
-msgid "The new password must differ from the previous."
-msgstr "รหัสผ่านใหม่จะต้องแตกต่างจากรหัสผ่านก่อนหน้า"
-
-msgid "Proceed"
-msgstr "ดำเนินการ"
-
 msgid "Before proceeding, please enable the two factor authentication."
 msgstr "ก่อนจะไปต่อ กรุณาเปิดใช้การยืนยันตัวตนสองชั้น"
 
@@ -547,9 +523,6 @@ msgstr "ขีดจำกัดขนาดเอกสารแนบ"
 msgid "megabytes"
 msgstr "เมกะไบต์"
 
-msgid "Enable HSTS preload"
-msgstr "เปิดใช้งาน HSTS preload"
-
 msgid "Require two factor authentication"
 msgstr "ต้องใช้การยืนยันตัวตนสองชั้น"
 
@@ -565,6 +538,15 @@ msgstr "ตั้งค่าเป็น 0 เพื่อปิดคุณส
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "จำนวนวันจนกว่าจะแจ้งผู้ใช้ถึงรายงานที่ยังไม่ได้อ่าน"
+
+msgid "Disable the privacy panel"
+msgstr "ปิดการใช้งานแผงความเป็นส่วนตัว"
+
+msgid "Enable custom privacy panel"
+msgstr "เปิดใช้งานแผงความเป็นส่วนตัวที่กำหนดเอง"
+
+msgid "Custom privacy panel"
+msgstr "แผงความเป็นส่วนตัวที่ปรับแต่งเอง"
 
 msgid "Enable custodian user role"
 msgstr "เปิดใช้บทบาทผู้พิทักษ์"
@@ -853,6 +835,9 @@ msgid ""
 "hostname must have a DNS record referencing that address."
 msgstr "แพลตฟอร์มจะต้องสามารถเห็นได้ทางที่อยู่ไอพีสาธารณะ และชื่อโฮสต์ที่เลือกจะต้องมีระเบียน DNS ที่ชี้มาที่อยู่ดังกล่าว"
 
+msgid "Proceed"
+msgstr "ดำเนินการ"
+
 msgid "Manual configuration"
 msgstr "การปรับค่าด้วยตัวเอง"
 
@@ -870,15 +855,6 @@ msgstr "ต่ออายุอัตโนมัติ"
 msgid "Tor Onion Service"
 msgstr "Tor Onion Service"
 
-msgid "Disable the privacy panel"
-msgstr "ปิดการใช้งานแผงความเป็นส่วนตัว"
-
-msgid "Enable custom privacy panel"
-msgstr "เปิดใช้งานแผงความเป็นส่วนตัวที่กำหนดเอง"
-
-msgid "Custom privacy panel"
-msgstr "แผงความเป็นส่วนตัวที่ปรับแต่งเอง"
-
 msgid "Anonymize outgoing connections"
 msgstr "ทำให้การเชื่อมต่อขาออกเป็นนิรนาม"
 
@@ -893,6 +869,11 @@ msgstr "ผู้แจ้งเบาะแส"
 
 msgid "To"
 msgstr "ถึง"
+
+msgid ""
+"Default mail configuration in use. Please consider using a private mail "
+"server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "ที่อยู่อีเมล SMTP"
@@ -1074,9 +1055,6 @@ msgstr "เปิดใช้ข้อตกลงในการให้บร
 msgid "Title"
 msgstr "ชื่อเรื่อง"
 
-msgid "Send an account activation link to the user."
-msgstr "ส่งลิงก์ยืนยันการเปิดใช้บัญชีไปให้ผู้ใช้"
-
 msgid "Public name"
 msgstr "ชื่อสาธารณะ"
 
@@ -1086,14 +1064,20 @@ msgstr "ส่งลิงก์รีเซ็ต"
 msgid "Set password"
 msgstr "ตั้งรหัสผ่าน"
 
-msgid "Disable two factor authentication"
-msgstr "ปิดใช้งานการยืนยันตัวตนแบบสองปัจจัย"
+msgid ""
+"The chosen password is too weak. A valid password should be at least 10 "
+"characters long and contain a variety of characters including at least a "
+"lowercase character, a capital character, a number and a special character."
+msgstr "รหัสผ่านที่เลือกนั้นอ่อนแอเกินไป รหัสผ่านที่ใช้ได้ควรมีความยาวอย่างน้อย 10 ตัวอักษรและมีตัวอักษรหลากหลายชนิด มีอักษรพิมพ์เล็ก อักษรพิมพ์ใหญ่ ตัวเลข และสัญลักษณ์พิเศษอย่างน้อยอย่างละตัว"
 
 msgid "Force password change"
 msgstr "บังคับเปลี่ยนรหัสผ่าน"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "ผู้ใช้จะถูกบังคับให้เปลี่ยนรหัสผ่านในการลงชื่อเข้าระบบครั้งหน้า"
+
+msgid "Disable two factor authentication"
+msgstr "ปิดใช้งานการยืนยันตัวตนแบบสองปัจจัย"
 
 msgid "Language"
 msgstr "ภาษา"
@@ -1173,11 +1157,11 @@ msgstr "กำหนดแต้มคะแนน"
 msgid "Are you sure?"
 msgstr "คุณแน่ใจหรือไม่?"
 
-msgid "Please note that all the associated data will be permanently deleted."
-msgstr "โปรดทราบว่าข้อมูลที่เชื่อมโยงกันทั้งหมดจะถูกลบออกอย่างถาวร"
-
 msgid "Close"
 msgstr "ปิด"
+
+msgid "Please note that all the associated data will be permanently deleted."
+msgstr "โปรดทราบว่าข้อมูลที่เชื่อมโยงกันทั้งหมดจะถูกลบออกอย่างถาวร"
 
 msgid "Enable two factor authentication"
 msgstr "เปิดใช้การยืนยันตัวตนแบบสองปัจจัย"
@@ -1258,17 +1242,26 @@ msgstr "สามารถเข้าถึงทรัพยากรได้
 msgid "The upload request exceeds the size limit"
 msgstr "ขนาดการขออัปโหลดเกินขีดจำกัด"
 
+msgid "Current password"
+msgstr "รหัสผ่านปัจจุบัน"
+
+msgid "New password"
+msgstr "รหัสผ่านใหม่"
+
+msgid "The new password must be different from the current one."
+msgstr "รหัสผ่านใหม่ต้องแตกต่างจากรหัสผ่านปัจจุบัน"
+
+msgid "Type your new password again"
+msgstr "พิมพ์รหัสผ่านใหม่ของคุณอีกครั้ง"
+
+msgid "The two passwords do not match"
+msgstr "รหัสผ่านสองชุดไม่ตรงกัน"
+
 msgid "Validation of email address change in progress."
 msgstr "กำลังดำเนินการตรวจความถูกต้องของอีเมลของคุณ"
 
 msgid "Please check your inbox for further instructions."
 msgstr "กรุณาดูกล่องขาเข้าของคุณสำหรับคำแนะนำต่อไป"
-
-msgid "Current password"
-msgstr "รหัสผ่านปัจจุบัน"
-
-msgid "Old password confirmation required"
-msgstr "จำเป็นต้องยืนยันรหัสผ่านเก่า"
 
 msgid "Warning"
 msgstr "คำเตือน"
@@ -1426,8 +1419,8 @@ msgstr "ถ้าคุณไม่ได้ยืนยันการเปิ
 msgid "Sign up"
 msgstr "ลงชื่อสมัคร"
 
-msgid "Domain"
-msgstr "โดเมน"
+msgid "Site"
+msgstr "เว็บไซต์"
 
 msgid "Confirmation"
 msgstr "การยืนยัน"
