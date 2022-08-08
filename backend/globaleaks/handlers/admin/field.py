@@ -214,7 +214,7 @@ def db_create_field(session, tid, request, language):
 
     field_attrs = read_json_file(Settings.field_attrs_file)
 
-    if request.get('template_id', '') == '':
+    if not request.get('template_id'):
         field = db_add(session, models.Field, request)
 
         attrs = request.get('attrs')
