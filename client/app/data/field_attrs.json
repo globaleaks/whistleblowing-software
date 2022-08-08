@@ -12,6 +12,9 @@
  "checkbox": {
     "display_alphabetically": {"type": "bool", "value": false}
  },
+ "multichoice": {
+    "display_alphabetically": {"type": "bool", "value": false}
+ },
  "selectbox": {
     "display_alphabetically": {"type": "bool", "value": false}
  },

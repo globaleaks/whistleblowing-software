@@ -212,9 +212,15 @@ def db_create_field(session, tid, request, language):
 
     check_field_association(session, tid, request)
 
+    field_attrs = read_json_file(Settings.field_attrs_file)
+
     if request.get('template_id', '') == '':
         field = db_add(session, models.Field, request)
+
         attrs = request.get('attrs')
+        if not attrs:
+            attrs = field_attrs.get(field.type, {})
+
         options = request.get('options')
 
         db_update_fieldattrs(session, field.id, attrs, language)
@@ -250,7 +256,6 @@ def db_create_field(session, tid, request, language):
 
         attrs = request.get('attrs')
         if not attrs:
-            field_attrs = read_json_file(Settings.field_attrs_file)
             attrs = field_attrs.get(field.template_id, {})
 
         db_update_fieldattrs(session, field.id, attrs, None)
