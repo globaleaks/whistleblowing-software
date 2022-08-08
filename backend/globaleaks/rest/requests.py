@@ -554,13 +554,6 @@ SupportDesc = {
     'text': str
 }
 
-ExceptionDesc = {
-    'errorUrl': str,
-    'errorMessage': str,
-    'stackTrace': list,
-    'agent': str
-}
-
 PasswordReset1Desc = {
     'username': str
 }
