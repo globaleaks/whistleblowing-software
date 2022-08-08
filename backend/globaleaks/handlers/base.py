@@ -384,8 +384,8 @@ class BaseHandler(object):
             self.uploaded_file['path'] = destination
 
     def check_root_or_management_session(self):
-        if self.request.tid != 1 and not (self.session and self.session.properties.get('management_session', False)):
-            errors.ForbiddenOperation
+        if self.request.tid != 1 and not (self.session and self.session.properties and self.session.properties.get('management_session', False)):
+            raise errors.ForbiddenOperation
 
     def check_execution_time(self):
         self.request.execution_time = datetime.now() - self.request.start_time

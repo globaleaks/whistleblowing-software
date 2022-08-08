@@ -135,6 +135,7 @@ def db_create_context(session, tid, user_session, request, language):
 
     :param session: An ORM session
     :param tid: The tenant ID
+    :param user_session: The session of the user performing the operation
     :param request: The request data
     :param language: The request language
     :return: The created context
@@ -155,6 +156,7 @@ def create_context(session, tid, user_session, request, language):
 
     :param session: An ORM session
     :param tid: The tenant ID
+    :param user_session: The session of the user performing the operation
     :param request: The request data
     :param language: The request language
     :return: A serialized descriptor of the context

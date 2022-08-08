@@ -54,7 +54,7 @@ def db_admin_serialize_node(session, tid, language, config_desc='node'):
     :param session: An ORM session
     :param tid: A tenant ID
     :param language: The language to be used on serialization
-    :param config: The set of variables to be serialized
+    :param config_desc: The set of variables to be serialized
     :return: Return the serialized configuration for the specified tenant
     """
     config = ConfigFactory(session, tid)

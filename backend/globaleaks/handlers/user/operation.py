@@ -52,6 +52,7 @@ def change_password(session, tid, user_session, password, old_password):
     user.password_change_date = datetime_now()
     user.password_change_needed = False
 
+    cc = ''
     if config.get_val('encryption'):
         enc_key = GCE.derive_key(password.encode(), user.salt)
         cc = user_session.cc

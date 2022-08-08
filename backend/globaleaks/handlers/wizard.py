@@ -19,6 +19,7 @@ def db_wizard(session, tid, hostname, request):
 
     :param session: An ORM session
     :param tid: A tenant ID
+    :param hostname: The hostname to be configured
     :param request: A user request
     """
     language = request['node_language']

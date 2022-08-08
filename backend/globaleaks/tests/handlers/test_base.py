@@ -24,13 +24,6 @@ class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
 
         self.assertTrue(BaseHandler.validate_request(dummy_message, dummy_request_template))
 
-    def test_validate_request_invalid(self):
-        dummy_message = {}
-        dummy_request_template = {'spam': str, 'firstd': dict, 'fields': '\w+', 'nest': [dict]}
-
-        self.assertRaises(InputValidationError,
-                          BaseHandler.validate_request, dummy_message, dummy_request_template)
-
     def test_validate_request_valid(self):
         dummy_json = json.dumps({'spam': 'ham'})
         dummy_request_template = {'spam': str}

@@ -2,8 +2,7 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.handlers.admin.operation import db_set_user_password, \
-                                                generate_password_reset_token
+from globaleaks.handlers.admin.operation import generate_password_reset_token
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import parse_pgp_options, \
                                      user_serialize_user
@@ -47,6 +46,7 @@ def db_create_user(session, tid, user_session, request, language):
 
     :param session: An ORM session
     :param tid: A tenant ID
+    :param user_session: The session of the user performing the operation
     :param request: The request data
     :param language: The language of the request
     :return: The serialized descriptor of the created object

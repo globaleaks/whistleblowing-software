@@ -66,6 +66,7 @@ def create_questionnaire(session, tid, user_session, request, language):
 
     :param session: An ORM session
     :param tid: A tenant ID
+    :param user_session: The session of the user performing the operation
     :param request: The request data
     :param language: The language of the request
     :return: A serialized descriptor of the questionnaire

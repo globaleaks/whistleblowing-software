@@ -368,7 +368,6 @@ class MockDict:
             'https_custodian': True,
             'https_receiver': True,
             'https_whistleblower': True,
-            'reachable_via_web': True,
             'ip_filter_admin': '',
             'ip_filter_admin_enable': False,
             'ip_filter_custodian': '',
