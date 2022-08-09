@@ -14,6 +14,7 @@
 # Joan Bitlloch <joanbit@gmail.com>, 2017-2021
 # Joan Montané, 2020
 # Joan Montané, 2020
+# Joan Redon, 2022
 # Josep Anton Rius <j.rius.cat@gmail.com>, 2016
 # Maddish Falzoni <maddish@xnet-x.net>, 2016
 # Nick Skelsey, 2016
@@ -23,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Clara Boada <cboadaa@gmail.com>, 2022\n"
+"Last-Translator: Joan Redon, 2022\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -741,7 +742,7 @@ msgid "Allow the whistleblower to send messages"
 msgstr "Permet als informadors enviar missatges"
 
 msgid "Allow the whistleblower to add attachments"
-msgstr "Permet als reveladors de informació enviar un arxiu adjunt. "
+msgstr "Permet a les persones reveladores de informació enviar un arxiu adjunt. "
 
 msgid "Additional questionnaire"
 msgstr "Qüestionari addicional"
@@ -1552,7 +1553,7 @@ msgid "I'm a victim"
 msgstr "Sóc una victíma. "
 
 msgid "I'm involved in the facts"
-msgstr "(Masculí) Estic involucrat amb els fets\n(Femení) Estic involucrada amb els fets"
+msgstr "Sóc una persona involucrada amb els fets. "
 
 msgid "I witnessed the facts in person"
 msgstr "Vaig presenciar els fets en persona"
