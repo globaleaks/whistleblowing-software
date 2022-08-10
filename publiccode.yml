@@ -214,7 +214,6 @@ description:
       - "Easy integration of the platform with existing websites and intranets"
       - "HTTP/2 support"
       - "REST API"
-      - "Provisioning API"
     screenshots:
       - documentation/images/whistleblower/home.png
       - documentation/images/whistleblower/submission.png
@@ -301,7 +300,6 @@ description:
       - "Facile integrazione della piattaforma con siti Web e intranet esistenti"
       - "Supporto HTTP/2"
       - "REST API"
-      - "API di provisioning"
     screenshots:
       - documentation/images/whistleblower/home.png
       - documentation/images/whistleblower/submission.png
