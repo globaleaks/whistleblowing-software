@@ -1,3 +1,45 @@
+Changes in version 4.10.0
+    Validate url argument of support handler using regexp matching
+    Remove interface for immediate user activation
+    Avoid to fix file permissions at runtime
+    Implement dedicated handlers for password change
+    Drop privileges as soon that command line arguments are parsed and sockets are binded
+    Remove web possiblity to load javascript customization via web interface
+    Limit accepted mimetypes depending on the handler
+    Add requirement of two factor authenticatioon confirmation to set of operations
+    - Enabling encryption
+    - Disabling 2fa
+    - Toggling system key escrows
+    - Toggling user key escrows
+    - Visualizing account recovery keys
+    - Resetting system reports
+    - Using password reset links
+    Prevent two factor token reuse
+    Do not load file customizations when managing tenants
+    Limit listing files loaded for public access to administrators or privileged recipients
+    Restrict content security policies limiting resources that could be loaded
+    Add directory traversal checks after loading paths from the database
+    Enforce failure when apparmor or iptables support is missing
+    Revise signup form removing redundant data collection
+    Strip html tags before processing markdown
+    Ensure token decorator could not be bypassed
+    Ensure uploded file names do not contain slashes
+    Add warning in case of use of default smtp configuration
+    Modify simplified login to not expose usernames
+    Improve templating avoiding templates injection
+    Bind only on local host when in development mode
+    Make it possible to change network configuration only by root tenants admins
+    Avoid to change page title to "Report" to limit traces on browser history
+    Ensure to not write files bigger than the defined maximum file size
+    Require explicit opt-in to enable developers exception notifications
+    Remove web possiblity to load javascript customization via web interface
+    Change token decorator using path variable instead of uri variable
+    Disable developers exception notifications by default
+    Remove API for client exception reporting
+    Disable APIs for exporting HTTPS certificates' keys
+    Bump npm dependencies to latest versions
+    Update translations
+
 Changes in version 4.9.9
     Reintroduce Tor Exit IP check based on onionoo data
     Bump npm dependencies to latest versions
