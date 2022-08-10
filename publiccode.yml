@@ -155,6 +155,19 @@ description:
       agencies, corporations and more.
     documentation: 'https://docs.globaleaks.org/'
     features:
+      - PNRR
+      - PNRR/Beneficiari/Altri enti
+      - PNRR/Beneficiari/ASL
+      - PNRR/Beneficiari/Comuni
+      - PNRR/Beneficiari/Enti Regionali
+      - PNRR/Beneficiari/Istituti di ricerca e AFAM
+      - PNRR/Beneficiari/PA Centrali
+      - PNRR/Beneficiari/Province
+      - PNRR/Beneficiari/Scuole
+      - PNRR/Beneficiari/Università
+      - PNRR/Misura/1.1
+      - PNRR/Misura/1.4.1
+      - PNRR/Misura/1.6
       - "Multi-user system with customizable user roles (whistleblower, recipient, administrator)"
       - "Entirely manageable from a web administration interface"
       - "Support for more than 90 languages with Right-to-Left (RTL)"
@@ -242,6 +255,19 @@ description:
       indipendenti, attivisti,  agenzie pubbliche, imprese private e altro.
     documentation: 'https://docs.globaleaks.org/'
     features:
+      - PNRR
+      - PNRR/Beneficiari/Altri enti
+      - PNRR/Beneficiari/ASL
+      - PNRR/Beneficiari/Comuni
+      - PNRR/Beneficiari/Enti Regionali
+      - PNRR/Beneficiari/Istituti di ricerca e AFAM
+      - PNRR/Beneficiari/PA Centrali
+      - PNRR/Beneficiari/Province
+      - PNRR/Beneficiari/Scuole
+      - PNRR/Beneficiari/Università
+      - PNRR/Misura/1.1
+      - PNRR/Misura/1.4.1
+      - PNRR/Misura/1.6
       - "Sistema multiutente con ruoli utente personalizzabili (segnalante, ricevente, amministratore)"
       - "Interamente gestibile da un'interfaccia di amministrazione web"
       - "Supporto per oltre 90 lingue ed RTL"
