@@ -100,7 +100,9 @@ class FileInstance(BaseHandler):
     allowed_mimetypes = [
         'audio/mpeg',
         'application/pdf',
+        'font/ttf',
         'font/woff',
+        'font/woff2',
         'image/png',
         'video/mp4'
     ]

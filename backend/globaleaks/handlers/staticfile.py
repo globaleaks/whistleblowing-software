@@ -12,7 +12,9 @@ class StaticFileHandler(BaseHandler):
     check_roles = 'any'
     allowed_mimetypes = [
         'application/javascript',
+        'font/ttf',
         'font/woff',
+        'font/woff2',
         'image/png',
         'text/css',
         'text/html'
