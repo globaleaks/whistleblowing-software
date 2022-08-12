@@ -63,7 +63,7 @@ def change_password(session, tid, user_session, password, old_password):
 
         user.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, cc))
 
-        root_config = models.config.ConfigFactory(session, tid)
+        root_config = models.config.ConfigFactory(session, 1)
         crypto_escrow_pub_key_tenant_1 = root_config.get_val('crypto_escrow_pub_key')
         if crypto_escrow_pub_key_tenant_1:
             user.crypto_escrow_bkp1_key = Base64Encoder.encode(GCE.asymmetric_encrypt(crypto_escrow_pub_key_tenant_1, cc))
