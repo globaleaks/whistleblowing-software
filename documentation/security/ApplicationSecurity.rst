@@ -106,7 +106,7 @@ Web Application Security
 ========================
 This section describes the Web Application Security implemented by the software in adherence with the `OWASP Security Guidelines <https://www.owasp.org>`_.
 
-Session management
+Session Management
 ------------------
 The session implementation follows the `OWASP Session Management Cheat Sheet <https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html>`_ security guidelines.
 
@@ -124,7 +124,7 @@ Strict-Transport-Security
 +++++++++++++++++++++++++
 The system implements strict transport security by default.
 ::
-  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
 
 Administrators could optionally enable the preload functionality.
 
@@ -132,7 +132,7 @@ Content-Security-Policy
 +++++++++++++++++++++++
 The backend implements the following `Content Security Policy (CSP) <https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP>`_:
 ::
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:; form-action 'self'; frame-ancestors 'none';
+  Content-Security-Policy: base-uri 'none';connect-src 'self';default-src 'none';font-src 'self' data:;form-action 'none';frame-ancestors 'none';img-src 'self' data:;script-src 'self';
 
 Cross-Origin-Embedder-Policy
 ++++++++++++++++++++++++++++
