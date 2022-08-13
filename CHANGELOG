@@ -1,3 +1,6 @@
+Changes in version 4.10.1
+    Fix certificate renewal failure introduced in 4.10.1
+
 Changes in version 4.10.0
     Validate url argument of support handler using regexp matching
     Remove interface for immediate user activation
