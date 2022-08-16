@@ -104,6 +104,7 @@ class FileInstance(BaseHandler):
         'font/woff',
         'font/woff2',
         'image/png',
+        'image/vnd.microsoft.icon',
         'video/mp4'
     ]
 
