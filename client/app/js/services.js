@@ -1123,6 +1123,14 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
         "toggle_user_escrow"
       ];
 
+      if (!args) {
+        args = {};
+      }
+
+      if (!refresh) {
+        refresh = false;
+      }
+
       if (require_confirmation.indexOf(operation) !== -1) {
         var confirm = function(secret) {
           return $http({

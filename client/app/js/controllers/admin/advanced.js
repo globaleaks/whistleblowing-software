@@ -27,7 +27,7 @@ controller("AdminAdvancedCtrl", ["$scope", function($scope) {
     if (!$scope.resources.node.encryption) {
       $scope.Utils.openConfirmableModalDialog("views/modals/enable_encryption.html").then(
         function() {
-          return $scope.Utils.runAdminOperation("enable_encryption", {}, false).then(
+          return $scope.Utils.runAdminOperation("enable_encryption").then(
             function() {
               $scope.Authentication.logout();
             },

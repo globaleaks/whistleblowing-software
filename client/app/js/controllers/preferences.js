@@ -36,7 +36,7 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$location", "$window
     };
 
     $scope.getEncryptionRecoveryKey = function() {
-      return $scope.Utils.runUserOperation("get_recovery_key", {}, false).then(function(data) {
+      return $scope.Utils.runUserOperation("get_recovery_key").then(function(data) {
         $scope.resources.preferences.clicked_recovery_key = true;
         $scope.erk = data.data.match(/.{1,4}/g).join("-");
         return $uibModal.open({
