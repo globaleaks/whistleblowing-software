@@ -555,7 +555,7 @@ var GL = angular.module("GL", [
             if (elem === null) {
               elem = document.createElement("script");
               elem.setAttribute("id", "load-custom-script");
-              elem.setAttribute("src", "s/script");
+              elem.setAttribute("src", "script");
               document.getElementsByTagName("body")[0].appendChild(elem);
             }
           }
