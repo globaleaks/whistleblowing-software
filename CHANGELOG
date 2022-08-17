@@ -1,3 +1,6 @@
+Changes in version 4.10.3
+    Fix initialization of onion servers
+
 Changes in version 4.10.2
     Revise mime types fixing loading of favicon files (#3258)
     Fix client failure when testing email notifications (#3259)
