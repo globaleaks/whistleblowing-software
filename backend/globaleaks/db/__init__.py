@@ -203,7 +203,7 @@ def db_refresh_tenant_cache(session, tids=None):
     for cfg in session.query(Config).filter(Config.tid.in_(tids)):
         tenant_cache = State.tenants[cfg.tid].cache
 
-        if cfg.var_name in ['https_cert']:
+        if cfg.var_name in ['https_cert', 'tor_onion_key']:
             tenant_cache[cfg.var_name] = cfg.value
         elif cfg.var_name in ConfigFilters['node']:
             tenant_cache[cfg.var_name] = cfg.value
