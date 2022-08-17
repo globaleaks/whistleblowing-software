@@ -1,3 +1,11 @@
+Changes in version 4.10.2
+    Revise mime types fixing loading of favicon files (#3258)
+    Fix client failure when testing email notifications (#3259)
+    Fix duplicated option visualization in advanced settings (#3260)
+    Fix loading of custom scripts from /var/globaleaks/scripts/ directory
+    Bump npm dependencies to latest version
+    Update translations
+
 Changes in version 4.10.1
     Fix certificate renewal failure introduced in 4.10.1
 
