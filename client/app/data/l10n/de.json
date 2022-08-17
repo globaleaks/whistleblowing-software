@@ -281,7 +281,7 @@
   "SMTP server address": "SMTP-Server-Adresse",
   "SMTP server port": "SMTP-Server-Port",
   "Security": "Sicherheit",
-  "Require authentication": "Erfordert Bestätigung",
+  "Require authentication": "Erfordert Anmeldung",
   "Password": "Passwort",
   "Number of hours before sending a report expiration alert": "Anzahl der Stunden vor dem Senden eines Berichtablaufalarms.",
   "Test the configuration": "Konfiguration testen",
