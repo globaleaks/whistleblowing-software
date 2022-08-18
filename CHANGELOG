@@ -1,3 +1,7 @@
+Changes in version 4.10.4
+    Revise mime types fixing loading of favicon files (#3258)
+    Make it possible to filter receiver tips by date args (updated_after, updated_before)
+
 Changes in version 4.10.3
     Fix initialization of onion servers
 
