@@ -104,7 +104,6 @@ class FileInstance(BaseHandler):
         'font/woff',
         'font/woff2',
         'image/png',
-        'image/vnd.microsoft.icon',
         'video/mp4'
     ]
 
@@ -120,7 +119,7 @@ class FileInstance(BaseHandler):
         if name == 'css':
             self.allowed_mimetypes = ['text/css']
         elif name == 'favicon':
-            self.allowed_mimetypes = ['image/x-icon']
+            self.allowed_mimetypes = ['image/vnd.microsoft.icon']
         elif name == 'logo' or re.match(requests.uuid_regexp, name):
             self.allowed_mimetypes = ['image/png']
 
