@@ -4,6 +4,8 @@
 import base64
 import json
 
+from datetime import datetime
+
 from sqlalchemy.sql.expression import distinct, func
 
 from globaleaks import models
@@ -16,7 +18,7 @@ from globaleaks.utils.crypto import GCE
 
 
 @transact
-def get_receivertips(session, tid, receiver_id, user_key, language):
+def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
     """
     Return list of submissions received by the specified receiver
 
@@ -31,6 +33,9 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
       'questionnaires': {},
       'rtips': []
     }
+
+    updated_after = datetime.fromtimestamp(int(args.get(b'updated_after', [b'1660801500'])[0]))
+    updated_before = datetime.fromtimestamp(int(args.get(b'updated_before', [b'32503680000'])[0]))
 
     messages_by_rtip = {}
     comments_by_itip = {}
@@ -69,6 +74,8 @@ def get_receivertips(session, tid, receiver_id, user_key, language):
                                                   models.InternalTipAnswers,
                                                   models.ArchivedSchema) \
                                            .filter(models.ReceiverTip.receiver_id == receiver_id,
+                                                   models.InternalTip.update_date >= updated_after,
+                                                   models.InternalTip.update_date <= updated_before,
                                                    models.InternalTip.id == models.ReceiverTip.internaltip_id,
                                                    models.InternalTipAnswers.internaltip_id == models.ReceiverTip.internaltip_id,
                                                    models.InternalTipAnswers.questionnaire_hash == models.ArchivedSchema.hash) \
@@ -164,7 +171,8 @@ class TipsCollection(BaseHandler):
         return get_receivertips(self.request.tid,
                                 self.session.user_id,
                                 self.session.cc,
-                                self.request.language)
+                                self.request.language,
+                                self.request.args)
 
 
 class Operations(BaseHandler):
