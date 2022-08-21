@@ -20,3 +20,4 @@ We additionally invite independent security researchers to apply to our `Bug Bou
    "2014", "`LeastAuthority <https://leastauthority.com/>`_", "Source Code Audit", "`Report <https://www.globaleaks.org/docs/en/pt/2014-leastauthority.pdf>`_"
    "2018", "`SubGraph <https://subgraph.com/>`_", "Overall Audit", "`Report <https://www.globaleaks.org/docs/en/pt/2018-subgraph.pdf>`_"
    "2019", "`RadicallyOpenSecurity <https://radicallyopensecurity.com/>`_", "Crypto Audit, Multi-tenancy Audit, Overall Audit", "`Report <https://www.globaleaks.org/docs/en/pt/2019-radicallyopensecurity.pdf>`_"
+   "2022", "`RadicallyOpenSecurity <https://radicallyopensecurity.com/>`_", "Server Source Code Audit, Client Pentest, OpSec for Whistleblowers, OpSec for Server Administrators", "`Report <https://www.globaleaks.org/docs/en/pt/2022-radicallyopensecurity.pdf>`_"
