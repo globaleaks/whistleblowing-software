@@ -1,3 +1,12 @@
+Changes in version 4.10.5
+    Fix regression in relation to password resets requiring old passwords
+    Fix regression in relation to old reports introduced in 0750098ef936452904f666bcb5aefc24fcfade84
+    Remove redundant interface for loading PGP keys by copy/paste
+    Bump npm dependencies to latest version
+    Update translations
+    [doc] Add reference to ROS Security Audit 2022
+    [doc] Update documentation images
+
 Changes in version 4.10.4
     Revise mime types fixing loading of favicon files (#3258)
     Make it possible to filter receiver tips by date args (updated_after, updated_before)
