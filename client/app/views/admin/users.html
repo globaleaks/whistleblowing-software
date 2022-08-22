@@ -214,12 +214,8 @@
             <div class="form-group" data-ng-show="user.pgp_key_fingerprint === ''">
               <div class="position-relative">
                 <label data-translate>Set up encryption by providing a PGP public key</label>
-                <textarea class="form-control" name="pgp_key"
-                          data-ng-model="user.pgp_key_public"
-                          data-ng-class="{'is-invalid': !editUser.pgp_key.$valid}"
-                          data-pgp-pubkey-validator="canBeEmpty"></textarea>
-                <label file-input="loadPublicKeyFile(file)" file-input-label="Select"
-                       class="btn btn-sm btn-outline-secondary textarea-btn"></label>
+                <label file-input="loadPublicKeyFile(file)" file-input-label="Upload"
+                       class="btn btn-sm btn-outline-secondary"></label>
               </div>
             </div>
           </div>

@@ -180,49 +180,6 @@ directive("imageUpload", function () {
     controller: "ImageUploadCtrl"
   };
 }).
-// pgpPubkeyValidator binds to text-areas to provide input validation on user
-// input PGP public keys. Note that the directive attaches itself to the
-// containing form's modelController NOT the model bound to the value of the
-// text-area itself. If the key word 'canBeEmpty' the pgp key validator is disabled
-// when the textarea's input is empty.
-directive("pgpPubkeyValidator", function() {
-  // scope is the directives scope
-  // elem is a jqlite reference to the bound element
-  // attrs is the list of directives on the element
-  // model is the model controller attached to the form
-  function link(scope, elem, attrs, model) {
-    var key_start = "-----BEGIN PGP PUBLIC KEY BLOCK-----";
-    var key_end = "-----END PGP PUBLIC KEY BLOCK-----";
-
-    scope.canBeEmpty = scope.pgpPubkeyValidator === "canBeEmpty";
-
-    // modelValue is the models value, viewVal is displayed on the page.
-    model.$validators.pgpPubKeyValidator = function(modelVal) {
-    // Check for obvious problems.
-      if (typeof modelVal !== "string") {
-        modelVal = "";
-      }
-
-      modelVal = modelVal.trim();
-
-      if (scope.canBeEmpty && modelVal === "") {
-        return true;
-      }
-
-      return modelVal.substr(0, key_start.length) === key_start && modelVal.substr(modelVal.length - key_end.length, modelVal.length) === key_end;
-    };
-  }
-  // Return a Directive Definition Object for angular to compile
-  return {
-    restrict: "A",
-    require: "ngModel",
-    link: link,
-    scope: {
-      // The string passed to the directive is used to assign special key word behavior.
-      pgpPubkeyValidator: "@"
-    }
-  };
-}).
 directive("singleClick", [function() {
   return {
     restrict: "A",

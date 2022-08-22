@@ -373,19 +373,6 @@ textarea.form-control {
   resize: vertical;
 }
 
-.textarea-btn {
-  position: absolute;
-  top: 2rem;
-}
-
-[dir="rtl"] .textarea-btn {
-  left: 1rem;
-}
-
-[dir="ltr"] .textarea-btn {
-  right: 1rem;
-}
-
 input[type="file"] {
   position: absolute;
   visibility: hidden;
