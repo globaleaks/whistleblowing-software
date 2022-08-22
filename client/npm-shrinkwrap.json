@@ -59,8 +59,8 @@
         "postcss-rtl": "1.7.3",
         "protractor": "7.0.0",
         "protractor-console-plugin": "0.1.1",
-        "stylelint": "14.10.0",
-        "stylelint-config-standard": "27.0.0",
+        "stylelint": "14.11.0",
+        "stylelint-config-standard": "28.0.0",
         "superagent": "8.0.0",
         "terser": "5.14.2"
       }
@@ -2076,9 +2076,9 @@
       }
     },
     "node_modules/colord": {
-      "version": "2.9.2",
-      "resolved": "https://registry.npmjs.org/colord/-/colord-2.9.2.tgz",
-      "integrity": "sha512-Uqbg+J445nc1TKn4FoDPS6ZZqAvEDnwrH42yo8B40JSOgSLxMZ/gt3h4nmCtPLQeXhjJJkqBx7SCY35WnIixaQ==",
+      "version": "2.9.3",
+      "resolved": "https://registry.npmjs.org/colord/-/colord-2.9.3.tgz",
+      "integrity": "sha512-jeC1axXpnb0/2nn/Y1LPuLdgXBLH7aDcHu4KEKfqw3CUhX7ZpfBSlPKyqXE6btIgEzfWtrX3/tyBCaCvXvMkOw==",
       "dev": true
     },
     "node_modules/colors": {
@@ -9708,14 +9708,14 @@
       "dev": true
     },
     "node_modules/stylelint": {
-      "version": "14.10.0",
-      "resolved": "https://registry.npmjs.org/stylelint/-/stylelint-14.10.0.tgz",
-      "integrity": "sha512-VAmyKrEK+wNFh9R8mNqoxEFzaa4gsHGhcT4xgkQDuOA5cjF6CaNS8loYV7gpi4tIZBPUyXesotPXzJAMN8VLOQ==",
+      "version": "14.11.0",
+      "resolved": "https://registry.npmjs.org/stylelint/-/stylelint-14.11.0.tgz",
+      "integrity": "sha512-OTLjLPxpvGtojEfpESWM8Ir64Z01E89xsisaBMUP/ngOx1+4VG2DPRcUyCCiin9Rd3kPXPsh/uwHd9eqnvhsYA==",
       "dev": true,
       "dependencies": {
         "@csstools/selector-specificity": "^2.0.2",
         "balanced-match": "^2.0.0",
-        "colord": "^2.9.2",
+        "colord": "^2.9.3",
         "cosmiconfig": "^7.0.1",
         "css-functions-list": "^3.1.0",
         "debug": "^4.3.4",
@@ -9750,7 +9750,7 @@
         "svg-tags": "^1.0.0",
         "table": "^6.8.0",
         "v8-compile-cache": "^2.3.0",
-        "write-file-atomic": "^4.0.1"
+        "write-file-atomic": "^4.0.2"
       },
       "bin": {
         "stylelint": "bin/stylelint.js"
@@ -9773,15 +9773,15 @@
       }
     },
     "node_modules/stylelint-config-standard": {
-      "version": "27.0.0",
-      "resolved": "https://registry.npmjs.org/stylelint-config-standard/-/stylelint-config-standard-27.0.0.tgz",
-      "integrity": "sha512-J+wxyODWQCW2kgdhVzj51a4cFcJkglkMQrjPU/1Jo8w2oKSKK5ZRqHvDDWxEmjYWIYbMhhIMS5dOgVpGUMIACw==",
+      "version": "28.0.0",
+      "resolved": "https://registry.npmjs.org/stylelint-config-standard/-/stylelint-config-standard-28.0.0.tgz",
+      "integrity": "sha512-q/StuowDdDmFCravzGHAwgS9pjX0bdOQUEBBDIkIWsQuYGgYz/xsO8CM6eepmIQ1fc5bKdDVimlJZ6MoOUcJ5Q==",
       "dev": true,
       "dependencies": {
         "stylelint-config-recommended": "^9.0.0"
       },
       "peerDependencies": {
-        "stylelint": "^14.10.0"
+        "stylelint": "^14.11.0"
       }
     },
     "node_modules/stylelint/node_modules/@csstools/selector-specificity": {
@@ -9866,16 +9866,16 @@
       }
     },
     "node_modules/stylelint/node_modules/write-file-atomic": {
-      "version": "4.0.1",
-      "resolved": "https://registry.npmjs.org/write-file-atomic/-/write-file-atomic-4.0.1.tgz",
-      "integrity": "sha512-nSKUxgAbyioruk6hU87QzVbY279oYT6uiwgDoujth2ju4mJ+TZau7SQBhtbTmUyuNYTuXnSyRn66FV0+eCgcrQ==",
+      "version": "4.0.2",
+      "resolved": "https://registry.npmjs.org/write-file-atomic/-/write-file-atomic-4.0.2.tgz",
+      "integrity": "sha512-7KxauUdBmSdWnmpaGFg+ppNjKF8uNLry8LyzjauQDOVONfFLNKrKvQOxZ/VuTIcS/gge/YNahf5RIIQWTSarlg==",
       "dev": true,
       "dependencies": {
         "imurmurhash": "^0.1.4",
         "signal-exit": "^3.0.7"
       },
       "engines": {
-        "node": "^12.13.0 || ^14.15.0 || >=16"
+        "node": "^12.13.0 || ^14.15.0 || >=16.0.0"
       }
     },
     "node_modules/superagent": {
@@ -12451,9 +12451,9 @@
       "dev": true
     },
     "colord": {
-      "version": "2.9.2",
-      "resolved": "https://registry.npmjs.org/colord/-/colord-2.9.2.tgz",
-      "integrity": "sha512-Uqbg+J445nc1TKn4FoDPS6ZZqAvEDnwrH42yo8B40JSOgSLxMZ/gt3h4nmCtPLQeXhjJJkqBx7SCY35WnIixaQ==",
+      "version": "2.9.3",
+      "resolved": "https://registry.npmjs.org/colord/-/colord-2.9.3.tgz",
+      "integrity": "sha512-jeC1axXpnb0/2nn/Y1LPuLdgXBLH7aDcHu4KEKfqw3CUhX7ZpfBSlPKyqXE6btIgEzfWtrX3/tyBCaCvXvMkOw==",
       "dev": true
     },
     "colors": {
@@ -18313,14 +18313,14 @@
       "dev": true
     },
     "stylelint": {
-      "version": "14.10.0",
-      "resolved": "https://registry.npmjs.org/stylelint/-/stylelint-14.10.0.tgz",
-      "integrity": "sha512-VAmyKrEK+wNFh9R8mNqoxEFzaa4gsHGhcT4xgkQDuOA5cjF6CaNS8loYV7gpi4tIZBPUyXesotPXzJAMN8VLOQ==",
+      "version": "14.11.0",
+      "resolved": "https://registry.npmjs.org/stylelint/-/stylelint-14.11.0.tgz",
+      "integrity": "sha512-OTLjLPxpvGtojEfpESWM8Ir64Z01E89xsisaBMUP/ngOx1+4VG2DPRcUyCCiin9Rd3kPXPsh/uwHd9eqnvhsYA==",
       "dev": true,
       "requires": {
         "@csstools/selector-specificity": "^2.0.2",
         "balanced-match": "^2.0.0",
-        "colord": "^2.9.2",
+        "colord": "^2.9.3",
         "cosmiconfig": "^7.0.1",
         "css-functions-list": "^3.1.0",
         "debug": "^4.3.4",
@@ -18355,7 +18355,7 @@
         "svg-tags": "^1.0.0",
         "table": "^6.8.0",
         "v8-compile-cache": "^2.3.0",
-        "write-file-atomic": "^4.0.1"
+        "write-file-atomic": "^4.0.2"
       },
       "dependencies": {
         "@csstools/selector-specificity": {
@@ -18402,9 +18402,9 @@
           "dev": true
         },
         "write-file-atomic": {
-          "version": "4.0.1",
-          "resolved": "https://registry.npmjs.org/write-file-atomic/-/write-file-atomic-4.0.1.tgz",
-          "integrity": "sha512-nSKUxgAbyioruk6hU87QzVbY279oYT6uiwgDoujth2ju4mJ+TZau7SQBhtbTmUyuNYTuXnSyRn66FV0+eCgcrQ==",
+          "version": "4.0.2",
+          "resolved": "https://registry.npmjs.org/write-file-atomic/-/write-file-atomic-4.0.2.tgz",
+          "integrity": "sha512-7KxauUdBmSdWnmpaGFg+ppNjKF8uNLry8LyzjauQDOVONfFLNKrKvQOxZ/VuTIcS/gge/YNahf5RIIQWTSarlg==",
           "dev": true,
           "requires": {
             "imurmurhash": "^0.1.4",
@@ -18421,9 +18421,9 @@
       "requires": {}
     },
     "stylelint-config-standard": {
-      "version": "27.0.0",
-      "resolved": "https://registry.npmjs.org/stylelint-config-standard/-/stylelint-config-standard-27.0.0.tgz",
-      "integrity": "sha512-J+wxyODWQCW2kgdhVzj51a4cFcJkglkMQrjPU/1Jo8w2oKSKK5ZRqHvDDWxEmjYWIYbMhhIMS5dOgVpGUMIACw==",
+      "version": "28.0.0",
+      "resolved": "https://registry.npmjs.org/stylelint-config-standard/-/stylelint-config-standard-28.0.0.tgz",
+      "integrity": "sha512-q/StuowDdDmFCravzGHAwgS9pjX0bdOQUEBBDIkIWsQuYGgYz/xsO8CM6eepmIQ1fc5bKdDVimlJZ6MoOUcJ5Q==",
       "dev": true,
       "requires": {
         "stylelint-config-recommended": "^9.0.0"
