@@ -34,7 +34,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
       'rtips': []
     }
 
-    updated_after = datetime.fromtimestamp(int(args.get(b'updated_after', [b'1660801500'])[0]))
+    updated_after = datetime.fromtimestamp(int(args.get(b'updated_after', [b'0'])[0]))
     updated_before = datetime.fromtimestamp(int(args.get(b'updated_before', [b'32503680000'])[0]))
 
     messages_by_rtip = {}
