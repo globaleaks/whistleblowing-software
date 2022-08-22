@@ -8,7 +8,6 @@ describe("Recipient first login", function() {
   });
 
   it("should be able to change password from the default one", async function() {
-    await element(by.model("changePasswordArgs.current")).sendKeys(browser.gl.utils.vars.init_password);
     await element(by.model("changePasswordArgs.password")).sendKeys(browser.gl.utils.vars.user_password);
     await element(by.model("changePasswordArgs.confirm")).sendKeys(browser.gl.utils.vars.user_password);
     await element(by.css("[data-ng-click=\"changePassword()\"]")).click();
@@ -50,7 +49,6 @@ describe("Recipient2 first login", function() {
   });
 
   it("should be able to change password from the default one", async function() {
-    await element(by.model("changePasswordArgs.current")).sendKeys(browser.gl.utils.vars.init_password);
     await element(by.model("changePasswordArgs.password")).sendKeys(browser.gl.utils.vars.user_password);
     await element(by.model("changePasswordArgs.confirm")).sendKeys(browser.gl.utils.vars.user_password);
     await element(by.css("[data-ng-click=\"changePassword()\"]")).click();
@@ -64,7 +62,6 @@ describe("Custodian first login", function() {
   });
 
   it("should be able to change password from the default one", async function() {
-    await element(by.model("changePasswordArgs.current")).sendKeys(browser.gl.utils.vars.init_password);
     await element(by.model("changePasswordArgs.password")).sendKeys(browser.gl.utils.vars.user_password);
     await element(by.model("changePasswordArgs.confirm")).sendKeys(browser.gl.utils.vars.user_password);
     await element(by.css("[data-ng-click=\"changePassword()\"]")).click();
@@ -78,7 +75,6 @@ describe("Admin2 first login", function() {
   });
 
   it("should be able to change password from the default one", async function() {
-    await element(by.model("changePasswordArgs.current")).sendKeys(browser.gl.utils.vars.init_password);
     await element(by.model("changePasswordArgs.password")).sendKeys(browser.gl.utils.vars.user_password);
     await element(by.model("changePasswordArgs.confirm")).sendKeys(browser.gl.utils.vars.user_password);
     await element(by.css("[data-ng-click=\"changePassword()\"]")).click();
