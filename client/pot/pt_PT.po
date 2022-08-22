@@ -1939,10 +1939,10 @@ msgid "Report updated"
 msgstr "Submissão atualizada"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr "Esta comunicação serve para relembrar das submissões da por ler ou atualizadas."
+msgstr "Esta comunicação serve para relembrar da existência de submissões por ler ou atualizadas."
 
 msgid "Reminder about unread or updated reports"
-msgstr "Lembrete sobre submissões não lidas ou atualizadas"
+msgstr "Lembrete sobre submissões submissões por ler ou atualizadas"
 
 msgid "Role: {Role}"
 msgstr "Função: {Role}"
