@@ -25,6 +25,8 @@ from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.utils.utility import datetime_now, deferred_sleep
 
+mimetypes.add_type('text/javascript', '.js')
+
 
 def serve_file(request, fo):
     filesender = FileSender()

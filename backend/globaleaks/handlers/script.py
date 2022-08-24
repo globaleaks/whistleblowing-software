@@ -16,7 +16,7 @@ class ScriptHandler(BaseHandler):
     check_roles = 'any'
 
     allowed_mimetypes = [
-      'application/javascript'
+      'text/javascript'
     ]
 
     def get(self):

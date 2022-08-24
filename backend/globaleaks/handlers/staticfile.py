@@ -11,13 +11,13 @@ from globaleaks.utils.fs import directory_traversal_check
 class StaticFileHandler(BaseHandler):
     check_roles = 'any'
     allowed_mimetypes = [
-        'application/javascript',
         'font/ttf',
         'font/woff',
         'font/woff2',
         'image/png',
         'text/css',
-        'text/html'
+        'text/html',
+        'text/javascript'
     ]
 
     def __init__(self, state, request):
