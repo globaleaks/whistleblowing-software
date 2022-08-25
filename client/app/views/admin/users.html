@@ -214,8 +214,10 @@
             <div class="form-group" data-ng-show="user.pgp_key_fingerprint === ''">
               <div class="position-relative">
                 <label data-translate>Set up encryption by providing a PGP public key</label>
-                <label file-input="loadPublicKeyFile(file)" file-input-label="Upload"
-                       class="btn btn-sm btn-outline-secondary"></label>
+                <div>
+                  <label file-input="loadPublicKeyFile(file)" file-input-label="Upload"
+                         class="btn btn-sm btn-outline-secondary"></label>
+                </div>
               </div>
             </div>
           </div>
