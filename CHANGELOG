@@ -1,3 +1,8 @@
+Changes in version 4.10.6
+    Replace usage of python random module with python secrets module
+    Fix mimetype for javascript files in relation to IANA definititions
+    Bump terser to latest version
+
 Changes in version 4.10.5
     Fix regression in relation to password resets requiring old passwords
     Fix regression in relation to old reports introduced in 0750098ef936452904f666bcb5aefc24fcfade84
