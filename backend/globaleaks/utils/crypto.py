@@ -3,6 +3,7 @@ import base64
 import binascii
 import os
 import random
+import secrets
 import string
 import struct
 import time
@@ -71,11 +72,11 @@ def generateRandomPassword(N: int) -> str:
     accessible_special_symbols = "!?@#+-/\*="
     accessible_symbols_set = string.ascii_letters + string.digits + accessible_special_symbols
 
-    password = ''.join(random.SystemRandom().choice(accessible_symbols_set) for _ in range(N-4))
-    password += random.SystemRandom().choice(string.ascii_lowercase)
-    password += random.SystemRandom().choice(string.ascii_uppercase)
-    password += random.SystemRandom().choice(string.digits)
-    password += random.SystemRandom().choice(accessible_special_symbols)
+    password = ''.join(secrets.SystemRandom().choice(accessible_symbols_set) for _ in range(N-4))
+    password += secrets.SystemRandom().choice(string.ascii_lowercase)
+    password += secrets.SystemRandom().choice(string.ascii_uppercase)
+    password += secrets.SystemRandom().choice(string.digits)
+    password += secrets.SystemRandom().choice(accessible_special_symbols)
 
     password = ''.join(random.sample(password, N))
 
@@ -83,7 +84,7 @@ def generateRandomPassword(N: int) -> str:
 
 
 def generate2FA():
-    return ''.join(random.SystemRandom().choice(string.digits) for _ in range(8))
+    return ''.join(secrets.SystemRandom().choice(string.digits) for _ in range(8))
 
 
 def totpVerify(secret: str, token: str) -> None:
