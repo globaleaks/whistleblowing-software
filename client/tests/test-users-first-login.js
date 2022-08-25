@@ -54,6 +54,15 @@ describe("Recipient2 first login", function() {
     await element(by.css("[data-ng-click=\"changePassword()\"]")).click();
     await browser.gl.utils.waitForUrl("/recipient/home");
   });
+
+  it("should be able to change again the password setting it to the default one", async function() {
+    await element(by.id("PreferencesLink")).click();
+    await element(by.cssContainingText("a", "Password")).click();
+    await element(by.model("changePasswordArgs.current")).sendKeys(browser.gl.utils.vars.user_password);
+    await element(by.model("changePasswordArgs.password")).sendKeys(browser.gl.utils.vars.init_password);
+    await element(by.model("changePasswordArgs.confirm")).sendKeys(browser.gl.utils.vars.user_password);
+    await element(by.css("[data-ng-click=\"changePassword()\"]")).click();
+  });
 });
 
 describe("Custodian first login", function() {
