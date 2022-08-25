@@ -15,7 +15,7 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$location", "$window
     $scope.editingPublicName = false;
     $scope.showEncryptionKey = false;
 
-    $scope.newPasswordArgs = {};
+    $scope.changePasswordArgs = {};
 
     $scope.toggleNameEditing = function () {
       $scope.editingName = !$scope.editingName;
@@ -30,7 +30,7 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$location", "$window
     };
 
     $scope.changePassword = function() {
-      return $scope.Utils.runUserOperation("change_password", $scope.newPasswordArgs).then(function() {
+      return $scope.Utils.runUserOperation("change_password", $scope.changePasswordArgs).then(function() {
         $scope.newPasswordArgs = {};
       });
     };
