@@ -285,7 +285,7 @@ class BaseHandler(object):
     def check_confirmation(self):
         tid = self.request.tid
         user_id = self.session.user_id
-        secret = self.request.headers.get(b'x-confirmation', b'').decode()
+        secret = self.request.headers.get(b'x-confirmation', b'').decode('unicode_escape')
         sync_confirmation_check(self.session.user_tid, user_id, secret)
 
     def open_file(self, filepath):
