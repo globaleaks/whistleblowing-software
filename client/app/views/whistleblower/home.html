@@ -14,6 +14,6 @@
       <div id="WhistleblowingQuestion" data-ng-show="public.node.whistleblowing_question" data-markdown-to-html="public.node.whistleblowing_question | stripHtml"></div>
       <button id="WhistleblowingButton" data-ng-click="openSubmission()" class="btn btn-primary">{{public.node.whistleblowing_button}}</button>
     </div>
-    <div id="WhistleblowerLoginBox" data-ng-show="(public.node.https_whistleblower || connection.tor)" data-ng-include="'views/partials/receipt.html'"></div>
+    <div id="WhistleblowerLoginBox" data-ng-show="public.node.https_whistleblower || connection.tor" data-ng-include="'views/partials/receipt.html'"></div>
   </div>
 </div>
