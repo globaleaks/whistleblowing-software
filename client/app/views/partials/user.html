@@ -1,4 +1,4 @@
-<div data-ng-hide="Authentication.session.require_password_change">
+<div data-ng-hide="resources.preferences.password_change_needed || resources.preferences.require_two_factor">
   <div id="LanguagePickerBox" data-ng-if="public.node.languages_enabled.length > 1" class="float-right ml-1 mb-2">
     <select class="form-control" data-ng-model="GLTranslate.state.language" data-ng-options="item.code as item.native for item in languages_enabled_selector | orderBy:'native'"></select>
   </div>
