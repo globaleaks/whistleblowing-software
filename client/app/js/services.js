@@ -178,7 +178,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       if (typeof Authentication.session === "undefined") {
         return $q.resolve(Access.OK);
       } else {
-        return $q.reject(Access.FORBIDDEN);
+        return Authentication.logout();
       }
     },
 

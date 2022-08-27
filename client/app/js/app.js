@@ -62,6 +62,10 @@ var GL = angular.module("GL", [
       return ["Access", function(Access) { return Access.isAuthenticated(role); }];
     }
 
+    function noAuth() {
+      return ['Access', function(Access) { return Access.isUnauth(); }];
+    }
+
     function fetchResources(role, lst) {
       return ["$location", "$q", "$rootScope", "Access", "GLTranslate", "AdminAuditLogResource", "AdminContextResource", "AdminQuestionnaireResource", "AdminStepResource", "AdminFieldResource", "AdminFieldTemplateResource", "AdminUserResource", "AdminNodeResource", "AdminNetworkResource", "AdminNotificationResource", "AdminRedirectResource", "AdminTenantResource", "TipsCollection", "JobsAuditLog", "AdminSubmissionStatusResource", "ReceiverTips", "UserPreferences", function($location, $q, $rootScope, Access, GLTranslate, AdminAuditLogResource, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminNodeResource, AdminNetworkResource, AdminNotificationResource, AdminRedirectResource, AdminTenantResource, TipsCollection, JobsAuditLog, AdminSubmissionStatusResource, ReceiverTips, UserPreferences) {
         var resourcesPromises = {
@@ -111,17 +115,26 @@ var GL = angular.module("GL", [
       when("/wizard", {
         templateUrl: "views/wizard/main.html",
         controller: "WizardCtrl",
-        header_title: "Platform wizard"
+        header_title: "Platform wizard",
+        resolve: {
+          access: noAuth()
+        }
       }).
       when("/submission", {
         templateUrl: "views/whistleblower/submission.html",
         controller: "SubmissionCtrl",
-        header_title: ""
+        header_title: "",
+        resolve: {
+          access: noAuth()
+        }
       }).
       when("/activation", {
         templateUrl: "views/signup/activation.html",
         controller: "SignupActivationCtrl",
-        header_title: "Signup"
+        header_title: "Signup",
+        resolve: {
+          access: noAuth()
+        }
       }).
       when("/status/:tip_id", {
         templateUrl: "views/recipient/tip.html",
@@ -348,48 +361,78 @@ var GL = angular.module("GL", [
       when("/login", {
         templateUrl: "views/login/main.html",
         controller: "LoginCtrl",
-        header_title: "Log in"
+        header_title: "Log in",
+        resolve: {
+          access: noAuth()
+        }
       }).
       when("/admin", {
         templateUrl: "views/login/main.html",
         controller: "LoginCtrl",
-        header_title: "Log in"
+        header_title: "Log in",
+        resolve: {
+          access: noAuth()
+        }
       }).
       when("/login/passwordreset", {
         templateUrl: "views/passwordreset/main.html",
         controller: "PasswordResetCtrl",
-        header_title: "Password reset"
+        header_title: "Password reset",
+        resolve: {
+          access: noAuth()
+        }
       }).
       when("/login/passwordreset/requested", {
         templateUrl: "views/passwordreset/requested.html",
-        header_title: "Password reset"
+        header_title: "Password reset",
+        resolve: {
+          access: noAuth()
+        }
       }).
       when("/login/passwordreset/failure/token", {
         templateUrl: "views/passwordreset/failure_token.html",
-        header_title: "Password reset"
+        header_title: "Password reset",
+        resolve: {
+          access: noAuth()
+        }
       }).
       when("/login/passwordreset/failure/recovery", {
         templateUrl: "views/passwordreset/failure_recovery.html",
-        header_title: "Password reset"
+        header_title: "Password reset",
+        resolve: {
+          access: noAuth()
+        }
       }).
       when("/password/reset", {
         templateUrl: "views/passwordreset/reset.html",
         controller: "PasswordResetCompleteCtrl",
-        header_title: "Password reset"
+        header_title: "Password reset",
+        resolve: {
+          access: noAuth()
+        }
       }).
       when("/email/validation/success", {
         templateUrl: "views/email_validation_success.html",
         controller: "EmptyCtrl",
-        header_title: ""
+        header_title: "",
+        resolve: {
+          access: noAuth()
+        }
       }).
       when("/email/validation/failure", {
         templateUrl: "views/email_validation_failure.html",
         controller: "EmptyCtrl",
-        header_title: ""
+        header_title: "",
+        resolve: {
+          access: noAuth()
+        }
       }).
       when("/", {
         templateUrl: "views/home.html",
-        header_title: ""
+        header_title: "",
+        resolve: {
+          access: noAuth()
+        }
       }).
       otherwise({
         redirectTo: "/"
@@ -652,15 +695,6 @@ var GL = angular.module("GL", [
           $window.location.href = $location.absUrl();
           $window.location.reload();
         }
-      }
-
-      if ($location.path() === "/" &&
-          $rootScope.Authentication.session &&
-          $rootScope.Authentication.session.role !== "whistleblower") {
-        // Get sure to reset the user session when visiting the public interface
-	// This is intended as protection in relation to possible XSS and XSRF
-	// on components implementing markdown and direct html input.
-        $rootScope.Authentication.session = undefined;
       }
     });
 
