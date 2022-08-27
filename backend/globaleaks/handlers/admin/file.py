@@ -103,7 +103,10 @@ class FileInstance(BaseHandler):
         'font/ttf',
         'font/woff',
         'font/woff2',
+        'image/gif',
+        'image/jpeg',
         'image/png',
+        'image/x-icon',
         'video/mp4'
     ]
 

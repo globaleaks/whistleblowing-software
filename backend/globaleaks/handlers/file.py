@@ -27,8 +27,10 @@ class FileHandler(BaseHandler):
         'font/ttf',
         'font/woff',
         'font/woff2',
-        'image/x-icon',
+        'image/gif',
+        'image/jpeg',
         'image/png',
+        'image/x-icon',
         'text/css',
         'video/mp4'
     ]
