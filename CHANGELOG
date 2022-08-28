@@ -1,3 +1,10 @@
+Changes in version 4.10.8
+    Fix password confirmation in relation to unicode escape encoding
+    Extend image file types supported by the application adding gif and jpeg
+    Perform logout when navigating pages that do not require auth (#3221)
+    Fix issue #3225
+    Bump npm dependencies to latest versions
+
 Changes in version 4.10.7
     Fix regression on users password change introduced in 4.10.0
 
