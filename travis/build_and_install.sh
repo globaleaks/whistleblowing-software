@@ -39,4 +39,4 @@ debuild -i -us -uc -b
 sudo mkdir -p /globaleaks/deb/
 sudo cp ../globaleaks*deb /globaleaks/deb/
 
-sudo ./scripts/install.sh --assume-yes
+sudo ./scripts/install.sh -y

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-echo -e "Running the GlobaLeaks installation...\nIn case of failure please report encountered issues to the ticketing system at: https://github.com/globaleaks/GlobaLeaks/issues\n"
-
 export DEBIAN_FRONTEND=noninteractive
 
 # User Permission Check
@@ -74,14 +72,28 @@ function prompt_for_continuation () {
   fi
 }
 
-for arg in "$@"; do
-  shift
-  case "$arg" in
-    --assume-yes ) ASSUMEYES=1; shift;;
-    -- ) shift; break;;
-    * ) break;;
+usage() {
+  echo "GlobaLeaks Install Script"
+  echo "Valid options:"
+  echo -e " -h show the script helper"
+  echo -e " -y assume yes"
+}
+
+while getopts "hyv:" opt; do
+  case $opt in
+    y) ASSUMEYES=1
+    ;;
+    h)
+        usage
+        exit 1
+    ;;
+    \?) usage
+        exit 1
+    ;;
   esac
 done
+
+echo -e "Running the GlobaLeaks installation...\nIn case of failure please report encountered issues to the ticketing system at: https://github.com/globaleaks/GlobaLeaks/issues\n"
 
 echo "Detected OS: $DISTRO - $DISTRO_CODENAME"
 
