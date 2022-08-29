@@ -1,3 +1,6 @@
+Changes in version 4.10.9
+    Fix issue #3272
+
 Changes in version 4.10.8
     Fix password confirmation in relation to unicode escape encoding
     Extend image file types supported by the application adding gif and jpeg
