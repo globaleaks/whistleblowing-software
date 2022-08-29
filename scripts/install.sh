@@ -77,11 +77,14 @@ usage() {
   echo "Valid options:"
   echo -e " -h show the script helper"
   echo -e " -y assume yes"
+  echo -e " -v install a specific software version"
 }
 
 while getopts "hyv:" opt; do
   case $opt in
     y) ASSUMEYES=1
+    ;;
+    v) VERSION="$OPTARG"
     ;;
     h)
         usage
@@ -174,7 +177,11 @@ if [ -d /globaleaks/deb ]; then
   DO "/etc/init.d/globaleaks restart"
 else
   DO "apt-get update -y"
-  DO "apt-get install globaleaks -y"
+  if [[ $VERSION ]]; then
+    DO "apt-get install globaleaks=$VERSION -y"
+  else
+    DO "apt-get install globaleaks -y"
+  fi
 fi
 
 # Set the script to its success condition
