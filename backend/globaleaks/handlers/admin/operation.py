@@ -237,6 +237,14 @@ class AdminOperationHandler(OperationHandler):
     check_roles = 'admin'
     invalidate_cache = True
 
+    require_confirmation = [
+        'enable_encryption',
+        'disable_2fa',
+        'toggle_escrow',
+        'toggle_user_escrow',
+        'reset_submissions'
+    ]
+
     def enable_encryption(self, req_args, *args, **kwargs):
         return enable_encryption(self.request.tid)
 
