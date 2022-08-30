@@ -11,7 +11,7 @@
   "dependencies": {
     "@flowjs/flow.js": "2.14.1",
     "@flowjs/ng-flow": "2.7.8",
-    "@fortawesome/fontawesome-free": "6.1.2",
+    "@fortawesome/fontawesome-free": "6.2.0",
     "angular": "1.8.3",
     "angular-aria": "1.8.3",
     "angular-dynamic-locale": "0.1.38",
