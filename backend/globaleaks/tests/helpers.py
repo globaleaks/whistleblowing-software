@@ -440,6 +440,13 @@ def get_dummy_file(content=None):
     }
 
 
+def check_confirmation(self):
+    return
+
+
+BaseHandler.check_confirmation = check_confirmation
+
+
 def get_file_upload(self):
     return get_dummy_file()
 
