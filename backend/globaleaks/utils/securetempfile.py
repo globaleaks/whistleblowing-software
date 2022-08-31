@@ -21,17 +21,15 @@ class SecureTemporaryFile(object):
         self.cipher = Cipher(algorithms.AES(self.key), modes.CTR(self.key_counter_nonce), backend=crypto_backend)
         self.filepath = os.path.join(filesdir, "%s.aes" % self.key_id)
         self.size = 0
+        self.enc = self.cipher.encryptor()
+        self.dec = None
 
     def open(self, mode):
-        if self.fd is not None:
-            return
-
         if mode == 'w':
             self.fd = open(self.filepath, 'ab+')
-            self.encdec = self.cipher.encryptor()
         else:
             self.fd = open(self.filepath, 'rb')
-            self.encdec = self.cipher.decryptor()
+            self.dec = self.cipher.decryptor()
 
         return self
 
@@ -39,11 +37,11 @@ class SecureTemporaryFile(object):
         if isinstance(data, str):
             data = data.encode()
 
-        self.fd.write(self.encdec.update(data))
+        self.fd.write(self.enc.update(data))
         self.size += len(data)
 
     def finalize_write(self):
-        self.fd.write(self.encdec.finalize())
+        self.fd.write(self.enc.finalize())
 
     def read(self, c=None):
         if c is None:
@@ -52,9 +50,9 @@ class SecureTemporaryFile(object):
             data = self.fd.read(c)
 
         if data:
-            return self.encdec.update(data)
+            return self.dec.update(data)
 
-        return self.encdec.finalize()
+        return self.dec.finalize()
 
     def close(self):
         if self.fd is not None:
