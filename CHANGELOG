@@ -1,3 +1,11 @@
+Changes in version 4.10.10
+    Fix corrupted file upload problem for files bigger than 1MB introduced in 4.10.0
+    Update the last update date when the report status is changed
+    Revert fix for issue #3272
+    Revise Debian packaging
+    Bump npm dependencies to latest versions
+    Update translations
+
 Changes in version 4.10.9
     Fix issue #3272
 
