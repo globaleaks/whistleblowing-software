@@ -186,6 +186,9 @@ def update_tip_submission_status(session, tid, user_id, rtip_id, status_id, subs
     """
     _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
+    if itip.status != status_id or itip.substatus != substatus_id:
+        itip.update_date = rtip.last_access = datetime_now()
+
     db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id)
 
 
