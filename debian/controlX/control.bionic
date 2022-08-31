@@ -11,7 +11,7 @@ Build-Depends:
   python3-setuptools,
   python3-sphinx
 Vcs-Git: https://github.com/globaleaks/GlobaLeaks.git
-Standards-Version: 4.5.1
+Standards-Version: 4.6.1
 
 Package: globaleaks
 Architecture: all
