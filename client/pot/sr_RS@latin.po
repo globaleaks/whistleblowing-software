@@ -1376,12 +1376,12 @@ msgstr "Unesite korisničko ime ili imejl adresu da zatražite resetovanje lozin
 msgid "Enter your email address to request a password reset."
 msgstr "Unesite imejl adresu da zatražite resetovanje lozinke."
 
+msgid "Password reset requested."
+msgstr "Zatraženo je resetovanje lozinke."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Unesite ključ za oporavak naloga da dovršite postupak resetovanja lozinke"
-
-msgid "Password reset requested."
-msgstr "Zatraženo je resetovanje lozinke."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

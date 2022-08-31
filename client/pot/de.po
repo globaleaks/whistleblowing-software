@@ -1416,12 +1416,12 @@ msgstr "Geben Sie den Benutzernamen Ihres Kontos oder Ihre E-Mail-Adresse ein, u
 msgid "Enter your email address to request a password reset."
 msgstr "Geben Sie Ihre E-Mail-Adresse ein, um ein neues Passwort anzufordern."
 
+msgid "Password reset requested."
+msgstr "Passwortzurücksetzung angefordert."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Geben Sie den Wiederherstellungsschlüssel für die Verschlüsselung ein, um den Vorgang der Passwortrücksetzung abzuschließen"
-
-msgid "Password reset requested."
-msgstr "Passwortzurücksetzung angefordert."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

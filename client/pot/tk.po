@@ -1375,12 +1375,12 @@ msgstr "Parolyňyzy täzeden düzmek üçin hasabyňyzyň ulanyjy adyny ýa-da e
 msgid "Enter your email address to request a password reset."
 msgstr "Parolyňyzy täzeden düzmek üçin email salgyňyzy giriziň."
 
+msgid "Password reset requested."
+msgstr "Paroly täzeden düzmek talap edildi."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Paroly täzeden düzmek prosedurasyny tamamlamak üçin hasabyňyzy dikeltmek açaryny giriziň"
-
-msgid "Password reset requested."
-msgstr "Paroly täzeden düzmek talap edildi."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

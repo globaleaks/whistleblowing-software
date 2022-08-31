@@ -1397,12 +1397,12 @@ msgstr "Hesabınızın kullanıcı adını veya e-posta adresinizi girerek parol
 msgid "Enter your email address to request a password reset."
 msgstr "Parola sıfırlama isteği için e-posta adresinizi girin."
 
+msgid "Password reset requested."
+msgstr "Parola sıfırlama isteği alındı."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Parola sıfırlama işlemini tamamlamak için şifreleme kurtarma anahtarınızı girin."
-
-msgid "Password reset requested."
-msgstr "Parola sıfırlama isteği alındı."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

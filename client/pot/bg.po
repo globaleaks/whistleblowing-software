@@ -1380,12 +1380,12 @@ msgstr "Въведете потребителското име на акаунт
 msgid "Enter your email address to request a password reset."
 msgstr "Въведете имейл адреса си, за да заявите нулиране на паролата."
 
+msgid "Password reset requested."
+msgstr "Заявено е нулиране на паролата."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Въведете ключа си за възстановяване на акаунта, за да завършите процедурата за нулиране на паролата"
-
-msgid "Password reset requested."
-msgstr "Заявено е нулиране на паролата."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

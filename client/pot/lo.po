@@ -1370,12 +1370,12 @@ msgstr "ປ້ອນຊື່ຜູ້ໃຊ້ຂອງບັນຊີຂອງ
 msgid "Enter your email address to request a password reset."
 msgstr "ປ້ອນທີ່ຢູ່ອີເມວຂອງທ່ານ ເພື່ອຮ້ອງຂໍການຕັ້ງລະຫັດຜ່ານຄືນໃໝ່."
 
+msgid "Password reset requested."
+msgstr "ໄດ້ຮ້ອງຂໍການຕັ້ງລະຫັດຜ່ານຄືນໃໝ່ແລ້ວ."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "ປ້ອນລະຫັດການກູ້ຄືນການເຂົ້າລະຫັດລັບຂອງທ່ານ ເພື່ອໃຫ້ເຮັດສຳເລັດຂັ້ນຕອນການຕັ້ງລະຫັດຜ່ານຄືນໃໝ່"
-
-msgid "Password reset requested."
-msgstr "ໄດ້ຮ້ອງຂໍການຕັ້ງລະຫັດຜ່ານຄືນໃໝ່ແລ້ວ."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

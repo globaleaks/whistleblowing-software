@@ -1375,12 +1375,12 @@ msgstr "パスワードの再設定をリクエストするには、アカウン
 msgid "Enter your email address to request a password reset."
 msgstr "パスワードの再設定をリクエストするには、メールアドレスを入力してください。"
 
+msgid "Password reset requested."
+msgstr "パスワードのリセットをリクエストしました。"
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "暗号化回復鍵を入力して、パスワードのリセット手順を完了してください"
-
-msgid "Password reset requested."
-msgstr "パスワードのリセットをリクエストしました。"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

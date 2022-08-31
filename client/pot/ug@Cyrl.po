@@ -1370,12 +1370,12 @@ msgstr "Һесабат намиңиз йаки елхәт адресиңизни
 msgid "Enter your email address to request a password reset."
 msgstr "Елхәт адресиңизни киргүзүп паролиңизни қайта сәпләшни тәләп қилиң."
 
+msgid "Password reset requested."
+msgstr "Паролиңизни қайта сәпләш тәләп қилинди."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Паролни қайта сәпләш җәрйанини тамамлаш үчүн һесабатиңизниң әслигә кәлтүрүш ачқучини киргүзүң"
-
-msgid "Password reset requested."
-msgstr "Паролиңизни қайта сәпләш тәләп қилинди."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

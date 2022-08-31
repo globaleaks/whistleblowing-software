@@ -1408,12 +1408,12 @@ msgstr "Saisissez le nom d’utilisateur de votre compte ou votre adresse courri
 msgid "Enter your email address to request a password reset."
 msgstr "Saisissez votre adresse courriel pour demander une réinitialisation du mot de passe."
 
+msgid "Password reset requested."
+msgstr "Une réinitialisation de mot de passe a été demandée."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Saisissez votre clé de récupération pour finaliser la procédure de réinitialisation du mot de passe"
-
-msgid "Password reset requested."
-msgstr "Une réinitialisation de mot de passe a été demandée."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

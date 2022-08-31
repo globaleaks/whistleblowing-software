@@ -1371,12 +1371,12 @@ msgstr "གསང་ཡིག་བསྐྱར་སྒྲིག་ཅིག་
 msgid "Enter your email address to request a password reset."
 msgstr "གསང་ཡིག་བསྐྱར་སྒྲིག་ཅིག་རེ་ཞུ་བྱེད་པར། ཁྱེད་ཀྱི་གློག་འཕྲིན་ཁ་བྱང་འཇུག"
 
+msgid "Password reset requested."
+msgstr "གསང་ཡིག་བསྐྱར་སྒྲིག་རེ་ཞུ་ཟིན།"
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "གསང་ཡིག་བསྐྱར་སྒྲིག་རྒྱུད་རིམ་མཇུག་སྐྱེལ་བྱེད་པར། ཁྱེད་ཀྱི་གསང་སྡོམ་བསྐྱར་གསོའི་མཐེབ་འཇུག"
-
-msgid "Password reset requested."
-msgstr "གསང་ཡིག་བསྐྱར་སྒྲིག་རེ་ཞུ་ཟིན།"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

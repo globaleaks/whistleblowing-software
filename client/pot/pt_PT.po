@@ -1393,12 +1393,12 @@ msgstr "Insira o nome de utilizador da sua conta ou o seu endereço de e-mail pa
 msgid "Enter your email address to request a password reset."
 msgstr "Insira o seu endereço de correio eletrónico para solicitar a redefinição da palavra-passe."
 
+msgid "Password reset requested."
+msgstr "Solicitada a reposição da palavra--passe."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Insira sua chave de recuperação de criptografia para concluir o procedimento de redefinição de senha"
-
-msgid "Password reset requested."
-msgstr "Solicitada a reposição da palavra--passe."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

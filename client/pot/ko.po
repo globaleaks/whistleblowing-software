@@ -1371,12 +1371,12 @@ msgstr "계정의 사용자 이름 또는 이메일 주소를 입력하여 비�
 msgid "Enter your email address to request a password reset."
 msgstr "이메일 주소를 입력하여 비밀번호 재설정을 요청하십시오."
 
+msgid "Password reset requested."
+msgstr "비밀번호 재설정이 요청되었습니다."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "비밀번호 재설정 절차를 완료하려면 암호화 복구 키를 입력하십시오"
-
-msgid "Password reset requested."
-msgstr "비밀번호 재설정이 요청되었습니다."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

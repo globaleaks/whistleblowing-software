@@ -1409,12 +1409,12 @@ msgstr "Introduce el nombre de usuario o tu correo para solicitar una reiniciali
 msgid "Enter your email address to request a password reset."
 msgstr "Introduce tu correo para solicitar un reseteo de su contraseña"
 
+msgid "Password reset requested."
+msgstr "Solicitada la reinicialización de contraseña"
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Ingresa tu clave de recuperación de cuenta para completar el procedimiento de restablecimiento de tu contraseña. "
-
-msgid "Password reset requested."
-msgstr "Solicitada la reinicialización de contraseña"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

@@ -1379,12 +1379,12 @@ msgstr "Anna tilisi käyttäjänimi tai sähköpostiosoite salasanan nollauspyyn
 msgid "Enter your email address to request a password reset."
 msgstr "Kirjoita sähköpostiosoitteesi pyytääksesi salasanan nollaamista."
 
+msgid "Password reset requested."
+msgstr "Salasanan nollaus pyydetty."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Syötä salasanan palautusavain"
-
-msgid "Password reset requested."
-msgstr "Salasanan nollaus pyydetty."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

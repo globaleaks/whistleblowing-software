@@ -1372,12 +1372,12 @@ msgstr "Внесете го корисничкото име на вашата с
 msgid "Enter your email address to request a password reset."
 msgstr "Внесете ја вашата адреса на е-пошта за да побарате ресетирање на лозинката."
 
+msgid "Password reset requested."
+msgstr "Потребно е ресетирање на лозинката."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Внесете го вашиот енкриптиран клуч за да ја завршите процедурата за ресетирање на лозинката"
-
-msgid "Password reset requested."
-msgstr "Потребно е ресетирање на лозинката."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

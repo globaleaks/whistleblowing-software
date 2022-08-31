@@ -1385,12 +1385,12 @@ msgstr "Nhập tên người dùng của tài khoản hoặc địa chỉ email 
 msgid "Enter your email address to request a password reset."
 msgstr "Nhập địa chỉ email của bạn để yêu cầu đặt lại mật khẩu."
 
+msgid "Password reset requested."
+msgstr "Yêu cầu đặt lại mật khẩu"
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Nhập chìa khóa khôi phục của bạn để hoàn tất quy trình đặt lại mật khẩu"
-
-msgid "Password reset requested."
-msgstr "Yêu cầu đặt lại mật khẩu"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

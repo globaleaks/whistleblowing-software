@@ -1400,12 +1400,12 @@ msgstr "Введите имя пользователя вашей учетной
 msgid "Enter your email address to request a password reset."
 msgstr "Введите ваш адрес электронной почты, чтобы отправить запрос на сброс пароля."
 
+msgid "Password reset requested."
+msgstr "Запрошен сброс пароля."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Введите ваш ключ восстановления учетной записи, чтобы завершить процедуру сброса пароля"
-
-msgid "Password reset requested."
-msgstr "Запрошен сброс пароля."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

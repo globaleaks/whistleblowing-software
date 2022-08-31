@@ -1370,12 +1370,12 @@ msgstr "Пароль сыфырламасы ичюн соратманы ёлла
 msgid "Enter your email address to request a password reset."
 msgstr "Пароль сыфырламасы ичюн соратманы ёлламакъ ичюн электрон почта адресинъизни язынъыз."
 
+msgid "Password reset requested."
+msgstr "Пароль сыфырламасы соратылды."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Пароль сыфырламасы процедураны битирмек ичюн эсапны янъыдан къурма анахтарыны язынъыз"
-
-msgid "Password reset requested."
-msgstr "Пароль сыфырламасы соратылды."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

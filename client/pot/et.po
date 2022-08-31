@@ -1370,12 +1370,12 @@ msgstr "Parooli lähtestamise taotlemiseks sisestage oma konto kasutajanimi või
 msgid "Enter your email address to request a password reset."
 msgstr "Parooli lähtestamise taotlemiseks sisestage oma meiliaadress."
 
+msgid "Password reset requested."
+msgstr "Parooli lähtestamise taotlus esitatud."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Parooli lähtestamise lõpuleviimiseks sisestage krüpteeringu taastevõti."
-
-msgid "Password reset requested."
-msgstr "Parooli lähtestamise taotlus esitatud."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

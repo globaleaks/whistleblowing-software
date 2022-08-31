@@ -1374,12 +1374,12 @@ msgstr "Introduce o nome de usuario ou o enderezo de correo electrónico da túa
 msgid "Enter your email address to request a password reset."
 msgstr ""
 
+msgid "Password reset requested."
+msgstr "Restablecemento do contrasinal solicitado."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr ""
-
-msgid "Password reset requested."
-msgstr "Restablecemento do contrasinal solicitado."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

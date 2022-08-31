@@ -1372,12 +1372,12 @@ msgstr "Құпиясөзді қалпына келтіруді сұрау үші
 msgid "Enter your email address to request a password reset."
 msgstr "Құпиясөзді қалпына келтіруді сұрау үшін, электрондық пошта мекенжайын енгізіңіз."
 
+msgid "Password reset requested."
+msgstr "Құпиясөзді қалпына келтіру сұралды."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Құпиясөзді қалпына келтіру процедурасын аяқтау үшін, есептік жазбаны қалпына келтіру кілтін енгізіңіз."
-
-msgid "Password reset requested."
-msgstr "Құпиясөзді қалпына келтіру сұралды."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

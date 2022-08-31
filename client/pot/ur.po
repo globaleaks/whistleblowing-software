@@ -1381,11 +1381,11 @@ msgstr ""
 msgid "Enter your email address to request a password reset."
 msgstr ""
 
-msgid ""
-"Enter your account recovery key to complete the password reset procedure"
+msgid "Password reset requested."
 msgstr ""
 
-msgid "Password reset requested."
+msgid ""
+"Enter your account recovery key to complete the password reset procedure"
 msgstr ""
 
 msgid ""

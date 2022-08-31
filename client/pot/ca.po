@@ -1388,12 +1388,12 @@ msgstr "Introduïu el nom d'usuari o la vostra adreça electrònica del vostre c
 msgid "Enter your email address to request a password reset."
 msgstr "Introduïu la vostra adreça electrònica per sol·licitar la restauració de la contrasenya."
 
+msgid "Password reset requested."
+msgstr "S'ha sol·licitat la restauració de la contrasenya."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Introduïu la clau de recuperació del compte per completar el procediment de restabliment de la contrasenya"
-
-msgid "Password reset requested."
-msgstr "S'ha sol·licitat la restauració de la contrasenya."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

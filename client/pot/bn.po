@@ -1377,12 +1377,12 @@ msgstr "পাসওয়ার্ড পুনরায় সেট করা
 msgid "Enter your email address to request a password reset."
 msgstr "পাসওয়ার্ড পুনরায় সেট করার জন্য অনুরোধ করতে আপনার ইমেল ঠিকানা লিখুন।"
 
+msgid "Password reset requested."
+msgstr "পাসওয়ার্ড পুনরায় সেট করার অনুরোধ করা হয়েছে।"
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "পাসওয়ার্ড পুনরায় সেট করার পদ্ধতিটি সম্পূর্ণ করতে আপনার এনক্রিপশন পুনরুদ্ধার কী লিখুন"
-
-msgid "Password reset requested."
-msgstr "পাসওয়ার্ড পুনরায় সেট করার অনুরোধ করা হয়েছে।"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

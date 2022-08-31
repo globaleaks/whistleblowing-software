@@ -1377,12 +1377,12 @@ msgstr "Parolunuzu yeniləmək üçün istifadəçi adı və ya emeyl ünvanın�
 msgid "Enter your email address to request a password reset."
 msgstr "Parolu yeniləmək üçün email ünvanınızı daxil edin."
 
+msgid "Password reset requested."
+msgstr "Parolun yenilənməsi tələb edildi."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Parolu yeniləmə prosedurunu bitirmək üçün şifrəli sıfırlama kodunuzu daxil edin."
-
-msgid "Password reset requested."
-msgstr "Parolun yenilənməsi tələb edildi."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

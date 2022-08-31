@@ -1395,12 +1395,12 @@ msgstr "Masukkan nama pengguna akun anda atau alamat surel untuk meminta pengatu
 msgid "Enter your email address to request a password reset."
 msgstr "Masukkan alamat surel anda untuk meminta pengaturan ulang kata sandi."
 
+msgid "Password reset requested."
+msgstr "Pengaturan ulang kata sandi telah diminta "
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Masukkan kunci pemulihan akun Anda untuk menyelesaikan prosedur pengaturan ulang kata sandi"
-
-msgid "Password reset requested."
-msgstr "Pengaturan ulang kata sandi telah diminta "
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

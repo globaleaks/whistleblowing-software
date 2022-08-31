@@ -6,12 +6,12 @@
 # Matija <matija@srebrni-galeb.si>, 2015
 # Štefan Baebler <stefan.baebler@gmail.com>, 2020
 # Vasja <vasja.cepic@transparency.si>, 2021
-# Vasja <vasja.cepic@transparency.si>, 2021
+# Vasja <vasja.cepic@transparency.si>, 2021-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017,2020-2022\n"
+"Last-Translator: Vasja <vasja.cepic@transparency.si>, 2021-2022\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -453,7 +453,7 @@ msgid "This domain name is not available."
 msgstr "Ime domene ni na voljo. "
 
 msgid "Mark as important"
-msgstr ""
+msgstr "Označi kot pomembno"
 
 msgid "Copy to clipboard"
 msgstr ""
@@ -1375,12 +1375,12 @@ msgstr "Vnesite uporabniško ime računa ali vaš e-naslov za ponastavitev gesla
 msgid "Enter your email address to request a password reset."
 msgstr "Vnesite e-naslov za ponastavitev gesla."
 
+msgid "Password reset requested."
+msgstr "Zahteva za ponastavitev gesla oddana."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr ""
-
-msgid "Password reset requested."
-msgstr "Zahteva za ponastavitev gesla oddana."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

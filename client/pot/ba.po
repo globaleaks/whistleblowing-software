@@ -1371,12 +1371,12 @@ msgstr "Паролде алып ташлауға үтенес ебәреү өс�
 msgid "Enter your email address to request a password reset."
 msgstr "Паролде алып ташлауға үтенес ебәреү өсөн, электрон почтағыҙҙың адресын күрһәтегеҙ"
 
+msgid "Password reset requested."
+msgstr "Паролде алып ташлау һоралды"
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Паролде алып ташлау процедураһын тамамлау өсөн, шифрлауҙы тергеҙеү асҡысын күрһәтегеҙ"
-
-msgid "Password reset requested."
-msgstr "Паролде алып ташлау һоралды"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

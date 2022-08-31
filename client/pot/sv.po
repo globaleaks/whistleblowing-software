@@ -1393,12 +1393,12 @@ msgstr "Ange användarnamnet för ditt konto eller din e-postadress för att beg
 msgid "Enter your email address to request a password reset."
 msgstr "Ange din e-postadress för din begäran om lösenordsåterställning."
 
+msgid "Password reset requested."
+msgstr "Begäran om lösenordsåterställning mottagen."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Ange din återställningskod för att slutföra lösenordsåterställning."
-
-msgid "Password reset requested."
-msgstr "Begäran om lösenordsåterställning mottagen."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

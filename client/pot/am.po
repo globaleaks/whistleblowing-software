@@ -1371,12 +1371,12 @@ msgstr "የይለፍ ቃል ለመቀየር የመለያዎትንን የተጠ�
 msgid "Enter your email address to request a password reset."
 msgstr "የይለፍቃል ቅያሪ ለመጠየቅ የኢሜል አድራሻችሁን አስገቡ፡፡"
 
+msgid "Password reset requested."
+msgstr "የይለፍ ቃል ቅያሪ ተጠይቋል፡፡"
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "የይለፍ ቃል መቀየር ሂደቱን ለማጠናቀቅ የማመስጠርያ መልሶ ማግኛ ቁልፋችሁን አስገቡ፡፡"
-
-msgid "Password reset requested."
-msgstr "የይለፍ ቃል ቅያሪ ተጠይቋል፡፡"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

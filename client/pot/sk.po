@@ -1380,12 +1380,12 @@ msgstr "Vložte používateľské meno účtu alebo emailovú adresu a požiadaj
 msgid "Enter your email address to request a password reset."
 msgstr "Zadajte svoju e-mailovú adresu pre reset hesla."
 
+msgid "Password reset requested."
+msgstr "Vyžaduje sa obnovenie hesla."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Zadajte kľúč pre obnovenie šifrovanie a dokončite postup pre resetovanie hesla"
-
-msgid "Password reset requested."
-msgstr "Vyžaduje sa obnovenie hesla."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

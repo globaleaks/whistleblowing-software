@@ -1369,12 +1369,12 @@ msgstr "Unesite korisničko ime ili svoju adresu e-pošte naloga da biste zatra�
 msgid "Enter your email address to request a password reset."
 msgstr "Unesite svoju adresu e-pošte da biste zatražili poništavanje lozinke."
 
+msgid "Password reset requested."
+msgstr "Zatraženo je poništavanje lozinke."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Unesi enkripcijski ključ za oporavak da bi dovršio postupak poništavanja lozinke"
-
-msgid "Password reset requested."
-msgstr "Zatraženo je poništavanje lozinke."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

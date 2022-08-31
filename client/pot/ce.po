@@ -1372,12 +1372,12 @@ msgstr "Парол юхакирдар деха, аккаунтан пайдаэ�
 msgid "Enter your email address to request a password reset."
 msgstr "Парол юхакирдар деха, хьайн электронан почтин адрес чуязде."
 
+msgid "Password reset requested."
+msgstr "Парол юхакирдар дехна."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Парол юхакирдар чекхдаккха, чуязде аккаунт меттахlотторан догlа"
-
-msgid "Password reset requested."
-msgstr "Парол юхакирдар дехна."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

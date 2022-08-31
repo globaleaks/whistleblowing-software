@@ -1383,12 +1383,12 @@ msgstr "Zadejte uživatelské jméno účtu nebo e-mailovou adresu a požádejte
 msgid "Enter your email address to request a password reset."
 msgstr "Zadejte svou e-mailovou adresu pro reset hesla."
 
+msgid "Password reset requested."
+msgstr "Požadováno obnovení hesla."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Zadejte klíč pro obnovení šifrování a dokončete postup pro resetování hesla"
-
-msgid "Password reset requested."
-msgstr "Požadováno obnovení hesla."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

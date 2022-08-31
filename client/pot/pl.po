@@ -1390,12 +1390,12 @@ msgstr "Podaj nazwę użytkownika lub adres email by zażądać resetu hasła."
 msgid "Enter your email address to request a password reset."
 msgstr "Wprowadź swój adres email by zażądać resetu hasła."
 
+msgid "Password reset requested."
+msgstr "Zażądano resetu hasła."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Wprowadź kod odzyskiwania szyfrowania by zakończyć procedurę resetu hasła"
-
-msgid "Password reset requested."
-msgstr "Zażądano resetu hasła."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

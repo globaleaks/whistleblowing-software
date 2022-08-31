@@ -1370,12 +1370,12 @@ msgstr "Įveskite paskyros naudotojo vardą arba el. pašto adresą, kad pateikt
 msgid "Enter your email address to request a password reset."
 msgstr "Įveskite savo el. pašto adresą, kad pateiktumėte prašymą dėl slaptažodžio nustatymo iš naujo."
 
+msgid "Password reset requested."
+msgstr "Prašoma atkurti slaptažodį."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Įveskite paskyros atkūrimo raktą, kad užbaigtumėte slaptažodžio nustatymo iš naujo procedūrą"
-
-msgid "Password reset requested."
-msgstr "Prašoma atkurti slaptažodį."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

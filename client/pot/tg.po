@@ -1378,12 +1378,12 @@ msgstr "Номи корбари аккаунти худ ё почтаи элек
 msgid "Enter your email address to request a password reset."
 msgstr "Почтаи электронии худро барои дархости барқароркунии гузарвожа ворид намоед."
 
+msgid "Password reset requested."
+msgstr "Барқароркунии гузарвожа дархост шуд."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Барои раванди барқароркунии гузарвожаро анҷом додан калиди барқароркунии рамзгузории худро ворид кунед"
-
-msgid "Password reset requested."
-msgstr "Барқароркунии гузарвожа дархост шуд."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

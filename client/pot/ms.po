@@ -1370,12 +1370,12 @@ msgstr "Masukkan nama pengguna akaun anda atau alamat e-mel anda untuk meminta p
 msgid "Enter your email address to request a password reset."
 msgstr "Masukkan alamat e-mel anda untuk meminta penetapan semula kata laluan."
 
+msgid "Password reset requested."
+msgstr "Penetapan kata laluan diminta."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Masukkan kunci pemulihan penyulitan anda untuk melengkapkan prosedur penetapan semula kata laluan"
-
-msgid "Password reset requested."
-msgstr "Penetapan kata laluan diminta."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

@@ -1379,12 +1379,12 @@ msgstr "Që të kërkoni ricaktim fjalëkalimi, jepni emër përdoruesi të llog
 msgid "Enter your email address to request a password reset."
 msgstr "Që të kërkoni ricaktim fjalëkalimi, jepni adresën tuaj email."
 
+msgid "Password reset requested."
+msgstr "U kërkua ricaktim fjalëkalimi."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Që të plotësohet procedura e ricaktimit të fjalëkalimit, jepni kyçin tuaj të rimarrjes së llogarisë"
-
-msgid "Password reset requested."
-msgstr "U kërkua ricaktim fjalëkalimi."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

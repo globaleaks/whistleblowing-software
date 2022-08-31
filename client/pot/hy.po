@@ -1372,12 +1372,12 @@ msgstr "Գրե՜ք ձեր հաշվի մուտքանունը կամ էլեկտր�
 msgid "Enter your email address to request a password reset."
 msgstr "Գրեք ձեր էլեկտրոնային հասցեն՝ գաղտնաբառը վերականգնելու համար։"
 
+msgid "Password reset requested."
+msgstr "Հայցվել է գաղտնաբառի վերակայում։"
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Մուտքագրեք ձեր ծածկագրման վերականգնման բանալին՝ գաղտնաբառի վերականգնման ընթացակարգն ավարտելու համար"
-
-msgid "Password reset requested."
-msgstr "Հայցվել է գաղտնաբառի վերակայում։"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

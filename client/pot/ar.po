@@ -1418,12 +1418,12 @@ msgstr "قم بكتابة إسم المستخدم أو عنوان البريد �
 msgid "Enter your email address to request a password reset."
 msgstr "قم بكتابة عنوان البريد الإلكتروني من أجل طلب إعادة تعيين كلمة السر."
 
+msgid "Password reset requested."
+msgstr "تم طلب إعادة تعيين كلمة السر."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr ""
-
-msgid "Password reset requested."
-msgstr "تم طلب إعادة تعيين كلمة السر."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

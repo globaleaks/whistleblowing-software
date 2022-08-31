@@ -1371,12 +1371,12 @@ msgstr "Сырсөздү демейки абалга келтирүү талаб
 msgid "Enter your email address to request a password reset."
 msgstr "Сырсөздү демейки абалга келтирүү талабын жиберүү үчүн электрондук почта дарегиңизди киргизиңиз."
 
+msgid "Password reset requested."
+msgstr "Сырсөздү демейки абалга келтирүү суралды."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Сырсөздү демеки абалга келтирүү процедурасын аягына чыгаруу үчүн шифрлөө калыбына келтирүүчү ачкычыңызды киргизиңиз"
-
-msgid "Password reset requested."
-msgstr "Сырсөздү демейки абалга келтирүү суралды."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

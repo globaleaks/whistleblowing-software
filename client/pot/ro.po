@@ -1386,12 +1386,12 @@ msgstr "Introdu numele de utilizator sau adresa de e-mail pentru a solicita o re
 msgid "Enter your email address to request a password reset."
 msgstr "Introdu adresa de e-mail pentru a solicita o resetare a parolei."
 
+msgid "Password reset requested."
+msgstr "Este solicitată resetarea parolei."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Introdu cheia de recuperare a contului pentru a finaliza procedura de resetare a parolei"
-
-msgid "Password reset requested."
-msgstr "Este solicitată resetarea parolei."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

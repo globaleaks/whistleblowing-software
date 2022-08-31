@@ -1387,12 +1387,12 @@ msgstr "Új jelszó kéréséhez adja meg a felhasználónevét vagy az e-mailc�
 msgid "Enter your email address to request a password reset."
 msgstr "Új jelszó kéréséhez adja meg az e-mailcímét."
 
+msgid "Password reset requested."
+msgstr "Új jelszó kérése megtörtént."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Írja be a titkosítás helyreállító kulcsot, hogy végre hajthassa a jelszó helyreállítás folyamatot."
-
-msgid "Password reset requested."
-msgstr "Új jelszó kérése megtörtént."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

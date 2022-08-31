@@ -1397,12 +1397,12 @@ msgstr "نام کاربری یا نشانی ایمیل خود را برای در
 msgid "Enter your email address to request a password reset."
 msgstr "ایمیل خود را برای درخواست بازنشانی گذرواژه وارد کنید."
 
+msgid "Password reset requested."
+msgstr "بازنشانی گذرواژه درخواست شد."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "کلید بازیابی حساب کاربری خود را برای تکمیل روند بازنشانی گذرواژه وارد کنید"
-
-msgid "Password reset requested."
-msgstr "بازنشانی گذرواژه درخواست شد."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

@@ -1371,12 +1371,12 @@ msgstr "Увесці імя карыстальніка або свой адра�
 msgid "Enter your email address to request a password reset."
 msgstr "Увесці свой адрас электроннай пошты, каб зрабіць запыт на абнуленне пароля."
 
+msgid "Password reset requested."
+msgstr "Запыт на абнуленне пароля зроблены."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Увядзіце шыфраваны ключ аднаўлення, каб завяршыць працэдуру абнулення пароля"
-
-msgid "Password reset requested."
-msgstr "Запыт на абнуленне пароля зроблены."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

@@ -1414,12 +1414,12 @@ msgstr "Voer de gebruikersnaam van je account, of je e-mailadres in om een wacht
 msgid "Enter your email address to request a password reset."
 msgstr "Voer je e-mailadres in om een wachtwoordherstel aan te vragen."
 
+msgid "Password reset requested."
+msgstr "Wachtwoord veranderen aangevraagd."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Vul de herstelcode voor de versleuteling in om de wachtwoord reset procedure te voltooien"
-
-msgid "Password reset requested."
-msgstr "Wachtwoord veranderen aangevraagd."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."

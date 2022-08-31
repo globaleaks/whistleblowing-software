@@ -1372,12 +1372,12 @@ msgstr "Parolni yangilash uchun hisobingizga ulangan foydalanuvchi nomi yoki ema
 msgid "Enter your email address to request a password reset."
 msgstr "Parolni yangilash uchun email manzilingizni kiriting."
 
+msgid "Password reset requested."
+msgstr "Parol yangilanishi soʻraldi."
+
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
 msgstr "Parolni yangilash jarayonini yakunlash uchun shifrlangan tiklash kalitini kiriting"
-
-msgid "Password reset requested."
-msgstr "Parol yangilanishi soʻraldi."
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
