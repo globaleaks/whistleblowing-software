@@ -8,14 +8,15 @@ Encryption is implemented for each submission protecting questionnaire's answers
 
 Encryption's Workflow
 #####################
-* Users chooses a personal secure password at first login;
-* The system creates a personal user keypair and stores it asymmetrically encrypted with a secret derived from the personal user password;
+* Users chooses a personal secure password at first login done using an account activation link;
+* The system creates a personal user asymmetrical keypair and stores the private key symmetrically encrypted with a secret derived from the personal user password;
+* The private key of each user is protected with the Key Recovery mechanism and if enabled with the Key Escrow mechanism;
 * The whistleblower files a report;
-* The system assigns personal access credentials to the whistleblower;
-* The system generates a symmetric key for the encryption of the report, the attached files and comments and the involved metadata and starts encrypting the data;
-* The system generates an asymmetric keypair and store it symmetrically encrypted using a secret derived from the whistleblower access credentials;
-* The system grants every involved recipient and the whistleblower access to the symmetric encryption key of the report by assigning each of the user an asymmetrically encrypted copy of the key;
-* Users furtherly proceed exchanging information on the report by using their personal access credentials and unlocking their own personal asymmetric keys and symmetric keys of the accessed report.
+* The system assigns personal numeric 16-digits receipt for the whistleblower;
+* The system generates an asymmetrical keypair for the whistleblower and stores the private key symmetrically encrypted with a secret derived from the receipt of the whistleblower;
+* The system generates an asymmetrical keypair for the encryption of the report, the attached files, the comments and the involved metadata and stores a copy of the private key encrypted for each involved user by using their own public key;
+* The system encrypts the report, the attached files, the comments and the metadata with the public key generated for the report;
+* The system grants every involved user access to their reports and enable them to communicate by automatically locking and unlocking involved keys when a report is accessed or new communication is performed.
 
 Encryption's Details
 ####################
