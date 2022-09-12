@@ -34,7 +34,7 @@
               <span data-ng-bind="label"></span>
             </ui-select-match>
             <ui-select-choices data-repeat="option in field.options | filter:{'label': $select.search} | orderBy:field.attrs.display_alphabetically.value ? 'label' : 'order'" refresh="" resfresh-delay="0">
-              <span data-ng-bind="option.label | highlight: $select.search"></span>
+              <span data-ng-bind-html="option.label | highlightSafe: $select.search"></span>
             </ui-select-choices>
           </ui-select>
           <span class="input-append" data-ng-click="entry['value']='';" data-ng-disabled="!entry['value']" data-ng-if="entry['value']"><i class="input-group-text fa-solid fa-times-circle"></i></span>
