@@ -12,6 +12,8 @@ import copy
 from globaleaks import models
 from globaleaks.models.config_desc import ConfigL10NFilters
 
+alphanumeric_str_regexp = r'^[^<>\/.{}\[\]]*$'
+numeric_str_regexp = r'^[0-9\-.+]*$'
 key_regexp = r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$|^[a-z_]{0,100}$'
 key_regexp_or_empty = r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$|^[a-z_]{0,100}$|^$'
 uuid_regexp = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$'
@@ -535,15 +537,15 @@ WizardDesc = {
 
 SignupDesc = {
     'subdomain': subdomain_regexp,
-    'name': str,
-    'surname': str,
-    'role': str,
-    'phone': str,
+    'name': alphanumeric_str_regexp,
+    'surname': alphanumeric_str_regexp,
+    'role': alphanumeric_str_regexp,
+    'phone': numeric_str_regexp,
     'email': email_regexp,
-    'organization_name': str,
-    'organization_tax_code': str,
-    'organization_vat_code': str,
-    'organization_location': str,
+    'organization_name': alphanumeric_str_regexp,
+    'organization_tax_code': alphanumeric_str_regexp,
+    'organization_vat_code': alphanumeric_str_regexp,
+    'organization_location': alphanumeric_str_regexp,
     'tos1': bool,
     'tos2': bool
 }
