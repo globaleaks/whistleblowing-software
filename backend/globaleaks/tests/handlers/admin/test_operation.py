@@ -51,10 +51,6 @@ class TestAdminResetSubmissions(helpers.TestHandlerWithPopulatedDB):
 
         handler = self.request(data_request, role='admin')
 
-        yield self.assertRaises(errors.InvalidAuthentication, handler.put)
-
-        handler.require_confirmation = []
-
         yield handler.put()
 
         yield self.test_model_count(models.InternalTip, 0)
@@ -76,8 +72,6 @@ class TestAdminOperations(helpers.TestHandlerWithPopulatedDB):
         }
 
         handler = self.request(data_request, role='admin')
-
-        handler.require_confirmation = []
 
         return handler.put()
 
