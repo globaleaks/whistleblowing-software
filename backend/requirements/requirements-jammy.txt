@@ -15,6 +15,6 @@ python_gnupg==0.4.8
 requests==2.25.1
 service_identity==18.1.0
 sqlalchemy==1.4.31
-twisted==22.1.0
+twisted==22.4.0
 txtorcon==20.0.0
 zope.interface==5.4.0
