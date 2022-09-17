@@ -2,6 +2,10 @@
 
 var _flowFactoryProvider;
 
+// Delete access to browser localStorage
+// https://github.com/globaleaks/GlobaLeaks/issues/3277
+delete window.localStorage;
+
 var GL = angular.module("GL", [
     "angular.filter",
     "ngAria",
