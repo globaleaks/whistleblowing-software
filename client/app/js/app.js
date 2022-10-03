@@ -657,15 +657,6 @@ var GL = angular.module("GL", [
           $window.location.reload();
         }
       }
-
-      if ($location.path() === "/" &&
-          $rootScope.Authentication.session &&
-          $rootScope.Authentication.session.role !== "whistleblower") {
-        // Get sure to reset the user session when visiting the public interface
-	// This is intended as protection in relation to possible XSS and XSRF
-	// on components implementing markdown and direct html input.
-        $rootScope.Authentication.session = undefined;
-      }
     });
 
     $rootScope.$on("$routeChangeStart", Utils.route_check);
