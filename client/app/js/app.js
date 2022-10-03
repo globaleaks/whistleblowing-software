@@ -2,9 +2,9 @@
 
 var _flowFactoryProvider;
 
-// Delete access to browser localStorage
+// Map localStorage on sessionStorage
 // https://github.com/globaleaks/GlobaLeaks/issues/3277
-delete window.localStorage;
+window.localStorage = window.sessionStoage;
 
 var GL = angular.module("GL", [
     "angular.filter",
