@@ -15,5 +15,7 @@ describe("key escrow assignment and revocation", function() {
       // Toggle key escrow
       await element(by.model("user.escrow")).click();
     }
+
+    await browser.gl.utils.logout();
   });
 });

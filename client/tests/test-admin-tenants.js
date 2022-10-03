@@ -1,5 +1,6 @@
 describe("admin configure, add, and delete tenants", function() {
   it("should add new tenant", async function() {
+    await browser.gl.utils.login_admin();
     await browser.setLocation("admin/sites");
 
     await element.all(by.cssContainingText("a", "Sites")).get(1).click();
@@ -18,5 +19,6 @@ describe("admin configure, add, and delete tenants", function() {
   it("should del existing tenants", async function() {
     await element.all((by.cssContainingText("button", "Delete"))).last().click();
     await element(by.id("modal-action-ok")).click();
+    await browser.gl.utils.logout();
   });
 });

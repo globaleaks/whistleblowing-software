@@ -5,6 +5,7 @@ describe("admin enable signup", function() {
     await element(by.cssContainingText("a", "Options")).click();
     await element(by.model("resources.node.enable_signup")).click();
     await element.all(by.cssContainingText("button", "Save")).last().click();
+    await browser.gl.utils.logout();
   });
 });
 
@@ -28,5 +29,6 @@ describe("admin disable signup", function() {
     await element(by.cssContainingText("a", "Options")).click();
     await element(by.model("resources.node.enable_signup")).click();
     await element.all(by.cssContainingText("button", "Save")).last().click();
+    await browser.gl.utils.logout();
   });
 });

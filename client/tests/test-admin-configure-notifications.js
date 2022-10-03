@@ -8,5 +8,7 @@ describe("admin configure mail", function() {
 
     // save settings
     await element(by.css("[data-ng-click=\"Utils.update(resources.notification)\"]")).click();
+
+    await browser.gl.utils.logout();
   });
 });

@@ -12,6 +12,7 @@ describe("Recipient first login", function() {
     await element(by.model("changePasswordArgs.confirm")).sendKeys(browser.gl.utils.vars.user_password);
     await element(by.css("[data-ng-click=\"changePassword()\"]")).click();
     await browser.gl.utils.waitForUrl("/recipient/home");
+    await browser.gl.utils.logout();
   });
 
   it("should be able to login with the new password", async function() {
@@ -40,6 +41,7 @@ describe("Recipient first login", function() {
   it("should be able to see the interface for changing the authentication password", async function() {
     await element(by.cssContainingText("a", "Password")).click();
     await browser.gl.utils.takeScreenshot("user/password.png");
+    await browser.gl.utils.logout();
   });
 });
 
@@ -62,6 +64,7 @@ describe("Recipient2 first login", function() {
     await element(by.model("changePasswordArgs.password")).sendKeys(browser.gl.utils.vars.init_password);
     await element(by.model("changePasswordArgs.confirm")).sendKeys(browser.gl.utils.vars.user_password);
     await element(by.css("[data-ng-click=\"changePassword()\"]")).click();
+    await browser.gl.utils.logout();
   });
 });
 
@@ -75,6 +78,7 @@ describe("Custodian first login", function() {
     await element(by.model("changePasswordArgs.confirm")).sendKeys(browser.gl.utils.vars.user_password);
     await element(by.css("[data-ng-click=\"changePassword()\"]")).click();
     await browser.gl.utils.waitForUrl("/custodian/home");
+    await browser.gl.utils.logout();
   });
 });
 
@@ -88,5 +92,6 @@ describe("Admin2 first login", function() {
     await element(by.model("changePasswordArgs.confirm")).sendKeys(browser.gl.utils.vars.user_password);
     await element(by.css("[data-ng-click=\"changePassword()\"]")).click();
     await browser.gl.utils.waitForUrl("/admin/home");
+    await browser.gl.utils.logout();
   });
 });

@@ -42,7 +42,7 @@ class TestObjectValidators(TestCase):
         }
 
     def test_private_key_invalid(self):
-        pkv = tls.PrivKeyValidator()
+        pkv = tls.KeyValidator()
 
         for fname in self.invalid_files:
             p = os.path.join(self.test_data_dir, 'invalid', fname)
@@ -53,7 +53,7 @@ class TestObjectValidators(TestCase):
             self.assertIsNotNone(err)
 
     def test_private_key_valid(self):
-        pkv = tls.PrivKeyValidator()
+        pkv = tls.KeyValidator()
 
         good_keys = [
             'key.pem'

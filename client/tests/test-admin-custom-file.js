@@ -1,9 +1,6 @@
 describe("Admin upload custom file", function() {
   it("should upload a file and the file should be available for download and deletion", async function() {
-    if (!browser.gl.utils.testFileUpload()) {
-      return;
-    }
-
+    await browser.gl.utils.login_admin();
     await browser.setLocation("admin/content");
 
     await element(by.cssContainingText("a", "Theme customization")).click();
@@ -12,10 +9,16 @@ describe("Admin upload custom file", function() {
 
     await element(by.css("div.file-custom")).element(by.css("input")).sendKeys(customFile);
 
-    await browser.gl.utils.waitUntilPresent(by.cssContainingText("label", "Project name"));
+    await browser.wait(function() {
+      return element(by.cssContainingText("label", "Project name")).isDisplayed().then(function(present) {
+        return present;
+      });
+    });
 
     await element(by.cssContainingText("a", "Theme customization")).click();
 
     await element(by.id("fileList")).element(by.cssContainingText("span", "Delete")).click();
+
+    await browser.gl.utils.logout();
   });
 });

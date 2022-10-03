@@ -39,5 +39,7 @@ describe("globaLeaks setup wizard", function() {
     await element(by.cssContainingText("button", "Proceed")).click();
 
     await browser.gl.utils.waitForUrl("/admin/home");
+
+    await browser.gl.utils.logout();
   });
 });

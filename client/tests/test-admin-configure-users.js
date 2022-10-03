@@ -58,12 +58,14 @@ describe("admin add, configure, and delete users", function() {
     for (var i = 1; i < 6; i++) {
       await browser.setLocation("admin/users");
       await element.all(by.className("userList")).then(async function(elements) {
-	var editUsrForm = elements[i];
+        var editUsrForm = elements[i];
         await editUsrForm.element(by.cssContainingText("button", "Edit")).click();
         await editUsrForm.all(by.cssContainingText("span", "Set password")).first().click();
         await element(by.model("setPasswordArgs.password")).sendKeys(browser.gl.utils.vars.init_password);
         await editUsrForm.all(by.id("setPasswordButton")).first().click();
       });
     }
+
+    await browser.gl.utils.logout();
   });
 });

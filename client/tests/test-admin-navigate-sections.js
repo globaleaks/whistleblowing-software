@@ -73,5 +73,7 @@ describe("verify navigation of admin sections", function() {
     await browser.gl.utils.takeScreenshot("admin/audit_log_reports.png");
     await element.all(by.cssContainingText("a", "Scheduled jobs")).first().click();
     await browser.gl.utils.takeScreenshot("admin/audit_log_scheduled_jobs.png");
+
+    await browser.gl.utils.logout();
   });
 });

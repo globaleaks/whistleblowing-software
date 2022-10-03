@@ -18,48 +18,24 @@ exports.vars = {
   ]
 };
 
-browser.getCapabilities().then(function(capabilities) {
-  var platformName = capabilities.get("platformName") || capabilities.get("platform");
-  platformName = platformName.toLowerCase();
-
-  var browserName = capabilities.get("browserName").toLowerCase();
-
-  exports.isMobile = function() {
-    return (["android", "ios"].indexOf(platformName) !== -1);
-  };
-
-  exports.testFileUpload = function() {
-    if (exports.isMobile()) {
-      return false;
-    }
-
-    return (["chrome", "firefox", "microsoftedge"].indexOf(browserName) !== -1);
-  };
-
-  exports.testFileDownload = function() {
-    if (browser.params.testFileDownload) {
-      return true;
-    }
-
-    if (exports.isMobile()) {
-      return false;
-    }
-
-    return ((["chrome"].indexOf(browserName) !== -1) && platformName === "linux");
-  };
-
-  exports.browserTimeout = function() {
-    return 30000;
-  };
-});
+exports.browserTimeout = function() {
+  return 30000;
+};
 
 exports.waitUntilPresent = function (locator, timeout) {
   var t = timeout === undefined ? exports.browserTimeout() : timeout;
   return browser.wait(function() {
-    return element(locator).isDisplayed().then(function(present) {
+    return element(locator).isPresent().then(function(present) {
       return present;
-    }, function() {
-      return false;
+    });
+  }, t);
+};
+
+exports.waitUntilAbsent = function (locator, timeout) {
+  var t = timeout === undefined ? exports.browserTimeout() : timeout;
+  return browser.wait(function() {
+    return element(locator).isPresent().then(function(present) {
+      return !present;
     });
   }, t);
 };
@@ -77,21 +53,6 @@ exports.waitForUrl = async function (url, timeout) {
       current_url = current_url.split("#")[1];
       return (current_url === url);
     });
-  }, t);
-};
-
-exports.waitForFile = function (filename, timeout) {
-  var t = timeout === undefined ? exports.browserTimeout() : timeout;
-  return browser.wait(function() {
-    try {
-      var buf = fs.readFileSync(filename);
-      if (buf.length > 5) {
-        return true;
-      }
-    } catch(err) {
-      // no-op
-      return false;
-    }
   }, t);
 };
 
@@ -115,6 +76,11 @@ exports.takeScreenshot = async function(filename, locator) {
     stream.write(new Buffer(png, "base64"));
     stream.end();
   });
+};
+
+exports.logout = async function() {
+  await element(by.id("LogoutLink")).click();
+  await browser.gl.utils.waitUntilAbsent(by.id("LogoutLink"));
 };
 
 exports.login_whistleblower = async function(receipt) {
@@ -183,12 +149,6 @@ exports.login_custodian = async function(username, password, url, firstlogin) {
   }
 
   await exports.waitForUrl(url);
-};
-
-exports.logout = async function(redirect_url) {
-  redirect_url = redirect_url === undefined ? "/" : redirect_url;
-  await element(by.id("LogoutLink")).click();
-  await exports.waitForUrl(redirect_url);
 };
 
 exports.clickFirstDisplayed = async function(selector) {

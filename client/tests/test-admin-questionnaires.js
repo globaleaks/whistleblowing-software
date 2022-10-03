@@ -34,6 +34,7 @@ describe("admin add, configure and delete questionnaires", function() {
   };
 
   it("should add new questionnaires", async function() {
+    await browser.gl.utils.login_admin();
     await browser.setLocation("admin/questionnaires");
 
     await add_questionnaires("Questionnaire 1");
@@ -77,5 +78,7 @@ describe("admin add, configure and delete questionnaires", function() {
     for(var i=0; i<browser.gl.utils.vars.field_types.length; i++){
       await add_question(browser.gl.utils.vars.field_types[i]);
     }
+
+    await browser.gl.utils.logout();
   });
 });

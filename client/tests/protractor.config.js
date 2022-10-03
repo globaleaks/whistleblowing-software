@@ -15,7 +15,6 @@ exports.config = {
 
   params: {
     "takeScreenshots": true,
-    "testFileDownload": true,
     "tmpDir": tmpDir,
     "testDir": __dirname
   },

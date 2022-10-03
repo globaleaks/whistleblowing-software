@@ -12,6 +12,7 @@ describe("admin configure network", function() {
     var chain_panel = element(by.css("div.card.chain"));
     var modal_action = by.id("modal-action-ok");
 
+    await browser.gl.utils.login_admin();
     await browser.setLocation("admin/network");
 
     await element(by.cssContainingText("a", "HTTPS")).click();
@@ -41,10 +42,8 @@ describe("admin configure network", function() {
     await element(by.id("csrSubmit")).click();
 
     // Download csr
-    if (browser.gl.utils.testFileDownload()) {
-      await browser.gl.utils.waitUntilClickable(by.id("downloadCsr"));
-      await csr_panel.element(by.id("downloadCsr")).click();
-    }
+    await browser.gl.utils.waitUntilClickable(by.id("downloadCsr"));
+    await csr_panel.element(by.id("downloadCsr")).click();
 
     // Delete csr
     await browser.gl.utils.waitUntilClickable(by.id("deleteCsr"));
@@ -62,29 +61,27 @@ describe("admin configure network", function() {
 
     await element(by.id("HTTPSManualMode")).click();
 
-    if (browser.gl.utils.testFileUpload()) {
-      // Upload key
-      await element(by.css("div.card.key input[type=\"file\"]")).sendKeys(files.key);
+    // Upload key
+    await element(by.css("div.card.key input[type=\"file\"]")).sendKeys(files.key);
 
-      // Upload cert
-      await element(by.css("div.card.cert input[type=\"file\"]")).sendKeys(files.cert);
+    // Upload cert
+    await element(by.css("div.card.cert input[type=\"file\"]")).sendKeys(files.cert);
 
-      // Upload chain
-      await element(by.css("div.card.chain input[type=\"file\"]")).sendKeys(files.chain);
+    // Upload chain
+    await element(by.css("div.card.chain input[type=\"file\"]")).sendKeys(files.chain);
 
-      // Delete chain, cert, key
-      await chain_panel.element(by.id("deleteChain")).click();
-      await browser.gl.utils.waitUntilPresent(modal_action);
-      await element(modal_action).click();
+    // Delete chain, cert, key
+    await chain_panel.element(by.id("deleteChain")).click();
+    await browser.gl.utils.waitUntilPresent(modal_action);
+    await element(modal_action).click();
 
-      await cert_panel.element(by.id("deleteCert")).click();
-      await browser.gl.utils.waitUntilPresent(modal_action);
-      await element(modal_action).click();
+    await cert_panel.element(by.id("deleteCert")).click();
+    await browser.gl.utils.waitUntilPresent(modal_action);
+    await element(modal_action).click();
 
-      await k_panel.element(by.id("deleteKey")).click();
-      await browser.gl.utils.waitUntilPresent(modal_action);
-      await element(modal_action).click();
-    }
+    await k_panel.element(by.id("deleteKey")).click();
+    await browser.gl.utils.waitUntilPresent(modal_action);
+    await element(modal_action).click();
   });
 
   it("should configure url redirects", async function() {
@@ -97,5 +94,7 @@ describe("admin configure network", function() {
       await element(by.cssContainingText("button", "Add")).click();
       await element.all(by.cssContainingText("button", "Delete")).first().click();
     }
+
+    await browser.gl.utils.logout();
   });
 });

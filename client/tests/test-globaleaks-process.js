@@ -43,34 +43,22 @@ describe("globaleaks process", function() {
   });
 
   it("Recipient should be able to see files and download them", async function() {
-    if (!browser.gl.utils.testFileUpload()) {
-      return;
-    }
-
     await browser.gl.utils.takeScreenshot("before-bug.png");
 
     expect(await element.all(by.css(".tip-action-download-file")).count()).toEqual(2);
-
-    if (!browser.gl.utils.testFileDownload()) {
-      return;
-    }
 
     await element.all(by.css(".tip-action-download-file")).get(0).click();
   });
 
   it("Recipient should be able to leave a comment to the whistleblower", async function() {
-    await browser.gl.utils.login_receiver();
-    await browser.setLocation("/recipient/reports");
-
-    var id = await element(by.id("tip-0")).evaluate("tip.id");
-
-    await browser.setLocation("/status/" + id);
     await element(by.model("tip.newCommentContent")).sendKeys(comment);
     await element(by.id("comment-action-send")).click();
 
     var c = await element(by.id("comment-0")).element(by.css(".preformatted")).getText();
 
     expect(c).toContain(comment);
+
+    await browser.gl.utils.logout();
   });
 
   it("Whistleblower should be able to read the comment from the receiver and reply", async function() {
@@ -87,16 +75,12 @@ describe("globaleaks process", function() {
   });
 
   it("Whistleblower should be able to attach a new file to the last submission", async function() {
-    if (!browser.gl.utils.testFileUpload()) {
-      return;
-    }
-
-    await browser.gl.utils.login_whistleblower(receipts[0]);
-
     var fileToUpload = browser.gl.utils.makeTestFilePath("evidence-3");
     await element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload);
     await element(by.id("files-action-confirm")).click();
     await browser.gl.utils.waitUntilPresent(by.css(".progress-bar-complete"));
+
+    await browser.gl.utils.logout();
   });
 
   it("Recipient should be able to start a private discussion with the whistleblower", async function() {
@@ -116,6 +100,7 @@ describe("globaleaks process", function() {
     expect(m).toContain(message);
 
     await browser.gl.utils.takeScreenshot("recipient/report.png");
+    await browser.gl.utils.logout();
   });
 
   it("Whistleblower should be able to read the private message from the receiver and reply", async function() {
@@ -132,13 +117,10 @@ describe("globaleaks process", function() {
     expect(message2).toContain(message_reply);
 
     await browser.gl.utils.takeScreenshot("whistleblower/report.png");
+    await browser.gl.utils.logout();
   });
 
   it("Recipient should be able to export the submission", async function() {
-    if (!browser.gl.utils.testFileDownload()) {
-      return;
-    }
-
     await browser.gl.utils.login_receiver();
     await browser.setLocation("/recipient/reports");
 
@@ -149,6 +131,7 @@ describe("globaleaks process", function() {
 
     var t = await element.all(by.css(".TipInfoID")).first().getText();
     expect(t).toEqual(jasmine.any(String));
+    await browser.gl.utils.logout();
   });
 
   it("Recipient should be able to disable and renable email notifications", async function() {
@@ -168,5 +151,6 @@ describe("globaleaks process", function() {
 
     enabled = await silence.evaluate("tip.enable_notifications");
     expect(enabled).toEqual(true);
+    await browser.gl.utils.logout();
   });
 });

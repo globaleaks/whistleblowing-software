@@ -1,6 +1,8 @@
 describe("admin configure, add, and delete contexts", function() {
   it("should configure an existing context", async function() {
     var i, button, input, ctx;
+
+    await browser.gl.utils.login_admin();
     await browser.setLocation("admin/contexts");
 
     ctx = element(by.id("context-0"));
@@ -39,5 +41,7 @@ describe("admin configure, add, and delete contexts", function() {
     await element.all((by.cssContainingText("button", "Delete"))).last().click();
 
     await element(by.id("modal-action-ok")).click();
+
+    await browser.gl.utils.logout();
   });
 });
