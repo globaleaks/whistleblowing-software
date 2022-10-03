@@ -1121,7 +1121,8 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
         "disable_2fa",
         "get_recovery_key",
         "toggle_escrow",
-        "toggle_user_escrow"
+        "toggle_user_escrow",
+        "reset_submissions"
       ];
 
       if (!args) {
