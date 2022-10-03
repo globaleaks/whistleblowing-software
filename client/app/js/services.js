@@ -1621,13 +1621,9 @@ factory("GLTranslate", ["$translate", "$location", "$window", "tmhDynamicLocale"
 
     // For languages that are of the form 'zh_TW', handle the mapping of 'lang'
     // to angular-i18n locale name as best we can. For example: 'zh_TW' becomes 'zh-tw'
-    var t = lang;
-    if (lang.length === 5) {
-      // Angular-i18n's format is typically 'zh-tw'
-      t = lang.replace("_", "-").toLowerCase();
-    }
+    lang = lang.replace("_", "-").toLowerCase();
 
-    tmhDynamicLocale.set(t);
+    tmhDynamicLocale.set(lang);
   }
 
 

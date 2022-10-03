@@ -1416,7 +1416,7 @@ msgid "Sign up"
 msgstr "Registrujte se"
 
 msgid "Site"
-msgstr ""
+msgstr "Sajt"
 
 msgid "Confirmation"
 msgstr "potvrda"
@@ -1526,7 +1526,7 @@ msgid "You have completed the platform wizard."
 msgstr "Završili ste sa vodičem za podešavanje platforme."
 
 msgid "Please summarize your report in a few words."
-msgstr ""
+msgstr "Opišite svoju prijavu u nekoliko riječi."
 
 msgid "Describe your report in detail."
 msgstr "Detaljno opišite dojavu."

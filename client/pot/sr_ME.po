@@ -1,866 +1,863 @@
 # 
 # Translators:
-# Adawcs, 2021
-# Adawcs, 2021
-# Cheer Zeng <cheerz6623@gmail.com>, 2021
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022\n"
-"Language-Team: Chinese (Hong Kong) (http://www.transifex.com/otf/globaleaks/language/zh_HK/)\n"
+"Language-Team: Serbian (Montenegro) (http://www.transifex.com/otf/globaleaks/language/sr_ME/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_HK\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: sr_ME\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "mime-version: 1.0\n"
 
 msgid "Log in"
-msgstr "登入"
+msgstr "Prijavljivanje"
 
 msgid "Main configuration"
-msgstr "主要設定"
+msgstr "Osnovna konfiguracija"
 
 msgid "Theme customization"
-msgstr "自訂外觀"
+msgstr "Prilagođavanje teme"
 
 msgid "Languages"
-msgstr "語言"
+msgstr "Jezici"
 
 msgid "Text customization"
-msgstr "自訂內文"
+msgstr "Prilagođavanje teksta"
 
 msgid "Advanced settings"
-msgstr "進階設定"
+msgstr "Napredna podešavanja"
 
 msgid "Question templates"
-msgstr "問題範本"
+msgstr "Obrasci za pitanja"
 
 msgid "Questionnaires"
-msgstr "問卷"
+msgstr "Upitnici"
 
 msgid "Add new questionnaire"
-msgstr "新增問卷"
+msgstr "Dodaj novi upitnik"
 
 msgid "Home"
-msgstr "首頁"
+msgstr "Početna stranica"
 
 msgid "Changelog"
-msgstr "更新日誌"
+msgstr "Дневник измена"
 
 msgid "License"
-msgstr "授權"
+msgstr "Лиценца"
 
 msgid "Notification templates"
-msgstr "通知範本"
+msgstr "Obrasci obavještenja"
 
 msgid "Delete"
-msgstr "刪除"
+msgstr "Obriši"
 
 msgid "Anomalies"
-msgstr "異常狀況"
+msgstr "Nepravilnosti"
 
 msgid "Preferences"
-msgstr "帳號設定"
+msgstr "Željena podešavanja"
 
 msgid "Notification settings"
-msgstr "通知設定"
+msgstr "Podešavanja obavještenja"
 
 msgid "file unavailable"
-msgstr "無法存取檔案"
+msgstr "datoteka nije dostupna"
 
 msgid "Date"
-msgstr "建立日期"
+msgstr "Datum"
 
 msgid "Expiration date"
-msgstr "報告到期日"
+msgstr "Datum isteka"
 
 msgid "Last Access"
-msgstr "最近一次存取"
+msgstr "Posljednji pristup"
 
 msgid "Files"
-msgstr "檔案"
+msgstr "Dаtоtеkе"
 
 msgid "Comments"
-msgstr "註釋"
+msgstr "Komentari"
 
 msgid "Messages"
-msgstr "訊息"
+msgstr "Poruke"
 
 msgid "Details"
-msgstr "詳情"
+msgstr "Detalji"
 
 msgid "Platform wizard"
-msgstr "平台設定精靈"
+msgstr "Čarobnjak za platformu"
 
 msgid "CREDIT CARD"
-msgstr "信用卡"
+msgstr "KREDITNA KARTICA"
 
 msgid "YOUR NAME"
-msgstr "您的姓名"
+msgstr "VAŠE IME"
 
 msgid "Label the report"
-msgstr "標籤此報告"
+msgstr "Označi prijavu"
 
 msgid "Postpone the expiration date"
-msgstr "延遲到期日"
+msgstr "Odloži datum isteka"
 
 msgid "Select all"
-msgstr "全選"
+msgstr "Изабери све"
 
 msgid "Deselect all"
-msgstr "取消全選"
+msgstr "Poništi izbor za sve"
 
 msgid "Refresh"
-msgstr "重新整理"
+msgstr "Osvježi"
 
 msgid "Context"
-msgstr "主題"
+msgstr "Kontekst"
 
 msgid "Preview"
-msgstr "預覽"
+msgstr "Prikaz"
 
 msgid "The whistleblower has already read the last update"
-msgstr "吹哨者已閱讀最新的消息"
+msgstr "Uzbunjivač je već pročitao posljednje ažuriranje"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr "吹哨者尚未閱讀最新的消息"
+msgstr "Uzbunjivač još nije pročitao posljednje ažuriranje"
 
 msgid "Move up"
-msgstr "往上移"
+msgstr "Pomjeri gore"
 
 msgid "Move down"
-msgstr "往下移"
+msgstr "Pomjeri lijevo"
 
 msgid "Move left"
-msgstr "往左移"
+msgstr "Pomjeri dolje"
 
 msgid "Move right"
-msgstr "往右移"
+msgstr "Pomjeri desno"
 
 msgid "Import"
-msgstr "匯入"
+msgstr "Uvoz"
 
 msgid "Export"
-msgstr "匯出"
+msgstr "Izvoz"
 
 msgid "Save all"
-msgstr "全部儲存"
+msgstr "Sačuvaj sve"
 
 msgid "Access control"
-msgstr "存取控制"
+msgstr "Kontrola pristupa"
 
 msgid "Number"
-msgstr "數字"
+msgstr "Broj"
 
 msgid "Email"
-msgstr "電郵"
+msgstr "E-pošta"
 
 msgid "Regular expression validator"
-msgstr "正規表示式驗證"
+msgstr "Validator regularnog izraza"
 
 msgid "Minimum number of input characters"
-msgstr "最少字元數"
+msgstr "Minimalni broj znakova za unos"
 
 msgid "Maximum number of input characters"
-msgstr "最多字元數"
+msgstr "Maksimalan broj znakova za unos"
 
 msgid "Earliest selectable date"
-msgstr "最早可選日期"
+msgstr "Najraniji datum koji se može izabrati"
 
 msgid "Latest selectable date"
-msgstr "最遲可選日期"
+msgstr "Najkasniji datum koji se može izabrati"
 
 msgid "0 = auto"
-msgstr "0 = 自動"
+msgstr "0 = auto"
 
 msgid "Yes"
-msgstr "是"
+msgstr "Da"
 
 msgid "No"
-msgstr "否"
+msgstr "Ne"
 
 msgid "Attachment"
-msgstr "附件"
+msgstr "Prilog"
 
 msgid "Attachments"
-msgstr "附件"
+msgstr "Prilozi"
 
 msgid "Change your password"
-msgstr "更改密碼"
+msgstr "Promijenite svoju lozinku"
 
 msgid "User"
-msgstr "使用者"
+msgstr "Korisnik"
 
 msgid "Motivation"
-msgstr "理由"
+msgstr "Motivacija"
 
 msgid "Status"
-msgstr "狀態"
+msgstr "Статус"
 
 msgid "Request motivation"
-msgstr "請求理由"
+msgstr "Motivacija zahtjeva"
 
 msgid "Reply motivation"
-msgstr "回覆理由"
+msgstr "Motivacija odgovora"
 
 msgid "Request status"
-msgstr "請求狀態"
+msgstr "Status zahtjeva"
 
 msgid "Custodian"
-msgstr "保管人"
+msgstr "Čuvar"
 
 msgid "Identity"
-msgstr "個人身份"
+msgstr "Identitet"
 
 msgid "Access requested"
-msgstr "已發送存取請求"
+msgstr "Pristup je zatražen"
 
 msgid "Request access to the whistleblower's identity"
-msgstr "請求讀取吹哨者的個人身份"
+msgstr "Zatražite pristup identitetu uzbunjivača"
 
 msgid "Please write a motivation"
-msgstr "請說明理由"
+msgstr "Napišite motivaciju"
 
 msgid "Reply to the request"
-msgstr "回覆請求"
+msgstr "Odgovorite na zahtjev"
 
 msgid "Authorized"
-msgstr "已批准"
+msgstr "Ovlašćen"
 
 msgid "Denied"
-msgstr "已拒絕"
+msgstr "Odbijen"
 
 msgid "Waiting for authorization"
-msgstr "等待批准"
+msgstr "Čeka se ovlašćenje"
 
 msgid "New request"
-msgstr "新請求"
+msgstr "Novi zahtjev"
 
 msgid "Authorize"
-msgstr "批准"
+msgstr "Odobri"
 
 msgid "Deny"
-msgstr "拒絕"
+msgstr "Zabrani"
 
 msgid "Deny access to the whistleblower's identity"
-msgstr "拒絕讀取吹哨者的個人身份"
+msgstr "Zabranite pristup identitetu uzbunjivača"
 
 msgid "Authorize access to the whistleblower's identity"
-msgstr "批准讀取吹哨者的個人身份"
+msgstr "Odobrite pristup identitetu uzbunjivača"
 
 msgid "Templates"
-msgstr "範本"
+msgstr "Шаблони"
 
 msgid "URL redirects"
-msgstr "URL 重新導向"
+msgstr "Preusmjeravanja URL adrese"
 
 msgid "Anomaly detection thresholds"
-msgstr "異常狀況檢測門檻"
+msgstr "Granične vrijednosti otkrivanja anomalija"
 
 msgid "Available disk space"
-msgstr "可用硬碟空間"
+msgstr "Dostupan prostor na disku"
 
 msgid "Last update"
-msgstr "最後更新日期"
+msgstr "Posljednje ažuriranje"
 
 msgid "Disable notifications to administrators"
-msgstr "停止向管理員發出通知"
+msgstr "Onemogući obavještenja za administratore"
 
 msgid "Disable notifications to custodians"
-msgstr "停止向保管人發出通知"
+msgstr "Onemogući obavještenja za čuvare"
 
 msgid "Disable notifications to recipients"
-msgstr "停止向接收者發出通知"
+msgstr "Onemogući obavještenja za primaoce"
 
 msgid "Score"
-msgstr "分數"
+msgstr "Rezultat"
 
 msgid "Trigger question"
-msgstr "觸發問題"
+msgstr "Pitanje okidač"
 
 msgid "Triggered by score:"
-msgstr "觸發分數："
+msgstr "Pokrenuto po rezultatu:"
 
 msgid "Weak"
-msgstr "弱"
+msgstr "Slabo"
 
 msgid "Acceptable"
-msgstr "中等"
+msgstr "Prihvatljivo"
 
 msgid "Strong"
-msgstr "強"
+msgstr "Jako"
 
 msgid "Text shown on top of the interface for selecting contexts"
-msgstr "顯示在選擇主題介面上方的文字"
+msgstr "Tekst prikazan na vrhu interfejsa za izbor konteksta"
 
 msgid "Silence email notifications"
-msgstr "停用電郵通知"
+msgstr "Utišaj zvuk obavještenja putem e-pošte"
 
 msgid "Turn on email notifications"
-msgstr "開啟電郵通知"
+msgstr "Uključi obavještenja putem e-pošte"
 
 msgid "Input validation"
-msgstr "輸入驗證"
+msgstr "Validacija unosa"
 
 msgid "Email address"
-msgstr "電郵地址"
+msgstr "Adresa e-pošte"
 
 msgid "Custom"
-msgstr "自訂"
+msgstr "Ručno upisivanje"
 
 msgid "None"
-msgstr "無"
+msgstr "Ниједан"
 
 msgid "Regular expression"
-msgstr "正規表示式"
+msgstr "Regularni izraz"
 
 msgid "Search"
-msgstr "搜尋"
+msgstr "Pretraga"
 
 msgid ""
 "This custom text is no longer displayed on the platform. The original text "
 "has either changed or been removed."
-msgstr "此自訂內文將不再顯示於平台上，因爲它的原定內文已被更改或移除。"
+msgstr "Ovaj prilagođeni tekst se više ne prikazuje na platformi. Originalni tekst je promijenjen ili uklonjen."
 
 msgid "Audit log"
-msgstr "審計日誌"
+msgstr "Evidencija nadzora"
 
 msgid "Stats"
-msgstr "數據"
+msgstr "Statistika"
 
 msgid "Activities"
-msgstr "活動"
+msgstr "Aktivnosti"
 
 msgid "Reports"
-msgstr "報告"
+msgstr "Prijave"
 
 msgid "Report"
-msgstr "报告"
+msgstr ""
 
 msgid "Users"
-msgstr "使用者"
+msgstr "Korisnici"
 
 msgid "From"
-msgstr "原有網址"
+msgstr "Od"
 
 msgid "Number of downloads"
-msgstr "下載次數"
+msgstr "Broj preuzimanja"
 
 msgid "File size not accepted."
-msgstr "檔案大小不符。"
+msgstr "Veličina datoteke nije prihvaćena."
 
 msgid "Maximum file size is:"
-msgstr "檔案不可大於："
+msgstr "Maksimalna veličina datoteke je:"
 
 msgid "Scheduled jobs"
-msgstr "工作排程"
+msgstr "Planirani poslovi"
 
 msgid "Sites management"
-msgstr "多網站管理"
+msgstr "Upravljanje lokacijama"
 
 msgid "Regenerate"
-msgstr "重新生成"
+msgstr "Regeneriši"
 
 msgid "Display options alphabetically"
-msgstr "按字母順序顯示選項"
+msgstr "Prikaži opcije abecednim redom"
 
 msgid "Enable email notifications for:"
-msgstr "啟用以下電郵通知："
+msgstr "Omogućite obavještenja e-poštom za:"
 
 msgid "Disable"
-msgstr "停用"
+msgstr "Onemogući"
 
 msgid "Remove"
-msgstr "移除"
+msgstr "Ukloni"
 
 msgid "Use as default"
-msgstr "使用爲預設值"
+msgstr "Koristi kao podrazumijevanu vrijednost"
 
 msgid "Collapse"
-msgstr "收起"
+msgstr "Skupi"
 
 msgid "Expand"
-msgstr "展開"
+msgstr "Razvij"
 
 msgid "Select"
-msgstr "選擇"
+msgstr "Odaberi"
 
 msgid "Deselect"
-msgstr "取消选中"
+msgstr "Poništi izbor"
 
 msgid "Surname"
-msgstr "姓氏"
+msgstr "Prezime"
 
 msgid "New"
-msgstr "未讀"
+msgstr "Novo"
 
 msgid "Opened"
-msgstr "已讀"
+msgstr "Otvoreno"
 
 msgid "Closed"
-msgstr "已完成"
+msgstr "Zatvoreno"
 
 msgid "Placeholder"
-msgstr "佔位符"
+msgstr "Čuvar mjesta"
 
 msgid "Print"
-msgstr "列印"
+msgstr "Odštampaj"
 
 msgid "Previous"
-msgstr "上一頁"
+msgstr "Prethodni"
 
 msgid "Next"
-msgstr "下一頁"
+msgstr "Следеће"
 
 msgid "First"
-msgstr "第一頁"
+msgstr "Prvi"
 
 msgid "Last"
-msgstr "最後一頁"
+msgstr "Posljednji"
 
 msgid "Send a test email to your email address."
-msgstr "傳送測試電郵至您的電郵地址。"
+msgstr "Pošaljite test poruku e-pošte na svoju adresu e-pošte."
 
 msgid "Block the submission"
-msgstr "限制提交"
+msgstr "Blokiraj slanje"
 
 msgid "Skip the recipient account creation."
-msgstr "略過建立接收者帳號步驟。"
+msgstr "Preskočite kreiranje naloga primaoca."
 
 msgid "Send activation link"
-msgstr "傳送啟動連結"
+msgstr "Pošalji link za aktivaciju"
 
 msgid "Password reset"
-msgstr "密碼重設"
+msgstr "Resetovanje lozinke"
 
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr "有接收者尚未進行首次登入，故他們暫時不會收到報告。"
+msgstr "Jedan ili više primalaca još nijesu izvršili prvo prijavljivanje. To znači da oni neće primati prijave."
 
 msgid "This user has not performed the first login yet."
-msgstr "此使用者尚未進行首次登入。"
+msgstr "Ovaj korisnik još nije izvršio prvo prijavljivanje."
 
 msgid "seconds"
-msgstr "秒"
+msgstr "sekunde"
 
 msgid "This domain name is not available."
-msgstr "此域名不可用。"
+msgstr "Ovaj naziv domena nije dostupan."
 
 msgid "Mark as important"
-msgstr "标记为重要"
+msgstr "Označi kao važno"
 
 msgid "Copy to clipboard"
-msgstr "複製到剪貼簿"
+msgstr "Kopiraj u privremenu memoriju"
 
 msgid "Logout"
-msgstr "登出"
+msgstr "Odjava"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
+msgstr "Omogući ovom primaocu da odobri korisnički pristup prijavama"
 
 msgid "Grant access"
-msgstr ""
+msgstr "Odobri pristup"
 
 msgid "Revoke access"
-msgstr "撤銷存取"
+msgstr "Opozovi pristup"
 
 msgid "File a report"
-msgstr "提交報告"
+msgstr "Podnesi prijavu"
 
 msgid "Select the context of your report:"
-msgstr "請選擇您的報告主題："
+msgstr "Izaberite kontekst svoje prijave:"
 
 msgid "Before proceeding, please set a new password."
-msgstr "在繼續之前，請更新您的密碼。"
+msgstr "Prije nego što nastavite, postavite novu lozinku."
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr "在繼續之前，請先啟用雙重認證。"
+msgstr "Prije nego što nastavite, omogućite dvostruku potvrdu identiteta."
 
 msgid "Enable"
-msgstr "啟用"
+msgstr "Omogući"
 
 msgid "Disable submissions"
-msgstr "停止接收報告"
+msgstr "Onemogući slanja"
 
 msgid "Enable encryption"
-msgstr "使用加密"
+msgstr "Omogući šifrovanje"
 
 msgid "Enable administrators to change user passwords"
-msgstr "允許管理員更改使用者的密碼"
+msgstr "Dozvoli administratorima izmjenu korisničkih lozinki"
 
 msgid "Administrators authorized to change user passwords:"
-msgstr "有權更改使用者密碼的管理員："
+msgstr "Administratori koji mogu mijenjati korisničke lozinke:"
 
 msgid "Enable multisite feature"
-msgstr "啟用多網站功能"
+msgstr "Omogući funkciju više lokacija"
 
 msgid "Enable simplified login"
-msgstr "開啟簡易登入"
+msgstr "Omogući pojednostavljenu prijavu"
 
 msgid "Enable search engines indexing"
-msgstr "允許搜尋引擎進行索引"
+msgstr "Omogući indeksiranje od strane pretraživača"
 
 msgid "Default questionnaire"
-msgstr "預設問卷"
+msgstr "Podrazumijevani upitnik"
 
 msgid "Show contexts in alphabetical order"
-msgstr "以字母順序顯示主題"
+msgstr "Poređaj predmete po abecednom redu"
 
 msgid "Size limit for file attachments"
-msgstr "附件檔案大小上限"
+msgstr "Ograničenje veličine priloženih datoteka u"
 
 msgid "megabytes"
-msgstr "MB"
+msgstr "megabajtima"
 
 msgid "Require two factor authentication"
-msgstr "啟用雙重認證"
+msgstr "Zahtijevaj dvostruku potvrdu identiteta"
 
 msgid "Password change interval"
-msgstr "強制更改密碼時距日數"
+msgstr "Period za promjenu lozinke"
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
-msgstr "基於安全起見，使用者應定時更改密碼。"
+msgstr "Promjena lozinke u redovnim intervalima obavezna je iz bezbjednosnih razloga."
 
 msgid "Set the value to 0 to disable this feature."
-msgstr "將值設為 0 以停用此功能。"
+msgstr "Postavite vrijednost na 0 da biste onemogućili ovu funkciju."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr "新報告有多少天未讀才通知使用者"
+msgstr "Broj dana do obavještavanja korisnika o nepročitanim prijavama"
 
 msgid "Disable the privacy panel"
-msgstr "隱藏私隱通告"
+msgstr "Onemogući panel za privatnost"
 
 msgid "Enable custom privacy panel"
-msgstr "自訂平台頁首的私隱通告"
+msgstr "Omogući prilagođeni panel za privatnost"
 
 msgid "Custom privacy panel"
-msgstr "自訂私隱通告內文"
+msgstr "Prilagođeni panel za privatnost"
 
 msgid "Enable custodian user role"
-msgstr "啟用保管人使用者身份"
+msgstr "Omogući korisničku ulogu čuvara"
 
 msgid "Enable scoring system"
-msgstr "啟用評分系統"
+msgstr "Omogući sistem ocjenjivanja"
 
 msgid "Logging level"
-msgstr "日誌級別"
+msgstr "Nivo evidentiranja"
 
 msgid "Log accesses of internal users"
-msgstr "記錄内部使用者的存取"
+msgstr "Evidentiraj pristupe internih korisnika"
 
 msgid "Notify administrators of software problems"
-msgstr "向管理員通報軟件問題"
+msgstr "Obavijesti administratore o softverskim problemima"
 
 msgid "Notify developers of software problems"
-msgstr "向開發人員通報軟件問題"
+msgstr "Obavijesti programere o softverskim problemima"
 
 msgid ""
 "By enabling this feature, you will contribute to the development and "
 "security of the platform."
-msgstr "啟用此功能將有助於該平台的開發與安全維護工作。"
+msgstr "Omogućavanjem ove funkcije doprinijećete razvoju i bezbjednosti platforme."
 
 msgid "Save"
-msgstr "儲存"
+msgstr "Сачувај"
 
 msgid "Reset reports"
-msgstr "重設所有報告"
+msgstr "Resetuj prijave"
 
 msgid "Low"
-msgstr "低"
+msgstr "Nisko"
 
 msgid "High"
-msgstr "高"
+msgstr "Visoko"
 
 msgid "percentage"
-msgstr "百分比"
+msgstr "procenat"
 
 msgid "Type"
-msgstr "檔案類型"
+msgstr "Tip"
 
 msgid "Severity"
-msgstr "嚴重程度"
+msgstr "Ozbiljnost"
 
 msgid "Object"
-msgstr "對象"
+msgstr "Predmet"
 
 msgid "ID"
-msgstr "編號"
+msgstr "Identifikacioni broj"
 
 msgid "Username"
-msgstr "用戶名"
+msgstr "Korisničko ime"
 
 msgid "Role"
-msgstr "身份"
+msgstr "Uloga"
 
 msgid "Name"
-msgstr "名字"
+msgstr "Име"
 
 msgid "Creation date"
-msgstr "建立日期"
+msgstr "Datum izrade"
 
 msgid "Last access"
-msgstr "最近一次存取"
+msgstr "Posljednji pristup"
 
 msgid "Whistleblower's last access"
-msgstr "吹哨者最近一次存取"
+msgstr "Posljednji pristup uzbunjivača"
 
 msgid "Substatuses"
-msgstr "子狀態"
+msgstr "Podstatusi"
 
 msgid "Add"
-msgstr "新增"
+msgstr "Додај"
 
 msgid "Label"
-msgstr "標籤"
+msgstr "Označi"
 
 msgid "This field is mandatory"
-msgstr "必須填寫"
+msgstr "Ovo polje je obavezno"
 
 msgid "Edit"
-msgstr "編輯"
+msgstr "Уреди"
 
 msgid "Cancel"
-msgstr "取消"
+msgstr "Otkaži"
 
 msgid "Report statuses"
-msgstr "報告狀態"
+msgstr "Statusi prijava"
 
 msgid "Logo"
-msgstr "標誌"
+msgstr "Logotip"
 
 msgid "Project name"
-msgstr "平台名稱"
+msgstr "Naziv projekta"
 
 msgid "Description"
-msgstr "平台描述"
+msgstr "Опис"
 
 msgid "Homepage title"
-msgstr "首頁標題"
+msgstr "Naslov početne stranice"
 
 msgid "Presentation"
-msgstr "首頁簡介"
+msgstr "Prеdstаvlјаnjе"
 
 msgid "Question to solicit possible whistleblowers"
-msgstr "給吹哨者的徵求"
+msgstr "Pitanje za pronalaženje potencijalnih uzbunjivača"
 
 msgid "Whistleblowing button"
-msgstr "舉報按鈕"
+msgstr "Dugme za uzbunjivanje"
 
 msgid "Disclaimer"
-msgstr "免责声明"
+msgstr "Odricanje odgovornosti"
 
 msgid "Footer"
-msgstr "頁尾文字"
+msgstr "Podnožje stranice"
 
 msgid "Upload"
-msgstr "上傳"
+msgstr "Otpremi"
 
 msgid "Download"
-msgstr "下載"
+msgstr "Преузимање"
 
 msgid "Language:"
-msgstr "語言："
+msgstr "Jezik:"
 
 msgid "Add custom text"
-msgstr "新增自訂內文"
+msgstr "Dodaj prilagođeni tekst"
 
 msgid "Custom text"
-msgstr "自訂內文"
+msgstr "Prilagođeni tekst"
 
 msgid "Original text"
-msgstr "原定內文"
+msgstr "Originalni tekst"
 
 msgid "Original translation"
-msgstr "原定翻譯"
+msgstr "Originalni prevod"
 
 msgid "Custom translation"
-msgstr "自訂翻譯"
+msgstr "Prilagođeni prevod"
 
 msgid "Contexts"
-msgstr "主題"
+msgstr "Konteksti"
 
 msgid "Hidden"
-msgstr "已隱藏"
+msgstr "Sakriveno"
 
 msgid "Questionnaire"
-msgstr "問卷"
+msgstr "Upitnik"
 
 msgid "Recipients"
-msgstr "接收者"
+msgstr "Primaoci"
 
 msgid "days"
-msgstr "天"
+msgstr "dana"
 
 msgid "Show the questionnaire navigation interface"
-msgstr "顯示問卷導覽介面"
+msgstr "Prikaži interfejs za navigaciju upitnika"
 
 msgid "Allow whistleblowers to select their recipients"
-msgstr "允許吹哨者選擇其接收者"
+msgstr "Dozvoli uzbunjivačima da odaberu primaoce"
 
 msgid "Select all recipients by default"
-msgstr "預設選擇所有接收者"
+msgstr "Podrazumijevano izaberi sve primaoce"
 
 msgid "Maximum number of selectable recipients:"
-msgstr "可選接收者上限："
+msgstr "Maksimalan broj primalaca koji se mogu izabrati:"
 
 msgid "Show recipients in alphabetical order"
-msgstr "以字母順序顯示接收者名單"
+msgstr "Prikaži primaoce po abecednom redu"
 
 msgid "Show recipient details on the status page of the report"
-msgstr "在報告的狀態頁面顯示接收者資料"
+msgstr "Prikaži podatke primaoca na stranici statusa prijava"
 
 msgid "Enable comments"
-msgstr "啟用註釋"
+msgstr "Omogući komentare"
 
 msgid "Allow the whistleblower to write comments"
-msgstr "允許此吹哨者撰寫註釋"
+msgstr "Dozvolite uzbunjivaču da piše komentare"
 
 msgid "Enable private messages"
-msgstr "啟用私人訊息"
+msgstr "Omogući privatne poruke"
 
 msgid "Allow the whistleblower to send messages"
-msgstr "允許此吹哨者傳送訊息"
+msgstr "Dozvoli uzbunjivaču da šalje poruke"
 
 msgid "Allow the whistleblower to add attachments"
-msgstr "吹哨者可在提交報告時新增附件"
+msgstr "Dozvoli uzbunjivaču da dodaje priloge u prijavu"
 
 msgid "Additional questionnaire"
-msgstr "附加問卷"
+msgstr "Dodatni upitnik"
 
 msgid "Scoring system options"
-msgstr "評分系統選項"
+msgstr "Opcije sistema bodovanja"
 
 msgid "Threshold"
-msgstr "門檻"
+msgstr "Granična vrijednost"
 
 msgid "Value"
-msgstr "值"
+msgstr "Vrijednost"
 
 msgid "Medium"
-msgstr "中"
+msgstr "Srednje"
 
 msgid "Software version:"
-msgstr "軟件版本："
+msgstr "Verzija softvera:"
 
 msgid "Restrict access to specific IP addresses"
-msgstr "限制指定 IP 地址才可登入此平台"
+msgstr "Ograniči pristup na određene IP adrese"
 
 msgid "Enabled"
-msgstr "已啟用"
+msgstr "Omoguceno"
 
 msgid "Allowed IP addresses"
-msgstr "IP 地址白名單"
+msgstr "Dozvoljene IP adrese"
 
 msgid "Admin"
-msgstr "管理員"
+msgstr "Administrator"
 
 msgid "Recipient"
-msgstr "接收者"
+msgstr "Прималац"
 
 msgid "Each entry must be separated with a comma."
-msgstr "請用逗號分隔每個 IP 地址。"
+msgstr "Svaki unos mora biti odvojen zarezom."
 
 msgid "Example:"
-msgstr "例如："
+msgstr "Primjer:"
 
 msgid "Hostname"
-msgstr "主機名稱"
+msgstr "Ime hosta"
 
 msgid "Organization"
-msgstr "公司名稱"
+msgstr "Organizacija"
 
 msgid "Invalid email address"
-msgstr "電郵地址無效"
+msgstr "Nevažeća adresa e-pošte"
 
 msgid "City"
-msgstr "城市"
+msgstr "Grad"
 
 msgid "Country"
-msgstr "國家／地區"
+msgstr "Zemlja"
 
 msgid "Country code"
-msgstr "國家編碼"
+msgstr "Pozivni broj za državu"
 
 msgid "Generate"
-msgstr "生成"
+msgstr "Generiši"
 
 msgid "Private Key"
-msgstr "私鑰"
+msgstr "Privatni ključ"
 
 msgid "Certificate Signing Request"
-msgstr "憑證簽署要求"
+msgstr "Zahtjev za potpisivanje sertifikata"
 
 msgid "Certificate"
-msgstr "憑證"
+msgstr "Sertifikat"
 
 msgid "Valid until:"
-msgstr "有效期至："
+msgstr "Važi do:"
 
 msgid "Issuer:"
-msgstr "憑證頒發者："
+msgstr "Izdavalac:"
 
 msgid "Intermediate Certificates"
-msgstr "中間憑證"
+msgstr "Sertifikat o stečenom stepenu"
 
 msgid "Reset"
-msgstr "重置"
+msgstr "Resetuj"
 
 msgid ""
 "The platform supports the configuration of HTTPS through this interface."
-msgstr "透過此介面，本平台能助您配置 HTTPS 。"
+msgstr "Platforma podržava konfiguraciju HTTPS protokola pomoću ovog interfejsa."
 
 msgid "Automatic configuration"
-msgstr "自動配置"
+msgstr "Automatska konfiguracija"
 
 msgid ""
 "Using automatic HTTPS configuration will handle the entire process of "
 "requesting, enabling and renewing certificates from the Let's Encrypt "
 "Certificate Authority."
-msgstr "透過 Let's Encrypt 憑證頒發機構，HTTPS 自動配置可處理憑證申請、啟動和續期的整個過程。"
+msgstr "Automatska konfiguracija HTTPS sertifikata obuhvata cijeli proces zahtijevanja, omogućavanja i obnavljanja sertifikata od strane autoriteta za izdavanje sertifikata Let's Encrypt."
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
 "hostname must have a DNS record referencing that address."
-msgstr "该平台必须可通过公共 IP 地址访问，并且所选主机名必须具有引用该地址的相应 DNS 记录。"
+msgstr "Ova platforma mora biti dostupna putem javne IP adrese, a izabrano ime hosta mora imati odgovarajući DNS zapis koji upućuje na tu adresu."
 
 msgid "Proceed"
-msgstr "繼續"
+msgstr "Nastavi"
 
 msgid "Manual configuration"
-msgstr "手動配置"
+msgstr "Ručno podešavanje"
 
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
-msgstr "手動配置精靈會引導您，透過另外的憑證頒發機構設置 HTTPS 憑證。"
+msgstr "Vodič za ručno podešavanje će vas sprovesti kroz podešavanje HTTPS sertifikata sa alternativnim autoritetom za izdavanje sertifikata."
 
 msgid "Disabled"
-msgstr "已停用"
+msgstr "Onemogućeno"
 
 msgid "Auto-renewal"
-msgstr "自動更新"
+msgstr "Automatska obnova"
 
 msgid "Tor Onion Service"
-msgstr "Tor 匿名服務"
+msgstr "Usluga Tor Onion"
 
 msgid "Anonymize outgoing connections"
-msgstr "將對外連接匿名化"
+msgstr "Anonimizuj odlazne veze"
 
 msgid "Let the platform be reachable without Tor"
-msgstr "訪客可以透過 Tor 以外的瀏覽器訪問平台"
+msgstr "Dozvoli da platforma bude dostupna bez Tor-a"
 
 msgid "Roles enabled to use the platform without Tor"
-msgstr "以下使用者身份可以透過 Tor 以外的瀏覽器登入此平台："
+msgstr "Uloge koje mogu da koriste platformu bez Tor-a"
 
 msgid "Whistleblower"
-msgstr "吹哨者"
+msgstr "Uzbunjivаč"
 
 msgid "To"
-msgstr "重新導向至"
+msgstr "Do"
 
 msgid ""
 "Default mail configuration in use. Please consider using a private mail "
@@ -868,1040 +865,1040 @@ msgid ""
 msgstr ""
 
 msgid "SMTP email address"
-msgstr "SMTP 電郵地址"
+msgstr "SMTP adresa e-pošte"
 
 msgid "SMTP server address"
-msgstr "SMTP 伺服器地址"
+msgstr "Adresa SMTP servera"
 
 msgid "SMTP server port"
-msgstr "SMTP 伺服器埠口"
+msgstr "Port SМТP servera"
 
 msgid "Security"
-msgstr "安全協定"
+msgstr "Bezbednost"
 
 msgid "Require authentication"
-msgstr "要求驗證"
+msgstr "Zahtijeva potvrdu identiteta"
 
 msgid "Password"
-msgstr "密碼"
+msgstr "Lozinka"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr "報告到期日前傳送提醒通知的時數"
+msgstr "Broj sati prije slanja upozorenja o isteku prijave"
 
 msgid "Test the configuration"
-msgstr "測試此設置"
+msgstr "Testiranje konfiguracije"
 
 msgid "Reset SMTP configuration"
-msgstr "重置 SMTP 設定"
+msgstr "Resetuj SMTP konfiguraciju"
 
 msgid "Reset notification templates to default"
-msgstr "重置通知範本至預設值"
+msgstr "Resetuj obrasce obavještenja na podrazumjevane"
 
 msgid "Template"
-msgstr "範本"
+msgstr "Obrazac"
 
 msgid "Question"
-msgstr "問題"
+msgstr "Pitanje"
 
 msgid "Single-line text input"
-msgstr "單行文字輸入"
+msgstr "Unos teksta sa jednim redom"
 
 msgid "Multi-line text input"
-msgstr "多行文字輸入"
+msgstr "Unos teksta sa više redova"
 
 msgid "Selection box"
-msgstr "選擇框"
+msgstr "Okvir za izbor"
 
 msgid "Multiple choice input"
-msgstr "多項選擇題"
+msgstr "Unos sa više izbora"
 
 msgid "Checkbox"
-msgstr "複選框"
+msgstr "Polje za potvrdu"
 
 msgid "Terms of service"
-msgstr "服務條款"
+msgstr "Uslovi korišćenja"
 
 msgid "Date range"
-msgstr "日期範圍"
+msgstr "Opseg datuma"
 
 msgid "Group of questions"
-msgstr "問題組"
+msgstr "Grupa pitanja"
 
 msgid "Row"
-msgstr "行"
+msgstr "Red"
 
 msgid "Column"
-msgstr "列"
+msgstr "Kolona"
 
 msgid "Width"
-msgstr "寬"
+msgstr "Širina"
 
 msgid "Question group"
-msgstr "問題組"
+msgstr "Grupa pitanja"
 
 msgid "Hint"
-msgstr "提示"
+msgstr "Podsjetnik"
 
 msgid "Mandatory"
-msgstr "必填"
+msgstr "Obavezno"
 
 msgid "Accept multiple file uploads"
-msgstr "接受多個上傳檔案"
+msgstr "Prihvati otpremanje više datoteka"
 
 msgid "Accept multiple answers"
-msgstr "接受多個答案"
+msgstr "Prihvati više odgovora"
 
 msgid "Template override"
-msgstr "以此範本取替"
+msgstr "Zamjena obrazaca"
 
 msgid "Phone number"
-msgstr "電話號碼"
+msgstr "Broj telefona"
 
 msgid "Text"
-msgstr "內文"
+msgstr "Tekst"
 
 msgid "Checkbox label"
-msgstr "選框文字"
+msgstr "Oznaka polja za potvrdu"
 
 msgid "Add multimedia content"
-msgstr "新增多媒體"
+msgstr "Dodaj multimedijalni sadržaj"
 
 msgid "Image"
-msgstr "圖片"
+msgstr "Slika"
 
 msgid "Audio"
-msgstr "音訊"
+msgstr "Audio zapis"
 
 msgid "Video"
-msgstr "影片"
+msgstr "Video zapis"
 
 msgid "Text shown upon negative answer"
-msgstr "收到否定答案時所顯示的文字"
+msgstr ""
 
 msgid "Trigger conditions"
-msgstr "觸發條件"
+msgstr "Uslovi okidača"
 
 msgid "Sufficient"
-msgstr "足夠"
+msgstr "Dovoljan"
 
 msgid "Options"
-msgstr "選項"
+msgstr "Opcije"
 
 msgid "Addition"
-msgstr "加"
+msgstr "Dodatak"
 
 msgid "Multiplier"
-msgstr "乘"
+msgstr "Multiplikator"
 
 msgid "Questions"
-msgstr "問題"
+msgstr "Pitanja"
 
 msgid "Add new question"
-msgstr "新增問題"
+msgstr "Dodaj novo pitanje"
 
 msgid "Add question from template"
-msgstr "從範本新增問題"
+msgstr "Dodaj pitanje iz obrasca"
 
 msgid "Duplicate"
-msgstr "複製"
+msgstr "Dupliraj"
 
 msgid "Steps"
-msgstr "步驟"
+msgstr "Koraci"
 
 msgid "Site settings"
-msgstr "網站設定"
+msgstr "Podešavanja lokacije"
 
 msgid "Case management"
-msgstr "個案管理"
+msgstr "Upravljanje predmetom"
 
 msgid "Network settings"
-msgstr "網絡設定"
+msgstr "Podešavanja mreže"
 
 msgid "Sites"
-msgstr "網站"
+msgstr "Lokacije"
 
 msgid "Mode:"
-msgstr "狀態："
+msgstr "Režim:"
 
 msgid "Configure"
-msgstr "配置"
+msgstr "Konfiguriši"
 
 msgid "Subdomain"
-msgstr "子網域"
+msgstr "Poddomen"
 
 msgid "Creation date:"
-msgstr "建立日期："
+msgstr "Datum kreiranja:"
 
 msgid "Root domain used for secondary sites"
-msgstr "次要網站使用的根網域"
+msgstr "Osnovni domen koji se koristi za sekundarne lokacije"
 
 msgid "Use the first site for administrative purposes only"
-msgstr "主網站只用作管理用途"
+msgstr "Koristi prvu lokaciju samo u administrativne svrhe"
 
 msgid "Allow users to sign up"
-msgstr "接受新用戶註冊"
+msgstr "Dozvoli korisnicima da se registruju"
 
 msgid "Enable terms of service"
-msgstr "使用服務條款"
+msgstr "Omogući uslove korišćenja usluge"
 
 msgid "Title"
-msgstr "標題"
+msgstr "Naslov"
 
 msgid "Public name"
-msgstr "公開顯示的名稱"
+msgstr "Javno ime"
 
 msgid "Send reset link"
-msgstr "傳送重置連結"
+msgstr "Pošalji vezu za resetovanje"
 
 msgid "Set password"
-msgstr "設置密碼"
+msgstr "Postavi lozinku"
 
 msgid ""
 "The chosen password is too weak. A valid password should be at least 10 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "密碼過弱。有效密碼必須有至少10個字元，並包含大小寫、數字和符號。"
+msgstr "Izabrana lozinka je preslaba. Važeća lozinka treba da ima najmanje 10 znakova i da sadrži različite znakove uključujući najmanje malo slovo, veliko slovo, broj i posebni znak."
 
 msgid "Force password change"
-msgstr "強制更改密碼"
+msgstr "Nametni promjenu lozinke"
 
 msgid "The user will be forced to change its password on next login."
-msgstr "使用者在下次登入時必須更改密碼。"
+msgstr "Korisnik će biti primoran da promijeni lozinku pri sljedećoj prijavi."
 
 msgid "Disable two factor authentication"
-msgstr "停用雙重認證"
+msgstr "Onemogući dvostruku potvrdu identiteta"
 
 msgid "Language"
-msgstr "語言"
+msgstr "Језик"
 
 msgid "Enable email notifications"
-msgstr "使用電郵通知"
+msgstr "Omogući obavještenja putem e-pošte"
 
 msgid "Details of the PGP key:"
-msgstr "PGP 金鑰詳細資料："
+msgstr "Podaci o PGP ključu:"
 
 msgid "Fingerprint"
-msgstr "指紋"
+msgstr "Otisak prsta"
 
 msgid "Set up encryption by providing a PGP public key"
-msgstr "提供 PGP 公鑰以便設定加密"
+msgstr "Podesite šifrovanje tako što ćete obezbijediti PGP javni ključ"
 
 msgid "Give this admin ability to change user passwords"
-msgstr "給予此管理員更改使用者密碼的權限"
+msgstr "Pruži ovom administratoru mogućnost promjene korisničkih lozinki"
 
 msgid "Forcefully selected"
-msgstr "強制選擇"
+msgstr "Prisilno odabrano"
 
 msgid "Allow the recipient to delete reports"
-msgstr "允許此接收者刪除報告"
+msgstr "Dozvoli primaocu da briše prijave"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr "允許此接收者延遲報告到期日"
+msgstr "Dozvoli primaocu da odloži datum isteka prijave"
 
 msgid "Give the user administrative access to the following features:"
-msgstr "允許此使用者使用以下功能："
+msgstr "Omogući korisniku administrativni pristup sljedećim funkcijama:"
 
 msgid "Request date"
-msgstr "請求日期"
+msgstr "Datum zahtjeva"
 
 msgid "Report date"
-msgstr "報告日期"
+msgstr "Datum prijave"
 
 msgid "Authorization"
-msgstr "授權"
+msgstr "Ovlašćenje"
 
 msgid "Requests"
-msgstr "請求"
+msgstr "Zahtjevi"
 
 msgid "The validation link is either incorrect or has expired."
-msgstr "驗證連結無效或過期。"
+msgstr "Veza za validaciju je netačna ili je istekla."
 
 msgid "Your new email address has been validated."
-msgstr "您的新電郵地址已通過驗證。"
+msgstr "Vaša nova adresa e-pošte je potvrđena."
 
 msgid "Forgot password?"
-msgstr "忘記密碼"
+msgstr "Zaboravili ste lozinku?"
 
 msgid "Enter the two factor authentication code"
-msgstr "輸入雙重認證碼"
+msgstr "Unesite kôd za dvostruku potvrdu identiteta"
 
 msgid "Authentication failed"
-msgstr "驗證失敗"
+msgstr "Potvrda identiteta nije uspjela"
 
 msgid "The code is either invalid or expired."
-msgstr "認證碼無效或過期。"
+msgstr "Kôd je nevažeći ili je istekao."
 
 msgid "Please select your account:"
-msgstr "請選擇您的帳號："
+msgstr "Izaberite svoj nalog:"
 
 msgid "Now type your password, then click 'Log in':"
-msgstr "請輸入您的密碼，然後按「登入」："
+msgstr "Sada unesite lozinku, a zatim kliknite na „Prijavite se“:"
 
 msgid "Text shown after the user has selected the option."
-msgstr "選項被選後所顯示的文字"
+msgstr "Tekst se prikazuje nakon što je korisnik izabrao opciju."
 
 msgid "Confirm"
-msgstr "確認"
+msgstr "Potvrdi"
 
 msgid "Assign score points"
-msgstr "指定評分"
+msgstr "Dodijeli bodove"
 
 msgid "Are you sure?"
-msgstr "您確定嗎？"
+msgstr "Da li ste sigurni?"
 
 msgid "Close"
-msgstr "關閉"
+msgstr "Zatvori"
 
 msgid "Please note that all the associated data will be permanently deleted."
-msgstr "請注意，所有相關資料將會被永久刪除。"
+msgstr "Imajte u vidu da će svi povezani podaci biti trajno izbrisani."
 
 msgid "Enable two factor authentication"
-msgstr "啟用雙重認證"
+msgstr "Omogući dvostruku potvrdu identiteta"
 
 msgid "Before proceeding please read carefully the documentation at:"
-msgstr "在繼續之前，請先仔細閱讀此文檔："
+msgstr "Prije nego što nastavite, pažljivo pročitajte dokumentaciju na:"
 
 msgid "Account recovery key"
-msgstr "帳號修復金鑰"
+msgstr "Ključ za oporavak naloga"
 
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr "請將它備份並存放於安全之處。一旦遺失密碼，則必須用它來修復帳號資料。"
+msgstr "Napravite kopiju i čuvajte je na sigurnom mjestu. Ako izgubite lozinku, biće potrebno da oporavite pristup svom nalogu, a da ne izgubite podatke."
 
 msgid "Enter a name for the copy"
-msgstr "為此複本命名"
+msgstr "Unesite naziv kopije"
 
 msgid "Request support"
-msgstr ""
+msgstr "Zatražite podršku"
 
 msgid "Thank you."
-msgstr "谢谢。"
+msgstr "Hvala."
 
 msgid "We will try to get back to you as soon as possible."
-msgstr "我們會儘快回覆您。"
+msgstr "Pokušaćemo da vas kontaktiramo što prije."
 
 msgid "Submit"
-msgstr "提交"
+msgstr "Pošalji"
 
 msgid "The connection is not secure."
-msgstr "此連接不安全。"
+msgstr "Veza nije bezbjedna."
 
 msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
-msgstr "平台仍未設定 HTTPS 連接，故應只爲測試目的而使用。"
+msgstr "Platforma još uvijek nije konfigurisana za HTTPS veze i stoga je treba koristiti samo u svrhe testiranja."
 
 msgid "Please write a motivation for the reply"
-msgstr "請闡述答覆理由"
+msgstr "Napišite motivaciju za odgovor"
 
 msgid "Send"
-msgstr "傳送"
+msgstr "Пошаљи"
 
 msgid "By confirming, you will postpone the expiration date to:"
-msgstr "您會將到期日延遲至："
+msgstr "Potvrđivanjem ćete odložiti datum isteka na:"
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "這是示範平台，請勿在此提交真實報告。"
+msgstr "Ovo je demo platforma, nemojte je koristiti za stvarne podneske."
 
 msgid "Install an authenticator app on your phone"
-msgstr "在您的電話上安裝雙重驗證應用程式"
+msgstr "Instalirajte aplikaciju za potvrdu identiteta na svom telefonu"
 
 msgid "Scan the QR code with the app"
-msgstr "使用該應用程式掃描此 QR code"
+msgstr "Skenirajte QR kôd pomoću aplikacije"
 
 msgid "Error!"
-msgstr "出現錯誤！"
+msgstr "Greška!"
 
 msgid "Internal server error"
-msgstr "伺服器錯誤"
+msgstr "Interna greška servera"
 
 msgid "Error on input validation"
-msgstr "輸入驗證錯誤"
+msgstr "Greška pri provjeri unosa"
 
 msgid "Resource not found"
-msgstr "找不到資源"
+msgstr "Resurs nije pronađen"
 
 msgid "Forbidden operation"
-msgstr "禁止的操作"
+msgstr "Zabranjena operacija"
 
 msgid "The specified old password is not valid"
-msgstr "舊密碼無效"
+msgstr "Navedena stara lozinka nije važeća"
 
 msgid "Resource can only be accessed via the Tor network"
-msgstr "資源僅能透過 Tor 網路讀取"
+msgstr "Resursu se može pristupiti samo putem Tor mreže"
 
 msgid "The upload request exceeds the size limit"
-msgstr "上傳請求超出檔案大小上限"
+msgstr "Zahtjev za otpremanje premašuje ograničenje veličine"
 
 msgid "Current password"
-msgstr "現時密碼"
+msgstr "Trenutna lozinka"
 
 msgid "New password"
-msgstr "新密碼"
+msgstr "Nova lozinka"
 
 msgid "The new password must be different from the current one."
-msgstr "新密碼必須與現有密碼不同。"
+msgstr "Nova lozinka mora se razlikovati od trenutne."
 
 msgid "Type your new password again"
-msgstr "重新輸入您的新密碼"
+msgstr "Ponovo unesite novu lozinku"
 
 msgid "The two passwords do not match"
-msgstr "密碼不一致"
+msgstr "Dvije unijete lozinke se ne podudaraju"
 
 msgid "Validation of email address change in progress."
-msgstr "正在驗證更改的電郵地址。"
+msgstr "Validacija promjene adrese e-pošte je u toku."
 
 msgid "Please check your inbox for further instructions."
-msgstr "請檢查您的收件匣，以取得進一步指示。"
+msgstr "Dodatna uputstva potražite u prijemnom sandučetu."
 
 msgid "Warning"
-msgstr "警告"
+msgstr "Upozorenje"
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr "爲保護您的個人身份，極力建議您使用 Tor 瀏覽器訪問此網站。"
+msgstr "Savjetujemo vam da posjetite ovu lokaciju pomoću aplikacije koja se zove Tor Browser, koja štiti vaš identitet."
 
 msgid "Download the Tor Browser"
-msgstr "下載 Tor 瀏覽器"
+msgstr "Preuzmite Tor Browser"
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "然後，請將以下網址複製並貼至 Tor 瀏覽器訪問此平台："
+msgstr "Zatim kopirajte i nalijepite sljedeću adresu u aplikaciju Tor Browser:"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "想查看您之前提交的報告？在此輸入收據號碼："
+msgstr "Da li ste već podnijeli prijavu? Unesite svoju potvrdu prijema."
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr "收據號碼無效或報告已到期。"
+msgstr "Potvrda prijema je nevažeća ili je prijava istekla."
 
 msgid "Select a file or drag it here."
-msgstr "選取檔案或將其拖曳到此處。"
+msgstr "Izaberite datoteku ili je prevucite ovdje."
 
 msgid "Size:"
-msgstr "大小：   "
+msgstr "Veličina:"
 
 msgid "Uploading files…"
-msgstr "檔案上傳中……"
+msgstr "Otpremaju se datoteke…"
 
 msgid "Upload completed successfully!"
-msgstr "檔案已成功上傳！"
+msgstr "Otpremanje je uspješno završeno!"
 
 msgid "Estimated upload time:"
-msgstr "預計上傳時間："
+msgstr "Predviđeno vrijeme otpremanja:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr "接收者想請您填寫一份附加問卷。"
+msgstr "Primaoci su zatražili da popunite dodatni upitnik."
 
 msgid "Fill the additional questionnaire"
-msgstr "填寫附加問卷"
+msgstr "Popunite dodatni upitnik"
 
 msgid "From:"
-msgstr "寄件人："
+msgstr "Od:"
 
 msgid "To:"
-msgstr "收件人："
+msgstr "Do:"
 
 msgid "Filename"
-msgstr "檔案名稱"
+msgstr "Naziv datoteke"
 
 msgid "Upload date"
-msgstr "上傳日期"
+msgstr "Datum otpremanja"
 
 msgid "File size"
-msgstr "檔案大小"
+msgstr "Veličina datoteke"
 
 msgid "Questionnaire answers"
-msgstr "問卷答覆"
+msgstr "Odgovori na upitnik"
 
 msgid "Step"
-msgstr "步驟"
+msgstr "Korak"
 
 msgid "Status:"
-msgstr "狀態："
+msgstr "Status:"
 
 msgid "Files attached by recipients"
-msgstr "接收者附加的檔案"
+msgstr "Datoteke koje su priložili primaoci"
 
 msgid "Upload a file:"
-msgstr "上傳檔案："
+msgstr "Otpremite datoteku:"
 
 msgid "Welcome!"
-msgstr "您好！"
+msgstr "Dobro došli!"
 
 msgid "For the user documentation, visit:"
-msgstr "查看使用者文檔，請瀏覽："
+msgstr "Dokumentacija za korisnike se nalazi na:"
 
 msgid ""
 "If you need technical support, have general questions, or have new ideas for"
 " the software:"
-msgstr "如您需要技術支援、有普通問題、或者對此軟件有新的建議，請查看討論區："
+msgstr "Ako vam je potrebna tehnička podrška, imate neka opšta pitanja ili nove ideje za ovaj softver:"
 
 msgid ""
 "If you want to contribute to software development or report a bug, please "
 "open an issue in our ticketing system:"
-msgstr "如您想幫助軟件開發、或想通報軟件問題，請到此建立一個新問題："
+msgstr "Ako želite da doprinesete razvoju softvera ili prijavite grešku, otvorite predmet u našem prijavnom sistemu:"
 
 msgid "Join our chat:"
-msgstr "加入聊天群組："
+msgstr "Pridružite se ćaskanju:"
 
 msgid "Follow the project on:"
-msgstr "追蹤我們："
+msgstr "Pratite projekat na:"
 
 msgid "An update is available:"
-msgstr "有可用的更新："
+msgstr "Dostupno je ažuriranje:"
 
 msgid ""
 "We recommend that you access the “Preferences” section in order to retrieve "
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr "請到「帳號設定」以取得您的「帳號修復金鑰」並妥善保存。萬一您忘記了密碼，只有此金鑰才可修復帳號資料。"
+msgstr "Preporučujemo vam da pristupite odeljku „Željena podešavanja“ kako biste preuzeli „Ključ za oporavak naloga“ i bezbjedno ga uskladištili. Ovaj ključ će biti neophodan za vraćanje pristupa platformi i podacima u slučaju da zaboravite lozinku."
 
 msgid "The provided recovery key is invalid."
-msgstr "所提供的修復金鑰無效。"
+msgstr "Navedeni ključ za oporavak je nevažeći."
 
 msgid "The provided reset token is invalid or expired."
-msgstr "所提供的重置令牌無效或過期。"
+msgstr "Navedeni token za resetovanje je nevažeći ili je istekao."
 
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr "請輸入您的用戶名稱或電郵地址以重設密碼。"
+msgstr "Unesite korisničko ime ili svoju adresu e-pošte naloga da biste zatražili poništavanje lozinke."
 
 msgid "Enter your email address to request a password reset."
-msgstr "請輸入您的電郵地址以重設密碼。"
+msgstr "Unesite svoju adresu e-pošte da biste zatražili poništavanje lozinke."
 
 msgid "Password reset requested."
-msgstr "已請求重置密碼。"
+msgstr "Zatraženo je poništavanje lozinke."
 
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
-msgstr "请输入加密恢复密钥，以完成密码重置流程"
+msgstr "Unesi enkripcijski ključ za oporavak da bi dovršio postupak poništavanja lozinke"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
-msgstr "已向保管人請求吹哨者的個人身份。"
+msgstr "Od čuvara je zatražen pristup identitetu uzbunjivača."
 
 msgid "Date of the request"
-msgstr "請求日期"
+msgstr "Datum zahtjeva"
 
 msgid "Show"
-msgstr "顯示"
+msgstr "Prikaži"
 
 msgid "Congratulations!"
-msgstr "恭喜您！"
+msgstr "Čestitamo!"
 
 msgid "You have completed the platform activation."
-msgstr "您已完成平台啟動手續。"
+msgstr "Dovršili ste aktivaciju platforme."
 
 msgid "Success!"
-msgstr "成功！"
+msgstr "Uspjeli ste!"
 
 msgid "Your whistleblowing platform is almost ready!"
-msgstr "您的舉報平台就快完成了！"
+msgstr "Vaša platforma za uzbunjivanje je skoro spremna!"
 
 msgid "Check your inbox to activate it."
-msgstr "請檢查您的收件匣，以啟動此平台。"
+msgstr "Provjerite prijemno sanduče da biste ga aktivirali."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr "如未能在 24 小時內完成啟動手續，平台將會被自動刪除。"
+msgstr "Ako se ne aktivira u roku od 24 sata, platforma će se automatski izbrisati."
 
 msgid "Sign up"
-msgstr "註冊"
+msgstr "Registrujte se"
 
 msgid "Site"
-msgstr "網站"
+msgstr "Sajt"
 
 msgid "Confirmation"
-msgstr "確認"
+msgstr "Potvrda"
 
 msgid "Invalid confirmation"
-msgstr "確認失敗"
+msgstr "Nevažeća potvrda"
 
 msgid "Invalid phone number"
-msgstr "電話號碼無效"
+msgstr "Nevažeći broj telefona"
 
 msgid "The answer is too short"
-msgstr "答案過短"
+msgstr "Odgovor je prekratak"
 
 msgid "The specified input is not valid."
-msgstr "所指定的輸入無效。"
+msgstr "Navedeni ulaz nije važeći."
 
 msgid "The specified input is not valid:"
-msgstr "所指定的輸入無效："
+msgstr "Navedeni ulaz nije važeći:"
 
 msgid "please enter a valid email address."
-msgstr "請輸入有效的電郵地址。"
+msgstr "Unesite važeću adresu e-pošte."
 
 msgid "please enter numbers only."
-msgstr "請只輸入數字。"
+msgstr "Unesite samo brojeve."
 
 msgid "Submissions disabled"
-msgstr "已停止接收報告"
+msgstr "Podnesci su onemogućeni"
 
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
-msgstr "您並沒有以匿名的方式連接到此伺服器，而其只能接收匿名的報告。"
+msgstr "Povezujete se sa serverom bez anonimnosti, a ovaj server podržava samo anonimne prijave"
 
 msgid "Your report was successful."
-msgstr "您已成功提交報告。"
+msgstr "Vaša prijava je bila uspješna."
 
 msgid "Remember your receipt for this report."
-msgstr "請謹記此報告的收據號碼。"
+msgstr "Zapamtite svoju potvrdu prijema za ovu prijavu."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "您可使用此 16 位數字的收據號碼登入至報告頁面，以便添加資料或查看我們的回覆。"
+msgstr "Za prijavljivanje koristite potvrdu prijema od 16 cifara. Omogućiće vam da vidite sve poruke koje smo vam poslali, kao i da unesete dodatne informacije."
 
 msgid "View your report"
-msgstr "查看您的報告"
+msgstr "Pogledajte svoju prijavu"
 
 msgid "Recipient selection"
-msgstr "選擇接收者"
+msgstr "Izbor primaoca"
 
 msgid "Select the recipients of your report:"
-msgstr "請爲您的報告選擇接收者："
+msgstr "Izaberite primaoce svoje prijave:"
 
 msgid "Recipients selected:"
-msgstr "已選接收者："
+msgstr "Odabrani primaoci:"
 
 msgid "You have reached the maximum number of selectable recipients."
-msgstr "您所選擇的接收者人數已達上限。"
+msgstr "Dostignut je maksimalan broj primalaca koje možete da izaberete."
 
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr "以下接收者不能被取消選擇，他們將會收到您的報告："
+msgstr "Sljedeći primaoci će primiti vašu prijavu i nije ih moguće poništiti:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
 "invalid:"
-msgstr "以下問題的答案或有錯漏："
+msgstr "U ovom koraku odgovori na sljedeća pitanja nedostaju ili su nevažeći:"
 
 msgid "You must select at least one recipient."
-msgstr "請選擇至少一個接收者。"
+msgstr "Morate da izaberete najmanje jednog primaoca."
 
 msgid "Waiting for the file(s) to finish uploading."
-msgstr "檔案上傳中"
+msgstr "Čeka se da se završi otpremanje datoteka."
 
 msgid "The following steps have errors:"
-msgstr "以下步驟存在錯誤："
+msgstr "Sljedeći koraci sadrže greške:"
 
 msgid "Hide"
-msgstr "隱藏"
+msgstr "Sakrij"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
 "whistleblowing platform."
-msgstr "接下來的指南將引導您完成此舉報平台的創建工程。"
+msgstr "Sljedeća postupna procedura vodiće vas kroz kreiranje platforme za uzbunjivanje."
 
 msgid "Please choose a configuration profile:"
-msgstr "請選擇設定檔："
+msgstr "Odaberite profil konfiguracije:"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr "准許此管理員重置使用者的密碼。"
+msgstr "Omogućite ovom administratoru da resetuje korisničke lozinke."
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr "如果您想在接收者忘記密碼的情況下，確保資料不會流失，則建議選擇此功能。另一方面，如果您想創建一個只有接收者身份才能讀取報告的平台，則不建議選擇此功能。"
+msgstr "Savjetujemo da izaberete ovu opciju ako želite da zaštitite podatke od gubitka u situaciji kada primaoci izgube svoje lozinke. S druge strane, ne bismo savjetovali korišćenje ove funkcije ako želite da podesite sistem u kome samo primaoci mogu da pristupaju podnescima."
 
 msgid "Please choose a different username."
-msgstr "請選擇另一個用戶名稱。"
+msgstr "Odaberite drugo korisničko ime."
 
 msgid "I have read and agree to the terms of the license."
-msgstr "我已閱讀並同意授權條款。"
+msgstr "Pročitao/la sam i saglasan/na sam sa uslovima licence."
 
 msgid "You have completed the platform wizard."
-msgstr "平台精靈設定已完成。"
+msgstr "Dovršen je čarobnjak za platformu."
 
 msgid "Please summarize your report in a few words."
-msgstr "報告撮要"
+msgstr "Opišite svoju prijavu u nekoliko riječi."
 
 msgid "Describe your report in detail."
-msgstr "請詳細描述您的報告。"
+msgstr "Detaljno opišite svoju prijavu."
 
 msgid "Where did the facts happen?"
-msgstr "事發於何處?"
+msgstr ""
 
 msgid "When did the facts happen?"
-msgstr "事發於何時?"
+msgstr ""
 
 msgid "I'm a victim"
-msgstr "我是受害者"
+msgstr ""
 
 msgid "I'm involved in the facts"
-msgstr "我涉及该事件"
+msgstr ""
 
 msgid "I witnessed the facts in person"
-msgstr "我親自目擊事件經過。"
+msgstr ""
 
 msgid "I was personally told by a direct witness"
-msgstr "我親自聽到目擊人士的描述。"
+msgstr ""
 
 msgid "It is a rumor I heard"
-msgstr "傳聞-我聽說得知。"
+msgstr ""
 
 msgid "How are you involved in the reported facts?"
-msgstr "你在所匯報的事件中有何參與?"
+msgstr ""
 
 msgid "Do you have evidence to support your report?"
-msgstr "你有否支持此匯報的佐證?"
+msgstr ""
 
 msgid "Please attach the evidence to support your report."
-msgstr "請就你的匯報附上佐證。"
+msgstr ""
 
 msgid "Please describe the evidence in detail."
-msgstr "請就佐證作詳細描述。"
+msgstr ""
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr "对已提交证据进行详尽的说明，可提升我们对声明进行评估与调查的能力。对于作为证据提交的任何视频、图像或文档，请仔细描述其中关键的部分。"
+msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr "你曾否向其他機構匯報這事件?"
+msgstr ""
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr "請列出你曾匯報此事件的機構。"
+msgstr ""
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr "這些機構有否就你的匯報進行調查？如有，其結果如何？"
+msgstr ""
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr "你期望可實現/達致甚麼結果?"
+msgstr ""
 
 msgid "Do you want to provide your identification information?"
-msgstr "您想提供您的個人身份資料嗎？"
+msgstr "Da li želite da date svoje identifikacione podatke?"
 
 msgid "First name"
-msgstr "名"
+msgstr "Ime"
 
 msgid "Last name"
-msgstr "姓"
+msgstr "Prezime"
 
 msgid "Alternative contact method"
-msgstr ""
+msgstr "Alternativni način kontakta"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr ""
+msgstr "Više volim da me kontaktiraju samo putem ove platforme"
 
 msgid "Other"
-msgstr "其他"
+msgstr "Ostalo"
 
 msgid "Dear {RecipientName},"
-msgstr "尊敬的 {RecipientName}，"
+msgstr "Poštovani {RecipientName},"
 
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr "謹以此電郵通知，系統 {Site} 剛已爲您建立一個使用者帳號。"
+msgstr "Primili ste ovu e-poruku jer je za vas u sistemu otvoren korisnički nalog: {Site}"
 
 msgid "Username: {Username}"
-msgstr "用戶名：{Username}"
+msgstr "Korisničko ime: {Username}"
 
 msgid "Activation link: {Url}"
-msgstr "啟動連結：{Url} "
+msgstr "Veza za aktivaciju: {Url}"
 
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr "請按下啟動連結，以繼續建立您的帳號並設定使用者密碼。"
+msgstr "Kliknite na vezu za aktivaciju da biste nastavili sa aktivacijom naloga i postavili korisničku lozinku."
 
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
-msgstr "成功啟動之後，您將可使用以下連結登入：{LoginUrl}"
+msgstr "Nakon uspješne aktivacije moći ćete da pristupite sistemu putem sljedeće veze: {LoginUrl}"
 
 msgid "Kind regards,"
-msgstr "敬請　台安"
+msgstr "Srdačan pozdrav,"
 
 msgid "Account activation"
-msgstr "帳號啟動"
+msgstr "Aktivacija naloga"
 
 msgid "Your whistleblowing platform is now accessible at:"
-msgstr "您的舉報平台現已上線："
+msgstr "Vaša platforma za uzbunjivanje sada je dostupna na:"
 
 msgid "To log in, visit:"
-msgstr "在此登入："
+msgstr "Da biste se prijavili, posjetite:"
 
 msgid "Users' credentials:"
-msgstr "使用者帳號資料："
+msgstr "Korisnički akreditivi:"
 
 msgid "The platform will be automatically deleted on:"
-msgstr "平台將於此日期自動刪除："
+msgstr "Platforma će se automatski izbrisati:"
 
 msgid "Access instructions"
-msgstr "存取指示"
+msgstr "Uputstva za pristup"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
-msgstr "偵測到高於正常的最近活動。"
+msgstr "Izgleda da je broj nedavno otkrivenih aktivnosti veći nego obično."
 
 msgid ""
 "This could be a sign of an attack (for example, someone flooding your server"
 " with bogus information) or just a usage spike due to an increased "
 "visibility of your project."
-msgstr "這可能是平台遭到攻擊的跡象（例如某人試圖以偽造資訊來充斥您的伺服器），或者只是出於網站能見度提升而導致的正常使用量增長。"
+msgstr "Ovo bi mogao biti znak napada (na primjer, neko je na vaš server unio mnoštvo lažnih informacija) ili samo porast upotrebe zbog povećane vidljivosti vašeg projekta."
 
 msgid "Examine the issue to determine whether it is legitimate or not."
-msgstr "查驗此事故，以確定其性質。"
+msgstr "Istražite ovo pitanje da biste utvrdili da li je legitimno ili ne."
 
 msgid "The activities with unusual stats are:"
-msgstr "數據不尋常的活動如下："
+msgstr "Aktivnosti sa neobičnom statistikom su:"
 
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr "伺服器不能確認能夠儲存新的報告，所以已經停止接收。"
+msgstr "Server ne može da garantuje da se nova prijava može sačuvati, pa su podnesci onemogućeni."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
 "the server."
-msgstr "請考慮要求您的技術人員在伺服器上創建更多的磁碟空間。"
+msgstr "Razmislite o tome da zatražite tehničku podršku da biste kreirali više prostora na disku na serveru."
 
 msgid ""
 "GlobaLeaks technology includes a server status checking component which will"
 " alert you in case something requires your attention."
-msgstr "GlobaLeaks 軟件包含了伺服器狀態檢查程序，它會在必要時警告你提高警惕。"
+msgstr "Tehnologija GlobaLeaks uključuje komponentu za provjeru statusa servera koja će vas upozoriti u slučaju da na nešto treba naročito da obratite pažnju."
 
 msgid ""
 "For more information, log in to the Administration interface and look at the"
 " \"System Stats\" and \"Anomalies\" sections."
-msgstr "如欲了解更多，請登入管理員介面並查看「系統數據」及「異常狀況」部份。"
+msgstr "Da biste se detaljnije informisali, prijavite se u interfejs za administraciju i pogledajte odjeljke „Statistika sistema“ i „Nepravilnosti“."
 
 msgid "Anomaly detected in {NodeName}"
-msgstr "在 {NodeName} 偵測到異常狀況"
+msgstr "Anomalija je otkrivena u {NodeName}"
 
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
 "going to expire or has already expired:"
-msgstr "謹以此電郵通知您，以下使用者的 PGP 金鑰即將或者已經到期："
+msgstr "Ovo je e-poruka koja vas obavještava da će PGP ključ sljedećih korisnika isteći ili je već istekao:"
 
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
 "notifications."
-msgstr "如無有效的 PGP 金鑰，系統會無法加密傳送的通知。"
+msgstr "Bez važećeg PGP ključa, sistem neće moći da im šalje šifrovana obavještenja."
 
 msgid "PGP key expiration alert"
-msgstr "PGP 金鑰到期提醒"
+msgstr "Upozorenje o isteku PGP ključa"
 
 msgid "A new whistleblowing site has been registered."
-msgstr "新的舉報平台網站剛被註冊。"
+msgstr "Registrovana je nova lokacija za uzbunjivanje."
 
 msgid "Registration data:"
-msgstr "註冊詳情："
+msgstr "Podaci o registraciji:"
 
 msgid "Site: {Url}"
-msgstr "網站：{Url}"
+msgstr "Lokacija: {Url}"
 
 msgid "Name: {Name}"
-msgstr "名稱：{Name}"
+msgstr "Naziv: {Name}"
 
 msgid "Email: {Email}"
-msgstr "電郵地址：{Email}"
+msgstr "E-pošta: {Email}"
 
 msgid "New whistleblowing site registered"
-msgstr "已註冊新的舉報網"
+msgstr "Registrovana je nova lokacija za uzbunjivače"
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
-msgstr "這是從管理員介面發出的測試電郵。"
+msgstr "Ovo je test e-poruka poslata sa administrativnog interfejsa platforme."
 
 msgid ""
 "Reception of this email indicates that the server was able to authenticate "
 "to and interact with the SMTP mail server."
-msgstr "若您成功收到此電郵，則表示平台伺服器能夠與 SMTP 郵件伺服器進行驗證和互動。"
+msgstr "Prijem ove e-poruke ukazuje na to da je server uspio da se autentifikuje i komunicira sa SMTP serverom pošte."
 
 msgid "Test email"
-msgstr "測試電郵"
+msgstr "Test e-poruka"
 
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr "謹以此電郵通知您，我們已收到將您的電郵地址更改為 {NewEmailAddress} 的請求。"
+msgstr "Ovo je e-poruka sa obavještenjem da je podnijet zahtjev za promjenu vaše adrese e-pošte u {NewEmailAddress}."
 
 msgid "Click the following link to validate this change:"
-msgstr "如欲確認此變改，請按以下連結："
+msgstr "Kliknite na sljedeću vezu da biste potvrdili ovu promjenu:"
 
 msgid ""
 "If you didn't request this change, change your password and contact your "
 "system administrator."
-msgstr "若您並沒有提出此請求，請立即更改密碼並通知您的平台管理員。"
+msgstr "Ako nijeste tražili ovu promjenu, promijenite lozinku i obratite se administratoru sistema."
 
 msgid "Email change request"
-msgstr "更改電郵請求"
+msgstr "Zahtjev za promjenu e-pošte"
 
 msgid "From: {Author}"
-msgstr "來自：{Author}"
+msgstr "Od: {Author}"
 
 msgid "Date: {EventTime}"
-msgstr "日期：{EventTime}"
+msgstr "Datum: {EventTime}"
 
 msgid "From: Whistleblower"
-msgstr "來自：吹哨者"
+msgstr "Od: Uzbunjivаč"
 
 msgid "Date: {SubmissionDate}"
-msgstr "日期：{SubmissionDate}"
+msgstr "Datum: {SubmissionDate}"
 
 msgid "Label: {TipLabel}"
-msgstr "標籤：{TipLabel}"
+msgstr "Oznaka: {TipLabel}"
 
 msgid "Status: {TipStatus}"
-msgstr "狀態：{TipStatus}"
+msgstr "Status: {TipStatus}"
 
 msgid ""
 "The HTTPS certificate loaded on the platform is about to, or has already "
 "expired."
-msgstr "此平台的 HTTPS 憑證即將或者已經到期。"
+msgstr "HTTPS sertifikat učitan na platformu je pred istekom ili je već istekao."
 
 msgid "Expiration date: {ExpirationDate}"
-msgstr "到期日：{ExpirationDate}"
+msgstr "Datum isteka: {ExpirationDate}"
 
 msgid ""
 "Without a valid certificate, the platform will be accessible in a secure way"
 " only via Tor."
-msgstr "平台沒有有效憑證的話，只能透過 Tor 瀏覽器才可以安全地使用它。"
+msgstr "Bez važećeg sertifikata, platforma će biti dostupna na siguran način samo preko aplikacije Tor."
 
 msgid "Log in to solve the issue."
-msgstr "登入並解決此問題。"
+msgstr "Prijavite se da biste riješili problem."
 
 msgid "Expiration alert for HTTPS certificate"
-msgstr "HTTPS 憑證到期提醒"
+msgstr "Upozorenje o isticanju HTTPS sertifikata"
 
 msgid ""
 "The automatic HTTPS certificate renewal scheduled for today just failed."
-msgstr "原定於今日自動進行的 HTTPS 憑證續期程序剛剛失敗了。"
+msgstr "Automatsko obnavljanje HTTPS sertifikata zakazano za danas nije uspjelo."
 
 msgid "The system will keep trying."
-msgstr "系統會繼續嘗試"
+msgstr "Sistem će nastaviti da pokušava."
 
 msgid "Failed HTTPS certificate renewal"
-msgstr "HTTPS 憑證續期失敗"
+msgstr "Obnavljanje HTTPS sertifikata nije uspjelo"
 
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr "謹以此電郵通知您，保管人已批准您可讀取報告 {TipNum} 的吹哨者個人身份。"
+msgstr "Ovo je e-poruka sa obavještenjem da vas je čuvar ovlastio za pristup identitetu koji podnosi prijavu {TipNum}."
 
 msgid "The report can be accessed at:"
-msgstr "按此查看報告："
+msgstr "Prijavi se može pristupiti na:"
 
 msgid "Access to whistleblower's identity authorized"
-msgstr "已批准讀取吹哨者的個人身份"
+msgstr "Odobren je pristup identitetu uzbunjivača"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr "謹以此電郵通知您，保管人已拒絕您申請讀取報告 {TipNum} 吹哨者個人身份之請求。"
+msgstr "Ovo je e-poruka sa obavještenjem da vam je čuvar odbio pristup identitetu koji podnosi prijavu {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
-msgstr "已拒絕讀取吹哨者的個人身份"
+msgstr "Pristup identitetu uzbunjivača je odbijen"
 
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr "謹以此電郵通知您，某接收者剛發出請求以讀取報告 {TipNum} 的吹哨者個人身份。"
+msgstr "Ovo je e-poruka s obavještenjem da je primalac zatražio pristup identitetu uzbunjivača za prijavu {TipNum}"
 
 msgid "The request can be accessed at:"
-msgstr "按此查看請求："
+msgstr "Zahtjevu se može pristupiti na:"
 
 msgid "New request of access to a whistleblower's identity"
-msgstr "讀取吹哨者個人身份的新請求"
+msgstr "Novi zahtjev za pristup identitetu uzbunjivača"
 
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr "謹以此電郵通知您，報告 {TipNum} 的吹哨者已提供其個人身份。"
+msgstr "Ovo je e-poruka s obavještenjem da je uzbunjivač za prijavu {TipNum} otkrio svoj identitet."
 
 msgid "The whistleblower has provided their identity"
-msgstr "吹哨者已提供其個人身份"
+msgstr "Uzbunjivač je otkrio svoj identitet"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr "謹以此電郵通知，系統剛收到爲用戶 {Username} 重設密碼的請求。"
+msgstr "Primili ste ovu e-poruku jer je za nalog zatraženo poništavanje lozinke: {Username}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
 "email."
-msgstr "若您並沒有提出此請求，您可以放心地忽略和刪除本電郵。"
+msgstr "Ako nijeste uputili ovaj zahtjev, možete zanemariti i izbrisati ovu e-poruku."
 
 msgid "You can confirm your request by clicking the following link:"
-msgstr "如欲確認請求，請按以下連結："
+msgstr "Zahtjev možete da potvrdite klikom na sljedeću vezu:"
 
 msgid "Password reset instructions"
-msgstr "密碼重設指示"
+msgstr "Uputstva za poništavanje lozinke"
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
 "expired."
-msgstr "謹以此電郵通知您，您的 PGP 金鑰即將或者已經到期。"
+msgstr "Ovo je e-poruka koja vas obavještava da PGP ključ ističe ili je već istekao."
 
 msgid ""
 "You should extend its validity and update the key present on the platform, "
 "or upload a new key."
-msgstr "您需要延長現有金鑰的有效期限，或者上傳新的金鑰。"
+msgstr "Trebalo bi da produžite njegov rok važenja i ažurirate ključ koji je na platformi ili da otpremite novi ključ."
 
 msgid ""
 "Without a valid PGP key, the system won't be able to encrypt data provided "
 "to you."
-msgstr "如無有效的 PGP 金鑰，系統會無法加密所提交的資料。"
+msgstr "Bez važećeg PGP ključa, sistem neće moći da šifruje podatke koje ste dobili."
 
 msgid "Click the link to activate the platform:"
-msgstr "按此連結以啟動平台："
+msgstr "Kliknite na vezu da biste aktivirali platformu:"
 
 msgid "Activation"
-msgstr "啟動"
+msgstr "Aktivacija"
 
 msgid "A software update is available."
-msgstr "有可用的軟件更新。"
+msgstr "Dostupna je nadogradnja softvera."
 
 msgid "It is good security practice to keep the platform up to date."
-msgstr "基於安全起見，請將平台維持於最新版本。"
+msgstr "Dobra je bezbjednosna praksa da platforma bude ažurirana."
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "
 "change log at: {ChangeLogUrl}"
-msgstr "如欲了解此版本的新增功能和錯誤修正，請查閱更新日誌：{ChangeLogUrl}"
+msgstr "Da biste saznali više o novim funkcijama i ispravkama grešaka u novoj verziji, pogledajte evidenciju promjena na: {ChangeLogUrl}"
 
 msgid ""
 "For instructions on software updates, please refer to the documentation at: "
 "{UpdateGuideUrl}"
-msgstr "有關軟件更新說明，請參閱文檔：{UpdateGuideUrl}"
+msgstr "Da biste pogledali uputstva o ažuriranju softvera, pogledajte dokumentaciju na: {UpdateGuideUrl}"
 
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "Ovo je e-poruka s obavještenjem da vam je primalac odobrio pristup nekim prijavama."
 
 msgid "New report"
-msgstr "新報告"
+msgstr "Nova prijava"
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
-msgstr "最早的到期日是 {EarliestExpirationDate}。"
+msgstr "Najraniji datum isteka je {EarliestExpirationDate}."
 
 msgid "Please remember to check them before they are deleted."
-msgstr "請在報告刪除之前檢查一下。"
+msgstr "Ne zaboravite da ih provjerite prije brisanja."
 
 msgid "Some reports will expire soon"
-msgstr "有些報告即將到期"
+msgstr "Neke prijave će uskoro isteći"
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr "謹以此電郵通知您，某吹哨者剛選擇您作爲其報告的接收者。"
+msgstr "Ovo je e-poruka s obavještenjem da vas je uzbunjivač izabrao za primaoca svoje prijave."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -1909,22 +1906,22 @@ msgid ""
 "themselves to high personal risks in the interest of the public. Therefore "
 "the material provided within this report should be considered to be of high "
 "importance."
-msgstr "敬請留心關注此報告內的所有資料。請謹記，吹哨者爲了公衆權益而提交此報告，而極可能因此面臨高度的人身風險。所以，報告內的資料應被好好重視。"
+msgstr "Od vas se traži da obratite posebnu pažnju na informacije i materijal koji se u njima nalazi. Obratite pažnju na to da se uzbunjivači često izlažu visokim ličnim rizicima u interesu javnosti. Stoga materijal koji se nalazi u ovoj prijavi treba smatrati kao materijal od velike važnosti."
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr "謹以此電郵通知您，一份現有報告剛被更新。"
+msgstr "Ovo je e-poruka koja vas obavještava da je postojeća prijava ažurirana."
 
 msgid "Report updated"
-msgstr "報告已更新"
+msgstr "Prijava je ažurirana"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr "謹以此電郵提醒您尚有未讀或已更新的報告。"
+msgstr "Ova e-poruka vas podsjeća na prisustvo nepročitanih ili ažuriranih prijava."
 
 msgid "Reminder about unread or updated reports"
-msgstr "未讀或已更新報告提醒"
+msgstr "Podsjetnik o nepročitanim ili ažuriranim prijavama"
 
 msgid "Role: {Role}"
-msgstr "身份：{Role}"
+msgstr "Uloga: {Role}"
 
 msgid "Password: {Password}"
-msgstr "密碼：{Password}"
+msgstr "Lozinka: {Password}"

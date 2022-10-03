@@ -902,7 +902,7 @@ msgstr "Para"
 msgid ""
 "Default mail configuration in use. Please consider using a private mail "
 "server."
-msgstr ""
+msgstr "Está com a configuração padrão de correio eletrónico. Por favor, considere usar um servidor de correio eletrónico próprio."
 
 msgid "SMTP email address"
 msgstr "e-mail do SMTP"

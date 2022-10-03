@@ -1410,7 +1410,7 @@ msgid "Sign up"
 msgstr "Daftar"
 
 msgid "Site"
-msgstr ""
+msgstr "Laman"
 
 msgid "Confirmation"
 msgstr "Pengesahan"

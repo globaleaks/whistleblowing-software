@@ -30,7 +30,7 @@
 # Vitaliy Grishenko, 2013
 # Vitaliy Grishenko, 2013-2015
 # Vitaliy Grishenko, 2013
-# ruVlad, 2015
+# Vlad Loktionov, 2015
 # Pavel Shlyak <shlyakpavel@gmail.com>, 2015,2017
 msgid ""
 msgstr ""

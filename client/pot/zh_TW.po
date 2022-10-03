@@ -393,7 +393,7 @@ msgid "Select"
 msgstr "選擇"
 
 msgid "Deselect"
-msgstr ""
+msgstr "取消选中"
 
 msgid "Surname"
 msgstr "姓氏"
@@ -452,10 +452,10 @@ msgid "seconds"
 msgstr "秒"
 
 msgid "This domain name is not available."
-msgstr ""
+msgstr "此域名不可用。"
 
 msgid "Mark as important"
-msgstr ""
+msgstr "标记为重要"
 
 msgid "Copy to clipboard"
 msgstr "複製到剪貼簿"
@@ -473,7 +473,7 @@ msgid "Revoke access"
 msgstr "撤銷存取"
 
 msgid "File a report"
-msgstr ""
+msgstr "提交报告"
 
 msgid "Select the context of your report:"
 msgstr "選擇您報告合適的情況："
@@ -497,7 +497,7 @@ msgid "Enable administrators to change user passwords"
 msgstr "讓管理者可以變更用戶密碼"
 
 msgid "Administrators authorized to change user passwords:"
-msgstr ""
+msgstr "管理员已授权更改用户密码："
 
 msgid "Enable multisite feature"
 msgstr "啟用多個網站功能"
@@ -534,7 +534,7 @@ msgid "Set the value to 0 to disable this feature."
 msgstr "將值設為 0  以取消此功能。"
 
 msgid "Number of days till notifying unread reports to users"
-msgstr ""
+msgstr "向用户发送未读报告通知之前的天数"
 
 msgid "Disable the privacy panel"
 msgstr "取消隱私面板"
@@ -590,7 +590,7 @@ msgid "Severity"
 msgstr "严重性"
 
 msgid "Object"
-msgstr ""
+msgstr "对象"
 
 msgid "ID"
 msgstr "識別"
@@ -656,7 +656,7 @@ msgid "Whistleblowing button"
 msgstr "吹哨揭密者的按鍵"
 
 msgid "Disclaimer"
-msgstr ""
+msgstr "免责声明"
 
 msgid "Footer"
 msgstr "頁腳"
@@ -758,7 +758,7 @@ msgid "Enabled"
 msgstr "啟用"
 
 msgid "Allowed IP addresses"
-msgstr ""
+msgstr "已允许 IP 地址"
 
 msgid "Admin"
 msgstr "管理者"
@@ -830,7 +830,7 @@ msgstr "使用自動的 HTTPS 設定來處理全部請求過程，啟動並更�
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
 "hostname must have a DNS record referencing that address."
-msgstr ""
+msgstr "该平台必须可通过公共 IP 地址访问，并且所选主机名必须具有引用该地址的相应 DNS 记录。"
 
 msgid "Proceed"
 msgstr "進行"
@@ -1104,7 +1104,7 @@ msgid "Allow the recipient to postpone the report expiration date"
 msgstr "收件者可以延長報告期限"
 
 msgid "Give the user administrative access to the following features:"
-msgstr ""
+msgstr "对于以下功能，授予用户管理员权限："
 
 msgid "Request date"
 msgstr "請求日期"
@@ -1116,7 +1116,7 @@ msgid "Authorization"
 msgstr "授權"
 
 msgid "Requests"
-msgstr ""
+msgstr "請求"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "驗證連結不正確或是已經過期。"
@@ -1266,7 +1266,7 @@ msgstr "警示"
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr ""
+msgstr "强烈建议使用 Tor 浏览器访问该网站，以保护您的身份。"
 
 msgid "Download the Tor Browser"
 msgstr "下載 Tor 瀏覧器"
@@ -1361,7 +1361,7 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
+msgstr "我们建议，访问“首选项”获取“帐户恢复密钥”并将其妥善保存。如果忘记密码，为了访问该平台和您的数据，该密钥必不可少。"
 
 msgid "The provided recovery key is invalid."
 msgstr "所提供的恢復密鑰已失效。"
@@ -1429,7 +1429,7 @@ msgid "Invalid phone number"
 msgstr "無效的電話號碼"
 
 msgid "The answer is too short"
-msgstr ""
+msgstr "答案过短"
 
 msgid "The specified input is not valid."
 msgstr "指定的輸入無效。"
@@ -1469,7 +1469,7 @@ msgid "Recipient selection"
 msgstr "選擇收件者"
 
 msgid "Select the recipients of your report:"
-msgstr ""
+msgstr "选择报告接收人："
 
 msgid "Recipients selected:"
 msgstr "已選擇的收件者"
@@ -1480,7 +1480,7 @@ msgstr "您可選的收件人數已達上限。"
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr ""
+msgstr "以下接收人将收到您的报告，并且不可取消选择："
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1508,20 +1508,20 @@ msgid "Please choose a configuration profile:"
 msgstr "請選擇一個設定個人身份頁面"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr ""
+msgstr "允许该管理员重置用户密码。"
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr ""
+msgstr "为了防止接收人忘记密码时丢失数据，我们建议选择该选项。另一方面，如果您想要的系统，只允许接收人访问提交内容，请勿使用该功能。"
 
 msgid "Please choose a different username."
 msgstr "請選擇不同的用戶名稱。"
 
 msgid "I have read and agree to the terms of the license."
-msgstr ""
+msgstr "我已阅读并同意授权条款。"
 
 msgid "You have completed the platform wizard."
 msgstr "平台設置精靈已完成"
@@ -1533,59 +1533,59 @@ msgid "Describe your report in detail."
 msgstr "請詳述此報告"
 
 msgid "Where did the facts happen?"
-msgstr ""
+msgstr "事發於何處?"
 
 msgid "When did the facts happen?"
-msgstr ""
+msgstr "事發於何時?"
 
 msgid "I'm a victim"
-msgstr ""
+msgstr "我是受害者"
 
 msgid "I'm involved in the facts"
-msgstr ""
+msgstr "我涉及该事件"
 
 msgid "I witnessed the facts in person"
-msgstr ""
+msgstr "我親自目擊事件經過。"
 
 msgid "I was personally told by a direct witness"
-msgstr ""
+msgstr "我親自聽到目擊人士的描述。"
 
 msgid "It is a rumor I heard"
-msgstr ""
+msgstr "傳聞-我聽說得知。"
 
 msgid "How are you involved in the reported facts?"
-msgstr ""
+msgstr "你在所匯報的事件中有何參與?"
 
 msgid "Do you have evidence to support your report?"
-msgstr ""
+msgstr "你有否支持此匯報的佐證?"
 
 msgid "Please attach the evidence to support your report."
-msgstr ""
+msgstr "請就你的匯報附上佐證。"
 
 msgid "Please describe the evidence in detail."
-msgstr ""
+msgstr "請就佐證作詳細描述。"
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr ""
+msgstr "对已提交证据进行详尽的说明，可提升我们对声明进行评估与调查的能力。对于作为证据提交的任何视频、图像或文档，请仔细描述其中关键的部分。"
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
+msgstr "你曾否向其他機構匯報這事件?"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr ""
+msgstr "請列出你曾匯報此事件的機構。"
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr ""
+msgstr "這些機構有否就你的匯報進行調查？如有，其結果如何？"
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr ""
+msgstr "你期望可實現/達致甚麼結果?"
 
 msgid "Do you want to provide your identification information?"
 msgstr "你要提供自己的身份資訊嗎？"
@@ -1917,16 +1917,16 @@ msgid ""
 msgstr "請特別留意此處的資訊和材料，謹記揭密者為了公益往往自身曝露在高度風險下。因此報告裏提交的材料應被好好重視。"
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr ""
+msgstr "该邮件通知您，现有报告已更新。"
 
 msgid "Report updated"
-msgstr ""
+msgstr "报告已更新"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr ""
+msgstr "该邮件提醒您，有新的未读或已更新报告。"
 
 msgid "Reminder about unread or updated reports"
-msgstr ""
+msgstr "未读或已更新报告的提醒"
 
 msgid "Role: {Role}"
 msgstr "角色: {Role}"

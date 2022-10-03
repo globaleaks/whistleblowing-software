@@ -4,12 +4,13 @@
 # Kanika, 2021
 # b490494caa0236b9908792b2f9977c3e_14d9832, 2021
 # b490494caa0236b9908792b2f9977c3e_14d9832, 2021
+# sophat CHY <sophatchy@gmail.com>, 2022
 # Ty Sok <sokty2@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022\n"
+"Last-Translator: sophat CHY <sophatchy@gmail.com>, 2022\n"
 "Language-Team: Khmer (http://www.transifex.com/otf/globaleaks/language/km/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -338,7 +339,7 @@ msgid "Reports"
 msgstr "របាយការណ៍"
 
 msgid "Report"
-msgstr ""
+msgstr "រាយការណ៍"
 
 msgid "Users"
 msgstr "អ្នកប្រើប្រាស់"
@@ -389,7 +390,7 @@ msgid "Select"
 msgstr "ជ្រើសរើស"
 
 msgid "Deselect"
-msgstr ""
+msgstr "ដកការជ្រើសរើស"
 
 msgid "Surname"
 msgstr "ត្រកូល"
@@ -451,10 +452,10 @@ msgid "This domain name is not available."
 msgstr "ឈ្មោះវេបសាយនេះមិនមានទេ។"
 
 msgid "Mark as important"
-msgstr ""
+msgstr "សម្គាល់ថាសំខាន់"
 
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "ចម្លងទៅឃ្នាប"
 
 msgid "Logout"
 msgstr "ចាកចេញ"

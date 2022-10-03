@@ -483,7 +483,7 @@ msgid "Grant access"
 msgstr ""
 
 msgid "Revoke access"
-msgstr ""
+msgstr "撤銷存取"
 
 msgid "File a report"
 msgstr "提交报告"
@@ -669,7 +669,7 @@ msgid "Whistleblowing button"
 msgstr "揭发按钮"
 
 msgid "Disclaimer"
-msgstr ""
+msgstr "免责声明"
 
 msgid "Footer"
 msgstr "页脚"

@@ -105,14 +105,16 @@
             "pl": "Podsumuj swoje zgłoszenie w kilku słowach.",
             "ps": "خپل رپوټ په څو ټکو کې تشریح کړئ.",
             "pt_BR": "Descreva a sua denúncia em poucas palavras.",
-            "pt_PT": "Descreva em algumas palavras a sua submissão.",
+            "pt_PT": "Por favor, descreva em algumas palavras a sua submissão.",
             "ro": "Descrie sesizarea în câteva cuvinte.",
             "ru": "Кратко опишите свой отчет.",
             "sk": "Opíšte svoje podanie niekoľkými slovami.",
             "sl_SI": "V nekaj besedah opišite vaš prispevek",
             "sq": "Ju lutemi, përmblidhni në pak fjalë raportimin tuaj.",
+            "sr_ME": "Opišite svoju prijavu u nekoliko riječi.",
             "sr_ME@latin": "Opišite svoju prijavu u nekoliko riječi.",
-            "sr_RS@latin": "Please summarize your report in a few words.",
+            "sr_RS": "Opišite svoju prijavu u nekoliko riječi.",
+            "sr_RS@latin": "Opišite svoju prijavu u nekoliko riječi.",
             "sv": "Summera din rapport med några ord.",
             "sw": "Elezea ripoti yako kwa maneno machache.",
             "ta": "Please summarize your report in a few words.",
@@ -231,7 +233,9 @@
             "sk": "Opíšte svoje podanie podrobne.",
             "sl_SI": "Podrobno opišite vaš prispevek",
             "sq": "Përshkruajeni hollësisht raportimin tuaj.",
+            "sr_ME": "Detaljno opišite svoju prijavu.",
             "sr_ME@latin": "Detaljno opišite svoju prijavu.",
+            "sr_RS": "Detaljno opišite svoju prijavu.",
             "sr_RS@latin": "Detaljno opišite dojavu.",
             "sv": "Beskriv din rapport mer i detalj.",
             "sw": "Elezea ripoti yako kwa kina.",
@@ -349,9 +353,11 @@
             "ro": "Unde s-au petrecut faptele?",
             "ru": "Где произошли события?",
             "sk": "Where did the facts happen?",
-            "sl_SI": "Where did the facts happen?",
+            "sl_SI": "Kje so se navedena dejstva zgodila?",
             "sq": "Ku ndodhën gjërat?",
+            "sr_ME": "Where did the facts happen?",
             "sr_ME@latin": "Where did the facts happen?",
+            "sr_RS": "Where did the facts happen?",
             "sr_RS@latin": "Where did the facts happen?",
             "sv": "Var inträffade dessa händelser?",
             "sw": "Where did the facts happen?",
@@ -370,7 +376,7 @@
             "vi": "Sự cố xảy ra ở đâu?",
             "zh_CN": "事件发生的地点？",
             "zh_HK": "事發於何處?",
-            "zh_TW": "Where did the facts happen?"
+            "zh_TW": "事發於何處?"
           },
           "description": {
             "en": ""
@@ -481,9 +487,11 @@
             "ro": "Când s-au petrecut faptele?",
             "ru": "Когда произошли события?",
             "sk": "When did the facts happen?",
-            "sl_SI": "When did the facts happen?",
+            "sl_SI": "Kdaj so se navedena dejstva zgodila?",
             "sq": "Ku ndodhën gjërat?",
+            "sr_ME": "When did the facts happen?",
             "sr_ME@latin": "When did the facts happen?",
+            "sr_RS": "When did the facts happen?",
             "sr_RS@latin": "When did the facts happen?",
             "sv": "När inträffade dessa händelser?",
             "sw": "When did the facts happen?",
@@ -502,7 +510,7 @@
             "vi": "Sự cố xảy ra lúc nào?",
             "zh_CN": "事件发生的时间？",
             "zh_HK": "事發於何時?",
-            "zh_TW": "When did the facts happen?"
+            "zh_TW": "事發於何時?"
           },
           "description": {
             "en": ""
@@ -607,9 +615,11 @@
                 "ro": "Sunt victimă",
                 "ru": "Я жертва",
                 "sk": "I'm a victim",
-                "sl_SI": "I'm a victim",
+                "sl_SI": "Sem žrtev",
                 "sq": "Jam viktimë",
+                "sr_ME": "I'm a victim",
                 "sr_ME@latin": "I'm a victim",
+                "sr_RS": "I'm a victim",
                 "sr_RS@latin": "I'm a victim",
                 "sv": "Jag är ett offer",
                 "sw": "I'm a victim",
@@ -627,8 +637,8 @@
                 "uz": "Мен қурбонман",
                 "vi": "I'm a victim",
                 "zh_CN": "我是受害者",
-                "zh_HK": "I'm a victim",
-                "zh_TW": "I'm a victim"
+                "zh_HK": "我是受害者",
+                "zh_TW": "我是受害者"
               }
             },
             {
@@ -698,9 +708,11 @@
                 "ro": "Sunt implicat în fapte",
                 "ru": "Я вовлечен в события",
                 "sk": "I'm involved in the facts",
-                "sl_SI": "I'm involved in the facts",
+                "sl_SI": "Sem vpleten v dejstva",
                 "sq": "Jam i përzierë me gjërat",
+                "sr_ME": "I'm involved in the facts",
                 "sr_ME@latin": "I'm involved in the facts",
+                "sr_RS": "I'm involved in the facts",
                 "sr_RS@latin": "I'm involved in the facts",
                 "sv": "Jag är involverad i dessa händelser",
                 "sw": "I'm involved in the facts",
@@ -718,8 +730,8 @@
                 "uz": "Мен фактларга алоқадорман",
                 "vi": "I'm involved in the facts",
                 "zh_CN": "我涉及该事件",
-                "zh_HK": "I'm involved in the facts",
-                "zh_TW": "I'm involved in the facts"
+                "zh_HK": "我涉及该事件",
+                "zh_TW": "我涉及该事件"
               }
             },
             {
@@ -785,13 +797,15 @@
                 "pl": "Byłem(-am) osobiście świadkiem zdarzeń.",
                 "ps": "زه خپله د واقیعتونو شاهد یم",
                 "pt_BR": "Testemunhei pessoalmente os fatos",
-                "pt_PT": "Testemunhei pessoalmente os factos",
+                "pt_PT": "Eu testemunhei pessoalmente os factos",
                 "ro": "Sunt martor la fapte",
                 "ru": "Я был свидетелем событий лично",
                 "sk": "I witnessed the facts in person",
-                "sl_SI": "I witnessed the facts in person",
+                "sl_SI": "Osebno sem bil priča navedenim dejstvom",
                 "sq": "I pashë gjërat me sytë e mi",
+                "sr_ME": "I witnessed the facts in person",
                 "sr_ME@latin": "I witnessed the facts in person",
+                "sr_RS": "I witnessed the facts in person",
                 "sr_RS@latin": "I witnessed the facts in person",
                 "sv": "Jag bevittnade personligen händelserna",
                 "sw": "I witnessed the facts in person",
@@ -810,7 +824,7 @@
                 "vi": "Tôi chứng kiến tận mắt sự cố",
                 "zh_CN": "我亲眼目睹该事件",
                 "zh_HK": "我親自目擊事件經過。",
-                "zh_TW": "I witnessed the facts in person"
+                "zh_TW": "我親自目擊事件經過。"
               }
             },
             {
@@ -876,13 +890,15 @@
                 "pl": "Opowiedział(-a) mi o nich osobiście naoczny świadek.",
                 "ps": "ماته خپله د عیني شاهد له خوا ویل شوي دي",
                 "pt_BR": "Fui pessoalmente informado por uma testemunha direta",
-                "pt_PT": "Fui pessoalmente informado por uma testemunha direta",
+                "pt_PT": "Eu fui pessoalmente informado por uma testemunha direta",
                 "ro": "Am primit personal informația direct de la un martor",
                 "ru": "Мне лично рассказал непосредственный свидетель",
                 "sk": "I was personally told by a direct witness",
-                "sl_SI": "I was personally told by a direct witness",
+                "sl_SI": "Povedala mi je neposredna priča",
                 "sq": "M’i ka treguar një dëshmitar i drejtpërdrejtë",
+                "sr_ME": "I was personally told by a direct witness",
                 "sr_ME@latin": "I was personally told by a direct witness",
+                "sr_RS": "I was personally told by a direct witness",
                 "sr_RS@latin": "I was personally told by a direct witness",
                 "sv": "Jag fick personligen höra av ett direkt vittne",
                 "sw": "I was personally told by a direct witness",
@@ -901,7 +917,7 @@
                 "vi": "Tôi được một nhân chứng trực tiếp kể lại",
                 "zh_CN": "直接目击者亲自告知我",
                 "zh_HK": "我親自聽到目擊人士的描述。",
-                "zh_TW": "I was personally told by a direct witness"
+                "zh_TW": "我親自聽到目擊人士的描述。"
               }
             },
             {
@@ -971,9 +987,11 @@
                 "ro": "Am auzit despre fapte",
                 "ru": "Я слышал об этом",
                 "sk": "It is a rumor I heard",
-                "sl_SI": "It is a rumor I heard",
+                "sl_SI": "Gre za govorico, ki sem jo slišal",
                 "sq": "E kam me të dëgjuar",
+                "sr_ME": "It is a rumor I heard",
                 "sr_ME@latin": "It is a rumor I heard",
+                "sr_RS": "It is a rumor I heard",
                 "sr_RS@latin": "It is a rumor I heard",
                 "sv": "Det är ett rykte som jag har hört",
                 "sw": "It is a rumor I heard",
@@ -992,7 +1010,7 @@
                 "vi": "Tin đồn--Tôi nghe về việc này",
                 "zh_CN": "传闻：我听到的",
                 "zh_HK": "傳聞-我聽說得知。",
-                "zh_TW": "It is a rumor I heard"
+                "zh_TW": "傳聞-我聽說得知。"
               }
             }
           ],
@@ -1008,7 +1026,7 @@
             "bn": "রিপোর্ট করা ঘটনার সাথে আপনার সম্পর্ক কী?",
             "bo": "ཐོ་འགོད་བྱས་པའི་དོན་རྐྱེན་དེའི་ནང་ཁྱེད་ཀྱི་ཐེ་ཇུས་གང་ཡིན་ནམ།",
             "bs": "How are you involved in the reported facts?",
-            "ca": "Com estàs implicat en els fets denunciats?",
+            "ca": "Quin és el teu rol com a persona implicada en els fets denunciats?",
             "ca@valencia": "Com estàs implicat en els fets denunciats?",
             "ce": "Хьан хIун дакъа ду хиллачун юккъехь?",
             "crh": "Сиз хабер этильген фактларгъа насыл шекильде алякъадарсынъыз?",
@@ -1051,9 +1069,11 @@
             "ro": "Cum sunteți implicat în faptele raportate?",
             "ru": "Как вы причастны к сообщаемым событиям?",
             "sk": "How are you involved in the reported facts?",
-            "sl_SI": "How are you involved in the reported facts?",
+            "sl_SI": "Kako ste udeleženi v prijavljena dejstva?",
             "sq": "Si lidheni ju me gjërat e raportuara?",
+            "sr_ME": "How are you involved in the reported facts?",
             "sr_ME@latin": "How are you involved in the reported facts?",
+            "sr_RS": "How are you involved in the reported facts?",
             "sr_RS@latin": "How are you involved in the reported facts?",
             "sv": "Hur är du involverad i de rapporterade händelserna?",
             "sw": "How are you involved in the reported facts?",
@@ -1072,7 +1092,7 @@
             "vi": "Mối liên hệ của bạn với sự cố được báo cáo là gì?",
             "zh_CN": "所报告的事件与您有何关系？",
             "zh_HK": "你在所匯報的事件中有何參與?",
-            "zh_TW": "How are you involved in the reported facts?"
+            "zh_TW": "你在所匯報的事件中有何參與?"
           },
           "description": {
             "en": ""
@@ -1179,7 +1199,9 @@
                 "sk": "Áno",
                 "sl_SI": "Da",
                 "sq": "Po",
+                "sr_ME": "Da",
                 "sr_ME@latin": "Da",
+                "sr_RS": "Да",
                 "sr_RS@latin": "Da",
                 "sv": "Ja",
                 "sw": "Ndio",
@@ -1270,7 +1292,9 @@
                 "sk": "Nie",
                 "sl_SI": "Ne",
                 "sq": "Jo",
+                "sr_ME": "Ne",
                 "sr_ME@latin": "Ne",
+                "sr_RS": "Не",
                 "sr_RS@latin": "Ne",
                 "sv": "Nej",
                 "sw": "Hapana",
@@ -1344,13 +1368,15 @@
             "pl": "Czy ma Pan(i) dowody na poparcie zgłoszenia?",
             "ps": "تاسو د خپل راپور د ملاتړ لپاره شواهد لرئ؟",
             "pt_BR": "Tem provas para apoiar sua denúncia?",
-            "pt_PT": "Tem provas para apoiar sua submissão?",
+            "pt_PT": "Tem provas para apoiar a sua submissão?",
             "ro": "Dețineți probe care pentru raportarea dvs.?",
             "ru": "Есть ли у вас доказательства в поддержку вашего уведомления?",
             "sk": "Do you have evidence to support your report?",
-            "sl_SI": "Do you have evidence to support your report?",
+            "sl_SI": "Ali imate dokaze, s katerim lahko podkrepite vašo prijavo?",
             "sq": "Keni fakte për të mbështetur raportimin tuaj?",
+            "sr_ME": "Do you have evidence to support your report?",
             "sr_ME@latin": "Do you have evidence to support your report?",
+            "sr_RS": "Do you have evidence to support your report?",
             "sr_RS@latin": "Do you have evidence to support your report?",
             "sv": "Har du bevis som stärker din rapport?",
             "sw": "Do you have evidence to support your report?",
@@ -1369,7 +1395,7 @@
             "vi": "Bạn có bằng chứng để hỗ trợ báo cáo của mình không?",
             "zh_CN": "您是否可提供支持报告的证据？",
             "zh_HK": "你有否支持此匯報的佐證?",
-            "zh_TW": "Do you have evidence to support your report?"
+            "zh_TW": "你有否支持此匯報的佐證?"
           },
           "description": {
             "en": ""
@@ -1461,9 +1487,11 @@
             "ro": "Vă rugăm atașați probele care le aveți cu privire la raportarea dvs.",
             "ru": "Приложите доказательство в поддержку вашего уведомления.",
             "sk": "Please attach the evidence to support your report.",
-            "sl_SI": "Please attach the evidence to support your report.",
+            "sl_SI": "Prosim, pripnite evidence, s katerimi utemeljujete vašo prijavo.",
             "sq": "Ju lutemi, bashkëngjitni faktet për të mbështetur raportimin tua.",
+            "sr_ME": "Please attach the evidence to support your report.",
             "sr_ME@latin": "Please attach the evidence to support your report.",
+            "sr_RS": "Please attach the evidence to support your report.",
             "sr_RS@latin": "Please attach the evidence to support your report.",
             "sv": "Vänligen bifoga bevisen för att stärka din rapport.",
             "sw": "Please attach the evidence to support your report.",
@@ -1482,7 +1510,7 @@
             "vi": "Xin đính kèm bằng chứng để hỗ trợ báo cáo của mình.",
             "zh_CN": "请附加支持报告的证据？",
             "zh_HK": "請就你的匯報附上佐證。",
-            "zh_TW": "Please attach the evidence to support your report."
+            "zh_TW": "請就你的匯報附上佐證。"
           },
           "description": {
             "en": ""
@@ -1587,9 +1615,11 @@
             "ro": "Vă rugăm să descrieți probele în detaliu.",
             "ru": "Опишите доказательство в деталях.",
             "sk": "Please describe the evidence in detail.",
-            "sl_SI": "Please describe the evidence in detail.",
+            "sl_SI": "Prosim, podrobno opišite dokaze.",
             "sq": "Ju lutemi, përshkruajini hollësisht faktet.",
+            "sr_ME": "Please describe the evidence in detail.",
             "sr_ME@latin": "Please describe the evidence in detail.",
+            "sr_RS": "Please describe the evidence in detail.",
             "sr_RS@latin": "Please describe the evidence in detail.",
             "sv": "Vänligen beskriv bevisen i detalj.",
             "sw": "Please describe the evidence in detail.",
@@ -1608,7 +1638,7 @@
             "vi": "Xin mô tả chi tiết bằng chứng.",
             "zh_CN": "请详细描述证据。",
             "zh_HK": "請就佐證作詳細描述。",
-            "zh_TW": "Please describe the evidence in detail."
+            "zh_TW": "請就佐證作詳細描述。"
           },
           "description": {
             "en": "A thorough description of the submitted evidence enhances our ability to evaluate claims and investigate. Please take care to reference significant portions of any videos, images or documents submitted.",
@@ -1664,9 +1694,11 @@
             "ro": "O descriere amănunțită a probelor prezentate îmbunătățește capacitatea noastră de a evalua afirmațiile și de a investiga. Vă rugăm să aveți grijă să faceți referire la părțile relevante ale oricăror videoclipuri, imagini sau documente trimise.",
             "ru": "Тщательное описание представленного доказательства повышает нашу способность оценивать претензии и проводить расследования. Старайтесь ссылаться на значительную часть любых представленных видео, изображений или документов.",
             "sk": "A thorough description of the submitted evidence enhances our ability to evaluate claims and investigate. Please take care to reference significant portions of any videos, images or documents submitted.",
-            "sl_SI": "A thorough description of the submitted evidence enhances our ability to evaluate claims and investigate. Please take care to reference significant portions of any videos, images or documents submitted.",
+            "sl_SI": "Podroben opis predloženih dokazov poveča našo sposobnost ocenjevanja trditev in preiskave. Bodite pozorni, da se sklicujete na znatne dele vseh predloženih videoposnetkov, slik ali dokumentov.",
             "sq": "Një përshkrim i plotë i fakteve të parashtruara thellon aftësinë tonë për të vlerësuar pretendimet dhe për të hetuar. Ju lutemi, bëni kujdes të jepni referenca për pjesë domethënëse të çfarëdo videoje, figurash ose dokumentesh të parashtruar.",
+            "sr_ME": "A thorough description of the submitted evidence enhances our ability to evaluate claims and investigate. Please take care to reference significant portions of any videos, images or documents submitted.",
             "sr_ME@latin": "A thorough description of the submitted evidence enhances our ability to evaluate claims and investigate. Please take care to reference significant portions of any videos, images or documents submitted.",
+            "sr_RS": "A thorough description of the submitted evidence enhances our ability to evaluate claims and investigate. Please take care to reference significant portions of any videos, images or documents submitted.",
             "sr_RS@latin": "A thorough description of the submitted evidence enhances our ability to evaluate claims and investigate. Please take care to reference significant portions of any videos, images or documents submitted.",
             "sv": "En noggrann beskrivning av det inlämnade beviset hjälper oss att utvärdera påståenden och att undersöka. Vänligen var nog med att referera till betydande delar av videor, bilder eller dokument som skickas in.",
             "sw": "A thorough description of the submitted evidence enhances our ability to evaluate claims and investigate. Please take care to reference significant portions of any videos, images or documents submitted.",
@@ -1684,8 +1716,8 @@
             "uz": "Тақдим этилган далилларни тўлиқ тасвирлаб берсангиз, бу бизнинг даъволарни баҳолаш ва суриштирув ўтказиш қобилиятимизни оширади. Илтимос, тақдим этилган ҳар қандай видео, расм ёки ҳужжатларнинг муҳим қисмларини айтиб ўтинг.",
             "vi": "A thorough description of the submitted evidence enhances our ability to evaluate claims and investigate. Please take care to reference significant portions of any videos, images or documents submitted.",
             "zh_CN": "对已提交证据进行详尽的说明，可提升我们对声明进行评估与调查的能力。对于作为证据提交的任何视频、图像或文档，请仔细描述其中关键的部分。",
-            "zh_HK": "A thorough description of the submitted evidence enhances our ability to evaluate claims and investigate. Please take care to reference significant portions of any videos, images or documents submitted.",
-            "zh_TW": "A thorough description of the submitted evidence enhances our ability to evaluate claims and investigate. Please take care to reference significant portions of any videos, images or documents submitted."
+            "zh_HK": "对已提交证据进行详尽的说明，可提升我们对声明进行评估与调查的能力。对于作为证据提交的任何视频、图像或文档，请仔细描述其中关键的部分。",
+            "zh_TW": "对已提交证据进行详尽的说明，可提升我们对声明进行评估与调查的能力。对于作为证据提交的任何视频、图像或文档，请仔细描述其中关键的部分。"
           },
           "hint": {
             "en": ""
@@ -1789,7 +1821,9 @@
                 "sk": "Áno",
                 "sl_SI": "Da",
                 "sq": "Po",
+                "sr_ME": "Da",
                 "sr_ME@latin": "Da",
+                "sr_RS": "Да",
                 "sr_RS@latin": "Da",
                 "sv": "Ja",
                 "sw": "Ndio",
@@ -1880,7 +1914,9 @@
                 "sk": "Nie",
                 "sl_SI": "Ne",
                 "sq": "Jo",
+                "sr_ME": "Ne",
                 "sr_ME@latin": "Ne",
+                "sr_RS": "Не",
                 "sr_RS@latin": "Ne",
                 "sv": "Nej",
                 "sw": "Hapana",
@@ -1958,9 +1994,11 @@
             "ro": "Ați raportat faptele și către alte organizații și/sau persoane?",
             "ru": "Сообщали ли вы о событиях в другие организации и/или другим лицам?",
             "sk": "Have you reported the facts to other organizations and/or individuals?",
-            "sl_SI": "Have you reported the facts to other organizations and/or individuals?",
+            "sl_SI": "Ste s temi dejstvi seznanili tudi druge organizacije in/ali posameznike?",
             "sq": "A i keni raportuar gjërat te të tjera ente dhe/ose individë?",
+            "sr_ME": "Have you reported the facts to other organizations and/or individuals?",
             "sr_ME@latin": "Have you reported the facts to other organizations and/or individuals?",
+            "sr_RS": "Have you reported the facts to other organizations and/or individuals?",
             "sr_RS@latin": "Have you reported the facts to other organizations and/or individuals?",
             "sv": "Har du rapporterat händelserna till andra organisationer och/eller individer?",
             "sw": "Have you reported the facts to other organizations and/or individuals?",
@@ -1979,7 +2017,7 @@
             "vi": "Bạn có đã báo cáo sự cố này cho các tổ chức khác không?",
             "zh_CN": "您是否已向其他机构报告该事件？",
             "zh_HK": "你曾否向其他機構匯報這事件?",
-            "zh_TW": "Have you reported the facts to other organizations and/or individuals?"
+            "zh_TW": "你曾否向其他機構匯報這事件?"
           },
           "description": {
             "en": ""
@@ -2084,9 +2122,11 @@
             "ro": "Vă rugăm să enumerați organizațiile și/sau persoanele pe care le-ați informat despre aceste fapte.",
             "ru": "Перечислите организации и/или лица, которым вы сообщили об этих событиях.",
             "sk": "Please list the organizations and/or individuals you have informed about these facts.",
-            "sl_SI": "Please list the organizations and/or individuals you have informed about these facts.",
+            "sl_SI": "Navedite organizacije in/ali posameznike, ki ste jih seznanili s temi dejstvi.",
             "sq": "Ju lutemi, radhitni entet dhe/ose individët që keni informuar mbi këto gjëra.",
+            "sr_ME": "Please list the organizations and/or individuals you have informed about these facts.",
             "sr_ME@latin": "Please list the organizations and/or individuals you have informed about these facts.",
+            "sr_RS": "Please list the organizations and/or individuals you have informed about these facts.",
             "sr_RS@latin": "Please list the organizations and/or individuals you have informed about these facts.",
             "sv": "Vänligen lista upp organisationerna och/eller personerna som du har informerat om händelserna till.",
             "sw": "Please list the organizations and/or individuals you have informed about these facts.",
@@ -2105,7 +2145,7 @@
             "vi": "Xin liệt kê những tổ chức bạn đã thông báo về sự cố này.",
             "zh_CN": "请列出已收到该事件通知的机构？",
             "zh_HK": "請列出你曾匯報此事件的機構。",
-            "zh_TW": "Please list the organizations and/or individuals you have informed about these facts."
+            "zh_TW": "請列出你曾匯報此事件的機構。"
           },
           "description": {
             "en": ""
@@ -2210,9 +2250,11 @@
             "ro": "Aceste organizații au investigat afirmațiile dvs.? Dacă da, care a fost rezultatul?",
             "ru": "Расследовали ли эти организации ваши претензии? Если да, каков результат?",
             "sk": "Have these organizations investigated your claims? If so, what was the outcome?",
-            "sl_SI": "Have these organizations investigated your claims? If so, what was the outcome?",
+            "sl_SI": "Ali so te organizacije preiskovale vaše navedbe? Če da, kakšen je bil izid?",
             "sq": "A i kanë hetuar pretendimet tuaja këto ente? Nëse po, ç’doli prej kësaj?",
+            "sr_ME": "Have these organizations investigated your claims? If so, what was the outcome?",
             "sr_ME@latin": "Have these organizations investigated your claims? If so, what was the outcome?",
+            "sr_RS": "Have these organizations investigated your claims? If so, what was the outcome?",
             "sr_RS@latin": "Have these organizations investigated your claims? If so, what was the outcome?",
             "sv": "Har dessa organisationer undersökt dina påståenden? Om så, vad var resultatet?",
             "sw": "Have these organizations investigated your claims? If so, what was the outcome?",
@@ -2231,7 +2273,7 @@
             "vi": "Những tổ chức này có điều tra lời khai của bạn không? Nếu có, kết quả là gì?",
             "zh_CN": "这些机构是否已对您的声明进行调查？如果是，结果如何？",
             "zh_HK": "這些機構有否就你的匯報進行調查？如有，其結果如何？",
-            "zh_TW": "Have these organizations investigated your claims? If so, what was the outcome?"
+            "zh_TW": "這些機構有否就你的匯報進行調查？如有，其結果如何？"
           },
           "description": {
             "en": ""
@@ -2330,9 +2372,11 @@
             "ro": "Care este rezultatul pe care doriți să-l obțineți cu sprijinul nostru?",
             "ru": "Какого результата вы хотите добиться с нашей поддержкой?",
             "sk": "What is the outcome you want to achieve with our support?",
-            "sl_SI": "What is the outcome you want to achieve with our support?",
+            "sl_SI": "Kaj želite doseči z našo podporo?",
             "sq": "Cili është përfundimi që doni të arrini me mbështetjen tonë?",
+            "sr_ME": "What is the outcome you want to achieve with our support?",
             "sr_ME@latin": "What is the outcome you want to achieve with our support?",
+            "sr_RS": "What is the outcome you want to achieve with our support?",
             "sr_RS@latin": "What is the outcome you want to achieve with our support?",
             "sv": "Vad är resultatet du vill uppnå med vår support?",
             "sw": "What is the outcome you want to achieve with our support?",
@@ -2351,7 +2395,7 @@
             "vi": "Kết quả mà bạn muốn thấy/đạt được là gì?",
             "zh_CN": "您想要看到或得到什么样的结果？",
             "zh_HK": "你期望可實現/達致甚麼結果?",
-            "zh_TW": "What is the outcome you want to achieve with our support?"
+            "zh_TW": "你期望可實現/達致甚麼結果?"
           },
           "description": {
             "en": ""

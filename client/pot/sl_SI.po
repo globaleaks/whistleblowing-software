@@ -340,7 +340,7 @@ msgid "Reports"
 msgstr "Prijave"
 
 msgid "Report"
-msgstr ""
+msgstr "Prijava"
 
 msgid "Users"
 msgstr "Uporabniki"
@@ -391,7 +391,7 @@ msgid "Select"
 msgstr "Izberi"
 
 msgid "Deselect"
-msgstr ""
+msgstr "Odznači"
 
 msgid "Surname"
 msgstr "Priimek"
@@ -456,19 +456,19 @@ msgid "Mark as important"
 msgstr "Označi kot pomembno"
 
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Kopiraj v odložišče"
 
 msgid "Logout"
 msgstr "Odjavi"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
+msgstr "Daj prejemniku možnost da uporabniku dovoli dostop do prijav"
 
 msgid "Grant access"
-msgstr ""
+msgstr "Omogoči dostop"
 
 msgid "Revoke access"
-msgstr ""
+msgstr "Prekliči dostop"
 
 msgid "File a report"
 msgstr "Oddaj prijavo"
@@ -654,7 +654,7 @@ msgid "Whistleblowing button"
 msgstr "Žvižgaški gumb"
 
 msgid "Disclaimer"
-msgstr ""
+msgstr "Obvestilo"
 
 msgid "Footer"
 msgstr "Noga"
@@ -868,7 +868,7 @@ msgstr "To"
 msgid ""
 "Default mail configuration in use. Please consider using a private mail "
 "server."
-msgstr ""
+msgstr "Privzeta konfiguracija pošte v uporabi. Razmislite o uporabi zasebnega poštnega strežnika."
 
 msgid "SMTP email address"
 msgstr "SMTP naslov"
@@ -1144,7 +1144,7 @@ msgid "Text shown after the user has selected the option."
 msgstr "Besedilo se prikaže, ko uporabnik izbere možnost. "
 
 msgid "Confirm"
-msgstr "Potrdi razširitev"
+msgstr "Potrdi "
 
 msgid "Assign score points"
 msgstr "Dodelite ocenjevalne točke"
@@ -1176,7 +1176,7 @@ msgid "Enter a name for the copy"
 msgstr "Vnesite ime za kopijo"
 
 msgid "Request support"
-msgstr ""
+msgstr "Zaprosi za podporo"
 
 msgid "Thank you."
 msgstr "Hvala."
@@ -1380,7 +1380,7 @@ msgstr "Zahteva za ponastavitev gesla oddana."
 
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
-msgstr ""
+msgstr "Vnesite svoj ključ za obnovitev računa za zaključek postopka za ponastavitev gesla"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -1415,7 +1415,7 @@ msgid "Sign up"
 msgstr "Sign up"
 
 msgid "Site"
-msgstr "Mesta"
+msgstr "Spletno mesto "
 
 msgid "Confirmation"
 msgstr "Potrditev"
@@ -1531,59 +1531,59 @@ msgid "Describe your report in detail."
 msgstr "Podrobno opišite vaš prispevek"
 
 msgid "Where did the facts happen?"
-msgstr ""
+msgstr "Kje so se navedena dejstva zgodila?"
 
 msgid "When did the facts happen?"
-msgstr ""
+msgstr "Kdaj so se navedena dejstva zgodila?"
 
 msgid "I'm a victim"
-msgstr ""
+msgstr "Sem žrtev"
 
 msgid "I'm involved in the facts"
-msgstr ""
+msgstr "Sem vpleten v dejstva"
 
 msgid "I witnessed the facts in person"
-msgstr ""
+msgstr "Osebno sem bil priča navedenim dejstvom"
 
 msgid "I was personally told by a direct witness"
-msgstr ""
+msgstr "Povedala mi je neposredna priča "
 
 msgid "It is a rumor I heard"
-msgstr ""
+msgstr "Gre za govorico, ki sem jo slišal"
 
 msgid "How are you involved in the reported facts?"
-msgstr ""
+msgstr "Kako ste udeleženi v prijavljena dejstva?"
 
 msgid "Do you have evidence to support your report?"
-msgstr ""
+msgstr "Ali imate dokaze, s katerim lahko podkrepite vašo prijavo?"
 
 msgid "Please attach the evidence to support your report."
-msgstr ""
+msgstr "Prosim, pripnite evidence, s katerimi utemeljujete vašo prijavo. "
 
 msgid "Please describe the evidence in detail."
-msgstr ""
+msgstr "Prosim, podrobno opišite dokaze."
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr ""
+msgstr "Podroben opis predloženih dokazov poveča našo sposobnost ocenjevanja trditev in preiskave. Bodite pozorni, da se sklicujete na znatne dele vseh predloženih videoposnetkov, slik ali dokumentov."
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
+msgstr "Ste s temi dejstvi seznanili tudi druge organizacije in/ali posameznike?"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr ""
+msgstr "Navedite organizacije in/ali posameznike, ki ste jih seznanili s temi dejstvi."
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr ""
+msgstr "Ali so te organizacije preiskovale vaše navedbe? Če da, kakšen je bil izid?"
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr ""
+msgstr "Kaj želite doseči z našo podporo?"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Ali želite navesti podatke o vaši identiteti?"
@@ -1595,10 +1595,10 @@ msgid "Last name"
 msgstr "Priimek"
 
 msgid "Alternative contact method"
-msgstr ""
+msgstr "Drug način stika"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr ""
+msgstr "Želim biti v stiku le po tej platformi"
 
 msgid "Other"
 msgstr "Other"
@@ -1887,7 +1887,7 @@ msgstr "Za navodila o posodobitvah programske opreme glejte dokumentacijo na: {U
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "To je e-pošta za obvestilo, da vam je prejemnik odobril dostop do enega ali več prijav. "
 
 msgid "New report"
 msgstr "Nova prijava"

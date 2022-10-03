@@ -778,7 +778,7 @@ msgid "City"
 msgstr "Linn"
 
 msgid "Country"
-msgstr ""
+msgstr "Maa"
 
 msgid "Country code"
 msgstr "Riigikood"

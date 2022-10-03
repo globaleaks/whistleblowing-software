@@ -15,6 +15,7 @@
 # Joan Montané, 2020
 # Joan Montané, 2020
 # Joan Redon, 2022
+# José Luis Ramirez, 2022
 # Josep Anton Rius <j.rius.cat@gmail.com>, 2016
 # Maddish Falzoni <maddish@xnet-x.net>, 2016
 # Nick Skelsey, 2016
@@ -24,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Joan Redon, 2022\n"
+"Last-Translator: José Luis Ramirez, 2022\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -108,7 +109,7 @@ msgid "Details"
 msgstr "Detalls"
 
 msgid "Platform wizard"
-msgstr "Assistent de la plataforma informàtica"
+msgstr "Persona assistent de la plataforma informàtica"
 
 msgid "CREDIT CARD"
 msgstr "TARGETA DE CRÈDIT"
@@ -138,10 +139,10 @@ msgid "Preview"
 msgstr "Vista prèvia"
 
 msgid "The whistleblower has already read the last update"
-msgstr "L'informador ja ha llegit la darrera actualització"
+msgstr "La persona informadora ja ha llegit la darrera actualització"
 
 msgid "The whistleblower has not read the last update yet"
-msgstr "L'informador encara no ha llegit la darrera actualització"
+msgstr "La persona informadora encara no ha llegit la darrera actualització"
 
 msgid "Move up"
 msgstr "Puja"
@@ -207,7 +208,7 @@ msgid "Change your password"
 msgstr "Canvia la contrasenya"
 
 msgid "User"
-msgstr "Usuari"
+msgstr "Persona usuària"
 
 msgid "Motivation"
 msgstr "Motivació"
@@ -225,7 +226,7 @@ msgid "Request status"
 msgstr "Demana l'estat"
 
 msgid "Custodian"
-msgstr "Guardià"
+msgstr "Persona guardiana"
 
 msgid "Identity"
 msgstr "Identitat"
@@ -234,7 +235,7 @@ msgid "Access requested"
 msgstr "Accés demanat"
 
 msgid "Request access to the whistleblower's identity"
-msgstr "Demana l'accés a la identitat de l'informador"
+msgstr "Demana l'accés a la identitat de la persona informadora"
 
 msgid "Please write a motivation"
 msgstr "Si us plau, escriu una motivació"
@@ -261,7 +262,7 @@ msgid "Deny"
 msgstr "Denegar"
 
 msgid "Deny access to the whistleblower's identity"
-msgstr "Denega l'accés a la identitat de l'informador"
+msgstr "Denega l'accés a la identitat de la persona informadora"
 
 msgid "Authorize access to the whistleblower's identity"
 msgstr "Autoritza l'accés a la identitat de l'informador"
@@ -282,13 +283,13 @@ msgid "Last update"
 msgstr "Última actualització"
 
 msgid "Disable notifications to administrators"
-msgstr "Desactiva les notificacions als administradors"
+msgstr "Desactiva les notificacions a les persones administradores"
 
 msgid "Disable notifications to custodians"
-msgstr "Desactiva les notificacions als guardians"
+msgstr "Desactiva les notificacions a les persones guardianes"
 
 msgid "Disable notifications to recipients"
-msgstr "Desactiva les notificacions als destinataris"
+msgstr "Desactiva les notificacions a les persones destinatàries"
 
 msgid "Score"
 msgstr "Puntuació"
@@ -356,7 +357,7 @@ msgid "Report"
 msgstr "Informe"
 
 msgid "Users"
-msgstr "Usuaris"
+msgstr "Persones usuàries"
 
 msgid "From"
 msgstr "De"
@@ -457,7 +458,7 @@ msgid ""
 msgstr "Un o més destinataris encara no han realitzat el primer accés. Això vol dir que no rebran informes."
 
 msgid "This user has not performed the first login yet."
-msgstr "Aquest usuari encara no ha realitzat el primer accés."
+msgstr "Aquest persona usuària encara no ha realitzat el primer accés."
 
 msgid "seconds"
 msgstr "segons"
@@ -475,7 +476,7 @@ msgid "Logout"
 msgstr "Tanca sessió"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr "Doneu a aquest destinatari la possibilitat de concedir accés als usuaris als informes"
+msgstr "Doneu a aquesta persona destinatària la possibilitat de concedir accés a les persones usuàries als informes"
 
 msgid "Grant access"
 msgstr "Concedir accés"
@@ -508,7 +509,7 @@ msgid "Enable administrators to change user passwords"
 msgstr "Habiliteu als administradors per canviar les contrasenyes d’usuari"
 
 msgid "Administrators authorized to change user passwords:"
-msgstr "Administradors autoritzats a canviar les contrasenyes dels usuaris:"
+msgstr "Persones administradores autoritzats a canviar les contrasenyes de les persones usuàries:"
 
 msgid "Enable multisite feature"
 msgstr "Activa la funció multi lloc"
@@ -557,7 +558,7 @@ msgid "Custom privacy panel"
 msgstr "Tauler de privacitat del client"
 
 msgid "Enable custodian user role"
-msgstr "Activa el rol d'usuari de guardià"
+msgstr "Activa el rol de persona usuària guardiana"
 
 msgid "Enable scoring system"
 msgstr "Activa el sistema de puntuació"
@@ -607,7 +608,7 @@ msgid "ID"
 msgstr "Id."
 
 msgid "Username"
-msgstr "Nom d'usuari"
+msgstr "Nom de persona usuària"
 
 msgid "Role"
 msgstr "Rol"
@@ -664,7 +665,7 @@ msgid "Question to solicit possible whistleblowers"
 msgstr "Pregunta per sol·licitar possibles informadors"
 
 msgid "Whistleblowing button"
-msgstr "Botó de l'informador"
+msgstr "Text del botó per a remetre informació"
 
 msgid "Disclaimer"
 msgstr "Exempció de responsabilitat"
@@ -706,7 +707,7 @@ msgid "Questionnaire"
 msgstr "Qüestionari"
 
 msgid "Recipients"
-msgstr "Destinataris"
+msgstr "Persones destinatàries"
 
 msgid "days"
 msgstr "dies"
@@ -772,10 +773,10 @@ msgid "Allowed IP addresses"
 msgstr "Adreces IP autoritzades"
 
 msgid "Admin"
-msgstr "Administrador"
+msgstr "Persona administradora"
 
 msgid "Recipient"
-msgstr "Destinatari"
+msgstr "Persona destinatària"
 
 msgid "Each entry must be separated with a comma."
 msgstr "Cada entrada ha d'estar separada amb una coma."
@@ -817,7 +818,7 @@ msgid "Valid until:"
 msgstr "Vàlid fins:"
 
 msgid "Issuer:"
-msgstr "Emissor:"
+msgstr "Persona emissora:"
 
 msgid "Intermediate Certificates"
 msgstr "Certificats intermedis"
@@ -873,7 +874,7 @@ msgid "Roles enabled to use the platform without Tor"
 msgstr "Rols habilitats per utilitzar la plataforma sense Tor"
 
 msgid "Whistleblower"
-msgstr "Informador"
+msgstr "Persona informadora"
 
 msgid "To"
 msgstr "A"
@@ -881,7 +882,7 @@ msgstr "A"
 msgid ""
 "Default mail configuration in use. Please consider using a private mail "
 "server."
-msgstr ""
+msgstr "Configuració de correu per defecte en ús. Penseu en utilitzar un servidor de correu privat."
 
 msgid "SMTP email address"
 msgstr "Adreça electrònica SMTP"
@@ -1103,7 +1104,7 @@ msgid "Set up encryption by providing a PGP public key"
 msgstr "Estableix l'encriptació oferint una clau pública PGP"
 
 msgid "Give this admin ability to change user passwords"
-msgstr "Dóna-li a aquest administrador la possibilitat de canviar les contrasenyes d’usuari"
+msgstr "Dóna-li a aquesta persona administradora la possibilitat de canviar les contrasenyes de la persona usuària"
 
 msgid "Forcefully selected"
 msgstr "Obligatòriament seleccionats"
@@ -1115,7 +1116,7 @@ msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Permet al destinatari ajornar la data d'expiració de l'informe"
 
 msgid "Give the user administrative access to the following features:"
-msgstr "Doneu a l'usuari accés administratiu a les funcions següents:"
+msgstr "Doneu a la persona usuària accés administratiu a les funcions següents:"
 
 msgid "Request date"
 msgstr "Data de sol·licitud"
@@ -1198,7 +1199,7 @@ msgid "We will try to get back to you as soon as possible."
 msgstr "Intentarem donar resposta més aviat possible."
 
 msgid "Submit"
-msgstr "Entrega"
+msgstr "Remet"
 
 msgid "The connection is not secure."
 msgstr "La connexió no és segura"
@@ -1307,7 +1308,7 @@ msgid "Estimated upload time:"
 msgstr "Temps estimat de càrrega:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr "Els destinataris han demanat que ompli un qüestionari addicional."
+msgstr "Les persones destinatàries han demanat que ompli un qüestionari addicional."
 
 msgid "Fill the additional questionnaire"
 msgstr "Ompliu el qüestionari addicional"
@@ -1337,7 +1338,7 @@ msgid "Status:"
 msgstr "Estat"
 
 msgid "Files attached by recipients"
-msgstr "Fitxers adjuntats per part dels destinataris"
+msgstr "Fitxers adjuntats per part de les persones destinatàries"
 
 msgid "Upload a file:"
 msgstr "Pujar un fitxer:"
@@ -1397,7 +1398,7 @@ msgstr "Introduïu la clau de recuperació del compte per completar el procedime
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
-msgstr "El guardià ha demanat l'accés a la identitat de l'informador."
+msgstr "La persona guardiana ha demanat l'accés a la identitat de l'informador."
 
 msgid "Date of the request"
 msgstr "Data de la petició"
@@ -1483,7 +1484,7 @@ msgid "Select the recipients of your report:"
 msgstr "Seleccioneu els destinataris de l'informe:"
 
 msgid "Recipients selected:"
-msgstr "Destinataris seleccionats:"
+msgstr "Persones destinatàries seleccionades:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Has arribat al límit de nombre màxim de destinataris permesos."
@@ -1491,7 +1492,7 @@ msgstr "Has arribat al límit de nombre màxim de destinataris permesos."
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr "Els destinataris següents rebran el vostre informe obligatòriament:"
+msgstr "Les persones destinatàries següents rebran el vostre informe obligatòriament:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1519,7 +1520,7 @@ msgid "Please choose a configuration profile:"
 msgstr "Seleccioneu un perfil de configuració:"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr "Feu possible que aquest administrador restableixi les contrasenyes dels usuaris."
+msgstr "Feu possible que aquesta persona administradora restableixi les contrasenyes de les persones usuàries."
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
@@ -1565,7 +1566,7 @@ msgid "It is a rumor I heard"
 msgstr "És un rumor que vaig sentir"
 
 msgid "How are you involved in the reported facts?"
-msgstr "Com estàs implicat en els fets denunciats?"
+msgstr "Quin és el teu rol com a persona implicada en els fets denunciats?"
 
 msgid "Do you have evidence to support your report?"
 msgstr "Tens proves que avalen el teu informe?"
@@ -1622,7 +1623,7 @@ msgstr "Benvolgut/uda {RecipientName},"
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr "Esteu rebent aquest correu electrònic perquè se us ha creat un compte d'usuari al sistema: {Site}"
+msgstr "Esteu rebent aquest correu electrònic perquè se us ha creat un compte de persona usuària al sistema: {Site}"
 
 msgid "Username: {Username}"
 msgstr "Nom d'usuari: {Username}"
@@ -1633,7 +1634,7 @@ msgstr "Enllaç d'activació: {Url}"
 msgid ""
 "Please click on the activation link to proceed with the account activation "
 "and to set your user password."
-msgstr "Feu clic a l'enllaç d'activació per continuar amb l'activació del compte i per definir la vostra contrasenya d'usuari."
+msgstr "Feu clic a l'enllaç d'activació per continuar al procés d'activació del compte de persona usuària i per definir la vostra contrasenya."
 
 msgid ""
 "After successful activation you will be able to access the system via the "
@@ -1653,7 +1654,7 @@ msgid "To log in, visit:"
 msgstr "Per iniciar la sessió, visiteu:"
 
 msgid "Users' credentials:"
-msgstr "Credencials dels usuaris:"
+msgstr "Credencials de les persones usuàries:"
 
 msgid "The platform will be automatically deleted on:"
 msgstr "La plataforma s'eliminarà automàticament el:"
@@ -1766,7 +1767,7 @@ msgid "Date: {EventTime}"
 msgstr "Data: {EventTime}"
 
 msgid "From: Whistleblower"
-msgstr "De: Informador"
+msgstr "De: Persona informadora"
 
 msgid "Date: {SubmissionDate}"
 msgstr "Data: {SubmissionDate}"
@@ -1809,26 +1810,26 @@ msgstr "No s'ha pogut renovar el certificat HTTPS"
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr "Amb aquest missatge de correu electrònic et volem notificar que el guardià us ha autoritzat a accedir a la identitat de l'informador de l'informe {TipNum}."
+msgstr "Amb aquest missatge de correu electrònic et volem notificar que la persona guardiana us ha autoritzat a accedir a la identitat de la persona informadora de l'informe {TipNum}."
 
 msgid "The report can be accessed at:"
 msgstr "Podeu accedir a l'informe a:"
 
 msgid "Access to whistleblower's identity authorized"
-msgstr "Accés autoritzat a la identitat de l'informador"
+msgstr "Accés autoritzat a la identitat de la persona informadora"
 
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr "Amb aquest missatge de correu electrònic et volem notificar que el guardià t'ha denegat l'accés a la identitat de l'informador de l'informe {TipNum}."
+msgstr "Amb aquest missatge de correu electrònic et volem notificar que la persona guardiana t'ha denegat l'accés a la identitat de la persona informadora de l'informe {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
-msgstr "Accés denegat a la identitat de l'informador"
+msgstr "Accés denegat a la identitat de la persona informadora"
 
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr "Amb aquest missatge de correu electrònic et volem notificar que el destinatari ha demanat accedir a la identitat de l'informador de l'informe {TipNum}."
+msgstr "Amb aquest missatge de correu electrònic et volem notificar que la persona destinatària ha demanat accedir a la identitat de la persona informadora de la comunicació o alerta {TipNum}."
 
 msgid "The request can be accessed at:"
 msgstr "Pots accedir a la petició a:"
@@ -1839,10 +1840,10 @@ msgstr "Nova petició d'accés a la identitat de l'informador"
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr "Amb aquest missatge de correu electrònic et volem notificar que l'informador de l'informe {TipNum} ha introduït la seva identitat."
+msgstr "Amb aquest missatge de correu electrònic et volem notificar que la persona informadora de l'informe {TipNum} ha introduït la seva identitat."
 
 msgid "The whistleblower has provided their identity"
-msgstr "L'informador ha introduït la seva identitat"
+msgstr "La persona informadora ha introduït la seva identitat"
 
 msgid ""
 "You're receiving this email because a password reset has been requested for "
@@ -1900,7 +1901,7 @@ msgstr "Per obtenir instruccions sobre actualitzacions de programari, consulteu 
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr "Aquest és un correu electrònic per notificar-vos que un destinatari us ha concedit accés a un o més informes."
+msgstr "Aquest és un correu electrònic per notificar-vos que una persona destinatària us ha concedit accés a un o més informes."
 
 msgid "New report"
 msgstr "Nou informe"

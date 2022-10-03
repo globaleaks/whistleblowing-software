@@ -877,7 +877,7 @@ msgstr "A"
 msgid ""
 "Default mail configuration in use. Please consider using a private mail "
 "server."
-msgstr ""
+msgstr "Configuració de correu per defecte en ús. Penseu en utilitzar un servidor de correu privat."
 
 msgid "SMTP email address"
 msgstr "Adreça electrònica SMTP"
@@ -1424,7 +1424,7 @@ msgid "Sign up"
 msgstr "Registrar‐se"
 
 msgid "Site"
-msgstr ""
+msgstr "Lloc"
 
 msgid "Confirmation"
 msgstr "Confirmació"

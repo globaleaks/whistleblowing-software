@@ -70,7 +70,7 @@ localisation:
     - bs
     - ca
     - ce
-    - chr
+    - crh
     - cs
     - da
     - de
@@ -111,8 +111,10 @@ localisation:
     - sk
     - sl_SI
     - sq
-    - sr-Latn-RS
+    - sr-ME
+    - sr-RS
     - sr-Latn-ME
+    - sr-Latn-RS
     - sv
     - sw
     - ta
@@ -120,6 +122,7 @@ localisation:
     - th
     - tk
     - tr
+    - tt
     - ug
     - uk
     - ur

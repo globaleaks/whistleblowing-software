@@ -1,6 +1,6 @@
 # 
 # Translators:
-# Daša Matúšová, 2016-2017
+# Daša Matúšová, 2016-2017,2022
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2018-2022
 # Jakub Srna <jaksrn@gmail.com>, 2013-2014
 # Jakub Srna <jaksrn@gmail.com>, 2014
@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2018-2022\n"
+"Last-Translator: Daša Matúšová, 2016-2017,2022\n"
 "Language-Team: Slovak (http://www.transifex.com/otf/globaleaks/language/sk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -345,7 +345,7 @@ msgid "Reports"
 msgstr "Podania"
 
 msgid "Report"
-msgstr "Podanie"
+msgstr "Nahlásiť"
 
 msgid "Users"
 msgstr "Používatelia"
@@ -951,7 +951,7 @@ msgid "Hint"
 msgstr "Nápoveda"
 
 msgid "Mandatory"
-msgstr "Požadované"
+msgstr "Povinné"
 
 msgid "Accept multiple file uploads"
 msgstr "Akceptovať príjem viacero nahrávok súborov "
@@ -1269,7 +1269,7 @@ msgstr "Varovanie"
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr "Dôrazne odporúčame k návšteve týchto stránok použiť desktopovú aplikáciu s názvom Tor Browser, ktorá chráni vašu identitu."
+msgstr "Dôrazne odporúčame k návšteve týchto stránok použiť aplikáciu s názvom Tor Browser, ktorá chráni vašu identitu."
 
 msgid "Download the Tor Browser"
 msgstr "Stiahnúť prehliadač Tor Browser"
@@ -1385,7 +1385,7 @@ msgstr "Vyžaduje sa obnovenie hesla."
 
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
-msgstr "Zadajte kľúč pre obnovenie šifrovanie a dokončite postup pre resetovanie hesla"
+msgstr "Zadajte kľúč pre obnovenie účtu a dokončite postup pre resetovania hesla"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
