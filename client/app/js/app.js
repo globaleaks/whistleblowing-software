@@ -717,7 +717,11 @@ var GL = angular.module("GL", [
 
     $rootScope.$on("IdleTimeout", function() {
       if ($rootScope.Authentication.session) {
-        return $rootScope.Authentication.loginRedirect(false);
+	if ($rootScope.session.role === "whistleblower") {
+          $window.location = "about:blank";
+        } else {
+          return $rootScope.Authentication.loginRedirect(false);
+        }
       }
     });
 
