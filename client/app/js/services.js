@@ -21,20 +21,22 @@ factory("Authentication",
       self.requireAuthCode = false;
       self.loginData = {};
 
+      var session = $window.sessionStorage.getItem("session");
+
+      if (typeof session === 'string') {
+        self.session = JSON.parse(session);
+      }
+
       self.set_session = function(response) {
-        var session = response.data;
+        self.session = response.data;
 
-        if (session.role !== "whistleblower") {
-          var role = session.role === "receiver" ? "recipient" : session.role;
+        if (self.session.role !== "whistleblower") {
+          var role = self.session.role === "receiver" ? "recipient" : self.session.role;
 
-          session.homepage = "/" + role + "/home";
-          session.preferencespage = "/" + role + "/preferences";
-        }
+          self.session.homepage = "/" + role + "/home";
+          self.session.preferencespage = "/" + role + "/preferences";
 
-        if (!self.session) {
-          self.session = session;
-        } else {
-          self.session.id = session.id;
+          $window.sessionStorage.setItem("session",  JSON.stringify(self.session));
         }
       };
 
@@ -105,9 +107,8 @@ factory("Authentication",
       };
 
       self.deleteSession = function() {
-        if (self.session) {
-          self.session = undefined;
-        }
+        self.session = undefined;
+        $window.sessionStorage.removeItem("session");
       };
 
       self.logout = function() {
