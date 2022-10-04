@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+import random
+import time
+
 from datetime import datetime, timedelta
 
 from twisted.internet.defer import inlineCallbacks
@@ -58,6 +61,13 @@ class CertificateCheck(DailyJob):
 
     @inlineCallbacks
     def operation(self):
+        # Randomize the execution of certificates checks and renewals
+        # https://letsencrypt.org/docs/faq/#why-should-my-let-s-encrypt-acme-client-run-at-a-random-time
+        yield deferred_sleep(random.randint(1, 3) * 3600 + random.randint(900, 2700))
+
+        # Update start time in relation to delayed daily random start
+        self.start_time = int(time.time() * 1000)
+
         now = datetime.now()
 
         for tid in self.state.tenants.keys():
@@ -78,10 +88,10 @@ class CertificateCheck(DailyJob):
                         not self.state.tenants[tid].cache.notification.disable_admin_notification_emails:
                         yield self.certificate_mail_creation('https_certificate_renewal_failure', tid, expiration_date)
 
-                yield deferred_sleep(1)
-
             # Regular certificates expiration checks
             elif now > expiration_date - timedelta(self.notify_expr_within):
                 log.info('The HTTPS Certificate is expiring on %s', expiration_date, tid=tid)
                 if not self.state.tenants[tid].cache.notification.disable_admin_notification_emails:
                     yield self.certificate_mail_creation('https_certificate_expiration', tid, expiration_date)
+
+            yield deferred_sleep(15)
