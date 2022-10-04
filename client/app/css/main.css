@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("../webfonts/metropolis-all-400-normal.woff2") format("woff2"), url("../webfonts/metropolis-all-400-normal.woff") format("woff");
+  src: url("../lib/webfonts/metropolis-all-400-normal.woff2") format("woff2"), url("../libs/webfonts/metropolis-all-400-normal.woff") format("woff");
 }
 
 @font-face {
@@ -11,7 +11,7 @@
   font-style: bold;
   font-weight: 700;
   font-display: swap;
-  src: url("../webfonts/metropolis-all-700-normal.woff2") format("woff2"), url("../webfonts/metropolis-all-400-normal.woff") format("woff");
+  src: url("../lib/webfonts/metropolis-all-700-normal.woff2") format("woff2"), url("../libs/webfonts/metropolis-all-400-normal.woff") format("woff");
 }
 
 * {

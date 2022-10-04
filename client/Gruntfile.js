@@ -61,8 +61,8 @@ module.exports = function(grunt) {
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/ui-bootstrap4/dist/ui-bootstrap-tpls.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/ui-select/dist/select.js"], expand: true, flatten: true },
           { dest: "app/lib/js/locale", cwd: ".", src: ["node_modules/angular-i18n/angular-locale*"], expand: true, flatten: true },
-          { dest: "app/webfonts", cwd: ".", src: ["node_modules/fontsource-metropolis/files/*"], expand: true, flatten: true },
-          { dest: "app/webfonts", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/webfonts/*"], expand: true, flatten: true }
+          { dest: "app/lib/webfonts", cwd: ".", src: ["node_modules/fontsource-metropolis/files/*"], expand: true, flatten: true },
+          { dest: "app/lib/webfonts", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/webfonts/*"], expand: true, flatten: true }
         ]
       },
       build: {
@@ -80,7 +80,7 @@ module.exports = function(grunt) {
               "js/scripts.js",
               "data/**",
               "lib/js/locale/**",
-              "webfonts/**"
+              "lib/webfonts/**"
             ],
             expand: true,
             flatten: false
@@ -148,6 +148,12 @@ module.exports = function(grunt) {
         },
         options: {
           replacements: [
+            {
+              pattern: /\.\.\/webfonts/ig,
+              replacement: function () {
+                return "../lib/webfonts";
+              }
+            },
             {
               pattern: /(0056b3|007bff|17a2b8|28a745|34ce57)/ig,
               replacement: function () {
