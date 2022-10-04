@@ -448,7 +448,7 @@ var GL = angular.module("GL", [
 }]).
   config(["IdleProvider", "KeepaliveProvider", "TitleProvider", function(IdleProvider, KeepaliveProvider, TitleProvider) {
     IdleProvider.idle(300);
-    IdleProvider.timeout(3600);
+    IdleProvider.timeout(1800);
     KeepaliveProvider.interval(600);
     TitleProvider.enabled(false);
 }]).
