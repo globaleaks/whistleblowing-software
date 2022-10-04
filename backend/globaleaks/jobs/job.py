@@ -56,13 +56,11 @@ class Job(task.LoopingCall):
     def begin(self):
         self.active = defer.Deferred()
         self.start_time = int(time.time() * 1000)
-        self.last_executions = self.last_executions[:TRACK_LAST_N_EXECUTIONS - 1]
-        self.last_executions.append((self.start_time, -1))
 
     def end(self):
         end_time = int(time.time() * 1000)
-        last_execution = self.last_executions.pop()
-        self.last_executions.append((last_execution[0], end_time))
+        self.last_executions = self.last_executions[:TRACK_LAST_N_EXECUTIONS - 1]
+        self.last_executions.append((self.start_time, end_time))
 
         current_run_time = end_time - self.start_time
 
