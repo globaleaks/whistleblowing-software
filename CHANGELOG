@@ -1,5 +1,21 @@
+Changes in version 4.10.11
+    Randomize LetsEncrypt renewal solving failing issues on congested times
+    Revise packaging of client libraries
+    Fix jslint errors
+    Fix submission reset feature in relation to the addition
+    of two factor authentication check
+    Remove outdated code invalidating session when visiting the homepage
+    Preserve internal user sessions in the sessionStorage
+    When whistleblower session expires redirect the user on
+    a blank page (#3293)
+    Map locationStorage on sessionStorage (#3277)
+    Fix issue #3277
+    Bump npm dependencies to latest version
+    Update translations
+
 Changes in version 4.10.10
-    Fix corrupted file upload problem for files bigger than 1MB introduced in 4.10.0
+    Fix corrupted file upload problem for files bigger than 1MB
+    introduced in 4.10.0
     Update the last update date when the report status is changed
     Revert fix for issue #3272
     Revise Debian packaging
