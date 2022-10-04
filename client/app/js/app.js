@@ -4,7 +4,7 @@ var _flowFactoryProvider;
 
 // Map localStorage on sessionStorage
 // https://github.com/globaleaks/GlobaLeaks/issues/3277
-window.localStorage = window.sessionStoage;
+window.localStorage = window.sessionStorage;
 
 var GL = angular.module("GL", [
     "angular.filter",
@@ -704,16 +704,17 @@ var GL = angular.module("GL", [
     };
 
     $rootScope.$on("Keepalive", function() {
-      if ($rootScope.Authentication.session) {
+      if ($rootScope.Authentication && $rootScope.Authentication.session) {
         return SessionResource.get();
       }
     });
 
     $rootScope.$on("IdleTimeout", function() {
-      if ($rootScope.Authentication.session) {
-	if ($rootScope.session.role === "whistleblower") {
+      if ($rootScope.Authentication && $rootScope.Authentication.session) {
+	if ($rootScope.Authentication.session.role === "whistleblower") {
           $window.location = "about:blank";
         } else {
+          $rootScope.Authentication.deleteSession();
           return $rootScope.Authentication.loginRedirect(false);
         }
       }

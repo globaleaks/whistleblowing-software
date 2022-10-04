@@ -23,7 +23,7 @@ factory("Authentication",
 
       var session = $window.sessionStorage.getItem("session");
 
-      if (typeof session === 'string') {
+      if (typeof session === "string") {
         self.session = JSON.parse(session);
       }
 

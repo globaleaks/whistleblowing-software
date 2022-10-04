@@ -27,17 +27,17 @@ filter("split", function() {
     return input.split(splitChar)[splitIndex];
   };
 }).
-filter('highlightSafe', function() {
+filter("highlightSafe", function() {
   function escapeHtml( text) {
-    return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
 
   function escapeRegexp(queryToEscape) {
-    return ('' + queryToEscape).replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1');
+    return ("" + queryToEscape).replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1");
   }
 
   return function(matchItem, query) {
-    var matchHtml = escapeHtml( '' + matchItem );
-    return query && matchItem ? matchHtml.replace(new RegExp(escapeRegexp(query), 'gi'), '<span class="ui-select-highlight">$&</span>') : matchHtml;
+    var matchHtml = escapeHtml("" + matchItem);
+    return query && matchItem ? matchHtml.replace(new RegExp(escapeRegexp(query), "gi"), "<span class=\"ui-select-highlight\">$&</span>") : matchHtml;
   };
 });
