@@ -39,6 +39,20 @@ class ValidationException(Exception):
     pass
 
 
+def gen_rsa_key(bits):
+    key = rsa.generate_private_key(
+        public_exponent=65537,
+        key_size=bits,
+        backend=default_backend()
+    )
+
+    key = key.private_bytes(
+        encoding=serialization.Encoding.PEM,
+        format=serialization.PrivateFormat.PKCS8,
+        encryption_algorithm=serialization.NoEncryption(),
+    )
+
+
 def gen_ecc_key():
     key = ec.generate_private_key(ec.SECP384R1(), default_backend())
 

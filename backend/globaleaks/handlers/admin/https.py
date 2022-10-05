@@ -56,7 +56,6 @@ def db_generate_acme_key(session, tid):
         encryption_algorithm=serialization.NoEncryption(),
     )
 
-    priv_fact.set_val('acme', True)
     priv_fact.set_val('acme_accnt_key', key)
 
     return key
@@ -66,12 +65,12 @@ def db_acme_cert_request(session, tid):
     priv_fact = ConfigFactory(session, tid)
     hostname = priv_fact.get_val('hostname')
 
-    raw_accnt_key = priv_fact.get_val('acme_accnt_key')
+    acme_accnt_key = ConfigFactory(session, 1).get_val('acme_accnt_key')
 
-    if isinstance(raw_accnt_key, str):
-        raw_accnt_key = raw_accnt_key.encode()
+    if not acme_accnt_key:
+        acme_accnt_key = db_generate_acme_key(session)
 
-    acme_accnt_key = serialization.load_pem_private_key(acme_accnt_key,
+    acme_accnt_key = serialization.load_pem_private_key(acme_accnt_key.encode(),
                                                         password=None,
                                                         backend=default_backend())
 
@@ -83,6 +82,7 @@ def db_acme_cert_request(session, tid):
                                                                   State.tenants[tid].acme_tmp_chall_dict,
                                                                   Settings.acme_directory_url)
 
+    priv_fact.set_val('acme', True)
     priv_fact.set_val('https_cert', https_cert)
     priv_fact.set_val('https_chain', https_chain)
     State.tenants[tid].cache.https_cert = https_cert
@@ -215,7 +215,6 @@ class FileResource(object):
     @transact
     def serialize(cls, session, tid):
         return cls.db_serialize(session)
-
 
 
 class KeyFileRes(FileResource):
