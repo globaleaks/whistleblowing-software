@@ -57,7 +57,7 @@ class SettingsClass(object, metaclass=Singleton):
         self.socks_host = "127.0.0.1"
         self.socks_port = 9050
 
-        self.key_bits = 4096
+        self.rsa_key_bits = 4096
         self.csr_sign_bits = 512
 
         self.disable_notifications = False
@@ -132,7 +132,7 @@ class SettingsClass(object, metaclass=Singleton):
 
     def set_devel_mode(self):
         self.devel_mode = True
-        self.key_bits = 1024
+        self.rsa_key_bits = 1024
         self.acme_directory_url = 'https://acme-staging-v02.api.letsencrypt.org/directory'
         self.bind_remote_ports = []
         self.working_path = os.path.join(self.src_path, 'workingdir')
