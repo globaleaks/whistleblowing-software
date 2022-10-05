@@ -59,7 +59,7 @@ class TestFileHandler(helpers.TestHandler):
         yield self.get_and_check(n, True)
 
     @inlineCallbacks
-    def test_key_file_generate_and_delete(self):
+    def test_key_generate_and_delete(self):
         n = 'key'
 
         yield self.get_and_check(n, False)
@@ -139,9 +139,9 @@ class TestConfigHandler(helpers.TestHandler):
     def test_all_methods(self):
         yield set_init_params()
 
-        yield https.create_file_https_key(1, helpers.HTTPS_DATA['key'])
-        yield https.create_file_https_cert(1, helpers.HTTPS_DATA['cert'])
-        yield https.create_file_https_chain(1, helpers.HTTPS_DATA['chain'])
+        yield tw(https.db_load_https_key, 1, helpers.HTTPS_DATA['key'])
+        yield tw(https.db_load_https_cert, 1, helpers.HTTPS_DATA['cert'])
+        yield tw(https.db_load_https_chain, 1, helpers.HTTPS_DATA['chain'])
 
         handler = self.request(role='admin')
 
@@ -164,7 +164,7 @@ class TestCSRHandler(helpers.TestHandler):
         n = 'csr'
 
         yield set_init_params()
-        yield https.create_file_https_key(1, helpers.HTTPS_DATA['key'])
+        yield tw(https.db_load_https_key, 1, helpers.HTTPS_DATA['key'])
         State.tenants[1].cache.hostname = 'notreal.ns.com'
 
         d = {

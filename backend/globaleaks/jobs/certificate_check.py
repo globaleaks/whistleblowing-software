@@ -8,7 +8,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from OpenSSL.crypto import load_certificate, FILETYPE_PEM
 
-from globaleaks.handlers.admin.https import db_acme_cert_request, load_tls_config
+from globaleaks.handlers.admin.https import db_acme_cert_request, db_load_tls_config
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.user import db_get_users
@@ -57,7 +57,7 @@ class CertificateCheck(DailyJob):
             log.err('Automatic HTTPS renewal failed (%s)', e, tid=tid)
             return False
 
-        return load_tls_config(session, tid)
+        return db_load_tls_config(session, tid)
 
     @inlineCallbacks
     def operation(self):

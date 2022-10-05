@@ -39,7 +39,7 @@ class ValidationException(Exception):
     pass
 
 
-def gen_ecc_key(bits):
+def gen_ecc_key():
     key = ec.generate_private_key(ec.SECP384R1(), default_backend())
 
     key = key.private_bytes(
@@ -250,7 +250,7 @@ class CtxValidator(object):
         return True, None
 
 
-class PrivKeyValidator(CtxValidator):
+class KeyValidator(CtxValidator):
     parents = []
 
     def _validate(self, cfg, ctx, check_expiration):
@@ -266,7 +266,7 @@ class PrivKeyValidator(CtxValidator):
 
 
 class CertValidator(CtxValidator):
-    parents = [PrivKeyValidator]
+    parents = [KeyValidator]
 
     def _validate(self, cfg, ctx, check_expiration):
         if not cfg['hostname']:
@@ -291,7 +291,7 @@ class CertValidator(CtxValidator):
 
 
 class ChainValidator(CtxValidator):
-    parents = [PrivKeyValidator, CertValidator]
+    parents = [KeyValidator, CertValidator]
 
     def _validate(self, cfg, ctx, check_expiration):
         store = ctx.get_cert_store()

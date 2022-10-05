@@ -5,7 +5,6 @@ from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
 
 from twisted.internet.defer import inlineCallbacks
-from twisted.internet.threads import deferToThread
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
@@ -18,7 +17,7 @@ from globaleaks.utils import letsencrypt, tls
 from globaleaks.utils.log import log
 
 
-def load_tls_config(session, tid):
+def db_load_tls_config(session, tid):
     """
     Transaction for loading the TLS configuration of a tenant
 
@@ -38,11 +37,11 @@ def load_tls_config(session, tid):
     }
 
 
-def load_tls_config_list(session):
-    return [load_tls_config(session, tid[0]) for tid in session.query(models.Tenant.id).filter(models.Tenant.active.is_(True))]
+def db_load_tls_configs(session):
+    return [db_load_tls_config(session, tid[0]) for tid in session.query(models.Tenant.id).filter(models.Tenant.active.is_(True))]
 
 
-def db_create_acme_key(session, tid):
+def db_generate_acme_key(session, tid):
     priv_fact = ConfigFactory(session, tid)
 
     key = rsa.generate_private_key(
@@ -63,12 +62,139 @@ def db_create_acme_key(session, tid):
     return key
 
 
+def db_acme_cert_request(session, tid):
+    priv_fact = ConfigFactory(session, tid)
+    hostname = priv_fact.get_val('hostname')
+
+    raw_accnt_key = priv_fact.get_val('acme_accnt_key')
+
+    if isinstance(raw_accnt_key, str):
+        raw_accnt_key = raw_accnt_key.encode()
+
+    acme_accnt_key = serialization.load_pem_private_key(acme_accnt_key,
+                                                        password=None,
+                                                        backend=default_backend())
+
+    https_key = priv_fact.get_val('https_key')
+
+    https_cert, https_chain = letsencrypt.request_new_certificate(hostname,
+                                                                  acme_accnt_key,
+                                                                  https_key,
+                                                                  State.tenants[tid].acme_tmp_chall_dict,
+                                                                  Settings.acme_directory_url)
+
+    priv_fact.set_val('https_cert', https_cert)
+    priv_fact.set_val('https_chain', https_chain)
+    State.tenants[tid].cache.https_cert = https_cert
+    State.tenants[tid].cache.https_chain = https_chain
+
+
+def db_load_https_key(session, tid, data=None):
+    if not data:
+      data = tls.gen_ecc_key()
+
+    db_cfg = db_load_tls_config(session, tid)
+    db_cfg['ssl_key'] = data
+
+    config = ConfigFactory(session, tid)
+    pkv = tls.KeyValidator()
+    ok, _ = pkv.validate(db_cfg)
+    if ok:
+        config.set_val('https_key', data)
+
+    return ok
+
+
+def db_load_https_cert(session, tid, data):
+    db_cfg = db_load_tls_config(session, tid)
+    db_cfg['ssl_cert'] = data
+
+    config = ConfigFactory(session, tid)
+    pkv = tls.CertValidator()
+    ok, _ = pkv.validate(db_cfg)
+    if ok:
+        config.set_val('https_cert', data)
+        State.tenants[tid].cache.https_cert = data
+
+    return ok
+
+
+def db_load_https_chain(session, tid, data):
+    db_cfg = db_load_tls_config(session, tid)
+    db_cfg['ssl_intermediate'] = data
+
+    config = ConfigFactory(session, tid)
+    pkv = tls.ChainValidator()
+    ok, _ = pkv.validate(db_cfg)
+    if ok:
+        config.set_val('https_chain', data)
+        State.tenants[tid].cache.https_intermediate = data
+
+    return ok
+
+
+def db_generate_https_csr(session, tid, data):
+    ConfigFactory(session, tid).set_val('https_csr', data)
+
+    return True
+
+
+def db_serialize_https_config_summary(session, tid):
+    config = ConfigFactory(session, tid)
+
+    file_summaries = {}
+    for key, file_res_cls in FileHandler.mapped_resources.items():
+        file_summaries[key] = file_res_cls.db_serialize(session, tid)
+
+    return {
+        'enabled': config.get_val('https_enabled'),
+        'files': file_summaries,
+        'acme': config.get_val('acme')
+    }
+
+
+def db_try_to_enable_https(session, tid):
+    config = ConfigFactory(session, tid)
+
+    cv = tls.ChainValidator()
+    tls_config = db_load_tls_config(session, tid)
+    tls_config['https_enabled'] = False
+
+    ok, _ = cv.validate(tls_config)
+    if not ok:
+        raise errors.InputValidationError
+
+    config.set_val('https_enabled', True)
+    State.tenants[tid].cache.https_enabled = True
+    State.snimap.load(tid, tls_config)
+
+
+def db_disable_https(session, tid):
+    config = ConfigFactory(session, tid)
+    config.set_val('https_enabled', False)
+    State.snimap.unload(tid)
+    State.tenants[tid].cache.https_enabled = False
+
+
+def db_reset_https_config(session, tid):
+    config = ConfigFactory(session, tid)
+    config.set_val('https_enabled', False)
+    config.set_val('https_key', '')
+    config.set_val('https_cert', '')
+    config.set_val('https_chain', '')
+    config.set_val('https_csr', '')
+    config.set_val('acme', False)
+    config.set_val('acme_accnt_key', '')
+    State.snimap.unload(tid)
+    State.tenants[tid].cache.https_enabled = False
+
+
 class FileResource(object):
     """
     An interface for interacting with files stored on disk or in the db
     """
     @classmethod
-    def perform_file_action(cls, tid):
+    def perform_action(cls, tid):
         raise errors.MethodNotImplemented
 
     @staticmethod
@@ -81,83 +207,22 @@ class FileResource(object):
     def delete_file(session, tid):
         raise errors.MethodNotImplemented
 
+    @staticmethod
+    def db_serialize(session, tid):
+        raise errors.MethodNotImplemented
+
     @classmethod
     @transact
     def serialize(cls, session, tid):
         return cls.db_serialize(session)
 
-    @staticmethod
-    def db_serialize(session, tid):
-        raise errors.MethodNotImplemented
 
 
-@transact
-def create_file_https_key(session, tid, raw_data):
-    db_cfg = load_tls_config(session, tid)
-    db_cfg['ssl_key'] = raw_data
-
-    config = ConfigFactory(session, tid)
-    pkv = tls.PrivKeyValidator()
-    ok, _ = pkv.validate(db_cfg)
-    if ok:
-        config.set_val('https_key', raw_data)
-
-    return ok
-
-
-@transact
-def create_file_https_cert(session, tid, raw_data):
-    db_cfg = load_tls_config(session, tid)
-    db_cfg['ssl_cert'] = raw_data
-
-    config = ConfigFactory(session, tid)
-    pkv = tls.CertValidator()
-    ok, _ = pkv.validate(db_cfg)
-    if ok:
-        config.set_val('https_cert', raw_data)
-        State.tenants[tid].cache.https_cert = raw_data
-
-    return ok
-
-
-@transact
-def create_file_https_chain(session, tid, raw_data):
-    db_cfg = load_tls_config(session, tid)
-    db_cfg['ssl_intermediate'] = raw_data
-
-    config = ConfigFactory(session, tid)
-    pkv = tls.ChainValidator()
-    ok, _ = pkv.validate(db_cfg)
-    if ok:
-        config.set_val('https_chain', raw_data)
-        State.tenants[tid].cache.https_intermediate = raw_data
-
-    return ok
-
-
-@transact
-def create_file_https_csr(session, tid, raw_data):
-    ConfigFactory(session, tid).set_val('https_csr', raw_data)
-
-    return True
-
-
-@transact
-def create_file_http_acme_key(session, tid):
-    log.info("Generating an ACME account key with %d bits" % Settings.key_bits)
-
-    db_create_acme_key(session, tid)
-
-
-class PrivKeyFileRes(FileResource):
+class KeyFileRes(FileResource):
     @classmethod
     @inlineCallbacks
-    def perform_file_action(cls, tid):
-        log.info("Generating the HTTPS key with %d bits" % Settings.key_bits)
-        key = yield deferToThread(tls.gen_ecc_key, Settings.key_bits)
-
-        log.debug("Saving the HTTPS key")
-        yield create_file_https_key(tid, key)
+    def perform_action(cls, tid):
+        yield tw(db_load_https_key, tid)
 
     @staticmethod
     @transact
@@ -253,21 +318,21 @@ class FileHandler(BaseHandler):
     check_roles = 'admin'
     root_tenant_or_management_only = True
 
-    mapped_file_resources = {
-        'key': PrivKeyFileRes,
+    mapped_resources = {
+        'key': KeyFileRes,
         'cert': CertFileRes,
         'chain': ChainFileRes,
         'csr': CsrFileRes
     }
 
-    def get_file_res_or_raise(self, name):
-        if name not in self.mapped_file_resources:
+    def get_res_or_raise(self, name):
+        if name not in self.mapped_resources:
             raise errors.MethodNotImplemented
 
-        return self.mapped_file_resources[name]
+        return self.mapped_resources[name]
 
     def delete(self, name):
-        return self.get_file_res_or_raise(name).delete_file(self.request.tid)
+        return self.get_res_or_raise(name).delete_file(self.request.tid)
 
     @inlineCallbacks
     def post(self, name):
@@ -275,11 +340,11 @@ class FileHandler(BaseHandler):
                                     requests.AdminTLSCfgFileResourceDesc)
 
         if name == 'key':
-            ok = yield create_file_https_key(self.request.tid, req['content'])
+            ok = yield tw(db_load_https_key, self.request.tid, req['content'])
         elif name == 'cert':
-            ok = yield create_file_https_cert(self.request.tid, req['content'])
+            ok = yield tw(db_load_https_cert, self.request.tid, req['content'])
         elif name == 'chain':
-            ok = yield create_file_https_chain(self.request.tid, req['content'])
+            ok = yield tw(db_load_https_chain, self.request.tid, req['content'])
         else:
             ok = False
 
@@ -288,65 +353,12 @@ class FileHandler(BaseHandler):
 
     @inlineCallbacks
     def put(self, name):
-        file_res_cls = self.get_file_res_or_raise(name)
+        file_res_cls = self.get_res_or_raise(name)
 
-        yield file_res_cls.perform_file_action(self.request.tid)
+        yield file_res_cls.perform_action(self.request.tid)
 
     def get(self, name):
-        return self.get_file_res_or_raise(name).get_file(self.request.tid)
-
-
-@transact
-def serialize_https_config_summary(session, tid):
-    config = ConfigFactory(session, tid)
-
-    file_summaries = {}
-    for key, file_res_cls in FileHandler.mapped_file_resources.items():
-        file_summaries[key] = file_res_cls.db_serialize(session, tid)
-
-    return {
-        'enabled': config.get_val('https_enabled'),
-        'files': file_summaries,
-        'acme': config.get_val('acme')
-    }
-
-
-@transact
-def try_to_enable_https(session, tid):
-    config = ConfigFactory(session, tid)
-
-    cv = tls.ChainValidator()
-    tls_config = load_tls_config(session, tid)
-    tls_config['https_enabled'] = False
-
-    ok, _ = cv.validate(tls_config)
-    if not ok:
-        raise errors.InputValidationError
-
-    config.set_val('https_enabled', True)
-    State.tenants[tid].cache.https_enabled = True
-    State.snimap.load(tid, tls_config)
-
-
-@transact
-def disable_https(session, tid):
-    ConfigFactory(session, tid).set_val('https_enabled', False)
-    State.tenants[tid].cache.https_enabled = False
-    State.snimap.unload(tid)
-
-
-@transact
-def reset_https_config(session, tid):
-    config = ConfigFactory(session, tid)
-    config.set_val('https_enabled', False)
-    config.set_val('https_key', '')
-    config.set_val('https_cert', '')
-    config.set_val('https_chain', '')
-    config.set_val('https_csr', '')
-    config.set_val('acme', False)
-    config.set_val('acme_accnt_key', '')
-
-    State.tenants[tid].cache.https_enabled = False
+        return self.get_res_or_raise(name).get_file(self.request.tid)
 
 
 class ConfigHandler(BaseHandler):
@@ -354,16 +366,16 @@ class ConfigHandler(BaseHandler):
     root_tenant_or_management_only = True
 
     def get(self):
-        return serialize_https_config_summary(self.request.tid)
+        return tw(db_serialize_https_config_summary, self.request.tid)
 
     def post(self):
-        return try_to_enable_https(self.request.tid)
+        tw(db_try_to_enable_https, self.request.tid)
 
     def put(self):
-        return disable_https(self.request.tid)
+        tw(db_disable_https, self.request.tid)
 
     def delete(self):
-        return reset_https_config(self.request.tid)
+        tw(db_reset_https_config, self.request.tid)
 
 
 class CSRFileHandler(FileHandler):
@@ -388,67 +400,30 @@ class CSRFileHandler(FileHandler):
 
         csr_txt = yield self.perform_action(self.request.tid, csr_fields)
 
-        ok = yield create_file_https_csr(self.request.tid, csr_txt)
+        ok = yield tw(db_generate_https_csr, self.request.tid, csr_txt)
         if not ok:
             raise errors.InputValidationError
 
     @staticmethod
     @transact
     def perform_action(session, tid, csr_fields):
-        db_cfg = load_tls_config(session, tid)
+        db_cfg = db_load_tls_config(session, tid)
 
-        pkv = tls.PrivKeyValidator()
+        pkv = tls.KeyValidator()
         ok, _ = pkv.validate(db_cfg)
         if not ok:
             raise errors.InputValidationError
 
         key_pair = db_cfg['ssl_key']
-        try:
-            csr_txt = tls.gen_x509_csr_pem(key_pair, csr_fields, Settings.csr_sign_bits)
-            log.debug("Generated a new CSR")
-            return csr_txt
-        except Exception as e:
-            log.err(e)
-            raise errors.InputValidationError('CSR gen failed')
-
-
-def db_acme_cert_request(session, tid):
-    priv_fact = ConfigFactory(session, tid)
-    hostname = State.tenants[tid].cache.hostname
-
-    raw_accnt_key = priv_fact.get_val('acme_accnt_key')
-    if not raw_accnt_key:
-        raw_accnt_key = db_create_acme_key(session, tid)
-
-    if isinstance(raw_accnt_key, str):
-        raw_accnt_key = raw_accnt_key.encode()
-
-    accnt_key = serialization.load_pem_private_key(raw_accnt_key,
-                                                   password=None,
-                                                   backend=default_backend())
-
-    key = priv_fact.get_val('https_key')
-
-    cert_str, chain_str = letsencrypt.request_new_certificate(hostname,
-                                                              accnt_key,
-                                                              key,
-                                                              State.tenants[tid].acme_tmp_chall_dict,
-                                                              Settings.acme_directory_url)
-
-    priv_fact.set_val('https_cert', cert_str)
-    priv_fact.set_val('https_chain', chain_str)
-    State.tenants[tid].cache.https_cert = cert_str
-    State.tenants[tid].cache.https_chain = chain_str
+        return tls.gen_x509_csr_pem(key_pair, csr_fields, Settings.csr_sign_bits)
 
 
 class AcmeHandler(BaseHandler):
     check_roles = 'admin'
     root_tenant_or_management_only = True
 
-    @inlineCallbacks
     def post(self):
-        yield create_file_http_acme_key(self.request.tid)
-        yield tw(db_acme_cert_request, self.request.tid)
+        return tw(db_acme_cert_request, self.request.tid)
 
 
 class AcmeChallengeHandler(BaseHandler):
@@ -457,7 +432,6 @@ class AcmeChallengeHandler(BaseHandler):
     def get(self, token):
         tmp_chall_dict = State.tenants[self.request.tid].acme_tmp_chall_dict
         if token in tmp_chall_dict:
-            log.info('Responding to valid .well-known request [%d]', self.request.tid)
             return tmp_chall_dict[token].tok
 
         raise errors.ResourceNotFound
