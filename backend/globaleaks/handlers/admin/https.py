@@ -44,17 +44,7 @@ def db_load_tls_configs(session):
 def db_generate_acme_key(session, tid):
     priv_fact = ConfigFactory(session, tid)
 
-    key = rsa.generate_private_key(
-        public_exponent=65537,
-        key_size=Settings.rsa_key_bits,
-        backend=default_backend()
-    )
-
-    key = key.private_bytes(
-        encoding=serialization.Encoding.PEM,
-        format=serialization.PrivateFormat.PKCS8,
-        encryption_algorithm=serialization.NoEncryption(),
-    )
+    key = tls.generate_rsa_key(Settings.rsa_key_bits)
 
     priv_fact.set_val('acme_accnt_key', key)
 
