@@ -1,8 +1,5 @@
 <div data-ng-if="!Authentication.requireAuthCode">
   <div data-ng-if="public.receivers.length === 1">
-    <div class="form-group" data-ng-init="loginData.loginUsername = public.receivers[0].id">
-      <input class="form-control" name="label" placeholder="{{public.node.name}}" type="text" disabled />
-    </div>
     <div class="form-group">
       <input class="form-control" name="password" placeholder="{{'Password' | translate}}" data-ng-model="loginData.loginPassword" type="password" required />
     </div>
