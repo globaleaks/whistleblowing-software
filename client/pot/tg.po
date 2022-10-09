@@ -1429,6 +1429,15 @@ msgstr "Тасдиқи нодуруст"
 msgid "Invalid phone number"
 msgstr "Рақами телефони нодуруст"
 
+msgid "Address"
+msgstr "Суроға"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "The answer is too short"
 msgstr "Ҷавоб хеле кӯтоҳ аст"
 

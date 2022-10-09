@@ -1422,6 +1422,15 @@ msgstr "Яраҡһыҙ раҫлау"
 msgid "Invalid phone number"
 msgstr "Яраҡһыҙ телефон номеры"
 
+msgid "Address"
+msgstr ""
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "The answer is too short"
 msgstr "Яуап үтә ҡыҫҡа"
 

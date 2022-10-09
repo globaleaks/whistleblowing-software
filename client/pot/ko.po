@@ -1422,6 +1422,15 @@ msgstr "유효하지 않은 확인"
 msgid "Invalid phone number"
 msgstr "유효하지 않은 전화번호"
 
+msgid "Address"
+msgstr "주소"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "세금 코드"
+
 msgid "The answer is too short"
 msgstr "답변이 너무 짧습니다."
 

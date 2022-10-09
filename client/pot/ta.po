@@ -1423,6 +1423,15 @@ msgstr ""
 msgid "Invalid phone number"
 msgstr "தவறான தொலைபேசி எண்"
 
+msgid "Address"
+msgstr "முகவரி"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "The answer is too short"
 msgstr ""
 

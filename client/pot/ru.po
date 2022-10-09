@@ -1451,6 +1451,15 @@ msgstr "Недействительное подтверждение"
 msgid "Invalid phone number"
 msgstr "Недействительный номер телефона"
 
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "Код налога"
+
 msgid "The answer is too short"
 msgstr "Ответ слишком короткий"
 

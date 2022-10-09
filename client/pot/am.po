@@ -1422,6 +1422,15 @@ msgstr "የተሳሳተ ማረጋገጫ"
 msgid "Invalid phone number"
 msgstr "የተሳሳተ ስልክ ቁጥር"
 
+msgid "Address"
+msgstr "አድራሻ"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "የግብር ኮድ"
+
 msgid "The answer is too short"
 msgstr "መልሱ ከሚፈቀደው በታች አጭር ነው፡፡"
 

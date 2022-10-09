@@ -1423,6 +1423,15 @@ msgstr "Yaroqsiz tasdiqlash"
 msgid "Invalid phone number"
 msgstr "Telefon raqami yaroqsiz"
 
+msgid "Address"
+msgstr "Manzili"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "The answer is too short"
 msgstr "Javob juda qisqa"
 

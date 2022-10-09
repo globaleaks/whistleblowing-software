@@ -1437,6 +1437,15 @@ msgstr "Confirmare invalidă"
 msgid "Invalid phone number"
 msgstr "Număr de telefon invalid"
 
+msgid "Address"
+msgstr "Adresă"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "Cod fiscal"
+
 msgid "The answer is too short"
 msgstr "Răspunsul este prea scurt"
 

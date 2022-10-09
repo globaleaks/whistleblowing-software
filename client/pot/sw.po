@@ -1421,6 +1421,15 @@ msgstr "Uthibitisho batili"
 msgid "Invalid phone number"
 msgstr "Namba ya simu batili"
 
+msgid "Address"
+msgstr "Anwani"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "Nambari ya ushuru"
+
 msgid "The answer is too short"
 msgstr "Jibu ni fupi sana."
 

@@ -876,7 +876,7 @@ msgstr "Do"
 msgid ""
 "Default mail configuration in use. Please consider using a private mail "
 "server."
-msgstr ""
+msgstr "Používá se výchozí konfigurace poštovního serveru. Zvažte prosím použití vlastního poštovního serveru."
 
 msgid "SMTP email address"
 msgstr "Emailová adresa pro SMTP server"
@@ -1433,6 +1433,15 @@ msgstr "Neplatné potvrzení"
 
 msgid "Invalid phone number"
 msgstr "Neplatné telefonní číslo"
+
+msgid "Address"
+msgstr "Adresa"
+
+msgid "Fiscal code"
+msgstr "Daňový kód"
+
+msgid "Tax code"
+msgstr "DIČ"
 
 msgid "The answer is too short"
 msgstr "Odpověď je příliš krátká."

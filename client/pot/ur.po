@@ -1432,6 +1432,15 @@ msgstr ""
 msgid "Invalid phone number"
 msgstr ""
 
+msgid "Address"
+msgstr "پتہ"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "The answer is too short"
 msgstr ""
 

@@ -1431,6 +1431,15 @@ msgstr "Neplatné potvrdenie"
 msgid "Invalid phone number"
 msgstr "Neplatné telefónne číslo"
 
+msgid "Address"
+msgstr "Adresa"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "DIČ"
+
 msgid "The answer is too short"
 msgstr "Odpoveď je príliš krátka."
 

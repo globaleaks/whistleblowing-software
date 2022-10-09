@@ -1421,6 +1421,15 @@ msgstr "Инавәтсиз җәзимләш"
 msgid "Invalid phone number"
 msgstr "Инавәтсиз телефон номури"
 
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "The answer is too short"
 msgstr "Җавап бәк қисқа"
 

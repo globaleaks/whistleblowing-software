@@ -1428,6 +1428,15 @@ msgstr "অবৈধ নিশ্চিতকরণ"
 msgid "Invalid phone number"
 msgstr "ফোন নাম্বার সঠিক নয়"
 
+msgid "Address"
+msgstr "ঠিকানা:"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "টিন নাম্বার"
+
 msgid "The answer is too short"
 msgstr "উত্তরটি খুবই সংক্ষিপ্ত"
 

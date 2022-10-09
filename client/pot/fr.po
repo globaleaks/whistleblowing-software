@@ -1459,6 +1459,15 @@ msgstr "La confirmation est invalide"
 msgid "Invalid phone number"
 msgstr "Le numéro de téléphone est invalide"
 
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Fiscal code"
+msgstr "Code fiscal"
+
+msgid "Tax code"
+msgstr "Code fiscal"
+
 msgid "The answer is too short"
 msgstr "La réponse est trop courte"
 

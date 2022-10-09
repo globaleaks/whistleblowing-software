@@ -1423,6 +1423,15 @@ msgstr "Тlечlагlдар бакъ дац"
 msgid "Invalid phone number"
 msgstr "Телпонан лоьмар бакъ яц"
 
+msgid "Address"
+msgstr ""
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "The answer is too short"
 msgstr "Жоп дукха доца ду"
 

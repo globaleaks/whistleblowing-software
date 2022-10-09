@@ -1434,6 +1434,15 @@ msgstr "Άκυρη επιβεβαίωση"
 msgid "Invalid phone number"
 msgstr "Μη έγκυρος αριθμός τηλεφώνου"
 
+msgid "Address"
+msgstr "Διεύθυνση"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "ΑΦΜ"
+
 msgid "The answer is too short"
 msgstr "Η απάντηση είναι πολυ μικρή"
 

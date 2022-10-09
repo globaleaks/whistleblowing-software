@@ -1425,6 +1425,15 @@ msgstr "ការបញ្ជាក់មិនត្រឹមត្រូវ"
 msgid "Invalid phone number"
 msgstr "លេខទូរស័ព្ទមិនត្រឹមត្រូវ"
 
+msgid "Address"
+msgstr "អាសយដ្ឋាន"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "លេខពន្ធ"
+
 msgid "The answer is too short"
 msgstr "ចម្លើយនេះ​ខ្លីពេក"
 

@@ -1448,6 +1448,15 @@ msgstr "Doğrulama geçersiz"
 msgid "Invalid phone number"
 msgstr "Geçersiz telefon numarası"
 
+msgid "Address"
+msgstr "Adres"
+
+msgid "Fiscal code"
+msgstr "Mali kod"
+
+msgid "Tax code"
+msgstr "Vergi kodu"
+
 msgid "The answer is too short"
 msgstr "Yanıt çok kısa"
 

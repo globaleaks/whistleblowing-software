@@ -1421,6 +1421,15 @@ msgstr "Netinkamas patvirtinimas"
 msgid "Invalid phone number"
 msgstr "Neteisingas telefono numeris"
 
+msgid "Address"
+msgstr "Adresas"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "Mokesčių kodas"
+
 msgid "The answer is too short"
 msgstr "Atsakymas per trumpas"
 

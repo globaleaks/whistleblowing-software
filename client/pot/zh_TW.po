@@ -1428,6 +1428,15 @@ msgstr "無效的確認"
 msgid "Invalid phone number"
 msgstr "無效的電話號碼"
 
+msgid "Address"
+msgstr "地址"
+
+msgid "Fiscal code"
+msgstr "税控码"
+
+msgid "Tax code"
+msgstr "税码"
+
 msgid "The answer is too short"
 msgstr "答案过短"
 

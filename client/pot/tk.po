@@ -1426,6 +1426,15 @@ msgstr "Nädogry tassyklama"
 msgid "Invalid phone number"
 msgstr "Nädogry telefon belgisi"
 
+msgid "Address"
+msgstr ""
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "The answer is too short"
 msgstr "Jogap gaty gysga"
 

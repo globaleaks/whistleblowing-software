@@ -1426,6 +1426,15 @@ msgstr "ކަށަވަރުކުރެވޭގޮތެއް ނުވި"
 msgid "Invalid phone number"
 msgstr "ފޯނު ނަމްބަރު ރަނގަޅެއްނޫން"
 
+msgid "Address"
+msgstr "ްއެޑްރެސް"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "The answer is too short"
 msgstr "ޖަވާބު މާ ކުރު"
 

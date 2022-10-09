@@ -346,10 +346,10 @@ msgid "Activities"
 msgstr "Activitats"
 
 msgid "Reports"
-msgstr "Informes"
+msgstr "Denúncies"
 
 msgid "Report"
-msgstr "Informe"
+msgstr "Denúncia"
 
 msgid "Users"
 msgstr "Usuaris"
@@ -450,7 +450,7 @@ msgstr "Restablir contrasenya"
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr "Un o més destinataris encara no han realitzat el primer accés. Açó vol dir que no rebran informes."
+msgstr "Un o més destinataris encara no han realitzat el primer accés. Açó vol dir que no rebran denúncies."
 
 msgid "This user has not performed the first login yet."
 msgstr "Aquest usuari encara no ha realitzat el primer accés."
@@ -471,7 +471,7 @@ msgid "Logout"
 msgstr "Tanca sessió"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr "Doneu a aquest destinatari la possibilitat de concedir accés als usuaris als informes"
+msgstr "Doneu a aquest destinatari la possibilitat de concedir accés als usuaris a les denúncies."
 
 msgid "Grant access"
 msgstr "Concedir accés"
@@ -480,10 +480,10 @@ msgid "Revoke access"
 msgstr "Revoca l'accés"
 
 msgid "File a report"
-msgstr "Presentar un informe"
+msgstr "Presentar una denúncia."
 
 msgid "Select the context of your report:"
-msgstr "Selecciona el context del teu informe:"
+msgstr "Selecciona el context de la teua denúncia:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Abans de continuar, per favor establixca una nova contrasenya."
@@ -541,7 +541,7 @@ msgid "Set the value to 0 to disable this feature."
 msgstr "Fixe el valor a 0 per a desactivar esta funcionalitat"
 
 msgid "Number of days till notifying unread reports to users"
-msgstr "Nombre de dies fins a la notificació d'informes no llegits als usuaris"
+msgstr "Nombre de dies fins a la notificació de denúncies no llegides als usuaris"
 
 msgid "Disable the privacy panel"
 msgstr "Deshabilita el distintiu de privacitat "
@@ -579,7 +579,7 @@ msgid "Save"
 msgstr "Guardar"
 
 msgid "Reset reports"
-msgstr "Restableix els informes"
+msgstr "Restableix les denúncies"
 
 msgid "Low"
 msgstr "Baix"
@@ -639,7 +639,7 @@ msgid "Cancel"
 msgstr "Cancel·la"
 
 msgid "Report statuses"
-msgstr "Estat de l’informe"
+msgstr "Estat de les denúncies."
 
 msgid "Logo"
 msgstr "Logo"
@@ -723,7 +723,7 @@ msgid "Show recipients in alphabetical order"
 msgstr "Mostra els destinataris en ordre alfabètic"
 
 msgid "Show recipient details on the status page of the report"
-msgstr "Mostra la informació dels destinataris a la pàgina de l'estat de l'informe"
+msgstr "Mostra la informació dels destinataris a la pàgina de l'estat de la denúncia"
 
 msgid "Enable comments"
 msgstr "Habilita comentaris"
@@ -898,7 +898,7 @@ msgid "Password"
 msgstr "Contrassenya"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr "Nombre d'hores abans d'enviar l'alerta de caducitat d'un informe"
+msgstr "Nombre d'hores abans d'enviar l'alerta de caducitat d'una denúncia"
 
 msgid "Test the configuration"
 msgstr "Provar la configuració"
@@ -1105,10 +1105,10 @@ msgid "Forcefully selected"
 msgstr "Obligatòriament seleccionats"
 
 msgid "Allow the recipient to delete reports"
-msgstr "Permet al destinatari esborrar informes"
+msgstr "Permet al destinatari eliminar denúncies"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Permet al destinatari pospondre la data d'expiració de l'informe"
+msgstr "Permet al destinatari pospondre la data d'expiració d'una denúncia"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Doneu a l'usuari accés administratiu a les funcions següents:"
@@ -1117,7 +1117,7 @@ msgid "Request date"
 msgstr "Data de sol·licitud"
 
 msgid "Report date"
-msgstr "Data de l’informe"
+msgstr "Data de la denúncia"
 
 msgid "Authorization"
 msgstr "Autorització"
@@ -1282,10 +1282,10 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Després, còpie i enganxe l'adreça següent al Tor Browser instal·lat:"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "Ha presentat ja un informe? Introduïsca el seu rebut."
+msgstr "Ha presentat ja una denúncia? Introduïsca el seu codi."
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr "El codi és invàlid o l'informe ha expirat."
+msgstr "El codi és invàlid o la denúncia ha expirat."
 
 msgid "Select a file or drag it here."
 msgstr "Seleccionar un arxiu o arrastrar-lo ací."
@@ -1435,6 +1435,15 @@ msgstr "Confirmació invàlida"
 msgid "Invalid phone number"
 msgstr "Número de telèfon no vàlid"
 
+msgid "Address"
+msgstr "Adreça"
+
+msgid "Fiscal code"
+msgstr "Codi postal"
+
+msgid "Tax code"
+msgstr "Codi tributari"
+
 msgid "The answer is too short"
 msgstr "La resposta és massa curta"
 
@@ -1459,10 +1468,10 @@ msgid ""
 msgstr "S'està connectant al servidor de manera no anònima i aquest servidor només admet lliuraments anònims"
 
 msgid "Your report was successful."
-msgstr "El teu informe s'ha efectuat amb èxit."
+msgstr "La teua denúncia s'ha registrat amb èxit."
 
 msgid "Remember your receipt for this report."
-msgstr "Recorde el seu codi per a aquest informe."
+msgstr "Recorde el seu codi per a aquesta denúncia."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
@@ -1470,13 +1479,13 @@ msgid ""
 msgstr "Faça servir el codi de 16 dígits per a entrar a la plataforma. Li permetrà vore els missatges que li enviem o afegir informació addicional."
 
 msgid "View your report"
-msgstr "Mira el teu informe"
+msgstr "Mira la teua denúncia"
 
 msgid "Recipient selection"
 msgstr "Seleccione el destinatari"
 
 msgid "Select the recipients of your report:"
-msgstr "Seleccioneu els destinataris de l'informe:"
+msgstr "Seleccioneu els destinataris de la denúncia:"
 
 msgid "Recipients selected:"
 msgstr "Destinataris seleccionats:"
@@ -1487,7 +1496,7 @@ msgstr "Heu arribat al número màxim de destinataris seleccionables."
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr "Els destinataris següents rebran el vostre informe obligatòriament:"
+msgstr "Els destinataris següents rebran la vostra denúncia obligatòriament:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1534,10 +1543,10 @@ msgid "You have completed the platform wizard."
 msgstr "Ha completat amb èxit l'assistent de la plataforma."
 
 msgid "Please summarize your report in a few words."
-msgstr "Descriga breument el seu informe.."
+msgstr "Descriga breument la seua denúncia."
 
 msgid "Describe your report in detail."
-msgstr "Descriu els detalls del teu informe."
+msgstr "Descriu amb detall la teua denúncia."
 
 msgid "Where did the facts happen?"
 msgstr "On van passar els fets?"
@@ -1564,10 +1573,10 @@ msgid "How are you involved in the reported facts?"
 msgstr "Com estàs implicat en els fets denunciats?"
 
 msgid "Do you have evidence to support your report?"
-msgstr "Tens proves que avalen el teu informe?"
+msgstr "Tens proves que avalen la teua denúncia?"
 
 msgid "Please attach the evidence to support your report."
-msgstr "Per favor, adjunta les proves que avalen el teu informe."
+msgstr "Per favor, adjunta les proves que avalen la teua denúncia."
 
 msgid "Please describe the evidence in detail."
 msgstr "Per favor, descriu les proves amb detall."
@@ -1676,7 +1685,7 @@ msgstr "Les activitats amb estadístiques inusuals són les següents:"
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr "El servidor no pot garantir que es pugui desar un nou informe, per aquest motiu s'han desactivat els enviaments."
+msgstr "El servidor no pot garantir que es pugui desar una nova denúncia, per aquest motiu s'han desactivat els enviaments."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
@@ -1805,7 +1814,7 @@ msgstr "Renovació del certificat HTTPS fallida."
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr "Amb aquest missatge de correu electrònic et volem notificar que el guardià us ha autoritzat a accedir a la identitat de l'informador de l'informe {TipNum}."
+msgstr "Amb aquest missatge de correu electrònic et volem notificar que el guardià us ha autoritzat a accedir a la identitat de l'informador de la denúncia {TipNum}."
 
 msgid "The report can be accessed at:"
 msgstr "La petició pot ser accedida a:"
@@ -1816,7 +1825,7 @@ msgstr "Accés autoritzat a la identitat de l'informador"
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr "Amb aquest missatge de correu electrònic et volem notificar que el guardià t'ha denegat l'accés a la identitat de l'informador de l'informe {TipNum}."
+msgstr "Amb aquest missatge de correu electrònic et volem notificar que el guardià t'ha denegat l'accés a la identitat de l'informador de la denúncia {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "Accés denegat a la identitat de l'informador"
@@ -1835,7 +1844,7 @@ msgstr "Nova petició d'accés a la identitat de l'informador"
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr "Amb aquest missatge de correu electrònic li notifiquem que l'informador del informe {TipNum} ha introduït la seua identitat."
+msgstr "Amb aquest missatge de correu electrònic li notifiquem que l'informador de la denúncia {TipNum} ha introduït la seua identitat."
 
 msgid "The whistleblower has provided their identity"
 msgstr "L'informador ha introduït la seua identitat"
@@ -1896,10 +1905,10 @@ msgstr "Per a obtenir instruccions sobre actualitzacions de software, consulteu 
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr "Aquest és un correu electrònic per notificar-vos que un destinatari us ha concedit accés a un o més informes."
+msgstr "Aquest és un correu electrònic per notificar-vos que un destinatari us ha concedit accés a una o més denúncies."
 
 msgid "New report"
-msgstr "Nou informe"
+msgstr "Nova denúncia"
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "La data de venciment més propera és {EarliestExpirationDate}."
@@ -1908,12 +1917,12 @@ msgid "Please remember to check them before they are deleted."
 msgstr "Per favor, reviseu-los abans de suprimir-los."
 
 msgid "Some reports will expire soon"
-msgstr "Alguns enviaments caducaran prompte"
+msgstr "Algunes denúncies caducaran prompte"
 
 msgid ""
 "This is an email to notify you that a whistleblower has selected you as a "
 "valuable recipient of their report."
-msgstr "Aquest és un missatge de correu electrònic per notificar-li que un informador l'ha seleccionat com a destinatari  valuós per al seu informe."
+msgstr "Aquest és un missatge de correu electrònic per notificar-li que un informador l'ha seleccionat com a destinatari  valuós per a la seua denúncia.."
 
 msgid ""
 "You are asked to pay special attention to the information and material "
@@ -1924,16 +1933,16 @@ msgid ""
 msgstr "Se vos demana que pareu especial atenció a la informació i al material que conté. Tingueu en compte que els informadors sovint s'exposen a riscos personals elevats en interès del públic. Per tant, el material proporcionat dins d'aquesta aportació ha de ser considerat de gran importància."
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr "Este correu electrònic és per notificar que s’ha actualitzat un informe existent."
+msgstr "Este correu electrònic és per notificar que s’ha actualitzat una denúncia existent."
 
 msgid "Report updated"
-msgstr "Informe actualitzat"
+msgstr "Denúncia actualitzada"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr "Aquest correu electrònic us recorda la presència d’informes no llegits o actualitzats."
+msgstr "Aquest correu electrònic us recorda la presència de denúncies no llegides o actualitzades."
 
 msgid "Reminder about unread or updated reports"
-msgstr "Recordatori sobre els informes no llegits o actualitzats"
+msgstr "Recordatori sobre les denúncies no llegides o actualitzades"
 
 msgid "Role: {Role}"
 msgstr "Rol: {Role}"

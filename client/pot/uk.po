@@ -1442,6 +1442,15 @@ msgstr "Помилка підтвердження"
 msgid "Invalid phone number"
 msgstr "Недійсний номер телефону"
 
+msgid "Address"
+msgstr "Адреса"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "The answer is too short"
 msgstr "Відповідь дуже коротка"
 

@@ -52,7 +52,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>, 2014-2022\n"
 "Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1466,6 +1466,15 @@ msgstr "Ungültige Bestätigung"
 
 msgid "Invalid phone number"
 msgstr "Ungültige Telefonnummer"
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Fiscal code"
+msgstr "Steuernummer"
+
+msgid "Tax code"
+msgstr "Steuerkennziffer"
 
 msgid "The answer is too short"
 msgstr "Die Antwort ist zu kurz"

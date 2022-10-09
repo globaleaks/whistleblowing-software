@@ -1423,6 +1423,15 @@ msgstr "ئىناۋەتسىز جەزىملەش"
 msgid "Invalid phone number"
 msgstr "ئىناۋەتسىز تېلېفون نومۇرى"
 
+msgid "Address"
+msgstr "ئادرېس"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "باج كودى"
+
 msgid "The answer is too short"
 msgstr "جاۋاپ بەك قىسقا"
 

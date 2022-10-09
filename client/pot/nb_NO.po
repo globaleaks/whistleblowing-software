@@ -1423,6 +1423,15 @@ msgstr "Ugyldig bekreftelse"
 msgid "Invalid phone number"
 msgstr "Ugyldig telefonnummer"
 
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "The answer is too short"
 msgstr "Svaret er for kort"
 

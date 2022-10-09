@@ -1428,6 +1428,15 @@ msgstr "Səhv təsdiqləmə"
 msgid "Invalid phone number"
 msgstr "Səhv telefon nömrəsi"
 
+msgid "Address"
+msgstr "Ünvan"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "The answer is too short"
 msgstr "Cavab çox qısadır"
 

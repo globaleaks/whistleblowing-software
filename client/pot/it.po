@@ -1443,6 +1443,15 @@ msgstr "Conferma incorretta"
 msgid "Invalid phone number"
 msgstr "Numero di telefono non valido"
 
+msgid "Address"
+msgstr "Indirizzo"
+
+msgid "Fiscal code"
+msgstr "Codice fiscale"
+
+msgid "Tax code"
+msgstr "Codice fiscale"
+
 msgid "The answer is too short"
 msgstr "La risposta è troppo corta"
 

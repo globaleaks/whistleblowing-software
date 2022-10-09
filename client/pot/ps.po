@@ -1421,6 +1421,15 @@ msgstr "ناسم تصدیق"
 msgid "Invalid phone number"
 msgstr "ناسمه د ټلیفون شمېره"
 
+msgid "Address"
+msgstr ""
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "The answer is too short"
 msgstr "ځواب ډېر لنډ دی"
 

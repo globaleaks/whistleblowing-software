@@ -1431,6 +1431,15 @@ msgstr "Невалидно потвърждение"
 msgid "Invalid phone number"
 msgstr "Невалиден телефонен номер"
 
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "The answer is too short"
 msgstr "Отговорът е прекалено кратък"
 

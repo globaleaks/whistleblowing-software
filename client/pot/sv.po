@@ -1444,6 +1444,15 @@ msgstr "Ogiltig bekräftelse"
 msgid "Invalid phone number"
 msgstr "Ogiltigt telefonnummer"
 
+msgid "Address"
+msgstr "Adress"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "Skatteregistreringsnummer"
+
 msgid "The answer is too short"
 msgstr "Svaret är alltför kort"
 

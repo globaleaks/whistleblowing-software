@@ -1444,6 +1444,15 @@ msgstr "Confirmação inválida"
 msgid "Invalid phone number"
 msgstr "Número de telefone inválido"
 
+msgid "Address"
+msgstr "Morada"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "Código Fiscal"
+
 msgid "The answer is too short"
 msgstr "A resposta é muito curta"
 

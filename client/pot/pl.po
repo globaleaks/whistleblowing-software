@@ -1441,6 +1441,15 @@ msgstr "Nieprawidłowe potwierdzenie"
 msgid "Invalid phone number"
 msgstr "Nieprawidłowy numer telefonu"
 
+msgid "Address"
+msgstr "Adres"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "Kod podatkowy"
+
 msgid "The answer is too short"
 msgstr "Odpowiedź jest zbyt krótka"
 

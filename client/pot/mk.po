@@ -1423,6 +1423,15 @@ msgstr "Невалидна потврда"
 msgid "Invalid phone number"
 msgstr "Невалиден телефонски број"
 
+msgid "Address"
+msgstr "Адреса"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "Даночен код"
+
 msgid "The answer is too short"
 msgstr "Одговорот е премногу краток"
 

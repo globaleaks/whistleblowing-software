@@ -1426,6 +1426,15 @@ msgstr "確認できません"
 msgid "Invalid phone number"
 msgstr "電話番号が正しくありません"
 
+msgid "Address"
+msgstr "アドレス"
+
+msgid "Fiscal code"
+msgstr "財務コード"
+
+msgid "Tax code"
+msgstr "納税番号"
+
 msgid "The answer is too short"
 msgstr "回答が短すぎます"
 

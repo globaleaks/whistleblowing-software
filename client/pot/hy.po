@@ -1423,6 +1423,15 @@ msgstr "Վավերացումն անհաջող էր"
 msgid "Invalid phone number"
 msgstr "Հեռախոսահամարն անվավեր է"
 
+msgid "Address"
+msgstr "Հասցե"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "The answer is too short"
 msgstr "Պատասխանը չափազանց կարճ է"
 

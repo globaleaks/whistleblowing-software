@@ -4,7 +4,7 @@
 # Aesthese, 2016
 # Bo Elkjaer <bo_elkjaer@riseup.net>, 2018,2020
 # Bo Elkjaer <bo_elkjaer@riseup.net>, 2018
-# Casper Petersen <casper_petersen@hotmail.com>, 2020-2021
+# Casper Petersen <casper_petersen@hotmail.com>, 2020-2022
 # Denis Smajlović <deni@deni.dk>, 2019-2020
 # Denis Smajlović <deni@deni.dk>, 2019
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2018,2020-2022
@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2018,2020-2022\n"
+"Last-Translator: Casper Petersen <casper_petersen@hotmail.com>, 2020-2022\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -870,7 +870,7 @@ msgstr "Til"
 msgid ""
 "Default mail configuration in use. Please consider using a private mail "
 "server."
-msgstr ""
+msgstr "Standard mailkonfiguration i brug. Overvej venligst at benytte en privat mailserver."
 
 msgid "SMTP email address"
 msgstr "SMTP e-mail-adresse"
@@ -1427,6 +1427,15 @@ msgstr "Forkert bekræftelse"
 
 msgid "Invalid phone number"
 msgstr "Forkert telefonnummer"
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "Skattekode"
 
 msgid "The answer is too short"
 msgstr "Dit svar er for kort"

@@ -1469,6 +1469,15 @@ msgstr "تأكيد غير صالح"
 msgid "Invalid phone number"
 msgstr "رقم هاتف غير صالح"
 
+msgid "Address"
+msgstr "العنوان"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "The answer is too short"
 msgstr ""
 

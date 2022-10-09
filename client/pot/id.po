@@ -1446,6 +1446,15 @@ msgstr "Konfirmasi tidak valid"
 msgid "Invalid phone number"
 msgstr "Nomor telepon tidak valid"
 
+msgid "Address"
+msgstr "Alamat"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "Kode pajak"
+
 msgid "The answer is too short"
 msgstr "Jawaban terlalu singkat"
 

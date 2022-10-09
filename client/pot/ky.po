@@ -1422,6 +1422,15 @@ msgstr "Тастыктоо жараксыз"
 msgid "Invalid phone number"
 msgstr "Жараксыз телефон номуру"
 
+msgid "Address"
+msgstr ""
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "The answer is too short"
 msgstr "Жооп өтө эле кыска"
 

@@ -1421,6 +1421,15 @@ msgstr "Pengesahan tidak sah"
 msgid "Invalid phone number"
 msgstr "Nombor telefon tidak sah"
 
+msgid "Address"
+msgstr "Alamat"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "Kod cukai"
+
 msgid "The answer is too short"
 msgstr "Jawapan terlalu pendek"
 

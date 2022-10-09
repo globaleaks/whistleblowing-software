@@ -1436,6 +1436,15 @@ msgstr "Xác nhận không hợp lệ"
 msgid "Invalid phone number"
 msgstr "Số điện thoại không hợp lệ"
 
+msgid "Address"
+msgstr "Địa chỉ"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "Mã số thuế"
+
 msgid "The answer is too short"
 msgstr "Câu trả lời quá ngắn. "
 

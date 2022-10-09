@@ -1438,6 +1438,15 @@ msgstr "Érvénytelen megerősítés"
 msgid "Invalid phone number"
 msgstr "Érvénytelen telefonszám"
 
+msgid "Address"
+msgstr "Cím"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "Adókód"
+
 msgid "The answer is too short"
 msgstr "A válasz túl rövid."
 

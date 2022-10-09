@@ -1423,6 +1423,15 @@ msgstr "Растау жарамсыз"
 msgid "Invalid phone number"
 msgstr "Телефон нөмірі жарамсыз"
 
+msgid "Address"
+msgstr ""
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "The answer is too short"
 msgstr "Жауап тым қысқа"
 

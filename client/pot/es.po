@@ -1460,6 +1460,15 @@ msgstr "Confirmación no válida"
 msgid "Invalid phone number"
 msgstr "Número de teléfono no válido."
 
+msgid "Address"
+msgstr "Dirección"
+
+msgid "Fiscal code"
+msgstr "Código fiscal"
+
+msgid "Tax code"
+msgstr "Código de impuestos"
+
 msgid "The answer is too short"
 msgstr "La respuesta es demasiado corta"
 

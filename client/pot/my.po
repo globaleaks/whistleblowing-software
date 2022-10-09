@@ -1422,6 +1422,15 @@ msgstr "အတည်ပြုချက် မမှန်ကန်ပါ"
 msgid "Invalid phone number"
 msgstr "မမှန်ကန်သော ဖုန်းနံပါတ်"
 
+msgid "Address"
+msgstr "လိပ်စာ"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "အခွန် ကုဒ်"
+
 msgid "The answer is too short"
 msgstr "အဖြေက တိုလွန်းသည်"
 

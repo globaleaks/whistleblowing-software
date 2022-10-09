@@ -1421,6 +1421,15 @@ msgstr "ການຢືນຢັນໃຊ້ບໍ່ໄດ້"
 msgid "Invalid phone number"
 msgstr "ເບີໂທລະສັບໃຊ້ບໍ່ໄດ້"
 
+msgid "Address"
+msgstr "ທີ່ຢູ່"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "ລະຫັດອາກອນ"
+
 msgid "The answer is too short"
 msgstr "ຄຳຕອບສັ້ນເກີນໄປ"
 

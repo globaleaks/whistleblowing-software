@@ -1437,6 +1437,15 @@ msgstr ""
 msgid "Invalid phone number"
 msgstr "Le numéro de téléphone est invalide"
 
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "The answer is too short"
 msgstr ""
 

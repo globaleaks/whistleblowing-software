@@ -1421,6 +1421,15 @@ msgstr "Kehtetu kinnitus"
 msgid "Invalid phone number"
 msgstr "Vigane telefoninumber"
 
+msgid "Address"
+msgstr "Aadress"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "Maksukood"
+
 msgid "The answer is too short"
 msgstr "Vastus on liiga lühike"
 

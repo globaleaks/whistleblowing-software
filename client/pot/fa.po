@@ -1448,6 +1448,15 @@ msgstr "تأیید نامعتبر"
 msgid "Invalid phone number"
 msgstr "شماره‌تلفن نامعتبر"
 
+msgid "Address"
+msgstr "آدرس"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "شماره مالیات"
+
 msgid "The answer is too short"
 msgstr "پاسخ بسیار کوتاه است"
 

@@ -1426,6 +1426,15 @@ msgstr "Potvrda nije važeća"
 msgid "Invalid phone number"
 msgstr "Broj telefona nije važeći"
 
+msgid "Address"
+msgstr "Adresa"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "Porezni broj"
+
 msgid "The answer is too short"
 msgstr "Odgovor je prekratak"
 

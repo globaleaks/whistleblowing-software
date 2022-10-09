@@ -1438,6 +1438,15 @@ msgstr "אישור בלתי תקף"
 msgid "Invalid phone number"
 msgstr "מספר טלפון בלתי תקף"
 
+msgid "Address"
+msgstr "כתובת"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr ""
+
 msgid "The answer is too short"
 msgstr ""
 

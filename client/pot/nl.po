@@ -1465,6 +1465,15 @@ msgstr "Bevestiging ongeldig"
 msgid "Invalid phone number"
 msgstr "Ongeldig telefoonnummer"
 
+msgid "Address"
+msgstr "Adres"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "BTW-code / Belastingwetgeving"
+
 msgid "The answer is too short"
 msgstr "Het antwoord is te kort"
 

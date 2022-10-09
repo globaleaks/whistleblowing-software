@@ -1430,6 +1430,15 @@ msgstr "Ripohim i pavlefshëm"
 msgid "Invalid phone number"
 msgstr "Numër telefoni i pavlefshëm"
 
+msgid "Address"
+msgstr "Adresë"
+
+msgid "Fiscal code"
+msgstr "Kod fiskal"
+
+msgid "Tax code"
+msgstr "Kodi i taksës"
+
 msgid "The answer is too short"
 msgstr "Përgjigja është shumë e shkurtër"
 

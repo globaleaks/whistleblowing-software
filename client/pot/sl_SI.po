@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Vasja <vasja.cepic@transparency.si>, 2021-2022\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017,2020-2022\n"
 "Language-Team: Slovenian (Slovenia) (http://www.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -361,7 +361,7 @@ msgid "Scheduled jobs"
 msgstr "Načrtovana opravila"
 
 msgid "Sites management"
-msgstr "Upravljanje s stranmi."
+msgstr "Upravljanje s stranmi"
 
 msgid "Regenerate"
 msgstr "Poustvari"
@@ -1425,6 +1425,15 @@ msgstr "Neveljavna potrditev"
 
 msgid "Invalid phone number"
 msgstr "Neveljavna telefonska številka"
+
+msgid "Address"
+msgstr "Naslov"
+
+msgid "Fiscal code"
+msgstr "Matična številka"
+
+msgid "Tax code"
+msgstr "Davčna številka"
 
 msgid "The answer is too short"
 msgstr "Odgovor je prekratek"

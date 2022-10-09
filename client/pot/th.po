@@ -1431,6 +1431,15 @@ msgstr "การยืนยันไม่ถูกต้อง"
 msgid "Invalid phone number"
 msgstr "หมายเลขโทรศัพท์ไม่ถูกต้อง"
 
+msgid "Address"
+msgstr "ที่อยู่"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "เลขประจำตัวผู้เสียภาษี"
+
 msgid "The answer is too short"
 msgstr "คำตอบสั้นเกินไป"
 

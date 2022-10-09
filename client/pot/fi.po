@@ -1430,6 +1430,15 @@ msgstr "Virheellinen varmistus"
 msgid "Invalid phone number"
 msgstr "Puhelinnumero ei kelpaa"
 
+msgid "Address"
+msgstr "Osoite"
+
+msgid "Fiscal code"
+msgstr ""
+
+msgid "Tax code"
+msgstr "Veronumero"
+
 msgid "The answer is too short"
 msgstr "Vastaus on liian lyhyt"
 

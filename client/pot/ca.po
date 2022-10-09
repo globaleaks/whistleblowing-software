@@ -1440,6 +1440,15 @@ msgstr "Confirmació no vàlida"
 msgid "Invalid phone number"
 msgstr "Número de telèfon no vàlid"
 
+msgid "Address"
+msgstr "Adreça"
+
+msgid "Fiscal code"
+msgstr "Codi postal"
+
+msgid "Tax code"
+msgstr "codi tributari"
+
 msgid "The answer is too short"
 msgstr "La resposta és massa curta"
 
