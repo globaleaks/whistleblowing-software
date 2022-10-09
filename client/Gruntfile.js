@@ -1,5 +1,4 @@
 /* eslint no-console: 0 */
-
 module.exports = function(grunt) {
   var fs = require("fs"),
     path = require("path"),
@@ -432,33 +431,48 @@ module.exports = function(grunt) {
     return val.replace(/\\n/g, "\n").replace(/\\t/g, "\t");
   }
 
-  function readTransifexrc(){
-    var transifexrc = fs.realpathSync(process.env.HOME + "/.transifexrc"),
-        usernameRegexp = /username = (.*)/,
-        passwordRegexp = /password = (.*)/,
-        login = {},
-        content;
+  function readTransifexApiKey() {
+    var keyfile = process.env.HOME + "/.transifexapikey";
 
-    content = grunt.file.read(transifexrc);
-    login.username = usernameRegexp.exec(content)[1];
-    login.password = passwordRegexp.exec(content)[1];
-    return login;
+    if (!fs.existsSync(keyfile)) {
+      return "";
+    }
+
+    return grunt.file.read(keyfile).trim();
   }
 
   var agent = superagent.agent(),
-    baseurl = "https://www.transifex.com/api/2/project/globaleaks",
-    sourceFile = "pot/en.po";
+    baseurl = "https://rest.api.transifex.com",
+    sourceFile = "pot/en.po",
+    transifexApiKey = readTransifexApiKey();
 
   function updateTxSource(cb){
-    var url = baseurl + "/resource/master/content/",
-      content = grunt.file.read(sourceFile),
-      login = readTransifexrc();
+    var url = baseurl + "/resource_strings_async_uploads";
 
-    agent.put(url)
-      .auth(login.username, login.password)
-      .set("Content-Type", "application/json")
-      .send({"content": content})
-      .end(function(err, res){
+    var content = {
+      "data": {
+        "attributes": {
+          "callback_url": null,
+          "content": grunt.file.read(sourceFile),
+          "content_encoding": "text",
+          "replace_edited_strings": false
+        },
+        "relationships": {
+          "resource": {
+            "data": {
+              "id": "o:otf:p:globaleaks:r:master",
+              "type": "resources"
+            }
+          }
+        },
+        "type": "resource_strings_async_uploads"
+      }
+    };
+
+    agent.post(url)
+      .set({"Content-Type": "application/vnd.api+json", "Authorization": "Bearer " + transifexApiKey})
+      .send(content)
+      .end(function(err, res) {
         if (res) {
           if (res.ok) {
             cb();
@@ -472,12 +486,11 @@ module.exports = function(grunt) {
   }
 
   function listLanguages(cb){
-    var url = baseurl + "/resource/master/?details",
-      login = readTransifexrc();
+    var url = baseurl + "/projects/o:otf:p:globaleaks/languages";
 
     agent.get(url)
-      .auth(login.username, login.password)
-      .end(function(err, res){
+      .set({'Authorization': "Bearer " + transifexApiKey})
+      .end(function(err, res) {
         if (res) {
           if (res.ok) {
             var result = JSON.parse(res.text);
@@ -491,43 +504,90 @@ module.exports = function(grunt) {
       });
   }
 
-  function fetchTxTranslationsForLanguage(langCode, cb) {
-    var resourceUrl = baseurl + "/resource/master/",
-      login = readTransifexrc();
+  function fetchTxTranslationsPO(langCode, cb) {
+    var url = baseurl + "/resource_translations_async_downloads";
 
-    var url = resourceUrl + "stats/" + langCode + "/";
+    agent.post(url)
+         .set({"Authorization": "Bearer " + transifexApiKey, "Content-Type": "application/vnd.api+json"})
+         .send({
+                "data": {
+                  "attributes": {
+                   "content_encoding": "text",
+                    "file_type": "default",
+                    "mode": "default"
+                  },
+                  "relationships": {
+                    "language": {
+                      "data": {
+                        "id": "l:" + langCode,
+                        "type": "languages"
+                      }
+                    },
+                    "resource": {
+                      "data": {
+                        "id": "o:otf:p:globaleaks:r:master",
+                        "type": "resources"
+                      }
+                    }
+                  },
+                  "type": "resource_translations_async_downloads"
+                }
+              })
+        .end(function(err, res) {
+          if (res && res.ok) {
+            url = JSON.parse(res.text).data.links.self;
+
+            var fetchPO = function(url) {
+              agent.get(url)
+                   .set({'Authorization': "Bearer " + transifexApiKey})
+                   .end(function(err, res) {
+                if (res && res.ok) {
+                  if (res.redirects.length) {
+                    var stream = fs.createWriteStream("pot/" + langCode + ".po");
+
+                    stream.on('finish', function () {
+                      cb(true);
+                    });
+
+                    agent.get(res.redirects[0])
+                         .set({'Authorization': "Bearer " + transifexApiKey})
+                         .pipe(stream);
+
+                  } else {
+                    fetchPO(url);
+                  }
+                } else {
+                  console.log("Error: failed to fetch resource");
+                  cb(false);
+                }
+              });
+            }
+            fetchPO(url);
+          } else {
+            console.log("Error: failed to fetch resource");
+            cb(false);
+          }
+        });
+  }
+
+  function fetchTxTranslationsForLanguage(langCode, cb) {
+    var url = baseurl + "/resource_language_stats/o:otf:p:globaleaks:r:master:l:" + langCode;
 
     agent.get(url)
-      .auth(login.username, login.password)
-      .end(function(err, res){
-        if (res) {
-          if (res.ok) {
-            var content = JSON.parse(res.text);
+      .set({'Authorization': "Bearer " + transifexApiKey})
+      .end(function(err, res) {
+        if (res && res.ok) {
+          var content = JSON.parse(res.text);
 
-            // Add the new translations for languages translated above 50%
-            if (content.translated_entities > content.untranslated_entities) {
-              var url = resourceUrl + "translation/" + langCode + "/";
-              agent.get(url)
-                .auth(login.username, login.password)
-                .end(function(err, res){
-                  if (res) {
-                    if (res.ok) {
-                      cb(JSON.parse(res.text)["content"]);
-                    } else {
-                      console.log("Error: " + res.text);
-                    }
-                  } else {
-                    console.log("Error: failed to fetch resource");
-                  }
-                });
-            } else {
-              cb();
-            }
+          // Add the new translations for languages translated above 50%
+          if (content.data.attributes.translated_strings > content.data.attributes.untranslated_strings) {
+            fetchTxTranslationsPO(langCode, cb);
           } else {
-            console.log("Error: " + res.text);
+            cb(false);
           }
         } else {
           console.log("Error: failed to fetch resource");
+          cb(false);
         }
       });
   }
@@ -538,7 +598,7 @@ module.exports = function(grunt) {
       supported_languages = {};
 
     listLanguages(function(result) {
-      result.available_languages = result.available_languages.sort(function(a, b) {
+      result.data = result.data.sort(function(a, b) {
         if (a.code > b.code) {
           return 1;
         }
@@ -550,16 +610,13 @@ module.exports = function(grunt) {
         return 0;
       });
 
-      total_languages = result.available_languages.length;
+      total_languages = result.data.length;
 
       var fetchLanguage = function(language) {
-        fetchTxTranslationsForLanguage(language.code, function(content){
-          if (content) {
-            var potFile = "pot/" + language.code + ".po";
-
-            fs.writeFileSync(potFile, content);
-            console.log("Fetched " + language.code);
-            supported_languages[language.code] = language.name;
+        fetchTxTranslationsForLanguage(language.attributes.code, function(ret){
+          if (ret) {
+            console.log("Fetched " + language.attributes.code);
+            supported_languages[language.attributes.code] = language.attributes.name;
           }
 
           fetched_languages += 1;
@@ -576,12 +633,12 @@ module.exports = function(grunt) {
 
             cb(supported_languages);
           } else {
-            fetchLanguage(result.available_languages[fetched_languages]);
+            fetchLanguage(result.data[fetched_languages]);
           }
         });
       };
 
-      fetchLanguage(result.available_languages[0]);
+      fetchLanguage(result.data[0]);
     });
   }
 
@@ -933,8 +990,6 @@ module.exports = function(grunt) {
         var text = lang_map[lang];
         checkIfRightTagsUsed(variables, lang, text, template_name, expected_tags);
         checkForBrokenTags(variables, lang, text, template_name);
-        // TODO Search for ://
-        // TODO Check for html elements and other evil strings
       }
     }
 
