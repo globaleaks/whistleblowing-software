@@ -1,3 +1,7 @@
+Changes in version 4.10.12
+    Fix regression on generation of Acme Account Key introduced in 4.10.11
+    Update translations
+
 Changes in version 4.10.11
     Randomize LetsEncrypt renewal solving failing issues on congested times
     Revise packaging of client libraries
