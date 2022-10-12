@@ -2,7 +2,6 @@
 from OpenSSL import crypto
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
-from cryptography.hazmat.primitives.asymmetric import rsa
 
 from twisted.internet.defer import inlineCallbacks
 
@@ -44,8 +43,7 @@ def db_load_tls_configs(session):
 def db_generate_acme_key(session, tid):
     priv_fact = ConfigFactory(session, tid)
 
-    key = tls.generate_rsa_key(Settings.rsa_key_bits)
-
+    key = tls.gen_rsa_key(Settings.rsa_key_bits)
     priv_fact.set_val('acme_accnt_key', key)
 
     return key
@@ -55,12 +53,12 @@ def db_acme_cert_request(session, tid):
     priv_fact = ConfigFactory(session, tid)
     hostname = priv_fact.get_val('hostname')
 
-    acme_accnt_key = ConfigFactory(session, 1).get_val('acme_accnt_key')
+    acme_accnt_key = ConfigFactory(session, 1).get_val('acme_accnt_key').encode()
 
     if not acme_accnt_key:
         acme_accnt_key = db_generate_acme_key(session, tid)
 
-    acme_accnt_key = serialization.load_pem_private_key(acme_accnt_key.encode(),
+    acme_accnt_key = serialization.load_pem_private_key(acme_accnt_key,
                                                         password=None,
                                                         backend=default_backend())
 
