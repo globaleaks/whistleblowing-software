@@ -7,6 +7,7 @@
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015,2017-2018,2020-2022
 # khi, 2021
 # khi, 2021
+# Kishin Sagume, 2022
 # 91ca17e215222af3ff24b8eeb76640c7_f9deb57, 2013-2014
 # lin, 2014
 # 刘位, 2014
@@ -26,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015,2017-2018,2020-2022\n"
+"Last-Translator: Kishin Sagume, 2022\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1191,7 +1192,7 @@ msgid "Enter a name for the copy"
 msgstr "输入副本的名称"
 
 msgid "Request support"
-msgstr ""
+msgstr "请求支持"
 
 msgid "Thank you."
 msgstr "谢谢。"
@@ -1619,7 +1620,7 @@ msgid "Last name"
 msgstr "姓"
 
 msgid "Alternative contact method"
-msgstr ""
+msgstr "备用联系方式"
 
 msgid "I prefer to be contacted via this platform only"
 msgstr ""

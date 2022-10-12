@@ -1178,7 +1178,7 @@ msgid "Enter a name for the copy"
 msgstr "為此複本輸入名稱"
 
 msgid "Request support"
-msgstr ""
+msgstr "请求支持"
 
 msgid "Thank you."
 msgstr "谢谢。"
@@ -1606,7 +1606,7 @@ msgid "Last name"
 msgstr "姓"
 
 msgid "Alternative contact method"
-msgstr ""
+msgstr "备用联系方式"
 
 msgid "I prefer to be contacted via this platform only"
 msgstr ""
