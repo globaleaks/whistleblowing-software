@@ -58,7 +58,7 @@ def db_acme_cert_request(session, tid):
     acme_accnt_key = ConfigFactory(session, 1).get_val('acme_accnt_key')
 
     if not acme_accnt_key:
-        acme_accnt_key = db_generate_acme_key(session)
+        acme_accnt_key = db_generate_acme_key(session, tid)
 
     acme_accnt_key = serialization.load_pem_private_key(acme_accnt_key.encode(),
                                                         password=None,
