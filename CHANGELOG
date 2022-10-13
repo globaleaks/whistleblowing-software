@@ -1,3 +1,6 @@
+Changes in version 4.10.13
+    Revise fix fo regression on ACME key generation introduced in 3.10.11 (#3295)
+
 Changes in version 4.10.12
     Fix regression on generation of Acme Account Key introduced in 4.10.11
     Update translations
