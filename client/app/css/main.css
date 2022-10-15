@@ -791,5 +791,4 @@ html[dir="ltr"] #Receipt {
 [dir="rtl"] .fa,
 [dir="rtl"] .fas {
   transform: scaleX(-1);
-  transform: scaleX(-1);
 }
