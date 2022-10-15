@@ -484,7 +484,7 @@ msgid "Grant access"
 msgstr ""
 
 msgid "Revoke access"
-msgstr "撤銷存取"
+msgstr "撤销访问权限"
 
 msgid "File a report"
 msgstr "提交报告"
