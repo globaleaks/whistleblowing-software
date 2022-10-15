@@ -23,13 +23,13 @@
 # Drew Melim <nokostya.translation@gmail.com>, 2014-2015
 # 25dcf36596cc573910517485ce7471d2_e63d9c6 <02fb85a8c2ff1359b9784c1b22793096_365094>, 2015
 # 25dcf36596cc573910517485ce7471d2_e63d9c6 <02fb85a8c2ff1359b9784c1b22793096_365094>, 2015
-# Nuno Miguel Macedo Batalha <nmmbat@gmail.com>, 2015
+# 575b4991c894d9c8bf6a550fe019e79d_a59dad8 <feee6d7ec07d4c6114bc49e60d3a80e8_323709>, 2015
 # Yvette Agostini <mnemosyne@logioshermes.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Manuela Silva <mmsrs@sky.com>, 2019-2020,2022\n"
+"Last-Translator: José Anjos, 2022\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1448,7 +1448,7 @@ msgid "Address"
 msgstr "Morada"
 
 msgid "Fiscal code"
-msgstr ""
+msgstr "Número de contribuinte"
 
 msgid "Tax code"
 msgstr "Código Fiscal"

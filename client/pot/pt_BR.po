@@ -1464,7 +1464,7 @@ msgid "Address"
 msgstr "Endereço"
 
 msgid "Fiscal code"
-msgstr ""
+msgstr "Número de contribuinte"
 
 msgid "Tax code"
 msgstr "Código Fiscal"
