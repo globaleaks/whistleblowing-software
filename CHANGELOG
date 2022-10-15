@@ -1,3 +1,8 @@
+Changes in version 4.10.14
+    Apply minor UI fixes
+    Bump client dependencies to latest versions
+    Update translations
+
 Changes in version 4.10.13
     Revise fix fo regression on ACME key generation introduced in 3.10.11 (#3295)
 
