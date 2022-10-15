@@ -489,7 +489,7 @@ module.exports = function(grunt) {
     var url = baseurl + "/projects/o:otf:p:globaleaks/languages";
 
     agent.get(url)
-      .set({'Authorization': "Bearer " + transifexApiKey})
+      .set({"Authorization": "Bearer " + transifexApiKey})
       .end(function(err, res) {
         if (res) {
           if (res.ok) {
@@ -539,18 +539,18 @@ module.exports = function(grunt) {
 
             var fetchPO = function(url) {
               agent.get(url)
-                   .set({'Authorization': "Bearer " + transifexApiKey})
+                   .set({"Authorization": "Bearer " + transifexApiKey})
                    .end(function(err, res) {
                 if (res && res.ok) {
                   if (res.redirects.length) {
                     var stream = fs.createWriteStream("pot/" + langCode + ".po");
 
-                    stream.on('finish', function () {
+                    stream.on("finish", function () {
                       cb(true);
                     });
 
                     agent.get(res.redirects[0])
-                         .set({'Authorization': "Bearer " + transifexApiKey})
+                         .set({"Authorization": "Bearer " + transifexApiKey})
                          .pipe(stream);
 
                   } else {
@@ -561,7 +561,8 @@ module.exports = function(grunt) {
                   cb(false);
                 }
               });
-            }
+            };
+
             fetchPO(url);
           } else {
             console.log("Error: failed to fetch resource");
@@ -574,7 +575,7 @@ module.exports = function(grunt) {
     var url = baseurl + "/resource_language_stats/o:otf:p:globaleaks:r:master:l:" + langCode;
 
     agent.get(url)
-      .set({'Authorization': "Bearer " + transifexApiKey})
+      .set({"Authorization": "Bearer " + transifexApiKey})
       .end(function(err, res) {
         if (res && res.ok) {
           var content = JSON.parse(res.text);
