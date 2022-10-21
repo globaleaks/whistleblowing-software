@@ -111,7 +111,7 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
     if not user or not GCE.check_password(user.hash_alg, password, user.salt, user.password):
         db_login_failure(session, tid, 0)
 
-    connection_check(tid, client_ip, user.role, client_using_tor)
+    connection_check(tid, user.role, client_ip, client_using_tor)
 
     if user.two_factor_secret:
         if authcode == '':
@@ -193,8 +193,8 @@ class TokenAuthHandler(BaseHandler):
         if session is None or session.tid != self.request.tid:
             yield tw(db_login_failure, self.request.tid, 0)
 
-        connection_check(self.request.tid, self.request.client_ip,
-                         session.user_role, self.request.client_using_tor)
+        connection_check(self.request.tid, session.user_role,
+                         self.request.client_ip, self.request.client_using_tor)
 
         session = Sessions.regenerate(session.id)
 
@@ -214,12 +214,16 @@ class ReceiptAuthHandler(BaseHandler):
 
         yield login_delay(self.request.tid)
 
-        connection_check(self.request.tid, self.request.client_ip,
-                         'whistleblower', self.request.client_using_tor)
+        connection_check(self.request.tid, 'whistleblower',
+                         self.request.client_ip, self.request.client_using_tor)
 
         if request['receipt']:
             session = yield login_whistleblower(self.request.tid, request['receipt'])
+
         else:
+            if not self.state.accept_submissions or self.state.tenants[self.request.tid].cache['disable_submissions']:
+                raise errors.SubmissionDisabled
+
             session = initialize_submission_session(self.request.tid)
 
         returnValue(session.serialize())

@@ -49,13 +49,13 @@ def serve_file(request, fo):
 
 
 
-def connection_check(tid, client_ip, role, client_using_tor):
+def connection_check(tid, role, client_ip, client_using_tor):
     """
     Accept or refuse a connection in relation to the platform settings
 
     :param tid: A tenant ID
-    :param client_ip: A client IP
     :param role: A user role
+    :param client_ip: A client IP
     :param client_using_tor: A boolean for signaling Tor use
     """
     ip_filter = State.tenants[tid].cache['ip_filter'].get(role)
