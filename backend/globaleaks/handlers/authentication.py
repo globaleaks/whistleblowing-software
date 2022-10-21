@@ -54,7 +54,7 @@ def login_delay(tid):
 
 
 @transact
-def login_whistleblower(session, tid, receipt):
+def login_whistleblower(session, tid, receipt, client_using_tor):
     """
     Login transaction for whistleblowers' access
 
@@ -73,6 +73,7 @@ def login_whistleblower(session, tid, receipt):
         db_login_failure(session, tid, 1)
 
     itip.wb_last_access = datetime_now()
+    itip.tor = itip.tor and client_using_tor
 
     crypto_prv_key = ''
     if itip.crypto_pub_key:
@@ -218,7 +219,7 @@ class ReceiptAuthHandler(BaseHandler):
                          self.request.client_ip, self.request.client_using_tor)
 
         if request['receipt']:
-            session = yield login_whistleblower(self.request.tid, request['receipt'])
+            session = yield login_whistleblower(self.request.tid, request['receipt'], client_using_tor)
 
         else:
             if not self.state.accept_submissions or self.state.tenants[self.request.tid].cache['disable_submissions']:
