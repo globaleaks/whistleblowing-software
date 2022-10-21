@@ -488,7 +488,7 @@ def forge_request(uri=b'https://www.globaleaks.org/',
     request.headers = None
     request.client_ip = b'127.0.0.1'
     request.client_ua = b''
-    request.client_mobile = False
+    request.client_using_mobile = False
     request.client_using_tor = False
     request.port = 443
     request.language = 'en'
@@ -849,7 +849,8 @@ class TestGLWithPopulatedDB(TestGL):
         self.lastReceipt = (yield create_submission(1,
                                                    self.dummySubmission,
                                                    session,
-                                                   True))['receipt']
+                                                   True,
+                                                   False))['receipt']
 
     @inlineCallbacks
     def perform_post_submission_actions(self):

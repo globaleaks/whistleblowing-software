@@ -64,7 +64,7 @@ class TestSubmission(helpers.TestHandlerWithPopulatedDB):
         self.submission_desc['answers'] = yield self.fill_random_answers(self.dummyContext['questionnaire_id'])
         receipt = yield self.create_submission(self.submission_desc)
 
-        session = yield authentication.login_whistleblower(1, receipt)
+        session = yield authentication.login_whistleblower(1, receipt, True)
 
         wbtip_desc, _ = yield wbtip.get_wbtip(session.user_id, 'en')
 

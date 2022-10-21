@@ -6,7 +6,7 @@ import json
 
 from globaleaks import models
 from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
-from globaleaks.handlers.base import connection_check, BaseHandler
+from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import db_get, db_log, transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
@@ -106,7 +106,7 @@ def db_create_receivertip(session, receiver, internaltip, tip_enc_key, files_enc
     return receivertip
 
 
-def db_create_submission(session, tid, request, user_session, client_using_tor):
+def db_create_submission(session, tid, request, user_session, client_using_tor, client_using_mobile):
     encryption = db_get(session, models.Config, (models.Config.tid == tid, models.Config.var_name == 'encryption'))
 
     crypto_is_available = encryption.value
@@ -164,7 +164,7 @@ def db_create_submission(session, tid, request, user_session, client_using_tor):
     itip.score = request['score']
 
     itip.tor = client_using_tor
-    itip.mobile = request['mobile']
+    itip.mobile = client_using_mobile
 
     itip.context_id = context.id
     itip.enable_two_way_comments = context.enable_two_way_comments
@@ -245,8 +245,8 @@ def db_create_submission(session, tid, request, user_session, client_using_tor):
 
 
 @transact
-def create_submission(session, tid, request, user_session, client_using_tor):
-    return db_create_submission(session, tid, request, user_session, client_using_tor)
+def create_submission(session, tid, request, user_session, client_using_tor, client_using_mobile):
+    return db_create_submission(session, tid, request, user_session, client_using_tor, client_using_mobile)
 
 
 class SubmissionInstance(BaseHandler):
@@ -259,16 +259,10 @@ class SubmissionInstance(BaseHandler):
         """
         Perform a submission
         """
-        connection_check(self.request.tid, self.request.client_ip, 'whistleblower', self.request.client_using_tor)
-
-        if not self.state.accept_submissions or self.state.tenants[self.request.tid].cache['disable_submissions']:
-            raise errors.SubmissionDisabled
-
         request = self.validate_request(self.request.content.read(), requests.SubmissionDesc)
-
-        request['mobile'] = self.request.client_mobile
 
         return create_submission(self.request.tid,
                                  request,
                                  self.session,
-                                 self.request.client_using_tor)
+                                 self.request.client_using_tor,
+                                 self.request.client_using_mobile)
