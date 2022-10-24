@@ -31,7 +31,7 @@ GL.controller("PreferencesCtrl", ["$scope", "$q", "$http", "$location", "$window
 
     $scope.changePassword = function() {
       return $scope.Utils.runUserOperation("change_password", $scope.changePasswordArgs).then(function() {
-        $scope.newPasswordArgs = {};
+        $scope.changePasswordArgs = {};
       });
     };
 
