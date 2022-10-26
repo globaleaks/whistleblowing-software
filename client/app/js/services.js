@@ -735,11 +735,11 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
     },
     getDateFilter: function(Tips, report_date_filter, update_date_filter, expiry_date_filter) {
 
-         filteredTips = [];
+         var filteredTips = [];
          angular.forEach(Tips, function(rows) {
-             m_row_rdate = new Date(rows.last_access).getTime();
-             m_row_udate = new Date(rows.update_date).getTime();
-             m_row_edate = new Date(rows.expiration_date).getTime();
+             var m_row_rdate = new Date(rows.last_access).getTime();
+             var m_row_udate = new Date(rows.update_date).getTime();
+             var m_row_edate = new Date(rows.expiration_date).getTime();
 
              if((report_date_filter==null || report_date_filter!=null && (report_date_filter[0] == 0 || report_date_filter[0] === report_date_filter[1] || m_row_rdate > report_date_filter[0] && m_row_rdate < report_date_filter[1])) &&
                 (update_date_filter==null || update_date_filter!=null && (update_date_filter[0] == 0 || update_date_filter[0] === update_date_filter[1] || m_row_udate > update_date_filter[0] && m_row_udate < update_date_filter[1])) &&
@@ -751,18 +751,18 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
          return filteredTips;
     },
     getStaticFilter: function(data, model, key) {
-      if (model.length==0){
+      if (model.length===0){
         return data;
       }else{
         var rows = [];
         data.forEach(data_row => {
             model.forEach(selected_option => {
-                if (key == "score"){
+                if (key === "score"){
                     scoreLabel = maskScore(data_row[key])
                     if (scoreLabel === selected_option.id){
                         rows.push(data_row);
                     }
-                }else if(key == "status"){
+                }else if(key === "status"){
                     if (data_row[key] === selected_option.id){
                         rows.push(data_row);
                     }
@@ -777,13 +777,13 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       return rows;
     },
     maskScore: function(score) {
-      if (score == 1){
+      if (score === 1){
           return "Low";
       }
-      else if (score == 2){
+      else if (score === 2){
           return "Medium";
       }
-      else if (score == 3){
+      else if (score === 3){
           return "High";
       }else{
           return "None";

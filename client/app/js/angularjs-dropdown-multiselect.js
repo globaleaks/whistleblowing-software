@@ -160,7 +160,7 @@ directiveModule.directive("mfDropdownStaticInclude", ["$compile", function($comp
                 var searchResult;
                 $scope.deselectAll(!0), $scope.externalEvents.onSelectAll(), searchResult = $filter("filter")($scope.options, $scope.getFilter($scope.input.searchFilter)), angular.forEach(searchResult, function(value) {
                     $scope.setSelectedItem(value[$scope.settings.idProp], !0, !1)
-                }), $scope.externalEvents.onSelectionChanged(), $scope.selectedGroup = null
+                }), $scope.externalEvents.onSelectionChanged(), $scope.selectedGroup = null;
             }, $scope.deselectAll = function(dontSendEvent) {
                 dontSendEvent = dontSendEvent || !1, dontSendEvent || $scope.externalEvents.onDeselectAll(), $scope.singleSelection ? clearObject($scope.selectedModel) : $scope.selectedModel.splice(0, $scope.selectedModel.length), dontSendEvent || $scope.externalEvents.onSelectionChanged(), $scope.selectedGroup = null
             }, $scope.setSelectedItem = function(id, dontRemove, fireSelectionChange) {
@@ -172,7 +172,7 @@ directiveModule.directive("mfDropdownStaticInclude", ["$compile", function($comp
                     var exists = -1 !== findIndex($scope.selectedModel, findObj);
                     !dontRemove && exists ? ($scope.selectedModel.splice(findIndex($scope.selectedModel, findObj), 1), $scope.externalEvents.onItemDeselect(findObj), $scope.settings.closeOnDeselect && $scope.close()) : !exists && (0 === $scope.settings.selectionLimit || $scope.selectedModel.length < $scope.settings.selectionLimit) && ($scope.selectedModel.push(finalObj), $scope.externalEvents.onItemSelect(finalObj), $scope.settings.closeOnSelect && $scope.close(), $scope.settings.selectionLimit > 0 && $scope.selectedModel.length === $scope.settings.selectionLimit && $scope.externalEvents.onMaxSelectionReached())
                 }
-                fireSelectionChange && $scope.externalEvents.onSelectionChanged(), $scope.selectedGroup = null
+                fireSelectionChange && $scope.externalEvents.onSelectionChanged(), $scope.selectedGroup = null;
             }, $scope.isNotChecked = function(id) {
                 return ($scope.singleSelection ? null !== $scope.selectedModel && angular.isDefined($scope.selectedModel[$scope.settings.idProp]) && $scope.selectedModel[$scope.settings.idProp] === getFindObj(id)[$scope.settings.idProp] : -1 !== findIndex($scope.selectedModel, getFindObj(id)))
             }, $scope.isChecked = function(id) {
@@ -184,32 +184,32 @@ directiveModule.directive("mfDropdownStaticInclude", ["$compile", function($comp
                     if (13 === event.keyCode || 32 === event.keyCode) event.preventDefault(), sourceScope.option ? $scope.setSelectedItem($scope.getPropertyForObject(sourceScope.option, $scope.settings.idProp), !1, !0) : "deselectAll" === event.target.id ? $scope.deselectAll() : "selectAll" === event.target.id && $scope.selectAll();
                     else if (38 === event.keyCode) {
                     for (event.preventDefault(), parent.previousElementSibling && (nextOption = parent.previousElementSibling.querySelector("a") || parent.previousElementSibling.querySelector("input")); !nextOption && parent;) parent = parent.previousElementSibling, parent && (nextOption = parent.querySelector("a") || parent.querySelector("input"));
-                    nextOption && nextOption.focus()
+                    nextOption && nextOption.focus();
                 } else if (40 === event.keyCode) {
                     for (event.preventDefault(), parent.nextElementSibling && (nextOption = parent.nextElementSibling.querySelector("a") || parent.nextElementSibling.querySelector("input")); !nextOption && parent;) parent = parent.nextElementSibling, parent && (nextOption = parent.querySelector("a") || parent.querySelector("input"));
-                    nextOption && nextOption.focus()
+                    nextOption && nextOption.focus();
                 } else 27 === event.keyCode && (event.preventDefault(), $scope.toggleDropdown())
             }, $scope.keyDownSearchDefault = function(event) {
                 var nextOption, parent = event.target.parentNode.parentNode;
                 if ($scope.settings.keyboardControls)
                     if (9 === event.keyCode || 40 === event.keyCode) event.preventDefault(), setTimeout(function() {
-                        angular.element($element)[0].querySelector(".option").focus()
+                        angular.element($element)[0].querySelector(".option").focus();
                     }, 0);
                     else if (38 === event.keyCode) {
                     for (event.preventDefault(), parent.previousElementSibling && (nextOption = parent.previousElementSibling.querySelector("a") || parent.previousElementSibling.querySelector("input")); !nextOption && parent;) parent = parent.previousElementSibling, parent && (nextOption = parent.querySelector("a") || parent.querySelector("input"));
-                    nextOption && nextOption.focus()
+                    nextOption && nextOption.focus();
                 } else 27 === event.keyCode && (event.preventDefault(), $scope.toggleDropdown())
             }, $scope.keyDownSearch = function(event, searchFilter) {
                 var searchResult;
                 $scope.settings.keyboardControls && 13 === event.keyCode && (1 === $scope.settings.selectionLimit && $scope.settings.enableSearch ? (searchResult = $filter("filter")($scope.options, $scope.getFilter(searchFilter)), 1 === searchResult.length && $scope.setSelectedItem($scope.getPropertyForObject(searchResult[0], $scope.settings.idProp), !1, !0)) : $scope.settings.enableSearch && $scope.selectAll())
             }, $scope.getFilter = function(searchFilter) {
                 var filter = {};
-                return filter[$scope.settings.searchField] = searchFilter, filter
+                return filter[$scope.settings.searchField] = searchFilter, filter;
             }, $scope.toggleSearch = function($event) {
                 $event && $event.stopPropagation(), $scope.settings.enableSearch = !$scope.settings.enableSearch, $scope.settings.enableSearch || ($scope.input.searchFilter = "")
             }, $scope.keyDownToggleSearch = function() {
                 $scope.settings.keyboardControls && 13 === event.keyCode && ($scope.toggleSearch(), $scope.settings.enableSearch ? setTimeout(function() {
-                    angular.element($element)[0].querySelector(".searchField").focus()
+                    angular.element($element)[0].querySelector(".searchField").focus();
                 }, 0) : angular.element($element)[0].querySelector(".option").focus())
             }
         }
