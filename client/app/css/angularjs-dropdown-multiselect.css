@@ -3,10 +3,10 @@
   *,
   :after,
   :before {
-    background: transparent !important;
-    color: #000 !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
+    background: transparent ;
+    color: #000 ;
+    box-shadow: none ;
+    text-shadow: none ;
   }
   a,
   a:visited {
@@ -35,7 +35,7 @@
     page-break-inside: avoid;
   }
   img {
-    max-width: 100% !important;
+    max-width: 100% ;
   }
   h2,
   h3,
@@ -54,15 +54,15 @@
     border: 1px solid #000;
   }
   .table {
-    border-collapse: collapse !important;
+    border-collapse: collapse ;
   }
   .table td,
   .table th {
-    background-color: #fff !important;
+    background-color: #fff ;
   }
   .table-bordered td,
   .table-bordered th {
-    border: 1px solid #ddd !important;
+    border: 1px solid #ddd ;
   }
 }
 .glyphicon {
@@ -119,7 +119,7 @@ a {
   font-size:17px;
 }
 td.bs-checkbox {
-  width: 36px !important;
+  width: 36px ;
   min-width: 36px;
 }
 td {
@@ -2555,8 +2555,8 @@ fieldset[disabled] .btn-link:hover {
   margin-top: 5px;
 }
 .dropdownpadding{
-  margin:0px !important;
-  padding:0px !important;
+  margin:0px ;
+  padding:0px ;
 }
 input[type="button"].btn-block,
 input[type="reset"].btn-block,
@@ -2569,7 +2569,7 @@ input[type="submit"].btn-block {
   transition: opacity 0.15s linear;
 }
 .fa-filter {
-  padding-bottom:-110px !important;
+  padding-bottom:-110px ;
 }
 .fade.in {
   opacity: 1;
@@ -2603,20 +2603,20 @@ tbody.collapse.in {
   background:red;
 }
 .noHover{
-    border:none !important;
-    outline:none !important;
-    box-shadow: none !important;
-    background:white !important;
+    border:none ;
+    outline:none ;
+    box-shadow: none ;
+    background:white ;
 }
 
 .dropdown-toggle:focus {
   outline: 0;
 }
-.table-responsive{overflow: inherit !important;}
+.table-responsive{overflow: inherit ;}
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  left: -170px !important;
+  left: -170px ;
   z-index: 1117;
   display: none;
   float: left;
@@ -2632,7 +2632,7 @@ tbody.collapse.in {
   border-radius: 4px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   background-clip: padding-box;
-  margin-left:0px !important;
+  margin-left:0px ;
 }
 .dropdown-menu.pull-right {
   right: 0;
@@ -3253,10 +3253,10 @@ tbody.collapse.in {
     box-shadow: none;
   }
   .navbar-collapse.collapse {
-    display: block !important;
-    height: auto !important;
+    display: block ;
+    height: auto ;
     padding-bottom: 0;
-    overflow: visible !important;
+    overflow: visible ;
   }
   .navbar-collapse.in {
     overflow-y: visible;
@@ -3533,10 +3533,10 @@ tbody.collapse.in {
 }
 @media (min-width: 768px) {
   .navbar-left {
-    float: left !important;
+    float: left ;
   }
   .navbar-right {
-    float: right !important;
+    float: right ;
     margin-right: -15px;
   }
   .navbar-right ~ .navbar-right {
@@ -4007,19 +4007,19 @@ a.label:hover {
   margin-left: 3px;
 }
 .dropdown-items{
-    cursor:pointer !important;
+    cursor:pointer ;
     padding-top:1px;
     padding-bottom:10px;
-    height:40px !important;
+    height:40px ;
     margin-left:10px;
     text-align:center;
 }
 .dropdown-items:hover{
-    cursor:pointer !important;
+    cursor:pointer ;
 }
 .dropdown-items-container{
-    height:40px !important;
-    cursor:pointer !important;
+    height:40px ;
+    cursor:pointer ;
     -moz-user-select: none;
    -khtml-user-select: none;
    -webkit-user-select: none;
@@ -4027,21 +4027,21 @@ a.label:hover {
     user-select: none;
 }
 .dropdown-items-container:hover{
-    cursor:pointer !important;
+    cursor:pointer ;
 }
 .dropdown-items-sub-container{
-    cursor:pointer !important;
-    padding-top:10px !important;
-    margin-top:4px !important;
-    padding-bottom:10px !important;
-    border-left:5px solid #f5f5f5 !important;
+    cursor:pointer ;
+    padding-top:10px ;
+    margin-top:4px ;
+    padding-bottom:10px ;
+    border-left:5px solid #f5f5f5 ;
 
 }
 .dropdown-items-sub-container:hover{
-    border-left:5px solid #006699 !important;
-    cursor:pointer !important;
-    cursor:pointer !important;
-    cursor:pointer !important;
+    border-left:5px solid #006699 ;
+    cursor:pointer ;
+    cursor:pointer ;
+    cursor:pointer ;
 }
 
 a.badge:focus,

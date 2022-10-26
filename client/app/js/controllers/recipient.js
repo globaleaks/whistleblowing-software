@@ -5,7 +5,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
   $scope.search = undefined;
   $scope.currentPage = 1;
   $scope.itemsPerPage = 20;
-  $scope.dropdownSettings = {enableSearch: true, displayProp: 'label', idProp: 'label', itemsShowLimit: 5};
+  $scope.dropdownSettings = {enableSearch: true, displayProp: "label", idProp: "label", itemsShowLimit: 5};
 
   $scope.reportDateFilter = null;
   $scope.updateDateFilter = null;
@@ -34,7 +34,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
          $scope.dropdownContextData.push({id: $scope.dropdownContextData.length+1, label: tip.context_name});
      }
 
-     scoreLabel = $scope.Utils.maskScore(tip.score)
+     var scoreLabel = $scope.Utils.maskScore(tip.score)
      if (unique_keys.has(scoreLabel) == false){
          unique_keys.add(scoreLabel);
          $scope.dropdownScoreData.push({id: $scope.dropdownScoreData.length+1, label: scoreLabel});

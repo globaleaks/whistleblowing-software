@@ -754,7 +754,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       if (model.length==0){
         return data;
       }else{
-        rows = [];
+        var rows = [];
         data.forEach(data_row => {
             model.forEach(selected_option => {
                 if (key == "score"){
@@ -775,7 +775,6 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
         });
       }
       return rows;
-      $scope.filteredTips = rows;
     },
     maskScore: function(score) {
       if (score == 1){

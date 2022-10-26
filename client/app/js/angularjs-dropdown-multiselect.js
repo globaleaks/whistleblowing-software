@@ -172,11 +172,11 @@ directiveModule.directive("mfDropdownStaticInclude", ["$compile", function($comp
                     var exists = -1 !== findIndex($scope.selectedModel, findObj);
                     !dontRemove && exists ? ($scope.selectedModel.splice(findIndex($scope.selectedModel, findObj), 1), $scope.externalEvents.onItemDeselect(findObj), $scope.settings.closeOnDeselect && $scope.close()) : !exists && (0 === $scope.settings.selectionLimit || $scope.selectedModel.length < $scope.settings.selectionLimit) && ($scope.selectedModel.push(finalObj), $scope.externalEvents.onItemSelect(finalObj), $scope.settings.closeOnSelect && $scope.close(), $scope.settings.selectionLimit > 0 && $scope.selectedModel.length === $scope.settings.selectionLimit && $scope.externalEvents.onMaxSelectionReached())
                 }
-                fireSelectionChange && $scope.externalEvents.onSelectionChanged(), $scope.selectedGroup = null
+                fireSelectionChange && $scope.externalEvents.onSelectionChanged(), $scope.selectedGroup = null;
             }, $scope.isNotChecked = function(id) {
                 return ($scope.singleSelection ? null !== $scope.selectedModel && angular.isDefined($scope.selectedModel[$scope.settings.idProp]) && $scope.selectedModel[$scope.settings.idProp] === getFindObj(id)[$scope.settings.idProp] : -1 !== findIndex($scope.selectedModel, getFindObj(id)))
             }, $scope.isChecked = function(id) {
-                return !($scope.singleSelection ? null !== $scope.selectedModel && angular.isDefined($scope.selectedModel[$scope.settings.idProp]) && $scope.selectedModel[$scope.settings.idProp] === getFindObj(id)[$scope.settings.idProp] : -1 !== findIndex($scope.selectedModel, getFindObj(id)))
+                return !($scope.singleSelection ? null !== $scope.selectedModel && angular.isDefined($scope.selectedModel[$scope.settings.idProp]) && $scope.selectedModel[$scope.settings.idProp] === getFindObj(id)[$scope.settings.idProp] : -1 !== findIndex($scope.selectedModel, getFindObj(id)));
             }, $scope.externalEvents.onInitDone(), $scope.keyDownLink = function(event) {
                 var nextOption, sourceScope = angular.element(event.target).scope(),
                     parent = event.target.parentNode;

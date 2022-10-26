@@ -4,10 +4,10 @@
   src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
 }
 .date-picker{
-    width:30px !important;
-    background:white !important;
-    border:none !important;
-    cursor:pointer !important
+    width:30px ;
+    background:white ;
+    border:none ;
+    cursor:pointer 
 }
 .daterangepicker {
   position: absolute;
@@ -69,8 +69,8 @@
       border-top: 6px solid #fff; }
   .daterangepicker.dropdown-menu {
     max-width: none;
-    margin-top:25px !important;
-    margin-left:55vw !important;
+    margin-top:25px ;
+    margin-left:55vw ;
     z-index: 3001; }
   .daterangepicker.single .ranges, .daterangepicker.single .calendar {
     float: none; }
@@ -279,4 +279,4 @@
   .daterangepicker.rtl .ranges {
     float: right; }
   .daterangepicker .calendar.left {
-    clear: none !important; } }
+    clear: none ; } }
