@@ -21,7 +21,9 @@ var GL = angular.module("GL", [
     "ngResource",
     "ngSanitize",
     "ngFileSaver",
-    "ng-showdown"
+    "ng-showdown",
+    'angularjs-dropdown-multiselect',
+    'daterangepicker'
 ]).
   config(["$compileProvider", function($compileProvider) {
     $compileProvider.debugInfoEnabled(false);
