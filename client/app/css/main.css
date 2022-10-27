@@ -65,6 +65,14 @@ a:hover,
   opacity: 1;
 }
 
+.uib-datepicker th,
+.uib-datepicker td {
+  white-space: nowrap;
+  min-width: 0 !important;
+  padding: 2px !important;
+  margin: 2px !important;
+}
+
 [dir] .form-control,
 [dir="ltr"] .custom-select,
 [dir="rtl"] .custom-select {
@@ -336,14 +344,6 @@ a:hover,
 
 #TipList table {
   table-layout: auto;
-}
-
-.uib-datepicker th,
-.uib-datepicker td {
-  white-space: nowrap;
-  min-width: 0 !important;
-  padding: 2px;
-  margin: 2px;
 }
 
 #TipList th,

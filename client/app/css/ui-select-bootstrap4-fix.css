@@ -56,10 +56,10 @@
 }
 
 .dropdown-toggle {
-  padding: 0;
+  padding: 0 !important;
 }
 
 .uib-datepicker-popup {
-  padding: 0px;
-  margin: 0px;
+  padding: 0 !important;
+  margin: 0 !important;
 }

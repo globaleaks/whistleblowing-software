@@ -2,36 +2,6 @@
 GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "$uibModal", "$window", "RTipExport", "TokenResource",
   function($scope, $filter, $http, $location, $uibModal, $window, RTipExport, TokenResource) {
 
-  $scope.datePicker = {
-      reportDateStatus: { opened: false },
-      reportDateOpen: function () {
-          $scope.datePicker.reportDateStatus.opened = true;
-      },
-      updateDateStatus: { opened: false },
-      updateDateOpen: function () {
-          $scope.datePicker.updateDateStatus.opened = true;
-      },
-      expiryDateStatus: { opened: false },
-      expiryDateOpen: function () {
-          $scope.datePicker.expiryDateStatus.opened = true;
-      }
-  };
-
-  $scope.dropdownDefaultText = {
-       buttonDefaultText:"",
-       searchPlaceholder:" ..."
-  };
-
-  $scope.reportDateClear = function () {
-    $scope.dateRange.reportDate = null;
-  };
-  $scope.updateDateClear = function () {
-    $scope.dateRange.updateDate = null;
-  };
-  $scope.expiryDateClear = function () {
-    $scope.dateRange.expiryDate = null;
-  };
-
   $scope.search = undefined;
   $scope.currentPage = 1;
   $scope.itemsPerPage = 20;
@@ -48,7 +18,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
   $scope.dropdownScoreModel = [];
   $scope.dropdownScoreData = [];
 
-  var unique_keys = new Set();
+  var unique_keys = new Set([]);
   angular.forEach($scope.resources.rtips.rtips, function(tip) {
      tip.context = $scope.contexts_by_id[tip.context_id];
      tip.context_name = tip.context.name;
@@ -80,65 +50,72 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
      $scope.filteredTips = $scope.Utils.getStaticFilter($scope.filteredTips, $scope.dropdownScoreModel, "score");
      $scope.filteredTips = $scope.Utils.getDateFilter($scope.filteredTips, $scope.reportDateFilter, $scope.updateDateFilter, $scope.expiryDateFilter);
   }
+  function onDateFilterChanged(scope, newvalue)
+  {
+      if (!$scope.dateRange.start) {
+        $scope.dateRange.start = newvalue;
+        $scope.options.minDate = newvalue;
+      } else if ($scope.dateRange.start && !$scope.dateRange.end) {
+        $scope.dateRange.end = scope;
+        $scope.options.minDate = null;
+        $scope.reportDateFilter = [new Date($scope.dateRange.start).getTime(), new Date($scope.dateRange.end).getTime()];
+        onApplyFIlter();
+      } else if ($scope.dateRange.start && $scope.dateRange.end) {
+        $scope.dateRange.start = newvalue;
+        $scope.dateRange.end = newvalue;
+        $scope.options.minDate = newvalue;
+      }
+  }
 
   $scope.$watch("dateRange.reportDate", function(newvalue) {
     if (newvalue) {
-      if (!$scope.dateRange.start) {
-        $scope.dateRange.start = newvalue;
-        $scope.options.minDate = newvalue;
-      } else if ($scope.dateRange.start && !$scope.dateRange.end) {
-        $scope.dateRange.end = $scope.dateRange.reportDate;
-        $scope.options.minDate = null;
-        $scope.reportDateFilter = [new Date($scope.dateRange.start).getTime(), new Date($scope.dateRange.end).getTime()];
-        onApplyFIlter();
-      } else if ($scope.dateRange.start && $scope.dateRange.end) {
-        $scope.dateRange.start = newvalue;
-        $scope.dateRange.end = null;
-        $scope.options.minDate = newvalue;
-      }
-    }else{
-        $scope.reportDateFilter = [new Date().getTime(), new Date().getTime()];
-        onApplyFIlter();
-    }
-  });  $scope.$watch("dateRange.updateDate", function(newvalue) {
-    if (newvalue) {
-      if (!$scope.dateRange.start) {
-        $scope.dateRange.start = newvalue;
-        $scope.options.minDate = newvalue;
-      } else if ($scope.dateRange.start && !$scope.dateRange.end) {
-        $scope.dateRange.end = $scope.dateRange.updateDate;
-        $scope.options.minDate = null;
-        $scope.reportDateFilter = [new Date($scope.dateRange.start).getTime(), new Date($scope.dateRange.end).getTime()];
-        onApplyFIlter();
-      } else if ($scope.dateRange.start && $scope.dateRange.end) {
-        $scope.dateRange.start = newvalue;
-        $scope.dateRange.end = null;
-        $scope.options.minDate = newvalue;
-      }
-    }else{
-        $scope.reportDateFilter = [new Date().getTime(), new Date().getTime()];
-        onApplyFIlter();
-    }
-  });  $scope.$watch("dateRange.expiryDate", function(newvalue) {
-    if (newvalue) {
-      if (!$scope.dateRange.start) {
-        $scope.dateRange.start = newvalue;
-        $scope.options.minDate = newvalue;
-      } else if ($scope.dateRange.start && !$scope.dateRange.end) {
-        $scope.dateRange.end = $scope.dateRange.expiryDate;
-        $scope.options.minDate = null;
-        $scope.reportDateFilter = [new Date($scope.dateRange.start).getTime(), new Date($scope.dateRange.end).getTime()];
-        onApplyFIlter();
-      } else if ($scope.dateRange.start && $scope.dateRange.end) {
-        $scope.dateRange.start = newvalue;
-        $scope.dateRange.end = null;
-        $scope.options.minDate = newvalue;
-      }
+        onDateFilterChanged($scope.dateRange.reportDate, newvalue)
     }else{
         $scope.reportDateFilter = [new Date().getTime(), new Date().getTime()];
         onApplyFIlter();
     }
   });
+  $scope.$watch("dateRange.updateDate", function(newvalue) {
+    if (newvalue) {
+        onDateFilterChanged($scope.dateRange.updateDate, newvalue)
+    }else{
+        $scope.reportDateFilter = [new Date().getTime(), new Date().getTime()];
+        onApplyFIlter();
+    }
+  });
+  $scope.$watch("dateRange.expiryDate", function(newvalue) {
+    if (newvalue) {
+        onDateFilterChanged($scope.dateRange.expiryDate, newvalue)
+    }else{
+        $scope.reportDateFilter = [new Date().getTime(), new Date().getTime()];
+        onApplyFIlter();
+    }
+  });
+
+  $scope.dateFilterClear = function (scope) {
+    scope = null;
+  };
+
+  $scope.dropdownDefaultText = {
+       buttonDefaultText:"",
+       searchPlaceholder:" ..."
+  };
+
+  $scope.datePicker = {
+      reportDateStatus: { opened: false },
+      updateDateStatus: { opened: false },
+      expiryDateStatus: { opened: false },
+
+      reportDateOpen: function () {
+          $scope.datePicker.reportDateStatus.opened = true;
+      },
+      updateDateOpen: function () {
+          $scope.datePicker.updateDateStatus.opened = true;
+      },
+      expiryDateOpen: function () {
+          $scope.datePicker.expiryDateStatus.opened = true;
+      }
+  };
 
   $scope.on_changed = {
     onSelectionChanged: function() {
