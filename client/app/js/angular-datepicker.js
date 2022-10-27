@@ -27,7 +27,7 @@
         _mergeOpts = function() {
           var extend, localeExtend;
           localeExtend = angular.extend.apply(angular, Array.prototype.slice.call(arguments).map(function(opt) {
-            return opt !== null ? opt.locale : void 0;
+            return opt != null ? opt.locale : void 0;
           }).filter(function(opt) {
             return !!opt;
           }));
@@ -200,7 +200,7 @@
           });
         }
         return $scope.$on("$destroy", function() {
-          return _picker !== null ? _picker.remove() : void 0;
+          return _picker != null ? _picker.remove() : void 0;
         });
       }
     };
