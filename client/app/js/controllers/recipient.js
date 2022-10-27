@@ -4,15 +4,15 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
 
   $scope.datePicker = {
       reportDateStatus: { opened: false },
-      reportDateOpen: function ($event) {
+      reportDateOpen: function () {
           $scope.datePicker.reportDateStatus.opened = true;
       },
       updateDateStatus: { opened: false },
-      updateDateOpen: function ($event) {
+      updateDateOpen: function () {
           $scope.datePicker.updateDateStatus.opened = true;
       },
       expiryDateStatus: { opened: false },
-      expiryDateOpen: function ($event) {
+      expiryDateOpen: function () {
           $scope.datePicker.expiryDateStatus.opened = true;
       }
   };
@@ -23,13 +23,13 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
   };
 
   $scope.reportDateClear = function () {
-    dateRange.reportDate = null;
+    $scope.dateRange.reportDate = null;
   };
   $scope.updateDateClear = function () {
-    dateRange.updateDate = null;
+    $scope.dateRange.updateDate = null;
   };
   $scope.expiryDateClear = function () {
-    dateRange.expiryDate = null;
+    $scope.dateRange.expiryDate = null;
   };
 
   $scope.search = undefined;
@@ -64,7 +64,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
          $scope.dropdownContextData.push({id: $scope.dropdownContextData.length+1, label: tip.context_name});
      }
 
-     var scoreLabel = $scope.Utils.maskScore(tip.score)
+     var scoreLabel = $scope.Utils.maskScore(tip.score);
      if (unique_keys.has(scoreLabel) === false){
          unique_keys.add(scoreLabel);
          $scope.dropdownScoreData.push({id: $scope.dropdownScoreData.length+1, label: scoreLabel});
@@ -81,7 +81,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
      $scope.filteredTips = $scope.Utils.getDateFilter($scope.filteredTips, $scope.reportDateFilter, $scope.updateDateFilter, $scope.expiryDateFilter);
   }
 
-  $scope.$watch("dateRange.reportDate", function(newvalue, oldvalue) {
+  $scope.$watch("dateRange.reportDate", function(newvalue) {
     if (newvalue) {
       if (!$scope.dateRange.start) {
         $scope.dateRange.start = newvalue;
@@ -100,7 +100,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
         $scope.reportDateFilter = [new Date().getTime(), new Date().getTime()];
         onApplyFIlter();
     }
-  });  $scope.$watch("dateRange.updateDate", function(newvalue, oldvalue) {
+  });  $scope.$watch("dateRange.updateDate", function(newvalue) {
     if (newvalue) {
       if (!$scope.dateRange.start) {
         $scope.dateRange.start = newvalue;
@@ -119,7 +119,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
         $scope.reportDateFilter = [new Date().getTime(), new Date().getTime()];
         onApplyFIlter();
     }
-  });  $scope.$watch("dateRange.expiryDate", function(newvalue, oldvalue) {
+  });  $scope.$watch("dateRange.expiryDate", function(newvalue) {
     if (newvalue) {
       if (!$scope.dateRange.start) {
         $scope.dateRange.start = newvalue;
@@ -141,7 +141,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
   });
 
   $scope.on_changed = {
-    onSelectionChanged: function(item) {
+    onSelectionChanged: function() {
         onApplyFIlter();
     }
   };

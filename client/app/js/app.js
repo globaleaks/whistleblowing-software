@@ -22,7 +22,7 @@ var GL = angular.module("GL", [
     "ngSanitize",
     "ngFileSaver",
     "ng-showdown",
-    'angularjs-dropdown-multiselect'
+    "angularjs-dropdown-multiselect"
 ]).
   config(["$compileProvider", function($compileProvider) {
     $compileProvider.debugInfoEnabled(false);

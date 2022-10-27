@@ -36,7 +36,6 @@
   padding: 3px 20px;
   clear: both;
   font-weight: 400;
-  line-height: 1.428571429;
   color: #333;
   line-height: 2;
   white-space: nowrap;
@@ -45,22 +44,22 @@
 }
 
 .dropdown-menu > li > a:hover {
-  background:#f0f0f0;
+  background: #f0f0f0;
 }
 
-.glyphicon{
+.glyphicon {
   display: inline-block;
-  width:10px;
-  height:10px;
-  padding-left:2px;
-  border-left:10px solid #cccccc;
+  width: 10px;
+  height: 10px;
+  padding-left: 2px;
+  border-left: 10px solid #cccccc;
 }
 
-.dropdown-toggle{
-  padding:0px;
+.dropdown-toggle {
+  padding: 0;
 }
 
-.uib-datepicker-popup{
-  padding:0px;
-  margin:0px;
+.uib-datepicker-popup {
+  padding: 0px;
+  margin: 0px;
 }

@@ -741,9 +741,9 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
              var m_row_udate = new Date(rows.update_date).getTime();
              var m_row_edate = new Date(rows.expiration_date).getTime();
 
-             if((report_date_filter==null || report_date_filter!==null && (report_date_filter[0] === 0 || report_date_filter[0] === report_date_filter[1] || m_row_rdate > report_date_filter[0] && m_row_rdate < report_date_filter[1])) &&
-                (update_date_filter==null || update_date_filter!==null && (update_date_filter[0] === 0 || update_date_filter[0] === update_date_filter[1] || m_row_udate > update_date_filter[0] && m_row_udate < update_date_filter[1])) &&
-                (expiry_date_filter==null || expiry_date_filter!==null && (expiry_date_filter[0] === 0 || expiry_date_filter[0] === expiry_date_filter[1] || m_row_edate > expiry_date_filter[0] && m_row_edate < expiry_date_filter[1]))){
+             if((report_date_filter===null || report_date_filter!==null && (report_date_filter[0] === 0 || report_date_filter[0] === report_date_filter[1] || m_row_rdate > report_date_filter[0] && m_row_rdate < report_date_filter[1])) &&
+                (update_date_filter===null || update_date_filter!==null && (update_date_filter[0] === 0 || update_date_filter[0] === update_date_filter[1] || m_row_udate > update_date_filter[0] && m_row_udate < update_date_filter[1])) &&
+                (expiry_date_filter===null || expiry_date_filter!==null && (expiry_date_filter[0] === 0 || expiry_date_filter[0] === expiry_date_filter[1] || m_row_edate > expiry_date_filter[0] && m_row_edate < expiry_date_filter[1]))){
                  filteredTips.push(rows);
              }
 
@@ -758,7 +758,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
         data.forEach(data_row => {
             model.forEach(selected_option => {
                 if (key === "score"){
-                    var scoreLabel = maskScore(data_row[key])
+                    var scoreLabel = this.maskScore(data_row[key]);
                     if (scoreLabel === selected_option.label){
                         rows.push(data_row);
                     }
