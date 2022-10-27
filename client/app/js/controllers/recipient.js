@@ -18,7 +18,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
   $scope.dropdownScoreModel = [];
   $scope.dropdownScoreData = [];
 
-  var unique_keys = new Set([]);
+  var unique_keys = new Set();
   angular.forEach($scope.resources.rtips.rtips, function(tip) {
      tip.context = $scope.contexts_by_id[tip.context_id];
      tip.context_name = tip.context.name;
@@ -69,7 +69,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
 
   $scope.$watch("dateRange.reportDate", function(newvalue) {
     if (newvalue) {
-        onDateFilterChanged($scope.dateRange.reportDate, newvalue)
+        onDateFilterChanged($scope.dateRange.reportDate, newvalue);
     }else{
         $scope.reportDateFilter = [new Date().getTime(), new Date().getTime()];
         onApplyFIlter();
@@ -77,7 +77,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
   });
   $scope.$watch("dateRange.updateDate", function(newvalue) {
     if (newvalue) {
-        onDateFilterChanged($scope.dateRange.updateDate, newvalue)
+        onDateFilterChanged($scope.dateRange.updateDate, newvalue);
     }else{
         $scope.reportDateFilter = [new Date().getTime(), new Date().getTime()];
         onApplyFIlter();
@@ -85,7 +85,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
   });
   $scope.$watch("dateRange.expiryDate", function(newvalue) {
     if (newvalue) {
-        onDateFilterChanged($scope.dateRange.expiryDate, newvalue)
+        onDateFilterChanged($scope.dateRange.expiryDate, newvalue);
     }else{
         $scope.reportDateFilter = [new Date().getTime(), new Date().getTime()];
         onApplyFIlter();
@@ -98,7 +98,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
 
   $scope.dropdownDefaultText = {
        buttonDefaultText:"",
-       searchPlaceholder:" ..."
+       searchPlaceholder: $filter("translate")("Search")+"..."
   };
 
   $scope.datePicker = {
