@@ -338,6 +338,14 @@ a:hover,
   table-layout: auto;
 }
 
+.uib-datepicker th,
+.uib-datepicker td {
+  white-space: nowrap;
+  min-width: 0rem !important;
+  padding: 2px;
+  margin: 2px;
+}
+
 #TipList th,
 #TipList td {
   white-space: nowrap;

@@ -759,15 +759,15 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
             model.forEach(selected_option => {
                 if (key === "score"){
                     var scoreLabel = maskScore(data_row[key])
-                    if (scoreLabel === selected_option.id){
+                    if (scoreLabel === selected_option.label){
                         rows.push(data_row);
                     }
                 }else if(key === "status"){
-                    if (data_row[key] === selected_option.id){
+                    if (data_row[key] === selected_option.label){
                         rows.push(data_row);
                     }
                 }else{
-                    if (data_row[key] === selected_option.id){
+                    if (data_row[key] === selected_option.label){
                         rows.push(data_row);
                     }
                 }
