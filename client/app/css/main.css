@@ -73,6 +73,61 @@ a:hover,
   margin: 2px !important;
 }
 
+.uib-datepicker button {
+  background: #fff !important;
+  color: grey !important;
+}
+
+.uib-datepicker button.active {
+  background: #e6e6e6 !important;
+  color: #2866a2 !important;
+}
+
+.full button{
+  background: #e6e6e6 !important;
+  color: #2866a2 !important;
+}
+
+.dropdown-menu .divider {
+  height: 1px;
+  margin: 9px 0;
+  overflow: hidden;
+  background-color: #e5e5e5;
+}
+
+.dropdown-menu > li > a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: 400;
+  color: #333;
+  line-height: 2;
+  white-space: nowrap;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.dropdown-menu > li > a:hover {
+  background: #f0f0f0;
+}
+
+.glyphicon {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  padding-left: 2px;
+  border-left: 10px solid #ccc;
+}
+
+.dropdown-toggle {
+  padding: 0 !important;
+}
+
+.uib-datepicker-popup {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
 [dir] .form-control,
 [dir="ltr"] .custom-select,
 [dir="rtl"] .custom-select {
