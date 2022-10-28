@@ -66,13 +66,13 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
   function getDayClass(data) {
     var date = data.date,
       mode = data.mode;
-    if (mode === 'day' && $scope.dateRange.start && $scope.dateRange.end) {
+    if (mode === "day" && $scope.dateRange.start && $scope.dateRange.end) {
       var dayToCheck = new Date(date).setHours(0,0,0,0);
       if (dayToCheck >= $scope.dateRange.start && dayToCheck <= $scope.dateRange.end) {
-        return 'full';
+        return "full";
       }
     }
-    return '';
+    return "";
   }
 
   function onDateFilterChanged(scope, scopeFilter, newvalue)
