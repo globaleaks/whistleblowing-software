@@ -18,25 +18,25 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
   $scope.dropdownScoreModel = [];
   $scope.dropdownScoreData = [];
 
-  var unique_keys = new Set();
+  var unique_keys = [];
   angular.forEach($scope.resources.rtips.rtips, function(tip) {
      tip.context = $scope.contexts_by_id[tip.context_id];
      tip.context_name = tip.context.name;
      tip.questionnaire = $scope.resources.rtips.questionnaires[tip.questionnaire];
      tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText(tip.status, tip.substatus, $scope.submission_statuses);
 
-     if (unique_keys.has(tip.submissionStatusStr) === false){
-         unique_keys.add(tip.submissionStatusStr);
+     if (unique_keys.includes(tip.submissionStatusStr) === false){
+         unique_keys.push(tip.submissionStatusStr);
          $scope.dropdownStatusData.push({id: $scope.dropdownStatusData.length+1, label: tip.submissionStatusStr});
      }
-     if (unique_keys.has(tip.context_name) === false){
-         unique_keys.add(tip.context_name);
+     if (unique_keys.includes(tip.context_name) === false){
+         unique_keys.push(tip.context_name);
          $scope.dropdownContextData.push({id: $scope.dropdownContextData.length+1, label: tip.context_name});
      }
 
      var scoreLabel = $scope.Utils.maskScore(tip.score);
-     if (unique_keys.has(scoreLabel) === false){
-         unique_keys.add(scoreLabel);
+     if (unique_keys.includes(scoreLabel) === false){
+         unique_keys.push(scoreLabel);
          $scope.dropdownScoreData.push({id: $scope.dropdownScoreData.length+1, label: scoreLabel});
      }
   });
