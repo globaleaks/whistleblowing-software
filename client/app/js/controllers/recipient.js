@@ -121,13 +121,13 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
       expiryDateStatus: { opened: false },
 
       reportDateOpen: function () {
-          $scope.datePicker.reportDateStatus.opened = true;
+          $scope.datePicker.reportDateStatus.opened = !$scope.datePicker.reportDateStatus.opened;
       },
       updateDateOpen: function () {
-          $scope.datePicker.updateDateStatus.opened = true;
+          $scope.datePicker.updateDateStatus.opened = !$scope.datePicker.updateDateStatus.opened;
       },
       expiryDateOpen: function () {
-          $scope.datePicker.expiryDateStatus.opened = true;
+          $scope.datePicker.expiryDateStatus.opened = !$scope.datePicker.expiryDateStatus.opened;
       }
   };
 
