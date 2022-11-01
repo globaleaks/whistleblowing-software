@@ -78,13 +78,11 @@ a:hover,
   display: none;
 }
 
-[dir] .uib-datepicker th,
-[dir] .uib-datepicker td {
-  white-space: nowrap;
-  min-width: 0;
-  padding: 2px;
+.uib-button-bar > .btn-success {
+  display: none;
 }
 
+[dir] .uib-datepicker th,
 [dir] .uib-datepicker td {
   white-space: nowrap;
   min-width: 0;
@@ -439,7 +437,6 @@ a:hover,
 #TipList th,
 #TipList td {
   white-space: nowrap;
-  min-width: 5rem;
 }
 
 @keyframes fadeinout {

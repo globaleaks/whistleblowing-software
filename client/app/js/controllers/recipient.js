@@ -69,19 +69,19 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
   $scope.optionsReport = {
     customClass: getCustomClassReport,
     minDate: null,
-    showWeeks: false
+    showWeeks: true
   };
 
   $scope.optionsUpdate = {
     customClass: getCustomClassUpdate,
     minDate: null,
-    showWeeks: false
+    showWeeks: true
   };
 
   $scope.optionsExpiry = {
     customClass: getCustomClassExpiry,
     minDate: null,
-    showWeeks: false
+    showWeeks: true
   };
 
   function getCustomClassReport(data) {
@@ -120,7 +120,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
     return "";
   }
 
-  $scope.$watch("dateRange.reportDate", function(newvalue) {
+  $scope.$watch("dateRange.reportDate", function(newvalue, oldvalue) {
       if (newvalue) {
           if (!$scope.dateRangeReport.start) {
             $scope.dateRangeReport.start = newvalue;
@@ -138,8 +138,12 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
       }
       onApplyFIlter();
       if(!$scope.dateRangeReport.start && !$scope.dateRangeReport.end || $scope.dateRangeReport.start && $scope.dateRangeReport.end){
+          if(!$scope.dateRangeReport.start && !$scope.dateRangeReport.end){
+              $scope.dateRange.reportDate = undefined;
+          }
           $scope.datePicker.reportDateStatus.opened = false;
       }
+
   });
 
   $scope.$watch("dateRange.updateDate", function(newvalue) {
@@ -160,6 +164,9 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
         }
         onApplyFIlter();
       if(!$scope.dateRangeUpdate.start && !$scope.dateRangeUpdate.end || $scope.dateRangeUpdate.start && $scope.dateRangeUpdate.end){
+          if(!$scope.dateRangeUpdate.start && !$scope.dateRangeUpdate.end){
+              $scope.dateRange.updateDate = undefined;
+          }
           $scope.datePicker.updateDateStatus.opened = false;
       }
   });
@@ -182,6 +189,9 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
         }
         onApplyFIlter();
       if(!$scope.dateRangeExpiry.start && !$scope.dateRangeExpiry.end || $scope.dateRangeExpiry.start && $scope.dateRangeExpiry.end){
+          if(!$scope.dateRangeExpiry.start && !$scope.dateRangeExpiry.end){
+              $scope.dateRange.expiryDate = undefined;
+          }
           $scope.datePicker.expiryDateStatus.opened = false;
       }
   });
@@ -338,8 +348,8 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
       })(i);
     }
   };
-}]).
-controller("TipBulkOperationsCtrl", ["$scope", "$http", "$location", "$uibModalInstance", "selected_tips", "operation",
+}])
+.controller("TipBulkOperationsCtrl", ["$scope", "$http", "$location", "$uibModalInstance", "selected_tips", "operation",
   function ($scope, $http, $location, $uibModalInstance, selected_tips, operation) {
   $scope.selected_tips = selected_tips;
   $scope.operation = operation;
