@@ -51,63 +51,139 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
      $scope.filteredTips = $scope.Utils.getDateFilter($scope.filteredTips, $scope.reportDateFilter, $scope.updateDateFilter, $scope.expiryDateFilter);
   }
 
-  $scope.dateRange = {
+  $scope.dateRangeReport = {
     start: null,
     end: null,
-    latest: null
   };
 
-  $scope.options = {
-    customClass: getDayClass,
+  $scope.dateRangeUpdate = {
+    start: null,
+    end: null,
+  };
+
+  $scope.dateRangeExpiry = {
+    start: null,
+    end: null,
+  };
+
+  $scope.optionsReport = {
+    customClass: getCustomClassReport,
     minDate: null,
     showWeeks: false
   };
 
-  function getDayClass(data) {
+  $scope.optionsUpdate = {
+    customClass: getCustomClassUpdate,
+    minDate: null,
+    showWeeks: false
+  };
+
+  $scope.optionsExpiry = {
+    customClass: getCustomClassExpiry,
+    minDate: null,
+    showWeeks: false
+  };
+
+  function getCustomClassReport(data) {
     var date = data.date,
       mode = data.mode;
-    if (mode === "day" && $scope.dateRange.start && $scope.dateRange.end) {
+    if (mode === "day" && $scope.dateRangeReport.start && $scope.dateRangeReport.end) {
       var dayToCheck = new Date(date).setHours(0,0,0,0);
-      if (dayToCheck >= $scope.dateRange.start && dayToCheck <= $scope.dateRange.end) {
+      if (dayToCheck >= $scope.dateRangeReport.start && dayToCheck <= $scope.dateRangeReport.end) {
         return "full";
       }
     }
     return "";
   }
 
-  function onDateFilterChanged(scope, scopeFilter, newvalue)
-  {
-      if (newvalue) {
-          if (!$scope.dateRange.start) {
-            $scope.dateRange.start = newvalue;
-          } else if ($scope.dateRange.start && !$scope.dateRange.end) {
-            $scope.dateRange.end = scope;
-            scopeFilter = [new Date($scope.dateRange.start).getTime(), new Date($scope.dateRange.end).getTime()];
-          } else if ($scope.dateRange.start && $scope.dateRange.end) {
-            $scope.dateRange.start = newvalue;
-            $scope.dateRange.end = newvalue;
-          }
-      }else{
-          $scope.dateRange.start = null;
-          $scope.dateRange.end = null;
-          scopeFilter = [new Date().getTime(), new Date().getTime()];
+  function getCustomClassUpdate(data) {
+    var date = data.date,
+      mode = data.mode;
+    if (mode === "day" && $scope.dateRangeUpdate.start && $scope.dateRangeUpdate.end) {
+      var dayToCheck = new Date(date).setHours(0,0,0,0);
+      if (dayToCheck >= $scope.dateRangeUpdate.start && dayToCheck <= $scope.dateRangeUpdate.end) {
+        return "full";
       }
-      return scopeFilter;
+    }
+    return "";
+  }
+
+  function getCustomClassExpiry(data) {
+    var date = data.date,
+      mode = data.mode;
+    if (mode === "day" && $scope.dateRangeExpiry.start && $scope.dateRangeExpiry.end) {
+      var dayToCheck = new Date(date).setHours(0,0,0,0);
+      if (dayToCheck >= $scope.dateRangeExpiry.start && dayToCheck <= $scope.dateRangeExpiry.end) {
+        return "full";
+      }
+    }
+    return "";
   }
 
   $scope.$watch("dateRange.reportDate", function(newvalue) {
-        $scope.reportDateFilter = onDateFilterChanged($scope.dateRange.reportDate, $scope.reportDateFilter, newvalue);
-        onApplyFIlter();
+      if (newvalue) {
+          if (!$scope.dateRangeReport.start) {
+            $scope.dateRangeReport.start = newvalue;
+          } else if ($scope.dateRangeReport.start && !$scope.dateRangeReport.end) {
+            $scope.dateRangeReport.end = $scope.dateRange.reportDate;
+            $scope.reportDateFilter = [new Date($scope.dateRangeReport.start).getTime(), new Date($scope.dateRangeReport.end).getTime()];
+          } else if ($scope.dateRangeReport.start && $scope.dateRangeReport.end) {
+            $scope.dateRangeReport.start = newvalue;
+            $scope.dateRangeReport.end = newvalue;
+          }
+      }else{
+          $scope.dateRangeReport.start = null;
+          $scope.dateRangeReport.end = null;
+          $scope.reportDateFilter = [new Date().getTime(), new Date().getTime()];
+      }
+      onApplyFIlter();
+      if(!$scope.dateRangeReport.start && !$scope.dateRangeReport.end || $scope.dateRangeReport.start && $scope.dateRangeReport.end){
+          $scope.datePicker.reportDateStatus.opened = false;
+      }
   });
 
   $scope.$watch("dateRange.updateDate", function(newvalue) {
-        $scope.updateDateFilter = onDateFilterChanged($scope.dateRange.updateDate, $scope.updateDateFilter, newvalue);
+        if (newvalue) {
+            if (!$scope.dateRangeUpdate.start) {
+              $scope.dateRangeUpdate.start = newvalue;
+            } else if ($scope.dateRangeUpdate.start && !$scope.dateRangeUpdate.end) {
+              $scope.dateRangeUpdate.end = $scope.dateRange.updateDate;
+              $scope.updateDateFilter = [new Date($scope.dateRangeUpdate.start).getTime(), new Date($scope.dateRangeUpdate.end).getTime()];
+            } else if ($scope.dateRangeUpdate.start && $scope.dateRangeUpdate.end) {
+              $scope.dateRangeUpdate.start = newvalue;
+              $scope.dateRangeUpdate.end = newvalue;
+            }
+        }else{
+            $scope.dateRangeUpdate.start = null;
+            $scope.dateRangeUpdate.end = null;
+            $scope.updateDateFilter = [new Date().getTime(), new Date().getTime()];
+        }
         onApplyFIlter();
+      if(!$scope.dateRangeUpdate.start && !$scope.dateRangeUpdate.end || $scope.dateRangeUpdate.start && $scope.dateRangeUpdate.end){
+          $scope.datePicker.updateDateStatus.opened = false;
+      }
   });
 
   $scope.$watch("dateRange.expiryDate", function(newvalue) {
-        $scope.expiryDateFilter = onDateFilterChanged($scope.dateRange.expiryDate, $scope.expiryDateFilter, newvalue);
+        if (newvalue) {
+            if (!$scope.dateRangeExpiry.start) {
+              $scope.dateRangeExpiry.start = newvalue;
+            } else if ($scope.dateRangeExpiry.start && !$scope.dateRangeExpiry.end) {
+              $scope.dateRangeExpiry.end = $scope.dateRange.expiryDate;
+              $scope.expiryDateFilter = [new Date($scope.dateRangeExpiry.start).getTime(), new Date($scope.dateRangeExpiry.end).getTime()];
+            } else if ($scope.dateRangeExpiry.start && $scope.dateRangeExpiry.end) {
+              $scope.dateRangeExpiry.start = newvalue;
+              $scope.dateRangeExpiry.end = newvalue;
+            }
+        }else{
+            $scope.dateRangeExpiry.start = null;
+            $scope.dateRangeExpiry.end = null;
+            $scope.expiryDateFilter = [new Date().getTime(), new Date().getTime()];
+        }
         onApplyFIlter();
+      if(!$scope.dateRangeExpiry.start && !$scope.dateRangeExpiry.end || $scope.dateRangeExpiry.start && $scope.dateRangeExpiry.end){
+          $scope.datePicker.expiryDateStatus.opened = false;
+      }
   });
 
   $scope.dropdownDefaultText = {

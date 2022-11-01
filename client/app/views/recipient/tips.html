@@ -138,7 +138,7 @@
                 <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
             </span>
-            <span class="calendar-container"  uib-datepicker-popup ng-model="dateRange.reportDate" datepicker-options="options" is-open="datePicker.reportDateStatus.opened" ng-click="datePicker.reportDateOpen($event)"><i class="fa fa-calendar"></i></span>
+            <span class="calendar-container" close-on-date-selection="false" uib-datepicker-popup ng-model="dateRange.reportDate" datepicker-options="optionsReport" is-open="datePicker.reportDateStatus.opened" ng-click="datePicker.reportDateOpen($event)"><i class="fa fa-calendar"></i></span>
           </th>
           <th class="TipInfoUpdateDate">
             <span data-ng-click="sortKey = 'update_date'; sortReverse = !sortReverse">
@@ -150,7 +150,7 @@
               </span>
             </span>
 
-          <span class="calendar-container"  uib-datepicker-popup ng-model="dateRange.updateDate" datepicker-options="options" is-open="datePicker.updateDateStatus.opened" ng-click="datePicker.updateDateOpen($event)"><i class="fa fa-calendar"></i></span>
+          <span class="calendar-container" close-on-date-selection="false" uib-datepicker-popup ng-model="dateRange.updateDate" datepicker-options="optionsUpdate" is-open="datePicker.updateDateStatus.opened" ng-click="datePicker.updateDateOpen($event)"><i class="fa fa-calendar"></i></span>
           </th>
           <th class="TipInfoExpirationDate">
             <span data-ng-click="sortKey = 'expiration_date'; sortReverse = !sortReverse">
@@ -161,7 +161,7 @@
                 <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
             </span>
-          <span class="calendar-container"  uib-datepicker-popup ng-model="dateRange.expiryDate" datepicker-options="options" is-open="datePicker.expiryDateStatus.opened" ng-click="datePicker.expiryDateOpen($event)"><i class="fa fa-calendar"></i></span>
+          <span class="calendar-container" close-on-date-selection="false" uib-datepicker-popup ng-model="dateRange.expiryDate" datepicker-options="optionsExpiry" is-open="datePicker.expiryDateStatus.opened" ng-click="datePicker.expiryDateOpen($event)"><i class="fa fa-calendar"></i></span>
           </th>
           <th class="TipInfoReadReceipt">
             <i class="fa-solid fa-eye"></i>
