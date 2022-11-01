@@ -227,12 +227,13 @@ a:hover,
 .nav,
 .pagination,
 .carousel,
-.card-title a {
-  cursor: pointer;
-}
 
 .card {
   margin-bottom: 1em;
+}
+
+.card-title a {
+  cursor: pointer;
 }
 
 #Sidebar a {

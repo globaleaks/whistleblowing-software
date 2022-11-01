@@ -120,7 +120,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
     return "";
   }
 
-  $scope.$watch("dateRange.reportDate", function(newvalue, oldvalue) {
+  $scope.$watch("dateRange.reportDate", function(newvalue) {
       if (newvalue) {
           if (!$scope.dateRangeReport.start) {
             $scope.dateRangeReport.start = newvalue;
