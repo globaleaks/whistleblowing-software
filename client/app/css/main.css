@@ -224,6 +224,16 @@ a:hover,
   font-weight: bold;
 }
 
+.nav,
+.pagination,
+.carousel,
+.card-title a {
+  cursor: pointer;
+}
+
+.card {
+  margin-bottom: 1em;
+}
 
 #Sidebar a {
   display: block;
@@ -236,17 +246,6 @@ a:hover,
 #Sidebar a:focus.active {
   border-bottom: 1px solid #c8d1e0;
   width: max-content;
-}
-
-.nav,
-.pagination,
-.carousel,
-.card-title a {
-  cursor: pointer;
-}
-
-.card {
-  margin-bottom: 1em;
 }
 
 #PageContent {
