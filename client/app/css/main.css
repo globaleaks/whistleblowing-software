@@ -125,6 +125,15 @@ a:hover,
   overflow: inherit;
 }
 
+.dropdown-multiselect{
+  position: absolute;
+  left: 0;
+}
+
+.DropdownMultiselectContainer{
+  position: relative;
+}
+
 .dropdown-multiselect .dropdown-menu .divider {
   height: 1px;
   margin: 9px 0;

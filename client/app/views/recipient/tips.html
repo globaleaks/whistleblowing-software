@@ -106,7 +106,7 @@
                 <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
             </span>
-            <span  translation-texts="dropdownDefaultText"  data-ng-dropdown-multiselect="" options="dropdownContextData" selected-model="dropdownContextModel" events="on_changed"  extra-settings="dropdownSettings"></span>
+            <span class="DropdownMultiselectContainer"><i class="fa-solid fa-filter"></i> <span  translation-texts="dropdownDefaultText"  data-ng-dropdown-multiselect="" options="dropdownContextData" selected-model="dropdownContextModel" events="on_changed"  extra-settings="dropdownSettings"></span></span>
           </th>
           <th class="TipInfoLabel">
             <span data-ng-click="sortKey = 'label'; sortReverse = !sortReverse">
@@ -127,7 +127,7 @@
                 <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
             </span>
-            <span translation-texts="dropdownDefaultText"  data-ng-dropdown-multiselect="" options="dropdownStatusData" selected-model="dropdownStatusModel" events="on_changed"  extra-settings="dropdownSettings"> </span>
+            <span class="DropdownMultiselectContainer"><i class="fa-solid fa-filter"></i> <span translation-texts="dropdownDefaultText"  data-ng-dropdown-multiselect="" options="dropdownStatusData" selected-model="dropdownStatusModel" events="on_changed"  extra-settings="dropdownSettings"> </span></span>
           </th>
           <th class="TipInfoSubmissionDate">
             <span data-ng-click="sortKey = 'creation_date'; sortReverse = !sortReverse">
@@ -137,6 +137,7 @@
                 <span data-ng-show="!sortReverse" class="fa-solid fa-caret-down"></span>
                 <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
+
             </span>
             <span class="calendar-container" close-on-date-selection="false" uib-datepicker-popup data-ng-model="dateRange.reportDate" datepicker-options="optionsReport" is-open="datePicker.reportDateStatus.opened" data-ng-click="datePicker.reportDateOpen($event)"><i class="fa fa-calendar"></i></span>
           </th>
@@ -181,7 +182,7 @@
                 <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
             </span>
-            <span  translation-texts="dropdownDefaultText"  data-ng-dropdown-multiselect="" options="dropdownScoreData" selected-model="dropdownScoreModel" events="on_changed"  extra-settings="dropdownSettings"></span>
+            <span class="DropdownMultiselectContainer"><i class="fa-solid fa-filter"></i> <span  translation-texts="dropdownDefaultText"  data-ng-dropdown-multiselect="" options="dropdownScoreData" selected-model="dropdownScoreModel" events="on_changed"  extra-settings="dropdownSettings"></span></span>
           </th>
         </tr>
       </thead>
