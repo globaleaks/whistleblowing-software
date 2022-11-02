@@ -99,8 +99,6 @@ a:hover,
   padding: 0;
   width: 18px;
   height: 20px;
-  background-image: url("data:image/svg+xml,<?xml version='1.0' encoding='UTF-8'?><svg xmlns='http://www.w3.org/2000/svg' xml:space='preserve' viewBox='0 0 971.99 971.99'><path d='M370.22 459.3c10.2 11.1 15.8 25.6 15.8 40.6v442c0 26.601 32.1 40.101 51.1 21.4L560.42 822c16.5-19.8 25.6-29.601 25.6-49.2V500c0-15 5.7-29.5 15.8-40.601l353.8-383.9c26.5-28.8 6.101-75.5-33.1-75.5h-873c-39.2 0-59.7 46.6-33.1 75.5l353.8 383.8z'/></svg>");
-  background-repeat: no-repeat;
 }
 
 [dir] .uib-datepicker button {
@@ -109,17 +107,17 @@ a:hover,
 }
 
 [dir] .full button {
-  background: #e6e6e6;
+  background: #DDE3ED;
   color: #2866a2;
 }
 
 [dir] .uib-datepicker button:active {
-  background: #e6e6e6;
+  background: #DDE3ED;
   color: #2866a2;
 }
 
 [dir] .uib-datepicker button:hover {
-  background: #e6e6e6;
+  background: #DDE3ED;
   color: #2866a2;
 }
 
@@ -131,7 +129,7 @@ a:hover,
   height: 1px;
   margin: 9px 0;
   overflow: hidden;
-  background-color: #e5e5e5;
+  background-color: #f5f7fa;
 }
 
 .dropdown-multiselect .dropdown-menu > li > a .glyphicon {
@@ -150,7 +148,7 @@ a:hover,
   padding: 3px 20px;
   clear: both;
   font-weight: 400;
-  color: #333;
+  color: #1d1f24;
   line-height: 2;
   white-space: nowrap;
   font-size: 16px;
@@ -158,7 +156,7 @@ a:hover,
 }
 
 .dropdown-multiselect .dropdown-menu > li > a:hover {
-  background: #f0f0f0;
+  background: #f5f7fa;
 }
 
 [dir] .form-control,

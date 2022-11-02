@@ -778,15 +778,15 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
     },
     maskScore: function(score) {
       if (score === 1){
-          return "Low";
+          return $filter("translate")("Low");
       }
       else if (score === 2){
-          return "Medium";
+          return $filter("translate")("Medium");
       }
       else if (score === 3){
-          return "High";
+          return $filter("translate")("High");
       }else{
-          return "None";
+          return $filter("translate")("None");z
       }
     },
 
