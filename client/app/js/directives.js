@@ -131,12 +131,12 @@ directive("singleErrorUpload", function() {
   return {
     restrict: "A",
     controller: ["$scope", function($scope) {
-       $scope.$watch("file_error_msgs.length", function() {
-          // Reset the error display flag when a new error is pushed
-          $scope.displayErr = true;
-       });
+      $scope.$watch("file_error_msgs.length", function() {
+        // Reset the error display flag when a new error is pushed
+        $scope.displayErr = true;
+      });
 
-       $scope.displayErr = true;
+      $scope.displayErr = true;
     }],
     templateUrl: "views/partials/upload_error_msg.html",
   };

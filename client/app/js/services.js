@@ -14,7 +14,7 @@ GL.factory("GLResource", ["$resource", function($resource) {
 factory("Authentication",
   ["$filter", "$http", "$location", "$window", "$rootScope", "GLTranslate",
   function($filter, $http, $location, $window, $rootScope, GLTranslate) {
-    function Session(){
+    function Session() {
       var self = this;
 
       self.loginInProgress = false;
@@ -308,7 +308,7 @@ factory("Submission", ["$q", "$location", "$rootScope", "Authentication", "GLRes
      */
     self.submit = function() {
       self._submission.receivers = [];
-      angular.forEach(self.selected_receivers, function(selected, id){
+      angular.forEach(self.selected_receivers, function(selected, id) {
         if (selected) {
           self._submission.receivers.push(id);
         }

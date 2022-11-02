@@ -138,8 +138,8 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
       })(i);
     }
   };
-}]).
-controller("TipBulkOperationsCtrl", ["$scope", "$http", "$location", "$uibModalInstance", "selected_tips", "operation",
+}])
+.controller("TipBulkOperationsCtrl", ["$scope", "$http", "$location", "$uibModalInstance", "selected_tips", "operation",
   function ($scope, $http, $location, $uibModalInstance, selected_tips, operation) {
   $scope.selected_tips = selected_tips;
   $scope.operation = operation;
