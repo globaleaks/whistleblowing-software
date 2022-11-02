@@ -107,17 +107,17 @@ a:hover,
 }
 
 [dir] .full button {
-  background: #DDE3ED;
+  background: #dde3ed;
   color: #2866a2;
 }
 
 [dir] .uib-datepicker button:active {
-  background: #DDE3ED;
+  background: #dde3ed;
   color: #2866a2;
 }
 
 [dir] .uib-datepicker button:hover {
-  background: #DDE3ED;
+  background: #dde3ed;
   color: #2866a2;
 }
 

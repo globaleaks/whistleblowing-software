@@ -786,7 +786,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       else if (score === 3){
           return $filter("translate")("High");
       }else{
-          return $filter("translate")("None");z
+          return $filter("translate")("None");
       }
     },
 
