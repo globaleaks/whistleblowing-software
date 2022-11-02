@@ -125,12 +125,12 @@ a:hover,
   overflow: inherit;
 }
 
-.dropdown-multiselect{
+.dropdown-multiselect {
   position: absolute;
   left: 0;
 }
 
-.DropdownMultiselectContainer{
+.DropdownMultiselectContainer {
   position: relative;
 }
 
