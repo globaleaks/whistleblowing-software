@@ -106,6 +106,7 @@
                 <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
             </span>
+            <span class="DropdownMultiselectContainer"><i class="fa-solid fa-filter"></i> <span translation-texts="dropdownDefaultText" data-ng-dropdown-multiselect="" options="dropdownContextData" selected-model="dropdownContextModel" events="on_changed" extra-settings="dropdownSettings"></span></span>
           </th>
           <th class="TipInfoLabel">
             <span data-ng-click="sortKey = 'label'; sortReverse = !sortReverse">
@@ -126,6 +127,7 @@
                 <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
             </span>
+            <span class="DropdownMultiselectContainer"><i class="fa-solid fa-filter"></i> <span translation-texts="dropdownDefaultText" data-ng-dropdown-multiselect="" options="dropdownStatusData" selected-model="dropdownStatusModel" events="on_changed" extra-settings="dropdownSettings"> </span></span>
           </th>
           <th class="TipInfoSubmissionDate">
             <span data-ng-click="sortKey = 'creation_date'; sortReverse = !sortReverse">
@@ -135,7 +137,9 @@
                 <span data-ng-show="!sortReverse" class="fa-solid fa-caret-down"></span>
                 <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
+
             </span>
+            <!-- <span class="calendar-container" data-close-on-date-selection="false" data-uib-datepicker-popup data-ng-model="dateRange.reportDate" data-datepicker-option="optionsReport" data-is-open="datePicker.reportDateStatus.opened" data-ng-click="datePicker.reportDateOpen($event)"><i class="fa fa-calendar"></i></span> -->
           </th>
           <th class="TipInfoUpdateDate">
             <span data-ng-click="sortKey = 'update_date'; sortReverse = !sortReverse">
@@ -146,6 +150,7 @@
                 <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
             </span>
+            <!-- <span class="calendar-container" data-close-on-date-selection="false" data-uib-datepicker-popup data-ng-model="dateRange.updateDate" data-datepicker-option="optionsUpdate" data-is-open="datePicker.updateDateStatus.opened" data-ng-click="datePicker.updateDateOpen($event)"><i class="fa fa-calendar"></i></span> -->
           </th>
           <th class="TipInfoExpirationDate">
             <span data-ng-click="sortKey = 'expiration_date'; sortReverse = !sortReverse">
@@ -156,6 +161,7 @@
                 <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
             </span>
+            <!-- <span class="calendar-container" data-close-on-date-selection="false" data-uib-datepicker-popup data-ng-model="dateRange.expiryDate" data-datepicker-option="optionsExpiry" data-is-open="datePicker.expiryDateStatus.opened" data-ng-click="datePicker.expiryDateOpen($event)"><i class="fa fa-calendar"></i></span> -->
           </th>
           <th class="TipInfoReadReceipt">
             <i class="fa-solid fa-eye"></i>
@@ -175,6 +181,7 @@
                 <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
             </span>
+            <span class="DropdownMultiselectContainer"><i class="fa-solid fa-filter"></i> <span translation-texts="dropdownDefaultText" data-ng-dropdown-multiselect="" options="dropdownScoreData" selected-model="dropdownScoreModel" events="on_changed" extra-settings="dropdownSettings"></span></span>
           </th>
         </tr>
       </thead>

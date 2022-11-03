@@ -8,6 +8,7 @@ window.localStorage = window.sessionStorage;
 
 var GL = angular.module("GL", [
     "angular.filter",
+    "angularjs-dropdown-multiselect",
     "ngAria",
     "ngIdle",
     "ngRoute",

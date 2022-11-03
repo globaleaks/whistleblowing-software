@@ -733,6 +733,56 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
 
       $window.document.getElementsByName("description")[0].content = $rootScope.public.node.description;
     },
+    getDateFilter: function(Tips, report_date_filter, update_date_filter, expiry_date_filter) {
+      var filteredTips = [];
+      angular.forEach(Tips, function(rows) {
+        var m_row_rdate = new Date(rows.last_access).getTime();
+        var m_row_udate = new Date(rows.update_date).getTime();
+        var m_row_edate = new Date(rows.expiration_date).getTime();
+
+        if((report_date_filter === null || report_date_filter!==null && (report_date_filter[0] === 0 || report_date_filter[0] === report_date_filter[1] || m_row_rdate > report_date_filter[0] && m_row_rdate < report_date_filter[1])) && (update_date_filter === null || update_date_filter!==null && (update_date_filter[0] === 0 || update_date_filter[0] === update_date_filter[1] || m_row_udate > update_date_filter[0] && m_row_udate < update_date_filter[1])) && (expiry_date_filter === null || expiry_date_filter!==null && (expiry_date_filter[0] === 0 || expiry_date_filter[0] === expiry_date_filter[1] || m_row_edate > expiry_date_filter[0] && m_row_edate < expiry_date_filter[1]))) {
+          filteredTips.push(rows);
+         }
+       });
+       return filteredTips;
+    },
+    getStaticFilter: function(data, model, key) {
+      if (model.length === 0) {
+        return data;
+      } else {
+        var rows = [];
+        data.forEach(data_row => {
+          model.forEach(selected_option => {
+            if (key === "score") {
+              var scoreLabel = this.maskScore(data_row[key]);
+              if (scoreLabel === selected_option.label) {
+                rows.push(data_row);
+              }
+            } else if(key === "status") {
+              if (data_row[key] === selected_option.label) {
+                rows.push(data_row);
+              }
+            } else {
+              if (data_row[key] === selected_option.label) {
+                rows.push(data_row);
+              }
+            }
+          });
+        });
+      }
+      return rows;
+    },
+    maskScore: function(score) {
+      if (score === 1) {
+        return $filter("translate")("Low");
+      } else if (score === 2) {
+        return $filter("translate")("Medium");
+      } else if (score === 3) {
+        return $filter("translate")("High");
+      } else {
+        return $filter("translate")("None");
+      }
+    },
 
     route_check: function() {
       var path = $location.path();

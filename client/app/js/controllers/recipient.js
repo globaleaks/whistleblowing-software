@@ -1,17 +1,68 @@
+
 GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "$uibModal", "$window", "RTipExport", "TokenResource",
   function($scope, $filter, $http, $location, $uibModal, $window, RTipExport, TokenResource) {
+
   $scope.search = undefined;
   $scope.currentPage = 1;
   $scope.itemsPerPage = 20;
+  $scope.dropdownSettings = {dynamicTitle: false, showCheckAll: false, showUncheckAll: false, enableSearch: true, displayProp: "label", idProp: "label", itemsShowLimit: 5};
 
+  $scope.reportDateFilter = null;
+  $scope.updateDateFilter = null;
+  $scope.expiryDateFilter = null;
+
+  $scope.dropdownStatusModel = [];
+  $scope.dropdownStatusData = [];
+  $scope.dropdownContextModel = [];
+  $scope.dropdownContextData = [];
+  $scope.dropdownScoreModel = [];
+  $scope.dropdownScoreData = [];
+
+  var unique_keys = [];
   angular.forEach($scope.resources.rtips.rtips, function(tip) {
-    tip.context = $scope.contexts_by_id[tip.context_id];
-    tip.context_name = tip.context.name;
-    tip.questionnaire = $scope.resources.rtips.questionnaires[tip.questionnaire];
-    tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText(tip.status, tip.substatus, $scope.submission_statuses);
+     tip.context = $scope.contexts_by_id[tip.context_id];
+     tip.context_name = tip.context.name;
+     tip.questionnaire = $scope.resources.rtips.questionnaires[tip.questionnaire];
+     tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText(tip.status, tip.substatus, $scope.submission_statuses);
+
+     if (unique_keys.includes(tip.submissionStatusStr) === false) {
+       unique_keys.push(tip.submissionStatusStr);
+       $scope.dropdownStatusData.push({id: $scope.dropdownStatusData.length + 1, label: tip.submissionStatusStr});
+     }
+
+     if (unique_keys.includes(tip.context_name) === false) {
+       unique_keys.push(tip.context_name);
+       $scope.dropdownContextData.push({id: $scope.dropdownContextData.length + 1, label: tip.context_name});
+     }
+
+     var scoreLabel = $scope.Utils.maskScore(tip.score);
+
+     if (unique_keys.includes(scoreLabel) === false) {
+       unique_keys.push(scoreLabel);
+       $scope.dropdownScoreData.push({id: $scope.dropdownScoreData.length + 1, label: scoreLabel});
+     }
   });
 
   $scope.filteredTips = $filter("orderBy")($scope.resources.rtips.rtips, "update_date");
+
+  $scope.dropdownDefaultText = {
+    buttonDefaultText:"",
+    searchPlaceholder: $filter("translate")("Search") + "..."
+  };
+
+  function applyFilter()
+  {
+     $scope.filteredTips = $scope.Utils.getStaticFilter($scope.resources.rtips.rtips, $scope.dropdownStatusModel, "submissionStatusStr");
+     $scope.filteredTips = $scope.Utils.getStaticFilter($scope.filteredTips, $scope.dropdownContextModel, "context_name");
+     $scope.filteredTips = $scope.Utils.getStaticFilter($scope.filteredTips, $scope.dropdownScoreModel, "score");
+     $scope.filteredTips = $scope.Utils.getDateFilter($scope.filteredTips, $scope.reportDateFilter, $scope.updateDateFilter, $scope.expiryDateFilter);
+  }
+
+  $scope.on_changed = {
+    onSelectionChanged: function() {
+      applyFilter();
+    }
+  };
 
   $scope.$watch("search", function (value) {
     if (typeof value !== "undefined") {

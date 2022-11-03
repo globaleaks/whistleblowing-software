@@ -56,6 +56,7 @@ module.exports = function(grunt) {
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/ng-showdown/dist/ng-showdown.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/qrcode-generator/qrcode.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/showdown/dist/showdown.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angularjs-dropdown-multiselect/dist/src/angularjs-dropdown-multiselect.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/stacktrace-js/dist/stacktrace.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/ui-bootstrap4/dist/ui-bootstrap-tpls.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: ".", src: ["node_modules/ui-select/dist/select.js"], expand: true, flatten: true },
@@ -300,6 +301,14 @@ module.exports = function(grunt) {
         },
         options: {
           replacements: [
+            {
+              pattern: /glyphicon glyphicon-ok/ig,
+              replacement: "fa-regular fa-check"
+            },
+            {
+              pattern: /glyphicon glyphicon-remove/ig,
+              replacement: "fa-regular fa-xmark"
+            },
             {
               pattern: "style=\"outline: 0;\"",
               replacement: "data-ng-style=\"{\\'outline\\': \\'0\\'}\""

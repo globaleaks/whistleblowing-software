@@ -65,6 +65,109 @@ a:hover,
   opacity: 1;
 }
 
+.uib-datepicker-popup {
+  padding: 5;
+  margin: 0;
+}
+
+.uib-datepicker {
+  padding: 5px;
+}
+
+.uib-button-bar > .btn-group > .btn-info {
+  display: none;
+}
+
+.uib-button-bar > .btn-success {
+  display: none;
+}
+
+[dir] .uib-datepicker th,
+[dir] .uib-datepicker td {
+  white-space: nowrap;
+  min-width: 0;
+  padding: 2px;
+}
+
+[dir] .dropdown-multiselect button::after {
+  border: 0;
+  content: "";
+  vertical-align: 0;
+}
+
+.dropdown-multiselect button {
+  padding: 0;
+  width: 18px;
+  height: 20px;
+}
+
+[dir] .uib-datepicker button {
+  background: #fff;
+  color: grey;
+}
+
+[dir] .full button {
+  background: #dde3ed;
+  color: #2866a2;
+}
+
+[dir] .uib-datepicker button:active {
+  background: #dde3ed;
+  color: #2866a2;
+}
+
+[dir] .uib-datepicker button:hover {
+  background: #dde3ed;
+  color: #2866a2;
+}
+
+[dir] .table-responsive {
+  overflow: inherit;
+}
+
+.dropdown-multiselect {
+  position: absolute;
+  left: 0;
+}
+
+.DropdownMultiselectContainer {
+  position: relative;
+}
+
+.dropdown-multiselect .dropdown-menu .divider {
+  height: 1px;
+  margin: 9px 0;
+  overflow: hidden;
+  background-color: #f5f7fa;
+}
+
+.dropdown-multiselect .dropdown-menu > li > a .glyphicon {
+  background: #2866a2;
+  display: inline-block;
+  width: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-left: 8px solid #ccc;
+  padding-left: 5px;
+  border-radius: 5px;
+}
+
+.dropdown-multiselect .dropdown-menu > li > a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: 400;
+  color: #1d1f24;
+  line-height: 2;
+  white-space: nowrap;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.dropdown-multiselect .dropdown-menu > li > a:hover {
+  background: #f5f7fa;
+}
+
 [dir] .form-control,
 [dir="ltr"] .custom-select,
 [dir="rtl"] .custom-select {
@@ -341,7 +444,6 @@ a:hover,
 #TipList th,
 #TipList td {
   white-space: nowrap;
-  min-width: 5rem;
 }
 
 @keyframes fadeinout {
