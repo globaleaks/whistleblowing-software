@@ -1,4 +1,76 @@
-GL.directive("dynamicTextarea", function () {
+GL
+.directive("dateRangePicker", function() {
+  return {
+    restrict: "A",
+    scope: {
+      ngModel: "=",
+      onDateChange: "=",
+    },
+    templateUrl: "views/partials/datarangepicker.html",
+    require: "ngModel",
+    link: function($scope) {
+      $scope.daterangePickerModel = {
+       start: null,
+       end: null
+      };
+
+      $scope.daterangePickerOptions = {
+        customClass: function(data) {
+          var date = data.date,
+            mode = data.mode;
+          if (mode === "day" && $scope.daterangePickerModel.start && $scope.daterangePickerModel.end) {
+            var dayToCheck = new Date(date).setHours(0,0,0,0);
+            if (dayToCheck >= $scope.daterangePickerModel.start && dayToCheck <= $scope.daterangePickerModel.end) {
+              return "full";
+            }
+          }
+          return "";
+        }
+      };
+
+      $scope.onDatePickerOpen = function($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        $scope.isDatePickerOpened = !$scope.isDatePickerOpened;
+      };
+
+      $scope.$watch("ngModel", function(newvalue) {
+        if (newvalue) {
+          if (!$scope.daterangePickerModel.start) {
+            $scope.daterangePickerModel.start = newvalue;
+          } else if ($scope.daterangePickerModel.start && !$scope.daterangePickerModel.end) {
+            $scope.daterangePickerModel.end = $scope.ngModel;
+            $scope.dataRangeFilter = [new Date($scope.daterangePickerModel.start).getTime(), new Date($scope.daterangePickerModel.end).getTime()];
+          } else if ($scope.daterangePickerModel.start && $scope.daterangePickerModel.end) {
+            $scope.daterangePickerModel.end = null;
+            $scope.daterangePickerModel.start = newvalue;
+          }
+        } else {
+          $scope.daterangePickerModel.start = null;
+          $scope.daterangePickerModel.end = null;
+          $scope.dataRangeFilter = [new Date().getTime(), new Date().getTime()];
+        }
+
+        if (!$scope.daterangePickerModel.start && !$scope.daterangePickerModel.end || $scope.daterangePickerModel.start && $scope.daterangePickerModel.end) {
+          if (!$scope.daterangePickerModel.start && !$scope.daterangePickerModel.end) {
+            $scope.ngModel = undefined;
+          }
+          $scope.isDatePickerOpened = false;
+        }
+
+        if ($scope.onDateChange) {
+          $scope.onDateChange($scope.dataRangeFilter);
+        }
+      });
+
+      $scope.checkFilter = function() {
+        return $scope.daterangePickerModel.start && $scope.daterangePickerModel.end;
+      };
+    }
+  };
+})
+
+.directive("dynamicTextarea", function() {
   return {
     restrict: "A",
     link: function postLink(scope, elem, attrs) {

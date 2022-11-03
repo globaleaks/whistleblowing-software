@@ -8,6 +8,7 @@ window.localStorage = window.sessionStorage;
 
 var GL = angular.module("GL", [
     "angular.filter",
+    "angularjs-dropdown-multiselect",
     "ngAria",
     "ngIdle",
     "ngRoute",
@@ -410,9 +411,11 @@ var GL = angular.module("GL", [
 }]).
   config(["uibDatepickerConfig", function (uibDatepickerConfig) {
     uibDatepickerConfig.datepickerPopup = "dd-MM-yyyy";
+    uibDatepickerConfig.showWeeks = false;
 }]).
   config(["uibDatepickerPopupConfig", function (uibDatepickerPopupConfig) {
     uibDatepickerPopupConfig.datepickerPopup = "dd-MM-yyyy";
+    uibDatepickerPopupConfig.showWeeks = false;
 }]).
   config(["$uibModalProvider", function($uibModalProvider) {
     $uibModalProvider.options.animation = false;

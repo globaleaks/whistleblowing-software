@@ -106,6 +106,10 @@
                 <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
             </span>
+            <span class="DropdownMultiselectContainer">
+              <i class="fa-solid fa-filter" data-ng-class="{filterSelected: checkFilter(dropdownContextModel)}"></i>
+              <span translation-texts="dropdownDefaultText" data-ng-dropdown-multiselect="" options="dropdownContextData" selected-model="dropdownContextModel" events="on_changed" extra-settings="dropdownSettings"></span>
+            </span>
           </th>
           <th class="TipInfoLabel">
             <span data-ng-click="sortKey = 'label'; sortReverse = !sortReverse">
@@ -126,6 +130,10 @@
                 <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
             </span>
+            <span class="DropdownMultiselectContainer">
+              <i class="fa-solid fa-filter" data-ng-class="{filterSelected: checkFilter(dropdownStatusModel)}"></i>
+              <span data-ng-dropdown-multiselect data-options="dropdownStatusData" data-selected-model="dropdownStatusModel" data-events="on_changed" data-extra-settings="dropdownSettings" data-translation-texts="dropdownDefaultText"></span>
+            </span>
           </th>
           <th class="TipInfoSubmissionDate">
             <span data-ng-click="sortKey = 'creation_date'; sortReverse = !sortReverse">
@@ -136,6 +144,7 @@
                 <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
             </span>
+            <span data-date-range-picker data-ng-model="reportDateModel" data-on-date-change="onReportFilterChange"></span>
           </th>
           <th class="TipInfoUpdateDate">
             <span data-ng-click="sortKey = 'update_date'; sortReverse = !sortReverse">
@@ -146,6 +155,7 @@
                 <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
             </span>
+            <span data-date-range-picker data-ng-model="updateDateModel" data-on-date-change="onUpdateFilterChange"></span>
           </th>
           <th class="TipInfoExpirationDate">
             <span data-ng-click="sortKey = 'expiration_date'; sortReverse = !sortReverse">
@@ -156,6 +166,7 @@
                 <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
             </span>
+            <span data-date-range-picker data-ng-model="expiryDateModel" data-on-date-change="onExpiryFilterChange"></span>
           </th>
           <th class="TipInfoReadReceipt">
             <i class="fa-solid fa-eye"></i>
@@ -174,6 +185,10 @@
                 <span data-ng-show="!sortReverse" class="fa-solid fa-caret-down"></span>
                 <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
+            </span>
+            <span class="DropdownMultiselectContainer">
+              <i class="fa-solid fa-filter" data-ng-class="{filterSelected: checkFilter(dropdownScoreModel)}"></i>
+              <span translation-texts="dropdownDefaultText" data-ng-dropdown-multiselect options="dropdownScoreData" class="dropdown-multiselect-padding" selected-model="dropdownScoreModel" events="on_changed" extra-settings="dropdownSettings"></span>
             </span>
           </th>
         </tr>

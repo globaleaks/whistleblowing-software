@@ -552,7 +552,7 @@ controller("SubmissionFieldCtrl", ["$scope", "fieldUtilities", function ($scope,
   if ($scope.field.type === "inputbox") {
     $scope.validator = fieldUtilities.getValidator($scope.field);
   } else if ($scope.field.type === "date") {
-    $scope.dateOptions = {showWeeks: false};
+    $scope.dateOptions = {};
 
     if (angular.isDefined($scope.field.attrs.min_date)) {
       $scope.dateOptions.minDate = new Date($scope.field.attrs.min_date.value);
@@ -570,8 +570,8 @@ controller("SubmissionFieldCtrl", ["$scope", "fieldUtilities", function ($scope,
       $scope.status.opened = true;
     };
   } else if ($scope.field.type === "daterange") {
-    $scope.dateOptions1 = {showWeeks: false};
-    $scope.dateOptions2 = {showWeeks: false};
+    $scope.dateOptions1 = {};
+    $scope.dateOptions2 = {};
 
     if (angular.isDefined($scope.field.attrs.min_date)) {
       $scope.dateOptions1.minDate = new Date($scope.field.attrs.min_date.value);
