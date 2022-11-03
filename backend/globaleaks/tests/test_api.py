@@ -77,6 +77,7 @@ class TestAPI(TestGL):
                                         'form-action \'none\';' \
                                         'frame-ancestors \'none\';' \
                                         'img-src \'self\' data:;' \
+                                        'media-src \'self\';' \
                                         'script-src \'self\' \'sha256-IYBZitj/YWbzjFFnwLPjJJmMGdSj923kzu2tdCxLKdU=\';' \
                                         'style-src \'self\' \'sha256-fwyo2zCGlh85NfN4rQUlpLM7MB5cry/1AEDA/G9mQJ8=\';'),
             ('Permissions-Policy', "camera=(),"

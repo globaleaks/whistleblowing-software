@@ -503,6 +503,7 @@ class APIResourceWrapper(Resource):
                               b"form-action 'none';"
                               b"frame-ancestors 'none';"
                               b"img-src 'self' data:;"
+                              b"media-src 'self';"
                               b"script-src 'self' 'sha256-IYBZitj/YWbzjFFnwLPjJJmMGdSj923kzu2tdCxLKdU=';"
                               b"style-src 'self' 'sha256-fwyo2zCGlh85NfN4rQUlpLM7MB5cry/1AEDA/G9mQJ8=';")
 
