@@ -124,7 +124,7 @@ class FileInstance(BaseHandler):
         elif name == 'favicon':
             self.allowed_mimetypes = ['image/vnd.microsoft.icon']
         elif name == 'logo' or re.match(requests.uuid_regexp, name):
-            self.allowed_mimetypes = ['image/png']
+            self.allowed_mimetypes = ['image/gif', 'image/jpeg', 'image/png']
 
         if self.uploaded_file['type'] not in self.allowed_mimetypes:
             raise errors.ForbiddenOperation
