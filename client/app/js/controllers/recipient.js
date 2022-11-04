@@ -64,6 +64,21 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
     }
   };
 
+  $scope.onReportFilterChange = function(reportFilter){
+    $scope.reportDateFilter = reportFilter;
+    applyFilter();
+  };
+
+  $scope.onUpdateFilterChange = function(updateFilter){
+    $scope.updateDateFilter = updateFilter;
+    applyFilter();
+  };
+
+  $scope.onExpiryFilterChange = function(expiryFilter){
+    $scope.expiryDateFilter = expiryFilter;
+    applyFilter();
+  };
+
   $scope.$watch("search", function (value) {
     if (typeof value !== "undefined") {
       $scope.currentPage = 1;

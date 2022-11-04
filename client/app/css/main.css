@@ -141,15 +141,9 @@ a:hover,
   background-color: #f5f7fa;
 }
 
-.dropdown-multiselect .dropdown-menu > li > a .glyphicon {
-  background: #2866a2;
-  display: inline-block;
-  width: 20px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  border-left: 8px solid #ccc;
-  padding-left: 5px;
-  border-radius: 5px;
+.dropdown-multiselect-padding .dropdown-menu {
+  right: 0;
+  left: auto;
 }
 
 .dropdown-multiselect .dropdown-menu > li > a {

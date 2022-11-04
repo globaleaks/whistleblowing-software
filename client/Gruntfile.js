@@ -303,11 +303,11 @@ module.exports = function(grunt) {
           replacements: [
             {
               pattern: /glyphicon glyphicon-ok/ig,
-              replacement: "fa-regular fa-check"
+              replacement: "fa fa-check"
             },
             {
               pattern: /glyphicon glyphicon-remove/ig,
-              replacement: "fa-regular fa-xmark"
+              replacement: "fa fa-xmark"
             },
             {
               pattern: "style=\"outline: 0;\"",
