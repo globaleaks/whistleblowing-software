@@ -144,7 +144,7 @@
                 <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
             </span>
-            <span datepicker on-Datechange="onReportFilterChange" data-ng-model="reportDateModel"></span>
+            <span date-range-picker on-Datechange="onReportFilterChange" data-ng-model="reportDateModel"></span>
           </th>
           <th class="TipInfoUpdateDate">
             <span data-ng-click="sortKey = 'update_date'; sortReverse = !sortReverse">
@@ -155,7 +155,7 @@
                 <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
             </span>
-            <span datepicker on-Datechange="onUpdateFilterChange" data-ng-model="updateDateModel"></span>
+            <span date-range-picker on-Datechange="onUpdateFilterChange" data-ng-model="updateDateModel"></span>
           </th>
           <th class="TipInfoExpirationDate">
             <span data-ng-click="sortKey = 'expiration_date'; sortReverse = !sortReverse">
@@ -166,7 +166,7 @@
                 <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
               </span>
             </span>
-            <span datepicker on-Datechange="onExpiryFilterChange" data-ng-model="expiryDateModel"></span>
+            <span date-range-picker on-Datechange="onExpiryFilterChange" data-ng-model="expiryDateModel"></span>
           </th>
           <th class="TipInfoReadReceipt">
             <i class="fa-solid fa-eye"></i>

@@ -1,5 +1,5 @@
 GL
-.directive("datepicker", function() {
+.directive("dateRangePicker", function() {
   return {
     restrict: "A",
     scope: {
