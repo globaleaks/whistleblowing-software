@@ -15,6 +15,10 @@ GL
        end: null,
       };
 
+      $scope.obj = {
+        value1: false,
+      };
+
       $scope.daterangePickerOptions = {
         customClass: function(data) {
           var date = data.date,
@@ -45,8 +49,8 @@ GL
             $scope.daterangePickerModel.end = $scope.ngModel;
             $scope.dataRangeFilter = [new Date($scope.daterangePickerModel.start).getTime(), new Date($scope.daterangePickerModel.end).getTime()];
           } else if ($scope.daterangePickerModel.start && $scope.daterangePickerModel.end) {
+            $scope.daterangePickerModel.end = null;
             $scope.daterangePickerModel.start = newvalue;
-            $scope.daterangePickerModel.end = newvalue;
           }
         } else {
           $scope.daterangePickerModel.start = null;
@@ -59,8 +63,18 @@ GL
           }
           $scope.isDatePickerOpened = false;
         }
+
+         if ($scope.daterangePickerModel.start && $scope.daterangePickerModel.end) {
+           $scope.obj.value1 = true;
+         }else{
+           $scope.obj.value1 = false;
+         }
+
          $scope.onDatechange($scope.dataRangeFilter);
       });
+      $scope.checkFilter = function() {
+        return $scope.obj.value1 === true;
+      }
     }
   };
 })

@@ -89,6 +89,10 @@ a:hover,
   padding: 2px;
 }
 
+[dir] .filterSelected {
+  color: #377ABC;
+}
+
 [dir] .dropdown-multiselect button::after {
   border: 0;
   content: "";
