@@ -107,7 +107,7 @@
               </span>
             </span>
             <span class="DropdownMultiselectContainer">
-              <i class="fa-solid fa-filter"></i>
+              <i class="fa-solid fa-filter" data-ng-class="{filterSelected: checkFilter(dropdownContextModel)}"></i>
               <span translation-texts="dropdownDefaultText" data-ng-dropdown-multiselect="" options="dropdownContextData" selected-model="dropdownContextModel" events="on_changed" extra-settings="dropdownSettings"></span>
             </span>
           </th>
@@ -131,7 +131,7 @@
               </span>
             </span>
             <span class="DropdownMultiselectContainer">
-              <i class="fa-solid fa-filter"></i>
+              <i class="fa-solid fa-filter" data-ng-class="{filterSelected: checkFilter(dropdownStatusModel)}"></i>
               <span  translation-texts="dropdownDefaultText" data-ng-dropdown-multiselect="" options="dropdownStatusData" selected-model="dropdownStatusModel" events="on_changed" extra-settings="dropdownSettings"> </span>
             </span>
           </th>
@@ -187,7 +187,7 @@
               </span>
             </span>
             <span class="DropdownMultiselectContainer">
-              <i class="fa-solid fa-filter"></i>
+              <i class="fa-solid fa-filter" data-ng-class="{filterSelected: checkFilter(dropdownScoreModel)}"></i>
               <span translation-texts="dropdownDefaultText" data-ng-dropdown-multiselect="" options="dropdownScoreData" class="dropdown-multiselect-padding" selected-model="dropdownScoreModel" events="on_changed" extra-settings="dropdownSettings"></span>
             </span>
           </th>

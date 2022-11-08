@@ -79,6 +79,10 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
     applyFilter();
   };
 
+  $scope.checkFilter = function(filter) {
+    return true === filter.length > 0
+  }
+
   $scope.$watch("search", function (value) {
     if (typeof value !== "undefined") {
       $scope.currentPage = 1;

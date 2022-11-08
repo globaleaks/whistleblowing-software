@@ -15,8 +15,8 @@ GL
        end: null,
       };
 
-      $scope.obj = {
-        value1: false,
+      $scope.filter = {
+        value: false,
       };
 
       $scope.daterangePickerOptions = {
@@ -65,15 +65,15 @@ GL
         }
 
          if ($scope.daterangePickerModel.start && $scope.daterangePickerModel.end) {
-           $scope.obj.value1 = true;
+           $scope.filter.value = true;
          }else{
-           $scope.obj.value1 = false;
+           $scope.filter.value = false;
          }
 
          $scope.onDatechange($scope.dataRangeFilter);
       });
       $scope.checkFilter = function() {
-        return $scope.obj.value1 === true;
+        return $scope.filter.value === true;
       }
     }
   };
