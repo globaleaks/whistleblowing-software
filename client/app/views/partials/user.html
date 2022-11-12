@@ -8,19 +8,19 @@
       <span class="text-separator">|</span>
     </span>
     <span id="HomeLinkBox" data-ng-if="Authentication.session.role !== 'whistleblower'">
-      <a id="HomepageLink" data-ng-href="#{{Authentication.session.homepage}}" data-uib-tooltip="{{'Home' | translate}}"><i class="fa-solid fa-home"></i></a>
+      <a id="HomepageLink" data-ng-href="#{{Authentication.session.homepage}}" data-uib-tooltip="{{'Home' | translate}}"><i class="fa-solid fa-fw fa-home"></i></a>
       <span class="text-separator">|</span>
     </span>
     <span id="PreferencesLinkBox" data-ng-if="Authentication.session.role !== 'whistleblower' && !Authentication.session.properties.management_session">
-      <a id="PreferencesLink" data-ng-href="#{{Authentication.session.preferencespage}}" data-uib-tooltip="{{'Preferences' | translate}}"><i class="fa-solid fa-user"></i></a>
+      <a id="PreferencesLink" data-ng-href="#{{Authentication.session.preferencespage}}" data-uib-tooltip="{{'Preferences' | translate}}"><i class="fa-solid fa-fw fa-user"></i></a>
       <span class="text-separator">|</span>
     </span>
     <span id="SupportLinkBox" data-ng-if="Authentication.session && Authentication.session.role !== 'whistleblower'">
-      <a id="SupportLink" href="" data-ng-click="Utils.openSupportModal()" data-uib-tooltip="{{'Request support' | translate}}"><i class="fa-solid fa-life-ring"></i></a>
+      <a id="SupportLink" href="" data-ng-click="Utils.openSupportModal()" data-uib-tooltip="{{'Request support' | translate}}"><i class="fa-solid fa-fw fa-life-ring"></i></a>
       <span class="text-separator">|</span>
     </span>
     <span id="LogoutLinkBox">
-      <a id="LogoutLink" href="" data-ng-click="Authentication.logout()" data-uib-tooltip="{{'Logout' | translate}}"><i class="fa-solid fa-sign-out-alt"></i><span data-ng-if="Authentication.session.role === 'whistleblower'"><span> </span><span data-translate>Logout</span></span></a>
+      <a id="LogoutLink" href="" data-ng-click="Authentication.logout()" data-uib-tooltip="{{'Logout' | translate}}"><i class="fa-solid fa-fw fa-sign-out-alt"></i><span data-ng-if="Authentication.session.role === 'whistleblower'"><span> </span><span data-translate>Logout</span></span></a>
     </span>
   </div>
   <div id="WhistleblowerLoginBox" class="ml-1 mb-1" data-ng-if="Utils.showWBLoginBox()" data-ng-include="'views/partials/receipt.html'"></div>

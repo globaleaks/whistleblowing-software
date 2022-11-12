@@ -27,7 +27,7 @@ body {
 
 body {
   background-color: #fff;
-  color: #1d1f2a;
+  color: #1d1f24;
   font-family: Metropolis, Helvetica, Arial, sans-serif;
   font-size: 16px;
   min-height: 20rem;
@@ -252,7 +252,7 @@ a:hover,
 #Sidebar a:active.active,
 #Sidebar a:hover.active,
 #Sidebar a:focus.active {
-  border-bottom: 1px solid #c8d1e0;
+  border-bottom: 1px solid #1d1f24;
   width: max-content;
 }
 
@@ -483,6 +483,12 @@ input[type="file"] {
   height: 1px;
 }
 
+.fa,
+.fa-solid {
+  text-align: center;
+  width: 1.25em;
+}
+
 .fa-none::before {
   content: "\2122";
   color: transparent;
@@ -557,7 +563,7 @@ input[type="file"] {
 }
 
 .description {
-  color: #1d1f2a;
+  color: #1d1f24;
   white-space: pre-wrap;
 }
 
@@ -748,7 +754,7 @@ input[type="file"] {
 
 #LoginStatusBox,
 #WhistleblowerLoginBox {
-  color: #1d1f2a;
+  color: #1d1f24;
   background-color: #fff;
   border-radius: 5px;
 }
@@ -836,7 +842,7 @@ text.axis-worktime {
   padding: 1em;
   font-family: monospace;
   font-size: 0.8rem;
-  color: #1d1f2a;
+  color: #1d1f24;
   background-color: #f5f7fa;
   border: 1px solid #c8d1e0;
   max-height: 20rem;
