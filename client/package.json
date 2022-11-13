@@ -38,7 +38,7 @@
     "ui-select": "0.19.8"
   },
   "devDependencies": {
-    "eslint": "8.25.0",
+    "eslint": "8.27.0",
     "gettext-parser": "6.0.0",
     "grunt": "1.5.3",
     "grunt-angular-templates": "1.2.0",
@@ -55,14 +55,14 @@
     "grunt-usemin": "3.1.1",
     "gruntify-eslint": "5.0.0",
     "node-gettext": "3.0.0",
-    "npm-check-updates": "16.3.11",
+    "npm-check-updates": "16.3.25",
     "nyc": "15.1.0",
     "postcss-rtl": "1.7.3",
     "protractor": "7.0.0",
     "protractor-console-plugin": "0.1.1",
-    "stylelint": "14.14.0",
+    "stylelint": "14.15.0",
     "stylelint-config-standard": "29.0.0",
-    "superagent": "8.0.2",
+    "superagent": "8.0.3",
     "terser": "5.15.1"
   }
 }
