@@ -1452,7 +1452,7 @@ msgid "Address"
 msgstr "آدرس"
 
 msgid "Fiscal code"
-msgstr ""
+msgstr "کد مالی"
 
 msgid "Tax code"
 msgstr "شماره مالیات"

@@ -17,7 +17,7 @@
 # Ibnu Daru Aji, 2015
 # Ibnu Daru Aji, 2015
 # ical, 2018-2021
-# Imron Fauzi <imronfauzi@gmail.com>, 2015
+# imron fauzi <imronfauzi@gmail.com>, 2015
 # Marcel Oomens <mail@marceloomens.com>, 2018
 # Margaret Megan <megan_marg@yahoo.com>, 2017
 # M. Miguel Adrian Pasha <m.miguel.ap@gmail.com>, 2018

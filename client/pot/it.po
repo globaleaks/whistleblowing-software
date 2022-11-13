@@ -1450,7 +1450,7 @@ msgid "Fiscal code"
 msgstr "Codice fiscale"
 
 msgid "Tax code"
-msgstr "Codice fiscale"
+msgstr "Partita IVA"
 
 msgid "The answer is too short"
 msgstr "La risposta è troppo corta"

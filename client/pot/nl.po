@@ -19,8 +19,8 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # Infinity, 2015
 # Infinity, 2015
-# J <drwhax@2600nl.net>, 2014
-# J <drwhax@2600nl.net>, 2013-2014
+# 0f226375ce91ffa55099fe1bceae5d6a_1b0db24 <c3de44c5ba1db166d71870a80dfe50eb_103637>, 2014
+# 0f226375ce91ffa55099fe1bceae5d6a_1b0db24 <c3de44c5ba1db166d71870a80dfe50eb_103637>, 2013-2014
 # Just ATranslater <transifex@weinand.nl>, 2017
 # kwadronaut <kwadronaut@chocovax.net>, 2017
 # Marcel Oomens <mail@marceloomens.com>, 2015-2017
