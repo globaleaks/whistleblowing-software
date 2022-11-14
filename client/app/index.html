@@ -41,8 +41,17 @@
       <div id="MessagesConsoleBox" data-ng-include="'views/partials/messageconsole.html'"></div>
       <div id="ContentBox">
         <div class="row">
-          <nav data-ng-if="sidebar" id="Sidebar" class="col-md-2 flex-column" data-ng-include="sidebar"></nav>
-          <main id="Content" data-ng-class="{'col-md-10': sidebar, 'col-md-12': !sidebar}" data-ng-view=""></main>
+          <nav data-ng-if="sidebar" id="Sidebar" class="col-lg-2 col-md-4 col-sm-12 navbar-expand-md" role="navigation" data-ng-controller="CollapseDemoCtrl">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggler" data-ng-click="isNavCollapsed = !isNavCollapsed">
+                <i class="fa-solid fa-bars"></i>
+              </button>
+            </div>
+            <div class="nav navbar-collapse navbar-nav" uib-collapse="isNavCollapsed">
+              <div data-ng-include="sidebar"></div>
+            </div>
+          </nav>
+          <main id="Content" data-ng-class="{'col-lg-10 col-md-8 col-sm-12': sidebar, 'col-md-12': !sidebar}" data-ng-view=""></main>
         </div>
       </div>
     </div>
@@ -105,6 +114,7 @@
     <script src="js/controllers/empty.js"></script>
     <script src="js/controllers/modal.js"></script>
     <script src="js/controllers/preferences.js"></script>
+    <script src="js/controllers/sidebar.js"></script>
     <script src="js/controllers/fileupload.js"></script>
     <script src="js/controllers/signup.js"></script>
     <script src="js/controllers/wizard.js"></script>

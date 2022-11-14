@@ -252,7 +252,7 @@ a:hover,
 #Sidebar a:active.active,
 #Sidebar a:hover.active,
 #Sidebar a:focus.active {
-  border-bottom: 1px solid #1d1f24;
+  border-bottom: 1px solid #c8d1e0;
   width: max-content;
 }
 
@@ -897,7 +897,23 @@ html[dir="ltr"] #Receipt {
   direction: ltr;
 }
 
+[dir="ltr"] #Sidebar .fa,
+[dir="ltr"] #Sidebar .fa-solid {
+  margin-right: 0.5em;
+}
+
+[dir="rtl"] #Sidebar .fa,
+[dir="rtl"] #Sidebar .fa-solid {
+  margin-left: 0.5em;
+}
+
+
 [dir="rtl"] .fa,
-[dir="rtl"] .fas {
+[dir="rtl"] .fa-solid {
   transform: scaleX(-1);
+}
+
+.collapse,
+.navbar-collapse {
+ height: auto !important;
 }
