@@ -124,6 +124,8 @@ describe("globaleaks process", function() {
     await browser.gl.utils.login_receiver();
     await browser.setLocation("/recipient/reports");
 
+    await browser.gl.utils.takeScreenshot("recipient/reports.png");
+
     var id = await element(by.id("tip-0")).evaluate("tip.id");
     await browser.setLocation("/status/" + id);
     await browser.gl.utils.waitUntilPresent(by.id("tip-action-export"));
