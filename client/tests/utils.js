@@ -65,6 +65,10 @@ exports.takeScreenshot = async function(filename, locator) {
     locator = browser;
   }
 
+  await browser.driver.manage().window().setSize(1280, 0);
+
+  await browser.waitForAngular();
+
   await browser.driver.executeScript("return document.body.scrollHeight").then(function(height) {
     return browser.driver.manage().window().setSize(1280, height);
   });
