@@ -99,7 +99,7 @@
             <input name="password" class="form-control" data-ng-model="wizard.admin_password" type="password" data-ng-attr-placeholder="{{'Password' | translate}}" autocomplete="off" data-password-strength-validator data-ng-class="{'is-invalid': validated4 && (wizardFormStep4.password.$error.required || (wizardFormStep4.password.$error.passwordStrength))}" required />
             <password-meter data-ng-show="passwordStrengthScore" value="passwordStrengthScore"></password-meter>
             <div class="text-danger" data-ng-show="!wizardFormStep4.password.$error.required && wizardFormStep4.password.$error.passwordStrengthValidator">
-              <p data-translate>The chosen password is too weak. A valid password should be at least 10 characters long and contain a variety of characters including at least a lowercase character, a capital character, a number and a special character.</p>
+              <p data-translate>The chosen password is too weak. A valid password should be at least 12 characters long and contain a variety of characters including at least a lowercase character, a capital character, a number and a special character.</p>
             </div>
           </div>
         </div>
@@ -182,7 +182,7 @@
               <input name="password" class="form-control" data-ng-model="wizard.receiver_password" type="password" data-ng-attr-placeholder="{{'Password' | translate}}" autocomplete="off" data-password-strength-validator data-ng-class="{'is-invalid': validated5 && (wizardFormStep5.password.$error.required || (wizardFormStep5.password.$error.passwordStrength))}" required />
               <password-meter data-ng-show="passwordStrengthScore" value="passwordStrengthScore"></password-meter>
               <div class="text-danger" data-ng-show="!wizardFormStep5.password.$error.required && wizardFormStep5.password.$error.passwordStrengthValidator">
-                <p data-translate>The chosen password is too weak. A valid password should be at least 10 characters long and contain a variety of characters including at least a lowercase character, a capital character, a number and a special character.</p>
+                <p data-translate>The chosen password is too weak. A valid password should be at least 12 characters long and contain a variety of characters including at least a lowercase character, a capital character, a number and a special character.</p>
               </div>
             </div>
           </div>

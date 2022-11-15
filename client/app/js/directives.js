@@ -350,9 +350,9 @@ directive("passwordStrengthValidator", function() {
           }
         }
 
-        if (variation1 !== 4 || variation2 < 8 || pwd.length < 10) {
+        if (variation1 !== 4 || variation2 < 10 || pwd.length < 12) {
           score = 1;
-        } else if (variation1 !== 4 || variation2 < 10 || pwd.length < 12) {
+        } else if (variation1 !== 4 || variation2 < 12 || pwd.length < 14) {
           score = 2;
         } else {
           score = 3;
