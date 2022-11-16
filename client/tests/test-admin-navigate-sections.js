@@ -9,8 +9,7 @@ describe("verify navigation of admin sections", function() {
     await element.all(by.cssContainingText("a", "License")).first().click();
     await browser.gl.utils.takeScreenshot("admin/license.png");
 
-    await element.all(by.cssContainingText("a", "Site settings")).first().click();
-    await element.all(by.cssContainingText("a", "Main configuration")).first().click();
+    await element.all(by.cssContainingText("a", "Settings")).first().click();
     await browser.gl.utils.takeScreenshot("admin/site_settings_main_configuration.png");
     await browser.gl.utils.takeScreenshot("admin/site_settings_logo_detail.png", element(by.id("Content")));
     await element.all(by.cssContainingText("a", "Theme customization")).first().click();
@@ -20,6 +19,8 @@ describe("verify navigation of admin sections", function() {
     await browser.gl.utils.takeScreenshot("admin/site_settings_languages_detail.png", element(by.id("Content")));
     await element.all(by.cssContainingText("a", "Text customization")).first().click();
     await browser.gl.utils.takeScreenshot("admin/site_settings_text_customization.png");
+    await element.all(by.cssContainingText("a", "Advanced")).first().click();
+    await browser.gl.utils.takeScreenshot("admin/advanced_settings.png");
 
     await element.all(by.cssContainingText("a", "Users")).first().click();
     await browser.gl.utils.takeScreenshot("admin/users.png");
@@ -57,13 +58,6 @@ describe("verify navigation of admin sections", function() {
     await browser.gl.utils.takeScreenshot("admin/sites_management_sites.png");
     await element(by.cssContainingText("a", "Options")).click();
     await browser.gl.utils.takeScreenshot("admin/sites_management_options.png");
-
-
-    await element.all(by.cssContainingText("a", "Advanced settings")).first().click();
-    await element.all(by.cssContainingText("a", "Main configuration")).first().click();
-    await browser.gl.utils.takeScreenshot("admin/advanced_settings.png");
-    await element.all(by.cssContainingText("a", "Anomaly detection thresholds")).first().click();
-    await browser.gl.utils.takeScreenshot("admin/anomaly_thresholds.png");
 
     await element.all(by.cssContainingText("a", "Audit log")).first().click();
     await browser.gl.utils.takeScreenshot("admin/audit_log.png");

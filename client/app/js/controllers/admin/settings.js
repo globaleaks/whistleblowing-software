@@ -1,10 +1,9 @@
-GL.
-controller("AdminGeneralSettingsCtrl", ["$scope", "$filter", "$http", "Files", "AdminL10NResource", "DefaultL10NResource",
+GL.controller("AdminSettingsCtrl", ["$scope", "$filter", "$http", "Files", "AdminL10NResource", "DefaultL10NResource",
   function($scope, $filter, $http, Files, AdminL10NResource, DefaultL10NResource){
   $scope.tabs = [
     {
-      title: "Main configuration",
-      template: "views/admin/content/tab1.html"
+      title: "Settings",
+      template: "views/admin/settings/tab1.html"
     }
   ];
 
@@ -12,15 +11,19 @@ controller("AdminGeneralSettingsCtrl", ["$scope", "$filter", "$http", "Files", "
     $scope.tabs = $scope.tabs.concat([
       {
         title: "Theme customization",
-        template: "views/admin/content/tab2.html"
+        template: "views/admin/settings/tab2.html"
       },
       {
         title: "Languages",
-        template: "views/admin/content/tab3.html"
+        template: "views/admin/settings/tab3.html"
       },
       {
         title: "Text customization",
-        template: "views/admin/content/tab4.html"
+        template: "views/admin/settings/tab4.html"
+      },
+      {
+        title: "Advanced",
+        template: "views/admin/settings/tab5.html"
       }
     ]);
   }
@@ -102,6 +105,42 @@ controller("AdminGeneralSettingsCtrl", ["$scope", "$filter", "$http", "Files", "
 
       $scope.$emit("REFRESH");
     });
+  };
+
+  $scope.resetSubmissions = function() {
+    $scope.Utils.deleteDialog().then(function() {
+      return $scope.Utils.runAdminOperation("reset_submissions");
+    });
+  };
+
+  $scope.enableEncryption = function() {
+    // do not toggle till confirmation;
+    $scope.resources.node.encryption = false;
+
+    if (!$scope.resources.node.encryption) {
+      $scope.Utils.openConfirmableModalDialog("views/modals/enable_encryption.html").then(
+        function() {
+          return $scope.Utils.runAdminOperation("enable_encryption").then(
+            function() {
+              $scope.Authentication.logout();
+            },
+            function() {}
+          );
+        },
+        function() { }
+      );
+    }
+  };
+
+  $scope.toggleEscrow = function() {
+    // do not toggle till confirmation;
+    $scope.resources.node.escrow = !$scope.resources.node.escrow;
+    $scope.Utils.runAdminOperation("toggle_escrow", {}, true).then(
+      function() {
+        $scope.resources.preferences.escrow = !$scope.resources.preferences.escrow;
+      },
+      function() {}
+    );
   };
 
   $scope.update_files();

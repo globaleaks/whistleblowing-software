@@ -1,4 +1,4 @@
-<form name="contentForm" data-ng-controller="AdminGeneralSettingsCtrl" novalidate>
+<form name="contentForm" data-ng-controller="AdminSettingsCtrl" novalidate>
   <uib-tabset>
     <uib-tab data-ng-repeat="tab in tabs" heading="{{tab.title | translate}}">
       <div class="tab-content" data-ng-include="tab.template"></div>

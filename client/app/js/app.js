@@ -174,8 +174,8 @@ var GL = angular.module("GL", [
           resources: fetchResources("receiver", ["preferences"]),
         }
       }).
-      when("/recipient/content", {
-        templateUrl: "views/recipient/content.html",
+      when("/recipient/settings", {
+        templateUrl: "views/recipient/settings.html",
         controller: "AdminCtrl",
         header_title: "Site settings",
         sidebar: "views/recipient/sidebar.html",
@@ -213,14 +213,14 @@ var GL = angular.module("GL", [
           resources: fetchResources("admin", ["node", "preferences"])
         }
       }).
-      when("/admin/content", {
-        templateUrl: "views/admin/content.html",
+      when("/admin/settings", {
+        templateUrl: "views/admin/settings.html",
         controller: "AdminCtrl",
         header_title: "Site settings",
         sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
-          resources: fetchResources("admin", ["node", "preferences"])
+          resources: fetchResources("admin", ["node", "preferences", "questionnaires", "users"])
         }
       }).
       when("/admin/contexts", {
@@ -273,16 +273,6 @@ var GL = angular.module("GL", [
           resources: fetchResources("admin", ["network", "node", "preferences", "redirects"])
         }
       }).
-      when("/admin/advanced", {
-        templateUrl: "views/admin/advanced.html",
-        controller: "AdminCtrl",
-        header_title: "Advanced settings",
-        sidebar: "views/admin/sidebar.html",
-        resolve: {
-          access: requireAuth("admin"),
-          resources: fetchResources("admin", ["node", "preferences", "questionnaires", "users"])
-        }
-      }).
       when("/admin/auditlog", {
         templateUrl: "views/admin/auditlog.html",
         controller: "AdminCtrl",
@@ -332,8 +322,8 @@ var GL = angular.module("GL", [
           resources: fetchResources("custodian", ["preferences"])
         }
       }).
-      when("/custodian/content", {
-        templateUrl: "views/custodian/content.html",
+      when("/custodian/settings", {
+        templateUrl: "views/custodian/settings.html",
         controller: "AdminCtrl",
         header_title: "Site settings",
         sidebar: "views/custodian/sidebar.html",

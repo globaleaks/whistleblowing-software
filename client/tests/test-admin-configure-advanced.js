@@ -1,8 +1,8 @@
 describe("admin configure advanced settings", function() {
   it("should perform main configuration", async function() {
     await browser.gl.utils.login_admin();
-    await browser.setLocation("admin/advanced");
-    await element(by.cssContainingText("a", "Main configuration")).click();
+    await browser.setLocation("admin/settings");
+    await element(by.cssContainingText("a", "Advanced")).click();
 
     // enable features that by default are disabled
     await element(by.model("resources.node.enable_custodian")).click();

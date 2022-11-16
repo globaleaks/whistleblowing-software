@@ -17,7 +17,7 @@ describe("admin configure, add, and delete contexts", function() {
       await element.all(by.css(".ui-select-choices-row-inner span")).first().click();
     }
 
-    await ctx.element(by.cssContainingText("button", "Advanced settings")).click();
+    await ctx.element(by.cssContainingText("button", "Advanced")).click();
 
     await ctx.element(by.model("context.enable_messages")).click();
 

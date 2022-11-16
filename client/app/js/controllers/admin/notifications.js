@@ -4,11 +4,11 @@ controller("AdminMailCtrl", ["$scope", "AdminNotificationResource",
 
   $scope.tabs = [
     {
-      title:"Main configuration",
+      title:"Settings",
       template:"views/admin/notifications/tab1.html"
     },
     {
-      title:"Notification templates",
+      title:"Templates",
       template:"views/admin/notifications/tab2.html"
     }
   ];

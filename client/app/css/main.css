@@ -913,7 +913,11 @@ html[dir="ltr"] #Receipt {
   transform: scaleX(-1);
 }
 
-.collapse,
-.navbar-collapse {
+[dir] .collapse,
+[dir] .navbar-collapse {
  height: auto !important;
+}
+
+[dir] .navbar {
+  padding: 0;
 }
