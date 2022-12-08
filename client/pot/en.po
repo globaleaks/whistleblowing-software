@@ -12,9 +12,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Log in"
 
-msgid "Main configuration"
-msgstr "Main configuration"
-
 msgid "Theme customization"
 msgstr "Theme customization"
 
@@ -24,8 +21,8 @@ msgstr "Languages"
 msgid "Text customization"
 msgstr "Text customization"
 
-msgid "Advanced settings"
-msgstr "Advanced settings"
+msgid "Advanced"
+msgstr "Advanced"
 
 msgid "Question templates"
 msgstr "Question templates"
@@ -45,8 +42,8 @@ msgstr "Changelog"
 msgid "License"
 msgstr "License"
 
-msgid "Notification templates"
-msgstr "Notification templates"
+msgid "Templates"
+msgstr "Templates"
 
 msgid "Delete"
 msgstr "Delete"
@@ -57,8 +54,8 @@ msgstr "Anomalies"
 msgid "Preferences"
 msgstr "Preferences"
 
-msgid "Notification settings"
-msgstr "Notification settings"
+msgid "Notifications"
+msgstr "Notifications"
 
 msgid "file unavailable"
 msgstr "file unavailable"
@@ -108,8 +105,8 @@ msgstr "Deselect all"
 msgid "Refresh"
 msgstr "Refresh"
 
-msgid "Context"
-msgstr "Context"
+msgid "Channel"
+msgstr "Channel"
 
 msgid "Preview"
 msgstr "Preview"
@@ -243,9 +240,6 @@ msgstr "Deny access to the whistleblower's identity"
 msgid "Authorize access to the whistleblower's identity"
 msgstr "Authorize access to the whistleblower's identity"
 
-msgid "Templates"
-msgstr "Templates"
-
 msgid "URL redirects"
 msgstr "URL redirects"
 
@@ -285,8 +279,8 @@ msgstr "Acceptable"
 msgid "Strong"
 msgstr "Strong"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Text shown on top of the interface for selecting contexts"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr "Text shown on top of the interface for selecting channels"
 
 msgid "Silence email notifications"
 msgstr "Silence email notifications"
@@ -351,9 +345,6 @@ msgstr "Maximum file size is:"
 
 msgid "Scheduled jobs"
 msgstr "Scheduled jobs"
-
-msgid "Sites management"
-msgstr "Sites management"
 
 msgid "Regenerate"
 msgstr "Regenerate"
@@ -464,6 +455,12 @@ msgstr "Grant access"
 msgid "Revoke access"
 msgstr "Revoke access"
 
+msgid "Assigned to"
+msgstr "Assigned to"
+
+msgid "Not provided."
+msgstr "Not provided."
+
 msgid "File a report"
 msgstr "File a report"
 
@@ -479,102 +476,20 @@ msgstr "Before proceeding, please enable the two factor authentication."
 msgid "Enable"
 msgstr "Enable"
 
-msgid "Disable submissions"
-msgstr "Disable submissions"
-
-msgid "Enable encryption"
-msgstr "Enable encryption"
-
-msgid "Enable administrators to change user passwords"
-msgstr "Enable administrators to change user passwords"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Administrators authorized to change user passwords:"
-
-msgid "Enable multisite feature"
-msgstr "Enable multisite feature"
-
-msgid "Enable simplified login"
-msgstr "Enable simplified login"
-
-msgid "Enable search engines indexing"
-msgstr "Enable search engines indexing"
-
-msgid "Default questionnaire"
-msgstr "Default questionnaire"
-
-msgid "Show contexts in alphabetical order"
-msgstr "Show contexts in alphabetical order"
-
-msgid "Size limit for file attachments"
-msgstr "Size limit for file attachments"
-
-msgid "megabytes"
-msgstr "megabytes"
-
-msgid "Require two factor authentication"
-msgstr "Require two factor authentication"
-
-msgid "Password change interval"
-msgstr "Password change interval"
-
-msgid "For security reasons, password changes are required at regular intervals."
-msgstr "For security reasons, password changes are required at regular intervals."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Set the value to 0 to disable this feature."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Number of days till notifying unread reports to users"
-
-msgid "Disable the privacy panel"
-msgstr "Disable the privacy panel"
-
-msgid "Enable custom privacy panel"
-msgstr "Enable custom privacy panel"
-
-msgid "Custom privacy panel"
-msgstr "Custom privacy panel"
-
-msgid "Enable custodian user role"
-msgstr "Enable custodian user role"
-
-msgid "Enable scoring system"
-msgstr "Enable scoring system"
-
-msgid "Logging level"
-msgstr "Logging level"
-
-msgid "Log accesses of internal users"
-msgstr "Log accesses of internal users"
-
-msgid "Notify administrators of software problems"
-msgstr "Notify administrators of software problems"
-
-msgid "Notify developers of software problems"
-msgstr "Notify developers of software problems"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-
-msgid "Save"
-msgstr "Save"
-
-msgid "Reset reports"
-msgstr "Reset reports"
-
 msgid "Low"
 msgstr "Low"
 
 msgid "High"
 msgstr "High"
 
+msgid "megabytes"
+msgstr "megabytes"
+
 msgid "percentage"
 msgstr "percentage"
+
+msgid "Save"
+msgstr "Save"
 
 msgid "Type"
 msgstr "Type"
@@ -627,62 +542,14 @@ msgstr "Cancel"
 msgid "Report statuses"
 msgstr "Report statuses"
 
-msgid "Logo"
-msgstr "Logo"
-
-msgid "Project name"
-msgstr "Project name"
-
-msgid "Description"
-msgstr "Description"
-
-msgid "Homepage title"
-msgstr "Homepage title"
-
-msgid "Presentation"
-msgstr "Presentation"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Question to solicit possible whistleblowers"
-
-msgid "Whistleblowing button"
-msgstr "Whistleblowing button"
-
-msgid "Disclaimer"
-msgstr "Disclaimer"
-
-msgid "Footer"
-msgstr "Footer"
-
-msgid "Upload"
-msgstr "Upload"
-
-msgid "Download"
-msgstr "Download"
-
-msgid "Language:"
-msgstr "Language:"
-
-msgid "Add custom text"
-msgstr "Add custom text"
-
-msgid "Custom text"
-msgstr "Custom text"
-
-msgid "Original text"
-msgstr "Original text"
-
-msgid "Original translation"
-msgstr "Original translation"
-
-msgid "Custom translation"
-msgstr "Custom translation"
-
-msgid "Contexts"
-msgstr "Contexts"
+msgid "Channels"
+msgstr "Channels"
 
 msgid "Hidden"
 msgstr "Hidden"
+
+msgid "Description"
+msgstr "Description"
 
 msgid "Questionnaire"
 msgstr "Questionnaire"
@@ -692,6 +559,9 @@ msgstr "Recipients"
 
 msgid "days"
 msgstr "days"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Set the value to 0 to disable this feature."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Show the questionnaire navigation interface"
@@ -791,6 +661,9 @@ msgstr "Private Key"
 
 msgid "Certificate Signing Request"
 msgstr "Certificate Signing Request"
+
+msgid "Download"
+msgstr "Download"
 
 msgid "Certificate"
 msgstr "Certificate"
@@ -1014,14 +887,138 @@ msgstr "Duplicate"
 msgid "Steps"
 msgstr "Steps"
 
-msgid "Site settings"
-msgstr "Site settings"
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Project name"
+msgstr "Project name"
+
+msgid "Homepage title"
+msgstr "Homepage title"
+
+msgid "Presentation"
+msgstr "Presentation"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Question to solicit possible whistleblowers"
+
+msgid "Whistleblowing button"
+msgstr "Whistleblowing button"
+
+msgid "Disclaimer"
+msgstr "Disclaimer"
+
+msgid "Footer"
+msgstr "Footer"
+
+msgid "Upload"
+msgstr "Upload"
+
+msgid "Language:"
+msgstr "Language:"
+
+msgid "Add custom text"
+msgstr "Add custom text"
+
+msgid "Custom text"
+msgstr "Custom text"
+
+msgid "Original text"
+msgstr "Original text"
+
+msgid "Original translation"
+msgstr "Original translation"
+
+msgid "Custom translation"
+msgstr "Custom translation"
+
+msgid "Disable submissions"
+msgstr "Disable submissions"
+
+msgid "Enable encryption"
+msgstr "Enable encryption"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Enable administrators to change user passwords"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Administrators authorized to change user passwords:"
+
+msgid "Enable multisite feature"
+msgstr "Enable multisite feature"
+
+msgid "Enable simplified login"
+msgstr "Enable simplified login"
+
+msgid "Enable search engines indexing"
+msgstr "Enable search engines indexing"
+
+msgid "Default questionnaire"
+msgstr "Default questionnaire"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Show contexts in alphabetical order"
+
+msgid "Size limit for file attachments"
+msgstr "Size limit for file attachments"
+
+msgid "Require two factor authentication"
+msgstr "Require two factor authentication"
+
+msgid "Password change interval"
+msgstr "Password change interval"
+
+msgid "For security reasons, password changes are required at regular intervals."
+msgstr "For security reasons, password changes are required at regular intervals."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Number of days till notifying unread reports to users"
+
+msgid "Disable the privacy panel"
+msgstr "Disable the privacy panel"
+
+msgid "Enable custom privacy panel"
+msgstr "Enable custom privacy panel"
+
+msgid "Custom privacy panel"
+msgstr "Custom privacy panel"
+
+msgid "Enable custodian user role"
+msgstr "Enable custodian user role"
+
+msgid "Enable scoring system"
+msgstr "Enable scoring system"
+
+msgid "Logging level"
+msgstr "Logging level"
+
+msgid "Log accesses of internal users"
+msgstr "Log accesses of internal users"
+
+msgid "Notify administrators of software problems"
+msgstr "Notify administrators of software problems"
+
+msgid "Notify developers of software problems"
+msgstr "Notify developers of software problems"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+
+msgid "Reset reports"
+msgstr "Reset reports"
+
+msgid "Settings"
+msgstr "Settings"
 
 msgid "Case management"
 msgstr "Case management"
 
-msgid "Network settings"
-msgstr "Network settings"
+msgid "Network"
+msgstr "Network"
 
 msgid "Sites"
 msgstr "Sites"
