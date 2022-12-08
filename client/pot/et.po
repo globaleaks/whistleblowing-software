@@ -17,9 +17,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Logi sisse"
 
-msgid "Main configuration"
-msgstr "Põhiseaded"
-
 msgid "Theme customization"
 msgstr "Teema kohandamine"
 
@@ -29,8 +26,8 @@ msgstr "Keeled"
 msgid "Text customization"
 msgstr "Teksti kohandamine"
 
-msgid "Advanced settings"
-msgstr "Täpsemad seaded"
+msgid "Advanced"
+msgstr "Peenhäälestus"
 
 msgid "Question templates"
 msgstr "Küsimuste mallid"
@@ -50,8 +47,8 @@ msgstr "Muutelugu"
 msgid "License"
 msgstr "Litsents"
 
-msgid "Notification templates"
-msgstr "Teavituste mallid"
+msgid "Templates"
+msgstr "Mallid"
 
 msgid "Delete"
 msgstr "Kustuta"
@@ -62,8 +59,8 @@ msgstr "Anomaaliad"
 msgid "Preferences"
 msgstr "Eelistused"
 
-msgid "Notification settings"
-msgstr "Teavituste seaded"
+msgid "Notifications"
+msgstr ""
 
 msgid "file unavailable"
 msgstr "fail kättesaamatu"
@@ -113,8 +110,8 @@ msgstr "Tühista kõik valikud"
 msgid "Refresh"
 msgstr "Värskenda"
 
-msgid "Context"
-msgstr "Kontekst"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "Eelvaade"
@@ -248,9 +245,6 @@ msgstr "Keela juurdepääs vihjeandja isikuandmetele"
 msgid "Authorize access to the whistleblower's identity"
 msgstr "Luba juurdepääs vihjeandja isikuandmetele"
 
-msgid "Templates"
-msgstr "Mallid"
-
 msgid "URL redirects"
 msgstr "URL-i ümbersuunamised"
 
@@ -290,8 +284,8 @@ msgstr "Rahuldav"
 msgid "Strong"
 msgstr "Tugev"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Kontekstide valimise liidese alguses näidatav tekst"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "Vaigista meiliteavitused"
@@ -354,9 +348,6 @@ msgstr "Failimahu ülempiir on:"
 
 msgid "Scheduled jobs"
 msgstr "Plaanilised tööd"
-
-msgid "Sites management"
-msgstr "Saitide haldus"
 
 msgid "Regenerate"
 msgstr "Taasta"
@@ -465,6 +456,12 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
@@ -480,101 +477,20 @@ msgstr "Enne jätkamist lubage kaheastmeline autentimine."
 msgid "Enable"
 msgstr "Luba"
 
-msgid "Disable submissions"
-msgstr "Keela teabeesitused"
-
-msgid "Enable encryption"
-msgstr "Luba krüptimine"
-
-msgid "Enable administrators to change user passwords"
-msgstr "Luba administraatoritel kasutajate paroole muuta."
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Kasutajate paroolide muutmise õigust omavad administraatorid:"
-
-msgid "Enable multisite feature"
-msgstr "Luba mitme saidi funktsioon"
-
-msgid "Enable simplified login"
-msgstr ""
-
-msgid "Enable search engines indexing"
-msgstr "Luba indekseerimine otsimootorite jaoks"
-
-msgid "Default questionnaire"
-msgstr "Standardankeet"
-
-msgid "Show contexts in alphabetical order"
-msgstr "Näita kontekste tähestiku järjekorras"
-
-msgid "Size limit for file attachments"
-msgstr "Manusfailide mahupiirang"
-
-msgid "megabytes"
-msgstr "megabaiti"
-
-msgid "Require two factor authentication"
-msgstr "Küsi kaheastmelist autentimist"
-
-msgid "Password change interval"
-msgstr "Paroolivahetuse ajavahemik"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Turvakaalutlustel nõutakse regulaarsete ajavahemike järel parooli vahetamist."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Selle funktsiooni väljalülitamiseks määrake väärtuseks 0."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr ""
-
-msgid "Disable the privacy panel"
-msgstr "Keela andmekaitsepaneel"
-
-msgid "Enable custom privacy panel"
-msgstr "Luba kohandatud andmekaitsepaneel"
-
-msgid "Custom privacy panel"
-msgstr "Kohandatud andmekaitsepaneel"
-
-msgid "Enable custodian user role"
-msgstr "Luba hoidja kasutajaroll"
-
-msgid "Enable scoring system"
-msgstr "Luba punktisüsteem"
-
-msgid "Logging level"
-msgstr "Registreerimistase"
-
-msgid "Log accesses of internal users"
-msgstr "Registreeri sisemiste kasutajate kasutuskorrad"
-
-msgid "Notify administrators of software problems"
-msgstr "Teavita administraatoreid tarkvaraprobleemidest"
-
-msgid "Notify developers of software problems"
-msgstr "Teavita arendajaid tarkvaraprobleemidest"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Selle funktsiooni lubamisega toetate platvormi arendamist ja turvalisust."
-
-msgid "Save"
-msgstr "Salvesta"
-
-msgid "Reset reports"
-msgstr "Lähtesta teated"
-
 msgid "Low"
 msgstr "Madal"
 
 msgid "High"
 msgstr "Kõrge"
 
+msgid "megabytes"
+msgstr "megabaiti"
+
 msgid "percentage"
 msgstr "protsenti"
+
+msgid "Save"
+msgstr "Salvesta"
 
 msgid "Type"
 msgstr "Tüüp"
@@ -627,62 +543,14 @@ msgstr "Tühista"
 msgid "Report statuses"
 msgstr "Teadete staatused"
 
-msgid "Logo"
-msgstr "Logo"
-
-msgid "Project name"
-msgstr "Projekti nimi"
-
-msgid "Description"
-msgstr "Kirjeldus"
-
-msgid "Homepage title"
-msgstr "Kodulehe pealkiri"
-
-msgid "Presentation"
-msgstr "Esitlus"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Küsimus võimalike vihjeandjate leidmiseks"
-
-msgid "Whistleblowing button"
-msgstr "Vihjeandmise nupp"
-
-msgid "Disclaimer"
+msgid "Channels"
 msgstr ""
-
-msgid "Footer"
-msgstr "Jalus"
-
-msgid "Upload"
-msgstr "Laadi üles"
-
-msgid "Download"
-msgstr "Laadi alla"
-
-msgid "Language:"
-msgstr "Keel:"
-
-msgid "Add custom text"
-msgstr "Lisa kohandatud tekst"
-
-msgid "Custom text"
-msgstr "Kohandatud tekst"
-
-msgid "Original text"
-msgstr "Algne tekst"
-
-msgid "Original translation"
-msgstr "Algne tõlge"
-
-msgid "Custom translation"
-msgstr "Kohandatud tõlge"
-
-msgid "Contexts"
-msgstr "Kontekstid"
 
 msgid "Hidden"
 msgstr "Peidetud"
+
+msgid "Description"
+msgstr "Kirjeldus"
 
 msgid "Questionnaire"
 msgstr "Ankeet"
@@ -692,6 +560,9 @@ msgstr "Saajad"
 
 msgid "days"
 msgstr "päeva"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Selle funktsiooni väljalülitamiseks määrake väärtuseks 0."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Näita ankeedi navigeerimisliidest"
@@ -791,6 +662,9 @@ msgstr "Privaatvõti"
 
 msgid "Certificate Signing Request"
 msgstr "Sertifikaadi allkirjastamise taotlus"
+
+msgid "Download"
+msgstr "Laadi alla"
 
 msgid "Certificate"
 msgstr "Sertifikaat"
@@ -1006,14 +880,137 @@ msgstr "Tee koopia"
 msgid "Steps"
 msgstr "Etapid"
 
-msgid "Site settings"
-msgstr "Saidi seaded"
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Project name"
+msgstr "Projekti nimi"
+
+msgid "Homepage title"
+msgstr "Kodulehe pealkiri"
+
+msgid "Presentation"
+msgstr "Esitlus"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Küsimus võimalike vihjeandjate leidmiseks"
+
+msgid "Whistleblowing button"
+msgstr "Vihjeandmise nupp"
+
+msgid "Disclaimer"
+msgstr ""
+
+msgid "Footer"
+msgstr "Jalus"
+
+msgid "Upload"
+msgstr "Laadi üles"
+
+msgid "Language:"
+msgstr "Keel:"
+
+msgid "Add custom text"
+msgstr "Lisa kohandatud tekst"
+
+msgid "Custom text"
+msgstr "Kohandatud tekst"
+
+msgid "Original text"
+msgstr "Algne tekst"
+
+msgid "Original translation"
+msgstr "Algne tõlge"
+
+msgid "Custom translation"
+msgstr "Kohandatud tõlge"
+
+msgid "Disable submissions"
+msgstr "Keela teabeesitused"
+
+msgid "Enable encryption"
+msgstr "Luba krüptimine"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Luba administraatoritel kasutajate paroole muuta."
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Kasutajate paroolide muutmise õigust omavad administraatorid:"
+
+msgid "Enable multisite feature"
+msgstr "Luba mitme saidi funktsioon"
+
+msgid "Enable simplified login"
+msgstr ""
+
+msgid "Enable search engines indexing"
+msgstr "Luba indekseerimine otsimootorite jaoks"
+
+msgid "Default questionnaire"
+msgstr "Standardankeet"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Näita kontekste tähestiku järjekorras"
+
+msgid "Size limit for file attachments"
+msgstr "Manusfailide mahupiirang"
+
+msgid "Require two factor authentication"
+msgstr "Küsi kaheastmelist autentimist"
+
+msgid "Password change interval"
+msgstr "Paroolivahetuse ajavahemik"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Turvakaalutlustel nõutakse regulaarsete ajavahemike järel parooli vahetamist."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr ""
+
+msgid "Disable the privacy panel"
+msgstr "Keela andmekaitsepaneel"
+
+msgid "Enable custom privacy panel"
+msgstr "Luba kohandatud andmekaitsepaneel"
+
+msgid "Custom privacy panel"
+msgstr "Kohandatud andmekaitsepaneel"
+
+msgid "Enable custodian user role"
+msgstr "Luba hoidja kasutajaroll"
+
+msgid "Enable scoring system"
+msgstr "Luba punktisüsteem"
+
+msgid "Logging level"
+msgstr "Registreerimistase"
+
+msgid "Log accesses of internal users"
+msgstr "Registreeri sisemiste kasutajate kasutuskorrad"
+
+msgid "Notify administrators of software problems"
+msgstr "Teavita administraatoreid tarkvaraprobleemidest"
+
+msgid "Notify developers of software problems"
+msgstr "Teavita arendajaid tarkvaraprobleemidest"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Selle funktsiooni lubamisega toetate platvormi arendamist ja turvalisust."
+
+msgid "Reset reports"
+msgstr "Lähtesta teated"
+
+msgid "Settings"
+msgstr "Seaded"
 
 msgid "Case management"
 msgstr "Juhtumihaldus"
 
-msgid "Network settings"
-msgstr "Võrguseaded"
+msgid "Network"
+msgstr "Võrk"
 
 msgid "Sites"
 msgstr "Saidid"
@@ -1055,10 +1052,10 @@ msgid "Set password"
 msgstr "Määra parool"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Valitud parool on liiga nõrk. Sobiv parool peaks sisaldama vähemalt 10 erinevat märki, sealhulgas vähemalt üks väiketäht, üks suurtäht, üks number ja üks erimärk."
+msgstr ""
 
 msgid "Force password change"
 msgstr "Kohustuslik paroolivahetus"

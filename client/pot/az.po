@@ -24,9 +24,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Daxil ol"
 
-msgid "Main configuration"
-msgstr "Əsas quraşdırma"
-
 msgid "Theme customization"
 msgstr "Uyğun üzlüyün hazırlanması"
 
@@ -36,8 +33,8 @@ msgstr "Dillər"
 msgid "Text customization"
 msgstr "Uyğun mətnin hazırlanması"
 
-msgid "Advanced settings"
-msgstr "Təkmilləşdirilmiş tənzimləmələr"
+msgid "Advanced"
+msgstr "Qabaqcıl"
 
 msgid "Question templates"
 msgstr "Sual şablonları"
@@ -57,8 +54,8 @@ msgstr "Dəyişikliklər"
 msgid "License"
 msgstr "Lisenziya"
 
-msgid "Notification templates"
-msgstr "Xəbərdarlıq şablonları"
+msgid "Templates"
+msgstr "Şablonlar"
 
 msgid "Delete"
 msgstr "Sil"
@@ -69,8 +66,8 @@ msgstr "Anomaliyalar"
 msgid "Preferences"
 msgstr "Nizamlamalar"
 
-msgid "Notification settings"
-msgstr "Xəbərdarlıq quraşdırmaları"
+msgid "Notifications"
+msgstr "Bildirişler"
 
 msgid "file unavailable"
 msgstr "fayl yoxdur"
@@ -120,8 +117,8 @@ msgstr "Hamısını seçmə"
 msgid "Refresh"
 msgstr "Yenilə"
 
-msgid "Context"
-msgstr "Kontekst"
+msgid "Channel"
+msgstr "Kanal"
 
 msgid "Preview"
 msgstr "İlkin baxış"
@@ -255,9 +252,6 @@ msgstr "İnformasiya ötürənin kimliyinə girişi rədd et"
 msgid "Authorize access to the whistleblower's identity"
 msgstr "İnformasiya ötürənin kimliyinə girişə icazə ver"
 
-msgid "Templates"
-msgstr "Şablonlar"
-
 msgid "URL redirects"
 msgstr "Trafik ünvanının dəyişdirilməsi"
 
@@ -297,7 +291,7 @@ msgstr "Münasib"
 msgid "Strong"
 msgstr "Güclü"
 
-msgid "Text shown on top of the interface for selecting contexts"
+msgid "Text shown on top of the interface for selecting channels"
 msgstr "Kontekstləri seçmək üçün ekranın yuxarısında göstərilən mətn"
 
 msgid "Silence email notifications"
@@ -361,9 +355,6 @@ msgstr "Maksimum faylın ölçüsü:"
 
 msgid "Scheduled jobs"
 msgstr "Planlanan işlər"
-
-msgid "Sites management"
-msgstr "Saytların idarə edilməsi"
 
 msgid "Regenerate"
 msgstr "Yenidən yarat"
@@ -472,6 +463,12 @@ msgstr "Giriş ver"
 msgid "Revoke access"
 msgstr "Girişi ləğv et"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "Hesabat göndər"
 
@@ -487,101 +484,20 @@ msgstr "Davam etməzdən öncə iki pilləli təsdiqləməni işə salın."
 msgid "Enable"
 msgstr "İşə salın"
 
-msgid "Disable submissions"
-msgstr "Göndərmələri deaktiv edin"
-
-msgid "Enable encryption"
-msgstr "Şifrələməni işə salın"
-
-msgid "Enable administrators to change user passwords"
-msgstr "İnzibatçılara istifadəçi parollarını dəyişmək imkanı verin."
-
-msgid "Administrators authorized to change user passwords:"
-msgstr " İnzibatçılara istifadəçi parollarını dəyişmək səlahiyyəti verildi"
-
-msgid "Enable multisite feature"
-msgstr "Çoxsaytlı funksiyanı işə salın."
-
-msgid "Enable simplified login"
-msgstr "Sadə girişi işə salın"
-
-msgid "Enable search engines indexing"
-msgstr "Axtarış motorlarının indeksləşməsini aktivləşdirin"
-
-msgid "Default questionnaire"
-msgstr "Standart sorğu"
-
-msgid "Show contexts in alphabetical order"
-msgstr "Konteksti əlifba sırası ilə göstər"
-
-msgid "Size limit for file attachments"
-msgstr "Fayl əlavələrinin ölçü həddi"
-
-msgid "megabytes"
-msgstr "meqabaytlar"
-
-msgid "Require two factor authentication"
-msgstr "İki pilləli təsdiqləmə tələb edin"
-
-msgid "Password change interval"
-msgstr "Parol dəyişmə intervalı"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Təhlükəsizlik qorunsun deyə, parolun müəyyən aralıqla dəyişdirilməsi tələb olunur."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Bu funksiyanı deaktiv etmək üçün ölçünü 0 kimi qeyd edin."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Oxunmamış hesabatları istifadəçilərin yadına salmaq üçün gün sayı"
-
-msgid "Disable the privacy panel"
-msgstr "Məxfilik panelini deaktiv edin"
-
-msgid "Enable custom privacy panel"
-msgstr "Fərdi məxfilik panelini aktiv edin"
-
-msgid "Custom privacy panel"
-msgstr "Fərdi məxfiik paneli"
-
-msgid "Enable custodian user role"
-msgstr "Mühafizəçinin istifadəçi rolunu işə salın"
-
-msgid "Enable scoring system"
-msgstr "Qiymətləndirmə sistemini işə salın"
-
-msgid "Logging level"
-msgstr "Giriş səviyyəsi"
-
-msgid "Log accesses of internal users"
-msgstr "Daxili istifadəçilərin girişləri"
-
-msgid "Notify administrators of software problems"
-msgstr "İnzibatçıları proqram xətaları haqda məlumatlandırın"
-
-msgid "Notify developers of software problems"
-msgstr "Proqramçıları proqram xətaları haqda məlumatlandırın"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Bu funksiyanı işə salmaqla platformanın inkişafı və təhlükəsizliyinə yardım edərsiniz."
-
-msgid "Save"
-msgstr "Yadda saxla"
-
-msgid "Reset reports"
-msgstr "Hesabatları sıfırla"
-
 msgid "Low"
 msgstr "Aşağı"
 
 msgid "High"
 msgstr "Yuksək"
 
+msgid "megabytes"
+msgstr "meqabaytlar"
+
 msgid "percentage"
 msgstr "faiz"
+
+msgid "Save"
+msgstr "Yadda saxla"
 
 msgid "Type"
 msgstr "Tip"
@@ -634,62 +550,14 @@ msgstr "Ləğv et"
 msgid "Report statuses"
 msgstr "Hesabatın statusu"
 
-msgid "Logo"
-msgstr "Loqo"
-
-msgid "Project name"
-msgstr "Layihənin adı"
-
-msgid "Description"
-msgstr "Təsvir"
-
-msgid "Homepage title"
-msgstr "Ana səhifənin adı"
-
-msgid "Presentation"
-msgstr "Təqdimat"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "İnformasiya ötürənə sual verə bilərsiniz"
-
-msgid "Whistleblowing button"
-msgstr "İnformasiya ötürmə düyməsi "
-
-msgid "Disclaimer"
-msgstr "İmtina "
-
-msgid "Footer"
-msgstr "Alt məlumat"
-
-msgid "Upload"
-msgstr "Yüklə"
-
-msgid "Download"
-msgstr "Endir"
-
-msgid "Language:"
-msgstr "Dil:"
-
-msgid "Add custom text"
-msgstr "Fərdi mətni əlavə edin"
-
-msgid "Custom text"
-msgstr "Fərdi mətn"
-
-msgid "Original text"
-msgstr "Orijinal mətn"
-
-msgid "Original translation"
-msgstr "Orijinal tərcümə"
-
-msgid "Custom translation"
-msgstr "Fərdi tərcümə"
-
-msgid "Contexts"
-msgstr "Kontekst"
+msgid "Channels"
+msgstr "Kanalları"
 
 msgid "Hidden"
 msgstr "Gizli"
+
+msgid "Description"
+msgstr "Təsvir"
 
 msgid "Questionnaire"
 msgstr "Sorğu"
@@ -699,6 +567,9 @@ msgstr "Alıcılar"
 
 msgid "days"
 msgstr "günlər"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Bu funksiyanı deaktiv etmək üçün ölçünü 0 kimi qeyd edin."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Sorğu naviqasiyası üzlüyünü göstər"
@@ -798,6 +669,9 @@ msgstr "Şəxsi açar"
 
 msgid "Certificate Signing Request"
 msgstr "Sertifikat İmzalama Tələbi"
+
+msgid "Download"
+msgstr "Endir"
 
 msgid "Certificate"
 msgstr "Sertifikat"
@@ -1013,14 +887,137 @@ msgstr "Nüsxələ"
 msgid "Steps"
 msgstr "Mərhələlər"
 
-msgid "Site settings"
-msgstr "Sayt parametrləri"
+msgid "Logo"
+msgstr "Loqo"
+
+msgid "Project name"
+msgstr "Layihənin adı"
+
+msgid "Homepage title"
+msgstr "Ana səhifənin adı"
+
+msgid "Presentation"
+msgstr "Təqdimat"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "İnformasiya ötürənə sual verə bilərsiniz"
+
+msgid "Whistleblowing button"
+msgstr "İnformasiya ötürmə düyməsi "
+
+msgid "Disclaimer"
+msgstr "İmtina "
+
+msgid "Footer"
+msgstr "Alt məlumat"
+
+msgid "Upload"
+msgstr "Yüklə"
+
+msgid "Language:"
+msgstr "Dil:"
+
+msgid "Add custom text"
+msgstr "Fərdi mətni əlavə edin"
+
+msgid "Custom text"
+msgstr "Fərdi mətn"
+
+msgid "Original text"
+msgstr "Orijinal mətn"
+
+msgid "Original translation"
+msgstr "Orijinal tərcümə"
+
+msgid "Custom translation"
+msgstr "Fərdi tərcümə"
+
+msgid "Disable submissions"
+msgstr "Göndərmələri deaktiv edin"
+
+msgid "Enable encryption"
+msgstr "Şifrələməni işə salın"
+
+msgid "Enable administrators to change user passwords"
+msgstr "İnzibatçılara istifadəçi parollarını dəyişmək imkanı verin."
+
+msgid "Administrators authorized to change user passwords:"
+msgstr " İnzibatçılara istifadəçi parollarını dəyişmək səlahiyyəti verildi"
+
+msgid "Enable multisite feature"
+msgstr "Çoxsaytlı funksiyanı işə salın."
+
+msgid "Enable simplified login"
+msgstr "Sadə girişi işə salın"
+
+msgid "Enable search engines indexing"
+msgstr "Axtarış motorlarının indeksləşməsini aktivləşdirin"
+
+msgid "Default questionnaire"
+msgstr "Standart sorğu"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Konteksti əlifba sırası ilə göstər"
+
+msgid "Size limit for file attachments"
+msgstr "Fayl əlavələrinin ölçü həddi"
+
+msgid "Require two factor authentication"
+msgstr "İki pilləli təsdiqləmə tələb edin"
+
+msgid "Password change interval"
+msgstr "Parol dəyişmə intervalı"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Təhlükəsizlik qorunsun deyə, parolun müəyyən aralıqla dəyişdirilməsi tələb olunur."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Oxunmamış hesabatları istifadəçilərin yadına salmaq üçün gün sayı"
+
+msgid "Disable the privacy panel"
+msgstr "Məxfilik panelini deaktiv edin"
+
+msgid "Enable custom privacy panel"
+msgstr "Fərdi məxfilik panelini aktiv edin"
+
+msgid "Custom privacy panel"
+msgstr "Fərdi məxfiik paneli"
+
+msgid "Enable custodian user role"
+msgstr "Mühafizəçinin istifadəçi rolunu işə salın"
+
+msgid "Enable scoring system"
+msgstr "Qiymətləndirmə sistemini işə salın"
+
+msgid "Logging level"
+msgstr "Giriş səviyyəsi"
+
+msgid "Log accesses of internal users"
+msgstr "Daxili istifadəçilərin girişləri"
+
+msgid "Notify administrators of software problems"
+msgstr "İnzibatçıları proqram xətaları haqda məlumatlandırın"
+
+msgid "Notify developers of software problems"
+msgstr "Proqramçıları proqram xətaları haqda məlumatlandırın"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Bu funksiyanı işə salmaqla platformanın inkişafı və təhlükəsizliyinə yardım edərsiniz."
+
+msgid "Reset reports"
+msgstr "Hesabatları sıfırla"
+
+msgid "Settings"
+msgstr "Tənzimləmələr"
 
 msgid "Case management"
 msgstr "Keys menecmenti"
 
-msgid "Network settings"
-msgstr "Şəbəkə tənzimləmələri"
+msgid "Network"
+msgstr "Şəbəkə"
 
 msgid "Sites"
 msgstr "Saytlar"
@@ -1062,10 +1059,10 @@ msgid "Set password"
 msgstr "Şifrə təyin edin"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Seçilmiş parol çox zəifdir. Etibarlı parol azı 10 müxtəlif işarədən, yəni kiçik hərflər, böyük hərflər, rəqəm və xüsusi işarələrdən ibarət olmalıdır."
+msgstr "Seçilmiş parol çox zəifdir. Etibarlı parol azı 12 müxtəlif işarədən, yəni kiçik hərflər, böyük hərflər, rəqəm və xüsusi işarələrdən ibarət olmalıdır."
 
 msgid "Force password change"
 msgstr "Şifrəni dəyişdirin"

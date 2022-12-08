@@ -25,9 +25,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Ворид шудан "
 
-msgid "Main configuration"
-msgstr "Намои асосӣ"
-
 msgid "Theme customization"
 msgstr "Ҷӯрсозии мавзуъ"
 
@@ -37,8 +34,8 @@ msgstr "Забонҳо"
 msgid "Text customization"
 msgstr "Ҷӯрсозии матн"
 
-msgid "Advanced settings"
-msgstr "Танзимоти муфассал"
+msgid "Advanced"
+msgstr "Бештар"
 
 msgid "Question templates"
 msgstr "Намунаҳои саволҳо"
@@ -58,8 +55,8 @@ msgstr "Номгӯи тағйирот"
 msgid "License"
 msgstr "Иҷозатнома"
 
-msgid "Notification templates"
-msgstr "Намунаҳои огоҳнома"
+msgid "Templates"
+msgstr "Намунаҳо"
 
 msgid "Delete"
 msgstr "Нест кардан"
@@ -70,8 +67,8 @@ msgstr "Аномалияҳо"
 msgid "Preferences"
 msgstr "Танзимотхо"
 
-msgid "Notification settings"
-msgstr "Танзимоти огоҳнома"
+msgid "Notifications"
+msgstr "Огоҳиҳо"
 
 msgid "file unavailable"
 msgstr "Файл дастнорас "
@@ -121,8 +118,8 @@ msgstr "Ҳамаи интихобро лағв кардан "
 msgid "Refresh"
 msgstr "Таҷдид кардан"
 
-msgid "Context"
-msgstr "Матн"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "Намоиши пешакӣ"
@@ -256,9 +253,6 @@ msgstr "Рад кардани дастрасӣ ба шахсияти хабар�
 msgid "Authorize access to the whistleblower's identity"
 msgstr "Иҷозат додани дастрасӣ ба шахсияти хабардиҳанда"
 
-msgid "Templates"
-msgstr "Намунаҳо"
-
 msgid "URL redirects"
 msgstr "Тағйири масири URL"
 
@@ -298,8 +292,8 @@ msgstr "Қобили қабул"
 msgid "Strong"
 msgstr "Қавӣ"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Матн дар болои интерфейс барои интихоби мавзӯҳо нишон дода шудааст"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "Огоҳиномаҳои почтаи электрониро бе садо кардан"
@@ -362,9 +356,6 @@ msgstr "Ҳаҷми ниҳоии файл мебошад:"
 
 msgid "Scheduled jobs"
 msgstr "Корҳои ба нақша гирифташуда "
-
-msgid "Sites management"
-msgstr "Идоракунии торнамоҳо"
 
 msgid "Regenerate"
 msgstr "Аз нав эҳё кардан"
@@ -473,6 +464,12 @@ msgstr "Дастрасӣ додан"
 msgid "Revoke access"
 msgstr "Дастрасиро бекор кардан"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "Таҳияи гузориш"
 
@@ -488,101 +485,20 @@ msgstr "Пеш аз идома додан, лутфан тасдиқи шахс�
 msgid "Enable"
 msgstr "Фаъол кардан"
 
-msgid "Disable submissions"
-msgstr "Ирсолҳоро лағв кардан"
-
-msgid "Enable encryption"
-msgstr "Рамзкуниро фаъол намудан"
-
-msgid "Enable administrators to change user passwords"
-msgstr "Ба маъмурон имкони гузарвожаҳои корбарон тағйир доданро додан"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Ба маъмурон иҷозаи тағйир додани гузарвожаҳои корбарон дода шуд:"
-
-msgid "Enable multisite feature"
-msgstr "Функсияи якчандторнамоиро фаъол сохтан"
-
-msgid "Enable simplified login"
-msgstr "Воридшавии соддагардонидашударо фаъол сохтан"
-
-msgid "Enable search engines indexing"
-msgstr "Индексатсияи системаҳои ҷустуҷӯро фаъол сохтан"
-
-msgid "Default questionnaire"
-msgstr "Саволномаи пешфарз"
-
-msgid "Show contexts in alphabetical order"
-msgstr "Мавзӯҳоро бо тартиби алифбо нишон додан"
-
-msgid "Size limit for file attachments"
-msgstr "Маҳдудияти ҳаҷм барои файлҳои замимашаванда "
-
-msgid "megabytes"
-msgstr "мегабайтҳо"
-
-msgid "Require two factor authentication"
-msgstr "Тасдиқи шахсияти ду омиларо талаб кардан"
-
-msgid "Password change interval"
-msgstr "Фосилаи тағйири гузарвожа"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Бо мақсади таъмини амният, тағйири гузарвожа дар фосилаҳои мунтазам талаб карда мешаванд."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Барои хомӯш кардани ин функсия арзишро ба 0 муқаррар кунед."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Шумораи рӯзҳо то огоҳ кардани гузоришҳои хонда нашуда ба корбарон"
-
-msgid "Disable the privacy panel"
-msgstr "Панели махфиро хомӯш кардан"
-
-msgid "Enable custom privacy panel"
-msgstr "Панели махфии фармоиширо фаъол сохтан"
-
-msgid "Custom privacy panel"
-msgstr "Панели махфии фармоишӣ"
-
-msgid "Enable custodian user role"
-msgstr "Нақши муҳофиз-корбарро фаъол кардан"
-
-msgid "Enable scoring system"
-msgstr "Низоми ҳисоби холҳоро фаъол сохтан"
-
-msgid "Logging level"
-msgstr "Дараҷаи қайдшавӣ"
-
-msgid "Log accesses of internal users"
-msgstr "Дастрасии корбарони дохилӣ ба номгӯ"
-
-msgid "Notify administrators of software problems"
-msgstr "Маъмуронро аз мушкилиҳои нармафзор огоҳонидан"
-
-msgid "Notify developers of software problems"
-msgstr "Барномасозонро аз мушкилиҳои нармафзор огоҳонидан"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Бо фаъол кардани ин функсия шумо ба рушд ва амнияти барнома саҳм мегузоред."
-
-msgid "Save"
-msgstr "Захира кардан"
-
-msgid "Reset reports"
-msgstr "Гузоришҳоро сифр кардан"
-
 msgid "Low"
 msgstr "Паст"
 
 msgid "High"
 msgstr "Баланд"
 
+msgid "megabytes"
+msgstr "мегабайтҳо"
+
 msgid "percentage"
 msgstr "фоиз"
+
+msgid "Save"
+msgstr "Захира кардан"
 
 msgid "Type"
 msgstr "Намуд"
@@ -635,62 +551,14 @@ msgstr "Бекор кардан"
 msgid "Report statuses"
 msgstr "Ҳолатҳоро гузориш додан"
 
-msgid "Logo"
-msgstr "Лого"
-
-msgid "Project name"
-msgstr "Номи лоиҳа"
-
-msgid "Description"
-msgstr "Тавсиф"
-
-msgid "Homepage title"
-msgstr "Унвони саҳифаи асосӣ"
-
-msgid "Presentation"
-msgstr "Рӯнамо"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Савол барои дархост кардани хабардиҳандагони эҳтимолӣ"
-
-msgid "Whistleblowing button"
-msgstr "Тугмаи хабардиҳӣ"
-
-msgid "Disclaimer"
-msgstr "Дасткашӣ аз масъулият"
-
-msgid "Footer"
-msgstr "Поварақ"
-
-msgid "Upload"
-msgstr "Боркунӣ"
-
-msgid "Download"
-msgstr "Боргирӣ "
-
-msgid "Language:"
-msgstr "Забон:"
-
-msgid "Add custom text"
-msgstr "Илова кардани матни дилхоҳ"
-
-msgid "Custom text"
-msgstr "Матни дилхоҳ"
-
-msgid "Original text"
-msgstr "Матни аслӣ"
-
-msgid "Original translation"
-msgstr "Тарҷумаи аслӣ"
-
-msgid "Custom translation"
-msgstr "Тарҷумаи корбар"
-
-msgid "Contexts"
-msgstr "Мавзӯҳо"
+msgid "Channels"
+msgstr ""
 
 msgid "Hidden"
 msgstr "Маҳфуз"
+
+msgid "Description"
+msgstr "Тавсиф"
 
 msgid "Questionnaire"
 msgstr "Саволнома"
@@ -700,6 +568,9 @@ msgstr "Гирандагон"
 
 msgid "days"
 msgstr "рӯзҳо"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Барои хомӯш кардани ин функсия арзишро ба 0 муқаррар кунед."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Нишон додани интерфейси корбарӣ бо саволнома"
@@ -799,6 +670,9 @@ msgstr "Калиди махфӣ"
 
 msgid "Certificate Signing Request"
 msgstr "Дархости имзои гувоҳнома"
+
+msgid "Download"
+msgstr "Боргирӣ "
 
 msgid "Certificate"
 msgstr "Гувоҳнома"
@@ -1014,14 +888,137 @@ msgstr "Нусхаи дуюм"
 msgid "Steps"
 msgstr "Қадамҳо"
 
-msgid "Site settings"
-msgstr "Танзимоти торнамо"
+msgid "Logo"
+msgstr "Лого"
+
+msgid "Project name"
+msgstr "Номи лоиҳа"
+
+msgid "Homepage title"
+msgstr "Унвони саҳифаи асосӣ"
+
+msgid "Presentation"
+msgstr "Рӯнамо"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Савол барои дархост кардани хабардиҳандагони эҳтимолӣ"
+
+msgid "Whistleblowing button"
+msgstr "Тугмаи хабардиҳӣ"
+
+msgid "Disclaimer"
+msgstr "Дасткашӣ аз масъулият"
+
+msgid "Footer"
+msgstr "Поварақ"
+
+msgid "Upload"
+msgstr "Боркунӣ"
+
+msgid "Language:"
+msgstr "Забон:"
+
+msgid "Add custom text"
+msgstr "Илова кардани матни дилхоҳ"
+
+msgid "Custom text"
+msgstr "Матни дилхоҳ"
+
+msgid "Original text"
+msgstr "Матни аслӣ"
+
+msgid "Original translation"
+msgstr "Тарҷумаи аслӣ"
+
+msgid "Custom translation"
+msgstr "Тарҷумаи корбар"
+
+msgid "Disable submissions"
+msgstr "Ирсолҳоро лағв кардан"
+
+msgid "Enable encryption"
+msgstr "Рамзкуниро фаъол намудан"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Ба маъмурон имкони гузарвожаҳои корбарон тағйир доданро додан"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Ба маъмурон иҷозаи тағйир додани гузарвожаҳои корбарон дода шуд:"
+
+msgid "Enable multisite feature"
+msgstr "Функсияи якчандторнамоиро фаъол сохтан"
+
+msgid "Enable simplified login"
+msgstr "Воридшавии соддагардонидашударо фаъол сохтан"
+
+msgid "Enable search engines indexing"
+msgstr "Индексатсияи системаҳои ҷустуҷӯро фаъол сохтан"
+
+msgid "Default questionnaire"
+msgstr "Саволномаи пешфарз"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Мавзӯҳоро бо тартиби алифбо нишон додан"
+
+msgid "Size limit for file attachments"
+msgstr "Маҳдудияти ҳаҷм барои файлҳои замимашаванда "
+
+msgid "Require two factor authentication"
+msgstr "Тасдиқи шахсияти ду омиларо талаб кардан"
+
+msgid "Password change interval"
+msgstr "Фосилаи тағйири гузарвожа"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Бо мақсади таъмини амният, тағйири гузарвожа дар фосилаҳои мунтазам талаб карда мешаванд."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Шумораи рӯзҳо то огоҳ кардани гузоришҳои хонда нашуда ба корбарон"
+
+msgid "Disable the privacy panel"
+msgstr "Панели махфиро хомӯш кардан"
+
+msgid "Enable custom privacy panel"
+msgstr "Панели махфии фармоиширо фаъол сохтан"
+
+msgid "Custom privacy panel"
+msgstr "Панели махфии фармоишӣ"
+
+msgid "Enable custodian user role"
+msgstr "Нақши муҳофиз-корбарро фаъол кардан"
+
+msgid "Enable scoring system"
+msgstr "Низоми ҳисоби холҳоро фаъол сохтан"
+
+msgid "Logging level"
+msgstr "Дараҷаи қайдшавӣ"
+
+msgid "Log accesses of internal users"
+msgstr "Дастрасии корбарони дохилӣ ба номгӯ"
+
+msgid "Notify administrators of software problems"
+msgstr "Маъмуронро аз мушкилиҳои нармафзор огоҳонидан"
+
+msgid "Notify developers of software problems"
+msgstr "Барномасозонро аз мушкилиҳои нармафзор огоҳонидан"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Бо фаъол кардани ин функсия шумо ба рушд ва амнияти барнома саҳм мегузоред."
+
+msgid "Reset reports"
+msgstr "Гузоришҳоро сифр кардан"
+
+msgid "Settings"
+msgstr "Танзимот"
 
 msgid "Case management"
 msgstr "Идоракунии парванда"
 
-msgid "Network settings"
-msgstr "Танзимоти шабака"
+msgid "Network"
+msgstr ""
 
 msgid "Sites"
 msgstr "Торнамоҳо"
@@ -1063,10 +1060,10 @@ msgid "Set password"
 msgstr "Таъин кардани гузарвожа"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Гузарвожаи интихобшуда хеле заиф аст. Гузарвожаи воқеъӣ бояд на кам аз 10 рамз дошта бошад ва дорои рамзҳои гуногуни калон ва хурд, шумора ва рамзи махсус дошта бошад."
+msgstr "Гузарвожаи интихобшуда хеле заиф аст. Гузарвожаи воқеъӣ бояд на кам аз 12 рамз дошта бошад ва дорои рамзҳои гуногуни калон ва хурд, шумора ва рамзи махсус дошта бошад."
 
 msgid "Force password change"
 msgstr "Тағйири гузарвожаи маҷбурӣ"

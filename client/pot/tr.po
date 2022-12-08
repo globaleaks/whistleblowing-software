@@ -33,7 +33,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2020-2022\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -44,9 +44,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Giriş"
 
-msgid "Main configuration"
-msgstr "Ana yapılandırma"
-
 msgid "Theme customization"
 msgstr "Tema özelleştirmesi"
 
@@ -56,8 +53,8 @@ msgstr "Diller"
 msgid "Text customization"
 msgstr "Metin özelleştirmesi"
 
-msgid "Advanced settings"
-msgstr "Gelişmiş ayarlar"
+msgid "Advanced"
+msgstr "Gelişmiş"
 
 msgid "Question templates"
 msgstr "Soru şablonları"
@@ -77,8 +74,8 @@ msgstr "Değişim günlüğü"
 msgid "License"
 msgstr "Lisans"
 
-msgid "Notification templates"
-msgstr "Bildirim şablonları"
+msgid "Templates"
+msgstr "Şablonlar"
 
 msgid "Delete"
 msgstr "Sil"
@@ -89,8 +86,8 @@ msgstr "Anormallikler"
 msgid "Preferences"
 msgstr "Tercihler"
 
-msgid "Notification settings"
-msgstr "Bildirim ayarları"
+msgid "Notifications"
+msgstr "Bildirimler"
 
 msgid "file unavailable"
 msgstr "Dosya kullanılamıyor"
@@ -140,8 +137,8 @@ msgstr "Seçimleri kaldır"
 msgid "Refresh"
 msgstr "Yenile"
 
-msgid "Context"
-msgstr "Kategori"
+msgid "Channel"
+msgstr "Kanal"
 
 msgid "Preview"
 msgstr "Önizleme"
@@ -275,9 +272,6 @@ msgstr "İhbarcının kimliğine erişimi reddet"
 msgid "Authorize access to the whistleblower's identity"
 msgstr "İhbarcının kimliğine erişime izin ver"
 
-msgid "Templates"
-msgstr "Şablonlar"
-
 msgid "URL redirects"
 msgstr "Adres yönlendirmeleri"
 
@@ -317,8 +311,8 @@ msgstr "Kabul edilebilir"
 msgid "Strong"
 msgstr "Güçlü"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Arayüz de en üstünde yer alan metin içerik seçmek için dir"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr "Kanalları seçmek için arayüzün üstünde yer alan metin"
 
 msgid "Silence email notifications"
 msgstr "E-posta bilgilendirmelerini sessize al"
@@ -381,9 +375,6 @@ msgstr "Azami dosya boyutu:"
 
 msgid "Scheduled jobs"
 msgstr "Planlanmış işler"
-
-msgid "Sites management"
-msgstr "Site yönetimi"
 
 msgid "Regenerate"
 msgstr "canlandırmak"
@@ -492,6 +483,12 @@ msgstr "Erişim izni ver"
 msgid "Revoke access"
 msgstr "Erişim iznini kaldır"
 
+msgid "Assigned to"
+msgstr "Şu kişiye atanmış"
+
+msgid "Not provided."
+msgstr "Belirtilmemiş."
+
 msgid "File a report"
 msgstr "Bir bildirimde bulunun"
 
@@ -507,101 +504,20 @@ msgstr "Devam etmeden önce, lütfen iki aşamalı doğrulamayı etkinleştirin.
 msgid "Enable"
 msgstr "Etkinleştir"
 
-msgid "Disable submissions"
-msgstr "Gönderimleri devre dışı bırak"
-
-msgid "Enable encryption"
-msgstr "Şifrelemeyi etkinleştir"
-
-msgid "Enable administrators to change user passwords"
-msgstr "Yöneticilerin parola değiştirebilmesini etkinleştirin."
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Yöneticilerin kullanıcıların parolasını değiştirme yetkisi var:"
-
-msgid "Enable multisite feature"
-msgstr "Çoklu site özelliğini etkinleştir"
-
-msgid "Enable simplified login"
-msgstr "Kolaylaştırılmış kullanıcı girişini etkinleştir"
-
-msgid "Enable search engines indexing"
-msgstr "Arama motoru dizinlemeyi etkinleştir"
-
-msgid "Default questionnaire"
-msgstr "Varsayılan anket"
-
-msgid "Show contexts in alphabetical order"
-msgstr "Kategorileri alfabetik sıralı göster"
-
-msgid "Size limit for file attachments"
-msgstr "Dosya ekleri için boyut sınırı"
-
-msgid "megabytes"
-msgstr "megabyte"
-
-msgid "Require two factor authentication"
-msgstr "İki aşamalı doğrulama zorunlu olsun"
-
-msgid "Password change interval"
-msgstr "Parola değiştirme aralığı"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Güvenlik nedeniyle, parola düzenli aralıklarla değiştirilmelidir."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Bu özelliği devre dışı bırakmak 0 olarak ayarlayın."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Okunmamış bildirimler için kullanıcıların bilgilendirilmesine kadar geçecek gün sayısı"
-
-msgid "Disable the privacy panel"
-msgstr "Gizlilik rozetini devre dışı bırak"
-
-msgid "Enable custom privacy panel"
-msgstr "Özel gizlilik panelini etkinleştir"
-
-msgid "Custom privacy panel"
-msgstr "Özel gizlilik paneli"
-
-msgid "Enable custodian user role"
-msgstr "Koruyucu kullanıcı rolünü etkinleştir"
-
-msgid "Enable scoring system"
-msgstr "Puan sistemini etkinleştir"
-
-msgid "Logging level"
-msgstr "Günlük düzeyi"
-
-msgid "Log accesses of internal users"
-msgstr "İç kullanıcıların erişimleri günlüğe kaydedilsin"
-
-msgid "Notify administrators of software problems"
-msgstr " Yazılım sorunları yöneticilere bildirilsin"
-
-msgid "Notify developers of software problems"
-msgstr "Yazılım sorunları geliştiricilere bildirilsin"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Bu seçenek etkinleştirildiğinde, platformun geliştirilmesi ve güvenliğine katkıda bulunursunuz."
-
-msgid "Save"
-msgstr "Kaydet"
-
-msgid "Reset reports"
-msgstr "Raporları sıfırla"
-
 msgid "Low"
 msgstr "Düşük"
 
 msgid "High"
 msgstr "Yüksek"
 
+msgid "megabytes"
+msgstr "megabyte"
+
 msgid "percentage"
 msgstr "yüzde"
+
+msgid "Save"
+msgstr "Kaydet"
 
 msgid "Type"
 msgstr "Tür"
@@ -654,62 +570,14 @@ msgstr "İptal"
 msgid "Report statuses"
 msgstr "Rapor durumları"
 
-msgid "Logo"
-msgstr "Logo"
-
-msgid "Project name"
-msgstr "Proje adı"
-
-msgid "Description"
-msgstr "Açıklama"
-
-msgid "Homepage title"
-msgstr "Anasayfa başlığı"
-
-msgid "Presentation"
-msgstr "Sunum"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Daha fazla bilgi alabilmek için muhtemel ihbarcıları sorgulayın."
-
-msgid "Whistleblowing button"
-msgstr "İhbar Butonu"
-
-msgid "Disclaimer"
-msgstr "Sorumluluk reddi"
-
-msgid "Footer"
-msgstr "Sayfa altlığı"
-
-msgid "Upload"
-msgstr "Yükle"
-
-msgid "Download"
-msgstr "İndir"
-
-msgid "Language:"
-msgstr "Dil:"
-
-msgid "Add custom text"
-msgstr "Özel metin ekleyin"
-
-msgid "Custom text"
-msgstr "Özel metin"
-
-msgid "Original text"
-msgstr "Orijinal metin"
-
-msgid "Original translation"
-msgstr "Orijinal tercüme"
-
-msgid "Custom translation"
-msgstr "Özel tercüme"
-
-msgid "Contexts"
-msgstr "Kategoriler"
+msgid "Channels"
+msgstr "Kanallar"
 
 msgid "Hidden"
 msgstr "Gizli"
+
+msgid "Description"
+msgstr "Açıklama"
 
 msgid "Questionnaire"
 msgstr "Anket"
@@ -719,6 +587,9 @@ msgstr "Alıcılar"
 
 msgid "days"
 msgstr "gün"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Bu özelliği devre dışı bırakmak 0 olarak ayarlayın."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Anket gezinti arayüzünü görüntüle"
@@ -818,6 +689,9 @@ msgstr "Gizli anahtar"
 
 msgid "Certificate Signing Request"
 msgstr "Sertifika İmzalama İsteği"
+
+msgid "Download"
+msgstr "İndir"
 
 msgid "Certificate"
 msgstr "Sertifika"
@@ -1033,14 +907,137 @@ msgstr "Kopyasını çıkar"
 msgid "Steps"
 msgstr "Adımlar"
 
-msgid "Site settings"
-msgstr "Site ayarları"
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Project name"
+msgstr "Proje adı"
+
+msgid "Homepage title"
+msgstr "Anasayfa başlığı"
+
+msgid "Presentation"
+msgstr "Sunum"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Daha fazla bilgi alabilmek için muhtemel ihbarcıları sorgulayın."
+
+msgid "Whistleblowing button"
+msgstr "İhbar Butonu"
+
+msgid "Disclaimer"
+msgstr "Sorumluluk reddi"
+
+msgid "Footer"
+msgstr "Sayfa altlığı"
+
+msgid "Upload"
+msgstr "Yükle"
+
+msgid "Language:"
+msgstr "Dil:"
+
+msgid "Add custom text"
+msgstr "Özel metin ekleyin"
+
+msgid "Custom text"
+msgstr "Özel metin"
+
+msgid "Original text"
+msgstr "Orijinal metin"
+
+msgid "Original translation"
+msgstr "Orijinal tercüme"
+
+msgid "Custom translation"
+msgstr "Özel tercüme"
+
+msgid "Disable submissions"
+msgstr "Gönderimleri devre dışı bırak"
+
+msgid "Enable encryption"
+msgstr "Şifrelemeyi etkinleştir"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Yöneticilerin parola değiştirebilmesini etkinleştirin."
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Yöneticilerin kullanıcıların parolasını değiştirme yetkisi var:"
+
+msgid "Enable multisite feature"
+msgstr "Çoklu site özelliğini etkinleştir"
+
+msgid "Enable simplified login"
+msgstr "Kolaylaştırılmış kullanıcı girişini etkinleştir"
+
+msgid "Enable search engines indexing"
+msgstr "Arama motoru dizinlemeyi etkinleştir"
+
+msgid "Default questionnaire"
+msgstr "Varsayılan anket"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Kategorileri alfabetik sıralı göster"
+
+msgid "Size limit for file attachments"
+msgstr "Dosya ekleri için boyut sınırı"
+
+msgid "Require two factor authentication"
+msgstr "İki aşamalı doğrulama zorunlu olsun"
+
+msgid "Password change interval"
+msgstr "Parola değiştirme aralığı"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Güvenlik nedeniyle, parola düzenli aralıklarla değiştirilmelidir."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Okunmamış bildirimler için kullanıcıların bilgilendirilmesine kadar geçecek gün sayısı"
+
+msgid "Disable the privacy panel"
+msgstr "Gizlilik rozetini devre dışı bırak"
+
+msgid "Enable custom privacy panel"
+msgstr "Özel gizlilik panelini etkinleştir"
+
+msgid "Custom privacy panel"
+msgstr "Özel gizlilik paneli"
+
+msgid "Enable custodian user role"
+msgstr "Koruyucu kullanıcı rolünü etkinleştir"
+
+msgid "Enable scoring system"
+msgstr "Puan sistemini etkinleştir"
+
+msgid "Logging level"
+msgstr "Günlük düzeyi"
+
+msgid "Log accesses of internal users"
+msgstr "İç kullanıcıların erişimleri günlüğe kaydedilsin"
+
+msgid "Notify administrators of software problems"
+msgstr " Yazılım sorunları yöneticilere bildirilsin"
+
+msgid "Notify developers of software problems"
+msgstr "Yazılım sorunları geliştiricilere bildirilsin"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Bu seçenek etkinleştirildiğinde, platformun geliştirilmesi ve güvenliğine katkıda bulunursunuz."
+
+msgid "Reset reports"
+msgstr "Raporları sıfırla"
+
+msgid "Settings"
+msgstr "Ayarlar"
 
 msgid "Case management"
 msgstr "Durum yönetimi"
 
-msgid "Network settings"
-msgstr "Ağ Ayarları"
+msgid "Network"
+msgstr "Ağ"
 
 msgid "Sites"
 msgstr "Siteler"
@@ -1082,10 +1079,10 @@ msgid "Set password"
 msgstr "Parola ayarla"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Yazılan parola oldukça zayıf. Geçerli bir parola en az 10 karakter uzunluğunda olmalı ve en az bir küçük harf, bir büyük harf, bir sayı ve bir özel karakter içermelidir."
+msgstr "Yazılan parola oldukça zayıf. Geçerli bir parola en az 12 karakter uzunluğunda olmalı ve en az bir küçük harf, bir büyük harf, bir sayı ve bir özel karakter içermelidir."
 
 msgid "Force password change"
 msgstr "Şifre değişikliğine zorla"

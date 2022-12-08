@@ -22,9 +22,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Prijava"
 
-msgid "Main configuration"
-msgstr "Osnovna konfiguracija"
-
 msgid "Theme customization"
 msgstr "Prilagođavanje teme"
 
@@ -34,8 +31,8 @@ msgstr "Jezici"
 msgid "Text customization"
 msgstr "Prilagođavanje teksta"
 
-msgid "Advanced settings"
-msgstr "Napredne postavke"
+msgid "Advanced"
+msgstr "Napredni"
 
 msgid "Question templates"
 msgstr "Predlošci za pitanja"
@@ -55,8 +52,8 @@ msgstr "Log za promjene"
 msgid "License"
 msgstr "Licenca"
 
-msgid "Notification templates"
-msgstr "Predložak obavijesti"
+msgid "Templates"
+msgstr "Predlošci"
 
 msgid "Delete"
 msgstr "Obriši"
@@ -67,8 +64,8 @@ msgstr "Nepravilnosti"
 msgid "Preferences"
 msgstr "Postavke"
 
-msgid "Notification settings"
-msgstr "Postavke obavijesti"
+msgid "Notifications"
+msgstr "Obavještenja"
 
 msgid "file unavailable"
 msgstr "datoteka nedostupna"
@@ -118,8 +115,8 @@ msgstr "Deselektuj sve"
 msgid "Refresh"
 msgstr "Osvježi"
 
-msgid "Context"
-msgstr "Kontekst"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "Pregled"
@@ -253,9 +250,6 @@ msgstr "Zabrani pristup identitetu zviždača"
 msgid "Authorize access to the whistleblower's identity"
 msgstr "Ovlasti pristup identitetu zviždača"
 
-msgid "Templates"
-msgstr "Predlošci"
-
 msgid "URL redirects"
 msgstr "URL preusmjerava"
 
@@ -295,8 +289,8 @@ msgstr "Prihvatljiva"
 msgid "Strong"
 msgstr "Jaka"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Tekst prikazan na vrhu interfacea za odabir konteksta"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "Utišaj email obavijesti"
@@ -359,9 +353,6 @@ msgstr "Maksimalna veličina datoteke je"
 
 msgid "Scheduled jobs"
 msgstr "Scheduled jobs"
-
-msgid "Sites management"
-msgstr "Upravljanje sajtom"
 
 msgid "Regenerate"
 msgstr "Regenerate"
@@ -470,6 +461,12 @@ msgstr "Dodijeli pristup"
 msgid "Revoke access"
 msgstr "Ukini pristup"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "Podnesi izvještaj"
 
@@ -485,101 +482,20 @@ msgstr "Prije nego nastavite, molimo vas da dopustite dvostruku provjeru autenti
 msgid "Enable"
 msgstr "Omogućite"
 
-msgid "Disable submissions"
-msgstr "Onemogućite podneske"
-
-msgid "Enable encryption"
-msgstr "Omogućite enkripciju"
-
-msgid "Enable administrators to change user passwords"
-msgstr "Omogućite administratorima da promijene lozinku korisnika"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Administratori ovlašteni da promijene lozinke korisnika:"
-
-msgid "Enable multisite feature"
-msgstr "Omogućite korištenje s više lokacija"
-
-msgid "Enable simplified login"
-msgstr "Omogućite pojednostavljeni login"
-
-msgid "Enable search engines indexing"
-msgstr "Omogućite indeksiranje od strane internet pretraživača"
-
-msgid "Default questionnaire"
-msgstr "Automatski upitnik"
-
-msgid "Show contexts in alphabetical order"
-msgstr "Prikaži kontekst abecednim redom"
-
-msgid "Size limit for file attachments"
-msgstr "Ograničenje veličine za datoteke u prilogu"
-
-msgid "megabytes"
-msgstr "megabajti"
-
-msgid "Require two factor authentication"
-msgstr "Zahtijevajte dvostruku provjeru autentičnosti"
-
-msgid "Password change interval"
-msgstr "Interval promjene lozinke"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Iz sigurnosnih razloga, zahtijeva se promjena lozinke u redovnim intervalima"
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Upišite 0 da ovu funkciju onemogućite"
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Broj dana do obavještavanja korisnika o nepročitanim izvještajima"
-
-msgid "Disable the privacy panel"
-msgstr "Onemogućite panel privatnosti"
-
-msgid "Enable custom privacy panel"
-msgstr "Omogućite prilagođeni panel privatnosti"
-
-msgid "Custom privacy panel"
-msgstr "Prilagodite panel privatnosti"
-
-msgid "Enable custodian user role"
-msgstr "Omogućite ulogu odgovorne osobe"
-
-msgid "Enable scoring system"
-msgstr "Omogućite sistem bodovanja"
-
-msgid "Logging level"
-msgstr "Nivo logiranja"
-
-msgid "Log accesses of internal users"
-msgstr "Log pristupa internih korisnika"
-
-msgid "Notify administrators of software problems"
-msgstr "Obavijestite administratora o softverskim problemima"
-
-msgid "Notify developers of software problems"
-msgstr "Obavijestite developera o softverskim problemima"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Omogućavanjem ove odlike ćete doprinijeti razvoju isigurnosti ove platforme."
-
-msgid "Save"
-msgstr "Sačuvaj"
-
-msgid "Reset reports"
-msgstr "Resetujte prijave"
-
 msgid "Low"
 msgstr "Nisko"
 
 msgid "High"
 msgstr "Visoko"
 
+msgid "megabytes"
+msgstr "megabajti"
+
 msgid "percentage"
 msgstr "procenat"
+
+msgid "Save"
+msgstr "Sačuvaj"
 
 msgid "Type"
 msgstr "Tip"
@@ -632,62 +548,14 @@ msgstr "Odustanite"
 msgid "Report statuses"
 msgstr "Prijavite statuse"
 
-msgid "Logo"
-msgstr "Logo"
-
-msgid "Project name"
-msgstr "Ime projekta"
-
-msgid "Description"
-msgstr "Opis"
-
-msgid "Homepage title"
-msgstr "Homepage naslov"
-
-msgid "Presentation"
-msgstr "Predstavljanje"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Pitanje koje se upućuje potencijalnim zviždačima"
-
-msgid "Whistleblowing button"
-msgstr "Dugme za zviždačevu prijavu"
-
-msgid "Disclaimer"
-msgstr "Izjava o odricanju odgovornosti"
-
-msgid "Footer"
-msgstr "Footer"
-
-msgid "Upload"
-msgstr "Upload"
-
-msgid "Download"
-msgstr "Preuzimanje"
-
-msgid "Language:"
-msgstr "Jezik:"
-
-msgid "Add custom text"
-msgstr "Dodaj vlastiti tekst"
-
-msgid "Custom text"
-msgstr "Vlastiti tekst"
-
-msgid "Original text"
-msgstr "Originalni tekst"
-
-msgid "Original translation"
-msgstr "Originalni prijevod"
-
-msgid "Custom translation"
-msgstr "Prilagođeni prijevod"
-
-msgid "Contexts"
-msgstr "Konteksti"
+msgid "Channels"
+msgstr ""
 
 msgid "Hidden"
 msgstr "Skriveno"
+
+msgid "Description"
+msgstr "Opis"
 
 msgid "Questionnaire"
 msgstr "Upitnik"
@@ -697,6 +565,9 @@ msgstr "Primaoci"
 
 msgid "days"
 msgstr "dani"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Upišite 0 da ovu funkciju onemogućite"
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Prikažite interface za navigaciju kroz upitnike"
@@ -796,6 +667,9 @@ msgstr "Private Key"
 
 msgid "Certificate Signing Request"
 msgstr "Certificate Signing Request"
+
+msgid "Download"
+msgstr "Preuzimanje"
 
 msgid "Certificate"
 msgstr "Certifikat"
@@ -1011,14 +885,137 @@ msgstr "Kopirajte"
 msgid "Steps"
 msgstr "Koraci"
 
-msgid "Site settings"
-msgstr "Postavke sajta"
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Project name"
+msgstr "Ime projekta"
+
+msgid "Homepage title"
+msgstr "Homepage naslov"
+
+msgid "Presentation"
+msgstr "Predstavljanje"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Pitanje koje se upućuje potencijalnim zviždačima"
+
+msgid "Whistleblowing button"
+msgstr "Dugme za zviždačevu prijavu"
+
+msgid "Disclaimer"
+msgstr "Izjava o odricanju odgovornosti"
+
+msgid "Footer"
+msgstr "Footer"
+
+msgid "Upload"
+msgstr "Upload"
+
+msgid "Language:"
+msgstr "Jezik:"
+
+msgid "Add custom text"
+msgstr "Dodaj vlastiti tekst"
+
+msgid "Custom text"
+msgstr "Vlastiti tekst"
+
+msgid "Original text"
+msgstr "Originalni tekst"
+
+msgid "Original translation"
+msgstr "Originalni prijevod"
+
+msgid "Custom translation"
+msgstr "Prilagođeni prijevod"
+
+msgid "Disable submissions"
+msgstr "Onemogućite podneske"
+
+msgid "Enable encryption"
+msgstr "Omogućite enkripciju"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Omogućite administratorima da promijene lozinku korisnika"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Administratori ovlašteni da promijene lozinke korisnika:"
+
+msgid "Enable multisite feature"
+msgstr "Omogućite korištenje s više lokacija"
+
+msgid "Enable simplified login"
+msgstr "Omogućite pojednostavljeni login"
+
+msgid "Enable search engines indexing"
+msgstr "Omogućite indeksiranje od strane internet pretraživača"
+
+msgid "Default questionnaire"
+msgstr "Automatski upitnik"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Prikaži kontekst abecednim redom"
+
+msgid "Size limit for file attachments"
+msgstr "Ograničenje veličine za datoteke u prilogu"
+
+msgid "Require two factor authentication"
+msgstr "Zahtijevajte dvostruku provjeru autentičnosti"
+
+msgid "Password change interval"
+msgstr "Interval promjene lozinke"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Iz sigurnosnih razloga, zahtijeva se promjena lozinke u redovnim intervalima"
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Broj dana do obavještavanja korisnika o nepročitanim izvještajima"
+
+msgid "Disable the privacy panel"
+msgstr "Onemogućite panel privatnosti"
+
+msgid "Enable custom privacy panel"
+msgstr "Omogućite prilagođeni panel privatnosti"
+
+msgid "Custom privacy panel"
+msgstr "Prilagodite panel privatnosti"
+
+msgid "Enable custodian user role"
+msgstr "Omogućite ulogu odgovorne osobe"
+
+msgid "Enable scoring system"
+msgstr "Omogućite sistem bodovanja"
+
+msgid "Logging level"
+msgstr "Nivo logiranja"
+
+msgid "Log accesses of internal users"
+msgstr "Log pristupa internih korisnika"
+
+msgid "Notify administrators of software problems"
+msgstr "Obavijestite administratora o softverskim problemima"
+
+msgid "Notify developers of software problems"
+msgstr "Obavijestite developera o softverskim problemima"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Omogućavanjem ove odlike ćete doprinijeti razvoju isigurnosti ove platforme."
+
+msgid "Reset reports"
+msgstr "Resetujte prijave"
+
+msgid "Settings"
+msgstr "Podešavanja"
 
 msgid "Case management"
 msgstr "Upravljanje slučajem"
 
-msgid "Network settings"
-msgstr "Postavke mreže"
+msgid "Network"
+msgstr ""
 
 msgid "Sites"
 msgstr "Sajtovi"
@@ -1060,10 +1057,10 @@ msgid "Set password"
 msgstr "Postavite lozinku"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Odabrana lozinka nije dovoljno jaka. Validna lozinka bi trebala imati 10 znakova i sadržavati kombinacije različitih znakova uključujući barempo jedno malo slovo, veliko slovo, broj i posebni znak."
+msgstr "Odabrana lozinka nije dovoljno jaka. Validna lozinka bi trebala imati 12 znakova i sadržavati kombinacije različitih znakova uključujući barempo jedno malo slovo, veliko slovo, broj i posebni znak."
 
 msgid "Force password change"
 msgstr "Prisilna promjena lozinke"

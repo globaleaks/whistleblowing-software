@@ -17,9 +17,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Ingia"
 
-msgid "Main configuration"
-msgstr "Usanidi mkuu"
-
 msgid "Theme customization"
 msgstr "Uwekaji mandhari"
 
@@ -29,8 +26,8 @@ msgstr "Lugha"
 msgid "Text customization"
 msgstr "Ubinafsishaji wa maandishi"
 
-msgid "Advanced settings"
-msgstr "Mipangilio ya hali ya juu"
+msgid "Advanced"
+msgstr "Iliyoboreshwa"
 
 msgid "Question templates"
 msgstr "Kiolezo cha maswali"
@@ -50,8 +47,8 @@ msgstr "Badilisha log"
 msgid "License"
 msgstr "Leseni"
 
-msgid "Notification templates"
-msgstr "Violezo vya taarifa"
+msgid "Templates"
+msgstr "Violezo"
 
 msgid "Delete"
 msgstr "Futa"
@@ -62,8 +59,8 @@ msgstr "Isiyo kawaida"
 msgid "Preferences"
 msgstr "Mapendeleo"
 
-msgid "Notification settings"
-msgstr "Mipangilio ya taarifa"
+msgid "Notifications"
+msgstr "Arifa"
 
 msgid "file unavailable"
 msgstr "faili halipatikani"
@@ -113,8 +110,8 @@ msgstr "Usichague zote"
 msgid "Refresh"
 msgstr "Fanyiza upya"
 
-msgid "Context"
-msgstr "Muktadha"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "Chungulia kwanza"
@@ -248,9 +245,6 @@ msgstr "Kataa ufikiaji wa kitambulisho cha mtoa taarifa ya siri"
 msgid "Authorize access to the whistleblower's identity"
 msgstr "Idhinisha ufikiaji wa kitambulisho cha mtoa taarifa ya siri"
 
-msgid "Templates"
-msgstr "Violezo"
-
 msgid "URL redirects"
 msgstr "inaelekeza tena za URL"
 
@@ -290,8 +284,8 @@ msgstr "Inakubalika"
 msgid "Strong"
 msgstr "Imara"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Maandishi yameonyeshwa juu ya kiolesura cha kuchagua muktadha"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "Nyamazisha taarifa za barua pepe"
@@ -354,9 +348,6 @@ msgstr "Kiwango cha juu cha ukubwa wa faili ni:"
 
 msgid "Scheduled jobs"
 msgstr "Kazi zilizopangwa"
-
-msgid "Sites management"
-msgstr "Usimamizi wa Tovuti"
 
 msgid "Regenerate"
 msgstr "Zalisha upya"
@@ -465,6 +456,12 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
@@ -480,101 +477,20 @@ msgstr "Kabla ya kuendelea, tafadhali wezesha uthibitishaji wa pili."
 msgid "Enable"
 msgstr "Wezesha"
 
-msgid "Disable submissions"
-msgstr "Usiwezeshe mawasilisho"
-
-msgid "Enable encryption"
-msgstr "wezesha usimbuaji"
-
-msgid "Enable administrators to change user passwords"
-msgstr "Wezesha wasimamizi kubadilisha nenosiri za mtumiaji "
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Watawala wameidhinishwa kubadilisha nenosiri za watumiaji:\""
-
-msgid "Enable multisite feature"
-msgstr "Wezesha huduma nyingi katika tofuti"
-
-msgid "Enable simplified login"
-msgstr "Wezesha uingiaji rahisi"
-
-msgid "Enable search engines indexing"
-msgstr "Wezesha kivinjari cha kutafuta"
-
-msgid "Default questionnaire"
-msgstr "Chaguo la msingi la dodoso"
-
-msgid "Show contexts in alphabetical order"
-msgstr "Onyesha muktadha kwa mpangilio wa alfabeti"
-
-msgid "Size limit for file attachments"
-msgstr "Kikomo cha ukubwa wa viambatisho vya faili"
-
-msgid "megabytes"
-msgstr "megabiti"
-
-msgid "Require two factor authentication"
-msgstr "Inahitaji uthibitishaji wa mara ya pili "
-
-msgid "Password change interval"
-msgstr "Muda wa kubadilisha neno la siri"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Kwa sababu za usalama, mabadiliko ya neno la siri yanahitajika kila wakati."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Weka 0 ili kutowezesha huduma hii."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr ""
-
-msgid "Disable the privacy panel"
-msgstr "Usiwezeshe paneli ya faragha"
-
-msgid "Enable custom privacy panel"
-msgstr "Wezesha paneli ya faragha maalum "
-
-msgid "Custom privacy panel"
-msgstr "paneli ya faragha"
-
-msgid "Enable custodian user role"
-msgstr "Wezesha sehemu ya jukumu la Mwangalizi"
-
-msgid "Enable scoring system"
-msgstr "Wezesha mfumo wa upataji wa alama"
-
-msgid "Logging level"
-msgstr "Kiwango cha kuingia"
-
-msgid "Log accesses of internal users"
-msgstr "Ingia ufikiaji wa watumiaji wa ndani"
-
-msgid "Notify administrators of software problems"
-msgstr "Waarifu wasimamizi kuhusu shida katika programu"
-
-msgid "Notify developers of software problems"
-msgstr "Waarifu watengenezaji wa programu hususu shida katika programu"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Kwa kuwezesha huduma hii, utachangia maendeleo na\n\nusalama wa jukwaa."
-
-msgid "Save"
-msgstr "Hifadhi"
-
-msgid "Reset reports"
-msgstr "Weka upya ripoti"
-
 msgid "Low"
 msgstr "Chini"
 
 msgid "High"
 msgstr "Juu"
 
+msgid "megabytes"
+msgstr "megabiti"
+
 msgid "percentage"
 msgstr "asilimia"
+
+msgid "Save"
+msgstr "Hifadhi"
 
 msgid "Type"
 msgstr "Aina"
@@ -627,62 +543,14 @@ msgstr "futa"
 msgid "Report statuses"
 msgstr "Hali ya ripoti"
 
-msgid "Logo"
-msgstr "Logo"
-
-msgid "Project name"
-msgstr "Jina la Mradi"
-
-msgid "Description"
+msgid "Channels"
 msgstr ""
-
-msgid "Homepage title"
-msgstr "Kichwa cha habari cha ukurasa wa kwanza"
-
-msgid "Presentation"
-msgstr "Uwasilishaji"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Swali la kuomba watoa taarifa za siri"
-
-msgid "Whistleblowing button"
-msgstr "Kitufe cha watoa taarifa za siri"
-
-msgid "Disclaimer"
-msgstr ""
-
-msgid "Footer"
-msgstr "Kijachini"
-
-msgid "Upload"
-msgstr "Pakia"
-
-msgid "Download"
-msgstr "Pakua"
-
-msgid "Language:"
-msgstr "Lugha:"
-
-msgid "Add custom text"
-msgstr "Ongeza maandishi binafsi"
-
-msgid "Custom text"
-msgstr "maandishi binafsi"
-
-msgid "Original text"
-msgstr "Maandishi ya mwanzo"
-
-msgid "Original translation"
-msgstr "Tafsiri ya mwanzo"
-
-msgid "Custom translation"
-msgstr "tafsiri binafsi"
-
-msgid "Contexts"
-msgstr "Muktadha"
 
 msgid "Hidden"
 msgstr "Fichwa"
+
+msgid "Description"
+msgstr ""
 
 msgid "Questionnaire"
 msgstr "Dodoso"
@@ -692,6 +560,9 @@ msgstr "Wapokeaji"
 
 msgid "days"
 msgstr "siku"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Weka 0 ili kutowezesha huduma hii."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Onyesha kiolesura cha urambazaji wa dodoso"
@@ -791,6 +662,9 @@ msgstr "Ufunguo binafsi"
 
 msgid "Certificate Signing Request"
 msgstr "Ombi la kutia saini cheti"
+
+msgid "Download"
+msgstr "Pakua"
 
 msgid "Certificate"
 msgstr "Cheti"
@@ -1006,14 +880,137 @@ msgstr "Nakala"
 msgid "Steps"
 msgstr "Hatua"
 
-msgid "Site settings"
-msgstr "Mipangilio ya tovuti"
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Project name"
+msgstr "Jina la Mradi"
+
+msgid "Homepage title"
+msgstr "Kichwa cha habari cha ukurasa wa kwanza"
+
+msgid "Presentation"
+msgstr "Uwasilishaji"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Swali la kuomba watoa taarifa za siri"
+
+msgid "Whistleblowing button"
+msgstr "Kitufe cha watoa taarifa za siri"
+
+msgid "Disclaimer"
+msgstr ""
+
+msgid "Footer"
+msgstr "Kijachini"
+
+msgid "Upload"
+msgstr "Pakia"
+
+msgid "Language:"
+msgstr "Lugha:"
+
+msgid "Add custom text"
+msgstr "Ongeza maandishi binafsi"
+
+msgid "Custom text"
+msgstr "maandishi binafsi"
+
+msgid "Original text"
+msgstr "Maandishi ya mwanzo"
+
+msgid "Original translation"
+msgstr "Tafsiri ya mwanzo"
+
+msgid "Custom translation"
+msgstr "tafsiri binafsi"
+
+msgid "Disable submissions"
+msgstr "Usiwezeshe mawasilisho"
+
+msgid "Enable encryption"
+msgstr "wezesha usimbuaji"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Wezesha wasimamizi kubadilisha nenosiri za mtumiaji "
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Watawala wameidhinishwa kubadilisha nenosiri za watumiaji:\""
+
+msgid "Enable multisite feature"
+msgstr "Wezesha huduma nyingi katika tofuti"
+
+msgid "Enable simplified login"
+msgstr "Wezesha uingiaji rahisi"
+
+msgid "Enable search engines indexing"
+msgstr "Wezesha kivinjari cha kutafuta"
+
+msgid "Default questionnaire"
+msgstr "Chaguo la msingi la dodoso"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Onyesha muktadha kwa mpangilio wa alfabeti"
+
+msgid "Size limit for file attachments"
+msgstr "Kikomo cha ukubwa wa viambatisho vya faili"
+
+msgid "Require two factor authentication"
+msgstr "Inahitaji uthibitishaji wa mara ya pili "
+
+msgid "Password change interval"
+msgstr "Muda wa kubadilisha neno la siri"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Kwa sababu za usalama, mabadiliko ya neno la siri yanahitajika kila wakati."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr ""
+
+msgid "Disable the privacy panel"
+msgstr "Usiwezeshe paneli ya faragha"
+
+msgid "Enable custom privacy panel"
+msgstr "Wezesha paneli ya faragha maalum "
+
+msgid "Custom privacy panel"
+msgstr "paneli ya faragha"
+
+msgid "Enable custodian user role"
+msgstr "Wezesha sehemu ya jukumu la Mwangalizi"
+
+msgid "Enable scoring system"
+msgstr "Wezesha mfumo wa upataji wa alama"
+
+msgid "Logging level"
+msgstr "Kiwango cha kuingia"
+
+msgid "Log accesses of internal users"
+msgstr "Ingia ufikiaji wa watumiaji wa ndani"
+
+msgid "Notify administrators of software problems"
+msgstr "Waarifu wasimamizi kuhusu shida katika programu"
+
+msgid "Notify developers of software problems"
+msgstr "Waarifu watengenezaji wa programu hususu shida katika programu"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Kwa kuwezesha huduma hii, utachangia maendeleo na\n\nusalama wa jukwaa."
+
+msgid "Reset reports"
+msgstr "Weka upya ripoti"
+
+msgid "Settings"
+msgstr "mpangilio"
 
 msgid "Case management"
 msgstr "Usimamizi wa kesi"
 
-msgid "Network settings"
-msgstr "Mipangilio ya mtandao"
+msgid "Network"
+msgstr "Mtandao"
 
 msgid "Sites"
 msgstr "Tovuti"
@@ -1055,10 +1052,10 @@ msgid "Set password"
 msgstr "Weka nenosiri"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Neno la siri lililochaguliwa ni dhaifu sana. Neno la siri halali linapaswa kuwa angalau na herufi 10\n\nndefu na zijumuishe aina za herufi tofauti ikujumuisha angalau a\n\nherufi ndogo, herufi kubwa, namba na herufi maalumu."
+msgstr "Neno la siri lililochaguliwa ni dhaifu sana. Neno la siri halali linapaswa kuwa angalau na herufi 12 ndefu na zijumuishe aina za herufi tofauti ikujumuisha angalau a herufi ndogo, herufi kubwa, namba na herufi maalumu."
 
 msgid "Force password change"
 msgstr "Lazimisha kubadilisha nenosiri"

@@ -34,9 +34,6 @@ msgstr ""
 msgid "Log in"
 msgstr "התחבר"
 
-msgid "Main configuration"
-msgstr "תצורה ראשית"
-
 msgid "Theme customization"
 msgstr "התאמה אישית של ערכת נושא"
 
@@ -46,8 +43,8 @@ msgstr "שפות"
 msgid "Text customization"
 msgstr "התאמה אישית של טקסט"
 
-msgid "Advanced settings"
-msgstr "הגדרות מתקדמות"
+msgid "Advanced"
+msgstr "מתקדם"
 
 msgid "Question templates"
 msgstr "תבניות שאלה"
@@ -67,8 +64,8 @@ msgstr "יומן שינויים"
 msgid "License"
 msgstr "רישיון"
 
-msgid "Notification templates"
-msgstr "תבניות התראה"
+msgid "Templates"
+msgstr "תבניות"
 
 msgid "Delete"
 msgstr "מחק"
@@ -79,8 +76,8 @@ msgstr "אנומליות"
 msgid "Preferences"
 msgstr "העדפות"
 
-msgid "Notification settings"
-msgstr "הגדרות התראה"
+msgid "Notifications"
+msgstr "התראות"
 
 msgid "file unavailable"
 msgstr "קובץ לא זמין"
@@ -130,8 +127,8 @@ msgstr "בטל בחירת הכל"
 msgid "Refresh"
 msgstr "רענן"
 
-msgid "Context"
-msgstr "הקשר"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "הצג מראש"
@@ -265,9 +262,6 @@ msgstr "מנע גישה אל הזהות של המתריע"
 msgid "Authorize access to the whistleblower's identity"
 msgstr "תן הרשאת גישת הזהות של המתריע"
 
-msgid "Templates"
-msgstr "תבניות"
-
 msgid "URL redirects"
 msgstr ""
 
@@ -307,7 +301,7 @@ msgstr "מקובל"
 msgid "Strong"
 msgstr "חזק"
 
-msgid "Text shown on top of the interface for selecting contexts"
+msgid "Text shown on top of the interface for selecting channels"
 msgstr ""
 
 msgid "Silence email notifications"
@@ -371,9 +365,6 @@ msgstr "גודל מרבי של קובץ:"
 
 msgid "Scheduled jobs"
 msgstr "עבודות מתוזמנות"
-
-msgid "Sites management"
-msgstr "ניהול אתרים"
 
 msgid "Regenerate"
 msgstr "חולל מחדש"
@@ -482,6 +473,12 @@ msgstr "תן גישה"
 msgid "Revoke access"
 msgstr ""
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
@@ -497,101 +494,20 @@ msgstr "לפני שממשיכים, אנא תאפשר/י אימות דו-שלבי
 msgid "Enable"
 msgstr "אפשר"
 
-msgid "Disable submissions"
-msgstr "השבת הגשות"
-
-msgid "Enable encryption"
-msgstr "אפשר הצפנה"
-
-msgid "Enable administrators to change user passwords"
-msgstr ""
-
-msgid "Administrators authorized to change user passwords:"
-msgstr ""
-
-msgid "Enable multisite feature"
-msgstr ""
-
-msgid "Enable simplified login"
-msgstr ""
-
-msgid "Enable search engines indexing"
-msgstr "אפשר אינדקס מנועי חיפוש"
-
-msgid "Default questionnaire"
-msgstr ""
-
-msgid "Show contexts in alphabetical order"
-msgstr "הראה הקשרים בסדר אלפאביתי"
-
-msgid "Size limit for file attachments"
-msgstr "גודל גבול עבור קבצים מצורפים"
-
-msgid "megabytes"
-msgstr ""
-
-msgid "Require two factor authentication"
-msgstr "דרוש אימות דו־שלבי"
-
-msgid "Password change interval"
-msgstr "מרווח שינוי סיסמה"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "מטעמי אבטחה, שינוי סיסמה דרושים במרווחים תדירים."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "קבע את הערך אל 0 והשבת מאפיין זה."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr ""
-
-msgid "Disable the privacy panel"
-msgstr "בטל תג הפרטיות"
-
-msgid "Enable custom privacy panel"
-msgstr "אפשר תג פרטיות מותאם אישית"
-
-msgid "Custom privacy panel"
-msgstr "לוח פרטיות מותאם אישית"
-
-msgid "Enable custodian user role"
-msgstr ""
-
-msgid "Enable scoring system"
-msgstr "אפשר מערכת ניקוד"
-
-msgid "Logging level"
-msgstr ""
-
-msgid "Log accesses of internal users"
-msgstr ""
-
-msgid "Notify administrators of software problems"
-msgstr ""
-
-msgid "Notify developers of software problems"
-msgstr ""
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr ""
-
-msgid "Save"
-msgstr "שמור"
-
-msgid "Reset reports"
-msgstr "אפס דוחות"
-
 msgid "Low"
 msgstr "נמוכה"
 
 msgid "High"
 msgstr "גבוהה"
 
+msgid "megabytes"
+msgstr ""
+
 msgid "percentage"
 msgstr ""
+
+msgid "Save"
+msgstr "שמור"
 
 msgid "Type"
 msgstr "סוג"
@@ -644,62 +560,14 @@ msgstr "בטל"
 msgid "Report statuses"
 msgstr "מעמדי דוח"
 
-msgid "Logo"
-msgstr "סמליל"
-
-msgid "Project name"
-msgstr "שם מיזם"
-
-msgid "Description"
-msgstr "תיאור"
-
-msgid "Homepage title"
-msgstr "כותרת עמוד הבית"
-
-msgid "Presentation"
-msgstr "מצגת"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "שאלות על הלשנה"
-
-msgid "Whistleblowing button"
-msgstr "כפתור חשיפת שחיתות"
-
-msgid "Disclaimer"
+msgid "Channels"
 msgstr ""
-
-msgid "Footer"
-msgstr "כותרת תחתונה"
-
-msgid "Upload"
-msgstr "העלה"
-
-msgid "Download"
-msgstr "הורד"
-
-msgid "Language:"
-msgstr "שפה:"
-
-msgid "Add custom text"
-msgstr "הוסף טקסט מותאם אישית"
-
-msgid "Custom text"
-msgstr "טקסט מותאם אישית"
-
-msgid "Original text"
-msgstr "טקסט מקורי"
-
-msgid "Original translation"
-msgstr "תרגום מקורי"
-
-msgid "Custom translation"
-msgstr "תרגום מותאם אישית"
-
-msgid "Contexts"
-msgstr "הקשרים"
 
 msgid "Hidden"
 msgstr "מוסתר"
+
+msgid "Description"
+msgstr "תיאור"
 
 msgid "Questionnaire"
 msgstr "שְׁאֵלוֹן"
@@ -709,6 +577,9 @@ msgstr "מקבלים"
 
 msgid "days"
 msgstr "ימים"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "קבע את הערך אל 0 והשבת מאפיין זה."
 
 msgid "Show the questionnaire navigation interface"
 msgstr ""
@@ -808,6 +679,9 @@ msgstr "מפתח פרטי"
 
 msgid "Certificate Signing Request"
 msgstr "בקשת החתמת תעודה"
+
+msgid "Download"
+msgstr "הורד"
 
 msgid "Certificate"
 msgstr "תעודה"
@@ -1023,14 +897,137 @@ msgstr "שכפל"
 msgid "Steps"
 msgstr "צעדים"
 
-msgid "Site settings"
-msgstr "הגדרות אתר"
+msgid "Logo"
+msgstr "סמליל"
+
+msgid "Project name"
+msgstr "שם מיזם"
+
+msgid "Homepage title"
+msgstr "כותרת עמוד הבית"
+
+msgid "Presentation"
+msgstr "מצגת"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "שאלות על הלשנה"
+
+msgid "Whistleblowing button"
+msgstr "כפתור חשיפת שחיתות"
+
+msgid "Disclaimer"
+msgstr ""
+
+msgid "Footer"
+msgstr "כותרת תחתונה"
+
+msgid "Upload"
+msgstr "העלה"
+
+msgid "Language:"
+msgstr "שפה:"
+
+msgid "Add custom text"
+msgstr "הוסף טקסט מותאם אישית"
+
+msgid "Custom text"
+msgstr "טקסט מותאם אישית"
+
+msgid "Original text"
+msgstr "טקסט מקורי"
+
+msgid "Original translation"
+msgstr "תרגום מקורי"
+
+msgid "Custom translation"
+msgstr "תרגום מותאם אישית"
+
+msgid "Disable submissions"
+msgstr "השבת הגשות"
+
+msgid "Enable encryption"
+msgstr "אפשר הצפנה"
+
+msgid "Enable administrators to change user passwords"
+msgstr ""
+
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
+msgid "Enable multisite feature"
+msgstr ""
+
+msgid "Enable simplified login"
+msgstr ""
+
+msgid "Enable search engines indexing"
+msgstr "אפשר אינדקס מנועי חיפוש"
+
+msgid "Default questionnaire"
+msgstr ""
+
+msgid "Show contexts in alphabetical order"
+msgstr "הראה הקשרים בסדר אלפאביתי"
+
+msgid "Size limit for file attachments"
+msgstr "גודל גבול עבור קבצים מצורפים"
+
+msgid "Require two factor authentication"
+msgstr "דרוש אימות דו־שלבי"
+
+msgid "Password change interval"
+msgstr "מרווח שינוי סיסמה"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "מטעמי אבטחה, שינוי סיסמה דרושים במרווחים תדירים."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr ""
+
+msgid "Disable the privacy panel"
+msgstr "בטל תג הפרטיות"
+
+msgid "Enable custom privacy panel"
+msgstr "אפשר תג פרטיות מותאם אישית"
+
+msgid "Custom privacy panel"
+msgstr "לוח פרטיות מותאם אישית"
+
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr "אפשר מערכת ניקוד"
+
+msgid "Logging level"
+msgstr ""
+
+msgid "Log accesses of internal users"
+msgstr ""
+
+msgid "Notify administrators of software problems"
+msgstr ""
+
+msgid "Notify developers of software problems"
+msgstr ""
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr ""
+
+msgid "Reset reports"
+msgstr "אפס דוחות"
+
+msgid "Settings"
+msgstr "הגדרות"
 
 msgid "Case management"
 msgstr "ניהול תיקים"
 
-msgid "Network settings"
-msgstr "הגדרות רשת"
+msgid "Network"
+msgstr "רשת"
 
 msgid "Sites"
 msgstr "אתרים"
@@ -1072,10 +1069,10 @@ msgid "Set password"
 msgstr "קבע סיסמה"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "הסיסמה הנבחרת חלשה מדי. סיסמה תקפה אמורה להיות באורך 10 תווים לפחות ולהכיל מגוון תווים כולל לפחות אות קטנה, אות גדולה, מספר ותו מיוחד."
+msgstr ""
 
 msgid "Force password change"
 msgstr "כפה שינוי סיסמה"

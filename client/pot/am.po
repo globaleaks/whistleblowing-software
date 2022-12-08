@@ -18,9 +18,6 @@ msgstr ""
 msgid "Log in"
 msgstr "ግቡ"
 
-msgid "Main configuration"
-msgstr "ዋና ውቅረት"
-
 msgid "Theme customization"
 msgstr "ገጽታ ማበጀት"
 
@@ -30,8 +27,8 @@ msgstr "ቋንቃዎች"
 msgid "Text customization"
 msgstr "ጽሁፍ ማበጀት"
 
-msgid "Advanced settings"
-msgstr "የላቀ ቅንብር"
+msgid "Advanced"
+msgstr "የላቀ"
 
 msgid "Question templates"
 msgstr "የጥያቄ ቅንብር ደንቦች"
@@ -51,8 +48,8 @@ msgstr "የለወጥ መዝገብ "
 msgid "License"
 msgstr "ፍቃድ"
 
-msgid "Notification templates"
-msgstr "የማሳወቂያ ቅንብር ደንቦች"
+msgid "Templates"
+msgstr "ቅንብር ደንቦች"
 
 msgid "Delete"
 msgstr "አጥፋ"
@@ -63,8 +60,8 @@ msgstr "አፈንጋጮች"
 msgid "Preferences"
 msgstr "ምርጫዎች"
 
-msgid "Notification settings"
-msgstr "የማሳወቂያ ቅንብር"
+msgid "Notifications"
+msgstr "ማሳወቂያዎች"
 
 msgid "file unavailable"
 msgstr "ፋይል የለም"
@@ -114,8 +111,8 @@ msgstr "ሁሉንም አትምረጡ"
 msgid "Refresh"
 msgstr "አድሱ"
 
-msgid "Context"
-msgstr "አገባበ ነገር"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "ቅድመ እይታ"
@@ -249,9 +246,6 @@ msgstr "ወደ መረጃ ሰጪው ማንነት መድረሻ ከልክል"
 msgid "Authorize access to the whistleblower's identity"
 msgstr "ወደ መረጃሰጪው ማንነት መድረሻ ፍቀድ"
 
-msgid "Templates"
-msgstr "ቅንብር ደንቦች"
-
 msgid "URL redirects"
 msgstr "ዩአርኤል ይዞራል"
 
@@ -291,8 +285,8 @@ msgstr "ተቀባይ"
 msgid "Strong"
 msgstr "ጠንካራ"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "በይነገጹ አናት ላይ አገባበ ነገር ለመምረጥ የሚታይ ጽሑፍ"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "የኢሜይል ማሳወቂያዎችን ያጥፋ"
@@ -355,9 +349,6 @@ msgstr "ከፍተኛው የፋይል መጠን"
 
 msgid "Scheduled jobs"
 msgstr "መርሃግብር የተያዘላቸው ሥራዎች"
-
-msgid "Sites management"
-msgstr "የድረገጽ አስተዳደር"
 
 msgid "Regenerate"
 msgstr "እንደገና ፍጠር"
@@ -466,6 +457,12 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
@@ -481,101 +478,20 @@ msgstr "ከመቀጠልዎ በፊት ባለሁለት ደረጃ ማረጋገጫ �
 msgid "Enable"
 msgstr "ያንቁ"
 
-msgid "Disable submissions"
-msgstr "ማስረከብን ያቦዝኑ"
-
-msgid "Enable encryption"
-msgstr "ማመስጠርን ያንቁ"
-
-msgid "Enable administrators to change user passwords"
-msgstr "አስተዳዳሪዎቹን የተጠቃሚ የይለፍ ቃልን እንዲቀይሩ ያንቁ"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "አስተዳዳሪዎች የተጠቃሚ የይለፍ ቃሎችን እንዲቀይሩ ተፈቅዷል"
-
-msgid "Enable multisite feature"
-msgstr "የሕብረ ድረገጽ ባህርይ ያንቁ"
-
-msgid "Enable simplified login"
-msgstr ""
-
-msgid "Enable search engines indexing"
-msgstr "የፍለጋ ግርግም ማውጫ ያንቁ"
-
-msgid "Default questionnaire"
-msgstr "ነባሪ መጠይቅ"
-
-msgid "Show contexts in alphabetical order"
-msgstr "አገባበ ነገሮችን በፊደል ተራ ያሳዩ"
-
-msgid "Size limit for file attachments"
-msgstr "ለፋይል አባሪዎች የመጠን ገደብ"
-
-msgid "megabytes"
-msgstr "ሜጋባይትስ"
-
-msgid "Require two factor authentication"
-msgstr "ባለ ሁለት ደረጃ ማረጋገጫ ይጠይቁ"
-
-msgid "Password change interval"
-msgstr "የይለፍ ቃል መቀየርያ ወቅት"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "ለድህንነት ሲባል በየተወሰነ ጊዜ ውስጥ የይለፍ ቃል መቀየር ያስፈልጋል፡፡"
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "ይህንን ባህርይ ለማቦዘን ዋጋውን 0 ያድርጉ"
-
-msgid "Number of days till notifying unread reports to users"
-msgstr ""
-
-msgid "Disable the privacy panel"
-msgstr "የግላዊነት ፓነሉን ያቦዝኑ"
-
-msgid "Enable custom privacy panel"
-msgstr "ብጁ የግላዊነት ፓነል ያዘጋጁ"
-
-msgid "Custom privacy panel"
-msgstr "ብጁ የግል መረጃ ጥበቃ"
-
-msgid "Enable custodian user role"
-msgstr "የሞግዚት ተጠቃሚ ሚናን ያንቁ"
-
-msgid "Enable scoring system"
-msgstr "የውጤት ስርኣት ያንቁ"
-
-msgid "Logging level"
-msgstr "የመግባት ደረጃ"
-
-msgid "Log accesses of internal users"
-msgstr "የውስጥ ተጠቃሚዎች የመግባት መዳረሻዎች"
-
-msgid "Notify administrators of software problems"
-msgstr "አስተዳዳሪዎችን የሶፍትዌር ችግሮች ያሳውቁ"
-
-msgid "Notify developers of software problems"
-msgstr "ገንቢዎችን የሶፍትዌር ችግሮችን ያሳውቁ"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "ይህንን ባህርይ በማንቃት ለመሳርያ ስርኣቱ ግንባታ እ\nደህንነት አስተዋጽኦ ያበረክታሉ"
-
-msgid "Save"
-msgstr "አስቀምጥ "
-
-msgid "Reset reports"
-msgstr "ሪፖርቶችን ዳግም ያስጀምሩ"
-
 msgid "Low"
 msgstr "ዝቅተኛ"
 
 msgid "High"
 msgstr "ከፍተኛ"
 
+msgid "megabytes"
+msgstr "ሜጋባይትስ"
+
 msgid "percentage"
 msgstr "ፐርሰንቴጅ"
+
+msgid "Save"
+msgstr "አስቀምጥ "
 
 msgid "Type"
 msgstr "አይነት"
@@ -628,62 +544,14 @@ msgstr "ሰርዝ "
 msgid "Report statuses"
 msgstr "ሁኔታዎችን ያሳውቁ"
 
-msgid "Logo"
-msgstr " ምልክት"
-
-msgid "Project name"
-msgstr "የፕሮጀክት ስም"
-
-msgid "Description"
-msgstr "ገለጻ "
-
-msgid "Homepage title"
-msgstr "የመነሻ ገጽ ርዕስ"
-
-msgid "Presentation"
-msgstr "አቀራረብ"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "መረጃ ሊሰጡ ለሚችሉ አካላት ጥያቄዎች"
-
-msgid "Whistleblowing button"
-msgstr "የመረጃ መስጫ አዝራር"
-
-msgid "Disclaimer"
+msgid "Channels"
 msgstr ""
-
-msgid "Footer"
-msgstr "ግርጌ ማስታወሻ"
-
-msgid "Upload"
-msgstr "ይጫኑ"
-
-msgid "Download"
-msgstr "አውርድ "
-
-msgid "Language:"
-msgstr "ቋንቋ"
-
-msgid "Add custom text"
-msgstr "የተበጀ ጽሑፍ ጨምር"
-
-msgid "Custom text"
-msgstr "የተበጀ ጽሑፍ"
-
-msgid "Original text"
-msgstr "ምንጭ ጸሑፍ"
-
-msgid "Original translation"
-msgstr "ምንጭ ትርጉም"
-
-msgid "Custom translation"
-msgstr "ብጁ ትርጉም"
-
-msgid "Contexts"
-msgstr "አገባበ ነገር"
 
 msgid "Hidden"
 msgstr "የተደበቀ"
+
+msgid "Description"
+msgstr "ገለጻ "
 
 msgid "Questionnaire"
 msgstr "መጠይቅ"
@@ -693,6 +561,9 @@ msgstr "ተቀባዮች"
 
 msgid "days"
 msgstr "ቀናት"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "ይህንን ባህርይ ለማቦዘን ዋጋውን 0 ያድርጉ"
 
 msgid "Show the questionnaire navigation interface"
 msgstr "የመጠይቅ ዳሰሳ በይነ ገጽ አሳይ"
@@ -792,6 +663,9 @@ msgstr "የግል ቁልፍ"
 
 msgid "Certificate Signing Request"
 msgstr "ሰርቲፊኬት የመፈረም ጥያቄ"
+
+msgid "Download"
+msgstr "አውርድ "
 
 msgid "Certificate"
 msgstr "ሰርቲፊኬት"
@@ -1007,14 +881,137 @@ msgstr "አባዛ"
 msgid "Steps"
 msgstr "ደረጃዎች"
 
-msgid "Site settings"
-msgstr "የድረ ገጽ ቅንብር"
+msgid "Logo"
+msgstr " ምልክት"
+
+msgid "Project name"
+msgstr "የፕሮጀክት ስም"
+
+msgid "Homepage title"
+msgstr "የመነሻ ገጽ ርዕስ"
+
+msgid "Presentation"
+msgstr "አቀራረብ"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "መረጃ ሊሰጡ ለሚችሉ አካላት ጥያቄዎች"
+
+msgid "Whistleblowing button"
+msgstr "የመረጃ መስጫ አዝራር"
+
+msgid "Disclaimer"
+msgstr ""
+
+msgid "Footer"
+msgstr "ግርጌ ማስታወሻ"
+
+msgid "Upload"
+msgstr "ይጫኑ"
+
+msgid "Language:"
+msgstr "ቋንቋ"
+
+msgid "Add custom text"
+msgstr "የተበጀ ጽሑፍ ጨምር"
+
+msgid "Custom text"
+msgstr "የተበጀ ጽሑፍ"
+
+msgid "Original text"
+msgstr "ምንጭ ጸሑፍ"
+
+msgid "Original translation"
+msgstr "ምንጭ ትርጉም"
+
+msgid "Custom translation"
+msgstr "ብጁ ትርጉም"
+
+msgid "Disable submissions"
+msgstr "ማስረከብን ያቦዝኑ"
+
+msgid "Enable encryption"
+msgstr "ማመስጠርን ያንቁ"
+
+msgid "Enable administrators to change user passwords"
+msgstr "አስተዳዳሪዎቹን የተጠቃሚ የይለፍ ቃልን እንዲቀይሩ ያንቁ"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "አስተዳዳሪዎች የተጠቃሚ የይለፍ ቃሎችን እንዲቀይሩ ተፈቅዷል"
+
+msgid "Enable multisite feature"
+msgstr "የሕብረ ድረገጽ ባህርይ ያንቁ"
+
+msgid "Enable simplified login"
+msgstr ""
+
+msgid "Enable search engines indexing"
+msgstr "የፍለጋ ግርግም ማውጫ ያንቁ"
+
+msgid "Default questionnaire"
+msgstr "ነባሪ መጠይቅ"
+
+msgid "Show contexts in alphabetical order"
+msgstr "አገባበ ነገሮችን በፊደል ተራ ያሳዩ"
+
+msgid "Size limit for file attachments"
+msgstr "ለፋይል አባሪዎች የመጠን ገደብ"
+
+msgid "Require two factor authentication"
+msgstr "ባለ ሁለት ደረጃ ማረጋገጫ ይጠይቁ"
+
+msgid "Password change interval"
+msgstr "የይለፍ ቃል መቀየርያ ወቅት"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "ለድህንነት ሲባል በየተወሰነ ጊዜ ውስጥ የይለፍ ቃል መቀየር ያስፈልጋል፡፡"
+
+msgid "Number of days till notifying unread reports to users"
+msgstr ""
+
+msgid "Disable the privacy panel"
+msgstr "የግላዊነት ፓነሉን ያቦዝኑ"
+
+msgid "Enable custom privacy panel"
+msgstr "ብጁ የግላዊነት ፓነል ያዘጋጁ"
+
+msgid "Custom privacy panel"
+msgstr "ብጁ የግል መረጃ ጥበቃ"
+
+msgid "Enable custodian user role"
+msgstr "የሞግዚት ተጠቃሚ ሚናን ያንቁ"
+
+msgid "Enable scoring system"
+msgstr "የውጤት ስርኣት ያንቁ"
+
+msgid "Logging level"
+msgstr "የመግባት ደረጃ"
+
+msgid "Log accesses of internal users"
+msgstr "የውስጥ ተጠቃሚዎች የመግባት መዳረሻዎች"
+
+msgid "Notify administrators of software problems"
+msgstr "አስተዳዳሪዎችን የሶፍትዌር ችግሮች ያሳውቁ"
+
+msgid "Notify developers of software problems"
+msgstr "ገንቢዎችን የሶፍትዌር ችግሮችን ያሳውቁ"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "ይህንን ባህርይ በማንቃት ለመሳርያ ስርኣቱ ግንባታ እ\nደህንነት አስተዋጽኦ ያበረክታሉ"
+
+msgid "Reset reports"
+msgstr "ሪፖርቶችን ዳግም ያስጀምሩ"
+
+msgid "Settings"
+msgstr "ቅንብሮችን"
 
 msgid "Case management"
 msgstr "ጉዳይ አስተዳደር"
 
-msgid "Network settings"
-msgstr "አውታረ መረብ ቅንብር"
+msgid "Network"
+msgstr ""
 
 msgid "Sites"
 msgstr "ድረገጾች"
@@ -1056,10 +1053,10 @@ msgid "Set password"
 msgstr "የይለፍ ቃል ያዘጋጁ"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "የተመረጠው የይለፍ ቃል በጣም ደካማ ነው፡፡ ተቀባይነት ያለው የይለፍ ቃል ቢያንስ\n10 ቁምፊ እርዝመት እንዲኖረው እና የተለያዩ ቁምፊዎችን\nትንሹን እና ትልቁን የእንግሊዝኛ ፊደላት፣ ቁጥር እና አንድ ልዩ ቁምፊ መያዝ አለበት፡፡"
+msgstr "የተመረጠው የይለፍ ቃል በጣም ደካማ ነው፡፡ ተቀባይነት ያለው የይለፍ ቃል ቢያንስ 12 ቁምፊ እርዝመት እንዲኖረው እና የተለያዩ ቁምፊዎችን ትንሹን እና ትልቁን የእንግሊዝኛ ፊደላት፣ ቁጥር እና አንድ ልዩ ቁምፊ መያዝ አለበት፡፡"
 
 msgid "Force password change"
 msgstr "የይለፍ ቃል ለውጥ አስገድድ"

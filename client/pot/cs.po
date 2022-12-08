@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Jiří Skryja, 2022\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2022\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -30,9 +30,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Přihlášení"
 
-msgid "Main configuration"
-msgstr "Hlavní konfigurace"
-
 msgid "Theme customization"
 msgstr "Úprava tématu"
 
@@ -42,8 +39,8 @@ msgstr "Jazyky"
 msgid "Text customization"
 msgstr "Přizpůsobení textů"
 
-msgid "Advanced settings"
-msgstr "Rozšířené nastavení"
+msgid "Advanced"
+msgstr "Rozšířené"
 
 msgid "Question templates"
 msgstr "Šablony dotazů"
@@ -63,8 +60,8 @@ msgstr "Přehled změn"
 msgid "License"
 msgstr "Licence"
 
-msgid "Notification templates"
-msgstr "Šablony notifikací"
+msgid "Templates"
+msgstr "Šablony"
 
 msgid "Delete"
 msgstr "Smazat"
@@ -75,8 +72,8 @@ msgstr "Anomálie"
 msgid "Preferences"
 msgstr "Nastavení"
 
-msgid "Notification settings"
-msgstr "Nastavení notifikací"
+msgid "Notifications"
+msgstr "Oznámení"
 
 msgid "file unavailable"
 msgstr "Soubor nedostupný"
@@ -126,8 +123,8 @@ msgstr "Odznačit vše"
 msgid "Refresh"
 msgstr "Obnovit"
 
-msgid "Context"
-msgstr "Kontext"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "Náhled"
@@ -261,9 +258,6 @@ msgstr "Zamítnout přístup k identitě oznamovatelů"
 msgid "Authorize access to the whistleblower's identity"
 msgstr "Povolit přístup k identitě oznamovatelů"
 
-msgid "Templates"
-msgstr "Šablony"
-
 msgid "URL redirects"
 msgstr "přesměrování URL"
 
@@ -303,8 +297,8 @@ msgstr "Akceptovatelný"
 msgid "Strong"
 msgstr "Silný"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Text zobrazený na vrchu rozhraní pro výběr kontextů"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "Tiché emailové notifikace"
@@ -367,9 +361,6 @@ msgstr "Maximální velikost souboru je:"
 
 msgid "Scheduled jobs"
 msgstr "Plánované úlohy"
-
-msgid "Sites management"
-msgstr "Správa stránek"
 
 msgid "Regenerate"
 msgstr "Obnovit"
@@ -478,6 +469,12 @@ msgstr "Poskytnout přístup"
 msgid "Revoke access"
 msgstr "Odvolat přístup"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "Podat oznámení"
 
@@ -493,101 +490,20 @@ msgstr "Před pokračováním povolte dvoufaktorové ověření."
 msgid "Enable"
 msgstr "Povoleno"
 
-msgid "Disable submissions"
-msgstr "Zakázat podání oznámení"
-
-msgid "Enable encryption"
-msgstr "Povolit šifrování"
-
-msgid "Enable administrators to change user passwords"
-msgstr "Umožněte správcům měnit hesla uživatelů"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Správci mají oprávnění ke změně uživatelských hesel:"
-
-msgid "Enable multisite feature"
-msgstr "Povolit funkci multisite "
-
-msgid "Enable simplified login"
-msgstr "Povolit zjednodušené přihlášení"
-
-msgid "Enable search engines indexing"
-msgstr "Povolit vyhledávačům indexování."
-
-msgid "Default questionnaire"
-msgstr "Výchozí dotazník"
-
-msgid "Show contexts in alphabetical order"
-msgstr "Ukázat kontexty v abecedním pořadí"
-
-msgid "Size limit for file attachments"
-msgstr "Limit velikosti pro přílohy"
-
-msgid "megabytes"
-msgstr "MB"
-
-msgid "Require two factor authentication"
-msgstr "Vyžaduje dvoufaktorové ověření"
-
-msgid "Password change interval"
-msgstr "Interval změny hesla"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Z bezpečnostních důvodů jsou v pravidelných intervalech vyžadovány změny hesla."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Nastavte hodnotu na 0, chcete-li tuto funkci zakázat."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Počet dní do oznámení nepřečtených zpráv uživatelům"
-
-msgid "Disable the privacy panel"
-msgstr "Zakázat panel o ochraně osobních údajů."
-
-msgid "Enable custom privacy panel"
-msgstr "Povolit vlastní panel soukromí"
-
-msgid "Custom privacy panel"
-msgstr "Vlastní panel soukromí"
-
-msgid "Enable custodian user role"
-msgstr "Povolit roli depozitáře"
-
-msgid "Enable scoring system"
-msgstr "Aktivovat systém hodnocení"
-
-msgid "Logging level"
-msgstr "Přihlašovací úroveň"
-
-msgid "Log accesses of internal users"
-msgstr "Přístupy interních uživatelů"
-
-msgid "Notify administrators of software problems"
-msgstr "Notifikovat administrátory o problémech se softwarem"
-
-msgid "Notify developers of software problems"
-msgstr "Notifikovat vývojáře ohledně problémů se softwarem"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Povolením této volby budete přispívat k vývoji a zabezpečení této platformy."
-
-msgid "Save"
-msgstr "Uložit"
-
-msgid "Reset reports"
-msgstr "Resetujte podání oznámení"
-
 msgid "Low"
 msgstr "Nízký"
 
 msgid "High"
 msgstr "Vysoká"
 
+msgid "megabytes"
+msgstr "MB"
+
 msgid "percentage"
 msgstr "procenta"
+
+msgid "Save"
+msgstr "Uložit"
 
 msgid "Type"
 msgstr "Typ"
@@ -640,62 +556,14 @@ msgstr "Zrušit"
 msgid "Report statuses"
 msgstr "Stav oznámení"
 
-msgid "Logo"
-msgstr "Logo"
-
-msgid "Project name"
-msgstr "Jméno iniciativy"
-
-msgid "Description"
-msgstr "Popis"
-
-msgid "Homepage title"
-msgstr "Název domovské stránky"
-
-msgid "Presentation"
-msgstr "Prezentace"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Otázky pro získávání možných oznamovatelů"
-
-msgid "Whistleblowing button"
-msgstr "Tlačítko zapískání oznamovatele."
-
-msgid "Disclaimer"
-msgstr "Odmítnutí odpovědnosti"
-
-msgid "Footer"
-msgstr "Patička"
-
-msgid "Upload"
-msgstr "Načíst"
-
-msgid "Download"
-msgstr "Stáhnout"
-
-msgid "Language:"
-msgstr "Jazyk:"
-
-msgid "Add custom text"
-msgstr "Přidat vlastní text"
-
-msgid "Custom text"
-msgstr "Vlastní text"
-
-msgid "Original text"
-msgstr "Originální text"
-
-msgid "Original translation"
-msgstr "Originální překlad"
-
-msgid "Custom translation"
-msgstr "Vlastní překlad"
-
-msgid "Contexts"
-msgstr "Kontexty"
+msgid "Channels"
+msgstr ""
 
 msgid "Hidden"
 msgstr "Skrytý"
+
+msgid "Description"
+msgstr "Popis"
 
 msgid "Questionnaire"
 msgstr "Dotazník"
@@ -705,6 +573,9 @@ msgstr "Příjemci"
 
 msgid "days"
 msgstr "dnů"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Nastavte hodnotu na 0, chcete-li tuto funkci zakázat."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Zobrazit navigační rozhraní dotazníku"
@@ -804,6 +675,9 @@ msgstr "Privátní klíč"
 
 msgid "Certificate Signing Request"
 msgstr "Požadavek na podpis certifikátu"
+
+msgid "Download"
+msgstr "Stáhnout"
 
 msgid "Certificate"
 msgstr "Certifikát"
@@ -1019,14 +893,137 @@ msgstr "Duplikovat"
 msgid "Steps"
 msgstr "Kroky"
 
-msgid "Site settings"
-msgstr "Nastavení stránky"
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Project name"
+msgstr "Jméno iniciativy"
+
+msgid "Homepage title"
+msgstr "Název domovské stránky"
+
+msgid "Presentation"
+msgstr "Prezentace"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Otázky pro získávání možných oznamovatelů"
+
+msgid "Whistleblowing button"
+msgstr "Tlačítko zapískání oznamovatele."
+
+msgid "Disclaimer"
+msgstr "Odmítnutí odpovědnosti"
+
+msgid "Footer"
+msgstr "Patička"
+
+msgid "Upload"
+msgstr "Načíst"
+
+msgid "Language:"
+msgstr "Jazyk:"
+
+msgid "Add custom text"
+msgstr "Přidat vlastní text"
+
+msgid "Custom text"
+msgstr "Vlastní text"
+
+msgid "Original text"
+msgstr "Originální text"
+
+msgid "Original translation"
+msgstr "Originální překlad"
+
+msgid "Custom translation"
+msgstr "Vlastní překlad"
+
+msgid "Disable submissions"
+msgstr "Zakázat podání oznámení"
+
+msgid "Enable encryption"
+msgstr "Povolit šifrování"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Umožněte správcům měnit hesla uživatelů"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Správci mají oprávnění ke změně uživatelských hesel:"
+
+msgid "Enable multisite feature"
+msgstr "Povolit funkci multisite "
+
+msgid "Enable simplified login"
+msgstr "Povolit zjednodušené přihlášení"
+
+msgid "Enable search engines indexing"
+msgstr "Povolit vyhledávačům indexování."
+
+msgid "Default questionnaire"
+msgstr "Výchozí dotazník"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Ukázat kontexty v abecedním pořadí"
+
+msgid "Size limit for file attachments"
+msgstr "Limit velikosti pro přílohy"
+
+msgid "Require two factor authentication"
+msgstr "Vyžaduje dvoufaktorové ověření"
+
+msgid "Password change interval"
+msgstr "Interval změny hesla"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Z bezpečnostních důvodů jsou v pravidelných intervalech vyžadovány změny hesla."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Počet dní do oznámení nepřečtených zpráv uživatelům"
+
+msgid "Disable the privacy panel"
+msgstr "Zakázat panel o ochraně osobních údajů."
+
+msgid "Enable custom privacy panel"
+msgstr "Povolit vlastní panel soukromí"
+
+msgid "Custom privacy panel"
+msgstr "Vlastní panel soukromí"
+
+msgid "Enable custodian user role"
+msgstr "Povolit roli depozitáře"
+
+msgid "Enable scoring system"
+msgstr "Aktivovat systém hodnocení"
+
+msgid "Logging level"
+msgstr "Přihlašovací úroveň"
+
+msgid "Log accesses of internal users"
+msgstr "Přístupy interních uživatelů"
+
+msgid "Notify administrators of software problems"
+msgstr "Notifikovat administrátory o problémech se softwarem"
+
+msgid "Notify developers of software problems"
+msgstr "Notifikovat vývojáře ohledně problémů se softwarem"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Povolením této volby budete přispívat k vývoji a zabezpečení této platformy."
+
+msgid "Reset reports"
+msgstr "Resetujte podání oznámení"
+
+msgid "Settings"
+msgstr "Nastavení"
 
 msgid "Case management"
 msgstr "Správa oznámení"
 
-msgid "Network settings"
-msgstr "Nastavení sítě"
+msgid "Network"
+msgstr "Síť"
 
 msgid "Sites"
 msgstr "Stránky"
@@ -1068,10 +1065,10 @@ msgid "Set password"
 msgstr "Nastavit heslo"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Zvolené heslo je příliš slabé. Heslo by mělo mít alespoň 10 znaků a mělo by obsahovat malé písmeno, velké písmeno, číslo a zvláštní znak."
+msgstr "Zvolené heslo je příliš slabé. Heslo by mělo mít alespoň 12 znaků a mělo by obsahovat malé písmeno, velké písmeno, číslo a zvláštní znak."
 
 msgid "Force password change"
 msgstr "Vynutit změnu hesla"

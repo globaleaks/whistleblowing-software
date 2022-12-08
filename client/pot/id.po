@@ -42,9 +42,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Masuk"
 
-msgid "Main configuration"
-msgstr "Konfigurasi utama"
-
 msgid "Theme customization"
 msgstr "Kustomisasi tema"
 
@@ -54,8 +51,8 @@ msgstr "Bahasa"
 msgid "Text customization"
 msgstr "Kustomisasi teks"
 
-msgid "Advanced settings"
-msgstr "Pengaturan lanjutan"
+msgid "Advanced"
+msgstr "Mahir"
 
 msgid "Question templates"
 msgstr "Format pertanyaan"
@@ -75,8 +72,8 @@ msgstr "Catatan Perubahan "
 msgid "License"
 msgstr "Lisensi"
 
-msgid "Notification templates"
-msgstr "Format notifikasi"
+msgid "Templates"
+msgstr "Format "
 
 msgid "Delete"
 msgstr "Hapus"
@@ -87,8 +84,8 @@ msgstr "Anomali"
 msgid "Preferences"
 msgstr "Preferensi"
 
-msgid "Notification settings"
-msgstr "Pengaturan notifikasi"
+msgid "Notifications"
+msgstr "Notifikasi"
 
 msgid "file unavailable"
 msgstr "file tidak tersedia"
@@ -138,8 +135,8 @@ msgstr "Batal memilih semua"
 msgid "Refresh"
 msgstr "Perbarui"
 
-msgid "Context"
-msgstr "Konteks"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "Tinjauan"
@@ -273,9 +270,6 @@ msgstr "Tolak akses ke identitas informan publik "
 msgid "Authorize access to the whistleblower's identity"
 msgstr "Izinkan akses ke identitas informan publik "
 
-msgid "Templates"
-msgstr "Format "
-
 msgid "URL redirects"
 msgstr "Pengalihan URL"
 
@@ -315,8 +309,8 @@ msgstr "Sedang"
 msgid "Strong"
 msgstr "Kuat"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Teks yang ditampilkan di atas antarmuka untuk memilih konteks "
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "Senyapkan notifikasi surel"
@@ -379,9 +373,6 @@ msgstr "Ukuran berkas maksimal adalah: "
 
 msgid "Scheduled jobs"
 msgstr "Pekerjaan terjadwal"
-
-msgid "Sites management"
-msgstr "Pengelolaan situs"
 
 msgid "Regenerate"
 msgstr "Buat ulang"
@@ -490,6 +481,12 @@ msgstr "Memberikan akses"
 msgid "Revoke access"
 msgstr "Mencabut akses"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "Buat laporan"
 
@@ -505,101 +502,20 @@ msgstr "Sebelum melanjutkan, silakan aktifkan autentikasi dua faktor."
 msgid "Enable"
 msgstr "Aktifkan"
 
-msgid "Disable submissions"
-msgstr "Menonaktifkan kiriman"
-
-msgid "Enable encryption"
-msgstr "Aktifkan enkripsi"
-
-msgid "Enable administrators to change user passwords"
-msgstr "Aktifkan administrator untuk mengubah kata sandi pengguna"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Administrator mengizinkan untuk mengganti kata sandi pengguna:"
-
-msgid "Enable multisite feature"
-msgstr "Aktifkan fitur multisitus"
-
-msgid "Enable simplified login"
-msgstr "Aktifkan metode masuk yang mudah"
-
-msgid "Enable search engines indexing"
-msgstr "Aktifkan pengindeksan mesin pencari"
-
-msgid "Default questionnaire"
-msgstr "Kuesioner bawaan "
-
-msgid "Show contexts in alphabetical order"
-msgstr "Memperlihatkan konteks dalam urutan abjad "
-
-msgid "Size limit for file attachments"
-msgstr "Batasan ukuran untuk berkas lampiran "
-
-msgid "megabytes"
-msgstr "megabita"
-
-msgid "Require two factor authentication"
-msgstr "Autentikasi dua faktor dibutuhkan"
-
-msgid "Password change interval"
-msgstr "Interval perubahan kata sandi"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Untuk alasan keamanan, Anda disarankan mengubah kata sandi secara berkala"
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Atur nilai ke 0 untuk menonaktifkan fitur ini "
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Jumlah hari hingga memberitahukan laporan yang belum dibaca pada pengguna"
-
-msgid "Disable the privacy panel"
-msgstr "Menonaktifkan panel privasi"
-
-msgid "Enable custom privacy panel"
-msgstr "Aktifkan panel privasi kustom"
-
-msgid "Custom privacy panel"
-msgstr "Panel privasi kustom"
-
-msgid "Enable custodian user role"
-msgstr "Aktifkan peran pihak penjaga"
-
-msgid "Enable scoring system"
-msgstr "Aktifkan sistem skor"
-
-msgid "Logging level"
-msgstr "Tingkat pencatatan"
-
-msgid "Log accesses of internal users"
-msgstr "Akses catatan pengguna internal"
-
-msgid "Notify administrators of software problems"
-msgstr "Memberi tahu administrator tentang masalah perangkat lunak "
-
-msgid "Notify developers of software problems"
-msgstr "Memberi tahu pengembang tentang masalah perangkat lunak "
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Dengan mengaktifkan fitur ini, Anda akan berkontribusi untuk pengembangan dan keamanan dari format tersebut "
-
-msgid "Save"
-msgstr "Simpan"
-
-msgid "Reset reports"
-msgstr "Atur ulang laporan"
-
 msgid "Low"
 msgstr "Bawah"
 
 msgid "High"
 msgstr "Tinggi"
 
+msgid "megabytes"
+msgstr "megabita"
+
 msgid "percentage"
 msgstr "persentase"
+
+msgid "Save"
+msgstr "Simpan"
 
 msgid "Type"
 msgstr "Tipe"
@@ -652,62 +568,14 @@ msgstr "Batal"
 msgid "Report statuses"
 msgstr "Status laporan"
 
-msgid "Logo"
-msgstr "Logo"
-
-msgid "Project name"
-msgstr "Judul Proyek"
-
-msgid "Description"
-msgstr "Deskripsi"
-
-msgid "Homepage title"
-msgstr "Judul laman utama"
-
-msgid "Presentation"
-msgstr "Presentasi"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Pertanyaan untuk mengumpulkan kemungkinan informan publik"
-
-msgid "Whistleblowing button"
-msgstr "Tombol laporan informasi publik"
-
-msgid "Disclaimer"
-msgstr "Penafian"
-
-msgid "Footer"
-msgstr "Catatan kaki"
-
-msgid "Upload"
-msgstr "Unggah"
-
-msgid "Download"
-msgstr "Unduh"
-
-msgid "Language:"
-msgstr "Bahasa:"
-
-msgid "Add custom text"
-msgstr "Tambahkan teks kustom"
-
-msgid "Custom text"
-msgstr "Teks kustom"
-
-msgid "Original text"
-msgstr "Teks asli"
-
-msgid "Original translation"
-msgstr "Terjemahan asli"
-
-msgid "Custom translation"
-msgstr "Terjemahan kustom"
-
-msgid "Contexts"
-msgstr "Konteks"
+msgid "Channels"
+msgstr ""
 
 msgid "Hidden"
 msgstr "Tersembunyi"
+
+msgid "Description"
+msgstr "Deskripsi"
 
 msgid "Questionnaire"
 msgstr "Kuesioner"
@@ -717,6 +585,9 @@ msgstr "Penerima"
 
 msgid "days"
 msgstr "hari"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Atur nilai ke 0 untuk menonaktifkan fitur ini "
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Tampilkan antarmuka navigasi kuesioner"
@@ -816,6 +687,9 @@ msgstr "Kunci Pribadi "
 
 msgid "Certificate Signing Request"
 msgstr "Permintaan Penandatanganan Sertifikat"
+
+msgid "Download"
+msgstr "Unduh"
 
 msgid "Certificate"
 msgstr "Sertifikat"
@@ -1031,14 +905,137 @@ msgstr "Menggandakan"
 msgid "Steps"
 msgstr "Langkah"
 
-msgid "Site settings"
-msgstr "Pengaturan situs "
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Project name"
+msgstr "Judul Proyek"
+
+msgid "Homepage title"
+msgstr "Judul laman utama"
+
+msgid "Presentation"
+msgstr "Presentasi"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Pertanyaan untuk mengumpulkan kemungkinan informan publik"
+
+msgid "Whistleblowing button"
+msgstr "Tombol laporan informasi publik"
+
+msgid "Disclaimer"
+msgstr "Penafian"
+
+msgid "Footer"
+msgstr "Catatan kaki"
+
+msgid "Upload"
+msgstr "Unggah"
+
+msgid "Language:"
+msgstr "Bahasa:"
+
+msgid "Add custom text"
+msgstr "Tambahkan teks kustom"
+
+msgid "Custom text"
+msgstr "Teks kustom"
+
+msgid "Original text"
+msgstr "Teks asli"
+
+msgid "Original translation"
+msgstr "Terjemahan asli"
+
+msgid "Custom translation"
+msgstr "Terjemahan kustom"
+
+msgid "Disable submissions"
+msgstr "Menonaktifkan kiriman"
+
+msgid "Enable encryption"
+msgstr "Aktifkan enkripsi"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Aktifkan administrator untuk mengubah kata sandi pengguna"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Administrator mengizinkan untuk mengganti kata sandi pengguna:"
+
+msgid "Enable multisite feature"
+msgstr "Aktifkan fitur multisitus"
+
+msgid "Enable simplified login"
+msgstr "Aktifkan metode masuk yang mudah"
+
+msgid "Enable search engines indexing"
+msgstr "Aktifkan pengindeksan mesin pencari"
+
+msgid "Default questionnaire"
+msgstr "Kuesioner bawaan "
+
+msgid "Show contexts in alphabetical order"
+msgstr "Memperlihatkan konteks dalam urutan abjad "
+
+msgid "Size limit for file attachments"
+msgstr "Batasan ukuran untuk berkas lampiran "
+
+msgid "Require two factor authentication"
+msgstr "Autentikasi dua faktor dibutuhkan"
+
+msgid "Password change interval"
+msgstr "Interval perubahan kata sandi"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Untuk alasan keamanan, Anda disarankan mengubah kata sandi secara berkala"
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Jumlah hari hingga memberitahukan laporan yang belum dibaca pada pengguna"
+
+msgid "Disable the privacy panel"
+msgstr "Menonaktifkan panel privasi"
+
+msgid "Enable custom privacy panel"
+msgstr "Aktifkan panel privasi kustom"
+
+msgid "Custom privacy panel"
+msgstr "Panel privasi kustom"
+
+msgid "Enable custodian user role"
+msgstr "Aktifkan peran pihak penjaga"
+
+msgid "Enable scoring system"
+msgstr "Aktifkan sistem skor"
+
+msgid "Logging level"
+msgstr "Tingkat pencatatan"
+
+msgid "Log accesses of internal users"
+msgstr "Akses catatan pengguna internal"
+
+msgid "Notify administrators of software problems"
+msgstr "Memberi tahu administrator tentang masalah perangkat lunak "
+
+msgid "Notify developers of software problems"
+msgstr "Memberi tahu pengembang tentang masalah perangkat lunak "
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Dengan mengaktifkan fitur ini, Anda akan berkontribusi untuk pengembangan dan keamanan dari format tersebut "
+
+msgid "Reset reports"
+msgstr "Atur ulang laporan"
+
+msgid "Settings"
+msgstr "Setelan"
 
 msgid "Case management"
 msgstr "Penanganan kasus"
 
-msgid "Network settings"
-msgstr "Pengaturan jaringan"
+msgid "Network"
+msgstr "Jaringan"
 
 msgid "Sites"
 msgstr "Situs"
@@ -1080,10 +1077,10 @@ msgid "Set password"
 msgstr "Atur kata sandi"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Kata sandi yang dipilih terlalu lemah. Kata sandi yang valid paling tidak harus berdasarkan 10 karakter dan mengandung beberapa variasi karakter yang meliputi paling tidak satu karakter huruf kecil, satu huruf kapital, satu angka, dan satu karakter spesial."
+msgstr "Kata sandi yang dipilih terlalu lemah. Kata sandi yang valid paling tidak harus berdasarkan 12 karakter dan mengandung beberapa variasi karakter yang meliputi paling tidak satu karakter huruf kecil, satu huruf kapital, satu angka, dan satu karakter spesial."
 
 msgid "Force password change"
 msgstr "Memaksa penggantian kata sandi"

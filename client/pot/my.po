@@ -18,9 +18,6 @@ msgstr ""
 msgid "Log in"
 msgstr "လော့အင်ဝင်ရန်"
 
-msgid "Main configuration"
-msgstr "အဓိက အစိတ်အပိုင်းများဖွဲ့စည်းပုံ"
-
 msgid "Theme customization"
 msgstr "ဒီဇိုင်းပုံစံပြား ဖန်တီးပြုပြင်ခြင်း"
 
@@ -30,8 +27,8 @@ msgstr "ဘာသာစကားများ"
 msgid "Text customization"
 msgstr "စာသား ဖန်တီးပြုပြင်ခြင်း"
 
-msgid "Advanced settings"
-msgstr "အဆင့်မြင့်သော ဆက်တင်များ"
+msgid "Advanced"
+msgstr "အဆင့်မြင့်"
 
 msgid "Question templates"
 msgstr "မေးခွန်း ပုံစံပြားများ"
@@ -51,8 +48,8 @@ msgstr "အပြောင်းအလဲစာရင်း"
 msgid "License"
 msgstr "လိုင်စင်"
 
-msgid "Notification templates"
-msgstr "အသိပေးချက် ပုံစံပြားများ"
+msgid "Templates"
+msgstr "ပုံစံပြားများ"
 
 msgid "Delete"
 msgstr "ဖျက်မည်"
@@ -63,8 +60,8 @@ msgstr "မူမမှန်မှုများ"
 msgid "Preferences"
 msgstr "အလေးပေး ရွေးချယ်မှု"
 
-msgid "Notification settings"
-msgstr "အသိပေးချက် ဆက်တင်များ"
+msgid "Notifications"
+msgstr "အသိပေးချက်များ"
 
 msgid "file unavailable"
 msgstr "ဖိုင် မရရှိနိုင်ပါ"
@@ -114,8 +111,8 @@ msgstr "အားလုံးကို မရွေးချယ်ပါ"
 msgid "Refresh"
 msgstr "ရီဖရက်ရှ်လုပ်ရန်"
 
-msgid "Context"
-msgstr "အကြောင်းအရာ"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "အစမ်းကြည့်ရှုခြင်း"
@@ -249,9 +246,6 @@ msgstr "သတင်းပေးသူ၏ ကိုယ်ပိုင်အမ�
 msgid "Authorize access to the whistleblower's identity"
 msgstr "သတင်းပေးသူ၏ ကိုယ်ပိုင်အမှတ်သင်္ကေတကို အသုံးပြုရန် ခွင့်ပြုမည်"
 
-msgid "Templates"
-msgstr "ပုံစံပြားများ"
-
 msgid "URL redirects"
 msgstr "URL ဦးတည်ရာပြောင်းမှုများ"
 
@@ -291,8 +285,8 @@ msgstr "လက်ခံနိုင်"
 msgid "Strong"
 msgstr "အားကောင်း"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "အကြောင်းအရာများ ရွေးချယ်ရန်အတွက် အသုံးပြုသူမြင်ရမည့်ပုံစံ ထိပ်ပိုင်းတွင် ပြသသည့် စာသား"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "အီးမေးလ် အသိပေးချက်များကို အသံတိတ်မည်"
@@ -355,9 +349,6 @@ msgstr "အကြီးဆုံး ဖိုင် အရွယ်အစား-
 
 msgid "Scheduled jobs"
 msgstr "စီစဉ်ထားသော အလုပ်များ"
-
-msgid "Sites management"
-msgstr "ဝက်ဘ်ဆိုက် စီမံခန့်ခွဲမှု"
 
 msgid "Regenerate"
 msgstr "ပြန်လည်ထုတ်လုပ်မည်"
@@ -466,6 +457,12 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "အစီရင်ခံစာ တင်ပါ"
 
@@ -481,101 +478,20 @@ msgstr "ဆက်မလုပ်မီ ကျေးဇူးပြု၍ အဆ�
 msgid "Enable"
 msgstr "ဖွင့်မည်"
 
-msgid "Disable submissions"
-msgstr "တင်သွင်းမှုများကို ပိတ်ပါ"
-
-msgid "Enable encryption"
-msgstr "ကုဒ်ဖြင့်ပြောင်းလဲမှု ဖွင့်ပါ"
-
-msgid "Enable administrators to change user passwords"
-msgstr "အုပ်ချုပ်ရေးမှူးများအား အသုံးပြုသူ စကားဝှက်များကို ပြောင်းလဲခွင့်ပြုပါ"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "အုပ်ချုပ်ရေးမှူးများအား အသုံးပြုသူ စကားဝှက်များကို ပြောင်းလဲခွင့်ပြုထားသည် - "
-
-msgid "Enable multisite feature"
-msgstr "ဝက်ဘ်ဆိုက်မျိုးစုံ လုပ်ဆောင်ချက်ကို ဖွင့်ပါ"
-
-msgid "Enable simplified login"
-msgstr "ရိုးရှင်းသော အကောင့်ဝင်မှုကို ဖွင့်ပါ"
-
-msgid "Enable search engines indexing"
-msgstr "ရှာဖွေရေးအင်ဂျင် အညွှန်းစီစဉ်ခြင်းကို ဖွင့်ပါ"
-
-msgid "Default questionnaire"
-msgstr "နဂိုမူလ မေးခွန်းလွှာ"
-
-msgid "Show contexts in alphabetical order"
-msgstr "အကြောင်းအရာများကို အက္ခရာစဉ်အတိုင်း ပြသပါ"
-
-msgid "Size limit for file attachments"
-msgstr "ပူးတွဲဖိုင်များအတွက် အရွယ်အစား ကန့်သတ်ချက်"
-
-msgid "megabytes"
-msgstr "မီဂါဘိုက်"
-
-msgid "Require two factor authentication"
-msgstr "အဆင့်နှစ်ဆင့်ဖြင့် စစ်မှန်ကြောင်းသက်သေပြခြင်းကို လိုအပ်သည်"
-
-msgid "Password change interval"
-msgstr "စကားဝှက် အပြောင်းအလဲ ကြားကာလ"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "လုံခြုံရေးအတွက် စကားဝှက် အပြောင်းအလဲများကို ပုံမှန် ကြားကာလများတွင် လိုအပ်သည်။"
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "ဤလုပ်ဆောင်ချက်ကို ပိတ်ရန် တန်ဖိုးကို 0 သတ်မှတ်ပါ။"
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "သုံးစွဲသူများအား မဖတ်ရသေးသော အစီရင်ခံစာများကို အကြောင်းမကြားမီ ရက်အရေအတွက်"
-
-msgid "Disable the privacy panel"
-msgstr "ကိုယ်ရေး အချက်အလက် မျက်နှာပြင်ကို ပိတ်ပါ"
-
-msgid "Enable custom privacy panel"
-msgstr "စိတ်ကြိုက် ကိုယ်ရေး အချက်အလက် မျက်နှာပြင်ကို ဖွင့်ပါ"
-
-msgid "Custom privacy panel"
-msgstr "စိတ်ကြိုက် ကိုယ်ရေး အချက်အလက် မျက်နှာပြင်"
-
-msgid "Enable custodian user role"
-msgstr "အုပ်ထိန်းသူအဖြစ် အသုံးပြုသူ အခန်းကဏ္ဍကို  ဖွင့်ပါ"
-
-msgid "Enable scoring system"
-msgstr "အမှတ်ပေးစနစ်ကို ဖွင့်ပါ"
-
-msgid "Logging level"
-msgstr "စာရင်းမှတ်ခြင်း အဆင့်"
-
-msgid "Log accesses of internal users"
-msgstr "အတွင်းပိုင်း အသုံးပြုသူများ၏ ဝင်ရောက်ခွင့် မှတ်တမ်း"
-
-msgid "Notify administrators of software problems"
-msgstr "ဆော့ဝဲ ပြဿနာများအတွက် အုပ်ချုပ်ရေးမှူးများကို အကြောင်းကြားပါ"
-
-msgid "Notify developers of software problems"
-msgstr "ဆော့ဝဲ ပြဿနာများအတွက် ဆော့ဝဲရေးသားသူများကို အကြောင်းကြားပါ"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "ဤလုပ်ဆောင်ချက်ကို ဖွင့်ထားခြင်းဖြင့် သင်သည် ပလက်ဖောင်း ဖွံ့ဖြိုးတိုးတက်ရေးနှင့် လုံခြုံရေးကို အထောက်အကူပြုပါမည်။"
-
-msgid "Save"
-msgstr "သိမ်းမည်"
-
-msgid "Reset reports"
-msgstr "အစီရင်ခံစာများ ပြန်လည်သတ်မှတ်မည်"
-
 msgid "Low"
 msgstr "နိမ့်"
 
 msgid "High"
 msgstr "မြင့်"
 
+msgid "megabytes"
+msgstr "မီဂါဘိုက်"
+
 msgid "percentage"
 msgstr "ရာခိုင်နှုန်း"
+
+msgid "Save"
+msgstr "သိမ်းမည်"
 
 msgid "Type"
 msgstr "အမျိုးအစား"
@@ -628,62 +544,14 @@ msgstr "ပယ်ဖျက်မည်"
 msgid "Report statuses"
 msgstr "အစီရင်ခံစာ အခြေအနေများ"
 
-msgid "Logo"
-msgstr "လိုဂို"
-
-msgid "Project name"
-msgstr "စီမံကိန်း အမည်"
-
-msgid "Description"
-msgstr "ဖော်ပြချက်"
-
-msgid "Homepage title"
-msgstr "ပင်မစာမျက်နှာ ခေါင်းစဉ်"
-
-msgid "Presentation"
-msgstr "တင်ပြချက်"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "ဖြစ်နိုင်ခြေရှိသော သတင်းပေးသူများကို မေးရန် မေးခွန်း"
-
-msgid "Whistleblowing button"
-msgstr "သတင်းပေး ခလုတ်"
-
-msgid "Disclaimer"
-msgstr "မသက်ဆိုင်ကြောင်းရှင်းလင်းချက်"
-
-msgid "Footer"
-msgstr "အောက်ခြေ စာသား"
-
-msgid "Upload"
-msgstr "အပ်လုဒ်လုပ်မည်"
-
-msgid "Download"
-msgstr "ဒေါင်းလုဒ်လုပ်မည်"
-
-msgid "Language:"
-msgstr "ဘာသာစကား - "
-
-msgid "Add custom text"
-msgstr "စိတ်ကြိုက်စာသား ထည့်ရန်"
-
-msgid "Custom text"
-msgstr "စိတ်ကြိုက်စာသား"
-
-msgid "Original text"
-msgstr "မူရင်းစာသား"
-
-msgid "Original translation"
-msgstr "မူရင်း ဘာသာပြန်ဆိုချက်"
-
-msgid "Custom translation"
-msgstr "စိတ်ကြိုက် ဘာသာပြန်ဆိုချက်"
-
-msgid "Contexts"
-msgstr "အကြောင်းအရာများ"
+msgid "Channels"
+msgstr ""
 
 msgid "Hidden"
 msgstr "ဝှက်ထားသည်"
+
+msgid "Description"
+msgstr "ဖော်ပြချက်"
 
 msgid "Questionnaire"
 msgstr "မေးခွန်းလွှာ"
@@ -693,6 +561,9 @@ msgstr "လက်ခံသူများ"
 
 msgid "days"
 msgstr "ရက်များ"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "ဤလုပ်ဆောင်ချက်ကို ပိတ်ရန် တန်ဖိုးကို 0 သတ်မှတ်ပါ။"
 
 msgid "Show the questionnaire navigation interface"
 msgstr "မေးခွန်းလွှာ လမ်းညွှန်မျက်နှာပြင်ကို ပြသပါ"
@@ -792,6 +663,9 @@ msgstr "သီးသန့် စကားဝှက်သော့"
 
 msgid "Certificate Signing Request"
 msgstr "အသိအမှတ်ပြုလက်မှတ်တွင် လက်မှတ်ထိုးရန် တောင်းဆိုမှု"
+
+msgid "Download"
+msgstr "ဒေါင်းလုဒ်လုပ်မည်"
 
 msgid "Certificate"
 msgstr "အသိအမှတ်ပြုလက်မှတ်"
@@ -1007,14 +881,137 @@ msgstr "ပွားသည်"
 msgid "Steps"
 msgstr "အဆင့်များ"
 
-msgid "Site settings"
-msgstr "ဝက်ဘ်ဆိုက် ဆက်တင်များ"
+msgid "Logo"
+msgstr "လိုဂို"
+
+msgid "Project name"
+msgstr "စီမံကိန်း အမည်"
+
+msgid "Homepage title"
+msgstr "ပင်မစာမျက်နှာ ခေါင်းစဉ်"
+
+msgid "Presentation"
+msgstr "တင်ပြချက်"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "ဖြစ်နိုင်ခြေရှိသော သတင်းပေးသူများကို မေးရန် မေးခွန်း"
+
+msgid "Whistleblowing button"
+msgstr "သတင်းပေး ခလုတ်"
+
+msgid "Disclaimer"
+msgstr "မသက်ဆိုင်ကြောင်းရှင်းလင်းချက်"
+
+msgid "Footer"
+msgstr "အောက်ခြေ စာသား"
+
+msgid "Upload"
+msgstr "အပ်လုဒ်လုပ်မည်"
+
+msgid "Language:"
+msgstr "ဘာသာစကား - "
+
+msgid "Add custom text"
+msgstr "စိတ်ကြိုက်စာသား ထည့်ရန်"
+
+msgid "Custom text"
+msgstr "စိတ်ကြိုက်စာသား"
+
+msgid "Original text"
+msgstr "မူရင်းစာသား"
+
+msgid "Original translation"
+msgstr "မူရင်း ဘာသာပြန်ဆိုချက်"
+
+msgid "Custom translation"
+msgstr "စိတ်ကြိုက် ဘာသာပြန်ဆိုချက်"
+
+msgid "Disable submissions"
+msgstr "တင်သွင်းမှုများကို ပိတ်ပါ"
+
+msgid "Enable encryption"
+msgstr "ကုဒ်ဖြင့်ပြောင်းလဲမှု ဖွင့်ပါ"
+
+msgid "Enable administrators to change user passwords"
+msgstr "အုပ်ချုပ်ရေးမှူးများအား အသုံးပြုသူ စကားဝှက်များကို ပြောင်းလဲခွင့်ပြုပါ"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "အုပ်ချုပ်ရေးမှူးများအား အသုံးပြုသူ စကားဝှက်များကို ပြောင်းလဲခွင့်ပြုထားသည် - "
+
+msgid "Enable multisite feature"
+msgstr "ဝက်ဘ်ဆိုက်မျိုးစုံ လုပ်ဆောင်ချက်ကို ဖွင့်ပါ"
+
+msgid "Enable simplified login"
+msgstr "ရိုးရှင်းသော အကောင့်ဝင်မှုကို ဖွင့်ပါ"
+
+msgid "Enable search engines indexing"
+msgstr "ရှာဖွေရေးအင်ဂျင် အညွှန်းစီစဉ်ခြင်းကို ဖွင့်ပါ"
+
+msgid "Default questionnaire"
+msgstr "နဂိုမူလ မေးခွန်းလွှာ"
+
+msgid "Show contexts in alphabetical order"
+msgstr "အကြောင်းအရာများကို အက္ခရာစဉ်အတိုင်း ပြသပါ"
+
+msgid "Size limit for file attachments"
+msgstr "ပူးတွဲဖိုင်များအတွက် အရွယ်အစား ကန့်သတ်ချက်"
+
+msgid "Require two factor authentication"
+msgstr "အဆင့်နှစ်ဆင့်ဖြင့် စစ်မှန်ကြောင်းသက်သေပြခြင်းကို လိုအပ်သည်"
+
+msgid "Password change interval"
+msgstr "စကားဝှက် အပြောင်းအလဲ ကြားကာလ"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "လုံခြုံရေးအတွက် စကားဝှက် အပြောင်းအလဲများကို ပုံမှန် ကြားကာလများတွင် လိုအပ်သည်။"
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "သုံးစွဲသူများအား မဖတ်ရသေးသော အစီရင်ခံစာများကို အကြောင်းမကြားမီ ရက်အရေအတွက်"
+
+msgid "Disable the privacy panel"
+msgstr "ကိုယ်ရေး အချက်အလက် မျက်နှာပြင်ကို ပိတ်ပါ"
+
+msgid "Enable custom privacy panel"
+msgstr "စိတ်ကြိုက် ကိုယ်ရေး အချက်အလက် မျက်နှာပြင်ကို ဖွင့်ပါ"
+
+msgid "Custom privacy panel"
+msgstr "စိတ်ကြိုက် ကိုယ်ရေး အချက်အလက် မျက်နှာပြင်"
+
+msgid "Enable custodian user role"
+msgstr "အုပ်ထိန်းသူအဖြစ် အသုံးပြုသူ အခန်းကဏ္ဍကို  ဖွင့်ပါ"
+
+msgid "Enable scoring system"
+msgstr "အမှတ်ပေးစနစ်ကို ဖွင့်ပါ"
+
+msgid "Logging level"
+msgstr "စာရင်းမှတ်ခြင်း အဆင့်"
+
+msgid "Log accesses of internal users"
+msgstr "အတွင်းပိုင်း အသုံးပြုသူများ၏ ဝင်ရောက်ခွင့် မှတ်တမ်း"
+
+msgid "Notify administrators of software problems"
+msgstr "ဆော့ဝဲ ပြဿနာများအတွက် အုပ်ချုပ်ရေးမှူးများကို အကြောင်းကြားပါ"
+
+msgid "Notify developers of software problems"
+msgstr "ဆော့ဝဲ ပြဿနာများအတွက် ဆော့ဝဲရေးသားသူများကို အကြောင်းကြားပါ"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "ဤလုပ်ဆောင်ချက်ကို ဖွင့်ထားခြင်းဖြင့် သင်သည် ပလက်ဖောင်း ဖွံ့ဖြိုးတိုးတက်ရေးနှင့် လုံခြုံရေးကို အထောက်အကူပြုပါမည်။"
+
+msgid "Reset reports"
+msgstr "အစီရင်ခံစာများ ပြန်လည်သတ်မှတ်မည်"
+
+msgid "Settings"
+msgstr "ဆက်တင်များ"
 
 msgid "Case management"
 msgstr "ကိစ္စရပ် စီမံခန့်ခွဲမှု"
 
-msgid "Network settings"
-msgstr "ကွန်ရက် ဆက်တင်များ"
+msgid "Network"
+msgstr "ကွန်ယက်"
 
 msgid "Sites"
 msgstr "ဝက်ဘ်ဆိုက်များ"
@@ -1056,10 +1053,10 @@ msgid "Set password"
 msgstr "စကားဝှက် သတ်မှတ်ပါ"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "ရွေးချယ်ထားသော စကားဝှက်သည် အလွန်အားနည်းနေသည်။ တရားဝင် စကားဝှက်သည် အနည်းဆုံး စာလုံးရေ 10 လုံးရှိသင့်ပြီး အနည်းဆုံး စာလုံးအသေး၊ စာလုံးအကြီး၊ နံပါတ်နှင့် အထူးအက္ခရာများ ပါဝင်သော အက္ခရာအမျိုးမျိုး ပါဝင်သင့်သည်။"
+msgstr "ရွေးချယ်ထားသော စကားဝှက်သည် အလွန်အားနည်းနေသည်။ တရားဝင် စကားဝှက်သည် အနည်းဆုံး စာလုံးရေ 12 လုံးရှိသင့်ပြီး အနည်းဆုံး စာလုံးအသေး၊ စာလုံးအကြီး၊ နံပါတ်နှင့် အထူးအက္ခရာများ ပါဝင်သော အက္ခရာအမျိုးမျိုး ပါဝင်သင့်သည်။"
 
 msgid "Force password change"
 msgstr "စကားဝှက်ကို အတင်းအကျပ် ပြောင်းလဲပါ"

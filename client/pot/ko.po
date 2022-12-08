@@ -18,9 +18,6 @@ msgstr ""
 msgid "Log in"
 msgstr "로그인"
 
-msgid "Main configuration"
-msgstr "홈페이지 구성"
-
 msgid "Theme customization"
 msgstr "테마 사용자 정의"
 
@@ -30,8 +27,8 @@ msgstr "언어"
 msgid "Text customization"
 msgstr "텍스트 사용자 정의"
 
-msgid "Advanced settings"
-msgstr "고급 설정"
+msgid "Advanced"
+msgstr "고급설정"
 
 msgid "Question templates"
 msgstr "질문 템플릿"
@@ -51,8 +48,8 @@ msgstr "업데이트 기록"
 msgid "License"
 msgstr "라이선스"
 
-msgid "Notification templates"
-msgstr "알림 템플릿"
+msgid "Templates"
+msgstr "템플릿"
 
 msgid "Delete"
 msgstr "삭제"
@@ -63,8 +60,8 @@ msgstr "이상"
 msgid "Preferences"
 msgstr "환경 설정"
 
-msgid "Notification settings"
-msgstr "알림 설정"
+msgid "Notifications"
+msgstr "알림"
 
 msgid "file unavailable"
 msgstr "사용할 수 없는 파일"
@@ -114,8 +111,8 @@ msgstr "모두 선택 해제"
 msgid "Refresh"
 msgstr "새로 고침"
 
-msgid "Context"
-msgstr "컨텍스트"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "미리 보기"
@@ -249,9 +246,6 @@ msgstr "내부 고발자 신원 액세스 거부"
 msgid "Authorize access to the whistleblower's identity"
 msgstr "내부 고발자 신원 액세스 부여"
 
-msgid "Templates"
-msgstr "템플릿"
-
 msgid "URL redirects"
 msgstr "URL 리디렉션"
 
@@ -291,8 +285,8 @@ msgstr "보통"
 msgid "Strong"
 msgstr "강함"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "컨텍스트를 선택할 수 있는 인터페이스 상단의 텍스트"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "무음 이메일 알림"
@@ -355,9 +349,6 @@ msgstr "최대 파일 크기:"
 
 msgid "Scheduled jobs"
 msgstr "예약된 작업"
-
-msgid "Sites management"
-msgstr "사이트 관리"
 
 msgid "Regenerate"
 msgstr "재생성"
@@ -466,6 +457,12 @@ msgstr ""
 msgid "Revoke access"
 msgstr "권한 무효화"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "보고서 보관"
 
@@ -481,101 +478,20 @@ msgstr "계속하기 전에 이중 요인 인증을 허용하십시오."
 msgid "Enable"
 msgstr "허용"
 
-msgid "Disable submissions"
-msgstr "제출 중단"
-
-msgid "Enable encryption"
-msgstr "암호화 허용"
-
-msgid "Enable administrators to change user passwords"
-msgstr "관리자가 사용자 비밀번호를 변경하도록 허용"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "사용자 비밀번호 변경 권한을 갖춘 관리자:"
-
-msgid "Enable multisite feature"
-msgstr "다중 사이트 기능 허용"
-
-msgid "Enable simplified login"
-msgstr "단순 로그인 허용"
-
-msgid "Enable search engines indexing"
-msgstr "검색 엔진 인덱싱을 사용하도록 허용"
-
-msgid "Default questionnaire"
-msgstr "기본 설문 조사"
-
-msgid "Show contexts in alphabetical order"
-msgstr "알파벳 순서로 컨텍스트 표시"
-
-msgid "Size limit for file attachments"
-msgstr "첨부 파일 크기 제한"
-
-msgid "megabytes"
-msgstr "메가바이트"
-
-msgid "Require two factor authentication"
-msgstr "이중 요인 인증 필요"
-
-msgid "Password change interval"
-msgstr "비밀번호 변경 주기"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "보안상의 이유로 주기적으로 비밀번호를 변경해야 합니다."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "값을 0으로 설정하여 기능을 중단하십시오."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "사용자에게 읽지 않은 보고서를 알릴 때까지의 일 수"
-
-msgid "Disable the privacy panel"
-msgstr "프라이버시 패널 사용 중단"
-
-msgid "Enable custom privacy panel"
-msgstr "사용자 정의 프라이버시 패널 허용"
-
-msgid "Custom privacy panel"
-msgstr "사용자 정의 프라이버시 패널"
-
-msgid "Enable custodian user role"
-msgstr "관리인 사용자 역할 허용"
-
-msgid "Enable scoring system"
-msgstr "채점 시스템 허용"
-
-msgid "Logging level"
-msgstr "기록 수준"
-
-msgid "Log accesses of internal users"
-msgstr "내부 사용자 액세스 기록"
-
-msgid "Notify administrators of software problems"
-msgstr "관리자에게 소프트웨어 문제 알림"
-
-msgid "Notify developers of software problems"
-msgstr "개발자에게 소프트웨어 문제 알림"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "해당 기능을 허용하면 플랫폼 개발 및 보안에 기여하게 됩니다."
-
-msgid "Save"
-msgstr "저장"
-
-msgid "Reset reports"
-msgstr "보고서 재설정"
-
 msgid "Low"
 msgstr "낮음"
 
 msgid "High"
 msgstr "높음"
 
+msgid "megabytes"
+msgstr "메가바이트"
+
 msgid "percentage"
 msgstr "퍼센트"
+
+msgid "Save"
+msgstr "저장"
 
 msgid "Type"
 msgstr "유형"
@@ -628,62 +544,14 @@ msgstr "취소"
 msgid "Report statuses"
 msgstr "상태 보고"
 
-msgid "Logo"
-msgstr "로고"
-
-msgid "Project name"
-msgstr "프로젝트 이름"
-
-msgid "Description"
-msgstr "설명"
-
-msgid "Homepage title"
-msgstr "홈페이지 제목"
-
-msgid "Presentation"
-msgstr "표시"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "가능한 내부 고발자 요청을 위한 질문"
-
-msgid "Whistleblowing button"
-msgstr "내부 고발 버튼"
-
-msgid "Disclaimer"
+msgid "Channels"
 msgstr ""
-
-msgid "Footer"
-msgstr "각주"
-
-msgid "Upload"
-msgstr "업로드"
-
-msgid "Download"
-msgstr "다운로드"
-
-msgid "Language:"
-msgstr "언어:"
-
-msgid "Add custom text"
-msgstr "사용자 정의 텍스트 추가"
-
-msgid "Custom text"
-msgstr "사용자 정의 텍스트"
-
-msgid "Original text"
-msgstr "기존 텍스트"
-
-msgid "Original translation"
-msgstr "기존 번역"
-
-msgid "Custom translation"
-msgstr "사용자 정의 번역"
-
-msgid "Contexts"
-msgstr "컨텍스트"
 
 msgid "Hidden"
 msgstr "숨김"
+
+msgid "Description"
+msgstr "설명"
 
 msgid "Questionnaire"
 msgstr "설문 조사"
@@ -693,6 +561,9 @@ msgstr "수신자"
 
 msgid "days"
 msgstr "일"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "값을 0으로 설정하여 기능을 중단하십시오."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "설문 조사 탐색 인터페이스 표시"
@@ -792,6 +663,9 @@ msgstr "개인 키"
 
 msgid "Certificate Signing Request"
 msgstr "인증서 서명 요청"
+
+msgid "Download"
+msgstr "다운로드"
 
 msgid "Certificate"
 msgstr "인증서"
@@ -1007,14 +881,137 @@ msgstr "복사"
 msgid "Steps"
 msgstr "단계"
 
-msgid "Site settings"
-msgstr "사이트 설정"
+msgid "Logo"
+msgstr "로고"
+
+msgid "Project name"
+msgstr "프로젝트 이름"
+
+msgid "Homepage title"
+msgstr "홈페이지 제목"
+
+msgid "Presentation"
+msgstr "표시"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "가능한 내부 고발자 요청을 위한 질문"
+
+msgid "Whistleblowing button"
+msgstr "내부 고발 버튼"
+
+msgid "Disclaimer"
+msgstr ""
+
+msgid "Footer"
+msgstr "각주"
+
+msgid "Upload"
+msgstr "업로드"
+
+msgid "Language:"
+msgstr "언어:"
+
+msgid "Add custom text"
+msgstr "사용자 정의 텍스트 추가"
+
+msgid "Custom text"
+msgstr "사용자 정의 텍스트"
+
+msgid "Original text"
+msgstr "기존 텍스트"
+
+msgid "Original translation"
+msgstr "기존 번역"
+
+msgid "Custom translation"
+msgstr "사용자 정의 번역"
+
+msgid "Disable submissions"
+msgstr "제출 중단"
+
+msgid "Enable encryption"
+msgstr "암호화 허용"
+
+msgid "Enable administrators to change user passwords"
+msgstr "관리자가 사용자 비밀번호를 변경하도록 허용"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "사용자 비밀번호 변경 권한을 갖춘 관리자:"
+
+msgid "Enable multisite feature"
+msgstr "다중 사이트 기능 허용"
+
+msgid "Enable simplified login"
+msgstr "단순 로그인 허용"
+
+msgid "Enable search engines indexing"
+msgstr "검색 엔진 인덱싱을 사용하도록 허용"
+
+msgid "Default questionnaire"
+msgstr "기본 설문 조사"
+
+msgid "Show contexts in alphabetical order"
+msgstr "알파벳 순서로 컨텍스트 표시"
+
+msgid "Size limit for file attachments"
+msgstr "첨부 파일 크기 제한"
+
+msgid "Require two factor authentication"
+msgstr "이중 요인 인증 필요"
+
+msgid "Password change interval"
+msgstr "비밀번호 변경 주기"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "보안상의 이유로 주기적으로 비밀번호를 변경해야 합니다."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "사용자에게 읽지 않은 보고서를 알릴 때까지의 일 수"
+
+msgid "Disable the privacy panel"
+msgstr "프라이버시 패널 사용 중단"
+
+msgid "Enable custom privacy panel"
+msgstr "사용자 정의 프라이버시 패널 허용"
+
+msgid "Custom privacy panel"
+msgstr "사용자 정의 프라이버시 패널"
+
+msgid "Enable custodian user role"
+msgstr "관리인 사용자 역할 허용"
+
+msgid "Enable scoring system"
+msgstr "채점 시스템 허용"
+
+msgid "Logging level"
+msgstr "기록 수준"
+
+msgid "Log accesses of internal users"
+msgstr "내부 사용자 액세스 기록"
+
+msgid "Notify administrators of software problems"
+msgstr "관리자에게 소프트웨어 문제 알림"
+
+msgid "Notify developers of software problems"
+msgstr "개발자에게 소프트웨어 문제 알림"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "해당 기능을 허용하면 플랫폼 개발 및 보안에 기여하게 됩니다."
+
+msgid "Reset reports"
+msgstr "보고서 재설정"
+
+msgid "Settings"
+msgstr "설정"
 
 msgid "Case management"
 msgstr "사례 관리"
 
-msgid "Network settings"
-msgstr "네트워크 설정"
+msgid "Network"
+msgstr "네트워크"
 
 msgid "Sites"
 msgstr "사이트"
@@ -1056,10 +1053,10 @@ msgid "Set password"
 msgstr "패스워드 설정"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "선택한 비밀번호가 너무 약합니다. 유효한 비밀번호는 최소 10자여야 하며, 하나의 소문자, 하나의 대문자, 하나의 숫자와 하나의 특수 문자를 포함한 문자로 구성되어야 합니다."
+msgstr "선택한 비밀번호가 너무 약합니다. 유효한 비밀번호는 최소 12자여야 하며, 하나의 소문자, 하나의 대문자, 하나의 숫자와 하나의 특수 문자를 포함한 문자로 구성되어야 합니다."
 
 msgid "Force password change"
 msgstr "강제 비밀번호 변경"

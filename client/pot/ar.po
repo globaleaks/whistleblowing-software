@@ -65,9 +65,6 @@ msgstr ""
 msgid "Log in"
 msgstr "اتّصال"
 
-msgid "Main configuration"
-msgstr "الترتيب الرئيسي"
-
 msgid "Theme customization"
 msgstr "تخصيص المظهر"
 
@@ -77,8 +74,8 @@ msgstr "اللغات"
 msgid "Text customization"
 msgstr "تخصيص النص"
 
-msgid "Advanced settings"
-msgstr "الإعدادات المتقدمة"
+msgid "Advanced"
+msgstr "متقدم"
 
 msgid "Question templates"
 msgstr "نماذج السؤال"
@@ -98,8 +95,8 @@ msgstr "سجلّ التغييرات "
 msgid "License"
 msgstr "الترخيص"
 
-msgid "Notification templates"
-msgstr "نماذج الإشعارات "
+msgid "Templates"
+msgstr "النماذج"
 
 msgid "Delete"
 msgstr "حذف"
@@ -110,8 +107,8 @@ msgstr "الحالات الشاذّة"
 msgid "Preferences"
 msgstr "التفضيلات"
 
-msgid "Notification settings"
-msgstr "إعدادات الإشعارات"
+msgid "Notifications"
+msgstr "التنبيهات"
 
 msgid "file unavailable"
 msgstr "الملف غير متوفر"
@@ -161,8 +158,8 @@ msgstr "الغاء كل الاختيارات"
 msgid "Refresh"
 msgstr "تحديث"
 
-msgid "Context"
-msgstr "السياق"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "معاينة"
@@ -296,9 +293,6 @@ msgstr "رفض النفاذ الى هوية المبلغ"
 msgid "Authorize access to the whistleblower's identity"
 msgstr "السماح بالنفاذ الى هوية المبلغ"
 
-msgid "Templates"
-msgstr "النماذج"
-
 msgid "URL redirects"
 msgstr "إعادة توجيه URL"
 
@@ -338,8 +332,8 @@ msgstr "مقبول"
 msgid "Strong"
 msgstr "قوي"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "النص ظاهر أعلى واجهة اختيار السياقات"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "اسكات الاشعارات بالبريد الالكتروني"
@@ -402,9 +396,6 @@ msgstr "الحد الأقصى لحجم الملف هو:"
 
 msgid "Scheduled jobs"
 msgstr "العمليات المجدولة"
-
-msgid "Sites management"
-msgstr "ادارة الموقع"
 
 msgid "Regenerate"
 msgstr "اعادة تكوين"
@@ -513,6 +504,12 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "تقديم بلاغ"
 
@@ -528,101 +525,20 @@ msgstr "قبل المتابعة، يرجى تمكين الإستيثاق ذو ا
 msgid "Enable"
 msgstr "تمكين"
 
-msgid "Disable submissions"
-msgstr "منع البلاغات"
-
-msgid "Enable encryption"
-msgstr "تمكين التعمية"
-
-msgid "Enable administrators to change user passwords"
-msgstr "تمكين المدراء من تغيير كلمات سر المستخدمين"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "المسؤولون المفوضون لتغيير كلمات مرور المستخدم:"
-
-msgid "Enable multisite feature"
-msgstr "تمكين خاصية تعدد المواقع"
-
-msgid "Enable simplified login"
-msgstr "تمكين تسجيل دخول مبسط"
-
-msgid "Enable search engines indexing"
-msgstr "تفعيل فهرسة محركات البحث"
-
-msgid "Default questionnaire"
-msgstr "الاستطلاع الإفتراضي"
-
-msgid "Show contexts in alphabetical order"
-msgstr "اظهار السياقات في ترتيبٍ ابجديّ"
-
-msgid "Size limit for file attachments"
-msgstr "الحد الأقصى لحجم الملفات المرفقة"
-
-msgid "megabytes"
-msgstr "بالميغابايت"
-
-msgid "Require two factor authentication"
-msgstr "يستلزم الاستيثاق ذو المعاملين"
-
-msgid "Password change interval"
-msgstr "فترة تغيير كلمة السر"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "يستلزم تغيير كلمة السر على فترات منتظمة لأسباب أمنية."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "اضبط القيمة على 0 لإلغاء تفعيل هذه الخاصية."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "عدد الأيام حتى إبلاغ التقارير غير المقروءة للمستخدمين"
-
-msgid "Disable the privacy panel"
-msgstr "تعطيل شارة الخصوصية"
-
-msgid "Enable custom privacy panel"
-msgstr "تمكين شريط الخصوصيّة المخصّص"
-
-msgid "Custom privacy panel"
-msgstr "مخصص لوحة الخصوصية"
-
-msgid "Enable custodian user role"
-msgstr "تمكين دور المستخدم الوصي"
-
-msgid "Enable scoring system"
-msgstr "تمكين نظام تسجيل النقاط"
-
-msgid "Logging level"
-msgstr "مستوى التسجيل"
-
-msgid "Log accesses of internal users"
-msgstr "تسجيل بيانات دخول المستخدمين الداخليين"
-
-msgid "Notify administrators of software problems"
-msgstr "نبّه المديرين الى أعطاب البرمجيّة"
-
-msgid "Notify developers of software problems"
-msgstr "نبّه المطوّرين الى أعطاب برمجيّة"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "بتفعيل هذه الميزة سوف تساهم في تطوير و أمن المنصة."
-
-msgid "Save"
-msgstr "حفظ"
-
-msgid "Reset reports"
-msgstr "اعادة تعيين التقارير"
-
 msgid "Low"
 msgstr "منخفض"
 
 msgid "High"
 msgstr "عالٍ"
 
+msgid "megabytes"
+msgstr "بالميغابايت"
+
 msgid "percentage"
 msgstr "بالنسبة المئوية"
+
+msgid "Save"
+msgstr "حفظ"
 
 msgid "Type"
 msgstr "نوع"
@@ -675,62 +591,14 @@ msgstr "إلغاء"
 msgid "Report statuses"
 msgstr "تقرير الحالات"
 
-msgid "Logo"
-msgstr "الشعار "
-
-msgid "Project name"
-msgstr "اسم المشروع"
-
-msgid "Description"
-msgstr "وصف"
-
-msgid "Homepage title"
-msgstr "عنوان الصفحة الرئيسية"
-
-msgid "Presentation"
-msgstr "التقديم"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "سؤال لجذب إنتباه المبلّغين المستقبليّين المحتملين"
-
-msgid "Whistleblowing button"
-msgstr "زرّ التبليغ"
-
-msgid "Disclaimer"
-msgstr "إخلاء مسؤولية"
-
-msgid "Footer"
-msgstr "ذيل الصفحة "
-
-msgid "Upload"
-msgstr "تحميل"
-
-msgid "Download"
-msgstr "تنزيل"
-
-msgid "Language:"
-msgstr "اللغة:"
-
-msgid "Add custom text"
-msgstr "اضافة نص مخصص"
-
-msgid "Custom text"
-msgstr "نص مخصص"
-
-msgid "Original text"
-msgstr "النص الأصلي"
-
-msgid "Original translation"
-msgstr "الترجمة الأصلية"
-
-msgid "Custom translation"
-msgstr "الترجمة المخصصة"
-
-msgid "Contexts"
-msgstr "سياقات"
+msgid "Channels"
+msgstr ""
 
 msgid "Hidden"
 msgstr "‮مخفي"
+
+msgid "Description"
+msgstr "وصف"
 
 msgid "Questionnaire"
 msgstr "استبيان"
@@ -740,6 +608,9 @@ msgstr "المتلقّون"
 
 msgid "days"
 msgstr "‮أيّام"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "اضبط القيمة على 0 لإلغاء تفعيل هذه الخاصية."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "أظهر واجهة التنقل للإستطلاع"
@@ -839,6 +710,9 @@ msgstr "مفتاح سرّي"
 
 msgid "Certificate Signing Request"
 msgstr "طلب توقيع الشهادة  "
+
+msgid "Download"
+msgstr "تنزيل"
 
 msgid "Certificate"
 msgstr "شهادة"
@@ -1054,14 +928,137 @@ msgstr "تكرير"
 msgid "Steps"
 msgstr "الخطوات"
 
-msgid "Site settings"
-msgstr "إعدادات الموقع"
+msgid "Logo"
+msgstr "الشعار "
+
+msgid "Project name"
+msgstr "اسم المشروع"
+
+msgid "Homepage title"
+msgstr "عنوان الصفحة الرئيسية"
+
+msgid "Presentation"
+msgstr "التقديم"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "سؤال لجذب إنتباه المبلّغين المستقبليّين المحتملين"
+
+msgid "Whistleblowing button"
+msgstr "زرّ التبليغ"
+
+msgid "Disclaimer"
+msgstr "إخلاء مسؤولية"
+
+msgid "Footer"
+msgstr "ذيل الصفحة "
+
+msgid "Upload"
+msgstr "تحميل"
+
+msgid "Language:"
+msgstr "اللغة:"
+
+msgid "Add custom text"
+msgstr "اضافة نص مخصص"
+
+msgid "Custom text"
+msgstr "نص مخصص"
+
+msgid "Original text"
+msgstr "النص الأصلي"
+
+msgid "Original translation"
+msgstr "الترجمة الأصلية"
+
+msgid "Custom translation"
+msgstr "الترجمة المخصصة"
+
+msgid "Disable submissions"
+msgstr "منع البلاغات"
+
+msgid "Enable encryption"
+msgstr "تمكين التعمية"
+
+msgid "Enable administrators to change user passwords"
+msgstr "تمكين المدراء من تغيير كلمات سر المستخدمين"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "المسؤولون المفوضون لتغيير كلمات مرور المستخدم:"
+
+msgid "Enable multisite feature"
+msgstr "تمكين خاصية تعدد المواقع"
+
+msgid "Enable simplified login"
+msgstr "تمكين تسجيل دخول مبسط"
+
+msgid "Enable search engines indexing"
+msgstr "تفعيل فهرسة محركات البحث"
+
+msgid "Default questionnaire"
+msgstr "الاستطلاع الإفتراضي"
+
+msgid "Show contexts in alphabetical order"
+msgstr "اظهار السياقات في ترتيبٍ ابجديّ"
+
+msgid "Size limit for file attachments"
+msgstr "الحد الأقصى لحجم الملفات المرفقة"
+
+msgid "Require two factor authentication"
+msgstr "يستلزم الاستيثاق ذو المعاملين"
+
+msgid "Password change interval"
+msgstr "فترة تغيير كلمة السر"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "يستلزم تغيير كلمة السر على فترات منتظمة لأسباب أمنية."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "عدد الأيام حتى إبلاغ التقارير غير المقروءة للمستخدمين"
+
+msgid "Disable the privacy panel"
+msgstr "تعطيل شارة الخصوصية"
+
+msgid "Enable custom privacy panel"
+msgstr "تمكين شريط الخصوصيّة المخصّص"
+
+msgid "Custom privacy panel"
+msgstr "مخصص لوحة الخصوصية"
+
+msgid "Enable custodian user role"
+msgstr "تمكين دور المستخدم الوصي"
+
+msgid "Enable scoring system"
+msgstr "تمكين نظام تسجيل النقاط"
+
+msgid "Logging level"
+msgstr "مستوى التسجيل"
+
+msgid "Log accesses of internal users"
+msgstr "تسجيل بيانات دخول المستخدمين الداخليين"
+
+msgid "Notify administrators of software problems"
+msgstr "نبّه المديرين الى أعطاب البرمجيّة"
+
+msgid "Notify developers of software problems"
+msgstr "نبّه المطوّرين الى أعطاب برمجيّة"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "بتفعيل هذه الميزة سوف تساهم في تطوير و أمن المنصة."
+
+msgid "Reset reports"
+msgstr "اعادة تعيين التقارير"
+
+msgid "Settings"
+msgstr "الإعدادات"
 
 msgid "Case management"
 msgstr "إدارة حالة"
 
-msgid "Network settings"
-msgstr "اعدادات الشبكة"
+msgid "Network"
+msgstr "الشبكة"
 
 msgid "Sites"
 msgstr "المواقع"
@@ -1103,10 +1100,10 @@ msgid "Set password"
 msgstr "ضبط كلمة السر"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "كلمة السر المختارة ضعيفة للغاية. كلمة السر الصحيحة يجب أن يكون طولها على الأقل 10 حروف ومكونة من تشكيلة من الحروف تشمل على الأقل حرفا صغيرا وحرفا كبيرا ورقما وحرفا خاصا."
+msgstr "كلمة السر المختارة ضعيفة للغاية. كلمة السر الصحيحة يجب أن يكون طولها على الأقل 12 حروف ومكونة من تشكيلة من الحروف تشمل على الأقل حرفا صغيرا وحرفا كبيرا ورقما وحرفا خاصا."
 
 msgid "Force password change"
 msgstr " الاجبار على تغيير كلمة المرور "

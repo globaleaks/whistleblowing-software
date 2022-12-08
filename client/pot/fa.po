@@ -44,9 +44,6 @@ msgstr ""
 msgid "Log in"
 msgstr "ورود"
 
-msgid "Main configuration"
-msgstr "پیکربندی اصلی"
-
 msgid "Theme customization"
 msgstr "سفارشی‌سازی طرح زمینه"
 
@@ -56,8 +53,8 @@ msgstr "زبان‌ها"
 msgid "Text customization"
 msgstr "سفارشی‌سازی متن"
 
-msgid "Advanced settings"
-msgstr "تنظیمات پیشرفته"
+msgid "Advanced"
+msgstr "پیشرفته "
 
 msgid "Question templates"
 msgstr "قالب‌های پرسش‌"
@@ -77,8 +74,8 @@ msgstr "گزارش تغییرات"
 msgid "License"
 msgstr "پروانه"
 
-msgid "Notification templates"
-msgstr "قالب‌های اعلان"
+msgid "Templates"
+msgstr "قالب‌ها"
 
 msgid "Delete"
 msgstr "حذف"
@@ -89,8 +86,8 @@ msgstr "ناهنجاری‌ها"
 msgid "Preferences"
 msgstr "ترجیحات"
 
-msgid "Notification settings"
-msgstr "تنظیمات اعلان"
+msgid "Notifications"
+msgstr "آگاه‌سازی‌ها"
 
 msgid "file unavailable"
 msgstr "فایل در دسترس نیست"
@@ -140,8 +137,8 @@ msgstr "لغو انتخاب همه"
 msgid "Refresh"
 msgstr "تازه کردن"
 
-msgid "Context"
-msgstr "زمینه"
+msgid "Channel"
+msgstr "کانال"
 
 msgid "Preview"
 msgstr "پیش‌نمایش"
@@ -275,9 +272,6 @@ msgstr "غیرمجاز کردن دسترسی به هویت افشاگر"
 msgid "Authorize access to the whistleblower's identity"
 msgstr "مجاز ساختن دسترسی به هویت افشاگر"
 
-msgid "Templates"
-msgstr "قالب‌ها"
-
 msgid "URL redirects"
 msgstr "تغییر مسیر‌های URL"
 
@@ -317,8 +311,8 @@ msgstr "قابل قبول"
 msgid "Strong"
 msgstr "قوی"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "متن نشان داده شده در بالای رابط برای انتخاب زمینه‌ها"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr "متن در بالای رابط برای انتخاب کانال نشان داده شده است"
 
 msgid "Silence email notifications"
 msgstr "صامت کردن اعلان‌های ایمیل"
@@ -381,9 +375,6 @@ msgstr "حداکثر حجم فایل:"
 
 msgid "Scheduled jobs"
 msgstr "کارهای برنامه‌ریزی شده"
-
-msgid "Sites management"
-msgstr "مدیریت سایت‌ها"
 
 msgid "Regenerate"
 msgstr "تولید دوباره"
@@ -492,6 +483,12 @@ msgstr "اعطای دسترسی"
 msgid "Revoke access"
 msgstr "لغو دسترسی"
 
+msgid "Assigned to"
+msgstr "اختصاص یافته به"
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "تشکیل یک گزارش"
 
@@ -507,101 +504,20 @@ msgstr "قبل از ادامه، لطفاً احراز هویت دو عاملی 
 msgid "Enable"
 msgstr "فعال کردن"
 
-msgid "Disable submissions"
-msgstr "غیرفعال کردن ارسال‌ها"
-
-msgid "Enable encryption"
-msgstr "فعال کردن رمزگذاری"
-
-msgid "Enable administrators to change user passwords"
-msgstr "اجازه به مدیران برای تغییر گذرواژه‌های کاربران"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "مدیران مجاز به تغییر گذرواژه‌های کاربران:"
-
-msgid "Enable multisite feature"
-msgstr "فعال کردن قابلیت چندسایتی"
-
-msgid "Enable simplified login"
-msgstr "فعال کردن ورود ساده شده"
-
-msgid "Enable search engines indexing"
-msgstr "فعال کردن نمایه‌سازی در موتورهای جستجو"
-
-msgid "Default questionnaire"
-msgstr "پرسش‌نامهٔ پیش‌فرض"
-
-msgid "Show contexts in alphabetical order"
-msgstr "نمایش زمینه‌ها به ترتیب الفبا"
-
-msgid "Size limit for file attachments"
-msgstr "محدودیت حجم برای فایل پیوست‌ها"
-
-msgid "megabytes"
-msgstr "مگابایت"
-
-msgid "Require two factor authentication"
-msgstr "نیاز به احراز هویت دو عاملی"
-
-msgid "Password change interval"
-msgstr "بازهٔ تغییر گذرواژه"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "به دلایل امنیتی، تغییر گذرواژه در بازه‌های منظم ضروری است."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "برای غیرفعال کردن این قابلیت مقدار را روی 0 تنظیم کنید."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "تعداد روزها تا اطلاع گزارش‌های خوانده نشده به کاربران"
-
-msgid "Disable the privacy panel"
-msgstr "غیرفعال کردن پنل حریم خصوصی"
-
-msgid "Enable custom privacy panel"
-msgstr "فعال کردن پنل حریم خصوصی سفارشی"
-
-msgid "Custom privacy panel"
-msgstr "پنل حریم خصوصی سفارشی"
-
-msgid "Enable custodian user role"
-msgstr "فعال کردن نقش کاربر سرپرست"
-
-msgid "Enable scoring system"
-msgstr "فعال کردن سامانهٔ امتیازدهی"
-
-msgid "Logging level"
-msgstr "سطح ثبت وقایع"
-
-msgid "Log accesses of internal users"
-msgstr "ثبت دسترسی‌های کاربران داخلی"
-
-msgid "Notify administrators of software problems"
-msgstr "آگاه ساختن مدیران از مشکلات نرم‌افزار‌ی"
-
-msgid "Notify developers of software problems"
-msgstr "آگاه ساختن توسعه‌دهندگان از مشکلات نرم‌افزار‌ی"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "با فعال کردن این ویژگی، شما در توسعه و امنیت پلتفرم سهیم خواهید بود."
-
-msgid "Save"
-msgstr "ذخیره"
-
-msgid "Reset reports"
-msgstr "بازنشانی گزارش‌ها"
-
 msgid "Low"
 msgstr "پایین"
 
 msgid "High"
 msgstr "بالا"
 
+msgid "megabytes"
+msgstr "مگابایت"
+
 msgid "percentage"
 msgstr "درصد"
+
+msgid "Save"
+msgstr "ذخیره"
 
 msgid "Type"
 msgstr "نوع"
@@ -654,62 +570,14 @@ msgstr "لغو"
 msgid "Report statuses"
 msgstr "وضعیت‌های گزارش"
 
-msgid "Logo"
-msgstr "نشان‌واره"
-
-msgid "Project name"
-msgstr "نام پروژه"
-
-msgid "Description"
-msgstr "توضیح"
-
-msgid "Homepage title"
-msgstr "عنوان صفحه اصلی"
-
-msgid "Presentation"
-msgstr "ارائه"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "پرسش برای جذب افشاگران احتمالی"
-
-msgid "Whistleblowing button"
-msgstr "دکمهٔ افشاگری"
-
-msgid "Disclaimer"
-msgstr "بیانیهٔ رفع مسئولیت"
-
-msgid "Footer"
-msgstr "پانویس"
-
-msgid "Upload"
-msgstr "بارگذاری"
-
-msgid "Download"
-msgstr "بارگذاری"
-
-msgid "Language:"
-msgstr "زبان:"
-
-msgid "Add custom text"
-msgstr "افزودن متن سفارشی"
-
-msgid "Custom text"
-msgstr "متن سفارشی"
-
-msgid "Original text"
-msgstr "متن اصلی"
-
-msgid "Original translation"
-msgstr "ترجمهٔ اصلی"
-
-msgid "Custom translation"
-msgstr "ترجمهٔ سفارشی"
-
-msgid "Contexts"
-msgstr "متن‌ها"
+msgid "Channels"
+msgstr "کانال‌ها"
 
 msgid "Hidden"
 msgstr "پنهان"
+
+msgid "Description"
+msgstr "توضیح"
 
 msgid "Questionnaire"
 msgstr "پرسش‌نامه"
@@ -719,6 +587,9 @@ msgstr "گیرندگان"
 
 msgid "days"
 msgstr "روز"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "برای غیرفعال کردن این قابلیت مقدار را روی 0 تنظیم کنید."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "نمایش رابط پیمایش پرسش‌نامه"
@@ -818,6 +689,9 @@ msgstr "کلید خصوصی"
 
 msgid "Certificate Signing Request"
 msgstr "درخواست امضای گواهی"
+
+msgid "Download"
+msgstr "بارگذاری"
 
 msgid "Certificate"
 msgstr "گواهی"
@@ -1033,14 +907,137 @@ msgstr "تکثیر"
 msgid "Steps"
 msgstr "مراحل"
 
-msgid "Site settings"
-msgstr "تنظیمات سایت"
+msgid "Logo"
+msgstr "نشان‌واره"
+
+msgid "Project name"
+msgstr "نام پروژه"
+
+msgid "Homepage title"
+msgstr "عنوان صفحه اصلی"
+
+msgid "Presentation"
+msgstr "ارائه"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "پرسش برای جذب افشاگران احتمالی"
+
+msgid "Whistleblowing button"
+msgstr "دکمهٔ افشاگری"
+
+msgid "Disclaimer"
+msgstr "بیانیهٔ رفع مسئولیت"
+
+msgid "Footer"
+msgstr "پانویس"
+
+msgid "Upload"
+msgstr "بارگذاری"
+
+msgid "Language:"
+msgstr "زبان:"
+
+msgid "Add custom text"
+msgstr "افزودن متن سفارشی"
+
+msgid "Custom text"
+msgstr "متن سفارشی"
+
+msgid "Original text"
+msgstr "متن اصلی"
+
+msgid "Original translation"
+msgstr "ترجمهٔ اصلی"
+
+msgid "Custom translation"
+msgstr "ترجمهٔ سفارشی"
+
+msgid "Disable submissions"
+msgstr "غیرفعال کردن ارسال‌ها"
+
+msgid "Enable encryption"
+msgstr "فعال کردن رمزگذاری"
+
+msgid "Enable administrators to change user passwords"
+msgstr "اجازه به مدیران برای تغییر گذرواژه‌های کاربران"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "مدیران مجاز به تغییر گذرواژه‌های کاربران:"
+
+msgid "Enable multisite feature"
+msgstr "فعال کردن قابلیت چندسایتی"
+
+msgid "Enable simplified login"
+msgstr "فعال کردن ورود ساده شده"
+
+msgid "Enable search engines indexing"
+msgstr "فعال کردن نمایه‌سازی در موتورهای جستجو"
+
+msgid "Default questionnaire"
+msgstr "پرسش‌نامهٔ پیش‌فرض"
+
+msgid "Show contexts in alphabetical order"
+msgstr "نمایش زمینه‌ها به ترتیب الفبا"
+
+msgid "Size limit for file attachments"
+msgstr "محدودیت حجم برای فایل پیوست‌ها"
+
+msgid "Require two factor authentication"
+msgstr "نیاز به احراز هویت دو عاملی"
+
+msgid "Password change interval"
+msgstr "بازهٔ تغییر گذرواژه"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "به دلایل امنیتی، تغییر گذرواژه در بازه‌های منظم ضروری است."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "تعداد روزها تا اطلاع گزارش‌های خوانده نشده به کاربران"
+
+msgid "Disable the privacy panel"
+msgstr "غیرفعال کردن پنل حریم خصوصی"
+
+msgid "Enable custom privacy panel"
+msgstr "فعال کردن پنل حریم خصوصی سفارشی"
+
+msgid "Custom privacy panel"
+msgstr "پنل حریم خصوصی سفارشی"
+
+msgid "Enable custodian user role"
+msgstr "فعال کردن نقش کاربر سرپرست"
+
+msgid "Enable scoring system"
+msgstr "فعال کردن سامانهٔ امتیازدهی"
+
+msgid "Logging level"
+msgstr "سطح ثبت وقایع"
+
+msgid "Log accesses of internal users"
+msgstr "ثبت دسترسی‌های کاربران داخلی"
+
+msgid "Notify administrators of software problems"
+msgstr "آگاه ساختن مدیران از مشکلات نرم‌افزار‌ی"
+
+msgid "Notify developers of software problems"
+msgstr "آگاه ساختن توسعه‌دهندگان از مشکلات نرم‌افزار‌ی"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "با فعال کردن این ویژگی، شما در توسعه و امنیت پلتفرم سهیم خواهید بود."
+
+msgid "Reset reports"
+msgstr "بازنشانی گزارش‌ها"
+
+msgid "Settings"
+msgstr "تنظیمات"
 
 msgid "Case management"
 msgstr "مدیریت مورد"
 
-msgid "Network settings"
-msgstr "تنظیمات شبکه"
+msgid "Network"
+msgstr "شبکه"
 
 msgid "Sites"
 msgstr "سایت‌ها"
@@ -1082,10 +1079,10 @@ msgid "Set password"
 msgstr "تنظیم گذرواژه"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "گذرواژهٔ انتخابی بسیار ضعیف است. یک گذرواژهٔ معتبر باید حداقل به طول ۱۰ نویسه و دارای انواعی از نویسه‌ها شامل حداقل یک نویسه با حروف کوچک، یک نویسه با حروف بزرگ، یک عدد و یک نویسهٔ خاص باشد."
+msgstr "پسورد انتخابی بسیار ضعیف است. یک پسورد معتبر باید حداقل 12 کرکتر داشته باشد؛ بشمول حداقل یک کرکتر با حروف کوچک، یک کرکتر با حروف بزرگ، یک شماره و یک کرکتر خاص."
 
 msgid "Force password change"
 msgstr "اجبار به تغییر گذرواژه"

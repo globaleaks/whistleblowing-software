@@ -18,9 +18,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Увайсьці"
 
-msgid "Main configuration"
-msgstr "Асноўная канфігурацыя"
-
 msgid "Theme customization"
 msgstr "Налады тэмы"
 
@@ -30,8 +27,8 @@ msgstr "Мовы"
 msgid "Text customization"
 msgstr "Выгляд тэксту"
 
-msgid "Advanced settings"
-msgstr "Пашыраныя налады"
+msgid "Advanced"
+msgstr "Пашыраны"
 
 msgid "Question templates"
 msgstr "Узоры пытанняў"
@@ -51,8 +48,8 @@ msgstr "Журнал зменаў"
 msgid "License"
 msgstr "Ліцэнзія"
 
-msgid "Notification templates"
-msgstr "Шаблоны апавяшчэнняў"
+msgid "Templates"
+msgstr "Шаблоны"
 
 msgid "Delete"
 msgstr "Выдаліць"
@@ -63,8 +60,8 @@ msgstr "Анамаліі"
 msgid "Preferences"
 msgstr "Налады"
 
-msgid "Notification settings"
-msgstr "Налады апавяшчэнняў"
+msgid "Notifications"
+msgstr "Апавяшчэнні"
 
 msgid "file unavailable"
 msgstr "файл недаступны"
@@ -114,8 +111,8 @@ msgstr "Адмяніць выбар ўсяго"
 msgid "Refresh"
 msgstr "Абнавіць"
 
-msgid "Context"
-msgstr "Кантэкст"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "Папярэдні прагляд"
@@ -249,9 +246,6 @@ msgstr "Адмовіць ў доступе да інфармацыі пра ас
 msgid "Authorize access to the whistleblower's identity"
 msgstr "Дазволіць доступ да інфармацыі пра асобу выкрывальніка"
 
-msgid "Templates"
-msgstr "Шаблоны"
-
 msgid "URL redirects"
 msgstr "Перанакіраванні URL-адрасоў"
 
@@ -291,8 +285,8 @@ msgstr "Прымальны"
 msgid "Strong"
 msgstr "Моцны"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Тэкст, паказаны ўверсе інтэрфейсу для выбару кантэкстаў"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "Выключыць апавяшчэнні па электроннай пошце"
@@ -355,9 +349,6 @@ msgstr "Максімальны памер файла:"
 
 msgid "Scheduled jobs"
 msgstr "Запланаваныя заданні"
-
-msgid "Sites management"
-msgstr "Кіраванне сайтамі"
 
 msgid "Regenerate"
 msgstr "Стварыць паўторна"
@@ -466,6 +457,12 @@ msgstr "Даць доступ"
 msgid "Revoke access"
 msgstr "Адклікаць доступ"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "Падаць справаздачу"
 
@@ -481,101 +478,20 @@ msgstr "Перад тым як працягнуць, к.л., уключыце д
 msgid "Enable"
 msgstr "Уключыць"
 
-msgid "Disable submissions"
-msgstr "Адключыць падачу матэрыялаў"
-
-msgid "Enable encryption"
-msgstr "Уключыць шыфраванне"
-
-msgid "Enable administrators to change user passwords"
-msgstr "Дазволіць адміністратарам змяняць паролі карыстальнікаў"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Адміністратары ўпаўнаважаныя змяняць паролі карыстальнікаў:"
-
-msgid "Enable multisite feature"
-msgstr "Уключыць функцыю мултысайтавага разгортвання"
-
-msgid "Enable simplified login"
-msgstr "Уключыць спрошаны ўваход"
-
-msgid "Enable search engines indexing"
-msgstr "Уключыць індэксацыю пошукавых сістэм"
-
-msgid "Default questionnaire"
-msgstr "Анкета па змаўчанні"
-
-msgid "Show contexts in alphabetical order"
-msgstr "Паказваць кантэксты ў алфавітным парадку"
-
-msgid "Size limit for file attachments"
-msgstr "Абмежаванне памеру далучаных файлаў"
-
-msgid "megabytes"
-msgstr "мегабайты"
-
-msgid "Require two factor authentication"
-msgstr "Патрабуецца двухфактарная аўтэнтыфікацыя"
-
-msgid "Password change interval"
-msgstr "Інтэрвал паміж зменамі паролю"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "З меркаванняў бяспекі трэба мяняць пароль праз пэўны прамежак часу."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Каб адключыць гэтую функцыю, выбярыце значэнне \"0\"."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Колькасць дзён, што застаецца да апавяшчэння карыстальнікаў пра непрачытаныя справаздачы"
-
-msgid "Disable the privacy panel"
-msgstr "Адключыць панэль канфідэнцыйнасці"
-
-msgid "Enable custom privacy panel"
-msgstr "Уключыць карыстальніцкую панэль канфідэнцыйнасці"
-
-msgid "Custom privacy panel"
-msgstr "Карыстальніцкая панэль канфідэнцыйнасці"
-
-msgid "Enable custodian user role"
-msgstr "Уключыць ролю захавальніка"
-
-msgid "Enable scoring system"
-msgstr "Уключыць сістэму налічэння балаў"
-
-msgid "Logging level"
-msgstr "Узровень рэгістрацыі"
-
-msgid "Log accesses of internal users"
-msgstr "Журналы доступу ўнутраных карыстальнікаў"
-
-msgid "Notify administrators of software problems"
-msgstr "Паведаміць адміністратарам пра праблемы з праграмным забеспячэннем"
-
-msgid "Notify developers of software problems"
-msgstr "Паведаміць распрацоўшчыкам пра праблемы з праграмным забеспячэннем"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Уключыўшы гэтую функцыю, вы будзеце спрыяць развіццю і бяспецы платформы."
-
-msgid "Save"
-msgstr "Захаваць"
-
-msgid "Reset reports"
-msgstr "Ачысціць справаздачы"
-
 msgid "Low"
 msgstr "Нізкая"
 
 msgid "High"
 msgstr "Высокая"
 
+msgid "megabytes"
+msgstr "мегабайты"
+
 msgid "percentage"
 msgstr "працэнт"
+
+msgid "Save"
+msgstr "Захаваць"
 
 msgid "Type"
 msgstr "Тып"
@@ -628,62 +544,14 @@ msgstr "Адмяніць"
 msgid "Report statuses"
 msgstr "Статусы справаздачы"
 
-msgid "Logo"
-msgstr "Лога"
-
-msgid "Project name"
-msgstr "Назва праекту"
-
-msgid "Description"
-msgstr "Апісанне"
-
-msgid "Homepage title"
-msgstr "Загаловак хатняй старонкі"
-
-msgid "Presentation"
-msgstr "Презентацыя"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Пытанне, каб заахвоціць магчымых выкрывальнікаў"
-
-msgid "Whistleblowing button"
-msgstr "Кнопка для выкрывальніцтва"
-
-msgid "Disclaimer"
-msgstr "Заява аб абмежаванні адказнасці"
-
-msgid "Footer"
-msgstr "Ніжні калонтытул"
-
-msgid "Upload"
-msgstr "Загрузіць"
-
-msgid "Download"
-msgstr "Спампаваць"
-
-msgid "Language:"
-msgstr "Мова"
-
-msgid "Add custom text"
-msgstr "Дадаць карыстальніцкі тэкст"
-
-msgid "Custom text"
-msgstr "Карыстальніцкі тэкст"
-
-msgid "Original text"
-msgstr "Першапачатковы тэкст"
-
-msgid "Original translation"
-msgstr "Першапачатковы пераклад"
-
-msgid "Custom translation"
-msgstr "Карыстальніцкі пераклад"
-
-msgid "Contexts"
-msgstr "Кантэксты"
+msgid "Channels"
+msgstr ""
 
 msgid "Hidden"
 msgstr "Схаваны"
+
+msgid "Description"
+msgstr "Апісанне"
 
 msgid "Questionnaire"
 msgstr "Анкета"
@@ -693,6 +561,9 @@ msgstr "Атрымальнікі"
 
 msgid "days"
 msgstr "дн."
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Каб адключыць гэтую функцыю, выбярыце значэнне \"0\"."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Паказаць інтэрфейс навігацыі анкеты"
@@ -792,6 +663,9 @@ msgstr "Прыватны ключ"
 
 msgid "Certificate Signing Request"
 msgstr "Запыт на стварэнне сертыфіката"
+
+msgid "Download"
+msgstr "Спампаваць"
 
 msgid "Certificate"
 msgstr "Сертыфікат"
@@ -1007,14 +881,137 @@ msgstr "Стварыць копію"
 msgid "Steps"
 msgstr "Крокі"
 
-msgid "Site settings"
-msgstr "Налады сайта"
+msgid "Logo"
+msgstr "Лога"
+
+msgid "Project name"
+msgstr "Назва праекту"
+
+msgid "Homepage title"
+msgstr "Загаловак хатняй старонкі"
+
+msgid "Presentation"
+msgstr "Презентацыя"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Пытанне, каб заахвоціць магчымых выкрывальнікаў"
+
+msgid "Whistleblowing button"
+msgstr "Кнопка для выкрывальніцтва"
+
+msgid "Disclaimer"
+msgstr "Заява аб абмежаванні адказнасці"
+
+msgid "Footer"
+msgstr "Ніжні калонтытул"
+
+msgid "Upload"
+msgstr "Загрузіць"
+
+msgid "Language:"
+msgstr "Мова"
+
+msgid "Add custom text"
+msgstr "Дадаць карыстальніцкі тэкст"
+
+msgid "Custom text"
+msgstr "Карыстальніцкі тэкст"
+
+msgid "Original text"
+msgstr "Першапачатковы тэкст"
+
+msgid "Original translation"
+msgstr "Першапачатковы пераклад"
+
+msgid "Custom translation"
+msgstr "Карыстальніцкі пераклад"
+
+msgid "Disable submissions"
+msgstr "Адключыць падачу матэрыялаў"
+
+msgid "Enable encryption"
+msgstr "Уключыць шыфраванне"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Дазволіць адміністратарам змяняць паролі карыстальнікаў"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Адміністратары ўпаўнаважаныя змяняць паролі карыстальнікаў:"
+
+msgid "Enable multisite feature"
+msgstr "Уключыць функцыю мултысайтавага разгортвання"
+
+msgid "Enable simplified login"
+msgstr "Уключыць спрошаны ўваход"
+
+msgid "Enable search engines indexing"
+msgstr "Уключыць індэксацыю пошукавых сістэм"
+
+msgid "Default questionnaire"
+msgstr "Анкета па змаўчанні"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Паказваць кантэксты ў алфавітным парадку"
+
+msgid "Size limit for file attachments"
+msgstr "Абмежаванне памеру далучаных файлаў"
+
+msgid "Require two factor authentication"
+msgstr "Патрабуецца двухфактарная аўтэнтыфікацыя"
+
+msgid "Password change interval"
+msgstr "Інтэрвал паміж зменамі паролю"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "З меркаванняў бяспекі трэба мяняць пароль праз пэўны прамежак часу."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Колькасць дзён, што застаецца да апавяшчэння карыстальнікаў пра непрачытаныя справаздачы"
+
+msgid "Disable the privacy panel"
+msgstr "Адключыць панэль канфідэнцыйнасці"
+
+msgid "Enable custom privacy panel"
+msgstr "Уключыць карыстальніцкую панэль канфідэнцыйнасці"
+
+msgid "Custom privacy panel"
+msgstr "Карыстальніцкая панэль канфідэнцыйнасці"
+
+msgid "Enable custodian user role"
+msgstr "Уключыць ролю захавальніка"
+
+msgid "Enable scoring system"
+msgstr "Уключыць сістэму налічэння балаў"
+
+msgid "Logging level"
+msgstr "Узровень рэгістрацыі"
+
+msgid "Log accesses of internal users"
+msgstr "Журналы доступу ўнутраных карыстальнікаў"
+
+msgid "Notify administrators of software problems"
+msgstr "Паведаміць адміністратарам пра праблемы з праграмным забеспячэннем"
+
+msgid "Notify developers of software problems"
+msgstr "Паведаміць распрацоўшчыкам пра праблемы з праграмным забеспячэннем"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Уключыўшы гэтую функцыю, вы будзеце спрыяць развіццю і бяспецы платформы."
+
+msgid "Reset reports"
+msgstr "Ачысціць справаздачы"
+
+msgid "Settings"
+msgstr "Налады"
 
 msgid "Case management"
 msgstr "Кіраванне справай"
 
-msgid "Network settings"
-msgstr "Налады сеткі"
+msgid "Network"
+msgstr ""
 
 msgid "Sites"
 msgstr "Сайты"
@@ -1056,10 +1053,10 @@ msgid "Set password"
 msgstr "Задаць пароль"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Выбраны пароль занадта слабы. Дзейсны пароль павінен складацца з не менш чым 10 знакаў і ўтрымліваць разнастайныя знакі, у тым ліку, прынамсі, адну маленькую, адну вялікую літары, адну лічбу і адзін спецыяльны знак."
+msgstr "Выбраны пароль занадта слабы. Дзейсны пароль павінен складацца з не менш чым 12 знакаў і ўтрымліваць разнастайныя знакі, у тым ліку, прынамсі, адну маленькую, адну вялікую літары, адну лічбу і адзін спецыяльны знак."
 
 msgid "Force password change"
 msgstr "Прымусовая змена паролю"

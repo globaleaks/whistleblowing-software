@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: José Luis Ramirez, 2022\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022\n"
 "Language-Team: Catalan (http://www.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -36,9 +36,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Inicia sessió"
 
-msgid "Main configuration"
-msgstr "Configuració principal"
-
 msgid "Theme customization"
 msgstr "Personalització del tema"
 
@@ -48,8 +45,8 @@ msgstr "Idiomes"
 msgid "Text customization"
 msgstr "Personalització del text"
 
-msgid "Advanced settings"
-msgstr "Configuració avançada"
+msgid "Advanced"
+msgstr "Avançat"
 
 msgid "Question templates"
 msgstr "Plantilla de preguntes"
@@ -69,8 +66,8 @@ msgstr "Registre de canvis"
 msgid "License"
 msgstr "Llicència"
 
-msgid "Notification templates"
-msgstr "Plantilles d'avisos"
+msgid "Templates"
+msgstr "Plantilles"
 
 msgid "Delete"
 msgstr "Esborrar"
@@ -81,8 +78,8 @@ msgstr "Anomalies"
 msgid "Preferences"
 msgstr "Preferències"
 
-msgid "Notification settings"
-msgstr "Configuracions de notificació"
+msgid "Notifications"
+msgstr "Notificacions"
 
 msgid "file unavailable"
 msgstr "fitxer no disponible"
@@ -132,7 +129,7 @@ msgstr "Desselecciona-ho tot"
 msgid "Refresh"
 msgstr "Actualitza"
 
-msgid "Context"
+msgid "Channel"
 msgstr "Context"
 
 msgid "Preview"
@@ -267,9 +264,6 @@ msgstr "Denega l'accés a la identitat de la persona informadora"
 msgid "Authorize access to the whistleblower's identity"
 msgstr "Autoritza l'accés a la identitat de l'informador"
 
-msgid "Templates"
-msgstr "Plantilles"
-
 msgid "URL redirects"
 msgstr "Redireccions de URL"
 
@@ -309,7 +303,7 @@ msgstr "Mitjà"
 msgid "Strong"
 msgstr "Alt"
 
-msgid "Text shown on top of the interface for selecting contexts"
+msgid "Text shown on top of the interface for selecting channels"
 msgstr "El text es mostra a sobre de la interfície per seleccionar els contextos"
 
 msgid "Silence email notifications"
@@ -373,9 +367,6 @@ msgstr "La mida màxima d'un fitxer és de:"
 
 msgid "Scheduled jobs"
 msgstr "Treballs programats"
-
-msgid "Sites management"
-msgstr "Gestió de llocs web"
 
 msgid "Regenerate"
 msgstr "Regenerar"
@@ -484,6 +475,12 @@ msgstr "Concedir accés"
 msgid "Revoke access"
 msgstr "Revoca l'accés"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "Presentar un informe"
 
@@ -499,101 +496,20 @@ msgstr "Abans de continuar, si-us-plau activa l'autenticació de dues passes"
 msgid "Enable"
 msgstr "Habilitar"
 
-msgid "Disable submissions"
-msgstr "Deshabilita els enviaments"
-
-msgid "Enable encryption"
-msgstr "Activa el xifratge"
-
-msgid "Enable administrators to change user passwords"
-msgstr "Habiliteu als administradors per canviar les contrasenyes d’usuari"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Persones administradores autoritzats a canviar les contrasenyes de les persones usuàries:"
-
-msgid "Enable multisite feature"
-msgstr "Activa la funció multi lloc"
-
-msgid "Enable simplified login"
-msgstr "Permet l'inici de sessió simplificat"
-
-msgid "Enable search engines indexing"
-msgstr "Habilita els motors de cerca d'indexació"
-
-msgid "Default questionnaire"
-msgstr "Qüestionari per defecte"
-
-msgid "Show contexts in alphabetical order"
-msgstr "Mostra contextos en ordre alfabètic"
-
-msgid "Size limit for file attachments"
-msgstr "Límit de mida per als arxius adjunts"
-
-msgid "megabytes"
-msgstr "megabytes"
-
-msgid "Require two factor authentication"
-msgstr "Requereix autenticació de dues passes"
-
-msgid "Password change interval"
-msgstr "Periodicitat de canvi de contrasenya"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Per motius de seguretat, es requereixen canvis de contrasenya periòdicament."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Establiu el valor a 0 per desactivar aquesta funció."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Nombre de dies fins a la notificació d'informes no llegits als usuaris"
-
-msgid "Disable the privacy panel"
-msgstr "Deshabilita el distintiu de privacitat "
-
-msgid "Enable custom privacy panel"
-msgstr "Habilita distintiu personalitzat de privacitat"
-
-msgid "Custom privacy panel"
-msgstr "Tauler de privacitat del client"
-
-msgid "Enable custodian user role"
-msgstr "Activa el rol de persona usuària guardiana"
-
-msgid "Enable scoring system"
-msgstr "Activa el sistema de puntuació"
-
-msgid "Logging level"
-msgstr "Nivell de registre"
-
-msgid "Log accesses of internal users"
-msgstr "Registre d'accés dels usuaris interns"
-
-msgid "Notify administrators of software problems"
-msgstr "Notifiqueu als administradors els problemes de programari"
-
-msgid "Notify developers of software problems"
-msgstr "Notifica sobre problemes del programari"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Si activeu aquesta funció, contribuireu al desenvolupament i la seguretat de la plataforma."
-
-msgid "Save"
-msgstr "Desa"
-
-msgid "Reset reports"
-msgstr "Restableix els informes"
-
 msgid "Low"
 msgstr "Baix"
 
 msgid "High"
 msgstr "Alt"
 
+msgid "megabytes"
+msgstr "megabytes"
+
 msgid "percentage"
 msgstr "percentatge"
+
+msgid "Save"
+msgstr "Desa"
 
 msgid "Type"
 msgstr "Tipus"
@@ -646,62 +562,14 @@ msgstr "Cancel·la"
 msgid "Report statuses"
 msgstr "Estat de l’informe"
 
-msgid "Logo"
-msgstr "Logotip"
-
-msgid "Project name"
-msgstr "Nom de la iniciativa"
-
-msgid "Description"
-msgstr "Descripció"
-
-msgid "Homepage title"
-msgstr "Títol de la pàgina d'inici"
-
-msgid "Presentation"
-msgstr "Presentació"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Pregunta per sol·licitar possibles informadors"
-
-msgid "Whistleblowing button"
-msgstr "Text del botó per a remetre informació"
-
-msgid "Disclaimer"
-msgstr "Exempció de responsabilitat"
-
-msgid "Footer"
-msgstr "Peu de pàgina"
-
-msgid "Upload"
-msgstr "Carrega"
-
-msgid "Download"
-msgstr "Baixa"
-
-msgid "Language:"
-msgstr "Idioma:"
-
-msgid "Add custom text"
-msgstr "Afegeix text personalitzat"
-
-msgid "Custom text"
-msgstr "Text personalitzat"
-
-msgid "Original text"
-msgstr "Text original"
-
-msgid "Original translation"
-msgstr "Traducció original"
-
-msgid "Custom translation"
-msgstr "Traducció personalitzada"
-
-msgid "Contexts"
+msgid "Channels"
 msgstr "Contextos"
 
 msgid "Hidden"
 msgstr "Ocult"
+
+msgid "Description"
+msgstr "Descripció"
 
 msgid "Questionnaire"
 msgstr "Qüestionari"
@@ -711,6 +579,9 @@ msgstr "Persones destinatàries"
 
 msgid "days"
 msgstr "dies"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Establiu el valor a 0 per desactivar aquesta funció."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Mostra la interfície de navegació del qüestionari"
@@ -810,6 +681,9 @@ msgstr "Clau privada"
 
 msgid "Certificate Signing Request"
 msgstr "Sol·licitud de signatura de certificat"
+
+msgid "Download"
+msgstr "Baixa"
 
 msgid "Certificate"
 msgstr "Certificat"
@@ -1025,14 +899,137 @@ msgstr "Duplicat"
 msgid "Steps"
 msgstr "Passos"
 
-msgid "Site settings"
-msgstr "Configuració del lloc"
+msgid "Logo"
+msgstr "Logotip"
+
+msgid "Project name"
+msgstr "Nom de la iniciativa"
+
+msgid "Homepage title"
+msgstr "Títol de la pàgina d'inici"
+
+msgid "Presentation"
+msgstr "Presentació"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Pregunta per sol·licitar possibles informadors"
+
+msgid "Whistleblowing button"
+msgstr "Text del botó per a remetre informació"
+
+msgid "Disclaimer"
+msgstr "Exempció de responsabilitat"
+
+msgid "Footer"
+msgstr "Peu de pàgina"
+
+msgid "Upload"
+msgstr "Carrega"
+
+msgid "Language:"
+msgstr "Idioma:"
+
+msgid "Add custom text"
+msgstr "Afegeix text personalitzat"
+
+msgid "Custom text"
+msgstr "Text personalitzat"
+
+msgid "Original text"
+msgstr "Text original"
+
+msgid "Original translation"
+msgstr "Traducció original"
+
+msgid "Custom translation"
+msgstr "Traducció personalitzada"
+
+msgid "Disable submissions"
+msgstr "Deshabilita els enviaments"
+
+msgid "Enable encryption"
+msgstr "Activa el xifratge"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Habiliteu als administradors per canviar les contrasenyes d’usuari"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Persones administradores autoritzats a canviar les contrasenyes de les persones usuàries:"
+
+msgid "Enable multisite feature"
+msgstr "Activa la funció multi lloc"
+
+msgid "Enable simplified login"
+msgstr "Permet l'inici de sessió simplificat"
+
+msgid "Enable search engines indexing"
+msgstr "Habilita els motors de cerca d'indexació"
+
+msgid "Default questionnaire"
+msgstr "Qüestionari per defecte"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Mostra contextos en ordre alfabètic"
+
+msgid "Size limit for file attachments"
+msgstr "Límit de mida per als arxius adjunts"
+
+msgid "Require two factor authentication"
+msgstr "Requereix autenticació de dues passes"
+
+msgid "Password change interval"
+msgstr "Periodicitat de canvi de contrasenya"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Per motius de seguretat, es requereixen canvis de contrasenya periòdicament."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Nombre de dies fins a la notificació d'informes no llegits als usuaris"
+
+msgid "Disable the privacy panel"
+msgstr "Deshabilita el distintiu de privacitat "
+
+msgid "Enable custom privacy panel"
+msgstr "Habilita distintiu personalitzat de privacitat"
+
+msgid "Custom privacy panel"
+msgstr "Tauler de privacitat del client"
+
+msgid "Enable custodian user role"
+msgstr "Activa el rol de persona usuària guardiana"
+
+msgid "Enable scoring system"
+msgstr "Activa el sistema de puntuació"
+
+msgid "Logging level"
+msgstr "Nivell de registre"
+
+msgid "Log accesses of internal users"
+msgstr "Registre d'accés dels usuaris interns"
+
+msgid "Notify administrators of software problems"
+msgstr "Notifiqueu als administradors els problemes de programari"
+
+msgid "Notify developers of software problems"
+msgstr "Notifica sobre problemes del programari"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Si activeu aquesta funció, contribuireu al desenvolupament i la seguretat de la plataforma."
+
+msgid "Reset reports"
+msgstr "Restableix els informes"
+
+msgid "Settings"
+msgstr "Configuració"
 
 msgid "Case management"
 msgstr "Gestió de casos"
 
-msgid "Network settings"
-msgstr "Configuració de xarxa"
+msgid "Network"
+msgstr "Xarxa"
 
 msgid "Sites"
 msgstr "Llocs web"
@@ -1074,10 +1071,10 @@ msgid "Set password"
 msgstr "Estableix la contrasenya"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "La contrasenya escollida és massa feble. Una contrasenya vàlida hauria de tenir com a mínim 10 caràcters i ha de contenir una varietat de caràcters, incloent almenys un minúscula, un majúscula, un número i un caràcter especial."
+msgstr "La contrasenya escollida és massa feble. Una contrasenya vàlida hauria de tenir com a mínim 12 caràcters i ha de contenir una varietat de caràcters, incloent almenys un minúscula, un majúscula, un número i un caràcter especial."
 
 msgid "Force password change"
 msgstr "Força un canvi de contrasenya"

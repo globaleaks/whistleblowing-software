@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Fathimath Raula Ali, 2022\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2020-2022\n"
 "Language-Team: Divehi (http://www.transifex.com/otf/globaleaks/language/dv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,9 +22,6 @@ msgstr ""
 msgid "Log in"
 msgstr "ލޮގް އިން"
 
-msgid "Main configuration"
-msgstr "މެއިން ކޮންފިގަރޭޝަން"
-
 msgid "Theme customization"
 msgstr "ތީމްއަށް ބަދަލުގެނައުމަށް"
 
@@ -34,8 +31,8 @@ msgstr "ބަހުރުވަ ހިޔާރުކުރައްވާ"
 msgid "Text customization"
 msgstr "އަކުރު ބޭނުންފުޅުވާގޮތަށް ބަދަލުކުރަން"
 
-msgid "Advanced settings"
-msgstr "އެޑްވާންސްޑް ސެޓިންގްސް"
+msgid "Advanced"
+msgstr ""
 
 msgid "Question templates"
 msgstr "ސުވާލު ޓެންޕްލޭޓްސް"
@@ -55,8 +52,8 @@ msgstr "ގެނެވިފައިވާ ހުރިހާ ބަދަލެއް"
 msgid "License"
 msgstr "ލައިސަންސް"
 
-msgid "Notification templates"
-msgstr "ނޮޓިފިކޭޝަންގެ ޓެންޕްލޭޓް"
+msgid "Templates"
+msgstr "ޓެމްޕްލޭޓްތައް"
 
 msgid "Delete"
 msgstr "ޑިލީޓް"
@@ -67,8 +64,8 @@ msgstr "އެނޮމަލީސް"
 msgid "Preferences"
 msgstr "ޕްރިފަރެންސަސް"
 
-msgid "Notification settings"
-msgstr "ނޮޓިފިކޭޝަން ސެޓިންގްސް"
+msgid "Notifications"
+msgstr ""
 
 msgid "file unavailable"
 msgstr "ތިޔަ ހޯދާ ފައިލެއް ނެތް"
@@ -118,8 +115,8 @@ msgstr "ޑީސެލެކްޓް އޯލް"
 msgid "Refresh"
 msgstr "ރިފްރެޝް ކުރުމަށް"
 
-msgid "Context"
-msgstr "ކޮންޓެކްސްޓް"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "ޕްރީވިއު"
@@ -253,9 +250,6 @@ msgstr "ވިސިލްބްލޯވަރގެ އައިޑެންޓިޓީ ހިއްސާނު
 msgid "Authorize access to the whistleblower's identity"
 msgstr "ވިސިލްބްލޯވަރގެ އައިޑެންޓިޓީ ހިއްސާކުރުމަށް އޮތޮރައިޒްކުރުމަށް"
 
-msgid "Templates"
-msgstr "ޓެމްޕްލޭޓްތައް"
-
 msgid "URL redirects"
 msgstr " ޔޫ.އާރ.ޢެލް  ރީޑައިރެކްޓްސް"
 
@@ -295,8 +289,8 @@ msgstr "ރަނގަޅު"
 msgid "Strong"
 msgstr "ވަރަށް ރަނގަޅު"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "ލިޔުމުގެ ބާވަތް ދެނެގަތުމަށް އިންޓަފޭސްގެ މަތީގައި ބޭނުންކުރެވޭ ލިޔުންކޮޅު"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "އީމެއިލް ނޯޓިފިކޭޝަން ސައިލެންސް ކުރުމަށް"
@@ -359,9 +353,6 @@ msgstr "ފައިލް ސައިޒްގެ އެންމެ ބޮޑު މިނަކީ:"
 
 msgid "Scheduled jobs"
 msgstr "ތާވަލްކޮށްފައިވާ މަސައްކަތްތައް"
-
-msgid "Sites management"
-msgstr "ސައިޓްގެ މެނޭޖްމަންޓް"
 
 msgid "Regenerate"
 msgstr "ރީޖެނެރޭޓް"
@@ -470,6 +461,12 @@ msgstr "އެކްސެސް ދިނުން"
 msgid "Revoke access"
 msgstr "އެކްސެސް ބާތިލްކުރުން"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "ރިޕޯޓެއް ފައިލް ކުރުން"
 
@@ -485,101 +482,20 @@ msgstr "ކުރިއަށް ދިޔުމުގެ ކުރިން ޓޫ-ފެކްޓާ އޯތ�
 msgid "Enable"
 msgstr "ެއެނޭބަލް"
 
-msgid "Disable submissions"
-msgstr "ސަބްމިޝަންސް ޑިސްއޭބަލްކުރަން"
-
-msgid "Enable encryption"
-msgstr "އެންކްރިޕްޝަން އެނޭބަލް ކުރަން"
-
-msgid "Enable administrators to change user passwords"
-msgstr "ޔޫސަރ ޕާސްވޯޑްސް ބަދަލުކުރަން އެޑްމިނިސްޓްރޭޓަރސް އެނޭބަލް ކުރައްވާ"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "ޔޫޒަރ ޕާސްވޯޑް ބަދަލުކުރުމުގެ ހުއްދަ ލިބިފައިވާ އެޑްމިނިސްޓްރޭޓަރުން:"
-
-msgid "Enable multisite feature"
-msgstr "މަލްޓިސައިޓް ފީޗާ އެނޭބަލްކުރަން"
-
-msgid "Enable simplified login"
-msgstr "ސިންޕްލިފައިޑް ލޮގް އިން އެނޭބަލްކުރަން"
-
-msgid "Enable search engines indexing"
-msgstr "ސާރޗް އިންޖިންތައް އިންޑެކްސް ކުރުމަށް"
-
-msgid "Default questionnaire"
-msgstr "ޑީފޯލްޓް ސުވާލުކަރުދާސް"
-
-msgid "Show contexts in alphabetical order"
-msgstr "ކޮންޓެކްސްޓްސް އަލްފަބެޓިކަލް  އޯޑަރަށް ބަހާލަން"
-
-msgid "Size limit for file attachments"
-msgstr "ފައިލް އެޓޭޗްމެންޓްގެ ސައިޒު ލިމިޓް"
-
-msgid "megabytes"
-msgstr "މެގަބައިޓް"
-
-msgid "Require two factor authentication"
-msgstr "ކުރިއަށް ދިޔުމުގެ ކުރިން ޓޫ-ފެކްޓާ އޯތެންޓިކޭޝަން ހިޔާރުކުރަންޖެހޭނެ"
-
-msgid "Password change interval"
-msgstr "ޕާސްވޯޑް ބޭނުން ކުރެވޭނެ މުއްދަތު"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "އެކައުންޓްގެ ރައްކާތެރިކަމަށްޓަކާއި ގަވާއިދުން ޕާސްވޯޑް ބަދަލުކުރަން ޖެހޭނެ"
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "މި ފީޗާރޑިސްއޭބަލް ކުރުމަށް ވެލިއުގައި 0 ޖައްސަވާ"
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "ނުކިޔާ ރިޕޯޓްތައް ހުރިކަން ޔޫޒަރުންނަށް އެންގަން ބާކީ ހުރި ދުވަސްތަކުގެ އަދަދު"
-
-msgid "Disable the privacy panel"
-msgstr "ޕްރައިވަސީ ޗެނަލް ޑިސްއޭބަލްކުރުަމަށް"
-
-msgid "Enable custom privacy panel"
-msgstr "ކަސްޓަމް ޕްރައިވަސީ ޕެނަލް އެނޭބަލް ކުރުމަށް"
-
-msgid "Custom privacy panel"
-msgstr "ކަސްޓަމް ޕްރައިވަސީ ޗެނަލް"
-
-msgid "Enable custodian user role"
-msgstr "ކަސްޓޯޑިއަން ޔޫސާރގެ  ރޯލް އެނޭބަލްކުރަން"
-
-msgid "Enable scoring system"
-msgstr "ސްކޯރިން ސިސްޓަމް އެނޭބަލްކުރަން"
-
-msgid "Logging level"
-msgstr "ލޮގިންގ ލެވަލް"
-
-msgid "Log accesses of internal users"
-msgstr "އިންޓާނަލް ޔޫސާރސްގެ ލޮގް އެކްސެސްތައް"
-
-msgid "Notify administrators of software problems"
-msgstr "ސޮފްޓްވެއަރގައި މައްސަލައެއް އުޅޭކަން އެޑްމިިނިސްޓްރޭޓަރުންނަށް އެންގުމަށް"
-
-msgid "Notify developers of software problems"
-msgstr "ސޮފްޓްވެއަރގައި މައްސަލައެއް އުޅޭކަން ޑިވެލޮޕަރުންނަށް އެންގުމަށް"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "މި ފީޗަރ އެނޭބަލްކުރުމުން ޕްލެޓްފޯމް އިތުރަށް ތަރައްގީކުރުމަށާއި  ސެކިއުރިޓީ ވަރުގަދަކުރުމަށް އެހީވެދޭ"
-
-msgid "Save"
-msgstr "ސޭވް"
-
-msgid "Reset reports"
-msgstr "ރިޕޯޓްތައް ރީސެޓް ކުރަން"
-
 msgid "Low"
 msgstr "ތިރި"
 
 msgid "High"
 msgstr "މަތި"
 
+msgid "megabytes"
+msgstr "މެގަބައިޓް"
+
 msgid "percentage"
 msgstr "ޕަސެންޓޭޖް"
+
+msgid "Save"
+msgstr "ސޭވް"
 
 msgid "Type"
 msgstr "ބާވަތް"
@@ -632,62 +548,14 @@ msgstr "ކެންސަލްކުރަން"
 msgid "Report statuses"
 msgstr "ރިޕޯޓް ސްޓޭޓަސެސް"
 
-msgid "Logo"
-msgstr "ލޯގޯ"
-
-msgid "Project name"
-msgstr "މަޝްރޫއުގެ ނަން"
-
-msgid "Description"
-msgstr "ތަފްސީލު"
-
-msgid "Homepage title"
-msgstr "ފުރަތަމަ ސަފްޙާގެ ނަން"
-
-msgid "Presentation"
-msgstr "ހުށަހެޅުން"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "ވިސިލްބްލޯވަރއެއްކަން ކަށަވަރުކުރަން އަހާނެ ސުވާލު"
-
-msgid "Whistleblowing button"
-msgstr "ވިސްލްބްލޯކުރުމަށް ފިއްތަވާ"
-
-msgid "Disclaimer"
-msgstr "ސަމާލުކަމަށް / ޑިސްކްލެއިމަރ"
-
-msgid "Footer"
-msgstr "ތިރީ ހަވާސާ"
-
-msgid "Upload"
-msgstr "އަޕްލޯޑް"
-
-msgid "Download"
-msgstr "ޑައުންލޯޑް"
-
-msgid "Language:"
-msgstr "ބަހުރުވަ ހިޔާރުކުރައްވާ"
-
-msgid "Add custom text"
-msgstr "އަމިއްލަ ލަފުޒެއްޖެހުމަށް"
-
-msgid "Custom text"
-msgstr "އަމިއްލަ ލަފުޒު"
-
-msgid "Original text"
-msgstr "އަސްލު ލިޔުން"
-
-msgid "Original translation"
-msgstr "އަސްލު ތަރުޖަމާ"
-
-msgid "Custom translation"
-msgstr "ކަސްޓަމް ތަރުޖަމާ"
-
-msgid "Contexts"
-msgstr "ކޮންޓެކްސްޓްސް"
+msgid "Channels"
+msgstr ""
 
 msgid "Hidden"
 msgstr "ފޮރުވިފައި"
+
+msgid "Description"
+msgstr "ތަފްސީލު"
 
 msgid "Questionnaire"
 msgstr "ސުވާލުކަރުދާސް"
@@ -697,6 +565,9 @@ msgstr "ރިސިޕިއަންޓްސް"
 
 msgid "days"
 msgstr "ދުވަސް"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "މި ފީޗާރޑިސްއޭބަލް ކުރުމަށް ވެލިއުގައި 0 ޖައްސަވާ"
 
 msgid "Show the questionnaire navigation interface"
 msgstr "ނެވިގޭޝަން އިންޓަރފޭސްގެ ތެރެއިން ސާވޭ ކަރަުދާސް ދެއްކުމަށް"
@@ -796,6 +667,9 @@ msgstr "ޕްރައިވެޓް ކީ"
 
 msgid "Certificate Signing Request"
 msgstr "ސަނަދު ސޮއިކުރުމަށް ފޮނުވުން"
+
+msgid "Download"
+msgstr "ޑައުންލޯޑް"
 
 msgid "Certificate"
 msgstr "ސަނަދު"
@@ -1011,14 +885,137 @@ msgstr "ނަކަލު"
 msgid "Steps"
 msgstr "ހަރުފަތްތައް"
 
-msgid "Site settings"
-msgstr "ސައިޓްގެ ސެޓިންގްސް"
+msgid "Logo"
+msgstr "ލޯގޯ"
+
+msgid "Project name"
+msgstr "މަޝްރޫއުގެ ނަން"
+
+msgid "Homepage title"
+msgstr "ފުރަތަމަ ސަފްޙާގެ ނަން"
+
+msgid "Presentation"
+msgstr "ހުށަހެޅުން"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "ވިސިލްބްލޯވަރއެއްކަން ކަށަވަރުކުރަން އަހާނެ ސުވާލު"
+
+msgid "Whistleblowing button"
+msgstr "ވިސްލްބްލޯކުރުމަށް ފިއްތަވާ"
+
+msgid "Disclaimer"
+msgstr "ސަމާލުކަމަށް / ޑިސްކްލެއިމަރ"
+
+msgid "Footer"
+msgstr "ތިރީ ހަވާސާ"
+
+msgid "Upload"
+msgstr "އަޕްލޯޑް"
+
+msgid "Language:"
+msgstr "ބަހުރުވަ ހިޔާރުކުރައްވާ"
+
+msgid "Add custom text"
+msgstr "އަމިއްލަ ލަފުޒެއްޖެހުމަށް"
+
+msgid "Custom text"
+msgstr "އަމިއްލަ ލަފުޒު"
+
+msgid "Original text"
+msgstr "އަސްލު ލިޔުން"
+
+msgid "Original translation"
+msgstr "އަސްލު ތަރުޖަމާ"
+
+msgid "Custom translation"
+msgstr "ކަސްޓަމް ތަރުޖަމާ"
+
+msgid "Disable submissions"
+msgstr "ސަބްމިޝަންސް ޑިސްއޭބަލްކުރަން"
+
+msgid "Enable encryption"
+msgstr "އެންކްރިޕްޝަން އެނޭބަލް ކުރަން"
+
+msgid "Enable administrators to change user passwords"
+msgstr "ޔޫސަރ ޕާސްވޯޑްސް ބަދަލުކުރަން އެޑްމިނިސްޓްރޭޓަރސް އެނޭބަލް ކުރައްވާ"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "ޔޫޒަރ ޕާސްވޯޑް ބަދަލުކުރުމުގެ ހުއްދަ ލިބިފައިވާ އެޑްމިނިސްޓްރޭޓަރުން:"
+
+msgid "Enable multisite feature"
+msgstr "މަލްޓިސައިޓް ފީޗާ އެނޭބަލްކުރަން"
+
+msgid "Enable simplified login"
+msgstr "ސިންޕްލިފައިޑް ލޮގް އިން އެނޭބަލްކުރަން"
+
+msgid "Enable search engines indexing"
+msgstr "ސާރޗް އިންޖިންތައް އިންޑެކްސް ކުރުމަށް"
+
+msgid "Default questionnaire"
+msgstr "ޑީފޯލްޓް ސުވާލުކަރުދާސް"
+
+msgid "Show contexts in alphabetical order"
+msgstr "ކޮންޓެކްސްޓްސް އަލްފަބެޓިކަލް  އޯޑަރަށް ބަހާލަން"
+
+msgid "Size limit for file attachments"
+msgstr "ފައިލް އެޓޭޗްމެންޓްގެ ސައިޒު ލިމިޓް"
+
+msgid "Require two factor authentication"
+msgstr "ކުރިއަށް ދިޔުމުގެ ކުރިން ޓޫ-ފެކްޓާ އޯތެންޓިކޭޝަން ހިޔާރުކުރަންޖެހޭނެ"
+
+msgid "Password change interval"
+msgstr "ޕާސްވޯޑް ބޭނުން ކުރެވޭނެ މުއްދަތު"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "އެކައުންޓްގެ ރައްކާތެރިކަމަށްޓަކާއި ގަވާއިދުން ޕާސްވޯޑް ބަދަލުކުރަން ޖެހޭނެ"
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "ނުކިޔާ ރިޕޯޓްތައް ހުރިކަން ޔޫޒަރުންނަށް އެންގަން ބާކީ ހުރި ދުވަސްތަކުގެ އަދަދު"
+
+msgid "Disable the privacy panel"
+msgstr "ޕްރައިވަސީ ޗެނަލް ޑިސްއޭބަލްކުރުަމަށް"
+
+msgid "Enable custom privacy panel"
+msgstr "ކަސްޓަމް ޕްރައިވަސީ ޕެނަލް އެނޭބަލް ކުރުމަށް"
+
+msgid "Custom privacy panel"
+msgstr "ކަސްޓަމް ޕްރައިވަސީ ޗެނަލް"
+
+msgid "Enable custodian user role"
+msgstr "ކަސްޓޯޑިއަން ޔޫސާރގެ  ރޯލް އެނޭބަލްކުރަން"
+
+msgid "Enable scoring system"
+msgstr "ސްކޯރިން ސިސްޓަމް އެނޭބަލްކުރަން"
+
+msgid "Logging level"
+msgstr "ލޮގިންގ ލެވަލް"
+
+msgid "Log accesses of internal users"
+msgstr "އިންޓާނަލް ޔޫސާރސްގެ ލޮގް އެކްސެސްތައް"
+
+msgid "Notify administrators of software problems"
+msgstr "ސޮފްޓްވެއަރގައި މައްސަލައެއް އުޅޭކަން އެޑްމިިނިސްޓްރޭޓަރުންނަށް އެންގުމަށް"
+
+msgid "Notify developers of software problems"
+msgstr "ސޮފްޓްވެއަރގައި މައްސަލައެއް އުޅޭކަން ޑިވެލޮޕަރުންނަށް އެންގުމަށް"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "މި ފީޗަރ އެނޭބަލްކުރުމުން ޕްލެޓްފޯމް އިތުރަށް ތަރައްގީކުރުމަށާއި  ސެކިއުރިޓީ ވަރުގަދަކުރުމަށް އެހީވެދޭ"
+
+msgid "Reset reports"
+msgstr "ރިޕޯޓްތައް ރީސެޓް ކުރަން"
+
+msgid "Settings"
+msgstr ""
 
 msgid "Case management"
 msgstr "މައްސަލަ ބެލެހެއްޓުން"
 
-msgid "Network settings"
-msgstr "ނެޓްވާރކް ސެޓިންގްސް"
+msgid "Network"
+msgstr ""
 
 msgid "Sites"
 msgstr "ސައިޓުތައް"
@@ -1060,10 +1057,10 @@ msgid "Set password"
 msgstr "ޕާސްވާޑްއެއް ހިޔާރުކުރައްވާ"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "ހިޔާރުކުރި ޕާސްވަރޑް ވަރަށް ބަލިކަށި.  ޕާސްވަރޑްގެ ވަރުގަދަކުރުމަށް ޕާސްވަރޑްގެ ދިގުމުނުގައި 10 ކެރެކްޓަރ ހަމަކުރައްވާ އަދި ކެޕިޓަލް އަކުރާއި ސިމްޕަލް އަކުރު ހިޔާރުކުރައްވާ. އަދި  ހިސާބު އަކުރަކާއި ހާއްސަ ކެރެކްޓަރއެއް ބޭނުންކުރައްވާ."
+msgstr "ހިޔާރުކުރި ޕާސްވަރޑް ވަރަށް ބަލިކަށި.  ޕާސްވަރޑްގެ ވަރުގަދަކުރުމަށް ޕާސްވަރޑްގެ ދިގުމުނުގައި 12 ކެރެކްޓަރ ހަމަކުރައްވާ އަދި ކެޕިޓަލް އަކުރާއި ސިމްޕަލް އަކުރު ހިޔާރުކުރައްވާ. އަދި  ހިސާބު އަކުރަކާއި ހާއްސަ ކެރެކްޓަރއެއް ބޭނުންކުރައްވާ."
 
 msgid "Force password change"
 msgstr "ޕާސްވޯޑް ބަދަލު ކުރުވަން"

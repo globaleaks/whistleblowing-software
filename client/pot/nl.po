@@ -61,9 +61,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Inloggen"
 
-msgid "Main configuration"
-msgstr "Hoofdconfiguratie"
-
 msgid "Theme customization"
 msgstr "Thema aanpassen"
 
@@ -73,8 +70,8 @@ msgstr "Talen"
 msgid "Text customization"
 msgstr "Tekst aanpassing"
 
-msgid "Advanced settings"
-msgstr "Geavanceerde instellingen"
+msgid "Advanced"
+msgstr "Geavanceerd"
 
 msgid "Question templates"
 msgstr "Formuliersjablonen"
@@ -94,8 +91,8 @@ msgstr "Changelog"
 msgid "License"
 msgstr "Licentie"
 
-msgid "Notification templates"
-msgstr "Bericht templates"
+msgid "Templates"
+msgstr "Sjablonen"
 
 msgid "Delete"
 msgstr "Verwijderen"
@@ -106,8 +103,8 @@ msgstr "Afwijkingen"
 msgid "Preferences"
 msgstr "Voorkeuren"
 
-msgid "Notification settings"
-msgstr "Notificatie-instellingen"
+msgid "Notifications"
+msgstr "Meldingen"
 
 msgid "file unavailable"
 msgstr "bestand niet beschikbaar"
@@ -157,8 +154,8 @@ msgstr "Niets selecteren"
 msgid "Refresh"
 msgstr "Vernieuwen"
 
-msgid "Context"
-msgstr "Context"
+msgid "Channel"
+msgstr "Kanaal"
 
 msgid "Preview"
 msgstr "Voorbeeld"
@@ -292,9 +289,6 @@ msgstr "Wijs toegang tot de identiteit van de klokkenluider af"
 msgid "Authorize access to the whistleblower's identity"
 msgstr "Verleen toegang tot de identiteit van de klokkenluider"
 
-msgid "Templates"
-msgstr "Sjablonen"
-
 msgid "URL redirects"
 msgstr "URL-verwijzingen"
 
@@ -334,7 +328,7 @@ msgstr "Redelijk"
 msgid "Strong"
 msgstr "Sterk"
 
-msgid "Text shown on top of the interface for selecting contexts"
+msgid "Text shown on top of the interface for selecting channels"
 msgstr "Tekst die getoond wordt boven de interface om context te selecteren"
 
 msgid "Silence email notifications"
@@ -398,9 +392,6 @@ msgstr "Maximale bestandsgrootte:"
 
 msgid "Scheduled jobs"
 msgstr "Geplande werkzaamheden"
-
-msgid "Sites management"
-msgstr "Weblocatiebeheer"
 
 msgid "Regenerate"
 msgstr "Regenereren"
@@ -509,6 +500,12 @@ msgstr "Toegang verlenen"
 msgid "Revoke access"
 msgstr "Toegang herroepen"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "Dien een rapport in"
 
@@ -524,101 +521,20 @@ msgstr "Zet two-factor-authentication aan voordat je verdergaat."
 msgid "Enable"
 msgstr "Inschakelen"
 
-msgid "Disable submissions"
-msgstr "Inzendingen uitschakelen"
-
-msgid "Enable encryption"
-msgstr "Encryptie inschakelen"
-
-msgid "Enable administrators to change user passwords"
-msgstr "Stel beheerders in staat om wachtwoorden van gebruikers te veranderen"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Beheerders die gemachtigd zijn om gebruikerswachtwoorden te wijzigen:"
-
-msgid "Enable multisite feature"
-msgstr "Functie voor meerdere-weblocaties inschakelen"
-
-msgid "Enable simplified login"
-msgstr "Vereenvoudigde login inschakelen"
-
-msgid "Enable search engines indexing"
-msgstr "Zoekmachine-indexering inschakelen"
-
-msgid "Default questionnaire"
-msgstr "Standaard vragenformulier"
-
-msgid "Show contexts in alphabetical order"
-msgstr "Toon contexten in alfabetische volgorde"
-
-msgid "Size limit for file attachments"
-msgstr "Maximale grootte voor bestandsbijlagen"
-
-msgid "megabytes"
-msgstr "megabytes"
-
-msgid "Require two factor authentication"
-msgstr "Vereis two-factor-authentication"
-
-msgid "Password change interval"
-msgstr "Wachtwoord-wijzigingsinterval"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Wachtwoorden moeten geregeld worden veranderd om veiligheidsredenen."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Stel de waarde in op 0 om deze functie uit te schakelen"
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Aantal dagen tot het melden van de ongelezen inzendingen aan gebruikers"
-
-msgid "Disable the privacy panel"
-msgstr "Privacy-paneel uitschakelen"
-
-msgid "Enable custom privacy panel"
-msgstr "Gepersonaliseerd privacy-paneel inschakelen"
-
-msgid "Custom privacy panel"
-msgstr "Gepersonaliseerd privacy-paneel"
-
-msgid "Enable custodian user role"
-msgstr "Activeer de custodian gebruikersrol"
-
-msgid "Enable scoring system"
-msgstr "Waarderingssysteem inschakelen"
-
-msgid "Logging level"
-msgstr "Niveau van loggen"
-
-msgid "Log accesses of internal users"
-msgstr "Log toegang door interne-gebruikers"
-
-msgid "Notify administrators of software problems"
-msgstr "Stel administratoren op de hoogte van software problemen"
-
-msgid "Notify developers of software problems"
-msgstr "Meld programmafouten bij ontwikkelaars"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Door dit in te schakelen draag je bij aan de ontwikkeling en veiligheid van het platvorm."
-
-msgid "Save"
-msgstr "Bewaar"
-
-msgid "Reset reports"
-msgstr "Inzendingen resetten"
-
 msgid "Low"
 msgstr "Laag"
 
 msgid "High"
 msgstr "Hoog"
 
+msgid "megabytes"
+msgstr "megabytes"
+
 msgid "percentage"
 msgstr "percentage"
+
+msgid "Save"
+msgstr "Bewaar"
 
 msgid "Type"
 msgstr "Type"
@@ -671,62 +587,14 @@ msgstr "Annuleren"
 msgid "Report statuses"
 msgstr "Status van de inzending"
 
-msgid "Logo"
-msgstr "Logo"
-
-msgid "Project name"
-msgstr "Naam van initiatief"
-
-msgid "Description"
-msgstr "Omschrijving"
-
-msgid "Homepage title"
-msgstr "Titel van hoofdpagina"
-
-msgid "Presentation"
-msgstr "Presentatie"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Vraag om potentiële klokkenluiders aan te spreken"
-
-msgid "Whistleblowing button"
-msgstr "Klokkenluid-knop"
-
-msgid "Disclaimer"
-msgstr "Disclaimer"
-
-msgid "Footer"
-msgstr "Voettekst"
-
-msgid "Upload"
-msgstr "Uploaden"
-
-msgid "Download"
-msgstr "Downloaden"
-
-msgid "Language:"
-msgstr "Taal:"
-
-msgid "Add custom text"
-msgstr "Voeg aangepaste tekst toe"
-
-msgid "Custom text"
-msgstr "Aangepaste tekst"
-
-msgid "Original text"
-msgstr "Orginele tekst"
-
-msgid "Original translation"
-msgstr "Orginele vertaling"
-
-msgid "Custom translation"
-msgstr "Aangepaste vertaling"
-
-msgid "Contexts"
-msgstr "Categorieën"
+msgid "Channels"
+msgstr ""
 
 msgid "Hidden"
 msgstr "Verborgen"
+
+msgid "Description"
+msgstr "Omschrijving"
 
 msgid "Questionnaire"
 msgstr "Vragenformulier"
@@ -736,6 +604,9 @@ msgstr "Ontvangers"
 
 msgid "days"
 msgstr "dagen"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Stel de waarde in op 0 om deze functie uit te schakelen"
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Toon het navigatie-ineractiescherm van de vragenlijst"
@@ -835,6 +706,9 @@ msgstr "Privésleutel"
 
 msgid "Certificate Signing Request"
 msgstr "Certificaatondertekeningsverzoek"
+
+msgid "Download"
+msgstr "Downloaden"
 
 msgid "Certificate"
 msgstr "Certificaat"
@@ -1050,14 +924,137 @@ msgstr "Een kopie maken"
 msgid "Steps"
 msgstr "Stappen"
 
-msgid "Site settings"
-msgstr "Weblocatie-instellingen"
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Project name"
+msgstr "Naam van initiatief"
+
+msgid "Homepage title"
+msgstr "Titel van hoofdpagina"
+
+msgid "Presentation"
+msgstr "Presentatie"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Vraag om potentiële klokkenluiders aan te spreken"
+
+msgid "Whistleblowing button"
+msgstr "Klokkenluid-knop"
+
+msgid "Disclaimer"
+msgstr "Disclaimer"
+
+msgid "Footer"
+msgstr "Voettekst"
+
+msgid "Upload"
+msgstr "Uploaden"
+
+msgid "Language:"
+msgstr "Taal:"
+
+msgid "Add custom text"
+msgstr "Voeg aangepaste tekst toe"
+
+msgid "Custom text"
+msgstr "Aangepaste tekst"
+
+msgid "Original text"
+msgstr "Orginele tekst"
+
+msgid "Original translation"
+msgstr "Orginele vertaling"
+
+msgid "Custom translation"
+msgstr "Aangepaste vertaling"
+
+msgid "Disable submissions"
+msgstr "Inzendingen uitschakelen"
+
+msgid "Enable encryption"
+msgstr "Encryptie inschakelen"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Stel beheerders in staat om wachtwoorden van gebruikers te veranderen"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Beheerders die gemachtigd zijn om gebruikerswachtwoorden te wijzigen:"
+
+msgid "Enable multisite feature"
+msgstr "Functie voor meerdere-weblocaties inschakelen"
+
+msgid "Enable simplified login"
+msgstr "Vereenvoudigde login inschakelen"
+
+msgid "Enable search engines indexing"
+msgstr "Zoekmachine-indexering inschakelen"
+
+msgid "Default questionnaire"
+msgstr "Standaard vragenformulier"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Toon contexten in alfabetische volgorde"
+
+msgid "Size limit for file attachments"
+msgstr "Maximale grootte voor bestandsbijlagen"
+
+msgid "Require two factor authentication"
+msgstr "Vereis two-factor-authentication"
+
+msgid "Password change interval"
+msgstr "Wachtwoord-wijzigingsinterval"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Wachtwoorden moeten geregeld worden veranderd om veiligheidsredenen."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Aantal dagen tot het melden van de ongelezen inzendingen aan gebruikers"
+
+msgid "Disable the privacy panel"
+msgstr "Privacy-paneel uitschakelen"
+
+msgid "Enable custom privacy panel"
+msgstr "Gepersonaliseerd privacy-paneel inschakelen"
+
+msgid "Custom privacy panel"
+msgstr "Gepersonaliseerd privacy-paneel"
+
+msgid "Enable custodian user role"
+msgstr "Activeer de custodian gebruikersrol"
+
+msgid "Enable scoring system"
+msgstr "Waarderingssysteem inschakelen"
+
+msgid "Logging level"
+msgstr "Niveau van loggen"
+
+msgid "Log accesses of internal users"
+msgstr "Log toegang door interne-gebruikers"
+
+msgid "Notify administrators of software problems"
+msgstr "Stel administratoren op de hoogte van software problemen"
+
+msgid "Notify developers of software problems"
+msgstr "Meld programmafouten bij ontwikkelaars"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Door dit in te schakelen draag je bij aan de ontwikkeling en veiligheid van het platvorm."
+
+msgid "Reset reports"
+msgstr "Inzendingen resetten"
+
+msgid "Settings"
+msgstr "Instellingen"
 
 msgid "Case management"
 msgstr "Casus management"
 
-msgid "Network settings"
-msgstr "Netwerkinstellingen"
+msgid "Network"
+msgstr "Netwerk"
 
 msgid "Sites"
 msgstr "Weblocaties"
@@ -1099,10 +1096,10 @@ msgid "Set password"
 msgstr "Wachtwoord instellen"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Het gekozen wachtwoord is te zwak. Een goed wachtwoord moet tenminste 10 tekens bevatten, waaronder een hoofdletter, kleine letter, cijfer, en een symbool."
+msgstr "Het gekozen wachtwoord is te zwak. Een goed wachtwoord moet tenminste 12 tekens bevatten, waaronder een hoofdletter, kleine letter, cijfer, en een symbool."
 
 msgid "Force password change"
 msgstr "Forceer wachtwoord verandering"

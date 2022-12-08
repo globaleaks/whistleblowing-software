@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Akseli Pihlajamaa <akselijuhanipihlajamaa@gmail.com>, 2020-2022\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2018,2020-2022\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,9 +26,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Kirjaudu sisään"
 
-msgid "Main configuration"
-msgstr "Palvelun etusivu"
-
 msgid "Theme customization"
 msgstr "Teemamuutokset"
 
@@ -38,8 +35,8 @@ msgstr "Kielet"
 msgid "Text customization"
 msgstr "Tekstimuutokset"
 
-msgid "Advanced settings"
-msgstr "Lisäasetukset"
+msgid "Advanced"
+msgstr "Lisätiedot"
 
 msgid "Question templates"
 msgstr "Mallipohjat"
@@ -59,8 +56,8 @@ msgstr "Muutosloki"
 msgid "License"
 msgstr "Lisenssi"
 
-msgid "Notification templates"
-msgstr "Ilmoituspohjat"
+msgid "Templates"
+msgstr "Mallipohjat"
 
 msgid "Delete"
 msgstr "Poista"
@@ -71,8 +68,8 @@ msgstr "Poikkeamat"
 msgid "Preferences"
 msgstr "Asetukset"
 
-msgid "Notification settings"
-msgstr "Ilmoitusasetukset"
+msgid "Notifications"
+msgstr "Ilmoitukset"
 
 msgid "file unavailable"
 msgstr "tiedosto ei ole saatavilla"
@@ -122,8 +119,8 @@ msgstr "Poista kaikkien valinta"
 msgid "Refresh"
 msgstr "Päivitä"
 
-msgid "Context"
-msgstr "Aihe"
+msgid "Channel"
+msgstr "Kanava"
 
 msgid "Preview"
 msgstr "Esikatselu"
@@ -257,9 +254,6 @@ msgstr "Estä pääsy vihjeenantajan henkilöllisyyteen"
 msgid "Authorize access to the whistleblower's identity"
 msgstr "Salli pääsy vihjeenantajan henkilöllisyyteen"
 
-msgid "Templates"
-msgstr "Mallipohjat"
-
 msgid "URL redirects"
 msgstr "URL-uudelleenohjaukset"
 
@@ -299,7 +293,7 @@ msgstr "Hyväksyttävä"
 msgid "Strong"
 msgstr "Vahva"
 
-msgid "Text shown on top of the interface for selecting contexts"
+msgid "Text shown on top of the interface for selecting channels"
 msgstr "Sivun yläosan teksti aihetta valittaessa"
 
 msgid "Silence email notifications"
@@ -363,9 +357,6 @@ msgstr "Tiedoston maksimikoko:"
 
 msgid "Scheduled jobs"
 msgstr "Aikataulutetut tehtävät"
-
-msgid "Sites management"
-msgstr "Sivustojen hallinta"
 
 msgid "Regenerate"
 msgstr "Luo uusi"
@@ -474,6 +465,12 @@ msgstr "Myönnä pääsy ilmoitukseen"
 msgid "Revoke access"
 msgstr "Peruuta pääsy ilmoitukseen"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "Jätä ilmoitus"
 
@@ -489,101 +486,20 @@ msgstr "Voit jatkaa, kun olet ottanut käyttöösi kaksivaiheisen tunnistautumis
 msgid "Enable"
 msgstr "Ota käyttöön"
 
-msgid "Disable submissions"
-msgstr "Poista vihjeiden lähettäminen käytöstä"
-
-msgid "Enable encryption"
-msgstr "Käytä salausta"
-
-msgid "Enable administrators to change user passwords"
-msgstr "Salli ylläpidon vaihtaa salasanat"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Ylläpitäjillä on valtuutus vaihtaa käyttäjän salasanat:"
-
-msgid "Enable multisite feature"
-msgstr "Ota käyttöön samanaikainen kirjautuminen useaan järjestelmään"
-
-msgid "Enable simplified login"
-msgstr "Ota käyttöön helpotettu kirjautuminen"
-
-msgid "Enable search engines indexing"
-msgstr "Ota käyttöön hakukoneiden indeksointi"
-
-msgid "Default questionnaire"
-msgstr "Oletuslomake"
-
-msgid "Show contexts in alphabetical order"
-msgstr "Näytä aiheet aakkosjärjestyksessä"
-
-msgid "Size limit for file attachments"
-msgstr "Liitetiedostojen kokorajoitus"
-
-msgid "megabytes"
-msgstr "megatavua"
-
-msgid "Require two factor authentication"
-msgstr "Kaksivaiheinen tunnistus vaaditaan"
-
-msgid "Password change interval"
-msgstr "Salasanan vaihtoväli"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Turvallisuussyistä johtuen salasanat täytyy uusia säännöllisin väliajoin."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Ota toiminnallisuus pois käytöstä asettamalla arvoksi luku nolla (0)."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Aika (päivinä), jonka jälkeen käyttäjää muistutetaan uusista ilmoituksista"
-
-msgid "Disable the privacy panel"
-msgstr "Ota pois käytöstä yksityisyyskulkukortti"
-
-msgid "Enable custom privacy panel"
-msgstr "Ota käyttöön oma yksityisyyskulkukortti"
-
-msgid "Custom privacy panel"
-msgstr "Mukautettu yksityisyysasetusten hallintapaneeli"
-
-msgid "Enable custodian user role"
-msgstr "Ota käyttöön valvontarooli"
-
-msgid "Enable scoring system"
-msgstr "Ota käyttöön pisteytysjärjestelmä"
-
-msgid "Logging level"
-msgstr "Kirjautumistaso"
-
-msgid "Log accesses of internal users"
-msgstr "Tallenna sisäisten käyttäjien kirjautumiset"
-
-msgid "Notify administrators of software problems"
-msgstr "Raportoi ohjelmisto-ongelmista palvelun ylläpitäjille"
-
-msgid "Notify developers of software problems"
-msgstr "Raportoi ohjelmisto-ongelmista palvelun kehittäjille"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Ottamalla tämän ominaisuuden käyttöön olet mukana palvelun kehityksessä ja parannat sen turvallisuutta."
-
-msgid "Save"
-msgstr "Tallenna"
-
-msgid "Reset reports"
-msgstr "Nollaa ilmoitukset"
-
 msgid "Low"
 msgstr "Matala"
 
 msgid "High"
 msgstr "Korkea"
 
+msgid "megabytes"
+msgstr "megatavua"
+
 msgid "percentage"
 msgstr "prosenttia"
+
+msgid "Save"
+msgstr "Tallenna"
 
 msgid "Type"
 msgstr "Tyyppi"
@@ -636,62 +552,14 @@ msgstr "Peru"
 msgid "Report statuses"
 msgstr "Ilmoita tilat"
 
-msgid "Logo"
-msgstr "Logo"
-
-msgid "Project name"
-msgstr "Palvelun nimi"
-
-msgid "Description"
-msgstr "Kuvaus"
-
-msgid "Homepage title"
-msgstr "Otsikkoteksti"
-
-msgid "Presentation"
-msgstr "Esittely"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Vihjeenantajalle esitettävä kysymys palvelun etusivulla"
-
-msgid "Whistleblowing button"
-msgstr "Aloituspainikkeen teksti"
-
-msgid "Disclaimer"
-msgstr "Vastuuvapauslauseke"
-
-msgid "Footer"
-msgstr "Sivun alatunnisteen teksti"
-
-msgid "Upload"
-msgstr "Lataa"
-
-msgid "Download"
-msgstr "Lataa"
-
-msgid "Language:"
-msgstr "Valitse kieli:"
-
-msgid "Add custom text"
-msgstr "Valitse korvattava teksti"
-
-msgid "Custom text"
-msgstr "Kirjoita oma käännös"
-
-msgid "Original text"
-msgstr "Lähdeteksti"
-
-msgid "Original translation"
-msgstr "Alkuperäinen käännös"
-
-msgid "Custom translation"
-msgstr "Oma käännös"
-
-msgid "Contexts"
-msgstr "Aiheet"
+msgid "Channels"
+msgstr "Kanavia"
 
 msgid "Hidden"
 msgstr "Piilotettu"
+
+msgid "Description"
+msgstr "Kuvaus"
 
 msgid "Questionnaire"
 msgstr "Vihjelomake"
@@ -701,6 +569,9 @@ msgstr "Vastaanottajat"
 
 msgid "days"
 msgstr "päivää"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Ota toiminnallisuus pois käytöstä asettamalla arvoksi luku nolla (0)."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Näytä vihjelomakkeen navigaationäkymä"
@@ -800,6 +671,9 @@ msgstr "Yksityinen avain"
 
 msgid "Certificate Signing Request"
 msgstr "Varmenteen allekirjoituspyyntö (CSR)"
+
+msgid "Download"
+msgstr "Lataa"
 
 msgid "Certificate"
 msgstr "Varmenne"
@@ -1015,14 +889,137 @@ msgstr "Monista"
 msgid "Steps"
 msgstr "Vaiheet"
 
-msgid "Site settings"
-msgstr "Palvelun asetukset"
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Project name"
+msgstr "Palvelun nimi"
+
+msgid "Homepage title"
+msgstr "Otsikkoteksti"
+
+msgid "Presentation"
+msgstr "Esittely"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Vihjeenantajalle esitettävä kysymys palvelun etusivulla"
+
+msgid "Whistleblowing button"
+msgstr "Aloituspainikkeen teksti"
+
+msgid "Disclaimer"
+msgstr "Vastuuvapauslauseke"
+
+msgid "Footer"
+msgstr "Sivun alatunnisteen teksti"
+
+msgid "Upload"
+msgstr "Lataa"
+
+msgid "Language:"
+msgstr "Valitse kieli:"
+
+msgid "Add custom text"
+msgstr "Valitse korvattava teksti"
+
+msgid "Custom text"
+msgstr "Kirjoita oma käännös"
+
+msgid "Original text"
+msgstr "Lähdeteksti"
+
+msgid "Original translation"
+msgstr "Alkuperäinen käännös"
+
+msgid "Custom translation"
+msgstr "Oma käännös"
+
+msgid "Disable submissions"
+msgstr "Poista vihjeiden lähettäminen käytöstä"
+
+msgid "Enable encryption"
+msgstr "Käytä salausta"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Salli ylläpidon vaihtaa salasanat"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Ylläpitäjillä on valtuutus vaihtaa käyttäjän salasanat:"
+
+msgid "Enable multisite feature"
+msgstr "Ota käyttöön samanaikainen kirjautuminen useaan järjestelmään"
+
+msgid "Enable simplified login"
+msgstr "Ota käyttöön helpotettu kirjautuminen"
+
+msgid "Enable search engines indexing"
+msgstr "Ota käyttöön hakukoneiden indeksointi"
+
+msgid "Default questionnaire"
+msgstr "Oletuslomake"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Näytä aiheet aakkosjärjestyksessä"
+
+msgid "Size limit for file attachments"
+msgstr "Liitetiedostojen kokorajoitus"
+
+msgid "Require two factor authentication"
+msgstr "Kaksivaiheinen tunnistus vaaditaan"
+
+msgid "Password change interval"
+msgstr "Salasanan vaihtoväli"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Turvallisuussyistä johtuen salasanat täytyy uusia säännöllisin väliajoin."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Aika (päivinä), jonka jälkeen käyttäjää muistutetaan uusista ilmoituksista"
+
+msgid "Disable the privacy panel"
+msgstr "Ota pois käytöstä yksityisyyskulkukortti"
+
+msgid "Enable custom privacy panel"
+msgstr "Ota käyttöön oma yksityisyyskulkukortti"
+
+msgid "Custom privacy panel"
+msgstr "Mukautettu yksityisyysasetusten hallintapaneeli"
+
+msgid "Enable custodian user role"
+msgstr "Ota käyttöön valvontarooli"
+
+msgid "Enable scoring system"
+msgstr "Ota käyttöön pisteytysjärjestelmä"
+
+msgid "Logging level"
+msgstr "Kirjautumistaso"
+
+msgid "Log accesses of internal users"
+msgstr "Tallenna sisäisten käyttäjien kirjautumiset"
+
+msgid "Notify administrators of software problems"
+msgstr "Raportoi ohjelmisto-ongelmista palvelun ylläpitäjille"
+
+msgid "Notify developers of software problems"
+msgstr "Raportoi ohjelmisto-ongelmista palvelun kehittäjille"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Ottamalla tämän ominaisuuden käyttöön olet mukana palvelun kehityksessä ja parannat sen turvallisuutta."
+
+msgid "Reset reports"
+msgstr "Nollaa ilmoitukset"
+
+msgid "Settings"
+msgstr "Asetukset"
 
 msgid "Case management"
 msgstr "Asiainhallinta"
 
-msgid "Network settings"
-msgstr "Verkkoasetukset"
+msgid "Network"
+msgstr "Verkko"
 
 msgid "Sites"
 msgstr "Palvelut"
@@ -1064,10 +1061,10 @@ msgid "Set password"
 msgstr "Aseta salasana"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Valitsemasi salasana on liian yksinkertainen. Salasanan täytyy olla vähintään 10 merkkiä pitkä ja sisältää vähintään yhden pienen ja ison kirjaimen sekä numeron ja erikoismerkin."
+msgstr "Valitsemasi salasana on liian yksinkertainen. Salasanan täytyy olla vähintään 12 merkkiä pitkä ja sisältää vähintään yhden pienen ja ison kirjaimen sekä numeron ja erikoismerkin."
 
 msgid "Force password change"
 msgstr "Pakota salasanan vaihto"

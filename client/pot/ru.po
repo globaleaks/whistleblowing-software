@@ -36,7 +36,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: aylar b, 2022\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2016-2018,2020-2022\n"
 "Language-Team: Russian (http://www.transifex.com/otf/globaleaks/language/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -47,9 +47,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Войти"
 
-msgid "Main configuration"
-msgstr "Основные настройки"
-
 msgid "Theme customization"
 msgstr "Настройка темы"
 
@@ -59,8 +56,8 @@ msgstr "Языки"
 msgid "Text customization"
 msgstr "Настройка текста"
 
-msgid "Advanced settings"
-msgstr "Дополнительные настройки"
+msgid "Advanced"
+msgstr "Дополнительно"
 
 msgid "Question templates"
 msgstr "Шаблоны для вопросов"
@@ -80,8 +77,8 @@ msgstr "Журнал изменений"
 msgid "License"
 msgstr "Лицензия"
 
-msgid "Notification templates"
-msgstr "Шаблоны уведомлений"
+msgid "Templates"
+msgstr "Шаблоны"
 
 msgid "Delete"
 msgstr "Удалить"
@@ -92,8 +89,8 @@ msgstr "Аномалии"
 msgid "Preferences"
 msgstr "Настройки"
 
-msgid "Notification settings"
-msgstr "Настройки уведомлений"
+msgid "Notifications"
+msgstr "Уведомления"
 
 msgid "file unavailable"
 msgstr "файл недоступен"
@@ -143,8 +140,8 @@ msgstr "Отменить выбор"
 msgid "Refresh"
 msgstr "Обновить"
 
-msgid "Context"
-msgstr "Контекст"
+msgid "Channel"
+msgstr "Канал"
 
 msgid "Preview"
 msgstr "Предпросмотр"
@@ -278,9 +275,6 @@ msgstr "Запретить доступ к личности информатор
 msgid "Authorize access to the whistleblower's identity"
 msgstr "Разрешить доступ к личности информатора"
 
-msgid "Templates"
-msgstr "Шаблоны"
-
 msgid "URL redirects"
 msgstr "Перенаправления URL"
 
@@ -320,7 +314,7 @@ msgstr "Приемлемая"
 msgid "Strong"
 msgstr "Сильная"
 
-msgid "Text shown on top of the interface for selecting contexts"
+msgid "Text shown on top of the interface for selecting channels"
 msgstr "Текст, отображаемый над интерфейсом выбора контекстов"
 
 msgid "Silence email notifications"
@@ -384,9 +378,6 @@ msgstr "Максимальный размер файла:"
 
 msgid "Scheduled jobs"
 msgstr "Запланированные задания"
-
-msgid "Sites management"
-msgstr "Управление сайтами"
 
 msgid "Regenerate"
 msgstr "Восстановить"
@@ -495,6 +486,12 @@ msgstr "Предоставить доступ"
 msgid "Revoke access"
 msgstr "Отозвать доступ"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "Подать отчет"
 
@@ -510,101 +507,20 @@ msgstr "Прежде чем продолжить, пожалуйста, вклю
 msgid "Enable"
 msgstr "Включить"
 
-msgid "Disable submissions"
-msgstr "Лишить возможности публиковать материалы"
-
-msgid "Enable encryption"
-msgstr "Включить шифрование"
-
-msgid "Enable administrators to change user passwords"
-msgstr "Разрешить администраторам изменять пароли пользователей"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Администраторам разрешено изменять пароли пользователей:"
-
-msgid "Enable multisite feature"
-msgstr "Включить настройку мульти-сайтов"
-
-msgid "Enable simplified login"
-msgstr "Позволить упрощенный вход"
-
-msgid "Enable search engines indexing"
-msgstr "Включить индексирование поисковых систем"
-
-msgid "Default questionnaire"
-msgstr "Стандартный опросник"
-
-msgid "Show contexts in alphabetical order"
-msgstr "Сортировать контексты в алфавитном порядке"
-
-msgid "Size limit for file attachments"
-msgstr "Ограничение в размере для приложений"
-
-msgid "megabytes"
-msgstr "мегабайт"
-
-msgid "Require two factor authentication"
-msgstr "Требовать двухфакторную аутентификацию"
-
-msgid "Password change interval"
-msgstr "Интервал для смены пароля"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "По причинам безопасности необходимо регулярно менять пароль"
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Установите значение 0, чтобы отключить эту функцию."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Количество дней до уведомления пользователей о непрочитанных отчетах"
-
-msgid "Disable the privacy panel"
-msgstr "Отключить панель настройки конфиденциальности"
-
-msgid "Enable custom privacy panel"
-msgstr "Включить панель настройки конфиденциальности"
-
-msgid "Custom privacy panel"
-msgstr "Панель настройки конфиденциальности"
-
-msgid "Enable custodian user role"
-msgstr "Включить роль пользователя-хранителя"
-
-msgid "Enable scoring system"
-msgstr "Включить скоринговую систему"
-
-msgid "Logging level"
-msgstr "Уровень записи логов"
-
-msgid "Log accesses of internal users"
-msgstr "Журнал авторизации внутренних пользователей"
-
-msgid "Notify administrators of software problems"
-msgstr "Уведомите администраторов о проблемах программного обеспечения"
-
-msgid "Notify developers of software problems"
-msgstr "Известить разработчиков о проблемах в программе. "
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Включив эту функцию, вы внесете свой вклад в развитие и безопасность платформы."
-
-msgid "Save"
-msgstr "Сохранить"
-
-msgid "Reset reports"
-msgstr "Сброс отчетов"
-
 msgid "Low"
 msgstr "Низкий"
 
 msgid "High"
 msgstr "Высокий"
 
+msgid "megabytes"
+msgstr "мегабайт"
+
 msgid "percentage"
 msgstr "процентов"
+
+msgid "Save"
+msgstr "Сохранить"
 
 msgid "Type"
 msgstr "Тип"
@@ -657,62 +573,14 @@ msgstr "Отмена"
 msgid "Report statuses"
 msgstr "Статусы отчетов"
 
-msgid "Logo"
-msgstr "Логотип"
-
-msgid "Project name"
-msgstr "Название инициативы"
-
-msgid "Description"
-msgstr "Описание"
-
-msgid "Homepage title"
-msgstr "Заголовок домашней страницы"
-
-msgid "Presentation"
-msgstr "Презентация"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Вопрос для потенциальных информаторов"
-
-msgid "Whistleblowing button"
-msgstr "Кнопка информирования"
-
-msgid "Disclaimer"
-msgstr "Отказ от ответственности"
-
-msgid "Footer"
-msgstr "Нижний колонтитул"
-
-msgid "Upload"
-msgstr "Загрузка"
-
-msgid "Download"
-msgstr "Скачивание"
-
-msgid "Language:"
-msgstr "Язык:"
-
-msgid "Add custom text"
-msgstr "Добавить свой текст"
-
-msgid "Custom text"
-msgstr "Свой текст"
-
-msgid "Original text"
-msgstr "Исходный текст"
-
-msgid "Original translation"
-msgstr "Исходный перевод"
-
-msgid "Custom translation"
-msgstr "Свой перевод"
-
-msgid "Contexts"
-msgstr "Контексты"
+msgid "Channels"
+msgstr "Kаналов"
 
 msgid "Hidden"
 msgstr "Скрытый"
+
+msgid "Description"
+msgstr "Описание"
 
 msgid "Questionnaire"
 msgstr "Опросник"
@@ -722,6 +590,9 @@ msgstr "Получатели"
 
 msgid "days"
 msgstr "дней"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Установите значение 0, чтобы отключить эту функцию."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Показать интерфейс управления опросником"
@@ -821,6 +692,9 @@ msgstr "Секретный ключ"
 
 msgid "Certificate Signing Request"
 msgstr "Запрос подписания сертификата"
+
+msgid "Download"
+msgstr "Скачивание"
 
 msgid "Certificate"
 msgstr "Сертификат"
@@ -1036,14 +910,137 @@ msgstr "Дублирование"
 msgid "Steps"
 msgstr "Шаги"
 
-msgid "Site settings"
-msgstr "Настройки сайта"
+msgid "Logo"
+msgstr "Логотип"
+
+msgid "Project name"
+msgstr "Название инициативы"
+
+msgid "Homepage title"
+msgstr "Заголовок домашней страницы"
+
+msgid "Presentation"
+msgstr "Презентация"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Вопрос для потенциальных информаторов"
+
+msgid "Whistleblowing button"
+msgstr "Кнопка информирования"
+
+msgid "Disclaimer"
+msgstr "Отказ от ответственности"
+
+msgid "Footer"
+msgstr "Нижний колонтитул"
+
+msgid "Upload"
+msgstr "Загрузка"
+
+msgid "Language:"
+msgstr "Язык:"
+
+msgid "Add custom text"
+msgstr "Добавить свой текст"
+
+msgid "Custom text"
+msgstr "Свой текст"
+
+msgid "Original text"
+msgstr "Исходный текст"
+
+msgid "Original translation"
+msgstr "Исходный перевод"
+
+msgid "Custom translation"
+msgstr "Свой перевод"
+
+msgid "Disable submissions"
+msgstr "Лишить возможности публиковать материалы"
+
+msgid "Enable encryption"
+msgstr "Включить шифрование"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Разрешить администраторам изменять пароли пользователей"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Администраторам разрешено изменять пароли пользователей:"
+
+msgid "Enable multisite feature"
+msgstr "Включить настройку мульти-сайтов"
+
+msgid "Enable simplified login"
+msgstr "Позволить упрощенный вход"
+
+msgid "Enable search engines indexing"
+msgstr "Включить индексирование поисковых систем"
+
+msgid "Default questionnaire"
+msgstr "Стандартный опросник"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Сортировать контексты в алфавитном порядке"
+
+msgid "Size limit for file attachments"
+msgstr "Ограничение в размере для приложений"
+
+msgid "Require two factor authentication"
+msgstr "Требовать двухфакторную аутентификацию"
+
+msgid "Password change interval"
+msgstr "Интервал для смены пароля"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "По причинам безопасности необходимо регулярно менять пароль"
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Количество дней до уведомления пользователей о непрочитанных отчетах"
+
+msgid "Disable the privacy panel"
+msgstr "Отключить панель настройки конфиденциальности"
+
+msgid "Enable custom privacy panel"
+msgstr "Включить панель настройки конфиденциальности"
+
+msgid "Custom privacy panel"
+msgstr "Панель настройки конфиденциальности"
+
+msgid "Enable custodian user role"
+msgstr "Включить роль пользователя-хранителя"
+
+msgid "Enable scoring system"
+msgstr "Включить скоринговую систему"
+
+msgid "Logging level"
+msgstr "Уровень записи логов"
+
+msgid "Log accesses of internal users"
+msgstr "Журнал авторизации внутренних пользователей"
+
+msgid "Notify administrators of software problems"
+msgstr "Уведомите администраторов о проблемах программного обеспечения"
+
+msgid "Notify developers of software problems"
+msgstr "Известить разработчиков о проблемах в программе. "
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Включив эту функцию, вы внесете свой вклад в развитие и безопасность платформы."
+
+msgid "Reset reports"
+msgstr "Сброс отчетов"
+
+msgid "Settings"
+msgstr "Настройки"
 
 msgid "Case management"
 msgstr "Управление кейсами"
 
-msgid "Network settings"
-msgstr "Настройки сети"
+msgid "Network"
+msgstr "Сеть"
 
 msgid "Sites"
 msgstr "Сайты"
@@ -1085,10 +1082,10 @@ msgid "Set password"
 msgstr "Установка пароля"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Выбранный пароль слишком слабый. Допустимый пароль должен состоять не менее чем из 10 символов и содержать различные символы, включая, как минимум, строчный символ, прописной символ, цифру и специальный символ."
+msgstr "Выбранный пароль слишком слабый. Допустимый пароль должен состоять не менее чем из 12 символов и содержать различные символы, включая, как минимум, строчный символ, прописной символ, цифру и специальный символ."
 
 msgid "Force password change"
 msgstr "Принудительная смена пароля"

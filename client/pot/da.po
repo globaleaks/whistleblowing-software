@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Casper Petersen <casper_petersen@hotmail.com>, 2020-2022\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2018,2020-2022\n"
 "Language-Team: Danish (http://www.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,9 +24,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Log ind"
 
-msgid "Main configuration"
-msgstr "Primær konfiguration"
-
 msgid "Theme customization"
 msgstr "Tematilpasning"
 
@@ -36,8 +33,8 @@ msgstr "Sprog"
 msgid "Text customization"
 msgstr "Teksttilpasning"
 
-msgid "Advanced settings"
-msgstr "Avancerede indstillinger"
+msgid "Advanced"
+msgstr "Avanceret"
 
 msgid "Question templates"
 msgstr "Spørgsmålsskabeloner"
@@ -57,8 +54,8 @@ msgstr "Ændringslog"
 msgid "License"
 msgstr "Licens"
 
-msgid "Notification templates"
-msgstr "Notifikationsskabeloner"
+msgid "Templates"
+msgstr "Skabeloner"
 
 msgid "Delete"
 msgstr "Slet"
@@ -69,8 +66,8 @@ msgstr "Uregelmæssigheder"
 msgid "Preferences"
 msgstr "Indstillinger"
 
-msgid "Notification settings"
-msgstr "Notifikationsindstillinger"
+msgid "Notifications"
+msgstr "Underrettelser"
 
 msgid "file unavailable"
 msgstr "fil utilgængelig"
@@ -120,8 +117,8 @@ msgstr "Fravælg alle"
 msgid "Refresh"
 msgstr "Opdater"
 
-msgid "Context"
-msgstr "Kontekst"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "Forhåndsvisning"
@@ -255,9 +252,6 @@ msgstr "Afvis adgang til whistleblowerens identitet"
 msgid "Authorize access to the whistleblower's identity"
 msgstr "Godkend adgang til whistleblowerens identitet"
 
-msgid "Templates"
-msgstr "Skabeloner"
-
 msgid "URL redirects"
 msgstr "URL-omdirigeringer"
 
@@ -297,7 +291,7 @@ msgstr "Acceptabel"
 msgid "Strong"
 msgstr "Stærk"
 
-msgid "Text shown on top of the interface for selecting contexts"
+msgid "Text shown on top of the interface for selecting channels"
 msgstr "Tekst der vises øverst på det interface hvor sammenhænge vælges"
 
 msgid "Silence email notifications"
@@ -361,9 +355,6 @@ msgstr "Maksimal filstørrelse er:"
 
 msgid "Scheduled jobs"
 msgstr "Planlagte kørsler"
-
-msgid "Sites management"
-msgstr "Administration af websted"
 
 msgid "Regenerate"
 msgstr "Regenerer"
@@ -472,6 +463,12 @@ msgstr "Tildel adgang"
 msgid "Revoke access"
 msgstr "Fjern adgang"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "Indsend en rapportering"
 
@@ -487,101 +484,20 @@ msgstr "Aktivér venligst to-faktor-godkendelse inden du fortsætter."
 msgid "Enable"
 msgstr "Aktivér"
 
-msgid "Disable submissions"
-msgstr "Deaktiver indsendelser"
-
-msgid "Enable encryption"
-msgstr "Aktivér kryptering"
-
-msgid "Enable administrators to change user passwords"
-msgstr "Tillad administratorer at ændre brugeradgangskoder"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Tillad administratorer at ændre brugeradgangskoder"
-
-msgid "Enable multisite feature"
-msgstr "Aktivér fler-side funktion"
-
-msgid "Enable simplified login"
-msgstr "Aktivér simplificeret login"
-
-msgid "Enable search engines indexing"
-msgstr "Aktivér søgemaskiners indeksering"
-
-msgid "Default questionnaire"
-msgstr "Standard spørgeskema"
-
-msgid "Show contexts in alphabetical order"
-msgstr "Vis sammenhænge i alfabetisk rækkefølge"
-
-msgid "Size limit for file attachments"
-msgstr "Størrelsesgrænse for vedhæftede filer"
-
-msgid "megabytes"
-msgstr "megabyte"
-
-msgid "Require two factor authentication"
-msgstr "Kræv to-faktor-godkendelse"
-
-msgid "Password change interval"
-msgstr "Passwordskiftinterval"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Af sikkerhedsmæssige årsager kræves det, at adgangskoden skiftes med jævne mellemrum."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Sæt værdien til 0 for at deaktivere denne funktionalitet."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr " \nAntal dage indtil notifikation om ulæste rapporter til bliver sendt til brugerne"
-
-msgid "Disable the privacy panel"
-msgstr "Deaktiver privatlivspanelet"
-
-msgid "Enable custom privacy panel"
-msgstr "Aktivér brugertilpasset privatlivspanel"
-
-msgid "Custom privacy panel"
-msgstr "Brugertilpasset privatlivspanel"
-
-msgid "Enable custodian user role"
-msgstr "Aktivér kontoførende brugerrolle"
-
-msgid "Enable scoring system"
-msgstr "Aktivér score system"
-
-msgid "Logging level"
-msgstr "Loggingniveau"
-
-msgid "Log accesses of internal users"
-msgstr "Log interne brugeres adgang"
-
-msgid "Notify administrators of software problems"
-msgstr "Underret administratorer om softwareproblemer"
-
-msgid "Notify developers of software problems"
-msgstr "Underret udviklere om softwareproblemer"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Ved at slå denne egenskab til, vil du bidrage til udvikling og sikkerhed af platformen."
-
-msgid "Save"
-msgstr "Gem"
-
-msgid "Reset reports"
-msgstr "Nulstil indsendelser"
-
 msgid "Low"
 msgstr "Lav"
 
 msgid "High"
 msgstr "Høj"
 
+msgid "megabytes"
+msgstr "megabyte"
+
 msgid "percentage"
 msgstr "procent"
+
+msgid "Save"
+msgstr "Gem"
 
 msgid "Type"
 msgstr "Type"
@@ -634,62 +550,14 @@ msgstr "Annullér"
 msgid "Report statuses"
 msgstr "Status for indsendelser"
 
-msgid "Logo"
-msgstr "Logo"
-
-msgid "Project name"
-msgstr "Projektnavn"
-
-msgid "Description"
-msgstr "Beskrivelse"
-
-msgid "Homepage title"
-msgstr "Titel på hjemmesiden"
-
-msgid "Presentation"
-msgstr "Præsentation"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Spørgsmål der skal bruges til at anmode om nye whistleblowere"
-
-msgid "Whistleblowing button"
-msgstr "Whistleblower-knap"
-
-msgid "Disclaimer"
-msgstr "Forbehold"
-
-msgid "Footer"
-msgstr "Sidefod"
-
-msgid "Upload"
-msgstr "Upload"
-
-msgid "Download"
-msgstr "Download"
-
-msgid "Language:"
-msgstr "Sprog:"
-
-msgid "Add custom text"
-msgstr "Tilføj brugerdefineret tekst"
-
-msgid "Custom text"
-msgstr "Brugerdefineret tekst"
-
-msgid "Original text"
-msgstr "Oprindelig tekst"
-
-msgid "Original translation"
-msgstr "Oprindelig oversættelse"
-
-msgid "Custom translation"
-msgstr "Brugerdefineret oversættelse"
-
-msgid "Contexts"
-msgstr "Sammenhænge"
+msgid "Channels"
+msgstr "Kanaler"
 
 msgid "Hidden"
 msgstr "Skjult"
+
+msgid "Description"
+msgstr "Beskrivelse"
 
 msgid "Questionnaire"
 msgstr "Spørgeskema"
@@ -699,6 +567,9 @@ msgstr "Modtagere"
 
 msgid "days"
 msgstr "dage"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Sæt værdien til 0 for at deaktivere denne funktionalitet."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Vis navigationsinterfacet til spørgeskemaet"
@@ -798,6 +669,9 @@ msgstr "Privat nøgle"
 
 msgid "Certificate Signing Request"
 msgstr "Forespørgsel om signering af certifikat"
+
+msgid "Download"
+msgstr "Download"
 
 msgid "Certificate"
 msgstr "Certifikat"
@@ -1013,14 +887,137 @@ msgstr "Duplikér"
 msgid "Steps"
 msgstr "Skridt"
 
-msgid "Site settings"
-msgstr "Sideindstillinger"
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Project name"
+msgstr "Projektnavn"
+
+msgid "Homepage title"
+msgstr "Titel på hjemmesiden"
+
+msgid "Presentation"
+msgstr "Præsentation"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Spørgsmål der skal bruges til at anmode om nye whistleblowere"
+
+msgid "Whistleblowing button"
+msgstr "Whistleblower-knap"
+
+msgid "Disclaimer"
+msgstr "Forbehold"
+
+msgid "Footer"
+msgstr "Sidefod"
+
+msgid "Upload"
+msgstr "Upload"
+
+msgid "Language:"
+msgstr "Sprog:"
+
+msgid "Add custom text"
+msgstr "Tilføj brugerdefineret tekst"
+
+msgid "Custom text"
+msgstr "Brugerdefineret tekst"
+
+msgid "Original text"
+msgstr "Oprindelig tekst"
+
+msgid "Original translation"
+msgstr "Oprindelig oversættelse"
+
+msgid "Custom translation"
+msgstr "Brugerdefineret oversættelse"
+
+msgid "Disable submissions"
+msgstr "Deaktiver indsendelser"
+
+msgid "Enable encryption"
+msgstr "Aktivér kryptering"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Tillad administratorer at ændre brugeradgangskoder"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Tillad administratorer at ændre brugeradgangskoder"
+
+msgid "Enable multisite feature"
+msgstr "Aktivér fler-side funktion"
+
+msgid "Enable simplified login"
+msgstr "Aktivér simplificeret login"
+
+msgid "Enable search engines indexing"
+msgstr "Aktivér søgemaskiners indeksering"
+
+msgid "Default questionnaire"
+msgstr "Standard spørgeskema"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Vis sammenhænge i alfabetisk rækkefølge"
+
+msgid "Size limit for file attachments"
+msgstr "Størrelsesgrænse for vedhæftede filer"
+
+msgid "Require two factor authentication"
+msgstr "Kræv to-faktor-godkendelse"
+
+msgid "Password change interval"
+msgstr "Passwordskiftinterval"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Af sikkerhedsmæssige årsager kræves det, at adgangskoden skiftes med jævne mellemrum."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr " \nAntal dage indtil notifikation om ulæste rapporter til bliver sendt til brugerne"
+
+msgid "Disable the privacy panel"
+msgstr "Deaktiver privatlivspanelet"
+
+msgid "Enable custom privacy panel"
+msgstr "Aktivér brugertilpasset privatlivspanel"
+
+msgid "Custom privacy panel"
+msgstr "Brugertilpasset privatlivspanel"
+
+msgid "Enable custodian user role"
+msgstr "Aktivér kontoførende brugerrolle"
+
+msgid "Enable scoring system"
+msgstr "Aktivér score system"
+
+msgid "Logging level"
+msgstr "Loggingniveau"
+
+msgid "Log accesses of internal users"
+msgstr "Log interne brugeres adgang"
+
+msgid "Notify administrators of software problems"
+msgstr "Underret administratorer om softwareproblemer"
+
+msgid "Notify developers of software problems"
+msgstr "Underret udviklere om softwareproblemer"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Ved at slå denne egenskab til, vil du bidrage til udvikling og sikkerhed af platformen."
+
+msgid "Reset reports"
+msgstr "Nulstil indsendelser"
+
+msgid "Settings"
+msgstr "Indstillinger"
 
 msgid "Case management"
 msgstr "Sagsadministration"
 
-msgid "Network settings"
-msgstr "Netværksindstillinger"
+msgid "Network"
+msgstr "Netværk"
 
 msgid "Sites"
 msgstr "Sider"
@@ -1062,10 +1059,10 @@ msgid "Set password"
 msgstr "Sæt adgangskode"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Den valgte adgangskode er for svag. En gyldig adgangskode bør være mindst 10 tegn lang og som minimum indeholde ét småt bogstav, ét stort bogstav, ét tal og ét specialtegn."
+msgstr "Den valgte adgangskode er for svag. En gyldig adgangskode bør være mindst 12 tegn lang og som minimum indeholde ét småt bogstav, ét stort bogstav, ét tal og ét specialtegn."
 
 msgid "Force password change"
 msgstr "Gennemtving skift af adgangskode"

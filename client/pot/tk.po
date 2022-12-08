@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: aylar b, 2022\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022\n"
 "Language-Team: Turkmen (http://www.transifex.com/otf/globaleaks/language/tk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,9 +22,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Içeri gir"
 
-msgid "Main configuration"
-msgstr "Esasy konfigurasiýa"
-
 msgid "Theme customization"
 msgstr "Tema şahsylaşdyrmak"
 
@@ -34,8 +31,8 @@ msgstr "Dil"
 msgid "Text customization"
 msgstr "Teksti özleşdirmek"
 
-msgid "Advanced settings"
-msgstr "Giňişleýin sazlamalar"
+msgid "Advanced"
+msgstr "Ösen"
 
 msgid "Question templates"
 msgstr "Sorag nusgalary"
@@ -55,8 +52,8 @@ msgstr "Üýtgetme gündeligi"
 msgid "License"
 msgstr "Ygtyýarnama"
 
-msgid "Notification templates"
-msgstr "Duýduryş nusgalary"
+msgid "Templates"
+msgstr "Nusgalar"
 
 msgid "Delete"
 msgstr "Poz"
@@ -67,8 +64,8 @@ msgstr "Anomaliýalar"
 msgid "Preferences"
 msgstr "Saýlamalar"
 
-msgid "Notification settings"
-msgstr "Duýduryş sazlamalary"
+msgid "Notifications"
+msgstr "Duýduryş"
 
 msgid "file unavailable"
 msgstr "faýl elýeterli däl"
@@ -118,8 +115,8 @@ msgstr "Ählisini aýyr"
 msgid "Refresh"
 msgstr "Täzele"
 
-msgid "Context"
-msgstr "Kontekst"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "Öňünden syn"
@@ -253,9 +250,6 @@ msgstr "Gizlin habar ýetirijiň şahsyýetine girmegi inkär et"
 msgid "Authorize access to the whistleblower's identity"
 msgstr "Gizlin habar ýetirijiň şahsyýetine girmegi ygtyýar ber"
 
-msgid "Templates"
-msgstr "Nusgalar"
-
 msgid "URL redirects"
 msgstr "URL gönükdirýär"
 
@@ -295,8 +289,8 @@ msgstr "Makul"
 msgid "Strong"
 msgstr "Güýçli"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Mazmuny saýlamak üçin interfeýsiň ýokarsynda görkezilen tekst"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "Email habarnamalaryny dym"
@@ -359,9 +353,6 @@ msgstr "Maksimum faýl ölçegi:"
 
 msgid "Scheduled jobs"
 msgstr "Meýilleşdirilen işler"
-
-msgid "Sites management"
-msgstr "Sahypalary dolandyrmak"
 
 msgid "Regenerate"
 msgstr "Täzeden döret"
@@ -470,6 +461,12 @@ msgstr "Girişi ygtyýar ber"
 msgid "Revoke access"
 msgstr "Girişi ýatyr"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "Hasabat beriň"
 
@@ -485,101 +482,20 @@ msgstr "Dowam etmezden ozal iki faktor tassyklaýjyny işjeňleşdirmegiňizi ha
 msgid "Enable"
 msgstr "Aç"
 
-msgid "Disable submissions"
-msgstr "Iberilenleri öçüriň"
-
-msgid "Enable encryption"
-msgstr "Şifrlemegi işlet"
-
-msgid "Enable administrators to change user passwords"
-msgstr "Dolandyryjylara ulanyjy parollaryny üýtgetmäge mümkinçilik ber"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Ulanyjy parolyny üýtgetmäge ygtyýarly dolandyryjylar:"
-
-msgid "Enable multisite feature"
-msgstr "Köpugurly aýratynlygy işjeňleşdiriň"
-
-msgid "Enable simplified login"
-msgstr "Ýönekeýleşdirilen girişi açyň"
-
-msgid "Enable search engines indexing"
-msgstr "Gözleg motorlaryny indeksirlemäge mümkinçilik ber"
-
-msgid "Default questionnaire"
-msgstr "Bellenen sowalnama"
-
-msgid "Show contexts in alphabetical order"
-msgstr "Mazmunlary elipbiý tertibinde görkeziň"
-
-msgid "Size limit for file attachments"
-msgstr "Faýl goşundylarynyň ululygy"
-
-msgid "megabytes"
-msgstr "megabaýt"
-
-msgid "Require two factor authentication"
-msgstr "Iki faktor tassyklanmagyny talap ediň"
-
-msgid "Password change interval"
-msgstr "Parol üýtgetmek aralygy"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Howpsuzlyk sebäpli parollary yzygiderli üýtgetmek talap edilýär."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Bu aýratynlygy öçürmek üçin sany 0-a belläň."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Ulanyjylara okalmadyk hasabatlary habar berýänçä günleriň sany"
-
-msgid "Disable the privacy panel"
-msgstr "Gizlinlik panelini öçür"
-
-msgid "Enable custom privacy panel"
-msgstr "Hususy gizlinlik panelini aç"
-
-msgid "Custom privacy panel"
-msgstr "Hususy gizlinlik paneli"
-
-msgid "Enable custodian user role"
-msgstr "Gözegçi ulanyjy roluny açyň"
-
-msgid "Enable scoring system"
-msgstr "Bal ulgamyny aç"
-
-msgid "Logging level"
-msgstr "Giriş derejesi"
-
-msgid "Log accesses of internal users"
-msgstr "Içerki ulanyjylaryň giriş ýazgylary"
-
-msgid "Notify administrators of software problems"
-msgstr "Programma problemalary barada dolandyryjylara habar ber"
-
-msgid "Notify developers of software problems"
-msgstr "Programma problemalary barada döredijilere habar ber"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Bu aýratynlygy açmak bilen, platformanyň ösüşine we howpsuzlygyna goşant goşarsyňyz."
-
-msgid "Save"
-msgstr "Ýazdyr"
-
-msgid "Reset reports"
-msgstr "Hasabatlary täzele"
-
 msgid "Low"
 msgstr "Pes"
 
 msgid "High"
 msgstr "Ýokary"
 
+msgid "megabytes"
+msgstr "megabaýt"
+
 msgid "percentage"
 msgstr "göterim"
+
+msgid "Save"
+msgstr "Ýazdyr"
 
 msgid "Type"
 msgstr "Görnüşi"
@@ -632,62 +548,14 @@ msgstr "Goýbolsun et"
 msgid "Report statuses"
 msgstr "Statuslary hasabat ber"
 
-msgid "Logo"
-msgstr "Logo"
-
-msgid "Project name"
-msgstr "Taslamanyň ady"
-
-msgid "Description"
-msgstr "Düşündiriş"
-
-msgid "Homepage title"
-msgstr "Baş sahypanyň ady"
-
-msgid "Presentation"
-msgstr "Tanyşdyryş"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Mümkin bolan gizlin habar ýetirijilere soramak üçin sorag"
-
-msgid "Whistleblowing button"
-msgstr "Gizlin habar yetirmek düwmesi"
-
-msgid "Disclaimer"
-msgstr "Duýduryş"
-
-msgid "Footer"
-msgstr "Aşaky sözbaşy"
-
-msgid "Upload"
-msgstr "Ýüklemek"
-
-msgid "Download"
-msgstr "Göçürip al"
-
-msgid "Language:"
-msgstr "Dil:"
-
-msgid "Add custom text"
-msgstr "Adaty tekst goşuň"
-
-msgid "Custom text"
-msgstr "Adaty tekst"
-
-msgid "Original text"
-msgstr "Asyl tekst"
-
-msgid "Original translation"
-msgstr "Asyl terjime"
-
-msgid "Custom translation"
-msgstr "Adaty terjime"
-
-msgid "Contexts"
-msgstr "Kontekstler"
+msgid "Channels"
+msgstr ""
 
 msgid "Hidden"
 msgstr "Gizlenen"
+
+msgid "Description"
+msgstr "Düşündiriş"
 
 msgid "Questionnaire"
 msgstr "Sowalnama"
@@ -697,6 +565,9 @@ msgstr "Alyjylar"
 
 msgid "days"
 msgstr "günler"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Bu aýratynlygy öçürmek üçin sany 0-a belläň."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Sowalnamanyň nawigasiýa interfeýsini görkez"
@@ -796,6 +667,9 @@ msgstr "Şahsy Açar"
 
 msgid "Certificate Signing Request"
 msgstr "Şahadatnama gol çekmek haýyşy"
+
+msgid "Download"
+msgstr "Göçürip al"
 
 msgid "Certificate"
 msgstr "Şahadatnama"
@@ -1011,14 +885,137 @@ msgstr "Göçürme"
 msgid "Steps"
 msgstr "Ädimler"
 
-msgid "Site settings"
-msgstr "Sahypanyň sazlamalary"
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Project name"
+msgstr "Taslamanyň ady"
+
+msgid "Homepage title"
+msgstr "Baş sahypanyň ady"
+
+msgid "Presentation"
+msgstr "Tanyşdyryş"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Mümkin bolan gizlin habar ýetirijilere soramak üçin sorag"
+
+msgid "Whistleblowing button"
+msgstr "Gizlin habar yetirmek düwmesi"
+
+msgid "Disclaimer"
+msgstr "Duýduryş"
+
+msgid "Footer"
+msgstr "Aşaky sözbaşy"
+
+msgid "Upload"
+msgstr "Ýüklemek"
+
+msgid "Language:"
+msgstr "Dil:"
+
+msgid "Add custom text"
+msgstr "Adaty tekst goşuň"
+
+msgid "Custom text"
+msgstr "Adaty tekst"
+
+msgid "Original text"
+msgstr "Asyl tekst"
+
+msgid "Original translation"
+msgstr "Asyl terjime"
+
+msgid "Custom translation"
+msgstr "Adaty terjime"
+
+msgid "Disable submissions"
+msgstr "Iberilenleri öçüriň"
+
+msgid "Enable encryption"
+msgstr "Şifrlemegi işlet"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Dolandyryjylara ulanyjy parollaryny üýtgetmäge mümkinçilik ber"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Ulanyjy parolyny üýtgetmäge ygtyýarly dolandyryjylar:"
+
+msgid "Enable multisite feature"
+msgstr "Köpugurly aýratynlygy işjeňleşdiriň"
+
+msgid "Enable simplified login"
+msgstr "Ýönekeýleşdirilen girişi açyň"
+
+msgid "Enable search engines indexing"
+msgstr "Gözleg motorlaryny indeksirlemäge mümkinçilik ber"
+
+msgid "Default questionnaire"
+msgstr "Bellenen sowalnama"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Mazmunlary elipbiý tertibinde görkeziň"
+
+msgid "Size limit for file attachments"
+msgstr "Faýl goşundylarynyň ululygy"
+
+msgid "Require two factor authentication"
+msgstr "Iki faktor tassyklanmagyny talap ediň"
+
+msgid "Password change interval"
+msgstr "Parol üýtgetmek aralygy"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Howpsuzlyk sebäpli parollary yzygiderli üýtgetmek talap edilýär."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Ulanyjylara okalmadyk hasabatlary habar berýänçä günleriň sany"
+
+msgid "Disable the privacy panel"
+msgstr "Gizlinlik panelini öçür"
+
+msgid "Enable custom privacy panel"
+msgstr "Hususy gizlinlik panelini aç"
+
+msgid "Custom privacy panel"
+msgstr "Hususy gizlinlik paneli"
+
+msgid "Enable custodian user role"
+msgstr "Gözegçi ulanyjy roluny açyň"
+
+msgid "Enable scoring system"
+msgstr "Bal ulgamyny aç"
+
+msgid "Logging level"
+msgstr "Giriş derejesi"
+
+msgid "Log accesses of internal users"
+msgstr "Içerki ulanyjylaryň giriş ýazgylary"
+
+msgid "Notify administrators of software problems"
+msgstr "Programma problemalary barada dolandyryjylara habar ber"
+
+msgid "Notify developers of software problems"
+msgstr "Programma problemalary barada döredijilere habar ber"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Bu aýratynlygy açmak bilen, platformanyň ösüşine we howpsuzlygyna goşant goşarsyňyz."
+
+msgid "Reset reports"
+msgstr "Hasabatlary täzele"
+
+msgid "Settings"
+msgstr "Sazlamalar"
 
 msgid "Case management"
 msgstr "Iş dolandyryş"
 
-msgid "Network settings"
-msgstr "Network sazlamalary"
+msgid "Network"
+msgstr "Tor"
 
 msgid "Sites"
 msgstr "Sahypalar"
@@ -1060,10 +1057,10 @@ msgid "Set password"
 msgstr "Paroly belläň"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Saýlanan parol gaty gowşak. Dogry parol azyndan 10 simwoldan ybarat bolmaly we iň azyndan kiçi harp, baş harp, san we aýratyn nyşan ýaly dürli nyşanlary öz içine almalydyr."
+msgstr "Saýlanan parol gaty gowşak. Dogry parol azyndan 12 simwoldan ybarat bolmaly we iň azyndan kiçi harp, baş harp, san we aýratyn nyşan ýaly dürli nyşanlary öz içine almalydyr."
 
 msgid "Force password change"
 msgstr "Paroly üýtgetmegi mejbur ediň"

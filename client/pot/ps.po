@@ -17,9 +17,6 @@ msgstr ""
 msgid "Log in"
 msgstr "دننه کېدل"
 
-msgid "Main configuration"
-msgstr "اصلي کانفیګوریشن"
-
 msgid "Theme customization"
 msgstr "د تیم سفارشي کول"
 
@@ -29,8 +26,8 @@ msgstr "ژبې"
 msgid "Text customization"
 msgstr "د متن سفارشي کول"
 
-msgid "Advanced settings"
-msgstr "پرمختللي تنظیمات"
+msgid "Advanced"
+msgstr ""
 
 msgid "Question templates"
 msgstr "د پوښتنې ټیمپلیټونه"
@@ -50,8 +47,8 @@ msgstr "د بدلونونو رپوټ"
 msgid "License"
 msgstr "جواز"
 
-msgid "Notification templates"
-msgstr "د خبرتیا ټیمپلیټونه"
+msgid "Templates"
+msgstr "ټیمپلیټونه"
 
 msgid "Delete"
 msgstr "پاک کول"
@@ -62,8 +59,8 @@ msgstr "ګډوډي"
 msgid "Preferences"
 msgstr "ترجیحات"
 
-msgid "Notification settings"
-msgstr "د خبرتیا تنظیمات"
+msgid "Notifications"
+msgstr ""
 
 msgid "file unavailable"
 msgstr "فایل نشته"
@@ -113,8 +110,8 @@ msgstr "ټول له انتخاب وباسئ"
 msgid "Refresh"
 msgstr "ریفریش"
 
-msgid "Context"
-msgstr "زمینه"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "مخکتنه"
@@ -248,9 +245,6 @@ msgstr "د افشاګر پیژندګلوي ته لاسرسی لرل ردول"
 msgid "Authorize access to the whistleblower's identity"
 msgstr "د افشاګر پیژندګلوي ته د لاسرسي لرلو جواز ورکول"
 
-msgid "Templates"
-msgstr "ټیمپلیټونه"
-
 msgid "URL redirects"
 msgstr "د URL د مسیر بدلول"
 
@@ -290,8 +284,8 @@ msgstr "د منلو وړ"
 msgid "Strong"
 msgstr "پیاوړی"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "متن د رابط په پورتنۍ برخه کې د زمینو د انتخابولو لپاره ښودل شوی"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "د برېښنالیک د خبرتیاوو خاموشه کول"
@@ -354,9 +348,6 @@ msgstr "د فایل حداقل اندازه ده:"
 
 msgid "Scheduled jobs"
 msgstr "مهالبندي شوې دندې"
-
-msgid "Sites management"
-msgstr "د سایټونو مدیریت"
 
 msgid "Regenerate"
 msgstr "بیرته تولید"
@@ -465,6 +456,12 @@ msgstr "د لاسرسي ورکول"
 msgid "Revoke access"
 msgstr "د لاسرسي لغوه کول"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "د رپوټ ورکول"
 
@@ -480,101 +477,20 @@ msgstr "له تر سره کولو وړاندې، د مهرباني له مخې �
 msgid "Enable"
 msgstr "فعالول"
 
-msgid "Disable submissions"
-msgstr "سپارل غیرفعال کړئ"
-
-msgid "Enable encryption"
-msgstr "انکریپشن فعال کړئ"
-
-msgid "Enable administrators to change user passwords"
-msgstr "مدیرانو ته دا وړتیا ورکړئ چې د کارن پټ نوم بدل کړي"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "مدیرانو ته اجازه ورکړل شوې تر څو د کارن پټ نومونه بدل کړي:"
-
-msgid "Enable multisite feature"
-msgstr "د ګڼو سایټونو ځانګړنه فعاله کړئ"
-
-msgid "Enable simplified login"
-msgstr "ساده دننه کېدل فعال کړئ"
-
-msgid "Enable search engines indexing"
-msgstr "د پلټنې د انجنونو د شاخص فعالول"
-
-msgid "Default questionnaire"
-msgstr "عادې پوښتنلیک"
-
-msgid "Show contexts in alphabetical order"
-msgstr "مطالب د الفبا د تورو په ترتیب وښیئ"
-
-msgid "Size limit for file attachments"
-msgstr "د فایل د ضمیمو لپاره د اندازې محدودیت"
-
-msgid "megabytes"
-msgstr "میګا بایټونه"
-
-msgid "Require two factor authentication"
-msgstr "دوه عامله تصدیق غواړي"
-
-msgid "Password change interval"
-msgstr "د پټ نوم د بدلولو وقفه"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "د امنیتي دلایلو له کبله، په منظمو وقفو سره د پټ نوم بدلول اړین دي."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "مقدار 0 کړئ تر څو دغه ځانګړنه غیرفعاله شي."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr " کارنونو ته د نالوستل شویو رپوټونو د خبر ورکولو د ورځو شمېر"
-
-msgid "Disable the privacy panel"
-msgstr "د محرمیت د پینل غیرفعالول"
-
-msgid "Enable custom privacy panel"
-msgstr "د سفارشي محرمیت د پینل فعالول"
-
-msgid "Custom privacy panel"
-msgstr "د سفارشي محرمیت پینل"
-
-msgid "Enable custodian user role"
-msgstr "د ساتونکي کارن د رول فعالول"
-
-msgid "Enable scoring system"
-msgstr "د نمرې ورکولو د سیستم فعالول"
-
-msgid "Logging level"
-msgstr "د ننوتلو کچه"
-
-msgid "Log accesses of internal users"
-msgstr "د داخلي کارنونو د دننه کېدو لاسرسی"
-
-msgid "Notify administrators of software problems"
-msgstr "د سافټ ویر د ستونزو په اړه مدیرانو ته خبر ورکول"
-
-msgid "Notify developers of software problems"
-msgstr "د سافټ ویر د ستونزو په اړه ډیولپرانو ته خبر ورکول"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "د همدې ځانګړنې په فعالولو سره به تاسې د همدې پلټفارم په جوړولو او خوندي کولو سره مرسته وکړئ."
-
-msgid "Save"
-msgstr "ثبت کول"
-
-msgid "Reset reports"
-msgstr "د رپوټونو له سره تنظیمول"
-
 msgid "Low"
 msgstr "ټیټ"
 
 msgid "High"
 msgstr "لوړ"
 
+msgid "megabytes"
+msgstr "میګا بایټونه"
+
 msgid "percentage"
 msgstr "فیصدي"
+
+msgid "Save"
+msgstr "ثبت کول"
 
 msgid "Type"
 msgstr "ډول"
@@ -627,62 +543,14 @@ msgstr "لغوه کول"
 msgid "Report statuses"
 msgstr "د وضعیتونو رپوټ کول"
 
-msgid "Logo"
-msgstr "لوګو"
-
-msgid "Project name"
-msgstr "د پروژې نوم"
-
-msgid "Description"
-msgstr "توضیح"
-
-msgid "Homepage title"
-msgstr "د کورپاڼې عنوان"
-
-msgid "Presentation"
-msgstr "پریزنټیشن"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "د احتمالي افشاګرانو د غوښتنې لپاره پوښتنه"
-
-msgid "Whistleblowing button"
-msgstr "د افشا کولو تڼۍ"
-
-msgid "Disclaimer"
-msgstr "د مسوولیت یا ادعا لري کول"
-
-msgid "Footer"
-msgstr "فوټر"
-
-msgid "Upload"
-msgstr "پورته کول"
-
-msgid "Download"
-msgstr "ښکته کول"
-
-msgid "Language:"
-msgstr "ژبه:"
-
-msgid "Add custom text"
-msgstr "سفارشي متن اضافه کړئ"
-
-msgid "Custom text"
-msgstr "سفارشي متن"
-
-msgid "Original text"
-msgstr "اصلي متن"
-
-msgid "Original translation"
-msgstr "اصلي ژباړه"
-
-msgid "Custom translation"
-msgstr "سفارشي ژباړه"
-
-msgid "Contexts"
-msgstr "زمینې"
+msgid "Channels"
+msgstr ""
 
 msgid "Hidden"
 msgstr "پټ شوي"
+
+msgid "Description"
+msgstr "توضیح"
 
 msgid "Questionnaire"
 msgstr "پوښتنلیک"
@@ -692,6 +560,9 @@ msgstr "تر لاسه کوونکي"
 
 msgid "days"
 msgstr "ورځې"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "مقدار 0 کړئ تر څو دغه ځانګړنه غیرفعاله شي."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "د پوښتنلیک د هدایت کولو د رابط ښودل"
@@ -791,6 +662,9 @@ msgstr "خصوصي رمز"
 
 msgid "Certificate Signing Request"
 msgstr "د تصدیق لیک د لاسلیک کولو غوښتنه"
+
+msgid "Download"
+msgstr "ښکته کول"
 
 msgid "Certificate"
 msgstr "تصدیق لیک"
@@ -1006,14 +880,137 @@ msgstr "دوه ګونی"
 msgid "Steps"
 msgstr "ګامونه"
 
-msgid "Site settings"
-msgstr "د سایټ تنظیمات"
+msgid "Logo"
+msgstr "لوګو"
+
+msgid "Project name"
+msgstr "د پروژې نوم"
+
+msgid "Homepage title"
+msgstr "د کورپاڼې عنوان"
+
+msgid "Presentation"
+msgstr "پریزنټیشن"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "د احتمالي افشاګرانو د غوښتنې لپاره پوښتنه"
+
+msgid "Whistleblowing button"
+msgstr "د افشا کولو تڼۍ"
+
+msgid "Disclaimer"
+msgstr "د مسوولیت یا ادعا لري کول"
+
+msgid "Footer"
+msgstr "فوټر"
+
+msgid "Upload"
+msgstr "پورته کول"
+
+msgid "Language:"
+msgstr "ژبه:"
+
+msgid "Add custom text"
+msgstr "سفارشي متن اضافه کړئ"
+
+msgid "Custom text"
+msgstr "سفارشي متن"
+
+msgid "Original text"
+msgstr "اصلي متن"
+
+msgid "Original translation"
+msgstr "اصلي ژباړه"
+
+msgid "Custom translation"
+msgstr "سفارشي ژباړه"
+
+msgid "Disable submissions"
+msgstr "سپارل غیرفعال کړئ"
+
+msgid "Enable encryption"
+msgstr "انکریپشن فعال کړئ"
+
+msgid "Enable administrators to change user passwords"
+msgstr "مدیرانو ته دا وړتیا ورکړئ چې د کارن پټ نوم بدل کړي"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "مدیرانو ته اجازه ورکړل شوې تر څو د کارن پټ نومونه بدل کړي:"
+
+msgid "Enable multisite feature"
+msgstr "د ګڼو سایټونو ځانګړنه فعاله کړئ"
+
+msgid "Enable simplified login"
+msgstr "ساده دننه کېدل فعال کړئ"
+
+msgid "Enable search engines indexing"
+msgstr "د پلټنې د انجنونو د شاخص فعالول"
+
+msgid "Default questionnaire"
+msgstr "عادې پوښتنلیک"
+
+msgid "Show contexts in alphabetical order"
+msgstr "مطالب د الفبا د تورو په ترتیب وښیئ"
+
+msgid "Size limit for file attachments"
+msgstr "د فایل د ضمیمو لپاره د اندازې محدودیت"
+
+msgid "Require two factor authentication"
+msgstr "دوه عامله تصدیق غواړي"
+
+msgid "Password change interval"
+msgstr "د پټ نوم د بدلولو وقفه"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "د امنیتي دلایلو له کبله، په منظمو وقفو سره د پټ نوم بدلول اړین دي."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr " کارنونو ته د نالوستل شویو رپوټونو د خبر ورکولو د ورځو شمېر"
+
+msgid "Disable the privacy panel"
+msgstr "د محرمیت د پینل غیرفعالول"
+
+msgid "Enable custom privacy panel"
+msgstr "د سفارشي محرمیت د پینل فعالول"
+
+msgid "Custom privacy panel"
+msgstr "د سفارشي محرمیت پینل"
+
+msgid "Enable custodian user role"
+msgstr "د ساتونکي کارن د رول فعالول"
+
+msgid "Enable scoring system"
+msgstr "د نمرې ورکولو د سیستم فعالول"
+
+msgid "Logging level"
+msgstr "د ننوتلو کچه"
+
+msgid "Log accesses of internal users"
+msgstr "د داخلي کارنونو د دننه کېدو لاسرسی"
+
+msgid "Notify administrators of software problems"
+msgstr "د سافټ ویر د ستونزو په اړه مدیرانو ته خبر ورکول"
+
+msgid "Notify developers of software problems"
+msgstr "د سافټ ویر د ستونزو په اړه ډیولپرانو ته خبر ورکول"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "د همدې ځانګړنې په فعالولو سره به تاسې د همدې پلټفارم په جوړولو او خوندي کولو سره مرسته وکړئ."
+
+msgid "Reset reports"
+msgstr "د رپوټونو له سره تنظیمول"
+
+msgid "Settings"
+msgstr "امستنې"
 
 msgid "Case management"
 msgstr "د قضیې مدیریت"
 
-msgid "Network settings"
-msgstr "د شبکې تنظیمات"
+msgid "Network"
+msgstr ""
 
 msgid "Sites"
 msgstr "سایټونه"
@@ -1055,10 +1052,10 @@ msgid "Set password"
 msgstr "د پټ نوم ورکول"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "غوره شوی پټ نوم ډېر ضعیف دی. یو اعتباري پټ نوم باید 10 کرکټرونه او هغه هم بېلابېل کرکټرونه ولري چې پکې کم تر کمه واړه توري، یو لوی توری، یوه شمېره او یو ځانګړی کرکټر پکې وي."
+msgstr ""
 
 msgid "Force password change"
 msgstr "د پټ نوم د بدلولو لپاره اړ ایستل"

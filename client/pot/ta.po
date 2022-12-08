@@ -19,9 +19,6 @@ msgstr ""
 msgid "Log in"
 msgstr "உள் நுழை"
 
-msgid "Main configuration"
-msgstr "முக்கிய கட்டமைப்பு"
-
 msgid "Theme customization"
 msgstr "தீம் தனிப்பட்ட"
 
@@ -31,8 +28,8 @@ msgstr "மொழிகள்"
 msgid "Text customization"
 msgstr "உரை தனிப்பயனாக்கம்"
 
-msgid "Advanced settings"
-msgstr "மேம்பட்ட அமைப்புக்கள்"
+msgid "Advanced"
+msgstr "மேம்பட்டது"
 
 msgid "Question templates"
 msgstr "கேள்வி வார்ப்புருக்கள்"
@@ -52,8 +49,8 @@ msgstr "மாற்றம்குறிக்கும் கோப்ப�
 msgid "License"
 msgstr "உரிமம்"
 
-msgid "Notification templates"
-msgstr "அறிவித்தல் வார்ப்புருக்கள்"
+msgid "Templates"
+msgstr "டெம்ப்ளேட்கள்"
 
 msgid "Delete"
 msgstr "நீக்கு"
@@ -64,8 +61,8 @@ msgstr "முரண்பாடுகள்"
 msgid "Preferences"
 msgstr "விருப்பத்தேர்வுகள்"
 
-msgid "Notification settings"
-msgstr "அறிவித்தல் அமைப்புகளை"
+msgid "Notifications"
+msgstr ""
 
 msgid "file unavailable"
 msgstr "கோப்பு கிடைக்கவில்லை"
@@ -115,8 +112,8 @@ msgstr "அனைத்து தெரிவுகளையும் நிர�
 msgid "Refresh"
 msgstr ""
 
-msgid "Context"
-msgstr "சூழல்"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "முன்னோட்டம்"
@@ -250,9 +247,6 @@ msgstr "தகவல் தெரிவிப்பவர் அடையாள�
 msgid "Authorize access to the whistleblower's identity"
 msgstr "தகவல் தெரிவிப்பவர் அடையாளத்திற்கான அணுகவும்"
 
-msgid "Templates"
-msgstr "டெம்ப்ளேட்கள்"
-
 msgid "URL redirects"
 msgstr ""
 
@@ -292,8 +286,8 @@ msgstr "ஏற்கக்கூடிய"
 msgid "Strong"
 msgstr "வலுவான"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "உரை சூழல்களில் தேர்வு இடைமுகம் மேல் காட்டப்படும்"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "மின்னஞ்சல் அறிவிப்புகளை மௌனம்"
@@ -356,9 +350,6 @@ msgstr "கோப்பு கோப்பு அளவு:"
 
 msgid "Scheduled jobs"
 msgstr "திட்டமிடப்பட்ட வேலைகள்"
-
-msgid "Sites management"
-msgstr "தளங்கள் மேலாண்மை"
 
 msgid "Regenerate"
 msgstr "மீண்டும் உருவாக்கு"
@@ -467,6 +458,12 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
@@ -482,101 +479,20 @@ msgstr ""
 msgid "Enable"
 msgstr "செயல்படுத்து"
 
-msgid "Disable submissions"
-msgstr "சமர்ப்பிப்புகளை முடக்கு"
-
-msgid "Enable encryption"
-msgstr "மறையாக்குதல் இயக்கு"
-
-msgid "Enable administrators to change user passwords"
-msgstr ""
-
-msgid "Administrators authorized to change user passwords:"
-msgstr ""
-
-msgid "Enable multisite feature"
-msgstr "பன்முனை அம்சத்தை இயக்கு"
-
-msgid "Enable simplified login"
-msgstr "எளிய உள்நுழைவை இயக்கவும்"
-
-msgid "Enable search engines indexing"
-msgstr "தேடுபொறிகள் திருப்பு இயக்கு"
-
-msgid "Default questionnaire"
-msgstr "இயல்புநிலை கேள்வித்தாள்"
-
-msgid "Show contexts in alphabetical order"
-msgstr "அகரவரிசையில் சூழல்களில் காட்டு"
-
-msgid "Size limit for file attachments"
-msgstr "கோப்பு இணைப்புகளை அளவு எல்லை"
-
-msgid "megabytes"
-msgstr "மெகாபைட்"
-
-msgid "Require two factor authentication"
-msgstr ""
-
-msgid "Password change interval"
-msgstr "கடவுச்சொல் மாற்றம் இடைவெளி"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "பாதுகாப்பு காரணங்களுக்காக, வழக்கமான இடைவெளியில் கடவுச்சொல் மாற்றங்கள் தேவைப்படுகின்றன."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "இந்த அம்சத்தை முடக்க, மதிப்பு 0 ஆக அமைக்கவும்."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr ""
-
-msgid "Disable the privacy panel"
-msgstr "தனியுரிமை குழு முடக்கு"
-
-msgid "Enable custom privacy panel"
-msgstr "விருப்ப தனியுரிமை குழு இயக்கு"
-
-msgid "Custom privacy panel"
-msgstr "விருப்ப தனியுரிமை குழு"
-
-msgid "Enable custodian user role"
-msgstr ""
-
-msgid "Enable scoring system"
-msgstr "ஸ்கோரிங் அமைப்பை இயக்கு"
-
-msgid "Logging level"
-msgstr "பதிவு நிலை"
-
-msgid "Log accesses of internal users"
-msgstr "உள் பயனர்களின் பதிவு அணுகல்"
-
-msgid "Notify administrators of software problems"
-msgstr "மென்பொருள் பிரச்சினைகள் நிர்வாகிகளுக்கு தெரிவிக்கவும்"
-
-msgid "Notify developers of software problems"
-msgstr "மென்பொருள் பிரச்சினைகள் உருவாக்குநர்களுக்குத் தெரியப்படுத்துங்கள்"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "இந்த அம்சத்தை செயல்படுத்துவதன் மூலம், மேடையின் வளர்ச்சி மற்றும் பாதுகாப்பிற்கு நீங்கள் பங்களிப்பீர்கள்."
-
-msgid "Save"
-msgstr "சேமி"
-
-msgid "Reset reports"
-msgstr ""
-
 msgid "Low"
 msgstr ""
 
 msgid "High"
 msgstr "உயர்"
 
+msgid "megabytes"
+msgstr "மெகாபைட்"
+
 msgid "percentage"
 msgstr ""
+
+msgid "Save"
+msgstr "சேமி"
 
 msgid "Type"
 msgstr "வகை"
@@ -629,62 +545,14 @@ msgstr "நிராகரி"
 msgid "Report statuses"
 msgstr ""
 
-msgid "Logo"
-msgstr "சின்னம்"
-
-msgid "Project name"
-msgstr "திட்ட பெயர்"
-
-msgid "Description"
-msgstr "விபரம்"
-
-msgid "Homepage title"
-msgstr "முகப்பு தலைப்பு"
-
-msgid "Presentation"
-msgstr "வழங்கல்"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "கேள்வி சாத்தியம் இம்மாதிரி கோர"
-
-msgid "Whistleblowing button"
-msgstr "whistleblowing பொத்தானை"
-
-msgid "Disclaimer"
+msgid "Channels"
 msgstr ""
-
-msgid "Footer"
-msgstr "அடிக்குறிப்பு"
-
-msgid "Upload"
-msgstr "பதிவேற்று"
-
-msgid "Download"
-msgstr "பதிவிறக்க"
-
-msgid "Language:"
-msgstr "மொழி:"
-
-msgid "Add custom text"
-msgstr "தனிப்பயன் உரையைச் சேர்க்கவும்"
-
-msgid "Custom text"
-msgstr "தனிப்பயன் உரை"
-
-msgid "Original text"
-msgstr "அசல் உரை"
-
-msgid "Original translation"
-msgstr "அசல் மொழிபெயர்ப்பு"
-
-msgid "Custom translation"
-msgstr "தனிப்பயன் மொழிபெயர்ப்பு"
-
-msgid "Contexts"
-msgstr "சூழல்"
 
 msgid "Hidden"
 msgstr "மறைக்கப்பட்ட"
+
+msgid "Description"
+msgstr "விபரம்"
 
 msgid "Questionnaire"
 msgstr "கேள்வித்தாள்"
@@ -694,6 +562,9 @@ msgstr "பெற்றவர்கள்"
 
 msgid "days"
 msgstr "நாட்களில்"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "இந்த அம்சத்தை முடக்க, மதிப்பு 0 ஆக அமைக்கவும்."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "கேள்வித்தாள் வழிசெலுத்தல் இடைமுகத்தை காட்டு"
@@ -793,6 +664,9 @@ msgstr "தனிப்பட்ட விசை"
 
 msgid "Certificate Signing Request"
 msgstr "சான்றிதழ் கையொப்பமிடு கோரிக்கை"
+
+msgid "Download"
+msgstr "பதிவிறக்க"
 
 msgid "Certificate"
 msgstr "சான்றிதழ்"
@@ -1008,14 +882,137 @@ msgstr "நகல்"
 msgid "Steps"
 msgstr "படிகள்"
 
-msgid "Site settings"
-msgstr "தள அமைப்புகள்"
+msgid "Logo"
+msgstr "சின்னம்"
+
+msgid "Project name"
+msgstr "திட்ட பெயர்"
+
+msgid "Homepage title"
+msgstr "முகப்பு தலைப்பு"
+
+msgid "Presentation"
+msgstr "வழங்கல்"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "கேள்வி சாத்தியம் இம்மாதிரி கோர"
+
+msgid "Whistleblowing button"
+msgstr "whistleblowing பொத்தானை"
+
+msgid "Disclaimer"
+msgstr ""
+
+msgid "Footer"
+msgstr "அடிக்குறிப்பு"
+
+msgid "Upload"
+msgstr "பதிவேற்று"
+
+msgid "Language:"
+msgstr "மொழி:"
+
+msgid "Add custom text"
+msgstr "தனிப்பயன் உரையைச் சேர்க்கவும்"
+
+msgid "Custom text"
+msgstr "தனிப்பயன் உரை"
+
+msgid "Original text"
+msgstr "அசல் உரை"
+
+msgid "Original translation"
+msgstr "அசல் மொழிபெயர்ப்பு"
+
+msgid "Custom translation"
+msgstr "தனிப்பயன் மொழிபெயர்ப்பு"
+
+msgid "Disable submissions"
+msgstr "சமர்ப்பிப்புகளை முடக்கு"
+
+msgid "Enable encryption"
+msgstr "மறையாக்குதல் இயக்கு"
+
+msgid "Enable administrators to change user passwords"
+msgstr ""
+
+msgid "Administrators authorized to change user passwords:"
+msgstr ""
+
+msgid "Enable multisite feature"
+msgstr "பன்முனை அம்சத்தை இயக்கு"
+
+msgid "Enable simplified login"
+msgstr "எளிய உள்நுழைவை இயக்கவும்"
+
+msgid "Enable search engines indexing"
+msgstr "தேடுபொறிகள் திருப்பு இயக்கு"
+
+msgid "Default questionnaire"
+msgstr "இயல்புநிலை கேள்வித்தாள்"
+
+msgid "Show contexts in alphabetical order"
+msgstr "அகரவரிசையில் சூழல்களில் காட்டு"
+
+msgid "Size limit for file attachments"
+msgstr "கோப்பு இணைப்புகளை அளவு எல்லை"
+
+msgid "Require two factor authentication"
+msgstr ""
+
+msgid "Password change interval"
+msgstr "கடவுச்சொல் மாற்றம் இடைவெளி"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "பாதுகாப்பு காரணங்களுக்காக, வழக்கமான இடைவெளியில் கடவுச்சொல் மாற்றங்கள் தேவைப்படுகின்றன."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr ""
+
+msgid "Disable the privacy panel"
+msgstr "தனியுரிமை குழு முடக்கு"
+
+msgid "Enable custom privacy panel"
+msgstr "விருப்ப தனியுரிமை குழு இயக்கு"
+
+msgid "Custom privacy panel"
+msgstr "விருப்ப தனியுரிமை குழு"
+
+msgid "Enable custodian user role"
+msgstr ""
+
+msgid "Enable scoring system"
+msgstr "ஸ்கோரிங் அமைப்பை இயக்கு"
+
+msgid "Logging level"
+msgstr "பதிவு நிலை"
+
+msgid "Log accesses of internal users"
+msgstr "உள் பயனர்களின் பதிவு அணுகல்"
+
+msgid "Notify administrators of software problems"
+msgstr "மென்பொருள் பிரச்சினைகள் நிர்வாகிகளுக்கு தெரிவிக்கவும்"
+
+msgid "Notify developers of software problems"
+msgstr "மென்பொருள் பிரச்சினைகள் உருவாக்குநர்களுக்குத் தெரியப்படுத்துங்கள்"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "இந்த அம்சத்தை செயல்படுத்துவதன் மூலம், மேடையின் வளர்ச்சி மற்றும் பாதுகாப்பிற்கு நீங்கள் பங்களிப்பீர்கள்."
+
+msgid "Reset reports"
+msgstr ""
+
+msgid "Settings"
+msgstr "அமைப்புகள்"
 
 msgid "Case management"
 msgstr "வழக்கு மேலாண்மை"
 
-msgid "Network settings"
-msgstr "நெட்வொர்க் அமைப்புகள்"
+msgid "Network"
+msgstr ""
 
 msgid "Sites"
 msgstr "தளங்கள்"
@@ -1057,7 +1054,7 @@ msgid "Set password"
 msgstr ""
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
 msgstr ""

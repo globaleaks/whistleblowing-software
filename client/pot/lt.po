@@ -17,9 +17,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Prisijungti"
 
-msgid "Main configuration"
-msgstr "Pagrindinė konfigūracija"
-
 msgid "Theme customization"
 msgstr "Temos tinkinimas"
 
@@ -29,8 +26,8 @@ msgstr "Kalbos"
 msgid "Text customization"
 msgstr "Teksto tinkinimas"
 
-msgid "Advanced settings"
-msgstr "Išplėstinės nuostatos"
+msgid "Advanced"
+msgstr "Išplėstiniai"
 
 msgid "Question templates"
 msgstr "Klausimų šablonai"
@@ -50,8 +47,8 @@ msgstr "Keitimų žurnalas"
 msgid "License"
 msgstr "Licencija"
 
-msgid "Notification templates"
-msgstr "Pranešimo šablonai"
+msgid "Templates"
+msgstr "Šablonai"
 
 msgid "Delete"
 msgstr "Ištrinti"
@@ -62,8 +59,8 @@ msgstr "Neatitikimai"
 msgid "Preferences"
 msgstr "Parinktys"
 
-msgid "Notification settings"
-msgstr "Pranešimo nuostatos"
+msgid "Notifications"
+msgstr "Pranešimai"
 
 msgid "file unavailable"
 msgstr "failas neprieinamas"
@@ -113,8 +110,8 @@ msgstr "Panaikinti žymėjimą"
 msgid "Refresh"
 msgstr "Įkelti iš naujo"
 
-msgid "Context"
-msgstr "Kontekstas"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "Peržiūra"
@@ -248,9 +245,6 @@ msgstr "Neleisti susipažinti su informatoriaus tapatybe"
 msgid "Authorize access to the whistleblower's identity"
 msgstr "Leisti susipažinti su informatoriaus tapatybe"
 
-msgid "Templates"
-msgstr "Šablonai"
-
 msgid "URL redirects"
 msgstr "URL peradresavimai"
 
@@ -290,8 +284,8 @@ msgstr "Priimtinas"
 msgid "Strong"
 msgstr "Stiprus"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Tekstas rodomas sąsajos viršuje pasirenkant kontekstus"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "Nutildyti el. pašto pranešimus"
@@ -354,9 +348,6 @@ msgstr "Didžiausias failo dydis:"
 
 msgid "Scheduled jobs"
 msgstr "Suplanuoti darbai"
-
-msgid "Sites management"
-msgstr "Svetainių valdymas"
 
 msgid "Regenerate"
 msgstr "Atkurti"
@@ -465,6 +456,12 @@ msgstr "Suteikti prieigą"
 msgid "Revoke access"
 msgstr "Atšaukti prieigą"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "Teikti pranešimą"
 
@@ -480,101 +477,20 @@ msgstr "Prieš tęsdami įgalinkite dviejų veiksnių tapatybės nustatymo būd�
 msgid "Enable"
 msgstr "Įjungti"
 
-msgid "Disable submissions"
-msgstr "Išjungti pateikimą"
-
-msgid "Enable encryption"
-msgstr "Įgalinti šifravimą"
-
-msgid "Enable administrators to change user passwords"
-msgstr "Leisti administratoriams keisti naudotojų slaptažodžius"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Administratoriai, įgalioti keisti naudotojų slaptažodžius:"
-
-msgid "Enable multisite feature"
-msgstr "Įgalinti daugiavietės funkciją"
-
-msgid "Enable simplified login"
-msgstr "Įgalinti supaprastintą prisijungimą"
-
-msgid "Enable search engines indexing"
-msgstr "Įgalinti paieškos variklių indeksavimą"
-
-msgid "Default questionnaire"
-msgstr "Numatytasis klausimynas"
-
-msgid "Show contexts in alphabetical order"
-msgstr "Rodyti kontekstus abėcėlės tvarka"
-
-msgid "Size limit for file attachments"
-msgstr "Pridedamų failų dydžio limitas"
-
-msgid "megabytes"
-msgstr "megabaitai"
-
-msgid "Require two factor authentication"
-msgstr "Reikalauti dviejų veiksnių tapatybės nustatymo"
-
-msgid "Password change interval"
-msgstr "Slaptažodžio keitimo dažnis"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Saugumo sumetimais slaptažodžius reikia keisti reguliariai."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Norėdami išjungti šią funkciją, nustatykite vertę „0“."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Dienų skaičius iki įspėjimo naudotojams apie neperskaitytus pranešimus"
-
-msgid "Disable the privacy panel"
-msgstr "Išjungti privatumo skydelį"
-
-msgid "Enable custom privacy panel"
-msgstr "Įgalinti pasirinktinį privatumo skydelį"
-
-msgid "Custom privacy panel"
-msgstr "Pasirinktinis privatumo skydelis"
-
-msgid "Enable custodian user role"
-msgstr "Įgalinti saugotojo naudotojo funkciją"
-
-msgid "Enable scoring system"
-msgstr "Įjungti vertinimo sistemą"
-
-msgid "Logging level"
-msgstr "Registravimo lygis"
-
-msgid "Log accesses of internal users"
-msgstr "Registruoti vidaus naudotojų prieigas"
-
-msgid "Notify administrators of software problems"
-msgstr "Pranešti administratoriams apie programinės įrangos problemas"
-
-msgid "Notify developers of software problems"
-msgstr "Pranešti kūrėjams apie programinės įrangos problemas"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Įgalinę šią funkciją prisidėsite prie platformos kūrimo ir saugumo."
-
-msgid "Save"
-msgstr "Įrašyti"
-
-msgid "Reset reports"
-msgstr "Atnaujinti pranešimus"
-
 msgid "Low"
 msgstr "Žemas"
 
 msgid "High"
 msgstr "Aukštas"
 
+msgid "megabytes"
+msgstr "megabaitai"
+
 msgid "percentage"
 msgstr "procentai"
+
+msgid "Save"
+msgstr "Įrašyti"
 
 msgid "Type"
 msgstr "Tipas"
@@ -627,62 +543,14 @@ msgstr "Atšaukti"
 msgid "Report statuses"
 msgstr "Pranešimo statusai"
 
-msgid "Logo"
-msgstr "Logotipas"
-
-msgid "Project name"
-msgstr "Projekto pavadinimas"
-
-msgid "Description"
-msgstr "Aprašas"
-
-msgid "Homepage title"
-msgstr "Pradžios puslapio pavadinimas"
-
-msgid "Presentation"
-msgstr "Pristatymas"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Klausimas, kuriuo siekiama išsiaiškinti galimus pranešėjus"
-
-msgid "Whistleblowing button"
-msgstr "Pranešimo apie pažeidimus mygtukas"
-
-msgid "Disclaimer"
-msgstr "Atsisakymas"
-
-msgid "Footer"
-msgstr "Poraštė"
-
-msgid "Upload"
-msgstr "Įkelti"
-
-msgid "Download"
-msgstr "Atsisiųsti"
-
-msgid "Language:"
-msgstr "Kalba:"
-
-msgid "Add custom text"
-msgstr "Įvesti pasirinktinį tekstą"
-
-msgid "Custom text"
-msgstr "Pasirinktinis tekstas"
-
-msgid "Original text"
-msgstr "Originalus tekstas"
-
-msgid "Original translation"
-msgstr "Originalus vertimas"
-
-msgid "Custom translation"
-msgstr "Pasirinktinis vertimas"
-
-msgid "Contexts"
-msgstr "Kontekstai"
+msgid "Channels"
+msgstr ""
 
 msgid "Hidden"
 msgstr "Paslėpta"
+
+msgid "Description"
+msgstr "Aprašas"
 
 msgid "Questionnaire"
 msgstr "Klausimynas"
@@ -692,6 +560,9 @@ msgstr "Gavėjai"
 
 msgid "days"
 msgstr "dienos"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Norėdami išjungti šią funkciją, nustatykite vertę „0“."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Rodyti klausimyno naršymo sąsają"
@@ -791,6 +662,9 @@ msgstr "Privatusis raktas"
 
 msgid "Certificate Signing Request"
 msgstr "Sertifikato pasirašymo užklausa"
+
+msgid "Download"
+msgstr "Atsisiųsti"
 
 msgid "Certificate"
 msgstr "Sertifikatas"
@@ -1006,14 +880,137 @@ msgstr "Dublikatas"
 msgid "Steps"
 msgstr "Žingsniai"
 
-msgid "Site settings"
-msgstr "Svetainės nustatymai"
+msgid "Logo"
+msgstr "Logotipas"
+
+msgid "Project name"
+msgstr "Projekto pavadinimas"
+
+msgid "Homepage title"
+msgstr "Pradžios puslapio pavadinimas"
+
+msgid "Presentation"
+msgstr "Pristatymas"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Klausimas, kuriuo siekiama išsiaiškinti galimus pranešėjus"
+
+msgid "Whistleblowing button"
+msgstr "Pranešimo apie pažeidimus mygtukas"
+
+msgid "Disclaimer"
+msgstr "Atsisakymas"
+
+msgid "Footer"
+msgstr "Poraštė"
+
+msgid "Upload"
+msgstr "Įkelti"
+
+msgid "Language:"
+msgstr "Kalba:"
+
+msgid "Add custom text"
+msgstr "Įvesti pasirinktinį tekstą"
+
+msgid "Custom text"
+msgstr "Pasirinktinis tekstas"
+
+msgid "Original text"
+msgstr "Originalus tekstas"
+
+msgid "Original translation"
+msgstr "Originalus vertimas"
+
+msgid "Custom translation"
+msgstr "Pasirinktinis vertimas"
+
+msgid "Disable submissions"
+msgstr "Išjungti pateikimą"
+
+msgid "Enable encryption"
+msgstr "Įgalinti šifravimą"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Leisti administratoriams keisti naudotojų slaptažodžius"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Administratoriai, įgalioti keisti naudotojų slaptažodžius:"
+
+msgid "Enable multisite feature"
+msgstr "Įgalinti daugiavietės funkciją"
+
+msgid "Enable simplified login"
+msgstr "Įgalinti supaprastintą prisijungimą"
+
+msgid "Enable search engines indexing"
+msgstr "Įgalinti paieškos variklių indeksavimą"
+
+msgid "Default questionnaire"
+msgstr "Numatytasis klausimynas"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Rodyti kontekstus abėcėlės tvarka"
+
+msgid "Size limit for file attachments"
+msgstr "Pridedamų failų dydžio limitas"
+
+msgid "Require two factor authentication"
+msgstr "Reikalauti dviejų veiksnių tapatybės nustatymo"
+
+msgid "Password change interval"
+msgstr "Slaptažodžio keitimo dažnis"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Saugumo sumetimais slaptažodžius reikia keisti reguliariai."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Dienų skaičius iki įspėjimo naudotojams apie neperskaitytus pranešimus"
+
+msgid "Disable the privacy panel"
+msgstr "Išjungti privatumo skydelį"
+
+msgid "Enable custom privacy panel"
+msgstr "Įgalinti pasirinktinį privatumo skydelį"
+
+msgid "Custom privacy panel"
+msgstr "Pasirinktinis privatumo skydelis"
+
+msgid "Enable custodian user role"
+msgstr "Įgalinti saugotojo naudotojo funkciją"
+
+msgid "Enable scoring system"
+msgstr "Įjungti vertinimo sistemą"
+
+msgid "Logging level"
+msgstr "Registravimo lygis"
+
+msgid "Log accesses of internal users"
+msgstr "Registruoti vidaus naudotojų prieigas"
+
+msgid "Notify administrators of software problems"
+msgstr "Pranešti administratoriams apie programinės įrangos problemas"
+
+msgid "Notify developers of software problems"
+msgstr "Pranešti kūrėjams apie programinės įrangos problemas"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Įgalinę šią funkciją prisidėsite prie platformos kūrimo ir saugumo."
+
+msgid "Reset reports"
+msgstr "Atnaujinti pranešimus"
+
+msgid "Settings"
+msgstr "Nustatymai"
 
 msgid "Case management"
 msgstr "Atvejo valdymas"
 
-msgid "Network settings"
-msgstr "Tinklo nustatymai"
+msgid "Network"
+msgstr "Tinklas"
 
 msgid "Sites"
 msgstr "Svetainės"
@@ -1055,10 +1052,10 @@ msgid "Set password"
 msgstr "Nustatyti slaptažodį"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Pasirinktas slaptažodis per silpnas. Tinkamą slaptažodį turi sudaryti bent 10 skirtingų simbolių, įskaitant bent vieną mažąją raidę, didžiąją raidę, skaičių ir specialųjį simbolį."
+msgstr "Pasirinktas slaptažodis per silpnas. Tinkamą slaptažodį turi sudaryti bent 12 skirtingų simbolių, įskaitant bent vieną mažąją raidę, didžiąją raidę, skaičių ir specialųjį simbolį."
 
 msgid "Force password change"
 msgstr "Priversti pakeisti slaptažodį"

@@ -19,9 +19,6 @@ msgstr ""
 msgid "Log in"
 msgstr "登入"
 
-msgid "Main configuration"
-msgstr "主要設定"
-
 msgid "Theme customization"
 msgstr "自訂外觀"
 
@@ -31,8 +28,8 @@ msgstr "語言"
 msgid "Text customization"
 msgstr "自訂內文"
 
-msgid "Advanced settings"
-msgstr "進階設定"
+msgid "Advanced"
+msgstr "高级"
 
 msgid "Question templates"
 msgstr "問題範本"
@@ -52,8 +49,8 @@ msgstr "更新日誌"
 msgid "License"
 msgstr "授權"
 
-msgid "Notification templates"
-msgstr "通知範本"
+msgid "Templates"
+msgstr "範本"
 
 msgid "Delete"
 msgstr "刪除"
@@ -64,8 +61,8 @@ msgstr "異常狀況"
 msgid "Preferences"
 msgstr "帳號設定"
 
-msgid "Notification settings"
-msgstr "通知設定"
+msgid "Notifications"
+msgstr "通知"
 
 msgid "file unavailable"
 msgstr "無法存取檔案"
@@ -115,8 +112,8 @@ msgstr "取消全選"
 msgid "Refresh"
 msgstr "重新整理"
 
-msgid "Context"
-msgstr "主題"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "預覽"
@@ -250,9 +247,6 @@ msgstr "拒絕讀取吹哨者的個人身份"
 msgid "Authorize access to the whistleblower's identity"
 msgstr "批准讀取吹哨者的個人身份"
 
-msgid "Templates"
-msgstr "範本"
-
 msgid "URL redirects"
 msgstr "URL 重新導向"
 
@@ -292,8 +286,8 @@ msgstr "中等"
 msgid "Strong"
 msgstr "強"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "顯示在選擇主題介面上方的文字"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "停用電郵通知"
@@ -356,9 +350,6 @@ msgstr "檔案不可大於："
 
 msgid "Scheduled jobs"
 msgstr "工作排程"
-
-msgid "Sites management"
-msgstr "多網站管理"
 
 msgid "Regenerate"
 msgstr "重新生成"
@@ -467,6 +458,12 @@ msgstr ""
 msgid "Revoke access"
 msgstr "撤銷存取"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "提交報告"
 
@@ -482,101 +479,20 @@ msgstr "在繼續之前，請先啟用雙重認證。"
 msgid "Enable"
 msgstr "啟用"
 
-msgid "Disable submissions"
-msgstr "停止接收報告"
-
-msgid "Enable encryption"
-msgstr "使用加密"
-
-msgid "Enable administrators to change user passwords"
-msgstr "允許管理員更改使用者的密碼"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "有權更改使用者密碼的管理員："
-
-msgid "Enable multisite feature"
-msgstr "啟用多網站功能"
-
-msgid "Enable simplified login"
-msgstr "開啟簡易登入"
-
-msgid "Enable search engines indexing"
-msgstr "允許搜尋引擎進行索引"
-
-msgid "Default questionnaire"
-msgstr "預設問卷"
-
-msgid "Show contexts in alphabetical order"
-msgstr "以字母順序顯示主題"
-
-msgid "Size limit for file attachments"
-msgstr "附件檔案大小上限"
-
-msgid "megabytes"
-msgstr "MB"
-
-msgid "Require two factor authentication"
-msgstr "啟用雙重認證"
-
-msgid "Password change interval"
-msgstr "強制更改密碼時距日數"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "基於安全起見，使用者應定時更改密碼。"
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "將值設為 0 以停用此功能。"
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "新報告有多少天未讀才通知使用者"
-
-msgid "Disable the privacy panel"
-msgstr "隱藏私隱通告"
-
-msgid "Enable custom privacy panel"
-msgstr "自訂平台頁首的私隱通告"
-
-msgid "Custom privacy panel"
-msgstr "自訂私隱通告內文"
-
-msgid "Enable custodian user role"
-msgstr "啟用保管人使用者身份"
-
-msgid "Enable scoring system"
-msgstr "啟用評分系統"
-
-msgid "Logging level"
-msgstr "日誌級別"
-
-msgid "Log accesses of internal users"
-msgstr "記錄内部使用者的存取"
-
-msgid "Notify administrators of software problems"
-msgstr "向管理員通報軟件問題"
-
-msgid "Notify developers of software problems"
-msgstr "向開發人員通報軟件問題"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "啟用此功能將有助於該平台的開發與安全維護工作。"
-
-msgid "Save"
-msgstr "儲存"
-
-msgid "Reset reports"
-msgstr "重設所有報告"
-
 msgid "Low"
 msgstr "低"
 
 msgid "High"
 msgstr "高"
 
+msgid "megabytes"
+msgstr "MB"
+
 msgid "percentage"
 msgstr "百分比"
+
+msgid "Save"
+msgstr "儲存"
 
 msgid "Type"
 msgstr "檔案類型"
@@ -629,62 +545,14 @@ msgstr "取消"
 msgid "Report statuses"
 msgstr "報告狀態"
 
-msgid "Logo"
-msgstr "標誌"
-
-msgid "Project name"
-msgstr "平台名稱"
-
-msgid "Description"
-msgstr "平台描述"
-
-msgid "Homepage title"
-msgstr "首頁標題"
-
-msgid "Presentation"
-msgstr "首頁簡介"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "給吹哨者的徵求"
-
-msgid "Whistleblowing button"
-msgstr "舉報按鈕"
-
-msgid "Disclaimer"
-msgstr "免责声明"
-
-msgid "Footer"
-msgstr "頁尾文字"
-
-msgid "Upload"
-msgstr "上傳"
-
-msgid "Download"
-msgstr "下載"
-
-msgid "Language:"
-msgstr "語言："
-
-msgid "Add custom text"
-msgstr "新增自訂內文"
-
-msgid "Custom text"
-msgstr "自訂內文"
-
-msgid "Original text"
-msgstr "原定內文"
-
-msgid "Original translation"
-msgstr "原定翻譯"
-
-msgid "Custom translation"
-msgstr "自訂翻譯"
-
-msgid "Contexts"
-msgstr "主題"
+msgid "Channels"
+msgstr ""
 
 msgid "Hidden"
 msgstr "已隱藏"
+
+msgid "Description"
+msgstr "平台描述"
 
 msgid "Questionnaire"
 msgstr "問卷"
@@ -694,6 +562,9 @@ msgstr "接收者"
 
 msgid "days"
 msgstr "天"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "將值設為 0 以停用此功能。"
 
 msgid "Show the questionnaire navigation interface"
 msgstr "顯示問卷導覽介面"
@@ -793,6 +664,9 @@ msgstr "私鑰"
 
 msgid "Certificate Signing Request"
 msgstr "憑證簽署要求"
+
+msgid "Download"
+msgstr "下載"
 
 msgid "Certificate"
 msgstr "憑證"
@@ -1008,14 +882,137 @@ msgstr "複製"
 msgid "Steps"
 msgstr "步驟"
 
-msgid "Site settings"
-msgstr "網站設定"
+msgid "Logo"
+msgstr "標誌"
+
+msgid "Project name"
+msgstr "平台名稱"
+
+msgid "Homepage title"
+msgstr "首頁標題"
+
+msgid "Presentation"
+msgstr "首頁簡介"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "給吹哨者的徵求"
+
+msgid "Whistleblowing button"
+msgstr "舉報按鈕"
+
+msgid "Disclaimer"
+msgstr "免责声明"
+
+msgid "Footer"
+msgstr "頁尾文字"
+
+msgid "Upload"
+msgstr "上傳"
+
+msgid "Language:"
+msgstr "語言："
+
+msgid "Add custom text"
+msgstr "新增自訂內文"
+
+msgid "Custom text"
+msgstr "自訂內文"
+
+msgid "Original text"
+msgstr "原定內文"
+
+msgid "Original translation"
+msgstr "原定翻譯"
+
+msgid "Custom translation"
+msgstr "自訂翻譯"
+
+msgid "Disable submissions"
+msgstr "停止接收報告"
+
+msgid "Enable encryption"
+msgstr "使用加密"
+
+msgid "Enable administrators to change user passwords"
+msgstr "允許管理員更改使用者的密碼"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "有權更改使用者密碼的管理員："
+
+msgid "Enable multisite feature"
+msgstr "啟用多網站功能"
+
+msgid "Enable simplified login"
+msgstr "開啟簡易登入"
+
+msgid "Enable search engines indexing"
+msgstr "允許搜尋引擎進行索引"
+
+msgid "Default questionnaire"
+msgstr "預設問卷"
+
+msgid "Show contexts in alphabetical order"
+msgstr "以字母順序顯示主題"
+
+msgid "Size limit for file attachments"
+msgstr "附件檔案大小上限"
+
+msgid "Require two factor authentication"
+msgstr "啟用雙重認證"
+
+msgid "Password change interval"
+msgstr "強制更改密碼時距日數"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "基於安全起見，使用者應定時更改密碼。"
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "新報告有多少天未讀才通知使用者"
+
+msgid "Disable the privacy panel"
+msgstr "隱藏私隱通告"
+
+msgid "Enable custom privacy panel"
+msgstr "自訂平台頁首的私隱通告"
+
+msgid "Custom privacy panel"
+msgstr "自訂私隱通告內文"
+
+msgid "Enable custodian user role"
+msgstr "啟用保管人使用者身份"
+
+msgid "Enable scoring system"
+msgstr "啟用評分系統"
+
+msgid "Logging level"
+msgstr "日誌級別"
+
+msgid "Log accesses of internal users"
+msgstr "記錄内部使用者的存取"
+
+msgid "Notify administrators of software problems"
+msgstr "向管理員通報軟件問題"
+
+msgid "Notify developers of software problems"
+msgstr "向開發人員通報軟件問題"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "啟用此功能將有助於該平台的開發與安全維護工作。"
+
+msgid "Reset reports"
+msgstr "重設所有報告"
+
+msgid "Settings"
+msgstr "設置"
 
 msgid "Case management"
 msgstr "個案管理"
 
-msgid "Network settings"
-msgstr "網絡設定"
+msgid "Network"
+msgstr "网络"
 
 msgid "Sites"
 msgstr "網站"
@@ -1057,10 +1054,10 @@ msgid "Set password"
 msgstr "設置密碼"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "密碼過弱。有效密碼必須有至少10個字元，並包含大小寫、數字和符號。"
+msgstr "所选密码太弱。有效密码应至少包含 12 个多种字符，包括至少一个小写字母、一个大写字母、一个数字以及一个特殊符号。"
 
 msgid "Force password change"
 msgstr "強制更改密碼"

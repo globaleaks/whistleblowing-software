@@ -56,9 +56,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Acessar"
 
-msgid "Main configuration"
-msgstr "Configuração Principal"
-
 msgid "Theme customization"
 msgstr "Personalização do Tema"
 
@@ -68,8 +65,8 @@ msgstr "Idiomas"
 msgid "Text customization"
 msgstr "Personalização do texto"
 
-msgid "Advanced settings"
-msgstr "Configurações avançadas"
+msgid "Advanced"
+msgstr "Avançado"
 
 msgid "Question templates"
 msgstr "Modelos de questões"
@@ -89,8 +86,8 @@ msgstr "Registo de alterações"
 msgid "License"
 msgstr "Licença"
 
-msgid "Notification templates"
-msgstr "Modelos de notificação"
+msgid "Templates"
+msgstr "Modelos"
 
 msgid "Delete"
 msgstr "Apagar"
@@ -101,8 +98,8 @@ msgstr "Anomalias"
 msgid "Preferences"
 msgstr "Preferências"
 
-msgid "Notification settings"
-msgstr "Configurações de notificações"
+msgid "Notifications"
+msgstr "Notificaçőes"
 
 msgid "file unavailable"
 msgstr "ficheiro indisponível"
@@ -152,8 +149,8 @@ msgstr " Desmarque todas "
 msgid "Refresh"
 msgstr "Atualizar"
 
-msgid "Context"
-msgstr "Assunto"
+msgid "Channel"
+msgstr "Canal"
 
 msgid "Preview"
 msgstr "Visualização"
@@ -287,9 +284,6 @@ msgstr "Negar acesso à identidade do denunciante"
 msgid "Authorize access to the whistleblower's identity"
 msgstr "Autorizar acesso à identidade do denunciante"
 
-msgid "Templates"
-msgstr "Modelos"
-
 msgid "URL redirects"
 msgstr "Redirecionamentos de URL"
 
@@ -329,8 +323,8 @@ msgstr "Aceitável"
 msgid "Strong"
 msgstr "Forte"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Texto exibido no início da página para seleção de assuntos"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr "Texto mostrado no topo da interface para os contextos selecionados"
 
 msgid "Silence email notifications"
 msgstr "Desabilitar notificações de e-mails"
@@ -393,9 +387,6 @@ msgstr "Tamanho máximo do ficheiro:"
 
 msgid "Scheduled jobs"
 msgstr "Trabalhos agendados"
-
-msgid "Sites management"
-msgstr "Gerenciamento de sites"
 
 msgid "Regenerate"
 msgstr "Regenerar"
@@ -504,6 +495,12 @@ msgstr "Garantir acesso"
 msgid "Revoke access"
 msgstr "Revogar acesso"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "Apresentar um relatório"
 
@@ -519,101 +516,20 @@ msgstr "Antes de continuar, ative a autenticação de dois fatores."
 msgid "Enable"
 msgstr "Ativar"
 
-msgid "Disable submissions"
-msgstr "Desativar envios"
-
-msgid "Enable encryption"
-msgstr "Ativar criptografia"
-
-msgid "Enable administrators to change user passwords"
-msgstr "Permitir que administradores alterem as palavras-passe de utilizadores"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Administradores autorizados a mudar as palavra -passe dos utilizadores:"
-
-msgid "Enable multisite feature"
-msgstr "Ativar recurso multisite"
-
-msgid "Enable simplified login"
-msgstr "Ativar login simplificado"
-
-msgid "Enable search engines indexing"
-msgstr "Habilitar indexação aos motores de busca"
-
-msgid "Default questionnaire"
-msgstr "Questionário padrão"
-
-msgid "Show contexts in alphabetical order"
-msgstr "Mostrar assuntos em ordem alfabética"
-
-msgid "Size limit for file attachments"
-msgstr "Limite de tamanho para anexos de ficheiro"
-
-msgid "megabytes"
-msgstr "megabytes"
-
-msgid "Require two factor authentication"
-msgstr "Exigir autenticação de dois fatores"
-
-msgid "Password change interval"
-msgstr "Intervalo de alteração de palavra-passe"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Por motivos de segurança, alterações de palavra-passe são necessárias em intervalos regulares."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Defina o valor como 0 para desativar esse recurso."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Número de dias até a notificação aos utilizadores das denúncias não lidas"
-
-msgid "Disable the privacy panel"
-msgstr "Desativar o painel de privacidade"
-
-msgid "Enable custom privacy panel"
-msgstr "Habilitar painel personalizado de privacidade"
-
-msgid "Custom privacy panel"
-msgstr "Personalizar o painel de privacidade"
-
-msgid "Enable custodian user role"
-msgstr "Ativar função de utilizador responsável"
-
-msgid "Enable scoring system"
-msgstr "Ativar sistema de pontuação"
-
-msgid "Logging level"
-msgstr "Nível de registro"
-
-msgid "Log accesses of internal users"
-msgstr "Log de acessos de utilizadores internos"
-
-msgid "Notify administrators of software problems"
-msgstr "Notificar administradores sobre problemas de software"
-
-msgid "Notify developers of software problems"
-msgstr "Notificar desenvolvedores sobre problemas de software"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Ao ativar esta funcionalidade, irá contribuir para o desenvolvimento e segurança da plataforma."
-
-msgid "Save"
-msgstr "Salvar"
-
-msgid "Reset reports"
-msgstr "Redefinir relatórios"
-
 msgid "Low"
 msgstr "Baixo"
 
 msgid "High"
 msgstr "Alto"
 
+msgid "megabytes"
+msgstr "megabytes"
+
 msgid "percentage"
 msgstr "porcentagem"
+
+msgid "Save"
+msgstr "Salvar"
 
 msgid "Type"
 msgstr "Tipo"
@@ -666,62 +582,14 @@ msgstr "Cancelar"
 msgid "Report statuses"
 msgstr "Status do relatório"
 
-msgid "Logo"
-msgstr "Logotipo"
-
-msgid "Project name"
-msgstr "Nome da iniciativa"
-
-msgid "Description"
-msgstr "Descrição"
-
-msgid "Homepage title"
-msgstr "Título da Página Principal"
-
-msgid "Presentation"
-msgstr "Apresentação"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Pergunta para solicitar possíveis denunciantes"
-
-msgid "Whistleblowing button"
-msgstr "Botão de Denúncia"
-
-msgid "Disclaimer"
-msgstr "Isenção de responsabilidade"
-
-msgid "Footer"
-msgstr "Rodapé"
-
-msgid "Upload"
-msgstr "Carregar"
-
-msgid "Download"
-msgstr "Baixar"
-
-msgid "Language:"
-msgstr "Idioma:"
-
-msgid "Add custom text"
-msgstr "Adicionar texto personalizado"
-
-msgid "Custom text"
-msgstr "Texto personalizado"
-
-msgid "Original text"
-msgstr "Texto original"
-
-msgid "Original translation"
-msgstr "Tradução do original"
-
-msgid "Custom translation"
-msgstr "Tradução personalizada"
-
-msgid "Contexts"
-msgstr "Assuntos"
+msgid "Channels"
+msgstr "Canals"
 
 msgid "Hidden"
 msgstr "Oculto"
+
+msgid "Description"
+msgstr "Descrição"
 
 msgid "Questionnaire"
 msgstr "Questionário"
@@ -731,6 +599,9 @@ msgstr "Destinatários"
 
 msgid "days"
 msgstr "dias"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Defina o valor como 0 para desativar esse recurso."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Mostrar a interface de navegação do questionário"
@@ -830,6 +701,9 @@ msgstr "Chave privada"
 
 msgid "Certificate Signing Request"
 msgstr "Solicitação de Assinatura de Certificado Digital"
+
+msgid "Download"
+msgstr "Baixar"
 
 msgid "Certificate"
 msgstr "Certificado"
@@ -1045,14 +919,137 @@ msgstr "Duplicado"
 msgid "Steps"
 msgstr "Passos"
 
-msgid "Site settings"
-msgstr "Configurações do site"
+msgid "Logo"
+msgstr "Logotipo"
+
+msgid "Project name"
+msgstr "Nome da iniciativa"
+
+msgid "Homepage title"
+msgstr "Título da Página Principal"
+
+msgid "Presentation"
+msgstr "Apresentação"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Pergunta para solicitar possíveis denunciantes"
+
+msgid "Whistleblowing button"
+msgstr "Botão de Denúncia"
+
+msgid "Disclaimer"
+msgstr "Isenção de responsabilidade"
+
+msgid "Footer"
+msgstr "Rodapé"
+
+msgid "Upload"
+msgstr "Carregar"
+
+msgid "Language:"
+msgstr "Idioma:"
+
+msgid "Add custom text"
+msgstr "Adicionar texto personalizado"
+
+msgid "Custom text"
+msgstr "Texto personalizado"
+
+msgid "Original text"
+msgstr "Texto original"
+
+msgid "Original translation"
+msgstr "Tradução do original"
+
+msgid "Custom translation"
+msgstr "Tradução personalizada"
+
+msgid "Disable submissions"
+msgstr "Desativar envios"
+
+msgid "Enable encryption"
+msgstr "Ativar criptografia"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Permitir que administradores alterem as palavras-passe de utilizadores"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Administradores autorizados a mudar as palavra -passe dos utilizadores:"
+
+msgid "Enable multisite feature"
+msgstr "Ativar recurso multisite"
+
+msgid "Enable simplified login"
+msgstr "Ativar login simplificado"
+
+msgid "Enable search engines indexing"
+msgstr "Habilitar indexação aos motores de busca"
+
+msgid "Default questionnaire"
+msgstr "Questionário padrão"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Mostrar assuntos em ordem alfabética"
+
+msgid "Size limit for file attachments"
+msgstr "Limite de tamanho para anexos de ficheiro"
+
+msgid "Require two factor authentication"
+msgstr "Exigir autenticação de dois fatores"
+
+msgid "Password change interval"
+msgstr "Intervalo de alteração de palavra-passe"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Por motivos de segurança, alterações de palavra-passe são necessárias em intervalos regulares."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Número de dias até a notificação aos utilizadores das denúncias não lidas"
+
+msgid "Disable the privacy panel"
+msgstr "Desativar o painel de privacidade"
+
+msgid "Enable custom privacy panel"
+msgstr "Habilitar painel personalizado de privacidade"
+
+msgid "Custom privacy panel"
+msgstr "Personalizar o painel de privacidade"
+
+msgid "Enable custodian user role"
+msgstr "Ativar função de utilizador responsável"
+
+msgid "Enable scoring system"
+msgstr "Ativar sistema de pontuação"
+
+msgid "Logging level"
+msgstr "Nível de registro"
+
+msgid "Log accesses of internal users"
+msgstr "Log de acessos de utilizadores internos"
+
+msgid "Notify administrators of software problems"
+msgstr "Notificar administradores sobre problemas de software"
+
+msgid "Notify developers of software problems"
+msgstr "Notificar desenvolvedores sobre problemas de software"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Ao ativar esta funcionalidade, irá contribuir para o desenvolvimento e segurança da plataforma."
+
+msgid "Reset reports"
+msgstr "Redefinir relatórios"
+
+msgid "Settings"
+msgstr "Definições"
 
 msgid "Case management"
 msgstr "Gestão de caso"
 
-msgid "Network settings"
-msgstr "Configurações de rede"
+msgid "Network"
+msgstr "Rede"
 
 msgid "Sites"
 msgstr "Sites"
@@ -1094,10 +1091,10 @@ msgid "Set password"
 msgstr "Definir palavra-passe"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "A palavra-passe escolhida é muito fraca. Uma senha válida deve ter pelo menos 10 caracteres e conter uma variedade de caracteres, incluindo pelo menos um caractere minúsculo, um caractere maiúsculo, um número e um caractere especial."
+msgstr "A palavra-passe escolhida é muito fraca. Uma senha válida deve ter pelo menos 12 caracteres e conter uma variedade de caracteres, incluindo pelo menos um caractere minúsculo, um caractere maiúsculo, um número e um caractere especial."
 
 msgid "Force password change"
 msgstr "Forçar mudança de palavra-passe"

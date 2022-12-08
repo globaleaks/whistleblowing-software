@@ -19,9 +19,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Innlogging"
 
-msgid "Main configuration"
-msgstr "Hovedoppsett"
-
 msgid "Theme customization"
 msgstr "Tilpasning av tema"
 
@@ -31,8 +28,8 @@ msgstr "Språk"
 msgid "Text customization"
 msgstr "Tekstbehandling"
 
-msgid "Advanced settings"
-msgstr "Avanserte innstillinger"
+msgid "Advanced"
+msgstr "Avansert"
 
 msgid "Question templates"
 msgstr "Spørsmålsmaler"
@@ -52,8 +49,8 @@ msgstr "Endringslogg"
 msgid "License"
 msgstr "Lisens"
 
-msgid "Notification templates"
-msgstr "Maler for merknader"
+msgid "Templates"
+msgstr "Maler"
 
 msgid "Delete"
 msgstr "Slett"
@@ -64,8 +61,8 @@ msgstr "Unormalheter"
 msgid "Preferences"
 msgstr "Preferanser"
 
-msgid "Notification settings"
-msgstr "Merknadsinnstillinger"
+msgid "Notifications"
+msgstr "Merknader"
 
 msgid "file unavailable"
 msgstr "fil utilgjengelig"
@@ -115,8 +112,8 @@ msgstr "Fravelg alt"
 msgid "Refresh"
 msgstr "Gjenoppfrisk"
 
-msgid "Context"
-msgstr "Bindeleddsinformasjon"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "Forhåndsvisning"
@@ -250,9 +247,6 @@ msgstr "Nekt tilgang til fløyteblåserens sanne identitet."
 msgid "Authorize access to the whistleblower's identity"
 msgstr "Tillat tilgang til fløyteblåserens sanne identitet"
 
-msgid "Templates"
-msgstr "Maler"
-
 msgid "URL redirects"
 msgstr "URL-omdirigering"
 
@@ -292,8 +286,8 @@ msgstr "Akseptabelt"
 msgid "Strong"
 msgstr "Sterkt"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Tekst vist på toppen av grensesnittet for valg av bindeleddsinformasjon"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "Deaktiver e-postmerknader"
@@ -356,9 +350,6 @@ msgstr "Maksimal filstørrelse er:"
 
 msgid "Scheduled jobs"
 msgstr "Planlagte jobber"
-
-msgid "Sites management"
-msgstr "Behandling av sider"
 
 msgid "Regenerate"
 msgstr "Regenerer"
@@ -467,6 +458,12 @@ msgstr "Gi tilgang"
 msgid "Revoke access"
 msgstr "Opphev tilgangen"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "Legg inn en rapport"
 
@@ -482,101 +479,20 @@ msgstr "Aktiver tofaktorautentisering før du fortsetter."
 msgid "Enable"
 msgstr "Aktiver"
 
-msgid "Disable submissions"
-msgstr "Deaktiver innsendelser"
-
-msgid "Enable encryption"
-msgstr "Aktiver kryptering"
-
-msgid "Enable administrators to change user passwords"
-msgstr "La administratorer endre brukerpassord"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Administratorer autorisert til å endre brukerpassord:"
-
-msgid "Enable multisite feature"
-msgstr "Aktiver funksjon for flere nettsteder"
-
-msgid "Enable simplified login"
-msgstr "Aktiver forenklet innlogging"
-
-msgid "Enable search engines indexing"
-msgstr "Aktiver søkemotor-indeksering"
-
-msgid "Default questionnaire"
-msgstr "Standard spørreskjema"
-
-msgid "Show contexts in alphabetical order"
-msgstr "Vis bindeleddsinformasjon i alfabetisk rekkefølge"
-
-msgid "Size limit for file attachments"
-msgstr "Størrelsesgrense for vedlegg"
-
-msgid "megabytes"
-msgstr "megabyte"
-
-msgid "Require two factor authentication"
-msgstr "Krever tofaktorautentisering"
-
-msgid "Password change interval"
-msgstr "Intervall for passordendring"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Av sikkerhetshensyn er det nødvendig å endre passord med jevne mellomrom."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Innstill verdien til 0 for å kunne deaktivere funksjonen."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Antall dager til de uleste rapportene blir varslet til brukerne"
-
-msgid "Disable the privacy panel"
-msgstr "Deaktiver personvernspanelet"
-
-msgid "Enable custom privacy panel"
-msgstr "Aktiver egentilpasset personvernspanel"
-
-msgid "Custom privacy panel"
-msgstr "Egentilpasset personvernspanel"
-
-msgid "Enable custodian user role"
-msgstr "Slå på brukerrollen for tillitspersonen"
-
-msgid "Enable scoring system"
-msgstr "Aktiver poengsystem"
-
-msgid "Logging level"
-msgstr "Nivå for logging"
-
-msgid "Log accesses of internal users"
-msgstr "Loggtilganger til interne brukere"
-
-msgid "Notify administrators of software problems"
-msgstr "Gi administratorer beskjed om programvareproblemer"
-
-msgid "Notify developers of software problems"
-msgstr "Gi utviklere beskjed om programvareproblemer"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Ved å aktiverre denne funksjonen, vil du bidra til utviklingen og sikkerheten av plattformen."
-
-msgid "Save"
-msgstr "Lagre"
-
-msgid "Reset reports"
-msgstr "Tilbakestill rapporter"
-
 msgid "Low"
 msgstr "Lav"
 
 msgid "High"
 msgstr "Høy"
 
+msgid "megabytes"
+msgstr "megabyte"
+
 msgid "percentage"
 msgstr "prosent"
+
+msgid "Save"
+msgstr "Lagre"
 
 msgid "Type"
 msgstr "Type"
@@ -629,62 +545,14 @@ msgstr "Avbryt"
 msgid "Report statuses"
 msgstr "Rapporter statuser"
 
-msgid "Logo"
-msgstr "Logo"
-
-msgid "Project name"
-msgstr "Prosjektets navn"
-
-msgid "Description"
-msgstr "Beskrivelse"
-
-msgid "Homepage title"
-msgstr "Hjemmesidens tittel"
-
-msgid "Presentation"
-msgstr "Presentasjon"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Oppfordring til fløyteblåser"
-
-msgid "Whistleblowing button"
-msgstr "Fløyteblåsning-knapp"
-
-msgid "Disclaimer"
-msgstr "Ansvarsfraskrivelse"
-
-msgid "Footer"
-msgstr "Bunntekst"
-
-msgid "Upload"
-msgstr "Innlasting"
-
-msgid "Download"
-msgstr "Nedlasting"
-
-msgid "Language:"
-msgstr "Språk:"
-
-msgid "Add custom text"
-msgstr "Legg til egendefinert tekst"
-
-msgid "Custom text"
-msgstr "Egendefinert tekst"
-
-msgid "Original text"
-msgstr "Orginaltekst"
-
-msgid "Original translation"
-msgstr "Orginaloversettelse"
-
-msgid "Custom translation"
-msgstr "Egendefinert oversettelse"
-
-msgid "Contexts"
-msgstr "Bindeleddsinformasjon"
+msgid "Channels"
+msgstr ""
 
 msgid "Hidden"
 msgstr "Skjult"
+
+msgid "Description"
+msgstr "Beskrivelse"
 
 msgid "Questionnaire"
 msgstr "Spørreskjema"
@@ -694,6 +562,9 @@ msgstr "Mottakere"
 
 msgid "days"
 msgstr "dager"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Innstill verdien til 0 for å kunne deaktivere funksjonen."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Vis grensesnittet for spørreskjemanavigasjon"
@@ -793,6 +664,9 @@ msgstr "Privat nøkkel"
 
 msgid "Certificate Signing Request"
 msgstr "Forespørsel om sertifikatsignering"
+
+msgid "Download"
+msgstr "Nedlasting"
 
 msgid "Certificate"
 msgstr "Sertifikat"
@@ -1008,14 +882,137 @@ msgstr "Dupliser"
 msgid "Steps"
 msgstr "Trinn"
 
-msgid "Site settings"
-msgstr "Innstillinger for nettsted"
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Project name"
+msgstr "Prosjektets navn"
+
+msgid "Homepage title"
+msgstr "Hjemmesidens tittel"
+
+msgid "Presentation"
+msgstr "Presentasjon"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Oppfordring til fløyteblåser"
+
+msgid "Whistleblowing button"
+msgstr "Fløyteblåsning-knapp"
+
+msgid "Disclaimer"
+msgstr "Ansvarsfraskrivelse"
+
+msgid "Footer"
+msgstr "Bunntekst"
+
+msgid "Upload"
+msgstr "Innlasting"
+
+msgid "Language:"
+msgstr "Språk:"
+
+msgid "Add custom text"
+msgstr "Legg til egendefinert tekst"
+
+msgid "Custom text"
+msgstr "Egendefinert tekst"
+
+msgid "Original text"
+msgstr "Orginaltekst"
+
+msgid "Original translation"
+msgstr "Orginaloversettelse"
+
+msgid "Custom translation"
+msgstr "Egendefinert oversettelse"
+
+msgid "Disable submissions"
+msgstr "Deaktiver innsendelser"
+
+msgid "Enable encryption"
+msgstr "Aktiver kryptering"
+
+msgid "Enable administrators to change user passwords"
+msgstr "La administratorer endre brukerpassord"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Administratorer autorisert til å endre brukerpassord:"
+
+msgid "Enable multisite feature"
+msgstr "Aktiver funksjon for flere nettsteder"
+
+msgid "Enable simplified login"
+msgstr "Aktiver forenklet innlogging"
+
+msgid "Enable search engines indexing"
+msgstr "Aktiver søkemotor-indeksering"
+
+msgid "Default questionnaire"
+msgstr "Standard spørreskjema"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Vis bindeleddsinformasjon i alfabetisk rekkefølge"
+
+msgid "Size limit for file attachments"
+msgstr "Størrelsesgrense for vedlegg"
+
+msgid "Require two factor authentication"
+msgstr "Krever tofaktorautentisering"
+
+msgid "Password change interval"
+msgstr "Intervall for passordendring"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Av sikkerhetshensyn er det nødvendig å endre passord med jevne mellomrom."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Antall dager til de uleste rapportene blir varslet til brukerne"
+
+msgid "Disable the privacy panel"
+msgstr "Deaktiver personvernspanelet"
+
+msgid "Enable custom privacy panel"
+msgstr "Aktiver egentilpasset personvernspanel"
+
+msgid "Custom privacy panel"
+msgstr "Egentilpasset personvernspanel"
+
+msgid "Enable custodian user role"
+msgstr "Slå på brukerrollen for tillitspersonen"
+
+msgid "Enable scoring system"
+msgstr "Aktiver poengsystem"
+
+msgid "Logging level"
+msgstr "Nivå for logging"
+
+msgid "Log accesses of internal users"
+msgstr "Loggtilganger til interne brukere"
+
+msgid "Notify administrators of software problems"
+msgstr "Gi administratorer beskjed om programvareproblemer"
+
+msgid "Notify developers of software problems"
+msgstr "Gi utviklere beskjed om programvareproblemer"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Ved å aktiverre denne funksjonen, vil du bidra til utviklingen og sikkerheten av plattformen."
+
+msgid "Reset reports"
+msgstr "Tilbakestill rapporter"
+
+msgid "Settings"
+msgstr "Innstillinger"
 
 msgid "Case management"
 msgstr "Saksbehandling"
 
-msgid "Network settings"
-msgstr "Nettverksinnstillinger"
+msgid "Network"
+msgstr "Nettverk"
 
 msgid "Sites"
 msgstr "Sider"
@@ -1057,10 +1054,10 @@ msgid "Set password"
 msgstr "Sett passord"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Det valgte passordet er for svakt. Et gyldig passord må ha minst 10 tegn og inneholde en rekke tegn, inkludert minst en liten bokstav, en stor bokstav, et tall og et spesialtegn."
+msgstr "Det valgte passordet er for svakt. Et gyldig passord må ha minst 12 tegn og inneholde en rekke tegn, inkludert minst en liten bokstav, en stor bokstav, et tall og et spesialtegn."
 
 msgid "Force password change"
 msgstr "Påtving passordendring"

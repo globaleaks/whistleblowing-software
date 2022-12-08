@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Besnik Bleta <besnik@programeshqip.org>, 2021-2022\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2022\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,9 +26,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Hyni"
 
-msgid "Main configuration"
-msgstr "Formësimi kryesor"
-
 msgid "Theme customization"
 msgstr "Përshtatje teme"
 
@@ -38,8 +35,8 @@ msgstr "Gjuhë"
 msgid "Text customization"
 msgstr "Përshtatje teksti"
 
-msgid "Advanced settings"
-msgstr "Rregullime të mëtejshme"
+msgid "Advanced"
+msgstr "Të mëtejshme"
 
 msgid "Question templates"
 msgstr "Gjedhe pyetjesh"
@@ -59,8 +56,8 @@ msgstr "Regjistër ndryshimesh"
 msgid "License"
 msgstr "Licencë"
 
-msgid "Notification templates"
-msgstr "Gjedhe njoftimesh"
+msgid "Templates"
+msgstr "Gjedhe"
 
 msgid "Delete"
 msgstr "Fshije"
@@ -71,8 +68,8 @@ msgstr "Anomali"
 msgid "Preferences"
 msgstr "Parapëlqime"
 
-msgid "Notification settings"
-msgstr "Rregullime njoftimesh"
+msgid "Notifications"
+msgstr "Njoftime"
 
 msgid "file unavailable"
 msgstr "kartelë jo e passhme"
@@ -122,8 +119,8 @@ msgstr "Shpërzgjidhi krejt"
 msgid "Refresh"
 msgstr "Rifreskoje"
 
-msgid "Context"
-msgstr "Kontekst"
+msgid "Channel"
+msgstr "Kanal"
 
 msgid "Preview"
 msgstr "Parashiheni"
@@ -257,9 +254,6 @@ msgstr "Hidhe poshtë kërkesën për hyrje te identiteti i nxjerrësit të së 
 msgid "Authorize access to the whistleblower's identity"
 msgstr "Autorizoni hyrje te identiteti i nxjerrësit të së fshehtës"
 
-msgid "Templates"
-msgstr "Gjedhe"
-
 msgid "URL redirects"
 msgstr "Ridrejtime URL-sh"
 
@@ -299,8 +293,8 @@ msgstr "I pranueshëm"
 msgid "Strong"
 msgstr "I fortë"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Tekst i shfaqur në krye të ndërfaqes, për përzgjedhje kontekstesh"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr "Tekst i shfaqur në krye të ndërfaqes për përzgjedhje kanalesh"
 
 msgid "Silence email notifications"
 msgstr "Heshtoji njoftimet me email"
@@ -363,9 +357,6 @@ msgstr "Madhësia maksimum për kartela është:"
 
 msgid "Scheduled jobs"
 msgstr "Akte të planifikuar"
-
-msgid "Sites management"
-msgstr "Administrim sajtesh"
 
 msgid "Regenerate"
 msgstr "Riprodhoji"
@@ -474,6 +465,12 @@ msgstr "Akordoji hyrje"
 msgid "Revoke access"
 msgstr "Shfuqizoji hyrjen"
 
+msgid "Assigned to"
+msgstr "Caktuar për"
+
+msgid "Not provided."
+msgstr "S’është dhënë."
+
 msgid "File a report"
 msgstr "Depozitoni një raportim"
 
@@ -489,101 +486,20 @@ msgstr "Para se të ecet më tej, ju lutemi, aktivizoni mirëfilltësimin dyfakt
 msgid "Enable"
 msgstr "Aktivizoje"
 
-msgid "Disable submissions"
-msgstr "Çaktivizo parashtrime"
-
-msgid "Enable encryption"
-msgstr "Aktivizo fshehtëzim"
-
-msgid "Enable administrators to change user passwords"
-msgstr "Aktivizo ndryshim fjalëkalimesh përdoruesish nga përgjegjësit"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Përgjegjës të autorizuar për ndryshime fjalëkalimesh përdoruesish:"
-
-msgid "Enable multisite feature"
-msgstr "Aktivizo veçorinë shumësajtësh"
-
-msgid "Enable simplified login"
-msgstr "Aktivizo hyrje të thjeshtuar"
-
-msgid "Enable search engines indexing"
-msgstr "Aktivizo indeksim nga motorë kërkimesh"
-
-msgid "Default questionnaire"
-msgstr "Pyetësor parazgjedhje"
-
-msgid "Show contexts in alphabetical order"
-msgstr "Kontekstet shfaqi në rend alfabetik"
-
-msgid "Size limit for file attachments"
-msgstr "Kufi madhësie për bashkëngjitje kartelash"
-
-msgid "megabytes"
-msgstr "megabajte"
-
-msgid "Require two factor authentication"
-msgstr "Kërko doemos mirëfilltësim dyfaktorësh"
-
-msgid "Password change interval"
-msgstr "Interval ndryshimi fjalëkalimi"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Për arsye sigurie, ndryshimet e fjalëkalimeve në intervale të rregullta janë të detyrueshme."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Për ta çaktivizuar këtë veçori, jepini vlerën 0."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Numër ditësh deri në njoftim të përdoruesve për raportime të palexuar"
-
-msgid "Disable the privacy panel"
-msgstr "Çaktivizo panelin e privatësisë"
-
-msgid "Enable custom privacy panel"
-msgstr "Aktivizo panel vetjak privatësie"
-
-msgid "Custom privacy panel"
-msgstr "Panel vetjak privatësie"
-
-msgid "Enable custodian user role"
-msgstr "Aktivizo rol përdoruesi ruajtës"
-
-msgid "Enable scoring system"
-msgstr "Aktivizo sistem pikësh"
-
-msgid "Logging level"
-msgstr "Nivel regjistrimi"
-
-msgid "Log accesses of internal users"
-msgstr "Regjistro hyrje përdoruesish të brendshëm"
-
-msgid "Notify administrators of software problems"
-msgstr "Njoftoji përgjegjësit për probleme software-i"
-
-msgid "Notify developers of software problems"
-msgstr "Njoftoji zhvilluesit për probleme software-i"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Duke aktivizuar këtë veçori, do të kontribuoni në zhvillimin dhe sigurinë e platformës."
-
-msgid "Save"
-msgstr "Ruaje"
-
-msgid "Reset reports"
-msgstr "Ktheji raportimet te parazgjedhjet"
-
 msgid "Low"
 msgstr "I ulët"
 
 msgid "High"
 msgstr "I lartë"
 
+msgid "megabytes"
+msgstr "megabajte"
+
 msgid "percentage"
 msgstr "përqindje"
+
+msgid "Save"
+msgstr "Ruaje"
 
 msgid "Type"
 msgstr "Lloj"
@@ -636,62 +552,14 @@ msgstr "Anuloje"
 msgid "Report statuses"
 msgstr "Gjendje raportimesh"
 
-msgid "Logo"
-msgstr "Stemë"
-
-msgid "Project name"
-msgstr "Emër projekti"
-
-msgid "Description"
-msgstr "Përshkrim"
-
-msgid "Homepage title"
-msgstr "Titull faqeje hyrëse"
-
-msgid "Presentation"
-msgstr "Paraqitje"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Pyetje për tërheqje nxjerrësish të mundshëm të fshehtash"
-
-msgid "Whistleblowing button"
-msgstr "Buton nxjerrjeje të fshehtash"
-
-msgid "Disclaimer"
-msgstr "Klauzolë"
-
-msgid "Footer"
-msgstr "Fundfaqe"
-
-msgid "Upload"
-msgstr "Ngarkoje"
-
-msgid "Download"
-msgstr "Shkarkoje"
-
-msgid "Language:"
-msgstr "Gjuhë:"
-
-msgid "Add custom text"
-msgstr "Shtoni tekst vetjak"
-
-msgid "Custom text"
-msgstr "Tekst vetjak"
-
-msgid "Original text"
-msgstr "Teksti origjinal"
-
-msgid "Original translation"
-msgstr "Përkthimi origjinal"
-
-msgid "Custom translation"
-msgstr "Përkthim vetjak"
-
-msgid "Contexts"
-msgstr "Kontekste"
+msgid "Channels"
+msgstr "Kanale"
 
 msgid "Hidden"
 msgstr "I fshehur"
+
+msgid "Description"
+msgstr "Përshkrim"
 
 msgid "Questionnaire"
 msgstr "Pyetësor"
@@ -701,6 +569,9 @@ msgstr "Marrës"
 
 msgid "days"
 msgstr "ditë"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Për ta çaktivizuar këtë veçori, jepini vlerën 0."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Shfaq ndërfaqe lëvizjeje nëpër pyetësor"
@@ -800,6 +671,9 @@ msgstr "Kyç Privat"
 
 msgid "Certificate Signing Request"
 msgstr "Kërkesë Nënshkrimi Dëshmie"
+
+msgid "Download"
+msgstr "Shkarkoje"
 
 msgid "Certificate"
 msgstr "Dëshmi"
@@ -1015,14 +889,137 @@ msgstr "Përsëdyte"
 msgid "Steps"
 msgstr "Hapa"
 
-msgid "Site settings"
-msgstr "Rregullime sajti"
+msgid "Logo"
+msgstr "Stemë"
+
+msgid "Project name"
+msgstr "Emër projekti"
+
+msgid "Homepage title"
+msgstr "Titull faqeje hyrëse"
+
+msgid "Presentation"
+msgstr "Paraqitje"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Pyetje për tërheqje nxjerrësish të mundshëm të fshehtash"
+
+msgid "Whistleblowing button"
+msgstr "Buton nxjerrjeje të fshehtash"
+
+msgid "Disclaimer"
+msgstr "Klauzolë"
+
+msgid "Footer"
+msgstr "Fundfaqe"
+
+msgid "Upload"
+msgstr "Ngarkoje"
+
+msgid "Language:"
+msgstr "Gjuhë:"
+
+msgid "Add custom text"
+msgstr "Shtoni tekst vetjak"
+
+msgid "Custom text"
+msgstr "Tekst vetjak"
+
+msgid "Original text"
+msgstr "Teksti origjinal"
+
+msgid "Original translation"
+msgstr "Përkthimi origjinal"
+
+msgid "Custom translation"
+msgstr "Përkthim vetjak"
+
+msgid "Disable submissions"
+msgstr "Çaktivizo parashtrime"
+
+msgid "Enable encryption"
+msgstr "Aktivizo fshehtëzim"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Aktivizo ndryshim fjalëkalimesh përdoruesish nga përgjegjësit"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Përgjegjës të autorizuar për ndryshime fjalëkalimesh përdoruesish:"
+
+msgid "Enable multisite feature"
+msgstr "Aktivizo veçorinë shumësajtësh"
+
+msgid "Enable simplified login"
+msgstr "Aktivizo hyrje të thjeshtuar"
+
+msgid "Enable search engines indexing"
+msgstr "Aktivizo indeksim nga motorë kërkimesh"
+
+msgid "Default questionnaire"
+msgstr "Pyetësor parazgjedhje"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Kontekstet shfaqi në rend alfabetik"
+
+msgid "Size limit for file attachments"
+msgstr "Kufi madhësie për bashkëngjitje kartelash"
+
+msgid "Require two factor authentication"
+msgstr "Kërko doemos mirëfilltësim dyfaktorësh"
+
+msgid "Password change interval"
+msgstr "Interval ndryshimi fjalëkalimi"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Për arsye sigurie, ndryshimet e fjalëkalimeve në intervale të rregullta janë të detyrueshme."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Numër ditësh deri në njoftim të përdoruesve për raportime të palexuar"
+
+msgid "Disable the privacy panel"
+msgstr "Çaktivizo panelin e privatësisë"
+
+msgid "Enable custom privacy panel"
+msgstr "Aktivizo panel vetjak privatësie"
+
+msgid "Custom privacy panel"
+msgstr "Panel vetjak privatësie"
+
+msgid "Enable custodian user role"
+msgstr "Aktivizo rol përdoruesi ruajtës"
+
+msgid "Enable scoring system"
+msgstr "Aktivizo sistem pikësh"
+
+msgid "Logging level"
+msgstr "Nivel regjistrimi"
+
+msgid "Log accesses of internal users"
+msgstr "Regjistro hyrje përdoruesish të brendshëm"
+
+msgid "Notify administrators of software problems"
+msgstr "Njoftoji përgjegjësit për probleme software-i"
+
+msgid "Notify developers of software problems"
+msgstr "Njoftoji zhvilluesit për probleme software-i"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Duke aktivizuar këtë veçori, do të kontribuoni në zhvillimin dhe sigurinë e platformës."
+
+msgid "Reset reports"
+msgstr "Ktheji raportimet te parazgjedhjet"
+
+msgid "Settings"
+msgstr "Rregullime"
 
 msgid "Case management"
 msgstr "Administrim rastesh"
 
-msgid "Network settings"
-msgstr "Rregullime rrjeti"
+msgid "Network"
+msgstr "Rrjet"
 
 msgid "Sites"
 msgstr "Sajte"
@@ -1064,10 +1061,10 @@ msgid "Set password"
 msgstr "Caktoni fjalëkalim"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Fjalëkalimi i zgjedhur është shumë i dobët. Një fjalëkalim i vlefshëm duhet të jetë të paktën 10 shenja i gjatë dhe të përmbajë një larmi shenjash, përfshi të paktën një shkronjë të vogël, një shkronjë të madhe, një numër dhe një shenjë speciale."
+msgstr "Fjalëkalimi i zgjedhur është shumë i dobët. Një fjalëkalim i vlefshëm duhet të jetë të paktën 12 shenja i gjatë dhe të përmbajë një larmi shenjash, përfshi të paktën një shkronjë të vogël, një shkronjë të madhe, një numër dhe një shenjë speciale."
 
 msgid "Force password change"
 msgstr "Detyro ndryshim fjalëkalimi"

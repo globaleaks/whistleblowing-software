@@ -19,9 +19,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Најави се"
 
-msgid "Main configuration"
-msgstr "Главно конфигурирање"
-
 msgid "Theme customization"
 msgstr "Прилагодување на Тема"
 
@@ -31,8 +28,8 @@ msgstr "Јазици"
 msgid "Text customization"
 msgstr "Прилагодување на Текст"
 
-msgid "Advanced settings"
-msgstr "Напредни поставки"
+msgid "Advanced"
+msgstr "Напредно"
 
 msgid "Question templates"
 msgstr "Прашални шамблони"
@@ -52,8 +49,8 @@ msgstr "Лог на промени"
 msgid "License"
 msgstr "Лиценца"
 
-msgid "Notification templates"
-msgstr "Известувачки шамблони"
+msgid "Templates"
+msgstr " Шаблони"
 
 msgid "Delete"
 msgstr "Избриши"
@@ -64,8 +61,8 @@ msgstr "Аномалии"
 msgid "Preferences"
 msgstr "Параметри"
 
-msgid "Notification settings"
-msgstr "Поставки за известувања"
+msgid "Notifications"
+msgstr "Известувања"
 
 msgid "file unavailable"
 msgstr "недостапна датотека"
@@ -115,8 +112,8 @@ msgstr "Отстрани се"
 msgid "Refresh"
 msgstr "Освежи"
 
-msgid "Context"
-msgstr "Контекст"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "Преглед"
@@ -250,9 +247,6 @@ msgstr "Одбиј пристап до идентитетот на свирка�
 msgid "Authorize access to the whistleblower's identity"
 msgstr "Одобри пристап до идентитетот на свиркачот"
 
-msgid "Templates"
-msgstr " Шаблони"
-
 msgid "URL redirects"
 msgstr "Пренасочи URL"
 
@@ -292,8 +286,8 @@ msgstr "Прифатлива"
 msgid "Strong"
 msgstr "Силна"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Текст прикажан на врвот на интерфејсот за избирање на содржини"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "Нечујни известувања на е-пошта"
@@ -356,9 +350,6 @@ msgstr "Максималната големина на датотеката е:"
 
 msgid "Scheduled jobs"
 msgstr "Закажани работи"
-
-msgid "Sites management"
-msgstr "Менаџмент на веб страни"
 
 msgid "Regenerate"
 msgstr "Повторно регенерирај"
@@ -467,6 +458,12 @@ msgstr "Дозволен пристап"
 msgid "Revoke access"
 msgstr "Отповикај пристап"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "Поднеси извештај"
 
@@ -482,101 +479,20 @@ msgstr "Пред да продолжите, ве молиме овозможет
 msgid "Enable"
 msgstr "Овозможи"
 
-msgid "Disable submissions"
-msgstr "Оневозможи ги поднесоците"
-
-msgid "Enable encryption"
-msgstr "Овозможи енкрипција"
-
-msgid "Enable administrators to change user passwords"
-msgstr "Овозможи им на администраторите да ги променуваат лозинките на корисниците"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Одобрени Администратори да ги менуваат лозинките на корисниците:"
-
-msgid "Enable multisite feature"
-msgstr "Овозможи карактеристика на повеќе веб страни"
-
-msgid "Enable simplified login"
-msgstr "Овозможи упростено најавување"
-
-msgid "Enable search engines indexing"
-msgstr "Овозможи индексирање на пребарувачите"
-
-msgid "Default questionnaire"
-msgstr "Стандарден прашалник"
-
-msgid "Show contexts in alphabetical order"
-msgstr "Покажи ги содржините по азбучен ред"
-
-msgid "Size limit for file attachments"
-msgstr "Граница за големина на датотека за прилог"
-
-msgid "megabytes"
-msgstr "мегабајти"
-
-msgid "Require two factor authentication"
-msgstr "Барај автентикација на два фактора"
-
-msgid "Password change interval"
-msgstr "Интервал на промена на лозинка"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Од безбедносни причини, промените на лозинката се потребни во регуларни интервали."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Поставете ја вредноста на 0 за да ја оневозможите оваа карактеристика."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Број на денови до известување на корисниците за непрочитани извештаи"
-
-msgid "Disable the privacy panel"
-msgstr "Оневозможи го панелот за приватност"
-
-msgid "Enable custom privacy panel"
-msgstr "Овозможи прилагоден панел за приватност"
-
-msgid "Custom privacy panel"
-msgstr "Прилагоден панел за приватност"
-
-msgid "Enable custodian user role"
-msgstr "Овозможи корисничка улога на чувар"
-
-msgid "Enable scoring system"
-msgstr "Овозможи систем на бодување"
-
-msgid "Logging level"
-msgstr "Степен на најавување"
-
-msgid "Log accesses of internal users"
-msgstr "Извештај за пристап на внатрешни корисници"
-
-msgid "Notify administrators of software problems"
-msgstr "Извести ги администраторите за софтверски проблеми"
-
-msgid "Notify developers of software problems"
-msgstr "Извести ги развивачите за софтверски проблеми"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Со овозможување на оваа карактеристика, ќе можете да допринесете во развојот и безбедноста на оваа платформа."
-
-msgid "Save"
-msgstr "Зачувај"
-
-msgid "Reset reports"
-msgstr "Ресетирај извештаи"
-
 msgid "Low"
 msgstr "Ниско"
 
 msgid "High"
 msgstr "Високо"
 
+msgid "megabytes"
+msgstr "мегабајти"
+
 msgid "percentage"
 msgstr "процент"
+
+msgid "Save"
+msgstr "Зачувај"
 
 msgid "Type"
 msgstr "Тип"
@@ -629,62 +545,14 @@ msgstr "Откажи"
 msgid "Report statuses"
 msgstr "Извештај за статуси"
 
-msgid "Logo"
-msgstr "Лого"
-
-msgid "Project name"
-msgstr "Име на проектот"
-
-msgid "Description"
-msgstr "Опис"
-
-msgid "Homepage title"
-msgstr "Наслов на домашната страна"
-
-msgid "Presentation"
-msgstr "Презентација"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Прашање за барање на можни свиркачи"
-
-msgid "Whistleblowing button"
-msgstr "Копче за свиркање"
-
-msgid "Disclaimer"
-msgstr "Одрекување од одговорност"
-
-msgid "Footer"
-msgstr "Заглавје"
-
-msgid "Upload"
-msgstr "Прикачи"
-
-msgid "Download"
-msgstr "Преземи"
-
-msgid "Language:"
-msgstr "Јазик:"
-
-msgid "Add custom text"
-msgstr "Додади прилагоден текст"
-
-msgid "Custom text"
-msgstr "Прилагоден текст"
-
-msgid "Original text"
-msgstr "Оригинален текст"
-
-msgid "Original translation"
-msgstr "Оригинален превод"
-
-msgid "Custom translation"
-msgstr "Прилагоден превод"
-
-msgid "Contexts"
-msgstr "Содржини"
+msgid "Channels"
+msgstr ""
 
 msgid "Hidden"
 msgstr "Сокриено"
+
+msgid "Description"
+msgstr "Опис"
 
 msgid "Questionnaire"
 msgstr "Прашалник"
@@ -694,6 +562,9 @@ msgstr "Примачи"
 
 msgid "days"
 msgstr "денови"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Поставете ја вредноста на 0 за да ја оневозможите оваа карактеристика."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Прикажи го интерфејсот за навигација на прашалникот"
@@ -793,6 +664,9 @@ msgstr "Приватен Клуч"
 
 msgid "Certificate Signing Request"
 msgstr "Барање за потпишување на сертификат"
+
+msgid "Download"
+msgstr "Преземи"
 
 msgid "Certificate"
 msgstr "Сертификат"
@@ -1008,14 +882,137 @@ msgstr "Дуплирај"
 msgid "Steps"
 msgstr "Чекори"
 
-msgid "Site settings"
-msgstr "Поставки за веб страната"
+msgid "Logo"
+msgstr "Лого"
+
+msgid "Project name"
+msgstr "Име на проектот"
+
+msgid "Homepage title"
+msgstr "Наслов на домашната страна"
+
+msgid "Presentation"
+msgstr "Презентација"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Прашање за барање на можни свиркачи"
+
+msgid "Whistleblowing button"
+msgstr "Копче за свиркање"
+
+msgid "Disclaimer"
+msgstr "Одрекување од одговорност"
+
+msgid "Footer"
+msgstr "Заглавје"
+
+msgid "Upload"
+msgstr "Прикачи"
+
+msgid "Language:"
+msgstr "Јазик:"
+
+msgid "Add custom text"
+msgstr "Додади прилагоден текст"
+
+msgid "Custom text"
+msgstr "Прилагоден текст"
+
+msgid "Original text"
+msgstr "Оригинален текст"
+
+msgid "Original translation"
+msgstr "Оригинален превод"
+
+msgid "Custom translation"
+msgstr "Прилагоден превод"
+
+msgid "Disable submissions"
+msgstr "Оневозможи ги поднесоците"
+
+msgid "Enable encryption"
+msgstr "Овозможи енкрипција"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Овозможи им на администраторите да ги променуваат лозинките на корисниците"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Одобрени Администратори да ги менуваат лозинките на корисниците:"
+
+msgid "Enable multisite feature"
+msgstr "Овозможи карактеристика на повеќе веб страни"
+
+msgid "Enable simplified login"
+msgstr "Овозможи упростено најавување"
+
+msgid "Enable search engines indexing"
+msgstr "Овозможи индексирање на пребарувачите"
+
+msgid "Default questionnaire"
+msgstr "Стандарден прашалник"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Покажи ги содржините по азбучен ред"
+
+msgid "Size limit for file attachments"
+msgstr "Граница за големина на датотека за прилог"
+
+msgid "Require two factor authentication"
+msgstr "Барај автентикација на два фактора"
+
+msgid "Password change interval"
+msgstr "Интервал на промена на лозинка"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Од безбедносни причини, промените на лозинката се потребни во регуларни интервали."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Број на денови до известување на корисниците за непрочитани извештаи"
+
+msgid "Disable the privacy panel"
+msgstr "Оневозможи го панелот за приватност"
+
+msgid "Enable custom privacy panel"
+msgstr "Овозможи прилагоден панел за приватност"
+
+msgid "Custom privacy panel"
+msgstr "Прилагоден панел за приватност"
+
+msgid "Enable custodian user role"
+msgstr "Овозможи корисничка улога на чувар"
+
+msgid "Enable scoring system"
+msgstr "Овозможи систем на бодување"
+
+msgid "Logging level"
+msgstr "Степен на најавување"
+
+msgid "Log accesses of internal users"
+msgstr "Извештај за пристап на внатрешни корисници"
+
+msgid "Notify administrators of software problems"
+msgstr "Извести ги администраторите за софтверски проблеми"
+
+msgid "Notify developers of software problems"
+msgstr "Извести ги развивачите за софтверски проблеми"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Со овозможување на оваа карактеристика, ќе можете да допринесете во развојот и безбедноста на оваа платформа."
+
+msgid "Reset reports"
+msgstr "Ресетирај извештаи"
+
+msgid "Settings"
+msgstr "Поставки"
 
 msgid "Case management"
 msgstr "Менаџмент на случај"
 
-msgid "Network settings"
-msgstr "Мрежни поставки"
+msgid "Network"
+msgstr "Мрежа"
 
 msgid "Sites"
 msgstr "Веб страни"
@@ -1057,10 +1054,10 @@ msgid "Set password"
 msgstr "Постави лозинка"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Избраната лозинка е преслаба. Валидната лозинка треба да биде долга најмалку 10 карактери и да содржи различни карактери вклучувајќи најмалку мала буква, голема буква, број и специјален карактер."
+msgstr "Избраната лозинка е преслаба. Валидната лозинка треба да биде долга најмалку 12 карактери и да содржи различни карактери вклучувајќи најмалку мала буква, голема буква, број и специјален карактер."
 
 msgid "Force password change"
 msgstr "Принуди промена на лозинка"

@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Kishin Sagume, 2022\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015,2017-2018,2020-2022\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/otf/globaleaks/language/zh_CN/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -38,9 +38,6 @@ msgstr ""
 msgid "Log in"
 msgstr "登录"
 
-msgid "Main configuration"
-msgstr "主要配置"
-
 msgid "Theme customization"
 msgstr "自定义主题"
 
@@ -50,8 +47,8 @@ msgstr "语言"
 msgid "Text customization"
 msgstr "文本自定义"
 
-msgid "Advanced settings"
-msgstr "高级设置"
+msgid "Advanced"
+msgstr "高级"
 
 msgid "Question templates"
 msgstr "问题模版"
@@ -71,8 +68,8 @@ msgstr "更改日志"
 msgid "License"
 msgstr "许可"
 
-msgid "Notification templates"
-msgstr "通知模板"
+msgid "Templates"
+msgstr "模板"
 
 msgid "Delete"
 msgstr "删除"
@@ -83,8 +80,8 @@ msgstr "异常"
 msgid "Preferences"
 msgstr "首选项"
 
-msgid "Notification settings"
-msgstr "通知设置"
+msgid "Notifications"
+msgstr "通知"
 
 msgid "file unavailable"
 msgstr "文件不可用"
@@ -134,8 +131,8 @@ msgstr "取消全选"
 msgid "Refresh"
 msgstr "刷新"
 
-msgid "Context"
-msgstr "上下文"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "预览"
@@ -269,9 +266,6 @@ msgstr "拒绝访问揭发者身份"
 msgid "Authorize access to the whistleblower's identity"
 msgstr "授权访问揭发者身份"
 
-msgid "Templates"
-msgstr "模板"
-
 msgid "URL redirects"
 msgstr "URL 重定向"
 
@@ -311,8 +305,8 @@ msgstr "可接受"
 msgid "Strong"
 msgstr "强"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "选择上下文时界面顶部显示的文本"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "静音电子邮件通知"
@@ -375,9 +369,6 @@ msgstr "文件最大为："
 
 msgid "Scheduled jobs"
 msgstr "计划作业"
-
-msgid "Sites management"
-msgstr "网站管理"
 
 msgid "Regenerate"
 msgstr "重新生成"
@@ -486,6 +477,12 @@ msgstr ""
 msgid "Revoke access"
 msgstr "撤销访问权限"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "提交报告"
 
@@ -501,101 +498,20 @@ msgstr "请启用双重验证以继续。"
 msgid "Enable"
 msgstr "启用"
 
-msgid "Disable submissions"
-msgstr "禁用提交"
-
-msgid "Enable encryption"
-msgstr "启用加密"
-
-msgid "Enable administrators to change user passwords"
-msgstr "启用管理者更改用户密码权限"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "管理员已授权更改用户密码："
-
-msgid "Enable multisite feature"
-msgstr "启用多站点功能"
-
-msgid "Enable simplified login"
-msgstr "启用简易登录"
-
-msgid "Enable search engines indexing"
-msgstr "启用搜索引擎索引"
-
-msgid "Default questionnaire"
-msgstr "默认问卷"
-
-msgid "Show contexts in alphabetical order"
-msgstr "按字母顺序显示上下文"
-
-msgid "Size limit for file attachments"
-msgstr "文件附件大小限制"
-
-msgid "megabytes"
-msgstr "MB"
-
-msgid "Require two factor authentication"
-msgstr "要求双重验证"
-
-msgid "Password change interval"
-msgstr "密码更改周期"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "基于安全考量，需定期更改密码。"
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "将该值设置为 0 以禁用该功能。"
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "向用户发送未读报告通知之前的天数"
-
-msgid "Disable the privacy panel"
-msgstr "禁用隐私面板"
-
-msgid "Enable custom privacy panel"
-msgstr "启用自定义隐私面板"
-
-msgid "Custom privacy panel"
-msgstr "自定义隐私面板"
-
-msgid "Enable custodian user role"
-msgstr "启用保管人用户角色"
-
-msgid "Enable scoring system"
-msgstr "启用评分系统"
-
-msgid "Logging level"
-msgstr "日志记录级别"
-
-msgid "Log accesses of internal users"
-msgstr "记录内部用户访问"
-
-msgid "Notify administrators of software problems"
-msgstr "通知管理员软件故障"
-
-msgid "Notify developers of software problems"
-msgstr "通知开发者软件故障"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "启用该功能有助于该平台的开发和安全。"
-
-msgid "Save"
-msgstr "保存"
-
-msgid "Reset reports"
-msgstr "重置报告"
-
 msgid "Low"
 msgstr "低"
 
 msgid "High"
 msgstr "高"
 
+msgid "megabytes"
+msgstr "MB"
+
 msgid "percentage"
 msgstr "百分比"
+
+msgid "Save"
+msgstr "保存"
 
 msgid "Type"
 msgstr "类型"
@@ -648,62 +564,14 @@ msgstr "取消"
 msgid "Report statuses"
 msgstr "报告状态"
 
-msgid "Logo"
-msgstr "徽标"
-
-msgid "Project name"
-msgstr "项目名称"
-
-msgid "Description"
-msgstr "描述"
-
-msgid "Homepage title"
-msgstr "主页标题"
-
-msgid "Presentation"
-msgstr "展示"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "向潜在揭发者征求的问题"
-
-msgid "Whistleblowing button"
-msgstr "揭发按钮"
-
-msgid "Disclaimer"
-msgstr "免责声明"
-
-msgid "Footer"
-msgstr "页脚"
-
-msgid "Upload"
-msgstr "上传"
-
-msgid "Download"
-msgstr "下载"
-
-msgid "Language:"
-msgstr "语言："
-
-msgid "Add custom text"
-msgstr "添加自定义文本"
-
-msgid "Custom text"
-msgstr "自定义文本"
-
-msgid "Original text"
-msgstr "初始文本"
-
-msgid "Original translation"
-msgstr "初始翻译"
-
-msgid "Custom translation"
-msgstr "自定义翻译"
-
-msgid "Contexts"
-msgstr "上下文"
+msgid "Channels"
+msgstr ""
 
 msgid "Hidden"
 msgstr "隐藏"
+
+msgid "Description"
+msgstr "描述"
 
 msgid "Questionnaire"
 msgstr "问卷"
@@ -713,6 +581,9 @@ msgstr "接收人"
 
 msgid "days"
 msgstr "天"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "将该值设置为 0 以禁用该功能。"
 
 msgid "Show the questionnaire navigation interface"
 msgstr "显示问卷浏览界面"
@@ -812,6 +683,9 @@ msgstr "私钥"
 
 msgid "Certificate Signing Request"
 msgstr "证书签名请求"
+
+msgid "Download"
+msgstr "下载"
 
 msgid "Certificate"
 msgstr "证书"
@@ -1027,14 +901,137 @@ msgstr "复制"
 msgid "Steps"
 msgstr "步骤"
 
-msgid "Site settings"
-msgstr "网站设置"
+msgid "Logo"
+msgstr "徽标"
+
+msgid "Project name"
+msgstr "项目名称"
+
+msgid "Homepage title"
+msgstr "主页标题"
+
+msgid "Presentation"
+msgstr "展示"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "向潜在揭发者征求的问题"
+
+msgid "Whistleblowing button"
+msgstr "揭发按钮"
+
+msgid "Disclaimer"
+msgstr "免责声明"
+
+msgid "Footer"
+msgstr "页脚"
+
+msgid "Upload"
+msgstr "上传"
+
+msgid "Language:"
+msgstr "语言："
+
+msgid "Add custom text"
+msgstr "添加自定义文本"
+
+msgid "Custom text"
+msgstr "自定义文本"
+
+msgid "Original text"
+msgstr "初始文本"
+
+msgid "Original translation"
+msgstr "初始翻译"
+
+msgid "Custom translation"
+msgstr "自定义翻译"
+
+msgid "Disable submissions"
+msgstr "禁用提交"
+
+msgid "Enable encryption"
+msgstr "启用加密"
+
+msgid "Enable administrators to change user passwords"
+msgstr "启用管理者更改用户密码权限"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "管理员已授权更改用户密码："
+
+msgid "Enable multisite feature"
+msgstr "启用多站点功能"
+
+msgid "Enable simplified login"
+msgstr "启用简易登录"
+
+msgid "Enable search engines indexing"
+msgstr "启用搜索引擎索引"
+
+msgid "Default questionnaire"
+msgstr "默认问卷"
+
+msgid "Show contexts in alphabetical order"
+msgstr "按字母顺序显示上下文"
+
+msgid "Size limit for file attachments"
+msgstr "文件附件大小限制"
+
+msgid "Require two factor authentication"
+msgstr "要求双重验证"
+
+msgid "Password change interval"
+msgstr "密码更改周期"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "基于安全考量，需定期更改密码。"
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "向用户发送未读报告通知之前的天数"
+
+msgid "Disable the privacy panel"
+msgstr "禁用隐私面板"
+
+msgid "Enable custom privacy panel"
+msgstr "启用自定义隐私面板"
+
+msgid "Custom privacy panel"
+msgstr "自定义隐私面板"
+
+msgid "Enable custodian user role"
+msgstr "启用保管人用户角色"
+
+msgid "Enable scoring system"
+msgstr "启用评分系统"
+
+msgid "Logging level"
+msgstr "日志记录级别"
+
+msgid "Log accesses of internal users"
+msgstr "记录内部用户访问"
+
+msgid "Notify administrators of software problems"
+msgstr "通知管理员软件故障"
+
+msgid "Notify developers of software problems"
+msgstr "通知开发者软件故障"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "启用该功能有助于该平台的开发和安全。"
+
+msgid "Reset reports"
+msgstr "重置报告"
+
+msgid "Settings"
+msgstr "设置"
 
 msgid "Case management"
 msgstr "案例管理"
 
-msgid "Network settings"
-msgstr "网络设置"
+msgid "Network"
+msgstr "网络"
 
 msgid "Sites"
 msgstr "网站"
@@ -1076,10 +1073,10 @@ msgid "Set password"
 msgstr "设置密码"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "所选密码太弱。有效密码应至少包含 10 个多种字符，包括至少一个小写字母、一个大写字母、一个数字以及一个特殊符号。"
+msgstr "所选密码太弱。有效密码应至少包含 12 个多种字符，包括至少一个小写字母、一个大写字母、一个数字以及一个特殊符号。"
 
 msgid "Force password change"
 msgstr "强制密码更改"

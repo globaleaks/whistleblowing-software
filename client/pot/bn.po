@@ -24,9 +24,6 @@ msgstr ""
 msgid "Log in"
 msgstr "লগইন"
 
-msgid "Main configuration"
-msgstr "মূল কনফিগারেশন"
-
 msgid "Theme customization"
 msgstr "থিম কাস্টমাইজেশন"
 
@@ -36,8 +33,8 @@ msgstr "ভাষাসমূহ"
 msgid "Text customization"
 msgstr "লেখা কাস্টমাইজেশন"
 
-msgid "Advanced settings"
-msgstr "আডভান্সড সেটিংস"
+msgid "Advanced"
+msgstr "অগ্রবর্তী"
 
 msgid "Question templates"
 msgstr "প্রশ্নের টেমপ্লেট"
@@ -57,8 +54,8 @@ msgstr "পরিবর্তনসূচী"
 msgid "License"
 msgstr "লাইসেন্স"
 
-msgid "Notification templates"
-msgstr "নোটিফিকেশনের টেমপ্লেট"
+msgid "Templates"
+msgstr "টেম্পলেট"
 
 msgid "Delete"
 msgstr "মুছুন"
@@ -69,8 +66,8 @@ msgstr "অসঙ্গতিসমূহ"
 msgid "Preferences"
 msgstr "পছন্দসমূহ"
 
-msgid "Notification settings"
-msgstr "নোটিফিকেশনের সেটিংস"
+msgid "Notifications"
+msgstr "নোটিফিকেশন্স"
 
 msgid "file unavailable"
 msgstr "ফাইল উপলব্ধ নেই"
@@ -120,8 +117,8 @@ msgstr "সবগুলো অনির্বাচিত করুন"
 msgid "Refresh"
 msgstr "রিফ্রেশ করুন"
 
-msgid "Context"
-msgstr "প্রসঙ্গ"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "পূর্বরূপ"
@@ -255,9 +252,6 @@ msgstr "হুইসেল ব্লোয়ারের পরিচয়ে প
 msgid "Authorize access to the whistleblower's identity"
 msgstr "হুইসেল ব্লোয়ারের পরিচয়ে প্রবেশের অনুমোদন দিন"
 
-msgid "Templates"
-msgstr "টেম্পলেট"
-
 msgid "URL redirects"
 msgstr "ইউআরএল পুনর্নির্দেশ"
 
@@ -297,8 +291,8 @@ msgstr "গ্রহণযোগ্য"
 msgid "Strong"
 msgstr "শক্ত"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "প্রসঙ্গ নির্বাচন করার জন্য ইন্টারফেসের উপরে প্রদর্শিত লেখা"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "ইমেল বিজ্ঞপ্তি নিঃশব্দ করুন"
@@ -361,9 +355,6 @@ msgstr "সর্বাধিক ফাইলের আকার:"
 
 msgid "Scheduled jobs"
 msgstr "তালিকাভুক্ত কার্যাদি"
-
-msgid "Sites management"
-msgstr "সাইট ম্যানেজমেন্ট"
 
 msgid "Regenerate"
 msgstr "নতুন করে তৈরি করুন"
@@ -472,6 +463,12 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "একটি রিপোর্ট জমা দিন"
 
@@ -487,101 +484,20 @@ msgstr "এগিয়ে যাওয়ার আগে, দয়া কর�
 msgid "Enable"
 msgstr "সচল"
 
-msgid "Disable submissions"
-msgstr "জমাদান অক্ষম করুন"
-
-msgid "Enable encryption"
-msgstr "এনক্রিপশন সক্ষম করুন"
-
-msgid "Enable administrators to change user passwords"
-msgstr "প্রশাসকগণকে ব্যবহারকারীর পাসওয়ার্ড পরিবর্তন করার অনুমতি দিন"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "প্রশাসকগণ ব্যবহারকারীর পাসওয়ার্ড পরিবর্তন করতে পারবেন:"
-
-msgid "Enable multisite feature"
-msgstr "মাল্টিসাইট বৈশিষ্ট্য সক্ষম করুন"
-
-msgid "Enable simplified login"
-msgstr "সিম্পল লগইন সক্ষম করুন"
-
-msgid "Enable search engines indexing"
-msgstr "সার্চ ইঞ্জিনগুলিতে সূচীকরণ সক্ষম করুন"
-
-msgid "Default questionnaire"
-msgstr "সাধারণ প্রশ্নাবলী"
-
-msgid "Show contexts in alphabetical order"
-msgstr "প্রসঙ্গগুলি বর্ণানুক্রমিক ক্রমে দেখান"
-
-msgid "Size limit for file attachments"
-msgstr "ফাইল সংযুক্তির জন্য আকার সীমা"
-
-msgid "megabytes"
-msgstr "মেগাবাইট"
-
-msgid "Require two factor authentication"
-msgstr "টু-ফ্যাক্টর অথেনটিকেশন প্রয়োজন"
-
-msgid "Password change interval"
-msgstr "পাসওয়ার্ড পরিবর্তনের মাঝে ব্যবধান"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "নিরাপত্তার কারণে, নিয়মিত বিরতিতে পাসওয়ার্ড পরিবর্তনগুলি প্রয়োজন।"
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "এই বৈশিষ্ট্যটি অক্ষম করতে মানটি 0 তে সেট করুন।"
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "কতদিন পরে ব্যবহারকারীদের অপঠিত প্রতিবেদন সম্পর্কে অবহিত করা হবে"
-
-msgid "Disable the privacy panel"
-msgstr "গোপনীয়তা প্যানেলটি অক্ষম করুন"
-
-msgid "Enable custom privacy panel"
-msgstr "কাস্টম গোপনীয়তা প্যানেল সক্ষম করুন"
-
-msgid "Custom privacy panel"
-msgstr "কাস্টম গোপনীয়তা প্যানেল"
-
-msgid "Enable custodian user role"
-msgstr "তত্ত্বাবধায়ক ব্যবহারকারীর ভূমিকা সক্ষম করুন"
-
-msgid "Enable scoring system"
-msgstr "স্কোরিং সিস্টেম সক্ষম করুন"
-
-msgid "Logging level"
-msgstr "লগিংয়ের স্তর"
-
-msgid "Log accesses of internal users"
-msgstr "অভ্যন্তরীণ ব্যবহারকারীদের লগ অ্যাক্সেসগুলি"
-
-msgid "Notify administrators of software problems"
-msgstr "সফ্টওয়্যার সমস্যাগুলি প্রশাসকদের অবহিত করুন"
-
-msgid "Notify developers of software problems"
-msgstr "সফটওয়্যার সমস্যাগুলি ডেভেলপারদের অবহিত করুন"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "এই বৈশিষ্ট্যটি সক্ষম করে আপনি প্ল্যাটফর্মটির বিকাশ এবং সুরক্ষায় অবদান রাখবেন।"
-
-msgid "Save"
-msgstr "সংরক্ষণ করুন"
-
-msgid "Reset reports"
-msgstr "রিপোর্টগুলি রিসেট করুন"
-
 msgid "Low"
 msgstr "নিম্ন"
 
 msgid "High"
 msgstr "উচ্চ"
 
+msgid "megabytes"
+msgstr "মেগাবাইট"
+
 msgid "percentage"
 msgstr "শতাংশ"
+
+msgid "Save"
+msgstr "সংরক্ষণ করুন"
 
 msgid "Type"
 msgstr "ধরণ"
@@ -634,62 +550,14 @@ msgstr "বাতিল"
 msgid "Report statuses"
 msgstr "স্ট্যাটাস রিপোর্ট করুন"
 
-msgid "Logo"
-msgstr "লোগো"
-
-msgid "Project name"
-msgstr "প্রজেক্টের নাম"
-
-msgid "Description"
-msgstr "বিবরণ"
-
-msgid "Homepage title"
-msgstr "হোমপেজ-এর শিরোনাম"
-
-msgid "Presentation"
-msgstr "উপস্থাপনা"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "সম্ভাব্য হুইসেল ব্লোয়ারদের কাছে জিজ্ঞাস্য প্রশ্ন"
-
-msgid "Whistleblowing button"
-msgstr "হুইসেলব্লোইং বাটন"
-
-msgid "Disclaimer"
+msgid "Channels"
 msgstr ""
-
-msgid "Footer"
-msgstr "ফুটার"
-
-msgid "Upload"
-msgstr "আপলোড"
-
-msgid "Download"
-msgstr "ডাউনলোড"
-
-msgid "Language:"
-msgstr "ভাষাঃ"
-
-msgid "Add custom text"
-msgstr "কাস্টম লেখা যোগ করুন"
-
-msgid "Custom text"
-msgstr "কাস্টম লেখা"
-
-msgid "Original text"
-msgstr "মূল লেখা"
-
-msgid "Original translation"
-msgstr "মূল অনুবাদ"
-
-msgid "Custom translation"
-msgstr "কাস্টম অনুবাদ"
-
-msgid "Contexts"
-msgstr "প্রসঙ্গ"
 
 msgid "Hidden"
 msgstr "গোপন"
+
+msgid "Description"
+msgstr "বিবরণ"
 
 msgid "Questionnaire"
 msgstr "প্রশ্নাবলী"
@@ -699,6 +567,9 @@ msgstr "প্রাপক"
 
 msgid "days"
 msgstr "দিন"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "এই বৈশিষ্ট্যটি অক্ষম করতে মানটি 0 তে সেট করুন।"
 
 msgid "Show the questionnaire navigation interface"
 msgstr "প্রশ্নাবলীর নেভিগেশন ইন্টারফেসটি দেখান"
@@ -798,6 +669,9 @@ msgstr "ব্যক্তিগত কী"
 
 msgid "Certificate Signing Request"
 msgstr "সার্টিফিকেট স্বাক্ষর করার অনুরোধ"
+
+msgid "Download"
+msgstr "ডাউনলোড"
 
 msgid "Certificate"
 msgstr "সার্টিফিকেট"
@@ -1013,14 +887,137 @@ msgstr "প্রতিলিপি"
 msgid "Steps"
 msgstr "পদক্ষেপ"
 
-msgid "Site settings"
-msgstr "সাইট সেটিংস"
+msgid "Logo"
+msgstr "লোগো"
+
+msgid "Project name"
+msgstr "প্রজেক্টের নাম"
+
+msgid "Homepage title"
+msgstr "হোমপেজ-এর শিরোনাম"
+
+msgid "Presentation"
+msgstr "উপস্থাপনা"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "সম্ভাব্য হুইসেল ব্লোয়ারদের কাছে জিজ্ঞাস্য প্রশ্ন"
+
+msgid "Whistleblowing button"
+msgstr "হুইসেলব্লোইং বাটন"
+
+msgid "Disclaimer"
+msgstr ""
+
+msgid "Footer"
+msgstr "ফুটার"
+
+msgid "Upload"
+msgstr "আপলোড"
+
+msgid "Language:"
+msgstr "ভাষাঃ"
+
+msgid "Add custom text"
+msgstr "কাস্টম লেখা যোগ করুন"
+
+msgid "Custom text"
+msgstr "কাস্টম লেখা"
+
+msgid "Original text"
+msgstr "মূল লেখা"
+
+msgid "Original translation"
+msgstr "মূল অনুবাদ"
+
+msgid "Custom translation"
+msgstr "কাস্টম অনুবাদ"
+
+msgid "Disable submissions"
+msgstr "জমাদান অক্ষম করুন"
+
+msgid "Enable encryption"
+msgstr "এনক্রিপশন সক্ষম করুন"
+
+msgid "Enable administrators to change user passwords"
+msgstr "প্রশাসকগণকে ব্যবহারকারীর পাসওয়ার্ড পরিবর্তন করার অনুমতি দিন"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "প্রশাসকগণ ব্যবহারকারীর পাসওয়ার্ড পরিবর্তন করতে পারবেন:"
+
+msgid "Enable multisite feature"
+msgstr "মাল্টিসাইট বৈশিষ্ট্য সক্ষম করুন"
+
+msgid "Enable simplified login"
+msgstr "সিম্পল লগইন সক্ষম করুন"
+
+msgid "Enable search engines indexing"
+msgstr "সার্চ ইঞ্জিনগুলিতে সূচীকরণ সক্ষম করুন"
+
+msgid "Default questionnaire"
+msgstr "সাধারণ প্রশ্নাবলী"
+
+msgid "Show contexts in alphabetical order"
+msgstr "প্রসঙ্গগুলি বর্ণানুক্রমিক ক্রমে দেখান"
+
+msgid "Size limit for file attachments"
+msgstr "ফাইল সংযুক্তির জন্য আকার সীমা"
+
+msgid "Require two factor authentication"
+msgstr "টু-ফ্যাক্টর অথেনটিকেশন প্রয়োজন"
+
+msgid "Password change interval"
+msgstr "পাসওয়ার্ড পরিবর্তনের মাঝে ব্যবধান"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "নিরাপত্তার কারণে, নিয়মিত বিরতিতে পাসওয়ার্ড পরিবর্তনগুলি প্রয়োজন।"
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "কতদিন পরে ব্যবহারকারীদের অপঠিত প্রতিবেদন সম্পর্কে অবহিত করা হবে"
+
+msgid "Disable the privacy panel"
+msgstr "গোপনীয়তা প্যানেলটি অক্ষম করুন"
+
+msgid "Enable custom privacy panel"
+msgstr "কাস্টম গোপনীয়তা প্যানেল সক্ষম করুন"
+
+msgid "Custom privacy panel"
+msgstr "কাস্টম গোপনীয়তা প্যানেল"
+
+msgid "Enable custodian user role"
+msgstr "তত্ত্বাবধায়ক ব্যবহারকারীর ভূমিকা সক্ষম করুন"
+
+msgid "Enable scoring system"
+msgstr "স্কোরিং সিস্টেম সক্ষম করুন"
+
+msgid "Logging level"
+msgstr "লগিংয়ের স্তর"
+
+msgid "Log accesses of internal users"
+msgstr "অভ্যন্তরীণ ব্যবহারকারীদের লগ অ্যাক্সেসগুলি"
+
+msgid "Notify administrators of software problems"
+msgstr "সফ্টওয়্যার সমস্যাগুলি প্রশাসকদের অবহিত করুন"
+
+msgid "Notify developers of software problems"
+msgstr "সফটওয়্যার সমস্যাগুলি ডেভেলপারদের অবহিত করুন"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "এই বৈশিষ্ট্যটি সক্ষম করে আপনি প্ল্যাটফর্মটির বিকাশ এবং সুরক্ষায় অবদান রাখবেন।"
+
+msgid "Reset reports"
+msgstr "রিপোর্টগুলি রিসেট করুন"
+
+msgid "Settings"
+msgstr "সেটিংস"
 
 msgid "Case management"
 msgstr "কেস ম্যানেজমেন্ট"
 
-msgid "Network settings"
-msgstr "নেটওয়ার্ক সেটিংস"
+msgid "Network"
+msgstr "নেটওয়ার্ক"
 
 msgid "Sites"
 msgstr "সাইটসমূহ"
@@ -1062,10 +1059,10 @@ msgid "Set password"
 msgstr "পাসওয়ার্ড সেট করুন"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "নির্বাচিত পাসওয়ার্ডটি খুব দুর্বল। একটি বৈধ পাসওয়ার্ড কমপক্ষে ১০ টি অক্ষরের দীর্ঘ হওয়া উচিত এবং এতে অন্তত একটি ছোট হাতের অক্ষর, বড় হাতের অক্ষর, একটি সংখ্যা এবং একটি বিশেষ অক্ষর সহ বিভিন্ন বর্ণ থাকতে হবে।"
+msgstr ""
 
 msgid "Force password change"
 msgstr "বাধ্যতামূলক পাসওয়ার্ড পরিবর্তন"

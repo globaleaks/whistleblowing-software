@@ -19,9 +19,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Kirish"
 
-msgid "Main configuration"
-msgstr "Asosiy sozlamalar"
-
 msgid "Theme customization"
 msgstr "Mavzuni moslash"
 
@@ -31,8 +28,8 @@ msgstr "Tillar"
 msgid "Text customization"
 msgstr "Matnni moslash"
 
-msgid "Advanced settings"
-msgstr "Kengaytirilgan sozlamalar"
+msgid "Advanced"
+msgstr "Qo‘shimcha"
 
 msgid "Question templates"
 msgstr "Savol andozalari"
@@ -52,8 +49,8 @@ msgstr "Oʻzgarishlar"
 msgid "License"
 msgstr "Litsenziya"
 
-msgid "Notification templates"
-msgstr "Bildirishnoma andozalari"
+msgid "Templates"
+msgstr "Andozalar"
 
 msgid "Delete"
 msgstr "Oʻchirish"
@@ -64,8 +61,8 @@ msgstr "Anomaliyalar"
 msgid "Preferences"
 msgstr "Sozlamalar"
 
-msgid "Notification settings"
-msgstr "Bildirishnoma sozlamalari"
+msgid "Notifications"
+msgstr "Bildirishnomalar"
 
 msgid "file unavailable"
 msgstr "fayl mavjud emas"
@@ -115,8 +112,8 @@ msgstr "Belgilovni bekor qilish"
 msgid "Refresh"
 msgstr "Yangilash"
 
-msgid "Context"
-msgstr "Kanal"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "Nazar solish"
@@ -250,9 +247,6 @@ msgstr "Oshkor qiluvchining shaxsiga ruxsatni rad qilish"
 msgid "Authorize access to the whistleblower's identity"
 msgstr "Oshkor qiluvchining shaxsiga ruxsat berish"
 
-msgid "Templates"
-msgstr "Andozalar"
-
 msgid "URL redirects"
 msgstr "URL yoʻnaltirishlar"
 
@@ -292,8 +286,8 @@ msgstr "Qoniqarli"
 msgid "Strong"
 msgstr "Ishonchli"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Kontekstni tanlash interfeysining yuqori qismidagi matn"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "Email orqali bildirishnomalar yuborilmay tursin"
@@ -356,9 +350,6 @@ msgstr "Maksimal fayl hajmi:"
 
 msgid "Scheduled jobs"
 msgstr "Rejalashtirilgan vazifalar"
-
-msgid "Sites management"
-msgstr "Saytlar boshqaruvi"
 
 msgid "Regenerate"
 msgstr "Qayta yasash"
@@ -467,6 +458,12 @@ msgstr "Ruxsat berish"
 msgid "Revoke access"
 msgstr "Ruxsatni bekot qilish"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "Anonim xabar yuborish"
 
@@ -482,101 +479,20 @@ msgstr "Davom etishdan oldin ikki bosqichli hisob tekshiruvini yoqing"
 msgid "Enable"
 msgstr "Yoqish"
 
-msgid "Disable submissions"
-msgstr "Joylanmalarni oʻchirish"
-
-msgid "Enable encryption"
-msgstr "Shifrlanishni yoqish"
-
-msgid "Enable administrators to change user passwords"
-msgstr "Administratorlarga foydalanuvchilar parollarini oʻzgartirish vakolatini berish"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Quyidagi administratorlar foydalanuvchilar parolini oʻzgartira oladi:"
-
-msgid "Enable multisite feature"
-msgstr "Multisayt funksiyasini yoqish"
-
-msgid "Enable simplified login"
-msgstr "Soddalashtirilgan kirishni yoqish"
-
-msgid "Enable search engines indexing"
-msgstr "Qidiruv tizimlari indeksatsiyasiga ruxsat berish"
-
-msgid "Default questionnaire"
-msgstr "Birlamchi savolnoma"
-
-msgid "Show contexts in alphabetical order"
-msgstr "Kontekstlarni alifbo tartibida chiqarish"
-
-msgid "Size limit for file attachments"
-msgstr "Fayl biriktirmalari hajmi limiti"
-
-msgid "megabytes"
-msgstr "megabayt"
-
-msgid "Require two factor authentication"
-msgstr "Ikki bosqichli hisob tekshiruvini talab qilish"
-
-msgid "Password change interval"
-msgstr "Parolni almashtirish vaqti"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Xavfsizlik maqsadlarida parollar ora-orada muntazam almashtiriladi."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Bu funksiya yoqilmasligi uchun 0 qiymatini belgilang."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Foydalanuvchilarga oʻqilmagan anonim xabarlar haqida necha kundan keyin xabar qilinsin"
-
-msgid "Disable the privacy panel"
-msgstr "Maxfiylik panelini faolsizlantirish"
-
-msgid "Enable custom privacy panel"
-msgstr "Maxsus maxfiylik panelini yoqish"
-
-msgid "Custom privacy panel"
-msgstr "Maxsus maxfiylik paneli"
-
-msgid "Enable custodian user role"
-msgstr "Himoyachi foydalanuvchi vakolatini yoqish"
-
-msgid "Enable scoring system"
-msgstr "Ballar tizimini yoqish"
-
-msgid "Logging level"
-msgstr "Jurnal darajasi"
-
-msgid "Log accesses of internal users"
-msgstr "Ichki foydalanuvchilar kirishini jurnalga yozish"
-
-msgid "Notify administrators of software problems"
-msgstr "Administratorlarga dasturiy muammolar haqida xabar qilish"
-
-msgid "Notify developers of software problems"
-msgstr "Ishlab chiquvchilarga dasturiy muammolar haqida xabar qilish"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Bu funksiya yoqilsa, siz platformaning rivoji va xavfsizligiga hissa qoʻshasiz"
-
-msgid "Save"
-msgstr "Saqlash"
-
-msgid "Reset reports"
-msgstr "Anonim xabarlarni asliga qaytarish"
-
 msgid "Low"
 msgstr "Past"
 
 msgid "High"
 msgstr "Yuqori"
 
+msgid "megabytes"
+msgstr "megabayt"
+
 msgid "percentage"
 msgstr "foiz"
+
+msgid "Save"
+msgstr "Saqlash"
 
 msgid "Type"
 msgstr "Turi"
@@ -629,62 +545,14 @@ msgstr "Bekor qilish"
 msgid "Report statuses"
 msgstr "Anonim xabarlar holati"
 
-msgid "Logo"
-msgstr "Logotip"
-
-msgid "Project name"
-msgstr "Loyiha nomi"
-
-msgid "Description"
-msgstr "Tavsifi"
-
-msgid "Homepage title"
-msgstr "Bosh sahifa sarlavhasi"
-
-msgid "Presentation"
-msgstr "Bosh matni"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Ehtimoliy oshkor qiluvchilarni jalb qiladigan savol"
-
-msgid "Whistleblowing button"
-msgstr "Oshkor qilish tugmasi"
-
-msgid "Disclaimer"
-msgstr "Ogohlantirish"
-
-msgid "Footer"
-msgstr "Futer"
-
-msgid "Upload"
-msgstr "Yuklash"
-
-msgid "Download"
-msgstr "Yuklab olish"
-
-msgid "Language:"
-msgstr "Til:"
-
-msgid "Add custom text"
-msgstr "Maxsus matn kiritish"
-
-msgid "Custom text"
-msgstr "Maxsus matn"
-
-msgid "Original text"
-msgstr "Asl matn"
-
-msgid "Original translation"
-msgstr "Asl tarjima"
-
-msgid "Custom translation"
-msgstr "Maxsus tarjima"
-
-msgid "Contexts"
-msgstr "Kanallar"
+msgid "Channels"
+msgstr ""
 
 msgid "Hidden"
 msgstr "Yashirin"
+
+msgid "Description"
+msgstr "Tavsifi"
 
 msgid "Questionnaire"
 msgstr "Savolnomalar"
@@ -694,6 +562,9 @@ msgstr "Qabul qiluvchilar"
 
 msgid "days"
 msgstr "kun"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Bu funksiya yoqilmasligi uchun 0 qiymatini belgilang."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Savolnomalar navigatsiyasi interfeysini chiqarish"
@@ -793,6 +664,9 @@ msgstr "Yopiq kalit"
 
 msgid "Certificate Signing Request"
 msgstr "Sertifikatni imzolash soʻrovi"
+
+msgid "Download"
+msgstr "Yuklab olish"
 
 msgid "Certificate"
 msgstr "Sertifikat"
@@ -1008,14 +882,137 @@ msgstr "Takrorlanuvchi"
 msgid "Steps"
 msgstr "Qadamlar"
 
-msgid "Site settings"
-msgstr "Sayt sozlamalari"
+msgid "Logo"
+msgstr "Logotip"
+
+msgid "Project name"
+msgstr "Loyiha nomi"
+
+msgid "Homepage title"
+msgstr "Bosh sahifa sarlavhasi"
+
+msgid "Presentation"
+msgstr "Bosh matni"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Ehtimoliy oshkor qiluvchilarni jalb qiladigan savol"
+
+msgid "Whistleblowing button"
+msgstr "Oshkor qilish tugmasi"
+
+msgid "Disclaimer"
+msgstr "Ogohlantirish"
+
+msgid "Footer"
+msgstr "Futer"
+
+msgid "Upload"
+msgstr "Yuklash"
+
+msgid "Language:"
+msgstr "Til:"
+
+msgid "Add custom text"
+msgstr "Maxsus matn kiritish"
+
+msgid "Custom text"
+msgstr "Maxsus matn"
+
+msgid "Original text"
+msgstr "Asl matn"
+
+msgid "Original translation"
+msgstr "Asl tarjima"
+
+msgid "Custom translation"
+msgstr "Maxsus tarjima"
+
+msgid "Disable submissions"
+msgstr "Joylanmalarni oʻchirish"
+
+msgid "Enable encryption"
+msgstr "Shifrlanishni yoqish"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Administratorlarga foydalanuvchilar parollarini oʻzgartirish vakolatini berish"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Quyidagi administratorlar foydalanuvchilar parolini oʻzgartira oladi:"
+
+msgid "Enable multisite feature"
+msgstr "Multisayt funksiyasini yoqish"
+
+msgid "Enable simplified login"
+msgstr "Soddalashtirilgan kirishni yoqish"
+
+msgid "Enable search engines indexing"
+msgstr "Qidiruv tizimlari indeksatsiyasiga ruxsat berish"
+
+msgid "Default questionnaire"
+msgstr "Birlamchi savolnoma"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Kontekstlarni alifbo tartibida chiqarish"
+
+msgid "Size limit for file attachments"
+msgstr "Fayl biriktirmalari hajmi limiti"
+
+msgid "Require two factor authentication"
+msgstr "Ikki bosqichli hisob tekshiruvini talab qilish"
+
+msgid "Password change interval"
+msgstr "Parolni almashtirish vaqti"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Xavfsizlik maqsadlarida parollar ora-orada muntazam almashtiriladi."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Foydalanuvchilarga oʻqilmagan anonim xabarlar haqida necha kundan keyin xabar qilinsin"
+
+msgid "Disable the privacy panel"
+msgstr "Maxfiylik panelini faolsizlantirish"
+
+msgid "Enable custom privacy panel"
+msgstr "Maxsus maxfiylik panelini yoqish"
+
+msgid "Custom privacy panel"
+msgstr "Maxsus maxfiylik paneli"
+
+msgid "Enable custodian user role"
+msgstr "Himoyachi foydalanuvchi vakolatini yoqish"
+
+msgid "Enable scoring system"
+msgstr "Ballar tizimini yoqish"
+
+msgid "Logging level"
+msgstr "Jurnal darajasi"
+
+msgid "Log accesses of internal users"
+msgstr "Ichki foydalanuvchilar kirishini jurnalga yozish"
+
+msgid "Notify administrators of software problems"
+msgstr "Administratorlarga dasturiy muammolar haqida xabar qilish"
+
+msgid "Notify developers of software problems"
+msgstr "Ishlab chiquvchilarga dasturiy muammolar haqida xabar qilish"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Bu funksiya yoqilsa, siz platformaning rivoji va xavfsizligiga hissa qoʻshasiz"
+
+msgid "Reset reports"
+msgstr "Anonim xabarlarni asliga qaytarish"
+
+msgid "Settings"
+msgstr "Sozlamalar"
 
 msgid "Case management"
 msgstr "Murojaatlar boshqaruvi"
 
-msgid "Network settings"
-msgstr "Tarmoq sozlamalari"
+msgid "Network"
+msgstr ""
 
 msgid "Sites"
 msgstr "Saytlar"
@@ -1057,10 +1054,10 @@ msgid "Set password"
 msgstr "Parol belgilash"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Tanlangan parol juda zaif. Ishonchli parol kamida 10 ta kichik, katta, raqamli va maxsus belgilardan iborat boʻlsin."
+msgstr "Tanlangan parol juda zaif. Ishonchli parol kamida 12 ta kichik, katta, raqamli va maxsus belgilardan iborat boʻlsin."
 
 msgid "Force password change"
 msgstr "Parol majburiy oʻzgartirilsin"

@@ -19,9 +19,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Системи чувала"
 
-msgid "Main configuration"
-msgstr "Коьрта конфигураци"
-
 msgid "Theme customization"
 msgstr "Тема бIегIийла яр"
 
@@ -31,8 +28,8 @@ msgstr "Меттанаш"
 msgid "Text customization"
 msgstr "Текст бIегIийла яр"
 
-msgid "Advanced settings"
-msgstr "Шордина нисдарш"
+msgid "Advanced"
+msgstr ""
 
 msgid "Question templates"
 msgstr "Хаттаран шаблонаш"
@@ -52,8 +49,8 @@ msgstr "Хийцамийн журнал"
 msgid "License"
 msgstr "Лицензи"
 
-msgid "Notification templates"
-msgstr "Хаамбарийн шаблонаш"
+msgid "Templates"
+msgstr "Шаблонаш"
 
 msgid "Delete"
 msgstr "Дlадаккха"
@@ -64,8 +61,8 @@ msgstr "Аномалеш"
 msgid "Preferences"
 msgstr "Гlолениг харжар"
 
-msgid "Notification settings"
-msgstr "Хаамбарийн нисдарш"
+msgid "Notifications"
+msgstr ""
 
 msgid "file unavailable"
 msgstr "файл тlекхочийлехь яц"
@@ -115,8 +112,8 @@ msgstr "Дерриг харжар духаэца"
 msgid "Refresh"
 msgstr "ЦӀинде"
 
-msgid "Context"
-msgstr "Контекст"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "Юьхьанца хьажа"
@@ -250,9 +247,6 @@ msgstr "Iорадаккхархочун цIарна тlекхачар дехка
 msgid "Authorize access to the whistleblower's identity"
 msgstr "Iорадаккхархочун цIарна тlекхачар бакъо луо"
 
-msgid "Templates"
-msgstr "Шаблонаш"
-
 msgid "URL redirects"
 msgstr "URL кхин адресца доьду"
 
@@ -292,8 +286,8 @@ msgstr "Тарлуш ду"
 msgid "Strong"
 msgstr "Чlогlа"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Интерфейс тIехула гойтуш йолу текст контексташ харжарна хьажийна ю"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "Электронан поштехула хаамбар тиедие"
@@ -356,9 +350,6 @@ msgstr "Файлан лаккхара барам бу:"
 
 msgid "Scheduled jobs"
 msgstr "Регламентаца беш болу белхаш"
-
-msgid "Sites management"
-msgstr "Сайташна урхалла дар"
 
 msgid "Regenerate"
 msgstr "МеттахӀотто"
@@ -467,6 +458,12 @@ msgstr "ТIекхача бакъо луо"
 msgid "Revoke access"
 msgstr "Тlекхочийла юхадаккха"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "Арз чудала"
 
@@ -482,101 +479,20 @@ msgstr "Кхин дIавахале, ши-факторан аутентифика
 msgid "Enable"
 msgstr "Магаде"
 
-msgid "Disable submissions"
-msgstr "Чудаларш мага ма де"
-
-msgid "Enable encryption"
-msgstr "ШифрхIоттор магаде"
-
-msgid "Enable administrators to change user passwords"
-msgstr "Администраторшна пайдаэцархочун парол хийцар магаде"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Администраторийн бакъо ю пайдаэцархочун парол хийца:"
-
-msgid "Enable multisite feature"
-msgstr "Дукхасайтийн башхало магае"
-
-msgid "Enable simplified login"
-msgstr "Системина чолхаза чувалар магаде"
-
-msgid "Enable search engines indexing"
-msgstr "Лохуршна индексаци ян магаде"
-
-msgid "Default questionnaire"
-msgstr "Юьхьанцарчу рожехь хеттар"
-
-msgid "Show contexts in alphabetical order"
-msgstr "Контексташ абатан рогlаллехь гайта"
-
-msgid "Size limit for file attachments"
-msgstr "Юкъаехкинчу файлийн бараман доза"
-
-msgid "megabytes"
-msgstr "мегабайташ"
-
-msgid "Require two factor authentication"
-msgstr "Ши-факторан аутентификаци тӀейожае"
-
-msgid "Password change interval"
-msgstr "Парол хийцаран интервал"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Кхерамзаллин бахьанашца парол хийцар тIедожийна ду шен-шен рожехь."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "ХIара башхало мага ца ян, маьIна 0 тIе хIоттаде."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Пайдаэцархошна дешна доцчу аьрзнех дIахаьийта дисинчу денойн терахь"
-
-msgid "Disable the privacy panel"
-msgstr "Шайлахьйолу панел мага ма е"
-
-msgid "Enable custom privacy panel"
-msgstr "БIегIийла шайлахьйолу панел магае"
-
-msgid "Custom privacy panel"
-msgstr "БIегIийла шайлахьйолу панел"
-
-msgid "Enable custodian user role"
-msgstr "lуналхочунна пайдаэцархочун дакъа магаде"
-
-msgid "Enable scoring system"
-msgstr "Баллийн система магае"
-
-msgid "Logging level"
-msgstr "Журнал лелоран тlегlа"
-
-msgid "Log accesses of internal users"
-msgstr "Чоьхьарчу пайдаэцархойн журналашна тlекхочийла"
-
-msgid "Notify administrators of software problems"
-msgstr "Софтан анпалех администратошка хаамбе"
-
-msgid "Notify developers of software problems"
-msgstr "Софтан анпалех девелопершка хаамбе"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Хlара башхало магаярца ахь дакъа лоцу платформа кхолларехь а, цуьнан кхерамзалла чIагIярехь а."
-
-msgid "Save"
-msgstr "ДӀаӀалашде"
-
-msgid "Reset reports"
-msgstr "Аьрзнаш юхакирде"
-
 msgid "Low"
 msgstr "Лахара"
 
 msgid "High"
 msgstr "Лакхара"
 
+msgid "megabytes"
+msgstr "мегабайташ"
+
 msgid "percentage"
 msgstr "процент"
+
+msgid "Save"
+msgstr "ДӀаӀалашде"
 
 msgid "Type"
 msgstr "Тайпа"
@@ -629,62 +545,14 @@ msgstr "Юхаэца"
 msgid "Report statuses"
 msgstr "Аьрзнийн статусаш"
 
-msgid "Logo"
-msgstr "Логотайпа"
-
-msgid "Project name"
-msgstr "Проектан цlе"
-
-msgid "Description"
-msgstr "Сурт хIоттор"
-
-msgid "Homepage title"
-msgstr "Коьртачу агlонан цlе"
-
-msgid "Presentation"
-msgstr "Презентаци"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Хила тарлуш болу Iорадаккхархой тlеозон хаттар"
-
-msgid "Whistleblowing button"
-msgstr "Iорадаккхаран нуьйда"
-
-msgid "Disclaimer"
-msgstr "Жоьпалла тIе ца лацар"
-
-msgid "Footer"
-msgstr "Лахара колонтитул"
-
-msgid "Upload"
-msgstr "ДIахIоттае"
-
-msgid "Download"
-msgstr "Схьаэца"
-
-msgid "Language:"
-msgstr "Мотт:"
-
-msgid "Add custom text"
-msgstr "БIегIийла йина текст тlетоха"
-
-msgid "Custom text"
-msgstr "БIегIийла йина текст"
-
-msgid "Original text"
-msgstr "Юьхьанцара текст"
-
-msgid "Original translation"
-msgstr "Юьхьанцара гочдар"
-
-msgid "Custom translation"
-msgstr "БIегIийла дина гочдар"
-
-msgid "Contexts"
-msgstr "Контексташ"
+msgid "Channels"
+msgstr ""
 
 msgid "Hidden"
 msgstr "Хьулдина"
+
+msgid "Description"
+msgstr "Сурт хIоттор"
 
 msgid "Questionnaire"
 msgstr "Хеттар"
@@ -694,6 +562,9 @@ msgstr "ДIаэцархой"
 
 msgid "days"
 msgstr "денош"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "ХIара башхало мага ца ян, маьIна 0 тIе хIоттаде."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Хеттарш тIехь урхаллин интерфейс гайта"
@@ -793,6 +664,9 @@ msgstr "Шайлахьдолу догlа"
 
 msgid "Certificate Signing Request"
 msgstr "Сертификатана куьг таIо дехар дахьийтар"
+
+msgid "Download"
+msgstr "Схьаэца"
 
 msgid "Certificate"
 msgstr "Сертификат"
@@ -1008,14 +882,137 @@ msgstr "Шалхадаккха"
 msgid "Steps"
 msgstr "Гlулчаш"
 
-msgid "Site settings"
-msgstr "Сайтан нисдарш"
+msgid "Logo"
+msgstr "Логотайпа"
+
+msgid "Project name"
+msgstr "Проектан цlе"
+
+msgid "Homepage title"
+msgstr "Коьртачу агlонан цlе"
+
+msgid "Presentation"
+msgstr "Презентаци"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Хила тарлуш болу Iорадаккхархой тlеозон хаттар"
+
+msgid "Whistleblowing button"
+msgstr "Iорадаккхаран нуьйда"
+
+msgid "Disclaimer"
+msgstr "Жоьпалла тIе ца лацар"
+
+msgid "Footer"
+msgstr "Лахара колонтитул"
+
+msgid "Upload"
+msgstr "ДIахIоттае"
+
+msgid "Language:"
+msgstr "Мотт:"
+
+msgid "Add custom text"
+msgstr "БIегIийла йина текст тlетоха"
+
+msgid "Custom text"
+msgstr "БIегIийла йина текст"
+
+msgid "Original text"
+msgstr "Юьхьанцара текст"
+
+msgid "Original translation"
+msgstr "Юьхьанцара гочдар"
+
+msgid "Custom translation"
+msgstr "БIегIийла дина гочдар"
+
+msgid "Disable submissions"
+msgstr "Чудаларш мага ма де"
+
+msgid "Enable encryption"
+msgstr "ШифрхIоттор магаде"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Администраторшна пайдаэцархочун парол хийцар магаде"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Администраторийн бакъо ю пайдаэцархочун парол хийца:"
+
+msgid "Enable multisite feature"
+msgstr "Дукхасайтийн башхало магае"
+
+msgid "Enable simplified login"
+msgstr "Системина чолхаза чувалар магаде"
+
+msgid "Enable search engines indexing"
+msgstr "Лохуршна индексаци ян магаде"
+
+msgid "Default questionnaire"
+msgstr "Юьхьанцарчу рожехь хеттар"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Контексташ абатан рогlаллехь гайта"
+
+msgid "Size limit for file attachments"
+msgstr "Юкъаехкинчу файлийн бараман доза"
+
+msgid "Require two factor authentication"
+msgstr "Ши-факторан аутентификаци тӀейожае"
+
+msgid "Password change interval"
+msgstr "Парол хийцаран интервал"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Кхерамзаллин бахьанашца парол хийцар тIедожийна ду шен-шен рожехь."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Пайдаэцархошна дешна доцчу аьрзнех дIахаьийта дисинчу денойн терахь"
+
+msgid "Disable the privacy panel"
+msgstr "Шайлахьйолу панел мага ма е"
+
+msgid "Enable custom privacy panel"
+msgstr "БIегIийла шайлахьйолу панел магае"
+
+msgid "Custom privacy panel"
+msgstr "БIегIийла шайлахьйолу панел"
+
+msgid "Enable custodian user role"
+msgstr "lуналхочунна пайдаэцархочун дакъа магаде"
+
+msgid "Enable scoring system"
+msgstr "Баллийн система магае"
+
+msgid "Logging level"
+msgstr "Журнал лелоран тlегlа"
+
+msgid "Log accesses of internal users"
+msgstr "Чоьхьарчу пайдаэцархойн журналашна тlекхочийла"
+
+msgid "Notify administrators of software problems"
+msgstr "Софтан анпалех администратошка хаамбе"
+
+msgid "Notify developers of software problems"
+msgstr "Софтан анпалех девелопершка хаамбе"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Хlара башхало магаярца ахь дакъа лоцу платформа кхолларехь а, цуьнан кхерамзалла чIагIярехь а."
+
+msgid "Reset reports"
+msgstr "Аьрзнаш юхакирде"
+
+msgid "Settings"
+msgstr ""
 
 msgid "Case management"
 msgstr "Гlуллакхана урхалладар"
 
-msgid "Network settings"
-msgstr "Машанан нисдарш"
+msgid "Network"
+msgstr ""
 
 msgid "Sites"
 msgstr "Сайташ"
@@ -1057,10 +1054,10 @@ msgid "Set password"
 msgstr "Парол хlоттае"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Хаьржина парол дукха гlийла ю. Магийна йолу парол лаххара а 10 тайп-тайпана хьаьрках латта езаш ю, шайна юккъехь жима элп а, доккха элп а, терахь а, леррина долу хьаьрк а долуш."
+msgstr "Хаьржина парол дукха гlийла ю. Магийна йолу парол лаххара а 12 тайп-тайпана хьаьрках латта езаш ю, шайна юккъехь жима элп а, доккха элп а, терахь а, леррина долу хьаьрк а долуш."
 
 msgid "Force password change"
 msgstr "Парол хийцар тIедилла"

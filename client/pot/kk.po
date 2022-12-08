@@ -19,9 +19,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Кіру"
 
-msgid "Main configuration"
-msgstr "Негізгі конфигурация"
-
 msgid "Theme customization"
 msgstr "Тақырыпты баптау"
 
@@ -31,8 +28,8 @@ msgstr "Тілдер"
 msgid "Text customization"
 msgstr "Мәтінді баптау"
 
-msgid "Advanced settings"
-msgstr "Кеңейтілген параметрлер"
+msgid "Advanced"
+msgstr "Кеңейтілген"
 
 msgid "Question templates"
 msgstr "Сұрақ үлгілері"
@@ -52,8 +49,8 @@ msgstr "Өзгерістер журналы"
 msgid "License"
 msgstr "Лицензия"
 
-msgid "Notification templates"
-msgstr "Хабарландыру үлгілері"
+msgid "Templates"
+msgstr "Үлгілер"
 
 msgid "Delete"
 msgstr "Жою"
@@ -64,8 +61,8 @@ msgstr "Ауытқулар"
 msgid "Preferences"
 msgstr "Бапталған параметрлер"
 
-msgid "Notification settings"
-msgstr "Хабарландыру баптаулары"
+msgid "Notifications"
+msgstr "Хабарламалар"
 
 msgid "file unavailable"
 msgstr "файл қолжетімсіз"
@@ -115,8 +112,8 @@ msgstr "Барлық таңдауды алып тастау"
 msgid "Refresh"
 msgstr "Жаңарту"
 
-msgid "Context"
-msgstr "Мәнмәтін"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "Алдын ала қарау"
@@ -250,9 +247,6 @@ msgstr "Хабарлаушының жеке басына қатынасуға р
 msgid "Authorize access to the whistleblower's identity"
 msgstr "Хабарлаушының жеке басына қатынасуға рұқсат беру"
 
-msgid "Templates"
-msgstr "Үлгілер"
-
 msgid "URL redirects"
 msgstr "URL мекенжайларын қайта бағыттаулар"
 
@@ -292,8 +286,8 @@ msgstr "Қанағаттандырарлық"
 msgid "Strong"
 msgstr "Жақсы"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Мәнмәтіндерді таңдау үшін интерфейстің жоғарғы жағында көрсетілетін мәтін"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "Электрондық пошта хабарландыруларын өшіру"
@@ -356,9 +350,6 @@ msgstr "Файлдың максималды өлшемі:"
 
 msgid "Scheduled jobs"
 msgstr "Жоспарланған тапсырмалар"
-
-msgid "Sites management"
-msgstr "Сайттарды басқару"
 
 msgid "Regenerate"
 msgstr "Қайта құру"
@@ -467,6 +458,12 @@ msgstr "Қатынасуға рұқсат беру"
 msgid "Revoke access"
 msgstr "Рұқсатты кері қайтару"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "Есеп беру"
 
@@ -482,101 +479,20 @@ msgstr "Жалғастырмас бұрын, екі факторлы аутен�
 msgid "Enable"
 msgstr "Қосу"
 
-msgid "Disable submissions"
-msgstr "Жіберуді өшіру"
-
-msgid "Enable encryption"
-msgstr "Шифрлауды қосу"
-
-msgid "Enable administrators to change user passwords"
-msgstr "Әкімшілерге пайдаланушылардың құпиясөздерін өзгертуге рұқсат беру"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Пайдаланушылардың құпиясөздерін өзгертуге рұқсаты бар әкімшілер:"
-
-msgid "Enable multisite feature"
-msgstr "Мульти-сайт функциясын қосу"
-
-msgid "Enable simplified login"
-msgstr "Жеңілдетілген кіруді іске қосу"
-
-msgid "Enable search engines indexing"
-msgstr "Іздеу жүйелерінің индекстеуін қосу"
-
-msgid "Default questionnaire"
-msgstr "Әдепкі сауалнама"
-
-msgid "Show contexts in alphabetical order"
-msgstr "Мәнмәтіндерді алфавиттік ретпен көрсету"
-
-msgid "Size limit for file attachments"
-msgstr "Файл тіркемелерінің өлшемінің шектеуі"
-
-msgid "megabytes"
-msgstr "мегабайт"
-
-msgid "Require two factor authentication"
-msgstr "Екі факторлы аутентификацияны талап ету"
-
-msgid "Password change interval"
-msgstr "Құпиясөзді ауыстыру интервалы"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Қауіпсіздік мақсатында, құпиясөзді үнемі өзгертіп тұру қажет."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Бұл функцияны өшіру үшін «0» мәнін орнатыңыз."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr " Пайдаланушыларға оқылмаған есептер туралы хабарландырғанға дейінгі күндер саны"
-
-msgid "Disable the privacy panel"
-msgstr "Құпиялылық тақтасын өшіру"
-
-msgid "Enable custom privacy panel"
-msgstr "Реттелмелі құпиялылық тақтасын қосу"
-
-msgid "Custom privacy panel"
-msgstr "Реттелмелі құпиялылық тақтасы"
-
-msgid "Enable custodian user role"
-msgstr "Сақтағыш пайдаланушы рөлін іске қосу"
-
-msgid "Enable scoring system"
-msgstr "Ұпайларды санау жүйесін іске қосу"
-
-msgid "Logging level"
-msgstr "Журнал жүргізу деңгейі"
-
-msgid "Log accesses of internal users"
-msgstr "Ішкі пайдаланушылардың журналдарына қол жеткізу"
-
-msgid "Notify administrators of software problems"
-msgstr "Әкімшілерге бағдарламалық жасақтама мәселелері туралы хабарлау"
-
-msgid "Notify developers of software problems"
-msgstr "Әзірлеушілерге бағдарламалық жасақтама мәселелері туралы хабарлау"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Бұл мүмкіндікті іске қосу арқылы, сіз платформаның дамуы мен қауіпсіздігіне үлес қосатын боласыз."
-
-msgid "Save"
-msgstr "Сақтау"
-
-msgid "Reset reports"
-msgstr "Есептерді бастапқы қалпына келтіру"
-
 msgid "Low"
 msgstr "Төмен"
 
 msgid "High"
 msgstr "Жоғары"
 
+msgid "megabytes"
+msgstr "мегабайт"
+
 msgid "percentage"
 msgstr "пайыз"
+
+msgid "Save"
+msgstr "Сақтау"
 
 msgid "Type"
 msgstr "Түрі"
@@ -629,62 +545,14 @@ msgstr "Бас тарту"
 msgid "Report statuses"
 msgstr "Есептің күйлері"
 
-msgid "Logo"
-msgstr "Логотип"
-
-msgid "Project name"
-msgstr "Жоба атауы"
-
-msgid "Description"
-msgstr "Сипаттама"
-
-msgid "Homepage title"
-msgstr "Басты беттің атауы"
-
-msgid "Presentation"
-msgstr "Презентация"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Ықтимал хабарлаушыларды қызықтыруға арналған сұрақ"
-
-msgid "Whistleblowing button"
-msgstr "Хабарлау түймесі"
-
-msgid "Disclaimer"
-msgstr "Ескертпе"
-
-msgid "Footer"
-msgstr "Төменгі колонтитул"
-
-msgid "Upload"
-msgstr "Жүктеп салу"
-
-msgid "Download"
-msgstr "Жүктеп алу"
-
-msgid "Language:"
-msgstr "Тіл:"
-
-msgid "Add custom text"
-msgstr "Реттелмелі мәтінді қосу"
-
-msgid "Custom text"
-msgstr "Реттелмелі мәтіні"
-
-msgid "Original text"
-msgstr "Түпнұсқа мәтін"
-
-msgid "Original translation"
-msgstr "Түпнұсқа аударма"
-
-msgid "Custom translation"
-msgstr "Реттелмелі аударма"
-
-msgid "Contexts"
-msgstr "Мәнмәтіндер"
+msgid "Channels"
+msgstr ""
 
 msgid "Hidden"
 msgstr "Жасырын"
+
+msgid "Description"
+msgstr "Сипаттама"
 
 msgid "Questionnaire"
 msgstr "Сауалнама"
@@ -694,6 +562,9 @@ msgstr "Алушылар"
 
 msgid "days"
 msgstr "күн"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Бұл функцияны өшіру үшін «0» мәнін орнатыңыз."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Сауалнама бойынша навигация интерфейсін көрсету"
@@ -793,6 +664,9 @@ msgstr "Жеке кілт"
 
 msgid "Certificate Signing Request"
 msgstr "Сертификатқа қол қоюға сұратым"
+
+msgid "Download"
+msgstr "Жүктеп алу"
 
 msgid "Certificate"
 msgstr "Сертификат"
@@ -1008,14 +882,137 @@ msgstr "Көшірме"
 msgid "Steps"
 msgstr "Қадамдар"
 
-msgid "Site settings"
-msgstr "Сайт параметрлері"
+msgid "Logo"
+msgstr "Логотип"
+
+msgid "Project name"
+msgstr "Жоба атауы"
+
+msgid "Homepage title"
+msgstr "Басты беттің атауы"
+
+msgid "Presentation"
+msgstr "Презентация"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Ықтимал хабарлаушыларды қызықтыруға арналған сұрақ"
+
+msgid "Whistleblowing button"
+msgstr "Хабарлау түймесі"
+
+msgid "Disclaimer"
+msgstr "Ескертпе"
+
+msgid "Footer"
+msgstr "Төменгі колонтитул"
+
+msgid "Upload"
+msgstr "Жүктеп салу"
+
+msgid "Language:"
+msgstr "Тіл:"
+
+msgid "Add custom text"
+msgstr "Реттелмелі мәтінді қосу"
+
+msgid "Custom text"
+msgstr "Реттелмелі мәтіні"
+
+msgid "Original text"
+msgstr "Түпнұсқа мәтін"
+
+msgid "Original translation"
+msgstr "Түпнұсқа аударма"
+
+msgid "Custom translation"
+msgstr "Реттелмелі аударма"
+
+msgid "Disable submissions"
+msgstr "Жіберуді өшіру"
+
+msgid "Enable encryption"
+msgstr "Шифрлауды қосу"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Әкімшілерге пайдаланушылардың құпиясөздерін өзгертуге рұқсат беру"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Пайдаланушылардың құпиясөздерін өзгертуге рұқсаты бар әкімшілер:"
+
+msgid "Enable multisite feature"
+msgstr "Мульти-сайт функциясын қосу"
+
+msgid "Enable simplified login"
+msgstr "Жеңілдетілген кіруді іске қосу"
+
+msgid "Enable search engines indexing"
+msgstr "Іздеу жүйелерінің индекстеуін қосу"
+
+msgid "Default questionnaire"
+msgstr "Әдепкі сауалнама"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Мәнмәтіндерді алфавиттік ретпен көрсету"
+
+msgid "Size limit for file attachments"
+msgstr "Файл тіркемелерінің өлшемінің шектеуі"
+
+msgid "Require two factor authentication"
+msgstr "Екі факторлы аутентификацияны талап ету"
+
+msgid "Password change interval"
+msgstr "Құпиясөзді ауыстыру интервалы"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Қауіпсіздік мақсатында, құпиясөзді үнемі өзгертіп тұру қажет."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr " Пайдаланушыларға оқылмаған есептер туралы хабарландырғанға дейінгі күндер саны"
+
+msgid "Disable the privacy panel"
+msgstr "Құпиялылық тақтасын өшіру"
+
+msgid "Enable custom privacy panel"
+msgstr "Реттелмелі құпиялылық тақтасын қосу"
+
+msgid "Custom privacy panel"
+msgstr "Реттелмелі құпиялылық тақтасы"
+
+msgid "Enable custodian user role"
+msgstr "Сақтағыш пайдаланушы рөлін іске қосу"
+
+msgid "Enable scoring system"
+msgstr "Ұпайларды санау жүйесін іске қосу"
+
+msgid "Logging level"
+msgstr "Журнал жүргізу деңгейі"
+
+msgid "Log accesses of internal users"
+msgstr "Ішкі пайдаланушылардың журналдарына қол жеткізу"
+
+msgid "Notify administrators of software problems"
+msgstr "Әкімшілерге бағдарламалық жасақтама мәселелері туралы хабарлау"
+
+msgid "Notify developers of software problems"
+msgstr "Әзірлеушілерге бағдарламалық жасақтама мәселелері туралы хабарлау"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Бұл мүмкіндікті іске қосу арқылы, сіз платформаның дамуы мен қауіпсіздігіне үлес қосатын боласыз."
+
+msgid "Reset reports"
+msgstr "Есептерді бастапқы қалпына келтіру"
+
+msgid "Settings"
+msgstr "Параметрлер"
 
 msgid "Case management"
 msgstr "Істерді басқару"
 
-msgid "Network settings"
-msgstr "Желі параметрлері"
+msgid "Network"
+msgstr ""
 
 msgid "Sites"
 msgstr "Сайттар"
@@ -1057,10 +1054,10 @@ msgid "Set password"
 msgstr "Құпиясөзді орнату"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Таңдалған құпиясөз тым жеңіл. Жарамды құпиясөз кемінде 10 таңбадан тұруы керек және әр түрлі таңбаларды, оның ішінде кіші әріпті, бас әріпті, санды және арнайы таңбаны қамтуы тиіс."
+msgstr "Таңдалған құпиясөз тым жеңіл. Жарамды құпиясөз кемінде 12 таңбадан тұруы керек және әр түрлі таңбаларды, оның ішінде кіші әріпті, бас әріпті, санды және арнайы таңбаны қамтуы тиіс."
 
 msgid "Force password change"
 msgstr "Құпиясөзді мәжбүрлі түрде өзгерту"
@@ -1424,7 +1421,7 @@ msgid "Invalid phone number"
 msgstr "Телефон нөмірі жарамсыз"
 
 msgid "Address"
-msgstr ""
+msgstr "Адрес"
 
 msgid "Fiscal code"
 msgstr ""

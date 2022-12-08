@@ -4,7 +4,7 @@
 # Anh Phan <vietnamesel10n@gmail.com>, 2013-2014
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # Dong Quoc <huynhquocdong@gmail.com>, 2018-2019
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2016-2018,2020-2021
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2016-2018,2020-2022
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Trang Pham Thu <p.thutrang218@gmail.com>, 2020\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2016-2018,2020-2022\n"
 "Language-Team: Vietnamese (http://www.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -32,9 +32,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Đăng nhập"
 
-msgid "Main configuration"
-msgstr "Cấu hình chính"
-
 msgid "Theme customization"
 msgstr "Tùy biến giao diện"
 
@@ -44,8 +41,8 @@ msgstr "Ngôn ngữ"
 msgid "Text customization"
 msgstr "Tùy biến văn bản"
 
-msgid "Advanced settings"
-msgstr "Thiết đặt nâng cao"
+msgid "Advanced"
+msgstr "Nâng cao"
 
 msgid "Question templates"
 msgstr "Các mẫu câu hỏi"
@@ -65,8 +62,8 @@ msgstr "Sổ ghi thay đổi"
 msgid "License"
 msgstr "Giấy phép"
 
-msgid "Notification templates"
-msgstr "Mẫu thông báo"
+msgid "Templates"
+msgstr "Mẫu"
 
 msgid "Delete"
 msgstr "Xóa"
@@ -77,8 +74,8 @@ msgstr "Bất thường"
 msgid "Preferences"
 msgstr "Chọn lựa"
 
-msgid "Notification settings"
-msgstr "Thiết đặt thông báo"
+msgid "Notifications"
+msgstr "Thông báo"
 
 msgid "file unavailable"
 msgstr "tập tin không có sẵn"
@@ -128,8 +125,8 @@ msgstr "Bỏ chọn tất cả"
 msgid "Refresh"
 msgstr "Làm mới"
 
-msgid "Context"
-msgstr "Đề tài"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "Xem trước"
@@ -263,9 +260,6 @@ msgstr "Từ chối truy cập danh tính của người tố giác"
 msgid "Authorize access to the whistleblower's identity"
 msgstr "Cho phép truy cập danh tính của người tố giác"
 
-msgid "Templates"
-msgstr "Mẫu"
-
 msgid "URL redirects"
 msgstr "Chuyển hướng URL"
 
@@ -305,8 +299,8 @@ msgstr "Chấp nhận được"
 msgid "Strong"
 msgstr "Mạnh"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Văn bản hiển thị trên đầu trang của giao diện để chọn đề tài"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "Tắt thông báo email"
@@ -369,9 +363,6 @@ msgstr "Kích thước lớn nhất của tập tin là:"
 
 msgid "Scheduled jobs"
 msgstr "Công việc đã lên lịch"
-
-msgid "Sites management"
-msgstr "Quản trị các trang web"
 
 msgid "Regenerate"
 msgstr "Tái tạo"
@@ -480,6 +471,12 @@ msgstr ""
 msgid "Revoke access"
 msgstr "Thu hồi quyền truy cập"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "Nộp báo cáo"
 
@@ -495,101 +492,20 @@ msgstr "Trước khi tiếp tục, hãy bật xác thực 2 yếu tố."
 msgid "Enable"
 msgstr "Bật mở"
 
-msgid "Disable submissions"
-msgstr "Tắt-không nhận báo cáo"
-
-msgid "Enable encryption"
-msgstr "Bật mở mã hóa"
-
-msgid "Enable administrators to change user passwords"
-msgstr "Cho phép quản trị viên thay đổi mật khẩu người dùng"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Quản trị viên có quyền thay đổi mật mã người dùng"
-
-msgid "Enable multisite feature"
-msgstr "Bật mở tính năng nhiều trang web"
-
-msgid "Enable simplified login"
-msgstr "Bật mở đăng nhập đơn giản"
-
-msgid "Enable search engines indexing"
-msgstr "Bật công cụ tìm kiếm lập chỉ mục"
-
-msgid "Default questionnaire"
-msgstr "Bảng câu hỏi mặc định"
-
-msgid "Show contexts in alphabetical order"
-msgstr "Hiển thị đề tài theo thứ tự ABC"
-
-msgid "Size limit for file attachments"
-msgstr "Kích thước giới hạn cho tập tin đính kèm"
-
-msgid "megabytes"
-msgstr "megabytes"
-
-msgid "Require two factor authentication"
-msgstr "Yêu cầu xác thực 2 yếu tố"
-
-msgid "Password change interval"
-msgstr "Khoảng thời gian phải đổi mật khẩu"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Vì lý do bảo mật, mật khẩu phải được đổi định kỳ"
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Đặt giá trị thành 0 để tắt tính năng này"
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Số ngày còn lại trước khi báo cho người dùng biết báo cáo chưa được đọc"
-
-msgid "Disable the privacy panel"
-msgstr "Tắt bảng thông tin bảo mật và riêng tư"
-
-msgid "Enable custom privacy panel"
-msgstr "Bật lên bảng thông tin tùy biến về bảo mật và riêng tư ở đầu trang"
-
-msgid "Custom privacy panel"
-msgstr "Bảng thông tin tùy biến về bảo mật và riêng tư"
-
-msgid "Enable custodian user role"
-msgstr "Bật mở vai trò người bảo quản"
-
-msgid "Enable scoring system"
-msgstr "Bật mở hệ thống tính điểm"
-
-msgid "Logging level"
-msgstr "Mức độ ghi sổ"
-
-msgid "Log accesses of internal users"
-msgstr "Ghi lại truy cập của người dùng nội bộ"
-
-msgid "Notify administrators of software problems"
-msgstr "Thông báo cho quản trị viên về lỗi phần mềm"
-
-msgid "Notify developers of software problems"
-msgstr "Thông báo cho các nhà phát triển về lỗi phần mềm"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Bằng cách kích hoạt tính năng này, bạn sẽ đóng góp cho sự phát triển và bảo mật của hệ thống."
-
-msgid "Save"
-msgstr "Lưu"
-
-msgid "Reset reports"
-msgstr "Cài đặt lại báo cáo"
-
 msgid "Low"
 msgstr "Thấp"
 
 msgid "High"
 msgstr "Cao"
 
+msgid "megabytes"
+msgstr "megabytes"
+
 msgid "percentage"
 msgstr "phần trăm"
+
+msgid "Save"
+msgstr "Lưu"
 
 msgid "Type"
 msgstr "Loại"
@@ -642,62 +558,14 @@ msgstr "Hủy bỏ"
 msgid "Report statuses"
 msgstr "Trạng thái của báo cáo"
 
-msgid "Logo"
-msgstr "Biểu tượng"
-
-msgid "Project name"
-msgstr "Tên dự án"
-
-msgid "Description"
-msgstr "Mô tả"
-
-msgid "Homepage title"
-msgstr "Tựa đề trang nhà"
-
-msgid "Presentation"
-msgstr "Phần trình bày"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Câu hỏi để mời gọi người có thể tố giác "
-
-msgid "Whistleblowing button"
-msgstr "Nút tố giác"
-
-msgid "Disclaimer"
+msgid "Channels"
 msgstr ""
-
-msgid "Footer"
-msgstr "Ghi chú cuối trang"
-
-msgid "Upload"
-msgstr "Tải lên"
-
-msgid "Download"
-msgstr "Tải về"
-
-msgid "Language:"
-msgstr "Ngôn ngữ"
-
-msgid "Add custom text"
-msgstr "Thêm văn bản tùy biến"
-
-msgid "Custom text"
-msgstr "Văn bản tùy biến"
-
-msgid "Original text"
-msgstr "Văn bản gốc"
-
-msgid "Original translation"
-msgstr "Phần dịch gốc"
-
-msgid "Custom translation"
-msgstr "Phần dịch tùy biến"
-
-msgid "Contexts"
-msgstr "Đề tài"
 
 msgid "Hidden"
 msgstr "Ẩn"
+
+msgid "Description"
+msgstr "Mô tả"
 
 msgid "Questionnaire"
 msgstr "Bảng câu hỏi"
@@ -707,6 +575,9 @@ msgstr "Người nhận"
 
 msgid "days"
 msgstr "ngày"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Đặt giá trị thành 0 để tắt tính năng này"
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Hiển thị giao diện di chuyển của bảng câu hỏi"
@@ -806,6 +677,9 @@ msgstr "Khóa riêng"
 
 msgid "Certificate Signing Request"
 msgstr "Yêu cầu Ký nhận Chứng chỉ"
+
+msgid "Download"
+msgstr "Tải về"
 
 msgid "Certificate"
 msgstr "Chứng chỉ"
@@ -1021,14 +895,137 @@ msgstr "Sao lại"
 msgid "Steps"
 msgstr "Các bước"
 
-msgid "Site settings"
-msgstr "Thiết đặt trang"
+msgid "Logo"
+msgstr "Biểu tượng"
+
+msgid "Project name"
+msgstr "Tên dự án"
+
+msgid "Homepage title"
+msgstr "Tựa đề trang nhà"
+
+msgid "Presentation"
+msgstr "Phần trình bày"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Câu hỏi để mời gọi người có thể tố giác "
+
+msgid "Whistleblowing button"
+msgstr "Nút tố giác"
+
+msgid "Disclaimer"
+msgstr ""
+
+msgid "Footer"
+msgstr "Ghi chú cuối trang"
+
+msgid "Upload"
+msgstr "Tải lên"
+
+msgid "Language:"
+msgstr "Ngôn ngữ"
+
+msgid "Add custom text"
+msgstr "Thêm văn bản tùy biến"
+
+msgid "Custom text"
+msgstr "Văn bản tùy biến"
+
+msgid "Original text"
+msgstr "Văn bản gốc"
+
+msgid "Original translation"
+msgstr "Phần dịch gốc"
+
+msgid "Custom translation"
+msgstr "Phần dịch tùy biến"
+
+msgid "Disable submissions"
+msgstr "Tắt-không nhận báo cáo"
+
+msgid "Enable encryption"
+msgstr "Bật mở mã hóa"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Cho phép quản trị viên thay đổi mật khẩu người dùng"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Quản trị viên có quyền thay đổi mật mã người dùng"
+
+msgid "Enable multisite feature"
+msgstr "Bật mở tính năng nhiều trang web"
+
+msgid "Enable simplified login"
+msgstr "Bật mở đăng nhập đơn giản"
+
+msgid "Enable search engines indexing"
+msgstr "Bật công cụ tìm kiếm lập chỉ mục"
+
+msgid "Default questionnaire"
+msgstr "Bảng câu hỏi mặc định"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Hiển thị đề tài theo thứ tự ABC"
+
+msgid "Size limit for file attachments"
+msgstr "Kích thước giới hạn cho tập tin đính kèm"
+
+msgid "Require two factor authentication"
+msgstr "Yêu cầu xác thực 2 yếu tố"
+
+msgid "Password change interval"
+msgstr "Khoảng thời gian phải đổi mật khẩu"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Vì lý do bảo mật, mật khẩu phải được đổi định kỳ"
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Số ngày còn lại trước khi báo cho người dùng biết báo cáo chưa được đọc"
+
+msgid "Disable the privacy panel"
+msgstr "Tắt bảng thông tin bảo mật và riêng tư"
+
+msgid "Enable custom privacy panel"
+msgstr "Bật lên bảng thông tin tùy biến về bảo mật và riêng tư ở đầu trang"
+
+msgid "Custom privacy panel"
+msgstr "Bảng thông tin tùy biến về bảo mật và riêng tư"
+
+msgid "Enable custodian user role"
+msgstr "Bật mở vai trò người bảo quản"
+
+msgid "Enable scoring system"
+msgstr "Bật mở hệ thống tính điểm"
+
+msgid "Logging level"
+msgstr "Mức độ ghi sổ"
+
+msgid "Log accesses of internal users"
+msgstr "Ghi lại truy cập của người dùng nội bộ"
+
+msgid "Notify administrators of software problems"
+msgstr "Thông báo cho quản trị viên về lỗi phần mềm"
+
+msgid "Notify developers of software problems"
+msgstr "Thông báo cho các nhà phát triển về lỗi phần mềm"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Bằng cách kích hoạt tính năng này, bạn sẽ đóng góp cho sự phát triển và bảo mật của hệ thống."
+
+msgid "Reset reports"
+msgstr "Cài đặt lại báo cáo"
+
+msgid "Settings"
+msgstr "Cài đặt"
 
 msgid "Case management"
 msgstr "Quản lý hồ sơ"
 
-msgid "Network settings"
-msgstr "Thiết đặt mạng"
+msgid "Network"
+msgstr "Mạng"
 
 msgid "Sites"
 msgstr "Các trang web"
@@ -1070,10 +1067,10 @@ msgid "Set password"
 msgstr "Cài đặt mật khẩu"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Mật khẩu được chọn quá yếu. Mật khẩu hợp lệ phải dài ít nhất 10 ký tự và có ít nhất một ký tự chữ thường, một ký tự viết hoa, một ký tự số và một ký tự đặc biệt"
+msgstr "Mật khẩu được chọn quá yếu. Mật khẩu hợp lệ phải dài ít nhất 12 ký tự và có ít nhất một ký tự chữ thường, một ký tự viết hoa, một ký tự số và một ký tự đặc biệt"
 
 msgid "Force password change"
 msgstr "Buộc thay đổi mật khẩu"

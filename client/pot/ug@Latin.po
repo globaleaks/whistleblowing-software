@@ -17,9 +17,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Tizimgha kir"
 
-msgid "Main configuration"
-msgstr "Asasiy seplime"
-
 msgid "Theme customization"
 msgstr "Téma ixtiyari"
 
@@ -29,8 +26,8 @@ msgstr "Tillar"
 msgid "Text customization"
 msgstr "Tékist ixtiyari"
 
-msgid "Advanced settings"
-msgstr "Aliy tengshekler"
+msgid "Advanced"
+msgstr ""
 
 msgid "Question templates"
 msgstr "Su’al qélipliri"
@@ -50,8 +47,8 @@ msgstr "Özgertish xatirisi"
 msgid "License"
 msgstr "Neshr hoquqi"
 
-msgid "Notification templates"
-msgstr "Uqturush qélipliri"
+msgid "Templates"
+msgstr "Qéliplar"
 
 msgid "Delete"
 msgstr "Öchür"
@@ -62,8 +59,8 @@ msgstr "Binormalliqlar"
 msgid "Preferences"
 msgstr "Mayilliqlar"
 
-msgid "Notification settings"
-msgstr "Uqturush tengshekliri"
+msgid "Notifications"
+msgstr ""
 
 msgid "file unavailable"
 msgstr "Höjjetni ishletküsiz "
@@ -113,8 +110,8 @@ msgstr "Hemmini bikar qil"
 msgid "Refresh"
 msgstr "Yéngila"
 
-msgid "Context"
-msgstr "Kontékist"
+msgid "Channel"
+msgstr ""
 
 msgid "Preview"
 msgstr "Aldin kör"
@@ -248,9 +245,6 @@ msgstr "Pash qilghuchining kimlikini ziyaret qilishni ret qiling"
 msgid "Authorize access to the whistleblower's identity"
 msgstr "Pash qilghuchining kimlikini ziyaret qilishqa hoquq ber"
 
-msgid "Templates"
-msgstr "Qéliplar"
-
 msgid "URL redirects"
 msgstr "URL qayta yéteklesh"
 
@@ -290,8 +284,8 @@ msgstr "Qobul qilishqa bolidu"
 msgid "Strong"
 msgstr "Küchlük"
 
-msgid "Text shown on top of the interface for selecting contexts"
-msgstr "Mezmunni tallash üchün ara yüzning üstide körsitilgen tékist"
+msgid "Text shown on top of the interface for selecting channels"
+msgstr ""
 
 msgid "Silence email notifications"
 msgstr "Élxet uqturushni jim qil"
@@ -354,9 +348,6 @@ msgstr "Eng chong höjjet sighimi bolsa:"
 
 msgid "Scheduled jobs"
 msgstr "Pilanlan’ghan xizmetler"
-
-msgid "Sites management"
-msgstr "Tor békiti bashqurush"
 
 msgid "Regenerate"
 msgstr "Qayta hasilla"
@@ -465,6 +456,12 @@ msgstr "Hoquq ber"
 msgid "Revoke access"
 msgstr "Hoquqni qayturiwal"
 
+msgid "Assigned to"
+msgstr ""
+
+msgid "Not provided."
+msgstr ""
+
 msgid "File a report"
 msgstr "Bir melumat yolla"
 
@@ -480,101 +477,20 @@ msgstr "Dawam qilishtin burun, ikki qedemlik toghrulashni qozghiting."
 msgid "Enable"
 msgstr "Qozghat"
 
-msgid "Disable submissions"
-msgstr "Tapshurushlarni cheklesh"
-
-msgid "Enable encryption"
-msgstr "Shifirleshni qozghat"
-
-msgid "Enable administrators to change user passwords"
-msgstr "Bashqurghichilar ishletküchi parollirini özgerteleydighan bolsun"
-
-msgid "Administrators authorized to change user passwords:"
-msgstr "Bashqurghuchilargha ishletküchi parollirini özgertishke hoquq bérildi: "
-
-msgid "Enable multisite feature"
-msgstr "Köp béket iqtidarini qozghat"
-
-msgid "Enable simplified login"
-msgstr "Addilashqan tizimgha kirishni qozghat"
-
-msgid "Enable search engines indexing"
-msgstr "Axturush matorlirining indékislishini qozghat"
-
-msgid "Default questionnaire"
-msgstr "Köngüldiki ray sinash"
-
-msgid "Show contexts in alphabetical order"
-msgstr "Mezmunlarni élipbe tertipi boyiche körset"
-
-msgid "Size limit for file attachments"
-msgstr "Höjjet qoshumchiliri üchün chongluq chéki"
-
-msgid "megabytes"
-msgstr "Mégabayts"
-
-msgid "Require two factor authentication"
-msgstr "Ikki qedemlik toghrulashni telep qil"
-
-msgid "Password change interval"
-msgstr "Parol özgertish ariliqi"
-
-msgid ""
-"For security reasons, password changes are required at regular intervals."
-msgstr "Bixeterlikni közde tutup, qerellik parol özgertish telep qilinidu."
-
-msgid "Set the value to 0 to disable this feature."
-msgstr "Bu iqtidarni cheklesh üchün qimmitini 0 qilip békiting."
-
-msgid "Number of days till notifying unread reports to users"
-msgstr "Oqulmighan melumatlarni ishletküchilerge uqturghiche ötidighan kün sani"
-
-msgid "Disable the privacy panel"
-msgstr "Ixtiyari shexsiyet taxtisini chekle"
-
-msgid "Enable custom privacy panel"
-msgstr "Ixtiyari shexsiyet taxtisini qozghat"
-
-msgid "Custom privacy panel"
-msgstr "Ixtiyari shexsiyet taxtisi"
-
-msgid "Enable custodian user role"
-msgstr "Saqlighuchi ishletküchi rolini qozghat"
-
-msgid "Enable scoring system"
-msgstr "Nomur qoyüsh sistémisini qozghat"
-
-msgid "Logging level"
-msgstr "Xatirige élish sewiyesi"
-
-msgid "Log accesses of internal users"
-msgstr "Ichki ishletküchilerning ziyaretlirini xatirile"
-
-msgid "Notify administrators of software problems"
-msgstr "Yumshaq détal mesililirini bashqurghuchilargha uqtu"
-
-msgid "Notify developers of software problems"
-msgstr "Yumshaq détal mesililirini achquchilargha uqtur"
-
-msgid ""
-"By enabling this feature, you will contribute to the development and "
-"security of the platform."
-msgstr "Bu iqtidarni qozghitish arqiliq, supining tereqqiyati we bixeterliki üchün hesse qoshalaysiz."
-
-msgid "Save"
-msgstr "Saqla"
-
-msgid "Reset reports"
-msgstr "Melumatlarni qayta seplesh"
-
 msgid "Low"
 msgstr "Töwen"
 
 msgid "High"
 msgstr "Yuquri"
 
+msgid "megabytes"
+msgstr "Mégabayts"
+
 msgid "percentage"
 msgstr "Pirsenti"
+
+msgid "Save"
+msgstr "Saqla"
 
 msgid "Type"
 msgstr "Türi"
@@ -627,62 +543,14 @@ msgstr "Waz kech"
 msgid "Report statuses"
 msgstr "Doklat haletliri"
 
-msgid "Logo"
-msgstr "Tugh"
-
-msgid "Project name"
-msgstr "Tür nami"
-
-msgid "Description"
-msgstr "Chüshendürüsh"
-
-msgid "Homepage title"
-msgstr "Bash bet témisi"
-
-msgid "Presentation"
-msgstr "Körsetme"
-
-msgid "Question to solicit possible whistleblowers"
-msgstr "Pash qilghuchi bolush mümkinchiligi bar kishilerdin sorilidighan su’allar"
-
-msgid "Whistleblowing button"
-msgstr "Pash qilish kunupkisi"
-
-msgid "Disclaimer"
-msgstr "Mes’ul bolmasliq bayanati"
-
-msgid "Footer"
-msgstr "Bet asti"
-
-msgid "Upload"
-msgstr "Yüklesh"
-
-msgid "Download"
-msgstr "Chüshürüsh"
-
-msgid "Language:"
-msgstr "Til:"
-
-msgid "Add custom text"
-msgstr "Ixtiyari tékist qosh"
-
-msgid "Custom text"
-msgstr "Ixtiyari tékist"
-
-msgid "Original text"
-msgstr "Esli tékist"
-
-msgid "Original translation"
-msgstr "Esli terjime"
-
-msgid "Custom translation"
-msgstr "Ixtiyari terjime"
-
-msgid "Contexts"
-msgstr "Mezmunlar"
+msgid "Channels"
+msgstr ""
 
 msgid "Hidden"
 msgstr "Yoshurun"
+
+msgid "Description"
+msgstr "Chüshendürüsh"
 
 msgid "Questionnaire"
 msgstr "Ray sinash"
@@ -692,6 +560,9 @@ msgstr "Tapshuriwalghuchilar"
 
 msgid "days"
 msgstr "Künler"
+
+msgid "Set the value to 0 to disable this feature."
+msgstr "Bu iqtidarni cheklesh üchün qimmitini 0 qilip békiting."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Ray sinash yéteklime ara yüzini körset"
@@ -791,6 +662,9 @@ msgstr "Shexsiy achquch"
 
 msgid "Certificate Signing Request"
 msgstr "Guwahname imzalash telipi"
+
+msgid "Download"
+msgstr "Chüshürüsh"
 
 msgid "Certificate"
 msgstr "Guwahname"
@@ -1006,14 +880,137 @@ msgstr "Köpeyt"
 msgid "Steps"
 msgstr "Qedemler"
 
-msgid "Site settings"
-msgstr "Béket tengshekliri"
+msgid "Logo"
+msgstr "Tugh"
+
+msgid "Project name"
+msgstr "Tür nami"
+
+msgid "Homepage title"
+msgstr "Bash bet témisi"
+
+msgid "Presentation"
+msgstr "Körsetme"
+
+msgid "Question to solicit possible whistleblowers"
+msgstr "Pash qilghuchi bolush mümkinchiligi bar kishilerdin sorilidighan su’allar"
+
+msgid "Whistleblowing button"
+msgstr "Pash qilish kunupkisi"
+
+msgid "Disclaimer"
+msgstr "Mes’ul bolmasliq bayanati"
+
+msgid "Footer"
+msgstr "Bet asti"
+
+msgid "Upload"
+msgstr "Yüklesh"
+
+msgid "Language:"
+msgstr "Til:"
+
+msgid "Add custom text"
+msgstr "Ixtiyari tékist qosh"
+
+msgid "Custom text"
+msgstr "Ixtiyari tékist"
+
+msgid "Original text"
+msgstr "Esli tékist"
+
+msgid "Original translation"
+msgstr "Esli terjime"
+
+msgid "Custom translation"
+msgstr "Ixtiyari terjime"
+
+msgid "Disable submissions"
+msgstr "Tapshurushlarni cheklesh"
+
+msgid "Enable encryption"
+msgstr "Shifirleshni qozghat"
+
+msgid "Enable administrators to change user passwords"
+msgstr "Bashqurghichilar ishletküchi parollirini özgerteleydighan bolsun"
+
+msgid "Administrators authorized to change user passwords:"
+msgstr "Bashqurghuchilargha ishletküchi parollirini özgertishke hoquq bérildi: "
+
+msgid "Enable multisite feature"
+msgstr "Köp béket iqtidarini qozghat"
+
+msgid "Enable simplified login"
+msgstr "Addilashqan tizimgha kirishni qozghat"
+
+msgid "Enable search engines indexing"
+msgstr "Axturush matorlirining indékislishini qozghat"
+
+msgid "Default questionnaire"
+msgstr "Köngüldiki ray sinash"
+
+msgid "Show contexts in alphabetical order"
+msgstr "Mezmunlarni élipbe tertipi boyiche körset"
+
+msgid "Size limit for file attachments"
+msgstr "Höjjet qoshumchiliri üchün chongluq chéki"
+
+msgid "Require two factor authentication"
+msgstr "Ikki qedemlik toghrulashni telep qil"
+
+msgid "Password change interval"
+msgstr "Parol özgertish ariliqi"
+
+msgid ""
+"For security reasons, password changes are required at regular intervals."
+msgstr "Bixeterlikni közde tutup, qerellik parol özgertish telep qilinidu."
+
+msgid "Number of days till notifying unread reports to users"
+msgstr "Oqulmighan melumatlarni ishletküchilerge uqturghiche ötidighan kün sani"
+
+msgid "Disable the privacy panel"
+msgstr "Ixtiyari shexsiyet taxtisini chekle"
+
+msgid "Enable custom privacy panel"
+msgstr "Ixtiyari shexsiyet taxtisini qozghat"
+
+msgid "Custom privacy panel"
+msgstr "Ixtiyari shexsiyet taxtisi"
+
+msgid "Enable custodian user role"
+msgstr "Saqlighuchi ishletküchi rolini qozghat"
+
+msgid "Enable scoring system"
+msgstr "Nomur qoyüsh sistémisini qozghat"
+
+msgid "Logging level"
+msgstr "Xatirige élish sewiyesi"
+
+msgid "Log accesses of internal users"
+msgstr "Ichki ishletküchilerning ziyaretlirini xatirile"
+
+msgid "Notify administrators of software problems"
+msgstr "Yumshaq détal mesililirini bashqurghuchilargha uqtu"
+
+msgid "Notify developers of software problems"
+msgstr "Yumshaq détal mesililirini achquchilargha uqtur"
+
+msgid ""
+"By enabling this feature, you will contribute to the development and "
+"security of the platform."
+msgstr "Bu iqtidarni qozghitish arqiliq, supining tereqqiyati we bixeterliki üchün hesse qoshalaysiz."
+
+msgid "Reset reports"
+msgstr "Melumatlarni qayta seplesh"
+
+msgid "Settings"
+msgstr ""
 
 msgid "Case management"
 msgstr "Ehwal bashqurush"
 
-msgid "Network settings"
-msgstr "Tor tengshekliri"
+msgid "Network"
+msgstr ""
 
 msgid "Sites"
 msgstr "Béketler"
@@ -1055,10 +1052,10 @@ msgid "Set password"
 msgstr "Parol seplesh"
 
 msgid ""
-"The chosen password is too weak. A valid password should be at least 10 "
+"The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "Tallighan parolingiz bek ajiz. Bir inawetlik parol eng az dégende oxshash bolmighan 10 belge uzunliqida bolishi, eng az bir kichik herp, bir chong herp, bir reqem we bir alahide belgidin terkip tépishi kérek."
+msgstr "Таллиған паролиңиз бәк аҗиз. Бир инавәтлик парол әң аз дегәндә охшаш болмиған 10 бәлгә узунлиқида болиши, әң аз бир кичик һәрп, бир чоң һәрп,бир рәқәм вә бир алаһидә бәлгидин тәркип тепиши керәк."
 
 msgid "Force password change"
 msgstr "Parol yéngilashqa mejburla"
