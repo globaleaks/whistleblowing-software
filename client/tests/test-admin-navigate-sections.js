@@ -31,20 +31,20 @@ describe("verify navigation of admin sections", function() {
     await element.all(by.cssContainingText("a", "Question templates")).first().click();
     await browser.gl.utils.takeScreenshot("admin/question_templates.png");
 
-    await element.all(by.cssContainingText("a", "Contexts")).first().click();
+    await element.all(by.cssContainingText("a", "Channels")).first().click();
     await browser.gl.utils.takeScreenshot("admin/contexts.png");
 
     await element.all(by.cssContainingText("a", "Case management")).first().click();
     await browser.gl.utils.takeScreenshot("admin/report_statuses.png");
 
-    await element.all(by.cssContainingText("a", "Notification settings")).first().click();
-    await element.all(by.cssContainingText("a", "Main configuration")).first().click();
+    await element.all(by.cssContainingText("a", "Notifications")).first().click();
+    await element.all(by.cssContainingText("a", "Settings")).last().click();
     await browser.gl.utils.takeScreenshot("admin/notification_settings.png");
     await browser.gl.utils.takeScreenshot("admin/notification_settings_detail.png", element(by.id("Content")));
-    await element.all(by.cssContainingText("a", "Notification templates")).first().click();
+    await element.all(by.cssContainingText("a", "Templates")).first().click();
     await browser.gl.utils.takeScreenshot("admin/notification_templates.png");
 
-    await element.all(by.cssContainingText("a", "Network settings")).first().click();
+    await element.all(by.cssContainingText("a", "Network")).first().click();
     await element.all(by.cssContainingText("a", "Tor")).first().click();
     await browser.gl.utils.takeScreenshot("admin/tor.png");
     await element.all(by.cssContainingText("a", "HTTPS")).first().click();
@@ -54,7 +54,7 @@ describe("verify navigation of admin sections", function() {
     await element.all(by.cssContainingText("a", "URL redirects")).first().click();
     await browser.gl.utils.takeScreenshot("admin/url_redirects.png");
 
-    await element.all(by.cssContainingText("a", "Sites management")).first().click();
+    await element.all(by.cssContainingText("a", "Sites")).first().click();
     await browser.gl.utils.takeScreenshot("admin/sites_management_sites.png");
     await element(by.cssContainingText("a", "Options")).click();
     await browser.gl.utils.takeScreenshot("admin/sites_management_options.png");

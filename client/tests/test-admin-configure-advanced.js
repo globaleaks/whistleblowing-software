@@ -9,19 +9,19 @@ describe("admin configure advanced settings", function() {
     await element(by.model("resources.node.multisite")).click();
 
     // save settings
-    await element.all(by.css("[data-ng-click=\"updateNode()\"]")).first().click();
+    await element.all(by.css("[data-ng-click=\"updateNode()\"]")).last().click();
   });
 });
 
 describe("admin disable submissions", function() {
   it("should disable submission", async function() {
-    await browser.setLocation("admin/advanced");
-    await element(by.cssContainingText("a", "Main configuration")).click();
+    await browser.setLocation("admin/settings");
+    await element(by.cssContainingText("a", "Advanced")).click();
 
     await element(by.model("resources.node.disable_submissions")).click();
 
     // save settings
-    await element.all(by.css("[data-ng-click=\"updateNode()\"]")).first().click();
+    await element.all(by.css("[data-ng-click=\"updateNode()\"]")).last().click();
 
     expect(await element(by.model("resources.node.disable_submissions")).isSelected()).toBeTruthy();
 
@@ -33,12 +33,13 @@ describe("admin disable submissions", function() {
 
     await browser.gl.utils.login_admin();
 
-    await browser.setLocation("admin/advanced");
+    await browser.setLocation("admin/settings");
+    await element(by.cssContainingText("a", "Advanced")).click();
 
     await element(by.model("resources.node.disable_submissions")).click();
 
     // save settings
-    await element.all(by.css("[data-ng-click=\"updateNode()\"]")).first().click();
+    await element.all(by.css("[data-ng-click=\"updateNode()\"]")).last().click();
 
     expect(await element(by.model("resources.node.disable_submissions")).isSelected()).toBeFalsy();
 

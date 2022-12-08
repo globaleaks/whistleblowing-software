@@ -15,7 +15,7 @@ describe("perform redirects on authenticated pages", function() {
   });
 
   it("test admin redirect to login page", async function() {
-    await browser.get("/#/admin/advanced");
-    await browser.gl.utils.waitForUrl("/login?src=%2Fadmin%2Fadvanced");
+    await browser.get("/#/admin/settings");
+    await browser.gl.utils.waitForUrl("/login?src=%2Fadmin%2Fsettings");
   });
 });

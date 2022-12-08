@@ -1,7 +1,7 @@
 describe("admin configure custom texts", function() {
   it("should perform custom texts configuration", async function() {
     await browser.gl.utils.login_admin();
-    await browser.setLocation("admin/content");
+    await browser.setLocation("admin/settings");
     await element(by.cssContainingText("a", "Text customization")).click();
 
     await element(by.cssContainingText("option", "Submissions disabled")).click();
@@ -18,7 +18,7 @@ describe("admin configure custom texts", function() {
     expect(await browser.isElementPresent(element(by.cssContainingText("button", "Whistleblowing disabled")))).toBe(true);
 
     await browser.gl.utils.login_admin();
-    await browser.setLocation("admin/content");
+    await browser.setLocation("admin/settings");
     await element(by.cssContainingText("a", "Text customization")).click();
 
     // save settings

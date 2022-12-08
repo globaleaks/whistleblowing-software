@@ -1,7 +1,7 @@
 describe("Admin upload custom file", function() {
   it("should upload a file and the file should be available for download and deletion", async function() {
     await browser.gl.utils.login_admin();
-    await browser.setLocation("admin/content");
+    await browser.setLocation("admin/settings");
 
     await element(by.cssContainingText("a", "Theme customization")).click();
 
