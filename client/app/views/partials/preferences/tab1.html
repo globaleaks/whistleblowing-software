@@ -46,7 +46,7 @@
   <div data-ng-if="resources.preferences.description"><label data-translate>Description</label> {{resources.preferences.description}}</div>
 
   <div id="Contexts" data-ng-if="Authentication.session.role === 'receiver' && public.contexts.length > 1">
-    <label><span data-translate>Contexts</span></label>
+    <label><span data-translate>Channels</span></label>
     <ul data-ng-repeat="context_id in resources.preferences.contexts">
       <li>{{contexts_by_id[context_id].name}}</li>
     </ul>
