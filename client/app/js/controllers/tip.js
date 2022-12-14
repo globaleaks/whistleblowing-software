@@ -223,6 +223,12 @@ GL.controller("TipCtrl",
       $scope.showEditLabelInput = true;
     };
 
+    $scope.markReportStatus = function (date) {
+      var report_date = new Date(date);
+      var current_date = new Date();
+      return current_date > report_date;
+    };
+
     $scope.updateLabel = function(label) {
       $scope.tip.operation("set", {"key": "label", "value": label}).then(function() {
         $scope.showEditLabelInput = false;
@@ -295,6 +301,29 @@ GL.controller("TipCtrl",
       });
     };
 
+    $scope.reminder_postpone = function () {
+      $uibModal.open({
+        templateUrl: "views/modals/tip_operation_postpone_reminder.html",
+        controller: "TipOperationsCtrl",
+        resolve: {
+          args: function() {
+            return {
+              tip: $scope.tip,
+              operation: "postpone_reminder",
+              contexts_by_id: $scope.contexts_by_id,
+              expiration_reminder_date: $scope.Utils.getPostponeDate($scope.contexts_by_id[$scope.tip.context_id].tip_timetolive),
+              dateOptions: {
+                minDate: new Date($scope.tip.reminder_date_hard),
+                maxDate: $scope.Utils.getPostponeDate(Math.max(365, $scope.contexts_by_id[$scope.tip.context_id].tip_timetolive * 2))
+              },
+              opened: false,
+              Utils: $scope.Utils
+            };
+          }
+        }
+      });
+    };
+
     $scope.tip_open_additional_questionnaire = function () {
       $scope.answers = {};
       $scope.uploads = {};
@@ -343,21 +372,43 @@ controller("TipOperationsCtrl",
     $uibModalInstance.close();
   };
 
-  $scope.confirm = function () {
+  $scope.disable_reminder = function (reminder_notification_status) {
     $uibModalInstance.close();
-
-    if ($scope.args.operation === "postpone") {
+    if ($scope.args.operation === "postpone_reminder") {
       var req = {
-        "operation": "postpone",
+        "operation": "toggle_reminder",
         "args": {
-          "value": $scope.args.expiration_date.getTime()
+          "value": !reminder_notification_status
         }
       };
 
       return $http({method: "PUT", url: "api/rtips/" + args.tip.id, data: req}).then(function () {
         $scope.reload();
       });
-    } else if (args.operation === "delete") {
+    }
+  };
+
+  $scope.confirm = function () {
+    $uibModalInstance.close();
+
+    if ($scope.args.operation === "postpone" || $scope.args.operation === "postpone_reminder") {
+      var postpone_date;
+      if ($scope.args.operation === "postpone")
+        postpone_date = $scope.args.expiration_date.getTime();
+      else
+        postpone_date = $scope.args.expiration_reminder_date.getTime();
+
+      var req = {
+        "operation": $scope.args.operation,
+        "args": {
+          "value": postpone_date
+        }
+      };
+
+      return $http({method: "PUT", url: "api/rtips/" + args.tip.id, data: req}).then(function () {
+        $scope.reload();
+      });
+    }  else if (args.operation === "delete") {
       return $http({method: "DELETE", url: "api/rtips/" + args.tip.id, data:{}}).
         then(function() {
           $location.url("/recipient/reports");

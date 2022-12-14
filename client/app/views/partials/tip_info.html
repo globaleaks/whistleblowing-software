@@ -41,6 +41,10 @@
           <i class="fa-solid fa-hourglass"></i>
           <span data-translate>Expiration date</span>
         </th>
+        <th class="TipInfoReminderDate" data-ng-if="contexts_by_id[tip.context_id].tip_reminder_hard > 0">
+          <i class="fa-solid fa-bell"></i>
+          <span data-translate>Reminder date</span>
+        </th>
         <th class="TipInfoReadReceipt" data-ng-if="Authentication.session.role === 'receiver'">
           <i class="fa-solid fa-envelope-circle-check"></i>
         </th>
@@ -67,6 +71,14 @@
         <td class="TipInfoExpirationDate">
           <span data-ng-if="!Utils.isNever(tip.expiration_date)">{{tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</span>
           <span data-ng-if="Utils.isNever(tip.expiration_date)">-</span>
+        </td>
+        <td class="TipInfoReminderDate" data-ng-if="contexts_by_id[tip.context_id].tip_reminder_hard > 0">
+          <span data-ng-if="!Utils.isNever(tip.reminder_date_hard) && tip.reminder_notification_status">{{tip.reminder_date_hard | date:'dd-MM-yyyy HH:mm'}}
+            <label data-ng-if="tip.reminder_notification_status && contexts_by_id[tip.context_id].tip_reminder_hard > 0 && (markReportStatus(tip.reminder_date_hard) || markReportStatus(tip.reminder_date_soft))" class="reminderBadge " data-ng-class="{'reminderBadge-soft': markReportStatus(tip.reminder_date_soft), 'reminderBadge-hard': markReportStatus(tip.reminder_date_hard)}">
+              <b>!</b>
+            </label>
+          </span>
+          <span data-ng-if="Utils.isNever(tip.reminder_date_hard) || !tip.reminder_notification_status">-</span>
         </td>
         <td class="TipInfoLastAccess" data-ng-if="Authentication.session.role === 'receiver'">
           <i data-ng-if="tip.last_access >= tip.update_date" class="fa-solid fa-check"

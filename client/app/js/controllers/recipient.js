@@ -184,6 +184,12 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
     return $scope.selected_tips.indexOf(id) !== -1;
   };
 
+  $scope.markReportStatus = function (date) {
+    var report_date = new Date(date);
+    var current_date = new Date();
+    return current_date > report_date;
+  };
+
   $scope.tip_delete_selected = function () {
     $uibModal.open({
       templateUrl: "views/modals/delete_confirmation.html",

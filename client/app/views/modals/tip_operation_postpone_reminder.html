@@ -1,0 +1,40 @@
+<div class="modal-header">
+  <div class="modal-title" data-translate>Are you sure?</div>
+  <button type="button" class="close" data-ng-click="cancel()">
+    <i class="fa-solid fa-times"></i>
+  </button>
+</div>
+
+<div class="modal-body">
+  <span data-translate>By confirming, you will postpone the reminder date to:</span>
+  <div class="input-group">
+    <input class="form-control inputelem"
+           type="text"
+           readonly="readonly"
+           data-ng-model="args.expiration_reminder_date"
+           data-ng-required="true"
+           data-ng-class="{'disabled-interface': !args.tip.reminder_notification_status}"
+           data-ng-click="args.opened = true"
+           uib-datepicker-popup
+           datepicker-options="args.dateOptions"
+           is-open="args.opened"
+           show-button-bar="false" />
+    <span class="input-group-append" data-ng-click="args.opened = true" data-ng-class="{'disabled-interface': !args.tip.reminder_notification_status}"><i class="input-group-text fa-solid fa-calendar"></i></span>
+  </div>
+</div>
+<div class="modal-footer">
+
+  <div class="form-check">
+    <input class="form-check-input" data-ng-click="disable_reminder(args.tip.reminder_notification_status)" type="checkbox" ng-checked=args.tip.reminder_notification_status>
+    <span data-translate>Enable</span>
+  </div>
+
+  <button id="modal-action-ok" class="btn btn-primary" data-ng-click="confirm()">
+    <i class="fa-solid fa-check"></i>
+    <span data-translate>Yes</span>
+  </button>
+  <button id="modal-action-cancel" class="btn btn-outline-secondary" data-ng-click="cancel()">
+    <i class="fa-solid fa-times"></i>
+    <span data-translate>No</span>
+  </button>
+</div>

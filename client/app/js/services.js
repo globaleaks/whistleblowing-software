@@ -546,6 +546,8 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       context.description = "";
       context.order = 0;
       context.tip_timetolive = 90;
+      context.tip_reminder_hard = 80;
+      context.tip_reminder_soft = 5;
       context.show_recipients_details = false;
       context.allow_recipients_selection = false;
       context.show_receivers_in_alphabetical_order = true;

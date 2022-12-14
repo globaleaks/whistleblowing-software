@@ -310,6 +310,8 @@ def serialize_context(session, context, language, data=None):
         'hidden': context.hidden,
         'order': context.order,
         'tip_timetolive': context.tip_timetolive,
+        'tip_reminder_soft': context.tip_reminder_soft,
+        'tip_reminder_hard': context.tip_reminder_hard,
         'select_all_receivers': context.select_all_receivers,
         'maximum_selectable_receivers': context.maximum_selectable_receivers,
         'show_recipients_details': context.show_recipients_details,

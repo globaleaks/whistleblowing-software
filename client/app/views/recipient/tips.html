@@ -64,6 +64,14 @@
         <i class="fa-solid fa-sync"></i>
       </span>
 
+      <span id="tip-action-reminder-sort"
+            data-ng-click="sortKey = 'reminder_date_soft'; sortReverse = !sortReverse"
+            data-uib-tooltip="{{'reminder' | translate}}"
+            class="btn btn-outline-secondary">
+            <span data-ng-show="!sortReverse" class="fa-solid fa-caret-down"></span>
+            <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
+      </span>
+
       <span id="SearchFilter" class="form-group float-right">
         <div class="input-group">
           <input type="text" class="form-control" data-ng-attr-placeholder="{{'Search' | translate}}"
@@ -196,7 +204,7 @@
       <tbody id="tipListTableBody">
         <tr id="tip-{{$index}}"
             data-ng-repeat="tip in filteredTips | orderBy:sortKey:sortReverse | limitTo:itemsPerPage:((currentPage - 1) * itemsPerPage)"
-            data-ng-class="{'font-weight-bold': tip.updated, 'selectedTip': isSelected(tip.id)}" class="tip-action-open"
+            data-ng-class="{'font-weight-bold': tip.updated, 'selectedTip': isSelected(tip.id)" class="tip-action-open"
             data-ng-click="Utils.go('/status/' + tip.id)">
           <td>
             <span class="btn btn-sm btn-outline-secondary" data-ng-if="isSelected(tip.id)"
@@ -223,7 +231,11 @@
           <td class="TipInfoContext" data-ng-if="public.contexts.length > 1">{{tip.context_name}}</td>
           <td class="TipInfoLabel">{{tip.label}}</td>
           <td class="TipInfoStatus"><span>{{tip.submissionStatusStr}}</span></td>
-          <td class="TipInfoSubmissionDate">{{tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
+          <td class="TipInfoSubmissionDate">{{tip.creation_date | date:'dd-MM-yyyy HH:mm'}}
+            <label data-ng-if="tip.reminder_notification_status && contexts_by_id[tip.context_id].tip_reminder_hard > 0 && (markReportStatus(tip.reminder_date_hard) || markReportStatus(tip.reminder_date_soft))" class="reminderBadge " data-ng-class="{'reminderBadge-soft': markReportStatus(tip.reminder_date_soft), 'reminderBadge-hard': markReportStatus(tip.reminder_date_hard)}">
+              <b>!</b>
+            </label>
+          </td>
           <td class="TipInfoUpdateDate">{{tip.update_date | date:'dd-MM-yyyy HH:mm'}}</td>
           <td class="TipInfoExpirationDate">
             <span
