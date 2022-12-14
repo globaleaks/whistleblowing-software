@@ -232,7 +232,7 @@
           <td class="TipInfoLabel">{{tip.label}}</td>
           <td class="TipInfoStatus"><span>{{tip.submissionStatusStr}}</span></td>
           <td class="TipInfoSubmissionDate">{{tip.creation_date | date:'dd-MM-yyyy HH:mm'}}
-            <label data-ng-if="tip.reminder_notification_status && contexts_by_id[tip.context_id].tip_reminder_hard > 0" class="reminderBadge " data-ng-class="{'reminderBadge-soft': markReportStatus(tip.reminder_date_soft), 'reminderBadge-hard': markReportStatus(tip.reminder_date_hard)}">
+            <label data-ng-if="tip.reminder_notification_status && contexts_by_id[tip.context_id].tip_reminder_hard > 0 && (markReportStatus(tip.reminder_date_hard) || markReportStatus(tip.reminder_date_soft))" class="reminderBadge " data-ng-class="{'reminderBadge-soft': markReportStatus(tip.reminder_date_soft), 'reminderBadge-hard': markReportStatus(tip.reminder_date_hard)}">
               <b>!</b>
             </label>
           </td>
