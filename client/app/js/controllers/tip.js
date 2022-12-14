@@ -390,17 +390,23 @@ controller("TipOperationsCtrl",
     $uibModalInstance.close();
 
     if ($scope.args.operation === "postpone" || $scope.args.operation === "postpone_reminder") {
+      var postpone_date;
+      if ($scope.args.operation === "postpone")
+        postpone_date = $scope.args.expiration_date.getTime();
+      else
+        postpone_date = $scope.args.expiration_reminder_date.getTime();
+
       var req = {
         "operation": $scope.args.operation,
         "args": {
-          "value": $scope.args.expiration_date.getTime()
+          "value": postpone_date
         }
       };
 
       return $http({method: "PUT", url: "api/rtips/" + args.tip.id, data: req}).then(function () {
         $scope.reload();
       });
-    } else if (args.operation === "delete") {
+    }  else if (args.operation === "delete") {
       return $http({method: "DELETE", url: "api/rtips/" + args.tip.id, data:{}}).
         then(function() {
           $location.url("/recipient/reports");
