@@ -222,8 +222,8 @@ GL.controller("TipCtrl",
     };
 
     $scope.markReportStatus = function (date) {
-      report_date = new Date(date)
-      current_date = new Date()
+      var report_date = new Date(date);
+      var current_date = new Date();
       return current_date > report_date;
     };
 
@@ -384,27 +384,16 @@ controller("TipOperationsCtrl",
         $scope.reload();
       });
     }
-  }
+  };
 
   $scope.confirm = function () {
     $uibModalInstance.close();
 
-    if ($scope.args.operation === "postpone") {
+    if ($scope.args.operation === "postpone" || $scope.args.operation === "postpone_reminder") {
       var req = {
-        "operation": "postpone",
+        "operation": $scope.args.operation,
         "args": {
           "value": $scope.args.expiration_date.getTime()
-        }
-      };
-
-      return $http({method: "PUT", url: "api/rtips/" + args.tip.id, data: req}).then(function () {
-        $scope.reload();
-      });
-    } if ($scope.args.operation === "postpone_reminder") {
-      var req = {
-        "operation": "postpone_reminder",
-        "args": {
-          "value": $scope.args.expiration_reminder_date.getTime()
         }
       };
 

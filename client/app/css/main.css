@@ -112,7 +112,7 @@ a:hover,
   background: #dde3ed;
 }
 
-[dir] .full > button{
+[dir] .full > button {
   color: #2866a2;
 }
 
@@ -432,17 +432,17 @@ a:hover,
   vertical-align: middle;
   border-radius: 50%;
   color: #fff;
-  margin-left:3px;
-  margin-top:-3px;
+  margin-left: 3px;
+  margin-top: -3px;
   width: 22px;
   height: 22px;
 }
 
-.reminderBadge-soft{
+.reminderBadge-soft {
   background: #ffd644;
 }
 
-.reminderBadge-hard{
+.reminderBadge-hard {
   background: #de1b1b;
 }
 
@@ -450,11 +450,11 @@ a:hover,
   border: 1px solid #ffd644;
 }
 
-[dir] .expiredReceipt{
+[dir] .expiredReceipt {
   border: 1px solid #de1b1b;
 }
 
-.dual_title{
+.dual_title {
   width: 50%;
 }
 

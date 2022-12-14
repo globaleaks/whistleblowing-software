@@ -185,8 +185,8 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
   };
 
   $scope.markReportStatus = function (date) {
-    report_date = new Date(date);
-    current_date = new Date();
+    var report_date = new Date(date);
+    var current_date = new Date();
     return current_date > report_date;
   };
 
