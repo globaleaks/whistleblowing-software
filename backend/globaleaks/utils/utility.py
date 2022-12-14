@@ -68,10 +68,9 @@ def datetime_null():
     """
     return datetime(1970, 1, 1, 0, 0)
 
-
 def datetime_now():
     """
-    :return: a utc datetime object for the current time
+    :return: a utc datetime object representing a null date
     """
     return datetime.utcnow()
 

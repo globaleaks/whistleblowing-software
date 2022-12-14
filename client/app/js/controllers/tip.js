@@ -221,6 +221,12 @@ GL.controller("TipCtrl",
       $scope.showEditLabelInput = true;
     };
 
+    $scope.markReportStatus = function (date) {
+      report_date = new Date(date)
+      current_date = new Date()
+      return current_date > report_date;
+    };
+
     $scope.updateLabel = function(label) {
       $scope.tip.operation("set", {"key": "label", "value": label}).then(function() {
         $scope.showEditLabelInput = false;
@@ -293,6 +299,29 @@ GL.controller("TipCtrl",
       });
     };
 
+    $scope.reminder_postpone = function () {
+      $uibModal.open({
+        templateUrl: "views/modals/tip_operation_postpone_reminder.html",
+        controller: "TipOperationsCtrl",
+        resolve: {
+          args: function() {
+            return {
+              tip: $scope.tip,
+              operation: "postpone_reminder",
+              contexts_by_id: $scope.contexts_by_id,
+              expiration_reminder_date: $scope.Utils.getPostponeDate($scope.contexts_by_id[$scope.tip.context_id].tip_timetolive),
+              dateOptions: {
+                minDate: new Date($scope.tip.reminder_date_hard),
+                maxDate: $scope.Utils.getPostponeDate(Math.max(365, $scope.contexts_by_id[$scope.tip.context_id].tip_timetolive * 2))
+              },
+              opened: false,
+              Utils: $scope.Utils
+            };
+          }
+        }
+      });
+    };
+
     $scope.tip_open_additional_questionnaire = function () {
       $scope.answers = {};
       $scope.uploads = {};
@@ -341,6 +370,22 @@ controller("TipOperationsCtrl",
     $uibModalInstance.close();
   };
 
+  $scope.disable_reminder = function (reminder_notification_status) {
+    $uibModalInstance.close();
+    if ($scope.args.operation === "postpone_reminder") {
+      var req = {
+        "operation": "toggle_reminder",
+        "args": {
+          "value": !reminder_notification_status
+        }
+      };
+
+      return $http({method: "PUT", url: "api/rtips/" + args.tip.id, data: req}).then(function () {
+        $scope.reload();
+      });
+    }
+  }
+
   $scope.confirm = function () {
     $uibModalInstance.close();
 
@@ -349,6 +394,17 @@ controller("TipOperationsCtrl",
         "operation": "postpone",
         "args": {
           "value": $scope.args.expiration_date.getTime()
+        }
+      };
+
+      return $http({method: "PUT", url: "api/rtips/" + args.tip.id, data: req}).then(function () {
+        $scope.reload();
+      });
+    } if ($scope.args.operation === "postpone_reminder") {
+      var req = {
+        "operation": "postpone_reminder",
+        "args": {
+          "value": $scope.args.expiration_reminder_date.getTime()
         }
       };
 

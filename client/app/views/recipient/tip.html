@@ -19,14 +19,14 @@
           data-ng-click="tip_notify(true)"
           data-uib-tooltip="{{'Turn on email notifications' | translate}}"
           class="btn btn-outline-secondary active">
-      <i class="fa-solid fa-bell-slash"></i>
+      <i class="fa-solid fa-volume-mute"></i>
     </span>
 
     <span id="tip-action-silence" data-ng-if="tip.enable_notifications"
           data-ng-click="tip_notify(false)"
           data-uib-tooltip="{{'Silence email notifications' | translate}}"
           class="btn btn-outline-secondary">
-      <i class="fa-solid fa-bell"></i>
+      <i class="fa-solid fa-volume-down"></i>
     </span>
 
     <span id="tip-action-grant-access"
@@ -73,6 +73,22 @@
           data-uib-tooltip="{{'Export' | translate}}"
           class="btn btn-outline-secondary">
         <i class="fa-solid fa-save"></i>
+    </span>
+
+    <span id="tip-reminder-silence"
+          data-ng-if="!tip.reminder_notification_status && contexts_by_id[tip.context_id].tip_reminder_hard > 0 && resources.preferences.can_postpone_expiration && contexts_by_id[tip.context_id].tip_timetolive > 0"
+          data-ng-click="reminder_postpone()"
+          data-uib-tooltip="{{'Postpone the reminder date' | translate}}"
+          class="btn btn-outline-secondary active">
+      <i class="fa-solid fa-bell-slash"></i>
+    </span>
+
+    <span id="tip-reminder-notify"
+          data-ng-if="tip.reminder_notification_status && contexts_by_id[tip.context_id].tip_reminder_hard > 0 && resources.preferences.can_postpone_expiration && contexts_by_id[tip.context_id].tip_timetolive > 0"
+          data-ng-click="reminder_postpone()"
+          data-uib-tooltip="{{'Postpone the reminder date' | translate}}"
+          class="btn btn-outline-secondary">
+      <i class="fa-solid fa-bell"></i>
     </span>
 
     <span id="link-reload"

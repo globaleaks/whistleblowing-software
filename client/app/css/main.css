@@ -105,17 +105,19 @@ a:hover,
   height: 20px;
 }
 
-[dir] .uib-datepicker button {
-  background: #fff;
-  color: grey;
-}
-
 [dir] .full button,
 [dir] .btn-info:not(:disabled, .disabled):active,
 [dir] .btn-info:not(:disabled, .disabled).active,
 [dir] .show > .btn-info.dropdown-toggle {
   background: #dde3ed;
+}
+
+[dir] .full > button{
   color: #2866a2;
+}
+
+[dir] .uib-datepicker td > .active {
+  color: #fff;
 }
 
 [dir] .uib-datepicker button:active {
@@ -423,6 +425,37 @@ a:hover,
 [dir] .table-striped tbody tr:nth-of-type(odd),
 [dir] .table-striped > tbody > tr.selectedTip:nth-child(odd) > td {
   background-color: #f5f7fa;
+}
+
+[dir] .reminderBadge {
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%;
+  color: #fff;
+  margin-left:3px;
+  margin-top:-3px;
+  width: 22px;
+  height: 22px;
+}
+
+.reminderBadge-soft{
+  background: #ffd644;
+}
+
+.reminderBadge-hard{
+  background: #de1b1b;
+}
+
+[dir] .overdueReceipt {
+  border: 1px solid #ffd644;
+}
+
+[dir] .expiredReceipt{
+  border: 1px solid #de1b1b;
+}
+
+.dual_title{
+  width: 50%;
 }
 
 #LogoBox img {

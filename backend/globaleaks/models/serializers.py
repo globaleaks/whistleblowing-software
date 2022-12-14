@@ -180,6 +180,8 @@ def serialize_itip(session, internaltip, language):
         'questionnaires': questionnaires,
         'tor': internaltip.tor,
         'mobile': internaltip.mobile,
+        'reminder_date_soft' : internaltip.reminder_date_soft,
+        'reminder_date_hard' : internaltip.reminder_date_hard,
         'enable_two_way_comments': internaltip.enable_two_way_comments,
         'enable_two_way_messages': internaltip.enable_two_way_messages,
         'enable_attachments': internaltip.enable_attachments,
@@ -232,6 +234,7 @@ def serialize_rtip(session, itip, rtip, language):
     ret['custodian'] = State.tenants[itip.tid].cache['enable_custodian']
     ret['important'] = itip.important
     ret['label'] = itip.label
+    ret['reminder_notification_status'] = itip.reminder_notification_status
 
     ret['enable_notifications'] = rtip.enable_notifications
 

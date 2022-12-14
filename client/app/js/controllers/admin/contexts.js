@@ -36,6 +36,16 @@ controller("AdminContextEditorCtrl", ["$scope", "$http", "AdminContextResource",
     $scope.editing = !$scope.editing;
   };
 
+  $scope.onReminderSoftChanged = function() {
+    $scope.context.tip_reminder_hard = $scope.context.tip_reminder_soft + 5;
+  };
+
+  $scope.onReminderHardChanged = function() {
+    if ($scope.context.tip_reminder_hard >= 5){
+      $scope.context.tip_reminder_soft = $scope.context.tip_reminder_hard - 5;
+    }
+  };
+
   function swap($event, index, n) {
     $event.stopPropagation();
 
