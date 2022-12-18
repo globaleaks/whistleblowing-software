@@ -43,7 +43,7 @@ controller("AdminContextEditorCtrl", ["$scope", "$http", "AdminContextResource",
   };
 
   $scope.onReminderHardChanged = function() {
-    if ($scope.context.tip_reminder_hard == 0){
+    if ($scope.context.tip_reminder_hard === 0){
       $scope.context.tip_reminder_soft = 0;
     }else if ($scope.context.tip_reminder_hard < $scope.context.tip_reminder_soft){
       $scope.context.tip_reminder_soft = $scope.context.tip_reminder_hard;
