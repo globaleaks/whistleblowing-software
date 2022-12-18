@@ -311,7 +311,7 @@ GL.controller("TipCtrl",
               contexts_by_id: $scope.contexts_by_id,
               expiration_reminder_date: $scope.Utils.getPostponeDate($scope.contexts_by_id[$scope.tip.context_id].tip_timetolive),
               dateOptions: {
-                minDate: new Date($scope.tip.reminder_date_hard),
+                //minDate: new Date($scope.tip.reminder_date_hard),
                 maxDate: $scope.Utils.getPostponeDate(Math.max(365, $scope.contexts_by_id[$scope.tip.context_id].tip_timetolive * 2))
               },
               opened: false,

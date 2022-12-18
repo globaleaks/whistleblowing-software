@@ -17,7 +17,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.operation import OperationHandler
 from globaleaks.handlers.submission import db_create_receivertip, decrypt_tip
 from globaleaks.handlers.user import user_serialize_user
-from globaleaks.models import serializers
+from globaleaks.models import serializers, Context
 from globaleaks.orm import db_get, db_del, db_log, transact, tw
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
@@ -361,8 +361,10 @@ def db_postpone_reminder_expiration(session, itip, reminder_date):
     reminder_date = datetime.utcfromtimestamp(reminder_date)
 
     context = session.query(models.Context).filter(models.Context.id == itip.context_id).one()
+    itip.reminder_date_hard = reminder_date
+    itip.reminder_date_soft = reminder_date - timedelta(days=context.tip_reminder_soft)
 
-    if context.tip_timetolive > 0:
+    '''if context.tip_timetolive > 0:
         max_reminder_date = itip.expiration_date
     else:
         max_reminder_date = datetime_never()
@@ -372,7 +374,7 @@ def db_postpone_reminder_expiration(session, itip, reminder_date):
 
     if reminder_date > itip.reminder_date_hard:
         itip.reminder_date_hard = reminder_date
-        itip.reminder_date_soft = reminder_date - timedelta(days=5)
+        itip.reminder_date_soft = reminder_date - timedelta(days=context.tip_reminder_soft)'''
 
 
 def db_toggle_reminder(itip, reminder_notification_status):
