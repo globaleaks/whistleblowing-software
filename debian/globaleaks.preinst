@@ -1,6 +1,10 @@
 #!/bin/sh
-# This is the post installation script for globaleaks
+# This is the pre installation script for globaleaks
 set -e
+
+# Automatically disable swap
+swapoff --all
+sed -e '/swap/ s/^#*/#/' -i /etc/fstab
 
 #DEBHELPER#
 
