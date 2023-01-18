@@ -563,6 +563,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       context.additional_questionnaire_id = "";
       context.score_threshold_medium = 0;
       context.score_threshold_high = 0;
+      context.tip_reminder = 0;
       context.receivers = [];
       return context;
     },
