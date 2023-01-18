@@ -19,7 +19,7 @@
       <td>{{tip.progressive}}</td>
       <td>{{tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
       <td>{{tip.last_update | date:'dd-MM-yyyy HH:mm'}}</td>
-      <td>{{tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</td>
+      <td>{{tip.expiration_date | date:'dd-MM-yyyy'}}</td>
       <td>{{contexts_by_id[tip.context_id]['name']}}</td>
       <td>{{Utils.getSubmissionStatusText(tip.status, tip.substatus, submission_statuses)}}</td>
       <td><i data-ng-if="itip.tor" class="fa-solid fa-check"></i></td>

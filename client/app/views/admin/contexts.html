@@ -139,17 +139,15 @@
               </div>
               <div class="form-group">
                 <div>
-                      <span data-ng-class="{'is-invalid': editContext.timetolive.$invalid}">
-                        <div class="input-group">
-                            <div class="dual_title"><span data-translate>Warning before case cutoff</span> (<span data-translate>days</span>)</div>
-                            <div class="dual_title" data-translate>Cutoff for whistleblower case (<span data-translate>days</span>)</div>
-                        </div>
-                        <div class="input-group">
-                            <input class="form-control" name="reminder_hard" ng-change="onReminderSoftChanged()" data-ng-model="context.tip_reminder_soft" type="number" min="0"/>
-                            <input class="form-control" name="reminder_hard" ng-change="onReminderHardChanged()" data-ng-model="context.tip_reminder_hard" type="number" min="0"/>
-                        </div>
-                      </span>
-                      <div data-translate>Set the values to 0 to disable this feature.</div>
+                  <span data-ng-class="{'is-invalid': editContext.reminder.$invalid}">
+                    <div class="input-group">
+                      <div class="dual_title"><span data-translate>Reminder date</span> (<span data-translate>days</span>)</div>
+                    </div>
+                    <div class="input-group">
+                      <input class="form-control" name="reminder" ng-change="onReminderChanged()" data-ng-model="context.tip_reminder" type="number" min="0"/>
+                    </div>
+                  </span>
+                  <div data-translate>Set the value to 0 to disable this feature.</div>
                 </div>
               </div>
               <div class="form-group">

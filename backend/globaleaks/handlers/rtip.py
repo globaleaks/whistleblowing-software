@@ -348,9 +348,9 @@ def db_postpone_expiration(session, itip, expiration_date):
     if expiration_date > itip.expiration_date:
         itip.expiration_date = expiration_date
 
-def db_postpone_reminder_expiration(session, itip, reminder_date):
+def db_set_reminder(session, itip, reminder_date):
     """
-    Transaction for postponing the expiration of a submission
+    Transaction for setting a reminder for a report
 
     :param session: An ORM session
     :param itip: A submission model to be postponed
@@ -360,29 +360,7 @@ def db_postpone_reminder_expiration(session, itip, reminder_date):
     reminder_date = min(reminder_date, 32503680000)
     reminder_date = datetime.utcfromtimestamp(reminder_date)
 
-    context = session.query(models.Context).filter(models.Context.id == itip.context_id).one()
-
-    if context.tip_timetolive > 0:
-        max_reminder_date = itip.expiration_date
-    else:
-        max_reminder_date = datetime_never()
-
-    if reminder_date > max_reminder_date:
-        reminder_date = max_reminder_date
-
-    if reminder_date > itip.reminder_date_hard:
-        itip.reminder_date_hard = reminder_date
-        itip.reminder_date_soft = reminder_date - timedelta(days=context.tip_reminder_soft)
-
-
-def db_toggle_reminder(itip, reminder_notification_status):
-    """
-    Transaction for postponing the expiration of a submission
-
-    :param itip: A submission model to be postponed
-    :param reminder_notification_status: Status of the reminder notification
-    """
-    itip.reminder_notification_status = reminder_notification_status
+    itip.reminder_date = reminder_date
 
 @transact
 def delete_rtip(session, tid, user_id, rtip_id):
@@ -422,8 +400,9 @@ def postpone_expiration(session, tid, user_id, rtip_id, expiration_date):
 
     db_postpone_expiration(session, itip, expiration_date)
 
+
 @transact
-def postpone_reminder_expiration(session, tid, user_id, rtip_id, reminder_date):
+def set_reminder(session, tid, user_id, rtip_id, reminder_date):
     """
     Transaction for postponing the expiration of a submission
 
@@ -435,28 +414,8 @@ def postpone_reminder_expiration(session, tid, user_id, rtip_id, reminder_date):
     """
     user, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    if not user.can_postpone_expiration:
-        raise errors.ForbiddenOperation
+    db_set_reminder(session, itip, reminder_date)
 
-    db_postpone_reminder_expiration(session, itip, reminder_date)
-
-@transact
-def toggle_reminder(session, tid, user_id, rtip_id, reminder_notification_status):
-    """
-    Transaction for postponing the expiration of a submission
-
-    :param session: An ORM session
-    :param tid: A tenant ID of the user performing the operation
-    :param user_id: A user ID of the user performing the operation
-    :param rtip_id: A rtip ID of the submission object of the operation
-    :param reminder_notification_status: New reminder notification status
-    """
-    user, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
-
-    if not user.can_postpone_expiration:
-        raise errors.ForbiddenOperation
-
-    db_toggle_reminder(itip, reminder_notification_status)
 
 @transact
 def set_internaltip_variable(session, tid, user_id, rtip_id, key, value):
@@ -656,8 +615,7 @@ class RTipInstance(OperationHandler):
           'grant': RTipInstance.grant_tip_access,
           'revoke': RTipInstance.revoke_tip_access,
           'postpone': RTipInstance.postpone_expiration,
-          'postpone_reminder': RTipInstance.postpone_reminder_expiration,
-          'toggle_reminder': RTipInstance.toggle_reminder,
+          'set_reminder': RTipInstance.set_reminder,
           'set': RTipInstance.set_tip_val,
           'update_status': RTipInstance.update_submission_status
         }
@@ -680,11 +638,8 @@ class RTipInstance(OperationHandler):
     def postpone_expiration(self, req_args, rtip_id, *args, **kwargs):
         return postpone_expiration(self.request.tid, self.session.user_id, rtip_id, req_args['value'])
 
-    def postpone_reminder_expiration(self, req_args, rtip_id, *args, **kwargs):
-        return postpone_reminder_expiration(self.request.tid, self.session.user_id, rtip_id, req_args['value'])
-
-    def toggle_reminder(self, req_args, rtip_id, *args, **kwargs):
-        return toggle_reminder(self.request.tid, self.session.user_id, rtip_id, req_args['value'])
+    def set_reminder(self, req_args, rtip_id, *args, **kwargs):
+        return set_reminder(self.request.tid, self.session.user_id, rtip_id, req_args['value'])
 
     def update_submission_status(self, req_args, rtip_id, *args, **kwargs):
         return update_tip_submission_status(self.request.tid, self.session.user_id, rtip_id,

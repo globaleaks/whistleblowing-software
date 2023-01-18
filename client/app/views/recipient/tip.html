@@ -11,8 +11,14 @@
           data-ng-click="tip_toggle_star()"
           data-uib-tooltip="{{'Mark as important' | translate}}"
           class="btn btn-outline-secondary">
-      <i data-ng-if="tip.important" class="fa-solid fa-star text-warning"></i>
-      <i data-ng-if="!tip.important" class="fa-solid fa-star"></i>
+      <i class="fa-solid fa-star" data-ng-class="{'text-warning': tip.important}"></i>
+    </span>
+
+    <span id="tip-action-reminder"
+          data-ng-click="set_reminder()"
+          data-uib-tooltip="{{'Set a reminder' | translate}}"
+          class="btn btn-outline-secondary">
+      <i class="fa-solid" data-ng-class="{'fa-bell': !Utils.isNever(tip.reminder_date), 'fa-bell-slash': Utils.isNever(tip.reminder_date)}"></i>
     </span>
 
     <span id="tip-action-notify" data-ng-if="!tip.enable_notifications"
@@ -73,22 +79,6 @@
           data-uib-tooltip="{{'Export' | translate}}"
           class="btn btn-outline-secondary">
         <i class="fa-solid fa-save"></i>
-    </span>
-
-    <span id="tip-reminder-silence"
-          data-ng-if="!tip.reminder_notification_status && contexts_by_id[tip.context_id].tip_reminder_hard > 0 && resources.preferences.can_postpone_expiration && contexts_by_id[tip.context_id].tip_timetolive > 0"
-          data-ng-click="reminder_postpone()"
-          data-uib-tooltip="{{'Postpone the reminder date' | translate}}"
-          class="btn btn-outline-secondary active">
-      <i class="fa-solid fa-bell-slash"></i>
-    </span>
-
-    <span id="tip-reminder-notify"
-          data-ng-if="tip.reminder_notification_status && contexts_by_id[tip.context_id].tip_reminder_hard > 0 && resources.preferences.can_postpone_expiration && contexts_by_id[tip.context_id].tip_timetolive > 0"
-          data-ng-click="reminder_postpone()"
-          data-uib-tooltip="{{'Postpone the reminder date' | translate}}"
-          class="btn btn-outline-secondary">
-      <i class="fa-solid fa-bell"></i>
     </span>
 
     <span id="link-reload"

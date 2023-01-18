@@ -64,14 +64,6 @@
         <i class="fa-solid fa-sync"></i>
       </span>
 
-      <span id="tip-action-reminder-sort"
-            data-ng-click="sortKey = 'reminder_date_soft'; sortReverse = !sortReverse"
-            data-uib-tooltip="{{'reminder' | translate}}"
-            class="btn btn-outline-secondary">
-            <span data-ng-show="!sortReverse" class="fa-solid fa-caret-down"></span>
-            <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
-      </span>
-
       <span id="SearchFilter" class="form-group float-right">
         <div class="input-group">
           <input type="text" class="form-control" data-ng-attr-placeholder="{{'Search' | translate}}"
@@ -94,6 +86,13 @@
           <th data-ng-click="sortKey = 'important'; sortReverse = !sortReverse">
             <i class="fa-solid fa-star" ></i>
             <span data-ng-show="sortKey == 'important'">
+              <span data-ng-show="!sortReverse" class="fa-solid fa-caret-down"></span>
+              <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
+            </span>
+          </th>
+          <th data-ng-click="sortKey = 'reminder_date'; sortReverse = !sortReverse">
+            <i class="fa-solid fa-bell" ></i>
+            <span data-ng-show="sortKey == 'reminder_date'">
               <span data-ng-show="!sortReverse" class="fa-solid fa-caret-down"></span>
               <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
             </span>
@@ -224,22 +223,20 @@
               </button>
             </span>
           </td>
-          <td data-uib-tooltip="{{'Mark as important' | translate}}">
-            <i class="fa-solid fa-star text-warning" data-ng-click="toggle_star(tip); $event.stopPropagation();" data-ng-class="{'visible-on-over': !tip.important}"></i>
+          <td><i data-ng-if="tip.important" class="fa-solid fa-star text-warning"></i>
+          <td><i data-ng-if="markReportStatus(tip.reminder_date)" class="fa-solid fa-bell text-warning"></i>
           </td>
           <td class="TipInfoID">{{tip.progressive}}</td>
           <td class="TipInfoContext" data-ng-if="public.contexts.length > 1">{{tip.context_name}}</td>
           <td class="TipInfoLabel">{{tip.label}}</td>
           <td class="TipInfoStatus"><span>{{tip.submissionStatusStr}}</span></td>
-          <td class="TipInfoSubmissionDate">{{tip.creation_date | date:'dd-MM-yyyy HH:mm'}}
-            <label data-ng-if="tip.reminder_notification_status && contexts_by_id[tip.context_id].tip_reminder_hard > 0 && (markReportStatus(tip.reminder_date_hard) || markReportStatus(tip.reminder_date_soft))" class="reminderBadge " data-ng-class="{'reminderBadge-soft': markReportStatus(tip.reminder_date_soft), 'reminderBadge-hard': markReportStatus(tip.reminder_date_hard)}">
-              <b>!</b>
-            </label>
+          <td class="TipInfoSubmissionDate">
+            <span>{{tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</span>
           </td>
           <td class="TipInfoUpdateDate">{{tip.update_date | date:'dd-MM-yyyy HH:mm'}}</td>
           <td class="TipInfoExpirationDate">
             <span
-                data-ng-if="!Utils.isNever(tip.expiration_date)">{{tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</span>
+                data-ng-if="!Utils.isNever(tip.expiration_date)">{{tip.expiration_date | date:'dd-MM-yyyy'}}</span>
             <span data-ng-if="Utils.isNever(tip.expiration_date)">-</span>
           </td>
           <td class="TipInfoLastAccess">

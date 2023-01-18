@@ -301,20 +301,19 @@ GL.controller("TipCtrl",
       });
     };
 
-    $scope.reminder_postpone = function () {
+    $scope.set_reminder = function () {
       $uibModal.open({
-        templateUrl: "views/modals/tip_operation_postpone_reminder.html",
+        templateUrl: "views/modals/tip_operation_set_reminder.html",
         controller: "TipOperationsCtrl",
         resolve: {
           args: function() {
             return {
               tip: $scope.tip,
-              operation: "postpone_reminder",
+              operation: "set_reminder",
               contexts_by_id: $scope.contexts_by_id,
-              expiration_reminder_date: $scope.Utils.getPostponeDate($scope.contexts_by_id[$scope.tip.context_id].tip_timetolive),
+              reminder_date: $scope.Utils.getPostponeDate($scope.contexts_by_id[$scope.tip.context_id].tip_reminder),
               dateOptions: {
-                minDate: new Date($scope.tip.reminder_date_hard),
-                maxDate: $scope.Utils.getPostponeDate(Math.max(365, $scope.contexts_by_id[$scope.tip.context_id].tip_timetolive * 2))
+                minDate: new Date($scope.tip.creation_date)
               },
               opened: false,
               Utils: $scope.Utils
@@ -372,36 +371,34 @@ controller("TipOperationsCtrl",
     $uibModalInstance.close();
   };
 
-  $scope.disable_reminder = function (reminder_notification_status) {
+  $scope.disable_reminder = function (reminder_status) {
     $uibModalInstance.close();
-    if ($scope.args.operation === "postpone_reminder") {
-      var req = {
-        "operation": "toggle_reminder",
-        "args": {
-          "value": !reminder_notification_status
-        }
-      };
+    var req = {
+      "operation": "set_reminder",
+      "args": {
+        "value": 32503680000000
+      }
+    };
 
-      return $http({method: "PUT", url: "api/rtips/" + args.tip.id, data: req}).then(function () {
-        $scope.reload();
-      });
-    }
+    return $http({method: "PUT", url: "api/rtips/" + args.tip.id, data: req}).then(function () {
+      $scope.reload();
+    });
   };
 
   $scope.confirm = function () {
     $uibModalInstance.close();
 
-    if ($scope.args.operation === "postpone" || $scope.args.operation === "postpone_reminder") {
-      var postpone_date;
+    if ($scope.args.operation === "postpone" || $scope.args.operation === "set_reminder") {
+      var date;
       if ($scope.args.operation === "postpone")
-        postpone_date = $scope.args.expiration_date.getTime();
+        date = $scope.args.expiration_date.getTime();
       else
-        postpone_date = $scope.args.expiration_reminder_date.getTime();
+        date = $scope.args.reminder_date.getTime();
 
       var req = {
         "operation": $scope.args.operation,
         "args": {
-          "value": postpone_date
+          "value": date
         }
       };
 

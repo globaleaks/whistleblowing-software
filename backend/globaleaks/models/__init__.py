@@ -333,8 +333,7 @@ class _Context(Model):
     enable_two_way_messages = Column(Boolean, default=True, nullable=False)
     enable_attachments = Column(Boolean, default=True, nullable=False)
     tip_timetolive = Column(Integer, default=90, nullable=False)
-    tip_reminder_hard = Column(Integer, default=80, nullable=False)
-    tip_reminder_soft = Column(Integer, default=5, nullable=False)
+    tip_reminder = Column(Integer, default=0, nullable=False)
     name = Column(JSON, default=dict, nullable=False)
     description = Column(JSON, default=dict, nullable=False)
     show_receivers_in_alphabetical_order = Column(Boolean, default=True, nullable=False)
@@ -357,8 +356,7 @@ class _Context(Model):
 
     int_keys = [
         'tip_timetolive',
-        'tip_reminder_hard',
-        'tip_reminder_soft',
+        'tip_reminder',
         'maximum_selectable_receivers',
         'order',
         'score_threshold_high',
@@ -377,8 +375,7 @@ class _Context(Model):
         'enable_messages',
         'enable_two_way_comments',
         'enable_two_way_messages',
-        'enable_attachments',
-        'reminder_notification_status'
+        'enable_attachments'
     ]
 
     list_keys = ['receivers']
@@ -620,9 +617,7 @@ class _InternalTip(Model):
     mobile = Column(Boolean, default=False, nullable=False)
     score = Column(Integer, default=0, nullable=False)
     expiration_date = Column(DateTime, default=datetime_never, nullable=False)
-    reminder_date_soft = Column(DateTime, default=datetime_never, nullable=False)
-    reminder_date_hard = Column(DateTime, default=datetime_never, nullable=False)
-    reminder_notification_status = Column(Boolean, default=True, nullable=False)
+    reminder_date = Column(DateTime, default=datetime_never, nullable=False)
     enable_two_way_comments = Column(Boolean, default=True, nullable=False)
     enable_two_way_messages = Column(Boolean, default=True, nullable=False)
     enable_attachments = Column(Boolean, default=True, nullable=False)

@@ -159,8 +159,9 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
 
     if context.tip_timetolive > 0:
         itip.expiration_date = get_expiration(context.tip_timetolive)
-        itip.reminder_date_soft = get_expiration(context.tip_reminder_soft)
-        itip.reminder_date_hard = get_expiration(context.tip_reminder_hard)
+
+    if context.tip_reminder > 0:
+        itip.reminder_date = get_expiration(context.tip_reminder)
 
     # Evaluate the score level
     itip.score = request['score']

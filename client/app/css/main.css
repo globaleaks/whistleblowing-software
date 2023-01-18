@@ -420,23 +420,8 @@ a:hover,
   background-color: #f5f7fa;
 }
 
-[dir] .reminderBadge {
-  text-align: center;
-  vertical-align: middle;
-  border-radius: 50%;
-  color: #fff;
-  margin-left: 3px;
-  margin-top: -3px;
-  width: 22px;
-  height: 22px;
-}
-
-.reminderBadge-soft {
-  background: #ffd644;
-}
-
-.reminderBadge-hard {
-  background: #de1b1b;
+[dir] .reminder {
+  color: #ffd644;
 }
 
 [dir] .overdueReceipt {
