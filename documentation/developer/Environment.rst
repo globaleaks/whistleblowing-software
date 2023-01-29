@@ -68,8 +68,8 @@ Setup the backend and its dependencies:
 .. code:: sh
 
   cd GlobaLeaks/backend
-  python3 -menv glenv
-  source glenv/bin/activate
+  python3 -menv env
+  source env/bin/activate
   pip3 install -r requirements.txt
 
 Run
