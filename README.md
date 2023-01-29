@@ -32,7 +32,7 @@ GlobaLeaks's documentation is accessible at: [docs.globaleaks.org](https://docs.
 ## Community support
 If you need technical support, have general questions, or have new ideas for GlobaLeaks, please post your message on the [Community Forum](https://forum.globaleaks.org/).
 
-Join our [Slack](https://slack.globaleaks.org) to get in touch with the development team and the GlobaLeaks community:
+Join our [Community Chat](https://community.globaleaks.org) to get in touch with the development team and the GlobaLeaks community:
 * #development to participate in development discussions
 * #community-support for the community support
 
