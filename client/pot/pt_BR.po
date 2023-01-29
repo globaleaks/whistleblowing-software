@@ -9,9 +9,9 @@
 # Communia <ameaneantie@riseup.net>, 2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # C. E., 2019-2020
-# C. E., 2020
-# C. E., 2019
-# C. E., 2018-2019
+# Giálisson Rocha, 2020
+# Giálisson Rocha, 2019
+# Giálisson Rocha, 2018-2019
 # Claudio M. Vieira <clmantovani@bol.com.br>, 2015
 # Cleber de Souza Corrêa <cscorrea@gmail.com>, 2014
 # Communia <ameaneantie@riseup.net>, 2016
@@ -501,11 +501,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "Apresentar um relatório"
 
-msgid "Select the context of your report:"
-msgstr "Selecionar o assunto do seu envio:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Antes de continuar, defina uma nova palavra-passe."
@@ -596,6 +599,9 @@ msgstr "Questionário"
 
 msgid "Recipients"
 msgstr "Destinatários"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "dias"
@@ -1234,6 +1240,9 @@ msgstr "Enviar"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Ao confirmar, adiará a data de expiração para:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Esta é uma plataforma de demonstração, não a utilize para envios reais."

@@ -477,11 +477,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "Nộp báo cáo"
 
-msgid "Select the context of your report:"
-msgstr "Chọn đề tài cho báo cáo của bạn:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Trước khi tiếp tục, hãy cài mật khẩu mới"
@@ -572,6 +575,9 @@ msgstr "Bảng câu hỏi"
 
 msgid "Recipients"
 msgstr "Người nhận"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "ngày"
@@ -1210,6 +1216,9 @@ msgstr "Gởi"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Khi xác nhận, bạn sẽ hoãn ngày hết hạn đến:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Đây là một hệ thống thử nghiệm, xin đừng dùng để gửi báo cáo."

@@ -467,11 +467,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "Hasabat beriň"
 
-msgid "Select the context of your report:"
-msgstr "Hasabatyňyzyň mazmunyny saýlaň:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Dowam etmezden ozal täze parol belläň."
@@ -562,6 +565,9 @@ msgstr "Sowalnama"
 
 msgid "Recipients"
 msgstr "Alyjylar"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "günler"
@@ -1200,6 +1206,9 @@ msgstr "Iber"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Tassyklamak bilen, gutarýan senesiniň möhletini yza süýşürersiňiz:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Bu demo platformasy, hakyky tabşyryşlar üçin ulanmaň."

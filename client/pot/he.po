@@ -479,11 +479,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr "בחר את ההקשר של הדוח שלך:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "לפני שממשיכים, אנא קבע/י סיסמה חדשה"
@@ -574,6 +577,9 @@ msgstr "שְׁאֵלוֹן"
 
 msgid "Recipients"
 msgstr "מקבלים"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "ימים"
@@ -1212,6 +1218,9 @@ msgstr "שלח"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "לאחר שיאשר, תוכל לדחות את מועד התפוגה:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""

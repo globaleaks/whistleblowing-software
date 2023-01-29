@@ -9,7 +9,7 @@
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2018-2022
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # Joan Bitlloch <joanbit@gmail.com>, 2017
-# José Javier Alamá Izquierdo, 2022
+# José Javier Alamá Izquierdo, 2022-2023
 # Josep Anton Rius <j.rius.cat@gmail.com>, 2016
 # Maddish Falzoni <maddish@xnet-x.net>, 2016
 # Manuel D. Serrat <manuel.serrat@antifraucv.es>, 2018-2019
@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: José Javier Alamá Izquierdo, 2022\n"
+"Last-Translator: José Javier Alamá Izquierdo, 2022-2023\n"
 "Language-Team: Catalan (Valencian) (http://www.transifex.com/otf/globaleaks/language/ca@valencia/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -471,16 +471,19 @@ msgid "Revoke access"
 msgstr "Revoca l'accés"
 
 msgid "Assigned to"
-msgstr ""
+msgstr "Assignat a"
 
 msgid "Not provided."
+msgstr "No facilitat."
+
+msgid "Set a reminder"
 msgstr ""
 
 msgid "File a report"
 msgstr "Presentar una denúncia."
 
-msgid "Select the context of your report:"
-msgstr "Selecciona el context de la teua denúncia:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Abans de continuar, per favor establixca una nova contrasenya."
@@ -571,6 +574,9 @@ msgstr "Qüestionari"
 
 msgid "Recipients"
 msgstr "Destinataris"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "dies"
@@ -1209,6 +1215,9 @@ msgstr "Envia"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Si ho confirma, posposarà la data de caducitat fins a:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Ésta es una plataforma de demostració, per favor no la utilitze per a enviaments reals."

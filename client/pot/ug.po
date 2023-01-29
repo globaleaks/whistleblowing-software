@@ -464,11 +464,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "بىر مەلۇمات يوللا"
 
-msgid "Select the context of your report:"
-msgstr "مەلۇماتىڭىزنىڭ مەزمۇنىنى تاللاڭ:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "بىر تەرەپ قىلىشتىن بۇرۇن، يېڭى بىر پارول بەلگىلەڭ."
@@ -559,6 +562,9 @@ msgstr "راي سىناش"
 
 msgid "Recipients"
 msgstr "تاپشۇرىۋالغۇچىلار"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "كۈنلەر"
@@ -1197,6 +1203,9 @@ msgstr "ئەۋەت"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "جەزىملىسىڭىز، سۈرۈك چېسلاسىنى بۇ كۈنگە كەينىگە سۈرگەن بولىسىز:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "بۇ بىر كۆرسەتمە سۇپا، بۇنى ھەقىقىي يوللانمىلار ئۈچۈن ئىشلەتمەڭ."

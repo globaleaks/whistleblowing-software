@@ -462,11 +462,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "Бир доклат йолла"
 
-msgid "Select the context of your report:"
-msgstr "Доклатиңизниң мәзмунини таллаң:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Бир тәрәп қилиштин бурун, йеңи бир парол бәлгиләң."
@@ -557,6 +560,9 @@ msgstr "Рай синаш"
 
 msgid "Recipients"
 msgstr "Тапшуривалғучилар"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "күнләр"
@@ -1195,6 +1201,9 @@ msgstr "Әвәт"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Җәзимлисиңиз, сүрүк чесласини бу күнгә кәйнигә сүргән болисиз:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Бу бир көрсәтмә супа, буни һәқиқий йолланмилар үчүн ишләтмәң."

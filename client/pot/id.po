@@ -487,11 +487,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "Buat laporan"
 
-msgid "Select the context of your report:"
-msgstr "Pilih konteks dari laporan Anda:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Sebelum melanjutkan, mohon atur kata sandi baru."
@@ -582,6 +585,9 @@ msgstr "Kuesioner"
 
 msgid "Recipients"
 msgstr "Penerima"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "hari"
@@ -1220,6 +1226,9 @@ msgstr "Kirim"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Dengan mengkonfirmasi, anda akan menunda tanggal kedaluwarsa menjadi: "
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Ini adalah platform demo, mohon tidak menggunakannya untuk pengiriman yang asli."

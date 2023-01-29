@@ -467,11 +467,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "報告を保存する"
 
-msgid "Select the context of your report:"
-msgstr "報告のコンテキストを選択してください:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "次に進む前に、新しいパスワードを設定してください。"
@@ -562,6 +565,9 @@ msgstr "アンケート"
 
 msgid "Recipients"
 msgstr "受信者"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "日"
@@ -1200,6 +1206,9 @@ msgstr "送信"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "確認すると、有効期限を以下に延期します:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "これはデモプラットフォームです。実際の提出には使用しないでください。"

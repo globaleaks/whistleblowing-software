@@ -463,11 +463,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
-msgid "Select the context of your report:"
-msgstr "የሪፖርትዎትን አገባበ ነገር ይምረጡ"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "ከመቀጠልዎ በፊት አዲስ የይለፍ ቃል ያዘጋጁ"
@@ -558,6 +561,9 @@ msgstr "መጠይቅ"
 
 msgid "Recipients"
 msgstr "ተቀባዮች"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "ቀናት"
@@ -1196,6 +1202,9 @@ msgstr "ይላኩ"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "በማረጋገጥ የሪፖርት መቃጠያ ቀኑን ያስተላልፋሉ፡-"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "ይህ የሙከራ የመሳርያ ስርኣት ነው፤ ለትክክለኛ ማስረከቢያ አትጠቀሙበት፡፡"

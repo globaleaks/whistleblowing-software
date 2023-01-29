@@ -148,7 +148,7 @@
   "Assigned to": "Assigned to",
   "Not provided.": "Not provided.",
   "File a report": "སྙན་ཞུ་ཞིག་ཞུ་གཏུག་བྱ།",
-  "Select the context of your report:": "ཁྱེད་ཀྱི་སྙན་ཐོའི་འབྲེལ་ཆགས་འདེམས།",
+  "Select a reporting channel:": "Select a reporting channel:",
   "Before proceeding, please set a new password.": "འགོ་འཛུགས་མ་བྱེད་གོང་། གསང་ཡིག་གསར་པ་ཞིག་སྒྲིག་བཀོད་གནང་རོགས།",
   "Before proceeding, please enable the two factor authentication.": "འགོ་འཛུགས་མ་བྱེད་གོང་། རིམ་པ་གཉིས་བཀའ་འཁྲོལ་ནུས་ལྡན་བཟོ་རོགས་གནང་། ",
   "Enable": "ནུས་ལྡན་བཟོ།",

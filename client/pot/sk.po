@@ -472,11 +472,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "podať oznámenie"
 
-msgid "Select the context of your report:"
-msgstr "Vyberte obsah správy:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Než budete pokračovať, nastavte prosím nové heslo."
@@ -567,6 +570,9 @@ msgstr "Dotazník"
 
 msgid "Recipients"
 msgstr "Príjemcovia"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "dní"
@@ -1205,6 +1211,9 @@ msgstr "Odoslať"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Potvrdením odložíte dátum exspirácie do:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Toto je demo platforma, nepoužívajte ju prosím pre skutočné podanie."

@@ -510,11 +510,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "تقديم بلاغ"
 
-msgid "Select the context of your report:"
-msgstr "حدد سياق بلاغك:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "قبل المتابعة، يرجى تغيير كلمة المرور الخاصة بك."
@@ -605,6 +608,9 @@ msgstr "استبيان"
 
 msgid "Recipients"
 msgstr "المتلقّون"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "‮أيّام"
@@ -1243,6 +1249,9 @@ msgstr "إرسال"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "عند التأكيد، سوف يؤجل موعد انتهاء الصلاحية إلى:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "هذه منصة تجريبية، يرجى عدم استخدامها في أي بلاغ حقيقي."

@@ -464,11 +464,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "Арз чудала"
 
-msgid "Select the context of your report:"
-msgstr "Хьайн орзан контекст харжа:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Кхин дIавахале, керла парол хIоттаехьа."
@@ -559,6 +562,9 @@ msgstr "Хеттар"
 
 msgid "Recipients"
 msgstr "ДIаэцархой"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "денош"
@@ -1197,6 +1203,9 @@ msgstr "ДIатаса"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Тlечlагlдича, ахь чекхдаларан хан дlатотту:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Хlара гайтаман платформа ю, баккъал а долчу чудаларшна лела ма елаш хIара."

@@ -13,7 +13,7 @@
 # erinm, 2021
 # erinm, 2021
 # tyfjoh, 2014
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2022
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2023
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -50,7 +50,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2022\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2023\n"
 "Language-Team: Dutch (http://www.transifex.com/otf/globaleaks/language/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -506,11 +506,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "Dien een rapport in"
 
-msgid "Select the context of your report:"
-msgstr "Selecteer de context van uw inzending:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Voor je verdergaat, stel alsjeblieft een nieuw wachtwoord in."
@@ -588,7 +591,7 @@ msgid "Report statuses"
 msgstr "Status van de inzending"
 
 msgid "Channels"
-msgstr ""
+msgstr "Kanalen"
 
 msgid "Hidden"
 msgstr "Verborgen"
@@ -601,6 +604,9 @@ msgstr "Vragenformulier"
 
 msgid "Recipients"
 msgstr "Ontvangers"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "dagen"
@@ -1239,6 +1245,9 @@ msgstr "Verzend"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Door te bevestigen, verander je de vervaldatum van de tip in:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Dit is een test platform, gebruik het niet voor echte inzendingen."

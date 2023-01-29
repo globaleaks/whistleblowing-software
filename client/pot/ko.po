@@ -463,11 +463,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "보고서 보관"
 
-msgid "Select the context of your report:"
-msgstr "보고서 컨텍스트를 선택하십시오."
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "계속하기 전에 새 비밀번호를 재설정하십시오."
@@ -558,6 +561,9 @@ msgstr "설문 조사"
 
 msgid "Recipients"
 msgstr "수신자"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "일"
@@ -1196,6 +1202,9 @@ msgstr "전송"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "확인 시 연기되는 만료 날짜:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "데모 플랫폼으로, 실제 제출에 사용할 수 없습니다."

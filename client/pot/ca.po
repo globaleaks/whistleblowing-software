@@ -476,16 +476,19 @@ msgid "Revoke access"
 msgstr "Revoca l'accés"
 
 msgid "Assigned to"
-msgstr ""
+msgstr "Assignat a"
 
 msgid "Not provided."
+msgstr "No facilitat."
+
+msgid "Set a reminder"
 msgstr ""
 
 msgid "File a report"
 msgstr "Presentar un informe"
 
-msgid "Select the context of your report:"
-msgstr "Selecciona el context del teu informe:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Abans de continuar, estableixi una nova contrasenya."
@@ -576,6 +579,9 @@ msgstr "Qüestionari"
 
 msgid "Recipients"
 msgstr "Persones destinatàries"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "dies"
@@ -1214,6 +1220,9 @@ msgstr "Envia-ho"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Si ho confirmes, posposaràs la data de caducitat fins a:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Aquesta és una plataforma de demostració, no la utilitzeu per a enviaments reals."

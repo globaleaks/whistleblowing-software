@@ -492,11 +492,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "Подать отчет"
 
-msgid "Select the context of your report:"
-msgstr "Выберите контекст для ваших материалов:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Прежде чем продолжить, пожалуйста, установите новый пароль."
@@ -587,6 +590,9 @@ msgstr "Опросник"
 
 msgid "Recipients"
 msgstr "Получатели"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "дней"
@@ -1225,6 +1231,9 @@ msgstr "Отправить"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "В случае подтверждения вы увеличите срок истечения сведения до:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Это демонстрационная платформа, не используйте ее для подачи реальных документов."

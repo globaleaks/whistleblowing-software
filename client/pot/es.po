@@ -9,7 +9,7 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # B. K., 2015
 # B. K., 2015
-# cacu <carlosm2@riseup.net>, 2015,2017
+# cacu <carlosm2@riseup.net>, 2015,2017,2022-2023
 # cacu <carlosm2@riseup.net>, 2015
 # cacu <carlosm2@riseup.net>, 2015,2017
 # Cesar Perez Guarda <kurvduam@gmail.com>, 2021
@@ -25,6 +25,7 @@
 # Ines Branco Lopez <ibranco@fibgar.org>, 2019-2020
 # Iván López Pérez <ioloo00@eresmas.com>, 2013
 # Iván López Pérez <ioloo00@eresmas.com>, 2013
+# José Javier Alamá Izquierdo, 2023
 # Lucrezia <luz.gatti@gmail.com>, 2013
 # Lucrezia <luz.gatti@gmail.com>, 2013
 # Manuel D. Serrat <manuel.serrat@antifraucv.es>, 2018-2019
@@ -45,7 +46,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2022\n"
+"Last-Translator: José Javier Alamá Izquierdo, 2023\n"
 "Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -452,7 +453,7 @@ msgid "Send a test email to your email address."
 msgstr "Enviar un correo de prueba a tu dirección de correo electrónico."
 
 msgid "Block the submission"
-msgstr "Impedir el reporte"
+msgstr "Bloquear el envío "
 
 msgid "Skip the recipient account creation."
 msgstr "Saltarse la creación de la cuenta del destinatario."
@@ -496,16 +497,19 @@ msgid "Revoke access"
 msgstr "Revocar acceso"
 
 msgid "Assigned to"
-msgstr ""
+msgstr "Asignado a"
 
 msgid "Not provided."
+msgstr "No proporcionada."
+
+msgid "Set a reminder"
 msgstr ""
 
 msgid "File a report"
 msgstr "Presentar un informe"
 
-msgid "Select the context of your report:"
-msgstr "Selecciona el contexto de tu reporte: "
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Antes de continuar, por favor establece una nueva contraseña."
@@ -597,11 +601,14 @@ msgstr "Cuestionario"
 msgid "Recipients"
 msgstr "Receptores"
 
+msgid "Reminder"
+msgstr ""
+
 msgid "days"
 msgstr "dias"
 
 msgid "Set the value to 0 to disable this feature."
-msgstr "Fija el valor a 0 para desactivar esta funcionalidad."
+msgstr "Establece el valor a 0 para desactivar esta funcionalidad."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Mostrar la interfaz de navegación de cuestionario"
@@ -776,7 +783,7 @@ msgstr "Para"
 msgid ""
 "Default mail configuration in use. Please consider using a private mail "
 "server."
-msgstr ""
+msgstr "Servidor de correo electrónico por defecto en uso. Por favor, considere el uso de un servidor de correo electrónico privado."
 
 msgid "SMTP email address"
 msgstr "Dirección de correo electrónico SMTP"
@@ -1157,7 +1164,7 @@ msgid "Forgot password?"
 msgstr "¿Has olvidado la contraseña?"
 
 msgid "Enter the two factor authentication code"
-msgstr "Inserta los dos códigos de autenticación "
+msgstr "Ingresa el código de autenticación en dos pasos"
 
 msgid "Authentication failed"
 msgstr "Autentificación fallida"
@@ -1193,7 +1200,7 @@ msgid "Enable two factor authentication"
 msgstr "Habilitar autentificación de doble factor"
 
 msgid "Before proceeding please read carefully the documentation at:"
-msgstr "Antes de continuar, por favor lee cuidadosamente la documentación en:"
+msgstr "Antes de continuar, por favor lea cuidadosamente la documentación en:"
 
 msgid "Account recovery key"
 msgstr "Código de recuperación de la cuenta"
@@ -1234,6 +1241,9 @@ msgstr "Enviar"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Al confirmar, pospondras la fecha de caducidad a:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Este es un buzón de demostración, por favor no lo uses para reportes reales. "
@@ -1310,7 +1320,7 @@ msgid "The receipt is either invalid or the report has expired."
 msgstr "El código es inválido o bien el reporte ha expirado"
 
 msgid "Select a file or drag it here."
-msgstr "Selecciona un archivo o arrástralo aquí "
+msgstr "Seleccione un archivo o arrástrelo aquí "
 
 msgid "Size:"
 msgstr "Tamaño:"
@@ -1374,7 +1384,7 @@ msgstr "Si necesitas soporte técnico, tienes preguntas generales, o tienes nuev
 msgid ""
 "If you want to contribute to software development or report a bug, please "
 "open an issue in our ticketing system:"
-msgstr "Si quieres contribuir al desarrollo del software o informar de un fallo, por favor, abre un asunto (issue) en nuestro sistema de tickets:"
+msgstr "Si quiere contribuir al desarrollo del software o informar de un fallo, por favor, abra un asunto (issue) en nuestro sistema de tickets:"
 
 msgid "Join our chat:"
 msgstr "Únete a nuestro chat:"
@@ -1487,7 +1497,7 @@ msgstr "Reportes deshabilitados."
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
-msgstr "Te estas conectando al servidor de forma no anónima y este nodo sólo soporta reportes anónimos"
+msgstr "Se está conectando al servidor de forma no anónima y este servidor sólo soporta entregas anónimas"
 
 msgid "Your report was successful."
 msgstr "Tu reporte se completó con éxito"
@@ -1498,7 +1508,7 @@ msgstr "Recuerda tu código para este reporte."
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Usar el recibo de 16 dígitos para iniciar sesión. Te permitirá ver cualquier mensaje que hayamos enviado, y también añadir información extra."
+msgstr "Usa el código de 16 dígitos para iniciar sesión. Te permitirá ver cualquier mensaje que hayamos enviado, y también añadir información extra."
 
 msgid "View your report"
 msgstr "Ver tu reporte"
@@ -1874,7 +1884,7 @@ msgstr "El alertador ha proporcionado su identidad"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr "Recibes este correo porque se ha solicitado un restablecimiento de la contraseña para la cuenta {Username}"
+msgstr "Recibe este correo porque se ha solicitado un restablecimiento de la contraseña para la cuenta {Username}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
@@ -1885,7 +1895,7 @@ msgid "You can confirm your request by clicking the following link:"
 msgstr "Puedes confirmar tu petición haciendo clic en el enlace siguiente:"
 
 msgid "Password reset instructions"
-msgstr "Instrucciones de reinicialización de contraseñas"
+msgstr "Instrucciones para el reinicio de contraseñas"
 
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "

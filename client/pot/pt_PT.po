@@ -11,7 +11,7 @@
 # Drew Melim <nokostya.translation@gmail.com>, 2014,2018
 # e8f1a29f7bd45d2490d729ad149fc504_6eadd8e, 2015
 # fc2d9c36d73e741383fbbf46a4aac49f_013445b, 2014
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2023
 # João Paulo Macedo Batalha <joao.batalha@transparencia.pt>, 2015
 # José Anjos, 2022
 # 425fe09b3064b9f906f637fff94056ae_a00ea56 <0fa3588fa89906bfcb3a354600956e0e_308047>, 2015-2016
@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2023\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -485,11 +485,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "Registar uma submissão"
 
-msgid "Select the context of your report:"
-msgstr "Selecione o contexto da sua submissão:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Antes de continuar, por favor, defina uma nova palavra-passe."
@@ -580,6 +583,9 @@ msgstr "Questionário"
 
 msgid "Recipients"
 msgstr "Destinatários"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "dias"
@@ -1219,6 +1225,9 @@ msgstr "Enviar"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Ao confirmar, adiará a data de validade da denúncia para:"
 
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
+
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Esta é uma plataforma de demonstração. Por favor não a utilize para submissões reais."
 
@@ -1374,7 +1383,7 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr "Recomendamos que aceda à seção “Preferências” para copiar a sua “Chave de recuperação de conta” e armazená-la em segurança. Esta chave será necessária para recuperar seu acesso à plataforma e aos seus dados caso se esqueça da sua palavra-passe."
+msgstr "Recomendamos que aceda à secção “Preferências” para copiar a sua “Chave de recuperação de conta” e armazená-la em segurança. Esta chave será necessária para recuperar seu acesso à plataforma e aos seus dados caso se esqueça da sua palavra-passe."
 
 msgid "The provided recovery key is invalid."
 msgstr "A chave de recuperação fornecida é inválida."

@@ -462,11 +462,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "ຍື່ນລາຍງານ"
 
-msgid "Select the context of your report:"
-msgstr "ເລືອກເນື້ອຫາຂອງລາຍງານຂອງທ່ານ:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "ກ່ອນດຳເນີນການ, ກະລຸນາຕັ້ງລະຫັດຜ່ານໃໝ່."
@@ -557,6 +560,9 @@ msgstr "ແບບສອບຖາມ"
 
 msgid "Recipients"
 msgstr "ຜູ້ຮັບ"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "ວັນ"
@@ -1195,6 +1201,9 @@ msgstr "ສົ່ງ"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "ການຢືນຢັນ, ໝາຍຄວາມວ່າທ່ານຈະເລື່ອນວັນທີໝົດອາຍຸໄປຍັງ:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "ນີ້ແມ່ນເປັນລະບົບສາທິດເທົ່ານັ້ນ, ກະລຸນາຢ່າໃຊ້ສຳລັບການສົ່ງຕົວຈິງ."

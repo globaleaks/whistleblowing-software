@@ -463,11 +463,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "အစီရင်ခံစာ တင်ပါ"
 
-msgid "Select the context of your report:"
-msgstr "သင့်အစီရင်ခံစာ၏ အကြောင်းအရာကို ရွေးချယ်ပါ - "
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "ဆက်မလုပ်မီ ကျေးဇူးပြု၍ စကားဝှက်အသစ် သတ်မှတ်ပါ။ "
@@ -558,6 +561,9 @@ msgstr "မေးခွန်းလွှာ"
 
 msgid "Recipients"
 msgstr "လက်ခံသူများ"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "ရက်များ"
@@ -1196,6 +1202,9 @@ msgstr "ပို့မည်"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "အတည်ပြုခြင်းအားဖြင့် သင်သည် သက်တမ်းကုန်ဆုံးရက်ကို ရွှေ့ဆိုင်းပါမည် -"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "ဤပလက်ဖောင်းသည် နမူနာ ဖြစ်၍ အမှန်တကယ် တင်သွင်းမှုများအတွက် အသုံးမပြုပါနှင့်။"

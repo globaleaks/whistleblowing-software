@@ -469,11 +469,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "Hesabat göndər"
 
-msgid "Select the context of your report:"
-msgstr "Hesabatın mövzusunu seç:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Davam etməzdən öncə yeni parol yaradın."
@@ -564,6 +567,9 @@ msgstr "Sorğu"
 
 msgid "Recipients"
 msgstr "Alıcılar"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "günlər"
@@ -1202,6 +1208,9 @@ msgstr "Göndər"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Təsdiqləməklə, hesabatın tarixini dəyişəcəksiz:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Bu bir demo platformadır, real təqdimatlar üçün bundan istifadə etməyin."

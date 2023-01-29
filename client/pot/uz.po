@@ -464,11 +464,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "Anonim xabar yuborish"
 
-msgid "Select the context of your report:"
-msgstr "Xabaringiz kanalini tanlang:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Davom etishdan oldin yangi parol belgilang."
@@ -559,6 +562,9 @@ msgstr "Savolnomalar"
 
 msgid "Recipients"
 msgstr "Qabul qiluvchilar"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "kun"
@@ -1197,6 +1203,9 @@ msgstr "Yuborish"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Tasdiqlansa, muddat quyidagi sanagacha kechiktiriladi:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Bu — demo platforma, unga haqiqiy anonim xabarlar yubormang."

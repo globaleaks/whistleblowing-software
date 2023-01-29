@@ -2,7 +2,7 @@
 # Translators:
 # Anja Xhakani <anja@ura.design>, 2021
 # Besnik Bleta <besnik@programeshqip.org, 2021
-# Besnik Bleta <besnik@programeshqip.org>, 2021-2022
+# Besnik Bleta <besnik@programeshqip.org>, 2021-2023
 # Bujar Tafili, 2015
 # Bujar Tafili, 2015
 # Florent <fspahija@kdi-kosova.org>, 2021-2022
@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2015-2022\n"
+"Last-Translator: Besnik Bleta <besnik@programeshqip.org>, 2021-2023\n"
 "Language-Team: Albanian (http://www.transifex.com/otf/globaleaks/language/sq/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -471,11 +471,14 @@ msgstr "Caktuar për"
 msgid "Not provided."
 msgstr "S’është dhënë."
 
+msgid "Set a reminder"
+msgstr "Ujdisni një kujtues"
+
 msgid "File a report"
 msgstr "Depozitoni një raportim"
 
-msgid "Select the context of your report:"
-msgstr "Përzgjidhni kontekstin e raportimit tuaj:"
+msgid "Select a reporting channel:"
+msgstr "Përzgjidhni një kanal raportimi:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Para se të shkoni më tej, ju lutemi, caktoni një fjalëkalim të ri."
@@ -566,6 +569,9 @@ msgstr "Pyetësor"
 
 msgid "Recipients"
 msgstr "Marrës"
+
+msgid "Reminder"
+msgstr "Kujtues"
 
 msgid "days"
 msgstr "ditë"
@@ -1204,6 +1210,9 @@ msgstr "Dërgoje"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Duke e ripohuar, do ta shtyni datën e skadimit më:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr "Duke e ripohuar, do të caktoni një kujtues më datë:"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Kjo është një platformë demonstrimi, ju lutemi, mos e përdorni për parashtrime të njëmendta."

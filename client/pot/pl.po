@@ -482,11 +482,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr " \nWyślij zgłoszenie"
 
-msgid "Select the context of your report:"
-msgstr "Wybierz kontekst swojego zgłoszenia:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Przed przejściem dalej proszę ustawić nowe hasło."
@@ -577,6 +580,9 @@ msgstr "Ankieta"
 
 msgid "Recipients"
 msgstr "Odbiorcy"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "dni"
@@ -1215,6 +1221,9 @@ msgstr "Wyślij"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Potwierdzasz przesunięcie daty wygaśnięcia na:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "To jest platforma demo, proszę nie używać jej do prawdziwych zgłoszeń."

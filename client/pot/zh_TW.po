@@ -469,11 +469,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "提交报告"
 
-msgid "Select the context of your report:"
-msgstr "選擇您報告合適的情況："
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "繼續之前，請設一個新密碼。"
@@ -564,6 +567,9 @@ msgstr "問卷"
 
 msgid "Recipients"
 msgstr "收件人"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "天"
@@ -1202,6 +1208,9 @@ msgstr "送出"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "請確認你將把截止日期延後到："
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "這是示範平台，請勿利用它作掲密提交。"

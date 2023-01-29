@@ -466,10 +466,13 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
-msgid "Select the context of your report:"
+msgid "Select a reporting channel:"
 msgstr ""
 
 msgid "Before proceeding, please set a new password."
@@ -561,6 +564,9 @@ msgstr "Cuestionario"
 
 msgid "Recipients"
 msgstr "Destinatarios"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "días"
@@ -1199,6 +1205,9 @@ msgstr "Enviar"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Ao confirmar, adiarás a data de caducidade a:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr ""

@@ -462,11 +462,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "Teikti pranešimą"
 
-msgid "Select the context of your report:"
-msgstr "Pasirinkite pranešimo kontekstą:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Prieš pradėdami sukurkite naują slaptažodį."
@@ -557,6 +560,9 @@ msgstr "Klausimynas"
 
 msgid "Recipients"
 msgstr "Gavėjai"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "dienos"
@@ -1195,6 +1201,9 @@ msgstr "Siųsti"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Patvirtindami atidėsite galiojimo pabaigos datą iki:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Ši platforma demonstracinė, todėl nenaudokite jos tikriems pateikimams."

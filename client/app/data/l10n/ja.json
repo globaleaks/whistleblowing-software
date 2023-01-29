@@ -148,7 +148,7 @@
   "Assigned to": "Assigned to",
   "Not provided.": "Not provided.",
   "File a report": "報告を保存する",
-  "Select the context of your report:": "報告のコンテキストを選択してください:",
+  "Select a reporting channel:": "Select a reporting channel:",
   "Before proceeding, please set a new password.": "次に進む前に、新しいパスワードを設定してください。",
   "Before proceeding, please enable the two factor authentication.": "次に進む前に、2要素認証を有効にしてください。",
   "Enable": "有効",

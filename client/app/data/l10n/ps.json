@@ -148,7 +148,7 @@
   "Assigned to": "Assigned to",
   "Not provided.": "Not provided.",
   "File a report": "د رپوټ ورکول",
-  "Select the context of your report:": "د خپل رپوټ زمینه انتخاب کړئ:",
+  "Select a reporting channel:": "Select a reporting channel:",
   "Before proceeding, please set a new password.": "مخکې تر دې چې وړاندې ولاړ شئ، مهرباني وکړئ یو نوی پټ نوم ورکړئ.",
   "Before proceeding, please enable the two factor authentication.": "له تر سره کولو وړاندې، د مهرباني له مخې دوه عامله تصدیق فعال کړئ.",
   "Enable": "فعالول",

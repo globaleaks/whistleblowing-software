@@ -3,7 +3,7 @@
 # Andrea Lusuardi <uovobw@gmail.com>, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # marco calamari <marcoc@marcoc.it>, 2013
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2022
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2023
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013-2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2022\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2023\n"
 "Language-Team: Italian (http://www.transifex.com/otf/globaleaks/language/it/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -484,11 +484,14 @@ msgstr "Assegnato a"
 msgid "Not provided."
 msgstr "Non fornita."
 
+msgid "Set a reminder"
+msgstr "Imposta un promemoria"
+
 msgid "File a report"
 msgstr "Invia una segnalazione"
 
-msgid "Select the context of your report:"
-msgstr "Seleziona il contesto della tua segnalazione"
+msgid "Select a reporting channel:"
+msgstr "Scegli un canale di segnalazione:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Prima di procedere, sei pregato di impostare una nuova password."
@@ -579,6 +582,9 @@ msgstr "Questionario"
 
 msgid "Recipients"
 msgstr "Riceventi"
+
+msgid "Reminder"
+msgstr "Promemoria"
 
 msgid "days"
 msgstr "giorni"
@@ -1217,6 +1223,9 @@ msgstr "Invia"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Confermando postporrai la data di scadenza al:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr "Confermando imposterai un reminder in data:"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Questa è una piattaforma dimostrativa, si prega di non usarla per vere segnalazioni."

@@ -463,11 +463,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "སྙན་ཞུ་ཞིག་ཞུ་གཏུག་བྱ།"
 
-msgid "Select the context of your report:"
-msgstr "ཁྱེད་ཀྱི་སྙན་ཐོའི་འབྲེལ་ཆགས་འདེམས།"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "འགོ་འཛུགས་མ་བྱེད་གོང་། གསང་ཡིག་གསར་པ་ཞིག་སྒྲིག་བཀོད་གནང་རོགས།"
@@ -558,6 +561,9 @@ msgstr "དྲི་ཚན།"
 
 msgid "Recipients"
 msgstr "འབྱོར་ཡུལ།"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "ཉིན།"
@@ -1196,6 +1202,9 @@ msgstr "གཏོང་།"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "གཏན་འཁེལ་བྱེད་པ་ཡིས། ཁྱེད་ཀྱིས་དུས་ཡུལ་ཚེས་གྲངས་དེ་འདིའི་སྟེང་ཕྱི་བཤོལ་བྱེད་པ་ཡིན།:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "འདི་ནི་འགྲེམས་སྟོན་གླེང་སྟེགས་ཤིག་ཡིན། དེ་ཞུ་འབུལ་དངོས་ཆེད་བེད་སྤྱོད་མ་གནང་རོགས།"

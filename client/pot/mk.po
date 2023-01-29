@@ -464,11 +464,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "Поднеси извештај"
 
-msgid "Select the context of your report:"
-msgstr "Изберете ја содржината/контекстот на вашиот извештај:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Пред да продолжите, ве молиме поставете нова лозинка."
@@ -559,6 +562,9 @@ msgstr "Прашалник"
 
 msgid "Recipients"
 msgstr "Примачи"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "денови"
@@ -1197,6 +1203,9 @@ msgstr "Испрати"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Со потврдување, ќе го одложите датумот на истекување на:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Ова е демо платформа, ве молиме не ја користете за реални поднесоци. "

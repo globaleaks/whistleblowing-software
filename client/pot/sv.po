@@ -1,6 +1,6 @@
 # 
 # Translators:
-# Daniel Vaknine, 2022
+# Daniel Vaknine, 2022-2023
 # Daniel Vaknine <vaknine.daniel@gmail.com>, 2021
 # eckeman <eckeman@zoho.com>, 2020
 # eckeman <eckeman@zoho.com>, 2020
@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017,2020-2022\n"
+"Last-Translator: Daniel Vaknine, 2022-2023\n"
 "Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -134,7 +134,7 @@ msgid "Refresh"
 msgstr "Ladda om sidan"
 
 msgid "Channel"
-msgstr ""
+msgstr "Kanal"
 
 msgid "Preview"
 msgstr "Förhandsgranska"
@@ -480,16 +480,19 @@ msgid "Revoke access"
 msgstr "Återkalla åtkomst"
 
 msgid "Assigned to"
-msgstr ""
+msgstr "Tilldelat till"
 
 msgid "Not provided."
+msgstr "Tillhandahålls inte."
+
+msgid "Set a reminder"
 msgstr ""
 
 msgid "File a report"
 msgstr "Lämna en rapport"
 
-msgid "Select the context of your report:"
-msgstr "Välj kontext för din rapport:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Vänligen ställ in ett lösenord innan du går vidare."
@@ -567,7 +570,7 @@ msgid "Report statuses"
 msgstr "Rapportera statusar"
 
 msgid "Channels"
-msgstr ""
+msgstr "Kanaler"
 
 msgid "Hidden"
 msgstr "Dold"
@@ -580,6 +583,9 @@ msgstr "Frågeformulär"
 
 msgid "Recipients"
 msgstr "Mottagare"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "dagar"
@@ -1197,7 +1203,7 @@ msgid "Thank you."
 msgstr "Tack."
 
 msgid "We will try to get back to you as soon as possible."
-msgstr "Vi ska försöka kontakta dig så fort som möjligt."
+msgstr "Vi ska försöka återkomma till dig via plattformen så fort som möjligt."
 
 msgid "Submit"
 msgstr "Skicka"
@@ -1218,6 +1224,9 @@ msgstr "Skicka"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Genom att klicka på förlängning så kommer du att förlänga tipsets utgångsdatum till:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Detta är en demonstrationsplattform, vänligen använd den inte för verkliga tips."
@@ -1607,7 +1616,7 @@ msgid ""
 msgstr "Har dessa organisationer undersökt dina påståenden? Om så, vad var resultatet?"
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr "Vad är resultatet du vill uppnå med vår support?"
+msgstr "Vad är resultatet du vill uppnå med din rapport?"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Vill du ge oss dina identifieringsuppgifter?"

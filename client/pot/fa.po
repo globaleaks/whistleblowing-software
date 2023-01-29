@@ -487,13 +487,16 @@ msgid "Assigned to"
 msgstr "اختصاص یافته به"
 
 msgid "Not provided."
+msgstr "ارائه نشده است."
+
+msgid "Set a reminder"
 msgstr ""
 
 msgid "File a report"
 msgstr "تشکیل یک گزارش"
 
-msgid "Select the context of your report:"
-msgstr "زمینهٔ گزارش خود را انتخاب کنید:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "قبل از ادامه لطفاً یک گذرواژهٔ جدید تنظیم کنید."
@@ -584,6 +587,9 @@ msgstr "پرسش‌نامه"
 
 msgid "Recipients"
 msgstr "گیرندگان"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "روز"
@@ -1222,6 +1228,9 @@ msgstr "ارسال"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "با تأیید کردن، شما تاریخ انقضا را عقب خواهید انداخت به:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "این نسخهٔ پلتفرم صرفاً نمایشی است، لطفا از آن برای ارسال‌های واقعی استفاده نکنید."

@@ -467,11 +467,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "Oddaj prijavo"
 
-msgid "Select the context of your report:"
-msgstr "Izberite tematiko vašega prispevka:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Preden nadaljujete, nastavite novo geslo."
@@ -562,6 +565,9 @@ msgstr "Vprašalniki"
 
 msgid "Recipients"
 msgstr "Prejemniki"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "dnevi"
@@ -1200,6 +1206,9 @@ msgstr "Pošlji"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "S potrditvijo, prelagate rok veljavnosti do:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "To je platforma za prikaz, ne uporabljajte je za oddajanje resničnih prijav. "

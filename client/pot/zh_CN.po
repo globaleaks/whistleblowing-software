@@ -483,11 +483,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "提交报告"
 
-msgid "Select the context of your report:"
-msgstr "请选择报告的上下文："
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "请设置新密码以继续。"
@@ -578,6 +581,9 @@ msgstr "问卷"
 
 msgid "Recipients"
 msgstr "接收人"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "天"
@@ -1216,6 +1222,9 @@ msgstr "发送"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "确认之后，过期日期将推迟至："
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "这是演示平台，请勿提交真实内容。"

@@ -462,11 +462,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "Bir melumat yolla"
 
-msgid "Select the context of your report:"
-msgstr "Melumatingizning mezmunini tallang:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Bir terep qilishtin burun, yéngi bir parol belgileng."
@@ -557,6 +560,9 @@ msgstr "Ray sinash"
 
 msgid "Recipients"
 msgstr "Tapshuriwalghuchilar"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "Künler"
@@ -1195,6 +1201,9 @@ msgstr "Ewet"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Jezimlisingiz, sürük chéslasini bu kün’ge keynige sürgen bolisiz:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Bu bir körsetme supa, buni heqiqiy yollanmilar üchün ishletmeng."

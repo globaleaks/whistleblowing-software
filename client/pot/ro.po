@@ -478,11 +478,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "Depune o sesizare"
 
-msgid "Select the context of your report:"
-msgstr "Selectează contextul sesizării tale:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Înainte de a începe, te rugăm să îți setezi o nouă parolă."
@@ -573,6 +576,9 @@ msgstr "Chestionar"
 
 msgid "Recipients"
 msgstr "Destinatari"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "zile"
@@ -1211,6 +1217,9 @@ msgstr "Trimite"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Confirmând, vei amâna data de expirare până la:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Aceasta este o platformă demo, te rugăm să nu o folosești pentru sesizări reale."

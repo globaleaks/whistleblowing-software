@@ -508,11 +508,14 @@ msgstr "Zugewiesen an"
 msgid "Not provided."
 msgstr "Nicht angegeben."
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "Einen Bericht einreichen"
 
-msgid "Select the context of your report:"
-msgstr "Wählen Sie den Kontext Ihres Berichts aus:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Bevor Sie fortfahren, legen Sie bitte ein neues Passwort fest."
@@ -603,6 +606,9 @@ msgstr "Fragebogen"
 
 msgid "Recipients"
 msgstr "Empfänger"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "Tage"
@@ -1241,6 +1247,9 @@ msgstr "Senden"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Mit der Bestätigung werden Sie das Ablaufdatum hinausschieben bis:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Dies ist eine Demonstrationswebsite, bitte nutzen Sie diese nicht für tatsächliche Einreichungen."

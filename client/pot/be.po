@@ -463,11 +463,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "Падаць справаздачу"
 
-msgid "Select the context of your report:"
-msgstr "Апішыце кантэкст вашай справаздачы:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Перад тым як працягнуць, к.л., стварыце новы пароль."
@@ -558,6 +561,9 @@ msgstr "Анкета"
 
 msgid "Recipients"
 msgstr "Атрымальнікі"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "дн."
@@ -1196,6 +1202,9 @@ msgstr "Адправіць"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Пацвярджаючы, вы пераносіце сканчэнне тэрміну дзеяння справаздачы на:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Гэта дэма-платформа, калі ласка, не выкарыстоўвайце яе для падачы рэальных матэрыялаў."

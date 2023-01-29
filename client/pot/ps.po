@@ -462,11 +462,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "د رپوټ ورکول"
 
-msgid "Select the context of your report:"
-msgstr "د خپل رپوټ زمینه انتخاب کړئ:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "مخکې تر دې چې وړاندې ولاړ شئ، مهرباني وکړئ یو نوی پټ نوم ورکړئ."
@@ -557,6 +560,9 @@ msgstr "پوښتنلیک"
 
 msgid "Recipients"
 msgstr "تر لاسه کوونکي"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "ورځې"
@@ -1195,6 +1201,9 @@ msgstr "لیږل"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "په تصدیق کېدو سره به تاسې د انقضاء نېټه وځنډوئ تر: "
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "دا یو نمایشي پلټفارم دی، د مهرباني له مخې هغه د ریښتینو تسلیمیو لپاره مه کاروئ."

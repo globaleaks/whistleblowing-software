@@ -472,11 +472,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "Картотекиране на сигнал"
 
-msgid "Select the context of your report:"
-msgstr "Изберете темата на Вашия сигнал:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Преди да продължите, моля, задайте нова парола."
@@ -567,6 +570,9 @@ msgstr "Въпросник"
 
 msgid "Recipients"
 msgstr "Получатели"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "дни"
@@ -1205,6 +1211,9 @@ msgstr "Изпращане"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Като потвърдите, отлагате датата на изтичане до:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Това е демоплатформа. Моля, не я използвайте за подаване на истински сигнали."

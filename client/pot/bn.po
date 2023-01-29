@@ -469,11 +469,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "একটি রিপোর্ট জমা দিন"
 
-msgid "Select the context of your report:"
-msgstr "আপনার রিপোর্টের প্রসঙ্গটি নির্বাচন করুনঃ"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "এগিয়ে যাওয়ার আগে, দয়া করে একটি নতুন পাসওয়ার্ড সেট করুন।"
@@ -564,6 +567,9 @@ msgstr "প্রশ্নাবলী"
 
 msgid "Recipients"
 msgstr "প্রাপক"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "দিন"
@@ -1202,6 +1208,9 @@ msgstr "পাঠান"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "নিশ্চিত করলে, আপনি মেয়াদ শেষ হওয়ার তারিখটি এখানে স্থগিত করবেন:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "এটি একটি পরীক্ষামূলক প্ল্যাটফর্ম, দয়া করে এটি বাস্তব রিপোর্ট জমা দেওয়ার জন্য ব্যবহার করবেন না।"

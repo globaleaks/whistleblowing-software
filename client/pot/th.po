@@ -472,11 +472,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "ยื่นรายงาน"
 
-msgid "Select the context of your report:"
-msgstr "เลือกบริบทของรายงานของคุณ:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "ก่อนจะไปต่อ กรุณาตั้งรหัสผ่านใหม่"
@@ -567,6 +570,9 @@ msgstr "แบบสอบถาม"
 
 msgid "Recipients"
 msgstr "ผู้รับ"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "วัน"
@@ -1205,6 +1211,9 @@ msgstr "ส่ง"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "เมื่อยืนยัน คุณจะเลื่อนวันหมดอายุไปที่:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "นี่เป็นแพลตฟอร์มทดลอง กรุณาอย่าใช้เพื่อส่งรายงานจริง"

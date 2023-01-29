@@ -462,11 +462,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "Эсабат бермек"
 
-msgid "Select the context of your report:"
-msgstr "Малюматларынъыз ичюн контекст сайланъыз:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Девам этмезден эвель, лютфен, янъы пароль яратынъыз."
@@ -557,6 +560,9 @@ msgstr "Суаллер джедвели"
 
 msgid "Recipients"
 msgstr "Алыджылар"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "куньлер"
@@ -1195,6 +1201,9 @@ msgstr "Ёлламакъ"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Тасдикъ олунса, сиз сонъ къулланма тарихини бу шекильде узатырсынъыз:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Бу косьтерме платформасыдыр, оны керчек весикъаларнынъ берильмеси ичюн къулланманъыз."

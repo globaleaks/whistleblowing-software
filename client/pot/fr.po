@@ -495,16 +495,19 @@ msgid "Revoke access"
 msgstr "Révoquer l’accès"
 
 msgid "Assigned to"
-msgstr ""
+msgstr "Assigné à"
 
 msgid "Not provided."
+msgstr "N’est pas indiquée."
+
+msgid "Set a reminder"
 msgstr ""
 
 msgid "File a report"
 msgstr "Remplir un signalement"
 
-msgid "Select the context of your report:"
-msgstr "Sélectionnez le contexte de votre signalement :"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Avant de poursuivre, veuillez définir un nouveau mot de passe."
@@ -595,6 +598,9 @@ msgstr "Questionnaire"
 
 msgid "Recipients"
 msgstr "Destinataires"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "jours"
@@ -1233,6 +1239,9 @@ msgstr "Envoyer"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "En confirmant, vous différerez la date d’expiration au :"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Ceci est une plateforme de démonstration. Veuillez ne pas l’utiliser pour des envois réels."

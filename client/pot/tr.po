@@ -15,7 +15,7 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # uskumru, 2013
-# Kaya Zeren <kayazeren@gmail.com>, 2020-2022
+# Kaya Zeren <kayazeren@gmail.com>, 2020-2023
 # msare <mervesareakin@gmail.com>, 2014
 # On the Line Turkiye <onthelineturkiye@gmail.com>, 2016
 # Ozgur Yasin <yasinaydin@korsanparti.org>, 2014
@@ -33,7 +33,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022\n"
+"Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2020-2023\n"
 "Language-Team: Turkish (http://www.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -489,11 +489,14 @@ msgstr "Şu kişiye atanmış"
 msgid "Not provided."
 msgstr "Belirtilmemiş."
 
+msgid "Set a reminder"
+msgstr "Hatırlatıcı ayarla"
+
 msgid "File a report"
 msgstr "Bir bildirimde bulunun"
 
-msgid "Select the context of your report:"
-msgstr "Raporunuzun içeriğini seçin:"
+msgid "Select a reporting channel:"
+msgstr "Bir bildirim kanalı seçin:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Devam etmeden önce, lütfen yeni bir parola ayarlayın."
@@ -584,6 +587,9 @@ msgstr "Anket"
 
 msgid "Recipients"
 msgstr "Alıcılar"
+
+msgid "Reminder"
+msgstr "Hatırlatıcı"
 
 msgid "days"
 msgstr "gün"
@@ -1222,6 +1228,9 @@ msgstr "Gönder"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Onaylayarak, gönderinin geçerlilik tarihini şu tarihe erteleyeceksiniz:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr "Onaylayarak, şu tarih için bir hatırlatıcı ayarlayacaksınız:"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Bu bir tanıtım platformudur, lütfen gerçek gönderimler için kullanmayın."

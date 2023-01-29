@@ -463,11 +463,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "Отчет жазыңыз"
 
-msgid "Select the context of your report:"
-msgstr "Отчетуңуздун контекстин тандаңыз:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Улантуудан мурун, жаңы сырсөз коюңуз."
@@ -558,6 +561,9 @@ msgstr "Анкета"
 
 msgid "Recipients"
 msgstr "Алуучулар"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "күндөр"
@@ -1196,6 +1202,9 @@ msgstr "Жөнөтүү"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Тастыктоо менен жарактуулук мөөнөтүн төмөнкүгө жылдырасыз:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Бул демо платформа, аны чыныгы тапшыруулар үчүн колдонбоңуз."

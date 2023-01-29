@@ -7,7 +7,7 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # trendspotter <jirka.p@volny.cz>, 2019
-# Jiří Skryja, 2022
+# Jiří Skryja, 2022-2023
 # trendspotter <jirka.p@volny.cz>, 2019
 # trendspotter <jirka.p@volny.cz>, 2018-2019,2021
 # Lenka Ježková <lenka.jezkova@oziveni.cz>, 2019-2020
@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2022\n"
+"Last-Translator: Jiří Skryja, 2022-2023\n"
 "Language-Team: Czech (http://www.transifex.com/otf/globaleaks/language/cs/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -124,7 +124,7 @@ msgid "Refresh"
 msgstr "Obnovit"
 
 msgid "Channel"
-msgstr ""
+msgstr "Kanál"
 
 msgid "Preview"
 msgstr "Náhled"
@@ -298,7 +298,7 @@ msgid "Strong"
 msgstr "Silný"
 
 msgid "Text shown on top of the interface for selecting channels"
-msgstr ""
+msgstr "Text zobrazený v horní části rozhraní pro výběr kanálů"
 
 msgid "Silence email notifications"
 msgstr "Tiché emailové notifikace"
@@ -470,16 +470,19 @@ msgid "Revoke access"
 msgstr "Odvolat přístup"
 
 msgid "Assigned to"
-msgstr ""
+msgstr "Přiřazeno k"
 
 msgid "Not provided."
+msgstr "Není k dispozici."
+
+msgid "Set a reminder"
 msgstr ""
 
 msgid "File a report"
 msgstr "Podat oznámení"
 
-msgid "Select the context of your report:"
-msgstr "Vyberte obsah Vašeho oznámení:"
+msgid "Select a reporting channel:"
+msgstr "Vyberte kanál hlášení:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Než budete pokračovat, nastavte prosím nové heslo."
@@ -557,7 +560,7 @@ msgid "Report statuses"
 msgstr "Stav oznámení"
 
 msgid "Channels"
-msgstr ""
+msgstr "Kanály"
 
 msgid "Hidden"
 msgstr "Skrytý"
@@ -570,6 +573,9 @@ msgstr "Dotazník"
 
 msgid "Recipients"
 msgstr "Příjemci"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "dnů"
@@ -1208,6 +1214,9 @@ msgstr "Odeslat"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Potvrzením odložíte datum expirace do:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr "Potvrzením nastavíte zbývající datum:"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Toto je demo platforma, nepoužívejte ji prosím pro skutečné podání oznámení."

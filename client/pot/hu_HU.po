@@ -479,11 +479,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "Jelentés beküldése"
 
-msgid "Select the context of your report:"
-msgstr "Válassza ki a beküldés környezetét:"
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Továblépés előtt kérjük, állítson be új jelszót"
@@ -574,6 +577,9 @@ msgstr "Kérdőívek"
 
 msgid "Recipients"
 msgstr "Címzettek"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "nap"
@@ -1212,6 +1218,9 @@ msgstr "Küldés"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Az elfogadással meghosszabbítja a lejárati dátumot erre:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Ez egy demó telepítés, kérjük ne használja valódi beküldésekre."

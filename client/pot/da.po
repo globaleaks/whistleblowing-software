@@ -469,11 +469,14 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
+msgid "Set a reminder"
+msgstr ""
+
 msgid "File a report"
 msgstr "Indsend en rapportering"
 
-msgid "Select the context of your report:"
-msgstr "Vælg hvilken sammehæng din indsendelse indgår i."
+msgid "Select a reporting channel:"
+msgstr ""
 
 msgid "Before proceeding, please set a new password."
 msgstr "Før du fortsætter bedes du indstille en ny adgangskode."
@@ -564,6 +567,9 @@ msgstr "Spørgeskema"
 
 msgid "Recipients"
 msgstr "Modtagere"
+
+msgid "Reminder"
+msgstr ""
 
 msgid "days"
 msgstr "dage"
@@ -1202,6 +1208,9 @@ msgstr "Send"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Ved at bekræfte udsætter du udløbsdatoen til:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Dette er en demonstrationsplatform. Undlad at bruge den til rigtige indsendelser."
