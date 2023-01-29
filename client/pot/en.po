@@ -464,8 +464,8 @@ msgstr "Not provided."
 msgid "File a report"
 msgstr "File a report"
 
-msgid "Select the context of your report:"
-msgstr "Select the context of your report:"
+msgid "Select a reporting channel:"
+msgstr "Select a reporting channel:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Before proceeding, please set a new password."
