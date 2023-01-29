@@ -24,6 +24,10 @@
       return false;
     }
 
+    if (!(window.crypto.subtle)) {
+      return false;
+    }
+
     if (!(window.File && window.FileList && window.FileReader)) {
       return false;
     }
