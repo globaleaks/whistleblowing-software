@@ -1,3 +1,17 @@
+Changes in version 4.10.15
+    Fix regression on multimedia content visualization due to restricted
+      Content Security Policy (#3307)
+    Modify Tor indicator to track if the whistleblower has always used
+      Tor (#3299)
+    Make it possible to load GIF and JPEG images as logo (#3301)
+    Revise password scoring function to require at least 12 characters
+      and at least 10 different characters (#3311)
+    Added data filters on report list page
+    Implement responsive menu and add icons to menu items
+    Update translations
+    [doc] Revise Application Security section
+    [doc] Update documentation about the content security policy
+
 Changes in version 4.10.14
     Apply minor UI fixes
     Bump client dependencies to latest versions
