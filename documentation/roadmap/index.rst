@@ -2,7 +2,7 @@ Project Roadmap
 ===============
 
 .. NOTE::
-  This tentative roadmap is built by the GlobaLeaks team in order to try to respond to main users' needs. Please get sure that the need of your projects and users are well represented on the project `Ticketing System <https://slack.globaleaks.org>`_. If your organization could fund the development of parts of this roadmap please write us at info@globaleaks.org
+  This tentative roadmap is built by the GlobaLeaks team in order to try to respond to main users' needs. Please get sure that the needs of your projects and users are well represented on the project `Ticketing System <https://github.com/globaleaks/GlobaLeaks/issues>`_. If your organization could fund the development of parts of this roadmap please write us at info@globaleaks.org
 
 Introduction
 ------------
@@ -10,20 +10,20 @@ Introduction
 
 Started in 2011, the software is now widely used worldwide by more than 3000 organizations working in the fields of anti-corruption activism, human rights violations reporting, investigative journalism, and corporate compliance.
 
-This document details the main areas of research development and represents the actual tentative readmap of consolidation planned for 2021-2023 based on the analysis of the large set of user needs collected within the official `Ticketing System <https://github.com/globaleaks/GlobaLeaks/issues>`_.
+This document details the main areas of research development and represents the actual tentative readmap of consolidation planned for 2023-2025 based on the analysis of the large set of user needs collected within the official `Ticketing System <https://github.com/globaleaks/GlobaLeaks/issues>`_.
 
 Development Areas
 -----------------
 
 Application Client Update
 .........................
-GlobaLeeaks client is still based on Angular 1 and on other stable but outdated components. Considering the maturity of the technology and of the libraries adopted, this does not currently represent any security risk but as the time passes by, it significatively impacts the possibility of growth of the application, especially in relation to the set of planned project extensions.
+GlobaLeaks client is still based on Angular 1 and on other stable but outdated components. Considering the maturity of the technology and of the libraries adopted, this does not currently represent any security risk but as the time passes by, it significatively impacts the possibility of growth of the application, especially in relation to the set of planned project extensions.
 
 Within this project idea we propose to rewrite the current application client pursuing the following set of goals:
 
-- Bump of the core client library from AngularJs to Angular;
+- Bump of the core client library from AngularJS to Angular;
 - Bump of Bootstrap library from Bootstrap 4 to Bootstrap 5;
-- General optimization and modularization of the client to foster more code reuse and AGILE development.
+- General optimization and modularization of the client
 
 Statistics and Reporting
 ........................
