@@ -1,3 +1,6 @@
+Changes in version 4.10.16
+    Fix packaging issue preventing release 4.10.15 to work
+
 Changes in version 4.10.15
     Fix regression on multimedia content visualization due to restricted
       Content Security Policy (#3307)
