@@ -16,20 +16,20 @@
         "angular-aria": "1.8.3",
         "angular-dynamic-locale": "0.1.38",
         "angular-file-saver": "1.1.3",
-        "angular-filter": "^0.4.7",
+        "angular-filter": "0.5.17",
         "angular-i18n": "1.8.3",
         "angular-qrcode": "7.2.0",
         "angular-resource": "1.8.3",
         "angular-route": "1.8.3",
         "angular-sanitize": "1.8.3",
-        "angular-translate": "^2.8.1",
-        "angular-translate-loader-static-files": "^2.8.1",
-        "angular-translate-loader-url": "^2.8.1",
+        "angular-translate": "2.19.0",
+        "angular-translate-loader-static-files": "2.19.0",
+        "angular-translate-loader-url": "2.19.0",
         "angularjs-dropdown-multiselect": "2.0.0-beta.10",
         "bootstrap": "4.6.2",
         "fontsource-metropolis": "4.0.0",
         "ng-csv": "0.3.6",
-        "ng-idle": "^1.0.4",
+        "ng-idle": "1.3.2",
         "ng-showdown": "1.1.0",
         "qrcode-generator": "1.4.4",
         "ui-bootstrap4": "3.0.7",
@@ -39,7 +39,7 @@
         "@lodder/grunt-postcss": "3.1.1",
         "eslint": "8.33.0",
         "gettext-parser": "6.0.0",
-        "grunt": "1.6.0",
+        "grunt": "1.6.1",
         "grunt-angular-templates": "1.2.0",
         "grunt-confirm": "1.0.8",
         "grunt-contrib-clean": "2.0.1",
@@ -61,7 +61,7 @@
         "stylelint": "14.16.1",
         "stylelint-config-standard": "29.0.0",
         "superagent": "8.0.9",
-        "terser": "5.16.1"
+        "terser": "5.16.2"
       }
     },
     "node_modules/@ampproject/remapping": {
@@ -1232,9 +1232,9 @@
       }
     },
     "node_modules/angular-filter": {
-      "version": "0.4.9",
-      "resolved": "https://registry.npmjs.org/angular-filter/-/angular-filter-0.4.9.tgz",
-      "integrity": "sha512-wHcD54s5HfXYWUfaZ3AimeSQnrsg38KclkkveAmZTfs5/5JCsyqPVv3K5tJKbjtgZofk2TTa74aqs/Vgr0jryg==",
+      "version": "0.5.17",
+      "resolved": "https://registry.npmjs.org/angular-filter/-/angular-filter-0.5.17.tgz",
+      "integrity": "sha512-jWZuok808roBwEiNZ2IiBzKD7gf4vWTDzbp9RhhZO9usQxTiywsZ3O94X75MOHBtOzM/rxbI78sHw3Y2sz40QQ==",
       "dependencies": {
         "angular": "*"
       },
@@ -3763,16 +3763,16 @@
       "dev": true
     },
     "node_modules/grunt": {
-      "version": "1.6.0",
-      "resolved": "https://registry.npmjs.org/grunt/-/grunt-1.6.0.tgz",
-      "integrity": "sha512-dRcJXAaWLIt9khaZKfAgitjlFnEABGKT+jpyG/rlFxZd5kZkF7v4HvuoYIU7FjrG+BRDySwEHYrSYUHd5p9P4w==",
+      "version": "1.6.1",
+      "resolved": "https://registry.npmjs.org/grunt/-/grunt-1.6.1.tgz",
+      "integrity": "sha512-/ABUy3gYWu5iBmrUSRBP97JLpQUm0GgVveDCp6t3yRNIoltIYw7rEj3g5y1o2PGPR2vfTRGa7WC/LZHLTXnEzA==",
       "dev": true,
       "dependencies": {
         "dateformat": "~4.6.2",
         "eventemitter2": "~0.4.13",
         "exit": "~0.1.2",
         "findup-sync": "~5.0.0",
-        "glob": "~8.1.0",
+        "glob": "~7.1.6",
         "grunt-cli": "~1.4.3",
         "grunt-known-options": "~2.0.0",
         "grunt-legacy-log": "~3.0.0",
@@ -3780,9 +3780,7 @@
         "iconv-lite": "~0.6.3",
         "js-yaml": "~3.14.0",
         "minimatch": "~3.0.4",
-        "mkdirp": "~2.1.3",
-        "nopt": "~3.0.6",
-        "rimraf": "~4.1.2"
+        "nopt": "~3.0.6"
       },
       "bin": {
         "grunt": "bin/grunt"
@@ -4245,6 +4243,26 @@
         "sprintf-js": "~1.0.2"
       }
     },
+    "node_modules/grunt/node_modules/glob": {
+      "version": "7.1.7",
+      "resolved": "https://registry.npmjs.org/glob/-/glob-7.1.7.tgz",
+      "integrity": "sha512-OvD9ENzPLbegENnYP5UUfJIirTg4+XwMWGaQfQTY0JenxNvvIKP3U3/tAQSPIu/lHxXYSZmpXlUHeqAIdKzBLQ==",
+      "dev": true,
+      "dependencies": {
+        "fs.realpath": "^1.0.0",
+        "inflight": "^1.0.4",
+        "inherits": "2",
+        "minimatch": "^3.0.4",
+        "once": "^1.3.0",
+        "path-is-absolute": "^1.0.0"
+      },
+      "engines": {
+        "node": "*"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/isaacs"
+      }
+    },
     "node_modules/grunt/node_modules/js-yaml": {
       "version": "3.14.1",
       "resolved": "https://registry.npmjs.org/js-yaml/-/js-yaml-3.14.1.tgz",
@@ -4268,21 +4286,6 @@
       },
       "engines": {
         "node": "*"
-      }
-    },
-    "node_modules/grunt/node_modules/rimraf": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/rimraf/-/rimraf-4.1.2.tgz",
-      "integrity": "sha512-BlIbgFryTbw3Dz6hyoWFhKk+unCcHMSkZGrTFVAx2WmttdBSonsdtRlwiuTbDqTKr+UlXIUqJVS4QT5tUzGENQ==",
-      "dev": true,
-      "bin": {
-        "rimraf": "dist/cjs/src/bin.js"
-      },
-      "engines": {
-        "node": ">=14"
-      },
-      "funding": {
-        "url": "https://github.com/sponsors/isaacs"
       }
     },
     "node_modules/grunt/node_modules/sprintf-js": {
@@ -6969,21 +6972,6 @@
       },
       "engines": {
         "node": ">=8"
-      }
-    },
-    "node_modules/mkdirp": {
-      "version": "2.1.3",
-      "resolved": "https://registry.npmjs.org/mkdirp/-/mkdirp-2.1.3.tgz",
-      "integrity": "sha512-sjAkg21peAG9HS+Dkx7hlG9Ztx7HLeKnvB3NQRcu/mltCVmvkF0pisbiTSfDVYTT86XEfZrTUosLdZLStquZUw==",
-      "dev": true,
-      "bin": {
-        "mkdirp": "dist/cjs/src/bin.js"
-      },
-      "engines": {
-        "node": ">=10"
-      },
-      "funding": {
-        "url": "https://github.com/sponsors/isaacs"
       }
     },
     "node_modules/ms": {
@@ -10154,9 +10142,9 @@
       }
     },
     "node_modules/terser": {
-      "version": "5.16.1",
-      "resolved": "https://registry.npmjs.org/terser/-/terser-5.16.1.tgz",
-      "integrity": "sha512-xvQfyfA1ayT0qdK47zskQgRZeWLoOQ8JQ6mIgRGVNwZKdQMU+5FkCBjmv4QjcrTzyZquRw2FVtlJSRUmMKQslw==",
+      "version": "5.16.2",
+      "resolved": "https://registry.npmjs.org/terser/-/terser-5.16.2.tgz",
+      "integrity": "sha512-JKuM+KvvWVqT7muHVyrwv7FVRPnmHDwF6XwoIxdbF5Witi0vu99RYpxDexpJndXt3jbZZmmWr2/mQa6HvSNdSg==",
       "dev": true,
       "dependencies": {
         "@jridgewell/source-map": "^0.3.2",
