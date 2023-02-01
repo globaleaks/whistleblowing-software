@@ -24,7 +24,7 @@
       return false;
     }
 
-    if (!(window.crypto.subtle)) {
+    if (window.isSecureContext && !window.crypto && !window.crypto.subtle) {
       return false;
     }
 
