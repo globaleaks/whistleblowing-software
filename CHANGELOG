@@ -1,3 +1,6 @@
+Changes in version 4.10.18
+    Fix wizard when performed using a remote connection
+
 Changes in version 4.10.17
     Revise checks on browser compatibility
     Fix code related to re-generation of onion services
