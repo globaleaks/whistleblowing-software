@@ -31,16 +31,28 @@ GL.factory("glbcUtil", function() {
       var work = function(i) {
         var webCrypto = getWebCrypto();
         var toHash = glbcUtil.str2Uint8Array(data + i);
+        var digestPremise;
 
-        webCrypto.digest({name: "SHA-256"}, toHash).then(function (hash) {
+        var xxx = function (hash) {
           hash = new Uint8Array(hash);
-          if (hash[31] !== 0) {
-            work(i+1);
-          } else {
+          if (hash[31] === 0) {
             deferred.resolve(i);
+          } else {
+            work(i+1);
           }
-        });
+        };
 
+        if (webCrypto) {
+          digestPremise = webCrypto.digest({name: "SHA-256"}, toHash);
+        } else {
+          digestPremise = $q.resolve(sha256(toHash));
+        }
+
+        if (typeof digestPremise.then !== "undefined") {
+          digestPremise.then(xxx);
+        } else {
+          digestPremise.oncomplete = function(r) { xxx(r.target.result); };
+        }
       };
 
       work(0);
