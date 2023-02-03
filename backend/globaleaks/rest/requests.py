@@ -232,7 +232,7 @@ AdminNodeDesc = {
     'encryption': bool,
     'multisite': bool,
     'adminonly': bool,
-    'custom_support_url': str,
+    'custom_support_url': url_regexp_or_empty,
 }
 
 AdminNetworkDesc = {
