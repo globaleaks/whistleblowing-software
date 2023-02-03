@@ -358,7 +358,8 @@ class MockDict:
             'adminonly': False,
             'basic_auth': False,
             'basic_auth_username': '',
-            'basic_auth_password': ''
+            'basic_auth_password': '',
+            'custom_support_url': '',
         }
 
         self.dummyNetwork = {
