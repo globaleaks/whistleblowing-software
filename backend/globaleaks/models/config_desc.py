@@ -107,7 +107,8 @@ ConfigDescriptor = {
     'version': Unicode(default=str(__version__)),
     'version_db': Int(default=DATABASE_VERSION),
     'wizard_done': Bool(default=False),
-    'uuid': Unicode(default=uuid4)
+    'uuid': Unicode(default=uuid4),
+    'custom_support_url': Unicode(default=''),
 }
 
 ConfigFilters = {
@@ -171,7 +172,8 @@ ConfigFilters = {
         'version',
         'version_db',
         'wizard_done',
-        'uuid'
+        'uuid',
+        'custom_support_url'
     ],
     'admin_node': [
         'acme',
@@ -218,7 +220,8 @@ ConfigFilters = {
         'version_db',
         'wizard_done',
         'uuid',
-        'unread_reminder_time'
+        'unread_reminder_time',
+        'custom_support_url'
     ],
     'admin_network': [
         'anonymize_outgoing_connections',
@@ -285,7 +288,8 @@ ConfigFilters = {
         'signup_tos2_enable',
         'simplified_login',
         'subdomain',
-        'wizard_done'
+        'wizard_done',
+        'custom_support_url'
     ],
     'tenant': [
         'hostname',

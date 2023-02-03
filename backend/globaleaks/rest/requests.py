@@ -231,7 +231,8 @@ AdminNodeDesc = {
     'two_factor': bool,
     'encryption': bool,
     'multisite': bool,
-    'adminonly': bool
+    'adminonly': bool,
+    'custom_support_url': str,
 }
 
 AdminNetworkDesc = {
