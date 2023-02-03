@@ -16,14 +16,17 @@ Tests can be run manually by issuing:
 
 .. code:: sh
 
-  cd GlobaLeaks/backend && trial globaleaks
+  cd GlobaLeaks/backend
+  trial globaleaks
 
 E2E Tests
 =========
-End to end tests are implemented by means of the Protractor Angular JS library.
+End to end tests are implemented by means of the Protractor AngularJS library.
 
 Tests can be run manually by issuing:
 
 .. code:: sh
 
-  cd GlobaLeaks/client && ./node_modules/protractor/bin/protractor tests/protractor.config.js 
+  cd GlobaLeaks/client
+  ./node_modules/protractor/bin/webdriver-manager update
+  ./node_modules/protractor/bin/protractor tests/protractor.config.js
