@@ -28,24 +28,24 @@ A menu on the right offers you links to the different administrative sections:
 
    9. System overview
 
-Site Settings
--------------
+Settings
+--------
 This is the section that offers you all the main customization possibilities necessary for implementing a basic and functional whistleblowing site.
 
 This section is furtherly divided in:
 
-   1. Main configuration
+   1. Settings
 
    2. Theme customization
 
-   3. Files
+   3. Languages
 
-   4. Languages
+   4. Text customization
 
-   5. Text customization
+   5. Advanced settings
 
-Main Configuration
-..................
+Settings
+........
 In this section is configurable the logo and all the texts of the main user interfaces.
 
 .. image:: ../../images/admin/site_settings_main_configuration.png
@@ -55,12 +55,6 @@ Theme Customization
 In this section could be loaded CSS and Javascript files necessary to customize the interface.
 
 .. image:: ../../images/admin/site_settings_theme_customization.png
-
-Files
-.....
-In this section could be loaded any file that need to be served via the platform to whistleblowers (e.g. a policy in PDF) or that are required by your CSS and Javascript customization.
-
-.. image:: ../../images/admin/site_settings_files.png
 
 Languages
 .........
@@ -76,6 +70,12 @@ Text Customization
 Here could be configured overrides for any of the texts of the platform and of their translation.
 
 .. image:: ../../images/admin/site_settings_text_customization.png
+
+Advanced Settings
+-----------------
+In this section could be configured a set of advanced settings.
+
+.. image:: ../../images/admin/advanced_settings.png
 
 Users
 -----
@@ -145,7 +145,7 @@ The software enables you to create questions of the following types:
 
    10. Question group
 
-General Question Properties
+Common Question Properties
 ...........................
 Each of the software question types make it possible to configure the following properties:
 
@@ -241,6 +241,8 @@ The section is furtherly divided in:
 
    3. IP Access control
 
+   4. URL Redirects
+
 HTTPS
 .....
 Here you can configure all the aspects related to the access of the platform via the HTTPS Protocol.
@@ -273,17 +275,11 @@ Suggested configurations are:
 
    2. Restrict Recipients access to their intranet.
 
-Url Redirects
+URL Redirects
 .............
 Here you can configure URL Redirects.
 
 .. image:: ../../images/admin/url_redirects.png
-
-Advanced Settings
------------------
-.. image:: ../../images/admin/advanced_settings.png
-
-.. image:: ../../images/admin/anomaly_thresholds.png
 
 Audit Log
 ---------
