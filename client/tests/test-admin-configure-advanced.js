@@ -50,3 +50,88 @@ describe("admin disable submissions", function() {
     expect(await browser.isElementPresent(element(by.cssContainingText("button", "File a report")))).toBe(true);
   });
 });
+
+
+describe("Validating custom support url", function () {
+  it("Enter custom support url and browser ", async function () {
+    // login as admin
+    await browser.gl.utils.login_admin();
+    // changed url to settings
+    await browser.setLocation("admin/settings");
+    await element(by.cssContainingText("a", "Advanced")).click();
+
+    // select input field and focus and type in a new url
+    await element(by.model("resources.node.custom_support_url")).clear();
+    await element(by.model("resources.node.custom_support_url")).sendKeys(
+      "https://www.globaleaks.org/"
+    );
+
+    // save settings
+    await element.all(by.css("[data-ng-click='updateNode()']")).last().click();
+
+    expect(
+      await element(by.model("resources.node.custom_support_url")).getAttribute(
+        "value"
+      )
+    ).toEqual("https://www.globaleaks.org/");
+  });
+
+  it("should redirect to external url on new tab", async function () {
+    // changed url to settings
+    await browser.setLocation("admin/settings");
+
+    await element(by.cssContainingText("a", "Advanced")).click();
+
+    await element(by.id("SupportLink")).click();
+
+    const handles = await browser.getAllWindowHandles();
+    await browser.switchTo().window(handles[1]);
+    // setting flag for telling protractor to not wait for angular
+    browser.ignoreSynchronization = true;
+
+    const currentUrl = await browser.getCurrentUrl();
+    await expect(currentUrl).toEqual("https://www.globaleaks.org/");
+
+    // closing the new tab
+    await browser.close();
+
+    // switching back to the original tab
+    await browser.switchTo().window(handles[0]);
+
+    // Resetting flag for telling protractor to not wait for angular
+    browser.ignoreSynchronization = false;
+  });
+});
+
+describe("Should browser opens a pop while clicking the support icon", function () {
+  it("should open a pop up model", async function () {
+    // changed url to settings
+    await browser.setLocation("admin/settings");
+    await element(by.cssContainingText("a", "Advanced")).click();
+
+    // clearning data in custom support url
+    await element(by.model("resources.node.custom_support_url")).clear();
+    // saving form
+    await element.all(by.css("[data-ng-click='updateNode()']")).last().click();
+
+    // chcking the support url is empty
+    expect(
+      await element(by.model("resources.node.custom_support_url")).getAttribute(
+        "value"
+      )
+    ).toEqual("");
+
+    // clicking on support icon
+    await element(by.id("SupportLink")).click();
+    // checks for the pop up model by class name and show  class
+    expect(await element(by.css(".modal")).isDisplayed()).toBeTruthy();
+  });
+
+  it("Should support model submits and return a message", async function () {
+    await element(by.model("arg.text")).sendKeys("test message");
+    await element(by.css(".modal #modal-action-ok")).click();
+    // checking the message is present in browser
+    expect(await element(by.cssContainingText("div", "Thank you. We will try to get back to you as soon as possible.")).isPresent()).toBe(true);
+  });
+});
+ 
