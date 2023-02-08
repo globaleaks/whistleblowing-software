@@ -596,5 +596,6 @@
   "This email is to remind you the presence of unread or updated reports.": "Este correo electrónico es para recordarte que existen reportes no leídos o actualizados.",
   "Reminder about unread or updated reports": "Recordatorio acerca de reportes no leídos o actualizados.",
   "Role: {Role}": "Rol: {Role}",
-  "Password: {Password}": "Contraseña: {Password}"
+  "Password: {Password}": "Contraseña: {Password}",
+  "Custom support URL": "URL de suport personalitzada"
 }
