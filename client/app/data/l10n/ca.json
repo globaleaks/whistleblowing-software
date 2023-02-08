@@ -596,5 +596,6 @@
   "This email is to remind you the presence of unread or updated reports.": "Aquest correu electrònic us recorda la presència d’informes no llegits o actualitzats.",
   "Reminder about unread or updated reports": "Recordatori sobre els informes no llegits o actualitzats",
   "Role: {Role}": "Rol: {Role}",
-  "Password: {Password}": "Contrasenya: {Password}"
+  "Password: {Password}": "Contrasenya: {Password}",
+  "Custom support URL": "URL de suport personalitzada"
 }
