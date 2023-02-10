@@ -36,6 +36,7 @@ ConfigDescriptor = {
     'allow_indexing': Bool(default=True),
     'anonymize_outgoing_connections': Bool(default=False),
     'counter_submissions': Int(default=0),
+    'custom_support_url': Unicode(default=''),
     'crypto_escrow_prv_key': Unicode(default=''),
     'crypto_escrow_pub_key': Unicode(default=''),
     'default_language': Unicode(default='en'),
@@ -107,8 +108,7 @@ ConfigDescriptor = {
     'version': Unicode(default=str(__version__)),
     'version_db': Int(default=DATABASE_VERSION),
     'wizard_done': Bool(default=False),
-    'uuid': Unicode(default=uuid4),
-    'custom_support_url': Unicode(default=''),
+    'uuid': Unicode(default=uuid4)
 }
 
 ConfigFilters = {
@@ -118,6 +118,7 @@ ConfigFilters = {
         'allow_indexing',
         'anonymize_outgoing_connections',
         'counter_submissions',
+        'custom_support_url',
         'crypto_escrow_pub_key',
         'default_language',
         'default_questionnaire',
@@ -172,13 +173,13 @@ ConfigFilters = {
         'version',
         'version_db',
         'wizard_done',
-        'uuid',
-        'custom_support_url'
+        'uuid'
     ],
     'admin_node': [
         'acme',
         'adminonly',
         'allow_indexing',
+        'custom_support_url',
         'default_language',
         'default_questionnaire',
         'description',
@@ -220,8 +221,7 @@ ConfigFilters = {
         'version_db',
         'wizard_done',
         'uuid',
-        'unread_reminder_time',
-        'custom_support_url'
+        'unread_reminder_time'
     ],
     'admin_network': [
         'anonymize_outgoing_connections',
@@ -268,6 +268,7 @@ ConfigFilters = {
     ],
     'public_node': [
         'adminonly',
+        'custom_support_url',
         'default_language',
         'default_questionnaire',
         'description',
@@ -289,7 +290,6 @@ ConfigFilters = {
         'simplified_login',
         'subdomain',
         'wizard_done',
-        'custom_support_url'
     ],
     'tenant': [
         'hostname',

@@ -51,11 +51,11 @@ describe("admin disable submissions", function() {
   });
 });
 
-
 describe("Validating custom support url", function () {
   it("Enter custom support url and browser ", async function () {
     // login as admin
     await browser.gl.utils.login_admin();
+
     // changed url to settings
     await browser.setLocation("admin/settings");
     await element(by.cssContainingText("a", "Advanced")).click();
@@ -77,7 +77,7 @@ describe("Validating custom support url", function () {
   });
 
   it("should redirect to external url on new tab", async function () {
-    // changed url to settings
+    // change support url in settings
     await browser.setLocation("admin/settings");
 
     await element(by.cssContainingText("a", "Advanced")).click();
@@ -109,12 +109,12 @@ describe("Should browser opens a pop while clicking the support icon", function 
     await browser.setLocation("admin/settings");
     await element(by.cssContainingText("a", "Advanced")).click();
 
-    // clearning data in custom support url
+    // clearing data in custom support url
     await element(by.model("resources.node.custom_support_url")).clear();
     // saving form
     await element.all(by.css("[data-ng-click='updateNode()']")).last().click();
 
-    // chcking the support url is empty
+    // checking the support url is empty
     expect(
       await element(by.model("resources.node.custom_support_url")).getAttribute(
         "value"
@@ -125,13 +125,16 @@ describe("Should browser opens a pop while clicking the support icon", function 
     await element(by.id("SupportLink")).click();
     // checks for the pop up model by class name and show  class
     expect(await element(by.css(".modal")).isDisplayed()).toBeTruthy();
-  });
 
-  it("Should support model submits and return a message", async function () {
     await element(by.model("arg.text")).sendKeys("test message");
     await element(by.css(".modal #modal-action-ok")).click();
+
     // checking the message is present in browser
     expect(await element(by.cssContainingText("div", "Thank you. We will try to get back to you as soon as possible.")).isPresent()).toBe(true);
+
+    await element(by.id("modal-action-cancel")).click();
+
+    await browser.gl.utils.logout();
   });
 });
  

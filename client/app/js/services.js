@@ -1097,7 +1097,11 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
     },
 
     openSupportModal: function() {
-      return this.openConfirmableModalDialog("views/modals/request_support.html", {});
+      if ($rootScope.public.node.custom_support_url) {
+        $window.open($rootScope.public.node.custom_support_url, "_blank");
+      } else {
+        return this.openConfirmableModalDialog("views/modals/request_support.html", {});
+      }
     },
 
     submitSupportRequest: function(data) {
