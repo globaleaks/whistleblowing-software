@@ -7,13 +7,18 @@ The software project has been started in 2011 and [originally authored](https://
 
 Authored in 2021, this document is a responsible and tentative attempt to analyze the existing governance status, define roles and responsibilities in order to properly define a proper project governance and thus be sure to be able to continue to protect whistleblowers in the long run.
 
-## Roles and Responsibilities
+## Roles and responsibilities
 This section defines the main project roles and respective responsibilities for the [GlobaLeaks Team](https://www.globaleaks.org/about/people/) and other project [Contributors](https://github.com/globaleaks/GlobaLeaks/graphs/contributors).
 
 ### Project Lead
 The Project Lead is responsible for coordinating the overall work of the GlobaLeaks team and of the GlobaLeaks FLOSS community with the aim of continuously improving the software and methodology and protecting whistleblowers.
 
-The project is currently led by [Giovanni Pellerano](https://www.globaleaks.org/about/people/#giovanni-pellerano), who is currently the lead developer and has continuously guided and advised contributors and users since 2011. This lead role and responsibility is focused on doing what's best for this project, guiding contributors through the analysis of user requirements and the definition and execution of the [Project Roadmap](https://docs.globaleaks.org/en/main/roadmap/) in adherence to [Contributributors Guidelines](https://github.com/globaleaks/GlobaLeaks/blob/main/CONTRIBUTING.md) and the [Best Practices](https://bestpractices.coreinfrastructure.org/en/projects/3816). The technical lead has commit rights on the software, and administrative rights to the project infrastructure.
+The project is currently led by [Giovanni Pellerano](https://www.globaleaks.org/about/people/#giovanni-pellerano), who is currently the lead developer and has continuously guided and advised contributors and users since 2011. This lead role and responsibility is focused on doing what's best for this project, guiding contributors through the analysis of user requirements and the definition and execution of the [Project Roadmap](https://docs.globaleaks.org/en/main/roadmap/) in adherence to [Contributributors Guidelines](https://github.com/globaleaks/GlobaLeaks/blob/main/CONTRIBUTING.md) and the [Best Practices](https://bestpractices.coreinfrastructure.org/en/projects/3816).
+
+### Project Manager
+The Project Manager is in charge of managing and coordinating the activities of the project.
+
+[Susanna Ferro](https://www.globaleaks.org/about/people/#susanna-ferro) is the current Project Manager.
 
 ### Community Lead
 The Community Lead is responsible for identifying community needs, verifying and enforcing the project’s [Code of Conduct](https://github.com/globaleaks/GlobaLeaks/blob/main/CODE_OF_CONDUCT.md), making sure everybody feels represented and safe.
@@ -33,7 +38,7 @@ The Data Protection Officer (DPO) is responsible for educating the members of th
 ### Contributors
 Everyone is welcome!
 
-[Contributors](https://github.com/globaleaks/GlobaLeaks/graphs/contributors) are invited to adhere to the [Contributors Guidelines](https://github.com/globaleaks/GlobaLeaks/blob/main/CONTRIBUTING.md), participate in the project [Slack Community](https://slack.globaleaks.org) and [Forum](https://forum.globaleaks.org) and to propose contributions opening Tickets and Pull Requests on the project’s [Ticketing System](https://github.com/globaleaks/GlobaLeaks/issues).
+[Contributors](https://github.com/globaleaks/GlobaLeaks/graphs/contributors) are invited to adhere to the [Contributors Guidelines](https://github.com/globaleaks/GlobaLeaks/blob/main/CONTRIBUTING.md), participate in the project [Community Chat](https://community.globaleaks.org) and [Forum](https://forum.globaleaks.org) and to propose contributions opening Tickets and Pull Requests on the project’s [Ticketing System](https://github.com/globaleaks/GlobaLeaks/issues).
 
 List of team members, current and previous contributors and related statistics can be found at:
 
@@ -50,20 +55,20 @@ Anyone can aspire to become a GlobaLeaks maintainer.
 
 If you think you can help make the project better by shouldering some maintaining responsibilities, then please get in touch. There are no mandatory duties. We hope and wish that maintainers consider reviewing patches and help merging them.
 
-### Former Maintainers
+### Former maintainers
 For security reasons, after 6 months of inactivity, maintainers get their push permissions revoked. When a maintainer resumes their contribution activities, they can ask to restore their push permissions.
 
-### Security Team
+### Security team
 The security team consists of all people who are subscribed to the GlobaLeaks security mailing list, that receive security reports from users and developers.
 
 This list of people vary over time and include experts familiar with the overall project threat model and risks.
 
 The security team is responsible for evaluating reports of security vulnerabilities and issues received according to the [Security Policy](https://github.com/globaleaks/GlobaLeaks/security/policy), as well as scheduling and publishing periodic independent security audits of the software.
 
-### Server Admins
+### Server admins
 We run some infrastructure used to support the community during work and discussions and implemented using open source and socially committed providers.
 
-The servers are legally administered by [Whistleblowing Solution Impresa Sociale](https://www.whistleblowingsolutions.it), an enterprise mandated to ensure security and compliance for the project resources.
+The infrastructure is administered by [Whistleblowing Solution Impresa Sociale](https://www.whistleblowingsolutions.it), an enterprise mandated to ensure security and compliance for the project resources.
 
 Every part of the GlobaLeaks infrastructure is assigned to 2+ administrators. Access to critical infrastructure is granted with multi-factor authentication.
 
@@ -72,8 +77,9 @@ Many are the organizations that participate in the GlobaLeaks project and that c
 
 Here are listed the main organizations behind the project’s governance and sustainability:
 
-* [Hermes Center for Transparency and Digital Human Rights](https://www.hermescenter.org/): association of social promotion incorporated in 2012 to develop and promote Globaleaks software, support anonymous whistleblowing and digital anonymity, fiscal sponsor for the initial development lifecycle and owner of the AGPLv3 License and Trademark;
-* [Whistleblowing Solutions Impresa Sociale](https://www.whistleblowingsolutions.it/): social enterprise incorporated in 2016 to support GlobaLeaks's sustainability and the definition of the project’s compliance by providing professional services and re-investing by statutory rules any earnings into the maintenance of the Globaleaks software.
+* [Whistleblowing Solutions Impresa Sociale (S.r.l.)](https://www.whistleblowingsolutions.it/): an innovative social enterprise that carries out research and development to support whistleblowers and the fight against corruption. It was founded in 2016 to guarantee the economic sustainability of the GlobaLeaks project, through taking care of the growing number of requests for assistance, maintenance and custom deployment. WBS hosts the development activities and coordinates the community efforts.
+
+* [Hermes Center for Transparency and Digital Human Rights (HERMES)](https://www.hermescenter.org/): a non-profit association founded in 2012 by a group of hacktivists, lawyers and digital rights defenders to host the development and implementation of open source technologies with the purpose of advocating for freedom of speech online and, more generally, the protection of human rights and personal freedom in a connected world. Fiscal sponsor for the initial GlobaLeaks development lifecycle is owner of the [AGPLv3 License](https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE) and [Trademark](https://github.com/globaleaks/GlobaLeaks/blob/main/brand/globaleaks-euipo-trademark-certificate.pdf).
 
 ## Possible improvements
 The GlobaLeaks team looks forward to improving the project governance and is exploring the following possibilities:
