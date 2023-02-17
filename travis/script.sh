@@ -83,10 +83,10 @@ elif [ "$GLTEST" = "build_and_install" ]; then
     sudo -E debootstrap --arch=amd64 bullseye "$chroot" http://deb.debian.org/debian/
     sudo -E su -c 'echo "deb http://deb.debian.org/debian bullseye main contrib" > /tmp/globaleaks_chroot/etc/apt/sources.list'
     sudo -E su -c 'echo "deb http://deb.debian.org/debian bullseye main contrib" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
-  elif [ $DISTRIBUTION = "focal" ]; then
-    sudo -E debootstrap --arch=amd64 focal "$chroot" http://archive.ubuntu.com/ubuntu/
-    sudo -E su -c 'echo "deb http://archive.ubuntu.com/ubuntu focal main universe" > /tmp/globaleaks_chroot/etc/apt/sources.list'
-    sudo -E su -c 'echo "deb http://archive.ubuntu.com/ubuntu focal-updates main universe" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
+  elif [ $DISTRIBUTION = "jammy" ]; then
+    sudo -E debootstrap --arch=amd64 jammy "$chroot" http://archive.ubuntu.com/ubuntu/
+    sudo -E su -c 'echo "deb http://archive.ubuntu.com/ubuntu jammy main universe" > /tmp/globaleaks_chroot/etc/apt/sources.list'
+    sudo -E su -c 'echo "deb http://archive.ubuntu.com/ubuntu jammy-updates main universe" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
   fi
 
   sudo -E mount --rbind /proc "$chroot/proc"
