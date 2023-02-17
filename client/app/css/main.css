@@ -309,14 +309,6 @@ a:hover,
   white-space: pre-wrap;
 }
 
-#wizardLicense {
-  max-height: 20rem;
-  overflow-y: scroll;
-  background-color: #f5f7fa;
-  border: 1px solid #c8d1e0;
-  padding: 1em;
-}
-
 .imageUpload {
   position: relative;
   border: 1px dashed #c8d1e0;
