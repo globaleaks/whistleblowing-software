@@ -837,18 +837,22 @@ text.axis-worktime {
   fill: #1d1f24;
 }
 
-.tos-text {
+.disclaimer-text, .tos-text {
   display: block;
   padding: 1em;
   font-family: monospace;
   font-size: 0.8rem;
+  max-height: 40em;
+  max-width: 80rem;
+  overflow-y: scroll;
+  white-space: pre-wrap;
+}
+
+.tos-text {
   color: #1d1f24;
   background-color: #f5f7fa;
   border: 1px solid #c8d1e0;
   max-height: 20rem;
-  max-width: 80rem;
-  overflow: auto;
-  white-space: pre-wrap;
 }
 
 .non-default-language,
