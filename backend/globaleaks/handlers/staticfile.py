@@ -11,10 +11,6 @@ from globaleaks.utils.fs import directory_traversal_check
 class StaticFileHandler(BaseHandler):
     check_roles = 'any'
     allowed_mimetypes = [
-        'font/ttf',
-        'font/woff',
-        'font/woff2',
-        'image/png',
         'text/css',
         'text/html',
         'text/javascript'
