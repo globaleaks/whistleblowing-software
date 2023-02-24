@@ -1,9 +1,10 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: Create a ticket to report a software bug
 title: ''
-labels: ''
-assignees: ''
+labels: '["Triage", "T: Bug"]'
+assignees:
+  - evilaliv3
 
 ---
 

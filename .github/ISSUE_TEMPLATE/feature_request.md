@@ -1,9 +1,10 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
+about: Create a ticket to suggest a new feature
 title: ''
-labels: ''
-assignees: ''
+labels: ["Triage", "T: Feature"]
+assignees:
+ - evilaliv3
 
 ---
 
