@@ -22,18 +22,6 @@ class FileHandler(BaseHandler):
     Handler that provide public access to configuration files
     """
     check_roles = 'any'
-    allowed_mimetypes = [
-        'audio/mpeg',
-        'font/ttf',
-        'font/woff',
-        'font/woff2',
-        'image/gif',
-        'image/jpeg',
-        'image/png',
-        'image/x-icon',
-        'text/css',
-        'video/mp4'
-    ]
 
     # Note: This set of mime types intentionally differs from the mime
     #       types accepted by the admin handler.
