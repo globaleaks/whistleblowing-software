@@ -2,7 +2,7 @@
 name: Bug report
 about: Create a ticket to report a software bug
 title: ''
-labels: '["Triage", "T: Bug"]'
+labels: ["Triage", "T: Bug"]
 assignees:
   - evilaliv3
 
