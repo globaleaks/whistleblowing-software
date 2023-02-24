@@ -1,39 +1,31 @@
----
 name: Bug report
 about: Create a ticket to report a software bug
 title: ''
-labels: ["Triage", "T: Bug"]
+labels: '["Triage", "T: Bug"]'
 assignees:
   - evilaliv3
 
----
+body:
+- type: textarea
+    id: bug-description
+    attributes:
+      label: Describe the bug
+      description: Please provide a clear and concise description of what the bug is.
+    validations:
+      required: true
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+- type: textarea
+    id: bug-reproducibility
+    attributes:
+      label: Describe how to reproduce the bug
+      description: Please provide instructions on how to reproduce the bug.
+    validations:
+      required: true
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
-
-**Expected behavior**
-A clear and concise description of what you expected to happen.
-
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
-
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
-
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
-
-**Additional context**
-Add any other context about the problem here.
+- type: textarea
+    id: bug-context
+    attributes:
+      label: Additional context
+      description: Please attach information about the context and possibly some screenshot to explain the prolem.
+    validations:
+      required: true
