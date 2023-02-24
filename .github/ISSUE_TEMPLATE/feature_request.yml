@@ -1,0 +1,20 @@
+name: Feature request
+description: Suggest a new feature.
+title: "Suggest a new feature"
+labels: ["Triage", "T: Feature"]
+assignees: [evilaliv3]
+body:
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Provide detailed information about your feature idead including references to related work.
+    validations:
+      required: true
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation and context
+      description: Tell us why you consider this feature or change is needed or would be helpful, and what problems it may help solve.
+    validations:
+      required: true
