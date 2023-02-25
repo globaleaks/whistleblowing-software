@@ -36,8 +36,6 @@ Join our [Community Chat](https://community.globaleaks.org) to get in touch with
 * #development to participate in development discussions
 * #community-support for the community support
 
-You can join our development discussions as well on IRC on the channel [#globaleaks](https://webchat.oftc.net/?channels=%23globaleaks) of the [OFTC Network](https://www.oftc.net/).
-
 If you want to contribute to the project please check the [Contributors Guidelines](https://github.com/globaleaks/GlobaLeaks/blob/main/CONTRIBUTING.md).
 
 In case you need to file a security report please check our [Security Policy](https://github.com/globaleaks/GlobaLeaks/blob/main/SECURITY.md)
