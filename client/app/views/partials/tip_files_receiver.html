@@ -12,25 +12,27 @@
         <thead>
           <tr>
             <th data-translate>Filename</th>
-            <th data-translate>Download / View</th>
+            <th><span data-translate>View</span> / <span data-translate>Download</span></th>
             <th data-translate>Upload date</th>
             <th data-translate>Type</th>
             <th data-translate>File size</th>
           </tr>
         </thead>
         <tbody id="fileListBody">
-          <tr id="file-{{$index}}" data-ng-repeat="file in tip.rfiles">
+          <tr id="file-{{$index}}" data-ng-repeat="file in tip.rfiles" data-ng-init="viewSupported = supportedViewTypes.includes(file.type)">
             <td>{{file.name}}</td>
             <td>
+              <button class="btn btn-sm btn-primary tip-action-views-file"
+              data-ng-disabled="!viewSupported"
+              data-ng-class="{ 'btn-secondary': !viewSupported }"
+              data-uib-tooltip="{{'View' | translate}}"
+              data-ng-click="viewRFile(file)">
+                <i class="fa-solid fa-eye"></i>
+              </button>
               <button class="btn btn-sm btn-primary tip-action-download-file"
                       data-uib-tooltip="{{'Download' | translate}}"
                       data-ng-click="downloadRFile(file)">
                 <i class="fa-solid fa-download"></i>
-              </button>
-                 <button class="btn btn-sm btn-primary tip-action-views-file"
-                      data-uib-tooltip="{{'View' | translate}}"
-                      data-ng-click="viewRFile(file)">
-                <i class="fa-solid fa-eye"></i>
               </button>
             </td>
             <td>{{file.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
