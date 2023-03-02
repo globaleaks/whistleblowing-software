@@ -33,5 +33,17 @@ controller("ConfirmableModalCtrl",
     $scope.cancel = function () {
       return $uibModalInstance.dismiss("cancel");
     };
+
+    var getFileTag = function (type) {
+      var tag = "none";
+      if (type.indexOf("image") > -1) {
+        tag = "image";
+      }
+      return tag;
+    };
+
+    this.$onInit = function () {
+      arg.tag = getFileTag(arg.type);
+    };
   },
 ]);
