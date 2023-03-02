@@ -373,4 +373,16 @@ directive("passwordStrengthValidator", function() {
       passwordStrengthValidator: "@"
     }
   };
+}).directive("blobSrc", function(){
+ return{
+  restrict: "A",
+  link:  async function(scope, element, attrs) {
+    const url = attrs.blobSrc;
+    const type = attrs.type;
+    const data = await fetch(url);
+    const blob = await data.blob();
+    const blobUrl = URL.createObjectURL(new Blob([blob], {type: type}));
+    element.attr("src", blobUrl);
+  }
+ };
 });
