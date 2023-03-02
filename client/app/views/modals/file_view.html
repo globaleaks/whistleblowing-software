@@ -8,8 +8,15 @@
 </div>
 <div class="modal-body">
   <div data-ng-if="arg.url">
-    <div data-ng-if="arg.tag == 'image'">
+    <div data-ng-if="arg.tag === 'image'">
       <img class="img-fluid" data-ng-src="{{arg.url}}" />
+    </div>
+    <div data-ng-if="arg.tag === 'video'">
+      <video controls width="100%" blob-src="{{arg.url}}"
+      type="{{arg.type}}"></video>
+    </div>
+    <div data-ng-if="arg.tag === 'audio'">
+      <audio controls blob-src="{{arg.url}}"></audio>
     </div>
   </div>
 </div>

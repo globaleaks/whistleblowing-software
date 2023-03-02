@@ -39,6 +39,12 @@ controller("ConfirmableModalCtrl",
       if (type.indexOf("image") > -1) {
         tag = "image";
       }
+      if (type.indexOf("video") > -1) {
+        tag = "video";
+      }
+      if (type.indexOf("audio") > -1) {
+        tag = "audio";
+      }
       return tag;
     };
 
