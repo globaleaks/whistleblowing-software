@@ -7,7 +7,11 @@
   </button>
 </div>
 <div class="modal-body">
- 
+  <div data-ng-if="arg.url">
+    <div data-ng-if="arg.tag == 'image'">
+      <img class="img-fluid" data-ng-src="{{arg.url}}" />
+    </div>
+  </div>
 </div>
 <div class="modal-footer">
   <a
