@@ -1024,6 +1024,23 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       return modal.result;
     },
 
+     openViewModalDialog: function(template, arg, scope) {
+      scope = !scope ? $rootScope : scope;
+      var modal = $uibModal.open({
+        templateUrl: template,
+        controller: "ViewModalCtrl",
+        scope: scope,
+        resolve: {
+          arg: function () {
+            return arg;
+          },
+          confirmFun: null,
+          cancelFun: null
+        }
+      });
+      return modal.result;
+    },
+
     deleteDialog: function() {
       return this.openConfirmableModalDialog("views/modals/delete_confirmation.html");
     },
@@ -1073,6 +1090,12 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     download: function(url) {
       return new TokenResource().$get().then(function(token) {
         $window.open(url + "?token=" + token.id + ":" + token.answer);
+      });
+    },
+
+    view: function(url, callback) {
+      return new TokenResource().$get().then(function(token) {
+       callback(url + "?token=" + token.id + ":" + token.answer);
       });
     },
 
@@ -1758,5 +1781,18 @@ factory("GLTranslate", ["$translate", "$location", "$window", "tmhDynamicLocale"
       facts.userPreference = lang;
       determineLanguage();
     },
+  };
+}]).
+factory("RTipViewRFile", ["Utils", function(Utils) {
+  return function(file) {
+    Utils.view("api/rfile/" + file.id, function (data){
+      Utils.openViewModalDialog("views/modals/file_view.html", {
+          url: data,
+          filename: file.name,
+          type: file.type,
+          size: file.size,
+          creation_date: file.creation_date
+      });
+    });
   };
 }]);
