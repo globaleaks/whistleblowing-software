@@ -884,6 +884,10 @@ text.axis-worktime {
   margin: 0 0.5em;
 }
 
+#viewer {
+  width: 100%;
+}
+
 html[dir="rtl"] input[type="email"],
 html[dir="ltr"] input[type="email"],
 html[dir="rtl"] #creditCard,

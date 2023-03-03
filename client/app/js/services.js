@@ -697,6 +697,11 @@ factory("Files", ["GLResource", function(GLResource) {
 factory("DefaultL10NResource", ["GLResource", function(GLResource) {
   return new GLResource("/data/l10n/:lang.json", {lang: "@lang"});
 }]).
+factory("RTipViewRFile", ["Utils", function(Utils) {
+  return function(file) {
+    Utils.openViewModalDialog("views/modals/file_view.html", file);
+  };
+}]).
 factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout", "$uibModal", "$window", "TokenResource",
     function($rootScope, $http, $q, $location, $filter, $timeout, $uibModal, $window, TokenResource) {
   return {
@@ -1030,6 +1035,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
         templateUrl: template,
         controller: "ViewModalCtrl",
         scope: scope,
+        size: "xl",
         resolve: {
           arg: function () {
             return arg;
@@ -1093,10 +1099,21 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       });
     },
 
-    view: function(url, callback) {
-      return new TokenResource().$get().then(function(token) {
-       callback(url + "?token=" + token.id + ":" + token.answer);
-      });
+    view: function(url, mimetype, callback) {
+      var self = this;
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", url, true);
+      xhr.setRequestHeader("x-session", $rootScope.Authentication.session.id);
+      xhr.overrideMimeType(mimetype);
+      xhr.responseType = "blob";
+
+      xhr.onload = function(e) {
+        if (this.status == 200) {
+          callback(URL.createObjectURL(this.response));
+        }
+      };
+
+      xhr.send();
     },
 
     getSubmissionStatusText: function(status, substatus, submission_statuses) {
@@ -1781,18 +1798,5 @@ factory("GLTranslate", ["$translate", "$location", "$window", "tmhDynamicLocale"
       facts.userPreference = lang;
       determineLanguage();
     },
-  };
-}]).
-factory("RTipViewRFile", ["Utils", function(Utils) {
-  return function(file) {
-    Utils.view("api/rfile/" + file.id, function (data){
-      Utils.openViewModalDialog("views/modals/file_view.html", {
-          url: data,
-          filename: file.name,
-          type: file.type,
-          size: file.size,
-          creation_date: file.creation_date
-      });
-    });
   };
 }]);
