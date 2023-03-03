@@ -18,7 +18,7 @@
   opacity: 0.2;
 }
 
-#Loader {
+#Loader, .Loader {
   position: relative;
   margin: 0 auto;
   display: flex;

@@ -1,31 +1,29 @@
 <div class="modal-header">
   <div class="modal-title">
-    <h2>{{arg.filename}}</h2>
+    <h2>{{arg.name}}</h2>
   </div>
   <button type="button" class="close" data-ng-click="cancel()">
     <i class="fa-solid fa-times"></i>
   </button>
 </div>
 <div class="modal-body">
-  <div data-ng-if="arg.url">
-    <div data-ng-if="arg.tag === 'image'">
-      <img class="img-fluid" data-ng-src="{{arg.url}}" />
+  <div data-ng-if="!arg.objectUrl" class="Loader"></div>
+  <div data-ng-if="arg.objectUrl" data-ng-switch="arg.tag">
+    <div data-ng-switch-when="image">
+      <img id="viewer" data-ng-src="{{arg.objectUrl}}" />
     </div>
-    <div data-ng-if="arg.tag === 'video'">
-      <video controls width="100%" blob-src="{{arg.url}}"
-      type="{{arg.type}}"></video>
+    <div data-ng-switch-when="video">
+      <video id="viewer" controls data-ng-src="{{arg.objectUrl}}"></video>
     </div>
-    <div data-ng-if="arg.tag === 'audio'">
-      <audio controls blob-src="{{arg.url}}"></audio>
+    <div data-ng-switch-when="audio">
+      <audio id="viewer" controls data-ng-src="{{arg.objectUrl}}"></audio>
     </div>
   </div>
 </div>
 <div class="modal-footer">
-  <a
-    id="modal-action-cancel"
-    class="btn btn-outline-secondary"
-    data-ng-click="cancel()"
-  >
+  <a id="modal-action-cancel"
+     class="btn btn-outline-secondary"
+     data-ng-click="cancel()">
     <i class="fa-solid fa-times"></i>
     <span data-translate>Close</span>
   </a>
