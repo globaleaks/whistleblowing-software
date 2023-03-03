@@ -19,37 +19,51 @@ controller("ConfirmableModalCtrl",
     }
 
     return $uibModalInstance.dismiss("cancel");
-    };
+  };
 }]).controller("ViewModalCtrl", [
   "$scope",
   "$uibModalInstance",
+  "Utils",
   "arg",
   "confirmFun",
   "cancelFun",
-  function ($scope, $uibModalInstance, arg, confirmFun, cancelFun) {
+  function ($scope, $uibModalInstance, Utils, arg, confirmFun, cancelFun) {
     $scope.arg = arg;
     $scope.confirmFun = confirmFun;
     $scope.cancelFun = cancelFun;
     $scope.cancel = function () {
+      if (arg.objectUrl) {
+        URL.revokeObjectURL(arg.objectUrl);
+        delete arg.objectUrl;
+      }
+
       return $uibModalInstance.dismiss("cancel");
+
     };
 
     var getFileTag = function (type) {
-      var tag = "none";
-      if (type.indexOf("image") > -1) {
-        tag = "image";
+      if (type === "application/pdf") {
+        return "pdf";
+      } else if (type.indexOf("audio/") === 0) {
+        return "audio";
+      } else if (type.indexOf("image/") === 0) {
+        return "image";
+      } else if (type === "text/plain") {
+        return "txt";
+      } else if (type.indexOf("video/") === 0) {
+        return "video";
+      } else {
+        return "none";
       }
-      if (type.indexOf("video") > -1) {
-        tag = "video";
-      }
-      if (type.indexOf("audio") > -1) {
-        tag = "audio";
-      }
-      return tag;
     };
 
     this.$onInit = function () {
       arg.tag = getFileTag(arg.type);
     };
+
+    Utils.view("api/rfile/" + arg.id, arg.type, function (objectUrl) {
+      arg.objectUrl = objectUrl;
+      $scope.$digest();
+    });
   },
 ]);
