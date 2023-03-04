@@ -697,8 +697,8 @@ factory("Files", ["GLResource", function(GLResource) {
 factory("DefaultL10NResource", ["GLResource", function(GLResource) {
   return new GLResource("/data/l10n/:lang.json", {lang: "@lang"});
 }]).
-factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModal", "$window", "FileSaver", "TokenResource",
-    function($rootScope, $http, $q, $location, $filter, $uibModal, $window, FileSaver, TokenResource) {
+factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout", "$uibModal", "$window", "TokenResource",
+    function($rootScope, $http, $q, $location, $filter, $timeout, $uibModal, $window, TokenResource) {
   return {
     array_to_map: function(array) {
       var ret = {};
@@ -1150,14 +1150,12 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$uibModa
       }
     },
 
-    saveAs: function(filename, url) {
-      return $http({
-        method: "GET",
-        url: url,
-        responseType: "blob",
-      }).then(function (response) {
-        FileSaver.saveAs(response.data, filename);
-      });
+    saveAs: function(blob, filename) {
+      var fileLink = $window.document.createElement('a');
+      fileLink.href = URL.createObjectURL(blob);
+      fileLink.download = filename;
+      fileLink.click();
+      $timeout(function () { URL.revokeObjectURL(fileLink.href) }, 1000);
     },
 
     role_l10n: function(role) {

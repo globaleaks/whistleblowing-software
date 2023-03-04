@@ -48,8 +48,8 @@ GL.controller("AdminQuestionnaireCtrl",
     });
   };
 }]).
-controller("AdminQuestionnaireEditorCtrl", ["$scope", "$uibModal", "$http", "FileSaver", "AdminStepResource",
-  function($scope, $uibModal, $http, FileSaver, AdminStepResource) {
+controller("AdminQuestionnaireEditorCtrl", ["$scope", "$uibModal", "$http", "AdminStepResource",
+  function($scope, $uibModal, $http, AdminStepResource) {
 
   $scope.editing = false;
 
@@ -91,7 +91,7 @@ controller("AdminQuestionnaireEditorCtrl", ["$scope", "$uibModal", "$http", "Fil
       url: "api/admin/questionnaires/" + obj.id,
       responseType: "blob",
     }).then(function (response) {
-      FileSaver.saveAs(response.data, obj.name + ".json");
+      Utils.saveAs(response.data, obj.name + ".json");
     });
   };
 }]).
