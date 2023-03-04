@@ -21,7 +21,6 @@ var GL = angular.module("GL", [
     "ngCsv",
     "ngResource",
     "ngSanitize",
-    "ngFileSaver",
     "ng-showdown"
 ]).
   config(["$compileProvider", function($compileProvider) {

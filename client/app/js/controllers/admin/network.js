@@ -37,8 +37,8 @@ controller("AdminNetworkCtrl", ["$scope", function($scope) {
     });
   };
 }]).
-controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibModal", "FileSaver", "AdminTLSConfigResource", "AdminTLSCfgFileResource", "AdminAcmeResource",
-  function($q, $http, $window, $scope, $uibModal, FileSaver, tlsConfigResource, cfgFileResource, adminAcmeResource) {
+controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibModal", "AdminTLSConfigResource", "AdminTLSCfgFileResource", "AdminAcmeResource", "Utils",
+  function($q, $http, $window, $scope, $uibModal, tlsConfigResource, cfgFileResource, adminAcmeResource, Utils) {
   $scope.state = 0;
   $scope.menuState = "setup";
 
@@ -118,22 +118,22 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibMod
     }).then($scope.refreshConfig);
   };
 
-  $scope.downloadFile = function(resource) {
-    $http({
-       method: "GET",
-       url: "api/admin/config/tls/files/" + resource.name,
-       responseType: "blob",
-    }).then(function (response) {
-       FileSaver.saveAs(response.data, resource.name + ".pem");
-    });
-  };
-
   $scope.setupAcme = function() {
     var aRes = new adminAcmeResource();
     $scope.file_resources.key.$update()
     .then(function() {
       return aRes.$save();
     }).then($scope.refreshConfig);
+  };
+
+  $scope.downloadCSR = function() {
+    $http({
+       method: "GET",
+       url: "api/admin/config/tls/files/csr",
+       responseType: "blob",
+    }).then(function (response) {
+       Utils.saveAs(response.data, "csr.pem");
+    });
   };
 
   $scope.deleteFile = function(resource) {
