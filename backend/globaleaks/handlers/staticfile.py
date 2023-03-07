@@ -13,7 +13,8 @@ class StaticFileHandler(BaseHandler):
     allowed_mimetypes = [
         'text/css',
         'text/html',
-        'text/javascript'
+        'text/javascript',
+        'image/svg+xml'
     ]
 
     def __init__(self, state, request):
@@ -24,7 +25,6 @@ class StaticFileHandler(BaseHandler):
     def get(self, filename):
         if not filename:
             filename = 'index.html'
-
         abspath = os.path.abspath(os.path.join(self.root, filename))
         directory_traversal_check(self.root, abspath)
 

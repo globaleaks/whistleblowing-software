@@ -215,7 +215,7 @@ GL.controller("TipCtrl",
         $scope.showEditLabelInput = $scope.tip.label === "";
 
         $scope.tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText($scope.tip.status, $scope.tip.substatus, $scope.submission_statuses);
-        $scope.supportedViewTypes = ["image/jpeg", "image/png", "image/gif", "video/mp4", "audio/mpeg"];
+        $scope.supportedViewTypes = ["image/jpeg", "image/png", "image/gif", "video/mp4", "audio/mpeg", "application/pdf"];
       });
     }
 

@@ -48,6 +48,8 @@ controller("ConfirmableModalCtrl",
         return "video";
       } else if (type.indexOf("audio/") === 0) {
         return "audio";
+      } else if (type.indexOf("pdf") !== -1) {
+        return "pdf";
       } else {
         return "none";
       }

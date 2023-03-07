@@ -18,6 +18,9 @@
     <div data-ng-switch-when="audio">
       <audio id="viewer" controls data-ng-src="{{arg.objectUrl}}"></audio>
     </div>
+    <div data-ng-switch-when="pdf">
+      <iframe id="pdf-js-viewer" data-ng-src="{{'viewer/pdf/web/viewer.html?file=' + arg.objectUrl}}" title="webviewer" frameborder="0" height="600"></iframe>
+    </div>
   </div>
 </div>
 <div class="modal-footer">

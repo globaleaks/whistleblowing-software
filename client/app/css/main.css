@@ -888,6 +888,10 @@ text.axis-worktime {
   width: 100%;
 }
 
+#pdf-js-viewer {
+ width: 100% !important;
+}
+
 html[dir="rtl"] input[type="email"],
 html[dir="ltr"] input[type="email"],
 html[dir="rtl"] #creditCard,

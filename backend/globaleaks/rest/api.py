@@ -519,7 +519,7 @@ class APIResourceWrapper(Resource):
                                                  b"microphone=()")
 
         # Prevent old browsers not supporting CSP frame-ancestors directive to includes the platform within an iframe
-        request.setHeader(b'X-Frame-Options', b'deny')
+        request.setHeader(b'X-Frame-Options', b'sameorigin')
 
         # Prevent the browsers to implement automatic mime type detection and execution.
         request.setHeader(b'X-Content-Type-Options', b'nosniff')
