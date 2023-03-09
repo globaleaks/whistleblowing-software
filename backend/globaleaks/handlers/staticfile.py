@@ -21,6 +21,20 @@ class StaticFileHandler(BaseHandler):
 
         self.root = "%s%s" % (os.path.abspath(state.settings.client_path), "/")
 
+        if not state.settings.disable_csp:
+            request.setHeader(b'Content-Security-Policy',
+                              b"base-uri 'none';"
+                              b"connect-src 'self';"
+                              b"default-src 'none';"
+                              b"font-src 'self' data:;"
+                              b"form-action 'none';"
+                              b"frame-ancestors 'none';"
+                              b"frame-src 'self';"
+                              b"img-src 'self' data:;"
+                              b"media-src 'self';"
+                              b"script-src 'self' 'sha256-l4srTx31TC+tE2K4jVVCnC9XfHivkiSs/v+DPWccDDM=';"
+                              b"style-src 'self' 'sha256-fwyo2zCGlh85NfN4rQUlpLM7MB5cry/1AEDA/G9mQJ8=';")
+
     def get(self, filename):
         if not filename:
             filename = 'index.html'
