@@ -216,16 +216,17 @@ The client opens external urls on a new tab independent from the application con
 
 Input Validation
 ----------------
+The application implement strict input validation both on the backend and on the client
 
-On the Server
-+++++++++++++
-The system adopts a whitelist based input validation approach. Each client request is checked against a set of regular expressions and only requests matching the expression are then processed.
+On the Backend
+++++++++++++++
+Each client request is strictly validated by the backend against a set of regular expressions and only requests matching the expression are then processed.
 
 As well a set of rules are applied to each request type to limit possible attacks. For example any request is limited to a payload of 1MB.
 
 On the Client
 +++++++++++++
-The client implements strict validation of the rendered content by using the angular component `ngSanitize.$sanitize <http://docs.angularjs.org/api/ngSanitize.$sanitize>`_
+Each server output is strictly validated by the Client at rendering time by using the angular component `ngSanitize.$sanitize <http://docs.angularjs.org/api/ngSanitize.$sanitize>`_
 
 Form Autocomplete OFF
 ---------------------
@@ -349,7 +350,7 @@ Any attachment file uploaded by anonymous whistleblowers could possibly contain 
 
 Download Encryption
 +++++++++++++++++++
-Any attachment file uploaded by anonymous whistlblowers is protected and stored on the application server with an automated :doc:`Requirements </security/Encryption Protocol>`. To protect at rest files downloaded by recipients on their own computers, the platforms offers users the possibility to load their own PGP key; whenever users load their own PGP key, their downloads will be served encrypted.
+Any attachment file uploaded by anonymous whistlblowers is protected and stored on the application backend with an automated :doc:`Requirements </security/Encryption Protocol>`. To protect at rest files downloaded by recipients on their own computers, the platforms offers users the possibility to load their own PGP key; whenever users load their own PGP key, their downloads will be served encrypted.
 
 Encryption of Temporary Files
 -----------------------------
