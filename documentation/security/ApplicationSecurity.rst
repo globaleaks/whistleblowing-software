@@ -130,9 +130,15 @@ Administrators could optionally enable the preload functionality.
 
 Content-Security-Policy
 +++++++++++++++++++++++
-The backend implements the following `Content Security Policy (CSP) <https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP>`_:
-::
-  Content-Security-Policy: base-uri 'none'; connect-src 'self'; default-src 'none'; font-src 'self' data:; form-action 'none'; frame-ancestors 'none'; img-src 'self' data:; media-src 'self'; script-src 'self';
+The backend implements a very strict `Content Security Policy (CSP) <https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP>`_ preventing any interaction with resources of third parties:
+  Content-Security-Policy: base-uri 'none'; default-src 'none'; form-action 'none'; frame-ancestors 'none'; sandbox;
+
+On this default specific policies are defined based on the priniple of of least privilege;
+
+For example:
+* the index.html source of the app is the only resource enabled to load scripts from the same origin;
+* every dynamic content is strictly sandboxed on a null origin;
+* every untrusted user data or third party library is executed in a sandbox limiting its interaction with other application components
 
 Cross-Origin-Embedder-Policy
 ++++++++++++++++++++++++++++
@@ -144,13 +150,13 @@ Cross-Origin-Opener-Policy
 ++++++++++++++++++++++++++
 The backend implements the following `Cross-Origin-Opener-Policy (COOP) <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy>`_:
 ::
-  Cross-Origin-Resource-Policy: same-site
+  Cross-Origin-Resource-Policy: same-origin
 
 Cross-Origin-Resource-Policy
 ++++++++++++++++++++++++++++
 The backend implements the following `Cross-Origin-Resource-Policy (CORP) <https://developer.mozilla.org/en-US/docs/Web/HTTP/Cross-Origin_Resource_Policy>`_:
 ::
-  Cross-Origin-Resource-Policy: same-site
+  Cross-Origin-Resource-Policy: same-origin
 
 Permissions-Policy
 ++++++++++++++
