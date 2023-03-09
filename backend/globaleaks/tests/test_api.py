@@ -74,6 +74,9 @@ class TestAPI(TestGL):
                                         'default-src \'none\';' \
                                         'form-action \'none\';' \
                                         'frame-ancestors \'none\';'),
+            ('Cross-Origin-Embedder-Policy', 'require-corp'),
+            ('Cross-Origin-Opener-Policy', 'same-origin'),
+            ('Cross-Origin-Resource-Policy', 'same-origin'),
             ('Permissions-Policy', "camera=(),"
                                    "document-domain=(),"
                                    "fullscreen=(),"
