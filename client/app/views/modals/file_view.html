@@ -7,18 +7,8 @@
   </button>
 </div>
 <div class="modal-body">
-  <div data-ng-if="!arg.objectUrl" class="Loader"></div>
-  <div data-ng-if="arg.objectUrl" data-ng-switch="arg.tag">
-    <div data-ng-switch-when="image">
-      <img id="viewer" data-ng-src="{{arg.objectUrl}}" />
-    </div>
-    <div data-ng-switch-when="video">
-      <video id="viewer" controls data-ng-src="{{arg.objectUrl}}"></video>
-    </div>
-    <div data-ng-switch-when="audio">
-      <audio id="viewer" controls data-ng-src="{{arg.objectUrl}}"></audio>
-    </div>
-  </div>
+  <div data-ng-if="!arg.loaded" class="Loader"></div>
+  <iframe data-ng-if="arg.loaded" id="viewer" data-ng-src="{{'viewer/index.html'}}" title="fileviewer" frameborder="0" height="800" sandbox="allow-downloads allow-scripts"></iframe>
 </div>
 <div class="modal-footer">
   <a id="modal-action-cancel"
