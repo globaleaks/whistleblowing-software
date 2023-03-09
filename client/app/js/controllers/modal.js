@@ -32,11 +32,6 @@ controller("ConfirmableModalCtrl",
     $scope.confirmFun = confirmFun;
     $scope.cancelFun = cancelFun;
     $scope.cancel = function () {
-      if (arg.objectUrl) {
-        URL.revokeObjectURL(arg.objectUrl);
-        delete arg.objectUrl;
-      }
-
       return $uibModalInstance.dismiss("cancel");
 
     };
@@ -61,9 +56,18 @@ controller("ConfirmableModalCtrl",
       arg.tag = getFileTag(arg.type);
     };
 
-    Utils.view("api/rfile/" + arg.id, arg.type, function (objectUrl) {
-      arg.objectUrl = objectUrl;
-      $scope.$digest();
+    Utils.view("api/rfile/" + arg.id, arg.type, function (blob) {
+      arg.loaded = true;
+      $scope.$apply();
+
+      window.addEventListener('message', function(event) {
+        var data = {
+          tag: arg.tag,
+          blob: blob
+        }
+
+        angular.element(document.querySelector("#viewer"))[0].contentWindow.postMessage(data, "*");
+      }, {once: true});
     });
   },
 ]);
