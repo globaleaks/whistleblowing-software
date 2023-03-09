@@ -497,29 +497,24 @@ class APIResourceWrapper(Resource):
         if not State.settings.disable_csp:
             request.setHeader(b'Content-Security-Policy',
                               b"base-uri 'none';"
-                              b"connect-src 'self';"
                               b"default-src 'none';"
-                              b"font-src 'self' data:;"
                               b"form-action 'none';"
                               b"frame-ancestors 'none';"
-                              b"img-src 'self' data:;"
-                              b"media-src 'self';"
-                              b"script-src 'self' 'sha256-l4srTx31TC+tE2K4jVVCnC9XfHivkiSs/v+DPWccDDM=';"
-                              b"style-src 'self' 'sha256-fwyo2zCGlh85NfN4rQUlpLM7MB5cry/1AEDA/G9mQJ8=';")
+                              b"sandbox;")
 
             request.setHeader(b"Cross-Origin-Embedder-Policy", "require-corp")
             request.setHeader(b"Cross-Origin-Opener-Policy", "same-origin")
             request.setHeader(b"Cross-Origin-Resource-Policy", "same-site")
 
-        # Disable features that could be used to deanonymize the user
-        request.setHeader(b'Permissions-Policy', b"camera=(),"
-                                                 b"document-domain=(),"
-                                                 b"fullscreen=(),"
-                                                 b"geolocation=(),"
-                                                 b"microphone=()")
+            # Disable features that could be used to deanonymize the user
+            request.setHeader(b'Permissions-Policy', b"camera=(),"
+                                                     b"document-domain=(),"
+                                                     b"fullscreen=(),"
+                                                     b"geolocation=(),"
+                                                     b"microphone=()")
 
-        # Prevent old browsers not supporting CSP frame-ancestors directive to includes the platform within an iframe
-        request.setHeader(b'X-Frame-Options', b'deny')
+            # Prevent old browsers not supporting CSP frame-ancestors directive to includes the platform within an iframe
+            request.setHeader(b'X-Frame-Options', b'deny')
 
         # Prevent the browsers to implement automatic mime type detection and execution.
         request.setHeader(b'X-Content-Type-Options', b'nosniff')
