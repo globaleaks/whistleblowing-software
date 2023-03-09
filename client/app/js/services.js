@@ -1109,7 +1109,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
 
       xhr.onload = function(e) {
         if (this.status == 200) {
-          callback(URL.createObjectURL(this.response));
+          callback(this.response);
         }
       };
 

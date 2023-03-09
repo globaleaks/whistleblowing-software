@@ -888,6 +888,10 @@ text.axis-worktime {
   width: 100%;
 }
 
+.modal-xl {
+  max-width: 90%;
+}
+
 html[dir="rtl"] input[type="email"],
 html[dir="ltr"] input[type="email"],
 html[dir="rtl"] #creditCard,

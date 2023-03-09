@@ -34,7 +34,8 @@ from globaleaks.handlers import custodian, \
                                 sitemap, \
                                 support, \
                                 staticfile, \
-                                security
+                                security, \
+                                viewer
 
 from globaleaks.handlers.admin import context as admin_context
 from globaleaks.handlers.admin import field as admin_field
@@ -173,6 +174,8 @@ api_spec = [
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', l10n.L10NHandler),
 
     (r'^(/admin|/login|/submission)$', redirect.SpecialRedirectHandler),
+
+    (r'/(viewer/[a-zA-Z0-9_\-\/\.\@]*)', viewer.ViewerHandler),
 
     # This handler attempts to route all non routed get requests
     (r'/([a-zA-Z0-9_\-\/\.\@]*)', staticfile.StaticFileHandler)
