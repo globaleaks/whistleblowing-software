@@ -130,6 +130,7 @@ Administrators could optionally enable the preload functionality.
 
 Content-Security-Policy
 +++++++++++++++++++++++
+<<<<<<< HEAD
 The backend implements a strict `Content Security Policy (CSP) <https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP>`_ preventing any interaction with resources of third parties and restricting execution of untrusted user input:
   Content-Security-Policy: base-uri 'none'; default-src 'none'; form-action 'none'; frame-ancestors 'none'; sandbox;
 
@@ -138,7 +139,7 @@ On this default policy are then implemented specific policies in adherence to th
 For example:
 * the index.html source of the app is the only resource enabled to load scripts from the same origin;
 * every dynamic content is strictly sandboxed on a null origin;
-* every untrusted user input or third party library is executed in a sandbox limiting its interaction with other application components
+* every untrusted user input or third party library is executed in a sandbox limiting its interaction with other application components.
 
 Cross-Origin-Embedder-Policy
 ++++++++++++++++++++++++++++
