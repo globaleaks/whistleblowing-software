@@ -71,15 +71,13 @@ class TestAPI(TestGL):
             ('Cache-control', 'no-store'),
             ('Content-Language', 'en'),
             ('Content-Security-Policy', 'base-uri \'none\';' \
-                                        'connect-src \'self\';' \
                                         'default-src \'none\';' \
-                                        'font-src \'self\' data:;' \
                                         'form-action \'none\';' \
                                         'frame-ancestors \'none\';' \
-                                        'img-src \'self\' data:;' \
-                                        'media-src \'self\';' \
-                                        'script-src \'self\' \'sha256-l4srTx31TC+tE2K4jVVCnC9XfHivkiSs/v+DPWccDDM=\';' \
-                                        'style-src \'self\' \'sha256-fwyo2zCGlh85NfN4rQUlpLM7MB5cry/1AEDA/G9mQJ8=\';'),
+                                        'sandbox;'),
+            ('Cross-Origin-Embedder-Policy', 'require-corp'),
+            ('Cross-Origin-Opener-Policy', 'same-origin'),
+            ('Cross-Origin-Resource-Policy', 'same-origin'),
             ('Permissions-Policy', "camera=(),"
                                    "document-domain=(),"
                                    "fullscreen=(),"
