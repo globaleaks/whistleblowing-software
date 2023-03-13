@@ -11,10 +11,12 @@ class ViewerHandler(StaticFileHandler):
             request.setHeader(b'Content-Security-Policy',
                               b"base-uri 'none';"
                               b"default-src 'none';"
+                              b"connect-src blob:;"
                               b"form-action 'none';"
                               b"frame-ancestors 'self';"
                               b"img-src blob:;"
                               b"media-src blob:;"
-                              b"script-src 'self';")
+                              b"script-src 'self';"
+                              b"style-src 'self';")
 
         request.setHeader(b'Access-Control-Allow-Origin', b'null')

@@ -54,18 +54,19 @@ controller("ConfirmableModalCtrl",
 
     this.$onInit = function () {
       arg.tag = getFileTag(arg.type);
+      // setting iframe height to 75% of window height if tag is pdf
+      arg.iframeHeight =  window.innerHeight * 0.75;
     };
 
     Utils.view("api/rfile/" + arg.id, arg.type, function (blob) {
       arg.loaded = true;
       $scope.$apply();
 
-      window.addEventListener('message', function(event) {
+      window.addEventListener("message", function(event) {
         var data = {
           tag: arg.tag,
           blob: blob
-        }
-
+        };
         angular.element(document.querySelector("#viewer"))[0].contentWindow.postMessage(data, "*");
       }, {once: true});
     });
