@@ -4,7 +4,6 @@
 import os
 
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.rest import errors
 from globaleaks.utils.fs import directory_traversal_check
 
 
