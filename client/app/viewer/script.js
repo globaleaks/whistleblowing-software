@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+
 var mediaViewer = document.getElementById("media-viewer");
 var pdfViewer = document.getElementById("pdf-viewer");
 var pdfCanvas = document.getElementById("pdf-canvas");
@@ -106,6 +107,10 @@ function pdfPrevPage() {
 window.addEventListener(
   "load",
   function () {
+    if (window.self === window.top) {
+      return;
+    };
+
     window.parent.postMessage("ready", "*");
     window.addEventListener("message", receiveMessage, { once: true });
   },
