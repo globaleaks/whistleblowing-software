@@ -24,14 +24,14 @@ function receiveMessage(evt) {
         "<audio id=\"viewer\" src=\"' + url + '\" controls /></audio>";
     } else if (evt.data.tag === "image") {
       mediaViewer.innerHTML =
-        "<img width=\"100%\" id=\"viewer\" src=\"" + url + "\" />";
+        "<img id=\"viewer\" src=\"" + url + "\" />";
     } else if (evt.data.tag === "video") {
       mediaViewer.innerHTML =
         "<video id=\"viewer\" src=\"" + url + "\" controls /></video>";
     } else if (evt.data.tag === "txt"){
-      evt.data.blob.text().then(function(text){
+      evt.data.blob.text().then(function(text) {
         mediaViewer.innerHTML =
-        "<pre id=\"txt-viewer\">" + text + "</pre>";
+          "<pre id=\"viewer\">" + text + "</pre>";
       });
     }
   }

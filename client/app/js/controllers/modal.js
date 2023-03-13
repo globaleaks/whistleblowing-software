@@ -43,7 +43,7 @@ controller("ConfirmableModalCtrl",
         return "audio";
       } else if (type.indexOf("image/") === 0) {
         return "image";
-      } else if (type === "text/plain") {
+      } else if (type === "text/csv" || type === "text/plain") {
         return "txt";
       } else if (type.indexOf("video/") === 0) {
         return "video";
