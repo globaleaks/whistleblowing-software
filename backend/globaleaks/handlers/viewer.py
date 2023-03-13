@@ -10,8 +10,8 @@ class ViewerHandler(StaticFileHandler):
         if not state.settings.disable_csp:
             request.setHeader(b'Content-Security-Policy',
                               b"base-uri 'none';"
-                              b"default-src 'none';"
                               b"connect-src blob:;"
+                              b"default-src 'none';"
                               b"form-action 'none';"
                               b"frame-ancestors 'self';"
                               b"img-src blob:;"

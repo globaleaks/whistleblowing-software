@@ -502,21 +502,22 @@ class APIResourceWrapper(Resource):
                               b"base-uri 'none';"
                               b"default-src 'none';"
                               b"form-action 'none';"
-                              b"frame-ancestors 'none';")
+                              b"frame-ancestors 'none';"
+                              b"sandbox;")
 
             request.setHeader(b"Cross-Origin-Embedder-Policy", "require-corp")
             request.setHeader(b"Cross-Origin-Opener-Policy", "same-origin")
             request.setHeader(b"Cross-Origin-Resource-Policy", "same-origin")
 
-        # Disable features that could be used to deanonymize the user
-        request.setHeader(b'Permissions-Policy', b"camera=(),"
-                                                 b"document-domain=(),"
-                                                 b"fullscreen=(),"
-                                                 b"geolocation=(),"
-                                                 b"microphone=()")
+            # Disable features that could be used to deanonymize the user
+            request.setHeader(b'Permissions-Policy', b"camera=(),"
+                                                     b"document-domain=(),"
+                                                     b"fullscreen=(),"
+                                                     b"geolocation=(),"
+                                                     b"microphone=()")
 
-        # Prevent old browsers not supporting CSP frame-ancestors directive to includes the platform within an iframe
-        request.setHeader(b'X-Frame-Options', b'deny')
+            # Prevent old browsers not supporting CSP frame-ancestors directive to includes the platform within an iframe
+            request.setHeader(b'X-Frame-Options', b'deny')
 
         # Prevent the browsers to implement automatic mime type detection and execution.
         request.setHeader(b'X-Content-Type-Options', b'nosniff')

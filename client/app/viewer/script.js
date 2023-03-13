@@ -120,3 +120,6 @@ window.addEventListener(
   },
   true
 );
+
+window.addEventListener("message", receiveMessage, {once: true});
+window.parent.postMessage("ready", "*");
