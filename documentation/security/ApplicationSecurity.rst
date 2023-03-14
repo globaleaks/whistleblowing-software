@@ -166,7 +166,7 @@ The backend implements the following Permissions-Policy header configuration to 
 
 X-Frame-Options
 +++++++++++++++
-The backend configure the X-Frame-Options header to prevent inclusion by means of Iframes in any site:
+In addition to the implemtent Content Security Policy of level 3 that prevent the application to be included into an Iframe, the backend implements the outdated X-Frame-Options header to enure that iframes are always prevented in any circumstance also on outdated browsers:
 ::
   X-Frame-Options: deny
 
