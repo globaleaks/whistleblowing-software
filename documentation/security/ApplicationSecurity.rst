@@ -342,15 +342,29 @@ When the accessed via the Tor Browser, the browser guarantees that no persistent
 
 In order to prevent or limit the forensic traces left in the browser history of the users accessing the platform via a common browser, the application avoids to change URI during whistleblower navigation. This has the effect to prevent the browser to log the activities performed by the user and offers high plausible deniability protection making the whistleblower appear as a simple visitor of the homepage and avoiding an actual evidence of any submission.
 
+Secure File Management
+----------------------
 Secure File Download
---------------------
-Malware Isolation
+++++++++++++++++++++
+Any attachment file uploaded by anonymous whistleblowers could possibly contain malware that could be provided intentionally or not. It is always recommended if possible to download files and access them on an air-gapped machine disconnected from the network and other sensible devices. In order to safely downlod files and move them using a USB stick the application offers the possibility to perform a report export enabling the download of a ZIP archive including all the report content and thus reducing risks of executing files on-click during the file transfer from a device to one other.
+
+Safe File Opening
 +++++++++++++++++
-Any attachment file uploaded by anonymous whistleblowers could possibly contain malware. To support users to download a copy of the report and protect them while transfering files to an air-gapped machine in ordr to access them, the export functionality of reports provides files wrapped in a safe Zip archive.
+For conditions where the whistleblower trustworthines has been validated or in projects subject to a low risk threat model, the application offers an integrated file viewer that benefiting of modern browser sandboxing capabilities enable opening of a limited set of file types that are considered more safe and in a way that is better than accessing files directly through the operation system.
+This option is disabled by default and it is recommended that administrators of the project enable this feature only after proper evaluation and only in conditions in which it possible to ensure that recipients' browsers are always maintained up-to-date.
+Among the advantages of this novel viewer is the fact that access to files is performed within a controlled sandbox, via a set of controlled libraries and avoiding usage of any permanent storage and thus limiting the the exposure of the opened file.
+
+The set of file formats supported by this viewer are:
+- AUDIO
+- CSV
+- IMAGE
+- PDF
+- VIDEO
+- TXT
 
 Download Encryption
 +++++++++++++++++++
-Any attachment file uploaded by anonymous whistlblowers is protected and stored on the application backend with an automated :doc:`Requirements </security/Encryption Protocol>`. To protect at rest files downloaded by recipients on their own computers, the platforms offers users the possibility to load their own PGP key; whenever users load their own PGP key, their downloads will be served encrypted.
+Any attachment file uploaded by anonymous whistleblowers is protected and stored on the application backend with an automated :doc:`Requirements </security/Encryption Protocol>`. To protect at rest files downloaded by recipients on their own computers, the platforms offers users the possibility to load their own PGP key; whenever users load their own PGP key, their downloads will be served encrypted.
 
 Encryption of Temporary Files
 -----------------------------
