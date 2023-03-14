@@ -355,12 +355,13 @@ This option is disabled by default and it is recommended that administrators of 
 Among the advantages of this novel viewer is the fact that access to files is performed within a controlled sandbox, via a set of controlled libraries and avoiding usage of any permanent storage and thus limiting the the exposure of the opened file.
 
 The set of file formats supported by this viewer are:
-- AUDIO
-- CSV
-- IMAGE
-- PDF
-- VIDEO
-- TXT
+
+* AUDIO
+* CSV
+* IMAGE
+* PDF
+* VIDEO
+* TXT
 
 Download Encryption
 +++++++++++++++++++
