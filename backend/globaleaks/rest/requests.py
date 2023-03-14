@@ -233,6 +233,7 @@ AdminNodeDesc = {
     'multisite': bool,
     'adminonly': bool,
     'custom_support_url': url_regexp_or_empty,
+    'pgp': bool,
     'viewer': bool
 }
 

@@ -360,6 +360,7 @@ class MockDict:
             'basic_auth_username': '',
             'basic_auth_password': '',
             'custom_support_url': '',
+            'pgp': False,
             'viewer': False
         }
 
