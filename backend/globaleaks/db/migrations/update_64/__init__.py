@@ -67,4 +67,7 @@ class InternalTip_v_63(Model):
 
 
 class MigrationScript(MigrationBase):
-    pass
+    def epilogue(self):
+        for t in self.session_new.query(self.model_to['Tenant']):
+            if self.session_old.query(self.model_to['User']).filter(self.model_to['User'].tid == t.id, self.model_to['User'].pgp_key_public != '').count():
+                self.session_new.query(self.model_to['Config']).filter(self.model_to['Config'].tid == t.id, self.model_to['Config'].var_name == 'pgp').update({'value': True})
