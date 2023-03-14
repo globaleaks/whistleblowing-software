@@ -1100,15 +1100,14 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     },
 
     view: function(url, mimetype, callback) {
-      var self = this;
       var xhr = new XMLHttpRequest();
       xhr.open("GET", url, true);
       xhr.setRequestHeader("x-session", $rootScope.Authentication.session.id);
       xhr.overrideMimeType(mimetype);
       xhr.responseType = "blob";
 
-      xhr.onload = function(e) {
-        if (this.status == 200) {
+      xhr.onload = function() {
+        if (this.status === 200) {
           callback(this.response);
         }
       };

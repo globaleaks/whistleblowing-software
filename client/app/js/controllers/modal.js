@@ -62,7 +62,7 @@ controller("ConfirmableModalCtrl",
       arg.loaded = true;
       $scope.$apply();
 
-      window.addEventListener("message", function(event) {
+      window.addEventListener("message", function() {
         var data = {
           tag: arg.tag,
           blob: blob
