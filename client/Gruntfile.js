@@ -80,7 +80,8 @@ module.exports = function(grunt) {
               "js/scripts.js",
               "data/**",
               "lib/js/locale/**",
-              "lib/webfonts/**"
+              "lib/webfonts/**",
+              "viewer/**"
             ],
             expand: true,
             flatten: false
