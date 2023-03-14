@@ -126,7 +126,7 @@ The system implements strict transport security by default.
 ::
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
 
-Administrators could optionally enable the preload functionality.
+The default configuration of the application see this feature disabled.
 
 Content-Security-Policy
 +++++++++++++++++++++++
@@ -363,6 +363,8 @@ The set of file formats supported by this viewer are:
 * VIDEO
 * TXT
 
+The default configuration of the application see this feature disabled.
+
 PGP Encryption
 ++++++++++++++
 The system offers an optional PGP encryption feature.
@@ -370,6 +372,8 @@ The system offers an optional PGP encryption feature.
 When enabled, users could possibly enable a personal PGP key that will be used by the system to encrypt email notifications and encrypt downloaded files on-the-fly.
 
 This is a recommended feature for high risk threat models in association with the usage of air-gapped systems for the visualization of the reports.
+
+The default configuration of the application see this feature disabled.
 
 Encryption of Temporary Files
 -----------------------------

@@ -12,7 +12,7 @@
         <thead>
           <tr>
             <th data-translate>Filename</th>
-            <th data-translate>View</th>
+            <th data-translate data-ng-if="public.node.viewer">View</th>
             <th data-translate>Download</th>
             <th data-translate>Upload date</th>
             <th data-translate>Type</th>
@@ -22,7 +22,7 @@
         <tbody id="fileListBody">
           <tr id="file-{{$index}}" data-ng-repeat="file in tip.rfiles" data-ng-init="viewSupported = supportedViewTypes.includes(file.type)">
             <td>{{file.name}}</td>
-            <td>
+            <td data-ng-if="public.node.viewer">
               <button class="btn btn-sm btn-primary tip-action-views-file"
               data-ng-disabled="!viewSupported"
               data-ng-class="{ 'btn-secondary': !viewSupported }"
