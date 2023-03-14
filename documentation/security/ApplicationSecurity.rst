@@ -130,7 +130,6 @@ Administrators could optionally enable the preload functionality.
 
 Content-Security-Policy
 +++++++++++++++++++++++
-<<<<<<< HEAD
 The backend implements a strict `Content Security Policy (CSP) <https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP>`_ preventing any interaction with resources of third parties and restricting execution of untrusted user input:
   Content-Security-Policy: base-uri 'none'; default-src 'none'; form-action 'none'; frame-ancestors 'none'; sandbox;
 
