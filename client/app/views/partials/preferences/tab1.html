@@ -71,7 +71,7 @@
     </label>
   </div>
 
-  <div id="EditPGP" data-ng-form="pgpkeyForm">
+  <div id="EditPGP" data-ng-form="pgpkeyForm" data-ng-if="public.node.pgp">
     <div data-ng-show="resources.preferences.pgp_key_fingerprint">
       <div class="form-group">
         <label data-translate>Details of the PGP key:</label>

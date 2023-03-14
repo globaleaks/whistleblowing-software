@@ -363,9 +363,13 @@ The set of file formats supported by this viewer are:
 * VIDEO
 * TXT
 
-Download Encryption
-+++++++++++++++++++
-Any attachment file uploaded by anonymous whistleblowers is protected and stored on the application backend with an automated :doc:`Requirements </security/Encryption Protocol>`. To protect at rest files downloaded by recipients on their own computers, the platforms offers users the possibility to load their own PGP key; whenever users load their own PGP key, their downloads will be served encrypted.
+PGP Encryption
+++++++++++++++
+The system offers an optional PGP encryption feature.
+
+When enabled, users could possibly enable a personal PGP key that will be used by the system to encrypt email notifications and encrypt downloaded files on-the-fly.
+
+This is a recommended feature for high risk threat models in association with the usage of air-gapped systems for the visualization of the reports.
 
 Encryption of Temporary Files
 -----------------------------
