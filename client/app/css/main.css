@@ -93,6 +93,14 @@ a:hover,
   color: #377abc;
 }
 
+.nav,
+.pagination,
+.carousel,
+.card-title a {
+  cursor: pointer;
+}
+
+
 [dir] .dropdown-multiselect button::after {
   border: 0;
   content: "";
@@ -230,13 +238,6 @@ a:hover,
 
 [dir] .btn {
   font-weight: bold;
-}
-
-.nav,
-.pagination,
-.carousel,
-.card-title a {
-  cursor: pointer;
 }
 
 .card {
@@ -901,6 +902,11 @@ html[dir="ltr"] #Receipt {
   direction: ltr;
 }
 
+[dir="rtl"] .fa,
+[dir="rtl"] .fa-solid {
+  transform: scaleX(-1);
+}
+
 [dir="ltr"] #Sidebar .fa,
 [dir="ltr"] #Sidebar .fa-solid {
   margin-right: 0.5em;
@@ -909,12 +915,6 @@ html[dir="ltr"] #Receipt {
 [dir="rtl"] #Sidebar .fa,
 [dir="rtl"] #Sidebar .fa-solid {
   margin-left: 0.5em;
-}
-
-
-[dir="rtl"] .fa,
-[dir="rtl"] .fa-solid {
-  transform: scaleX(-1);
 }
 
 [dir] .collapse,
