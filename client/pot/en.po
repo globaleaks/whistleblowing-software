@@ -476,21 +476,6 @@ msgstr "Before proceeding, please enable the two factor authentication."
 msgid "Enable"
 msgstr "Enable"
 
-msgid "Low"
-msgstr "Low"
-
-msgid "High"
-msgstr "High"
-
-msgid "megabytes"
-msgstr "megabytes"
-
-msgid "percentage"
-msgstr "percentage"
-
-msgid "Save"
-msgstr "Save"
-
 msgid "Type"
 msgstr "Type"
 
@@ -536,6 +521,9 @@ msgstr "This field is mandatory"
 msgid "Edit"
 msgstr "Edit"
 
+msgid "Save"
+msgstr "Save"
+
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -556,6 +544,9 @@ msgstr "Questionnaire"
 
 msgid "Recipients"
 msgstr "Recipients"
+
+msgid "Reminder date"
+msgstr "Reminder date"
 
 msgid "days"
 msgstr "days"
@@ -610,6 +601,9 @@ msgstr "Value"
 
 msgid "Medium"
 msgstr "Medium"
+
+msgid "High"
+msgstr "High"
 
 msgid "Software version:"
 msgstr "Software version:"
@@ -857,6 +851,9 @@ msgstr "Video"
 msgid "Text shown upon negative answer"
 msgstr "Text shown upon negative answer"
 
+msgid "Low"
+msgstr "Low"
+
 msgid "Trigger conditions"
 msgstr "Trigger conditions"
 
@@ -947,6 +944,12 @@ msgstr "Administrators authorized to change user passwords:"
 msgid "Enable multisite feature"
 msgstr "Enable multisite feature"
 
+msgid "Enable file viewer"
+msgstr "Enable file viewer"
+
+msgid "Enable PGP"
+msgstr "Enable PGP"
+
 msgid "Enable simplified login"
 msgstr "Enable simplified login"
 
@@ -962,6 +965,9 @@ msgstr "Show contexts in alphabetical order"
 msgid "Size limit for file attachments"
 msgstr "Size limit for file attachments"
 
+msgid "megabytes"
+msgstr "megabytes"
+
 msgid "Require two factor authentication"
 msgstr "Require two factor authentication"
 
@@ -973,6 +979,9 @@ msgstr "For security reasons, password changes are required at regular intervals
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Number of days till notifying unread reports to users"
+
+msgid "Custom support URL"
+msgstr "Custom support URL"
 
 msgid "Disable the privacy panel"
 msgstr "Disable the privacy panel"
@@ -991,6 +1000,9 @@ msgstr "Enable scoring system"
 
 msgid "Logging level"
 msgstr "Logging level"
+
+msgid "percentage"
+msgstr "percentage"
 
 msgid "Log accesses of internal users"
 msgstr "Log accesses of internal users"
@@ -1210,6 +1222,9 @@ msgstr "Send"
 
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "By confirming, you will postpone the expiration date to:"
+
+msgid "By confirming, you will set a remainder on date:"
+msgstr "By confirming, you will set a remainder on date:"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "This is a demo platform, please do not use it for real submissions."
