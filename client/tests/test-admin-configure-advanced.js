@@ -7,6 +7,8 @@ describe("admin configure advanced settings", function() {
     // enable features that by default are disabled
     await element(by.model("resources.node.enable_custodian")).click();
     await element(by.model("resources.node.multisite")).click();
+    await element(by.model("resources.node.pgp")).click();
+    await element(by.model("resources.node.viewer")).click();
 
     // save settings
     await element.all(by.css("[data-ng-click=\"updateNode()\"]")).last().click();
