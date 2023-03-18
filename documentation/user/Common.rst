@@ -45,15 +45,3 @@ Users could access their own Account Recovery key by clicking the ``Account Reco
 This is a fundamental step that any user should do at their first login after activating their own account in order to backup their own account recovery key and get sure to not incur in data loss due to password loss.
 
 .. image:: ../images/user/recoverykey.png
-
-Load a Public PGP Key
----------------------
-GlobaLeaks implements by default an advanced and automatic :doc:`Encryption Protocol <../security/EncryptionProtocol>` that uses online keys.
-
-Users have the optional possibility to load a personal ``Public PGP Key`` by uploading or pasting the key on their ``Preferences`` page.
-
-When a PGP key is loaded onto the platform any file uploaded on the platform and email notification sent by the platform is encrypted with it. This is an optional additional measure of security that should be evaluated and adopted in relation the threat model of the project.
-
-.. image:: ../images/user/preferences.png
-
-.. image:: ../images/user/pgp.png
