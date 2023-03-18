@@ -587,8 +587,6 @@ var GL = angular.module("GL", [
           "tor": getResponseHeaders()["X-Check-Tor"] === "true" || $location.host().match(/\.onion$/),
         };
 
-        $rootScope.privacy_badge_open = !$rootScope.connection.tor;
-
         Utils.route_check();
 
         $rootScope.languages_enabled = {};

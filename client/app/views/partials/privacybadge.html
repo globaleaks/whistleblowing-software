@@ -1,5 +1,5 @@
 <div data-ng-if="!connection.tor">
-  <div id="PrivacyBadge" class="clearfix" data-ng-init="connection.privacy_badge_open = true" data-ng-click="connection.privacy_badge_open = !connection.privacy_badge_open" >
+  <div id="PrivacyBadge" class="clearfix">
     <div data-ng-if="!public.node.enable_custom_privacy_badge">
       <div id="PrivacyBadgeTextBox" class="float-left">
         <span class="badge badge-warning">
@@ -19,12 +19,8 @@
     </div>
     <div data-ng-if="public.node.enable_custom_privacy_badge">
       <div id="PrivacyBoxTextBox" class="float-left">
-        <span id="PrivacyBadgeCustomText" data-ng-show="connection.privacy_badge_open" data-markdown-to-html="public.node.custom_privacy_badge_text | stripHtml"></span>
+        <span id="PrivacyBadgeCustomText" data-markdown-to-html="public.node.custom_privacy_badge_text | stripHtml"></span>
       </div>
-    </div>
-    <div id="PrivacyBoxToggleButton" class="float-right" data-ng-if="!public.node.enable_custom_privacy_badge">
-      <i data-ng-if="!connection.privacy_badge_open" class="fa-solid fa-chevron-circle-down"></i>
-      <i data-ng-if="connection.privacy_badge_open" class="fa-solid fa-chevron-circle-up"></i>
     </div>
   </div>
 </div>
