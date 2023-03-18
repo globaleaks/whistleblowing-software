@@ -7,7 +7,11 @@ describe("admin configure advanced settings", function() {
     // enable features that by default are disabled
     await element(by.model("resources.node.enable_custodian")).click();
     await element(by.model("resources.node.multisite")).click();
-    await element(by.model("resources.node.pgp")).click();
+
+    if (browser.params.features.pgp) {
+      await element(by.model("resources.node.pgp")).click();
+    }
+
     await element(by.model("resources.node.viewer")).click();
 
     // save settings

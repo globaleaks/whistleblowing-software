@@ -33,10 +33,12 @@ describe("Recipient first login", function() {
     await element(by.cssContainingText("button", "Close")).click();
   });
 
-  it("should be able to load his/her public PGP key", async function() {
-    await receiver.addPublicKey(pgp_key_path);
-    await browser.gl.utils.takeScreenshot("user/pgp.png");
-  });
+  if (browser.params.features.pgp) {
+    it("should be able to load his/her public PGP key", async function() {
+      await receiver.addPublicKey(pgp_key_path);
+      await browser.gl.utils.takeScreenshot("user/pgp.png");
+    });
+  }
 
   it("should be able to see the interface for changing the authentication password", async function() {
     await element(by.cssContainingText("a", "Password")).click();

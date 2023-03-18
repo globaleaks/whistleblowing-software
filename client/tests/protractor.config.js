@@ -14,6 +14,9 @@ exports.config = {
   directConnect: true,
 
   params: {
+    "features": {
+      "pgp": false
+    },
     "takeScreenshots": true,
     "tmpDir": tmpDir,
     "testDir": __dirname
