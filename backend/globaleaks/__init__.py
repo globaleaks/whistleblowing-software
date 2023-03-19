@@ -84,7 +84,7 @@ LANGUAGES_SUPPORTED = [
     {'code': 'sv', 'name': 'Swedish', 'native': 'Svenska'},
     {'code': 'sw', 'name': 'Swahili', 'native': 'Kiswahili'},
     {'code': 'ta', 'name': 'Tamil', 'native': '\u0ba4\u0bae\u0bbf\u0bb4\u0bcd'},
-    {'code': 'tg', 'name': 'Tajik', 'native': '\u1090\u1086\u1207\u1080\u1082\u1251'},
+    {'code': 'tg', 'name': 'Tajik', 'native': '\u0442\u043e\u04b7\u0438\u043a\u04e3'},
     {'code': 'th', 'name': 'Thai', 'native': '\u0e44\u0e17\u0e22'},
     {'code': 'tk', 'name': 'Turkmen', 'native': '\u0054\u00fc\u0072\u006b\u006d\u0065\u006e\u0020\u0064\u0069\u006c\u0069'},
     {'code': 'tr', 'name': 'Turkish', 'native': '\u0054\u00fc\u0072\u006b\u00e7\u0065'},
