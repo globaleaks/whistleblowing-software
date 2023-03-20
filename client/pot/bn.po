@@ -469,7 +469,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -486,21 +486,6 @@ msgstr "এগিয়ে যাওয়ার আগে, দয়া কর�
 
 msgid "Enable"
 msgstr "সচল"
-
-msgid "Low"
-msgstr "নিম্ন"
-
-msgid "High"
-msgstr "উচ্চ"
-
-msgid "megabytes"
-msgstr "মেগাবাইট"
-
-msgid "percentage"
-msgstr "শতাংশ"
-
-msgid "Save"
-msgstr "সংরক্ষণ করুন"
 
 msgid "Type"
 msgstr "ধরণ"
@@ -547,6 +532,9 @@ msgstr "এই ক্ষেত্রটি বাধ্যতামূলক"
 msgid "Edit"
 msgstr "এডিট "
 
+msgid "Save"
+msgstr "সংরক্ষণ করুন"
+
 msgid "Cancel"
 msgstr "বাতিল"
 
@@ -568,7 +556,7 @@ msgstr "প্রশ্নাবলী"
 msgid "Recipients"
 msgstr "প্রাপক"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -624,6 +612,9 @@ msgstr "মান"
 
 msgid "Medium"
 msgstr "মধ্যম"
+
+msgid "High"
+msgstr "উচ্চ"
 
 msgid "Software version:"
 msgstr "সফ্টওয়্যার সংস্করণ:"
@@ -863,6 +854,9 @@ msgstr "ভিডিও"
 msgid "Text shown upon negative answer"
 msgstr "নেতিবাচক উত্তরের উপরে যে লেখা প্রদর্শিত হবে"
 
+msgid "Low"
+msgstr "নিম্ন"
+
 msgid "Trigger conditions"
 msgstr "ট্রিগারের শর্তাবলি"
 
@@ -953,6 +947,12 @@ msgstr "প্রশাসকগণ ব্যবহারকারীর পা�
 msgid "Enable multisite feature"
 msgstr "মাল্টিসাইট বৈশিষ্ট্য সক্ষম করুন"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "সিম্পল লগইন সক্ষম করুন"
 
@@ -968,6 +968,9 @@ msgstr "প্রসঙ্গগুলি বর্ণানুক্রমি�
 msgid "Size limit for file attachments"
 msgstr "ফাইল সংযুক্তির জন্য আকার সীমা"
 
+msgid "megabytes"
+msgstr "মেগাবাইট"
+
 msgid "Require two factor authentication"
 msgstr "টু-ফ্যাক্টর অথেনটিকেশন প্রয়োজন"
 
@@ -980,6 +983,9 @@ msgstr "নিরাপত্তার কারণে, নিয়মিত �
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "কতদিন পরে ব্যবহারকারীদের অপঠিত প্রতিবেদন সম্পর্কে অবহিত করা হবে"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "গোপনীয়তা প্যানেলটি অক্ষম করুন"
@@ -998,6 +1004,9 @@ msgstr "স্কোরিং সিস্টেম সক্ষম করুন
 
 msgid "Logging level"
 msgstr "লগিংয়ের স্তর"
+
+msgid "percentage"
+msgstr "শতাংশ"
 
 msgid "Log accesses of internal users"
 msgstr "অভ্যন্তরীণ ব্যবহারকারীদের লগ অ্যাক্সেসগুলি"

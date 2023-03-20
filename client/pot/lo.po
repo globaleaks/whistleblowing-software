@@ -462,7 +462,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -479,21 +479,6 @@ msgstr "ກ່ອນທີ່ຈະດຳເນີນການຕໍ່ໄປ, �
 
 msgid "Enable"
 msgstr "ເປີດນຳໃຊ້"
-
-msgid "Low"
-msgstr "ຕ່ຳ"
-
-msgid "High"
-msgstr "ສູງ"
-
-msgid "megabytes"
-msgstr "ເມກາໄບທ໌"
-
-msgid "percentage"
-msgstr "ເປີເຊັນ"
-
-msgid "Save"
-msgstr "ບັນທຶກ"
 
 msgid "Type"
 msgstr "ປະເພດ"
@@ -540,6 +525,9 @@ msgstr "ຊ່ອງນີ້ແມ່ນຕ້ອງມີ"
 msgid "Edit"
 msgstr "ແກ້ໄຂ"
 
+msgid "Save"
+msgstr "ບັນທຶກ"
+
 msgid "Cancel"
 msgstr "ຍົກເລີກ"
 
@@ -561,7 +549,7 @@ msgstr "ແບບສອບຖາມ"
 msgid "Recipients"
 msgstr "ຜູ້ຮັບ"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -617,6 +605,9 @@ msgstr "ຄ່າ"
 
 msgid "Medium"
 msgstr "ຂະໜາດກາງ"
+
+msgid "High"
+msgstr "ສູງ"
 
 msgid "Software version:"
 msgstr "ເວີຊັນຂອງຊອບແວ:"
@@ -856,6 +847,9 @@ msgstr "ວິດີໂອ"
 msgid "Text shown upon negative answer"
 msgstr "ຂໍ້ຄວາມທີ່ຈະສະແດງເມື່ອມີຄຳຕອບທາງລົບ"
 
+msgid "Low"
+msgstr "ຕ່ຳ"
+
 msgid "Trigger conditions"
 msgstr "ເງື່ອນໄຂໃນການກະຕຸ້ນ"
 
@@ -946,6 +940,12 @@ msgstr "ຜູ້ເບິ່ງແຍງລະບົບໄດ້ຮັບອະ
 msgid "Enable multisite feature"
 msgstr "ເປີດນຳໃຊ້ຄຸນສົມບັດຫຼາຍເວັບໄຊ"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "ເປີດນຳໃຊ້ການເຂົ້າສູ່ລະບົບແບບງ່າຍດາຍ"
 
@@ -961,6 +961,9 @@ msgstr "ສະແດງເນື້ອຫາຕາມລຳດັບຕົວອ
 msgid "Size limit for file attachments"
 msgstr "ຂະໜາດຈຳກັດສຳລັບໄຟລ໌ຄັດຕິດ"
 
+msgid "megabytes"
+msgstr "ເມກາໄບທ໌"
+
 msgid "Require two factor authentication"
 msgstr "ຕ້ອງການການຢືນຢັນແບບສອງຂັ້ນຕອນ"
 
@@ -973,6 +976,9 @@ msgstr "ດ້ວຍເຫດຜົນດ້ານຄວາມປອດໄພ, �
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "ຈຳນວນມື້ຈົນກວ່າຈະແຈ້ງກ່ຽວກັບລາຍງານທີ່ບໍ່ທັນໄດ້ອ່ານໃຫ້ແກ່ຜູ້ໃຊ້"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "ປິດໃຊ້ງານແຜງຄວາມເປັນສ່ວນຕົວ"
@@ -991,6 +997,9 @@ msgstr "ເປີດນຳໃຊ້ລະບົບການໃຫ້ຄະແນ
 
 msgid "Logging level"
 msgstr "ລະດັບການບັນທຶກ"
+
+msgid "percentage"
+msgstr "ເປີເຊັນ"
 
 msgid "Log accesses of internal users"
 msgstr "ບັນທຶກການເຂົ້າເຖິງຂອງບັນດາຜູ້ໃຊ້ພາຍໃນ"

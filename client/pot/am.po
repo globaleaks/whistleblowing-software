@@ -463,7 +463,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -480,21 +480,6 @@ msgstr "ከመቀጠልዎ በፊት ባለሁለት ደረጃ ማረጋገጫ �
 
 msgid "Enable"
 msgstr "ያንቁ"
-
-msgid "Low"
-msgstr "ዝቅተኛ"
-
-msgid "High"
-msgstr "ከፍተኛ"
-
-msgid "megabytes"
-msgstr "ሜጋባይትስ"
-
-msgid "percentage"
-msgstr "ፐርሰንቴጅ"
-
-msgid "Save"
-msgstr "አስቀምጥ "
 
 msgid "Type"
 msgstr "አይነት"
@@ -541,6 +526,9 @@ msgstr "ይህ መስክ አስገዳጅ ነው"
 msgid "Edit"
 msgstr "አርትኦት "
 
+msgid "Save"
+msgstr "አስቀምጥ "
+
 msgid "Cancel"
 msgstr "ሰርዝ "
 
@@ -562,7 +550,7 @@ msgstr "መጠይቅ"
 msgid "Recipients"
 msgstr "ተቀባዮች"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -618,6 +606,9 @@ msgstr "ዋጋ"
 
 msgid "Medium"
 msgstr "መገናኛ "
+
+msgid "High"
+msgstr "ከፍተኛ"
 
 msgid "Software version:"
 msgstr "የሶፍትዌር ስሪት"
@@ -857,6 +848,9 @@ msgstr "ተንቀሳቃሽ ምስል"
 msgid "Text shown upon negative answer"
 msgstr "በአሉታዊ መልስ ጊዜ የሚታይ ጽሑፍ"
 
+msgid "Low"
+msgstr "ዝቅተኛ"
+
 msgid "Trigger conditions"
 msgstr "ሁኔታዎችን ቀስቅስ"
 
@@ -947,6 +941,12 @@ msgstr "አስተዳዳሪዎች የተጠቃሚ የይለፍ ቃሎችን እ�
 msgid "Enable multisite feature"
 msgstr "የሕብረ ድረገጽ ባህርይ ያንቁ"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr ""
 
@@ -962,6 +962,9 @@ msgstr "አገባበ ነገሮችን በፊደል ተራ ያሳዩ"
 msgid "Size limit for file attachments"
 msgstr "ለፋይል አባሪዎች የመጠን ገደብ"
 
+msgid "megabytes"
+msgstr "ሜጋባይትስ"
+
 msgid "Require two factor authentication"
 msgstr "ባለ ሁለት ደረጃ ማረጋገጫ ይጠይቁ"
 
@@ -973,6 +976,9 @@ msgid ""
 msgstr "ለድህንነት ሲባል በየተወሰነ ጊዜ ውስጥ የይለፍ ቃል መቀየር ያስፈልጋል፡፡"
 
 msgid "Number of days till notifying unread reports to users"
+msgstr ""
+
+msgid "Custom support URL"
 msgstr ""
 
 msgid "Disable the privacy panel"
@@ -992,6 +998,9 @@ msgstr "የውጤት ስርኣት ያንቁ"
 
 msgid "Logging level"
 msgstr "የመግባት ደረጃ"
+
+msgid "percentage"
+msgstr "ፐርሰንቴጅ"
 
 msgid "Log accesses of internal users"
 msgstr "የውስጥ ተጠቃሚዎች የመግባት መዳረሻዎች"

@@ -1,7 +1,7 @@
 # 
 # Translators:
 # Arthit Suriyawongkul, 2021
-# Arthit Suriyawongkul, 2021
+# Arthit Suriyawongkul, 2021,2023
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # Arthit Suriyawongkul, 2020-2021
 # Cheer Zeng <cheerz6623@gmail.com>, 2021
@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2018,2020-2022\n"
+"Last-Translator: Arthit Suriyawongkul, 2021,2023\n"
 "Language-Team: Thai (http://www.transifex.com/otf/globaleaks/language/th/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -121,7 +121,7 @@ msgid "Refresh"
 msgstr "เรียกใหม่"
 
 msgid "Channel"
-msgstr ""
+msgstr "ช่อง"
 
 msgid "Preview"
 msgstr "ดูตัวอย่าง"
@@ -295,7 +295,7 @@ msgid "Strong"
 msgstr "แข็งแรง"
 
 msgid "Text shown on top of the interface for selecting channels"
-msgstr ""
+msgstr "ข้อความที่แสดงที่ส่วนบนสุดของอินเทอร์เฟซของช่องที่เลือก"
 
 msgid "Silence email notifications"
 msgstr "ปิดการแจ้งเตือนทางอีเมล"
@@ -467,19 +467,19 @@ msgid "Revoke access"
 msgstr "เพิกถอนการเข้าถึง"
 
 msgid "Assigned to"
-msgstr ""
+msgstr "มอบหมายให้"
 
 msgid "Not provided."
-msgstr ""
+msgstr "ไม่ได้ให้มา"
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
 msgstr "ยื่นรายงาน"
 
 msgid "Select a reporting channel:"
-msgstr ""
+msgstr "เลือกช่องทางรายงาน:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "ก่อนจะไปต่อ กรุณาตั้งรหัสผ่านใหม่"
@@ -489,21 +489,6 @@ msgstr "ก่อนจะไปต่อ กรุณาเปิดใช้�
 
 msgid "Enable"
 msgstr "เปิดใช้งาน"
-
-msgid "Low"
-msgstr "ต่ำ"
-
-msgid "High"
-msgstr "สูง"
-
-msgid "megabytes"
-msgstr "เมกะไบต์"
-
-msgid "percentage"
-msgstr "ร้อยละ"
-
-msgid "Save"
-msgstr "บันทึก"
 
 msgid "Type"
 msgstr "ประเภท"
@@ -550,6 +535,9 @@ msgstr "ช่องนี้จำเป็นต้องกรอก"
 msgid "Edit"
 msgstr "แก้ไข"
 
+msgid "Save"
+msgstr "บันทึก"
+
 msgid "Cancel"
 msgstr "ยกเลิก"
 
@@ -557,7 +545,7 @@ msgid "Report statuses"
 msgstr "สถานะรายงาน"
 
 msgid "Channels"
-msgstr ""
+msgstr "ช่อง"
 
 msgid "Hidden"
 msgstr "ถูกซ่อนอยู่"
@@ -571,7 +559,7 @@ msgstr "แบบสอบถาม"
 msgid "Recipients"
 msgstr "ผู้รับ"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -627,6 +615,9 @@ msgstr "ค่า"
 
 msgid "Medium"
 msgstr "กลาง"
+
+msgid "High"
+msgstr "สูง"
 
 msgid "Software version:"
 msgstr "เวอร์ชันซอฟต์แวร์:"
@@ -753,7 +744,7 @@ msgstr "ถึง"
 msgid ""
 "Default mail configuration in use. Please consider using a private mail "
 "server."
-msgstr ""
+msgstr "ใช้การปรับค่าอีเมลตามค่าปริยายอยู่ โปรดพิจารณาใช้เซิร์ฟเวอร์อีเมลส่วนตัว"
 
 msgid "SMTP email address"
 msgstr "ที่อยู่อีเมล SMTP"
@@ -866,6 +857,9 @@ msgstr "วิดีโอ"
 msgid "Text shown upon negative answer"
 msgstr "ข้อความแสดงเมื่อได้คำตอบปฏิเสธ"
 
+msgid "Low"
+msgstr "ต่ำ"
+
 msgid "Trigger conditions"
 msgstr "เงื่อนไขเริ่มทำงาน"
 
@@ -956,6 +950,12 @@ msgstr "ผู้ดูแลได้รับอนุญาตให้เป
 msgid "Enable multisite feature"
 msgstr "เปิดใช้งานการรองรับหลายเว็บไซต์"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "เปิดใช้งานการลงชื่อเข้าใช้แบบเรียบง่าย"
 
@@ -971,6 +971,9 @@ msgstr "แสดงบริบทตามลำดับอักษร"
 msgid "Size limit for file attachments"
 msgstr "ขีดจำกัดขนาดเอกสารแนบ"
 
+msgid "megabytes"
+msgstr "เมกะไบต์"
+
 msgid "Require two factor authentication"
 msgstr "ต้องใช้การยืนยันตัวตนสองชั้น"
 
@@ -983,6 +986,9 @@ msgstr "ด้วยเหตุผลความปลอดภัย ระ�
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "จำนวนวันจนกว่าจะแจ้งผู้ใช้ถึงรายงานที่ยังไม่ได้อ่าน"
+
+msgid "Custom support URL"
+msgstr "URL สนับสนุนแบบปรับแต่งเอง"
 
 msgid "Disable the privacy panel"
 msgstr "ปิดการใช้งานแผงความเป็นส่วนตัว"
@@ -1001,6 +1007,9 @@ msgstr "เปิดใช้งานระบบให้คะแนน"
 
 msgid "Logging level"
 msgstr "ระดับการบันทึก"
+
+msgid "percentage"
+msgstr "ร้อยละ"
 
 msgid "Log accesses of internal users"
 msgstr "บันทึกการเข้าถึงของผู้ใช้ภายใน"
@@ -1187,7 +1196,7 @@ msgid "Request support"
 msgstr "ขอการสนับสนุน"
 
 msgid "Thank you."
-msgstr "ขอบคุณ."
+msgstr "ขอบคุณ"
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "เราจะติดต่อกลับไปหาคุณเร็วที่สุดเท่าที่จะเป็นไปได้"
@@ -1441,7 +1450,7 @@ msgid "Address"
 msgstr "ที่อยู่"
 
 msgid "Fiscal code"
-msgstr ""
+msgstr "รหัสการเงิน"
 
 msgid "Tax code"
 msgstr "เลขประจำตัวผู้เสียภาษี"

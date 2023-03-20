@@ -462,7 +462,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -479,21 +479,6 @@ msgstr "Sebelum meneruskan, sila dayakan pengesahan dua faktor."
 
 msgid "Enable"
 msgstr "Dayakan"
-
-msgid "Low"
-msgstr "Rendah"
-
-msgid "High"
-msgstr "Tinggi"
-
-msgid "megabytes"
-msgstr "megabait"
-
-msgid "percentage"
-msgstr "peratusan"
-
-msgid "Save"
-msgstr "Simpan"
 
 msgid "Type"
 msgstr "Jenis"
@@ -540,6 +525,9 @@ msgstr "Ruang ini perlu diisi"
 msgid "Edit"
 msgstr "Edit"
 
+msgid "Save"
+msgstr "Simpan"
+
 msgid "Cancel"
 msgstr "Batalkan"
 
@@ -561,7 +549,7 @@ msgstr "Soal selidik"
 msgid "Recipients"
 msgstr "Penerima"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -617,6 +605,9 @@ msgstr "Nilai"
 
 msgid "Medium"
 msgstr "Medium"
+
+msgid "High"
+msgstr "Tinggi"
 
 msgid "Software version:"
 msgstr "Versi perisian:"
@@ -856,6 +847,9 @@ msgstr "Video"
 msgid "Text shown upon negative answer"
 msgstr "Teks ditunjukkan selepas jawapan negatif"
 
+msgid "Low"
+msgstr "Rendah"
+
 msgid "Trigger conditions"
 msgstr "Keadaan pencetus"
 
@@ -946,6 +940,12 @@ msgstr "Pentadbir memberi kebenaran untuk mengubah kata laluan:"
 msgid "Enable multisite feature"
 msgstr "Dayakan ciri multilaman"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Dayakan log masuk diringkaskan"
 
@@ -961,6 +961,9 @@ msgstr "Tunjukkan konteks dalam susunan abjad"
 msgid "Size limit for file attachments"
 msgstr "Had saiz untuk lampiran fail"
 
+msgid "megabytes"
+msgstr "megabait"
+
 msgid "Require two factor authentication"
 msgstr "Memerlukan pengesahan dua faktor"
 
@@ -973,6 +976,9 @@ msgstr "Untuk tujuan keselamatan, perubahan kata laluan diperlukan pada selang m
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Bilangan hari sehingga memberitahu laporan yang belum dibaca kepada pengguna"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Nyahdayakan panel privasi"
@@ -991,6 +997,9 @@ msgstr "Dayakan sistem pemarkahan"
 
 msgid "Logging level"
 msgstr "Tahap log"
+
+msgid "percentage"
+msgstr "peratusan"
 
 msgid "Log accesses of internal users"
 msgstr "Akses log pengguna dalaman"

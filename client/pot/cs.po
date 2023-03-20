@@ -6,15 +6,15 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
-# trendspotter <jirka.p@volny.cz>, 2019
+# Jiří Podhorecký, 2019
 # Jiří Skryja, 2022-2023
-# trendspotter <jirka.p@volny.cz>, 2019
-# trendspotter <jirka.p@volny.cz>, 2018-2019,2021
+# Jiří Podhorecký, 2019
+# Jiří Podhorecký, 2018-2019,2021
 # Lenka Ježková <lenka.jezkova@oziveni.cz>, 2019-2020
 # Miroslav Kučera <mkucera66@seznam.cz>, 2013-2017
 # Mr Higgins, 2016-2018,2020-2021
 # Pavla Holcova <p.holcova@gmail.com>, 2014-2015
-# trendspotter <jirka.p@volny.cz>, 2019
+# Jiří Podhorecký, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
@@ -475,8 +475,8 @@ msgstr "Přiřazeno k"
 msgid "Not provided."
 msgstr "Není k dispozici."
 
-msgid "Set a reminder"
-msgstr ""
+msgid "Set a reminder date"
+msgstr "Nastavit datum připomenutí"
 
 msgid "File a report"
 msgstr "Podat oznámení"
@@ -492,21 +492,6 @@ msgstr "Před pokračováním povolte dvoufaktorové ověření."
 
 msgid "Enable"
 msgstr "Povoleno"
-
-msgid "Low"
-msgstr "Nízký"
-
-msgid "High"
-msgstr "Vysoká"
-
-msgid "megabytes"
-msgstr "MB"
-
-msgid "percentage"
-msgstr "procenta"
-
-msgid "Save"
-msgstr "Uložit"
 
 msgid "Type"
 msgstr "Typ"
@@ -553,6 +538,9 @@ msgstr "Toto pole je povinné"
 msgid "Edit"
 msgstr "Editovat"
 
+msgid "Save"
+msgstr "Uložit"
+
 msgid "Cancel"
 msgstr "Zrušit"
 
@@ -574,8 +562,8 @@ msgstr "Dotazník"
 msgid "Recipients"
 msgstr "Příjemci"
 
-msgid "Reminder"
-msgstr ""
+msgid "Reminder date"
+msgstr "Datum připomenutí"
 
 msgid "days"
 msgstr "dnů"
@@ -630,6 +618,9 @@ msgstr "Hodnota"
 
 msgid "Medium"
 msgstr "Střední"
+
+msgid "High"
+msgstr "Vysoká"
 
 msgid "Software version:"
 msgstr "Verze software:"
@@ -869,6 +860,9 @@ msgstr "Video"
 msgid "Text shown upon negative answer"
 msgstr "Text zobrazený při záporné odpovědi"
 
+msgid "Low"
+msgstr "Nízký"
+
 msgid "Trigger conditions"
 msgstr "Podmínky spuštění"
 
@@ -959,6 +953,12 @@ msgstr "Správci mají oprávnění ke změně uživatelských hesel:"
 msgid "Enable multisite feature"
 msgstr "Povolit funkci multisite "
 
+msgid "Enable file viewer"
+msgstr "Povolit prohlížeč souborů"
+
+msgid "Enable PGP"
+msgstr "Povolit PGP"
+
 msgid "Enable simplified login"
 msgstr "Povolit zjednodušené přihlášení"
 
@@ -974,6 +974,9 @@ msgstr "Ukázat kontexty v abecedním pořadí"
 msgid "Size limit for file attachments"
 msgstr "Limit velikosti pro přílohy"
 
+msgid "megabytes"
+msgstr "MB"
+
 msgid "Require two factor authentication"
 msgstr "Vyžaduje dvoufaktorové ověření"
 
@@ -986,6 +989,9 @@ msgstr "Z bezpečnostních důvodů jsou v pravidelných intervalech vyžadován
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Počet dní do oznámení nepřečtených zpráv uživatelům"
+
+msgid "Custom support URL"
+msgstr "Vlastní adresa URL podpory"
 
 msgid "Disable the privacy panel"
 msgstr "Zakázat panel o ochraně osobních údajů."
@@ -1004,6 +1010,9 @@ msgstr "Aktivovat systém hodnocení"
 
 msgid "Logging level"
 msgstr "Přihlašovací úroveň"
+
+msgid "percentage"
+msgstr "procenta"
 
 msgid "Log accesses of internal users"
 msgstr "Přístupy interních uživatelů"

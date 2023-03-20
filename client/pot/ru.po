@@ -492,7 +492,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -509,21 +509,6 @@ msgstr "Прежде чем продолжить, пожалуйста, вклю
 
 msgid "Enable"
 msgstr "Включить"
-
-msgid "Low"
-msgstr "Низкий"
-
-msgid "High"
-msgstr "Высокий"
-
-msgid "megabytes"
-msgstr "мегабайт"
-
-msgid "percentage"
-msgstr "процентов"
-
-msgid "Save"
-msgstr "Сохранить"
 
 msgid "Type"
 msgstr "Тип"
@@ -570,6 +555,9 @@ msgstr "Это поле обязательно"
 msgid "Edit"
 msgstr "Изменить"
 
+msgid "Save"
+msgstr "Сохранить"
+
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -591,7 +579,7 @@ msgstr "Опросник"
 msgid "Recipients"
 msgstr "Получатели"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -647,6 +635,9 @@ msgstr "Значение"
 
 msgid "Medium"
 msgstr "Средний"
+
+msgid "High"
+msgstr "Высокий"
 
 msgid "Software version:"
 msgstr "Версия программного обеспечения:"
@@ -886,6 +877,9 @@ msgstr "Видео"
 msgid "Text shown upon negative answer"
 msgstr "Текст при отрицательном ответе"
 
+msgid "Low"
+msgstr "Низкий"
+
 msgid "Trigger conditions"
 msgstr "Условия запуска"
 
@@ -976,6 +970,12 @@ msgstr "Администраторам разрешено изменять па�
 msgid "Enable multisite feature"
 msgstr "Включить настройку мульти-сайтов"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Позволить упрощенный вход"
 
@@ -991,6 +991,9 @@ msgstr "Сортировать контексты в алфавитном пор
 msgid "Size limit for file attachments"
 msgstr "Ограничение в размере для приложений"
 
+msgid "megabytes"
+msgstr "мегабайт"
+
 msgid "Require two factor authentication"
 msgstr "Требовать двухфакторную аутентификацию"
 
@@ -1003,6 +1006,9 @@ msgstr "По причинам безопасности необходимо ре
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Количество дней до уведомления пользователей о непрочитанных отчетах"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Отключить панель настройки конфиденциальности"
@@ -1021,6 +1027,9 @@ msgstr "Включить скоринговую систему"
 
 msgid "Logging level"
 msgstr "Уровень записи логов"
+
+msgid "percentage"
+msgstr "процентов"
 
 msgid "Log accesses of internal users"
 msgstr "Журнал авторизации внутренних пользователей"

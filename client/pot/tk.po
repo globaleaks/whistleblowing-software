@@ -467,7 +467,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -484,21 +484,6 @@ msgstr "Dowam etmezden ozal iki faktor tassyklaýjyny işjeňleşdirmegiňizi ha
 
 msgid "Enable"
 msgstr "Aç"
-
-msgid "Low"
-msgstr "Pes"
-
-msgid "High"
-msgstr "Ýokary"
-
-msgid "megabytes"
-msgstr "megabaýt"
-
-msgid "percentage"
-msgstr "göterim"
-
-msgid "Save"
-msgstr "Ýazdyr"
 
 msgid "Type"
 msgstr "Görnüşi"
@@ -545,6 +530,9 @@ msgstr "Bu öýjük hökmanydyr"
 msgid "Edit"
 msgstr "Düzet"
 
+msgid "Save"
+msgstr "Ýazdyr"
+
 msgid "Cancel"
 msgstr "Goýbolsun et"
 
@@ -566,7 +554,7 @@ msgstr "Sowalnama"
 msgid "Recipients"
 msgstr "Alyjylar"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -622,6 +610,9 @@ msgstr "Baha"
 
 msgid "Medium"
 msgstr "Ortaça"
+
+msgid "High"
+msgstr "Ýokary"
 
 msgid "Software version:"
 msgstr "Programma wersiýasy:"
@@ -861,6 +852,9 @@ msgstr "Wideo"
 msgid "Text shown upon negative answer"
 msgstr "Otrisatel jogapda görkezilýän ýazgy"
 
+msgid "Low"
+msgstr "Pes"
+
 msgid "Trigger conditions"
 msgstr "Şertleri oýar"
 
@@ -951,6 +945,12 @@ msgstr "Ulanyjy parolyny üýtgetmäge ygtyýarly dolandyryjylar:"
 msgid "Enable multisite feature"
 msgstr "Köpugurly aýratynlygy işjeňleşdiriň"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Ýönekeýleşdirilen girişi açyň"
 
@@ -966,6 +966,9 @@ msgstr "Mazmunlary elipbiý tertibinde görkeziň"
 msgid "Size limit for file attachments"
 msgstr "Faýl goşundylarynyň ululygy"
 
+msgid "megabytes"
+msgstr "megabaýt"
+
 msgid "Require two factor authentication"
 msgstr "Iki faktor tassyklanmagyny talap ediň"
 
@@ -978,6 +981,9 @@ msgstr "Howpsuzlyk sebäpli parollary yzygiderli üýtgetmek talap edilýär."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Ulanyjylara okalmadyk hasabatlary habar berýänçä günleriň sany"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Gizlinlik panelini öçür"
@@ -996,6 +1002,9 @@ msgstr "Bal ulgamyny aç"
 
 msgid "Logging level"
 msgstr "Giriş derejesi"
+
+msgid "percentage"
+msgstr "göterim"
 
 msgid "Log accesses of internal users"
 msgstr "Içerki ulanyjylaryň giriş ýazgylary"

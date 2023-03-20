@@ -482,7 +482,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -499,21 +499,6 @@ msgstr "Przed przejściem dalej proszę włączyć uwierzytelnianie dwuskładnik
 
 msgid "Enable"
 msgstr "Włącz"
-
-msgid "Low"
-msgstr "Niski"
-
-msgid "High"
-msgstr "Wysoki"
-
-msgid "megabytes"
-msgstr "megabajty"
-
-msgid "percentage"
-msgstr "procent"
-
-msgid "Save"
-msgstr "Zapisz"
 
 msgid "Type"
 msgstr "Typ"
@@ -560,6 +545,9 @@ msgstr "To pole jest obligatoryjne"
 msgid "Edit"
 msgstr "Edytuj"
 
+msgid "Save"
+msgstr "Zapisz"
+
 msgid "Cancel"
 msgstr "Anuluj"
 
@@ -581,7 +569,7 @@ msgstr "Ankieta"
 msgid "Recipients"
 msgstr "Odbiorcy"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -637,6 +625,9 @@ msgstr "Wartość"
 
 msgid "Medium"
 msgstr "Średni"
+
+msgid "High"
+msgstr "Wysoki"
 
 msgid "Software version:"
 msgstr "Wersja oprogramowania:"
@@ -876,6 +867,9 @@ msgstr "Wideo"
 msgid "Text shown upon negative answer"
 msgstr "Tekst wyświetlany przy błędnej odpowiedzi"
 
+msgid "Low"
+msgstr "Niski"
+
 msgid "Trigger conditions"
 msgstr "Uruchom warunki"
 
@@ -966,6 +960,12 @@ msgstr "Administratorzy upoważnieni do zmiany haseł użytkowników:"
 msgid "Enable multisite feature"
 msgstr "Włącz fukcję „multusite”"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Włącz logowanie uproszczon"
 
@@ -981,6 +981,9 @@ msgstr "Sortuj konteksty alfabetycznie"
 msgid "Size limit for file attachments"
 msgstr "Limit wielkości załączników"
 
+msgid "megabytes"
+msgstr "megabajty"
+
 msgid "Require two factor authentication"
 msgstr "Wymagaj uwierzytelnienia dwuskładnikowego"
 
@@ -993,6 +996,9 @@ msgstr "Ze względów bezpieczeństwa zmiany haseł są wymagane w regularnych o
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Liczba dni do wysłania powiadomień do użytkowników o nieprzeczytanych raportach"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Wyłącz panel prywatności"
@@ -1011,6 +1017,9 @@ msgstr "Włącz system punktacji"
 
 msgid "Logging level"
 msgstr "Poziom dziennika"
+
+msgid "percentage"
+msgstr "procent"
 
 msgid "Log accesses of internal users"
 msgstr "Loguj uzyskiwanie dostępu przez wewnętrznych użytkowników"

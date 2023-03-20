@@ -462,7 +462,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -479,21 +479,6 @@ msgstr "Давам қилиштин бурун, икки қәдәмлик тоғ
 
 msgid "Enable"
 msgstr "Қозғат"
-
-msgid "Low"
-msgstr "Төвән"
-
-msgid "High"
-msgstr "Йуқури"
-
-msgid "megabytes"
-msgstr "Мегабайтс"
-
-msgid "percentage"
-msgstr "Пирсәнти"
-
-msgid "Save"
-msgstr "Сақла"
 
 msgid "Type"
 msgstr "Türi"
@@ -540,6 +525,9 @@ msgstr "Бу бөләк мәҗбурий"
 msgid "Edit"
 msgstr "Тәһрирлә"
 
+msgid "Save"
+msgstr "Сақла"
+
 msgid "Cancel"
 msgstr "Ваз кәч"
 
@@ -561,7 +549,7 @@ msgstr "Рай синаш"
 msgid "Recipients"
 msgstr "Тапшуривалғучилар"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -617,6 +605,9 @@ msgstr "Қиммәт"
 
 msgid "Medium"
 msgstr "Оттуриһал"
+
+msgid "High"
+msgstr "Йуқури"
 
 msgid "Software version:"
 msgstr "Йумшақ детал нәшри:"
@@ -856,6 +847,9 @@ msgstr "Син"
 msgid "Text shown upon negative answer"
 msgstr "Сәлбий җавабта көрситилидиған текист"
 
+msgid "Low"
+msgstr "Төвән"
+
 msgid "Trigger conditions"
 msgstr "Қозғитилиш шәртләр"
 
@@ -946,6 +940,12 @@ msgstr "Башқурғучиларға ишләткүчи пароллирини
 msgid "Enable multisite feature"
 msgstr "Көп бекәт иқтидарини қозғат"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Аддилашқан тизимға киришни қозғат"
 
@@ -961,6 +961,9 @@ msgstr "Мәзмунларни елипбә тәртипи бойичә көрс
 msgid "Size limit for file attachments"
 msgstr "Һөҗҗәт қошумчилири үчүн чоңлуқ чеки"
 
+msgid "megabytes"
+msgstr "Мегабайтс"
+
 msgid "Require two factor authentication"
 msgstr "Икки қәдәмлик тоғрулашни тәләп қил"
 
@@ -973,6 +976,9 @@ msgstr "Бихәтәрликни көздә тутуп, қәрәллик пар�
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Оқулмиған доклатларни ишләткүчиләргә уқтурғичә өтидиған күн сани"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Ихтийари шәхсийәт тахтисини чәклә"
@@ -991,6 +997,9 @@ msgstr "Номур қойүш системисини қозғат"
 
 msgid "Logging level"
 msgstr "Хатиригә елиш сәвийәси"
+
+msgid "percentage"
+msgstr "Пирсәнти"
 
 msgid "Log accesses of internal users"
 msgstr "Ички ишләткүчиләрниң зийарәтлирини хатирилә"

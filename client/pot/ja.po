@@ -467,7 +467,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -484,21 +484,6 @@ msgstr "次に進む前に、2要素認証を有効にしてください。"
 
 msgid "Enable"
 msgstr "有効"
-
-msgid "Low"
-msgstr "低"
-
-msgid "High"
-msgstr "高い"
-
-msgid "megabytes"
-msgstr "メガバイトで"
-
-msgid "percentage"
-msgstr "パーセントで"
-
-msgid "Save"
-msgstr "保存"
 
 msgid "Type"
 msgstr "タイプ"
@@ -545,6 +530,9 @@ msgstr "このフィールドは必須です"
 msgid "Edit"
 msgstr "編集"
 
+msgid "Save"
+msgstr "保存"
+
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -566,7 +554,7 @@ msgstr "アンケート"
 msgid "Recipients"
 msgstr "受信者"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -622,6 +610,9 @@ msgstr "値"
 
 msgid "Medium"
 msgstr "ミディアム"
+
+msgid "High"
+msgstr "高い"
 
 msgid "Software version:"
 msgstr "ソフトウェア バージョン:"
@@ -861,6 +852,9 @@ msgstr "ビデオ"
 msgid "Text shown upon negative answer"
 msgstr "否定的な回答に表示されるテキスト"
 
+msgid "Low"
+msgstr "低"
+
 msgid "Trigger conditions"
 msgstr "トリガー条件"
 
@@ -951,6 +945,12 @@ msgstr "ユーザーのパスワード変更を許可された管理者:"
 msgid "Enable multisite feature"
 msgstr "マルチサイト機能を有効にする"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "簡易ログインを有効にする"
 
@@ -966,6 +966,9 @@ msgstr "コンテキストをアルファベット順に表示"
 msgid "Size limit for file attachments"
 msgstr "添付ファイルの制限サイズ"
 
+msgid "megabytes"
+msgstr "メガバイトで"
+
 msgid "Require two factor authentication"
 msgstr "2要素認証が必要です"
 
@@ -978,6 +981,9 @@ msgstr "セキュリティ上の理由から、定期的にパスワードを変
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "未読の報告をユーザーに通知するまでの日数"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "プライバシー・バッジを無効にする"
@@ -996,6 +1002,9 @@ msgstr "スコアリングシステムを有効にする"
 
 msgid "Logging level"
 msgstr "ログ取得レベル"
+
+msgid "percentage"
+msgstr "パーセントで"
 
 msgid "Log accesses of internal users"
 msgstr "内部ユーザーのログアクセス"

@@ -479,7 +479,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -496,21 +496,6 @@ msgstr "לפני שממשיכים, אנא תאפשר/י אימות דו-שלבי
 
 msgid "Enable"
 msgstr "אפשר"
-
-msgid "Low"
-msgstr "נמוכה"
-
-msgid "High"
-msgstr "גבוהה"
-
-msgid "megabytes"
-msgstr ""
-
-msgid "percentage"
-msgstr ""
-
-msgid "Save"
-msgstr "שמור"
 
 msgid "Type"
 msgstr "סוג"
@@ -557,6 +542,9 @@ msgstr "שדה זה הוא חובה"
 msgid "Edit"
 msgstr "ערוך"
 
+msgid "Save"
+msgstr "שמור"
+
 msgid "Cancel"
 msgstr "בטל"
 
@@ -578,7 +566,7 @@ msgstr "שְׁאֵלוֹן"
 msgid "Recipients"
 msgstr "מקבלים"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -634,6 +622,9 @@ msgstr "ערך"
 
 msgid "Medium"
 msgstr "בינוני"
+
+msgid "High"
+msgstr "גבוהה"
 
 msgid "Software version:"
 msgstr "גרסת תוכנה:"
@@ -873,6 +864,9 @@ msgstr "סרטון"
 msgid "Text shown upon negative answer"
 msgstr ""
 
+msgid "Low"
+msgstr "נמוכה"
+
 msgid "Trigger conditions"
 msgstr "תנאיי מעורר"
 
@@ -963,6 +957,12 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr ""
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr ""
 
@@ -978,6 +978,9 @@ msgstr "הראה הקשרים בסדר אלפאביתי"
 msgid "Size limit for file attachments"
 msgstr "גודל גבול עבור קבצים מצורפים"
 
+msgid "megabytes"
+msgstr ""
+
 msgid "Require two factor authentication"
 msgstr "דרוש אימות דו־שלבי"
 
@@ -989,6 +992,9 @@ msgid ""
 msgstr "מטעמי אבטחה, שינוי סיסמה דרושים במרווחים תדירים."
 
 msgid "Number of days till notifying unread reports to users"
+msgstr ""
+
+msgid "Custom support URL"
 msgstr ""
 
 msgid "Disable the privacy panel"
@@ -1007,6 +1013,9 @@ msgid "Enable scoring system"
 msgstr "אפשר מערכת ניקוד"
 
 msgid "Logging level"
+msgstr ""
+
+msgid "percentage"
 msgstr ""
 
 msgid "Log accesses of internal users"

@@ -464,7 +464,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -481,21 +481,6 @@ msgstr "Շարունակելուց առաջ խնդրում ենք ակտիվաց
 
 msgid "Enable"
 msgstr "Ակտիվացնել"
-
-msgid "Low"
-msgstr "Ցածր"
-
-msgid "High"
-msgstr "Բարձր"
-
-msgid "megabytes"
-msgstr "մեգաբայթեր"
-
-msgid "percentage"
-msgstr "տոկոս"
-
-msgid "Save"
-msgstr "Պահպանել"
 
 msgid "Type"
 msgstr "Տեսակ"
@@ -542,6 +527,9 @@ msgstr "Այս դաշտը պարտադիր է"
 msgid "Edit"
 msgstr "Խմբագրել"
 
+msgid "Save"
+msgstr "Պահպանել"
+
 msgid "Cancel"
 msgstr "Չեղարկել"
 
@@ -563,7 +551,7 @@ msgstr "Հարցաշար"
 msgid "Recipients"
 msgstr "Հասցեատերեր"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -619,6 +607,9 @@ msgstr "Արժեք"
 
 msgid "Medium"
 msgstr "Միջին"
+
+msgid "High"
+msgstr "Բարձր"
 
 msgid "Software version:"
 msgstr "Ծրագրաշարի տարբերակ՝"
@@ -858,6 +849,9 @@ msgstr "Վիդեո"
 msgid "Text shown upon negative answer"
 msgstr "Տեքստ, որ ցույց է տրվում բացասական պատասխանի դեպքում"
 
+msgid "Low"
+msgstr "Ցածր"
+
 msgid "Trigger conditions"
 msgstr "Առաջադրման պայմաններ"
 
@@ -948,6 +942,12 @@ msgstr "Ադմինիստրատորները լիազորված են փոխել օ
 msgid "Enable multisite feature"
 msgstr "Ակտիվացնել բազմակի կայքերի գործառույթը"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Ակտիվացնել պարզեցված մուտքը"
 
@@ -963,6 +963,9 @@ msgstr "Դասավորել համատեքստերն այբբենական կար�
 msgid "Size limit for file attachments"
 msgstr "Ֆայլի կցորդների թույլատրելի չափ"
 
+msgid "megabytes"
+msgstr "մեգաբայթեր"
+
 msgid "Require two factor authentication"
 msgstr "Պահանջել երկու գործոնով նույնականացում"
 
@@ -975,6 +978,9 @@ msgstr "Անվտանգության նկատառումներից ելնելով �
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Օրերի քանակը մինչև օգտատերերին չկարդացված հաշվետվությունների մասին ծանուցելը"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Արգելափակել գաղտնիության կարգավորումների վահանակը"
@@ -993,6 +999,9 @@ msgstr "Ակտիվացնել գնահատման համակարգը"
 
 msgid "Logging level"
 msgstr "Գրառումների պահպանման մակարդակ"
+
+msgid "percentage"
+msgstr "տոկոս"
 
 msgid "Log accesses of internal users"
 msgstr "Ներքին օգտվողների մուտքի գրանցում"

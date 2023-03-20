@@ -463,7 +463,7 @@ msgstr "اختصاص یافته به"
 msgid "Not provided."
 msgstr "ارائه نشده است."
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -480,21 +480,6 @@ msgstr "قبل از ادامه، لطفاً تأیید هویت دو عاملی 
 
 msgid "Enable"
 msgstr "فعال"
-
-msgid "Low"
-msgstr "کم"
-
-msgid "High"
-msgstr "زیاد"
-
-msgid "megabytes"
-msgstr "میگابایت"
-
-msgid "percentage"
-msgstr "فیصدی"
-
-msgid "Save"
-msgstr "ذخیره"
 
 msgid "Type"
 msgstr "نوع"
@@ -541,6 +526,9 @@ msgstr "این بخش اجباری است"
 msgid "Edit"
 msgstr "اصلاح"
 
+msgid "Save"
+msgstr "ذخیره"
+
 msgid "Cancel"
 msgstr "لغو"
 
@@ -562,7 +550,7 @@ msgstr "پرسشنامه"
 msgid "Recipients"
 msgstr "دریافت‌کننده‌ها"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -618,6 +606,9 @@ msgstr "ارزش"
 
 msgid "Medium"
 msgstr "متوسط  "
+
+msgid "High"
+msgstr "زیاد"
 
 msgid "Software version:"
 msgstr "نسخه نرم‌افزار: "
@@ -857,6 +848,9 @@ msgstr "ویدئو"
 msgid "Text shown upon negative answer"
 msgstr "نمایش متن در هنگام پاسخ منفی"
 
+msgid "Low"
+msgstr "کم"
+
 msgid "Trigger conditions"
 msgstr "شرایط برانگیزنده"
 
@@ -947,6 +941,12 @@ msgstr "ادمین های مجاز به تغییر پسورد کاربران:"
 msgid "Enable multisite feature"
 msgstr "فعال سازی ویژگی شبکه سایت ها"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "فعال سازی ورود ساده "
 
@@ -962,6 +962,9 @@ msgstr "نمایش محتوای متنی بر اساس حروف الفبا"
 msgid "Size limit for file attachments"
 msgstr "محدودیت حجم برای ضمیمه‌ها"
 
+msgid "megabytes"
+msgstr "میگابایت"
+
 msgid "Require two factor authentication"
 msgstr "نیاز به تأیید هویت دو عاملی"
 
@@ -974,6 +977,9 @@ msgstr "به دلایل امنیتی‌، تغییر پسورد در فاصله 
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "تعداد روزها تا زمان اطلاع راپورهای خوانده نشده به کاربران"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "غیرفعال کردن پنل محرمیبت"
@@ -992,6 +998,9 @@ msgstr "فعال سازی سیستم امتیازدهی"
 
 msgid "Logging level"
 msgstr "سطح ثبت وقایع"
+
+msgid "percentage"
+msgstr "فیصدی"
 
 msgid "Log accesses of internal users"
 msgstr "ثبت دسترسی های کاربران داخلی"

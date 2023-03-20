@@ -471,8 +471,8 @@ msgstr "Caktuar për"
 msgid "Not provided."
 msgstr "S’është dhënë."
 
-msgid "Set a reminder"
-msgstr "Ujdisni një kujtues"
+msgid "Set a reminder date"
+msgstr "Caktoni një datë kujtuesi"
 
 msgid "File a report"
 msgstr "Depozitoni një raportim"
@@ -488,21 +488,6 @@ msgstr "Para se të ecet më tej, ju lutemi, aktivizoni mirëfilltësimin dyfakt
 
 msgid "Enable"
 msgstr "Aktivizoje"
-
-msgid "Low"
-msgstr "I ulët"
-
-msgid "High"
-msgstr "I lartë"
-
-msgid "megabytes"
-msgstr "megabajte"
-
-msgid "percentage"
-msgstr "përqindje"
-
-msgid "Save"
-msgstr "Ruaje"
 
 msgid "Type"
 msgstr "Lloj"
@@ -549,6 +534,9 @@ msgstr "Kjo fushë është e detyrueshme"
 msgid "Edit"
 msgstr "Përpunojeni"
 
+msgid "Save"
+msgstr "Ruaje"
+
 msgid "Cancel"
 msgstr "Anuloje"
 
@@ -570,8 +558,8 @@ msgstr "Pyetësor"
 msgid "Recipients"
 msgstr "Marrës"
 
-msgid "Reminder"
-msgstr "Kujtues"
+msgid "Reminder date"
+msgstr "Datë kujtuesi"
 
 msgid "days"
 msgstr "ditë"
@@ -626,6 +614,9 @@ msgstr "Vlerë"
 
 msgid "Medium"
 msgstr "Mesatar"
+
+msgid "High"
+msgstr "I lartë"
 
 msgid "Software version:"
 msgstr "Version software-i:"
@@ -865,6 +856,9 @@ msgstr "Video"
 msgid "Text shown upon negative answer"
 msgstr "Tekst i shfaqur në rast përgjigjeje negative"
 
+msgid "Low"
+msgstr "I ulët"
+
 msgid "Trigger conditions"
 msgstr "Kushte aktivizimi"
 
@@ -955,6 +949,12 @@ msgstr "Përgjegjës të autorizuar për ndryshime fjalëkalimesh përdoruesish:
 msgid "Enable multisite feature"
 msgstr "Aktivizo veçorinë shumësajtësh"
 
+msgid "Enable file viewer"
+msgstr "Aktivizo parës kartelash"
+
+msgid "Enable PGP"
+msgstr "Aktivizo PGP"
+
 msgid "Enable simplified login"
 msgstr "Aktivizo hyrje të thjeshtuar"
 
@@ -970,6 +970,9 @@ msgstr "Kontekstet shfaqi në rend alfabetik"
 msgid "Size limit for file attachments"
 msgstr "Kufi madhësie për bashkëngjitje kartelash"
 
+msgid "megabytes"
+msgstr "megabajte"
+
 msgid "Require two factor authentication"
 msgstr "Kërko doemos mirëfilltësim dyfaktorësh"
 
@@ -982,6 +985,9 @@ msgstr "Për arsye sigurie, ndryshimet e fjalëkalimeve në intervale të rregul
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Numër ditësh deri në njoftim të përdoruesve për raportime të palexuar"
+
+msgid "Custom support URL"
+msgstr "URL e përshtatur asistence"
 
 msgid "Disable the privacy panel"
 msgstr "Çaktivizo panelin e privatësisë"
@@ -1000,6 +1006,9 @@ msgstr "Aktivizo sistem pikësh"
 
 msgid "Logging level"
 msgstr "Nivel regjistrimi"
+
+msgid "percentage"
+msgstr "përqindje"
 
 msgid "Log accesses of internal users"
 msgstr "Regjistro hyrje përdoruesish të brendshëm"

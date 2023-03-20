@@ -462,7 +462,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -479,21 +479,6 @@ msgstr "Dawam qilishtin burun, ikki qedemlik toghrulashni qozghiting."
 
 msgid "Enable"
 msgstr "Qozghat"
-
-msgid "Low"
-msgstr "Töwen"
-
-msgid "High"
-msgstr "Yuquri"
-
-msgid "megabytes"
-msgstr "Mégabayts"
-
-msgid "percentage"
-msgstr "Pirsenti"
-
-msgid "Save"
-msgstr "Saqla"
 
 msgid "Type"
 msgstr "Türi"
@@ -540,6 +525,9 @@ msgstr "Bu bölek mejburiy"
 msgid "Edit"
 msgstr "Tehrirle"
 
+msgid "Save"
+msgstr "Saqla"
+
 msgid "Cancel"
 msgstr "Waz kech"
 
@@ -561,7 +549,7 @@ msgstr "Ray sinash"
 msgid "Recipients"
 msgstr "Tapshuriwalghuchilar"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -617,6 +605,9 @@ msgstr "Qimmet"
 
 msgid "Medium"
 msgstr "Otturihal"
+
+msgid "High"
+msgstr "Yuquri"
 
 msgid "Software version:"
 msgstr "Yumshaq détal neshri:"
@@ -856,6 +847,9 @@ msgstr "Sin"
 msgid "Text shown upon negative answer"
 msgstr "Selbiy jawabta körsitilidighan tékist"
 
+msgid "Low"
+msgstr "Töwen"
+
 msgid "Trigger conditions"
 msgstr "Qozghitilish shertler"
 
@@ -946,6 +940,12 @@ msgstr "Bashqurghuchilargha ishletküchi parollirini özgertishke hoquq bérildi
 msgid "Enable multisite feature"
 msgstr "Köp béket iqtidarini qozghat"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Addilashqan tizimgha kirishni qozghat"
 
@@ -961,6 +961,9 @@ msgstr "Mezmunlarni élipbe tertipi boyiche körset"
 msgid "Size limit for file attachments"
 msgstr "Höjjet qoshumchiliri üchün chongluq chéki"
 
+msgid "megabytes"
+msgstr "Mégabayts"
+
 msgid "Require two factor authentication"
 msgstr "Ikki qedemlik toghrulashni telep qil"
 
@@ -973,6 +976,9 @@ msgstr "Bixeterlikni közde tutup, qerellik parol özgertish telep qilinidu."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Oqulmighan melumatlarni ishletküchilerge uqturghiche ötidighan kün sani"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Ixtiyari shexsiyet taxtisini chekle"
@@ -991,6 +997,9 @@ msgstr "Nomur qoyüsh sistémisini qozghat"
 
 msgid "Logging level"
 msgstr "Xatirige élish sewiyesi"
+
+msgid "percentage"
+msgstr "Pirsenti"
 
 msgid "Log accesses of internal users"
 msgstr "Ichki ishletküchilerning ziyaretlirini xatirile"

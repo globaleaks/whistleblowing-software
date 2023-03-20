@@ -462,7 +462,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -479,21 +479,6 @@ msgstr "Дәвам итәр алдыннан, зинһар, ике адымлы 
 
 msgid "Enable"
 msgstr "Кабызу"
-
-msgid "Low"
-msgstr "Түбән"
-
-msgid "High"
-msgstr "Югары"
-
-msgid "megabytes"
-msgstr "мегабайтлар"
-
-msgid "percentage"
-msgstr "процент"
-
-msgid "Save"
-msgstr "Саклау"
 
 msgid "Type"
 msgstr "Төр"
@@ -540,6 +525,9 @@ msgstr "Бу кыр мәҗбүри"
 msgid "Edit"
 msgstr "Үзгәртү"
 
+msgid "Save"
+msgstr "Саклау"
+
 msgid "Cancel"
 msgstr "Баш тарту"
 
@@ -561,7 +549,7 @@ msgstr "Сораулык"
 msgid "Recipients"
 msgstr "Алучылар"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -617,6 +605,9 @@ msgstr "Дәрәҗә"
 
 msgid "Medium"
 msgstr "Уртача"
+
+msgid "High"
+msgstr "Югары"
 
 msgid "Software version:"
 msgstr "Программа версиясе:"
@@ -856,6 +847,9 @@ msgstr "Видеоязма"
 msgid "Text shown upon negative answer"
 msgstr ""
 
+msgid "Low"
+msgstr "Түбән"
+
 msgid "Trigger conditions"
 msgstr "Башлау шартлары"
 
@@ -946,6 +940,12 @@ msgstr "Администраторлар кулланучыларның серс
 msgid "Enable multisite feature"
 msgstr "Күп сайт белән идарә функциясен кабызу"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Гадиләштерелгән керүне кабызу"
 
@@ -961,6 +961,9 @@ msgstr "Контекстларны алфавит тәртибендә күрс�
 msgid "Size limit for file attachments"
 msgstr "Файл кертелмәләр өчен күләмне чикләү"
 
+msgid "megabytes"
+msgstr "мегабайтлар"
+
 msgid "Require two factor authentication"
 msgstr "Ике адымлы аутентификация таләп ителә"
 
@@ -973,6 +976,9 @@ msgstr "Иминлеккә бәйле сәбәпләр аркасында рег
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Кулланучыларга укылмаган хисаплар турында белдерүгә кадәр көн саны"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Хосусыйлык панелен сүндерү"
@@ -991,6 +997,9 @@ msgstr "Баллы бәяләү системасын кабызу"
 
 msgid "Logging level"
 msgstr "Протокол алып бару дәрәҗәсе"
+
+msgid "percentage"
+msgstr "процент"
 
 msgid "Log accesses of internal users"
 msgstr "Эчке кулланучыларның керү тарихын журналга язу"

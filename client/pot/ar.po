@@ -34,7 +34,7 @@
 # lamine Kacimi <k_lamine27@yahoo.fr>, 2015
 # mohammad ali <ilir95palira@gmail.com>, 2017
 # Muhammad Elghdban <Mohamed.Elghdban@gmail.com>, 2020
-# Muhammad Elghdban <Mohamed.Elghdban@gmail.com>, 2020
+# Muhammad Elghdban <Mohamed.Elghdban@gmail.com>, 2020,2023
 # Muna Hemoudi, 2021
 # Muna Hemoudi, 2021
 # nawaat <contact@nawaat.org>, 2014
@@ -54,7 +54,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022\n"
+"Last-Translator: Muhammad Elghdban <Mohamed.Elghdban@gmail.com>, 2020,2023\n"
 "Language-Team: Arabic (http://www.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -159,7 +159,7 @@ msgid "Refresh"
 msgstr "تحديث"
 
 msgid "Channel"
-msgstr ""
+msgstr "القناة"
 
 msgid "Preview"
 msgstr "معاينة"
@@ -333,7 +333,7 @@ msgid "Strong"
 msgstr "قوي"
 
 msgid "Text shown on top of the interface for selecting channels"
-msgstr ""
+msgstr "النص الظاهر أعلى الواجهة لاختيار القنوات"
 
 msgid "Silence email notifications"
 msgstr "اسكات الاشعارات بالبريد الالكتروني"
@@ -487,7 +487,7 @@ msgid "This domain name is not available."
 msgstr "اسم النطاق غير متاح."
 
 msgid "Mark as important"
-msgstr ""
+msgstr "تحديد كهام."
 
 msgid "Copy to clipboard"
 msgstr "نسخ إلى الحافظة"
@@ -496,28 +496,28 @@ msgid "Logout"
 msgstr "تسجيل الخروج"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
+msgstr "امنح هذا المستلم القدرة على منح حق الوصول إلى التقارير"
 
 msgid "Grant access"
-msgstr ""
+msgstr "السماح بالوصول"
 
 msgid "Revoke access"
-msgstr ""
+msgstr "إلغاء حق الوصول"
 
 msgid "Assigned to"
-msgstr ""
+msgstr "تعيين لـ"
 
 msgid "Not provided."
-msgstr ""
+msgstr "لم يتم توفيره."
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
 msgstr "تقديم بلاغ"
 
 msgid "Select a reporting channel:"
-msgstr ""
+msgstr "اختر قناة للإبلاغ:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "قبل المتابعة، يرجى تغيير كلمة المرور الخاصة بك."
@@ -528,29 +528,14 @@ msgstr "قبل المتابعة، يرجى تمكين الإستيثاق ذو ا
 msgid "Enable"
 msgstr "تمكين"
 
-msgid "Low"
-msgstr "منخفض"
-
-msgid "High"
-msgstr "عالٍ"
-
-msgid "megabytes"
-msgstr "بالميغابايت"
-
-msgid "percentage"
-msgstr "بالنسبة المئوية"
-
-msgid "Save"
-msgstr "حفظ"
-
 msgid "Type"
 msgstr "نوع"
 
 msgid "Severity"
-msgstr ""
+msgstr "الخطورة"
 
 msgid "Object"
-msgstr ""
+msgstr "الغرض"
 
 msgid "ID"
 msgstr "المُعرِّف"
@@ -588,6 +573,9 @@ msgstr "هذا الحقل إلزامي"
 msgid "Edit"
 msgstr "تحرير"
 
+msgid "Save"
+msgstr "حفظ"
+
 msgid "Cancel"
 msgstr "إلغاء"
 
@@ -595,7 +583,7 @@ msgid "Report statuses"
 msgstr "تقرير الحالات"
 
 msgid "Channels"
-msgstr ""
+msgstr "القنوات"
 
 msgid "Hidden"
 msgstr "‮مخفي"
@@ -609,7 +597,7 @@ msgstr "استبيان"
 msgid "Recipients"
 msgstr "المتلقّون"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -665,6 +653,9 @@ msgstr "‮القيمة"
 
 msgid "Medium"
 msgstr "متوسط"
+
+msgid "High"
+msgstr "عالٍ"
 
 msgid "Software version:"
 msgstr "نسخة البرنامج:"
@@ -791,7 +782,7 @@ msgstr "إلى"
 msgid ""
 "Default mail configuration in use. Please consider using a private mail "
 "server."
-msgstr ""
+msgstr "التكوين الافتراضي للبريد قيد الاستخدام. يرجى اعتبار استخدام خادم بريد خاص."
 
 msgid "SMTP email address"
 msgstr "البريد الإلكتروني لبروتوكول نقل البريد الإلكتروني - SMTP"
@@ -904,6 +895,9 @@ msgstr "الفيديو"
 msgid "Text shown upon negative answer"
 msgstr "النص الذي يظهر عند الإجابة السلبية"
 
+msgid "Low"
+msgstr "منخفض"
+
 msgid "Trigger conditions"
 msgstr "الظروف المحفزة"
 
@@ -994,6 +988,12 @@ msgstr "المسؤولون المفوضون لتغيير كلمات مرور ا�
 msgid "Enable multisite feature"
 msgstr "تمكين خاصية تعدد المواقع"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "تمكين تسجيل دخول مبسط"
 
@@ -1009,6 +1009,9 @@ msgstr "اظهار السياقات في ترتيبٍ ابجديّ"
 msgid "Size limit for file attachments"
 msgstr "الحد الأقصى لحجم الملفات المرفقة"
 
+msgid "megabytes"
+msgstr "بالميغابايت"
+
 msgid "Require two factor authentication"
 msgstr "يستلزم الاستيثاق ذو المعاملين"
 
@@ -1021,6 +1024,9 @@ msgstr "يستلزم تغيير كلمة السر على فترات منتظمة
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "عدد الأيام حتى إبلاغ التقارير غير المقروءة للمستخدمين"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "تعطيل شارة الخصوصية"
@@ -1039,6 +1045,9 @@ msgstr "تمكين نظام تسجيل النقاط"
 
 msgid "Logging level"
 msgstr "مستوى التسجيل"
+
+msgid "percentage"
+msgstr "بالنسبة المئوية"
 
 msgid "Log accesses of internal users"
 msgstr "تسجيل بيانات دخول المستخدمين الداخليين"
@@ -1225,7 +1234,7 @@ msgid "Request support"
 msgstr "اطلب مساعدة"
 
 msgid "Thank you."
-msgstr ""
+msgstr "شكرًا لك."
 
 msgid "We will try to get back to you as soon as possible."
 msgstr "سوف نسعى للاتصال بك مجددًا في أقرب وقت ممكن."
@@ -1251,7 +1260,7 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "عند التأكيد، سوف يؤجل موعد انتهاء الصلاحية إلى:"
 
 msgid "By confirming, you will set a remainder on date:"
-msgstr ""
+msgstr "من خلال التأكيد، ستقوم بوضع تذكير في تاريخ:"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "هذه منصة تجريبية، يرجى عدم استخدامها في أي بلاغ حقيقي."
@@ -1408,7 +1417,7 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr ""
+msgstr "نوصي بالوصول إلى قسم \"التفضيلات\" لاسترداد \"مفتاح استعادة الحساب\" وتخزينه بأمان. سيكون هذا المفتاح ضروريًا لاستعادة وصولك إلى المنصة وإلى بياناتك في حالة نسيان كلمة المرور الخاصة بك."
 
 msgid "The provided recovery key is invalid."
 msgstr "مفتاح الاسترداد الذي تم توفيره غير صالح\n."
@@ -1429,7 +1438,7 @@ msgstr "تم طلب إعادة تعيين كلمة السر."
 
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
-msgstr ""
+msgstr "قم بإدخال مفتاح استعادة الحساب لإكمال إجراء تعيين كلمة المرور"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -1479,13 +1488,13 @@ msgid "Address"
 msgstr "العنوان"
 
 msgid "Fiscal code"
-msgstr ""
+msgstr "الكود الضريبي"
 
 msgid "Tax code"
-msgstr ""
+msgstr "رمز الضريبة"
 
 msgid "The answer is too short"
-msgstr ""
+msgstr "الإجابة قصيرة جدًا."
 
 msgid "The specified input is not valid."
 msgstr "المدخلات المحددة غير صالحة."
@@ -1525,7 +1534,7 @@ msgid "Recipient selection"
 msgstr "اختيار المتلقّي"
 
 msgid "Select the recipients of your report:"
-msgstr ""
+msgstr "حدد المستلمين لتقريرك:"
 
 msgid "Recipients selected:"
 msgstr "المتلقّون المختارون :"
@@ -1536,7 +1545,7 @@ msgstr "لقد وصلت إلى الحد الأقصى من عدد المستلم�
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr ""
+msgstr "سيتلقى المستلمون التالين تقريرك ولا يمكن إلغاء تحديدهم:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1564,20 +1573,20 @@ msgid "Please choose a configuration profile:"
 msgstr "الرجاء إختيار حساب التهيئة :"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr ""
+msgstr "اجعل من الممكن لهذا المسئول أن يقوم بإعادة تعيين كلمة مرور المستخدم."
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr ""
+msgstr "صح بتحديد هذا الخيار إذا كنت ترغب في حماية البيانات من الضياع في حالة فقدان المستلمين لكلمات المرور الخاصة بهم. من ناحية أخرى ، لا ننصح باستخدام هذه الميزة إذا كنت ترغب في إعداد نظام يستطيع فيه المستلمون فقط الوصول إلى عمليات الإرسال."
 
 msgid "Please choose a different username."
 msgstr "من فضلك قم باختيار إسم مستخدم آخر."
 
 msgid "I have read and agree to the terms of the license."
-msgstr ""
+msgstr "لقد قرأت ووافقت على الشروط الخاصّة بالترخيص."
 
 msgid "You have completed the platform wizard."
 msgstr "لقد اتممتم معالج المنصّة بنجاح."
@@ -1595,10 +1604,10 @@ msgid "When did the facts happen?"
 msgstr "متى وقع الحادث؟"
 
 msgid "I'm a victim"
-msgstr ""
+msgstr "أنا ضحية"
 
 msgid "I'm involved in the facts"
-msgstr ""
+msgstr "أنا منخرط في الحقائق"
 
 msgid "I witnessed the facts in person"
 msgstr "لقد شاهدت الحادث شخصيًا"
@@ -1653,10 +1662,10 @@ msgid "Last name"
 msgstr "الكنية"
 
 msgid "Alternative contact method"
-msgstr ""
+msgstr "وسيلة اتصال بديلة"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr ""
+msgstr "أٌفضل أن يتم الاتصال بي بواسطة هذه المنصة فقط"
 
 msgid "Other"
 msgstr "أخرى"
@@ -1945,7 +1954,7 @@ msgstr "لتعليمات حول تحديثات البرنامج , الرجاء �
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "هذا بريد لإعلامك بأن المستلم قام بمنحك حق الوصول إلى تقرير أو عدة تقارير."
 
 msgid "New report"
 msgstr "تقرير جديد"
@@ -1973,16 +1982,16 @@ msgid ""
 msgstr "يرجى أن تولوا اهتماما خاصا بالمعلومات والمواد الواردة. و يرجى أن تضعوا في عين الاعتبار أن المبلغين غالبا ما يعرضون أنفسهم لمخاطر شخصية عالية من أجل المصلحة العامة. ولذلك ينبغي اعتبار المواد المقدمة في هذا البلاغ ذات أهمية عالية."
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr ""
+msgstr "هذه رسالة بريد إلكتروني لإعلامك بتحديث تقرير موجود."
 
 msgid "Report updated"
-msgstr ""
+msgstr "تم تحديث التقرير"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr ""
+msgstr "هذا البريد الإلكتروني لتذكيرك بوجود تقارير غير مقروءة أو محدّثة."
 
 msgid "Reminder about unread or updated reports"
-msgstr ""
+msgstr "تذكير بشأن التقارير غير المقروءة أو المحدثة"
 
 msgid "Role: {Role}"
 msgstr "الدور: {Role}"

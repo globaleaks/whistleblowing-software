@@ -464,7 +464,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -481,21 +481,6 @@ msgstr "Кхин дIавахале, ши-факторан аутентифика
 
 msgid "Enable"
 msgstr "Магаде"
-
-msgid "Low"
-msgstr "Лахара"
-
-msgid "High"
-msgstr "Лакхара"
-
-msgid "megabytes"
-msgstr "мегабайташ"
-
-msgid "percentage"
-msgstr "процент"
-
-msgid "Save"
-msgstr "ДӀаӀалашде"
 
 msgid "Type"
 msgstr "Тайпа"
@@ -542,6 +527,9 @@ msgstr "Хlара хас дуьзна хила деза"
 msgid "Edit"
 msgstr "Тодан"
 
+msgid "Save"
+msgstr "ДӀаӀалашде"
+
 msgid "Cancel"
 msgstr "Юхаэца"
 
@@ -563,7 +551,7 @@ msgstr "Хеттар"
 msgid "Recipients"
 msgstr "ДIаэцархой"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -619,6 +607,9 @@ msgstr "Мехалла"
 
 msgid "Medium"
 msgstr "Юккъера"
+
+msgid "High"
+msgstr "Лакхара"
 
 msgid "Software version:"
 msgstr "Софтан верси:"
@@ -858,6 +849,9 @@ msgstr "Видео"
 msgid "Text shown upon negative answer"
 msgstr ""
 
+msgid "Low"
+msgstr "Лахара"
+
 msgid "Trigger conditions"
 msgstr "Къастамаллин билламаш"
 
@@ -948,6 +942,12 @@ msgstr "Администраторийн бакъо ю пайдаэцархоч�
 msgid "Enable multisite feature"
 msgstr "Дукхасайтийн башхало магае"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Системина чолхаза чувалар магаде"
 
@@ -963,6 +963,9 @@ msgstr "Контексташ абатан рогlаллехь гайта"
 msgid "Size limit for file attachments"
 msgstr "Юкъаехкинчу файлийн бараман доза"
 
+msgid "megabytes"
+msgstr "мегабайташ"
+
 msgid "Require two factor authentication"
 msgstr "Ши-факторан аутентификаци тӀейожае"
 
@@ -975,6 +978,9 @@ msgstr "Кхерамзаллин бахьанашца парол хийцар т
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Пайдаэцархошна дешна доцчу аьрзнех дIахаьийта дисинчу денойн терахь"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Шайлахьйолу панел мага ма е"
@@ -993,6 +999,9 @@ msgstr "Баллийн система магае"
 
 msgid "Logging level"
 msgstr "Журнал лелоран тlегlа"
+
+msgid "percentage"
+msgstr "процент"
 
 msgid "Log accesses of internal users"
 msgstr "Чоьхьарчу пайдаэцархойн журналашна тlекхочийла"

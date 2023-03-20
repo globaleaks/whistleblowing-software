@@ -464,7 +464,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -481,21 +481,6 @@ msgstr "داۋام قىلىشتىن بۇرۇن، ئىككى قەدەملىك ت�
 
 msgid "Enable"
 msgstr "قوزغات"
-
-msgid "Low"
-msgstr "تۆۋەن"
-
-msgid "High"
-msgstr "يۇقۇرى"
-
-msgid "megabytes"
-msgstr "مېگابايتس"
-
-msgid "percentage"
-msgstr "پىرسەنتى"
-
-msgid "Save"
-msgstr "ساقلا"
 
 msgid "Type"
 msgstr "تۈرى"
@@ -542,6 +527,9 @@ msgstr "بۇ بۆلەك مەجبۇرىي"
 msgid "Edit"
 msgstr "تەھرىرلە"
 
+msgid "Save"
+msgstr "ساقلا"
+
 msgid "Cancel"
 msgstr "ۋاز كەچ"
 
@@ -563,7 +551,7 @@ msgstr "راي سىناش"
 msgid "Recipients"
 msgstr "تاپشۇرىۋالغۇچىلار"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -619,6 +607,9 @@ msgstr "قىممەت"
 
 msgid "Medium"
 msgstr "ئوتتۇرىھال"
+
+msgid "High"
+msgstr "يۇقۇرى"
 
 msgid "Software version:"
 msgstr "يۇمشاق دېتال نەشرى:"
@@ -858,6 +849,9 @@ msgstr "سىن"
 msgid "Text shown upon negative answer"
 msgstr "سەلبىي جاۋابتا كۆرسىتىلىدىغان تېكىست"
 
+msgid "Low"
+msgstr "تۆۋەن"
+
 msgid "Trigger conditions"
 msgstr "قوزغىتىلىش شەرتلەر"
 
@@ -948,6 +942,12 @@ msgstr "باشقۇرغۇچىلارغا ئىشلەتكۈچى پاروللىرىن
 msgid "Enable multisite feature"
 msgstr "كۆپ بېكەت ئىقتىدارىنى قوزغات"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "ئاددىلاشقان تىزىمغا كىرىشنى قوزغات"
 
@@ -963,6 +963,9 @@ msgstr "مەزمۇنلارنى ئېلىپبە تەرتىپى بويىچە كۆر
 msgid "Size limit for file attachments"
 msgstr "ھۆججەت قوشۇمچىلىرى ئۈچۈن چوڭلۇق چېكى"
 
+msgid "megabytes"
+msgstr "مېگابايتس"
+
 msgid "Require two factor authentication"
 msgstr "ئىككى قەدەملىك توغرۇلاشنى تەلەپ قىل"
 
@@ -975,6 +978,9 @@ msgstr "بىخەتەرلىكنى كۆزدە تۇتۇپ، قەرەللىك پار
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "ئوقۇلمىغان مەلۇماتلارنى ئىشلەتكۈچىلەرگە ئۇقتۇرغىچە ئۆتىدىغان كۈن سانى"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "ئىختىيارى شەخسىيەت تاختىسىنى چەكلە"
@@ -993,6 +999,9 @@ msgstr "نومۇر قويۈش سىستېمىسىنى قوزغات"
 
 msgid "Logging level"
 msgstr "خاتىرىگە ئېلىش سەۋىيەسى"
+
+msgid "percentage"
+msgstr "پىرسەنتى"
 
 msgid "Log accesses of internal users"
 msgstr "ئىچكى ئىشلەتكۈچىلەرنىڭ زىيارەتلىرىنى خاتىرىلە"

@@ -474,7 +474,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -491,21 +491,6 @@ msgstr "آگے بڑھنے سے پہلے، براہ کرم دو عنصر کی ت�
 
 msgid "Enable"
 msgstr "Enable"
-
-msgid "Low"
-msgstr "کم"
-
-msgid "High"
-msgstr "اونچا"
-
-msgid "megabytes"
-msgstr "میگا بائٹ"
-
-msgid "percentage"
-msgstr "فیصد"
-
-msgid "Save"
-msgstr "محفوظ"
 
 msgid "Type"
 msgstr "قسم"
@@ -552,6 +537,9 @@ msgstr "يہ خانہ پر کرنا ضروری ہے ۔"
 msgid "Edit"
 msgstr "ترمیم و تبديل کيجیے"
 
+msgid "Save"
+msgstr "محفوظ"
+
 msgid "Cancel"
 msgstr "تسنیخ"
 
@@ -573,7 +561,7 @@ msgstr "سوالنامہ"
 msgid "Recipients"
 msgstr "وصول کنندگان"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -629,6 +617,9 @@ msgstr "قدر"
 
 msgid "Medium"
 msgstr "میڈیم یا درمیانہ"
+
+msgid "High"
+msgstr "اونچا"
 
 msgid "Software version:"
 msgstr "سافٹ ویئر ورژن:"
@@ -868,6 +859,9 @@ msgstr "Video"
 msgid "Text shown upon negative answer"
 msgstr "منفی جواب پر دکھایا جانے والا متن "
 
+msgid "Low"
+msgstr "کم"
+
 msgid "Trigger conditions"
 msgstr "محرک حالات "
 
@@ -958,6 +952,12 @@ msgstr "منتظمین صارف کے پاس ورڈ تبدیل کرنے کے مج
 msgid "Enable multisite feature"
 msgstr "ملٹی سائٹ فیچر کو فعال کریں۔ "
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "آسان لاگ ان کو فعال کریں۔ "
 
@@ -973,6 +973,9 @@ msgstr "الفبائی ترتیب میں سیاق و سباق دکھائیں"
 msgid "Size limit for file attachments"
 msgstr "فائل اٹیچمنٹ کے سائز کی حد"
 
+msgid "megabytes"
+msgstr "میگا بائٹ"
+
 msgid "Require two factor authentication"
 msgstr "دو عنصر کی توثیق کی ضرورت ہے۔ "
 
@@ -985,6 +988,9 @@ msgstr "سیکورٹی وجوہات کی بناء پر، باقاعدگی سے �
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "صارفین کو بغیر پڑھے ہوئے رپورٹس کی اطلاع دینے سے پہلے دنوں کی تعداد "
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr " پرائیویسی حصے کو غیر فعال کریں"
@@ -1003,6 +1009,9 @@ msgstr "اسکورنگ سسٹم کو فعال کریں۔ "
 
 msgid "Logging level"
 msgstr "لاگنگ کی سطح "
+
+msgid "percentage"
+msgstr "فیصد"
 
 msgid "Log accesses of internal users"
 msgstr "داخلی صارفین کی لاگ رسائی "

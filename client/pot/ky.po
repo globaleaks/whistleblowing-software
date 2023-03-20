@@ -463,7 +463,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -480,21 +480,6 @@ msgstr "Улантуудан мурун, эки факторлук аутент�
 
 msgid "Enable"
 msgstr "Мүмкүнчүлүк берүү"
-
-msgid "Low"
-msgstr "Төмөн"
-
-msgid "High"
-msgstr "Жогорку"
-
-msgid "megabytes"
-msgstr "мегабиттер"
-
-msgid "percentage"
-msgstr "пайыз"
-
-msgid "Save"
-msgstr "Сактоо"
 
 msgid "Type"
 msgstr "Түр"
@@ -541,6 +526,9 @@ msgstr "Бул талаа милдеттүү болуп саналат"
 msgid "Edit"
 msgstr "Редакциялоо"
 
+msgid "Save"
+msgstr "Сактоо"
+
 msgid "Cancel"
 msgstr "Баш тартуу"
 
@@ -562,7 +550,7 @@ msgstr "Анкета"
 msgid "Recipients"
 msgstr "Алуучулар"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -618,6 +606,9 @@ msgstr "Көлөм"
 
 msgid "Medium"
 msgstr "Орточо"
+
+msgid "High"
+msgstr "Жогорку"
 
 msgid "Software version:"
 msgstr "Программалык камсыздоо версиясы:"
@@ -857,6 +848,9 @@ msgstr "Видео"
 msgid "Text shown upon negative answer"
 msgstr ""
 
+msgid "Low"
+msgstr "Төмөн"
+
 msgid "Trigger conditions"
 msgstr "Иштеп баштоо шарттары"
 
@@ -947,6 +941,12 @@ msgstr "Колдонуучулардын сырсөзүн алмаштырууг
 msgid "Enable multisite feature"
 msgstr "Мультисайт мүмкүнчүлүгүн иштетүү"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Жөнөкөйлөтүлгөн кирүүнү иштетүү"
 
@@ -962,6 +962,9 @@ msgstr "Контексттерди алфавиттик тартипте көр�
 msgid "Size limit for file attachments"
 msgstr "Файлдын тиркемелеринин лимиттик өлчөмү"
 
+msgid "megabytes"
+msgstr "мегабиттер"
+
 msgid "Require two factor authentication"
 msgstr "Эки факторлуу аутентификацияны талап кылуу"
 
@@ -974,6 +977,9 @@ msgstr "Коопсуздук максатында сырсөздү маал мм
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Колдонуучуларга окулбаган отчетторду билдирүүгө чейинки күндөрдүн саны"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Жөндөлүүчү купуялык панелин өчүрүү"
@@ -992,6 +998,9 @@ msgstr "Упай системасын иштетүү"
 
 msgid "Logging level"
 msgstr "Журналды жүргүзүү деңгээли"
+
+msgid "percentage"
+msgstr "пайыз"
 
 msgid "Log accesses of internal users"
 msgstr "Ички колдонуучулардын кирүүлөрүн журналга каттоо"

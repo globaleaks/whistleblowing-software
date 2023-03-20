@@ -462,7 +462,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -479,21 +479,6 @@ msgstr "له تر سره کولو وړاندې، د مهرباني له مخې �
 
 msgid "Enable"
 msgstr "فعالول"
-
-msgid "Low"
-msgstr "ټیټ"
-
-msgid "High"
-msgstr "لوړ"
-
-msgid "megabytes"
-msgstr "میګا بایټونه"
-
-msgid "percentage"
-msgstr "فیصدي"
-
-msgid "Save"
-msgstr "ثبت کول"
 
 msgid "Type"
 msgstr "ډول"
@@ -540,6 +525,9 @@ msgstr "دغه برخه حتمي ده"
 msgid "Edit"
 msgstr "تصحیح"
 
+msgid "Save"
+msgstr "ثبت کول"
+
 msgid "Cancel"
 msgstr "لغوه کول"
 
@@ -561,7 +549,7 @@ msgstr "پوښتنلیک"
 msgid "Recipients"
 msgstr "تر لاسه کوونکي"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -617,6 +605,9 @@ msgstr "ارزښت"
 
 msgid "Medium"
 msgstr "منځنی"
+
+msgid "High"
+msgstr "لوړ"
 
 msgid "Software version:"
 msgstr "د سافټ ویر نسخه:"
@@ -856,6 +847,9 @@ msgstr "ویډیو"
 msgid "Text shown upon negative answer"
 msgstr ""
 
+msgid "Low"
+msgstr "ټیټ"
+
 msgid "Trigger conditions"
 msgstr "پاروونکي شرایط"
 
@@ -946,6 +940,12 @@ msgstr "مدیرانو ته اجازه ورکړل شوې تر څو د کارن �
 msgid "Enable multisite feature"
 msgstr "د ګڼو سایټونو ځانګړنه فعاله کړئ"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "ساده دننه کېدل فعال کړئ"
 
@@ -961,6 +961,9 @@ msgstr "مطالب د الفبا د تورو په ترتیب وښیئ"
 msgid "Size limit for file attachments"
 msgstr "د فایل د ضمیمو لپاره د اندازې محدودیت"
 
+msgid "megabytes"
+msgstr "میګا بایټونه"
+
 msgid "Require two factor authentication"
 msgstr "دوه عامله تصدیق غواړي"
 
@@ -973,6 +976,9 @@ msgstr "د امنیتي دلایلو له کبله، په منظمو وقفو س
 
 msgid "Number of days till notifying unread reports to users"
 msgstr " کارنونو ته د نالوستل شویو رپوټونو د خبر ورکولو د ورځو شمېر"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "د محرمیت د پینل غیرفعالول"
@@ -991,6 +997,9 @@ msgstr "د نمرې ورکولو د سیستم فعالول"
 
 msgid "Logging level"
 msgstr "د ننوتلو کچه"
+
+msgid "percentage"
+msgstr "فیصدي"
 
 msgid "Log accesses of internal users"
 msgstr "د داخلي کارنونو د دننه کېدو لاسرسی"

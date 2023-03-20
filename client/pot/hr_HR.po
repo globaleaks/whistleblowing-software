@@ -467,7 +467,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -484,21 +484,6 @@ msgstr "Prije nastavka, molimo omogućite dvofaktorsku autentikaciju."
 
 msgid "Enable"
 msgstr "Omogući"
-
-msgid "Low"
-msgstr "Niska"
-
-msgid "High"
-msgstr "Visoka"
-
-msgid "megabytes"
-msgstr "megabajta"
-
-msgid "percentage"
-msgstr "postotak"
-
-msgid "Save"
-msgstr "Spremi"
 
 msgid "Type"
 msgstr "Tip"
@@ -545,6 +530,9 @@ msgstr "Ovo polje je obavezno"
 msgid "Edit"
 msgstr "Uredi"
 
+msgid "Save"
+msgstr "Spremi"
+
 msgid "Cancel"
 msgstr "Otkaži"
 
@@ -566,7 +554,7 @@ msgstr "Upitnik"
 msgid "Recipients"
 msgstr "Primatelji"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -622,6 +610,9 @@ msgstr "Vrijednost"
 
 msgid "Medium"
 msgstr "Srednje"
+
+msgid "High"
+msgstr "Visoka"
 
 msgid "Software version:"
 msgstr "Verzija software-a:"
@@ -861,6 +852,9 @@ msgstr "Video"
 msgid "Text shown upon negative answer"
 msgstr "Tekst prikazan za negativan odgovor"
 
+msgid "Low"
+msgstr "Niska"
+
 msgid "Trigger conditions"
 msgstr "Uvjeti za pokretanje"
 
@@ -951,6 +945,12 @@ msgstr "Administratori autorizirani za promjenu korisničkih lozinki:"
 msgid "Enable multisite feature"
 msgstr "Omogući multisite značajku"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Omogući pojednostavljenu prijavu"
 
@@ -966,6 +966,9 @@ msgstr "Prikaži kontekste u abecednom slijedu"
 msgid "Size limit for file attachments"
 msgstr "Ograničenje veličine privitaka"
 
+msgid "megabytes"
+msgstr "megabajta"
+
 msgid "Require two factor authentication"
 msgstr "Zahtjevaj dvofaktorsku autentikaciju"
 
@@ -978,6 +981,9 @@ msgstr "Iz sigurnosnih razloga potrebne su promjene lozinke u redovnim intervali
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Koliko dana se korisnike obavještava o nepročitanim prijavama"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Onemogući ploču privatnosti"
@@ -996,6 +1002,9 @@ msgstr "Omogući bodovanje"
 
 msgid "Logging level"
 msgstr "Razina zapisa"
+
+msgid "percentage"
+msgstr "postotak"
 
 msgid "Log accesses of internal users"
 msgstr "Zapisuj pristup internih korisnika"

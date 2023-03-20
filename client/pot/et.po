@@ -462,7 +462,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -479,21 +479,6 @@ msgstr "Enne jätkamist lubage kaheastmeline autentimine."
 
 msgid "Enable"
 msgstr "Luba"
-
-msgid "Low"
-msgstr "Madal"
-
-msgid "High"
-msgstr "Kõrge"
-
-msgid "megabytes"
-msgstr "megabaiti"
-
-msgid "percentage"
-msgstr "protsenti"
-
-msgid "Save"
-msgstr "Salvesta"
 
 msgid "Type"
 msgstr "Tüüp"
@@ -540,6 +525,9 @@ msgstr "See väli on kohustuslik"
 msgid "Edit"
 msgstr "Muuda"
 
+msgid "Save"
+msgstr "Salvesta"
+
 msgid "Cancel"
 msgstr "Tühista"
 
@@ -561,7 +549,7 @@ msgstr "Ankeet"
 msgid "Recipients"
 msgstr "Saajad"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -617,6 +605,9 @@ msgstr "Väärtus"
 
 msgid "Medium"
 msgstr "Vahend"
+
+msgid "High"
+msgstr "Kõrge"
 
 msgid "Software version:"
 msgstr "Tarkvara versioon:"
@@ -856,6 +847,9 @@ msgstr "Video"
 msgid "Text shown upon negative answer"
 msgstr "Eitava vastuse korral näidatav tekst"
 
+msgid "Low"
+msgstr "Madal"
+
 msgid "Trigger conditions"
 msgstr "Käivitustingimused"
 
@@ -946,6 +940,12 @@ msgstr "Kasutajate paroolide muutmise õigust omavad administraatorid:"
 msgid "Enable multisite feature"
 msgstr "Luba mitme saidi funktsioon"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr ""
 
@@ -961,6 +961,9 @@ msgstr "Näita kontekste tähestiku järjekorras"
 msgid "Size limit for file attachments"
 msgstr "Manusfailide mahupiirang"
 
+msgid "megabytes"
+msgstr "megabaiti"
+
 msgid "Require two factor authentication"
 msgstr "Küsi kaheastmelist autentimist"
 
@@ -972,6 +975,9 @@ msgid ""
 msgstr "Turvakaalutlustel nõutakse regulaarsete ajavahemike järel parooli vahetamist."
 
 msgid "Number of days till notifying unread reports to users"
+msgstr ""
+
+msgid "Custom support URL"
 msgstr ""
 
 msgid "Disable the privacy panel"
@@ -991,6 +997,9 @@ msgstr "Luba punktisüsteem"
 
 msgid "Logging level"
 msgstr "Registreerimistase"
+
+msgid "percentage"
+msgstr "protsenti"
 
 msgid "Log accesses of internal users"
 msgstr "Registreeri sisemiste kasutajate kasutuskorrad"

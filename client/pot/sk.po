@@ -472,7 +472,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -489,21 +489,6 @@ msgstr "Pred pokračovaním povoľte dvojfaktorové overenie."
 
 msgid "Enable"
 msgstr "Povoliť"
-
-msgid "Low"
-msgstr "Nízke"
-
-msgid "High"
-msgstr "Vysoká"
-
-msgid "megabytes"
-msgstr "MB"
-
-msgid "percentage"
-msgstr "percenta"
-
-msgid "Save"
-msgstr "Uložiť"
 
 msgid "Type"
 msgstr "Typ"
@@ -550,6 +535,9 @@ msgstr "Toto pole je povinné"
 msgid "Edit"
 msgstr "Upraviť"
 
+msgid "Save"
+msgstr "Uložiť"
+
 msgid "Cancel"
 msgstr "Zrušiť"
 
@@ -571,7 +559,7 @@ msgstr "Dotazník"
 msgid "Recipients"
 msgstr "Príjemcovia"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -627,6 +615,9 @@ msgstr "Hodnota"
 
 msgid "Medium"
 msgstr "Stredná"
+
+msgid "High"
+msgstr "Vysoká"
 
 msgid "Software version:"
 msgstr "Verzia softvéru:"
@@ -866,6 +857,9 @@ msgstr "Video"
 msgid "Text shown upon negative answer"
 msgstr "Text zobrazený pri zápornej odpovedi"
 
+msgid "Low"
+msgstr "Nízke"
+
 msgid "Trigger conditions"
 msgstr "Prvotné podmienky"
 
@@ -956,6 +950,12 @@ msgstr "Správcovia majú oprávnenie na zmenu užívateľských hesiel:"
 msgid "Enable multisite feature"
 msgstr "Povoliť funkciu multisite"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Povoliť zjednodušené prihlásenie"
 
@@ -971,6 +971,9 @@ msgstr "Ukázať kontexty v abecednom poradí"
 msgid "Size limit for file attachments"
 msgstr "Limit veľkosti pre prílohy"
 
+msgid "megabytes"
+msgstr "MB"
+
 msgid "Require two factor authentication"
 msgstr "Vyžaduje dvojfaktorové overenie"
 
@@ -983,6 +986,9 @@ msgstr "Z bezpečnostných dôvodov sú v pravidelných intervaloch vyžadované
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Počet dní do oznámenia neprečítaných správ používateľom"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Zakázať osobitý panel"
@@ -1001,6 +1007,9 @@ msgstr "Aktivovať systém hodnotenia"
 
 msgid "Logging level"
 msgstr "Prihlasovacia úroveň"
+
+msgid "percentage"
+msgstr "percenta"
 
 msgid "Log accesses of internal users"
 msgstr "Prístupy interných používateľov"

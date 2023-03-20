@@ -477,7 +477,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -494,21 +494,6 @@ msgstr "Trước khi tiếp tục, hãy bật xác thực 2 yếu tố."
 
 msgid "Enable"
 msgstr "Bật mở"
-
-msgid "Low"
-msgstr "Thấp"
-
-msgid "High"
-msgstr "Cao"
-
-msgid "megabytes"
-msgstr "megabytes"
-
-msgid "percentage"
-msgstr "phần trăm"
-
-msgid "Save"
-msgstr "Lưu"
 
 msgid "Type"
 msgstr "Loại"
@@ -555,6 +540,9 @@ msgstr "Ô này buộc phải có"
 msgid "Edit"
 msgstr "Chỉnh sửa"
 
+msgid "Save"
+msgstr "Lưu"
+
 msgid "Cancel"
 msgstr "Hủy bỏ"
 
@@ -576,7 +564,7 @@ msgstr "Bảng câu hỏi"
 msgid "Recipients"
 msgstr "Người nhận"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -632,6 +620,9 @@ msgstr "Giá trị"
 
 msgid "Medium"
 msgstr "Vừa"
+
+msgid "High"
+msgstr "Cao"
 
 msgid "Software version:"
 msgstr "Phiên bản phần mềm:"
@@ -871,6 +862,9 @@ msgstr "Video"
 msgid "Text shown upon negative answer"
 msgstr "Văn bản hiển thị khi câu trả lời là không."
 
+msgid "Low"
+msgstr "Thấp"
+
 msgid "Trigger conditions"
 msgstr "Điều kiện để khởi động"
 
@@ -961,6 +955,12 @@ msgstr "Quản trị viên có quyền thay đổi mật mã người dùng"
 msgid "Enable multisite feature"
 msgstr "Bật mở tính năng nhiều trang web"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Bật mở đăng nhập đơn giản"
 
@@ -976,6 +976,9 @@ msgstr "Hiển thị đề tài theo thứ tự ABC"
 msgid "Size limit for file attachments"
 msgstr "Kích thước giới hạn cho tập tin đính kèm"
 
+msgid "megabytes"
+msgstr "megabytes"
+
 msgid "Require two factor authentication"
 msgstr "Yêu cầu xác thực 2 yếu tố"
 
@@ -988,6 +991,9 @@ msgstr "Vì lý do bảo mật, mật khẩu phải được đổi định kỳ
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Số ngày còn lại trước khi báo cho người dùng biết báo cáo chưa được đọc"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Tắt bảng thông tin bảo mật và riêng tư"
@@ -1006,6 +1012,9 @@ msgstr "Bật mở hệ thống tính điểm"
 
 msgid "Logging level"
 msgstr "Mức độ ghi sổ"
+
+msgid "percentage"
+msgstr "phần trăm"
 
 msgid "Log accesses of internal users"
 msgstr "Ghi lại truy cập của người dùng nội bộ"

@@ -506,7 +506,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -523,21 +523,6 @@ msgstr "Zet two-factor-authentication aan voordat je verdergaat."
 
 msgid "Enable"
 msgstr "Inschakelen"
-
-msgid "Low"
-msgstr "Laag"
-
-msgid "High"
-msgstr "Hoog"
-
-msgid "megabytes"
-msgstr "megabytes"
-
-msgid "percentage"
-msgstr "percentage"
-
-msgid "Save"
-msgstr "Bewaar"
 
 msgid "Type"
 msgstr "Type"
@@ -584,6 +569,9 @@ msgstr "Dit veld is verplicht"
 msgid "Edit"
 msgstr "Bewerken"
 
+msgid "Save"
+msgstr "Bewaar"
+
 msgid "Cancel"
 msgstr "Annuleren"
 
@@ -605,7 +593,7 @@ msgstr "Vragenformulier"
 msgid "Recipients"
 msgstr "Ontvangers"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -661,6 +649,9 @@ msgstr "Waarde"
 
 msgid "Medium"
 msgstr "Medium"
+
+msgid "High"
+msgstr "Hoog"
 
 msgid "Software version:"
 msgstr "Softwareversie:"
@@ -900,6 +891,9 @@ msgstr "Film/Beeld"
 msgid "Text shown upon negative answer"
 msgstr "Tekst welke wordt getoond bij een ontkennend antwoord"
 
+msgid "Low"
+msgstr "Laag"
+
 msgid "Trigger conditions"
 msgstr "Initiatie-voorwaarden"
 
@@ -990,6 +984,12 @@ msgstr "Beheerders die gemachtigd zijn om gebruikerswachtwoorden te wijzigen:"
 msgid "Enable multisite feature"
 msgstr "Functie voor meerdere-weblocaties inschakelen"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Vereenvoudigde login inschakelen"
 
@@ -1005,6 +1005,9 @@ msgstr "Toon contexten in alfabetische volgorde"
 msgid "Size limit for file attachments"
 msgstr "Maximale grootte voor bestandsbijlagen"
 
+msgid "megabytes"
+msgstr "megabytes"
+
 msgid "Require two factor authentication"
 msgstr "Vereis two-factor-authentication"
 
@@ -1017,6 +1020,9 @@ msgstr "Wachtwoorden moeten geregeld worden veranderd om veiligheidsredenen."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Aantal dagen tot het melden van de ongelezen inzendingen aan gebruikers"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Privacy-paneel uitschakelen"
@@ -1035,6 +1041,9 @@ msgstr "Waarderingssysteem inschakelen"
 
 msgid "Logging level"
 msgstr "Niveau van loggen"
+
+msgid "percentage"
+msgstr "percentage"
 
 msgid "Log accesses of internal users"
 msgstr "Log toegang door interne-gebruikers"
@@ -1649,7 +1658,7 @@ msgid "Last name"
 msgstr "Achternaam"
 
 msgid "Alternative contact method"
-msgstr "Alternative wijze van contact opnemen"
+msgstr "Alternatieve wijze van contact opnemen"
 
 msgid "I prefer to be contacted via this platform only"
 msgstr "Ik word liever alleen via dit platform gecontacteerd"

@@ -383,10 +383,10 @@ msgid "Display options alphabetically"
 msgstr "Seçenekleri alfabetik olarak görüntüleme"
 
 msgid "Enable email notifications for:"
-msgstr "E-posta bildirimlerini etkinleştir:"
+msgstr "E-posta bildirimleri kullanılsın:"
 
 msgid "Disable"
-msgstr "Devre Dışı Bırak"
+msgstr "Kapat"
 
 msgid "Remove"
 msgstr "Sil"
@@ -489,8 +489,8 @@ msgstr "Şu kişiye atanmış"
 msgid "Not provided."
 msgstr "Belirtilmemiş."
 
-msgid "Set a reminder"
-msgstr "Hatırlatıcı ayarla"
+msgid "Set a reminder date"
+msgstr "Bir anımsatma tarihi yazın"
 
 msgid "File a report"
 msgstr "Bir bildirimde bulunun"
@@ -502,25 +502,10 @@ msgid "Before proceeding, please set a new password."
 msgstr "Devam etmeden önce, lütfen yeni bir parola ayarlayın."
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr "Devam etmeden önce, lütfen iki aşamalı doğrulamayı etkinleştirin."
+msgstr "İlerlemeden önce, lütfen iki aşamalı doğrulamayı açın."
 
 msgid "Enable"
-msgstr "Etkinleştir"
-
-msgid "Low"
-msgstr "Düşük"
-
-msgid "High"
-msgstr "Yüksek"
-
-msgid "megabytes"
-msgstr "megabyte"
-
-msgid "percentage"
-msgstr "yüzde"
-
-msgid "Save"
-msgstr "Kaydet"
+msgstr "Aç"
 
 msgid "Type"
 msgstr "Tür"
@@ -567,6 +552,9 @@ msgstr "Bu alan zorunludur"
 msgid "Edit"
 msgstr "Düzenle"
 
+msgid "Save"
+msgstr "Kaydet"
+
 msgid "Cancel"
 msgstr "İptal"
 
@@ -588,14 +576,14 @@ msgstr "Anket"
 msgid "Recipients"
 msgstr "Alıcılar"
 
-msgid "Reminder"
-msgstr "Hatırlatıcı"
+msgid "Reminder date"
+msgstr "Anımsatma tarihi"
 
 msgid "days"
 msgstr "gün"
 
 msgid "Set the value to 0 to disable this feature."
-msgstr "Bu özelliği devre dışı bırakmak 0 olarak ayarlayın."
+msgstr "Bu özelliği kapatmak için 0 olarak ayarlayın."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Anket gezinti arayüzünü görüntüle"
@@ -644,6 +632,9 @@ msgstr "Değer"
 
 msgid "Medium"
 msgstr "Orta"
+
+msgid "High"
+msgstr "Yüksek"
 
 msgid "Software version:"
 msgstr "Yazılım versiyonu"
@@ -883,6 +874,9 @@ msgstr "Görüntü"
 msgid "Text shown upon negative answer"
 msgstr "Olumsuz yanıtta görüntülenen metin"
 
+msgid "Low"
+msgstr "Düşük"
+
 msgid "Trigger conditions"
 msgstr "Tetikleme koşulları"
 
@@ -959,22 +953,28 @@ msgid "Custom translation"
 msgstr "Özel tercüme"
 
 msgid "Disable submissions"
-msgstr "Gönderimleri devre dışı bırak"
+msgstr "Gönderimleri kapat"
 
 msgid "Enable encryption"
-msgstr "Şifrelemeyi etkinleştir"
+msgstr "Şifrelemeyi aç"
 
 msgid "Enable administrators to change user passwords"
-msgstr "Yöneticilerin parola değiştirebilmesini etkinleştirin."
+msgstr "Yöneticilerin kullanıcı parolalarını değiştirebilsin."
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Yöneticilerin kullanıcıların parolasını değiştirme yetkisi var:"
 
 msgid "Enable multisite feature"
-msgstr "Çoklu site özelliğini etkinleştir"
+msgstr "Çoklu site özelliğini aç"
+
+msgid "Enable file viewer"
+msgstr "Dosya görüntüleyici kullanılsın"
+
+msgid "Enable PGP"
+msgstr "PGP kullanılsın"
 
 msgid "Enable simplified login"
-msgstr "Kolaylaştırılmış kullanıcı girişini etkinleştir"
+msgstr "Kolaylaştırılmış kullanıcı oturum açılışı kullanılsın"
 
 msgid "Enable search engines indexing"
 msgstr "Arama motoru dizinlemeyi etkinleştir"
@@ -987,6 +987,9 @@ msgstr "Kategorileri alfabetik sıralı göster"
 
 msgid "Size limit for file attachments"
 msgstr "Dosya ekleri için boyut sınırı"
+
+msgid "megabytes"
+msgstr "megabyte"
 
 msgid "Require two factor authentication"
 msgstr "İki aşamalı doğrulama zorunlu olsun"
@@ -1001,6 +1004,9 @@ msgstr "Güvenlik nedeniyle, parola düzenli aralıklarla değiştirilmelidir."
 msgid "Number of days till notifying unread reports to users"
 msgstr "Okunmamış bildirimler için kullanıcıların bilgilendirilmesine kadar geçecek gün sayısı"
 
+msgid "Custom support URL"
+msgstr "Özel destek adresi"
+
 msgid "Disable the privacy panel"
 msgstr "Gizlilik rozetini devre dışı bırak"
 
@@ -1011,13 +1017,16 @@ msgid "Custom privacy panel"
 msgstr "Özel gizlilik paneli"
 
 msgid "Enable custodian user role"
-msgstr "Koruyucu kullanıcı rolünü etkinleştir"
+msgstr "Koruyucu kullanıcı rolü kullanılsın"
 
 msgid "Enable scoring system"
-msgstr "Puan sistemini etkinleştir"
+msgstr "Puan sistemi kullanılsın"
 
 msgid "Logging level"
 msgstr "Günlük düzeyi"
+
+msgid "percentage"
+msgstr "yüzde"
 
 msgid "Log accesses of internal users"
 msgstr "İç kullanıcıların erişimleri günlüğe kaydedilsin"
@@ -1070,7 +1079,7 @@ msgid "Allow users to sign up"
 msgstr "Kullanıcıların kayıt olmasına izin ver"
 
 msgid "Enable terms of service"
-msgstr "Hizmet kullanım şartlarını etkinleştir"
+msgstr "Hizmet kullanım koşulları kullanılsın"
 
 msgid "Title"
 msgstr "Başlık"
@@ -1097,13 +1106,13 @@ msgid "The user will be forced to change its password on next login."
 msgstr "Kullanıcı bir sonraki girişinde şifresini değiştirmeye zorlanacak."
 
 msgid "Disable two factor authentication"
-msgstr "İki aşamalı kimlik doğrulamayı etkisizleştir"
+msgstr "İki aşamalı kimlik doğrulamayı kapat"
 
 msgid "Language"
 msgstr "Dil"
 
 msgid "Enable email notifications"
-msgstr "E-posta bildirimlerini etkinleştir"
+msgstr "E-posta bildirimleri kullanılsın"
 
 msgid "Details of the PGP key:"
 msgstr "PGP anahtarı detayları:"
@@ -1184,7 +1193,7 @@ msgid "Please note that all the associated data will be permanently deleted."
 msgstr "Lütfen ilişkili bütün verinin kalıcı olarak silineceğini unutmayın."
 
 msgid "Enable two factor authentication"
-msgstr "İki aşamalı kimlik doğrulamayı etkinleştirin"
+msgstr "İki aşamalı kimlik doğrulamayı aç"
 
 msgid "Before proceeding please read carefully the documentation at:"
 msgstr "Lütfen ilerlemeden önce belgelendirmeyi dikkatli bir şekilde okuyun."
@@ -1479,7 +1488,7 @@ msgid "please enter numbers only."
 msgstr "Lütfen yalnızca sayı girin."
 
 msgid "Submissions disabled"
-msgstr "Gönderimler devre dışı bırakıldı"
+msgstr "Gönderimler kapalı"
 
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
@@ -1704,7 +1713,7 @@ msgstr "Alışılmadık istatistik içeren etkinlikler şunlar:"
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr "Sunucu yeni bir raporun saklanması konusunda güvence veremiyor, bu nedenle gönderimler hizmet dışı bırakıldı."
+msgstr "Sunucu yeni bir raporun kaydedilebileceği konusunda güvence veremiyor. Bu nedenle gönderimler kapatıldı."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
@@ -1958,10 +1967,10 @@ msgid "Report updated"
 msgstr "Bildirim güncellendi"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr "Bu e-postanın amacı size okunmamış veya güncellenmiş bildirimlerin olduğunu hatırlatmaktır."
+msgstr "Bu e-postanın amacı size okunmamış veya güncellenmiş bildirimlerin olduğunu anımsatmaktır."
 
 msgid "Reminder about unread or updated reports"
-msgstr "Okunmamış veya güncellenmiş bildirimler hakkında hatırlatma"
+msgstr "Okunmamış veya güncellenmiş bildirim anımsatıcı"
 
 msgid "Role: {Role}"
 msgstr "Rol: {Role}"

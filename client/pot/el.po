@@ -475,7 +475,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -492,21 +492,6 @@ msgstr "Πρίν προχωρήσετε, παρακαλώ ενεργοποιήσ
 
 msgid "Enable"
 msgstr "Ενεργοποίηση"
-
-msgid "Low"
-msgstr "Χαμηλό"
-
-msgid "High"
-msgstr "Υψηλό"
-
-msgid "megabytes"
-msgstr "megabyte"
-
-msgid "percentage"
-msgstr "ποσοστό"
-
-msgid "Save"
-msgstr "Αποθήκευση"
 
 msgid "Type"
 msgstr "Τυπος"
@@ -553,6 +538,9 @@ msgstr "Αυτό το πεδίο είναι υποχρεωτικό "
 msgid "Edit"
 msgstr "Επεξεργασία "
 
+msgid "Save"
+msgstr "Αποθήκευση"
+
 msgid "Cancel"
 msgstr "Ακύρωση"
 
@@ -574,7 +562,7 @@ msgstr "Ερωτηματολόγιο"
 msgid "Recipients"
 msgstr "Παραλήπτες"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -630,6 +618,9 @@ msgstr "Τιμή"
 
 msgid "Medium"
 msgstr "Μεσαίο"
+
+msgid "High"
+msgstr "Υψηλό"
 
 msgid "Software version:"
 msgstr "Έκδοση λογισμικού:"
@@ -869,6 +860,9 @@ msgstr "Βίντεο"
 msgid "Text shown upon negative answer"
 msgstr "Κείμενο που εμφανίζεται με την αρνητική απάντηση"
 
+msgid "Low"
+msgstr "Χαμηλό"
+
 msgid "Trigger conditions"
 msgstr "Συνθήκες ενεργοποίησης"
 
@@ -959,6 +953,12 @@ msgstr "Οι διαχειριστές που έχουν τη δυνατότητ�
 msgid "Enable multisite feature"
 msgstr "Ενεργοποίηση της λειτουργίας πολλαπλών ιστοχώρων"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Ενεργοποίηση απλοποιημένης σύνδεσης"
 
@@ -974,6 +974,9 @@ msgstr "Εμφάνιση θεματικών ενοτήτων με αλφαβητ
 msgid "Size limit for file attachments"
 msgstr "Όριο μεγέθους για τα συνημμένα αρχεία"
 
+msgid "megabytes"
+msgstr "megabyte"
+
 msgid "Require two factor authentication"
 msgstr "Απαιτείστε αυθεντικοποίηση δύο παραγόντων"
 
@@ -986,6 +989,9 @@ msgstr "Για λόγους ασφαλείας, οι κωδικοί πρόσβα
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Αριθμός ημερών μέχρι την ειδοποίηση των χρηστών για μη αναγνωσμένες αναφορές"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Απενεργοποιήστε το πλαίσιο προστασίας της ιδιωτικότητας "
@@ -1004,6 +1010,9 @@ msgstr "Επιτρέψτε το σύστημα βαθμολογίας"
 
 msgid "Logging level"
 msgstr "Επίπεδο σύνδεσης"
+
+msgid "percentage"
+msgstr "ποσοστό"
 
 msgid "Log accesses of internal users"
 msgstr "Προσβάσεις εσωτερικών χρηστών στο αρχείο καταγραφής"

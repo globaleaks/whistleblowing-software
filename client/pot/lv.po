@@ -467,7 +467,7 @@ msgstr "Piešķirts"
 msgid "Not provided."
 msgstr "Nav paredzēts."
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -484,21 +484,6 @@ msgstr "Pirms turpināt, lūdzu, iespējojiet divu faktoru autentifikāciju."
 
 msgid "Enable"
 msgstr "Iespējot"
-
-msgid "Low"
-msgstr "Zems"
-
-msgid "High"
-msgstr "Augsts"
-
-msgid "megabytes"
-msgstr "megabaiti"
-
-msgid "percentage"
-msgstr "procenti"
-
-msgid "Save"
-msgstr "Saglabāt"
 
 msgid "Type"
 msgstr "Veids"
@@ -545,6 +530,9 @@ msgstr "Šis lauks ir obligāts"
 msgid "Edit"
 msgstr "Rediģēt"
 
+msgid "Save"
+msgstr "Saglabāt"
+
 msgid "Cancel"
 msgstr "Atcelt"
 
@@ -566,7 +554,7 @@ msgstr "Aptauja"
 msgid "Recipients"
 msgstr "Saņēmēji"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -622,6 +610,9 @@ msgstr "Vērtība"
 
 msgid "Medium"
 msgstr "Vidējs"
+
+msgid "High"
+msgstr "Augsts"
 
 msgid "Software version:"
 msgstr "Programmatūras versija:"
@@ -861,6 +852,9 @@ msgstr "Video"
 msgid "Text shown upon negative answer"
 msgstr "Teksts, kas tiek parādīts pēc negatīvas atbildes"
 
+msgid "Low"
+msgstr "Zems"
+
 msgid "Trigger conditions"
 msgstr "Aktivizējoši nosacījumi"
 
@@ -951,6 +945,12 @@ msgstr "Administratori, kas tiesīgi mainīt lietotāju paroles:"
 msgid "Enable multisite feature"
 msgstr "Iespējot vairāku vietņu funkciju"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Iespējot vienkāršotu pieteikšanos"
 
@@ -966,6 +966,9 @@ msgstr "Rādīt saturu alfabētiskā secībā"
 msgid "Size limit for file attachments"
 msgstr "Pielikumu lieluma ierobežojums"
 
+msgid "megabytes"
+msgstr "megabaiti"
+
 msgid "Require two factor authentication"
 msgstr "Nepieciešama divu faktoru autentifikācija"
 
@@ -978,6 +981,9 @@ msgstr "Drošības apsvērumu dēļ paroles ir regulāri jāmaina."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Dienu skaits līdz nelasīto pārskatu paziņošanai lietotājiem"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Atspējojiet privātuma paneli"
@@ -996,6 +1002,9 @@ msgstr "Iespējot vērtēšanas sistēmu"
 
 msgid "Logging level"
 msgstr "Logošanās līmenis"
+
+msgid "percentage"
+msgstr "procenti"
 
 msgid "Log accesses of internal users"
 msgstr "Iekšējo lietotāju piekļuves žurnāliem"

@@ -478,7 +478,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -495,21 +495,6 @@ msgstr ""
 
 msgid "Enable"
 msgstr "Activer"
-
-msgid "Low"
-msgstr "Faible"
-
-msgid "High"
-msgstr "Élevé"
-
-msgid "megabytes"
-msgstr ""
-
-msgid "percentage"
-msgstr ""
-
-msgid "Save"
-msgstr "Enregistrer"
 
 msgid "Type"
 msgstr "Type"
@@ -556,6 +541,9 @@ msgstr "Tsy maintsy fenoina ny zavatra angatahina anao eto"
 msgid "Edit"
 msgstr "Modifier"
 
+msgid "Save"
+msgstr "Enregistrer"
+
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -577,7 +565,7 @@ msgstr "Questionnaire"
 msgid "Recipients"
 msgstr "Destinataires"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -633,6 +621,9 @@ msgstr "Valeur"
 
 msgid "Medium"
 msgstr "Moyen"
+
+msgid "High"
+msgstr "Élevé"
 
 msgid "Software version:"
 msgstr "Version du logiciel :"
@@ -872,6 +863,9 @@ msgstr "Vidéo"
 msgid "Text shown upon negative answer"
 msgstr "Texte affiché en cas de réponse négative"
 
+msgid "Low"
+msgstr "Faible"
+
 msgid "Trigger conditions"
 msgstr "Conditions de déclenchement"
 
@@ -962,6 +956,12 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "Activer la fonction multisite"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Activer la connexion simplifiée"
 
@@ -977,6 +977,9 @@ msgstr "Montrer les contextes par ordre alphabétique"
 msgid "Size limit for file attachments"
 msgstr "Limite de taille des fichiers joints"
 
+msgid "megabytes"
+msgstr ""
+
 msgid "Require two factor authentication"
 msgstr ""
 
@@ -988,6 +991,9 @@ msgid ""
 msgstr "Pour des raisons de sécurité, il est exigé que le mot de passe soit changé à intervalles réguliers."
 
 msgid "Number of days till notifying unread reports to users"
+msgstr ""
+
+msgid "Custom support URL"
 msgstr ""
 
 msgid "Disable the privacy panel"
@@ -1007,6 +1013,9 @@ msgstr "Activer le système d’évaluation"
 
 msgid "Logging level"
 msgstr "Niveau de journalisation"
+
+msgid "percentage"
+msgstr ""
 
 msgid "Log accesses of internal users"
 msgstr "Journaliser les accès des utilisateurs internes"

@@ -466,7 +466,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -483,21 +483,6 @@ msgstr ""
 
 msgid "Enable"
 msgstr "Activar"
-
-msgid "Low"
-msgstr ""
-
-msgid "High"
-msgstr "Alto"
-
-msgid "megabytes"
-msgstr ""
-
-msgid "percentage"
-msgstr ""
-
-msgid "Save"
-msgstr "Gardar"
 
 msgid "Type"
 msgstr "Tipo"
@@ -544,6 +529,9 @@ msgstr "Este campo é obrigatorio"
 msgid "Edit"
 msgstr "Editar"
 
+msgid "Save"
+msgstr "Gardar"
+
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -565,7 +553,7 @@ msgstr "Cuestionario"
 msgid "Recipients"
 msgstr "Destinatarios"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -621,6 +609,9 @@ msgstr "Valor"
 
 msgid "Medium"
 msgstr "Medio"
+
+msgid "High"
+msgstr "Alto"
 
 msgid "Software version:"
 msgstr "Versión de software:"
@@ -860,6 +851,9 @@ msgstr "Video"
 msgid "Text shown upon negative answer"
 msgstr "Texto amosado na resposta negativa"
 
+msgid "Low"
+msgstr ""
+
 msgid "Trigger conditions"
 msgstr ""
 
@@ -950,6 +944,12 @@ msgstr ""
 msgid "Enable multisite feature"
 msgstr "Habilitar características de multisite"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Activar o inicio de sesión simplificado"
 
@@ -965,6 +965,9 @@ msgstr "Mostrar contextos por orde alfabética"
 msgid "Size limit for file attachments"
 msgstr "Límite de tamaño para ficheiros anexados"
 
+msgid "megabytes"
+msgstr ""
+
 msgid "Require two factor authentication"
 msgstr ""
 
@@ -976,6 +979,9 @@ msgid ""
 msgstr "Por razóns de seguridade, os cambios de contrasinal son necesarios a intervalos regulares."
 
 msgid "Number of days till notifying unread reports to users"
+msgstr ""
+
+msgid "Custom support URL"
 msgstr ""
 
 msgid "Disable the privacy panel"
@@ -995,6 +1001,9 @@ msgstr "Habilita o sistema de puntuación"
 
 msgid "Logging level"
 msgstr "Nivel de rexistro"
+
+msgid "percentage"
+msgstr ""
 
 msgid "Log accesses of internal users"
 msgstr "Rexistro de accesos a usuarios internos"

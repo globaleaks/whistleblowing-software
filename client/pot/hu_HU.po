@@ -479,7 +479,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -496,21 +496,6 @@ msgstr "Továbblépés előtt állíta be a 2-faktoros autentikációt"
 
 msgid "Enable"
 msgstr "Engedélyez"
-
-msgid "Low"
-msgstr "Alacsony"
-
-msgid "High"
-msgstr "Magas"
-
-msgid "megabytes"
-msgstr "megabájt"
-
-msgid "percentage"
-msgstr "százalék"
-
-msgid "Save"
-msgstr "Mentés"
 
 msgid "Type"
 msgstr "Típus"
@@ -557,6 +542,9 @@ msgstr "Ez a mező kötelező"
 msgid "Edit"
 msgstr "Szerkesztés"
 
+msgid "Save"
+msgstr "Mentés"
+
 msgid "Cancel"
 msgstr "Mégse"
 
@@ -578,7 +566,7 @@ msgstr "Kérdőívek"
 msgid "Recipients"
 msgstr "Címzettek"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -634,6 +622,9 @@ msgstr "Érték"
 
 msgid "Medium"
 msgstr "Közepes"
+
+msgid "High"
+msgstr "Magas"
 
 msgid "Software version:"
 msgstr "Szoftver verzió:"
@@ -873,6 +864,9 @@ msgstr "videó"
 msgid "Text shown upon negative answer"
 msgstr "Megjelenítendő szöveg negatív válasz esetén"
 
+msgid "Low"
+msgstr "Alacsony"
+
 msgid "Trigger conditions"
 msgstr "Trigger feltételek"
 
@@ -963,6 +957,12 @@ msgstr "Az adminisztrátoroknak engedélyezett a felhasználói jelszavak megvá
 msgid "Enable multisite feature"
 msgstr "Multisite engedélyezése"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Egyszerűsített login engedélyezése"
 
@@ -978,6 +978,9 @@ msgstr "A kategóriák megjelenítése betűrendben"
 msgid "Size limit for file attachments"
 msgstr "Mellékletek méretkorláta"
 
+msgid "megabytes"
+msgstr "megabájt"
+
 msgid "Require two factor authentication"
 msgstr "2-faktoros autentikáció szükséges"
 
@@ -990,6 +993,9 @@ msgstr "Biztonsági okokból a jelszót rendszeresen módosítani kell."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Napok száma a felhasználóknak értesítés küldéséhez"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Adatvédelmi panel letiltása"
@@ -1008,6 +1014,9 @@ msgstr "Pontozási rendszer engedélyezése"
 
 msgid "Logging level"
 msgstr "Log szint"
+
+msgid "percentage"
+msgstr "százalék"
 
 msgid "Log accesses of internal users"
 msgstr "Belső felhasználók belépési logja"

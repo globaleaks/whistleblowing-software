@@ -478,7 +478,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -495,21 +495,6 @@ msgstr "Înainte de a începe, te rugăm să activezi autentificarea în doi pa�
 
 msgid "Enable"
 msgstr "Activează:"
-
-msgid "Low"
-msgstr "Scăzut"
-
-msgid "High"
-msgstr "Ridicat"
-
-msgid "megabytes"
-msgstr "megabytes"
-
-msgid "percentage"
-msgstr "procentaj"
-
-msgid "Save"
-msgstr "Salvează"
 
 msgid "Type"
 msgstr "Tip"
@@ -556,6 +541,9 @@ msgstr "Acest câmp este obligatoriu "
 msgid "Edit"
 msgstr "Editare"
 
+msgid "Save"
+msgstr "Salvează"
+
 msgid "Cancel"
 msgstr "Anulează"
 
@@ -577,7 +565,7 @@ msgstr "Chestionar"
 msgid "Recipients"
 msgstr "Destinatari"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -633,6 +621,9 @@ msgstr "Valoare"
 
 msgid "Medium"
 msgstr "Mediu"
+
+msgid "High"
+msgstr "Ridicat"
 
 msgid "Software version:"
 msgstr "Versiune software:"
@@ -872,6 +863,9 @@ msgstr "Video"
 msgid "Text shown upon negative answer"
 msgstr "Text afișat atunci când răspunsul este negativ"
 
+msgid "Low"
+msgstr "Scăzut"
+
 msgid "Trigger conditions"
 msgstr "Condiții de declanșare"
 
@@ -962,6 +956,12 @@ msgstr "Administratori autorizați să schimbe parolele utilizatorului:"
 msgid "Enable multisite feature"
 msgstr "Activează funcționalitatea multi-site"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Activează autentificarea simplificată"
 
@@ -977,6 +977,9 @@ msgstr "Afișează contextele în ordine alfabetică"
 msgid "Size limit for file attachments"
 msgstr "Dimensiunea maximă a fișierelor atașate"
 
+msgid "megabytes"
+msgstr "megabytes"
+
 msgid "Require two factor authentication"
 msgstr "Solicită autentificarea în doi pași"
 
@@ -989,6 +992,9 @@ msgstr "Din motive de securitate, este solicitată schimbarea parolei la interva
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Numărul de zile până la notificarea utilizatorilor cu privire la sesizările necitite"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Dezactivează panoul cu setări de confidențialitate"
@@ -1007,6 +1013,9 @@ msgstr "Activează sistemul de evaluare"
 
 msgid "Logging level"
 msgstr "Nivel logare"
+
+msgid "percentage"
+msgstr "procentaj"
 
 msgid "Log accesses of internal users"
 msgstr "Logare acces utilizatori interni"

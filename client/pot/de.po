@@ -508,7 +508,7 @@ msgstr "Zugewiesen an"
 msgid "Not provided."
 msgstr "Nicht angegeben."
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -525,21 +525,6 @@ msgstr "Bevor Sie fortfahren, aktivieren Sie bitte die Zwei-Faktor-Authentifizie
 
 msgid "Enable"
 msgstr "Aktivieren"
-
-msgid "Low"
-msgstr "Niedrig"
-
-msgid "High"
-msgstr "Hoch"
-
-msgid "megabytes"
-msgstr "Megabyte"
-
-msgid "percentage"
-msgstr "prozent"
-
-msgid "Save"
-msgstr "Speichern"
 
 msgid "Type"
 msgstr "Typ"
@@ -586,6 +571,9 @@ msgstr "Dieses Feld ist obligatorisch"
 msgid "Edit"
 msgstr "Bearbeiten"
 
+msgid "Save"
+msgstr "Speichern"
+
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -607,7 +595,7 @@ msgstr "Fragebogen"
 msgid "Recipients"
 msgstr "Empfänger"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -663,6 +651,9 @@ msgstr "Wert"
 
 msgid "Medium"
 msgstr "Mittel"
+
+msgid "High"
+msgstr "Hoch"
 
 msgid "Software version:"
 msgstr "Softwareversion:"
@@ -902,6 +893,9 @@ msgstr "Video"
 msgid "Text shown upon negative answer"
 msgstr "Text wird bei negativer Antwort angezeigt"
 
+msgid "Low"
+msgstr "Niedrig"
+
 msgid "Trigger conditions"
 msgstr "Auslösebedingungen"
 
@@ -992,6 +986,12 @@ msgstr "Administratoren, die berechtigt sind, Benutzerpasswörter zu ändern:"
 msgid "Enable multisite feature"
 msgstr "Mehrseiten-Funktion aktivieren"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Vereinfachte Anmeldung aktivieren"
 
@@ -1007,6 +1007,9 @@ msgstr "Kontexte in alphabetischer Reihenfolge anzeigen"
 msgid "Size limit for file attachments"
 msgstr "Größenbegrenzung für Dateianhänge"
 
+msgid "megabytes"
+msgstr "Megabyte"
+
 msgid "Require two factor authentication"
 msgstr "Zwei-Faktor-Authentifizierung verlangen"
 
@@ -1019,6 +1022,9 @@ msgstr "Aus Sicherheitsgründen müssen Passwörter regelmäßig geändert werde
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Anzahl der Tage bis zur Benachrichtigung der Benutzer über ungelesene Berichte"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Datenschutzpanel deaktivieren"
@@ -1037,6 +1043,9 @@ msgstr "Bewertungssystem aktivieren"
 
 msgid "Logging level"
 msgstr "Protokollierungsstufe"
+
+msgid "percentage"
+msgstr "prozent"
 
 msgid "Log accesses of internal users"
 msgstr "Zugriffe interner Benutzer protokollieren"

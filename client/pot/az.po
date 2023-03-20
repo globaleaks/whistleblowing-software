@@ -469,7 +469,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -486,21 +486,6 @@ msgstr "Davam etməzdən öncə iki pilləli təsdiqləməni işə salın."
 
 msgid "Enable"
 msgstr "İşə salın"
-
-msgid "Low"
-msgstr "Aşağı"
-
-msgid "High"
-msgstr "Yuksək"
-
-msgid "megabytes"
-msgstr "meqabaytlar"
-
-msgid "percentage"
-msgstr "faiz"
-
-msgid "Save"
-msgstr "Yadda saxla"
 
 msgid "Type"
 msgstr "Tip"
@@ -547,6 +532,9 @@ msgstr "Bu sahənin doldurulması məcburidir"
 msgid "Edit"
 msgstr "Düzəlt"
 
+msgid "Save"
+msgstr "Yadda saxla"
+
 msgid "Cancel"
 msgstr "Ləğv et"
 
@@ -568,7 +556,7 @@ msgstr "Sorğu"
 msgid "Recipients"
 msgstr "Alıcılar"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -624,6 +612,9 @@ msgstr "Qiymət"
 
 msgid "Medium"
 msgstr "Orta"
+
+msgid "High"
+msgstr "Yuksək"
 
 msgid "Software version:"
 msgstr "Proqram versiyası:"
@@ -863,6 +854,9 @@ msgstr "Video"
 msgid "Text shown upon negative answer"
 msgstr ""
 
+msgid "Low"
+msgstr "Aşağı"
+
 msgid "Trigger conditions"
 msgstr "Şərtləri işə sal"
 
@@ -953,6 +947,12 @@ msgstr " İnzibatçılara istifadəçi parollarını dəyişmək səlahiyyəti v
 msgid "Enable multisite feature"
 msgstr "Çoxsaytlı funksiyanı işə salın."
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Sadə girişi işə salın"
 
@@ -968,6 +968,9 @@ msgstr "Konteksti əlifba sırası ilə göstər"
 msgid "Size limit for file attachments"
 msgstr "Fayl əlavələrinin ölçü həddi"
 
+msgid "megabytes"
+msgstr "meqabaytlar"
+
 msgid "Require two factor authentication"
 msgstr "İki pilləli təsdiqləmə tələb edin"
 
@@ -980,6 +983,9 @@ msgstr "Təhlükəsizlik qorunsun deyə, parolun müəyyən aralıqla dəyişdir
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Oxunmamış hesabatları istifadəçilərin yadına salmaq üçün gün sayı"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Məxfilik panelini deaktiv edin"
@@ -998,6 +1004,9 @@ msgstr "Qiymətləndirmə sistemini işə salın"
 
 msgid "Logging level"
 msgstr "Giriş səviyyəsi"
+
+msgid "percentage"
+msgstr "faiz"
 
 msgid "Log accesses of internal users"
 msgstr "Daxili istifadəçilərin girişləri"

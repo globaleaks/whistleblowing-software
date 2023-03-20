@@ -472,7 +472,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -489,21 +489,6 @@ msgstr "Преди да продължите, моля, активирайте �
 
 msgid "Enable"
 msgstr "Активиране"
-
-msgid "Low"
-msgstr "Ниско"
-
-msgid "High"
-msgstr "Високо"
-
-msgid "megabytes"
-msgstr "мегабайта"
-
-msgid "percentage"
-msgstr "процент"
-
-msgid "Save"
-msgstr "Записване"
 
 msgid "Type"
 msgstr "Тип"
@@ -550,6 +535,9 @@ msgstr "Това поле е задължително"
 msgid "Edit"
 msgstr "Редакция"
 
+msgid "Save"
+msgstr "Записване"
+
 msgid "Cancel"
 msgstr "Отмяна"
 
@@ -571,7 +559,7 @@ msgstr "Въпросник"
 msgid "Recipients"
 msgstr "Получатели"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -627,6 +615,9 @@ msgstr "Стойност"
 
 msgid "Medium"
 msgstr "Средно"
+
+msgid "High"
+msgstr "Високо"
 
 msgid "Software version:"
 msgstr "Софтуерна версия:"
@@ -866,6 +857,9 @@ msgstr "Видео"
 msgid "Text shown upon negative answer"
 msgstr "Текст за показване при отрицателен отговор"
 
+msgid "Low"
+msgstr "Ниско"
+
 msgid "Trigger conditions"
 msgstr "Условия за задействане"
 
@@ -956,6 +950,12 @@ msgstr "Администратори, упълномощени да промен
 msgid "Enable multisite feature"
 msgstr "Активиране на функция за много сайтове"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Активиране на опростено влизане"
 
@@ -971,6 +971,9 @@ msgstr "Показване на теми по азбучен ред"
 msgid "Size limit for file attachments"
 msgstr "Ограничение на размера за прикачени файлове"
 
+msgid "megabytes"
+msgstr "мегабайта"
+
 msgid "Require two factor authentication"
 msgstr "Задължително двустепенно удостоверяване"
 
@@ -983,6 +986,9 @@ msgstr "От съображения за сигурност на равни ин
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Брой оставащи дни преди уведомяване на потребителите за непрочетени сигнали"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Дезактивиране на панела за поверителност"
@@ -1001,6 +1007,9 @@ msgstr "Активиране на система за оценяване"
 
 msgid "Logging level"
 msgstr "Ниво на регистриране"
+
+msgid "percentage"
+msgstr "процент"
 
 msgid "Log accesses of internal users"
 msgstr "Регистриране на достъпа на вътрешни потребители"

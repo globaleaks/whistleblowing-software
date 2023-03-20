@@ -483,7 +483,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -500,21 +500,6 @@ msgstr "Перед тим як продовжити, просимо включи
 
 msgid "Enable"
 msgstr "Увімкнути"
-
-msgid "Low"
-msgstr "Низький"
-
-msgid "High"
-msgstr "Високий"
-
-msgid "megabytes"
-msgstr "мегабайт"
-
-msgid "percentage"
-msgstr "відсотків"
-
-msgid "Save"
-msgstr "Зберегти"
 
 msgid "Type"
 msgstr "Тип"
@@ -561,6 +546,9 @@ msgstr "Це поле є обов'язковим"
 msgid "Edit"
 msgstr "Редагування"
 
+msgid "Save"
+msgstr "Зберегти"
+
 msgid "Cancel"
 msgstr "Скасувати"
 
@@ -582,7 +570,7 @@ msgstr "Анкета"
 msgid "Recipients"
 msgstr "Отримувачі"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -638,6 +626,9 @@ msgstr "Значення"
 
 msgid "Medium"
 msgstr "Середній"
+
+msgid "High"
+msgstr "Високий"
 
 msgid "Software version:"
 msgstr "Версія програмного забезпечення:"
@@ -877,6 +868,9 @@ msgstr "Відео"
 msgid "Text shown upon negative answer"
 msgstr ""
 
+msgid "Low"
+msgstr "Низький"
+
 msgid "Trigger conditions"
 msgstr "Умови запуску"
 
@@ -967,6 +961,12 @@ msgstr "Адміністраторам дозволено змінювати п�
 msgid "Enable multisite feature"
 msgstr "Включити функцію мульти-сайтів"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Дозволити спрощений вхід"
 
@@ -982,6 +982,9 @@ msgstr "Упорядкувати контексти за алфавітом"
 msgid "Size limit for file attachments"
 msgstr "Обмеження розміру доданих файлів"
 
+msgid "megabytes"
+msgstr "мегабайт"
+
 msgid "Require two factor authentication"
 msgstr "Вимагає двофакторну аутентифікацію"
 
@@ -994,6 +997,9 @@ msgstr "З причин безпеки необхідно регулярно з�
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Кількість днів до сповіщення користувачів про непрочитані звіти"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Відключити панель настройки конфіденційності"
@@ -1012,6 +1018,9 @@ msgstr "Увімкніть систему оцінки"
 
 msgid "Logging level"
 msgstr "Рівень запису журналів"
+
+msgid "percentage"
+msgstr "відсотків"
 
 msgid "Log accesses of internal users"
 msgstr "Журнал авторизації внутрішніх користувачів"

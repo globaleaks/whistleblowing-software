@@ -484,8 +484,8 @@ msgstr "Assegnato a"
 msgid "Not provided."
 msgstr "Non fornita."
 
-msgid "Set a reminder"
-msgstr "Imposta un promemoria"
+msgid "Set a reminder date"
+msgstr "Imposta una data di promemoria"
 
 msgid "File a report"
 msgstr "Invia una segnalazione"
@@ -501,21 +501,6 @@ msgstr "Prima di procedere, ti preghiamo di abilitare l'autenticazione a due fat
 
 msgid "Enable"
 msgstr "Abilita"
-
-msgid "Low"
-msgstr "Basso"
-
-msgid "High"
-msgstr "Alto"
-
-msgid "megabytes"
-msgstr "megabytes"
-
-msgid "percentage"
-msgstr "percentuale"
-
-msgid "Save"
-msgstr "Salva"
 
 msgid "Type"
 msgstr "Tipo"
@@ -562,6 +547,9 @@ msgstr "Questo campo è obbligatorio"
 msgid "Edit"
 msgstr "Modifica"
 
+msgid "Save"
+msgstr "Salva"
+
 msgid "Cancel"
 msgstr "Annulla"
 
@@ -583,8 +571,8 @@ msgstr "Questionario"
 msgid "Recipients"
 msgstr "Riceventi"
 
-msgid "Reminder"
-msgstr "Promemoria"
+msgid "Reminder date"
+msgstr "Data del promemoria"
 
 msgid "days"
 msgstr "giorni"
@@ -639,6 +627,9 @@ msgstr "Valore"
 
 msgid "Medium"
 msgstr "Medio"
+
+msgid "High"
+msgstr "Alto"
 
 msgid "Software version:"
 msgstr "Versione del software:"
@@ -878,6 +869,9 @@ msgstr "Video"
 msgid "Text shown upon negative answer"
 msgstr "Testo mostrato in caso di risposta negativa"
 
+msgid "Low"
+msgstr "Basso"
+
 msgid "Trigger conditions"
 msgstr "Condizioni di attivazione"
 
@@ -968,6 +962,12 @@ msgstr "Amministratori autorizzati a cambiare le password degli utenti:"
 msgid "Enable multisite feature"
 msgstr "Abilita la funzionalità multisito"
 
+msgid "Enable file viewer"
+msgstr "Abilita visualizzatore file"
+
+msgid "Enable PGP"
+msgstr "Abilita PGP"
+
 msgid "Enable simplified login"
 msgstr "Abilita login semplificato"
 
@@ -983,6 +983,9 @@ msgstr "Mostra i contesti in ordine alfabetico"
 msgid "Size limit for file attachments"
 msgstr "Dimensione limite dei file allegati"
 
+msgid "megabytes"
+msgstr "megabytes"
+
 msgid "Require two factor authentication"
 msgstr "Richiedi autenticazione a due fattori"
 
@@ -995,6 +998,9 @@ msgstr "Per questioni di sicurezza, viene richiesto che le password siano cambia
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Numero di giorni oltre il quale notificare agli utenti la presenza di segnalazioni non lette"
+
+msgid "Custom support URL"
+msgstr "URL di supporto personalizzata"
 
 msgid "Disable the privacy panel"
 msgstr "Disabilita il privacy panel"
@@ -1013,6 +1019,9 @@ msgstr "Abilita il sistema di punteggio"
 
 msgid "Logging level"
 msgstr "Livello di verbosità dei log"
+
+msgid "percentage"
+msgstr "percentuale"
 
 msgid "Log accesses of internal users"
 msgstr "Registra gli accessi degli utenti interni"

@@ -469,7 +469,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -486,21 +486,6 @@ msgstr "Aktivér venligst to-faktor-godkendelse inden du fortsætter."
 
 msgid "Enable"
 msgstr "Aktivér"
-
-msgid "Low"
-msgstr "Lav"
-
-msgid "High"
-msgstr "Høj"
-
-msgid "megabytes"
-msgstr "megabyte"
-
-msgid "percentage"
-msgstr "procent"
-
-msgid "Save"
-msgstr "Gem"
 
 msgid "Type"
 msgstr "Type"
@@ -547,6 +532,9 @@ msgstr "Dette felt er obligatorisk"
 msgid "Edit"
 msgstr "Rediger"
 
+msgid "Save"
+msgstr "Gem"
+
 msgid "Cancel"
 msgstr "Annullér"
 
@@ -568,7 +556,7 @@ msgstr "Spørgeskema"
 msgid "Recipients"
 msgstr "Modtagere"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -624,6 +612,9 @@ msgstr "Værdi"
 
 msgid "Medium"
 msgstr "Medium"
+
+msgid "High"
+msgstr "Høj"
 
 msgid "Software version:"
 msgstr "Software version:"
@@ -863,6 +854,9 @@ msgstr "Video"
 msgid "Text shown upon negative answer"
 msgstr "Tekst der vises ved negativt svar"
 
+msgid "Low"
+msgstr "Lav"
+
 msgid "Trigger conditions"
 msgstr "Udløsningsbetingelser"
 
@@ -953,6 +947,12 @@ msgstr "Tillad administratorer at ændre brugeradgangskoder"
 msgid "Enable multisite feature"
 msgstr "Aktivér fler-side funktion"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Aktivér simplificeret login"
 
@@ -968,6 +968,9 @@ msgstr "Vis sammenhænge i alfabetisk rækkefølge"
 msgid "Size limit for file attachments"
 msgstr "Størrelsesgrænse for vedhæftede filer"
 
+msgid "megabytes"
+msgstr "megabyte"
+
 msgid "Require two factor authentication"
 msgstr "Kræv to-faktor-godkendelse"
 
@@ -980,6 +983,9 @@ msgstr "Af sikkerhedsmæssige årsager kræves det, at adgangskoden skiftes med 
 
 msgid "Number of days till notifying unread reports to users"
 msgstr " \nAntal dage indtil notifikation om ulæste rapporter til bliver sendt til brugerne"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Deaktiver privatlivspanelet"
@@ -998,6 +1004,9 @@ msgstr "Aktivér score system"
 
 msgid "Logging level"
 msgstr "Loggingniveau"
+
+msgid "percentage"
+msgstr "procent"
 
 msgid "Log accesses of internal users"
 msgstr "Log interne brugeres adgang"

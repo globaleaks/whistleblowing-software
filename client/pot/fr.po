@@ -1,7 +1,7 @@
 # 
 # Translators:
 # Alexandre Girard <transifex@alexgirard.com>, 2013-2014
-# AO <ao@localizationlab.org>, 2015-2016,2018-2022
+# AO <ao@localizationlab.org>, 2015-2016,2018-2023
 # AO <ao@localizationlab.org>, 2015-2016,2021
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # marco calamari <marcoc@marcoc.it>, 2013
@@ -44,7 +44,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: AO <ao@localizationlab.org>, 2015-2016,2018-2022\n"
+"Last-Translator: AO <ao@localizationlab.org>, 2015-2016,2018-2023\n"
 "Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -500,7 +500,7 @@ msgstr "Assigné à"
 msgid "Not provided."
 msgstr "N’est pas indiquée."
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -517,21 +517,6 @@ msgstr "Avant de poursuivre, veuillez activer l’authentification à deux facte
 
 msgid "Enable"
 msgstr "Activer"
-
-msgid "Low"
-msgstr "Faible"
-
-msgid "High"
-msgstr "Élevé"
-
-msgid "megabytes"
-msgstr "mégaoctets"
-
-msgid "percentage"
-msgstr "pourcentage"
-
-msgid "Save"
-msgstr "Enregistrer"
 
 msgid "Type"
 msgstr "Type"
@@ -578,6 +563,9 @@ msgstr "Ce champ est obligatoire"
 msgid "Edit"
 msgstr "Modifier"
 
+msgid "Save"
+msgstr "Enregistrer"
+
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -599,8 +587,8 @@ msgstr "Questionnaire"
 msgid "Recipients"
 msgstr "Destinataires"
 
-msgid "Reminder"
-msgstr ""
+msgid "Reminder date"
+msgstr "Date de rappel"
 
 msgid "days"
 msgstr "jours"
@@ -655,6 +643,9 @@ msgstr "Valeur"
 
 msgid "Medium"
 msgstr "Moyen"
+
+msgid "High"
+msgstr "Élevé"
 
 msgid "Software version:"
 msgstr "Version du logiciel :"
@@ -894,6 +885,9 @@ msgstr "Vidéo"
 msgid "Text shown upon negative answer"
 msgstr "Texte affiché en cas de réponse négative"
 
+msgid "Low"
+msgstr "Faible"
+
 msgid "Trigger conditions"
 msgstr "Conditions de déclenchement"
 
@@ -984,6 +978,12 @@ msgstr "Administrateurs autorisés à changer les mots de passe des utilisateurs
 msgid "Enable multisite feature"
 msgstr "Activer la fonction multisite"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Activer la connexion simplifiée"
 
@@ -999,6 +999,9 @@ msgstr "Afficher les contextes par ordre alphabétique"
 msgid "Size limit for file attachments"
 msgstr "Limite de taille des fichiers joints"
 
+msgid "megabytes"
+msgstr "mégaoctets"
+
 msgid "Require two factor authentication"
 msgstr "Exiger l’authentification à deux facteurs"
 
@@ -1011,6 +1014,9 @@ msgstr "Pour des raisons de sécurité, il est exigé que le mot de passe soit c
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Nombre de jours avant de signaler les rapports non lus aux utilisateurs"
+
+msgid "Custom support URL"
+msgstr "URL du soutien personnalisé"
 
 msgid "Disable the privacy panel"
 msgstr "Désactiver le volet de confidentialité"
@@ -1029,6 +1035,9 @@ msgstr "Activer le système d’évaluation"
 
 msgid "Logging level"
 msgstr "Niveau de journalisation"
+
+msgid "percentage"
+msgstr "pourcentage"
 
 msgid "Log accesses of internal users"
 msgstr "Journaliser les accès des utilisateurs internes"
@@ -1241,7 +1250,7 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "En confirmant, vous différerez la date d’expiration au :"
 
 msgid "By confirming, you will set a remainder on date:"
-msgstr ""
+msgstr "En confirmant, vous définirez un rappel pour cette date :"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Ceci est une plateforme de démonstration. Veuillez ne pas l’utiliser pour des envois réels."
@@ -1472,7 +1481,7 @@ msgid "Fiscal code"
 msgstr "Code fiscal"
 
 msgid "Tax code"
-msgstr "Code fiscal"
+msgstr "Code des impôts"
 
 msgid "The answer is too short"
 msgstr "La réponse est trop courte"

@@ -462,7 +462,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -479,21 +479,6 @@ msgstr "Kabla ya kuendelea, tafadhali wezesha uthibitishaji wa pili."
 
 msgid "Enable"
 msgstr "Wezesha"
-
-msgid "Low"
-msgstr "Chini"
-
-msgid "High"
-msgstr "Juu"
-
-msgid "megabytes"
-msgstr "megabiti"
-
-msgid "percentage"
-msgstr "asilimia"
-
-msgid "Save"
-msgstr "Hifadhi"
 
 msgid "Type"
 msgstr "Aina"
@@ -540,6 +525,9 @@ msgstr "Sehemu hii ni lazima"
 msgid "Edit"
 msgstr "Hariri"
 
+msgid "Save"
+msgstr "Hifadhi"
+
 msgid "Cancel"
 msgstr "futa"
 
@@ -561,7 +549,7 @@ msgstr "Dodoso"
 msgid "Recipients"
 msgstr "Wapokeaji"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -617,6 +605,9 @@ msgstr "Thamani"
 
 msgid "Medium"
 msgstr "Kati"
+
+msgid "High"
+msgstr "Juu"
 
 msgid "Software version:"
 msgstr "Toleo la programu:"
@@ -856,6 +847,9 @@ msgstr "Video"
 msgid "Text shown upon negative answer"
 msgstr "Maandishi yameonyeshwa kwa jibu hasi"
 
+msgid "Low"
+msgstr "Chini"
+
 msgid "Trigger conditions"
 msgstr "Chochea hali"
 
@@ -946,6 +940,12 @@ msgstr "Watawala wameidhinishwa kubadilisha nenosiri za watumiaji:\""
 msgid "Enable multisite feature"
 msgstr "Wezesha huduma nyingi katika tofuti"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Wezesha uingiaji rahisi"
 
@@ -961,6 +961,9 @@ msgstr "Onyesha muktadha kwa mpangilio wa alfabeti"
 msgid "Size limit for file attachments"
 msgstr "Kikomo cha ukubwa wa viambatisho vya faili"
 
+msgid "megabytes"
+msgstr "megabiti"
+
 msgid "Require two factor authentication"
 msgstr "Inahitaji uthibitishaji wa mara ya pili "
 
@@ -972,6 +975,9 @@ msgid ""
 msgstr "Kwa sababu za usalama, mabadiliko ya neno la siri yanahitajika kila wakati."
 
 msgid "Number of days till notifying unread reports to users"
+msgstr ""
+
+msgid "Custom support URL"
 msgstr ""
 
 msgid "Disable the privacy panel"
@@ -991,6 +997,9 @@ msgstr "Wezesha mfumo wa upataji wa alama"
 
 msgid "Logging level"
 msgstr "Kiwango cha kuingia"
+
+msgid "percentage"
+msgstr "asilimia"
 
 msgid "Log accesses of internal users"
 msgstr "Ingia ufikiaji wa watumiaji wa ndani"

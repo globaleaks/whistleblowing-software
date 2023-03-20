@@ -464,7 +464,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -481,21 +481,6 @@ msgstr "Жалғастырмас бұрын, екі факторлы аутен�
 
 msgid "Enable"
 msgstr "Қосу"
-
-msgid "Low"
-msgstr "Төмен"
-
-msgid "High"
-msgstr "Жоғары"
-
-msgid "megabytes"
-msgstr "мегабайт"
-
-msgid "percentage"
-msgstr "пайыз"
-
-msgid "Save"
-msgstr "Сақтау"
 
 msgid "Type"
 msgstr "Түрі"
@@ -542,6 +527,9 @@ msgstr "Бұл өріс міндетті"
 msgid "Edit"
 msgstr "Өңдеу"
 
+msgid "Save"
+msgstr "Сақтау"
+
 msgid "Cancel"
 msgstr "Бас тарту"
 
@@ -563,7 +551,7 @@ msgstr "Сауалнама"
 msgid "Recipients"
 msgstr "Алушылар"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -619,6 +607,9 @@ msgstr "Мән"
 
 msgid "Medium"
 msgstr "Орташа"
+
+msgid "High"
+msgstr "Жоғары"
 
 msgid "Software version:"
 msgstr "Бағдарламалық жасақтама нұсқасы:"
@@ -858,6 +849,9 @@ msgstr "Бейне"
 msgid "Text shown upon negative answer"
 msgstr ""
 
+msgid "Low"
+msgstr "Төмен"
+
 msgid "Trigger conditions"
 msgstr "Триггерлік шарттар"
 
@@ -948,6 +942,12 @@ msgstr "Пайдаланушылардың құпиясөздерін өзгер
 msgid "Enable multisite feature"
 msgstr "Мульти-сайт функциясын қосу"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Жеңілдетілген кіруді іске қосу"
 
@@ -963,6 +963,9 @@ msgstr "Мәнмәтіндерді алфавиттік ретпен көрсе�
 msgid "Size limit for file attachments"
 msgstr "Файл тіркемелерінің өлшемінің шектеуі"
 
+msgid "megabytes"
+msgstr "мегабайт"
+
 msgid "Require two factor authentication"
 msgstr "Екі факторлы аутентификацияны талап ету"
 
@@ -975,6 +978,9 @@ msgstr "Қауіпсіздік мақсатында, құпиясөзді үне
 
 msgid "Number of days till notifying unread reports to users"
 msgstr " Пайдаланушыларға оқылмаған есептер туралы хабарландырғанға дейінгі күндер саны"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Құпиялылық тақтасын өшіру"
@@ -993,6 +999,9 @@ msgstr "Ұпайларды санау жүйесін іске қосу"
 
 msgid "Logging level"
 msgstr "Журнал жүргізу деңгейі"
+
+msgid "percentage"
+msgstr "пайыз"
 
 msgid "Log accesses of internal users"
 msgstr "Ішкі пайдаланушылардың журналдарына қол жеткізу"

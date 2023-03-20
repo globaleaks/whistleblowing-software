@@ -462,7 +462,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -479,21 +479,6 @@ msgstr "Prieš tęsdami įgalinkite dviejų veiksnių tapatybės nustatymo būd�
 
 msgid "Enable"
 msgstr "Įjungti"
-
-msgid "Low"
-msgstr "Žemas"
-
-msgid "High"
-msgstr "Aukštas"
-
-msgid "megabytes"
-msgstr "megabaitai"
-
-msgid "percentage"
-msgstr "procentai"
-
-msgid "Save"
-msgstr "Įrašyti"
 
 msgid "Type"
 msgstr "Tipas"
@@ -540,6 +525,9 @@ msgstr "Šis laukas privalomas"
 msgid "Edit"
 msgstr "Keisti"
 
+msgid "Save"
+msgstr "Įrašyti"
+
 msgid "Cancel"
 msgstr "Atšaukti"
 
@@ -561,7 +549,7 @@ msgstr "Klausimynas"
 msgid "Recipients"
 msgstr "Gavėjai"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -617,6 +605,9 @@ msgstr "Vertė"
 
 msgid "Medium"
 msgstr "Vidutinis"
+
+msgid "High"
+msgstr "Aukštas"
 
 msgid "Software version:"
 msgstr "Programinės įrangos versija:"
@@ -856,6 +847,9 @@ msgstr "Vaizdo įrašas"
 msgid "Text shown upon negative answer"
 msgstr "Tekstas rodomas gavus neigiamą atsakymą"
 
+msgid "Low"
+msgstr "Žemas"
+
 msgid "Trigger conditions"
 msgstr "Paleidimo sąlygos"
 
@@ -946,6 +940,12 @@ msgstr "Administratoriai, įgalioti keisti naudotojų slaptažodžius:"
 msgid "Enable multisite feature"
 msgstr "Įgalinti daugiavietės funkciją"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Įgalinti supaprastintą prisijungimą"
 
@@ -961,6 +961,9 @@ msgstr "Rodyti kontekstus abėcėlės tvarka"
 msgid "Size limit for file attachments"
 msgstr "Pridedamų failų dydžio limitas"
 
+msgid "megabytes"
+msgstr "megabaitai"
+
 msgid "Require two factor authentication"
 msgstr "Reikalauti dviejų veiksnių tapatybės nustatymo"
 
@@ -973,6 +976,9 @@ msgstr "Saugumo sumetimais slaptažodžius reikia keisti reguliariai."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Dienų skaičius iki įspėjimo naudotojams apie neperskaitytus pranešimus"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Išjungti privatumo skydelį"
@@ -991,6 +997,9 @@ msgstr "Įjungti vertinimo sistemą"
 
 msgid "Logging level"
 msgstr "Registravimo lygis"
+
+msgid "percentage"
+msgstr "procentai"
 
 msgid "Log accesses of internal users"
 msgstr "Registruoti vidaus naudotojų prieigas"

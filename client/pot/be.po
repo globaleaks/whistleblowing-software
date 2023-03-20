@@ -463,7 +463,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -480,21 +480,6 @@ msgstr "Перад тым як працягнуць, к.л., уключыце д
 
 msgid "Enable"
 msgstr "Уключыць"
-
-msgid "Low"
-msgstr "Нізкая"
-
-msgid "High"
-msgstr "Высокая"
-
-msgid "megabytes"
-msgstr "мегабайты"
-
-msgid "percentage"
-msgstr "працэнт"
-
-msgid "Save"
-msgstr "Захаваць"
 
 msgid "Type"
 msgstr "Тып"
@@ -541,6 +526,9 @@ msgstr "Гэта поле з'яўляецца абавязковым"
 msgid "Edit"
 msgstr "Рэдагаваць"
 
+msgid "Save"
+msgstr "Захаваць"
+
 msgid "Cancel"
 msgstr "Адмяніць"
 
@@ -562,7 +550,7 @@ msgstr "Анкета"
 msgid "Recipients"
 msgstr "Атрымальнікі"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -618,6 +606,9 @@ msgstr "Значэнне"
 
 msgid "Medium"
 msgstr "Сярэдняе"
+
+msgid "High"
+msgstr "Высокая"
 
 msgid "Software version:"
 msgstr "Версія праграмнага абсталявання"
@@ -857,6 +848,9 @@ msgstr "Відэа"
 msgid "Text shown upon negative answer"
 msgstr ""
 
+msgid "Low"
+msgstr "Нізкая"
+
 msgid "Trigger conditions"
 msgstr "Адлюстраваць умовы"
 
@@ -947,6 +941,12 @@ msgstr "Адміністратары ўпаўнаважаныя змяняць �
 msgid "Enable multisite feature"
 msgstr "Уключыць функцыю мултысайтавага разгортвання"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Уключыць спрошаны ўваход"
 
@@ -962,6 +962,9 @@ msgstr "Паказваць кантэксты ў алфавітным парад
 msgid "Size limit for file attachments"
 msgstr "Абмежаванне памеру далучаных файлаў"
 
+msgid "megabytes"
+msgstr "мегабайты"
+
 msgid "Require two factor authentication"
 msgstr "Патрабуецца двухфактарная аўтэнтыфікацыя"
 
@@ -974,6 +977,9 @@ msgstr "З меркаванняў бяспекі трэба мяняць пар�
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Колькасць дзён, што застаецца да апавяшчэння карыстальнікаў пра непрачытаныя справаздачы"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Адключыць панэль канфідэнцыйнасці"
@@ -992,6 +998,9 @@ msgstr "Уключыць сістэму налічэння балаў"
 
 msgid "Logging level"
 msgstr "Узровень рэгістрацыі"
+
+msgid "percentage"
+msgstr "працэнт"
 
 msgid "Log accesses of internal users"
 msgstr "Журналы доступу ўнутраных карыстальнікаў"

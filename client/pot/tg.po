@@ -470,7 +470,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -487,21 +487,6 @@ msgstr "Пеш аз идома додан, лутфан тасдиқи шахс�
 
 msgid "Enable"
 msgstr "Фаъол кардан"
-
-msgid "Low"
-msgstr "Паст"
-
-msgid "High"
-msgstr "Баланд"
-
-msgid "megabytes"
-msgstr "мегабайтҳо"
-
-msgid "percentage"
-msgstr "фоиз"
-
-msgid "Save"
-msgstr "Захира кардан"
 
 msgid "Type"
 msgstr "Намуд"
@@ -548,6 +533,9 @@ msgstr "Ин майдон ҳатмӣ мебошад"
 msgid "Edit"
 msgstr "Тағйир додан"
 
+msgid "Save"
+msgstr "Захира кардан"
+
 msgid "Cancel"
 msgstr "Бекор кардан"
 
@@ -569,7 +557,7 @@ msgstr "Саволнома"
 msgid "Recipients"
 msgstr "Гирандагон"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -625,6 +613,9 @@ msgstr "Арзиш"
 
 msgid "Medium"
 msgstr "Миёна"
+
+msgid "High"
+msgstr "Баланд"
 
 msgid "Software version:"
 msgstr "Барориши нармафзор:"
@@ -864,6 +855,9 @@ msgstr "Видео"
 msgid "Text shown upon negative answer"
 msgstr ""
 
+msgid "Low"
+msgstr "Паст"
+
 msgid "Trigger conditions"
 msgstr "Шартҳои пайгирикунанда"
 
@@ -954,6 +948,12 @@ msgstr "Ба маъмурон иҷозаи тағйир додани гузар�
 msgid "Enable multisite feature"
 msgstr "Функсияи якчандторнамоиро фаъол сохтан"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Воридшавии соддагардонидашударо фаъол сохтан"
 
@@ -969,6 +969,9 @@ msgstr "Мавзӯҳоро бо тартиби алифбо нишон дода�
 msgid "Size limit for file attachments"
 msgstr "Маҳдудияти ҳаҷм барои файлҳои замимашаванда "
 
+msgid "megabytes"
+msgstr "мегабайтҳо"
+
 msgid "Require two factor authentication"
 msgstr "Тасдиқи шахсияти ду омиларо талаб кардан"
 
@@ -981,6 +984,9 @@ msgstr "Бо мақсади таъмини амният, тағйири гуза
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Шумораи рӯзҳо то огоҳ кардани гузоришҳои хонда нашуда ба корбарон"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Панели махфиро хомӯш кардан"
@@ -999,6 +1005,9 @@ msgstr "Низоми ҳисоби холҳоро фаъол сохтан"
 
 msgid "Logging level"
 msgstr "Дараҷаи қайдшавӣ"
+
+msgid "percentage"
+msgstr "фоиз"
 
 msgid "Log accesses of internal users"
 msgstr "Дастрасии корбарони дохилӣ ба номгӯ"

@@ -464,7 +464,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -481,21 +481,6 @@ msgstr "Davom etishdan oldin ikki bosqichli hisob tekshiruvini yoqing"
 
 msgid "Enable"
 msgstr "Yoqish"
-
-msgid "Low"
-msgstr "Past"
-
-msgid "High"
-msgstr "Yuqori"
-
-msgid "megabytes"
-msgstr "megabayt"
-
-msgid "percentage"
-msgstr "foiz"
-
-msgid "Save"
-msgstr "Saqlash"
 
 msgid "Type"
 msgstr "Turi"
@@ -542,6 +527,9 @@ msgstr "Bu qator toʻldirilishi shart"
 msgid "Edit"
 msgstr "Tahrirlash"
 
+msgid "Save"
+msgstr "Saqlash"
+
 msgid "Cancel"
 msgstr "Bekor qilish"
 
@@ -563,7 +551,7 @@ msgstr "Savolnomalar"
 msgid "Recipients"
 msgstr "Qabul qiluvchilar"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -619,6 +607,9 @@ msgstr "Qiymati"
 
 msgid "Medium"
 msgstr "O‘rtacha"
+
+msgid "High"
+msgstr "Yuqori"
 
 msgid "Software version:"
 msgstr "Dasturiy taʼminot versiyasi:"
@@ -858,6 +849,9 @@ msgstr "Video"
 msgid "Text shown upon negative answer"
 msgstr ""
 
+msgid "Low"
+msgstr "Past"
+
 msgid "Trigger conditions"
 msgstr "Shartlar bajarilishi"
 
@@ -948,6 +942,12 @@ msgstr "Quyidagi administratorlar foydalanuvchilar parolini oʻzgartira oladi:"
 msgid "Enable multisite feature"
 msgstr "Multisayt funksiyasini yoqish"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Soddalashtirilgan kirishni yoqish"
 
@@ -963,6 +963,9 @@ msgstr "Kontekstlarni alifbo tartibida chiqarish"
 msgid "Size limit for file attachments"
 msgstr "Fayl biriktirmalari hajmi limiti"
 
+msgid "megabytes"
+msgstr "megabayt"
+
 msgid "Require two factor authentication"
 msgstr "Ikki bosqichli hisob tekshiruvini talab qilish"
 
@@ -975,6 +978,9 @@ msgstr "Xavfsizlik maqsadlarida parollar ora-orada muntazam almashtiriladi."
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Foydalanuvchilarga oʻqilmagan anonim xabarlar haqida necha kundan keyin xabar qilinsin"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Maxfiylik panelini faolsizlantirish"
@@ -993,6 +999,9 @@ msgstr "Ballar tizimini yoqish"
 
 msgid "Logging level"
 msgstr "Jurnal darajasi"
+
+msgid "percentage"
+msgstr "foiz"
 
 msgid "Log accesses of internal users"
 msgstr "Ichki foydalanuvchilar kirishini jurnalga yozish"

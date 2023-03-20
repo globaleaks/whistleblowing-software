@@ -462,7 +462,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -479,21 +479,6 @@ msgstr "Лютфен, девам этмезден эвель эки фактор
 
 msgid "Enable"
 msgstr "Ишлетмек"
-
-msgid "Low"
-msgstr "Алчакъ"
-
-msgid "High"
-msgstr "Юксек"
-
-msgid "megabytes"
-msgstr "мегабайтлар"
-
-msgid "percentage"
-msgstr "фаиз"
-
-msgid "Save"
-msgstr "Сакълап къалдырмакъ"
 
 msgid "Type"
 msgstr "Чешит"
@@ -540,6 +525,9 @@ msgstr "Бу аланны толдурмакъ шарттыр"
 msgid "Edit"
 msgstr "Денъиштирмек"
 
+msgid "Save"
+msgstr "Сакълап къалдырмакъ"
+
 msgid "Cancel"
 msgstr "Лягъу этме"
 
@@ -561,7 +549,7 @@ msgstr "Суаллер джедвели"
 msgid "Recipients"
 msgstr "Алыджылар"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -617,6 +605,9 @@ msgstr "Къыймет"
 
 msgid "Medium"
 msgstr "Орта"
+
+msgid "High"
+msgstr "Юксек"
 
 msgid "Software version:"
 msgstr "Программа теминаты версиясы:"
@@ -856,6 +847,9 @@ msgstr "Видео"
 msgid "Text shown upon negative answer"
 msgstr ""
 
+msgid "Low"
+msgstr "Алчакъ"
+
 msgid "Trigger conditions"
 msgstr "Ишлетюв шартлары"
 
@@ -946,6 +940,12 @@ msgstr "Идареджилерге къулланыджы пароллерини
 msgid "Enable multisite feature"
 msgstr "Мульти-сайт сазламасыны ишлетмек"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Саде киришке изин бермек"
 
@@ -961,6 +961,9 @@ msgstr "Контекстлерни элифбе тертибинде сырал�
 msgid "Size limit for file attachments"
 msgstr "Илявелер ичюн ольчю сынъыры"
 
+msgid "megabytes"
+msgstr "мегабайтлар"
+
 msgid "Require two factor authentication"
 msgstr "Эки факторлы аутентификацияны талап этмек"
 
@@ -973,6 +976,9 @@ msgstr "Телюкесизлик себеплеринден мунтазам с�
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Къулланыджыларгъа эсабатлар окъунмамасыны хабердар этильмесине къадар олгъан куньлернинъ сайысы"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Гизлилик сазламалар панелини сёндюрмек"
@@ -991,6 +997,9 @@ msgstr "Баа къойма системасыны ишлетмек"
 
 msgid "Logging level"
 msgstr "Къайдларнынъ севиеси"
+
+msgid "percentage"
+msgstr "фаиз"
 
 msgid "Log accesses of internal users"
 msgstr "Ички къулланыджыларнынъ авторизация журналы"

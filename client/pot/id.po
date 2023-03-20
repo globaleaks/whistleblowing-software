@@ -487,7 +487,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -504,21 +504,6 @@ msgstr "Sebelum melanjutkan, silakan aktifkan autentikasi dua faktor."
 
 msgid "Enable"
 msgstr "Aktifkan"
-
-msgid "Low"
-msgstr "Bawah"
-
-msgid "High"
-msgstr "Tinggi"
-
-msgid "megabytes"
-msgstr "megabita"
-
-msgid "percentage"
-msgstr "persentase"
-
-msgid "Save"
-msgstr "Simpan"
 
 msgid "Type"
 msgstr "Tipe"
@@ -565,6 +550,9 @@ msgstr "Kolom ini wajib diisi"
 msgid "Edit"
 msgstr "Sunting"
 
+msgid "Save"
+msgstr "Simpan"
+
 msgid "Cancel"
 msgstr "Batal"
 
@@ -586,7 +574,7 @@ msgstr "Kuesioner"
 msgid "Recipients"
 msgstr "Penerima"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -642,6 +630,9 @@ msgstr "Nilai"
 
 msgid "Medium"
 msgstr "Sedang"
+
+msgid "High"
+msgstr "Tinggi"
 
 msgid "Software version:"
 msgstr "Versi perangkat lunak: "
@@ -881,6 +872,9 @@ msgstr "Video "
 msgid "Text shown upon negative answer"
 msgstr "Teks akan ditampilkan setelah jawaban negatif"
 
+msgid "Low"
+msgstr "Bawah"
+
 msgid "Trigger conditions"
 msgstr "Kondisi pemicu"
 
@@ -971,6 +965,12 @@ msgstr "Administrator mengizinkan untuk mengganti kata sandi pengguna:"
 msgid "Enable multisite feature"
 msgstr "Aktifkan fitur multisitus"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Aktifkan metode masuk yang mudah"
 
@@ -986,6 +986,9 @@ msgstr "Memperlihatkan konteks dalam urutan abjad "
 msgid "Size limit for file attachments"
 msgstr "Batasan ukuran untuk berkas lampiran "
 
+msgid "megabytes"
+msgstr "megabita"
+
 msgid "Require two factor authentication"
 msgstr "Autentikasi dua faktor dibutuhkan"
 
@@ -998,6 +1001,9 @@ msgstr "Untuk alasan keamanan, Anda disarankan mengubah kata sandi secara berkal
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Jumlah hari hingga memberitahukan laporan yang belum dibaca pada pengguna"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Menonaktifkan panel privasi"
@@ -1016,6 +1022,9 @@ msgstr "Aktifkan sistem skor"
 
 msgid "Logging level"
 msgstr "Tingkat pencatatan"
+
+msgid "percentage"
+msgstr "persentase"
 
 msgid "Log accesses of internal users"
 msgstr "Akses catatan pengguna internal"

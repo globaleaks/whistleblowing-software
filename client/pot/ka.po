@@ -462,7 +462,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -479,21 +479,6 @@ msgstr "გაგრძელებამდე ჩართეთ ორფა�
 
 msgid "Enable"
 msgstr "ჩართვა"
-
-msgid "Low"
-msgstr "დაბალი"
-
-msgid "High"
-msgstr "მაღალი"
-
-msgid "megabytes"
-msgstr "მეგაბაიტები"
-
-msgid "percentage"
-msgstr "პროცენტი"
-
-msgid "Save"
-msgstr "შენახვა"
 
 msgid "Type"
 msgstr "ტიპი"
@@ -540,6 +525,9 @@ msgstr "ეს ველი სავალდებულოა"
 msgid "Edit"
 msgstr "რედაქტირება"
 
+msgid "Save"
+msgstr "შენახვა"
+
 msgid "Cancel"
 msgstr "გაუქმება"
 
@@ -561,7 +549,7 @@ msgstr "კითხვარი"
 msgid "Recipients"
 msgstr "მიმღებები"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -617,6 +605,9 @@ msgstr "მნიშვნელობა"
 
 msgid "Medium"
 msgstr "საშუალო"
+
+msgid "High"
+msgstr "მაღალი"
 
 msgid "Software version:"
 msgstr "პროგრამული უზრუნველყოფის ვერსია:"
@@ -856,6 +847,9 @@ msgstr "ვიდეო"
 msgid "Text shown upon negative answer"
 msgstr ""
 
+msgid "Low"
+msgstr "დაბალი"
+
 msgid "Trigger conditions"
 msgstr "ტრიგერის პირობები"
 
@@ -946,6 +940,12 @@ msgstr "ადმინისტრატორებს უფლება ა�
 msgid "Enable multisite feature"
 msgstr "მრავალსაიტიანი ფუნქციის ჩართვა"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "გამარტივებული შესვლის ჩართვა"
 
@@ -961,6 +961,9 @@ msgstr "კონტექსტის ჩვენება ანბანი�
 msgid "Size limit for file attachments"
 msgstr "დანართებისთვის ზომის ლიმიტი"
 
+msgid "megabytes"
+msgstr "მეგაბაიტები"
+
 msgid "Require two factor authentication"
 msgstr "ორფაქტორიანი ავტორიზაციის მოთხოვნა"
 
@@ -973,6 +976,9 @@ msgstr "უსაფრთხოების მიზნებისთვი�
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "დღეების რაოდენობა მომხმარებლების შეტყობინებამდე წაუკითხავი ანგარიშების შესახებ"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "კონფიდენციალურობის პანელის გამორთვა"
@@ -991,6 +997,9 @@ msgstr "ქულების დათვლის სისტემის ჩ
 
 msgid "Logging level"
 msgstr "შესვლის დონე"
+
+msgid "percentage"
+msgstr "პროცენტი"
 
 msgid "Log accesses of internal users"
 msgstr "შიდა მომხმარებლების წვდომის ჟურნალი"

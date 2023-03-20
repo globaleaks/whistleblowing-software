@@ -463,7 +463,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -480,21 +480,6 @@ msgstr "계속하기 전에 이중 요인 인증을 허용하십시오."
 
 msgid "Enable"
 msgstr "허용"
-
-msgid "Low"
-msgstr "낮음"
-
-msgid "High"
-msgstr "높음"
-
-msgid "megabytes"
-msgstr "메가바이트"
-
-msgid "percentage"
-msgstr "퍼센트"
-
-msgid "Save"
-msgstr "저장"
 
 msgid "Type"
 msgstr "유형"
@@ -541,6 +526,9 @@ msgstr "본 필드는 필수입니다"
 msgid "Edit"
 msgstr "편집"
 
+msgid "Save"
+msgstr "저장"
+
 msgid "Cancel"
 msgstr "취소"
 
@@ -562,7 +550,7 @@ msgstr "설문 조사"
 msgid "Recipients"
 msgstr "수신자"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -618,6 +606,9 @@ msgstr "값"
 
 msgid "Medium"
 msgstr "중간"
+
+msgid "High"
+msgstr "높음"
 
 msgid "Software version:"
 msgstr "소프트웨어 버전:"
@@ -857,6 +848,9 @@ msgstr "동영상"
 msgid "Text shown upon negative answer"
 msgstr "부정적 답변에 대해 표시되는 텍스트"
 
+msgid "Low"
+msgstr "낮음"
+
 msgid "Trigger conditions"
 msgstr "트리거 조건"
 
@@ -947,6 +941,12 @@ msgstr "사용자 비밀번호 변경 권한을 갖춘 관리자:"
 msgid "Enable multisite feature"
 msgstr "다중 사이트 기능 허용"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "단순 로그인 허용"
 
@@ -962,6 +962,9 @@ msgstr "알파벳 순서로 컨텍스트 표시"
 msgid "Size limit for file attachments"
 msgstr "첨부 파일 크기 제한"
 
+msgid "megabytes"
+msgstr "메가바이트"
+
 msgid "Require two factor authentication"
 msgstr "이중 요인 인증 필요"
 
@@ -974,6 +977,9 @@ msgstr "보안상의 이유로 주기적으로 비밀번호를 변경해야 합�
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "사용자에게 읽지 않은 보고서를 알릴 때까지의 일 수"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "프라이버시 패널 사용 중단"
@@ -992,6 +998,9 @@ msgstr "채점 시스템 허용"
 
 msgid "Logging level"
 msgstr "기록 수준"
+
+msgid "percentage"
+msgstr "퍼센트"
 
 msgid "Log accesses of internal users"
 msgstr "내부 사용자 액세스 기록"

@@ -481,14 +481,14 @@ msgstr "Assignat a"
 msgid "Not provided."
 msgstr "No facilitat."
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
 msgstr "Presentar un informe"
 
 msgid "Select a reporting channel:"
-msgstr ""
+msgstr "Trie un canal de denúncia:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Abans de continuar, estableixi una nova contrasenya."
@@ -498,21 +498,6 @@ msgstr "Abans de continuar, si-us-plau activa l'autenticació de dues passes"
 
 msgid "Enable"
 msgstr "Habilitar"
-
-msgid "Low"
-msgstr "Baix"
-
-msgid "High"
-msgstr "Alt"
-
-msgid "megabytes"
-msgstr "megabytes"
-
-msgid "percentage"
-msgstr "percentatge"
-
-msgid "Save"
-msgstr "Desa"
 
 msgid "Type"
 msgstr "Tipus"
@@ -559,6 +544,9 @@ msgstr "Aquest camp és obligatori"
 msgid "Edit"
 msgstr "Edita"
 
+msgid "Save"
+msgstr "Desa"
+
 msgid "Cancel"
 msgstr "Cancel·la"
 
@@ -580,7 +568,7 @@ msgstr "Qüestionari"
 msgid "Recipients"
 msgstr "Persones destinatàries"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -636,6 +624,9 @@ msgstr "Valor"
 
 msgid "Medium"
 msgstr "Mitjà"
+
+msgid "High"
+msgstr "Alt"
 
 msgid "Software version:"
 msgstr "Versió del programari:"
@@ -875,6 +866,9 @@ msgstr "Vídeo"
 msgid "Text shown upon negative answer"
 msgstr "Text mostrat en cas de resposta negativa. "
 
+msgid "Low"
+msgstr "Baix"
+
 msgid "Trigger conditions"
 msgstr "Condicions detonants"
 
@@ -965,6 +959,12 @@ msgstr "Persones administradores autoritzats a canviar les contrasenyes de les p
 msgid "Enable multisite feature"
 msgstr "Activa la funció multi lloc"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Permet l'inici de sessió simplificat"
 
@@ -980,6 +980,9 @@ msgstr "Mostra contextos en ordre alfabètic"
 msgid "Size limit for file attachments"
 msgstr "Límit de mida per als arxius adjunts"
 
+msgid "megabytes"
+msgstr "megabytes"
+
 msgid "Require two factor authentication"
 msgstr "Requereix autenticació de dues passes"
 
@@ -992,6 +995,9 @@ msgstr "Per motius de seguretat, es requereixen canvis de contrasenya periòdica
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Nombre de dies fins a la notificació d'informes no llegits als usuaris"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Deshabilita el distintiu de privacitat "
@@ -1010,6 +1016,9 @@ msgstr "Activa el sistema de puntuació"
 
 msgid "Logging level"
 msgstr "Nivell de registre"
+
+msgid "percentage"
+msgstr "percentatge"
 
 msgid "Log accesses of internal users"
 msgstr "Registre d'accés dels usuaris interns"
@@ -1222,7 +1231,7 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Si ho confirmes, posposaràs la data de caducitat fins a:"
 
 msgid "By confirming, you will set a remainder on date:"
-msgstr ""
+msgstr "Si confirma, establirà un recordatori per al dia:"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Aquesta és una plataforma de demostració, no la utilitzeu per a enviaments reals."

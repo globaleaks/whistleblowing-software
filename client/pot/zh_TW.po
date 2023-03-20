@@ -469,7 +469,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -486,21 +486,6 @@ msgstr "繼續之前，請先開啟雙因子驗證功能。"
 
 msgid "Enable"
 msgstr "啟用"
-
-msgid "Low"
-msgstr "低"
-
-msgid "High"
-msgstr "高"
-
-msgid "megabytes"
-msgstr "MB"
-
-msgid "percentage"
-msgstr "百分比"
-
-msgid "Save"
-msgstr "儲存"
 
 msgid "Type"
 msgstr "類型"
@@ -547,6 +532,9 @@ msgstr "本欄位必填"
 msgid "Edit"
 msgstr "編輯"
 
+msgid "Save"
+msgstr "儲存"
+
 msgid "Cancel"
 msgstr "取消"
 
@@ -568,7 +556,7 @@ msgstr "問卷"
 msgid "Recipients"
 msgstr "收件人"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -624,6 +612,9 @@ msgstr "值"
 
 msgid "Medium"
 msgstr "媒體"
+
+msgid "High"
+msgstr "高"
 
 msgid "Software version:"
 msgstr "軟體版本:"
@@ -863,6 +854,9 @@ msgstr "影片"
 msgid "Text shown upon negative answer"
 msgstr "否定答案會顯示的文字"
 
+msgid "Low"
+msgstr "低"
+
 msgid "Trigger conditions"
 msgstr "觸發的情況"
 
@@ -953,6 +947,12 @@ msgstr "管理员已授权更改用户密码："
 msgid "Enable multisite feature"
 msgstr "啟用多個網站功能"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "開啟簡易登入"
 
@@ -968,6 +968,9 @@ msgstr "文字內容以字母排序"
 msgid "Size limit for file attachments"
 msgstr "附件檔案的大小限制"
 
+msgid "megabytes"
+msgstr "MB"
+
 msgid "Require two factor authentication"
 msgstr "要求雙因子驗證"
 
@@ -980,6 +983,9 @@ msgstr "基於安全考量，密碼的變更需要有一段間隔時間。"
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "向用户发送未读报告通知之前的天数"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "取消隱私面板"
@@ -998,6 +1004,9 @@ msgstr "啟用評分系統"
 
 msgid "Logging level"
 msgstr "登入層級"
+
+msgid "percentage"
+msgstr "百分比"
 
 msgid "Log accesses of internal users"
 msgstr "內部用戶的登入存取"

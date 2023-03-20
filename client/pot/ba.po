@@ -463,7 +463,7 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder"
+msgid "Set a reminder date"
 msgstr ""
 
 msgid "File a report"
@@ -480,21 +480,6 @@ msgstr "Дауам итерҙән алда, зинһар, ике факторл�
 
 msgid "Enable"
 msgstr "Ҡабыҙырға"
-
-msgid "Low"
-msgstr "Түбән"
-
-msgid "High"
-msgstr "Юғары"
-
-msgid "megabytes"
-msgstr "мегабайт"
-
-msgid "percentage"
-msgstr "Процент"
-
-msgid "Save"
-msgstr "Һаҡларға"
 
 msgid "Type"
 msgstr "Тип"
@@ -541,6 +526,9 @@ msgstr "Был аҡландың булыуы мотлаҡ"
 msgid "Edit"
 msgstr "Үҙгәртергә"
 
+msgid "Save"
+msgstr "Һаҡларға"
+
 msgid "Cancel"
 msgstr "Ғәмәлдән баш тартыу"
 
@@ -562,7 +550,7 @@ msgstr "Һораулама"
 msgid "Recipients"
 msgstr "Ҡабул итеүселәр"
 
-msgid "Reminder"
+msgid "Reminder date"
 msgstr ""
 
 msgid "days"
@@ -618,6 +606,9 @@ msgstr "Әһәмиәте"
 
 msgid "Medium"
 msgstr "Уртаса"
+
+msgid "High"
+msgstr "Юғары"
 
 msgid "Software version:"
 msgstr "Программа тәьминиәте версияһы:"
@@ -857,6 +848,9 @@ msgstr "Видео"
 msgid "Text shown upon negative answer"
 msgstr ""
 
+msgid "Low"
+msgstr "Түбән"
+
 msgid "Trigger conditions"
 msgstr "Тоҡандырыу шарттары"
 
@@ -947,6 +941,12 @@ msgstr "Администраторҙарға ҡулланыусылар паро
 msgid "Enable multisite feature"
 msgstr "Мульти-сайттар көйләүен ҡабыҙыу"
 
+msgid "Enable file viewer"
+msgstr ""
+
+msgid "Enable PGP"
+msgstr ""
+
 msgid "Enable simplified login"
 msgstr "Ябай инеү мөмкилеге бирергә"
 
@@ -962,6 +962,9 @@ msgstr "Контексты алфавит тәртибендә сорттарғ�
 msgid "Size limit for file attachments"
 msgstr "Ҡушымталар өсөн дәүмәлде сикләү"
 
+msgid "megabytes"
+msgstr "мегабайт"
+
 msgid "Require two factor authentication"
 msgstr "Ике факторлы аутентификацияны талап итеү"
 
@@ -974,6 +977,9 @@ msgstr "Хәүефһеҙлек маҡсатынан, паролде даими �
 
 msgid "Number of days till notifying unread reports to users"
 msgstr "Ҡулланыусыларҙың уҡылмаған отчеттары тураһындағы белдереүҙәргә тиклемге көндәр иҫәбе"
+
+msgid "Custom support URL"
+msgstr ""
 
 msgid "Disable the privacy panel"
 msgstr "Йәшерен көйләү панелен һүндереү"
@@ -992,6 +998,9 @@ msgstr "Скринг системаһын ҡабыҙыу"
 
 msgid "Logging level"
 msgstr "Логтарҙы яҙыу кимәле"
+
+msgid "percentage"
+msgstr "Процент"
 
 msgid "Log accesses of internal users"
 msgstr "Эске ҡулланыусыларҙың авторизация журналы"
