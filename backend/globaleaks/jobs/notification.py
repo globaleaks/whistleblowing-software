@@ -160,7 +160,7 @@ class MailGenerator(object):
             data = {'type': 'unread_tips'}
 
             try:
-                data['user'] = self.serialize_obj(session, 'user', user, tid, user.language)
+                data['user'] = user_serialize_user(session, user, user.language)
                 self.process_mail_creation(session, tid, data)
             except:
                 pass
