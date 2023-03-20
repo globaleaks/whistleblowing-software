@@ -635,7 +635,6 @@ var GL = angular.module("GL", [
     $rootScope.$watch("GLTranslate.state.language", function(new_val, old_val) {
       if(new_val !== old_val) {
 	if (old_val && old_val !== "*") {
-          $location.search("lang", new_val);
           GLTranslate.setLang(new_val);
           $rootScope.reload();
         }
