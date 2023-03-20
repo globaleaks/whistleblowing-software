@@ -28,41 +28,43 @@ module.exports = function(grunt) {
     copy: {
       sources: {
         files: [
-          { dest: "app/license.txt", cwd: ".", src: ["../LICENSE"], expand: false, flatten: true },
-          { dest: "app/lib/css/", cwd: ".", src: ["node_modules/angular/angular-csp.css"], expand: true, flatten: true },
-          { dest: "app/lib/css/", cwd: ".", src: ["node_modules/ui-bootstrap4/dist/ui-bootstrap-csp.css"], expand: true, flatten: true },
-          { dest: "app/lib/css/", cwd: ".", src: ["node_modules/bootstrap/dist/css/bootstrap.css"], expand: true, flatten: true },
-          { dest: "app/lib/css/", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/css/fontawesome.css"], expand: true, flatten: true },
-          { dest: "app/lib/css/", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/css/regular.css"], expand: true, flatten: true },
-          { dest: "app/lib/css/", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/css/solid.css"], expand: true, flatten: true },
-          { dest: "app/lib/css/", cwd: ".", src: ["node_modules/ui-select/dist/select.css"], expand: true, flatten: true },
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/fast-sha256/sha256.js"], expand: true, flatten: true },
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/@flowjs/flow.js/dist/flow.js"], expand: true, flatten: true },
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/@flowjs/ng-flow/dist/ng-flow.js"], expand: true, flatten: true },
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular/angular.js"], expand: true, flatten: true },
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-aria/angular-aria.js"], expand: true, flatten: true },
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-dynamic-locale/dist/tmhDynamicLocale.js"], expand: true, flatten: true },
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-filter/dist/angular-filter.js"], expand: true, flatten: true },
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-qrcode/angular-qrcode.js"], expand: true, flatten: true},
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-resource/angular-resource.js"], expand: true, flatten: true },
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-route/angular-route.js"], expand: true, flatten: true },
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-sanitize/angular-sanitize.js"], expand: true, flatten: true },
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-translate/dist/angular-translate.js"], expand: true, flatten: true },
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angular-translate-loader-static-files/angular-translate-loader-static-files.js"], expand: true, flatten: true },
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/ng-csv/build/ng-csv.js"], expand: true, flatten: true },
-          { dest: "app/viewer/", cwd: ".", src: ["node_modules/pdfjs-dist/build/pdf.min.js"], expand: true, flatten: true },
-          { dest: "app/viewer/", cwd: ".", src: ["node_modules/pdfjs-dist/build/pdf.worker.min.js"], expand: true, flatten: true },
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/ng-idle/angular-idle.min.js"], expand: true, flatten: true },
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/ng-showdown/dist/ng-showdown.js"], expand: true, flatten: true },
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/qrcode-generator/qrcode.js"], expand: true, flatten: true },
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/showdown/dist/showdown.js"], expand: true, flatten: true },
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/angularjs-dropdown-multiselect/dist/src/angularjs-dropdown-multiselect.js"], expand: true, flatten: true },
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/stacktrace-js/dist/stacktrace.js"], expand: true, flatten: true },
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/ui-bootstrap4/dist/ui-bootstrap-tpls.js"], expand: true, flatten: true },
-          { dest: "app/lib/js/", cwd: ".", src: ["node_modules/ui-select/dist/select.js"], expand: true, flatten: true },
-          { dest: "app/lib/js/locale", cwd: ".", src: ["node_modules/angular-i18n/angular-locale*"], expand: true, flatten: true },
-          { dest: "app/lib/webfonts", cwd: ".", src: ["node_modules/fontsource-metropolis/files/*"], expand: true, flatten: true },
-          { dest: "app/lib/webfonts", cwd: ".", src: ["node_modules/@fortawesome/fontawesome-free/webfonts/*"], expand: true, flatten: true }
+          { dest: "app/license.txt", cwd: "./node_modules/", src: ["../LICENSE"], expand: false, flatten: true },
+          { dest: "app/lib/css/", cwd: "./node_modules/", src: ["angular/angular-csp.css"], expand: true, flatten: true },
+          { dest: "app/lib/css/", cwd: "./node_modules/", src: ["ui-bootstrap4/dist/ui-bootstrap-csp.css"], expand: true, flatten: true },
+          { dest: "app/lib/css/", cwd: "./node_modules/", src: ["bootstrap/dist/css/bootstrap.css"], expand: true, flatten: true },
+          { dest: "app/lib/css/", cwd: "./node_modules/", src: ["@fortawesome/fontawesome-free/css/fontawesome.css"], expand: true, flatten: true },
+          { dest: "app/lib/css/", cwd: "./node_modules/", src: ["@fortawesome/fontawesome-free/css/regular.css"], expand: true, flatten: true },
+          { dest: "app/lib/css/", cwd: "./node_modules/", src: ["@fortawesome/fontawesome-free/css/solid.css"], expand: true, flatten: true },
+          { dest: "app/lib/css/", cwd: "./node_modules/", src: ["ui-select/dist/select.css"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["fast-sha256/sha256.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["@flowjs/flow.js/dist/flow.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["@flowjs/ng-flow/dist/ng-flow.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angular/angular.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angular-aria/angular-aria.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angular-dynamic-locale/dist/tmhDynamicLocale.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angular-filter/dist/angular-filter.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angular-qrcode/angular-qrcode.js"], expand: true, flatten: true},
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angular-resource/angular-resource.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angular-route/angular-route.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angular-sanitize/angular-sanitize.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angular-translate/dist/angular-translate.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angular-translate-loader-static-files/angular-translate-loader-static-files.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["ng-csv/build/ng-csv.js"], expand: true, flatten: true },
+          { dest: "app/viewer/", cwd: "./node_modules/", src: ["pdfjs-dist/build/pdf.min.js"], expand: true, flatten: true },
+          { dest: "app/viewer/", cwd: "./node_modules/", src: ["pdfjs-dist/build/pdf.worker.min.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["ng-idle/angular-idle.min.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["ng-showdown/dist/ng-showdown.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["qrcode-generator/qrcode.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["showdown/dist/showdown.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angularjs-dropdown-multiselect/dist/src/angularjs-dropdown-multiselect.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["stacktrace-js/dist/stacktrace.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["ui-bootstrap4/dist/ui-bootstrap-tpls.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["ui-select/dist/select.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/locale", cwd: "./node_modules/", src: ["angular-i18n/angular-locale*"], expand: true, flatten: true },
+          { dest: "app/lib/webfonts", cwd: "./node_modules/", src: ["@fontsource/*/400.css"], expand: true, flatten: false },
+          { dest: "app/lib/webfonts", cwd: "./node_modules/", src: ["@fontsource/*/700.css"], expand: true, flatten: false },
+          { dest: "app/lib/webfonts", cwd: "./node_modules/", src: ["@fontsource/*/files/*"], expand: true, flatten: false },
+          { dest: "app/lib/webfonts", cwd: "./node_modules/", src: ["@fortawesome/**"], expand: true, flatten: false }
         ]
       },
       build: {
@@ -80,12 +82,30 @@ module.exports = function(grunt) {
               "js/scripts.js",
               "data/**",
               "lib/js/locale/**",
-              "lib/webfonts/**",
               "viewer/**"
             ],
             expand: true,
             flatten: false
+          },
+          {
+            dest: "build/css/files/",
+            cwd: "./tmp/",
+            src: [
+              "lib/webfonts/@fontsource/*/files/*",
+            ],
+            expand: true,
+            flatten: true
+          },
+          {
+            dest: "build/css/files/",
+            cwd: "./tmp/",
+            src: [
+              "lib/webfonts/@fortawesome/fontawesome-free/webfonts/*"
+            ],
+            expand: true,
+            flatten: true
           }
+
         ]
       },
       coverage: {
@@ -152,7 +172,7 @@ module.exports = function(grunt) {
             {
               pattern: /\.\.\/webfonts/ig,
               replacement: function () {
-                return "../lib/webfonts";
+                return "./files";
               }
             },
             {
