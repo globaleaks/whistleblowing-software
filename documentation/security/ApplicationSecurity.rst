@@ -131,6 +131,7 @@ The default configuration of the application see this feature disabled.
 Content-Security-Policy
 +++++++++++++++++++++++
 The backend implements a strict `Content Security Policy (CSP) <https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP>`_ preventing any interaction with resources of third parties and restricting execution of untrusted user input:
+::
   Content-Security-Policy: base-uri 'none'; default-src 'none'; form-action 'none'; frame-ancestors 'none'; sandbox;
 
 On this default policy are then implemented specific policies in adherence to the principle of least privilege.
