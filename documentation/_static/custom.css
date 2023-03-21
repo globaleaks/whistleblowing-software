@@ -1,29 +1,21 @@
 @font-face {
-  font-family: "Metropolis";
+  font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("./fonts/metropolis-all-400-normal.woff") format("woff");
+  src: url("./fonts/inter-all-400-normal.woff") format("woff");
 }
 
 @font-face {
-  font-family: "Metropolis";
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url("./fonts/metropolis-all-400-italic.woff") format("woff");
-}
-
-@font-face {
-  font-family: "Metropolis";
-  font-style: bold;
+  font-family: "Inter";
+  font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("./fonts/metropolis-all-700-normal.woff") format("woff");
+  src: url("./fonts/inter-all-700-normal.woff") format("woff");
 }
 
 * {
-  font-family: "Metropolis", Helvetica, Arial, sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 body,
