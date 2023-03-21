@@ -3,8 +3,10 @@
 set -e
 
 # Automatically disable swap
+set +e
 swapoff --all
 sed -e '/swap/ s/^#*/#/' -i /etc/fstab
+set -e
 
 #DEBHELPER#
 
