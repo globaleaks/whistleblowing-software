@@ -7,8 +7,8 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import parse_pgp_options, \
                                      user_serialize_user
 from globaleaks.models import fill_localized_keys
-from globaleaks.orm import db_del, db_log, transact, tw
-from globaleaks.rest import requests
+from globaleaks.orm import db_del, db_get, db_log, transact, tw
+from globaleaks.rest import errors, requests
 from globaleaks.state import State
 from globaleaks.transactions import db_get_user
 from globaleaks.utils.crypto import GCE, Base64Encoder, generateRandomPassword
@@ -84,6 +84,16 @@ def db_create_user(session, tid, user_session, request, language):
 
 
 def db_delete_user(session, tid, user_session, user_id):
+    current_user = db_get(session, models.User, models.User.id == user_session.user_id)
+    user_to_be_deleted = db_get(session, models.User, models.User.id == user_id)
+
+    if user_session.user_id == user_id:
+        # Prevent users to delete themeselves
+        raise errors.ForbiddenOperation
+    elif user_to_be_deleted.crypto_escrow_prv_key and not user_session.crypto_escro_prv_key:
+        # Prevent users to delete privileged users when escrow keys could be invalidated
+        raise errors.ForbiddenOperation
+
     db_del(session, models.User, (models.User.tid == tid, models.User.id == user_id))
     db_log(session, tid=tid, type='delete_user', user_id=user_session.user_id, object_id=user_id)
 

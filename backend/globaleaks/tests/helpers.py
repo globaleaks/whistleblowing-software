@@ -1020,6 +1020,16 @@ class TestHandler(TestGLWithPopulatedDB):
 
 class TestCollectionHandler(TestHandler):
     @inlineCallbacks
+    def setUp(self):
+        yield TestHandler.setUp(self)
+        yield self.fill_data()
+
+    @inlineCallbacks
+    def fill_data(self):
+        # fill_data/create_admin
+        self.dummyAdmin = yield create_user(1, None, self.dummyAdmin, 'en')
+
+    @inlineCallbacks
     def test_get(self):
         if not self._test_desc:
             return
@@ -1053,6 +1063,16 @@ class TestCollectionHandler(TestHandler):
 
 
 class TestInstanceHandler(TestHandler):
+    @inlineCallbacks
+    def setUp(self):
+        yield TestHandler.setUp(self)
+        yield self.fill_data()
+
+    @inlineCallbacks
+    def fill_data(self):
+        # fill_data/create_admin
+        self.dummyAdmin = yield create_user(1, None, self.dummyAdmin, 'en')
+
     @inlineCallbacks
     def test_get(self):
         if not self._test_desc:
