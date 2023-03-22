@@ -70,4 +70,5 @@ class MigrationScript(MigrationBase):
     def epilogue(self):
         for t in self.session_new.query(self.model_to['Tenant']):
             if self.session_old.query(self.model_to['User']).filter(self.model_to['User'].tid == t.id, self.model_to['User'].pgp_key_public != '').count():
-                self.session_new.query(self.model_to['Config']).filter(self.model_to['Config'].tid == t.id, self.model_to['Config'].var_name == 'pgp').update({'value': True})
+                self.session_new.add(self.model_to['Config']({'tid': t.id, 'var_name': 'pgp', 'value': True}))
+                self.entries_count["Config"] += 1
