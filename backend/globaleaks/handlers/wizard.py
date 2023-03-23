@@ -47,7 +47,9 @@ def db_wizard(session, tid, hostname, request):
     node.set_val('default_language', language)
     node.set_val('wizard_done', True)
     node.set_val('enable_developers_exception_notification', request['enable_developers_exception_notification'])
-    node.set_val('hostname', hostname)
+
+    if tid == 1:
+       node.set_val('hostname', hostname)
 
     profiles.load_profile(session, tid, request['profile'])
 
@@ -104,10 +106,12 @@ def db_wizard(session, tid, hostname, request):
 
     # Secondary tenants initialization starts here
 
+    if node.get_val('subdomain') and root_tenant_node.get_val('rootdomain'):
+        node.set_val('hostname', node.get_val('subdomain') + '.' + root_tenant_node.get_val('rootdomain'))
+
     mode = node.get_val('mode')
 
     if mode != 'default':
-        node.set_val('hostname', node.get_val('subdomain') + '.' + root_tenant_node.get_val('rootdomain'))
         node.set_val('tor', False)
 
     if mode in ['wbpa']:
