@@ -809,7 +809,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       if (!$rootScope.public.node.wizard_done) {
         $location.path("/wizard");
       } else if (path === "/" && $rootScope.public.node.enable_signup) {
-        $rootScope.setPage("signuppage");
+        $location.path("/signup");
       } else if ((path === "/" || path === "/submission") && $rootScope.public.node.adminonly && !$rootScope.Authentication.session) {
         $location.path("/admin");
       }

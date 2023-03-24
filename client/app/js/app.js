@@ -117,6 +117,11 @@ var GL = angular.module("GL", [
         controller: "WizardCtrl",
         header_title: "Platform wizard"
       }).
+      when("/signup", {
+        templateUrl: "views/signup/main.html",
+        controller: "SignupCtrl",
+        header_title: "Sign up"
+      }).
       when("/submission", {
         templateUrl: "views/whistleblower/submission.html",
         controller: "SubmissionCtrl",

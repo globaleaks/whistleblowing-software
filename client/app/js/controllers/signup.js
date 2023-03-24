@@ -1,5 +1,10 @@
-GL.controller("SignupCtrl", ["$scope", "$route", "$http",
-              function($scope, $route, $http) {
+GL.controller("SignupCtrl", ["$scope", "$location", "$route", "$http",
+              function($scope, $location, $route, $http) {
+  /* if the signup module is not enabled */
+  if (!$scope.public.node.enable_signup) {
+    $location.path("/");
+    return;
+  }
 
   $scope.hostname = "";
 
