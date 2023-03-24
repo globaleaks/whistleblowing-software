@@ -79,10 +79,6 @@ vertical li.current > a {
   color: #1d1f2a;
 }
 
-.wy-nav-content img {
-  border: 1px solid #103253;
-}
-
 .document ul,
 .document li {
   list-style: disc;
