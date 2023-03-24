@@ -71,7 +71,7 @@
     "grunt-usemin": "3.1.1",
     "gruntify-eslint": "5.0.0",
     "node-gettext": "3.0.0",
-    "npm-check-updates": "16.7.13",
+    "npm-check-updates": "16.8.0",
     "nyc": "15.1.0",
     "postcss-rtl": "2.0.0",
     "protractor": "7.0.0",
@@ -79,7 +79,7 @@
     "stylelint": "15.3.0",
     "stylelint-config-standard": "31.0.0",
     "superagent": "8.0.9",
-    "terser": "5.16.6"
+    "terser": "5.16.8"
   },
   "overrides": {
     "grunt-stylelint": {

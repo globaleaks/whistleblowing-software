@@ -48,7 +48,7 @@
         "ng-csv": "0.3.6",
         "ng-idle": "1.3.2",
         "ng-showdown": "1.1.0",
-        "pdfjs-dist": "^3.4.120",
+        "pdfjs-dist": "3.4.120",
         "qrcode-generator": "1.4.4",
         "ui-bootstrap4": "3.0.7",
         "ui-select": "0.19.8"
@@ -71,7 +71,7 @@
         "grunt-usemin": "3.1.1",
         "gruntify-eslint": "5.0.0",
         "node-gettext": "3.0.0",
-        "npm-check-updates": "16.7.13",
+        "npm-check-updates": "16.8.0",
         "nyc": "15.1.0",
         "postcss-rtl": "2.0.0",
         "protractor": "7.0.0",
@@ -79,7 +79,7 @@
         "stylelint": "15.3.0",
         "stylelint-config-standard": "31.0.0",
         "superagent": "8.0.9",
-        "terser": "5.16.6"
+        "terser": "5.16.8"
       }
     },
     "node_modules/@ampproject/remapping": {
@@ -5588,12 +5588,12 @@
       "devOptional": true
     },
     "node_modules/ini": {
-      "version": "3.0.1",
-      "resolved": "https://registry.npmjs.org/ini/-/ini-3.0.1.tgz",
-      "integrity": "sha512-it4HyVAUTKBc6m8e1iXWvXSTdndF7HbdN713+kvLrymxTaU4AUBWrJ4vEooP+V7fexnVD3LKcBshjGGPefSMUQ==",
+      "version": "4.0.0",
+      "resolved": "https://registry.npmjs.org/ini/-/ini-4.0.0.tgz",
+      "integrity": "sha512-t0ikzf5qkSFqRl1e6ejKBe+Tk2bsQd8ivEkcisyGXsku2t8NvXZ1Y3RRz5vxrDgOrTBOi13CvGsVoI5wVpd7xg==",
       "dev": true,
       "engines": {
-        "node": "^12.13.0 || ^14.15.0 || >=16.0.0"
+        "node": "^14.17.0 || ^16.13.0 || >=18.0.0"
       }
     },
     "node_modules/inquirer": {
@@ -7483,9 +7483,9 @@
       }
     },
     "node_modules/npm-check-updates": {
-      "version": "16.7.13",
-      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-16.7.13.tgz",
-      "integrity": "sha512-D+wxsd58eTmkEXiJQcRNKUFNpQ4TAaQnK2QcZ861gSitUI3fgPOFFqe+AJcqZ8yeAUnmwcW547jpN1KKvJ9g2A==",
+      "version": "16.8.0",
+      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-16.8.0.tgz",
+      "integrity": "sha512-2xpFtUPa2OyswC8kpIpxRqQcP/D0uqaBgfiOQAtvGlnDhmHr3QwR2gWjjWtS6xnNvgyyVly/4edY0Uu24c46ew==",
       "dev": true,
       "dependencies": {
         "chalk": "^5.2.0",
@@ -7497,11 +7497,11 @@
         "get-stdin": "^8.0.0",
         "globby": "^11.0.4",
         "hosted-git-info": "^5.1.0",
-        "ini": "^3.0.1",
+        "ini": "^4.0.0",
         "json-parse-helpfulerror": "^1.0.3",
         "jsonlines": "^0.1.1",
         "lodash": "^4.17.21",
-        "minimatch": "^7.4.2",
+        "minimatch": "^7.4.3",
         "p-map": "^4.0.0",
         "pacote": "15.1.1",
         "parse-github-url": "^1.0.2",
@@ -7509,7 +7509,7 @@
         "prompts-ncu": "^2.5.1",
         "rc-config-loader": "^4.1.2",
         "remote-git-tags": "^3.0.0",
-        "rimraf": "^4.4.0",
+        "rimraf": "^4.4.1",
         "semver": "^7.3.8",
         "semver-utils": "^1.1.4",
         "source-map-support": "^0.5.21",
@@ -7558,9 +7558,9 @@
       }
     },
     "node_modules/npm-check-updates/node_modules/glob": {
-      "version": "9.3.0",
-      "resolved": "https://registry.npmjs.org/glob/-/glob-9.3.0.tgz",
-      "integrity": "sha512-EAZejC7JvnQINayvB/7BJbpZpNOJ8Lrw2OZNEvQxe0vaLn1SuwMcfV7/MNaX8L/T0wmptBFI4YMtDvSBxYDc7w==",
+      "version": "9.3.2",
+      "resolved": "https://registry.npmjs.org/glob/-/glob-9.3.2.tgz",
+      "integrity": "sha512-BTv/JhKXFEHsErMte/AnfiSv8yYOLLiyH2lTg8vn02O21zWFgHPTfxtgn1QRe7NRgggUhC8hacR2Re94svHqeA==",
       "dev": true,
       "dependencies": {
         "fs.realpath": "^1.0.0",
@@ -7576,9 +7576,9 @@
       }
     },
     "node_modules/npm-check-updates/node_modules/minimatch": {
-      "version": "7.4.2",
-      "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-7.4.2.tgz",
-      "integrity": "sha512-xy4q7wou3vUoC9k1xGTXc+awNdGaGVHtFUaey8tiX4H1QRc04DZ/rmDFwNm2EBsuYEhAZ6SgMmYf3InGY6OauA==",
+      "version": "7.4.3",
+      "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-7.4.3.tgz",
+      "integrity": "sha512-5UB4yYusDtkRPbRiy1cqZ1IpGNcJCGlEMG17RKzPddpyiPKoCdwohbED8g4QXT0ewCt8LTkQXuljsUfQ3FKM4A==",
       "dev": true,
       "dependencies": {
         "brace-expansion": "^2.0.1"
@@ -7591,9 +7591,9 @@
       }
     },
     "node_modules/npm-check-updates/node_modules/rimraf": {
-      "version": "4.4.0",
-      "resolved": "https://registry.npmjs.org/rimraf/-/rimraf-4.4.0.tgz",
-      "integrity": "sha512-X36S+qpCUR0HjXlkDe4NAOhS//aHH0Z+h8Ckf2auGJk3PTnx5rLmrHkwNdbVQuCSUhOyFrlRvFEllZOYE+yZGQ==",
+      "version": "4.4.1",
+      "resolved": "https://registry.npmjs.org/rimraf/-/rimraf-4.4.1.tgz",
+      "integrity": "sha512-Gk8NlF062+T9CqNGn6h4tls3k6T1+/nXdOcSZVikNVtlRdYpA7wRJJMoXmuvOnLW844rPjdQ7JgXCYM6PPC/og==",
       "dev": true,
       "dependencies": {
         "glob": "^9.2.0"
@@ -8292,16 +8292,16 @@
       }
     },
     "node_modules/path-scurry": {
-      "version": "1.6.1",
-      "resolved": "https://registry.npmjs.org/path-scurry/-/path-scurry-1.6.1.tgz",
-      "integrity": "sha512-OW+5s+7cw6253Q4E+8qQ/u1fVvcJQCJo/VFD8pje+dbJCF1n5ZRMV2AEHbGp+5Q7jxQIYJxkHopnj6nzdGeZLA==",
+      "version": "1.6.3",
+      "resolved": "https://registry.npmjs.org/path-scurry/-/path-scurry-1.6.3.tgz",
+      "integrity": "sha512-RAmB+n30SlN+HnNx6EbcpoDy9nwdpcGPnEKrJnu6GZoDWBdIjo1UQMVtW2ybtC7LC2oKLcMq8y5g8WnKLiod9g==",
       "dev": true,
       "dependencies": {
         "lru-cache": "^7.14.1",
         "minipass": "^4.0.2"
       },
       "engines": {
-        "node": ">=14"
+        "node": ">=16 || 14 >=14.17"
       },
       "funding": {
         "url": "https://github.com/sponsors/isaacs"
@@ -10564,9 +10564,9 @@
       }
     },
     "node_modules/terser": {
-      "version": "5.16.6",
-      "resolved": "https://registry.npmjs.org/terser/-/terser-5.16.6.tgz",
-      "integrity": "sha512-IBZ+ZQIA9sMaXmRZCUMDjNH0D5AQQfdn4WUjHL0+1lF4TP1IHRJbrhb6fNaXWikrYQTSkb7SLxkeXAiy1p7mbg==",
+      "version": "5.16.8",
+      "resolved": "https://registry.npmjs.org/terser/-/terser-5.16.8.tgz",
+      "integrity": "sha512-QI5g1E/ef7d+PsDifb+a6nnVgC4F22Bg6T0xrBrz6iloVB4PUkkunp6V8nzoOOZJIzjWVdAGqCdlKlhLq/TbIA==",
       "dev": true,
       "dependencies": {
         "@jridgewell/source-map": "^0.3.2",
