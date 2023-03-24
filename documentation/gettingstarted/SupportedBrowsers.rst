@@ -13,7 +13,6 @@ Other supported browsers are:
    "Google Chrome", ">= 45"
    "Brave", ">= 1.20.110"
    "Edge", "any"
-   "Internet Explorer", "11"
    "Safari", ">= 8"
    "iOS", ">= 9"
    "Android", ">= 4.4"
