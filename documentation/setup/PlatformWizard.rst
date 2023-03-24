@@ -4,6 +4,8 @@ After installing of GlobaLeaks you can proceed with the platform wizard.
 
 Open a browser at port 80 or port 8082 on your remote or local IP respectively.
 
+We recommend you to to perform the wizard either by using the using Tor address provided at the end of the setup or on localhost via a VPN.
+
 Choose the Primary Language for Your Site
 -----------------------------------------
 In the first page of the wizard you are invited to select the language of your site

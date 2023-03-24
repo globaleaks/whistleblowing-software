@@ -11,7 +11,7 @@ Before starting the installation, make sure that your system satisfy the :doc:`R
 
 **Install GlobaLeaks**
 
-In order to install GlobaLeaks Copy & Paste the following commands in your terminal:
+In order to install GlobaLeaks run the following commands:
 
 .. code:: sh
 
@@ -19,4 +19,4 @@ In order to install GlobaLeaks Copy & Paste the following commands in your termi
   chmod +x install-globaleaks.sh
   ./install-globaleaks.sh
 
-At the end of the process a web interface will be reachable locally on port 8082 and remotely on port 80 and you will be able to proceed with the :doc:`Platform wizard </setup/PlatformWizard>`.
+At the end of the installation follow the instraction provided that should guid through accessing the :doc:`Platform wizard </setup/PlatformWizard>`.
