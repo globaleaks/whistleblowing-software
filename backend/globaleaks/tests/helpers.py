@@ -355,7 +355,6 @@ class MockDict:
             'two_factor': False,
             'encryption': False,
             'escrow': False,
-            'multisite': False,
             'adminonly': False,
             'basic_auth': False,
             'basic_auth_username': '',

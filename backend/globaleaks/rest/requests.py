@@ -230,7 +230,6 @@ AdminNodeDesc = {
     'log_accesses_of_internal_users': bool,
     'two_factor': bool,
     'encryption': bool,
-    'multisite': bool,
     'adminonly': bool,
     'custom_support_url': url_regexp_or_empty,
     'pgp': bool,

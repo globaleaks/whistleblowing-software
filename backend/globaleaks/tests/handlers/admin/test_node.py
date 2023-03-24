@@ -27,16 +27,13 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_update_node(self):
-        self.dummyNode['multisite'] = True
         self.dummyNode['custom_support_url'] = 'https://www.globaleaks.org'
 
         handler = self.request(self.dummyNode, role='admin')
         response = yield handler.put()
         self.assertTrue(isinstance(response, dict))
         self.assertTrue(response['version'], __version__)
-        self.assertEqual(response['multisite'], True)
         self.assertEqual(response['custom_support_url'], 'https://www.globaleaks.org')
-
 
     @inlineCallbacks
     def test_put_update_node_invalid_lang(self):

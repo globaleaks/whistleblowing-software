@@ -76,7 +76,6 @@ ConfigDescriptor = {
     'log_level': Unicode(default='ERROR'),
     'maximum_filesize': Int(default=30),
     'mode': Unicode(default='default'),
-    'multisite': Bool(default=False),
     'name': Unicode(default='GLOBALEAKS'),
     'onionservice': Unicode(default=''),
     'password_change_period': Int(default=365),  # Days
@@ -152,7 +151,6 @@ ConfigFilters = {
         'log_level',
         'maximum_filesize',
         'mode',
-        'multisite',
         'name',
         'onionservice',
         'password_change_period',
@@ -203,7 +201,6 @@ ConfigFilters = {
         'log_level',
         'maximum_filesize',
         'mode',
-        'multisite',
         'name',
         'onionsite',
         'password_change_period',

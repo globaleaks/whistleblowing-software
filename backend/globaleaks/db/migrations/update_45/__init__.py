@@ -240,14 +240,6 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def epilogue(self):
-        if self.session_new.query(self.model_from['Tenant']).count() > 1:
-            obj = self.model_to['Config']()
-            obj.tid = 1
-            obj.var_name = 'multisite'
-            obj.value = True
-            self.session_new.add(obj)
-            self.entries_count['Config'] += 1
-
         ids = [id[0] for id in self.session_old.query(self.model_from['Field'].id)
                                                .filter(self.model_from['Field'].template_id == 'whistleblower_identity')]
 

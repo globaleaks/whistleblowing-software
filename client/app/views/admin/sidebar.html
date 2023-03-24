@@ -6,5 +6,5 @@
 <a href="#/admin/casemanagement" data-ng-class="{'active': location.path() === '/admin/casemanagement'}" ><i class="fa fa-bars-progress"></i> <span data-translate>Case management</span></a>
 <a href="#/admin/notifications" data-ng-class="{'active': location.path() === '/admin/notifications'}" ><i class="fa fa-envelope"></i> <span data-translate>Notifications</span></a>
 <a href="#/admin/network" data-ng-class="{'active': location.path() === '/admin/network'}" data-ng-if="resources.node.root_tenant || Authentication.session.properties.management_session" ><i class="fa fa-network-wired"></i> <span data-translate>Network</span></a>
-<a href="#/admin/sites" data-ng-class="{'active': location.path() === '/admin/sites'}" data-ng-if="resources.node.root_tenant && resources.node.multisite" ><i class="fa-solid fa-sitemap"></i> <span data-translate>Sites</span></a>
+<a href="#/admin/sites" data-ng-class="{'active': location.path() === '/admin/sites'}" data-ng-if="resources.node.root_tenant" ><i class="fa-solid fa-sitemap"></i> <span data-translate>Sites</span></a>
 <a href="#/admin/auditlog" data-ng-class="{'active': location.path() === '/admin/auditlog'}" ><i class="fa fa-clipboard-list"></i> <span data-translate>Audit log</span></a>
