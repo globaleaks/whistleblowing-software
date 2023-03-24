@@ -9,7 +9,7 @@ from sqlalchemy.sql.expression import func
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.db import compact_db
+from globaleaks.db import compact_db, db_refresh_tenant_cache
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.user import user_serialize_user
@@ -145,8 +145,23 @@ class Cleaning(DailyJob):
             if is_expired(timestamp, days=7):
                 srm(path)
 
+    @transact
+    def delete_expired_demo_platforms(self, session):
+        to_delete = set(tid[0] for tid in session.query(models.Tenant.id)
+                                                 .filter(models.Tenant.id != 1,
+                                                         models.Tenant.id == models.Config.tid,
+                                                         models.Tenant.creation_date <= datetime_now() - timedelta(90),
+                                                         models.Config.var_name == 'mode',
+                                                         models.Config.value == 'demo').all())
+        db_del(session, models.Tenant, models.Tenant.id.in_(to_delete))
+        db_refresh_tenant_cache(session, to_delete)
+
+
     @inlineCallbacks
     def operation(self):
+        if self.state.tenants[1].cache['mode'] == 'demo':
+            yield self.delete_expired_demo_platforms()
+
         yield self.clean()
 
         for tid in self.state.tenants:
