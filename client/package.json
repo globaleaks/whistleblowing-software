@@ -48,7 +48,7 @@
     "ng-csv": "0.3.6",
     "ng-idle": "1.3.2",
     "ng-showdown": "1.1.0",
-    "pdfjs-dist": "^3.4.120",
+    "pdfjs-dist": "3.4.120",
     "qrcode-generator": "1.4.4",
     "ui-bootstrap4": "3.0.7",
     "ui-select": "0.19.8"
