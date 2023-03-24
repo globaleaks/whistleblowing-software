@@ -3,7 +3,9 @@ describe("admin enable signup", function() {
     await browser.gl.utils.login_admin();
     await browser.setLocation("admin/sites");
     await element(by.cssContainingText("a", "Options")).click();
+    await element(by.model("resources.node.rootdomain")).sendKeys("domain.tld");
     await element(by.model("resources.node.enable_signup")).click();
+    await browser.gl.utils.takeScreenshot("admin/signup_configuration.png");
     await element.all(by.cssContainingText("button", "Save")).last().click();
     await browser.gl.utils.logout();
   });
@@ -12,6 +14,7 @@ describe("admin enable signup", function() {
 describe("user perform signup", function() {
   it("should perform signup", async function() {
     await browser.get("/#/");
+    await browser.gl.utils.takeScreenshot("admin/signup_form.png");
     await element(by.model("signup.subdomain")).sendKeys("test");
     await element(by.model("signup.name")).sendKeys("Name");
     await element(by.model("signup.surname")).sendKeys("Surname");

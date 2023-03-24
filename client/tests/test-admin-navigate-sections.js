@@ -54,11 +54,6 @@ describe("verify navigation of admin sections", function() {
     await element.all(by.cssContainingText("a", "URL redirects")).first().click();
     await browser.gl.utils.takeScreenshot("admin/url_redirects.png");
 
-    await element.all(by.cssContainingText("a", "Sites")).first().click();
-    await browser.gl.utils.takeScreenshot("admin/sites_management_sites.png");
-    await element(by.cssContainingText("a", "Options")).click();
-    await browser.gl.utils.takeScreenshot("admin/sites_management_options.png");
-
     await element.all(by.cssContainingText("a", "Audit log")).first().click();
     await browser.gl.utils.takeScreenshot("admin/audit_log.png");
     await element.all(by.cssContainingText("a", "Users")).get(1).click();
