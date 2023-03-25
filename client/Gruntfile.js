@@ -63,7 +63,8 @@ module.exports = function(grunt) {
           { dest: "app/lib/js/locale", cwd: "./node_modules/", src: ["angular-i18n/angular-locale*"], expand: true, flatten: true },
           { dest: "app/lib/webfonts", cwd: "./node_modules/", src: ["@fontsource/*/400.css"], expand: true, flatten: false },
           { dest: "app/lib/webfonts", cwd: "./node_modules/", src: ["@fontsource/*/700.css"], expand: true, flatten: false },
-          { dest: "app/lib/webfonts", cwd: "./node_modules/", src: ["@fontsource/*/files/*"], expand: true, flatten: false },
+          { dest: "app/lib/webfonts", cwd: "./node_modules/", src: ["@fontsource/*/files/*400*"], expand: true, flatten: false },
+          { dest: "app/lib/webfonts", cwd: "./node_modules/", src: ["@fontsource/*/files/*700*"], expand: true, flatten: false },
           { dest: "app/lib/webfonts", cwd: "./node_modules/", src: ["@fortawesome/**"], expand: true, flatten: false }
         ]
       },
