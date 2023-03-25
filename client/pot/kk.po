@@ -939,9 +939,6 @@ msgstr "Әкімшілерге пайдаланушылардың құпиясө
 msgid "Administrators authorized to change user passwords:"
 msgstr "Пайдаланушылардың құпиясөздерін өзгертуге рұқсаты бар әкімшілер:"
 
-msgid "Enable multisite feature"
-msgstr "Мульти-сайт функциясын қосу"
-
 msgid "Enable file viewer"
 msgstr ""
 

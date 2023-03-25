@@ -939,9 +939,6 @@ msgstr "La administratorer endre brukerpassord"
 msgid "Administrators authorized to change user passwords:"
 msgstr "Administratorer autorisert til å endre brukerpassord:"
 
-msgid "Enable multisite feature"
-msgstr "Aktiver funksjon for flere nettsteder"
-
 msgid "Enable file viewer"
 msgstr ""
 

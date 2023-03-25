@@ -301,7 +301,7 @@
   "Enable encryption": "ማመስጠርን ያንቁ",
   "Enable administrators to change user passwords": "አስተዳዳሪዎቹን የተጠቃሚ የይለፍ ቃልን እንዲቀይሩ ያንቁ",
   "Administrators authorized to change user passwords:": "አስተዳዳሪዎች የተጠቃሚ የይለፍ ቃሎችን እንዲቀይሩ ተፈቅዷል",
-  "Enable multisite feature": "የሕብረ ድረገጽ ባህርይ ያንቁ",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "Enable simplified login",

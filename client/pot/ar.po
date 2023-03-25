@@ -985,9 +985,6 @@ msgstr "تمكين المدراء من تغيير كلمات سر المستخد
 msgid "Administrators authorized to change user passwords:"
 msgstr "المسؤولون المفوضون لتغيير كلمات مرور المستخدم:"
 
-msgid "Enable multisite feature"
-msgstr "تمكين خاصية تعدد المواقع"
-
 msgid "Enable file viewer"
 msgstr ""
 

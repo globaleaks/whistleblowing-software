@@ -301,7 +301,7 @@
   "Enable encryption": "เปิดใช้การเข้ารหัสลับ",
   "Enable administrators to change user passwords": "เปิดให้ผู้ดูแลระบบเปลี่ยนรหัสผ่านของผู้ใช้ได้",
   "Administrators authorized to change user passwords:": "ผู้ดูแลได้รับอนุญาตให้เปลี่ยนรหัสผ่านของผู้ใช้:",
-  "Enable multisite feature": "เปิดใช้งานการรองรับหลายเว็บไซต์",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "เปิดใช้งานการลงชื่อเข้าใช้แบบเรียบง่าย",

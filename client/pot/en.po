@@ -461,6 +461,9 @@ msgstr "Assigned to"
 msgid "Not provided."
 msgstr "Not provided."
 
+msgid "Set a reminder date"
+msgstr "Set a reminder date"
+
 msgid "File a report"
 msgstr "File a report"
 
@@ -940,9 +943,6 @@ msgstr "Enable administrators to change user passwords"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Administrators authorized to change user passwords:"
-
-msgid "Enable multisite feature"
-msgstr "Enable multisite feature"
 
 msgid "Enable file viewer"
 msgstr "Enable file viewer"

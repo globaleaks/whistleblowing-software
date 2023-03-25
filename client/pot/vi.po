@@ -952,9 +952,6 @@ msgstr "Cho phép quản trị viên thay đổi mật khẩu người dùng"
 msgid "Administrators authorized to change user passwords:"
 msgstr "Quản trị viên có quyền thay đổi mật mã người dùng"
 
-msgid "Enable multisite feature"
-msgstr "Bật mở tính năng nhiều trang web"
-
 msgid "Enable file viewer"
 msgstr ""
 

@@ -301,7 +301,7 @@
   "Enable encryption": "Luba krüptimine",
   "Enable administrators to change user passwords": "Luba administraatoritel kasutajate paroole muuta.",
   "Administrators authorized to change user passwords:": "Kasutajate paroolide muutmise õigust omavad administraatorid:",
-  "Enable multisite feature": "Luba mitme saidi funktsioon",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "Enable simplified login",

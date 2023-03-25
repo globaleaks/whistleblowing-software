@@ -937,9 +937,6 @@ msgstr "Leisti administratoriams keisti naudotojų slaptažodžius"
 msgid "Administrators authorized to change user passwords:"
 msgstr "Administratoriai, įgalioti keisti naudotojų slaptažodžius:"
 
-msgid "Enable multisite feature"
-msgstr "Įgalinti daugiavietės funkciją"
-
 msgid "Enable file viewer"
 msgstr ""
 

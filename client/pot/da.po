@@ -944,9 +944,6 @@ msgstr "Tillad administratorer at ændre brugeradgangskoder"
 msgid "Administrators authorized to change user passwords:"
 msgstr "Tillad administratorer at ændre brugeradgangskoder"
 
-msgid "Enable multisite feature"
-msgstr "Aktivér fler-side funktion"
-
 msgid "Enable file viewer"
 msgstr ""
 

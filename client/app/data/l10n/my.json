@@ -301,7 +301,7 @@
   "Enable encryption": "ကုဒ်ဖြင့်ပြောင်းလဲမှု ဖွင့်ပါ",
   "Enable administrators to change user passwords": "အုပ်ချုပ်ရေးမှူးများအား အသုံးပြုသူ စကားဝှက်များကို ပြောင်းလဲခွင့်ပြုပါ",
   "Administrators authorized to change user passwords:": "အုပ်ချုပ်ရေးမှူးများအား အသုံးပြုသူ စကားဝှက်များကို ပြောင်းလဲခွင့်ပြုထားသည် - ",
-  "Enable multisite feature": "ဝက်ဘ်ဆိုက်မျိုးစုံ လုပ်ဆောင်ချက်ကို ဖွင့်ပါ",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "ရိုးရှင်းသော အကောင့်ဝင်မှုကို ဖွင့်ပါ",

@@ -951,9 +951,6 @@ msgstr "Habiliteu als administradors per canviar les contrasenyes d’usuari"
 msgid "Administrators authorized to change user passwords:"
 msgstr "Administradors autoritzats a canviar les contrasenyes dels usuaris:"
 
-msgid "Enable multisite feature"
-msgstr "Activar la funció multi lloc"
-
 msgid "Enable file viewer"
 msgstr ""
 

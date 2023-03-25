@@ -949,9 +949,6 @@ msgstr "منتظمین کو صارف کے پاس ورڈ تبدیل کرنے کے
 msgid "Administrators authorized to change user passwords:"
 msgstr "منتظمین صارف کے پاس ورڈ تبدیل کرنے کے مجاز ہیں: "
 
-msgid "Enable multisite feature"
-msgstr "ملٹی سائٹ فیچر کو فعال کریں۔ "
-
 msgid "Enable file viewer"
 msgstr ""
 

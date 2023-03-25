@@ -960,9 +960,6 @@ msgstr "Tillåt att administratörer får ändra användarlösenord."
 msgid "Administrators authorized to change user passwords:"
 msgstr "Administratörer som tillåts ändra användarlösenord:"
 
-msgid "Enable multisite feature"
-msgstr "Tillåt flerpartsfunktion"
-
 msgid "Enable file viewer"
 msgstr ""
 

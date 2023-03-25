@@ -301,7 +301,7 @@
   "Enable encryption": "დაშიფვრის ჩართვა",
   "Enable administrators to change user passwords": "ადმინისტრატორებისთვის მომხმარებლის პაროლების შეცვლის უფლების მინიჭება",
   "Administrators authorized to change user passwords:": "ადმინისტრატორებს უფლება აქვთ შეცვალონ მომხმარებლის პაროლები:",
-  "Enable multisite feature": "მრავალსაიტიანი ფუნქციის ჩართვა",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "გამარტივებული შესვლის ჩართვა",

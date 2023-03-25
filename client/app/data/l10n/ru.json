@@ -301,7 +301,7 @@
   "Enable encryption": "Включить шифрование",
   "Enable administrators to change user passwords": "Разрешить администраторам изменять пароли пользователей",
   "Administrators authorized to change user passwords:": "Администраторам разрешено изменять пароли пользователей:",
-  "Enable multisite feature": "Включить настройку мульти-сайтов",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "Позволить упрощенный вход",

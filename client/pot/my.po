@@ -938,9 +938,6 @@ msgstr "အုပ်ချုပ်ရေးမှူးများအား �
 msgid "Administrators authorized to change user passwords:"
 msgstr "အုပ်ချုပ်ရေးမှူးများအား အသုံးပြုသူ စကားဝှက်များကို ပြောင်းလဲခွင့်ပြုထားသည် - "
 
-msgid "Enable multisite feature"
-msgstr "ဝက်ဘ်ဆိုက်မျိုးစုံ လုပ်ဆောင်ချက်ကို ဖွင့်ပါ"
-
 msgid "Enable file viewer"
 msgstr ""
 

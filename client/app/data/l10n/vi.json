@@ -301,7 +301,7 @@
   "Enable encryption": "Bật mở mã hóa",
   "Enable administrators to change user passwords": "Cho phép quản trị viên thay đổi mật khẩu người dùng",
   "Administrators authorized to change user passwords:": "Quản trị viên có quyền thay đổi mật mã người dùng",
-  "Enable multisite feature": "Bật mở tính năng nhiều trang web",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "Bật mở đăng nhập đơn giản",

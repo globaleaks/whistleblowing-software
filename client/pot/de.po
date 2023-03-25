@@ -983,9 +983,6 @@ msgstr "Administratoren das Ändern von Benutzerpasswörtern erlauben"
 msgid "Administrators authorized to change user passwords:"
 msgstr "Administratoren, die berechtigt sind, Benutzerpasswörter zu ändern:"
 
-msgid "Enable multisite feature"
-msgstr "Mehrseiten-Funktion aktivieren"
-
 msgid "Enable file viewer"
 msgstr ""
 

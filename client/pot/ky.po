@@ -938,9 +938,6 @@ msgstr "Администраторлорго колдонуучулардын с
 msgid "Administrators authorized to change user passwords:"
 msgstr "Колдонуучулардын сырсөзүн алмаштырууга укуктуу администраторлор:"
 
-msgid "Enable multisite feature"
-msgstr "Мультисайт мүмкүнчүлүгүн иштетүү"
-
 msgid "Enable file viewer"
 msgstr ""
 

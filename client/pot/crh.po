@@ -937,9 +937,6 @@ msgstr "Идареджилерге къулланыджы пароллерни �
 msgid "Administrators authorized to change user passwords:"
 msgstr "Идареджилерге къулланыджы пароллерини денъиштирмеге изин берильди:"
 
-msgid "Enable multisite feature"
-msgstr "Мульти-сайт сазламасыны ишлетмек"
-
 msgid "Enable file viewer"
 msgstr ""
 

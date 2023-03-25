@@ -301,7 +301,7 @@
   "Enable encryption": "ເປີດນຳໃຊ້ການເຂົ້າລະຫັດລັບ",
   "Enable administrators to change user passwords": "ອະນຸຍາດໃຫ້ຜູ້ເບິ່ງແຍງລະບົບສາມາດປ່ຽນລະຫັດຜ່ານຂອງຜູ້ໃຊ້ໄດ້",
   "Administrators authorized to change user passwords:": "ຜູ້ເບິ່ງແຍງລະບົບໄດ້ຮັບອະນຸຍາດໃຫ້ປ່ຽນລະຫັດຜ່ານຂອງຜູ້ໃຊ້:",
-  "Enable multisite feature": "ເປີດນຳໃຊ້ຄຸນສົມບັດຫຼາຍເວັບໄຊ",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "ເປີດນຳໃຊ້ການເຂົ້າສູ່ລະບົບແບບງ່າຍດາຍ",

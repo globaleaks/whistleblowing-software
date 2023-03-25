@@ -957,9 +957,6 @@ msgstr "Pozwól administratorom zmieniać hasła użytkowników"
 msgid "Administrators authorized to change user passwords:"
 msgstr "Administratorzy upoważnieni do zmiany haseł użytkowników:"
 
-msgid "Enable multisite feature"
-msgstr "Włącz fukcję „multusite”"
-
 msgid "Enable file viewer"
 msgstr ""
 

@@ -301,7 +301,7 @@
   "Enable encryption": "Şifrelemeyi aç",
   "Enable administrators to change user passwords": "Yöneticilerin kullanıcı parolalarını değiştirebilsin.",
   "Administrators authorized to change user passwords:": "Yöneticilerin kullanıcıların parolasını değiştirme yetkisi var:",
-  "Enable multisite feature": "Çoklu site özelliğini aç",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Dosya görüntüleyici kullanılsın",
   "Enable PGP": "PGP kullanılsın",
   "Enable simplified login": "Kolaylaştırılmış kullanıcı oturum açılışı kullanılsın",

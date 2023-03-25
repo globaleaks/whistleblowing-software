@@ -967,9 +967,6 @@ msgstr "Разрешить администраторам изменять па�
 msgid "Administrators authorized to change user passwords:"
 msgstr "Администраторам разрешено изменять пароли пользователей:"
 
-msgid "Enable multisite feature"
-msgstr "Включить настройку мульти-сайтов"
-
 msgid "Enable file viewer"
 msgstr ""
 

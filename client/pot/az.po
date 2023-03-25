@@ -944,9 +944,6 @@ msgstr "İnzibatçılara istifadəçi parollarını dəyişmək imkanı verin."
 msgid "Administrators authorized to change user passwords:"
 msgstr " İnzibatçılara istifadəçi parollarını dəyişmək səlahiyyəti verildi"
 
-msgid "Enable multisite feature"
-msgstr "Çoxsaytlı funksiyanı işə salın."
-
 msgid "Enable file viewer"
 msgstr ""
 

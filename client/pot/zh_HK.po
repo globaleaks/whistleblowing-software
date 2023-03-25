@@ -939,9 +939,6 @@ msgstr "允許管理員更改使用者的密碼"
 msgid "Administrators authorized to change user passwords:"
 msgstr "有權更改使用者密碼的管理員："
 
-msgid "Enable multisite feature"
-msgstr "啟用多網站功能"
-
 msgid "Enable file viewer"
 msgstr ""
 

@@ -301,7 +301,7 @@
   "Enable encryption": "Encryptie inschakelen",
   "Enable administrators to change user passwords": "Stel beheerders in staat om wachtwoorden van gebruikers te veranderen",
   "Administrators authorized to change user passwords:": "Beheerders die gemachtigd zijn om gebruikerswachtwoorden te wijzigen:",
-  "Enable multisite feature": "Functie voor meerdere-weblocaties inschakelen",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "Vereenvoudigde login inschakelen",

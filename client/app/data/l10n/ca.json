@@ -301,7 +301,7 @@
   "Enable encryption": "Activa el xifratge",
   "Enable administrators to change user passwords": "Habiliteu als administradors per canviar les contrasenyes d’usuari",
   "Administrators authorized to change user passwords:": "Persones administradores autoritzats a canviar les contrasenyes de les persones usuàries:",
-  "Enable multisite feature": "Activa la funció multi lloc",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "Permet l'inici de sessió simplificat",

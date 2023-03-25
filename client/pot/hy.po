@@ -939,9 +939,6 @@ msgstr "Լիազորել ադմինիստրատորներին փոխել օգտ�
 msgid "Administrators authorized to change user passwords:"
 msgstr "Ադմինիստրատորները լիազորված են փոխել օգտատերերի գաղտնաբառերը."
 
-msgid "Enable multisite feature"
-msgstr "Ակտիվացնել բազմակի կայքերի գործառույթը"
-
 msgid "Enable file viewer"
 msgstr ""
 

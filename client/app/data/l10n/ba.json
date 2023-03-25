@@ -301,7 +301,7 @@
   "Enable encryption": "Шифрларға",
   "Enable administrators to change user passwords": "Администраторҙарға ҡулланыусылар паролен үҙгәртергә рөхсәт итергә",
   "Administrators authorized to change user passwords:": "Администраторҙарға ҡулланыусылар паролдәрен үҙгәртергә рөхсәт ителде",
-  "Enable multisite feature": "Мульти-сайттар көйләүен ҡабыҙыу",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "Ябай инеү мөмкилеге бирергә",

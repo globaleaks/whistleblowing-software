@@ -301,7 +301,7 @@
   "Enable encryption": "تمكين التعمية",
   "Enable administrators to change user passwords": "تمكين المدراء من تغيير كلمات سر المستخدمين",
   "Administrators authorized to change user passwords:": "المسؤولون المفوضون لتغيير كلمات مرور المستخدم:",
-  "Enable multisite feature": "تمكين خاصية تعدد المواقع",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "تمكين تسجيل دخول مبسط",

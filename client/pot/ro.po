@@ -953,9 +953,6 @@ msgstr "Permite administratorilor să schimbe parolele utilizatorilor"
 msgid "Administrators authorized to change user passwords:"
 msgstr "Administratori autorizați să schimbe parolele utilizatorului:"
 
-msgid "Enable multisite feature"
-msgstr "Activează funcționalitatea multi-site"
-
 msgid "Enable file viewer"
 msgstr ""
 

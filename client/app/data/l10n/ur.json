@@ -301,7 +301,7 @@
   "Enable encryption": "خفیہ کاری کو فعال کریں۔ ",
   "Enable administrators to change user passwords": "منتظمین کو صارف کے پاس ورڈ تبدیل کرنے کے قابل بنائیں ",
   "Administrators authorized to change user passwords:": "منتظمین صارف کے پاس ورڈ تبدیل کرنے کے مجاز ہیں: ",
-  "Enable multisite feature": "ملٹی سائٹ فیچر کو فعال کریں۔ ",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "آسان لاگ ان کو فعال کریں۔ ",

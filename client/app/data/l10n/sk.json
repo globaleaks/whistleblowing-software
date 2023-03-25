@@ -301,7 +301,7 @@
   "Enable encryption": "Povoliť šifrovanie",
   "Enable administrators to change user passwords": "Umožnite správcom meniť heslá užívateľov",
   "Administrators authorized to change user passwords:": "Správcovia majú oprávnenie na zmenu užívateľských hesiel:",
-  "Enable multisite feature": "Povoliť funkciu multisite",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "Povoliť zjednodušené prihlásenie",

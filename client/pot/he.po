@@ -954,9 +954,6 @@ msgstr ""
 msgid "Administrators authorized to change user passwords:"
 msgstr ""
 
-msgid "Enable multisite feature"
-msgstr ""
-
 msgid "Enable file viewer"
 msgstr ""
 

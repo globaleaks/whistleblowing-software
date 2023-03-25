@@ -937,9 +937,6 @@ msgstr "Dayakan pentadbir untuk mengubah kata laluan pengguna"
 msgid "Administrators authorized to change user passwords:"
 msgstr "Pentadbir memberi kebenaran untuk mengubah kata laluan:"
 
-msgid "Enable multisite feature"
-msgstr "Dayakan ciri multilaman"
-
 msgid "Enable file viewer"
 msgstr ""
 

@@ -936,9 +936,6 @@ msgstr "Dozvoli administratorima izmjenu korisničkih lozinki"
 msgid "Administrators authorized to change user passwords:"
 msgstr "Administratori koji mogu mijenjati korisničke lozinke:"
 
-msgid "Enable multisite feature"
-msgstr "Omogući funkciju više lokacija"
-
 msgid "Enable file viewer"
 msgstr ""
 

@@ -301,7 +301,7 @@
   "Enable encryption": "شىفىرلەشنى قوزغات",
   "Enable administrators to change user passwords": "باشقۇرغىچىلار ئىشلەتكۈچى پاروللىرىنى ئۆزگەرتەلەيدىغان بولسۇن",
   "Administrators authorized to change user passwords:": "باشقۇرغۇچىلارغا ئىشلەتكۈچى پاروللىرىنى ئۆزگەرتىشكە ھوقۇق بېرىلدى: ",
-  "Enable multisite feature": "كۆپ بېكەت ئىقتىدارىنى قوزغات",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "ئاددىلاشقان تىزىمغا كىرىشنى قوزغات",

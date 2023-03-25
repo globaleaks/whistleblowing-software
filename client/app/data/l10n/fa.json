@@ -301,7 +301,7 @@
   "Enable encryption": "فعال کردن رمزگذاری",
   "Enable administrators to change user passwords": "اجازه به مدیران برای تغییر گذرواژه‌های کاربران",
   "Administrators authorized to change user passwords:": "مدیران مجاز به تغییر گذرواژه‌های کاربران:",
-  "Enable multisite feature": "فعال کردن قابلیت چندسایتی",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "فعال کردن ورود ساده شده",

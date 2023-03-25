@@ -939,9 +939,6 @@ msgstr ""
 msgid "Administrators authorized to change user passwords:"
 msgstr ""
 
-msgid "Enable multisite feature"
-msgstr "பன்முனை அம்சத்தை இயக்கு"
-
 msgid "Enable file viewer"
 msgstr ""
 

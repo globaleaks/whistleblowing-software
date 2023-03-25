@@ -946,9 +946,6 @@ msgstr "Aktivizo ndryshim fjalëkalimesh përdoruesish nga përgjegjësit"
 msgid "Administrators authorized to change user passwords:"
 msgstr "Përgjegjës të autorizuar për ndryshime fjalëkalimesh përdoruesish:"
 
-msgid "Enable multisite feature"
-msgstr "Aktivizo veçorinë shumësajtësh"
-
 msgid "Enable file viewer"
 msgstr "Aktivizo parës kartelash"
 

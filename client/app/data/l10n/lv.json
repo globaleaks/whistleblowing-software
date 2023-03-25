@@ -301,7 +301,7 @@
   "Enable encryption": "Iespējot šifrēšanu",
   "Enable administrators to change user passwords": "Atļaut administratoriem mainīt lietotāju paroles",
   "Administrators authorized to change user passwords:": "Administratori, kas tiesīgi mainīt lietotāju paroles:",
-  "Enable multisite feature": "Iespējot vairāku vietņu funkciju",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "Iespējot vienkāršotu pieteikšanos",

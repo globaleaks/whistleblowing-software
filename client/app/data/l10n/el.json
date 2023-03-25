@@ -301,7 +301,7 @@
   "Enable encryption": "Ενεργοποίηση κρυπτογράφησης",
   "Enable administrators to change user passwords": "Επιτρέψτε στους διαχειριστές να αλλάζουν τους κωδικούς χρηστών",
   "Administrators authorized to change user passwords:": "Οι διαχειριστές που έχουν τη δυνατότητα να αλλάξουν τους κωδικούς πρόσβασης χρηστών:",
-  "Enable multisite feature": "Ενεργοποίηση της λειτουργίας πολλαπλών ιστοχώρων",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "Ενεργοποίηση απλοποιημένης σύνδεσης",

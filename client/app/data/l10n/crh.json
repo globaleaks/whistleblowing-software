@@ -301,7 +301,7 @@
   "Enable encryption": "Шифрелемени ишлетмек",
   "Enable administrators to change user passwords": "Идареджилерге къулланыджы пароллерни денъиштирмеге изин бермек",
   "Administrators authorized to change user passwords:": "Идареджилерге къулланыджы пароллерини денъиштирмеге изин берильди:",
-  "Enable multisite feature": "Мульти-сайт сазламасыны ишлетмек",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "Саде киришке изин бермек",

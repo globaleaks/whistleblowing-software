@@ -962,9 +962,6 @@ msgstr "Aktifkan administrator untuk mengubah kata sandi pengguna"
 msgid "Administrators authorized to change user passwords:"
 msgstr "Administrator mengizinkan untuk mengganti kata sandi pengguna:"
 
-msgid "Enable multisite feature"
-msgstr "Aktifkan fitur multisitus"
-
 msgid "Enable file viewer"
 msgstr ""
 

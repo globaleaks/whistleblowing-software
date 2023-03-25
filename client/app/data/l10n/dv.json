@@ -301,7 +301,7 @@
   "Enable encryption": "އެންކްރިޕްޝަން އެނޭބަލް ކުރަން",
   "Enable administrators to change user passwords": "ޔޫސަރ ޕާސްވޯޑްސް ބަދަލުކުރަން އެޑްމިނިސްޓްރޭޓަރސް އެނޭބަލް ކުރައްވާ",
   "Administrators authorized to change user passwords:": "ޔޫޒަރ ޕާސްވޯޑް ބަދަލުކުރުމުގެ ހުއްދަ ލިބިފައިވާ އެޑްމިނިސްޓްރޭޓަރުން:",
-  "Enable multisite feature": "މަލްޓިސައިޓް ފީޗާ އެނޭބަލްކުރަން",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "ސިންޕްލިފައިޑް ލޮގް އިން އެނޭބަލްކުރަން",

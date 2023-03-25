@@ -301,7 +301,7 @@
   "Enable encryption": "Verschlüsselung aktivieren",
   "Enable administrators to change user passwords": "Administratoren das Ändern von Benutzerpasswörtern erlauben",
   "Administrators authorized to change user passwords:": "Administratoren, die berechtigt sind, Benutzerpasswörter zu ändern:",
-  "Enable multisite feature": "Mehrseiten-Funktion aktivieren",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "Vereinfachte Anmeldung aktivieren",

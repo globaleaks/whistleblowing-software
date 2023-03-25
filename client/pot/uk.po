@@ -958,9 +958,6 @@ msgstr "Дозволити адміністраторам змінювати п�
 msgid "Administrators authorized to change user passwords:"
 msgstr "Адміністраторам дозволено змінювати паролі користувачів:"
 
-msgid "Enable multisite feature"
-msgstr "Включити функцію мульти-сайтів"
-
 msgid "Enable file viewer"
 msgstr ""
 

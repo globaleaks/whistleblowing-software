@@ -301,7 +301,7 @@
   "Enable encryption": "এনক্রিপশন সক্ষম করুন",
   "Enable administrators to change user passwords": "প্রশাসকগণকে ব্যবহারকারীর পাসওয়ার্ড পরিবর্তন করার অনুমতি দিন",
   "Administrators authorized to change user passwords:": "প্রশাসকগণ ব্যবহারকারীর পাসওয়ার্ড পরিবর্তন করতে পারবেন:",
-  "Enable multisite feature": "মাল্টিসাইট বৈশিষ্ট্য সক্ষম করুন",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "সিম্পল লগইন সক্ষম করুন",

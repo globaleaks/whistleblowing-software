@@ -964,9 +964,6 @@ msgstr "Yöneticilerin kullanıcı parolalarını değiştirebilsin."
 msgid "Administrators authorized to change user passwords:"
 msgstr "Yöneticilerin kullanıcıların parolasını değiştirme yetkisi var:"
 
-msgid "Enable multisite feature"
-msgstr "Çoklu site özelliğini aç"
-
 msgid "Enable file viewer"
 msgstr "Dosya görüntüleyici kullanılsın"
 

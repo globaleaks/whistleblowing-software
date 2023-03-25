@@ -301,7 +301,7 @@
   "Enable encryption": "Titkosítás engedélyezése",
   "Enable administrators to change user passwords": "Engedélyezze, hogy az adminisztrátorok megváltoztathassák a felhasználói jelszavakat.",
   "Administrators authorized to change user passwords:": "Az adminisztrátoroknak engedélyezett a felhasználói jelszavak megváltoztatása:",
-  "Enable multisite feature": "Multisite engedélyezése",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "Egyszerűsített login engedélyezése",

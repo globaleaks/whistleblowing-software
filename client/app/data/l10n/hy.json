@@ -301,7 +301,7 @@
   "Enable encryption": "Ակտիվացնել ծածկագրումը",
   "Enable administrators to change user passwords": "Լիազորել ադմինիստրատորներին փոխել օգտատերերի գաղտնաբառերը",
   "Administrators authorized to change user passwords:": "Ադմինիստրատորները լիազորված են փոխել օգտատերերի գաղտնաբառերը.",
-  "Enable multisite feature": "Ակտիվացնել բազմակի կայքերի գործառույթը",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "Ակտիվացնել պարզեցված մուտքը",

@@ -954,9 +954,6 @@ msgstr "Engedélyezze, hogy az adminisztrátorok megváltoztathassák a felhaszn
 msgid "Administrators authorized to change user passwords:"
 msgstr "Az adminisztrátoroknak engedélyezett a felhasználói jelszavak megváltoztatása:"
 
-msgid "Enable multisite feature"
-msgstr "Multisite engedélyezése"
-
 msgid "Enable file viewer"
 msgstr ""
 

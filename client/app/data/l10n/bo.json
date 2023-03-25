@@ -301,7 +301,7 @@
   "Enable encryption": "གསང་སྡོམ་ནུས་ལྡན་བཟོ།",
   "Enable administrators to change user passwords": "འཛིན་སྐྱོང་པར་སྤྱོད་པ་པོའི་གསང་ཡིག་བརྗེ་སྒྱུར་བྱེད་རྒྱུ་ནུས་ལྡན་བཟོ། ",
   "Administrators authorized to change user passwords:": "འཛིན་སྐྱོང་པར་སྤྱོད་པ་པོའི་གསང་ཡིག་བརྗེ་སྒྱུར་བྱེད་རྒྱུའི་བཀའ་འཁྲོལ་ཟིན།:",
-  "Enable multisite feature": "དྲ་ཚིགས་སྣ་མང་ཁྱད་ཆོས་ནུས་ལྡན་བཟོ།",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "སྟབས་བདེའི་ནང་འཛུལ་ནུས་ལྡན་བཟོ།",

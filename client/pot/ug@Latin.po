@@ -937,9 +937,6 @@ msgstr "Bashqurghichilar ishletküchi parollirini özgerteleydighan bolsun"
 msgid "Administrators authorized to change user passwords:"
 msgstr "Bashqurghuchilargha ishletküchi parollirini özgertishke hoquq bérildi: "
 
-msgid "Enable multisite feature"
-msgstr "Köp béket iqtidarini qozghat"
-
 msgid "Enable file viewer"
 msgstr ""
 

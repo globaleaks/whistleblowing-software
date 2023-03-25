@@ -937,9 +937,6 @@ msgstr "ອະນຸຍາດໃຫ້ຜູ້ເບິ່ງແຍງລະບ
 msgid "Administrators authorized to change user passwords:"
 msgstr "ຜູ້ເບິ່ງແຍງລະບົບໄດ້ຮັບອະນຸຍາດໃຫ້ປ່ຽນລະຫັດຜ່ານຂອງຜູ້ໃຊ້:"
 
-msgid "Enable multisite feature"
-msgstr "ເປີດນຳໃຊ້ຄຸນສົມບັດຫຼາຍເວັບໄຊ"
-
 msgid "Enable file viewer"
 msgstr ""
 

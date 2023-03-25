@@ -937,9 +937,6 @@ msgstr "Башқурғичилар ишләткүчи пароллирини ө�
 msgid "Administrators authorized to change user passwords:"
 msgstr "Башқурғучиларға ишләткүчи пароллирини өзгәртишкә һоқуқ берилди: "
 
-msgid "Enable multisite feature"
-msgstr "Көп бекәт иқтидарини қозғат"
-
 msgid "Enable file viewer"
 msgstr ""
 

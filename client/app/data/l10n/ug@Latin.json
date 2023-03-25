@@ -301,7 +301,7 @@
   "Enable encryption": "Shifirleshni qozghat",
   "Enable administrators to change user passwords": "Bashqurghichilar ishletküchi parollirini özgerteleydighan bolsun",
   "Administrators authorized to change user passwords:": "Bashqurghuchilargha ishletküchi parollirini özgertishke hoquq bérildi: ",
-  "Enable multisite feature": "Köp béket iqtidarini qozghat",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "Addilashqan tizimgha kirishni qozghat",

@@ -937,9 +937,6 @@ msgstr "Luba administraatoritel kasutajate paroole muuta."
 msgid "Administrators authorized to change user passwords:"
 msgstr "Kasutajate paroolide muutmise õigust omavad administraatorid:"
 
-msgid "Enable multisite feature"
-msgstr "Luba mitme saidi funktsioon"
-
 msgid "Enable file viewer"
 msgstr ""
 

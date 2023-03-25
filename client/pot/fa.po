@@ -964,9 +964,6 @@ msgstr "اجازه به مدیران برای تغییر گذرواژه‌های
 msgid "Administrators authorized to change user passwords:"
 msgstr "مدیران مجاز به تغییر گذرواژه‌های کاربران:"
 
-msgid "Enable multisite feature"
-msgstr "فعال کردن قابلیت چندسایتی"
-
 msgid "Enable file viewer"
 msgstr ""
 

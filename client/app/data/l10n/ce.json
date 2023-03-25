@@ -301,7 +301,7 @@
   "Enable encryption": "ШифрхIоттор магаде",
   "Enable administrators to change user passwords": "Администраторшна пайдаэцархочун парол хийцар магаде",
   "Administrators authorized to change user passwords:": "Администраторийн бакъо ю пайдаэцархочун парол хийца:",
-  "Enable multisite feature": "Дукхасайтийн башхало магае",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "Системина чолхаза чувалар магаде",

@@ -938,9 +938,6 @@ msgstr "འཛིན་སྐྱོང་པར་སྤྱོད་པ་པོ
 msgid "Administrators authorized to change user passwords:"
 msgstr "འཛིན་སྐྱོང་པར་སྤྱོད་པ་པོའི་གསང་ཡིག་བརྗེ་སྒྱུར་བྱེད་རྒྱུའི་བཀའ་འཁྲོལ་ཟིན།:"
 
-msgid "Enable multisite feature"
-msgstr "དྲ་ཚིགས་སྣ་མང་ཁྱད་ཆོས་ནུས་ལྡན་བཟོ།"
-
 msgid "Enable file viewer"
 msgstr ""
 

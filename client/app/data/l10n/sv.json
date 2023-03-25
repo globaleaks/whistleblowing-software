@@ -301,7 +301,7 @@
   "Enable encryption": "Aktivera kryptering",
   "Enable administrators to change user passwords": "Tillåt att administratörer får ändra användarlösenord.",
   "Administrators authorized to change user passwords:": "Administratörer som tillåts ändra användarlösenord:",
-  "Enable multisite feature": "Tillåt flerpartsfunktion",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "Aktivera förenklad inloggning",

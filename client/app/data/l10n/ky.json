@@ -301,7 +301,7 @@
   "Enable encryption": "Шифрлөөнү ишке киргизүү",
   "Enable administrators to change user passwords": "Администраторлорго колдонуучулардын сырсөзүн алмаштырууга укук берүү",
   "Administrators authorized to change user passwords:": "Колдонуучулардын сырсөзүн алмаштырууга укуктуу администраторлор:",
-  "Enable multisite feature": "Мультисайт мүмкүнчүлүгүн иштетүү",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "Жөнөкөйлөтүлгөн кирүүнү иштетүү",

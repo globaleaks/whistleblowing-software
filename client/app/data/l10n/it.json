@@ -301,7 +301,7 @@
   "Enable encryption": "Abilita la cifratura",
   "Enable administrators to change user passwords": "Abilita gli amministratori a cambiare le password degli utenti",
   "Administrators authorized to change user passwords:": "Amministratori autorizzati a cambiare le password degli utenti:",
-  "Enable multisite feature": "Abilita la funzionalità multisito",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Abilita visualizzatore file",
   "Enable PGP": "Abilita PGP",
   "Enable simplified login": "Abilita login semplificato",

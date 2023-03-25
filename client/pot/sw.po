@@ -937,9 +937,6 @@ msgstr "Wezesha wasimamizi kubadilisha nenosiri za mtumiaji "
 msgid "Administrators authorized to change user passwords:"
 msgstr "Watawala wameidhinishwa kubadilisha nenosiri za watumiaji:\""
 
-msgid "Enable multisite feature"
-msgstr "Wezesha huduma nyingi katika tofuti"
-
 msgid "Enable file viewer"
 msgstr ""
 

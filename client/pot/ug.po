@@ -939,9 +939,6 @@ msgstr "باشقۇرغىچىلار ئىشلەتكۈچى پاروللىرىنى �
 msgid "Administrators authorized to change user passwords:"
 msgstr "باشقۇرغۇچىلارغا ئىشلەتكۈچى پاروللىرىنى ئۆزگەرتىشكە ھوقۇق بېرىلدى: "
 
-msgid "Enable multisite feature"
-msgstr "كۆپ بېكەت ئىقتىدارىنى قوزغات"
-
 msgid "Enable file viewer"
 msgstr ""
 

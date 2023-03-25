@@ -945,9 +945,6 @@ msgstr "Ба маъмурон имкони гузарвожаҳои корбар
 msgid "Administrators authorized to change user passwords:"
 msgstr "Ба маъмурон иҷозаи тағйир додани гузарвожаҳои корбарон дода шуд:"
 
-msgid "Enable multisite feature"
-msgstr "Функсияи якчандторнамоиро фаъол сохтан"
-
 msgid "Enable file viewer"
 msgstr ""
 

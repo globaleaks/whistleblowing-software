@@ -939,9 +939,6 @@ msgstr "Administratorlarga foydalanuvchilar parollarini oʻzgartirish vakolatini
 msgid "Administrators authorized to change user passwords:"
 msgstr "Quyidagi administratorlar foydalanuvchilar parolini oʻzgartira oladi:"
 
-msgid "Enable multisite feature"
-msgstr "Multisayt funksiyasini yoqish"
-
 msgid "Enable file viewer"
 msgstr ""
 

@@ -942,9 +942,6 @@ msgstr "Dolandyryjylara ulanyjy parollaryny üýtgetmäge mümkinçilik ber"
 msgid "Administrators authorized to change user passwords:"
 msgstr "Ulanyjy parolyny üýtgetmäge ygtyýarly dolandyryjylar:"
 
-msgid "Enable multisite feature"
-msgstr "Köpugurly aýratynlygy işjeňleşdiriň"
-
 msgid "Enable file viewer"
 msgstr ""
 

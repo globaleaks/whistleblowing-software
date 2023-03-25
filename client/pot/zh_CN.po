@@ -958,9 +958,6 @@ msgstr "启用管理者更改用户密码权限"
 msgid "Administrators authorized to change user passwords:"
 msgstr "管理员已授权更改用户密码："
 
-msgid "Enable multisite feature"
-msgstr "启用多站点功能"
-
 msgid "Enable file viewer"
 msgstr ""
 

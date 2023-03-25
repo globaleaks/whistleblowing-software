@@ -939,9 +939,6 @@ msgstr "Администраторшна пайдаэцархочун парол
 msgid "Administrators authorized to change user passwords:"
 msgstr "Администраторийн бакъо ю пайдаэцархочун парол хийца:"
 
-msgid "Enable multisite feature"
-msgstr "Дукхасайтийн башхало магае"
-
 msgid "Enable file viewer"
 msgstr ""
 

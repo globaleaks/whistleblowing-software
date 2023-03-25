@@ -301,7 +301,7 @@
   "Enable encryption": "انکریپشن فعال کړئ",
   "Enable administrators to change user passwords": "مدیرانو ته دا وړتیا ورکړئ چې د کارن پټ نوم بدل کړي",
   "Administrators authorized to change user passwords:": "مدیرانو ته اجازه ورکړل شوې تر څو د کارن پټ نومونه بدل کړي:",
-  "Enable multisite feature": "د ګڼو سایټونو ځانګړنه فعاله کړئ",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "ساده دننه کېدل فعال کړئ",

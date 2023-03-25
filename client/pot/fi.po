@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Sami Kuusisto <sami@6sto.com>, 2015\n"
+"Last-Translator: Eva Simonsson, 2020-2021,2023\n"
 "Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -473,7 +473,7 @@ msgid "Not provided."
 msgstr "Ei toimitettu."
 
 msgid "Set a reminder date"
-msgstr ""
+msgstr "Aseta muistutuksen päivämäärä"
 
 msgid "File a report"
 msgstr "Jätä vihje"
@@ -560,7 +560,7 @@ msgid "Recipients"
 msgstr "Vastaanottajat"
 
 msgid "Reminder date"
-msgstr ""
+msgstr "Muistutuksen päivämäärä"
 
 msgid "days"
 msgstr "päivää"
@@ -947,14 +947,11 @@ msgstr "Salli järjestelmänvalvojien vaihtaa käyttäjien salasanoja"
 msgid "Administrators authorized to change user passwords:"
 msgstr "Ylläpitäjillä on valtuutus vaihtaa käyttäjän salasanat:"
 
-msgid "Enable multisite feature"
-msgstr "Ota multisite-ominaisuus käyttöön"
-
 msgid "Enable file viewer"
-msgstr ""
+msgstr "Ota käyttöön tiedostojen katselu"
 
 msgid "Enable PGP"
-msgstr ""
+msgstr "Ota käyttöön PGP"
 
 msgid "Enable simplified login"
 msgstr "Ota käyttöön helpotettu kirjautuminen"

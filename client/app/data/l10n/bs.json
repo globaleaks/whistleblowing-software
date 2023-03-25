@@ -301,7 +301,7 @@
   "Enable encryption": "Omogućite enkripciju",
   "Enable administrators to change user passwords": "Omogućite administratorima da promijene lozinku korisnika",
   "Administrators authorized to change user passwords:": "Administratori ovlašteni da promijene lozinke korisnika:",
-  "Enable multisite feature": "Omogućite korištenje s više lokacija",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "Omogućite pojednostavljeni login",

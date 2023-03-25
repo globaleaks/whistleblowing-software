@@ -938,9 +938,6 @@ msgstr "አስተዳዳሪዎቹን የተጠቃሚ የይለፍ ቃልን እ�
 msgid "Administrators authorized to change user passwords:"
 msgstr "አስተዳዳሪዎች የተጠቃሚ የይለፍ ቃሎችን እንዲቀይሩ ተፈቅዷል"
 
-msgid "Enable multisite feature"
-msgstr "የሕብረ ድረገጽ ባህርይ ያንቁ"
-
 msgid "Enable file viewer"
 msgstr ""
 

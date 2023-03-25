@@ -947,9 +947,6 @@ msgstr "Umožnite správcom meniť heslá užívateľov"
 msgid "Administrators authorized to change user passwords:"
 msgstr "Správcovia majú oprávnenie na zmenu užívateľských hesiel:"
 
-msgid "Enable multisite feature"
-msgstr "Povoliť funkciu multisite"
-
 msgid "Enable file viewer"
 msgstr ""
 

@@ -301,7 +301,7 @@
   "Enable encryption": "암호화 허용",
   "Enable administrators to change user passwords": "관리자가 사용자 비밀번호를 변경하도록 허용",
   "Administrators authorized to change user passwords:": "사용자 비밀번호 변경 권한을 갖춘 관리자:",
-  "Enable multisite feature": "다중 사이트 기능 허용",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "단순 로그인 허용",

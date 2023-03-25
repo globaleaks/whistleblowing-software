@@ -981,9 +981,6 @@ msgstr "Stel beheerders in staat om wachtwoorden van gebruikers te veranderen"
 msgid "Administrators authorized to change user passwords:"
 msgstr "Beheerders die gemachtigd zijn om gebruikerswachtwoorden te wijzigen:"
 
-msgid "Enable multisite feature"
-msgstr "Functie voor meerdere-weblocaties inschakelen"
-
 msgid "Enable file viewer"
 msgstr ""
 

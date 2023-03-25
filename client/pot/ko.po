@@ -938,9 +938,6 @@ msgstr "관리자가 사용자 비밀번호를 변경하도록 허용"
 msgid "Administrators authorized to change user passwords:"
 msgstr "사용자 비밀번호 변경 권한을 갖춘 관리자:"
 
-msgid "Enable multisite feature"
-msgstr "다중 사이트 기능 허용"
-
 msgid "Enable file viewer"
 msgstr ""
 

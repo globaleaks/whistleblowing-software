@@ -959,9 +959,6 @@ msgstr "Abilita gli amministratori a cambiare le password degli utenti"
 msgid "Administrators authorized to change user passwords:"
 msgstr "Amministratori autorizzati a cambiare le password degli utenti:"
 
-msgid "Enable multisite feature"
-msgstr "Abilita la funzionalità multisito"
-
 msgid "Enable file viewer"
 msgstr "Abilita visualizzatore file"
 

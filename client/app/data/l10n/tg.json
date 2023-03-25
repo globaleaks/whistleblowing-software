@@ -301,7 +301,7 @@
   "Enable encryption": "Рамзкуниро фаъол намудан",
   "Enable administrators to change user passwords": "Ба маъмурон имкони гузарвожаҳои корбарон тағйир доданро додан",
   "Administrators authorized to change user passwords:": "Ба маъмурон иҷозаи тағйир додани гузарвожаҳои корбарон дода шуд:",
-  "Enable multisite feature": "Функсияи якчандторнамоиро фаъол сохтан",
+  "Enable multisite feature": "Enable multisite feature",
   "Enable file viewer": "Enable file viewer",
   "Enable PGP": "Enable PGP",
   "Enable simplified login": "Воридшавии соддагардонидашударо фаъол сохтан",

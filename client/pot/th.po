@@ -947,9 +947,6 @@ msgstr "เปิดให้ผู้ดูแลระบบเปลี่ย
 msgid "Administrators authorized to change user passwords:"
 msgstr "ผู้ดูแลได้รับอนุญาตให้เปลี่ยนรหัสผ่านของผู้ใช้:"
 
-msgid "Enable multisite feature"
-msgstr "เปิดใช้งานการรองรับหลายเว็บไซต์"
-
 msgid "Enable file viewer"
 msgstr ""
 

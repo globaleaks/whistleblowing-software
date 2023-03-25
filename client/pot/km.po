@@ -941,9 +941,6 @@ msgstr "បើកឲ្យអ្នកគ្រប់គ្រងផ្លាស
 msgid "Administrators authorized to change user passwords:"
 msgstr "អ្នកគ្រប់គ្រងត្រូវបានផ្តល់សិទ្ធិផ្លាស់ប្តូរពាក្យសម្ងាត់អ្នកប្រើប្រាស់៖"
 
-msgid "Enable multisite feature"
-msgstr "បើកមុខងារពហុទំព័រ"
-
 msgid "Enable file viewer"
 msgstr ""
 

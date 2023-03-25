@@ -950,9 +950,6 @@ msgstr "Επιτρέψτε στους διαχειριστές να αλλάζο
 msgid "Administrators authorized to change user passwords:"
 msgstr "Οι διαχειριστές που έχουν τη δυνατότητα να αλλάξουν τους κωδικούς πρόσβασης χρηστών:"
 
-msgid "Enable multisite feature"
-msgstr "Ενεργοποίηση της λειτουργίας πολλαπλών ιστοχώρων"
-
 msgid "Enable file viewer"
 msgstr ""
 

@@ -947,9 +947,6 @@ msgstr "Разрешаване на администраторите да про
 msgid "Administrators authorized to change user passwords:"
 msgstr "Администратори, упълномощени да променят потребителски пароли:"
 
-msgid "Enable multisite feature"
-msgstr "Активиране на функция за много сайтове"
-
 msgid "Enable file viewer"
 msgstr ""
 

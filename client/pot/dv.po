@@ -942,9 +942,6 @@ msgstr "ޔޫސަރ ޕާސްވޯޑްސް ބަދަލުކުރަން އެޑްމިނ�
 msgid "Administrators authorized to change user passwords:"
 msgstr "ޔޫޒަރ ޕާސްވޯޑް ބަދަލުކުރުމުގެ ހުއްދަ ލިބިފައިވާ އެޑްމިނިސްޓްރޭޓަރުން:"
 
-msgid "Enable multisite feature"
-msgstr "މަލްޓިސައިޓް ފީޗާ އެނޭބަލްކުރަން"
-
 msgid "Enable file viewer"
 msgstr ""
 
