@@ -3,7 +3,7 @@ For Whistleblowers
 
 File a New Report
 -----------------
-A new report can be filed by accessing the homepage of the platform and clicking the ``Blow the Whistle`` button.
+A new report can be filed by accessing the homepage of the platform and clicking the ``File a report`` button.
 
 .. image:: ../images/whistleblower/home.png
 

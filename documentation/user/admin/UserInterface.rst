@@ -10,23 +10,23 @@ From this Home page you may access all the common user facilities already descri
 
 A menu on the right offers you links to the different administrative sections:
 
-   1. Site settings
+   1. Settings
 
    2. Users
 
    3. Questionnaires
 
-   4. Contexts
+   4. Channels
 
    5. Case management
 
-   6. Notification settings
+   6. Notification
 
-   7. Network settings
+   7. Network
 
-   8. Advanced settings
+   8. Sites
 
-   9. System overview
+   9. Audit log
 
 Settings
 --------
@@ -108,7 +108,7 @@ By default the software implements a Default Questionnaire with a single Step an
 
 The system with its basic configuration completed with the initial Platform wizard is also already configured with this Default Questionnaire pre-associated to the Default Context.
 
-Depending on your project needs you could create specific questionnaire for each of your different reports' contexts.
+Depending on your project needs you could create specific questionnaire for each of your different reports' channels.
 
 .. image:: ../../images/admin/questionnaires.png
 
@@ -159,9 +159,9 @@ Each of the software question types make it possible to configure the following 
 
   Preview: Set this field if you want the answers to this question to appear in the preview section of the  list 
 
-Contexts
+Channels
 --------
-This section is where whistleblowing contexts (channels) could be created and managed.
+This section is where whistleblowing channels could be created and managed.
 
 A whistleblowing channel is typically defined by the following main characteristics
 
@@ -172,9 +172,9 @@ A whistleblowing channel is typically defined by the following main characterist
     Questionnaire: the questionnaire that will be proposed to whistleblowers selecting this channel
     Submission expiration: the data retention policy for the channel
 
-The system with the basic configuration completed with the initial platform wizard is configured with a single Context called Default, on which is associated a recipient and the default questionnaire.
+The system with the basic configuration completed with the initial platform wizard is configured with a single Channel called Default, on which is associated a recipient and the default questionnaire.
 
-Depending on your project needs here you could create additional Contexts and configure their respective recipients and properties.
+Depending on your project needs here you could create additional Channels and configure their respective properties.
 
 .. image:: ../../images/admin/contexts.png
 
@@ -184,7 +184,7 @@ The software enables to configure a data retention policy for each channel.
 This is a fundamental property of the whistleblowing channel that makes it possible to configure automatic secure deletion of reports after a certain period of time.
 This setting should be configured in relation to the risk of the channel in order to limit unneeded exposure of the reports received therein.
 
-By default a context is configured with a report expiration of 30 days.
+By default a channel is configured with a report expiration of 90 days.
 
 Case Management
 ---------------
@@ -203,8 +203,8 @@ Within this section you may add additional Statuses between the State Open and C
 
 .. image:: ../../images/admin/report_statuses.png
 
-Notification Settings
----------------------
+Notification
+------------
 This is the section where are configured all the aspects related to the mail notifications sent by the software.
 
 The section is furtherly divided in:
@@ -230,8 +230,8 @@ Depending on your project needs you may override the default text with your cust
 
 .. image:: ../../images/admin/notification_templates.png
 
-Network Settings
-----------------
+Network
+-------
 In this section are configured the network settings.
 
 The section is furtherly divided in:

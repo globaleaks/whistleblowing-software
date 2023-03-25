@@ -16,7 +16,7 @@ User Features
 - Support for the user search of reports
 - Support for assigning and creating case management statuses
 - Customizable look and feel (logo, colour, styles, font, text)
-- Define multiple reporting channels/contexts (e.g. per-topic, per-department)
+- Define multiple reporting channels (e.g. per-topic, per-department)
 - Manage multiple whistleblowing sites from a single dashboard
 - Advanced questionnaire builder
 - Whistleblowing system statistics

@@ -1,13 +1,13 @@
 Glossary
 ========
-This is a list of jargon used in *GlobaLeaks* software, defined in a way so as to be unambiguous and uniform across all references.
+This is a list of jargon used in GlobaLeaks, defined in a way so as to be unambiguous and uniform across all references.
 
 .. glossary::
    Administrator
        The user that has set up and is maintaining the platform. An Administrator does not have access to Whistleblowers’ reports.
 
-   Context
-       A topic covered by the whistleblowing project (ex. corruption). The Context is also the platform’s reporting channel; a platform with multiple Contexts would give whistleblowers the option to select the topic of their report, thus the reporting channel.
+   Channel
+       The reporting channel intended as a container for reports. Channels can be configured in terms of questionnaire, recipients and policies. They are typically used to organize the reporting procedure.
 
    Notification
        An email sent to notify a recipient of a new report, or an update of an existing report.
