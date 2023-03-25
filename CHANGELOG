@@ -1,3 +1,10 @@
+Changes in version 4.11.1
+    Fix packaging of PDF.js library (#3400)
+    Automatically delete demo platforms older than 30 days
+    Bump npm dependencies to latest versions
+    Update translations
+    [doc] Align documentation to latest development
+
 Changes in version 4.11.0
     Add optional sandboxed viewer to open some types of files (#3345)
     Make it optional for administrators to usage of PGP (#3382)
@@ -11,7 +18,7 @@ Changes in version 4.11.0
     Add PDF.js library by @mozilla
     Deprecate use of FileSaver.js library
     Adopt Inter Noto Sans font families to improve sw internationalization
-    Update npm dependencies
+    Bump npm dependencies to latest versions
     Update translations
     [doc] Update documentation on the implemented Content Security Policy
     [doc] Revise ApplicationSecurity documentation
