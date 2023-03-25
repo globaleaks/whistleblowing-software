@@ -96,19 +96,11 @@ The software offers the possibility to create users with the following roles:
 
 Questionnaires
 --------------
-This section is where whistleblowing questionnaires could be created and managed.
+The softare implements a standard default questionnaire that is proposed as a good base for a generic whistleblowing procedure. This questinnaire is the current result of the research performed by the project team with the organizations that have adopted the solution and expecially with anticorruption and investigative journalism NGOs.
 
-By default the software implements a Default Questionnaire with a single Step and the following three questions:
+As every organization has different needs, risks and goals globaleaks has been designed considering to implement an advanced questionnaire builder offering the possibility to design custom questionnaires.
 
-   One question "Short description" of type "Multi-line text input" enabling whistleblower to provide a short summary of the fact reported;
-
-   One question "Full description" of type "Multi-line text input" enabling whistleblowers to describe the fact reported in detail;
-
-   One question "Attachments" of type "Attachment" enabling users to load one or more attachments.
-
-The system with its basic configuration completed with the initial Platform wizard is also already configured with this Default Questionnaire pre-associated to the Default Context.
-
-Depending on your project needs you could create specific questionnaire for each of your different reports' channels.
+The following sections present the questionnaire builder and its capabilities.
 
 .. image:: ../../images/admin/questionnaires.png
 
@@ -157,7 +149,7 @@ Each of the software question types make it possible to configure the following 
 
   Required: Set this field if you want this question to be mandatory
 
-  Preview: Set this field if you want the answers to this question to appear in the preview section of the  list 
+  Preview: Set this field if you want the answers to this question to appear in the preview section of the list
 
 Channels
 --------
