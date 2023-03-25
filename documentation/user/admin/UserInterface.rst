@@ -2,13 +2,9 @@ User Interface
 ==============
 This section offers you a summary of the user interface offered to Admin users.
 
-Anytime you log in as administrator via the Login page the application takes you to your personal administrative Homepage; This page includes some documentation about GlobaLeaks that is intended to clarify you all the up-to-date documentation in matter of software security, best practices and community support.
-
-From this Home page you may access all the common user facilities already described in the general User Documentation.
-
 .. image:: ../../images/admin/home.png
 
-A menu on the right offers you links to the different administrative sections:
+Through the menu you could access the following administrative sections:
 
    1. Settings
 
@@ -314,4 +310,3 @@ The software features a privacy precerving audit log enabling administrators of 
 .. image:: ../../images/admin/audit_log_reports.png
 
 .. image:: ../../images/admin/audit_log_scheduled_jobs.png
-
