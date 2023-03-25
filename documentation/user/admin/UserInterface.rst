@@ -281,6 +281,36 @@ Here you can configure URL Redirects.
 
 .. image:: ../../images/admin/url_redirects.png
 
+Sites
+-----
+The site section enables organization to create and manage multiple secondary whistleblowing sites.
+
+Sites Management
+................
+Secondary whistleblowing platforms with independent configurations can be manually created and managed through the Sites interface.
+
+Organizations have typically need for creating a secondary site when dealing with subsidiaries or third party clients.
+
+.. image:: ../../images/admin/sites_management_sites.png
+
+After creating a secondary site an administrators of the main site could simply enter on that system by clicking a "Configure" button.
+
+After clicking on the button the administrator will be logged in on the the administrative panel of the site.
+
+Signup Module
+.............
+The software features a signup module that can be enabled and used to offers others users the possibility to register their secondary site.
+
+Organizations have typically need for a signup module when offering the platform to other subsidiaries or third party clients where they want users to have the possibility to self subscribe.
+
+The signup feature can be anabled in the Options tab of the Sites section.
+
+.. image:: ../../images/admin/signup_configuration.png
+
+When the signup module is enabled the submission module of the main site is automatically disabled and the home page will be featuring the following signup form:
+
+.. image:: ../../images/admin/signup_form.png
+
 Audit Log
 ---------
 .. image:: ../../images/admin/audit_log.png
