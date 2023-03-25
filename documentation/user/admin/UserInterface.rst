@@ -305,6 +305,8 @@ When the signup module is enabled the submission module of the main site is auto
 
 Audit Log
 ---------
+The software features a privacy precerving audit log enabling administrators of the system to supervise on projects operations.
+
 .. image:: ../../images/admin/audit_log.png
 
 .. image:: ../../images/admin/audit_log_users.png
