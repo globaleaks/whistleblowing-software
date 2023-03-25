@@ -1,5 +1,5 @@
-describe("verify navigation of admin sections", function() {
-  it("should should navigate through admin sections", async function() {
+describe("acquire screenshots necessary for user documentation", function() {
+  it("should should navigate through some admin sections to collect screenshots", async function() {
     await browser.gl.utils.login_admin();
 
     await element.all(by.cssContainingText("a", "Home")).first().click();
@@ -30,9 +30,6 @@ describe("verify navigation of admin sections", function() {
 
     await element.all(by.cssContainingText("a", "Question templates")).first().click();
     await browser.gl.utils.takeScreenshot("admin/question_templates.png");
-
-    await element.all(by.cssContainingText("a", "Channels")).first().click();
-    await browser.gl.utils.takeScreenshot("admin/contexts.png");
 
     await element.all(by.cssContainingText("a", "Case management")).first().click();
     await browser.gl.utils.takeScreenshot("admin/report_statuses.png");

@@ -33,8 +33,11 @@ describe("admin configure, add, and delete contexts", function() {
       await browser.gl.utils.waitUntilPresent(by.xpath(".//*[text()='" + context_name + "']"));
     };
 
-    await add_context("Channel 2");
-    await add_context("Channel 3");
+    await add_context("Topic A");
+    await add_context("Topic B");
+    await add_context("Topic C");
+
+    await browser.gl.utils.takeScreenshot("admin/contexts.png");
   });
 
   it("should del existing contexts", async function() {

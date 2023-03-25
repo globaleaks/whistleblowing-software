@@ -4,6 +4,9 @@ describe("admin configure advanced settings", function() {
     await browser.setLocation("admin/settings");
     await element(by.cssContainingText("a", "Advanced")).click();
 
+    // disable the privacy badge to improve screenshots result
+    await element(by.model("resources.node.disable_privacy_badge")).click();
+
     // enable features that by default are disabled
     await element(by.model("resources.node.enable_custodian")).click();
 
