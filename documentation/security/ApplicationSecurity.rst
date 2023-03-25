@@ -137,6 +137,7 @@ The backend implements a strict `Content Security Policy (CSP) <https://develope
 On this default policy are then implemented specific policies in adherence to the principle of least privilege.
 
 For example:
+
 * the index.html source of the app is the only resource enabled to load scripts from the same origin;
 * every dynamic content is strictly sandboxed on a null origin;
 * every untrusted user input or third party library is executed in a sandbox limiting its interaction with other application components.
