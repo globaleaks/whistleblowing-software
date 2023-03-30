@@ -26,6 +26,6 @@ class ViewerHandler(StaticFileHandler):
                                        b"script-src 'self';"
                                        b"style-src 'self';")
 
-            self.request.setHeader(b'Access-Control-Allow-Origin', b'null')
+                self.request.setHeader(b"Cross-Origin-Resource-Policy", "cross-origin")
 
         return self.write_file(filename, abspath)

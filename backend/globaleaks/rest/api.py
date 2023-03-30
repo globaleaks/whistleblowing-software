@@ -509,6 +509,8 @@ class APIResourceWrapper(Resource):
             request.setHeader(b"Cross-Origin-Opener-Policy", "same-origin")
             request.setHeader(b"Cross-Origin-Resource-Policy", "same-origin")
 
+            request.setHeader(b'Access-Control-Allow-Origin', b"*")
+
             # Disable features that could be used to deanonymize the user
             request.setHeader(b'Permissions-Policy', b"camera=(),"
                                                      b"document-domain=(),"
