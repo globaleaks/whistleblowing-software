@@ -371,7 +371,7 @@ controller("TipOperationsCtrl",
     $uibModalInstance.close();
   };
 
-  $scope.disable_reminder = function (reminder_status) {
+  $scope.disable_reminder = function () {
     $uibModalInstance.close();
     var req = {
       "operation": "set_reminder",
