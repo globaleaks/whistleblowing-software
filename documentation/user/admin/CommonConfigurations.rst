@@ -38,7 +38,7 @@ Enter the followings:
 
 It is better to leave untouched the pre-defined settings pertaining the notification to admins and to recipients, but in the case you want to disable them, it is possible to check the corresponding checkboxes.
 
-You can then set the value for the time at which the notification alert of expiring submission; this value is set at 72hours to give time to the recipient(s) to check and manage the pending submissions.
+You can then set the value for the time at which the notification alert of expiring report; this value is set at 72hours to give time to the recipient(s) to check and manage the pending submissions.
 
 It is possible to tweak the maximum number of emails allowed in an hour, before email wil be suspended in order to avoid flooding the system. It is advised to keep the pre-defined value, and eventually change it accordingly with mail server capabilities.
 
