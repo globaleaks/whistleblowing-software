@@ -2,7 +2,7 @@
   <div class="row">
     <div id="HeaderBox1" class="col-auto mr-auto">
      <div id="LogoBox" data-ng-click="setHomepage()">
-       <img class="img-fluid'" alt="project logo" data-ng-src="{{public.node.logo ? 's/logo' : 'data/logo.png'}}" />
+       <img class="img-fluid'" alt="{{projectTitle}}" data-ng-src="{{public.node.logo ? 's/logo' : 'data/logo.png'}}" />
      </div>
      <div id="TitleBox" data-ng-if="projectTitle || pageTitle"><h1><span id="ProjectTitle" data-ng-click="setHomepage()">{{projectTitle}}</span><span class="TitleSeparator" data-ng-if="projectTitle && pageTitle"> - </span><span id="PageTitle">{{pageTitle | translate}}</span></h1></div>
     </div>
