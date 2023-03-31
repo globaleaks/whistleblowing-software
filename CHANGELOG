@@ -1,3 +1,10 @@
+Changes in version 4.11.2
+    Revise content security policy
+    Revise HTML to improve accessibility (#3373)
+    Fix issues #3407, #3412
+    Bump npm dependencies to latest version
+    Update translations
+
 Changes in version 4.11.1
     Fix packaging of PDF.js library (#3400)
     Automatically delete demo platforms older than 30 days
