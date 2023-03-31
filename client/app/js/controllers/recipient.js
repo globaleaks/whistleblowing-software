@@ -1,4 +1,3 @@
-
 GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "$uibModal", "$window", "RTipExport", "TokenResource",
   function($scope, $filter, $http, $location, $uibModal, $window, RTipExport, TokenResource) {
 
