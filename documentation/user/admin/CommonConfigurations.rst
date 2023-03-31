@@ -61,7 +61,7 @@ This CSS example shows how to customize the Background Color of the application.
 
    body
    {
-      background-color: red;
+      background-color: blue;
    }
 
 Example 2: Custom Font
@@ -72,12 +72,12 @@ This CSS example shows how to customize the font of the application.
 
    @font-face {
      font-family: 'Antani';
-     src: url('s/antani.ttf') format('truetype');
+     src: url('s/antani.woff2') format('woff2');
      font-weight: normal;
      font-style: normal;
    }
 
    body {
-     font-family: 'Antani', Helvetica, Arial, Sans;
+     font-family: 'Antani', Inter, sans-serif;
      font-size: 16px;
    }
