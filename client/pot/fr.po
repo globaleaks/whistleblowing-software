@@ -501,13 +501,13 @@ msgid "Not provided."
 msgstr "N’est pas indiquée."
 
 msgid "Set a reminder date"
-msgstr ""
+msgstr "Définir une date de rappel"
 
 msgid "File a report"
 msgstr "Remplir un signalement"
 
 msgid "Select a reporting channel:"
-msgstr ""
+msgstr "Sélectionner un canal de signalement :"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Avant de poursuivre, veuillez définir un nouveau mot de passe."
@@ -976,10 +976,10 @@ msgid "Administrators authorized to change user passwords:"
 msgstr "Administrateurs autorisés à changer les mots de passe des utilisateurs :"
 
 msgid "Enable file viewer"
-msgstr ""
+msgstr "Activer le visualiseur de fichiers"
 
 msgid "Enable PGP"
-msgstr ""
+msgstr "Activer PGP"
 
 msgid "Enable simplified login"
 msgstr "Activer la connexion simplifiée"

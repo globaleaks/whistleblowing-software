@@ -503,7 +503,7 @@ msgid "Not provided."
 msgstr "No proporcionada."
 
 msgid "Set a reminder date"
-msgstr ""
+msgstr "Fijar una fecha de recordatorio"
 
 msgid "File a report"
 msgstr "Presentar una denuncia."
@@ -575,7 +575,7 @@ msgid "Report statuses"
 msgstr "Estados de una denuncia."
 
 msgid "Channels"
-msgstr "Canales"
+msgstr "Contextos"
 
 msgid "Hidden"
 msgstr "Oculto"
@@ -978,10 +978,10 @@ msgid "Administrators authorized to change user passwords:"
 msgstr "Administradores autorizados para cambiar las contraseñas de usuario:"
 
 msgid "Enable file viewer"
-msgstr ""
+msgstr "Activar visor de ficheros"
 
 msgid "Enable PGP"
-msgstr ""
+msgstr "Activar PGP"
 
 msgid "Enable simplified login"
 msgstr "Activar el inicio de sesión simplificado"

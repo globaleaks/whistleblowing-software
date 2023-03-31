@@ -477,7 +477,7 @@ msgid "Not provided."
 msgstr "No facilitat."
 
 msgid "Set a reminder date"
-msgstr ""
+msgstr "Fixar una data de recordatori"
 
 msgid "File a report"
 msgstr "Presentar una denúncia."
@@ -564,7 +564,7 @@ msgid "Recipients"
 msgstr "Destinataris"
 
 msgid "Reminder date"
-msgstr ""
+msgstr "Data de recordatori"
 
 msgid "days"
 msgstr "dies"
@@ -952,10 +952,10 @@ msgid "Administrators authorized to change user passwords:"
 msgstr "Administradors autoritzats a canviar les contrasenyes dels usuaris:"
 
 msgid "Enable file viewer"
-msgstr ""
+msgstr "Activar visor de fitxers"
 
 msgid "Enable PGP"
-msgstr ""
+msgstr "Activar PGP"
 
 msgid "Enable simplified login"
 msgstr "Activar inici de sessió simplificat"
@@ -989,7 +989,7 @@ msgid "Number of days till notifying unread reports to users"
 msgstr "Nombre de dies fins a la notificació de denúncies no llegides als usuaris"
 
 msgid "Custom support URL"
-msgstr ""
+msgstr "URL personalitzada per a suport"
 
 msgid "Disable the privacy panel"
 msgstr "Deshabilita el distintiu de privacitat "

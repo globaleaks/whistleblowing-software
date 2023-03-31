@@ -3,7 +3,7 @@
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # benewfy <benewfy@gmail.com>, 2015
 # benewfy <benewfy@gmail.com>, 2015-2016
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2017-2018,2020-2022
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2017-2018,2020-2023
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2017-2018,2020-2022\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2017-2018,2020-2023\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -352,7 +352,7 @@ msgid "Users"
 msgstr "Felhasználók"
 
 msgid "From"
-msgstr "Innen:"
+msgstr "Ettől:"
 
 msgid "Number of downloads"
 msgstr "Letöltések száma"
@@ -1327,7 +1327,7 @@ msgid "From:"
 msgstr "Feladó:"
 
 msgid "To:"
-msgstr "Címzett:"
+msgstr "Eddig:"
 
 msgid "Filename"
 msgstr "Fájlnév"
@@ -1486,12 +1486,12 @@ msgid "Your report was successful."
 msgstr "Beküldése sikeres volt."
 
 msgid "Remember your receipt for this report."
-msgstr "Jegyezze meg a visszaigazolást erről a bejelentésről."
+msgstr "Jegyezze meg az alábbi visszaigazoló kódot a bejelentésről."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Használja a 16 számjegyű visszaigazolást a belépéshez. Ez lehetővé teszi, hogy megtekintsen bármilyen Önnek küldött üzenetet és hozzá adhasson tovább információkat."
+msgstr "Használja a 16 számjegyű visszaigazoló kódot a belépéshez. A kód segítségével hozzáférhet az Önnek küldött üzenetekhez és további információkat adhat meg."
 
 msgid "View your report"
 msgstr "Saját jelentés megtekintése"
