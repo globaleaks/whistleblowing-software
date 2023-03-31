@@ -2,7 +2,6 @@ name: Report a bug
 description: Tell us about a bug or issue you may have identified.
 title: "Provide a general summary of the issue"
 labels: ["Triage", "T: Bug"]
-assignees: "evilaliv3"
 body:
   - type: textarea
     id: software-version
