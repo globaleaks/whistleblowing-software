@@ -83,10 +83,6 @@ def generateRandomPassword(N: int) -> str:
     return password
 
 
-def generate2FA():
-    return ''.join(secrets.SystemRandom().choice(string.digits) for _ in range(8))
-
-
 def totpVerify(secret: str, token: str) -> None:
     totp = TOTP(base64.b32decode(secret), 6, hashes.SHA1(), 30, crypto_backend, enforce_key_length=False)
     totp.verify(token.encode(), time.time())
