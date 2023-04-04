@@ -129,7 +129,6 @@ def enable_2fa(session, tid, user_id, secret, token):
     """
     user = db_get_user(session, tid, user_id)
 
-    # RFC 6238: step size 30 sec; valid_window = 1; total size of the window: 1.30 sec
     try:
         State.totp_verify(secret, token)
     except Exception:
