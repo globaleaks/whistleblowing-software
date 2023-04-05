@@ -3,7 +3,6 @@
 # Handlers implementing platform signup
 from sqlalchemy import not_
 from globaleaks import models
-from globaleaks.db import db_refresh_tenant_cache
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.tenant import db_create as db_create_tenant
@@ -154,8 +153,6 @@ def signup_activation(session, token, hostname, language):
 
     State.format_and_send_mail(session, 1, signup.email, template_vars)
 
-    db_refresh_tenant_cache(session, [signup.tid])
-
 
 class Signup(BaseHandler):
     """
@@ -180,6 +177,7 @@ class SignupActivation(BaseHandler):
     """
     check_roles = 'any'
     root_tenant_only = True
+    refresh_tenant_cache = True
 
     def get(self, token):
         return signup_activation(token, self.request.hostname, self.request.language)

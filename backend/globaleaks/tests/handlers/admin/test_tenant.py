@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-"""
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.db import refresh_tenant_cache
 from globaleaks.handlers.admin import tenant
 from globaleaks.models import config
 from globaleaks.orm import tw
@@ -55,7 +54,6 @@ class TestTenantInstance(helpers.TestHandlerWithPopulatedDB):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
         t = yield tenant.create(get_dummy_tenant_desc())
         self.handler = self.request(t, role='admin')
-        yield refresh_tenant_cache([4])
 
     def test_get(self):
         return self.handler.get(4)

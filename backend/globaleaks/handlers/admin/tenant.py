@@ -1,12 +1,11 @@
 # -*- coding: UTF-8
 from globaleaks import models
-from globaleaks.db import db_refresh_tenant_cache
 from globaleaks.db.appdata import load_appdata, db_load_defaults
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.wizard import db_wizard
 from globaleaks.models import serializers
 from globaleaks.models.config import db_set_config_variable
-from globaleaks.orm import db_del, db_get, transact
+from globaleaks.orm import db_del, db_get, transact, tw
 from globaleaks.rest import requests
 
 
@@ -58,8 +57,6 @@ def db_create(session, desc):
 def create(session, desc, *args, **kwargs):
     t = db_create(session, desc, *args, **kwargs)
 
-    db_refresh_tenant_cache(session, [t.id])
-
     return serializers.serialize_tenant(session, t)
 
 
@@ -77,8 +74,6 @@ def create_and_initialize(session, desc, *args, **kwargs):
     }
 
     db_wizard(session, t.id, '', wizard)
-
-    db_refresh_tenant_cache(session, [t.id])
 
     return serializers.serialize_tenant(session, t)
 
@@ -114,15 +109,7 @@ def update(session, tid, request):
     for var in ['mode', 'name', 'subdomain']:
         db_set_config_variable(session, tid, var, request[var])
 
-    db_refresh_tenant_cache(session, [t.id])
-
     return serializers.serialize_tenant(session, t)
-
-
-@transact
-def delete(session, tid):
-    db_del(session, models.Tenant, models.Tenant.id == tid)
-    db_refresh_tenant_cache(session, [tid])
 
 
 class TenantCollection(BaseHandler):
@@ -149,18 +136,15 @@ class TenantCollection(BaseHandler):
 class TenantInstance(BaseHandler):
     check_roles = 'admin'
     root_tenant_only = True
+    invalidate_cache = True
 
     def get(self, tid):
-        tid = int(tid)
-
-        return get(tid)
+        return get(int(tid))
 
     def put(self, tid):
         """
         Update the specified tenant.
         """
-        tid = int(tid)
-
         request = self.validate_request(self.request.content.read(),
                                         requests.AdminTenantDesc)
 
@@ -170,6 +154,4 @@ class TenantInstance(BaseHandler):
         """
         Delete the specified tenant.
         """
-        tid = int(tid)
-
-        return delete(tid)
+        return tw(db_del, models.Tenant, models.Tenant.id == int(tid))

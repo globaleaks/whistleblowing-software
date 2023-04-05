@@ -3,7 +3,6 @@ import os
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
-from globaleaks.db import db_refresh_tenant_cache
 from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification

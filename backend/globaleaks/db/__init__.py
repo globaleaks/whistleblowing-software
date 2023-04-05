@@ -147,7 +147,7 @@ def sync_initialize_snimap(session):
             State.snimap.load(cfg['tid'], cfg)
 
 
-def db_refresh_tenant_cache(session, tids=None):
+def db_refresh_tenant_cache(session, to_refresh=None):
     active_tids = set([tid[0] for tid in session.query(models.Tenant.id).filter(models.Tenant.active.is_(True))])
 
     cached_tids = set(State.tenants.keys())
@@ -172,10 +172,13 @@ def db_refresh_tenant_cache(session, tids=None):
 
             del State.tenants[tid]
 
-    if tids is None or 1 in tids:
+    if to_refresh is None or to_refresh == 1:
         tids = active_tids
     else:
-        tids = [tid for tid in tids if tid in active_tids]
+        tids = [to_refresh] if to_refresh in active_tids else []
+
+    if not tids:
+        return
 
     tids = sorted(tids)
 
@@ -193,12 +196,13 @@ def db_refresh_tenant_cache(session, tids=None):
         tenant_cache['notification'].admin_list = []
         tenant_cache['hostnames'] = []
         tenant_cache['onionnames'] = []
+        tenant_cache['languages_enabled'] = []
 
     root_tenant_cache = State.tenants[1].cache
 
     for tid, lang in session.query(models.EnabledLanguage.tid, models.EnabledLanguage.name)\
                             .filter(models.EnabledLanguage.tid.in_(tids)):
-        State.tenants[tid].cache.setdefault('languages_enabled', []).append(lang)
+        State.tenants[tid].cache['languages_enabled'].append(lang)
 
     for cfg in session.query(Config).filter(Config.tid.in_(tids)):
         tenant_cache = State.tenants[cfg.tid].cache
@@ -268,10 +272,10 @@ def db_refresh_tenant_cache(session, tids=None):
 
 
 @transact
-def refresh_tenant_cache(session, tids=None):
-    return db_refresh_tenant_cache(session, tids)
+def refresh_tenant_cache(session, tid=None):
+    return db_refresh_tenant_cache(session, tid)
 
 
 @transact_sync
-def sync_refresh_tenant_cache(session, tids=None):
-    return db_refresh_tenant_cache(session, tids)
+def sync_refresh_tenant_cache(session, tid=None):
+    return db_refresh_tenant_cache(session, tid)

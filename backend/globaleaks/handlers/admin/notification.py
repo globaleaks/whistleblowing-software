@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from globaleaks.db import db_refresh_tenant_cache
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
 from globaleaks.models.config_desc import ConfigL10NFilters
@@ -30,8 +29,6 @@ def update_notification(session, tid, request, language):
     ConfigFactory(session, tid).update('notification', request)
     ConfigL10NFactory(session, tid).update('notification', request, language)
 
-    db_refresh_tenant_cache(session, [tid])
-
     return db_get_notification(session, tid, language)
 
 
@@ -40,6 +37,7 @@ class NotificationInstance(BaseHandler):
     Manage Notification settings (account details and template)
     """
     check_roles = 'admin'
+    invalidate_cache = True
 
     def get(self):
         return tw(db_get_notification, self.request.tid, self.request.language)
