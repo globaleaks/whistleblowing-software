@@ -3,6 +3,7 @@ import random
 import time
 import warnings
 import sqlite3
+import threading
 
 from sqlalchemy import create_engine, event
 from sqlalchemy.exc import OperationalError, SAWarning
@@ -27,6 +28,8 @@ SQLITE_READ=20
 SQLITE_SELECT=21
 SQLITE_TRANSACTION=22
 SQLITE_UPDATE=23
+
+THREAD_LOCAL = threading.local()
 
 
 warnings.filterwarnings('ignore', '.', SAWarning)
@@ -166,7 +169,11 @@ class transact(object):
         Wrap provided function calling it inside a thread and
         passing the ORM session to it.
         """
-        session = get_session()
+        global THREAD_LOCAL
+        session = getattr(THREAD_LOCAL, 'session', None)
+        if not session:
+            session = THREAD_LOCAL.session = get_session()
+
         retries = 0
 
         try:
