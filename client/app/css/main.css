@@ -12,7 +12,7 @@ body {
 body {
   background-color: #fff;
   color: #1d1f24;
-  font-family: "Inter", "Noto Sans Armenian", "Noto Sans Arabic", "Noto Sans Bengali", "Noto Sans Hebrew", "Noto Sans HK", "Noto Sans JP", "Noto Sans Georgian", "Noto Sans Khmer", "Noto Sans KR", "Noto Sans Myanmar", "Noto Sans Sc", "Noto Sans Tamil", "Noto Sans Thaana", "Noto Sans Thai", "Noto Serif Tibetan", "Noto Nastaliq Urdu", sans-serif;
+  font-family: Inter, "Noto Sans Armenian", "Noto Sans Arabic", "Noto Sans Bengali", "Noto Sans Hebrew", "Noto Sans HK", "Noto Sans JP", "Noto Sans Georgian", "Noto Sans Khmer", "Noto Sans KR", "Noto Sans Myanmar", "Noto Sans Sc", "Noto Sans Tamil", "Noto Sans Thaana", "Noto Sans Thai", "Noto Serif Tibetan", sans-serif;
   font-size: 16px;
   min-height: 20rem;
 }
