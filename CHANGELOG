@@ -1,3 +1,7 @@
+Changes in version 4.11.3
+    Improve TOTP implementation adding a 1 step window
+    Fix packaging in relation to missing license file
+
 Changes in version 4.11.2
     Revise content security policy
     Revise HTML to improve accessibility (#3373)
