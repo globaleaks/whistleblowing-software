@@ -3,6 +3,7 @@ import json
 
 from datetime import timedelta
 from twisted.internet import defer
+from twisted.internet.threads import deferToThread
 
 from globaleaks.db import sync_refresh_tenant_cache
 from globaleaks.rest import errors
@@ -95,16 +96,10 @@ def decorator_cache_invalidate(f):
         if self.invalidate_cache:
             def callback(result):
                 Cache.invalidate(self.request.tid)
-                sync_refresh_tenant_cache([self.request.tid])
+                deferToThread(sync_refresh_tenant_cache, [self.request.tid])
                 return result
 
-            def errback(err):
-                Cache.invalidate(self.request.tid)
-                sync_refresh_tenant_cache([self.request.tid])
-                raise err
-
-            d.addCallback(callback)
-            d.addErrback(errback)
+            d.addBoth(callback)
 
         return d
 
