@@ -18,7 +18,7 @@
 # 4b8fe8aa5774ddeb3c4c7817cd28f50e_d751ab4 <55c3bb72c999b01f254463d72e197fd7_99140>, 2013
 # Federico Scrinzi <fox91@anche.no>, 2013
 # Francisco Huerta <francisco.huerta@davinci-ti.es>, 2016
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2022
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2023
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -47,7 +47,7 @@ msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
 "Last-Translator: José Javier Alamá Izquierdo, 2023\n"
-"Language-Team: Spanish (http://www.transifex.com/otf/globaleaks/language/es/)\n"
+"Language-Team: Spanish (http://app.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: es\n"
@@ -325,7 +325,7 @@ msgid "Strong"
 msgstr "Fuerte"
 
 msgid "Text shown on top of the interface for selecting channels"
-msgstr "Texto mostrado en la parte superior de la interfaz para seleccionar contextos"
+msgstr "Texto mostrado en la parte superior de la interfaz para seleccionar canales"
 
 msgid "Silence email notifications"
 msgstr "Silenciar notificaciones de correo electrónico"
@@ -575,7 +575,7 @@ msgid "Report statuses"
 msgstr "Estados de una denuncia."
 
 msgid "Channels"
-msgstr "Contextos"
+msgstr "Canales"
 
 msgid "Hidden"
 msgstr "Oculto"
@@ -1053,7 +1053,7 @@ msgid ""
 msgstr "Al habilitar esta característica, contribuirá al desarrollo y seguridad de la plataforma."
 
 msgid "Reset reports"
-msgstr "Restablecer configuración"
+msgstr "Borrar todas las denuncias"
 
 msgid "Settings"
 msgstr "Configuración"
