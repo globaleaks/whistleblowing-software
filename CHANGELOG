@@ -1,3 +1,7 @@
+Changes in version 4.11.4
+    Implement database sessions caching
+    Optimize API cache
+
 Changes in version 4.11.3
     Improve TOTP implementation adding a 1 step window
     Fix packaging in relation to missing license file
