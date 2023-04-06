@@ -235,15 +235,6 @@ def db_refresh_tenant_cache(session, to_refresh=None):
 
         State.tenant_uuid_id_map[tenant_cache.uuid] = tid
 
-        for x in [('admin', 'ip_filter_admin_enable', 'ip_filter_admin'),
-                  ('custodian', 'ip_filter_custodian_enable', 'ip_filter_custodian'),
-                  ('receiver', 'ip_filter_receiver_enable', 'ip_filter_receiver')]:
-            if tenant_cache[x[1]]:
-                tenant_cache['ip_filter'][x[0]] = tenant_cache[x[2]]
-
-        for x in ['admin', 'custodian', 'receiver', 'whistleblower']:
-            tenant_cache['https_allowed'][x] = tenant_cache.get('https_' + x, True)
-
         if tenant_cache.hostname and tenant_cache.reachable_via_web:
             tenant_cache.hostnames.append(tenant_cache.hostname.encode())
 

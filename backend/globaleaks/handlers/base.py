@@ -58,11 +58,11 @@ def connection_check(tid, role, client_ip, client_using_tor):
     :param client_ip: A client IP
     :param client_using_tor: A boolean for signaling Tor use
     """
-    ip_filter = State.tenants[tid].cache['ip_filter'].get(role)
+    ip_filter = State.tenants[tid].cache.get('ip_filter_' + role + '_enable')
     if ip_filter and not check_ip(client_ip, ip_filter):
         raise errors.AccessLocationInvalid
 
-    https_allowed = State.tenants[tid].cache['https_allowed'].get(role)
+    https_allowed = State.tenants[tid].cache['https_' + role]
     if not https_allowed and not client_using_tor:
         raise errors.TorNetworkRequired
 
