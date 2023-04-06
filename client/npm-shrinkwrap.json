@@ -48,7 +48,7 @@
         "ng-csv": "0.3.6",
         "ng-idle": "1.3.2",
         "ng-showdown": "1.1.0",
-        "pdfjs-dist": "3.4.120",
+        "pdfjs-dist": "3.5.141",
         "qrcode-generator": "1.4.4",
         "ui-bootstrap4": "3.0.7",
         "ui-select": "0.19.8"
@@ -71,13 +71,13 @@
         "grunt-usemin": "3.1.1",
         "gruntify-eslint": "5.0.0",
         "node-gettext": "3.0.0",
-        "npm-check-updates": "16.9.0",
+        "npm-check-updates": "16.10.7",
         "nyc": "15.1.0",
         "postcss-rtl": "2.0.0",
         "protractor": "7.0.0",
         "protractor-console-plugin": "0.1.1",
-        "stylelint": "15.3.0",
-        "stylelint-config-standard": "31.0.0",
+        "stylelint": "15.4.0",
+        "stylelint-config-standard": "32.0.0",
         "superagent": "8.0.9",
         "terser": "5.16.8"
       }
@@ -523,9 +523,9 @@
       }
     },
     "node_modules/@csstools/css-parser-algorithms": {
-      "version": "2.0.1",
-      "resolved": "https://registry.npmjs.org/@csstools/css-parser-algorithms/-/css-parser-algorithms-2.0.1.tgz",
-      "integrity": "sha512-B9/8PmOtU6nBiibJg0glnNktQDZ3rZnGn/7UmDfrm2vMtrdlXO3p7ErE95N0up80IRk9YEtB5jyj/TmQ1WH3dw==",
+      "version": "2.1.0",
+      "resolved": "https://registry.npmjs.org/@csstools/css-parser-algorithms/-/css-parser-algorithms-2.1.0.tgz",
+      "integrity": "sha512-KP8TicdXpUyeB1NMlbHud/1l39xvLGvqNFWMpG4qC6H1zs9SadGUHe5SO92n/659sDW9aGDvm9AMru0DZkN1Bw==",
       "dev": true,
       "engines": {
         "node": "^14 || ^16 || >=18"
@@ -569,9 +569,9 @@
       }
     },
     "node_modules/@csstools/selector-specificity": {
-      "version": "2.1.1",
-      "resolved": "https://registry.npmjs.org/@csstools/selector-specificity/-/selector-specificity-2.1.1.tgz",
-      "integrity": "sha512-jwx+WCqszn53YHOfvFMJJRd/B2GqkCBt+1MJSG6o5/s8+ytHMvDZXsJgUEWLk12UnLd7HYKac4BYU5i/Ron1Cw==",
+      "version": "2.2.0",
+      "resolved": "https://registry.npmjs.org/@csstools/selector-specificity/-/selector-specificity-2.2.0.tgz",
+      "integrity": "sha512-+OJ9konv95ClSTOJCmMZqpd5+YGsB2S+x6w3E1oaM8UuR5j8nTNHYSz8c9BEPGDOCMQYIEEGlVPj/VY64iTbGw==",
       "dev": true,
       "engines": {
         "node": "^14 || ^16 || >=18"
@@ -581,7 +581,6 @@
         "url": "https://opencollective.com/csstools"
       },
       "peerDependencies": {
-        "postcss": "^8.4",
         "postcss-selector-parser": "^6.0.10"
       }
     },
@@ -2631,9 +2630,9 @@
       "dev": true
     },
     "node_modules/cosmiconfig": {
-      "version": "8.1.2",
-      "resolved": "https://registry.npmjs.org/cosmiconfig/-/cosmiconfig-8.1.2.tgz",
-      "integrity": "sha512-rmpUFKMZiawLfug8sP4NbpBSOpWftZB6UACOLEiNbnRAYM1TzgQuTWlMYFRuPgmoTCkcOxSMwQJQpJmiXv/eHw==",
+      "version": "8.1.3",
+      "resolved": "https://registry.npmjs.org/cosmiconfig/-/cosmiconfig-8.1.3.tgz",
+      "integrity": "sha512-/UkO2JKI18b5jVMJUp0lvKFMpa/Gye+ZgZjKD+DGEN9y7NRcf/nK1A0sp67ONmKtnDCNMS44E6jrk0Yc3bDuUw==",
       "dev": true,
       "dependencies": {
         "import-fresh": "^3.2.1",
@@ -7486,9 +7485,9 @@
       }
     },
     "node_modules/npm-check-updates": {
-      "version": "16.9.0",
-      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-16.9.0.tgz",
-      "integrity": "sha512-AOAAre4AAPzB5p41E8vbkisx7FypdNCy4mkiF4mMUl6ptOUVkaMGlWVx1eqgmaoraeAnvhyByIGS+4LN7U+XHg==",
+      "version": "16.10.7",
+      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-16.10.7.tgz",
+      "integrity": "sha512-hVJCULf8AoVob9FDvoC7hrkQGuWhWctE9k3sNmR+M6hxZJnlb+03Ph4G1w/pHmI5BGHoo+ZPJtVEXkJsA+JwPQ==",
       "dev": true,
       "dependencies": {
         "chalk": "^5.2.0",
@@ -7501,15 +7500,16 @@
         "globby": "^11.0.4",
         "hosted-git-info": "^5.1.0",
         "ini": "^4.0.0",
+        "js-yaml": "^4.1.0",
         "json-parse-helpfulerror": "^1.0.3",
         "jsonlines": "^0.1.1",
         "lodash": "^4.17.21",
-        "minimatch": "^7.4.3",
+        "minimatch": "^8.0.3",
         "p-map": "^4.0.0",
         "pacote": "15.1.1",
         "parse-github-url": "^1.0.2",
         "progress": "^2.0.3",
-        "prompts-ncu": "^2.5.1",
+        "prompts-ncu": "^3.0.0",
         "rc-config-loader": "^4.1.2",
         "remote-git-tags": "^3.0.0",
         "rimraf": "^4.4.1",
@@ -7519,8 +7519,7 @@
         "spawn-please": "^2.0.1",
         "strip-json-comments": "^5.0.0",
         "untildify": "^4.0.0",
-        "update-notifier": "^6.0.2",
-        "yaml": "^2.2.1"
+        "update-notifier": "^6.0.2"
       },
       "bin": {
         "ncu": "build/src/bin/cli.js",
@@ -7578,16 +7577,31 @@
         "url": "https://github.com/sponsors/isaacs"
       }
     },
-    "node_modules/npm-check-updates/node_modules/minimatch": {
-      "version": "7.4.3",
-      "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-7.4.3.tgz",
-      "integrity": "sha512-5UB4yYusDtkRPbRiy1cqZ1IpGNcJCGlEMG17RKzPddpyiPKoCdwohbED8g4QXT0ewCt8LTkQXuljsUfQ3FKM4A==",
+    "node_modules/npm-check-updates/node_modules/glob/node_modules/minimatch": {
+      "version": "7.4.5",
+      "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-7.4.5.tgz",
+      "integrity": "sha512-OzOamaOmNBJZUv2qqY1OSWa+++4YPpOkLgkc0w30Oov5ufKlWWXnFUl0l4dgmSv5Shq/zRVkEOXAe2NaqO4l5Q==",
       "dev": true,
       "dependencies": {
         "brace-expansion": "^2.0.1"
       },
       "engines": {
         "node": ">=10"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/isaacs"
+      }
+    },
+    "node_modules/npm-check-updates/node_modules/minimatch": {
+      "version": "8.0.3",
+      "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-8.0.3.tgz",
+      "integrity": "sha512-tEEvU9TkZgnFDCtpnrEYnPsjT7iUx42aXfs4bzmQ5sMA09/6hZY0jeZcGkXyDagiBOvkUjNo8Viom+Me6+2x7g==",
+      "dev": true,
+      "dependencies": {
+        "brace-expansion": "^2.0.1"
+      },
+      "engines": {
+        "node": ">=16 || 14 >=14.17"
       },
       "funding": {
         "url": "https://github.com/sponsors/isaacs"
@@ -8328,12 +8342,15 @@
       }
     },
     "node_modules/pdfjs-dist": {
-      "version": "3.4.120",
-      "resolved": "https://registry.npmjs.org/pdfjs-dist/-/pdfjs-dist-3.4.120.tgz",
-      "integrity": "sha512-B1hw9ilLG4m/jNeFA0C2A0PZydjxslP8ylU+I4XM7Bzh/xWETo9EiBV848lh0O0hLut7T6lK1V7cpAXv5BhxWw==",
+      "version": "3.5.141",
+      "resolved": "https://registry.npmjs.org/pdfjs-dist/-/pdfjs-dist-3.5.141.tgz",
+      "integrity": "sha512-lYIvyi5grtYOIatsfCifIKwxHeAJ8eHyP22DTdvY4pm0yWVSFQnMafpgCPSw8gaNRDDdcHnBVOkqMsyK8SRxZg==",
       "dependencies": {
         "path2d-polyfill": "^2.0.1",
         "web-streams-polyfill": "^3.2.1"
+      },
+      "engines": {
+        "node": ">=16"
       },
       "optionalDependencies": {
         "canvas": "^2.11.0"
@@ -8640,16 +8657,16 @@
       }
     },
     "node_modules/prompts-ncu": {
-      "version": "2.5.1",
-      "resolved": "https://registry.npmjs.org/prompts-ncu/-/prompts-ncu-2.5.1.tgz",
-      "integrity": "sha512-Hdd7GgV7b76Yh9FP9HL1D9xqtJCJdVPpiM2vDtuoc8W1KfweJe15gutFYmxkq83ViFaagFM8K0UcPCQ/tZq8bA==",
+      "version": "3.0.0",
+      "resolved": "https://registry.npmjs.org/prompts-ncu/-/prompts-ncu-3.0.0.tgz",
+      "integrity": "sha512-qyz9UxZ5MlPKWVhWrCmSZ1ahm2GVYdjLb8og2sg0IPth1KRuhcggHGuijz0e41dkx35p1t1q3GRISGH7QGALFA==",
       "dev": true,
       "dependencies": {
         "kleur": "^4.0.1",
         "sisteransi": "^1.0.5"
       },
       "engines": {
-        "node": ">= 6"
+        "node": ">= 14"
       }
     },
     "node_modules/proto-list": {
@@ -10262,18 +10279,18 @@
       "dev": true
     },
     "node_modules/stylelint": {
-      "version": "15.3.0",
-      "resolved": "https://registry.npmjs.org/stylelint/-/stylelint-15.3.0.tgz",
-      "integrity": "sha512-9UYBYk7K9rtlKcTUDZrtntE840sZM00qyYBQHHe7tjwMNUsPsGvR6Fd43IxHEAhRrDLzpy3TVaHb6CReBB3eFg==",
+      "version": "15.4.0",
+      "resolved": "https://registry.npmjs.org/stylelint/-/stylelint-15.4.0.tgz",
+      "integrity": "sha512-TlOvpG3MbcFwHmK0q2ykhmpKo7Dq892beJit0NPdpyY9b1tFah/hGhqnAz/bRm2PDhDbJLKvjzkEYYBEz7Dxcg==",
       "dev": true,
       "dependencies": {
-        "@csstools/css-parser-algorithms": "^2.0.1",
+        "@csstools/css-parser-algorithms": "^2.1.0",
         "@csstools/css-tokenizer": "^2.1.0",
         "@csstools/media-query-list-parser": "^2.0.1",
-        "@csstools/selector-specificity": "^2.1.1",
+        "@csstools/selector-specificity": "^2.2.0",
         "balanced-match": "^2.0.0",
         "colord": "^2.9.3",
-        "cosmiconfig": "^8.1.0",
+        "cosmiconfig": "^8.1.3",
         "css-functions-list": "^3.1.0",
         "css-tree": "^2.3.1",
         "debug": "^4.3.4",
@@ -10331,15 +10348,15 @@
       }
     },
     "node_modules/stylelint-config-standard": {
-      "version": "31.0.0",
-      "resolved": "https://registry.npmjs.org/stylelint-config-standard/-/stylelint-config-standard-31.0.0.tgz",
-      "integrity": "sha512-CUGAmtROCvX0YgMY2+6P9tqSkHj5z/75XxrQ8bGxvkCa1xYdGDx4poM0pa7cXc3s74/PZLJH/okxZZouRfOSGw==",
+      "version": "32.0.0",
+      "resolved": "https://registry.npmjs.org/stylelint-config-standard/-/stylelint-config-standard-32.0.0.tgz",
+      "integrity": "sha512-UnGJxYDyYFrIE9CjDMZRkrNh2o4lOtO+MVZ9qG5b8yARfsWho0GMx4YvhHfsv8zKKgHeWX2wfeyxmuoqcaYZ4w==",
       "dev": true,
       "dependencies": {
         "stylelint-config-recommended": "^11.0.0"
       },
       "peerDependencies": {
-        "stylelint": "^15.3.0"
+        "stylelint": "^15.4.0"
       }
     },
     "node_modules/stylelint/node_modules/balanced-match": {
@@ -11456,15 +11473,6 @@
       "resolved": "https://registry.npmjs.org/yallist/-/yallist-4.0.0.tgz",
       "integrity": "sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==",
       "devOptional": true
-    },
-    "node_modules/yaml": {
-      "version": "2.2.1",
-      "resolved": "https://registry.npmjs.org/yaml/-/yaml-2.2.1.tgz",
-      "integrity": "sha512-e0WHiYql7+9wr4cWMx3TVQrNwejKaEe7/rHNmQmqRjazfOP5W8PB6Jpebb5o6fIapbz9o9+2ipcaTM2ZwDI6lw==",
-      "dev": true,
-      "engines": {
-        "node": ">= 14"
-      }
     },
     "node_modules/yargs": {
       "version": "15.4.1",
