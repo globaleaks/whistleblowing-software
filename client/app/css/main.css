@@ -494,7 +494,7 @@ input[type="file"] {
   font-size: smaller;
 }
 
-@media (min-width: 768px) {
+@media screen and (width >= 768px) {
   .modal-lg .modal-dialog {
     width: 600px;
   }
