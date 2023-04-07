@@ -188,8 +188,6 @@ def db_refresh_tenant_cache(session, to_refresh=None):
 
         tenant_cache = State.tenants[tid].cache
 
-        tenant_cache['ip_filter'] = {}
-        tenant_cache['https_allowed'] = {}
         tenant_cache['redirects'] = {}
         tenant_cache['custodian'] = False
         tenant_cache['notification'] = ObjectDict()
