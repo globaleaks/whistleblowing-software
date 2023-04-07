@@ -2,7 +2,9 @@
 #
 # Handlers implementing platform signup
 from sqlalchemy import not_
+from twisted.internet.threads import deferToThread
 from globaleaks import models
+from globaleaks.db import sync_refresh_tenant_cache
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.tenant import db_create as db_create_tenant
@@ -153,6 +155,8 @@ def signup_activation(session, token, hostname, language):
 
     State.format_and_send_mail(session, 1, signup.email, template_vars)
 
+    deferToThread(sync_refresh_tenant_cache, tenant)
+
 
 class Signup(BaseHandler):
     """
@@ -177,7 +181,6 @@ class SignupActivation(BaseHandler):
     """
     check_roles = 'any'
     root_tenant_only = True
-    refresh_tenant_cache = True
 
-    def get(self, token):
+    def post(self, token):
         return signup_activation(token, self.request.hostname, self.request.language)

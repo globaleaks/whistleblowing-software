@@ -45,11 +45,11 @@ class TestSignupActivation(helpers.TestHandler):
         self._handler = signup.SignupActivation
         handler = self.request(self.dummySignup)
         token = yield get_signup_token()
-        yield handler.get(token)
+        yield handler.post(token)
 
     def test_get_with_signup_disabled(self):
         handler = self.request(self.dummySignup)
-        return self.assertFailure(handler.get(u'valid_or_invalid'), errors.ForbiddenOperation)
+        return self.assertFailure(handler.post(u'valid_or_invalid'), errors.ForbiddenOperation)
 
     @inlineCallbacks
     def test_valid_signup_in_default_mode(self):
@@ -74,6 +74,6 @@ class TestSignupActivation(helpers.TestHandler):
         yield tw(db_set_config_variable, 1, 'enable_signup', True)
 
         handler = self.request(self.dummySignup)
-        r = yield handler.get(u'invalid')
+        r = yield handler.post(u'invalid')
 
         self.assertTrue(not r)

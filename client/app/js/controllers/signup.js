@@ -50,6 +50,6 @@ controller("SignupActivationCtrl", ["$scope", "$http", "$location",
                     function($scope, $http, $location) {
   var token = $location.search().token;
   if (token) {
-    $http.get("api/signup/" + token);
+    $http.post("api/signup/" + token);
   }
 }]);

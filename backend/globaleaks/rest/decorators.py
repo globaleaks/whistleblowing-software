@@ -99,7 +99,7 @@ def decorator_cache_invalidate(f):
                 deferToThread(sync_refresh_tenant_cache, self.request.tid)
                 return result
 
-            d.addBoth(callback)
+            d.addCallback(callback)
 
         return d
 
