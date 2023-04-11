@@ -181,6 +181,7 @@ class SignupActivation(BaseHandler):
     """
     check_roles = 'any'
     root_tenant_only = True
+    invalidate_cache = True
 
     def post(self, token):
         return signup_activation(token, self.request.hostname, self.request.language)
