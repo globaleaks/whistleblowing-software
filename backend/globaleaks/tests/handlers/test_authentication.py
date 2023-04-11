@@ -55,7 +55,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'password': helpers.VALID_PASSWORD1,
             'authcode': ''
         })
-        State.tenants[1].cache['https_allowed']['admin'] = True
+        State.tenants[1].cache['https_admin'] = True
         response = yield handler.post()
         self.assertTrue('id' in response)
 
@@ -67,7 +67,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'password': helpers.VALID_PASSWORD1,
             'authcode': ''
         })
-        State.tenants[1].cache['https_allowed']['admin'] = False
+        State.tenants[1].cache['https_admin'] = False
         yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
 
     @inlineCallbacks
@@ -160,7 +160,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_login_reject_on_ip_filtering(self):
-        State.tenants[1].cache['ip_filter']['admin'] = '192.168.2.0/24'
+        State.tenants[1].cache['ip_filter_admin_enable'] = True
+        State.tenants[1].cache['ip_filter_admin'] = '192.168.2.0/24'
 
         handler = self.request({
             'tid': 1,
@@ -172,7 +173,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_login_success_on_ip_filtering(self):
-        State.tenants[1].cache['ip_filter']['admin'] = '192.168.2.0/24'
+        State.tenants[1].cache['ip_filter_admin_enable'] = True
+        State.tenants[1].cache['ip_filter_admin'] = '192.168.2.0/24'
 
         handler = self.request({
             'tid': 1,
@@ -208,7 +210,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
     def test_accept_whistleblower_login_in_https(self):
         yield self.perform_full_submission_actions()
         handler = self.request({'receipt': self.lastReceipt})
-        State.tenants[1].cache['https_allowed']['whistleblower'] = True
+        State.tenants[1].cache['https_whistleblower'] = True
         response = yield handler.post()
         self.assertTrue('id' in response)
 
@@ -216,7 +218,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
     def test_deny_whistleblower_login_in_https(self):
         yield self.perform_full_submission_actions()
         handler = self.request({'receipt': self.lastReceipt})
-        State.tenants[1].cache['https_allowed']['whistleblower'] = False
+        State.tenants[1].cache['https_whistleblower'] = False
         yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
 
     @inlineCallbacks
