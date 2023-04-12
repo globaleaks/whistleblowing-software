@@ -55,7 +55,7 @@
       },
       "devDependencies": {
         "@lodder/grunt-postcss": "3.1.1",
-        "eslint": "8.37.0",
+        "eslint": "8.38.0",
         "gettext-parser": "6.0.0",
         "grunt": "1.6.1",
         "grunt-angular-templates": "1.2.0",
@@ -71,7 +71,7 @@
         "grunt-usemin": "3.1.1",
         "gruntify-eslint": "5.0.0",
         "node-gettext": "3.0.0",
-        "npm-check-updates": "16.10.7",
+        "npm-check-updates": "16.10.8",
         "nyc": "15.1.0",
         "postcss-rtl": "2.0.0",
         "protractor": "7.0.0",
@@ -79,7 +79,7 @@
         "stylelint": "15.4.0",
         "stylelint-config-standard": "32.0.0",
         "superagent": "8.0.9",
-        "terser": "5.16.8"
+        "terser": "5.16.9"
       }
     },
     "node_modules/@ampproject/remapping": {
@@ -632,9 +632,9 @@
       }
     },
     "node_modules/@eslint/js": {
-      "version": "8.37.0",
-      "resolved": "https://registry.npmjs.org/@eslint/js/-/js-8.37.0.tgz",
-      "integrity": "sha512-x5vzdtOOGgFVDCUs81QRB2+liax8rFg3+7hqM+QhBG0/G3F1ZsoYl97UrqgHgQ9KKT7G6c4V+aTUCgu/n22v1A==",
+      "version": "8.38.0",
+      "resolved": "https://registry.npmjs.org/@eslint/js/-/js-8.38.0.tgz",
+      "integrity": "sha512-IoD2MfUnOV58ghIHCiil01PcohxjbYR/qCxsoC+xNgUwh1EY8jOOrYmu3d3a71+tJJ23uscEV4X2HJWMsPJu4g==",
       "dev": true,
       "engines": {
         "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
@@ -3149,15 +3149,15 @@
       }
     },
     "node_modules/eslint": {
-      "version": "8.37.0",
-      "resolved": "https://registry.npmjs.org/eslint/-/eslint-8.37.0.tgz",
-      "integrity": "sha512-NU3Ps9nI05GUoVMxcZx1J8CNR6xOvUT4jAUMH5+z8lpp3aEdPVCImKw6PWG4PY+Vfkpr+jvMpxs/qoE7wq0sPw==",
+      "version": "8.38.0",
+      "resolved": "https://registry.npmjs.org/eslint/-/eslint-8.38.0.tgz",
+      "integrity": "sha512-pIdsD2jwlUGf/U38Jv97t8lq6HpaU/G9NKbYmpWpZGw3LdTNhZLbJePqxOXGB5+JEKfOPU/XLxYxFh03nr1KTg==",
       "dev": true,
       "dependencies": {
         "@eslint-community/eslint-utils": "^4.2.0",
         "@eslint-community/regexpp": "^4.4.0",
         "@eslint/eslintrc": "^2.0.2",
-        "@eslint/js": "8.37.0",
+        "@eslint/js": "8.38.0",
         "@humanwhocodes/config-array": "^0.11.8",
         "@humanwhocodes/module-importer": "^1.0.1",
         "@nodelib/fs.walk": "^1.2.8",
@@ -7485,9 +7485,9 @@
       }
     },
     "node_modules/npm-check-updates": {
-      "version": "16.10.7",
-      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-16.10.7.tgz",
-      "integrity": "sha512-hVJCULf8AoVob9FDvoC7hrkQGuWhWctE9k3sNmR+M6hxZJnlb+03Ph4G1w/pHmI5BGHoo+ZPJtVEXkJsA+JwPQ==",
+      "version": "16.10.8",
+      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-16.10.8.tgz",
+      "integrity": "sha512-e+p3rUCvaU0iKOvi+/Xiyx+mLe9/aRTu9Zrc7+TR6H2q+uFgmXEwqbXYN9Ngqsta8gdTjpn751UD5MEOogO5cA==",
       "dev": true,
       "dependencies": {
         "chalk": "^5.2.0",
@@ -10584,9 +10584,9 @@
       }
     },
     "node_modules/terser": {
-      "version": "5.16.8",
-      "resolved": "https://registry.npmjs.org/terser/-/terser-5.16.8.tgz",
-      "integrity": "sha512-QI5g1E/ef7d+PsDifb+a6nnVgC4F22Bg6T0xrBrz6iloVB4PUkkunp6V8nzoOOZJIzjWVdAGqCdlKlhLq/TbIA==",
+      "version": "5.16.9",
+      "resolved": "https://registry.npmjs.org/terser/-/terser-5.16.9.tgz",
+      "integrity": "sha512-HPa/FdTB9XGI2H1/keLFZHxl6WNvAI4YalHGtDQTlMnJcoqSab1UwL4l1hGEhs6/GmLHBZIg/YgB++jcbzoOEg==",
       "dev": true,
       "dependencies": {
         "@jridgewell/source-map": "^0.3.2",
