@@ -41,7 +41,7 @@
           <i class="fa-solid fa-hourglass"></i>
           <span data-translate>Expiration date</span>
         </th>
-        <th class="TipInfoReminderDate">
+        <th class="TipInfoReminderDate" data-ng-if="Authentication.session.role === 'receiver'">
           <i class="fa-solid fa-bell"></i>
           <span data-translate>Reminder date</span>
         </th>
