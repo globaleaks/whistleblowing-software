@@ -3,7 +3,7 @@
 # 5d82173c4528651ffb3192cfbc43353e_22888c7, 2015
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # Charles Peltier <charles@cl-info.fr>, 2015
-# Ettore Atalan <atalanttore@googlemail.com>, 2014-2022
+# Ettore Atalan <atalanttore@googlemail.com>, 2014-2023
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
@@ -52,8 +52,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022\n"
-"Language-Team: German (http://www.transifex.com/otf/globaleaks/language/de/)\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>, 2014-2023\n"
+"Language-Team: German (http://app.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: de\n"
@@ -509,7 +509,7 @@ msgid "Not provided."
 msgstr "Nicht angegeben."
 
 msgid "Set a reminder date"
-msgstr ""
+msgstr "Erinnerungsdatum festlegen"
 
 msgid "File a report"
 msgstr "Einen Bericht einreichen"
@@ -596,7 +596,7 @@ msgid "Recipients"
 msgstr "Empfänger"
 
 msgid "Reminder date"
-msgstr ""
+msgstr "Erinnerungsdatum"
 
 msgid "days"
 msgstr "Tage"
@@ -984,10 +984,10 @@ msgid "Administrators authorized to change user passwords:"
 msgstr "Administratoren, die berechtigt sind, Benutzerpasswörter zu ändern:"
 
 msgid "Enable file viewer"
-msgstr ""
+msgstr "Dateibetrachter aktivieren"
 
 msgid "Enable PGP"
-msgstr ""
+msgstr "PGP aktivieren"
 
 msgid "Enable simplified login"
 msgstr "Vereinfachte Anmeldung aktivieren"
