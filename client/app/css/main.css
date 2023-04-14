@@ -542,11 +542,6 @@ input[type="file"] {
 }
 
 #NodePresentation,
-#WhistleblowerSubmitBox {
-  margin-bottom: 2em;
-}
-
-#NodePresentation,
 #WhistleblowingQuestion,
 #WhistleblowerLoginPrompt {
   white-space: pre-wrap;
