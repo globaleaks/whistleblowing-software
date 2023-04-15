@@ -20,9 +20,19 @@ class ScriptHandler(BaseHandler):
     ]
 
     def get(self):
-        path = os.path.abspath(os.path.join(self.state.settings.scripts_path, str(self.request.tid)))
-        if not os.path.exists(path):
-            path = os.path.abspath(os.path.join(self.state.settings.scripts_path, "1"))
+        path1 = os.path.abspath(os.path.join(self.state.settings.scripts_path, str(self.request.tid)))
+        path2 = os.path.abspath(os.path.join(self.state.settings.scripts_path, "1"))
+
+        if os.path.exists(path1):
+            path = path1
+        elif self.request.tid != 1 and \
+                self.request.tid in self.state.tenants and \
+                self.state.tenants[self.request.tid].cache.mode not in ['default', 'demo'] and \
+                os.path.exists(path2):
+            path = path2
+        else:
+            self.request.setHeader(b'Content-Type', "text/javascript")
+            return
 
         directory_traversal_check(self.state.settings.scripts_path, path)
 

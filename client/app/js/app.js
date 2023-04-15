@@ -554,14 +554,12 @@ var GL = angular.module("GL", [
             }
           }
 
-          if ($rootScope.public.node.script) {
-            elem = document.getElementById("load-custom-script");
-            if (elem === null) {
-              elem = document.createElement("script");
-              elem.setAttribute("id", "load-custom-script");
-              elem.setAttribute("src", "script");
-              document.getElementsByTagName("body")[0].appendChild(elem);
-            }
+          elem = document.getElementById("load-custom-script");
+          if (elem === null) {
+            elem = document.createElement("script");
+            elem.setAttribute("id", "load-custom-script");
+            elem.setAttribute("src", "script");
+            document.getElementsByTagName("body")[0].appendChild(elem);
           }
 
           if ($rootScope.public.node.favicon) {
