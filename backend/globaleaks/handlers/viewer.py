@@ -14,6 +14,7 @@ class ViewerHandler(StaticFileHandler):
         directory_traversal_check(self.root, abspath)
 
         if not self.state.settings.disable_csp:
+            self.request.setHeader(b'Access-Control-Allow-Origin', "null")
             if filename == 'viewer/index.html':
                 self.request.setHeader(b'Content-Security-Policy',
                                        b"base-uri 'none';"
