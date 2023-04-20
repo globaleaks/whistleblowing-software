@@ -1223,8 +1223,8 @@ msgstr "Send"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "By confirming, you will postpone the expiration date to:"
 
-msgid "By confirming, you will set a remainder on date:"
-msgstr "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
+msgstr "By confirming, you will set a reminder on date:"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "This is a demo platform, please do not use it for real submissions."
