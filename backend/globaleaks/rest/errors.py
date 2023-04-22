@@ -69,15 +69,6 @@ class TwoFactorAuthCodeRequired(GLException):
     status_code = 300
 
 
-class HTTPAuthenticationRequired(GLException):
-    """
-    Basic Authentication Required
-    """
-    reason = "Basic Authentication Required"
-    error_code = 5
-    status_code = 401
-
-
 class ResourceNotFound(GLException):
     """
     Resource not found
