@@ -30,7 +30,7 @@ msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
 "Last-Translator: Daniel Vaknine, 2022-2023\n"
-"Language-Team: Swedish (http://www.transifex.com/otf/globaleaks/language/sv/)\n"
+"Language-Team: Swedish (http://app.transifex.com/otf/globaleaks/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sv\n"
@@ -308,7 +308,7 @@ msgid "Strong"
 msgstr "Starkt"
 
 msgid "Text shown on top of the interface for selecting channels"
-msgstr ""
+msgstr "Text som visas överst i gränssnittet för att välja kanaler"
 
 msgid "Silence email notifications"
 msgstr "Stäng av e-postaviseringar"
@@ -486,13 +486,13 @@ msgid "Not provided."
 msgstr "Tillhandahålls inte."
 
 msgid "Set a reminder date"
-msgstr ""
+msgstr "Sätt ett påminnelsedatum"
 
 msgid "File a report"
 msgstr "Lämna en rapport"
 
 msgid "Select a reporting channel:"
-msgstr ""
+msgstr "Välj en rapporteringskanal:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Vänligen ställ in ett lösenord innan du går vidare."
@@ -573,7 +573,7 @@ msgid "Recipients"
 msgstr "Mottagare"
 
 msgid "Reminder date"
-msgstr ""
+msgstr "Påminnelsedatum"
 
 msgid "days"
 msgstr "dagar"
@@ -757,7 +757,7 @@ msgstr "Till"
 msgid ""
 "Default mail configuration in use. Please consider using a private mail "
 "server."
-msgstr ""
+msgstr "Standard e-postkonfiguration används. Vänligen överväg att använda en privat e-postserver."
 
 msgid "SMTP email address"
 msgstr "SMTP-e-postadress"
@@ -961,10 +961,10 @@ msgid "Administrators authorized to change user passwords:"
 msgstr "Administratörer som tillåts ändra användarlösenord:"
 
 msgid "Enable file viewer"
-msgstr ""
+msgstr "Aktivera filvisare"
 
 msgid "Enable PGP"
-msgstr ""
+msgstr "Aktivera PGP"
 
 msgid "Enable simplified login"
 msgstr "Aktivera förenklad inloggning"
@@ -998,7 +998,7 @@ msgid "Number of days till notifying unread reports to users"
 msgstr "Antal dagar efter vilket användaren påminns om olästa rapporter"
 
 msgid "Custom support URL"
-msgstr ""
+msgstr "Anpassad support-URL"
 
 msgid "Disable the privacy panel"
 msgstr "Inaktivera integritetspanel"
@@ -1232,7 +1232,7 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Genom att klicka på förlängning så kommer du att förlänga tipsets utgångsdatum till:"
 
 msgid "By confirming, you will set a remainder on date:"
-msgstr ""
+msgstr "Genom att bekräfta ställs påminnelsedatum till:"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Detta är en demonstrationsplattform, vänligen använd den inte för verkliga tips."
@@ -1460,7 +1460,7 @@ msgid "Address"
 msgstr "Adress"
 
 msgid "Fiscal code"
-msgstr ""
+msgstr "Skattenummer"
 
 msgid "Tax code"
 msgstr "Skatteregistreringsnummer"

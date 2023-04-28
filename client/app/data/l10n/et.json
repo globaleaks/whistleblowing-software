@@ -389,7 +389,7 @@
   "Please write a motivation for the reply": "Kirjutage vastuse kohta motivatsioon",
   "Send": "Saada",
   "By confirming, you will postpone the expiration date to:": "Kinnitades lükkate aegumise edasi kuupäevale:",
-  "By confirming, you will set a remainder on date:": "By confirming, you will set a remainder on date:",
+  "By confirming, you will set a reminder on date:": "By confirming, you will set a reminder on date:",
   "This is a demo platform, please do not use it for real submissions.": "See on demoplatvorm, ärge kasutage seda tegelike teabeesituste jaoks.",
   "Install an authenticator app on your phone": "Installige oma telefoni autentimisrakendus",
   "Scan the QR code with the app": "Skannige rakendusega QR-kood",

@@ -389,7 +389,7 @@
   "Please write a motivation for the reply": "返信の動機を書いてください",
   "Send": "送信",
   "By confirming, you will postpone the expiration date to:": "確認すると、有効期限を以下に延期します:",
-  "By confirming, you will set a remainder on date:": "By confirming, you will set a remainder on date:",
+  "By confirming, you will set a reminder on date:": "By confirming, you will set a reminder on date:",
   "This is a demo platform, please do not use it for real submissions.": "これはデモプラットフォームです。実際の提出には使用しないでください。",
   "Install an authenticator app on your phone": "お使いの電話に認証アプリをインストールする",
   "Scan the QR code with the app": "アプリでQRコードをスキャンしてください",

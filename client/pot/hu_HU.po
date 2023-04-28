@@ -10,6 +10,7 @@
 # Kiss-Kálmán Dániel <kisskalmandaniel@gmail.com>, 2014
 # Kiss-Kálmán Dániel <kisskalmandaniel@gmail.com>, 2014
 # Marietta Le <marietta@boun.cr>, 2013
+# Marcell Dénes Jávor, 2023
 # Marietta Le <marietta@boun.cr>, 2013-2014
 # Melinda <ghostgirl1983@gmail.com>, 2013
 # Melinda <ghostgirl1983@gmail.com>, 2013
@@ -23,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2017-2018,2020-2023\n"
-"Language-Team: Hungarian (Hungary) (http://www.transifex.com/otf/globaleaks/language/hu_HU/)\n"
+"Last-Translator: Marcell Dénes Jávor, 2023\n"
+"Language-Team: Hungarian (Hungary) (http://app.transifex.com/otf/globaleaks/language/hu_HU/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: hu_HU\n"
@@ -746,7 +747,7 @@ msgid "Whistleblower"
 msgstr "Bejelentő"
 
 msgid "To"
-msgstr "Címzett"
+msgstr "Eddig:"
 
 msgid ""
 "Default mail configuration in use. Please consider using a private mail "
@@ -1297,10 +1298,10 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Utána másolja át a következő címet a telepített Tor Böngészőbe:"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "Küldött már be valamit? Adja meg a kulcskódját."
+msgstr "Küldött már be valamit? Adja meg a visszaigazoló kódját."
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr "A kulcs kód vagy nem érvényes,vagy a beküldés lejárt."
+msgstr "A visszaigazoló kód vagy nem érvényes, vagy a bejelentés lezárásra került. "
 
 msgid "Select a file or drag it here."
 msgstr "Válasszon ki egy fájlt a számítógépéről vagy húzza ide"

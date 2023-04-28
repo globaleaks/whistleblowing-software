@@ -7,7 +7,7 @@
 # John Wild <ac@elephantleague.org>, 2015
 # Jorma Karvonen <karvonen.jorma@gmail.com>, 2015,2017,2020
 # Juha Nurmi <juha.nurmi@ahmia.fi>, 2015
-# Max Moiseev <max.moiseev@chamber.fi>, 2020-2022
+# Max Moiseev <max.moiseev@chamber.fi>, 2020-2023
 # Panu Ahvenharju, 2018-2020
 # Ricky Tigg, 2022
 # Ricky Tigg, 2022
@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Eva Simonsson, 2020-2021,2023\n"
-"Language-Team: Finnish (http://www.transifex.com/otf/globaleaks/language/fi/)\n"
+"Last-Translator: Max Moiseev <max.moiseev@chamber.fi>, 2020-2023\n"
+"Language-Team: Finnish (http://app.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fi\n"
@@ -458,7 +458,7 @@ msgid "Logout"
 msgstr "Kirjaudu ulos"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr "Anna vastaanottajalle mahdollisuus myöntää käyttäjille raporttien käyttöoikeus"
+msgstr "Anna tämän vastaanottajan myöntää käyttöoikeuksia ilmoituksiin"
 
 msgid "Grant access"
 msgstr "Käyttöoikeuden myöntäminen"
@@ -545,7 +545,7 @@ msgid "Report statuses"
 msgstr "Ilmoitusten vaiheet"
 
 msgid "Channels"
-msgstr "Kanavia"
+msgstr "Kanavat"
 
 msgid "Hidden"
 msgstr "Piilotettu"
@@ -861,7 +861,7 @@ msgid "Low"
 msgstr "Matala"
 
 msgid "Trigger conditions"
-msgstr "Laukaisuehdot"
+msgstr "Esiintymisehdot"
 
 msgid "Sufficient"
 msgstr "Riittävä"
@@ -985,7 +985,7 @@ msgid "Number of days till notifying unread reports to users"
 msgstr "Aika (päivinä), jonka jälkeen käyttäjää muistutetaan uusista ilmoituksista"
 
 msgid "Custom support URL"
-msgstr ""
+msgstr "Syötä tuen osoite (URL)"
 
 msgid "Disable the privacy panel"
 msgstr "Poista tietosuojapaneeli käytöstä"
@@ -1290,10 +1290,10 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Kopioi ja liitä sitten seuraava osoite Tor-selaimeen:"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "Oletko jo lähettänyt vihjeen? Anna sen numero."
+msgstr "Oletko jo lähettänyt ilmoituksen? Syötä sen koodi."
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr "Koodi on joko virheellinen tai raportti on vanhentunut."
+msgstr "Koodi on virheellinen tai ilmoitus on vanhentunut."
 
 msgid "Select a file or drag it here."
 msgstr "Valitse tiedosto tai raahaa se tähän."
@@ -1401,7 +1401,7 @@ msgstr "Anna tilisi palautusavain salasanan palautusmenettelyn suorittamiseksi"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
-msgstr "Ilmoittajan henkilöllisyyden selvittämistä on pyydetty säilyttäjältä."
+msgstr "Valvojalle on lähetetty pyyntö ilmoittajan henkilötietoihin pääsemiseksi."
 
 msgid "Date of the request"
 msgstr "Pyynnön päivämäärä"
@@ -1479,12 +1479,12 @@ msgid "Your report was successful."
 msgstr "Ilmoituksesi onnistui."
 
 msgid "Remember your receipt for this report."
-msgstr "Muista ilmoituksen kuittausnumero."
+msgstr "Muista ilmoituksen koodi."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Kirjaudu sisään 16-numeroisen koodin avulla. Se mahdollistaa viestinnän ja lisätietojen antamisen."
+msgstr "Kirjaudu sisään 16-numeroisen koodin avulla. Se mahdollistaa viestimisen ja lisätietojen antamisen."
 
 msgid "View your report"
 msgstr "Tarkastele omaa vihjettä"
@@ -1759,7 +1759,7 @@ msgstr "Testisähköposti"
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr "Tämä on sähköpostiviesti, joka ilmoittaa sinulle, että on tehty pyyntö muuttaa sähköpostiosoitteesi muotoon {NewEmailAddress}."
+msgstr "Tässä sähköpostiviestissä ilmoitetaan, että sähköpostiosoitteesi on pyydetty muuttamaan muotoon {NewEmailAddress}."
 
 msgid "Click the following link to validate this change:"
 msgstr "Napsauta seuraavaa linkkiä vahvistaaksesi tämän muutoksen:"
@@ -1822,7 +1822,7 @@ msgstr "HTTPS-sertifikaatin uusiminen epäonnistui"
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr "Tämä on sähköpostiviesti, jossa ilmoitetaan, että säilytysstaho on valtuuttanut pääsyn ilmoituksen {TipNum} whistleblowing-identiteettiin."
+msgstr "Tässä sähköpostiviestissä ilmoitetaan, että valvoja on antanut sinulle pääsyn ilmoituksen {TipNum} tekijän henkilötietoihin."
 
 msgid "The report can be accessed at:"
 msgstr "Ilmoitukseen pääsee osoitteessa:"
@@ -1833,7 +1833,7 @@ msgstr "Pääsy ilmoittajan henkilöllisyyteen valtuutettu"
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr "Tämä on sähköpostiviesti, jossa ilmoitetaan, että säilytystaho on evännyt sinulta pääsyn ilmoituksen {TipNum} whistleblowing-identiteettiin."
+msgstr "Tässä sähköpostiviestissä ilmoitetaan, että säilytystaho on evännyt sinulta pääsyn ilmoituksen {TipNum} tekijän henkilötietoihin."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "Pääsy ilmoittajan henkilöllisyyteen evätty"
@@ -1841,7 +1841,7 @@ msgstr "Pääsy ilmoittajan henkilöllisyyteen evätty"
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr "Tämä on sähköpostiviesti, jossa ilmoitetaan, että vastaanottaja on pyytänyt pääsyä raportin {TipNum} ilmoittajan henkilöllisyyteen."
+msgstr "Tässä sähköpostiviestissä ilmoitetaan, että vastaanottaja on pyytänyt pääsyä ilmoituksen {TipNum} ilmoittajan henkilötietoihin."
 
 msgid "The request can be accessed at:"
 msgstr "Pyyntöön pääsee osoitteessa:"

@@ -9,9 +9,9 @@
 # Communia <ameaneantie@riseup.net>, 2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # C. E., 2019-2020
-# Giálisson Rocha, 2020
-# Giálisson Rocha, 2019
-# Giálisson Rocha, 2018-2019
+# C. E., 2020
+# C. E., 2019
+# C. E., 2018-2019
 # Claudio M. Vieira <clmantovani@bol.com.br>, 2015
 # Cleber de Souza Corrêa <cscorrea@gmail.com>, 2014
 # Communia <ameaneantie@riseup.net>, 2016
@@ -46,7 +46,7 @@ msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
 "Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2022\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/otf/globaleaks/language/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (http://app.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pt_BR\n"
