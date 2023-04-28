@@ -32,7 +32,7 @@ class ScriptHandler(BaseHandler):
             path = path2
         else:
             self.request.setHeader(b'Content-Type', "text/javascript")
-            return
+            return ""
 
         directory_traversal_check(self.state.settings.scripts_path, path)
 

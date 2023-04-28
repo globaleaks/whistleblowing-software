@@ -14,7 +14,9 @@ class TestFileInstance(helpers.TestHandler):
     @inlineCallbacks
     def test_get(self):
         handler = self.request()
-        yield self.assertRaises(ResourceNotFound, handler.get)
+        x = yield handler.get()
+
+        self.assertEqual(x, "")
 
         path = os.path.abspath(os.path.join(Settings.scripts_path, '1'))
         with open(path, 'w') as f:
