@@ -630,6 +630,10 @@ input[type="file"] {
   width: max-content;
 }
 
+#ReceiptCode {
+  text-align: center;
+}
+
 .StepIndex {
   display: inline-block;
   color: #c8d1e0;
