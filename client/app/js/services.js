@@ -726,7 +726,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
 
       if ($location.path() !== "/") {
         pageTitle = $rootScope.header_title;
-      } else if ($rootScope.page == "receiptpage") {
+      } else if ($rootScope.page === "receiptpage") {
         pageTitle = "Your report was successful.";
       }
 
@@ -1159,7 +1159,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     scrollToSteps: function() {
       try {
         $window.document.getElementsById("SubmissionForm")[0].scrollIntoView();
-      } catch(e) {}
+      } catch(e) {return;}
     },
 
     getConfirmation: function(confirmFun) {
