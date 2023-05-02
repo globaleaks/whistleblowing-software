@@ -32,6 +32,11 @@ a:hover,
   color: #5797d5;
 }
 
+legend {
+  display: contents;
+  font-size: inherit;
+}
+
 .onionaddress {
   font-weight: bold;
   word-break: break-all;

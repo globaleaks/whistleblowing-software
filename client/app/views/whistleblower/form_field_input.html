@@ -42,27 +42,25 @@
       </div>
       <div data-ng-switch-when="multichoice">
         <div data-ng-repeat="option in field.options | orderBy:'order'" name="{{'input-' +  entryIndex}}">
-          <input class="form-control-input inputelem" type="radio" id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}-option-{{$index}}" data-ng-model="entry['value']" value="{{option.id}}" data-ng-required="field.required" />
-          <span data-uib-tooltip="{{option.hint1}}" class="form-control-label" data-ng-class="{'text-underline': option.hint1}">{{option.label}}</span>
+          <input id="{{fieldEntry + '-option-' + $index}}" class="form-control-input inputelem" type="radio" data-ng-model="entry['value']" value="{{option.id}}" data-ng-required="field.required" />
+          <label for="{{fieldEntry + '-option-' + $index}}" data-uib-tooltip="{{option.hint1}}" class="form-control-label" data-ng-class="{'text-underline': option.hint1}">{{option.label}}</label>
         </div>
       </div>
       <div data-ng-switch-when="checkbox">
         <div data-ng-repeat="option in field.options | orderBy:field.attrs.display_alphabetically.value ? 'label' : 'order'">
-          <label>
-            <input id="{{fieldEntry}}"
-                   name="{{'input-' + $parent.entryIndex + '-option-' + entryIndex}}"
-                   class="form-control-input inputelem"
-                   data-ng-model="entry[option.id]"
-                   data-ng-required="entry.required_status"
-                   type="checkbox" />
-            <span data-uib-tooltip="{{option.hint1}}" class="form-control-label" data-ng-class="{'text-underline': option.hint1}">{{option.label}}</span>
-          </label>
+          <input id="{{fieldEntry + '-option-' + entryIndex}}"
+                 name="{{'input-' + $parent.entryIndex + '-option-' + entryIndex}}"
+                 class="form-control-input inputelem"
+                 data-ng-model="entry[option.id]"
+                 data-ng-required="entry.required_status"
+                 type="checkbox" />
+          <label for="{{fieldEntry + '-option-' + entryIndex}}" data-uib-tooltip="{{option.hint1}}" class="form-control-label" data-ng-class="{'text-underline': option.hint1}">{{option.label}}</label>
         </div>
       </div>
       <div data-ng-switch-when="date">
         <div class="input-group">
           <input id="{{fieldEntry}}"
-                 name="input-{{entryIndex}}"
+                 name="{{'input' - entryIndex}}"
                  class="form-control inputelem"
                  type="text"
                  readonly="readonly"
