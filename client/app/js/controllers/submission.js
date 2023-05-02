@@ -500,10 +500,6 @@ controller("SubmissionStepCtrl", ["$scope", "$filter", "fieldUtilities",
   $scope.stepId = "step-" + $scope.$index;
 
   $scope.rows = fieldUtilities.splitRows($scope.fields);
-
-  $scope.status = {
-    opened: false,
-  };
 }]).
 controller("SubmissionFieldErrKeyCtrl", ["$scope",
   function($scope) {
@@ -555,34 +551,11 @@ controller("SubmissionFieldCtrl", ["$scope", "fieldUtilities", function ($scope,
   if ($scope.field.type === "inputbox") {
     $scope.validator = fieldUtilities.getValidator($scope.field);
   } else if ($scope.field.type === "date") {
-    $scope.dateOptions = {};
-
-    if (angular.isDefined($scope.field.attrs.min_date)) {
-      $scope.dateOptions.minDate = new Date($scope.field.attrs.min_date.value);
-    }
-
-    if (angular.isDefined($scope.field.attrs.max_date)) {
-      $scope.dateOptions.maxDate = new Date($scope.field.attrs.max_date.value);
-    }
-
-    $scope.status = {
-      opened: false
-    };
-
-    $scope.open = function() {
-      $scope.status.opened = true;
-    };
   } else if ($scope.field.type === "daterange") {
-    $scope.dateOptions1 = {};
-    $scope.dateOptions2 = {};
-
-    if (angular.isDefined($scope.field.attrs.min_date)) {
-      $scope.dateOptions1.minDate = new Date($scope.field.attrs.min_date.value);
-    }
-
-    if (angular.isDefined($scope.field.attrs.max_date)) {
-      $scope.dateOptions2 = new Date($scope.field.attrs.max_date.value);
-    }
+    $scope.daterange = {
+      "start": "",
+      "end": ""
+    };
 
     $scope.clear = function() {
       $scope.daterange.start = "";
@@ -591,36 +564,11 @@ controller("SubmissionFieldCtrl", ["$scope", "fieldUtilities", function ($scope,
       $scope.addAnswerEntry($scope.entries);
     };
 
-    $scope.daterange = {
-      "start": "",
-      "end": ""
-    };
-
-    $scope.$watch("daterange.start", function () {
-      if ($scope.daterange.start) {
-        $scope.dateOptions2.minDate = new Date($scope.daterange.start);
-      }
-    });
-
     $scope.$watch("daterange.end", function () {
       if ($scope.daterange.start && $scope.daterange.end) {
         $scope.entries[0].value = String(Number($scope.daterange.start)) + ":" + String(Number($scope.daterange.end));
       }
     });
-
-    $scope.status = {
-      openedStart: false,
-      openedEnd: false
-    };
-
-    $scope.openStart = function() {
-      $scope.status.openedStart = true;
-      $scope.clear();
-    };
-
-    $scope.openEnd = function() {
-      $scope.status.openedEnd = true;
-    };
   }
 
   $scope.validateRequiredCheckbox = function(field, entry) {
