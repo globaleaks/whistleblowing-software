@@ -1156,8 +1156,10 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       $window.print();
     },
 
-    scrollToTop: function() {
-      $window.document.getElementsByTagName("body")[0].scrollIntoView();
+    scrollToSteps: function() {
+      try {
+        $window.document.getElementsById("SubmissionForm")[0].scrollIntoView();
+      } catch(e) {}
     },
 
     getConfirmation: function(confirmFun) {
@@ -1506,8 +1508,9 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
       },
 
       updateAnswers: function(scope, parent, list, answers) {
-        var entry, option, i, j;
         var self = this;
+        var ret = false;
+        var entry, option, i, j;
 
         angular.forEach(list, function(field) {
           if (self.isFieldTriggered(parent, field, scope.answers, scope.score)) {
@@ -1522,14 +1525,14 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
 
           if (field.id in answers) {
             for (i=0; i<answers[field.id].length; i++) {
-              self.updateAnswers(scope, field, field.children, answers[field.id][i]);
+              ret |= self.updateAnswers(scope, field, field.children, answers[field.id][i]);
             }
           } else {
-            self.updateAnswers(scope, field, field.children, {});
+            ret |= self.updateAnswers(scope, field, field.children, {});
           }
 
           if (!field.enabled) {
-            return;
+            return false;
           }
 
           if (scope.public.node.enable_scoring_system) {
@@ -1562,6 +1565,8 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
               entry.required_status = field.required && !entry["value"];
             }
 
+            ret |= entry.required_status;
+
             /* Block related to evaluate options */
             if (["checkbox", "selectbox", "multichoice"].indexOf(field.type) > -1) {
               for (j=0; j<field.options.length; j++) {
@@ -1590,17 +1595,20 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
             }
           }
         });
+
+	return ret;
       },
 
       onAnswersUpdate: function(scope) {
         var self = this;
+        var ret = false;
         scope.block_submission = false;
         scope.score = 0;
         scope.points_to_sum = 0;
         scope.points_to_mul = 1;
 
         if(!scope.questionnaire) {
-          return;
+          return false;
         }
 
         if (scope.context) {
@@ -1610,13 +1618,15 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
         angular.forEach(scope.questionnaire.steps, function(step) {
           step.enabled = self.isFieldTriggered(null, step, scope.answers, scope.score);
 
-          self.updateAnswers(scope, step, step.children, scope.answers);
+          ret |= self.updateAnswers(scope, step, step.children, scope.answers);
         });
 
         if (scope.context) {
           scope.submission._submission.score = scope.score;
           scope.submission.blocked = scope.block_submission;
         }
+
+	return ret;
       },
 
       parseField: function(field, parsedFields) {

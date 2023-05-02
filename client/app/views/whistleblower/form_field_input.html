@@ -12,7 +12,7 @@
                   data-ng-minlength="field.attrs.min_len.value"
                   maxlength="{{field.attrs.max_len.value}}"
                   aria-label="{{field.label}}"
-                  data-ng-required="entry.required_status"
+                  data-ng-required="validate[navigation] && entry.required_status"
                   data-ng-attr-placeholder="{{field.placeholder}}"
                   dynamic-textarea></textarea>
         <div class="clearfix">
@@ -24,7 +24,7 @@
         </div>
       </div>
       <div data-ng-switch-when="selectbox">
-        <select id="{{fieldEntry}}" name="{{'input-' +  entryIndex}}" class="custom-select inputelem" data-ng-model="entry['value']" data-ng-required="entry.required_status" data-ng-show="field.options.length < 10">
+        <select id="{{fieldEntry}}" name="{{'input-' +  entryIndex}}" class="custom-select inputelem" data-ng-model="entry['value']" data-ng-required="validate[navigation] && entry.required_status" data-ng-show="field.options.length < 10">
           <option class="d-none" value=""></option>
           <option data-ng-repeat="option in field.options | orderBy:field.attrs.display_alphabetically.value ? 'label' : 'order'" id="{{fieldEntry}}-option-{{$index}}" value="{{option.id}}">{{option.label}}</option>
         </select>
@@ -42,7 +42,7 @@
       </div>
       <div data-ng-switch-when="multichoice">
         <div data-ng-repeat="option in field.options | orderBy:'order'" name="{{'input-' +  entryIndex}}">
-          <input id="{{fieldEntry + '-option-' + $index}}" class="form-control-input inputelem" type="radio" data-ng-model="entry['value']" value="{{option.id}}" data-ng-required="field.required" />
+          <input id="{{fieldEntry + '-option-' + $index}}" class="form-control-input inputelem" type="radio" data-ng-model="entry['value']" value="{{option.id}}" data-ng-required="validate[navigation] && field.required" />
           <label for="{{fieldEntry + '-option-' + $index}}" data-uib-tooltip="{{option.hint1}}" class="form-control-label" data-ng-class="{'text-underline': option.hint1}">{{option.label}}</label>
         </div>
       </div>
@@ -52,7 +52,7 @@
                  name="{{'input-' + $parent.entryIndex + '-option-' + entryIndex}}"
                  class="form-control-input inputelem"
                  data-ng-model="entry[option.id]"
-                 data-ng-required="entry.required_status"
+                 data-ng-required="validate[navigation] && entry.required_status"
                  type="checkbox" />
           <label for="{{fieldEntry + '-option-' + entryIndex}}" data-uib-tooltip="{{option.hint1}}" class="form-control-label" data-ng-class="{'text-underline': option.hint1}">{{option.label}}</label>
         </div>
@@ -66,7 +66,7 @@
                  readonly="readonly"
                  aria-label="{{field.label}}"
                  data-ng-model="entry['value']"
-                 data-ng-required="entry.required_status"
+                 data-ng-required="validate[navigation] && entry.required_status"
                  data-ng-click="open()"
                  uib-datepicker-popup
                  datepicker-options="dateOptions"
@@ -86,7 +86,7 @@
                    readonly="readonly"
                    aria-label="{{field.label}}"
                    data-ng-model="daterange.start"
-                   data-ng-required="entry.required_status"
+                   data-ng-required="validate[navigation] && entry.required_status"
                    data-ng-attr-placeholder="{{field.placeholder}}"
                    data-ng-click="openStart()"
                    uib-datepicker-popup
@@ -106,7 +106,7 @@
                    readonly="readonly"
                    aria-label="{{field.label}}"
                    data-ng-model="daterange.end"
-                   data-ng-required="entry.required_status"
+                   data-ng-required="validate[navigation] && entry.required_status"
                    data-ng-attr-placeholder="{{field.placeholder}}"
                    data-ng-click="openEnd()"
                    uib-datepicker-popup
@@ -131,7 +131,7 @@
                    name="input-{{entryIndex}}"
                    class="form-check-input inputelem"
                    data-ng-model="entry['value']"
-                   data-ng-required="entry.required_status"
+                   data-ng-required="validate[navigation] && entry.required_status"
                    value="{{field.value}}"
                    type="checkbox" />
             <span class="form-check-label">{{field.attrs.checkbox_label.value}}</span>
@@ -165,7 +165,7 @@
                data-ng-minlength="field.attrs.min_len.value"
                data-ng-pattern="validator"
                maxlength="{{field.attrs.max_len.value}}"
-               data-ng-required="entry.required_status"
+               data-ng-required="validate[navigation] && entry.required_status"
                data-ng-attr-placeholder="{{field.placeholder}}"
                aria-label="{{field.label}}"
                type="text" />
