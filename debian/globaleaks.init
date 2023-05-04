@@ -182,7 +182,7 @@ globaleaks_start()
         ulimit -n "$MAX_FILEDESCRIPTORS"
     fi
 
-    if [ ! -d "/dev/shm/gloaleaks" ]; then
+    if [ ! -d "/dev/shm/globaleaks" ]; then
         mkdir -m 700 /dev/shm/globaleaks && chown $USERNAME:$USERNAME /dev/shm/globaleaks
     fi
 
