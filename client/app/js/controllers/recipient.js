@@ -1,5 +1,6 @@
 GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "$uibModal", "$window", "RTipExport", "TokenResource",
   function($scope, $filter, $http, $location, $uibModal, $window, RTipExport, TokenResource) {
+    console.log($scope.resources.rtips.rtips);
 
   $scope.search = undefined;
   $scope.currentPage = 1;
@@ -23,6 +24,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
      tip.context_name = tip.context.name;
      tip.questionnaire = $scope.resources.rtips.questionnaires[tip.questionnaire];
      tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText(tip.status, tip.substatus, $scope.submission_statuses);
+    //  alert(JSON.stringify(tip))
 
      if (unique_keys.includes(tip.submissionStatusStr) === false) {
        unique_keys.push(tip.submissionStatusStr);
@@ -232,4 +234,5 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
 
     return $scope.Utils.runRecipientOperation($scope.operation, {"rtips": $scope.selected_tips}, true);
   };
+
 }]);
