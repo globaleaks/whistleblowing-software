@@ -1,7 +1,4 @@
 GL.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
-  console.log($scope.resources);
-  console.log($scope.resources.users);
-  console.log($scope.resources.submission_statuses);
   $scope.tabs = [
     {
       title:"Report statuses",

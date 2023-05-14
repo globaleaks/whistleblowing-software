@@ -1,6 +1,5 @@
 GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "$uibModal", "$window", "RTipExport", "TokenResource",
   function($scope, $filter, $http, $location, $uibModal, $window, RTipExport, TokenResource) {
-    console.log($scope.resources.rtips.rtips);
 
   $scope.search = undefined;
   $scope.currentPage = 1;

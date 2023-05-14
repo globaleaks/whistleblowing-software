@@ -58,11 +58,11 @@ a:hover,
   padding: 5px;
 }
 
-.uib-button-bar > .btn-group > .btn-info {
+.uib-button-bar>.btn-group>.btn-info {
   display: none;
 }
 
-.uib-button-bar > .btn-success {
+.uib-button-bar>.btn-success {
   display: none;
 }
 
@@ -100,15 +100,15 @@ a:hover,
 [dir] .full button,
 [dir] .btn-info:not(:disabled, .disabled):active,
 [dir] .btn-info:not(:disabled, .disabled).active,
-[dir] .show > .btn-info.dropdown-toggle {
+[dir] .show>.btn-info.dropdown-toggle {
   background: #dde3ed;
 }
 
-[dir] .full > button {
+[dir] .full>button {
   color: #2866a2;
 }
 
-[dir] .uib-datepicker td > .active {
+[dir] .uib-datepicker td>.active {
   color: #fff;
 }
 
@@ -147,7 +147,7 @@ a:hover,
   left: auto;
 }
 
-.dropdown-multiselect .dropdown-menu > li > a {
+.dropdown-multiselect .dropdown-menu>li>a {
   display: block;
   padding: 3px 20px;
   clear: both;
@@ -159,7 +159,7 @@ a:hover,
   cursor: pointer;
 }
 
-.dropdown-multiselect .dropdown-menu > li > a:hover {
+.dropdown-multiselect .dropdown-menu>li>a:hover {
   background: #f5f7fa;
 }
 
@@ -400,7 +400,7 @@ a:hover,
 .selectedTip,
 [dir] .card-header,
 [dir] .table-striped tbody tr:nth-of-type(odd),
-[dir] .table-striped > tbody > tr.selectedTip:nth-child(odd) > td {
+[dir] .table-striped>tbody>tr.selectedTip:nth-child(odd)>td {
   background-color: #f5f7fa;
 }
 
@@ -443,6 +443,7 @@ a:hover,
 }
 
 @keyframes fadeinout {
+
   0%,
   100% {
     opacity: 0;
@@ -494,7 +495,7 @@ input[type="file"] {
   font-size: smaller;
 }
 
-@media screen and (width >= 768px) {
+@media screen and (width >=768px) {
   .modal-lg .modal-dialog {
     width: 600px;
   }
@@ -827,7 +828,8 @@ text.axis-worktime {
   fill: #1d1f24;
 }
 
-.disclaimer-text, .tos-text {
+.disclaimer-text,
+.tos-text {
   display: block;
   padding: 1em;
   font-family: monospace;
@@ -916,9 +918,19 @@ html[dir="ltr"] #Receipt {
 
 [dir] .collapse,
 [dir] .navbar-collapse {
- height: auto !important;
+  height: auto !important;
 }
 
 [dir] .navbar {
   padding: 0;
+}
+
+/* canvas#doughnut {
+  width: 1000px !important;
+  height: 1000px !important;
+} */
+
+canvas#lineGraph {
+  width: 1200px !important;
+  height: 600px !important;
 }

@@ -1119,7 +1119,6 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     },
 
     getSubmissionStatusText: function(status, substatus, submission_statuses) {
-      console.log(status, substatus, submission_statuses);
       var text;
       for (var i = 0; i < submission_statuses.length; i++) {
         if (submission_statuses[i].id === status) {
