@@ -316,7 +316,7 @@ factory("Submission", ["$q", "$location", "$rootScope", "Authentication", "GLRes
 
       return self._submission.$save().then(function(response) {
         $location.path("/");
-        $rootScope.Authentication.session.receipt = response.receipt;
+        $rootScope.receipt = response.receipt;
         $rootScope.setPage("receiptpage");
       });
     };
