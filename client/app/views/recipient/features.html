@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h3>Total Reports: {{totalReports}}</h3>
+      <ul>
+        <li ng-repeat="report in reports">
+          Report Label: {{report.label ? report.label : "unlabeled"}} - Status: {{report.submissionStatusStr}}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col">
+      <h2>Submission Statuses</h2>
+      <ul>
+        <li ng-repeat="status in statusPercentages">
+          {{status.status}}: {{status.count}} ({{status.percentage}}%)
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h3>Submission Statuses LineGraph</h3>
+      <canvas class="lineGraph" id="statusBarChart"></canvas>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h2>Submission Statuses Doughnut</h2>
+      <canvas class="doughnut" id="doughnut"></canvas>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col">
+      <h3>Submission Labels</h3>
+      <ul>
+        <li ng-repeat="(label, data) in labelCounts">
+          {{label}}: {{data.count}} ({{data.percentage}})
+        </li>
+        <li>
+          unlabeled: {{unlabeledCount.count}} ({{unlabeledCount.percentage}})
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h3>Submission Labels LineGraph</h3>
+      <canvas class="lineGraph" id="labelCountsChart"></canvas>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col">
+      <h3>Average recipient action time difference: {{averageDiffInDays}} days</h3>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col">
+      <h3>Report Count Per Month</h3>
+      <ul>
+        <li ng-repeat="(monthYear, count) in reportCount">
+          {{monthYear}}: {{count}} reports
+        </li>
+      </ul>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col">
+      <h3>TOR and HTTPS Connections</h3>
+      <ul>
+        <li>TOR Connections: {{ torCount }} {{ torPercentage.toFixed(2) }}%</li>
+        <li>HTTPS Connections: {{ httpsCount }} {{ httpsPercentage.toFixed(2) }}%</li>
+      </ul>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col">
+      <h3>UnansweredTips</h3>
+      <ul>
+        <li>
+          UnansweredTipsCount : {{unansweredTipsCount}}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col">
+      <h3>Report Count Per Month LineGraph</h3>
+      <canvas class="lineGraph" id="perMonthLineGraph"></canvas>
+    </div>
+  </div>
+</div>
