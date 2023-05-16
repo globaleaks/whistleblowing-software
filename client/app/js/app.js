@@ -204,8 +204,9 @@ var GL = angular.module("GL", [
         sidebar: "views/recipient/sidebar.html",
         resolve: {
           access: requireAuth("receiver"),
-          resources: fetchResources("receiver", ["rtips"])
+          resources: fetchResources("receiver", ["rtips","preferences"])
         }
+       
       }).
       when("/admin/home", {
         templateUrl: "views/admin/home.html",

@@ -924,13 +924,20 @@ html[dir="ltr"] #Receipt {
 [dir] .navbar {
   padding: 0;
 }
-
-/* canvas#doughnut {
-  width: 1000px !important;
-  height: 1000px !important;
-} */
+/* Feature Statistic Styling */
+canvas#doughnut {
+  height: 885px !important;
+  width: 885px !important;
+}
 
 canvas#lineGraph {
-  width: 1200px !important;
-  height: 600px !important;
+  height: 442px !important;
+  width: 885px !important;
+
+}
+hr {
+  height: 2px; 
+  background-color: black; 
+  border: none; 
+  margin: 10px 0;
 }
