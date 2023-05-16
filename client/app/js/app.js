@@ -197,10 +197,10 @@ var GL = angular.module("GL", [
           resources: fetchResources("receiver", ["preferences", "rtips"])
         }
       }).
-       when("/recipient/features", {
-        templateUrl: "views/recipient/features.html",
-        controller: "FeaturesCtrl",
-        header_title: "Features",
+       when("/recipient/statistics", {
+        templateUrl: "views/recipient/statistics.html",
+        controller: "StatisticsCtrl",
+        header_title: "Statistics",
         sidebar: "views/recipient/sidebar.html",
         resolve: {
           access: requireAuth("receiver"),

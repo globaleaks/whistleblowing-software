@@ -77,6 +77,14 @@ a:hover,
   color: #377abc;
 }
 
+.custom-select{
+  transform: translateY(-6px);
+}
+
+.custom-bold{
+  font-weight: bold;
+}
+
 .nav,
 .pagination,
 .carousel,
