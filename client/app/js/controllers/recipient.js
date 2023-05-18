@@ -237,7 +237,40 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
 .controller("StatisticsCtrl", ["$scope", "$location", "$filter", "$http", "$interval", "$routeParams", "$uibModal", "Authentication", "RTip", "WBTip", "RTipExport", "RTipDownloadRFile", "WBTipDownloadFile", "fieldUtilities", "RTipViewRFile",
   function ($scope, $location, $filter, $http, $interval, $routeParams, $uibModal, Authentication, RTip, WBTip, RTipExport, RTipDownloadRFile, WBTipDownloadFile, fieldUtilities, RTipViewRFile) {
 
-
+    function generateBarGraph(documentID, context, type, graphLabels, graphTitle,graphData, xlabel, ylabel) {
+      var statusCtx = document.getElementById(documentID).getContext(context);
+      var statusBarChart = new Chart(statusCtx, {
+        type: type,
+        data: {
+          labels: graphLabels,
+          datasets: [{
+          backgroundColor: 'rgba(55, 122, 188, 0.6)',
+          label: graphTitle,
+          data: graphData,
+         }]
+        },
+        options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: xlabel
+            }
+          },
+          y: {
+           beginAtZero: true,
+           title: {
+            display: true,
+            text: ylabel
+           }
+          }
+         }
+        },
+      });
+    }
 
     $scope.reportingChannel = []
     $scope.reports = $scope.resources.rtips.rtips;
@@ -380,44 +413,9 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
 
 
 
-       var statusCtx = document.getElementById("statusBarChart").getContext("2d");
-       var statusBarChart = new Chart(statusCtx, {
-        type: 'bar',
-        data: {
-         labels: statusLabels,
-         datasets: [{
-          backgroundColor: 'rgba(55, 122, 188, 0.6)',
-          // barThickness: 60,
-          // maxBarThickness: 60,
-          label: 'Statuses',
-          data: statusData,
-         }]
-        },
-        options: {
-         indexAxis: 'y',
-         responsive: true,
-         scales: {
-          x: {
-           beginAtZero: true,
-           title: {
-            display: true,
-            text: 'Number of Reports'
-           }
-          },
-          y: {
-           beginAtZero: true,
-           title: {
-            display: true,
-            text: 'Status'
-           }
-          }
-         }
-        },
-       });
 
 
-    function generateBarGraph(documentID, context, type, graphLabels, graphTitle,graphData, xlabel, ylabel) {
-    }
+
 
 
 
