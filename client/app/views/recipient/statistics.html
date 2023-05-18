@@ -79,22 +79,52 @@
     </tbody>
   </table>
 
-  
-  <!--  <div class="row">-->
-  <!--    <div class="col">-->
-  <!--  <h3>Total Reports: {{totalReports}}</h3>-->
-  <!--  <ul>-->
-  <!--    <li ng-repeat="report in reports">-->
-  <!--      Report Label: {{report.label ? report.label : "unlabeled"}} - Status: {{report.submissionStatusStr}}-->
-  <!--    </li>-->
-  <!--  </ul>-->
-  <!--    </div>-->
-  <!--  </div>-->
-
-  <br>
+  <br><br><br>
   <div class="row">
     <div class="col">
       <canvas width="1200" class="lineGraph" id="statusBarChart"></canvas>
+    </div>
+  </div>
+  <h3>Interection Report</h3><br>
+  <table class="table table-striped" id="tipList" data-ng-init="sortKey = 'creation_date'; sortReverse=true;">
+    <thead>
+      <tr>
+        <th></th>
+        <th>
+          Total Report
+        </th>
+        <th>
+          The average time of closure of the submission
+        </th>
+        <th>
+          Total Unanswered Tips
+        </th>
+        <th>
+          Number of interection with whislteblower
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td>
+          {{totalReports}}
+        </td>
+        <td>
+          {{averageClosureTime}}days
+        </td>
+        <td>
+          {{unansweredCount}}
+        </td>
+        <td>
+          {{receiverCount}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="col">
+      <canvas class="lineGraph" id="perMonthLineGraph"></canvas>
     </div>
   </div>
 
