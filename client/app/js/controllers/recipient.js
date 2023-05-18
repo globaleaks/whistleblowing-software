@@ -271,14 +271,47 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
           },
         });
       }
+      function generateLineGraph(documentID, context, type, graphLabels, graphTitle, graphData, xlabel, ylabel) {
+        var ctx = document.getElementById(documentID).getContext(context);
+        var perMonthLineGraph = new Chart(ctx, {
+          type: type,
+          data: {
+            labels: graphLabels,
+            datasets: [{
+              label: graphTitle,
+              data: graphData,
+              fill: false,
+              borderColor: 'rgb(75, 192, 192)',
+              tension: 0.1
+            }]
+          },
+          options: {
+            // indexAxis: 'y',
+            responsive: true,
+            scales: {
+              x: {
+                display: true,
+                title: {
+                  display: true,
+                  text: xlabel
+                }
+              },
+              y: {
+                display: true,
+                title: {
+                  display: true,
+                  text: ylabel
+                }
+              }
+            }
+          },
+        });
+      }
+
 
       $scope.reportingChannel = []
       $scope.reports = $scope.resources.rtips.rtips;
       $scope.totalReports = $scope.reports.length;
-      $scope.labelCounts = {};
-      $scope.unlabeledCount = 0;
-      $scope.unlabeledCountDefault = 0;
-      $scope.labeledCountDefault = 0;
       $scope.statusCount = { 'New': { 'startDate': 0, 'updateDate': 0, 'endDate': 0, 'count': 0 }, 'Opened': { 'startDate': 0, 'updateDate': 0, 'endDate': 0, 'count': 0 }, 'Closed': { 'startDate': 0, 'updateDate': 0, 'endDate': 0, 'count': 0 } };
       $scope.statusPercentages = [];
       $scope.statues = []
@@ -291,6 +324,10 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
       $scope.format = 'dd/MM/yyyy';
       $scope.unansweredTips = [];
       $scope.unansweredCount = 0;
+      $scope.labelCounts = {};
+      $scope.unlabeledCount = 0;
+      $scope.unlabeledCountDefault = 0;
+      $scope.labeledCountDefault = 0;
 
       var closureTimes = [];
       var totalClosureTime = 0;
@@ -298,7 +335,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
       var reportCountPerMonth = {};
       var torCount = 0;
       var httpsCount = 0;
-      
+
       angular.forEach($scope.resources.rtips.rtips, function (tip) {
 
         $scope.tip = new RTip({ id: tip.id }, function (tip) {
@@ -307,13 +344,13 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
               $scope.receiverCount++
             }
           }
-            
+
           for (var item of tip.comments) {
-            unanswered =true
+            unanswered = true
             if (item.type === 'whistleblower') {
               for (var receiver of tip.comments) {
                 if (receiver.type === 'receiver') {
-                  unanswered =false
+                  unanswered = false
                   break;
                 }
               }
@@ -329,19 +366,6 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
         tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText(tip.status, tip.substatus, $scope.submission_statuses);
 
         console.log(tip);
-
-        var label = tip.label
-        if (tip.label) {
-          if ($scope.labelCounts[label]) {
-            $scope.labelCounts[label]++;
-          } else {
-            $scope.labelCounts[label] = 1;
-          }
-          $scope.labeledCountDefault++;
-        } else {
-          $scope.unlabeledCount++;
-          $scope.unlabeledCountDefault++;
-        }
 
         var expirationDate = new Date(tip.expiration_date);
         var updateDate = new Date(tip.update_date);
@@ -392,6 +416,19 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
         closureTimes.push(closureTime);
         totalClosureTime += closureTime;
 
+        // For Lable
+        var label = tip.label;
+        if (label) {
+          if ($scope.labelCounts[label]) {
+            $scope.labelCounts[label]++;
+          } else {
+            $scope.labelCounts[label] = 1;
+          }
+          $scope.labeledCountDefault++;
+        } else {
+          $scope.unlabeledCount++;
+          $scope.unlabeledCountDefault++;
+        }
 
       });
 
@@ -453,9 +490,11 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
       };
 
       /* =============================================== Interaction Statistics =============================================== */
-      
-      $scope.generateInteractionGraph = function () {
+
+      $scope.generateInteractionLineGraph = function () {
         var reportCount = reportCountPerMonth;
+        console.log(reportCount, "reportCount");
+
         if ($scope.totalReports > 0) {
           averageClosureTime = totalClosureTime / $scope.totalReports / (1000 * 60 * 60 * 24);
         }
@@ -463,50 +502,44 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
 
 
         var labels = Object.keys(reportCount);
-        var data = Object.values(reportCount);
-  
-        generateBarGraph('perMonthLineGraph', '2d', 'line', labels, 'Interaction Stataistics', data, 'Reports', 'Month')
-     
+        var reportData = Object.values(reportCount);
+
+        generateLineGraph('perMonthLineGraph', '2d', 'line', labels, 'Interaction Stataistics', reportData, 'Month', 'Reports')
       }
-      $scope.generateInteractionGraph();
+      $scope.generateInteractionLineGraph();
+
+      $scope.generateInteractionBarGraph = function () {
+
+        var totalItemCount = $scope.totalReports;
+
+        angular.forEach($scope.labelCounts, function (count, label) {
+          var percentage = (count / totalItemCount) * 100;
+          $scope.labelCounts[label] = {
+            count: count,
+            percentage: percentage.toFixed(2) + "%"
+          };
+        });
+
+        var unlabeledPercentage = ($scope.unlabeledCount / totalItemCount) * 100;
+        $scope.unlabeledCount = {
+          count: $scope.unlabeledCount,
+          percentage: unlabeledPercentage.toFixed(2) + "%"
+        };
 
 
+        var labelCountsData = Object.values($scope.labelCounts).map(function (label) {
+          return label.count;
+        });
 
-      // var labels = Object.keys($scope.reportCount);
-      // var data = Object.values($scope.reportCount);
-      // var ctx = document.getElementById('perMonthLineGraph').getContext('2d');
-      // var perMonthLineGraph = new Chart(ctx, {
-      //   type: 'line',
-      //   data: {
-      //     labels: labels,
-      //     datasets: [{
-      //       label: 'Reports',
-      //       data: data,
-      //       fill: false,
-      //       borderColor: 'rgb(75, 192, 192)',
-      //       tension: 0.1
-      //     }]
-      //   },
-      //   options: {
-      //     responsive: true,
-      //     scales: {
-      //       x: {
-      //         display: true,
-      //         title: {
-      //           display: true,
-      //           text: 'Month'
-      //         }
-      //       },
-      //       y: {
-      //         display: true,
-      //         title: {
-      //           display: true,
-      //           text: 'Reports'
-      //         }
-      //       }
-      //     }
-      //   }
-      // });
+        var unlabeledCountData = $scope.unlabeledCount.count;
+        var totalReports = $scope.totalReports
+        var labels=['Total Reports', ...Object.keys($scope.labelCounts), 'Unlabeled']
+        var data = [totalReports, ...labelCountsData, unlabeledCountData]
+        generateBarGraph('labelCountsChart', '2d', 'bar', labels, 'Interaction Stataistics', data, 'Number of Reports', 'Label')
+      }
+      $scope.generateInteractionBarGraph();
+
+     
 
 
       //   $scope.reportingChannel = []
