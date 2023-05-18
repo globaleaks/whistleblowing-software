@@ -1,17 +1,30 @@
 <div class="col-md-10">
   <div class="row col-md-12">
-    <span data-translate="" class="custom-bold">Start date</span>
+    <span id="tip-action-reload"
+          data-ng-click="reload()"
+          data-uib-tooltip="{{'Refresh' | translate}}"
+          class="btn btn-outline-secondary custom-translate">
+      <i class="fa-solid fa-sync"></i>
+    </span>
+    &nbsp;&nbsp;&nbsp;<span id="tip-action-export"
+          data-ng-click="reload()"
+          data-uib-tooltip="{{'Refresh' | translate}}"
+          class="btn btn-outline-secondary custom-translate">
+      <i class="fa-solid fa-file-export"></i>
+    </span>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span data-translate="" class="custom-bold">Start date</span>
     <div class="col-md-2">
-      <input type="text" class="form-control custom-select" id="startDate" ng-click="openStartDatePicker()"
+      <input type="text" class="form-control custom-translate" id="startDate" ng-click="openStartDatePicker()"
         ng-model="startDate" uib-datepicker-popup="{{format}}" is-open="startDatePickerOpen" />
     </div>
     &nbsp;&nbsp;<span data-translate="" class="custom-bold">End date</span>
     <div class="col-md-2">
-      <input type="text" class="form-control custom-select" id="endDate" ng-click="openEndDatePicker()"
+      <input type="text" class="form-control custom-translate" id="endDate" ng-click="openEndDatePicker()"
         ng-model="endDate" uib-datepicker-popup="{{format}}" is-open="endDatePickerOpen" />
     </div>
     &nbsp;&nbsp;<span data-translate="" class="custom-bold">Channel</span>
-    <div class="col-md-2"><i><select class="form-control custom-select" data-ng-model="channel"
+    <div class="col-md-2"><i><select class="form-control custom-translate" data-ng-model="channel"
           data-ng-options="item for item in reportingChannel"></select></i></div>
   </div>
   <br>
@@ -48,13 +61,13 @@
           {{totalReports}}
         </td>
         <td>
-          {{((statusCount["New"]/ totalReports)*100).toFixed(2)}}%
+          {{((statusCount["New"]["count"]/ totalReports)*100).toFixed(2)}}%
         </td>
         <td>
-          {{((statusCount["Opened"]/ totalReports)*100).toFixed(2)}}%
+          {{((statusCount["Opened"]["count"]/ totalReports)*100).toFixed(2)}}%
         </td>
         <td>
-          {{((statusCount["Closed"]/ totalReports)*100).toFixed(2)}}%
+          {{((statusCount["Closed"]["count"]/ totalReports)*100).toFixed(2)}}%
         </td>
         <td>
           {{((unlabeledCountDefault/ totalReports)*100).toFixed(2)}}%
@@ -92,69 +105,69 @@
       <canvas class="doughnut" id="doughnut"></canvas>
     </div>
   </div> -->
-  <hr>
-  <div class="row">
-    <div class="col">
-      <h3>Submission Labels</h3>
-      <ul>
-        <li ng-repeat="(label, data) in labelCounts">
-          {{label}}: {{data.count}} ({{data.percentage}})
-        </li>
-        <li>
-          unlabeled: {{unlabeledCount.count}} ({{unlabeledCount.percentage}})
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <h3>Submission Labels LineGraph</h3>
-      <canvas class="lineGraph" id="labelCountsChart"></canvas>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col">
-      <h3>Average recipient action time difference: {{averageDiffInDays}} days</h3>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col">
-      <h3>Report Count Per Month</h3>
-      <ul>
-        <li ng-repeat="(monthYear, count) in reportCount">
-          {{monthYear}}: {{count}} reports
-        </li>
-      </ul>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col">
-      <h3>TOR and HTTPS Connections</h3>
-      <ul>
-        <li>TOR Connections: {{ torCount }} {{ torPercentage.toFixed(2) }}%</li>
-        <li>HTTPS Connections: {{ httpsCount }} {{ httpsPercentage.toFixed(2) }}%</li>
-      </ul>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col">
-      <h3>UnansweredTips</h3>
-      <ul>
-        <li>
-          UnansweredTipsCount : {{unansweredTipsCount}}
-        </li>
-      </ul>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col">
-      <h3>Report Count Per Month LineGraph</h3>
-      <canvas class="lineGraph" id="perMonthLineGraph"></canvas>
-    </div>
-  </div>
+<!--  <hr>-->
+<!--  <div class="row">-->
+<!--    <div class="col">-->
+<!--      <h3>Submission Labels</h3>-->
+<!--      <ul>-->
+<!--        <li ng-repeat="(label, data) in labelCounts">-->
+<!--          {{label}}: {{data.count}} ({{data.percentage}})-->
+<!--        </li>-->
+<!--        <li>-->
+<!--          unlabeled: {{unlabeledCount.count}} ({{unlabeledCount.percentage}})-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="row">-->
+<!--    <div class="col">-->
+<!--      <h3>Submission Labels LineGraph</h3>-->
+<!--      <canvas class="lineGraph" id="labelCountsChart"></canvas>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <hr>-->
+<!--  <div class="row">-->
+<!--    <div class="col">-->
+<!--      <h3>Average recipient action time difference: {{averageDiffInDays}} days</h3>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <hr>-->
+<!--  <div class="row">-->
+<!--    <div class="col">-->
+<!--      <h3>Report Count Per Month</h3>-->
+<!--      <ul>-->
+<!--        <li ng-repeat="(monthYear, count) in reportCount">-->
+<!--          {{monthYear}}: {{count}} reports-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <hr>-->
+<!--  <div class="row">-->
+<!--    <div class="col">-->
+<!--      <h3>TOR and HTTPS Connections</h3>-->
+<!--      <ul>-->
+<!--        <li>TOR Connections: {{ torCount }} {{ torPercentage.toFixed(2) }}%</li>-->
+<!--        <li>HTTPS Connections: {{ httpsCount }} {{ httpsPercentage.toFixed(2) }}%</li>-->
+<!--      </ul>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <hr>-->
+<!--  <div class="row">-->
+<!--    <div class="col">-->
+<!--      <h3>UnansweredTips</h3>-->
+<!--      <ul>-->
+<!--        <li>-->
+<!--          UnansweredTipsCount : {{unansweredTipsCount}}-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <hr>-->
+<!--  <div class="row">-->
+<!--    <div class="col">-->
+<!--      <h3>Report Count Per Month LineGraph</h3>-->
+<!--      <canvas class="lineGraph" id="perMonthLineGraph"></canvas>-->
+<!--    </div>-->
+<!--  </div>-->
 </div>
