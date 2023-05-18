@@ -1,4 +1,5 @@
 <div class="col-md-10">
+
   <div class="row col-md-12">
     <span id="tip-action-reload"
           data-ng-click="reload()"
@@ -8,29 +9,31 @@
     </span>
     &nbsp;&nbsp;&nbsp;<span id="tip-action-export"
           data-ng-click="reload()"
-          data-uib-tooltip="{{'Refresh' | translate}}"
+          data-uib-tooltip="{{'Export' | translate}}"
           class="btn btn-outline-secondary custom-translate">
       <i class="fa-solid fa-file-export"></i>
     </span>
-
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span data-translate="" class="custom-bold">Start date</span>
+  </div>
+  <br>
+  <div class="row col-md-10">
+    <span data-translate="" class="custom-bold">Start date</span>
     <div class="col-md-2">
       <input type="text" class="form-control custom-translate" id="startDate" ng-click="openStartDatePicker()"
-        ng-model="startDate" uib-datepicker-popup="{{format}}" is-open="startDatePickerOpen" />
+        ng-model="startDate" uib-datepicker-popup="{{format}}" is-open="startDatePickerOpen" ng-change="onFilterChanged()" />
     </div>
     &nbsp;&nbsp;<span data-translate="" class="custom-bold">End date</span>
     <div class="col-md-2">
       <input type="text" class="form-control custom-translate" id="endDate" ng-click="openEndDatePicker()"
-        ng-model="endDate" uib-datepicker-popup="{{format}}" is-open="endDatePickerOpen" />
+        ng-model="endDate" uib-datepicker-popup="{{format}}" is-open="endDatePickerOpen" ng-change="onFilterChanged()"/>
     </div>
     &nbsp;&nbsp;<span data-translate="" class="custom-bold">Channel</span>
     <div class="col-md-2"><i><select class="form-control custom-translate" data-ng-model="channel"
-          data-ng-options="item for item in reportingChannel"></select></i></div>
+          data-ng-options="item for item in reportingChannel" ng-change="onFilterChanged()"></select></i></div>
   </div>
-  <br>
-  <hr> <br><br>
+
+  <hr><br><br>
   <h3>Submission Status</h3><br>
-  <table class="table table-striped" id="tipList" data-ng-init="sortKey = 'creation_date'; sortReverse=true;">
+  <table class="table table-striped" data-ng-init="sortKey = 'creation_date'; sortReverse=true;">
     <thead>
       <tr>
         <th></th>
@@ -61,13 +64,13 @@
           {{totalReports}}
         </td>
         <td>
-          {{((statusCount["New"]["count"]/ totalReports)*100).toFixed(2)}}%
+          {{((statusCount["New"]/ totalReports)*100).toFixed(2)}}%
         </td>
         <td>
-          {{((statusCount["Opened"]["count"]/ totalReports)*100).toFixed(2)}}%
+          {{((statusCount["Opened"]/ totalReports)*100).toFixed(2)}}%
         </td>
         <td>
-          {{((statusCount["Closed"]["count"]/ totalReports)*100).toFixed(2)}}%
+          {{((statusCount["Closed"]/ totalReports)*100).toFixed(2)}}%
         </td>
         <td>
           {{((unlabeledCountDefault/ totalReports)*100).toFixed(2)}}%
@@ -79,14 +82,14 @@
     </tbody>
   </table>
 
-  <br><br><br>
   <div class="row">
     <div class="col">
       <canvas width="1200" class="lineGraph" id="statusBarChart"></canvas>
     </div>
   </div>
+  <hr> <br><br>
   <h3>Interection Report</h3><br>
-  <table class="table table-striped" id="tipList" data-ng-init="sortKey = 'creation_date'; sortReverse=true;">
+  <table class="table table-striped" data-ng-init="sortKey = 'creation_date'; sortReverse=true;">
     <thead>
       <tr>
         <th></th>
@@ -127,6 +130,7 @@
       <canvas class="lineGraph" id="perMonthLineGraph"></canvas>
     </div>
   </div>
+  <hr> <br><br>
   <div class="row">
     <div class="col">
       <h3>Submission Labels LineGraph</h3>

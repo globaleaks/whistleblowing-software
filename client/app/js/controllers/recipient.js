@@ -19,6 +19,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
 
     var unique_keys = [];
     angular.forEach($scope.resources.rtips.rtips, function (tip) {
+
       tip.context = $scope.contexts_by_id[tip.context_id];
       tip.context_name = tip.context.name;
       tip.questionnaire = $scope.resources.rtips.questionnaires[tip.questionnaire];
@@ -237,9 +238,11 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
   .controller("StatisticsCtrl", ["$scope", "$location", "$filter", "$http", "$interval", "$routeParams", "$uibModal", "Authentication", "RTip", "WBTip", "RTipExport", "RTipDownloadRFile", "WBTipDownloadFile", "fieldUtilities", "RTipViewRFile",
     function ($scope, $location, $filter, $http, $interval, $routeParams, $uibModal, Authentication, RTip, WBTip, RTipExport, RTipDownloadRFile, WBTipDownloadFile, fieldUtilities, RTipViewRFile) {
 
-      function generateBarGraph(documentID, context, type, graphLabels, graphTitle, graphData, xlabel, ylabel) {
-        var statusCtx = document.getElementById(documentID).getContext(context);
-        var statusBarChart = new Chart(statusCtx, {
+      function generateBarGraph(documentID, context, type, graphLabels, graphTitle, graphData, xlabel, ylabel, update) {
+
+        var canvas = document.getElementById(documentID);
+        var ctx = document.getElementById(documentID).getContext(context);
+        var chart = new Chart(ctx, {
           type: type,
           data: {
             labels: graphLabels,
@@ -250,9 +253,12 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
             }]
           },
           options: {
-            indexAxis: 'y',
-            responsive: true,
-            scales: {
+              indexAxis: 'y',
+              responsive: true,
+              barPercentage: 0.6,
+              categoryPercentage: 0.6,
+
+              scales: {
               x: {
                 beginAtZero: true,
                 title: {
@@ -270,10 +276,11 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
             }
           },
         });
+        return chart;
       }
       function generateLineGraph(documentID, context, type, graphLabels, graphTitle, graphData, xlabel, ylabel) {
         var ctx = document.getElementById(documentID).getContext(context);
-        var perMonthLineGraph = new Chart(ctx, {
+        var graph = new Chart(ctx, {
           type: type,
           data: {
             labels: graphLabels,
@@ -306,28 +313,12 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
             }
           },
         });
+        return graph;
       }
 
-
-      $scope.reportingChannel = []
-      $scope.reports = $scope.resources.rtips.rtips;
-      $scope.totalReports = $scope.reports.length;
-      $scope.statusCount = { 'New': { 'startDate': 0, 'updateDate': 0, 'endDate': 0, 'count': 0 }, 'Opened': { 'startDate': 0, 'updateDate': 0, 'endDate': 0, 'count': 0 }, 'Closed': { 'startDate': 0, 'updateDate': 0, 'endDate': 0, 'count': 0 } };
-      $scope.statusPercentages = [];
-      $scope.statues = []
-      $scope.unansweredTipsCount = 0;
-      $scope.receiverCount = 0;
+      $scope.channel = undefined
       $scope.startDate = null;
       $scope.endDate = null;
-      $scope.startDatePickerOpen = false;
-      $scope.endDatePickerOpen = false;
-      $scope.format = 'dd/MM/yyyy';
-      $scope.unansweredTips = [];
-      $scope.unansweredCount = 0;
-      $scope.labelCounts = {};
-      $scope.unlabeledCount = 0;
-      $scope.unlabeledCountDefault = 0;
-      $scope.labeledCountDefault = 0;
 
       var closureTimes = [];
       var totalClosureTime = 0;
@@ -335,111 +326,152 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
       var reportCountPerMonth = {};
       var torCount = 0;
       var httpsCount = 0;
+      var statusBarChart = undefined;
+      var labelCountsChart = undefined;
+      var perMonthLineGraph = undefined;
 
-      angular.forEach($scope.resources.rtips.rtips, function (tip) {
+      $scope.flush = function () {
+          $scope.reports = $scope.resources.rtips.rtips;
+          $scope.totalReports = 0;
+          $scope.reportingChannel = []
+          $scope.statusCount = { 'New': 0, 'Opened': 0, 'Closed': 0 };
+          $scope.statusPercentages = [];
+          $scope.statues = []
+          $scope.unansweredTipsCount = 0;
+          $scope.receiverCount = 0;
+          $scope.startDatePickerOpen = false;
+          $scope.endDatePickerOpen = false;
+          $scope.format = 'dd/MM/yyyy';
+          $scope.unansweredTips = [];
+          $scope.unansweredCount = 0;
+          $scope.labelCounts = {};
+          $scope.unlabeledCount = 0;
+          $scope.unlabeledCountDefault = 0;
+          $scope.labeledCountDefault = 0;
 
-        $scope.tip = new RTip({ id: tip.id }, function (tip) {
-          for (var item of tip.comments) {
-            if (item.type === "receiver") {
-              $scope.receiverCount++
+          closureTimes = [];
+          totalClosureTime = 0;
+          averageClosureTime = 0;
+          reportCountPerMonth = {};
+          torCount = 0;
+          httpsCount = 0;
+      }
+
+      $scope.flush()
+      $scope.initializeTips = function () {
+          for (var tip of $scope.resources.rtips.rtips) {
+
+            tip.context = $scope.contexts_by_id[tip.context_id];
+            tip.context_name = tip.context.name;
+            var valueToAdd = tip.context.name;
+            if ($scope.reportingChannel.indexOf(valueToAdd) === -1) {
+              $scope.reportingChannel.push(valueToAdd);
             }
-          }
 
-          for (var item of tip.comments) {
-            unanswered = true
-            if (item.type === 'whistleblower') {
-              for (var receiver of tip.comments) {
-                if (receiver.type === 'receiver') {
-                  unanswered = false
-                  break;
+            var creationDate = new Date(tip.creation_date);
+            var expirationDate = new Date(tip.expiration_date);
+            if($scope.channel && tip.context_name != $scope.channel || $scope.startDate && $scope.startDate > creationDate || $scope.endDate && $scope.endDate > expirationDate){
+              continue
+            }
+
+            $scope.totalReports+=1
+            console.log($scope.totalReports)
+            $scope.tip = new RTip({ id: tip.id }, function (tip) {
+              for (var item of tip.comments) {
+                if (item.type === "receiver") {
+                  $scope.receiverCount++
                 }
               }
-              if (unanswered) {
-                $scope.unansweredTips.push(item);
-                $scope.unansweredCount++;
+
+              for (var item of tip.comments) {
+                unanswered = true
+                if (item.type === 'whistleblower') {
+                  for (var receiver of tip.comments) {
+                    if (receiver.type === 'receiver') {
+                      unanswered = false
+                      break;
+                    }
+                  }
+                  if (unanswered) {
+                    $scope.unansweredTips.push(item);
+                    $scope.unansweredCount++;
+                  }
+                  break
+                }
               }
-              break
+            })
+
+            tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText(tip.status, tip.substatus, $scope.submission_statuses);
+
+            var expirationDate = new Date(tip.expiration_date);
+            var updateDate = new Date(tip.update_date);
+            var creationDate = new Date(tip.creation_date);
+            var updateDiffInMilliseconds = updateDate.getTime() - creationDate.getTime();
+            var expirationDiffInMilliseconds = expirationDate.getTime() - creationDate.getTime();
+
+            /* For Statuses */
+            var status = tip.submissionStatusStr;
+            if ($scope.statusCount) {
+              $scope.statusCount[status]++;
+            } else {
+              $scope.statusCount[status] = 1;
             }
+
+            /* For Report Count Per Month */
+            var creationDate = new Date(tip.creation_date);
+            var month = creationDate.toLocaleString('default', { month: 'long' });
+            var year = creationDate.getFullYear();
+            var monthYear = month + ' ' + year;
+            if (reportCountPerMonth.hasOwnProperty(monthYear)) {
+              reportCountPerMonth[monthYear]++;
+            } else {
+              reportCountPerMonth[monthYear] = 1;
+            }
+
+            /* For Tor and Http Count */
+            if (tip.tor === true) {
+              torCount++;
+            }
+            else {
+              httpsCount++;
+            }
+
+            /* For UnansweredTips Count */
+            if (tip.submissionstatusestr === 'new') {
+              $scope.unansweredTipsCount++;
+            }
+
+            //  For The average time of closure of the submission
+            var report = tip;
+            var reportCreationDate = new Date(report.creation_date);
+            var reportUpdateDate = new Date(report.update_date);
+            var closureTime = reportUpdateDate.getTime() - reportCreationDate.getTime();
+            closureTimes.push(closureTime);
+            totalClosureTime += closureTime;
+
+            // For Lable
+            var label = tip.label;
+            if (label) {
+              if ($scope.labelCounts[label]) {
+                $scope.labelCounts[label]++;
+              } else {
+                $scope.labelCounts[label] = 1;
+              }
+              $scope.labeledCountDefault++;
+            } else {
+              $scope.unlabeledCount++;
+              $scope.unlabeledCountDefault++;
+            }
+
           }
-        })
-
-        tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText(tip.status, tip.substatus, $scope.submission_statuses);
-
-        console.log(tip);
-
-        var expirationDate = new Date(tip.expiration_date);
-        var updateDate = new Date(tip.update_date);
-        var creationDate = new Date(tip.creation_date);
-        var updateDiffInMilliseconds = updateDate.getTime() - creationDate.getTime();
-        var expirationDiffInMilliseconds = expirationDate.getTime() - creationDate.getTime();
-
-        /* For Statuses */
-        var status = tip.submissionStatusStr;
-        if ($scope.statusCount[status]) {
-          $scope.statusCount[status]['count']++;
-        } else {
-          $scope.statusCount[status]['count'] = 1;
-        }
-        $scope.statusCount[status]['startDate'] = creationDate.getTime();
-        $scope.statusCount[status]['updateDate'] = updateDate.getTime();
-        $scope.statusCount[status]['endDate'] = expirationDate.getTime();
-
-        /* For Report Count Per Month */
-        var creationDate = new Date(tip.creation_date);
-        var month = creationDate.toLocaleString('default', { month: 'long' });
-        var year = creationDate.getFullYear();
-        var monthYear = month + ' ' + year;
-        if (reportCountPerMonth.hasOwnProperty(monthYear)) {
-          reportCountPerMonth[monthYear]++;
-        } else {
-          reportCountPerMonth[monthYear] = 1;
-        }
-
-        /* For Tor and Http Count */
-        if (tip.tor === true) {
-          torCount++;
-        }
-        else {
-          httpsCount++;
-        }
-
-        /* For UnansweredTips Count */
-        if (tip.submissionstatusestr === 'new') {
-          $scope.unansweredTipsCount++;
-        }
-
-        //  For The average time of closure of the submission 
-        var report = tip;
-        var reportCreationDate = new Date(report.creation_date);
-        var reportUpdateDate = new Date(report.update_date);
-        var closureTime = reportUpdateDate.getTime() - reportCreationDate.getTime();
-        closureTimes.push(closureTime);
-        totalClosureTime += closureTime;
-
-        // For Lable
-        var label = tip.label;
-        if (label) {
-          if ($scope.labelCounts[label]) {
-            $scope.labelCounts[label]++;
-          } else {
-            $scope.labelCounts[label] = 1;
-          }
-          $scope.labeledCountDefault++;
-        } else {
-          $scope.unlabeledCount++;
-          $scope.unlabeledCountDefault++;
-        }
-
-      });
+      }
+      $scope.initializeTips()
 
       /* =============================================== General Statistics =============================================== */
 
       $scope.generateGeneralGraph = function () {
         for (var status in $scope.statusCount) {
-          var count = $scope.statusCount[status]['count'];
-          var startDate = $scope.statusCount[status]['startDate'];
-          var endDate = $scope.statusCount[status]['endDate'];
-          var updateDate = $scope.statusCount[status]['updateDate'];
+          var count = $scope.statusCount[status];
 
           var percentage = (count / $scope.totalReports) * 100;
           $scope.statusPercentages.push({
@@ -475,7 +507,13 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
           return item.count;
         });
 
-        generateBarGraph('statusBarChart', '2d', 'bar', statusLabels, 'General Statistics', statusData, 'Number of Reports', 'Status')
+        if(statusBarChart){
+          statusBarChart.data.labels = statusLabels;
+          statusBarChart.data.datasets[0].data = statusData;
+          statusBarChart.update();
+        }else{
+          statusBarChart = generateBarGraph('statusBarChart', '2d', 'bar', statusLabels, 'General Statistics', statusData, 'Number of Reports', 'Status')
+        }
       };
       $scope.generateGeneralGraph();
 
@@ -493,7 +531,6 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
 
       $scope.generateInteractionLineGraph = function () {
         var reportCount = reportCountPerMonth;
-        console.log(reportCount, "reportCount");
 
         if ($scope.totalReports > 0) {
           averageClosureTime = totalClosureTime / $scope.totalReports / (1000 * 60 * 60 * 24);
@@ -504,11 +541,21 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
         var labels = Object.keys(reportCount);
         var reportData = Object.values(reportCount);
 
-        generateLineGraph('perMonthLineGraph', '2d', 'line', labels, 'Interaction Stataistics', reportData, 'Month', 'Reports')
+
+        if(perMonthLineGraph){
+          perMonthLineGraph.data.labels = labels;
+          perMonthLineGraph.data.datasets[0].data = reportData;
+          perMonthLineGraph.update();
+        }else{
+          perMonthLineGraph = generateLineGraph('perMonthLineGraph', '2d', 'line', labels, 'Interaction Stataistics', reportData, 'Month', 'Reports')
+        }
+
       }
       $scope.generateInteractionLineGraph();
 
-      $scope.generateInteractionBarGraph = function () {
+      /* =============================================== Label Statistics =============================================== */
+
+      $scope.generateLabelGraph = function () {
 
         var totalItemCount = $scope.totalReports;
 
@@ -535,500 +582,28 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
         var totalReports = $scope.totalReports
         var labels=['Total Reports', ...Object.keys($scope.labelCounts), 'Unlabeled']
         var data = [totalReports, ...labelCountsData, unlabeledCountData]
-        generateBarGraph('labelCountsChart', '2d', 'bar', labels, 'Interaction Stataistics', data, 'Number of Reports', 'Label')
+
+
+        if(labelCountsChart){
+          labelCountsChart.data.labels = labels;
+          labelCountsChart.data.datasets[0].data = data;
+          labelCountsChart.update();
+        }else{
+            labelCountsChart = generateBarGraph('labelCountsChart', '2d', 'bar', labels, 'Interaction Stataistics', data, 'Number of Reports', 'Label')
+        }
+
       }
-      $scope.generateInteractionBarGraph();
+      $scope.generateLabelGraph();
 
-     
+      /* =============================================== Filters =============================================== */
 
+      $scope.onFilterChanged = function () {
+          $scope.flush()
 
-      //   $scope.reportingChannel = []
-      //   $scope.reports = $scope.resources.rtips.rtips;
-      //   $scope.totalReports = $scope.resources.rtips.rtips.length;
-      //
-      //   $scope.tipArray = $scope.resources.rtips.rtips;
-      //
-      //
-      //   // Average Diff In Days variables
-      //   var totalDiffInMilliseconds = 0;
-      //
-      //   // Statuses variables
-      //   $scope.statusCount = {};
-      //   $scope.statusCount['New'] = 0
-      //   $scope.statusCount['Opened'] = 0
-      //   $scope.statusCount['Closed'] = 0
-      //   $scope.statusPercentages = [];
-      //   $scope.statues = []
-      //
-      //   // Report Count Per Month variables
-      //   var reportCountPerMonth = {};
-      //
-      //   // Tor and Http Count variables
-      //   var torCount = 0;
-      //   var httpsCount = 0;
-      //
-      //   // UnansweredTips variables
-      //   $scope.unansweredTipsCount = 0;
-      //   // ================================================================
-      //   // TipArray loop
-      //   // ================================================================
+          $scope.initializeTips()
+          $scope.generateLabelGraph();
+          $scope.generateInteractionLineGraph();
+          $scope.generateGeneralGraph();
+      }
 
-
-      //   angular.forEach($scope.tipArray, function (tip) {
-      //
-      //    // For Lable
-      //    var label = tip.label;
-      //    if (label) {
-      //     if ($scope.labelCounts[label]) {
-      //      $scope.labelCounts[label]++;
-      //     } else {
-      //      $scope.labelCounts[label] = 1;
-      //     }
-      //     $scope.labeledCountDefault++;
-      //    } else {
-      //     $scope.unlabeledCount++;
-      //     $scope.unlabeledCountDefault++;
-      //    }
-      //
-      //    // For Average Diff In Days
-      //    var expirationDate = new Date(tip.expiration_date);
-      //    var updateDate = new Date(tip.update_date);
-      //    var creationDate = new Date(tip.creation_date);
-      //    var updateDiffInMilliseconds = updateDate.getTime() - creationDate.getTime();
-      //    var expirationDiffInMilliseconds = expirationDate.getTime() - creationDate.getTime();
-      //    totalDiffInMilliseconds += (updateDiffInMilliseconds + expirationDiffInMilliseconds);
-      //
-      //    // For Statuses
-      //    var status = tip.submissionStatusStr;
-      //    if ($scope.statusCount[status]) {
-      //     $scope.statusCount[status]++;
-      //    } else {
-      //     $scope.statusCount[status] = 1;
-      //    }
-      //
-      //    //For Report Count Per Month
-      //    var creationDate = new Date(tip.creation_date);
-      //    var month = creationDate.toLocaleString('default', { month: 'long' });
-      //    var year = creationDate.getFullYear();
-      //    var monthYear = month + ' ' + year;
-      //    if (reportCountPerMonth.hasOwnProperty(monthYear)) {
-      //     reportCountPerMonth[monthYear]++;
-      //    } else {
-      //     reportCountPerMonth[monthYear] = 1;
-      //    }
-      //    //For Tor and Http Count
-      //    if (tip.tor === true) {
-      //     torCount++;
-      //    }
-      //    else {
-      //     httpsCount++;
-      //    }
-      //
-      //    //For UnansweredTips Count
-      //    if (tip.submissionstatusestr === 'new') {
-      //     $scope.unansweredTipsCount++;
-      //    }
-
-      //   })
-
-      // =========================== Statuses Stat ===============================================
-      //   for (var status in $scope.statusCount) {
-      //    var count = $scope.statusCount[status];
-      //    var percentage = (count / $scope.totalReports) * 100;
-      //    $scope.statusPercentages.push({
-      //     status: status,
-      //     count: count,
-      //     percentage: percentage.toFixed(2)
-      //    });
-      //    $scope.statues.push({
-      //     status: status,
-      //     count: count,
-      //     percentage: percentage.toFixed(2)
-      //    });
-      //   }
-      //   $scope.statusPercentages.sort((a, b) => {
-      //    const statusA = a.status.toLowerCase();
-      //    const statusB = b.status.toLowerCase();
-      //    if (statusA < statusB) return -1;
-      //    if (statusA > statusB) return 1;
-      //    return 0;
-      //   });
-      //
-      //   $scope.statusPercentages.unshift({
-      //    status: 'Total Reports',
-      //    count: $scope.totalReports,
-      //    percentage: 100
-      //   });
-
-      // ======================= Statuses LineGraph ===============================
-      //   $scope.statuses =function(){}
-      //   var statusLabels = $scope.statusPercentages.map(function (item) {
-      //    return item.status + " | " + item.percentage + " %";
-      //   });
-      //   var statusData = $scope.statusPercentages.map(function (item) {
-      //    return item.count;
-      //   });
-      //
-      //   // Create the chart
-      //   var statusCtx = document.getElementById('statusBarChart').getContext('2d');
-      //   var statusBarChart = new Chart(statusCtx, {
-      //    type: 'bar',
-      //    data: {
-      //     labels: statusLabels,
-      //     datasets: [{
-      //      backgroundColor: 'rgba(55, 122, 188, 0.6)',
-      //      // barThickness: 60,
-      //      // maxBarThickness: 60,
-      //      label: 'Statuses',
-      //      data: statusData,
-      //     }]
-      //    },
-      //    options: {
-      //     indexAxis: 'y',
-      //     responsive: true,
-      //     scales: {
-      //      x: {
-      //       beginAtZero: true,
-      //       title: {
-      //        display: true,
-      //        text: 'Number of Reports'
-      //       }
-      //      },
-      //      y: {
-      //       beginAtZero: true,
-      //       title: {
-      //        display: true,
-      //        text: 'Status'
-      //       }
-      //      }
-      //     }
-      //    },
-      //   });
-      //
-      //
-      //
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      // ======================= Lables Stat ===============================
-
-      //   var totalItemCount = $scope.totalReports;
-      //
-      //   angular.forEach($scope.labelCounts, function (count, label) {
-      //    var percentage = (count / totalItemCount) * 100;
-      //    $scope.labelCounts[label] = {
-      //     count: count,
-      //     percentage: percentage.toFixed(2) + "%"
-      //    };
-      //   });
-      //
-      //   var unlabeledPercentage = ($scope.unlabeledCount / totalItemCount) * 100;
-      //   $scope.unlabeledCount = {
-      //    count: $scope.unlabeledCount,
-      //    percentage: unlabeledPercentage.toFixed(2) + "%"
-      //   };
-      //
-      //
-      //   var labelCountsData = Object.values($scope.labelCounts).map(function (label) {
-      //    return label.count;
-      //   });
-      //
-      //   var unlabeledCountData = $scope.unlabeledCount.count;
-      //   var totalReports = $scope.totalReports
-      //   console.log(unlabeledCountData, totalReports);
-      //   var labelCountsCtx = document.getElementById('labelCountsChart').getContext('2d');
-      //   new Chart(labelCountsCtx, {
-      //    type: 'bar',
-      //    data: {
-      //     labels: ['Total Reports', ...Object.keys($scope.labelCounts), 'Unlabeled'],
-      //     datasets: [{
-      //      label: 'Label Counts',
-      //      data: [totalReports, ...labelCountsData, unlabeledCountData],
-      //      backgroundColor: generateRandomColors(Object.keys($scope.labelCounts).length + 2)
-      //     }]
-      //    },
-      //    options: {
-      //     indexAxis: 'y',
-      //     responsive: true,
-      //     scales: {
-      //      x: {
-      //       beginAtZero: true,
-      //       title: {
-      //        display: true,
-      //        text: 'Number of Reports'
-      //       }
-      //      },
-      //      y: {
-      //       beginAtZero: true,
-      //       title: {
-      //        display: true,
-      //        text: 'Label'
-      //       }
-      //      }
-      //     }
-      //    }
-      //   });
-
-      // =========================== AverageDiffInDays Stat ===============================================
-
-      //   var averageDiffInMilliseconds = totalDiffInMilliseconds / (2 * $scope.totalReports);
-      //   var averageDiffInDay = averageDiffInMilliseconds / (1000 * 60 * 60 * 24);
-      //   $scope.averageDiffInDays = averageDiffInDay.toFixed(2);
-
-      // =========================== Average DiffInDays of Deleted or Achived Reports stat ===============================================
-
-      // var submissions = $scope.resources.rtips.rtips;
-      // var totalDiffInMilliseconds = 0;
-      // var numClosedSubmissions = 0;
-
-      // for (var i = 0; i < submissions.length; i++) {
-      //   var submission = submissions[i];
-
-      //   if (submission.state === "new") {
-      //     var creationDate = new Date(submission.creation_date);
-      //     var archivedDate = submission.archived_date ? new Date(submission.archived_date) : null;
-      //     var deletedDate = submission.deleted_date ? new Date(submission.deleted_date) : null;
-
-      //     if (archivedDate || deletedDate) {
-      //       var diffInMilliseconds = (archivedDate || deletedDate).getTime() - creationDate.getTime();
-      //       totalDiffInMilliseconds += diffInMilliseconds;
-      //       numClosedSubmissions++;
-      //     }
-      //   }
-      // }
-
-      // var averageDiffInMilliseconds = totalDiffInMilliseconds / numClosedSubmissions;
-      // var averageDiffInDays = averageDiffInMilliseconds / (1000 * 60 * 60 * 24);
-      // $scope.averageDiffInDays = averageDiffInDays.toFixed(2);
-
-
-
-      // ================================== Statuses Doughnut ===============================
-      // var chartConfig = {
-      //  type: 'doughnut',
-      //  data: {
-      //   labels: [],
-      //   datasets: [
-      //    {
-      //     data: [],
-      //     backgroundColor: []
-      //    }
-      //   ]
-      //  },
-      //  options: {
-      //   responsive: true,
-      //   plugins: {
-      //    datalabels: {
-      //     color: '#fff',
-      //     font: {
-      //      weight: 'bold',
-      //      size: 14
-      //     },
-      //     formatter: function (value, context) {
-      //      if (context.chart.data.labels.indexOf(context.dataset.label) === 0) {
-      //       return 'Total: ' + value;
-      //      } else {
-      //       return value;
-      //      }
-      //     }
-      //    }
-      //   }
-      //  }
-      // };
-      // chartConfig.data.labels = $scope.statues.map(function (percentage) {
-      //  return percentage.status;
-      // });
-
-      // chartConfig.data.datasets[0].data = $scope.statues.map(function (percentage) {
-      //  return percentage.count;
-      // });
-      //   function generateRandomColors(numColors) {
-      //    var colors = [];
-      //    for (var i = 0; i < numColors; i++) {
-      //     var r = Math.floor(Math.random() * 256);
-      //     var g = Math.floor(Math.random() * 256);
-      //     var b = Math.floor(Math.random() * 256);
-      //     colors.push('rgb(' + r + ', ' + g + ', ' + b + ')');
-      //    }
-      //    return colors;
-      //   }
-      // chartConfig.data.datasets[0].backgroundColor = generateRandomColors(chartConfig.data.datasets[0].data.length);
-      // var ctx = document.getElementById('doughnut').getContext('2d');
-      // new Chart(ctx, chartConfig);
-
-      // ============================ Report Count Per Month stat ==============================================
-      //   $scope.reportCount = reportCountPerMonth;
-
-      // ===================================== Report Count Per Month line graph ==================================
-      //   var labels = Object.keys($scope.reportCount);
-      //   var data = Object.values($scope.reportCount);
-      //   var ctx = document.getElementById('perMonthLineGraph').getContext('2d');
-      //   var perMonthLineGraph = new Chart(ctx, {
-      //    type: 'line',
-      //    data: {
-      //     labels: labels,
-      //     datasets: [{
-      //      label: 'Reports',
-      //      data: data,
-      //      fill: false,
-      //      borderColor: 'rgb(75, 192, 192)',
-      //      tension: 0.1
-      //     }]
-      //    },
-      //    options: {
-      //     responsive: true,
-      //     scales: {
-      //      x: {
-      //       display: true,
-      //       title: {
-      //        display: true,
-      //        text: 'Month'
-      //       }
-      //      },
-      //      y: {
-      //       display: true,
-      //       title: {
-      //        display: true,
-      //        text: 'Reports'
-      //       }
-      //      }
-      //     }
-      //    }
-      //   });
-      //
-      //   // ============================== Tor and Https connection stat ==============================================
-      //
-      //   $scope.torPercentage = (torCount / $scope.resources.rtips.rtips.length) * 100;
-      //   $scope.httpsPercentage = (httpsCount / $scope.resources.rtips.rtips.length) * 100;
-      //   $scope.torCount = torCount;
-      //   $scope.httpsCount = httpsCount;
-      //   $scope.channel = 'Default';
-      //
-      //
-
-      // function filterData() {
-      //  var startDate = new Date(document.getElementById("startDate").value);
-      //  var endDate = new Date(document.getElementById("endDate").value);
-      //  console.log(endDate, "endDate", startDate, "startDate");
-      //  var filteredData = $scope.reports.filter(function (obj) {
-      //   var creationDate = new Date(obj.creation_date);
-      //   // return obj.chancel === chancel && creationDate >= startDate && creationDate <= endDate;
-      //   return creationDate >= startDate && creationDate <= endDate;
-      //  });
-
-      //  console.log(filteredData);
-      // }
-
-      // document.getElementById("startDate").addEventListener("change", filterData);
-      // document.getElementById("endDate").addEventListener("change", filterData);
-
-      //=============================== Filter Function ==================================
-
-      // $scope.filterData = function() {
-      //  var startDate = new Date($scope.startDate);
-      //  var endDate = new Date($scope.endDate);
-      //  console.log(endDate, "endDate", startDate, "startDate");
-
-      //  var filteredData = $scope.reports.filter(function(obj) {
-      //   var creationDate = new Date(obj.creation_date);
-      //   return creationDate >= startDate && creationDate <= endDate;
-      //  });
-
-      //  console.log(filteredData);
-      // };
-
-      // $scope.$watchGroup(['startDate', 'endDate'], function() {
-      //  $scope.filterData();
-      // });
-
-      // ========================================================================
-
-      //   totalReports
-
-
-      // var startDate = new Date('2023-05-01');
-      // var endDate = new Date('2023-05-31');
-      // var chancel = "some chancel value";
-
-      // var filteredData = $scope.reports.filter(function (obj) {
-      //  var creationDate = new Date(obj.creation_date);
-      //  return obj.chancel === chancel && creationDate >= startDate && creationDate <= endDate;
-      // });
-
-      // ============================== Average response time for whistleblower/receiver Stat =============================================
-
-      //   $scope.whistleblowerTotalTime = 0;
-      //   var whistleblowerCount = 1;
-      //   $scope.recipientTotalTime = 0;
-      //   var recipientCount = 0;
-      //
-      //   angular.forEach($scope.resources.rtips.rtips, function (tip) {
-      //    $scope.tip = new RTip({ id: tip.id }, function (tip) {
-      //     $scope.tip = tip;
-      //     $scope.tip.context = $scope.contexts_by_id[$scope.tip.context_id];
-      //
-      //     var valueToAdd = $scope.tip.context.name;
-      //     if ($scope.reportingChannel.indexOf(valueToAdd) === -1) {
-      //      $scope.reportingChannel.push(valueToAdd);
-      //     }
-      //
-      //     angular.forEach($scope.tip.comments, function (comment) {
-      //      var responseTime = new Date() - new Date(comment.creation_date);
-      //      if (comment.type === 'whistleblower') {
-      //       whistleblowerCount++;
-      //       $scope.whistleblowerTotalTime = ($scope.whistleblowerTotalTime*whistleblowerCount + responseTime)/whistleblowerCount;
-      //      } else if (comment.type === 'receiver') {
-      //       recipientCount++;
-      //       $scope.recipientTotalTime = ($scope.recipientTotalTime*recipientCount + responseTime)/recipientCount;
-      //      }
-      //     });
-      //    });
-      //   });
-
-      //   var whistleblowerAverageTime = whistleblowerTotalTime / whistleblowerCount;
-      //   var recipientAverageTime = recipientTotalTime / recipientCount;
-      //   console.log(whistleblowerAverageTime, recipientAverageTime);
-
-      //   console.log('Average response time for whistleblower comments: ' + whistleblowerAverageTime + ' milliseconds');
-      //   console.log('Average response time for recipient comments: ' + recipientAverageTime + ' milliseconds');
-
-      // =========================================== UnansweredTips Stat ======================================
-      //   console.log($scope.unansweredTipsCount, "unansweredTipsCount");
-
-      // =========================================== Chart plugin register ======================================
-      //  chart plugin register
-      //  Chart.register(ChartDataLabels);
-      //   $scope.filteredData = $scope.tipArray
-      //   $scope.filterData = function () {
-      //    var startDate = new Date($scope.startDate);
-      //    var endDate = new Date($scope.endDate);
-      //    console.log(endDate, "endDate", startDate, "startDate");
-      //
-      //    $scope.filteredData = $scope.tipArray.filter(function (obj) {
-      //     var creationDate = new Date(obj.creation_date);
-      //     return creationDate >= startDate && creationDate <= endDate;
-      //    });
-      //   };
-      //
-      //   $scope.$watchGroup(['startDate', 'endDate'], function () {
-      //    $scope.filterData();
-      //   });
-    }]);
+}]);
