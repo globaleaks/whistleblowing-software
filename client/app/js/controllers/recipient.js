@@ -319,6 +319,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
       $scope.channel = undefined
       $scope.startDate = null;
       $scope.endDate = null;
+      $scope.staticData = [];
 
       var totalClosureTime = 0;
       var reportCountPerMonth = {};
@@ -377,7 +378,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
 
           $scope.totalReports += 1
           tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText(tip.status, tip.substatus, $scope.submission_statuses);
-          if (tip.submissionstatusestr === 'New') {
+          if (tip.submissionstatusestr !== 'New') {
             $scope.tip = new RTip({ id: tip.id }, function (tip) {
 
               for (var item of tip.comments) {
@@ -403,6 +404,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
                   break
                 }
               }
+              $scope.initializeStaticData()
             })
           }
 
@@ -649,7 +651,38 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
 
       }
 
-      /* =============================================== Filters =============================================== */
+      /* =============================================== Initialization =============================================== */
+
+      $scope.statPercentageCalculator = function (value, totalvalue) {
+        if(!totalvalue){
+          return 0;
+        }else{
+          return (value/totalvalue)*100
+        }
+      }
+
+      $scope.initializeStaticData = function () {
+        var submissionStatus = {}
+        submissionStatus['label'] = ['Total','New','Opened','Closed','Unlabled','Labeled']
+        submissionStatus['data'] = [$scope.totalReports,
+                                    ($scope.statPercentageCalculator($scope.statusCount["New"], $scope.totalReports)).toFixed(2),
+                                    ($scope.statPercentageCalculator($scope.statusCount["Opened"], $scope.totalReports)).toFixed(2),
+                                    ($scope.statPercentageCalculator($scope.statusCount["Closed"], $scope.totalReports)).toFixed(2),
+                                    ($scope.statPercentageCalculator($scope.unlabeledCountDefault, $scope.totalReports)).toFixed(2),
+                                    ($scope.statPercentageCalculator($scope.labeledCountDefault, $scope.totalReports)).toFixed(2)]
+
+        var interactionStatus = {}
+        interactionStatus['label'] = ['Total Report','Average closure time','Total Unanswered Tips','Number of interections','Tor Connections','Reciprocating whistle blower']
+        interactionStatus['data'] = [$scope.totalReports,
+                                     $scope.averageClosureTime,
+                                     $scope.unansweredCount,
+                                     $scope.receiverCount,
+                                     $scope.torCount,
+                                     $scope.reciprocatingWhistleBlower]
+
+        $scope.staticData['submissionStatus'] = submissionStatus;
+        $scope.staticData['interactionStatus'] = interactionStatus;
+      }
 
       $scope.initialize = function () {
         $scope.flush()
@@ -659,18 +692,37 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
         $scope.generateInteractionLineGraph();
         $scope.generateGeneralGraph();
         $scope.generateChannelGraph();
+        $scope.initializeStaticData()
       }
       $scope.initialize();
 
      /* =============================================== Helper Methods =============================================== */
 
-     $scope.statPercentageCalculator = function (value, totalvalue) {
-       if(!totalvalue){
-         return 0;
-       }else{
-         return (value/totalvalue)*100
+     $scope.export = function (value, totalvalue) {
+
+            var labels = [...$scope.staticData['submissionStatus']['label'], ...$scope.staticData['interactionStatus']['label'], ...statusBarChart.data.labels, ...labelCountsChart.data.labels, ...perMonthLineGraph.data.labels];
+            var datasets = [...$scope.staticData['submissionStatus']['data'], ...$scope.staticData['interactionStatus']['data'], ...statusBarChart.data.datasets[0].data, ...labelCountsChart.data.datasets[0].data, ...perMonthLineGraph.data.datasets[0].data];
+
+            var csvContent = 'data:text/csv;charset=utf-8,';
+
+            // Add header row with labels
+            csvContent += labels.join(',') + '\n';
+
+            // Add data rows
+            var dataRow = datasets.join(',');
+
+            csvContent += dataRow + '\n';
+
+            // Create a download link
+            var encodedUri = encodeURI(csvContent);
+            var link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', 'data.csv');
+            document.body.appendChild(link);
+
+            // Trigger download
+            link.click();
        }
-     }
 
 }]);
 

@@ -8,7 +8,7 @@
       <i class="fa-solid fa-sync"></i>
     </span>
     &nbsp;&nbsp;&nbsp;<span id="tip-action-export"
-          data-ng-click="reload()"
+          data-ng-click="export()"
           data-uib-tooltip="{{'Export' | translate}}"
           class="btn btn-outline-secondary custom-translate">
       <i class="fa-solid fa-file-export"></i>
@@ -38,47 +38,13 @@
     <thead>
       <tr>
         <th></th>
-        <th>
-          Total Report
-        </th>
-        <th>
-          New
-        </th>
-        <th>
-          Opened
-        </th>
-        <th>
-          Closed
-        </th>
-        <th>
-          Unlabled
-        </th>
-        <th>
-          Labeled
-        </th>
+        <th ng-repeat="item in staticData['submissionStatus']['label']">{{ item }}</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td></td>
-        <td>
-          {{totalReports}}
-        </td>
-        <td>
-          {{(statPercentageCalculator(statusCount["New"], totalReports)).toFixed(2)}}%
-        </td>
-        <td>
-          {{(statPercentageCalculator(statusCount["Opened"], totalReports)).toFixed(2)}}%
-        </td>
-        <td>
-          {{(statPercentageCalculator(statusCount["Closed"], totalReports)).toFixed(2)}}%
-        </td>
-        <td>
-          {{(statPercentageCalculator(unlabeledCountDefault, totalReports)).toFixed(2)}}%
-        </td>
-        <td>
-          {{(statPercentageCalculator(labeledCountDefault, totalReports)).toFixed(2)}}%
-        </td>
+        <td ng-repeat="item in staticData['submissionStatus']['data']">{{ item }}</td>
       </tr>
     </tbody>
   </table>
@@ -95,46 +61,16 @@
     <thead>
       <tr>
         <th></th>
-        <th>
-          Total Report
-        </th>
-        <th>
-          Average closure time
-        </th>
-        <th>
-          Total Unanswered Tips
-        </th>
-        <th>
-          Number of interections
-        </th>
-        <th>
-          Tor Connections
-        </th>
-        <th>
-          Reciprocating whistle blower
+        <th ng-repeat="item in staticData['interactionStatus']['label']">
+          {{item}}
         </th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td></td>
-        <td>
-          {{totalReports}}
-        </td>
-        <td>
-          {{averageClosureTime}} days
-        </td>
-        <td>
-          {{unansweredCount}}
-        </td>
-        <td>
-          {{receiverCount}}
-        </td>
-        <td>
-          {{torCount}}
-        </td>
-        <td>
-          {{reciprocatingWhistleBlower}}
+        <td ng-repeat="item in staticData['interactionStatus']['data'] track by $index">
+          {{item}}
         </td>
       </tr>
     </tbody>
