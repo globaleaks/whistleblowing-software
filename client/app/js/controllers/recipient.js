@@ -358,11 +358,11 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
         torCount = 0;
         httpsCount = 0;
       }
+      console.log("$scope.resources.rtips.rtips",$scope.resources.rtips.rtips);
 
       $scope.flush()
       $scope.initializeTips = function () {
         for (var tip of $scope.resources.rtips.rtips) {
-
           tip.context = $scope.contexts_by_id[tip.context_id];
           tip.context_name = tip.context.name;
           var valueToAdd = tip.context.name;
@@ -377,9 +377,11 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
           }
 
           $scope.totalReports += 1
-          console.log($scope.totalReports)
           $scope.tip = new RTip({ id: tip.id }, function (tip) {
+      console.log("tip",tip);
+
             for (var item of tip.comments) {
+
               if (item.type === "receiver") {
                 $scope.receiverCount++
               }
@@ -413,7 +415,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
 
           /* For Statuses */
           var status = tip.submissionStatusStr;
-          if ($scope.statusCount) {
+          if ($scope.statusCount[status]) {
             $scope.statusCount[status]++;
           } else {
             $scope.statusCount[status] = 1;
