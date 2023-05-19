@@ -320,16 +320,14 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
       $scope.startDate = null;
       $scope.endDate = null;
 
-      var closureTimes = [];
       var totalClosureTime = 0;
-      var averageClosureTime = 0;
       var reportCountPerMonth = {};
-      var torCount = 0;
       var httpsCount = 0;
       var statusBarChart = undefined;
       var labelCountsChart = undefined;
       var perMonthLineGraph = undefined;
-      var channelCountsChart =undefined
+      var channelCountsChart =undefined;
+      var totalClosedTips = 0;
 
       $scope.flush = function () {
         $scope.reports = $scope.resources.rtips.rtips;
@@ -349,13 +347,14 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
         $scope.unlabeledCount = 0;
         $scope.unlabeledCountDefault = 0;
         $scope.labeledCountDefault = 0;
+        $scope.torCount = 0;
+        $scope.reciprocatingWhistleBlower = 0;
         $scope.channelsArray = []
+        $scope.averageClosureTime = 0;
 
-        closureTimes = [];
+        totalClosedTips = 0
         totalClosureTime = 0;
-        averageClosureTime = 0;
         reportCountPerMonth = {};
-        torCount = 0;
         httpsCount = 0;
       }
       console.log("$scope.resources.rtips.rtips",$scope.resources.rtips.rtips);
@@ -377,39 +376,40 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
           }
 
           $scope.totalReports += 1
-          $scope.tip = new RTip({ id: tip.id }, function (tip) {
-      console.log("tip",tip);
-
-            for (var item of tip.comments) {
-
-              if (item.type === "receiver") {
-                $scope.receiverCount++
-              }
-            }
-
-            for (var item of tip.comments) {
-              unanswered = true
-              if (item.type === 'whistleblower') {
-                for (var receiver of tip.comments) {
-                  if (receiver.type === 'receiver') {
-                    unanswered = false
-                    break;
-                  }
-                }
-                if (unanswered) {
-                  $scope.unansweredTips.push(item);
-                  $scope.unansweredCount++;
-                }
-                break
-              }
-            }
-          })
-
           tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText(tip.status, tip.substatus, $scope.submission_statuses);
+          if (tip.submissionstatusestr === 'New') {
+            $scope.tip = new RTip({ id: tip.id }, function (tip) {
+
+              for (var item of tip.comments) {
+
+                if (item.type === "receiver") {
+                  $scope.receiverCount++
+                }
+              }
+
+              for (var item of tip.comments) {
+                unanswered = true
+                if (item.type === 'whistleblower') {
+                  for (var receiver of tip.comments) {
+                    if (receiver.type === 'receiver') {
+                      unanswered = false
+                      break;
+                    }
+                  }
+                  if (unanswered) {
+                    $scope.unansweredTips.push(item);
+                    $scope.unansweredCount++;
+                  }
+                  break
+                }
+              }
+            })
+          }
 
           var expirationDate = new Date(tip.expiration_date);
           var updateDate = new Date(tip.update_date);
           var creationDate = new Date(tip.creation_date);
+          var lastAccessDate = new Date(tip.last_access);
           var updateDiffInMilliseconds = updateDate.getTime() - creationDate.getTime();
           var expirationDiffInMilliseconds = expirationDate.getTime() - creationDate.getTime();
 
@@ -433,6 +433,15 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
           }
 
           /* For Tor and Http Count */
+
+          //last_access
+
+          creationDate.setSeconds(0);
+          lastAccessDate.setSeconds(0);
+          if(lastAccessDate.getTime()!=creationDate.getTime()){
+              $scope.reciprocatingWhistleBlower++;
+          }
+
           if (tip.tor === true) {
             torCount++;
           }
@@ -450,8 +459,10 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
           var reportCreationDate = new Date(report.creation_date);
           var reportUpdateDate = new Date(report.update_date);
           var closureTime = reportUpdateDate.getTime() - reportCreationDate.getTime();
-          closureTimes.push(closureTime);
-          totalClosureTime += closureTime;
+          if(status=="Closed"){
+              $scope.averageClosureTime += closureTime;
+              totalClosedTips+=1
+          }
 
           // For Lable
           var label = tip.label;
@@ -472,8 +483,6 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
 
         }
       }
-      $scope.initializeTips()
-
       /* =============================================== General Statistics =============================================== */
 
       $scope.generateGeneralGraph = function () {
@@ -522,7 +531,6 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
           statusBarChart = generateBarGraph('statusBarChart', '2d', 'bar', statusLabels, 'General Statistics', statusData, 'Number of Reports', 'Status')
         }
       };
-      $scope.generateGeneralGraph();
 
       /* =============================================== Date Statistics =============================================== */
 
@@ -537,14 +545,12 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
       /* =============================================== Interaction Statistics =============================================== */
 
       $scope.generateInteractionLineGraph = function () {
-        var reportCount = reportCountPerMonth;
-
-        if ($scope.totalReports > 0) {
-          averageClosureTime = totalClosureTime / $scope.totalReports / (1000 * 60 * 60 * 24);
+        $scope.averageClosureTime = (($scope.averageClosureTime / totalClosedTips) / (1000 * 60 * 60 * 24)).toFixed(3);
+        if($scope.averageClosureTime == 0){
+            $scope.averageClosureTime = 0
         }
-        $scope.averageClosureTime = averageClosureTime.toFixed(2);
 
-
+        var reportCount = reportCountPerMonth;
         var labels = Object.keys(reportCount);
         var reportData = Object.values(reportCount);
 
@@ -558,7 +564,6 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
         }
 
       }
-      $scope.generateInteractionLineGraph();
 
       /* =============================================== Label Statistics =============================================== */
 
@@ -600,7 +605,6 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
         }
 
       }
-      $scope.generateLabelGraph();
 
       /* =============================================== Channels Statistics =============================================== */
 
@@ -644,11 +648,10 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
         }
 
       }
-      $scope.generateChannelGraph();
-  
+
       /* =============================================== Filters =============================================== */
 
-      $scope.onFilterChanged = function () {
+      $scope.initialize = function () {
         $scope.flush()
 
         $scope.initializeTips()
@@ -657,5 +660,17 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
         $scope.generateGeneralGraph();
         $scope.generateChannelGraph();
       }
+      $scope.initialize();
 
-    }]);
+     /* =============================================== Helper Methods =============================================== */
+
+     $scope.statPercentageCalculator = function (value, totalvalue) {
+       if(!totalvalue){
+         return 0;
+       }else{
+         return (value/totalvalue)*100
+       }
+     }
+
+}]);
+
