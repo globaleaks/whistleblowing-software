@@ -372,7 +372,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
 
           var creationDate = new Date(tip.creation_date);
           var expirationDate = new Date(tip.expiration_date);
-          if ($scope.channel && tip.context_name != $scope.channel || $scope.startDate && $scope.startDate > creationDate || $scope.endDate && $scope.endDate > expirationDate) {
+          if ($scope.channel && tip.context_name != $scope.channel || $scope.startDate && $scope.startDate > creationDate || $scope.endDate && $scope.endDate < expirationDate) {
             continue
           }
 
