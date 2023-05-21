@@ -464,6 +464,21 @@ msgstr "Not provided."
 msgid "Set a reminder"
 msgstr "Set a reminder"
 
+msgid "Mask"
+msgstr "Mask"
+
+msgid "Unmask"
+msgstr "Unmask"
+
+msgid "Redact"
+msgstr "Redact"
+
+msgid "Grant this user user the privilege to mask information"
+msgstr "Grant this user user the privilege to mask information"
+
+msgid "Grant this user user the privilege to permanently delete masked information"
+msgstr "Grant this user user the privilege to permanently delete masked information"
+
 msgid "File a report"
 msgstr "File a report"
 
@@ -1332,6 +1347,9 @@ msgstr "To:"
 msgid "Filename"
 msgstr "Filename"
 
+msgid "View"
+msgstr "View"
+
 msgid "Upload date"
 msgstr "Upload date"
 
@@ -1538,9 +1556,6 @@ msgstr "You must select at least one recipient."
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Waiting for the file(s) to finish uploading."
-
-msgid "The following steps have errors:"
-msgstr "The following steps have errors:"
 
 msgid "Hide"
 msgstr "Hide"
@@ -2015,24 +2030,21 @@ msgid "Some reports will expire soon"
 msgstr "Some reports will expire soon"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
 msgstr ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+
+msgid "Reminder"
+msgstr "Reminder"
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
 msgstr ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "This is an email to notify that an existing report has been updated."
