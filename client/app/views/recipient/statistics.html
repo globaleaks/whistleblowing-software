@@ -44,7 +44,7 @@
     <tbody>
       <tr>
         <td></td>
-        <td ng-repeat="item in staticData['submissionStatus']['data']">{{ item }}</td>
+        <td ng-repeat="item in staticData['submissionStatus']['data'] track by $index">{{ item }}</td>
       </tr>
     </tbody>
   </table>
@@ -93,7 +93,7 @@
   <p>Displayed below is a BarGraph representing the different channels through which submissions have been received. This graphical representation provides an overview of the various submission channels and their respective contribution to the overall submissions. Please take a look at the graph to gain insights into the distribution of submissions across different channels</p>
   <div class="row">
     <div class="col">
-      <canvas width="1200" class="lineGraph" id="reportingChannelChart"></canvas>
+      <canvas width="1200" class="lineGraph" id="dropdownOptionsChart"></canvas>
     </div>
   </div>
   <br><br><br><br><br><br>
