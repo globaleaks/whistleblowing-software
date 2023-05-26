@@ -69,7 +69,6 @@ class MailGenerator(object):
 
     @transact
     def generate(self, session):
-        mailcount = 0
         now = datetime_now()
         rtips_ids = {}
         silent_tids = []
@@ -120,9 +119,6 @@ class MailGenerator(object):
                 obj.new = False
                 continue
 
-            elif mailcount >= 20:
-                continue
-
             obj.new = False
             rtip.last_notification = now
 
@@ -141,8 +137,6 @@ class MailGenerator(object):
             except:
                 pass
 
-            mailcount += 1
-
         for user in session.query(models.User).filter(models.User.reminder_date < now - timedelta(reminder_time),
                                                       models.User.id == models.ReceiverTip.receiver_id,
                                                       models.ReceiverTip.last_access < models.InternalTip.update_date,
@@ -153,9 +147,6 @@ class MailGenerator(object):
             if tid in silent_tids:
                 continue
 
-            elif mailcount >= 20:
-                return
-
             user.reminder_date = now
             data = {'type': 'unread_tips'}
 
@@ -164,8 +155,6 @@ class MailGenerator(object):
                 self.process_mail_creation(session, tid, data)
             except:
                 pass
-
-            mailcount += 1
 
 
 @transact
