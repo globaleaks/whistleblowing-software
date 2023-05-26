@@ -23,6 +23,9 @@ var GL = angular.module("GL", [
     "ngSanitize",
     "ng-showdown"
 ]).
+  config(["$ariaProvider", function($ariaProvider) {
+    $ariaProvider.config({ariaInvalid: false});
+}]).
   config(["$compileProvider", function($compileProvider) {
     $compileProvider.debugInfoEnabled(false);
 }]).
