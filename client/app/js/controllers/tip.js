@@ -87,7 +87,7 @@ GL.controller("TipCtrl",
 
     var filterNotTriggeredField = function(parent, field, answers) {
       var i;
-      if (fieldUtilities.isFieldTriggered(parent, field, answers, $scope.tip.score)) {
+      if (fieldUtilities.isFieldTriggered($scope, parent, field, answers, $scope.tip.score)) {
         for(i=0; i<field.children.length; i++) {
           filterNotTriggeredField(field, field.children[i], answers);
         }
@@ -103,7 +103,7 @@ GL.controller("TipCtrl",
 
         for (i=0; i<questionnaire.steps.length; i++) {
           step = questionnaire.steps[i];
-          if (fieldUtilities.isFieldTriggered(null, step, questionnaire.answers, $scope.tip.score)) {
+          if (fieldUtilities.isFieldTriggered($scope, null, step, questionnaire.answers, $scope.tip.score)) {
             for (j=0; j<step.children.length; j++) {
               filterNotTriggeredField(step, step.children[j], questionnaire.answers);
             }

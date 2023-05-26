@@ -1416,13 +1416,13 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
         return r;
       },
 
-      isFieldTriggered: function(parent, field, answers, score) {
+      isFieldTriggered: function(scope, parent, field, answers, score) {
         var count = 0;
         var i;
 
         field.enabled = false;
 
-        if (parent !== null && !parent.enabled) {
+	if (parent !== null && ((!parent.enabled) || (scope.page === "submissionpage" && parent.template_id === "whistleblower_identity" && !scope.submission._submission.identity_provided))) {
           return false;
         }
 
@@ -1510,10 +1510,11 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
       updateAnswers: function(scope, parent, list, answers) {
         var self = this;
         var ret = false;
+        var ret_children = false;
         var entry, option, i, j;
 
         angular.forEach(list, function(field) {
-          if (self.isFieldTriggered(parent, field, scope.answers, scope.score)) {
+          if (self.isFieldTriggered(scope, parent, field, scope.answers, scope.score)) {
             if (!(field.id in answers)) {
               answers[field.id] = [{}];
             }
@@ -1525,15 +1526,17 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
 
           if (field.id in answers) {
             for (i=0; i<answers[field.id].length; i++) {
-              ret |= self.updateAnswers(scope, field, field.children, answers[field.id][i]);
+              ret_children |= self.updateAnswers(scope, field, field.children, answers[field.id][i]);
             }
           } else {
-            ret |= self.updateAnswers(scope, field, field.children, {});
+            ret_children |= self.updateAnswers(scope, field, field.children, {});
           }
 
           if (!field.enabled) {
             return false;
           }
+
+          ret |= ret_children;
 
           if (scope.public.node.enable_scoring_system) {
             angular.forEach(scope.answers[field.id], function(entry) {
@@ -1616,7 +1619,7 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
         }
 
         angular.forEach(scope.questionnaire.steps, function(step) {
-          step.enabled = self.isFieldTriggered(null, step, scope.answers, scope.score);
+          step.enabled = self.isFieldTriggered(scope, null, step, scope.answers, scope.score);
 
           ret |= self.updateAnswers(scope, step, step.children, scope.answers);
         });
