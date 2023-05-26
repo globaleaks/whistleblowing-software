@@ -701,29 +701,53 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
       /* =============================================== Helper Methods =============================================== */
 
       $scope.export = function (value, totalvalue) {
-
-        var labels = [...$scope.staticData['submissionStatus']['label'], ...$scope.staticData['interactionStatus']['label'], ...statusBarChart.data.labels, ...labelCountsChart.data.labels, ...perMonthLineGraph.data.labels];
-        var datasets = [...$scope.staticData['submissionStatus']['data'], ...$scope.staticData['interactionStatus']['data'], ...statusBarChart.data.datasets[0].data, ...labelCountsChart.data.datasets[0].data, ...perMonthLineGraph.data.datasets[0].data];
-
-        var csvContent = 'data:text/csv;charset=utf-8,';
-
+        var modifiedlabelCountsChart = labelCountsChart.data.labels.map(function (value) {
+          return "#" + value;
+        });
+        
+        var labels = [
+          ...$scope.staticData['interactionStatus']['label'],
+          ...statusBarChart.data.labels,
+          ...modifiedlabelCountsChart
+        ];
+        
+        var datasets = [
+          ...$scope.staticData['interactionStatus']['data'],
+          ...statusBarChart.data.datasets[0].data,
+          ...labelCountsChart.data.datasets[0].data
+        ];
+        
+        var csvContent = '';
+        
+        // Function to properly escape a value for CSV
+        function escapeCSVValue(value) {
+          value = String(value);
+          if (value.includes(',') || value.includes('"') || value.includes('\n')) {
+            value = '"' + value.replace(/"/g, '""') + '"';
+          }
+          return value;
+        }
+        
         // Add header row with labels
-        csvContent += labels.join(',') + '\n';
-
+        csvContent += labels.map(escapeCSVValue).join(',') + '\n';
+        
         // Add data rows
-        var dataRow = datasets.join(',');
-
+        var dataRow = datasets.map(escapeCSVValue).join(',');
+        
         csvContent += dataRow + '\n';
-
+        
+        // Create a Blob object
+        var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        
         // Create a download link
-        var encodedUri = encodeURI(csvContent);
         var link = document.createElement('a');
-        link.setAttribute('href', encodedUri);
+        link.setAttribute('href', URL.createObjectURL(blob));
         link.setAttribute('download', 'data.csv');
         document.body.appendChild(link);
-
+        
         // Trigger download
         link.click();
+        
       }
 
     }]);

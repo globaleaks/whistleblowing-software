@@ -1,10 +1,15 @@
 <div data-ng-if="field.enabled && (!preview || field.preview)" data-ng-class="{'nested': !preview}" class="fieldAnswer">
   <div data-ng-class="{'font-weight-bold': !preview}">
-    <span data-ng-if="!$parent.field && !preview">{{$index + 1}})</span>
+    <span data-ng-if="!$parent.field && !preview">{{$index + 1}}</span>
     <span>{{field.label}}</span>
+    <span id="edit-question" data-ng-click="editReport()" data-ng-if="editMode"
+      data-uib-tooltip="{{'Edit' | translate}}" class="btn btn-outline-secondary">
+      <i class="fa-solid fa-pen-to-square" data-ng-class="{'text-warning': !Utils.isNever(tip.reminder_date)}"></i>
+    </span>
   </div>
   <div data-ng-if="!hasMultipleEntries(fieldAnswers[field.id])">
-    <div data-ng-init="entry = fieldAnswers[field.id][0]" data-ng-include="'views/partials/tip_field_answer_entry.html'"></div>
+    <div data-ng-init="entry = fieldAnswers[field.id][0]"
+      data-ng-include="'views/partials/tip_field_answer_entry.html'"></div>
   </div>
   <div data-ng-if="hasMultipleEntries(fieldAnswers[field.id])">
     <div data-ng-repeat="entry in fieldAnswers[field.id]">
