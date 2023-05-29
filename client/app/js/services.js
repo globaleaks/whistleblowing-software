@@ -1156,10 +1156,16 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       $window.print();
     },
 
-    scrollToSteps: function() {
-      try {
-        $window.document.getElementsById("SubmissionForm")[0].scrollIntoView();
-      } catch(e) {return;}
+    scrollTo: function(querySelector) {
+      $timeout(function() {
+        try {
+          var elem = $window.document.querySelector(querySelector);
+          elem.scrollIntoView();
+          elem.focus();
+        } catch (error) {
+          console.log(error);
+        }
+      });
     },
 
     getConfirmation: function(confirmFun) {

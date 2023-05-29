@@ -1,6 +1,6 @@
 GL.controller("SubmissionCtrl",
-    ["$scope", "$filter", "$location", "$interval", "tmhDynamicLocale", "Submission", "fieldUtilities",
-      function ($scope, $filter, $location, $interval, tmhDynamicLocale, Submission, fieldUtilities) {
+    ["$scope", "$filter", "$location", "$interval", "$timeout", "tmhDynamicLocale", "Submission", "fieldUtilities",
+      function ($scope, $filter, $location, $interval, $timeout, tmhDynamicLocale, Submission, fieldUtilities) {
   $scope.vars = {};
 
   $scope.fieldUtilities = fieldUtilities;
@@ -14,10 +14,6 @@ GL.controller("SubmissionCtrl",
   $scope.validate = {};
 
   $scope.score = 0;
-
-  $scope.singleStepForm = function() {
-    return $scope.firstStepIndex() === $scope.lastStepIndex();
-  };
 
   $scope.contextsOrderPredicate = $scope.public.node.show_contexts_in_alphabetical_order ? "name" : "order";
 
@@ -50,11 +46,11 @@ GL.controller("SubmissionCtrl",
 
   $scope.goToStep = function(index) {
     $scope.navigation = index;
-    $scope.Utils.scrollToSteps();
+    $scope.Utils.scrollTo("#SubmissionForm");
   };
 
   $scope.firstStepIndex = function() {
-    return $scope.receiver_selection_step ? -1 : 0;
+    return $scope.context.allow_recipients_selection ? -1 : 0;
   };
 
   $scope.lastStepIndex = function() {
@@ -87,16 +83,11 @@ GL.controller("SubmissionCtrl",
 
   $scope.checkForInvalidFields = function() {
     for(var i = 0; i <= $scope.navigation; i++) {
-      $scope.validate[i] = true;
-
       if ($scope.questionnaire.steps[i].enabled) {
-        // find the first invalid element
-        var form = document.getElementById("step-" + i);
-        var firstInvalid = form.querySelector(".inputelem.ng-invalid");
-
-        // if we find one, set focus
-        if (firstInvalid) {
+        // check presence of invalid elements
+        if (document.querySelector("#step-" + i + " .inputelem.ng-invalid")) {
           $scope.navigation = i;
+          $scope.Utils.scrollTo("#SubmissionErrors");
           return false;
         }
       }
@@ -106,18 +97,16 @@ GL.controller("SubmissionCtrl",
   };
 
   $scope.runValidation = function() {
-    for(var i = 0; i <= $scope.navigation; i++) {
+    for(var i = -1; i <= $scope.navigation; i++) {
       $scope.validate[i] = true;
     }
 
-    if (!$scope.areReceiversSelected()) {
-      $scope.Utils.scrollToSteps();
+    if ($scope.context.allow_recipients_selection && !$scope.areReceiversSelected()) {
       $scope.navigation = -1;
       return false;
     }
 
     if (!$scope.checkForInvalidFields()) {
-      $scope.Utils.scrollToSteps();
       return false;
     }
 
@@ -134,7 +123,7 @@ GL.controller("SubmissionCtrl",
       for (var i = $scope.navigation + 1; i <= $scope.lastStepIndex(); i++) {
         if (fieldUtilities.isFieldTriggered($scope, null, $scope.questionnaire.steps[i], $scope.answers, $scope.score)) {
           $scope.navigation = i;
-          $scope.Utils.scrollToSteps();
+          $scope.Utils.scrollTo("#step-" + i + " .inputelem");
           return;
         }
       }
@@ -147,7 +136,11 @@ GL.controller("SubmissionCtrl",
       for (var i = $scope.navigation - 1; i >= $scope.firstStepIndex(); i--) {
         if (i === -1 || fieldUtilities.isFieldTriggered($scope, null, $scope.questionnaire.steps[i], $scope.answers, $scope.score)) {
           $scope.navigation = i;
-          $scope.Utils.scrollToSteps();
+          if (i === -1) {
+            $scope.Utils.scrollTo("#SubmissionForm");
+          } else {
+            $scope.Utils.scrollTo("#step-" + i + " .inputelem");
+          }
           return;
         }
       }
@@ -188,11 +181,7 @@ GL.controller("SubmissionCtrl",
     $scope.receiversOrderPredicate = $scope.submission.context.show_receivers_in_alphabetical_order ? "name" : null;
     $scope.show_steps_navigation_bar = $scope.context.allow_recipients_selection || $scope.questionnaire.steps.length > 1;
 
-    if ($scope.context.allow_recipients_selection) {
-      $scope.navigation = -1;
-    } else {
-      $scope.navigation = 0;
-    }
+    $scope.navigation = $scope.firstStepIndex();
   };
 
   $scope.completeSubmission = function() {
@@ -227,12 +216,6 @@ GL.controller("SubmissionCtrl",
     }
   };
 
-  $scope.displayStepErrors = function(index) {
-    if (index !== -1) {
-      return $scope.stepForm(index).$invalid;
-    }
-  };
-
   $scope.replaceReceivers = function(receivers) {
     for(var key in $scope.submission.selected_receivers) {
       if (receivers.indexOf(key) === -1) {
@@ -260,8 +243,14 @@ GL.controller("SubmissionCtrl",
       return true;
     }
 
-    if ($scope.displayStepErrors($scope.navigation)) {
-      return true;
+    if ($scope.navigation === -1) {
+      if ($scope.context.allow_recipients_selection && !$scope.areReceiversSelected()) {
+        return true;
+      }
+    } else {
+      if ($scope.stepForm($scope.navigation).$invalid) {
+        return true;
+      }
     }
 
     return false;
@@ -316,17 +305,9 @@ controller("AdditionalQuestionnaireCtrl",
 
   $scope.score = 0;
 
-  $scope.singleStepForm = function() {
-    return $scope.firstStepIndex() === $scope.lastStepIndex();
-  };
-
   $scope.goToStep = function(index) {
     $scope.navigation = index;
-    $scope.Utils.scrollToSteps();
-  };
-
-  $scope.firstStepIndex = function() {
-    return 0;
+    $scope.Utils.scrollTo("#SubmissionForm");
   };
 
   $scope.lastStepIndex = function() {
@@ -346,21 +327,16 @@ controller("AdditionalQuestionnaireCtrl",
   };
 
   $scope.hasPreviousStep = function() {
-    return $scope.navigation > $scope.firstStepIndex();
+    return $scope.navigation > 0;
   };
 
   $scope.checkForInvalidFields = function() {
     for(var i = 0; i <= $scope.navigation; i++) {
-      $scope.validate[i] = true;
-
       if ($scope.questionnaire.steps[i].enabled) {
-        // find the first invalid element
-        var form = document.getElementById("step-" + i);
-        var firstInvalid = form.querySelector(".inputelem.ng-invalid");
-
-        // if we find one, set focus
-        if (firstInvalid) {
+        // check presence of invalid elements
+        if (document.querySelector("#step-" + i + " .inputelem.ng-invalid")) {
           $scope.navigation = i;
+          $scope.Utils.scrollTo("#SubmissionErrors");
           return false;
         }
       }
@@ -370,12 +346,11 @@ controller("AdditionalQuestionnaireCtrl",
   };
 
   $scope.runValidation = function() {
-    for(var i = 0; i <= $scope.navigation; i++) {
+    for(var i = -1; i <= $scope.navigation; i++) {
       $scope.validate[i] = true;
     }
 
     if ($scope.navigation > -1 && !$scope.checkForInvalidFields()) {
-      $scope.Utils.scrollToSteps();
       return false;
     }
 
@@ -392,7 +367,7 @@ controller("AdditionalQuestionnaireCtrl",
       for (var i = $scope.navigation + 1; i <= $scope.lastStepIndex(); i++) {
         if (fieldUtilities.isFieldTriggered($scope, null, $scope.questionnaire.steps[i], $scope.answers, $scope.score)) {
           $scope.navigation = i;
-          $scope.Utils.scrollToSteps();
+          $scope.Utils.scrollTo("#step-" + i + " .inputelem");
           return;
         }
       }
@@ -402,18 +377,14 @@ controller("AdditionalQuestionnaireCtrl",
   $scope.decrementStep = function() {
     if ($scope.hasPreviousStep()) {
       $scope.vars.submissionForm.$dirty = false;
-      for (var i = $scope.navigation - 1; i >= $scope.firstStepIndex(); i--) {
+      for (var i = $scope.navigation - 1; i >= 0; i--) {
         if (i === -1 || fieldUtilities.isFieldTriggered($scope, null, $scope.questionnaire.steps[i], $scope.answers, $scope.score)) {
           $scope.navigation = i;
-          $scope.Utils.scrollToSteps();
+          $scope.Utils.scrollTo("#step-" + i + " .inputelem");
           return;
         }
       }
     }
-  };
-
-  $scope.areReceiversSelected = function() {
-    return true;
   };
 
   $scope.submissionHasErrors = function() {
@@ -429,14 +400,13 @@ controller("AdditionalQuestionnaireCtrl",
   };
 
   $scope.completeSubmission = function() {
-    for(var i = 0; i <= $scope.navigation; i++) {
+    for(var i = -1; i <= $scope.navigation; i++) {
       $scope.validate[i] = true;
     }
 
     fieldUtilities.onAnswersUpdate($scope);
 
     if (!$scope.checkForInvalidFields()) {
-      $scope.Utils.scrollToSteps();
       return;
     }
 
@@ -474,19 +444,13 @@ controller("AdditionalQuestionnaireCtrl",
     }
   };
 
-  $scope.displayStepErrors = function(index) {
-    if (index !== -1) {
-      return $scope.stepForm(index).$invalid;
-    }
-  };
-
   $scope.displayErrors = function() {
     if (!($scope.validate[$scope.navigation])) {
       return false;
     }
 
-    if ($scope.displayStepErrors($scope.navigation)) {
-      return true;
+    if ($scope.navigation !== -1) {
+      return $scope.stepForm($scope.navigation).$invalid;
     }
 
     return false;

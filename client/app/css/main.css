@@ -799,6 +799,11 @@ input[type="file"] {
   margin-top: 0.5em;
 }
 
+#SubmissionStepContext {
+  padding: revert;
+  margin: revert;
+}
+
 .addField,
 .addFieldFromTemplate {
   clear: both;
