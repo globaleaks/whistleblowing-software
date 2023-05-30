@@ -141,8 +141,6 @@ GL.controller("TipCtrl",
           }
         }
       };
-      console.log($scope.field,"$scope.field");
-
       $scope.hasMultipleEntries = function (field_answer) {
         return (typeof field_answer !== "undefined") && field_answer.length > 1;
       };
