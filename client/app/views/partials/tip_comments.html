@@ -36,10 +36,9 @@
       data-ng-repeat="comment in tip.comments | orderBy:'creation_date':true| limitTo:itemsPerPage:((currentCommentsPage - 1) * itemsPerPage)">
       <div id="comment-{{$index}}" data-ng-switch="comment.type" class="mt-2">
         <div data-ng-switch-when="whistleblower" class="messageWB">
-          <span id="edit-question" data-ng-click="editReport(comment)" data-ng-if="editMode" data-uib-tooltip="{{'Edit' | translate}}"
-            class="btn btn-outline-secondary">
-            <i class="fa-solid fa-pen-to-square"
-              data-ng-class="{'text-warning': !Utils.isNever(tip.reminder_date)}"></i>
+          <span class="float-right" id="edit-question" data-ng-click="editReport(comment)" data-ng-if="mode"
+            data-uib-tooltip="{{'Edit' | translate}}">
+            <i class="fa-solid fa-pencil edit"></i>
           </span>
           <div class="row">
             <div class="col-md-6" data-translate>Whistleblower</div>
@@ -48,10 +47,9 @@
           <div class="preformatted">{{comment.content}}</div>
         </div>
         <div data-ng-switch-when="receiver" class="message">
-          <span id="edit-question" data-ng-click="editReport(comment)" data-ng-if="editMode"
-            data-uib-tooltip="{{'Edit' | translate}}" class="btn btn-outline-secondary">
-            <i class="fa-solid fa-pen-to-square"
-              data-ng-class="{'text-warning': !Utils.isNever(tip.reminder_date)}"></i>
+          <span class="float-right edit" id="edit-question" data-ng-click="editReport(comment)" data-ng-if="mode"
+            data-uib-tooltip="{{'Edit' | translate}}">
+            <i class="fa-solid fa-pencil edit"></i>
           </span>
           <div class="row">
             <div class="col-md-6">{{tip.receivers_by_id[comment.author].name}}</div>

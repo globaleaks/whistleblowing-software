@@ -14,11 +14,8 @@ GL.controller("TipCtrl",
       $scope.showEditLabelInput = false;
       $scope.editMode = false
 
-      $scope.mode = 'false';
+      $scope.mode = false;
 
-      $scope.onChange = function (mode) {
-        $scope.mode = mode;
-      };
       $scope.openGrantTipAccessModal = function () {
         $http({
           method: "PUT", url: "api/user/operations", data: {
@@ -134,7 +131,6 @@ GL.controller("TipCtrl",
 
                 $scope.fields = $scope.questionnaire.steps[0].children;
                 $scope.rows = fieldUtilities.splitRows($scope.fields);
-
                 fieldUtilities.onAnswersUpdate($scope);
 
                 for (k = 0; k < $scope.whistleblower_identity_field.children.length; k++) {
@@ -145,6 +141,7 @@ GL.controller("TipCtrl",
           }
         }
       };
+      console.log($scope.field,"$scope.field");
 
       $scope.hasMultipleEntries = function (field_answer) {
         return (typeof field_answer !== "undefined") && field_answer.length > 1;
@@ -354,7 +351,9 @@ GL.controller("TipCtrl",
           }
         });
       };
-
+      $scope.tip_mode = function (value) {
+        $scope.mode = value;
+      }
       $scope.tip_open_additional_questionnaire = function () {
         $scope.answers = {};
         $scope.uploads = {};
@@ -501,9 +500,9 @@ GL.controller("TipCtrl",
       };
 
       $scope.args = args;
-      $scope.content = $scope.args.data.content;
-      console.log($scope.args.data.content, "$scope.args.data");
-      $scope.content = $scope.args.data.content;
+      console.log($scope.args.data, "$scope.args.data");
+      console.log($scope.args, "$scope.args");
+      $scope.content = $scope.args.data.content || $scope.args.data.value;
 
       $scope.redact = function (id) {
         var blank = "\u2588";
@@ -515,8 +514,8 @@ GL.controller("TipCtrl",
         var length = finish - start;
 
         if (length) {
-          console.log(blank,'blank');
-          console.log(blank.repeat(length),'blank.repeat(length)');
+          console.log(blank, 'blank');
+          console.log(blank.repeat(length), 'blank.repeat(length)');
 
           elem.value = text.substring(0, start) + blank.repeat(length) + text.substring(finish, text.length);
         }
@@ -533,7 +532,7 @@ GL.controller("TipCtrl",
         if (length) {
           elem.value = text.substring(0, start) + $scope.content.substring(start, finish) + text.substring(finish, text.length);
 
-        }else{
+        } else {
           elem.value = $scope.content
         }
       }
