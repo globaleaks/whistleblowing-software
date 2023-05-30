@@ -2,10 +2,6 @@
   <div data-ng-class="{'font-weight-bold': !preview}">
     <span data-ng-if="!$parent.field && !preview">{{$index + 1}}</span>
     <span>{{field.label}}</span>
-    <span id="edit-question" data-ng-click="editReport()" data-ng-if="editMode"
-      data-uib-tooltip="{{'Edit' | translate}}" class="btn btn-outline-secondary">
-      <i class="fa-solid fa-pen-to-square" data-ng-class="{'text-warning': !Utils.isNever(tip.reminder_date)}"></i>
-    </span>
   </div>
   <div data-ng-if="!hasMultipleEntries(fieldAnswers[field.id])">
     <div data-ng-init="entry = fieldAnswers[field.id][0]"

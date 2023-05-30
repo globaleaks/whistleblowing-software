@@ -1,8 +1,8 @@
 <div id="message-{{$index}}" data-ng-switch="message.type" class="mt-2">
   <div data-ng-switch-when="whistleblower" class="messageWB">
-    <span id="edit-question" data-ng-click="editReport()" data-ng-if="editMode"
-      data-uib-tooltip="{{'Edit' | translate}}" class="btn btn-outline-secondary">
-      <i class="fa-solid fa-pen-to-square" data-ng-class="{'text-warning': !Utils.isNever(tip.reminder_date)}"></i>
+    <span class="float-right" id="edit-question" data-ng-click="editReport(message)" data-ng-if="mode"
+      data-uib-tooltip="{{'Edit' | translate}}">
+      <i class="fa-solid fa-pencil edit"></i>
     </span>
     <div class="row">
       <div class="col-md-6" data-ng-switch="Authentication.session.role">
@@ -15,9 +15,9 @@
     <div class="preformatted">{{message.content}}</div>
   </div>
   <div data-ng-switch-when="receiver" class="message">
-    <span id="edit-question" data-ng-click="editReport()" data-ng-if="editMode"
-      data-uib-tooltip="{{'Edit' | translate}}" class="btn btn-outline-secondary">
-      <i class="fa-solid fa-pen-to-square" data-ng-class="{'text-warning': !Utils.isNever(tip.reminder_date)}"></i>
+    <span class="float-right" id="edit-question" data-ng-click="editReport(message)" data-ng-if="mode"
+      data-uib-tooltip="{{'Edit' | translate}}">
+      <i class="fa-solid fa-pencil edit"></i>
     </span>
     <div class="row">
       <div class="col-md-6" data-ng-switch="Authentication.session.role">

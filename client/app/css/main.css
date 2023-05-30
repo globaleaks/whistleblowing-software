@@ -77,11 +77,11 @@ a:hover,
   color: #377abc;
 }
 
-.custom-translate{
+.custom-translate {
   transform: translateY(-6px);
 }
 
-.custom-bold{
+.custom-bold {
   font-weight: bold;
 }
 
@@ -932,6 +932,7 @@ html[dir="ltr"] #Receipt {
 [dir] .navbar {
   padding: 0;
 }
+
 /* Feature Statistic Styling */
 canvas#doughnut {
   height: 885px !important;
@@ -943,14 +944,26 @@ canvas#lineGraph {
   width: 885px !important;
 
 }
+
 hr {
-  height: 2px; 
-  background-color: black; 
-  border: none; 
+  height: 2px;
+  background-color: black;
+  border: none;
   margin: 10px 0;
 }
-/* Switch Edit Mode */
-.switch {
+/* Edit mode styling */
+.edit {
+  color: #b4bccb !important
+}
+.svg-btn:hover svg g {
+  fill: white;
+}
+
+.mode-svg {
+  width: 19px;
+}
+
+/* .switch {
   position: relative;
   display: inline-block;
   width: 48px;
@@ -1000,4 +1013,4 @@ hr {
 
 .slider.active:before {
   transform: translateX(24px);
-}
+} */
