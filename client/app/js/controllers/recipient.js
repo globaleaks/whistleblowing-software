@@ -501,8 +501,11 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
       $scope.generateGeneralGraph = function () {
         for (var status in $scope.statusCount) {
           var count = $scope.statusCount[status];
-
-          var percentage = (count / $scope.totalReports) * 100;
+          if ($scope.totalReports !== 0) {
+            var percentage = (count / $scope.totalReports) * 100;
+          } else {
+            var percentage = 0
+          }
           $scope.statusPercentages.push({
             status: status,
             count: count,
@@ -526,7 +529,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
         $scope.statusPercentages.unshift({
           status: 'Total Reports',
           count: $scope.totalReports,
-          percentage: 100
+          percentage: $scope.totalReports !== 0 ? "100" : "0.00"
         });
 
         var statusLabels = $scope.statusPercentages.map(function (item) {
@@ -667,11 +670,11 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
         var submissionStatus = {}
         submissionStatus['label'] = ['Total', 'New', 'Opened', 'Closed', 'Unlabled', 'Labeled']
         submissionStatus['data'] = [$scope.totalReports,
-        ($scope.statPercentageCalculator($scope.statusCount["New"], $scope.totalReports)).toFixed(2),
-        ($scope.statPercentageCalculator($scope.statusCount["Opened"], $scope.totalReports)).toFixed(2),
-        ($scope.statPercentageCalculator($scope.statusCount["Closed"], $scope.totalReports)).toFixed(2),
-        ($scope.statPercentageCalculator($scope.unlabeledCountDefault, $scope.totalReports)).toFixed(2),
-        ($scope.statPercentageCalculator($scope.labeledCountDefault, $scope.totalReports)).toFixed(2)]
+        ($scope.statPercentageCalculator($scope.statusCount["New"], $scope.totalReports)).toFixed(2) + " %",
+        ($scope.statPercentageCalculator($scope.statusCount["Opened"], $scope.totalReports)).toFixed(2) + " %",
+        ($scope.statPercentageCalculator($scope.statusCount["Closed"], $scope.totalReports)).toFixed(2) + " %",
+        ($scope.statPercentageCalculator($scope.unlabeledCountDefault, $scope.totalReports)).toFixed(2) + " %",
+        ($scope.statPercentageCalculator($scope.labeledCountDefault, $scope.totalReports)).toFixed(2) + " %"]
 
         var interactionStatus = {}
         interactionStatus['label'] = ['Total Report', 'Average closure time', 'Total Unanswered Tips', 'Number of interections', 'Tor Connections', 'Reciprocating whistle blower']
@@ -704,21 +707,21 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
         var modifiedlabelCountsChart = labelCountsChart.data.labels.map(function (value) {
           return "#" + value;
         });
-        
+
         var labels = [
           ...$scope.staticData['interactionStatus']['label'],
           ...statusBarChart.data.labels,
           ...modifiedlabelCountsChart
         ];
-        
+
         var datasets = [
           ...$scope.staticData['interactionStatus']['data'],
           ...statusBarChart.data.datasets[0].data,
           ...labelCountsChart.data.datasets[0].data
         ];
-        
+
         var csvContent = '';
-        
+
         // Function to properly escape a value for CSV
         function escapeCSVValue(value) {
           value = String(value);
@@ -727,27 +730,27 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
           }
           return value;
         }
-        
+
         // Add header row with labels
         csvContent += labels.map(escapeCSVValue).join(',') + '\n';
-        
+
         // Add data rows
         var dataRow = datasets.map(escapeCSVValue).join(',');
-        
+
         csvContent += dataRow + '\n';
-        
+
         // Create a Blob object
         var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-        
+
         // Create a download link
         var link = document.createElement('a');
         link.setAttribute('href', URL.createObjectURL(blob));
         link.setAttribute('download', 'data.csv');
         document.body.appendChild(link);
-        
+
         // Trigger download
         link.click();
-        
+
       }
 
     }]);
