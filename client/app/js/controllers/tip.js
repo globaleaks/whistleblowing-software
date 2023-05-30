@@ -329,7 +329,7 @@ GL.controller("TipCtrl",
           }
         });
       };
-      $scope.editReport = function (data) {
+      $scope.editReport = function (data,id) {
         $uibModal.open({
           templateUrl: "views/modals/report_reduct.html",
           controller: "TipEditReportCtrl",
@@ -345,7 +345,7 @@ GL.controller("TipCtrl",
                 },
                 opened: false,
                 Utils: $scope.Utils,
-                data: data
+                data: data,id
               };
             }
           }
@@ -501,9 +501,10 @@ GL.controller("TipCtrl",
 
       $scope.args = args;
       console.log($scope.args.data, "$scope.args.data");
-      console.log($scope.args, "$scope.args");
-      $scope.content = $scope.args.data.content || $scope.args.data.value;
-
+      // console.log($scope.args, "$scope.args");
+      $scope.content = $scope.args.data;
+      $scope.contentId = $scope.args.id
+      console.log($scope.contentId,"$scope.contentId");
       $scope.redact = function (id) {
         var blank = "\u2588";
         var elem = document.getElementById(id);

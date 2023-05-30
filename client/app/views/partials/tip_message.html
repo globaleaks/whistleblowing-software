@@ -1,7 +1,7 @@
 <div id="message-{{$index}}" data-ng-switch="message.type" class="mt-2">
   <div data-ng-switch-when="whistleblower" class="messageWB">
-    <span class="float-right" id="edit-question" data-ng-click="editReport(message)" data-ng-if="mode"
-      data-uib-tooltip="{{'Edit' | translate}}">
+    <span class="float-right" id="edit-question" data-ng-click="editReport(message.content,message.id)"
+      data-ng-if="mode" data-uib-tooltip="{{'Edit' | translate}}">
       <i class="fa-solid fa-pencil edit"></i>
     </span>
     <div class="row">
@@ -15,7 +15,7 @@
     <div class="preformatted">{{message.content}}</div>
   </div>
   <div data-ng-switch-when="receiver" class="message">
-    <span class="float-right" id="edit-question" data-ng-click="editReport(message)" data-ng-if="mode"
+    <span class="float-right" id="edit-question" data-ng-click="editReport(message.content,message.id)" data-ng-if="mode"
       data-uib-tooltip="{{'Edit' | translate}}">
       <i class="fa-solid fa-pencil edit"></i>
     </span>
