@@ -1,5 +1,5 @@
 angular.module("GL")
-.controller("TenantCtrl", ["$scope", function($scope) {
+.controller("TenantCtrl", ["$scope","$http", function($scope, $http) {
   $scope.tabs = [
     {
       title:"Sites",
@@ -8,6 +8,10 @@ angular.module("GL")
     {
       title:"Options",
       template:"views/admin/sites/tab2.html"
+    },
+    {
+      title:"Profiles",
+      template:"views/admin/sites/tab3.html"
     },
   ];
 
@@ -33,6 +37,19 @@ angular.module("GL")
       $scope.resources.tenants.push(tenant);
       $scope.newTenant = new $scope.AdminUtils.new_tenant();
     });
+  };
+
+  $scope.importProfile = function(file) {
+    console.log("am here, file is ", file);
+    $scope.Utils.readFileAsText(file).then(function(txt) {
+      return $http({
+        method: "POST",
+        url: "api/admin/profile",
+        data: txt,
+      });
+    }).then(function() {
+       $scope.reload();
+    }, $scope.Utils.displayErrorMsg);
   };
 }])
 .controller("TenantEditorCtrl", ["$scope", "$http", "$window", "AdminTenantResource",
