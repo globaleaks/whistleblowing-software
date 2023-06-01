@@ -591,3 +591,9 @@ SubmissionSubStatusDesc = {
     'label': str,
     'order': int
 }
+
+AdminProfileDesc = {
+    'name': str,
+    'description': str,
+    'config': dict
+}

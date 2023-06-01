@@ -53,6 +53,8 @@ from globaleaks.handlers.admin import step as admin_step
 from globaleaks.handlers.admin import tenant as admin_tenant
 from globaleaks.handlers.admin import user as admin_user
 from globaleaks.handlers.admin import submission_statuses as admin_submission_statuses
+from globaleaks.handlers.admin import profile as admin_profile
+
 
 from globaleaks.rest import decorators, requests, errors
 from globaleaks.state import State, extract_exception_traceback_and_schedule_email
@@ -125,6 +127,7 @@ api_spec = [
     (r'/api/admin/questionnaires', admin_questionnaire.QuestionnairesCollection),
     (r'/api/admin/questionnaires/duplicate', admin_questionnaire.QuestionnareDuplication),
     (r'/api/admin/questionnaires/' + key_regexp, admin_questionnaire.QuestionnaireInstance),
+    (r'/api/admin/profile', admin_profile.ProfileCollection),
     (r'/api/admin/notification', admin_notification.NotificationInstance),
     (r'/api/admin/fields', admin_field.FieldsCollection),
     (r'/api/admin/fields/' + key_regexp, admin_field.FieldInstance),
