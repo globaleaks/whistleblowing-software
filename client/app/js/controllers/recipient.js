@@ -314,22 +314,20 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
         });
         return graph;
       }
-      $scope.channel = undefined
-      $scope.startDate = null;
-      $scope.endDate = null;
-      $scope.staticData = [];
 
-      var totalClosureTime = 0;
       var reportCountPerMonth = {};
-      var httpsCount = 0;
       var statusBarChart = undefined;
       var labelCountsChart = undefined;
       var perMonthLineGraph = undefined;
       var channelCountsChart = undefined;
       var totalClosedTips = 0;
 
+      $scope.channel = undefined
+      $scope.startDate = null;
+      $scope.endDate = null;
+      $scope.staticData = [];
+
       $scope.flush = function () {
-        $scope.reports = $scope.resources.rtips.rtips;
         $scope.totalReports = 0;
         $scope.reportingChannel = []
         $scope.statusCount = { 'New': 0, 'Opened': 0, 'Closed': 0 };
@@ -341,7 +339,6 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
         $scope.endDatePickerOpen = false;
         $scope.format = 'dd/MM/yyyy';
         $scope.unansweredTips = [];
-        $scope.unansweredCount = 0;
         $scope.labelCounts = {};
         $scope.unlabeledCount = 0;
         $scope.unlabeledCountDefault = 0;
@@ -349,11 +346,10 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
         $scope.torCount = 0;
         $scope.reciprocatingWhistleBlower = 0;
         $scope.averageClosureTime = 0;
-        totalClosedTips = 0
-        totalClosureTime = 0;
-        reportCountPerMonth = {};
-        httpsCount = 0;
         $scope.dropdownOptions = []
+
+        totalClosedTips = 0
+        reportCountPerMonth = {};
       }
 
       $scope.flush()
@@ -373,15 +369,44 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
 
           $scope.totalReports += 1
           tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText(tip.status, tip.substatus, $scope.submission_statuses);
-          if (tip.submissionstatusestr !== 'New') {
+          if (tip.status !== 'new') {
             $scope.tip = new RTip({ id: tip.id }, function (tip) {
               $scope.tip = tip
-              for (var item of tip.comments) {
+              var interaction=false
+              if(tip.comments.length>0){
+                 var lastElement = tip.comments[tip.comments.length - 1];
+                 if (lastElement.type === "whistleblower") {
+                   $scope.unansweredTipsCount+=1;
+                 }
+              }
+              if(tip.messages.length>0){
+                 var lastElement = tip.messages[tip.messages.length - 1];
+                 if (lastElement.type === "whistleblower") {
+                   $scope.unansweredTipsCount = unansweredTipsCount+=1;
+                 }
+              }
 
-                if (item.type === "receiver") {
-                  $scope.receiverCount++
+              for (var item of tip.messages) {
+                if (item.type === "whistleblower") {
+                  interaction=true
+                  break
                 }
               }
+              for (var item of tip.comments) {
+                if (item.type === "receiver") {
+                  interaction=true
+                  break
+                }
+              }
+
+              if(tip.label.length>0 || tip.wbfiles.length>0 || tip.status !== 'opened'){
+                  interaction=true
+              }
+              if(interaction){
+                  $scope.receiverCount++
+              }
+
+
               for (var item of tip.questionnaires) {
                 for (var step of item.steps) {
                   for (var children of step.children) {
@@ -411,12 +436,6 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
 
                     }
                   }
-                }
-              }
-              for (var item of tip.comments) {
-
-                if (item.type === "receiver") {
-                  $scope.receiverCount++
                 }
               }
               $scope.initializeStaticData()
@@ -462,14 +481,8 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
           if (tip.tor === true) {
             torCount++;
           }
-          else {
-            httpsCount++;
-          }
 
           /* For UnansweredTips Count */
-          if (tip.submissionstatusestr === 'new') {
-            $scope.unansweredTipsCount++;
-          }
 
           //  For The average time of closure of the submission
           var report = tip;
@@ -501,11 +514,8 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
       $scope.generateGeneralGraph = function () {
         for (var status in $scope.statusCount) {
           var count = $scope.statusCount[status];
-          if ($scope.totalReports !== 0) {
-            var percentage = (count / $scope.totalReports) * 100;
-          } else {
-            var percentage = 0
-          }
+
+          var percentage = (count / $scope.totalReports) * 100;
           $scope.statusPercentages.push({
             status: status,
             count: count,
@@ -529,7 +539,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
         $scope.statusPercentages.unshift({
           status: 'Total Reports',
           count: $scope.totalReports,
-          percentage: $scope.totalReports !== 0 ? "100" : "0.00"
+          percentage: 100
         });
 
         var statusLabels = $scope.statusPercentages.map(function (item) {
@@ -668,19 +678,19 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
 
       $scope.initializeStaticData = function () {
         var submissionStatus = {}
-        submissionStatus['label'] = ['Total', 'New', 'Opened', 'Closed', 'Unlabled', 'Labeled']
+        submissionStatus['label'] = ['Total', 'New', 'Opened', 'Closed', 'Labeled', 'Unlabled']
         submissionStatus['data'] = [$scope.totalReports,
-        ($scope.statPercentageCalculator($scope.statusCount["New"], $scope.totalReports)).toFixed(2) + " %",
-        ($scope.statPercentageCalculator($scope.statusCount["Opened"], $scope.totalReports)).toFixed(2) + " %",
-        ($scope.statPercentageCalculator($scope.statusCount["Closed"], $scope.totalReports)).toFixed(2) + " %",
-        ($scope.statPercentageCalculator($scope.unlabeledCountDefault, $scope.totalReports)).toFixed(2) + " %",
-        ($scope.statPercentageCalculator($scope.labeledCountDefault, $scope.totalReports)).toFixed(2) + " %"]
+        ($scope.statPercentageCalculator($scope.statusCount["New"], $scope.totalReports)).toFixed(2),
+        ($scope.statPercentageCalculator($scope.statusCount["Opened"], $scope.totalReports)).toFixed(2),
+        ($scope.statPercentageCalculator($scope.statusCount["Closed"], $scope.totalReports)).toFixed(2),
+        ($scope.statPercentageCalculator($scope.unlabeledCountDefault, $scope.totalReports)).toFixed(2),
+        ($scope.statPercentageCalculator($scope.labeledCountDefault, $scope.totalReports)).toFixed(2)]
 
         var interactionStatus = {}
         interactionStatus['label'] = ['Total Report', 'Average closure time', 'Total Unanswered Tips', 'Number of interections', 'Tor Connections', 'Reciprocating whistle blower']
         interactionStatus['data'] = [$scope.totalReports,
         $scope.averageClosureTime,
-        $scope.unansweredCount,
+        $scope.unansweredTipsCount,
         $scope.receiverCount,
         $scope.torCount,
         $scope.reciprocatingWhistleBlower]
@@ -707,21 +717,21 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
         var modifiedlabelCountsChart = labelCountsChart.data.labels.map(function (value) {
           return "#" + value;
         });
-
+        
         var labels = [
           ...$scope.staticData['interactionStatus']['label'],
           ...statusBarChart.data.labels,
           ...modifiedlabelCountsChart
         ];
-
+        
         var datasets = [
           ...$scope.staticData['interactionStatus']['data'],
           ...statusBarChart.data.datasets[0].data,
           ...labelCountsChart.data.datasets[0].data
         ];
-
+        
         var csvContent = '';
-
+        
         // Function to properly escape a value for CSV
         function escapeCSVValue(value) {
           value = String(value);
@@ -730,27 +740,27 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
           }
           return value;
         }
-
+        
         // Add header row with labels
         csvContent += labels.map(escapeCSVValue).join(',') + '\n';
-
+        
         // Add data rows
         var dataRow = datasets.map(escapeCSVValue).join(',');
-
+        
         csvContent += dataRow + '\n';
-
+        
         // Create a Blob object
         var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-
+        
         // Create a download link
         var link = document.createElement('a');
         link.setAttribute('href', URL.createObjectURL(blob));
         link.setAttribute('download', 'data.csv');
         document.body.appendChild(link);
-
+        
         // Trigger download
         link.click();
-
+        
       }
 
     }]);
