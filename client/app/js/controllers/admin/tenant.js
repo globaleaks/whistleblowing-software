@@ -53,9 +53,13 @@ angular.module("GL")
   };
 
   $scope.deleteProfile = function(profile) {
-    return $http({
-      method: "DELETE",
-      url: "api/admin/profiles/" + profile.id,
+    $scope.Utils.deleteDialog().then(function() {
+      return $http({
+        method: "DELETE",
+        url: "api/admin/profiles/" + profile.id,
+      }).then(function() {
+        $scope.reload();
+     }, $scope.Utils.displayErrorMsg);
     });
   };
 

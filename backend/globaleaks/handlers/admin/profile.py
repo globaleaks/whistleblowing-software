@@ -62,3 +62,17 @@ class ProfileCollection(BaseHandler):
         Return all the profiles
         """
         return get_profiles()
+
+
+class ProfileInstance(BaseHandler):
+    check_roles = 'admin'
+    invalidate_cache = True
+
+    def delete(self, profile_id):
+        """
+        Delete the specified profile.
+        """
+        return tw(db_del,
+                  models.Profile,
+                  (models.Profile.id == profile_id))
+    
