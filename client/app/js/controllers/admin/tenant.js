@@ -53,7 +53,6 @@ angular.module("GL")
   };
 
   $scope.deleteProfile = function(profile) {
-    console.log("am here, profile is ", profile);
     return $http({
       method: "DELETE",
       url: "api/admin/profiles/" + profile.id,
