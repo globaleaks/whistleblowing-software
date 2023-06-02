@@ -44,12 +44,24 @@ angular.module("GL")
     $scope.Utils.readFileAsText(file).then(function(txt) {
       return $http({
         method: "POST",
-        url: "api/admin/profile",
+        url: "api/admin/profiles",
         data: txt,
       });
     }).then(function() {
        $scope.reload();
     }, $scope.Utils.displayErrorMsg);
+  };
+
+  $scope.deleteProfile = function(profile) {
+    console.log("am here, profile is ", profile);
+    return $http({
+      method: "DELETE",
+      url: "api/admin/profiles/" + profile.id,
+    });
+  };
+
+  $scope.printProfile = function (data) {
+    return JSON.stringify(data, null, 2);
   };
 }])
 .controller("TenantEditorCtrl", ["$scope", "$http", "$window", "AdminTenantResource",
