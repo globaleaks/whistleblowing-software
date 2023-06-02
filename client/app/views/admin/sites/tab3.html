@@ -2,9 +2,40 @@
   <div class="col-md-6">
     <div class="form-group">
       <label data-translate>Profile:</label>
-    <span class="custom-file">
-      <label file-input="importProfile(file)" file-input-label="Import" class="file-upload btn btn-sm btn-outline-secondary">
-      </label>
-    </span>
+      <span class="custom-file">
+        <label file-input="importProfile(file)" file-input-label="Import"
+          class="file-upload btn btn-sm btn-outline-secondary">
+        </label>
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div
+      data-ng-repeat="profile in resources.profiles | orderBy:'id' | filter:{$: search} | limitTo:itemsPerPage:(currentPage - 1) * itemsPerPage">
+      <div class="configItem">
+        <div class="editorHeader row">
+          <div class="col-md-6">
+            <div>
+              <span class="badge badge-secondary">{{profile.id}}</span>
+              <span>{{profile.name}}</span>
+            </div>
+            <div>
+              <span>{{profile.description}}</span>
+            </div>
+          </div>
+          <div class="col-md-6 clearfix">
+            <span class="float-right">
+              <button class="btn btn-sm btn-danger" data-ng-click="deleteProfile(profile)">
+                <span data-translate>Delete</span>
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--TODO: Pagination-->
   </div>
 </div>

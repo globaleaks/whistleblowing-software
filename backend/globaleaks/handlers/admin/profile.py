@@ -6,36 +6,45 @@ from globaleaks.models import fill_localized_keys
 from globaleaks.orm import db_add, db_del, db_get, transact, tw
 from globaleaks.rest import requests
 from globaleaks.utils.utility import uuid4
-
-
-def db_get_profiles(session):
-    profiles = session.query(models.Profile)
-
-    print("Profiles get from DB: ==>", profiles)
+import json
 
 
 def db_create_profile(session,profile_data):
-    pass
-
+    new_profile = models.Profile()
+    new_profile.name = profile_data['name']
+    new_profile.description = profile_data['description']
+    new_profile.data = json.dumps(profile_data['data'])
+    session.add(new_profile)
+    session.flush()
+    return new_profile
 
 
 @transact
-def create_profile(session, tid, user_session, request, language):
-    """
-    Updates the specified questionnaire. If the key receivers is specified we remove
-    the current receivers of the Questionnaire and reset set it to the new specified
-    ones.
+def create_profile(session, tid,  user_session, request):
+    profile = db_create_profile(session, request)
+    return serialize_profile(session, profile)
 
-    :param session: An ORM session
-    :param tid: A tenant ID
-    :param user_session: The session of the user performing the operation
-    :param request: The request data
-    :param language: The language of the request
-    :return: A serialized descriptor of the questionnaire
-    """
-    # profile = db_create_profile(session, tid, user_session, request, language)
-    return "hello world"
-    # return serialize_questionnaire(session, tid, questionnaire, language)
+    
+def db_get_profiles(session):
+    profiles = session.query(models.Profile)
+    return [serialize_profile(session, profile) for profile in profiles]
+
+
+@transact
+def get_profiles(session):
+    profiles = db_get_profiles(session)
+    return profiles
+
+
+def serialize_profile(session, profile):
+     ret = {
+        'id': profile.id,
+        'name': profile.name,
+        'description': profile.description,
+        'data':json.loads(profile.data)
+    }
+     
+     return ret
 
 class ProfileCollection(BaseHandler):
     check_roles = 'admin'
@@ -46,11 +55,10 @@ class ProfileCollection(BaseHandler):
         # validating the request
         request = self.validate_request(self.request.content.read(), validator)
         print("ProfileCollection validate_request", request)
-        return create_profile(self.request.tid, self.session, request, language)
-        # return "Profile Imported Succ essfully"
+        return create_profile(self.session, request, request)
 
     def get(self):
         """
         Return all the profiles
         """
-        return "Hello world!"
+        return get_profiles()

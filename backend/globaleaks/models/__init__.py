@@ -1031,7 +1031,7 @@ class _Profile(Model):
     """
     __tablename__ = 'profiles'
 
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    id = Column(Integer, primary_key=True)
     name = Column(UnicodeText, nullable=False)
     description = Column(UnicodeText, nullable=True)
     data = Column(UnicodeText, nullable=False)

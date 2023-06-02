@@ -595,5 +595,5 @@ SubmissionSubStatusDesc = {
 AdminProfileDesc = {
     'name': str,
     'description': str,
-    'config': dict
+    'data': dict
 }
