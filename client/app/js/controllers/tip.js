@@ -496,7 +496,7 @@ GL.controller("TipCtrl",
       $scope.cancel = function () {
         $uibModalInstance.close();
       };
-
+console.log( $scope.resources.preferences," $scope.user");
       $scope.args = args;
       console.log($scope.args.data, "$scope.args.data");
       // console.log($scope.args, "$scope.args");
@@ -504,7 +504,12 @@ GL.controller("TipCtrl",
       $scope.contentId = $scope.args.id
       console.log($scope.contentId,"$scope.contentId");
       $scope.redact = function (id) {
-        var blank = "\u2588";
+        // var blank = "\u2022";
+        // var blank = "\u25A0\uFE0F2";
+        var blank = String.fromCharCode(8270);
+
+
+        
         var elem = document.getElementById(id);
         var text = elem.value;
         var start = elem.selectionStart;

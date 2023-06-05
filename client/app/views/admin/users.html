@@ -171,19 +171,6 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="row" data-ng-if="user.role !== 'admin'">
-              <div class="col-md-12">
-                <label data-translate>Give the user administrative access to the following features:</label>
-                <div class="form-group">
-                  <input data-ng-model="user.can_edit" type="checkbox"/>
-                  <span data-translate>Edit</span>
-                </div>
-                <div class="form-group">
-                  <input data-ng-model="user.can_remove" type="checkbox"/>
-                  <span data-translate>Remove</span>
-                </div>
-              </div>
-            </div> -->
             <div class="form-group">
               <input data-ng-model="user.enabled" type="checkbox" />
               <label data-translate>Enabled</label>
@@ -278,12 +265,12 @@
               <span data-translate>Settings</span>
             </div>
             <div class="form-group">
-              <input data-ng-model="user.can_edit" type="checkbox" />
-              <span data-translate>Edit Report</span>
+              <input data-ng-model="user.can_privilege_mask_information" type="checkbox" />
+              <span data-translate>Grant this user the privilege to mask information</span>
             </div>
             <div class="form-group">
-              <input data-ng-model="user.can_remove" type="checkbox" />
-              <span data-translate>Remove Report </span>
+              <input data-ng-model="user.can_privilege_delete_mask_information" type="checkbox" />
+              <span data-translate>Grant this user the privilege to permanently delete masked information</span>
             </div>
           </div>
         </div>

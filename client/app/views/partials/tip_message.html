@@ -2,7 +2,8 @@
   <div data-ng-switch-when="whistleblower" class="messageWB">
     <span class="float-right" id="edit-question" data-ng-click="editReport(message.content,message.id)"
       data-ng-if="mode" data-uib-tooltip="{{'Edit' | translate}}">
-      <i class="fa-solid fa-pencil edit"></i>
+      <i class="fa-solid fa-eraser"></i>
+      <!-- <i class="fa-solid fa-pencil edit"></i> -->
     </span>
     <div class="row">
       <div class="col-md-6" data-ng-switch="Authentication.session.role">
@@ -17,7 +18,8 @@
   <div data-ng-switch-when="receiver" class="message">
     <span class="float-right" id="edit-question" data-ng-click="editReport(message.content,message.id)" data-ng-if="mode"
       data-uib-tooltip="{{'Edit' | translate}}">
-      <i class="fa-solid fa-pencil edit"></i>
+      <i class="fa-solid fa-eraser"></i>
+      <!-- <i class="fa-solid fa-pencil edit"></i> -->
     </span>
     <div class="row">
       <div class="col-md-6" data-ng-switch="Authentication.session.role">

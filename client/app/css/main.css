@@ -951,16 +951,20 @@ hr {
   border: none;
   margin: 10px 0;
 }
+
 /* Edit mode styling */
 .edit {
   color: #b4bccb !important
 }
+
 .svg-btn:hover svg g {
   fill: white;
 }
 
 .mode-svg {
-  width: 22px;
+  padding: 0px !important;
+  margin: 0px !important;
+  width: 20px;
 }
 
 /* .switch {
