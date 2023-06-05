@@ -1202,6 +1202,24 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       }
     },
 
+    encodeString: function(string) {
+      // convert a Unicode string to a string in which
+      // each 16-bit unit occupies only one byte
+      const codeUnits = Uint16Array.from(
+        { length: string.length },
+          (element, index) => string.charCodeAt(index)
+      );
+
+      const charCodes = new Uint8Array(codeUnits.buffer);
+
+      let result = "";
+      charCodes.forEach((char) => {
+        result += String.fromCharCode(char);
+      });
+
+      return btoa(result);
+    },
+
     saveAs: function(blob, filename) {
       var fileLink = $window.document.createElement("a");
       fileLink.href = URL.createObjectURL(blob);
@@ -1252,7 +1270,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
               "args": args
             },
             headers: {
-              "X-Confirmation": secret
+              "X-Confirmation": self.encodeString(secret)
             }
           }).then(
             function(response) {

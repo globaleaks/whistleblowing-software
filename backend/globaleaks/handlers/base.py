@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import base64
 import json
 import mimetypes
 import os
@@ -26,6 +27,16 @@ from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.utils.utility import datetime_now, deferred_sleep
 
 mimetypes.add_type('text/javascript', '.js')
+
+
+def decodeString(string):
+    string = base64.b64decode(string)
+    uint8_array = [c for c in string]
+    uint16_array = []
+    for i in range(len(uint8_array)):
+        if not (i%2):
+             uint16_array.append((uint8_array[i] | (uint8_array[i+1] << 8)))
+    return ''.join(map(chr, uint16_array))
 
 
 def serve_file(request, fo):
@@ -287,7 +298,9 @@ class BaseHandler(object):
     def check_confirmation(self):
         tid = self.request.tid
         user_id = self.session.user_id
-        secret = self.request.headers.get(b'x-confirmation', b'').decode('unicode_escape')
+
+        secret = decodeString(self.request.headers.get(b'x-confirmation', b''))
+
         sync_confirmation_check(self.session.user_tid, user_id, secret)
 
     def open_file(self, filepath):
