@@ -64,8 +64,7 @@
   </head>
 
   <body class="container-fluid d-flex flex-column" data-ng-class="{{Utils.getCSSFlags()}}" data-flow-prevent-drop>
-    <a class="skip-link d-none data-ng-cloak" href="#ContentBox"></a>
-
+    <a id="skip-to-content-link" href="" data-ng-click="Utils.scrollTo('#Content')" tabindex="1" data-translate>Skip to content</a>
     <div id="PageOverlay" class="ng-cloak" data-ng-hide="!showLoadingPanel">
       <div id="Loader"></div>
     </div>
@@ -91,7 +90,7 @@
               </div>
             </nav>
 	  </div>
-          <main id="Content" data-ng-class="{'col-lg-10 col-md-8 col-sm-12': sidebar, 'col-md-12': !sidebar}" data-ng-view=""></main>
+	  <main id="Content" data-ng-class="{'col-lg-10 col-md-8 col-sm-12': sidebar, 'col-md-12': !sidebar}" data-ng-view=""></main>
         </div>
       </div>
     </div>
