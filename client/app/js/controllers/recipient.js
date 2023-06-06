@@ -347,7 +347,8 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
         $scope.reciprocatingWhistleBlower = 0;
         $scope.averageClosureTime = 0;
         $scope.dropdownOptions = []
-
+        $scope.dropdownOptionArray = []
+        $scope.report = []
         totalClosedTips = 0
         reportCountPerMonth = {};
       }
@@ -368,42 +369,44 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
           }
 
           $scope.totalReports += 1
+          $scope.report.push(tip)
           tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText(tip.status, tip.substatus, $scope.submission_statuses);
           if (tip.status !== 'new') {
             $scope.tip = new RTip({ id: tip.id }, function (tip) {
+
               $scope.tip = tip
-              var interaction=false
-              if(tip.comments.length>0){
-                 var lastElement = tip.comments[tip.comments.length - 1];
-                 if (lastElement.type === "whistleblower") {
-                   $scope.unansweredTipsCount+=1;
-                 }
+              var interaction = false
+              if (tip.comments.length > 0) {
+                var lastElement = tip.comments[tip.comments.length - 1];
+                if (lastElement.type === "whistleblower") {
+                  $scope.unansweredTipsCount += 1;
+                }
               }
-              if(tip.messages.length>0){
-                 var lastElement = tip.messages[tip.messages.length - 1];
-                 if (lastElement.type === "whistleblower") {
-                   $scope.unansweredTipsCount = unansweredTipsCount+=1;
-                 }
+              if (tip.messages.length > 0) {
+                var lastElement = tip.messages[tip.messages.length - 1];
+                if (lastElement.type === "whistleblower") {
+                  $scope.unansweredTipsCount = unansweredTipsCount += 1;
+                }
               }
 
               for (var item of tip.messages) {
                 if (item.type === "whistleblower") {
-                  interaction=true
+                  interaction = true
                   break
                 }
               }
               for (var item of tip.comments) {
                 if (item.type === "receiver") {
-                  interaction=true
+                  interaction = true
                   break
                 }
               }
 
-              if(tip.label.length>0 || tip.wbfiles.length>0 || tip.status !== 'opened'){
-                  interaction=true
+              if (tip.label.length > 0 || tip.wbfiles.length > 0 || tip.status !== 'opened') {
+                interaction = true
               }
-              if(interaction){
-                  $scope.receiverCount++
+              if (interaction) {
+                $scope.receiverCount++
               }
 
 
@@ -415,6 +418,11 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
                         for (var key in item.answers) {
                           var value = item.answers[key][0].value;
                           if (value && value === optionItem.id) {
+                            $scope.dropdownOptionArray.push({
+                              reportId: tip.progressive,
+                              question: children.label,
+                              optionLabel: optionItem.label,
+                            });
                             var optionLabel = optionItem.label;
                             var question = children.label;
                             var existingEntry = $scope.dropdownOptions.find(function (item) {
@@ -424,12 +432,13 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
                               existingEntry.count++;
                             } else {
                               $scope.dropdownOptions.push({
+                                reportId: tip.progressive,
                                 question: question,
                                 optionLabel: optionLabel,
                                 count: 1
                               });
                             }
-                            return $scope.generateOptionGraph();
+                            $scope.generateOptionGraph();
                           }
                         }
                       }
@@ -714,24 +723,10 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
       /* =============================================== Helper Methods =============================================== */
 
       $scope.export = function (value, totalvalue) {
-        var modifiedlabelCountsChart = labelCountsChart.data.labels.map(function (value) {
-          return "#" + value;
-        });
-        
-        var labels = [
-          ...$scope.staticData['interactionStatus']['label'],
-          ...statusBarChart.data.labels,
-          ...modifiedlabelCountsChart
-        ];
-        
-        var datasets = [
-          ...$scope.staticData['interactionStatus']['data'],
-          ...statusBarChart.data.datasets[0].data,
-          ...labelCountsChart.data.datasets[0].data
-        ];
-        
+
+        var labels = ["report number #", "label", "status", "substatus", "report date", "update date", "content of preview question(s)"];
         var csvContent = '';
-        
+
         // Function to properly escape a value for CSV
         function escapeCSVValue(value) {
           value = String(value);
@@ -740,27 +735,53 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
           }
           return value;
         }
-        
+
         // Add header row with labels
         csvContent += labels.map(escapeCSVValue).join(',') + '\n';
-        
+
         // Add data rows
-        var dataRow = datasets.map(escapeCSVValue).join(',');
-        
-        csvContent += dataRow + '\n';
-        
+        $scope.report.forEach(function (report) {
+          var status = report.submissionStatusStr;
+          var substatus = '';
+
+          // Split the status and substatus
+          var openingBracketIndex = status.indexOf('(');
+          if (openingBracketIndex !== -1) {
+            status = status.substring(0, openingBracketIndex).trim();
+            substatus = report.submissionStatusStr.substring(openingBracketIndex + 1, report.submissionStatusStr.length - 1).trim();
+          }
+
+          var optionLabels = $scope.dropdownOptionArray
+            .filter(function (item) {
+              return item.reportId === report.progressive;
+            })
+            .map(function (item) {
+              return item.optionLabel;
+            })
+            .join(' | ');
+          var dataRow = [
+            report.progressive,
+            report.label,
+            status,
+            substatus,
+            $filter('date')(report.creation_date, 'dd/MM/yyyy HH:mm'),
+            $filter('date')(report.update_date, 'dd/MM/yyyy HH:mm'),
+            optionLabels
+          ].map(escapeCSVValue).join(',');
+          csvContent += dataRow + '\n';
+        });
+
         // Create a Blob object
         var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-        
+
         // Create a download link
         var link = document.createElement('a');
         link.setAttribute('href', URL.createObjectURL(blob));
         link.setAttribute('download', 'data.csv');
         document.body.appendChild(link);
-        
+
         // Trigger download
         link.click();
-        
       }
 
     }]);
