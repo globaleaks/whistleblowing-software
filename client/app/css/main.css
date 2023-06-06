@@ -760,13 +760,11 @@ input[type="file"] {
   clear: both;
 }
 
-[dir="ltr"] #HeaderBox #WhistleblowerLoginBox form,
-[dir="ltr"] #HeaderBox #WhistleblowerLoginBox label {
+[dir="ltr"] #HeaderBox #WhistleblowerLoginBox form {
   float: right;
 }
 
-[dir="rtl"] #HeaderBox #WhistleblowerLoginBox form,
-[dir="rtl"] #HeaderBox #WhistleblowerLoginBox label {
+[dir="rtl"] #HeaderBox #WhistleblowerLoginBox form {
   float: left;
 }
 
