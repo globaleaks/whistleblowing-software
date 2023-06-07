@@ -4,6 +4,8 @@ from globaleaks.models import Config, ConfigL10N, EnabledLanguage
 from globaleaks.models.properties import *
 from globaleaks.models.config_desc import ConfigDescriptor, ConfigFilters, ConfigL10NFilters
 from globaleaks.utils.onion import generate_onion_service_v3
+from globaleaks import models
+import json
 
 
 from globaleaks.utils.utility import datetime_null
@@ -129,12 +131,20 @@ def db_set_config_variable(session, tid, var, val):
     ConfigFactory(session, tid).set_val(var, val)
 
 
-def initialize_config(session, tid, mode):
+def initialize_config(session, tid, mode, _profile=''):
     variables = {}
 
+    if _profile != '':
+        profile = session.query(models.Profile).filter(models.Profile.id == _profile).one_or_none()
+        profile_data = json.loads(profile.data)
+        if profile is not None:
+            for name, desc in ConfigDescriptor.items():
+                variables[name] = profile_data['config'][name] if name in profile_data['config'] else get_default(desc.default)
+    # print('Profile ==>', profile_data['config'])
     # Initialization valid for any tenant
-    for name, desc in ConfigDescriptor.items():
-        variables[name] = get_default(desc.default)
+    else:
+        for name, desc in ConfigDescriptor.items():
+            variables[name] = get_default(desc.default)
 
     if tid != 1:
         # Initialization valid for secondary tenants

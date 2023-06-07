@@ -41,7 +41,7 @@ def db_create(session, desc):
     if t.id == 1:
         db_load_defaults(session)
 
-    models.config.initialize_config(session, t.id, desc['mode'])
+    models.config.initialize_config(session, t.id, desc['mode'], desc['profile'])
 
     for var in ['mode', 'name', 'subdomain']:
         db_set_config_variable(session, t.id, var, desc[var])
