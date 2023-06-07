@@ -13,7 +13,7 @@ def db_create_profile(session,profile_data):
     new_profile = models.Profile()
     new_profile.name = profile_data['name']
     new_profile.description = profile_data['description']
-    new_profile.data = json.dumps(profile_data['data'])
+    new_profile.data = json.dumps(profile_data)
     session.add(new_profile)
     session.flush()
     return new_profile
