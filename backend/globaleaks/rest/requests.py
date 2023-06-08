@@ -597,6 +597,6 @@ AdminProfileDesc = {
     'name': str,
     'description': str,
     'config': dict,
-    'config_i18n': dict,
+    'config_l10n': dict,
     'config_inherited': list
 }
