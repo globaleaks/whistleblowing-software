@@ -18,6 +18,8 @@ angular.module("GL")
   $scope.search = undefined;
   $scope.currentPage = 1;
   $scope.itemsPerPage = 20;
+  $scope.p_currentPage = 1;
+  $scope.p_itemsPerPage = 20;
 
   $scope.newTenant = new $scope.AdminUtils.new_tenant();
 
