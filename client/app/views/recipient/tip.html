@@ -63,9 +63,10 @@
       class="btn btn-outline-secondary">
       <i class="fa-solid fa-sync"></i>
     </span>
-
-    <span data-ng-if="mode===false" data-ng-click="tip_mode(true)"
-      data-uib-tooltip="{{'Turn on edit mode' | translate}}" class="btn btn-outline-secondary svg-btn">
+    <span
+      ng-show="(mode === false) && (resources.preferences.can_privilege_delete_mask_information || resources.preferences.can_privilege_mask_information)"
+      data-ng-click="tip_mode(true)" data-uib-tooltip="{{'Turn on edit mode' | translate}}"
+      class="btn btn-outline-secondary svg-btn">
       <svg class="mode-svg" version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 232.000000 194.000000"
         preserveAspectRatio="xMidYMid meet" fill="#ffffff">
         <g transform="translate(0.000000,194.000000) scale(0.100000,-0.100000)" fill="#58606E" stroke="none">

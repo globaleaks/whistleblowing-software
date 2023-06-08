@@ -594,6 +594,37 @@ def delete_wbfile(session, tid, user_id, file_id):
     wbfile = db_access_wbfile(session, tid, user_id, file_id)
     session.delete(wbfile)
 
+@transact
+def create_masking(session, tid, user_id, rtip_id, content):
+    """
+    Transaction for registering a new masking
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user_id: The user id of the user creating the masking
+    :param rtip_id: The rtip associated to the masking to be created
+    :param content: The content of the masking
+    :return: A serialized descriptor of the masking
+    """
+    _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+
+    itip.update_date = rtip.last_access = datetime_now()
+   
+    _masking = content
+    if itip.crypto_tip_pub_key:
+        _masking = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
+
+    masking = models.Masking()
+    masking.internaltip_id = itip.id
+    masking.temporary_ranges = _masking
+    masking.mask_date = datetime_now()
+    masking.content_id = ''
+    masking.permanent_ranges = _masking
+    session.add(masking)
+    session.flush()
+
+    ret = serializers.serialize_masking(session, masking)
+    ret['masking'] = content
+    return ret
 
 class RTipInstance(OperationHandler):
     """
@@ -662,6 +693,16 @@ class RTipCommentCollection(BaseHandler):
         request = self.validate_request(self.request.content.read(), requests.CommentDesc)
 
         return create_comment(self.request.tid, self.session.user_id, rtip_id, request['content'])
+
+class RTipMaskingCollection(BaseHandler):
+    """
+    Interface use to write rtip masking
+    """
+    check_roles = 'receiver'
+
+    def post(self, rtip_id):
+        request = self.validate_request(self.request.content.read(), requests.CommentDesc)
+        return create_masking(self.request.tid, self.session.user_id, rtip_id, request['content'])
 
 
 class ReceiverMsgCollection(BaseHandler):

@@ -89,6 +89,7 @@ api_spec = [
     (r'/api/rtips', receiver.TipsCollection),
     (r'/api/rtips/' + uuid_regexp, rtip.RTipInstance),
     (r'/api/rtips/' + uuid_regexp + r'/comments', rtip.RTipCommentCollection),
+    (r'/api/rtips/' + uuid_regexp + r'/masking', rtip.RTipMaskingCollection),
     (r'/api/rtips/' + uuid_regexp + r'/messages', rtip.ReceiverMsgCollection),
     (r'/api/rtips/' + uuid_regexp + r'/iars', rtip.IdentityAccessRequestsCollection),
     (r'/api/rtips/' + uuid_regexp + r'/export', export.ExportHandler),

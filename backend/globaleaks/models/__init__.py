@@ -1028,6 +1028,22 @@ class _WhistleblowerFile(Model):
     def __table_args__(self):
         return ForeignKeyConstraint(['receivertip_id'], ['receivertip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
+class _Masking(Model):
+    """
+    This table handle the masking ranges collection,referenced with  comment,fieldoption and message
+    """
+    __tablename__ = 'masking'
+
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    mask_date = Column(DateTime, default=datetime_now, nullable=False)
+    content_id = Column(UnicodeText(36), nullable=False, index=True)
+    internaltip_id = Column(UnicodeText(36), nullable=False, index=True)
+    temporary_ranges = Column(JSON, default=dict, nullable=False)
+    permanent_ranges = Column(JSON, default=dict, nullable=False)
+
+    @declared_attr
+    def __table_args__(self):
+       return ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
 class ArchivedSchema(_ArchivedSchema, Base):
     pass
@@ -1040,6 +1056,8 @@ class AuditLog(_AuditLog, Base):
 class Comment(_Comment, Base):
     pass
 
+class Masking(_Masking, Base):
+    pass
 
 class Config(_Config, Base):
     pass

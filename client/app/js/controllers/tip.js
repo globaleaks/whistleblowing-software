@@ -327,7 +327,7 @@ GL.controller("TipCtrl",
           }
         });
       };
-      $scope.editReport = function (data,id) {
+      $scope.editReport = function (data, id) {
         $uibModal.open({
           templateUrl: "views/modals/report_reduct.html",
           controller: "TipEditReportCtrl",
@@ -343,7 +343,7 @@ GL.controller("TipCtrl",
                 },
                 opened: false,
                 Utils: $scope.Utils,
-                data: data,id
+                data: data, id
               };
             }
           }
@@ -491,29 +491,25 @@ GL.controller("TipCtrl",
   controller("WhistleblowerIdentityFormCtrl", ["$scope", function ($scope) {
     $scope.uploads = {};
   }]).
-  controller("TipEditReportCtrl", ["$scope", "$uibModalInstance", "args", "Authentication", "RTipDownloadWBFile", "RTipWBFileResource",
-    function ($scope, $uibModalInstance, args) {
+  controller("TipEditReportCtrl", ["$scope", "$uibModalInstance", "args", "Authentication", "RTip", "WBTip", "$routeParams",
+    function ($scope, $uibModalInstance, args, Authentication, RTip, WBTip, $routeParams) {
       $scope.cancel = function () {
         $uibModalInstance.close();
       };
-console.log( $scope.resources.preferences," $scope.user");
+
       $scope.args = args;
-      console.log($scope.args.data, "$scope.args.data");
-      // console.log($scope.args, "$scope.args");
       $scope.content = $scope.args.data;
       $scope.contentId = $scope.args.id
-      console.log($scope.contentId,"$scope.contentId");
+      var i = 0;
+      $scope.ranges = {};
+
       $scope.redact = function (id) {
-        // var blank = "\u2022";
-        // var blank = "\u25A0\uFE0F2";
         var blank = String.fromCharCode(8270);
-
-
-        
         var elem = document.getElementById(id);
         var text = elem.value;
         var start = elem.selectionStart;
         var finish = elem.selectionEnd;
+
         var sel = text.substring(start, finish);
         var length = finish - start;
 
@@ -523,6 +519,16 @@ console.log( $scope.resources.preferences," $scope.user");
 
           elem.value = text.substring(0, start) + blank.repeat(length) + text.substring(finish, text.length);
         }
+
+        var range = {
+          start: start,
+          end: finish
+        };
+
+        i++;
+        $scope.ranges['range ' + i] = range;
+        console.log($scope.ranges, "$scope.ranges");
+
       };
 
       $scope.unredact = function (id) {
@@ -540,11 +546,17 @@ console.log( $scope.resources.preferences," $scope.user");
           elem.value = $scope.content
         }
       }
+      $scope.id = $routeParams.tip_id;
       $scope.confirm = function (id) {
         var elem = document.getElementById(id);
         var text = elem.value;
         console.log(text);
+        console.log($scope.RTip, "tip");
+
+        // $scope.tip = new RTip({ id: $scope.id }, function (tip) {
+        //   tip.newMasking(text);
+        // })
+
       }
-      // document.getElementById("redact").value = original;
     }]);
 

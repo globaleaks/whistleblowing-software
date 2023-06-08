@@ -8,13 +8,19 @@
   <textarea name="redact" id="redact" cols="30" rows="10" class="form-control" disabled ng-model="content"></textarea>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-primary" ng-click="redact('redact')">
+  <button
+    ng-show="(resources.preferences.can_privilege_mask_information) || (resources.preferences.can_privilege_mask_information && resources.preferences.can_privilege_delete_mask_information)"
+    class="btn btn-primary" ng-click="redact('redact')">
     <span data-translate>Mask</span>
   </button>
-  <button class="btn btn-outline-secondary" ng-click="unredact('redact')">
+  <button
+    ng-show="resources.preferences.can_privilege_delete_mask_information || (resources.preferences.can_privilege_mask_information && resources.preferences.can_privilege_delete_mask_information)"
+    class="btn btn-outline-secondary" ng-click="unredact('redact')">
     <span data-translate>Unmask</span>
   </button>
-  <button class="btn btn-primary" data-ng-click="confirm('redact')">
+  <button
+    ng-show="resources.preferences.can_privilege_delete_mask_information || resources.preferences.can_privilege_mask_information|| (resources.preferences.can_privilege_mask_information && resources.preferences.can_privilege_delete_mask_information)"
+    class="btn btn-primary" data-ng-click="confirm('redact')">
     <!-- <i class="fa-solid fa-check"></i> -->
     <span data-translate>Reduct</span>
   </button>
