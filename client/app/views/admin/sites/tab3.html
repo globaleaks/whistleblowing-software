@@ -14,7 +14,7 @@
 <div class="row">
   <div class="col-md-12">
     <div
-      data-ng-repeat="profile in resources.profiles | orderBy:'id' | filter:{$: search} | limitTo:p_itemsPerPage:(p_currentPage - 1) * p_itemsPerPage">
+      data-ng-repeat="profile in resources.profiles | limitTo:p_itemsPerPage:(p_currentPage - 1) * p_itemsPerPage">
       <div class="configItem">
         <div class="editorHeader row">
           <div class="col-md-6">
