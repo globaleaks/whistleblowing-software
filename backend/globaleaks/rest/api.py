@@ -128,7 +128,7 @@ api_spec = [
     (r'/api/admin/questionnaires/duplicate', admin_questionnaire.QuestionnareDuplication),
     (r'/api/admin/questionnaires/' + key_regexp, admin_questionnaire.QuestionnaireInstance),
     (r'/api/admin/profiles', admin_profile.ProfileCollection),
-    (r'/api/admin/profiles/'+ '([0-9]{1,20})', admin_profile.ProfileInstance),
+    (r'/api/admin/profiles/'+ key_regexp, admin_profile.ProfileInstance),
     (r'/api/admin/notification', admin_notification.NotificationInstance),
     (r'/api/admin/fields', admin_field.FieldsCollection),
     (r'/api/admin/fields/' + key_regexp, admin_field.FieldInstance),
