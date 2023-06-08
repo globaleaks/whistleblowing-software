@@ -501,7 +501,7 @@ GL.controller("TipCtrl",
       $scope.content = $scope.args.data;
       $scope.contentId = $scope.args.id
       var i = 0;
-      $scope.ranges = {};
+      $scope.ranges = [];
 
       $scope.redact = function (id) {
         var blank = String.fromCharCode(8270);
@@ -519,15 +519,20 @@ GL.controller("TipCtrl",
 
           elem.value = text.substring(0, start) + blank.repeat(length) + text.substring(finish, text.length);
         }
+        var rangeExists = $scope.ranges.some(function (range) {
+          return range.start === start && range.end === finish;
+        });
 
-        var range = {
-          start: start,
-          end: finish
-        };
+        var indicesEqual = start === finish;
 
-        i++;
-        $scope.ranges['range ' + i] = range;
-        console.log($scope.ranges, "$scope.ranges");
+        if (!rangeExists && !indicesEqual) {
+          var range = {
+            start: start,
+            end: finish
+          };
+          $scope.ranges.push(range);
+          console.log($scope.ranges, "$scope.ranges");
+        }
 
       };
 
@@ -553,9 +558,15 @@ GL.controller("TipCtrl",
         console.log(text);
         console.log($scope.RTip, "tip");
 
-        // $scope.tip = new RTip({ id: $scope.id }, function (tip) {
-        //   tip.newMasking(text);
-        // })
+        var maskingdata = {
+          content_id: id,
+          permanent_ranges: "",
+          temporary_ranges: $scope.ranges,
+        }
+        console.log(maskingdata,"maskingdata");
+        $scope.tip = new RTip({ id: $scope.id }, function (tip) {
+          tip.newMasking(text);
+        })
 
       }
     }]);
