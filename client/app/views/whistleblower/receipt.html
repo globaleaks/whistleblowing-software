@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" data-ng-if="page === 'receiptpage'">
   <div class="col-md-12">
     <span data-translate>Thank you.</span> <span data-translate>Your report was successful.</span> <span data-translate>We will try to get back to you as soon as possible.</span>
   </div>
@@ -8,12 +8,12 @@
     <div class="card card-secondary">
       <label for="ReceiptCode" class="card-header"data-translate>Remember your receipt for this report.</label>
       <div class="card-body">
-        <div class="form-inline" data-uib-tooltip="{{'Copy to clipboard' | translate}}" data-ng-click="Utils.copyToClipboard(Authentication.session.receipt)">
+        <div class="form-inline" data-uib-tooltip="{{'Copy to clipboard' | translate}}" data-ng-click="Utils.copyToClipboard(receipt)">
           <div class="form-group d-block mx-auto">
             <div class="input-group">
               <input id="ReceiptCode" class="form-control" type="text" maxlength="19" size="19" data-ng-model="formatted_receipt" name="receipt-input" disabled>
               <span class="input-group-append">
-                <button id="ReceiptButton" data-ng-click="Utils.copyToClipboard(Authentication.session.receipt)" class="btn btn-primary" type="button" data-ng-attr-aria-label="{{'Copy to clipboard' | translate}}" >
+                <button id="ReceiptButton" data-ng-click="Utils.copyToClipboard(receipt)" class="btn btn-primary" type="button" data-ng-attr-aria-label="{{'Copy to clipboard' | translate}}" >
                   <i class="fa-solid fa-copy"></i>
                 </button>
               </span>
@@ -21,8 +21,8 @@
           </div>
         </div>
         <div class="mt-md-1 text-center" data-translate>Use the 16 digit receipt to log in. It will allow you to view any messages we sent you, and also to add extra info.</div>
-        <div class="mt-md-3 clearfix">
-          <button id="ReceiptButton" class="float-right btn btn-primary" data-ng-click="Authentication.login(0, 'whistleblower', Authentication.session.receipt)" data-translate>View your report</button>
+        <div class="mt-md-3 clearfix" data-ng-if="page === 'receiptpage'">
+          <button id="ReceiptButton" class="float-right btn btn-primary" data-ng-click="Authentication.login(0, 'whistleblower', receipt)" data-translate>View your report</button>
         </div>
       </div>
     </div>
