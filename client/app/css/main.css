@@ -563,7 +563,6 @@ input[type="file"] {
 }
 
 .selectCard {
-  cursor: pointer;
   margin-bottom: 1em;
   padding: 1em;
   background-color: #fff;
