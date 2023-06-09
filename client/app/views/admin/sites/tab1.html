@@ -35,8 +35,8 @@
       <div class="form-group" data-ng-if="resources.profiles.length">
         <label data-translate>Profile:</label>
         <select name="profile" class="form-control" data-ng-model="newTenant.profile">
-          <option value="" selected>--</option>
-          <option data-ng-repeat="profile in resources.profiles | orderBy:'id'" value="{{profile.id}}">{{profile.name}}</option>
+          <option value="" selected>None</option>
+          <option data-ng-repeat="profile in resources.profiles" value="{{profile.id}}">{{profile.name}}</option>
         </select>
       </div>
       <div class="form-group clearfix">
