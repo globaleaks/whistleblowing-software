@@ -499,6 +499,9 @@ factory("AdminRedirectResource", ["GLResource", function(GLResource) {
 factory("AdminTenantResource", ["GLResource", function(GLResource) {
   return new GLResource("api/admin/tenants/:id", {id: "@id"});
 }]).
+factory("AdminProfileResource", ["GLResource", function(GLResource) {
+  return new GLResource("api/admin/profiles/:id", {id: "@id"});
+}]).
 factory("AdminUserResource", ["GLResource", function(GLResource) {
   return new GLResource("api/admin/users/:id", {id: "@id"});
 }]).
@@ -680,6 +683,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       tenant.active = true;
       tenant.name = "";
       tenant.mode = "default";
+      tenant.profile= "";
       tenant.subdomain = "";
       return tenant;
     }

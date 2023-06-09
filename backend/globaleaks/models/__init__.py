@@ -1025,6 +1025,18 @@ class _WhistleblowerFile(Model):
         return ForeignKeyConstraint(['receivertip_id'], ['receivertip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
 
+class _Profile(Model):
+    """
+    This models stores metadata of files uploaded for Profiles
+    """
+    __tablename__ = 'profiles'
+
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    name = Column(UnicodeText, nullable=False, unique=True)
+    description = Column(UnicodeText, nullable=True)
+    data = Column(UnicodeText, nullable=False)
+
+
 class ArchivedSchema(_ArchivedSchema, Base):
     pass
 
@@ -1154,4 +1166,7 @@ class User(_User, Base):
 
 
 class WhistleblowerFile(_WhistleblowerFile, Base):
+    pass
+
+class Profile(_Profile, Base):
     pass

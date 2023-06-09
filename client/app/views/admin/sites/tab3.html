@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label data-translate>Profile:</label>
+      <span class="custom-file">
+        <label file-input="importProfile(file)" file-input-label="Import"
+          class="file-upload btn btn-sm btn-outline-secondary">
+        </label>
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div
+      data-ng-repeat="profile in resources.profiles | limitTo:p_itemsPerPage:(p_currentPage - 1) * p_itemsPerPage">
+      <div class="configItem">
+        <div class="editorHeader row">
+          <div class="col-md-6">
+            <div>
+              <span class="badge badge-secondary">{{$index + 1}}</span>
+              <span>{{profile.name}}</span>
+            </div>
+            <div>
+              <span>{{profile.description}}</span>
+            </div>
+          </div>
+          <div class="col-md-6 clearfix">
+            <span class="float-right">
+              <button class="btn btn-sm btn-danger" data-ng-click="deleteProfile(profile)">
+                <span data-translate>Delete</span>
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center" data-ng-show="resources.profiles.length > 20">
+      <ul uib-pagination total-items="resources.profiles.length" first-text="<<" last-text=">>"
+        previous-text="<" next-text=">" items-per-page="p_itemsPerPage" data-ng-model="p_currentPage" max-size="10"
+        class="pagination-sm" boundary-links="true" force-ellipses="true"></ul>
+    </div>
+  </div>
+</div>

@@ -62,17 +62,12 @@
           <input id="{{fieldEntry}}"
                  name="{{'input' - entryIndex}}"
                  class="form-control inputelem"
-                 type="text"
-                 readonly="readonly"
+                 type="date"
                  aria-label="{{field.label}}"
                  data-ng-model="entry['value']"
-                 data-ng-required="validate[navigation] && entry.required_status"
-                 data-ng-click="open()"
-                 uib-datepicker-popup
-                 datepicker-options="dateOptions"
-                 is-open="status.opened"
-                 show-button-bar="false" />
-          <span class="input-group-append" data-ng-click="open()"><i class="input-group-text fa-solid fa-calendar"></i></span>
+                 data-ng-attr-min="{{field.attrs.min_date.value | date:'yyyy-MM-dd'}}"
+                 data-ng-attr-max="{{field.attrs.max_date.value | date:'yyyy-MM-dd'}}"
+                 data-ng-required="validate[navigation] && entry.required_status" />
         </div>
       </div>
       <div data-ng-switch-when="daterange" class="form-inline">
@@ -80,20 +75,13 @@
           <label data-translate>From</label>
           <div class="input-group mx-1">
             <input id="{{fieldEntry}}"
-                   name="input-{{entryIndex}}"
+                   name="{{'input' - entryIndex}}"
                    class="form-control inputelem"
-                   type="text"
-                   readonly="readonly"
-                   aria-label="{{field.label}}"
+                   type="date"
                    data-ng-model="daterange.start"
-                   data-ng-required="validate[navigation] && entry.required_status"
-                   data-ng-attr-placeholder="{{field.placeholder}}"
-                   data-ng-click="openStart()"
-                   uib-datepicker-popup
-                   datepicker-options="dateOptions1"
-                   is-open="status.openedStart"
-                   show-button-bar="false" />
-            <span class="input-group-append" data-ng-click="openStart()"><i class="input-group-text fa-solid fa-calendar"></i></span>
+                   data-ng-attr-min="{{field.attrs.min_date.value | date:'yyyy-MM-dd'}}"
+                   data-ng-attr-max="{{field.attrs.max_date.value | date:'yyyy-MM-dd'}}"
+                   data-ng-required="validate[navigation] && entry.required_status" />
           </div>
         </span>
         <span class="form-group mx-1" data-ng-if="daterange.start">
@@ -102,18 +90,11 @@
             <input id="{{fieldEntry}}"
                    name="input-{{entryIndex}}"
                    class="form-control inputelem"
-                   type="text"
-                   readonly="readonly"
-                   aria-label="{{field.label}}"
+                   type="date"
                    data-ng-model="daterange.end"
-                   data-ng-required="validate[navigation] && entry.required_status"
-                   data-ng-attr-placeholder="{{field.placeholder}}"
-                   data-ng-click="openEnd()"
-                   uib-datepicker-popup
-                   datepicker-options="dateOptions2"
-                   is-open="status.openedEnd"
-		   show-button-bar="false" />
-            <span class="input-group-append" data-ng-click="openEnd()"><i class="input-group-text fa-solid fa-calendar"></i></span>
+                   data-ng-attr-min="{{daterange.start | date:'yyyy-MM-dd'}}"
+                   data-ng-attr-max="{{field.attrs.max_date.value | date:'yyyy-MM-dd'}}"
+                   data-ng-required="validate[navigation] && entry.required_status" />
           </div>
         </span>
         <span class="ml-1" data-ng-if="daterange.start">

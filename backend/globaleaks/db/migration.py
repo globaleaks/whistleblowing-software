@@ -104,7 +104,8 @@ migration_mapping = OrderedDict([
     ('User', [User_v_40, 0, User_v_42, 0, User_v_44, 0, User_v_45, User_v_49, 0, 0, 0, User_v_50, User_v_51, User_v_52, User_v_54, 0, User_v_56, 0, User_v_61, 0, 0, 0, 0, models._User, 0, 0]),
     ('UserImg', [UserImg_v_53, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
     ('WhistleblowerFile', [WhistleblowerFile_v_40, 0, WhistleblowerFile_v_44, 0, 0, 0, WhistleblowerFile_v_45, WhistleblowerFile_v_57, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._WhistleblowerFile, 0, 0, 0, 0, 0, 0]),
-    ('WhistleblowerTip', [-1, -1, -1, WhistleblowerTip_v_44, 0, 0, WhistleblowerTip_v_59, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1])
+    ('WhistleblowerTip', [-1, -1, -1, WhistleblowerTip_v_44, 0, 0, WhistleblowerTip_v_59, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1]),
+    ('Profile', [-1, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,models._Profile])
 ])
 
 

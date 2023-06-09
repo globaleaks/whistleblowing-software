@@ -82,7 +82,8 @@ AdminTenantDesc = {
     'name': str,
     'mode': str,
     'active': bool,
-    'subdomain': subdomain_regexp_or_empty
+    'subdomain': subdomain_regexp_or_empty,
+    'profile': str
 }
 
 FileDesc = {
@@ -590,4 +591,12 @@ SubmissionStatusDesc = {
 SubmissionSubStatusDesc = {
     'label': str,
     'order': int
+}
+
+AdminProfileDesc = {
+    'name': str,
+    'description': str,
+    'config': dict,
+    'config_l10n': dict,
+    'config_inherited': list
 }
