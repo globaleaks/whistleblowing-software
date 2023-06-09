@@ -20,23 +20,43 @@
           </tr>
         </thead>
         <tbody id="fileListBody">
-          <tr id="file-{{$index}}" data-ng-repeat="file in tip.rfiles" data-ng-init="viewSupported = supportedViewTypes.includes(file.type)">
+          <tr id="file-{{$index}}" data-ng-repeat="file in tip.rfiles"
+            data-ng-init="viewSupported = supportedViewTypes.includes(file.type)">
             <td>{{file.name}}</td>
             <td data-ng-if="public.node.viewer">
-              <button class="btn btn-sm btn-primary tip-action-views-file"
-              data-ng-disabled="!viewSupported"
-              data-ng-class="{ 'btn-secondary': !viewSupported }"
-              data-uib-tooltip="{{'View' | translate}}"
-              data-ng-click="viewRFile(file)">
+              <button class="btn btn-sm btn-primary tip-action-views-file" data-ng-disabled="!viewSupported"
+                data-ng-class="{ 'btn-secondary': !viewSupported }" data-uib-tooltip="{{'View' | translate}}"
+                data-ng-click="viewRFile(file)">
                 <i class="fa-solid fa-eye"></i>
               </button>
             </td>
             <td>
               <button class="btn btn-sm btn-primary tip-action-download-file"
-                      data-uib-tooltip="{{'Download' | translate}}"
-                      data-ng-click="downloadRFile(file)">
+                data-uib-tooltip="{{'Download' | translate}}" data-ng-click="downloadRFile(file)">
                 <i class="fa-solid fa-download"></i>
               </button>
+              <button ng-show="show(file.id)" class="btn btn-sm btn-primary tip-action-download-file"
+                data-uib-tooltip="{{' This file is mask' | translate}}">
+                <i class="fa-solid fa-rectangle-xmark"></i>
+              </button>
+              <button ng-hide="show(file.id)" class="btn btn-sm btn-primary tip-action-download-file"
+                data-uib-tooltip="{{'Mask this file' | translate}}" data-ng-click="masking(file.id)">
+                <i class="fa-regular fa-square-check"></i>
+              </button>
+              <!-- <button ng-show="(masking.content_id !==file.id)" class="btn btn-sm btn-primary tip-action-download-file"
+                data-uib-tooltip="{{'Mask this file' | translate}}" data-ng-click="masking(file.id)">
+                <i class="fa-regular fa-square-check"></i>
+              </button>
+
+              <span data-ng-repeat="masking in tip.masking">
+                <button
+                  ng-show="(masking.temporary_masking.fileMaskingStatus === true ) && (masking.content_id ===file.id )"
+                  class="btn btn-sm btn-primary tip-action-download-file"
+                  data-uib-tooltip="{{' This file is mask' | translate}}">
+                  <i class="fa-solid fa-rectangle-xmark"></i>
+                </button>
+              </span> -->
+
             </td>
             <td>{{file.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
             <td>{{file.type}}</td>
@@ -47,7 +67,9 @@
     </div>
     <div data-ng-if="Authentication.session.role === 'receiver' && !tip.context.enable_attachments" class="form-group">
       <label class="inline-checkbox">
-        <input data-ng-model="tip.enable_attachments" data-ng-change="tip.operation('set', {'key': 'enable_attachments', 'value': tip.enable_attachments})" type="checkbox" />
+        <input data-ng-model="tip.enable_attachments"
+          data-ng-change="tip.operation('set', {'key': 'enable_attachments', 'value': tip.enable_attachments})"
+          type="checkbox" />
         <span data-translate>Allow the whistleblower to add attachments</span>
       </label>
     </div>

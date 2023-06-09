@@ -1038,8 +1038,8 @@ class _Masking(Model):
     mask_date = Column(DateTime, default=datetime_now, nullable=False)
     content_id = Column(UnicodeText(36), nullable=False, index=True)
     internaltip_id = Column(UnicodeText(36), nullable=False, index=True)
-    temporary_ranges = Column(JSON, default=dict, nullable=False)
-    permanent_ranges = Column(JSON, default=dict, nullable=False)
+    temporary_masking = Column(JSON, default=dict, nullable=False)
+    permanent_masking = Column(JSON, default=dict, nullable=False)
 
     @declared_attr
     def __table_args__(self):

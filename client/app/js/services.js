@@ -374,7 +374,9 @@ factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipMessageResource", "
 
       tip.newMasking = function(content) {
         var c = new RTipMaskingResource(tipID);
-        c.content = content;
+        c.content_id = content.content_id;
+        c.permanent_masking = content.permanent_masking;
+        c.temporary_masking = content.temporary_masking;
         c.$save(function(newMasking) {
           tip.masking.unshift(newMasking);
           tip.localChange();

@@ -15,7 +15,7 @@ GL.controller("TipCtrl",
       $scope.editMode = false
 
       $scope.mode = false;
-
+      $scope.status = false
       $scope.openGrantTipAccessModal = function () {
         $http({
           method: "PUT", url: "api/user/operations", data: {
@@ -216,7 +216,18 @@ GL.controller("TipCtrl",
           $scope.exportTip = RTipExport;
           $scope.downloadRFile = RTipDownloadRFile;
           $scope.viewRFile = RTipViewRFile;
-
+          $scope.show = function (id) {
+            return !!$scope.tip.masking.find(mask => mask.content_id === id);
+          }
+          $scope.masking = function (id) {
+            $scope.status = true
+            var maskingdata = {
+              content_id: id,
+              permanent_masking: "",
+              temporary_masking: { fileMaskingStatus: $scope.status }
+            }
+            $scope.tip.newMasking(maskingdata);
+          }
           $scope.showEditLabelInput = $scope.tip.label === "";
 
           $scope.tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText($scope.tip.status, $scope.tip.substatus, $scope.submission_statuses);
@@ -501,7 +512,7 @@ GL.controller("TipCtrl",
       $scope.content = $scope.args.data;
       $scope.contentId = $scope.args.id
       var i = 0;
-      $scope.ranges = [];
+      $scope.ranges = {};
 
       $scope.redact = function (id) {
         var blank = String.fromCharCode(8270);
@@ -519,7 +530,7 @@ GL.controller("TipCtrl",
 
           elem.value = text.substring(0, start) + blank.repeat(length) + text.substring(finish, text.length);
         }
-        var rangeExists = $scope.ranges.some(function (range) {
+        var rangeExists = Object.values($scope.ranges).some(function (range) {
           return range.start === start && range.end === finish;
         });
 
@@ -530,10 +541,8 @@ GL.controller("TipCtrl",
             start: start,
             end: finish
           };
-          $scope.ranges.push(range);
-          console.log($scope.ranges, "$scope.ranges");
+          $scope.ranges[i++] = range;
         }
-
       };
 
       $scope.unredact = function (id) {
@@ -555,17 +564,13 @@ GL.controller("TipCtrl",
       $scope.confirm = function (id) {
         var elem = document.getElementById(id);
         var text = elem.value;
-        console.log(text);
-        console.log($scope.RTip, "tip");
-
         var maskingdata = {
-          content_id: id,
-          permanent_ranges: "",
-          temporary_ranges: $scope.ranges,
+          content_id: $scope.contentId,
+          permanent_masking: "",
+          temporary_masking: $scope.ranges
         }
-        console.log(maskingdata,"maskingdata");
         $scope.tip = new RTip({ id: $scope.id }, function (tip) {
-          tip.newMasking(text);
+          tip.newMasking(maskingdata);
         })
 
       }

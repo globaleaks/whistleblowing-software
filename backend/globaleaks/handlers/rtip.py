@@ -2,6 +2,7 @@
 #
 # Handlers dealing with tip interface for receivers (rtip)
 import base64
+import json
 import os
 
 from datetime import datetime, timedelta
@@ -601,37 +602,28 @@ def create_masking(session, tid, user_id, rtip_id, content):
     :param session: An ORM session
     :param tid: A tenant ID
     :param user_id: The user id of the user creating the masking
-    :param rtip_id: The rtip associated to the masking to be created
+    :param rtip_id: The rtip associated with the masking to be created
     :param content: The content of the masking
     :return: A serialized descriptor of the masking
     """
     _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
     itip.update_date = rtip.last_access = datetime_now()
-    print("1111111111111111111111111111111111111111111111111111")
-    print("1111111111111111111111111111111111111111111111111111")
-    print("1111111111111111111111111111111111111111111111111111")
-    print("1111111111111111111111111111111111111111111111111111")
-    print("1111111111111111111111111111111111111111111111111111")
-    print("1111111111111111111111111111111111111111111111111111")
-    print(content,"content")
-    print("1111111111111111111111111111111111111111111111111111")
-    print("1111111111111111111111111111111111111111111111111111")
-    print("1111111111111111111111111111111111111111111111111111")
-    print("1111111111111111111111111111111111111111111111111111")
-    print("1111111111111111111111111111111111111111111111111111")
-    print("1111111111111111111111111111111111111111111111111111")
-    print("1111111111111111111111111111111111111111111111111111")
-    _masking = content
-    if itip.crypto_tip_pub_key:
-        _masking = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
 
+    masking_content = {}
+    if itip.crypto_tip_pub_key:
+        if isinstance(content, dict):
+            masking_content = content
+        else:
+            content_str = content.get('content', str(content))
+            content_bytes = content_str.encode()
+            masking_content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content_bytes)).decode()
     masking = models.Masking()
     masking.internaltip_id = itip.id
-    masking.temporary_ranges = _masking
+    masking.temporary_masking = masking_content.get('temporary_masking', None)
     masking.mask_date = datetime_now()
-    masking.content_id = ''
-    masking.permanent_ranges = _masking
+    masking.content_id = masking_content.get('content_id', None)
+    masking.permanent_masking = masking_content.get('permanent_masking', None)
     session.add(masking)
     session.flush()
 
@@ -709,14 +701,16 @@ class RTipCommentCollection(BaseHandler):
 
 class RTipMaskingCollection(BaseHandler):
     """
-    Interface use to write rtip masking
+    Interface used to write rtip masking
     """
     check_roles = 'receiver'
 
     def post(self, rtip_id):
-        request = self.validate_request(self.request.content.read(), requests.CommentDesc)
-        return create_masking(self.request.tid, self.session.user_id, rtip_id, request['content'])
+        self.request.content.seek(0)
+        payload = self.request.content.read().decode('utf-8')  # Get the request payload
 
+        data = json.loads(payload)  # Parse the JSON payload
+        return create_masking(self.request.tid, self.session.user_id, rtip_id, data)
 
 class ReceiverMsgCollection(BaseHandler):
     """
