@@ -33,8 +33,7 @@ a:hover,
 }
 
 legend {
-  display: contents;
-  font-size: inherit;
+  font-size: revert;
 }
 
 .onionaddress {
