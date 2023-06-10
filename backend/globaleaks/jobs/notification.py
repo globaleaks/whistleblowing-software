@@ -156,6 +156,23 @@ class MailGenerator(object):
             except:
                 pass
 
+        for user in session.query(models.User).filter(models.User.id == models.ReceiverTip.receiver_id,
+                                                      models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                                      models.InternalTip.reminder_date < now).distinct():
+            tid = user.tid
+
+            if tid in silent_tids:
+                continue
+
+            data = {'type': 'tip_reminder'}
+
+            try:
+                data['user'] = user_serialize_user(session, user, user.language)
+                self.process_mail_creation(session, tid, data)
+            except:
+                pass
+
+
 
 @transact
 def get_mails_from_the_pool(session):

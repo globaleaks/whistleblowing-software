@@ -22,6 +22,12 @@ def simulate_unread_tips(session):
         itip.update_date = datetime_now() - timedelta(8)
 
 
+@transact
+def simulate_reminders(session):
+    for itip in session.query(models.InternalTip):
+        itip.reminder_date = datetime_now() - timedelta(1)
+
+
 class TestNotification(helpers.TestGLWithPopulatedDB):
     @inlineCallbacks
     def test_notification(self):
@@ -69,6 +75,14 @@ class TestNotification(helpers.TestGLWithPopulatedDB):
         yield self.test_model_count(models.Mail, 0)
 
         yield simulate_unread_tips()
+
+        yield notification.generate_emails()
+
+        yield self.test_model_count(models.Mail, 2)
+
+        yield notification.spool_emails()
+
+        yield simulate_reminders()
 
         yield notification.generate_emails()
 
