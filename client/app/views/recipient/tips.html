@@ -236,7 +236,7 @@
           <td class="TipInfoUpdateDate">{{tip.update_date | date:'dd-MM-yyyy HH:mm'}}</td>
           <td class="TipInfoExpirationDate">
             <span
-                data-ng-if="!Utils.isNever(tip.expiration_date)">{{tip.expiration_date | date:'dd-MM-yyyy'}}</span>
+                data-ng-if="!Utils.isNever(tip.expiration_date)">{{tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</span>
             <span data-ng-if="Utils.isNever(tip.expiration_date)">-</span>
           </td>
           <td class="TipInfoLastAccess">
