@@ -33,11 +33,7 @@ GL.controller("SubmissionCtrl",
   };
 
   $scope.switch_selection = function (receiver) {
-    if (receiver.forcefully_selected) {
-      return;
-    }
-
-    if ($scope.submission.selected_receivers[receiver.id]) {
+    if (!$scope.submission.selected_receivers[receiver.id]) {
       delete $scope.submission.selected_receivers[receiver.id];
     } else if ($scope.selectable()) {
       $scope.submission.selected_receivers[receiver.id] = true;
