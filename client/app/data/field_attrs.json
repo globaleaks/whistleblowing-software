@@ -5,6 +5,9 @@
     "input_validation": {"type": "unicode", "value": "none"},
     "regexp": {"type": "unicode", "value": ""}
  },
+ "audioUpload": {
+    "min_time": {"type": "int", "value": "0"}
+ },
  "textarea": {
     "min_len": {"type": "int", "value": "0"},
     "max_len": {"type": "int", "value": "2000"}

@@ -461,8 +461,8 @@ msgstr "Assigned to"
 msgid "Not provided."
 msgstr "Not provided."
 
-msgid "Set a reminder date"
-msgstr "Set a reminder date"
+msgid "Set a reminder"
+msgstr "Set a reminder"
 
 msgid "File a report"
 msgstr "File a report"
