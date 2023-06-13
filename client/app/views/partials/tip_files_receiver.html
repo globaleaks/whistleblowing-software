@@ -47,8 +47,8 @@
                 </span>
               </span>
               <span data-ng-if="mode">
-                <span ng-show="resources.preferences.can_privilege_mask_information">
-                  <button ng-hide="show(file.id)" class="btn btn-sm btn-primary tip-action-mask-file"
+                <span data-ng-show="resources.preferences.can_privilege_mask_information">
+                  <button data-ng-hide="show(file.id)" class="btn btn-sm btn-primary tip-action-mask-file" data-ng-if="mode"
                     data-uib-tooltip="{{'Mask this file' | translate}}" data-ng-click="masking(file.id)">
                     <i class="fa-regular fa-square-check"></i>
                   </button>
