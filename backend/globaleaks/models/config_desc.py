@@ -375,6 +375,8 @@ ConfigL10NFilters = {
         'tip_expiration_summary_mail_title',
         'tip_mail_template',
         'tip_mail_title',
+        'tip_reminder_mail_template',
+        'tip_reminder_mail_title',
         'tip_update_mail_template',
         'tip_update_mail_title',
         'unread_tips_mail_template',
