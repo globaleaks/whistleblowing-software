@@ -1,6 +1,6 @@
 GL.controller("TipCtrl",
-  ["$scope", "$location", "$filter", "$http", "$interval", "$routeParams", "$uibModal", "Authentication", "RTip", "WBTip", "RTipExport", "RTipDownloadRFile", "WBTipDownloadFile", "fieldUtilities", "RTipViewRFile",
-    function ($scope, $location, $filter, $http, $interval, $routeParams, $uibModal, Authentication, RTip, WBTip, RTipExport, RTipDownloadRFile, WBTipDownloadFile, fieldUtilities, RTipViewRFile) {
+  ["$scope", "$location", "$filter", "$http", "$interval", "$routeParams", "$uibModal", "Authentication", "RTip", "WBTip", "RTipExport", "RTipDownloadRFile", "WBTipDownloadFile", "fieldUtilities", "RTipViewRFile", "RTipWBFileResource",
+    function ($scope, $location, $filter, $http, $interval, $routeParams, $uibModal, Authentication, RTip, WBTip, RTipExport, RTipDownloadRFile, WBTipDownloadFile, fieldUtilities, RTipViewRFile, RTipWBFileResource) {
       $scope.fieldUtilities = fieldUtilities;
       $scope.tip_id = $routeParams.tip_id;
 
@@ -49,6 +49,7 @@ GL.controller("TipCtrl",
           });
         });
       };
+
 
       $scope.openRevokeTipAccessModal = function () {
         $http({
@@ -219,6 +220,10 @@ GL.controller("TipCtrl",
           $scope.show = function (id) {
             return !!$scope.tip.masking.find(mask => mask.content_id === id);
           }
+          var reloadUI = function () { $scope.reload(); };
+          $scope.deleteWBFile = function (f) {
+            RTipWBFileResource.remove({ "id": f.id }).$promise.finally(reloadUI);
+          };
           $scope.masking = function (id) {
             $scope.status = true
             var maskingdata = {
@@ -509,6 +514,13 @@ GL.controller("TipCtrl",
       };
 
       $scope.args = args;
+      console.log($scope.args, "$scope.args");
+      console.log($scope.args.tip.masking, "$scope.args.tip.masking");
+      console.log($scope.args.contexts_by_id, "$scope.args.contexts_by_id");
+      console.log($scope.args.data, "$scope.args.data");
+      console.log($scope.args.id, " $scope.args.id");
+
+
       $scope.content = $scope.args.data;
       $scope.contentId = $scope.args.id
       var i = 0;
@@ -544,7 +556,38 @@ GL.controller("TipCtrl",
           $scope.ranges[i++] = range;
         }
       };
+      // Function to apply temporary masking ranges to the content string
+      function applyTemporaryMasking(content, temporaryMasking) {
+        let modifiedContent = content;
 
+        // Iterate over the temporary masking ranges
+        for (let range in temporaryMasking) {
+          if (temporaryMasking.hasOwnProperty(range)) {
+            let start = temporaryMasking[range].start;
+            let end = temporaryMasking[range].end;
+
+            // Replace the characters within the range with String.fromCharCode(8270)
+            modifiedContent =
+              modifiedContent.substring(0, start) +
+              String.fromCharCode(8270).repeat(end - start + 1) +
+              modifiedContent.substring(end + 1);
+          }
+        }
+
+        return modifiedContent;
+      }
+
+      // Filter the masking array to find the matching masking objects
+      let maskingObjects = $scope.args.tip.masking.filter(function (masking) {
+        return masking.content_id === $scope.args.id;
+      });
+
+      // Apply temporary masking to the content string for each masking object
+      maskingObjects.forEach(function (maskingObject) {
+        $scope.content = applyTemporaryMasking($scope.content, maskingObject.temporary_masking);
+      });
+
+      console.log($scope.content, "redack");
       $scope.unredact = function (id) {
         var elem = document.getElementById(id);
         var text = elem.value;
@@ -569,9 +612,9 @@ GL.controller("TipCtrl",
           permanent_masking: "",
           temporary_masking: $scope.ranges
         }
-        $scope.tip = new RTip({ id: $scope.id }, function (tip) {
-          tip.newMasking(maskingdata);
-        })
+        var reloadUI = function () { $scope.reload(); };
+
+        $scope.args.tip.newMasking(maskingdata).then(reloadUI)
 
       }
     }]);

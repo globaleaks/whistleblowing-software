@@ -586,14 +586,31 @@ def create_message(session, tid, user_id, rtip_id, content):
 @transact
 def delete_wbfile(session, tid, user_id, file_id):
     """
-    Transation for deleting a wbfile
+    Transaction for deleting a wbfile
     :param session: An ORM session
     :param tid: A tenant ID
     :param user_id: The user ID of the user performing the operation
     :param file_id: The file ID of the wbfile to be deleted
     """
-    wbfile = db_access_wbfile(session, tid, user_id, file_id)
-    session.delete(wbfile)
+    itips_ids = [x[0] for x in session.query(models.InternalTip.id)
+                                      .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                                              models.ReceiverTip.receiver_id == user_id,
+                                              models.InternalTip.tid == tid)]
+    wbfile = (
+        session.query(models.ReceiverFile)
+        .filter(models.User.id == user_id,models.ReceiverFile.id == file_id, models.ReceiverTip.receiver_id == models.User.id,models.ReceiverTip.internaltip_id == models.InternalTip.id,models.InternalTip.tid == tid)
+        .first()
+    )
+    if not wbfile:
+        wbfile = (
+            session.query(models.WhistleblowerFile)
+            .filter(models.WhistleblowerFile.id == file_id, models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,models.ReceiverTip.internaltip_id.in_(itips_ids),models.InternalTip.tid == tid)
+            .first()
+        )
+    
+    if wbfile:
+        session.delete(wbfile)
+
 
 @transact
 def create_masking(session, tid, user_id, rtip_id, content):
@@ -699,18 +716,66 @@ class RTipCommentCollection(BaseHandler):
 
         return create_comment(self.request.tid, self.session.user_id, rtip_id, request['content'])
 
+# def db_access_rfile(session, tid, user_id, rfile_id):
+#     """
+#     Transaction retrieving an rfile and performing basic access checks
+
+#     :param session: An ORM session
+#     :param tid: A tenant ID of the user
+#     :param user_id: A user ID
+#     :param rfile_id: the requested rfile ID
+#     :return: A model requested
+#     """
+#     itips_ids = [x[0] for x in session.query(models.InternalTip.id)
+#                                       .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
+#                                               models.ReceiverTip.receiver_id == user_id,
+#                                               models.InternalTip.tid == tid)]
+
+#     return db_get(session,
+#                   models.ReceiverFile,
+#                   (models.ReceiverFile.id == rfile_id,
+#                    models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
+#                    models.ReceiverTip.internaltip_id.in_(itips_ids),
+#                    models.InternalTip.tid == tid))
+
+
+# @transact
+# def delete_rfile(session, tid, user_id, file_id):
+#     """
+#     Transaction for deleting a rfile
+#     :param session: An ORM session
+#     :param tid: A tenant ID
+#     :param user_id: The user ID of the user performing the operation
+#     :param file_id: The file ID of the rfile to be deleted
+#     """
+#     rfile = db_access_rfile(session, tid, user_id, file_id)
+#     session.delete(rfile)
+
+
 class RTipMaskingCollection(BaseHandler):
     """
-    Interface used to write rtip masking
+    Interface used to handle rtip masking
     """
     check_roles = 'receiver'
+
+    def operation_descriptors(self):
+        return {
+          'delete_file': RTipMaskingCollection.delete_file
+        }
 
     def post(self, rtip_id):
         self.request.content.seek(0)
         payload = self.request.content.read().decode('utf-8')  # Get the request payload
-
         data = json.loads(payload)  # Parse the JSON payload
         return create_masking(self.request.tid, self.session.user_id, rtip_id, data)
+
+    # def delete_file(self, rtip_id, file_id, *args, **kwargs):
+    #     """
+    #     This interface allows the recipient to delete a ReceiverFile
+    #     """
+    #     delete_rfile(self.request.tid, self.session.user_id, file_id)
+    #     return {'message': 'File deleted successfully'}
+
 
 class ReceiverMsgCollection(BaseHandler):
     """
