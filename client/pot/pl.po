@@ -467,9 +467,6 @@ msgstr "Kopiuj do schowka"
 msgid "Logout"
 msgstr "Wyloguj"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Przyznaj temu odbiorcy uprawnienie do udzielania użytkownikom dostępu"
-
 msgid "Grant access"
 msgstr "Udziel dostępu"
 
@@ -482,7 +479,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr "Uprawnienia"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr "Wybierz swój język"
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1047,14 +1069,17 @@ msgstr "Sieć"
 msgid "Sites"
 msgstr "Strony"
 
-msgid "Mode:"
-msgstr "Tryb:"
+msgid "Profile"
+msgstr "Profil"
 
 msgid "Configure"
 msgstr "Konfiguruj"
 
 msgid "Subdomain"
 msgstr "Subdomena"
+
+msgid "Mode:"
+msgstr "Tryb:"
 
 msgid "Creation date:"
 msgstr "Data utworzenia:"
@@ -1124,6 +1149,9 @@ msgstr "Odbiorcy mogą usuwać zgłoszenia"
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Odbiorcy mogą zmieniać datę wygaśnięcia zgłoszenia"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "Przyznaj temu odbiorcy uprawnienie do udzielania użytkownikom dostępu"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Daj użytkownikowi dostęp administracyjny do poniższych funkcji:"
@@ -1228,7 +1256,7 @@ msgstr "Wyślij"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Potwierdzasz przesunięcie daty wygaśnięcia na:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1334,6 +1362,9 @@ msgstr "Do:"
 
 msgid "Filename"
 msgstr "Nazwa pliku"
+
+msgid "View"
+msgstr "Pokaż"
 
 msgid "Upload date"
 msgstr "Data Wysłania"
@@ -1499,17 +1530,17 @@ msgstr "Użyj 16-cyfrowego kodu potwierdzenia by się zalogować. Pozwoli ci on 
 msgid "View your report"
 msgstr "Zobacz swoje zgłoszenie"
 
-msgid "Recipient selection"
-msgstr "Wybór Odbiorcy"
-
-msgid "Select the recipients of your report:"
-msgstr "Wybierz odbiorców tego raportu:"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "Wybrani Odbiorcy:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Wybrałeś maksymalną liczbę wybieralnych odbiorców."
+
+msgid "You must select at least one recipient."
+msgstr "Musisz wybrać przynajmniej jednego odbiorcę."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1521,14 +1552,11 @@ msgid ""
 "invalid:"
 msgstr "W tym kroku odpowiedzi na następujące pytania są nieprawidłowe bądź nie ma ich wcale:"
 
-msgid "You must select at least one recipient."
-msgstr "Musisz wybrać przynajmniej jednego odbiorcę."
+msgid "Recipient selection"
+msgstr "Wybór Odbiorcy"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Czekanie aż plik(i) się prześlą."
-
-msgid "The following steps have errors:"
-msgstr "Następujące kroki mają błędy:"
 
 msgid "Hide"
 msgstr "Ukryj"
@@ -1938,17 +1966,17 @@ msgid "Some reports will expire soon"
 msgstr "Niektóre raporty wkrótce wygasną."
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "To jest wiadomość mailowa z powiadomieniem, że sygnalista wybrał Cię jako odbiorcę swojego zgłoszenia."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Poproszono Cię o zwrócenie szczególnej uwagi na zawarte w tym zgłoszeniu informacje i materiały. Miej na uwadze, że sygnaliści często narażają się dla dobra publicznego na duże ryzyko osobiste. Z tego względu materiał w niniejszym zgłoszeniu należy uznać za bardzo istotny."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "To jest wiadomość mailowa z powiadomieniem o aktualizacji istniejącego raportu."

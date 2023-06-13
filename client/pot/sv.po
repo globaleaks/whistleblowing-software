@@ -101,7 +101,7 @@ msgid "Files"
 msgstr "Filer"
 
 msgid "Comments"
-msgstr "Chatt"
+msgstr "Kommentarer"
 
 msgid "Messages"
 msgstr "Meddelanden"
@@ -470,9 +470,6 @@ msgstr "Kopiera till urklipp"
 msgid "Logout"
 msgstr "Logga ut"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Ge mottagaren möjlighet att ge användare tillgång till rapporter"
-
 msgid "Grant access"
 msgstr "Ge åtkomst"
 
@@ -485,8 +482,33 @@ msgstr "Tilldelat till"
 msgid "Not provided."
 msgstr "Tillhandahålls inte."
 
-msgid "Set a reminder date"
-msgstr "Sätt ett påminnelsedatum"
+msgid "Set a reminder"
+msgstr "Sätt en påminnelse"
+
+msgid "Privileges"
+msgstr "Privilegier"
+
+msgid "Mask"
+msgstr "Göm"
+
+msgid "Unmask"
+msgstr "Visa"
+
+msgid "Redact"
+msgstr "Radera"
+
+msgid "Select an option"
+msgstr "Välj ett alternativ"
+
+msgid "Select your language"
+msgstr "Välj ditt språk"
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
+msgstr ""
 
 msgid "File a report"
 msgstr "Lämna en rapport"
@@ -600,10 +622,10 @@ msgid "Show recipient details on the status page of the report"
 msgstr "Visa uppgifter om mottagarna överst på rapportstatussidan"
 
 msgid "Enable comments"
-msgstr "Aktivera chatt"
+msgstr "Aktivera kommentarer"
 
 msgid "Allow the whistleblower to write comments"
-msgstr "Tillåt att visselblåsaren skriver kommentarer i chatten"
+msgstr "Tillåt att visselblåsaren skriver kommentarer"
 
 msgid "Enable private messages"
 msgstr "Aktivera privata meddelanden"
@@ -1050,14 +1072,17 @@ msgstr "Nätverk"
 msgid "Sites"
 msgstr "Webbplatser"
 
-msgid "Mode:"
-msgstr "Läge:"
+msgid "Profile"
+msgstr "Profil"
 
 msgid "Configure"
 msgstr "Konfigurera"
 
 msgid "Subdomain"
 msgstr "Subdomän"
+
+msgid "Mode:"
+msgstr "Läge:"
 
 msgid "Creation date:"
 msgstr "Datum för skapande:"
@@ -1127,6 +1152,9 @@ msgstr "Tillåt mottagaren att ta bort tips"
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Tillåt mottagaren att förlänga utgångsdatumet för rapporten"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "Ge mottagaren möjlighet att ge användare tillgång till rapporter"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Ge användaren administratörsrättigheter för följande funktioner:"
@@ -1231,7 +1259,7 @@ msgstr "Skicka"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Genom att klicka på förlängning så kommer du att förlänga tipsets utgångsdatum till:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr "Genom att bekräfta ställs påminnelsedatum till:"
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1337,6 +1365,9 @@ msgstr "Till:"
 
 msgid "Filename"
 msgstr "Filnamn"
+
+msgid "View"
+msgstr "Visa"
 
 msgid "Upload date"
 msgstr "Datum för uppladdning"
@@ -1502,17 +1533,17 @@ msgstr "Använd koden med 16 siffror i leveranskvittot för att logga in. På d
 msgid "View your report"
 msgstr "Läs din rapport"
 
-msgid "Recipient selection"
-msgstr "Val av mottagare"
-
-msgid "Select the recipients of your report:"
-msgstr "Välj mottagare till din rapport:"
+msgid "Select the recipients of your report"
+msgstr "Välj mottagare till din rapport"
 
 msgid "Recipients selected:"
 msgstr "Valda mottagare:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Du har valt så många mottagare som du får välja."
+
+msgid "You must select at least one recipient."
+msgstr "Du måste välja åtminstone en mottagare."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1524,14 +1555,11 @@ msgid ""
 "invalid:"
 msgstr "I denna fas finns det frågor där svaren inte fyllts i eller är ogiltiga. Detta gäller följande fall:"
 
-msgid "You must select at least one recipient."
-msgstr "Du måste välja åtminstone en mottagare."
+msgid "Recipient selection"
+msgstr "Val av mottagare"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Väntar på att uppladdningen av filen/filerna är klar."
-
-msgid "The following steps have errors:"
-msgstr "I följande steg finns det fel:"
 
 msgid "Hide"
 msgstr "Göm"
@@ -1941,17 +1969,17 @@ msgid "Some reports will expire soon"
 msgstr "Vissa av rapporterna kommer att gå ut snart"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "Syftet med detta e-postmeddelande är att upplysa dig om att en visselblåsare har valt ut dig som värdefull mottagare av deras rapport."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr "Syftet med detta email är att upplysa dig om att en rapports påminnelsedatum har nåtts."
+
+msgid "Reminder"
+msgstr "Påminnelse"
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Du ombeds att fästa särskild uppmärksamhet vid den information och det material som finns där. Kom ihåg att visselblåsare ofta utsätter sig för stora personliga risker i allmänhetens intresse. Det material som lämnas i denna rapport bör därför anses vara av stor betydelse."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr "Syftet med detta email är att upplysa dig om att en eller flera rapporters påminnelsedatum har nåtts."
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Syftet med detta e-postmeddelande är att upplysa dig om att en rapport har uppdaterats."

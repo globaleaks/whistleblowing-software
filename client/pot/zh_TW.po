@@ -454,9 +454,6 @@ msgstr "複製到剪貼簿"
 msgid "Logout"
 msgstr "登出"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
-
 msgid "Grant access"
 msgstr ""
 
@@ -469,7 +466,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr "特權"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr "标记"
+
+msgid "Select an option"
+msgstr "选择一个选项"
+
+msgid "Select your language"
+msgstr "选择您的语言"
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1034,14 +1056,17 @@ msgstr "網路"
 msgid "Sites"
 msgstr "網站"
 
-msgid "Mode:"
-msgstr "模式："
+msgid "Profile"
+msgstr "個人資料"
 
 msgid "Configure"
 msgstr "設定"
 
 msgid "Subdomain"
 msgstr "子網域"
+
+msgid "Mode:"
+msgstr "模式："
 
 msgid "Creation date:"
 msgstr "建立日期:"
@@ -1111,6 +1136,9 @@ msgstr "收件者可以刪除報告"
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "收件者可以延長報告期限"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "对于以下功能，授予用户管理员权限："
@@ -1215,7 +1243,7 @@ msgstr "送出"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "請確認你將把截止日期延後到："
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1321,6 +1349,9 @@ msgstr "給："
 
 msgid "Filename"
 msgstr "檔案名"
+
+msgid "View"
+msgstr "查看"
 
 msgid "Upload date"
 msgstr "上傳日期"
@@ -1486,17 +1517,17 @@ msgstr "使用此 16 碼收據登入，可查看我們給你的留言以及添�
 msgid "View your report"
 msgstr "檢視您的報告"
 
-msgid "Recipient selection"
-msgstr "選擇收件者"
-
-msgid "Select the recipients of your report:"
-msgstr "选择报告接收人："
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "已選擇的收件者"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "您可選的收件人數已達上限。"
+
+msgid "You must select at least one recipient."
+msgstr "你必須至少挑選一位收件者"
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1508,14 +1539,11 @@ msgid ""
 "invalid:"
 msgstr "在本步驟中，請回答下列問題是否為遺失或無效："
 
-msgid "You must select at least one recipient."
-msgstr "你必須至少挑選一位收件者"
+msgid "Recipient selection"
+msgstr "選擇收件者"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "等待這些檔案完成上傳"
-
-msgid "The following steps have errors:"
-msgstr "下面步驟出錯"
 
 msgid "Hide"
 msgstr "隱藏"
@@ -1925,17 +1953,17 @@ msgid "Some reports will expire soon"
 msgstr "部份報告即將到期失效"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "此封郵件通知您，揭密者已挑選您作為其報告的收件對象。"
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "請特別留意此處的資訊和材料，謹記揭密者為了公益往往自身曝露在高度風險下。因此報告裏提交的材料應被好好重視。"
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "该邮件通知您，现有报告已更新。"

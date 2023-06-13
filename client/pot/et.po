@@ -2,11 +2,12 @@
 # Translators:
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022
 # Max Moiseev <max.moiseev@chamber.fi>, 2020
+# Merle Mändmets, 2023
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2021-2022\n"
+"Last-Translator: Merle Mändmets, 2023\n"
 "Language-Team: Estonian (http://app.transifex.com/otf/globaleaks/language/et/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -60,7 +61,7 @@ msgid "Preferences"
 msgstr "Eelistused"
 
 msgid "Notifications"
-msgstr ""
+msgstr "Teavitused"
 
 msgid "file unavailable"
 msgstr "fail kättesaamatu"
@@ -111,7 +112,7 @@ msgid "Refresh"
 msgstr "Värskenda"
 
 msgid "Channel"
-msgstr ""
+msgstr "Kanal"
 
 msgid "Preview"
 msgstr "Eelvaade"
@@ -285,7 +286,7 @@ msgid "Strong"
 msgstr "Tugev"
 
 msgid "Text shown on top of the interface for selecting channels"
-msgstr ""
+msgstr "Liidese ülaosas kuvatav tekst kanalite valimiseks"
 
 msgid "Silence email notifications"
 msgstr "Vaigista meiliteavitused"
@@ -326,10 +327,10 @@ msgid "Activities"
 msgstr "Tegevused"
 
 msgid "Reports"
-msgstr "Teated"
+msgstr "Teavitused"
 
 msgid "Report"
-msgstr "Teate"
+msgstr "Teavitus"
 
 msgid "Users"
 msgstr "Kasutajad"
@@ -377,7 +378,7 @@ msgid "Select"
 msgstr "Vali"
 
 msgid "Deselect"
-msgstr ""
+msgstr "Tühista"
 
 msgid "Surname"
 msgstr "Perekonnanimi"
@@ -427,7 +428,7 @@ msgstr "Parooli lähtestamine"
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr "Üks või mitu saajat ei ole veel esimest sisselogimist teinud. See tähendab, et nad ei saa teateid."
+msgstr "Üks või mitu saajat ei ole veel esimest sisselogimist teinud. See tähendab, et nad ei saa teavitusi."
 
 msgid "This user has not performed the first login yet."
 msgstr "See kasutaja ei ole veel esimest sisselogimist teinud."
@@ -439,37 +440,59 @@ msgid "This domain name is not available."
 msgstr "See domeeninimi pole saadaval."
 
 msgid "Mark as important"
-msgstr ""
+msgstr "Märgi oluliseks"
 
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Kopeeri lõikelauale"
 
 msgid "Logout"
 msgstr "Logi välja"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
-
 msgid "Grant access"
-msgstr ""
+msgstr "Luba juurdepääs"
 
 msgid "Revoke access"
-msgstr ""
+msgstr "Tühista juurdepääs"
 
 msgid "Assigned to"
-msgstr ""
+msgstr "Määratud"
 
 msgid "Not provided."
+msgstr "Pole tagatud"
+
+msgid "Set a reminder"
+msgstr "Lisa meeldetuletus"
+
+msgid "Privileges"
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
-msgstr ""
+msgstr "Esita teavitus"
 
 msgid "Select a reporting channel:"
-msgstr ""
+msgstr "Vali teavituskanal"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Enne jätkamist seadistage uus parool."
@@ -484,10 +507,10 @@ msgid "Type"
 msgstr "Tüüp"
 
 msgid "Severity"
-msgstr ""
+msgstr "Tõsidus"
 
 msgid "Object"
-msgstr ""
+msgstr "Objekt"
 
 msgid "ID"
 msgstr "ID"
@@ -532,10 +555,10 @@ msgid "Cancel"
 msgstr "Tühista"
 
 msgid "Report statuses"
-msgstr "Teadete staatused"
+msgstr "Teavituste staatused"
 
 msgid "Channels"
-msgstr ""
+msgstr "Kanalid"
 
 msgid "Hidden"
 msgstr "Peidetud"
@@ -550,7 +573,7 @@ msgid "Recipients"
 msgstr "Saajad"
 
 msgid "Reminder date"
-msgstr ""
+msgstr "Meeldetuletuse kuupäev"
 
 msgid "days"
 msgstr "päeva"
@@ -574,7 +597,7 @@ msgid "Show recipients in alphabetical order"
 msgstr "Näita saajaid tähestiku järjekorras"
 
 msgid "Show recipient details on the status page of the report"
-msgstr "Näita saajate üksikasju teate staatuselehel"
+msgstr "Näita saajate üksikasju teavituse staatuselehel"
 
 msgid "Enable comments"
 msgstr "Luba kommentaarid"
@@ -646,7 +669,7 @@ msgid "City"
 msgstr "Linn"
 
 msgid "Country"
-msgstr "Maa"
+msgstr "Riik"
 
 msgid "Country code"
 msgstr "Riigikood"
@@ -734,7 +757,7 @@ msgstr "Saaja"
 msgid ""
 "Default mail configuration in use. Please consider using a private mail "
 "server."
-msgstr ""
+msgstr "Kasutusel on meili vaikekonfiguratsioon. Palun kaaluge privaatse meiliserveri kasutamist."
 
 msgid "SMTP email address"
 msgstr "SMTP meiliaadress"
@@ -755,7 +778,7 @@ msgid "Password"
 msgstr "Parool"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr "Tundide arv teate aegumisteatise saatmiseni"
+msgstr "Tundide arv teavituse aegumisteatise saatmiseni"
 
 msgid "Test the configuration"
 msgstr "Seadete test"
@@ -899,7 +922,7 @@ msgid "Whistleblowing button"
 msgstr "Vihjeandmise nupp"
 
 msgid "Disclaimer"
-msgstr ""
+msgstr "Lahtiütlus"
 
 msgid "Footer"
 msgstr "Jalus"
@@ -938,13 +961,13 @@ msgid "Administrators authorized to change user passwords:"
 msgstr "Kasutajate paroolide muutmise õigust omavad administraatorid:"
 
 msgid "Enable file viewer"
-msgstr ""
+msgstr "Luba failivaatur"
 
 msgid "Enable PGP"
-msgstr ""
+msgstr "Luba PGP"
 
 msgid "Enable simplified login"
-msgstr ""
+msgstr "Luba lihtsustatud sisselogimine"
 
 msgid "Enable search engines indexing"
 msgstr "Luba indekseerimine otsimootorite jaoks"
@@ -972,10 +995,10 @@ msgid ""
 msgstr "Turvakaalutlustel nõutakse regulaarsete ajavahemike järel parooli vahetamist."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr ""
+msgstr "Päevade arv kasutajate lugemata teadetest teavitamiseni"
 
 msgid "Custom support URL"
-msgstr ""
+msgstr "Kohandatud toe URL"
 
 msgid "Disable the privacy panel"
 msgstr "Keela andmekaitsepaneel"
@@ -1013,7 +1036,7 @@ msgid ""
 msgstr "Selle funktsiooni lubamisega toetate platvormi arendamist ja turvalisust."
 
 msgid "Reset reports"
-msgstr "Lähtesta teated"
+msgstr "Lähtesta teavitused"
 
 msgid "Settings"
 msgstr "Seaded"
@@ -1027,14 +1050,17 @@ msgstr "Võrk"
 msgid "Sites"
 msgstr "Saidid"
 
-msgid "Mode:"
-msgstr "Režiim:"
+msgid "Profile"
+msgstr ""
 
 msgid "Configure"
 msgstr "Seadista"
 
 msgid "Subdomain"
 msgstr "Alamdomeen"
+
+msgid "Mode:"
+msgstr "Režiim:"
 
 msgid "Creation date:"
 msgstr "Loomise kuupäev:"
@@ -1067,7 +1093,7 @@ msgid ""
 "The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr ""
+msgstr "Valitud parool on liiga nõrk. Sobiv parool peaks sisaldama vähemalt 12 erinevat märki, sealhulgas vähemalt üks väiketäht, üks suurtäht, üks number ja üks erimärk."
 
 msgid "Force password change"
 msgstr "Kohustuslik paroolivahetus"
@@ -1100,25 +1126,28 @@ msgid "Forcefully selected"
 msgstr "Valitud sundkorras"
 
 msgid "Allow the recipient to delete reports"
-msgstr "Luba saajal teateid kustutada"
+msgstr "Luba saajal teavitusi kustutada"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Luba saajal teate aegumiskuupäeva edasi lükata"
+msgstr "Luba saajal teavituse aegumiskuupäeva edasi lükata"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "Anna sellele saajale õigus anda kasutajale juurdepääs teavitustele"
 
 msgid "Give the user administrative access to the following features:"
-msgstr ""
+msgstr "Anna kasutajale administraatori õigused järgmiste funktsioonide suhtes:"
 
 msgid "Request date"
 msgstr "Taotluse kuupäev"
 
 msgid "Report date"
-msgstr "Teate kuupäev"
+msgstr "Teavituse kuupäev"
 
 msgid "Authorization"
 msgstr "Autoriseerimine"
 
 msgid "Requests"
-msgstr ""
+msgstr "Taotlused"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "Valideerimislink on vale või aegunud."
@@ -1180,7 +1209,7 @@ msgid "Enter a name for the copy"
 msgstr "Sisestage koopia nimi"
 
 msgid "Request support"
-msgstr ""
+msgstr "Küsi tuge"
 
 msgid "Thank you."
 msgstr "Täname."
@@ -1208,8 +1237,8 @@ msgstr "Saada"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Kinnitades lükkate aegumise edasi kuupäevale:"
 
-msgid "By confirming, you will set a remainder on date:"
-msgstr ""
+msgid "By confirming, you will set a reminder on date:"
+msgstr "Kinnitades määrate kuupäeva meeldetuletuse"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "See on demoplatvorm, ärge kasutage seda tegelike teabeesituste jaoks."
@@ -1280,10 +1309,10 @@ msgid "Then, copy and paste the following address into the Tor Browser:"
 msgstr "Seejärel kopeerige ja kleepige Tor Browserisse järgmine aadress:"
 
 msgid "Have you already filed a report? Enter your receipt."
-msgstr "Kas olete teate juba esitanud? Sisestage kättesaamiskood."
+msgstr "Kas olete teavituse juba esitanud? Sisestage kättesaamiskood."
 
 msgid "The receipt is either invalid or the report has expired."
-msgstr "Kättesaamiskood on kehtetu või teade on aegunud."
+msgstr "Kättesaamiskood on kehtetu või teavitus on aegunud."
 
 msgid "Select a file or drag it here."
 msgstr "Valige fail või lohistage see siia."
@@ -1314,6 +1343,9 @@ msgstr "Saaja:"
 
 msgid "Filename"
 msgstr "Failinimi"
+
+msgid "View"
+msgstr "Vaata"
 
 msgid "Upload date"
 msgstr "Üleslaadimise kuupäev"
@@ -1387,7 +1419,7 @@ msgstr "Parooli lähtestamise taotlus esitatud."
 
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
-msgstr "Parooli lähtestamise lõpuleviimiseks sisestage krüpteeringu taastevõti."
+msgstr "Parooli lähtestamise lõpuleviimiseks sisestage oma konto taastamise võti"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -1422,7 +1454,7 @@ msgid "Sign up"
 msgstr "Registreeru"
 
 msgid "Site"
-msgstr "Leht"
+msgstr "Sait"
 
 msgid "Confirmation"
 msgstr "Kinnitus"
@@ -1437,7 +1469,7 @@ msgid "Address"
 msgstr "Aadress"
 
 msgid "Fiscal code"
-msgstr ""
+msgstr "Itaalia maksukood"
 
 msgid "Tax code"
 msgstr "Maksukood"
@@ -1466,10 +1498,10 @@ msgid ""
 msgstr "Teie ühendus serveriga ei ole anonüümne ja see server toetab ainult anonüümseid teabeesitusi."
 
 msgid "Your report was successful."
-msgstr "Teie teade on esitatud."
+msgstr "Teie teavitus on esitatud."
 
 msgid "Remember your receipt for this report."
-msgstr "Pidage meeles selle teate kättesaamiskood."
+msgstr "Pidage meeles selle teavituse kättesaamiskood."
 
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
@@ -1477,12 +1509,9 @@ msgid ""
 msgstr "Kasutage 16-kohalist kättesaamiskoodi sisselogimiseks. See võimaldab vaadata teateid, mille oleme teile saatnud, ja lisada täiendavat teavet."
 
 msgid "View your report"
-msgstr "Vaadake oma teadet"
+msgstr "Vaadake oma teavitust"
 
-msgid "Recipient selection"
-msgstr "Saaja valimine"
-
-msgid "Select the recipients of your report:"
+msgid "Select the recipients of your report"
 msgstr ""
 
 msgid "Recipients selected:"
@@ -1491,24 +1520,24 @@ msgstr "Valitud saajad:"
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Valitavate saajate arvu ülempiir on täis."
 
+msgid "You must select at least one recipient."
+msgstr "Peate valima vähemalt ühe saaja."
+
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr ""
+msgstr "Järgmised saajad saavad teie teavituse ning nende valikut ei saanud tühistada:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
 "invalid:"
 msgstr "Sellel etapil vastused järgmistele küsimustele puuduvad või on vigased:"
 
-msgid "You must select at least one recipient."
-msgstr "Peate valima vähemalt ühe saaja."
+msgid "Recipient selection"
+msgstr "Saaja valimine"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Oodake, kuni fail(id) on üles laaditud."
-
-msgid "The following steps have errors:"
-msgstr "Järgmised etapid sisaldavad vigu:"
 
 msgid "Hide"
 msgstr "Peida"
@@ -1529,7 +1558,7 @@ msgid ""
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr ""
+msgstr "Soovitame valida selle suvandi, kui soovite kaitsta andmeid kaotsimineku eest olukorras, kus saajad kaotavad oma paroolid. Teisest küljest ei soovita me seda funktsiooni kasutada, kui soovite seadistada süsteemi, kus ainult saajad pääsevad teabeesitustele ligi."
 
 msgid "Please choose a different username."
 msgstr "Valige teine kasutajanimi."
@@ -1541,65 +1570,65 @@ msgid "You have completed the platform wizard."
 msgstr "Olete platvormi viisardi läbinud."
 
 msgid "Please summarize your report in a few words."
-msgstr "Kirjeldage oma teadet mõne sõnaga."
+msgstr "Kirjeldage oma teavitust mõne sõnaga."
 
 msgid "Describe your report in detail."
-msgstr "Kirjeldage oma teadet üksikasjalikult."
+msgstr "Kirjeldage oma teavitust üksikasjalikult."
 
 msgid "Where did the facts happen?"
-msgstr ""
+msgstr "Kus juhtum aset leidis?"
 
 msgid "When did the facts happen?"
-msgstr ""
+msgstr "Millal juhtum aset leidis?"
 
 msgid "I'm a victim"
-msgstr ""
+msgstr "Ohver"
 
 msgid "I'm involved in the facts"
-msgstr ""
+msgstr "Olen juhtumiga seotud"
 
 msgid "I witnessed the facts in person"
-msgstr ""
+msgstr "Olin isiklikult juhtumi tunnistajaks"
 
 msgid "I was personally told by a direct witness"
-msgstr ""
+msgstr "Vahendan teise isiku, tunnistaja, käest kuuldut"
 
 msgid "It is a rumor I heard"
-msgstr ""
+msgstr "See on kuulujutt, mida kuulsin"
 
 msgid "How are you involved in the reported facts?"
-msgstr ""
+msgstr "Kuidas olete teatatud juhtumiga seotud?"
 
 msgid "Do you have evidence to support your report?"
-msgstr ""
+msgstr "Kas teil on oma teavituse toetuseks tõendeid?"
 
 msgid "Please attach the evidence to support your report."
-msgstr ""
+msgstr "Palun lisage oma teavituse toetuseks tõendid."
 
 msgid "Please describe the evidence in detail."
-msgstr ""
+msgstr "Palun kirjeldage tõendeid üksikasjalikult."
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr ""
+msgstr "Esitatud tõendite põhjalik kirjeldus võimaldab meil paremini väiteid hinnata ja uurida. Palun viidake esitatud videote, piltide või dokumentide olulistele osadele."
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr ""
+msgstr "Kas olete juhtumist teavitanud teisi organisatsioone ja/või üksikisikuid?"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr ""
+msgstr "Palun loetlege organisatsioonid ja/või üksikisikud, keda olete juhtumist teavitanud."
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr ""
+msgstr "Kas need organisatsioonid on teie väiteid uurinud? Kui jah, siis milline oli tulemus?"
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr ""
+msgstr "Millist tulemust soovite meie toetusega saavutada?"
 
 msgid "Do you want to provide your identification information?"
 msgstr "Kas soovite esitada oma isikuandmeid?"
@@ -1611,10 +1640,10 @@ msgid "Last name"
 msgstr "Perekonnanimi"
 
 msgid "Alternative contact method"
-msgstr ""
+msgstr "Alternatiivne kontakteerumise võimalus"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr ""
+msgstr "Eelistan, et minuga võetakse ühendust ainult selle platvormi kaudu"
 
 msgid "Other"
 msgstr "Muu"
@@ -1683,7 +1712,7 @@ msgstr "Ebatavaliste statistiliste näitajatega tegevused on järgmised:"
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
-msgstr "Server ei saa tagada uue teate salvestamist, seetõttu on teabeesitused välja lülitatud."
+msgstr "Server ei saa tagada uue teavituse salvestamist, seetõttu on teabeesitused välja lülitatud."
 
 msgid ""
 "Please consider asking your technical support to create more disk space on "
@@ -1804,7 +1833,7 @@ msgid ""
 msgstr "Tänaseks plaaninud HTTPS-i sertifikaadi automaatne uuendamine nurjus."
 
 msgid "The system will keep trying."
-msgstr "Süsteem jätab üritamist."
+msgstr "Süsteem jätkab üritamist."
 
 msgid "Failed HTTPS certificate renewal"
 msgstr "Nurjunud HTTPS-i sertifikaadi uuendamine"
@@ -1812,10 +1841,10 @@ msgstr "Nurjunud HTTPS-i sertifikaadi uuendamine"
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr "Käesoleva meiliga teatame, et hoidja on andnud teile õiguse vaadata teate {TipNum} vihjeandja isikuandmeid."
+msgstr "Käesoleva meiliga teatame, et hoidja on andnud teile õiguse vaadata teavituse {TipNum} vihjeandja isikuandmeid."
 
 msgid "The report can be accessed at:"
-msgstr "Teadet saab vaadata järgmisel aadressil:"
+msgstr "Teavitust saab vaadata järgmisel aadressil:"
 
 msgid "Access to whistleblower's identity authorized"
 msgstr "Vihjeandja isikuandmete vaatamise õigus antud"
@@ -1823,7 +1852,7 @@ msgstr "Vihjeandja isikuandmete vaatamise õigus antud"
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr "Käesoleva meiliga teatame, et hoidja ei andnud teile õigust vaadata teate {TipNum} vihjeandja isikuandmeid."
+msgstr "Käesoleva meiliga teatame, et hoidja ei andnud teile õigust vaadata teavituse {TipNum} vihjeandja isikuandmeid."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "Vihjeandja isikuandmete vaatamise õigust ei antud"
@@ -1831,7 +1860,7 @@ msgstr "Vihjeandja isikuandmete vaatamise õigust ei antud"
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr "Käesoleva meiliga teatame, et saaja on taotlenud juurdepääsu teate {TipNum} vihjeandja isikuandmetele."
+msgstr "Käesoleva meiliga teatame, et saaja on taotlenud juurdepääsu teavituse {TipNum} vihjeandja isikuandmetele."
 
 msgid "The request can be accessed at:"
 msgstr "Taotlust saab vaadata järgmisel aadressil:"
@@ -1842,7 +1871,7 @@ msgstr "Uus taotlus vihjeandja isikuandmete nägemiseks"
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr "Käesoleva meiliga teatame, et teate {TipNum} esitanud vihjeandja on esitanud oma isikuandmed."
+msgstr "Käesoleva meiliga teatame, et teavituse {TipNum} esitanud vihjeandja on esitanud oma isikuandmed."
 
 msgid "The whistleblower has provided their identity"
 msgstr "Vihjeandja on esitanud oma isikuandmed"
@@ -1903,10 +1932,10 @@ msgstr "Tarkvara värskendamise juhised on esitatud järgmisel aadressil asuvate
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "Käesoleva meiliga teatame, et saaja on andnud teile juurdepääsu ühele või mitmele teavitusele."
 
 msgid "New report"
-msgstr "Uus teade"
+msgstr "Uus teavitus"
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Varaseim aegumiskuupäev on {EarliestExpirationDate}."
@@ -1915,32 +1944,32 @@ msgid "Please remember to check them before they are deleted."
 msgstr "Ärge unustage nendega tutvuda enne nende kustutamist."
 
 msgid "Some reports will expire soon"
-msgstr "Mõned teated aeguvad varsti"
+msgstr "Mõned teavitused aeguvad varsti"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "Käesoleva meiliga teatame, et vihjeandja on valinud teid oma teate saajaks."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr "Käesoleva meiliga teatame, et teavituse meeldetuletuse kuupäev on kätte jõudnud"
+
+msgid "Reminder"
+msgstr "Meeldetuletus"
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Teil palutakse pöörata selles sisalduvale teabele ja materjalidele erilist tähelepanu. Pidage meeles, et vihjeandjad seavad ennast üldiste huvide nimel sageli suurde isiklikku ohtu. Seetõttu tuleks teates sisalduvaid materjale käsitada väga olulisena."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr ""
+msgstr "Käesoleva meiliga teatame, et olemasolevat teavitust on uuendatud."
 
 msgid "Report updated"
-msgstr ""
+msgstr "Teavitus on uuendatud"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr ""
+msgstr "Käesoleva meiliga tuletame teile meelde lugemata või uuendatud teavituste olemasolust."
 
 msgid "Reminder about unread or updated reports"
-msgstr ""
+msgstr "Meeldetuletus lugemata või uuendatud teavituste kohta"
 
 msgid "Role: {Role}"
 msgstr "Roll: {Role}"

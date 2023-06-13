@@ -454,9 +454,6 @@ msgstr "Mübadilə Buferinə köçür"
 msgid "Logout"
 msgstr "Çıxış"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Alıcıya hesabatlara giriş imkanı ver."
-
 msgid "Grant access"
 msgstr "Giriş ver"
 
@@ -469,7 +466,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr "İmkanlar"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1034,14 +1056,17 @@ msgstr "Şəbəkə"
 msgid "Sites"
 msgstr "Saytlar"
 
-msgid "Mode:"
-msgstr "Rejim:"
+msgid "Profile"
+msgstr "Profil"
 
 msgid "Configure"
 msgstr "Quraşdır"
 
 msgid "Subdomain"
 msgstr "Alt-domen"
+
+msgid "Mode:"
+msgstr "Rejim:"
 
 msgid "Creation date:"
 msgstr "Yaradılma tarixi:"
@@ -1111,6 +1136,9 @@ msgstr "Alıcının hesabatları silməsinə icazə verin"
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Alıcının hesabatların son tarixini dəyişməsinə icazə verin"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "Alıcıya hesabatlara giriş imkanı ver."
 
 msgid "Give the user administrative access to the following features:"
 msgstr "İstifadəçiyə aşağıdakılar üçün inzibatçı icazəsi ver:"
@@ -1215,7 +1243,7 @@ msgstr "Göndər"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Təsdiqləməklə, hesabatın tarixini dəyişəcəksiz:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1321,6 +1349,9 @@ msgstr "Qədər:"
 
 msgid "Filename"
 msgstr "Fayl adı"
+
+msgid "View"
+msgstr "Bax"
 
 msgid "Upload date"
 msgstr "Yüklənmə tarixi"
@@ -1486,17 +1517,17 @@ msgstr "Daxil olmaq üçün 16 rəqəmli şifrədən istifadə edin. Bu, sizə g
 msgid "View your report"
 msgstr "Təqdimatınızı nəzərdən keçirin"
 
-msgid "Recipient selection"
-msgstr "Alıcı seçimi"
-
-msgid "Select the recipients of your report:"
-msgstr "Hesabatınızın alıcılarını seçin:"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "Seçilmiş alıcılar:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Seçilə bilən alıcıların sayının maksimumuna çatdınız."
+
+msgid "You must select at least one recipient."
+msgstr "Ən azı bir alıcı seçməlisiz."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1508,14 +1539,11 @@ msgid ""
 "invalid:"
 msgstr "Bu mərhələdə aşağıdakı suallara cavablar ya verilməyib, ya da etibarsızdır:"
 
-msgid "You must select at least one recipient."
-msgstr "Ən azı bir alıcı seçməlisiz."
+msgid "Recipient selection"
+msgstr "Alıcı seçimi"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Faylın (faylların) yüklənməsinin bitməsini gözləyir."
-
-msgid "The following steps have errors:"
-msgstr "Aşağıdakı mərhələlərdə səhvlər var:"
 
 msgid "Hide"
 msgstr "Gizlət"
@@ -1925,17 +1953,17 @@ msgid "Some reports will expire soon"
 msgstr "Bəzi hesabatların müddəti tezliklə başa çatacaq"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "Bu məktub sizə, informasiya ötürənin sizi dəyərli alıcı kimi seçdiyini bildirməkçün göndərilib."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Burdakı məlumat və materiallara xüsusi diqqət yetirməyiniz xahiş olunur. Unutmayın ki, informasiya ötürənlər ictimai maraqlar naminə böyük risklərə məruz qalırlar. Onların təqdim etdiyi materiallar böyük əhəmiyyətə malikdir."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Bu məktub sizə, mövcud hesabatın yeniləndiyini bildirməkçün göndərilib."

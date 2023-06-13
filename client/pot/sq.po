@@ -456,9 +456,6 @@ msgstr "Kopjoje në të papastër"
 msgid "Logout"
 msgstr "Dalje"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Jepi këtij marrësi aftësinë të akordojë hyrje përdoruesish te raportimet"
-
 msgid "Grant access"
 msgstr "Akordoji hyrje"
 
@@ -471,8 +468,33 @@ msgstr "Caktuar për"
 msgid "Not provided."
 msgstr "S’është dhënë."
 
-msgid "Set a reminder date"
-msgstr "Caktoni një datë kujtuesi"
+msgid "Set a reminder"
+msgstr "Ujdisni një kujtues"
+
+msgid "Privileges"
+msgstr "Privilegje"
+
+msgid "Mask"
+msgstr "Maskoje"
+
+msgid "Unmask"
+msgstr "Hiqi maskimin"
+
+msgid "Redact"
+msgstr "Redaktoni"
+
+msgid "Select an option"
+msgstr "Përzgjidhni një mundësi"
+
+msgid "Select your language"
+msgstr "Përzgjidhni gjuhën tuaj"
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
+msgstr "Akordojini këtij përdorues privilegjin të redaktojë përgjithmonë hollësi të maskuara"
 
 msgid "File a report"
 msgstr "Depozitoni një raportim"
@@ -726,7 +748,7 @@ msgid "Tor Onion Service"
 msgstr "Shërbim Onion Tor"
 
 msgid "Anonymize outgoing connections"
-msgstr "Anonimizo lidhjet ikëse"
+msgstr "Anonimizo lidhjet për jashtë"
 
 msgid "Let the platform be reachable without Tor"
 msgstr "Lejojeni platformën të jetë e përdorshme pa Tor"
@@ -1022,7 +1044,7 @@ msgid ""
 msgstr "Duke aktivizuar këtë veçori, do të kontribuoni në zhvillimin dhe sigurinë e platformës."
 
 msgid "Reset reports"
-msgstr "Ktheji raportimet te parazgjedhjet"
+msgstr "Fshiji raportimet"
 
 msgid "Settings"
 msgstr "Rregullime"
@@ -1036,14 +1058,17 @@ msgstr "Rrjet"
 msgid "Sites"
 msgstr "Sajte"
 
-msgid "Mode:"
-msgstr "Mënyrë:"
+msgid "Profile"
+msgstr "Profil"
 
 msgid "Configure"
 msgstr "Formësojeni"
 
 msgid "Subdomain"
 msgstr "Nënpërkatësi"
+
+msgid "Mode:"
+msgstr "Mënyrë:"
 
 msgid "Creation date:"
 msgstr "Datë krijimi:"
@@ -1113,6 +1138,9 @@ msgstr "Lejoje marrësin të fshijë raportime"
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Lejoje marrësin të shtyjë datën e skadimit të raportimit"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "Jepi këtij marrësi aftësinë të akordojë hyrje përdoruesish te raportimet"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Jepi përdoruesit hyrje përgjegjësi në veçoritë vijuese:"
@@ -1217,7 +1245,7 @@ msgstr "Dërgoje"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Duke e ripohuar, do ta shtyni datën e skadimit më:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr "Duke e ripohuar, do të caktoni një kujtues më datë:"
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1323,6 +1351,9 @@ msgstr "Për:"
 
 msgid "Filename"
 msgstr "Emër kartele"
+
+msgid "View"
+msgstr "Shihni"
 
 msgid "Upload date"
 msgstr "Datë ngarkimi"
@@ -1431,7 +1462,7 @@ msgid "Sign up"
 msgstr "Regjistrohuni"
 
 msgid "Site"
-msgstr "Webfaqe"
+msgstr "Sajt"
 
 msgid "Confirmation"
 msgstr "Ripohim"
@@ -1449,7 +1480,7 @@ msgid "Fiscal code"
 msgstr "Kod fiskal"
 
 msgid "Tax code"
-msgstr "Kodi i taksës"
+msgstr "Kod tatimor"
 
 msgid "The answer is too short"
 msgstr "Përgjigja është shumë e shkurtër"
@@ -1486,19 +1517,19 @@ msgid ""
 msgstr "Për të bërë hyrjen, përdorni dëftesën me 16 shifra. Do t’ju lejojë të shihni çfarëdo mesazhesh që ju kemi dërguar dhe edhe të shtoni informacion shtesë."
 
 msgid "View your report"
-msgstr "Shiheni raportin tuaj"
+msgstr "Shiheni raportimin tuaj"
 
-msgid "Recipient selection"
-msgstr "Përzgjedhje marrësish"
-
-msgid "Select the recipients of your report:"
-msgstr "Përzgjidhni marrësit për raportimin tuaj:"
+msgid "Select the recipients of your report"
+msgstr "Përzgjidhni marrësit e raportimit tuaj"
 
 msgid "Recipients selected:"
 msgstr "Marrës të përzgjedhur:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Keni mbërritur në numrin maksimum të marrësve të përzgjedhshëm."
+
+msgid "You must select at least one recipient."
+msgstr "Duhet të përzgjidhni të paktën një marrës."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1510,14 +1541,11 @@ msgid ""
 "invalid:"
 msgstr "Te ky hap, përgjigjet për pyetjet vijuese ose mungojnë, ose janë të pavlefshme:"
 
-msgid "You must select at least one recipient."
-msgstr "Duhet të përzgjidhni të paktën një marrës."
+msgid "Recipient selection"
+msgstr "Përzgjedhje marrësish"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Po pritet që të përfundojë ngarkimi i kartelës(ave)."
-
-msgid "The following steps have errors:"
-msgstr "Hapat vijues kanë gabime:"
 
 msgid "Hide"
 msgstr "Fshihe"
@@ -1547,7 +1575,7 @@ msgid "I have read and agree to the terms of the license."
 msgstr "I kam lexuar dhe pajtohem me kushtet e licencës."
 
 msgid "You have completed the platform wizard."
-msgstr "Keni plotësuar hapat e ndihmësit të platformës."
+msgstr "Keni plotësuar hapat e ndihmësit të instalimit të platformës."
 
 msgid "Please summarize your report in a few words."
 msgstr "Ju lutemi, përmblidhni në pak fjalë raportimin tuaj."
@@ -1583,7 +1611,7 @@ msgid "Do you have evidence to support your report?"
 msgstr "Keni fakte për të mbështetur raportimin tuaj?"
 
 msgid "Please attach the evidence to support your report."
-msgstr "Ju lutemi, bashkëngjitni faktet për të mbështetur raportimin tua."
+msgstr "Ju lutemi, bashkëngjitni faktet për të mbështetur raportimin tuaj."
 
 msgid "Please describe the evidence in detail."
 msgstr "Ju lutemi, përshkruajini hollësisht faktet."
@@ -1927,17 +1955,17 @@ msgid "Some reports will expire soon"
 msgstr "Disa raportime do të skadojnë së shpejti"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "Ky është një email për t’ju njoftuar se një nxjerrës të fshehte ju ka përzgjedhur ju si një marrës të vlefshëm për raportimin e vet."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr "Ky është një email për t’ju njoftuar se ka ardhur data e kujtuesit për këtë raport."
+
+msgid "Reminder"
+msgstr "Kujtues"
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Ju kërkohet të bëni kujdes të veçantë me informacionin dhe materialin që përmbahet këtu. Ju lutemi, mbani parasysh se nxjerrësit e të fshehtave, shpesh ekspozojnë veten ndaj rreziqesh të mëdha personale, për interesin e publikut. Ndaj materiali i dhënë brenda këtij raportimi duhet konsideruar si i rëndësie të madhe."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr "Ky është një email për t’ju njoftuar se ka ardhur data kujtuese për një ose më tepër raportime."
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Ky është një email për t’ju njoftuar se është përditësuar një raportim ekzistues."

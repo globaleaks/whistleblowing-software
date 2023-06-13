@@ -466,9 +466,6 @@ msgstr "Copia al porta-retalls"
 msgid "Logout"
 msgstr "Tanca sessió"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Doneu a aquesta persona destinatària la possibilitat de concedir accés a les persones usuàries als informes"
-
 msgid "Grant access"
 msgstr "Concedir accés"
 
@@ -481,8 +478,33 @@ msgstr "Assignat a"
 msgid "Not provided."
 msgstr "No facilitat."
 
-msgid "Set a reminder date"
-msgstr "Fixar una data de recordatori"
+msgid "Set a reminder"
+msgstr "Establir un recordatori"
+
+msgid "Privileges"
+msgstr "Privilegis"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
+msgstr ""
 
 msgid "File a report"
 msgstr "Presentar un informe"
@@ -1046,14 +1068,17 @@ msgstr "Xarxa"
 msgid "Sites"
 msgstr "Llocs web"
 
-msgid "Mode:"
-msgstr "Mode:"
+msgid "Profile"
+msgstr "Perfil"
 
 msgid "Configure"
 msgstr "Configura"
 
 msgid "Subdomain"
 msgstr "Subdomini"
+
+msgid "Mode:"
+msgstr "Mode:"
 
 msgid "Creation date:"
 msgstr "Data de creació:"
@@ -1123,6 +1148,9 @@ msgstr "Permet al destinatari esborrar informes"
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Permet al destinatari ajornar la data d'expiració de l'informe"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "Doneu a aquesta persona destinatària la possibilitat de concedir accés a les persones usuàries als informes"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Doneu a la persona usuària accés administratiu a les funcions següents:"
@@ -1227,8 +1255,8 @@ msgstr "Envia-ho"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Si ho confirmes, posposaràs la data de caducitat fins a:"
 
-msgid "By confirming, you will set a remainder on date:"
-msgstr "Si confirma, establirà un recordatori per al dia:"
+msgid "By confirming, you will set a reminder on date:"
+msgstr "En confirmar, fixarà una data de recordatori:"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Aquesta és una plataforma de demostració, no la utilitzeu per a enviaments reals."
@@ -1333,6 +1361,9 @@ msgstr "A:"
 
 msgid "Filename"
 msgstr "Nom del fitxer"
+
+msgid "View"
+msgstr "Visualitza"
 
 msgid "Upload date"
 msgstr "Data de pujada"
@@ -1498,17 +1529,17 @@ msgstr "Utilitzeu el codi de rebut de 16 dígits per iniciar sessió. Us permetr
 msgid "View your report"
 msgstr "Mira el teu informe"
 
-msgid "Recipient selection"
-msgstr "Selecciona el destinatari"
-
-msgid "Select the recipients of your report:"
-msgstr "Seleccioneu els destinataris de l'informe:"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "Persones destinatàries seleccionades:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Has arribat al límit de nombre màxim de destinataris permesos."
+
+msgid "You must select at least one recipient."
+msgstr "Has de seleccionar com a mínim un destinatari."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1520,14 +1551,11 @@ msgid ""
 "invalid:"
 msgstr "En aquest pas, les respostes a les següents preguntes falten o són invàlides:"
 
-msgid "You must select at least one recipient."
-msgstr "Has de seleccionar com a mínim un destinatari."
+msgid "Recipient selection"
+msgstr "Selecciona el destinatari"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Esperant que la pujada d'arxiu(s) es completi"
-
-msgid "The following steps have errors:"
-msgstr "Els passos següents tenen errors:"
 
 msgid "Hide"
 msgstr "Oculta"
@@ -1937,17 +1965,17 @@ msgid "Some reports will expire soon"
 msgstr "Alguns informes caducaran aviat"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "Això és un missatge de correu electrònic per notificar-te que un informador t'ha seleccionat com a un valuós destinatari del seu informe."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr "Aquest correu electrònic és per a comunicar-li que s'ha complit la data de recordatori fixada per a una denúncia."
+
+msgid "Reminder"
+msgstr "Recordatori"
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Se us demana que presteu especial atenció a la informació i al material que conté. Tingueu en compte que els informadors sovint s'exposen a riscos personals elevats en interès del públic. Per tant, el material proporcionat dins d'aquest informe ha de ser considerat de gran importància."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Es tracta d’un correu electrònic per notificar que s’ha actualitzat un informe existent."

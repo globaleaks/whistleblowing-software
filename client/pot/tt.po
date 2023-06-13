@@ -447,9 +447,6 @@ msgstr "Алмашу буферына күчереп алу"
 msgid "Logout"
 msgstr "Чыгу"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Бу алучыга кулланучыларны хисапларга кертү мөмкинлеген бирү"
-
 msgid "Grant access"
 msgstr "Керү мөмкинлеге бирү"
 
@@ -462,7 +459,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1027,14 +1049,17 @@ msgstr ""
 msgid "Sites"
 msgstr "Сайтлар"
 
-msgid "Mode:"
-msgstr "Режим:"
+msgid "Profile"
+msgstr ""
 
 msgid "Configure"
 msgstr "Көйләү"
 
 msgid "Subdomain"
 msgstr "Эчке домен"
+
+msgid "Mode:"
+msgstr "Режим:"
 
 msgid "Creation date:"
 msgstr "Төзү датасы:"
@@ -1104,6 +1129,9 @@ msgstr "Алучыга хисапларны бетерергә рөхсәт ит
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Алучыга хисапның вакыты чыгу датасын кичектерергә рөхсәт итү"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "Бу алучыга кулланучыларны хисапларга кертү мөмкинлеген бирү"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Кулланучыга түбәндәге функцияләргә административ керү мөмкинлеген бирү:"
@@ -1208,7 +1236,7 @@ msgstr "Җибәрү"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Раслап, вакыты чыгу датасын бу көнгә кадәр кичектерәчәксез:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1314,6 +1342,9 @@ msgstr "Кемгә:"
 
 msgid "Filename"
 msgstr "Файл исеме"
+
+msgid "View"
+msgstr ""
 
 msgid "Upload date"
 msgstr "Йөкләү датасы"
@@ -1479,17 +1510,17 @@ msgstr "Керү өчен 16-санлы алу кодын кулланыгыз. 
 msgid "View your report"
 msgstr "Хисабыгызны карап алыгыз"
 
-msgid "Recipient selection"
-msgstr "Алучыларны сайлау"
-
-msgid "Select the recipients of your report:"
-msgstr "Хисабыгызны алучыларны сайлагыз:"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "Сайланган алучылар:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Сез алучыларны максималь санда сайлап алдыгыз."
+
+msgid "You must select at least one recipient."
+msgstr "Сез ким дигәндә бер алучыны сайларга тиеш."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1501,14 +1532,11 @@ msgid ""
 "invalid:"
 msgstr "Бу адымда түбәндәге сорауларга җаваплар юк яки алар дөрес түгел:"
 
-msgid "You must select at least one recipient."
-msgstr "Сез ким дигәндә бер алучыны сайларга тиеш."
+msgid "Recipient selection"
+msgstr "Алучыларны сайлау"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Файл(лар)ны йөкләү тәмамланганын көтү."
-
-msgid "The following steps have errors:"
-msgstr "Киләсе адымнарда хаталар бар:"
 
 msgid "Hide"
 msgstr "Яшерү"
@@ -1918,17 +1946,17 @@ msgid "Some reports will expire soon"
 msgstr "Кайбер хисапларның тиздән вакыты чыгачак"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "Бу электрон хат сезгә мәгълүмат җиткерүченең сезне үз хисабын өстенлекле  алучы итеп сайлаганлыгы турында хәбәр итә"
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Сездән әлеге документтагы мәгълүматка һәм материалга аеруча игътибар итүегезне сорыйлар. Зинһар, онытмагыз: мәгълүмат җиткерүчеләр еш кына үзләрен җәмәгатьчелек мәнфәгатендә зур куркыныч астына куялар. Шуңа күрә бу хисапта тәкъдим ителгән материалларны “югары мөһимлелеккә ия” материаллар булырга карау зарур."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Бу электрон хат гамәлдәге хисапның яңартылганлыгы турында хәбәр итә."

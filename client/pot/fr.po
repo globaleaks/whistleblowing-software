@@ -45,7 +45,7 @@ msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
 "Last-Translator: AO <ao@localizationlab.org>, 2015-2016,2018-2023\n"
-"Language-Team: French (http://www.transifex.com/otf/globaleaks/language/fr/)\n"
+"Language-Team: French (http://app.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
@@ -485,9 +485,6 @@ msgstr "Copier dans le presse-papiers"
 msgid "Logout"
 msgstr "Déconnexion"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Permettre à ce destinataire d’accorder l’accès des utilisateurs aux signalements"
-
 msgid "Grant access"
 msgstr "Accorder l’accès"
 
@@ -500,8 +497,33 @@ msgstr "Assigné à"
 msgid "Not provided."
 msgstr "N’est pas indiquée."
 
-msgid "Set a reminder date"
-msgstr "Définir une date de rappel"
+msgid "Set a reminder"
+msgstr "Définir un rappel"
+
+msgid "Privileges"
+msgstr "Privilèges"
+
+msgid "Mask"
+msgstr "Cacher"
+
+msgid "Unmask"
+msgstr "Afficher"
+
+msgid "Redact"
+msgstr "Supprimer"
+
+msgid "Select an option"
+msgstr "Sélectionnez une option"
+
+msgid "Select your language"
+msgstr "Choisissez votre langue"
+
+msgid "Grant this user user the privilege to mask information"
+msgstr "Accorder à cet utilisateur le privilège de cacher des renseignements"
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
+msgstr "Accorder à cet utilisateur le privilège de supprimer définitivement des renseignements cachés"
 
 msgid "File a report"
 msgstr "Remplir un signalement"
@@ -1013,7 +1035,7 @@ msgid "Number of days till notifying unread reports to users"
 msgstr "Nombre de jours avant de signaler les rapports non lus aux utilisateurs"
 
 msgid "Custom support URL"
-msgstr "URL du soutien personnalisé"
+msgstr "URL personnalisée de soutien"
 
 msgid "Disable the privacy panel"
 msgstr "Désactiver le volet de confidentialité"
@@ -1065,14 +1087,17 @@ msgstr "Réseau"
 msgid "Sites"
 msgstr "Sites"
 
-msgid "Mode:"
-msgstr "Mode :"
+msgid "Profile"
+msgstr "Profil"
 
 msgid "Configure"
 msgstr "Configurer"
 
 msgid "Subdomain"
 msgstr "Sous-domaine"
+
+msgid "Mode:"
+msgstr "Mode :"
 
 msgid "Creation date:"
 msgstr "Date de création :"
@@ -1142,6 +1167,9 @@ msgstr "Permettre au destinataire de supprimer des signalements"
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Permettre au destinataire de différer la date d’expiration du signalement"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "Permettre à ce destinataire d’accorder l’accès des utilisateurs aux signalements"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Donner à l’utilisateur un accès d’administration aux fonctions suivantes :"
@@ -1218,7 +1246,7 @@ msgid "Enter a name for the copy"
 msgstr "Saisir un nom pour la copie"
 
 msgid "Request support"
-msgstr "Demande d’assistance"
+msgstr "Demander de l’assistance"
 
 msgid "Thank you."
 msgstr "Merci."
@@ -1246,7 +1274,7 @@ msgstr "Envoyer"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "En confirmant, vous différerez la date d’expiration au :"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr "En confirmant, vous définirez un rappel pour cette date :"
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1352,6 +1380,9 @@ msgstr "À :"
 
 msgid "Filename"
 msgstr "Nom de fichier"
+
+msgid "View"
+msgstr "Afficher"
 
 msgid "Upload date"
 msgstr "Date de téléversement"
@@ -1517,17 +1548,17 @@ msgstr "Utilisez le reçu à 16 chiffres pour vous connecter. Il vous permettra
 msgid "View your report"
 msgstr "Visualisez votre signalement"
 
-msgid "Recipient selection"
-msgstr "Sélection du destinataire"
-
-msgid "Select the recipients of your report:"
-msgstr "Sélectionnez les destinataires de votre rapport :"
+msgid "Select the recipients of your report"
+msgstr "Sélectionnez les destinataires de votre rapport"
 
 msgid "Recipients selected:"
 msgstr "Destinataires sélectionnés :"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Vous avez atteint le nombre maximal de destinataires sélectionnables."
+
+msgid "You must select at least one recipient."
+msgstr "Vous devez au moins choisir un destinataire."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1539,14 +1570,11 @@ msgid ""
 "invalid:"
 msgstr "Dans cette étape, les réponses aux questions suivantes sont soit manquantes, soit invalides :"
 
-msgid "You must select at least one recipient."
-msgstr "Vous devez au moins choisir un destinataire."
+msgid "Recipient selection"
+msgstr "Sélection du destinataire"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "En attente de la fin du téléversement des fichiers."
-
-msgid "The following steps have errors:"
-msgstr "Les étapes suivantes présentent des erreurs :"
 
 msgid "Hide"
 msgstr "Cacher"
@@ -1956,17 +1984,17 @@ msgid "Some reports will expire soon"
 msgstr "Certains signalements arriveront bientôt à expiration"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "Le but de ce courriel est de vous aviser qu’un lanceur d’alerte vous a sélectionné comme destinataire de choix de son signalement."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr "Le but de ce courriel est de vous rappeler la date d’un rapport."
+
+msgid "Reminder"
+msgstr "Rappel"
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Il vous est demandé de prêter une attention particulière aux renseignements et documents ci-inclus. Veuillez garder à l’esprit que les lanceurs d’alerte prennent souvent des risques personnels importants dans l’intérêt du public. Par conséquent, les documents qui ont été fournis avec ce signalement doivent être traités avec l’importance qu’ils méritent."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr "Le but de ce courriel est de vous rappeler la date d’un ou de plusieurs rapports."
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Le but de ce courriel est de vous aviser qu’un rapport existant a été mis à jour."

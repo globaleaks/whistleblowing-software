@@ -447,9 +447,6 @@ msgstr "შუალედურ დაფაში კოპირება"
 msgid "Logout"
 msgstr "გამოსვლა"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "ამ მიმღებს მიეცეს შესაძლებლობა მიანიჭოს მომხმარებელს ანგარიშებზე წვდომის უფლება"
-
 msgid "Grant access"
 msgstr "წვდომის დაშვება"
 
@@ -462,7 +459,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr "პრივილეგიები"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1027,14 +1049,17 @@ msgstr "ქსელი"
 msgid "Sites"
 msgstr "საიტები"
 
-msgid "Mode:"
-msgstr "რეჟიმი:"
+msgid "Profile"
+msgstr ""
 
 msgid "Configure"
 msgstr "კონფიგურაცია"
 
 msgid "Subdomain"
 msgstr "ქვედომენი"
+
+msgid "Mode:"
+msgstr "რეჟიმი:"
 
 msgid "Creation date:"
 msgstr "შექმნის თარიღი:"
@@ -1104,6 +1129,9 @@ msgstr "დართეთ ნება მიმღებს წაშალო
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "დართეთ ნება მიმღებს გადაავადოს ანგარიშის ვადის გასვლა"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "ამ მიმღებს მიეცეს შესაძლებლობა მიანიჭოს მომხმარებელს ანგარიშებზე წვდომის უფლება"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "მომხმარებლისთვის ადმინისტრაციული წვდომის მიცემა შემდეგი ფუნქციებისთვის"
@@ -1208,7 +1236,7 @@ msgstr "გაგზავნა"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "დადასტურებით, თქვენ გადაავადებთ ვადის გასვლის თარიღს:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1314,6 +1342,9 @@ msgstr "ვის:"
 
 msgid "Filename"
 msgstr "ფაილის სახელი"
+
+msgid "View"
+msgstr ""
 
 msgid "Upload date"
 msgstr "ატვირთვის თარიღი"
@@ -1479,17 +1510,17 @@ msgstr "შესასვლელად გამოიყენეთ 16-ც�
 msgid "View your report"
 msgstr "ნახეთ თქვენი ანგარიში"
 
-msgid "Recipient selection"
-msgstr "მიმღების შერჩევა"
-
-msgid "Select the recipients of your report:"
-msgstr "აირჩიეთ  თქვენი ანგარიშის მიმღებები:"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "მიმღებები არჩეულია:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "თქვენ მიაღწიეთ ასარჩევი მიმღებების მაქსიმალურ რიცხვს."
+
+msgid "You must select at least one recipient."
+msgstr "თქვენ უნდა აირჩიოთ მინიმუმ ერთი მიმღები."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1501,14 +1532,11 @@ msgid ""
 "invalid:"
 msgstr "ამ ეტაპზე პასუხები შემდეგ კითხვებზე არ არის ან არასწორია:"
 
-msgid "You must select at least one recipient."
-msgstr "თქვენ უნდა აირჩიოთ მინიმუმ ერთი მიმღები."
+msgid "Recipient selection"
+msgstr "მიმღების შერჩევა"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "ფაილ(ებ)ის ატვირთვის დასრულების ლოდინი."
-
-msgid "The following steps have errors:"
-msgstr "შემდეგი ეტაპები შეიცავენ შეცდომებს:"
 
 msgid "Hide"
 msgstr "დამალვა"
@@ -1918,17 +1946,17 @@ msgid "Some reports will expire soon"
 msgstr "ზოგიერთი ანგარიშის ვადა მალე ამოიწურება"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "ეს არის ელწერილი, რომელიც გაცნობებთ, რომ ინსტუქტორმა მოგნიშნათ თქვენ, როგორც ამ ანგარიშის მიღებისთვის ღირებული მიმღები."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "თქვენ გთხოვენ განსაკუთრებული ყურადღბა გაამახვილოთ მასში შემცველ ინფორმაციასა და მასალებზე. გთხოვთ გაითვალისწინოთ, რომ ინსტრუქტორები ხშირად საზოგადოებრივი ყურადღების მაღალი რისკის ქვეშ არიან. ამიტომ მათ მიერ ამ ანგარიშში მოწოდებული ინფორმაცია მაღალი მნიშვნელობისაა."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "ეს არის ელწერილი შეტყობინებით არსებული ანგარიშის განახლების შესახებ."

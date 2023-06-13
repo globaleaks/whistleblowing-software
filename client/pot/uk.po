@@ -468,9 +468,6 @@ msgstr "Копіювати у буфер обміну"
 msgid "Logout"
 msgstr "Вихід"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Дати цьому отримувачу можливість надавати користувачам доступ до звітів"
-
 msgid "Grant access"
 msgstr "Дозволити доступ"
 
@@ -483,7 +480,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr "привілеї"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr "Виберіть параметр"
+
+msgid "Select your language"
+msgstr "Оберіть свою мову"
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1048,14 +1070,17 @@ msgstr "Мережа"
 msgid "Sites"
 msgstr "Сайти"
 
-msgid "Mode:"
-msgstr "Режим:"
+msgid "Profile"
+msgstr "Профіль"
 
 msgid "Configure"
 msgstr "Налаштувати"
 
 msgid "Subdomain"
 msgstr "Субдомен"
+
+msgid "Mode:"
+msgstr "Режим:"
 
 msgid "Creation date:"
 msgstr "Дата створення:"
@@ -1125,6 +1150,9 @@ msgstr "Дозволити отримувачу видаляти звіти"
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Дозволити отримувачам відтерміновувати видалення звітів"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "Дати цьому отримувачу можливість надавати користувачам доступ до звітів"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Надайте користувачеві адміністративний доступ до таких функцій:"
@@ -1229,7 +1257,7 @@ msgstr "Відправити"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Після підтвердження термін дії буде до:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1335,6 +1363,9 @@ msgstr "Кому:"
 
 msgid "Filename"
 msgstr "Назва файлу"
+
+msgid "View"
+msgstr "Вид"
 
 msgid "Upload date"
 msgstr "Дата завантаження"
@@ -1500,17 +1531,17 @@ msgstr "Використовуйте 16-значний номер квитанц
 msgid "View your report"
 msgstr "Переглянути ваш звіт"
 
-msgid "Recipient selection"
-msgstr "Вибір отримувача"
-
-msgid "Select the recipients of your report:"
-msgstr "Виберіть отримувачів вашого звіту:"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "Обрані отримувачі:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Ви досягли максимальної кількості можливих отримувачів."
+
+msgid "You must select at least one recipient."
+msgstr "Ви повинні вибрати щонайменше одного отримувача."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1522,14 +1553,11 @@ msgid ""
 "invalid:"
 msgstr "На даному кроці відсутні або недостовірні відповіді на наступні питання:"
 
-msgid "You must select at least one recipient."
-msgstr "Ви повинні вибрати щонайменше одного отримувача."
+msgid "Recipient selection"
+msgstr "Вибір отримувача"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Відбувається завантаження файлу(-ів)."
-
-msgid "The following steps have errors:"
-msgstr "Допущено помилки у наступних діях::"
 
 msgid "Hide"
 msgstr "Приховати"
@@ -1939,17 +1967,17 @@ msgid "Some reports will expire soon"
 msgstr "У деяких з поданих вами звітів закінчується термін  "
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "Цим листом повідомляємо, що інформатор вибрав вас як цінного отримувача своїх звітів."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Вас просять звернути особливу увагу на подану інформацію та матеріали. Будь ласка врахуйте, що інформатори часто піддають себе високим особистим ризикам в інтересах громадськості. Тому наданий в цьому звіті матеріал є у вищому ступені важливим!"
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Цим листом повідомляємо що існуючий звіт був оновлений."

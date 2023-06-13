@@ -37,7 +37,7 @@
 # u <u@451f.org>, 2014
 # Ute Rüger <ute@rueger-arts.de>, 2015
 # Ute Rüger <ute@rueger-arts.de>, 2015
-# Ute Rüger <ute@rueger-arts.de>, 2015-2016
+# Ute Rüger <ute@rueger-arts.de>, 2015-2016,2023
 # u <u@451f.org>, 2014
 # valsu <valsu@hylia.de>, 2015
 # valsu <valsu@hylia.de>, 2015
@@ -52,7 +52,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>, 2014-2023\n"
+"Last-Translator: Ute Rüger <ute@rueger-arts.de>, 2015-2016,2023\n"
 "Language-Team: German (http://app.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -493,9 +493,6 @@ msgstr "In die Zwischenablage kopieren"
 msgid "Logout"
 msgstr "Abmelden"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Geben Sie diesem Empfänger die Möglichkeit, Benutzern Zugriff auf Berichte zu gewähren"
-
 msgid "Grant access"
 msgstr "Zugriff gewähren"
 
@@ -506,10 +503,35 @@ msgid "Assigned to"
 msgstr "Zugewiesen an"
 
 msgid "Not provided."
-msgstr "Nicht angegeben."
+msgstr "Nicht vorgesehen "
 
-msgid "Set a reminder date"
-msgstr "Erinnerungsdatum festlegen"
+msgid "Set a reminder"
+msgstr "Legen Sie eine Erinnerung fest"
+
+msgid "Privileges"
+msgstr "Berechtigungen"
+
+msgid "Mask"
+msgstr "Maskieren "
+
+msgid "Unmask"
+msgstr "Demaskieren"
+
+msgid "Redact"
+msgstr "redigieren "
+
+msgid "Select an option"
+msgstr "Treffen Sie eine Auswahl "
+
+msgid "Select your language"
+msgstr "Wählen Sie Ihre Sprache aus"
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
+msgstr ""
 
 msgid "File a report"
 msgstr "Einen Bericht einreichen"
@@ -578,7 +600,7 @@ msgid "Cancel"
 msgstr "Abbrechen"
 
 msgid "Report statuses"
-msgstr "Berichtsstatuse"
+msgstr "Berichtsstatus"
 
 msgid "Channels"
 msgstr "Kanäle"
@@ -1021,7 +1043,7 @@ msgid "Number of days till notifying unread reports to users"
 msgstr "Anzahl der Tage bis zur Benachrichtigung der Benutzer über ungelesene Berichte"
 
 msgid "Custom support URL"
-msgstr ""
+msgstr "Adresse des Kundenservices "
 
 msgid "Disable the privacy panel"
 msgstr "Datenschutzpanel deaktivieren"
@@ -1073,14 +1095,17 @@ msgstr "Netzwerk"
 msgid "Sites"
 msgstr "Seiten"
 
-msgid "Mode:"
-msgstr "Modus:"
+msgid "Profile"
+msgstr "Profil"
 
 msgid "Configure"
 msgstr "Konfigurieren"
 
 msgid "Subdomain"
 msgstr "Subdomain"
+
+msgid "Mode:"
+msgstr "Modus:"
 
 msgid "Creation date:"
 msgstr "Erstellungsdatum:"
@@ -1150,6 +1175,9 @@ msgstr "Empfängern das Löschen von Hinweisen erlauben"
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Empfängern das Hinausschieben des Berichtablaufdatums erlauben"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "Geben Sie diesem Empfänger die Möglichkeit, Benutzern Zugriff auf Berichte zu gewähren"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Geben Sie dem Benutzer administrativen Zugriff auf die folgenden Funktionen:"
@@ -1254,8 +1282,8 @@ msgstr "Senden"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Mit der Bestätigung werden Sie das Ablaufdatum hinausschieben bis:"
 
-msgid "By confirming, you will set a remainder on date:"
-msgstr ""
+msgid "By confirming, you will set a reminder on date:"
+msgstr "Mit Ihrer Bestätigung legen Sie eine Erinnerung für den ... fest"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Dies ist eine Demonstrationswebsite, bitte nutzen Sie diese nicht für tatsächliche Einreichungen."
@@ -1360,6 +1388,9 @@ msgstr "An:"
 
 msgid "Filename"
 msgstr "Dateiname"
+
+msgid "View"
+msgstr "Darstellung"
 
 msgid "Upload date"
 msgstr "Hochladedatum"
@@ -1525,17 +1556,17 @@ msgstr "Verwenden Sie den 16-stelligen Zahlencode, um sich einzuloggen. Anschlie
 msgid "View your report"
 msgstr "Ihren Bericht ansehen"
 
-msgid "Recipient selection"
-msgstr "Empfängerauswahl"
-
-msgid "Select the recipients of your report:"
-msgstr "Wählen Sie die Empfänger für Ihren Bericht aus:"
+msgid "Select the recipients of your report"
+msgstr "Wählen Sie die Empfänger Ihres Berichtes aus"
 
 msgid "Recipients selected:"
 msgstr "Ausgewählte Empfänger:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Sie haben die maximale Anzahl an auswählbaren Empfängern erreicht."
+
+msgid "You must select at least one recipient."
+msgstr "Sie müssen mindestens einen Empfänger auswählen."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1547,14 +1578,11 @@ msgid ""
 "invalid:"
 msgstr "In diesem Schritt fehlen die Antworten auf folgende Fragen oder sind ungültig:"
 
-msgid "You must select at least one recipient."
-msgstr "Sie müssen mindestens einen Empfänger auswählen."
+msgid "Recipient selection"
+msgstr "Empfängerauswahl"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Warte darauf, dass die Datei(en) fertig hochgeladen werden."
-
-msgid "The following steps have errors:"
-msgstr "Die folgenden Schritte weisen Fehler auf:"
 
 msgid "Hide"
 msgstr "Verstecken"
@@ -1964,17 +1992,17 @@ msgid "Some reports will expire soon"
 msgstr "Einige Berichte laufen bald ab"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "Dies ist eine E-Mail, um Sie darüber zu benachrichtigen, dass ein Hinweisgeber Sie als wertvollen Empfänger seiner Einreichung ausgewählt hat."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr "Erinnerung "
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Sie werden dazu angehalten, die darin enthaltenen Informationen und Materialien besonders zu beachten. Bitte bedenken Sie, dass sich Hinweisgeber im Interesse der Öffentlichkeit oft hohen persönlichen Risiken aussetzen. Daher sollte das im Rahmen dieser Einreichung zur Verfügung gestellte Material als sehr wichtig angesehen werden."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Dies ist eine E-Mail, um Sie zu benachrichtigen, dass ein vorhandener Bericht aktualisiert wurde."

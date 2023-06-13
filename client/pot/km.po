@@ -451,9 +451,6 @@ msgstr "ចម្លងទៅឃ្នាប"
 msgid "Logout"
 msgstr "ចាកចេញ"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
-
 msgid "Grant access"
 msgstr ""
 
@@ -466,7 +463,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr "ជ្រើសរើសជម្រើសមួយ"
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1031,14 +1053,17 @@ msgstr "បណ្តាញ"
 msgid "Sites"
 msgstr "គេហទំព័រ"
 
-msgid "Mode:"
-msgstr "ទម្រង់៖"
+msgid "Profile"
+msgstr "រូប"
 
 msgid "Configure"
 msgstr "កំណត់រចនាសម្ព័ន្ធ"
 
 msgid "Subdomain"
 msgstr "ឈ្មោះវេបសាយរង"
+
+msgid "Mode:"
+msgstr "ទម្រង់៖"
 
 msgid "Creation date:"
 msgstr "កាលបរិច្ឆេទបង្កើត៖"
@@ -1108,6 +1133,9 @@ msgstr "អនុញ្ញាតអ្នកទទួលលុបរបាយក
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "អនុញ្ញាតអ្នកទទួលពន្យាពេលកាលបរិច្ឆេទផុតកំណត់របាយការណ៍"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "ផ្តល់សិទ្ធអ្នកប្រើប្រាស់ចូលគ្រប់គ្រង​មុខងារដូចខាងក្រោម៖"
@@ -1212,7 +1240,7 @@ msgstr "បញ្ជូន"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "ដោយការបញ្ជាក់នេះ អ្នកនឹងពន្យាកាលបរិច្ឆេទផុតកំណត់ទៅ៖"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1318,6 +1346,9 @@ msgstr "ទៅ៖"
 
 msgid "Filename"
 msgstr "ឈ្មោះ​ឯកសារ"
+
+msgid "View"
+msgstr "មើល"
 
 msgid "Upload date"
 msgstr "កាលបរិច្ឆេទបញ្ជូន"
@@ -1483,17 +1514,17 @@ msgstr "ប្រើប្រាស់បង្កាន់ដៃ ១៦ ខ្�
 msgid "View your report"
 msgstr "បង្ហាញរបាយការណ៍របស់អ្នក"
 
-msgid "Recipient selection"
-msgstr "ការជ្រើសរើសអ្នកទទួល"
-
-msgid "Select the recipients of your report:"
-msgstr "ជ្រើសរើសអ្នកទទួលរបាយការណ៍របស់អ្នក៖"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "អ្នកទទួលបានជ្រើសរើស៖"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "អ្នកបានឈានដល់ចំនួនអតិបរមានៃអ្នកទទួលដែលអាចជ្រើសរើសបាន។"
+
+msgid "You must select at least one recipient."
+msgstr "អ្នកត្រូវជ្រើសរើសអ្នកទទួលយ៉ាងហោចណាស់ម្នាក់។"
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1505,14 +1536,11 @@ msgid ""
 "invalid:"
 msgstr "ក្នុងជំហាននេះ ចម្លើយទៅកាន់សំណួរខាងក្រោមនេះ អាចបាត់ឬមិនត្រឹមត្រូវ៖"
 
-msgid "You must select at least one recipient."
-msgstr "អ្នកត្រូវជ្រើសរើសអ្នកទទួលយ៉ាងហោចណាស់ម្នាក់។"
+msgid "Recipient selection"
+msgstr "ការជ្រើសរើសអ្នកទទួល"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "កំពុងរង់ចាំឯកសារ​ ដើម្បីបញ្ចប់ការបញ្ជូល។"
-
-msgid "The following steps have errors:"
-msgstr "ជំហានខាងក្រោមនេះមានបញ្ហា៖"
 
 msgid "Hide"
 msgstr "លាក់"
@@ -1922,17 +1950,17 @@ msgid "Some reports will expire soon"
 msgstr "របាយការណ៍ខ្លះនឹងផុតកំណត់ឆាប់ៗនេះ"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "នេះជាអុីមែលជូនដំណឹងអ្នកថា មានអ្នករាយការណ៍ម្នាក់បានជ្រើសរើសអ្នកជាទទួលដ៏មានតម្លៃសម្រាប់របាយការណ៍របស់គេ។"
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "អ្នកត្រូវបានស្នើសុំឱ្យយកចិត្តទុកដាក់ជាពិសេស ចំពោះព័ត៌មាន និងទិន្នន័យដែលមាននៅក្នុងនោះ។ សូមចងចាំថា អ្នករាយការណ៍តែងតែប្រឈម ហានិភ័យផ្ទាល់ខ្លួនខ្ពស់ដើម្បីផលប្រយោជន៍សាធារណៈ។ ហេតុដូចនេះ ទិន្នន័យដែលបានផ្តល់នៅក្នុងរបាយការណ៍នេះ គួរតែចាត់ទុកថាមានសារៈសំខាន់ខ្ពស់។"
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "នេះជាអុីមែលជូនដំណឹងថា របាយការណ៍ដែលមានស្រាប់មួយត្រូវបានធ្វើបច្ចុប្បន្នភាព។"

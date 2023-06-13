@@ -464,9 +464,6 @@ msgstr "העתק ללוח גזירה"
 msgid "Logout"
 msgstr "התנתק"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "תן לנמען יכלת לתת גישה למשתמשים אל הדוחות"
-
 msgid "Grant access"
 msgstr "תן גישה"
 
@@ -479,7 +476,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr "הרשאות"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr "בחר את שפתך"
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1044,14 +1066,17 @@ msgstr "רשת"
 msgid "Sites"
 msgstr "אתרים"
 
-msgid "Mode:"
-msgstr "מצב:"
+msgid "Profile"
+msgstr ""
 
 msgid "Configure"
 msgstr "תצר"
 
 msgid "Subdomain"
 msgstr "תת‏־תחום"
+
+msgid "Mode:"
+msgstr "מצב:"
 
 msgid "Creation date:"
 msgstr "תאריך יצירה:"
@@ -1121,6 +1146,9 @@ msgstr ""
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr ""
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "תן לנמען יכלת לתת גישה למשתמשים אל הדוחות"
 
 msgid "Give the user administrative access to the following features:"
 msgstr ""
@@ -1225,7 +1253,7 @@ msgstr "שלח"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "לאחר שיאשר, תוכל לדחות את מועד התפוגה:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1331,6 +1359,9 @@ msgstr "אל:"
 
 msgid "Filename"
 msgstr "שם הקובץ"
+
+msgid "View"
+msgstr "הצג"
 
 msgid "Upload date"
 msgstr "תאריך העלאה"
@@ -1496,16 +1527,16 @@ msgstr ""
 msgid "View your report"
 msgstr "הצג את הדוח שלך"
 
-msgid "Recipient selection"
-msgstr "בחירת מקבלים"
-
-msgid "Select the recipients of your report:"
+msgid "Select the recipients of your report"
 msgstr ""
 
 msgid "Recipients selected:"
 msgstr "מקבלים שנבחרו:"
 
 msgid "You have reached the maximum number of selectable recipients."
+msgstr ""
+
+msgid "You must select at least one recipient."
 msgstr ""
 
 msgid ""
@@ -1518,13 +1549,10 @@ msgid ""
 "invalid:"
 msgstr ""
 
-msgid "You must select at least one recipient."
-msgstr ""
+msgid "Recipient selection"
+msgstr "בחירת מקבלים"
 
 msgid "Waiting for the file(s) to finish uploading."
-msgstr ""
-
-msgid "The following steps have errors:"
 msgstr ""
 
 msgid "Hide"
@@ -1935,16 +1963,16 @@ msgid "Some reports will expire soon"
 msgstr ""
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
 msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
 msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."

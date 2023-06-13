@@ -472,9 +472,6 @@ msgstr "Salin ke papan klip"
 msgid "Logout"
 msgstr "Keluar"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Izinkan penerima ini untuk memberikan akses pengguna ke laporan"
-
 msgid "Grant access"
 msgstr "Memberikan akses"
 
@@ -487,7 +484,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr "Hak"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr "Pilih sebuah opsi"
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1052,14 +1074,17 @@ msgstr "Jaringan"
 msgid "Sites"
 msgstr "Situs"
 
-msgid "Mode:"
-msgstr "Mode:"
+msgid "Profile"
+msgstr "Profil"
 
 msgid "Configure"
 msgstr "Konfigurasikan"
 
 msgid "Subdomain"
 msgstr "Subdomain"
+
+msgid "Mode:"
+msgstr "Mode:"
 
 msgid "Creation date:"
 msgstr "Tanggal dibuat:"
@@ -1129,6 +1154,9 @@ msgstr "Izinkan penerima untuk menghapus laporan"
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Izinkan penerima untuk menunda tanggal kedaluwarsa laporan"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "Izinkan penerima ini untuk memberikan akses pengguna ke laporan"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Izinkan akses administratif bagi pengguna untuk fitur berikut:"
@@ -1233,7 +1261,7 @@ msgstr "Kirim"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Dengan mengkonfirmasi, anda akan menunda tanggal kedaluwarsa menjadi: "
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1339,6 +1367,9 @@ msgstr "Ke:"
 
 msgid "Filename"
 msgstr "Nama file"
+
+msgid "View"
+msgstr "Lihat"
 
 msgid "Upload date"
 msgstr "Tanggal unggahan"
@@ -1504,17 +1535,17 @@ msgstr "Gunakan 16 angka tanda terima untuk masuk. Anda akan dapat melihat setia
 msgid "View your report"
 msgstr "Lihat laporan Anda"
 
-msgid "Recipient selection"
-msgstr "Seleksi penerima"
-
-msgid "Select the recipients of your report:"
-msgstr "Pilih penerima dari laporan Anda:"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "Penerima yang terpilih:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Anda telah mencapai batas maksimal penerima yang dipilih."
+
+msgid "You must select at least one recipient."
+msgstr "Anda harus pilih minimal satu penerima."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1526,14 +1557,11 @@ msgid ""
 "invalid:"
 msgstr "Pada langkah ini, jawaban-jawaban pada pertanyaan berikut tidak lengkap atau tidak valid:"
 
-msgid "You must select at least one recipient."
-msgstr "Anda harus pilih minimal satu penerima."
+msgid "Recipient selection"
+msgstr "Seleksi penerima"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Menunggu berkas untuk selesai diunggah."
-
-msgid "The following steps have errors:"
-msgstr "Ada kesalahan pada langkah berikut:"
 
 msgid "Hide"
 msgstr "Sembunyikan"
@@ -1943,17 +1971,17 @@ msgid "Some reports will expire soon"
 msgstr "Beberapa laporan akan segera kedaluwarsa"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "Surel ini memberi tahu Anda bahwa seorang informan publik telah memilih Anda sebagai penerima berharga dari laporan mereka."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Anda diminta untuk memberi perhatian khusus terhadap informasi dan materi yang terkandung di dalamnya. Harap diingat bahwa informan publik sering memaparkan diri mereka dengan risiko pribadi yang tinggi demi kepentingan publik. Oleh karena itu, materi yang diberikan dalam laporan ini harus dianggap sangat penting."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Surel ini memberi tahu bahwa salah satu laporan yang sudah ada telah diperbarui"

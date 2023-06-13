@@ -459,9 +459,6 @@ msgstr "کلپ بورڈ پر کاپی کریں۔"
 msgid "Logout"
 msgstr "لاگ آئوٹ"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "اس وصول کنندہ کو صارف کو رپورٹس تک رسائی دینے کی اہلیت دیں۔ "
-
 msgid "Grant access"
 msgstr "رسائی فراہم کریں۔"
 
@@ -474,7 +471,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr "استحقاق"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1039,14 +1061,17 @@ msgstr "نیٹ ورک "
 msgid "Sites"
 msgstr "سائٹس"
 
-msgid "Mode:"
-msgstr "موڈ: "
+msgid "Profile"
+msgstr "پروفائل"
 
 msgid "Configure"
 msgstr "مرتب کریں"
 
 msgid "Subdomain"
 msgstr "ذیلی ڈومین "
+
+msgid "Mode:"
+msgstr "موڈ: "
 
 msgid "Creation date:"
 msgstr "بنانے کی تاریخ: "
@@ -1116,6 +1141,9 @@ msgstr "وصول کنندگان کو اختیار دیجیے کہ تجاویز �
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "وصول کنندہ جمع کرانے کا وقت ختم ہونے کی تاریخ ملتوی کرنے کی اجازت دیں"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "اس وصول کنندہ کو صارف کو رپورٹس تک رسائی دینے کی اہلیت دیں۔ "
 
 msgid "Give the user administrative access to the following features:"
 msgstr "صارف کو درج ذیل خصوصیات تک انتظامی رسائی دیں: "
@@ -1220,7 +1248,7 @@ msgstr "بھیجیں"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "کی تصدیق کر کے، آپ کا وقت ختم ہونے کی تاریخ ملتوی ہو گی:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1326,6 +1354,9 @@ msgstr "To:"
 
 msgid "Filename"
 msgstr "فائل کا نام"
+
+msgid "View"
+msgstr "دیکھیں"
 
 msgid "Upload date"
 msgstr "اپ لوڈ کی تاریخ"
@@ -1491,17 +1522,17 @@ msgstr "لاگ اِن کے لیے 16 ہندسوں پر مشتمل اپنا کل�
 msgid "View your report"
 msgstr "اپنی داخل کردہ گذارشات دیکھ لیں"
 
-msgid "Recipient selection"
-msgstr "وصول کنندہ کا انتخاب"
-
-msgid "Select the recipients of your report:"
-msgstr "اپنی رپورٹ کے وصول کنندگان کو منتخب کریں: "
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr " منتخب وصول کنندگان"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "آپ منتخب وصول کنندگان کی زیادہ سے زیادہ تعداد تک پہنچ گئے ہیں۔ "
+
+msgid "You must select at least one recipient."
+msgstr "آپ کو کم از کم ایک وصول کنندہ کا انتخاب کرنا چاہیے۔ "
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1513,14 +1544,11 @@ msgid ""
 "invalid:"
 msgstr "اس مرحلے میں درج ذیل سوالات کے جوابات یا تو غائب ہیں یا غلط ہیں: "
 
-msgid "You must select at least one recipient."
-msgstr "آپ کو کم از کم ایک وصول کنندہ کا انتخاب کرنا چاہیے۔ "
+msgid "Recipient selection"
+msgstr "وصول کنندہ کا انتخاب"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "فائلوں کی اپ لوڈنگ مکمل ہونے کا انتظار ہے۔ "
-
-msgid "The following steps have errors:"
-msgstr "درج ذیل مراحل میں خرابیاں ہیں: "
 
 msgid "Hide"
 msgstr "چھپائیے"
@@ -1930,17 +1958,17 @@ msgid "Some reports will expire soon"
 msgstr "کچھ رپورٹیں جلد ہی ختم ہوجائیں گی"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr " آپ کو مطلع کرنے کے لئے یہ ایک ای میل نوٹیفکیشن ہے کہ ایک مخبر یا وسل بلوئر  نے گزارش کے ایک بیش قیمت  وصول کنندہ کے طور پر آپ کو منتخب کیا ہے."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "وہ پسند کریں گے کہ آپ اس میں موجود معلومات اور مواد پر خصوصی توجہ دیجئے .اس بات کو ذہن میں رکھیں کہ whistleblowers اکثر عوامی مفاد کے لئے اعلی ذاتی خطرات میں ڈالتے ہوئے خود کو ظاہر کرتے ہیں۔اس وجہ سے انکے اس مخبری کے ساتھ فراہم کردہ مواد کو اعلی اہمیت کا حامل سمجھا جانا چاہئے."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "ہم یہ ای میل آپ کو یہ بتانے کے لیے لکھ رہے ہیں کہ آپ کی رپورٹ کو اپ ڈیٹ کر دیا گیا ہے۔ "

@@ -447,9 +447,6 @@ msgstr "کلیپ بورډ ته یې کاپي کړئ"
 msgid "Logout"
 msgstr "وتل"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "دغه تر لاسه کوونکي ته دا وړتیا ورکړئ تر څو کارن لپاره رپوټونو ته لاسرسی ورکړي"
-
 msgid "Grant access"
 msgstr "د لاسرسي ورکول"
 
@@ -462,7 +459,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1027,14 +1049,17 @@ msgstr ""
 msgid "Sites"
 msgstr "سایټونه"
 
-msgid "Mode:"
-msgstr "موډ:"
+msgid "Profile"
+msgstr ""
 
 msgid "Configure"
 msgstr "کانفیګور"
 
 msgid "Subdomain"
 msgstr "فرعي ډومین"
+
+msgid "Mode:"
+msgstr "موډ:"
 
 msgid "Creation date:"
 msgstr "د جوړولو نېټه:"
@@ -1104,6 +1129,9 @@ msgstr "تر لاسه کوونکي ته اجازه ورکړئ تر څو رپوټ
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "تر لاسه کوونکي ته اجازه ورکړئ تر څو د رپوټ د انقضاء نېټه وځنډوي"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "دغه تر لاسه کوونکي ته دا وړتیا ورکړئ تر څو کارن لپاره رپوټونو ته لاسرسی ورکړي"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "کارن ته د لاندې فیچرونو په اړه  اداري لاسرسی ورکړئ:"
@@ -1208,7 +1236,7 @@ msgstr "لیږل"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "په تصدیق کېدو سره به تاسې د انقضاء نېټه وځنډوئ تر: "
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1314,6 +1342,9 @@ msgstr "لپاره:"
 
 msgid "Filename"
 msgstr "د فایل نوم"
+
+msgid "View"
+msgstr ""
 
 msgid "Upload date"
 msgstr "د نېټې پورته کول"
@@ -1479,17 +1510,17 @@ msgstr "حساب ته د ننوتو لپاره له 16 رقمي رسید څخه 
 msgid "View your report"
 msgstr "خپل رپوټ ووینئ"
 
-msgid "Recipient selection"
-msgstr "د تر لاسه کوونکي ټاکنه"
-
-msgid "Select the recipients of your report:"
-msgstr "د خپل رپوت تر لاسه کوونکي وټاکئ:"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "ټاکل شوي تر لاسه کوونکي:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "تاسې د ټاکل کېدونکو تر لاسه کوونکو حداکثر شمېر ته رسیدلي یاست."
+
+msgid "You must select at least one recipient."
+msgstr "تاسې باید یو تر لاسه کوونکی وټاکئ."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1501,14 +1532,11 @@ msgid ""
 "invalid:"
 msgstr "په دغه ګام کې لاندنیو پوښتنو ته ځوابونه یا نشته یا ناسم دي:"
 
-msgid "You must select at least one recipient."
-msgstr "تاسې باید یو تر لاسه کوونکی وټاکئ."
+msgid "Recipient selection"
+msgstr "د تر لاسه کوونکي ټاکنه"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "فایل (ونو) ته منتظر یاست تر څو اپلوډینګ بشپړ شي."
-
-msgid "The following steps have errors:"
-msgstr "لاندني ګامونه تیروتنې لري:"
 
 msgid "Hide"
 msgstr "پټول"
@@ -1918,17 +1946,17 @@ msgid "Some reports will expire soon"
 msgstr "ځینې رپوټونه به ډېر ژر انقضاء شي"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "دا هغه برېښنالیک دی کوم چې تاسې ته خبر درکوي چې افشاګر تاسې د خپل رپوټ لپاره د ارزښتناکه تر لاسه کوونکي په توګه ټاکلي یاست."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "له تاسې څخه غوښتنه کېږي چې دلته راغلو معلوماتو او موادو ته ځانګړی پام وکړئ. د مهرباني له مخې دا درسره په یاد ولرئ چې افشاګران زیاتره د عامه ګټو په خاطر خپل ځان له جدي خطرونو سره مخامخ کوي. له همدې کبله په دغه رپوت کې وړاندې شوي مواد باید د خورا لوړو اهمیت لرونکو موادو په توګه په پام کې ونیول شي."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "دا هغه برېښنالیک دی چې تاسې ته خبر درکوي چې یو شته رپوټ اپډیټ شوی دی."

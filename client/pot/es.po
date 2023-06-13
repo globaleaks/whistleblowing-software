@@ -487,9 +487,6 @@ msgstr "Copiar al portapapeles"
 msgid "Logout"
 msgstr "Cerrar sesión"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Dar a este destinatario la facultad de modificar el acceso a las denuncias"
-
 msgid "Grant access"
 msgstr "Conceder acceso"
 
@@ -502,8 +499,33 @@ msgstr "Asignado a"
 msgid "Not provided."
 msgstr "No proporcionada."
 
-msgid "Set a reminder date"
-msgstr "Fijar una fecha de recordatorio"
+msgid "Set a reminder"
+msgstr "Establezca un recordatorio"
+
+msgid "Privileges"
+msgstr "Privilegios"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr "Redactar"
+
+msgid "Select an option"
+msgstr "Seleccione una opción"
+
+msgid "Select your language"
+msgstr "Seleccione su idioma"
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
+msgstr ""
 
 msgid "File a report"
 msgstr "Presentar una denuncia."
@@ -1067,14 +1089,17 @@ msgstr "Red"
 msgid "Sites"
 msgstr "Sitios"
 
-msgid "Mode:"
-msgstr "Modo:"
+msgid "Profile"
+msgstr "Perfil"
 
 msgid "Configure"
 msgstr "Configurar"
 
 msgid "Subdomain"
 msgstr "Subdominio"
+
+msgid "Mode:"
+msgstr "Modo:"
 
 msgid "Creation date:"
 msgstr "Fecha de creación:"
@@ -1144,6 +1169,9 @@ msgstr "Permitir a los destinatarios borrar denuncias."
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Permitir al destinatario posponer la fecha de caducidad de una denuncia."
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "Dar a este destinatario la facultad de modificar el acceso a las denuncias"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Dar al usuario acceso administrativo a las siguientes características:"
@@ -1248,8 +1276,8 @@ msgstr "Enviar"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Al confirmar, pospondrá la fecha de caducidad a:"
 
-msgid "By confirming, you will set a remainder on date:"
-msgstr "Al confirmar, establecerá un recordatorio para la fecha:"
+msgid "By confirming, you will set a reminder on date:"
+msgstr "Tras confirmar, quedará establecido un recordatorio para el día:"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Este es un buzón de demostración, por favor no lo utilice para denuncias reales. "
@@ -1354,6 +1382,9 @@ msgstr "Para:"
 
 msgid "Filename"
 msgstr "Nombre del archivo"
+
+msgid "View"
+msgstr "Ver"
 
 msgid "Upload date"
 msgstr "Fecha de subida"
@@ -1519,17 +1550,17 @@ msgstr "Use el código de 16 dígitos para iniciar sesión. Le permitirá ver cu
 msgid "View your report"
 msgstr "Ver su denuncia"
 
-msgid "Recipient selection"
-msgstr "Selección de destinatario"
-
-msgid "Select the recipients of your report:"
-msgstr "Seleccione los destinatarios de su denuncia:"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "Destinatarios seleccionados:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Ha alcanzado el numero máximo de destinatarios seleccionables"
+
+msgid "You must select at least one recipient."
+msgstr "Debe seleccionar al menos un destinatario."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1541,14 +1572,11 @@ msgid ""
 "invalid:"
 msgstr "En este paso las respuestas a las siguientes preguntas o bien están ausentes o no son válidas:"
 
-msgid "You must select at least one recipient."
-msgstr "Debe seleccionar al menos un destinatario."
+msgid "Recipient selection"
+msgstr "Selección de destinatario"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Esperando a que la subida de archivo(s) se complete."
-
-msgid "The following steps have errors:"
-msgstr "Los siguientes pasos tienen errores:"
 
 msgid "Hide"
 msgstr "Ocultar"
@@ -1958,17 +1986,17 @@ msgid "Some reports will expire soon"
 msgstr "Algunas denuncias caducarán pronto"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "Este correo electrónico es para notificarle que un denunciante le ha seleccionado como un destinatario válido para su denuncia."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr "Este correo electrónico es para comunicarle que se ha cumplido la fecha de recordatorio fijada para una denuncia."
+
+msgid "Reminder"
+msgstr "Recordatorio"
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Le pedimos que preste especial atención a la información y al material contenido en su interior. Por favor recuerde que los denunciante a menudo se exponen a altos niveles de riesgo personal en favor del interés público, por lo que el material proporcionado en esta denuncia se debe considerar de importancia alta."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Este correo electrónico es para notificarle que una denuncia existente ha sido actualizada."

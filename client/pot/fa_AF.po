@@ -448,9 +448,6 @@ msgstr "کاپی در کلیپ بورد"
 msgid "Logout"
 msgstr "خروج"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "به این گیرنده توانایی اعطای دسترسی کاربر به راپورها را بدهید"
-
 msgid "Grant access"
 msgstr "اعطای دسترسی"
 
@@ -463,7 +460,32 @@ msgstr "اختصاص یافته به"
 msgid "Not provided."
 msgstr "ارائه نشده است."
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr "مزیت‌ها"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr "یک گزینه را انتخاب کنید"
+
+msgid "Select your language"
+msgstr "زبان خود را انتخاب کنید"
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1028,14 +1050,17 @@ msgstr "شبکه"
 msgid "Sites"
 msgstr "سایت ها "
 
-msgid "Mode:"
-msgstr "حالت:"
+msgid "Profile"
+msgstr "پروفایل"
 
 msgid "Configure"
 msgstr "ّپیکربندی"
 
 msgid "Subdomain"
 msgstr "دامنۀ فرعی"
+
+msgid "Mode:"
+msgstr "حالت:"
 
 msgid "Creation date:"
 msgstr "تاریخ ایجاد :"
@@ -1105,6 +1130,9 @@ msgstr "اجازه به دریافت کننده‌ برای پاک کردن را
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "اجازه به دریافت کننده برای به تعویق انداختن تاریخ انقضاء راپور"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "به این گیرنده توانایی اعطای دسترسی کاربر به راپورها را بدهید"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "دادن دسترسی مدیریتی به ویژگی های زیر برای کاربر:"
@@ -1209,7 +1237,7 @@ msgstr "ارسال"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "با تأیید، شما تاریخ انقضاء را به تعویق خواهید انداخت به:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1315,6 +1343,9 @@ msgstr "به:"
 
 msgid "Filename"
 msgstr "نام فايل"
+
+msgid "View"
+msgstr "نما"
 
 msgid "Upload date"
 msgstr "تاریخ اپلود"
@@ -1480,17 +1511,17 @@ msgstr "از رسید 16 نمبری برای وارد شدن استفاده کن
 msgid "View your report"
 msgstr "راپور خود را ببینید"
 
-msgid "Recipient selection"
-msgstr "انتخاب دریافت کننده"
-
-msgid "Select the recipients of your report:"
-msgstr "دریافت کننده راپور خود را انتخاب کنید:"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "دریافت کنندگان انتخابی:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "شما به حداکثر مجاز تعداد دریافت‌کنندگان قابل انتخاب رسیده‌اید."
+
+msgid "You must select at least one recipient."
+msgstr "شما باید حداقل یک دریافت کننده مشخص کنید."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1502,14 +1533,11 @@ msgid ""
 "invalid:"
 msgstr "در این مرحله پاسخ ها به سؤالات زیر یا ناقص یا نامعتبر هستند:"
 
-msgid "You must select at least one recipient."
-msgstr "شما باید حداقل یک دریافت کننده مشخص کنید."
+msgid "Recipient selection"
+msgstr "انتخاب دریافت کننده"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "انتظار برای تمام شدن اپلود فایل(ها)."
-
-msgid "The following steps have errors:"
-msgstr "مراحل زیر دارای خطا می باشند:"
 
 msgid "Hide"
 msgstr "پنهان کردن"
@@ -1919,17 +1947,17 @@ msgid "Some reports will expire soon"
 msgstr "برخی راپورها به زودی منقضی می شوند"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "این ایمیل اطلاع می دهد که یک افشاگر شما را به عنوان دریافت کننده ارزشمند راپور خود انتخاب کرده است."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "شما باید توجه خاصی به معلومات و محتویات داشته باشید. لطفاً به خاطر داشته باشید که افشاگران برای منفعت عموم، خود را در معرض ریسک های شخصی بالایی قرار می دهند. بنابراین مطالب ارائه شده در این راپور از اهمیت بالایی برخوردار می باشد."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "این ایمیل اپدیت شدن یک راپور موجود را به شما اطلاع می‌دهد."

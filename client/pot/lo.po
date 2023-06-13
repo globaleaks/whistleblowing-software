@@ -447,9 +447,6 @@ msgstr ""
 msgid "Logout"
 msgstr "ອອກຈາກລະບົບ"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
-
 msgid "Grant access"
 msgstr ""
 
@@ -462,7 +459,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1027,14 +1049,17 @@ msgstr ""
 msgid "Sites"
 msgstr "ເວັບໄຊ"
 
-msgid "Mode:"
-msgstr "ໂໝດ:"
+msgid "Profile"
+msgstr ""
 
 msgid "Configure"
 msgstr "ກຳນົດຄ່າ"
 
 msgid "Subdomain"
 msgstr "ໂດເມນຍ່ອຍ"
+
+msgid "Mode:"
+msgstr "ໂໝດ:"
 
 msgid "Creation date:"
 msgstr "ວັນທີສ້າງ:"
@@ -1104,6 +1129,9 @@ msgstr "ອະນຸຍາດໃຫ້ຜູ້ຮັບລຶບລາຍງາ
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "ອະນຸຍາດໃຫ້ຜູ້ຮັບເລື່ອນວັນທີໝົດອາຍຸໃນການລາຍງານ"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "ອະນຸຍາດໃຫ້ຜູ້ໃຊ້ທີ່ເປັນຜູ້ເບິ່ງແຍງລະບົບເຂົ້າເຖິງຄຸນສົມບັດຕ່າງໆຕໍ່ໄປນີ້:"
@@ -1208,7 +1236,7 @@ msgstr "ສົ່ງ"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "ການຢືນຢັນ, ໝາຍຄວາມວ່າທ່ານຈະເລື່ອນວັນທີໝົດອາຍຸໄປຍັງ:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1314,6 +1342,9 @@ msgstr "ເຖິງ:"
 
 msgid "Filename"
 msgstr "ຊື່ໄຟລ໌"
+
+msgid "View"
+msgstr "ສະແດງເບິ່ງ"
 
 msgid "Upload date"
 msgstr "ວັນທີອັບໂຫຼດ"
@@ -1479,17 +1510,17 @@ msgstr "ໃຊ້ໃບບິນ 16 ຕົວເລກເພື່ອເຂົ�
 msgid "View your report"
 msgstr "ເບິ່ງລາຍງານຂອງທ່ານ"
 
-msgid "Recipient selection"
-msgstr "ການເລືອກຜູ້ຮັບ"
-
-msgid "Select the recipients of your report:"
-msgstr "ເລືອກຜູ້ຮັບລາຍງານຂອງທ່ານ:"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "ຜູ້ຮັບທີ່ຖືກເລືອກ:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "ທ່ານໄດ້ເລືອກເຕັມຈຳນວນທີ່ສາມາດເລືອກໄດ້ສູງສຸດແລ້ວ."
+
+msgid "You must select at least one recipient."
+msgstr "ທ່ານຕ້ອງເລືອກຜູ້ຮັບຢ່າງໜ້ອຍໜຶ່ງຄົນ."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1501,14 +1532,11 @@ msgid ""
 "invalid:"
 msgstr "ໃນຂັ້ນຕອນນີ້ ຄຳຕອບຕໍ່ຄຳຖາມຕໍ່ໄປນີ້ແມ່ນຂາດຫາຍໄປ ຫຼື ໃຊ້ບໍ່ໄດ້:"
 
-msgid "You must select at least one recipient."
-msgstr "ທ່ານຕ້ອງເລືອກຜູ້ຮັບຢ່າງໜ້ອຍໜຶ່ງຄົນ."
+msgid "Recipient selection"
+msgstr "ການເລືອກຜູ້ຮັບ"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "ກຳລັງລໍຖ້າໃຫ້ອັບໂຫຼດໄຟລ໌ (ຕ່າງໆ) ໃຫ້ສຳເລັດ."
-
-msgid "The following steps have errors:"
-msgstr "ຂັ້ນຕອນຕໍ່ໄປນີ້ເກີດມີຂໍ້ຜິດພາດ:"
 
 msgid "Hide"
 msgstr "ເຊື່ອງ"
@@ -1918,17 +1946,17 @@ msgid "Some reports will expire soon"
 msgstr "ມີລາຍງານຈຳນວນໜຶ່ງຈະໝົດອາຍຸໃນໄວໆນີ້"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "ນີ້ແມ່ນອີເມວເພື່ອແຈ້ງໃຫ້ທ່ານຊາບວ່າ ຜູ້ແຈ້ງເບາະແສໄດ້ເລືອກທ່ານເປັນຜູ້ຮັບລາຍງານທີ່ຊົງຄຸນຄ່າຂອງລາຍງານຂອງພວກເຂົາ."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "ຂໍໃຫ້ທ່ານເອົາໃຈໃສ່ເປັນພິເສດຕໍ່ຂໍ້ມູນ ແລະ ເອກະສານຕ່າງໆທີ່ມີຢູ່ໃນນັ້ນ. ກະລຸນາຈື່ໄວ້ວ່າ ຜູ້ແຈ້ງເບາະແສມັກຈະນຳຕົນເອງໄປສູ່ຄວາມສ່ຽງສ່ວນຕົວສູງ ເພື່ອຜົນປະໂຫຍດຂອງສາທາລະນະ. ເພາະສະນັ້ນ ເອກະສານທີ່ໃຫ້ໄວ້ໃນລາຍງານນີ້ ກໍຄວນຖືວ່າມີຄວາມສຳຄັນສູງເຊັ່ນກັນ."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "ນີ້ແມ່ນອີເມວເພື່ອແຈ້ງໃຫ້ຊາບວ່າ ໄດ້ມີການອັບເດດລາຍງານທີ່ມີຢູ່ແລ້ວ."

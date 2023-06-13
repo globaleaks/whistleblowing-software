@@ -447,9 +447,6 @@ msgstr "Чаплақ тахтисиға чапла"
 msgid "Logout"
 msgstr "Тизимдин чиқ"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Бу тапшуривалғучиға ишләткүчиләргә доклатни зийарәт қилиш һоқуқи бериш иқтидари бәр"
-
 msgid "Grant access"
 msgstr "Һоқуқ бәр"
 
@@ -462,7 +459,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1027,14 +1049,17 @@ msgstr ""
 msgid "Sites"
 msgstr "Бекәтләр"
 
-msgid "Mode:"
-msgstr "Һалити:"
+msgid "Profile"
+msgstr ""
 
 msgid "Configure"
 msgstr "Сәплә"
 
 msgid "Subdomain"
 msgstr "Қисми даъирә"
+
+msgid "Mode:"
+msgstr "Һалити:"
 
 msgid "Creation date:"
 msgstr "Қурулған чесла:"
@@ -1104,6 +1129,9 @@ msgstr "Тапшуривалғучиларниң доклатларни өчүр
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Тапшуривалғучиниң доклат сүрүкини кәйнигә сүришигә рухсәт қил"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "Бу тапшуривалғучиға ишләткүчиләргә доклатни зийарәт қилиш һоқуқи бериш иқтидари бәр"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Төвәндики иқтидарлар үчүн ишләткүчиләргә башқурғучи зийарәт һоқуқи бәр:"
@@ -1208,7 +1236,7 @@ msgstr "Әвәт"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Җәзимлисиңиз, сүрүк чесласини бу күнгә кәйнигә сүргән болисиз:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1314,6 +1342,9 @@ msgstr "Тапшуривалғучи:"
 
 msgid "Filename"
 msgstr "Һөҗҗәт нами"
+
+msgid "View"
+msgstr ""
 
 msgid "Upload date"
 msgstr "Йүкләнгән чесла"
@@ -1479,17 +1510,17 @@ msgstr "Тизимға кириш үчүн 16 ханилиқ талон коди
 msgid "View your report"
 msgstr "Доклатиңизни көрүң"
 
-msgid "Recipient selection"
-msgstr "Тапшуривалғучи таллаш"
-
-msgid "Select the recipients of your report:"
-msgstr "Доклатиңизни тапшуривалғучиларни таллаң"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "Талланған тапшуривалғучилар:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Таллашқа болидиған тапшуривалғучилар сан чекигә йәттиңиз."
+
+msgid "You must select at least one recipient."
+msgstr "Аз дегәндә бир тапшуривалғучи таллишиңиз керәк."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1501,14 +1532,11 @@ msgid ""
 "invalid:"
 msgstr "Бу қәдәмдә төвәндики суъалларға берилгән җаваплар хата йаки инавәтсиз."
 
-msgid "You must select at least one recipient."
-msgstr "Аз дегәндә бир тапшуривалғучи таллишиңиз керәк."
+msgid "Recipient selection"
+msgstr "Тапшуривалғучи таллаш"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Һөҗҗәт(ләр)ниң йүклинип болишини сақлаватиду."
-
-msgid "The following steps have errors:"
-msgstr "Төвәндики қәдәмләрдә хаталиқ бар:"
 
 msgid "Hide"
 msgstr "Йошур"
@@ -1918,17 +1946,17 @@ msgid "Some reports will expire soon"
 msgstr "Бәзи доклатларниң йеқинда сүрики тошиду"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "Бу елхәт, бир паш қилғучиниң сизни өз доклатида қиммәтлик тапшуривалғучи, дәп таллиғанлиқини уқтуруш үчүндур."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Бу йәрдики учурлар вә материйалларға алаһидә әһмийәт беришиңиз тәләп қилиниду. есиңиздә болсунки , паш қилғучилар көпинчә омумниң мәнпәъәти үчүн чоң хәтәргә тәвәккүл қилиду. Шуңа бу доклатта тәминләнгән материйалларни интайин муһим, дәп қарилиши керәк."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Бу елхәт сизгә бир мәвҗут доклатниң йеңиланғанлиқини уқтуруш үчүндур."

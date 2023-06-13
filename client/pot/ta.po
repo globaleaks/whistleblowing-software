@@ -449,9 +449,6 @@ msgstr ""
 msgid "Logout"
 msgstr "வெளியேறு"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
-
 msgid "Grant access"
 msgstr ""
 
@@ -464,7 +461,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr "சிறப்புரிமைகளும்"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1029,14 +1051,17 @@ msgstr ""
 msgid "Sites"
 msgstr "தளங்கள்"
 
-msgid "Mode:"
-msgstr "முறை:"
+msgid "Profile"
+msgstr ""
 
 msgid "Configure"
 msgstr "கட்டமைக்க"
 
 msgid "Subdomain"
 msgstr ""
+
+msgid "Mode:"
+msgstr "முறை:"
 
 msgid "Creation date:"
 msgstr ""
@@ -1106,6 +1131,9 @@ msgstr "பெற்றவர்கள் சமர்ப்பிப்பு�
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "பெறுநர் சமர்ப்பிப்பு காலாவதி தேதி ஒத்தி அனுமதி"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr ""
@@ -1210,7 +1238,7 @@ msgstr "அனுப்பு"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "உறுதிப்படுத்துவதன் மூலம், நீங்கள் காலாவதி தேதி தள்ளிப்போட:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1316,6 +1344,9 @@ msgstr ""
 
 msgid "Filename"
 msgstr "கோப்பின் பெயர்"
+
+msgid "View"
+msgstr "காட்சி"
 
 msgid "Upload date"
 msgstr "பதிவேற்ற தேதி"
@@ -1481,10 +1512,7 @@ msgstr "உள்நுழைவதற்கு 16 இலக்க ரசீத�
 msgid "View your report"
 msgstr "உங்கள் சமர்ப்பிப்பு காண்க"
 
-msgid "Recipient selection"
-msgstr "பெறுநரின் தேர்வை"
-
-msgid "Select the recipients of your report:"
+msgid "Select the recipients of your report"
 msgstr ""
 
 msgid "Recipients selected:"
@@ -1492,6 +1520,9 @@ msgstr "பெற்றவர்கள் தேர்வு:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr ""
+
+msgid "You must select at least one recipient."
+msgstr "நீங்கள் குறைந்தது ஒரு பெறுநரை தேர்ந்தெடுக்க வேண்டும்."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1503,14 +1534,11 @@ msgid ""
 "invalid:"
 msgstr "இந்த படிப்பில் பின்வரும் கேள்விகளுக்கான பதில்கள் காணாமலோ அல்லது செல்லுபடியாகவோ இல்லை:"
 
-msgid "You must select at least one recipient."
-msgstr "நீங்கள் குறைந்தது ஒரு பெறுநரை தேர்ந்தெடுக்க வேண்டும்."
+msgid "Recipient selection"
+msgstr "பெறுநரின் தேர்வை"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "பதிவேற்ற முடிக்க கோப்பு (கள்) காத்திருக்கிறது."
-
-msgid "The following steps have errors:"
-msgstr "பின்வரும் வழிமுறைகளில் பிழைகள் உள்ளன:"
 
 msgid "Hide"
 msgstr "மறை"
@@ -1920,17 +1948,17 @@ msgid "Some reports will expire soon"
 msgstr "சில சமர்ப்பிப்புகள் விரைவில் காலாவதியாகும்"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "ஒரு விசில்ப்ளவர் உங்களைத் அம்பலப்படுத்தியவர் மதிப்புமிக்க பெறுநராக உங்களை தேர்ந்தெடுத்திருப்பதாக உங்களுக்கு அறிவிக்கும் மின்னஞ்சலாகும்."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "இதில் உள்ள தகவல்கள் மற்றும் உள்ளடக்கத்திற்கு சிறப்பு கவனம் செலுத்தும்படி நீங்கள் கேட்கப்படுகிறீர்கள். பொதுமக்களின் வட்டிக்கு விசில்ப்ளேவர்கள் பெரும்பாலும் அதிகமான தனிப்பட்ட அபாயங்களை அம்பலப்படுத்துகிறார்கள் என்பதை நினைவில் கொள்ளுங்கள். எனவே இந்த சமர்ப்பிப்பு உள்ள வழங்கப்படும் பொருள் உயர் முக்கியத்துவம் கருதப்படுகிறது."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr ""

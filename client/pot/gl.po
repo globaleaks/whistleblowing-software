@@ -451,9 +451,6 @@ msgstr "Copiar o portapapeis"
 msgid "Logout"
 msgstr "Saír"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
-
 msgid "Grant access"
 msgstr ""
 
@@ -466,7 +463,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1031,14 +1053,17 @@ msgstr "Rede"
 msgid "Sites"
 msgstr "Sitios"
 
-msgid "Mode:"
-msgstr "Modo:"
+msgid "Profile"
+msgstr ""
 
 msgid "Configure"
 msgstr "Configurar"
 
 msgid "Subdomain"
 msgstr ""
+
+msgid "Mode:"
+msgstr "Modo:"
 
 msgid "Creation date:"
 msgstr ""
@@ -1107,6 +1132,9 @@ msgid "Allow the recipient to delete reports"
 msgstr ""
 
 msgid "Allow the recipient to postpone the report expiration date"
+msgstr ""
+
+msgid "Give this recipient ability to grant user access to reports"
 msgstr ""
 
 msgid "Give the user administrative access to the following features:"
@@ -1212,7 +1240,7 @@ msgstr "Enviar"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Ao confirmar, adiarás a data de caducidade a:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1318,6 +1346,9 @@ msgstr "Para:"
 
 msgid "Filename"
 msgstr "Nome de arquivo"
+
+msgid "View"
+msgstr "Ver"
 
 msgid "Upload date"
 msgstr "Data de carga"
@@ -1483,10 +1514,7 @@ msgstr "Use o recibo de 16 díxitos para iniciar sesión. Permitirá ver todas a
 msgid "View your report"
 msgstr ""
 
-msgid "Recipient selection"
-msgstr "Selección de destinatarios"
-
-msgid "Select the recipients of your report:"
+msgid "Select the recipients of your report"
 msgstr ""
 
 msgid "Recipients selected:"
@@ -1494,6 +1522,9 @@ msgstr "Destinatarios seleccionados:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr ""
+
+msgid "You must select at least one recipient."
+msgstr "Debe seleccionar polo menos un destinatario."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1505,14 +1536,11 @@ msgid ""
 "invalid:"
 msgstr "Neste paso as respostas para as seguintes preguntas están perdidas ou invalidadas "
 
-msgid "You must select at least one recipient."
-msgstr "Debe seleccionar polo menos un destinatario."
+msgid "Recipient selection"
+msgstr "Selección de destinatarios"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Esperando que o ficheiro (s) finalice a carga."
-
-msgid "The following steps have errors:"
-msgstr "Os seguintes pasos teñen erros:"
 
 msgid "Hide"
 msgstr "Agochar"
@@ -1922,16 +1950,16 @@ msgid "Some reports will expire soon"
 msgstr ""
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
 msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
 msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."

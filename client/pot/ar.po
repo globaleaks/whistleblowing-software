@@ -495,9 +495,6 @@ msgstr "نسخ إلى الحافظة"
 msgid "Logout"
 msgstr "تسجيل الخروج"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "امنح هذا المستلم القدرة على منح حق الوصول إلى التقارير"
-
 msgid "Grant access"
 msgstr "السماح بالوصول"
 
@@ -510,7 +507,32 @@ msgstr "تعيين لـ"
 msgid "Not provided."
 msgstr "لم يتم توفيره."
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr "قم بتعيين تذكير"
+
+msgid "Privileges"
+msgstr "امتيازات"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr "أخفي"
+
+msgid "Select an option"
+msgstr "حدد اختيار"
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1075,14 +1097,17 @@ msgstr "الشبكة"
 msgid "Sites"
 msgstr "المواقع"
 
-msgid "Mode:"
-msgstr "الوضع:"
+msgid "Profile"
+msgstr "الملف الشخصي"
 
 msgid "Configure"
 msgstr "اضبط"
 
 msgid "Subdomain"
 msgstr "النطاق الفرعي"
+
+msgid "Mode:"
+msgstr "الوضع:"
 
 msgid "Creation date:"
 msgstr "تاريخ الإنشاء:"
@@ -1152,6 +1177,9 @@ msgstr "السماح للمتلقين بحذف البلاغات"
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "السماح للمتلقّي بتأجيل تاريخ انتهاء صلاحية الابلاغ"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "امنح هذا المستلم القدرة على منح حق الوصول إلى التقارير"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "امنح المستخدم حق الوصول المطلق إلى الميزات التالية:"
@@ -1256,8 +1284,8 @@ msgstr "إرسال"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "عند التأكيد، سوف يؤجل موعد انتهاء الصلاحية إلى:"
 
-msgid "By confirming, you will set a remainder on date:"
-msgstr "من خلال التأكيد، ستقوم بوضع تذكير في تاريخ:"
+msgid "By confirming, you will set a reminder on date:"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "هذه منصة تجريبية، يرجى عدم استخدامها في أي بلاغ حقيقي."
@@ -1362,6 +1390,9 @@ msgstr "إلى:"
 
 msgid "Filename"
 msgstr "إسم الملف"
+
+msgid "View"
+msgstr "عرض"
 
 msgid "Upload date"
 msgstr "تاريخ  الرّفع"
@@ -1527,17 +1558,17 @@ msgstr "استخدم الاستلام المكون من 16 رقم لتسجيل �
 msgid "View your report"
 msgstr "مشاهدة بلاغك"
 
-msgid "Recipient selection"
-msgstr "اختيار المتلقّي"
-
-msgid "Select the recipients of your report:"
-msgstr "حدد المستلمين لتقريرك:"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "المتلقّون المختارون :"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "لقد وصلت إلى الحد الأقصى من عدد المستلمين الذين يمكن تحديدهم."
+
+msgid "You must select at least one recipient."
+msgstr "يجب تحديد مستلم واحد على الأقل."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1549,14 +1580,11 @@ msgid ""
 "invalid:"
 msgstr " بهذه الخطوة , الإجابات على هذه الأسئلة مفقودة أو غير صالحة:"
 
-msgid "You must select at least one recipient."
-msgstr "يجب تحديد مستلم واحد على الأقل."
+msgid "Recipient selection"
+msgstr "اختيار المتلقّي"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "يجري انتظار إنهاء رفع الملف/الملفات."
-
-msgid "The following steps have errors:"
-msgstr "توجد أخطاء في الخطوات التالية:"
 
 msgid "Hide"
 msgstr "إخفاء"
@@ -1966,17 +1994,17 @@ msgid "Some reports will expire soon"
 msgstr "ستنتهي صلاحية بعض البلاغات قريبا"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "هذه رسالة إلكترونية لإعلامكم بأن أحد المبلغين اختاركم لإستلام بلاغه."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr "تذكير"
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "يرجى أن تولوا اهتماما خاصا بالمعلومات والمواد الواردة. و يرجى أن تضعوا في عين الاعتبار أن المبلغين غالبا ما يعرضون أنفسهم لمخاطر شخصية عالية من أجل المصلحة العامة. ولذلك ينبغي اعتبار المواد المقدمة في هذا البلاغ ذات أهمية عالية."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "هذه رسالة بريد إلكتروني لإعلامك بتحديث تقرير موجود."

@@ -449,9 +449,6 @@ msgstr "Алмасу буферіне көшіру"
 msgid "Logout"
 msgstr "Жүйеден шығу"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Бұл алушыға есептерге пайдаланушы рұқсатын беру мүмкіндігін беру"
-
 msgid "Grant access"
 msgstr "Қатынасуға рұқсат беру"
 
@@ -464,7 +461,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1029,14 +1051,17 @@ msgstr ""
 msgid "Sites"
 msgstr "Сайттар"
 
-msgid "Mode:"
-msgstr "Режим:"
+msgid "Profile"
+msgstr "Профиль"
 
 msgid "Configure"
 msgstr "Конфигурациялау"
 
 msgid "Subdomain"
 msgstr "Ішкі домен"
+
+msgid "Mode:"
+msgstr "Режим:"
 
 msgid "Creation date:"
 msgstr "Жасалған күні:"
@@ -1106,6 +1131,9 @@ msgstr "Алушыға есептерді жоюға рұқсат беру"
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Алушыға есептің жарамдылық мерзімін кейінге қалдыруға рұқсат беру"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "Бұл алушыға есептерге пайдаланушы рұқсатын беру мүмкіндігін беру"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Пайдаланушыға келесі мүмкіндіктерге әкімшілік рұқсат беру:"
@@ -1210,7 +1238,7 @@ msgstr "Жіберу"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Растау арқылы, жарамдылық мерзімін келесіге дейін қалдырасыз:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1316,6 +1344,9 @@ msgstr "Алушы:"
 
 msgid "Filename"
 msgstr "Файл аты"
+
+msgid "View"
+msgstr "Қарау"
 
 msgid "Upload date"
 msgstr "Жүктеп салу күні"
@@ -1481,17 +1512,17 @@ msgstr "Жүйеге кіру үшін, 16 таңбалы түбіртекті �
 msgid "View your report"
 msgstr "Есепті қарау"
 
-msgid "Recipient selection"
-msgstr "Алушыны таңдау"
-
-msgid "Select the recipients of your report:"
-msgstr "Есеп алушыларды таңдаңыз:"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "Таңдалған алушылар:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Сіз таңдалған алушылардың максималды санына жеттіңіз."
+
+msgid "You must select at least one recipient."
+msgstr "Сіз кем дегенде бір алушыны таңдауыңыз керек."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1503,14 +1534,11 @@ msgid ""
 "invalid:"
 msgstr "Бұл кезеңде келесі сұрақтарға жауаптар жоқ немесе жарамсыз болып табылады:"
 
-msgid "You must select at least one recipient."
-msgstr "Сіз кем дегенде бір алушыны таңдауыңыз керек."
+msgid "Recipient selection"
+msgstr "Алушыны таңдау"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Файл(-дар-)ды жүктеп салудың аяқталуы күтілуде."
-
-msgid "The following steps have errors:"
-msgstr "Келесі қадамдарда қателер бар:"
 
 msgid "Hide"
 msgstr "Жасыру"
@@ -1920,17 +1948,17 @@ msgid "Some reports will expire soon"
 msgstr "Кейбір есептердің жарамдылық мерзімі жақында аяқталады"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "Бұл сізге ақпар беруші сізді өз есебінің құрметті алушысы ретінде таңдағанын хабарлайтын электрондық хат."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Сізден ондағы ақпарат пен материалдарға ерекше назар аударуды сұрайды. Есіңізде болсын, ақпар берушілер көбінесе қоғамның мүддесі үшін жоғары жеке тәуекелге барады. Сондықтан, осы есепте ұсынылған материалдар үлкен мәнге ие ретінде есептелуі тиіс."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Бұл бар есептің жаңартылғанын хабарлауға арналған электрондық хат."

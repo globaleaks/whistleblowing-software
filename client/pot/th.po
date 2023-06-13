@@ -457,9 +457,6 @@ msgstr "คัดลอกไปยังคลิปบอร์ด"
 msgid "Logout"
 msgstr "ออกจากระบบ"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "ให้ผู้รับรายนี้สามารถมอบสิทธิเข้าถึงรายงานให้กับผู้ใช้ได้"
-
 msgid "Grant access"
 msgstr "มอบสิทธิเข้าถึง"
 
@@ -472,7 +469,32 @@ msgstr "มอบหมายให้"
 msgid "Not provided."
 msgstr "ไม่ได้ให้มา"
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr "ตั้งเตือนความจำ"
+
+msgid "Privileges"
+msgstr "สิทธิพิเศษ"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1037,14 +1059,17 @@ msgstr "เครือข่าย"
 msgid "Sites"
 msgstr "ไซต์"
 
-msgid "Mode:"
-msgstr "โหมด:"
+msgid "Profile"
+msgstr ""
 
 msgid "Configure"
 msgstr "ปรับค่า"
 
 msgid "Subdomain"
 msgstr "โดเมนย่อย"
+
+msgid "Mode:"
+msgstr "โหมด:"
 
 msgid "Creation date:"
 msgstr "วันที่สร้าง:"
@@ -1114,6 +1139,9 @@ msgstr "อนุญาตให้ผู้รับลบรายงานไ
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "อนุญาตให้ผู้รับเลื่อนวันหมดอายุของรายงานได้"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "ให้ผู้รับรายนี้สามารถมอบสิทธิเข้าถึงรายงานให้กับผู้ใช้ได้"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "ให้ผู้ใช้มีสิทธิ์ผู้ดูแลในการเข้าถึงความสามารถเหล่านี้:"
@@ -1218,7 +1246,7 @@ msgstr "ส่ง"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "เมื่อยืนยัน คุณจะเลื่อนวันหมดอายุไปที่:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1324,6 +1352,9 @@ msgstr "ถึง:"
 
 msgid "Filename"
 msgstr "ชื่อแฟ้ม"
+
+msgid "View"
+msgstr "มองดู"
 
 msgid "Upload date"
 msgstr "วันที่อัปโหลด"
@@ -1489,17 +1520,17 @@ msgstr "ใช้รหัสการรับ 16 หลักเพื่อ�
 msgid "View your report"
 msgstr "ดูรายงานของคุณ"
 
-msgid "Recipient selection"
-msgstr "การเลือกผู้รับ"
-
-msgid "Select the recipients of your report:"
-msgstr "เลือกผู้รับรายงานของคุณ:"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "ผู้รับที่ถูกเลือก:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "คุณเลือกผู้รับจนเต็มจำนวนที่เลือกได้แล้ว"
+
+msgid "You must select at least one recipient."
+msgstr "คุณต้องเลือกผู้รับอย่างน้อยหนึ่งราย"
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1511,14 +1542,11 @@ msgid ""
 "invalid:"
 msgstr "ในขั้นตอนนี้ คำตอบต่อคำถามเหล่านี้หายไปหรือไม่ถูกต้องตามรูปแบบ:"
 
-msgid "You must select at least one recipient."
-msgstr "คุณต้องเลือกผู้รับอย่างน้อยหนึ่งราย"
+msgid "Recipient selection"
+msgstr "การเลือกผู้รับ"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "รอให้แฟ้มอัปโหลดเสร็จ"
-
-msgid "The following steps have errors:"
-msgstr "ขั้นตอนดังต่อไปนี้มีข้อผิดพลาด:"
 
 msgid "Hide"
 msgstr "ซ่อน"
@@ -1928,17 +1956,17 @@ msgid "Some reports will expire soon"
 msgstr "รายงานบางฉบับกำลังจะหมดอายุเร็วๆ นี้"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "อีเมลฉบับนี้ถูกส่งเพื่อแจ้งคุณว่า ผู้แจ้งเบาะแสได้เลือกคุณเป็นผู้รับรายงานซึ่งมีความสำคัญต่อพวกเขา"
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr "เตือนความจำ"
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "คุณถูกร้องขอให้ให้ความสนใจเป็นพิเศษกับข้อมูลและเอกสารที่อยู่ข้างในนี้ กรุณาจำไว้เสมอว่า ผู้แจ้งเบาะแสโดยมากได้เปิดให้ตัวเองตกอยู่ในความเสี่ยงส่วนตัวเพื่อประโยชน์ของส่วนรวม ดังนั้นเอกสารที่ให้ไว้ในรายงานนี้ควรจะถูกพิจารณาให้ความสำคัญอย่างสูง"
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "นี่เป็นอีเมลเพื่อแจ้งว่ารายงานที่มีอยู่แล้วฉบับหนึ่งได้รับการปรับปรุงข้อมูล"

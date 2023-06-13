@@ -452,9 +452,6 @@ msgstr "Kopēt starpliktuvē"
 msgid "Logout"
 msgstr "Iziet"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Dot šim adresātam iespēju piešķirt lietotājam piekļuvi pārskatiem"
-
 msgid "Grant access"
 msgstr "Piešķirt piekļuvi"
 
@@ -467,7 +464,32 @@ msgstr "Piešķirts"
 msgid "Not provided."
 msgstr "Nav paredzēts."
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr "Izvēlieties savu valoda"
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1032,14 +1054,17 @@ msgstr "Tīkls"
 msgid "Sites"
 msgstr "Vietnes"
 
-msgid "Mode:"
-msgstr "Mods:"
+msgid "Profile"
+msgstr ""
 
 msgid "Configure"
 msgstr "Konfigurēt"
 
 msgid "Subdomain"
 msgstr "Apakšdomēns"
+
+msgid "Mode:"
+msgstr "Mods:"
 
 msgid "Creation date:"
 msgstr "Izveidošanas datums:"
@@ -1109,6 +1134,9 @@ msgstr "Atļaut adresātam dzēst ziņojumus"
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Atļaut adresātam atlikt ziņojuma termiņu"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "Dot šim adresātam iespēju piešķirt lietotājam piekļuvi pārskatiem"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Piešķirt lietotājam administratīvo piekļuvi šādām funkcijām:"
@@ -1213,7 +1241,7 @@ msgstr "Nosūtīt"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Apstiprinot, jūs pārcelsiet derīguma termiņu uz:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1319,6 +1347,9 @@ msgstr "Kam:"
 
 msgid "Filename"
 msgstr "Faila nosaukums"
+
+msgid "View"
+msgstr "Skatīt"
 
 msgid "Upload date"
 msgstr "Augšupielādes datums"
@@ -1484,17 +1515,17 @@ msgstr "Izmantojiet 16 ciparu ziņojuma identifikācijas numuru, lai ienāktu \"
 msgid "View your report"
 msgstr "Apskatīt savu ziņojumu"
 
-msgid "Recipient selection"
-msgstr "Saņēmēju izvēle"
-
-msgid "Select the recipients of your report:"
-msgstr "Izvēlieties sava ziņojuma saņēmēju: "
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "Izvēlētie saņēmēji:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Jūs esat sasniedzis maksimālo atlasāmo saņēmēju skaitu."
+
+msgid "You must select at least one recipient."
+msgstr "Jums jāizvēlas vismaz viens saņēmējs."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1506,14 +1537,11 @@ msgid ""
 "invalid:"
 msgstr "Šajā darbībā trūkst atbilžu uz tālāk norādītajiem jautājumiem, vai tās ir nederīgas:"
 
-msgid "You must select at least one recipient."
-msgstr "Jums jāizvēlas vismaz viens saņēmējs."
+msgid "Recipient selection"
+msgstr "Saņēmēju izvēle"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Gaida līdz fails(-i) tiks augšupielādēts(-i)."
-
-msgid "The following steps have errors:"
-msgstr "Šajos soļos ir kļūdas:"
 
 msgid "Hide"
 msgstr "Slēpt"
@@ -1923,17 +1951,17 @@ msgid "Some reports will expire soon"
 msgstr "Dažu pārskatu derīguma termiņš drīz beigsies"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "Šis ir e-pasta ziņojums, lai informētu, ka trauksmes cēlējs ir izvēlējies jūs kā vērtīgu sava ziņojuma saņēmēju."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Īpašu uzmanību lūdzam pievērst tajā ietvertajai informācijai un materiāliem. Lūdzu, ņemiet vērā, ka trauksmes cēlēji bieži pakļauj sevi lielam personiskam riskam sabiedrības interesēs. Tāpēc šajā ziņojumā sniegtais materiāls ir jāuzskata par ļoti svarīgu."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Šis ir e-pasta ziņojums, lai informētu, ka esošs ziņojums ir atjaunināts."

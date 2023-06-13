@@ -449,9 +449,6 @@ msgstr "Vaqtincha xotiraga nusxalash"
 msgid "Logout"
 msgstr "Chiqish"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Bu qabul qiluvchi uchun anonim xabarlarni koʻrishga ruxsat berish"
-
 msgid "Grant access"
 msgstr "Ruxsat berish"
 
@@ -464,7 +461,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1029,14 +1051,17 @@ msgstr ""
 msgid "Sites"
 msgstr "Saytlar"
 
-msgid "Mode:"
-msgstr "Rejim:"
+msgid "Profile"
+msgstr "Profil"
 
 msgid "Configure"
 msgstr "Sozlash"
 
 msgid "Subdomain"
 msgstr "Quyidomen"
+
+msgid "Mode:"
+msgstr "Rejim:"
 
 msgid "Creation date:"
 msgstr "Yaratilgan sanasi:"
@@ -1106,6 +1131,9 @@ msgstr "Qabul qiluvchiga anonim xabarlarni oʻchirish imkonini berish"
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Qabul qiluvchi anonim xabar muddatini kechiktirishiga ruxsat berish"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "Bu qabul qiluvchi uchun anonim xabarlarni koʻrishga ruxsat berish"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Foydalanuvchiga quyidagi funksiyalarni boshqarish vakolatini berish:"
@@ -1210,7 +1238,7 @@ msgstr "Yuborish"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Tasdiqlansa, muddat quyidagi sanagacha kechiktiriladi:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1316,6 +1344,9 @@ msgstr "Kimga:"
 
 msgid "Filename"
 msgstr "Fayl nomi"
+
+msgid "View"
+msgstr "Ko‘rish"
 
 msgid "Upload date"
 msgstr "Yuklangan vaqti"
@@ -1481,17 +1512,17 @@ msgstr "Kirishda 16 xonali murojaat raqamidan foydalaning. Uning yordamida sizga
 msgid "View your report"
 msgstr "Anonim xabaringiz"
 
-msgid "Recipient selection"
-msgstr "Qabul qiluvchini tanlash"
-
-msgid "Select the recipients of your report:"
-msgstr "Xabaringiz uchun qabul qiluvchini tanlang:"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "Tanlangan qabul qiluvchilar:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Qabul qiluvchilar maksimal miqdorda tanlandi."
+
+msgid "You must select at least one recipient."
+msgstr "Kamida bitta qabul qiluvchini tanlang."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1503,14 +1534,11 @@ msgid ""
 "invalid:"
 msgstr "Bu bosqichda quyidagi savollarga javoblar berilmagan yoki yaroqsiz:"
 
-msgid "You must select at least one recipient."
-msgstr "Kamida bitta qabul qiluvchini tanlang."
+msgid "Recipient selection"
+msgstr "Qabul qiluvchini tanlash"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Fayl(lar)ning oxirigacha yuklanishi kutilmoqda."
-
-msgid "The following steps have errors:"
-msgstr "Quyidagi bosqichlarda xato bor:"
 
 msgid "Hide"
 msgstr "Berkitish"
@@ -1920,17 +1948,17 @@ msgid "Some reports will expire soon"
 msgstr "Ayrim anonim xabarlar muddati tez orada tugaydi"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "Bu xat oshkor qiluvchi oʻz xabarlariga sizni ishonchli qabul qiluvchi sifatida tanlagani haqida xabar qiladi."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Tarkibidagi axborot va materiallarni diqqat bilan tekshirishni tavsiya qilamiz. Unutmangki, oshkor qiluvchilar odatda jamiyat farovonligi maqsadida oʻzlarini xavf ostiga qoʻygan holda xabar berayotgan boʻlishi mumkin. Shu sababli kelgan axborotlar diqqat bilan koʻrib chiqilishi lozim."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Bu xat mavjud anonim axborot yangilangani haqida xabar qiladi."

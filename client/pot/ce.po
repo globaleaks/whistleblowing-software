@@ -449,9 +449,6 @@ msgstr "Хийцаран буфер чу копи яккха"
 msgid "Logout"
 msgstr "Системи чуьра аравалар"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "ХIокху дIаэцархочунна таро луо аьрзнашна тlекхача бакъо яла"
-
 msgid "Grant access"
 msgstr "ТIекхача бакъо луо"
 
@@ -464,7 +461,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1029,14 +1051,17 @@ msgstr ""
 msgid "Sites"
 msgstr "Сайташ"
 
-msgid "Mode:"
-msgstr "Раж:"
+msgid "Profile"
+msgstr ""
 
 msgid "Configure"
 msgstr "Конфигураци е"
 
 msgid "Subdomain"
 msgstr "Субдомен"
+
+msgid "Mode:"
+msgstr "Раж:"
 
 msgid "Creation date:"
 msgstr "Кхолларан дата:"
@@ -1106,6 +1131,9 @@ msgstr "ДIаэцархочунна аьрзнаш дIадайъа бакъо л
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "ДIаэцархочунна арз чекхдаларан хан дIататта бакъо луо "
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "ХIокху дIаэцархочунна таро луо аьрзнашна тlекхача бакъо яла"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Администраторна хIокху башхаллошна тlекхочийла луо:"
@@ -1210,7 +1238,7 @@ msgstr "ДIатаса"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Тlечlагlдича, ахь чекхдаларан хан дlатотту:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1316,6 +1344,9 @@ msgstr "Хьаьнга:"
 
 msgid "Filename"
 msgstr "Файлан цlе"
+
+msgid "View"
+msgstr ""
 
 msgid "Upload date"
 msgstr "ДIахIотторан дата"
@@ -1481,17 +1512,17 @@ msgstr "Системи чувала, 16 терахь долчу квитанце
 msgid "View your report"
 msgstr "Хьайн орзе хьажа"
 
-msgid "Recipient selection"
-msgstr "ДIаэцархо харжар"
-
-msgid "Select the recipients of your report:"
-msgstr "Хьайн орзан дIаэцархой харжа:"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "Хаьржина дIаэцархой:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Харжа мегачу дIаэцархойн лаккхарчу терахье кхаьчна хьо."
+
+msgid "You must select at least one recipient."
+msgstr "Мел кIезга а цхьа дIаэцархо харжа веза ахь."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1503,14 +1534,11 @@ msgid ""
 "invalid:"
 msgstr "Кху гIулчехь хIокху хаттаршна жоьпаш я доцуш ду, я уьш бакъ дац:"
 
-msgid "You must select at least one recipient."
-msgstr "Мел кIезга а цхьа дIаэцархо харжа веза ахь."
+msgid "Recipient selection"
+msgstr "ДIаэцархо харжар"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Файл(аш) дIахIоттор дерзаре хьоьжу."
-
-msgid "The following steps have errors:"
-msgstr "ХIокху гlулчашкахь гlалаташ ду:"
 
 msgid "Hide"
 msgstr "Къайладаккха"
@@ -1920,17 +1948,17 @@ msgid "Some reports will expire soon"
 msgstr "Цхьадолчу аьрзнийн хан кеста дlайолу"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "Кху электронан кехатца хаам бо хьоьга, Iорадаккхархочо хьо шен хааман мехала дIаэцархо хаьржина хиларх."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Шуьга доьху цу чохь йолчу информациний, материалашний къаьсттина тидам тlебахийтар. Дагахь латтаделаш, Iорадаккхархоша, юкъараллин дуьхьа, шайн дахарш кхерамна хьалха туьйсуш хилар. Цундела кху орзаца йолу материал ладам болуш санна лара езаш ю."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Кху электронан кехатца хаам бо, долушдолу арз карладаьккхина хиларх."

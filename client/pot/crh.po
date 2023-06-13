@@ -447,9 +447,6 @@ msgstr "Денъишюв буферине копияламакъ"
 msgid "Logout"
 msgstr "Чыкъыш"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Бу алыджыгъа къулланыджылар эсабатларына иришим имкяныны бермек"
-
 msgid "Grant access"
 msgstr "Иришимге изин бермек"
 
@@ -462,7 +459,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1027,14 +1049,17 @@ msgstr ""
 msgid "Sites"
 msgstr "Сайтлар"
 
-msgid "Mode:"
-msgstr "Режим:"
+msgid "Profile"
+msgstr ""
 
 msgid "Configure"
 msgstr "Сазлама"
 
 msgid "Subdomain"
 msgstr "Субдомен"
+
+msgid "Mode:"
+msgstr "Режим:"
 
 msgid "Creation date:"
 msgstr "Яратма тарихи:"
@@ -1104,6 +1129,9 @@ msgstr "Алыджыгъа эсабатларны ёкъ этмеге изин �
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Алыджыгъа эсабат битме муддетини кечиктирмеге изин бермек"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "Бу алыджыгъа къулланыджылар эсабатларына иришим имкяныны бермек"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Къулланыджыгъа невбеттеки функцияларгъа административ иришимни беринъиз:"
@@ -1208,7 +1236,7 @@ msgstr "Ёлламакъ"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Тасдикъ олунса, сиз сонъ къулланма тарихини бу шекильде узатырсынъыз:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1314,6 +1342,9 @@ msgstr "Кимге:"
 
 msgid "Filename"
 msgstr "Файл ады"
+
+msgid "View"
+msgstr ""
 
 msgid "Upload date"
 msgstr "Юкленме тарихи"
@@ -1479,17 +1510,17 @@ msgstr "Системагъа кирмек ичюн 16 ишаретли квит�
 msgid "View your report"
 msgstr "Эсабатынъызны бакъып чыкъынъыз"
 
-msgid "Recipient selection"
-msgstr "Алыджы сайламасы"
-
-msgid "Select the recipients of your report:"
-msgstr "Эсабатынъызнынъ алыджыларыны сайланъыз:"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "Сайлангъан алыджылар:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Сиз алыджыларнынъ максималь сайысыны къулландынъыз."
+
+msgid "You must select at least one recipient."
+msgstr "Сиз энъ азындан бир алыджыны сайламакъ керексинъиз."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1501,14 +1532,11 @@ msgid ""
 "invalid:"
 msgstr "Невбеттеки суаллерге джевап берильмеди я да джеваплар догъру дегиль:"
 
-msgid "You must select at least one recipient."
-msgstr "Сиз энъ азындан бир алыджыны сайламакъ керексинъиз."
+msgid "Recipient selection"
+msgstr "Алыджы сайламасы"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Файл(лар) юклене."
-
-msgid "The following steps have errors:"
-msgstr "Невбеттеки арекетлерде хата япылды:"
 
 msgid "Hide"
 msgstr "Гизлемек"
@@ -1918,17 +1946,17 @@ msgid "Some reports will expire soon"
 msgstr "Бир къач эсабатларнынъ къулланма тарихи якъында битеджек"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "Бу мектюпнен малюмат бериджи сизни эсабатынынъ муим алыджысы оларакъ сайлагъаныны хабер этемиз."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Лютфен, мектюптеки олгъан бильги ве малюматларгъа айрыджа дикъкъат этинъиз. Малюмат бериджилер джемиетнинъ меракълары ичюн озьлерини джиддий телюкеге огъраткъанларыны козь огюнде тутунъыз. Бу себептен эсабатта олгъан малюматлар гъает муим сайыла."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Бу мектюп бар олгъан эсабат янъартылгъаны акъкъында хабер этмек ичюн ёлланылды."

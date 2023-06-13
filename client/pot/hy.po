@@ -449,9 +449,6 @@ msgstr "Պատճենել սեղմատախտակին"
 msgid "Logout"
 msgstr "Դուրս գալ"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Տրամադրել տվյալ հասցեատիրոջը զեկույցներն օգտատերերի համար մատչելի դարձնելու թույլտվություն"
-
 msgid "Grant access"
 msgstr "Մուտքի իրավունք տրամադրել"
 
@@ -464,7 +461,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1029,14 +1051,17 @@ msgstr "Ցանց"
 msgid "Sites"
 msgstr "Կայքեր"
 
-msgid "Mode:"
-msgstr "Ռեժիմ՝"
+msgid "Profile"
+msgstr ""
 
 msgid "Configure"
 msgstr "Կարգավորել"
 
 msgid "Subdomain"
 msgstr "Ենթադոմեն"
+
+msgid "Mode:"
+msgstr "Ռեժիմ՝"
 
 msgid "Creation date:"
 msgstr "Ստեղծման ամսաթիվ՝"
@@ -1106,6 +1131,9 @@ msgstr "Թույլ տալ տվյալ հասցեատիրոջը ջնջել հաշ�
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Թույլ տալ հասցեատիրոջը հետաձգել հաշվետվության վերջնաժամկետը"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "Տրամադրել տվյալ հասցեատիրոջը զեկույցներն օգտատերերի համար մատչելի դարձնելու թույլտվություն"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Օգտատերերի համար հասանելի դարձնել հետևյալ գործառույթները."
@@ -1210,7 +1238,7 @@ msgstr "Ուղարկել"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Հաստատելով ՝ դուք կհետաձգեք վերջնաժամկետը մինչև."
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1316,6 +1344,9 @@ msgstr "Ում՝"
 
 msgid "Filename"
 msgstr "Ֆայլի անունը"
+
+msgid "View"
+msgstr "Դիտել"
 
 msgid "Upload date"
 msgstr "Վերբեռնման ամսաթիվը"
@@ -1481,17 +1512,17 @@ msgstr "Մուտք գործելու համար օգտագործեք անդորր
 msgid "View your report"
 msgstr "Տեսնել ձեր զեկույցը"
 
-msgid "Recipient selection"
-msgstr "Ընտրել հասցեատիրոջը"
-
-msgid "Select the recipients of your report:"
-msgstr "Ընտրել ձեր զեկույցի հասցեատիրոջը."
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "Հասցեատերն ընտրված է."
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Դուք ընտրել եք առավելագույն հնարավոր քանակի հասցեատերեր:"
+
+msgid "You must select at least one recipient."
+msgstr "Դուք պետք է ընտրեք առնվազն մեկ հասցեատիրոջ:"
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1503,14 +1534,11 @@ msgid ""
 "invalid:"
 msgstr "Այս քայլում հետևյալ հարցերի պատասխանները կա՛մ բացակայում են, կա՛մ անվավեր են."
 
-msgid "You must select at least one recipient."
-msgstr "Դուք պետք է ընտրեք առնվազն մեկ հասցեատիրոջ:"
+msgid "Recipient selection"
+msgstr "Ընտրել հասցեատիրոջը"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Սպասեք ֆայլ(ներ)ի վերբեռնման ավարտին։"
-
-msgid "The following steps have errors:"
-msgstr "Հետևյալ քայլերը պարունակում են սխալներ."
 
 msgid "Hide"
 msgstr "Թաքցնել"
@@ -1920,17 +1948,17 @@ msgid "Some reports will expire soon"
 msgstr "Որոշ զեկույցների վավերության ժամկետը շուտով կավարտվի"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "Այս հաղորդագրությամբ տեղեկացնում ենք, որ ազդարարն ընտրել է ձեզ, որպես իր հաշվետվության հասցեատեր:"
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Խնդրում ենք հատուկ ուշադրություն դարձնել պարունակվող տեղեկատվությանը և նյութերին: Հիշեք, որ ազդարարները հաճախ հանրության շահերից ելնելով գնում են անձնական ռիսկերի: Հետևաբար, սույն հաշվետվությունում ներկայացված նյութը պետք է դիտարկվի որպես առաջնահերթություն։"
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Այս հաղորդագրությամբ տեղեկացնում ենք, որ առկա զեկույցը թարմացվել է:"

@@ -452,9 +452,6 @@ msgstr "Paneli göçüriň"
 msgid "Logout"
 msgstr "Içinden çyk"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Bu alyja hasabatlara girmek üçin ulanyjy mümkinçiligini ber"
-
 msgid "Grant access"
 msgstr "Girişi ygtyýar ber"
 
@@ -467,7 +464,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1032,14 +1054,17 @@ msgstr "Tor"
 msgid "Sites"
 msgstr "Sahypalar"
 
-msgid "Mode:"
-msgstr "Tertip:"
+msgid "Profile"
+msgstr "Profil"
 
 msgid "Configure"
 msgstr "Sazlamak"
 
 msgid "Subdomain"
 msgstr "Subdomain"
+
+msgid "Mode:"
+msgstr "Tertip:"
 
 msgid "Creation date:"
 msgstr "Döredilen senesi:"
@@ -1109,6 +1134,9 @@ msgstr "Alyja hasabatlary pozmagy rugsat ber"
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Alyjynyň hasabatyň möhletini yza süýşürmegine rugsat ber"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "Bu alyja hasabatlara girmek üçin ulanyjy mümkinçiligini ber"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Ulanyja aşakdaky aýratynlyklara administratiw ygtyýar ber:"
@@ -1213,7 +1241,7 @@ msgstr "Iber"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Tassyklamak bilen, gutarýan senesiniň möhletini yza süýşürersiňiz:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1319,6 +1347,9 @@ msgstr "Kime:"
 
 msgid "Filename"
 msgstr "Faýlyň ady"
+
+msgid "View"
+msgstr "Seret"
 
 msgid "Upload date"
 msgstr "Ýükleme senesi"
@@ -1484,17 +1515,17 @@ msgstr "Içeri girmek üçin 16 sanly kwitansiýany ulanyň. Size iberen habarla
 msgid "View your report"
 msgstr "Hasabatyňyzy görüň"
 
-msgid "Recipient selection"
-msgstr "Alyjyny saýlamak"
-
-msgid "Select the recipients of your report:"
-msgstr "Hasabatyňyzy alyjylary saýlaň:"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "Alyjylar saýlandy:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Saýlanyp biljek alyjylaryň iň köp sanyna ýetdiňiz."
+
+msgid "You must select at least one recipient."
+msgstr "Iň azyndan bir alyjyny saýlamaly."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1506,14 +1537,11 @@ msgid ""
 "invalid:"
 msgstr "Bu ädimde aşakdaky soraglara jogap ýitirim ýa-da nädogry:"
 
-msgid "You must select at least one recipient."
-msgstr "Iň azyndan bir alyjyny saýlamaly."
+msgid "Recipient selection"
+msgstr "Alyjyny saýlamak"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Faýl (lar) ýüklemegiň gutarmagyna garaşylýar."
-
-msgid "The following steps have errors:"
-msgstr "Aşakdaky ädimlerde ýalňyşlyklar bar:"
 
 msgid "Hide"
 msgstr "Gizle"
@@ -1923,17 +1951,17 @@ msgid "Some reports will expire soon"
 msgstr "Käbir hasabatlaryň möhleti ýakynda gutarar"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "Bu, gizlin habar ýetirijiniň sizi hasabatynyň gymmatly alyjysy hökmünde saýlandygyny habar bermek üçin email."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Ondaky maglumatlara we materiallara aýratyn üns bermegiňiz haýyş edilýär. Gizlin habar ýetirjiler köplenç halkyň bähbidine ýokary şahsy töwekgelçiliklere sezewar bolýandygyny ýadyňyzdan çykarmaň. Şonuň üçin bu hasabatyň çäginde berlen materiallar möhüm ähmiýete eýe bolmalydyr."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Bu, bar bolan hasabatyň täzelenendigini habar bermek üçin email."

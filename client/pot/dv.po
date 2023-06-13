@@ -452,9 +452,6 @@ msgstr "ކްލިޕްބޯޑަށް ކޮޕީ ކުރާށެވެ"
 msgid "Logout"
 msgstr "ލޮގް އައުޓް"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "އެހެން މީހުންނަށް ރިޕޯޓުތަކަށް އެކްސެސް ދިނުމުގެ ބާރު  މި ރިސިޕިއަންޓަށް  ދިނުން"
-
 msgid "Grant access"
 msgstr "އެކްސެސް ދިނުން"
 
@@ -467,7 +464,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1032,14 +1054,17 @@ msgstr ""
 msgid "Sites"
 msgstr "ސައިޓުތައް"
 
-msgid "Mode:"
-msgstr "ބާވަތް:"
+msgid "Profile"
+msgstr ""
 
 msgid "Configure"
 msgstr "ކޮންފިގަރ ކުރެއްވުމަށް"
 
 msgid "Subdomain"
 msgstr "ސަބްޑޮމެއިން"
+
+msgid "Mode:"
+msgstr "ބާވަތް:"
 
 msgid "Creation date:"
 msgstr "އުފެއްދި ތާރީޚް:"
@@ -1109,6 +1134,9 @@ msgstr "ރިސިޕިއަންޓަށް ރިޕޯޓު ފުހެލުމުގެ ހުއް�
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "ރިސިޕިއަންޓަށް ރިޕޯޓްގެ މުއްދަތުހަމަވާ ތާރީޚް ފަސްކުރުމަށް ހުއްދަ ދިނުން"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "އެހެން މީހުންނަށް ރިޕޯޓުތަކަށް އެކްސެސް ދިނުމުގެ ބާރު  މި ރިސިޕިއަންޓަށް  ދިނުން"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "ތިރީގައިވާ ފީޗާސްތަކަށް ޔޫޒަރަށް އެޑްމިނިސްޓްރޭޓިވް އެކްސެސް ދިނުން:"
@@ -1213,7 +1241,7 @@ msgstr "ފޮނުވަން"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "މުއްދަތު ހަމަވާ ތާރީޙް:  އަށް ލަސްކުރަން ބޭނުންފުޅުކަން ޔަގީންކުރެއްވުމަށް"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1319,6 +1347,9 @@ msgstr "ލިބިލައްވާ ފަރާތް: "
 
 msgid "Filename"
 msgstr "ފައިލްގެ ނަން"
+
+msgid "View"
+msgstr ""
 
 msgid "Upload date"
 msgstr "ފައިލް އަޕްލޯޑް ކުރި ތާރީޙް."
@@ -1484,17 +1515,17 @@ msgstr "ލޮގްއިން ވުމަށް ލިބިފައިވާ 16 އަކުރުގެ �
 msgid "View your report"
 msgstr "ތިޔަ ފަރާތުގެ ރިޕޯޓް ހުޅުވުމަށް"
 
-msgid "Recipient selection"
-msgstr "ރިސިޕިއަންޓް ޚިޔާރުކުރައްވާ"
-
-msgid "Select the recipients of your report:"
-msgstr "ރިޕޯޓުގެ ރިސިޕިއަންޓުން ޚިޔާރުކުރައްވާ"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "ރިސިޕިއަންޓުން ޚިޔާރުކުރެވިއްޖެ"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr " ރިސިޕިއަންޓުންގެ ގޮތުގައި އެންމެގިނަވެގެން އިޚްތިޔާރު ކުރެވޭނެ ޢަދަދު ހަމަވެއްޖެ"
+
+msgid "You must select at least one recipient."
+msgstr " މަދުވެގެން އެކަކު ރިސިޕިއަންޓެއްގެ ގޮތުގައި އިޚްތިޔާރުކުރަންޖެހޭނެ"
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1506,14 +1537,11 @@ msgid ""
 "invalid:"
 msgstr "މި ސުވާލުތަކުގެ ޖަވާބުތައް ނުހިމެނޭ ނުވަތަ ހިމެނިފައިވާގޮތް ރަނގަޅެއްނޫން"
 
-msgid "You must select at least one recipient."
-msgstr " މަދުވެގެން އެކަކު ރިސިޕިއަންޓެއްގެ ގޮތުގައި އިޚްތިޔާރުކުރަންޖެހޭނެ"
+msgid "Recipient selection"
+msgstr "ރިސިޕިއަންޓް ޚިޔާރުކުރައްވާ"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "ފައިލް(ތައް) އަޕްލޯޑް ވަންދެން މަޑުކޮއްލައްވާ"
-
-msgid "The following steps have errors:"
-msgstr "މި ބައިތަކުގައި  ރަނގަޅު ނޫން މައުލޫމާތު ހިމެނޭ"
 
 msgid "Hide"
 msgstr "ފޮރުވާ"
@@ -1923,17 +1951,17 @@ msgid "Some reports will expire soon"
 msgstr "ބައެއް ރިޕޯޓްތަކުގެ މުއްދަތު ވަރަށް އަވަހަށް ހަމަވާނެ"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "މި އީމެއިލަކީ ވިސިލްބޮލޯވަރއެއް އެފަރާތުގެ ރިޕޯޓު ފޮނުވުމަށް ތިޔަފަރާތް ރިސިޕިއަންޓެއްގެ ގޮތުގައި ހިޔާރުކޮށްފައިވާކަން އަންގަން ފޮނުވިފައިވާ އީމެއިލްއެއް"
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "މީގައި ހިމެނޭ މައުލޫމާތާއި ތަކެއްޗަށް ޚާއްޞަ ސަމާލުކަމެއްދެއްވުން އެދެން.   ވިސިލްބްލޯވަރުންނަކީ އާންމު ލާބައާއި މަންފާއަށްޓަކައި އެމީހުންގެ އަމިއްލަ ނަފުސު ވަރަށްބޮޑު ނުރައްކަލަކަށް ހުށަހެޅޭ ބައެއް. އެހެންކަމުން މި ރިޕޯޓާއިއެކީ ފޯރުކޮށްދީފައިވާ މަޢުލޫމާތަކީ  މުހިންމު ކަމެއްދީގެން ބަލަހައްޓަންޖެހޭ މަޢުލޫމާތު "
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "މި އީމެއިލަކީ  ރިޕޯޓެއް އަޕްޑޭޓް ކުރެވިފައިވާކަން އެންގުމަށް ފޮނުވިފައިވާ އީމެއިލެއް"

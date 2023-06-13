@@ -447,9 +447,6 @@ msgstr "Kopijuoti į iškarpinę"
 msgid "Logout"
 msgstr "Atsijungti"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Leiskite šiam gavėjui suteikti naudotojui prieigą prie pranešimų"
-
 msgid "Grant access"
 msgstr "Suteikti prieigą"
 
@@ -462,7 +459,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1027,14 +1049,17 @@ msgstr "Tinklas"
 msgid "Sites"
 msgstr "Svetainės"
 
-msgid "Mode:"
-msgstr "Režimas:"
+msgid "Profile"
+msgstr "Profilis"
 
 msgid "Configure"
 msgstr "Konfigūruoti"
 
 msgid "Subdomain"
 msgstr "Subdomenas"
+
+msgid "Mode:"
+msgstr "Režimas:"
 
 msgid "Creation date:"
 msgstr "Sukūrimo data:"
@@ -1104,6 +1129,9 @@ msgstr "Leisti gavėjui pranešimus ištrinti"
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Leisti gavėjui atidėti pranešimo galiojimo pabaigos datą"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "Leiskite šiam gavėjui suteikti naudotojui prieigą prie pranešimų"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Suteikite naudotojui administracinę prieigą prie šių funkcijų:"
@@ -1208,7 +1236,7 @@ msgstr "Siųsti"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Patvirtindami atidėsite galiojimo pabaigos datą iki:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1314,6 +1342,9 @@ msgstr "Kam:"
 
 msgid "Filename"
 msgstr "Failo pavadinimas"
+
+msgid "View"
+msgstr "Rodymas"
 
 msgid "Upload date"
 msgstr "Įkėlimo data"
@@ -1479,17 +1510,17 @@ msgstr "Norėdami prisijungti, naudokite 16 skaitmenų patvirtinimo kodą. Tai l
 msgid "View your report"
 msgstr "Peržiūrėkite savo pranešimą"
 
-msgid "Recipient selection"
-msgstr "Gavėjo pasirinkimas"
-
-msgid "Select the recipients of your report:"
-msgstr "Pasirinkite pranešimo gavėjus:"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "Pasirinkti gavėjai:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Pasiekėte didžiausią galimų pasirinkti gavėjų skaičių."
+
+msgid "You must select at least one recipient."
+msgstr "Būtina pasirinkti bent vieną gavėją."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1501,14 +1532,11 @@ msgid ""
 "invalid:"
 msgstr "Šiame etape atsakymų į šiuos klausimus nėra arba jie negalioja:"
 
-msgid "You must select at least one recipient."
-msgstr "Būtina pasirinkti bent vieną gavėją."
+msgid "Recipient selection"
+msgstr "Gavėjo pasirinkimas"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Laukiama, kol failas(-ai) bus įkeltas (-i)."
-
-msgid "The following steps have errors:"
-msgstr "Toliau aprašytuose žingsniuose yra klaidų:"
 
 msgid "Hide"
 msgstr "Slėpti"
@@ -1918,17 +1946,17 @@ msgid "Some reports will expire soon"
 msgstr "Kai kurių pranešimų galiojimas netrukus baigsis."
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "Tai el. laiškas, kuriuo jums pranešama, kad pranešėjas pasirinko jus kaip vertingą savo pranešimo gavėją."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Atkreipkite ypatingą dėmesį į joje esančią informaciją ir medžiagą. Turėkite omenyje, kad pranešėjai dažnai susiduria su didele asmenine rizika visuomenės labui. Todėl šiame pranešime pateikta medžiaga turėtų būti laikoma labai svarbia."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Šiuo el. laišku pranešama, kad esamas pranešimas atnaujintas."

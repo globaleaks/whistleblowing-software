@@ -457,9 +457,6 @@ msgstr "Копиране в клипборда"
 msgid "Logout"
 msgstr "Излизане"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Даване на възможност на този получател да предоставя достъп на потребители до сигнали"
-
 msgid "Grant access"
 msgstr "Предоставяне на достъп"
 
@@ -472,7 +469,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr "Привилегии"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1037,14 +1059,17 @@ msgstr "Мрежа"
 msgid "Sites"
 msgstr "Сайтове"
 
-msgid "Mode:"
-msgstr "Режим:"
+msgid "Profile"
+msgstr ""
 
 msgid "Configure"
 msgstr "Конфигуриране"
 
 msgid "Subdomain"
 msgstr "Поддомейн"
+
+msgid "Mode:"
+msgstr "Режим:"
 
 msgid "Creation date:"
 msgstr "Дата на създаване:"
@@ -1114,6 +1139,9 @@ msgstr "Разрешаване на получателите да изтрива
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Разрешаване на получателя да отлага датата на изтичане на сигнала"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "Даване на възможност на този получател да предоставя достъп на потребители до сигнали"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Осигуряване на потребителя на административен достъп до следните функции:"
@@ -1218,7 +1246,7 @@ msgstr "Изпращане"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Като потвърдите, отлагате датата на изтичане до:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1324,6 +1352,9 @@ msgstr "До:"
 
 msgid "Filename"
 msgstr "Име на файла"
+
+msgid "View"
+msgstr "Изглед"
 
 msgid "Upload date"
 msgstr "Дата на качване"
@@ -1489,17 +1520,17 @@ msgstr "Използвайте 16-цифрената разписка (код), 
 msgid "View your report"
 msgstr "Прегледайте сигнала си"
 
-msgid "Recipient selection"
-msgstr "Избор на получател(и)"
-
-msgid "Select the recipients of your report:"
-msgstr "Изберете получателите за сигнала си:"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "Избрани получатели:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Достигнахте максималния избираем брой получатели."
+
+msgid "You must select at least one recipient."
+msgstr "Трябва да изберете поне един получател."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1511,14 +1542,11 @@ msgid ""
 "invalid:"
 msgstr "За тази стъпка отговорите на следните въпроси липсват или са невалидни:"
 
-msgid "You must select at least one recipient."
-msgstr "Трябва да изберете поне един получател."
+msgid "Recipient selection"
+msgstr "Избор на получател(и)"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Изчаква се качването на файла или файловете."
-
-msgid "The following steps have errors:"
-msgstr "Следните стъпки съдържат грешки:"
 
 msgid "Hide"
 msgstr "Скриване"
@@ -1928,17 +1956,17 @@ msgid "Some reports will expire soon"
 msgstr "Някои сигнали изтичат скоро"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "С този имейл Ви уведомяваме, че подател на сигнал Ви е избрал за ценен получател на сигнала му."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Моля, отделете специално внимание на информацията и на материала, съдържащи се тук. Не забравяйте, че подателите на сигнали често се излагат на голям риск в името на общото благо. Следователно материалът, предоставен в този сигнал, трябва да се счита за изключително важен."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Този имейл Ви известява за актуализиране на съществуващ сигнал."

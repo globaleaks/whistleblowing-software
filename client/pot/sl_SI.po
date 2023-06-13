@@ -21,7 +21,7 @@ msgstr ""
 "mime-version: 1.0\n"
 
 msgid "Log in"
-msgstr "Prijava"
+msgstr "Prijava v račun"
 
 msgid "Theme customization"
 msgstr "Prilagoditve teme"
@@ -117,7 +117,7 @@ msgid "Refresh"
 msgstr "Osveži"
 
 msgid "Channel"
-msgstr ""
+msgstr "Kanal"
 
 msgid "Preview"
 msgstr "Predogled"
@@ -150,7 +150,7 @@ msgid "Save all"
 msgstr "Shrani vse"
 
 msgid "Access control"
-msgstr "Seznam sprememb"
+msgstr "Kontrola dostopa"
 
 msgid "Number"
 msgstr "Številka"
@@ -195,7 +195,7 @@ msgid "User"
 msgstr "Uporabnik"
 
 msgid "Motivation"
-msgstr "Motivacija"
+msgstr "Razlog"
 
 msgid "Status"
 msgstr "Stanje"
@@ -207,7 +207,7 @@ msgid "Reply motivation"
 msgstr "Razlog za odgovor"
 
 msgid "Request status"
-msgstr "Zahtevek statusa"
+msgstr "Status zahtevka "
 
 msgid "Custodian"
 msgstr "Skrbnik"
@@ -291,13 +291,13 @@ msgid "Strong"
 msgstr "Močno"
 
 msgid "Text shown on top of the interface for selecting channels"
-msgstr ""
+msgstr "Besedilo na vrhu vmesnika za izbiro kanalov"
 
 msgid "Silence email notifications"
-msgstr "Onemogoči obveščanje preko e-pošte "
+msgstr "Onemogoči obveščanje preko e-pošte"
 
 msgid "Turn on email notifications"
-msgstr "Omogoči obveščanje z elektronsko pošto"
+msgstr "Omogoči obveščanje preko elektronske pošte"
 
 msgid "Input validation"
 msgstr "Preverjanje vnosa"
@@ -368,7 +368,7 @@ msgid "Disable"
 msgstr "Onemogoči"
 
 msgid "Remove"
-msgstr "Remove"
+msgstr "Odstrani"
 
 msgid "Use as default"
 msgstr "Uporabi kot privzeto"
@@ -433,7 +433,7 @@ msgstr "Ponastavitev gesla"
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr "Eden ali več prejemnikov še ni opravil prvega vpisa. To pomeni, da še ne prejemajo poročil."
+msgstr "Eden ali več prejemnikov še ni opravilo prvega vpisa. To pomeni, da še ne prejemajo prijav."
 
 msgid "This user has not performed the first login yet."
 msgstr "Uporabnik še ni opravil prvega vpisa. "
@@ -453,9 +453,6 @@ msgstr "Kopiraj v odložišče"
 msgid "Logout"
 msgstr "Odjava"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Daj prejemniku možnost da uporabniku dovoli dostop do prijav"
-
 msgid "Grant access"
 msgstr "Omogoči dostop"
 
@@ -463,25 +460,50 @@ msgid "Revoke access"
 msgstr "Prekliči dostop"
 
 msgid "Assigned to"
-msgstr ""
+msgstr "Dodeljeno"
 
 msgid "Not provided."
+msgstr "Ni na voljo."
+
+msgid "Set a reminder"
+msgstr "Nastavi opomnik"
+
+msgid "Privileges"
+msgstr "Privilegiji"
+
+msgid "Mask"
 msgstr ""
 
-msgid "Set a reminder date"
-msgstr "Nastavi datum opomnika"
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr "Uredi"
+
+msgid "Select an option"
+msgstr "Izberi možnost"
+
+msgid "Select your language"
+msgstr "Izberite svoj jezik"
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
+msgstr ""
 
 msgid "File a report"
 msgstr "Oddaj prijavo"
 
 msgid "Select a reporting channel:"
-msgstr ""
+msgstr "Izberi kanal za prijavo:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Preden nadaljujete, nastavite novo geslo."
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr "Preden nadaljuješ, omogoči dvostopenjsko preverjanje pristnosti. "
+msgstr "Preden nadaljujete, omogočite dvostopenjsko preverjanje pristnosti. "
 
 msgid "Enable"
 msgstr "Omogoči"
@@ -541,7 +563,7 @@ msgid "Report statuses"
 msgstr "Statusi prijav"
 
 msgid "Channels"
-msgstr ""
+msgstr "Kanali"
 
 msgid "Hidden"
 msgstr "Skrito"
@@ -550,7 +572,7 @@ msgid "Description"
 msgstr "Opis"
 
 msgid "Questionnaire"
-msgstr "Vprašalniki"
+msgstr "Vprašalnik"
 
 msgid "Recipients"
 msgstr "Prejemniki"
@@ -562,13 +584,13 @@ msgid "days"
 msgstr "dnevi"
 
 msgid "Set the value to 0 to disable this feature."
-msgstr "Funkcijo onemogočite za nastavitvijo vrednosti na 0."
+msgstr "Funkcijo onemogočite z nastavitvijo vrednosti na 0."
 
 msgid "Show the questionnaire navigation interface"
 msgstr "Pokaži vmesnik za pregled vprašalnika"
 
 msgid "Allow whistleblowers to select their recipients"
-msgstr "Dovoli prijaviteljem, da izberejo prejemnike"
+msgstr "Prijaviteljem dovoli izbiro prejemnika"
 
 msgid "Select all recipients by default"
 msgstr "Privzeto izberi vse prejemnike"
@@ -577,7 +599,7 @@ msgid "Maximum number of selectable recipients:"
 msgstr "Maksimalno število prejemnikov:"
 
 msgid "Show recipients in alphabetical order"
-msgstr "Pokaži prejemnike po abecednem redu"
+msgstr "Pokaži prejemnike po abecednem vrstnem redu"
 
 msgid "Show recipient details on the status page of the report"
 msgstr "Pokaži podrobne podatke o prejemnikih na strani, ki prikazuje status prijave"
@@ -586,16 +608,16 @@ msgid "Enable comments"
 msgstr "Omogoči komentarje"
 
 msgid "Allow the whistleblower to write comments"
-msgstr "Dovoli prijaviteljem pisanje komentarjev"
+msgstr "Prijavitelju dovoli pisanje komentarjev"
 
 msgid "Enable private messages"
 msgstr "Omogoči zasebna sporočila"
 
 msgid "Allow the whistleblower to send messages"
-msgstr "Dovoli prijavitelju pošiljanje sporočil"
+msgstr "Prijavitelju dovoli pošiljanje sporočil"
 
 msgid "Allow the whistleblower to add attachments"
-msgstr "Dovoli prijaviteljem dodajanje prilog k prispevkom"
+msgstr "Prijavitelju dovoli dodajanje prilog"
 
 msgid "Additional questionnaire"
 msgstr "Dodatni vprašalnik"
@@ -610,7 +632,7 @@ msgid "Value"
 msgstr "Vrednost"
 
 msgid "Medium"
-msgstr "Srednje"
+msgstr "Srednji"
 
 msgid "High"
 msgstr "Visok"
@@ -619,7 +641,7 @@ msgid "Software version:"
 msgstr "Verzija programa:"
 
 msgid "Restrict access to specific IP addresses"
-msgstr " \nOmejite dostop določenim IP naslovom"
+msgstr "Omejite dostop določenim IP naslovom"
 
 msgid "Enabled"
 msgstr "Omogočeno"
@@ -670,7 +692,7 @@ msgid "Download"
 msgstr "Prenesi"
 
 msgid "Certificate"
-msgstr "Potrdilo"
+msgstr "Certifikat"
 
 msgid "Valid until:"
 msgstr "Veljavno do:"
@@ -695,7 +717,7 @@ msgid ""
 "Using automatic HTTPS configuration will handle the entire process of "
 "requesting, enabling and renewing certificates from the Let's Encrypt "
 "Certificate Authority."
-msgstr "Z uporabo samodejne nastavitve HTTPS bo opravljen celoten postopek zahtevanja, omogočanja in obnavljanja certifikatov od organa Let's Encrypt za izdajo certifikatov.\n "
+msgstr "Z uporabo samodejne nastavitve HTTPS bo opravljen celoten postopek zahtevanja, omogočanja in obnavljanja certifikatov od organa Let's Encrypt za izdajo certifikatov."
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
@@ -711,7 +733,7 @@ msgstr "Ročna nastavitev"
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
-msgstr "Čarovnik za ročno konfiguracijo vas bo vodil skozi nastavitev HTTPS-ja od drugega organa za certifikate.\n "
+msgstr "Čarovnik za ročno konfiguracijo vas bo vodil skozi nastavitev HTTPS od drugega organa za certifikate."
 
 msgid "Disabled"
 msgstr "Onemogočeno"
@@ -735,7 +757,7 @@ msgid "Whistleblower"
 msgstr "Prijavitelj"
 
 msgid "To"
-msgstr "To"
+msgstr "Za"
 
 msgid ""
 "Default mail configuration in use. Please consider using a private mail "
@@ -743,7 +765,7 @@ msgid ""
 msgstr "Privzeta konfiguracija pošte v uporabi. Razmislite o uporabi zasebnega poštnega strežnika."
 
 msgid "SMTP email address"
-msgstr "SMTP naslov"
+msgstr "SMTP e-naslov"
 
 msgid "SMTP server address"
 msgstr "Naslov SMTP strežnika"
@@ -761,7 +783,7 @@ msgid "Password"
 msgstr "Geslo"
 
 msgid "Number of hours before sending a report expiration alert"
-msgstr "Število ur pred pošiljanjem obvestila o poteku prispevka"
+msgstr "Število ur pred pošiljanjem obvestila o poteku prijave"
 
 msgid "Test the configuration"
 msgstr "Preizkus nastavitev"
@@ -794,7 +816,7 @@ msgid "Checkbox"
 msgstr "Potrditveno polje"
 
 msgid "Terms of service"
-msgstr "Pogoji storitve"
+msgstr "Pogoji uporabe"
 
 msgid "Date range"
 msgstr "Časovno obdobje"
@@ -824,7 +846,7 @@ msgid "Accept multiple file uploads"
 msgstr "Dovoli nalaganje več datotek"
 
 msgid "Accept multiple answers"
-msgstr "Sprejmi več možnih odgovorov"
+msgstr "Dovoli več možnih odgovorov"
 
 msgid "Template override"
 msgstr "Ne upoštevaj predloge"
@@ -890,7 +912,7 @@ msgid "Logo"
 msgstr "Logotip"
 
 msgid "Project name"
-msgstr "Ime pobude"
+msgstr "Ime projekta"
 
 msgid "Homepage title"
 msgstr "Naslov domače strani"
@@ -899,7 +921,7 @@ msgid "Presentation"
 msgstr "Predstavitev"
 
 msgid "Question to solicit possible whistleblowers"
-msgstr "Vprašanje za prijavitelje"
+msgstr "Vprašanje za morebitne prijavitelje"
 
 msgid "Whistleblowing button"
 msgstr "Gumb za prijavitelje"
@@ -917,13 +939,13 @@ msgid "Language:"
 msgstr "Jezik:"
 
 msgid "Add custom text"
-msgstr "Dodaj prilagojen tekst"
+msgstr "Dodaj prilagojeno besedilo"
 
 msgid "Custom text"
-msgstr "Prilagojen tekst"
+msgstr "Prilagojeno besedilo"
 
 msgid "Original text"
-msgstr "Izvirni teksti"
+msgstr "Izvirno besedilo"
 
 msgid "Original translation"
 msgstr "Izvirni prevod"
@@ -944,13 +966,13 @@ msgid "Administrators authorized to change user passwords:"
 msgstr "Administatorji, ki smejo spreminjati uporabniška gesla:"
 
 msgid "Enable file viewer"
-msgstr ""
+msgstr "Omogoči pregledovanje datotek"
 
 msgid "Enable PGP"
-msgstr ""
+msgstr "Omogoči PGP"
 
 msgid "Enable simplified login"
-msgstr "Omogoči poenostavljen vpis"
+msgstr "Omogoči poenostavljeno prijavo v račun"
 
 msgid "Enable search engines indexing"
 msgstr "Omogoči indeksiranje iskalnikom"
@@ -965,7 +987,7 @@ msgid "Size limit for file attachments"
 msgstr "Omejitev velikosti datotek v prilogah"
 
 msgid "megabytes"
-msgstr "megabajti"
+msgstr "MB"
 
 msgid "Require two factor authentication"
 msgstr "Zahtevaj dvostopenjsko preverjanje pristnosti"
@@ -975,22 +997,22 @@ msgstr "Interval spremembe gesla"
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
-msgstr "Zaradi varnostnih razlogov je potrebno redno spreminjati geslo."
+msgstr "Zaradi varnostnih razlogov je treba redno spreminjati geslo."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr "Število dni do obveščanja upiorabnikov o neprebranih obvestilih"
+msgstr "Število dni do obveščanja uporabnikov o neprebranih prijavah"
 
 msgid "Custom support URL"
-msgstr ""
+msgstr "URL naslov podpore po meri"
 
 msgid "Disable the privacy panel"
-msgstr "Omogoči prilagojen pult o zasebnosti"
+msgstr "Onemogoči prilagojen panel zasebnosti"
 
 msgid "Enable custom privacy panel"
-msgstr "Omogoči prilagojen pult o zasebnosti"
+msgstr "Omogoči prilagojen panel zasebnosti"
 
 msgid "Custom privacy panel"
-msgstr "Prilagojeno obvestilo o zasebnosti"
+msgstr "Prilagojen panel zasebnosti"
 
 msgid "Enable custodian user role"
 msgstr "Omogoči skrbniško uporabniško vlogo"
@@ -1016,7 +1038,7 @@ msgstr "Obveščaj razvijalce o težavah programa"
 msgid ""
 "By enabling this feature, you will contribute to the development and "
 "security of the platform."
-msgstr "Z omogočitvijo funkcije boste pripsevali k razvoju in varnosti platfrome."
+msgstr "Z omogočitvijo funkcije boste prispevali k razvoju in varnosti platforme."
 
 msgid "Reset reports"
 msgstr "Ponastavi prijave"
@@ -1033,14 +1055,17 @@ msgstr "Omrežje"
 msgid "Sites"
 msgstr "Spletni naslovi"
 
-msgid "Mode:"
-msgstr "Način:"
+msgid "Profile"
+msgstr "Profil"
 
 msgid "Configure"
 msgstr "Oblikovanje"
 
 msgid "Subdomain"
 msgstr "Poddomena"
+
+msgid "Mode:"
+msgstr "Način:"
 
 msgid "Creation date:"
 msgstr "Datum nastanka:"
@@ -1052,10 +1077,10 @@ msgid "Use the first site for administrative purposes only"
 msgstr "Prvo spletno mesto uporabite samo za administrativne namene"
 
 msgid "Allow users to sign up"
-msgstr "Dovoli uporabnikom, da se prijavijo/registrirajo"
+msgstr "Dovoli uporabnikom, da se registrirajo"
 
 msgid "Enable terms of service"
-msgstr "Omogočite pogoje storitve"
+msgstr "Omogoči pogoje uporabe"
 
 msgid "Title"
 msgstr "Naslov"
@@ -1076,13 +1101,13 @@ msgid ""
 msgstr "Izbrano geslo je prešibko. Veljavno geslo mora imeti najmanj 12 znakov in vsebovati različne znake, vključno z vsaj malo tiskano črko, veliko tiskano črko, številko in posebnim znakom. "
 
 msgid "Force password change"
-msgstr "Vsili menjavo gesla"
+msgstr "Prisilna sprememba gesla"
 
 msgid "The user will be forced to change its password on next login."
 msgstr "Uporabnik bo pozvan k menjavi gesla ob naslednji prijavi."
 
 msgid "Disable two factor authentication"
-msgstr "Onemogoči dvostopenjsko preverjanje"
+msgstr "Onemogoči dvostopenjsko preverjanje pristnosti"
 
 msgid "Language"
 msgstr "Jezik"
@@ -1097,7 +1122,7 @@ msgid "Fingerprint"
 msgstr "Odtis"
 
 msgid "Set up encryption by providing a PGP public key"
-msgstr "Nastavi šifriranje z zagotovitvijo tvojega javnega PGP ključa"
+msgstr "Nastavi šifriranje z zagotovitvijo javnega PGP ključa"
 
 msgid "Give this admin ability to change user passwords"
 msgstr "Dovoli temu administratorju spremembe uporabniških gesel"
@@ -1109,7 +1134,10 @@ msgid "Allow the recipient to delete reports"
 msgstr "Dovoli prejemniku, da zbriše prijave"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Dovoli prejemnikom spremembo roka veljavnosti"
+msgstr "Dovoli prejemnikom spremembo roka veljavnosti prijav"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "Daj prejemniku možnost da uporabniku dovoli dostop do prijav"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Omogoči uporabniku dostop do naslednjih funkcij:"
@@ -1124,7 +1152,7 @@ msgid "Authorization"
 msgstr "Avtorizacija"
 
 msgid "Requests"
-msgstr "Prošnje"
+msgstr "Zahtevki"
 
 msgid "The validation link is either incorrect or has expired."
 msgstr "Povezava za preverjanje veljavnosti je napačna ali je potekla."
@@ -1142,7 +1170,7 @@ msgid "Authentication failed"
 msgstr "Overitev ni uspela"
 
 msgid "The code is either invalid or expired."
-msgstr "Koda je neveljavna ali potekla."
+msgstr "Koda je neveljavna ali je potekla."
 
 msgid "Please select your account:"
 msgstr "Izberite svoj račun:"
@@ -1180,7 +1208,7 @@ msgstr "Ključ za obnovo računa"
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr "Naredite dodaten izvod in ga shranite na varno mesto. Potrebovali ga boste za dostop do vašega računa brez izgube podatkov, če izgubite svoje geslo."
+msgstr "Naredite kopijo in jo shranite na varno mesto. Potrebovali jo boste za obnovitev dostopa do svojega računa, če izgubite/pozabite geslo, hkrati pa ne boste izgubili podatkov."
 
 msgid "Enter a name for the copy"
 msgstr "Vnesite ime za kopijo"
@@ -1206,7 +1234,7 @@ msgid ""
 msgstr "Platforma še vedno ni konfigurirana za povezave HTTPS in jo je zato treba uporabljati samo za testiranje."
 
 msgid "Please write a motivation for the reply"
-msgstr "Napišite motivacijo za odgovor"
+msgstr "Navedite razlog za odgovor"
 
 msgid "Send"
 msgstr "Pošlji"
@@ -1214,11 +1242,11 @@ msgstr "Pošlji"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "S potrditvijo boste spremenili rok veljavnosti do:"
 
-msgid "By confirming, you will set a remainder on date:"
-msgstr "S potrditvijo boste določili opomnik na izbrani datum."
+msgid "By confirming, you will set a reminder on date:"
+msgstr "S potrditvijo boste določili opomnik na izbrani datum:"
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "To je platforma za prikaz, ne uporabljajte je za oddajanje resničnih prijav. "
+msgstr "To je demo platforma, ne uporabljajte je za oddajanje resničnih prijav. "
 
 msgid "Install an authenticator app on your phone"
 msgstr "V telefon namestite aplikacijo za preverjanje pristnosti"
@@ -1283,7 +1311,7 @@ msgid "Download the Tor Browser"
 msgstr "Prenesite brskalnik Tor "
 
 msgid "Then, copy and paste the following address into the Tor Browser:"
-msgstr "V brskalnik Tor kopirajte in prilepite naslov:"
+msgstr "V brskalnik Tor kopirajte in prilepite sledeči naslov:"
 
 msgid "Have you already filed a report? Enter your receipt."
 msgstr "Ali ste že oddali prijavo? Vnesite kodo."
@@ -1301,13 +1329,13 @@ msgid "Uploading files…"
 msgstr "Datoteke se nalagajo ..."
 
 msgid "Upload completed successfully!"
-msgstr "Prenos uspešno zaključen!"
+msgstr "Nalaganje je uspešno zaključeno!"
 
 msgid "Estimated upload time:"
-msgstr "Predviden čas prenosa:"
+msgstr "Predviden čas nalaganja:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
-msgstr "Prejemniki želijo, da izpolnite dodaten vprašalnik."
+msgstr "Prejemniki vas prosijo, da izpolnite dodatni vprašalnik."
 
 msgid "Fill the additional questionnaire"
 msgstr "Izpolni dodatni vprašalnik"
@@ -1320,6 +1348,9 @@ msgstr "Za:"
 
 msgid "Filename"
 msgstr "Ime datoteke"
+
+msgid "View"
+msgstr ""
 
 msgid "Upload date"
 msgstr "Datum nalaganja"
@@ -1356,7 +1387,7 @@ msgstr "Če potrebujete tehnično podoporo, imate splošna vprašanja ali nove i
 msgid ""
 "If you want to contribute to software development or report a bug, please "
 "open an issue in our ticketing system:"
-msgstr "Če želite prispevati k razvoju programske opreme ali prijaviti napako, opravite prijavo v našem sistemu."
+msgstr "Če želite prispevati k razvoju programske opreme ali prijaviti napako, oddajte zahtevek v našem sistemu."
 
 msgid "Join our chat:"
 msgstr "Pridruži se pogovoru:"
@@ -1372,13 +1403,13 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr "Priporočamo, da za ponovni priklic svojega \"Ključa za obnovo računa\" dostopite preko rubrike »Nastavitve« in ključ varno shranite. Ta ključ bo potreben za obnovitev vašega dostopa do platforme in vaših podatkov, če pozabite geslo."
+msgstr "Priporočamo, da za ponovni priklic svojega \"Ključa za obnovo računa\" dostopate preko rubrike »Uporabniške nastavitve« in ključ varno shranite. Ta ključ bo nujen za obnovitev vašega dostopa do platforme in vaših podatkov, če pozabite geslo."
 
 msgid "The provided recovery key is invalid."
-msgstr "Ta ključ za obnovo ni veljaven."
+msgstr "Ključ za obnovo računa ni veljaven."
 
 msgid "The provided reset token is invalid or expired."
-msgstr "Vneseno potrdilo za ponastavitev je neveljavno ali poteklo. "
+msgstr "Vneseno potrdilo za ponastavitev je neveljavno ali je poteklo. "
 
 msgid ""
 "Enter your account's username or your email address to request a password "
@@ -1389,7 +1420,7 @@ msgid "Enter your email address to request a password reset."
 msgstr "Vnesite e-naslov za ponastavitev gesla."
 
 msgid "Password reset requested."
-msgstr "Zahteva za ponastavitev gesla oddana."
+msgstr "Zahtevek za ponastavitev gesla oddana."
 
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
@@ -1422,7 +1453,7 @@ msgstr "Za aktivacijo poglejte v e-nabiralnik."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr "Če platforme ne boste aktivirali v 24 urah, bo ta samodejno izbrisana."
+msgstr "Če platforme ne boste aktivirali v roku 24 ur, bo ta samodejno izbrisana."
 
 msgid "Sign up"
 msgstr "Registracija"
@@ -1461,7 +1492,7 @@ msgid "please enter a valid email address."
 msgstr "vpišite veljaven naslov elektronske pošte."
 
 msgid "please enter numbers only."
-msgstr "vpisujte samo številke."
+msgstr "vpišite samo številke."
 
 msgid "Submissions disabled"
 msgstr "Prispevki so onemogočeni"
@@ -1485,11 +1516,8 @@ msgstr "Za ponovno prijavo uporabite 16-mestno kodo. Le tako boste lahko pregled
 msgid "View your report"
 msgstr "Oglejte si svojo prijavo"
 
-msgid "Recipient selection"
-msgstr "Izbira prejemnika"
-
-msgid "Select the recipients of your report:"
-msgstr "Izberi prejemnike prijave:"
+msgid "Select the recipients of your report"
+msgstr "Izberite prejemnike prijave"
 
 msgid "Recipients selected:"
 msgstr "Izbrani prejemniki:"
@@ -1497,24 +1525,24 @@ msgstr "Izbrani prejemniki:"
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Dosegli ste največje dovoljeno število izbranih prejemnikov."
 
+msgid "You must select at least one recipient."
+msgstr "Izbrati morate vsaj enega prejemnika."
+
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr "Naslednji prejemniki bodo prejeli vaše poročilo in jih ni bilo mogoče odznačiti:"
+msgstr "Naslednji prejemniki bodo prejeli vašo prijavo in jih ni mogoče odznačiti:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
 "invalid:"
 msgstr " V tem koraku odgovori na naslednja vprašanja manjkajo ali so neveljavni:"
 
-msgid "You must select at least one recipient."
-msgstr "Izbrati morate vsaj enega prejemnika."
+msgid "Recipient selection"
+msgstr "Izbira prejemnika"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Datoteke se še nalagajo."
-
-msgid "The following steps have errors:"
-msgstr "V teh korakih so napake:"
 
 msgid "Hide"
 msgstr "Skrij"
@@ -1522,7 +1550,7 @@ msgstr "Skrij"
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
 "whistleblowing platform."
-msgstr "Naslednji postopek vas bo vodil skozi ustvarjanje vaše platforme za prijave nepravilnosti."
+msgstr "Naslednji postopek vas bo po korakih vodil skozi ustvarjanje vaše platforme za prijavo suma nepravilnosti."
 
 msgid "Please choose a configuration profile:"
 msgstr "Izberite konfiguracijski profil:"
@@ -1541,10 +1569,10 @@ msgid "Please choose a different username."
 msgstr "Izberite drugo uporabniško ime."
 
 msgid "I have read and agree to the terms of the license."
-msgstr " \nPrebral sem pogoje licence in se strinjam z njimi."
+msgstr "Prebral sem licenčne pogoje in se strinjam z njimi."
 
 msgid "You have completed the platform wizard."
-msgstr " \nDokončali ste čarovnika za platformo."
+msgstr "Dokončali ste čarovnika za platformo."
 
 msgid "Please summarize your report in a few words."
 msgstr "V nekaj besedah opišite svojo prijavo."
@@ -1574,13 +1602,13 @@ msgid "It is a rumor I heard"
 msgstr "Gre za govorico, ki sem jo slišal"
 
 msgid "How are you involved in the reported facts?"
-msgstr "Kako ste udeleženi v prijavljena dejstva?"
+msgstr "Kako ste vključeni v prijavljena dejstva?"
 
 msgid "Do you have evidence to support your report?"
-msgstr "Ali imate dokaze, s katerim lahko podkrepite vašo prijavo?"
+msgstr "Ali imate dokaze, s katerimi lahko podkrepite svojo prijavo?"
 
 msgid "Please attach the evidence to support your report."
-msgstr "Prosim, pripnite evidence, s katerimi utemeljujete vašo prijavo. "
+msgstr "Prosim, pripnite dokaze, s katerimi utemeljujete svojo prijavo. "
 
 msgid "Please describe the evidence in detail."
 msgstr "Prosim, podrobno opišite dokaze."
@@ -1592,12 +1620,12 @@ msgid ""
 msgstr "Podroben opis predloženih dokazov poveča našo sposobnost ocenjevanja trditev in preiskave. Bodite pozorni, da se sklicujete na znatne dele vseh predloženih videoposnetkov, slik ali dokumentov."
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr "Ste s temi dejstvi seznanili tudi druge organizacije in/ali posameznike?"
+msgstr "Ali ste z omenjenimi dejstvi seznanili tudi druge organizacije in/ali posameznike?"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr "Navedite organizacije in/ali posameznike, ki ste jih seznanili s temi dejstvi."
+msgstr "Navedite organizacije in/ali posameznike, ki ste jih seznanili z navedenimi dejstvi."
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
@@ -1608,7 +1636,7 @@ msgid "What is the outcome you want to achieve with our support?"
 msgstr "Kaj želite doseči z našo podporo?"
 
 msgid "Do you want to provide your identification information?"
-msgstr "Ali želite navesti podatke o vaši identiteti?"
+msgstr "Ali želite navesti podatke o svoji identiteti?"
 
 msgid "First name"
 msgstr "Ime"
@@ -1617,13 +1645,13 @@ msgid "Last name"
 msgstr "Priimek"
 
 msgid "Alternative contact method"
-msgstr "Drug način stika"
+msgstr "Drug način kontaktiranja"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr "Želim biti v stiku le po tej platformi"
+msgstr "Želim, da me kontaktirate samo preko te platforme"
 
 msgid "Other"
-msgstr "Other"
+msgstr "Drugo"
 
 msgid "Dear {RecipientName},"
 msgstr "Spoštovani {RecipientName},"
@@ -1631,7 +1659,7 @@ msgstr "Spoštovani {RecipientName},"
 msgid ""
 "You're receiving this email because a user account has been created for you "
 "on the system: {Site}"
-msgstr "To e-pošto ste prejeli, ker je bil za vas ustvarjen uporabniški račun v sistemu: {Site}"
+msgstr "To elektronsko pošto ste prejeli, ker je bil za vas ustvarjen uporabniški račun v sistemu: {Site}"
 
 msgid "Username: {Username}"
 msgstr "Uporabniško ime: {Username}"
@@ -1647,7 +1675,7 @@ msgstr "Kliknite na povezavo za aktivacijo za nadaljevanje aktivacije računa in
 msgid ""
 "After successful activation you will be able to access the system via the "
 "following link: {LoginUrl}"
-msgstr "Po uspešni aktivaciji boste lahko dostopali do sistema po naslednji povezavi: {LoginUrl}"
+msgstr "Po uspešni aktivaciji boste lahko dostopali do sistema preko naslednje povezave: {LoginUrl}"
 
 msgid "Kind regards,"
 msgstr "S spoštovanjem,"
@@ -1656,23 +1684,23 @@ msgid "Account activation"
 msgstr "Aktivacija računa"
 
 msgid "Your whistleblowing platform is now accessible at:"
-msgstr "Vaša platforma za prijave je dostopna na: "
+msgstr "Vaša platforma za prijave suma nepravilnosti je dostopna na: "
 
 msgid "To log in, visit:"
-msgstr "Za vpis pojdite na:"
+msgstr "Za prijavo na platformo pojdite na:"
 
 msgid "Users' credentials:"
-msgstr "Podatki o uporabniku:"
+msgstr "Podatki uporabnika za dostop:"
 
 msgid "The platform will be automatically deleted on:"
-msgstr "Platforma bo samodejno izbrisana: "
+msgstr "Platforma bo samodejno izbrisana dne: "
 
 msgid "Access instructions"
 msgstr "Navodila za dostop"
 
 msgid ""
 "The number of activities recently detected appears to be higher than usual."
-msgstr "Število zaznanih dejavnosti se zdi višje kot običajno."
+msgstr "Število trenutno zaznanih dejavnosti se zdi višje kot običajno."
 
 msgid ""
 "This could be a sign of an attack (for example, someone flooding your server"
@@ -1704,7 +1732,7 @@ msgstr "V tehnologijo GlobaLeaks je vključena komponenta za preverjanje stanja 
 msgid ""
 "For more information, log in to the Administration interface and look at the"
 " \"System Stats\" and \"Anomalies\" sections."
-msgstr "Za več informacij se vpišite v vmesnik za skrbništvo in si oglejte razdelka \"Sistemska statistika\" in \"Anomalije\"."
+msgstr "Za več informacij se vpišite v vmesnik za administratorje in si oglejte rubriki \"Sistemska statistika\" in \"Anomalije\"."
 
 msgid "Anomaly detected in {NodeName}"
 msgstr "Anomalija zaznana na strežniku {NodeName}"
@@ -1712,15 +1740,15 @@ msgstr "Anomalija zaznana na strežniku {NodeName}"
 msgid ""
 "This is an email to inform you that the PGP key of the following users is "
 "going to expire or has already expired:"
-msgstr "Ta e-pošta vas obvešča, da bo ključ PGP naslednjih uporabnikov potekel ali pa je že potekel:"
+msgstr "S tem e-poštnim sporočilom vas obveščamo, da bo ključ PGP naslednjih uporabnikov v kratkem potekel, ali pa je že potekel:"
 
 msgid ""
 "Without a valid PGP key, the system will not be able to send them encrypted "
 "notifications."
-msgstr "Brez veljavnega PGP ključa, sistem ne more pošiljati kodiranih sporočil."
+msgstr "Brez veljavnega PGP ključa sistem ne more pošiljati šifriranih sporočil."
 
 msgid "PGP key expiration alert"
-msgstr "Opozorilo o poteku PGP ključa"
+msgstr "Opozorilo o poteku veljavnosti PGP ključa"
 
 msgid "A new whistleblowing site has been registered."
 msgstr "Registrirano je bilo novo spletno mesto za prijavo suma nepravilnosti."
@@ -1738,16 +1766,16 @@ msgid "Email: {Email}"
 msgstr "E-pošta: {Email}"
 
 msgid "New whistleblowing site registered"
-msgstr "Registrirano novo spletno mesto za prijavo suma nepravilnosti"
+msgstr "Registracija novega spletnega mesta za prijavo suma nepravilnosti "
 
 msgid ""
 "This is a test email sent out from the platform's administrative interface."
-msgstr "Testno elektronsko sporočilo iz administrativnega vmesnika platforme."
+msgstr "Testno elektronsko sporočilo platforme iz vmesnika za administratorje."
 
 msgid ""
 "Reception of this email indicates that the server was able to authenticate "
 "to and interact with the SMTP mail server."
-msgstr "Prejem te e-pošte nakazuje, da se je strežnik lahko overil in uporabljal poštni strežnik SMTP."
+msgstr "Prejem te e-pošte nakazuje, da se je strežnik lahko overil in sodeloval s poštnim strežnikom SMTP."
 
 msgid "Test email"
 msgstr "Testna elektronska pošta"
@@ -1755,7 +1783,7 @@ msgstr "Testna elektronska pošta"
 msgid ""
 "This is an email to notify you that a request has been made to change your "
 "email address to {NewEmailAddress}."
-msgstr "Ta e-pošta vas obvešča, da je bila podana zahteva za spremembo vašega e-poštnega naslova v {NewEmailAddress}."
+msgstr "S tem e-poštnim sporočilom vas obveščamo, da je bila podana zahteva za spremembo vašega elektronskega naslova v {NewEmailAddress}."
 
 msgid "Click the following link to validate this change:"
 msgstr "Za potrditev spremembe kliknite na povezavo:"
@@ -1766,7 +1794,7 @@ msgid ""
 msgstr "Če niste zahtevali spremembe, takoj zamenjajte geslo in obvestite sistemskega administratorja."
 
 msgid "Email change request"
-msgstr "Prošnja za spremembo e-pošte"
+msgstr "Zahtevek za spremembo e-pošte"
 
 msgid "From: {Author}"
 msgstr "Od: {Author}"
@@ -1792,7 +1820,7 @@ msgid ""
 msgstr "Potrdilo HTTPS, naloženo na platformo, bo kmalu poteklo ali pa je že poteklo."
 
 msgid "Expiration date: {ExpirationDate}"
-msgstr "Veljavnost: {ExpirationDate}"
+msgstr "Datum poteka veljavnosti: {ExpirationDate}"
 
 msgid ""
 "Without a valid certificate, the platform will be accessible in a secure way"
@@ -1800,7 +1828,7 @@ msgid ""
 msgstr "Brez veljavnega certifikata lahko do platforme varno dostopate le z brskalnikom Tor."
 
 msgid "Log in to solve the issue."
-msgstr "Vpišite se, da rešite težavo."
+msgstr "Prijavite se, da rešite težavo."
 
 msgid "Expiration alert for HTTPS certificate"
 msgstr "Opozorilo o poteku veljavnosti za potrdilo HTTPS"
@@ -1818,7 +1846,7 @@ msgstr "Osvežitev certifikata HTTPS ni uspela"
 msgid ""
 "This is an email to notify you that a custodian has authorized you to access"
 " to the whistleblowing identity for the report {TipNum}."
-msgstr "S to e-pošto vas obveščamo, da je skrbnik odobril dostop do identitete prijavitelja za prijavo {TipNum}."
+msgstr "S tem e-poštnim sporočilom vas obveščamo, da vam je skrbnik odobril dostop do identitete prijavitelja v postopku prijave {TipNum}."
 
 msgid "The report can be accessed at:"
 msgstr "Prijava je na voljo:"
@@ -1829,7 +1857,7 @@ msgstr "Dostop do identitete prijavitelja odobren"
 msgid ""
 "This is an email to notify you that a custodian has denied you access to the"
 " whistleblowing identity for the report {TipNum}."
-msgstr "S to e-pošto vas obveščamo, da je skrbnik zavrnil dostop do identitete prijavitelja za prijavo {TipNum}."
+msgstr "S tem e-poštnim sporočilom vas obveščamo, da vam je skrbnik zavrnil dostop do identitete prijavitelja v postopku prijave {TipNum}."
 
 msgid "Access to whistleblower's identity denied"
 msgstr "Dostop do identitete prijavitelja zavrnjen"
@@ -1837,7 +1865,7 @@ msgstr "Dostop do identitete prijavitelja zavrnjen"
 msgid ""
 "This is an email to notify you that a recipient has requested access to the "
 "whistleblower's identity for the report {TipNum}"
-msgstr "S to e-pošto vas obveščamo, da je prejemnik zahteval dostop do identitete prijavitelja za prijavo {TipNum}."
+msgstr "S tem e-poštnim sporočilom vas obveščamo, da je prejemnik zahteval dostop do identitete prijavitelja v postopku prijave {TipNum}."
 
 msgid "The request can be accessed at:"
 msgstr "Zahtevek je na voljo:"
@@ -1848,7 +1876,7 @@ msgstr "Nov zahtevek za dostop do identitete prijavitelja"
 msgid ""
 "This is an email to notify you that the whistleblower for the report "
 "{TipNum} has provided their identity."
-msgstr "S to e-pošto vas obveščamo, da je prijavitelj prijave {TipNum} navedel svojo identiteto."
+msgstr "S tem e-poštnim sporočilom vas obveščamo, da je prijavitelj v postopku prijave {TipNum} navedel svojo identiteto."
 
 msgid "The whistleblower has provided their identity"
 msgstr "Prijavitelj je razkril svojo identiteto"
@@ -1856,15 +1884,15 @@ msgstr "Prijavitelj je razkril svojo identiteto"
 msgid ""
 "You're receiving this email because a password reset has been requested for "
 "the account: {Username}"
-msgstr "To sporočilo ste prejeli, ker ste zahtevali spremembo gesla za uporabniški račun: {Username}"
+msgstr "To e-poštno sporočilo ste prejeli, ker ste zahtevali spremembo gesla za uporabniški račun: {Username}"
 
 msgid ""
 "If you didn't make this request, you may safely ignore and delete this "
 "email."
-msgstr "Če niste poslali te zahteve, lahko mirno prezrete in izbrišete to e-pošto."
+msgstr "Če niste poslali tega zahtevka, lahko mirno prezrete in izbrišete to e-poštno sporočilo."
 
 msgid "You can confirm your request by clicking the following link:"
-msgstr "Svojo zahtevo lahko potrdite s klikom na to povezavo: "
+msgstr "Svoj zahtevek lahko potrdite s klikom na sledečo povezavo: "
 
 msgid "Password reset instructions"
 msgstr "Navodila za ponastavitev gesla"
@@ -1872,7 +1900,7 @@ msgstr "Navodila za ponastavitev gesla"
 msgid ""
 "This is an email to inform you that your PGP key is expiring or has already "
 "expired."
-msgstr "To sporočilo vas obvešča, da PGP ključ poteče ali, da je že potekel."
+msgstr "S tem e-poštnim sporočilom vas obveščamo, da bo ključ PGP kmalu potekel ali je že potekel."
 
 msgid ""
 "You should extend its validity and update the key present on the platform, "
@@ -1894,7 +1922,7 @@ msgid "A software update is available."
 msgstr "Na voljo je posodobitev programske opreme.\n "
 
 msgid "It is good security practice to keep the platform up to date."
-msgstr "Dobra varnostna praksa, da platformo redno posodabljate. "
+msgstr "Med dobre varnostne prakse spada redno posodabljanje platforme. "
 
 msgid ""
 "To learn about new features and bug fixes in the new version consult the "
@@ -1909,7 +1937,7 @@ msgstr "Za navodila o posodobitvah programske opreme glejte dokumentacijo na: {U
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr "To je e-pošta za obvestilo, da vam je prejemnik odobril dostop do enega ali več prijav. "
+msgstr "S tem e-poštnim sporočilom vas obveščamo, da vam je prejemnik odobril dostop do ene ali več prijav."
 
 msgid "New report"
 msgstr "Nova prijava"
@@ -1918,32 +1946,32 @@ msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Najzgodnejši datum poteka je {EarliestExpirationDate}."
 
 msgid "Please remember to check them before they are deleted."
-msgstr "Ne pozabite jih pregledati, preden bodo izbrisani."
+msgstr "Ne pozabite jih pregledati, preden bodo izbrisane."
 
 msgid "Some reports will expire soon"
 msgstr "Nekaterim prijavam se bo kmalu iztekla veljavnost"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "s tem sporočilom vas obveščamo, da vas je prijavitelj določil kot prejemnika prijave. "
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr "S tem e-poštnim sporočilom vas obveščamo, da je datum opomnika za prijavo dosežen."
+
+msgid "Reminder"
+msgstr "Opomnik"
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Prosimo vas, da z infromacijami in gradivom ravnate z vso potrebno skrbnostjo. Zavedajte se, da se žvižgači pogosto osebno izpostavijo velikim tveganjem v interesu javnosti. Zato obravnavajte gradiva, ki so del te prijave, kot zelo pomembna. "
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr "S tem e-poštnim sporočilom vas obveščamo, da je datum opomnika za eno ali več prijav dosežen."
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr "To je e-pošta z obvestilom, da je bila obstoječa prijava dopolnjena. "
+msgstr "S tem e-poštnim sporočilom vas obveščamo, da je bila obstoječa prijava dopolnjena. "
 
 msgid "Report updated"
 msgstr "Prijava je dopolnjena"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr "To e-sporočilo vas opominja na neprebrane ali dopolnjene prijave."
+msgstr "S tem e-poštnim sporočilom vas opozarjamo na neprebrane ali dopolnjene prijave."
 
 msgid "Reminder about unread or updated reports"
 msgstr "Opomnik o neprebranih ali dopolnjenih prijavah."

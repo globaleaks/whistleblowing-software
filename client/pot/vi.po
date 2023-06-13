@@ -462,9 +462,6 @@ msgstr "Sao chép vào Clipboard"
 msgid "Logout"
 msgstr "Đăng xuất"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
-
 msgid "Grant access"
 msgstr ""
 
@@ -477,7 +474,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr "Ưu đãi"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1042,14 +1064,17 @@ msgstr "Mạng"
 msgid "Sites"
 msgstr "Các trang web"
 
-msgid "Mode:"
-msgstr "Trạng thái:"
+msgid "Profile"
+msgstr "Hồ sơ"
 
 msgid "Configure"
 msgstr "Cấu hình"
 
 msgid "Subdomain"
 msgstr "Tên miền phụ"
+
+msgid "Mode:"
+msgstr "Trạng thái:"
 
 msgid "Creation date:"
 msgstr "Ngày thành lập"
@@ -1119,6 +1144,9 @@ msgstr "Cho phép người nhận xóa báo cáo"
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Cho phép người nhận hoãn thời điểm hết hạn của báo cáo"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Cho người dùng quyền quản trị để truy cập đến những tính năng sau: "
@@ -1223,7 +1251,7 @@ msgstr "Gởi"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Khi xác nhận, bạn sẽ hoãn ngày hết hạn đến:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1329,6 +1357,9 @@ msgstr "Đến:"
 
 msgid "Filename"
 msgstr "Tên tập tin"
+
+msgid "View"
+msgstr "Xem"
 
 msgid "Upload date"
 msgstr "Ngày tải lên"
@@ -1494,17 +1525,17 @@ msgstr "Sử dụng biên nhận 16 ký số để đăng nhập. Nó sẽ cho p
 msgid "View your report"
 msgstr "Xem báo cáo của bạn"
 
-msgid "Recipient selection"
-msgstr "Chọn người nhận"
-
-msgid "Select the recipients of your report:"
-msgstr "Chọn người nhận cho báo cáo của bạn:"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "Người nhận được chọn:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Số người chọn để nhận báo cáo đã ở mức tối đa."
+
+msgid "You must select at least one recipient."
+msgstr "Bạn phải chọn ít nhất một người nhận"
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1516,14 +1547,11 @@ msgid ""
 "invalid:"
 msgstr "Trong bước này, câu trả lời cho các câu hỏi sau đây bị thiếu hoặc không hợp lệ:"
 
-msgid "You must select at least one recipient."
-msgstr "Bạn phải chọn ít nhất một người nhận"
+msgid "Recipient selection"
+msgstr "Chọn người nhận"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Chờ cho (các) tập tin tải lên."
-
-msgid "The following steps have errors:"
-msgstr "Các bước sau đây có lỗi:"
 
 msgid "Hide"
 msgstr "Dấu"
@@ -1933,17 +1961,17 @@ msgid "Some reports will expire soon"
 msgstr "Một số báo cáo gần hết hạn"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "Email này thông báo cho bạn biết là người tố giác đã chọn bạn làm người nhận báo cáo của họ."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Xin bạn đặc biệt chú ý đến thông tin và tài liệu có trong đó. Xin nhớ rằng những người tố giác thường chấp nhận nhiều rủi ro cho họ cũng vì mục tiêu lợi ích công cộng. Do đó, tài liệu trong báo cáo này nên được coi là rất quan trọng."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Đây là email để thông báo rằng một báo cáo trong hệ thống vừa được cập nhật."

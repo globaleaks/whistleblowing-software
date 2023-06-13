@@ -452,9 +452,6 @@ msgstr "クリップボードにコピー"
 msgid "Logout"
 msgstr "ログアウト"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
-
 msgid "Grant access"
 msgstr ""
 
@@ -467,7 +464,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr "特権"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr "編集"
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr "言語を選択してください"
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1032,14 +1054,17 @@ msgstr "ネットワーク"
 msgid "Sites"
 msgstr "サイト"
 
-msgid "Mode:"
-msgstr "モード:"
+msgid "Profile"
+msgstr "プロフィール"
 
 msgid "Configure"
 msgstr "設定"
 
 msgid "Subdomain"
 msgstr "サブドメイン"
+
+msgid "Mode:"
+msgstr "モード:"
 
 msgid "Creation date:"
 msgstr "生成日:"
@@ -1109,6 +1134,9 @@ msgstr "受信者が報告を削除することを許可する"
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "受信者が報告の有効期限を延長することを許可する"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "次の機能にユーザーの管理アクセス権を与えます:"
@@ -1213,7 +1241,7 @@ msgstr "送信"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "確認すると、有効期限を以下に延期します:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1319,6 +1347,9 @@ msgstr "宛先:"
 
 msgid "Filename"
 msgstr "ファイル名"
+
+msgid "View"
+msgstr "表示"
 
 msgid "Upload date"
 msgstr "アップロード日"
@@ -1484,17 +1515,17 @@ msgstr "16桁の受領番号を使用してログインください。私たち�
 msgid "View your report"
 msgstr "報告を表示"
 
-msgid "Recipient selection"
-msgstr "受信者の選択"
-
-msgid "Select the recipients of your report:"
-msgstr "報告の受信者を選択してください:"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "選択された受信者:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "選択可能な受信者の最大数に達しました。"
+
+msgid "You must select at least one recipient."
+msgstr "少なくとも一人の受信者を選択する必要があります。"
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1506,14 +1537,11 @@ msgid ""
 "invalid:"
 msgstr "このステップでは、以下の質問に対する回答が見つからないか、無効です:"
 
-msgid "You must select at least one recipient."
-msgstr "少なくとも一人の受信者を選択する必要があります。"
+msgid "Recipient selection"
+msgstr "受信者の選択"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "ファイルのアップロードが完了するのを待っています。"
-
-msgid "The following steps have errors:"
-msgstr "次のステップにエラーがあります:"
 
 msgid "Hide"
 msgstr "非表示"
@@ -1923,17 +1951,17 @@ msgid "Some reports will expire soon"
 msgstr "一部の報告はまもなく期限が切れます"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "これは、内部告発者があなたを報告の価値のある受信者として選択したことを通知するメールです。"
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "あなたは、含まれる情報および資料に特に注意を払うよう求められます。 内部通報者はしばしば、公衆の利益のために高い個人的リスクにさらされることに注意してください。 したがって、この提出書類の中で報告される資料は、重要性が高いと考えるべきです。"
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "これは、既存の報告が更新されたことを通知するメールです。"

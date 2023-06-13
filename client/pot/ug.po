@@ -449,9 +449,6 @@ msgstr "چاپلاق تاختىسىغا چاپلا"
 msgid "Logout"
 msgstr "تىزىمدىن چىق"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "بۇ تاپشۇرىۋالغۇچىغا ئىشلەتكۈچىلەرگە مەلۇماتنى زىيارەت قىلىش ھوقۇقى بېرىش ئىقتىدارى بەر"
-
 msgid "Grant access"
 msgstr "ھوقۇق بەر"
 
@@ -464,7 +461,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1029,14 +1051,17 @@ msgstr ""
 msgid "Sites"
 msgstr "بېكەتلەر"
 
-msgid "Mode:"
-msgstr "ھالىتى:"
+msgid "Profile"
+msgstr ""
 
 msgid "Configure"
 msgstr "سەپلە"
 
 msgid "Subdomain"
 msgstr "قىسمى دائىرە"
+
+msgid "Mode:"
+msgstr "ھالىتى:"
 
 msgid "Creation date:"
 msgstr "قۇرۇلغان چېسلا:"
@@ -1106,6 +1131,9 @@ msgstr "تاپشۇرىۋالغۇچىلارنىڭ مەلۇماتلارنى ئۆچ
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "تاپشۇرىۋالغۇچىنىڭ مەلۇمات سۈرۈكىنى كەينىگە سۈرىشىگە رۇخسەت قىل"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "بۇ تاپشۇرىۋالغۇچىغا ئىشلەتكۈچىلەرگە مەلۇماتنى زىيارەت قىلىش ھوقۇقى بېرىش ئىقتىدارى بەر"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "تۆۋەندىكى ئىقتىدارلار ئۈچۈن ئىشلەتكۈچىلەرگە باشقۇرغۇچى زىيارەت ھوقۇقى بەر:"
@@ -1210,7 +1238,7 @@ msgstr "ئەۋەت"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "جەزىملىسىڭىز، سۈرۈك چېسلاسىنى بۇ كۈنگە كەينىگە سۈرگەن بولىسىز:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1316,6 +1344,9 @@ msgstr "تاپشۇرىۋالغۇچى:"
 
 msgid "Filename"
 msgstr "ھۆججەت نامى"
+
+msgid "View"
+msgstr ""
 
 msgid "Upload date"
 msgstr "يۈكلەنگەن چېسلا"
@@ -1481,17 +1512,17 @@ msgstr "تىزىمغا كىرىش ئۈچۈن 16 خانىلىق تالون كود
 msgid "View your report"
 msgstr "مەلۇماتىڭىزنى كۆرۈڭ"
 
-msgid "Recipient selection"
-msgstr "تاپشۇرىۋالغۇچى تاللاش"
-
-msgid "Select the recipients of your report:"
-msgstr "مەلۇماتىڭىزنى تاپشۇرىۋالغۇچىلارنى تاللاڭ"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "تاللانغان تاپشۇرىۋالغۇچىلار:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "تاللاشقا بولىدىغان تاپشۇرىۋالغۇچىلار سان چېكىگە يەتتىڭىز."
+
+msgid "You must select at least one recipient."
+msgstr "ئاز دېگەندە بىر تاپشۇرىۋالغۇچى تاللىشىڭىز كېرەك."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1503,14 +1534,11 @@ msgid ""
 "invalid:"
 msgstr "بۇ قەدەمدە تۆۋەندىكى سۇئاللارغا بېرىلگەن جاۋاپلار خاتا ياكى ئىناۋەتسىز."
 
-msgid "You must select at least one recipient."
-msgstr "ئاز دېگەندە بىر تاپشۇرىۋالغۇچى تاللىشىڭىز كېرەك."
+msgid "Recipient selection"
+msgstr "تاپشۇرىۋالغۇچى تاللاش"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "ھۆججەت(لەر)نىڭ يۈكلىنىپ بولىشىنى ساقلاۋاتىدۇ."
-
-msgid "The following steps have errors:"
-msgstr "تۆۋەندىكى قەدەملەردە خاتالىق بار:"
 
 msgid "Hide"
 msgstr "يوشۇر"
@@ -1920,17 +1948,17 @@ msgid "Some reports will expire soon"
 msgstr "بەزى مەلۇماتلارنىڭ يېقىندا سۈرىكى توشىدۇ"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "بۇ ئېلخەت، بىر پاش قىلغۇچىنىڭ سىزنى ئۆز مەلۇماتىدا قىممەتلىك تاپشۇرىۋالغۇچى، دەپ تاللىغانلىقىنى ئۇقتۇرۇش ئۈچۈندۇر."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "بۇ يەردىكى ئۇچۇرلار ۋە ماتېرىياللارغا ئالاھىدە ئەھمىيەت بېرىشىڭىز تەلەپ قىلىنىدۇ. ئېسىڭىزدە بولسۇنكى ، پاش قىلغۇچىلار كۆپىنچە ئومۇمنىڭ مەنپەئەتى ئۈچۈن چوڭ خەتەرگە تەۋەككۈل قىلىدۇ. سۇڭا بۇ مەلۇماتتا تەمىنلەنگەن ماتېرىياللار ئىنتايىن مۇھىم، دەپ قارىلىشى كېرەك."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "بۇ ئېلخەت سىزگە بىر مەۋجۇت مەلۇماتنىڭ يېڭىلانغانلىقىنى ئۇقتۇرۇش ئۈچۈندۇر."

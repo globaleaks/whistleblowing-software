@@ -447,9 +447,6 @@ msgstr "Nakili kwenye ubao wa kunakili"
 msgid "Logout"
 msgstr "Toka"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr ""
-
 msgid "Grant access"
 msgstr ""
 
@@ -462,7 +459,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1027,7 +1049,7 @@ msgstr "Mtandao"
 msgid "Sites"
 msgstr "Tovuti"
 
-msgid "Mode:"
+msgid "Profile"
 msgstr ""
 
 msgid "Configure"
@@ -1035,6 +1057,9 @@ msgstr "Sanidi"
 
 msgid "Subdomain"
 msgstr "Kikoa kidogo"
+
+msgid "Mode:"
+msgstr ""
 
 msgid "Creation date:"
 msgstr "Tarehe ya kuundwa:"
@@ -1104,6 +1129,9 @@ msgstr "Ruhusu mpokeaji kufuta ripoti"
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Ruhusu wapokeaji kuahirisha tarehe ya kumalizika muda wa ripoti."
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Mtumiaji ana ufikiaji wa kiutawala kwa huduma zifuatazo"
@@ -1208,7 +1236,7 @@ msgstr "Tuma"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Kwa kudhibitisha, utaahirisha tarehe ya kumalizika muda kuwa"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1314,6 +1342,9 @@ msgstr "Kwenda kwa:"
 
 msgid "Filename"
 msgstr "Jina la faili"
+
+msgid "View"
+msgstr ""
 
 msgid "Upload date"
 msgstr "Tarehe ya kupakiwa"
@@ -1479,10 +1510,7 @@ msgstr "Tumia namba 16 za risiti kuingia. Itakuruhusu kuangalia ujumbe wowote\n\
 msgid "View your report"
 msgstr "Angalia ripoti yako"
 
-msgid "Recipient selection"
-msgstr "Uchaguzi wa wapokeaji"
-
-msgid "Select the recipients of your report:"
+msgid "Select the recipients of your report"
 msgstr ""
 
 msgid "Recipients selected:"
@@ -1490,6 +1518,9 @@ msgstr "Wapokeaji waliochaguliwa:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Umefikia kiwango kikubwa cha wapokeaji wanaochaguliwa."
+
+msgid "You must select at least one recipient."
+msgstr "Lazima uchague angalau mpokeaji mmoja."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1501,14 +1532,11 @@ msgid ""
 "invalid:"
 msgstr "Katika hatua hii, majibu kwa maswali yafuatayo aidha yanakosekana au\n\nSio halali:"
 
-msgid "You must select at least one recipient."
-msgstr "Lazima uchague angalau mpokeaji mmoja."
+msgid "Recipient selection"
+msgstr "Uchaguzi wa wapokeaji"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Inasubiri faili/mafaili ili kumaliza upakuaji."
-
-msgid "The following steps have errors:"
-msgstr "Hatua zifuatazo zina makossa:"
 
 msgid "Hide"
 msgstr "Ficha"
@@ -1918,17 +1946,17 @@ msgid "Some reports will expire soon"
 msgstr "Baadhi ya ripoti zitaisha muda wake hivi karibuni"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "Barua pepe hii ni kukujulisha kuwa, mtoa taarifa ya siri amekuchagua kama\n\nmpokeaji muhimu wa ripoti yao."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Unaombwa kuweka umakini kwenye taarifa na nyenzo \n\nzilizopo hapa. Tafadhali kumbuka kuwa watoa habari za siri mara nyingi hujiweka\n\nkatika mazingira hatarishi kwa manufaa ya umma. Kwahiyo\n\nnyenzo zilizotolewa ndani ya ripoti hii zinapaswa kuzingatiwa kuwa na\n\numuhimu sana."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr ""

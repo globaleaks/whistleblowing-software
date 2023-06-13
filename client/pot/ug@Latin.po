@@ -447,9 +447,6 @@ msgstr "Chaplaq taxtisigha chapla"
 msgid "Logout"
 msgstr "Tizimdin chiq"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Bu tapshuriwalghuchigha ishletküchilerge melumatni ziyaret qilish hoquqi bérish iqtidari ber"
-
 msgid "Grant access"
 msgstr "Hoquq ber"
 
@@ -462,7 +459,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1027,14 +1049,17 @@ msgstr ""
 msgid "Sites"
 msgstr "Béketler"
 
-msgid "Mode:"
-msgstr "Haliti:"
+msgid "Profile"
+msgstr ""
 
 msgid "Configure"
 msgstr "Seple"
 
 msgid "Subdomain"
 msgstr "Qismi da’ire"
+
+msgid "Mode:"
+msgstr "Haliti:"
 
 msgid "Creation date:"
 msgstr "Qurulghan chésla:"
@@ -1104,6 +1129,9 @@ msgstr "Tapshuriwalghuchilarning melumatlarni öchürishige ruxset qil"
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Tapshuriwalghuchining melumat sürükini keynige sürishige ruxset qil"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "Bu tapshuriwalghuchigha ishletküchilerge melumatni ziyaret qilish hoquqi bérish iqtidari ber"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Töwendiki iqtidarlar üchün ishletküchilerge bashqurghuchi ziyaret hoquqi ber:"
@@ -1208,7 +1236,7 @@ msgstr "Ewet"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Jezimlisingiz, sürük chéslasini bu kün’ge keynige sürgen bolisiz:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1314,6 +1342,9 @@ msgstr "Tapshuriwalghuchi:"
 
 msgid "Filename"
 msgstr "Höjjet nami"
+
+msgid "View"
+msgstr ""
 
 msgid "Upload date"
 msgstr "Yüklen’gen chésla"
@@ -1479,17 +1510,17 @@ msgstr "Tizimgha kirish üchün 16 xaniliq talon kodini ishliting. u sizning biz
 msgid "View your report"
 msgstr "Melumatingizni körüng"
 
-msgid "Recipient selection"
-msgstr "Tapshuriwalghuchi tallash"
-
-msgid "Select the recipients of your report:"
-msgstr "Melumatingizni tapshuriwalghuchilarni tallang"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "Tallan’ghan tapshuriwalghuchilar:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Tallashqa bolidighan tapshuriwalghuchilar san chékige yettingiz."
+
+msgid "You must select at least one recipient."
+msgstr "Az dégende bir tapshuriwalghuchi tallishingiz kérek."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1501,14 +1532,11 @@ msgid ""
 "invalid:"
 msgstr "Bu qedemde töwendiki su’allargha bérilgen jawaplar xata yaki inawetsiz."
 
-msgid "You must select at least one recipient."
-msgstr "Az dégende bir tapshuriwalghuchi tallishingiz kérek."
+msgid "Recipient selection"
+msgstr "Tapshuriwalghuchi tallash"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Höjjet(ler)ning yüklinip bolishini saqlawatidu."
-
-msgid "The following steps have errors:"
-msgstr "Töwendiki qedemlerde xataliq bar:"
 
 msgid "Hide"
 msgstr "Yoshur"
@@ -1918,17 +1946,17 @@ msgid "Some reports will expire soon"
 msgstr "Bezi melumatlarning yéqinda süriki toshidu"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "Bu élxet, bir pash qilghuchining sizni öz melumatida qimmetlik tapshuriwalghuchi, dep tallighanliqini uqturush üchündur."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Bu yerdiki uchurlar we matériyallargha alahide ehmiyet bérishingiz telep qilinidu. ésingizde bolsunki , pash qilghuchilar köpinche omumning menpe’eti üchün chong xeterge tewekkül qilidu. Shunga bu melumatta teminlen’gen matériyallarni intayin muhim, dep qarilishi kérek."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Bu élxet sizge bir mewjut melumatning yéngilan’ghanliqini uqturush üchündur."

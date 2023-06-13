@@ -465,9 +465,6 @@ msgstr "Másolás vágólapra"
 msgid "Logout"
 msgstr "Kilépés"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Ennek a címzettnek képesség adása arra, hogy felhasználói hozzáférést adjon a jelentésekhez"
-
 msgid "Grant access"
 msgstr "Hozzáférés adása"
 
@@ -480,7 +477,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr "Kiváltságok"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr "Redaktálás"
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1045,14 +1067,17 @@ msgstr "Hálózat"
 msgid "Sites"
 msgstr "Weboldalak"
 
-msgid "Mode:"
-msgstr "Mód:"
+msgid "Profile"
+msgstr "Profil"
 
 msgid "Configure"
 msgstr "Beállítás"
 
 msgid "Subdomain"
 msgstr "Aldomain"
+
+msgid "Mode:"
+msgstr "Mód:"
 
 msgid "Creation date:"
 msgstr "Létrehozás dátuma:"
@@ -1122,6 +1147,9 @@ msgstr "Engedélyezés a címzetteknek, hogy töröljék a tippeket"
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "A címzett számára engedélyezi a füles lejárati dátumának hosszabítását"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "Ennek a címzettnek képesség adása arra, hogy felhasználói hozzáférést adjon a jelentésekhez"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "A felhasználónak adminisztratív jogok adása a következő funkciókra:"
@@ -1226,7 +1254,7 @@ msgstr "Küldés"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Az elfogadással meghosszabbítja a lejárati dátumot erre:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1332,6 +1360,9 @@ msgstr "Eddig:"
 
 msgid "Filename"
 msgstr "Fájlnév"
+
+msgid "View"
+msgstr "Megtekint"
 
 msgid "Upload date"
 msgstr "Feltötlés ideje"
@@ -1497,17 +1528,17 @@ msgstr "Használja a 16 számjegyű visszaigazoló kódot a belépéshez. A kód
 msgid "View your report"
 msgstr "Saját jelentés megtekintése"
 
-msgid "Recipient selection"
-msgstr "Címzett kiválasztása"
-
-msgid "Select the recipients of your report:"
-msgstr "Válaszd ki a beküldés címzettjét:"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "Kiválasztott címzettek:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Elérte a maximum kiválasztható címzett számot."
+
+msgid "You must select at least one recipient."
+msgstr "Ki kell jelölnie legalább egy címzettet."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1519,14 +1550,11 @@ msgid ""
 "invalid:"
 msgstr "Ebben a lépésben a következő válaszok vagy érvénytelenek vagy hiányoznak:"
 
-msgid "You must select at least one recipient."
-msgstr "Ki kell jelölnie legalább egy címzettet."
+msgid "Recipient selection"
+msgstr "Címzett kiválasztása"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Várakozás a fájl(ok) feltöltésére."
-
-msgid "The following steps have errors:"
-msgstr "A következő lépések tartalmaztak hibákat:"
 
 msgid "Hide"
 msgstr "Elrejt"
@@ -1936,17 +1964,17 @@ msgid "Some reports will expire soon"
 msgstr "Néhány jelentés hamarosan lejár"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "Ez egy értesítő email arról, hogy egy bejelentő kiválasztotta Önt, mint értékes címzettet a bejelentéséhez."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Önt arra kérték, hogy kifejezett figyelemmel tekintsen az információra és anyagra, ami benne található, Kérjük tartsa észben, hogy egy bejelentő többnyire nagy rizikónak teszi ki magát a publikum figyelme tekintetében. Ezért az anyag, ami ebben a jelentésben találhat magas fontossággal kezelendő."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Ez egy értesítő email arról, hogy egy már létező jelentés frissítve lett."

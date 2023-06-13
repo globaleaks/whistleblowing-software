@@ -453,9 +453,6 @@ msgstr "Kopiraj u klipbord"
 msgid "Logout"
 msgstr "Оdјаvа"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Dozvoli ovom promaocu da drugima daje dozvole pristupa dojavama"
-
 msgid "Grant access"
 msgstr "Dozvoli pristup"
 
@@ -468,7 +465,32 @@ msgstr ""
 msgid "Not provided."
 msgstr ""
 
-msgid "Set a reminder date"
+msgid "Set a reminder"
+msgstr ""
+
+msgid "Privileges"
+msgstr "Привилегије"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unmask"
+msgstr ""
+
+msgid "Redact"
+msgstr ""
+
+msgid "Select an option"
+msgstr ""
+
+msgid "Select your language"
+msgstr ""
+
+msgid "Grant this user user the privilege to mask information"
+msgstr ""
+
+msgid ""
+"Grant this user user the privilege to permanently redact masked information"
 msgstr ""
 
 msgid "File a report"
@@ -1033,14 +1055,17 @@ msgstr "Mreža"
 msgid "Sites"
 msgstr "Sajtovi"
 
-msgid "Mode:"
-msgstr "Režim:"
+msgid "Profile"
+msgstr "Профил"
 
 msgid "Configure"
 msgstr "Podesi"
 
 msgid "Subdomain"
 msgstr "Poddomen"
+
+msgid "Mode:"
+msgstr "Režim:"
 
 msgid "Creation date:"
 msgstr "Datum kreiranja:"
@@ -1110,6 +1135,9 @@ msgstr "Dozvoli primaocu da briše dojave"
 
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Dozvoli primaocu da odloži datum isteka dojave"
+
+msgid "Give this recipient ability to grant user access to reports"
+msgstr "Dozvoli ovom promaocu da drugima daje dozvole pristupa dojavama"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Dodeli korisniku administrativni pristup sledećim funkcijama:"
@@ -1214,7 +1242,7 @@ msgstr "Pošalji"
 msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Ako potvrdite, odložićete datum isteka na:"
 
-msgid "By confirming, you will set a remainder on date:"
+msgid "By confirming, you will set a reminder on date:"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1320,6 +1348,9 @@ msgstr "Za:"
 
 msgid "Filename"
 msgstr "Nаziv dаtоtеkе"
+
+msgid "View"
+msgstr "Погледај"
 
 msgid "Upload date"
 msgstr "Datum otpremanja"
@@ -1485,17 +1516,17 @@ msgstr "Iskoristite 16-cifreni potvrdni broj da se prijavite. Moći ćete da pro
 msgid "View your report"
 msgstr "Pogledajte svoju dojavu"
 
-msgid "Recipient selection"
-msgstr "Izbor primalaca"
-
-msgid "Select the recipients of your report:"
-msgstr "Izaberite primaoce vaše dojave:"
+msgid "Select the recipients of your report"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "Izabrano primalaca:"
 
 msgid "You have reached the maximum number of selectable recipients."
 msgstr "Dostigli ste najveći dozvoljeni broj izabranih primalaca."
+
+msgid "You must select at least one recipient."
+msgstr "Morate izabrati barem jednog primaoca."
 
 msgid ""
 "The following recipients will receive your report and could not be "
@@ -1507,14 +1538,11 @@ msgid ""
 "invalid:"
 msgstr "U ovom koraku odgovori na sledeća pitanja nedostaju ili nisu ispravni:"
 
-msgid "You must select at least one recipient."
-msgstr "Morate izabrati barem jednog primaoca."
+msgid "Recipient selection"
+msgstr "Izbor primalaca"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Čeka se da se završi otpremanje datoteke ili datoteka."
-
-msgid "The following steps have errors:"
-msgstr "Sledeći koraci imaju greške:"
 
 msgid "Hide"
 msgstr "Sakrij"
@@ -1924,17 +1952,17 @@ msgid "Some reports will expire soon"
 msgstr "Neke dojave će uskoro isteći"
 
 msgid ""
-"This is an email to notify you that a whistleblower has selected you as a "
-"valuable recipient of their report."
-msgstr "Ovom porukom vas obaveštavamo da vas je uzbunjivač odabrao za važnog primaoca njegove dojave."
+"This is an email to notify you that the reminder date for a report has been "
+"met."
+msgstr ""
+
+msgid "Reminder"
+msgstr ""
 
 msgid ""
-"You are asked to pay special attention to the information and material "
-"contained therein. Please keep in mind that whistleblowers often expose "
-"themselves to high personal risks in the interest of the public. Therefore "
-"the material provided within this report should be considered to be of high "
-"importance."
-msgstr "Od vas se traži da posvetite posebnu pažnju informacijama i materijalu koji se ovde nalaze. Imajte na umu da se uzbunjivači izlažu velikom ličnom riziku zarad interesa javnosti. Stoga materijalu koji se nalazi u ovoj dojavi treba dati veliki značaj."
+"This is an email to notify you that the reminder date for one or more "
+"reports has been met."
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Ovom porukom vas obaveštavamo da je postojeća dojava izmenjena."
