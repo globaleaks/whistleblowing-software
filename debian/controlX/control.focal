@@ -7,7 +7,7 @@ Build-Depends:
   devscripts,
   dh-apparmor,
   dh-python,
-  python3,
+  python3-all,
   python3-setuptools,
   python3-sphinx
 Homepage: https://www.globleaks.org/
@@ -26,7 +26,6 @@ Depends:
   haveged,
   iptables,
   lsb-base,
-  python3:any,
   python3-acme,
   python3-debian,
   python3-cryptography,
