@@ -13,7 +13,6 @@ Build-Depends:
 Homepage: https://www.globaleaks.org/
 Vcs-Git: https://github.com/globaleaks/GlobaLeaks.git
 Standards-Version: 4.6.1
-X-Python3-Version: all
 
 Package: globaleaks
 Architecture: all
