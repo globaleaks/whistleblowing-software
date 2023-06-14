@@ -2,7 +2,7 @@
   <div data-ng-controller="AudioUploadCtrl">
     <div class="audio-box">
       <div class="audio-btn-group">
-        <button class="btn btn-audio" data-ng-click="startRecording()" data-ng-disabled="isRecording" data-ng-class="{ 'btn-audio-enabled': !activeButton, 'active': activeButton === 'record' }">
+        <button class="btn btn-audio" data-ng-click="startRecording(field.id)" data-ng-disabled="isRecording" data-ng-class="{ 'btn-audio-enabled': !activeButton, 'active': activeButton === 'record' }">
           <i class="fas fa-microphone-alt"></i>
         </button>
         <button class="btn btn-audio" data-ng-click="stopRecording()" data-ng-disabled="!activeButton" data-ng-class="{'btn-audio-enabled': activeButton === 'record' || activeButton === 'pause'}">

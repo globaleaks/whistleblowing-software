@@ -35,7 +35,7 @@ controller("WBFileUploadCtrl", ["$scope", function($scope) {
 controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFactory) {
   var chunks = [];
   var mediaRecorder;
-  var flow = flowFactory.create({ target: $scope.fileupload_url, query: { type: 'audio.webm' } });
+  // var flow = flowFactory.create({ target: $scope.fileupload_url, query: { type: 'audio.webm' } });
   var startTime;
 
   $scope.audioPlayer = null;
@@ -43,9 +43,16 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
   $scope.stopButton = false;
   $scope.activeButton = null;
 
-  $scope.startRecording = function() {
+  $scope.startRecording = function(fileId) {
     navigator.mediaDevices.getUserMedia({ audio: true })
       .then(function(stream) {
+        var flow = flowFactory.create({
+          target: $scope.fileupload_url,
+          query: {
+            type: 'audio.webm',
+            isAnswerOf: fileId
+          }
+        });
         chunks = [];
         mediaRecorder = new MediaRecorder(stream);
         mediaRecorder.addEventListener('dataavailable', function(event) {
@@ -66,7 +73,7 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
             var file = new Flow.FlowFile(flow, {
               name: 'audio.webm',
               size: blob.size,
-              relativePath: 'audio.webm'
+              relativePath: 'audio.webm',
             });
             file.file = blob;
             if(!$scope.isRecordingTooShort){
@@ -81,6 +88,8 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
             }
           });
         });
+
+       
 
         mediaRecorder.start();
         $scope.isRecording = true;

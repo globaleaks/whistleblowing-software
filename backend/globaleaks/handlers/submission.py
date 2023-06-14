@@ -230,6 +230,7 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
         new_file.internaltip_id = itip.id
         new_file.filename = uploaded_file['filename']
         new_file.submission = uploaded_file['submission']
+        new_file.isAnswerOf = uploaded_file['isAnswerOf'][0].decode('utf-8')
         session.add(new_file)
 
     for user in receivers:
