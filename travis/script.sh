@@ -79,10 +79,10 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   export LC_ALL=en_US.utf8
   export DEBIAN_FRONTEND=noninteractive
 
-  if [ $DISTRIBUTION = "bullseye" ]; then
-    sudo -E debootstrap --arch=amd64 bullseye "$chroot" http://deb.debian.org/debian/
-    sudo -E su -c 'echo "deb http://deb.debian.org/debian bullseye main contrib" > /tmp/globaleaks_chroot/etc/apt/sources.list'
-    sudo -E su -c 'echo "deb http://deb.debian.org/debian bullseye main contrib" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
+  if [ $DISTRIBUTION = "bookworm" ]; then
+    sudo -E debootstrap --arch=amd64 bookworm "$chroot" http://deb.debian.org/debian/
+    sudo -E su -c 'echo "deb http://deb.debian.org/debian bookworm main contrib" > /tmp/globaleaks_chroot/etc/apt/sources.list'
+    sudo -E su -c 'echo "deb http://deb.debian.org/debian bookworm main contrib" >> /tmp/globaleaks_chroot/etc/apt/sources.list'
   elif [ $DISTRIBUTION = "jammy" ]; then
     sudo -E debootstrap --arch=amd64 jammy "$chroot" http://archive.ubuntu.com/ubuntu/
     sudo -E su -c 'echo "deb http://archive.ubuntu.com/ubuntu jammy main universe" > /tmp/globaleaks_chroot/etc/apt/sources.list'

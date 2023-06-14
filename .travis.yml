@@ -11,7 +11,7 @@ matrix:
   fast_finish: true
   include:
   - env: GLTEST='test' CODACY=true
-  - env: GLTEST='build_and_install' DISTRIBUTION='bullseye'
+  - env: GLTEST='build_and_install' DISTRIBUTION='bookworm'
   - env: GLTEST='build_and_install' DISTRIBUTION='jammy'
 before_install:
 - nvm install --lts
