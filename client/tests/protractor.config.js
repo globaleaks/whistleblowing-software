@@ -11,7 +11,8 @@ exports.config = {
 
   troubleshoot: false,
   rootElement: "html",
-  directConnect: true,
+  directConnect: false,
+  SELENIUM_PROMISE_MANAGER: false,
 
   params: {
     "features": {
