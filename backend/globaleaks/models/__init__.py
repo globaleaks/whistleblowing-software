@@ -874,7 +874,6 @@ class _SubmissionStatus(Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     tid = Column(Integer, primary_key=True, default=1)
     label = Column(JSON, default=dict, nullable=False)
-    receivers = Column(JSON, default=list, nullable=False)
     order = Column(Integer, default=0, nullable=False)
 
     localized_keys = ['label']
