@@ -36,7 +36,7 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
   var chunks = [];
   var mediaRecorder;
   // var flow = flowFactory.create({ target: $scope.fileupload_url, query: { type: 'audio.webm' } });
-
+  $scope.disablePlayer = true;
   var mediaStream = null;
   var context = null;
   var mediaRecorder = null;
@@ -199,6 +199,7 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
     }
   }
 
+  var flow;
   $scope.startRecording = function(fileId) {
     leftchannel = [];
     rightchannel = [];
@@ -207,7 +208,7 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
     $scope.activeButton = 'record';
     startTime = Date.now();
 
-    var flow = flowFactory.create({
+    flow = flowFactory.create({
       target: $scope.fileupload_url,
       query: {
         type: 'audio.webm',
@@ -322,7 +323,7 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
 
     var durationInSeconds = (Date.now() - startTime) / 1000;
     $scope.isRecordingTooShort = durationInSeconds < parseInt($scope.field.attrs.min_time.value);
-
+    $scope.disablePlayer= durationInSeconds < parseInt($scope.field.attrs.min_time.value);
     $scope.audioFile = blob;
     var file = new Flow.FlowFile(flow, {
       name: 'audio.webm',

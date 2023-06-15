@@ -137,7 +137,8 @@ def serialize_rfile(session, ifile, rfile):
         'name': ifile.name,
         'size': ifile.size,
         'type': ifile.content_type,
-        'filename': rfile.filename
+        'filename': rfile.filename,
+        'isAnswerOf':ifile.isAnswerOf
     }
 
 

@@ -11,7 +11,9 @@
       </div>
       <input data-ng-attr-id="customFile-{{fileinput}}" data-ng-model="_fakemodel[fileinput]" data-ng-required="field && field.required && !uploads[fileinput].files.length" name="input-{{entryIndex}}" type="file" />
       <div id="{{fieldEntry}}-audio" class="audio-container" data-ng-disabled="isRecording">
-        <audio data-ng-src="{{audioPlayer}}" controls class="audio-player"></audio>
+        <div class="audio-player-wrapper" ng-disabled="disablePlayer">
+          <audio data-ng-src="{{audioPlayer}}"  controls class="audio-player"></audio>
+        </div>
       </div>
     </div>
     <div class="text-danger" data-ng-show="isRecordingTooShort">

@@ -1,6 +1,6 @@
 GL.controller("TipCtrl",
-  ["$scope", "$location", "$filter", "$http", "$interval", "$routeParams", "$uibModal", "Authentication", "RTip", "WBTip", "RTipExport", "RTipDownloadRFile", "WBTipDownloadFile", "fieldUtilities","RTipViewRFile",
-  function($scope, $location, $filter, $http, $interval, $routeParams, $uibModal, Authentication, RTip, WBTip, RTipExport, RTipDownloadRFile, WBTipDownloadFile, fieldUtilities, RTipViewRFile) {
+  ["$scope", "$location", "$filter", "$http", "$interval", "$routeParams", "$uibModal", "Authentication", "RTip", "WBTip", "RTipExport", "RTipDownloadRFile","RTipVideoSourceGet", "WBTipDownloadFile", "fieldUtilities","RTipViewRFile","$timeout",
+  function($scope, $location, $filter, $http, $interval, $routeParams, $uibModal, Authentication, RTip, WBTip, RTipExport, RTipDownloadRFile,RTipVideoSourceGet, WBTipDownloadFile, fieldUtilities, RTipViewRFile,$timeout) {
     $scope.fieldUtilities = fieldUtilities;
     $scope.tip_id = $routeParams.tip_id;
 
@@ -84,6 +84,8 @@ GL.controller("TipCtrl",
       return entry[$scope.field.id];
     };
 
+   
+
     var filterNotTriggeredField = function(parent, field, answers) {
       var i;
       if (fieldUtilities.isFieldTriggered(parent, field, answers, $scope.tip.score)) {
@@ -148,6 +150,7 @@ GL.controller("TipCtrl",
 
       $scope.tip = new WBTip(function(tip) {
         $scope.tip = tip;
+        console.log($scope.tip)
         $scope.tip.context = $scope.contexts_by_id[$scope.tip.context_id];
         $scope.tip.receivers_by_id = $scope.Utils.array_to_map($scope.tip.receivers);
         $scope.score = $scope.tip.score;
@@ -200,21 +203,25 @@ GL.controller("TipCtrl",
     } else if ($scope.Authentication.session.role === "receiver") {
       $scope.tip = new RTip({id: $scope.tip_id}, function(tip) {
         $scope.tip = tip;
+        console.log( $scope.tip)
         $scope.tip.context = $scope.contexts_by_id[$scope.tip.context_id];
         $scope.tip.receivers_by_id = $scope.Utils.array_to_map($scope.tip.receivers);
-
+        $scope.audiosList = $scope.tip.rfiles;
         $scope.score = $scope.tip.score;
         $scope.ctx = "rtip";
         $scope.preprocessTipAnswers(tip);
-
+        // console.log( Object.keys($scope.tip.questionnaires[0].answers) );
+        $scope.rfileIdOfAnswers =$scope.findRfileIdOfAnswer(Object.keys($scope.tip.questionnaires[0].answers))
+        console.log($scope.rfileIdOfAnswers);
+        $scope.audioSrcOfAnswer;
+        $scope.findAudioSrcOfAnswers($scope.rfileIdOfAnswers)
         $scope.exportTip = RTipExport;
         $scope.downloadRFile = RTipDownloadRFile;
         $scope.viewRFile = RTipViewRFile;
-
         $scope.showEditLabelInput = $scope.tip.label === "";
-
         $scope.tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText($scope.tip.status, $scope.tip.substatus, $scope.submission_statuses);
         $scope.supportedViewTypes = ["application/pdf", "audio/mpeg", "image/gif", "image/jpeg", "image/png", "text/csv", "text/plain", "video/mp4"];
+     
       });
     }
 
@@ -351,6 +358,46 @@ GL.controller("TipCtrl",
       });
     };
 
+
+    $scope.getAudioSrc = function(id) {
+      console.log($scope.audioSrcOfAnswer)
+      if ($scope.audioSrcOfAnswer && $scope.audioSrcOfAnswer[id]) {
+        return $scope.audioSrcOfAnswer[id];
+      } else {
+        return ''; // Return an empty string if the URL value is not available
+      }
+    };
+    // $scope.findAudioSrcOfAnswers = function(array) {
+    //   RTipVideoSourceGet().then(function(token) {
+    //     $scope.audioSrcOfAnswer = {}; 
+    //     Object.entries(array).forEach(function([key, value]) {
+    //       var url = "api/rfile/" + value;
+    //       $scope.audioSrcOfAnswer[key] = (url + "?token=" + token.id + ":" + value);
+    //     });
+    //   });
+    // };
+    $scope.findAudioSrcOfAnswers = function(array) {
+        $scope.audioSrcOfAnswer = {}; 
+        Object.entries(array).forEach(function([key, value]) {
+          RTipVideoSourceGet().then(function(token) {
+            var url = "api/rfile/" + value;
+            $scope.audioSrcOfAnswer[key] = (url + "?token=" + token.id + ":" + value);
+          });
+        });
+      
+    };
+    
+    $scope.findRfileIdOfAnswer = function(answerIds) {
+      var rfileIdOfAnswers = {};
+      var array = $scope.audiosList;
+      for (var i = 0; i < array.length; i++) {
+        if (answerIds.includes(array[i].isAnswerOf)) {
+          rfileIdOfAnswers[array[i].isAnswerOf] = array[i].id;
+        }
+      }
+      return rfileIdOfAnswers;
+    };
+   
     $scope.score = 0;
 
     $scope.$watch("answers", function () {
@@ -360,6 +407,9 @@ GL.controller("TipCtrl",
     $scope.$on("GL::uploadsUpdated", function () {
       fieldUtilities.onAnswersUpdate($scope);
     });
+
+
+
 }]).
 controller("TipOperationsCtrl",
   ["$scope", "$http", "$location", "$uibModalInstance", "args",

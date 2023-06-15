@@ -338,6 +338,11 @@ factory("RTipDownloadRFile", ["Utils", function(Utils) {
     Utils.download("api/rfile/" + file.id);
   };
 }]).
+factory("RTipVideoSourceGet", ["Utils", function(Utils) {
+  return function(){
+    return Utils.getUrlLink()
+  }
+}]).
 factory("RTipWBFileResource", ["GLResource", function(GLResource) {
   return new GLResource("api/wbfile/:id", {id: "@id"});
 }]).
@@ -1099,10 +1104,26 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     },
 
     download: function(url) {
+      
       return new TokenResource().$get().then(function(token) {
         $window.open(url + "?token=" + token.id + ":" + token.answer);
       });
     },
+
+    getUrlLink: function() {
+      return new TokenResource().$get();
+    },
+    // getUrlLink: function(url,audioId) {
+    //   return new TokenResource().$get().then(function(token) {
+    //     var audioContainer = document.getElementById(audioId);
+    //     var audio = document.createElement('audio');
+    //     audio.classList.add('audio-player')
+    //     audio.src = (url + "?token=" + token.id + ":" + token.answer);
+    //     audio.controls = true;
+    //     audio.load(); 
+    //     audioContainer.appendChild(audio);
+    //   });
+    // },
 
     view: function(url, mimetype, callback) {
       var xhr = new XMLHttpRequest();
