@@ -192,6 +192,35 @@ def update_tip_submission_status(session, tid, user_id, rtip_id, status_id, subs
 
     db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id)
 
+def db_update_masking(session, tid, user_id, itip_id,id, masking_data):
+    """
+    Update the masking data of a tip
+
+    :param session: An ORM session
+    :param tid: A tenant ID of the user performing the operation
+    :param user_id: A user ID of the user changing the state
+    :param itip_id: The ID of the Tip instance to be updated
+    :param id: The object_id
+    :param masking_data: The updated masking data
+    """
+    itip = session.query(models.Masking).get(id)
+    if itip:
+        itip.content_id = masking_data['content_id']
+        itip.temporary_masking = masking_data['temporary_masking']
+        itip.permanent_masking = masking_data['permanent_masking']
+        itip.mask_date = datetime.now()
+        log_data = {
+            'content_id': masking_data['content_id'],
+            'mask_date': itip.mask_date.isoformat(),
+            'temporary_masking': masking_data['temporary_masking'],
+            'permanent_masking': masking_data['permanent_masking']
+        }
+
+        db_log(session, tid=tid, type='update_masking', user_id=user_id, object_id=id, data=log_data)
+    else:
+        # Handle the case when the Tip instance with the provided ID doesn't exist
+        raise ValueError(f"Tip with ID '{itip_id}' not found.")
+
 
 def db_access_rtip(session, tid, user_id, rtip_id):
     """
@@ -648,6 +677,23 @@ def create_masking(session, tid, user_id, rtip_id, content):
     ret['masking'] = content
     return ret
 
+@transact
+def update_tip_masking(session, tid, user_id, rtip_id, id, data):
+    """
+    Transaction for updating tip masking
+
+    :param session: An ORM session
+    :param tid: The tenant ID
+    :param user_id: A user ID of the user performing the operation
+    :param rtip_id: The ID of the rtip accessed by the user
+    :param id: The ID of the masking to be updated
+    :param data: The updated masking data
+    """
+    _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+    
+    masking_data = data.get('data', {})
+    db_update_masking(session, tid, user_id, itip, id, masking_data)
+
 class RTipInstance(OperationHandler):
     """
     This interface exposes the Receiver's Tip
@@ -716,65 +762,38 @@ class RTipCommentCollection(BaseHandler):
 
         return create_comment(self.request.tid, self.session.user_id, rtip_id, request['content'])
 
-# def db_access_rfile(session, tid, user_id, rfile_id):
-#     """
-#     Transaction retrieving an rfile and performing basic access checks
-
-#     :param session: An ORM session
-#     :param tid: A tenant ID of the user
-#     :param user_id: A user ID
-#     :param rfile_id: the requested rfile ID
-#     :return: A model requested
-#     """
-#     itips_ids = [x[0] for x in session.query(models.InternalTip.id)
-#                                       .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
-#                                               models.ReceiverTip.receiver_id == user_id,
-#                                               models.InternalTip.tid == tid)]
-
-#     return db_get(session,
-#                   models.ReceiverFile,
-#                   (models.ReceiverFile.id == rfile_id,
-#                    models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
-#                    models.ReceiverTip.internaltip_id.in_(itips_ids),
-#                    models.InternalTip.tid == tid))
-
-
-# @transact
-# def delete_rfile(session, tid, user_id, file_id):
-#     """
-#     Transaction for deleting a rfile
-#     :param session: An ORM session
-#     :param tid: A tenant ID
-#     :param user_id: The user ID of the user performing the operation
-#     :param file_id: The file ID of the rfile to be deleted
-#     """
-#     rfile = db_access_rfile(session, tid, user_id, file_id)
-#     session.delete(rfile)
-
-
 class RTipMaskingCollection(BaseHandler):
     """
     Interface used to handle rtip masking
     """
     check_roles = 'receiver'
+    @inlineCallbacks
+    def get(self, tip_id):
+        tip, crypto_tip_prv_key = yield get_rtip(self.request.tid, self.session.user_id, tip_id, self.request.language)
 
+        if State.tenants[self.request.tid].cache.encryption and crypto_tip_prv_key:
+            tip = yield deferToThread(decrypt_tip, self.session.cc, crypto_tip_prv_key, tip)
+
+        returnValue(tip)
+        
     def operation_descriptors(self):
         return {
-          'delete_file': RTipMaskingCollection.delete_file
+          'update_masking': RTipMaskingCollection.update_masking
         }
-
     def post(self, rtip_id):
         self.request.content.seek(0)
         payload = self.request.content.read().decode('utf-8')  # Get the request payload
         data = json.loads(payload)  # Parse the JSON payload
         return create_masking(self.request.tid, self.session.user_id, rtip_id, data)
-
-    # def delete_file(self, rtip_id, file_id, *args, **kwargs):
-    #     """
-    #     This interface allows the recipient to delete a ReceiverFile
-    #     """
-    #     delete_rfile(self.request.tid, self.session.user_id, file_id)
-    #     return {'message': 'File deleted successfully'}
+    
+    def put(self, rtip_id, id):
+        self.request.content.seek(0)
+        payload = self.request.content.read().decode('utf-8')  # Get the request payload
+        data = json.loads(payload)  # Parse the JSON payload
+        return self.update_masking(rtip_id, id, data)
+    
+    def update_masking(self, rtip_id, id, data, *args, **kwargs):
+        return update_tip_masking(self.request.tid, self.session.user_id, rtip_id, id, data)
 
 
 class ReceiverMsgCollection(BaseHandler):

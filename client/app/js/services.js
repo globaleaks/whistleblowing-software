@@ -380,6 +380,8 @@ factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipMessageResource", "
         c.$save(function(newMasking) {
           tip.masking.unshift(newMasking);
           tip.localChange();
+        }).then(function () {
+          $rootScope.reload();
         });
       };
 
@@ -391,7 +393,12 @@ factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipMessageResource", "
           tip.localChange();
         });
       };
-
+      tip.updateMasking = function(id, data) {
+        var req = {data};
+        return $http({method: "PUT", url: "api/rtips/" + tip.id +"/masking/" + id, data: req}).then(function () {
+          $rootScope.reload();
+        });
+      };
       tip.operation = function(operation, args) {
         var req = {
           "operation": operation,

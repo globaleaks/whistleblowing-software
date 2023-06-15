@@ -514,12 +514,6 @@ GL.controller("TipCtrl",
       };
 
       $scope.args = args;
-      console.log($scope.args, "$scope.args");
-      console.log($scope.args.tip.masking, "$scope.args.tip.masking");
-      console.log($scope.args.contexts_by_id, "$scope.args.contexts_by_id");
-      console.log($scope.args.data, "$scope.args.data");
-      console.log($scope.args.id, " $scope.args.id");
-
 
       $scope.content = $scope.args.data;
       $scope.contentId = $scope.args.id
@@ -576,18 +570,16 @@ GL.controller("TipCtrl",
 
         return modifiedContent;
       }
-
       // Filter the masking array to find the matching masking objects
-      let maskingObjects = $scope.args.tip.masking.filter(function (masking) {
+      var maskingObjects = $scope.args.tip.masking.filter(function (masking) {
         return masking.content_id === $scope.args.id;
       });
-
+      console.log(maskingObjects, "maskingObjects");
       // Apply temporary masking to the content string for each masking object
       maskingObjects.forEach(function (maskingObject) {
         $scope.content = applyTemporaryMasking($scope.content, maskingObject.temporary_masking);
       });
 
-      console.log($scope.content, "redack");
       $scope.unredact = function (id) {
         var elem = document.getElementById(id);
         var text = elem.value;
@@ -604,18 +596,52 @@ GL.controller("TipCtrl",
         }
       }
       $scope.id = $routeParams.tip_id;
+
       $scope.confirm = function (id) {
+        console.log($scope.ranges, "$scope.ranges");
         var elem = document.getElementById(id);
         var text = elem.value;
-        var maskingdata = {
-          content_id: $scope.contentId,
-          permanent_masking: "",
-          temporary_masking: $scope.ranges
+
+        if (maskingObjects.length !== 0) {
+          var index = Object.keys($scope.ranges).length;
+
+          for (var key in maskingObjects[0].temporary_masking) {
+            if (maskingObjects[0].temporary_masking.hasOwnProperty(key)) {
+              var range = maskingObjects[0].temporary_masking[key];
+              var isRangeRepeated = Object.values($scope.ranges).some(function (obj) {
+                return obj.start === range.start && obj.end === range.end;
+              });
+
+              if (!isRangeRepeated) {
+                var isRangeRepeatedInNew = Object.values($scope.ranges).some(function (obj) {
+                  return obj.start === range.start && obj.end === range.end;
+                });
+
+                if (!isRangeRepeatedInNew) {
+                  $scope.ranges[index] = range;
+                  index++;
+                }
+              }
+            }
+          }
+          let maskingdata = {
+            content_id: $scope.args.id,
+            permanent_masking: "",
+            temporary_masking: $scope.ranges
+          };
+          $scope.args.tip.updateMasking(maskingObjects[0].id, maskingdata);
+          $uibModalInstance.close();
+
+        } else {
+          let maskingdata = {
+            content_id: $scope.args.id,
+            permanent_masking: "",
+            temporary_masking: $scope.ranges
+          };
+          $scope.args.tip.newMasking(maskingdata);
+          $uibModalInstance.close();
         }
-        var reloadUI = function () { $scope.reload(); };
+      };
 
-        $scope.args.tip.newMasking(maskingdata).then(reloadUI)
-
-      }
     }]);
 

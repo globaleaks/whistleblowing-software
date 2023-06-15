@@ -5,7 +5,7 @@
   </button>
 </div>
 <div class="modal-body">
-  <textarea name="redact" id="redact" cols="30" rows="10" class="form-control" disabled ng-model="content"></textarea>
+  <textarea ng-bind-html="content" name="redact" id="redact" cols="30" rows="10" class="form-control" ng-bind-html="content" disabled ng-model="content"></textarea>
 </div>
 <div class="modal-footer">
   <button
