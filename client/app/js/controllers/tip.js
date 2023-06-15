@@ -222,7 +222,18 @@ GL.controller("TipCtrl",
           }
           var reloadUI = function () { $scope.reload(); };
           $scope.deleteWBFile = function (f) {
-            RTipWBFileResource.remove({ "id": f.id }).$promise.finally(reloadUI);
+            let maskingObjects = $scope.tip.masking.filter(function (masking) {
+              return masking.content_id === f.id;
+            });
+            RTipWBFileResource.remove({ "id": f.id })
+              .$promise.then(function () {
+                if (maskingObjects.length !== 0) {
+                  return $http({
+                    method: "DELETE",
+                    url: "api/rtips/" + tip.id + "/masking/" + maskingObjects[0].id
+                  }).then(reloadUI);
+                }
+              })
           };
           $scope.masking = function (id) {
             $scope.status = true
@@ -507,8 +518,8 @@ GL.controller("TipCtrl",
   controller("WhistleblowerIdentityFormCtrl", ["$scope", function ($scope) {
     $scope.uploads = {};
   }]).
-  controller("TipEditReportCtrl", ["$scope", "$uibModalInstance", "args", "Authentication", "RTip", "WBTip", "$routeParams",
-    function ($scope, $uibModalInstance, args, Authentication, RTip, WBTip, $routeParams) {
+  controller("TipEditReportCtrl", ["$scope", "$uibModalInstance", "args", "Authentication", "$routeParams",
+    function ($scope, $uibModalInstance, args, Authentication, $routeParams) {
       $scope.cancel = function () {
         $uibModalInstance.close();
       };
@@ -526,14 +537,10 @@ GL.controller("TipCtrl",
         var text = elem.value;
         var start = elem.selectionStart;
         var finish = elem.selectionEnd;
-
         var sel = text.substring(start, finish);
         var length = finish - start;
 
         if (length) {
-          console.log(blank, 'blank');
-          console.log(blank.repeat(length), 'blank.repeat(length)');
-
           elem.value = text.substring(0, start) + blank.repeat(length) + text.substring(finish, text.length);
         }
         var rangeExists = Object.values($scope.ranges).some(function (range) {
@@ -545,7 +552,7 @@ GL.controller("TipCtrl",
         if (!rangeExists && !indicesEqual) {
           var range = {
             start: start,
-            end: finish
+            end: finish - 1
           };
           $scope.ranges[i++] = range;
         }
@@ -597,11 +604,7 @@ GL.controller("TipCtrl",
       }
       $scope.id = $routeParams.tip_id;
 
-      $scope.confirm = function (id) {
-        console.log($scope.ranges, "$scope.ranges");
-        var elem = document.getElementById(id);
-        var text = elem.value;
-
+      $scope.confirm = function () {
         if (maskingObjects.length !== 0) {
           var index = Object.keys($scope.ranges).length;
 
@@ -624,10 +627,45 @@ GL.controller("TipCtrl",
               }
             }
           }
+
+          function mergeRanges(ranges) {
+            var mergedRanges = [];
+            var keys = Object.keys(ranges);
+
+            // Sort the ranges based on the start value
+            keys.sort(function (a, b) {
+              return ranges[a].start - ranges[b].start;
+            });
+
+            var currentRange = ranges[keys[0]];
+
+            for (var i = 1; i < keys.length; i++) {
+              var nextRange = ranges[keys[i]];
+
+              if (nextRange.start <= currentRange.end + 1) {
+                // Overlapping or adjacent ranges, update the end value of the current range
+                currentRange.end = Math.max(currentRange.end, nextRange.end);
+              } else {
+                // Non-overlapping or non-adjacent range, add the current range to the merged ranges array
+                mergedRanges.push(currentRange);
+                currentRange = nextRange;
+              }
+            }
+
+            // Add the last range to the merged ranges array
+            mergedRanges.push(currentRange);
+
+            return mergedRanges;
+          }
+
+          $scope.mergedRanges = mergeRanges($scope.ranges);
+          console.log($scope.ranges, "$scope.ranges");
+
+          console.log($scope.mergedRanges, "$scope.mergedRanges");
           let maskingdata = {
             content_id: $scope.args.id,
             permanent_masking: "",
-            temporary_masking: $scope.ranges
+            temporary_masking: $scope.mergedRanges
           };
           $scope.args.tip.updateMasking(maskingObjects[0].id, maskingdata);
           $uibModalInstance.close();
@@ -638,6 +676,8 @@ GL.controller("TipCtrl",
             permanent_masking: "",
             temporary_masking: $scope.ranges
           };
+          console.log($scope.ranges, "$scope.rangessssssssssssss");
+
           $scope.args.tip.newMasking(maskingdata);
           $uibModalInstance.close();
         }

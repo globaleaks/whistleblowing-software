@@ -640,6 +640,29 @@ def delete_wbfile(session, tid, user_id, file_id):
     if wbfile:
         session.delete(wbfile)
 
+@transact
+def delete_masking(session, tid, user_id,rtip_id,id):
+    """
+    Transaction for deleting a wbfile
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user_id: The user ID of the user performing the operation
+    :param rtip_id: The rtip_id performing the operation
+    :param id: The ID of the masking to be deleted
+    """
+    itips_ids = [x[0] for x in session.query(models.InternalTip.id)
+                                      .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                                              models.ReceiverTip.receiver_id == user_id,
+                                              models.InternalTip.tid == tid)]
+
+    masking = (
+            session.query(models.Masking)
+            .filter(models.Masking.id == id,models.ReceiverTip.internaltip_id.in_(itips_ids),models.InternalTip.tid == tid)
+            .first()
+        )
+    
+    if masking:
+        session.delete(masking)
 
 @transact
 def create_masking(session, tid, user_id, rtip_id, content):
@@ -794,7 +817,9 @@ class RTipMaskingCollection(BaseHandler):
     
     def update_masking(self, rtip_id, id, data, *args, **kwargs):
         return update_tip_masking(self.request.tid, self.session.user_id, rtip_id, id, data)
-
+    
+    def delete(self, rtip_id, id):
+        return delete_masking(self.request.tid, self.session.user_id,rtip_id,id)
 
 class ReceiverMsgCollection(BaseHandler):
     """

@@ -5,23 +5,23 @@
   </button>
 </div>
 <div class="modal-body">
-  <textarea ng-bind-html="content" name="redact" id="redact" cols="30" rows="10" class="form-control" ng-bind-html="content" disabled ng-model="content"></textarea>
+  <textarea name="redact" id="redact" cols="30" rows="10" class="form-control" data-ng-bind-html="content"
+    data-ng-model="content" data-ng-disabled=true></textarea>
 </div>
 <div class="modal-footer">
   <button
-    ng-show="(resources.preferences.can_privilege_mask_information) || (resources.preferences.can_privilege_mask_information && resources.preferences.can_privilege_delete_mask_information)"
-    class="btn btn-primary" ng-click="redact('redact')">
+    data-ng-show="(resources.preferences.can_privilege_mask_information) || (resources.preferences.can_privilege_mask_information && resources.preferences.can_privilege_delete_mask_information)"
+    class="btn btn-primary" data-ng-click="redact('redact')">
     <span data-translate>Mask</span>
   </button>
   <button
-    ng-show="resources.preferences.can_privilege_delete_mask_information || (resources.preferences.can_privilege_mask_information && resources.preferences.can_privilege_delete_mask_information)"
-    class="btn btn-outline-secondary" ng-click="unredact('redact')">
+    data-ng-show="resources.preferences.can_privilege_delete_mask_information || (resources.preferences.can_privilege_mask_information && resources.preferences.can_privilege_delete_mask_information)"
+    class="btn btn-outline-secondary" data-ng-click="unredact('redact')">
     <span data-translate>Unmask</span>
   </button>
   <button
-    ng-show="resources.preferences.can_privilege_delete_mask_information || resources.preferences.can_privilege_mask_information|| (resources.preferences.can_privilege_mask_information && resources.preferences.can_privilege_delete_mask_information)"
-    class="btn btn-primary" data-ng-click="confirm('redact')">
-    <!-- <i class="fa-solid fa-check"></i> -->
+    data-ng-show="resources.preferences.can_privilege_delete_mask_information || resources.preferences.can_privilege_mask_information|| (resources.preferences.can_privilege_mask_information && resources.preferences.can_privilege_delete_mask_information)"
+    class="btn btn-primary" data-ng-click="confirm()">
     <span data-translate>Reduct</span>
   </button>
 </div>
