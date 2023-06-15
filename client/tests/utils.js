@@ -1,5 +1,6 @@
 var fs = require("fs");
 var path = require("path");
+var EC = protractor.ExpectedConditions;
 
 exports.vars = {
   "init_password": "Password12345#",
@@ -24,20 +25,12 @@ exports.browserTimeout = function() {
 
 exports.waitUntilPresent = function (locator, timeout) {
   var t = timeout === undefined ? exports.browserTimeout() : timeout;
-  return browser.wait(function() {
-    return element(locator).isPresent().then(function(present) {
-      return present;
-    });
-  }, t);
+  return browser.wait(EC.visibilityOf(element(locator)), t);
 };
 
 exports.waitUntilAbsent = function (locator, timeout) {
   var t = timeout === undefined ? exports.browserTimeout() : timeout;
-  return browser.wait(function() {
-    return element(locator).isPresent().then(function(present) {
-      return !present;
-    });
-  }, t);
+  return browser.wait(EC.invisibilityOf(element(locator)), t);
 };
 
 exports.waitUntilClickable = function (locator, timeout) {
