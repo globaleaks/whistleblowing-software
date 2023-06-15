@@ -42,6 +42,7 @@ LANGUAGES_SUPPORTED = [
     {'code': 'en', 'name': 'English', 'native': 'English'},
     {'code': 'es', 'name': 'Spanish', 'native': 'Espa\u00f1ol'},
     {'code': 'et', 'name': 'Estonian', 'native': 'Eesti'},
+    {'code': 'eu', 'name': 'Basque', 'native': 'Euskara'},
     {'code': 'fa', 'name': 'Persian', 'native': '\u0641\u0627\u0631\u0633\u06cc'},
     {'code': 'fa_AF', 'name': 'Persian (Afghanistan) ', 'native': '\u0641\u0627\u0631\u0633\u06cc\u0020\u0028\u0627\u0641\u063a\u0627\u0646\u0633\u062a\u0627\u0646\u0029'},
     {'code': 'fi', 'name': 'Finnish', 'native': 'Suomi'},
