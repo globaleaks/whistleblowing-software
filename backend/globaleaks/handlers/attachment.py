@@ -44,7 +44,6 @@ def register_ifile_on_db(session, tid, internaltip_id, uploaded_file):
     new_file.internaltip_id = internaltip_id
     new_file.filename = uploaded_file['filename']
     new_file.submission = uploaded_file['submission']
-    new_file.isAnswerOf = uploaded_file['isAnswerOf'][0].decode('utf-8')
     new_file.internaltip_id = internaltip_id
 
     session.add(new_file)

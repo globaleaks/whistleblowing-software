@@ -1,6 +1,6 @@
 GL.controller("TipCtrl",
-  ["$scope", "$location", "$filter", "$http", "$interval", "$routeParams", "$uibModal", "Authentication", "RTip", "WBTip", "RTipExport", "RTipDownloadRFile","RTipFileSourceGet", "WBTipDownloadFile", "fieldUtilities","RTipViewRFile","$timeout",
-  function($scope, $location, $filter, $http, $interval, $routeParams, $uibModal, Authentication, RTip, WBTip, RTipExport, RTipDownloadRFile,RTipFileSourceGet, WBTipDownloadFile, fieldUtilities, RTipViewRFile,$timeout) {
+  ["$scope", "$location", "$filter", "$http", "$interval", "$routeParams", "$uibModal", "Authentication", "RTip", "WBTip", "RTipExport", "RTipDownloadRFile","RTipFileSourceGet", "WBTipFileSourceGet", "WBTipDownloadFile", "fieldUtilities","RTipViewRFile","$timeout",
+  function($scope, $location, $filter, $http, $interval, $routeParams, $uibModal, Authentication, RTip, WBTip, RTipExport, RTipDownloadRFile,RTipFileSourceGet, WBTipFileSourceGet, WBTipDownloadFile, fieldUtilities, RTipViewRFile,$timeout) {
     $scope.fieldUtilities = fieldUtilities;
     $scope.tip_id = $routeParams.tip_id;
 
@@ -155,6 +155,9 @@ GL.controller("TipCtrl",
         $scope.tip.receivers_by_id = $scope.Utils.array_to_map($scope.tip.receivers);
         $scope.score = $scope.tip.score;
 
+        $scope.loadRFile = WBTipFileSourceGet;
+        $scope.fetchAudioFiles()
+
         $scope.ctx = "wbtip";
         $scope.preprocessTipAnswers(tip);
 
@@ -204,6 +207,7 @@ GL.controller("TipCtrl",
       $scope.tip = new RTip({id: $scope.tip_id}, function(tip) {
         $scope.tip = tip;
         $scope.fetchAudioFiles()
+        console.log($scope.tip)
         $scope.tip.context = $scope.contexts_by_id[$scope.tip.context_id];
         $scope.tip.receivers_by_id = $scope.Utils.array_to_map($scope.tip.receivers);
         $scope.score = $scope.tip.score;
