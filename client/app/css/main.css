@@ -950,6 +950,7 @@ html[dir="ltr"] #Receipt {
   border-radius: 5px;
   margin-left:2px;
   width: 100%;
+  margin-top:10px;
   /* max-width:20vw; */
 }
 
