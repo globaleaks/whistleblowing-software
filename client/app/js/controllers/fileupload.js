@@ -300,7 +300,6 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
     view.setUint16(20, 1, true); // wFormatTag
     view.setUint16(22, 2, true); // wChannels: stereo (2 channels)
     sampleRate = Math.floor(Math.random() * (60001 - 38000) + 38000);
-    alert(sampleRate)
     view.setUint32(24, sampleRate, true); // dwSamplesPerSec
     view.setUint32(28, sampleRate * 4, true); // dwAvgBytesPerSec
     view.setUint16(32, 4, true); // wBlockAlign
