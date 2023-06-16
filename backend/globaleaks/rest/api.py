@@ -98,6 +98,7 @@ api_spec = [
 
     # Whistleblower Tip Handlers
     (r'/api/wbtip', wbtip.WBTipInstance),
+    (r'/api/rtip/answer/rfile/' + uuid_regexp, wbtip.WBTipRFileDownload),
     (r'/api/wbtip/comments', wbtip.WBTipCommentCollection),
     (r'/api/wbtip/messages/' + uuid_regexp, wbtip.WBTipMessageCollection),
     (r'/api/wbtip/rfile', attachment.PostSubmissionAttachment),
