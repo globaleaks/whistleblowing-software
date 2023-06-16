@@ -340,7 +340,7 @@ factory("RTipDownloadRFile", ["Utils", function(Utils) {
 }]).
 factory("WBTipFileSourceGet", ["Utils", function(Utils) {
   return function(id, key, scope) {
-    return Utils.download("api/wbfile/" + id, key, scope);
+    return Utils.download("api/rfile/" + id, key, scope);
   }
 }]).
 factory("RTipFileSourceGet", ["Utils", function(Utils) {

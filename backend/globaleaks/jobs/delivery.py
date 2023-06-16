@@ -63,10 +63,8 @@ def file_delivery(session):
            
             session.add(receiverfile)
             if BaseHandler.encryption_type == 'tip':
-                print('ENCRYPTION TYPE IS TIP')
                 crypto_key = itip.crypto_tip_pub_key
             else:
-                print('ENCRYPTION TYPE IS OTHER')
                 crypto_key = itip.crypto_files_pub_key
 
             if ifile.id not in receiverfiles_maps:

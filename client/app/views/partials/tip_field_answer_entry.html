@@ -29,7 +29,8 @@
     </div>
   </span>
 
-  <span data-ng-switch-when="audioUpload" data-ng-init="loadRFile(audiolist[field.id]['key']['id'], field.id, this)">
+  <span data-ng-switch-when="audioUpload" data-ng-init="">
+    <button data-ng-click="loadRFile(audiolist[field.id]['key']['id'])"></button>
     <audio data-ng-src="{{audiolist[field.id]['value']}}" controls class="audio-player"></audio>
   </span>
   <span data-ng-if="entry['value']" class="entry-text preformatted" data-ng-switch-default>{{entry['value']}}</span>

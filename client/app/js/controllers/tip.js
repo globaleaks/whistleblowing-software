@@ -151,6 +151,7 @@ GL.controller("TipCtrl",
 
       $scope.tip = new WBTip(function(tip) {
         $scope.tip = tip;
+        console.log($scope.tip)
         $scope.tip.context = $scope.contexts_by_id[$scope.tip.context_id];
         $scope.tip.receivers_by_id = $scope.Utils.array_to_map($scope.tip.receivers);
         $scope.score = $scope.tip.score;
