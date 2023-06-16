@@ -212,7 +212,7 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
       target: $scope.fileupload_url,
       query: {
         type: 'audio.webm',
-        isAnswerOf: fileId
+        reference: fileId
       }
     });
 

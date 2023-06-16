@@ -12,7 +12,13 @@ from globaleaks.utils.crypto import generateRandomKey, GCE
 from globaleaks.utils.log import log
 from globaleaks.utils.pgp import PGPContext
 
+
+
 __all__ = ['Delivery']
+
+
+
+
 
 
 @transact
@@ -51,6 +57,8 @@ def file_delivery(session):
             # avoid to mark the receiverfile as new if it is part of a submission
             # this way we avoid to send unuseful messages
             receiverfile.new = not ifile.submission
+
+
 
             session.add(receiverfile)
 

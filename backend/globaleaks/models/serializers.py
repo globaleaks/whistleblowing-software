@@ -117,7 +117,7 @@ def serialize_ifile(session, ifile):
         'size': ifile.size,
         'type': ifile.content_type,
         'filename': ifile.filename,
-        'isAnswerOf':ifile.isAnswerOf
+        'reference':ifile.reference
         
     }
 
@@ -138,7 +138,7 @@ def serialize_rfile(session, ifile, rfile):
         'size': ifile.size,
         'type': ifile.content_type,
         'filename': rfile.filename,
-        'isAnswerOf':ifile.isAnswerOf
+        'reference':ifile.reference
     }
 
 

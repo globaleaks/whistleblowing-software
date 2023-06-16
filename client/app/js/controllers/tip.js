@@ -248,9 +248,9 @@ GL.controller("TipCtrl",
 
     $scope.fetchAudioFiles = function() {
       for (let dictionary of $scope.tip.rfiles) {
-        $scope.audiolist[dictionary['isAnswerOf']] = {}
-        $scope.audiolist[dictionary['isAnswerOf']]['key'] = dictionary;
-        $scope.audiolist[dictionary['isAnswerOf']]['value'] = null;
+        $scope.audiolist[dictionary['reference']] = {}
+        $scope.audiolist[dictionary['reference']]['key'] = dictionary;
+        $scope.audiolist[dictionary['reference']]['value'] = null;
       }
     };
 
