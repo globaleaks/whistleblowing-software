@@ -30,7 +30,9 @@
   </span>
 
   <span data-ng-switch-when="audioUpload" data-ng-init="loadRFile(audiolist[field.id]['key']['id'], field.id, this)">
-    <audio data-ng-src="{{audiolist[field.id]['value']}}" controls class="audio-player col-md-6"></audio>
+    <div class="audio-player-wrapper" data-ng-disabled="!audiolist[field.id]['value']">
+      <audio data-ng-src="{{audiolist[field.id]['value']}}" controls class="audio-player"></audio>
+    </div>
   </span>
   <span data-ng-if="entry['value']" class="entry-text preformatted" data-ng-switch-default>{{entry['value']}}</span>
 </div>

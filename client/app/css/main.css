@@ -951,7 +951,7 @@ html[dir="ltr"] #Receipt {
   margin-left:2px;
   width: 100%;
   margin-top:10px;
-  /* max-width:20vw; */
+  max-width:17vw;
 }
 
 .audio-btn-group {
