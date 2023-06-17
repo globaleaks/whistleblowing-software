@@ -318,7 +318,6 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
 
     // Create the final blob
     blob = new Blob([view], { type: "audio/wav" });
-    $scope.audioPlayer = URL.createObjectURL(blob);
 
     var durationInSeconds = (Date.now() - startTime) / 1000;
     $scope.isRecordingTooShort = durationInSeconds < parseInt($scope.field.attrs.min_time.value);
@@ -333,6 +332,7 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
     flow.files = [];
     if (!$scope.isRecordingTooShort) {
       flow.files.push(file);
+      $scope.audioPlayer = URL.createObjectURL(blob);
     }
 
     if ($scope.uploads.hasOwnProperty($scope.fileinput)) {

@@ -134,7 +134,7 @@
             <div class="form-group" data-ng-if="(field.type === 'audioUpload') && field.template_id === ''">
               <div class="form-group">
                 <label data-translate>Minimum number of seconds</label>
-                <input data-ng-model="field.attrs.min_time.value" min="0" value="0" type="number" class="form-control" data-ng-disabled="!field.editable" />
+                <input data-ng-model="field.attrs.min_time.value" min="0" value="10" type="number" class="form-control" data-ng-disabled="!field.editable" />
                 <div data-translate>Set the value to 0 to disable this feature.</div>
               </div>
             </div>
