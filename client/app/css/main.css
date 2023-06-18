@@ -947,7 +947,10 @@ html[dir="ltr"] #Receipt {
 }
 
 .audio-player {
-  border-radius: 5px;
+  background: #262626;
+  padding: 2px;
+  height:42px;
+  border-radius: 50px;
   margin-left:2px;
   width: 100%;
   margin-top:10px;

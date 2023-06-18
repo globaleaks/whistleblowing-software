@@ -35,25 +35,23 @@ controller("WBFileUploadCtrl", ["$scope", function($scope) {
 controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFactory) {
   var chunks = [];
   var mediaRecorder;
-  // var flow = flowFactory.create({ target: $scope.fileupload_url, query: { type: 'audio.webm' } });
-  $scope.disablePlayer = true;
+  var flow;
   var mediaStream = null;
   var context = null;
   var mediaRecorder = null;
-  var leftchannel = [];
-  var rightchannel = [];
+  var audio_channel = [];
   var recorder = null;
   var recordingLength = 0;
   var volume = null;
   var mediaStream = null;
   var context = null;
   var blob = null;
-  // var flow = flowFactory.create({ target: $scope.fileupload_url, query: { type: 'audio.webm' } });
   var startTime;
   var noiseGateThreshold = 0.2;
   var noiseReductionAmount = 0.5;
 
   $scope.activeButton = null;
+  $scope.disablePlayer = true;
 
   function applySubtleDistortion(buffer, amount) {
     var distortedBuffer = new Float32Array(buffer.length);
@@ -126,48 +124,6 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
     return pitchShiftedBuffer;
   }
 
-  function applyReverb(buffer, reverbTime, decay) {
-    var reverberatedBuffer = new Float32Array(buffer.length);
-    var delayTime = reverbTime * context.sampleRate; // Convert reverb time to samples
-    var delayAmount = decay * 0.7; // Adjust the decay amount as needed
-    var delayBuffer = new Float32Array(Math.ceil(delayTime) + 1);
-    var index = 0;
-
-    for (var i = 0; i < buffer.length; i++) {
-      var sample = buffer[i];
-      var delayedSample = delayBuffer[index];
-      reverberatedBuffer[i] = sample + delayedSample * delayAmount;
-      delayBuffer[index] = sample + delayedSample * decay;
-      index++;
-      if (index >= delayBuffer.length) {
-        index = 0;
-      }
-    }
-
-    return reverberatedBuffer;
-  }
-
-  // Function to apply Reverb effect to an audio buffer
-  function applyReverb(buffer, reverbTime, decay) {
-    var reverberatedBuffer = new Float32Array(buffer.length);
-      sampleRate = Math.floor(Math.random() * (60001 - 38000) + 38000);
-    var delayTime = reverbTime * sampleRate; // Convert reverb time to samples
-    var delayAmount = decay * 0.7; // Adjust the decay amount as needed
-    var delayBuffer = new Float32Array(Math.ceil(delayTime) + 1);
-    var index = 0;
-    for (var i = 0; i < buffer.length; i++) {
-      var sample = buffer[i];
-      var delayedSample = delayBuffer[index];
-      reverberatedBuffer[i] = sample + delayedSample * delayAmount;
-      delayBuffer[index] = sample + delayedSample * decay;
-      index++;
-      if (index >= delayBuffer.length) {
-        index = 0;
-      }
-    }
-    return reverberatedBuffer;
-  }
-
   function flattenArray(channelBuffer, recordingLength) {
     var result = new Float32Array(recordingLength);
     var offset = 0;
@@ -179,15 +135,14 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
     return result;
   }
 
-  function interleave(leftChannel, rightChannel) {
-    var length = leftChannel.length + rightChannel.length;
+  function interleave(audio_Channel) {
+    var length = audio_Channel.length;
     var result = new Float32Array(length);
 
     var inputIndex = 0;
 
     for (var index = 0; index < length;) {
-      result[index++] = leftChannel[inputIndex];
-      result[index++] = rightChannel[inputIndex];
+      result[index++] = audio_Channel[inputIndex];
       inputIndex++;
     }
     return result;
@@ -199,10 +154,26 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
     }
   }
 
-  var flow;
-  $scope.startRecording = function(fileId) {
-    leftchannel = [];
-    rightchannel = [];
+  $scope.triggerRecording = function(fileId) {
+    $scope.activeButton = 'record';
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(function(stream) {
+          $scope.startRecording(fileId, stream);
+          console.log('Audio recording permission is granted');
+        })
+        .catch(function(error) {
+          // Audio recording permission is denied or an error occurred
+          console.error('Error checking audio recording permission:', error);
+        });
+    } else {
+      // getUserMedia is not supported in this browser
+      console.warn('getUserMedia is not supported in this browser');
+    }
+  }
+
+  $scope.startRecording = function(fileId, stream) {
+    audio_channel = [];
     recordingLength = 0;
     isRecording = true;
     $scope.activeButton = 'record';
@@ -216,55 +187,87 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
       }
     });
 
-    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      console.log('getUserMedia is not supported in this browser.');
-      return;
-    }
+    mediaRecorder = new MediaRecorder(stream)
 
-    navigator.mediaDevices.getUserMedia({ audio: true })
-      .then(function(stream) {
-        mediaRecorder = new MediaRecorder(stream)
+    // Create the audio context
+    window.AudioContext = window.AudioContext || window.webkitAudioContext;
+    context = new AudioContext();
 
-        // Create the audio context
-        window.AudioContext = window.AudioContext || window.webkitAudioContext;
-        context = new AudioContext();
+    // Create an audio node from the microphone incoming stream
+    mediaStream = context.createMediaStreamSource(stream);
 
-        // Create an audio node from the microphone incoming stream
-        mediaStream = context.createMediaStreamSource(stream);
+    // ScriptProcessorNode for audio processing
+    recorder = context.createScriptProcessor(2048, 2, 2);
 
-        // ScriptProcessorNode for audio processing
-        recorder = context.createScriptProcessor(2048, 2, 2);
+    recorder.onaudioprocess = function(stream) {
+      var buffer = stream.inputBuffer.getChannelData(0);
 
-        recorder.onaudioprocess = function(stream) {
-          var leftBuffer = stream.inputBuffer.getChannelData(0);
-          var rightBuffer = stream.inputBuffer.getChannelData(1);
+      // Apply noise reduction
+      for (var i = 0; i < buffer.length; i++) {
+        if (Math.abs(buffer[i]) < noiseGateThreshold) {
+          buffer[i] *= noiseReductionAmount;
+        }
+      }
 
-          // Apply noise reduction
-          for (var i = 0; i < leftBuffer.length; i++) {
-            if (Math.abs(leftBuffer[i]) < noiseGateThreshold) {
-              leftBuffer[i] *= noiseReductionAmount;
-            }
+      audio_channel.push(new Float32Array(buffer));
+      recordingLength += buffer.length;
+    };
 
-            if (Math.abs(rightBuffer[i]) < noiseGateThreshold) {
-              rightBuffer[i] *= noiseReductionAmount;
-            }
-          }
+    // Connect the recorder
+    mediaStream.connect(recorder);
+    recorder.connect(context.destination);
+  };
 
-          leftchannel.push(new Float32Array(leftBuffer));
-          rightchannel.push(new Float32Array(rightBuffer));
-          recordingLength += leftBuffer.length;
-        };
+  $scope.startRecording = function(fileId, stream) {
+    audio_channel = [];
+    recordingLength = 0;
+    isRecording = true;
+    $scope.activeButton = 'record';
+    startTime = Date.now();
 
-        // Connect the recorder
-        mediaStream.connect(recorder);
-        recorder.connect(context.destination);
-      })
+    flow = flowFactory.create({
+      target: $scope.fileupload_url,
+      query: {
+        type: 'audio.webm',
+        reference: fileId
+      }
+    });
+
+    mediaRecorder = new MediaRecorder(stream)
+
+    // Create the audio context
+    window.AudioContext = window.AudioContext || window.webkitAudioContext;
+    context = new AudioContext();
+
+    // Create an audio node from the microphone incoming stream
+    mediaStream = context.createMediaStreamSource(stream);
+
+    // ScriptProcessorNode for audio processing
+    recorder = context.createScriptProcessor(2048, 2, 2);
+
+    recorder.onaudioprocess = function(stream) {
+      var buffer = stream.inputBuffer.getChannelData(0);
+
+      // Apply noise reduction
+      for (var i = 0; i < buffer.length; i++) {
+        if (Math.abs(buffer[i]) < noiseGateThreshold) {
+          buffer[i] *= noiseReductionAmount;
+        }
+      }
+
+      audio_channel.push(new Float32Array(buffer));
+      recordingLength += buffer.length;
+    };
+
+    // Connect the recorder
+    mediaStream.connect(recorder);
+    recorder.connect(context.destination);
   };
 
   $scope.stopRecording = function() {
     isRecording = false;
     $scope.activeButton = null;
-   
+
     // Stop recording
 
     if (recorder && mediaStream) {
@@ -276,17 +279,16 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
       track.stop();
     });
 
-    var stretchAmount = Math.random() * 0.3 + 1.1; // Random stretch amount for the left channel
+    var stretchAmount = Math.random() * 0.3 + 1.1;
     var randomPitch = Math.random() * (1.2 - 0.7) + 0.7;
 
-    // Flatten the left and right channels down
-    var modbuffer = flattenArray(leftchannel, recordingLength);
-    modbuffer = applyLowPassFilter(modbuffer, randomPitch);
+    var modbuffer = flattenArray(audio_channel, recordingLength);
+    modbuffer = applyLowPassFilter(modbuffer);
     modbuffer = pitchShift(modbuffer, randomPitch);
     modbuffer = applyTimeStretching(modbuffer, stretchAmount);
     modbuffer = applyBitcrusher(modbuffer);
 
-    var interleaved = interleave(modbuffer, modbuffer);
+    var interleaved = interleave(modbuffer);
     var buffer = new ArrayBuffer(44 + interleaved.length * 2);
     var view = new DataView(buffer);
 
@@ -342,7 +344,6 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
       $scope.uploads[$scope.fileinput] = flow;
     }
   };
-
 }]).
 controller("ImageUploadCtrl", ["$http", "$scope", "$rootScope", "uploadUtils", "Utils", function($http, $scope, $rootScope, uploadUtils, Utils) {
   $scope.Utils = Utils;
