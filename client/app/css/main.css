@@ -954,7 +954,11 @@ html[dir="ltr"] #Receipt {
   margin-left:2px;
   width: 100%;
   margin-top:10px;
-  max-width:17vw;
+  max-width:350px;
+}
+
+@media screen and (max-width:370px) {
+  .audio-player{max-width: 300px;}
 }
 
 .audio-btn-group {
