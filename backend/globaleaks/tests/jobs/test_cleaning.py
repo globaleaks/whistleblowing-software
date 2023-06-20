@@ -21,7 +21,6 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
         self.db_test_model_count(session, models.InternalFile, 0)
         self.db_test_model_count(session, models.ReceiverFile, 0)
         self.db_test_model_count(session, models.Comment, 0)
-        self.db_test_model_count(session, models.Message, 0)
         self.db_test_model_count(session, models.Mail, 0)
 
     @transact
@@ -33,7 +32,6 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
         self.db_test_model_count(session, models.InternalFile, self.population_of_submissions * self.population_of_attachments)
         self.db_test_model_count(session, models.ReceiverFile, self.population_of_submissions * self.population_of_attachments * self.population_of_recipients)
         self.db_test_model_count(session, models.Comment, self.population_of_submissions * (self.population_of_recipients + 1))
-        self.db_test_model_count(session, models.Message, self.population_of_submissions * (self.population_of_recipients + 2))
         self.db_test_model_count(session, models.Mail, 0)
 
     @transact
@@ -45,7 +43,6 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
         self.db_test_model_count(session, models.InternalFile, self.population_of_submissions * self.population_of_attachments)
         self.db_test_model_count(session, models.ReceiverFile, self.population_of_submissions * self.population_of_attachments * self.population_of_recipients)
         self.db_test_model_count(session, models.Comment, self.population_of_submissions * (self.population_of_recipients + 1))
-        self.db_test_model_count(session, models.Message, self.population_of_submissions * (self.population_of_recipients + 2))
         self.db_test_model_count(session, models.Mail, 0)
 
     @transact
@@ -57,7 +54,6 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
         self.db_test_model_count(session, models.InternalFile, self.population_of_submissions * self.population_of_attachments)
         self.db_test_model_count(session, models.ReceiverFile, self.population_of_submissions * self.population_of_attachments * self.population_of_recipients)
         self.db_test_model_count(session, models.Comment, self.population_of_submissions * (self.population_of_recipients + 1))
-        self.db_test_model_count(session, models.Message, self.population_of_submissions * (self.population_of_recipients + 2))
         self.db_test_model_count(session, models.Mail, self.population_of_recipients)
 
     @transact
@@ -69,7 +65,6 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
         self.db_test_model_count(session, models.InternalFile, 0)
         self.db_test_model_count(session, models.ReceiverFile, 0)
         self.db_test_model_count(session, models.Comment, 0)
-        self.db_test_model_count(session, models.Message, 0)
         self.db_test_model_count(session, models.Mail, self.population_of_recipients)
 
     @inlineCallbacks

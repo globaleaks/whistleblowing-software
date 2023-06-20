@@ -30,7 +30,7 @@ def decrypt_tip(user_key, tip_prv_key, tip):
                 # The bug is due to the fact that the data was initially saved as an array of one entry
                 tip['data'][k] = tip['data'][k][0]
 
-    for x in tip['comments'] + tip['messages']:
+    for x in tip['comments']:
         x['content'] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(x['content'].encode())).decode()
 
     for x in tip['rfiles'] + tip['wbfiles']:
@@ -171,7 +171,6 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
 
     itip.context_id = context.id
     itip.enable_two_way_comments = context.enable_two_way_comments
-    itip.enable_two_way_messages = context.enable_two_way_messages
     itip.enable_attachments = context.enable_attachments
 
     whistleblower_identity = session.query(models.Field) \

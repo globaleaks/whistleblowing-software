@@ -104,7 +104,6 @@ def prepare_tip_export(cc, tip_export):
         file_dict['name'] = 'files_attached_from_recipients/' + file_dict['name']
 
     tip_export['comments'] = tip_export['tip']['comments']
-    tip_export['messages'] = tip_export['tip']['messages']
 
     export_template = Templating().format_template(tip_export['notification']['export_template'], tip_export).encode()
     export_template = msdos_encode(export_template.decode()).encode()

@@ -43,8 +43,7 @@ tip_keywords = [
     '{EventTime}',
     '{SubmissionDate}',
     '{QuestionnaireAnswers}',
-    '{Comments}',
-    '{Messages}'
+    '{Comments}'
 ]
 
 file_keywords = [
@@ -52,7 +51,7 @@ file_keywords = [
     '{FileSize}'
 ]
 
-export_message_keywords = [
+export_comment_keywords = [
     '{Author}',
     '{Content}'
 ]
@@ -298,13 +297,13 @@ class TipKeyword(UserNodeKeyword):
 
         return output
 
-    def dump_messages(self, messages):
+    def dump_comments(self, comments):
         ret = ''
-        for message in messages:
+        for comment in comments:
             data = copy.deepcopy(self.data)
-            data['type'] = 'export_message'
-            data['message'] = copy.deepcopy(message)
-            template = 'export_message_whistleblower' if (message['type'] == 'whistleblower') else 'export_message_recipient'
+            data['type'] = 'export_comment'
+            data['comment'] = copy.deepcopy(comment)
+            template = 'export_comment_recipient' if comment['author_id'] else 'export_comment_whistleblower'
             ret += indent_text('-' * 40) + '\n'
             ret += indent_text(str(Templating().format_template(self.data['notification'][template], data))) + '\n\n'
 
@@ -356,31 +355,22 @@ class TipKeyword(UserNodeKeyword):
             return ''
 
         ret = 'Comments:\n'
-        ret += self.dump_messages(comments) + '\n'
-        return ret + '\n'
-
-    def Messages(self):
-        messages = self.data.get('messages', [])
-        if not len(messages):
-            return ''
-
-        ret = 'Private messages:\n'
-        ret += self.dump_messages(messages)
+        ret += self.dump_comments(comments) + '\n'
         return ret + '\n'
 
 
 class ExportMessageKeyword(TipKeyword):
-    keyword_list = TipKeyword.keyword_list + export_message_keywords
-    data_keys = TipKeyword.data_keys + ['message']
+    keyword_list = TipKeyword.keyword_list + export_comment_keywords
+    data_keys = TipKeyword.data_keys + ['comment']
 
     def Author(self):
-        return 'Recipient' if self.data['message']['type'] == 'receiver' else 'Whistleblower'
+        return 'Recipient' if self.data['comment']['author_id'] else 'Whistleblower'
 
     def Content(self):
-        return self.data['message']['content']
+        return self.data['comment']['content']
 
     def EventTime(self):
-        return datetime_to_pretty_str(self.data['message']['creation_date'])
+        return datetime_to_pretty_str(self.data['comment']['creation_date'])
 
 
 class ExpirationSummaryKeyword(UserNodeKeyword):
@@ -644,7 +634,7 @@ supported_template_types = {
     'pgp_alert': PGPAlertKeyword,
     'admin_pgp_alert': AdminPGPAlertKeyword,
     'export_template': TipKeyword,
-    'export_message': ExportMessageKeyword,
+    'export_comment': ExportMessageKeyword,
     'admin_anomaly': AnomalyKeyword,
     'admin_test': UserNodeKeyword,
     'https_certificate_expiration': CertificateExprKeyword,

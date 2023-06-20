@@ -37,17 +37,8 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
     updated_after = datetime.fromtimestamp(int(args.get(b'updated_after', [b'0'])[0]))
     updated_before = datetime.fromtimestamp(int(args.get(b'updated_before', [b'32503680000'])[0]))
 
-    messages_by_rtip = {}
     comments_by_itip = {}
     files_by_itip = {}
-
-    # Fetch messages count
-    for rtip_id, count in session.query(models.ReceiverTip.id,
-                                        func.count(distinct(models.Message.id))) \
-                                 .filter(models.ReceiverTip.receiver_id == receiver_id,
-                                         models.Message.receivertip_id == models.ReceiverTip.id) \
-                                 .group_by(models.ReceiverTip.id):
-        messages_by_rtip[rtip_id] = count
 
     # Fetch comments count
     for itip_id, count in session.query(models.InternalTip.id,
@@ -114,8 +105,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
             'status': itip.status,
             'substatus': itip.substatus,
             'file_count': files_by_itip.get(itip.id, 0),
-            'comment_count': comments_by_itip.get(itip.id, 0),
-            'message_count': messages_by_rtip.get(rtip.id, 0)
+            'comment_count': comments_by_itip.get(itip.id, 0)
         })
 
     return ret

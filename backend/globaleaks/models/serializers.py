@@ -73,31 +73,9 @@ def serialize_comment(session, comment):
     """
     return {
         'id': comment.id,
-        'type': comment.type,
         'creation_date': comment.creation_date,
         'content': comment.content,
-        'author': comment.author_id
-    }
-
-
-def serialize_message(session, message):
-    """
-    Transaction returning a serialized descriptor of a message
-
-    :param session: An ORM session
-    :param message: A model to be serialized
-    :return: A serialized description of the model specified
-    """
-    receiver_involved_id = session.query(models.ReceiverTip.receiver_id) \
-                                  .filter(models.ReceiverTip.id == models.Message.receivertip_id,
-                                          models.Message.id == message.id).one()
-
-    return {
-        'id': message.id,
-        'type': message.type,
-        'creation_date': message.creation_date,
-        'content': message.content,
-        'receiver_involved_id': receiver_involved_id
+        'author_id': comment.author_id
     }
 
 
@@ -182,7 +160,6 @@ def serialize_itip(session, internaltip, language):
         'mobile': internaltip.mobile,
         'reminder_date' : internaltip.reminder_date,
         'enable_two_way_comments': internaltip.enable_two_way_comments,
-        'enable_two_way_messages': internaltip.enable_two_way_messages,
         'enable_attachments': internaltip.enable_attachments,
         'enable_whistleblower_identity': internaltip.enable_whistleblower_identity,
         'last_access': internaltip.last_access,
@@ -190,7 +167,6 @@ def serialize_itip(session, internaltip, language):
         'status': internaltip.status,
         'substatus': internaltip.substatus,
         'receivers': [],
-        'messages': [],
         'comments': [],
         'rfiles': [],
         'wbfiles': [],
@@ -252,10 +228,6 @@ def serialize_rtip(session, itip, rtip, language):
           'name': receiver.name
         })
 
-    for message in session.query(models.Message) \
-                          .filter(models.Message.receivertip_id == rtip.id):
-        ret['messages'].append(serialize_message(session, message))
-
     if 'whistleblower_identity' in ret['data']:
         ret['data']['whistleblower_identity_provided'] = True
 
@@ -280,12 +252,6 @@ def serialize_wbtip(session, itip, language):
           'id': receiver.id,
           'name': receiver.public_name
         })
-
-    for message in session.query(models.Message) \
-                          .filter(models.Message.receivertip_id == models.ReceiverTip.id,
-                                  models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                  models.InternalTip.id == itip.id):
-        ret['messages'].append(serialize_message(session, message))
 
     for ifile in session.query(models.InternalFile) \
                         .filter(models.InternalFile.internaltip_id == itip.id):

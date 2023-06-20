@@ -84,7 +84,6 @@ def create_comment(session, tid, itip_id, content):
 
     comment = models.Comment()
     comment.internaltip_id = itip_id
-    comment.type = 'whistleblower'
     comment.content = _content
     session.add(comment)
     session.flush()
@@ -92,35 +91,6 @@ def create_comment(session, tid, itip_id, content):
     ret = serializers.serialize_comment(session, comment)
     ret['content'] = content
 
-    return ret
-
-
-@transact
-def create_message(session, tid, itip_id, receiver_id, content):
-    itip, rtip_id = db_get(session,
-                           (models.InternalTip, models.ReceiverTip.id),
-                           (models.InternalTip.id == itip_id,
-                            models.ReceiverTip.internaltip_id == itip_id,
-                            models.ReceiverTip.receiver_id == receiver_id,
-                            models.InternalTip.enable_two_way_messages.is_(True),
-                            models.InternalTip.status != 'closed',
-                            models.InternalTip.tid == tid))
-
-    itip.update_date = itip.last_access = datetime_now()
-
-    _content = content
-    if itip.crypto_tip_pub_key:
-        _content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
-
-    msg = models.Message()
-    msg.receivertip_id = rtip_id
-    msg.type = 'whistleblower'
-    msg.content = _content
-    session.add(msg)
-    session.flush()
-
-    ret = serializers.serialize_message(session, msg)
-    ret['content'] = content
     return ret
 
 
@@ -192,17 +162,6 @@ class WBTipCommentCollection(BaseHandler):
     def post(self):
         request = self.validate_request(self.request.content.read(), requests.CommentDesc)
         return create_comment(self.request.tid, self.session.user_id, request['content'])
-
-
-class WBTipMessageCollection(BaseHandler):
-    """
-    This interface expose the Whistleblower Tip Messages
-    """
-    check_roles = 'whistleblower'
-
-    def post(self, receiver_id):
-        request = self.validate_request(self.request.content.read(), requests.CommentDesc)
-        return create_message(self.request.tid, self.session.user_id, receiver_id, request['content'])
 
 
 class WBTipWBFileHandler(BaseHandler):

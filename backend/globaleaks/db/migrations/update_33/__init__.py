@@ -78,7 +78,6 @@ class InternalTip_v_32(models.Model):
     identity_provided = Column(Boolean, default=False)
     identity_provided_date = Column(DateTime, default=datetime_null)
     enable_two_way_comments = Column(Boolean, default=True)
-    enable_two_way_messages = Column(Boolean, default=True)
     enable_attachments = Column(Boolean, default=True)
     enable_whistleblower_identity = Column(Boolean, default=False)
     new = Column(Integer, default=True)

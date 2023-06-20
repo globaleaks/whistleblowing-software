@@ -552,37 +552,6 @@ def create_comment(session, tid, user_id, rtip_id, content):
 
 
 @transact
-def create_message(session, tid, user_id, rtip_id, content):
-    """
-    Transaction for registering a new message
-    :param session: An ORM session
-    :param tid: A tenant ID
-    :param user_id: The user id of the user creating the message
-    :param rtip_id: The rtip associated to the message to be created
-    :param content: The content of the message
-    :return: A serialized descriptor of the message
-    """
-    _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
-
-    itip.update_date = rtip.last_access = datetime_now()
-
-    _content = content
-    if itip.crypto_tip_pub_key:
-        _content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
-
-    msg = models.Message()
-    msg.receivertip_id = rtip.id
-    msg.type = 'receiver'
-    msg.content = _content
-    session.add(msg)
-    session.flush()
-
-    ret = serializers.serialize_message(session, msg)
-    ret['content'] = content
-    return ret
-
-
-@transact
 def delete_wbfile(session, tid, user_id, file_id):
     """
     Transation for deleting a wbfile
@@ -662,18 +631,6 @@ class RTipCommentCollection(BaseHandler):
         request = self.validate_request(self.request.content.read(), requests.CommentDesc)
 
         return create_comment(self.request.tid, self.session.user_id, rtip_id, request['content'])
-
-
-class ReceiverMsgCollection(BaseHandler):
-    """
-    Interface use to write rtip messages
-    """
-    check_roles = 'receiver'
-
-    def post(self, rtip_id):
-        request = self.validate_request(self.request.content.read(), requests.CommentDesc)
-
-        return create_message(self.request.tid, self.session.user_id, rtip_id, request['content'])
 
 
 class ReceiverFileDownload(BaseHandler):

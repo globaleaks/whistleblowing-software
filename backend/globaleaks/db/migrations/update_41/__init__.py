@@ -34,8 +34,6 @@ class InternalTip_v_40(Model):
     expiration_date = Column(DateTime, nullable=False)
     identity_provided = Column(Boolean, default=False, nullable=False)
     identity_provided_date = Column(DateTime, default=datetime_null, nullable=False)
-    enable_two_way_comments = Column(Boolean, default=True, nullable=False)
-    enable_two_way_messages = Column(Boolean, default=True, nullable=False)
     enable_attachments = Column(Boolean, default=True, nullable=False)
     enable_whistleblower_identity = Column(Boolean, default=False, nullable=False)
     receipt_hash = Column(UnicodeText(128), nullable=False)

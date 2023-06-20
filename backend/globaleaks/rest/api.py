@@ -89,7 +89,6 @@ api_spec = [
     (r'/api/rtips', receiver.TipsCollection),
     (r'/api/rtips/' + uuid_regexp, rtip.RTipInstance),
     (r'/api/rtips/' + uuid_regexp + r'/comments', rtip.RTipCommentCollection),
-    (r'/api/rtips/' + uuid_regexp + r'/messages', rtip.ReceiverMsgCollection),
     (r'/api/rtips/' + uuid_regexp + r'/iars', rtip.IdentityAccessRequestsCollection),
     (r'/api/rtips/' + uuid_regexp + r'/export', export.ExportHandler),
     (r'/api/rtips/' + uuid_regexp + r'/wbfile', rtip.WhistleblowerFileHandler),
@@ -99,7 +98,6 @@ api_spec = [
     # Whistleblower Tip Handlers
     (r'/api/wbtip', wbtip.WBTipInstance),
     (r'/api/wbtip/comments', wbtip.WBTipCommentCollection),
-    (r'/api/wbtip/messages/' + uuid_regexp, wbtip.WBTipMessageCollection),
     (r'/api/wbtip/rfile', attachment.PostSubmissionAttachment),
     (r'/api/wbtip/wbfile/' + uuid_regexp, wbtip.WBTipWBFileHandler),
     (r'/api/wbtip/' + uuid_regexp + r'/provideidentityinformation', wbtip.WBTipIdentityHandler),

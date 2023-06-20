@@ -31,8 +31,3 @@ class EnumFieldOptionScoreType(_Enum):
     none = 0
     addition = 1
     multiplier = 2
-
-
-class EnumMessageType(_Enum):
-    whistleblower = 0
-    receiver = 1

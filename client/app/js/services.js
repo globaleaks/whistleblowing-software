@@ -330,9 +330,6 @@ factory("RTipResource", ["GLResource", function(GLResource) {
 factory("RTipCommentResource", ["GLResource", function(GLResource) {
   return new GLResource("api/rtips/:id/comments", {id: "@id"});
 }]).
-factory("RTipMessageResource", ["GLResource", function(GLResource) {
-  return new GLResource("api/rtips/:id/messages", {id: "@id"});
-}]).
 factory("RTipDownloadRFile", ["Utils", function(Utils) {
   return function(file) {
     Utils.download("api/rfile/" + file.id);
@@ -351,8 +348,8 @@ factory("RTipExport", ["Utils", function(Utils) {
     Utils.download("api/rtips/" + tip.id + "/export");
   };
 }]).
-factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipMessageResource", "RTipCommentResource",
-        function($rootScope, $http, RTipResource, RTipMessageResource, RTipCommentResource) {
+factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipCommentResource",
+        function($rootScope, $http, RTipResource, RTipCommentResource) {
   return function(tipID, fn) {
     var self = this;
 
@@ -366,15 +363,6 @@ factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipMessageResource", "
         c.content = content;
         c.$save(function(newComment) {
           tip.comments.unshift(newComment);
-          tip.localChange();
-        });
-      };
-
-      tip.newMessage = function(content) {
-        var m = new RTipMessageResource(tipID);
-        m.content = content;
-        m.$save(function(newMessage) {
-          tip.messages.unshift(newMessage);
           tip.localChange();
         });
       };
@@ -410,16 +398,13 @@ factory("WBTipResource", ["GLResource", function(GLResource) {
 factory("WBTipCommentResource", ["GLResource", function(GLResource) {
   return new GLResource("api/wbtip/comments");
 }]).
-factory("WBTipMessageResource", ["GLResource", function(GLResource) {
-  return new GLResource("api/wbtip/messages/:id", {id: "@id"});
-}]).
 factory("WBTipDownloadFile", ["Utils", function(Utils) {
   return function(file) {
     Utils.download("api/wbtip/wbfile/" + file.id);
   };
 }]).
-factory("WBTip", ["$rootScope", "WBTipResource", "WBTipCommentResource", "WBTipMessageResource",
-    function($rootScope, WBTipResource, WBTipCommentResource, WBTipMessageResource) {
+factory("WBTip", ["$rootScope", "WBTipResource", "WBTipCommentResource",
+    function($rootScope, WBTipResource, WBTipCommentResource,) {
   return function(fn) {
     var self = this;
 
@@ -446,15 +431,6 @@ factory("WBTip", ["$rootScope", "WBTipResource", "WBTipCommentResource", "WBTipM
         c.content = content;
         c.$save(function(newComment) {
           tip.comments.unshift(newComment);
-          tip.localChange();
-        });
-      };
-
-      tip.newMessage = function(content) {
-        var m = new WBTipMessageResource({id: tip.msg_receiver_selected});
-        m.content = content;
-        m.$save(function(newMessage) {
-          tip.messages.unshift(newMessage);
           tip.localChange();
         });
       };
@@ -554,10 +530,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       context.show_steps_navigation_interface = true;
       context.select_all_receivers = true;
       context.maximum_selectable_receivers = 0;
-      context.enable_comments = true;
-      context.enable_messages = false;
       context.enable_two_way_comments = true;
-      context.enable_two_way_messages = true;
       context.enable_attachments = true;
       context.questionnaire_id = "";
       context.additional_questionnaire_id = "";

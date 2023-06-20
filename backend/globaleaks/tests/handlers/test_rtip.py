@@ -149,9 +149,6 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
     def test_put_enable_two_way_comments(self):
         return self.switch_enabler('enable_two_way_comments')
 
-    def test_put_enable_two_way_messages(self):
-        return self.switch_enabler('enable_two_way_messages')
-
     def test_put_enable_attachments(self):
         return self.switch_enabler('enable_attachments')
 
@@ -228,26 +225,6 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
 class TestRTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = rtip.RTipCommentCollection
-
-    @inlineCallbacks
-    def setUp(self):
-        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        yield self.perform_full_submission_actions()
-
-    @inlineCallbacks
-    def test_post(self):
-        body = {
-            'content': u"can you provide an evidence of what you are telling?",
-        }
-
-        rtip_descs = yield self.get_rtips()
-        for rtip_desc in rtip_descs:
-            handler = self.request(body, role='receiver', user_id=rtip_desc['receiver_id'])
-            yield handler.post(rtip_desc['id'])
-
-
-class TestReceiverMsgCollection(helpers.TestHandlerWithPopulatedDB):
-    _handler = rtip.ReceiverMsgCollection
 
     @inlineCallbacks
     def setUp(self):

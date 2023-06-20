@@ -236,7 +236,6 @@ class _Comment(Model):
     internaltip_id = Column(UnicodeText(36), nullable=False, index=True)
     author_id = Column(UnicodeText(36))
     content = Column(UnicodeText, nullable=False)
-    type = Column(UnicodeText, nullable=False)
     new = Column(Boolean, default=True, nullable=False)
 
     @declared_attr
@@ -327,10 +326,7 @@ class _Context(Model):
     allow_recipients_selection = Column(Boolean, default=False, nullable=False)
     maximum_selectable_receivers = Column(Integer, default=0, nullable=False)
     select_all_receivers = Column(Boolean, default=True, nullable=False)
-    enable_comments = Column(Boolean, default=True, nullable=False)
-    enable_messages = Column(Boolean, default=False, nullable=False)
     enable_two_way_comments = Column(Boolean, default=True, nullable=False)
-    enable_two_way_messages = Column(Boolean, default=True, nullable=False)
     enable_attachments = Column(Boolean, default=True, nullable=False)
     tip_timetolive = Column(Integer, default=90, nullable=False)
     tip_reminder = Column(Integer, default=0, nullable=False)
@@ -371,10 +367,7 @@ class _Context(Model):
         'show_receivers_in_alphabetical_order',
         'show_steps_navigation_interface',
         'allow_recipients_selection',
-        'enable_comments',
-        'enable_messages',
         'enable_two_way_comments',
-        'enable_two_way_messages',
         'enable_attachments'
     ]
 
@@ -619,7 +612,6 @@ class _InternalTip(Model):
     expiration_date = Column(DateTime, default=datetime_never, nullable=False)
     reminder_date = Column(DateTime, default=datetime_never, nullable=False)
     enable_two_way_comments = Column(Boolean, default=True, nullable=False)
-    enable_two_way_messages = Column(Boolean, default=True, nullable=False)
     enable_attachments = Column(Boolean, default=True, nullable=False)
     enable_whistleblower_identity = Column(Boolean, default=False, nullable=False)
     important = Column(Boolean, default=False, nullable=False)
@@ -689,26 +681,6 @@ class _Mail(Model):
     @declared_attr
     def __table_args__(self):
         return ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-
-
-class _Message(Model):
-    """
-    This table handle the direct messages between whistleblower and one
-    Receiver.
-    """
-    __tablename__ = 'message'
-
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    creation_date = Column(DateTime, default=datetime_now, nullable=False)
-    receivertip_id = Column(UnicodeText(36), nullable=False, index=True)
-    content = Column(UnicodeText, nullable=False)
-    type = Column(Enum(EnumMessageType), nullable=False)
-    new = Column(Boolean, default=True, nullable=False)
-
-    @declared_attr
-    def __table_args__(self):
-        return (ForeignKeyConstraint(['receivertip_id'], ['receivertip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                CheckConstraint(self.type.in_(EnumMessageType.keys())))
 
 
 class _Questionnaire(Model):
@@ -1101,10 +1073,6 @@ class InternalTipData(_InternalTipData, Base):
 
 
 class Mail(_Mail, Base):
-    pass
-
-
-class Message(_Message, Base):
     pass
 
 

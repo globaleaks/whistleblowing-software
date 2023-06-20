@@ -44,15 +44,6 @@ def get_tips(session, tid):
                                  .group_by(models.InternalTip.id):
         comments_by_itip[itip_id] = count
 
-    # Fetch messages count
-    for itip_id, count in session.query(models.InternalTip.id,
-                                        func.count(distinct(models.Message.id))) \
-                                 .filter(models.Message.receivertip_id == models.ReceiverTip.id,
-                                         models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                         models.InternalTip.tid == tid) \
-                                 .group_by(models.InternalTip.id):
-        messages_by_itip[itip_id] = count
-
     # Fetch files count
     for itip_id, count in session.query(models.InternalTip.id,
                                         func.count(distinct(models.InternalFile.id))) \

@@ -38,7 +38,6 @@ class TestNotification(helpers.TestGLWithPopulatedDB):
         yield self.test_model_count(models.InternalFile, 0)
         yield self.test_model_count(models.WhistleblowerFile, 0)
         yield self.test_model_count(models.Comment, 0)
-        yield self.test_model_count(models.Message, 0)
         yield self.test_model_count(models.Mail, 0)
 
         yield self.perform_full_submission_actions()
@@ -49,7 +48,6 @@ class TestNotification(helpers.TestGLWithPopulatedDB):
         yield self.test_model_count(models.ReceiverFile, 0)
         yield self.test_model_count(models.WhistleblowerFile, 0)
         yield self.test_model_count(models.Comment, 6)
-        yield self.test_model_count(models.Message, 8)
         yield self.test_model_count(models.Mail, 0)
 
         yield Delivery().run()
@@ -60,7 +58,6 @@ class TestNotification(helpers.TestGLWithPopulatedDB):
         yield self.test_model_count(models.ReceiverFile, 8)
         yield self.test_model_count(models.WhistleblowerFile, 0)
         yield self.test_model_count(models.Comment, 6)
-        yield self.test_model_count(models.Message, 8)
         yield self.test_model_count(models.Mail, 0)
 
         notification = Notification()

@@ -284,10 +284,7 @@ class MockDict:
             'show_context': True,
             'show_recipients_details': True,
             'allow_recipients_selection': False,
-            'enable_comments': True,
-            'enable_messages': True,
             'enable_two_way_comments': True,
-            'enable_two_way_messages': True,
             'enable_attachments': True,
             'show_receivers_in_alphabetical_order': False,
         }
@@ -865,23 +862,12 @@ class TestGLWithPopulatedDB(TestGL):
                                       rtip_desc['id'],
                                       'comment')
 
-            yield rtip.create_message(1,
-                                      rtip_desc['receiver_id'],
-                                      rtip_desc['id'],
-                                      'message')
-
         self.dummyWBTips = yield self.get_wbtips()
 
         for wbtip_desc in self.dummyWBTips:
             yield wbtip.create_comment(1,
                                        wbtip_desc['id'],
                                        'comment')
-
-            for receiver_id in wbtip_desc['receivers_ids']:
-                yield wbtip.create_message(1,
-                                           wbtip_desc['id'],
-                                           receiver_id,
-                                           'message')
 
     @inlineCallbacks
     def perform_minimal_submission_actions(self):
@@ -891,7 +877,7 @@ class TestGLWithPopulatedDB(TestGL):
 
     @inlineCallbacks
     def perform_full_submission_actions(self):
-        """Populates the DB with tips, comments, messages and files"""
+        """Populates the DB with tips, comments, and files"""
         for x in range(self.population_of_submissions):
             session = self.perform_submission_start()
             self.perform_submission_uploads(session.id)

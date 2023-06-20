@@ -93,14 +93,7 @@ class MailGenerator(object):
                                          models.Comment.new.is_(True)) \
                                  .order_by(models.Comment.creation_date)
 
-        results3 = session.query(models.User, models.ReceiverTip, models.InternalTip, models.Message) \
-                            .filter(models.User.id == models.ReceiverTip.receiver_id,
-                                    models.ReceiverTip.id == models.Message.receivertip_id,
-                                    models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                    models.Message.new.is_(True)) \
-                            .order_by(models.Message.creation_date)
-
-        results4 = session.query(models.User, models.ReceiverTip, models.InternalTip, models.ReceiverFile) \
+        results3 = session.query(models.User, models.ReceiverTip, models.InternalTip, models.ReceiverFile) \
                           .filter(models.User.id == models.ReceiverTip.receiver_id,
                                     models.ReceiverTip.id == models.ReceiverFile.receivertip_id,
                                     models.InternalTip.id == models.ReceiverTip.internaltip_id,
@@ -109,12 +102,11 @@ class MailGenerator(object):
                                     models.ReceiverFile.new.is_(True)) \
                           .order_by(models.InternalFile.creation_date)
 
-        for user, rtip, itip, obj in itertools.chain(results1, results2, results3, results4):
+        for user, rtip, itip, obj in itertools.chain(results1, results2, results3):
             tid = user.tid
 
             if (rtips_ids.get(rtip.id, False) or tid in silent_tids) or \
-               (isinstance(obj, models.Comment) and obj.type != 'whistleblower' and obj.author_id == user.id) or \
-               (isinstance(obj, models.Message) and obj.type == 'receiver') or \
+               (isinstance(obj, models.Comment) and obj.author_id == user.id) or \
                (rtip.last_notification > rtip.last_access):
                 obj.new = False
                 continue

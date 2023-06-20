@@ -2,8 +2,6 @@ describe("globaleaks process", function() {
   var receipts = [];
   var comment = "comment";
   var comment_reply = "comment reply";
-  var message = "message";
-  var message_reply = "message reply";
 
   var perform_submission = async function() {
     var wb = new browser.gl.pages.whistleblower();
@@ -43,8 +41,6 @@ describe("globaleaks process", function() {
   });
 
   it("Recipient should be able to see files and download them", async function() {
-    await browser.gl.utils.takeScreenshot("before-bug.png");
-
     expect(await element.all(by.css(".tip-action-download-file")).count()).toEqual(2);
 
     await element.all(by.css(".tip-action-download-file")).get(0).click();
@@ -57,6 +53,9 @@ describe("globaleaks process", function() {
     var c = await element(by.id("comment-0")).element(by.css(".preformatted")).getText();
 
     expect(c).toContain(comment);
+
+    await browser.setLocation("/recipient/reports");
+    await browser.gl.utils.takeScreenshot("recipient/reports.png");
 
     await browser.gl.utils.logout();
   });
@@ -72,6 +71,8 @@ describe("globaleaks process", function() {
 
     c = await element(by.id("comment-0")).element(by.css(".preformatted")).getText();
     expect(c).toContain(comment_reply);
+
+    await browser.gl.utils.takeScreenshot("whistleblower/report.png");
   });
 
   it("Whistleblower should be able to attach a new file to the last submission", async function() {
@@ -83,48 +84,9 @@ describe("globaleaks process", function() {
     await browser.gl.utils.logout();
   });
 
-  it("Recipient should be able to start a private discussion with the whistleblower", async function() {
-    await browser.gl.utils.login_receiver();
-
-    await browser.gl.utils.takeScreenshot("recipient/home.png");
-
-    await browser.setLocation("/recipient/reports");
-
-    var id = await element(by.id("tip-0")).evaluate("tip.id");
-
-    await browser.setLocation("/status/" + id);
-    await element(by.model("tip.newMessageContent")).sendKeys(message);
-    await element(by.id("message-action-send")).click();
-
-    var m = await element(by.id("message-0")).element(by.css(".preformatted")).getText();
-    expect(m).toContain(message);
-
-    await browser.gl.utils.takeScreenshot("recipient/report.png");
-    await browser.gl.utils.logout();
-  });
-
-  it("Whistleblower should be able to read the private message from the receiver and reply", async function() {
-    await browser.gl.utils.login_whistleblower(receipts[0]);
-
-    await element.all(by.options("obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'")).get(1).click();
-    var message1 = await element(by.id("message-0")).element(by.css(".preformatted")).getText();
-    expect(message1).toEqual(message);
-
-    await element(by.model("tip.newMessageContent")).sendKeys(message_reply);
-    await element(by.id("message-action-send")).click();
-
-    var message2 = await element(by.id("message-0")).element(by.css(".preformatted")).getText();
-    expect(message2).toContain(message_reply);
-
-    await browser.gl.utils.takeScreenshot("whistleblower/report.png");
-    await browser.gl.utils.logout();
-  });
-
   it("Recipient should be able to export the submission", async function() {
     await browser.gl.utils.login_receiver();
     await browser.setLocation("/recipient/reports");
-
-    await browser.gl.utils.takeScreenshot("recipient/reports.png");
 
     var id = await element(by.id("tip-0")).evaluate("tip.id");
     await browser.setLocation("/status/" + id);
@@ -153,6 +115,9 @@ describe("globaleaks process", function() {
 
     enabled = await silence.evaluate("tip.enable_notifications");
     expect(enabled).toEqual(true);
+
+    await browser.gl.utils.takeScreenshot("recipient/report.png");
+
     await browser.gl.utils.logout();
   });
 });

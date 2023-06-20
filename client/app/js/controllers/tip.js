@@ -6,7 +6,6 @@ GL.controller("TipCtrl",
 
     $scope.itemsPerPage = 5;
     $scope.currentCommentsPage = 1;
-    $scope.currentMessagesPage = 1;
 
     $scope.answers = {};
     $scope.uploads = {};
@@ -244,11 +243,6 @@ GL.controller("TipCtrl",
     $scope.newComment = function() {
       $scope.tip.newComment($scope.tip.newCommentContent);
       $scope.tip.newCommentContent = "";
-    };
-
-    $scope.newMessage = function() {
-      $scope.tip.newMessage($scope.tip.newMessageContent);
-      $scope.tip.newMessageContent = "";
     };
 
     $scope.tip_toggle_star = function() {

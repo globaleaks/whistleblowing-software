@@ -31,9 +31,8 @@ class notifTemplateTest(helpers.TestGLWithPopulatedDB):
         data['tip'], _ = yield rtip.get_rtip(1, self.dummyReceiver_1['id'], tip_id, 'en')
 
         data['comments'] = data['tip']['comments']
-        data['messages'] = data['tip']['messages']
 
-        for key in ['tip', 'comment', 'message', 'file']:
+        for key in ['tip', 'comment', 'file']:
             if key == 'tip':
                 data['type'] = 'tip'
             else:
