@@ -515,7 +515,7 @@ class APIResourceWrapper(Resource):
                                                      b"document-domain=(),"
                                                      b"fullscreen=(),"
                                                      b"geolocation=(),"
-                                                     b"microphone=()")
+                                                     b"microphone=(self)")
 
             # Prevent old browsers not supporting CSP frame-ancestors directive to includes the platform within an iframe
             request.setHeader(b'X-Frame-Options', b'deny')
