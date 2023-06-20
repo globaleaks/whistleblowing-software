@@ -1,6 +1,6 @@
 <div id="message-{{$index}}" data-ng-switch="message.type" class="mt-2">
   <div data-ng-switch-when="whistleblower" class="messageWB">
-    <span class="float-right" id="edit-question" data-ng-click="editReport(message.content,message.id)"
+    <span class="float-right edit" id="edit-question" data-ng-click="editReport(message.content,message.id,'message')"
       data-ng-if="mode" data-uib-tooltip="{{'Edit' | translate}}">
       <i class="fa-solid fa-eraser"></i>
     </span>
@@ -12,10 +12,10 @@
       </div>
       <div class="col-md-6 text-right">{{message.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
     </div>
-    <div class="preformatted">{{message.content}}</div>
+    <div data-ng-if="message.content" class="preformatted">{{maskingContent(message.content,message.id)}}</div>
   </div>
   <div data-ng-switch-when="receiver" class="message">
-    <span class="float-right" id="edit-message" data-ng-click="editReport(message.content,message.id)" data-ng-if="mode"
+    <span class="float-right edit" id="edit-message" data-ng-click="editReport(message.content,message.id,'message')" data-ng-if="mode"
       data-uib-tooltip="{{'Edit' | translate}}">
       <i class="fa-solid fa-eraser"></i>
     </span>
@@ -27,6 +27,6 @@
       </div>
       <div class="col-md-6 text-right">{{message.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
     </div>
-    <div class="preformatted">{{message.content}}</div>
+    <div data-ng-if="message.content" class="preformatted">{{maskingContent(message.content,message.id)}}</div>
   </div>
 </div>

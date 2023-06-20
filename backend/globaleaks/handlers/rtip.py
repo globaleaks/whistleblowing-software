@@ -27,7 +27,7 @@ from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.log import log
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import get_expiration, datetime_now, datetime_null, datetime_never
-
+from globaleaks.utils.json import JSONEncoder
 
 def db_tip_grant_notification(session, user):
     """
@@ -220,6 +220,92 @@ def db_update_masking(session, tid, user_id, itip_id,id, masking_data):
     else:
         # Handle the case when the Tip instance with the provided ID doesn't exist
         raise ValueError(f"Tip with ID '{itip_id}' not found.")
+
+def db_update_message(session, tid, user_id, itip_id, masking_data):
+    """
+    Update the masking data of a tip
+
+    :param session: An ORM session
+    :param tid: A tenant ID of the user performing the operation
+    :param user_id: A user ID of the user changing the state
+    :param itip_id: The ID of the Tip instance to be updated
+    :param id: The object_id
+    :param masking_data: The updated masking data
+    """
+    _content = masking_data['content']
+    if itip_id.crypto_tip_pub_key:
+        _content = base64.b64encode(GCE.asymmetric_encrypt(itip_id.crypto_tip_pub_key, masking_data['content'])).decode()
+
+    itip = session.query(models.Message).get(masking_data['content_id'])
+    if itip:
+        itip.content = _content
+        log_data = {
+            'content': _content,
+        }
+
+        db_log(session, tid=tid, type='update_message', user_id=user_id, object_id=masking_data['content_id'], data=log_data)
+    else:
+        # Handle the case when the Tip instance with the provided ID doesn't exist
+        raise ValueError(f"Tip with ID '{itip_id}' not found.")
+    
+def db_update_comment(session, tid, user_id, itip_id, masking_data):
+    """
+    Update the masking data of a tip
+
+    :param session: An ORM session
+    :param tid: A tenant ID of the user performing the operation
+    :param user_id: A user ID of the user changing the state
+    :param itip_id: The ID of the Tip instance to be updated
+    :param id: The object_id
+    :param masking_data: The updated masking data
+    """
+    _content = masking_data['content']
+    if itip_id.crypto_tip_pub_key:
+        _content = base64.b64encode(GCE.asymmetric_encrypt(itip_id.crypto_tip_pub_key, masking_data['content'])).decode()
+
+    itip = session.query(models.Comment).get(masking_data['content_id'])
+    if itip:
+        itip.content = _content
+        log_data = {
+            'content': _content,
+        }
+
+        db_log(session, tid=tid, type='update_comment', user_id=user_id, object_id=masking_data['content_id'], data=log_data)
+    else:
+        # Handle the case when the Tip instance with the provided ID doesn't exist
+        raise ValueError(f"Tip with ID '{itip_id}' not found.")
+    
+def db_update_answer(session, tid, user_id, itip_id, masking_data):
+    """
+    Update the masking data of a tip
+
+    :param session: An ORM session
+    :param tid: A tenant ID of the user performing the operation
+    :param user_id: A user ID of the user changing the state
+    :param itip_id: The ID of the Tip instance to be updated
+    :param masking_data: The updated masking data
+    """
+    _content = masking_data['answers']
+    if itip_id.crypto_tip_pub_key:
+        _content = base64.b64encode(GCE.asymmetric_encrypt(itip_id.crypto_tip_pub_key, json.dumps(masking_data['answers'], cls=JSONEncoder).encode())).decode()
+
+    content_id = masking_data['internaltip_id']
+    itip = session.query(models.InternalTipAnswers).filter_by(internaltip_id=content_id).first()
+
+    if itip:
+        itip.content = _content
+        # log_data = {
+        #     'answers': _content,
+        # }
+
+        # Update the existing itip instance instead of creating a new one
+        itip.answers = _content
+
+        session.commit()  # Commit the changes to the database
+    else:
+        # Handle the case when the Tip instance with the provided ID doesn't exist
+        raise ValueError(f"Tip with content ID '{content_id}' not found.")
+
 
 
 def db_access_rtip(session, tid, user_id, rtip_id):
@@ -715,6 +801,16 @@ def update_tip_masking(session, tid, user_id, rtip_id, id, data):
     _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
     
     masking_data = data.get('data', {})
+
+    if 'content_type' in masking_data and masking_data['content_type'] ==  "comment":
+        db_update_comment(session, tid, user_id, itip, masking_data)
+
+    if 'content_type' in masking_data and masking_data['content_type'] == "message":
+        db_update_message(session, tid, user_id, itip, masking_data)
+
+    if 'content_type' in masking_data and masking_data['content_type'] ==  "answer":
+        db_update_answer(session, tid, user_id, itip, masking_data)
+
     db_update_masking(session, tid, user_id, itip, id, masking_data)
 
 class RTipInstance(OperationHandler):
