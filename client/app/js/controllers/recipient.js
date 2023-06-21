@@ -502,20 +502,22 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
             $scope.averageClosureTime += closureTime;
             totalClosedTips += 1
           }
-          // For Lable
-          var label = tip.label;
-          if (label) {
-            if ($scope.labelCounts[label]) {
-              $scope.labelCounts[label]++;
-            } else {
-              $scope.labelCounts[label] = 1;
-            }
-            $scope.labeledCountDefault++;
-          } else {
-            $scope.unlabeledCount++;
-            $scope.unlabeledCountDefault++;
-          }
 
+            var label = tip.label;
+            if (label) {
+              var labels = label.split(" "); // Split the label by space
+              labels.forEach(function(word) {
+                if ($scope.labelCounts[word]) {
+                  $scope.labelCounts[word]++;
+                } else {
+                  $scope.labelCounts[word] = 1;
+                }
+                $scope.labeledCountDefault++;
+              });
+            } else {
+              $scope.unlabeledCount++;
+              $scope.unlabeledCountDefault++;
+            }
         }
       }
       /* =============================================== General Statistics =============================================== */
