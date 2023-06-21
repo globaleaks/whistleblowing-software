@@ -595,7 +595,7 @@ class _InternalFile(Model):
     size = Column(JSON, default='', nullable=False)
     new = Column(Boolean, default=True, nullable=False)
     submission = Column(Integer, default=False, nullable=False)
-
+    reference = Column(UnicodeText(36), nullable=True, index=True)
     @declared_attr
     def __table_args__(self):
         return ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),

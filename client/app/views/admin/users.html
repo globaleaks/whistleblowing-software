@@ -23,29 +23,27 @@
         <label data-translate>Username</label>
         <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
         <div>
-          <input class="form-control" name="username" data-ng-model="new_user.username" type="text" required />
+          <input class="form-control" name="username" data-ng-model="new_user.username" type="text" required/>
         </div>
       </div>
       <div class="form-group">
         <label data-translate>Name</label>
         <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
         <div>
-          <input class="form-control" name="name" data-ng-model="new_user.name" type="text" required />
+          <input class="form-control" name="name" data-ng-model="new_user.name" type="text" required/>
         </div>
       </div>
       <div class="form-group">
         <label data-translate>Email address</label>
         <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
         <div>
-          <input class="form-control" name="email" data-ng-model="new_user.email"
-            data-ng-pattern="CONSTANTS.email_regexp" type="email"
-            data-ng-class="{'is-invalid': newUser.email.$error.pattern}" required />
+          <input class="form-control" name="email" data-ng-model="new_user.email" data-ng-pattern="CONSTANTS.email_regexp" type="email" data-ng-class="{'is-invalid': newUser.email.$error.pattern}" required/>
         </div>
         <div class="text-danger" data-ng-show="newUser.email.$error.pattern" data-translate>Invalid email address</div>
       </div>
       <div class="form-group">
         <button id="add-btn" class="btn btn-primary" data-ng-disabled="newUser.$invalid"
-          data-ng-click="add_user(); toggleAddUser()" type="submit">
+                data-ng-click="add_user(); toggleAddUser()" type="submit">
           <i class="fa-solid fa-plus"></i>
           <span data-translate>Add</span>
         </button>
@@ -67,26 +65,30 @@
             </span>
           </span>
           <span class="badge badge-secondary" data-ng-if="!user.enabled" data-translate>Disabled</span>
-          <span class="badge badge-default" data-ng-if="resources.node.encryption && !user.encryption"
-            data-uib-tooltip="{{'This user has not performed the first login yet.' | translate}}">
-            <i class="fa-solid fa-exclamation-circle"></i>
-          </span>
+	  <span class="badge badge-default" data-ng-if="resources.node.encryption && !user.encryption" data-uib-tooltip="{{'This user has not performed the first login yet.' | translate}}">
+	    <i class="fa-solid fa-exclamation-circle"></i>
+	  </span>
         </span>
         <span class="col-md-5 clearfix">
           <span class="float-right">
-            <button class="btn btn-sm btn-outline-secondary" data-ng-show="!editing"
+            <button class="btn btn-sm btn-outline-secondary"
+              data-ng-show="!editing"
               data-ng-click="toggleEditing(); $event.stopPropagation();">
               <span data-translate>Edit</span>
             </button>
-            <button class="btn btn-sm btn-primary" data-ng-show="editing" data-ng-disabled="editUser.$invalid"
+            <button class="btn btn-sm btn-primary"
+              data-ng-show="editing"
+              data-ng-disabled="editUser.$invalid"
               data-ng-click="saveUser()">
               <span data-translate>Save</span>
             </button>
-            <button class="btn btn-sm btn-outline-secondary" data-ng-show="editing"
+            <button class="btn btn-sm btn-outline-secondary"
+              data-ng-show="editing"
               data-ng-click="toggleEditing(); $event.stopPropagation();">
               <span data-translate>Cancel</span>
             </button>
-            <button class="btn btn-sm btn-danger" data-ng-if="Authentication.session.user_id !== user.id"
+            <button class="btn btn-sm btn-danger"
+              data-ng-if="Authentication.session.user_id !== user.id"
               data-ng-click="deleteUser(); $event.stopPropagation();">
               <span data-translate>Delete</span>
             </button>
@@ -94,12 +96,11 @@
         </span>
       </div>
       <div class="editor" data-ng-if="editing">
-        <hr />
+        <hr/>
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <div data-image-upload data-image-upload-model="user" data-image-upload-model-attr="picture"
-                data-image-upload-id="{{user.id}}"></div>
+              <div data-image-upload data-image-upload-model="user" data-image-upload-model-attr="picture" data-image-upload-id="{{user.id}}"></div>
             </div>
           </div>
         </div>
@@ -107,19 +108,17 @@
           <div class="col-md-12">
             <div class="form-group" data-ng-if="user.role !== 'receiver' || !resources.node.simplified_login">
               <label data-translate>Username</label>
-              <input class="form-control" name="username" data-ng-model="user.username" type="text" required />
-              <div class="text-danger" data-ng-show="editUser.name.$error.required" data-translate>This field is
-                mandatory</div>
+              <input class="form-control" name="username" data-ng-model="user.username" type="text" required/>
+              <div class="text-danger" data-ng-show="editUser.name.$error.required" data-translate>This field is mandatory</div>
             </div>
             <div class="form-group">
               <label data-translate>Name</label>
-              <input class="form-control" name="name" data-ng-model="user.name" type="text" required />
-              <div class="text-danger" data-ng-show="editUser.name.$error.required" data-translate>This field is
-                mandatory</div>
+              <input class="form-control" name="name" data-ng-model="user.name" type="text" required/>
+              <div class="text-danger" data-ng-show="editUser.name.$error.required" data-translate>This field is mandatory</div>
             </div>
             <div class="form-group">
               <label data-translate>Public name</label>
-              <input class="form-control" name="public_name" data-ng-model="user.public_name" type="text" required />
+              <input class="form-control" name="public_name" data-ng-model="user.public_name" type="text" required/>
             </div>
             <div class="form-group">
               <label data-translate>Description</label>
@@ -128,23 +127,22 @@
             <div class="form-group">
               <label data-translate>Email address</label>
               <input class="form-control" name="email" data-ng-model="user.mail_address" type="email"
-                data-ng-pattern="CONSTANTS.email_regexp" required />
-              <div class="text-danger" data-ng-show="editUser.email.$error.required" data-translate>This field is
-                mandatory</div>
-              <div class="text-danger" data-ng-show="editUser.email.$error.pattern" data-translate>Invalid email address
-              </div>
+                     data-ng-pattern="CONSTANTS.email_regexp" required/>
+              <div class="text-danger" data-ng-show="editUser.email.$error.required" data-translate>This field is mandatory</div>
+              <div class="text-danger" data-ng-show="editUser.email.$error.pattern" data-translate>Invalid email address</div>
             </div>
             <div class="form-group" data-ng-if="Authentication.session.user_id !== user.id">
               <label data-translate>Password</label>
               <div>
                 <span class="btn btn-outline-secondary" data-ng-click="resetUserPassword()">
                   <i class="fa-solid fa-sync"></i>
-                  <span data-ng-if="user.last_login === '1970-01-01T00:00:00Z'" data-translate>Send activation
-                    link</span>
+                  <span data-ng-if="user.last_login === '1970-01-01T00:00:00Z'" data-translate>Send activation link</span>
                   <span data-ng-if="user.last_login !== '1970-01-01T00:00:00Z'" data-translate>Send reset link</span>
                 </span>
-                <span class="btn btn-outline-secondary" data-ng-if="!user.encryption || resources.preferences.escrow"
-                  data-ng-init="user.newpassword = false" data-ng-click="user.newpassword=!user.newpassword">
+                <span class="btn btn-outline-secondary"
+                      data-ng-if="!user.encryption || resources.preferences.escrow"
+                      data-ng-init="user.newpassword = false"
+                      data-ng-click="user.newpassword=!user.newpassword">
                   <i class="fa-solid fa-edit"></i>
                   <span data-translate>Set password</span>
                 </span>
@@ -153,8 +151,8 @@
                 <input class="d-none" type="password" name="disable-autocomplete-hack" />
                 <span class="input-group">
                   <input name="password" class="form-control" data-ng-model="setPasswordArgs.password" type="password"
-                    data-ng-class="{'is-invalid': setPasswordArgs.password && (!userPasswordForm.password.$error.passwordStrengthValidator && !userPasswordForm.password.$valid)}"
-                    autocomplete="off" data-password-strength-validator />
+                         data-ng-class="{'is-invalid': setPasswordArgs.password && (!userPasswordForm.password.$error.passwordStrengthValidator && !userPasswordForm.password.$valid)}"
+                         autocomplete="off" data-password-strength-validator/>
                   <span class="input-group-append">
                     <button id="setPasswordButton" class="btn btn-primary" data-ng-click="setPassword()">
                       <i class="fa-solid fa-tag"></i>
@@ -165,25 +163,10 @@
 
                 <password-meter data-ng-show="passwordStrengthScore" value="passwordStrengthScore"></password-meter>
                 <div class="text-danger" data-ng-show="passwordStrengthScore && passwordStrengthScore < 2">
-                  <p data-translate>The chosen password is too weak. A valid password should be at least 12 characters
-                    long and contain a variety of characters including at least a lowercase character, a capital
-                    character, a number and a special character.</p>
+                  <p data-translate>The chosen password is too weak. A valid password should be at least 12 characters long and contain a variety of characters including at least a lowercase character, a capital character, a number and a special character.</p>
                 </div>
               </div>
             </div>
-            <!-- <div class="row" data-ng-if="user.role !== 'admin'">
-              <div class="col-md-12">
-                <label data-translate>Give the user administrative access to the following features:</label>
-                <div class="form-group">
-                  <input data-ng-model="user.can_edit" type="checkbox"/>
-                  <span data-translate>Edit</span>
-                </div>
-                <div class="form-group">
-                  <input data-ng-model="user.can_remove" type="checkbox"/>
-                  <span data-translate>Remove</span>
-                </div>
-              </div>
-            </div> -->
             <div class="form-group">
               <input data-ng-model="user.enabled" type="checkbox" />
               <label data-translate>Enabled</label>
@@ -205,17 +188,16 @@
             <div class="form-group">
               <label data-translate>Language</label>
               <select class="form-control" data-ng-model="user.language"
-                data-ng-options="item.code as item.name for item in languages_enabled_selector"></select>
+                      data-ng-options="item.code as item.name for item in languages_enabled_selector"></select>
             </div>
-            <div class="form-group"
-              data-ng-if="(user.role === 'admin' && !resources.node.disable_admin_notification) ||
+            <div class="form-group" data-ng-if="(user.role === 'admin' && !resources.node.disable_admin_notification) ||
                                                 (user.role === 'receiver' && !resources.node.disable_receiver_notification) ||
                                                 (user.role === 'custodian' && !resources.node.disable_custodian_notification)">
               <input data-ng-model="user.notification" type="checkbox">
               <label data-translate>Enable email notifications</label>
             </div>
           </div>
-        </div>
+	</div>
         <div class="row" data-ng-if="resources.node.pgp">
           <div class="col-md-12">
             <div class="form-group" data-ng-show="user.pgp_key_fingerprint">
@@ -225,7 +207,7 @@
                 <p><span data-translate>Expiration date</span>: {{user.pgp_key_expiration | date:"dd/MM/yyyy"}}</p>
               </div>
               <div class="form-group">
-                <input data-ng-model="user.pgp_key_remove" type="checkbox" />
+                <input data-ng-model="user.pgp_key_remove" type="checkbox"/>
                 <label data-translate>Remove</label>
               </div>
             </div>
@@ -234,7 +216,7 @@
                 <label data-translate>Set up encryption by providing a PGP public key</label>
                 <div>
                   <label file-input="loadPublicKeyFile(file)" file-input-label="Upload"
-                    class="btn btn-sm btn-outline-secondary"></label>
+                         class="btn btn-sm btn-outline-secondary"></label>
                 </div>
               </div>
             </div>
@@ -242,10 +224,8 @@
         </div>
         <div class="row" data-ng-if="user.role === 'admin'">
           <div class="col-md-12">
-            <div class="form-group"
-              data-ng-if="resources.node.escrow && user.encryption && resources.preferences.escrow">
-              <input data-ng-model="user.escrow" type="checkbox" data-ng-change="toggleUserEscrow()"
-                data-ng-disabled="Authentication.session.user_id === user.id">
+            <div class="form-group" data-ng-if="resources.node.escrow && user.encryption && resources.preferences.escrow">
+              <input data-ng-model="user.escrow" type="checkbox" data-ng-change="toggleUserEscrow()" data-ng-disabled="Authentication.session.user_id === user.id">
               <label data-translate>Give this admin ability to change user passwords</label>
             </div>
           </div>
@@ -257,15 +237,15 @@
               <label data-translate>Forcefully selected</label>
             </div>
             <div class="form-group">
-              <input data-ng-model="user.can_delete_submission" type="checkbox" />
+              <input data-ng-model="user.can_delete_submission" type="checkbox"/>
               <label data-translate>Allow the recipient to delete reports</label>
             </div>
             <div class="form-group" data-ng-if="!resources.node.can_postpone_expiration">
-              <input data-ng-model="user.can_postpone_expiration" type="checkbox" />
+              <input data-ng-model="user.can_postpone_expiration" type="checkbox"/>
               <label data-translate>Allow the recipient to postpone the report expiration date</label>
             </div>
             <div class="form-group">
-              <input data-ng-model="user.can_grant_access_to_reports" type="checkbox" />
+              <input data-ng-model="user.can_grant_access_to_reports" type="checkbox"/>
               <label data-translate>Give this recipient ability to grant user access to reports</label>
             </div>
           </div>
@@ -274,16 +254,8 @@
           <div class="col-md-12">
             <label data-translate>Give the user administrative access to the following features:</label>
             <div class="form-group">
-              <input data-ng-model="user.can_edit_general_settings" type="checkbox" />
+              <input data-ng-model="user.can_edit_general_settings" type="checkbox"/>
               <span data-translate>Settings</span>
-            </div>
-            <div class="form-group">
-              <input data-ng-model="user.can_edit" type="checkbox" />
-              <span data-translate>Edit Report</span>
-            </div>
-            <div class="form-group">
-              <input data-ng-model="user.can_remove" type="checkbox" />
-              <span data-translate>Remove Report </span>
             </div>
           </div>
         </div>

@@ -71,7 +71,7 @@ LANGUAGES_SUPPORTED = [
     {'code': 'pl', 'name': 'Polish', 'native': 'Polski'},
     {'code': 'ps', 'name': 'Pashto', 'native': '\u067e\u069a\u062a\u0648'},
     {'code': 'pt_BR', 'name': 'Portuguese (Brazil)', 'native': 'Portugu\u00eas (Brasil)'},
-    {'code': 'pt_PT', 'name': 'Portuguese (Portugal)', 'native': 'Portugu\u00eas (Portugal)'},
+    {'code': 'pt_PT', 'name': 'Portuguese', 'native': 'Portugu\u00eas'},
     {'code': 'ro', 'name': 'Romanian', 'native': 'Rom\u00e2n\u0103'},
     {'code': 'ru', 'name': 'Russian', 'native': '\u0420\u0443\u0441\u0441\u043a\u0438\u0439'},
     {'code': 'sk', 'name': 'Slovak', 'native': 'Sloven\u010dina'},
@@ -79,8 +79,8 @@ LANGUAGES_SUPPORTED = [
     {'code': 'sq', 'name': 'Albanian', 'native': 'Shqip'},
     {'code': 'sr_ME', 'name': 'Serbian (Montenegro)', 'native': '\u0441\u0440\u043f\u0441\u043a\u0438\u0020\u0028\u045b\u0438\u0440\u0438\u043b\u0438\u0446\u0430\u002c\u0020\u0426\u0440\u043d\u0430\u0020\u0413\u043e\u0440\u0430\u0029'},
     {'code': 'sr_ME@latin', 'name': 'Serbian (latin, Montenegro)', 'native': 'Srpski (latinica, Crna Gora)'},
-    {'code': 'sr_RS', 'name': 'Serbian (Serbia)', 'native': '\u0441\u0440\u043f\u0441\u043a\u0438\u0020\u0028\u045b\u0438\u0440\u0438\u043b\u0438\u0446\u0430\u002c\u0020\u0421\u0440\u0431\u0438\u0458\u0430\u0029'},
-    {'code': 'sr_RS@latin', 'name': 'Serbian (latin, Serbia)', 'native': 'Srpski (latinica, Srbija)'},
+    {'code': 'sr_RS', 'name': 'Serbian', 'native': '\u0441\u0440\u043f\u0441\u043a\u0438\u0020\u0028\u045b\u0438\u0440\u0438\u043b\u0438\u0446\u0430\u002c\u0020\u0421\u0440\u0431\u0438\u0458\u0430\u0029'},
+    {'code': 'sr_RS@latin', 'name': 'Serbian (latin)', 'native': 'Srpski (latinica)'},
     {'code': 'sv', 'name': 'Swedish', 'native': 'Svenska'},
     {'code': 'sw', 'name': 'Swahili', 'native': 'Kiswahili'},
     {'code': 'ta', 'name': 'Tamil', 'native': '\u0ba4\u0bae\u0bbf\u0bb4\u0bcd'},
@@ -97,7 +97,7 @@ LANGUAGES_SUPPORTED = [
     {'code': 'uz', 'name': 'Uzbek', 'native': '\u004f\u2018\u007a\u0062\u0065\u006b'},
     {'code': 'vi', 'name': 'Vietnamese', 'native': 'Ti\u1ebfng Vi\u1ec7t'},
     {'code': 'zh_CN', 'name': 'Simplified Chinese', 'native': '\u7b80\u4f53\u4e2d\u6587'},
-    {'code': 'zh_HK', 'name': 'Traditional Chinese (Hong Kong)', 'native': '\u7e41\u9ad4\u4e2d\u6587 (\u53f0\u7063)'},
+    {'code': 'zh_HK', 'name': 'Traditional Chinese', 'native': '\u7e41\u9ad4\u4e2d\u6587'},
     {'code': 'zh_TW', 'name': 'Traditional Chinese (Taiwan)', 'native': '\u7e41\u9ad4\u4e2d\u6587 (\u4e2d\u570b\u9999\u6e2f\u7279\u5225\u884c\u653f\u5340)'}
 ]
 

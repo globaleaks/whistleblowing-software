@@ -95,6 +95,7 @@ class BaseHandler(object):
     upload_handler = False
     uploaded_file = None
     allowed_mimetypes = []
+    encryption_type = 'ABC'
 
     def __init__(self, state, request):
         self.name = type(self).__name__
@@ -356,7 +357,6 @@ class BaseHandler(object):
             mime_type = 'application/octet-stream'
 
         filename = os.path.basename(self.request.args[b'flowFilename'][0].decode())
-
         self.uploaded_file = {
             'id': file_id,
             'date': datetime_now(),
@@ -367,6 +367,11 @@ class BaseHandler(object):
             'body': f,
             'description': self.request.args.get(b'description', [''])[0]
         }
+
+        if b'encryption_type' in self.request.args:
+            updated_encryption_type = self.request.args[b'encryption_type'][0].decode()
+            self.uploaded_file['reference'] = self.request.args.get( b'reference')[0].decode()
+            setattr(BaseHandler, 'encryption_type', updated_encryption_type)
 
     def write_upload_plaintext_to_disk(self, destination):
         """

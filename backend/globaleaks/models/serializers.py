@@ -109,13 +109,16 @@ def serialize_ifile(session, ifile):
     :param ifile: The ifile to be serialized
     :return: The serialized ifile
     """
+
     return {
         'id': ifile.id,
         'creation_date': ifile.creation_date,
         'name': ifile.name,
         'size': ifile.size,
         'type': ifile.content_type,
-        'filename': ifile.filename
+        'filename': ifile.filename,
+        'reference':ifile.reference
+        
     }
 
 
@@ -134,7 +137,8 @@ def serialize_rfile(session, ifile, rfile):
         'name': ifile.name,
         'size': ifile.size,
         'type': ifile.content_type,
-        'filename': rfile.filename
+        'filename': rfile.filename,
+        'reference':ifile.reference
     }
 
 
