@@ -16,7 +16,9 @@
 
   <span data-ng-if="entry['value']" data-ng-switch-when="date">{{entry['value'] | date:'dd-MM-yyyy'}}</span>
 
-  <span data-ng-if="entry['value']" data-ng-switch-when="daterange"><span data-translate>From:</span> {{entry['value'] | split:':':0 | date:'dd-MM-yyyy'}} <span data-translate>To:</span> {{entry['value'] | split:':':1 | date:'dd-MM-yyyy'}}</span>
+  <span data-ng-if="entry['value']" data-ng-switch-when="daterange"><span data-translate>From:</span> {{entry['value'] |
+    split:':':0 | date:'dd-MM-yyyy'}} <span data-translate>To:</span> {{entry['value'] | split:':':1 |
+    date:'dd-MM-yyyy'}}</span>
 
   <span data-ng-if="entry['value']" data-ng-switch-when="tos">
     <i data-ng-if="entry['value'] === true" class="fa-solid fa-check-square"></i>
@@ -29,10 +31,16 @@
     </div>
   </span>
 
-  <span data-ng-switch-when="audioUpload" data-ng-init="loadRFile(audiolist[field.id]['key']['id'], field.id, this)">
-    <div class="audio-player-wrapper" data-ng-disabled="!audiolist[field.id]['value']">
-      <audio data-ng-src="{{audiolist[field.id]['value']}}" controls class="audio-player"></audio>
-    </div>
-  </span>
-  <span data-ng-if="entry['value']" class="entry-text preformatted" data-ng-switch-default>{{entry['value']}}</span>
+  <span data-ng-if="entry['value']" class="entry-text preformatted"
+    data-ng-switch-default>{{maskingContent(entry['value'],field.id)}}</span>
+  <span class="float-right edit" id="edit-question" data-ng-switch-default
+    data-ng-click="editReport(entry['value'],field.id,'answer')" data-ng-if="mode"
+    data-uib-tooltip="{{'Edit' | translate}}">
+    <i class="fa-solid fa-eraser"></i>
+    <span data-ng-switch-when="audioUpload" data-ng-init="loadRFile(audiolist[field.id]['key']['id'], field.id, this)">
+      <div class="audio-player-wrapper" data-ng-disabled="!audiolist[field.id]['value']">
+        <audio data-ng-src="{{audiolist[field.id]['value']}}" controls class="audio-player"></audio>
+      </div>
+    </span>
+    <span data-ng-if="entry['value']" class="entry-text preformatted" data-ng-switch-default>{{entry['value']}}</span>
 </div>
