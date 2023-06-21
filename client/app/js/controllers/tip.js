@@ -235,6 +235,17 @@ GL.controller("TipCtrl",
                 }
               })
           };
+          $scope.unmaskFile = function (f) {
+            let maskingObjects = $scope.tip.masking.filter(function (masking) {
+              return masking.content_id === f.id;
+            });
+            if (maskingObjects.length !== 0) {
+              return $http({
+                method: "DELETE",
+                url: "api/rtips/" + tip.id + "/masking/" + maskingObjects[0].id
+              }).then(reloadUI);
+            }
+          };
           $scope.masking = function (id) {
             $scope.status = true
             var maskingdata = {
@@ -868,8 +879,6 @@ GL.controller("TipCtrl",
           }
         }
       }
-      $scope.isObjectRanges = function (obj) {
-        return Object.keys(obj).length === 0;
-      };
+
     }]);
 

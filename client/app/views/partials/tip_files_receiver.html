@@ -41,6 +41,16 @@
                     data-uib-tooltip="{{'Permanently mask this file' | translate}}"
                     data-ng-disabled="!resources.preferences.can_privilege_delete_mask_information"
                     data-ng-click="deleteWBFile(file)" data-single-click>
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </span>
+              </span>
+              <span data-ng-if="mode">
+                <span ng-show="show(file.id)">
+                  <button class="btn btn-sm btn-danger tip-action-delete-file"
+                    data-uib-tooltip="{{'Unmask this file' | translate}}"
+                    data-ng-disabled="!resources.preferences.can_privilege_delete_mask_information"
+                    data-ng-click="unmaskFile(file)" data-single-click>
                     <i class="fa-solid fa-times"></i>
                   </button>
                 </span>
