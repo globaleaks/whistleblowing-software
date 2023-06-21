@@ -50,7 +50,7 @@ GL.controller("SubmissionCtrl",
 
   $scope.goToStep = function(index) {
     $scope.navigation = index;
-    $scope.Utils.scrollToTop();
+    $scope.Utils.scrollToSteps();
   };
 
   $scope.firstStepIndex = function() {
@@ -109,7 +109,7 @@ GL.controller("SubmissionCtrl",
     $scope.validate[$scope.navigation] = true;
 
     if (!$scope.areReceiversSelected() || !$scope.checkForInvalidFields()) {
-      $scope.Utils.scrollToTop();
+      $scope.Utils.scrollToSteps();
       return false;
     }
 
@@ -126,7 +126,7 @@ GL.controller("SubmissionCtrl",
       for (var i = $scope.navigation + 1; i <= $scope.lastStepIndex(); i++) {
         if (fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.score)) {
           $scope.navigation = i;
-          $scope.Utils.scrollToTop();
+          $scope.Utils.scrollToSteps();
           return;
         }
       }
@@ -139,7 +139,7 @@ GL.controller("SubmissionCtrl",
       for (var i = $scope.navigation - 1; i >= $scope.firstStepIndex(); i--) {
         if (i === -1 || fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.score)) {
           $scope.navigation = i;
-          $scope.Utils.scrollToTop();
+          $scope.Utils.scrollToSteps();
           return;
         }
       }
@@ -164,7 +164,7 @@ GL.controller("SubmissionCtrl",
       return;
     }
 
-    return "api/submission/attachment";
+    return "api/submission/attachment?encryption_type=tip";
   };
 
   $scope.prepareSubmission = function(context) {
@@ -188,9 +188,12 @@ GL.controller("SubmissionCtrl",
   };
 
   $scope.completeSubmission = function() {
-    fieldUtilities.onAnswersUpdate($scope);
+    for(var i = 0; i <= $scope.navigation; i++) {
+      $scope.validate[i] = true;
+    }
 
-    if (!$scope.runValidation()) {
+    if (fieldUtilities.onAnswersUpdate($scope) || !$scope.runValidation()) {
+      $scope.Utils.scrollToSteps();
       return;
     }
 
@@ -312,7 +315,7 @@ controller("AdditionalQuestionnaireCtrl",
 
   $scope.goToStep = function(index) {
     $scope.navigation = index;
-    $scope.Utils.scrollToTop();
+    $scope.Utils.scrollToSteps();
   };
 
   $scope.firstStepIndex = function() {
@@ -360,7 +363,7 @@ controller("AdditionalQuestionnaireCtrl",
     $scope.validate[$scope.navigation] = true;
 
     if ($scope.navigation > -1 && !$scope.checkForInvalidFields()) {
-      $scope.Utils.scrollToTop();
+      $scope.Utils.scrollToSteps();
       return false;
     }
 
@@ -377,7 +380,7 @@ controller("AdditionalQuestionnaireCtrl",
       for (var i = $scope.navigation + 1; i <= $scope.lastStepIndex(); i++) {
         if (fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.score)) {
           $scope.navigation = i;
-          $scope.Utils.scrollToTop();
+          $scope.Utils.scrollToSteps();
           return;
         }
       }
@@ -390,7 +393,7 @@ controller("AdditionalQuestionnaireCtrl",
       for (var i = $scope.navigation - 1; i >= $scope.firstStepIndex(); i--) {
         if (i === -1 || fieldUtilities.isFieldTriggered(null, $scope.questionnaire.steps[i], $scope.answers, $scope.score)) {
           $scope.navigation = i;
-          $scope.Utils.scrollToTop();
+          $scope.Utils.scrollToSteps();
           return;
         }
       }
@@ -414,12 +417,12 @@ controller("AdditionalQuestionnaireCtrl",
   };
 
   $scope.completeSubmission = function() {
-    fieldUtilities.onAnswersUpdate($scope);
-
     $scope.validate[$scope.navigation] = true;
 
+    fieldUtilities.onAnswersUpdate($scope);
+
     if (!$scope.checkForInvalidFields()) {
-      $scope.Utils.scrollToTop();
+      $scope.Utils.scrollToSteps();
       return;
     }
 

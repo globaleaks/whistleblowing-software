@@ -19,7 +19,6 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
 
     var unique_keys = [];
     angular.forEach($scope.resources.rtips.rtips, function (tip) {
-
       tip.context = $scope.contexts_by_id[tip.context_id];
       tip.context_name = tip.context.name;
       tip.questionnaire = $scope.resources.rtips.questionnaires[tip.questionnaire];
@@ -56,6 +55,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
       $scope.filteredTips = $scope.Utils.getStaticFilter($scope.filteredTips, $scope.dropdownScoreModel, "score");
       $scope.filteredTips = $scope.Utils.getDateFilter($scope.filteredTips, $scope.reportDateFilter, $scope.updateDateFilter, $scope.expiryDateFilter);
     }
+
 
     $scope.on_changed = {
       onSelectionChanged: function () {
@@ -503,21 +503,21 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
             totalClosedTips += 1
           }
 
-            var label = tip.label;
-            if (label) {
-              var labels = label.split(" "); // Split the label by space
-              labels.forEach(function(word) {
-                if ($scope.labelCounts[word]) {
-                  $scope.labelCounts[word]++;
-                } else {
-                  $scope.labelCounts[word] = 1;
-                }
-                $scope.labeledCountDefault++;
-              });
-            } else {
-              $scope.unlabeledCount++;
-              $scope.unlabeledCountDefault++;
-            }
+          var label = tip.label;
+          if (label) {
+            var labels = label.split(" "); // Split the label by space
+            labels.forEach(function (word) {
+              if ($scope.labelCounts[word]) {
+                $scope.labelCounts[word]++;
+              } else {
+                $scope.labelCounts[word] = 1;
+              }
+              $scope.labeledCountDefault++;
+            });
+          } else {
+            $scope.unlabeledCount++;
+            $scope.unlabeledCountDefault++;
+          }
         }
       }
       /* =============================================== General Statistics =============================================== */

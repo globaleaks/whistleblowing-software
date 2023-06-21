@@ -955,7 +955,12 @@ class ReceiverFileDownload(BaseHandler):
         log.debug("Download of file %s by receiver %s" %
                   (rfile.internalfile_id, rtip.receiver_id))
 
-        return ifile.name, rfile.filename, base64.b64decode(rtip.crypto_tip_prv_key), base64.b64decode(rtip.crypto_files_prv_key), pgp_key
+        if ifile.reference:
+            crypto_key = rtip.crypto_tip_prv_key
+        else:
+            crypto_key = rtip.crypto_files_prv_key
+
+        return ifile.name, rfile.filename, base64.b64decode(rtip.crypto_tip_prv_key), base64.b64decode(crypto_key), pgp_key
 
     @inlineCallbacks
     def get(self, rfile_id):

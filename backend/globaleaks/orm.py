@@ -125,7 +125,11 @@ def db_query(session, selector, filter=None):
 
 
 def db_get(session, selector, filter=None):
-    return db_query(session, selector, filter).one()
+    try:
+        return db_query(session, selector, filter).one()
+    except Exception as e:
+        print("Error in db_get:", str(e))
+        raise
 
 
 def db_del(session, selector, filter=None):
