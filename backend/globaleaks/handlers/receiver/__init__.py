@@ -40,7 +40,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
     messages_by_rtip = {}
     comments_by_itip = {}
     files_by_itip = {}
-    masking_by_itip = {}
+
     # Fetch messages count
     for rtip_id, count in session.query(models.ReceiverTip.id,
                                         func.count(distinct(models.Message.id))) \
@@ -57,14 +57,6 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
                                          models.Comment.internaltip_id == models.InternalTip.id) \
                                  .group_by(models.InternalTip.id):
         comments_by_itip[itip_id] = count
-
-    # Fetch comments count
-    for itip_id, count in session.query(models.InternalTip.id,
-                                        func.count(distinct(models.Masking.id))) \
-                                 .filter(models.Masking.internaltip_id == models.InternalTip.id,
-                                         models.InternalTip.tid == tid) \
-                                 .group_by(models.InternalTip.id):
-        masking_by_itip[itip_id] = count
 
     # Fetch files count
     for itip_id, count in session.query(models.InternalTip.id,
@@ -123,7 +115,6 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
             'substatus': itip.substatus,
             'file_count': files_by_itip.get(itip.id, 0),
             'comment_count': comments_by_itip.get(itip.id, 0),
-            'masking_count': masking_by_itip.get(itip.id, 0),
             'message_count': messages_by_rtip.get(rtip.id, 0)
         })
 

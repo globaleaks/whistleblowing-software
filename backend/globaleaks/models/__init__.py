@@ -960,8 +960,6 @@ class _User(Model):
     can_postpone_expiration = Column(Boolean, default=True, nullable=False)
     can_grant_access_to_reports = Column(Boolean, default=False, nullable=False)
     can_edit_general_settings = Column(Boolean, default=False, nullable=False)
-    can_privilege_delete_mask_information = Column(Boolean, default=False, nullable=False)
-    can_privilege_mask_information = Column(Boolean, default=False, nullable=False)
     readonly = Column(Boolean, default=False, nullable=False)
     two_factor_secret = Column(UnicodeText(32), default='', nullable=False)
     reminder_date = Column(DateTime, default=datetime_null, nullable=False)
@@ -990,8 +988,6 @@ class _User(Model):
                  'can_postpone_expiration',
                  'can_grant_access_to_reports',
                  'can_edit_general_settings',
-                 'can_privilege_delete_mask_information'
-                 'can_privilege_mask_information'
                  'forcefully_selected',
                  'readonly',
                  'clicked_recovery_key']
@@ -1028,22 +1024,6 @@ class _WhistleblowerFile(Model):
     def __table_args__(self):
         return ForeignKeyConstraint(['receivertip_id'], ['receivertip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
-class _Masking(Model):
-    """
-    This table handle the masking ranges collection,referenced with  comment,fieldoption and message
-    """
-    __tablename__ = 'masking'
-
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    mask_date = Column(DateTime, default=datetime_now, nullable=False)
-    content_id = Column(UnicodeText(36), nullable=False, index=True)
-    internaltip_id = Column(UnicodeText(36), nullable=False, index=True)
-    temporary_masking = Column(JSON, default=dict, nullable=False)
-    permanent_masking = Column(JSON, default=dict, nullable=False)
-
-    @declared_attr
-    def __table_args__(self):
-       return ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
 class ArchivedSchema(_ArchivedSchema, Base):
     pass
@@ -1056,8 +1036,6 @@ class AuditLog(_AuditLog, Base):
 class Comment(_Comment, Base):
     pass
 
-class Masking(_Masking, Base):
-    pass
 
 class Config(_Config, Base):
     pass

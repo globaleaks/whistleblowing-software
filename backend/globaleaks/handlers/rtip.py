@@ -2,7 +2,6 @@
 #
 # Handlers dealing with tip interface for receivers (rtip)
 import base64
-import json
 import os
 
 from datetime import datetime, timedelta
@@ -27,7 +26,7 @@ from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.log import log
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import get_expiration, datetime_now, datetime_null, datetime_never
-from globaleaks.utils.json import JSONEncoder
+
 
 def db_tip_grant_notification(session, user):
     """
@@ -191,121 +190,6 @@ def update_tip_submission_status(session, tid, user_id, rtip_id, status_id, subs
         itip.update_date = rtip.last_access = datetime_now()
 
     db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id)
-
-def db_update_masking(session, tid, user_id, itip_id,id, masking_data):
-    """
-    Update the masking data of a tip
-
-    :param session: An ORM session
-    :param tid: A tenant ID of the user performing the operation
-    :param user_id: A user ID of the user changing the state
-    :param itip_id: The ID of the Tip instance to be updated
-    :param id: The object_id
-    :param masking_data: The updated masking data
-    """
-    itip = session.query(models.Masking).get(id)
-    if itip:
-        itip.content_id = masking_data['content_id']
-        itip.temporary_masking = masking_data['temporary_masking']
-        itip.permanent_masking = masking_data['permanent_masking']
-        itip.mask_date = datetime.now()
-        log_data = {
-            'content_id': masking_data['content_id'],
-            'mask_date': itip.mask_date.isoformat(),
-            'temporary_masking': masking_data['temporary_masking'],
-            'permanent_masking': masking_data['permanent_masking']
-        }
-
-        db_log(session, tid=tid, type='update_masking', user_id=user_id, object_id=id, data=log_data)
-    else:
-        # Handle the case when the Tip instance with the provided ID doesn't exist
-        raise ValueError(f"Tip with ID '{itip_id}' not found.")
-
-def db_update_message(session, tid, user_id, itip_id, masking_data):
-    """
-    Update the masking data of a tip
-
-    :param session: An ORM session
-    :param tid: A tenant ID of the user performing the operation
-    :param user_id: A user ID of the user changing the state
-    :param itip_id: The ID of the Tip instance to be updated
-    :param id: The object_id
-    :param masking_data: The updated masking data
-    """
-    _content = masking_data['content']
-    if itip_id.crypto_tip_pub_key:
-        _content = base64.b64encode(GCE.asymmetric_encrypt(itip_id.crypto_tip_pub_key, masking_data['content'])).decode()
-
-    itip = session.query(models.Message).get(masking_data['content_id'])
-    if itip:
-        itip.content = _content
-        log_data = {
-            'content': _content,
-        }
-
-        db_log(session, tid=tid, type='update_message', user_id=user_id, object_id=masking_data['content_id'], data=log_data)
-    else:
-        # Handle the case when the Tip instance with the provided ID doesn't exist
-        raise ValueError(f"Tip with ID '{itip_id}' not found.")
-    
-def db_update_comment(session, tid, user_id, itip_id, masking_data):
-    """
-    Update the masking data of a tip
-
-    :param session: An ORM session
-    :param tid: A tenant ID of the user performing the operation
-    :param user_id: A user ID of the user changing the state
-    :param itip_id: The ID of the Tip instance to be updated
-    :param id: The object_id
-    :param masking_data: The updated masking data
-    """
-    _content = masking_data['content']
-    if itip_id.crypto_tip_pub_key:
-        _content = base64.b64encode(GCE.asymmetric_encrypt(itip_id.crypto_tip_pub_key, masking_data['content'])).decode()
-
-    itip = session.query(models.Comment).get(masking_data['content_id'])
-    if itip:
-        itip.content = _content
-        log_data = {
-            'content': _content,
-        }
-
-        db_log(session, tid=tid, type='update_comment', user_id=user_id, object_id=masking_data['content_id'], data=log_data)
-    else:
-        # Handle the case when the Tip instance with the provided ID doesn't exist
-        raise ValueError(f"Tip with ID '{itip_id}' not found.")
-    
-def db_update_answer(session, tid, user_id, itip_id, masking_data):
-    """
-    Update the masking data of a tip
-
-    :param session: An ORM session
-    :param tid: A tenant ID of the user performing the operation
-    :param user_id: A user ID of the user changing the state
-    :param itip_id: The ID of the Tip instance to be updated
-    :param masking_data: The updated masking data
-    """
-    _content = masking_data['answers']
-    if itip_id.crypto_tip_pub_key:
-        _content = base64.b64encode(GCE.asymmetric_encrypt(itip_id.crypto_tip_pub_key, json.dumps(masking_data['answers'], cls=JSONEncoder).encode())).decode()
-
-    content_id = masking_data['internaltip_id']
-    itip = session.query(models.InternalTipAnswers).filter_by(internaltip_id=content_id).first()
-
-    if itip:
-        itip.content = _content
-        # log_data = {
-        #     'answers': _content,
-        # }
-
-        # Update the existing itip instance instead of creating a new one
-        itip.answers = _content
-
-        session.commit()  # Commit the changes to the database
-    else:
-        # Handle the case when the Tip instance with the provided ID doesn't exist
-        raise ValueError(f"Tip with content ID '{content_id}' not found.")
-
 
 
 def db_access_rtip(session, tid, user_id, rtip_id):
@@ -701,117 +585,15 @@ def create_message(session, tid, user_id, rtip_id, content):
 @transact
 def delete_wbfile(session, tid, user_id, file_id):
     """
-    Transaction for deleting a wbfile
+    Transation for deleting a wbfile
     :param session: An ORM session
     :param tid: A tenant ID
     :param user_id: The user ID of the user performing the operation
     :param file_id: The file ID of the wbfile to be deleted
     """
-    itips_ids = [x[0] for x in session.query(models.InternalTip.id)
-                                      .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                              models.ReceiverTip.receiver_id == user_id,
-                                              models.InternalTip.tid == tid)]
-    wbfile = (
-        session.query(models.ReceiverFile)
-        .filter(models.User.id == user_id,models.ReceiverFile.id == file_id, models.ReceiverTip.receiver_id == models.User.id,models.ReceiverTip.internaltip_id == models.InternalTip.id,models.InternalTip.tid == tid)
-        .first()
-    )
-    if not wbfile:
-        wbfile = (
-            session.query(models.WhistleblowerFile)
-            .filter(models.WhistleblowerFile.id == file_id, models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,models.ReceiverTip.internaltip_id.in_(itips_ids),models.InternalTip.tid == tid)
-            .first()
-        )
-    
-    if wbfile:
-        session.delete(wbfile)
+    wbfile = db_access_wbfile(session, tid, user_id, file_id)
+    session.delete(wbfile)
 
-@transact
-def delete_masking(session, tid, user_id,rtip_id,id):
-    """
-    Transaction for deleting a wbfile
-    :param session: An ORM session
-    :param tid: A tenant ID
-    :param user_id: The user ID of the user performing the operation
-    :param rtip_id: The rtip_id performing the operation
-    :param id: The ID of the masking to be deleted
-    """
-    itips_ids = [x[0] for x in session.query(models.InternalTip.id)
-                                      .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                              models.ReceiverTip.receiver_id == user_id,
-                                              models.InternalTip.tid == tid)]
-
-    masking = (
-            session.query(models.Masking)
-            .filter(models.Masking.id == id,models.ReceiverTip.internaltip_id.in_(itips_ids),models.InternalTip.tid == tid)
-            .first()
-        )
-    
-    if masking:
-        session.delete(masking)
-
-@transact
-def create_masking(session, tid, user_id, rtip_id, content):
-    """
-    Transaction for registering a new masking
-    :param session: An ORM session
-    :param tid: A tenant ID
-    :param user_id: The user id of the user creating the masking
-    :param rtip_id: The rtip associated with the masking to be created
-    :param content: The content of the masking
-    :return: A serialized descriptor of the masking
-    """
-    _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
-
-    itip.update_date = rtip.last_access = datetime_now()
-
-    masking_content = {}
-    if itip.crypto_tip_pub_key:
-        if isinstance(content, dict):
-            masking_content = content
-        else:
-            content_str = content.get('content', str(content))
-            content_bytes = content_str.encode()
-            masking_content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content_bytes)).decode()
-    masking = models.Masking()
-    masking.internaltip_id = itip.id
-    masking.temporary_masking = masking_content.get('temporary_masking', None)
-    masking.mask_date = datetime_now()
-    masking.content_id = masking_content.get('content_id', None)
-    masking.permanent_masking = masking_content.get('permanent_masking', None)
-    session.add(masking)
-    session.flush()
-
-    ret = serializers.serialize_masking(session, masking)
-    ret['masking'] = content
-    return ret
-
-@transact
-def update_tip_masking(session, tid, user_id, rtip_id, id, data):
-    """
-    Transaction for updating tip masking
-
-    :param session: An ORM session
-    :param tid: The tenant ID
-    :param user_id: A user ID of the user performing the operation
-    :param rtip_id: The ID of the rtip accessed by the user
-    :param id: The ID of the masking to be updated
-    :param data: The updated masking data
-    """
-    _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
-    
-    masking_data = data.get('data', {})
-
-    if 'content_type' in masking_data and masking_data['content_type'] ==  "comment":
-        db_update_comment(session, tid, user_id, itip, masking_data)
-
-    if 'content_type' in masking_data and masking_data['content_type'] == "message":
-        db_update_message(session, tid, user_id, itip, masking_data)
-
-    if 'content_type' in masking_data and masking_data['content_type'] ==  "answer":
-        db_update_answer(session, tid, user_id, itip, masking_data)
-
-    db_update_masking(session, tid, user_id, itip, id, masking_data)
 
 class RTipInstance(OperationHandler):
     """
@@ -881,41 +663,6 @@ class RTipCommentCollection(BaseHandler):
 
         return create_comment(self.request.tid, self.session.user_id, rtip_id, request['content'])
 
-class RTipMaskingCollection(BaseHandler):
-    """
-    Interface used to handle rtip masking
-    """
-    check_roles = 'receiver'
-    @inlineCallbacks
-    def get(self, tip_id):
-        tip, crypto_tip_prv_key = yield get_rtip(self.request.tid, self.session.user_id, tip_id, self.request.language)
-
-        if State.tenants[self.request.tid].cache.encryption and crypto_tip_prv_key:
-            tip = yield deferToThread(decrypt_tip, self.session.cc, crypto_tip_prv_key, tip)
-
-        returnValue(tip)
-        
-    def operation_descriptors(self):
-        return {
-          'update_masking': RTipMaskingCollection.update_masking
-        }
-    def post(self, rtip_id):
-        self.request.content.seek(0)
-        payload = self.request.content.read().decode('utf-8')  # Get the request payload
-        data = json.loads(payload)  # Parse the JSON payload
-        return create_masking(self.request.tid, self.session.user_id, rtip_id, data)
-    
-    def put(self, rtip_id, id):
-        self.request.content.seek(0)
-        payload = self.request.content.read().decode('utf-8')  # Get the request payload
-        data = json.loads(payload)  # Parse the JSON payload
-        return self.update_masking(rtip_id, id, data)
-    
-    def update_masking(self, rtip_id, id, data, *args, **kwargs):
-        return update_tip_masking(self.request.tid, self.session.user_id, rtip_id, id, data)
-    
-    def delete(self, rtip_id, id):
-        return delete_masking(self.request.tid, self.session.user_id,rtip_id,id)
 
 class ReceiverMsgCollection(BaseHandler):
     """

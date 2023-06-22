@@ -330,9 +330,6 @@ factory("RTipResource", ["GLResource", function(GLResource) {
 factory("RTipCommentResource", ["GLResource", function(GLResource) {
   return new GLResource("api/rtips/:id/comments", {id: "@id"});
 }]).
-factory("RTipMaskingResource", ["GLResource", function(GLResource) {
-  return new GLResource("api/rtips/:id/masking", {id: "@id"});
-}]).
 factory("RTipMessageResource", ["GLResource", function(GLResource) {
   return new GLResource("api/rtips/:id/messages", {id: "@id"});
 }]).
@@ -364,8 +361,8 @@ factory("RTipExport", ["Utils", function(Utils) {
     Utils.download("api/rtips/" + tip.id + "/export");
   };
 }]).
-factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipMessageResource", "RTipCommentResource","RTipMaskingResource",
-        function($rootScope, $http, RTipResource, RTipMessageResource, RTipCommentResource,RTipMaskingResource) {
+factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipMessageResource", "RTipCommentResource",
+        function($rootScope, $http, RTipResource, RTipMessageResource, RTipCommentResource) {
   return function(tipID, fn) {
     var self = this;
 
@@ -373,25 +370,13 @@ factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipMessageResource", "
       tip.context = $rootScope.contexts_by_id[tip.context_id];
       tip.questionnaire = $rootScope.questionnaires_by_id[tip.context.questionnaire_id];
       tip.additional_questionnaire = $rootScope.questionnaires_by_id[tip.context.additional_questionnaire_id];
+
       tip.newComment = function(content) {
         var c = new RTipCommentResource(tipID);
         c.content = content;
         c.$save(function(newComment) {
           tip.comments.unshift(newComment);
           tip.localChange();
-        });
-      };
-
-      tip.newMasking = function(content) {
-        var c = new RTipMaskingResource(tipID);
-        c.content_id = content.content_id;
-        c.permanent_masking = content.permanent_masking;
-        c.temporary_masking = content.temporary_masking;
-        c.$save(function(newMasking) {
-          tip.masking.unshift(newMasking);
-          tip.localChange();
-        }).then(function () {
-          $rootScope.reload();
         });
       };
 
@@ -403,12 +388,7 @@ factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipMessageResource", "
           tip.localChange();
         });
       };
-      tip.updateMasking = function(id, data) {
-        var req = {data};
-        return $http({method: "PUT", url: "api/rtips/" + tip.id +"/masking/" + id, data: req}).then(function () {
-          $rootScope.reload();
-        });
-      };
+
       tip.operation = function(operation, args) {
         var req = {
           "operation": operation,
@@ -440,9 +420,6 @@ factory("WBTipResource", ["GLResource", function(GLResource) {
 factory("WBTipCommentResource", ["GLResource", function(GLResource) {
   return new GLResource("api/wbtip/comments");
 }]).
-factory("WBTipMaskingResource", ["GLResource", function(GLResource) {
-  return new GLResource("api/rtips/:id/masking", {id: "@id"});
-}]).
 factory("WBTipMessageResource", ["GLResource", function(GLResource) {
   return new GLResource("api/wbtip/messages/:id", {id: "@id"});
 }]).
@@ -451,8 +428,8 @@ factory("WBTipDownloadFile", ["Utils", function(Utils) {
     Utils.download("api/wbtip/wbfile/" + file.id);
   };
 }]).
-factory("WBTip", ["$rootScope", "WBTipResource", "WBTipCommentResource", "WBTipMessageResource","WBTipMaskingResource",
-    function($rootScope, WBTipResource, WBTipCommentResource, WBTipMessageResource,WBTipMaskingResource) {
+factory("WBTip", ["$rootScope", "WBTipResource", "WBTipCommentResource", "WBTipMessageResource",
+    function($rootScope, WBTipResource, WBTipCommentResource, WBTipMessageResource) {
   return function(fn) {
     var self = this;
 
@@ -479,15 +456,6 @@ factory("WBTip", ["$rootScope", "WBTipResource", "WBTipCommentResource", "WBTipM
         c.content = content;
         c.$save(function(newComment) {
           tip.comments.unshift(newComment);
-          tip.localChange();
-        });
-      };
-
-      tip.newMasking = function(content) {
-        var c = new WBTipMaskingResource();
-        c.content = content;
-        c.$save(function(newMasking) {
-          tip.masking.unshift(newMasking);
           tip.localChange();
         });
       };
@@ -707,13 +675,12 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       user.notification = true;
       user.forcefully_selected = false;
       user.can_edit_general_settings = false;
-      user.can_privilege_mask_information = false;
-      user.can_privilege_delete_mask_information = false;
       user.can_grant_access_to_reports = false;
       user.can_delete_submission = false;
       user.can_postpone_expiration = true;
       return user;
     },
+
     new_redirect: function () {
       return new AdminRedirectResource();
     },

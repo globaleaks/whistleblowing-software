@@ -63,11 +63,11 @@ legend {
   padding: 5px;
 }
 
-.uib-button-bar>.btn-group>.btn-info {
+.uib-button-bar > .btn-group > .btn-info {
   display: none;
 }
 
-.uib-button-bar>.btn-success {
+.uib-button-bar > .btn-success {
   display: none;
 }
 
@@ -105,15 +105,15 @@ legend {
 [dir] .full button,
 [dir] .btn-info:not(:disabled, .disabled):active,
 [dir] .btn-info:not(:disabled, .disabled).active,
-[dir] .show>.btn-info.dropdown-toggle {
+[dir] .show > .btn-info.dropdown-toggle {
   background: #dde3ed;
 }
 
-[dir] .full>button {
+[dir] .full > button {
   color: #2866a2;
 }
 
-[dir] .uib-datepicker td>.active {
+[dir] .uib-datepicker td > .active {
   color: #fff;
 }
 
@@ -152,7 +152,7 @@ legend {
   left: auto;
 }
 
-.dropdown-multiselect .dropdown-menu>li>a {
+.dropdown-multiselect .dropdown-menu > li > a {
   display: block;
   padding: 3px 20px;
   clear: both;
@@ -164,7 +164,7 @@ legend {
   cursor: pointer;
 }
 
-.dropdown-multiselect .dropdown-menu>li>a:hover {
+.dropdown-multiselect .dropdown-menu > li > a:hover {
   background: #f5f7fa;
 }
 
@@ -405,7 +405,7 @@ legend {
 .selectedTip,
 [dir] .card-header,
 [dir] .table-striped tbody tr:nth-of-type(odd),
-[dir] .table-striped>tbody>tr.selectedTip:nth-child(odd)>td {
+[dir] .table-striped > tbody > tr.selectedTip:nth-child(odd) > td {
   background-color: #f5f7fa;
 }
 
@@ -448,7 +448,6 @@ legend {
 }
 
 @keyframes fadeinout {
-
   0%,
   100% {
     opacity: 0;
@@ -500,7 +499,7 @@ input[type="file"] {
   font-size: smaller;
 }
 
-@media screen and (width >=768px) {
+@media screen and (width >= 768px) {
   .modal-lg .modal-dialog {
     width: 600px;
   }
@@ -831,8 +830,7 @@ text.axis-worktime {
   fill: #1d1f24;
 }
 
-.disclaimer-text,
-.tos-text {
+.disclaimer-text, .tos-text {
   display: block;
   padding: 1em;
   font-family: monospace;
@@ -921,7 +919,7 @@ html[dir="ltr"] #Receipt {
 
 [dir] .collapse,
 [dir] .navbar-collapse {
-  height: auto !important;
+ height: auto !important;
 }
 
 [dir] .navbar {
@@ -929,16 +927,16 @@ html[dir="ltr"] #Receipt {
 }
 
 .audio-box {
-  margin-top: 10px;
+  margin-top:10px;
   border: 1px solid #ddd;
   background-color: #f8f9fa;
   border-radius: 4px;
-  padding: 7px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-right: 12px;
+  padding:7px;
+  padding-top:5px;
+  padding-bottom:5px;
+  padding-right:12px;
   display: flex;
-  background: #f2f2f2;
+  background:#f2f2f2;
   flex-direction: column;
   align-items: left;
   width: 350px;
@@ -948,57 +946,31 @@ html[dir="ltr"] #Receipt {
   background-color: #ffe6e6;
 }
 
-hr {
-  height: 2px;
-  background-color: black;
-  border: none;
-  margin: 10px 0;
-}
-
-/* Edit mode styling */
-.edit {
-  color: #b4bccb !important
-}
-
-.svg-btn:hover svg g {
-  fill: white;
-}
-
-.mode-svg {
-  padding: 0px !important;
-  margin: 0px !important;
-  width: 20px;
-}
-
 .audio-player {
   background: #262626;
   padding: 2px;
-  height: 42px;
+  height:42px;
   border-radius: 50px;
-  margin-left: 2px;
+  margin-left:2px;
   width: 100%;
-  margin-top: 10px;
-  max-width: 350px;
+  margin-top:10px;
+  max-width:350px;
 }
 
 @media screen and (max-width:370px) {
-  .audio-player {
-    max-width: 300px;
-  }
+  .audio-player{max-width: 300px;}
 }
 
 .audio-btn-group {
   display: flex;
-  position: relative;
-  width: 100%;
+  position:relative;
+  width:100%;
   justify-content: flex-start;
 }
 
 .audio-btn-group .btn {
-  margin: 0 3px;
-  /* Adjust the margin as per your preference */
-  padding: 6px 15px;
-  /* Adjust the padding as per your preference */
+  margin: 0 3px; /* Adjust the margin as per your preference */
+  padding: 6px 15px; /* Adjust the padding as per your preference */
   font-size: 14px;
   line-height: 1.5;
   transition: all 0.3s;
@@ -1014,12 +986,12 @@ hr {
   border-color: #0062cc;
 }
 
-.btn-audio {
+.btn-audio{
   color: #ccc;
   cursor: pointer;
 }
 
-.btn-audio:hover {
+.btn-audio:hover{
   color: #2866a2;
 }
 
@@ -1040,11 +1012,10 @@ hr {
 }
 
 
-.audio-player-wrapper[disabled] {
+.audio-player-wrapper[disabled]{
   cursor: not-allowed;
 }
-
-.audio-player-wrapper[disabled] .audio-player {
+.audio-player-wrapper[disabled] .audio-player{
   opacity: 0.5;
   pointer-events: none;
 }

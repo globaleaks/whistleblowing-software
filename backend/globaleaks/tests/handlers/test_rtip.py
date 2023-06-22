@@ -245,25 +245,6 @@ class TestRTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
             handler = self.request(body, role='receiver', user_id=rtip_desc['receiver_id'])
             yield handler.post(rtip_desc['id'])
 
-class TestRTipMaskingCollection(helpers.TestHandlerWithPopulatedDB):
-    _handler = rtip.RTipMaskingCollection
-
-    @inlineCallbacks
-    def setUp(self):
-        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        yield self.perform_full_submission_actions()
-
-    @inlineCallbacks
-    def test_post(self):
-        body = {
-            'content': u"can you provide an evidence of what you are telling?",
-        }
-
-        rtip_descs = yield self.get_rtips()
-        for rtip_desc in rtip_descs:
-            handler = self.request(body, role='receiver', user_id=rtip_desc['receiver_id'])
-            yield handler.post(rtip_desc['id'])
-
 
 class TestReceiverMsgCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = rtip.ReceiverMsgCollection

@@ -28,13 +28,10 @@ def parse_pgp_options(user, request):
         user.pgp_key_public = pgp_key_public
         user.pgp_key_fingerprint = pgpctx.fingerprint
         user.pgp_key_expiration = pgpctx.expiration
-        user.can_privilege_delete_mask_information = request['can_privilege_delete_mask_information']
-        user.can_privilege_mask_information = request['can_privilege_mask_information']
     else:
         user.pgp_key_public = ''
         user.pgp_key_fingerprint = ''
         user.pgp_key_expiration = datetime_null()
-      
 
 
 def user_serialize_user(session, user, language):
@@ -46,9 +43,8 @@ def user_serialize_user(session, user, language):
     :param session: the session on which perform queries.
     :return: a serialization of the object
     """
-   
     picture = session.query(models.File).filter(models.File.name == user.id).one_or_none() is not None
-   
+
     # take only contexts for the current tenant
     contexts = [x[0] for x in session.query(models.ReceiverContext.context_id)
                                      .filter(models.ReceiverContext.receiver_id == user.id)]
@@ -83,12 +79,10 @@ def user_serialize_user(session, user, language):
         'can_delete_submission': user.can_delete_submission,
         'can_grant_access_to_reports': user.can_grant_access_to_reports,
         'can_edit_general_settings': user.can_edit_general_settings,
-        'can_privilege_delete_mask_information': user.can_privilege_delete_mask_information,
-        'can_privilege_mask_information': user.can_privilege_mask_information,
         'clicked_recovery_key': user.clicked_recovery_key,
         'contexts': contexts
     }
-    # print(ret,"hello"),
+
     if State.tenants[user.tid].cache.two_factor and \
       user.two_factor_secret == '':
         ret['require_two_factor'] = True
