@@ -173,7 +173,6 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
       // getUserMedia is not supported in this browser
       console.warn('getUserMedia is not supported in this browser');
     }
-    $scope.$apply()
   }
   
 
