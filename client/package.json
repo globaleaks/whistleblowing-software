@@ -1,12 +1,12 @@
 {
-  "name": "globaleaks",
+  "name": "GlobaLeaks",
   "description": "GlobaLeaks - Free and Open-Source Whistleblowing Software",
   "version": "4.11.5",
   "license": "AGPL-3.0",
   "author": "GlobaLeaks",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/globaleaks/GlobaLeaks.git"
+    "url": "git@github.com:globaleaks/GlobaLeaks.git"
   },
   "dependencies": {
     "@flowjs/flow.js": "2.14.1",
@@ -44,8 +44,6 @@
     "angular-translate-loader-url": "2.19.0",
     "angularjs-dropdown-multiselect": "2.0.0-beta.10",
     "bootstrap": "4.6.2",
-    "chart.js": "^3.9.1",
-    "chartjs-plugin-datalabels": "^2.2.0",
     "fast-sha256": "1.3.0",
     "ng-csv": "0.3.6",
     "ng-idle": "1.3.2",

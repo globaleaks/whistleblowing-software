@@ -1,4 +1,4 @@
-<div id="TipPageWBFileUpload" class="card card-default" data-ng-init="collapsed = false">
+<div id="TipPageWBFileUpload" class="card card-default" data-ng-init="collapsed = false" data-ng-attr-aria-expanded="{{collapsed}}">
   <div class="card-header clearfix" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
     <span data-translate>Files attached by recipients</span>
     <span class="float-right">
@@ -10,10 +10,6 @@
        data-ng-show="!collapsed"
        data-ng-controller="RTipWBFileUploadCtrl">
     <div data-ng-repeat="wbfile in tip.wbfiles | orderBy: 'creation_date'">
-      <span id="edit-question" data-ng-click="editReport()" data-ng-if="editMode"
-      data-uib-tooltip="{{'Edit' | translate}}" class="btn btn-outline-secondary">
-      <i class="fa-solid fa-pen-to-square" data-ng-class="{'text-warning': !Utils.isNever(tip.reminder_date)}"></i>
-    </span>
       <div id="wbfile-{{$index}}" data-wbfile data-ctx="'rtip'"></div>
     </div>
     <div data-ng-if="tip.status !== 'closed'">
