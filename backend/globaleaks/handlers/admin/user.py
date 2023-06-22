@@ -124,10 +124,28 @@ def db_admin_update_user(session, tid, user_session, user_id, request, language)
     :param language: The language of the request
     :return: The serialized descriptor of the updated object
     """
+    
     fill_localized_keys(request, models.User.localized_keys, language)
 
     user = db_get_user(session, tid, user_id)
-
+    user.can_privilege_delete_mask_information = request['can_privilege_delete_mask_information']
+    user.can_privilege_mask_information = request['can_privilege_mask_information']
+    print("12::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+    print("12::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+    print("12::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+    print("12::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+    print("12::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+    print("12::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+    print("12::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+    print("12::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+    print("12::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+    print("12::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+    print("12::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+    print("12::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+    print("12::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+    print(request['can_privilege_delete_mask_information'],"user.can_privilege_delete_mask_information")
+    print("12::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+    print("12::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
     if request['mail_address'] != user.mail_address:
         user.change_email_token = None
         user.change_email_address = ''

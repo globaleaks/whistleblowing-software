@@ -1,0 +1,30 @@
+<div class="modal-header">
+  <div class="modal-title" data-translate>Are you sure?</div>
+  <button type="button" class="close" data-ng-click="cancel()" aria-label="{{'Close' | translate}}">
+    <i class="fa-solid fa-times"></i>
+  </button>
+</div>
+<div class="modal-body">
+  <textarea name="redact" id="redact" cols="30" rows="10" class="form-control" data-ng-bind-html="content"
+    data-ng-model="content" data-ng-disabled=true></textarea>
+</div>
+<div class="modal-footer">
+  <button
+    data-ng-show="(resources.preferences.can_privilege_mask_information) || (resources.preferences.can_privilege_mask_information && resources.preferences.can_privilege_delete_mask_information)"
+    class="btn btn-primary" data-ng-click="mask('redact')">
+    <span data-translate>Mask</span>
+  </button>
+  <button
+    data-ng-show="(resources.preferences.can_privilege_delete_mask_information) && (maskingObjects.length !==0 ) && (maskingObjects[0].temporary_masking !=='')"
+    class="btn btn-outline-secondary" data-ng-click="unMask()">
+    <span data-translate>Unmask</span>
+  </button>
+  <button data-ng-show="(resources.preferences.can_privilege_mask_information) && (reductCondition !== false)"
+    class="btn btn-primary" data-ng-click="temporaryMask()">
+    <span data-translate>Reduct</span>
+  </button>
+  <button data-ng-show="(resources.preferences.can_privilege_delete_mask_information) && (maskingObjects.length !==0) && (maskingObjects[0].temporary_masking !=='')"
+    class="btn btn-primary" data-ng-click="permanentMask()">
+    <span data-translate>Permanent Reduct</span>
+  </button>
+</div>

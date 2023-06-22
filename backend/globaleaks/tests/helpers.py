@@ -263,6 +263,8 @@ class MockDict:
             'notification': True,
             'forcefully_selected': True,
             'can_edit_general_settings': False,
+            'can_privilege_delete_mask_information': False,
+            'can_privilege_mask_information' : False,
             'can_grant_access_to_reports': True,
             'can_delete_submission': True,
             'can_postpone_expiration': True,
