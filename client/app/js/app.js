@@ -197,6 +197,16 @@ var GL = angular.module("GL", [
           resources: fetchResources("receiver", ["preferences", "rtips"])
         }
       }).
+      when("/recipient/statistics", {
+        templateUrl: "views/recipient/statistics.html",
+        controller: "StatisticsCtrl",
+        header_title: "Statistics",
+        sidebar: "views/recipient/sidebar.html",
+        resolve: {
+          access: requireAuth("receiver"),
+          resources: fetchResources("receiver", ["rtips","preferences"])
+        }
+      }).
       when("/admin/home", {
         templateUrl: "views/admin/home.html",
         controller: "AdminCtrl",
