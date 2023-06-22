@@ -40,6 +40,8 @@ module.exports = function(grunt) {
           { dest: "app/lib/js/", cwd: "./node_modules/", src: ["@flowjs/flow.js/dist/flow.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: "./node_modules/", src: ["@flowjs/ng-flow/dist/ng-flow.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angular/angular.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["chart.js/dist/chart.min.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.min.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angular-aria/angular-aria.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angular-dynamic-locale/dist/tmhDynamicLocale.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angular-filter/dist/angular-filter.js"], expand: true, flatten: true },
