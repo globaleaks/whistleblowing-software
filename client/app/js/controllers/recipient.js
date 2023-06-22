@@ -526,7 +526,11 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
         for (var status in $scope.statusCount) {
           var count = $scope.statusCount[status];
 
-          var percentage = (count / $scope.totalReports) * 100;
+          if ($scope.totalReports !== 0) {
+            var percentage = (count / $scope.totalReports) * 100;
+          } else {
+            var percentage = 0
+          }
           $scope.statusPercentages.push({
             status: status,
             count: count,
@@ -550,7 +554,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
         $scope.statusPercentages.unshift({
           status: 'Total Reports',
           count: $scope.totalReports,
-          percentage: 100
+          percentage: $scope.totalReports !== 0 ? "100" : "0.00"
         });
 
         var statusLabels = $scope.statusPercentages.map(function (item) {
@@ -691,11 +695,11 @@ GL.controller("ReceiverTipsCtrl", ["$scope", "$filter", "$http", "$location", "$
         var submissionStatus = {}
         submissionStatus['label'] = ['Total', 'New', 'Opened', 'Closed', 'Labeled', 'Unlabled']
         submissionStatus['data'] = [$scope.totalReports,
-        ($scope.statPercentageCalculator($scope.statusCount["New"], $scope.totalReports)).toFixed(2),
-        ($scope.statPercentageCalculator($scope.statusCount["Opened"], $scope.totalReports)).toFixed(2),
-        ($scope.statPercentageCalculator($scope.statusCount["Closed"], $scope.totalReports)).toFixed(2),
-        ($scope.statPercentageCalculator($scope.unlabeledCountDefault, $scope.totalReports)).toFixed(2),
-        ($scope.statPercentageCalculator($scope.labeledCountDefault, $scope.totalReports)).toFixed(2)]
+          ($scope.statPercentageCalculator($scope.statusCount["New"], $scope.totalReports)).toFixed(2) + " %",
+          ($scope.statPercentageCalculator($scope.statusCount["Opened"], $scope.totalReports)).toFixed(2) + " %",
+          ($scope.statPercentageCalculator($scope.statusCount["Closed"], $scope.totalReports)).toFixed(2) + " %",
+          ($scope.statPercentageCalculator($scope.unlabeledCountDefault, $scope.totalReports)).toFixed(2) + " %",
+          ($scope.statPercentageCalculator($scope.labeledCountDefault, $scope.totalReports)).toFixed(2) + " %"]
 
         var interactionStatus = {}
         interactionStatus['label'] = ['Total Report', 'Average closure time', 'Total Unanswered Tips', 'Number of interections', 'Tor Connections', 'Reciprocating whistle blower']
