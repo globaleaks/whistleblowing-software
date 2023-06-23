@@ -225,7 +225,6 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
     // Connect the recorder
     mediaStream.connect(recorder);
     recorder.connect(context.destination);
-    $scope.$apply();
   };
 
  
@@ -269,7 +268,7 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
   view.setUint32(16, 16, true); // chunkSize
   view.setUint16(20, 1, true); // wFormatTag
   view.setUint16(22, 2, true); // wChannels: stereo (2 channels)
-  var sampleRate =  (mediaRecorder.stream.getAudioTracks()[0].getSettings().sampleRate )/2 // Set the desired sample rate
+  var sampleRate =  24000 // Set the desired sample rate
   view.setUint32(24, sampleRate, true); // dwSamplesPerSec
   view.setUint32(28, sampleRate, true); // dwAvgBytesPerSec
   view.setUint16(32, 4, true); // wBlockAlign
@@ -316,7 +315,6 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
       $scope.uploads[$scope.fileinput] = flow;
     }
 
-    $scope.$apply();
   };
 }]).
 controller("ImageUploadCtrl", ["$http", "$scope", "$rootScope", "uploadUtils", "Utils", function($http, $scope, $rootScope, uploadUtils, Utils) {
