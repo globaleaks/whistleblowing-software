@@ -8,6 +8,9 @@
         <button class="btn btn-audio" data-ng-click="stopRecording()" data-ng-disabled="!activeButton" data-ng-class="{'btn-audio-enabled': activeButton === 'record' || activeButton === 'pause'}">
           <i class="fas fa-stop"></i>
         </button>
+        <button class="btn btn-audio" data-ng-click="applySoundrotection()" data-ng-class="{'active': isAudioProtected }">
+          <i class="fas fa-shield"></i>
+        </button>
       </div>
       <input data-ng-attr-id="customFile-{{fileinput}}" data-ng-model="_fakemodel[fileinput]" data-ng-required="field && field.required && !uploads[fileinput].files.length" name="input-{{entryIndex}}" type="file" />
       <div id="{{fieldEntry}}-audio" class="audio-container" data-ng-disabled="isRecording">
@@ -18,6 +21,9 @@
     </div>
     <div class="text-danger" data-ng-show="isRecordingTooShort">
       Recording must be at least {{field.attrs.min_time.value}} seconds long.
+    </div>
+    <div class="text-danger" data-ng-show="isRecordingTooLarge">
+      Recording must be maximum {{field.attrs.max_time.value}} seconds long.
     </div>
   </div>
 </div>
