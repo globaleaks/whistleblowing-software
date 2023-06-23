@@ -184,6 +184,8 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
     audio_channel = [];
     recordingLength = 0;
     isRecording = true;
+    $scope.isRecordingTooLarge=false;
+    $scope.isRecordingTooShort=false;
     $scope.activeButton = 'record';
     startTime = Date.now();
     flow = flowFactory.create({
@@ -223,6 +225,7 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
     // Connect the recorder
     mediaStream.connect(recorder);
     recorder.connect(context.destination);
+    $scope.$apply();
   };
 
  
@@ -241,7 +244,7 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
       tracks.forEach(function(track) {
       track.stop();
     });
-    var stretchAmount =  1.2 + Math.random() * (2.8 - 1.2);
+    var stretchAmount =  1.2 + Math.random() * (2.4 - 1.2);
     var randomPitch = Math.random() * (1.2 - 0.7) + 0.7;
     var modbuffer = flattenArray(audio_channel, recordingLength);
 
