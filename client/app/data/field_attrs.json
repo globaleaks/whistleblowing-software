@@ -6,8 +6,8 @@
     "regexp": {"type": "unicode", "value": ""}
  },
  "audioUpload": {
-    "min_time": {"type": "int", "value": "0"},
-    "max_time": {"type": "int", "value": "0"}
+    "min_time": {"type": "int", "value": "10"},
+    "max_time": {"type": "int", "value": "60"}
  },
  "textarea": {
     "min_len": {"type": "int", "value": "0"},

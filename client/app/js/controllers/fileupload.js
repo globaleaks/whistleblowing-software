@@ -291,7 +291,7 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
 
     var durationInSeconds = (Date.now() - startTime) / 1000;
     $scope.isRecordingTooShort = durationInSeconds < parseInt($scope.field.attrs.min_time.value);
-    $scope.isRecordingTooLarge = durationInSeconds > parseInt($scope.field.attrs.max_time.value);
+    $scope.isRecordingTooLarge = durationInSeconds > parseInt($scope.field.attrs.max_time.value) || durationInSeconds > 180;
     
     $scope.disablePlayer= durationInSeconds < parseInt($scope.field.attrs.min_time.value);
     $scope.audioFile = blob;
