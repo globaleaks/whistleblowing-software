@@ -1,5 +1,5 @@
 <div class="row mt-4">
-  <div class="col-md-12">
+  <div class="col-md-10" ng-class="{'container-disabled': !is_file_authenticated}">
     <div class="form-group">
       <div class="mb-2" data-ng-repeat="admin_file in admin_files" data-ng-include="'views/partials/admin_file.html'"></div>
       <div class="mb-2"
@@ -37,6 +37,12 @@
           </tbody>
         </table>
       </div>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="custom-control custom-switch">
+      <input type="checkbox" class="custom-control-input" id="toggleSwitch" ng-model="is_file_authenticated" ng-change="enable2FAFileUpload()">
+      <label class="custom-control-label" for="toggleSwitch">{{is_file_authenticated ? 'Enabled' : 'Disabled'}}</label>
     </div>
   </div>
 </div>

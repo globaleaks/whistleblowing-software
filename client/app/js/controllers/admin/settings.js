@@ -144,4 +144,10 @@ GL.controller("AdminSettingsCtrl", ["$scope", "$filter", "$http", "Files", "Admi
   };
 
   $scope.update_files();
+  
+  // 2FA file upload
+  $scope.is_file_authenticated = false;
+  $scope.enable2FAFileUpload = function() {
+    $scope.is_file_authenticated = true;
+  };
 }]);

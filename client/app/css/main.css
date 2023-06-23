@@ -948,3 +948,9 @@ html[dir="ltr"] #Receipt {
     clip: rect(1px, 1px, 1px, 1px);
     white-space: nowrap;
 }
+
+.container-disabled{
+  pointer-events: none;
+  opacity: 0.4;
+  user-select: none;
+}
