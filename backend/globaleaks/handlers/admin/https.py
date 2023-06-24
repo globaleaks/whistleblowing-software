@@ -16,7 +16,7 @@ from globaleaks.utils import letsencrypt, tls
 from globaleaks.utils.log import log
 
 
-def db_load_tls_config(session, tid):
+def db_load_tls_config(session, tid, test=False):
     """
     Transaction for loading the TLS configuration of a tenant
 
@@ -26,13 +26,24 @@ def db_load_tls_config(session, tid):
     """
     node = ConfigFactory(session, tid)
 
+    if test or node.get_val('https_enabled'):
+        key = node.get_val('https_key')
+        cert = node.get_val('https_cert')
+        chain = node.get_val('https_chain')
+        hostname = node.get_val('hostname')
+    else:
+        key = node.get_val('https_selfsigned_key')
+        cert = node.get_val('https_selfsigned_cert')
+        chain = ''
+        hostname = '127.0.0.1'
+
     return {
         'tid': tid,
-        'ssl_key': node.get_val('https_key'),
-        'ssl_cert': node.get_val('https_cert'),
-        'ssl_intermediate': node.get_val('https_chain'),
+        'ssl_key': key,
+        'ssl_cert': cert,
+        'ssl_intermediate': chain,
         'https_enabled': node.get_val('https_enabled'),
-        'hostname': node.get_val('hostname'),
+        'hostname': hostname
     }
 
 
@@ -81,7 +92,7 @@ def db_load_https_key(session, tid, data=None):
     if not data:
       data = tls.gen_ecc_key()
 
-    db_cfg = db_load_tls_config(session, tid)
+    db_cfg = db_load_tls_config(session, tid, True)
     db_cfg['ssl_key'] = data
 
     config = ConfigFactory(session, tid)
@@ -94,7 +105,7 @@ def db_load_https_key(session, tid, data=None):
 
 
 def db_load_https_cert(session, tid, data):
-    db_cfg = db_load_tls_config(session, tid)
+    db_cfg = db_load_tls_config(session, tid, True)
     db_cfg['ssl_cert'] = data
 
     config = ConfigFactory(session, tid)
@@ -108,7 +119,7 @@ def db_load_https_cert(session, tid, data):
 
 
 def db_load_https_chain(session, tid, data):
-    db_cfg = db_load_tls_config(session, tid)
+    db_cfg = db_load_tls_config(session, tid, True)
     db_cfg['ssl_intermediate'] = data
 
     config = ConfigFactory(session, tid)
@@ -145,7 +156,7 @@ def db_try_to_enable_https(session, tid):
     config = ConfigFactory(session, tid)
 
     cv = tls.ChainValidator()
-    tls_config = db_load_tls_config(session, tid)
+    tls_config = db_load_tls_config(session, tid, True)
     tls_config['https_enabled'] = False
 
     ok, _ = cv.validate(tls_config)
@@ -394,7 +405,7 @@ class CSRFileHandler(FileHandler):
     @staticmethod
     @transact
     def perform_action(session, tid, csr_fields):
-        db_cfg = db_load_tls_config(session, tid)
+        db_cfg = db_load_tls_config(session, tid, True)
 
         pkv = tls.KeyValidator()
         ok, _ = pkv.validate(db_cfg)

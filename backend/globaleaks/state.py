@@ -176,7 +176,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
                 continue
 
             if port == 8443:
-                self.http_socks += [sock]
+                self.https_socks += [sock]
             else:
                 self.http_socks += [sock]
 

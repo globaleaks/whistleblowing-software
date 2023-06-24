@@ -63,6 +63,8 @@ ConfigDescriptor = {
     'https_custodian': Bool(default=True),
     'https_enabled': Bool(default=False),
     'https_key': Unicode(),
+    'https_selfsigned_key': Unicode(),
+    'https_selfsigned_cert': Unicode(),
     'https_receiver': Bool(default=True),
     'https_whistleblower': Bool(default=True),
     'ip_filter_admin': Unicode(default=''),

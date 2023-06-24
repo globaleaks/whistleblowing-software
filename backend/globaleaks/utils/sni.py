@@ -114,7 +114,7 @@ class SNIMap(object):
 
     def load(self, tid, conf):
         chnv = ChainValidator()
-        ok, err = chnv.validate(conf, must_be_disabled=False, check_expiration=False)
+        ok, err = chnv.validate(conf, check_expiration=False)
         if not ok or err is not None:
             return
 
@@ -141,7 +141,7 @@ class SNIMap(object):
         try:
             common_name = connection.get_servername().decode()
         except:
-            common_name = ''
+            common_name = '127.0.0.1'
 
         if common_name in self.contexts_by_hostname:
             context = self.contexts_by_hostname[common_name].getContext()

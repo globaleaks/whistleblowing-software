@@ -473,7 +473,10 @@ def forge_request(uri=b'https://www.globaleaks.org/',
         host = x[0]
         port = int(x[1])
     else:
-        port = 80
+        if uri.startswith(b'http://'):
+            port = 80
+        else:
+            port = 443
 
     request = DummyRequest([b''])
     request.tid = 1
@@ -495,7 +498,10 @@ def forge_request(uri=b'https://www.globaleaks.org/',
     request.multilang = False
 
     def isSecure():
-        return False
+        if request.port in [443, 8443]:
+            return True
+        else:
+            return False
 
     request.isSecure = isSecure
     request.client_using_tor = False

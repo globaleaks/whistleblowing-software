@@ -7,6 +7,7 @@ from globaleaks.models import serializers
 from globaleaks.models.config import db_set_config_variable
 from globaleaks.orm import db_del, db_get, transact, tw
 from globaleaks.rest import requests
+from globaleaks.utils.tls import gen_selfsigned_certificate
 
 
 def db_initialize_tenant_submission_statuses(session, tid):
@@ -42,6 +43,11 @@ def db_create(session, desc):
         db_load_defaults(session)
 
     models.config.initialize_config(session, t.id, desc['mode'])
+
+    if t.id == 1:
+        key, cert = gen_selfsigned_certificate()
+        db_set_config_variable(session, 1, 'https_selfsigned_key', key)
+        db_set_config_variable(session, 1, 'https_selfsigned_cert', cert)
 
     for var in ['mode', 'name', 'subdomain']:
         db_set_config_variable(session, t.id, var, desc[var])

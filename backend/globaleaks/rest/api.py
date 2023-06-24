@@ -220,14 +220,10 @@ class APIResourceWrapper(Resource):
             self._registry.append((re.compile(pattern), handler, args))
 
     def should_redirect_https(self, request):
-        if (State.tenants[1].cache.https_enabled or
-            State.tenants[request.tid].cache.https_enabled) and \
-           not request.isSecure() and \
-           request.client_ip not in State.settings.local_hosts and \
-           b'acme-challenge' not in request.path:
-            return True
+        if request.isSecure() or b'acme-challenge' in request.path:
+            return False
 
-        return False
+        return True
 
     def should_redirect_tor(self, request):
         if request.client_using_tor and \
@@ -238,7 +234,12 @@ class APIResourceWrapper(Resource):
         return False
 
     def redirect_https(self, request):
-        request.redirect(b'https://' + State.tenants[request.tid].cache.hostname.encode() + request.path)
+        hostname = request.hostname
+
+        if request.port == 8082:
+            hostname += b":8443"
+
+        request.redirect(b'https://' + hostname + request.path)
 
     def redirect_tor(self, request):
         request.redirect(b'http://' + State.tenants[request.tid].cache.onionnames[0] + request.path)

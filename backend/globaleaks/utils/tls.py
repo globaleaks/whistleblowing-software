@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 
+import binascii
+import ipaddress
 import re
 
-from cryptography.hazmat.primitives.asymmetric import ec, rsa
+from cryptography import x509
+from cryptography.x509.oid import NameOID
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.asymmetric import ec
 from cryptography.hazmat.backends import default_backend
-from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.primitives import hashes, serialization
 
 from OpenSSL import SSL
 from OpenSSL._util import lib as _lib, ffi as _ffi
@@ -13,6 +18,7 @@ from OpenSSL.crypto import load_certificate, load_privatekey, FILETYPE_PEM, \
 
 from twisted.internet import ssl
 
+from globaleaks.utils.utility import datetime_never, datetime_now
 from globaleaks.utils.log import log
 
 
@@ -72,6 +78,47 @@ def gen_x509_csr_pem(key_pair, csr_fields, csr_sign_bits):
     pem_csr = dump_certificate_request(SSL.FILETYPE_PEM, req)
     return pem_csr
 
+
+def gen_selfsigned_certificate(hostname="localhost", ip="127.0.0.1"):
+    """Generates self signed certificate for localhost and 127.0.0.1."""
+    key = ec.generate_private_key(ec.SECP384R1(), default_backend())
+
+    name = x509.Name([
+        x509.NameAttribute(NameOID.COMMON_NAME, hostname)
+    ])
+
+    alt_names = [x509.DNSName(hostname)]
+
+    alt_names.append(x509.DNSName(ip))
+    alt_names.append(x509.IPAddress(ipaddress.ip_address(ip)))
+
+    san = x509.SubjectAlternativeName(alt_names)
+
+    # path_len=0 means this cert can only sign itself, not other certs.
+    basic_contraints = x509.BasicConstraints(ca=True, path_length=0)
+
+    cert = (
+        x509.CertificateBuilder()
+        .subject_name(name)
+        .issuer_name(name)
+        .public_key(key.public_key())
+        .serial_number(x509.random_serial_number())
+        .not_valid_before(datetime_now())
+        .not_valid_after(datetime_never())
+        .add_extension(basic_contraints, False)
+        .add_extension(san, False)
+        .sign(key, hashes.SHA256(), default_backend())
+    )
+
+    cert_pem = cert.public_bytes(encoding=serialization.Encoding.PEM)
+
+    key_pem = key.private_bytes(
+        encoding=serialization.Encoding.PEM,
+        format=serialization.PrivateFormat.TraditionalOpenSSL,
+        encryption_algorithm=serialization.NoEncryption(),
+    )
+
+    return key_pem, cert_pem
 
 def gen_x509_csr(key_pair, csr_fields, csr_sign_bits):
     """
@@ -241,7 +288,7 @@ class CtxValidator(object):
     def _validate(self, cfg, ctx, check_expiration):
         raise NotImplementedError()
 
-    def validate(self, cfg, must_be_disabled=True, check_expiration=True):
+    def validate(self, cfg, check_expiration=True):
         """
         Checks the validity of the passed config for usage in an OpenSSLContext
 
@@ -252,9 +299,6 @@ class CtxValidator(object):
         :rtype: A tuple of (Bool, Exception) where True, None signifies success
 
         """
-        if must_be_disabled and cfg['https_enabled']:
-            raise ValidationException('HTTPS must not be enabled')
-
         ctx = new_tls_server_context()
 
         try:

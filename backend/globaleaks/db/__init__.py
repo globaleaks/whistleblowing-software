@@ -143,8 +143,7 @@ def sync_initialize_snimap(session):
     :param session: An ORM session
     """
     for cfg in db_load_tls_configs(session):
-        if cfg['https_enabled']:
-            State.snimap.load(cfg['tid'], cfg)
+        State.snimap.load(cfg['tid'], cfg)
 
 
 def db_refresh_tenant_cache(session, to_refresh=None):
