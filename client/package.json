@@ -71,19 +71,19 @@
     "grunt-usemin": "3.1.1",
     "gruntify-eslint": "5.0.0",
     "node-gettext": "3.0.0",
-    "npm-check-updates": "16.10.12",
+    "npm-check-updates": "16.10.13",
     "nyc": "15.1.0",
     "postcss-rtl": "2.0.0",
     "protractor": "7.0.0",
     "protractor-console-plugin": "0.1.1",
-    "stylelint": "15.8.0",
+    "stylelint": "15.9.0",
     "stylelint-config-standard": "33.0.0",
     "superagent": "8.0.9",
-    "terser": "5.18.0"
+    "terser": "5.18.1"
   },
   "overrides": {
     "grunt-stylelint": {
-      "stylelint": "15.4.0"
+      "stylelint": "15.9.0"
     }
   }
 }
