@@ -48,11 +48,6 @@
           <div data-ng-if="comment.content" class="preformatted">{{maskingContent(comment.content,comment.id)}}</div>
         </div>
         <div data-ng-switch-when="receiver" class="message">
-          <span class="float-right edit" id="edit-comment"
-            data-ng-click="editReport(comment.content,comment.id,'comment')" data-ng-if="mode"
-            data-uib-tooltip="{{'Edit' | translate}}">
-            <i class="fa-solid fa-eraser"></i>
-          </span>
           <div class="row">
             <div class="col-md-6">{{tip.receivers_by_id[comment.author].name}}</div>
             <div class="col-md-6 text-right">{{comment.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
