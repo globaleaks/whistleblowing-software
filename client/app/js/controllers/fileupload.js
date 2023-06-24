@@ -51,9 +51,11 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
   var noiseReductionAmount = 0.5;
   $scope.activeButton = null;
   $scope.disablePlayer = true;
+  $scope.isAudioProtected=false;
 
   $scope.applySoundrotection = function (fieldid){
-    $scope.triggerRecording(fieldid, true);
+    $scope.isAudioProtected=true;
+    $scope.triggerRecording(fieldid);
   }
 
   function applySubtleDistortion(buffer, amount) {
@@ -157,12 +159,12 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
     }
   }
 
-  $scope.triggerRecording = function(fileId, protected) {
+  $scope.triggerRecording = function(fileId) {
     $scope.activeButton = 'record';
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia({ audio: true })
         .then(function(stream) {
-          $scope.startRecording(fileId, stream, protected);
+          $scope.startRecording(fileId, stream);
           console.log('Audio recording permission is granted');
         })
         .catch(function(error) {
@@ -179,7 +181,7 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
   }
   
 
-  $scope.startRecording = function(fileId, stream, protected) {
+  $scope.startRecording = function(fileId, stream) {
     audio_channel = [];
     recordingLength = 0;
     isRecording = true;
@@ -314,6 +316,7 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
       $scope.uploads[$scope.fileinput] = flow;
     }
 
+    $scope.isAudioProtected=false;
   };
 }]).
 controller("ImageUploadCtrl", ["$http", "$scope", "$rootScope", "uploadUtils", "Utils", function($http, $scope, $rootScope, uploadUtils, Utils) {

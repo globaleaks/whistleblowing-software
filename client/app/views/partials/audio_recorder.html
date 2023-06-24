@@ -2,14 +2,14 @@
   <div data-ng-controller="AudioUploadCtrl">
     <div class="audio-box">
       <div class="audio-btn-group">
-        <button class="btn btn-audio" data-ng-click="triggerRecording(field.id, false)" data-ng-disabled="isRecording" data-ng-class="{ 'btn-audio-enabled': !activeButton, 'active': activeButton === 'record' }">
+        <button class="btn btn-audio" data-ng-click="triggerRecording(field.id)" data-ng-disabled="isRecording" data-ng-class="{ 'btn-audio-enabled': !activeButton, 'active': activeButton === 'record' }">
           <i class="fas fa-microphone-alt"></i>
+        </button>
+        <button class="btn btn-audio" data-ng-click="applySoundrotection(field.id)" data-ng-disabled="!isAudioProtected && activeButton === 'record'" data-ng-class="{'active': isAudioProtected && activeButton === 'record' }">
+          <i class="fas fa-shield"></i>
         </button>
         <button class="btn btn-audio" data-ng-click="stopRecording()" data-ng-disabled="!activeButton" data-ng-class="{'btn-audio-enabled': activeButton === 'record' || activeButton === 'pause'}">
           <i class="fas fa-stop"></i>
-        </button>
-        <button class="btn btn-audio" data-ng-click="applySoundrotection(field.id)" data-ng-class="{'active': isAudioProtected }">
-          <i class="fas fa-shield"></i>
         </button>
         <div class="audio-recorder" data-ng-class="{'audio-recorder-active': activeButton === 'record' || activeButton === 'pause'}"></div> <!-- Move the circle element inside the audio-btn-group -->
       </div>
