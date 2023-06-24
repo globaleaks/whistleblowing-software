@@ -927,6 +927,7 @@ html[dir="ltr"] #Receipt {
 }
 
 .audio-box {
+  position: relative;
   margin-top:10px;
   border: 1px solid #ddd;
   background-color: #f8f9fa;
@@ -980,6 +981,26 @@ hr {
 
 @media screen and (max-width:370px) {
   .audio-player{max-width: 300px;}
+}
+
+.audio-recorder {
+  position: absolute;
+  top: 5px;
+  right: 3px;
+  width: 10px;
+  height: 10px;
+  background-color: grey;
+  border-radius: 50%;
+}
+
+.audio-recorder-active {
+  position: absolute;
+  top: 5px;
+  right: 3px;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
 }
 
 .audio-btn-group {
