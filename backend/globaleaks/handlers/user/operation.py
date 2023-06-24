@@ -28,8 +28,7 @@ def change_password(session, tid, user_session, password, old_password):
     user = db_get_user(session, tid, user_session.user_id)
 
     if not user.password_change_needed:
-        if not GCE.check_password(user.hash_alg,
-                                  old_password,
+        if not GCE.check_password(old_password,
                                   user.salt,
                                   user.password):
            raise errors.InvalidOldPassword

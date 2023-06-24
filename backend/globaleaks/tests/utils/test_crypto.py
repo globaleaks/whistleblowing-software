@@ -10,7 +10,6 @@ password = b'password'
 message = b'message'
 salt = 'wHMeI9jZ1/hVAfpJliXC3Q=='
 hash_argon2 = '83xya+Pxc3w4d7Ry2LHUE28qLVP2Sa4DULo8joMrpL8='
-hash_scrypt = 'd239b00f2aca9cfb701b5db587fa0d61efde13a3a35bac81aac116bcad3d6d7dc38c2a65db1ca74d295f7b8b267ca26e266121cd110fc31feefeba6c952097a8'
 
 
 class TestCryptoUtils(helpers.TestGL):
@@ -38,13 +37,9 @@ class TestCryptoUtils(helpers.TestGL):
         dec = GCE.asymmetric_decrypt(prv_key, enc)
         self.assertEqual(dec, message)
 
-    def test_check_password_argon2(self):
-        self.assertTrue(GCE.check_password('ARGON2', password, salt, hash_argon2))
-        self.assertFalse(GCE.check_password('ARGON2', password, salt, 'nohashnoparty'))
-
-    def test_check_password_scrypt(self):
-        self.assertTrue(GCE.check_password('SCRYPT', password, salt, hash_scrypt))
-        self.assertFalse(GCE.check_password('SCRYPT', password, salt, 'nohashnoparty'))
+    def test_check_password(self):
+        self.assertTrue(GCE.check_password(password, salt, hash_argon2))
+        self.assertFalse(GCE.check_password(password, salt, 'nohashnoparty'))
 
     def test_encrypt_and_decrypt_file(self):
         prv_key, pub_key = GCE.generate_keypair()

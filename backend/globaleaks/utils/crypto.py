@@ -14,7 +14,6 @@ from cryptography.hazmat.primitives import constant_time, hashes
 from cryptography.hazmat.primitives.twofactor.totp import TOTP
 
 from nacl.encoding import Base64Encoder
-from nacl.hashlib import scrypt
 from nacl.pwhash import argon2id
 from nacl.public import SealedBox, PrivateKey, PublicKey
 from nacl.secret import SecretBox
@@ -90,28 +89,18 @@ def totpVerify(secret: str, token: str) -> None:
         raise Error
 
 
-def _hash_scrypt(password: bytes, salt: bytes) -> str:
-    password = _convert_to_bytes(password)
-    salt = _convert_to_bytes(salt)
-
-    # old version of globalealeaks have used hexelify in place of base64;
-    # the function is still used for compatibility reasons
-    hash = scrypt(password, salt, _GCE.ALGORITM_CONFIGURATION['SCRYPT']['N'])
-    return binascii.hexlify(hash).decode()
-
-
 def _kdf_argon2(password: bytes, salt: bytes) -> bytes:
     salt = base64.b64decode(salt)
     return argon2id.kdf(32, password, salt[0:16],
-                        opslimit=_GCE.ALGORITM_CONFIGURATION['ARGON2']['OPSLIMIT']+1,
-                        memlimit=1 << _GCE.ALGORITM_CONFIGURATION['ARGON2']['MEMLIMIT'])
+                        opslimit=_GCE.options['OPSLIMIT'] + 1,
+                        memlimit=1 << _GCE.options['MEMLIMIT'])
 
 
 def _hash_argon2(password: bytes, salt: bytes) -> str:
     salt = base64.b64decode(salt)
     hash = argon2id.kdf(32, password, salt[0:16],
-                        opslimit=_GCE.ALGORITM_CONFIGURATION['ARGON2']['OPSLIMIT'],
-                        memlimit=1 << _GCE.ALGORITM_CONFIGURATION['ARGON2']['MEMLIMIT'])
+                        opslimit=_GCE.options['OPSLIMIT'],
+                        memlimit=1 << _GCE.options['MEMLIMIT'])
     return base64.b64encode(hash).decode()
 
 
@@ -192,25 +181,10 @@ class _StreamingEncryptionObject(object):
 
 
 class _GCE(object):
-    # Warning: KDF options by design should be greater than HASH options
-    ALGORITM_CONFIGURATION = {
-        'ARGON2': {
-            'MEMLIMIT': 27,  # 128MB
-            'OPSLIMIT': 16
-        },
-        'SCRYPT': {
-            'N': 1 << 14  # Value used in old protocol
-        }
+    options = {
+        'OPSLIMIT': 16,
+        'MEMLIMIT': 27 # 128MB
     }
-
-    KDF_FUNCTIONS = {}
-
-    HASH_FUNCTIONS = {
-        'SCRYPT': _hash_scrypt
-    }
-
-    KDF_FUNCTIONS['ARGON2'] = _kdf_argon2
-    HASH_FUNCTIONS['ARGON2'] = _hash_argon2
 
     @staticmethod
     def generate_receipt() -> str:
@@ -227,25 +201,24 @@ class _GCE(object):
         return base64.b64encode(os.urandom(16)).decode()
 
     @staticmethod
-    def hash_password(password: str, salt: str, algorithm: str = 'ARGON2') -> str:
+    def hash_password(password: str, salt: str) -> str:
         """
-        Return the hash a password using a specified algorithm
-        If the algorithm provided is none uses the best available algorithm
+        Return the hash a password
         """
         password = _convert_to_bytes(password)
         salt = _convert_to_bytes(salt)
 
-        return _GCE.HASH_FUNCTIONS[algorithm](password, salt)
+        return _hash_argon2(password, salt)
 
     @staticmethod
-    def check_password(algorithm: str, password: str, salt: str, hash: str) -> bool:
+    def check_password(password: str, salt: str, hash: str) -> bool:
         """
         Perform passowrd check for match with a provided hash
         """
         password = _convert_to_bytes(password)
         salt = _convert_to_bytes(salt)
         hash = _convert_to_bytes(hash)
-        x = _convert_to_bytes(_GCE.HASH_FUNCTIONS[algorithm](password, salt))
+        x = _convert_to_bytes(_hash_argon2(password, salt))
 
         return constant_time.bytes_eq(x, hash)
 
@@ -264,7 +237,7 @@ class _GCE(object):
         password = _convert_to_bytes(password)
         salt = _convert_to_bytes(salt)
 
-        return _GCE.KDF_FUNCTIONS['ARGON2'](password, salt)
+        return _kdf_argon2(password, salt)
 
     @staticmethod
     def generate_keypair() -> Tuple[bytes, bytes]:

@@ -86,7 +86,7 @@ def db_confirmation_check(session, tid, user_id, secret):
     if user.two_factor_secret:
         State.totp_verify(user.two_factor_secret, secret)
     else:
-        if not GCE.check_password(user.hash_alg, secret, user.salt, user.password):
+        if not GCE.check_password(secret, user.salt, user.password):
             raise errors.InvalidAuthentication
 
 

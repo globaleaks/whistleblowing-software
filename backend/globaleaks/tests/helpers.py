@@ -49,8 +49,7 @@ from globaleaks.utils.token import Token
 from globaleaks.utils.utility import datetime_null, datetime_now, sum_dicts, uuid4
 from globaleaks.utils.log import log
 
-GCE.ALGORITM_CONFIGURATION['ARGON2']['OPSLIMIT'] = 1
-GCE.ALGORITM_CONFIGURATION['SCRYPT']['N'] = 1 << 1
+GCE.options['OPSLIMIT'] = 1
 
 ################################################################################
 # BEGIN MOCKS NECESSARY FOR DETERMINISTIC ENCRYPTION

@@ -109,7 +109,7 @@ def login(session, tid, username, password, authcode, client_using_tor, client_i
                                           User.enabled.is_(True),
                                           User.tid == tid).one_or_none()
 
-    if not user or not GCE.check_password(user.hash_alg, password, user.salt, user.password):
+    if not user or not GCE.check_password(password, user.salt, user.password):
         db_login_failure(session, tid, 0)
 
     connection_check(tid, user.role, client_ip, client_using_tor)
