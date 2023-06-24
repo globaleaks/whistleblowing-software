@@ -153,7 +153,6 @@ def serialize_itip(session, internaltip, language):
         'creation_date': internaltip.creation_date,
         'update_date': internaltip.update_date,
         'expiration_date': internaltip.expiration_date,
-        'progressive': internaltip.progressive,
         'context_id': internaltip.context_id,
         'questionnaires': questionnaires,
         'tor': internaltip.tor,
@@ -205,6 +204,7 @@ def serialize_rtip(session, itip, rtip, language):
 
     ret['id'] = rtip.id
     ret['internaltip_id'] = itip.id
+    ret['progressive'] = itip.progressive
     ret['receiver_id'] = user_id
     ret['custodian'] = State.tenants[itip.tid].cache['enable_custodian']
     ret['important'] = itip.important
