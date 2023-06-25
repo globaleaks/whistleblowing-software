@@ -7,6 +7,7 @@ from globaleaks.models import Model
 from globaleaks.models.enums import _Enum, EnumUserRole
 from globaleaks.models.properties import *
 from globaleaks.settings import Settings
+from globaleaks.utils.tls import gen_selfsigned_certificate
 from globaleaks.utils.utility import datetime_never, datetime_now, datetime_null
 
 
@@ -157,6 +158,20 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
     def epilogue(self):
+        key, cert = gen_selfsigned_certificate()
+
+        new_conf = self.model_to['Config']()
+        new_conf.var_name = 'https_selfsigned_key'
+        new_conf.value = key
+        self.session_new.add(new_conf)
+
+        new_conf = self.model_to['Config']()
+        new_conf.var_name = 'https_selfsigned_cert'
+        new_conf.value = cert
+        self.session_new.add(new_conf)
+
+        self.entries_count['Config'] += 2
+
         m = self.model_from['Message']
         i = self.model_from['InternalTip']
         r = self.model_from['ReceiverTip']
