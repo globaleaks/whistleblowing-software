@@ -27,7 +27,7 @@ exports.config = {
   capabilities: {
     "browserName": "chrome",
     "chromeOptions": {
-      args: ["--headless", "--disable-gpu", "--window-size=1280,1024"],
+      args: ["--headless", "--disable-gpu", "--window-size=1280,1024", "--ignore-certificate-errors"],
       prefs: {
         "download": {
           "prompt_for_download": false,
