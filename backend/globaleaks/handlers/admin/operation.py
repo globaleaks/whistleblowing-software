@@ -147,6 +147,30 @@ def toggle_user_escrow(session, tid, user_session, user_id):
         user.crypto_escrow_prv_key = ''
 
 
+@transact
+def enable_user_permission_file_upload(session, tid, user_session):
+    """
+    Transaction to enable file upload permission for the current user session
+
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user_session: The current user session
+    """
+    user_session.permissions['can_upload_files'] = True
+
+
+@transact
+def disable_user_permission_file_upload(session, tid, user_session):
+    """
+    Transaction to disable file upload permission for the current user session
+
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user_session: The current user session
+    """
+    user_session.permissions['can_upload_files'] = False
+
+
 def db_reset_smtp_settings(session, tid):
     config = ConfigFactory(session, tid)
     config.set_val('smtp_server', 'mail.globaleaks.org')
@@ -240,6 +264,7 @@ class AdminOperationHandler(OperationHandler):
         'disable_2fa',
         'toggle_escrow',
         'toggle_user_escrow',
+        'enable_user_permission_file_upload',
         'reset_submissions'
     ]
 
@@ -321,6 +346,12 @@ class AdminOperationHandler(OperationHandler):
     def toggle_user_escrow(self, req_args, *args, **kwargs):
         return toggle_user_escrow(self.request.tid, self.session, req_args['value'])
 
+    def enable_user_permission_file_upload(self, req_args, *args, **kwargs):
+        return enable_user_permission_file_upload(self.request.tid, self.session)
+
+    def disable_user_permission_file_upload(self, req_args, *args, **kwargs):
+        return disable_user_permission_file_upload(self.request.tid, self.session)
+
     def reset_templates(self, req_args):
         return reset_templates(self.request.tid)
 
@@ -337,5 +368,7 @@ class AdminOperationHandler(OperationHandler):
             'test_mail': AdminOperationHandler.test_mail,
             'toggle_escrow': AdminOperationHandler.toggle_escrow,
             'toggle_user_escrow': AdminOperationHandler.toggle_user_escrow,
+            'enable_user_permission_file_upload': AdminOperationHandler.enable_user_permission_file_upload,
+            'disable_user_permission_file_upload': AdminOperationHandler.disable_user_permission_file_upload,
             'reset_templates': AdminOperationHandler.reset_templates
         }

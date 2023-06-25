@@ -29,7 +29,6 @@ from globaleaks.handlers import custodian, \
                                 user, \
                                 redirect, \
                                 robots, \
-                                script, \
                                 signup, \
                                 sitemap, \
                                 support, \
@@ -168,7 +167,6 @@ api_spec = [
     (r'/robots.txt', robots.RobotstxtHandler),
     (r'/sitemap.xml', sitemap.SitemapHandler),
     (r'/s/(.+)', file.FileHandler),
-    (r'/script', script.ScriptHandler),
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', l10n.L10NHandler),
 
     (r'^(/admin|/login|/submission)$', redirect.SpecialRedirectHandler),
