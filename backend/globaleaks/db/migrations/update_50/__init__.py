@@ -31,7 +31,6 @@ class User_v_49(Model):
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     username = Column(UnicodeText, default='', nullable=False)
     salt = Column(UnicodeText(24), nullable=False)
-    hash_alg = Column(UnicodeText, default='SCRYPT', nullable=False)
     password = Column(UnicodeText, default='', nullable=False)
     name = Column(UnicodeText, default='', nullable=False)
     description = Column(JSON, default=dict, nullable=False)

@@ -223,9 +223,7 @@ class MigrationScript(MigrationBase):
         for old_obj in self.session_old.query(self.model_from['User']):
             new_obj = self.model_to['User']()
             for key in new_obj.__mapper__.column_attrs.keys():
-                if key == 'hash_alg':
-                    new_obj.hash_alg = 'SCRYPT'
-                elif key in ['notification']:
+                if key in ['notification']:
                     continue
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))

@@ -63,7 +63,7 @@ def login_whistleblower(session, tid, receipt, client_using_tor):
     :param receipt: A provided receipt
     :return: Returns a user session in case of success
     """
-    hash = GCE.hash_password(receipt, State.tenants[tid].cache.receipt_salt, "ARGON2")
+    hash = GCE.hash_password(receipt, State.tenants[tid].cache.receipt_salt)
 
     itip = session.query(InternalTip) \
                   .filter(InternalTip.tid == tid,

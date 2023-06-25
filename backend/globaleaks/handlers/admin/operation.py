@@ -183,8 +183,7 @@ def db_set_user_password(session, tid, user_session, user_id, password):
 
             user.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(enc_key, user_cc))
 
-        if user.hash_alg != 'ARGON2':
-            user.hash_alg = 'ARGON2'
+        if len(user.hash) != 44:
             user.salt = GCE.generate_salt()
 
         user.hash = GCE.hash_password(password, user.salt)

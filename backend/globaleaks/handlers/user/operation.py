@@ -36,8 +36,7 @@ def change_password(session, tid, user_session, password, old_password):
     config = models.config.ConfigFactory(session, tid)
 
     # Regenerate the password hash only if different from the best choice on the platform
-    if user.hash_alg != 'ARGON2':
-        user.hash_alg = 'ARGON2'
+    if len(user.hash) != 44:
         user.salt = GCE.generate_salt()
 
     if not check_password_strength(password):
