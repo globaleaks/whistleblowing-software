@@ -1222,6 +1222,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
         "get_recovery_key",
         "toggle_escrow",
         "toggle_user_escrow",
+        "enable_user_permission_file_upload",
         "reset_submissions"
       ];
 
