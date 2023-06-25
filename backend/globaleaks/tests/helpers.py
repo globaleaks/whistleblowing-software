@@ -158,7 +158,7 @@ def init_state():
 @transact
 def mock_users_keys(session):
     for user in session.query(models.User):
-        user.password = VALID_HASH1
+        user.hash = VALID_HASH1
         user.salt = VALID_SALT1
         user.crypto_prv_key = USER_PRV_KEY_ENC
         user.crypto_pub_key = USER_PUB_KEY

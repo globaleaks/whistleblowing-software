@@ -187,7 +187,7 @@ def db_set_user_password(session, tid, user_session, user_id, password):
             user.hash_alg = 'ARGON2'
             user.salt = GCE.generate_salt()
 
-        user.password = GCE.hash_password(password, user.salt)
+        user.hash = GCE.hash_password(password, user.salt)
         user.password_change_date = datetime_now()
         user.password_change_needed = True
 

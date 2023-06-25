@@ -18,7 +18,7 @@ from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
 def db_set_user_password(session, tid, user, password):
     config = models.config.ConfigFactory(session, tid)
 
-    user.password = GCE.hash_password(password, user.salt)
+    user.hash = GCE.hash_password(password, user.salt)
     user.password_change_date = datetime_now()
 
     if config.get_val('encryption'):

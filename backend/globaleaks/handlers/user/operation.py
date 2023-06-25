@@ -30,7 +30,7 @@ def change_password(session, tid, user_session, password, old_password):
     if not user.password_change_needed:
         if not GCE.check_password(old_password,
                                   user.salt,
-                                  user.password):
+                                  user.hash):
            raise errors.InvalidOldPassword
 
     config = models.config.ConfigFactory(session, tid)
@@ -45,10 +45,10 @@ def change_password(session, tid, user_session, password, old_password):
 
     # Check that the new password is different form the current password
     password_hash = GCE.hash_password(password, user.salt)
-    if user.password == password_hash:
+    if user.hash == password_hash:
         raise errors.PasswordReuseError
 
-    user.password = password_hash
+    user.hash = password_hash
     user.password_change_date = datetime_now()
     user.password_change_needed = False
 
