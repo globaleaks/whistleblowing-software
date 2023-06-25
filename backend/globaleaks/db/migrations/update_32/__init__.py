@@ -147,7 +147,6 @@ class MigrationScript(MigrationBase):
                         old_user = self.session_old.query(old_user_model).filter(old_user_model.name == old_obj.author).one()
                         if old_user is not None:
                             new_obj.author_id = old_user.id
-
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 

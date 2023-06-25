@@ -85,14 +85,14 @@ def db_grant_tip_access(session, tid, user_id, user_cc, rtip_id, receiver_id):
                           models.User,
                           models.User.id == receiver_id)
 
-    if itip.crypto_tip_pub_key and not new_receiver.crypto_pub_key:
+    if itip.crypto_tip_pub_key1 and not new_receiver.crypto_pub_key:
         # Access to encrypted submissions could be granted only if the recipient has performed first login
         return
 
-    if itip.crypto_tip_pub_key:
-        _tip_key = GCE.asymmetric_decrypt(user_cc, base64.b64decode(rtip.crypto_tip_prv_key))
+    if itip.crypto_tip_pub_key1:
+        _tip_key = GCE.asymmetric_decrypt(user_cc, base64.b64decode(rtip.crypto_tip_prv_key1))
         _tip_key = GCE.asymmetric_encrypt(new_receiver.crypto_pub_key, _tip_key)
-        _files_key = GCE.asymmetric_decrypt(user_cc, base64.b64decode(rtip.crypto_files_prv_key))
+        _files_key = GCE.asymmetric_decrypt(user_cc, base64.b64decode(rtip.crypto_tip_prv_key2))
         _files_key = GCE.asymmetric_encrypt(new_receiver.crypto_pub_key, _files_key)
     else:
         _tip_key = _files_key = b''
@@ -253,11 +253,11 @@ def register_wbfile_on_db(session, tid, rtip_id, uploaded_file):
 
     itip.update_date = rtip.last_access = datetime_now()
 
-    if itip.crypto_tip_pub_key:
+    if itip.crypto_tip_pub_key1:
         for k in ['name', 'description', 'type', 'size']:
             if k == 'size':
                 uploaded_file[k] = str(uploaded_file[k])
-            uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, uploaded_file[k]))
+            uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key1, uploaded_file[k]))
 
     new_file = models.WhistleblowerFile()
 
@@ -295,7 +295,7 @@ def db_get_rtip(session, tid, user_id, rtip_id, language):
 
     db_log(session, tid=tid, type='access_report', user_id=user_id, object_id=itip.id)
 
-    return serializers.serialize_rtip(session, itip, rtip, language), base64.b64decode(rtip.crypto_tip_prv_key)
+    return serializers.serialize_rtip(session, itip, rtip, language), base64.b64decode(rtip.crypto_tip_prv_key1)
 
 
 @transact
@@ -534,8 +534,8 @@ def create_comment(session, tid, user_id, rtip_id, content):
     itip.update_date = rtip.last_access = datetime_now()
 
     _content = content
-    if itip.crypto_tip_pub_key:
-        _content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
+    if itip.crypto_tip_pub_key1:
+        _content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key1, content)).decode()
 
     comment = models.Comment()
     comment.internaltip_id = itip.id
@@ -572,10 +572,10 @@ class RTipInstance(OperationHandler):
 
     @inlineCallbacks
     def get(self, tip_id):
-        tip, crypto_tip_prv_key = yield get_rtip(self.request.tid, self.session.user_id, tip_id, self.request.language)
+        tip, crypto_tip_prv_key1 = yield get_rtip(self.request.tid, self.session.user_id, tip_id, self.request.language)
 
-        if State.tenants[self.request.tid].cache.encryption and crypto_tip_prv_key:
-            tip = yield deferToThread(decrypt_tip, self.session.cc, crypto_tip_prv_key, tip)
+        if State.tenants[self.request.tid].cache.encryption and crypto_tip_prv_key1:
+            tip = yield deferToThread(decrypt_tip, self.session.cc, crypto_tip_prv_key1, tip)
 
         returnValue(tip)
 
@@ -659,7 +659,7 @@ class ReceiverFileDownload(BaseHandler):
         log.debug("Download of file %s by receiver %s" %
                   (rfile.internalfile_id, rtip.receiver_id))
 
-        return ifile.name, rfile.filename, base64.b64decode(rtip.crypto_tip_prv_key), base64.b64decode(rtip.crypto_files_prv_key), pgp_key
+        return ifile.name, rfile.filename, base64.b64decode(rtip.crypto_tip_prv_key1), base64.b64decode(rtip.crypto_tip_prv_key2), pgp_key
 
     @inlineCallbacks
     def get(self, rfile_id):
@@ -722,7 +722,7 @@ class RTipWBFileHandler(BaseHandler):
         if not rtip:
             raise errors.ResourceNotFound
 
-        return wbfile.name, wbfile.filename, base64.b64decode(rtip.crypto_tip_prv_key), pgp_key
+        return wbfile.name, wbfile.filename, base64.b64decode(rtip.crypto_tip_prv_key1), pgp_key
 
     @inlineCallbacks
     def get(self, wbfile_id):

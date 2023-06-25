@@ -99,8 +99,8 @@ def db_create_receivertip(session, receiver, internaltip, tip_enc_key, files_enc
     receivertip = models.ReceiverTip()
     receivertip.internaltip_id = internaltip.id
     receivertip.receiver_id = receiver.id
-    receivertip.crypto_tip_prv_key = Base64Encoder.encode(tip_enc_key)
-    receivertip.crypto_files_prv_key = Base64Encoder.encode(files_enc_key)
+    receivertip.crypto_tip_prv_key1 = Base64Encoder.encode(tip_enc_key)
+    receivertip.crypto_tip_prv_key2 = Base64Encoder.encode(files_enc_key)
     session.add(receivertip)
     session.flush()
     return receivertip
@@ -120,7 +120,7 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
     steps = db_get_questionnaire(session, tid, questionnaire.id, None, True)['steps']
     questionnaire_hash = db_archive_questionnaire_schema(session, steps)
 
-    crypto_tip_pub_key = ''
+    crypto_tip_pub_key1 = ''
 
     receivers = []
     for r in session.query(models.User).filter(models.User.id.in_(request['receivers'])):
@@ -148,12 +148,12 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
         raise errors.InputValidationError("The number of recipients selected exceed the configured limit")
 
     if crypto_is_available:
-        crypto_tip_prv_key, crypto_tip_pub_key = GCE.generate_keypair()
+        crypto_tip_prv_key1, crypto_tip_pub_key1 = GCE.generate_keypair()
 
     itip = models.InternalTip()
     itip.tid = tid
     itip.status = 'new'
-    itip.crypto_tip_pub_key = crypto_tip_pub_key
+    itip.crypto_tip_pub_key1 = crypto_tip_pub_key1
 
     itip.progressive = db_assign_submission_progressive(session, tid)
 
@@ -189,18 +189,18 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
 
     # Evaluate if the whistleblower tip should be encrypted
     if crypto_is_available:
-        crypto_tip_prv_key, itip.crypto_tip_pub_key = GCE.generate_keypair()
-        crypto_files_prv_key, itip.crypto_files_pub_key = GCE.generate_keypair()
+        crypto_tip_prv_key1, itip.crypto_tip_pub_key1 = GCE.generate_keypair()
+        crypto_tip_prv_key2, itip.crypto_tip_pub_key2 = GCE.generate_keypair()
         wb_key = GCE.derive_key(receipt.encode(), State.tenants[tid].cache.receipt_salt)
         wb_prv_key, wb_pub_key = GCE.generate_keypair()
         itip.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(wb_key, wb_prv_key))
         itip.crypto_pub_key = wb_pub_key
-        itip.crypto_tip_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(wb_pub_key, crypto_tip_prv_key))
+        itip.crypto_tip_prv_key1 = Base64Encoder.encode(GCE.asymmetric_encrypt(wb_pub_key, crypto_tip_prv_key1))
 
     # Apply special handling to the whistleblower identity question
     if itip.enable_whistleblower_identity and request['identity_provided'] and answers[whistleblower_identity.id]:
         if crypto_is_available:
-            wbi = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(answers[whistleblower_identity.id][0]).encode())).decode()
+            wbi = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key1, json.dumps(answers[whistleblower_identity.id][0]).encode())).decode()
         else:
             wbi = answers[whistleblower_identity.id][0]
 
@@ -209,7 +209,7 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
         db_set_internaltip_data(session, itip.id, 'whistleblower_identity', wbi)
 
     if crypto_is_available:
-        answers = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(answers, cls=JSONEncoder).encode())).decode()
+        answers = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key1, json.dumps(answers, cls=JSONEncoder).encode())).decode()
 
     db_set_internaltip_answers(session, itip.id, questionnaire_hash, answers)
 
@@ -219,7 +219,7 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
 
         if crypto_is_available:
             for k in ['name', 'type', 'size']:
-                uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, str(uploaded_file[k])))
+                uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key1, str(uploaded_file[k])))
 
         new_file = models.InternalFile()
         new_file.tid = tid
@@ -233,8 +233,8 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
 
     for user in receivers:
         if crypto_is_available:
-            _tip_key = GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_tip_prv_key)
-            _files_key = GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_files_prv_key)
+            _tip_key = GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_tip_prv_key1)
+            _files_key = GCE.asymmetric_encrypt(user.crypto_pub_key, crypto_tip_prv_key2)
         else:
             _tip_key = b''
             _files_key = b''

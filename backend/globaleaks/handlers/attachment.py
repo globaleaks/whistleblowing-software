@@ -33,9 +33,9 @@ def register_ifile_on_db(session, tid, internaltip_id, uploaded_file):
     itip.update_date = now
     itip.last_access = now
 
-    if itip.crypto_tip_pub_key:
+    if itip.crypto_tip_pub_key1:
         for k in ['name', 'type', 'size']:
-            uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, str(uploaded_file[k])))
+            uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key1, str(uploaded_file[k])))
 
     new_file = models.InternalFile()
     new_file.name = uploaded_file['name']
