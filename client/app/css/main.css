@@ -1056,6 +1056,8 @@ hr {
 
 .audio-player-wrapper[disabled]{
   cursor: not-allowed;
+  /* display:none added later  */
+  display: none; 
 }
 .audio-player-wrapper[disabled] .audio-player{
   opacity: 0.5;

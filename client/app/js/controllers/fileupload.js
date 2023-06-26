@@ -244,16 +244,16 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
       tracks.forEach(function(track) {
       track.stop();
     });
-    var stretchAmount =  1.2 + Math.random() * (2.4 - 1.2);
+    var stretchAmount =    0.7 + (Math.random() * (1.6 - 0.7));
     var randomPitch = Math.random() * (1.2 - 0.7) + 0.7;
     var modbuffer = flattenArray(audio_channel, recordingLength);
 
 
     if($scope.isAudioProtected){
-      modbuffer = applyLowPassFilter(modbuffer);
-      modbuffer = pitchShift(modbuffer, randomPitch);
+      // modbuffer = applyLowPassFilter(modbuffer);
+      // modbuffer = pitchShift(modbuffer, randomPitch);
       modbuffer = applyTimeStretching(modbuffer, stretchAmount);
-      modbuffer = applyBitcrusher(modbuffer);
+      // modbuffer = applyBitcrusher(modbuffer);
     }
 
     // var interleaved = interleave(modbuffer);
@@ -294,7 +294,7 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
     $scope.isRecordingTooShort = durationInSeconds < parseInt($scope.field.attrs.min_time.value);
     $scope.isRecordingTooLarge = durationInSeconds > parseInt($scope.field.attrs.max_time.value) || durationInSeconds > 180;
     
-    $scope.disablePlayer= durationInSeconds < parseInt($scope.field.attrs.min_time.value);
+    $scope.disablePlayer= $scope.isRecordingTooShort || $scope.isRecordingTooLarge;
     $scope.audioFile = blob;
 
     var file = new Flow.FlowFile(flow, {
