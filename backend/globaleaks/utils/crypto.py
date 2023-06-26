@@ -91,14 +91,14 @@ def totpVerify(secret: str, token: str) -> None:
 
 def _kdf_argon2(password: bytes, salt: bytes) -> bytes:
     salt = base64.b64decode(salt)
-    return argon2id.kdf(32, password, salt[0:16],
+    return argon2id.kdf(32, password, salt,
                         opslimit=_GCE.options['OPSLIMIT'] + 1,
                         memlimit=1 << _GCE.options['MEMLIMIT'])
 
 
 def _hash_argon2(password: bytes, salt: bytes) -> str:
     salt = base64.b64decode(salt)
-    hash = argon2id.kdf(32, password, salt[0:16],
+    hash = argon2id.kdf(32, password, salt,
                         opslimit=_GCE.options['OPSLIMIT'],
                         memlimit=1 << _GCE.options['MEMLIMIT'])
     return base64.b64encode(hash).decode()

@@ -7,6 +7,7 @@ from globaleaks.models import Model
 from globaleaks.models.enums import _Enum, EnumUserRole
 from globaleaks.models.properties import *
 from globaleaks.settings import Settings
+from globaleaks.utils.crypto import GCE
 from globaleaks.utils.tls import gen_selfsigned_certificate
 from globaleaks.utils.utility import datetime_never, datetime_now, datetime_null
 
@@ -152,6 +153,8 @@ class MigrationScript(MigrationBase):
             for key in new_obj.__mapper__.column_attrs.keys():
                 if key == 'hash':
                     setattr(new_obj, key, getattr(old_obj, 'password'))
+                elif key == 'salt' and len(old_obj.salt) != 24 and not old_obj.crypto_pub_key:
+                    setattr(new_obj, key, GCE.generate_salt())
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
