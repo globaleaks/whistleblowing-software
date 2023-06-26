@@ -282,7 +282,7 @@ GL.controller("TipCtrl",
       permanentMaskingObjects.forEach(function (obj) {
         var start = obj.start;
         var end = obj.end;
-        var stars = String.fromCharCode(8270).repeat(end - start + 1);
+        var stars = String.fromCharCode(0x2588).repeat(end - start + 1);
         var insertPosition = start;
         refinedContent = refinedContent.substring(0, insertPosition) + stars + refinedContent.substring(insertPosition);
       });
@@ -587,7 +587,7 @@ function ($scope, $uibModalInstance, args, Authentication, $routeParams, $http) 
     permanentMaskingObjects.forEach(function (obj) {
       var start = obj.start;
       var end = obj.end;
-      var stars = String.fromCharCode(8270).repeat(end - start + 1);
+      var stars = String.fromCharCode(0x2588).repeat(end - start + 1);
       var insertPosition = start;
       refinedContent = refinedContent.substring(0, insertPosition) + stars + refinedContent.substring(insertPosition);
     });
@@ -604,7 +604,7 @@ function ($scope, $uibModalInstance, args, Authentication, $routeParams, $http) 
         // Replace the characters within the range with String.fromCharCode(8270)
         modifiedContent =
           modifiedContent.substring(0, start) +
-          String.fromCharCode(8270).repeat(end - start + 1) +
+          String.fromCharCode(0x2591).repeat(end - start + 1) +
           modifiedContent.substring(end + 1);
       }
     }
@@ -626,7 +626,7 @@ function ($scope, $uibModalInstance, args, Authentication, $routeParams, $http) 
     $scope.content = applyTemporaryMasking($scope.content, maskingObject.temporary_masking);
   });
   $scope.mask = function (id) {
-    var blank = String.fromCharCode(8270);
+    var blank = String.fromCharCode(0x2591);
     var elem = document.getElementById(id);
     var text = elem.value;
     var start = elem.selectionStart;
