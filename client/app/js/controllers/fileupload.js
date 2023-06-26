@@ -45,6 +45,11 @@ controller("WBFileUploadCtrl", ["$scope", function($scope) {
   $scope.disablePlayer = true;
 
   $scope.startRecording = function(fileId) {
+    $scope.isRecording = true;
+    $scope.recordButton = true;
+    $scope.stopButton = false;
+    $scope.audioPlayer = '';
+
     $scope.activeButton = 'record';
     flow = flowFactory.create({
       target: $scope.fileupload_url,
@@ -92,9 +97,7 @@ controller("WBFileUploadCtrl", ["$scope", function($scope) {
         });
 
         mediaRecorder.start();
-        $scope.isRecording = true;
-        $scope.recordButton = true;
-        $scope.stopButton = false;
+     
       })
       .catch(function(err) {
         console.error('Error accessing microphone', err);
@@ -149,7 +152,7 @@ controller("WBFileUploadCtrl", ["$scope", function($scope) {
   $scope.activeButton = null;
   $scope.disablePlayer = true;
   $scope.isAudioProtected=false;
-
+  $scope.isRecording=false;
   $scope.applySoundrotection = function (fieldid){
     $scope.isAudioProtected=true;
     $scope.triggerRecording(fieldid);
@@ -281,9 +284,10 @@ controller("WBFileUploadCtrl", ["$scope", function($scope) {
   $scope.startRecording = function(fileId, stream) {
     audio_channel = [];
     recordingLength = 0;
-    isRecording = true;
+    $scope.isRecording = true;
     $scope.isRecordingTooLarge=false;
     $scope.isRecordingTooShort=false;
+    $scope.audioPlayer = '';
     $scope.activeButton = 'record';
     startTime = Date.now();
     flow = flowFactory.create({
@@ -323,12 +327,14 @@ controller("WBFileUploadCtrl", ["$scope", function($scope) {
     // Connect the recorder
     mediaStream.connect(recorder);
     recorder.connect(context.destination);
+
+    $scope.$apply();
   };
 
  
 
   $scope.stopRecording = function() {
-    isRecording = false;
+    $scope.isRecording = false;
     $scope.activeButton = null;
 
     // Stop recording
