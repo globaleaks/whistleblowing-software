@@ -593,15 +593,12 @@ function ($scope, $uibModalInstance, args, Authentication, $routeParams, $http) 
     });
     return refinedContent;
   }
-  // Function to apply temporary masking ranges to the content string
   function applyTemporaryMasking(content, temporaryMasking) {
     let modifiedContent = content;
-    // Iterate over the temporary masking ranges
     for (let range in temporaryMasking) {
       if (temporaryMasking.hasOwnProperty(range)) {
         let start = temporaryMasking[range].start;
         let end = temporaryMasking[range].end;
-        // Replace the characters within the range with String.fromCharCode(8270)
         modifiedContent =
           modifiedContent.substring(0, start) +
           String.fromCharCode(0x2591).repeat(end - start + 1) +
@@ -610,11 +607,9 @@ function ($scope, $uibModalInstance, args, Authentication, $routeParams, $http) 
     }
     return modifiedContent;
   }
-  // Filter the masking array to find the matching masking objects
   $scope.maskingObjects = $scope.args.tip.masking.filter(function (masking) {
     return masking.content_id === $scope.contentId;
   });
-  // Apply temporary masking to the content string for each masking object
   if ($scope.maskingObjects.length !== 0 && $scope.maskingObjects[0].permanent_masking !== "") {
     var permanentMaskingArray = Object.values($scope.maskingObjects[0].permanent_masking);
     permanentMaskingArray.sort(function (a, b) {
