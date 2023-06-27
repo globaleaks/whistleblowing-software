@@ -46,6 +46,9 @@ def db_create(session, desc):
 
     if t.id == 1:
         key, cert = gen_selfsigned_certificate()
+        db_set_config_variable(session, 1, 'https_enabled', True)
+        db_set_config_variable(session, 1, 'https_key', key)
+        db_set_config_variable(session, 1, 'https_cert', cert)
         db_set_config_variable(session, 1, 'https_selfsigned_key', key)
         db_set_config_variable(session, 1, 'https_selfsigned_cert', cert)
 

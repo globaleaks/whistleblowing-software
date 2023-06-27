@@ -157,17 +157,15 @@ class TestConfigHandler(helpers.TestHandler):
 
 
 class TestCSRHandler(helpers.TestHandler):
-    _handler = https.CSRFileHandler
+    _handler = https.CSRHandler
 
     @inlineCallbacks
     def test_post(self):
-        n = 'csr'
-
         yield set_init_params()
         yield tw(https.db_load_https_key, 1, helpers.HTTPS_DATA['key'])
         State.tenants[1].cache.hostname = 'notreal.ns.com'
 
-        d = {
+        body = {
             'country': 'it',
             'province': 'regione',
             'city': 'citta',
@@ -176,11 +174,8 @@ class TestCSRHandler(helpers.TestHandler):
             'email': 'indrizzio@email',
         }
 
-        body = {'name': 'csr', 'content': d}
         handler = self.request(body, role='admin')
-        yield handler.post(n)
-
-        response = yield handler.get(n)
+        response = yield handler.post()
 
         pem_csr = crypto.load_certificate_request(SSL.FILETYPE_PEM, response)
 

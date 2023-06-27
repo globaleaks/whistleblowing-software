@@ -29,6 +29,7 @@ url_regexp = r'^https?:\/\/([0-9a-z\-]+)\.([^\n])*$'
 url_regexp_or_empty = r'^https?:\/\/([0-9a-z\-]+)\.([^\n])*$|^$'
 tip_operation_regexp = r'^(postpone|set)$'
 short_text_regexp = r'^.{1,255}$'
+short_text_regexp_or_empty = r'^.{0,255}$'
 languages_list_regexp = r'^([a-zA-Z-]+)?(,\s*[a-zA-Z-]+)*$'
 
 field_instance_regexp = (r'^('
@@ -377,15 +378,12 @@ AdminTLSCfgFileResourceDesc = {
     'content': str,
 }
 
-AdminCSRFileDesc = {
-    'name': short_text_regexp,
-    'content': {
-        'country': r'[A-Za-z]{2}',
-        'province': short_text_regexp,
-        'city': short_text_regexp,
-        'company': short_text_regexp,
-        'email': email_regexp
-    }
+AdminCSRDesc = {
+    'country': r'^[A-Za-z]{2}$|^$',
+    'province': short_text_regexp_or_empty,
+    'city': short_text_regexp_or_empty,
+    'company': short_text_regexp_or_empty,
+    'email': email_regexp_or_empty
 }
 
 AdminRedirectDesc = {

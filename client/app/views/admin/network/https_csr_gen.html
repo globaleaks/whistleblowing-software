@@ -2,9 +2,7 @@
   <div class="form-group">
     <label class="col-md-4 control-label" data-translate>Organization</label>
     <div class="col-md-8">
-      <input class="form-control" data-ng-model="csr_cfg.company"
-             data-ng-class="{'is-invalid': certSigRequestForm.company.$invalid}"
-             name="company" required />
+      <input class="form-control" data-ng-model="csr_cfg.company" name="company" />
     </div>
   </div>
 
@@ -13,7 +11,7 @@
     <div class="col-md-8">
       <input class="form-control" data-ng-model="csr_cfg.email"
              data-ng-class="{'is-invalid': certSigRequestForm.email.$invalid}"
-             name="email" type="text" required data-ng-pattern="CONSTANTS.email_regexp"/>
+             name="email" type="text" data-ng-pattern="CONSTANTS.email_regexp_or_empty"/>
       <div class="text-danger" data-ng-show="certSigRequestForm.email.$error.pattern">
         <span data-translate>Invalid email address</span>
       </div>
@@ -23,9 +21,7 @@
   <div class="form-group">
     <label class="col-md-4 control-label" data-translate>City</label>
     <div class="col-md-8">
-      <input class="form-control" data-ng-model="csr_cfg.city"
-             data-ng-class="{'is-invalid': certSigRequestForm.city.$invalid}"
-             name="city" type="text" required />
+      <input class="form-control" data-ng-model="csr_cfg.city" name="city" type="text" />
     </div>
   </div>
 
@@ -33,23 +29,21 @@
   <div class="form-group">
     <label class="col-md-4 control-label" data-translate>Country</label>
     <div class="col-md-8">
-      <input class="form-control" data-ng-model="csr_cfg.province"
-             data-ng-class="{'is-invalid': certSigRequestForm.province.$invalid}"
-             name="province" type="text" required />
+      <input class="form-control" data-ng-model="csr_cfg.province" name="province" type="text" />
     </div>
   </div>
 
   <div class="form-group">
     <label class="col-md-4 control-label" data-translate>Country code</label>
     <div class="col-md-8">
-      <input class="form-control" type="text" data-ng-model="csr_cfg.country"
-        data-ng-class="{'is-invalid': certSigRequestForm.country.$invalid}"
-        name="country" minlength="2" maxlength="2" required />
+      <input class="form-control" data-ng-model="csr_cfg.country"
+             data-ng-class="{'is-invalid': certSigRequestForm.country.$error.pattern}"
+             name="country" type="text" maxlength="2" data-ng-pattern="CONSTANTS.country_code_regexp_or_empty" />
     </div>
   </div>
 
   <button id="csrSubmit" class="btn btn-primary float-right"
-      data-ng-click="submitCSR()"
+      data-ng-click="generateCSR()"
       data-ng-disabled="certSigRequestForm.$invalid"
       data-translate>Generate</button>
 </div>

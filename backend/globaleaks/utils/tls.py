@@ -152,7 +152,8 @@ def gen_x509_csr(key_pair, csr_fields, csr_sign_bits):
     subj = req.get_subject()
 
     for field, value in csr_fields.items():
-        setattr(subj, field, value)
+        if (value):
+            setattr(subj, field, value)
 
     prv_key = load_privatekey(SSL.FILETYPE_PEM, key_pair)
 

@@ -954,3 +954,7 @@ html[dir="ltr"] #Receipt {
   opacity: 0.4;
   user-select: none;
 }
+
+.https-files {
+  margin: 1em 0;
+}

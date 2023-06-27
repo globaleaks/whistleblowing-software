@@ -59,7 +59,6 @@ ConfigDescriptor = {
     'https_admin': Bool(default=True),
     'https_cert': Unicode(),
     'https_chain': Unicode(),
-    'https_csr': Unicode(),
     'https_custodian': Bool(default=True),
     'https_enabled': Bool(default=False),
     'https_key': Unicode(),

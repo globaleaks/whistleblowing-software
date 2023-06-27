@@ -15,7 +15,6 @@ GLConfig_v_35 = {
 
         'https_priv_key': Unicode(),
         'https_priv_gen': Bool(default=False),
-        'https_csr': Unicode(),
         'https_cert': Unicode(),
         'https_chain': Unicode(),
         'https_dh_params': Unicode(),

@@ -1,4 +1,4 @@
-<div class="https-file-res">
+<div class="https-files">
   <div class="card card-default key mb-1">
     <div class="card-body clearfix">
       <span data-translate>Private Key</span>
@@ -12,7 +12,7 @@
           <span data-translate>Generate</span>
         </button>
         <span data-ng-if="tls_config.files.key.set">
-          <button id="deleteKey" class="btn btn-sm btn-danger" data-ng-click="deleteFile(file_resources.key)">
+          <button id="deleteKey" class="btn btn-sm btn-danger" data-ng-click="deleteFile(file_resources.key)" data-ng-if="!tls_config.enabled">
             <i class="fa-solid fa-times"></i>
             <span data-translate>Delete</span>
           </button>
@@ -38,18 +38,6 @@
           <div data-ng-include="'views/admin/network/https_csr_gen.html'"></div>
         </div>
       </span>
-      <span data-ng-if="tls_config.files.csr.set" class="clearfix">
-        <span class="float-right">
-          <button id="downloadCsr" class="btn btn-sm btn-primary" data-ng-click="downloadCSR()">
-            <i class="fa-solid fa-file-export"></i>
-            <span data-translate>Download</span>
-          </button>
-          <button id="deleteCsr" class="btn btn-sm btn-danger" data-ng-click="deleteFile(file_resources.csr)">
-            <i class="fa-solid fa-times"></i>
-            <span data-translate>Delete</span>
-          </button>
-        </span>
-      </span>
     </div>
   </div>
 
@@ -66,7 +54,7 @@
           <label id="certUpload" file-input="postFile(file, file_resources.cert)" file-input-label="Upload" class="file-upload btn btn-sm btn-primary"></label>
         </span>
         <span data-ng-if="tls_config.files.cert.set">
-          <button id="deleteCert" class="btn btn-sm btn-danger" data-ng-click="deleteFile(file_resources.cert)">
+          <button id="deleteCert" class="btn btn-sm btn-danger" data-ng-click="deleteFile(file_resources.cert)" data-ng-if="!tls_config.enabled">
             <i class="fa-solid fa-times"></i>
             <span data-translate>Delete</span>
           </button>
@@ -85,10 +73,10 @@
       </span>
       <div class="float-right">
         <span class="file-upload" data-ng-if="!tls_config.files.chain.set">
-          <label id="chainUpload" file-input="postFile(file, file_resources.chain)" file-input-label="Upload" class="file-upload btn btn-sm btn-primary"></label>
+          <label id="chainUpload" file-input="postFile(file, file_resources.chain)" file-input-label="Upload" class="file-upload btn btn-sm btn-primary" data-ng-if="!tls_config.enabled"></label>
         </span>
         <span data-ng-if="tls_config.files.chain.set">
-          <button id="deleteChain" class="btn btn-sm btn-danger" data-ng-click="deleteFile(file_resources.chain)">
+          <button id="deleteChain" class="btn btn-sm btn-danger" data-ng-click="deleteFile(file_resources.chain)" data-ng-if="!tls_config.enabled">
             <i class="fa-solid fa-times"></i>
             <span data-translate>Delete</span>
           </button>
@@ -96,7 +84,8 @@
       </div>
     </div>
   </div>
-
-  <button class="btn btn-primary" data-ng-if="state > 1" data-ng-click="toggleCfg()" data-translate>Enable</button>
-  <button class="btn btn-danger" data-ng-click="resetCfg()" data-translate>Reset</button>
 </div>
+
+<button data-ng-if="!tls_config.enabled" data-ng-if="state > 1" class="btn btn-primary" data-ng-click="toggleCfg()" data-translate>Enable</button>
+<button data-ng-if="tls_config.enabled" data-ng-if="state > 1" class="btn btn-danger" data-ng-click="toggleCfg()" data-translate>Disable</button>
+<button class="btn btn-danger" data-ng-click="resetCfg()" data-translate>Reset</button>
