@@ -13,36 +13,25 @@ class TestIdentityAccessRequestInstance(helpers.TestHandlerWithPopulatedDB):
         yield self.perform_full_submission_actions()
 
         dummyRTips = yield self.get_rtips()
+        self.iars = []
 
         for rtip_desc in dummyRTips:
-            yield rtip.create_identityaccessrequest(1,
-                                                    rtip_desc['receiver_id'],
-                                                    rtip_desc['id'],
-                                                    {'request_motivation': 'request motivation'})
-
-    @inlineCallbacks
-    def test_get_new_identityaccessrequest(self):
-        iars = yield custodian.get_identityaccessrequest_list(1)
-
-        handler = self.request(user_id=self.dummyCustodian['id'], role='custodian')
-
-        yield handler.get(iars[0]['id'])
+            iar = yield rtip.create_identityaccessrequest(1,
+                                                       rtip_desc['receiver_id'],
+                                                       rtip_desc['id'],
+                                                       {'request_motivation': 'request motivation'})
+            self.iars.append(iar['id'])
 
     @inlineCallbacks
     def test_put_identityaccessrequest_response(self):
-        iars = yield custodian.get_identityaccessrequest_list(1)
+        reply = {
+          'reply':  'authorized',
+          'reply_motivation': 'oh yeah!'
+        }
 
-        handler = self.request(user_id=self.dummyCustodian['id'], role='custodian')
+        handler = self.request(reply, user_id=self.dummyCustodian['id'], role='custodian')
 
-        response = yield handler.get(iars[0]['id'])
-
-        response['response'] = 'authorized'
-        response['response_motivation'] = 'oh yeah!'
-
-        handler = self.request(response, user_id=self.dummyCustodian['id'], role='custodian')
-        yield handler.put(iars[0]['id'])
-
-        yield handler.get(iars[0]['id'])
+        yield handler.put(self.iars[0])
 
 
 class TestIdentityAccessRequestsCollection(helpers.TestHandlerWithPopulatedDB):

@@ -28,6 +28,23 @@ class Message_v_64(Model):
     new = Column(Boolean, default=True, nullable=False)
 
 
+class IdentityAccessRequest_v_64(Model):
+    """
+    This model keeps track of identity access requests by receivers and
+    of the answers by custodians.
+    """
+    __tablename__ = 'identityaccessrequest'
+
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    receivertip_id = Column(UnicodeText(36), nullable=False, index=True)
+    request_date = Column(DateTime, default=datetime_now, nullable=False)
+    request_motivation = Column(UnicodeText, default='')
+    reply_date = Column(DateTime, default=datetime_null, nullable=False)
+    reply_user_id = Column(UnicodeText(36), default='', nullable=False)
+    reply_motivation = Column(UnicodeText, default='', nullable=False)
+    reply = Column(UnicodeText, default='pending', nullable=False)
+
+
 class InternalTip_v_64(Model):
     __tablename__ = 'internaltip'
 
@@ -216,3 +233,27 @@ class MigrationScript(MigrationBase):
             shutil.rmtree(os.path.abspath(os.path.join(Settings.working_path, 'scripts')))
         except:
             pass
+
+        for iar in self.session_old.query(self.model_from['IdentityAccessRequest']):
+            crypto_iar_prv_key, crypto_iar_pub_key = GCE.generate_keypair()
+
+            for itip in self.session_old.query(self.model_from['InternalTip']) \
+                                           .filter(self.model_from['InternalTip'].id == self.model_from['ReceiverTip'].internaltip_tip,
+                                                   self.model_from['ReceiverTip'].id == self.model_from['IdentityAccessRequest'].receiver_tip) \
+                                           .distinct():
+
+                if itip.crypto_tip_pub_key2:
+                    print(1)
+                    iar.request_motivation = base64.b64encode(GCE.asymmetric_encrypt(crypto_iar_pub_key, iar.request_motivation))
+                    iar.reply_motivation = base64.b64encode(GCE.asymmetric_encrypt(crypto_iar_pub_key, iar.reply_motivation))
+                    iar.receivertip_id = rtip.id
+                    iar.crypto_iar_pub_key = crypto_iar_pub_key
+                    iar.crypto_iar_prv_key = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key2, crypto_iar_prv_key))
+
+            for custodian in session.query(models.User).filter(models.User.tid == tid, models.User.role == 'custodian'):
+                print(2)
+                iarc = models.IdentityAccessRequestCustodian()
+                iarc.iar_id = iar.id
+                iarc.custodian_id = custodian.id
+                iarc.crypto_iar_prv_key = base64.b64encode(GCE.asymmetric_encrypt(custodian.crypto_pub_key, crypto_iar_prv_key))
+                session.add(iarc)
