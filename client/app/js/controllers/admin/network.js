@@ -118,24 +118,6 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibMod
     }).then($scope.refreshConfig);
   };
 
-  $scope.setupAcme = function() {
-    var aRes = new adminAcmeResource();
-    $scope.file_resources.key.$update()
-    .then(function() {
-      return aRes.$save();
-    }).then($scope.refreshConfig);
-  };
-
-  $scope.downloadCSR = function() {
-    $http({
-       method: "GET",
-       url: "api/admin/config/tls/files/csr",
-       responseType: "blob",
-    }).then(function (response) {
-       Utils.saveAs(response.data, "csr.pem");
-    });
-  };
-
   $scope.deleteFile = function(resource) {
     $uibModal.open({
       templateUrl: "views/modals/confirmation.html",
@@ -146,6 +128,14 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibMod
         cancelFun: null
       },
     });
+  };
+
+  $scope.setupAcme = function() {
+    var aRes = new adminAcmeResource();
+    $scope.file_resources.key.$update()
+    .then(function() {
+      return aRes.$save();
+    }).then($scope.refreshConfig);
   };
 
   $scope.setup = function() {
@@ -162,12 +152,9 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibMod
     }
   };
 
-  $scope.submitCSR = function() {
-    $scope.file_resources.content = $scope.csr_cfg;
-    $scope.file_resources.csr.content = $scope.csr_cfg;
-    $scope.file_resources.csr.$save().then(function() {
-      $scope.csr_state.open = false;
-      return $scope.refreshConfig();
+  $scope.generateCSR = function() {
+    $http.post("api/admin/config/csr/gen", $scope.csr_cfg).then(function (response) {
+       Utils.saveAs(new Blob([response.data], {type: "text/plain;charset=utf-8"}), "csr.pem");
     });
   };
 

@@ -18,14 +18,12 @@
 <div id="HTTPSSettings" data-ng-controller="AdminHTTPSConfigCtrl" data-ng-show="public.node.hostname">
   <div class="card card-default">
     <div class="card-body" data-ng-switch="menuState">
+      <div data-ng-include="'views/admin/network/https_status.html'"></div>
       <div data-ng-switch-when="setup">
         <div data-ng-include="'views/admin/network/https_setup.html'"></div>
       </div>
-      <div data-ng-switch-when="files">
+      <div data-ng-switch-default="files">
         <div data-ng-include="'views/admin/network/https_files.html'"></div>
-      </div>
-      <div data-ng-switch-when="status">
-        <div data-ng-include="'views/admin/network/https_status.html'"></div>
       </div>
     </div>
   </div>

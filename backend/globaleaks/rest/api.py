@@ -139,7 +139,6 @@ api_spec = [
     (r'/api/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', admin_l10n.AdminL10NHandler),
     (r'/api/admin/config', admin_operation.AdminOperationHandler),
     (r'/api/admin/config/tls', https.ConfigHandler),
-    (r'/api/admin/config/tls/files/(csr)', https.CSRFileHandler),
     (r'/api/admin/config/tls/files/(cert|chain|key)', https.FileHandler),
     (r'/api/admin/files', admin_file.FileCollection),
     (r'/api/admin/files/(.+)', admin_file.FileInstance),
@@ -158,6 +157,7 @@ api_spec = [
 
     (r'/api/support', support.SupportHandler),
 
+    (r'/api/admin/config/csr/gen', https.CSRHandler),
     (r'/api/admin/config/acme/run', https.AcmeHandler),
 
     (r'/.well-known/acme-challenge/([a-zA-Z0-9_\-]{42,44})', https.AcmeChallengeHandler),

@@ -31,6 +31,7 @@ def db_load_tls_config(session, tid, test=False):
         cert = node.get_val('https_cert')
         chain = node.get_val('https_chain')
         hostname = node.get_val('hostname')
+        hostname = '127.0.0.1'
     else:
         key = node.get_val('https_selfsigned_key')
         cert = node.get_val('https_selfsigned_cert')
@@ -132,12 +133,6 @@ def db_load_https_chain(session, tid, data):
     return ok
 
 
-def db_generate_https_csr(session, tid, data):
-    ConfigFactory(session, tid).set_val('https_csr', data)
-
-    return True
-
-
 def db_serialize_https_config_summary(session, tid):
     config = ConfigFactory(session, tid)
 
@@ -181,7 +176,6 @@ def db_reset_https_config(session, tid):
     config.set_val('https_key', '')
     config.set_val('https_cert', '')
     config.set_val('https_chain', '')
-    config.set_val('https_csr', '')
     config.set_val('acme', False)
     config.set_val('acme_accnt_key', '')
     State.snimap.unload(tid)
@@ -292,26 +286,6 @@ class ChainFileRes(FileResource):
         }
 
 
-class CsrFileRes(FileResource):
-    @staticmethod
-    @transact
-    def delete_file(session, tid):
-        ConfigFactory(session, tid).set_val('https_csr', '')
-
-    @staticmethod
-    @transact
-    def get_file(session, tid):
-        return ConfigFactory(session, tid).get_val('https_csr')
-
-    @staticmethod
-    def db_serialize(session, tid):
-        csr = ConfigFactory(session, tid).get_val('https_csr')
-        return {
-            'name': 'csr',
-            'set': len(csr) != 0
-        }
-
-
 class FileHandler(BaseHandler):
     check_roles = 'admin'
     root_tenant_or_management_only = True
@@ -319,8 +293,7 @@ class FileHandler(BaseHandler):
     mapped_resources = {
         'key': KeyFileRes,
         'cert': CertFileRes,
-        'chain': ChainFileRes,
-        'csr': CsrFileRes
+        'chain': ChainFileRes
     }
 
     def get_res_or_raise(self, name):
@@ -376,31 +349,25 @@ class ConfigHandler(BaseHandler):
         tw(db_reset_https_config, self.request.tid)
 
 
-class CSRFileHandler(FileHandler):
+class CSRHandler(BaseHandler):
     check_roles = 'admin'
     root_tenant_or_management_only = True
 
-    @inlineCallbacks
-    def post(self, name):
+    def post(self):
         request = self.validate_request(self.request.content.read(),
-                                        requests.AdminCSRFileDesc)
+                                        requests.AdminCSRDesc)
 
-        desc = request['content']
         csr_fields = {
-            'C': desc['country'].upper(),
-            'ST': desc['province'],
-            'L': desc['city'],
-            'O': desc['company'],
-            'OU': desc['company'],
+            'C': request['country'].upper(),
+            'ST': request['province'],
+            'L': request['city'],
+            'O': request['company'],
+            'OU': request['company'],
             'CN': State.tenants[self.request.tid].cache.hostname,
-            'emailAddress': desc['email'],
+            'emailAddress': request['email'],
         }
 
-        csr_txt = yield self.perform_action(self.request.tid, csr_fields)
-
-        ok = yield tw(db_generate_https_csr, self.request.tid, csr_txt)
-        if not ok:
-            raise errors.InputValidationError
+        return self.perform_action(self.request.tid, csr_fields)
 
     @staticmethod
     @transact

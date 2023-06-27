@@ -41,17 +41,6 @@ describe("admin configure network", function() {
     await browser.gl.utils.waitUntilClickable(by.id("csrSubmit"));
     await element(by.id("csrSubmit")).click();
 
-    // Download csr
-    await browser.gl.utils.waitUntilClickable(by.id("downloadCsr"));
-    await csr_panel.element(by.id("downloadCsr")).click();
-
-    // Delete csr
-    await browser.gl.utils.waitUntilClickable(by.id("deleteCsr"));
-    await element(by.id("deleteCsr")).click();
-    await browser.gl.utils.waitUntilPresent(modal_action);
-    await element(modal_action).click();
-    await browser.wait(protractor.ExpectedConditions.stalenessOf(element(by.id("deleteCsr"))));
-
     // Delete key
     await browser.gl.utils.waitUntilClickable(by.id("deleteKey"));
     await element(by.id("deleteKey")).click();
