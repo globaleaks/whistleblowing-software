@@ -497,21 +497,32 @@ def create_identityaccessrequest(session, tid, user_id, rtip_id, request):
     :param rtip_id: A rtip_id ID of the rtip involved in the request
     :param request: The request data
     """
-    _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+    user, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    custodian = session.query(models.User).filter(models.User.tid == tid, models.User.role == 'custodian').count() > 0
+    crypto_iar_prv_key, crypto_iar_pub_key = GCE.generate_keypair()
+    request['request_motivation'] = base64.b64encode(GCE.asymmetric_encrypt(crypto_iar_pub_key, request['request_motivation']))
 
     iar = models.IdentityAccessRequest()
     iar.request_motivation = request['request_motivation']
     iar.receivertip_id = rtip.id
+    iar.crypto_iar_pub_key = crypto_iar_pub_key
+    iar.crypto_iar_prv_key = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key1, crypto_iar_prv_key))
+    session.add(iar)
+    session.flush()
 
-    if not custodian:
+    custodians = 0
+    for custodian in session.query(models.User).filter(models.User.tid == tid, models.User.role == 'custodian'):
+        iarc = models.IdentityAccessRequestCustodian()
+        iarc.iar_id = iar.id
+        iarc.custodian_id = custodian.id
+        iarc.crypto_iar_prv_key = base64.b64encode(GCE.asymmetric_encrypt(custodian.crypto_pub_key, crypto_iar_prv_key))
+        session.add(iarc)
+        custodians += 1
+
+    if not custodians:
         iar.reply_date = datetime_now()
         iar.reply_user_id = user_id
         iar.reply = 'authorized'
-
-    session.add(iar)
-    session.flush()
 
     db_create_identityaccessrequest_notifications(session, itip, rtip, iar)
 

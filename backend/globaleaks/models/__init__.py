@@ -567,10 +567,28 @@ class _IdentityAccessRequest(Model):
     reply_user_id = Column(UnicodeText(36), default='', nullable=False)
     reply_motivation = Column(UnicodeText, default='', nullable=False)
     reply = Column(UnicodeText, default='pending', nullable=False)
+    crypto_iar_pub_key = Column(UnicodeText(56), default='', nullable=False)
+    crypto_iar_prv_key = Column(UnicodeText(84), default='', nullable=False)
 
     @declared_attr
     def __table_args__(self):
         return ForeignKeyConstraint(['receivertip_id'], ['receivertip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+
+
+class _IdentityAccessRequestCustodian(Model):
+    """
+    Class used to implement references between Receivers and Contexts
+    """
+    __tablename__ = 'identityaccessrequest_custodian'
+
+    iar_id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    custodian_id = Column(UnicodeText(36), nullable=False, index=True)
+    crypto_iar_prv_key = Column(UnicodeText(84), default='', nullable=False)
+
+    @declared_attr
+    def __table_args__(self):
+        return (ForeignKeyConstraint(['iar_id'], ['identityaccessrequest.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+                ForeignKeyConstraint(['custodian_id'], ['user.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
 
 
 class _InternalFile(Model):
@@ -1052,6 +1070,10 @@ class File(_File, Base):
 
 
 class IdentityAccessRequest(_IdentityAccessRequest, Base):
+    pass
+
+
+class IdentityAccessRequestCustodian(_IdentityAccessRequestCustodian, Base):
     pass
 
 

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 #
 # Handlers dealing with custodian user functionalities
+import base64
+
 from globaleaks import models
 from globaleaks.handlers.admin.context import admin_serialize_context
 from globaleaks.handlers.admin.node import db_admin_serialize_node
@@ -10,27 +12,37 @@ from globaleaks.handlers.user import user_serialize_user
 from globaleaks.models import serializers
 from globaleaks.orm import transact
 from globaleaks.rest import requests
+from globaleaks.utils.crypto import GCE
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now
 
 
 @transact
-def get_identityaccessrequest_list(session, tid):
-    return [serializers.serialize_identityaccessrequest(session, iar)
-        for iar in session.query(models.IdentityAccessRequest).filter(models.IdentityAccessRequest.receivertip_id == models.ReceiverTip.id,
-                                                                      models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                                                      models.InternalTip.tid == tid)]
+def get_identityaccessrequest_list(session, tid, user_key):
+    ret = []
 
+    for iarc, iar in session.query(models.IdentityAccessRequestCustodian, models.IdentityAccessRequest) \
+                            .filter(models.IdentityAccessRequestCustodian.iar_id == models.IdentityAccessRequest.id,
+                                    models.IdentityAccessRequest.receivertip_id == models.ReceiverTip.id,
+                                    models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                    models.InternalTip.tid == tid):
+        elem = serializers.serialize_identityaccessrequest(session, iar)
 
-@transact
-def get_identityaccessrequest(session, tid, identityaccessrequest_id):
-    iar = session.query(models.IdentityAccessRequest) \
-               .filter(models.IdentityAccessRequest.id == identityaccessrequest_id,
-                       models.IdentityAccessRequest.receivertip_id == models.ReceiverTip.id,
-                       models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                       models.InternalTip.tid == tid).one()
+        if iarc.crypto_iar_prv_key:
+            crypto_iar_prv_key = GCE.asymmetric_decrypt(user_key, iarc.crypto_iar_prv_key)
 
-    return serializers.serialize_identityaccessrequest(session, iar)
+        if iar.crypto_iar_pub_key:
+            if elem['request_motivation'] and crypto_iar_prv_key:
+                elem['request_motivation'] = GCE.asymmetric_decrypt(crypto_iar_prv_key, base64.b64decode(elem['request_motivation']))
+            else:
+                elem['request_motivation'] =  ''
+
+            if elem['reply_motivation'] and crypto_iar_prv_key:
+                elem['reply_motivation'] = GCE.asymmetric_decrypt(crypto_iar_prv_key, base64.b64decode(elem['reply_motivation']))
+            else:
+                 elem['reply_motivation'] = ''
+
+        ret.append(elem)
 
 
 def db_create_identity_access_reply_notifications(session, itip, rtip, iar):
@@ -79,6 +91,11 @@ def update_identityaccessrequest(session, tid, user_id, identityaccessrequest_id
                                      models.ReceiverTip.internaltip_id == models.InternalTip.id,
                                      models.InternalTip.tid == tid).one()
 
+
+    if request['reply_motivation'] and iar.crypto_iar_pub_key:
+        request['reply_motivation'] = base64.b64encode(GCE.asymmetric_encrypt(iar.crypto_iar_pub_key, request['reply_motivation']))
+
+
     if iar.reply == 'pending':
         iar.reply_date = datetime_now()
         iar.reply_user_id = user_id
@@ -99,12 +116,8 @@ class IdentityAccessRequestInstance(BaseHandler):
     """
     check_roles = 'custodian'
 
-    def get(self, identityaccessrequest_id):
-        return get_identityaccessrequest(self.request.tid, identityaccessrequest_id)
-
     def put(self, identityaccessrequest_id):
         request = self.validate_request(self.request.content.read(), requests.CustodianIdentityAccessRequestDesc)
-
         return update_identityaccessrequest(self.request.tid,
                                             self.session.user_id,
                                             identityaccessrequest_id,
@@ -118,4 +131,4 @@ class IdentityAccessRequestsCollection(BaseHandler):
     check_roles = 'custodian'
 
     def get(self):
-        return get_identityaccessrequest_list(self.request.tid)
+        return get_identityaccessrequest_list(self.request.tid, self.session.cc)
