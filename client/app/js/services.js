@@ -1136,7 +1136,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
           elem.scrollIntoView();
           elem.focus();
         } catch (error) {
-          console.log(error);
+          return;
         }
       });
     },
