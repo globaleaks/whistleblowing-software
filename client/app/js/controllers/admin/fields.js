@@ -1,5 +1,5 @@
-GL.controller("AdminFieldEditorCtrl", ["$scope", "$http", "Utils",
-  function($scope, $http, Utils) {
+GL.controller("AdminFieldEditorCtrl", ["$scope", "$http",
+  function($scope, $http) {
     $scope.admin_receivers_by_id = $scope.Utils.array_to_map($scope.resources.users);
 
     $scope.editing = false;
