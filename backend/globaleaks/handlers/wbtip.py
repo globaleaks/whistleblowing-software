@@ -59,7 +59,7 @@ def db_get_wbtip(session, itip_id, language):
 
     itip.last_access = datetime_now()
 
-    return serializers.serialize_wbtip(session, itip, language), base64.b64decode(itip.crypto_tip_prv_key1)
+    return serializers.serialize_wbtip(session, itip, language), base64.b64decode(itip.crypto_tip_prv_key)
 
 
 @transact
@@ -79,8 +79,8 @@ def create_comment(session, tid, itip_id, content):
     itip.update_date = itip.last_access = datetime_now()
 
     _content = content
-    if itip.crypto_tip_pub_key1:
-        _content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key1, content)).decode()
+    if itip.crypto_tip_pub_key:
+        _content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
 
     comment = models.Comment()
     comment.internaltip_id = itip_id
@@ -95,15 +95,15 @@ def create_comment(session, tid, itip_id, content):
 
 
 @transact
-def update_identity_information(session, tid, tip_id, identity_field_id, wbi, language):
+def update_identity_information(session, tid, user_id, tip_id, identity_field_id, wbi, language):
     itip = db_get(session,
                   models.InternalTip,
                   (models.InternalTip.id == tip_id,
                    models.InternalTip.status != 'closed',
                    models.InternalTip.tid == tid))
 
-    if itip.crypto_tip_pub_key1:
-        wbi = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key1, json.dumps(wbi).encode())).decode()
+    if itip.crypto_tip_pub_key:
+        wbi = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(wbi).encode())).decode()
 
     db_set_internaltip_data(session, itip.id, 'whistleblower_identity', wbi)
 
@@ -128,8 +128,8 @@ def store_additional_questionnaire_answers(session, tid, tip_id, answers, langua
     steps = db_get_questionnaire(session, tid, context.additional_questionnaire_id, None)['steps']
     questionnaire_hash = db_archive_questionnaire_schema(session, steps)
 
-    if itip.crypto_tip_pub_key1:
-        answers = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key1, json.dumps(answers).encode())).decode()
+    if itip.crypto_tip_pub_key:
+        answers = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(answers).encode())).decode()
 
     db_set_internaltip_answers(session, itip.id, questionnaire_hash, answers)
 
@@ -145,10 +145,10 @@ class WBTipInstance(BaseHandler):
 
     @inlineCallbacks
     def get(self):
-        tip, crypto_tip_prv_key1 = yield get_wbtip(self.session.user_id, self.request.language)
+        tip, crypto_tip_prv_key = yield get_wbtip(self.session.user_id, self.request.language)
 
-        if crypto_tip_prv_key1:
-            tip = yield deferToThread(decrypt_tip, self.session.cc, crypto_tip_prv_key1, tip)
+        if crypto_tip_prv_key:
+            tip = yield deferToThread(decrypt_tip, self.session.cc, crypto_tip_prv_key, tip)
 
         returnValue(tip)
 
@@ -185,7 +185,7 @@ class WBTipWBFileHandler(BaseHandler):
         log.debug("Download of file %s by whistleblower %s",
                   wbfile.id, self.session.user_id)
 
-        return wbfile.name, wbfile.filename, base64.b64decode(wbtip.crypto_tip_prv_key1), ''
+        return wbfile.name, wbfile.filename, base64.b64decode(wbtip.crypto_tip_prv_key), ''
 
     @inlineCallbacks
     def get(self, wbfile_id):

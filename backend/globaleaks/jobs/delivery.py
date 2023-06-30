@@ -34,7 +34,7 @@ def file_delivery(session):
         src = ifile.filename
         filecode = src.split('.')[0]
 
-        if itip.crypto_tip_pub_key2:
+        if itip.deprecated_crypto_files_pub_key:
             ifile.filename = "%s.encrypted" % filecode
         else:
             ifile.filename = "%s.plain" % filecode
@@ -56,12 +56,12 @@ def file_delivery(session):
 
             if ifile.id not in receiverfiles_maps:
                 receiverfiles_maps[ifile.id] = {
-                    'key': itip.crypto_tip_pub_key2,
+                    'key': itip.deprecated_crypto_files_pub_key,
                     'src': src,
                     'rfiles': []
                 }
 
-            if not itip.crypto_tip_pub_key2 and user.pgp_key_public:
+            if not itip.crypto_tip_pub_key and user.pgp_key_public:
                 receiverfile.filename = "%s.pgp" % generateRandomKey()
             else:
                 receiverfile.filename = ifile.filename
@@ -80,13 +80,13 @@ def file_delivery(session):
         src = wbfile.filename
         filecode = src.split('.')[0]
 
-        if itip.crypto_tip_pub_key1:
+        if itip.crypto_tip_pub_key:
             wbfile.filename = "%s.encrypted" % filecode
         else:
             wbfile.filename = "%s.plain" % filecode
 
         whistleblowerfiles_maps[wbfile.id] = {
-            'key': itip.crypto_tip_pub_key1,
+            'key': itip.crypto_tip_pub_key,
             'src': src,
             'dst': os.path.abspath(os.path.join(Settings.attachments_path, wbfile.filename)),
         }

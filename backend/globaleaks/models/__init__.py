@@ -639,9 +639,9 @@ class _InternalTip(Model):
     receipt_hash = Column(UnicodeText(128), nullable=False)
     crypto_prv_key = Column(UnicodeText(84), default='', nullable=False)
     crypto_pub_key = Column(UnicodeText(56), default='', nullable=False)
-    crypto_tip_pub_key1 = Column(UnicodeText(56), default='', nullable=False)
-    crypto_tip_prv_key1 = Column(UnicodeText(84), default='', nullable=False)
-    crypto_tip_pub_key2 = Column(UnicodeText(56), default='', nullable=False)
+    crypto_tip_pub_key = Column(UnicodeText(56), default='', nullable=False)
+    crypto_tip_prv_key = Column(UnicodeText(84), default='', nullable=False)
+    deprecated_crypto_files_pub_key = Column(UnicodeText(56), default='', nullable=False)
 
     @declared_attr
     def __table_args__(self):
@@ -769,8 +769,8 @@ class _ReceiverTip(Model):
     last_notification = Column(DateTime, default=datetime_null, nullable=False)
     new = Column(Boolean, default=True, nullable=False)
     enable_notifications = Column(Boolean, default=True, nullable=False)
-    crypto_tip_prv_key1 = Column(UnicodeText(84), default='', nullable=False)
-    crypto_tip_prv_key2 = Column(UnicodeText(84), default='', nullable=False)
+    crypto_tip_prv_key = Column(UnicodeText(84), default='', nullable=False)
+    deprecated_crypto_files_prv_key = Column(UnicodeText(84), default='', nullable=False)
 
     @declared_attr
     def __table_args__(self):

@@ -139,11 +139,7 @@ class MigrationScript(MigrationBase):
         for old_obj in self.session_old.query(self.model_from['InternalTip']):
             new_obj = self.model_to['InternalTip']()
             for key in new_obj.__mapper__.column_attrs.keys():
-                if key == 'crypto_tip_prv_key1':
-                    setattr(new_obj, key, getattr(old_obj, 'crypto_tip_prv_key'))
-                elif key == 'crypto_tip_pub_key1':
-                    setattr(new_obj, key, getattr(old_obj, 'crypto_files_pub_key'))
-                elif key == 'crypto_tip_pub_key2':
+                if key == 'deprecated_crypto_files_pub_key':
                     setattr(new_obj, key, getattr(old_obj, 'crypto_files_pub_key'))
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
@@ -154,9 +150,7 @@ class MigrationScript(MigrationBase):
         for old_obj in self.session_old.query(self.model_from['ReceiverTip']):
             new_obj = self.model_to['ReceiverTip']()
             for key in new_obj.__mapper__.column_attrs.keys():
-                if key == 'crypto_tip_prv_key1':
-                    setattr(new_obj, key, getattr(old_obj, 'crypto_tip_prv_key'))
-                elif key == 'crypto_tip_prv_key2':
+                if key == 'deprecated_crypto_files_prv_key':
                     setattr(new_obj, key, getattr(old_obj, 'crypto_files_prv_key'))
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
@@ -242,13 +236,13 @@ class MigrationScript(MigrationBase):
                                                    self.model_from['ReceiverTip'].id == self.model_from['IdentityAccessRequest'].receiver_tip) \
                                            .distinct():
 
-                if itip.crypto_tip_pub_key2:
+                if itip.deprecated_crypto_files_pub_key:
                     print(1)
                     iar.request_motivation = base64.b64encode(GCE.asymmetric_encrypt(crypto_iar_pub_key, iar.request_motivation))
                     iar.reply_motivation = base64.b64encode(GCE.asymmetric_encrypt(crypto_iar_pub_key, iar.reply_motivation))
                     iar.receivertip_id = rtip.id
                     iar.crypto_iar_pub_key = crypto_iar_pub_key
-                    iar.crypto_iar_prv_key = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key2, crypto_iar_prv_key))
+                    iar.crypto_iar_prv_key = base64.b64encode(GCE.asymmetric_encrypt(itip.deprecated_crypto_files_pub_key, crypto_iar_prv_key))
 
             for custodian in session.query(models.User).filter(models.User.tid == tid, models.User.role == 'custodian'):
                 print(2)

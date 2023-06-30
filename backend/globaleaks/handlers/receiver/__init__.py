@@ -77,8 +77,8 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
         rtips_ids[rtip.id] = True
 
         answers = answers.answers
-        if itip.crypto_tip_pub_key1:
-            tip_key = GCE.asymmetric_decrypt(user_key, base64.b64decode(rtip.crypto_tip_prv_key1))
+        if itip.crypto_tip_pub_key:
+            tip_key = GCE.asymmetric_decrypt(user_key, base64.b64decode(rtip.crypto_tip_prv_key))
             answers = json.loads(GCE.asymmetric_decrypt(tip_key, base64.b64decode(answers.encode())).decode())
 
         if aqs.hash not in ret['questionnaires']:
