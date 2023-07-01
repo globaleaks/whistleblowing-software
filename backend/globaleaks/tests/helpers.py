@@ -758,10 +758,7 @@ class TestGL(unittest.TestCase):
     @transact
     def get_wbfiles(self, session, wbtip_id):
         return [{'id': wbfile.id} for wbfile in session.query(models.WhistleblowerFile)
-                                                     .filter(models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                                                             models.ReceiverTip.internaltip_id == wbtip_id,
-                                                             models.InternalTip.id == wbtip_id,
-                                                             models.InternalTip.tid == 1)]
+                                                       .filter(models.WhistleblowerFile.internaltip_id == wbtip_id)]
 
     def db_test_model_count(self, session, model, n):
         self.assertEqual(session.query(model).count(), n)

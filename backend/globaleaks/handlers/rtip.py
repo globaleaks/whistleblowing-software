@@ -229,8 +229,7 @@ def db_access_wbfile(session, tid, user_id, wbfile_id):
     return db_get(session,
                   models.WhistleblowerFile,
                   (models.WhistleblowerFile.id == wbfile_id,
-                   models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                   models.ReceiverTip.internaltip_id.in_(itips_ids),
+                   models.WhistleblowerFile.internaltip_id.in_(itips_ids),
                    models.InternalTip.tid == tid))
 
 
@@ -247,6 +246,7 @@ def register_wbfile_on_db(session, tid, rtip_id, uploaded_file):
     """
     rtip, itip = session.query(models.ReceiverTip, models.InternalTip) \
                         .filter(models.ReceiverTip.id == rtip_id,
+                                models.ReceiverTip.receiver_id == user_id,
                                 models.ReceiverTip.internaltip_id == models.InternalTip.id,
                                 models.InternalTip.status != 'closed',
                                 models.InternalTip.tid == tid).one()
@@ -265,7 +265,7 @@ def register_wbfile_on_db(session, tid, rtip_id, uploaded_file):
     new_file.description = uploaded_file['description']
     new_file.content_type = uploaded_file['type']
     new_file.size = uploaded_file['size']
-    new_file.receivertip_id = rtip_id
+    new_file.internaltip_id = itip.id
     new_file.filename = uploaded_file['filename']
 
     session.add(new_file)

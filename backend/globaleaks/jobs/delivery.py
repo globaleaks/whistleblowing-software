@@ -73,8 +73,7 @@ def file_delivery(session):
 
     for wbfile, itip in session.query(models.WhistleblowerFile, models.InternalTip)\
                                .filter(models.WhistleblowerFile.new.is_(True),
-                                       models.ReceiverTip.id == models.WhistleblowerFile.receivertip_id,
-                                       models.InternalTip.id == models.ReceiverTip.internaltip_id) \
+                                       models.WhistleblowerFile.internaltip_id == models.InternalTip.id) \
                                .order_by(models.WhistleblowerFile.creation_date) \
                                .limit(20):
         wbfile.new = False

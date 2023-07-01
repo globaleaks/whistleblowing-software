@@ -173,8 +173,7 @@ class WBTipWBFileHandler(BaseHandler):
         wbfile, wbtip = db_get(session,
                                (models.WhistleblowerFile, models.InternalTip),
                                (models.WhistleblowerFile.id == file_id,
-                                models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                                models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                models.WhistleblowerFile.internaltip_id == models.InternalTip.id,
                                 models.InternalTip.id == self.session.user_id))
 
         if not wbtip:

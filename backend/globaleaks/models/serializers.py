@@ -177,8 +177,7 @@ def serialize_itip(session, internaltip, language):
         ret['comments'].append(serialize_comment(session, comment))
 
     for wbfile in session.query(models.WhistleblowerFile) \
-                         .filter(models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                                 models.ReceiverTip.internaltip_id == internaltip.id):
+                         .filter(models.WhistleblowerFile.internaltip_id == internaltip.id):
         ret['wbfiles'].append(serialize_wbfile(session, wbfile))
 
     for itd in session.query(models.InternalTipData).filter(models.InternalTipData.internaltip_id == internaltip.id):

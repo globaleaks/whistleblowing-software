@@ -997,7 +997,7 @@ class _WhistleblowerFile(Model):
     __tablename__ = 'whistleblowerfile'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    receivertip_id = Column(UnicodeText(36), nullable=False, index=True)
+    internaltip_id = Column(UnicodeText(36), nullable=False, index=True)
     name = Column(UnicodeText, nullable=False)
     filename = Column(UnicodeText(255), unique=True, nullable=False)
     size = Column(Integer, nullable=False)
@@ -1009,7 +1009,7 @@ class _WhistleblowerFile(Model):
 
     @declared_attr
     def __table_args__(self):
-        return ForeignKeyConstraint(['receivertip_id'], ['receivertip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+        return ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
 
 class ArchivedSchema(_ArchivedSchema, Base):
