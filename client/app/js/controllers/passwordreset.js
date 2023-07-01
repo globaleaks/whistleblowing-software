@@ -6,7 +6,7 @@ GL.controller("PasswordResetCtrl", ["$scope", "$location", "$http",
   };
 
   $scope.submit = function() {
-    $http.post("api/reset/password", $scope.request).then(function() {
+    $http.post("api/user/reset/password", $scope.request).then(function() {
       $location.path("/login/passwordreset/requested");
     });
   };
@@ -23,7 +23,7 @@ controller("PasswordResetCompleteCtrl", ["$scope", "$location", "$http",
   };
 
   $scope.submit = function() {
-    $http.put("api/reset/password", $scope.request).then(function(response) {
+    $http.put("api/user/reset/password", $scope.request).then(function(response) {
       if(response.data.status === "success") {
         $location.url("/login?token=" + response.data.token);
       } else {

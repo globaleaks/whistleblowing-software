@@ -15,7 +15,7 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.operation import OperationHandler
-from globaleaks.handlers.submission import db_create_receivertip, decrypt_tip
+from globaleaks.handlers.whistleblower.submission import db_create_receivertip, decrypt_tip
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.models import serializers, Context
 from globaleaks.orm import db_get, db_del, db_log, transact, tw
@@ -235,7 +235,7 @@ def db_access_wbfile(session, tid, user_id, wbfile_id):
 
 
 @transact
-def register_wbfile_on_db(session, tid, rtip_id, uploaded_file):
+def register_wbfile_on_db(session, tid, user_id, rtip_id, uploaded_file):
     """
     Register a file on the database
 
@@ -708,7 +708,7 @@ class WhistleblowerFileHandler(BaseHandler):
 
     @inlineCallbacks
     def post(self, rtip_id):
-        yield register_wbfile_on_db(self.request.tid, rtip_id, self.uploaded_file)
+        yield register_wbfile_on_db(self.request.tid, self.session.user_id, rtip_id, self.uploaded_file)
 
         log.debug("Recorded new WhistleblowerFile %s",
                   self.uploaded_file['name'])

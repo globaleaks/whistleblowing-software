@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-from globaleaks.handlers import wbtip, rtip
+from twisted.internet.defer import inlineCallbacks
+
+from globaleaks.handlers.recipient import rtip
+from globaleaks.handlers.whistleblower import wbtip
 from globaleaks.jobs.delivery import Delivery
 from globaleaks.tests import helpers
-from twisted.internet.defer import inlineCallbacks
 
 attachment = b'hello world'
 

@@ -10,11 +10,13 @@ from sqlalchemy.sql.expression import distinct, func
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.rtip import db_grant_tip_access, db_revoke_tip_access
+from globaleaks.handlers.recipient.rtip import db_grant_tip_access, db_revoke_tip_access
 from globaleaks.models import serializers
 from globaleaks.orm import db_get, db_del, db_log, transact
 from globaleaks.rest import requests, errors
 from globaleaks.utils.crypto import GCE
+
+import globaleaks.handlers.recipient.export
 
 
 @transact

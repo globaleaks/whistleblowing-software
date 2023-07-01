@@ -585,7 +585,7 @@ class EmailValidationKeyword(UserNodeKeyword):
         return self.data['new_email_address']
 
     def UrlPath(self):
-        return '/api/email/validation/' + self.data['validation_token']
+        return '/api/validate/email/' + self.data['validation_token']
 
 
 class AccountActivationKeyword(UserNodeKeyword):

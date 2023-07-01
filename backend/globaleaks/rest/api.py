@@ -16,16 +16,13 @@ from twisted.web.resource import Resource
 from twisted.web.server import NOT_DONE_YET
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
-from globaleaks.handlers import custodian, \
-                                email_validation, \
+from globaleaks.handlers import admin, \
+                                custodian, \
                                 file, \
-                                receiver, \
-                                password_reset, \
+                                recipient, \
                                 public, \
-                                submission, \
-                                rtip, wbtip, \
-                                attachment, authentication, token, \
-                                export, l10n, wizard,\
+                                auth, \
+                                l10n, \
                                 user, \
                                 redirect, \
                                 robots, \
@@ -34,24 +31,9 @@ from globaleaks.handlers import custodian, \
                                 support, \
                                 staticfile, \
                                 security, \
-                                viewer
-
-from globaleaks.handlers.admin import context as admin_context
-from globaleaks.handlers.admin import field as admin_field
-from globaleaks.handlers.admin import file as admin_file
-from globaleaks.handlers.admin import https
-from globaleaks.handlers.admin import l10n as admin_l10n
-from globaleaks.handlers.admin import node as admin_node
-from globaleaks.handlers.admin import network as admin_network
-from globaleaks.handlers.admin import notification as admin_notification
-from globaleaks.handlers.admin import operation as admin_operation
-from globaleaks.handlers.admin import questionnaire as admin_questionnaire
-from globaleaks.handlers.admin import redirect as admin_redirect
-from globaleaks.handlers.admin import auditlog as admin_auditlog
-from globaleaks.handlers.admin import step as admin_step
-from globaleaks.handlers.admin import tenant as admin_tenant
-from globaleaks.handlers.admin import user as admin_user
-from globaleaks.handlers.admin import submission_statuses as admin_submission_statuses
+                                viewer, \
+                                wizard, \
+                                whistleblower
 
 from globaleaks.rest import decorators, requests, errors
 from globaleaks.state import State, extract_exception_traceback_and_schedule_email
@@ -62,105 +44,98 @@ uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
 key_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}|[a-z_]{0,100})'
 
 api_spec = [
-    # Authentication Handlers
-    (r'/api/authentication', authentication.AuthenticationHandler),
-    (r'/api/tokenauth', authentication.TokenAuthHandler),
-    (r'/api/receiptauth', authentication.ReceiptAuthHandler),
-    (r'/api/session', authentication.SessionHandler),
-    (r'/api/tenantauthswitch/' + tid_regexp, authentication.TenantAuthSwitchHandler),
-
     # Public API
     (r'/api/public', public.PublicResource),
 
+    # Authentication Handlers
+    (r'/api/auth/token', auth.token.TokenHandler),
+    (r'/api/auth/authentication', auth.AuthenticationHandler),
+    (r'/api/auth/tokenauth', auth.TokenAuthHandler),
+    (r'/api/auth/receiptauth', auth.ReceiptAuthHandler),
+    (r'/api/auth/session', auth.SessionHandler),
+    (r'/api/auth/tenantauthswitch/' + tid_regexp, auth.TenantAuthSwitchHandler),
+
     # User Preferences Handler
-    (r'/api/preferences', user.UserInstance),
+    (r'/api/user/preferences', user.UserInstance),
     (r'/api/user/operations', user.operation.UserOperationHandler),
-
-    # Token Handlers
-    (r'/api/token', token.TokenHandler),
-
-    # Submission Handlers
-    (r'/api/submission', submission.SubmissionInstance),
-    (r'/api/submission/attachment', attachment.SubmissionAttachment),
+    (r'/api/user/reset/password', user.reset_password.PasswordResetHandler),
+    (r'/api/user/reset/password/(.+)', user.reset_password.PasswordResetHandler),
+    (r'/api/user/validate/email/(.+)', user.validate_email.EmailValidation),
 
     # Receiver Handlers
-    (r'/api/recipient/operations', receiver.Operations),
-    (r'/api/rtips', receiver.TipsCollection),
-    (r'/api/rtips/' + uuid_regexp, rtip.RTipInstance),
-    (r'/api/rtips/' + uuid_regexp + r'/comments', rtip.RTipCommentCollection),
-    (r'/api/rtips/' + uuid_regexp + r'/iars', rtip.IdentityAccessRequestsCollection),
-    (r'/api/rtips/' + uuid_regexp + r'/export', export.ExportHandler),
-    (r'/api/rtips/' + uuid_regexp + r'/wbfile', rtip.WhistleblowerFileHandler),
-    (r'/api/rfile/' + uuid_regexp, rtip.ReceiverFileDownload),
-    (r'/api/wbfile/' + uuid_regexp, rtip.RTipWBFileHandler),
+    (r'/api/recipient/operations', recipient.Operations),
+    (r'/api/recipient/rtips', recipient.TipsCollection),
+    (r'/api/recipient/rtips/' + uuid_regexp, recipient.rtip.RTipInstance),
+    (r'/api/recipient/rtips/' + uuid_regexp + r'/comments', recipient.rtip.RTipCommentCollection),
+    (r'/api/recipient/rtips/' + uuid_regexp + r'/iars', recipient.rtip.IdentityAccessRequestsCollection),
+    (r'/api/recipient/rtips/' + uuid_regexp + r'/export', recipient.export.ExportHandler),
+    (r'/api/recipient/rtips/' + uuid_regexp + r'/wbfiles', recipient.rtip.WhistleblowerFileHandler),
+    (r'/api/recipient/rfiles/' + uuid_regexp, recipient.rtip.ReceiverFileDownload),
+    (r'/api/recipient/wbfiles/' + uuid_regexp, recipient.rtip.RTipWBFileHandler),
 
-    # Whistleblower Tip Handlers
-    (r'/api/wbtip', wbtip.WBTipInstance),
-    (r'/api/wbtip/comments', wbtip.WBTipCommentCollection),
-    (r'/api/wbtip/rfile', attachment.PostSubmissionAttachment),
-    (r'/api/wbtip/wbfile/' + uuid_regexp, wbtip.WBTipWBFileHandler),
-    (r'/api/wbtip/' + uuid_regexp + r'/provideidentityinformation', wbtip.WBTipIdentityHandler),
-    (r'/api/wbtip/' + uuid_regexp + r'/update', wbtip.WBTipAdditionalQuestionnaire),
+    # Whistleblower Handlers
+    (r'/api/whistleblower/submission', whistleblower.submission.SubmissionInstance),
+    (r'/api/whistleblower/submission/attachment', whistleblower.attachment.SubmissionAttachment),
+    (r'/api/whistleblower/wbtip', whistleblower.wbtip.WBTipInstance),
+    (r'/api/whistleblower/wbtip/comments', whistleblower.wbtip.WBTipCommentCollection),
+    (r'/api/whistleblower/wbtip/rfiles', whistleblower.attachment.PostSubmissionAttachment),
+    (r'/api/whistleblower/wbtip/wbfiles/' + uuid_regexp, whistleblower.wbtip.WBTipWBFileHandler),
+    (r'/api/whistleblower/wbtip/identity', whistleblower.wbtip.WBTipIdentityHandler),
+    (r'/api/whistleblower/wbtip/fillform', whistleblower.wbtip.WBTipAdditionalQuestionnaire),
 
+    # Custodian Handlers
     (r'/api/custodian/iars', custodian.IdentityAccessRequestsCollection),
     (r'/api/custodian/iars/' + uuid_regexp, custodian.IdentityAccessRequestInstance),
 
-    # Email Validation Handler
-    (r'/api/email/validation/(.+)', email_validation.EmailValidation),
-
-    # Reset Password Handler
-    (r'/api/reset/password', password_reset.PasswordResetHandler),
-    (r'/api/reset/password/(.+)', password_reset.PasswordResetHandler),
-
     # Admin Handlers
-    (r'/api/admin/node', admin_node.NodeInstance),
-    (r'/api/admin/network', admin_network.NetworkInstance),
-    (r'/api/admin/users', admin_user.UsersCollection),
-    (r'/api/admin/users/' + uuid_regexp, admin_user.UserInstance),
-    (r'/api/admin/contexts', admin_context.ContextsCollection),
-    (r'/api/admin/contexts/' + uuid_regexp, admin_context.ContextInstance),
-    (r'/api/admin/questionnaires', admin_questionnaire.QuestionnairesCollection),
-    (r'/api/admin/questionnaires/duplicate', admin_questionnaire.QuestionnareDuplication),
-    (r'/api/admin/questionnaires/' + key_regexp, admin_questionnaire.QuestionnaireInstance),
-    (r'/api/admin/notification', admin_notification.NotificationInstance),
-    (r'/api/admin/fields', admin_field.FieldsCollection),
-    (r'/api/admin/fields/' + key_regexp, admin_field.FieldInstance),
-    (r'/api/admin/steps', admin_step.StepCollection),
-    (r'/api/admin/steps/' + uuid_regexp, admin_step.StepInstance),
-    (r'/api/admin/fieldtemplates', admin_field.FieldTemplatesCollection),
-    (r'/api/admin/fieldtemplates/' + key_regexp, admin_field.FieldTemplateInstance),
-    (r'/api/admin/redirects', admin_redirect.RedirectCollection),
-    (r'/api/admin/redirects/' + uuid_regexp, admin_redirect.RedirectInstance),
-    (r'/api/admin/auditlog', admin_auditlog.AuditLog),
-    (r'/api/admin/auditlog/access', admin_auditlog.AccessLog),
-    (r'/api/admin/auditlog/debug', admin_auditlog.DebugLog),
-    (r'/api/admin/auditlog/jobs', admin_auditlog.JobsTiming),
-    (r'/api/admin/auditlog/tips', admin_auditlog.TipsCollection),
-    (r'/api/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', admin_l10n.AdminL10NHandler),
-    (r'/api/admin/config', admin_operation.AdminOperationHandler),
-    (r'/api/admin/config/tls', https.ConfigHandler),
-    (r'/api/admin/config/tls/files/(cert|chain|key)', https.FileHandler),
-    (r'/api/admin/files', admin_file.FileCollection),
-    (r'/api/admin/files/(.+)', admin_file.FileInstance),
-    (r'/api/admin/tenants', admin_tenant.TenantCollection),
-    (r'/api/admin/tenants/' + '([0-9]{1,20})', admin_tenant.TenantInstance),
-    (r'/api/admin/submission_statuses', admin_submission_statuses.SubmissionStatusCollection),
-    (r'/api/admin/submission_statuses/' + r'(closed)' + r'/substatuses', admin_submission_statuses.SubmissionSubStatusCollection),
-    (r'/api/admin/submission_statuses/' + uuid_regexp, admin_submission_statuses.SubmissionStatusInstance),
-    (r'/api/admin/submission_statuses/' + uuid_regexp + r'/substatuses', admin_submission_statuses.SubmissionSubStatusCollection),
-    (r'/api/admin/submission_statuses/' + r'(closed)' + r'/substatuses/' + uuid_regexp, admin_submission_statuses.SubmissionSubStatusInstance),
-    (r'/api/admin/submission_statuses/' + uuid_regexp + r'/substatuses/' + uuid_regexp, admin_submission_statuses.SubmissionSubStatusInstance),
+    (r'/api/admin/node', admin.node.NodeInstance),
+    (r'/api/admin/network', admin.network.NetworkInstance),
+    (r'/api/admin/users', admin.user.UsersCollection),
+    (r'/api/admin/users/' + uuid_regexp, admin.user.UserInstance),
+    (r'/api/admin/contexts', admin.context.ContextsCollection),
+    (r'/api/admin/contexts/' + uuid_regexp, admin.context.ContextInstance),
+    (r'/api/admin/questionnaires', admin.questionnaire.QuestionnairesCollection),
+    (r'/api/admin/questionnaires/duplicate', admin.questionnaire.QuestionnareDuplication),
+    (r'/api/admin/questionnaires/' + key_regexp, admin.questionnaire.QuestionnaireInstance),
+    (r'/api/admin/notification', admin.notification.NotificationInstance),
+    (r'/api/admin/fields', admin.field.FieldsCollection),
+    (r'/api/admin/fields/' + key_regexp, admin.field.FieldInstance),
+    (r'/api/admin/steps', admin.step.StepCollection),
+    (r'/api/admin/steps/' + uuid_regexp, admin.step.StepInstance),
+    (r'/api/admin/fieldtemplates', admin.field.FieldTemplatesCollection),
+    (r'/api/admin/fieldtemplates/' + key_regexp, admin.field.FieldTemplateInstance),
+    (r'/api/admin/redirects', admin.redirect.RedirectCollection),
+    (r'/api/admin/redirects/' + uuid_regexp, admin.redirect.RedirectInstance),
+    (r'/api/admin/auditlog', admin.auditlog.AuditLog),
+    (r'/api/admin/auditlog/access', admin.auditlog.AccessLog),
+    (r'/api/admin/auditlog/debug', admin.auditlog.DebugLog),
+    (r'/api/admin/auditlog/jobs', admin.auditlog.JobsTiming),
+    (r'/api/admin/auditlog/tips', admin.auditlog.TipsCollection),
+    (r'/api/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', admin.l10n.AdminL10NHandler),
+    (r'/api/admin/config', admin.operation.AdminOperationHandler),
+    (r'/api/admin/config/csr/gen', admin.https.CSRHandler),
+    (r'/api/admin/config/acme/run', admin.https.AcmeHandler),
+    (r'/api/admin/config/tls', admin.https.ConfigHandler),
+    (r'/api/admin/config/tls/files/(cert|chain|key)', admin.https.FileHandler),
+    (r'/api/admin/files', admin.file.FileCollection),
+    (r'/api/admin/files/(.+)', admin.file.FileInstance),
+    (r'/api/admin/tenants', admin.tenant.TenantCollection),
+    (r'/api/admin/tenants/' + '([0-9]{1,20})', admin.tenant.TenantInstance),
+    (r'/api/admin/submission_statuses', admin.submission_statuses.SubmissionStatusCollection),
+    (r'/api/admin/submission_statuses/' + r'(closed)' + r'/substatuses', admin.submission_statuses.SubmissionSubStatusCollection),
+    (r'/api/admin/submission_statuses/' + uuid_regexp, admin.submission_statuses.SubmissionStatusInstance),
+    (r'/api/admin/submission_statuses/' + uuid_regexp + r'/substatuses', admin.submission_statuses.SubmissionSubStatusCollection),
+    (r'/api/admin/submission_statuses/' + r'(closed)' + r'/substatuses/' + uuid_regexp, admin.submission_statuses.SubmissionSubStatusInstance),
+    (r'/api/admin/submission_statuses/' + uuid_regexp + r'/substatuses/' + uuid_regexp, admin.submission_statuses.SubmissionSubStatusInstance),
 
-    (r'/api/wizard', wizard.Wizard),
+    # Services
+    (r'/api/support', support.SupportHandler),
     (r'/api/signup', signup.Signup),
     (r'/api/signup/([a-zA-Z0-9_\-]{64})', signup.SignupActivation),
+    (r'/api/wizard', wizard.Wizard),
 
-    (r'/api/support', support.SupportHandler),
-
-    (r'/api/admin/config/csr/gen', https.CSRHandler),
-    (r'/api/admin/config/acme/run', https.AcmeHandler),
-
-    (r'/.well-known/acme-challenge/([a-zA-Z0-9_\-]{42,44})', https.AcmeChallengeHandler),
+    # Well known path
+    (r'/.well-known/acme-challenge/([a-zA-Z0-9_\-]{42,44})', admin.https.AcmeChallengeHandler),
     (r'/.well-known/security.txt', security.SecuritytxtHandler),
 
     # Special Files Handlers
@@ -169,8 +144,10 @@ api_spec = [
     (r'/s/(.+)', file.FileHandler),
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', l10n.L10NHandler),
 
+    # Path alias
     (r'^(/admin|/login|/submission)$', redirect.SpecialRedirectHandler),
 
+    # File viewer app
     (r'/(viewer/[a-zA-Z0-9_\-\/\.\@]*)', viewer.ViewerHandler),
 
     # This handler attempts to route all non routed get requests

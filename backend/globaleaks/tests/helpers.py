@@ -25,7 +25,6 @@ from . import TEST_DIR
 from globaleaks import db, models, orm, event, jobs, __version__, DATABASE_VERSION
 from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact, tw
-from globaleaks.handlers import rtip, wbtip
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.context import create_context, get_context
 from globaleaks.handlers.admin.field import db_create_field
@@ -33,8 +32,10 @@ from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
 from globaleaks.handlers.admin.step import db_create_step
 from globaleaks.handlers.admin.tenant import create as create_tenant
 from globaleaks.handlers.admin.user import create_user
+from globaleaks.handlers.recipient import rtip
 from globaleaks.handlers.wizard import db_wizard
-from globaleaks.handlers.submission import create_submission
+from globaleaks.handlers.whistleblower import wbtip
+from globaleaks.handlers.whistleblower.submission import create_submission
 from globaleaks.models import serializers
 from globaleaks.models.config import db_set_config_variable, ConfigFactory
 from globaleaks.rest import decorators

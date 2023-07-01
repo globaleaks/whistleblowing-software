@@ -2,7 +2,7 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.handlers import receiver
+from globaleaks.handlers import recipient
 from globaleaks.orm import transact
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_never
@@ -14,7 +14,7 @@ def set_expiration_of_all_rtips_to_unlimited(session):
 
 
 class TestTipsCollection(helpers.TestHandlerWithPopulatedDB):
-    _handler = receiver.TipsCollection
+    _handler = recipient.TipsCollection
 
     @inlineCallbacks
     def setUp(self):
@@ -32,7 +32,7 @@ class TestTipsCollection(helpers.TestHandlerWithPopulatedDB):
 
 
 class TestOperations(helpers.TestHandlerWithPopulatedDB):
-    _handler = receiver.Operations
+    _handler = recipient.Operations
 
     @inlineCallbacks
     def setUp(self):
@@ -41,7 +41,7 @@ class TestOperations(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_revoke_and_grant(self):
-        rtips = yield receiver.get_receivertips(1, self.dummyReceiver_1['id'], helpers.USER_PRV_KEY, 'en')
+        rtips = yield recipient.get_receivertips(1, self.dummyReceiver_1['id'], helpers.USER_PRV_KEY, 'en')
         rtips_ids = [rtip['id'] for rtip in rtips['rtips']]
 
         yield self.test_model_count(models.ReceiverTip, 4)
@@ -74,7 +74,7 @@ class TestOperations(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_delete(self):
-        rtips = yield receiver.get_receivertips(1, self.dummyReceiver_1['id'], helpers.USER_PRV_KEY, 'en')
+        rtips = yield recipient.get_receivertips(1, self.dummyReceiver_1['id'], helpers.USER_PRV_KEY, 'en')
         rtips_ids = [rtip['id'] for rtip in rtips['rtips']]
 
         data_request = {
@@ -87,6 +87,6 @@ class TestOperations(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(data_request, user_id=self.dummyReceiver_1['id'], role='receiver')
         yield handler.put()
 
-        rtips = yield receiver.get_receivertips(1, self.dummyReceiver_1['id'], helpers.USER_PRV_KEY, 'en')
+        rtips = yield recipient.get_receivertips(1, self.dummyReceiver_1['id'], helpers.USER_PRV_KEY, 'en')
 
         self.assertEqual(len(rtips['rtips']), 0)

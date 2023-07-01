@@ -1,6 +1,6 @@
 # -*- coding: UTF-8
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.handlers.submission import db_assign_submission_progressive
+from globaleaks.handlers.whistleblower.submission import db_assign_submission_progressive
 from globaleaks.models import Model
 from globaleaks.models.properties import *
 from globaleaks.utils.utility import datetime_never, datetime_now, datetime_null

@@ -16,7 +16,7 @@
       <div data-translate>Upload a file:</div>
       <div class="form"
           data-ng-controller="WBFileUploadCtrl"
-          data-flow-init="{target: 'api/rtips/' + tip_id + '/wbfile'}"
+          data-flow-init="{target: 'api/recipient/rtips/' + tip_id + '/wbfiles'}"
           data-flow-files-submitted="beginUpload($files, $event, $flow)"
           data-flow-file-success="reload()"
           extend-flow-valid-size="public.node.maximum_filesize*1024*1024">

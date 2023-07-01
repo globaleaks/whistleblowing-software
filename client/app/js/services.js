@@ -94,13 +94,13 @@ factory("Authentication",
 
         var promise;
         if (authtoken) {
-          promise = $http.post("api/tokenauth", {"authtoken": authtoken});
+          promise = $http.post("api/auth/tokenauth", {"authtoken": authtoken});
         } else {
           if (username === "whistleblower") {
             password = password.replace(/\D/g,"");
-            promise = $http.post("api/receiptauth", {"receipt": password});
+            promise = $http.post("api/auth/receiptauth", {"receipt": password});
           } else {
-            promise = $http.post("api/authentication", {"tid": tid, "username": username, "password": password, "authcode": authcode});
+            promise = $http.post("api/auth/authentication", {"tid": tid, "username": username, "password": password, "authcode": authcode});
           }
         }
 
@@ -129,7 +129,7 @@ factory("Authentication",
           };
         }
 
-        return $http.delete("api/session").then(cb, cb);
+        return $http.delete("api/auth/session").then(cb, cb);
       };
 
       self.loginRedirect = function(isLogout) {
@@ -196,13 +196,13 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   return Access;
 }]).
 factory("SessionResource", ["GLResource", function(GLResource) {
-  return new GLResource("api/session");
+  return new GLResource("api/auth/session");
 }]).
 factory("PublicResource", ["GLResource", function(GLResource) {
   return new GLResource("api/public");
 }]).
 factory("TokenResource", ["GLResource", "glbcProofOfWork", function(GLResource, glbcProofOfWork) {
-  return new GLResource("api/token/:id", {id: "@id"}, {
+  return new GLResource("api/auth/token/:id", {id: "@id"}, {
     get: {
       method: "POST",
       interceptor: {
@@ -218,7 +218,7 @@ factory("TokenResource", ["GLResource", "glbcProofOfWork", function(GLResource, 
   });
 }]).
 factory("SubmissionResource", ["GLResource", function(GLResource) {
-  return new GLResource("api/submission");
+  return new GLResource("api/whistleblower/submission");
 }]).
 factory("Submission", ["$q", "$location", "$rootScope", "Authentication", "GLResource", "SubmissionResource",
     function($q, $location, $rootScope, Authentication, GLResource, SubmissionResource) {
@@ -325,27 +325,27 @@ factory("Submission", ["$q", "$location", "$rootScope", "Authentication", "GLRes
   };
 }]).
 factory("RTipResource", ["GLResource", function(GLResource) {
-  return new GLResource("api/rtips/:id", {id: "@id"});
+  return new GLResource("api/recipient/rtips/:id", {id: "@id"});
 }]).
 factory("RTipCommentResource", ["GLResource", function(GLResource) {
-  return new GLResource("api/rtips/:id/comments", {id: "@id"});
+  return new GLResource("api/recipient/rtips/:id/comments", {id: "@id"});
 }]).
 factory("RTipDownloadRFile", ["Utils", function(Utils) {
   return function(file) {
-    Utils.download("api/rfile/" + file.id);
+    Utils.download("api/recipient/rfiles/" + file.id);
   };
 }]).
 factory("RTipWBFileResource", ["GLResource", function(GLResource) {
-  return new GLResource("api/wbfile/:id", {id: "@id"});
+  return new GLResource("api/recipient/wbfiles/:id", {id: "@id"});
 }]).
 factory("RTipDownloadWBFile", ["Utils", function(Utils) {
   return function(file) {
-    Utils.download("api/wbfile/" + file.id);
+    Utils.download("api/recipient/wbfiles/" + file.id);
   };
 }]).
 factory("RTipExport", ["Utils", function(Utils) {
   return function(tip) {
-    Utils.download("api/rtips/" + tip.id + "/export");
+    Utils.download("api/recipient/rtips/" + tip.id + "/export");
   };
 }]).
 factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipCommentResource",
@@ -373,7 +373,7 @@ factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipCommentResource",
           "args": args
         };
 
-        return $http({method: "PUT", url: "api/rtips/" + tip.id, data: req});
+        return $http({method: "PUT", url: "api/recipient/rtips/" + tip.id, data: req});
       };
 
       tip.updateSubmissionStatus = function() {
@@ -393,14 +393,14 @@ factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipCommentResource",
   };
 }]).
 factory("WBTipResource", ["GLResource", function(GLResource) {
-  return new GLResource("api/wbtip");
+  return new GLResource("api/whistleblower/wbtip");
 }]).
 factory("WBTipCommentResource", ["GLResource", function(GLResource) {
-  return new GLResource("api/wbtip/comments");
+  return new GLResource("api/whistleblower/wbtip/comments");
 }]).
 factory("WBTipDownloadFile", ["Utils", function(Utils) {
   return function(file) {
-    Utils.download("api/wbtip/wbfile/" + file.id);
+    Utils.download("api/whistleblower/wbtip/wbfiles/" + file.id);
   };
 }]).
 factory("WBTip", ["$rootScope", "WBTipResource", "WBTipCommentResource",
@@ -446,7 +446,7 @@ factory("WBTip", ["$rootScope", "WBTipResource", "WBTipCommentResource",
   };
 }]).
 factory("ReceiverTips", ["GLResource", function(GLResource) {
-  return new GLResource("api/rtips");
+  return new GLResource("api/recipient/rtips");
 }]).
 factory("IdentityAccessRequests", ["GLResource", function(GLResource) {
   return new GLResource("api/custodian/iars");
@@ -659,7 +659,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
   };
 }]).
 factory("UserPreferences", ["GLResource", function(GLResource) {
-  return new GLResource("api/preferences", {}, {"update": {method: "PUT"}});
+  return new GLResource("api/user/preferences", {}, {"update": {method: "PUT"}});
 }]).
 factory("TipsCollection", ["GLResource", function(GLResource) {
   return new GLResource("api/admin/auditlog/tips");

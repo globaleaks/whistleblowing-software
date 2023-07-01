@@ -33,7 +33,7 @@ GL.controller("TipCtrl",
                   },
                 };
 
-                return $http({method: "PUT", url: "api/rtips/" + $scope.tip.id, data: req}).then(function () {
+                return $http({method: "PUT", url: "api/recipient/rtips/" + $scope.tip.id, data: req}).then(function () {
                   $scope.reload();
                 });
               };
@@ -65,7 +65,7 @@ GL.controller("TipCtrl",
                   }
                 };
 
-                return $http({method: "PUT", url: "api/rtips/" + $scope.tip.id, data: req}).then(function () {
+                return $http({method: "PUT", url: "api/recipient/rtips/" + $scope.tip.id, data: req}).then(function () {
                   $scope.reload();
                 });
               };
@@ -144,7 +144,7 @@ GL.controller("TipCtrl",
     };
 
     if ($scope.Authentication.session.role === "whistleblower") {
-      $scope.fileupload_url = "api/wbtip/rfile";
+      $scope.fileupload_url = "api/whistleblower/wbtip/rfile";
 
       $scope.tip = new WBTip(function(tip) {
         $scope.tip = tip;
@@ -183,7 +183,7 @@ GL.controller("TipCtrl",
 
             $interval.cancel($scope.interval);
 
-            return $http.post("api/wbtip/" + $scope.tip.id + "/provideidentityinformation",
+            return $http.post("api/whistleblower/wbtip/identity",
                               {"identity_field_id": identity_field_id, "identity_field_answers": identity_field_answers}).
                 then(function(){
                   $scope.reload();
@@ -329,7 +329,7 @@ GL.controller("TipCtrl",
     };
 
     $scope.access_identity = function () {
-      return $http.post("api/rtips/" + $scope.tip.id + "/iars", {"request_motivation": ""}).then(function(){
+      return $http.post("api/recipient/rtips/" + $scope.tip.id + "/iars", {"request_motivation": ""}).then(function(){
          $scope.reload();
       });
     };
@@ -374,7 +374,7 @@ controller("TipOperationsCtrl",
       }
     };
 
-    return $http({method: "PUT", url: "api/rtips/" + args.tip.id, data: req}).then(function () {
+    return $http({method: "PUT", url: "api/recipient/rtips/" + args.tip.id, data: req}).then(function () {
       $scope.reload();
     });
   };
@@ -396,11 +396,11 @@ controller("TipOperationsCtrl",
         }
       };
 
-      return $http({method: "PUT", url: "api/rtips/" + args.tip.id, data: req}).then(function () {
+      return $http({method: "PUT", url: "api/recipient/rtips/" + args.tip.id, data: req}).then(function () {
         $scope.reload();
       });
     }  else if (args.operation === "delete") {
-      return $http({method: "DELETE", url: "api/rtips/" + args.tip.id, data:{}}).
+      return $http({method: "DELETE", url: "api/recipient/rtips/" + args.tip.id, data:{}}).
         then(function() {
           $location.url("/recipient/reports");
           $scope.reload();
@@ -444,7 +444,7 @@ controller("IdentityAccessRequestCtrl",
   $scope.confirm = function () {
     $uibModalInstance.close();
 
-    return $http.post("api/rtips/" + tip.id + "/iars", {"request_motivation": $scope.request_motivation}).
+    return $http.post("api/recipient/rtips/" + tip.id + "/iars", {"request_motivation": $scope.request_motivation}).
       then(function(){
         $scope.reload();
       });

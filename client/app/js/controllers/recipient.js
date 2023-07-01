@@ -153,7 +153,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
   $scope.toggle_star = function(tip) {
     return $http({
       method: "PUT",
-      url: "api/rtips/" + tip.id,
+      url: "api/recipient/rtips/" + tip.id,
       data: {
         "operation": "set",
         "args": {
@@ -208,7 +208,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
     for(var i=0; i<$scope.selected_tips.length; i++) {
       (function(i) {
         new TokenResource().$get().then(function(token) {
-          return $window.open("api/rtips/" + $scope.selected_tips[i] + "/export?token=" + token.id + ":" + token.answer);
+          return $window.open("api/recipient/rtips/" + $scope.selected_tips[i] + "/export?token=" + token.id + ":" + token.answer);
         });
       })(i);
     }

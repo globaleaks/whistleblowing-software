@@ -2,9 +2,9 @@
 from twisted.internet.address import IPv4Address
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.handlers import authentication
+from globaleaks.handlers import auth
 from globaleaks.handlers.user import UserInstance
-from globaleaks.handlers.wbtip import WBTipInstance
+from globaleaks.handlers.whistleblower.wbtip import WBTipInstance
 from globaleaks.rest import errors
 from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
@@ -13,7 +13,7 @@ from globaleaks.tests import helpers
 
 
 class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
-    _handler = authentication.AuthenticationHandler
+    _handler = auth.AuthenticationHandler
 
     # since all logins for roles admin, receiver and custodian happen
     # in the same way, the following tests are performed on the admin user.
@@ -42,7 +42,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
         auth_switch_handler = self.request({},
                                            headers={'x-session': response['id']},
-                                           handler_cls=authentication.TenantAuthSwitchHandler)
+                                           handler_cls=auth.TenantAuthSwitchHandler)
 
         response = yield auth_switch_handler.get(2)
         self.assertTrue('redirect' in response)
@@ -187,7 +187,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
 
 class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
-    _handler = authentication.ReceiptAuthHandler
+    _handler = auth.ReceiptAuthHandler
 
     @inlineCallbacks
     def test_invalid_whistleblower_login(self):
@@ -267,7 +267,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
 class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_successful_admin_logout(self):
-        self._handler = authentication.AuthenticationHandler
+        self._handler = auth.AuthenticationHandler
 
         # Login
         handler = self.request({
@@ -281,7 +281,7 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
         self.assertTrue(handler.session is None)
         self.assertTrue('id' in response)
 
-        self._handler = authentication.SessionHandler
+        self._handler = auth.SessionHandler
 
         # Logout
         session_id = response['id']
@@ -290,7 +290,7 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_successful_whistleblower_logout(self):
-        self._handler = authentication.ReceiptAuthHandler
+        self._handler = auth.ReceiptAuthHandler
 
         yield self.perform_full_submission_actions()
 
@@ -304,7 +304,7 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
         self.assertTrue(handler.session is None)
         self.assertTrue('id' in response)
 
-        self._handler = authentication.SessionHandler
+        self._handler = auth.SessionHandler
 
         # Logout
         handler = self.request({}, headers={'x-session': response['id']})
@@ -312,7 +312,7 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
 
 
 class TestTokenAuth(helpers.TestHandlerWithPopulatedDB):
-    _handler = authentication.TokenAuthHandler
+    _handler = auth.TokenAuthHandler
 
     # since all logins for roles admin, receiver and custodian happen
     # in the same way, the following tests are performed on the admin user.

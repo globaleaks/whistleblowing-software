@@ -7,7 +7,7 @@ from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.operation import OperationHandler
-from globaleaks.handlers.password_reset import db_generate_password_reset_token
+from globaleaks.handlers.user.reset_password import db_generate_password_reset_token
 from globaleaks.handlers.user import get_user
 from globaleaks.handlers.user.operation import disable_2fa
 from globaleaks.models import Config, InternalTip, User

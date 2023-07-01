@@ -11,7 +11,7 @@ from globaleaks import models
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.submission import decrypt_tip, \
+from globaleaks.handlers.whistleblower.submission import decrypt_tip, \
     db_set_internaltip_answers, db_get_questionnaire, \
     db_archive_questionnaire_schema, db_set_internaltip_data
 from globaleaks.handlers.user import user_serialize_user
@@ -208,11 +208,11 @@ class WBTipIdentityHandler(BaseHandler):
     """
     check_roles = 'whistleblower'
 
-    def post(self, tip_id):
+    def post(self):
         request = self.validate_request(self.request.content.read(), requests.WhisleblowerIdentityAnswers)
 
         return update_identity_information(self.request.tid,
-                                           tip_id,
+                                           self.session.user_id,
                                            request['identity_field_id'],
                                            request['identity_field_answers'],
                                            self.request.language)
@@ -224,10 +224,10 @@ class WBTipAdditionalQuestionnaire(BaseHandler):
     """
     check_roles = 'whistleblower'
 
-    def post(self, tip_id):
+    def post(self):
         request = self.validate_request(self.request.content.read(), requests.AdditionalQuestionnaireAnswers)
 
         return store_additional_questionnaire_answers(self.request.tid,
-                                                      tip_id,
+                                                      self.session.user_id,
                                                       request['answers'],
                                                       self.request.language)

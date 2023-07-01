@@ -12,6 +12,8 @@ from globaleaks.utils.crypto import generateRandomKey
 from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.utility import datetime_now, datetime_null
 
+import globaleaks.handlers.user.validate_email
+
 
 def parse_pgp_options(user, request):
     """

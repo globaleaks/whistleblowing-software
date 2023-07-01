@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-from globaleaks.handlers import wbtip
-from globaleaks.tests import helpers
 from twisted.internet.defer import inlineCallbacks
+
+from globaleaks.handlers.whistleblower import wbtip
+from globaleaks.tests import helpers
 
 
 class TestWBTipInstance(helpers.TestHandlerWithPopulatedDB):
@@ -68,4 +69,4 @@ class WBTipIdentityHandler(helpers.TestHandlerWithPopulatedDB):
         for wbtip_desc in wbtips_desc:
             handler = self.request(body, role='whistleblower', user_id=wbtip_desc['id'])
 
-            yield handler.post(wbtip_desc['id'])
+            yield handler.post()

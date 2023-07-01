@@ -6,6 +6,8 @@ from random import SystemRandom
 from sqlalchemy import or_
 from twisted.internet.defer import inlineCallbacks, returnValue
 
+import globaleaks.handlers.auth.token
+
 from globaleaks.handlers.base import connection_check, BaseHandler
 from globaleaks.models import InternalTip, User
 from globaleaks.orm import db_log, transact, tw

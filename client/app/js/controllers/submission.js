@@ -161,7 +161,7 @@ GL.controller("SubmissionCtrl",
       return;
     }
 
-    return "api/submission/attachment";
+    return "api/whistleblower/submission/attachment";
   };
 
   $scope.prepareSubmission = function(context) {
@@ -425,7 +425,7 @@ controller("AdditionalQuestionnaireCtrl",
 
       $interval.cancel($scope.interval);
 
-      return $http.post("api/wbtip/" + $scope.tip.id + "/update",
+      return $http.post("api/whistleblower/wbtip/fillform",
                         {"cmd": "additional_questionnaire", "answers": $scope.answers}).
           then(function(){
             $scope.reload();

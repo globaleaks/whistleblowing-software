@@ -1,6 +1,6 @@
 # -*- coding: UTF-8
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.handlers.rtip import db_update_submission_status
+from globaleaks.handlers.recipient.rtip import db_update_submission_status
 from globaleaks.models import Model
 from globaleaks.models.properties import *
 from globaleaks.utils.utility import datetime_now, datetime_null

@@ -101,7 +101,6 @@ def db_create_receivertip(session, receiver, internaltip, tip_key):
     receivertip.receiver_id = receiver.id
     receivertip.crypto_tip_prv_key = Base64Encoder.encode(tip_key)
     session.add(receivertip)
-    session.flush()
     return receivertip
 
 
