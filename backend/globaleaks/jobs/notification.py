@@ -98,7 +98,6 @@ class MailGenerator(object):
                                     models.ReceiverTip.id == models.ReceiverFile.receivertip_id,
                                     models.InternalTip.id == models.ReceiverTip.internaltip_id,
                                     models.InternalFile.id == models.ReceiverFile.internalfile_id,
-                                    models.InternalFile.submission.is_(False),
                                     models.ReceiverFile.new.is_(True)) \
                           .order_by(models.InternalFile.creation_date)
 

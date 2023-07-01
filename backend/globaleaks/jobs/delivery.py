@@ -50,7 +50,7 @@ def file_delivery(session):
             # https://github.com/globaleaks/GlobaLeaks/issues/444
             # avoid to mark the receiverfile as new if it is part of a submission
             # this way we avoid to send unuseful messages
-            receiverfile.new = not ifile.submission
+            receiverfile.new = not ifile.creation_date == itip.creation_date
 
             session.add(receiverfile)
 
