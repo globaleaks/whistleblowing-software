@@ -6,8 +6,13 @@ describe("Admin configure custom CSS", function() {
     await browser.gl.utils.waitUntilPresent(by.cssContainingText("a", "Theme customization"));
 
     await element(by.cssContainingText("a", "Theme customization")).click();
-    const customSwitch = await element(by.css(".custom-switch"));
-    customSwitch.click();
+
+    const fileSwitch = await element(by.css(".custom-switch"));
+
+    expect(fileSwitch.isSelected()).toBeFalsy();
+
+    await fileSwitch.click();
+
     expect(await element(by.css(".modal")).isDisplayed()).toBeTruthy();
   });
 
@@ -19,38 +24,37 @@ describe("Admin configure custom CSS", function() {
     const modelInput = await element(by.css(".modal [type='password']"));
 
     // sending wrong password
-    await modelInput.sendKeys("admin");
+    await modelInput.sendKeys("wrongpassword");
     await element(by.css(".modal .btn-primary")).click();
 
     expect(await element(by.css(".modal")).isDisplayed()).toBeTruthy();
   });
 
-  it("should close the model  if password is right", async function() {
+  it("should close the model if password is right", async function() {
     const modelInput = await element(by.css(".modal [type='password']"));
-    
+   
     // sending right password
     await modelInput.sendKeys(browser.gl.utils.vars.user_password);
     await element(by.css(".modal .btn-primary")).click();
-
-    const customSwitch = await element(by.css(".custom-switch input"));
-    
-    expect(customSwitch.isSelected()).toBeTruthy();
+   
+    expect(await element(by.css(".custom-switch input")).isSelected()).toBeTruthy();
   });
 
   it("should be able to configure a custom CSS", async function() {
     var customCSSFile = browser.gl.utils.makeTestFilePath("style.css");
 
-    await browser.gl.utils.login_admin();
-    await browser.setLocation("admin/settings");
+    await element(by.css("div.uploadfile.file-css input")).sendKeys(customCSSFile);
 
+    await browser.gl.utils.waitUntilPresent(by.cssContainingText("label", "Project name"));
+  });
+
+  it("should be able to disable the file upload", async function() {
+    await browser.setLocation("admin/settings");
     await browser.gl.utils.waitUntilPresent(by.cssContainingText("a", "Theme customization"));
 
     await element(by.cssContainingText("a", "Theme customization")).click();
 
-    await element(by.css("div.uploadfile.file-css input")).sendKeys(customCSSFile);
-
-    await browser.gl.utils.waitUntilPresent(by.cssContainingText("label", "Project name"));
-
-    await browser.gl.utils.logout();
+    await element(by.css(".custom-switch")).click();
+    expect(await element(by.css(".custom-switch input")).isSelected()).toBeFalsy();
   });
 });

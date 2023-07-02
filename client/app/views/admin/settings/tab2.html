@@ -41,7 +41,7 @@
   </div>
   <div class="col-md-2">
     <div class="custom-control custom-switch">
-      <input type="checkbox" class="custom-control-input" id="toggleSwitch" data-ng-model="Authentication.session.permissions.can_upload_files" data-ng-change="togglePermissionUploadFiles()">
+      <input id="toggleSwitch" class="custom-control-input" type="checkbox" data-ng-model="Authentication.session.permissions.can_upload_files" data-ng-change="togglePermissionUploadFiles()">
       <label class="custom-control-label" for="toggleSwitch">{{preferences.permissions.can_upload_files ? 'Enabled' : 'Disabled'}}</label>
     </div>
   </div>
