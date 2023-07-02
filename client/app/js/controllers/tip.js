@@ -17,6 +17,9 @@ GL.controller("TipCtrl",
         "operation": "get_users_names",
         "args": {}
       }}).then(function(response) {
+        // Prevent listing current user
+        delete response.data[$scope.Authentication.session.user_id];
+
         $uibModal.open({
           templateUrl: "views/modals/grant_access.html",
           controller: "ConfirmableModalCtrl",
@@ -49,6 +52,9 @@ GL.controller("TipCtrl",
         "operation": "get_users_names",
         "args": {}
       }}).then(function(response) {
+        // Prevent listing current user
+        delete response.data[$scope.Authentication.session.user_id];
+
         $uibModal.open({
           templateUrl: "views/modals/revoke_access.html",
           controller: "ConfirmableModalCtrl",
