@@ -31,33 +31,33 @@ controller("WBFileUploadCtrl", ["$scope", function($scope) {
     $flow.opts.query = {"description": $scope.file_upload_description};
     $flow.upload();
   };
-}]).
-controller("AudioUploadCtrl", ["$scope", "flowFactory", function($scope, flowFactory) {
+}])
+.controller("AudioUploadCtrl", ["$scope", "flowFactory", function($scope, flowFactory) {
   var mediaRecorder;
   var flow;
   var startTime;
 
   $scope.isRecording = false;
 
-  function onDataListener(event) {
+  function onDataAvailable(event) {
     chunks.push(event.data);
   }
 
-  function onStartListener() {
+  function onStart() {
     startTime = Date.now();
   }
 
-  function onStopListener() {
+  function onStop() {
     var blob = new Blob(chunks, { type: 'audio/webm' });
     chunks = [];
     $scope.audioPlayer = URL.createObjectURL(blob);
     $scope.$apply(function() {
       var durationInSeconds = (Date.now() - startTime) / 1000;
       $scope.isRecordingTooShort = durationInSeconds < parseInt($scope.field.attrs.min_time.value);
-      $scope.isRecordingTooLong = ($scope.field.attrs.max_time.value!=0 && durationInSeconds > parseInt($scope.field.attrs.max_time.value)) || durationInSeconds > 180;
+      $scope.isRecordingTooLong = ($scope.field.attrs.max_time.value>0 && durationInSeconds > parseInt($scope.field.attrs.max_time.value)) || durationInSeconds > 180;
       $scope.audioFile = blob;
       if (!$scope.isRecordingTooShort && !$scope.isRecordingTooLong) {
-        var file = new flow.FlowFile(flow, {
+        var file = new Flow.FlowFile(flow, {
           name: 'audio.webm',
           size: blob.size,
           relativePath: 'audio.webm'
@@ -75,8 +75,6 @@ controller("AudioUploadCtrl", ["$scope", "flowFactory", function($scope, flowFac
   }
 
   $scope.startRecording = function(fileId) {
-    $scope.audioPlayer = null;
-    $scope.isRecording = true;
     flow = flowFactory.create({
       target: $scope.fileupload_url,
       query: {
@@ -89,9 +87,9 @@ controller("AudioUploadCtrl", ["$scope", "flowFactory", function($scope, flowFac
         chunks = [];
         mediaRecorder = new MediaRecorder(stream);
 
-        mediaRecorder.addEventListener('dataavailable', onDataListener);
-        mediaRecorder.addEventListener('start', onStartListener);
-        mediaRecorder.addEventListener('stop', onStopListener);
+        mediaRecorder.addEventListener('dataavailable', onDataAvailable);
+        mediaRecorder.addEventListener('start', onStart);
+        mediaRecorder.addEventListener('stop', onStop);
 
         mediaRecorder.start();
       })
@@ -111,7 +109,6 @@ controller("AudioUploadCtrl", ["$scope", "flowFactory", function($scope, flowFac
       });
     }
   };
-
 }])
 .controller("ImageUploadCtrl", ["$http", "$scope", "$rootScope", "uploadUtils", "Utils", function($http, $scope, $rootScope, uploadUtils, Utils) {
   $scope.Utils = Utils;
