@@ -1039,7 +1039,6 @@ hr {
   color: #333;
 }
 
-
 .audio-player-wrapper[disabled] {
   cursor: not-allowed;
 }

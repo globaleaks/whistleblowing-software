@@ -1,53 +1,18 @@
 <div data-ng-init="fileinput = field ? field.id : 'status_page'; ">
- <div data-ng-controller="SecureAudioUploadCtrl">
-   <div class="audio-box" >
-     <div class="audio-btn-group">
-       <button class="btn btn-audio" data-ng-click="startRecording(field.id)" data-ng-disabled="isRecording" data-ng-class="{ 'btn-audio-enabled': !activeButton, 'active': activeButton === 'record' }">
-         <i class="fas fa-microphone-alt"></i>
-       </button>
-       <button class="btn btn-audio" data-ng-click="applySoundrotection(field.id)" data-ng-disabled="!isAudioProtected && activeButton === 'record'" data-ng-class="{'active': isAudioProtected && activeButton === 'record' }">
-         <i class="fas fa-shield"></i>
-       </button>
-       <button class="btn btn-audio btn-audio-enabled" data-ng-click="stopRecording()" data-ng-if="recordingType ==='normal'">
-         <i class="fas fa-stop"></i>
-       </button>
-       <button class="btn btn-audio btn-audio-enabled" data-ng-click="stopRecordingSecure()" data-ng-if="recordingType ==='secure'">
-        <i class="fas fa-stop"></i>
-      </button>
-       <div class="audio-recorder" data-ng-class="{'audio-recorder-active': activeButton === 'record' || activeButton === 'pause'}"></div>  
-       <!-- Move the circle element inside the audio-btn-group  -->
-     </div>
-     <input data-ng-attr-id="customFile-{{fileinput}}" data-ng-model="_fakemodel[fileinput]" data-ng-required="field && field.required && !uploads[fileinput].files.length" name="input-{{entryIndex}}" type="file" />
-     <div id="{{fieldEntry}}-audio" class="audio-container" data-ng-disabled="">
-       <div class="audio-player-wrapper" data-ng-disabled="disablePlayer || isRecording ">
-         <audio data-ng-src="{{audioPlayer}}" data-ng-if="audioPlayer" controls class="audio-player"></audio>
-       </div>
-     </div>
-   </div>
-   <div class="text-danger" data-ng-show="isRecordingTooShort">
-     Recording must be at least {{field.attrs.min_time.value}} seconds long.
-   </div>
-   <div class="text-danger" data-ng-show="isRecordingTooLarge">
-     Recording must be maximum {{field.attrs.max_time.value}} seconds long.
-   </div>
- </div>
-</div>
-
-<!-- <div data-ng-init="fileinput = field ? field.id : 'status_page'; ">
   <div data-ng-controller="AudioUploadCtrl">
     <div class="audio-box">
       <div class="audio-btn-group">
-        <button class="btn btn-audio" data-ng-click="startRecording(field.id)" data-ng-disabled="isRecording" data-ng-class="{ 'btn-audio-enabled': !activeButton, 'active': activeButton === 'record' }">
+        <button class="btn btn-audio" data-ng-click="startRecording(field.id)" data-ng-disabled="isRecording" data-ng-class="{ 'btn-audio-enabled': !isRecording, 'active': isRecording }">
           <i class="fas fa-microphone-alt"></i>
         </button>
-        <button class="btn btn-audio" data-ng-click="stopRecording()" data-ng-disabled="!activeButton" data-ng-class="{'btn-audio-enabled': activeButton === 'record' || activeButton === 'pause'}">
+        <button class="btn btn-audio" data-ng-click="stopRecording()" data-ng-disabled="!isRecording" data-ng-class="{'btn-audio-enabled': isRecording}">
           <i class="fas fa-stop"></i>
         </button>
-        <div class="audio-recorder" data-ng-class="{'audio-recorder-active': activeButton === 'record' || activeButton === 'pause'}"></div>
+        <div class="audio-recorder" data-ng-class="{'audio-recorder-active': isRecording}"></div>
       </div>
       <input data-ng-attr-id="customFile-{{fileinput}}" data-ng-model="_fakemodel[fileinput]" data-ng-required="field && field.required && !uploads[fileinput].files.length" name="input-{{entryIndex}}" type="file" />
       <div id="{{fieldEntry}}-audio" class="audio-container" data-ng-disabled="isRecording">
-        <div class="audio-player-wrapper" data-ng-disabled="disablePlayer || isRecording">
+        <div class="audio-player-wrapper">
           <audio data-ng-src="{{audioPlayer}}" data-ng-if="audioPlayer"  controls class="audio-player"></audio>
         </div>
       </div>
@@ -55,5 +20,8 @@
     <div class="text-danger" data-ng-show="isRecordingTooShort">
       Recording must be at least {{field.attrs.min_time.value}} seconds long.
     </div>
+    <div class="text-danger" data-ng-show="isRecordingTooLong">
+      Recording must be at max {{field.attrs.min_time.value}} seconds long.
+    </div>
   </div>
-</div> -->
+</div>
