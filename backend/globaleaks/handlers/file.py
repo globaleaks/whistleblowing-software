@@ -52,7 +52,6 @@ class FileHandler(BaseHandler):
 
         path = os.path.abspath(os.path.join(self.state.settings.files_path, id))
         directory_traversal_check(self.state.settings.files_path, path)
-        print(path)
 
         if name in appfiles:
             filename = appfiles[name][0]

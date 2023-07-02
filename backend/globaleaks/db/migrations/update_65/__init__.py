@@ -245,7 +245,6 @@ class MigrationScript(MigrationBase):
                                            .distinct():
 
                 if itip.deprecated_crypto_files_pub_key:
-                    print(1)
                     iar.request_motivation = base64.b64encode(GCE.asymmetric_encrypt(crypto_iar_pub_key, iar.request_motivation))
                     iar.reply_motivation = base64.b64encode(GCE.asymmetric_encrypt(crypto_iar_pub_key, iar.reply_motivation))
                     iar.receivertip_id = rtip.id
@@ -253,7 +252,6 @@ class MigrationScript(MigrationBase):
                     iar.crypto_iar_prv_key = base64.b64encode(GCE.asymmetric_encrypt(itip.deprecated_crypto_files_pub_key, crypto_iar_prv_key))
 
             for custodian in session.query(models.User).filter(models.User.tid == tid, models.User.role == 'custodian'):
-                print(2)
                 iarc = models.IdentityAccessRequestCustodian()
                 iarc.iar_id = iar.id
                 iarc.custodian_id = custodian.id
