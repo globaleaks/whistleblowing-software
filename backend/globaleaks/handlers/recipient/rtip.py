@@ -723,12 +723,13 @@ class RTipWBFileHandler(BaseHandler):
     handler_exec_time_threshold = 3600
 
     @transact
-    def download_wbfile(self, session, tid, file_id):
+    def download_wbfile(self, session, tid, user_id, file_id):
         wbfile, wbtip, pgp_key = db_get(session,
                                         (models.WhistleblowerFile,
                                          models.InternalTip,
                                          models.User.pgp_key_public),
-                                        (models.User.id == models.ReceiverTip.receiver_id,
+                                        (models.User.id == user_id,
+                                         models.User.id == models.ReceiverTip.receiver_id,
                                          models.WhistleblowerFile.id == file_id,
                                          models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
                                          models.ReceiverTip.internaltip_id == models.InternalTip.id))
@@ -743,7 +744,7 @@ class RTipWBFileHandler(BaseHandler):
 
     @inlineCallbacks
     def get(self, wbfile_id):
-        name, filename, tip_prv_key, pgp_key = yield self.download_wbfile(self.request.tid, wbfile_id)
+        name, filename, tip_prv_key, pgp_key = yield self.download_wbfile(self.request.tid, self.session.user_id, wbfile_id)
 
         filelocation = os.path.join(self.state.settings.attachments_path, filename)
         directory_traversal_check(self.state.settings.attachments_path, filelocation)

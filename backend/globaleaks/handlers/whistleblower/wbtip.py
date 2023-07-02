@@ -68,10 +68,10 @@ def get_wbtip(session, itip_id, language):
 
 
 @transact
-def create_comment(session, tid, itip_id, content):
+def create_comment(session, tid, user_id, content):
     itip = db_get(session,
                   models.InternalTip,
-                  (models.InternalTip.id == itip_id,
+                  (models.InternalTip.id == user_id,
                    models.InternalTip.enable_two_way_comments.is_(True),
                    models.InternalTip.status != 'closed',
                    models.InternalTip.tid == tid))
@@ -83,7 +83,7 @@ def create_comment(session, tid, itip_id, content):
         _content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content)).decode()
 
     comment = models.Comment()
-    comment.internaltip_id = itip_id
+    comment.internaltip_id = itip.id
     comment.content = _content
     session.add(comment)
     session.flush()
@@ -95,10 +95,10 @@ def create_comment(session, tid, itip_id, content):
 
 
 @transact
-def update_identity_information(session, tid, user_id, tip_id, identity_field_id, wbi, language):
+def update_identity_information(session, tid, user_id, identity_field_id, wbi, language):
     itip = db_get(session,
                   models.InternalTip,
-                  (models.InternalTip.id == tip_id,
+                  (models.InternalTip.id == user_id,
                    models.InternalTip.status != 'closed',
                    models.InternalTip.tid == tid))
 
@@ -115,9 +115,9 @@ def update_identity_information(session, tid, user_id, tip_id, identity_field_id
 
 
 @transact
-def store_additional_questionnaire_answers(session, tid, tip_id, answers, language):
+def store_additional_questionnaire_answers(session, tid, user_id, answers, language):
     itip, context = session.query(models.InternalTip, models.Context) \
-                           .filter(models.InternalTip.id == tip_id,
+                           .filter(models.InternalTip.id == self.session.user_id,
                                    models.InternalTip.status != 'closed',
                                    models.InternalTip.tid == tid,
                                    models.Context.id == models.InternalTip.context_id).one()
