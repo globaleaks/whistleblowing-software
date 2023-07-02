@@ -18,7 +18,7 @@
        <!-- Move the circle element inside the audio-btn-group  -->
      </div>
      <input data-ng-attr-id="customFile-{{fileinput}}" data-ng-model="_fakemodel[fileinput]" data-ng-required="field && field.required && !uploads[fileinput].files.length" name="input-{{entryIndex}}" type="file" />
-     <div id="{{fieldEntry}}-audio" class="audio-container" data-ng-disabled="isRecording">
+     <div id="{{fieldEntry}}-audio" class="audio-container" data-ng-disabled="">
        <div class="audio-player-wrapper" data-ng-disabled="disablePlayer || isRecording ">
          <audio data-ng-src="{{audioPlayer}}" data-ng-if="audioPlayer" controls class="audio-player"></audio>
        </div>

@@ -1044,6 +1044,20 @@ hr {
   cursor: not-allowed;
 }
 
+.audio-recorder {
+  position: absolute;
+  top: 5px;
+  right: 3px;
+  width: 10px;
+  height: 10px;
+  background-color: #ccc;
+  border-radius: 50%;
+}
+
+.audio-recorder-active{
+  background-color: red;
+}
+
 .audio-player-wrapper[disabled] .audio-player {
   opacity: 0.5;
   pointer-events: none;

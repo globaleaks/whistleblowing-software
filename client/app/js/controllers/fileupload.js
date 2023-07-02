@@ -38,7 +38,6 @@ controller("WBFileUploadCtrl", ["$scope", function($scope) {
   var flow;
   var startTime;
 
-  $scope.audioPlayer = null;
   $scope.recordButton = false;
   $scope.stopButton = false;
   $scope.activeButton = null;
@@ -48,7 +47,6 @@ controller("WBFileUploadCtrl", ["$scope", function($scope) {
     $scope.isRecording = true;
     $scope.recordButton = true;
     $scope.stopButton = false;
-    $scope.audioPlayer = '';
 
     $scope.activeButton = 'record';
     flow = flowFactory.create({
@@ -71,33 +69,33 @@ controller("WBFileUploadCtrl", ["$scope", function($scope) {
         mediaRecorder.addEventListener('stop', function() {
           var durationInSeconds = (Date.now() - startTime) / 1000;
           $scope.isRecordingTooShort = durationInSeconds < parseInt($scope.field.attrs.min_time.value);
+          $scope.isRecordingTooLarge = durationInSeconds > parseInt($scope.field.attrs.max_time.value) || durationInSeconds > 180;
 
-          var blob = new Blob(chunks, { type: 'audio/webm' });
-          chunks = [];
-          $scope.audioPlayer = URL.createObjectURL(blob);
-          $scope.$apply(function() {
-            $scope.audioFile = blob;
-            var file = new Flow.FlowFile(flow, {
-              name: 'audio.webm',
-              size: blob.size,
-              relativePath: 'audio.webm'
-            });
-            file.file = blob;
-            if(!$scope.isRecordingTooShort){
+          if (!$scope.isRecordingTooShort && !$scope.isRecordingTooLarge) {
+            var blob = new Blob(chunks, { type: 'audio/webm' });
+            chunks = [];
+            $scope.audioPlayer = URL.createObjectURL(blob);
+            $scope.$apply(function() {
+              $scope.audioFile = blob;
+              var file = new Flow.FlowFile(flow, {
+                name: 'audio.webm',
+                size: blob.size,
+                relativePath: 'audio.webm'
+              });
+              file.file = blob;
+              if(!$scope.isRecordingTooShort){
+              }
               flow.files.push(file);
-            }
-
-            if ($scope.uploads.hasOwnProperty($scope.fileinput)) {
-              delete $scope.uploads[$scope.fileinput];
-            }
-            if(!$scope.isRecordingTooShort){
+              if ($scope.uploads.hasOwnProperty($scope.fileinput)) {
+                delete $scope.uploads[$scope.fileinput];
+              }
               $scope.uploads[$scope.fileinput] = flow
-            }
-          });
+            });
+          }
         });
 
         mediaRecorder.start();
-     
+
       })
       .catch(function(err) {
         console.error('Error accessing microphone', err);
@@ -267,7 +265,6 @@ controller("WBFileUploadCtrl", ["$scope", function($scope) {
     $scope.isRecording = true;
     $scope.recordButton = true;
     $scope.stopButton = false;
-    $scope.audioPlayer = '';
 
     $scope.activeButton = 'record';
     flow = flowFactory.create({
@@ -290,29 +287,32 @@ controller("WBFileUploadCtrl", ["$scope", function($scope) {
         mediaRecorder.addEventListener('stop', function() {
           var durationInSeconds = (Date.now() - startTime) / 1000;
           $scope.isRecordingTooShort = durationInSeconds < parseInt($scope.field.attrs.min_time.value);
+          $scope.isRecordingTooLarge = durationInSeconds > parseInt($scope.field.attrs.max_time.value) || durationInSeconds > 180;
 
           var blob = new Blob(chunks, { type: 'audio/webm' });
           chunks = [];
-          $scope.audioPlayer = URL.createObjectURL(blob);
-          $scope.$apply(function() {
-            $scope.audioFile = blob;
-            var file = new Flow.FlowFile(flow, {
-              name: 'audio.webm',
-              size: blob.size,
-              relativePath: 'audio.webm'
-            });
-            file.file = blob;
-            if(!$scope.isRecordingTooShort){
-              flow.files.push(file);
-            }
+          if (!$scope.isRecordingTooShort && !$scope.isRecordingTooLarge) {
+            $scope.audioPlayer = URL.createObjectURL(blob);
+            $scope.$apply(function() {
+              $scope.audioFile = blob;
+              var file = new Flow.FlowFile(flow, {
+                name: 'audio.webm',
+                size: blob.size,
+                relativePath: 'audio.webm'
+              });
+              file.file = blob;
+              if(!$scope.isRecordingTooShort){
+                flow.files.push(file);
+              }
 
-            if ($scope.uploads.hasOwnProperty($scope.fileinput)) {
-              delete $scope.uploads[$scope.fileinput];
-            }
-            if(!$scope.isRecordingTooShort){
-              $scope.uploads[$scope.fileinput] = flow
-            }
-          });
+              if ($scope.uploads.hasOwnProperty($scope.fileinput)) {
+                delete $scope.uploads[$scope.fileinput];
+              }
+              if(!$scope.isRecordingTooShort){
+                $scope.uploads[$scope.fileinput] = flow
+              }
+            });
+          }
         });
 
         mediaRecorder.start();
@@ -381,7 +381,6 @@ controller("WBFileUploadCtrl", ["$scope", function($scope) {
     $scope.isRecording = true;
     $scope.isRecordingTooLarge=false;
     $scope.isRecordingTooShort=false;
-    $scope.audioPlayer = '';
     $scope.recordingType='secure';
     $scope.activeButton = 'record';
     startTime = Date.now();
