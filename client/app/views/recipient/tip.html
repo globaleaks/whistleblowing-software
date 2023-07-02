@@ -1,90 +1,55 @@
 <div id="Toolbar" class="row">
   <div class="col-md-12">
-    <a id="link-tiplist"
-       href="#/recipient/reports"
-       data-uib-tooltip="{{'Reports' | translate}}"
-       class="btn btn-outline-secondary">
+    <a id="link-tiplist" href="#/recipient/reports" data-uib-tooltip="{{'Reports' | translate}}"
+      class="btn btn-outline-secondary">
       <i class="fa-solid fa-arrow-left"></i>
     </a>
-
-    <span id="tip-action-star"
-          data-ng-click="tip_toggle_star()"
-          data-uib-tooltip="{{'Mark as important' | translate}}"
-          class="btn btn-outline-secondary">
+    <span id="tip-action-star" data-ng-click="tip_toggle_star()" data-uib-tooltip="{{'Mark as important' | translate}}"
+      class="btn btn-outline-secondary">
       <i class="fa-solid fa-star" data-ng-class="{'text-warning': tip.important}"></i>
     </span>
-
-    <span id="tip-action-reminder"
-          data-ng-click="set_reminder()"
-          data-uib-tooltip="{{'Set a reminder' | translate}}"
-          class="btn btn-outline-secondary">
+    <span id="tip-action-reminder" data-ng-click="set_reminder()" data-uib-tooltip="{{'Set a reminder' | translate}}"
+      class="btn btn-outline-secondary">
       <i class="fa-solid fa-bell" data-ng-class="{'text-warning': !Utils.isNever(tip.reminder_date)}"></i>
     </span>
-
-    <span id="tip-action-notify" data-ng-if="!tip.enable_notifications"
-          data-ng-click="tip_notify(true)"
-          data-uib-tooltip="{{'Turn on email notifications' | translate}}"
-          class="btn btn-outline-secondary active">
+    <span id="tip-action-notify" data-ng-if="!tip.enable_notifications" data-ng-click="tip_notify(true)"
+      data-uib-tooltip="{{'Turn on email notifications' | translate}}" class="btn btn-outline-secondary active">
       <i class="fa-solid fa-volume-mute"></i>
     </span>
-
-    <span id="tip-action-silence" data-ng-if="tip.enable_notifications"
-          data-ng-click="tip_notify(false)"
-          data-uib-tooltip="{{'Silence email notifications' | translate}}"
-          class="btn btn-outline-secondary">
+    <span id="tip-action-silence" data-ng-if="tip.enable_notifications" data-ng-click="tip_notify(false)"
+      data-uib-tooltip="{{'Silence email notifications' | translate}}" class="btn btn-outline-secondary">
       <i class="fa-solid fa-volume-down"></i>
     </span>
-
-    <span id="tip-action-grant-access"
-          data-ng-if="resources.preferences.can_grant_access_to_reports"
-          data-ng-click="openGrantTipAccessModal()"
-          data-uib-tooltip="{{'Grant access' | translate}}"
-          class="btn btn-outline-secondary">
+    <span id="tip-action-grant-access" data-ng-if="resources.preferences.can_grant_access_to_reports"
+      data-ng-click="openGrantTipAccessModal()" data-uib-tooltip="{{'Grant access' | translate}}"
+      class="btn btn-outline-secondary">
       <i class="fa-solid fa-user-plus"></i>
     </span>
-
-    <span id="tip-action-revoke-access"
-          data-ng-if="resources.preferences.can_grant_access_to_reports"
-          data-ng-click="openRevokeTipAccessModal()"
-          data-uib-tooltip="{{'Revoke access' | translate}}"
-          class="btn btn-outline-secondary">
+    <span id="tip-action-revoke-access" data-ng-if="resources.preferences.can_grant_access_to_reports"
+      data-ng-click="openRevokeTipAccessModal()" data-uib-tooltip="{{'Revoke access' | translate}}"
+      class="btn btn-outline-secondary">
       <i class="fa-solid fa-user-minus"></i>
     </span>
-
     <span id="tip-action-postpone"
-          data-ng-if="resources.preferences.can_postpone_expiration && contexts_by_id[tip.context_id].tip_timetolive > 0"
-          data-ng-click="tip_postpone()"
-          data-uib-tooltip="{{'Postpone the expiration date' | translate}}"
-          class="btn btn-outline-secondary">
+      data-ng-if="resources.preferences.can_postpone_expiration && contexts_by_id[tip.context_id].tip_timetolive > 0"
+      data-ng-click="tip_postpone()" data-uib-tooltip="{{'Postpone the expiration date' | translate}}"
+      class="btn btn-outline-secondary">
       <i class="fa-solid fa-clock"></i>
     </span>
-
-    <span id="tip-action-delete"
-          data-ng-if="resources.preferences.can_delete_submission"
-          data-ng-click="tip_delete()"
-          data-uib-tooltip="{{'Delete' | translate}}"
-          class="btn btn-outline-secondary">
+    <span id="tip-action-delete" data-ng-if="resources.preferences.can_delete_submission" data-ng-click="tip_delete()"
+      data-uib-tooltip="{{'Delete' | translate}}" class="btn btn-outline-secondary">
       <i class="fa-solid fa-trash"></i>
     </span>
-
-    <span id="tip-action-print"
-          data-ng-click="Utils.print()"
-          data-uib-tooltip="{{'Print' | translate}}"
-          class="btn btn-outline-secondary">
+    <span id="tip-action-print" data-ng-click="Utils.print()" data-uib-tooltip="{{'Print' | translate}}"
+      class="btn btn-outline-secondary">
       <i class="fa-solid fa-print"></i>
     </span>
-
-    <span id="tip-action-export"
-          data-ng-click="exportTip(tip)"
-          data-uib-tooltip="{{'Export' | translate}}"
-          class="btn btn-outline-secondary">
-        <i class="fa-solid fa-save"></i>
+    <span id="tip-action-export" data-ng-click="exportTip(tip)" data-uib-tooltip="{{'Export' | translate}}"
+      class="btn btn-outline-secondary">
+      <i class="fa-solid fa-save"></i>
     </span>
-
-    <span id="link-reload"
-          data-ng-click="reload()"
-          data-uib-tooltip="{{'Refresh' | translate}}"
-          class="btn btn-outline-secondary">
+    <span id="link-reload" data-ng-click="reload()" data-uib-tooltip="{{'Refresh' | translate}}"
+      class="btn btn-outline-secondary">
       <i class="fa-solid fa-sync"></i>
     </span>
     <span
@@ -92,7 +57,7 @@
       data-ng-click="tip_mode(true)" data-uib-tooltip="{{'Turn on edit mode' | translate}}"
       class="btn btn-outline-secondary svg-btn">
       <svg class="mode-svg" version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 232.000000 194.000000"
-        preserveAspectRatio="xMidYMid meet" fill="#ffffff">
+        preserveAspectRatio="xMidYMid meet" fill="#FFFFFF">
         <g transform="translate(0.000000,194.000000) scale(0.100000,-0.100000)" fill="#58606E" stroke="none">
           <path
             d="M196 1799 c-38 -30 -36 -76 7 -116 73 -69 1851 -1454 1874 -1459 59 -15 108 72 66 118 -10 11 -170 139 -356 285 l-338 264 115 122 115 122 -197 198 c-108 108 -201 197 -207 197 -5 0 -73 -63 -150 -139 l-140 -139 -340 269 c-187 149 -352 276 -367 284 -36 20 -50 19 -82 -6z m1159 -503 c21 -32 15 -43 -78 -135 l-75 -74 -41 29 -40 29 87 88 c93 94 120 105 147 63z" />
@@ -103,7 +68,6 @@
         </g>
       </svg>
     </span>
-
     <span data-ng-if="mode===true" data-ng-click="tip_mode(false)"
       data-uib-tooltip="{{'Turn off edit mode' | translate}}" class="btn btn-outline-secondary active">
       <i class="fa-solid fa-pencil"></i>
@@ -118,7 +82,8 @@
 </div>
 <div class="row">
   <div class="col-md-6" data-ng-include="'views/partials/tip_questionnaire_answers.html'"></div>
-  <div class="col-md-6" data-ng-if="tip.enable_whistleblower_identity" data-ng-include="'views/recipient/whistleblower_identity.html'"></div>
+  <div class="col-md-6" data-ng-if="tip.enable_whistleblower_identity"
+    data-ng-include="'views/recipient/whistleblower_identity.html'"></div>
 </div>
 <div class="row">
   <div class="col-md-12">
@@ -127,6 +92,8 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-6" data-ng-if="tip.context.enable_comments || tip.comments.length" data-ng-include="'views/partials/tip_comments.html'"></div>
-  <div class="col-md-6" data-ng-if="tip.context.enable_messages || tip.messages.length" data-ng-include="'views/partials/tip_messages.html'"></div>
+  <div class="col-md-6" data-ng-if="tip.context.enable_comments || tip.comments.length"
+    data-ng-include="'views/partials/tip_comments.html'"></div>
+  <div class="col-md-6" data-ng-if="tip.context.enable_messages || tip.messages.length"
+    data-ng-include="'views/partials/tip_messages.html'"></div>
 </div>

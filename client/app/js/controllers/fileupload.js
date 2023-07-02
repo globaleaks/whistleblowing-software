@@ -31,8 +31,108 @@ controller("WBFileUploadCtrl", ["$scope", function($scope) {
     $flow.opts.query = {"description": $scope.file_upload_description};
     $flow.upload();
   };
-}]).
-controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFactory) {
+}])
+.controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFactory) {
+  var chunks = [];
+  var mediaRecorder;
+  var flow;
+  var startTime;
+
+  $scope.audioPlayer = null;
+  $scope.recordButton = false;
+  $scope.stopButton = false;
+  $scope.activeButton = null;
+  $scope.disablePlayer = true;
+
+  $scope.startRecording = function(fileId) {
+    $scope.isRecording = true;
+    $scope.recordButton = true;
+    $scope.stopButton = false;
+    $scope.audioPlayer = '';
+
+    $scope.activeButton = 'record';
+    flow = flowFactory.create({
+      target: $scope.fileupload_url,
+      query: {
+        type: 'audio.webm',
+        reference: fileId
+      }
+    });
+    navigator.mediaDevices.getUserMedia({ audio: true })
+      .then(function(stream) {
+        chunks = [];
+        mediaRecorder = new MediaRecorder(stream);
+        mediaRecorder.addEventListener('dataavailable', function(event) {
+          chunks.push(event.data);
+        });
+        mediaRecorder.addEventListener('start', function() {
+          startTime = Date.now();
+        });
+        mediaRecorder.addEventListener('stop', function() {
+          var durationInSeconds = (Date.now() - startTime) / 1000;
+          $scope.isRecordingTooShort = durationInSeconds < parseInt($scope.field.attrs.min_time.value);
+
+          var blob = new Blob(chunks, { type: 'audio/webm' });
+          chunks = [];
+          $scope.audioPlayer = URL.createObjectURL(blob);
+          $scope.$apply(function() {
+            $scope.audioFile = blob;
+            var file = new Flow.FlowFile(flow, {
+              name: 'audio.webm',
+              size: blob.size,
+              relativePath: 'audio.webm'
+            });
+            file.file = blob;
+            if(!$scope.isRecordingTooShort){
+              flow.files.push(file);
+            }
+
+            if ($scope.uploads.hasOwnProperty($scope.fileinput)) {
+              delete $scope.uploads[$scope.fileinput];
+            }
+            if(!$scope.isRecordingTooShort){
+              $scope.uploads[$scope.fileinput] = flow
+            }
+          });
+        });
+
+        mediaRecorder.start();
+     
+      })
+      .catch(function(err) {
+        console.error('Error accessing microphone', err);
+      });
+  };
+
+  $scope.stopRecording = function() {
+    if (mediaRecorder && (mediaRecorder.state === 'recording' || mediaRecorder.state === 'paused')) {
+      mediaRecorder.stop();
+      $scope.recordButton = false;
+      $scope.stopButton = true;
+      $scope.activeButton = null;
+
+      var durationInSeconds = (Date.now() - startTime) / 1000;
+      $scope.isRecordingTooShort = durationInSeconds < parseInt($scope.field.attrs.min_time.value);
+      $scope.disablePlayer = durationInSeconds < parseInt($scope.field.attrs.min_time.value);
+
+      // Release microphone access
+      var tracks = mediaRecorder.stream.getTracks();
+      tracks.forEach(function(track) {
+        track.stop();
+      });
+
+      setTimeout(function() {
+        $scope.$apply(function() {
+          $scope.isRecording = false;
+        });
+      }, 0);
+    }
+  };
+
+  $scope.recordButton = false;
+
+}])
+.controller("SecureAudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFactory) {
   var chunks = [];
   var mediaRecorder;
   var flow;
@@ -49,9 +149,15 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
   var startTime;
   var noiseGateThreshold = 0.2;
   var noiseReductionAmount = 0.5;
-
   $scope.activeButton = null;
   $scope.disablePlayer = true;
+  $scope.isAudioProtected=false;
+  $scope.isRecording=false;
+  $scope.recordingType='';
+  $scope.applySoundrotection = function (fieldid){
+    $scope.isAudioProtected=true;
+    $scope.triggerRecording(fieldid);
+  }
 
   function applySubtleDistortion(buffer, amount) {
     var distortedBuffer = new Float32Array(buffer.length);
@@ -154,12 +260,104 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
     }
   }
 
+
+  // Normal Recording
+  $scope.startRecording = function(fileId) {
+    $scope.recordingType='normal';
+    $scope.isRecording = true;
+    $scope.recordButton = true;
+    $scope.stopButton = false;
+    $scope.audioPlayer = '';
+
+    $scope.activeButton = 'record';
+    flow = flowFactory.create({
+      target: $scope.fileupload_url,
+      query: {
+        type: 'audio.webm',
+        reference: fileId
+      }
+    });
+    navigator.mediaDevices.getUserMedia({ audio: true })
+      .then(function(stream) {
+        chunks = [];
+        mediaRecorder = new MediaRecorder(stream);
+        mediaRecorder.addEventListener('dataavailable', function(event) {
+          chunks.push(event.data);
+        });
+        mediaRecorder.addEventListener('start', function() {
+          startTime = Date.now();
+        });
+        mediaRecorder.addEventListener('stop', function() {
+          var durationInSeconds = (Date.now() - startTime) / 1000;
+          $scope.isRecordingTooShort = durationInSeconds < parseInt($scope.field.attrs.min_time.value);
+
+          var blob = new Blob(chunks, { type: 'audio/webm' });
+          chunks = [];
+          $scope.audioPlayer = URL.createObjectURL(blob);
+          $scope.$apply(function() {
+            $scope.audioFile = blob;
+            var file = new Flow.FlowFile(flow, {
+              name: 'audio.webm',
+              size: blob.size,
+              relativePath: 'audio.webm'
+            });
+            file.file = blob;
+            if(!$scope.isRecordingTooShort){
+              flow.files.push(file);
+            }
+
+            if ($scope.uploads.hasOwnProperty($scope.fileinput)) {
+              delete $scope.uploads[$scope.fileinput];
+            }
+            if(!$scope.isRecordingTooShort){
+              $scope.uploads[$scope.fileinput] = flow
+            }
+          });
+        });
+
+        mediaRecorder.start();
+     
+      })
+      .catch(function(err) {
+        console.error('Error accessing microphone', err);
+      });
+  };
+
+  $scope.stopRecording = function() {
+    if (mediaRecorder && (mediaRecorder.state === 'recording' || mediaRecorder.state === 'paused')) {
+      mediaRecorder.stop();
+      $scope.recordButton = false;
+      $scope.stopButton = true;
+      $scope.activeButton = null;
+      $scope.recordingType='';
+
+      var durationInSeconds = (Date.now() - startTime) / 1000;
+      $scope.isRecordingTooShort = durationInSeconds < parseInt($scope.field.attrs.min_time.value);
+      $scope.disablePlayer = durationInSeconds < parseInt($scope.field.attrs.min_time.value);
+
+      // Release microphone access
+      var tracks = mediaRecorder.stream.getTracks();
+      tracks.forEach(function(track) {
+        track.stop();
+      });
+
+      setTimeout(function() {
+        $scope.$apply(function() {
+          $scope.isRecording = false;
+        });
+      }, 0);
+    }
+  };
+
+  // Secure Recording
+
   $scope.triggerRecording = function(fileId) {
     $scope.activeButton = 'record';
+    
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia({ audio: true })
         .then(function(stream) {
-          $scope.startRecording(fileId, stream);
+          $scope.startRecordingSecure(fileId, stream);
           console.log('Audio recording permission is granted');
         })
         .catch(function(error) {
@@ -173,14 +371,18 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
       // getUserMedia is not supported in this browser
       console.warn('getUserMedia is not supported in this browser');
     }
-    $scope.$apply()
   }
   
 
-  $scope.startRecording = function(fileId, stream) {
+
+  $scope.startRecordingSecure = function(fileId, stream) {
     audio_channel = [];
     recordingLength = 0;
-    isRecording = true;
+    $scope.isRecording = true;
+    $scope.isRecordingTooLarge=false;
+    $scope.isRecordingTooShort=false;
+    $scope.audioPlayer = '';
+    $scope.recordingType='secure';
     $scope.activeButton = 'record';
     startTime = Date.now();
     flow = flowFactory.create({
@@ -220,14 +422,16 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
     // Connect the recorder
     mediaStream.connect(recorder);
     recorder.connect(context.destination);
+
+    $scope.$apply();
   };
 
  
 
-  $scope.stopRecording = function() {
-    isRecording = false;
+  $scope.stopRecordingSecure = function() {
+    $scope.isRecording = false;
     $scope.activeButton = null;
-
+    $scope.recordingType='';
     // Stop recording
 
     if (recorder && mediaStream) {
@@ -238,52 +442,57 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
       tracks.forEach(function(track) {
       track.stop();
     });
-
-    var stretchAmount =  1.2 + Math.random() * (2.8 - 1.2);
-    // var randomPitch = Math.random() * (1.2 - 0.7) + 0.7;
-
+    var stretchAmount =    0.7 + (Math.random() * (1.6 - 0.7));
+    var randomPitch = Math.random() * (1.2 - 0.7) + 0.7;
     var modbuffer = flattenArray(audio_channel, recordingLength);
-    modbuffer = applyLowPassFilter(modbuffer);
-    // modbuffer = pitchShift(modbuffer, randomPitch);
-    modbuffer = applyTimeStretching(modbuffer, stretchAmount);
-    // modbuffer = applyBitcrusher(modbuffer);
-    
-    var interleaved = interleave(modbuffer);
-    var buffer = new ArrayBuffer(44 + interleaved.length * 2);
-    var view = new DataView(buffer);
 
-    // RIFF chunk descriptor
-    writeUTFBytes(view, 0, "RIFF");
-    view.setUint32(4, 44 + interleaved.length * 2, true);
-    writeUTFBytes(view, 8, "WAVE");
-    // FMT sub-chunk
-    writeUTFBytes(view, 12, "fmt ");
-    view.setUint32(16, 16, true); // chunkSize
-    view.setUint16(20, 1, true); // wFormatTag
-    view.setUint16(22, 2, true); // wChannels: stereo (2 channels)
-    sampleRate = Math.floor(Math.random() * (60001 - 38000) + 38000);
-    view.setUint32(24, sampleRate, true); // dwSamplesPerSec
-    view.setUint32(28, sampleRate * 4, true); // dwAvgBytesPerSec
-    view.setUint16(32, 4, true); // wBlockAlign
-    view.setUint16(34, 16, true); // wBitsPerSample
-    // data sub-chunk
-    writeUTFBytes(view, 36, "data");
-    view.setUint32(40, interleaved.length * 2, true);
 
-    // Write the PCM samples
-    var index = 44;
-    var volume = 1;
-    for (var i = 0; i < interleaved.length; i++) {
-      view.setInt16(index, interleaved[i] * (0x7FFF * volume), true);
-      index += 2;
+    if($scope.isAudioProtected){
+      // modbuffer = applyLowPassFilter(modbuffer);
+      // modbuffer = pitchShift(modbuffer, randomPitch);
+      modbuffer = applyTimeStretching(modbuffer, stretchAmount);
+      // modbuffer = applyBitcrusher(modbuffer);
     }
+
+    // var interleaved = interleave(modbuffer);
+  var buffer = new ArrayBuffer(44 + modbuffer.length * 2);
+  var view = new DataView(buffer);
+
+  // RIFF chunk descriptor
+  writeUTFBytes(view, 0, "RIFF");
+  view.setUint32(4, 44 + modbuffer.length * 2, true);
+  writeUTFBytes(view, 8, "WAVE");
+  // FMT sub-chunk
+  writeUTFBytes(view, 12, "fmt ");
+  view.setUint32(16, 16, true); // chunkSize
+  view.setUint16(20, 1, true); // wFormatTag
+  view.setUint16(22, 2, true); // wChannels: stereo (2 channels)
+  var sampleRate =  24000 // Set the desired sample rate
+  view.setUint32(24, sampleRate, true); // dwSamplesPerSec
+  view.setUint32(28, sampleRate, true); // dwAvgBytesPerSec
+  view.setUint16(32, 4, true); // wBlockAlign
+  view.setUint16(34, 16, true); // wBitsPerSample
+  // data sub-chunk
+  writeUTFBytes(view, 36, "data");
+  view.setUint32(40, modbuffer.length * 2, true);
+
+  // Write the PCM samples
+  var index = 44;
+  var volume = 1;
+  for (var i = 0; i < modbuffer.length; i++) {
+    view.setInt16(index, modbuffer[i] * (0x7FFF * volume), true);
+    index += 2;
+  }
+
 
     // Create the final blob
     blob = new Blob([view], { type: "audio/wav" });
 
     var durationInSeconds = (Date.now() - startTime) / 1000;
     $scope.isRecordingTooShort = durationInSeconds < parseInt($scope.field.attrs.min_time.value);
-    $scope.disablePlayer= durationInSeconds < parseInt($scope.field.attrs.min_time.value);
+    $scope.isRecordingTooLarge = durationInSeconds > parseInt($scope.field.attrs.max_time.value) || durationInSeconds > 180;
+    
+    $scope.disablePlayer= $scope.isRecordingTooShort || $scope.isRecordingTooLarge;
     $scope.audioFile = blob;
 
     var file = new Flow.FlowFile(flow, {
@@ -293,7 +502,7 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
     });
     file.file = blob;
     flow.files = [];
-    if (!$scope.isRecordingTooShort) {
+    if (!$scope.isRecordingTooShort && !$scope.isRecordingTooLarge) {
       flow.files.push(file);
       $scope.audioPlayer = URL.createObjectURL(blob);
     }
@@ -301,9 +510,11 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
     if ($scope.uploads.hasOwnProperty($scope.fileinput)) {
       delete $scope.uploads[$scope.fileinput];
     }
-    if (!$scope.isRecordingTooShort) {
+    if (!$scope.isRecordingTooShort && !$scope.isRecordingTooLarge) {
       $scope.uploads[$scope.fileinput] = flow;
     }
+
+    $scope.isAudioProtected=false;
   };
 }]).
 controller("ImageUploadCtrl", ["$http", "$scope", "$rootScope", "uploadUtils", "Utils", function($http, $scope, $rootScope, uploadUtils, Utils) {

@@ -44,6 +44,8 @@
     "angular-translate-loader-url": "2.19.0",
     "angularjs-dropdown-multiselect": "2.0.0-beta.10",
     "bootstrap": "4.6.2",
+    "chart.js": "^3.9.1",
+    "chartjs-plugin-datalabels": "^2.2.0",
     "fast-sha256": "1.3.0",
     "ng-csv": "0.3.6",
     "ng-idle": "1.3.2",
