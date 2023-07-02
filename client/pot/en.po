@@ -75,9 +75,6 @@ msgstr "Files"
 msgid "Comments"
 msgstr "Comments"
 
-msgid "Messages"
-msgstr "Messages"
-
 msgid "Details"
 msgstr "Details"
 
@@ -479,11 +476,29 @@ msgstr "Select an option"
 msgid "Select your language"
 msgstr "Select your language"
 
-msgid "Grant this user user the privilege to mask information"
-msgstr "Grant this user user the privilege to mask information"
+msgid "Grant this user the privilege to mask information"
+msgstr "Grant this user the privilege to mask information"
 
-msgid "Grant this user user the privilege to permanently redact masked information"
-msgstr "Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr "Grant this user the privilege to permanently redact masked information"
+
+msgid "Public"
+msgstr "Public"
+
+msgid "Internal"
+msgstr "Internal"
+
+msgid "Personal"
+msgstr "Personal"
+
+msgid "Privacy Policy"
+msgstr "Privacy Policy"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr "I've read and accept the Privacy Policy"
+
+msgid "Download copy of the Privacy Policy"
+msgstr "Download copy of the Privacy Policy"
 
 msgid "File a report"
 msgstr "File a report"
@@ -526,6 +541,9 @@ msgstr "Creation date"
 
 msgid "Last access"
 msgstr "Last access"
+
+msgid "Messages"
+msgstr "Messages"
 
 msgid "Whistleblower's last access"
 msgstr "Whistleblower's last access"
@@ -602,12 +620,6 @@ msgstr "Enable comments"
 msgid "Allow the whistleblower to write comments"
 msgstr "Allow the whistleblower to write comments"
 
-msgid "Enable private messages"
-msgstr "Enable private messages"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Allow the whistleblower to send messages"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Allow the whistleblower to add attachments"
 
@@ -679,9 +691,6 @@ msgstr "Private Key"
 
 msgid "Certificate Signing Request"
 msgstr "Certificate Signing Request"
-
-msgid "Download"
-msgstr "Download"
 
 msgid "Certificate"
 msgstr "Certificate"
@@ -934,6 +943,9 @@ msgstr "Footer"
 
 msgid "Upload"
 msgstr "Upload"
+
+msgid "Download"
+msgstr "Download"
 
 msgid "Language:"
 msgstr "Language:"
@@ -1760,6 +1772,9 @@ msgstr "Examine the issue to determine whether it is legitimate or not."
 msgid "The activities with unusual stats are:"
 msgstr "The activities with unusual stats are:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr "Available disk space: {FreeMemory}/{TotalMemory}"
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -2031,6 +2046,9 @@ msgstr ""
 
 msgid "New report"
 msgstr "New report"
+
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr "One or more reports are expiring and will be soon deleted."
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "The earliest expiration date is {EarliestExpirationDate}."

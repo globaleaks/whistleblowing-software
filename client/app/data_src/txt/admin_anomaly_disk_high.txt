@@ -1,3 +1,3 @@
-{FreeMemory} of {TotalMemory} available diskspace used.
+Available disk space: {FreeMemory}/{TotalMemory}
 
 The server cannot guarantee that a new report can be stored, so submissions have been disabled.

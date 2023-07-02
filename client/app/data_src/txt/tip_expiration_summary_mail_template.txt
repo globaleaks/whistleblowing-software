@@ -1,6 +1,6 @@
 Dear {RecipientName},
 
-{ExpiringSubmissionCount} reports are expiring and will be soon deleted.
+One or more reports are expiring and will be soon deleted.
 
 The earliest expiration date is {EarliestExpirationDate}.
 
