@@ -958,6 +958,7 @@ class _User(Model):
     pgp_key_expiration = Column(DateTime, default=datetime_null, nullable=False)
     # END of PGP key fields
 
+    accepted_privacy_policy = Column(DateTime, default=datetime_null, nullable=False)
     clicked_recovery_key = Column(Boolean, default=False, nullable=False)
 
     unicode_keys = ['username', 'role',
@@ -980,7 +981,12 @@ class _User(Model):
                  'readonly',
                  'clicked_recovery_key']
 
-    date_keys = ['creation_date', 'reminder_date', 'last_login', 'password_change_date', 'pgp_key_expiration']
+    date_keys = ['accepted_privacy_policy',
+                 'creation_date',
+                 'reminder_date',
+                 'last_login',
+                 'password_change_date',
+                 'pgp_key_expiration']
 
     @declared_attr
     def __table_args__(self):
