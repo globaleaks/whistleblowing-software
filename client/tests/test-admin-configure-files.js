@@ -48,6 +48,26 @@ describe("Admin configure custom CSS", function() {
     await browser.gl.utils.waitUntilPresent(by.cssContainingText("label", "Project name"));
   });
 
+  it("should upload a file and the file should be available for download and deletion", async function() {
+    await browser.setLocation("admin/settings");
+
+    await element(by.cssContainingText("a", "Theme customization")).click();
+
+    var customFile = browser.gl.utils.makeTestFilePath("antani.pdf");
+
+    await element(by.css("div.file-custom")).element(by.css("input")).sendKeys(customFile);
+
+    await browser.wait(function() {
+      return element(by.cssContainingText("label", "Project name")).isDisplayed().then(function(present) {
+        return present;
+      });
+    });
+
+    await element(by.cssContainingText("a", "Theme customization")).click();
+
+    await element(by.id("fileList")).element(by.cssContainingText("span", "Delete")).click();
+  });
+
   it("should be able to disable the file upload", async function() {
     await browser.setLocation("admin/settings");
     await browser.gl.utils.waitUntilPresent(by.cssContainingText("a", "Theme customization"));
@@ -56,5 +76,7 @@ describe("Admin configure custom CSS", function() {
 
     await element(by.css(".custom-switch")).click();
     expect(await element(by.css(".custom-switch input")).isSelected()).toBeFalsy();
+
+    await browser.gl.utils.logout();
   });
 });
