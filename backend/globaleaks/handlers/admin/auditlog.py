@@ -45,7 +45,7 @@ def get_tips(session, tid):
                                  .group_by(models.InternalTip.id):
         comments_by_itip[itip_id] = count
 
-    # Fetch comments count
+    # Fetch masking count
     for itip_id, count in session.query(models.InternalTip.id,
                                         func.count(distinct(models.Masking.id))) \
                                  .filter(models.Masking.internaltip_id == models.InternalTip.id,
