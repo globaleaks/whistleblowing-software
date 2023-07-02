@@ -195,21 +195,6 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
     return current_date > report_date;
   };
 
-  $scope.tip_delete_selected = function () {
-    $uibModal.open({
-      templateUrl: "views/modals/delete_confirmation.html",
-      controller: "TipBulkOperationsCtrl",
-      resolve: {
-        selected_tips: function () {
-          return $scope.selected_tips;
-        },
-        operation: function() {
-          return "delete";
-        }
-      }
-    });
-  };
-
   $scope.tips_export = function () {
     for(var i=0; i<$scope.selected_tips.length; i++) {
       (function(i) {
@@ -218,24 +203,5 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
         });
       })(i);
     }
-  };
-}])
-.controller("TipBulkOperationsCtrl", ["$scope", "$http", "$location", "$uibModalInstance", "selected_tips", "operation",
-  function ($scope, $http, $location, $uibModalInstance, selected_tips, operation) {
-  $scope.selected_tips = selected_tips;
-  $scope.operation = operation;
-
-  $scope.cancel = function () {
-    $uibModalInstance.close();
-  };
-
-  $scope.confirm = function () {
-    $uibModalInstance.close();
-
-    if (["delete"].indexOf(operation) === -1) {
-      return;
-    }
-
-    return $scope.Utils.runRecipientOperation($scope.operation, {"rtips": $scope.selected_tips}, true);
   };
 }]);

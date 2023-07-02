@@ -116,13 +116,13 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
 @transact
 def perform_tips_operation(session, tid, user_id, user_cc, operation, args):
     """
-    Transaction for performing operation on submissions (postpone/delete)
+    Transaction for performing operation on submissions (grant/revoke)
 
     :param session: An ORM session
     :param tid: A tenant ID
     :param user_id: A recipient ID
     :param user_cc: A recipient crypto key
-    :param operation: An operation command (postpone/delete)
+    :param operation: An operation command (grant/revoke)
     :param args: The operation arguments
     """
     receiver = db_get(session, models.User, models.User.id == user_id)
@@ -132,16 +132,7 @@ def perform_tips_operation(session, tid, user_id, user_cc, operation, args):
                                          models.ReceiverTip.id.in_(args['rtips']),
                                          models.InternalTip.id == models.ReceiverTip.internaltip_id)
 
-    if operation == 'delete' and receiver.can_delete_submission:
-        itip_ids = []
-
-        for itip, _ in result:
-            itip_ids.append(itip.id)
-            db_log(session, tid=tid, type='delete_report', user_id=user_id, object_id=itip.id)
-
-        db_del(session, models.InternalTip, models.InternalTip.id.in_(itip_ids))
-
-    elif operation == 'grant' and receiver.can_grant_access_to_reports:
+    if operation == 'grant' and receiver.can_grant_access_to_reports:
         for _, rtip in result:
             db_grant_tip_access(session, tid, user_id, user_cc, rtip.id, args['receiver'])
 
@@ -177,7 +168,7 @@ class Operations(BaseHandler):
     def put(self):
         request = self.validate_request(self.request.content.read(), requests.OpsDesc)
 
-        if request['operation'] not in ['delete', 'grant', 'revoke']:
+        if request['operation'] not in ['grant', 'revoke']:
             raise errors.ForbiddenOperation
 
         return perform_tips_operation(self.request.tid,

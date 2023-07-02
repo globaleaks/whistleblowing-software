@@ -71,22 +71,3 @@ class TestOperations(helpers.TestHandlerWithPopulatedDB):
         yield handler.put()
 
         yield self.test_model_count(models.ReceiverTip, 4)
-
-    @inlineCallbacks
-    def test_put_delete(self):
-        rtips = yield recipient.get_receivertips(1, self.dummyReceiver_1['id'], helpers.USER_PRV_KEY, 'en')
-        rtips_ids = [rtip['id'] for rtip in rtips['rtips']]
-
-        data_request = {
-            'operation': 'delete',
-            'args': {
-                'rtips': rtips_ids
-            }
-        }
-
-        handler = self.request(data_request, user_id=self.dummyReceiver_1['id'], role='receiver')
-        yield handler.put()
-
-        rtips = yield recipient.get_receivertips(1, self.dummyReceiver_1['id'], helpers.USER_PRV_KEY, 'en')
-
-        self.assertEqual(len(rtips['rtips']), 0)
