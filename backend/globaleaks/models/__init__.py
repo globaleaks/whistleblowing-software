@@ -236,6 +236,7 @@ class _Comment(Model):
     internaltip_id = Column(UnicodeText(36), nullable=False, index=True)
     author_id = Column(UnicodeText(36))
     content = Column(UnicodeText, nullable=False)
+    visibility = Column(Enum(EnumVisibility), default='public', nullable=False)
     new = Column(Boolean, default=True, nullable=False)
 
     @declared_attr
@@ -1005,6 +1006,7 @@ class _WhistleblowerFile(Model):
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     access_date = Column(DateTime, default=datetime_null, nullable=False)
     description = Column(UnicodeText, nullable=False)
+    visibility = Column(Enum(EnumVisibility), default='public', nullable=False)
     new = Column(Boolean, default=True, nullable=False)
 
     @declared_attr

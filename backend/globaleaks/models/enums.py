@@ -31,3 +31,9 @@ class EnumFieldOptionScoreType(_Enum):
     none = 0
     addition = 1
     multiplier = 2
+
+
+class EnumVisibility(_Enum):
+    public = 0
+    internal = 1
+    personal = 2
