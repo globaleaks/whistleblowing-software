@@ -39,7 +39,7 @@
                 <span ng-show="show(file.id)">
                   <button class="btn btn-sm btn-danger tip-action-delete-file"
                     data-uib-tooltip="{{'Permanently mask this file' | translate}}"
-                    data-ng-disabled="!resources.preferences.can_privilege_delete_mask_information"
+                    data-ng-disabled="!resources.preferences.can_delete_mask_information"
                     data-ng-click="deleteWBFile(file)" data-single-click>
                     <i class="fa-solid fa-trash"></i>
                   </button>
@@ -49,14 +49,14 @@
                 <span ng-show="show(file.id)">
                   <button class="btn btn-sm btn-danger tip-action-delete-file"
                     data-uib-tooltip="{{'Unmask this file' | translate}}"
-                    data-ng-disabled="!resources.preferences.can_privilege_delete_mask_information"
+                    data-ng-disabled="!resources.preferences.can_delete_mask_information"
                     data-ng-click="unmaskFile(file)" data-single-click>
                     <i class="fa-solid fa-times"></i>
                   </button>
                 </span>
               </span>
               <span data-ng-if="mode">
-                <span data-ng-show="resources.preferences.can_privilege_mask_information">
+                <span data-ng-show="resources.preferences.can_mask_information">
                   <button data-ng-hide="show(file.id)" class="btn btn-sm btn-primary tip-action-mask-file"
                     data-ng-if="mode" data-uib-tooltip="{{'Mask this file' | translate}}"
                     data-ng-click="masking(file.id)">

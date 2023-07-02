@@ -10,20 +10,20 @@
 </div>
 <div class="modal-footer">
   <button
-    data-ng-show="(resources.preferences.can_privilege_mask_information) || (resources.preferences.can_privilege_mask_information && resources.preferences.can_privilege_delete_mask_information)"
+    data-ng-show="(resources.preferences.can_mask_information) || (resources.preferences.can_mask_information && resources.preferences.can_delete_mask_information)"
     class="btn btn-primary" data-ng-click="mask('redact')">
     <span data-translate>Mask</span>
   </button>
   <button
-    data-ng-show="(resources.preferences.can_privilege_delete_mask_information) && (maskingObjects.length !==0 ) && (maskingObjects[0].temporary_masking !=='')"
+    data-ng-show="(resources.preferences.can_delete_mask_information) && (maskingObjects.length !==0 ) && (maskingObjects[0].temporary_masking !=='')"
     class="btn btn-outline-secondary" data-ng-click="unMask()">
     <span data-translate>Unmask</span>
   </button>
-  <button data-ng-show="(resources.preferences.can_privilege_mask_information) && (reductCondition !== false)"
+  <button data-ng-show="(resources.preferences.can_mask_information) && (reductCondition !== false)"
     class="btn btn-primary" data-ng-click="temporaryMask()">
     <span data-translate>Reduct</span>
   </button>
-  <button data-ng-show="(resources.preferences.can_privilege_delete_mask_information) && (maskingObjects.length !==0) && (maskingObjects[0].temporary_masking !=='')"
+  <button data-ng-show="(resources.preferences.can_delete_mask_information) && (maskingObjects.length !==0) && (maskingObjects[0].temporary_masking !=='')"
     class="btn btn-primary" data-ng-click="permanentMask()">
     <span data-translate>Permanent Reduct</span>
   </button>

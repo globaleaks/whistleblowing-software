@@ -124,7 +124,7 @@ def db_admin_update_user(session, tid, user_session, user_id, request, language)
     :param language: The language of the request
     :return: The serialized descriptor of the updated object
     """
-    
+
     fill_localized_keys(request, models.User.localized_keys, language)
 
     user = db_get_user(session, tid, user_id)

@@ -707,8 +707,8 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       user.notification = true;
       user.forcefully_selected = false;
       user.can_edit_general_settings = false;
-      user.can_privilege_mask_information = false;
-      user.can_privilege_delete_mask_information = false;
+      user.can_mask_information = false;
+      user.can_delete_mask_information = false;
       user.can_grant_access_to_reports = false;
       user.can_delete_submission = false;
       user.can_postpone_expiration = true;
