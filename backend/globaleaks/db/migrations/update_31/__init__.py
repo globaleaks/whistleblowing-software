@@ -204,27 +204,10 @@ class MigrationScript(MigrationBase):
                     new_node.css_id = new_file.id
 
                 os.remove(path)
-            elif key == 'basic_auth':
-                new_node.basic_auth = False
-            elif key == 'basic_auth_username':
-                new_node.basic_auth_username = ''
-            elif key == 'basic_auth_password':
-                new_node.basic_auth_password = ''
-            elif key == 'contexts_clarification':
-                new_node.contexts_clarification = old_node.context_selector_label
-            elif key == 'context_selector_type':
-                new_node.context_selector_type = 'list'
-            elif key == 'show_small_context_cards':
-                new_node.show_small_context_cards = False
-            else:
+            if key in old_node.__mapper__.column_attrs.keys():
                 setattr(new_node, key, getattr(old_node, key))
 
         self.session_new.add(new_node)
-
-        for fname in ['default-profile-picture.png', 'robots.txt']:
-            p = os.path.join(Settings.files_path, fname)
-            if os.path.exists(p):
-                os.remove(p)
 
     def migrate_User(self):
         for old_obj in self.session_old.query(self.model_from['User']):

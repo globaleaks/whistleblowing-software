@@ -68,19 +68,6 @@ class Node_v_33(models.Model):
     threshold_free_disk_percentage_low = Column(Integer, default=10)
     context_selector_type = Column(UnicodeText, default='list')
 
-    localized_keys = [
-        'description',
-        'presentation',
-        'footer',
-        'whistleblowing_question',
-        'whistleblowing_button',
-        'header_title_homepage',
-        'header_title_submissionpage',
-        'header_title_receiptpage',
-        'header_title_tippage',
-        'contexts_clarification',
-    ]
-
 
 class Notification_v_33(models.Model):
     __tablename__ = 'notification'
@@ -132,42 +119,6 @@ class Notification_v_33(models.Model):
     exception_email_pgp_key_fingerprint = Column(UnicodeText, default='')
     exception_email_pgp_key_public = Column(UnicodeText, default='')
     exception_email_pgp_key_expiration = Column(DateTime, default=datetime_null)
-
-    localized_keys = [
-        'admin_anomaly_mail_title',
-        'admin_anomaly_mail_template',
-        'admin_anomaly_disk_low',
-        'admin_anomaly_disk_medium',
-        'admin_anomaly_disk_high',
-        'admin_anomaly_activities',
-        'admin_pgp_alert_mail_title',
-        'admin_pgp_alert_mail_template',
-        'pgp_alert_mail_title',
-        'pgp_alert_mail_template',
-        'tip_mail_template',
-        'tip_mail_title',
-        'file_mail_template',
-        'file_mail_title',
-        'comment_mail_template',
-        'comment_mail_title',
-        'message_mail_template',
-        'message_mail_title',
-        'tip_expiration_mail_template',
-        'tip_expiration_mail_title',
-        'receiver_notification_limit_reached_mail_template',
-        'receiver_notification_limit_reached_mail_title',
-        'identity_access_authorized_mail_template',
-        'identity_access_authorized_mail_title',
-        'identity_access_denied_mail_template',
-        'identity_access_denied_mail_title',
-        'identity_access_request_mail_template',
-        'identity_access_request_mail_title',
-        'identity_provided_mail_template',
-        'identity_provided_mail_title',
-        'export_template',
-        'export_message_whistleblower',
-        'export_message_recipient'
-    ]
 
 
 class MigrationScript(MigrationBase):

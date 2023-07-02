@@ -33,16 +33,9 @@ class InternalTip_v_41(Model):
 
 
 class MigrationScript(MigrationBase):
-    def migrate_FieldAttr(self):
-        for old_obj in self.session_old.query(self.model_from['FieldAttr']):
-            new_obj = self.model_to['FieldAttr']()
-            for key in new_obj.__mapper__.column_attrs.keys():
-                setattr(new_obj, key, getattr(old_obj, key))
-
-            if old_obj.name == 'agreement_statement':
-                new_obj.name = 'checkbox_label'
-
-            self.session_new.add(new_obj)
+    renamed_attrs = {
+        'FieldAttr': {'agreement_statement': 'checkbox_label'}
+    }
 
     def migrate_InternalTip(self):
         for old_obj in self.session_old.query(self.model_from['InternalTip']):

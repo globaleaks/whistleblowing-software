@@ -174,9 +174,6 @@ class FieldAttr_v_38(Model):
     value = Column(JSON)
 
     def update(self, values=None):
-        """
-        Updated Models attributes from dict.
-        """
         super(FieldAttr_v_38, self).update(values)
 
         if values is None:

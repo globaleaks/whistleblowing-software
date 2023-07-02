@@ -76,14 +76,3 @@ class MigrationScript(MigrationBase):
                     new_obj.receipt_hash = GCE.generate_receipt()
 
             self.session_new.add(new_obj)
-
-    def migrate_ReceiverTip(self):
-        for old_obj in self.session_old.query(self.model_from['ReceiverTip']):
-            new_obj = self.model_to['ReceiverTip']()
-            for key in new_obj.__mapper__.column_attrs.keys():
-                if key == 'crypto_files_prv_key':
-                    new_obj.crypto_files_prv_key = old_obj.crypto_tip_prv_key
-                else:
-                    setattr(new_obj, key, getattr(old_obj, key))
-
-            self.session_new.add(new_obj)
