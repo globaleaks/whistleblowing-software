@@ -115,7 +115,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
   };
 
   $scope.open_revoke_access_modal = function () {
-    return $scope.Utils.runUserOperation("get_user_names").then(function(response) {
+    return $scope.Utils.runUserOperation("get_users_names").then(function(response) {
       $uibModal.open({
       templateUrl: "views/modals/revoke_access.html",
         controller: "ConfirmableModalCtrl",
