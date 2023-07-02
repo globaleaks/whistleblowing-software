@@ -74,7 +74,9 @@ from globaleaks.db.migrations.update_60 import InternalTip_v_59, ReceiverTip_v_5
 from globaleaks.db.migrations.update_62 import AuditLog_v_61, Context_v_61, ReceiverTip_v_61, User_v_61
 from globaleaks.db.migrations.update_63 import Subscriber_v_62
 from globaleaks.db.migrations.update_64 import Context_v_63, InternalTip_v_63
-from globaleaks.db.migrations.update_65 import IdentityAccessRequest_v_64, InternalTip_v_64, Message_v_64, ReceiverTip_v_64, User_v_64
+from globaleaks.db.migrations.update_65 import Comment_v_64, \
+    IdentityAccessRequest_v_64, InternalTip_v_64, Message_v_64, \
+    ReceiverTip_v_64, User_v_64, WhistleblowerFile_v_64
 
 from globaleaks.orm import get_engine, get_session, make_db_uri
 from globaleaks.models import config, Base
@@ -87,7 +89,7 @@ from globaleaks.utils.utility import datetime_now
 migration_mapping = OrderedDict([
     ('ArchivedSchema', [ArchivedSchema_v_38, 0, 0, 0, 0, 0, 0, 0, 0, models._ArchivedSchema, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('AuditLog', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, AuditLog_v_61, 0, 0, 0, 0, 0, 0, 0, models._AuditLog, 0, 0, 0]),
-    ('Comment', [Comment_v_31, 0, Comment_v_38, 0, 0, 0, 0, 0, 0, models._Comment, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('Comment', [Comment_v_31, 0, Comment_v_38, 0, 0, 0, 0, 0, 0, Comment_v_64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._Comment]),
     ('Config', [-1, -1, -1, -1, Config_v_38, 0, 0, 0, 0, Config_v_45, 0, 0, 0, 0, 0, 0, models._Config, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('ConfigL10N', [-1, -1, -1, -1, ConfigL10N_v_38, 0, 0, 0, 0, ConfigL10N_v_45, 0, 0, 0, 0, 0, 0, models._ConfigL10N, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Context', [Context_v_30, Context_v_34, 0, 0, 0, 0, 0, 0, 0, Context_v_44, 0, 0, 0, 0, 0, Context_v_45, Context_v_46, Context_v_51, 0, 0, 0, 0, Context_v_61, 0, 0, 0, 0, 0, 0, 0, 0, 0, Context_v_63, 0, models._Context, 0]),
@@ -126,7 +128,7 @@ migration_mapping = OrderedDict([
     ('Tenant', [0, 0, 0, 0, 0, 0, 0, 0, 0, Tenant_v_52, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._Tenant, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('User', [User_v_30, User_v_31, User_v_32, User_v_38, 0, 0, 0, 0, 0, User_v_40, 0, User_v_42, 0, User_v_44, 0, User_v_45, User_v_49, 0, 0, 0, User_v_50, User_v_51, User_v_52, User_v_54, 0, User_v_56, 0, User_v_61, 0, 0, 0, 0, User_v_64, 0, 0, models._User]),
     ('UserImg', [-1, -1, -1, -1, -1, -1, -1, -1, -1, UserImg_v_53, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
-    ('WhistleblowerFile', [-1, -1, -1, -1, -1, WhistleblowerFile_v_38, 0, 0, 0, WhistleblowerFile_v_40, 0, WhistleblowerFile_v_44, 0, 0, 0, WhistleblowerFile_v_45, WhistleblowerFile_v_57, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._WhistleblowerFile, 0, 0, 0, 0, 0, 0, 0]),
+    ('WhistleblowerFile', [-1, -1, -1, -1, -1, WhistleblowerFile_v_38, 0, 0, 0, WhistleblowerFile_v_40, 0, WhistleblowerFile_v_44, 0, 0, 0, WhistleblowerFile_v_45, WhistleblowerFile_v_57, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, WhistleblowerFile_v_64, 0, 0, 0, 0, 0, 0, models._WhistleblowerFile]),
     ('WhistleblowerTip', [WhistleblowerTip_v_32, 0, 0, WhistleblowerTip_v_34, 0, WhistleblowerTip_v_38, 0, 0, 0, -1, -1, -1, WhistleblowerTip_v_44, 0, 0, WhistleblowerTip_v_59, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1])
 ])
 

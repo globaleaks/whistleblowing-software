@@ -17,9 +17,18 @@ class EnumMessageType(_Enum):
     receiver = 1
 
 
+class Comment_v_64(Model):
+    __tablename__ = 'comment'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    creation_date = Column(DateTime, default=datetime_now, nullable=False)
+    internaltip_id = Column(UnicodeText(36), nullable=False, index=True)
+    author_id = Column(UnicodeText(36))
+    content = Column(UnicodeText, nullable=False)
+    new = Column(Boolean, default=True, nullable=False)
+
+
 class Message_v_64(Model):
     __tablename__ = 'message'
-
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     receivertip_id = Column(UnicodeText(36), nullable=False, index=True)
@@ -29,12 +38,7 @@ class Message_v_64(Model):
 
 
 class IdentityAccessRequest_v_64(Model):
-    """
-    This model keeps track of identity access requests by receivers and
-    of the answers by custodians.
-    """
     __tablename__ = 'identityaccessrequest'
-
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     receivertip_id = Column(UnicodeText(36), nullable=False, index=True)
     request_date = Column(DateTime, default=datetime_now, nullable=False)
@@ -47,7 +51,6 @@ class IdentityAccessRequest_v_64(Model):
 
 class InternalTip_v_64(Model):
     __tablename__ = 'internaltip'
-
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     tid = Column(Integer, default=1, nullable=False)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
@@ -77,7 +80,6 @@ class InternalTip_v_64(Model):
 
 class ReceiverTip_v_64(Model):
     __tablename__ = 'receivertip'
-
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     internaltip_id = Column(UnicodeText(36), nullable=False)
     receiver_id = Column(UnicodeText(36), nullable=False, index=True)
@@ -92,7 +94,6 @@ class ReceiverTip_v_64(Model):
 
 class User_v_64(Model):
     __tablename__ = 'user'
-
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     tid = Column(Integer, default=1, nullable=False)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
@@ -134,29 +135,25 @@ class User_v_64(Model):
     clicked_recovery_key = Column(Boolean, default=False, nullable=False)
 
 
+class WhistleblowerFile_v_64(Model):
+    __tablename__ = 'whistleblowerfile'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    receivertip_id = Column(UnicodeText(36), nullable=False, index=True)
+    name = Column(UnicodeText, nullable=False)
+    filename = Column(UnicodeText(255), unique=True, nullable=False)
+    size = Column(Integer, nullable=False)
+    content_type = Column(UnicodeText, nullable=False)
+    creation_date = Column(DateTime, default=datetime_now, nullable=False)
+    access_date = Column(DateTime, default=datetime_null, nullable=False)
+    description = Column(UnicodeText, nullable=False)
+    new = Column(Boolean, default=True, nullable=False)
+
+
 class MigrationScript(MigrationBase):
-    def migrate_InternalTip(self):
-        for old_obj in self.session_old.query(self.model_from['InternalTip']):
-            new_obj = self.model_to['InternalTip']()
-            for key in new_obj.__mapper__.column_attrs.keys():
-                if key == 'deprecated_crypto_files_pub_key':
-                    setattr(new_obj, key, getattr(old_obj, 'crypto_files_pub_key'))
-                else:
-                    setattr(new_obj, key, getattr(old_obj, key))
-
-            self.session_new.add(new_obj)
-
-    def migrate_ReceiverTip(self):
-        for old_obj in self.session_old.query(self.model_from['ReceiverTip']):
-            new_obj = self.model_to['ReceiverTip']()
-            for key in new_obj.__mapper__.column_attrs.keys():
-                if key == 'deprecated_crypto_files_prv_key':
-                    setattr(new_obj, key, getattr(old_obj, 'crypto_files_prv_key'))
-                else:
-                    setattr(new_obj, key, getattr(old_obj, key))
-
-            self.session_new.add(new_obj)
-
+    renamed_attrs = {
+        'InternalTip': {'crypto_files_pub_key': 'deprecated_crypto_files_pub_key'},
+        'ReceiverTip': {'crypto_files_prv_key': 'deprecated_crypto_files_prv_key'},
+    }
 
     def migrate_User(self):
         for old_obj in self.session_old.query(self.model_from['User']):
@@ -166,7 +163,19 @@ class MigrationScript(MigrationBase):
                     setattr(new_obj, key, getattr(old_obj, 'password'))
                 elif key == 'salt' and len(old_obj.salt) != 24 and not old_obj.crypto_pub_key:
                     setattr(new_obj, key, GCE.generate_salt())
-                else:
+                elif key in old_obj.__mapper__.column_attrs.keys():
+                    setattr(new_obj, key, getattr(old_obj, key))
+
+            self.session_new.add(new_obj)
+
+    def migrate_WhistleblowerFile(self):
+        for old_obj, r in self.session_old.query(self.model_from['WhistleblowerFile'], self.model_from['ReceiverTip']) \
+                                    .filter(self.model_from['WhistleblowerFile'].receivertip_id == self.model_from['ReceiverTip'].id):
+            new_obj = self.model_to['WhistleblowerFile']()
+            for key in new_obj.__mapper__.column_attrs.keys():
+                if key == 'internaltip_id':
+                    setattr(new_obj, key, r.internaltip_id)
+                elif key in old_obj.__mapper__.column_attrs.keys():
                     setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
@@ -189,7 +198,7 @@ class MigrationScript(MigrationBase):
         m = self.model_from['Message']
         i = self.model_from['InternalTip']
         r = self.model_from['ReceiverTip']
-        for m, i, r in self.session_old.query(m, r, i) \
+        for m,i, r in self.session_old.query(m, r, i) \
                                        .filter(m.receivertip_id == r.id, \
                                                r.internaltip_id == i.id):
             new_obj = self.model_to['Comment']()
@@ -199,12 +208,11 @@ class MigrationScript(MigrationBase):
                 elif key == 'author_id':
                     if m.type == 'receiver':
                         setattr(new_obj, key, r.id)
-                else:
+                elif key in m.__mapper__.column_attrs.keys():
                     setattr(new_obj, key, getattr(m, key))
 
             self.session_new.add(new_obj)
             self.entries_count['Comment'] += 1
-
 
         for old_obj in self.session_old.query(self.model_from['Tenant']):
             try:
