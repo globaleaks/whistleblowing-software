@@ -168,9 +168,22 @@ class MigrationScript(MigrationBase):
 
             self.session_new.add(new_obj)
 
+    def migrate_IdentityAccessRequest(self):
+        for old_obj, rtip in self.session_old.query(self.model_from['IdentityAccessRequest'], self.model_from['ReceiverTip']) \
+                                            .filter(self.model_from['IdentityAccessRequest'].receivertip_id == self.model_from['ReceiverTip'].id):
+            new_obj = self.model_to['IdentityAccessRequest']()
+            for key in new_obj.__mapper__.column_attrs.keys():
+                if key == 'internaltip_id':
+                    setattr(new_obj, key, rtip.internaltip_id)
+                    setattr(new_obj, 'request_user_id', rtip.receiver_id)
+                elif key in old_obj.__mapper__.column_attrs.keys():
+                    setattr(new_obj, key, getattr(old_obj, key))
+
+            self.session_new.add(new_obj)
+
     def migrate_WhistleblowerFile(self):
         for old_obj, r in self.session_old.query(self.model_from['WhistleblowerFile'], self.model_from['ReceiverTip']) \
-                                    .filter(self.model_from['WhistleblowerFile'].receivertip_id == self.model_from['ReceiverTip'].id):
+                                          .filter(self.model_from['WhistleblowerFile'].receivertip_id == self.model_from['ReceiverTip'].id):
             new_obj = self.model_to['WhistleblowerFile']()
             for key in new_obj.__mapper__.column_attrs.keys():
                 if key == 'internaltip_id':
@@ -198,7 +211,7 @@ class MigrationScript(MigrationBase):
         m = self.model_from['Message']
         i = self.model_from['InternalTip']
         r = self.model_from['ReceiverTip']
-        for m,i, r in self.session_old.query(m, r, i) \
+        for m, i, r in self.session_old.query(m, i, r) \
                                        .filter(m.receivertip_id == r.id, \
                                                r.internaltip_id == i.id):
             new_obj = self.model_to['Comment']()
@@ -236,24 +249,12 @@ class MigrationScript(MigrationBase):
         except:
             pass
 
-        for iar in self.session_old.query(self.model_from['IdentityAccessRequest']):
-            crypto_iar_prv_key, crypto_iar_pub_key = GCE.generate_keypair()
-
-            for itip in self.session_old.query(self.model_from['InternalTip']) \
-                                           .filter(self.model_from['InternalTip'].id == self.model_from['ReceiverTip'].internaltip_tip,
-                                                   self.model_from['ReceiverTip'].id == self.model_from['IdentityAccessRequest'].receiver_tip) \
-                                           .distinct():
-
-                if itip.deprecated_crypto_files_pub_key:
-                    iar.request_motivation = base64.b64encode(GCE.asymmetric_encrypt(crypto_iar_pub_key, iar.request_motivation))
-                    iar.reply_motivation = base64.b64encode(GCE.asymmetric_encrypt(crypto_iar_pub_key, iar.reply_motivation))
-                    iar.receivertip_id = rtip.id
-                    iar.crypto_iar_pub_key = crypto_iar_pub_key
-                    iar.crypto_iar_prv_key = base64.b64encode(GCE.asymmetric_encrypt(itip.deprecated_crypto_files_pub_key, crypto_iar_prv_key))
-
-            for custodian in session.query(models.User).filter(models.User.tid == tid, models.User.role == 'custodian'):
-                iarc = models.IdentityAccessRequestCustodian()
-                iarc.iar_id = iar.id
+        for iar, itip in self.session_new.query(self.model_to['IdentityAccessRequest'], self.model_to['InternalTip']) \
+                                   .filter(self.model_to['IdentityAccessRequest'].internaltip_id == self.model_to['InternalTip'].id):
+            for custodian in self.session_new.query(self.model_to['User']) \
+                                             .filter(self.model_to['User'].tid == itip.tid, self.model_to['User'].role == 'custodian'):
+                iarc = self.model_to['IdentityAccessRequestCustodian']()
+                iarc.identityaccessrequest_id = iar.id
                 iarc.custodian_id = custodian.id
-                iarc.crypto_iar_prv_key = base64.b64encode(GCE.asymmetric_encrypt(custodian.crypto_pub_key, crypto_iar_prv_key))
-                session.add(iarc)
+                self.session_new.add(iarc)
+                self.entries_count['IdentityAccessRequestCustodian'] += 1

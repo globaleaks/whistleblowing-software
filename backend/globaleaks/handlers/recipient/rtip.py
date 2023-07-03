@@ -489,7 +489,7 @@ def db_create_identityaccessrequest_notifications(session, itip, rtip, iar):
 
 
 @transact
-def create_identityaccessrequest(session, tid, user_id, rtip_id, request):
+def create_identityaccessrequest(session, tid, user_id, user_cc, rtip_id, request):
     """
     Transaction for the creation of notifications related to identity access requests
     :param session: An ORM session
@@ -500,23 +500,21 @@ def create_identityaccessrequest(session, tid, user_id, rtip_id, request):
     """
     user, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
-    crypto_iar_prv_key, crypto_iar_pub_key = GCE.generate_keypair()
-    request['request_motivation'] = base64.b64encode(GCE.asymmetric_encrypt(crypto_iar_pub_key, request['request_motivation']))
+    crypto_tip_prv_key = GCE.asymmetric_decrypt(user_cc, base64.b64decode(rtip.crypto_tip_prv_key))
 
     iar = models.IdentityAccessRequest()
-    iar.request_motivation = request['request_motivation']
-    iar.receivertip_id = rtip.id
-    iar.crypto_iar_pub_key = crypto_iar_pub_key
-    iar.crypto_iar_prv_key = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, crypto_iar_prv_key))
+    iar.internaltip_id = itip.id
+    iar.request_user_id = user.id
+    iar.request_motivation = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, request['request_motivation']))
     session.add(iar)
     session.flush()
 
     custodians = 0
     for custodian in session.query(models.User).filter(models.User.tid == tid, models.User.role == 'custodian'):
         iarc = models.IdentityAccessRequestCustodian()
-        iarc.iar_id = iar.id
+        iarc.identityaccessrequest_id = iar.id
         iarc.custodian_id = custodian.id
-        iarc.crypto_iar_prv_key = base64.b64encode(GCE.asymmetric_encrypt(custodian.crypto_pub_key, crypto_iar_prv_key))
+        iarc.crypto_tip_prv_key = base64.b64encode(GCE.asymmetric_encrypt(custodian.crypto_pub_key, crypto_tip_prv_key))
         session.add(iarc)
         custodians += 1
 
@@ -774,5 +772,6 @@ class IdentityAccessRequestsCollection(BaseHandler):
 
         return create_identityaccessrequest(self.request.tid,
                                             self.session.user_id,
+                                            self.session.cc,
                                             rtip_id,
                                             request)
