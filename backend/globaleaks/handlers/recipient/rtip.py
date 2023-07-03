@@ -514,7 +514,7 @@ def create_identityaccessrequest(session, tid, user_id, rtip_id, request):
     custodians = 0
     for custodian in session.query(models.User).filter(models.User.tid == tid, models.User.role == 'custodian'):
         iarc = models.IdentityAccessRequestCustodian()
-        iarc.iar_id = iar.id
+        iarc.identityaccessrequest_id = iar.id
         iarc.custodian_id = custodian.id
         iarc.crypto_iar_prv_key = base64.b64encode(GCE.asymmetric_encrypt(custodian.crypto_pub_key, crypto_iar_prv_key))
         session.add(iarc)

@@ -561,8 +561,9 @@ class _IdentityAccessRequest(Model):
     __tablename__ = 'identityaccessrequest'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    receivertip_id = Column(UnicodeText(36), nullable=False, index=True)
+    internaltip_id = Column(UnicodeText(36), nullable=False, index=True)
     request_date = Column(DateTime, default=datetime_now, nullable=False)
+    request_user_id = Column(UnicodeText(36), default='', nullable=False)
     request_motivation = Column(UnicodeText, default='')
     reply_date = Column(DateTime, default=datetime_null, nullable=False)
     reply_user_id = Column(UnicodeText(36), default='', nullable=False)
@@ -573,7 +574,7 @@ class _IdentityAccessRequest(Model):
 
     @declared_attr
     def __table_args__(self):
-        return ForeignKeyConstraint(['receivertip_id'], ['receivertip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+        return ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
 
 class _IdentityAccessRequestCustodian(Model):
@@ -582,13 +583,13 @@ class _IdentityAccessRequestCustodian(Model):
     """
     __tablename__ = 'identityaccessrequest_custodian'
 
-    iar_id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    identityaccessrequest_id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     custodian_id = Column(UnicodeText(36), nullable=False, index=True)
     crypto_iar_prv_key = Column(UnicodeText(84), default='', nullable=False)
 
     @declared_attr
     def __table_args__(self):
-        return (ForeignKeyConstraint(['iar_id'], ['identityaccessrequest.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+        return (ForeignKeyConstraint(['identityaccessrequest_id'], ['identityaccessrequest.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['custodian_id'], ['user.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
 
 

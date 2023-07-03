@@ -41,19 +41,18 @@ def serialize_archived_questionnaire_schema(questionnaire_schema, language):
 
 
 def serialize_identityaccessrequest(session, identityaccessrequest):
-    itip, user = session.query(models.InternalTip, models.User) \
-                      .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                              models.ReceiverTip.id == identityaccessrequest.receivertip_id,
-                              models.User.id == models.ReceiverTip.receiver_id).one()
+    itip, request_user = session.query(models.InternalTip, models.User) \
+                                .filter(models.InternalTip.id == identityaccessrequest.internaltip_id,
+                                        models.User.id == identityaccessrequest.request_user_id).one()
 
     reply_user = session.query(models.User) \
                         .filter(models.User.id == identityaccessrequest.reply_user_id).one_or_none()
 
     return {
         'id': identityaccessrequest.id,
-        'receivertip_id': identityaccessrequest.receivertip_id,
+        'internaltip_id': identityaccessrequest.internaltip_id,
         'request_date': identityaccessrequest.request_date,
-        'request_user_name': user.name,
+        'request_user_name': request_user.name,
         'request_motivation': identityaccessrequest.request_motivation,
         'reply_date': identityaccessrequest.reply_date,
         'reply_user_name': reply_user.id if reply_user is not None else '',
@@ -211,7 +210,7 @@ def serialize_rtip(session, itip, rtip, language):
     ret['enable_notifications'] = rtip.enable_notifications
 
     iar = session.query(models.IdentityAccessRequest) \
-                 .filter(models.IdentityAccessRequest.receivertip_id == rtip.id) \
+                 .filter(models.IdentityAccessRequest.internaltip_id == itip.id) \
                  .order_by(models.IdentityAccessRequest.request_date.desc()).first()
 
     if iar:
