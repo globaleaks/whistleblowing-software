@@ -655,17 +655,6 @@ function ($scope, $uibModalInstance, args, Authentication, $routeParams, $http) 
     }
   };
   $scope.unMask = function () {
-    // var elem = document.getElementById(id);
-    // var text = elem.value;
-    // var start = elem.selectionStart;
-    // var finish = elem.selectionEnd;
-    // var sel = text.substring(start, finish);
-    // var length = finish - start;
-    // if (length) {
-    //   elem.value = text.substring(0, start) + $scope.content.substring(start, finish) + text.substring(finish, text.length);
-    // } else {
-    //   elem.value = $scope.content
-    // }
     if ($scope.maskingObjects.length !== 0) {
       if ($scope.maskingObjects[0].permanent_masking !== "") {
         let maskingdata = {
@@ -687,7 +676,6 @@ function ($scope, $uibModalInstance, args, Authentication, $routeParams, $http) 
   function mergeRanges(ranges) {
     var mergedRanges = [];
     var keys = Object.keys(ranges);
-    // Sort the ranges based on the start value
     keys.sort(function (a, b) {
       return ranges[a].start - ranges[b].start;
     });
@@ -695,15 +683,12 @@ function ($scope, $uibModalInstance, args, Authentication, $routeParams, $http) 
     for (var i = 1; i < keys.length; i++) {
       var nextRange = ranges[keys[i]];
       if (nextRange.start <= currentRange.end + 1) {
-        // Overlapping or adjacent ranges, update the end value of the current range
         currentRange.end = Math.max(currentRange.end, nextRange.end);
       } else {
-        // Non-overlapping or non-adjacent range, add the current range to the merged ranges array
         mergedRanges.push(currentRange);
         currentRange = nextRange;
       }
     }
-    // Add the last range to the merged ranges array
     mergedRanges.push(currentRange);
     return mergedRanges;
   }
