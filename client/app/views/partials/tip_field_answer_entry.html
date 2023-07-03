@@ -38,7 +38,7 @@
   </span>
 
   <span data-ng-if="entry['value']" class="entry-text preformatted"
-    data-ng-switch-default>{{maskingContent(entry['value'],field.id)}}</span>
+    data-ng-switch-default><i data-ng-if="edited(field.id)" class="fa-solid fa-pencil edited"></i> {{maskingContent(entry['value'],field.id)}}</span>
   <span class="float-right edit" id="edit-question" data-ng-switch-default
     data-ng-click="editReport(entry['value'],field.id,'answer')" data-ng-if="mode"
     data-uib-tooltip="{{'Edit' | translate}}">

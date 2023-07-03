@@ -276,6 +276,7 @@ GL.controller("TipCtrl",
       return current_date > report_date;
     };
     $scope.permanentMaskingObjects = []
+    $scope.maskingObjects = []
     function permanentRefineContent(content, permanentMaskingObjects) {
       var refinedContent = content;
       permanentMaskingObjects.forEach(function (obj) {
@@ -287,6 +288,16 @@ GL.controller("TipCtrl",
       });
       return refinedContent;
     }
+    $scope.edited = function (id) {
+      $scope.maskingObjects = $scope.tip.masking.filter(function (masking) {
+       return masking.content_id === id;
+      });
+     if ($scope.maskingObjects.length !== 0 && $scope.maskingObjects[0].permanent_masking !== "") {
+        return true
+      } else {
+        return false
+      }
+    }
     $scope.maskingContent = function (content, id) {
       $scope.permanentMaskingObjects = $scope.tip.masking.filter(function (masking) {
         return masking.content_id === id;
@@ -297,7 +308,7 @@ GL.controller("TipCtrl",
           return a.start - b.start;
         });
         var contentData = permanentRefineContent(content, permanentMaskingArray);
-        return "(edited) " + contentData
+        return contentData
       } else {
         return content
       }

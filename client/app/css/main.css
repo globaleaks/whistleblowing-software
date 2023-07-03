@@ -959,7 +959,10 @@ hr {
 .edit {
   color: #b4bccb !important
 }
-
+.edited {
+  opacity: 0.25;
+  font-size: 12px;
+  }
 .svg-btn:hover svg g {
   fill: white;
 }
