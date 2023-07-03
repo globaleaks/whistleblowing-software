@@ -46,7 +46,7 @@
             <div class="col-md-6" data-translate>Whistleblower</div>
             <div class="col-md-6 text-right">{{comment.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
           </div>
-          <div data-ng-if="comment.content" class="preformatted"><i data-ng-if="edited(comment.id)" class="fa-solid fa-pencil edited"></i> {{maskingContent(comment.content,comment.id)}}</div>
+          <div data-ng-if="comment.content" class="preformatted"><i data-ng-if="edited(comment.id)" class="fa-solid fa-pencil edited"></i>  {{maskingContent(comment.content,comment.id)}}</div>
         </div>
         <div data-ng-switch-when="receiver" class="message">
           <div class="row">
