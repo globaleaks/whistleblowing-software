@@ -89,7 +89,7 @@ def db_grant_tip_access(session, tid, user_id, user_cc, rtip_id, receiver_id):
         # Access to encrypted submissions could be granted only if the recipient has performed first login
         return
 
-    _tip_key = _files_key = b''
+    _tip_key = b''
     if itip.crypto_tip_pub_key:
         _tip_key = GCE.asymmetric_decrypt(user_cc, base64.b64decode(rtip.crypto_tip_prv_key))
         _tip_key = GCE.asymmetric_encrypt(new_receiver.crypto_pub_key, _tip_key)
