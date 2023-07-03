@@ -955,14 +955,15 @@ hr {
   margin: 10px 0;
 }
 
-/* Edit mode styling */
 .edit {
   color: #b4bccb !important
 }
+
 .edited {
   opacity: 0.25;
   font-size: 12px;
-  }
+}
+
 .svg-btn:hover svg g {
   fill: white;
 }
@@ -999,9 +1000,7 @@ hr {
 
 .audio-btn-group .btn {
   margin: 0 3px;
-  /* Adjust the margin as per your preference */
   padding: 6px 15px;
-  /* Adjust the padding as per your preference */
   font-size: 14px;
   line-height: 1.5;
   transition: all 0.3s;
@@ -1030,10 +1029,6 @@ hr {
   color: #ccc;
 }
 
-.btn.btn-audio:not([disabled]):hover {
-  /* Your hover styles for the enabled button */
-}
-
 .btn-audio.active {
   color: #2866a2;
 }
@@ -1056,7 +1051,7 @@ hr {
   border-radius: 50%;
 }
 
-.audio-recorder-active{
+.audio-recorder-active {
   background-color: red;
 }
 
