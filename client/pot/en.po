@@ -449,6 +449,9 @@ msgstr "Grant access"
 msgid "Revoke access"
 msgstr "Revoke access"
 
+msgid "Transfer access"
+msgstr "Transfer access"
+
 msgid "Assigned to"
 msgstr "Assigned to"
 
@@ -475,6 +478,9 @@ msgstr "Select an option"
 
 msgid "Select your language"
 msgstr "Select your language"
+
+msgid "Grant this recipient ability to transfer their access to reports"
+msgstr "Grant this recipient ability to transfer their access to reports"
 
 msgid "Grant this user the privilege to mask information"
 msgstr "Grant this user the privilege to mask information"
