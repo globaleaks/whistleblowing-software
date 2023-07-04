@@ -244,6 +244,55 @@ class WBTipWBFileHandler(BaseHandler):
         yield self.write_file_as_download(name, filelocation, pgp_key)
 
 
+class WBTipRFileDownload(BaseHandler):
+  """
+  This handler exposes rfiles for download.
+  """
+  check_roles = 'whistleblower'
+  handler_exec_time_threshold = 3600
+
+  @transact
+  def download_rfile(self, session, tid, user_id, file_id):
+    rfile, ifile, rtip = db_get(session,
+                                (models.ReceiverFile,
+                                 models.InternalFile,
+                                 models.InternalTip),
+                                (models.ReceiverTip.receiver_id == models.User.id,
+                                 models.ReceiverTip.id == models.ReceiverFile.receivertip_id,
+                                 models.InternalFile.id == models.ReceiverFile.internalfile_id,
+                                 models.InternalFile.id == file_id,
+                                 models.InternalTip.id == user_id))
+
+    if rfile.access_date == datetime_null():
+      rfile.access_date = datetime_now()
+
+    if ifile.reference:
+      crypto_key = rtip.crypto_tip_prv_key
+    else:
+      crypto_key = rtip.crypto_files_prv_key
+
+    return ifile.name, rfile.filename, base64.b64decode(rtip.crypto_tip_prv_key), base64.b64decode(
+      crypto_key)
+
+  @inlineCallbacks
+  def get(self, rfile_id):
+    name, filename, tip_prv_key, files_prv_key = yield self.download_rfile(self.request.tid,
+                                                                           self.session.user_id, rfile_id)
+
+    filelocation = os.path.join(self.state.settings.attachments_path, filename)
+    directory_traversal_check(self.state.settings.attachments_path, filelocation)
+
+    if tip_prv_key:
+      tip_prv_key = GCE.asymmetric_decrypt(self.session.cc, tip_prv_key)
+      files_prv_key = GCE.asymmetric_decrypt(self.session.cc, files_prv_key)
+      name = GCE.asymmetric_decrypt(tip_prv_key, base64.b64decode(name.encode())).decode()
+
+    if filelocation.endswith('.encrypted'):
+      filelocation = GCE.streaming_encryption_open('DECRYPT', files_prv_key, filelocation)
+
+    yield self.write_file_as_download(name, filelocation, '')
+
+
 class WBTipIdentityHandler(BaseHandler):
     """
     This is the interface that securely allows the whistleblower to provide his identity
