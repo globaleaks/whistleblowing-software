@@ -20,6 +20,7 @@
                 <span data-ng-switch-when="multichoice" data-translate>Multiple choice input</span>
                 <span data-ng-switch-when="checkbox" data-translate>Checkbox</span>
                 <span data-ng-switch-when="fileupload" data-translate>Attachment</span>
+                <span data-ng-switch-when="audioUpload" data-translate>Audio recording</span>
                 <span data-ng-switch-when="tos" data-translate>Terms of service</span>
                 <span data-ng-switch-when="date" data-translate>Date</span>
                 <span data-ng-switch-when="daterange" data-translate>Date range</span>
@@ -129,6 +130,22 @@
               <input data-ng-model="field.required" type="checkbox">
               <label data-translate>Mandatory</label>
             </div>
+
+            <div class="form-group" data-ng-if="(field.type === 'audioUpload') && field.template_id === ''">
+              <div class="form-group">
+                <label data-translate>Minimum number of seconds</label>
+                <input data-ng-model="field.attrs.min_time.value"  value="10" type="text"  class="form-control" data-ng-disabled="!field.editable" />
+                <div data-translate>Set the value to 0 to disable this feature.</div>
+              </div>
+            </div> 
+            <div class="form-group" data-ng-if="(field.type === 'audioUpload') && field.template_id === ''">
+              <div class="form-group">
+                <label data-translate>Maximum number of seconds</label>
+                <input data-ng-model="field.attrs.max_time.value" value="60" type="text"  class="form-control" data-ng-disabled="!field.editable" />
+                <div data-translate>Maximum 60 seconds are allowed and do not keep it less than <strong>minimm length</strong>.</div>
+              </div>
+            </div>
+
             <div class="form-group" data-ng-if="(field.type === 'fieldgroup' || field.type === 'fileupload') && field.template_id === ''">
               <div data-ng-switch="typeSwitch(field.type)">
                 <input data-ng-model="field.multi_entry" type="checkbox">
