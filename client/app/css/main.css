@@ -925,3 +925,122 @@ html[dir="ltr"] #Receipt {
 [dir] .navbar {
   padding: 0;
 }
+
+
+
+.audio-box {
+  position: relative;
+  margin-top:10px;
+  border: 1px solid #ddd;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  padding:7px;
+  padding-top:5px;
+  padding-bottom:5px;
+  padding-right:12px;
+  display: flex;
+  background:#f2f2f2;
+  flex-direction: column;
+  align-items: left;
+  width: 350px;
+}
+
+.audio-box-danger {
+  background-color: #ffe6e6;
+}
+hr {
+  height: 2px;
+  background-color: black;
+  border: none;
+  margin: 10px 0;
+}
+.audio-player {
+  background: #262626;
+  padding: 2px;
+  height:42px;
+  border-radius: 50px;
+  margin-left:2px;
+  width: 100%;
+  margin-top:10px;
+  max-width:350px;
+}
+
+@media screen and (max-width:370px) {
+  .audio-player{max-width: 300px;}
+}
+.audio-recorder {
+  position: absolute;
+  top: 5px;
+  right: 3px;
+  width: 10px;
+  height: 10px;
+  background-color: grey;
+  border-radius: 50%;
+}
+
+.audio-recorder-active {
+  position: absolute;
+  top: 5px;
+  right: 3px;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.audio-btn-group {
+  display: flex;
+  position:relative;
+  width:100%;
+  justify-content: flex-start;
+}
+
+.audio-btn-group .btn {
+  margin: 0 3px; /* Adjust the margin as per your preference */
+  padding: 6px 15px; /* Adjust the padding as per your preference */
+  font-size: 14px;
+  line-height: 1.5;
+  transition: all 0.3s;
+}
+
+.audio-btn-group .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.audio-btn-group .btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+.btn-audio{
+  color: #ccc;
+  cursor: pointer;
+}
+
+.btn-audio:hover{
+  color: #2866a2;
+}
+
+.btn.btn-audio[disabled]:hover {
+  color: #ccc;
+}
+
+.btn-audio.active {
+  color: #2866a2;
+}
+
+.btn-audio-enabled {
+  color: #333;
+}
+
+
+.audio-player-wrapper[disabled]{
+  cursor: not-allowed;
+  /* display:none added later  */
+  display: none; 
+}
+.audio-player-wrapper[disabled] .audio-player{
+  opacity: 0.5;
+  pointer-events: none;
+}
