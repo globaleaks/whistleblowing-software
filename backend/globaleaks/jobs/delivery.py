@@ -11,6 +11,7 @@ from globaleaks.settings import Settings
 from globaleaks.utils.crypto import generateRandomKey, GCE
 from globaleaks.utils.log import log
 from globaleaks.utils.pgp import PGPContext
+from globaleaks.handlers.base import BaseHandler
 
 __all__ = ['Delivery']
 
@@ -53,10 +54,14 @@ def file_delivery(session):
             receiverfile.new = not ifile.submission
 
             session.add(receiverfile)
+            if BaseHandler.encryption_type == 'tip':
+                crypto_key = itip.crypto_tip_pub_key
+            else:
+                crypto_key = itip.crypto_files_pub_key
 
             if ifile.id not in receiverfiles_maps:
                 receiverfiles_maps[ifile.id] = {
-                    'key': itip.crypto_files_pub_key,
+                    'key': crypto_key,
                     'src': src,
                     'rfiles': []
                 }
