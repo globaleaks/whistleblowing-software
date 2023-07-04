@@ -28,16 +28,16 @@ class StaticFileHandler(BaseHandler):
         directory_traversal_check(self.root, abspath)
 
         if filename == 'index.html' and not self.state.settings.disable_csp:
-            self.request.setHeader(b'Content-Security-Policy',
+           self.request.setHeader(b'Content-Security-Policy',
                                    b"base-uri 'none';"
                                    b"connect-src 'self';"
-                                   b"default-src 'none';"
+                                   b"default-src 'self'; "
                                    b"font-src 'self' data:;"
                                    b"form-action 'none';"
                                    b"frame-ancestors 'none';"
                                    b"frame-src 'self';"
                                    b"img-src 'self' data:;"
-                                   b"media-src 'self';"
+                                   b"media-src 'self' blob:;"
                                    b"script-src 'self' 'sha256-l4srTx31TC+tE2K4jVVCnC9XfHivkiSs/v+DPWccDDM=';"
                                    b"style-src 'self' 'sha256-fwyo2zCGlh85NfN4rQUlpLM7MB5cry/1AEDA/G9mQJ8=';")
 
