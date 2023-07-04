@@ -164,7 +164,7 @@ GL.controller("SubmissionCtrl",
       return;
     }
 
-    return "api/submission/attachment";
+    return "api/submission/attachment?encryption_type=tip";
   };
 
   $scope.prepareSubmission = function(context) {
