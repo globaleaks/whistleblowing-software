@@ -338,6 +338,16 @@ factory("RTipDownloadRFile", ["Utils", function(Utils) {
     Utils.download("api/rfile/" + file.id);
   };
 }]).
+factory("WBTipFileSourceGet", ["Utils", function(Utils) {
+  return function(id, key, scope) {
+    return Utils.getRawFile("api/rtip/answer/rfile/" + id, key, scope);
+  }
+}]).
+factory("RTipFileSourceGet", ["Utils", function(Utils) {
+  return function(id, key, scope) {
+    return Utils.getRawFile("api/rfile/" + id, key, scope);
+  }
+}]).
 factory("RTipWBFileResource", ["GLResource", function(GLResource) {
   return new GLResource("api/wbfile/:id", {id: "@id"});
 }]).
@@ -1098,6 +1108,12 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       };
     },
 
+    getRawFile: function(url, key, scope) {
+      return new TokenResource().$get().then(function(token) {
+        scope.audiolist[key]['value'] = url + "?token=" + token.id + ":" + token.answer;
+      });
+    },
+
     download: function(url) {
       return new TokenResource().$get().then(function(token) {
         $window.open(url + "?token=" + token.id + ":" + token.answer);
@@ -1559,7 +1575,7 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
                   }
                 }
               }
-            } else if (field.type === "fileupload") {
+            } else if (field.type === "fileupload" || field.type === "audioUpload") {
               entry.required_status = field.required && (!scope.uploads[field.id] || !scope.uploads[field.id].files.length);
             } else {
               entry.required_status = field.required && !entry["value"];
