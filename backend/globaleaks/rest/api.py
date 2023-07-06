@@ -26,6 +26,7 @@ from globaleaks.handlers import admin, \
                                 user, \
                                 redirect, \
                                 robots, \
+                                secret, \
                                 signup, \
                                 sitemap, \
                                 support, \
@@ -46,6 +47,8 @@ key_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}|[a-
 api_spec = [
     # Public API
     (r'/api/public', public.PublicResource),
+
+    (r'/api/secret', secret.Secret),
 
     # Authentication Handlers
     (r'/api/auth/token', auth.token.TokenHandler),
