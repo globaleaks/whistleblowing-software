@@ -84,6 +84,7 @@ module.exports = function(grunt) {
               "data/**",
               "lib/js/locale/**",
               "modules/**",
+              "secret.html",
               "viewer/**"
             ],
             expand: true,
