@@ -584,7 +584,7 @@ class _IdentityAccessRequestCustodian(Model):
     __tablename__ = 'identityaccessrequest_custodian'
 
     identityaccessrequest_id = Column(UnicodeText(36), primary_key=True)
-    custodian_id = Column(UnicodeText(36), primary_key=True, nullable=False)
+    custodian_id = Column(UnicodeText(36), primary_key=True)
     crypto_tip_prv_key = Column(UnicodeText(84), default='', nullable=False)
 
     @declared_attr
@@ -638,7 +638,7 @@ class _InternalTip(Model):
     last_access = Column(DateTime, default=datetime_now, nullable=False)
     status = Column(UnicodeText(36), nullable=True)
     substatus = Column(UnicodeText(36), nullable=True)
-    receipt_hash = Column(UnicodeText(128), nullable=False)
+    receipt_hash = Column(UnicodeText(44), nullable=False)
     crypto_prv_key = Column(UnicodeText(84), default='', nullable=False)
     crypto_pub_key = Column(UnicodeText(56), default='', nullable=False)
     crypto_tip_pub_key = Column(UnicodeText(56), default='', nullable=False)
@@ -922,7 +922,7 @@ class _User(Model):
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     username = Column(UnicodeText, default='', nullable=False)
     salt = Column(UnicodeText(24), default='', nullable=False)
-    hash = Column(UnicodeText, default='', nullable=False)
+    hash = Column(UnicodeText(44), default='', nullable=False)
     name = Column(UnicodeText, default='', nullable=False)
     description = Column(JSON, default=dict, nullable=False)
     public_name = Column(UnicodeText, default='', nullable=False)
