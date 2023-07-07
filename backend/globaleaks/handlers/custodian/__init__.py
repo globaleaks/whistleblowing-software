@@ -102,9 +102,6 @@ def update_identityaccessrequest(session, tid, user_id, identityaccessrequest_id
         iar.reply = request['reply']
         iar.reply_motivation = request['reply_motivation']
 
-        if iar.reply == 'authorized':
-            rtip.can_access_whistleblower_identity = True
-
         db_create_identity_access_reply_notifications(session, itip, rtip, iar)
 
     return serializers.serialize_identityaccessrequest(session, iar)
