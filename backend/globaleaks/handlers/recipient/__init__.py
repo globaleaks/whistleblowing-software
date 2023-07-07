@@ -79,8 +79,13 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
         rtips_ids[rtip.id] = True
 
         answers = answers.answers
+        label = itip.label
         if itip.crypto_tip_pub_key:
             tip_key = GCE.asymmetric_decrypt(user_key, base64.b64decode(rtip.crypto_tip_prv_key))
+
+            if label:
+                label = GCE.asymmetric_decrypt(tip_key, base64.b64decode(label.encode())).decode()
+
             answers = json.loads(GCE.asymmetric_decrypt(tip_key, base64.b64decode(answers.encode())).decode())
 
         if aqs.hash not in ret['questionnaires']:
@@ -97,7 +102,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
             'reminder_date': itip.reminder_date,
             'progressive': itip.progressive,
             'important': itip.important,
-            'label': itip.label,
+            'label': label,
             'updated': rtip.last_access < itip.update_date,
             'context_id': itip.context_id,
             'tor': itip.tor,

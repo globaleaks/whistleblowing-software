@@ -18,6 +18,9 @@ from globaleaks.utils.utility import get_expiration, datetime_null
 def decrypt_tip(user_key, tip_prv_key, tip):
     tip_key = GCE.asymmetric_decrypt(user_key, tip_prv_key)
 
+    if 'label' in tip and tip['label']:
+        tip['label'] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(tip['label'].encode())).decode()
+
     for questionnaire in tip['questionnaires']:
         questionnaire['answers'] = json.loads(GCE.asymmetric_decrypt(tip_key, base64.b64decode(questionnaire['answers'].encode())).decode())
 

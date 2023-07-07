@@ -431,6 +431,10 @@ def set_internaltip_variable(session, tid, user_id, rtip_id, key, value):
     :param value: A value to be assigned to the property
     """
     _, _, itip = db_access_rtip(session, tid, user_id, rtip_id)
+
+    if itip.crypto_tip_pub_key and value and key in ['label']:
+        value = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, value))
+
     setattr(itip, key, value)
 
 
