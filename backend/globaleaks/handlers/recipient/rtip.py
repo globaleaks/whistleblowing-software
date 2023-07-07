@@ -733,8 +733,7 @@ class RTipWBFileHandler(BaseHandler):
                                         (models.User.id == user_id,
                                          models.User.id == models.ReceiverTip.receiver_id,
                                          models.WhistleblowerFile.id == file_id,
-                                         models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
-                                         models.ReceiverTip.internaltip_id == models.InternalTip.id))
+                                         models.WhistleblowerFile.internaltip_id == models.InternalTip.id))
 
         rtip = session.query(models.ReceiverTip) \
                       .filter(models.ReceiverTip.receiver_id == self.session.user_id,
