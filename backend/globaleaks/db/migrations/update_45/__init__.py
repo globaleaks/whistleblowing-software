@@ -244,6 +244,5 @@ class MigrationScript(MigrationBase):
 
             for id in ids:
                 if id in answers:
-                    db_set_internaltip_data(self.session_new, internaltip.id, 'identity_provided', True)
                     db_set_internaltip_data(self.session_new, internaltip.id, 'whistleblower_identity', answers[id])
                     break
