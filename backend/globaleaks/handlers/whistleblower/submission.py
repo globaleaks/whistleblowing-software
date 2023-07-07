@@ -30,6 +30,13 @@ def decrypt_tip(user_key, tip_prv_key, tip):
                 # The bug is due to the fact that the data was initially saved as an array of one entry
                 tip['data'][k] = tip['data'][k][0]
 
+    if tip['iar']:
+        if tip['iar']['request_motivation']:
+            tip['iar']['request_motivation'] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(tip['iar']['request_motivation'])).decode()
+
+        if tip['iar']['reply_motivation']:
+            tip['iar']['reply_motivation'] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(tip['iar']['reply_motivation'])).decode()
+
     for x in tip['comments']:
         x['content'] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(x['content'].encode())).decode()
 

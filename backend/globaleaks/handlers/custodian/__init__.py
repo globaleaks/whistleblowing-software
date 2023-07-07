@@ -18,34 +18,31 @@ from globaleaks.utils.utility import datetime_now
 
 
 @transact
-def get_identityaccessrequest_list(session, tid, user_key):
+def get_identityaccessrequest_list(session, tid, user_id, user_key):
     ret = []
 
     for iarc, iar in session.query(models.IdentityAccessRequestCustodian, models.IdentityAccessRequest) \
-                            .filter(models.IdentityAccessRequestCustodian.iar_id == models.IdentityAccessRequest.id,
-                                    models.IdentityAccessRequest.receivertip_id == models.ReceiverTip.id,
-                                    models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                            .filter(models.IdentityAccessRequestCustodian.identityaccessrequest_id == models.IdentityAccessRequest.id,
+                                    models.IdentityAccessRequestCustodian.custodian_id == user_id,
+                                    models.IdentityAccessRequest.internaltip_id == models.InternalTip.id,
                                     models.InternalTip.tid == tid):
         elem = serializers.serialize_identityaccessrequest(session, iar)
 
-        if iarc.crypto_iar_prv_key:
-            crypto_iar_prv_key = GCE.asymmetric_decrypt(user_key, iarc.crypto_iar_prv_key)
+        if iarc.crypto_tip_prv_key:
+            crypto_tip_prv_key = GCE.asymmetric_decrypt(user_key, base64.b64decode(iarc.crypto_tip_prv_key))
 
-        if iar.crypto_iar_pub_key:
-            if elem['request_motivation'] and crypto_iar_prv_key:
-                elem['request_motivation'] = GCE.asymmetric_decrypt(crypto_iar_prv_key, base64.b64decode(elem['request_motivation']))
-            else:
-                elem['request_motivation'] =  ''
+            if elem['request_motivation']:
+                elem['request_motivation'] = GCE.asymmetric_decrypt(crypto_tip_prv_key, base64.b64decode(elem['request_motivation'])).decode()
 
-            if elem['reply_motivation'] and crypto_iar_prv_key:
-                elem['reply_motivation'] = GCE.asymmetric_decrypt(crypto_iar_prv_key, base64.b64decode(elem['reply_motivation']))
-            else:
-                 elem['reply_motivation'] = ''
+            if elem['reply_motivation']:
+                elem['reply_motivation'] = GCE.asymmetric_decrypt(crypto_tip_prv_key, base64.b64decode(elem['reply_motivation'])).decode()
 
         ret.append(elem)
 
+    return ret
 
-def db_create_identity_access_reply_notifications(session, itip, rtip, iar):
+
+def db_create_identity_access_reply_notifications(session, itip, iar):
     """
     Transaction for the creation of notifications related to identity access replies
     :param session: An ORM session
@@ -53,9 +50,10 @@ def db_create_identity_access_reply_notifications(session, itip, rtip, iar):
     :param rtip: A rtip ID of the rtip involved in the request
     :param iar: A identity access request model
     """
-    for user in session.query(models.User) \
-                       .filter(models.User.id == rtip.receiver_id,
-                               models.User.notification.is_(True)):
+    for user, rtip in session.query(models.User, models.ReceiverTip) \
+                             .filter(models.User.id == models.ReceiverTip.receiver_id,
+                                     models.ReceiverTip.internaltip_id == itip.id,
+                                     models.User.notification.is_(True)):
         context = session.query(models.Context).filter(models.Context.id == itip.context_id).one()
 
         data = {
@@ -85,16 +83,14 @@ def db_create_identity_access_reply_notifications(session, itip, rtip, iar):
 
 @transact
 def update_identityaccessrequest(session, tid, user_id, identityaccessrequest_id, request):
-    iar, rtip, itip = session.query(models.IdentityAccessRequest, models.ReceiverTip, models.InternalTip) \
+    iar, iarc, itip = session.query(models.IdentityAccessRequest, models.IdentityAccessRequestCustodian, models.InternalTip) \
                              .filter(models.IdentityAccessRequest.id == identityaccessrequest_id,
-                                     models.ReceiverTip.id == models.IdentityAccessRequest.receivertip_id,
-                                     models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                     models.InternalTip.tid == tid).one()
+                                     models.IdentityAccessRequestCustodian.identityaccessrequest_id == models.IdentityAccessRequest.id,
+                                     models.IdentityAccessRequestCustodian.custodian_id == user_id,
+                                     models.InternalTip.id == models.IdentityAccessRequest.internaltip_id).one()
 
-
-    if request['reply_motivation'] and iar.crypto_iar_pub_key:
-        request['reply_motivation'] = base64.b64encode(GCE.asymmetric_encrypt(iar.crypto_iar_pub_key, request['reply_motivation']))
-
+    if request['reply_motivation'] and itip.crypto_tip_pub_key:
+        request['reply_motivation'] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, request['reply_motivation']))
 
     if iar.reply == 'pending':
         iar.reply_date = datetime_now()
@@ -102,7 +98,7 @@ def update_identityaccessrequest(session, tid, user_id, identityaccessrequest_id
         iar.reply = request['reply']
         iar.reply_motivation = request['reply_motivation']
 
-        db_create_identity_access_reply_notifications(session, itip, rtip, iar)
+        db_create_identity_access_reply_notifications(session, itip, iar)
 
     return serializers.serialize_identityaccessrequest(session, iar)
 
@@ -128,4 +124,4 @@ class IdentityAccessRequestsCollection(BaseHandler):
     check_roles = 'custodian'
 
     def get(self):
-        return get_identityaccessrequest_list(self.request.tid, self.session.cc)
+        return get_identityaccessrequest_list(self.request.tid, self.session.user_id, self.session.cc)

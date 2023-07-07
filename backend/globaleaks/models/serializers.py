@@ -204,7 +204,7 @@ def serialize_rtip(session, itip, rtip, language):
     ret['internaltip_id'] = itip.id
     ret['progressive'] = itip.progressive
     ret['receiver_id'] = user_id
-    ret['custodian'] = State.tenants[itip.tid].cache['enable_custodian']
+    ret['custodian'] = State.tenants[itip.tid].cache['custodian']
     ret['important'] = itip.important
     ret['label'] = itip.label
     ret['enable_notifications'] = rtip.enable_notifications
