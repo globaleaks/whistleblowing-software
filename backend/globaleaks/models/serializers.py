@@ -215,8 +215,6 @@ def serialize_rtip(session, itip, rtip, language):
 
     if iar:
         ret['iar'] = serialize_identityaccessrequest(session, iar)
-    else:
-        ret['iar'] = None
 
     for receiver in session.query(models.User) \
                            .filter(models.User.id == models.ReceiverTip.receiver_id,
@@ -229,7 +227,7 @@ def serialize_rtip(session, itip, rtip, language):
     if 'whistleblower_identity' in ret['data']:
         ret['data']['whistleblower_identity_provided'] = True
 
-        if ret['iar'] is None or ret['iar']['reply'] == 'denied':
+        if 'iar' not in ret or ret['iar']['reply'] == 'denied':
             del ret['data']['whistleblower_identity']
 
     for ifile, rfile in session.query(models.InternalFile, models.ReceiverFile) \
