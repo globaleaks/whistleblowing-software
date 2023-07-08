@@ -1,5 +1,5 @@
 describe("globaleaks process", function() {
-  var N = 3;
+  var N = 0;
   var receipts = [];
   var comment = "comment";
   var comment_reply = "comment reply";

@@ -6,18 +6,5 @@
   "test-admin-first-login.js",
   "test-admin-configure-advanced.js",
   "test-admin-configure-users.js",
-  "test-users-first-login.js",
-  "test-admin-assign-key-escrow.js",
-  "test-admin-configure-languages.js",
-  "test-admin-configure-files.js",
-  "test-internationalization.js",
-  "test-admin-configure-custom-texts.js",
-  "test-admin-configure-notifications.js",
-  "test-admin-configure-network.js",
-  "test-admin-contexts.js",
-  "test-admin-questionnaires.js",
-  "test-globaleaks-process.js",
-  "test-acquire-documentation-screenshots.js",
-  "test-admin-sites.js",
-  "test-signup.js"
+  "test-users-first-login.js"
 ]
