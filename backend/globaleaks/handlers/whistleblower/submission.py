@@ -33,7 +33,7 @@ def decrypt_tip(user_key, tip_prv_key, tip):
                 # The bug is due to the fact that the data was initially saved as an array of one entry
                 tip['data'][k] = tip['data'][k][0]
 
-    if tip['iar']:
+    if 'iar' in tip:
         if tip['iar']['request_motivation']:
             tip['iar']['request_motivation'] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(tip['iar']['request_motivation'])).decode()
 
@@ -45,7 +45,7 @@ def decrypt_tip(user_key, tip_prv_key, tip):
 
     for x in tip['rfiles'] + tip['wbfiles']:
         for k in ['name', 'description', 'type', 'size']:
-            if k in x:
+            if k in x and x[k]:
                 x[k] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(x[k].encode())).decode()
                 if k == 'size':
                     x[k] = int(x[k])
