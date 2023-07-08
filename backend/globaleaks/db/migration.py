@@ -5,6 +5,7 @@ import shutil
 import sys
 from collections import OrderedDict
 
+from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -222,30 +223,33 @@ def perform_migration(version):
     os.mkdir(tmpdir)
     shutil.copy(orig_db_file, os.path.join(tmpdir, 'old.db'))
 
-    new_db_file = None
+    old_db_file = os.path.abspath(os.path.join(tmpdir, 'old.db'))
+    session_old = get_session(make_db_uri(old_db_file))
+
+    new_db_file = os.path.abspath(os.path.join(tmpdir, 'new.db'))
+    session_new = None
+
+    Settings.enable_input_length_checks = False
 
     try:
         while version < DATABASE_VERSION:
-            old_db_file = os.path.abspath(os.path.join(tmpdir, 'old.db'))
-            new_db_file = os.path.abspath(os.path.join(tmpdir, 'new.db'))
-
-            if os.path.exists(new_db_file):
-                shutil.move(new_db_file, old_db_file)
-
-            Settings.db_file = new_db_file
-            Settings.enable_input_length_checks = False
-
             log.info("Updating DB from version %d to version %d" %
                      (version, version + 1))
 
             j = version - FIRST_DATABASE_VERSION_SUPPORTED
-            session_old = get_session(make_db_uri(old_db_file))
 
-            engine = get_engine(make_db_uri(new_db_file), foreign_keys=False, orm_lockdown=False)
+            if version == DATABASE_VERSION - 1:
+                engine = get_engine(make_db_uri(new_db_file), foreign_keys=False, orm_lockdown=False)
+            else:
+                engine = create_engine("sqlite:///:memory:")
+
             if FIRST_DATABASE_VERSION_SUPPORTED + j + 1 == DATABASE_VERSION:
                 Base.metadata.create_all(engine)
             else:
                 Bases[j+1].metadata.create_all(engine)
+
+            if session_new:
+                session_old = session_new
 
             session_new = sessionmaker(bind=engine)()
 
@@ -287,12 +291,9 @@ def perform_migration(version):
 
             log.info("Migration stats:")
 
-            # we open a new db in order to verify integrity of the generated file
-            session_verify = get_session(make_db_uri(new_db_file))
-
             for model_name, _ in migration_mapping.items():
                 if migration_script.model_from[model_name] is not None and migration_script.model_to[model_name] is not None:
-                    count = session_verify.query(migration_script.model_to[model_name]).count()
+                    count = session_new.query(migration_script.model_to[model_name]).count()
                     if migration_script.entries_count[model_name] != count:
                         if migration_script.skip_count_check.get(model_name, False):
                             log.info(" * %s table migrated (entries count changed from %d to %d)" %
@@ -306,14 +307,12 @@ def perform_migration(version):
 
             version += 1
 
-            session_verify.close()
-
         perform_data_update(new_db_file)
     except:
         raise
     else:
         # in case of success first copy the new migrated db, then as last action delete the original db file
-        shutil.copy(new_db_file, final_db_file)
+        shutil.move(new_db_file, final_db_file)
 
         if orig_db_file != final_db_file:
             srm(orig_db_file)
