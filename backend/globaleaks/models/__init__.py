@@ -1014,7 +1014,7 @@ class _WhistleblowerFile(Model):
     content_type = Column(UnicodeText, nullable=False)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     access_date = Column(DateTime, default=datetime_null, nullable=False)
-    description = Column(UnicodeText, nullable=False)
+    description = Column(UnicodeText, default="", nullable=False)
     visibility = Column(Enum(EnumVisibility), default='public', nullable=False)
     new = Column(Boolean, default=True, nullable=False)
 
