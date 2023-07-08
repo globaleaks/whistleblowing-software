@@ -119,7 +119,7 @@ GL.controller("TipCtrl",
           step = questionnaire.steps[i];
           j = step.children.length;
           while (j--) {
-            if (step.children[j]["template_id"] === "whistleblower_identity") {
+            if (step.children[j]["template_id"] === "whistleblower_identity" || step.children[j]["key"] === "whistleblower_identity") {
               $scope.whistleblower_identity_field = step.children[j];
               $scope.whistleblower_identity_field.enabled = true;
               step.children.splice(j, 1);
