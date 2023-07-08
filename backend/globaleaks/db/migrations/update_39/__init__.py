@@ -503,10 +503,6 @@ class MigrationScript(MigrationBase):
                     new_obj.tid = 1
                 elif key == 'file_path':
                     new_obj.file_path = old_obj.file_path.replace('files/submission', 'attachments')
-                    try:
-                        shutil.move(old_obj.file_path, new_obj.file_path)
-                    except Exception:
-                        pass
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
@@ -549,19 +545,27 @@ class MigrationScript(MigrationBase):
                 if not os.path.isfile(filepath):
                     continue
 
-                new_file = File()
+                new_file = self.model_to['File']()
                 new_file.id = uuid4()
                 new_file.name = filename
                 new_file.data = ''
                 self.session_new.add(new_file)
-                shutil.move(filepath,
-                            os.path.abspath(os.path.join(Settings.files_path, new_file.id)))
 
                 self.entries_count['File'] += 1
 
-        shutil.rmtree(os.path.abspath(os.path.join(Settings.working_path, 'files/static')), True)
-        shutil.rmtree(os.path.abspath(os.path.join(Settings.working_path, 'files/submission')), True)
-        shutil.rmtree(os.path.abspath(os.path.join(Settings.working_path, 'files/tmp')), True)
+        try:
+            shutil.move(os.path.join(Settings.working_path, 'files/submission'), os.path.join(Settings.working_path, '_files'))
+            shutil.rmtree(Settings.attachments_path)
+            shutil.move(os.path.join(Settings.working_path, '_files'), Settings.attachments_path)
+        except:
+            pass
+
+        try:
+            shutil.move(os.path.join(Settings.working_path, 'files/static'), os.path.join(Settings.working_path, '_files'))
+            shutil.rmtree(Settings.files_path)
+            shutil.move(os.path.join(Settings.working_path, '_files'), Settings.files_path)
+        except:
+            pass
 
         try:
             # Depending of when the system was installed this directory may not exist
