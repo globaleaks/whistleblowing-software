@@ -23,8 +23,13 @@ class SettingsClass(object, metaclass=Singleton):
         self.nodaemon = False
 
         self.bind_address = '::'
+
         self.bind_remote_ports = [80, 443]
         self.bind_local_ports = [8080, 8082, 8083, 8443]
+
+        if os.geteuid() != 0:
+            self.bind_remote_ports = [8080, 8443]
+            self.bind_local_ports = [8082, 8083]
 
         self.db_type = 'sqlite'
 
@@ -134,6 +139,7 @@ class SettingsClass(object, metaclass=Singleton):
         self.devel_mode = True
         self.rsa_key_bits = 1024
         self.acme_directory_url = 'https://acme-staging-v02.api.letsencrypt.org/directory'
+        self.bind_local_ports = [8080, 8082, 8083, 8443]
         self.bind_remote_ports = []
         self.working_path = os.path.join(self.src_path, 'workingdir')
 
