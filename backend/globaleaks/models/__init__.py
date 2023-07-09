@@ -220,9 +220,9 @@ class _AuditLog(Model):
     date = Column(DateTime, default=datetime_now, nullable=False)
     type = Column(UnicodeText(24), default='', nullable=False)
     severity = Column(Integer, default=0, nullable=False)
-    user_id = Column(UnicodeText(36), nullable=True)
-    object_id = Column(UnicodeText(36), nullable=True)
-    data = Column(JSON, nullable=True)
+    user_id = Column(UnicodeText(36))
+    object_id = Column(UnicodeText(36))
+    data = Column(JSON)
 
 
 class _Comment(Model):
@@ -432,7 +432,7 @@ class _Field(Model):
     type = Column(UnicodeText, default='inputbox', nullable=False)
     instance = Column(Enum(EnumFieldInstance), default='instance', nullable=False)
     template_id = Column(UnicodeText(36))
-    template_override_id = Column(UnicodeText(36), nullable=True)
+    template_override_id = Column(UnicodeText(36))
 
     @declared_attr
     def __table_args__(self):
@@ -566,7 +566,7 @@ class _IdentityAccessRequest(Model):
     request_user_id = Column(UnicodeText(36), nullable=False)
     request_motivation = Column(UnicodeText, default='')
     reply_date = Column(DateTime, default=datetime_null, nullable=False)
-    reply_user_id = Column(UnicodeText(36), nullable=True)
+    reply_user_id = Column(UnicodeText(36))
     reply_motivation = Column(UnicodeText, default='', nullable=False)
     reply = Column(UnicodeText, default='pending', nullable=False)
 
@@ -636,8 +636,8 @@ class _InternalTip(Model):
     important = Column(Boolean, default=False, nullable=False)
     label = Column(UnicodeText, default='', nullable=False)
     last_access = Column(DateTime, default=datetime_now, nullable=False)
-    status = Column(UnicodeText(36), nullable=True)
-    substatus = Column(UnicodeText(36), nullable=True)
+    status = Column(UnicodeText(36))
+    substatus = Column(UnicodeText(36))
     receipt_hash = Column(UnicodeText(44), nullable=False)
     crypto_prv_key = Column(UnicodeText(84), default='', nullable=False)
     crypto_pub_key = Column(UnicodeText(56), default='', nullable=False)
@@ -796,7 +796,7 @@ class _Subscriber(Model):
     organization_tax_code = Column(UnicodeText, default='', nullable=False)
     organization_vat_code = Column(UnicodeText, default='', nullable=False)
     organization_location = Column(UnicodeText, default='', nullable=False)
-    activation_token = Column(UnicodeText, unique=True, nullable=True)
+    activation_token = Column(UnicodeText, unique=True)
     client_ip_address = Column(UnicodeText, nullable=False)
     client_user_agent = Column(UnicodeText, nullable=False)
     registration_date = Column(DateTime, default=datetime_now, nullable=False)
@@ -941,7 +941,7 @@ class _User(Model):
     crypto_escrow_bkp1_key = Column(UnicodeText(84), default='', nullable=False)
     crypto_escrow_bkp2_key = Column(UnicodeText(84), default='', nullable=False)
     change_email_address = Column(UnicodeText, default='', nullable=False)
-    change_email_token = Column(UnicodeText, unique=True, nullable=True)
+    change_email_token = Column(UnicodeText, unique=True)
     change_email_date = Column(DateTime, default=datetime_null, nullable=False)
     notification = Column(Boolean, default=True, nullable=False)
     forcefully_selected = Column(Boolean, default=False, nullable=False)
