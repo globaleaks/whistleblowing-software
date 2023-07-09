@@ -301,13 +301,6 @@ class ReceiverFile_v_38(Model):
     status = Column(UnicodeText)
 
 
-class ShortURL_v_38(Model):
-    __tablename__ = 'shorturl'
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-    shorturl = Column(UnicodeText)
-    longurl = Column(UnicodeText)
-
-
 class Step_v_38(Model):
     __tablename__ = 'step'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
@@ -348,11 +341,6 @@ class Questionnaire_v_38(Model):
     steps_navigation_requires_completion = Column(Boolean, default=False)
     enable_whistleblower_identity = Column(Boolean, default=False)
     editable = Column(Boolean, default=True)
-
-
-class SecureFileDelete_v_38(Model):
-    __tablename__ = 'securefiledelete'
-    filepath = Column(UnicodeText, primary_key=True)
 
 
 class User_v_38(Model):
@@ -400,12 +388,7 @@ class WhistleblowerFile_v_38(Model):
 
 class MigrationScript(MigrationBase):
     skip_model_migration = {
-        'ArchivedSchema': True,
-        'ShortURL': True
-    }
-
-    skip_count_check = {
-        'ShortURL': True
+        'ArchivedSchema': True
     }
 
     def migrate_Config(self):
