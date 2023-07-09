@@ -76,6 +76,7 @@ exports.takeScreenshot = async function(filename, locator) {
 };
 
 exports.logout = async function() {
+  await browser.gl.utils.waitUntilClickable(by.id("LogoutLink"));
   await element(by.id("LogoutLink")).click();
   await browser.gl.utils.waitUntilAbsent(by.id("LogoutLink"));
 };
