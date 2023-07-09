@@ -103,7 +103,6 @@ ConfigDescriptor = {
     'threshold_free_disk_percentage_low': Int(default=10),
     'timezone': Int(default=0),
     'tip_expiration_threshold': Int(default=72),  # Hours
-    'tor': Bool(default=True),
     'tor_onion_key': Unicode(),
     'two_factor': Bool(default=False),
     'unread_reminder_time': Int(default=7),  # Days
