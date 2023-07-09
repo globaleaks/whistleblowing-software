@@ -607,6 +607,7 @@ class _InternalFile(Model):
     content_type = Column(JSON, default='', nullable=False)
     size = Column(JSON, default='', nullable=False)
     new = Column(Boolean, default=True, nullable=False)
+    reference_id = Column(UnicodeText(36), default='', nullable=False)
 
     @declared_attr
     def __table_args__(self):
