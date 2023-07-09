@@ -36,8 +36,8 @@ exports.whistleblower = function() {
 
     await element(by.id("step-0")).element(by.id("step-0-field-6-0-input-0")).sendKeys("...");
 
-    var fileToUpload1 = browser.gl.utils.makeTestFilePath("evidence-1");
-    var fileToUpload2 = browser.gl.utils.makeTestFilePath("evidence-2");
+    var fileToUpload1 = browser.gl.utils.makeTestFilePath("evidence-1.pdf");
+    var fileToUpload2 = browser.gl.utils.makeTestFilePath("evidence-2.zip");
     await element(by.id("step-0")).element(by.id("step-0-field-5-0-input-0")).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload1);
     await element(by.id("step-0")).element(by.id("step-0-field-5-0-input-0")).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload2);
 
