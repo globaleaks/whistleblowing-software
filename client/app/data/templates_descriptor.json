@@ -229,7 +229,7 @@
     "{RecipientName}",
     "{NewEmailAddress}"
   ],
-  "export_message_recipient":[
+  "export_comment_recipient":[
     "{NodeName}",
     "{TorSite}",
     "{HTTPSSite}",
@@ -254,7 +254,7 @@
     "{Author}",
     "{Content}"
   ],
-  "export_message_whistleblower":[
+  "export_comment_whistleblower":[
     "{NodeName}",
     "{TorSite}",
     "{HTTPSSite}",
