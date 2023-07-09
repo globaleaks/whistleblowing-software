@@ -50,11 +50,7 @@ class Service(service.Service):
     def __init__(self):
         self.state = State
         self.arw = resource.EncodingResourceWrapper(APIResourceWrapper(), [server.GzipEncoderFactory()])
-
-        if Settings.nodaemon:
-            self.api_factory = Site(self.arw, logFormatter=logFormatter)
-        else:
-            self.api_factory = Site(self.arw, logPath=Settings.accesslogfile, logFormatter=logFormatter)
+        self.api_factory = Site(self.arw, logPath=Settings.accesslogfile, logFormatter=logFormatter)
 
         self.api_factory.displayTracebacks = False
 
