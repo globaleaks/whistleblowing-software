@@ -25,7 +25,7 @@ from globaleaks.db.migrations.update_35 import Context_v_34, InternalTip_v_34, \
     WhistleblowerTip_v_34
 from globaleaks.db.migrations.update_38 import Field_v_37, Questionnaire_v_37
 from globaleaks.db.migrations.update_39 import \
-    Anomalies_v_38, ArchivedSchema_v_38, Comment_v_38, Config_v_38, \
+    ArchivedSchema_v_38, Comment_v_38, Config_v_38, \
     ConfigL10N_v_38, Context_v_38, CustomTexts_v_38, EnabledLanguage_v_38, \
     Field_v_38, FieldAnswer_v_38, FieldAnswerGroup_v_38, FieldAttr_v_38, \
     FieldOption_v_38, File_v_38, IdentityAccessRequest_v_38, \
