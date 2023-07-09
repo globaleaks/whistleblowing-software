@@ -336,8 +336,8 @@ class _Context(Model):
     show_receivers_in_alphabetical_order = Column(Boolean, default=True, nullable=False)
     score_threshold_high = Column(Integer, default=0, nullable=False)
     score_threshold_medium = Column(Integer, default=0, nullable=False)
-    questionnaire_id = Column(UnicodeText(36), default='default', nullable=False)
-    additional_questionnaire_id = Column(UnicodeText(36))
+    questionnaire_id = Column(UnicodeText(36), default='default', nullable=False, index=True)
+    additional_questionnaire_id = Column(UnicodeText(36), index=True)
     hidden = Column(Boolean, default=False, nullable=False)
     order = Column(Integer, default=0, nullable=False)
 
@@ -431,15 +431,15 @@ class _Field(Model):
     fieldgroup_id = Column(UnicodeText(36), index=True)
     type = Column(UnicodeText, default='inputbox', nullable=False)
     instance = Column(Enum(EnumFieldInstance), default='instance', nullable=False)
-    template_id = Column(UnicodeText(36))
-    template_override_id = Column(UnicodeText(36))
+    template_id = Column(UnicodeText(36), index=True)
+    template_override_id = Column(UnicodeText(36), index=True)
 
     @declared_attr
     def __table_args__(self):
         return (ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['step_id'], ['step.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['fieldgroup_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-                ForeignKeyConstraint(['template_id'], ['field.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+                ForeignKeyConstraint(['template_id'], ['field.id'], deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['template_override_id'], ['field.id'], ondelete='SET NULL', deferrable=True, initially='DEFERRED'),
                 CheckConstraint(self.instance.in_(EnumFieldInstance.keys())))
 
@@ -743,7 +743,7 @@ class _ReceiverFile(Model):
     __tablename__ = 'receiverfile'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    internalfile_id = Column(UnicodeText(36), nullable=False)
+    internalfile_id = Column(UnicodeText(36), nullable=False, index=True)
     receivertip_id = Column(UnicodeText(36), nullable=False, index=True)
     filename = Column(UnicodeText(255), nullable=False)
     access_date = Column(DateTime, default=datetime_null, nullable=False)
@@ -764,7 +764,7 @@ class _ReceiverTip(Model):
     __tablename__ = 'receivertip'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    internaltip_id = Column(UnicodeText(36), nullable=False)
+    internaltip_id = Column(UnicodeText(36), nullable=False, index=True)
     receiver_id = Column(UnicodeText(36), nullable=False, index=True)
     access_date = Column(DateTime, default=datetime_null, nullable=False)
     last_access = Column(DateTime, default=datetime_null, nullable=False)
