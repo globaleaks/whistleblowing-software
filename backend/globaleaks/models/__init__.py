@@ -887,7 +887,6 @@ class _Subscriber(Model):
     phone = Column(UnicodeText, default='', nullable=False)
     email = Column(UnicodeText, nullable=False)
     organization_name = Column(UnicodeText, default='', nullable=False)
-    organization_type = Column(UnicodeText, default='', nullable=False)
     organization_tax_code = Column(UnicodeText, default='', nullable=False)
     organization_vat_code = Column(UnicodeText, default='', nullable=False)
     organization_location = Column(UnicodeText, default='', nullable=False)
@@ -900,9 +899,8 @@ class _Subscriber(Model):
 
     unicode_keys = ['subdomain', 'language', 'name', 'surname', 'role', 'phone', 'email',
                     'tax_code', 'vat_code',
-                    'organization_name', 'organization_type',
-                    'organization_tax_code', 'organization_vat_code',
-                    'organization_location',
+                    'organization_name',  'organization_tax_code',
+                    'organization_vat_code', 'organization_location',
                     'client_ip_address', 'client_user_agent']
 
     bool_keys = ['tos1', 'tos2']
