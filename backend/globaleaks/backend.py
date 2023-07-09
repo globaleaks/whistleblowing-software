@@ -7,6 +7,7 @@ import traceback
 from twisted.application import service
 from twisted.internet import reactor, defer
 from twisted.python.log import ILogObserver
+from twisted.python.log import addObserver
 from twisted.web import resource, server
 
 from globaleaks.jobs import job, jobs_list
@@ -160,9 +161,12 @@ class Service(service.Service):
 try:
     application = service.Application('GlobaLeaks')
 
-    if not Settings.nodaemon:
-        logfile = openLogFile(Settings.logfile, Settings.log_file_size, Settings.num_log_files)
-        application.setComponent(ILogObserver, LogObserver(logfile).emit)
+    logfile = openLogFile(Settings.logfile, Settings.log_file_size, Settings.num_log_files)
+    if Settings.nodaemon:
+        addObserver(LogObserver(logfile).emit)
+    else:
+         application.setComponent(ILogObserver, LogObserver(logfile).emit)
+
 
     Service().setServiceParent(application)
 except Exception as excep:
