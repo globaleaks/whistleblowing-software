@@ -798,45 +798,6 @@ class _Redaction(Model):
         return ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
 
-class _Subscriber(Model):
-    __tablename__ = 'subscriber'
-
-    tid = Column(Integer, primary_key=True)
-    subdomain = Column(UnicodeText, unique=True, nullable=False)
-    language = Column(UnicodeText(12), nullable=False)
-    name = Column(UnicodeText, nullable=False)
-    surname = Column(UnicodeText, nullable=False)
-    role = Column(UnicodeText, default='', nullable=False)
-    phone = Column(UnicodeText, default='', nullable=False)
-    email = Column(UnicodeText, nullable=False)
-    organization_name = Column(UnicodeText, default='', nullable=False)
-    organization_type = Column(UnicodeText, default='', nullable=False)
-    organization_tax_code = Column(UnicodeText, default='', nullable=False)
-    organization_vat_code = Column(UnicodeText, default='', nullable=False)
-    organization_location = Column(UnicodeText, default='', nullable=False)
-    activation_token = Column(UnicodeText, unique=True)
-    client_ip_address = Column(UnicodeText, nullable=False)
-    client_user_agent = Column(UnicodeText, nullable=False)
-    registration_date = Column(DateTime, default=datetime_now, nullable=False)
-    tos1 = Column(UnicodeText, default='', nullable=False)
-    tos2 = Column(UnicodeText, default='', nullable=False)
-
-    unicode_keys = ['subdomain', 'language', 'name', 'surname', 'role', 'phone', 'email',
-                    'tax_code', 'vat_code',
-                    'organization_name', 'organization_type',
-                    'organization_tax_code', 'organization_vat_code',
-                    'organization_location',
-                    'client_ip_address', 'client_user_agent']
-
-    bool_keys = ['tos1', 'tos2']
-
-    optional_references = ['activation_token']
-
-    @declared_attr
-    def __table_args__(self):
-        return ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
-
-
 class _Redirect(Model):
     """
     Class used to implement url redirects
@@ -914,17 +875,57 @@ class _SubmissionSubStatus(Model):
         return ForeignKeyConstraint(['tid', 'submissionstatus_id'], ['submissionstatus.tid', 'submissionstatus.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
 
+class _Subscriber(Model):
+    __tablename__ = 'subscriber'
+
+    tid = Column(Integer, primary_key=True)
+    subdomain = Column(UnicodeText, unique=True, nullable=False)
+    language = Column(UnicodeText(12), nullable=False)
+    name = Column(UnicodeText, nullable=False)
+    surname = Column(UnicodeText, nullable=False)
+    role = Column(UnicodeText, default='', nullable=False)
+    phone = Column(UnicodeText, default='', nullable=False)
+    email = Column(UnicodeText, nullable=False)
+    organization_name = Column(UnicodeText, default='', nullable=False)
+    organization_type = Column(UnicodeText, default='', nullable=False)
+    organization_tax_code = Column(UnicodeText, default='', nullable=False)
+    organization_vat_code = Column(UnicodeText, default='', nullable=False)
+    organization_location = Column(UnicodeText, default='', nullable=False)
+    activation_token = Column(UnicodeText, unique=True)
+    client_ip_address = Column(UnicodeText, nullable=False)
+    client_user_agent = Column(UnicodeText, nullable=False)
+    registration_date = Column(DateTime, default=datetime_now, nullable=False)
+    tos1 = Column(UnicodeText, default='', nullable=False)
+    tos2 = Column(UnicodeText, default='', nullable=False)
+
+    unicode_keys = ['subdomain', 'language', 'name', 'surname', 'role', 'phone', 'email',
+                    'tax_code', 'vat_code',
+                    'organization_name', 'organization_type',
+                    'organization_tax_code', 'organization_vat_code',
+                    'organization_location',
+                    'client_ip_address', 'client_user_agent']
+
+    bool_keys = ['tos1', 'tos2']
+
+    optional_references = ['activation_token']
+
+    @declared_attr
+    def __table_args__(self):
+        return ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+
+
+
 class _Tenant(Model):
     """
     Class used to implement tenants
     """
     __tablename__ = 'tenant'
+    __table_args__ = {'sqlite_autoincrement': True}
+
 
     id = Column(Integer, primary_key=True)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
     active = Column(Boolean, default=False, nullable=False)
-
-    __table_args__ = {'sqlite_autoincrement': True}
 
     bool_keys = ['active']
 
