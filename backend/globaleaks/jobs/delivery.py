@@ -32,9 +32,9 @@ def file_delivery(session):
                               .limit(20):
         ifile.new = False
         src = ifile.filename
-        filecode = src.split('.')[0]
 
-        if itip.deprecated_crypto_files_pub_key:
+        filecode = src.split('.')[0]
+        if itip.crypto_tip_pub_key:
             ifile.filename = "%s.encrypted" % filecode
         else:
             ifile.filename = "%s.plain" % filecode
@@ -56,15 +56,13 @@ def file_delivery(session):
 
             if ifile.id not in receiverfiles_maps:
                 receiverfiles_maps[ifile.id] = {
-                    'key': itip.deprecated_crypto_files_pub_key,
+                    'key': itip.crypto_tip_pub_key,
                     'src': src,
                     'rfiles': []
                 }
 
             if not itip.crypto_tip_pub_key and user.pgp_key_public:
                 receiverfile.filename = "%s.pgp" % generateRandomKey()
-            else:
-                receiverfile.filename = ifile.filename
 
             receiverfiles_maps[ifile.id]['rfiles'].append({
                 'dst': os.path.abspath(os.path.join(Settings.attachments_path, receiverfile.filename)),
@@ -78,18 +76,21 @@ def file_delivery(session):
                                .limit(20):
         wbfile.new = False
         src = wbfile.filename
-        filecode = src.split('.')[0]
 
+        filecode = src.split('.')[0]
         if itip.crypto_tip_pub_key:
             wbfile.filename = "%s.encrypted" % filecode
         else:
             wbfile.filename = "%s.plain" % filecode
+
 
         whistleblowerfiles_maps[wbfile.id] = {
             'key': itip.crypto_tip_pub_key,
             'src': src,
             'dst': os.path.abspath(os.path.join(Settings.attachments_path, wbfile.filename)),
         }
+
+        wbfile.new = False
 
     return receiverfiles_maps, whistleblowerfiles_maps
 
@@ -125,7 +126,7 @@ def process_receiverfiles(state, files_maps):
     Function that process uploaded receiverfiles
 
     :param state: A reference to the application state
-    :param files_maps: descriptos of whistleblower files to be processed
+    :param files_maps: descriptors of whistleblower files to be processed
     """
     for a, m in files_maps.items():
         sf = state.get_tmp_file_by_name(m['src'])
@@ -148,7 +149,7 @@ def process_whistleblowerfiles(state, files_maps):
     Function that process uploaded whistleblowerfiles
 
     :param state: A reference to the application state
-    :param files_maps: descriptos of whistleblower files to be processed
+    :param files_maps: descriptors of whistleblower files to be processed
     """
     for _, m in files_maps.items():
         try:
