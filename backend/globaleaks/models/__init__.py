@@ -1041,7 +1041,8 @@ class _WhistleblowerFile(Model):
 
     @declared_attr
     def __table_args__(self):
-        return ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+        return (ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+                CheckConstraint(self.visibility.in_(EnumVisibility.keys())))
 
 
 class ArchivedSchema(_ArchivedSchema, Base):
