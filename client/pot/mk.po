@@ -82,9 +82,6 @@ msgstr "Датотеки"
 msgid "Comments"
 msgstr "Коментари"
 
-msgid "Messages"
-msgstr "Пораки"
-
 msgid "Details"
 msgstr "Детали"
 
@@ -455,6 +452,9 @@ msgstr "Дозволен пристап"
 msgid "Revoke access"
 msgstr "Отповикај пристап"
 
+msgid "Transfer"
+msgstr ""
+
 msgid "Assigned to"
 msgstr ""
 
@@ -482,11 +482,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Internal"
+msgstr ""
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Полиса на Приватност"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -530,6 +550,9 @@ msgstr "Датум на создавање"
 
 msgid "Last access"
 msgstr "Последен пристап"
+
+msgid "Messages"
+msgstr "Пораки"
 
 msgid "Whistleblower's last access"
 msgstr "Последен пристап на свиркачот"
@@ -606,12 +629,6 @@ msgstr "Овозможи коментари"
 msgid "Allow the whistleblower to write comments"
 msgstr "Дозволи им на свиркачите да пишуваат коментари"
 
-msgid "Enable private messages"
-msgstr "Овозможи приватни пораки"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Дозволи им на свиркачите да испраќаат пораки"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Дозволи им на свиркачите да додаваат прилози на извештајот"
 
@@ -683,9 +700,6 @@ msgstr "Приватен Клуч"
 
 msgid "Certificate Signing Request"
 msgstr "Барање за потпишување на сертификат"
-
-msgid "Download"
-msgstr "Преземи"
 
 msgid "Certificate"
 msgstr "Сертификат"
@@ -930,6 +944,9 @@ msgstr "Заглавје"
 
 msgid "Upload"
 msgstr "Прикачи"
+
+msgid "Download"
+msgstr "Преземи"
 
 msgid "Language:"
 msgstr "Јазик:"
@@ -1710,6 +1727,9 @@ msgstr "Испитајте го проблемот за да утврдите д
 msgid "The activities with unusual stats are:"
 msgstr "Активностите со невообичаена статистика се:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1938,6 +1958,9 @@ msgstr "Ова е е-пошта за известување дека прима�
 msgid "New report"
 msgstr "Нов извештај"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Најран датум за истекување е {EarliestExpirationDate}. "
 
@@ -1947,9 +1970,7 @@ msgstr "Ве молиме запаметете да ги проверите пр
 msgid "Some reports will expire soon"
 msgstr "Некои извештаи ќе истечат наскоро"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

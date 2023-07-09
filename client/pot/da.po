@@ -87,9 +87,6 @@ msgstr "Filer"
 msgid "Comments"
 msgstr "Kommentarer"
 
-msgid "Messages"
-msgstr "Beskeder"
-
 msgid "Details"
 msgstr "Detaljer"
 
@@ -460,6 +457,9 @@ msgstr "Tildel adgang"
 msgid "Revoke access"
 msgstr "Fjern adgang"
 
+msgid "Transfer"
+msgstr "Overfør"
+
 msgid "Assigned to"
 msgstr ""
 
@@ -487,11 +487,31 @@ msgstr ""
 msgid "Select your language"
 msgstr "Vælg dit sprog"
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr "Offentlig"
+
+msgid "Internal"
+msgstr ""
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -535,6 +555,9 @@ msgstr "Oprettelsesdato"
 
 msgid "Last access"
 msgstr "Seneste login"
+
+msgid "Messages"
+msgstr "Beskeder"
 
 msgid "Whistleblower's last access"
 msgstr "Whistleblowerens seneste adgang"
@@ -611,12 +634,6 @@ msgstr "Aktivér kommentarer"
 msgid "Allow the whistleblower to write comments"
 msgstr "Tillad whistlebloweren at skrive kommentarer"
 
-msgid "Enable private messages"
-msgstr "Aktivér private meddelelser"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Tillad whistlebloweren at sende beskeder"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Tillad whistlebloweren at tilføje vedhæftelser til indsendelsen"
 
@@ -688,9 +705,6 @@ msgstr "Privat nøgle"
 
 msgid "Certificate Signing Request"
 msgstr "Forespørgsel om signering af certifikat"
-
-msgid "Download"
-msgstr "Download"
 
 msgid "Certificate"
 msgstr "Certifikat"
@@ -935,6 +949,9 @@ msgstr "Sidefod"
 
 msgid "Upload"
 msgstr "Upload"
+
+msgid "Download"
+msgstr "Download"
 
 msgid "Language:"
 msgstr "Sprog:"
@@ -1715,6 +1732,9 @@ msgstr "Undersøg forholdene og afklar om de er legitime eller ej."
 msgid "The activities with unusual stats are:"
 msgstr "Aktiviteterne med usædvanlig statistik er:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1943,6 +1963,9 @@ msgstr "Dette er en email for at notificere dig om, at en modtager har tildelt d
 msgid "New report"
 msgstr "Ny indberetning"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Den tidligste udløbsdato er  {EarliestExpirationDate}."
 
@@ -1952,9 +1975,7 @@ msgstr "Husk at undersøge dem før de bliver slettet."
 msgid "Some reports will expire soon"
 msgstr "Der er indsendelser, der snart udløber"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

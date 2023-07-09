@@ -97,9 +97,6 @@ msgstr "קבצים"
 msgid "Comments"
 msgstr "הערות"
 
-msgid "Messages"
-msgstr "הודעות"
-
 msgid "Details"
 msgstr "פרטים"
 
@@ -470,6 +467,9 @@ msgstr "תן גישה"
 msgid "Revoke access"
 msgstr ""
 
+msgid "Transfer"
+msgstr "העבר"
+
 msgid "Assigned to"
 msgstr ""
 
@@ -497,11 +497,31 @@ msgstr ""
 msgid "Select your language"
 msgstr "בחר את שפתך"
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr "ציבורי"
+
+msgid "Internal"
+msgstr "פנימי"
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "מדיניות פרטיות"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -545,6 +565,9 @@ msgstr "תאריך יצירה"
 
 msgid "Last access"
 msgstr "גישה אחרונה"
+
+msgid "Messages"
+msgstr "הודעות"
 
 msgid "Whistleblower's last access"
 msgstr ""
@@ -621,12 +644,6 @@ msgstr "אפשר הערות"
 msgid "Allow the whistleblower to write comments"
 msgstr "התר לחושף השחיתות לכתוב תגובות"
 
-msgid "Enable private messages"
-msgstr "אפשר הודעות פרטיות"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "התר לחושף השחיתות לשלוח הודעות"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "התר לחושף השחיתות להוסיף צרופות אל ההגשה"
 
@@ -698,9 +715,6 @@ msgstr "מפתח פרטי"
 
 msgid "Certificate Signing Request"
 msgstr "בקשת החתמת תעודה"
-
-msgid "Download"
-msgstr "הורד"
 
 msgid "Certificate"
 msgstr "תעודה"
@@ -945,6 +959,9 @@ msgstr "כותרת תחתונה"
 
 msgid "Upload"
 msgstr "העלה"
+
+msgid "Download"
+msgstr "הורד"
 
 msgid "Language:"
 msgstr "שפה:"
@@ -1725,6 +1742,9 @@ msgstr ""
 msgid "The activities with unusual stats are:"
 msgstr "הפעילות עם נתונים סטטיסטיים לא רגילים הן:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1953,6 +1973,9 @@ msgstr ""
 msgid "New report"
 msgstr "דוח חדש"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr ""
 
@@ -1962,9 +1985,7 @@ msgstr ""
 msgid "Some reports will expire soon"
 msgstr ""
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

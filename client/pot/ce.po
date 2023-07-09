@@ -82,9 +82,6 @@ msgstr "Файлаш"
 msgid "Comments"
 msgstr "Комменташ"
 
-msgid "Messages"
-msgstr "Косташ"
-
 msgid "Details"
 msgstr "Деталш"
 
@@ -455,6 +452,9 @@ msgstr "ТIекхача бакъо луо"
 msgid "Revoke access"
 msgstr "Тlекхочийла юхадаккха"
 
+msgid "Transfer"
+msgstr ""
+
 msgid "Assigned to"
 msgstr ""
 
@@ -482,11 +482,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Internal"
+msgstr ""
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -530,6 +550,9 @@ msgstr "Кхолларан дата"
 
 msgid "Last access"
 msgstr "Тlаьххьара тlекхачар"
+
+msgid "Messages"
+msgstr "Косташ"
 
 msgid "Whistleblower's last access"
 msgstr "Iорадаккхархочун тlаьххьара тlекхачар"
@@ -606,12 +629,6 @@ msgstr "Комменташ магае"
 msgid "Allow the whistleblower to write comments"
 msgstr "Iорадаккхархочунна бакъо ло комменташ язъян"
 
-msgid "Enable private messages"
-msgstr "Шайлахьдолу косташ магаде"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Iорадаккхархочунна бакъо ло косташ дахьийта."
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Iорадаккхархочунна магийта орзана тIе юкъаехкина файлаш тIетоха"
 
@@ -683,9 +700,6 @@ msgstr "Шайлахьдолу догlа"
 
 msgid "Certificate Signing Request"
 msgstr "Сертификатана куьг таIо дехар дахьийтар"
-
-msgid "Download"
-msgstr "Схьаэца"
 
 msgid "Certificate"
 msgstr "Сертификат"
@@ -930,6 +944,9 @@ msgstr "Лахара колонтитул"
 
 msgid "Upload"
 msgstr "ДIахIоттае"
+
+msgid "Download"
+msgstr "Схьаэца"
 
 msgid "Language:"
 msgstr "Мотт:"
@@ -1710,6 +1727,9 @@ msgstr "ГIуллакх зиэ, и бакъонца ду я дац хьажа."
 msgid "The activities with unusual stats are:"
 msgstr "Башха статистика йолу жигараллаш:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1938,6 +1958,9 @@ msgstr "Кху электронан кехатца хаам бо хьоьга, �
 msgid "New report"
 msgstr "Керла арз"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Уггар гергара чекхдаларан хан: {EarliestExpirationDate}."
 
@@ -1947,9 +1970,7 @@ msgstr "Уьш дIадайъале, диц ма делахь цаьрга бIа�
 msgid "Some reports will expire soon"
 msgstr "Цхьадолчу аьрзнийн хан кеста дlайолу"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

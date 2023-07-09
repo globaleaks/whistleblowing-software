@@ -18,7 +18,7 @@
       </div>
       <div data-ng-switch-when="selectbox">
         <select id="{{fieldEntry}}" class="custom-select inputelem" data-ng-model="entry['value']" data-ng-required="entry.required_status" data-ng-show="field.options.length < 10">
-          <option value="" disabled hidden selected>Select an option</option>
+          <option value="" disabled hidden selected data-translate>Select an option</option>
           <option data-ng-repeat="option in field.options | orderBy:field.attrs.display_alphabetically.value ? 'label' : 'order'" id="{{fieldEntry}}-option-{{$index}}" value="{{option.id}}">{{option.label}}</option>
         </select>
         <div class="input-group" data-ng-class="{'d-block': !entry['value']}" data-ng-show="field.options.length >= 10">

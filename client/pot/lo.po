@@ -80,9 +80,6 @@ msgstr "ໄຟລ໌ຕ່າງໆ"
 msgid "Comments"
 msgstr "ຄຳ​ຄິດ​ເຫັນ"
 
-msgid "Messages"
-msgstr "ຂໍ້ຄວາມ"
-
 msgid "Details"
 msgstr "ລາຍລະອຽດຕ່າງໆ"
 
@@ -453,6 +450,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
+msgid "Transfer"
+msgstr ""
+
 msgid "Assigned to"
 msgstr ""
 
@@ -480,11 +480,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Internal"
+msgstr ""
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -528,6 +548,9 @@ msgstr "ວັນທີສ້າງ"
 
 msgid "Last access"
 msgstr "ການເຂົ້າຄັ້ງສຸດທ້າຍ"
+
+msgid "Messages"
+msgstr "ຂໍ້ຄວາມ"
 
 msgid "Whistleblower's last access"
 msgstr "ການເຂົ້າຄັ້ງສຸດທ້າຍຂອງຜູ້ແຈ້ງເບາະແສ"
@@ -604,12 +627,6 @@ msgstr "ເປີດນຳໃຊ້ຄຳຄິດເຫັນ"
 msgid "Allow the whistleblower to write comments"
 msgstr "ອະນຸຍາດໃຫ້ຜູ້ແຈ້ງເບາະແສຂຽນຄຳຄິດເຫັນໄດ້"
 
-msgid "Enable private messages"
-msgstr "ເປີດນຳໃຊ້ຂໍ້ຄວາມສ່ວນຕົວ"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "ອະນຸຍາດໃຫ້ຜູ້ແຈ້ງເບາະແສສາມາດສົ່ງຂໍ້ຄວາມໄດ້"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "ອະນຸຍາດໃຫ້ຜູ້ແຈ້ງເບາະແສເພີ່ມເອກະສານຄັດຕິດຕື່ມໃສ່ລາຍງານ"
 
@@ -681,9 +698,6 @@ msgstr "ລະຫັດສ່ວນຕົວ"
 
 msgid "Certificate Signing Request"
 msgstr "ຄຳຮ້ອງຂໍເຊັນໃບຢັ້ງຢືນ"
-
-msgid "Download"
-msgstr "ດາວໂຫຼດ"
 
 msgid "Certificate"
 msgstr "ໃບຢັ້ງຢືນ"
@@ -928,6 +942,9 @@ msgstr "ຂໍ້ຄວາມທ້າຍໜ້າ"
 
 msgid "Upload"
 msgstr "ອັບໂຫຼດ"
+
+msgid "Download"
+msgstr "ດາວໂຫຼດ"
 
 msgid "Language:"
 msgstr "ພາສາ:"
@@ -1708,6 +1725,9 @@ msgstr "ກວດກາເບິ່ງບັນຫາດັ່ງກ່າວເ
 msgid "The activities with unusual stats are:"
 msgstr "ການເຄື່ອນໄຫວຕ່າງໆທີ່ມີສະຖິຕິຜິດປົກກະຕິໄດ້ແກ່:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1936,6 +1956,9 @@ msgstr ""
 msgid "New report"
 msgstr "ບົດລາຍງານໃໝ່"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "ວັນທີໝົດອາຍຸທີ່ໄວທີ່ສຸດແມ່ນ {EarliestExpirationDate}."
 
@@ -1945,9 +1968,7 @@ msgstr "ກະລຸນາຢ່າລືມກວດເບິ່ງພວກມ
 msgid "Some reports will expire soon"
 msgstr "ມີລາຍງານຈຳນວນໜຶ່ງຈະໝົດອາຍຸໃນໄວໆນີ້"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

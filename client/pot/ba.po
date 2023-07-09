@@ -81,9 +81,6 @@ msgstr "Файлдар"
 msgid "Comments"
 msgstr "Комментарийҙар"
 
-msgid "Messages"
-msgstr "Хәбәрҙәр"
-
 msgid "Details"
 msgstr "Аныҡлауҙар"
 
@@ -454,6 +451,9 @@ msgstr "Инеү мөмкинлеге биреү"
 msgid "Revoke access"
 msgstr "Инеү мөмкинлеген кире алырға"
 
+msgid "Transfer"
+msgstr ""
+
 msgid "Assigned to"
 msgstr ""
 
@@ -481,11 +481,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Internal"
+msgstr ""
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -529,6 +549,9 @@ msgstr "Булдырыу датаһы"
 
 msgid "Last access"
 msgstr "Һуңғы тапҡыр ингән"
+
+msgid "Messages"
+msgstr "Хәбәрҙәр"
 
 msgid "Whistleblower's last access"
 msgstr "Информаторҙың һуңғы инеүе"
@@ -605,12 +628,6 @@ msgstr "Комментарийҙарҙы ҡабыҙыу"
 msgid "Allow the whistleblower to write comments"
 msgstr "Информаторға комментарийҙар өҫтәргә рөхсәт итергә"
 
-msgid "Enable private messages"
-msgstr "Шәхси хәбәрҙәрҙе файҙаланыу"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Информаторға комментарийҙар ебәрергә рөхсәт итергә"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Информаторға ебәрелгән документарға ҡушымта өҫтәргә рөхсәт итергә"
 
@@ -682,9 +699,6 @@ msgstr "Йәшерен асҡыс"
 
 msgid "Certificate Signing Request"
 msgstr "Сертификат яҙҙыртыуға үтенес"
-
-msgid "Download"
-msgstr "Күсереп алыу"
 
 msgid "Certificate"
 msgstr "Сертификат"
@@ -929,6 +943,9 @@ msgstr "Аҫҡы колонтитул"
 
 msgid "Upload"
 msgstr "Йөкмәү"
+
+msgid "Download"
+msgstr "Күсереп алыу"
 
 msgid "Language:"
 msgstr "Тел:"
@@ -1709,6 +1726,9 @@ msgstr "Эш нимәлә икәнен тикшерегеҙ: һүҙ ғәҙәти
 msgid "The activities with unusual stats are:"
 msgstr "Типик булмаған статистикалы әүҙемлек"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1937,6 +1957,9 @@ msgstr "Был электрон хат ҡабул итеүсенең бер йә
 msgid "New report"
 msgstr "Яңы отчет"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Беренсе ғәмәл мөҙҙөте {EarliestExpirationDate}."
 
@@ -1946,9 +1969,7 @@ msgstr "Зинһар, программа уларҙы юймаҫ элек, ти�
 msgid "Some reports will expire soon"
 msgstr "Ҡайһы бер отчеттарҙың ғәмәл мөҙҙәттәре тиҙҙән яраҡһыҙ буласаҡ"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

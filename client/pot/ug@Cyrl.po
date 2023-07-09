@@ -80,9 +80,6 @@ msgstr "Һөҗҗәтләр"
 msgid "Comments"
 msgstr "Инкаслар"
 
-msgid "Messages"
-msgstr "Учурлар"
-
 msgid "Details"
 msgstr "Тәпсилатлар"
 
@@ -453,6 +450,9 @@ msgstr "Һоқуқ бәр"
 msgid "Revoke access"
 msgstr "Һоқуқни қайтуривал"
 
+msgid "Transfer"
+msgstr ""
+
 msgid "Assigned to"
 msgstr ""
 
@@ -480,11 +480,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Internal"
+msgstr ""
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -528,6 +548,9 @@ msgstr "Қурулған чесла"
 
 msgid "Last access"
 msgstr "Ахирқи зийарәт"
+
+msgid "Messages"
+msgstr "Учурлар"
 
 msgid "Whistleblower's last access"
 msgstr "Паш қилғучиниң ахирқи зийарити"
@@ -604,12 +627,6 @@ msgstr "Баһалашни қозғат"
 msgid "Allow the whistleblower to write comments"
 msgstr "Паш қилғучиниң баһа йезишигә рухсәт қил"
 
-msgid "Enable private messages"
-msgstr "Шәхсий учурларни қозғат"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Паш қилғучиниң учур әвәтишигә рухсәт қил"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Паш қилғучиниң доклатқа қошумчә қистуришиға рухсәт қил"
 
@@ -681,9 +698,6 @@ msgstr "Шәхсий ачқуч"
 
 msgid "Certificate Signing Request"
 msgstr "Гуваһнамә имзалаш тәлипи"
-
-msgid "Download"
-msgstr "Чүшүрүш"
 
 msgid "Certificate"
 msgstr "Гуваһнамә"
@@ -928,6 +942,9 @@ msgstr "Бәт асти"
 
 msgid "Upload"
 msgstr "Йүкләш"
+
+msgid "Download"
+msgstr "Чүшүрүш"
 
 msgid "Language:"
 msgstr "Тил:"
@@ -1708,6 +1725,9 @@ msgstr "Буниң бир нормал ишму әмәслигини айриш 
 msgid "The activities with unusual stats are:"
 msgstr "Бинормал паъалийәтләрниң истатистикиси булар:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1936,6 +1956,9 @@ msgstr "Бу елхәт сизгә тапшуривалғучиниң бир й�
 msgid "New report"
 msgstr "Йеңи доклат"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Әң бурунқи сүрүк вақти: {EarliestExpirationDate}."
 
@@ -1945,9 +1968,7 @@ msgstr "Өчүрүлүштин бурун уларни тәкшүрүшни ун
 msgid "Some reports will expire soon"
 msgstr "Бәзи доклатларниң йеқинда сүрики тошиду"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

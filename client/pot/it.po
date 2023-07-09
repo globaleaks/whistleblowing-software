@@ -102,9 +102,6 @@ msgstr "Allegati"
 msgid "Comments"
 msgstr "Commenti"
 
-msgid "Messages"
-msgstr "Messaggi"
-
 msgid "Details"
 msgstr "Dettagli"
 
@@ -475,6 +472,9 @@ msgstr "Consenti accesso"
 msgid "Revoke access"
 msgstr "Revoca accesso"
 
+msgid "Transfer"
+msgstr "Trasferisci"
+
 msgid "Assigned to"
 msgstr "Assegnato a"
 
@@ -488,26 +488,46 @@ msgid "Privileges"
 msgstr "Privilegi"
 
 msgid "Mask"
-msgstr ""
+msgstr "Maschera"
 
 msgid "Unmask"
-msgstr ""
+msgstr "Rimuovi maschera"
 
 msgid "Redact"
-msgstr ""
+msgstr "Cancella"
 
 msgid "Select an option"
-msgstr ""
+msgstr "Seleziona un'opzione"
 
 msgid "Select your language"
 msgstr "Seleziona la tua lingua"
 
-msgid "Grant this user user the privilege to mask information"
-msgstr ""
+msgid "Grant this recipient ability to transfer reports to other users"
+msgstr "Permetti a questo ricevente di trasferire le segnalazioni ad altri utenti"
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
-msgstr ""
+msgid "Grant this user the privilege to mask information"
+msgstr "Dai a questo utente il privilegio di mascherare temporaneamente le informazioni"
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr "Dai a questo utente il privilegio di cancellare permanentemente le informazioni mascherate"
+
+msgid "Public"
+msgstr "Pubblico"
+
+msgid "Internal"
+msgstr "Interno"
+
+msgid "Personal"
+msgstr "Personale"
+
+msgid "Privacy Policy"
+msgstr "Informativa Privacy"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr "Ho letto e accetto l'Informativa Privacy"
+
+msgid "Download copy of the Privacy Policy"
+msgstr "Scarica Copia dell'informativa Privacy"
 
 msgid "File a report"
 msgstr "Invia una segnalazione"
@@ -550,6 +570,9 @@ msgstr "Data di creazione"
 
 msgid "Last access"
 msgstr "Ultimo accesso"
+
+msgid "Messages"
+msgstr "Messaggi"
 
 msgid "Whistleblower's last access"
 msgstr "Ultimo accesso del segnalante"
@@ -626,12 +649,6 @@ msgstr "Abilita i commenti"
 msgid "Allow the whistleblower to write comments"
 msgstr "Permetti al segnalante di scrivere commenti"
 
-msgid "Enable private messages"
-msgstr "Abilita messaggi privati"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Permetti al segnalante di inviare messaggi"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Permetti al segnalante di aggiungere allegati alla segnalazione"
 
@@ -703,9 +720,6 @@ msgstr "Chiave privata"
 
 msgid "Certificate Signing Request"
 msgstr "Richiesta di firma certificato"
-
-msgid "Download"
-msgstr "Scarica"
 
 msgid "Certificate"
 msgstr "Certificato"
@@ -950,6 +964,9 @@ msgstr "Piè di pagina"
 
 msgid "Upload"
 msgstr "Carica"
+
+msgid "Download"
+msgstr "Scarica"
 
 msgid "Language:"
 msgstr "Lingua:"
@@ -1259,7 +1276,7 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Confermando postporrai la data di scadenza al:"
 
 msgid "By confirming, you will set a reminder on date:"
-msgstr ""
+msgstr "Confermando imposterai un promemoria in data:"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Questa è una piattaforma dimostrativa, si prega di non usarla per vere segnalazioni."
@@ -1533,7 +1550,7 @@ msgid "View your report"
 msgstr "Vedi la tua segnalazione"
 
 msgid "Select the recipients of your report"
-msgstr ""
+msgstr "Seleziona i destinatari della tua segnalazione:"
 
 msgid "Recipients selected:"
 msgstr "Riceventi selezionati"
@@ -1729,6 +1746,9 @@ msgstr "Esamina la situazione per determinare se sia o meno legittima."
 
 msgid "The activities with unusual stats are:"
 msgstr "Le attività che presentano statistiche inusuali sono:"
+
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr "Spazio disco disponibile: {FreeMemory}/{TotalMemory}"
 
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
@@ -1958,6 +1978,9 @@ msgstr "Questa email è per notificarti che un ricevente ti ha concesso accesso 
 msgid "New report"
 msgstr "Nuova segnalazione"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr "Una o più segnalazioni sono in scadenza e verranno presto cancellate."
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "La scadenza più vicina è {EarliestExpirationDate}."
 
@@ -1967,10 +1990,8 @@ msgstr "Ricordati di controllarle prima che vengano cancellate."
 msgid "Some reports will expire soon"
 msgstr "Alcune delle segnalazioni stanno per scadere"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
-msgstr ""
+msgid "This is an email to notify you the reception of a new report."
+msgstr "Con la presente email ti notifichiamo la ricezione di una nuova segnalazione."
 
 msgid "Reminder"
 msgstr "Promemoria"
@@ -1978,7 +1999,7 @@ msgstr "Promemoria"
 msgid ""
 "This is an email to notify you that the reminder date for one or more "
 "reports has been met."
-msgstr ""
+msgstr "Questa email è per notificati che la data di promemoria di una o più segnalazioni è stata raggiunta."
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Questa email ti notifica che un una segnalazione è stata aggiornata."

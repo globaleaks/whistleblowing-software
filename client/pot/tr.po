@@ -107,9 +107,6 @@ msgstr "Dosyalar"
 msgid "Comments"
 msgstr "Yorumlar"
 
-msgid "Messages"
-msgstr "Mesajlar"
-
 msgid "Details"
 msgstr "Ayrıntılar"
 
@@ -480,6 +477,9 @@ msgstr "Erişim izni ver"
 msgid "Revoke access"
 msgstr "Erişim iznini kaldır"
 
+msgid "Transfer"
+msgstr "Aktar"
+
 msgid "Assigned to"
 msgstr "Şu kişiye atanmış"
 
@@ -507,12 +507,32 @@ msgstr "Bir seçenek seçin"
 msgid "Select your language"
 msgstr "Dilinizi seçin"
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
+msgstr "Bu alıcıya diğer kullanıcılara raporları aktarma verme yetkisi ver"
+
+msgid "Grant this user the privilege to mask information"
 msgstr "Bu kullanıcıya bilgileri maskeleme izni verir"
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to permanently redact masked information"
 msgstr "Bu kullanıcıya maskelenmiş bilgileri kalıcı olarak düzeltme izni verir"
+
+msgid "Public"
+msgstr "Herkese açık"
+
+msgid "Internal"
+msgstr "İç"
+
+msgid "Personal"
+msgstr "Kişisel"
+
+msgid "Privacy Policy"
+msgstr "Gizlilik ilkesi"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr "Gizlilik ilkesini okudum ve kabul ediyorum"
+
+msgid "Download copy of the Privacy Policy"
+msgstr "Gizlilik ilkesinin kopyasını indir"
 
 msgid "File a report"
 msgstr "Bir bildirimde bulunun"
@@ -555,6 +575,9 @@ msgstr "Oluşturulma tarihi"
 
 msgid "Last access"
 msgstr "Son erişim"
+
+msgid "Messages"
+msgstr "Mesajlar"
 
 msgid "Whistleblower's last access"
 msgstr "İhbarcının son erişimi"
@@ -631,12 +654,6 @@ msgstr "Yorumları etkinleştir"
 msgid "Allow the whistleblower to write comments"
 msgstr "İhbarcının yorum yazmasına izin verin"
 
-msgid "Enable private messages"
-msgstr "Özel mesajları etkinleştir"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "İhbarcının mesaj göndermesine izin verin"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "İhbarcının rapora eklentiler eklemesine izin ver"
 
@@ -708,9 +725,6 @@ msgstr "Gizli anahtar"
 
 msgid "Certificate Signing Request"
 msgstr "Sertifika İmzalama İsteği"
-
-msgid "Download"
-msgstr "İndir"
 
 msgid "Certificate"
 msgstr "Sertifika"
@@ -955,6 +969,9 @@ msgstr "Sayfa altlığı"
 
 msgid "Upload"
 msgstr "Yükle"
+
+msgid "Download"
+msgstr "İndir"
 
 msgid "Language:"
 msgstr "Dil:"
@@ -1735,6 +1752,9 @@ msgstr "Konuyu, meşru olup olmadığını belirlemek için inceleyin."
 msgid "The activities with unusual stats are:"
 msgstr "Alışılmadık istatistik içeren etkinlikler şunlar:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr "Kullanılabilecek disk alanı: {FreeMemory}/{TotalMemory}"
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1963,6 +1983,9 @@ msgstr "Bu e-posta, bir alıcının size bir veya daha fazla rapora erişim izni
 msgid "New report"
 msgstr "Yeni rapor"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr "Bir ya da birkaç raporun süresi doluyor ve yakında silinecekler."
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "En erken süre dolum tarihi {EarliestExpirationDate}."
 
@@ -1972,10 +1995,8 @@ msgstr "Lütfen silinmeden önce onları incelemeyi unutmayın."
 msgid "Some reports will expire soon"
 msgstr "Bazı raporların süresi yakında dolacaktır."
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
-msgstr "Bu e-posta, bir rapor için hatırlatma tarihine gelindiğini bildirmek amacıyla gönderilmiştir."
+msgid "This is an email to notify you the reception of a new report."
+msgstr "Bu e-posta, yeni bir rapor alındığını bildirmek için gönderilmiştir. "
 
 msgid "Reminder"
 msgstr "Hatırlatıcı"

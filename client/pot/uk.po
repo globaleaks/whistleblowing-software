@@ -101,9 +101,6 @@ msgstr "Файли"
 msgid "Comments"
 msgstr "Коментарі"
 
-msgid "Messages"
-msgstr "Повідомлення"
-
 msgid "Details"
 msgstr "Деталі"
 
@@ -474,6 +471,9 @@ msgstr "Дозволити доступ"
 msgid "Revoke access"
 msgstr "Відкликати доступ"
 
+msgid "Transfer"
+msgstr "Перенести"
+
 msgid "Assigned to"
 msgstr ""
 
@@ -501,11 +501,31 @@ msgstr "Виберіть параметр"
 msgid "Select your language"
 msgstr "Оберіть свою мову"
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr "Публічний"
+
+msgid "Internal"
+msgstr "Внутрішній"
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Політика конфіденційності"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -549,6 +569,9 @@ msgstr "Дата Створення"
 
 msgid "Last access"
 msgstr "Останній вхід"
+
+msgid "Messages"
+msgstr "Повідомлення"
 
 msgid "Whistleblower's last access"
 msgstr "Останній доступ Інформатора"
@@ -625,12 +648,6 @@ msgstr "Увімкнути коментарі"
 msgid "Allow the whistleblower to write comments"
 msgstr "Дозволити інформатору коментувати"
 
-msgid "Enable private messages"
-msgstr "Увімкнути приватні повідомлення"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Дозволити інформатору надсилати повідомлення"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Дозволити інформаторам додавати файли до звіту"
 
@@ -702,9 +719,6 @@ msgstr "Приватний Ключ"
 
 msgid "Certificate Signing Request"
 msgstr "Запит на Підписання Сертифікату"
-
-msgid "Download"
-msgstr "Завантажити"
 
 msgid "Certificate"
 msgstr "Сертифікат"
@@ -949,6 +963,9 @@ msgstr "Нижній колонтитул"
 
 msgid "Upload"
 msgstr "Додати"
+
+msgid "Download"
+msgstr "Завантажити"
 
 msgid "Language:"
 msgstr "Мова:"
@@ -1729,6 +1746,9 @@ msgstr "Перевірте в чому справа, щоб визначити �
 msgid "The activities with unusual stats are:"
 msgstr "Активність з незвичайною статистикою:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1957,6 +1977,9 @@ msgstr "Цим електронним листом повідомляємо що
 msgid "New report"
 msgstr "Новий звіт"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Найраніша дата закінчення терміну дії {EarliestExpirationDate}."
 
@@ -1966,9 +1989,7 @@ msgstr "Будь ласка, не забудьте перевірити їх, п
 msgid "Some reports will expire soon"
 msgstr "У деяких з поданих вами звітів закінчується термін  "
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

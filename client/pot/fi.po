@@ -90,9 +90,6 @@ msgstr "Tiedostot"
 msgid "Comments"
 msgstr "Kommentit"
 
-msgid "Messages"
-msgstr "Viestit"
-
 msgid "Details"
 msgstr "Lisätiedot"
 
@@ -463,6 +460,9 @@ msgstr "Käyttöoikeuden myöntäminen"
 msgid "Revoke access"
 msgstr "Peruuta pääsy"
 
+msgid "Transfer"
+msgstr "Siirrä"
+
 msgid "Assigned to"
 msgstr "Määritetty"
 
@@ -490,11 +490,31 @@ msgstr ""
 msgid "Select your language"
 msgstr "Valitse kielesi"
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr "Julkinen"
+
+msgid "Internal"
+msgstr "Sisäinen"
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Yksityisyyskäytäntö"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -538,6 +558,9 @@ msgstr "Luontipäivämäärä"
 
 msgid "Last access"
 msgstr "Viimeisin käyttö"
+
+msgid "Messages"
+msgstr "Viestit"
 
 msgid "Whistleblower's last access"
 msgstr "Vihjeenantajan viimeisin kirjautumisajankohta"
@@ -614,12 +637,6 @@ msgstr "Salli kommentit"
 msgid "Allow the whistleblower to write comments"
 msgstr "Anna ilmoittajan kirjoittaa kommentteja"
 
-msgid "Enable private messages"
-msgstr "Ota käyttöön yksityisviestit"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Anna ilmoittajan lähettää viestejä"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Anna ilmoittajan lisätä liitteitä"
 
@@ -691,9 +708,6 @@ msgstr "Yksityinen avain"
 
 msgid "Certificate Signing Request"
 msgstr "Varmenteen allekirjoituspyyntö (CSR)"
-
-msgid "Download"
-msgstr "Lataa"
 
 msgid "Certificate"
 msgstr "Varmenne"
@@ -937,6 +951,9 @@ msgid "Footer"
 msgstr "Alatunniste"
 
 msgid "Upload"
+msgstr "Lataa"
+
+msgid "Download"
 msgstr "Lataa"
 
 msgid "Language:"
@@ -1718,6 +1735,9 @@ msgstr "Tutki asiaa selvittääksesi, onko se laillinen vai ei."
 msgid "The activities with unusual stats are:"
 msgstr "Epätavallisia tietoja sisältävät toiminnot ovat:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1946,6 +1966,9 @@ msgstr "Tämä sähköpostiviesti ilmoittaa, että vastaanottaja on myöntänyt 
 msgid "New report"
 msgstr "Uusi ilmoitus"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Varhaisin mahdollinen vanhentumispäivämäärä on {EarliestExpirationDate}."
 
@@ -1955,10 +1978,8 @@ msgstr "Muista käydä ne läpi ennen kuin ne poistetaan järjestelmästä."
 msgid "Some reports will expire soon"
 msgstr "Osa ilmoituksista vanhenee pian"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
-msgstr "Tämä sähköpostiviesti kertoo, että ilmoituksen muistutuspäivämäärä on saavutettu."
+msgid "This is an email to notify you the reception of a new report."
+msgstr ""
 
 msgid "Reminder"
 msgstr "Muistutus"

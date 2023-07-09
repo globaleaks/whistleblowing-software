@@ -103,9 +103,6 @@ msgstr "Filer"
 msgid "Comments"
 msgstr "Kommentarer"
 
-msgid "Messages"
-msgstr "Meddelanden"
-
 msgid "Details"
 msgstr "Detaljer"
 
@@ -476,6 +473,9 @@ msgstr "Ge åtkomst"
 msgid "Revoke access"
 msgstr "Återkalla åtkomst"
 
+msgid "Transfer"
+msgstr "Överför"
+
 msgid "Assigned to"
 msgstr "Tilldelat till"
 
@@ -489,7 +489,7 @@ msgid "Privileges"
 msgstr "Privilegier"
 
 msgid "Mask"
-msgstr "Göm"
+msgstr "Maskera"
 
 msgid "Unmask"
 msgstr "Visa"
@@ -503,12 +503,32 @@ msgstr "Välj ett alternativ"
 msgid "Select your language"
 msgstr "Välj ditt språk"
 
-msgid "Grant this user user the privilege to mask information"
-msgstr ""
+msgid "Grant this recipient ability to transfer reports to other users"
+msgstr "Ge mottagaren möjlighet att överlämna rapporter till andra användare"
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
-msgstr ""
+msgid "Grant this user the privilege to mask information"
+msgstr "Ge denna användare möjlighet att maskera information"
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr "Ge denna användare möjlighet att permanent radera maskerad information"
+
+msgid "Public"
+msgstr "Publik"
+
+msgid "Internal"
+msgstr "Intern"
+
+msgid "Personal"
+msgstr "Personlig"
+
+msgid "Privacy Policy"
+msgstr "Integritetspolicy"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr "Jag har läst och accepterar integritetspolicyn"
+
+msgid "Download copy of the Privacy Policy"
+msgstr "Ladda ner en kopia av integritetspolicyn"
 
 msgid "File a report"
 msgstr "Lämna en rapport"
@@ -551,6 +571,9 @@ msgstr "Datum för skapande"
 
 msgid "Last access"
 msgstr "Senaste åtkomst"
+
+msgid "Messages"
+msgstr "Meddelanden"
 
 msgid "Whistleblower's last access"
 msgstr "Tidpunkt för visselblåsarens senaste besök"
@@ -627,12 +650,6 @@ msgstr "Aktivera kommentarer"
 msgid "Allow the whistleblower to write comments"
 msgstr "Tillåt att visselblåsaren skriver kommentarer"
 
-msgid "Enable private messages"
-msgstr "Aktivera privata meddelanden"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Tillåt att visselblåsaren skickar meddelanden"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Tillåt att visselblåsaren lägger till bilagor till rapporten"
 
@@ -704,9 +721,6 @@ msgstr "Privat nyckel"
 
 msgid "Certificate Signing Request"
 msgstr "Begäran om att signera certifikat"
-
-msgid "Download"
-msgstr "Ladda ned"
 
 msgid "Certificate"
 msgstr "Certifikat"
@@ -951,6 +965,9 @@ msgstr "Sidfot"
 
 msgid "Upload"
 msgstr "Ladda upp"
+
+msgid "Download"
+msgstr "Ladda ned"
 
 msgid "Language:"
 msgstr "Språk:"
@@ -1634,7 +1651,7 @@ msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr "En noggrann beskrivning av det inlämnade beviset hjälper oss att utvärdera påståenden och att undersöka. Vänligen var nog med att referera till betydande delar av videor, bilder eller dokument som skickas in."
+msgstr "En noggrann beskrivning av det inlämnade beviset hjälper oss att utvärdera påståenden och utreda. Vänligen var noga med att referera till betydande delar av videor, bilder eller dokument som skickas in."
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
 msgstr "Har du rapporterat händelserna till andra organisationer och/eller individer?"
@@ -1730,6 +1747,9 @@ msgstr "Undersök problemet för att fastställa om det är tillåtet eller inte
 
 msgid "The activities with unusual stats are:"
 msgstr "Aktiviteterna med ovanligt hög frekvens i statistiken är följande:"
+
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
@@ -1959,6 +1979,9 @@ msgstr "Detta mail är för att uppmärksamma dig på att en mottagare har gett 
 msgid "New report"
 msgstr "Ny rapport"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr "En eller flera rapporter utgår och kommer snart raderas."
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Tidigaste utgångsdatum är {EarliestExpirationDate}."
 
@@ -1968,10 +1991,8 @@ msgstr "Kom ihåg att läsa igenom dem innan de raderas."
 msgid "Some reports will expire soon"
 msgstr "Vissa av rapporterna kommer att gå ut snart"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
-msgstr "Syftet med detta email är att upplysa dig om att en rapports påminnelsedatum har nåtts."
+msgid "This is an email to notify you the reception of a new report."
+msgstr "Syftet med detta email är att upplysa dig om mottagandet av en ny rapport."
 
 msgid "Reminder"
 msgstr "Påminnelse"

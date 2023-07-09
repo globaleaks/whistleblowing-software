@@ -94,9 +94,6 @@ msgstr "Fitxers"
 msgid "Comments"
 msgstr "Comentaris"
 
-msgid "Messages"
-msgstr "Missatges"
-
 msgid "Details"
 msgstr "Detalls"
 
@@ -467,6 +464,9 @@ msgstr "Concedir accés"
 msgid "Revoke access"
 msgstr "Revoca l'accés"
 
+msgid "Transfer"
+msgstr "Transfereix"
+
 msgid "Assigned to"
 msgstr "Assignat a"
 
@@ -494,11 +494,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr "Pública"
+
+msgid "Internal"
+msgstr ""
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Política de privadesa"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -542,6 +562,9 @@ msgstr "Data de creació"
 
 msgid "Last access"
 msgstr "Últim accés"
+
+msgid "Messages"
+msgstr "Missatges"
 
 msgid "Whistleblower's last access"
 msgstr "Últim accés de l'Informant"
@@ -618,12 +641,6 @@ msgstr "Habilita comentaris"
 msgid "Allow the whistleblower to write comments"
 msgstr "Permet als informadors escriure comentaris"
 
-msgid "Enable private messages"
-msgstr "Habilita missatges privats"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Permet als informadors enviar missatges"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Permet als informadors afegir arxius adjunts a l'enviament"
 
@@ -695,9 +712,6 @@ msgstr "Clau privada"
 
 msgid "Certificate Signing Request"
 msgstr "Sol·licitud de signatura de certificat CSR"
-
-msgid "Download"
-msgstr "Descarregar"
 
 msgid "Certificate"
 msgstr "Certificat"
@@ -942,6 +956,9 @@ msgstr "Peu de pàgina"
 
 msgid "Upload"
 msgstr "Pujar"
+
+msgid "Download"
+msgstr "Descarregar"
 
 msgid "Language:"
 msgstr "Idioma:"
@@ -1722,6 +1739,9 @@ msgstr "Examineu el problema per determinar si és legítim o no."
 msgid "The activities with unusual stats are:"
 msgstr "Les activitats amb estadístiques inusuals són les següents:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1950,6 +1970,9 @@ msgstr "Aquest és un correu electrònic per notificar-vos que un destinatari us
 msgid "New report"
 msgstr "Nova denúncia"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "La data de venciment més propera és {EarliestExpirationDate}."
 
@@ -1959,10 +1982,8 @@ msgstr "Per favor, reviseu-los abans de suprimir-los."
 msgid "Some reports will expire soon"
 msgstr "Algunes denúncies caducaran prompte"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
-msgstr "Aquest correu electrònic és per a comunicar-li que s'ha complit la data de recordatori fixada per a una denúncia."
+msgid "This is an email to notify you the reception of a new report."
+msgstr ""
 
 msgid "Reminder"
 msgstr "Recordatori"

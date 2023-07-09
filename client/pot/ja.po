@@ -85,9 +85,6 @@ msgstr "ファイル"
 msgid "Comments"
 msgstr "コメント"
 
-msgid "Messages"
-msgstr "メッセージ"
-
 msgid "Details"
 msgstr "詳細"
 
@@ -458,6 +455,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr "破棄されたアクセス"
 
+msgid "Transfer"
+msgstr "転送"
+
 msgid "Assigned to"
 msgstr ""
 
@@ -485,11 +485,31 @@ msgstr ""
 msgid "Select your language"
 msgstr "言語を選択してください"
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr "公開鍵"
+
+msgid "Internal"
+msgstr ""
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "プライバシーポリシー"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -533,6 +553,9 @@ msgstr "作成日"
 
 msgid "Last access"
 msgstr "最終アクセス"
+
+msgid "Messages"
+msgstr "メッセージ"
 
 msgid "Whistleblower's last access"
 msgstr "WBの最終アクセス"
@@ -609,12 +632,6 @@ msgstr "コメントを有効にする"
 msgid "Allow the whistleblower to write comments"
 msgstr "その内部告発者が、コメントを書くことを許可"
 
-msgid "Enable private messages"
-msgstr "プライベートメッセージを有効にする"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "その内部告発者が、メッセージを送信することを許可"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "その内部告発者が、報告に添付ファイルを追加することを許可する"
 
@@ -686,9 +703,6 @@ msgstr "秘密鍵"
 
 msgid "Certificate Signing Request"
 msgstr "証明書署名要求"
-
-msgid "Download"
-msgstr "ダウンロード"
 
 msgid "Certificate"
 msgstr "証明書"
@@ -933,6 +947,9 @@ msgstr "フッター"
 
 msgid "Upload"
 msgstr "アップロード"
+
+msgid "Download"
+msgstr "ダウンロード"
 
 msgid "Language:"
 msgstr "言語:"
@@ -1713,6 +1730,9 @@ msgstr "問題が正当なものかどうかを調べます。"
 msgid "The activities with unusual stats are:"
 msgstr "異常な統計の活動は次のとおりです:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1941,6 +1961,9 @@ msgstr ""
 msgid "New report"
 msgstr "新しい報告"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "最も早い有効期限は {EarliestExpirationDate} です。"
 
@@ -1950,9 +1973,7 @@ msgstr "削除する前に確認するのを忘れないでください。"
 msgid "Some reports will expire soon"
 msgstr "一部の報告はまもなく期限が切れます"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

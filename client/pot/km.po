@@ -84,9 +84,6 @@ msgstr "ឯកសារ"
 msgid "Comments"
 msgstr "មតិយោបល់"
 
-msgid "Messages"
-msgstr "សារ"
-
 msgid "Details"
 msgstr "លម្អិត"
 
@@ -457,6 +454,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
+msgid "Transfer"
+msgstr "បញ្ជូន"
+
 msgid "Assigned to"
 msgstr ""
 
@@ -484,11 +484,31 @@ msgstr "ជ្រើសរើសជម្រើសមួយ"
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr "សាធារណៈ"
+
+msgid "Internal"
+msgstr "ខាងក្នុង"
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "គោលការណ៍​ភាព​ឯកជន"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -532,6 +552,9 @@ msgstr "កាលបរិច្ឆេទបង្កើត"
 
 msgid "Last access"
 msgstr "ចូលប្រើប្រាស់ចុងក្រោយ"
+
+msgid "Messages"
+msgstr "សារ"
 
 msgid "Whistleblower's last access"
 msgstr "ការចូលប្រើប្រាស់ចុងកក្រោយរបស់អ្នករាយការណ៍"
@@ -608,12 +631,6 @@ msgstr "បើកមតិយោបល់"
 msgid "Allow the whistleblower to write comments"
 msgstr "អនុញ្ញាតអ្នករាយការណ៍អោយសរសេរមតិយោបល់"
 
-msgid "Enable private messages"
-msgstr "បើកសារសម្ងាត់"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "អនុញ្ញាតអ្នករាយការណ៍ឲ្យផ្ញើសារ"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "អនុញ្ញាតអ្នករាយការណ៍បន្ថែមឯកសារភ្ជាប់ទៅកាន់របាយការណ៍"
 
@@ -685,9 +702,6 @@ msgstr "សោរឯកជន"
 
 msgid "Certificate Signing Request"
 msgstr "ស្នើសុំហត្ថលេខាលើវិញ្ញាបនប័ត្រ"
-
-msgid "Download"
-msgstr "ទាញយក"
 
 msgid "Certificate"
 msgstr "វិញ្ញាបនប័ត្រ"
@@ -932,6 +946,9 @@ msgstr "បាតកថា"
 
 msgid "Upload"
 msgstr "បញ្ជូន"
+
+msgid "Download"
+msgstr "ទាញយក"
 
 msgid "Language:"
 msgstr "ភាសា៖"
@@ -1712,6 +1729,9 @@ msgstr "ពិនិត្យបញ្ហានេះ ដើម្បីកំ�
 msgid "The activities with unusual stats are:"
 msgstr "សកម្មភាពដែលមានស្ថិតិមិនធម្មតាគឺ៖"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1940,6 +1960,9 @@ msgstr ""
 msgid "New report"
 msgstr "របាយការណ៍ថ្មី"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "កាលបរិច្ឆេទផុតកំណត់ដំបូងបំផុតគឺ {EarliestExpirationDate}។"
 
@@ -1949,9 +1972,7 @@ msgstr "សូមកុំភ្លេចឆែកមើលមុនពេលវ
 msgid "Some reports will expire soon"
 msgstr "របាយការណ៍ខ្លះនឹងផុតកំណត់ឆាប់ៗនេះ"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

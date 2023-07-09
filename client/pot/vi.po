@@ -95,9 +95,6 @@ msgstr "Tập tin"
 msgid "Comments"
 msgstr "Ý kiến"
 
-msgid "Messages"
-msgstr "Tin nhắn"
-
 msgid "Details"
 msgstr "Chi tiết"
 
@@ -468,6 +465,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr "Thu hồi quyền truy cập"
 
+msgid "Transfer"
+msgstr ""
+
 msgid "Assigned to"
 msgstr ""
 
@@ -495,11 +495,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Internal"
+msgstr "Bên trong"
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Chính Sách Quyền Riêng Tư"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -543,6 +563,9 @@ msgstr "Ngày thành lập"
 
 msgid "Last access"
 msgstr "Lần truy cập cuối"
+
+msgid "Messages"
+msgstr "Tin nhắn"
 
 msgid "Whistleblower's last access"
 msgstr "Lần truy cập cuối của người tố giác"
@@ -619,12 +642,6 @@ msgstr "Cho phép góp ý kiến"
 msgid "Allow the whistleblower to write comments"
 msgstr "Cho phép người tố giác góp ý kiến"
 
-msgid "Enable private messages"
-msgstr "Cho dùng tin nhắn riêng"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Cho phép người tố giác gửi tin nhắn"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr ""
 
@@ -696,9 +713,6 @@ msgstr "Khóa riêng"
 
 msgid "Certificate Signing Request"
 msgstr "Yêu cầu Ký nhận Chứng chỉ"
-
-msgid "Download"
-msgstr "Tải về"
 
 msgid "Certificate"
 msgstr "Chứng chỉ"
@@ -943,6 +957,9 @@ msgstr "Ghi chú cuối trang"
 
 msgid "Upload"
 msgstr "Tải lên"
+
+msgid "Download"
+msgstr "Tải về"
 
 msgid "Language:"
 msgstr "Ngôn ngữ"
@@ -1723,6 +1740,9 @@ msgstr "Xem xét lại sự việc để xác định việc gia tăng này chí
 msgid "The activities with unusual stats are:"
 msgstr "Các hoạt động với chỉ số bất bình thường là:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1951,6 +1971,9 @@ msgstr ""
 msgid "New report"
 msgstr "Báo cáo mới"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Ngày hết hạn sớm nhất là {EarliestExpirationDate}."
 
@@ -1960,9 +1983,7 @@ msgstr "Hãy nhớ kiểm tra chúng trước khi chúng bị xóa."
 msgid "Some reports will expire soon"
 msgstr "Một số báo cáo gần hết hạn"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"
