@@ -137,21 +137,15 @@ class StateClass(ObjectDict, metaclass=Singleton):
 
     def create_directories(self):
         """
-        Execute some consistency checks on command provided GlobaLeaks paths
-
-        if one of working_path or static path is created we copy
-        here the static files (default logs, and in the future pot files for localization)
-        because here stay all the files needed by the application except the python scripts
+        Creates directories tree for the software data dir
         """
         for dirpath in [self.settings.working_path,
                         self.settings.files_path,
-                        self.settings.scripts_path,
                         self.settings.attachments_path,
                         self.settings.ramdisk_path,
                         self.settings.tmp_path,
                         self.settings.log_path]:
             self.create_directory(dirpath)
-
 
     def bind_tcp_ports(self):
         # Allocate local ports
