@@ -53,7 +53,7 @@ describe("Admin configure custom CSS", function() {
 
     await element(by.cssContainingText("a", "Theme customization")).click();
 
-    var customFile = browser.gl.utils.makeTestFilePath("antani.pdf");
+    var customFile = browser.gl.utils.makeTestFilePath("documentation.pdf");
 
     await element(by.css("div.file-custom")).element(by.css("input")).sendKeys(customFile);
 
