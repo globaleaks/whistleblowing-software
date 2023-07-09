@@ -33,11 +33,7 @@ def file_delivery(session):
         ifile.new = False
         src = ifile.filename
 
-        filecode = src.split('.')[0]
-        if itip.crypto_tip_pub_key:
-            ifile.filename = "%s.encrypted" % filecode
-        else:
-            ifile.filename = "%s.plain" % filecode
+        ifile.filename = src.split('.')[0]
 
         for rtip, user in session.query(models.ReceiverTip, models.User) \
                                  .filter(models.ReceiverTip.internaltip_id == ifile.internaltip_id,
@@ -77,12 +73,7 @@ def file_delivery(session):
         wbfile.new = False
         src = wbfile.filename
 
-        filecode = src.split('.')[0]
-        if itip.crypto_tip_pub_key:
-            wbfile.filename = "%s.encrypted" % filecode
-        else:
-            wbfile.filename = "%s.plain" % filecode
-
+        wbfile.filename = src.split('.')[0]
 
         whistleblowerfiles_maps[wbfile.id] = {
             'key': itip.crypto_tip_pub_key,
