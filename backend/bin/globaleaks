@@ -108,11 +108,13 @@ State.init_environment()
 
 
 args = ['-y', Settings.backend_script]
-if Settings.nodaemon:
-    print("Going in background; log available at %s" % Settings.logfile)
-    args += ['-n']
 
-args +=['--pidfile', Settings.pidfile_path]
+if Settings.nodaemon:
+    args += ['-n']
+else:
+    print("Going in background; log available at %s" % Settings.logfile)
+
+args += ['--pidfile', Settings.pidfile_path]
 
 sys.argv[1:] = args
 
