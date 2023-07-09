@@ -780,6 +780,23 @@ class _ReceiverTip(Model):
         return (ForeignKeyConstraint(['receiver_id'], ['user.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
 
+class _Redaction(Model):
+    """
+    This models keep track of data redactions applied on internaltips and related objects
+    """
+    __tablename__ = 'redaction'
+
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    update_date = Column(DateTime, default=datetime_now, nullable=False)
+    reference_id = Column(UnicodeText(36), nullable=False, index=True)
+    internaltip_id = Column(UnicodeText(36), nullable=False, index=True)
+    temporary_redaction = Column(JSON, default=dict, nullable=False)
+    permanent_redaction = Column(JSON, default=dict, nullable=False)
+
+    @declared_attr
+    def __table_args__(self):
+        return ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+
 
 class _Subscriber(Model):
     __tablename__ = 'subscriber'
@@ -950,6 +967,8 @@ class _User(Model):
     can_postpone_expiration = Column(Boolean, default=True, nullable=False)
     can_grant_access_to_reports = Column(Boolean, default=False, nullable=False)
     can_transfer_access_to_reports = Column(Boolean, default=False, nullable=False)
+    can_mask_information = Column(Boolean, default=False, nullable=False)
+    can_redact_information = Column(Boolean, default=False, nullable=False)
     can_edit_general_settings = Column(Boolean, default=False, nullable=False)
     readonly = Column(Boolean, default=False, nullable=False)
     two_factor_secret = Column(UnicodeText(32), default='', nullable=False)
@@ -1121,6 +1140,10 @@ class ReceiverFile(_ReceiverFile, Base):
 
 
 class ReceiverTip(_ReceiverTip, Base):
+    pass
+
+
+class Redaction(_Redaction, Base):
     pass
 
 
