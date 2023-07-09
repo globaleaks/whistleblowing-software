@@ -81,9 +81,6 @@ msgstr "Файлы"
 msgid "Comments"
 msgstr "Каментары"
 
-msgid "Messages"
-msgstr "Паведамленні"
-
 msgid "Details"
 msgstr "Падрабязнасці"
 
@@ -454,6 +451,9 @@ msgstr "Даць доступ"
 msgid "Revoke access"
 msgstr "Адклікаць доступ"
 
+msgid "Transfer"
+msgstr ""
+
 msgid "Assigned to"
 msgstr ""
 
@@ -481,11 +481,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Internal"
+msgstr "Унутраныя"
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Палітыка канфідэнцыяльнасці"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -529,6 +549,9 @@ msgstr "Дата стварэння"
 
 msgid "Last access"
 msgstr "Апошні доступ"
+
+msgid "Messages"
+msgstr "Паведамленні"
 
 msgid "Whistleblower's last access"
 msgstr "Апошні заход на платформу выкрывальніка"
@@ -605,12 +628,6 @@ msgstr "Дазволіць каментары"
 msgid "Allow the whistleblower to write comments"
 msgstr "Дазволіць выкрывальніку пакідаць каментары"
 
-msgid "Enable private messages"
-msgstr "Уключыць канфідэнцыйныя паведамленні"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Дазволіць выкрывальніку адпраўляць паведамленні"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Дазволіць выкрывальніку дадаваць да справаздачы далучаныя файлы "
 
@@ -682,9 +699,6 @@ msgstr "Прыватны ключ"
 
 msgid "Certificate Signing Request"
 msgstr "Запыт на стварэнне сертыфіката"
-
-msgid "Download"
-msgstr "Спампаваць"
 
 msgid "Certificate"
 msgstr "Сертыфікат"
@@ -929,6 +943,9 @@ msgstr "Ніжні калонтытул"
 
 msgid "Upload"
 msgstr "Загрузіць"
+
+msgid "Download"
+msgstr "Спампаваць"
 
 msgid "Language:"
 msgstr "Мова"
@@ -1709,6 +1726,9 @@ msgstr "Вывучыць пытанне, каб вызначыць, законн
 msgid "The activities with unusual stats are:"
 msgstr "Актыўнасць з незвычайнай статыстыкай:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1937,6 +1957,9 @@ msgstr "Гэтым электронным лістом паведамляем, �
 msgid "New report"
 msgstr "Новая справаздача"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Самая ранняя дата сканчэння тэрміну дзеяння - {EarliestExpirationDate}."
 
@@ -1946,9 +1969,7 @@ msgstr "Калі ласка, не забудзьцеся праверыць іх
 msgid "Some reports will expire soon"
 msgstr "Тэрмін дзеяння некаторых справаздачаў хутка скончыцца"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

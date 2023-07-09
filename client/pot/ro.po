@@ -96,9 +96,6 @@ msgstr "Fişiere"
 msgid "Comments"
 msgstr "Comentarii"
 
-msgid "Messages"
-msgstr "Mesaje"
-
 msgid "Details"
 msgstr "Detalii"
 
@@ -469,6 +466,9 @@ msgstr "Acordă acces"
 msgid "Revoke access"
 msgstr "Revocă accesul"
 
+msgid "Transfer"
+msgstr "Transfer"
+
 msgid "Assigned to"
 msgstr ""
 
@@ -496,11 +496,31 @@ msgstr ""
 msgid "Select your language"
 msgstr "Selectați limba"
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr "Public"
+
+msgid "Internal"
+msgstr "Intern"
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Politica de confidențialitate"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -544,6 +564,9 @@ msgstr "Data creării"
 
 msgid "Last access"
 msgstr "Ultima accesare"
+
+msgid "Messages"
+msgstr "Mesaje"
 
 msgid "Whistleblower's last access"
 msgstr "Ultima accesare de către avertizorul de integritate"
@@ -620,12 +643,6 @@ msgstr "Activează comentariile"
 msgid "Allow the whistleblower to write comments"
 msgstr "Permite avertizorului să scrie comentarii"
 
-msgid "Enable private messages"
-msgstr "Activează mesajele private"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Permite avertizorilor să trimită mesaje"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Permite avertizorului să adauge atașamente sesizării"
 
@@ -697,9 +714,6 @@ msgstr "Cheie privată"
 
 msgid "Certificate Signing Request"
 msgstr "Solicitare de acces certificat"
-
-msgid "Download"
-msgstr "Descărcă"
 
 msgid "Certificate"
 msgstr "Certificat"
@@ -944,6 +958,9 @@ msgstr "Subsol"
 
 msgid "Upload"
 msgstr "Încărcă"
+
+msgid "Download"
+msgstr "Descărcă"
 
 msgid "Language:"
 msgstr "Limbă:"
@@ -1724,6 +1741,9 @@ msgstr "Verifică situația pentru a decide dacă este legitimă sau nu."
 msgid "The activities with unusual stats are:"
 msgstr "Activitățile care înregistrează statistici neobișnuite sunt:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1952,6 +1972,9 @@ msgstr "Acesta este un e-mail pentru a te anunța că un destinatar ți-a acorda
 msgid "New report"
 msgstr "Sesizare nouă"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Cea mai apropiată dată de expirare este {EarliestExpirationDate}."
 
@@ -1961,9 +1984,7 @@ msgstr "Nu uita să le verifici înainte de a fi șterse."
 msgid "Some reports will expire soon"
 msgstr "Unele sesizări vor expira în curând."
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

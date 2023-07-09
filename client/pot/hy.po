@@ -82,9 +82,6 @@ msgstr "Ֆայլեր"
 msgid "Comments"
 msgstr "Մեկնաբանություններ"
 
-msgid "Messages"
-msgstr "Հաղորդագրություններ"
-
 msgid "Details"
 msgstr "Մանրամասներ"
 
@@ -455,6 +452,9 @@ msgstr "Մուտքի իրավունք տրամադրել"
 msgid "Revoke access"
 msgstr "Չեղարկել մուտքի իրավունքը"
 
+msgid "Transfer"
+msgstr ""
+
 msgid "Assigned to"
 msgstr ""
 
@@ -482,11 +482,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Internal"
+msgstr ""
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -530,6 +550,9 @@ msgstr "Ստեղծման ամսաթիվ"
 
 msgid "Last access"
 msgstr "Վերջին մուտք"
+
+msgid "Messages"
+msgstr "Հաղորդագրություններ"
 
 msgid "Whistleblower's last access"
 msgstr "Ազդարարի վերջին մուտքը"
@@ -606,12 +629,6 @@ msgstr "Թույլատրել մեկնաբանությունները"
 msgid "Allow the whistleblower to write comments"
 msgstr "Թույլ տալ իրազեկչին մեկնաբանություններ գրել"
 
-msgid "Enable private messages"
-msgstr "Թույլատրել անձնական հաղորդագրությունները"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Թույլ տալ, որ ազդարարը հաղորդագրություններ ուղարկի"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Թույլ տալ ազդարարին ֆայլեր կցել զեկույցին"
 
@@ -683,9 +700,6 @@ msgstr "Մասնավոր բանալի"
 
 msgid "Certificate Signing Request"
 msgstr "Վկայագրի ստորագրման հայտ"
-
-msgid "Download"
-msgstr "Ներբեռնել"
 
 msgid "Certificate"
 msgstr "Վկայագիր"
@@ -930,6 +944,9 @@ msgstr "Էջի ստորին հատված"
 
 msgid "Upload"
 msgstr "Վերբեռնել"
+
+msgid "Download"
+msgstr "Ներբեռնել"
 
 msgid "Language:"
 msgstr "Լեզու՝"
@@ -1710,6 +1727,9 @@ msgstr "Ուսումնասիրել իրավիճակը՝ որոշելու, թե �
 msgid "The activities with unusual stats are:"
 msgstr "Անսովոր վիճակագրությամբ գործողություններն են."
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1938,6 +1958,9 @@ msgstr "Այս հաղորդագրությամբ տեղեկացնում ենք, �
 msgid "New report"
 msgstr "Նոր զեկույց"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Ժամկետի ավարտի ամենամոտ ամսաթիվը՝ {EarliestExpirationDate}:"
 
@@ -1947,9 +1970,7 @@ msgstr "Խնդրում ենք դրանք ստուգել՝ ջնջելուց առ�
 msgid "Some reports will expire soon"
 msgstr "Որոշ զեկույցների վավերության ժամկետը շուտով կավարտվի"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

@@ -126,9 +126,6 @@ msgstr "Dateien"
 msgid "Comments"
 msgstr "Kommentare"
 
-msgid "Messages"
-msgstr "Mitteilungen"
-
 msgid "Details"
 msgstr "Details"
 
@@ -499,6 +496,9 @@ msgstr "Zugriff gewähren"
 msgid "Revoke access"
 msgstr "Zugriff widerrufen"
 
+msgid "Transfer"
+msgstr "Übertragen"
+
 msgid "Assigned to"
 msgstr "Zugewiesen an"
 
@@ -526,11 +526,31 @@ msgstr "Treffen Sie eine Auswahl "
 msgid "Select your language"
 msgstr "Wählen Sie Ihre Sprache aus"
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr "Öffentlich"
+
+msgid "Internal"
+msgstr "Intern"
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Datenschutzerklärung"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -574,6 +594,9 @@ msgstr "Erstellungsdatum"
 
 msgid "Last access"
 msgstr "Letzter Zugriff"
+
+msgid "Messages"
+msgstr "Mitteilungen"
 
 msgid "Whistleblower's last access"
 msgstr "Letzer Zugriff des Hinweisgebers"
@@ -650,12 +673,6 @@ msgstr "Kommentare aktivieren"
 msgid "Allow the whistleblower to write comments"
 msgstr "Dem Hinweisgeber das Schreiben von Kommentaren erlauben"
 
-msgid "Enable private messages"
-msgstr "Private Mitteilungen aktivieren"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Dem Hinweisgeber das Schreiben von Mitteilungen erlauben"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Dem Hinweisgeber das Hinzufügen von Anhängen zum Bericht erlauben"
 
@@ -727,9 +744,6 @@ msgstr "Privater Schlüssel"
 
 msgid "Certificate Signing Request"
 msgstr "Zertifikatsignierungsanforderung"
-
-msgid "Download"
-msgstr "Herunterladen"
 
 msgid "Certificate"
 msgstr "Zertifikat"
@@ -974,6 +988,9 @@ msgstr "Fußzeile"
 
 msgid "Upload"
 msgstr "Hochladen"
+
+msgid "Download"
+msgstr "Herunterladen"
 
 msgid "Language:"
 msgstr "Sprache:"
@@ -1754,6 +1771,9 @@ msgstr "Prüfen Sie die Angelegenheit, um festzustellen, ob sie gerechtfertigt i
 msgid "The activities with unusual stats are:"
 msgstr "Die Aktivitäten mit ungewöhnlichen Statistiken sind:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1982,6 +2002,9 @@ msgstr "Dies ist eine E-Mail, die Sie darüber informiert, dass ein Empfänger I
 msgid "New report"
 msgstr "Neuer Bericht"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Das früheste Ablaufdatum ist {EarliestExpirationDate}."
 
@@ -1991,9 +2014,7 @@ msgstr "Bitte denken Sie daran, sie zu überprüfen, bevor sie gelöscht werden.
 msgid "Some reports will expire soon"
 msgstr "Einige Berichte laufen bald ab"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

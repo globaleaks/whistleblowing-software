@@ -105,9 +105,6 @@ msgstr "Berkas"
 msgid "Comments"
 msgstr "Komentar"
 
-msgid "Messages"
-msgstr "Pesan"
-
 msgid "Details"
 msgstr "Rincian"
 
@@ -478,6 +475,9 @@ msgstr "Memberikan akses"
 msgid "Revoke access"
 msgstr "Mencabut akses"
 
+msgid "Transfer"
+msgstr "Transfer"
+
 msgid "Assigned to"
 msgstr ""
 
@@ -505,11 +505,31 @@ msgstr "Pilih sebuah opsi"
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr "Publik"
+
+msgid "Internal"
+msgstr "Internal"
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Kebjiakan Privasi"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -553,6 +573,9 @@ msgstr "Tanggal pembuatan"
 
 msgid "Last access"
 msgstr "Akses terakhir"
+
+msgid "Messages"
+msgstr "Pesan"
 
 msgid "Whistleblower's last access"
 msgstr "Akses terakhir informan publik"
@@ -629,12 +652,6 @@ msgstr "Aktifkan komentar"
 msgid "Allow the whistleblower to write comments"
 msgstr "Izinkan informan publik untuk menulis komentar"
 
-msgid "Enable private messages"
-msgstr "Aktifkan pesan pribadi"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Izinkan informan publik untuk mengirim pesan"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Izinkan informan publik untuk menambahkan lampiran ke dalam laporan"
 
@@ -706,9 +723,6 @@ msgstr "Kunci Pribadi "
 
 msgid "Certificate Signing Request"
 msgstr "Permintaan Penandatanganan Sertifikat"
-
-msgid "Download"
-msgstr "Unduh"
 
 msgid "Certificate"
 msgstr "Sertifikat"
@@ -953,6 +967,9 @@ msgstr "Catatan kaki"
 
 msgid "Upload"
 msgstr "Unggah"
+
+msgid "Download"
+msgstr "Unduh"
 
 msgid "Language:"
 msgstr "Bahasa:"
@@ -1733,6 +1750,9 @@ msgstr "Periksa isu untuk menentukan apakah itu sah atau tidak"
 msgid "The activities with unusual stats are:"
 msgstr "Kegiatan dengan statistik yang tidak biasa adalah:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1961,6 +1981,9 @@ msgstr "Surel ini memberi tahu Anda bahwa seorang penerima telah memberikan Anda
 msgid "New report"
 msgstr "Laporan baru"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Tanggal kedaluwarsa paling awal adalah {EarliestExpirationDate}."
 
@@ -1970,9 +1993,7 @@ msgstr "Harap ingat untuk memeriksanya sebelum terhapus."
 msgid "Some reports will expire soon"
 msgstr "Beberapa laporan akan segera kedaluwarsa"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

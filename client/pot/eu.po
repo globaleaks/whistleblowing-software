@@ -98,9 +98,6 @@ msgstr "Fitxategiak"
 msgid "Comments"
 msgstr "Iruzkinak"
 
-msgid "Messages"
-msgstr "Mezuak"
-
 msgid "Details"
 msgstr "Xehetasunak"
 
@@ -471,6 +468,9 @@ msgstr "Eman sarbidea"
 msgid "Revoke access"
 msgstr "Kendu sarbidea"
 
+msgid "Transfer"
+msgstr ""
+
 msgid "Assigned to"
 msgstr "Honi esleitua"
 
@@ -498,11 +498,31 @@ msgstr "Hautatu aukera bat"
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Internal"
+msgstr ""
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Pribatutasun Politika"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -546,6 +566,9 @@ msgstr "Sortze-data"
 
 msgid "Last access"
 msgstr "Azken sarrera"
+
+msgid "Messages"
+msgstr "Mezuak"
 
 msgid "Whistleblower's last access"
 msgstr "Salatzailearen azken sarrera"
@@ -622,12 +645,6 @@ msgstr "Gaitu iruzkinak"
 msgid "Allow the whistleblower to write comments"
 msgstr "Salatzaileei iruzkinak idaztea ahalbidetu"
 
-msgid "Enable private messages"
-msgstr "Mezu pribatuak gaitu"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Salatzaileari mezuak bidaltzea ahalbidetu"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Salatzaileari salaketari eranskin gehiago gehitzea ahalbidetu"
 
@@ -699,9 +716,6 @@ msgstr "Gako pribatua"
 
 msgid "Certificate Signing Request"
 msgstr "Ziurtagiriaren sinadura eskaera"
-
-msgid "Download"
-msgstr "Deskargatu"
 
 msgid "Certificate"
 msgstr "Ziurtagiria"
@@ -946,6 +960,9 @@ msgstr "Orriaren oina"
 
 msgid "Upload"
 msgstr "Igo"
+
+msgid "Download"
+msgstr "Deskargatu"
 
 msgid "Language:"
 msgstr "Hizkuntza:"
@@ -1726,6 +1743,9 @@ msgstr "Aztertu gaia legitimoa den ala ez jakiteko."
 msgid "The activities with unusual stats are:"
 msgstr "Ezohiko estatistikak dituzten jarduerak hauek dira:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1954,6 +1974,9 @@ msgstr "Posta elektroniko honen bitartez hartzaileak salaketa bat edo gehiago em
 msgid "New report"
 msgstr "Salaketa berria"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Iraungitze-data gertukoena {EarliestExpirationDate} da."
 
@@ -1963,10 +1986,8 @@ msgstr "Arren, gogoratu haiek berrikustea ezabatuak izan baino lehen."
 msgid "Some reports will expire soon"
 msgstr "Salaketa batzuk laster iraungiko dute"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
-msgstr "Posta elektroniko honen bidez salaketarentzat zehaztutako oroitzeko data bete dela jakinarazi nahi dizugu."
+msgid "This is an email to notify you the reception of a new report."
+msgstr ""
 
 msgid "Reminder"
 msgstr "Oroigarria"

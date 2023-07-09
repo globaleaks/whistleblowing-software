@@ -88,9 +88,6 @@ msgstr "Датотеке"
 msgid "Comments"
 msgstr "Коментари"
 
-msgid "Messages"
-msgstr "Поруке"
-
 msgid "Details"
 msgstr "Подаци"
 
@@ -461,6 +458,9 @@ msgstr "Odobri pristup"
 msgid "Revoke access"
 msgstr "Opozovi pristup"
 
+msgid "Transfer"
+msgstr ""
+
 msgid "Assigned to"
 msgstr ""
 
@@ -488,11 +488,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Internal"
+msgstr ""
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Услови кориштења"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -536,6 +556,9 @@ msgstr "Датум стварања"
 
 msgid "Last access"
 msgstr "Posljednji pristup"
+
+msgid "Messages"
+msgstr "Поруке"
 
 msgid "Whistleblower's last access"
 msgstr "Posljednji pristup uzbunjivača"
@@ -612,12 +635,6 @@ msgstr "Omogući komentare"
 msgid "Allow the whistleblower to write comments"
 msgstr "Dozvolite uzbunjivaču da piše komentare"
 
-msgid "Enable private messages"
-msgstr "Укључи приватне поруке"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Dozvoli uzbunjivaču da šalje poruke"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Dozvoli uzbunjivaču da dodaje priloge u prijavu"
 
@@ -689,9 +706,6 @@ msgstr "Privatni ključ"
 
 msgid "Certificate Signing Request"
 msgstr "Zahtjev za potpisivanje sertifikata"
-
-msgid "Download"
-msgstr "Преузми"
 
 msgid "Certificate"
 msgstr "Sertifikat"
@@ -936,6 +950,9 @@ msgstr "Подножје"
 
 msgid "Upload"
 msgstr "Отпреми"
+
+msgid "Download"
+msgstr "Преузми"
 
 msgid "Language:"
 msgstr "Jezik:"
@@ -1716,6 +1733,9 @@ msgstr "Istražite ovo pitanje da biste utvrdili da li je legitimno ili ne."
 msgid "The activities with unusual stats are:"
 msgstr "Aktivnosti sa neobičnom statistikom su:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1944,6 +1964,9 @@ msgstr "Ovo je e-poruka s obavještenjem da vam je primalac odobrio pristup neki
 msgid "New report"
 msgstr "Nova prijava"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Najraniji datum isteka je {EarliestExpirationDate}."
 
@@ -1953,9 +1976,7 @@ msgstr "Ne zaboravite da ih provjerite prije brisanja."
 msgid "Some reports will expire soon"
 msgstr "Neke prijave će uskoro isteći"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

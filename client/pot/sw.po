@@ -80,9 +80,6 @@ msgstr "Mafaili"
 msgid "Comments"
 msgstr "Maoni"
 
-msgid "Messages"
-msgstr "Ujumbe"
-
 msgid "Details"
 msgstr "Maelezo"
 
@@ -453,6 +450,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
+msgid "Transfer"
+msgstr ""
+
 msgid "Assigned to"
 msgstr ""
 
@@ -480,11 +480,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Internal"
+msgstr "Ya ndani"
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Sera ya faragha"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -528,6 +548,9 @@ msgstr ""
 
 msgid "Last access"
 msgstr "Mara ya mwisho kuingia"
+
+msgid "Messages"
+msgstr "Ujumbe"
 
 msgid "Whistleblower's last access"
 msgstr "Mara ya mwisho kwa mtoa taarifa za siri kuingia"
@@ -604,12 +627,6 @@ msgstr "Wezesha maoni "
 msgid "Allow the whistleblower to write comments"
 msgstr "Ruhusu mtoa taarifa ya siri kuandika maoni."
 
-msgid "Enable private messages"
-msgstr "Wezesha ujumbe wa faragha "
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Ruhusu mtoa taarifa ya siri kutuma ujumbe"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Ruhusu mtoa taarifa ya siri kuongeza viambatanisho kwenye ripoti"
 
@@ -681,9 +698,6 @@ msgstr "Ufunguo binafsi"
 
 msgid "Certificate Signing Request"
 msgstr "Ombi la kutia saini cheti"
-
-msgid "Download"
-msgstr "Pakua"
 
 msgid "Certificate"
 msgstr "Cheti"
@@ -928,6 +942,9 @@ msgstr "Kijachini"
 
 msgid "Upload"
 msgstr "Pakia"
+
+msgid "Download"
+msgstr "Pakua"
 
 msgid "Language:"
 msgstr "Lugha:"
@@ -1708,6 +1725,9 @@ msgstr "Chunguza suala ili kubaini ikiwa ni halali au la."
 msgid "The activities with unusual stats are:"
 msgstr "Shughuli zilizo na takwimu zisizo za kawaida ni: "
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1936,6 +1956,9 @@ msgstr ""
 msgid "New report"
 msgstr "Ripoti mpya"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Tarehe ya mapema kabisa ya kumalizika ni {EarliestExpirationDate}."
 
@@ -1945,9 +1968,7 @@ msgstr "Tafadhali kumbuka kuzikagua kabla hazijafutwa"
 msgid "Some reports will expire soon"
 msgstr "Baadhi ya ripoti zitaisha muda wake hivi karibuni"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

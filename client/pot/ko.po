@@ -81,9 +81,6 @@ msgstr "파일"
 msgid "Comments"
 msgstr "댓글"
 
-msgid "Messages"
-msgstr "메시지"
-
 msgid "Details"
 msgstr "세부 정보"
 
@@ -454,6 +451,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr "권한 무효화"
 
+msgid "Transfer"
+msgstr "전송"
+
 msgid "Assigned to"
 msgstr ""
 
@@ -481,11 +481,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Internal"
+msgstr "내부"
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "개인 정보 보호 정책"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -529,6 +549,9 @@ msgstr "생성 날짜"
 
 msgid "Last access"
 msgstr "마지막 액세스"
+
+msgid "Messages"
+msgstr "메시지"
 
 msgid "Whistleblower's last access"
 msgstr "마지막 내부 고발자 액세스"
@@ -605,12 +628,6 @@ msgstr "댓글 허용"
 msgid "Allow the whistleblower to write comments"
 msgstr "내부 고발자가 댓글을 작성하도록 허용"
 
-msgid "Enable private messages"
-msgstr "비공개 메시지 허용"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "내부 고발자가 메시지를 전송할 수 있도록 허용"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "내부 고발자가 보고서에 첨부 파일을 추가하도록 허용"
 
@@ -682,9 +699,6 @@ msgstr "개인 키"
 
 msgid "Certificate Signing Request"
 msgstr "인증서 서명 요청"
-
-msgid "Download"
-msgstr "다운로드"
 
 msgid "Certificate"
 msgstr "인증서"
@@ -929,6 +943,9 @@ msgstr "각주"
 
 msgid "Upload"
 msgstr "업로드"
+
+msgid "Download"
+msgstr "다운로드"
 
 msgid "Language:"
 msgstr "언어:"
@@ -1709,6 +1726,9 @@ msgstr "문제를 조사하여 합법적인지 확인하십시오."
 msgid "The activities with unusual stats are:"
 msgstr "특이한 통계와 활동은 다음과 같습니다."
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1937,6 +1957,9 @@ msgstr ""
 msgid "New report"
 msgstr "새 보고서"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "가장 빠른 만료 날짜는 {EarliestExpirationDate}입니다."
 
@@ -1946,9 +1969,7 @@ msgstr "삭제하기 전에 확인하시기 바랍니다."
 msgid "Some reports will expire soon"
 msgstr "일부 보고서가 곧 만료됩니다."
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

@@ -81,9 +81,6 @@ msgstr "Failid"
 msgid "Comments"
 msgstr "Kommentaarid"
 
-msgid "Messages"
-msgstr "Sõnumid"
-
 msgid "Details"
 msgstr "Üksikasjad"
 
@@ -454,6 +451,9 @@ msgstr "Luba juurdepääs"
 msgid "Revoke access"
 msgstr "Tühista juurdepääs"
 
+msgid "Transfer"
+msgstr ""
+
 msgid "Assigned to"
 msgstr "Määratud"
 
@@ -481,11 +481,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Internal"
+msgstr ""
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Privaatsus"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -529,6 +549,9 @@ msgstr "Loomise kuupäev:"
 
 msgid "Last access"
 msgstr "Viimane sisselogimine"
+
+msgid "Messages"
+msgstr "Sõnumid"
 
 msgid "Whistleblower's last access"
 msgstr "Vihjeandja viimane sisselogimine"
@@ -605,12 +628,6 @@ msgstr "Luba kommentaarid"
 msgid "Allow the whistleblower to write comments"
 msgstr "Luba vihjeandjal kommentaare kirjutada"
 
-msgid "Enable private messages"
-msgstr "Luba privaatsõnumid"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Luba vihjeandjal sõnumeid saata"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Luba vihjeandjal teatele manuseid lisada"
 
@@ -682,9 +699,6 @@ msgstr "Privaatvõti"
 
 msgid "Certificate Signing Request"
 msgstr "Sertifikaadi allkirjastamise taotlus"
-
-msgid "Download"
-msgstr "Laadi alla"
 
 msgid "Certificate"
 msgstr "Sertifikaat"
@@ -929,6 +943,9 @@ msgstr "Jalus"
 
 msgid "Upload"
 msgstr "Laadi üles"
+
+msgid "Download"
+msgstr "Laadi alla"
 
 msgid "Language:"
 msgstr "Keel:"
@@ -1709,6 +1726,9 @@ msgstr "Uurige asja, et teha kindlaks, kas see on seletatav või mitte."
 msgid "The activities with unusual stats are:"
 msgstr "Ebatavaliste statistiliste näitajatega tegevused on järgmised:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1937,6 +1957,9 @@ msgstr "Käesoleva meiliga teatame, et saaja on andnud teile juurdepääsu ühel
 msgid "New report"
 msgstr "Uus teavitus"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Varaseim aegumiskuupäev on {EarliestExpirationDate}."
 
@@ -1946,10 +1969,8 @@ msgstr "Ärge unustage nendega tutvuda enne nende kustutamist."
 msgid "Some reports will expire soon"
 msgstr "Mõned teavitused aeguvad varsti"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
-msgstr "Käesoleva meiliga teatame, et teavituse meeldetuletuse kuupäev on kätte jõudnud"
+msgid "This is an email to notify you the reception of a new report."
+msgstr ""
 
 msgid "Reminder"
 msgstr "Meeldetuletus"

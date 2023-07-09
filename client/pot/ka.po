@@ -80,9 +80,6 @@ msgstr "ფაილები"
 msgid "Comments"
 msgstr "კომენტარები"
 
-msgid "Messages"
-msgstr "შეტყობინებები"
-
 msgid "Details"
 msgstr "დეტალები"
 
@@ -453,6 +450,9 @@ msgstr "წვდომის დაშვება"
 msgid "Revoke access"
 msgstr "წვდომის გაუქმება"
 
+msgid "Transfer"
+msgstr ""
+
 msgid "Assigned to"
 msgstr ""
 
@@ -480,11 +480,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Internal"
+msgstr ""
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "პირადი მონაცემების დაცვის დებულება"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -528,6 +548,9 @@ msgstr "შექმნის თარიღი"
 
 msgid "Last access"
 msgstr "ბოლო შესვლა"
+
+msgid "Messages"
+msgstr "შეტყობინებები"
 
 msgid "Whistleblower's last access"
 msgstr "ინსტრუქტორის ბოლო წვდომა"
@@ -604,12 +627,6 @@ msgstr "კომენტარების ჩართვა"
 msgid "Allow the whistleblower to write comments"
 msgstr "დართეთ ნება ინტრუქტორმა დააკომენტაროს"
 
-msgid "Enable private messages"
-msgstr "პირადი შეტყობინებების ჩართვა"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "დართთ ნება ინსტრუქტორს გაგზავნოს შეტყობინებები"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "დართეთ ნება ინსტრუქტორს დაამატოს ანგარიშზე დანართები"
 
@@ -681,9 +698,6 @@ msgstr "პირადი კოდი"
 
 msgid "Certificate Signing Request"
 msgstr "სერტიფიკატის ხელმოწერის მოთხოვნა"
-
-msgid "Download"
-msgstr "ჩამოტვირთვა"
 
 msgid "Certificate"
 msgstr "სერტიფიკატი"
@@ -928,6 +942,9 @@ msgstr "კოლონტიტული"
 
 msgid "Upload"
 msgstr "ატვირთვა"
+
+msgid "Download"
+msgstr "ჩამოტვირთვა"
 
 msgid "Language:"
 msgstr "ენა:"
@@ -1708,6 +1725,9 @@ msgstr "შეისწავლეთ საკითხი მისი კა
 msgid "The activities with unusual stats are:"
 msgstr "უჩვეულო აქტივობები სტატისტიკურად შემდეგია:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1936,6 +1956,9 @@ msgstr "ეს არის ელწერილი შეტყობინე
 msgid "New report"
 msgstr "ახალი ანგარიში"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "ვადის ამოწურვის ყველაზე ადრეული თარიღია {EarliestExpirationDate}."
 
@@ -1945,9 +1968,7 @@ msgstr "არ დაგავიწყდეთ მათი შემოწმ
 msgid "Some reports will expire soon"
 msgstr "ზოგიერთი ანგარიშის ვადა მალე ამოიწურება"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

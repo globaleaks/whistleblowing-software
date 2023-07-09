@@ -80,9 +80,6 @@ msgstr "Failai"
 msgid "Comments"
 msgstr "Komentarai"
 
-msgid "Messages"
-msgstr "Laiškai"
-
 msgid "Details"
 msgstr "Išsamiau"
 
@@ -453,6 +450,9 @@ msgstr "Suteikti prieigą"
 msgid "Revoke access"
 msgstr "Atšaukti prieigą"
 
+msgid "Transfer"
+msgstr "Perkelti"
+
 msgid "Assigned to"
 msgstr ""
 
@@ -480,11 +480,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr "Viešasis"
+
+msgid "Internal"
+msgstr ""
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Privatumo politika"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -528,6 +548,9 @@ msgstr "Sukūrimo data"
 
 msgid "Last access"
 msgstr "Paskutinis prisijungimas"
+
+msgid "Messages"
+msgstr "Laiškai"
 
 msgid "Whistleblower's last access"
 msgstr "Paskutinis pranešėjo prisijungimas"
@@ -604,12 +627,6 @@ msgstr "Įgalinti komentarus"
 msgid "Allow the whistleblower to write comments"
 msgstr "Leisti pranešėjui rašyti komentarus"
 
-msgid "Enable private messages"
-msgstr "Įgalinti privačias žinutes"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Leisti pranešėjui siųsti žinutes"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Leisti pranešėjui prie pranešimo pridėti priedų"
 
@@ -681,9 +698,6 @@ msgstr "Privatusis raktas"
 
 msgid "Certificate Signing Request"
 msgstr "Sertifikato pasirašymo užklausa"
-
-msgid "Download"
-msgstr "Atsisiųsti"
 
 msgid "Certificate"
 msgstr "Sertifikatas"
@@ -928,6 +942,9 @@ msgstr "Poraštė"
 
 msgid "Upload"
 msgstr "Įkelti"
+
+msgid "Download"
+msgstr "Atsisiųsti"
 
 msgid "Language:"
 msgstr "Kalba:"
@@ -1708,6 +1725,9 @@ msgstr "Išnagrinėkite klausimą, kad nustatytumėte, ar jis teisėtas, ar ne."
 msgid "The activities with unusual stats are:"
 msgstr "Veiksmai su neįprasta statistika yra:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1936,6 +1956,9 @@ msgstr "Šiuo el. laišku pranešama, kad gavėjas suteikė prieigą prie vieno 
 msgid "New report"
 msgstr "Naujas pranešimas"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Anksčiausia galiojimo pabaigos data – {EarliestExpirationDate}."
 
@@ -1945,9 +1968,7 @@ msgstr "Prieš ištrindami nepamirškite jų patikrinti."
 msgid "Some reports will expire soon"
 msgstr "Kai kurių pranešimų galiojimas netrukus baigsis."
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

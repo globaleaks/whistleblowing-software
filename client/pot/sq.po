@@ -89,9 +89,6 @@ msgstr "Kartela"
 msgid "Comments"
 msgstr "Komente"
 
-msgid "Messages"
-msgstr "Mesazhe"
-
 msgid "Details"
 msgstr "Hollësi"
 
@@ -462,6 +459,9 @@ msgstr "Akordoji hyrje"
 msgid "Revoke access"
 msgstr "Shfuqizoji hyrjen"
 
+msgid "Transfer"
+msgstr "Të shpërngulë"
+
 msgid "Assigned to"
 msgstr "Caktuar për"
 
@@ -489,12 +489,32 @@ msgstr "Përzgjidhni një mundësi"
 msgid "Select your language"
 msgstr "Përzgjidhni gjuhën tuaj"
 
-msgid "Grant this user user the privilege to mask information"
-msgstr ""
+msgid "Grant this recipient ability to transfer reports to other users"
+msgstr "Akordojini këtij marrësi aftësinë të shpërngulë raportime te përdorues të tjerë"
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
-msgstr "Akordojini këtij përdorues privilegjin të redaktojë përgjithmonë hollësi të maskuara"
+msgid "Grant this user the privilege to mask information"
+msgstr "Akordojini këtij përdoruesi privilegjin të maskojë hollësi"
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr "Akordojini këtij përdoruesi privilegjin të redaktojë në mënyrë permanente hollësi të maskuara"
+
+msgid "Public"
+msgstr "Publik"
+
+msgid "Internal"
+msgstr "I brendshëm"
+
+msgid "Personal"
+msgstr "Personal"
+
+msgid "Privacy Policy"
+msgstr "Rregulla Privatësie"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr "I kam lexuar dhe i pranoj Rregullat e Privatësisë"
+
+msgid "Download copy of the Privacy Policy"
+msgstr "Shkarkoni një kopje të Rregullave të Privatësisë"
 
 msgid "File a report"
 msgstr "Depozitoni një raportim"
@@ -537,6 +557,9 @@ msgstr "Datë krijimi"
 
 msgid "Last access"
 msgstr "Hyrja e fundit"
+
+msgid "Messages"
+msgstr "Mesazhe"
 
 msgid "Whistleblower's last access"
 msgstr "Hyrja e fundit nga nxjerrës të fshehtash"
@@ -613,12 +636,6 @@ msgstr "Aktivizo komente"
 msgid "Allow the whistleblower to write comments"
 msgstr "Lejoji nxjerrësit të së fshehtës të shkruajë komente"
 
-msgid "Enable private messages"
-msgstr "Aktivizo mesazhe private"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Lejoji nxjerrësit të të fshehtës të dërgojë mesazhe"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Lejoji nxjerrësit të së fshehtës të shtojë te raportimi bashkëngjitje"
 
@@ -690,9 +707,6 @@ msgstr "Kyç Privat"
 
 msgid "Certificate Signing Request"
 msgstr "Kërkesë Nënshkrimi Dëshmie"
-
-msgid "Download"
-msgstr "Shkarkoje"
 
 msgid "Certificate"
 msgstr "Dëshmi"
@@ -937,6 +951,9 @@ msgstr "Fundfaqe"
 
 msgid "Upload"
 msgstr "Ngarkoje"
+
+msgid "Download"
+msgstr "Shkarkoje"
 
 msgid "Language:"
 msgstr "Gjuhë:"
@@ -1717,6 +1734,9 @@ msgstr "Shqyrtojeni çështjen, për të përcaktuar se është e ligjshme apo j
 msgid "The activities with unusual stats are:"
 msgstr "Veprimtaritë me statistika të pazakonta janë:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr "Hapësirë disku e lirë: {FreeMemory}/{TotalMemory}"
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1945,6 +1965,9 @@ msgstr "Ky është një email për t’ju njoftuar se një marrës ju ka akordua
 msgid "New report"
 msgstr "Raportim i ri"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr "Një ose disa raportime po skadojnë dhe së shpejti do të fshihen."
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Data më e hershme e skadimit është {EarliestExpirationDate}."
 
@@ -1954,10 +1977,8 @@ msgstr "Ju lutemi, mos harroni t’i shihni, para se të fshihen."
 msgid "Some reports will expire soon"
 msgstr "Disa raportime do të skadojnë së shpejti"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
-msgstr "Ky është një email për t’ju njoftuar se ka ardhur data e kujtuesit për këtë raport."
+msgid "This is an email to notify you the reception of a new report."
+msgstr "Ky është një email për t’ju njoftuar marrjen e një raportimit të ri."
 
 msgid "Reminder"
 msgstr "Kujtues"

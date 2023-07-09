@@ -85,9 +85,6 @@ msgstr "Faili"
 msgid "Comments"
 msgstr "Komentāri"
 
-msgid "Messages"
-msgstr "Ziņas"
-
 msgid "Details"
 msgstr "Detaļas"
 
@@ -458,6 +455,9 @@ msgstr "Piešķirt piekļuvi"
 msgid "Revoke access"
 msgstr "Atsaukt piekļuvi"
 
+msgid "Transfer"
+msgstr ""
+
 msgid "Assigned to"
 msgstr "Piešķirts"
 
@@ -485,11 +485,31 @@ msgstr ""
 msgid "Select your language"
 msgstr "Izvēlieties savu valoda"
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Internal"
+msgstr ""
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -533,6 +553,9 @@ msgstr "Izveidošanas datums"
 
 msgid "Last access"
 msgstr "Pēdējā piekļuve"
+
+msgid "Messages"
+msgstr "Ziņas"
 
 msgid "Whistleblower's last access"
 msgstr "Trauksmes cēlēja pēdēja piekļuve"
@@ -609,12 +632,6 @@ msgstr "Iespējot komentārus"
 msgid "Allow the whistleblower to write comments"
 msgstr "Atļaut trauksmes cēlējam rakstīt komentārus"
 
-msgid "Enable private messages"
-msgstr "Iespējot privātās ziņas"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Atļaut trauksmes cēlējam sūtīt ziņas"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Atļaut trauksmes cēlējam pievienot pielikumus"
 
@@ -686,9 +703,6 @@ msgstr "Privātā atslēga"
 
 msgid "Certificate Signing Request"
 msgstr "Sertifikāta parakstīšanas pieprasījums"
-
-msgid "Download"
-msgstr "Lejupielādēt"
 
 msgid "Certificate"
 msgstr "Sertifikāts"
@@ -933,6 +947,9 @@ msgstr "Kājene"
 
 msgid "Upload"
 msgstr "Augšupielādēt"
+
+msgid "Download"
+msgstr "Lejupielādēt"
 
 msgid "Language:"
 msgstr "Valoda:"
@@ -1713,6 +1730,9 @@ msgstr "Izpētiet problēmu, lai noteiktu, vai tā ir likumīga."
 msgid "The activities with unusual stats are:"
 msgstr "Darbības ar neparastu statistiku ir:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1941,6 +1961,9 @@ msgstr "Šis ir e-pasta ziņojums, lai informētu, ka saņēmējs ir piešķīri
 msgid "New report"
 msgstr "Jauns ziņojums"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Agrākais derīguma termiņš ir {EarliestExpirationDate}."
 
@@ -1950,9 +1973,7 @@ msgstr "Lūdzu, atcerieties tos pārbaudīt pirms to dzēšanas."
 msgid "Some reports will expire soon"
 msgstr "Dažu pārskatu derīguma termiņš drīz beigsies"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

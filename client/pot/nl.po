@@ -124,9 +124,6 @@ msgstr "Bestanden"
 msgid "Comments"
 msgstr "Reacties"
 
-msgid "Messages"
-msgstr "Berichten"
-
 msgid "Details"
 msgstr "Details"
 
@@ -497,6 +494,9 @@ msgstr "Toegang verlenen"
 msgid "Revoke access"
 msgstr "Toegang herroepen"
 
+msgid "Transfer"
+msgstr "Verplaatsen"
+
 msgid "Assigned to"
 msgstr ""
 
@@ -524,11 +524,31 @@ msgstr "Selecteer een optie"
 msgid "Select your language"
 msgstr "Selecteer uw taal"
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr "Publiek"
+
+msgid "Internal"
+msgstr "Intern"
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Privacybeleid"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -572,6 +592,9 @@ msgstr "Datum van aanmaken"
 
 msgid "Last access"
 msgstr "Laatste toegang"
+
+msgid "Messages"
+msgstr "Berichten"
 
 msgid "Whistleblower's last access"
 msgstr "Laatste toegang van de klokkenluider"
@@ -648,12 +671,6 @@ msgstr "Reacties inschakelen"
 msgid "Allow the whistleblower to write comments"
 msgstr "De klokkenluider toestaan reacties achter te laten"
 
-msgid "Enable private messages"
-msgstr "Privé-berichten inschakelen"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "De klokkenluider toestaan berichten te versturen"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "De klokkenluider toestaan bestanden toe te voegen aan een inzending"
 
@@ -725,9 +742,6 @@ msgstr "Privésleutel"
 
 msgid "Certificate Signing Request"
 msgstr "Certificaatondertekeningsverzoek"
-
-msgid "Download"
-msgstr "Downloaden"
 
 msgid "Certificate"
 msgstr "Certificaat"
@@ -972,6 +986,9 @@ msgstr "Voettekst"
 
 msgid "Upload"
 msgstr "Uploaden"
+
+msgid "Download"
+msgstr "Downloaden"
 
 msgid "Language:"
 msgstr "Taal:"
@@ -1752,6 +1769,9 @@ msgstr "Bekijk het probleem om vast te stellen of het legitiem is of niet."
 msgid "The activities with unusual stats are:"
 msgstr "De gebeurtenissen met ongebruikelijke statistieken zijn:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1980,6 +2000,9 @@ msgstr "Dit is een e-mail om u te informeren dat een ontvanger u toegang heeft v
 msgid "New report"
 msgstr "Nieuwe inzending"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "De vroegste vervaldatum is {EarliestExpirationDate}."
 
@@ -1989,9 +2012,7 @@ msgstr "AUB checken voordat deze worden verwijderd."
 msgid "Some reports will expire soon"
 msgstr "Sommige inzendingen zullen binnenkort vervallen"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

@@ -82,9 +82,6 @@ msgstr "ھۆججەتلەر"
 msgid "Comments"
 msgstr "ئىنكاسلار"
 
-msgid "Messages"
-msgstr "ئۇچۇرلار"
-
 msgid "Details"
 msgstr "تەپسىلاتلار"
 
@@ -455,6 +452,9 @@ msgstr "ھوقۇق بەر"
 msgid "Revoke access"
 msgstr "ھوقۇقنى قايتۇرىۋال"
 
+msgid "Transfer"
+msgstr ""
+
 msgid "Assigned to"
 msgstr ""
 
@@ -482,11 +482,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Internal"
+msgstr ""
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "مەخپىيەتلىك سىياسىتىمىز"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -530,6 +550,9 @@ msgstr "قۇرۇلغان چېسلا"
 
 msgid "Last access"
 msgstr "ئاخىرقى زىيارەت"
+
+msgid "Messages"
+msgstr "ئۇچۇرلار"
 
 msgid "Whistleblower's last access"
 msgstr "پاش قىلغۇچىنىڭ ئاخىرقى زىيارىتى"
@@ -606,12 +629,6 @@ msgstr "باھالاشنى قوزغات"
 msgid "Allow the whistleblower to write comments"
 msgstr "پاش قىلغۇچىنىڭ باھا يېزىشىگە رۇخسەت قىل"
 
-msgid "Enable private messages"
-msgstr "شەخسىي ئۇچۇرلارنى قوزغات"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "پاش قىلغۇچىنىڭ ئۇچۇر ئەۋەتىشىگە رۇخسەت قىل"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr ""
 
@@ -683,9 +700,6 @@ msgstr "شەخسىي ئاچقۇچ"
 
 msgid "Certificate Signing Request"
 msgstr "گۇۋاھنامە ئىمزالاش تەلىپى"
-
-msgid "Download"
-msgstr "چۈشۈرۈش"
 
 msgid "Certificate"
 msgstr "گۇۋاھنامە"
@@ -930,6 +944,9 @@ msgstr "بەت ئاستى"
 
 msgid "Upload"
 msgstr "يۈكلەش"
+
+msgid "Download"
+msgstr "چۈشۈرۈش"
 
 msgid "Language:"
 msgstr "تىل:"
@@ -1710,6 +1727,9 @@ msgstr "بۇنىڭ بىر نورمال ئىشمۇ ئەمەسلىگىنى ئاي�
 msgid "The activities with unusual stats are:"
 msgstr "بىنورمال پائالىيەتلەرنىڭ ئىستاتىستىكىسى بۇلار:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1938,6 +1958,9 @@ msgstr "بۇ ئېلخەت سىزگە تاپشۇرىۋالغۇچىنىڭ بىر �
 msgid "New report"
 msgstr "يېڭى مەلۇمات"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "ئەڭ بۇرۇنقى سۈرۈك ۋاقتى: {EarliestExpirationDate}."
 
@@ -1947,9 +1970,7 @@ msgstr "ئۆچۈرۈلۈشتىن بۇرۇن ئۇلارنى تەكشۈرۈشنى 
 msgid "Some reports will expire soon"
 msgstr "بەزى مەلۇماتلارنىڭ يېقىندا سۈرىكى توشىدۇ"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

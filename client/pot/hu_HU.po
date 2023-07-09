@@ -98,9 +98,6 @@ msgstr "Fájlok"
 msgid "Comments"
 msgstr "Hozzászólások"
 
-msgid "Messages"
-msgstr "Üzenetek"
-
 msgid "Details"
 msgstr "Részletek"
 
@@ -471,6 +468,9 @@ msgstr "Hozzáférés adása"
 msgid "Revoke access"
 msgstr "Hozzáférés visszavonása"
 
+msgid "Transfer"
+msgstr ""
+
 msgid "Assigned to"
 msgstr ""
 
@@ -498,11 +498,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Internal"
+msgstr ""
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Adatvédelmi irányelvek"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -546,6 +566,9 @@ msgstr "Létrehozás ideje"
 
 msgid "Last access"
 msgstr "Legutóbbi hozzáférés"
+
+msgid "Messages"
+msgstr "Üzenetek"
 
 msgid "Whistleblower's last access"
 msgstr "A bejelentő utolsó belépési időpontja"
@@ -622,12 +645,6 @@ msgstr "Megjegyzések engedélyezése"
 msgid "Allow the whistleblower to write comments"
 msgstr "A bejelentő írhat megjegyzéseket"
 
-msgid "Enable private messages"
-msgstr "Privát üzenetek engedélyezése"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "A bejelentő küldhet üzeneteket"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Engedélyezi a bejelentőknek, hogy mellékleteket adjanak hozzá a beadványhoz"
 
@@ -699,9 +716,6 @@ msgstr "Privát kulcs"
 
 msgid "Certificate Signing Request"
 msgstr "Tanúsítványkérelem"
-
-msgid "Download"
-msgstr "Letöltés"
 
 msgid "Certificate"
 msgstr "Tanúsítvány"
@@ -946,6 +960,9 @@ msgstr "Élőláb"
 
 msgid "Upload"
 msgstr "Feltöltés"
+
+msgid "Download"
+msgstr "Letöltés"
 
 msgid "Language:"
 msgstr "Nyelv:"
@@ -1726,6 +1743,9 @@ msgstr "Vizsgálja meg a kérdést, hogy eldöntse legitim vagy sem."
 msgid "The activities with unusual stats are:"
 msgstr "A tevékenységek szokatlan statisztikával:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1954,6 +1974,9 @@ msgstr "Ez egy értesítő email arról, hogy a címzett hozzáférést adott eg
 msgid "New report"
 msgstr "Új jelentés"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "A legkorábbi lejárati dátum: {EarliestExpirationDate}."
 
@@ -1963,9 +1986,7 @@ msgstr "Kérjük ellenőrizze őket, mielőtt törlődnek."
 msgid "Some reports will expire soon"
 msgstr "Néhány jelentés hamarosan lejár"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

@@ -87,9 +87,6 @@ msgstr "Fayllar"
 msgid "Comments"
 msgstr "Şərhlər"
 
-msgid "Messages"
-msgstr "İsmarışlar"
-
 msgid "Details"
 msgstr "Detallar"
 
@@ -460,6 +457,9 @@ msgstr "Giriş ver"
 msgid "Revoke access"
 msgstr "Girişi ləğv et"
 
+msgid "Transfer"
+msgstr "Ötür"
+
 msgid "Assigned to"
 msgstr ""
 
@@ -487,11 +487,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr "İctimai"
+
+msgid "Internal"
+msgstr "Daxili"
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Təhlükəsizlik qaydaları"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -535,6 +555,9 @@ msgstr "Yaradılma tarixi"
 
 msgid "Last access"
 msgstr "Son giriş "
+
+msgid "Messages"
+msgstr "İsmarışlar"
 
 msgid "Whistleblower's last access"
 msgstr "Məlumatlandıranın son girişi"
@@ -611,12 +634,6 @@ msgstr "Şərhləri aktiv edin"
 msgid "Allow the whistleblower to write comments"
 msgstr "İnformasiya ötürənlərin şərh yazmasına icazə verin"
 
-msgid "Enable private messages"
-msgstr "Şəxsi mesajları aktiv edin"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "İnformasiya ötürənin mesaj göndərməsinə icazə verin"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "İnformasiya ötürənin hesabata əlavələr etməsinə icazə verin"
 
@@ -688,9 +705,6 @@ msgstr "Şəxsi açar"
 
 msgid "Certificate Signing Request"
 msgstr "Sertifikat İmzalama Tələbi"
-
-msgid "Download"
-msgstr "Endir"
 
 msgid "Certificate"
 msgstr "Sertifikat"
@@ -935,6 +949,9 @@ msgstr "Alt məlumat"
 
 msgid "Upload"
 msgstr "Yüklə"
+
+msgid "Download"
+msgstr "Endir"
 
 msgid "Language:"
 msgstr "Dil:"
@@ -1715,6 +1732,9 @@ msgstr "Bu məsələnin qanuni olub-olmadığını yoxlayın."
 msgid "The activities with unusual stats are:"
 msgstr "Qeyri-adi statistikası olan fəaliyyətlər:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1943,6 +1963,9 @@ msgstr "Bu məktub sizə, alıcının bir və ya daha çox hesabata giriş verdi
 msgid "New report"
 msgstr "Yeni hesabat"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Ən son istifadə tarixi {EarliestExpirationDate}"
 
@@ -1952,9 +1975,7 @@ msgstr "Silinmədən öncə onları yoxlamağı unutmayın"
 msgid "Some reports will expire soon"
 msgstr "Bəzi hesabatların müddəti tezliklə başa çatacaq"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

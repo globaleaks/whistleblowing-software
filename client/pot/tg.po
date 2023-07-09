@@ -88,9 +88,6 @@ msgstr "Файлҳо"
 msgid "Comments"
 msgstr "Шарҳҳо"
 
-msgid "Messages"
-msgstr "Паёмҳо"
-
 msgid "Details"
 msgstr "Тафсилот"
 
@@ -461,6 +458,9 @@ msgstr "Дастрасӣ додан"
 msgid "Revoke access"
 msgstr "Дастрасиро бекор кардан"
 
+msgid "Transfer"
+msgstr ""
+
 msgid "Assigned to"
 msgstr ""
 
@@ -488,11 +488,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Internal"
+msgstr "Дохилӣ"
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Сиёсати махфият"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -536,6 +556,9 @@ msgstr "Санаи эҷод"
 
 msgid "Last access"
 msgstr "Дастрасии охирин"
+
+msgid "Messages"
+msgstr "Паёмҳо"
 
 msgid "Whistleblower's last access"
 msgstr "Дастрасии охирини хабардиҳанда"
@@ -612,12 +635,6 @@ msgstr "Шарҳҳоро фаъол кардан"
 msgid "Allow the whistleblower to write comments"
 msgstr "Ба хабардиҳанда иҷозаи навиштани шарҳҳоро додан"
 
-msgid "Enable private messages"
-msgstr "Паёмҳои махфиро фаъол кардан"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Ба хабардиҳанда иҷозаи ирсоли паём додан"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Ба хабардиҳанда иҷозаи илова кардани замима ба гузориш додан"
 
@@ -689,9 +706,6 @@ msgstr "Калиди махфӣ"
 
 msgid "Certificate Signing Request"
 msgstr "Дархости имзои гувоҳнома"
-
-msgid "Download"
-msgstr "Боргирӣ "
 
 msgid "Certificate"
 msgstr "Гувоҳнома"
@@ -936,6 +950,9 @@ msgstr "Поварақ"
 
 msgid "Upload"
 msgstr "Боркунӣ"
+
+msgid "Download"
+msgstr "Боргирӣ "
 
 msgid "Language:"
 msgstr "Забон:"
@@ -1716,6 +1733,9 @@ msgstr "Масъаларо омӯзед, то муайян кунед, ки он
 msgid "The activities with unusual stats are:"
 msgstr "Фаъолиятҳо бо омори ғайриоддӣ инҳоянд:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1944,6 +1964,9 @@ msgstr "Ин паёми электронӣ шуморо огоҳ мекунад,
 msgid "New report"
 msgstr "Гузориши нав"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Мӯҳлати барвақттарини ба охир расидани он {EarliestExpirationDate} аст."
 
@@ -1953,9 +1976,7 @@ msgstr "Лутфан фаромӯш накунед, ки пеш аз пок шу
 msgid "Some reports will expire soon"
 msgstr "Мӯҳлати баъзе гузоришҳо ба наздикӣ ба охир мерасад "
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

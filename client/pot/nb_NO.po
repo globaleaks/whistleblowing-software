@@ -82,9 +82,6 @@ msgstr "Filer"
 msgid "Comments"
 msgstr "Kommentarer"
 
-msgid "Messages"
-msgstr "Meldinger"
-
 msgid "Details"
 msgstr "Detaljer"
 
@@ -455,6 +452,9 @@ msgstr "Gi tilgang"
 msgid "Revoke access"
 msgstr "Opphev tilgangen"
 
+msgid "Transfer"
+msgstr "Overfør"
+
 msgid "Assigned to"
 msgstr ""
 
@@ -482,11 +482,31 @@ msgstr ""
 msgid "Select your language"
 msgstr "Velg språk"
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr "Offentlig"
+
+msgid "Internal"
+msgstr "Intern"
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Personvernspraksis"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -530,6 +550,9 @@ msgstr "Opprettelsesdato"
 
 msgid "Last access"
 msgstr "Siste tilgang"
+
+msgid "Messages"
+msgstr "Meldinger"
 
 msgid "Whistleblower's last access"
 msgstr "Siste tilgang til fløyteblåseren"
@@ -606,12 +629,6 @@ msgstr "Aktiver kommentarer"
 msgid "Allow the whistleblower to write comments"
 msgstr "Tillat fløyteblåseren å skrive kommentarer"
 
-msgid "Enable private messages"
-msgstr "Aktiver privat korrespondanse"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Tillat fløyteblåseren å sende meldinger"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "La fløyteblåseren legge til vedlegg i rapporten"
 
@@ -683,9 +700,6 @@ msgstr "Privat nøkkel"
 
 msgid "Certificate Signing Request"
 msgstr "Forespørsel om sertifikatsignering"
-
-msgid "Download"
-msgstr "Nedlasting"
 
 msgid "Certificate"
 msgstr "Sertifikat"
@@ -930,6 +944,9 @@ msgstr "Bunntekst"
 
 msgid "Upload"
 msgstr "Innlasting"
+
+msgid "Download"
+msgstr "Nedlasting"
 
 msgid "Language:"
 msgstr "Språk:"
@@ -1710,6 +1727,9 @@ msgstr "Undersøk problemet for å bestemme hvorvidt det er legitimt eller skade
 msgid "The activities with unusual stats are:"
 msgstr "Hendelsesforløpet med uvanlige attributter er:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1938,6 +1958,9 @@ msgstr "Denne e-posten informerer deg om at en mottaker har gitt deg tilgang til
 msgid "New report"
 msgstr "Ny rapport"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Den tidligste utløpsdatoen er {EarliestExpirationDate}."
 
@@ -1947,9 +1970,7 @@ msgstr "Husk å sjekke dem før de blir slettet."
 msgid "Some reports will expire soon"
 msgstr "Noen rapporter vil utløpe snart"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

@@ -93,9 +93,6 @@ msgstr "Αρχεία"
 msgid "Comments"
 msgstr "Σχόλια"
 
-msgid "Messages"
-msgstr "Μηνύματα"
-
 msgid "Details"
 msgstr "Λεπτομέρειες"
 
@@ -466,6 +463,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
+msgid "Transfer"
+msgstr "Μεταφορά"
+
 msgid "Assigned to"
 msgstr ""
 
@@ -493,11 +493,31 @@ msgstr ""
 msgid "Select your language"
 msgstr "Επιλογή γλώσσας"
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr "Δημόσιο"
+
+msgid "Internal"
+msgstr "Εσωτερικό"
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Πολιτική Προστασίας Προσωπικών Δεδομένων"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -541,6 +561,9 @@ msgstr "Ημερομηνία δημιουργίας"
 
 msgid "Last access"
 msgstr "Τελευταία πρόσβαση"
+
+msgid "Messages"
+msgstr "Μηνύματα"
 
 msgid "Whistleblower's last access"
 msgstr "Τελευταία πρόσβαση WB"
@@ -617,12 +640,6 @@ msgstr "Ενεργοποίηση σχολίων"
 msgid "Allow the whistleblower to write comments"
 msgstr "Να επιτρέπεται στο πρόσωπο που υποβάλλει αναφορά να γράφει σχόλια"
 
-msgid "Enable private messages"
-msgstr "Ενεργοποίηση προσωπικών μηνυμάτων "
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Να επιτρέπεται στο πρόσωπο που υποβάλλει την αναφορά να στέλνει μηνύματα"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Αφήστε το πληροφοριοδότη για να προσθέσετε συνημμένα σε υποβολή"
 
@@ -694,9 +711,6 @@ msgstr "Ιδιωτικό Κλειδί"
 
 msgid "Certificate Signing Request"
 msgstr "Αίτημα υπογραφής πιστοποιητικού"
-
-msgid "Download"
-msgstr "Μεταφόρτωση"
 
 msgid "Certificate"
 msgstr "Πιστοποιητικό"
@@ -941,6 +955,9 @@ msgstr "Υποσέλιδο"
 
 msgid "Upload"
 msgstr "Ανέβασμα"
+
+msgid "Download"
+msgstr "Μεταφόρτωση"
 
 msgid "Language:"
 msgstr "Γλώσσα:"
@@ -1721,6 +1738,9 @@ msgstr "Εξετάστε το ζήτημα για να καθορίσετε αν
 msgid "The activities with unusual stats are:"
 msgstr "Οι δραστηριότητες με ασυνήθιστα στατιστικά είναι:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1949,6 +1969,9 @@ msgstr ""
 msgid "New report"
 msgstr "Νέα αναφορά"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Η πιο σύντομη ημερομηνία λήξης είναι {EarliestExpirationDate}."
 
@@ -1958,9 +1981,7 @@ msgstr "Μην ξεχνάτε να τα ελέγξετε πριν διαγραφ
 msgid "Some reports will expire soon"
 msgstr "Ορισμένες αναφορές θα λήξουν σύντομα"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

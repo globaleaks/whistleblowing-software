@@ -28,7 +28,7 @@
 # b0b47d46632b78a09a40de799fda9a65, 2019
 # Vox <voxp@protonmail.com>, 2020-2022
 # Xashyar, 2021
-# Vandetta, 2021
+# Xashyar, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
@@ -106,9 +106,6 @@ msgstr "فایل‌ها"
 
 msgid "Comments"
 msgstr "نظرها"
-
-msgid "Messages"
-msgstr "پیام‌ها"
 
 msgid "Details"
 msgstr "جزئیات"
@@ -480,6 +477,9 @@ msgstr "اعطای دسترسی"
 msgid "Revoke access"
 msgstr "لغو دسترسی"
 
+msgid "Transfer"
+msgstr "انتقال"
+
 msgid "Assigned to"
 msgstr "اختصاص یافته به"
 
@@ -507,11 +507,31 @@ msgstr "یک گزینه را انتخاب کنید"
 msgid "Select your language"
 msgstr "زبان خود را انتخاب کنید"
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr "عمومی"
+
+msgid "Internal"
+msgstr "داخلی"
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "حریم خصوصی"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -555,6 +575,9 @@ msgstr "تاریخ ایجاد "
 
 msgid "Last access"
 msgstr "آخرین دسترسی"
+
+msgid "Messages"
+msgstr "پیام‌ها"
 
 msgid "Whistleblower's last access"
 msgstr "آخرین دسترسی افشاگر"
@@ -631,12 +654,6 @@ msgstr "فعال کردن نظرات"
 msgid "Allow the whistleblower to write comments"
 msgstr "به افشاگر اجازهٔ نوشتن نظرات داده شود"
 
-msgid "Enable private messages"
-msgstr "فعال کردن پیام‌های خصوصی"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "به افشاگر اجازهٔ ارسال پیام دهید"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "به افشاگر اجازهٔ افزودن پیوست‌ها به گزارش داده شود"
 
@@ -708,9 +725,6 @@ msgstr "کلید خصوصی"
 
 msgid "Certificate Signing Request"
 msgstr "درخواست امضای گواهی"
-
-msgid "Download"
-msgstr "بارگذاری"
 
 msgid "Certificate"
 msgstr "گواهی"
@@ -954,6 +968,9 @@ msgid "Footer"
 msgstr "پانویس"
 
 msgid "Upload"
+msgstr "بارگذاری"
+
+msgid "Download"
 msgstr "بارگذاری"
 
 msgid "Language:"
@@ -1735,6 +1752,9 @@ msgstr "اشکال را برای مشخص کردن مشروع بودن یا نب
 msgid "The activities with unusual stats are:"
 msgstr "فعالیت‌ها با آمار غیرعادی:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1963,6 +1983,9 @@ msgstr "این ایمیل به شما اطلاع می‌دهد که یک گیر�
 msgid "New report"
 msgstr "گزارش جدید"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "اولین تاریخ انقضا {EarliestExpirationDate} است."
 
@@ -1972,9 +1995,7 @@ msgstr "لطفاً به خاطر داشته باشید تا آن‌ها را پ�
 msgid "Some reports will expire soon"
 msgstr "برخی گزارش‌ها به زودی منقضی خواهند شد"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

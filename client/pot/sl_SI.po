@@ -86,9 +86,6 @@ msgstr "Datoteke"
 msgid "Comments"
 msgstr "Komentarji"
 
-msgid "Messages"
-msgstr "Sporočila"
-
 msgid "Details"
 msgstr "Podrobnosti"
 
@@ -459,6 +456,9 @@ msgstr "Omogoči dostop"
 msgid "Revoke access"
 msgstr "Prekliči dostop"
 
+msgid "Transfer"
+msgstr "Prenesi"
+
 msgid "Assigned to"
 msgstr "Dodeljeno"
 
@@ -472,7 +472,7 @@ msgid "Privileges"
 msgstr "Privilegiji"
 
 msgid "Mask"
-msgstr ""
+msgstr "Začasno uredi"
 
 msgid "Unmask"
 msgstr ""
@@ -486,12 +486,32 @@ msgstr "Izberi možnost"
 msgid "Select your language"
 msgstr "Izberite svoj jezik"
 
-msgid "Grant this user user the privilege to mask information"
-msgstr ""
+msgid "Grant this recipient ability to transfer reports to other users"
+msgstr "Temu prejemniku omogočite prenos prijav drugim uporabnikom."
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
-msgstr ""
+msgid "Grant this user the privilege to mask information"
+msgstr "Uporabniku omogoči začasno urejanje podatkov"
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr "Uporabniku omogoči stalno urejanje podatkov"
+
+msgid "Public"
+msgstr "Javni"
+
+msgid "Internal"
+msgstr "Interno"
+
+msgid "Personal"
+msgstr "Osebno"
+
+msgid "Privacy Policy"
+msgstr "Politika zasebnosti"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr "Prebral/-a sem in sprejemam 'Politiko zasebnosti'. "
+
+msgid "Download copy of the Privacy Policy"
+msgstr "Prenesite kopijo 'Politike zasebnosti'. "
 
 msgid "File a report"
 msgstr "Oddaj prijavo"
@@ -534,6 +554,9 @@ msgstr "Datum vnosa"
 
 msgid "Last access"
 msgstr "Zadnji dostop"
+
+msgid "Messages"
+msgstr "Sporočila"
 
 msgid "Whistleblower's last access"
 msgstr "Prijaviteljev zadnji dostop"
@@ -610,12 +633,6 @@ msgstr "Omogoči komentarje"
 msgid "Allow the whistleblower to write comments"
 msgstr "Prijavitelju dovoli pisanje komentarjev"
 
-msgid "Enable private messages"
-msgstr "Omogoči zasebna sporočila"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Prijavitelju dovoli pošiljanje sporočil"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Prijavitelju dovoli dodajanje prilog"
 
@@ -687,9 +704,6 @@ msgstr "Zasebni ključ"
 
 msgid "Certificate Signing Request"
 msgstr "Zahteva za podpis certifikata"
-
-msgid "Download"
-msgstr "Prenesi"
 
 msgid "Certificate"
 msgstr "Certifikat"
@@ -934,6 +948,9 @@ msgstr "Noga"
 
 msgid "Upload"
 msgstr "Naloži"
+
+msgid "Download"
+msgstr "Prenesi"
 
 msgid "Language:"
 msgstr "Jezik:"
@@ -1350,7 +1367,7 @@ msgid "Filename"
 msgstr "Ime datoteke"
 
 msgid "View"
-msgstr ""
+msgstr "Pogled"
 
 msgid "Upload date"
 msgstr "Datum nalaganja"
@@ -1714,6 +1731,9 @@ msgstr "Preučite zadevo, da ugotovite, ali je utemeljena ali ne."
 msgid "The activities with unusual stats are:"
 msgstr "Dejavnosti z nenavadnimi statističnimi podatki:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr "Razpoložljiv prostor na disku: {FreeMemory}/{TotalMemory}"
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1942,6 +1962,9 @@ msgstr "S tem e-poštnim sporočilom vas obveščamo, da vam je prejemnik odobri
 msgid "New report"
 msgstr "Nova prijava"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr "Veljavnost ene ali več prijav se izteka in bodo kmalu izbrisane."
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Najzgodnejši datum poteka je {EarliestExpirationDate}."
 
@@ -1951,10 +1974,8 @@ msgstr "Ne pozabite jih pregledati, preden bodo izbrisane."
 msgid "Some reports will expire soon"
 msgstr "Nekaterim prijavam se bo kmalu iztekla veljavnost"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
-msgstr "S tem e-poštnim sporočilom vas obveščamo, da je datum opomnika za prijavo dosežen."
+msgid "This is an email to notify you the reception of a new report."
+msgstr "S tem e-poštnim sporočilom vas obveščamo, da ste prejeli novo prijavo."
 
 msgid "Reminder"
 msgstr "Opomnik"

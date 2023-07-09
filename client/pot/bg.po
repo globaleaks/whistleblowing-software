@@ -90,9 +90,6 @@ msgstr "Файлове"
 msgid "Comments"
 msgstr "Коментари"
 
-msgid "Messages"
-msgstr "Съобщения"
-
 msgid "Details"
 msgstr "По-подробно"
 
@@ -463,6 +460,9 @@ msgstr "Предоставяне на достъп"
 msgid "Revoke access"
 msgstr "Анулиране на достъпа"
 
+msgid "Transfer"
+msgstr "Прехвърли"
+
 msgid "Assigned to"
 msgstr ""
 
@@ -490,11 +490,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr "Публучен"
+
+msgid "Internal"
+msgstr ""
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -538,6 +558,9 @@ msgstr "Дата на създаване"
 
 msgid "Last access"
 msgstr "Последен достъп"
+
+msgid "Messages"
+msgstr "Съобщения"
 
 msgid "Whistleblower's last access"
 msgstr "Последен достъп от подалия сигнал"
@@ -614,12 +637,6 @@ msgstr "Активиране на коментари"
 msgid "Allow the whistleblower to write comments"
 msgstr "Разрешаване на подателя на сигнал да пише коментари"
 
-msgid "Enable private messages"
-msgstr "Активиране на лични съобщения"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Разрешаване на подателя на сигнал да изпраща съобщения"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Разрешаване на подателя на сигнал да добавя прикачени файлове към сигнала"
 
@@ -691,9 +708,6 @@ msgstr "Личен ключ"
 
 msgid "Certificate Signing Request"
 msgstr "Заявка за подписване на сертификат"
-
-msgid "Download"
-msgstr "Сваляне"
 
 msgid "Certificate"
 msgstr "Сертификат"
@@ -938,6 +952,9 @@ msgstr "Долен колонтитул"
 
 msgid "Upload"
 msgstr "Качване"
+
+msgid "Download"
+msgstr "Сваляне"
 
 msgid "Language:"
 msgstr "Език:"
@@ -1718,6 +1735,9 @@ msgstr "Проучете въпроса, за да определите дали
 msgid "The activities with unusual stats are:"
 msgstr "Дейностите с необичайна статистика са:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1946,6 +1966,9 @@ msgstr "С този имейл Ви уведомяваме, че получат�
 msgid "New report"
 msgstr "Нов сигнал"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Най-ранната дата на изтичане е {EarliestExpirationDate}."
 
@@ -1955,9 +1978,7 @@ msgstr "Не забравяйте да ги проверявате, преди �
 msgid "Some reports will expire soon"
 msgstr "Някои сигнали изтичат скоро"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

@@ -110,9 +110,6 @@ msgstr "Файлы"
 msgid "Comments"
 msgstr "Комментарии"
 
-msgid "Messages"
-msgstr "Сообщения"
-
 msgid "Details"
 msgstr "Подробности"
 
@@ -483,6 +480,9 @@ msgstr "Предоставить доступ"
 msgid "Revoke access"
 msgstr "Отозвать доступ"
 
+msgid "Transfer"
+msgstr "Передача"
+
 msgid "Assigned to"
 msgstr ""
 
@@ -510,11 +510,31 @@ msgstr ""
 msgid "Select your language"
 msgstr "Выберите язык"
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr "Открытый"
+
+msgid "Internal"
+msgstr "Внутреннее хранилище"
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Политика конфиденциальности"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -558,6 +578,9 @@ msgstr "Дата создания"
 
 msgid "Last access"
 msgstr "Последний доступ"
+
+msgid "Messages"
+msgstr "Сообщения"
 
 msgid "Whistleblower's last access"
 msgstr "Последний доступ информатора"
@@ -634,12 +657,6 @@ msgstr "Включить комментарии"
 msgid "Allow the whistleblower to write comments"
 msgstr "Разрешить информатору добавлять комментарии"
 
-msgid "Enable private messages"
-msgstr "Задействовать личные сообщения"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Разрешить информатору отправлять комментарии"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Разрешить информатору добавлять приложения к поданным документам"
 
@@ -711,9 +728,6 @@ msgstr "Секретный ключ"
 
 msgid "Certificate Signing Request"
 msgstr "Запрос подписания сертификата"
-
-msgid "Download"
-msgstr "Скачивание"
 
 msgid "Certificate"
 msgstr "Сертификат"
@@ -958,6 +972,9 @@ msgstr "Нижний колонтитул"
 
 msgid "Upload"
 msgstr "Загрузка"
+
+msgid "Download"
+msgstr "Скачивание"
 
 msgid "Language:"
 msgstr "Язык:"
@@ -1738,6 +1755,9 @@ msgstr "Проверьте, в чем дело, чтобы установить,
 msgid "The activities with unusual stats are:"
 msgstr "Активность с нетипичной статистикой:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1966,6 +1986,9 @@ msgstr "Этим электронным письмом уведомляем ва
 msgid "New report"
 msgstr "Новый отчет"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Первый срок действия {EarliestExpirationDate}."
 
@@ -1975,9 +1998,7 @@ msgstr "Пожалуйста, не забудьте проверить их пе
 msgid "Some reports will expire soon"
 msgstr "Срок действия некоторых отчетов скоро истечет"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"
