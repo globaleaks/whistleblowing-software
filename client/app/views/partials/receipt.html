@@ -8,7 +8,7 @@
         <input id="receipt-input" class="form-control" type="text" maxlength="19" size="19" data-ng-model="formatted_receipt" name="receipt-input" receiptvalidator>
         <span class="input-group-append">
           <button id="ReceiptButton"
-                  data-ng-click="Authentication.login(0, 'whistleblower', formatted_receipt)" class="btn btn-primary"
+                  data-ng-click="Authentication.login(0, 'whistleblower', formatted_receipt); formatted_receipt = ''" class="btn btn-primary"
                   data-ng-disabled="formatted_receipt.length !== 19 || Authentication.loginInProgress || WhistleblowerLoginForm.receipt.$error.receiptvalidator" type="submit">
             <span data-translate>Log in</span>
           </button>
