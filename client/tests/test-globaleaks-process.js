@@ -1,4 +1,5 @@
 describe("globaleaks process", function() {
+  var N = 3;
   var receipts = [];
   var comment = "comment";
   var comment_reply = "comment reply";
@@ -7,22 +8,13 @@ describe("globaleaks process", function() {
     var wb = new browser.gl.pages.whistleblower();
     var receipt = await wb.performSubmission(true);
     receipts.unshift(receipt);
-
-    // Give time for delivery sched to run
-    await browser.sleep(5000);
   };
 
-  it("Whistleblowers should be able to submit tips (1)", async function() {
-    await perform_submission();
-  });
-
-  it("Whistleblowers should be able to submit tips (2)", async function() {
-    await perform_submission();
-  });
-
-  it("Whistleblowers should be able to submit tips (3)", async function() {
-    await perform_submission();
-  });
+  for (var i=1; i<N; i++) {
+    it("Whistleblowers should be able to submit tips (" + i + ")", async function() {
+      await perform_submission();
+    });
+  };
 
   it("Recipient should be able to access, label and mark as important the last submission", async function() {
     await browser.gl.utils.login_receiver();
