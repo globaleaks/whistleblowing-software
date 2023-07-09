@@ -155,9 +155,22 @@ class MigrationScript(MigrationBase):
         'ReceiverTip': {'crypto_files_prv_key': 'deprecated_crypto_files_prv_key'},
     }
 
+    skip_count_check = {
+        'Config': True
+    }
+
     def migrate_User(self):
+
         for old_obj in self.session_old.query(self.model_from['User']):
             new_obj = self.model_to['User']()
+
+            if old_obj.role == 'custodian':
+                new_cfg = self.model_to['Config']()
+                new_cfg.tid = old_obj.tid
+                new_cfg.var_name = 'enable_custodian'
+                new_cfg.value = True
+                self.session_new.merge(new_cfg)
+
             for key in new_obj.__mapper__.column_attrs.keys():
                 if key == 'hash':
                     setattr(new_obj, key, getattr(old_obj, 'password'))
