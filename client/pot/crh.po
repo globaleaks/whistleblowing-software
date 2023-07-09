@@ -80,9 +80,6 @@ msgstr "Файллар"
 msgid "Comments"
 msgstr "Изаатлар"
 
-msgid "Messages"
-msgstr "Месажлар"
-
 msgid "Details"
 msgstr "Айрынтылар"
 
@@ -453,6 +450,9 @@ msgstr "Иришимге изин бермек"
 msgid "Revoke access"
 msgstr "Иришимни ред этмек"
 
+msgid "Transfer"
+msgstr ""
+
 msgid "Assigned to"
 msgstr ""
 
@@ -480,11 +480,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Internal"
+msgstr ""
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -528,6 +548,9 @@ msgstr "Яратма тарихи"
 
 msgid "Last access"
 msgstr "Сонъ иришим"
+
+msgid "Messages"
+msgstr "Месажлар"
 
 msgid "Whistleblower's last access"
 msgstr "Малюмат бериджининъ сонъ иришими"
@@ -604,12 +627,6 @@ msgstr "Изаатларны ишлетмек"
 msgid "Allow the whistleblower to write comments"
 msgstr "Малюмат бериджиге изаатларны къошмагъа изин бермек"
 
-msgid "Enable private messages"
-msgstr "Шахсий месажларны ишлетмек"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Малюмат бериджиге беянатларны ёлламагъа изин бермек"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Малюмат бериджиге берильген весикъаларгъа илявелерни къошмагъа изин бермек"
 
@@ -681,9 +698,6 @@ msgstr "Гизли Анахтар"
 
 msgid "Certificate Signing Request"
 msgstr "Сертификат имзалангъаны акъкъында соратма"
-
-msgid "Download"
-msgstr "Эндирме"
 
 msgid "Certificate"
 msgstr "Сертификат"
@@ -928,6 +942,9 @@ msgstr "Алтбильги"
 
 msgid "Upload"
 msgstr "Юклеме"
+
+msgid "Download"
+msgstr "Эндирме"
 
 msgid "Language:"
 msgstr "Тиль:"
@@ -1708,6 +1725,9 @@ msgstr "Бу нормаль активлик я да ёкъ, яни меселе
 msgid "The activities with unusual stats are:"
 msgstr "Типик олмагъан статистикалы активлик:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1936,6 +1956,9 @@ msgstr "Бу электрон мектюпнен алыджы бир я да б�
 msgid "New report"
 msgstr "Янъы эсабат"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Энъ эрте къулланма тарихи {EarliestExpirationDate}."
 
@@ -1945,9 +1968,7 @@ msgstr "Лютфен, олар программа иле ёкъ этильмег
 msgid "Some reports will expire soon"
 msgstr "Бир къач эсабатларнынъ къулланма тарихи якъында битеджек"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

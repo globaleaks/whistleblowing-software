@@ -87,9 +87,6 @@ msgstr "ফাইলসমূহ"
 msgid "Comments"
 msgstr "মন্তব্যসমূহ"
 
-msgid "Messages"
-msgstr "বার্তাসমূহ"
-
 msgid "Details"
 msgstr "বিস্তারিত"
 
@@ -460,6 +457,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
+msgid "Transfer"
+msgstr "হস্তান্তর "
+
 msgid "Assigned to"
 msgstr ""
 
@@ -487,11 +487,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr "প্রকাশ্য"
+
+msgid "Internal"
+msgstr "অভ্যন্তরীণ"
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "গোপনীয়তা নীতি"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -535,6 +555,9 @@ msgstr "তৈরির তারিখ"
 
 msgid "Last access"
 msgstr "শেষবার প্রবেশ"
+
+msgid "Messages"
+msgstr "বার্তাসমূহ"
 
 msgid "Whistleblower's last access"
 msgstr "হুইসেল ব্লোয়ারের শেষবার প্রবেশ"
@@ -611,12 +634,6 @@ msgstr "মন্তব্য সক্ষম করুন"
 msgid "Allow the whistleblower to write comments"
 msgstr "হুইসেল ব্লোয়ারকে মন্তব্য লেখার অনুমতি দিন"
 
-msgid "Enable private messages"
-msgstr "ব্যক্তিগত বার্তা সক্ষম করুন"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "হুইসেল ব্লোয়ারকে বার্তা প্রেরণের অনুমতি দিন"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "হুইসেল ব্লোয়ারকে প্রতিবেদনে সংযুক্তি যুক্ত করতে দিন"
 
@@ -688,9 +705,6 @@ msgstr "ব্যক্তিগত কী"
 
 msgid "Certificate Signing Request"
 msgstr "সার্টিফিকেট স্বাক্ষর করার অনুরোধ"
-
-msgid "Download"
-msgstr "ডাউনলোড"
 
 msgid "Certificate"
 msgstr "সার্টিফিকেট"
@@ -935,6 +949,9 @@ msgstr "ফুটার"
 
 msgid "Upload"
 msgstr "আপলোড"
+
+msgid "Download"
+msgstr "ডাউনলোড"
 
 msgid "Language:"
 msgstr "ভাষাঃ"
@@ -1715,6 +1732,9 @@ msgstr "বিষয়টি সঠিক কিনা তা নিশ্চ�
 msgid "The activities with unusual stats are:"
 msgstr "অস্বাভাবিক পরিসংখ্যান সহ ক্রিয়াকলাপগুলি হ'লঃ"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1943,6 +1963,9 @@ msgstr ""
 msgid "New report"
 msgstr "নতুন রিপোর্ট"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "নিকটবর্তী মেয়াদ শেষ হওয়ার তারিখ {EarliestExpirationDate}। "
 
@@ -1952,9 +1975,7 @@ msgstr "মুছে ফেলার আগে দয়া করে সেগ�
 msgid "Some reports will expire soon"
 msgstr "কিছু রিপোর্টের মেয়াদ শীঘ্রই শেষ হবে"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

@@ -80,9 +80,6 @@ msgstr "Höjjetler"
 msgid "Comments"
 msgstr "Inkaslar"
 
-msgid "Messages"
-msgstr "Uchurlar"
-
 msgid "Details"
 msgstr "Tepsilatlar"
 
@@ -453,6 +450,9 @@ msgstr "Hoquq ber"
 msgid "Revoke access"
 msgstr "Hoquqni qayturiwal"
 
+msgid "Transfer"
+msgstr ""
+
 msgid "Assigned to"
 msgstr ""
 
@@ -480,11 +480,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Internal"
+msgstr ""
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -528,6 +548,9 @@ msgstr "Qurulghan chésla"
 
 msgid "Last access"
 msgstr "Axirqi ziyaret"
+
+msgid "Messages"
+msgstr "Uchurlar"
 
 msgid "Whistleblower's last access"
 msgstr "Pash qilghuchining axirqi ziyariti"
@@ -604,12 +627,6 @@ msgstr "Bahalashni qozghat"
 msgid "Allow the whistleblower to write comments"
 msgstr "Pash qilghuchining baha yézishige ruxset qil"
 
-msgid "Enable private messages"
-msgstr "Shexsiy uchurlarni qozghat"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Pash qilghuchining uchur ewetishige ruxset qil"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Pash qilghuchining melumatqa qoshumche qisturishigha ruxset qil"
 
@@ -681,9 +698,6 @@ msgstr "Shexsiy achquch"
 
 msgid "Certificate Signing Request"
 msgstr "Guwahname imzalash telipi"
-
-msgid "Download"
-msgstr "Chüshürüsh"
 
 msgid "Certificate"
 msgstr "Guwahname"
@@ -928,6 +942,9 @@ msgstr "Bet asti"
 
 msgid "Upload"
 msgstr "Yüklesh"
+
+msgid "Download"
+msgstr "Chüshürüsh"
 
 msgid "Language:"
 msgstr "Til:"
@@ -1708,6 +1725,9 @@ msgstr "Buning bir normal ishmu emesligini ayrish üchün, mesilini tekshürüng
 msgid "The activities with unusual stats are:"
 msgstr "Binormal pa’aliyetlerning istatistikisi bular:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1936,6 +1956,9 @@ msgstr "Bu élxet sizge tapshuriwalghuchining bir yaki bir nechche melumatni ziy
 msgid "New report"
 msgstr "Yéngi melumat"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Eng burunqi sürük waqti: {EarliestExpirationDate}."
 
@@ -1945,9 +1968,7 @@ msgstr "Öchürülüshtin burun ularni tekshürüshni unutmang."
 msgid "Some reports will expire soon"
 msgstr "Bezi melumatlarning yéqinda süriki toshidu"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

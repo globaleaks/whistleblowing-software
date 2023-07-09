@@ -81,9 +81,6 @@ msgstr "ဖိုင်များ"
 msgid "Comments"
 msgstr "မှတ်ချက်များ"
 
-msgid "Messages"
-msgstr "မက်ဆေ့ချ်များ"
-
 msgid "Details"
 msgstr "အသေးစိတ်များ"
 
@@ -454,6 +451,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
+msgid "Transfer"
+msgstr "လွှဲပြောင်းရန်"
+
 msgid "Assigned to"
 msgstr ""
 
@@ -481,11 +481,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr "အများသုံး"
+
+msgid "Internal"
+msgstr "အတွင်း"
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "ကိုယ်ရေးကိုယ်တာမူဝါဒ"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -529,6 +549,9 @@ msgstr "ဖန်တီးသည့်နေ့စွဲ"
 
 msgid "Last access"
 msgstr "နောက်ဆုံး အသုံးပြုခြင်း"
+
+msgid "Messages"
+msgstr "မက်ဆေ့ချ်များ"
 
 msgid "Whistleblower's last access"
 msgstr "သတင်းပေးသူ၏ နောက်ဆုံး အသုံးပြုခြင်း"
@@ -605,12 +628,6 @@ msgstr "မှတ်ချက်များကို ဖွင့်ပါ"
 msgid "Allow the whistleblower to write comments"
 msgstr "သတင်းပေးသူအား မှတ်ချက်များ ရေးသားခွင့်ပြုပါ"
 
-msgid "Enable private messages"
-msgstr "သီးသန့် မက်ဆေ့ချ်များကို ဖွင့်ပါ"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "သတင်းပေးသူအား မက်ဆေ့များ ပို့ခွင့်ပြုပါ"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "သတင်းပေးသူအား အစီရင်ခံစာတွင် ပူးတွဲဖိုင်များ ထည့်ခွင့်ပြုပါ"
 
@@ -682,9 +699,6 @@ msgstr "သီးသန့် စကားဝှက်သော့"
 
 msgid "Certificate Signing Request"
 msgstr "အသိအမှတ်ပြုလက်မှတ်တွင် လက်မှတ်ထိုးရန် တောင်းဆိုမှု"
-
-msgid "Download"
-msgstr "ဒေါင်းလုဒ်လုပ်မည်"
 
 msgid "Certificate"
 msgstr "အသိအမှတ်ပြုလက်မှတ်"
@@ -929,6 +943,9 @@ msgstr "အောက်ခြေ စာသား"
 
 msgid "Upload"
 msgstr "အပ်လုဒ်လုပ်မည်"
+
+msgid "Download"
+msgstr "ဒေါင်းလုဒ်လုပ်မည်"
 
 msgid "Language:"
 msgstr "ဘာသာစကား - "
@@ -1709,6 +1726,9 @@ msgstr "တရားဝင် ဟုတ်မဟုတ် ဆုံးဖြတ�
 msgid "The activities with unusual stats are:"
 msgstr "ပုံမှန်မဟုတ်သော စာရင်းအင်းများနှင့် အသုံးပြုမှုများ -"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1937,6 +1957,9 @@ msgstr ""
 msgid "New report"
 msgstr "အစီရင်ခံစာအသစ်"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "အစောဆုံး သက်တမ်းကုန်ဆုံးရက်မှာ {EarliestExpirationDate} ဖြစ်သည်။"
 
@@ -1946,9 +1969,7 @@ msgstr "၎င်းတို့ကို မဖျက်ခင် စစ်ဆ�
 msgid "Some reports will expire soon"
 msgstr "အချို့အစီရင်ခံစာများသည် မကြာမီ သက်တမ်းကုန်တော့မည်"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

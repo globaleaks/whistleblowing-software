@@ -80,9 +80,6 @@ msgstr "Fail"
 msgid "Comments"
 msgstr "Komen"
 
-msgid "Messages"
-msgstr "Mesej"
-
 msgid "Details"
 msgstr "Butiran"
 
@@ -453,6 +450,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
+msgid "Transfer"
+msgstr ""
+
 msgid "Assigned to"
 msgstr ""
 
@@ -480,11 +480,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Internal"
+msgstr ""
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Dasar Kerahsiaan"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -528,6 +548,9 @@ msgstr "Tarikh penciptaan"
 
 msgid "Last access"
 msgstr "Akses terakhir"
+
+msgid "Messages"
+msgstr "Mesej"
 
 msgid "Whistleblower's last access"
 msgstr "Akses terakhir pemberi maklumat"
@@ -604,12 +627,6 @@ msgstr "Dayakan komen"
 msgid "Allow the whistleblower to write comments"
 msgstr "Benarkan pemberi maklumat menulis komen"
 
-msgid "Enable private messages"
-msgstr "Dayakan mesej peribadi"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Benarkan pemberi maklumat menghantar mesej"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Benarkan pemberi maklumat menambah lampiran kepada laporan"
 
@@ -681,9 +698,6 @@ msgstr "Kunci Peribadi"
 
 msgid "Certificate Signing Request"
 msgstr "Permintaan Penandaan Sijil"
-
-msgid "Download"
-msgstr "Muat turun"
 
 msgid "Certificate"
 msgstr "Sijil"
@@ -928,6 +942,9 @@ msgstr "Kekaki"
 
 msgid "Upload"
 msgstr "Muat naik"
+
+msgid "Download"
+msgstr "Muat turun"
 
 msgid "Language:"
 msgstr "Bahasa:"
@@ -1708,6 +1725,9 @@ msgstr "Teliti isu untuk menentukan sama ada ia sah atau tidak."
 msgid "The activities with unusual stats are:"
 msgstr "Aktiviti dengan statistik luar biasa adalah:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1936,6 +1956,9 @@ msgstr ""
 msgid "New report"
 msgstr "Laporan baru"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Tarikh tamat tempoh terawal ialah {EarliestExpirationDate}."
 
@@ -1945,9 +1968,7 @@ msgstr "Ingat untuk periksa ia sebelum ia dipadam."
 msgid "Some reports will expire soon"
 msgstr "Sesetengah laporan akan tamat tempoh tidak lama lagi"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

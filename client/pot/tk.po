@@ -85,9 +85,6 @@ msgstr "Faýllar"
 msgid "Comments"
 msgstr "Teswirler"
 
-msgid "Messages"
-msgstr "Habarlar"
-
 msgid "Details"
 msgstr "Jikme-jiklikler"
 
@@ -458,6 +455,9 @@ msgstr "Girişi ygtyýar ber"
 msgid "Revoke access"
 msgstr "Girişi ýatyr"
 
+msgid "Transfer"
+msgstr ""
+
 msgid "Assigned to"
 msgstr ""
 
@@ -485,11 +485,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Internal"
+msgstr "Içerki"
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Gizlinlik Ugry"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -533,6 +553,9 @@ msgstr "Döredilen senesi"
 
 msgid "Last access"
 msgstr "Iň soňky giriş"
+
+msgid "Messages"
+msgstr "Habarlar"
 
 msgid "Whistleblower's last access"
 msgstr "Gizlin habar yetirijiniň soňky girişi"
@@ -609,12 +632,6 @@ msgstr "Teswirleri aç"
 msgid "Allow the whistleblower to write comments"
 msgstr "Gizlin habar ýetirijilere teswir ýazmaga rugsat beriň"
 
-msgid "Enable private messages"
-msgstr "Şahsy habarlary aç"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Gizlin habar ýetirijilere habar ibermäge rugsat beriň"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Gizlin habar ýetirijilere hasabata goşmaçalar goşmagyna rugsat beriň"
 
@@ -686,9 +703,6 @@ msgstr "Şahsy Açar"
 
 msgid "Certificate Signing Request"
 msgstr "Şahadatnama gol çekmek haýyşy"
-
-msgid "Download"
-msgstr "Göçürip al"
 
 msgid "Certificate"
 msgstr "Şahadatnama"
@@ -933,6 +947,9 @@ msgstr "Aşaky sözbaşy"
 
 msgid "Upload"
 msgstr "Ýüklemek"
+
+msgid "Download"
+msgstr "Göçürip al"
 
 msgid "Language:"
 msgstr "Dil:"
@@ -1713,6 +1730,9 @@ msgstr "Kanuny ýa-da bikanun däldigini kesgitlemek üçin meseläni gözden ge
 msgid "The activities with unusual stats are:"
 msgstr "Adaty bolmadyk statistika bilen baglanyşykly işler:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1941,6 +1961,9 @@ msgstr "Bu, alyjynyň size bir ýa-da birnäçe hasabatlara girmäge rugsat bere
 msgid "New report"
 msgstr "Täze hasabat"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Iň irki möhleti gutarýan senesi {EarliestExpirationDate}."
 
@@ -1950,9 +1973,7 @@ msgstr "Pozulmazdan ozal barlamagy ýatdan çykarmaň."
 msgid "Some reports will expire soon"
 msgstr "Käbir hasabatlaryň möhleti ýakynda gutarar"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

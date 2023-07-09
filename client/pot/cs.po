@@ -93,9 +93,6 @@ msgstr "Soubory"
 msgid "Comments"
 msgstr "Komentáře"
 
-msgid "Messages"
-msgstr "Zprávy"
-
 msgid "Details"
 msgstr "Detaily"
 
@@ -466,6 +463,9 @@ msgstr "Poskytnout přístup"
 msgid "Revoke access"
 msgstr "Odvolat přístup"
 
+msgid "Transfer"
+msgstr "Přenést"
+
 msgid "Assigned to"
 msgstr "Přiřazeno k"
 
@@ -488,17 +488,37 @@ msgid "Redact"
 msgstr "Revidovat"
 
 msgid "Select an option"
-msgstr ""
+msgstr "Vyberte možnost"
 
 msgid "Select your language"
-msgstr ""
+msgstr "Vyberte jazyk"
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
+msgstr "Udělit tomuto příjemci možnost předávat zprávy jiným uživatelům."
+
+msgid "Grant this user the privilege to mask information"
 msgstr "Udělit tomuto uživateli oprávnění ke skrytí informací."
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to permanently redact masked information"
 msgstr "Udělit tomuto uživateli oprávnění trvale revidovat skryté informace."
+
+msgid "Public"
+msgstr "Věřejné"
+
+msgid "Internal"
+msgstr "Interní"
+
+msgid "Personal"
+msgstr "Osobní"
+
+msgid "Privacy Policy"
+msgstr "Zásady ochrany osobních údajů"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr "Přečetl/a jsem si zásady ochrany osobních údajů a souhlasím s nimi"
+
+msgid "Download copy of the Privacy Policy"
+msgstr "Stáhněte si kopii zásad ochrany osobních údajů"
 
 msgid "File a report"
 msgstr "Podat oznámení"
@@ -541,6 +561,9 @@ msgstr "Datum vytvoření"
 
 msgid "Last access"
 msgstr "Poslední přístup"
+
+msgid "Messages"
+msgstr "Zprávy"
 
 msgid "Whistleblower's last access"
 msgstr "Poslední přístup oznamovatele"
@@ -617,12 +640,6 @@ msgstr "Povolit komentáře"
 msgid "Allow the whistleblower to write comments"
 msgstr "Povolit oznamovateli psát komentáře"
 
-msgid "Enable private messages"
-msgstr "Povolit soukromé zprávy"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Povolit oznamovateli posílat zprávy"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Povolit oznamovateli přidat přílohy k oznámení"
 
@@ -694,9 +711,6 @@ msgstr "Privátní klíč"
 
 msgid "Certificate Signing Request"
 msgstr "Požadavek na podpis certifikátu"
-
-msgid "Download"
-msgstr "Stáhnout"
 
 msgid "Certificate"
 msgstr "Certifikát"
@@ -941,6 +955,9 @@ msgstr "Patička"
 
 msgid "Upload"
 msgstr "Načíst"
+
+msgid "Download"
+msgstr "Stáhnout"
 
 msgid "Language:"
 msgstr "Jazyk:"
@@ -1721,6 +1738,9 @@ msgstr "Prozkoumat hlášení za účelem zjištění zda je legitimní."
 msgid "The activities with unusual stats are:"
 msgstr "Aktivity s neobvyklou statistikou:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr "Dostupné místo na disku: {FreeMemory}/{TotalMemory}"
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1949,6 +1969,9 @@ msgstr "Toto je e-mailové upozornění, že správce Vám zpřístupnil jeden n
 msgid "New report"
 msgstr "Nové oznámení"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr "Platnost jedné nebo více zpráv vyprší a budou brzy smazány."
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Nejbližší den vypršení je {EarliestExpirationDate}."
 
@@ -1958,10 +1981,8 @@ msgstr "Pamatujte na jejich kontrolu před smazáním"
 msgid "Some reports will expire soon"
 msgstr "Doba uložení některých oznámení brzy vyprší"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
-msgstr "Toto je e-mail s upozorněním, že datum připomenutí pro hlášení bylo splněno."
+msgid "This is an email to notify you the reception of a new report."
+msgstr "Toto je e-mail, který vás informuje o přijetí nového hlášení."
 
 msgid "Reminder"
 msgstr "Připomenutí"

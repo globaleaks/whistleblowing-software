@@ -82,9 +82,6 @@ msgstr "கோப்புக்கள்"
 msgid "Comments"
 msgstr "பின்னூட்டங்கள்"
 
-msgid "Messages"
-msgstr "செய்திகள்"
-
 msgid "Details"
 msgstr "விபரங்கள்"
 
@@ -455,6 +452,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
+msgid "Transfer"
+msgstr ""
+
 msgid "Assigned to"
 msgstr ""
 
@@ -482,11 +482,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Internal"
+msgstr ""
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "தனியுரிமை கொள்கை"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -530,6 +550,9 @@ msgstr "உருவாக்கிய தேதி"
 
 msgid "Last access"
 msgstr "கடைசியாக அணுகியது"
+
+msgid "Messages"
+msgstr "செய்திகள்"
 
 msgid "Whistleblower's last access"
 msgstr ""
@@ -606,12 +629,6 @@ msgstr "கருத்துகளை இயக்கு"
 msgid "Allow the whistleblower to write comments"
 msgstr "தகவல் தெரிவிப்பவர் கருத்துக்கள் எழுத அனுமதி"
 
-msgid "Enable private messages"
-msgstr "தனியார் செய்திகளை இயக்கு"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "தகவல் தெரிவிப்பவர் செய்திகளை அனுப்ப அனுமதிக்க"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "தகவல் தெரிவிப்பவர் சமர்ப்பிப்பு இணைப்புகளை சேர்க்க அனுமதி"
 
@@ -683,9 +700,6 @@ msgstr "தனிப்பட்ட விசை"
 
 msgid "Certificate Signing Request"
 msgstr "சான்றிதழ் கையொப்பமிடு கோரிக்கை"
-
-msgid "Download"
-msgstr "பதிவிறக்க"
 
 msgid "Certificate"
 msgstr "சான்றிதழ்"
@@ -930,6 +944,9 @@ msgstr "அடிக்குறிப்பு"
 
 msgid "Upload"
 msgstr "பதிவேற்று"
+
+msgid "Download"
+msgstr "பதிவிறக்க"
 
 msgid "Language:"
 msgstr "மொழி:"
@@ -1710,6 +1727,9 @@ msgstr "அது சட்டபூர்வமானதா இல்லைய�
 msgid "The activities with unusual stats are:"
 msgstr "அசாதாரண புள்ளிவிவரங்கள் நடவடிக்கைகள் உள்ளன:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1938,6 +1958,9 @@ msgstr ""
 msgid "New report"
 msgstr ""
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "ஆரம்ப காலாவதி தேதி {EarliestExpirationDate}."
 
@@ -1947,9 +1970,7 @@ msgstr "தயவுசெய்து அவற்றை நீக்க மு
 msgid "Some reports will expire soon"
 msgstr "சில சமர்ப்பிப்புகள் விரைவில் காலாவதியாகும்"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

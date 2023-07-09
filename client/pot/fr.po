@@ -10,7 +10,7 @@
 # AO <ao@localizationlab.org>, 2016-2017
 # AO <ao@localizationlab.org>, 2016
 # AO <ao@localizationlab.org>, 2016
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2022
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2023
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -117,9 +117,6 @@ msgstr "Fichiers"
 
 msgid "Comments"
 msgstr "Commentaires"
-
-msgid "Messages"
-msgstr "Messages"
 
 msgid "Details"
 msgstr "Détails"
@@ -491,6 +488,9 @@ msgstr "Accorder l’accès"
 msgid "Revoke access"
 msgstr "Révoquer l’accès"
 
+msgid "Transfer"
+msgstr "Transférer"
+
 msgid "Assigned to"
 msgstr "Assigné à"
 
@@ -518,12 +518,32 @@ msgstr "Sélectionnez une option"
 msgid "Select your language"
 msgstr "Choisissez votre langue"
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
+msgstr "Accorder à ce destinataire la possibilité de transférer des signalements à d’autres utilisateurs "
+
+msgid "Grant this user the privilege to mask information"
 msgstr "Accorder à cet utilisateur le privilège de cacher des renseignements"
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to permanently redact masked information"
 msgstr "Accorder à cet utilisateur le privilège de supprimer définitivement des renseignements cachés"
+
+msgid "Public"
+msgstr "Publique"
+
+msgid "Internal"
+msgstr "Interne"
+
+msgid "Personal"
+msgstr "Personnelle"
+
+msgid "Privacy Policy"
+msgstr "Politique de confidentialité"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr "J’ai lu et accepte la Politique de confidentialité"
+
+msgid "Download copy of the Privacy Policy"
+msgstr "Télécharger la Politique de confidentialité"
 
 msgid "File a report"
 msgstr "Remplir un signalement"
@@ -566,6 +586,9 @@ msgstr "Date de création"
 
 msgid "Last access"
 msgstr "Dernier accès"
+
+msgid "Messages"
+msgstr "Messages"
 
 msgid "Whistleblower's last access"
 msgstr "Dernière connexion du lanceur d'alerte"
@@ -642,12 +665,6 @@ msgstr "Activer les commentaires"
 msgid "Allow the whistleblower to write comments"
 msgstr "Permettre au lanceur d’alerte de rédiger des commentaires"
 
-msgid "Enable private messages"
-msgstr "Activer les messages privés"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Permettre au lanceur d’alerte d’envoyer des messages"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Permettre au lanceur d’alerte d’ajouter des fichiers joints"
 
@@ -719,9 +736,6 @@ msgstr "Clé privée"
 
 msgid "Certificate Signing Request"
 msgstr "Demande de signature de certificat"
-
-msgid "Download"
-msgstr "Télécharger"
 
 msgid "Certificate"
 msgstr "Certificat"
@@ -967,6 +981,9 @@ msgstr "Bas de page"
 msgid "Upload"
 msgstr "Téléverser"
 
+msgid "Download"
+msgstr "Télécharger"
+
 msgid "Language:"
 msgstr "Langue :"
 
@@ -1032,7 +1049,7 @@ msgid ""
 msgstr "Pour des raisons de sécurité, il est exigé que le mot de passe soit changé à intervalles réguliers."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr "Nombre de jours avant de signaler les rapports non lus aux utilisateurs"
+msgstr "Nombre de jours avant d’informer les utilisateurs des signalements non lus "
 
 msgid "Custom support URL"
 msgstr "URL personnalisée de soutien"
@@ -1549,7 +1566,7 @@ msgid "View your report"
 msgstr "Visualisez votre signalement"
 
 msgid "Select the recipients of your report"
-msgstr "Sélectionnez les destinataires de votre rapport"
+msgstr "Sélectionnez les destinataires de votre signalement"
 
 msgid "Recipients selected:"
 msgstr "Destinataires sélectionnés :"
@@ -1563,7 +1580,7 @@ msgstr "Vous devez au moins choisir un destinataire."
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr "Les destinataires suivants recevront votre rapport et n’ont pas pu être dessélectionnés :"
+msgstr "Les destinataires suivants recevront votre signalement et n’ont pas pu être dessélectionnés :"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1745,6 +1762,9 @@ msgstr "Examiner le problème afin de déterminer s’il est valide ou non."
 
 msgid "The activities with unusual stats are:"
 msgstr "Voici les activités présentant des statistiques inhabituelles :"
+
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr "Espace disque libre : {FreeMemory}/{TotalMemory}"
 
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
@@ -1974,6 +1994,9 @@ msgstr "Le but de ce courriel est de vous aviser qu’un destinataire vous a acc
 msgid "New report"
 msgstr "Nouveau signalement"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr "Un ou plusieurs signalements arrivent à échéance et seront bientôt supprimés."
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "La prochaine date d’expiration est {EarliestExpirationDate}."
 
@@ -1983,10 +2006,8 @@ msgstr "Souvenez-vous de les vérifier avant qu’elles ne soient supprimées"
 msgid "Some reports will expire soon"
 msgstr "Certains signalements arriveront bientôt à expiration"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
-msgstr "Le but de ce courriel est de vous rappeler la date d’un rapport."
+msgid "This is an email to notify you the reception of a new report."
+msgstr "Le but de ce courriel est de vous aviser de la réception d’un nouveau signalement."
 
 msgid "Reminder"
 msgstr "Rappel"
@@ -1994,19 +2015,19 @@ msgstr "Rappel"
 msgid ""
 "This is an email to notify you that the reminder date for one or more "
 "reports has been met."
-msgstr "Le but de ce courriel est de vous rappeler la date d’un ou de plusieurs rapports."
+msgstr "Le but de ce courriel est de vous rappeler la date d’un ou de plusieurs signalements."
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr "Le but de ce courriel est de vous aviser qu’un rapport existant a été mis à jour."
+msgstr "Le but de ce courriel est de vous aviser qu’un signalement existant a été mis à jour."
 
 msgid "Report updated"
-msgstr "Un rapport a été mis à jour"
+msgstr "Un signalement a été mis à jour"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr "Le but de ce courriel est de vous rappeler la présence de rapports non lus ou mis à jour."
+msgstr "Le but de ce courriel est de vous rappeler la présence de signalements non lus ou mis à jour."
 
 msgid "Reminder about unread or updated reports"
-msgstr "Rappel de rapports non lus ou mis à jour"
+msgstr "Rappel de signalements non lus ou mis à jour"
 
 msgid "Role: {Role}"
 msgstr "Rôle : {Role}"

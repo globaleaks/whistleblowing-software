@@ -96,9 +96,6 @@ msgstr "Fichiers"
 msgid "Comments"
 msgstr "Fanehoan-kevitra"
 
-msgid "Messages"
-msgstr "Messages"
-
 msgid "Details"
 msgstr "Détails"
 
@@ -469,6 +466,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
+msgid "Transfer"
+msgstr ""
+
 msgid "Assigned to"
 msgstr ""
 
@@ -496,11 +496,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Internal"
+msgstr ""
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -544,6 +564,9 @@ msgstr "Daty namoronana azy"
 
 msgid "Last access"
 msgstr "Dernier accès"
+
+msgid "Messages"
+msgstr "Messages"
 
 msgid "Whistleblower's last access"
 msgstr ""
@@ -620,12 +643,6 @@ msgstr "Activer les commentaires"
 msgid "Allow the whistleblower to write comments"
 msgstr "Permettre au lanceur d’alerte de rédiger des commentaires"
 
-msgid "Enable private messages"
-msgstr "Activer les messages privés"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "Permettre au lanceur d’alerte d’envoyer des messages"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Permettre au lanceur d’alerte d’ajouter des fichiers joints à l’envoi"
 
@@ -697,9 +714,6 @@ msgstr "Clé privée"
 
 msgid "Certificate Signing Request"
 msgstr "Demande de signature de certificat"
-
-msgid "Download"
-msgstr "Télécharger"
 
 msgid "Certificate"
 msgstr "Certificat"
@@ -944,6 +958,9 @@ msgstr "Bas de page"
 
 msgid "Upload"
 msgstr "Téléverser"
+
+msgid "Download"
+msgstr "Télécharger"
 
 msgid "Language:"
 msgstr "Langue :"
@@ -1724,6 +1741,9 @@ msgstr "Examiner le problème afin de déterminer s’il est valide ou non."
 msgid "The activities with unusual stats are:"
 msgstr "Voici les activités présentant des statistiques inhabituelles :"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1952,6 +1972,9 @@ msgstr ""
 msgid "New report"
 msgstr "Nouvel envoi"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "La prochaine date d’expiration est {EarliestExpirationDate}."
 
@@ -1961,9 +1984,7 @@ msgstr "Souvenez-vous de les vérifier avant qu’elles ne soient supprimées"
 msgid "Some reports will expire soon"
 msgstr "Des envois arriverons bientôt à expiration"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

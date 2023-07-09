@@ -87,9 +87,6 @@ msgstr "檔案"
 msgid "Comments"
 msgstr "評論"
 
-msgid "Messages"
-msgstr "訊息"
-
 msgid "Details"
 msgstr "詳細內容"
 
@@ -460,6 +457,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr "撤銷存取"
 
+msgid "Transfer"
+msgstr "傳送"
+
 msgid "Assigned to"
 msgstr ""
 
@@ -487,11 +487,31 @@ msgstr "选择一个选项"
 msgid "Select your language"
 msgstr "选择您的语言"
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr "公共"
+
+msgid "Internal"
+msgstr "內置"
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "隱私政策"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -535,6 +555,9 @@ msgstr "創建日期"
 
 msgid "Last access"
 msgstr "最近讀取"
+
+msgid "Messages"
+msgstr "訊息"
 
 msgid "Whistleblower's last access"
 msgstr "吹哨者上回讀取"
@@ -611,12 +634,6 @@ msgstr "開啟評論功能"
 msgid "Allow the whistleblower to write comments"
 msgstr "允許吹哨者作評論"
 
-msgid "Enable private messages"
-msgstr "開放私訊功能"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "允許吹哨者傳送訊息"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "揭密者可對此報告附加資料檔案"
 
@@ -688,9 +705,6 @@ msgstr "私密金鑰"
 
 msgid "Certificate Signing Request"
 msgstr "憑證簽署要求"
-
-msgid "Download"
-msgstr "下載"
 
 msgid "Certificate"
 msgstr "憑證"
@@ -935,6 +949,9 @@ msgstr "頁腳"
 
 msgid "Upload"
 msgstr "上傳"
+
+msgid "Download"
+msgstr "下載"
 
 msgid "Language:"
 msgstr "語言:"
@@ -1715,6 +1732,9 @@ msgstr "查驗此問題以決定其是否合理。"
 msgid "The activities with unusual stats are:"
 msgstr "非正常活動的統計為："
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1943,6 +1963,9 @@ msgstr ""
 msgid "New report"
 msgstr "新報告"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "最早的截止日期是 {EarliestExpirationDate}."
 
@@ -1952,9 +1975,7 @@ msgstr "請記得在刪除前再檢查一下。"
 msgid "Some reports will expire soon"
 msgstr "部份報告即將到期失效"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

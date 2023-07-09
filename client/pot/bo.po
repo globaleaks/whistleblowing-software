@@ -81,9 +81,6 @@ msgstr "ཡིག་ཆ།"
 msgid "Comments"
 msgstr "མཆན།"
 
-msgid "Messages"
-msgstr "འཕྲིན་ཐུང་།"
-
 msgid "Details"
 msgstr "ཞིབ་ཕྲ།"
 
@@ -454,6 +451,9 @@ msgstr ""
 msgid "Revoke access"
 msgstr ""
 
+msgid "Transfer"
+msgstr ""
+
 msgid "Assigned to"
 msgstr ""
 
@@ -481,11 +481,31 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Internal"
+msgstr "ནང་ཁུལ།"
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "གསང་དོན་སྲིད་བྱུས།"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -529,6 +549,9 @@ msgstr "བཟོ་བསྐྲུན་ཚེས་གྲངས།"
 
 msgid "Last access"
 msgstr "ལྟ་སྤྱོད་མཐའ་མ།"
+
+msgid "Messages"
+msgstr "འཕྲིན་ཐུང་།"
 
 msgid "Whistleblower's last access"
 msgstr "གསང་སྒྲོག་པའི་ལྟ་སྤྱོད་མཐའ་མ།"
@@ -605,12 +628,6 @@ msgstr "མཆན་ནུས་ལྡན་བཟོ།"
 msgid "Allow the whistleblower to write comments"
 msgstr "གསང་སྒྲོག་པ་ལ་མཆན་འབྲི་རུ་འཇུག"
 
-msgid "Enable private messages"
-msgstr "སྒེར་གྱི་འཕྲིན་ཐུང་ནུས་ལྡན་བཟོ།"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "གསང་སྒྲོག་པ་ལ་འཕྲིན་ཐུང་གཏོང་དུ་འཇུག"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "གསང་སྒྲོག་པ་ལ་སྙན་ཐོའི་སྟེང་ཟུར་སྣོན་སྣོན་དུ་འཇུག"
 
@@ -682,9 +699,6 @@ msgstr "སྒེར་གྱི་མཐེབ།"
 
 msgid "Certificate Signing Request"
 msgstr "ལག་འཁྱེར་སྟེང་མིང་རྟགས་རྒྱག་པའི་རེ་ཞུ།"
-
-msgid "Download"
-msgstr "ཕབ་ལེན།"
 
 msgid "Certificate"
 msgstr "ལག་འཁྱེར།"
@@ -929,6 +943,9 @@ msgstr "ཞབས་མཆན།"
 
 msgid "Upload"
 msgstr "ཡར་འཇུག"
+
+msgid "Download"
+msgstr "ཕབ་ལེན།"
 
 msgid "Language:"
 msgstr "སྐད་ཡིག:"
@@ -1709,6 +1726,9 @@ msgstr "དེ་ནི་ཁྲིམས་མཐུན་ཡིན་མིན
 msgid "The activities with unusual stats are:"
 msgstr "རྒྱུན་གཏན་མིན་པའི་རྣམ་གྲངས་རིག་པའི་བྱེད་སྒོ་དག་ནི།:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1937,6 +1957,9 @@ msgstr ""
 msgid "New report"
 msgstr "སྙན་ཐོ་གསར་པ།"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "དུས་ཚོད་ཡོལ་བའི་ཚེས་གྲངས་སྔ་ཤོས་ནི། {EarliestExpirationDate}"
 
@@ -1946,9 +1969,7 @@ msgstr "དེ་དག་མ་བསུབ་གོང་དེ་ཚོ་ཞ
 msgid "Some reports will expire soon"
 msgstr "སྙན་ཐོ་འགའ་ཤས་མགྱོགས་མྱུར་དུས་ཚོད་ཡོལ་བ་ཡིན། "
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"

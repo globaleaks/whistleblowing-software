@@ -81,9 +81,6 @@ msgstr "فایل ها"
 msgid "Comments"
 msgstr "تبصره ها"
 
-msgid "Messages"
-msgstr "پیام ها"
-
 msgid "Details"
 msgstr "جزئیات"
 
@@ -454,6 +451,9 @@ msgstr "اعطای دسترسی"
 msgid "Revoke access"
 msgstr "لغو دسترسی"
 
+msgid "Transfer"
+msgstr "انتقال"
+
 msgid "Assigned to"
 msgstr "اختصاص یافته به"
 
@@ -481,11 +481,31 @@ msgstr "یک گزینه را انتخاب کنید"
 msgid "Select your language"
 msgstr "زبان خود را انتخاب کنید"
 
-msgid "Grant this user user the privilege to mask information"
+msgid "Grant this recipient ability to transfer reports to other users"
 msgstr ""
 
-msgid ""
-"Grant this user user the privilege to permanently redact masked information"
+msgid "Grant this user the privilege to mask information"
+msgstr ""
+
+msgid "Grant this user the privilege to permanently redact masked information"
+msgstr ""
+
+msgid "Public"
+msgstr "عمومی"
+
+msgid "Internal"
+msgstr "داخلی"
+
+msgid "Personal"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr "پالیسی حفظ حریم خصوصی"
+
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
+
+msgid "Download copy of the Privacy Policy"
 msgstr ""
 
 msgid "File a report"
@@ -529,6 +549,9 @@ msgstr "تاریخ ساخت "
 
 msgid "Last access"
 msgstr "آخرین دسترسی"
+
+msgid "Messages"
+msgstr "پیام ها"
 
 msgid "Whistleblower's last access"
 msgstr "آخرین دسترسی افشاگر "
@@ -605,12 +628,6 @@ msgstr "فعال کردن تبصره ها"
 msgid "Allow the whistleblower to write comments"
 msgstr "به افشاگر اجازه نوشتن تبصره ها داده شود"
 
-msgid "Enable private messages"
-msgstr "فعال سازی پیام های خصوصی"
-
-msgid "Allow the whistleblower to send messages"
-msgstr "به افشاگر اجازه ارسال پیام داده شود"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "به افشاگر اجازه اضافه کردن ضمیمه به این راپور داده شود"
 
@@ -682,9 +699,6 @@ msgstr "کلید خصوصی"
 
 msgid "Certificate Signing Request"
 msgstr "درخواست امضاء تصدیق"
-
-msgid "Download"
-msgstr "دانلود"
 
 msgid "Certificate"
 msgstr "تصدیق"
@@ -929,6 +943,9 @@ msgstr "پانویس"
 
 msgid "Upload"
 msgstr "اپلود"
+
+msgid "Download"
+msgstr "دانلود"
 
 msgid "Language:"
 msgstr "لسان:"
@@ -1709,6 +1726,9 @@ msgstr "بررسی موضوع برای تشخیص قانونی بودن یا ن�
 msgid "The activities with unusual stats are:"
 msgstr "فعالیت ها با آمار غیرمعمولی آن عبارت است از:"
 
+msgid "Available disk space: {FreeMemory}/{TotalMemory}"
+msgstr ""
+
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
 "have been disabled."
@@ -1937,6 +1957,9 @@ msgstr "این ایمیل اطلاع می‌دهد که یک دریافت کنن
 msgid "New report"
 msgstr "راپور جدید"
 
+msgid "One or more reports are expiring and will be soon deleted."
+msgstr ""
+
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "اولین تاریخ انقضاء {EarliestExpirationDate} می باشد."
 
@@ -1946,9 +1969,7 @@ msgstr "لطفاً قبل از اینکه حذف شوند، آن ها را بر�
 msgid "Some reports will expire soon"
 msgstr "برخی راپورها به زودی منقضی می شوند"
 
-msgid ""
-"This is an email to notify you that the reminder date for a report has been "
-"met."
+msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
 msgid "Reminder"
