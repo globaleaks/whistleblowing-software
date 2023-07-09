@@ -109,7 +109,7 @@ ConfigDescriptor = {
     'unread_reminder_time': Int(default=7),  # Days
     'version': Unicode(default=str(__version__)),
     'version_db': Int(default=DATABASE_VERSION),
-    'viewer': Bool(default=False),
+    'viewer': Bool(default=True),
     'wizard_done': Bool(default=False),
     'uuid': Unicode(default=uuid4)
 }
