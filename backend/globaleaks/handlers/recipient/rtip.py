@@ -692,7 +692,7 @@ class ReceiverFileDownload(BaseHandler):
 
             name = GCE.asymmetric_decrypt(tip_prv_key, base64.b64decode(name.encode())).decode()
 
-        if filelocation.endswith('.encrypted'):
+        if tip_prv_key:
             filelocation = GCE.streaming_encryption_open('DECRYPT', files_prv_key, filelocation)
         elif 'pgp' in filelocation:
             pgp_key = ''
