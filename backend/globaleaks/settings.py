@@ -22,6 +22,9 @@ class SettingsClass(object, metaclass=Singleton):
         # daemonize the process
         self.nodaemon = False
 
+        # migrate only
+        self.migrate_only = False
+
         self.bind_address = '::'
 
         self.bind_remote_ports = [80, 443]
@@ -148,6 +151,7 @@ class SettingsClass(object, metaclass=Singleton):
         self.bind_address = options.ip
         self.socks_host = options.socks_host
         self.socks_port = options.socks_port
+        self.migrate_only = options.migrate_only
 
         if options.user:
             self.user = options.user

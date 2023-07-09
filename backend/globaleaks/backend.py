@@ -111,6 +111,11 @@ class Service(service.Service):
             init_db()
 
         sync_clean_untracked_files()
+
+        if self.state.settings.migrate_only:
+            reactor.stop()
+            return
+
         sync_refresh_tenant_cache()
         sync_initialize_snimap()
 
