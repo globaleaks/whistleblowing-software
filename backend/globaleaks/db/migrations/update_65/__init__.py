@@ -49,6 +49,18 @@ class IdentityAccessRequest_v_64(Model):
     reply = Column(UnicodeText, default='pending', nullable=False)
 
 
+class InternalFile_v_64(Model):
+    __tablename__ = 'internalfile'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    creation_date = Column(DateTime, default=datetime_now, nullable=False)
+    internaltip_id = Column(UnicodeText(36), nullable=False, index=True)
+    name = Column(UnicodeText, nullable=False)
+    filename = Column(UnicodeText, default='', nullable=False)
+    content_type = Column(JSON, default='', nullable=False)
+    size = Column(JSON, default='', nullable=False)
+    new = Column(Boolean, default=True, nullable=False)
+
+
 class InternalTip_v_64(Model):
     __tablename__ = 'internaltip'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
