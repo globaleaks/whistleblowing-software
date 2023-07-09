@@ -289,6 +289,8 @@ def perform_migration(version):
                 # in order to not keep leaking journal files.
                 migration_script.close()
 
+            log.info("Migration completed with success.")
+
             log.info("Migration stats:")
 
             for model_name, _ in migration_mapping.items():
