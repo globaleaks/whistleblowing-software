@@ -170,7 +170,6 @@ ConfigFilters = {
         'threshold_free_disk_percentage_high',
         'threshold_free_disk_percentage_low',
         'timezone',
-        'tor',
         'two_factor',
         'unread_reminder_time',
         'version',
