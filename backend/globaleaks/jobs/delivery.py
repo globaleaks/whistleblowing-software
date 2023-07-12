@@ -8,9 +8,11 @@ from globaleaks import models
 from globaleaks.jobs.job import LoopingJob
 from globaleaks.orm import transact
 from globaleaks.settings import Settings
-from globaleaks.utils.crypto import generateRandomKey, GCE
+from globaleaks.utils.crypto import GCE
 from globaleaks.utils.log import log
 from globaleaks.utils.pgp import PGPContext
+from globaleaks.utils.utility import uuid4
+
 
 __all__ = ['Delivery']
 
@@ -31,9 +33,7 @@ def file_delivery(session):
                               .order_by(models.InternalFile.creation_date) \
                               .limit(20):
         ifile.new = False
-        src = ifile.filename
-
-        ifile.filename = src.split('.')[0]
+        src = ifile.id
 
         for rtip, user in session.query(models.ReceiverTip, models.User) \
                                  .filter(models.ReceiverTip.internaltip_id == ifile.internaltip_id,
@@ -41,7 +41,6 @@ def file_delivery(session):
             receiverfile = models.ReceiverFile()
             receiverfile.internalfile_id = ifile.id
             receiverfile.receivertip_id = rtip.id
-            receiverfile.filename = ifile.filename
 
             # https://github.com/globaleaks/GlobaLeaks/issues/444
             # avoid to mark the receiverfile as new if it is part of a submission
@@ -57,11 +56,8 @@ def file_delivery(session):
                     'rfiles': []
                 }
 
-            if not itip.crypto_tip_pub_key and user.pgp_key_public:
-                receiverfile.filename = "%s.pgp" % generateRandomKey()
-
             receiverfiles_maps[ifile.id]['rfiles'].append({
-                'dst': os.path.abspath(os.path.join(Settings.attachments_path, receiverfile.filename)),
+                'dst': os.path.abspath(os.path.join(Settings.attachments_path, receiverfile.internalfile_id)),
                 'pgp_key_public': user.pgp_key_public
             })
 
@@ -71,14 +67,12 @@ def file_delivery(session):
                                .order_by(models.WhistleblowerFile.creation_date) \
                                .limit(20):
         wbfile.new = False
-        src = wbfile.filename
-
-        wbfile.filename = src.split('.')[0]
+        src = wbfile.id
 
         whistleblowerfiles_maps[wbfile.id] = {
             'key': itip.crypto_tip_pub_key,
             'src': src,
-            'dst': os.path.abspath(os.path.join(Settings.attachments_path, wbfile.filename)),
+            'dst': os.path.abspath(os.path.join(Settings.attachments_path, wbfile.id)),
         }
 
         wbfile.new = False

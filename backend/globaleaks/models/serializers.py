@@ -92,7 +92,6 @@ def serialize_ifile(session, ifile):
         'name': ifile.name,
         'size': ifile.size,
         'type': ifile.content_type,
-        'filename': ifile.filename
     }
 
 
@@ -105,13 +104,18 @@ def serialize_rfile(session, ifile, rfile):
     :param rfile: The rfile to be serialized
     :return: The serialized rfile
     """
+    if rfile.filename:
+        filename = rfile.filename
+    else:
+        filename = rfile.internalfile_id
+
     return {
         'id': rfile.id,
         'creation_date': ifile.creation_date,
         'name': ifile.name,
         'size': ifile.size,
         'type': ifile.content_type,
-        'filename': rfile.filename
+        'filename': filename
     }
 
 
@@ -129,8 +133,7 @@ def serialize_wbfile(session, wbfile):
         'name': wbfile.name,
         'size': wbfile.size,
         'type': wbfile.content_type,
-        'description': wbfile.description,
-        'filename': wbfile.filename
+        'description': wbfile.description
     }
 
 

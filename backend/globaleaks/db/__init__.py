@@ -112,9 +112,9 @@ def db_get_tracked_files(session):
     :param session: An ORM session
     :return: The list of filenames of the attachment files
     """
-    ifiles = list(session.query(models.InternalFile.filename).distinct())
+    ifiles = list(session.query(models.InternalFile.id).distinct())
     rfiles = list(session.query(models.ReceiverFile.filename).distinct())
-    wbfiles = list(session.query(models.WhistleblowerFile.filename).distinct())
+    wbfiles = list(session.query(models.WhistleblowerFile.id).distinct())
 
     return [x[0] for x in ifiles + rfiles + wbfiles]
 

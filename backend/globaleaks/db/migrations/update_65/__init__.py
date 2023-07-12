@@ -206,6 +206,38 @@ class MigrationScript(MigrationBase):
 
             self.session_new.add(new_obj)
 
+    def migrate_InternalFile(self):
+        for old_obj in self.session_old.query(self.model_from['InternalFile']):
+            srcpath = os.path.abspath(os.path.join(Settings.attachments_path, old_obj.filename))
+            dstpath = os.path.abspath(os.path.join(Settings.attachments_path, old_obj.id))
+            if os.path.exists(srcpath):
+                shutil.move(srcpath, dstpath)
+
+            new_obj = self.model_to['InternalFile']()
+            for key in new_obj.__mapper__.column_attrs.keys():
+                if key in old_obj.__mapper__.column_attrs.keys():
+                    setattr(new_obj, key, getattr(old_obj, key))
+
+            self.session_new.add(new_obj)
+
+    def migrate_ReceiverFile(self):
+        for old_obj, old_ifile in self.session_old.query(self.model_from['ReceiverFile'], self.model_from['InternalFile']) \
+                                                  .filter(self.model_from['ReceiverFile'].internalfile_id == self.model_from['InternalFile'].id):
+            new_obj = self.model_to['ReceiverFile']()
+            for key in new_obj.__mapper__.column_attrs.keys():
+                if key == 'filename':
+                    if old_obj.filename != old_ifile.filename:
+                        new_obj.filename = old_obj.id
+                        srcpath = os.path.abspath(os.path.join(Settings.attachments_path, old_obj.filename))
+                        dstpath = os.path.abspath(os.path.join(Settings.attachments_path, old_obj.id))
+                        if os.path.exists(srcpath):
+                            shutil.move(srcpath, dstpath)
+
+                elif key in old_obj.__mapper__.column_attrs.keys():
+                    setattr(new_obj, key, getattr(old_obj, key))
+
+            self.session_new.add(new_obj)
+
     def migrate_WhistleblowerFile(self):
         for old_obj, r in self.session_old.query(self.model_from['WhistleblowerFile'], self.model_from['ReceiverTip']) \
                                           .filter(self.model_from['WhistleblowerFile'].receivertip_id == self.model_from['ReceiverTip'].id):
