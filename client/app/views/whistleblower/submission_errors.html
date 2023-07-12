@@ -1,0 +1,9 @@
+<div id="SubmissionErrors" class="alert alert-secondary mb-2" role="alert">
+  <div data-ng-if="!hasNextStep()">
+    <div data-ng-if="Utils.isUploading(uploads)">
+      <span data-translate>Waiting for the file(s) to finish uploading.</span>&nbsp;
+      <i class="fa-solid fa-sync gly-spin"></i>
+    </div>
+  </div>
+  <div data-ng-include="'views/whistleblower/step_error.html'"></div>
+</div>
