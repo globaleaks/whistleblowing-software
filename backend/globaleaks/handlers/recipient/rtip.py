@@ -108,7 +108,6 @@ def db_grant_tip_access(session, tid, user_id, user_cc, rtip_id, receiver_id):
         rf = models.ReceiverFile()
         rf.internalfile_id = rfile.internalfile_id
         rf.receivertip_id = new_rtip.id
-        rf.filename = rfile.filename
         rf.new = False
         session.add(rf)
 
@@ -261,13 +260,12 @@ def register_wbfile_on_db(session, tid, user_id, rtip_id, uploaded_file):
             uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, uploaded_file[k]))
 
     new_file = models.WhistleblowerFile()
-
+    new_file.id = uploaded_file['filename']
     new_file.name = uploaded_file['name']
     new_file.description = uploaded_file['description']
     new_file.content_type = uploaded_file['type']
     new_file.size = uploaded_file['size']
     new_file.internaltip_id = itip.id
-    new_file.filename = uploaded_file['filename']
 
     session.add(new_file)
 
@@ -673,7 +671,12 @@ class ReceiverFileDownload(BaseHandler):
         log.debug("Download of file %s by receiver %s" %
                   (rfile.internalfile_id, rtip.receiver_id))
 
-        return ifile.name, rfile.filename, rtip.crypto_tip_prv_key, rtip.deprecated_crypto_files_prv_key, pgp_key
+        if rfile.filename:
+            filename = rfile.filename
+        else:
+            filename = rfile.internalfile_id
+
+        return ifile.name, filename, rtip.crypto_tip_prv_key, rtip.deprecated_crypto_files_prv_key, pgp_key
 
     @inlineCallbacks
     def get(self, rfile_id):
@@ -693,9 +696,6 @@ class ReceiverFileDownload(BaseHandler):
             name = GCE.asymmetric_decrypt(tip_prv_key, base64.b64decode(name.encode())).decode()
 
             filelocation = GCE.streaming_encryption_open('DECRYPT', files_prv_key, filelocation)
-        elif 'pgp' in filelocation:
-            pgp_key = ''
-            name += ".pgp"
 
         yield self.write_file_as_download(name, filelocation, pgp_key)
 
@@ -740,7 +740,7 @@ class RTipWBFileHandler(BaseHandler):
         if not rtip:
             raise errors.ResourceNotFound
 
-        return wbfile.name, wbfile.filename, base64.b64decode(rtip.crypto_tip_prv_key), pgp_key
+        return wbfile.name, wbfile.id, base64.b64decode(rtip.crypto_tip_prv_key), pgp_key
 
     @inlineCallbacks
     def get(self, wbfile_id):

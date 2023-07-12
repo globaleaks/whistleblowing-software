@@ -230,11 +230,11 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
 
         new_file = models.InternalFile()
         new_file.tid = tid
+        new_file.id = uploaded_file['filename']
         new_file.name = uploaded_file['name']
         new_file.content_type = uploaded_file['type']
         new_file.size = uploaded_file['size']
         new_file.internaltip_id = itip.id
-        new_file.filename = uploaded_file['filename']
         session.add(new_file)
 
     for user in receivers:

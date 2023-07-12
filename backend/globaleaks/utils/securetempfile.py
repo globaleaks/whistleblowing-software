@@ -4,7 +4,7 @@ import os
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 
-from globaleaks.utils.crypto import generateRandomKey
+from globaleaks.utils.utility import uuid4
 
 crypto_backend = default_backend()
 
@@ -16,10 +16,10 @@ class SecureTemporaryFile(object):
         """
         self.fd = None
         self.key = os.urandom(32)
-        self.key_id = generateRandomKey()
+        self.key_id = uuid4()
         self.key_counter_nonce = os.urandom(16)
         self.cipher = Cipher(algorithms.AES(self.key), modes.CTR(self.key_counter_nonce), backend=crypto_backend)
-        self.filepath = os.path.join(filesdir, "%s.aes" % self.key_id)
+        self.filepath = os.path.join(filesdir, self.key_id)
         self.size = 0
         self.enc = self.cipher.encryptor()
         self.dec = None
