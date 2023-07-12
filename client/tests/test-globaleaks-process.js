@@ -8,7 +8,6 @@ describe("globaleaks process", function() {
     var wb = new browser.gl.pages.whistleblower();
     var receipt = await wb.performSubmission(true);
     receipts.unshift(receipt);
-    await browser.sleep(3000);
   };
 
   for (var i=1; i<N; i++) {
