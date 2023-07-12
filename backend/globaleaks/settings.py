@@ -92,9 +92,6 @@ class SettingsClass(object, metaclass=Singleton):
         self.log_file_size = 1000000  # 1MB
         self.num_log_files = self.log_size / self.log_file_size
 
-        self.AES_file_regexp = r'(.*)\.aes'
-        self.AES_keyfile_prefix = "aeskey-"
-
         self.exceptions_email_hourly_limit = 20
 
         self.enable_input_length_checks = True
