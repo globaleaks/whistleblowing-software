@@ -150,11 +150,9 @@
               <div class="form-group" data-ng-if="user.newpassword" data-ng-form="userPasswordForm">
                 <input class="d-none" type="password" name="disable-autocomplete-hack" />
                 <span class="input-group">
-                  <input name="password" class="form-control" data-ng-model="setPasswordArgs.password" type="password"
-                         data-ng-class="{'is-invalid': setPasswordArgs.password && (!userPasswordForm.password.$error.passwordStrengthValidator && !userPasswordForm.password.$valid)}"
-                         autocomplete="off" data-password-strength-validator/>
+                  <input name="password" class="form-control" data-ng-model="setPasswordArgs.password" type="password" autocomplete="off" data-password-strength-validator/>
                   <span class="input-group-append">
-                    <button id="setPasswordButton" class="btn btn-primary" data-ng-click="setPassword()">
+                    <button id="setPasswordButton" class="btn btn-primary" data-ng-disabled="!setPasswordArgs.password" data-ng-click="setPassword()">
                       <i class="fa-solid fa-tag"></i>
                       <span data-translate>Set password</span>
                     </button>
