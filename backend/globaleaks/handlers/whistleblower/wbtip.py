@@ -185,7 +185,7 @@ class WBTipWBFileHandler(BaseHandler):
         log.debug("Download of file %s by whistleblower %s",
                   wbfile.id, self.session.user_id)
 
-        return wbfile.name, wbfile.filename, base64.b64decode(wbtip.crypto_tip_prv_key), ''
+        return wbfile.name, wbfile.id, base64.b64decode(wbtip.crypto_tip_prv_key), ''
 
     @inlineCallbacks
     def get(self, wbfile_id):
