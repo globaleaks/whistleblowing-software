@@ -124,7 +124,6 @@ class Notification_v_33(models.Model):
 class MigrationScript(MigrationBase):
     def epilogue(self):
         old_node = self.session_old.query(self.model_from['Node']).one()
-        old_notif = self.session_old.query(self.model_from['Notification']).one()
 
         with open(os.path.join(Settings.client_path, 'data', 'favicon.ico'), 'rb') as favicon_file:
             data = favicon_file.read()
@@ -138,23 +137,13 @@ class MigrationScript(MigrationBase):
             self.session_new.add(self.model_to['EnabledLanguage'](lang))
 
         self._migrate_l10n_static_config(old_node, 'node')
-        self._migrate_l10n_static_config(old_notif, 'templates')
 
         for var_name, _ in GLConfig_v_35['node'].items():
             old_val = getattr(old_node, var_name)
             self.session_new.add(self.model_to['Config']('node', var_name, old_val))
 
-        for var_name, _ in GLConfig_v_35['notification'].items():
-            old_val = getattr(old_notif, var_name)
-
-            if var_name == 'exception_email_pgp_key_expiration' and old_val is not None:
-                old_val = iso_strf_time(old_val)
-
-            self.session_new.add(self.model_to['Config']('notification', var_name, old_val))
-
         # Migrate private fields
         self.session_new.add(self.model_to['Config']('private', 'receipt_salt', old_node.receipt_salt))
-        self.session_new.add(self.model_to['Config']('private', 'smtp_password', old_notif.password))
 
         # Set old verions that will be then handled by the version update
         self.session_new.add(self.model_to['Config']('private', 'version', 'X.Y.Z'))
