@@ -17,17 +17,14 @@
       </span>
     </div>
     <div class="file-info-row">
-      <span>
-        <span data-translate>From</span>: <span>{{receivers_by_id[wbfile.author].name}}</span>
-      </span>
       <span class="px-1">
         <span data-translate>Date</span>: <span>{{wbfile.creation_date | date:'dd-MM-yyyy HH:MM'}}</span>
       </span>
       <span class="px-1">
         <span data-translate>Size:</span> <span>{{wbfile.size | byteFmt:2}}</span>
       </span>
-      <span class="px-1" data-ng-if="ctx === 'rtip'">
-        <span data-translate>Number of downloads</span>: <span>{{wbfile.downloads}}</span>
+      <span class="px-1" data-ng-if="wbfile.access_date">
+        <span data-translate>Access date</span>: <span>{{wbfile.access_date}}</span>
       </span>
     </div>
     <div data-ng-if="wbfile.description">
