@@ -684,6 +684,7 @@ class ReceiverFileDownload(BaseHandler):
 
         filelocation = os.path.join(self.state.settings.attachments_path, filename)
         directory_traversal_check(self.state.settings.attachments_path, filelocation)
+        self.check_file_presence(filelocation)
 
         if tip_prv_key:
             tip_prv_key = GCE.asymmetric_decrypt(self.session.cc, base64.b64decode(tip_prv_key))
@@ -748,6 +749,7 @@ class RTipWBFileHandler(BaseHandler):
 
         filelocation = os.path.join(self.state.settings.attachments_path, filename)
         directory_traversal_check(self.state.settings.attachments_path, filelocation)
+        self.check_file_presence(filelocation)
 
         if tip_prv_key:
             tip_prv_key = GCE.asymmetric_decrypt(self.session.cc, tip_prv_key)
