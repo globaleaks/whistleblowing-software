@@ -110,7 +110,6 @@ class Context_v_38(Model):
     select_all_receivers = Column(Boolean, default=True)
     enable_two_way_comments = Column(Boolean, default=True)
     enable_attachments = Column(Boolean, default=True)
-    enable_rc_to_wb_files = Column(Boolean, default=False)
     tip_timetolive = Column(Integer, default=15)
     name = Column(JSON)
     description = Column(JSON)
@@ -205,12 +204,6 @@ class FieldAnswerGroup_v_38(Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     number = Column(Integer, default=0)
     fieldanswer_id = Column(UnicodeText(36))
-
-
-class File_v_38(Model):
-    __tablename__ = 'file'
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-    data = Column(UnicodeText)
 
 
 class InternalFile_v_38(Model):
@@ -521,21 +514,6 @@ class MigrationScript(MigrationBase):
 
             self.entries_count['ArchivedSchema'] -= 1
 
-        static_path = os.path.abspath(os.path.join(Settings.working_path, 'files/static'))
-        if os.path.exists(static_path):
-            for filename in os.listdir(static_path):
-                filepath = os.path.abspath(os.path.join(static_path, filename))
-                if not os.path.isfile(filepath):
-                    continue
-
-                new_file = self.model_to['File']()
-                new_file.id = uuid4()
-                new_file.name = filename
-                new_file.data = ''
-                self.session_new.add(new_file)
-
-                self.entries_count['File'] += 1
-
         try:
             shutil.move(os.path.join(Settings.working_path, 'files/submission'), os.path.join(Settings.working_path, '_files'))
             shutil.rmtree(Settings.attachments_path)
@@ -544,14 +522,16 @@ class MigrationScript(MigrationBase):
             pass
 
         try:
-            shutil.move(os.path.join(Settings.working_path, 'files/static'), os.path.join(Settings.working_path, '_files'))
-            shutil.rmtree(Settings.files_path)
-            shutil.move(os.path.join(Settings.working_path, '_files'), Settings.files_path)
-        except:
+            shutil.rmtree(os.path.abspath(os.path.join(Settings.working_path, 'files/encrypted_upload')))
+        except Exception:
             pass
 
         try:
-            # Depending of when the system was installed this directory may not exist
-            shutil.rmtree(os.path.abspath(os.path.join(Settings.working_path, 'files/encrypted_upload')))
+            shutil.rmtree(os.path.abspath(os.path.join(Settings.working_path, 'files/static')))
+        except Exception:
+            pass
+
+        try:
+            shutil.rmtree(os.path.abspath(os.path.join(Settings.working_path, 'files/tmp')))
         except Exception:
             pass
