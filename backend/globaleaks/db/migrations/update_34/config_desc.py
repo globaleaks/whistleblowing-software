@@ -90,8 +90,6 @@ GLConfig_v_35 = {
         'show_small_context_cards': Bool(default=False),
         'show_contexts_in_alphabetical_order': Bool(default=False),
 
-        'wbtip_timetolive': Int(default=90),  # Days
-
         'threshold_free_disk_megabytes_high': Int(default=200),
         'threshold_free_disk_megabytes_medium': Int(default=500),
         'threshold_free_disk_megabytes_low': Int(default=1000),

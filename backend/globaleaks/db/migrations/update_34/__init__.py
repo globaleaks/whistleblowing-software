@@ -59,7 +59,6 @@ class Node_v_33(models.Model):
     contexts_clarification = Column(JSON, default=dict)
     show_small_context_cards = Column(Boolean, default=False)
     show_contexts_in_alphabetical_order = Column(Boolean, default=False)
-    wbtip_timetolive = Column(Integer, default=90)
     threshold_free_disk_megabytes_high = Column(Integer, default=200)
     threshold_free_disk_megabytes_medium = Column(Integer, default=500)
     threshold_free_disk_megabytes_low = Column(Integer, default=1000)
@@ -72,14 +71,6 @@ class Node_v_33(models.Model):
 class MigrationScript(MigrationBase):
     def epilogue(self):
         old_node = self.session_old.query(self.model_from['Node']).one()
-
-        with open(os.path.join(Settings.client_path, 'data', 'favicon.ico'), 'rb') as favicon_file:
-            data = favicon_file.read()
-            new_file = self.model_to['File']()
-            new_file.id = 'favicon'
-            new_file.data = base64.b64encode(data).decode()
-            self.session_new.add(new_file)
-            self.entries_count['File'] += 1
 
         for lang in old_node.languages_enabled:
             self.session_new.add(self.model_to['EnabledLanguage'](lang))
