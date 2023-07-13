@@ -69,62 +69,9 @@ class Node_v_33(models.Model):
     context_selector_type = Column(UnicodeText, default='list')
 
 
-class Notification_v_33(models.Model):
-    __tablename__ = 'notification'
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
-    server = Column(UnicodeText, default='demo.globaleaks.org')
-    port = Column(Integer, default=9267)
-    username = Column(UnicodeText, default='hey_you_should_change_me')
-    password = Column(UnicodeText, default='yes_you_really_should_change_me')
-    source_email = Column(UnicodeText, default='notification@demo.globaleaks.org')
-    security = Column(UnicodeText, default='TLS')
-    admin_pgp_alert_mail_title = Column(JSON)
-    admin_pgp_alert_mail_template = Column(JSON)
-    admin_anomaly_mail_template = Column(JSON)
-    admin_anomaly_mail_title = Column(JSON)
-    admin_anomaly_disk_low = Column(JSON)
-    admin_anomaly_disk_medium = Column(JSON)
-    admin_anomaly_disk_high = Column(JSON)
-    admin_anomaly_activities = Column(JSON)
-    tip_mail_template = Column(JSON)
-    tip_mail_title = Column(JSON)
-    file_mail_template = Column(JSON)
-    file_mail_title = Column(JSON)
-    comment_mail_template = Column(JSON)
-    comment_mail_title = Column(JSON)
-    message_mail_template = Column(JSON)
-    message_mail_title = Column(JSON)
-    tip_expiration_mail_template = Column(JSON)
-    tip_expiration_mail_title = Column(JSON)
-    pgp_alert_mail_title = Column(JSON)
-    pgp_alert_mail_template = Column(JSON)
-    receiver_notification_limit_reached_mail_template = Column(JSON)
-    receiver_notification_limit_reached_mail_title = Column(JSON)
-    export_template = Column(JSON)
-    export_message_recipient = Column(JSON)
-    export_message_whistleblower = Column(JSON)
-    identity_access_authorized_mail_template = Column(JSON)
-    identity_access_authorized_mail_title = Column(JSON)
-    identity_access_denied_mail_template = Column(JSON)
-    identity_access_denied_mail_title = Column(JSON)
-    identity_access_request_mail_template = Column(JSON)
-    identity_access_request_mail_title = Column(JSON)
-    identity_provided_mail_template = Column(JSON)
-    identity_provided_mail_title = Column(JSON)
-    disable_admin_notification_emails = Column(Boolean, default=False)
-    disable_custodian_notification_emails = Column(Boolean, default=False)
-    disable_receiver_notification_emails = Column(Boolean, default=False)
-    tip_expiration_threshold = Column(Integer, default=72)
-    exception_email_address = Column(UnicodeText, default='globaleaks-stackexception@lists.globaleaks.org')
-    exception_email_pgp_key_fingerprint = Column(UnicodeText, default='')
-    exception_email_pgp_key_public = Column(UnicodeText, default='')
-    exception_email_pgp_key_expiration = Column(DateTime, default=datetime_null)
-
-
 class MigrationScript(MigrationBase):
     def epilogue(self):
         old_node = self.session_old.query(self.model_from['Node']).one()
-        old_notif = self.session_old.query(self.model_from['Notification']).one()
 
         with open(os.path.join(Settings.client_path, 'data', 'favicon.ico'), 'rb') as favicon_file:
             data = favicon_file.read()
@@ -138,23 +85,13 @@ class MigrationScript(MigrationBase):
             self.session_new.add(self.model_to['EnabledLanguage'](lang))
 
         self._migrate_l10n_static_config(old_node, 'node')
-        self._migrate_l10n_static_config(old_notif, 'templates')
 
         for var_name, _ in GLConfig_v_35['node'].items():
             old_val = getattr(old_node, var_name)
             self.session_new.add(self.model_to['Config']('node', var_name, old_val))
 
-        for var_name, _ in GLConfig_v_35['notification'].items():
-            old_val = getattr(old_notif, var_name)
-
-            if var_name == 'exception_email_pgp_key_expiration' and old_val is not None:
-                old_val = iso_strf_time(old_val)
-
-            self.session_new.add(self.model_to['Config']('notification', var_name, old_val))
-
         # Migrate private fields
         self.session_new.add(self.model_to['Config']('private', 'receipt_salt', old_node.receipt_salt))
-        self.session_new.add(self.model_to['Config']('private', 'smtp_password', old_notif.password))
 
         # Set old verions that will be then handled by the version update
         self.session_new.add(self.model_to['Config']('private', 'version', 'X.Y.Z'))
