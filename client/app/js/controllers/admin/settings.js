@@ -10,7 +10,7 @@ GL.controller("AdminSettingsCtrl", ["$scope", "$filter", "$http", "Files", "Admi
   if ($scope.Authentication.session.role === "admin") {
     $scope.tabs = $scope.tabs.concat([
       {
-        title: "Theme customization",
+        title: "Files",
         template: "views/admin/settings/tab2.html"
       },
       {
