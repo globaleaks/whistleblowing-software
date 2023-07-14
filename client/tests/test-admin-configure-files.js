@@ -3,9 +3,9 @@ describe("Admin configure custom CSS", function() {
     await browser.gl.utils.login_admin();
 
     await browser.setLocation("admin/settings");
-    await browser.gl.utils.waitUntilPresent(by.cssContainingText("a", "Theme customization"));
+    await browser.gl.utils.waitUntilPresent(by.cssContainingText("a", "Files"));
 
-    await element(by.cssContainingText("a", "Theme customization")).click();
+    await element(by.cssContainingText("a", "Files")).click();
 
     const fileSwitch = await element(by.css(".custom-switch"));
 
@@ -51,7 +51,7 @@ describe("Admin configure custom CSS", function() {
   it("should upload a file and the file should be available for download and deletion", async function() {
     await browser.setLocation("admin/settings");
 
-    await element(by.cssContainingText("a", "Theme customization")).click();
+    await element(by.cssContainingText("a", "Files")).click();
 
     var customFile = browser.gl.utils.makeTestFilePath("documentation.pdf");
 
@@ -63,16 +63,16 @@ describe("Admin configure custom CSS", function() {
       });
     });
 
-    await element(by.cssContainingText("a", "Theme customization")).click();
+    await element(by.cssContainingText("a", "Files")).click();
 
     await element(by.id("fileList")).element(by.cssContainingText("span", "Delete")).click();
   });
 
   it("should be able to disable the file upload", async function() {
     await browser.setLocation("admin/settings");
-    await browser.gl.utils.waitUntilPresent(by.cssContainingText("a", "Theme customization"));
+    await browser.gl.utils.waitUntilPresent(by.cssContainingText("a", "Files"));
 
-    await element(by.cssContainingText("a", "Theme customization")).click();
+    await element(by.cssContainingText("a", "Files")).click();
 
     await element(by.css(".custom-switch")).click();
     expect(await element(by.css(".custom-switch input")).isSelected()).toBeFalsy();
