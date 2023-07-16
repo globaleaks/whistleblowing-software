@@ -12,9 +12,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Log in"
 
-msgid "Theme customization"
-msgstr "Theme customization"
-
 msgid "Languages"
 msgstr "Languages"
 
@@ -449,8 +446,8 @@ msgstr "Grant access"
 msgid "Revoke access"
 msgstr "Revoke access"
 
-msgid "Transfer access"
-msgstr "Transfer access"
+msgid "Transfer"
+msgstr "Transfer"
 
 msgid "Assigned to"
 msgstr "Assigned to"
@@ -479,8 +476,8 @@ msgstr "Select an option"
 msgid "Select your language"
 msgstr "Select your language"
 
-msgid "Grant this recipient ability to transfer their access to reports"
-msgstr "Grant this recipient ability to transfer their access to reports"
+msgid "Grant this recipient ability to transfer reports to other users"
+msgstr "Grant this recipient ability to transfer reports to other users"
 
 msgid "Grant this user the privilege to mask information"
 msgstr "Grant this user the privilege to mask information"
@@ -505,6 +502,18 @@ msgstr "I've read and accept the Privacy Policy"
 
 msgid "Download copy of the Privacy Policy"
 msgstr "Download copy of the Privacy Policy"
+
+msgid "Whistleblowing Policy"
+msgstr "Whistleblowing Policy"
+
+msgid "Accessibility Statement"
+msgstr "Accessibility Statement"
+
+msgid "Voice"
+msgstr "Voice"
+
+msgid "Pseudoanonymization"
+msgstr "Pseudoanonymization"
 
 msgid "File a report"
 msgstr "File a report"
@@ -1440,6 +1449,9 @@ msgstr ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
+
+msgid "Access date"
+msgstr "Access date"
 
 msgid "The provided recovery key is invalid."
 msgstr "The provided recovery key is invalid."
