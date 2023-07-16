@@ -18,14 +18,10 @@ def db_initialize_tenant_submission_statuses(session, tid):
     :param session: An ORM session
     :param tid: A tenant ID
     """
-    for s in [{'id': 'new', 'label': {'en': 'New'}},
-              {'id': 'opened', 'label': {'en': 'Opened'}},
-              {'id': 'closed', 'label': {'en': 'Closed'}}]:
-        state = models.SubmissionStatus()
-        state.id = s['id']
-        state.tid = tid
-        state.label = s['label']
-        session.add(state)
+    for s in [{'tid': tid, 'id': 'new', 'label': {'en': 'New'}, 'tip_timetolive': 0},
+              {'tid': tid, 'id': 'opened', 'label': {'en': 'Opened'}, 'tip_timetolive': 0},
+              {'tid': tid, 'id': 'closed', 'label': {'en': 'Closed'}, 'tip_timetolive': 0}]:
+        session.add(models.SubmissionStatus(s))
 
 
 def db_create(session, desc):
