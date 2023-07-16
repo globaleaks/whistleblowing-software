@@ -180,16 +180,11 @@ def perform_migration(version):
         sys.exit(1)
 
     tmpdir = os.path.abspath(os.path.join(Settings.tmp_path, 'tmp'))
-    if version < 41:
-        orig_db_file = os.path.abspath(os.path.join(Settings.working_path, 'db', 'glbackend-%d.db' % version))
-    else:
-        orig_db_file = os.path.abspath(os.path.join(Settings.working_path, 'globaleaks.db'))
-
-    final_db_file = os.path.abspath(os.path.join(Settings.working_path, 'globaleaks.db'))
+    db_file = os.path.abspath(os.path.join(Settings.working_path, 'globaleaks.db'))
 
     shutil.rmtree(tmpdir, True)
     os.mkdir(tmpdir)
-    shutil.copy(orig_db_file, os.path.join(tmpdir, 'old.db'))
+    shutil.copy(db_file, os.path.join(tmpdir, 'old.db'))
 
     old_db_file = os.path.abspath(os.path.join(tmpdir, 'old.db'))
     session_old = get_session(make_db_uri(old_db_file))
@@ -282,14 +277,7 @@ def perform_migration(version):
         raise
     else:
         # in case of success first copy the new migrated db, then as last action delete the original db file
-        shutil.move(new_db_file, final_db_file)
-
-        if orig_db_file != final_db_file:
-            srm(orig_db_file)
-
-        path = os.path.join(Settings.working_path, 'db')
-        if os.path.exists(path):
-            shutil.rmtree(path)
+        shutil.move(new_db_file, db_file)
     finally:
         # Always cleanup the temporary directory used for the migration
         for f in os.listdir(tmpdir):
