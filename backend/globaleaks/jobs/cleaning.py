@@ -9,7 +9,7 @@ from sqlalchemy.sql.expression import func
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.db import compact_db, db_refresh_tenant_cache
+from globaleaks.db import compact_db, db_get_tracked_attachments, db_get_tracked_files, db_refresh_tenant_cache
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.user import user_serialize_user
@@ -98,37 +98,16 @@ class Cleaning(DailyJob):
                                                   .subquery()
         db_del(session, models.Tenant, models.Tenant.id.in_(subquery))
 
-    @transact
-    def get_files_list(self, session):
-        return [x[0] for x in db_query(session, models.File.id)]
-
-    @transact
-    def get_attachments_list(self, session):
-        return [x[0] for x in db_query(session, models.InternalFile.id)] + \
-               [x[0] for x in db_query(session, models.ReceiverFile.id)] + \
-               [x[0] for x in db_query(session, models.WhistleblowerFile.id)]
-
-    def perform_secure_deletion_of_files(self, valid_files):
+    def perform_secure_deletion_of_files(self, path, valid_files):
         # Delete the customization files not associated to the database
-        for f in os.listdir(self.state.settings.files_path):
+        for f in os.listdir(path):
             if f in valid_files:
                 continue
 
-            path = os.path.join(self.state.settings.files_path, f)
-            timestamp = datetime.fromtimestamp(os.path.getmtime(path))
+            filepath = os.path.join(path, f)
+            timestamp = datetime.fromtimestamp(os.path.getmtime(filepath))
             if is_expired(timestamp, days=1):
-                srm(path)
-
-    def perform_secure_deletion_of_attachments(self, valid_files):
-        # Delete the attachment files not associated to the database
-        for f in os.listdir(self.state.settings.attachments_path):
-            if f in valid_files:
-                continue
-
-            path = os.path.join(self.state.settings.attachments_path, f)
-            timestamp = datetime.fromtimestamp(os.path.getmtime(path))
-            if is_expired(timestamp, days=1):
-                srm(path)
+                srm(filepath)
 
     def perform_secure_deletion_of_temporary_files(self):
         # Delete the outdated temp files if older than 1 day
@@ -167,11 +146,11 @@ class Cleaning(DailyJob):
         for tid in self.state.tenants:
             yield tw(self.db_check_for_expiring_submissions, tid)
 
-        valid_files = yield self.get_files_list()
-        self.perform_secure_deletion_of_files(valid_files)
+        valid_files = yield tw(db_get_tracked_files)
+        self.perform_secure_deletion_of_files(self.state.settings.files_path, valid_files)
 
-        valid_files = yield self.get_attachments_list()
-        self.perform_secure_deletion_of_attachments(valid_files)
+        valid_files = yield tw(db_get_tracked_attachments)
+        self.perform_secure_deletion_of_files(self.state.settings.attachments_path, valid_files)
 
         self.perform_secure_deletion_of_temporary_files()
 

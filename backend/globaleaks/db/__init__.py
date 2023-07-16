@@ -108,13 +108,22 @@ def update_db():
 
 def db_get_tracked_files(session):
     """
+    Transaction for retrieving the list of files tracked by the application database
+    :param session: An ORM session
+    :return: The list of filenames of the files
+    """
+    return [x[0] for x in session.query(models.File.id)]
+
+
+def db_get_tracked_attachments(session):
+    """
     Transaction for retrieving the list of attachment files tracked by the application database
     :param session: An ORM session
     :return: The list of filenames of the attachment files
     """
-    ifiles = list(session.query(models.InternalFile.id).distinct())
-    rfiles = list(session.query(models.ReceiverFile.filename).distinct())
-    wbfiles = list(session.query(models.WhistleblowerFile.id).distinct())
+    ifiles = session.query(models.InternalFile.id).all()
+    rfiles = session.query(models.ReceiverFile.id).all()
+    wbfiles = session.query(models.WhistleblowerFile.id).all()
 
     return [x[0] for x in ifiles + rfiles + wbfiles]
 
@@ -125,7 +134,7 @@ def sync_clean_untracked_files(session):
     Transaction for removing files that are not tracked by the application database
     :param session: An ORM session
     """
-    tracked_files = db_get_tracked_files(session)
+    tracked_files = db_get_tracked_attachments(session)
     for filesystem_file in os.listdir(Settings.attachments_path):
         if filesystem_file not in tracked_files:
             file_to_remove = os.path.join(Settings.attachments_path, filesystem_file)
