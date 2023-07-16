@@ -124,8 +124,8 @@ def db_wizard(session, tid, hostname, request):
 
         context.questionnaire_id = root_tenant_node.get_val('default_questionnaire')
 
-        # Set data retention policy to 18 months
-        context.tip_timetolive = 540
+        # Set data retention policy to 12 months
+        context.tip_timetolive = 365
 
         # Delete the admin user
         request['admin_password'] = ''
