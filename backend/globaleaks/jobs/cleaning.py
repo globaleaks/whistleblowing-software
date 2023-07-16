@@ -105,7 +105,7 @@ class Cleaning(DailyJob):
     @transact
     def get_attachments_list(self, session):
         return [x[0] for x in db_query(session, models.InternalFile.id)] + \
-               [x[0] for x in db_query(session, models.ReceiverFile.filename)] + \
+               [x[0] for x in db_query(session, models.ReceiverFile.id)] + \
                [x[0] for x in db_query(session, models.WhistleblowerFile.id)]
 
     def perform_secure_deletion_of_files(self, valid_files):

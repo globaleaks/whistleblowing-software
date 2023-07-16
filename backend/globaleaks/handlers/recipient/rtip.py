@@ -654,9 +654,9 @@ class ReceiverFileDownload(BaseHandler):
 
     @transact
     def download_rfile(self, session, tid, user_id, file_id):
-        rfile, ifile, rtip, pgp_key = db_get(session,
-                                             (models.ReceiverFile,
-                                              models.InternalFile,
+        ifile, rfile, rtip, pgp_key = db_get(session,
+                                             (models.InternalFile,
+                                              models.ReceiverFile,
                                               models.ReceiverTip,
                                               models.User.pgp_key_public),
                                              (models.ReceiverTip.receiver_id == models.User.id,
@@ -671,18 +671,16 @@ class ReceiverFileDownload(BaseHandler):
         log.debug("Download of file %s by receiver %s" %
                   (rfile.internalfile_id, rtip.receiver_id))
 
-        if rfile.filename:
-            filename = rfile.filename
-        else:
-            filename = rfile.internalfile_id
-
-        return ifile.name, filename, rtip.crypto_tip_prv_key, rtip.deprecated_crypto_files_prv_key, pgp_key
+        return ifile.name, ifile.id, rfile.id, rtip.crypto_tip_prv_key, rtip.deprecated_crypto_files_prv_key, pgp_key
 
     @inlineCallbacks
     def get(self, rfile_id):
-        name, filename, tip_prv_key, tip_prv_key2, pgp_key = yield self.download_rfile(self.request.tid, self.session.user_id, rfile_id)
+        name, ifile_id, rfile_id, tip_prv_key, tip_prv_key2, pgp_key = yield self.download_rfile(self.request.tid, self.session.user_id, rfile_id)
 
-        filelocation = os.path.join(self.state.settings.attachments_path, filename)
+        filelocation = os.path.join(self.state.settings.attachments_path, rfile_id)
+        if not os.path.exists(filelocation):
+            filelocation = os.path.join(self.state.settings.attachments_path, ifile_id)
+
         directory_traversal_check(self.state.settings.attachments_path, filelocation)
         self.check_file_presence(filelocation)
 
@@ -746,6 +744,10 @@ class RTipWBFileHandler(BaseHandler):
     @inlineCallbacks
     def get(self, wbfile_id):
         name, filename, tip_prv_key, pgp_key = yield self.download_wbfile(self.request.tid, self.session.user_id, wbfile_id)
+
+        filelocation = os.path.join(self.state.settings.attachments_path, filename)
+        if not os.path.exists(filelocation):
+            filelocation = os.path.join(self.state.settings.attachments_path, filename)
 
         filelocation = os.path.join(self.state.settings.attachments_path, filename)
         directory_traversal_check(self.state.settings.attachments_path, filelocation)
