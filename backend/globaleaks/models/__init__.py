@@ -745,7 +745,6 @@ class _ReceiverFile(Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     internalfile_id = Column(UnicodeText(36), nullable=False, index=True)
     receivertip_id = Column(UnicodeText(36), nullable=False, index=True)
-    filename = Column(UnicodeText(36), default="", nullable=False)
     access_date = Column(DateTime, default=datetime_null, nullable=False)
     new = Column(Boolean, default=True, nullable=False)
 
