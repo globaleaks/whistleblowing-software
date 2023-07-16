@@ -46,7 +46,9 @@ from globaleaks.db.migrations.update_63 import Subscriber_v_62
 from globaleaks.db.migrations.update_64 import Context_v_63, InternalTip_v_63
 from globaleaks.db.migrations.update_65 import Comment_v_64, \
     IdentityAccessRequest_v_64, InternalFile_v_64, InternalTip_v_64, \
-    Message_v_64, ReceiverTip_v_64, User_v_64, WhistleblowerFile_v_64
+    Message_v_64, ReceiverTip_v_64, \
+    SubmissionStatus_v_64, SubmissionSubStatus_v_64, \
+    User_v_64, WhistleblowerFile_v_64
 
 from globaleaks.orm import get_engine, get_session, make_db_uri
 from globaleaks.models import config, Base
@@ -87,8 +89,8 @@ migration_mapping = OrderedDict([
     ('ReceiverTip', [ReceiverTip_v_52, 0, 0, 0, 0, 0, 0, 0, ReceiverTip_v_57, 0, 0, 0, 0, ReceiverTip_v_58, ReceiverTip_v_59, ReceiverTip_v_61, 0, ReceiverTip_v_64, 0, 0, models._ReceiverTip]),
     ('Redaction', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._Redaction]),
     ('Redirect', [-1, -1, -1, -1, models._Redirect, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('SubmissionStatus', [SubmissionStatus_v_46, 0, SubmissionStatus_v_49, 0, 0, SubmissionStatus_v_51, 0, models._SubmissionStatus, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('SubmissionSubStatus', [SubmissionSubStatus_v_46, 0, SubmissionSubStatus_v_49, 0, 0, SubmissionSubStatus_v_51, 0, models._SubmissionSubStatus, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('SubmissionStatus', [SubmissionStatus_v_46, 0, SubmissionStatus_v_49, 0, 0, SubmissionStatus_v_51, 0, SubmissionStatus_v_64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._SubmissionStatus]),
+    ('SubmissionSubStatus', [SubmissionSubStatus_v_46, 0, SubmissionSubStatus_v_49, 0, 0, SubmissionSubStatus_v_51, 0, SubmissionSubStatus_v_64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._SubmissionSubStatus]),
     ('SubmissionStatusChange', [SubmissionStatusChange_v_54, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
     ('Step', [Step_v_51, 0, 0, 0, 0, 0, 0, models._Step, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0, 0]),
     ('Subscriber', [Subscriber_v_52, 0, 0, 0, 0, 0, 0, 0, Subscriber_v_62, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._Subscriber, 0, 0]),
