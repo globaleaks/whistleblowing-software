@@ -233,7 +233,7 @@ var GL = angular.module("GL", [
       when("/admin/contexts", {
         templateUrl: "views/admin/contexts.html",
         controller: "AdminCtrl",
-        header_title: "Contexts",
+        header_title: "Channels",
         sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
