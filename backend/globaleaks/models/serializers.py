@@ -173,9 +173,6 @@ def serialize_itip(session, internaltip, language):
                           .filter(models.Comment.internaltip_id == internaltip.id):
         ret['comments'].append(serialize_comment(session, comment))
 
-    for wbfile in session.query(models.WhistleblowerFile) \
-                         .filter(models.WhistleblowerFile.internaltip_id == internaltip.id):
-        ret['wbfiles'].append(serialize_wbfile(session, wbfile))
 
     for itd in session.query(models.InternalTipData).filter(models.InternalTipData.internaltip_id == internaltip.id):
         ret['data'][itd.key] = itd.value
@@ -228,10 +225,15 @@ def serialize_rtip(session, itip, rtip, language):
         if 'iar' not in ret or ret['iar']['reply'] == 'denied':
             del ret['data']['whistleblower_identity']
 
+
     for ifile, rfile in session.query(models.InternalFile, models.ReceiverFile) \
                                .filter(models.InternalFile.id == models.ReceiverFile.internalfile_id,
                                        models.ReceiverFile.receivertip_id == rtip.id):
         ret['rfiles'].append(serialize_rfile(session, ifile, rfile))
+
+    for wbfile in session.query(models.WhistleblowerFile) \
+                         .filter(models.WhistleblowerFile.internaltip_id == itip.id):
+        ret['wbfiles'].append(serialize_wbfile(session, wbfile))
 
     return ret
 
@@ -250,6 +252,11 @@ def serialize_wbtip(session, itip, language):
     for ifile in session.query(models.InternalFile) \
                         .filter(models.InternalFile.internaltip_id == itip.id):
         ret['rfiles'].append(serialize_ifile(session, ifile))
+
+    for wbfile in session.query(models.WhistleblowerFile) \
+                         .filter(models.WhistleblowerFile.internaltip_id == itip.id,
+                                 models.WhistleblowerFile.visibility == 0):
+        ret['wbfiles'].append(serialize_wbfile(session, wbfile))
 
     return ret
 
