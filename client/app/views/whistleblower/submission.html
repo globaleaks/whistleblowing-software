@@ -44,7 +44,6 @@
         <i class="fa-solid fa-arrow-circle-right"></i>
       </button>
 
-
       <button id="SubmitButton" class="btn btn-primary" data-ng-show="!hasNextStep()" data-ng-click="completeSubmission()" data-ng-disabled="!Authentication.session || submission.blocked || done" type="submit" data-translate>Submit</button>
 
       <div data-ng-show="!hasNextStep() && done" data-ng-include="'views/partials/rfiles_upload_status.html'"></div>

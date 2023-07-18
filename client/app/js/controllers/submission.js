@@ -409,9 +409,9 @@ controller("AdditionalQuestionnaireCtrl",
     $scope.done = true;
 
     for (var key in $scope.uploads) {
-        if ($scope.uploads[key]) {
-          $scope.uploads[key].resume();
-        }
+      if ($scope.uploads[key]) {
+        $scope.uploads[key].resume();
+      }
     }
 
     $scope.interval = $interval(function() {
