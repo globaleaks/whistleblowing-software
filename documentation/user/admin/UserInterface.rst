@@ -131,7 +131,9 @@ The software enables you to create questions of the following types:
 
    9. Date range
 
-   10. Question group
+   10. Voice
+
+   11. Question group
 
 Common Question Properties
 ...........................
