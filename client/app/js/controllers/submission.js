@@ -102,7 +102,7 @@ GL.controller("SubmissionCtrl",
       return false;
     }
 
-    if (!$scope.checkForInvalidFields()) {
+    if (fieldUtilities.onAnswersUpdate($scope) || !$scope.checkForInvalidFields()) {
       return false;
     }
 
