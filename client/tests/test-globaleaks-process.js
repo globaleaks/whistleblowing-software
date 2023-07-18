@@ -110,5 +110,5 @@ describe("globaleaks process", function() {
       await browser.gl.utils.takeScreenshot("recipient/report.png");
       await browser.gl.utils.logout();
     });
-  };
+  }
 });

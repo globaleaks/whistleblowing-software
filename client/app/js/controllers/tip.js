@@ -248,11 +248,11 @@ GL.controller("TipCtrl",
     };
 
     $scope.fetchAudioFiles = function() {
-      $scope.audiolist = {}
+      $scope.audiolist = {};
 
       for (let file of $scope.tip.rfiles) {
         $scope.Utils.load("api/recipient/rfiles/" + file.id).then(function(url) {
-          $scope.audiolist[file['reference_id']] = url;
+          $scope.audiolist[file["reference_id"]] = url;
         });
       }
     };
