@@ -1,4 +1,5 @@
 # -*- coding: UTF-8
+import base64
 import os
 import shutil
 
@@ -180,7 +181,6 @@ class WhistleblowerFile_v_64(Model):
 
 class MigrationScript(MigrationBase):
     renamed_attrs = {
-        'InternalTip': {'crypto_files_pub_key': 'deprecated_crypto_files_pub_key'},
         'ReceiverTip': {'crypto_files_prv_key': 'deprecated_crypto_files_prv_key'},
     }
 
@@ -223,6 +223,7 @@ class MigrationScript(MigrationBase):
 
             self.session_new.add(new_obj)
 
+
     def migrate_InternalFile(self):
         for old_obj in self.session_old.query(self.model_from['InternalFile']):
             srcpath = os.path.abspath(os.path.join(Settings.attachments_path, old_obj.filename))
@@ -236,6 +237,21 @@ class MigrationScript(MigrationBase):
                     setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
+
+    def migrate_InternalTip(self):
+        for old_obj in self.session_old.query(self.model_from['InternalTip']):
+            new_obj = self.model_to['InternalTip']()
+            for key in new_obj.__mapper__.column_attrs.keys():
+                if key in old_obj.__mapper__.column_attrs.keys():
+                    setattr(new_obj, key, getattr(old_obj, key))
+                elif key == 'deprecated_crypto_files_pub_key':
+                    new_obj.deprecated_crypto_files_pub_key = old_obj.crypto_files_pub_key
+
+            if new_obj.crypto_tip_pub_key and new_obj.label:
+                new_obj.label = base64.b64encode(GCE.asymmetric_encrypt(new_obj.crypto_tip_pub_key, new_obj.label))
+
+            self.session_new.add(new_obj)
+
 
     def migrate_ReceiverFile(self):
         for old_obj, old_ifile in self.session_old.query(self.model_from['ReceiverFile'], self.model_from['InternalFile']) \
