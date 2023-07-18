@@ -8,6 +8,13 @@
     </div>
   </span>
 
+  <span data-ng-switch-when="voice">
+    <i class="fa-solid fa-file-audio" data-ng-if="Authentication.session.role === 'whistleblower'"></i>
+    <div class="audio-player-wrapper" data-ng-disabled="!audiolist[field.id]" data-ng-if="Authentication.session.role === 'receiver'">
+      <audio data-ng-src="{{audiolist[field.id]}}" controls class="audio-player"></audio>
+    </div>
+  </span>
+
   <span data-ng-if="entry['value']" data-ng-switch-when="selectbox|multichoice" data-ng-switch-when-separator="|">
     <div data-ng-repeat="option in field.options">
       <span data-ng-if="entry['value'] === option.id">{{option.label}}</span>

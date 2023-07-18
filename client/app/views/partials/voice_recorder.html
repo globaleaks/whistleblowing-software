@@ -1,0 +1,38 @@
+<div data-ng-init="fileinput = field ? field.id : 'status_page'; uploads[fileinput] = {}" class="audio-box">
+  <div data-ng-controller="AudioUploadCtrl"
+       data-flow-init="{target: fileupload_url}"
+       data-flow-files-submitted="$flow.upload()"
+       data-flow-name="uploads[fileinput]">
+    <div class="row">
+      <div class="col-md-6">
+        <button class="btn" data-ng-class="{'text-secondary': !activeButton, 'text-danger': activeButton === 'record' }" data-ng-disabled="isRecording || uploads[fileinput].files.length" data-ng-click="startRecording(field.id, field.attrs.pseudoanonymization.value)">
+          <i class="fas fa-microphone"></i>
+        </button>
+        <button class="btn" data-ng-if="activeButton === 'record'" data-ng-click="stopRecording()">
+          <i class="fas fa-stop"></i>
+        </button>
+      </div>
+      <div class="col-md-6 text-right">
+        <button class="btn text-danger blink" data-ng-if="activeButton === 'record'">
+          <i class="fas fa-circle-dot"></i>
+        </button>
+        <button class="btn text-danger" data-ng-show="!isRecording && seconds" data-ng-click="deleteRecording()">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <input data-ng-attr-id="customFile-{{fileinput}}" data-ng-model="_fakemodel[fileinput]" data-ng-required="field && field.required && !uploads[fileinput].files.length" name="input-{{entryIndex}}" type="file" />
+        <div id="{{fieldEntry}}-audio" class="audio-player-wrapper" data-ng-disabled="isRecording || seconds < field.attrs.min_len">
+          <audio data-ng-src="{{audioPlayer}}" data-ng-if="audioPlayer" controls class="audio-player"></audio>
+        </div>
+      </div>
+    </div>
+    <div class="row" data-ng-show="seconds > 0">
+      <div class="col-md-12 text-right">
+        <div class="btn" data-ng-class="{'text-danger': seconds < field.attrs.min_len.value}">{{seconds}}/{{field.attrs.max_len.value}}</div>
+      </div>
+    </div>
+  </div>
+ </div>

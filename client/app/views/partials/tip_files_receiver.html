@@ -20,7 +20,7 @@
           </tr>
         </thead>
         <tbody id="fileListBody">
-          <tr id="file-{{$index}}" data-ng-repeat="file in tip.rfiles" data-ng-init="viewSupported = supportedViewTypes.includes(file.type)">
+          <tr id="file-{{$index}}" data-ng-repeat="file in tip.rfiles" data-ng-init="viewSupported = supportedViewTypes.includes(file.type)" data-ng-if="!file.reference_id">
             <td>{{file.name}}</td>
             <td data-ng-if="public.node.viewer">
               <button class="btn btn-sm btn-primary tip-action-views-file"

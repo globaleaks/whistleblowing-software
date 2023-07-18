@@ -92,6 +92,7 @@ def serialize_ifile(session, ifile):
         'name': ifile.name,
         'size': ifile.size,
         'type': ifile.content_type,
+        'reference_id': ifile.reference_id
     }
 
 
@@ -110,7 +111,8 @@ def serialize_rfile(session, ifile, rfile):
         'creation_date': ifile.creation_date,
         'name': ifile.name,
         'size': ifile.size,
-        'type': ifile.content_type
+        'type': ifile.content_type,
+        'reference_id': ifile.reference_id
     }
 
 

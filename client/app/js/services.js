@@ -1071,6 +1071,12 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       };
     },
 
+    load: function(url) {
+      return new TokenResource().$get().then(function(token) {
+        return url + "?token=" + token.id + ":" + token.answer;
+      });
+    },
+
     download: function(url) {
       return new TokenResource().$get().then(function(token) {
         $window.open(url + "?token=" + token.id + ":" + token.answer);
@@ -1560,7 +1566,7 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
                   }
                 }
               }
-            } else if (field.type === "fileupload") {
+            } else if (["fileupload", "voice"].indexOf(field.type) > -1) {
               entry.required_status = field.required && (!scope.uploads[field.id] || !scope.uploads[field.id].files.length);
             } else {
               entry.required_status = field.required && !entry["value"];

@@ -212,6 +212,7 @@ GL.controller("TipCtrl",
         $scope.score = $scope.tip.score;
         $scope.ctx = "rtip";
         $scope.preprocessTipAnswers(tip);
+        $scope.fetchAudioFiles();
 
         $scope.exportTip = RTipExport;
         $scope.downloadRFile = RTipDownloadRFile;
@@ -244,6 +245,16 @@ GL.controller("TipCtrl",
       $scope.tip.updateSubmissionStatus().then(function() {
         $scope.tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText($scope.tip.status, $scope.tip.substatus, $scope.submission_statuses);
       });
+    };
+
+    $scope.fetchAudioFiles = function() {
+      $scope.audiolist = {}
+
+      for (let file of $scope.tip.rfiles) {
+        $scope.Utils.load("api/recipient/rfiles/" + file.id).then(function(url) {
+          $scope.audiolist[file['reference_id']] = url;
+        });
+      }
     };
 
     $scope.newComment = function() {

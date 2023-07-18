@@ -958,3 +958,37 @@ html[dir="ltr"] #Receipt {
 .https-files {
   margin: 1em 0;
 }
+
+
+.audio-box {
+  position: relative;
+  border: 1px solid #f5f7fa;
+  background-color: #f5f7fa;
+  border-radius: 5px;
+  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+.audio-player {
+  background: #f5f7fa;
+  border-radius: 50px;
+  width: 80%;
+  margin: 1em;
+  border: 1px solid #1d1f24;
+}
+
+.audio-player-wrapper[disabled] .audio-player{
+  opacity: 0.5;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.blink {
+  animation: blinker 1.5s linear infinite;
+}

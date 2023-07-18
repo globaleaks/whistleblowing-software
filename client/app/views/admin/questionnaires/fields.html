@@ -23,6 +23,7 @@
                 <span data-ng-switch-when="tos" data-translate>Terms of service</span>
                 <span data-ng-switch-when="date" data-translate>Date</span>
                 <span data-ng-switch-when="daterange" data-translate>Date range</span>
+                <span data-ng-switch-when="voice" data-translate>Voice</span>
                 <span data-ng-switch-when="fieldgroup" data-translate>Question group</span>
                 <span data-ng-switch-default="default">{{field.type}}</span>
               </span>
@@ -155,14 +156,14 @@
         </div>
         <div class="row" data-ng-if="field.instance !== 'reference'">
           <div class="col-md-12">
-            <div data-ng-if="field.type === 'inputbox' || field.type === 'textarea'">
+            <div data-ng-if="['inputbox', 'textarea', 'voice'].indexOf(field.type) != -1">
               <div class="form-group">
-                <label data-translate>Minimum number of input characters</label>
+                <label data-translate>Min</label>
                 <input data-ng-model="field.attrs.min_len.value" type="text" class="form-control" data-ng-disabled="!field.editable" />
                 <div data-translate>Set the value to 0 to disable this feature.</div>
               </div>
               <div class="form-group">
-                <label data-translate>Maximum number of input characters</label>
+                <label data-translate>Max</label>
                 <input data-ng-model="field.attrs.max_len.value" type="text" class="form-control" data-ng-disabled="!field.editable" />
                 <div data-translate>Set the value to 0 to disable this feature.</div>
               </div>

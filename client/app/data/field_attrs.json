@@ -38,6 +38,10 @@
     "multimedia_type": {"type": "unicode", "value": ""},
     "multimedia_url": {"type": "unicode", "value": ""}
  },
+ "voice": {
+    "min_len": {"type": "int", "value": "10"},
+    "max_len": {"type": "int", "value": "600"}
+ },
  "whistleblower_identity": {
    "text_shown_upon_negative_answer": {"type":"localized", "value": ""}
  }

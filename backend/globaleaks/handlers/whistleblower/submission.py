@@ -235,6 +235,7 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
         new_file.content_type = uploaded_file['type']
         new_file.size = uploaded_file['size']
         new_file.internaltip_id = itip.id
+        new_file.reference_id = uploaded_file['reference_id']
         session.add(new_file)
 
     for user in receivers:

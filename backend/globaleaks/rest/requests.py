@@ -49,6 +49,7 @@ field_type_regexp = (r'^('
                      'email|'
                      'date|'
                      'daterange|'
+                     'voice|'
                      'fieldgroup)$')
 
 field_attr_type_regexp = (r'^('
