@@ -436,7 +436,8 @@ def get_dummy_file(content=None):
         'size': len(content),
         'filename': os.path.basename(temporary_file.filepath),
         'type': content_type,
-        'submission': False
+        'submission': False,
+        "reference_id": ''
     }
 
 
