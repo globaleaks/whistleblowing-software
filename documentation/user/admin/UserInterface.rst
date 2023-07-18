@@ -48,9 +48,9 @@ In this section is configurable the logo and all the texts of the main user inte
 
 Theme Customization
 ...................
-In this section could be loaded CSS and Javascript files necessary to customize the interface.
+In this section could be loaded CSS and Javascript and other files necessary to customize the interface.
 
-.. image:: ../../images/admin/site_settings_theme_customization.png
+.. image:: ../../images/admin/site_settings_files.png
 
 Languages
 .........
