@@ -538,10 +538,10 @@ SignupDesc = {
     'role': alphanumeric_str_regexp,
     'phone': numeric_str_regexp,
     'email': email_regexp,
-    'organization_name': alphanumeric_str_regexp,
+    'organization_name': str,
     'organization_tax_code': alphanumeric_str_regexp,
     'organization_vat_code': alphanumeric_str_regexp,
-    'organization_location': alphanumeric_str_regexp,
+    'organization_location': str,
     'tos1': bool,
     'tos2': bool
 }
