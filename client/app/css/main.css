@@ -992,3 +992,7 @@ html[dir="ltr"] #Receipt {
 .blink {
   animation: blinker 1.5s linear infinite;
 }
+
+#Policies * {
+ display: inline;
+}

@@ -43,6 +43,7 @@
       <input class="form-control" data-ng-model="resources.node.whistleblowing_button" type="text" />
     </div>
 
+
     <div class="form-group" data-ng-if="public.node.mode === 'default'">
       <div class="form-group">
         <label data-translate>Disclaimer</label>
@@ -50,7 +51,24 @@
           <textarea class="form-control" data-ng-model="resources.node.disclaimer_text"></textarea>
         </div>
       </div>
+    </div>
 
+    <div class="form-group">
+      <label data-translate>Whistleblowing Policy</label>
+      <input name="footer_whistleblowing_policy" class="form-control" data-ng-model="resources.node.footer_whistleblowing_policy" data-ng-pattern="CONSTANTS.secure_or_local_url_regexp" data-ng-class="{'is-invalid': contentForm.footer_whistleblowing_policy.$error.pattern}" type="text" />
+    </div>
+
+    <div class="form-group">
+      <label data-translate>Privacy Policy</label>
+      <input name="footer_privacy_policy" class="form-control" data-ng-model="resources.node.footer_privacy_policy" data-ng-pattern="CONSTANTS.secure_or_local_url_regexp" data-ng-class="{'is-invalid': contentForm.footer_privacy_policy.$error.pattern}" type="text" />
+    </div>
+
+    <div class="form-group">
+      <label data-translate>Accessibility Declaration</label>
+      <input name="footer_accessibility_declaration" class="form-control" data-ng-model="resources.node.footer_accessibility_declaration" data-ng-pattern="CONSTANTS.secure_or_local_url_regexp" data-ng-class="{'is-invalid': contentForm.footer_accessibility_declaration.$error.pattern}" type="text" />
+    </div>
+
+    <div class="form-group" data-ng-if="public.node.mode === 'default'">
       <div>
         <label data-translate>Footer</label>
         <div>

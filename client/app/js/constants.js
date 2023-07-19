@@ -7,5 +7,6 @@ GL.constant("CONSTANTS", {
    "phonenumber_regexp": /^[+]?[ \d]+$/,
    "hostname_regexp": /^[a-z0-9-.]+$|^$/,
    "https_regexp": /^https:\/\/([a-z0-9-]+)\.(.*)$|^$/,
+   "secure_or_local_url_regexp": /^https:\/\/([a-z0-9-]+)\.(.*)$|^\/(.*)$|^$/,
    "uuid_regexp": /^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$/
-});
+})
