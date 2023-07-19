@@ -1,0 +1,100 @@
+<div class="col-md-10">
+
+  <div class="row col-md-12">
+    <span id="tip-action-reload"
+          data-ng-click="reload()"
+          data-uib-tooltip="{{'Refresh' | translate}}"
+          class="btn btn-outline-secondary custom-translate">
+      <i class="fa-solid fa-sync"></i>
+    </span>
+    &nbsp;&nbsp;&nbsp;<span id="tip-action-export"
+          data-ng-click="export()"
+          data-uib-tooltip="{{'Export' | translate}}"
+          class="btn btn-outline-secondary custom-translate">
+      <i class="fa-solid fa-file-export"></i>
+    </span>
+  </div>
+  <br>
+  <div class="row col-md-10">
+    <span data-translate="" class="custom-bold">Start date</span>
+    <div class="col-md-2">
+      <input type="text" class="form-control custom-translate" id="startDate" ng-click="openStartDatePicker()"
+        ng-model="startDate" uib-datepicker-popup="{{format}}" is-open="startDatePickerOpen" ng-change="initialize()" />
+    </div>
+    &nbsp;&nbsp;<span data-translate="" class="custom-bold">End date</span>
+    <div class="col-md-2">
+      <input type="text" class="form-control custom-translate" id="endDate" ng-click="openEndDatePicker()"
+        ng-model="endDate" uib-datepicker-popup="{{format}}" is-open="endDatePickerOpen" ng-change="initialize()"/>
+    </div>
+    &nbsp;&nbsp;<span data-translate="" class="custom-bold">Channel</span>
+    <div class="col-md-2"><i><select class="form-control custom-translate" data-ng-model="channel"
+          data-ng-options="item for item in reportingChannel" ng-change="initialize()"></select></i></div>
+  </div>
+
+  <hr><br><br>
+  <h3>Submission Status</h3><br>
+  <p>Below, you will find a comprehensive collection of text and relevant information pertaining to your submission. This includes all the necessary details, data, or content associated with your submission. Please review the following carefully to ensure that you have access to all the information you need</p>
+  <table class="table table-striped" data-ng-init="sortKey = 'creation_date'; sortReverse=true;">
+    <thead>
+      <tr>
+        <th></th>
+        <th ng-repeat="item in staticData['submissionStatus']['label']">{{ item }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td ng-repeat="item in staticData['submissionStatus']['data'] track by $index">{{ item }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="row">
+    <div class="col">
+      <canvas width="1200" class="lineGraph" id="statusBarChart"></canvas>
+    </div>
+  </div>
+  <hr> <br><br>
+  <h3>Interection Report</h3><br>
+  <p>Below, you will find the complete text and details of the interaction report between the whistleblower and the receiver. This report provides a comprehensive account of the communication, exchanges, or discussions that have taken place between the two parties. Please review the following information to gain a complete understanding of the interaction between the whistleblower and the receiver</p>
+  <table class="table table-striped" data-ng-init="sortKey = 'creation_date'; sortReverse=true;">
+    <thead>
+      <tr>
+        <th></th>
+        <th ng-repeat="item in staticData['interactionStatus']['label']">
+          {{item}}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td ng-repeat="item in staticData['interactionStatus']['data'] track by $index">
+          {{item}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="col">
+      <canvas width="1200" class="lineGraph" id="perMonthLineGraph"></canvas>
+    </div>
+  </div>
+  <hr> <br><br>
+  <div class="row">
+    <div class="col">
+      <h3>Submission Labels BarGraph</h3>
+      <p>Presented below is a BarGraph illustrating the distribution of labels assigned to submissions. This visual representation provides an overview of the frequency and occurrence of different labels within the submitted data. By reviewing this graph, you can gain valuable insights into the prevalence and distribution of various labels across the submissions</p>
+      <canvas width="1200" class="lineGraph" id="labelCountsChart"></canvas>
+    </div>
+  </div>
+  <hr> <br><br>
+  <h3>Submission Channels BarGraph</h3>
+  <p>Displayed below is a BarGraph representing the different channels through which submissions have been received. This graphical representation provides an overview of the various submission channels and their respective contribution to the overall submissions. Please take a look at the graph to gain insights into the distribution of submissions across different channels</p>
+  <div class="row">
+    <div class="col">
+      <canvas width="1200" class="lineGraph" id="dropdownOptionsChart"></canvas>
+    </div>
+  </div>
+  <br><br><br><br><br><br>
+</div>
