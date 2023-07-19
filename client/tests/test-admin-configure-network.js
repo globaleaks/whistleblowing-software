@@ -48,8 +48,6 @@ describe("admin configure network", function() {
     await element(modal_action).click();
     await browser.wait(protractor.ExpectedConditions.stalenessOf(element(by.id("deleteKey"))));
 
-    await element(by.id("HTTPSManualMode")).click();
-
     // Upload key
     await element(by.css("div.card.key input[type=\"file\"]")).sendKeys(files.key);
 
