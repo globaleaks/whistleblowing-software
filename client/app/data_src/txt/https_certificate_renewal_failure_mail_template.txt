@@ -8,7 +8,7 @@ Expiration date: {ExpirationDate}
 
 Without a valid certificate, the platform will be accessible in a secure way only via Tor.
 
-{Url}
+{LoginUrl}
 
 Kind regards,
 {NodeName}
