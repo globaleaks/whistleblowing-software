@@ -504,17 +504,21 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
 
             var label = tip.label;
             if (label) {
-              var labels = label.split(" "); // Split the label by space
-              labels.forEach(function(word) {
-                if(word.length>0 && word[0]=="$"){
-                  if ($scope.labelCounts[word]) {
-                    $scope.labelCounts[word]++;
-                  } else {
-                    $scope.labelCounts[word] = 1;
-                  }
-                }
+              if(label.indexOf("$") == -1){
+                $scope.unlabeledCount++;
+              }else{
+                var labels = label.split(" ");
                 $scope.labeledCountDefault++;
-              });
+                labels.forEach(function(word) {
+                  if(word.length>0 && word[0]=="$"){
+                    if ($scope.labelCounts[word]) {
+                      $scope.labelCounts[word]++;
+                    } else {
+                      $scope.labelCounts[word] = 1;
+                    }
+                  }
+                });
+              }
             } else {
               $scope.unlabeledCount++;
               $scope.unlabeledCountDefault++;
@@ -699,8 +703,8 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
           ($scope.statPercentageCalculator($scope.statusCount["New"], $scope.totalReports)).toFixed(2) + " %",
           ($scope.statPercentageCalculator($scope.statusCount["Opened"], $scope.totalReports)).toFixed(2) + " %",
           ($scope.statPercentageCalculator($scope.statusCount["Closed"], $scope.totalReports)).toFixed(2) + " %",
-          ($scope.statPercentageCalculator($scope.unlabeledCountDefault, $scope.totalReports)).toFixed(2) + " %",
-          ($scope.statPercentageCalculator($scope.labeledCountDefault, $scope.totalReports)).toFixed(2) + " %"]
+          ($scope.statPercentageCalculator($scope.labeledCountDefault, $scope.totalReports)).toFixed(2) + " %",
+          ($scope.statPercentageCalculator($scope.unlabeledCountDefault, $scope.totalReports)).toFixed(2) + " %"]
 
         var interactionStatus = {}
         interactionStatus['label'] = ['Total Report', 'Average closure time', 'Total Unanswered Tips', 'Number of interections', 'Tor Connections', 'Reciprocating whistle blower']
