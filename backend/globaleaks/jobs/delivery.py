@@ -13,14 +13,7 @@ from globaleaks.utils.log import log
 from globaleaks.utils.pgp import PGPContext
 from globaleaks.handlers.base import BaseHandler
 
-
-
 __all__ = ['Delivery']
-
-
-
-
-
 
 @transact
 def file_delivery(session):

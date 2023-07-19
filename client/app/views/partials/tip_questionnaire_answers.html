@@ -20,7 +20,6 @@
         <dd>
           <div data-ng-if="step.enabled" data-ng-repeat="field in step.children | orderBy:['y', 'x'] | filter:{ type: '!fileupload'}">
             <span data-ng-init="fieldAnswers=questionnaire.answers" data-ng-include="'views/partials/tip_field.html'"></span>
-            <!-- <audio data-ng-if="field.type == 'audioUpload'" data-ng-src="{{questionnaire.answers}}"  controls class="audio-player"></audio> -->
           </div>
         </dd>
       </div>

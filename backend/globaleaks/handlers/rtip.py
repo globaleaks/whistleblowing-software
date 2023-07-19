@@ -218,7 +218,6 @@ def db_update_masking(session, tid, user_id, itip_id,id, masking_data):
 
         db_log(session, tid=tid, type='update_masking', user_id=user_id, object_id=id, data=log_data)
     else:
-        # Handle the case when the Tip instance with the provided ID doesn't exist
         raise ValueError(f"Tip with ID '{itip_id}' not found.")
 
 def db_update_message(session, tid, user_id, itip_id, masking_data):
@@ -245,7 +244,6 @@ def db_update_message(session, tid, user_id, itip_id, masking_data):
 
         db_log(session, tid=tid, type='update_message', user_id=user_id, object_id=masking_data['content_id'], data=log_data)
     else:
-        # Handle the case when the Tip instance with the provided ID doesn't exist
         raise ValueError(f"Tip with ID '{itip_id}' not found.")
     
 def db_update_comment(session, tid, user_id, itip_id, masking_data):
@@ -272,7 +270,6 @@ def db_update_comment(session, tid, user_id, itip_id, masking_data):
 
         db_log(session, tid=tid, type='update_comment', user_id=user_id, object_id=masking_data['content_id'], data=log_data)
     else:
-        # Handle the case when the Tip instance with the provided ID doesn't exist
         raise ValueError(f"Tip with ID '{itip_id}' not found.")
     
 def db_update_answer(session, tid, user_id, itip_id, masking_data):
@@ -294,16 +291,10 @@ def db_update_answer(session, tid, user_id, itip_id, masking_data):
 
     if itip:
         itip.content = _content
-        # log_data = {
-        #     'answers': _content,
-        # }
-
-        # Update the existing itip instance instead of creating a new one
         itip.answers = _content
 
-        session.commit()  # Commit the changes to the database
+        session.commit()
     else:
-        # Handle the case when the Tip instance with the provided ID doesn't exist
         raise ValueError(f"Tip with content ID '{content_id}' not found.")
 
 
@@ -901,14 +892,14 @@ class RTipMaskingCollection(BaseHandler):
         }
     def post(self, rtip_id):
         self.request.content.seek(0)
-        payload = self.request.content.read().decode('utf-8')  # Get the request payload
-        data = json.loads(payload)  # Parse the JSON payload
+        payload = self.request.content.read().decode('utf-8')
+        data = json.loads(payload)
         return create_masking(self.request.tid, self.session.user_id, rtip_id, data)
     
     def put(self, rtip_id, id):
         self.request.content.seek(0)
-        payload = self.request.content.read().decode('utf-8')  # Get the request payload
-        data = json.loads(payload)  # Parse the JSON payload
+        payload = self.request.content.read().decode('utf-8')
+        data = json.loads(payload)
         return self.update_masking(rtip_id, id, data)
     
     def update_masking(self, rtip_id, id, data, *args, **kwargs):

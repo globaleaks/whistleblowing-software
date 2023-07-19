@@ -46,19 +46,14 @@
             <div class="col-md-6" data-translate>Whistleblower</div>
             <div class="col-md-6 text-right">{{comment.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
           </div>
-          <div data-ng-if="comment.content" class="preformatted">{{maskingContent(comment.content,comment.id)}}</div>
+          <div data-ng-if="comment.content" class="preformatted"><i data-ng-if="edited(comment.id)" class="fa-solid fa-pencil edited"></i>  {{maskingContent(comment.content,comment.id)}}</div>
         </div>
         <div data-ng-switch-when="receiver" class="message">
-          <span class="float-right edit" id="edit-comment"
-            data-ng-click="editReport(comment.content,comment.id,'comment')" data-ng-if="mode"
-            data-uib-tooltip="{{'Edit' | translate}}">
-            <i class="fa-solid fa-eraser"></i>
-          </span>
           <div class="row">
             <div class="col-md-6">{{tip.receivers_by_id[comment.author].name}}</div>
             <div class="col-md-6 text-right">{{comment.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
           </div>
-          <div data-ng-if="comment.content" class="preformatted">{{maskingContent(comment.content,comment.id)}}</div>
+          <div data-ng-if="comment.content" class="preformatted">{{comment.content}}</div>
         </div>
       </div>
     </div>
