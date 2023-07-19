@@ -6,7 +6,7 @@
   "packages": {
     "": {
       "name": "GlobaLeaks",
-      "version": "4.11.5",
+      "version": "4.12.0",
       "license": "AGPL-3.0",
       "dependencies": {
         "@flowjs/flow.js": "2.14.1",
@@ -71,15 +71,15 @@
         "grunt-usemin": "3.1.1",
         "gruntify-eslint": "5.0.0",
         "node-gettext": "3.0.0",
-        "npm-check-updates": "16.10.15",
+        "npm-check-updates": "16.10.16",
         "nyc": "15.1.0",
         "postcss-rtl": "2.0.0",
         "protractor": "7.0.0",
         "protractor-console-plugin": "0.1.1",
-        "stylelint": "15.10.1",
+        "stylelint": "15.10.2",
         "stylelint-config-standard": "34.0.0",
         "superagent": "8.0.9",
-        "terser": "5.19.0"
+        "terser": "5.19.1"
       }
     },
     "node_modules/@aashutoshrathi/word-wrap": {
@@ -2862,9 +2862,9 @@
       }
     },
     "node_modules/css-functions-list": {
-      "version": "3.1.0",
-      "resolved": "https://registry.npmjs.org/css-functions-list/-/css-functions-list-3.1.0.tgz",
-      "integrity": "sha512-/9lCvYZaUbBGvYUgYGFJ4dcYiyqdhSjG7IPVluoV8A1ILjkF7ilmhp1OGUz8n+nmBcu0RNrQAzgD8B6FJbrt2w==",
+      "version": "3.2.0",
+      "resolved": "https://registry.npmjs.org/css-functions-list/-/css-functions-list-3.2.0.tgz",
+      "integrity": "sha512-d/jBMPyYybkkLVypgtGv12R+pIFw4/f/IHtCTxWpZc8ofTYOPigIgmA6vu5rMHartZC+WuXhBUHfnyNUIQSYrg==",
       "dev": true,
       "engines": {
         "node": ">=12.22"
@@ -7545,9 +7545,9 @@
       }
     },
     "node_modules/npm-check-updates": {
-      "version": "16.10.15",
-      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-16.10.15.tgz",
-      "integrity": "sha512-tmbFF7J1mIbjmnN4DzFRVlEeAaIB/FPRz4o95DWsGB7fT3ZECuxyMMDnvySfoijuWxx8E7pODN0IoKYnEJVxcg==",
+      "version": "16.10.16",
+      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-16.10.16.tgz",
+      "integrity": "sha512-d8mNYce/l8o5RHPE5ZUp2P1zj9poI7KWQCh5AsTIP3EhicONEhc63mLQQv4/nkCsMb3wCrikx6YOo4BOwN4+1w==",
       "dev": true,
       "dependencies": {
         "chalk": "^5.3.0",
@@ -8563,9 +8563,9 @@
       }
     },
     "node_modules/postcss": {
-      "version": "8.4.24",
-      "resolved": "https://registry.npmjs.org/postcss/-/postcss-8.4.24.tgz",
-      "integrity": "sha512-M0RzbcI0sO/XJNucsGjvWU9ERWxb/ytp1w6dKtxTKgixdtQDq4rmx/g8W1hnaheq9jgwL/oyEdH5Bc4WwJKMqg==",
+      "version": "8.4.26",
+      "resolved": "https://registry.npmjs.org/postcss/-/postcss-8.4.26.tgz",
+      "integrity": "sha512-jrXHFF8iTloAenySjM/ob3gSj7pCu0Ji49hnjqzsgSRa50hkWCKD0HQ+gMNJkW38jBI68MpAAg7ZWwHwX8NMMw==",
       "dev": true,
       "funding": [
         {
@@ -10381,9 +10381,9 @@
       "dev": true
     },
     "node_modules/stylelint": {
-      "version": "15.10.1",
-      "resolved": "https://registry.npmjs.org/stylelint/-/stylelint-15.10.1.tgz",
-      "integrity": "sha512-CYkzYrCFfA/gnOR+u9kJ1PpzwG10WLVnoxHDuBA/JiwGqdM9+yx9+ou6SE/y9YHtfv1mcLo06fdadHTOx4gBZQ==",
+      "version": "15.10.2",
+      "resolved": "https://registry.npmjs.org/stylelint/-/stylelint-15.10.2.tgz",
+      "integrity": "sha512-UxqSb3hB74g4DTO45QhUHkJMjKKU//lNUAOWyvPBVPZbCknJ5HjOWWZo+UDuhHa9FLeVdHBZXxu43eXkjyIPWg==",
       "dev": true,
       "dependencies": {
         "@csstools/css-parser-algorithms": "^2.3.0",
@@ -10393,7 +10393,7 @@
         "balanced-match": "^2.0.0",
         "colord": "^2.9.3",
         "cosmiconfig": "^8.2.0",
-        "css-functions-list": "^3.1.0",
+        "css-functions-list": "^3.2.0",
         "css-tree": "^2.3.1",
         "debug": "^4.3.4",
         "fast-glob": "^3.3.0",
@@ -10413,7 +10413,7 @@
         "micromatch": "^4.0.5",
         "normalize-path": "^3.0.0",
         "picocolors": "^1.0.0",
-        "postcss": "^8.4.24",
+        "postcss": "^8.4.25",
         "postcss-resolve-nested-selector": "^0.1.1",
         "postcss-safe-parser": "^6.0.0",
         "postcss-selector-parser": "^6.0.13",
@@ -10702,9 +10702,9 @@
       }
     },
     "node_modules/terser": {
-      "version": "5.19.0",
-      "resolved": "https://registry.npmjs.org/terser/-/terser-5.19.0.tgz",
-      "integrity": "sha512-JpcpGOQLOXm2jsomozdMDpd5f8ZHh1rR48OFgWUH3QsyZcfPgv2qDCYbcDEAYNd4OZRj2bWYKpwdll/udZCk/Q==",
+      "version": "5.19.1",
+      "resolved": "https://registry.npmjs.org/terser/-/terser-5.19.1.tgz",
+      "integrity": "sha512-27hxBUVdV6GoNg1pKQ7Z5cbR6V9txPVyBA+FQw3BaZ1Wuzvztce5p156DaP0NVZNrMZZ+6iG9Syf7WgMNKDg2Q==",
       "dev": true,
       "dependencies": {
         "@jridgewell/source-map": "^0.3.3",
