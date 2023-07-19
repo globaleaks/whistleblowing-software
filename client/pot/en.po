@@ -506,8 +506,8 @@ msgstr "Download copy of the Privacy Policy"
 msgid "Whistleblowing Policy"
 msgstr "Whistleblowing Policy"
 
-msgid "Accessibility Statement"
-msgstr "Accessibility Statement"
+msgid "Accessibility Declaration"
+msgstr "Accessibility Declaration"
 
 msgid "Voice"
 msgstr "Voice"
@@ -874,6 +874,12 @@ msgstr "Accept multiple answers"
 
 msgid "Template override"
 msgstr "Template override"
+
+msgid "Min"
+msgstr "Min"
+
+msgid "Max"
+msgstr "Max"
 
 msgid "Phone number"
 msgstr "Phone number"
