@@ -19,9 +19,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Kirish"
 
-msgid "Theme customization"
-msgstr "Mavzuni moslash"
-
 msgid "Languages"
 msgstr "Tillar"
 
@@ -509,6 +506,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "Anonim xabar yuborish"
 
@@ -860,6 +866,12 @@ msgstr "Bir nechta javoblarni qabul qilish"
 
 msgid "Template override"
 msgstr "Andozani qayta belgilash"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
 
 msgid "Phone number"
 msgstr "Telefon raqami"
@@ -1417,6 +1429,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "“Hisobni tiklash kaliti”ngizni olish va xavfsiz joyda saqlash uchun “Parametrlar” bandini ochishni tavsiya etamiz. Bu kalit parol unutilganda platformaga ruxsatingizni xavfsiz tiklashda kerak boʻladi."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "Taqdim etilgan tiklash kaliti yaroqsiz."

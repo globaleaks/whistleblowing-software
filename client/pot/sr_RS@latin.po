@@ -23,9 +23,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Prijava"
 
-msgid "Theme customization"
-msgstr "Prilagođavanje teme"
-
 msgid "Languages"
 msgstr "Jezici"
 
@@ -513,6 +510,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "Pošalji dojavu"
 
@@ -864,6 +870,12 @@ msgstr "Prihvati više odgovora"
 
 msgid "Template override"
 msgstr "Zamena šablona"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
 
 msgid "Phone number"
 msgstr "Broj telefona"
@@ -1421,6 +1433,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "Preporučujemo da u odeljku „Podešavanja” pronađete „Ključ za oporavak naloga”. Taj ključ će vam biti potreban za pristup platformi i vašim podacima u slučaju da zaboravite lozinku."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "Uneseni ključ za oporavak naloga je neispravan."

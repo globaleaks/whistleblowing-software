@@ -33,9 +33,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Autentificare"
 
-msgid "Theme customization"
-msgstr "Personalizare temă "
-
 msgid "Languages"
 msgstr "Setare limbă"
 
@@ -523,6 +520,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "Depune o sesizare"
 
@@ -874,6 +880,12 @@ msgstr "Acceptă răspunsuri multiple"
 
 msgid "Template override"
 msgstr "Suprascrie șablonul"
+
+msgid "Min"
+msgstr "Min"
+
+msgid "Max"
+msgstr "Max"
 
 msgid "Phone number"
 msgstr "Număr de telefon"
@@ -1431,6 +1443,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "Vă recomandăm să accesați secțiunea \"Preferințe\" pentru a vă obține \"Cheia de recuperare a contului\" și pentru a o salva în siguranță. Această cheie va fi necesară pentru a vă recupera accesul la platformă și la datele dvs. în cazul în care vă uitați parola."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "Cheia de recuperare introdusă este invalidă."

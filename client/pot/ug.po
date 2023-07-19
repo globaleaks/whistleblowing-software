@@ -19,9 +19,6 @@ msgstr ""
 msgid "Log in"
 msgstr "تىزىمغا كىر"
 
-msgid "Theme customization"
-msgstr "تېما ئىختىيارى"
-
 msgid "Languages"
 msgstr "تىللار"
 
@@ -509,6 +506,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "بىر مەلۇمات يوللا"
 
@@ -860,6 +866,12 @@ msgstr "كۆپ جاۋاپنى قوبۇل قىل"
 
 msgid "Template override"
 msgstr "قېلىىپنىڭ ئۈستىگە ياز"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
 
 msgid "Phone number"
 msgstr "تېلېفون نومۇرى"
@@ -1417,6 +1429,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "«ھېساباتنى ئەسلىگە كەلتۈرۈش ئاچقۇچى» نى يىغىپ بىخەتەر ساقلاپ قويۇش ئۈچۈن، «مايىللىق» بۆلىكىنى زىيارەت قىلىشىڭىزنى تەۋسىيە قىلىمىز. بۇ ئاچقۇچ پارولنى ئۇنتۇپ قالغان ۋاقتىڭىزدا، سۇپا ۋە سانلىق مەلۇماتلىرىڭىزنى زىيارەت قىلىشنى ئەسلىگە كەلتۈرۈش ئۈچۈن لازىم بولىدۇ."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "تەمىنلەنگەن ئەسلىگە كەلتۈرۈش ئاچقۇچى ئىناۋەتسىز."

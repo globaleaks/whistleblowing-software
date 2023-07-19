@@ -39,9 +39,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Accedi"
 
-msgid "Theme customization"
-msgstr "Personalizzazione del tema"
-
 msgid "Languages"
 msgstr "Lingue"
 
@@ -529,6 +526,15 @@ msgstr "Ho letto e accetto l'Informativa Privacy"
 msgid "Download copy of the Privacy Policy"
 msgstr "Scarica Copia dell'informativa Privacy"
 
+msgid "Whistleblowing Policy"
+msgstr "Dichiarazione di Accessibilità"
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr "Voce"
+
 msgid "File a report"
 msgstr "Invia una segnalazione"
 
@@ -880,6 +886,12 @@ msgstr "Accetta più di una risposta"
 
 msgid "Template override"
 msgstr "Sostituisci template"
+
+msgid "Min"
+msgstr "Min"
+
+msgid "Max"
+msgstr "Max"
 
 msgid "Phone number"
 msgstr "Numero di telefono"
@@ -1437,6 +1449,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "Consigliamo di accedere alla sezione \"Preferenze\" al fine di recuperare la tua \"Chiave di recupero account\" e farne una copia di sicurezza. Questa chiave sarà necessaria per ripristinare il tuo accesso alla piattaforma e ai tuoi dati nel caso tu dimenticassi la tua password."
+
+msgid "Access date"
+msgstr "Data di accesso"
 
 msgid "The provided recovery key is invalid."
 msgstr "La chiave di recupero fornita non è corretta,"

@@ -22,9 +22,6 @@ msgstr ""
 msgid "Log in"
 msgstr "ލޮގް އިން"
 
-msgid "Theme customization"
-msgstr "ތީމްއަށް ބަދަލުގެނައުމަށް"
-
 msgid "Languages"
 msgstr "ބަހުރުވަ ހިޔާރުކުރައްވާ"
 
@@ -512,6 +509,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "ރިޕޯޓެއް ފައިލް ކުރުން"
 
@@ -863,6 +869,12 @@ msgstr "އެއް ޖަވާބަށްވުރެ ގިނަ ޖަވާބު ގަބޫލުކު
 
 msgid "Template override"
 msgstr "ނަމޫނާއިން ބޭރަށްދިއުމަށް"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
 
 msgid "Phone number"
 msgstr "ފޯނު ނަމްބަރު"
@@ -1420,6 +1432,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "\"އެކައުންޓް ރިކަވަރީ ކީ\" ހޯދައި ރައްކާތެރިކަމާއެކު ރައްކާކުރުމަށްޓަކައި \"ޕްރިފަރެންސް\" ބަޔަށް ވަނުމަށް އަޅުގަނޑުމެން ލަފާދެމެވެ.  ޕާސްވޯޑް ހަނދާން ނެތިއްޖެ ހާލަތެއްގައި ޕްލެޓްފޯމަށް ވަދެވޭނެ ގޮތާއި ޑޭޓާއަށް ވަދެވޭނެ ގޮތް އަނބުރާ ހޯދުމަށް މި ކީ ބޭނުންވާނެއެވެ"
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "ދީފައިވާ ރިކަވަރީ ކީ  ރަނގަޅެއްނޫން"

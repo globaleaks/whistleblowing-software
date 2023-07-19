@@ -18,9 +18,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Logi sisse"
 
-msgid "Theme customization"
-msgstr "Teema kohandamine"
-
 msgid "Languages"
 msgstr "Keeled"
 
@@ -508,6 +505,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "Esita teavitus"
 
@@ -859,6 +865,12 @@ msgstr "Luba mitu vastust"
 
 msgid "Template override"
 msgstr "Malli ülekirjutamine"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
 
 msgid "Phone number"
 msgstr "Telefoninumber"
@@ -1416,6 +1428,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "Soovitame hankida jaotisest „Eelistused“ konto taastamise võtme ja säilitada seda turvalises kohas. Seda võtit vajate parooli unustamise korral, et taastada juurdepääsu platvormile ja oma andmetele."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "Sisestatud taastevõti ei kehti."

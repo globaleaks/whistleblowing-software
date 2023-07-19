@@ -19,9 +19,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Најави се"
 
-msgid "Theme customization"
-msgstr "Прилагодување на Тема"
-
 msgid "Languages"
 msgstr "Јазици"
 
@@ -509,6 +506,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "Поднеси извештај"
 
@@ -860,6 +866,12 @@ msgstr "Прифати повеќе одговори"
 
 msgid "Template override"
 msgstr "Отфрлање на шаблонот"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
 
 msgid "Phone number"
 msgstr "Телефонски број"
@@ -1417,6 +1429,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "Ви препорачуваме да и пристапите на  секцијата “Параметри“ со цел да го добиете вашиот “Клуч за враќање на сметка“ и складирајте го безбедно. Овој клуч ќе ви биде потребен за да го вратите вашиот пристап до платформата и до вашите податоци во случај да ја заборавите вашата лозинка."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "Обезбедениот клуч за враќање не е валиден."

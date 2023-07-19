@@ -24,9 +24,6 @@ msgstr ""
 msgid "Log in"
 msgstr "登入"
 
-msgid "Theme customization"
-msgstr "自定主題"
-
 msgid "Languages"
 msgstr "語言"
 
@@ -514,6 +511,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr "聲音"
+
 msgid "File a report"
 msgstr "提交报告"
 
@@ -865,6 +871,12 @@ msgstr "接受多個答案"
 
 msgid "Template override"
 msgstr "模板覆寫"
+
+msgid "Min"
+msgstr "最小"
+
+msgid "Max"
+msgstr "最大"
 
 msgid "Phone number"
 msgstr "電話號碼"
@@ -1422,6 +1434,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "我们建议，访问“首选项”获取“帐户恢复密钥”并将其妥善保存。如果忘记密码，为了访问该平台和您的数据，该密钥必不可少。"
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "所提供的恢復密鑰已失效。"

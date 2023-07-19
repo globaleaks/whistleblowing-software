@@ -61,9 +61,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Inloggen"
 
-msgid "Theme customization"
-msgstr "Thema aanpassen"
-
 msgid "Languages"
 msgstr "Talen"
 
@@ -551,6 +548,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "Dien een rapport in"
 
@@ -902,6 +908,12 @@ msgstr "Aanvaard meerdere antwoorden"
 
 msgid "Template override"
 msgstr "Sjabloon overschrijven"
+
+msgid "Min"
+msgstr "Min"
+
+msgid "Max"
+msgstr "Max"
 
 msgid "Phone number"
 msgstr "Telefoonnummer"
@@ -1459,6 +1471,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "We raden u aan de sectie \"Voorkeuren\" te openen om uw \"Accountherstel-sleutel\" op te halen en deze veilig op te slaan. Deze sleutel is nodig om uw toegang tot het platform en uw gegevens te herstellen in het geval u uw wachtwoord vergeet."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "De ingediende herstelcode is ongeldig."

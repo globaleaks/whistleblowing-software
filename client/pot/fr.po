@@ -55,9 +55,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Connexion"
 
-msgid "Theme customization"
-msgstr "Personnalisation du thème"
-
 msgid "Languages"
 msgstr "Langues"
 
@@ -545,6 +542,15 @@ msgstr "J’ai lu et accepte la Politique de confidentialité"
 msgid "Download copy of the Privacy Policy"
 msgstr "Télécharger la Politique de confidentialité"
 
+msgid "Whistleblowing Policy"
+msgstr "Politique de lancement d’alerte"
+
+msgid "Accessibility Declaration"
+msgstr "Déclaration d’accessibilité"
+
+msgid "Voice"
+msgstr "Voix"
+
 msgid "File a report"
 msgstr "Remplir un signalement"
 
@@ -897,6 +903,12 @@ msgstr "Accepter des réponses multiples"
 msgid "Template override"
 msgstr "Remplacement du modèle"
 
+msgid "Min"
+msgstr "Min."
+
+msgid "Max"
+msgstr "Max."
+
 msgid "Phone number"
 msgstr "Numéro de téléphone"
 
@@ -970,7 +982,7 @@ msgid "Question to solicit possible whistleblowers"
 msgstr "Question pour attirer les lanceurs d’alerte potentiels"
 
 msgid "Whistleblowing button"
-msgstr "Bouton de dénonciation"
+msgstr "Bouton de lancement d’alerte"
 
 msgid "Disclaimer"
 msgstr "Avis"
@@ -1453,6 +1465,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "Nous recommandons que vous accédiez à la section « Préférences » afin de récupérer votre « Clé de récupération du compte » et de la garder à l’abri. Cette clé sera nécessaire afin de récupérer votre accès à la plateforme et à vos données si vous oubliez votre mot de passe."
+
+msgid "Access date"
+msgstr "Date d’accès"
 
 msgid "The provided recovery key is invalid."
 msgstr "La clé de récupération fournie n’est pas valide."

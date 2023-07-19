@@ -17,9 +17,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Tizimgha kir"
 
-msgid "Theme customization"
-msgstr "Téma ixtiyari"
-
 msgid "Languages"
 msgstr "Tillar"
 
@@ -507,6 +504,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "Bir melumat yolla"
 
@@ -858,6 +864,12 @@ msgstr "Köp jawapni qobul qil"
 
 msgid "Template override"
 msgstr "Qéliipning üstige yaz"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
 
 msgid "Phone number"
 msgstr "Téléfon nomuri"
@@ -1415,6 +1427,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "«Hésabatni eslige keltürüsh achquchi» ni yighip bixeter saqlap qoyush üchün, «mayilliq» bölikini ziyaret qilishingizni tewsiye qilimiz. Bu achquch parolni untup qalghan waqtingizda, supa we sanliq melumatliringizni ziyaret qilishni eslige keltürüsh üchün lazim bolidu."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "Teminlen’gen eslige keltürüsh achquchi inawetsiz."

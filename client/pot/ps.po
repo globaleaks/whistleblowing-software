@@ -17,9 +17,6 @@ msgstr ""
 msgid "Log in"
 msgstr "دننه کېدل"
 
-msgid "Theme customization"
-msgstr "د تیم سفارشي کول"
-
 msgid "Languages"
 msgstr "ژبې"
 
@@ -507,6 +504,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "د رپوټ ورکول"
 
@@ -858,6 +864,12 @@ msgstr "د ګڼو ځوابونو منل"
 
 msgid "Template override"
 msgstr "د ټیمپلیټ لغوه کول"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
 
 msgid "Phone number"
 msgstr "د ټلیفون شمېره"
@@ -1415,6 +1427,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "زموږ سپارښتنه دا ده چې د \"ترجیحاتو\" برخې ته لاسرسی ولری تر څو خپل \"د اکاونټ د تر لاسه کولو رمز\" تر لاسه او په خوندي ځای کې یې وساتئ. دغه رمز به پلټفارم ته ستاسې د لاسرسي د لرلو  او که مو چیرته خپل پټ نوم هیر شوی وي نو خپلو اطلاعاتو ته د لاسرسي لرلو لپاره اړین وي."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "وړاندې شوی د تر لاسه کولو رمز ناسم دی."

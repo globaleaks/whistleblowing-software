@@ -18,9 +18,6 @@ msgstr ""
 msgid "Log in"
 msgstr "ورود"
 
-msgid "Theme customization"
-msgstr "فرمایشی سازی تم"
-
 msgid "Languages"
 msgstr "لسان ها"
 
@@ -508,6 +505,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr "صدا"
+
 msgid "File a report"
 msgstr "ترتیب یک راپور"
 
@@ -859,6 +865,12 @@ msgstr "قبول جواب های متعدد"
 
 msgid "Template override"
 msgstr "لغو قالب"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
 
 msgid "Phone number"
 msgstr "شماره تلیفون"
@@ -1416,6 +1428,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "به شما توصیه می کنیم تا برای بازیابی \"کلید بازیابی اکاونت\"، به بخش \"ترجیحات\" دسترسی پیدا کنید و آن را در جایی امن ذخیره کنید. در صورت فراموش کردن پسورد، این کلید برای بازیابی دسترسی شما به پلتفورم  ضروری می‌باشد."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "کلید بازیابی ارائه شده نامعتبر است."

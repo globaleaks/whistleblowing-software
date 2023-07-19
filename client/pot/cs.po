@@ -30,9 +30,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Přihlášení"
 
-msgid "Theme customization"
-msgstr "Úprava tématu"
-
 msgid "Languages"
 msgstr "Jazyky"
 
@@ -497,10 +494,10 @@ msgid "Grant this recipient ability to transfer reports to other users"
 msgstr "Udělit tomuto příjemci možnost předávat zprávy jiným uživatelům."
 
 msgid "Grant this user the privilege to mask information"
-msgstr "Udělit tomuto uživateli oprávnění ke skrytí informací."
+msgstr "Udělit tomuto uživateli oprávnění ke skrytí informací"
 
 msgid "Grant this user the privilege to permanently redact masked information"
-msgstr "Udělit tomuto uživateli oprávnění trvale revidovat skryté informace."
+msgstr "Udělit tomuto uživateli oprávnění trvale revidovat skryté informace"
 
 msgid "Public"
 msgstr "Věřejné"
@@ -519,6 +516,15 @@ msgstr "Přečetl/a jsem si zásady ochrany osobních údajů a souhlasím s nim
 
 msgid "Download copy of the Privacy Policy"
 msgstr "Stáhněte si kopii zásad ochrany osobních údajů"
+
+msgid "Whistleblowing Policy"
+msgstr "Zásady whistleblowingu"
+
+msgid "Accessibility Declaration"
+msgstr "Prohlášení o přístupu"
+
+msgid "Voice"
+msgstr "Hlas"
 
 msgid "File a report"
 msgstr "Podat oznámení"
@@ -871,6 +877,12 @@ msgstr "Povolit více odpovědí"
 
 msgid "Template override"
 msgstr "Přepsání šablony"
+
+msgid "Min"
+msgstr "Min"
+
+msgid "Max"
+msgstr "Maximum"
 
 msgid "Phone number"
 msgstr "Telefonní číslo"
@@ -1428,6 +1440,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "Doporučujeme jít do sekce „Předvolby“, abyste získali „Klíč pro obnovení účtu“ a bezpečně jej uložili. Tento klíč bude nezbytný pro obnovení přístupu k platformě a k vašim údajům v případě, že své heslo zapomenete."
+
+msgid "Access date"
+msgstr "Datum přístupu"
 
 msgid "The provided recovery key is invalid."
 msgstr "Zadaný obnovovací klíč je neplatný."

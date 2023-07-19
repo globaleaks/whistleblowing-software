@@ -32,9 +32,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Đăng nhập"
 
-msgid "Theme customization"
-msgstr "Tùy biến giao diện"
-
 msgid "Languages"
 msgstr "Ngôn ngữ"
 
@@ -522,6 +519,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "Nộp báo cáo"
 
@@ -873,6 +879,12 @@ msgstr "Chấp nhận nhiều câu trả lời"
 
 msgid "Template override"
 msgstr "Ghi đè lên bản mẫu"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
 
 msgid "Phone number"
 msgstr "Số điện thoại"
@@ -1430,6 +1442,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "Chúng tôi khuyến khích bạn vào phần \"Chọn lựa\" để lấy \"Chìa Khoá Khôi Phục Tài khoản\" của bạn và lưu giữ nó ở nơi an toàn. Chìa khoá này sẽ cần thiết để khôi phục lại tài khoản và  dữ liệu của bạn trong trường hợp bạn quên mật khẩu."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "Chìa khóa khôi phục không hợp lệ."

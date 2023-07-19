@@ -18,9 +18,6 @@ msgstr ""
 msgid "Log in"
 msgstr "로그인"
 
-msgid "Theme customization"
-msgstr "테마 사용자 정의"
-
 msgid "Languages"
 msgstr "언어"
 
@@ -508,6 +505,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "보고서 보관"
 
@@ -859,6 +865,12 @@ msgstr "다중 답변 허용"
 
 msgid "Template override"
 msgstr "템플릿 오버라이드"
+
+msgid "Min"
+msgstr "최소"
+
+msgid "Max"
+msgstr "최대"
 
 msgid "Phone number"
 msgstr "전화번호"
@@ -1416,6 +1428,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "'기본 설정' 섹션에 액세스하여 '계정 복구 키'를 검색하고 이를 안전하게 저장할 것을 권장합니다. 해당 키는 비밀번호를 잊어버린 경우 플랫폼 및 데이터 액세스를 복구하는 데 필요합니다."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "제공된 복구 키가 유효하지 않습니다."

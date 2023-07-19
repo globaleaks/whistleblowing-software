@@ -19,9 +19,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Innlogging"
 
-msgid "Theme customization"
-msgstr "Tilpasning av tema"
-
 msgid "Languages"
 msgstr "Språk"
 
@@ -509,6 +506,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "Legg inn en rapport"
 
@@ -860,6 +866,12 @@ msgstr "Tillat flere svar"
 
 msgid "Template override"
 msgstr "Maloverstyring"
+
+msgid "Min"
+msgstr "Min"
+
+msgid "Max"
+msgstr "Maks"
 
 msgid "Phone number"
 msgstr "Telefonnummer"
@@ -1417,6 +1429,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "Vi anbefaler deg å gå til avsnittet «Preferanser» og få «Nøkkel til kontogjenoppretting» og lagre den trygt. Nøkkelen vil kreves for gjenoppretting av tilgangen til plattformen og til dine data i tilfelle du glemmer ditt passord."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "Gjenopprettingsnøkkelen er ikke gyldig."

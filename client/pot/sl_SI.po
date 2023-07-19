@@ -23,9 +23,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Prijava v račun"
 
-msgid "Theme customization"
-msgstr "Prilagoditve teme"
-
 msgid "Languages"
 msgstr "Jeziki"
 
@@ -472,13 +469,13 @@ msgid "Privileges"
 msgstr "Privilegiji"
 
 msgid "Mask"
-msgstr "Začasno uredi"
+msgstr ""
 
 msgid "Unmask"
 msgstr ""
 
 msgid "Redact"
-msgstr "Uredi"
+msgstr ""
 
 msgid "Select an option"
 msgstr "Izberi možnost"
@@ -490,10 +487,10 @@ msgid "Grant this recipient ability to transfer reports to other users"
 msgstr "Temu prejemniku omogočite prenos prijav drugim uporabnikom."
 
 msgid "Grant this user the privilege to mask information"
-msgstr "Uporabniku omogoči začasno urejanje podatkov"
+msgstr ""
 
 msgid "Grant this user the privilege to permanently redact masked information"
-msgstr "Uporabniku omogoči stalno urejanje podatkov"
+msgstr ""
 
 msgid "Public"
 msgstr "Javni"
@@ -512,6 +509,15 @@ msgstr "Prebral/-a sem in sprejemam 'Politiko zasebnosti'. "
 
 msgid "Download copy of the Privacy Policy"
 msgstr "Prenesite kopijo 'Politike zasebnosti'. "
+
+msgid "Whistleblowing Policy"
+msgstr "Pravilnik o prijavljanju suma nepravilnosti"
+
+msgid "Accessibility Declaration"
+msgstr "Izjava o dostopnosti"
+
+msgid "Voice"
+msgstr "Glas"
 
 msgid "File a report"
 msgstr "Oddaj prijavo"
@@ -864,6 +870,12 @@ msgstr "Dovoli več možnih odgovorov"
 
 msgid "Template override"
 msgstr "Ne upoštevaj predloge"
+
+msgid "Min"
+msgstr "Min."
+
+msgid "Max"
+msgstr "Maks."
 
 msgid "Phone number"
 msgstr "Telefonska številka"
@@ -1421,6 +1433,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "Priporočamo, da za ponovni priklic svojega \"Ključa za obnovo računa\" dostopate preko rubrike »Uporabniške nastavitve« in ključ varno shranite. Ta ključ bo nujen za obnovitev vašega dostopa do platforme in vaših podatkov, če pozabite geslo."
+
+msgid "Access date"
+msgstr "Datum dostopa"
 
 msgid "The provided recovery key is invalid."
 msgstr "Ključ za obnovo računa ni veljaven."

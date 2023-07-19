@@ -25,9 +25,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Ворид шудан "
 
-msgid "Theme customization"
-msgstr "Ҷӯрсозии мавзуъ"
-
 msgid "Languages"
 msgstr "Забонҳо"
 
@@ -515,6 +512,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "Таҳияи гузориш"
 
@@ -866,6 +872,12 @@ msgstr "Якчанд ҷавобҳоро қабул кардан"
 
 msgid "Template override"
 msgstr "Лағв кардани намуна"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
 
 msgid "Phone number"
 msgstr "Рақами телефон"
@@ -1423,6 +1435,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "Мо тавсия медиҳем, ки шумо ба қисмати \"Афзалиятҳо\" ворид шавед, то \"Калиди барқарорсозии аккаунт\" -и худро дарёфт кунед ва онро бехатар нигоҳ доред. Ин калид барои барқарор кардани дастрасии шумо ба барнома ва маълумоти шумо дар ҳолати фаромӯш кардани гузарвожа лозим мешавад."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "Калиди барқароркунии пешниҳодшуда беэътибор аст."

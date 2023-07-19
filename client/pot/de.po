@@ -63,9 +63,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Anmelden"
 
-msgid "Theme customization"
-msgstr "Themenanpassung"
-
 msgid "Languages"
 msgstr "Sprachen"
 
@@ -553,6 +550,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "Einen Bericht einreichen"
 
@@ -904,6 +910,12 @@ msgstr "Mehrere Antworten akzeptieren"
 
 msgid "Template override"
 msgstr "Vorlagen überschreiben"
+
+msgid "Min"
+msgstr "Min"
+
+msgid "Max"
+msgstr "Max"
 
 msgid "Phone number"
 msgstr "Telefonnummer"
@@ -1461,6 +1473,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "Wir empfehlen Ihnen, den Bereich „Einstellungen“ aufzurufen, um Ihren „Konto-Wiederherstellungsschlüssel“ abzurufen und ihn sicher zu speichern. Dieser Schlüssel wird benötigt, um Ihren Zugang zur Plattform und zu Ihren Daten wiederherzustellen, falls Sie Ihr Passwort vergessen."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "Der angegebene Wiederherstellungsschlüssel ist ungültig."

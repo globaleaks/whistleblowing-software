@@ -40,9 +40,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Logga in"
 
-msgid "Theme customization"
-msgstr "Temainställningar"
-
 msgid "Languages"
 msgstr "Språk"
 
@@ -530,6 +527,15 @@ msgstr "Jag har läst och accepterar integritetspolicyn"
 msgid "Download copy of the Privacy Policy"
 msgstr "Ladda ner en kopia av integritetspolicyn"
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "Lämna en rapport"
 
@@ -881,6 +887,12 @@ msgstr "Tillåt flera olika svar"
 
 msgid "Template override"
 msgstr "Hoppa över mallen"
+
+msgid "Min"
+msgstr "Min"
+
+msgid "Max"
+msgstr "Max"
 
 msgid "Phone number"
 msgstr "Telefonnummer"
@@ -1438,6 +1450,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "Vi rekommenderar att du går in på fliken ”Inställningar” för att hämta din ”Kod för kontoåterställning” och därefter kan du spara koden på ett säkert ställe. Denna kod behövs för att återställa åtkomsten till plattformen och dina uppgifter i händelse av att du glömmer ditt lösenord."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "Den angivna återställningskoden är fel."

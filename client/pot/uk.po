@@ -38,9 +38,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Увійти"
 
-msgid "Theme customization"
-msgstr "Налаштування зовнішнього вигляду"
-
 msgid "Languages"
 msgstr "Мови"
 
@@ -528,6 +525,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "Подати звіт"
 
@@ -879,6 +885,12 @@ msgstr "Дозволити декілька відповідей"
 
 msgid "Template override"
 msgstr "Перевизначення шаблону"
+
+msgid "Min"
+msgstr "Мінімальне"
+
+msgid "Max"
+msgstr "Максимальне"
 
 msgid "Phone number"
 msgstr "Номер телефону"
@@ -1436,6 +1448,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "Ми рекомендуємо вам увійти в розділ \"Налаштування\", щоб отримати \"ключ для відновлення облікового запису\" і зберегти його в безпечному місці. Цей ключ знадобиться для відновлення доступу до платформи і ваших даних у тому випадку, якщо ви забудете свій пароль."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "Наданий ключ відновлення недійсний."

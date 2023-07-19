@@ -27,9 +27,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Влизане"
 
-msgid "Theme customization"
-msgstr "Персонализиране на тема"
-
 msgid "Languages"
 msgstr "Езици"
 
@@ -517,6 +514,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "Картотекиране на сигнал"
 
@@ -868,6 +874,12 @@ msgstr "Приемане на повече отговори"
 
 msgid "Template override"
 msgstr "Заместване на шаблона"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
 
 msgid "Phone number"
 msgstr "Телефонен номер"
@@ -1425,6 +1437,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "Препоръчваме Ви да осъществите достъп до раздела „Предпочитания“, за да извлечете „Ключ за възстановяване на акаунта“ и да го съхраните на сигурно място. Този ключ Ви е необходим за възстановяване на достъпа до платформата и до данните Ви, в случай че забравите паролата си."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "Въведеният код за възстановяване е невалиден"

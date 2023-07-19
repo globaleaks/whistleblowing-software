@@ -33,9 +33,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Midira"
 
-msgid "Theme customization"
-msgstr "Personnalisation du thème"
-
 msgid "Languages"
 msgstr "Langues"
 
@@ -523,6 +520,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
@@ -874,6 +880,12 @@ msgstr "Accepter des réponses multiples"
 
 msgid "Template override"
 msgstr "Remplacement du modèle"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
 
 msgid "Phone number"
 msgstr "Numéro de téléphone"
@@ -1430,6 +1442,9 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
+msgstr ""
+
+msgid "Access date"
 msgstr ""
 
 msgid "The provided recovery key is invalid."

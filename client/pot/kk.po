@@ -19,9 +19,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Кіру"
 
-msgid "Theme customization"
-msgstr "Тақырыпты баптау"
-
 msgid "Languages"
 msgstr "Тілдер"
 
@@ -509,6 +506,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "Есеп беру"
 
@@ -860,6 +866,12 @@ msgstr "Бірнеше жауапты қабылдау"
 
 msgid "Template override"
 msgstr "Үлгіні қабыл алмау"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
 
 msgid "Phone number"
 msgstr "Телефон нөмірі"
@@ -1417,6 +1429,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "«Есептік жазбаны қалпына келтіру кілтін» алу және оны қауіпсіз сақтау үшін «Параметрлер» бөліміне кіруді ұсынамыз. Бұл кілт құпиясөзіңізді ұмытып қалған кезде, платформаға және деректеріңізге кіруді қалпына келтіру үшін қажет болады."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "Берілген қалпына келтіру кілті жарамсыз болып табылады."

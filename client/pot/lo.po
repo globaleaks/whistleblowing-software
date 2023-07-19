@@ -17,9 +17,6 @@ msgstr ""
 msgid "Log in"
 msgstr "ເຂົ້າ​ສູ່ລະບົບ"
 
-msgid "Theme customization"
-msgstr "ການປັບສີ​ພື້ນ​ໜ້າ​ຈໍ"
-
 msgid "Languages"
 msgstr "ພາສາ"
 
@@ -507,6 +504,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "ຍື່ນລາຍງານ"
 
@@ -858,6 +864,12 @@ msgstr "ຍອມຮັບຫຼາຍໆຄຳຕອບ"
 
 msgid "Template override"
 msgstr "ການທັບຊ້ອນແບບແມ່ແບບ"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
 
 msgid "Phone number"
 msgstr "ໝາຍເລກໂທລະສັບ"
@@ -1415,6 +1427,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "ພວກເຮົາຂໍແນະນຳໃຫ້ທ່ານເຂົ້າໄປທີ່ສ່ວນ “ການກຳນົດຄ່າທີ່ມັກ” ເພື່ອກູ້ເອົາ “ລະຫັດກູ້ຄືນບັນຊີຂອງທ່ານ” ແລະ ເກັບມ້ຽນໄວ້ໃຫ້ມີຄວາມປອດໄພ. ລະຫັດນີ້ຈະມີຄວາມຈຳເປັນໃນການກູ້ຄືນການເຂົ້າເຖິງລະບົບ ແລະ ເຂົ້າເຖິງຂໍ້ມູນຂອງທ່ານໃນກໍລະນີທີ່ທ່ານລືມລະຫັດຜ່ານຂອງທ່ານ."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "ລະຫັດກູ້ຄືນທີ່ໃຫ້ມາແມ່ນໃຊ້ບໍ່ໄດ້."

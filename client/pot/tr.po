@@ -44,9 +44,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Giriş"
 
-msgid "Theme customization"
-msgstr "Tema özelleştirmesi"
-
 msgid "Languages"
 msgstr "Diller"
 
@@ -534,6 +531,15 @@ msgstr "Gizlilik ilkesini okudum ve kabul ediyorum"
 msgid "Download copy of the Privacy Policy"
 msgstr "Gizlilik ilkesinin kopyasını indir"
 
+msgid "Whistleblowing Policy"
+msgstr "İhbar ilkesi"
+
+msgid "Accessibility Declaration"
+msgstr "Erişilebilirlik bildirimi"
+
+msgid "Voice"
+msgstr "Ses"
+
 msgid "File a report"
 msgstr "Bir bildirimde bulunun"
 
@@ -885,6 +891,12 @@ msgstr "Birden fazla yanıt kabul et"
 
 msgid "Template override"
 msgstr "Şablon üzerine yazma"
+
+msgid "Min"
+msgstr "En az"
+
+msgid "Max"
+msgstr "En fazla"
 
 msgid "Phone number"
 msgstr "Telefon numarası"
@@ -1442,6 +1454,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "\"Hesap Kurtarma Anahtarını\" almak için \"Tercihler\" bölümüne erişmenizi ve anahtarınızı güvenli bir şekilde saklamanızı öneriyoruz. Bu anahtar parolanızı unutmanız durumunda platforma ve verinize erişiminizi kurtarmak için gerekli olacaktır."
+
+msgid "Access date"
+msgstr "Erişim tarihi"
 
 msgid "The provided recovery key is invalid."
 msgstr "Sağladığınız kurtarma anahtarı geçersizdir."

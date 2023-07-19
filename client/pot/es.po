@@ -57,9 +57,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Iniciar sesión"
 
-msgid "Theme customization"
-msgstr "Personalización del tema"
-
 msgid "Languages"
 msgstr "Idiomas"
 
@@ -547,6 +544,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr "Voz"
+
 msgid "File a report"
 msgstr "Presentar una denuncia."
 
@@ -898,6 +904,12 @@ msgstr "Aceptar respuestas múltiples"
 
 msgid "Template override"
 msgstr "Sobrescribir plantilla"
+
+msgid "Min"
+msgstr "Mín"
+
+msgid "Max"
+msgstr "Máx"
 
 msgid "Phone number"
 msgstr "Número de teléfono"
@@ -1455,6 +1467,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "Recomendamos que acceda a la sección “Preferencias” para descargar su “Clave de Recuperación de Cuenta” y almacenarla de forma segura. \nEsta clave será necesaria para recuperar su acceso a la plataforma y sus datos, en caso que olvide su contraseña."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "El código de recuperación introducido no es válido."

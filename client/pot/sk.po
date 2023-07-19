@@ -27,9 +27,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Prihlásiť sa"
 
-msgid "Theme customization"
-msgstr "Prispôsobenie témy"
-
 msgid "Languages"
 msgstr "Jazyky"
 
@@ -517,6 +514,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "podať oznámenie"
 
@@ -868,6 +874,12 @@ msgstr "Povoliť viacero odpovedí"
 
 msgid "Template override"
 msgstr "Prepísanie šablóny"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
 
 msgid "Phone number"
 msgstr "Telefónne číslo"
@@ -1425,6 +1437,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "Odporúčame ísť do sekcie \"Preferencie\", aby ste získali \"Kľúč na obnovenie účtu\" a bezpečne ho uložili. Tento kľúč bude nevyhnutný pre obnovenie prístupu k platforme a k vašim údajom v prípade, že svoje heslo zabudnete."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "Zadaný obnovovací kľúč je neplatný."

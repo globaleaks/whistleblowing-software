@@ -512,9 +512,6 @@ msgstr "Accessibility Declaration"
 msgid "Voice"
 msgstr "Voice"
 
-msgid "Pseudoanonymization"
-msgstr "Pseudoanonymization"
-
 msgid "File a report"
 msgstr "File a report"
 

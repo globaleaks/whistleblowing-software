@@ -18,9 +18,6 @@ msgstr ""
 msgid "Log in"
 msgstr "လော့အင်ဝင်ရန်"
 
-msgid "Theme customization"
-msgstr "ဒီဇိုင်းပုံစံပြား ဖန်တီးပြုပြင်ခြင်း"
-
 msgid "Languages"
 msgstr "ဘာသာစကားများ"
 
@@ -508,6 +505,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr "အသံ"
+
 msgid "File a report"
 msgstr "အစီရင်ခံစာ တင်ပါ"
 
@@ -859,6 +865,12 @@ msgstr "အဖြေများစွာကို လက်ခံမည်"
 
 msgid "Template override"
 msgstr "ပုံစံပြား ပယ်ဖျက်ခြင်း"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
 
 msgid "Phone number"
 msgstr "ဖုန်းနံပါတ်"
@@ -1416,6 +1428,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "သင်၏ “အကောင့်ပြန်လည်ရယူရန် စကားဝှက်သော့” ကို ပြန်လည်ရယူပြီး လုံခြုံစွာသိမ်းဆည်းရန် “အလေးပေး ရွေးချယ်မှု” ကဏ္ဍကို ဝင်ရောက်ကြည့်ရှုဖို့ ကျွန်ုပ်တို့ အကြံပြုပါသည်။ အကယ်၍ သင့်စကားဝှက်ကို မေ့သွားပါက ပလက်ဖောင်းနှင့် သင်၏ အချက်အလက်များကို ပြန်လည်ရယူရန် ဤသော့ကို လိုအပ်သည်။"
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "ပေးထားသော ပြန်လည်ရယူရန် စကားဝှက်သော့သည် မမှန်ကန်ပါ။"

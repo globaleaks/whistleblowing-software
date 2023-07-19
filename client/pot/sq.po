@@ -26,9 +26,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Hyni"
 
-msgid "Theme customization"
-msgstr "Përshtatje teme"
-
 msgid "Languages"
 msgstr "Gjuhë"
 
@@ -516,6 +513,15 @@ msgstr "I kam lexuar dhe i pranoj Rregullat e Privatësisë"
 msgid "Download copy of the Privacy Policy"
 msgstr "Shkarkoni një kopje të Rregullave të Privatësisë"
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "Depozitoni një raportim"
 
@@ -867,6 +873,12 @@ msgstr "Prano disa përgjigje njëherësh"
 
 msgid "Template override"
 msgstr "Anashkalim gjedheje"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr "Maks."
 
 msgid "Phone number"
 msgstr "Numër telefoni"
@@ -1424,6 +1436,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "Rekomandojmë që të përdorni ndarjen “Parapëlqime”, që të rimerrni “Kyç Rimarrjeje Llogarie” tuajin dhe ta depozitoni pa rrezik diku. Ky kyç do të jetë i nevojshëm për të rifituar hyrje te platforma dhe të dhënat tuaja, në rast se harroni fjalëkalimin tuaj."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "Kyçi i rimarrjeve i dhënë është i pavlefshëm."

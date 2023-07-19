@@ -21,9 +21,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Acceder"
 
-msgid "Theme customization"
-msgstr "Personalización do tema"
-
 msgid "Languages"
 msgstr "Linguas"
 
@@ -511,6 +508,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
@@ -862,6 +868,12 @@ msgstr "Aceptar respostas múltiples"
 
 msgid "Template override"
 msgstr "Substitución de modelo"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
 
 msgid "Phone number"
 msgstr "Número de teléfono"
@@ -1418,6 +1430,9 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
+msgstr ""
+
+msgid "Access date"
 msgstr ""
 
 msgid "The provided recovery key is invalid."

@@ -17,9 +17,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Тизимға кир"
 
-msgid "Theme customization"
-msgstr "Тема ихтийари"
-
 msgid "Languages"
 msgstr "Тиллар"
 
@@ -507,6 +504,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "Бир доклат йолла"
 
@@ -858,6 +864,12 @@ msgstr "Көп җавапни қобул қил"
 
 msgid "Template override"
 msgstr "Қелиипниң үстигә йаз"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
 
 msgid "Phone number"
 msgstr "Телефон номури"
@@ -1415,6 +1427,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "Һесабатни әслигә кәлтүрүш ачқучи» ни йиғип бихәтәр сақлап қойуш үчүн, \n«майиллиқ» бөликини зийарәт қилишиңизни тәвсийә қилимиз. Бу ачқуч паролни унтуп қалған\nвақтиңизда, супа вә санлиқ мәлуматлириңизни зийарәт қилишни әслигә кәлтүрүш үчүн \nлазим болиду."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "Тәминләнгән әслигә кәлтүрүш ачқучи инавәтсиз."

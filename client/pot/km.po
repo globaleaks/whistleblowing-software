@@ -21,9 +21,6 @@ msgstr ""
 msgid "Log in"
 msgstr "ចូលប្រើប្រាស់"
 
-msgid "Theme customization"
-msgstr "ការផ្លាស់ប្តូរទម្រង់ផ្សេងៗ"
-
 msgid "Languages"
 msgstr "ភាសា"
 
@@ -511,6 +508,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "បញ្ចូលរបាយការណ៍"
 
@@ -862,6 +868,12 @@ msgstr "ទទួលយកចម្លើយច្រើន"
 
 msgid "Template override"
 msgstr "គំរូជាន់គ្នា"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
 
 msgid "Phone number"
 msgstr "លេខទូរស័ព្ទ"
@@ -1419,6 +1431,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "យើងខ្ញុំសូមណែនាំ អ្នកចូលទៅកាន់ផ្នែក “ចំណង់ចំណូលចិត្ត” ដើម្បីទាញយក “លេខកូដសង្គ្រោះគណនី” របស់អ្នក និងរក្សាទុកវាឲ្យមានសុវត្ថិភាព។ លេខកូដនេះ នឹងចាំបាច់ដើម្បីស្តារការចូលប្រើប្រាស់ និងទិន្នន័យរបស់អ្នក ក្នុងករណីអ្នកភ្លេចពាក្យសម្ងាត់។"
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "លេខកូដសង្គ្រោះដែលបានផ្តល់មិនត្រឹមត្រូវ។"

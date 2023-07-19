@@ -4,7 +4,7 @@
 # Andrea Bras, 2018
 # Andre Julian <andrejulian30@gmail.com>, 2016-2017,2021
 # Arif Budiman <arifbudiman@gmail.com>, 2015
-# Belinda Marcia <belindaa.devpatel@yahoo.com>, 2018
+# 60a7195fef6c024fc4543508ee7b9125_16c098e <65d84944c477a84ea662625b6f5f6919_712353>, 2018
 # Cadas Propopuli Azzam Baribin <cadas.propopuli@gmail.com>, 2018
 # Caroline Dianty <Diantycaroline@gmail.com>, 2018
 # Clara Priscilia <clara.priscilia78@gmail.com>, 2018
@@ -41,9 +41,6 @@ msgstr ""
 
 msgid "Log in"
 msgstr "Masuk"
-
-msgid "Theme customization"
-msgstr "Kustomisasi tema"
 
 msgid "Languages"
 msgstr "Bahasa"
@@ -532,6 +529,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "Buat laporan"
 
@@ -883,6 +889,12 @@ msgstr "Menerima banyak jawaban"
 
 msgid "Template override"
 msgstr "Penggantian format"
+
+msgid "Min"
+msgstr "Minimal"
+
+msgid "Max"
+msgstr "Maks"
 
 msgid "Phone number"
 msgstr "Nomor telepon"
@@ -1440,6 +1452,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "Kami merekomendasikan Anda mengakses \"Preferensi\" untuk menerima \"Kunci Pemulihan Akun\" dan simpan dengan aman. Kunci ini dibutuhkan untuk memulihkan akses Anda ke platform dan data Anda jika Anda lupa kata sandi."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "Kunci pemulihan yang diberikan tidak valid."

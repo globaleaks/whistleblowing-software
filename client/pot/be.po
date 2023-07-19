@@ -18,9 +18,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Увайсьці"
 
-msgid "Theme customization"
-msgstr "Налады тэмы"
-
 msgid "Languages"
 msgstr "Мовы"
 
@@ -508,6 +505,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "Падаць справаздачу"
 
@@ -859,6 +865,12 @@ msgstr "Пагадзіцца на магчымасць некалькіх адк
 
 msgid "Template override"
 msgstr "Перавызначэнне шаблону"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
 
 msgid "Phone number"
 msgstr "Нумар тэлефона"
@@ -1416,6 +1428,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "Рэкамендуем зайсці ў раздзел \"Параметры\", каб атрымаць \"Ключ аднаўлення ўліковага запісу\" і захоўваць яго бяспечна. Гэты ключ спатрэбіцца для аднаўлення доступу да платформы і да вашых дадзеных у выпадку, калі вы забудзеце пароль."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "Уведзены ключ аднаўлення несапраўдны."

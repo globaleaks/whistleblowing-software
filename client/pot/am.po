@@ -18,9 +18,6 @@ msgstr ""
 msgid "Log in"
 msgstr "ግቡ"
 
-msgid "Theme customization"
-msgstr "ገጽታ ማበጀት"
-
 msgid "Languages"
 msgstr "ቋንቃዎች"
 
@@ -508,6 +505,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
@@ -859,6 +865,12 @@ msgstr "ብዙ መልሶችን ተቀበል"
 
 msgid "Template override"
 msgstr "ቅንብር ደንብ ጣስ"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
 
 msgid "Phone number"
 msgstr "ስልክ ቁጥር"
@@ -1416,6 +1428,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "የመለያ መልሶ ማግኛ ቁልፋችሁን\" መልሳችሁ ለማግኘት እና በጥንቃቄ ለማስቀመጥ \n\nምርጫዎች\" የሚለውን ክፍል እንድትጠቀሙ እንመክራለን፡፡ ምናልባት የይለፍ ቃላችሁን ብትረሱ\n\nይሄ ቁልፍ የመሳርያ ሥርዓቱን እና ውሂባችሁን\n\n ለማግኘት ያስፈልጋችኋል፡፡"
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "የተሰጠው መልሶ ማግኛ ቁልፍ ትክክል አይደለም፡፡"

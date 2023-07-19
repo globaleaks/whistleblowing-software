@@ -22,9 +22,6 @@ msgstr ""
 msgid "Log in"
 msgstr "Içeri gir"
 
-msgid "Theme customization"
-msgstr "Tema şahsylaşdyrmak"
-
 msgid "Languages"
 msgstr "Dil"
 
@@ -512,6 +509,15 @@ msgstr ""
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
+msgid "Whistleblowing Policy"
+msgstr ""
+
+msgid "Accessibility Declaration"
+msgstr ""
+
+msgid "Voice"
+msgstr ""
+
 msgid "File a report"
 msgstr "Hasabat beriň"
 
@@ -863,6 +869,12 @@ msgstr "Birnäçe jogaplary kabul et"
 
 msgid "Template override"
 msgstr "Nusgany ýok etmek"
+
+msgid "Min"
+msgstr ""
+
+msgid "Max"
+msgstr ""
 
 msgid "Phone number"
 msgstr "Telefon belgisi"
@@ -1420,6 +1432,9 @@ msgid ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 msgstr "\"Hasap Dikeltmek Açary\" almak we ygtybarly saklamak üçin \"Saýlamalar\" bölümine girmegiňizi maslahat berýäris. Bu açar, parolyňyzy ýatdan çykaran halatynda platforma we maglumatlaryňyza girişiňizi dikeltmek üçin zerur bolar."
+
+msgid "Access date"
+msgstr ""
 
 msgid "The provided recovery key is invalid."
 msgstr "Berlen dikeldiş açary nädogry."
