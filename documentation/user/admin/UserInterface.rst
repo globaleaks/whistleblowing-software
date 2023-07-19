@@ -32,7 +32,7 @@ This section is furtherly divided in:
 
    1. Settings
 
-   2. Theme customization
+   2. Files
 
    3. Languages
 
@@ -46,8 +46,8 @@ In this section is configurable the logo and all the texts of the main user inte
 
 .. image:: ../../images/admin/site_settings_main_configuration.png
 
-Theme Customization
-...................
+Files
+.....
 In this section could be loaded CSS and Javascript and other files necessary to customize the interface.
 
 .. image:: ../../images/admin/site_settings_files.png
