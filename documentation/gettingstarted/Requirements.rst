@@ -19,7 +19,9 @@ Software Requirements
 ---------------------
 GlobaLeaks is designed to run on GNU/Linux and developed and tested specifically for Debian based systems.
 
-The software lifecycle of the platform includes full support for all Debian and Ubuntu LTS versions starting from `Debian 11 <https://www.debian.org/releases/bullseye/>`_ and `Ubuntu 20.04 <https://releases.ubuntu.com/20.04/>`_.
+The currently recommended distribution is: Debian 12 (Bookworm).
+
+The software lifecycle of the platform includes full support for all Debian and Ubuntu LTS versions starting from `Debian 10 <https://www.debian.org/releases/buster/>`_ and `Ubuntu 20.04 <https://releases.ubuntu.com/20.04/>`_.
 
 On these platforms the support is guaranteed following the official long term support timelines:
 
