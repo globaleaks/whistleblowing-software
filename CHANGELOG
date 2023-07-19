@@ -1,3 +1,24 @@
+Changes in version 4.12.0
+    Add packaging for Debian 12 Bookworm (#3485)
+    Perform full application review following AgID advice on accessibility
+    The full whistleblowing process is now accessible with screen readers
+    Implement notification for reports reminders (#3419)
+    Add two factor authentication on file based' configurations
+    Automatically configure a self signed certificate to ensure every
+    connection is always encrypted
+    Implement encryption of identity access requests and replies
+    Implement encryption of reports label
+    Perform db migration in RAM to ensure shorter downtimes on update
+    Enable file viewer by default
+    Make it possible to configure a Privacy Policy link
+    Make it possible to configure a Whistleblowing Policy link
+    Add support for Basque (Euskara) language
+    Update translations
+    Fix issues #3442, #3456, #3466, #3471, 3504
+    Voice question
+    [doc] Update documentation
+    [doc] Update ER schema representation
+
 Changes in version 4.11.5
     Fix regression on ip filter check introduced in 4.11.4
     causing authorized connections to be blocked
