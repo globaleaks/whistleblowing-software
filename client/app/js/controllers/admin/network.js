@@ -42,8 +42,8 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibMod
   $scope.state = 0;
   $scope.menuState = "setup";
 
-  $scope.setMenu = function(state) {
-    $scope.menuState = state;
+  $scope.setup = function() {
+    $scope.menuState = "files";
   };
 
   $scope.parseTLSConfig = function(tlsConfig) {
@@ -71,14 +71,13 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibMod
     }
 
     if (tlsConfig.enabled) {
-      choice = "status";
       t = -1;
+      $scope.menuState = "status";
     } else if (t > 0) {
-      choice = "files";
+      $scope.menuState = "files";
     }
 
     $scope.state = t;
-    $scope.menuState = choice;
   };
 
   tlsConfigResource.get({}).$promise.then($scope.parseTLSConfig);
@@ -136,10 +135,6 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibMod
     .then(function() {
       return aRes.$save();
     }).then($scope.refreshConfig);
-  };
-
-  $scope.setup = function() {
-    $scope.setMenu("files");
   };
 
   $scope.toggleCfg = function() {

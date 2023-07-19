@@ -31,7 +31,6 @@ def db_load_tls_config(session, tid, test=False):
         cert = node.get_val('https_cert')
         chain = node.get_val('https_chain')
         hostname = node.get_val('hostname')
-        hostname = '127.0.0.1'
     else:
         key = node.get_val('https_selfsigned_key')
         cert = node.get_val('https_selfsigned_cert')
@@ -178,8 +177,12 @@ def db_reset_https_config(session, tid):
     config.set_val('https_chain', '')
     config.set_val('acme', False)
     config.set_val('acme_accnt_key', '')
-    State.snimap.unload(tid)
+
     State.tenants[tid].cache.https_enabled = False
+
+    State.snimap.unload(tid)
+
+    State.snimap.load(tid, db_load_tls_config(session, tid))
 
 
 class FileResource(object):
