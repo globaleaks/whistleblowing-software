@@ -136,6 +136,11 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
     clearInterval($scope.secondsTracker);
     $scope.secondsTracker = null;
 
+    if ($scope.seconds < $scope.field.attrs.min_len.value) {
+      $scope.deleteRecording();
+      return;
+    }
+
     if ($scope.mediaRecorder && ($scope.mediaRecorder.state === "recording" || $scope.mediaRecorder.state === "paused")) {
       $scope.mediaRecorder.stop();
     }
