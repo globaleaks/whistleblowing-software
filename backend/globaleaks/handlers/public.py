@@ -7,7 +7,6 @@ import os
 from sqlalchemy import or_
 
 from globaleaks import models, LANGUAGES_SUPPORTED, LANGUAGES_SUPPORTED_CODES
-from globaleaks.handlers.admin.file import special_files
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import get_localized_values
 from globaleaks.models.config import ConfigFactory, ConfigL10NFactory
@@ -17,6 +16,7 @@ from globaleaks.state import State
 default_questionnaires = ['default']
 default_questions = ['whistleblower_identity']
 
+special_files = ['css', 'favicon', 'logo', 'script']
 
 trigger_map = {
     'field': models.FieldOptionTriggerField,
