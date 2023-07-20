@@ -105,9 +105,10 @@ def db_wizard(session, tid, hostname, request):
         return
 
     # Secondary tenants initialization starts here
-
-    if node.get_val('subdomain') and root_tenant_node.get_val('rootdomain'):
-        node.set_val('hostname', node.get_val('subdomain') + '.' + root_tenant_node.get_val('rootdomain'))
+    subdomain = node.get_val('subdomain')
+    rootdomain = root_tenant_node.get_val('rootdomain')
+    if subdomain and rootdomain:
+        node.set_val('hostname', subdomain + "." + rootdomain)
 
     mode = node.get_val('mode')
 
