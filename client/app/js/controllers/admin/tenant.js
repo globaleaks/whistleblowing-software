@@ -58,7 +58,7 @@ angular.module("GL")
 
   $scope.configureTenant = function($event, tid) {
     $event.stopPropagation();
-    return $http.get("api/tenantauthswitch/" + tid).then(function(x){
+    return $http.get("api/auth/tenantauthswitch/" + tid).then(function(x){
       return $window.open(x.data.redirect);
     });
   };
