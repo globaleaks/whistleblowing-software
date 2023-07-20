@@ -649,7 +649,8 @@ class _InternalTip(Model):
     def __table_args__(self):
         return (UniqueConstraint('tid', 'progressive'),
                 UniqueConstraint('tid', 'receipt_hash'),
-                ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
+                ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
+                ForeignKeyConstraint(['context_id'], ['context.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
 
 
 class _InternalTipAnswers(Model):
