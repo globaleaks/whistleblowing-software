@@ -30,7 +30,10 @@ GL.controller("SignupCtrl", ["$scope", "$location", "$route", "$http",
   $scope.updateSubdomain = function() {
     $scope.signup.subdomain = "";
     if ($scope.signup.organization_name) {
-      $scope.signup.subdomain = $scope.signup.organization_name.replace(/[^\w]/gi, "").toLowerCase();
+      $scope.signup.subdomain = $scope.signup.organization_name.replace(/[^\w]/gi, "");
+      $scope.signup.subdomain = $scope.signup.subdomain.toLowerCase();
+      $scope.signup.subdomain = $scope.signup.subdomain.replace(/[^a-z0-9-]/g,"");
+      $scope.signup.subdomain = $scope.signup.subdomain.substring(0, 60);
     }
   };
 

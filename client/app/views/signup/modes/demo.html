@@ -11,7 +11,8 @@
         <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
       </label>
       <div class="input-group">
-        <input name="subdomain" class="form-control" data-ng-model="signup.subdomain" type="text"
+        <input name="subdomain" class="form-control" data-ng-model="signup.subdomain" type="text" maxlength="60"
+               data-ng-class="{'is-invalid': signupForm.subdomain.$error.pattern}"
                data-ng-pattern="/^[a-z0-9]+$/" data-subdomainvalidator required >
         <span class="input-group-append"><span class="input-group-text">.{{public.node.rootdomain}}</span></span>
       </div>

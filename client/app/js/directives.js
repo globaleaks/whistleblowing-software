@@ -168,6 +168,7 @@ directive("subdomainvalidator", function() {
       model.$parsers.unshift(function(viewValue) {
         viewValue = viewValue.toLowerCase();
         viewValue = viewValue.replace(/[^a-z0-9-]/g,"");
+        viewValue = viewValue.substring(0, 60);
         angular.element(elem).val(viewValue);
         return viewValue;
       });
