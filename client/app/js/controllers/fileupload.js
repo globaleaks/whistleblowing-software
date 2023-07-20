@@ -89,7 +89,13 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
     delete $scope.uploads[$scope.fileinput];
   };
 
-  $scope.startRecording = function (fileId){
+  $scope.startRecording = function (fileId) {
+    if ($scope.vars['recording']) {
+      return;
+    }
+
+    $scope.vars['recording'] = true;
+
     if (!$scope.flow) {
       $scope.flow = flowFactory.create({
         target: $scope.fileupload_url,
@@ -129,6 +135,8 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
   };
 
   $scope.stopRecording = function () {
+    $scope.vars['recording'] = false;
+
     $scope.isRecording = false;
     $scope.recordButton = false;
     $scope.stopButton = true;
