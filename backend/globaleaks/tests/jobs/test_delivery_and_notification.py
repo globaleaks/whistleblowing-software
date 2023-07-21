@@ -6,6 +6,7 @@ from globaleaks import models
 from globaleaks.jobs.delivery import Delivery
 from globaleaks.jobs.notification import Notification
 from globaleaks.orm import transact
+from globaleaks.state import State
 from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_now, datetime_null
 
@@ -24,6 +25,8 @@ def simulate_unread_tips(session):
 
 @transact
 def simulate_reminders(session):
+    Notification.next_daily_run = datetime_now()
+
     for itip in session.query(models.InternalTip):
         itip.reminder_date = datetime_now() - timedelta(1)
 
@@ -84,6 +87,12 @@ class TestNotification(helpers.TestGLWithPopulatedDB):
         yield notification.generate_emails()
 
         yield self.test_model_count(models.Mail, 2)
+
+        yield notification.spool_emails()
+
+        yield notification.generate_emails()
+
+        yield self.test_model_count(models.Mail, 0)
 
         yield notification.spool_emails()
 

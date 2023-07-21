@@ -70,6 +70,7 @@ class MailGenerator(object):
     @transact
     def generate(self, session):
         now = datetime_now()
+
         rtips_ids = {}
         silent_tids = []
 
@@ -147,6 +148,11 @@ class MailGenerator(object):
             except:
                 pass
 
+        if now < Notification.next_daily_run:
+            return
+
+        Notification.next_daily_run = now + timedelta(1)
+
         for user in session.query(models.User).filter(models.User.id == models.ReceiverTip.receiver_id,
                                                       models.ReceiverTip.internaltip_id == models.InternalTip.id,
                                                       models.InternalTip.reminder_date < now).distinct():
@@ -187,6 +193,7 @@ def get_mails_from_the_pool(session):
 class Notification(LoopingJob):
     interval = 10
     monitor_interval = 3 * 60
+    next_daily_run = datetime_now()
 
     def generate_emails(self):
         return MailGenerator(self.state).generate()
