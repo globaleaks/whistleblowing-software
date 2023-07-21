@@ -729,7 +729,7 @@ var GL = angular.module("GL", [
 
        angular.extend(config.headers, $rootScope.Authentication.get_headers());
 
-       if (!$rootScope.Authentication.session && (config.url.substr(config.url.length - 14, config.url.length) !== "api/auth/token") && (["DELETE", "POST", "PUT"].indexOf(config.method) !== -1)) {
+       if (!$rootScope.Authentication.session && (config.url.substring(config.url.length - 14, config.url.length) !== "api/auth/token") && (["DELETE", "POST", "PUT"].indexOf(config.method) !== -1)) {
          return new TokenResource().$get().then(function(token) {
            angular.extend(config.headers, {"x-token": token.id + ":" + token.answer});
            return config;

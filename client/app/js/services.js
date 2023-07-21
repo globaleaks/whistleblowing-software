@@ -1177,7 +1177,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
 
     copyToClipboard: function(data) {
       if ($window.navigator.clipboard && $window.isSecureContext) {
-        $window.navigator.clipboard.writeText(data);
+        return $window.navigator.clipboard.writeText(data);
       }
     },
 
@@ -1212,7 +1212,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
 
       if (role) {
         ret = role === "receiver" ? "recipient" : role;
-        ret = $filter("translate")(ret.charAt(0).toUpperCase() + ret.substr(1));
+        ret = $filter("translate")(ret.charAt(0).toUpperCase() + ret.substring(1));
       }
 
       return ret;
