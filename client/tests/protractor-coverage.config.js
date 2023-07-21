@@ -10,7 +10,7 @@ var tmpDir = "/tmp/globaleaks-downloads";
 exports.config = {
   framework: "jasmine",
 
-  baseUrl: "http://127.0.0.1:8082/",
+  baseUrl: "https://127.0.0.1:8443/",
 
   troubleshoot: false,
   rootElement: "html",

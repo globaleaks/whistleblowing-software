@@ -23,9 +23,6 @@ setupClientDependencies() {
   cd $TRAVIS_BUILD_DIR/client  # to install frontend dependencies
   npm install
   grunt copy:sources
-  if [ "$1" = 1 ]; then
-    grunt build
-  fi
 }
 
 setupBackendDependencies() {
@@ -41,7 +38,6 @@ setupDependencies() {
 sudo apt-get update
 sudo apt-get install -y tor
 sudo usermod -aG debian-tor $USER
-sudo iptables -t nat -A OUTPUT -o lo -p tcp --dport 9000 -j REDIRECT --to-port 8082
 npm install -g grunt grunt-cli
 
 if [ "$GLTEST" = "test" ]; then
@@ -56,7 +52,7 @@ if [ "$GLTEST" = "test" ]; then
   cd $TRAVIS_BUILD_DIR/client && ./node_modules/nyc/bin/nyc.js  instrument --complete-copy app build --source-map=false
 
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z -d
-  sleep 3
+  sleep 5
 
   ./node_modules/protractor/bin/webdriver-manager update
 

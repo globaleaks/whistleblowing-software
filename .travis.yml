@@ -1,4 +1,4 @@
-dist: focal
+dist: jammy
 language: python
 sudo: required
 addons:
@@ -7,12 +7,15 @@ env:
   global:
   - secure: bx4jocxpUDAveKsuCZuJ1zRrHcCY3C05Gr8sd+X0d0wnuh61QwPj+7q35Y+PVRVCjkcpbiUJ1JrfK4jvNoJUdY1hLUwd8NttgE4wfDDVjCUQGJecwkYG22PKvlImP/z+WpvzcELb+tyPpQ/V3vfldbLRIILwkPfwC1W5Kj87pv8=
 #Tokens: CODACY_PROJECT_TOKEN
-matrix:
+jobs:
   fast_finish: true
   include:
-  - env: GLTEST='test' CODACY=true
-  - env: GLTEST='build_and_install' DISTRIBUTION='bookworm'
-  - env: GLTEST='build_and_install' DISTRIBUTION='jammy'
+  - python: "3.9"
+    env: GLTEST='test' CODACY=true
+  - python: "3.9"
+    env: GLTEST='build_and_install' DISTRIBUTION='bookworm'
+  - python: "3.9"
+    env: GLTEST='build_and_install' DISTRIBUTION='jammy'
 before_install:
 - nvm install --lts
 - nvm use --lts
