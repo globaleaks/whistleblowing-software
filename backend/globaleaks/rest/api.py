@@ -484,11 +484,17 @@ class APIResourceWrapper(Resource):
             request.setHeader(b"Cross-Origin-Resource-Policy", "same-origin")
 
             # Disable features that could be used to deanonymize the user
-            request.setHeader(b'Permissions-Policy', b"camera=(),"
-                                                     b"document-domain=(),"
-                                                     b"fullscreen=(),"
-                                                     b"geolocation=(),"
-                                                     b"microphone=()")
+            if State.microphone:
+                request.setHeader(b'Permissions-Policy', b"camera=(),"
+                                                         b"document-domain=(),"
+                                                         b"fullscreen=(),"
+                                                         b"geolocation=()")
+            else:
+                request.setHeader(b'Permissions-Policy', b"camera=(),"
+                                                         b"document-domain=(),"
+                                                         b"fullscreen=(),"
+                                                         b"geolocation=(),"
+                                                         b"microphone=()")
 
             # Prevent old browsers not supporting CSP frame-ancestors directive to includes the platform within an iframe
             request.setHeader(b'X-Frame-Options', b'deny')
