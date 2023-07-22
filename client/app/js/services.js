@@ -796,6 +796,12 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       return rows;
     },
 
+    writeUTFBytes: function(view, offset, string) {
+      for (let i = 0; i < string.length; i++) {
+        view.setUint8(offset + i, string.charCodeAt(i));
+      }
+    },
+
     maskScore: function(score) {
       if (score === 1) {
         return $filter("translate")("Low");
@@ -1690,6 +1696,130 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
         return parsedFields;
       }
     };
+}]).
+factory('mediaProcessor', ['Utils', function (Utils) {
+  return {
+    applyNoiseReduction: function (buffer, noiseGateThreshold, noiseReductionAmount) {
+      for (let i = 0; i < buffer.length; i++) {
+        if (Math.abs(buffer[i]) < noiseGateThreshold) {
+          buffer[i] *= noiseReductionAmount;
+        }
+      }
+      return buffer;
+    },
+
+    createWavBlob: function (modbuffer) {
+      var sampleRate = 25000;
+      const buffer = new ArrayBuffer(44 + modbuffer.length * 2);
+      const view = new DataView(buffer);
+
+      Utils.writeUTFBytes(view, 0, "RIFF");
+      view.setUint32(4, 44 + modbuffer.length * 2, true);
+      Utils.writeUTFBytes(view, 8, "WAVE");
+      Utils.writeUTFBytes(view, 12, "fmt ");
+      view.setUint32(16, 16, true);
+      view.setUint16(20, 1, true);
+      view.setUint16(22, 1, true);
+      view.setUint32(24, sampleRate, true);
+      view.setUint32(28, sampleRate, true);
+      view.setUint16(32, 2, true);
+      view.setUint16(34, 16, true);
+      Utils.writeUTFBytes(view, 36, "data");
+      view.setUint32(40, modbuffer.length * 2, true);
+
+      let index = 44;
+      for (let i = 0; i < modbuffer.length; i++) {
+        view.setInt16(index, modbuffer[i] * (0x7FFF), true);
+        index += 2;
+      }
+
+      return new Blob([view], { type: "audio/wav" });
+    },
+
+    applyLowPassFilter: function (buffer, recordingData) {
+      const cutoffFrequency = 1800;
+      const sampleRate = recordingData.context.sampleRate;
+      const filterAlpha = 2 * Math.PI * cutoffFrequency / sampleRate;
+      let filteredValue = buffer[0];
+
+      for (let i = 1; i < buffer.length; i++) {
+        filteredValue += filterAlpha * (buffer[i] - filteredValue);
+        buffer[i] = filteredValue;
+      }
+
+      return buffer;
+    },
+
+    applyPitchShift: function (buffer) {
+      const originalPitchShift = 1;
+      const minPitchShift = -3;
+      const maxPitchShift = 3;
+      const exclusionRange = 2;
+
+      let randomPitchShift;
+      do {
+        randomPitchShift = Math.floor(Math.random() * (maxPitchShift - minPitchShift + 1)) + minPitchShift;
+      } while (Math.abs(randomPitchShift - originalPitchShift) <= exclusionRange);
+
+      const playbackRate = Math.pow(2, randomPitchShift / 12);
+      const originalLength = buffer.length;
+      const stretchedLength = Math.floor(originalLength / playbackRate);
+      const stretchedBuffer = new Float32Array(stretchedLength);
+
+      for (let i = 0; i < stretchedLength; i++) {
+        const position = i * playbackRate;
+        const previousIndex = Math.floor(position);
+        const nextIndex = Math.ceil(position);
+        const weight = position - previousIndex;
+        const previousSample = buffer[previousIndex];
+        const nextSample = buffer[nextIndex];
+        const stretchedSample = previousSample + (nextSample - previousSample) * weight;
+        stretchedBuffer[i] = stretchedSample;
+      }
+
+      return stretchedBuffer;
+    },
+
+    applyTimeStretching: function (buffer) {
+      var originalLength = buffer.length;
+      var random = Math.random();
+      var stretchAmount;
+
+      if (random < 0.5) {
+        stretchAmount = 0.93 + random * 0.04;
+      } else {
+        stretchAmount = 1.03 + (random - 0.5) * 0.08;
+      }
+
+      var stretchedLength = Math.floor(originalLength * stretchAmount);
+      var stretchedBuffer = new Float32Array(stretchedLength);
+      var index = 0;
+
+      for (var i = 0; i < stretchedLength; i++) {
+        var position = i / stretchedLength * originalLength;
+        var previousIndex = Math.floor(position);
+        var nextIndex = Math.ceil(position);
+        var weight = position - previousIndex;
+        var previousSample = buffer[previousIndex];
+        var nextSample = buffer[nextIndex];
+        var stretchedSample = previousSample + (nextSample - previousSample) * weight;
+        stretchedBuffer[index++] = stretchedSample;
+      }
+
+      return stretchedBuffer;
+    },
+
+    flattenArray: function (channelBuffer, recordingLength) {
+      const result = new Float32Array(recordingLength / 2);
+      let offset = 0;
+      for (const buffer of channelBuffer) {
+        for (let i = 0; i < buffer.length; i += 2) {
+          result[offset++] = (buffer[i] + buffer[i + 1]) / 2;
+        }
+      }
+      return result;
+    }
+  };
 }]).
 factory("GLTranslate", ["$translate", "$location", "$window", "tmhDynamicLocale",
     function($translate, $location, $window, tmhDynamicLocale) {
