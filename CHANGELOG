@@ -1,3 +1,6 @@
+Changes in version 4.12.1
+    Fix regression on receipt visualization introduced during packaging of 4.12.0
+
 Changes in version 4.12.0
     Add packaging for Debian 12 Bookworm (#3485)
     Perform full application review following AgID advice on accessibility
