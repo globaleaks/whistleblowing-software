@@ -79,7 +79,7 @@ GL.controller("AdminSettingsCtrl", ["$scope", "$filter", "$http", "Files", "Admi
           if (default_texts.hasOwnProperty(key)) {
             var value = default_texts[key];
             if (value.length > 150) {
-              value = value.substring(0, 150) + "...";
+              value = value.substr(0, 150) + "...";
             }
             list.push({"key": key, "value": value});
           }

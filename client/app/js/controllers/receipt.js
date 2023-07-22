@@ -4,9 +4,9 @@ GL.controller("ReceiptCtrl", ["$scope", function($scope) {
       return "";
     }
 
-    return receipt.substring(0, 4) + " " +
-           receipt.substring(4, 4) + " " +
-           receipt.substring(8, 4) + " " +
-           receipt.substring(12, 4);
+    return receipt.substr(0, 4) + " " +
+           receipt.substr(4, 4) + " " +
+           receipt.substr(8, 4) + " " +
+           receipt.substr(12, 4);
   }($scope.receipt);
 }]);
