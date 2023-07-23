@@ -180,12 +180,12 @@
           <span data-ng-switch-when="phonenumber" class="text-danger" data-translate>please enter numbers only.</span>
         </span>
       </div>
-      <div data-ng-if="field.type === 'selectbox'" data-ng-repeat="option in field.options">
-        <div data-ng-show="option.set && option.hint1"><i class="fa-solid fa-info-circle"></i> {{option.hint1}}</div>
-      </div>
-      <div data-ng-repeat="option in field.options">
-        <div data-ng-show="option.set && option.hint2" data-ng-class="{'text-danger': option.block_submission}"><i class="fa-solid fa-info-circle"></i> {{option.hint2}}</div>
-      </div>
+    </div>
+    <div data-ng-if="field.type === 'selectbox'" data-ng-repeat="option in field.options">
+      <div data-ng-show="option.set && option.hint1"><i class="fa-solid fa-info-circle"></i> {{option.hint1}}</div>
+    </div>
+    <div data-ng-repeat="option in field.options">
+      <div data-ng-show="option.set && option.hint2" data-ng-class="{'text-danger': option.block_submission}"><i class="fa-solid fa-info-circle"></i> {{option.hint2}}</div>
     </div>
   </div>
 </div>
