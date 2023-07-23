@@ -36,10 +36,7 @@
     </div>
   </div>
   <div class="row">
-    <div data-ng-if="questionnaire.steps.length == 1" data-ng-init="step = questionnaire.steps[0]" class="col-md-12">
-      <div data-ng-controller="AdminStepEditorCtrl" data-ng-include="'views/admin/questionnaires/step.html'"></div>
-    </div>
-    <div data-ng-if="questionnaire.steps.length > 1" data-ng-repeat="step in questionnaire.steps" class="col-md-12">
+    <div data-ng-repeat="step in questionnaire.steps" class="col-md-12">
       <div data-ng-controller="AdminStepEditorCtrl">
         <div class="configItem">
           <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
