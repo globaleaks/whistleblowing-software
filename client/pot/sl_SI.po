@@ -427,10 +427,10 @@ msgstr "Ponastavitev gesla"
 msgid ""
 "One or more recipients have not performed the first login yet. This means "
 "they won't be receiving reports."
-msgstr "Eden ali več prejemnikov še ni opravilo prvega vpisa. To pomeni, da še ne prejemajo prijav."
+msgstr "Eden ali več prejemnikov še ni opravilo prve prijave v uporabniški račun. To pomeni, da še ne prejemajo prijav."
 
 msgid "This user has not performed the first login yet."
-msgstr "Uporabnik še ni opravil prvega vpisa. "
+msgstr "Uporabnik še ni opravil prve prijave v uporabniški račun. "
 
 msgid "seconds"
 msgstr "sekund"
@@ -466,34 +466,34 @@ msgid "Set a reminder"
 msgstr "Nastavi opomnik"
 
 msgid "Privileges"
-msgstr "Privilegiji"
+msgstr "Pravice"
 
 msgid "Mask"
-msgstr ""
+msgstr "Skrij"
 
 msgid "Unmask"
-msgstr ""
+msgstr "Odkrij"
 
 msgid "Redact"
-msgstr ""
+msgstr "Odstrani"
 
 msgid "Select an option"
 msgstr "Izberi možnost"
 
 msgid "Select your language"
-msgstr "Izberite svoj jezik"
+msgstr "Izberite jezik"
 
 msgid "Grant this recipient ability to transfer reports to other users"
 msgstr "Temu prejemniku omogočite prenos prijav drugim uporabnikom."
 
 msgid "Grant this user the privilege to mask information"
-msgstr ""
+msgstr "Uporabniku omogoči, da skrije podatke."
 
 msgid "Grant this user the privilege to permanently redact masked information"
-msgstr ""
+msgstr "Uporabniku omogoči, da trajno odstrani skrite podatke."
 
 msgid "Public"
-msgstr "Javni"
+msgstr "Javno"
 
 msgid "Internal"
 msgstr "Interno"
@@ -1166,7 +1166,7 @@ msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Dovoli prejemnikom spremembo roka veljavnosti prijav"
 
 msgid "Give this recipient ability to grant user access to reports"
-msgstr "Daj prejemniku možnost da uporabniku dovoli dostop do prijav"
+msgstr "Omogoči prejemniku, da uporabniku dovoli dostop do prijav"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Omogoči uporabniku dostop do naslednjih funkcij:"
@@ -1992,13 +1992,13 @@ msgstr "Nekaterim prijavam se bo kmalu iztekla veljavnost"
 msgid "This is an email to notify you the reception of a new report."
 msgstr "S tem e-poštnim sporočilom vas obveščamo, da ste prejeli novo prijavo."
 
-msgid "Reminder"
-msgstr "Opomnik"
-
 msgid ""
 "This is an email to notify you that the reminder date for one or more "
 "reports has been met."
 msgstr "S tem e-poštnim sporočilom vas obveščamo, da je datum opomnika za eno ali več prijav dosežen."
+
+msgid "Reminder"
+msgstr "Opomnik"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "S tem e-poštnim sporočilom vas obveščamo, da je bila obstoječa prijava dopolnjena. "

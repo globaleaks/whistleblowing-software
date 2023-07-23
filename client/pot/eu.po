@@ -2004,13 +2004,13 @@ msgstr "Salaketa batzuk laster iraungiko dute"
 msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
-msgid "Reminder"
-msgstr "Oroigarria"
-
 msgid ""
 "This is an email to notify you that the reminder date for one or more "
 "reports has been met."
 msgstr "Posta elektroniko honen bidez salaketa bat edo gehiago zehaztutako oroitzeko data bete dela jakinarazi nahi dizugu."
+
+msgid "Reminder"
+msgstr "Oroigarria"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Posta elektroniko honen bidez aurretik zegoen salaketa bat eguneratu dela jakinarazi nahi dizugu."

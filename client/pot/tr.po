@@ -2013,13 +2013,13 @@ msgstr "Bazı raporların süresi yakında dolacaktır."
 msgid "This is an email to notify you the reception of a new report."
 msgstr "Bu e-posta, yeni bir rapor alındığını bildirmek için gönderilmiştir. "
 
-msgid "Reminder"
-msgstr "Hatırlatıcı"
-
 msgid ""
 "This is an email to notify you that the reminder date for one or more "
 "reports has been met."
 msgstr "Bir ya da birkaç rapor için anımsatma tarihine gelindiğini size bildiren e-posta."
+
+msgid "Reminder"
+msgstr "Hatırlatıcı"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Bu e-postanın amacı mevcut bir bildirimin güncellendiğini size bildirmektir."

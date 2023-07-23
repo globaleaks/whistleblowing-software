@@ -2024,13 +2024,13 @@ msgstr "Certains signalements arriveront bientôt à expiration"
 msgid "This is an email to notify you the reception of a new report."
 msgstr "Le but de ce courriel est de vous aviser de la réception d’un nouveau signalement."
 
-msgid "Reminder"
-msgstr "Rappel"
-
 msgid ""
 "This is an email to notify you that the reminder date for one or more "
 "reports has been met."
 msgstr "Le but de ce courriel est de vous rappeler la date d’un ou de plusieurs signalements."
+
+msgid "Reminder"
+msgstr "Rappel"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Le but de ce courriel est de vous aviser qu’un signalement existant a été mis à jour."

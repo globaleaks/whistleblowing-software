@@ -1995,13 +1995,13 @@ msgstr "Disa raportime do të skadojnë së shpejti"
 msgid "This is an email to notify you the reception of a new report."
 msgstr "Ky është një email për t’ju njoftuar marrjen e një raportimit të ri."
 
-msgid "Reminder"
-msgstr "Kujtues"
-
 msgid ""
 "This is an email to notify you that the reminder date for one or more "
 "reports has been met."
 msgstr "Ky është një email për t’ju njoftuar se ka ardhur data kujtuese për një ose më tepër raportime."
+
+msgid "Reminder"
+msgstr "Kujtues"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Ky është një email për t’ju njoftuar se është përditësuar një raportim ekzistues."

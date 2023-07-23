@@ -2005,13 +2005,13 @@ msgstr "Alguns informes caducaran aviat"
 msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
-msgid "Reminder"
-msgstr "Recordatori"
-
 msgid ""
 "This is an email to notify you that the reminder date for one or more "
 "reports has been met."
 msgstr ""
+
+msgid "Reminder"
+msgstr "Recordatori"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Es tracta d’un correu electrònic per notificar que s’ha actualitzat un informe existent."

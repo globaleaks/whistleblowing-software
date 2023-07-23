@@ -1999,13 +1999,13 @@ msgstr "Doba uložení některých oznámení brzy vyprší"
 msgid "This is an email to notify you the reception of a new report."
 msgstr "Toto je e-mail, který vás informuje o přijetí nového hlášení."
 
-msgid "Reminder"
-msgstr "Připomenutí"
-
 msgid ""
 "This is an email to notify you that the reminder date for one or more "
 "reports has been met."
 msgstr "Upozornění, bylo splněno datum upomínky pro jednu nebo více zpráv."
+
+msgid "Reminder"
+msgstr "Připomenutí"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Toto je e-mailové upozornění o aktualizaci u existujícího oznámení."

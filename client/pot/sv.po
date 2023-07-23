@@ -528,13 +528,13 @@ msgid "Download copy of the Privacy Policy"
 msgstr "Ladda ner en kopia av integritetspolicyn"
 
 msgid "Whistleblowing Policy"
-msgstr ""
+msgstr "Visselblåsarpolicy"
 
 msgid "Accessibility Declaration"
 msgstr ""
 
 msgid "Voice"
-msgstr ""
+msgstr "Voice"
 
 msgid "File a report"
 msgstr "Lämna en rapport"
@@ -1703,7 +1703,7 @@ msgid "Other"
 msgstr "Annat"
 
 msgid "Dear {RecipientName},"
-msgstr "Bästa {RecipientName},"
+msgstr "Hej {RecipientName},"
 
 msgid ""
 "You're receiving this email because a user account has been created for you "
@@ -1901,7 +1901,7 @@ msgid ""
 msgstr "Syftet med detta e-postmeddelande är att upplysa dig om att en systemförvaltare har tillåtit att du får åtkomst till visselblåsarens identitet bakom rapporten {TipNum}."
 
 msgid "The report can be accessed at:"
-msgstr "Rapporten hittar du på adressen:"
+msgstr "Rapporten kan nås på:"
 
 msgid "Access to whistleblower's identity authorized"
 msgstr "Åtkomst till visselblåsarens identitet tillåten"
@@ -2009,13 +2009,13 @@ msgstr "Vissa av rapporterna kommer att gå ut snart"
 msgid "This is an email to notify you the reception of a new report."
 msgstr "Syftet med detta email är att upplysa dig om mottagandet av en ny rapport."
 
-msgid "Reminder"
-msgstr "Påminnelse"
-
 msgid ""
 "This is an email to notify you that the reminder date for one or more "
 "reports has been met."
 msgstr "Syftet med detta email är att upplysa dig om att en eller flera rapporters påminnelsedatum har nåtts."
+
+msgid "Reminder"
+msgstr "Påminnelse"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Syftet med detta e-postmeddelande är att upplysa dig om att en rapport har uppdaterats."

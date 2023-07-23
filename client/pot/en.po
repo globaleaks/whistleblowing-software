@@ -2083,15 +2083,15 @@ msgstr "Some reports will expire soon"
 msgid "This is an email to notify you the reception of a new report."
 msgstr "This is an email to notify you the reception of a new report."
 
-msgid "Reminder"
-msgstr "Reminder"
-
 msgid ""
 "This is an email to notify you that the reminder date for one or more "
 "reports has been met."
 msgstr ""
 "This is an email to notify you that the reminder date for one or more "
 "reports has been met."
+
+msgid "Reminder"
+msgstr "Reminder"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "This is an email to notify that an existing report has been updated."

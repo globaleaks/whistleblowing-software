@@ -2008,13 +2008,13 @@ msgstr "Alcune delle segnalazioni stanno per scadere"
 msgid "This is an email to notify you the reception of a new report."
 msgstr "Con la presente email ti notifichiamo la ricezione di una nuova segnalazione."
 
-msgid "Reminder"
-msgstr "Promemoria"
-
 msgid ""
 "This is an email to notify you that the reminder date for one or more "
 "reports has been met."
 msgstr "Questa email è per notificati che la data di promemoria di una o più segnalazioni è stata raggiunta."
+
+msgid "Reminder"
+msgstr "Promemoria"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Questa email ti notifica che un una segnalazione è stata aggiornata."

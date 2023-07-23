@@ -1987,13 +1987,13 @@ msgstr "Mõned teavitused aeguvad varsti"
 msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
-msgid "Reminder"
-msgstr "Meeldetuletus"
-
 msgid ""
 "This is an email to notify you that the reminder date for one or more "
 "reports has been met."
 msgstr ""
+
+msgid "Reminder"
+msgstr "Meeldetuletus"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Käesoleva meiliga teatame, et olemasolevat teavitust on uuendatud."

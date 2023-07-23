@@ -2032,13 +2032,13 @@ msgstr "Einige Berichte laufen bald ab"
 msgid "This is an email to notify you the reception of a new report."
 msgstr ""
 
-msgid "Reminder"
-msgstr "Erinnerung "
-
 msgid ""
 "This is an email to notify you that the reminder date for one or more "
 "reports has been met."
 msgstr ""
+
+msgid "Reminder"
+msgstr "Erinnerung "
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Dies ist eine E-Mail, um Sie zu benachrichtigen, dass ein vorhandener Bericht aktualisiert wurde."
