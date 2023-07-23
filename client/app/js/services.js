@@ -907,55 +907,6 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       }
     },
 
-    getUploadsNumber: function(uploads) {
-      var count = 0;
-
-      for (var key in uploads) {
-        if (uploads[key] && uploads[key].files) {
-          count += uploads[key].files.length;
-        }
-      }
-
-      return count;
-    },
-
-    getUploadStatus: function(uploads) {
-      for (var key in uploads) {
-        if (uploads[key] &&
-            uploads[key].progress &&
-            uploads[key].progress() !== 1) {
-          return "uploading";
-        }
-      }
-
-      return "finished";
-    },
-
-    getUploadStatusPercentage: function(uploads) {
-      var n = 0;
-      var percentage = 0;
-      for (var key in uploads) {
-        if (uploads[key] && uploads[key].progress) {
-          n += 1;
-          percentage += uploads[key].progress();
-        }
-      }
-
-      return (percentage / n) * 100;
-    },
-
-    getRemainingUploadTime: function(uploads) {
-      var count = 0;
-
-      for (var key in uploads) {
-        if (uploads[key] && uploads[key].timeRemaining) {
-          count += uploads[key].timeRemaining();
-        }
-      }
-
-      return count;
-    },
-
     isUploading: function(uploads) {
       for (var key in uploads) {
         if (uploads[key] &&
