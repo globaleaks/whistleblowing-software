@@ -1,3 +1,10 @@
+Changes in version 4.12.3
+    Avoid to create first questionnaire step that seems to confuse users
+    Simplify whistleblowing interface related to files
+    Fix duplication of questionnaires using field templates
+    Correct validation of questionaires in relation to addition of feature #3426
+    Fix regression #3546
+
 Changes in version 4.12.2
     Vary the permission policy in relation to feature #3426
     Correct title of emails for new reports
