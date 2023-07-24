@@ -123,7 +123,6 @@ def db_create_submission_substatus(session, tid, status_id, request, language):
 @transact
 def order_status_elements(session, handler, req_args, *args, **kwargs):
     """Sets the presentation order for status elements"""
-
     statuses = session.query(models.SubmissionStatus) \
                       .filter(models.SubmissionStatus.tid == handler.request.tid)
 
@@ -208,7 +207,7 @@ class SubmissionSubStatusCollection(OperationHandler):
 
     def operation_descriptors(self):
         return {
-            'order_elements': (order_substatus_elements, {'ids': [str]}),
+            'order_elements': order_substatus_elements,
         }
 
 
