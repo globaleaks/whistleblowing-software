@@ -1,4 +1,7 @@
-Canges in version 4.12.4
+Changes in version 4.12.5
+    Fix bug loading of Tor onion services introduced in 4.12.0
+
+Changes in version 4.12.4
     Fix issue #3555
     Revise migration of receiver files
     Update translations
