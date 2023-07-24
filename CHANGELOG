@@ -1,3 +1,8 @@
+Canges in version 4.12.4
+    Fix issue #3555
+    Revise migration of receiver files
+    Update translations
+
 Changes in version 4.12.3
     Avoid to create first questionnaire step that seems to confuse users
     Simplify whistleblowing interface related to files
