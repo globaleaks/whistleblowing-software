@@ -90,11 +90,11 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
   };
 
   $scope.startRecording = function (fileId) {
-    if ($scope.vars['recording']) {
+    if ($scope.vars["recording"]) {
       return;
     }
 
-    $scope.vars['recording'] = true;
+    $scope.vars["recording"] = true;
 
     if (!$scope.flow) {
       $scope.flow = flowFactory.create({
@@ -135,7 +135,7 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", function($scope, flowFact
   };
 
   $scope.stopRecording = function () {
-    $scope.vars['recording'] = false;
+    $scope.vars["recording"] = false;
 
     $scope.isRecording = false;
     $scope.recordButton = false;

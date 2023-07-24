@@ -50,7 +50,6 @@ controller("AdminHTTPSConfigCtrl", ["$q", "$http", "$window", "$scope", "$uibMod
     $scope.tls_config = tlsConfig;
 
     var t = 0;
-    var choice = "setup";
 
     if (!tlsConfig.acme) {
       if (tlsConfig.files.key.set) {
