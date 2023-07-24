@@ -479,10 +479,10 @@ factory("AdminUserResource", ["GLResource", function(GLResource) {
   return new GLResource("api/admin/users/:id", {id: "@id"});
 }]).
 factory("AdminSubmissionStatusResource", ["GLResource", function(GLResource) {
-  return new GLResource("api/admin/submission_statuses/:id", {id: "@id"});
+  return new GLResource("api/admin/statuses/:id", {id: "@id"});
 }]).
 factory("AdminSubmissionSubStatusResource", ["GLResource", function(GLResource) {
-  return new GLResource("api/admin/submission_statuses/:submissionstatus_id/substatuses/:id", {id: "@id", submissionstatus_id: "@submissionstatus_id"});
+  return new GLResource("api/admin/statuses/:submissionstatus_id/substatuses/:id", {id: "@id", submissionstatus_id: "@submissionstatus_id"});
 }]).
 factory("AdminNodeResource", ["GLResource", function(GLResource) {
   return new GLResource("api/admin/node");

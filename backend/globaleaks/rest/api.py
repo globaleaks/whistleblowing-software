@@ -121,12 +121,12 @@ api_spec = [
     (r'/api/admin/files/(.+)', admin.file.FileInstance),
     (r'/api/admin/tenants', admin.tenant.TenantCollection),
     (r'/api/admin/tenants/' + '([0-9]{1,20})', admin.tenant.TenantInstance),
-    (r'/api/admin/submission_statuses', admin.submission_statuses.SubmissionStatusCollection),
-    (r'/api/admin/submission_statuses/' + r'(closed)' + r'/substatuses', admin.submission_statuses.SubmissionSubStatusCollection),
-    (r'/api/admin/submission_statuses/' + uuid_regexp, admin.submission_statuses.SubmissionStatusInstance),
-    (r'/api/admin/submission_statuses/' + uuid_regexp + r'/substatuses', admin.submission_statuses.SubmissionSubStatusCollection),
-    (r'/api/admin/submission_statuses/' + r'(closed)' + r'/substatuses/' + uuid_regexp, admin.submission_statuses.SubmissionSubStatusInstance),
-    (r'/api/admin/submission_statuses/' + uuid_regexp + r'/substatuses/' + uuid_regexp, admin.submission_statuses.SubmissionSubStatusInstance),
+    (r'/api/admin/statuses', admin.submission_statuses.SubmissionStatusCollection),
+    (r'/api/admin/statuses/' + r'(closed)' + r'/substatuses', admin.submission_statuses.SubmissionSubStatusCollection),
+    (r'/api/admin/statuses/' + uuid_regexp, admin.submission_statuses.SubmissionStatusInstance),
+    (r'/api/admin/statuses/' + uuid_regexp + r'/substatuses', admin.submission_statuses.SubmissionSubStatusCollection),
+    (r'/api/admin/statuses/' + r'(closed)' + r'/substatuses/' + uuid_regexp, admin.submission_statuses.SubmissionSubStatusInstance),
+    (r'/api/admin/statuses/' + uuid_regexp + r'/substatuses/' + uuid_regexp, admin.submission_statuses.SubmissionSubStatusInstance),
 
     # Services
     (r'/api/support', support.SupportHandler),
