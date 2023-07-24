@@ -72,7 +72,7 @@ class OnionService(Service):
             return
 
         for tid in self.state.tenants:
-            if self.state.tenants[tid].cache.tor and not hasattr(self.state.tenants[tid], 'ephs'):
+            if self.state.tenants[tid].cache.tor_onion_key and not hasattr(self.state.tenants[tid], 'ephs'):
                 # Track that the onion service is starting
                 self.state.tenants[tid].ephs = False
                 self.load_onion_service(tid, self.state.tenants[tid].cache.onionservice, self.state.tenants[tid].cache.tor_onion_key)
