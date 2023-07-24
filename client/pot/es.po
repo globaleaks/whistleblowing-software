@@ -503,10 +503,10 @@ msgid "Privileges"
 msgstr "Privilegios"
 
 msgid "Mask"
-msgstr ""
+msgstr "Ocultar"
 
 msgid "Unmask"
-msgstr ""
+msgstr "Mostrar"
 
 msgid "Redact"
 msgstr "Redactar"
@@ -518,13 +518,13 @@ msgid "Select your language"
 msgstr "Seleccione su idioma"
 
 msgid "Grant this recipient ability to transfer reports to other users"
-msgstr ""
+msgstr "Conceder a este destinatario la capacidad de transferir denuncias a otros usuarios"
 
 msgid "Grant this user the privilege to mask information"
-msgstr ""
+msgstr "Conceder a este usuario la capacidad de ocultar parte del texto de las denuncias"
 
 msgid "Grant this user the privilege to permanently redact masked information"
-msgstr ""
+msgstr "Conceder a este usuario el privilegio de eliminar permanentemente el texto ocultado de las denuncias"
 
 msgid "Public"
 msgstr "Público"
@@ -533,22 +533,22 @@ msgid "Internal"
 msgstr "Interno"
 
 msgid "Personal"
-msgstr ""
+msgstr "Personal"
 
 msgid "Privacy Policy"
 msgstr "Política de Privacidad"
 
 msgid "I've read and accept the Privacy Policy"
-msgstr ""
+msgstr "He leído y acepto la Política de privacidad"
 
 msgid "Download copy of the Privacy Policy"
-msgstr ""
+msgstr "Descargar copia de la Política de privacidad"
 
 msgid "Whistleblowing Policy"
-msgstr ""
+msgstr "Política de denuncias"
 
 msgid "Accessibility Declaration"
-msgstr ""
+msgstr "Declaración de accesibilidad"
 
 msgid "Voice"
 msgstr "Voz"
@@ -1469,7 +1469,7 @@ msgid ""
 msgstr "Recomendamos que acceda a la sección “Preferencias” para descargar su “Clave de Recuperación de Cuenta” y almacenarla de forma segura. \nEsta clave será necesaria para recuperar su acceso a la plataforma y sus datos, en caso que olvide su contraseña."
 
 msgid "Access date"
-msgstr ""
+msgstr "Fecha de acceso"
 
 msgid "The provided recovery key is invalid."
 msgstr "El código de recuperación introducido no es válido."
@@ -1583,7 +1583,7 @@ msgid "View your report"
 msgstr "Ver su denuncia"
 
 msgid "Select the recipients of your report"
-msgstr ""
+msgstr "Seleccione los destinatarios de su denuncia"
 
 msgid "Recipients selected:"
 msgstr "Destinatarios seleccionados:"
@@ -1781,7 +1781,7 @@ msgid "The activities with unusual stats are:"
 msgstr "Las actividades con estadísticas inusuales son:"
 
 msgid "Available disk space: {FreeMemory}/{TotalMemory}"
-msgstr ""
+msgstr "Espacio disponible en disco: {FreeMemory}/{TotalMemory}"
 
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
@@ -2012,7 +2012,7 @@ msgid "New report"
 msgstr "Nueva denuncia"
 
 msgid "One or more reports are expiring and will be soon deleted."
-msgstr ""
+msgstr "Una o más denuncias están a punto de caducar y pronto se eliminarán."
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "La fecha de caducidad más próxima es {EarliestExpirationDate}."
@@ -2024,12 +2024,12 @@ msgid "Some reports will expire soon"
 msgstr "Algunas denuncias caducarán pronto"
 
 msgid "This is an email to notify you the reception of a new report."
-msgstr ""
+msgstr "Este correo electrónico es para notificarle la recepción de una nueva denuncia."
 
 msgid ""
 "This is an email to notify you that the reminder date for one or more "
 "reports has been met."
-msgstr ""
+msgstr "Este correo electrónico es para notificarle que se ha cumplido la fecha de recordatorio para una o más denuncias."
 
 msgid "Reminder"
 msgstr "Recordatorio"

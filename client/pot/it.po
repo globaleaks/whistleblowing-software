@@ -527,10 +527,10 @@ msgid "Download copy of the Privacy Policy"
 msgstr "Scarica Copia dell'informativa Privacy"
 
 msgid "Whistleblowing Policy"
-msgstr "Dichiarazione di Accessibilità"
+msgstr "Whistleblowing Policy"
 
 msgid "Accessibility Declaration"
-msgstr ""
+msgstr "Dichiarazione di Accessibilità"
 
 msgid "Voice"
 msgstr "Voce"

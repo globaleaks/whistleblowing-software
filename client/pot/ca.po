@@ -482,55 +482,55 @@ msgid "Privileges"
 msgstr "Privilegis"
 
 msgid "Mask"
-msgstr ""
+msgstr "Ocultar"
 
 msgid "Unmask"
-msgstr ""
+msgstr "Mostrar"
 
 msgid "Redact"
-msgstr ""
+msgstr "Redactar"
 
 msgid "Select an option"
-msgstr ""
+msgstr "Seleccioneu una opció"
 
 msgid "Select your language"
-msgstr ""
+msgstr "Selecciona el teu idioma"
 
 msgid "Grant this recipient ability to transfer reports to other users"
-msgstr ""
+msgstr "Concediu a aquest destinatari la capacitat de transferir denúncies a altres usuaris"
 
 msgid "Grant this user the privilege to mask information"
-msgstr ""
+msgstr "Concediu a aquest destinatari la capacitat d'ocultar part del text de la denúncia"
 
 msgid "Grant this user the privilege to permanently redact masked information"
-msgstr ""
+msgstr "Concediu a aquest usuari el privilegi de suprimir permanentment la informació ocultada"
 
 msgid "Public"
 msgstr "Pública"
 
 msgid "Internal"
-msgstr ""
+msgstr "Intern"
 
 msgid "Personal"
-msgstr ""
+msgstr "Personal"
 
 msgid "Privacy Policy"
 msgstr "Política de privadesa"
 
 msgid "I've read and accept the Privacy Policy"
-msgstr ""
+msgstr "He llegit i accepte la Política de privacitat"
 
 msgid "Download copy of the Privacy Policy"
-msgstr ""
+msgstr "Descarregar la Política de privacitat"
 
 msgid "Whistleblowing Policy"
-msgstr ""
+msgstr "Política de denúncies"
 
 msgid "Accessibility Declaration"
-msgstr ""
+msgstr "Declaració d'accessibilitat"
 
 msgid "Voice"
-msgstr ""
+msgstr "Veu"
 
 msgid "File a report"
 msgstr "Presentar un informe"
@@ -885,10 +885,10 @@ msgid "Template override"
 msgstr "Sobreescriu la plantilla"
 
 msgid "Min"
-msgstr ""
+msgstr "Mín"
 
 msgid "Max"
-msgstr ""
+msgstr "Màx"
 
 msgid "Phone number"
 msgstr "Número de telèfon"
@@ -1448,7 +1448,7 @@ msgid ""
 msgstr "Us recomanem que accediu a la secció \"Preferències\" per recuperar la vostra \"Clau de recuperació del compte\" i desar-la de manera segura. Aquesta clau serà necessària per recuperar el vostre accés a la plataforma i a les vostres dades en cas que oblideu la contrasenya."
 
 msgid "Access date"
-msgstr ""
+msgstr "Data d'accés"
 
 msgid "The provided recovery key is invalid."
 msgstr "La clau de recuperació proporcionada no és vàlida."
@@ -1562,7 +1562,7 @@ msgid "View your report"
 msgstr "Mira el teu informe"
 
 msgid "Select the recipients of your report"
-msgstr ""
+msgstr "Seleccioneu els destinataris de la vostra denúncia"
 
 msgid "Recipients selected:"
 msgstr "Persones destinatàries seleccionades:"
@@ -1760,7 +1760,7 @@ msgid "The activities with unusual stats are:"
 msgstr "Les activitats amb estadístiques inusuals són les següents:"
 
 msgid "Available disk space: {FreeMemory}/{TotalMemory}"
-msgstr ""
+msgstr "Espai disponible en disc: {FreeMemory}/{TotalMemory}"
 
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
@@ -1991,7 +1991,7 @@ msgid "New report"
 msgstr "Nou informe"
 
 msgid "One or more reports are expiring and will be soon deleted."
-msgstr ""
+msgstr "Una o més denúncies van a caducar i en breu se suprimiran."
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "La data de venciment més propera és {EarliestExpirationDate}."
@@ -2003,12 +2003,12 @@ msgid "Some reports will expire soon"
 msgstr "Alguns informes caducaran aviat"
 
 msgid "This is an email to notify you the reception of a new report."
-msgstr ""
+msgstr "Aquest correu electrònic és per notificar-vos la recepció d'una nova denúncia."
 
 msgid ""
 "This is an email to notify you that the reminder date for one or more "
 "reports has been met."
-msgstr ""
+msgstr "Aquest correu electrònic és per notificar-vos que s'ha complert la data del recordatori d'una o més denúncies."
 
 msgid "Reminder"
 msgstr "Recordatori"
