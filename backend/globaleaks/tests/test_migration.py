@@ -46,5 +46,5 @@ def test(path, version):
 path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'db', 'populated')
 
 
-for i in range(FIRST_DATABASE_VERSION_SUPPORTED, DATABASE_VERSION):
+for i in range(FIRST_DATABASE_VERSION_SUPPORTED, DATABASE_VERSION + 1):
     setattr(TestMigrationRoutines, "test_db_migration_%d" % i, test(path, i))
