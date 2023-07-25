@@ -5,7 +5,7 @@
        data-flow-name="uploads[fileinput]">
     <div class="row">
       <div class="col-md-6">
-        <button class="btn" data-ng-class="{'text-secondary': !activeButton, 'text-danger': activeButton === 'record' }" data-ng-disabled="isRecording || uploads[fileinput].files.length" data-ng-click="startRecording(field.id, field.attrs.pseudoanonymization.value)">
+        <button class="btn" data-ng-class="{'text-secondary': !activeButton, 'text-danger': activeButton === 'record' }" data-ng-disabled="isRecording || uploads[fileinput].files.length" data-ng-click="triggerRecording(field.id, field.attrs.pseudoanonymization.value)">
           <i class="fas fa-microphone"></i>
         </button>
         <button class="btn" data-ng-if="activeButton === 'record'" data-ng-click="stopRecording()">

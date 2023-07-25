@@ -732,6 +732,12 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       return filteredTips;
     },
 
+    writeUTFBytes: function(view, offset, string) {
+      for (let i = 0; i < string.length; i++) {
+        view.setUint8(offset + i, string.charCodeAt(i));
+      }
+    },
+
     getStaticFilter: function(data, model, key) {
       if (model.length === 0) {
         return data;
@@ -1274,6 +1280,108 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       }
 
       return $http.post("api/exception", scrub(exception));
+    }
+  };
+}]).
+factory('mediaProcessor', ['Utils', function (Utils) {
+  return {
+    createWavBlob: function (modbuffer) {
+      var sampleRate = 25000;
+      const buffer = new ArrayBuffer(44 + modbuffer.length * 2);
+      const view = new DataView(buffer);
+
+      Utils.writeUTFBytes(view, 0, "RIFF");
+      view.setUint32(4, 44 + modbuffer.length * 2, true);
+      Utils.writeUTFBytes(view, 8, "WAVE");
+      Utils.writeUTFBytes(view, 12, "fmt ");
+      view.setUint32(16, 16, true);
+      view.setUint16(20, 1, true);
+      view.setUint16(22, 1, true);
+      view.setUint32(24, sampleRate, true);
+      view.setUint32(28, sampleRate, true);
+      view.setUint16(32, 2, true);
+      view.setUint16(34, 16, true);
+      Utils.writeUTFBytes(view, 36, "data");
+      view.setUint32(40, modbuffer.length * 2, true);
+
+      let index = 44;
+      for (let i = 0; i < modbuffer.length; i++) {
+        view.setInt16(index, modbuffer[i] * (0x7FFF), true);
+        index += 2;
+      }
+
+      return new Blob([view], { type: "audio/wav" });
+    },
+
+    applyGossipRemoval: function (buffer) {
+      const blockSize = 128; // Adjust the block size as needed (a power of 2 is recommended)
+      const numBlocks = Math.ceil(buffer.length / blockSize);
+
+      for (let blockIndex = 0; blockIndex < numBlocks; blockIndex++) {
+        const blockStart = blockIndex * blockSize;
+        const blockEnd = Math.min(blockStart + blockSize, buffer.length);
+
+        for (let i = blockStart; i < blockEnd; i++) {
+          if (Math.abs(buffer[i]) < 0.03) {
+            buffer[i] = 0;
+          }
+        }
+      }
+
+      return buffer;
+    },
+
+    applyLowPassFilter: function (buffer, sampleRate) {
+      const cutoffFrequency = 2000;
+      const filterAlpha = 2 * Math.PI * cutoffFrequency / sampleRate;
+      let filteredValue = buffer[0];
+
+      for (let i = 1; i < buffer.length; i++) {
+        filteredValue += filterAlpha * (buffer[i] - filteredValue);
+        buffer[i] = filteredValue;
+      }
+
+      return buffer;
+    },
+
+    applyPitchShift: function (buffer) {
+      const originalPitchShift = 1;
+      const minPitchShift = -5;
+      const maxPitchShift = 5;
+      const exclusionRange = 2;
+
+      let randomPitchShift;
+      do {
+        randomPitchShift = Math.random() * (maxPitchShift - minPitchShift) + minPitchShift;
+      } while (Math.abs(randomPitchShift - originalPitchShift) <= exclusionRange);
+
+      const playbackRate = Math.pow(2, randomPitchShift / 12);
+      const originalLength = buffer.length;
+      const stretchedLength = Math.floor(originalLength / playbackRate);
+      const stretchedBuffer = new Float32Array(stretchedLength);
+
+      for (let i = 0; i < stretchedLength; i++) {
+        const position = i * (originalLength / stretchedLength);
+        const previousIndex = Math.floor(position);
+        const nextIndex = Math.min(Math.ceil(position), originalLength - 1);
+        const weight = position - previousIndex;
+        const previousSample = buffer[previousIndex];
+        const nextSample = buffer[nextIndex];
+        const stretchedSample = previousSample + (nextSample - previousSample) * weight;
+        stretchedBuffer[i] = stretchedSample;
+      }
+      return stretchedBuffer;
+    },
+
+    flattenArray: function (channelBuffer, recordingLength) {
+      const result = new Float32Array(recordingLength / 2);
+      let offset = 0;
+      for (const buffer of channelBuffer) {
+        for (let i = 0; i < buffer.length; i += 2) {
+          result[offset++] = (buffer[i] + buffer[i + 1]) / 2;
+        }
+      }
+      return result;
     }
   };
 }]).
