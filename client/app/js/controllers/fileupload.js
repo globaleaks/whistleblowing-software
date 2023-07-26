@@ -51,13 +51,10 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", "Utils", "mediaProcessor"
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
     context = new AudioContext();
 
-    mediaStream = context.createMediaStreamSource(stream);
+    // Apply noise suppression
+    await mediaProcessor.applyNoiseSuppression(stream);
 
-    // Apply the low-pass filter to the media stream source
-    const lowPassFilteredMediaStream = mediaProcessor.applyLowPassFilter(context, mediaStream);
-
-    // Apply the noise suppression to the low-pass filtered media stream
-    const noiseSuppressedMediaStream = await mediaProcessor.applyNoiseSuppression(context, lowPassFilteredMediaStream);
+    const filteredStream = mediaProcessor.applyLowPassFilter(stream, context);
 
     $scope.recorder = context.createScriptProcessor(2048, 2, 2);
 
@@ -67,11 +64,9 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", "Utils", "mediaProcessor"
       recordingLength += buffer.length;
     };
 
-    // Connect the noise-suppressed media stream to the recorder and destination
-    noiseSuppressedMediaStream.connect($scope.recorder);
+    filteredStream.connect($scope.recorder);
     $scope.recorder.connect(context.destination);
-  }
-
+  };
 
   $scope.triggerRecording = function (fileId) {
     $scope.activeButton = 'record';

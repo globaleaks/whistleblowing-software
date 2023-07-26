@@ -1313,32 +1313,29 @@ factory('mediaProcessor', ['Utils', function (Utils) {
       return new Blob([view], { type: "audio/wav" });
     },
 
-    applyNoiseSuppression: async function (context, sourceNode) {
-      if (context.createNoiseSuppression) {
+    applyNoiseSuppression: async function (stream) {
+      const supportedConstraints = navigator.mediaDevices.getSupportedConstraints();
+      if ('noiseSuppression' in supportedConstraints) {
         try {
-          const noiseSuppressionNode = await context.createNoiseSuppression();
-          sourceNode.connect(noiseSuppressionNode);
-          return noiseSuppressionNode;
+          const settings = { noiseSuppression: true };
+          stream.getAudioTracks().forEach(track => {
+            track.applyConstraints(settings);
+          });
         } catch (error) {
-          console.warn("Error creating noise suppression node:", error);
-          return sourceNode;
+          console.error('Error applying noise suppression:', error);
         }
-      } else {
-        console.warn("Noise suppression is not supported in this browser.");
-        return sourceNode;
       }
     },
 
-    applyLowPassFilter:function (context, sourceNode) {
-      // Create a BiquadFilterNode as a low-pass filter
-      const lowPassFilter = context.createBiquadFilter();
-      lowPassFilter.type = "lowpass"; // Set the filter type to low-pass
-      lowPassFilter.frequency.value = 1000; // Set the cutoff frequency (adjust this value as needed)
+    applyLowPassFilter:function (audioStream, audioContext) {
+      const filter = audioContext.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.value = 1000;
 
-      // Connect the source node to the low-pass filter
-      sourceNode.connect(lowPassFilter);
+      const filteredStream = audioContext.createMediaStreamSource(audioStream);
+      filteredStream.connect(filter);
 
-      return lowPassFilter;
+      return filter;
     },
 
     flattenArray: function (channelBuffer, recordingLength) {
