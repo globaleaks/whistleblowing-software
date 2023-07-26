@@ -1283,7 +1283,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     }
   };
 }]).
-factory('mediaProcessor', ['Utils', function (Utils) {
+factory("mediaProcessor", ["Utils", function (Utils) {
   return {
     createWavBlob: function (modbuffer) {
       var sampleRate = 25000;
@@ -1456,21 +1456,21 @@ factory('mediaProcessor', ['Utils', function (Utils) {
 
     applyNoiseSuppression: async function (stream) {
       const supportedConstraints = navigator.mediaDevices.getSupportedConstraints();
-      if ('noiseSuppression' in supportedConstraints) {
+      if ("noiseSuppression" in supportedConstraints) {
         try {
           const settings = { noiseSuppression: true };
           stream.getAudioTracks().forEach(track => {
             track.applyConstraints(settings);
           });
         } catch (error) {
-          console.error('Error applying noise suppression:', error);
+          console.error("Error applying noise suppression:", error);
         }
       }
     },
 
     applyLowPassFilter:function (audioStream, audioContext) {
       const filter = audioContext.createBiquadFilter();
-      filter.type = 'lowpass';
+      filter.type = "lowpass";
       filter.frequency.value = 3000;
 
       const filteredStream = audioContext.createMediaStreamSource(audioStream);

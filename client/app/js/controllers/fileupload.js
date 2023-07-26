@@ -79,21 +79,21 @@ controller("AudioUploadCtrl", ["$scope", "flowFactory", "Utils", "mediaProcessor
   }
 
   $scope.triggerRecording = function (fileId) {
-    $scope.activeButton = 'record';
+    $scope.activeButton = "record";
 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia({ audio: true })
         .then(function (stream) {
           startRecording(fileId, stream);
-          console.log('Audio recording permission is granted');
+          console.log("Audio recording permission is granted");
         })
         .catch(function (error) {
           $scope.activeButton = null;
           $scope.$apply();
-          console.error('Error checking audio recording permission:', error);
+          console.error("Error checking audio recording permission:", error);
         });
     } else {
-      console.warn('getUserMedia is not supported in this browser');
+      console.warn("getUserMedia is not supported in this browser");
     }
   };
 
@@ -101,14 +101,14 @@ controller("AudioUploadCtrl", ["$scope", "flowFactory", "Utils", "mediaProcessor
     $scope.audio_channel = [];
     recordingLength = 0;
     $scope.isRecording = true;
-    $scope.audioPlayer = '';
-    $scope.activeButton = 'record';
+    $scope.audioPlayer = "";
+    $scope.activeButton = "record";
     $scope.startTime = Date.now();
 
     flow = flowFactory.create({
       target: $scope.fileupload_url,
       query: {
-        type: 'audio.webm',
+        type: "audio.webm",
         reference: fileId,
       },
     });
@@ -162,9 +162,9 @@ controller("AudioUploadCtrl", ["$scope", "flowFactory", "Utils", "mediaProcessor
     $scope.audioFile = blob;
 
     const file = new Flow.FlowFile(flow, {
-      name: 'audio.webm',
+      name: "audio.webm",
       size: blob.size,
-      relativePath: 'audio.webm',
+      relativePath: "audio.webm",
     });
     file.file = blob;
     flow.files = [];
