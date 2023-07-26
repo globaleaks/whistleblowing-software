@@ -42,9 +42,9 @@ factory("Authentication",
       };
 
       self.reset = function() {
-	self.loginInProgress = false;
-	self.requireAuthCode = false;
-	self.loginData = {};
+  self.loginInProgress = false;
+  self.requireAuthCode = false;
+  self.loginData = {};
       };
 
       self.login = function(tid, username, password, authcode, authtoken) {
@@ -80,7 +80,7 @@ factory("Authentication",
 
         };
 
-	var failure_fn = function(response) {
+  var failure_fn = function(response) {
           self.loginInProgress = false;
 
           if (response.data && response.data.error_code) {
@@ -1239,7 +1239,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
             deferred.resolve(response);
           },
           function() {}
-	);
+  );
       }
 
       return deferred.promise;
@@ -1313,6 +1313,147 @@ factory('mediaProcessor', ['Utils', function (Utils) {
       return new Blob([view], { type: "audio/wav" });
     },
 
+    applyPitchShift: function (buffer, context, value) {
+      const bufferTime = 0.0300;
+      const fadeTime = bufferTime / 2;
+      const bufferRate = bufferTime * context.sampleRate;
+
+      // Helper function to create a pitch buffer
+      function createPitchBuffer(shiftUp) {
+        const buffer = context.createBuffer(1, bufferRate, context.sampleRate);
+        const pitch = buffer.getChannelData(0);
+
+        // Buffer pitch shift
+        for (let i = 0; i < bufferRate; i++) {
+          if (shiftUp)
+            pitch[i] = (bufferRate - i) / bufferRate;
+          else
+            pitch[i] = i / bufferRate;
+        }
+
+        return buffer;
+      }
+
+      // Helper function to create a pitch fade buffer
+      function createPitchFadeBuffer() {
+        const buffer = context.createBuffer(1, bufferRate, context.sampleRate);
+        const pitch = buffer.getChannelData(0);
+
+        const fadeLength = fadeTime * context.sampleRate;
+        const bufferLeft = bufferRate - fadeLength;
+
+        // Buffer pitch shift
+        for (let i = 0; i < bufferRate; i++) {
+          if (i < fadeLength)
+            pitch[i] = Math.sqrt(i / fadeLength);
+          else
+            pitch[i] = Math.sqrt(1 - (i - bufferLeft) / fadeLength);
+        }
+
+        return buffer;
+      }
+
+      // Calculate the playback rate based on the semitone value
+      const rate = Math.pow(2, value / 12);
+
+      // Create a new buffer with pitch shift
+      const offlineContext = new OfflineAudioContext(buffer.numberOfChannels, buffer.length, buffer.sampleRate);
+      const source = offlineContext.createBufferSource();
+      source.buffer = buffer;
+
+      const modulateGain1 = offlineContext.createGain();
+      const modulateGain2 = offlineContext.createGain();
+
+      const delayNode1 = offlineContext.createDelay();
+      const delayNode2 = offlineContext.createDelay();
+      modulateGain1.connect(delayNode1.delayTime);
+      modulateGain2.connect(delayNode2.delayTime);
+
+      source.connect(delayNode1);
+      source.connect(delayNode2);
+
+      const bufferSource = [null, null, null, null];
+      const bufferGain = [null, null, null, null];
+      const fadeNode = [null, null];
+      const mixNode = [null, null];
+
+      for (let i = 0; i < bufferSource.length; i++) {
+        bufferSource[i] = offlineContext.createBufferSource();
+        bufferSource[i].loop = true;
+
+        bufferGain[i] = offlineContext.createGain();
+
+        if (i < 2)
+          bufferSource[i].buffer = createPitchBuffer(false);
+        else {
+          bufferSource[i].buffer = createPitchBuffer(true);
+          bufferGain[i].gain.value = 0;
+        }
+
+        if (i % 2) { // Odd
+          bufferGain[i].connect(modulateGain2);
+          bufferSource[i].start(0);
+        } else { // Even
+          bufferGain[i].connect(modulateGain1);
+          bufferSource[i].start(fadeTime);
+        }
+
+        bufferSource[i].connect(bufferGain[i]);
+      }
+
+      const fadeBuffer = createPitchFadeBuffer();
+
+      for (let i = 0; i < fadeNode.length; i++) {
+        fadeNode[i] = offlineContext.createBufferSource();
+        fadeNode[i].loop = true;
+        fadeNode[i].buffer = fadeBuffer;
+
+        mixNode[i] = offlineContext.createGain();
+        mixNode[i].gain.value = 0;
+        fadeNode[i].connect(mixNode[i].gain);
+
+        if (i % 2) { // Odd
+          bufferGain[i].connect(modulateGain2);
+          fadeNode[i].start(0);
+        } else { // Even
+          bufferGain[i].connect(modulateGain1);
+          fadeNode[i].start(fadeTime);
+        }
+
+        mixNode[i].connect(offlineContext.destination);
+      }
+
+      delayNode1.connect(mixNode[0]);
+      delayNode2.connect(mixNode[1]);
+
+      function pitchGain(value) {
+        modulateGain1.gain.value = modulateGain2.gain.value = 0.5 * bufferTime * Math.abs(value);
+      }
+
+      // Apply pitch shift using playbackRate
+      source.playbackRate.value = rate;
+
+      // Start rendering
+      source.start(0);
+
+      // Apply the pitch shift using the shift function from the second code block
+      function shift(value) {
+        if (value === undefined) return;
+
+        const pitchUp = value > 0;
+        bufferGain[0].gain.value = bufferGain[1].gain.value = pitchUp ? 0 : 1;
+        bufferGain[2].gain.value = bufferGain[3].gain.value = pitchUp ? 1 : 0;
+        pitchGain(value);
+        source.playbackRate.value = Math.pow(2, value / 12);
+      }
+
+      // Call the shift function with the initial value
+      shift(value);
+
+      // Return the result of the pitch shifting process
+      return offlineContext.startRendering();
+    },
+
     applyNoiseSuppression: async function (stream) {
       const supportedConstraints = navigator.mediaDevices.getSupportedConstraints();
       if ('noiseSuppression' in supportedConstraints) {
@@ -1330,7 +1471,7 @@ factory('mediaProcessor', ['Utils', function (Utils) {
     applyLowPassFilter:function (audioStream, audioContext) {
       const filter = audioContext.createBiquadFilter();
       filter.type = 'lowpass';
-      filter.frequency.value = 1000;
+      filter.frequency.value = 3000;
 
       const filteredStream = audioContext.createMediaStreamSource(audioStream);
       filteredStream.connect(filter);
@@ -1450,7 +1591,7 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
 
         field.enabled = false;
 
-	if (parent !== null && ((!parent.enabled) || (scope.page === "submissionpage" && parent.template_id === "whistleblower_identity" && !scope.submission._submission.identity_provided))) {
+  if (parent !== null && ((!parent.enabled) || (scope.page === "submissionpage" && parent.template_id === "whistleblower_identity" && !scope.submission._submission.identity_provided))) {
           return false;
         }
 
@@ -1627,7 +1768,7 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
           }
         });
 
-	return ret;
+  return ret;
       },
 
       onAnswersUpdate: function(scope) {
@@ -1657,7 +1798,7 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
           scope.submission.blocked = scope.block_submission;
         }
 
-	return ret;
+  return ret;
       },
 
       parseField: function(field, parsedFields) {

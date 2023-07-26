@@ -32,7 +32,7 @@ controller("WBFileUploadCtrl", ["$scope", function($scope) {
     $flow.upload();
   };
 }]).
-controller("AudioUploadCtrl", ["$scope","flowFactory", "Utils", "mediaProcessor", function($scope, flowFactory, Utils, mediaProcessor) {
+controller("AudioUploadCtrl", ["$scope", "flowFactory", "Utils", "mediaProcessor", function ($scope, flowFactory, Utils, mediaProcessor) {
 
   let recordingLength = 0;
   let mediaRecorder = null;
@@ -40,6 +40,7 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", "Utils", "mediaProcessor"
   let mediaStream = null;
   let context = null;
   let secondsTracker = null;
+  let pitchShiftValue = 0.4;
 
   $scope.audio_channel = [];
   $scope.seconds = 0;
@@ -49,24 +50,33 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", "Utils", "mediaProcessor"
 
   async function initAudioContext(stream) {
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
-    context = new AudioContext();
+    const context = new AudioContext();
 
-    // Apply noise suppression
     await mediaProcessor.applyNoiseSuppression(stream);
-
     const filteredStream = mediaProcessor.applyLowPassFilter(stream, context);
-
     $scope.recorder = context.createScriptProcessor(2048, 2, 2);
 
-    $scope.recorder.onaudioprocess = function (stream) {
-      var buffer = stream.inputBuffer.getChannelData(0);
+    $scope.recorder.onaudioprocess = async function (stream) {
+      const buffer = stream.inputBuffer.getChannelData(0);
+
+      if (pitchShiftValue !== 0) {
+        const audioBuffer = context.createBuffer(1, buffer.length, context.sampleRate);
+        const channelData = audioBuffer.getChannelData(0);
+        channelData.set(buffer);
+
+        const shiftedBuffer = await mediaProcessor.applyPitchShift(audioBuffer, context, pitchShiftValue);
+        const shiftedChannelData = shiftedBuffer.getChannelData(0);
+
+        buffer.set(shiftedChannelData);
+      }
+
       $scope.audio_channel.push(new Float32Array(buffer));
       recordingLength += buffer.length;
     };
 
     filteredStream.connect($scope.recorder);
     $scope.recorder.connect(context.destination);
-  };
+  }
 
   $scope.triggerRecording = function (fileId) {
     $scope.activeButton = 'record';
