@@ -107,6 +107,7 @@ class FileInstance(BaseHandler):
         'image/jpeg',
         'image/png',
         'image/x-icon',
+        'text/plain',
         'video/mp4'
     ]
 
