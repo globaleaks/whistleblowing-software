@@ -52,6 +52,13 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", "Utils", "mediaProcessor"
     context = new AudioContext();
 
     mediaStream = context.createMediaStreamSource(stream);
+
+    // Apply the low-pass filter to the media stream source
+    const lowPassFilteredMediaStream = mediaProcessor.applyLowPassFilter(context, mediaStream);
+
+    // Apply the noise suppression to the low-pass filtered media stream
+    const noiseSuppressedMediaStream = await mediaProcessor.applyNoiseSuppression(context, lowPassFilteredMediaStream);
+
     $scope.recorder = context.createScriptProcessor(2048, 2, 2);
 
     $scope.recorder.onaudioprocess = function (stream) {
@@ -60,9 +67,11 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", "Utils", "mediaProcessor"
       recordingLength += buffer.length;
     };
 
-    mediaStream.connect($scope.recorder);
+    // Connect the noise-suppressed media stream to the recorder and destination
+    noiseSuppressedMediaStream.connect($scope.recorder);
     $scope.recorder.connect(context.destination);
   }
+
 
   $scope.triggerRecording = function (fileId) {
     $scope.activeButton = 'record';
@@ -143,9 +152,6 @@ controller("AudioUploadCtrl", ["$scope","flowFactory", "Utils", "mediaProcessor"
     }
 
     let modbuffer = mediaProcessor.flattenArray($scope.audio_channel, recordingLength);
-    modbuffer = mediaProcessor.applyLowPassFilter(modbuffer, context.sampleRate);
-    modbuffer = mediaProcessor.applyPitchShift(modbuffer);
-    modbuffer = mediaProcessor.applyGossipRemoval(modbuffer);
     const blob = mediaProcessor.createWavBlob(modbuffer);
 
     $scope.audioFile = blob;

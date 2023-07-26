@@ -1313,64 +1313,32 @@ factory('mediaProcessor', ['Utils', function (Utils) {
       return new Blob([view], { type: "audio/wav" });
     },
 
-    applyGossipRemoval: function (buffer) {
-      const blockSize = 128; // Adjust the block size as needed (a power of 2 is recommended)
-      const numBlocks = Math.ceil(buffer.length / blockSize);
-
-      for (let blockIndex = 0; blockIndex < numBlocks; blockIndex++) {
-        const blockStart = blockIndex * blockSize;
-        const blockEnd = Math.min(blockStart + blockSize, buffer.length);
-
-        for (let i = blockStart; i < blockEnd; i++) {
-          if (Math.abs(buffer[i]) < 0.03) {
-            buffer[i] = 0;
-          }
+    applyNoiseSuppression: async function (context, sourceNode) {
+      if (context.createNoiseSuppression) {
+        try {
+          const noiseSuppressionNode = await context.createNoiseSuppression();
+          sourceNode.connect(noiseSuppressionNode);
+          return noiseSuppressionNode;
+        } catch (error) {
+          console.warn("Error creating noise suppression node:", error);
+          return sourceNode;
         }
+      } else {
+        console.warn("Noise suppression is not supported in this browser.");
+        return sourceNode;
       }
-
-      return buffer;
     },
 
-    applyLowPassFilter: function (buffer, sampleRate) {
-      const cutoffFrequency = 2000;
-      const filterAlpha = 2 * Math.PI * cutoffFrequency / sampleRate;
-      let filteredValue = buffer[0];
+    applyLowPassFilter:function (context, sourceNode) {
+      // Create a BiquadFilterNode as a low-pass filter
+      const lowPassFilter = context.createBiquadFilter();
+      lowPassFilter.type = "lowpass"; // Set the filter type to low-pass
+      lowPassFilter.frequency.value = 1000; // Set the cutoff frequency (adjust this value as needed)
 
-      for (let i = 1; i < buffer.length; i++) {
-        filteredValue += filterAlpha * (buffer[i] - filteredValue);
-        buffer[i] = filteredValue;
-      }
+      // Connect the source node to the low-pass filter
+      sourceNode.connect(lowPassFilter);
 
-      return buffer;
-    },
-
-    applyPitchShift: function (buffer) {
-      const originalPitchShift = 1;
-      const minPitchShift = -5;
-      const maxPitchShift = 5;
-      const exclusionRange = 2;
-
-      let randomPitchShift;
-      do {
-        randomPitchShift = Math.random() * (maxPitchShift - minPitchShift) + minPitchShift;
-      } while (Math.abs(randomPitchShift - originalPitchShift) <= exclusionRange);
-
-      const playbackRate = Math.pow(2, randomPitchShift / 12);
-      const originalLength = buffer.length;
-      const stretchedLength = Math.floor(originalLength / playbackRate);
-      const stretchedBuffer = new Float32Array(stretchedLength);
-
-      for (let i = 0; i < stretchedLength; i++) {
-        const position = i * (originalLength / stretchedLength);
-        const previousIndex = Math.floor(position);
-        const nextIndex = Math.min(Math.ceil(position), originalLength - 1);
-        const weight = position - previousIndex;
-        const previousSample = buffer[previousIndex];
-        const nextSample = buffer[nextIndex];
-        const stretchedSample = previousSample + (nextSample - previousSample) * weight;
-        stretchedBuffer[i] = stretchedSample;
-      }
-      return stretchedBuffer;
+      return lowPassFilter;
     },
 
     flattenArray: function (channelBuffer, recordingLength) {
