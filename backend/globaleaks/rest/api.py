@@ -195,7 +195,9 @@ class APIResourceWrapper(Resource):
             self._registry.append((re.compile(pattern), handler, args))
 
     def should_redirect_https(self, request):
-        if request.isSecure() or b'acme-challenge' in request.path:
+        if request.isSecure() or \
+                request.client_ip not in State.settings.local_hosts or \
+                b'acme-challenge' in request.path:
             return False
 
         return True
