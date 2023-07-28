@@ -196,7 +196,7 @@ class APIResourceWrapper(Resource):
 
     def should_redirect_https(self, request):
         if request.isSecure() or \
-                request.client_ip not in State.settings.local_hosts or \
+                request.hostname.endswith(b'.onion') or \
                 b'acme-challenge' in request.path:
             return False
 
