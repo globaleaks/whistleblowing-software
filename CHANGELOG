@@ -1,3 +1,6 @@
+Changes in version 4.12.7
+    Revise fix for issue #3556
+
 Changes in version 4.12.6
     Fix issues: #3549, #3556
 
