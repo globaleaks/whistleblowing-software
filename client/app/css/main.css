@@ -927,26 +927,30 @@ html[dir="ltr"] #Receipt {
   padding: 0;
 }
 
-#skip-to-content-link {
+#Skip a {
   position: absolute;
-  margin: 0 auto;
-  width: 100%;
-  text-align: center;
-  opacity: 0;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
-#skip-to-content-link:focus {
-  opacity: 1;
+#Skip a:focus
+{
+  position:static;
+  width:auto;
+  height:auto;
 }
 
 .visually-hidden {
-    position: absolute !important;
-    height: 1px;
-    width: 1px;
-    border: 0;
-    overflow: hidden;
-    clip: rect(1px, 1px, 1px, 1px);
-    white-space: nowrap;
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  border: 0;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
 }
 
 .container-disabled {

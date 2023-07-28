@@ -10,6 +10,25 @@
 
     <style>
       .ng-cloak, #BrowserNotSupported { display:none }
+
+      #Skip a {
+        position: absolute;
+        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+        opacity: 0;
+        left: -10000px;
+        top: auto;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+
+      #Skip a:focus {
+        position: static;
+        width: auto;
+        height: auto;
+      }
     </style>
 
     <!-- build:css css/styles.css -->
@@ -64,7 +83,7 @@
   </head>
 
   <body class="container-fluid d-flex flex-column" data-ng-class="{{Utils.getCSSFlags()}}" data-flow-prevent-drop>
-    <a id="skip-to-content-link" href="" data-ng-click="Utils.scrollTo('#Content')" tabindex="1" data-translate>Skip to content</a>
+    <div id="Skip"><a href="" data-ng-click="Utils.scrollTo('#Content')" tabindex="1" data-translate>Skip to content</a></div>
     <div id="PageOverlay" class="ng-cloak" data-ng-hide="!showLoadingPanel">
       <div id="Loader"></div>
     </div>
