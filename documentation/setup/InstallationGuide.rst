@@ -19,4 +19,4 @@ In order to install GlobaLeaks run the following commands:
   chmod +x install-globaleaks.sh
   ./install-globaleaks.sh
 
-At the end of the installation follow the instraction provided that should guid through accessing the :doc:`Platform wizard </setup/PlatformWizard>`.
+At the end of the installation follow the instruction provided that should guide through accessing the :doc:`Platform wizard </setup/PlatformWizard>`.
