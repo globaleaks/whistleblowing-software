@@ -683,12 +683,7 @@ class Templating(object):
             raise NotImplementedError('This data_type (%s) is not supported' % ['data.type'])
 
         if data['type'] in ['tip', 'tip_update']:
-            if data['tip']['label']:
-                prefix = '{TipNum} ({TipLabel}) - '
-            else:
-                prefix = '{TipNum} - '
-
-            subject_template = prefix + subject_template
+            subject_template = '{TipNum} - ' + subject_template
 
         subject = self.format_template(subject_template, data)
         body = self.format_template(body_template, data)
