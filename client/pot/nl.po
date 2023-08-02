@@ -506,10 +506,10 @@ msgstr ""
 msgid "Privileges"
 msgstr "Bevoegdheden"
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "Verberg"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1392,15 +1392,6 @@ msgstr "Selecteer een bestand of sleep het hierheen."
 msgid "Size:"
 msgstr "Grootte:"
 
-msgid "Uploading files…"
-msgstr "Uploaden bestanden..."
-
-msgid "Upload completed successfully!"
-msgstr "Upload voltooien is gelukt!"
-
-msgid "Estimated upload time:"
-msgstr "Geschatte tijd voor uploaden:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Ontvangers hebben je verzocht dat je een additionele vragenlijst invult."
 
@@ -1613,9 +1604,6 @@ msgstr "Ontvangerselectie"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Wacht totdat de bestanden volledig zijn verzonden."
-
-msgid "Hide"
-msgstr "Verberg"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

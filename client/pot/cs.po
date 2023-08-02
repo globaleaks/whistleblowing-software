@@ -475,11 +475,11 @@ msgstr "Nastavit datum připomenutí"
 msgid "Privileges"
 msgstr "Oprávnění"
 
-msgid "Mask"
+msgid "Hide"
 msgstr "Skrýt"
 
-msgid "Unmask"
-msgstr "Odkrýt"
+msgid "Unhide"
+msgstr ""
 
 msgid "Redact"
 msgstr "Revidovat"
@@ -1361,15 +1361,6 @@ msgstr "Vyberte soubor nebo jej sem přetáhněte."
 msgid "Size:"
 msgstr "Velikost:"
 
-msgid "Uploading files…"
-msgstr "Nahrávám soubory..."
-
-msgid "Upload completed successfully!"
-msgstr "Nahrání úspěšně proběhlo!"
-
-msgid "Estimated upload time:"
-msgstr "Odhadovaná doba nahravání:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Příjemci požadují, abyste vyplnili dodatečný dotazník."
 
@@ -1582,9 +1573,6 @@ msgstr "Výběr příjemce"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Čekáme na dokončení nahrávání souborů."
-
-msgid "Hide"
-msgstr "Skrýt"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

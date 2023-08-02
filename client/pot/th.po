@@ -472,10 +472,10 @@ msgstr "ตั้งเตือนความจำ"
 msgid "Privileges"
 msgstr "สิทธิพิเศษ"
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "ซ่อน"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1358,15 +1358,6 @@ msgstr "เลือกแฟ้มหรือลากและวางที
 msgid "Size:"
 msgstr "ขนาด:"
 
-msgid "Uploading files…"
-msgstr " กำลังอัปโหลดแฟ้ม..."
-
-msgid "Upload completed successfully!"
-msgstr "อัปโหลดเสร็จแล้ว!"
-
-msgid "Estimated upload time:"
-msgstr "เวลาในการอัปโหลดโดยประมาณ:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "ผู้รับได้ร้องขอให้คุณกรอกแบบสอบถามเพิ่มเติม"
 
@@ -1579,9 +1570,6 @@ msgstr "การเลือกผู้รับ"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "รอให้แฟ้มอัปโหลดเสร็จ"
-
-msgid "Hide"
-msgstr "ซ่อน"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

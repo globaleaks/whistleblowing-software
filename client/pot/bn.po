@@ -469,10 +469,10 @@ msgstr ""
 msgid "Privileges"
 msgstr ""
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "লুকাও"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1355,15 +1355,6 @@ msgstr "একটি ফাইল নির্বাচন করুন বা �
 msgid "Size:"
 msgstr "আকার:"
 
-msgid "Uploading files…"
-msgstr "ফাইলগুলি আপলোড হচ্ছে ..."
-
-msgid "Upload completed successfully!"
-msgstr "আপলোড সফলভাবে শেষ হয়েছে!"
-
-msgid "Estimated upload time:"
-msgstr "আনুমানিক আপলোড সময়:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "প্রাপকরা আপনাকে একটি অতিরিক্ত প্রশ্নপত্র পূরণ করার জন্য অনুরোধ করেছেন।"
 
@@ -1576,9 +1567,6 @@ msgstr "প্রাপক নির্বাচন"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "ফাইল (গুলি) আপলোড শেষ হবার অপেক্ষায়।"
-
-msgid "Hide"
-msgstr "লুকাও"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

@@ -492,10 +492,10 @@ msgstr ""
 msgid "Privileges"
 msgstr ""
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "Скрыть"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1378,15 +1378,6 @@ msgstr "Выберите файл или перетащите его сюда."
 msgid "Size:"
 msgstr "Размер:"
 
-msgid "Uploading files…"
-msgstr "Загрузка файлов…"
-
-msgid "Upload completed successfully!"
-msgstr "Загрузка завершена удачно!"
-
-msgid "Estimated upload time:"
-msgstr "Расчетное время загрузки:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Получатели попросили вас заполнить дополнительный опросник."
 
@@ -1599,9 +1590,6 @@ msgstr "Выбор получателя"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Происходит загрузка файлов."
-
-msgid "Hide"
-msgstr "Скрыть"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

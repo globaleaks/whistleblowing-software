@@ -469,10 +469,10 @@ msgstr ""
 msgid "Privileges"
 msgstr "İmkanlar"
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "Gizlət"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1355,15 +1355,6 @@ msgstr "Faylı seçin, yaxud bura sürüşdürün."
 msgid "Size:"
 msgstr "Ölçü:"
 
-msgid "Uploading files…"
-msgstr "Fayllar yüklənir..."
-
-msgid "Upload completed successfully!"
-msgstr "Yükləmə uğurla başa çatdı!"
-
-msgid "Estimated upload time:"
-msgstr "Təxmini yükləmə müddəti:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Alıcılar əlavə sorğu anketini doldurmağınızı istəyirlər."
 
@@ -1576,9 +1567,6 @@ msgstr "Alıcı seçimi"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Faylın (faylların) yüklənməsinin bitməsini gözləyir."
-
-msgid "Hide"
-msgstr "Gizlət"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

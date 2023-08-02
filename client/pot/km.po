@@ -466,10 +466,10 @@ msgstr ""
 msgid "Privileges"
 msgstr ""
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "លាក់"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1352,15 +1352,6 @@ msgstr "ជ្រើសឯកសារ ឬអូសវាចូលទីនេ�
 msgid "Size:"
 msgstr "ទំហំ៖"
 
-msgid "Uploading files…"
-msgstr "កំពុងបញ្ជូលឯកសារ..."
-
-msgid "Upload completed successfully!"
-msgstr "ការបញ្ជូលបានបញ្ចប់ដោយជោគជ័យ!"
-
-msgid "Estimated upload time:"
-msgstr "រយៈពេលបញ្ជូលដោយប៉ាន់ស្មាន៖"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "អ្នកទទួលបានស្នើសុំអ្នកឲ្យបំពេញកម្រងសំណួរបន្ថែម។"
 
@@ -1573,9 +1564,6 @@ msgstr "ការជ្រើសរើសអ្នកទទួល"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "កំពុងរង់ចាំឯកសារ​ ដើម្បីបញ្ចប់ការបញ្ជូល។"
-
-msgid "Hide"
-msgstr "លាក់"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

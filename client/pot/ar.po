@@ -510,10 +510,10 @@ msgstr "قم بتعيين تذكير"
 msgid "Privileges"
 msgstr "امتيازات"
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "إخفاء"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1396,15 +1396,6 @@ msgstr "اختر ملفا أو اسحبه هنا."
 msgid "Size:"
 msgstr "حجم:"
 
-msgid "Uploading files…"
-msgstr "جاري رفع الملفات..."
-
-msgid "Upload completed successfully!"
-msgstr "اكتمل الرفع بنجاح!"
-
-msgid "Estimated upload time:"
-msgstr "وقت الرّفع التقديري:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "طلب المستلمون منك إكمال استبيان إضافي."
 
@@ -1617,9 +1608,6 @@ msgstr "اختيار المتلقّي"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "يجري انتظار إنهاء رفع الملف/الملفات."
-
-msgid "Hide"
-msgstr "إخفاء"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

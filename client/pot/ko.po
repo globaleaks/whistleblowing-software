@@ -463,10 +463,10 @@ msgstr ""
 msgid "Privileges"
 msgstr "권한"
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "숨기기"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1349,15 +1349,6 @@ msgstr "파일을 선택하거나 여기에 드래그하십시오."
 msgid "Size:"
 msgstr "크기:"
 
-msgid "Uploading files…"
-msgstr "파일 업로드 중..."
-
-msgid "Upload completed successfully!"
-msgstr "업로드를 성공적으로 완료했습니다!"
-
-msgid "Estimated upload time:"
-msgstr "예상 업로드 시간:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "수신자가 추가 설문 조사를 작성할 것을 요청했습니다."
 
@@ -1570,9 +1561,6 @@ msgstr "수신자 선택"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "파일 업로드가 완료되기를 기다리고 있습니다."
-
-msgid "Hide"
-msgstr "숨기기"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

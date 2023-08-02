@@ -462,10 +462,10 @@ msgstr ""
 msgid "Privileges"
 msgstr ""
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "ເຊື່ອງ"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1348,15 +1348,6 @@ msgstr "ເລືອກໄຟລ໌ ຫຼື ລາກມັນໃສ່ບ່�
 msgid "Size:"
 msgstr "ຂະໜາດ:"
 
-msgid "Uploading files…"
-msgstr "ກຳລັງອັບໂຫຼດໄຟລ໌…"
-
-msgid "Upload completed successfully!"
-msgstr "ການອັບໂຫຼດສຳເລັດຮຽບຮ້ອຍແລ້ວ!"
-
-msgid "Estimated upload time:"
-msgstr "ເວລາອັບໂຫຼດໂດຍປະມານ:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "ຜູ້ຮັບໄດ້ຮ້ອງຂໍໃຫ້ທ່ານຕື່ມແບບສອບຖາມເພີ່ມຕື່ມ."
 
@@ -1569,9 +1560,6 @@ msgstr "ການເລືອກຜູ້ຮັບ"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "ກຳລັງລໍຖ້າໃຫ້ອັບໂຫຼດໄຟລ໌ (ຕ່າງໆ) ໃຫ້ສຳເລັດ."
-
-msgid "Hide"
-msgstr "ເຊື່ອງ"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

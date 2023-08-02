@@ -468,11 +468,11 @@ msgstr "Nastavi opomnik"
 msgid "Privileges"
 msgstr "Pravice"
 
-msgid "Mask"
+msgid "Hide"
 msgstr "Skrij"
 
-msgid "Unmask"
-msgstr "Odkrij"
+msgid "Unhide"
+msgstr ""
 
 msgid "Redact"
 msgstr "Odstrani"
@@ -1252,7 +1252,7 @@ msgid "We will try to get back to you as soon as possible."
 msgstr "Skušali vam bomo odgovoriti v čim krajšem času."
 
 msgid "Submit"
-msgstr "Pošlji"
+msgstr "Oddaj"
 
 msgid "The connection is not secure."
 msgstr "Povezava ni varna."
@@ -1353,15 +1353,6 @@ msgstr "Izberite datoteko ali jo povlecite sem."
 
 msgid "Size:"
 msgstr "Velikost"
-
-msgid "Uploading files…"
-msgstr "Datoteke se nalagajo ..."
-
-msgid "Upload completed successfully!"
-msgstr "Nalaganje je uspešno zaključeno!"
-
-msgid "Estimated upload time:"
-msgstr "Predviden čas nalaganja:"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Prejemniki vas prosijo, da izpolnite dodatni vprašalnik."
@@ -1575,9 +1566,6 @@ msgstr "Izbira prejemnika"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Datoteke se še nalagajo."
-
-msgid "Hide"
-msgstr "Skrij"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

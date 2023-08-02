@@ -462,10 +462,10 @@ msgstr ""
 msgid "Privileges"
 msgstr ""
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "Sembunyikan"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1348,15 +1348,6 @@ msgstr "Pilih fail atau seret di sini."
 msgid "Size:"
 msgstr "Saiz:"
 
-msgid "Uploading files…"
-msgstr "Memuat naik fail…"
-
-msgid "Upload completed successfully!"
-msgstr "Muat naik berjaya dilengkapkan!"
-
-msgid "Estimated upload time:"
-msgstr "Anggaran masa muat naik:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Penerima telah meminta anda mengisi soal selidik tambahan."
 
@@ -1569,9 +1560,6 @@ msgstr "Pilihan penerima"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Menunggu untuk fail selesai dimuat naik."
-
-msgid "Hide"
-msgstr "Sembunyikan"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

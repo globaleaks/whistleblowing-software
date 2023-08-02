@@ -474,10 +474,10 @@ msgstr ""
 msgid "Privileges"
 msgstr "استحقاق"
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "چھپائیے"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1360,15 +1360,6 @@ msgstr "ایک فائل منتخب کریں یا اسے یہاں گھسیٹیں�
 msgid "Size:"
 msgstr "Size:"
 
-msgid "Uploading files…"
-msgstr "فائلیں اپ لوڈ ہو رہی ہیں۔۔۔ "
-
-msgid "Upload completed successfully!"
-msgstr "اپ لوڈ کریں کامیابی کے ساتھ مکمل!"
-
-msgid "Estimated upload time:"
-msgstr "متوقع اپ لوڈ کے لئے وقت:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "وصول کنندگان نے آپ سے ایک اضافی سوالنامہ بھرنے کی درخواست کی ہے۔ "
 
@@ -1581,9 +1572,6 @@ msgstr "وصول کنندہ کا انتخاب"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "فائلوں کی اپ لوڈنگ مکمل ہونے کا انتظار ہے۔ "
-
-msgid "Hide"
-msgstr "چھپائیے"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

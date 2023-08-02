@@ -500,11 +500,11 @@ msgstr "Définir un rappel"
 msgid "Privileges"
 msgstr "Privilèges"
 
-msgid "Mask"
+msgid "Hide"
 msgstr "Cacher"
 
-msgid "Unmask"
-msgstr "Afficher"
+msgid "Unhide"
+msgstr ""
 
 msgid "Redact"
 msgstr "Supprimer"
@@ -1386,15 +1386,6 @@ msgstr "Sélectionnez un fichier ou glissez-le ici."
 msgid "Size:"
 msgstr "Taille :"
 
-msgid "Uploading files…"
-msgstr "Téléversement des fichiers…"
-
-msgid "Upload completed successfully!"
-msgstr "Le téléversement s’est terminé avec succès."
-
-msgid "Estimated upload time:"
-msgstr "Durée de téléversement estimée :"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Les destinataires ont demandé à ce que vous remplissiez un questionnaire supplémentaire."
 
@@ -1607,9 +1598,6 @@ msgstr "Sélection du destinataire"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "En attente de la fin du téléversement des fichiers."
-
-msgid "Hide"
-msgstr "Cacher"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

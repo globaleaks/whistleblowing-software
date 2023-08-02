@@ -480,11 +480,11 @@ msgstr "Ezarri oroigarria"
 msgid "Privileges"
 msgstr "Baimen"
 
-msgid "Mask"
-msgstr "Maskaratu"
+msgid "Hide"
+msgstr "Ezkutatu"
 
-msgid "Unmask"
-msgstr "Ezagutzera "
+msgid "Unhide"
+msgstr ""
 
 msgid "Redact"
 msgstr "Idatzi"
@@ -1366,15 +1366,6 @@ msgstr "Hautatu fitxategi bat edo hona arrastatu."
 msgid "Size:"
 msgstr "Tamaina:"
 
-msgid "Uploading files…"
-msgstr "Fitxategiak igotzen..."
-
-msgid "Upload completed successfully!"
-msgstr "Ongi igo dira!"
-
-msgid "Estimated upload time:"
-msgstr "Igotzeko denbora balioetsia:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Hartzaileek beste galdekizun gehigarri bat betetzea eskatzen dizute."
 
@@ -1587,9 +1578,6 @@ msgstr "Hartzailearen hautespena"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Fitxategiak igotzen bukatzearen zain."
-
-msgid "Hide"
-msgstr "Ezkutatu"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

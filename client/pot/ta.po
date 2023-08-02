@@ -23,7 +23,7 @@ msgid "Languages"
 msgstr "மொழிகள்"
 
 msgid "Text customization"
-msgstr "உரை தனிப்பயனாக்கம்"
+msgstr ""
 
 msgid "Advanced"
 msgstr "மேம்பட்டது"
@@ -464,10 +464,10 @@ msgstr ""
 msgid "Privileges"
 msgstr "சிறப்புரிமைகளும்"
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "மறை"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1350,15 +1350,6 @@ msgstr ""
 msgid "Size:"
 msgstr "அளவு:"
 
-msgid "Uploading files…"
-msgstr "கோப்புகளை பதிவேற்றுகிறது ..."
-
-msgid "Upload completed successfully!"
-msgstr "பதிவேற்றம் வெற்றிகரமாக நிறைவு!"
-
-msgid "Estimated upload time:"
-msgstr "கணக்கிடப்பட்ட பதிவேற்ற நேரம்:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "கூடுதல் கேள்வித்தாள் நிரப்ப நிர்பந்திக்கப்பட்டவர்கள் உங்களிடம் கேட்டுள்ளனர்."
 
@@ -1571,9 +1562,6 @@ msgstr "பெறுநரின் தேர்வை"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "பதிவேற்ற முடிக்க கோப்பு (கள்) காத்திருக்கிறது."
-
-msgid "Hide"
-msgstr "மறை"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

@@ -482,10 +482,10 @@ msgstr ""
 msgid "Privileges"
 msgstr "Uprawnienia"
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "Ukryj"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1368,15 +1368,6 @@ msgstr "Wybierz lub przeciągnij plik."
 msgid "Size:"
 msgstr "Wielkość:"
 
-msgid "Uploading files…"
-msgstr "Ładowanie plików..."
-
-msgid "Upload completed successfully!"
-msgstr "Przesyłanie zakończono pomyślnie."
-
-msgid "Estimated upload time:"
-msgstr "Szacowany czas przesyłania:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Odbiorcy proszą cię byś wypełnił/a dodatkową ankietę."
 
@@ -1589,9 +1580,6 @@ msgstr "Wybór Odbiorcy"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Czekanie aż plik(i) się prześlą."
-
-msgid "Hide"
-msgstr "Ukryj"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

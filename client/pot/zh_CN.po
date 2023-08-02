@@ -483,10 +483,10 @@ msgstr ""
 msgid "Privileges"
 msgstr "特权"
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "隐藏"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1369,15 +1369,6 @@ msgstr "选择文件或将其拖放至此。"
 msgid "Size:"
 msgstr "大小："
 
-msgid "Uploading files…"
-msgstr "正在上传文件…"
-
-msgid "Upload completed successfully!"
-msgstr "成功完成上传！"
-
-msgid "Estimated upload time:"
-msgstr "预计上传时间："
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "接收人已请求您填写附加问卷。"
 
@@ -1590,9 +1581,6 @@ msgstr "接收人选择"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "正在等待文件完成上传。"
-
-msgid "Hide"
-msgstr "隐藏"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

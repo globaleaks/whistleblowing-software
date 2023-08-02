@@ -462,10 +462,10 @@ msgstr ""
 msgid "Privileges"
 msgstr ""
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "پټول"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1348,15 +1348,6 @@ msgstr "یو فایل وټاکئ یا دلته یې را کش کړئ."
 msgid "Size:"
 msgstr "اندازه:"
 
-msgid "Uploading files…"
-msgstr "د فایلونو پورته کول..."
-
-msgid "Upload completed successfully!"
-msgstr "پورته کول په بریا سره بشپړ شو!"
-
-msgid "Estimated upload time:"
-msgstr "د پورته کولو اټکلیز وخت:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "تر لاسه کوونکو له تاسې غوښتي تر څو یو اضافي پوښتنلیک ډک کړي."
 
@@ -1569,9 +1560,6 @@ msgstr "د تر لاسه کوونکي ټاکنه"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "فایل (ونو) ته منتظر یاست تر څو اپلوډینګ بشپړ شي."
-
-msgid "Hide"
-msgstr "پټول"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

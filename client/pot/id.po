@@ -487,10 +487,10 @@ msgstr ""
 msgid "Privileges"
 msgstr "Hak"
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "Sembunyikan"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1373,15 +1373,6 @@ msgstr "Pilih berkas atau seret ke sini."
 msgid "Size:"
 msgstr "Ukuran:"
 
-msgid "Uploading files…"
-msgstr "Mengunggah berkas..."
-
-msgid "Upload completed successfully!"
-msgstr "Unggahan selesai dengan sukses!"
-
-msgid "Estimated upload time:"
-msgstr "Perkiraan waktu mengunggah:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Penerima meminta Anda untuk mengisi kuesioner tambahan."
 
@@ -1594,9 +1585,6 @@ msgstr "Seleksi penerima"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Menunggu berkas untuk selesai diunggah."
-
-msgid "Hide"
-msgstr "Sembunyikan"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

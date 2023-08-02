@@ -463,10 +463,10 @@ msgstr "Lisa meeldetuletus"
 msgid "Privileges"
 msgstr ""
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "Peida"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1349,15 +1349,6 @@ msgstr "Valige fail või lohistage see siia."
 msgid "Size:"
 msgstr "Maht:"
 
-msgid "Uploading files…"
-msgstr "Failide üleslaadimine..."
-
-msgid "Upload completed successfully!"
-msgstr "Üleslaadimine õnnestus!"
-
-msgid "Estimated upload time:"
-msgstr "Hinnanguline üleslaadimisaeg:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Saajad on soovinud, et täidaksite täiendava ankeedi."
 
@@ -1570,9 +1561,6 @@ msgstr "Saaja valimine"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Oodake, kuni fail(id) on üles laaditud."
-
-msgid "Hide"
-msgstr "Peida"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

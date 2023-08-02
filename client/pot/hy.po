@@ -464,10 +464,10 @@ msgstr ""
 msgid "Privileges"
 msgstr ""
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "Թաքցնել"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1350,15 +1350,6 @@ msgstr "Ընտրեք ֆայլ կամ մկնիկով քաշեք այն այստե
 msgid "Size:"
 msgstr "Չափ՝"
 
-msgid "Uploading files…"
-msgstr "Ֆայլերի վերբեռնում…"
-
-msgid "Upload completed successfully!"
-msgstr "Վերբեռնումը հաջողվեց:"
-
-msgid "Estimated upload time:"
-msgstr "Վերբեռնման մոտավոր ժամանակը՝"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Հասցեատերերը ձեզ խնդրել են լրացնել հավելյալ հարցաշար:"
 
@@ -1571,9 +1562,6 @@ msgstr "Ընտրել հասցեատիրոջը"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Սպասեք ֆայլ(ներ)ի վերբեռնման ավարտին։"
-
-msgid "Hide"
-msgstr "Թաքցնել"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

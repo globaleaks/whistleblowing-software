@@ -462,10 +462,10 @@ msgstr ""
 msgid "Privileges"
 msgstr ""
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "Slėpti"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1348,15 +1348,6 @@ msgstr "Pasirinkite failą arba vilkite jį čia."
 msgid "Size:"
 msgstr "Dydis:"
 
-msgid "Uploading files…"
-msgstr "Failai įkeliami..."
-
-msgid "Upload completed successfully!"
-msgstr "Įkėlimas baigtas sėkmingai!"
-
-msgid "Estimated upload time:"
-msgstr "Numatomas įkėlimo laikas:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Gavėjai paprašė jūsų užpildyti papildomą klausimyną."
 
@@ -1569,9 +1560,6 @@ msgstr "Gavėjo pasirinkimas"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Laukiama, kol failas(-ai) bus įkeltas (-i)."
-
-msgid "Hide"
-msgstr "Slėpti"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

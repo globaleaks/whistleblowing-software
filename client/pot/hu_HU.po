@@ -480,10 +480,10 @@ msgstr ""
 msgid "Privileges"
 msgstr "Kiváltságok"
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "Elrejt"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1366,15 +1366,6 @@ msgstr "Válasszon ki egy fájlt a számítógépéről vagy húzza ide"
 msgid "Size:"
 msgstr "Méret"
 
-msgid "Uploading files…"
-msgstr "Fájlok feltöltése…"
-
-msgid "Upload completed successfully!"
-msgstr "A feltöltés sikeresen befejeződött!"
-
-msgid "Estimated upload time:"
-msgstr "Becsült feltöltési idő:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "A címzettek igényelték, hogy töltsön ki egy további kérdőívet."
 
@@ -1587,9 +1578,6 @@ msgstr "Címzett kiválasztása"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Várakozás a fájl(ok) feltöltésére."
-
-msgid "Hide"
-msgstr "Elrejt"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

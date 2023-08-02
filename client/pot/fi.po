@@ -472,10 +472,10 @@ msgstr "Aseta muistutus"
 msgid "Privileges"
 msgstr ""
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "Piilota"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1358,15 +1358,6 @@ msgstr "Valitse tiedosto tai raahaa se tähän."
 msgid "Size:"
 msgstr "Koko:"
 
-msgid "Uploading files…"
-msgstr "Ladataaan tiedostoja…"
-
-msgid "Upload completed successfully!"
-msgstr "Tiedostojen kopiointi palvelimelle onnistui!"
-
-msgid "Estimated upload time:"
-msgstr "Arvioitu latausaika:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Vastaanottajat ovat pyytäneet sinua täyttämään lisäkyselylomakkeen."
 
@@ -1579,9 +1570,6 @@ msgstr "Vastaanottajan valinta"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Odotetaan tiedosto(je)n latauksen valmistumista."
-
-msgid "Hide"
-msgstr "Piilota"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

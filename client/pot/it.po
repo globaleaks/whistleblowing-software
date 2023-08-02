@@ -484,11 +484,11 @@ msgstr "Imposta un promemoria"
 msgid "Privileges"
 msgstr "Privilegi"
 
-msgid "Mask"
-msgstr "Maschera"
+msgid "Hide"
+msgstr "Nascosto"
 
-msgid "Unmask"
-msgstr "Rimuovi maschera"
+msgid "Unhide"
+msgstr ""
 
 msgid "Redact"
 msgstr "Cancella"
@@ -1370,15 +1370,6 @@ msgstr "Seleziona un file o trascinalo quì"
 msgid "Size:"
 msgstr "Dimensione:"
 
-msgid "Uploading files…"
-msgstr "Caricamento dei file…"
-
-msgid "Upload completed successfully!"
-msgstr "Caricamento completato con successo!"
-
-msgid "Estimated upload time:"
-msgstr "Tempo stimato per il caricamento"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "I riceventi ti richiedono di riempire un ultreriore questionario."
 
@@ -1591,9 +1582,6 @@ msgstr "Selezione del ricevente"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "In attesa che i file finiscano di essere caricati."
-
-msgid "Hide"
-msgstr "Nascosto"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

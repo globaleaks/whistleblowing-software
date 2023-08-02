@@ -478,10 +478,10 @@ msgstr ""
 msgid "Privileges"
 msgstr ""
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "Cacher"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1364,15 +1364,6 @@ msgstr ""
 msgid "Size:"
 msgstr "Taille :"
 
-msgid "Uploading files…"
-msgstr "Téléversement des fichiers…"
-
-msgid "Upload completed successfully!"
-msgstr "Ny fandefasana ireo rakitra fanavaozana dia tafita soa aman-tsara!"
-
-msgid "Estimated upload time:"
-msgstr "Durée de téléversement estimée :"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Les destinataires ont demandé à ce que vous remplissiez un questionnaire supplémentaire."
 
@@ -1585,9 +1576,6 @@ msgstr "Sélection du destinataire"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "En attente de la fin du téléversement des fichiers."
-
-msgid "Hide"
-msgstr "Cacher"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

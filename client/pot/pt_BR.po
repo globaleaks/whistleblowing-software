@@ -501,10 +501,10 @@ msgstr ""
 msgid "Privileges"
 msgstr "Privilégios"
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "Ocultar"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1387,15 +1387,6 @@ msgstr "Selecione um ficheiro ou arraste-o aqui."
 msgid "Size:"
 msgstr "Tamanho:"
 
-msgid "Uploading files…"
-msgstr "A carregar ficheiros..."
-
-msgid "Upload completed successfully!"
-msgstr "Upload concluído com sucesso!"
-
-msgid "Estimated upload time:"
-msgstr "Tempo estimado do upload:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Os destinatários solicitaram-lhe que preencha um questionário adicional."
 
@@ -1608,9 +1599,6 @@ msgstr "Seleção de destinatário"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "À espera que o(s) ficheiro(s) acabe(m) de ser carregado(s)."
-
-msgid "Hide"
-msgstr "Ocultar"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

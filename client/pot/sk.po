@@ -472,10 +472,10 @@ msgstr ""
 msgid "Privileges"
 msgstr "Oprávnenia"
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "Skryť"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1358,15 +1358,6 @@ msgstr "Vyberte súbor alebo ho sem pretiahnite."
 msgid "Size:"
 msgstr "Veľkosť:"
 
-msgid "Uploading files…"
-msgstr "Nahrávam súbory..."
-
-msgid "Upload completed successfully!"
-msgstr "Nahrávanie bolo úspešne dokončené!"
-
-msgid "Estimated upload time:"
-msgstr "Odhadovaný čas nahrávania:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Príjemcovia požadujú, aby ste vyplnili dodatočný dotazník."
 
@@ -1579,9 +1570,6 @@ msgstr "Výber príjemcu"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Čaká sa na dokončenie nahrávania súborov."
-
-msgid "Hide"
-msgstr "Skryť"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

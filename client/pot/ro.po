@@ -478,10 +478,10 @@ msgstr ""
 msgid "Privileges"
 msgstr "privilegii"
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "Ascunde"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1364,15 +1364,6 @@ msgstr "Selectează un fișier sau trage-l aici."
 msgid "Size:"
 msgstr "Dimensiune:"
 
-msgid "Uploading files…"
-msgstr "Fișierele se încarcă"
-
-msgid "Upload completed successfully!"
-msgstr "Încărcare finalizată cu succes!"
-
-msgid "Estimated upload time:"
-msgstr "Timpul estimat pentru încărcare:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Destinatarii ți-au solicitat să completezi un chestionar suplimentar."
 
@@ -1585,9 +1576,6 @@ msgstr "Selectează destinatarul"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Se așteaptă finalizarea încărcării fișierului(lor)."
-
-msgid "Hide"
-msgstr "Ascunde"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

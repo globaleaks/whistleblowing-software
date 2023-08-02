@@ -463,10 +463,10 @@ msgstr ""
 msgid "Privileges"
 msgstr ""
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "སྦས།"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1349,15 +1349,6 @@ msgstr "ཡིག་ཆ་ཞིག་འདེམས་པའམ་འདིར
 msgid "Size:"
 msgstr "ཆ་ཚད།:"
 
-msgid "Uploading files…"
-msgstr "ཡིག་ཆ་ཡར་འཇུག་བཞིན་པ།..."
-
-msgid "Upload completed successfully!"
-msgstr "ཡར་འཇུག་མཇུག་སྐྱེལ་ཟིན།"
-
-msgid "Estimated upload time:"
-msgstr "ཚོད་དཔག་བྱས་པའི་ཡར་འཇུག་དུས་ཚོད།:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "འབྱོར་ཡུལ་བ་ཡིས་ཁྱེད་ལ་དྲི་ཚན་འཕར་མ་ཞིག་འགེང་པའི་རེ་ཞུ་བྱས་འདུག"
 
@@ -1570,9 +1561,6 @@ msgstr "འབྱོར་ཡུལ་འདེམས་སྒྲུག"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "ཡིག་ཆ་(རྣམས་) ཡར་འཇུག་ཟིན་པར་སྒུག་ནས་ཡོད། "
-
-msgid "Hide"
-msgstr "སྦས།"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

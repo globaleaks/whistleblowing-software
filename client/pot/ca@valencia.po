@@ -476,14 +476,14 @@ msgstr "Establir un recordatori"
 msgid "Privileges"
 msgstr "Privilegis"
 
-msgid "Mask"
+msgid "Hide"
 msgstr "Ocultar"
 
-msgid "Unmask"
-msgstr "Mostrar"
+msgid "Unhide"
+msgstr ""
 
 msgid "Redact"
-msgstr "Redactar"
+msgstr "Suprimir permanentment"
 
 msgid "Select an option"
 msgstr "Selecciona una opció"
@@ -1362,15 +1362,6 @@ msgstr "Seleccionar un arxiu o arrastrar-lo ací."
 msgid "Size:"
 msgstr "Tamany:"
 
-msgid "Uploading files…"
-msgstr "Carregant fitxers..."
-
-msgid "Upload completed successfully!"
-msgstr "La càrrega s'ha completat satisfactòriament!"
-
-msgid "Estimated upload time:"
-msgstr "Temps estimat de càrrega:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Els receptors han solicitat que vosté reompliga un qüestionari addicional."
 
@@ -1583,9 +1574,6 @@ msgstr "Seleccione el destinatari"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Esperant que la pujada d'arxiu(s) es complete"
-
-msgid "Hide"
-msgstr "Ocultar"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

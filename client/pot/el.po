@@ -475,10 +475,10 @@ msgstr ""
 msgid "Privileges"
 msgstr "προνόμια"
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "Απόκρυψη"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1361,15 +1361,6 @@ msgstr "Επιλέξτε αρχείο ή σύρετέ το εδώ."
 msgid "Size:"
 msgstr "Μέγεθος:"
 
-msgid "Uploading files…"
-msgstr "Ανέβασμα αρχείων ..."
-
-msgid "Upload completed successfully!"
-msgstr "Το ανέβασμα ολοκληρώθηκε με επιτυχία!"
-
-msgid "Estimated upload time:"
-msgstr "Εκτιμώμενος χρόνος ανεβάσματος:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Οι παραλήπτες σας ζητούν να συμπληρώσετε ένα επιπρόσθετο ερωτηματολόγιο"
 
@@ -1582,9 +1573,6 @@ msgstr "Επιλογή παραλήπτη"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Αναμονή για την ολοκλήρωση ανεβάσματος αρχείου(ων)"
-
-msgid "Hide"
-msgstr "Απόκρυψη"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

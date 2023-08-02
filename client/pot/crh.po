@@ -462,10 +462,10 @@ msgstr ""
 msgid "Privileges"
 msgstr ""
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "Гизлемек"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1348,15 +1348,6 @@ msgstr "Файлны сайланъыз я да оны мында чекинъи
 msgid "Size:"
 msgstr "Ольчю:"
 
-msgid "Uploading files…"
-msgstr "Файллар юкленмеси…"
-
-msgid "Upload completed successfully!"
-msgstr "Юкленме мувафакъиетнен тамамланды!"
-
-msgid "Estimated upload time:"
-msgstr "Юкленменинъ вакъыты:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Алыджылар сизни къошма суаллер джедвелини толдурмагъа риджа эттилер."
 
@@ -1569,9 +1560,6 @@ msgstr "Алыджы сайламасы"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Файл(лар) юклене."
-
-msgid "Hide"
-msgstr "Гизлемек"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

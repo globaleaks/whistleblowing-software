@@ -471,11 +471,11 @@ msgstr "Ujdisni një kujtues"
 msgid "Privileges"
 msgstr "Privilegje"
 
-msgid "Mask"
-msgstr "Maskoje"
+msgid "Hide"
+msgstr "Fshihe"
 
-msgid "Unmask"
-msgstr "Hiqi maskimin"
+msgid "Unhide"
+msgstr ""
 
 msgid "Redact"
 msgstr "Redaktoni"
@@ -514,13 +514,13 @@ msgid "Download copy of the Privacy Policy"
 msgstr "Shkarkoni një kopje të Rregullave të Privatësisë"
 
 msgid "Whistleblowing Policy"
-msgstr ""
+msgstr "Rregulla Nxjerrjeje të Fshehtash"
 
 msgid "Accessibility Declaration"
-msgstr ""
+msgstr "Deklarata Mbi Përdorim Nga Persona Me Aftësi të Kufizuara"
 
 msgid "Voice"
-msgstr ""
+msgstr "Zë"
 
 msgid "File a report"
 msgstr "Depozitoni një raportim"
@@ -875,7 +875,7 @@ msgid "Template override"
 msgstr "Anashkalim gjedheje"
 
 msgid "Min"
-msgstr ""
+msgstr "Min."
 
 msgid "Max"
 msgstr "Maks."
@@ -1357,15 +1357,6 @@ msgstr "Përzgjidhni një kartelë ose tërhiqeni këtu."
 msgid "Size:"
 msgstr "Madhësi:"
 
-msgid "Uploading files…"
-msgstr "Po ngarkohen kartela…"
-
-msgid "Upload completed successfully!"
-msgstr "Ngarkimi u plotësua me sukses!"
-
-msgid "Estimated upload time:"
-msgstr "Kohë ngarkimi përafërsisht:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Marrësit kanë kërkuar që të plotësoni një pyetësor shtesë."
 
@@ -1438,7 +1429,7 @@ msgid ""
 msgstr "Rekomandojmë që të përdorni ndarjen “Parapëlqime”, që të rimerrni “Kyç Rimarrjeje Llogarie” tuajin dhe ta depozitoni pa rrezik diku. Ky kyç do të jetë i nevojshëm për të rifituar hyrje te platforma dhe të dhënat tuaja, në rast se harroni fjalëkalimin tuaj."
 
 msgid "Access date"
-msgstr ""
+msgstr "Datë përdorimi"
 
 msgid "The provided recovery key is invalid."
 msgstr "Kyçi i rimarrjeve i dhënë është i pavlefshëm."
@@ -1578,9 +1569,6 @@ msgstr "Përzgjedhje marrësish"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Po pritet që të përfundojë ngarkimi i kartelës(ave)."
-
-msgid "Hide"
-msgstr "Fshihe"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

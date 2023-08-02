@@ -463,10 +463,10 @@ msgstr ""
 msgid "Privileges"
 msgstr ""
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "ደብቅ"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1349,15 +1349,6 @@ msgstr "ፋይል ምረጡ ወይም እዚህ ጎትቱ፡፡"
 msgid "Size:"
 msgstr "መጠን"
 
-msgid "Uploading files…"
-msgstr "ፋይል በመጫን ላይ…"
-
-msgid "Upload completed successfully!"
-msgstr "ጭነት በስኬት ተጠናቋል!"
-
-msgid "Estimated upload time:"
-msgstr "የጭነት ጊዜ በግምት፡፡"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "ተቀባዮች ተጨማሪ መጠይቅ እንዲሞሉ ጠይቀዋል፡፡"
 
@@ -1570,9 +1561,6 @@ msgstr "የተቀባይ ምርጫ"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "ፋይል ጭኖ እስኪጨርስ በመጠበቅ ላይ"
-
-msgid "Hide"
-msgstr "ደብቅ"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

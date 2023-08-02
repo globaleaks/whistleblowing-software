@@ -508,11 +508,11 @@ msgstr "Legen Sie eine Erinnerung fest"
 msgid "Privileges"
 msgstr "Berechtigungen"
 
-msgid "Mask"
-msgstr "Maskieren "
+msgid "Hide"
+msgstr "Verstecken"
 
-msgid "Unmask"
-msgstr "Demaskieren"
+msgid "Unhide"
+msgstr ""
 
 msgid "Redact"
 msgstr "redigieren "
@@ -1394,15 +1394,6 @@ msgstr "Eine Datei auswählen oder Sie hierher ziehen."
 msgid "Size:"
 msgstr "Größe:"
 
-msgid "Uploading files…"
-msgstr "Dateien werden hochgeladen …"
-
-msgid "Upload completed successfully!"
-msgstr "Hochladen erfolgreich abgeschlossen!"
-
-msgid "Estimated upload time:"
-msgstr "Geschätzte Hochladezeit:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Empfänger haben Sie gebeten, einen zusätzlichen Fragebogen auszufüllen."
 
@@ -1615,9 +1606,6 @@ msgstr "Empfängerauswahl"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Warte darauf, dass die Datei(en) fertig hochgeladen werden."
-
-msgid "Hide"
-msgstr "Verstecken"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

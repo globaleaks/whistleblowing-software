@@ -485,11 +485,11 @@ msgstr "Sätt en påminnelse"
 msgid "Privileges"
 msgstr "Privilegier"
 
-msgid "Mask"
-msgstr "Maskera"
+msgid "Hide"
+msgstr "Göm"
 
-msgid "Unmask"
-msgstr "Visa"
+msgid "Unhide"
+msgstr ""
 
 msgid "Redact"
 msgstr "Radera"
@@ -1371,15 +1371,6 @@ msgstr "Välj en fil eller släpa den hit."
 msgid "Size:"
 msgstr "Storlek:"
 
-msgid "Uploading files…"
-msgstr "Laddar upp filer..."
-
-msgid "Upload completed successfully!"
-msgstr "Filuppladdning klar!"
-
-msgid "Estimated upload time:"
-msgstr "Uppskattad uppladdningstid:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Mottagarna har bett dig fylla i ytterligare ett frågeformulär."
 
@@ -1592,9 +1583,6 @@ msgstr "Val av mottagare"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Väntar på att uppladdningen av filen/filerna är klar."
-
-msgid "Hide"
-msgstr "Göm"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

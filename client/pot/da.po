@@ -469,10 +469,10 @@ msgstr ""
 msgid "Privileges"
 msgstr "Privilegier"
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "Skjul"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1355,15 +1355,6 @@ msgstr "Vælg en fil eller flyt den hertil."
 msgid "Size:"
 msgstr "Størrelse:"
 
-msgid "Uploading files…"
-msgstr "Uploader filer..."
-
-msgid "Upload completed successfully!"
-msgstr "Upload gennemført med succes!"
-
-msgid "Estimated upload time:"
-msgstr "Anslået tid til upload:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Modtagere har anmodet dig om at udfylde et ekstra spørgeskema."
 
@@ -1576,9 +1567,6 @@ msgstr "Vælg modtagere"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Venter på at fil(er) er færdiguploadet."
-
-msgid "Hide"
-msgstr "Skjul"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

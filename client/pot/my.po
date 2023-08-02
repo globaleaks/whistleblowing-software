@@ -463,10 +463,10 @@ msgstr ""
 msgid "Privileges"
 msgstr ""
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "ဝှက်မည်"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1349,15 +1349,6 @@ msgstr "ဖိုင်တစ်ခုကို ရွေးချယ်ပါ (
 msgid "Size:"
 msgstr "အရွယ်အစား - "
 
-msgid "Uploading files…"
-msgstr "ဖိုင်များ အပ်လုဒ်လုပ်နေသည်…"
-
-msgid "Upload completed successfully!"
-msgstr "အောင်မြင်စွာ အပ်လုဒ်လုပ်ပြီးပါပြီ။"
-
-msgid "Estimated upload time:"
-msgstr "အပ်လုဒ်လုပ်ရန် ကြာချိန် ခန့်မှန်းချက် -"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "လက်ခံသူများက သင့်အား အပိုဆောင်း မေးခွန်းလွှာဖြည့်ရန် တောင်းဆိုထားသည်။"
 
@@ -1570,9 +1561,6 @@ msgstr "လက်ခံသူ ရွေးချယ်မှု"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "ဖိုင်(များ) အပ်လုဒ်လုပ်ခြင်း ပြီးဆုံးရန် စောင့်နေသည်။"
-
-msgid "Hide"
-msgstr "ဝှက်မည်"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

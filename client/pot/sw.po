@@ -462,10 +462,10 @@ msgstr ""
 msgid "Privileges"
 msgstr ""
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "Ficha"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1348,15 +1348,6 @@ msgstr "Chagua faili au liburuze hapa."
 msgid "Size:"
 msgstr "Ukubwa:"
 
-msgid "Uploading files…"
-msgstr "Inapakia mafaili… "
-
-msgid "Upload completed successfully!"
-msgstr "Upakiaji umekamilika kwa mafanikio! "
-
-msgid "Estimated upload time:"
-msgstr "Wakati uliokadiriwa wa kupakia:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Wapokeaji wamekuomba ujaze hadidu za nyongeza."
 
@@ -1569,9 +1560,6 @@ msgstr "Uchaguzi wa wapokeaji"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Inasubiri faili/mafaili ili kumaliza upakuaji."
-
-msgid "Hide"
-msgstr "Ficha"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

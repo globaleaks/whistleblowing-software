@@ -477,10 +477,10 @@ msgstr ""
 msgid "Privileges"
 msgstr "Ưu đãi"
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "Dấu"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1363,15 +1363,6 @@ msgstr "Chọn tập tin hoặc kéo thả vào đây."
 msgid "Size:"
 msgstr "Kích thước:"
 
-msgid "Uploading files…"
-msgstr "Đang tải lên tập tin...."
-
-msgid "Upload completed successfully!"
-msgstr "Tải lên thành công!"
-
-msgid "Estimated upload time:"
-msgstr "Ước lượng thời gian tải lên:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Người nhận đã yêu cầu bạn điền vào một bảng câu hỏi bổ sung."
 
@@ -1584,9 +1575,6 @@ msgstr "Chọn người nhận"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Chờ cho (các) tập tin tải lên."
-
-msgid "Hide"
-msgstr "Dấu"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

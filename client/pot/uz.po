@@ -464,10 +464,10 @@ msgstr ""
 msgid "Privileges"
 msgstr ""
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "Berkitish"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1350,15 +1350,6 @@ msgstr "Fayl tanlang yoki shu yerga tortib tashlang."
 msgid "Size:"
 msgstr "Hajmi:"
 
-msgid "Uploading files…"
-msgstr "Fayllar yuklanmoqda…"
-
-msgid "Upload completed successfully!"
-msgstr "Fayllar yuklandi!"
-
-msgid "Estimated upload time:"
-msgstr "Taxminiy yuklash vaqti:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Qabul qiluvchilar qoʻshimcha savolnomani toʻldirishingizni soʻradi."
 
@@ -1571,9 +1562,6 @@ msgstr "Qabul qiluvchini tanlash"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Fayl(lar)ning oxirigacha yuklanishi kutilmoqda."
-
-msgid "Hide"
-msgstr "Berkitish"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

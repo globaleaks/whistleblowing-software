@@ -470,10 +470,10 @@ msgstr ""
 msgid "Privileges"
 msgstr ""
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "Пинҳон кардан"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1356,15 +1356,6 @@ msgstr "Файлро интихоб кунед ё ба ин ҷо кашед."
 msgid "Size:"
 msgstr "Андоза:"
 
-msgid "Uploading files…"
-msgstr "Боркунии файлҳо..."
-
-msgid "Upload completed successfully!"
-msgstr "Боркунӣ бомуваффақият анҷом ёфт!"
-
-msgid "Estimated upload time:"
-msgstr "Вақти тахминии боркунӣ:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Гирандагон аз шумо дархост кардаанд саволномаи иловагиро пур намоед."
 
@@ -1577,9 +1568,6 @@ msgstr "Интихоби гиранда"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Интизори файл(ҳо) то ба анҷом расидани боркунӣ."
-
-msgid "Hide"
-msgstr "Пинҳон кардан"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

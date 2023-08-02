@@ -479,10 +479,10 @@ msgstr ""
 msgid "Privileges"
 msgstr "הרשאות"
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "הסתר"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1365,15 +1365,6 @@ msgstr ""
 msgid "Size:"
 msgstr "גודל:"
 
-msgid "Uploading files…"
-msgstr "מעלה קבצים..."
-
-msgid "Upload completed successfully!"
-msgstr "הטעינה הושלמה בהצלחה!"
-
-msgid "Estimated upload time:"
-msgstr "זמן העלאה משוער:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr ""
 
@@ -1586,9 +1577,6 @@ msgstr "בחירת מקבלים"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr ""
-
-msgid "Hide"
-msgstr "הסתר"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

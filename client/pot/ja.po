@@ -467,10 +467,10 @@ msgstr ""
 msgid "Privileges"
 msgstr "特権"
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "非表示"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1353,15 +1353,6 @@ msgstr "ファイルを選択するか、ここにドラッグしてください
 msgid "Size:"
 msgstr "サイズ："
 
-msgid "Uploading files…"
-msgstr "ファイルのアップロード中…"
-
-msgid "Upload completed successfully!"
-msgstr "アップロードが正常に完了しました!"
-
-msgid "Estimated upload time:"
-msgstr "見積アップロード時間:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "受領者があなたに追加のアンケートを記入するよう依頼しました。"
 
@@ -1574,9 +1565,6 @@ msgstr "受信者の選択"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "ファイルのアップロードが完了するのを待っています。"
-
-msgid "Hide"
-msgstr "非表示"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

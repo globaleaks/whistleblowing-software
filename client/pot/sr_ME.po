@@ -461,10 +461,10 @@ msgstr ""
 msgid "Privileges"
 msgstr "Привилегије"
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "Sakrij"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1347,15 +1347,6 @@ msgstr "Izaberite datoteku ili je prevucite ovdje."
 msgid "Size:"
 msgstr "Veličina:"
 
-msgid "Uploading files…"
-msgstr "Otpremaju se datoteke…"
-
-msgid "Upload completed successfully!"
-msgstr "Otpremanje je uspješno završeno!"
-
-msgid "Estimated upload time:"
-msgstr "Predviđeno vrijeme otpremanja:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Primaoci su zatražili da popunite dodatni upitnik."
 
@@ -1568,9 +1559,6 @@ msgstr "Izbor primaoca"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Čeka se da se završi otpremanje datoteka."
-
-msgid "Hide"
-msgstr "Sakrij"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

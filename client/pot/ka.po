@@ -462,10 +462,10 @@ msgstr ""
 msgid "Privileges"
 msgstr "პრივილეგიები"
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "დამალვა"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1348,15 +1348,6 @@ msgstr "აირჩიეთ ფაილი ან გადმოიტან
 msgid "Size:"
 msgstr "ზომა:"
 
-msgid "Uploading files…"
-msgstr "ფაილები იტვირთება…"
-
-msgid "Upload completed successfully!"
-msgstr "ატვირთვა წარმატებით დასრულდა!"
-
-msgid "Estimated upload time:"
-msgstr "ატვირთვის სავარაუდო დრო:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "მიმღებებმა მოითხოვეს, რომ თქვენ შეავსოთ დამატებითი კითხვარი."
 
@@ -1569,9 +1560,6 @@ msgstr "მიმღების შერჩევა"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "ფაილ(ებ)ის ატვირთვის დასრულების ლოდინი."
-
-msgid "Hide"
-msgstr "დამალვა"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "

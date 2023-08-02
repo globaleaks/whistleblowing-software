@@ -464,10 +464,10 @@ msgstr ""
 msgid "Privileges"
 msgstr "Rettigheter"
 
-msgid "Mask"
-msgstr ""
+msgid "Hide"
+msgstr "Skjul"
 
-msgid "Unmask"
+msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
@@ -1350,15 +1350,6 @@ msgstr "Velg en fil, eller dra den her."
 msgid "Size:"
 msgstr "Størrelse:"
 
-msgid "Uploading files…"
-msgstr "Laster opp filer…"
-
-msgid "Upload completed successfully!"
-msgstr "Opplasting fullført."
-
-msgid "Estimated upload time:"
-msgstr "Forventet opplastingstid:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Mottakere har bedt deg om å fylle ut et annet spørreskjema."
 
@@ -1571,9 +1562,6 @@ msgstr "Valg av mottaker"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Venter på at filen/filen(e) skal lastes opp."
-
-msgid "Hide"
-msgstr "Skjul"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
