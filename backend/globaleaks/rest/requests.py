@@ -433,21 +433,6 @@ NodeDesc = {
     'whistleblowing_question': str
 }
 
-TipOverviewDesc = {
-    'id': uuid_regexp,
-    'context_id': uuid_regexp,
-    'creation_date': DateType,
-    'expiration_date': DateType
-}
-
-TipsOverviewDesc = [TipOverviewDesc]
-
-FileOverviewDesc = {
-    'id': uuid_regexp,
-    'itip': uuid_regexp,
-    'path': str
-}
-
 ReceiverIdentityAccessRequestDesc = {
     'request_motivation': str
 }
@@ -456,25 +441,6 @@ CustodianIdentityAccessRequestDesc = {
     'reply': identityaccessreply_regexp,
     'reply_motivation': str
 }
-
-FilesOverviewDesc = [FileOverviewDesc]
-
-StatsDesc = {
-    'file_uploaded': int,
-    'new_submission': int,
-    'finalized_submission': int,
-    'anon_requests': int,
-    'creation_date': DateType
-}
-
-StatsCollectionDesc = [StatsDesc]
-
-AnomalyDesc = {
-    'message': str,
-    'creation_date': DateType
-}
-
-AnomalyCollectionDesc = [AnomalyDesc]
 
 ReceiverDesc = {
     'name': str,
