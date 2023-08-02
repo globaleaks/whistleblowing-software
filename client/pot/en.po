@@ -461,11 +461,11 @@ msgstr "Set a reminder"
 msgid "Privileges"
 msgstr "Privileges"
 
-msgid "Mask"
-msgstr "Mask"
+msgid "Hide"
+msgstr "Hide"
 
-msgid "Unmask"
-msgstr "Unmask"
+msgid "Unhide"
+msgstr "Unhide"
 
 msgid "Redact"
 msgstr "Redact"
@@ -1365,15 +1365,6 @@ msgstr "Select a file or drag it here."
 msgid "Size:"
 msgstr "Size:"
 
-msgid "Uploading files…"
-msgstr "Uploading files…"
-
-msgid "Upload completed successfully!"
-msgstr "Upload completed successfully!"
-
-msgid "Estimated upload time:"
-msgstr "Estimated upload time:"
-
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Recipients have requested you to fill an additional questionnaire."
 
@@ -1601,9 +1592,6 @@ msgstr "Recipient selection"
 
 msgid "Waiting for the file(s) to finish uploading."
 msgstr "Waiting for the file(s) to finish uploading."
-
-msgid "Hide"
-msgstr "Hide"
 
 msgid ""
 "The following step-by-step procedure will guide you through creating your "
