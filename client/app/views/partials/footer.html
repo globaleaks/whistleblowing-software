@@ -1,5 +1,5 @@
 <div id="CustomFooter" class="vcenter preformatted mb-1" data-ng-if="public.node.footer" data-markdown-to-html="public.node.footer | stripHtml"></div>
-<div id="Policies" class="vcenter mb-1" data-ng-if="!public.node.footer">
+<div id="Policies" class="vcenter mb-1" data-ng-if="public.node.footer_whistleblowing_policy || public.footer_node.footer_privacy_policy || public.node.footer_accessibility_declaration">
   <a data-ng-if="public.node.footer_whistleblowing_policy" href="{{public.node.footer_whistleblowing_policy}}">Whistleblowing Policy</a>
   <span data-ng-if="public.node.footer_whistleblowing_policy && (public.node.footer_privacy_policy || public.node.footer_accessibility_declaration)" > - </span>
   <a data-ng-if="public.node.footer_privacy_policy" href="{{public.node.footer_privacy_policy}}">Privacy Policy</a>
