@@ -570,10 +570,14 @@ PasswordReset2Desc = {
 }
 
 SiteSettingsDesc = {
-    'name': str,
+    'disclaimer_text': str,
     'header_title_homepage': str,
+    'footer': str,
+    'footer_accessibility_declaration': str,
+    'footer_privacy_policy': str,
+    'footer_whistleblowing_policy': str,
+    'name': str,
     'presentation': str,
-    'footer': str
 }
 
 QuestionnaireDuplicationDesc = {
