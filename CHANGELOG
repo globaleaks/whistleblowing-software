@@ -1,3 +1,8 @@
+Changes in version 4.12.9
+    Add fieldset and legend to radio buttons inputs (#3433)
+    Add label to language selector (#3574)
+    Fix LE renewal compatibility with python3-acme 2.1.0 (#3571)
+
 Changes in version 4.12.8
     Remove report labels from mail notifications
     Fix defect #3565
