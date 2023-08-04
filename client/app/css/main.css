@@ -33,7 +33,6 @@ a:hover,
 }
 
 legend {
-  display: contents;
   font-size: revert;
 }
 
@@ -669,6 +668,10 @@ input[type="file"] {
 
 #SubmissionErrors {
   margin-top: 1em;
+}
+
+.question legend {
+  display: contents;
 }
 
 .question-body {
