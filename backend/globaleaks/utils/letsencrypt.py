@@ -71,15 +71,15 @@ def request_new_certificate(hostname, accnt_key, key, tmp_chall_dict, directory_
 
     client = create_v2_client(directory_url, accnt_key)
 
+    new_reg = messages.NewRegistration.from_data(
+      terms_of_service_agreed=True
+    )
+
     try:
-        client.net.account = client.new_account(
-            messages.NewRegistration.from_data(
-                terms_of_service_agreed=True
-            )
-        )
+        client.net.account = client.new_account(new_reg)
 
     except errors.ConflictError as error:
-        existing_reg = messages.RegistrationResource(uri=error.location)
+        existing_reg = messages.RegistrationResource(body=new_reg, uri=error.location)
         existing_reg = client.query_registration(existing_reg)
         client.update_registration(existing_reg)
 
