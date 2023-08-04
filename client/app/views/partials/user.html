@@ -1,6 +1,7 @@
 <div data-ng-hide="resources.preferences.password_change_needed || resources.preferences.require_two_factor">
   <div id="LanguagePickerBox" data-ng-if="public.node.languages_enabled.length > 1" class="float-right ml-1 mb-2">
-    <select class="form-control" data-ng-model="GLTranslate.state.language" data-ng-options="item.code as item.native for item in languages_enabled_selector | orderBy:'native'"></select>
+    <label for="language-picker-select" class="visually-hidden" data-traslate>Select your language</label>
+    <select id="language-picker-select" class="form-control" data-ng-model="GLTranslate.state.language" data-ng-options="item.code as item.native for item in languages_enabled_selector | orderBy:'native'"></select>
   </div>
   <div id="LoginStatusBox" data-ng-if="Utils.showUserStatusBox()" class="float-right ml-1 mb-2">
     <span id="UsernameBox" data-ng-if="Authentication.session.role !== 'whistleblower'">
