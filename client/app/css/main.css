@@ -686,12 +686,6 @@ input[type="file"] {
   padding-right: 1em;
 }
 
-.mapoutline {
-  fill: #f5f7fa;
-  stroke: #121f24;
-  stroke-width: 1.5px;
-}
-
 .fileButtons {
   position: absolute;
   top: 0;
