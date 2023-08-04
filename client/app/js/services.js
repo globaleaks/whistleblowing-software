@@ -1150,12 +1150,18 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       return btoa(result);
     },
 
-    saveAs: function(blob, filename) {
-      var fileLink = $window.document.createElement("a");
-      fileLink.href = URL.createObjectURL(blob);
-      fileLink.download = filename;
-      fileLink.click();
-      $timeout(function () { URL.revokeObjectURL(fileLink.href); }, 1000);
+    saveAs: function(filename, url) {
+      return $http({
+        method: "GET",
+        url: url,
+        responseType: "blob",
+      }).then(function (response) {
+        var fileLink = $window.document.createElement("a");
+        fileLink.href = URL.createObjectURL(response.data);
+        fileLink.download = filename;
+        fileLink.click();
+        $timeout(function () { URL.revokeObjectURL(fileLink.href); }, 1000);
+      });
     },
 
     role_l10n: function(role) {
