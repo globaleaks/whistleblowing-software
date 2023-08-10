@@ -51,14 +51,6 @@ parser.add_option("-i", "--ip", type="string",
     help="IP address used for listening [default: %default]",
     dest="ip", default=Settings.bind_address)
 
-parser.add_option("-s", "--socks-host", type="string",
-    help="set Socks host to use for Tor [default: %default]",
-    dest="socks_host", default=Settings.socks_host)
-
-parser.add_option("-r", "--socks-port", type="int",
-    help="set Socks port to use for Tor [default: %default]",
-    dest="socks_port", default=Settings.socks_port)
-
 parser.add_option("-u", "--user", type="string",
     help="set the user to run as [default: current_user]",
     dest="user", default=None)

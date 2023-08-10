@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # Implements configuration of Tor onion services
 import os
+import sys
+import txtorcon
 
 from txtorcon import build_local_tor_connection
 from twisted.internet import reactor
@@ -15,18 +17,27 @@ from globaleaks.utils.log import log
 from globaleaks.utils.utility import deferred_sleep
 
 
-__all__ = ['OnionService']
+__all__ = ['Tor']
 
 
-class OnionService(Service):
+class Tor(Service):
     print_startup_error = True
     tor_conn = None
+
+    def __init__(self):
+        Service.__init__(self)
+
+        self.tor = txtorcon.launch(
+            reactor,
+            socks_port='9050',
+            control_port='unix:' + State.settings.tor_control,
+        )
 
     def reset(self):
         self.tor_conn = None
 
     def stop(self):
-        super(OnionService, self).stop()
+        super(Tor, self).stop()
 
         if self.tor_conn is None:
             return
@@ -90,8 +101,6 @@ class OnionService(Service):
     def operation(self):
         restart_deferred = Deferred()
 
-        control_socket = '/var/run/tor/control'
-
         def startup_callback(tor_conn):
             self.print_startup_error = True
             self.tor_conn = tor_conn
@@ -109,14 +118,17 @@ class OnionService(Service):
 
             restart_deferred.callback(None)
 
-        if not os.path.exists(control_socket):
-            startup_errback(Exception('Tor control port not open on %s; waiting for Tor to become available' % control_socket))
+        if not os.path.exists(self.state.settings.tor_control):
+            startup_errback(Exception('Tor control port not open on %s; waiting for Tor to become available' % self.state.settings.tor_control))
             return deferred_sleep(1)
 
-        if not os.access(control_socket, os.R_OK):
-            startup_errback(Exception('Unable to access %s; manual permission recheck needed' % control_socket))
+        if not os.access(self.state.settings.tor_control, os.R_OK):
+            startup_errback(Exception('Unable to access %s; manual permission recheck needed' % self.state.settings.tor_control))
             return deferred_sleep(1)
 
-        build_local_tor_connection(reactor).addCallbacks(startup_callback, startup_errback)
+        def connect(_):
+            build_local_tor_connection(reactor, socket=self.state.settings.tor_control).addCallbacks(startup_callback, startup_errback)
+
+        self.tor.addCallback(connect)
 
         return restart_deferred

@@ -18,8 +18,6 @@ if [ ! -d "/var/globaleaks" ]; then
     mkdir -m 700 /var/globaleaks && chown globaleaks:globaleaks /var/globaleaks
 fi
 
-usermod -a -G debian-tor globaleaks
-
 if which pycompile >/dev/null 2>&1; then
   pycompile -p globaleaks
 fi

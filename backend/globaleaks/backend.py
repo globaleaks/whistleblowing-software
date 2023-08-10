@@ -11,7 +11,7 @@ from twisted.python.log import addObserver
 from twisted.web import resource, server
 
 from globaleaks.jobs import job, jobs_list
-from globaleaks.services import onion
+from globaleaks.services import tor
 
 from globaleaks.db import create_db, init_db, update_db, \
     sync_refresh_tenant_cache, sync_clean_untracked_files, sync_initialize_snimap
@@ -79,8 +79,8 @@ class Service(service.Service):
         for j in jobs_list:
             self.state.jobs.append(j())
 
-        self.state.onion_service = onion.OnionService()
-        self.state.services.append(self.state.onion_service)
+        self.state.tor = tor.Tor()
+        self.state.services.append(self.state.tor)
 
         self.state.jobs_monitor = job.JobsMonitor(self.state.jobs)
 

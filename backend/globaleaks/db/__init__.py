@@ -175,8 +175,8 @@ def db_refresh_tenant_cache(session, to_refresh=None):
 
             State.snimap.unload(tid)
 
-            if State.onion_service:
-                State.onion_service.unload_onion_service(tid)
+            if State.tor:
+                State.tor.unload_onion_service(tid)
 
             del State.tenants[tid]
 
@@ -261,8 +261,8 @@ def db_refresh_tenant_cache(session, to_refresh=None):
 
         State.tenant_hostname_id_map.update({h: tid for h in tenant_cache.hostnames + tenant_cache.onionnames})
 
-    if getattr(State, 'onion_service'):
-        State.onion_service.load_all_onion_services()
+    if getattr(State, 'tor'):
+        State.tor.load_all_onion_services()
 
     if 1 in tids:
         log.setloglevel(State.tenants[1].cache.log_level)

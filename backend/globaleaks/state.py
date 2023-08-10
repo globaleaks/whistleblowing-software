@@ -77,7 +77,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
         self.jobs = []
         self.jobs_monitor = None
         self.services = []
-        self.onion_service = None
+        self.tor = None
 
         self.exceptions = {}
         self.exceptions_email_count = 0

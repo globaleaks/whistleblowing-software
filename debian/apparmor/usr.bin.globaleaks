@@ -5,6 +5,7 @@ profile usr.bin.globaleaks flags=(attach_disconnected) {
     #include <abstractions/nameservice>
     #include <abstractions/openssl>
     #include <abstractions/python>
+    #include <abstractions/tor>
 
     capability setgid,
     capability setuid,
@@ -28,6 +29,7 @@ profile usr.bin.globaleaks flags=(attach_disconnected) {
     /usr/bin/globaleaks r,
 
     /usr/bin/gpg ix,
+    /usr/bin/tor ix,
 
     /usr/ r,
     /usr/share/** r,
@@ -40,8 +42,6 @@ profile usr.bin.globaleaks flags=(attach_disconnected) {
     /{run,dev}/shm/globaleaks/** lrwk,
 
     /{,var/}run/globaleaks.pid rw,
-    /{,var/}run/tor/control rw,
-    /{,var/}run/tor/control.authcookie r,
 
     owner /tmp/** rwkl,
     owner /var/tmp/** rwkl,
