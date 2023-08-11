@@ -998,3 +998,11 @@ html[dir="ltr"] #Receipt {
 #Policies * {
  display: inline;
 }
+
+.nested-tabset .tab-content {
+  padding: 1em;
+  border: 1px solid #dee2e6;
+  border-top: 0;
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}

@@ -102,9 +102,18 @@
 <div class="row">
   <div class="col-md-12">
     <div data-ng-include="'views/partials/tip_files_receiver.html'"></div>
-    <div data-ng-include="'views/partials/tip_upload_wbfile.html'"></div>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-12" data-ng-include="'views/partials/tip_comments.html'"></div>
-</div>
+
+<uib-tabset class="nested-tabset">
+  <uib-tab data-ng-repeat="tab in tabs" heading="{{tab.title | translate}}" select="selectedTab(tab.key)">
+    <div class="row" data-ng-if="tab.key === activeTabKey">
+      <div class="col-md-12">
+        <div data-ng-include="'views/partials/tip_upload_wbfile.html'"></div>
+      </div>
+      <div class="col-md-12">
+        <div data-ng-include="'views/partials/tip_comments.html'"></div>
+      </div>
+    </div>
+  </uib-tab>
+</uib-tabset>

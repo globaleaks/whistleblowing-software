@@ -261,11 +261,13 @@ def register_wbfile_on_db(session, tid, user_id, rtip_id, uploaded_file):
 
     new_file = models.WhistleblowerFile()
     new_file.id = uploaded_file['filename']
+    new_file.author_id = user_id
     new_file.name = uploaded_file['name']
     new_file.description = uploaded_file['description']
     new_file.content_type = uploaded_file['type']
     new_file.size = uploaded_file['size']
     new_file.internaltip_id = itip.id
+    new_file.visibility = uploaded_file['visibility']
 
     session.add(new_file)
 
@@ -531,7 +533,7 @@ def create_identityaccessrequest(session, tid, user_id, user_cc, rtip_id, reques
 
 
 @transact
-def create_comment(session, tid, user_id, rtip_id, content):
+def create_comment(session, tid, user_id, rtip_id, content, visibility=0):
     """
     Transaction for registering a new comment
     :param session: An ORM session
@@ -539,6 +541,7 @@ def create_comment(session, tid, user_id, rtip_id, content):
     :param user_id: The user id of the user creating the comment
     :param rtip_id: The rtip associated to the comment to be created
     :param content: The content of the comment
+    :param visibility: The visibility type of the comment
     :return: A serialized descriptor of the comment
     """
     _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
@@ -554,6 +557,7 @@ def create_comment(session, tid, user_id, rtip_id, content):
     comment.type = 'receiver'
     comment.author_id = rtip.receiver_id
     comment.content = _content
+    comment.visibility = visibility
     session.add(comment)
     session.flush()
 
@@ -598,7 +602,9 @@ class RTipInstance(OperationHandler):
           'postpone': RTipInstance.postpone_expiration,
           'set_reminder': RTipInstance.set_reminder,
           'set': RTipInstance.set_tip_val,
-          'update_status': RTipInstance.update_submission_status
+          'update_status': RTipInstance.update_submission_status,
+          'transfer': RTipInstance.transfer_tip
+
         }
 
     def set_tip_val(self, req_args, rtip_id, *args, **kwargs):
@@ -641,8 +647,7 @@ class RTipCommentCollection(BaseHandler):
 
     def post(self, rtip_id):
         request = self.validate_request(self.request.content.read(), requests.CommentDesc)
-
-        return create_comment(self.request.tid, self.session.user_id, rtip_id, request['content'])
+        return create_comment(self.request.tid, self.session.user_id, rtip_id, request['content'], request['visibility'])
 
 
 class ReceiverFileDownload(BaseHandler):
