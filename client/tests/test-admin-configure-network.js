@@ -18,7 +18,7 @@ describe("admin configure network", function() {
     await element(by.cssContainingText("a", "HTTPS")).click();
 
     await element(by.model("hostname")).clear();
-    await element(by.model("hostname")).sendKeys("domain.tld");
+    await element(by.model("hostname")).sendKeys("localhost");
     await element(by.model("hostname")).click();
 
     await element.all(by.cssContainingText("button", "Save")).get(0).click();

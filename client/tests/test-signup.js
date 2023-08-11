@@ -3,7 +3,7 @@ describe("admin enable signup", function() {
     await browser.gl.utils.login_admin();
     await browser.setLocation("admin/sites");
     await element(by.cssContainingText("a", "Options")).click();
-    await element(by.model("resources.node.rootdomain")).sendKeys("domain.tld");
+    await element(by.model("resources.node.rootdomain")).sendKeys("localhost");
     await element(by.model("resources.node.enable_signup")).click();
     await browser.gl.utils.takeScreenshot("admin/signup_configuration.png");
     await element.all(by.cssContainingText("button", "Save")).last().click();

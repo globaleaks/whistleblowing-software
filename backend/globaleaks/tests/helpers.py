@@ -982,8 +982,6 @@ class TestHandler(TestGLWithPopulatedDB):
 
         x = api.APIResourceWrapper()
 
-        x.preprocess(request)
-
         if not getattr(handler_cls, 'decorated', False):
             for method in ['get', 'post', 'put', 'delete']:
                 if getattr(handler_cls, method, None) is not None:
