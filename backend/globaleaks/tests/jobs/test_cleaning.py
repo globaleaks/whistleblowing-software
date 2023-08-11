@@ -19,7 +19,7 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
         self.db_test_model_count(session, models.InternalTip, 0)
         self.db_test_model_count(session, models.ReceiverTip, 0)
         self.db_test_model_count(session, models.InternalFile, 0)
-        self.db_test_model_count(session, models.ReceiverFile, 0)
+        self.db_test_model_count(session, models.WhistleblowerFile, 0)
         self.db_test_model_count(session, models.Comment, 0)
         self.db_test_model_count(session, models.Mail, 0)
 
@@ -30,7 +30,7 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
         self.db_test_model_count(session, models.InternalTip, self.population_of_submissions)
         self.db_test_model_count(session, models.ReceiverTip, self.population_of_recipients * self.population_of_submissions)
         self.db_test_model_count(session, models.InternalFile, self.population_of_submissions * self.population_of_attachments)
-        self.db_test_model_count(session, models.ReceiverFile, self.population_of_submissions * self.population_of_attachments * self.population_of_recipients)
+        self.db_test_model_count(session, models.WhistleblowerFile, self.population_of_submissions * self.population_of_attachments * self.population_of_recipients)
         self.db_test_model_count(session, models.Comment, self.population_of_submissions * (self.population_of_recipients + 1))
         self.db_test_model_count(session, models.Mail, 0)
 
@@ -41,7 +41,7 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
         self.db_test_model_count(session, models.InternalTip, self.population_of_submissions)
         self.db_test_model_count(session, models.ReceiverTip, self.population_of_recipients * self.population_of_submissions)
         self.db_test_model_count(session, models.InternalFile, self.population_of_submissions * self.population_of_attachments)
-        self.db_test_model_count(session, models.ReceiverFile, self.population_of_submissions * self.population_of_attachments * self.population_of_recipients)
+        self.db_test_model_count(session, models.WhistleblowerFile, self.population_of_submissions * self.population_of_attachments * self.population_of_recipients)
         self.db_test_model_count(session, models.Comment, self.population_of_submissions * (self.population_of_recipients + 1))
         self.db_test_model_count(session, models.Mail, 0)
 
@@ -52,7 +52,7 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
         self.db_test_model_count(session, models.InternalTip, self.population_of_submissions)
         self.db_test_model_count(session, models.ReceiverTip, self.population_of_recipients * self.population_of_submissions)
         self.db_test_model_count(session, models.InternalFile, self.population_of_submissions * self.population_of_attachments)
-        self.db_test_model_count(session, models.ReceiverFile, self.population_of_submissions * self.population_of_attachments * self.population_of_recipients)
+        self.db_test_model_count(session, models.WhistleblowerFile, self.population_of_submissions * self.population_of_attachments * self.population_of_recipients)
         self.db_test_model_count(session, models.Comment, self.population_of_submissions * (self.population_of_recipients + 1))
         self.db_test_model_count(session, models.Mail, self.population_of_recipients)
 
@@ -63,7 +63,7 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
         self.db_test_model_count(session, models.InternalTip, 0)
         self.db_test_model_count(session, models.ReceiverTip, 0)
         self.db_test_model_count(session, models.InternalFile, 0)
-        self.db_test_model_count(session, models.ReceiverFile, 0)
+        self.db_test_model_count(session, models.WhistleblowerFile, 0)
         self.db_test_model_count(session, models.Comment, 0)
         self.db_test_model_count(session, models.Mail, self.population_of_recipients)
 

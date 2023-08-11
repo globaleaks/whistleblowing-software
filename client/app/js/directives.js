@@ -263,11 +263,11 @@ directive("singleClick", [function() {
     }
   };
 }]).
-directive("wbfile", [function() {
+directive("rfile", [function() {
   return {
     restrict: "A",
     scope: false,
-    templateUrl: "views/partials/wbfile.html"
+    templateUrl: "views/partials/rfile.html"
   };
 }]).
 directive("fileInput", function() {

@@ -68,12 +68,12 @@ def get_tip_export(session, tid, user_id, rtip_id, language):
 
 @inlineCallbacks
 def prepare_tip_export(cc, tip_export):
-    files = tip_export['tip']['rfiles'] + tip_export['tip']['wbfiles']
+    files = tip_export['tip']['wbfiles'] + tip_export['tip']['rfiles']
 
     if tip_export['crypto_tip_prv_key']:
         tip_export['tip'] = yield deferToThread(decrypt_tip, cc, tip_export['crypto_tip_prv_key'], tip_export['tip'])
 
-        for file_dict in tip_export['tip']['rfiles']:
+        for file_dict in tip_export['tip']['wbfiles']:
             if file_dict.get('status', '') == 'encrypted':
                 continue
 
@@ -91,7 +91,7 @@ def prepare_tip_export(cc, tip_export):
             file_dict['path'] = filelocation
             del filelocation
 
-        for file_dict in tip_export['tip']['wbfiles']:
+        for file_dict in tip_export['tip']['rfiles']:
             if file_dict.get('status', '') == 'encrypted':
                 continue
 
@@ -102,12 +102,12 @@ def prepare_tip_export(cc, tip_export):
             file_dict['path'] = filelocation
             del filelocation
 
-    for file_dict in tip_export['tip'].pop('rfiles'):
+    for file_dict in tip_export['tip'].pop('wbfiles'):
         file_dict['name'] = 'files/' + file_dict['name']
         if file_dict.get('status', '') == 'encrypted':
             file_dict['name'] += '.pgp'
 
-    for file_dict in tip_export['tip'].pop('wbfiles'):
+    for file_dict in tip_export['tip'].pop('rfiles'):
         file_dict['name'] = 'files_attached_from_recipients/' + file_dict['name']
 
     tip_export['comments'] = tip_export['tip']['comments']

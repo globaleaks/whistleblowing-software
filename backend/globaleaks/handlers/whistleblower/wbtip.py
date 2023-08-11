@@ -169,27 +169,27 @@ class WBTipWBFileHandler(BaseHandler):
     handler_exec_time_threshold = 3600
 
     @transact
-    def download_wbfile(self, session, tid, file_id):
-        wbfile, wbtip = db_get(session,
-                               (models.WhistleblowerFile, models.InternalTip),
-                               (models.WhistleblowerFile.id == file_id,
-                                models.WhistleblowerFile.internaltip_id == models.InternalTip.id,
+    def download_rfile(self, session, tid, file_id):
+        rfile, wbtip = db_get(session,
+                               (models.ReceiverFile, models.InternalTip),
+                               (models.ReceiverFile.id == file_id,
+                                models.ReceiverFile.internaltip_id == models.InternalTip.id,
                                 models.InternalTip.id == self.session.user_id))
 
         if not wbtip:
             raise errors.ResourceNotFound
 
-        if wbfile.access_date == datetime_null():
-            wbfile.access_date = datetime_now()
+        if rfile.access_date == datetime_null():
+            rfile.access_date = datetime_now()
 
         log.debug("Download of file %s by whistleblower %s",
-                  wbfile.id, self.session.user_id)
+                  rfile.id, self.session.user_id)
 
-        return wbfile.name, wbfile.id, base64.b64decode(wbtip.crypto_tip_prv_key), ''
+        return rfile.name, rfile.id, base64.b64decode(wbtip.crypto_tip_prv_key), ''
 
     @inlineCallbacks
-    def get(self, wbfile_id):
-        name, filelocation, tip_prv_key, pgp_key = yield self.download_wbfile(self.request.tid, wbfile_id)
+    def get(self, rfile_id):
+        name, filelocation, tip_prv_key, pgp_key = yield self.download_rfile(self.request.tid, rfile_id)
 
         filelocation = os.path.join(self.state.settings.attachments_path, filelocation)
         directory_traversal_check(self.state.settings.attachments_path, filelocation)

@@ -165,7 +165,7 @@ class User_v_64(Model):
     clicked_recovery_key = Column(Boolean, default=False, nullable=False)
 
 
-class WhistleblowerFile_v_64(Model):
+class ReceiverFile_v_64(Model):
     __tablename__ = 'whistleblowerfile'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     receivertip_id = Column(UnicodeText(36), nullable=False, index=True)
@@ -189,7 +189,6 @@ class MigrationScript(MigrationBase):
     }
 
     def migrate_User(self):
-
         for old_obj in self.session_old.query(self.model_from['User']):
             new_obj = self.model_to['User']()
 
@@ -253,11 +252,11 @@ class MigrationScript(MigrationBase):
             self.session_new.add(new_obj)
 
 
-    def migrate_ReceiverFile(self):
-        self.entries_count['ReceiverFile'] = 0
-        for old_obj, old_ifile in self.session_old.query(self.model_from['ReceiverFile'], self.model_from['InternalFile']) \
-                                                  .filter(self.model_from['ReceiverFile'].internalfile_id == self.model_from['InternalFile'].id):
-            new_obj = self.model_to['ReceiverFile']()
+    def migrate_WhistleblowerFile(self):
+        self.entries_count['WhistleblowerFile'] = 0
+        for old_obj, old_ifile in self.session_old.query(self.model_from['WhistleblowerFile'], self.model_from['InternalFile']) \
+                                                  .filter(self.model_from['WhistleblowerFile'].internalfile_id == self.model_from['InternalFile'].id):
+            new_obj = self.model_to['WhistleblowerFile']()
             for key in new_obj.__mapper__.column_attrs.keys():
                 if key == 'filename':
                     if old_obj.filename != old_ifile.filename:
@@ -271,12 +270,12 @@ class MigrationScript(MigrationBase):
                     setattr(new_obj, key, getattr(old_obj, key))
 
             self.session_new.add(new_obj)
-            self.entries_count['ReceiverFile'] += 1
+            self.entries_count['WhistleblowerFile'] += 1
 
-    def migrate_WhistleblowerFile(self):
-        for old_obj, r in self.session_old.query(self.model_from['WhistleblowerFile'], self.model_from['ReceiverTip']) \
-                                          .filter(self.model_from['WhistleblowerFile'].receivertip_id == self.model_from['ReceiverTip'].id):
-            new_obj = self.model_to['WhistleblowerFile']()
+    def migrate_ReceiverFile(self):
+        for old_obj, r in self.session_old.query(self.model_from['ReceiverFile'], self.model_from['ReceiverTip']) \
+                                          .filter(self.model_from['ReceiverFile'].receivertip_id == self.model_from['ReceiverTip'].id):
+            new_obj = self.model_to['ReceiverFile']()
             for key in new_obj.__mapper__.column_attrs.keys():
                 if key == 'internaltip_id':
                     setattr(new_obj, key, r.internaltip_id)

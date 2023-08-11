@@ -98,17 +98,17 @@ def serialize_ifile(session, ifile):
     }
 
 
-def serialize_rfile(session, ifile, rfile):
+def serialize_wbfile(session, ifile, wbfile):
     """
-    Transaction for serializing rfile
+    Transaction for serializing wbfile
 
     :param session: An ORM session
     :param ifile: The ifile to be serialized
-    :param rfile: The rfile to be serialized
-    :return: The serialized rfile
+    :param wbfile: The wbfile to be serialized
+    :return: The serialized wbfile
     """
     return {
-        'id': rfile.id,
+        'id': wbfile.id,
         'ifile_id': ifile.id,
         'creation_date': ifile.creation_date,
         'name': ifile.name,
@@ -118,13 +118,13 @@ def serialize_rfile(session, ifile, rfile):
     }
 
 
-def serialize_wbfile(session, wbfile):
+def serialize_rfile(session, rfile):
     """
-    Transaction for serializing wbfile
+    Transaction for serializing rfile
 
     :param session: An ORM session
-    :param wbfile: The wbfile to be serialized
-    :return: The serialized wbfile
+    :param rfile: The rfile to be serialized
+    :return: The serialized rfile
     """
     return {
         'id': wbfile.id,
@@ -169,8 +169,8 @@ def serialize_itip(session, internaltip, language):
         'substatus': internaltip.substatus,
         'receivers': [],
         'comments': [],
-        'rfiles': [],
         'wbfiles': [],
+        'rfiles': [],
         'data': {}
     }
 
@@ -227,18 +227,18 @@ def serialize_rtip(session, itip, rtip, language):
             del ret['data']['whistleblower_identity']
 
 
-    for ifile, rfile in session.query(models.InternalFile, models.ReceiverFile) \
-                               .filter(models.InternalFile.id == models.ReceiverFile.internalfile_id,
-                                       models.ReceiverFile.receivertip_id == rtip.id):
-        ret['rfiles'].append(serialize_rfile(session, ifile, rfile))
+    for ifile, wbfile in session.query(models.InternalFile, models.WhistleblowerFile) \
+                               .filter(models.InternalFile.id == models.WhistleblowerFile.internalfile_id,
+                                       models.WhistleblowerFile.receivertip_id == rtip.id):
+        ret['wbfiles'].append(serialize_wbfile(session, ifile, wbfile))
 
-    for wbfile in session.query(models.WhistleblowerFile) \
-                         .filter(models.WhistleblowerFile.internaltip_id == itip.id,
-                                 or_(models.WhistleblowerFile.visibility == 0,
-                                     models.WhistleblowerFile.visibility == 1,
-                                     and_(models.WhistleblowerFile.visibility == 2,
-                                          models.WhistleblowerFile.author_id == user_id))):
-        ret['wbfiles'].append(serialize_wbfile(session, wbfile))
+    for rfile in session.query(models.ReceiverFile) \
+                         .filter(models.ReceiverFile.internaltip_id == itip.id,
+                                 or_(models.ReceiverFile.visibility == 0,
+                                     models.ReceiverFile.visibility == 1,
+                                     and_(models.ReceiverFile.visibility == 2,
+                                          models.ReceiverFile.author_id == user_id))):
+        ret['rfiles'].append(serialize_rfile(session, rfile))
 
     for comment in session.query(models.Comment) \
                           .filter(models.Comment.internaltip_id == itip.id,
@@ -264,12 +264,12 @@ def serialize_wbtip(session, itip, language):
 
     for ifile in session.query(models.InternalFile) \
                         .filter(models.InternalFile.internaltip_id == itip.id):
-        ret['rfiles'].append(serialize_ifile(session, ifile))
+        ret['wbfiles'].append(serialize_ifile(session, ifile))
 
-    for wbfile in session.query(models.WhistleblowerFile) \
-                         .filter(models.WhistleblowerFile.internaltip_id == itip.id,
-                                 models.WhistleblowerFile.visibility == 0):
-        ret['wbfiles'].append(serialize_wbfile(session, wbfile))
+    for rfile in session.query(models.ReceiverFile) \
+                         .filter(models.ReceiverFile.internaltip_id == itip.id,
+                                 models.ReceiverFile.visibility == 0):
+        ret['rfiles'].append(serialize_rfile(session, rfile))
 
     for comment in session.query(models.Comment) \
                           .filter(models.Comment.internaltip_id == itip.id,

@@ -16,7 +16,7 @@ from globaleaks.orm import db_log
 
 from globaleaks.db.migrations.update_46 import Config_v_45, ConfigL10N_v_45, \
     Context_v_45, Field_v_45, FieldOption_v_45, InternalFile_v_45, \
-    InternalTip_v_45, Receiver_v_45, User_v_45, WhistleblowerFile_v_45
+    InternalTip_v_45, Receiver_v_45, User_v_45, ReceiverFile_v_45
 from globaleaks.db.migrations.update_47 import Context_v_46, FieldOption_v_46, \
     InternalTip_v_46, SubmissionStatus_v_46, SubmissionSubStatus_v_46
 from globaleaks.db.migrations.update_48 import Field_v_47, FieldOption_v_47
@@ -28,7 +28,7 @@ from globaleaks.db.migrations.update_51 import Field_v_50, InternalFile_v_50, \
 from globaleaks.db.migrations.update_52 import Context_v_51, \
     Field_v_51, FieldAttr_v_51, FieldOption_v_51, \
     InternalTip_v_51, InternalTipData_v_51, \
-    Message_v_51, ReceiverFile_v_51, Step_v_51, \
+    Message_v_51, WhistleblowerFile_v_51, Step_v_51, \
     ReceiverContext_v_51, \
     SubmissionStatus_v_51, SubmissionSubStatus_v_51, User_v_51
 from globaleaks.db.migrations.update_53 import InternalTip_v_52, \
@@ -38,7 +38,7 @@ from globaleaks.db.migrations.update_54 import ContextImg_v_53, File_v_53, UserI
 from globaleaks.db.migrations.update_55 import SubmissionStatusChange_v_54, User_v_54
 from globaleaks.db.migrations.update_57 import User_v_56
 from globaleaks.db.migrations.update_58 import InternalTip_v_57, \
-    ReceiverFile_v_57, ReceiverTip_v_57, WhistleblowerFile_v_57
+    WhistleblowerFile_v_57, ReceiverTip_v_57, ReceiverFile_v_57
 from globaleaks.db.migrations.update_59 import ReceiverTip_v_58
 from globaleaks.db.migrations.update_60 import InternalTip_v_59, ReceiverTip_v_59, WhistleblowerTip_v_59
 from globaleaks.db.migrations.update_62 import AuditLog_v_61, Context_v_61, ReceiverTip_v_61, User_v_61
@@ -48,7 +48,8 @@ from globaleaks.db.migrations.update_65 import Comment_v_64, \
     IdentityAccessRequest_v_64, InternalFile_v_64, InternalTip_v_64, \
     Message_v_64, ReceiverTip_v_64, \
     SubmissionStatus_v_64, SubmissionSubStatus_v_64, \
-    User_v_64, WhistleblowerFile_v_64
+    User_v_64, ReceiverFile_v_64
+from globaleaks.db.migrations.update_66 import ReceiverFile_v_65, WhistleblowerFile_v_65
 
 from globaleaks.orm import get_engine, get_session, make_db_uri
 from globaleaks.models import config, Base
@@ -59,46 +60,47 @@ from globaleaks.utils.utility import datetime_now
 
 
 migration_mapping = OrderedDict([
-    ('ArchivedSchema', [models._ArchivedSchema, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('AuditLog', [-1, -1, -1, -1, -1, -1, -1, -1, -1, AuditLog_v_61, 0, 0, 0, 0, 0, 0, 0, models._AuditLog, 0, 0, 0]),
-    ('Comment', [Comment_v_64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._Comment]),
-    ('Config', [Config_v_45, models._Config, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('ConfigL10N', [ConfigL10N_v_45, models._ConfigL10N, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('Context', [Context_v_45, Context_v_46, Context_v_51, 0, 0, 0, 0, Context_v_61, 0, 0, 0, 0, 0, 0, 0, 0, 0, Context_v_63, 0, models._Context, 0]),
-    ('ContextImg', [ContextImg_v_53, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
-    ('CustomTexts', [models._CustomTexts, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('EnabledLanguage', [models._EnabledLanguage, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('Field', [Field_v_47, 0, 0, Field_v_50, 0, 0, Field_v_51, models._Field, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('FieldAttr', [FieldAttr_v_51, 0, 0, 0, 0, 0, 0, 0, models._FieldAttr, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('FieldOption', [FieldOption_v_45, FieldOption_v_46, FieldOption_v_47, FieldOption_v_51, 0, 0, 0, models._FieldOption, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('FieldOptionTriggerField', [-1, -1, models._FieldOptionTriggerField, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('FieldOptionTriggerStep', [-1, -1, models._FieldOptionTriggerStep, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('File', [File_v_53, 0, 0, 0, 0, 0, 0, 0, 0, models._File, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('IdentityAccessRequest', [IdentityAccessRequest_v_64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._IdentityAccessRequest]),
-    ('IdentityAccessRequestCustodian', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._IdentityAccessRequestCustodian]),
-    ('InternalFile', [InternalFile_v_45, InternalFile_v_50, 0, 0, 0, 0, InternalFile_v_64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._InternalFile]),
-    ('InternalTip', [InternalTip_v_45, InternalTip_v_46, InternalTip_v_48, 0, InternalTip_v_51, 0, 0, InternalTip_v_52, InternalTip_v_57, 0, 0, 0, 0, InternalTip_v_59, 0, InternalTip_v_63, 0, 0, 0, InternalTip_v_64, models._InternalTip]),
-    ('InternalTipAnswers', [models._InternalTipAnswers, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('InternalTipData', [InternalTipData_v_51, 0, 0, 0, 0, 0, 0, models._InternalTipData, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('Mail', [models._Mail, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('Message', [Message_v_51, 0, 0, 0, 0, 0, 0, Message_v_64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1]),
-    ('Questionnaire', [models._Questionnaire, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('Receiver', [Receiver_v_45, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
-    ('ReceiverContext', [ReceiverContext_v_51, 0, 0, 0, 0, 0, 0, models._ReceiverContext, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('ReceiverFile', [ReceiverFile_v_51, 0, 0, 0, 0, 0, 0, ReceiverFile_v_57, 0, 0, 0, 0, 0, models._ReceiverFile, 0, 0, 0, 0, 0, 0, 0]),
-    ('ReceiverTip', [ReceiverTip_v_52, 0, 0, 0, 0, 0, 0, 0, ReceiverTip_v_57, 0, 0, 0, 0, ReceiverTip_v_58, ReceiverTip_v_59, ReceiverTip_v_61, 0, ReceiverTip_v_64, 0, 0, models._ReceiverTip]),
-    ('Redaction', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._Redaction]),
-    ('Redirect', [-1, -1, -1, -1, models._Redirect, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('SubmissionStatus', [SubmissionStatus_v_46, 0, SubmissionStatus_v_49, 0, 0, SubmissionStatus_v_51, 0, SubmissionStatus_v_64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._SubmissionStatus]),
-    ('SubmissionSubStatus', [SubmissionSubStatus_v_46, 0, SubmissionSubStatus_v_49, 0, 0, SubmissionSubStatus_v_51, 0, SubmissionSubStatus_v_64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._SubmissionSubStatus]),
-    ('SubmissionStatusChange', [SubmissionStatusChange_v_54, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
-    ('Step', [Step_v_51, 0, 0, 0, 0, 0, 0, models._Step, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0, 0]),
-    ('Subscriber', [Subscriber_v_52, 0, 0, 0, 0, 0, 0, 0, Subscriber_v_62, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._Subscriber, 0, 0]),
-    ('Tenant', [Tenant_v_52, 0, 0, 0, 0, 0, 0, 0, models._Tenant, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('User', [User_v_45, User_v_49, 0, 0, 0, User_v_50, User_v_51, User_v_52, User_v_54, 0, User_v_56, 0, User_v_61, 0, 0, 0, 0, User_v_64, 0, 0, models._User]),
-    ('UserImg', [UserImg_v_53, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
-    ('WhistleblowerFile', [WhistleblowerFile_v_45, WhistleblowerFile_v_57, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, WhistleblowerFile_v_64, 0, 0, 0, 0, 0, 0, models._WhistleblowerFile]),
-    ('WhistleblowerTip', [WhistleblowerTip_v_59, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1])
+    ('ArchivedSchema', [models._ArchivedSchema, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('AuditLog', [-1, -1, -1, -1, -1, -1, -1, -1, -1, AuditLog_v_61, 0, 0, 0, 0, 0, 0, 0, models._AuditLog, 0, 0, 0, 0]),
+    ('Comment', [Comment_v_64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._Comment, 0]),
+    ('Config', [Config_v_45, models._Config, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('ConfigL10N', [ConfigL10N_v_45, models._ConfigL10N, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('Context', [Context_v_45, Context_v_46, Context_v_51, 0, 0, 0, 0, Context_v_61, 0, 0, 0, 0, 0, 0, 0, 0, 0, Context_v_63, 0, models._Context, 0, 0]),
+    ('ContextImg', [ContextImg_v_53, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
+    ('CustomTexts', [models._CustomTexts, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('EnabledLanguage', [models._EnabledLanguage, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('Field', [Field_v_47, 0, 0, Field_v_50, 0, 0, Field_v_51, models._Field, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('FieldAttr', [FieldAttr_v_51, 0, 0, 0, 0, 0, 0, 0, models._FieldAttr, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('FieldOption', [FieldOption_v_45, FieldOption_v_46, FieldOption_v_47, FieldOption_v_51, 0, 0, 0, models._FieldOption, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('FieldOptionTriggerField', [-1, -1, models._FieldOptionTriggerField, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('FieldOptionTriggerStep', [-1, -1, models._FieldOptionTriggerStep, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('File', [File_v_53, 0, 0, 0, 0, 0, 0, 0, 0, models._File, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('IdentityAccessRequest', [IdentityAccessRequest_v_64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._IdentityAccessRequest, 0]),
+    ('IdentityAccessRequestCustodian', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._IdentityAccessRequestCustodian, 0]),
+    ('InternalFile', [InternalFile_v_45, InternalFile_v_50, 0, 0, 0, 0, InternalFile_v_64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._InternalFile, 0]),
+    ('InternalTip', [InternalTip_v_45, InternalTip_v_46, InternalTip_v_48, 0, InternalTip_v_51, 0, 0, InternalTip_v_52, InternalTip_v_57, 0, 0, 0, 0, InternalTip_v_59, 0, InternalTip_v_63, 0, 0, 0, InternalTip_v_64, models._InternalTip, 0]),
+    ('InternalTipAnswers', [models._InternalTipAnswers, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('InternalTipData', [InternalTipData_v_51, 0, 0, 0, 0, 0, 0, models._InternalTipData, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('Mail', [models._Mail, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('Message', [Message_v_51, 0, 0, 0, 0, 0, 0, Message_v_64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1]),
+    ('Questionnaire', [models._Questionnaire, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('Receiver', [Receiver_v_45, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
+    ('ReceiverContext', [ReceiverContext_v_51, 0, 0, 0, 0, 0, 0, models._ReceiverContext, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('ReceiverFile', [ReceiverFile_v_45, ReceiverFile_v_57, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ReceiverFile_v_64, 0, 0, 0, 0, 0, 0, ReceiverFile_v_65, models._ReceiverFile]),
+    ('ReceiverTip', [ReceiverTip_v_52, 0, 0, 0, 0, 0, 0, 0, ReceiverTip_v_57, 0, 0, 0, 0, ReceiverTip_v_58, ReceiverTip_v_59, ReceiverTip_v_61, 0, ReceiverTip_v_64, 0, 0, models._ReceiverTip, 0]),
+    ('Redaction', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._Redaction, 0]),
+    ('Redirect', [-1, -1, -1, -1, models._Redirect, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('SubmissionStatus', [SubmissionStatus_v_46, 0, SubmissionStatus_v_49, 0, 0, SubmissionStatus_v_51, 0, SubmissionStatus_v_64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._SubmissionStatus, 0]),
+    ('SubmissionSubStatus', [SubmissionSubStatus_v_46, 0, SubmissionSubStatus_v_49, 0, 0, SubmissionSubStatus_v_51, 0, SubmissionSubStatus_v_64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._SubmissionSubStatus, 0]),
+    ('SubmissionStatusChange', [SubmissionStatusChange_v_54, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
+    ('Step', [Step_v_51, 0, 0, 0, 0, 0, 0, models._Step, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0, 0, 0]),
+    ('Subscriber', [Subscriber_v_52, 0, 0, 0, 0, 0, 0, 0, Subscriber_v_62, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._Subscriber, 0, 0, 0]),
+    ('Tenant', [Tenant_v_52, 0, 0, 0, 0, 0, 0, 0, models._Tenant, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('User', [User_v_45, User_v_49, 0, 0, 0, User_v_50, User_v_51, User_v_52, User_v_54, 0, User_v_56, 0, User_v_61, 0, 0, 0, 0, User_v_64, 0, 0, models._User, 0]),
+    ('UserImg', [UserImg_v_53, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
+    ('WhistleblowerFile', [WhistleblowerFile_v_51, 0, 0, 0, 0, 0, 0, WhistleblowerFile_v_57, 0, 0, 0, 0, 0, WhistleblowerFile_v_65, 0, 0, 0, 0, 0, 0, 0, models._WhistleblowerFile]),
+
+    ('WhistleblowerTip', [WhistleblowerTip_v_59, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1])
 ])
 
 

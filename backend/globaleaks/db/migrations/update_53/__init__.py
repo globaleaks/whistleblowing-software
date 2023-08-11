@@ -184,20 +184,6 @@ class MigrationScript(MigrationBase):
                                            m.value == 9267):
             db_reset_smtp_settings(self.session_new, tid[0])
 
-        for c in self.session_new.query(m).filter(m.var_name == 'onionservice'):
-            if len(c.value) != 22:
-                continue
-
-            self.session_new.query(m) \
-                            .filter(m.tid == c.tid,
-                                    m.var_name == 'onionservice') \
-                            .update({'value': ''})
-
-            self.session_new.query(m) \
-                            .filter(m.tid == c.tid,
-                                    m.var_name == 'tor_onion_key') \
-                            .update({'value': ''})
-
         m = self.model_to['ConfigL10N']
 
         self.session_new.query(m) \

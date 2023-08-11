@@ -1,6 +1,6 @@
 GL.controller("TipCtrl",
-  ["$scope", "$location", "$filter", "$http", "$interval", "$routeParams", "$uibModal", "Authentication", "RTip", "WBTip", "RTipExport", "RTipDownloadRFile", "WBTipDownloadFile", "fieldUtilities","RTipViewRFile",
-  function($scope, $location, $filter, $http, $interval, $routeParams, $uibModal, Authentication, RTip, WBTip, RTipExport, RTipDownloadRFile, WBTipDownloadFile, fieldUtilities, RTipViewRFile) {
+  ["$scope", "$location", "$filter", "$http", "$interval", "$routeParams", "$uibModal", "Authentication", "RTip", "WBTip", "RTipExport", "RTipDownloadWBFile", "WBTipDownloadFile", "fieldUtilities","RTipViewWBFile",
+  function($scope, $location, $filter, $http, $interval, $routeParams, $uibModal, Authentication, RTip, WBTip, RTipExport, RTipDownloadWBFile, WBTipDownloadFile, fieldUtilities, RTipViewWBFile) {
     $scope.fieldUtilities = fieldUtilities;
     $scope.tip_id = $routeParams.tip_id;
 
@@ -242,7 +242,7 @@ GL.controller("TipCtrl",
     };
 
     if ($scope.Authentication.session.role === "whistleblower") {
-      $scope.fileupload_url = "api/whistleblower/wbtip/rfiles";
+      $scope.fileupload_url = "api/whistleblower/wbtip/wbfiles";
 
       $scope.tip = new WBTip(function(tip) {
         $scope.tip = tip;
@@ -307,8 +307,8 @@ GL.controller("TipCtrl",
         $scope.fetchAudioFiles();
 
         $scope.exportTip = RTipExport;
-        $scope.downloadRFile = RTipDownloadRFile;
-        $scope.viewRFile = RTipViewRFile;
+        $scope.downloadWBFile = RTipDownloadWBFile;
+        $scope.viewWBFile = RTipViewWBFile;
 
         $scope.showEditLabelInput = $scope.tip.label === "";
 
@@ -342,8 +342,8 @@ GL.controller("TipCtrl",
     $scope.fetchAudioFiles = function() {
       $scope.audiolist = {};
 
-      for (let file of $scope.tip.rfiles) {
-        $scope.Utils.load("api/recipient/rfiles/" + file.id).then(function(url) {
+      for (let file of $scope.tip.wbfiles) {
+        $scope.Utils.load("api/recipient/wbfiles/" + file.id).then(function(url) {
           $scope.audiolist[file["reference_id"]] = url;
         });
       }
@@ -517,15 +517,15 @@ controller("TipOperationsCtrl",
     }
   };
 }]).
-controller("RTipWBFileUploadCtrl", ["$scope", "Authentication", "RTipDownloadWBFile", "RTipWBFileResource", function($scope, Authentication, RTipDownloadWBFile, RTipWBFileResource) {
+controller("RTipRFileUploadCtrl", ["$scope", "Authentication", "RTipDownloadRFile", "RTipRFileResource", function($scope, Authentication, RTipDownloadRFile, RTipRFileResource) {
   var reloadUI = function (){ $scope.reload(); };
 
-  $scope.downloadWBFile = function(f) {
-    RTipDownloadWBFile(f);
+  $scope.downloadRFile = function(f) {
+    RTipDownloadRFile(f);
   };
 
-  $scope.deleteWBFile = function(f) {
-    RTipWBFileResource.remove({"id":f.id}).$promise.finally(reloadUI);
+  $scope.deleteRFile = function(f) {
+    RTipRFileResource.remove({"id":f.id}).$promise.finally(reloadUI);
   };
 }]).
 controller("WBTipFileDownloadCtrl", ["$scope", "$uibModalInstance", "WBTipDownloadFile", "file", "tip", function($scope, $uibModalInstance, WBTipDownloadFile, file, tip) {

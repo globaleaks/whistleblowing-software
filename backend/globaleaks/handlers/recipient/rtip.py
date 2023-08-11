@@ -90,12 +90,12 @@ def db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, receiver_id)
         _files_key = GCE.asymmetric_decrypt(user_cc, base64.b64decode(rtip.deprecated_crypto_files_prv_key))
         new_rtip.deprecated_crypto_files_prv_key = GCE.asymmetric_encrypt(new_receiver.crypto_pub_key, _files_key)
 
-    rfiles = session.query(models.ReceiverFile) \
-                    .filter(models.ReceiverFile.receivertip_id == rtip.id)
+    wbfiles = session.query(models.WhistleblowerFile) \
+                    .filter(models.WhistleblowerFile.receivertip_id == rtip.id)
 
-    for rfile in rfiles:
-        rf = models.ReceiverFile()
-        rf.internalfile_id = rfile.internalfile_id
+    for wbfile in wbfiles:
+        rf = models.WhistleblowerFile()
+        rf.internalfile_id = wbfile.internalfile_id
         rf.receivertip_id = new_rtip.id
         rf.new = False
         session.add(rf)
@@ -230,14 +230,14 @@ def db_access_rtip(session, tid, user_id, rtip_id):
                    models.InternalTip.tid == tid))
 
 
-def db_access_wbfile(session, tid, user_id, wbfile_id):
+def db_access_rfile(session, tid, user_id, rfile_id):
     """
-    Transaction retrieving an wbfile and performing basic access checks
+    Transaction retrieving an rfile and performing basic access checks
 
     :param session: An ORM session
     :param tid: A tenant ID of the user
     :param user_id: A user ID
-    :param wbfile_id: the requested wbfile ID
+    :param rfile_id: the requested rfile ID
     :return: A model requested
     """
     itips_ids = [x[0] for x in session.query(models.InternalTip.id)
@@ -246,14 +246,14 @@ def db_access_wbfile(session, tid, user_id, wbfile_id):
                                               models.InternalTip.tid == tid)]
 
     return db_get(session,
-                  models.WhistleblowerFile,
-                  (models.WhistleblowerFile.id == wbfile_id,
-                   models.WhistleblowerFile.internaltip_id.in_(itips_ids),
+                  models.ReceiverFile,
+                  (models.ReceiverFile.id == rfile_id,
+                   models.ReceiverFile.internaltip_id.in_(itips_ids),
                    models.InternalTip.tid == tid))
 
 
 @transact
-def register_wbfile_on_db(session, tid, user_id, rtip_id, uploaded_file):
+def register_rfile_on_db(session, tid, user_id, rtip_id, uploaded_file):
     """
     Register a file on the database
 
@@ -278,7 +278,7 @@ def register_wbfile_on_db(session, tid, user_id, rtip_id, uploaded_file):
                 uploaded_file[k] = str(uploaded_file[k])
             uploaded_file[k] = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, uploaded_file[k]))
 
-    new_file = models.WhistleblowerFile()
+    new_file = models.ReceiverFile()
     new_file.id = uploaded_file['filename']
     new_file.author_id = user_id
     new_file.name = uploaded_file['name']
@@ -290,7 +290,7 @@ def register_wbfile_on_db(session, tid, user_id, rtip_id, uploaded_file):
 
     session.add(new_file)
 
-    return serializers.serialize_wbfile(session, new_file)
+    return serializers.serialize_rfile(session, new_file)
 
 
 def db_get_rtip(session, tid, user_id, rtip_id, language):
@@ -587,16 +587,16 @@ def create_comment(session, tid, user_id, rtip_id, content, visibility=0):
 
 
 @transact
-def delete_wbfile(session, tid, user_id, file_id):
+def delete_rfile(session, tid, user_id, file_id):
     """
-    Transation for deleting a wbfile
+    Transation for deleting a rfile
     :param session: An ORM session
     :param tid: A tenant ID
     :param user_id: The user ID of the user performing the operation
-    :param file_id: The file ID of the wbfile to be deleted
+    :param file_id: The file ID of the rfile to be deleted
     """
-    wbfile = db_access_wbfile(session, tid, user_id, file_id)
-    session.delete(wbfile)
+    rfile = db_access_rfile(session, tid, user_id, file_id)
+    session.delete(rfile)
 
 
 class RTipInstance(OperationHandler):
@@ -672,39 +672,39 @@ class RTipCommentCollection(BaseHandler):
         return create_comment(self.request.tid, self.session.user_id, rtip_id, request['content'], request['visibility'])
 
 
-class ReceiverFileDownload(BaseHandler):
+class WhistleblowerFileDownload(BaseHandler):
     """
-    This handler exposes rfiles for download.
+    This handler exposes wbfiles for download.
     """
     check_roles = 'receiver'
     handler_exec_time_threshold = 3600
 
     @transact
-    def download_rfile(self, session, tid, user_id, file_id):
-        ifile, rfile, rtip, pgp_key = db_get(session,
+    def download_wbfile(self, session, tid, user_id, file_id):
+        ifile, wbfile, rtip, pgp_key = db_get(session,
                                              (models.InternalFile,
-                                              models.ReceiverFile,
+                                              models.WhistleblowerFile,
                                               models.ReceiverTip,
                                               models.User.pgp_key_public),
                                              (models.ReceiverTip.receiver_id == models.User.id,
-                                              models.ReceiverTip.id == models.ReceiverFile.receivertip_id,
-                                              models.InternalFile.id == models.ReceiverFile.internalfile_id,
-                                              models.ReceiverFile.id == file_id,
+                                              models.ReceiverTip.id == models.WhistleblowerFile.receivertip_id,
+                                              models.InternalFile.id == models.WhistleblowerFile.internalfile_id,
+                                              models.WhistleblowerFile.id == file_id,
                                               models.User.id == user_id))
 
-        if rfile.access_date == datetime_null():
-            rfile.access_date = datetime_now()
+        if wbfile.access_date == datetime_null():
+            wbfile.access_date = datetime_now()
 
         log.debug("Download of file %s by receiver %s" %
-                  (rfile.internalfile_id, rtip.receiver_id))
+                  (wbfile.internalfile_id, rtip.receiver_id))
 
-        return ifile.name, ifile.id, rfile.id, rtip.crypto_tip_prv_key, rtip.deprecated_crypto_files_prv_key, pgp_key
+        return ifile.name, ifile.id, wbfile.id, rtip.crypto_tip_prv_key, rtip.deprecated_crypto_files_prv_key, pgp_key
 
     @inlineCallbacks
-    def get(self, rfile_id):
-        name, ifile_id, rfile_id, tip_prv_key, tip_prv_key2, pgp_key = yield self.download_rfile(self.request.tid, self.session.user_id, rfile_id)
+    def get(self, wbfile_id):
+        name, ifile_id, wbfile_id, tip_prv_key, tip_prv_key2, pgp_key = yield self.download_wbfile(self.request.tid, self.session.user_id, wbfile_id)
 
-        filelocation = os.path.join(self.state.settings.attachments_path, rfile_id)
+        filelocation = os.path.join(self.state.settings.attachments_path, wbfile_id)
         if not os.path.exists(filelocation):
             filelocation = os.path.join(self.state.settings.attachments_path, ifile_id)
 
@@ -726,7 +726,7 @@ class ReceiverFileDownload(BaseHandler):
         yield self.write_file_as_download(name, filelocation, pgp_key)
 
 
-class WhistleblowerFileHandler(BaseHandler):
+class ReceiverFileHandler(BaseHandler):
     """
     Receiver interface to upload a file intended for the whistleblower
     """
@@ -735,30 +735,30 @@ class WhistleblowerFileHandler(BaseHandler):
 
     @inlineCallbacks
     def post(self, rtip_id):
-        yield register_wbfile_on_db(self.request.tid, self.session.user_id, rtip_id, self.uploaded_file)
+        yield register_rfile_on_db(self.request.tid, self.session.user_id, rtip_id, self.uploaded_file)
 
-        log.debug("Recorded new WhistleblowerFile %s",
+        log.debug("Recorded new ReceiverFile %s",
                   self.uploaded_file['name'])
 
 
 class RTipWBFileHandler(BaseHandler):
     """
-    This handler lets the recipient download and delete wbfiles, which are files
+    This handler lets the recipient download and delete rfiles, which are files
     intended for delivery to the whistleblower.
     """
     check_roles = 'receiver'
     handler_exec_time_threshold = 3600
 
     @transact
-    def download_wbfile(self, session, tid, user_id, file_id):
-        wbfile, wbtip, pgp_key = db_get(session,
-                                        (models.WhistleblowerFile,
+    def download_rfile(self, session, tid, user_id, file_id):
+        rfile, wbtip, pgp_key = db_get(session,
+                                        (models.ReceiverFile,
                                          models.InternalTip,
                                          models.User.pgp_key_public),
                                         (models.User.id == user_id,
                                          models.User.id == models.ReceiverTip.receiver_id,
-                                         models.WhistleblowerFile.id == file_id,
-                                         models.WhistleblowerFile.internaltip_id == models.InternalTip.id))
+                                         models.ReceiverFile.id == file_id,
+                                         models.ReceiverFile.internaltip_id == models.InternalTip.id))
 
         rtip = session.query(models.ReceiverTip) \
                       .filter(models.ReceiverTip.receiver_id == self.session.user_id,
@@ -766,11 +766,11 @@ class RTipWBFileHandler(BaseHandler):
         if not rtip:
             raise errors.ResourceNotFound
 
-        return wbfile.name, wbfile.id, base64.b64decode(rtip.crypto_tip_prv_key), pgp_key
+        return rfile.name, rfile.id, base64.b64decode(rtip.crypto_tip_prv_key), pgp_key
 
     @inlineCallbacks
-    def get(self, wbfile_id):
-        name, filename, tip_prv_key, pgp_key = yield self.download_wbfile(self.request.tid, self.session.user_id, wbfile_id)
+    def get(self, rfile_id):
+        name, filename, tip_prv_key, pgp_key = yield self.download_rfile(self.request.tid, self.session.user_id, rfile_id)
 
         filelocation = os.path.join(self.state.settings.attachments_path, filename)
         if not os.path.exists(filelocation):
@@ -789,9 +789,9 @@ class RTipWBFileHandler(BaseHandler):
 
     def delete(self, file_id):
         """
-        This interface allow the recipient to set the description of a WhistleblowerFile
+        This interface allow the recipient to set the description of a ReceiverFile
         """
-        return delete_wbfile(self.request.tid, self.session.user_id, file_id)
+        return delete_rfile(self.request.tid, self.session.user_id, file_id)
 
 
 class IdentityAccessRequestsCollection(BaseHandler):

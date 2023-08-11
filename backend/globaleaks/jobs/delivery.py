@@ -22,7 +22,7 @@ def file_delivery(session):
     """
     This function roll over the InternalFile uploaded, extract a path, id and
     receivers associated, one entry for each combination. representing the
-    ReceiverFile that need to be created.
+    WhistleblowerFile that need to be created.
     """
     receiverfiles_maps = {}
     whistleblowerfiles_maps = {}
@@ -38,7 +38,7 @@ def file_delivery(session):
         for rtip, user in session.query(models.ReceiverTip, models.User) \
                                  .filter(models.ReceiverTip.internaltip_id == ifile.internaltip_id,
                                          models.User.id == models.ReceiverTip.receiver_id):
-            receiverfile = models.ReceiverFile()
+            receiverfile = models.WhistleblowerFile()
             receiverfile.internalfile_id = ifile.id
             receiverfile.receivertip_id = rtip.id
 
@@ -53,29 +53,29 @@ def file_delivery(session):
                 receiverfiles_maps[ifile.id] = {
                     'key': itip.crypto_tip_pub_key,
                     'src': src,
-                    'rfiles': []
+                    'wbfiles': []
                 }
 
-            receiverfiles_maps[ifile.id]['rfiles'].append({
+            receiverfiles_maps[ifile.id]['wbfiles'].append({
                 'dst': os.path.abspath(os.path.join(Settings.attachments_path, receiverfile.internalfile_id)),
                 'pgp_key_public': user.pgp_key_public
             })
 
-    for wbfile, itip in session.query(models.WhistleblowerFile, models.InternalTip)\
-                               .filter(models.WhistleblowerFile.new.is_(True),
-                                       models.WhistleblowerFile.internaltip_id == models.InternalTip.id) \
-                               .order_by(models.WhistleblowerFile.creation_date) \
+    for rfile, itip in session.query(models.ReceiverFile, models.InternalTip)\
+                               .filter(models.ReceiverFile.new.is_(True),
+                                       models.ReceiverFile.internaltip_id == models.InternalTip.id) \
+                               .order_by(models.ReceiverFile.creation_date) \
                                .limit(20):
-        wbfile.new = False
-        src = wbfile.id
+        rfile.new = False
+        src = rfile.id
 
-        whistleblowerfiles_maps[wbfile.id] = {
+        whistleblowerfiles_maps[rfile.id] = {
             'key': itip.crypto_tip_pub_key,
             'src': src,
-            'dst': os.path.abspath(os.path.join(Settings.attachments_path, wbfile.id)),
+            'dst': os.path.abspath(os.path.join(Settings.attachments_path, rfile.id)),
         }
 
-        wbfile.new = False
+        rfile.new = False
 
     return receiverfiles_maps, whistleblowerfiles_maps
 
@@ -116,7 +116,7 @@ def process_receiverfiles(state, files_maps):
     for a, m in files_maps.items():
         sf = state.get_tmp_file_by_name(m['src'])
 
-        for rcounter, rf in enumerate(m['rfiles']):
+        for rcounter, rf in enumerate(m['wbfiles']):
             try:
                 if m['key']:
                     write_encrypted_file(m['key'], sf, rf['dst'])

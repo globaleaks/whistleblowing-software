@@ -1,5 +1,5 @@
 <div data-ng-init="fileinput = field ? field.id : 'status_page'; uploads[fileinput] = {}">
-  <div data-ng-controller="RFileUploadCtrl"
+  <div data-ng-controller="WBFileUploadCtrl"
        data-flow-init="{target: fileupload_url}"
        data-flow-files-submitted="$flow.upload()"
        data-flow-name="uploads[fileinput]"
@@ -32,4 +32,4 @@
     <div errors-upload></div>
   </div>
 </div>
-<div data-ng-include="'views/partials/rfile_upload_status.html'"></div>
+<div data-ng-include="'views/partials/wbfile_upload_status.html'"></div>

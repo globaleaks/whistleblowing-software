@@ -120,7 +120,7 @@ class ReceiverContext_v_51(Model):
     presentation_order = Column(Integer, default=0, nullable=False)
 
 
-class ReceiverFile_v_51(Model):
+class WhistleblowerFile_v_51(Model):
     __tablename__ = 'receiverfile'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     internalfile_id = Column(UnicodeText(36), nullable=False)
