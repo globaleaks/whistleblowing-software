@@ -479,7 +479,7 @@ msgid "Hide"
 msgstr "Skrýt"
 
 msgid "Unhide"
-msgstr ""
+msgstr "Zrušit skrytí"
 
 msgid "Redact"
 msgstr "Revidovat"

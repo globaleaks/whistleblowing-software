@@ -917,7 +917,7 @@ msgid "Min"
 msgstr ""
 
 msgid "Max"
-msgstr ""
+msgstr "اقصى"
 
 msgid "Phone number"
 msgstr "رقم الهاتف"

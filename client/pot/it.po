@@ -524,7 +524,7 @@ msgid "I've read and accept the Privacy Policy"
 msgstr "Ho letto e accetto l'Informativa Privacy"
 
 msgid "Download copy of the Privacy Policy"
-msgstr "Scarica Copia dell'informativa Privacy"
+msgstr "Scarica copia dell'Informativa Privacy"
 
 msgid "Whistleblowing Policy"
 msgstr "Whistleblowing Policy"

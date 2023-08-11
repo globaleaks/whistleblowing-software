@@ -475,7 +475,7 @@ msgid "Hide"
 msgstr "Fshihe"
 
 msgid "Unhide"
-msgstr ""
+msgstr "Shfshihe"
 
 msgid "Redact"
 msgstr "Redaktoni"

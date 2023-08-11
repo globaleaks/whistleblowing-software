@@ -493,7 +493,7 @@ msgid "Hide"
 msgstr "Gizle"
 
 msgid "Unhide"
-msgstr ""
+msgstr "Görüntüle"
 
 msgid "Redact"
 msgstr "Düzelt"

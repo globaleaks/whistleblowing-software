@@ -482,7 +482,7 @@ msgid "Redact"
 msgstr ""
 
 msgid "Select an option"
-msgstr ""
+msgstr "Valitse"
 
 msgid "Select your language"
 msgstr "Valitse kielesi"
@@ -518,7 +518,7 @@ msgid "Whistleblowing Policy"
 msgstr ""
 
 msgid "Accessibility Declaration"
-msgstr ""
+msgstr "Saavutettavuusseloste"
 
 msgid "Voice"
 msgstr ""
@@ -1544,7 +1544,7 @@ msgid "View your report"
 msgstr "Tarkastele omaa vihjettä"
 
 msgid "Select the recipients of your report"
-msgstr ""
+msgstr "Valitse ilmoituksesi vastaanottajat"
 
 msgid "Recipients selected:"
 msgstr "Valitut vastaanottajat:"
@@ -1970,7 +1970,7 @@ msgid "New report"
 msgstr "Uusi ilmoitus"
 
 msgid "One or more reports are expiring and will be soon deleted."
-msgstr ""
+msgstr "Yksi tai useampi ilmoitus on vanhentumassa ja poistetaan pian."
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Varhaisin mahdollinen vanhentumispäivämäärä on {EarliestExpirationDate}."
@@ -1982,12 +1982,12 @@ msgid "Some reports will expire soon"
 msgstr "Osa ilmoituksista vanhenee pian"
 
 msgid "This is an email to notify you the reception of a new report."
-msgstr ""
+msgstr "Tämä sähköposti viestii sinulle uuden ilmoituksen vastaanottamisesta."
 
 msgid ""
 "This is an email to notify you that the reminder date for one or more "
 "reports has been met."
-msgstr ""
+msgstr "Tämä sähköposti viestii sinulle, että yhden tai useamman ilmoituksen muistutuspäivämäärä on saavutettu."
 
 msgid "Reminder"
 msgstr "Muistutus"
