@@ -210,8 +210,9 @@ class APIResourceWrapper(Resource):
 
         return False
 
-    def redirect_https(self, request):
-        hostname = request.hostname
+    def redirect_https(self, request, hostname=None):
+        if hostname is None:
+            hostname = request.hostname
 
         if request.port == 8082:
             hostname += b":8443"
@@ -266,7 +267,12 @@ class APIResourceWrapper(Resource):
 
           request.write(response.encode())
 
-    def preprocess(self, request):
+    def render(self, request):
+        """
+        :param request: `twisted.web.Request`
+
+        :return: empty `str` or `NOT_DONE_YET`
+        """
         request.hostname = request.getRequestHostname()
         request.port = request.getHost().port
         request.headers = request.getAllHeaders()
@@ -278,10 +284,23 @@ class APIResourceWrapper(Resource):
         request.multilang = False
         request.finished = False
 
+        request.client_ip = request.getClientIP()
+        if isinstance(request.client_ip, bytes):
+            request.client_ip = request.client_ip.decode()
+
+        # Handle IPv4 mapping on IPv6
+        if request.client_ip.startswith('::ffff:'):
+            request.client_ip = request.client_ip[7:]
+
+        request.client_using_tor = request.client_ip in State.tor_exit_set or \
+                                   request.port == 8083
+
+        request.client_ua = request.headers.get(b'user-agent', b'')
+
+        request.client_using_mobile = re.search(b'Mobi|Android', request.client_ua, re.IGNORECASE) is not None
+
         if (not State.tenants[1].cache.wizard_done or
-            request.hostname == b'localhost' or
-            isIPAddress(request.hostname) or
-            isIPv6Address(request.hostname)):
+                request.hostname == b'localhost'):
             request.tid = 1
         else:
             request.tid = State.tenant_hostname_id_map.get(request.hostname, None)
@@ -315,47 +334,28 @@ class APIResourceWrapper(Resource):
                     request.redirect(b'https://' + tentative_hostname + b'/')
                 else:
                     request.redirect(b'http://' + tentative_hostname + b'/')
+                return b''
             else:
                 # Fallback on root tenant with error 400
                 request.tid = None
-                return
 
-        if request.tid is None or request.tid not in State.tenants:
-            request.tid = None
-            return
-
-        request.client_ip = request.getClientIP()
-        if isinstance(request.client_ip, bytes):
-            request.client_ip = request.client_ip.decode()
-
-        # Handle IPv4 mapping on IPv6
-        if request.client_ip.startswith('::ffff:'):
-            request.client_ip = request.client_ip[7:]
-
-        request.client_using_tor = request.client_ip in State.tor_exit_set or \
-                                   request.port == 8083
-
-        request.client_ua = request.headers.get(b'user-agent', b'')
-
-        request.client_using_mobile = re.search(b'Mobi|Android', request.client_ua, re.IGNORECASE) is not None
-
-        request.language = self.detect_language(request)
+        self.detect_language(request)
         if b'multilang' in request.args:
             request.multilang = True
 
-    def render(self, request):
-        """
-        :param request: `twisted.web.Request`
+        self.set_headers(request)
 
-        :return: empty `str` or `NOT_DONE_YET`
-        """
-        self.preprocess(request)
+        if isIPAddress(request.hostname) or isIPv6Address(request.hostname):
+            hostname = State.tenants[1].cache['hostname'] if 1 in State.tenants else ''
+            if hostname and not isIPAddress(hostname) and not isIPv6Address(hostname):
+                request.tid = 1
+                self.redirect_https(request, hostname.encode())
+                return b''
 
-        if request.tid is None:
+        if request.tid is None or request.tid not in State.tenants:
+            request.tid = None
             request.setResponseCode(400)
             return b''
-
-        self.set_headers(request)
 
         if self.should_redirect_tor(request):
             self.redirect_tor(request)
@@ -470,7 +470,7 @@ class APIResourceWrapper(Resource):
             request.setHeader(b'Strict-Transport-Security',
                               b'max-age=31536000; includeSubDomains; preload')
 
-            if State.tenants[request.tid].cache.onionservice:
+            if request.tid in State.tenants and State.tenants[request.tid].cache.onionservice:
                 request.setHeader(b'Onion-Location', b'http://' + State.tenants[request.tid].cache.onionservice.encode() + request.path)
 
         if not State.settings.disable_csp:
@@ -517,7 +517,7 @@ class APIResourceWrapper(Resource):
         request.setHeader(b'Referrer-Policy', b'no-referrer')
 
         # to avoid Robots spidering, indexing, caching
-        if State.tenants[request.tid].cache.allow_indexing:
+        if request.tid in State.tenants and State.tenants[request.tid].cache.allow_indexing:
             request.setHeader(b'X-Robots-Tag', b'noarchive')
         else:
             request.setHeader(b'X-Robots-Tag', b'noindex')
@@ -541,11 +541,15 @@ class APIResourceWrapper(Resource):
             else:
                 score = 1.0
 
-            if parts[0] in State.tenants[request.tid].cache.languages_enabled:
+            if request.tid in State.tenants and parts[0] in State.tenants[request.tid].cache.languages_enabled:
                 locales.append((parts[0], score))
 
         if locales:
             locales.sort(key=lambda pair: pair[1], reverse=True)
-            return locales[0][0]
+            request.language = locales[0][0]
+        elif request.tid in State.tenants:
+            request.language = State.tenants[request.tid].cache.default_language
+        else:
+            request.language = 'en'
 
-        return State.tenants[request.tid].cache.default_language
+        return request.language
