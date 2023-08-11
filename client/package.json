@@ -55,7 +55,7 @@
   },
   "devDependencies": {
     "@lodder/grunt-postcss": "3.1.1",
-    "eslint": "8.46.0",
+    "eslint": "8.47.0",
     "gettext-parser": "7.0.1",
     "grunt": "1.6.1",
     "grunt-angular-templates": "1.2.0",
@@ -71,14 +71,14 @@
     "grunt-usemin": "3.1.1",
     "gruntify-eslint": "5.0.0",
     "node-gettext": "3.0.0",
-    "npm-check-updates": "16.10.18",
+    "npm-check-updates": "16.11.1",
     "nyc": "15.1.0",
     "postcss-rtl": "2.0.0",
     "protractor": "7.0.0",
     "protractor-console-plugin": "0.1.1",
     "stylelint": "15.10.2",
     "stylelint-config-standard": "34.0.0",
-    "superagent": "8.0.9",
+    "superagent": "8.1.2",
     "terser": "5.19.2"
   },
   "overrides": {
