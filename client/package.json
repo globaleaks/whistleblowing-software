@@ -8,7 +8,17 @@
     "type": "git",
     "url": "git@github.com:globaleaks/GlobaLeaks.git"
   },
+  "scripts": {
+    "test": "grunt instrument-client && npx nyc --report-dir=./cypress/coverage cypress run"
+  },
   "dependencies": {
+    "@babel/cli": "^7.22.10",
+    "grunt-shell": "^4.0.0",
+    "@babel/core": "^7.22.10",
+    "@cypress/code-coverage": "^3.11.0",
+    "babel-plugin-istanbul": "^6.1.1",
+    "cypress": "^8.7.0",
+    "cypress-file-upload": "^5.0.8",
     "@flowjs/flow.js": "2.14.1",
     "@flowjs/ng-flow": "2.7.8",
     "@fontsource/inter": "5.0.8",
