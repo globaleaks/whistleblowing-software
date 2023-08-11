@@ -1,4 +1,4 @@
-<div id="TipPageWBFileUpload" class="card card-default" data-ng-init="collapsed = false" data-ng-attr-aria-expanded="{{collapsed}}">
+<div id="TipPageWBFileUpload" class="card card-default" data-ng-init="collapsed = false" data-ng-attr-aria-expanded="{{collapsed}}" data-ng-if="activeTabKey !== 'personal'">
   <div class="card-header clearfix" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
     <span data-translate>Files attached by recipients</span>
     <span class="float-right">
@@ -9,7 +9,7 @@
   <div class="card-body"
        data-ng-show="!collapsed"
        data-ng-controller="RTipWBFileUploadCtrl">
-    <div data-ng-repeat="wbfile in tip.wbfiles | orderBy: 'creation_date'">
+    <div data-ng-repeat="wbfile in tip.wbfiles | filter : { visibility : activeTabKey } | orderBy: 'creation_date'">
       <div id="wbfile-{{$index}}" data-wbfile data-ctx="'rtip'"></div>
     </div>
     <div data-ng-if="tip.status !== 'closed'">
@@ -17,7 +17,7 @@
       <div class="form"
           data-ng-controller="WBFileUploadCtrl"
           data-flow-init="{target: 'api/recipient/rtips/' + tip_id + '/wbfiles'}"
-          data-flow-files-submitted="beginUpload($files, $event, $flow)"
+          data-flow-files-submitted="beginUpload($files, $event, $flow,activeTabKey)"
           data-flow-file-success="reload()"
           extend-flow-valid-size="public.node.maximum_filesize*1024*1024">
         <div class="input-group">

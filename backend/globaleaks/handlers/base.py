@@ -379,7 +379,8 @@ class BaseHandler(object):
             'filename': os.path.basename(f.filepath),
             'body': f,
             'description': self.request.args.get(b'description', [''])[0],
-            'reference_id': self.request.args.get(b'reference_id', [''])[0]
+            'reference_id': self.request.args.get(b'reference_id', [''])[0],
+            'visibility': self.request.args.get(b'visibility', [''])[0]
         }
 
     def write_upload_plaintext_to_disk(self, destination):

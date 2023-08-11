@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-    <div id="SubmissionComments" data-ng-if="tip.comments.length" data-ng-repeat="comment in tip.comments | orderBy:'creation_date':true| limitTo:itemsPerPage:((currentCommentsPage - 1) * itemsPerPage)">
+    <div id="SubmissionComments" data-ng-if="tip.comments.length" data-ng-repeat="comment in tip.comments | filter : { visibility : activeTabKey } | orderBy:'creation_date':true | limitTo:itemsPerPage:((currentCommentsPage - 1) * itemsPerPage)">
       <div id="comment-{{$index}}" class="mt-2">
         <div data-ng-if="!comment.author_id" class="messageWB">
           <div class="row">

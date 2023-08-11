@@ -440,7 +440,8 @@ def get_dummy_file(content=None):
         'filename': os.path.basename(temporary_file.filepath),
         'type': content_type,
         'submission': False,
-        "reference_id": ''
+        "reference_id": '',
+        "visibility": 0
     }
 
 

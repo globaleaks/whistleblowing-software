@@ -92,8 +92,10 @@ FileDesc = {
     'description': str,
     'size': int,
     'type': ContentType,
-    'date': DateType
+    'date': DateType,
+    'visibility': str
 }
+
 
 AuthDesc = {
     'tid': int,
@@ -161,7 +163,8 @@ UserUserDesc = {
 }
 
 CommentDesc = {
-    'content': str
+    'content': str,
+    'visibility': str
 }
 
 OpsDesc = {

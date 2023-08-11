@@ -3,6 +3,7 @@ import copy
 from globaleaks import models
 from globaleaks.models.config import ConfigFactory
 from globaleaks.state import State
+from sqlalchemy import or_, and_
 
 
 def serialize_archived_field_recursively(field, language):
@@ -74,7 +75,8 @@ def serialize_comment(session, comment):
         'id': comment.id,
         'creation_date': comment.creation_date,
         'content': comment.content,
-        'author_id': comment.author_id
+        'author_id': comment.author_id,
+        'visibility': comment.visibility
     }
 
 
@@ -130,7 +132,8 @@ def serialize_wbfile(session, wbfile):
         'name': wbfile.name,
         'size': wbfile.size,
         'type': wbfile.content_type,
-        'description': wbfile.description
+        'description': wbfile.description,
+        'visibility': wbfile.visibility
     }
 
 
@@ -170,11 +173,6 @@ def serialize_itip(session, internaltip, language):
         'wbfiles': [],
         'data': {}
     }
-
-    for comment in session.query(models.Comment) \
-                          .filter(models.Comment.internaltip_id == internaltip.id):
-        ret['comments'].append(serialize_comment(session, comment))
-
 
     for itd in session.query(models.InternalTipData).filter(models.InternalTipData.internaltip_id == internaltip.id):
         ret['data'][itd.key] = itd.value
@@ -234,8 +232,20 @@ def serialize_rtip(session, itip, rtip, language):
         ret['rfiles'].append(serialize_rfile(session, ifile, rfile))
 
     for wbfile in session.query(models.WhistleblowerFile) \
-                         .filter(models.WhistleblowerFile.internaltip_id == itip.id):
+                         .filter(models.WhistleblowerFile.internaltip_id == itip.id,
+                                 or_(models.WhistleblowerFile.visibility == 0,
+                                     models.WhistleblowerFile.visibility == 1,
+                                     and_(models.WhistleblowerFile.visibility == 2,
+                                          models.WhistleblowerFile.author_id == user_id))):
         ret['wbfiles'].append(serialize_wbfile(session, wbfile))
+
+    for comment in session.query(models.Comment) \
+                          .filter(models.Comment.internaltip_id == itip.id,
+                                  or_(models.Comment.visibility == 0,
+                                      models.Comment.visibility == 1,
+                                      and_(models.Comment.visibility == 2,
+                                           models.Comment.author_id == user_id))):
+        ret['comments'].append(serialize_comment(session, comment))
 
     return ret
 
@@ -259,6 +269,12 @@ def serialize_wbtip(session, itip, language):
                          .filter(models.WhistleblowerFile.internaltip_id == itip.id,
                                  models.WhistleblowerFile.visibility == 0):
         ret['wbfiles'].append(serialize_wbfile(session, wbfile))
+
+    for comment in session.query(models.Comment) \
+                          .filter(models.Comment.internaltip_id == itip.id,
+                                  models.Comment.visibility == 0):
+        ret['comments'].append(serialize_comment(session, comment))
+
 
     return ret
 

@@ -234,7 +234,8 @@ class TestRTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_post(self):
         body = {
-            'content': u"can you provide an evidence of what you are telling?",
+            'content': "can you provide an evidence of what you are telling?",
+            'visibility': "public"
         }
 
         rtip_descs = yield self.get_rtips()

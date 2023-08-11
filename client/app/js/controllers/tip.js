@@ -12,6 +12,62 @@ GL.controller("TipCtrl",
 
     $scope.showEditLabelInput = false;
 
+    $scope.tabs = [
+      {
+        title: "Public",
+        key: "public"
+      },
+      {
+        title: "Internal",
+        key: "internal"
+      },
+      {
+        title: "Personal",
+        key: "personal"
+      }
+    ];
+    $scope.activeTabKey = $scope.tabs[0].key;
+
+    $scope.selectedTab = function (key){
+      $scope.activeTabKey = key;
+    }
+
+    $scope.openTipTransferModal = function() {
+      $http({
+        method: "PUT", url: "api/user/operations", data: {
+          "operation": "get_users_names",
+          "args": {}
+        }
+      }).then(function (response) {
+        // Prevent listing current user
+        delete response.data[$scope.Authentication.session.user_id];
+
+        $uibModal.open({
+          templateUrl: "views/modals/transfer_access.html",
+          controller: "ConfirmableModalCtrl",
+          resolve: {
+            arg: {
+              users_names: response.data
+            },
+            confirmFun: function () {
+              return function (receiver_id) {
+                var req = {
+                  operation: "transfer",
+                  args: {
+                    receiver: receiver_id
+                  },
+                };
+                return $http({ method: "PUT", url: "api/recipient/rtips/" + $scope.tip.id, data: req }).then(function () {
+                  $location.path("recipient/reports");
+                });
+              };
+            },
+            cancelFun: null
+          }
+        });
+      });
+    }
+
     $scope.openGrantTipAccessModal = function () {
       $http({method: "PUT", url: "api/user/operations", data:{
         "operation": "get_users_names",
@@ -258,7 +314,7 @@ GL.controller("TipCtrl",
     };
 
     $scope.newComment = function() {
-      $scope.tip.newComment($scope.tip.newCommentContent);
+      $scope.tip.newComment($scope.tip.newCommentContent, $scope.activeTabKey);
       $scope.tip.newCommentContent = "";
     };
 

@@ -25,10 +25,9 @@ controller("RFileUploadCtrl", ["$scope", function($scope) {
 controller("WBFileUploadCtrl", ["$scope", function($scope) {
   $scope.file_upload_description = "";
 
-  $scope.beginUpload = function($files, $event, $flow) {
+  $scope.beginUpload = function ($files, $event, $flow, visibility) {
     $scope.file_error_msgs = [];
-
-    $flow.opts.query = {"description": $scope.file_upload_description};
+    $flow.opts.query = { "description": $scope.file_upload_description, "visibility": visibility };
     $flow.upload();
   };
 }]).

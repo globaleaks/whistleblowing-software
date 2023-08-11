@@ -1028,6 +1028,7 @@ class _WhistleblowerFile(Model):
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     internaltip_id = Column(UnicodeText(36), nullable=False, index=True)
+    author_id = Column(UnicodeText(36))
     name = Column(UnicodeText, nullable=False)
     size = Column(Integer, nullable=False)
     content_type = Column(UnicodeText, nullable=False)
