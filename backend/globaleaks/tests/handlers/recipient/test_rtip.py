@@ -289,8 +289,8 @@ class TestRTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
             yield handler.post(rtip_desc['id'])
 
 
-class TestReceiverFileDownload(helpers.TestHandlerWithPopulatedDB):
-    _handler = rtip.ReceiverFileDownload
+class TestWhistleblowerFileDownload(helpers.TestHandlerWithPopulatedDB):
+    _handler = rtip.WhistleblowerFileDownload
 
     @inlineCallbacks
     def test_get(self):
@@ -299,10 +299,10 @@ class TestReceiverFileDownload(helpers.TestHandlerWithPopulatedDB):
 
         rtip_descs = yield self.get_rtips()
         for rtip_desc in rtip_descs:
-            rfile_ids = yield self.get_rfiles(rtip_desc['id'])
-            for rfile_id in rfile_ids:
+            wbfile_ids = yield self.get_wbfiles(rtip_desc['id'])
+            for wbfile_id in wbfile_ids:
                 handler = self.request(role='receiver', user_id=rtip_desc['receiver_id'])
-                yield handler.get(rfile_id)
+                yield handler.get(wbfile_id)
                 self.assertNotEqual(handler.request.getResponseBody(), '')
 
 

@@ -1,0 +1,37 @@
+<div class="rfile card card-default">
+  <div class="card-body">
+    <div class="top-row clearfix">
+      <span class="float-left">
+        <span class="text-muted" data-ng-if="ctx === 'download'"><span data-translate>Filename</span>:</span>
+        <span class="filename">{{rfile.name}}</span>
+      </span>
+      <span class="float-right">
+        <span>
+          <button class="download-button btn btn-sm btn-primary" data-ng-disabled="rfile.error" data-ng-click="downloadRFile(rfile)">
+            <i class="fa-solid fa-download"></i>
+          </button>
+          <button data-ng-if="Authentication.session.role === 'receiver'" class="btn btn-sm btn-danger" data-ng-click="deleteRFile(rfile)" data-single-click>
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </span>
+      </span>
+    </div>
+    <div class="file-info-row">
+      <span class="px-1">
+        <span data-translate>Date</span>: <span>{{rfile.creation_date | date:'dd-MM-yyyy HH:MM'}}</span>
+      </span>
+      <span class="px-1">
+        <span data-translate>Size:</span> <span>{{rfile.size | byteFmt:2}}</span>
+      </span>
+      <span class="px-1" data-ng-if="rfile.access_date">
+        <span data-translate>Access date</span>: <span>{{rfile.access_date}}</span>
+      </span>
+    </div>
+    <div data-ng-if="rfile.description">
+      <span>
+        <span data-translate>Description</span>:
+      </span>
+      <span>{{rfile.description}}</span>
+    </div>
+  </div>
+</div>

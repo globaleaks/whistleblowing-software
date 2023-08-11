@@ -736,7 +736,7 @@ class _ReceiverContext(Model):
                 ForeignKeyConstraint(['receiver_id'], ['user.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
 
 
-class _ReceiverFile(Model):
+class _WhistleblowerFile(Model):
     """
     This model keeps track of files destinated to a specific receiver
     """
@@ -1017,7 +1017,7 @@ class _User(Model):
                 CheckConstraint(self.role.in_(EnumUserRole.keys())))
 
 
-class _WhistleblowerFile(Model):
+class _ReceiverFile(Model):
     """
     This models stores metadata of files uploaded by recipients intended to be
     delivered to the whistleblower. This file is not encrypted and nor is it
@@ -1135,7 +1135,7 @@ class ReceiverContext(_ReceiverContext, Base):
     pass
 
 
-class ReceiverFile(_ReceiverFile, Base):
+class WhistleblowerFile(_WhistleblowerFile, Base):
     pass
 
 
@@ -1175,5 +1175,5 @@ class User(_User, Base):
     pass
 
 
-class WhistleblowerFile(_WhistleblowerFile, Base):
+class ReceiverFile(_ReceiverFile, Base):
     pass

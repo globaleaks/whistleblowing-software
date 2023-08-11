@@ -145,7 +145,7 @@ class User_v_45(Model):
     can_edit_general_settings = Column(Boolean, default=False, nullable=False)
 
 
-class WhistleblowerFile_v_45(Model):
+class ReceiverFile_v_45(Model):
     __tablename__ = 'whistleblowerfile'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4, nullable=False)
     receivertip_id = Column(UnicodeText(36), nullable=False)
@@ -224,8 +224,8 @@ class MigrationScript(MigrationBase):
     def migrate_InternalFile(self):
         self._migrate_File('InternalFile')
 
-    def migrate_WhistleblowerFile(self):
-        self._migrate_File('WhistleblowerFile')
+    def migrate_ReceiverFile(self):
+        self._migrate_File('ReceiverFile')
 
     def migrate_User(self):
         for old_obj in self.session_old.query(self.model_from['User']):

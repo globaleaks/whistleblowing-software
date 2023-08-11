@@ -335,8 +335,8 @@ factory("RTipDownloadRFile", ["Utils", function(Utils) {
     Utils.download("api/recipient/rfiles/" + file.id);
   };
 }]).
-factory("RTipWBFileResource", ["GLResource", function(GLResource) {
-  return new GLResource("api/recipient/wbfiles/:id", {id: "@id"});
+factory("RTipRFileResource", ["GLResource", function(GLResource) {
+  return new GLResource("api/recipient/rfiles/:id", {id: "@id"});
 }]).
 factory("RTipDownloadWBFile", ["Utils", function(Utils) {
   return function(file) {
@@ -401,7 +401,7 @@ factory("WBTipCommentResource", ["GLResource", function(GLResource) {
 }]).
 factory("WBTipDownloadFile", ["Utils", function(Utils) {
   return function(file) {
-    Utils.download("api/whistleblower/wbtip/wbfiles/" + file.id);
+    Utils.download("api/whistleblower/wbtip/rfiles/" + file.id);
   };
 }]).
 factory("WBTip", ["$rootScope", "WBTipResource", "WBTipCommentResource",
@@ -676,7 +676,7 @@ factory("Files", ["GLResource", function(GLResource) {
 factory("DefaultL10NResource", ["GLResource", function(GLResource) {
   return new GLResource("/data/l10n/:lang.json", {lang: "@lang"});
 }]).
-factory("RTipViewRFile", ["Utils", function(Utils) {
+factory("RTipViewWBFile", ["Utils", function(Utils) {
   return function(file) {
     Utils.openViewModalDialog("views/modals/file_view.html", file);
   };

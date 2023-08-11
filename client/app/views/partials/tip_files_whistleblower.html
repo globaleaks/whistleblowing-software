@@ -18,7 +18,7 @@
           </tr>
         </thead>
         <tbody id="fileListBody">
-          <tr id="file-{{$index}}" data-ng-repeat="file in tip.rfiles | orderBy:'creation_date'" data-ng-if="!file.reference_id">
+          <tr id="file-{{$index}}" data-ng-repeat="file in tip.wbfiles | orderBy:'creation_date'" data-ng-if="!file.reference_id">
             <td>{{file.name}}</td>
             <td>{{file.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
             <td>{{file.type}}</td>
@@ -29,8 +29,8 @@
     </div>
     <br />
     <div data-ng-if="tip.status !== 'closed'">
-      <div data-ng-include="'views/partials/rfile_upload_button.html'"></div>
-      <div data-ng-include="'views/partials/rfile_upload_status.html'"></div>
+      <div data-ng-include="'views/partials/wbfile_upload_button.html'"></div>
+      <div data-ng-include="'views/partials/wbfile_upload_status.html'"></div>
       <div data-ng-show="Utils.hasPausedFileUploads(uploads)">
         <button id="files-action-confirm" class="btn btn-sm btn-outline-secondary" data-ng-click="Utils.resumeFileUploads(uploads)">
           <i class="fa-solid fa-upload"></i>

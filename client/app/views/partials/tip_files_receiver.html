@@ -7,7 +7,7 @@
     </span>
   </div>
   <div class="card-body" data-ng-show="!collapsed">
-    <div data-ng-show="tip.rfiles.length" class="table-responsive">
+    <div data-ng-show="tip.wbfiles.length" class="table-responsive">
       <table class="table table-striped" id="fileList">
         <thead>
           <tr>
@@ -20,21 +20,21 @@
           </tr>
         </thead>
         <tbody id="fileListBody">
-          <tr id="file-{{$index}}" data-ng-repeat="file in tip.rfiles" data-ng-init="viewSupported = supportedViewTypes.includes(file.type)" data-ng-if="!file.reference_id">
+          <tr id="file-{{$index}}" data-ng-repeat="file in tip.wbfiles" data-ng-init="viewSupported = supportedViewTypes.includes(file.type)" data-ng-if="!file.reference_id">
             <td>{{file.name}}</td>
             <td data-ng-if="public.node.viewer">
               <button class="btn btn-sm btn-primary tip-action-views-file"
               data-ng-disabled="!viewSupported"
               data-ng-class="{ 'btn-secondary': !viewSupported }"
               data-uib-tooltip="{{'View' | translate}}"
-              data-ng-click="viewRFile(file)">
+              data-ng-click="viewWBFile(file)">
                 <i class="fa-solid fa-eye"></i>
               </button>
             </td>
             <td>
               <button class="btn btn-sm btn-primary tip-action-download-file"
                       data-uib-tooltip="{{'Download' | translate}}"
-                      data-ng-click="downloadRFile(file)">
+                      data-ng-click="downloadWBFile(file)">
                 <i class="fa-solid fa-download"></i>
               </button>
             </td>

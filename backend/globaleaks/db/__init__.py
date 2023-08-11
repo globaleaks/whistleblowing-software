@@ -122,10 +122,10 @@ def db_get_tracked_attachments(session):
     :return: The list of filenames of the attachment files
     """
     ifiles = session.query(models.InternalFile.id).all()
-    rfiles = session.query(models.ReceiverFile.id).all()
     wbfiles = session.query(models.WhistleblowerFile.id).all()
+    rfiles = session.query(models.ReceiverFile.id).all()
 
-    return [x[0] for x in ifiles + rfiles + wbfiles]
+    return [x[0] for x in ifiles + wbfiles + rfiles]
 
 
 @transact_sync

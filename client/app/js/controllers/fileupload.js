@@ -11,7 +11,7 @@ GL.factory("uploadUtils", ["$filter", function($filter) {
     },
   };
 }]).
-controller("RFileUploadCtrl", ["$scope", function($scope) {
+controller("WBFileUploadCtrl", ["$scope", function($scope) {
   $scope.disabled = false;
 
   $scope.$on("flow::fileAdded", function (event, $flow, flowFile) {
@@ -22,7 +22,7 @@ controller("RFileUploadCtrl", ["$scope", function($scope) {
     $scope.$emit("GL::uploadsUpdated");
   });
 }]).
-controller("WBFileUploadCtrl", ["$scope", function($scope) {
+controller("RFileUploadCtrl", ["$scope", function($scope) {
   $scope.file_upload_description = "";
 
   $scope.beginUpload = function ($files, $event, $flow, visibility) {

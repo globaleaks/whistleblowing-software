@@ -747,9 +747,9 @@ class TestGL(unittest.TestCase):
         return ret
 
     @transact
-    def get_rfiles(self, session, rtip_id):
-        return [x[0] for x in session.query(models.ReceiverFile.id) \
-                                     .filter(models.ReceiverFile.receivertip_id == rtip_id)]
+    def get_wbfiles(self, session, rtip_id):
+        return [x[0] for x in session.query(models.WhistleblowerFile.id) \
+                                     .filter(models.WhistleblowerFile.receivertip_id == rtip_id)]
 
     @transact
     def get_wbtips(self, session):
@@ -764,9 +764,9 @@ class TestGL(unittest.TestCase):
         return ret
 
     @transact
-    def get_wbfiles(self, session, wbtip_id):
-        return [{'id': wbfile.id} for wbfile in session.query(models.WhistleblowerFile)
-                                                       .filter(models.WhistleblowerFile.internaltip_id == wbtip_id)]
+    def get_rfiles(self, session, wbtip_id):
+        return [{'id': rfile.id} for rfile in session.query(models.ReceiverFile)
+                                                       .filter(models.ReceiverFile.internaltip_id == wbtip_id)]
 
     def db_test_model_count(self, session, model, n):
         self.assertEqual(session.query(model).count(), n)

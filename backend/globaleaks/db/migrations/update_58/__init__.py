@@ -29,7 +29,7 @@ class InternalTip_v_57(Model):
     crypto_tip_pub_key = Column(UnicodeText(56), default='', nullable=False)
 
 
-class ReceiverFile_v_57(Model):
+class WhistleblowerFile_v_57(Model):
     __tablename__ = 'receiverfile'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     internalfile_id = Column(UnicodeText(36), nullable=False)
@@ -53,7 +53,7 @@ class ReceiverTip_v_57(Model):
     crypto_tip_prv_key = Column(UnicodeText(84), default='', nullable=False)
 
 
-class WhistleblowerFile_v_57(Model):
+class ReceiverFile_v_57(Model):
     __tablename__ = 'whistleblowerfile'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     receivertip_id = Column(UnicodeText(36), nullable=False)
@@ -99,14 +99,14 @@ class MigrationScript(MigrationBase):
     def migrate_ReceiverTip(self):
         pass
 
-    def migrate_ReceiverFile(self):
-        pass
-
     def migrate_WhistleblowerFile(self):
         pass
 
+    def migrate_ReceiverFile(self):
+        pass
+
     def epilogue(self):
-        for model in ['ReceiverTip', 'ReceiverFile', 'WhistleblowerFile']:
+        for model in ['ReceiverTip', 'WhistleblowerFile', 'ReceiverFile']:
             for old_obj in self.session_old.query(self.model_from[model]):
                 new_obj = self.model_to[model]()
                 for key in new_obj.__mapper__.column_attrs.keys():

@@ -7,8 +7,8 @@
     </span>
   </div>
   <div class="card-body" data-ng-show="!collapsed">
-    <div data-ng-repeat="wbfile in tip.wbfiles | orderBy: 'creation_date'">
-      <div id="wbfile-{{$index}}" data-wbfile></div>
+    <div data-ng-repeat="rfile in tip.rfiles | orderBy: 'creation_date'">
+      <div id="rfile-{{$index}}" data-rfile></div>
     </div>
   </div>
 </div>
