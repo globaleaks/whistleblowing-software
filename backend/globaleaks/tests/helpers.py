@@ -264,6 +264,7 @@ class MockDict:
             'forcefully_selected': True,
             'can_edit_general_settings': False,
             'can_grant_access_to_reports': True,
+            'can_transfer_access_to_reports': True,
             'can_delete_submission': True,
             'can_postpone_expiration': True,
             'contexts': []

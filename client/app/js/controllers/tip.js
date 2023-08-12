@@ -11,6 +11,42 @@ GL.controller("TipCtrl",
     $scope.uploads = {};
 
     $scope.showEditLabelInput = false;
+    $scope.openTipTransferModal = function() {
+      $http({
+        method: "PUT", url: "api/user/operations", data: {
+          "operation": "get_users_names",
+          "args": {}
+        }
+      }).then(function (response) {
+        // Prevent listing current user
+        delete response.data[$scope.Authentication.session.user_id];
+
+        $uibModal.open({
+          templateUrl: "views/modals/transfer_access.html",
+          controller: "ConfirmableModalCtrl",
+          resolve: {
+            arg: {
+              users_names: response.data
+            },
+            confirmFun: function () {
+              return function (receiver_id) {
+                var req = {
+                  operation: "transfer",
+                  args: {
+                    receiver: receiver_id
+                  },
+                };
+                return $http({ method: "PUT", url: "api/recipient/rtips/" + $scope.tip.id, data: req }).then(function () {
+                  $location.path("recipient/reports");
+                });
+              };
+            },
+            cancelFun: null
+          }
+        });
+      });
+    }
+
 
     $scope.tabs = [
       {
