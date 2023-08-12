@@ -56,7 +56,7 @@ def db_tip_grant_notification(session, user):
     }))
 
 
-def db_grant_tip_access(session, tid, user_id, user_cc, rtip_id, receiver_id):
+def db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, receiver_id):
     """
     Transaction for granting a user access to a report
 
@@ -67,20 +67,11 @@ def db_grant_tip_access(session, tid, user_id, user_cc, rtip_id, receiver_id):
     :param rtip_id: A rtip_id of the rtip on which perform the operation
     :param receiver_id: A user ID of the the user to which grant access to the report
     """
-    receiver, itip, rtip = session.query(models.User, models.InternalTip, models.ReceiverTip) \
-                                  .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                          models.ReceiverTip.id == rtip_id,
-                                          models.User.id == models.ReceiverTip.receiver_id).one()
-    if user_id == receiver_id or not receiver.can_grant_access_to_reports:
-        raise errors.ForbiddenOperation
-
-
     existing = session.query(models.ReceiverTip).filter(models.ReceiverTip.receiver_id == receiver_id,
                                                         models.ReceiverTip.internaltip_id == itip.id).one_or_none()
 
     if existing:
         return
-
     new_receiver = db_get(session,
                           models.User,
                           models.User.id == receiver_id)
@@ -88,7 +79,6 @@ def db_grant_tip_access(session, tid, user_id, user_cc, rtip_id, receiver_id):
     if itip.crypto_tip_pub_key and not new_receiver.crypto_pub_key:
         # Access to encrypted submissions could be granted only if the recipient has performed first login
         return
-
     _tip_key = b''
     if itip.crypto_tip_pub_key:
         _tip_key = GCE.asymmetric_decrypt(user_cc, base64.b64decode(rtip.crypto_tip_prv_key))
@@ -96,7 +86,6 @@ def db_grant_tip_access(session, tid, user_id, user_cc, rtip_id, receiver_id):
 
     new_rtip = db_create_receivertip(session, new_receiver, itip, _tip_key)
     new_rtip.new = False
-
     if itip.deprecated_crypto_files_pub_key:
         _files_key = GCE.asymmetric_decrypt(user_cc, base64.b64decode(rtip.deprecated_crypto_files_prv_key))
         new_rtip.deprecated_crypto_files_prv_key = GCE.asymmetric_encrypt(new_receiver.crypto_pub_key, _files_key)
@@ -113,10 +102,8 @@ def db_grant_tip_access(session, tid, user_id, user_cc, rtip_id, receiver_id):
 
     db_tip_grant_notification(session, new_receiver)
 
-    db_log(session, tid=tid, type='grant_access', user_id=user_id, object_id=itip.id)
 
-
-def db_revoke_tip_access(session, tid, user_id, rtip_id, receiver_id):
+def db_revoke_tip_access(session, tid, user_id, itip, receiver_id):
     """
     Transaction for revoking a user access to a report
 
@@ -126,25 +113,57 @@ def db_revoke_tip_access(session, tid, user_id, rtip_id, receiver_id):
     :param rtip_id: A rtip_id  of the submission object of the operation
     :param receiver_id: A user ID of the the user to which revoke access to the report
     """
-    receiver, itip = session.query(models.User, models.InternalTip) \
-                            .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                    models.ReceiverTip.id == rtip_id,
-                                    models.User.id == models.ReceiverTip.receiver_id).one()
-
-    if user_id == receiver_id or not receiver.can_grant_access_to_reports:
-        raise errors.ForbiddenOperation
-
     rtip = session.query(models.ReceiverTip) \
                   .filter(models.ReceiverTip.internaltip_id == itip.id,
                           models.ReceiverTip.receiver_id == receiver_id).one_or_none()
-
     if rtip is None:
         return
 
     session.delete(rtip)
 
+
+@transact
+def grant_tip_access(session, tid, user_id, user_cc, rtip_id, receiver_id):
+    user, itip, rtip = session.query(models.User, models.InternalTip, models.ReceiverTip) \
+                                  .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                                          models.ReceiverTip.id == rtip_id,
+                                          models.User.id == models.ReceiverTip.receiver_id).one()
+    if user_id == receiver_id or not user.can_grant_access_to_reports:
+        raise errors.ForbiddenOperation
+
+    db_grant_tip_access(session, tid, user, user_cc, itip, rtip, receiver_id)
+    db_log(session, tid=tid, type='grant_access', user_id=user_id, object_id=itip.id)
+
+
+@transact
+def revoke_tip_access(session, tid, user_id, rtip_id, receiver_id):
+    user, itip, rtip = session.query(models.User, models.InternalTip, models.ReceiverTip) \
+                                  .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                                          models.ReceiverTip.id == rtip_id,
+                                          models.User.id == models.ReceiverTip.receiver_id).one()
+    if user_id == receiver_id or not user.can_grant_access_to_reports:
+        raise errors.ForbiddenOperation
+
+    db_revoke_tip_access(session, tid, user, itip, receiver_id)
     db_log(session, tid=tid, type='revoke_access', user_id=user_id, object_id=itip.id)
 
+
+@transact
+def transfer_tip_access(session, tid, user_id, user_cc, rtip_id, receiver_id):
+    log_data = {
+      'recipient_id': receiver_id
+    }
+
+    user, itip, rtip = session.query(models.User, models.InternalTip, models.ReceiverTip) \
+                                  .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                                          models.ReceiverTip.id == rtip_id,
+                                          models.User.id == models.ReceiverTip.receiver_id).one()
+    if user_id == receiver_id or not user.can_transfer_access_to_reports:
+        raise errors.ForbiddenOperation
+
+    db_grant_tip_access(session, tid, user, user_cc, itip, rtip, receiver_id)
+    db_revoke_tip_access(session, tid, user, itip, user_id)
+    db_log(session, tid=tid, type='transfer_access', user_id=user_id, object_id=itip.id, data=log_data)
 
 
 def db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id):
@@ -617,10 +636,13 @@ class RTipInstance(OperationHandler):
         return set_internaltip_variable(self.request.tid, self.session.user_id, rtip_id, key, value)
 
     def grant_tip_access(self, req_args, rtip_id, *args, **kwargs):
-        return tw(db_grant_tip_access, self.request.tid, self.session.user_id, self.session.cc, rtip_id, req_args['receiver'])
+        return grant_tip_access(self.request.tid, self.session.user_id, self.session.cc, rtip_id, req_args['receiver'])
 
     def revoke_tip_access(self, req_args, rtip_id, *args, **kwargs):
-        return tw(db_revoke_tip_access, self.request.tid, self.session.user_id, rtip_id, req_args['receiver'])
+        return revoke_tip_access(self.request.tid, self.session.user_id, rtip_id, req_args['receiver'])
+
+    def transfer_tip(self, req_args, rtip_id, *args, **kwargs):
+        return transfer_tip_access(self.request.tid, self.session.user_id, self.session.cc, rtip_id, req_args['receiver'])
 
     def postpone_expiration(self, req_args, rtip_id, *args, **kwargs):
         return postpone_expiration(self.request.tid, self.session.user_id, rtip_id, req_args['value'])

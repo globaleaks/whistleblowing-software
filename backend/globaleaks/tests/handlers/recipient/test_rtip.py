@@ -96,6 +96,51 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             self.assertEqual(handler.request.code, 200)
             yield self.test_model_count(models.ReceiverTip, count)
 
+    @inlineCallbacks
+    def test_transfer(self):
+        now = datetime_now()
+
+        rtip_descs = yield self.get_rtips()
+
+        count = len(rtip_descs)
+
+        yield self.test_model_count(models.ReceiverTip, count)
+
+        for rtip_desc in rtip_descs:
+            if rtip_desc['receiver_id'] != self.dummyReceiver_1['id']:
+                continue
+
+            count -= 1
+
+            operation = {
+              'operation': 'revoke',
+              'args': {
+                'receiver':  self.dummyReceiver_2['id']
+              }
+            }
+
+            handler = self.request(operation, role='receiver', user_id=rtip_desc['receiver_id'])
+            yield handler.put(rtip_desc['id'])
+            self.assertEqual(handler.request.code, 200)
+            yield self.test_model_count(models.ReceiverTip, count)
+
+        for rtip_desc in rtip_descs:
+            if rtip_desc['receiver_id'] != self.dummyReceiver_1['id']:
+                return
+
+            count += 1
+
+            operation = {
+              'operation': 'transfer',
+              'args': {
+                'receiver':  self.dummyReceiver_2['id']
+              }
+            }
+
+            handler = self.request(operation, role='receiver', user_id=rtip_desc['receiver_id'])
+            yield handler.put(rtip_desc['id'])
+            self.assertEqual(handler.request.code, 200)
+            yield self.test_model_count(models.ReceiverTip, count)
 
     @inlineCallbacks
     def switch_enabler(self, key):
