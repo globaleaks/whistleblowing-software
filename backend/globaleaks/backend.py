@@ -146,13 +146,11 @@ class Service(service.Service):
         tenant_cache = self.state.tenants[1].cache
 
         if self.state.settings.devel_mode:
-            print("- [HTTP]\t--> http://127.0.0.1:8082")
+            print("- [HTTPS]\t--> https://127.0.0.1:8443")
 
         elif tenant_cache.reachable_via_web:
             hostname = tenant_cache.hostname if tenant_cache.hostname else '0.0.0.0'
-            print("- [HTTP]\t--> http://%s" % hostname)
-            if tenant_cache.https_enabled:
-                print("- [HTTPS]\t--> https://%s" % hostname)
+            print("- [HTTPS]\t--> https://%s" % hostname)
 
         if tenant_cache.onionservice:
             print("- [Tor]:\t--> http://%s" % tenant_cache.onionservice)
