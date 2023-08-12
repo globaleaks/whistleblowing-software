@@ -26,7 +26,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             yield handler.get(rtip_desc['id'])
 
     @inlineCallbacks
-    def test_put_postpone(self):
+    def test_postpone(self):
         now = datetime_now()
 
         yield self.force_itip_expiration()
@@ -51,7 +51,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             self.assertTrue(rtip_desc['expiration_date'] >= now)
 
     @inlineCallbacks
-    def test_put_grant_and_revoke_access(self):
+    def test_grant_and_revoke_access(self):
         now = datetime_now()
 
         rtip_descs = yield self.get_rtips()
@@ -191,13 +191,13 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             response = yield handler.get(rtip_desc['id'])
             self.assertEqual(response[key], True)
 
-    def test_put_enable_two_way_comments(self):
+    def test_enable_two_way_comments(self):
         return self.switch_enabler('enable_two_way_comments')
 
-    def test_put_enable_attachments(self):
+    def test_enable_attachments(self):
         return self.switch_enabler('enable_attachments')
 
-    def test_put_mark_important(self):
+    def test_mark_important(self):
         return self.switch_enabler('important')
 
     @inlineCallbacks
@@ -220,7 +220,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             self.assertEqual(response['label'], operation['args']['value'])
 
     @inlineCallbacks
-    def test_put_silence_notify(self):
+    def test_silence_notify(self):
         rtip_descs = yield self.get_rtips()
         for rtip_desc in rtip_descs:
             operation = {
