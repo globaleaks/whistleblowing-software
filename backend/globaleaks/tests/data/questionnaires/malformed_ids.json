@@ -82,7 +82,6 @@
               "score_points": 0
             }
           ],
-          "preview": true,
           "required": true,
           "step_id": "ffffffff-ffff-ffff-ffff-ffffffffffff",
           "template_id": "",
@@ -123,7 +122,6 @@
           },
           "multi_entry": true,
           "options": [],
-          "preview": false,
           "required": false,
           "step_id": "3aefbee3-cca3-4db2-b9f9-b22f64fc186e",
           "template_id": "",

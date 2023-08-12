@@ -191,7 +191,6 @@ def get_dummy_field():
         'label': 'antani',
         'placeholder': '',
         'type': 'checkbox',
-        'preview': False,
         'description': 'field description',
         'hint': 'field hint',
         'multi_entry': False,

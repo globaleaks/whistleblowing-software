@@ -68,7 +68,6 @@ class Field_v_45(Model):
     description = Column(JSON, nullable=False)
     hint = Column(JSON, nullable=False)
     required = Column(Boolean, default=False, nullable=False)
-    preview = Column(Boolean, default=False, nullable=False)
     multi_entry = Column(Boolean, default=False, nullable=False)
     triggered_by_score = Column(Integer, default=0, nullable=False)
     step_id = Column(UnicodeText(36))

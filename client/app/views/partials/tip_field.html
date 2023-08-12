@@ -1,6 +1,6 @@
-<div data-ng-if="(!preview && field.enabled) || field.preview" data-ng-class="{'nested': !preview}" class="fieldAnswer">
-  <div data-ng-class="{'font-weight-bold': !preview}">
-    <span data-ng-if="!$parent.field && !preview">{{$index + 1}})</span>
+<div data-ng-if="field.enabled" class="fieldAnswer">
+  <div>
+    <span data-ng-if="!$parent.field">{{$index + 1}})</span>
     <span>{{field.label}}</span>
   </div>
   <div data-ng-if="!hasMultipleEntries(fieldAnswers[field.id])">

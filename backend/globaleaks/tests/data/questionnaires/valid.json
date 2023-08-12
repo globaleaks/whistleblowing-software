@@ -20,7 +20,6 @@
           "fieldgroup_id":"",
           "multi_entry":false,
           "required":false,
-          "preview":false,
           "attrs":{
             "min_len":{
               "id":"44d8da7d-0b67-4d11-9cc3-6e3bfb94a2b4",
@@ -80,7 +79,6 @@
           "fieldgroup_id":"",
           "multi_entry":false,
           "required":false,
-          "preview":false,
           "attrs":{
             "min_len":{
               "id":"85b3991d-db61-40bf-8224-5afab3cde98b",
@@ -128,7 +126,6 @@
           "fieldgroup_id":"",
           "multi_entry":false,
           "required":false,
-          "preview":false,
           "attrs":{},
           "x":0,
           "y":2,
@@ -199,7 +196,6 @@
           "fieldgroup_id":"",
           "multi_entry":false,
           "required":false,
-          "preview":false,
           "attrs":{},
           "x":0,
           "y":3,
@@ -270,7 +266,6 @@
           "fieldgroup_id":"",
           "multi_entry":true,
           "required":false,
-          "preview":false,
           "attrs":{
           },
           "x":0,
@@ -306,7 +301,6 @@
           "fieldgroup_id":"",
           "multi_entry":false,
           "required":false,
-          "preview":false,
           "attrs":{
             "text":{
               "id":"c13925f0-32d7-425c-a3c3-924a08ac5f28",
@@ -380,7 +374,6 @@
           "fieldgroup_id":"",
           "multi_entry":false,
           "required":false,
-          "preview":false,
           "attrs":{
             "min_date":{
               "id":"855ea0ca-4585-4ce8-829f-3cdd05353e41",
@@ -428,7 +421,6 @@
           "fieldgroup_id":"",
           "multi_entry":false,
           "required":false,
-          "preview":false,
           "attrs":{
             "min_date":{
               "id":"0963504c-fdc2-41f7-ac7a-25051275dc0c",
@@ -476,7 +468,6 @@
           "fieldgroup_id":"",
           "multi_entry":false,
           "required":false,
-          "preview":false,
           "attrs":{
             "multimedia":{
               "id":"b92f3313-63c0-4dce-9674-3ee9b14d8db8",
