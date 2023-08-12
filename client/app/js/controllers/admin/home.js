@@ -1,5 +1,6 @@
 GL.
-controller("AdminCtrl", ["$scope", function($scope) {
+  controller("AdminCtrl", ["$scope", "$http", "$uibModal", function ($scope, $http, $uibModal) {
+  $scope.aAgrementModel = false;
   $scope.updateNode = function() {
     $scope.Utils.update($scope.resources.node, function() { $scope.$emit("REFRESH"); });
   };
@@ -34,4 +35,8 @@ controller("AdminCtrl", ["$scope", function($scope) {
 
     $scope.all_recipients_enabled = true;
   }, true);
+
+  if ($scope.public.node.user_privacy_policy_text && $scope.resources.preferences.accepted_privacy_policy === '1970-01-01T00:00:00Z'){
+    $scope.Utils.acceptPrivacyPolicyDialog();
+  }
 }]);

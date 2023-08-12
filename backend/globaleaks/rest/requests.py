@@ -242,7 +242,9 @@ AdminNodeDesc = {
     'adminonly': bool,
     'custom_support_url': url_regexp_or_empty,
     'pgp': bool,
-    'viewer': bool
+    'viewer': bool,
+    'user_privacy_policy_text': str,
+    'user_privacy_policy_url': str
 }
 
 AdminNetworkDesc = {
@@ -434,7 +436,9 @@ NodeDesc = {
     'signup_tos2_title': str,
     'simplified_login': bool,
     'whistleblowing_button': str,
-    'whistleblowing_question': str
+    'whistleblowing_question': str,
+    'user_privacy_policy_text': str,
+    'user_privacy_policy_url': str
 }
 
 ReceiverIdentityAccessRequestDesc = {

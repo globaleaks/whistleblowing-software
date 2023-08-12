@@ -334,14 +334,14 @@ ConfigL10NFilters = {
         'custom_privacy_badge_text',
         'header_title_homepage',
         'contexts_clarification',
-        'privacy_policy_text',
-        'privacy_policy_url',
         'signup_tos1_title',
         'signup_tos1_text',
         'signup_tos1_checkbox_label',
         'signup_tos2_title',
         'signup_tos2_text',
-        'signup_tos2_checkbox_label'
+        'signup_tos2_checkbox_label',
+        'user_privacy_policy_text',
+        'user_privacy_policy_url',
     ],
 
     'notification': [

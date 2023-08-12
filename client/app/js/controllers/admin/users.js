@@ -1,4 +1,16 @@
-GL.controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
+GL.controller("AdminUserTabCtrl", ["$scope",
+  function($scope) {
+    $scope.tabs = [
+      {
+        title:"Users",
+        template:"views/admin/users/tab1.html"
+      },
+      {
+        title:"Options",
+        template:"views/admin/users/tab2.html"
+      }
+    ];
+}]).controller("AdminUsersCtrl", ["$scope", "AdminTenantResource",
   function($scope, AdminTenantResource) {
     $scope.showAddUser = false;
     $scope.toggleAddUser = function() {

@@ -148,6 +148,18 @@ def disable_2fa(session, tid, user_id):
 
     user.two_factor_secret = ''
 
+@transact
+def accepted_privacy_policy(session, tid, user_id):
+    """
+    Transaction for disabling the two factor authentication
+
+    :param session:
+    :param tid:
+    :param user_id:
+    """
+    user = db_get_user(session, tid, user_id)
+    user.accepted_privacy_policy = datetime_now()
+
 
 class UserOperationHandler(OperationHandler):
     check_roles = 'user'
@@ -182,11 +194,16 @@ class UserOperationHandler(OperationHandler):
         return disable_2fa(self.session.user_tid,
                            self.session.user_id)
 
+    def accepted_privacy_policy(self, req_args, *args, **kwargs):
+        return accepted_privacy_policy(self.session.user_tid,
+                           self.session.user_id)
+
     def operation_descriptors(self):
         return {
             'change_password': UserOperationHandler.change_password,
             'get_users_names': UserOperationHandler.get_users_names,
             'get_recovery_key': UserOperationHandler.get_recovery_key,
             'enable_2fa': UserOperationHandler.enable_2fa,
-            'disable_2fa': UserOperationHandler.disable_2fa
+            'disable_2fa': UserOperationHandler.disable_2fa,
+            'accepted_privacy_policy': UserOperationHandler.accepted_privacy_policy
         }
