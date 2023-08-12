@@ -203,7 +203,7 @@ var GL = angular.module("GL", [
       }).
       when("/admin/home", {
         templateUrl: "views/admin/home.html",
-        controller: "AdminCtrl",
+        controller: "HomeCtrl",
         header_title: "Home",
         sidebar: "views/admin/sidebar.html",
         resolve: {
