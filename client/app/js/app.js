@@ -164,6 +164,7 @@ var GL = angular.module("GL", [
       }).
       when("/recipient/home", {
         templateUrl: "views/recipient/home.html",
+        controller: "HomeCtrl",
         header_title: "Home",
         sidebar: "views/recipient/sidebar.html",
         resolve: {
@@ -312,6 +313,7 @@ var GL = angular.module("GL", [
       }).
       when("/custodian/home", {
         templateUrl: "views/custodian/home.html",
+        controller: "HomeCtrl",
         header_title: "Home",
         sidebar: "views/custodian/sidebar.html",
         resolve: {

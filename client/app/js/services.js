@@ -942,6 +942,37 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       }
     },
 
+    acceptPrivacyPolicyDialog: function(template, arg, scope) {
+      var modal = $uibModal.open({
+        templateUrl: "views/modals/accept_agreement.html",
+        controller: "ConfirmableModalCtrl",
+        resolve: {
+          arg: function () {
+            return arg;
+          },
+          confirmFun: function () {
+            return function () {
+              $http({
+                method: "PUT",
+                url: "api/user/operations",
+                data: {
+                 "operation": "accepted_privacy_policy",
+                 "args": {}
+               }
+             }).then(function() {
+               console.log($rootScope.resources.preferences.accepted_privacy_policy);
+               $rootScope.resources.preferences.accepted_privacy_policy = '';
+             });
+            }
+          },
+
+          cancelFun: null
+        }
+      });
+
+      return modal.result;
+    },
+
     openConfirmableModalDialog: function(template, arg, scope) {
       scope = !scope ? $rootScope : scope;
 
