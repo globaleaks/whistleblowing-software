@@ -75,6 +75,13 @@
       <thead>
         <tr>
           <th></th>
+          <th class="TipInfoID" data-ng-click="sortKey = 'progressive'; sortReverse = !sortReverse">
+            <i class="fa-solid fa-hashtag"></i>
+            <span data-ng-show="sortKey == 'progressive'">
+              <span data-ng-show="!sortReverse" class="fa-solid fa-caret-down"></span>
+              <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
+            </span>
+          </th>
           <th data-ng-click="sortKey = 'important'; sortReverse = !sortReverse">
             <i class="fa-solid fa-star" ></i>
             <span data-ng-show="sortKey == 'important'">
@@ -85,13 +92,6 @@
           <th data-ng-click="sortKey = 'reminder_date'; sortReverse = !sortReverse">
             <i class="fa-solid fa-bell" ></i>
             <span data-ng-show="sortKey == 'reminder_date'">
-              <span data-ng-show="!sortReverse" class="fa-solid fa-caret-down"></span>
-              <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
-            </span>
-          </th>
-          <th class="TipInfoID" data-ng-click="sortKey = 'progressive'; sortReverse = !sortReverse">
-            <i class="fa-solid fa-hashtag"></i>
-            <span data-ng-show="sortKey == 'progressive'">
               <span data-ng-show="!sortReverse" class="fa-solid fa-caret-down"></span>
               <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
             </span>
@@ -167,15 +167,9 @@
             </span>
             <span data-date-range-picker data-ng-model="expiryDateModel" data-on-date-change="onExpiryFilterChange"></span>
           </th>
-          <th class="TipInfoReadReceipt">
-            <i class="fa-solid fa-envelope-circle-check"></i>
-          </th>
-          <th class="TipInfoPreview">
-            <span>
-              <i class="fa-solid fa-list-alt"></i>
-              <span data-translate>Preview</span>
-            </span>
-          </th>
+          <th class="TipInfoReadReceipt"><i class="fa-solid fa-envelope-circle-check"></i></th>
+          <th class="TipInfoComments"><i class="fa-solid fa-comment"></i></th>
+          <th class="TipInfoFiles"><i class="fa-solid fa-file"></i></th>
           <th class="TipInfoScore" data-ng-if="public.node.enable_scoring_system">
             <span data-ng-click="$parent.sortKey = 'score'; sortReverse = !sortReverse">
               <i class="fa-solid fa-flash"></i>
@@ -215,10 +209,10 @@
               </button>
             </span>
           </td>
+          <td class="TipInfoID">{{tip.progressive}}</td>
           <td><i data-ng-if="tip.important" class="fa-solid fa-star text-warning"></i>
           <td><i data-ng-if="markReportStatus(tip.reminder_date)" class="fa-solid fa-bell text-warning"></i>
           </td>
-          <td class="TipInfoID">{{tip.progressive}}</td>
           <td class="TipInfoContext" data-ng-if="public.contexts.length > 1">{{tip.context_name}}</td>
           <td class="TipInfoLabel">{{tip.label}}</td>
           <td class="TipInfoStatus"><span>{{tip.submissionStatusStr}}</span></td>
@@ -237,18 +231,8 @@
             <i data-ng-if="tip.last_access < tip.update_date" class="fa-solid fa-times"
                data-uib-tooltip="{{'The whistleblower has not read the last update yet' | translate}}"></i>
           </td>
-          <td class="TipInfoPreview">
-            <div data-ng-if="tip.file_count || tip.comment_count || tip.message_count">
-              <span data-ng-if="tip.file_count" data-uib-tooltip="{{'Files' | translate}}"><i class="fa-solid fa-file text-secondary"></i>: {{tip.file_count}}</span>
-              <span data-ng-if="tip.comment_count" data-uib-tooltip="{{'Comments' | translate}}"><i class="fa-solid fa-comment text-secondary"></i>: {{tip.comment_count}}</span>
-              <span data-ng-if="tip.message_count" data-uib-tooltip="{{'Messages' | translate}}"><i class="fa-solid fa-envelope text-secondary"></i>: {{tip.message_count}}</span>
-            </div>
-            <div class="preview">
-              <div data-ng-repeat="step in tip.questionnaire" data-ng-init="fieldAnswers = tip.answers; preview=true">
-                <div data-ng-repeat="field in step.children" data-ng-include="'views/partials/tip_field.html'"></div>
-              </div>
-            </div>
-          </td>
+          <td class="TipInfoComments">{{tip.comment_count}}</td>
+          <td class="TipInfoFiles">{{tip.file_count}}</td>
           <td class="TipInfoScore" data-ng-if="public.node.enable_scoring_system" data-ng-switch="tip.score">
             <span data-ng-switch-when="0">-</span>
             <span class="badge badge-primary" data-ng-switch-when="1" data-translate>Low</span>
