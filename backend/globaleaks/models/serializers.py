@@ -176,6 +176,7 @@ def serialize_itip(session, internaltip, language):
 
     for itd in session.query(models.InternalTipData).filter(models.InternalTipData.internaltip_id == internaltip.id):
         ret['data'][itd.key] = itd.value
+        ret['data'][itd.key + "_date"] = itd.creation_date
 
     return ret
 
