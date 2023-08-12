@@ -170,6 +170,7 @@
           <th class="TipInfoReadReceipt"><i class="fa-solid fa-envelope-circle-check"></i></th>
           <th class="TipInfoComments"><i class="fa-solid fa-comment"></i></th>
           <th class="TipInfoFiles"><i class="fa-solid fa-file"></i></th>
+          <th class="TipInfoIdentity"><i class="fa-solid fa-user"></i></th>
           <th class="TipInfoScore" data-ng-if="public.node.enable_scoring_system">
             <span data-ng-click="$parent.sortKey = 'score'; sortReverse = !sortReverse">
               <i class="fa-solid fa-flash"></i>
@@ -233,6 +234,10 @@
           </td>
           <td class="TipInfoComments">{{tip.comment_count}}</td>
           <td class="TipInfoFiles">{{tip.file_count}}</td>
+          <th class="TipInfoIdentity">
+            <i data-ng-if="tip.subscription === 1" class="fa-solid fa-user"></i>
+            <i data-ng-if="tip.subscription === 2" class="fa-solid fa-user text-muted"></i>
+          </th>
           <td class="TipInfoScore" data-ng-if="public.node.enable_scoring_system" data-ng-switch="tip.score">
             <span data-ng-switch-when="0">-</span>
             <span class="badge badge-primary" data-ng-switch-when="1" data-translate>Low</span>

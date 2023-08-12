@@ -6,7 +6,7 @@ import json
 
 from datetime import datetime
 
-from sqlalchemy.sql.expression import distinct, func
+from sqlalchemy.sql.expression import distinct, func, and_
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
@@ -62,10 +62,15 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
 
     # Fetch rtip, internaltip and associated questionnaire schema
     rtips_ids = {}
-    for rtip, itip, answers, aqs in session.query(models.ReceiverTip,
-                                                  models.InternalTip,
-                                                  models.InternalTipAnswers,
-                                                  models.ArchivedSchema) \
+    for rtip, itip, answers, aqs, data in session.query(models.ReceiverTip,
+                                                        models.InternalTip,
+                                                        models.InternalTipAnswers,
+                                                        models.ArchivedSchema,
+                                                        models.InternalTipData) \
+                                           .join(models.InternalTipData,
+                                                 and_(models.InternalTipData.internaltip_id == models.InternalTip.id,
+                                                      models.InternalTipData.key == 'whistleblower_identity'),
+                                                 isouter=True) \
                                            .filter(models.ReceiverTip.receiver_id == receiver_id,
                                                    models.InternalTip.update_date >= updated_after,
                                                    models.InternalTip.update_date <= updated_before,
@@ -91,6 +96,13 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
         if aqs.hash not in ret['questionnaires']:
             ret['questionnaires'][aqs.hash] = serializers.serialize_archived_questionnaire_schema(aqs.schema, language)
 
+        if data is None:
+            subscription = 0
+        elif data.creation_date == itip.creation_date:
+            subscription = 1
+        else:
+            subscription = 2
+
         ret['rtips'].append({
             'id': rtip.id,
             'itip_id': itip.id,
@@ -112,7 +124,8 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
             'status': itip.status,
             'substatus': itip.substatus,
             'file_count': files_by_itip.get(itip.id, 0),
-            'comment_count': comments_by_itip.get(itip.id, 0)
+            'comment_count': comments_by_itip.get(itip.id, 0),
+            'subscription': subscription
         })
 
     return ret

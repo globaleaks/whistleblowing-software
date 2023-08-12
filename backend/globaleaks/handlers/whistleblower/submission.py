@@ -67,6 +67,8 @@ def db_set_internaltip_answers(session, itip_id, questionnaire_hash, answers):
     ita.answers = answers
     session.add(ita)
 
+    return ita
+
 
 def db_set_internaltip_data(session, itip_id, key, value):
     x = session.query(models.InternalTipData) \
@@ -81,6 +83,8 @@ def db_set_internaltip_data(session, itip_id, key, value):
     itd.key = key
     itd.value = value
     session.add(itd)
+
+    return itd
 
 
 def db_assign_submission_progressive(session, tid):
@@ -213,7 +217,8 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
 
         answers[whistleblower_identity.id] = ''
 
-        db_set_internaltip_data(session, itip.id, 'whistleblower_identity', wbi)
+        itd = db_set_internaltip_data(session, itip.id, 'whistleblower_identity', wbi)
+        itd.creation_date = itip.creation_date
 
     if crypto_is_available:
         answers = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(answers, cls=JSONEncoder).encode())).decode()
