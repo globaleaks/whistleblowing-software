@@ -476,14 +476,11 @@ msgstr "Select an option"
 msgid "Select your language"
 msgstr "Select your language"
 
-msgid "Grant this recipient ability to transfer reports to other users"
-msgstr "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
+msgstr "Give this user ability to mask information"
 
-msgid "Grant this user the privilege to mask information"
-msgstr "Grant this user the privilege to mask information"
-
-msgid "Grant this user the privilege to permanently redact masked information"
-msgstr "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
+msgstr "Give this user ability to permanently redact masked information"
 
 msgid "Public"
 msgstr "Public"
@@ -1170,8 +1167,11 @@ msgstr "Allow the recipient to delete reports"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Allow the recipient to postpone the report expiration date"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Give this recipient ability to grant user access to reports"
+msgid "Give this user ability to grant user access to reports"
+msgstr "Give this user ability to grant user access to reports"
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr "Give this user ability to transfer reports to other users"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Give the user administrative access to the following features:"
@@ -1212,11 +1212,11 @@ msgstr "Please select your account:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Now type your password, then click 'Log in':"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Text shown after the user has selected the option."
-
 msgid "Confirm"
 msgstr "Confirm"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Text shown after the user has selected the option."
 
 msgid "Assign score points"
 msgstr "Assign score points"
@@ -1282,6 +1282,9 @@ msgstr "By confirming, you will postpone the expiration date to:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "By confirming, you will set a reminder on date:"
+
+msgid "Transfer access"
+msgstr "Transfer access"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "This is a demo platform, please do not use it for real submissions."
@@ -1359,11 +1362,14 @@ msgstr "Have you already filed a report? Enter your receipt."
 msgid "The receipt is either invalid or the report has expired."
 msgstr "The receipt is either invalid or the report has expired."
 
-msgid "Select a file or drag it here."
-msgstr "Select a file or drag it here."
+msgid "Filename"
+msgstr "Filename"
 
 msgid "Size:"
 msgstr "Size:"
+
+msgid "Access date"
+msgstr "Access date"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Recipients have requested you to fill an additional questionnaire."
@@ -1376,9 +1382,6 @@ msgstr "From:"
 
 msgid "To:"
 msgstr "To:"
-
-msgid "Filename"
-msgstr "Filename"
 
 msgid "View"
 msgstr "View"
@@ -1444,8 +1447,8 @@ msgstr ""
 "to recover your access to the platform and to your data in case you forget "
 "your password."
 
-msgid "Access date"
-msgstr "Access date"
+msgid "Select a file or drag it here."
+msgstr "Select a file or drag it here."
 
 msgid "The provided recovery key is invalid."
 msgstr "The provided recovery key is invalid."
@@ -1474,6 +1477,9 @@ msgstr "Access to the whistleblower's identity has been requested to the custodi
 
 msgid "Date of the request"
 msgstr "Date of the request"
+
+msgid "Subscription date"
+msgstr "Subscription date"
 
 msgid "Show"
 msgstr "Show"
