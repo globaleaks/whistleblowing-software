@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label data-translate>Privacy Policy</label>
+      <div>
+        <textarea class="form-control" data-ng-model="resources.node.user_privacy_policy_text"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <label><span data-translate>Privacy Policy</span> <span>(URL)</span></label>
+      <input class="form-control" data-ng-model="resources.node.user_privacy_policy_url" type="text" />
+    </div>
+    <button class="btn btn-primary" data-ng-click="updateNode()">
+      <i class="fa-solid fa-check"></i>
+      <span data-translate>Save</span>
+    </button>
+  </div>
+</div>
