@@ -23,6 +23,23 @@ class ReceiverFile_v_65(Model):
     new = Column(Boolean, default=True, nullable=False)
 
 
+class SubmissionStatus_v_65(Model):
+    __tablename__ = 'submissionstatus'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    tid = Column(Integer, primary_key=True, default=1)
+    label = Column(JSON, default=dict, nullable=False)
+    order = Column(Integer, default=0, nullable=False)
+
+
+class SubmissionSubStatus_v_65(Model):
+    __tablename__ = 'submissionsubstatus'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    tid = Column(Integer, primary_key=True, default=1)
+    submissionstatus_id = Column(UnicodeText(36), nullable=False)
+    label = Column(JSON, default=dict, nullable=False)
+    order = Column(Integer, default=0, nullable=False)
+
+
 class WhistleblowerFile_v_65(Model):
     __tablename__ = 'receiverfile'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
