@@ -52,7 +52,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Ute Rüger <ute@rueger-arts.de>, 2015-2016,2023\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>, 2014-2023\n"
 "Language-Team: German (http://app.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -523,13 +523,10 @@ msgstr "Treffen Sie eine Auswahl "
 msgid "Select your language"
 msgstr "Wählen Sie Ihre Sprache aus"
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -539,7 +536,7 @@ msgid "Internal"
 msgstr "Intern"
 
 msgid "Personal"
-msgstr ""
+msgstr "Persönlich"
 
 msgid "Privacy Policy"
 msgstr "Datenschutzerklärung"
@@ -1205,8 +1202,11 @@ msgstr "Empfängern das Löschen von Hinweisen erlauben"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Empfängern das Hinausschieben des Berichtablaufdatums erlauben"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Geben Sie diesem Empfänger die Möglichkeit, Benutzern Zugriff auf Berichte zu gewähren"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Geben Sie dem Benutzer administrativen Zugriff auf die folgenden Funktionen:"
@@ -1247,11 +1247,11 @@ msgstr "Bitte wählen Sie Ihr Konto aus:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Tippe dein Passwort ein, klicke dann auf \"Log in\":"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Angezeigter Text nach dem der Benutzer die Option ausgewählt hat."
-
 msgid "Confirm"
 msgstr "Bestätigen"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Angezeigter Text nach dem der Benutzer die Option ausgewählt hat."
 
 msgid "Assign score points"
 msgstr "Vergeben Sie Punkte"
@@ -1313,6 +1313,9 @@ msgstr "Mit der Bestätigung werden Sie das Ablaufdatum hinausschieben bis:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "Mit Ihrer Bestätigung legen Sie eine Erinnerung für den ... fest"
+
+msgid "Transfer access"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Dies ist eine Demonstrationswebsite, bitte nutzen Sie diese nicht für tatsächliche Einreichungen."
@@ -1388,11 +1391,14 @@ msgstr "Haben Sie bereits eine Einreichung durchgeführt? Geben Sie Ihre Empfang
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Der Schlüsselcode ist entweder ungültig oder der Bericht ist abgelaufen."
 
-msgid "Select a file or drag it here."
-msgstr "Eine Datei auswählen oder Sie hierher ziehen."
+msgid "Filename"
+msgstr "Dateiname"
 
 msgid "Size:"
 msgstr "Größe:"
+
+msgid "Access date"
+msgstr "Zugriffsdatum"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Empfänger haben Sie gebeten, einen zusätzlichen Fragebogen auszufüllen."
@@ -1405,9 +1411,6 @@ msgstr "Von:"
 
 msgid "To:"
 msgstr "An:"
-
-msgid "Filename"
-msgstr "Dateiname"
 
 msgid "View"
 msgstr "Darstellung"
@@ -1465,8 +1468,8 @@ msgid ""
 "your password."
 msgstr "Wir empfehlen Ihnen, den Bereich „Einstellungen“ aufzurufen, um Ihren „Konto-Wiederherstellungsschlüssel“ abzurufen und ihn sicher zu speichern. Dieser Schlüssel wird benötigt, um Ihren Zugang zur Plattform und zu Ihren Daten wiederherzustellen, falls Sie Ihr Passwort vergessen."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Eine Datei auswählen oder Sie hierher ziehen."
 
 msgid "The provided recovery key is invalid."
 msgstr "Der angegebene Wiederherstellungsschlüssel ist ungültig."
@@ -1495,6 +1498,9 @@ msgstr "Zugriff auf die Identität des Hinweisgebers wurde beim Verwalter angefo
 
 msgid "Date of the request"
 msgstr "Datum der Anfrage"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Anzeigen"

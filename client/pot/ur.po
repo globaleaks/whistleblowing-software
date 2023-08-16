@@ -489,13 +489,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1171,8 +1168,11 @@ msgstr "وصول کنندگان کو اختیار دیجیے کہ تجاویز �
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "وصول کنندہ جمع کرانے کا وقت ختم ہونے کی تاریخ ملتوی کرنے کی اجازت دیں"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "اس وصول کنندہ کو صارف کو رپورٹس تک رسائی دینے کی اہلیت دیں۔ "
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "صارف کو درج ذیل خصوصیات تک انتظامی رسائی دیں: "
@@ -1213,11 +1213,11 @@ msgstr "براہ مہربانی اپنا اکاؤنٹ منتخب کیجیے:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "اب اپنا پاس ورڈ لکھیے اور لاگ اِن پر کلک کیجیے۔"
 
-msgid "Text shown after the user has selected the option."
-msgstr "صارف کے آپشن کو منتخب کرنے کے بعد متن ظاہر ہوتا ہے۔ "
-
 msgid "Confirm"
 msgstr "تصدیق کی توسیع"
+
+msgid "Text shown after the user has selected the option."
+msgstr "صارف کے آپشن کو منتخب کرنے کے بعد متن ظاہر ہوتا ہے۔ "
 
 msgid "Assign score points"
 msgstr "سکور پوائنٹس مقرر کریں"
@@ -1278,6 +1278,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "کی تصدیق کر کے، آپ کا وقت ختم ہونے کی تاریخ ملتوی ہو گی:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1354,11 +1357,14 @@ msgstr "کیا آپ  پہلے ہی گزارش جمع کرا چکے ہیں ؟ ا�
 msgid "The receipt is either invalid or the report has expired."
 msgstr "کلیدی کوڈ یا تو قابلِ قبول نہیں یا داخل کردہ گذارشات غیر مؤثر ہوچکی ہیں۔"
 
-msgid "Select a file or drag it here."
-msgstr "ایک فائل منتخب کریں یا اسے یہاں گھسیٹیں۔ "
+msgid "Filename"
+msgstr "فائل کا نام"
 
 msgid "Size:"
 msgstr "Size:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "وصول کنندگان نے آپ سے ایک اضافی سوالنامہ بھرنے کی درخواست کی ہے۔ "
@@ -1371,9 +1377,6 @@ msgstr "From:"
 
 msgid "To:"
 msgstr "To:"
-
-msgid "Filename"
-msgstr "فائل کا نام"
 
 msgid "View"
 msgstr "دیکھیں"
@@ -1431,8 +1434,8 @@ msgid ""
 "your password."
 msgstr "ہم تجویز کرتے ہیں کہ آپ اپنی \"اکاؤنٹ ریکوری کلید\" کو بازیافت کرنے اور اسے محفوظ طریقے سے ذخیرہ کرنے کے لیے \"ترجیحات\" سیکشن تک رسائی حاصل کریں۔ اگر آپ اپنا پاس ورڈ بھول جاتے ہیں تو پلیٹ فارم اور آپ کے ڈیٹا تک آپ کی رسائی کو بحال کرنے کے لیے یہ کلید ضروری ہوگی۔ "
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "ایک فائل منتخب کریں یا اسے یہاں گھسیٹیں۔ "
 
 msgid "The provided recovery key is invalid."
 msgstr "فراہم کردہ ریکوری کلید غلط ہے۔ "
@@ -1461,6 +1464,9 @@ msgstr "مخبر کی شناخت تک رسائی نگرانی کرنے کی در
 
 msgid "Date of the request"
 msgstr "درخواست کی تاریخ"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "دکھائیے"

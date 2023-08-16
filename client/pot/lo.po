@@ -477,13 +477,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1159,7 +1156,10 @@ msgstr "ອະນຸຍາດໃຫ້ຜູ້ຮັບລຶບລາຍງາ
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "ອະນຸຍາດໃຫ້ຜູ້ຮັບເລື່ອນວັນທີໝົດອາຍຸໃນການລາຍງານ"
 
-msgid "Give this recipient ability to grant user access to reports"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
 msgid "Give the user administrative access to the following features:"
@@ -1201,11 +1201,11 @@ msgstr "ກະລຸນາເລືອກບັນຊີຂອງທ່ານ:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "ຕອນນີ້ໃຫ້ພິມລະຫັດຜ່ານຂອງທ່ານ, ຈາກນັ້ນ ຄລິກ 'ເຂົ້າສູ່ລະບົບ':"
 
-msgid "Text shown after the user has selected the option."
-msgstr "ຂໍ້ຄວາມທີ່ຈະສະແດງໃຫ້ເຫັນຫຼັງຈາກຜູ້ໃຊ້ໄດ້ເລືອກຕົວເລືອກແລ້ວ."
-
 msgid "Confirm"
 msgstr "ຢືນຢັນ"
+
+msgid "Text shown after the user has selected the option."
+msgstr "ຂໍ້ຄວາມທີ່ຈະສະແດງໃຫ້ເຫັນຫຼັງຈາກຜູ້ໃຊ້ໄດ້ເລືອກຕົວເລືອກແລ້ວ."
 
 msgid "Assign score points"
 msgstr "ກຳນົດຈຸດໃຫ້ຄະແນນ"
@@ -1266,6 +1266,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "ການຢືນຢັນ, ໝາຍຄວາມວ່າທ່ານຈະເລື່ອນວັນທີໝົດອາຍຸໄປຍັງ:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1342,11 +1345,14 @@ msgstr "ທ່ານໄດ້ຍື່ນລາຍງານແລ້ວບໍ? �
 msgid "The receipt is either invalid or the report has expired."
 msgstr "ໃບບິນແມ່ນໃຊ້ບໍ່ໄດ້ ຫຼື ການລາຍງານໄດ້ໝົດອາຍຸແລ້ວ."
 
-msgid "Select a file or drag it here."
-msgstr "ເລືອກໄຟລ໌ ຫຼື ລາກມັນໃສ່ບ່ອນນີ້."
+msgid "Filename"
+msgstr "ຊື່ໄຟລ໌"
 
 msgid "Size:"
 msgstr "ຂະໜາດ:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "ຜູ້ຮັບໄດ້ຮ້ອງຂໍໃຫ້ທ່ານຕື່ມແບບສອບຖາມເພີ່ມຕື່ມ."
@@ -1359,9 +1365,6 @@ msgstr "ຈາກ:"
 
 msgid "To:"
 msgstr "ເຖິງ:"
-
-msgid "Filename"
-msgstr "ຊື່ໄຟລ໌"
 
 msgid "View"
 msgstr "ສະແດງເບິ່ງ"
@@ -1419,8 +1422,8 @@ msgid ""
 "your password."
 msgstr "ພວກເຮົາຂໍແນະນຳໃຫ້ທ່ານເຂົ້າໄປທີ່ສ່ວນ “ການກຳນົດຄ່າທີ່ມັກ” ເພື່ອກູ້ເອົາ “ລະຫັດກູ້ຄືນບັນຊີຂອງທ່ານ” ແລະ ເກັບມ້ຽນໄວ້ໃຫ້ມີຄວາມປອດໄພ. ລະຫັດນີ້ຈະມີຄວາມຈຳເປັນໃນການກູ້ຄືນການເຂົ້າເຖິງລະບົບ ແລະ ເຂົ້າເຖິງຂໍ້ມູນຂອງທ່ານໃນກໍລະນີທີ່ທ່ານລືມລະຫັດຜ່ານຂອງທ່ານ."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "ເລືອກໄຟລ໌ ຫຼື ລາກມັນໃສ່ບ່ອນນີ້."
 
 msgid "The provided recovery key is invalid."
 msgstr "ລະຫັດກູ້ຄືນທີ່ໃຫ້ມາແມ່ນໃຊ້ບໍ່ໄດ້."
@@ -1449,6 +1452,9 @@ msgstr "ໄດ້ມີການຮ້ອງຂໍການເຂົ້າເຖ
 
 msgid "Date of the request"
 msgstr "ວັນທີຮ້ອງຂໍ"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "ສະແດງ"

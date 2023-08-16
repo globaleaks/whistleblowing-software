@@ -498,13 +498,10 @@ msgstr "选择一个选项"
 msgid "Select your language"
 msgstr "选择您的语言"
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1180,7 +1177,10 @@ msgstr "允许接收人删除报告"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "允许接收人推迟报告过期日期"
 
-msgid "Give this recipient ability to grant user access to reports"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
 msgid "Give the user administrative access to the following features:"
@@ -1222,11 +1222,11 @@ msgstr "请选择您的帐户："
 msgid "Now type your password, then click 'Log in':"
 msgstr "现在输入密码，然后点击“登录”："
 
-msgid "Text shown after the user has selected the option."
-msgstr "用户选择该选项之后显示的文本。"
-
 msgid "Confirm"
 msgstr "确认"
+
+msgid "Text shown after the user has selected the option."
+msgstr "用户选择该选项之后显示的文本。"
 
 msgid "Assign score points"
 msgstr "分配分数"
@@ -1287,6 +1287,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "确认之后，过期日期将推迟至："
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1363,11 +1366,14 @@ msgstr "已提交报告？请输入回执。"
 msgid "The receipt is either invalid or the report has expired."
 msgstr "该回执无效或是报告已过期。"
 
-msgid "Select a file or drag it here."
-msgstr "选择文件或将其拖放至此。"
+msgid "Filename"
+msgstr "文件名"
 
 msgid "Size:"
 msgstr "大小："
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "接收人已请求您填写附加问卷。"
@@ -1380,9 +1386,6 @@ msgstr "来自："
 
 msgid "To:"
 msgstr "至："
-
-msgid "Filename"
-msgstr "文件名"
 
 msgid "View"
 msgstr "查看"
@@ -1440,8 +1443,8 @@ msgid ""
 "your password."
 msgstr "我们建议，访问“首选项”获取“帐户恢复密钥”并将其妥善保存。如果忘记密码，为了访问该平台和您的数据，该密钥必不可少。"
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "选择文件或将其拖放至此。"
 
 msgid "The provided recovery key is invalid."
 msgstr "提供的恢复密钥无效。"
@@ -1470,6 +1473,9 @@ msgstr "访问揭发者身份的请求已发送至保管人。"
 
 msgid "Date of the request"
 msgstr "请求日期"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "显示"

@@ -478,13 +478,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1160,8 +1157,11 @@ msgstr "Ҡабул итеүсегә отчеттарҙы юйыу рөхсәте
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Ҡабул итеүсегә отчеттарҙың мөҙҙәт ғәмәле сығыуын кисектереүгә рөхсәт бирергә"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Был ҡабул итеүсегә ҡулланыусылар отчетына инеү мөмкинлегенә рөхсәт  бирегеҙ"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Ҡулланыусыға түбәндәге файлдарға инеү мөмкинлеге бирегеҙ"
@@ -1202,11 +1202,11 @@ msgstr "Иҫәп яҙмағыҙҙы күрһәтегеҙ"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Хәҙер паролегеҙҙе яҙығыҙ, артабан \"Инеү\"гә баҫығыҙ"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Ҡулланыусының опция һайлағандан һуң күрһәтеләсәк тексы"
-
 msgid "Confirm"
 msgstr "Раҫларға"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Ҡулланыусының опция һайлағандан һуң күрһәтеләсәк тексы"
 
 msgid "Assign score points"
 msgstr "Баһаларға"
@@ -1267,6 +1267,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Раҫланһа, мәғлүмәттәрҙең мөҙҙәте сығыуын түбәндәге ваҡытҡа арттыраһығыҙ:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1343,11 +1346,14 @@ msgstr "Һеҙ отчет ебәрҙегеҙме? Үҙегеҙҙең квита�
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Квитанция дөрөҫ түгел йәки отчеттың ғәмәл мөҙҙәте үткән"
 
-msgid "Select a file or drag it here."
-msgstr "Файл һайлағыҙ йәки уны бында күсерегеҙ "
+msgid "Filename"
+msgstr "Файл исеме"
 
 msgid "Size:"
 msgstr "Дәүмәл:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Ҡабул итеүселәр һеҙҙән өҫтәлмә һораулама тултырыуҙы үтенделәр"
@@ -1360,9 +1366,6 @@ msgstr "Ошонан"
 
 msgid "To:"
 msgstr "Быға"
-
-msgid "Filename"
-msgstr "Файл исеме"
 
 msgid "View"
 msgstr ""
@@ -1420,8 +1423,8 @@ msgid ""
 "your password."
 msgstr "\"Иҫәп яҙмаһын тергеҙеү өсөн асҡыс\" алыу һәм уны хәүефһеҙ урында һаҡлау өсөн, \"Көйләүҙәр\" бүлексәһенә инергә тәҡдим итәбеҙ. Был асҡыс, паролегеҙҙе онотҡан осраҡта, платформаға һәм мәғлүмәтегеҙгә рөхсәтте тергеҙеү өсөн кәрәк буласаҡ"
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Файл һайлағыҙ йәки уны бында күсерегеҙ "
 
 msgid "The provided recovery key is invalid."
 msgstr "Күрһәтелгән тергеҙеү асҡысы дөрөҫ түгел"
@@ -1450,6 +1453,9 @@ msgstr "Һаҡлаусыға информатор шәхситенә рөхсә�
 
 msgid "Date of the request"
 msgstr "Үтенес датаһы"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Күрһәтергә"

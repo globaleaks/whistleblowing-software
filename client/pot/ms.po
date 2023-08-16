@@ -477,13 +477,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1159,7 +1156,10 @@ msgstr "Benarkan penerima untuk memadam laporan"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Benarkan penerima untuk menunda tarikh tamat tempoh laporan"
 
-msgid "Give this recipient ability to grant user access to reports"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
 msgid "Give the user administrative access to the following features:"
@@ -1201,11 +1201,11 @@ msgstr "Sila pilih akaun anda:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Sekarang taip kata laluan anda, kemudian klik 'Log masuk':"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Teks ditunjukkan selepas pengguna telah memilih pilihan."
-
 msgid "Confirm"
 msgstr "Sahkan"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Teks ditunjukkan selepas pengguna telah memilih pilihan."
 
 msgid "Assign score points"
 msgstr "Tetapkan mata markah"
@@ -1266,6 +1266,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Dengan mengesahkan, anda akan menunda tarikh tamat tempoh kepada:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1342,11 +1345,14 @@ msgstr "Sudahkah anda memfailkan laporan? Masukkan resit anda."
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Resit tidak sah atau laporan telah tamat tempoh."
 
-msgid "Select a file or drag it here."
-msgstr "Pilih fail atau seret di sini."
+msgid "Filename"
+msgstr "Nama fail"
 
 msgid "Size:"
 msgstr "Saiz:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Penerima telah meminta anda mengisi soal selidik tambahan."
@@ -1359,9 +1365,6 @@ msgstr "Daripada:"
 
 msgid "To:"
 msgstr "Kepada:"
-
-msgid "Filename"
-msgstr "Nama fail"
 
 msgid "View"
 msgstr "Lihat"
@@ -1419,8 +1422,8 @@ msgid ""
 "your password."
 msgstr "Kami mengesyorkan anda mengakses bahagian “Keutamaan” untuk mendapatkan “Kunci Pemulihan Akaun” dan menyimpannya dengan selamat. Kunci ini diperlukan untuk memulihkan akses anda kepada platform dan kepada data anda sekiranya anda lupa kata laluan anda."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Pilih fail atau seret di sini."
 
 msgid "The provided recovery key is invalid."
 msgstr "Kunci pemulihan yang diberikan tidak sah."
@@ -1449,6 +1452,9 @@ msgstr "Akses kepada identiti pemberi maklumat telah diminta kepada penjaga."
 
 msgid "Date of the request"
 msgstr "Tarikh permintaan"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Tunjukkan"

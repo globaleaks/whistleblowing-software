@@ -477,13 +477,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1159,8 +1156,11 @@ msgstr "Алыджыгъа эсабатларны ёкъ этмеге изин �
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Алыджыгъа эсабат битме муддетини кечиктирмеге изин бермек"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Бу алыджыгъа къулланыджылар эсабатларына иришим имкяныны бермек"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Къулланыджыгъа невбеттеки функцияларгъа административ иришимни беринъиз:"
@@ -1201,11 +1201,11 @@ msgstr "Эсабынъызны бельгиленъиз:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Энди паролинъизни язып, «Кириш» нокътасына басынъыз:"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Къулланыджы опцияны сайлагъан сонъ косьтерильген метин."
-
 msgid "Confirm"
 msgstr "Тасдикъламакъ"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Къулланыджы опцияны сайлагъан сонъ косьтерильген метин."
 
 msgid "Assign score points"
 msgstr "Къыймет кесмек"
@@ -1266,6 +1266,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Тасдикъ олунса, сиз сонъ къулланма тарихини бу шекильде узатырсынъыз:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1342,11 +1345,14 @@ msgstr "Сиз энди эсабатны тапшырдынъызмы? Озь к
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Квитанция керчек дегиль я да эсабат къулланма тарихи битти."
 
-msgid "Select a file or drag it here."
-msgstr "Файлны сайланъыз я да оны мында чекинъиз."
+msgid "Filename"
+msgstr "Файл ады"
 
 msgid "Size:"
 msgstr "Ольчю:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Алыджылар сизни къошма суаллер джедвелини толдурмагъа риджа эттилер."
@@ -1359,9 +1365,6 @@ msgstr "Кимден:"
 
 msgid "To:"
 msgstr "Кимге:"
-
-msgid "Filename"
-msgstr "Файл ады"
 
 msgid "View"
 msgstr ""
@@ -1419,8 +1422,8 @@ msgid ""
 "your password."
 msgstr "«Сазламалар» болюгине кирип, «эсапны гъайрыдан къурма анахтары»ны алынъыз ве оны телюкесиз ерде сакъланъыз. Бу анахтар платформагъа иришимни гъайрыдан къурмакъ ве парольни унутсанъыз бильгилеринъизге иришмек керекли олур."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Файлны сайланъыз я да оны мында чекинъиз."
 
 msgid "The provided recovery key is invalid."
 msgstr "Теклиф этильген гъайрыдан тикленме анахтары догъру дегиль."
@@ -1449,6 +1452,9 @@ msgstr "Къоруйыджыгъа малюмат бериджининъ шах�
 
 msgid "Date of the request"
 msgstr "Соратма тарихи"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Косьтермек"

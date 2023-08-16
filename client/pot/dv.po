@@ -482,13 +482,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1164,8 +1161,11 @@ msgstr "ރިސިޕިއަންޓަށް ރިޕޯޓު ފުހެލުމުގެ ހުއް�
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "ރިސިޕިއަންޓަށް ރިޕޯޓްގެ މުއްދަތުހަމަވާ ތާރީޚް ފަސްކުރުމަށް ހުއްދަ ދިނުން"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "އެހެން މީހުންނަށް ރިޕޯޓުތަކަށް އެކްސެސް ދިނުމުގެ ބާރު  މި ރިސިޕިއަންޓަށް  ދިނުން"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "ތިރީގައިވާ ފީޗާސްތަކަށް ޔޫޒަރަށް އެޑްމިނިސްޓްރޭޓިވް އެކްސެސް ދިނުން:"
@@ -1206,11 +1206,11 @@ msgstr "ތިޔަ ފަރާތުގެ އެކައުންޓް އިޚްތިޔާރުކު�
 msgid "Now type your password, then click 'Log in':"
 msgstr "ޕާސްވޯޑް ޖެހުމަށްފަހު 'ލޮގް އިން' އަށް ފިއްތާލާ: "
 
-msgid "Text shown after the user has selected the option."
-msgstr "ޔޫސަރ ވަކި ކަމެއް އިޚްތިޔާރު ކުރެއްވުމުން ފެނިވަޑައިގަންނަވާ މެސެޖު"
-
 msgid "Confirm"
 msgstr "ކޮންފަރމް ކުރެއްވުމަށް"
+
+msgid "Text shown after the user has selected the option."
+msgstr "ޔޫސަރ ވަކި ކަމެއް އިޚްތިޔާރު ކުރެއްވުމުން ފެނިވަޑައިގަންނަވާ މެސެޖު"
 
 msgid "Assign score points"
 msgstr "ސްކޯ ޕޮއިންޓް އެސައިން ކުރެއްވުމަށް"
@@ -1271,6 +1271,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "މުއްދަތު ހަމަވާ ތާރީޙް:  އަށް ލަސްކުރަން ބޭނުންފުޅުކަން ޔަގީންކުރެއްވުމަށް"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1347,11 +1350,14 @@ msgstr "ރިޕޯޓް ފައިލް ކޮށްފައިވާނަމަ ރަސީދު ނަ
 msgid "The receipt is either invalid or the report has expired."
 msgstr "ޖެއްސެވި ރަސީދު  ރަނގަޅެއް ނޫން ނުވަތަ ރިޕޯޓުވަނީ އެކްސްޕަޔަރ ވެފައި"
 
-msgid "Select a file or drag it here."
-msgstr "ފައިލް އެއް ހިޔާރުކުރައްވާ ނުވަތަ މިތަނަށް ޑްރޭގްކުރޭ"
+msgid "Filename"
+msgstr "ފައިލްގެ ނަން"
 
 msgid "Size:"
 msgstr "ސައިޒު:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr " އިތުރު ސަުވާލު ކަރުދާހަކަށް ޖަވާބުދިނުމަށް ރިސިޕިއަންޓުން އެދިއްޖެ. "
@@ -1364,9 +1370,6 @@ msgstr "ފޮނުވި ފަރާތް:"
 
 msgid "To:"
 msgstr "ލިބިލައްވާ ފަރާތް: "
-
-msgid "Filename"
-msgstr "ފައިލްގެ ނަން"
 
 msgid "View"
 msgstr ""
@@ -1424,8 +1427,8 @@ msgid ""
 "your password."
 msgstr "\"އެކައުންޓް ރިކަވަރީ ކީ\" ހޯދައި ރައްކާތެރިކަމާއެކު ރައްކާކުރުމަށްޓަކައި \"ޕްރިފަރެންސް\" ބަޔަށް ވަނުމަށް އަޅުގަނޑުމެން ލަފާދެމެވެ.  ޕާސްވޯޑް ހަނދާން ނެތިއްޖެ ހާލަތެއްގައި ޕްލެޓްފޯމަށް ވަދެވޭނެ ގޮތާއި ޑޭޓާއަށް ވަދެވޭނެ ގޮތް އަނބުރާ ހޯދުމަށް މި ކީ ބޭނުންވާނެއެވެ"
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "ފައިލް އެއް ހިޔާރުކުރައްވާ ނުވަތަ މިތަނަށް ޑްރޭގްކުރޭ"
 
 msgid "The provided recovery key is invalid."
 msgstr "ދީފައިވާ ރިކަވަރީ ކީ  ރަނގަޅެއްނޫން"
@@ -1454,6 +1457,9 @@ msgstr "ވިސިލްބްލޯވަރގެ އައިޑެންޓިޓީ ހާމަކުރު
 
 msgid "Date of the request"
 msgstr "ހިދުމަތަށް އެދިލެއްވި ތާރީޚް"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "ދައްކާ"

@@ -482,13 +482,10 @@ msgstr ""
 msgid "Select your language"
 msgstr "Izvēlieties savu valoda"
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1164,8 +1161,11 @@ msgstr "Atļaut adresātam dzēst ziņojumus"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Atļaut adresātam atlikt ziņojuma termiņu"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Dot šim adresātam iespēju piešķirt lietotājam piekļuvi pārskatiem"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Piešķirt lietotājam administratīvo piekļuvi šādām funkcijām:"
@@ -1206,11 +1206,11 @@ msgstr "Lūdzu, izvēlieties savu kontu:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Tagad ierakstiet savu paroli un pēc tam noklikšķiniet uz \"Ienākt\":"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Teksts tiek parādīts pēc tam, kad lietotājs ir izvēlējies iespēju."
-
 msgid "Confirm"
 msgstr "Apstiprināt"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Teksts tiek parādīts pēc tam, kad lietotājs ir izvēlējies iespēju."
 
 msgid "Assign score points"
 msgstr "Piešķiriet punktus"
@@ -1271,6 +1271,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Apstiprinot, jūs pārcelsiet derīguma termiņu uz:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1347,11 +1350,14 @@ msgstr "Vai esat jau iesniedzis ziņojumu? Ievadiet ziņojuma numuru."
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Ziņojuma numurs ir nederīgs, vai arī ziņojumam ir beidzies derīguma termiņš."
 
-msgid "Select a file or drag it here."
-msgstr "Atlasiet failu vai ievelciet to šeit."
+msgid "Filename"
+msgstr "Faila nosaukums"
 
 msgid "Size:"
 msgstr "Izmērs:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Saņēmēji ir lūguši jūs aizpildīt papildu aptauju."
@@ -1364,9 +1370,6 @@ msgstr "No:"
 
 msgid "To:"
 msgstr "Kam:"
-
-msgid "Filename"
-msgstr "Faila nosaukums"
 
 msgid "View"
 msgstr "Skatīt"
@@ -1424,8 +1427,8 @@ msgid ""
 "your password."
 msgstr "Mēs iesakām piekļūt sadaļai “Iestatījumi”, lai iegūtu savu “Konta atkopšanas atslēgu” un to droši uzglabātu. Šī atslēga būs nepieciešama, lai atgūtu piekļuvi platformai un datiem, ja aizmirstat paroli."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Atlasiet failu vai ievelciet to šeit."
 
 msgid "The provided recovery key is invalid."
 msgstr "Norādītā atkopšanas atslēga nav derīga."
@@ -1454,6 +1457,9 @@ msgstr "Piekļuve trauksmes cēlēja identitātei lūgta glabātājam."
 
 msgid "Date of the request"
 msgstr "Pieprasījuma datums"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Parādīt"

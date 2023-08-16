@@ -502,13 +502,10 @@ msgstr "Pilih sebuah opsi"
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1184,8 +1181,11 @@ msgstr "Izinkan penerima untuk menghapus laporan"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Izinkan penerima untuk menunda tanggal kedaluwarsa laporan"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Izinkan penerima ini untuk memberikan akses pengguna ke laporan"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Izinkan akses administratif bagi pengguna untuk fitur berikut:"
@@ -1226,11 +1226,11 @@ msgstr "Tolong pilih akun Anda"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Sekarang ketik kata sandi Anda, lalu klik 'Masuk'"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Teks yang ditampilkan pada pengguna setelah opsi dipilih."
-
 msgid "Confirm"
 msgstr "Konfirmasi"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Teks yang ditampilkan pada pengguna setelah opsi dipilih."
 
 msgid "Assign score points"
 msgstr "Menentukan poin skor "
@@ -1291,6 +1291,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Dengan mengkonfirmasi, anda akan menunda tanggal kedaluwarsa menjadi: "
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1367,11 +1370,14 @@ msgstr "Apakah Anda telah mengirimkan laporan? Masukkan tanda terima Anda."
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Tanda terima tidak valid atau laporan telah kedaluwarsa."
 
-msgid "Select a file or drag it here."
-msgstr "Pilih berkas atau seret ke sini."
+msgid "Filename"
+msgstr "Nama file"
 
 msgid "Size:"
 msgstr "Ukuran:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Penerima meminta Anda untuk mengisi kuesioner tambahan."
@@ -1384,9 +1390,6 @@ msgstr "Dari:"
 
 msgid "To:"
 msgstr "Ke:"
-
-msgid "Filename"
-msgstr "Nama file"
 
 msgid "View"
 msgstr "Lihat"
@@ -1444,8 +1447,8 @@ msgid ""
 "your password."
 msgstr "Kami merekomendasikan Anda mengakses \"Preferensi\" untuk menerima \"Kunci Pemulihan Akun\" dan simpan dengan aman. Kunci ini dibutuhkan untuk memulihkan akses Anda ke platform dan data Anda jika Anda lupa kata sandi."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Pilih berkas atau seret ke sini."
 
 msgid "The provided recovery key is invalid."
 msgstr "Kunci pemulihan yang diberikan tidak valid."
@@ -1474,6 +1477,9 @@ msgstr "Akses untuk identitas informan publik telah diminta oleh pihak penjaga"
 
 msgid "Date of the request"
 msgstr "Tanggal permintaan"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Tampilkan"

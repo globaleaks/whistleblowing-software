@@ -487,13 +487,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1169,8 +1166,11 @@ msgstr "Разрешаване на получателите да изтрива
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Разрешаване на получателя да отлага датата на изтичане на сигнала"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Даване на възможност на този получател да предоставя достъп на потребители до сигнали"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Осигуряване на потребителя на административен достъп до следните функции:"
@@ -1211,11 +1211,11 @@ msgstr "Моля, изберете акаунта си:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Сега въведете паролата си и кликнете върху „Влизане“:"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Текст, който се показва, след като потребителят избере опция."
-
 msgid "Confirm"
 msgstr "Потвърждаване"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Текст, който се показва, след като потребителят избере опция."
 
 msgid "Assign score points"
 msgstr "Задаване на точки за оценката"
@@ -1276,6 +1276,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Като потвърдите, отлагате датата на изтичане до:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1352,11 +1355,14 @@ msgstr "Вече сте подали сигнал? Въведете разпис
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Тази разписка (код) е невалидна или подаденият сигнал е изтекъл."
 
-msgid "Select a file or drag it here."
-msgstr "Изберете файл или го плъзнете тук"
+msgid "Filename"
+msgstr "Име на файла"
 
 msgid "Size:"
 msgstr "Размер:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Получателите Ви са поискали попълните допълнителен въпросник."
@@ -1369,9 +1375,6 @@ msgstr "От:"
 
 msgid "To:"
 msgstr "До:"
-
-msgid "Filename"
-msgstr "Име на файла"
 
 msgid "View"
 msgstr "Изглед"
@@ -1429,8 +1432,8 @@ msgid ""
 "your password."
 msgstr "Препоръчваме Ви да осъществите достъп до раздела „Предпочитания“, за да извлечете „Ключ за възстановяване на акаунта“ и да го съхраните на сигурно място. Този ключ Ви е необходим за възстановяване на достъпа до платформата и до данните Ви, в случай че забравите паролата си."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Изберете файл или го плъзнете тук"
 
 msgid "The provided recovery key is invalid."
 msgstr "Въведеният код за възстановяване е невалиден"
@@ -1459,6 +1462,9 @@ msgstr "До длъжностното лице по защита на данни
 
 msgid "Date of the request"
 msgstr "Дата на заявката"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Показване"

@@ -481,13 +481,10 @@ msgstr "ជ្រើសរើសជម្រើសមួយ"
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1163,7 +1160,10 @@ msgstr "អនុញ្ញាតអ្នកទទួលលុបរបាយក
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "អនុញ្ញាតអ្នកទទួលពន្យាពេលកាលបរិច្ឆេទផុតកំណត់របាយការណ៍"
 
-msgid "Give this recipient ability to grant user access to reports"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
 msgid "Give the user administrative access to the following features:"
@@ -1205,11 +1205,11 @@ msgstr "សូមជ្រើសរើសគណនីរបស់អ្នក៖
 msgid "Now type your password, then click 'Log in':"
 msgstr "ឥឡូវ វាយបញ្ចូលពាក្យសម្ងាត់របស់អ្នក បន្ទាប់មកចុច 'ចូលប្រើប្រាស់'៖"
 
-msgid "Text shown after the user has selected the option."
-msgstr "អក្សរបង្ហាញ បន្ទាប់ពីអ្នកប្រើប្រាស់បានជ្រើសរើសរួច។"
-
 msgid "Confirm"
 msgstr "យល់ព្រម"
+
+msgid "Text shown after the user has selected the option."
+msgstr "អក្សរបង្ហាញ បន្ទាប់ពីអ្នកប្រើប្រាស់បានជ្រើសរើសរួច។"
 
 msgid "Assign score points"
 msgstr "កំណត់ពិន្ទុ"
@@ -1270,6 +1270,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "ដោយការបញ្ជាក់នេះ អ្នកនឹងពន្យាកាលបរិច្ឆេទផុតកំណត់ទៅ៖"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1346,11 +1349,14 @@ msgstr "តើអ្នកបានបំពេញរបាយការណ៍ហ
 msgid "The receipt is either invalid or the report has expired."
 msgstr "បង្កាន់ដៃមិនត្រឹមត្រូវ ឬរបាយការណ៍ផុតកំណត់។"
 
-msgid "Select a file or drag it here."
-msgstr "ជ្រើសឯកសារ ឬអូសវាចូលទីនេះ។"
+msgid "Filename"
+msgstr "ឈ្មោះ​ឯកសារ"
 
 msgid "Size:"
 msgstr "ទំហំ៖"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "អ្នកទទួលបានស្នើសុំអ្នកឲ្យបំពេញកម្រងសំណួរបន្ថែម។"
@@ -1363,9 +1369,6 @@ msgstr "ពី៖"
 
 msgid "To:"
 msgstr "ទៅ៖"
-
-msgid "Filename"
-msgstr "ឈ្មោះ​ឯកសារ"
 
 msgid "View"
 msgstr "មើល"
@@ -1423,8 +1426,8 @@ msgid ""
 "your password."
 msgstr "យើងខ្ញុំសូមណែនាំ អ្នកចូលទៅកាន់ផ្នែក “ចំណង់ចំណូលចិត្ត” ដើម្បីទាញយក “លេខកូដសង្គ្រោះគណនី” របស់អ្នក និងរក្សាទុកវាឲ្យមានសុវត្ថិភាព។ លេខកូដនេះ នឹងចាំបាច់ដើម្បីស្តារការចូលប្រើប្រាស់ និងទិន្នន័យរបស់អ្នក ក្នុងករណីអ្នកភ្លេចពាក្យសម្ងាត់។"
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "ជ្រើសឯកសារ ឬអូសវាចូលទីនេះ។"
 
 msgid "The provided recovery key is invalid."
 msgstr "លេខកូដសង្គ្រោះដែលបានផ្តល់មិនត្រឹមត្រូវ។"
@@ -1453,6 +1456,9 @@ msgstr "ការចូលប្រើប្រាស់អត្តសញ្ញ
 
 msgid "Date of the request"
 msgstr "កាលបរិច្ឆេទនៃការស្នើសុំ"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "បង្ហាញ"

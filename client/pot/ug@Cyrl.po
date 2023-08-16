@@ -477,13 +477,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1159,8 +1156,11 @@ msgstr "Тапшуривалғучиларниң доклатларни өчүр
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Тапшуривалғучиниң доклат сүрүкини кәйнигә сүришигә рухсәт қил"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Бу тапшуривалғучиға ишләткүчиләргә доклатни зийарәт қилиш һоқуқи бериш иқтидари бәр"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Төвәндики иқтидарлар үчүн ишләткүчиләргә башқурғучи зийарәт һоқуқи бәр:"
@@ -1201,11 +1201,11 @@ msgstr "Һесабиңизни таллаң:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Һазир йеңи паролиңизни киргүзүң, андин «тизимға кир»ни чекиң:"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Ишләткүчи талланмини таллиғандин кейин текист көрситилиду."
-
 msgid "Confirm"
 msgstr "Җәзимлә"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Ишләткүчи талланмини таллиғандин кейин текист көрситилиду."
 
 msgid "Assign score points"
 msgstr "Номур нуқтилирини бәлгиләң"
@@ -1266,6 +1266,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Җәзимлисиңиз, сүрүк чесласини бу күнгә кәйнигә сүргән болисиз:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1342,11 +1345,14 @@ msgstr "Аллибурун бир доклат тошқузғанмитиңиз?
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Талониңз инавәтсиз йаки доклатиңизниң сүрүки тошүп кәткән."
 
-msgid "Select a file or drag it here."
-msgstr "Бир һөҗҗәт таллаң йаки бу йәргә сөрәп ташлаң."
+msgid "Filename"
+msgstr "Һөҗҗәт нами"
 
 msgid "Size:"
 msgstr "Чоңлуқи:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Тапшуривалғучилар сизниң бир қошумчә рай синашни тошқузишиңизни тәләп қилди."
@@ -1359,9 +1365,6 @@ msgstr "Әвәткүчи:"
 
 msgid "To:"
 msgstr "Тапшуривалғучи:"
-
-msgid "Filename"
-msgstr "Һөҗҗәт нами"
 
 msgid "View"
 msgstr ""
@@ -1419,8 +1422,8 @@ msgid ""
 "your password."
 msgstr "Һесабатни әслигә кәлтүрүш ачқучи» ни йиғип бихәтәр сақлап қойуш үчүн, \n«майиллиқ» бөликини зийарәт қилишиңизни тәвсийә қилимиз. Бу ачқуч паролни унтуп қалған\nвақтиңизда, супа вә санлиқ мәлуматлириңизни зийарәт қилишни әслигә кәлтүрүш үчүн \nлазим болиду."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Бир һөҗҗәт таллаң йаки бу йәргә сөрәп ташлаң."
 
 msgid "The provided recovery key is invalid."
 msgstr "Тәминләнгән әслигә кәлтүрүш ачқучи инавәтсиз."
@@ -1449,6 +1452,9 @@ msgstr "Сақлиғучи паш қилғучиниң кимлигини зий
 
 msgid "Date of the request"
 msgstr "Telep qilghan chésla"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Көрсәт"

@@ -478,13 +478,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1160,8 +1157,11 @@ msgstr "Алуучуга отчетторду өчүрүүгө уруксат б
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Алуучуга отчеттун жарактуулук мөөнөтүн узартууга уруксат бериңиз"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Бул алуучуга колдонуучуларга отчетторго кирүү мүмкүнчүлүгүн берүүгө жетиштүү укук бериңиз"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Колдонуучуга төмөнкү функцияларга административдик мүмкүнчүлүк бериңиз:"
@@ -1202,11 +1202,11 @@ msgstr "Аккаунтуңузду тандаңыз"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Эми сырсөзүңүздү терип, андан кийин \"Кирүү\" баскычын басыңыз"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Колдонуучу вариантын тандагандан кийин көрсөтүлгөн текст."
-
 msgid "Confirm"
 msgstr "Ырастоо"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Колдонуучу вариантын тандагандан кийин көрсөтүлгөн текст."
 
 msgid "Assign score points"
 msgstr "Упайлардын атаңыз"
@@ -1267,6 +1267,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Тастыктоо менен жарактуулук мөөнөтүн төмөнкүгө жылдырасыз:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1343,11 +1346,14 @@ msgstr "Сиз буга чейин отчет тапшырдыңыз беле? �
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Квитанция жараксыз же болбосо отчеттун мөөнөтү бүткөн."
 
-msgid "Select a file or drag it here."
-msgstr "Файлды тандаңыз же бул жерге сүйрөңүз."
+msgid "Filename"
+msgstr "Файлдын аты"
 
 msgid "Size:"
 msgstr "Өлчөм:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Алуучулар сизден кошумча анкетаны толтурууңузду суранышты."
@@ -1360,9 +1366,6 @@ msgstr "Баштап:"
 
 msgid "To:"
 msgstr "Чейин:"
-
-msgid "Filename"
-msgstr "Файлдын аты"
 
 msgid "View"
 msgstr "Көрүү"
@@ -1420,8 +1423,8 @@ msgid ""
 "your password."
 msgstr "\"Эсепти калыбына келтирүү ачкычын\" алуу жана аны коопсуз сактоо үчүн \"Параметрлер\" бөлүмүнө кирүүнү сунуштайбыз. Бул ачкыч, эгер сиз сырсөздү унутуп калсаңыз, платформага жана маалыматыңызга кирүү мүмкүнчүлүгүн калыбына келтирүү үчүн керек болот."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Файлды тандаңыз же бул жерге сүйрөңүз."
 
 msgid "The provided recovery key is invalid."
 msgstr "Берилген калыбына келтирүү ачкычы жараксыз."
@@ -1450,6 +1453,9 @@ msgstr "Сактоочуга кабарчынын жекелигин көрүү�
 
 msgid "Date of the request"
 msgstr "Талап кылуунун датасы"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Көрсөтүү"

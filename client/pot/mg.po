@@ -493,13 +493,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1175,7 +1172,10 @@ msgstr "Permettre aux destinataires de supprimer des envois"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Autoriser les destinataires à repousser la date d’expiration des envois"
 
-msgid "Give this recipient ability to grant user access to reports"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
 msgid "Give the user administrative access to the following features:"
@@ -1217,11 +1217,11 @@ msgstr "Veuillez sélectionner votre compte :"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Saisissez maintenant votre mot de passe, puis cliquez sur « Connexion » :"
 
-msgid "Text shown after the user has selected the option."
-msgstr ""
-
 msgid "Confirm"
 msgstr "Confirmer"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
 
 msgid "Assign score points"
 msgstr "Attribuer un pointage"
@@ -1282,6 +1282,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "En confirmant, vous repousserez la date d’expiration au :"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1358,11 +1361,14 @@ msgstr "Raha efa nametraka fitarainana ianao dia ampidiro eto ambany avy hatrany
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Soit le reçu est invalide soit votre envoi a expiré."
 
-msgid "Select a file or drag it here."
-msgstr ""
+msgid "Filename"
+msgstr "Nom de fichier"
 
 msgid "Size:"
 msgstr "Taille :"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Les destinataires ont demandé à ce que vous remplissiez un questionnaire supplémentaire."
@@ -1375,9 +1381,6 @@ msgstr "Avy amin'i:"
 
 msgid "To:"
 msgstr "Ho an'i:"
-
-msgid "Filename"
-msgstr "Nom de fichier"
 
 msgid "View"
 msgstr ""
@@ -1435,7 +1438,7 @@ msgid ""
 "your password."
 msgstr ""
 
-msgid "Access date"
+msgid "Select a file or drag it here."
 msgstr ""
 
 msgid "The provided recovery key is invalid."
@@ -1465,6 +1468,9 @@ msgstr "L’accès à l’identité du lanceur d’alerte a été demandé au ga
 
 msgid "Date of the request"
 msgstr "Date de la demande"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Afficher"

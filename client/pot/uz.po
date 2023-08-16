@@ -479,13 +479,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1161,8 +1158,11 @@ msgstr "Qabul qiluvchiga anonim xabarlarni oʻchirish imkonini berish"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Qabul qiluvchi anonim xabar muddatini kechiktirishiga ruxsat berish"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Bu qabul qiluvchi uchun anonim xabarlarni koʻrishga ruxsat berish"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Foydalanuvchiga quyidagi funksiyalarni boshqarish vakolatini berish:"
@@ -1203,11 +1203,11 @@ msgstr "Hisobingizni tanlang:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Endi parolni yozing va “Kirish” ustiga bosing:"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Foydalanuvchi parametr tanlaganidan keyin chiqadigan matn."
-
 msgid "Confirm"
 msgstr "Tasdiqlash"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Foydalanuvchi parametr tanlaganidan keyin chiqadigan matn."
 
 msgid "Assign score points"
 msgstr "Ballarni belgilash"
@@ -1268,6 +1268,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Tasdiqlansa, muddat quyidagi sanagacha kechiktiriladi:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1344,11 +1347,14 @@ msgstr "Allaqachon anonim xabar qilganmisiz? Murojaat raqamingizni kiriting."
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Anonim xabar yaroqsiz yoki uning muddati eskirgan."
 
-msgid "Select a file or drag it here."
-msgstr "Fayl tanlang yoki shu yerga tortib tashlang."
+msgid "Filename"
+msgstr "Fayl nomi"
 
 msgid "Size:"
 msgstr "Hajmi:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Qabul qiluvchilar qoʻshimcha savolnomani toʻldirishingizni soʻradi."
@@ -1361,9 +1367,6 @@ msgstr "Kimdan:"
 
 msgid "To:"
 msgstr "Kimga:"
-
-msgid "Filename"
-msgstr "Fayl nomi"
 
 msgid "View"
 msgstr "Ko‘rish"
@@ -1421,8 +1424,8 @@ msgid ""
 "your password."
 msgstr "“Hisobni tiklash kaliti”ngizni olish va xavfsiz joyda saqlash uchun “Parametrlar” bandini ochishni tavsiya etamiz. Bu kalit parol unutilganda platformaga ruxsatingizni xavfsiz tiklashda kerak boʻladi."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Fayl tanlang yoki shu yerga tortib tashlang."
 
 msgid "The provided recovery key is invalid."
 msgstr "Taqdim etilgan tiklash kaliti yaroqsiz."
@@ -1451,6 +1454,9 @@ msgstr "Himoyachi tomonidan oshkor qiluvchining shaxsiy axborotini koʻrishga ru
 
 msgid "Date of the request"
 msgstr "Soʻrov sanasi"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Ko‘rsatish"

@@ -500,13 +500,10 @@ msgstr "Selecionar uma opção"
 msgid "Select your language"
 msgstr "Selecione seu idioma"
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1182,8 +1179,11 @@ msgstr "Permitir ao destinatário apagar denúncias"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Permitir o destinatário adiar a data de validade "
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Permitir ao destinatário dar ao utilizador acesso às submissões"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Dê ao utilizador acesso administrativo aos seguintes recursos:"
@@ -1224,11 +1224,11 @@ msgstr "Selecione a sua conta:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Digite a sua palavra-passe e clique e \"Iniciar sessão\":"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Texto exibido após seleção da opção pelo utilizador."
-
 msgid "Confirm"
 msgstr "Confirmar"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Texto exibido após seleção da opção pelo utilizador."
 
 msgid "Assign score points"
 msgstr "Atribuir pontos"
@@ -1289,6 +1289,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Ao confirmar, adiará a data de validade da denúncia para:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1365,11 +1368,14 @@ msgstr "Já preencheu uma submissão? Insira o seu código."
 msgid "The receipt is either invalid or the report has expired."
 msgstr "O código é inválido ou a submissão expirou."
 
-msgid "Select a file or drag it here."
-msgstr "Selecione um ficheiro ou arraste-o para aqui."
+msgid "Filename"
+msgstr "Nome de ficheiro"
 
 msgid "Size:"
 msgstr "Tamanho:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Os destinatários solicitaram o preenchimento de um questionário adicional."
@@ -1382,9 +1388,6 @@ msgstr "De:"
 
 msgid "To:"
 msgstr "Para:"
-
-msgid "Filename"
-msgstr "Nome de ficheiro"
 
 msgid "View"
 msgstr "Ver"
@@ -1442,8 +1445,8 @@ msgid ""
 "your password."
 msgstr "Recomendamos que aceda à secção “Preferências” para copiar a sua “Chave de recuperação de conta” e armazená-la em segurança. Esta chave será necessária para recuperar seu acesso à plataforma e aos seus dados caso se esqueça da sua palavra-passe."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Selecione um ficheiro ou arraste-o para aqui."
 
 msgid "The provided recovery key is invalid."
 msgstr "A chave de recuperação fornecida é inválida."
@@ -1472,6 +1475,9 @@ msgstr "Foi solicitado o acesso à identidade do informador pelo conservador."
 
 msgid "Date of the request"
 msgstr "Data do pedido"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Mostrar"

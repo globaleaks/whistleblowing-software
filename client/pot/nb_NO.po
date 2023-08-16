@@ -479,13 +479,10 @@ msgstr ""
 msgid "Select your language"
 msgstr "Velg språk"
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1161,8 +1158,11 @@ msgstr "Tillat mottakeren å slette rapporter"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Tillat mottakeren å utsette utløpsdatoen for rapporten"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "La mottakeren gi brukeren tilgang til rapporter"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Gi brukeren administrativ tilgang til følgende funksjoner:"
@@ -1203,11 +1203,11 @@ msgstr "Velg din konto:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Skriv inn ditt passord, trykk så «logg inn»:"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Tekst som vises etter at alternativet har blitt valgt av brukeren."
-
 msgid "Confirm"
 msgstr "Bekreft"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Tekst som vises etter at alternativet har blitt valgt av brukeren."
 
 msgid "Assign score points"
 msgstr "Tildel poeng"
@@ -1268,6 +1268,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Ved å bekrefte vil du utsette utløpsdatoen til:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1344,11 +1347,14 @@ msgstr "Har du allerede levert en rapport? Skriv inn din kvittering."
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Kvitteringen er ugyldig eller rapporten er utløpt."
 
-msgid "Select a file or drag it here."
-msgstr "Velg en fil, eller dra den her."
+msgid "Filename"
+msgstr "Filnavn"
 
 msgid "Size:"
 msgstr "Størrelse:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Mottakere har bedt deg om å fylle ut et annet spørreskjema."
@@ -1361,9 +1367,6 @@ msgstr "Fra:"
 
 msgid "To:"
 msgstr "Til:"
-
-msgid "Filename"
-msgstr "Filnavn"
 
 msgid "View"
 msgstr "Vis"
@@ -1421,8 +1424,8 @@ msgid ""
 "your password."
 msgstr "Vi anbefaler deg å gå til avsnittet «Preferanser» og få «Nøkkel til kontogjenoppretting» og lagre den trygt. Nøkkelen vil kreves for gjenoppretting av tilgangen til plattformen og til dine data i tilfelle du glemmer ditt passord."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Velg en fil, eller dra den her."
 
 msgid "The provided recovery key is invalid."
 msgstr "Gjenopprettingsnøkkelen er ikke gyldig."
@@ -1451,6 +1454,9 @@ msgstr "Tilgang til fløyteblåserens identitet har blitt forespurt av tillitspe
 
 msgid "Date of the request"
 msgstr "Dato for forespørsel"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Vis"

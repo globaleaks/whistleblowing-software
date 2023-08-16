@@ -487,13 +487,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1169,7 +1166,10 @@ msgstr "Povoliť príjemcom zmazať podania"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Umožniť príjemcovi odložiť dátum exspirácie podania"
 
-msgid "Give this recipient ability to grant user access to reports"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
 msgid "Give the user administrative access to the following features:"
@@ -1211,11 +1211,11 @@ msgstr "Vyberte, prosím, svoj účet:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Teraz zadajte svoje heslo a kliknite na \"Prihlásiť sa\":"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Text bude zobrazený po tom, čo používateľ vybral jednu z možností."
-
 msgid "Confirm"
 msgstr "Potvrdiť"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Text bude zobrazený po tom, čo používateľ vybral jednu z možností."
 
 msgid "Assign score points"
 msgstr "Prideliť bodové skóre"
@@ -1276,6 +1276,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Potvrdením odložíte dátum exspirácie do:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1352,11 +1355,14 @@ msgstr "Už ste vyplnili podanie? Zadajte svoj prístupový kód."
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Príjemca je buď neplatný, alebo uplynula platnosť podania."
 
-msgid "Select a file or drag it here."
-msgstr "Vyberte súbor alebo ho sem pretiahnite."
+msgid "Filename"
+msgstr "Názov súboru"
 
 msgid "Size:"
 msgstr "Veľkosť:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Príjemcovia požadujú, aby ste vyplnili dodatočný dotazník."
@@ -1369,9 +1375,6 @@ msgstr "Od:"
 
 msgid "To:"
 msgstr "Komu:"
-
-msgid "Filename"
-msgstr "Názov súboru"
 
 msgid "View"
 msgstr "Prehľad"
@@ -1429,8 +1432,8 @@ msgid ""
 "your password."
 msgstr "Odporúčame ísť do sekcie \"Preferencie\", aby ste získali \"Kľúč na obnovenie účtu\" a bezpečne ho uložili. Tento kľúč bude nevyhnutný pre obnovenie prístupu k platforme a k vašim údajom v prípade, že svoje heslo zabudnete."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Vyberte súbor alebo ho sem pretiahnite."
 
 msgid "The provided recovery key is invalid."
 msgstr "Zadaný obnovovací kľúč je neplatný."
@@ -1459,6 +1462,9 @@ msgstr "Správca bol požiadaný o prístup k identite oznamovateľa."
 
 msgid "Date of the request"
 msgstr "Dátum žiadosti"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Zobraziť"

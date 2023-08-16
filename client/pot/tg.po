@@ -485,13 +485,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1167,8 +1164,11 @@ msgstr "Ба гиранда иҷозаи пок кардани гузоришр�
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Ба гиранда иҷозаи ба таъхир гузоштани мӯҳлати анҷоми эътибори гузоришро додан"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Ба ин гиранда имкони ба корбарон ба гузоришҳо дастрасӣ додан"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Ба функсияҳои зерин дастрасии маъмурии корбар додан:"
@@ -1209,11 +1209,11 @@ msgstr "Лутфан аккаунти худро интихоб кунед:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Акнун гузарвожаи худро навишта, баъд \"Ворид шудан\"-ро пахш кунед:"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Матне, ки баъди аз ҷониби корбар интихоб шудани ин функсия нишон дода мешавад."
-
 msgid "Confirm"
 msgstr "Тасдиқ кардан"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Матне, ки баъди аз ҷониби корбар интихоб шудани ин функсия нишон дода мешавад."
 
 msgid "Assign score points"
 msgstr "Холҳоро муқаррар кардан"
@@ -1274,6 +1274,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Бо тасдиқи ин шумо мӯҳлати анҷоми эътиборро то ба ин сана ба таъхир мегузоред:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1350,11 +1353,14 @@ msgstr "Оё шумо аллакай гузориш пешниҳод карда�
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Расид беэътибор аст ё мӯҳлати эътибори гузориш гузаштааст. "
 
-msgid "Select a file or drag it here."
-msgstr "Файлро интихоб кунед ё ба ин ҷо кашед."
+msgid "Filename"
+msgstr "Номи файл"
 
 msgid "Size:"
 msgstr "Андоза:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Гирандагон аз шумо дархост кардаанд саволномаи иловагиро пур намоед."
@@ -1367,9 +1373,6 @@ msgstr "Аз:"
 
 msgid "To:"
 msgstr "Ба:"
-
-msgid "Filename"
-msgstr "Номи файл"
 
 msgid "View"
 msgstr "Намоиш додан"
@@ -1427,8 +1430,8 @@ msgid ""
 "your password."
 msgstr "Мо тавсия медиҳем, ки шумо ба қисмати \"Афзалиятҳо\" ворид шавед, то \"Калиди барқарорсозии аккаунт\" -и худро дарёфт кунед ва онро бехатар нигоҳ доред. Ин калид барои барқарор кардани дастрасии шумо ба барнома ва маълумоти шумо дар ҳолати фаромӯш кардани гузарвожа лозим мешавад."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Файлро интихоб кунед ё ба ин ҷо кашед."
 
 msgid "The provided recovery key is invalid."
 msgstr "Калиди барқароркунии пешниҳодшуда беэътибор аст."
@@ -1457,6 +1460,9 @@ msgstr "Дастрасӣ ба шахсияти хабардиҳанда аз м�
 
 msgid "Date of the request"
 msgstr "Санаи дархост"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Нишон додан"

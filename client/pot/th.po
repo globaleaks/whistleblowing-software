@@ -487,13 +487,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1169,8 +1166,11 @@ msgstr "อนุญาตให้ผู้รับลบรายงานไ
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "อนุญาตให้ผู้รับเลื่อนวันหมดอายุของรายงานได้"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "ให้ผู้รับรายนี้สามารถมอบสิทธิเข้าถึงรายงานให้กับผู้ใช้ได้"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "ให้ผู้ใช้มีสิทธิ์ผู้ดูแลในการเข้าถึงความสามารถเหล่านี้:"
@@ -1211,11 +1211,11 @@ msgstr "กรุณาเลือกบัญชีของคุณ:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "ตอนนี้พิมพ์รหัสผ่านของคุณแล้วคลิก 'เข้าสู่ระบบ':"
 
-msgid "Text shown after the user has selected the option."
-msgstr "ข้อความแสดงหลังจากผู้ใช้ได้เลือกตัวเลือก"
-
 msgid "Confirm"
 msgstr "ยืนยัน"
+
+msgid "Text shown after the user has selected the option."
+msgstr "ข้อความแสดงหลังจากผู้ใช้ได้เลือกตัวเลือก"
 
 msgid "Assign score points"
 msgstr "กำหนดแต้มคะแนน"
@@ -1276,6 +1276,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "เมื่อยืนยัน คุณจะเลื่อนวันหมดอายุไปที่:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1352,11 +1355,14 @@ msgstr "คุณได้ยื่นรายงานแล้วใช่ไ
 msgid "The receipt is either invalid or the report has expired."
 msgstr "ใบรับนั้นไม่ถูกต้อง หรือรายงานหมดอายุแล้ว"
 
-msgid "Select a file or drag it here."
-msgstr "เลือกแฟ้มหรือลากและวางที่นี่"
+msgid "Filename"
+msgstr "ชื่อแฟ้ม"
 
 msgid "Size:"
 msgstr "ขนาด:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "ผู้รับได้ร้องขอให้คุณกรอกแบบสอบถามเพิ่มเติม"
@@ -1369,9 +1375,6 @@ msgstr "จาก:"
 
 msgid "To:"
 msgstr "ถึง:"
-
-msgid "Filename"
-msgstr "ชื่อแฟ้ม"
 
 msgid "View"
 msgstr "มองดู"
@@ -1429,8 +1432,8 @@ msgid ""
 "your password."
 msgstr "เราแนะนำให้คุณไปที่ส่วน \"การปรับแต่ง\" เพื่อเรียกรับ \"กุญแจกู้คืนบัญชี\" ของคุณ และเก็บเอาไว้ในที่ปลอดภัย กุญแจนี้จำเป็นสำหรับการกู้คืนสิทธิ์เข้าถึงแพลตฟอร์มของคุณและสำหรับการกู้คืนข้อมูล ในกรณีที่คุณลืมรหัสผ่าน"
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "เลือกแฟ้มหรือลากและวางที่นี่"
 
 msgid "The provided recovery key is invalid."
 msgstr "กุญแจกู้คืนที่ให้มานั้นไม่ถูกต้อง"
@@ -1459,6 +1462,9 @@ msgstr "คำร้องขอเพื่อเข้าถึงตัวต
 
 msgid "Date of the request"
 msgstr "วันที่ร้องขอ"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "แสดง"

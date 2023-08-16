@@ -479,13 +479,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1161,8 +1158,11 @@ msgstr "تاپشۇرىۋالغۇچىلارنىڭ مەلۇماتلارنى ئۆچ
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "تاپشۇرىۋالغۇچىنىڭ مەلۇمات سۈرۈكىنى كەينىگە سۈرىشىگە رۇخسەت قىل"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "بۇ تاپشۇرىۋالغۇچىغا ئىشلەتكۈچىلەرگە مەلۇماتنى زىيارەت قىلىش ھوقۇقى بېرىش ئىقتىدارى بەر"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "تۆۋەندىكى ئىقتىدارلار ئۈچۈن ئىشلەتكۈچىلەرگە باشقۇرغۇچى زىيارەت ھوقۇقى بەر:"
@@ -1203,11 +1203,11 @@ msgstr "ھېسابىڭىزنى تاللاڭ:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "ھازىر يېڭى پارولىڭىزنى كىرگۈزۈڭ، ئاندىن «تىزىمغا كىر»نى چېكىڭ:"
 
-msgid "Text shown after the user has selected the option."
-msgstr "ئىشلەتكۈچى تاللانمىنى تاللىغاندىن كېيىن تېكىست كۆرسىتىلىدۇ."
-
 msgid "Confirm"
 msgstr "جەزىملە"
+
+msgid "Text shown after the user has selected the option."
+msgstr "ئىشلەتكۈچى تاللانمىنى تاللىغاندىن كېيىن تېكىست كۆرسىتىلىدۇ."
 
 msgid "Assign score points"
 msgstr "نومۇر نۇقتىلىرىنى بەلگىلەڭ"
@@ -1268,6 +1268,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "جەزىملىسىڭىز، سۈرۈك چېسلاسىنى بۇ كۈنگە كەينىگە سۈرگەن بولىسىز:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1344,11 +1347,14 @@ msgstr "توشقۇزغان بىر مەلۇماتىڭىز بارمىتى؟ تال
 msgid "The receipt is either invalid or the report has expired."
 msgstr "تالونىڭز ئىناۋەتسىز ياكى مەلۇماتىڭىزنىڭ سۈرۈكى توشۈپ كەتكەن."
 
-msgid "Select a file or drag it here."
-msgstr "بىر ھۆججەت تاللاڭ ياكى بۇ يەرگە سۆرەپ تاشلاڭ."
+msgid "Filename"
+msgstr "ھۆججەت نامى"
 
 msgid "Size:"
 msgstr "چوڭلۇقى:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "تاپشۇرىۋالغۇچىلار سىزنىڭ بىر قوشۇمچە راي سىناشنى توشقۇزىشىڭىزنى تەلەپ قىلدى."
@@ -1361,9 +1367,6 @@ msgstr "ئەۋەتكۈچى:"
 
 msgid "To:"
 msgstr "تاپشۇرىۋالغۇچى:"
-
-msgid "Filename"
-msgstr "ھۆججەت نامى"
 
 msgid "View"
 msgstr ""
@@ -1421,8 +1424,8 @@ msgid ""
 "your password."
 msgstr "«ھېساباتنى ئەسلىگە كەلتۈرۈش ئاچقۇچى» نى يىغىپ بىخەتەر ساقلاپ قويۇش ئۈچۈن، «مايىللىق» بۆلىكىنى زىيارەت قىلىشىڭىزنى تەۋسىيە قىلىمىز. بۇ ئاچقۇچ پارولنى ئۇنتۇپ قالغان ۋاقتىڭىزدا، سۇپا ۋە سانلىق مەلۇماتلىرىڭىزنى زىيارەت قىلىشنى ئەسلىگە كەلتۈرۈش ئۈچۈن لازىم بولىدۇ."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "بىر ھۆججەت تاللاڭ ياكى بۇ يەرگە سۆرەپ تاشلاڭ."
 
 msgid "The provided recovery key is invalid."
 msgstr "تەمىنلەنگەن ئەسلىگە كەلتۈرۈش ئاچقۇچى ئىناۋەتسىز."
@@ -1451,6 +1454,9 @@ msgstr "ساقلىغۇچى پاش قىلغۇچىنىڭ كىملىگىنى زىي
 
 msgid "Date of the request"
 msgstr "تەلەپ قىلغان چېسلا"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "كۆرسەت"

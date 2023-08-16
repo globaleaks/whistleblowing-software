@@ -482,13 +482,10 @@ msgstr ""
 msgid "Select your language"
 msgstr "言語を選択してください"
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1164,7 +1161,10 @@ msgstr "受信者が報告を削除することを許可する"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "受信者が報告の有効期限を延長することを許可する"
 
-msgid "Give this recipient ability to grant user access to reports"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
 msgid "Give the user administrative access to the following features:"
@@ -1206,11 +1206,11 @@ msgstr "あなたのアカウントを選択してください:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "パスワードを入力して、'ログイン'をクリックしてください:"
 
-msgid "Text shown after the user has selected the option."
-msgstr "ユーザーがオプションを選択した後に表示されるテキスト"
-
 msgid "Confirm"
 msgstr "延期を確認"
+
+msgid "Text shown after the user has selected the option."
+msgstr "ユーザーがオプションを選択した後に表示されるテキスト"
 
 msgid "Assign score points"
 msgstr "スコアポイントを割り当て"
@@ -1271,6 +1271,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "確認すると、有効期限を以下に延期します:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1347,11 +1350,14 @@ msgstr "すでに報告を行っていますか？あなたの受領番号を入
 msgid "The receipt is either invalid or the report has expired."
 msgstr "受領番号が無効であるか、報告が有効期限切れです。"
 
-msgid "Select a file or drag it here."
-msgstr "ファイルを選択するか、ここにドラッグしてください。"
+msgid "Filename"
+msgstr "ファイル名"
 
 msgid "Size:"
 msgstr "サイズ："
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "受領者があなたに追加のアンケートを記入するよう依頼しました。"
@@ -1364,9 +1370,6 @@ msgstr "差出人:"
 
 msgid "To:"
 msgstr "宛先:"
-
-msgid "Filename"
-msgstr "ファイル名"
 
 msgid "View"
 msgstr "表示"
@@ -1424,8 +1427,8 @@ msgid ""
 "your password."
 msgstr "「アカウント回復鍵」を取得して安全に保管するために、「設定」セクションにアクセスすることをお勧めします。 この鍵は、パスワードを忘れた場合にプラットフォームとデータへのアクセスを回復するために必要です。"
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "ファイルを選択するか、ここにドラッグしてください。"
 
 msgid "The provided recovery key is invalid."
 msgstr "指定された回復鍵は無効です。"
@@ -1454,6 +1457,9 @@ msgstr "内部告発者の身元へのアクセスを管理人にリクエスト
 
 msgid "Date of the request"
 msgstr "リクエスト日"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "表示"

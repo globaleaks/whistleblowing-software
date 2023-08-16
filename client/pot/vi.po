@@ -492,13 +492,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1174,7 +1171,10 @@ msgstr "Cho phép người nhận xóa báo cáo"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Cho phép người nhận hoãn thời điểm hết hạn của báo cáo"
 
-msgid "Give this recipient ability to grant user access to reports"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
 msgid "Give the user administrative access to the following features:"
@@ -1216,11 +1216,11 @@ msgstr "Xin chọn tài khoản của bạn:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Điền vào mật khẩu của bạn, sau đó bấm vào 'Đăng nhập':"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Văn bản hiển thị sau khi người dùng đã lựa tùy chọn"
-
 msgid "Confirm"
 msgstr "Xác nhận"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Văn bản hiển thị sau khi người dùng đã lựa tùy chọn"
 
 msgid "Assign score points"
 msgstr "Ấn định điểm"
@@ -1281,6 +1281,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Khi xác nhận, bạn sẽ hoãn ngày hết hạn đến:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1357,11 +1360,14 @@ msgstr "Bạn đã nộp một báo cáo? Điền biên nhận vào."
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Biên nhận không hợp lệ hoặc báo cáo đã hết hạn."
 
-msgid "Select a file or drag it here."
-msgstr "Chọn tập tin hoặc kéo thả vào đây."
+msgid "Filename"
+msgstr "Tên tập tin"
 
 msgid "Size:"
 msgstr "Kích thước:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Người nhận đã yêu cầu bạn điền vào một bảng câu hỏi bổ sung."
@@ -1374,9 +1380,6 @@ msgstr "Từ:"
 
 msgid "To:"
 msgstr "Đến:"
-
-msgid "Filename"
-msgstr "Tên tập tin"
 
 msgid "View"
 msgstr "Xem"
@@ -1434,8 +1437,8 @@ msgid ""
 "your password."
 msgstr "Chúng tôi khuyến khích bạn vào phần \"Chọn lựa\" để lấy \"Chìa Khoá Khôi Phục Tài khoản\" của bạn và lưu giữ nó ở nơi an toàn. Chìa khoá này sẽ cần thiết để khôi phục lại tài khoản và  dữ liệu của bạn trong trường hợp bạn quên mật khẩu."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Chọn tập tin hoặc kéo thả vào đây."
 
 msgid "The provided recovery key is invalid."
 msgstr "Chìa khóa khôi phục không hợp lệ."
@@ -1464,6 +1467,9 @@ msgstr "Yêu cầu xem danh tính của người tố giác đã được gửi 
 
 msgid "Date of the request"
 msgstr "Ngày yêu cầu"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Hiển thị"

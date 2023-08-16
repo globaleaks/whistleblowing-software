@@ -525,13 +525,10 @@ msgstr "حدد اختيار"
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -917,7 +914,7 @@ msgid "Min"
 msgstr ""
 
 msgid "Max"
-msgstr ""
+msgstr "اقصى"
 
 msgid "Phone number"
 msgstr "رقم الهاتف"
@@ -1207,8 +1204,11 @@ msgstr "السماح للمتلقين بحذف البلاغات"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "السماح للمتلقّي بتأجيل تاريخ انتهاء صلاحية الابلاغ"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "امنح هذا المستلم القدرة على منح حق الوصول إلى التقارير"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "امنح المستخدم حق الوصول المطلق إلى الميزات التالية:"
@@ -1249,11 +1249,11 @@ msgstr "الرجاء اختيار حسابك"
 msgid "Now type your password, then click 'Log in':"
 msgstr "الآن اكتب كلمة العبور الخاصة بك، ثم انقر على \"تسجيل الدخول\":"
 
-msgid "Text shown after the user has selected the option."
-msgstr "النص الذى يظهر بعد أن ينتقى المستخدم الاختيار."
-
 msgid "Confirm"
 msgstr "تأكيد "
+
+msgid "Text shown after the user has selected the option."
+msgstr "النص الذى يظهر بعد أن ينتقى المستخدم الاختيار."
 
 msgid "Assign score points"
 msgstr "تخصيص نقاط المجموع"
@@ -1314,6 +1314,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "عند التأكيد، سوف يؤجل موعد انتهاء الصلاحية إلى:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1390,11 +1393,14 @@ msgstr "هل قدمت بلاغا سابقا؟ أدخل رقم البلاغ."
 msgid "The receipt is either invalid or the report has expired."
 msgstr "إمّا أنّ الإستلام غير صالح أو أنّ صلاحيّة البلاغ انتهت."
 
-msgid "Select a file or drag it here."
-msgstr "اختر ملفا أو اسحبه هنا."
+msgid "Filename"
+msgstr "إسم الملف"
 
 msgid "Size:"
 msgstr "حجم:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "طلب المستلمون منك إكمال استبيان إضافي."
@@ -1407,9 +1413,6 @@ msgstr "من:"
 
 msgid "To:"
 msgstr "إلى:"
-
-msgid "Filename"
-msgstr "إسم الملف"
 
 msgid "View"
 msgstr "عرض"
@@ -1467,8 +1470,8 @@ msgid ""
 "your password."
 msgstr "نوصي بالوصول إلى قسم \"التفضيلات\" لاسترداد \"مفتاح استعادة الحساب\" وتخزينه بأمان. سيكون هذا المفتاح ضروريًا لاستعادة وصولك إلى المنصة وإلى بياناتك في حالة نسيان كلمة المرور الخاصة بك."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "اختر ملفا أو اسحبه هنا."
 
 msgid "The provided recovery key is invalid."
 msgstr "مفتاح الاسترداد الذي تم توفيره غير صالح\n."
@@ -1497,6 +1500,9 @@ msgstr "تمّ طلب الحصول على هوية المبلغ من الوصي�
 
 msgid "Date of the request"
 msgstr "تاريخ الطلب"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "عرض"

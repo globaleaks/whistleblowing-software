@@ -475,7 +475,7 @@ msgid "Hide"
 msgstr "Fshihe"
 
 msgid "Unhide"
-msgstr ""
+msgstr "Shfshihe"
 
 msgid "Redact"
 msgstr "Redaktoni"
@@ -486,14 +486,11 @@ msgstr "Përzgjidhni një mundësi"
 msgid "Select your language"
 msgstr "Përzgjidhni gjuhën tuaj"
 
-msgid "Grant this recipient ability to transfer reports to other users"
-msgstr "Akordojini këtij marrësi aftësinë të shpërngulë raportime te përdorues të tjerë"
+msgid "Give this user ability to mask information"
+msgstr "Jepini këtij përdoruesi aftësinë të maskojë hollësi"
 
-msgid "Grant this user the privilege to mask information"
-msgstr "Akordojini këtij përdoruesi privilegjin të maskojë hollësi"
-
-msgid "Grant this user the privilege to permanently redact masked information"
-msgstr "Akordojini këtij përdoruesi privilegjin të redaktojë në mënyrë permanente hollësi të maskuara"
+msgid "Give this user ability to permanently redact masked information"
+msgstr "Jepini këtij përdoruesi aftësinë të redaktojë në mënyrë permanente hollësi të maskuara"
 
 msgid "Public"
 msgstr "Publik"
@@ -1168,8 +1165,11 @@ msgstr "Lejoje marrësin të fshijë raportime"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Lejoje marrësin të shtyjë datën e skadimit të raportimit"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Jepi këtij marrësi aftësinë të akordojë hyrje përdoruesish te raportimet"
+msgid "Give this user ability to grant user access to reports"
+msgstr "Jepini këtij përdoruesi aftësinë të akordojë hyrje përdoruesish te raportimet"
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr "Jepini këtij përdoruesi aftësinë të shpërngulë raportime te përdorues të tjerë"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Jepi përdoruesit hyrje përgjegjësi në veçoritë vijuese:"
@@ -1210,11 +1210,11 @@ msgstr "Ju lutemi, përzgjidhni llogarinë tuaj:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Tani shtypni fjalëkalimin tuaj, mandej klikoni mbi “Hyni”:"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Tekst i shfaqur pasi përdoruesi të ketë përzgjedhur këtë mundësi."
-
 msgid "Confirm"
 msgstr "Ripohojeni"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Tekst i shfaqur pasi përdoruesi të ketë përzgjedhur këtë mundësi."
 
 msgid "Assign score points"
 msgstr "Caktoni pikë"
@@ -1276,6 +1276,9 @@ msgstr "Duke e ripohuar, do ta shtyni datën e skadimit më:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "Duke e ripohuar, do të caktoni një kujtues më datë:"
+
+msgid "Transfer access"
+msgstr "Të shpërngulë hyrje"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Kjo është një platformë demonstrimi, ju lutemi, mos e përdorni për parashtrime të njëmendta."
@@ -1351,11 +1354,14 @@ msgstr "Keni parashtruar tashmë një raportim? Jepni dëftesën tuaj."
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Ose dëftesa është e pavlefshme, ose raportimi ka skaduar."
 
-msgid "Select a file or drag it here."
-msgstr "Përzgjidhni një kartelë ose tërhiqeni këtu."
+msgid "Filename"
+msgstr "Emër kartele"
 
 msgid "Size:"
 msgstr "Madhësi:"
+
+msgid "Access date"
+msgstr "Datë përdorimi"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Marrësit kanë kërkuar që të plotësoni një pyetësor shtesë."
@@ -1368,9 +1374,6 @@ msgstr "Nga:"
 
 msgid "To:"
 msgstr "Për:"
-
-msgid "Filename"
-msgstr "Emër kartele"
 
 msgid "View"
 msgstr "Shihni"
@@ -1428,8 +1431,8 @@ msgid ""
 "your password."
 msgstr "Rekomandojmë që të përdorni ndarjen “Parapëlqime”, që të rimerrni “Kyç Rimarrjeje Llogarie” tuajin dhe ta depozitoni pa rrezik diku. Ky kyç do të jetë i nevojshëm për të rifituar hyrje te platforma dhe të dhënat tuaja, në rast se harroni fjalëkalimin tuaj."
 
-msgid "Access date"
-msgstr "Datë përdorimi"
+msgid "Select a file or drag it here."
+msgstr "Përzgjidhni një kartelë ose tërhiqeni këtu."
 
 msgid "The provided recovery key is invalid."
 msgstr "Kyçi i rimarrjeve i dhënë është i pavlefshëm."
@@ -1458,6 +1461,9 @@ msgstr "Ruajtësit iu kërkua hyrje te identiteti i nxjerrësit të së fshehtë
 
 msgid "Date of the request"
 msgstr "Datë e kërkesës"
+
+msgid "Subscription date"
+msgstr "Datë pajtimi"
 
 msgid "Show"
 msgstr "Shfaqe"

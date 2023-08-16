@@ -478,13 +478,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1160,8 +1157,11 @@ msgstr "Luba saajal teavitusi kustutada"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Luba saajal teavituse aegumiskuupäeva edasi lükata"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Anna sellele saajale õigus anda kasutajale juurdepääs teavitustele"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Anna kasutajale administraatori õigused järgmiste funktsioonide suhtes:"
@@ -1202,11 +1202,11 @@ msgstr "Valige oma konto:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Sisestage parool ja seejärel vajutage sisselogimisnuppu:"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Tekst, mis kuvatakse pärast seda, kui kasutaja on suvandi valinud."
-
 msgid "Confirm"
 msgstr "Kinnita"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Tekst, mis kuvatakse pärast seda, kui kasutaja on suvandi valinud."
 
 msgid "Assign score points"
 msgstr "Punktide andmine"
@@ -1268,6 +1268,9 @@ msgstr "Kinnitades lükkate aegumise edasi kuupäevale:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "Kinnitades määrate kuupäeva meeldetuletuse"
+
+msgid "Transfer access"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "See on demoplatvorm, ärge kasutage seda tegelike teabeesituste jaoks."
@@ -1343,11 +1346,14 @@ msgstr "Kas olete teavituse juba esitanud? Sisestage kättesaamiskood."
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Kättesaamiskood on kehtetu või teavitus on aegunud."
 
-msgid "Select a file or drag it here."
-msgstr "Valige fail või lohistage see siia."
+msgid "Filename"
+msgstr "Failinimi"
 
 msgid "Size:"
 msgstr "Maht:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Saajad on soovinud, et täidaksite täiendava ankeedi."
@@ -1360,9 +1366,6 @@ msgstr "Saatja:"
 
 msgid "To:"
 msgstr "Saaja:"
-
-msgid "Filename"
-msgstr "Failinimi"
 
 msgid "View"
 msgstr "Vaata"
@@ -1420,8 +1423,8 @@ msgid ""
 "your password."
 msgstr "Soovitame hankida jaotisest „Eelistused“ konto taastamise võtme ja säilitada seda turvalises kohas. Seda võtit vajate parooli unustamise korral, et taastada juurdepääsu platvormile ja oma andmetele."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Valige fail või lohistage see siia."
 
 msgid "The provided recovery key is invalid."
 msgstr "Sisestatud taastevõti ei kehti."
@@ -1450,6 +1453,9 @@ msgstr "Hoidja jaoks on taotletud juurdepääsu vihjeandja isikuandmetele."
 
 msgid "Date of the request"
 msgstr "Taotluse kuupäev"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Näita"

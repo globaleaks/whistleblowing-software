@@ -478,13 +478,10 @@ msgstr "ከአማረጮች ይምረጡ"
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1160,7 +1157,10 @@ msgstr "ተቀባዩ ሪፖርቶች እንዲያጠፋ ፍቀዱ"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "ተቀባዩ የሪፖርት መቃጠያ ቀን እንዲያስተላልፍ ፍቀድ"
 
-msgid "Give this recipient ability to grant user access to reports"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
 msgid "Give the user administrative access to the following features:"
@@ -1202,11 +1202,11 @@ msgstr "መለያዎትን ምረጡ"
 msgid "Now type your password, then click 'Log in':"
 msgstr "አሁን የይለፍ ቃሎትን ተይቡ እና 'ግባ' ተጫኑ፡፡"
 
-msgid "Text shown after the user has selected the option."
-msgstr "ተጠቃሚው አማራጩን ከመረጠ በኋላ የሚታይ ጽሑፍ፡፡"
-
 msgid "Confirm"
 msgstr "አረጋግጥ "
+
+msgid "Text shown after the user has selected the option."
+msgstr "ተጠቃሚው አማራጩን ከመረጠ በኋላ የሚታይ ጽሑፍ፡፡"
 
 msgid "Assign score points"
 msgstr "የውጤት ነጥቦች መድብ"
@@ -1267,6 +1267,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "በማረጋገጥ የሪፖርት መቃጠያ ቀኑን ያስተላልፋሉ፡-"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1343,11 +1346,14 @@ msgstr "ሪፖርት አስቀድመው አስገብተዋል? ደረሰኝዎ�
 msgid "The receipt is either invalid or the report has expired."
 msgstr "ደረሰኙ የተሳሳተ ነው ወይም ሪፖርቱ ተቃጥሏል፡፡"
 
-msgid "Select a file or drag it here."
-msgstr "ፋይል ምረጡ ወይም እዚህ ጎትቱ፡፡"
+msgid "Filename"
+msgstr "የፋይል ስም"
 
 msgid "Size:"
 msgstr "መጠን"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "ተቀባዮች ተጨማሪ መጠይቅ እንዲሞሉ ጠይቀዋል፡፡"
@@ -1360,9 +1366,6 @@ msgstr "ከ"
 
 msgid "To:"
 msgstr "ወደ"
-
-msgid "Filename"
-msgstr "የፋይል ስም"
 
 msgid "View"
 msgstr "አሳይ "
@@ -1420,8 +1423,8 @@ msgid ""
 "your password."
 msgstr "የመለያ መልሶ ማግኛ ቁልፋችሁን\" መልሳችሁ ለማግኘት እና በጥንቃቄ ለማስቀመጥ \n\nምርጫዎች\" የሚለውን ክፍል እንድትጠቀሙ እንመክራለን፡፡ ምናልባት የይለፍ ቃላችሁን ብትረሱ\n\nይሄ ቁልፍ የመሳርያ ሥርዓቱን እና ውሂባችሁን\n\n ለማግኘት ያስፈልጋችኋል፡፡"
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "ፋይል ምረጡ ወይም እዚህ ጎትቱ፡፡"
 
 msgid "The provided recovery key is invalid."
 msgstr "የተሰጠው መልሶ ማግኛ ቁልፍ ትክክል አይደለም፡፡"
@@ -1450,6 +1453,9 @@ msgstr "የመረጃ ሰጪውን ማንነት ለማየት ሞግዚቱ ተጠ�
 
 msgid "Date of the request"
 msgstr "የጥያቄው ቀን"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "አሳይ "

@@ -484,13 +484,10 @@ msgstr ""
 msgid "Select your language"
 msgstr "Vælg dit sprog"
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1166,8 +1163,11 @@ msgstr "Tillad modtageren at slette indberetninger"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Tillad modtageren at udsætte udløbsdatoen på indberetningen"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Giv denne modtager mulighed for at tildele brugeradgang til rapporter"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Giv brugere administrative adgang til følgende funktioner:"
@@ -1208,11 +1208,11 @@ msgstr "Vælg venligst din konto:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Skriv nu din adgangskode og klik 'Log ind':"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Tekst der vises efter at brugeren har valgt denne mulighed."
-
 msgid "Confirm"
 msgstr "Bekræft"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Tekst der vises efter at brugeren har valgt denne mulighed."
 
 msgid "Assign score points"
 msgstr "Tildel pointtal"
@@ -1273,6 +1273,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Ved at bekræfte udsætter du udløbsdatoen til:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1349,11 +1352,14 @@ msgstr "Har du allerede indsendt en indberetning? Indtast din nøglekode."
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Nøglekoden er enten forkert eller indsendelsen er udløbet."
 
-msgid "Select a file or drag it here."
-msgstr "Vælg en fil eller flyt den hertil."
+msgid "Filename"
+msgstr "Filnavn"
 
 msgid "Size:"
 msgstr "Størrelse:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Modtagere har anmodet dig om at udfylde et ekstra spørgeskema."
@@ -1366,9 +1372,6 @@ msgstr "Fra:"
 
 msgid "To:"
 msgstr "Til:"
-
-msgid "Filename"
-msgstr "Filnavn"
 
 msgid "View"
 msgstr "Gennemse"
@@ -1426,8 +1429,8 @@ msgid ""
 "your password."
 msgstr "Vi anbefaler, at du går til menuen \"Indstillinger\" for at finde din \"kontogendannelsesnøgle\", og at du gemmer denne et sikkert sted. Kontogendannelsesnøglen er nødvendig for at få adgang til portalen og dine data, i tilfælde af, at du glemmer din adgangskode. "
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Vælg en fil eller flyt den hertil."
 
 msgid "The provided recovery key is invalid."
 msgstr "Den indtastede gendannelsesnøgle er forkert."
@@ -1456,6 +1459,9 @@ msgstr "Forespørgsel om whistleblowerens identitet er blevet videregivet til de
 
 msgid "Date of the request"
 msgstr "Dato for forespørgslen"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Vis"

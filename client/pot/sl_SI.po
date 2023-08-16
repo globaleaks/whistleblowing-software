@@ -472,7 +472,7 @@ msgid "Hide"
 msgstr "Skrij"
 
 msgid "Unhide"
-msgstr ""
+msgstr "Razkrij"
 
 msgid "Redact"
 msgstr "Odstrani"
@@ -483,14 +483,11 @@ msgstr "Izberi možnost"
 msgid "Select your language"
 msgstr "Izberite jezik"
 
-msgid "Grant this recipient ability to transfer reports to other users"
-msgstr "Temu prejemniku omogočite prenos prijav drugim uporabnikom."
-
-msgid "Grant this user the privilege to mask information"
+msgid "Give this user ability to mask information"
 msgstr "Uporabniku omogoči, da skrije podatke."
 
-msgid "Grant this user the privilege to permanently redact masked information"
-msgstr "Uporabniku omogoči, da trajno odstrani skrite podatke."
+msgid "Give this user ability to permanently redact masked information"
+msgstr "Uporabniku omogoči, da trajno odstrani podatke."
 
 msgid "Public"
 msgstr "Javno"
@@ -1165,8 +1162,11 @@ msgstr "Dovoli prejemniku, da zbriše prijave"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Dovoli prejemnikom spremembo roka veljavnosti prijav"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Omogoči prejemniku, da uporabniku dovoli dostop do prijav"
+msgid "Give this user ability to grant user access to reports"
+msgstr "Uporabniku omogoči, da odobri dostop do prijav."
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr "Uporabniku omogoči, da prenese prijave drugim uporabnikom."
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Omogoči uporabniku dostop do naslednjih funkcij:"
@@ -1207,11 +1207,11 @@ msgstr "Izberite svoj račun:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Zdaj vpišite svoje geslo, nato kliknite \"Prijavi\":"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Besedilo se prikaže, ko uporabnik izbere možnost. "
-
 msgid "Confirm"
 msgstr "Potrdi "
+
+msgid "Text shown after the user has selected the option."
+msgstr "Besedilo se prikaže, ko uporabnik izbere možnost. "
 
 msgid "Assign score points"
 msgstr "Dodelite ocenjevalne točke"
@@ -1273,6 +1273,9 @@ msgstr "S potrditvijo boste spremenili rok veljavnosti do:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "S potrditvijo boste določili opomnik na izbrani datum:"
+
+msgid "Transfer access"
+msgstr "Dostop do prenosa"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "To je demo platforma, ne uporabljajte je za oddajanje resničnih prijav. "
@@ -1348,11 +1351,14 @@ msgstr "Ali ste že oddali prijavo? Vnesite kodo."
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Šifra ključa je neveljavna ali pa je prijavi potekla veljavnost."
 
-msgid "Select a file or drag it here."
-msgstr "Izberite datoteko ali jo povlecite sem."
+msgid "Filename"
+msgstr "Ime datoteke"
 
 msgid "Size:"
 msgstr "Velikost"
+
+msgid "Access date"
+msgstr "Datum dostopa"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Prejemniki vas prosijo, da izpolnite dodatni vprašalnik."
@@ -1365,9 +1371,6 @@ msgstr "Od:"
 
 msgid "To:"
 msgstr "Za:"
-
-msgid "Filename"
-msgstr "Ime datoteke"
 
 msgid "View"
 msgstr "Pogled"
@@ -1425,8 +1428,8 @@ msgid ""
 "your password."
 msgstr "Priporočamo, da za ponovni priklic svojega \"Ključa za obnovo računa\" dostopate preko rubrike »Uporabniške nastavitve« in ključ varno shranite. Ta ključ bo nujen za obnovitev vašega dostopa do platforme in vaših podatkov, če pozabite geslo."
 
-msgid "Access date"
-msgstr "Datum dostopa"
+msgid "Select a file or drag it here."
+msgstr "Izberite datoteko ali jo povlecite sem."
 
 msgid "The provided recovery key is invalid."
 msgstr "Ključ za obnovo računa ni veljaven."
@@ -1455,6 +1458,9 @@ msgstr "Zahtevek za dostop do identitete prijavitelja je bil posredovan skrbniku
 
 msgid "Date of the request"
 msgstr "Datum zahtevka"
+
+msgid "Subscription date"
+msgstr "Datum naročnine"
 
 msgid "Show"
 msgstr "Pokaži"

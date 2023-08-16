@@ -479,13 +479,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1161,8 +1158,11 @@ msgstr "Алушыға есептерді жоюға рұқсат беру"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Алушыға есептің жарамдылық мерзімін кейінге қалдыруға рұқсат беру"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Бұл алушыға есептерге пайдаланушы рұқсатын беру мүмкіндігін беру"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Пайдаланушыға келесі мүмкіндіктерге әкімшілік рұқсат беру:"
@@ -1203,11 +1203,11 @@ msgstr "Есептік жазбаңызды таңдаңыз:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Енді құпиясөзді теріп, «Кіру» түймесін басыңыз:"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Пайдаланушы опцияны таңдағаннан кейін көрсетілетін мәтін."
-
 msgid "Confirm"
 msgstr "Растау"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Пайдаланушы опцияны таңдағаннан кейін көрсетілетін мәтін."
 
 msgid "Assign score points"
 msgstr "Ұпайларды тағайындау"
@@ -1268,6 +1268,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Растау арқылы, жарамдылық мерзімін келесіге дейін қалдырасыз:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1344,11 +1347,14 @@ msgstr "Есепті толтырып қойдыңыз ба? Түбіртект�
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Түбіртек жарамсыз немесе есеп мерзімі аяқталған."
 
-msgid "Select a file or drag it here."
-msgstr "Файлды таңдаңыз немесе оны осында сүйреп әкеліңіз."
+msgid "Filename"
+msgstr "Файл аты"
 
 msgid "Size:"
 msgstr "Өлшемі:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Алушылар сізден қосымша сауалнаманы толтыруды сұрады."
@@ -1361,9 +1367,6 @@ msgstr "Жіберуші:"
 
 msgid "To:"
 msgstr "Алушы:"
-
-msgid "Filename"
-msgstr "Файл аты"
 
 msgid "View"
 msgstr "Қарау"
@@ -1421,8 +1424,8 @@ msgid ""
 "your password."
 msgstr "«Есептік жазбаны қалпына келтіру кілтін» алу және оны қауіпсіз сақтау үшін «Параметрлер» бөліміне кіруді ұсынамыз. Бұл кілт құпиясөзіңізді ұмытып қалған кезде, платформаға және деректеріңізге кіруді қалпына келтіру үшін қажет болады."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Файлды таңдаңыз немесе оны осында сүйреп әкеліңіз."
 
 msgid "The provided recovery key is invalid."
 msgstr "Берілген қалпына келтіру кілті жарамсыз болып табылады."
@@ -1451,6 +1454,9 @@ msgstr "Сақтаушыдан хабарлаушының жеке тұлғас�
 
 msgid "Date of the request"
 msgstr "Сұратым күні"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Көрсету"

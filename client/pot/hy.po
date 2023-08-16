@@ -479,13 +479,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1161,8 +1158,11 @@ msgstr "Թույլ տալ տվյալ հասցեատիրոջը ջնջել հաշ�
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Թույլ տալ հասցեատիրոջը հետաձգել հաշվետվության վերջնաժամկետը"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Տրամադրել տվյալ հասցեատիրոջը զեկույցներն օգտատերերի համար մատչելի դարձնելու թույլտվություն"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Օգտատերերի համար հասանելի դարձնել հետևյալ գործառույթները."
@@ -1203,11 +1203,11 @@ msgstr "Խնդրում ենք ընտրել ձեր հաշիվը."
 msgid "Now type your password, then click 'Log in':"
 msgstr "Այժմ մուտքագրեք ձեր գաղտնաբառը, այնուհետև սեղմեք «Մուտք գործել»."
 
-msgid "Text shown after the user has selected the option."
-msgstr "Տեքստ, որ կցուցադրվի օգտատիրոջը տարբերակն ընտրելուց հետո:"
-
 msgid "Confirm"
 msgstr "Հաստատել"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Տեքստ, որ կցուցադրվի օգտատիրոջը տարբերակն ընտրելուց հետո:"
 
 msgid "Assign score points"
 msgstr "Գնահատել"
@@ -1268,6 +1268,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Հաստատելով ՝ դուք կհետաձգեք վերջնաժամկետը մինչև."
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1344,11 +1347,14 @@ msgstr "Դուք արդեն զեկույց ներկայացրե՞լ եք: Մու
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Անդորրագիրն անվավեր է, կամ ժամկետանց:"
 
-msgid "Select a file or drag it here."
-msgstr "Ընտրեք ֆայլ կամ մկնիկով քաշեք այն այստեղ:"
+msgid "Filename"
+msgstr "Ֆայլի անունը"
 
 msgid "Size:"
 msgstr "Չափ՝"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Հասցեատերերը ձեզ խնդրել են լրացնել հավելյալ հարցաշար:"
@@ -1361,9 +1367,6 @@ msgstr "Ումից՝"
 
 msgid "To:"
 msgstr "Ում՝"
-
-msgid "Filename"
-msgstr "Ֆայլի անունը"
 
 msgid "View"
 msgstr "Դիտել"
@@ -1421,8 +1424,8 @@ msgid ""
 "your password."
 msgstr "Առաջարկում ենք մուտք գործել «Նախապատվություններ» բաժինը ձեր «Հաշվի վերականգնման բանալին» առբերելու և այն անվտանգ պահելու համար: Այս բանալին անհրաժեշտ կլինի ձեր մուտքը հարթակ և տվյալները վերականգնելու համար, եթե մոռանաք ձեր գաղտնաբառը:"
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Ընտրեք ֆայլ կամ մկնիկով քաշեք այն այստեղ:"
 
 msgid "The provided recovery key is invalid."
 msgstr "Ձեր մուտքագրած վերականգնման բանալին անվավեր է:"
@@ -1451,6 +1454,9 @@ msgstr "Ազդարարի ինքնությունը հասանելի դարձնե�
 
 msgid "Date of the request"
 msgstr "Հայցի ամսաթիվը"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Ցույց տալ"
