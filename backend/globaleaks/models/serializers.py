@@ -127,13 +127,13 @@ def serialize_rfile(session, rfile):
     :return: The serialized rfile
     """
     return {
-        'id': wbfile.id,
-        'creation_date': wbfile.creation_date,
-        'name': wbfile.name,
-        'size': wbfile.size,
-        'type': wbfile.content_type,
-        'description': wbfile.description,
-        'visibility': wbfile.visibility
+        'id': rfile.id,
+        'creation_date': rfile.creation_date,
+        'name': rfile.name,
+        'size': rfile.size,
+        'type': rfile.content_type,
+        'description': rfile.description,
+        'visibility': rfile.visibility
     }
 
 
