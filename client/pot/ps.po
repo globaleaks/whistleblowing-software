@@ -477,13 +477,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1159,8 +1156,11 @@ msgstr "تر لاسه کوونکي ته اجازه ورکړئ تر څو رپوټ
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "تر لاسه کوونکي ته اجازه ورکړئ تر څو د رپوټ د انقضاء نېټه وځنډوي"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "دغه تر لاسه کوونکي ته دا وړتیا ورکړئ تر څو کارن لپاره رپوټونو ته لاسرسی ورکړي"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "کارن ته د لاندې فیچرونو په اړه  اداري لاسرسی ورکړئ:"
@@ -1201,11 +1201,11 @@ msgstr "د مهرباني له مخې خپل اکاونټ وټاکه:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "اوس نو خپل پټ نوم ولیکه، بیا پر \"دننه کېدو\" کلیک وکړه:"
 
-msgid "Text shown after the user has selected the option."
-msgstr "کله چې کارن غوراوی وټاکه نو دا متن ښودل کېږي."
-
 msgid "Confirm"
 msgstr "تایید"
+
+msgid "Text shown after the user has selected the option."
+msgstr "کله چې کارن غوراوی وټاکه نو دا متن ښودل کېږي."
 
 msgid "Assign score points"
 msgstr "د امتیازاتو د نمرو اختصاص"
@@ -1266,6 +1266,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "په تصدیق کېدو سره به تاسې د انقضاء نېټه وځنډوئ تر: "
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1342,11 +1345,14 @@ msgstr "ایا تاسې له پخوا څخه یو رپوټ ډک کړی دی؟ خ
 msgid "The receipt is either invalid or the report has expired."
 msgstr "یا رسید ناسم دی یا رپوټ انقضاء شوی."
 
-msgid "Select a file or drag it here."
-msgstr "یو فایل وټاکئ یا دلته یې را کش کړئ."
+msgid "Filename"
+msgstr "د فایل نوم"
 
 msgid "Size:"
 msgstr "اندازه:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "تر لاسه کوونکو له تاسې غوښتي تر څو یو اضافي پوښتنلیک ډک کړي."
@@ -1359,9 +1365,6 @@ msgstr "له خوا:"
 
 msgid "To:"
 msgstr "لپاره:"
-
-msgid "Filename"
-msgstr "د فایل نوم"
 
 msgid "View"
 msgstr ""
@@ -1419,8 +1422,8 @@ msgid ""
 "your password."
 msgstr "زموږ سپارښتنه دا ده چې د \"ترجیحاتو\" برخې ته لاسرسی ولری تر څو خپل \"د اکاونټ د تر لاسه کولو رمز\" تر لاسه او په خوندي ځای کې یې وساتئ. دغه رمز به پلټفارم ته ستاسې د لاسرسي د لرلو  او که مو چیرته خپل پټ نوم هیر شوی وي نو خپلو اطلاعاتو ته د لاسرسي لرلو لپاره اړین وي."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "یو فایل وټاکئ یا دلته یې را کش کړئ."
 
 msgid "The provided recovery key is invalid."
 msgstr "وړاندې شوی د تر لاسه کولو رمز ناسم دی."
@@ -1449,6 +1452,9 @@ msgstr "د افشاګر پیژندګلوي ته لاسرسی لرل ساتونک
 
 msgid "Date of the request"
 msgstr "د غوښتنې نېټه"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "ښودل"

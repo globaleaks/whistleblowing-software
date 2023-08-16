@@ -479,13 +479,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1161,8 +1158,11 @@ msgstr "Дозволи му на примачот да ги избрише из�
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Дозволи му на примачот да го одложи истекот на датумот на извештајот"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Дај му можност на овој примач да го одобрува пристапот на корисниците до извештаите"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Дади му на корисникот администраторски прситап до следниве својства:"
@@ -1203,11 +1203,11 @@ msgstr "Ве молиме изберете ја вашата сметка:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Сега внесете ја вашата лозинка, потоа кликнете 'Најави се':"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Текст прикажан откако корисникот ја избрал опцијата."
-
 msgid "Confirm"
 msgstr "Потврди"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Текст прикажан откако корисникот ја избрал опцијата."
 
 msgid "Assign score points"
 msgstr "Додели поени"
@@ -1268,6 +1268,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Со потврдување, ќе го одложите датумот на истекување на:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1344,11 +1347,14 @@ msgstr "Дали веќе пополнивте извештај? Внесете 
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Потврдата не е валидна или извештајот е истечен."
 
-msgid "Select a file or drag it here."
-msgstr "Избери датотека или повлечи ја овде."
+msgid "Filename"
+msgstr "Име на датотека"
 
 msgid "Size:"
 msgstr "Големина:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Примачите ви побараа да пополните дополнителен прашалник."
@@ -1361,9 +1367,6 @@ msgstr "Од:"
 
 msgid "To:"
 msgstr "До:"
-
-msgid "Filename"
-msgstr "Име на датотека"
 
 msgid "View"
 msgstr ""
@@ -1421,8 +1424,8 @@ msgid ""
 "your password."
 msgstr "Ви препорачуваме да и пристапите на  секцијата “Параметри“ со цел да го добиете вашиот “Клуч за враќање на сметка“ и складирајте го безбедно. Овој клуч ќе ви биде потребен за да го вратите вашиот пристап до платформата и до вашите податоци во случај да ја заборавите вашата лозинка."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Избери датотека или повлечи ја овде."
 
 msgid "The provided recovery key is invalid."
 msgstr "Обезбедениот клуч за враќање не е валиден."
@@ -1451,6 +1454,9 @@ msgstr "Од чуварот беше побаран пристап до иден
 
 msgid "Date of the request"
 msgstr "Датум на барањето"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Покажи"

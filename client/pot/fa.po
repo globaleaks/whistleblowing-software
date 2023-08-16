@@ -504,13 +504,10 @@ msgstr "یک گزینه را انتخاب کنید"
 msgid "Select your language"
 msgstr "زبان خود را انتخاب کنید"
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1186,8 +1183,11 @@ msgstr "به گیرندگان اجازه دهید که گزارش‌ها را ح
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "به گیرنده اجازه دهید تا تاریخ انقضای گزارش را به تعویق بیاندازد"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "به این گیرنده قابلیت اعطای دسترسی کاربری به گزارش‌ها را بدهید"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "به کاربر دسترسی مدیریتی به ویژگی‌های زیر را بدهید:"
@@ -1228,11 +1228,11 @@ msgstr "حساب کاربری خود را انتخاب کنید:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "حالا گذرواژهٔ خود را تایپ کنید، سپس روی دکمهٔ 'ورود' کلیک کنید:"
 
-msgid "Text shown after the user has selected the option."
-msgstr "متن نمایش داده شده بعد از اینکه کاربر گزینه را انتخاب کرد."
-
 msgid "Confirm"
 msgstr "تأیید"
+
+msgid "Text shown after the user has selected the option."
+msgstr "متن نمایش داده شده بعد از اینکه کاربر گزینه را انتخاب کرد."
 
 msgid "Assign score points"
 msgstr "تخصیص امتیازها"
@@ -1293,6 +1293,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "با تأیید کردن، شما تاریخ انقضا را عقب خواهید انداخت به:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1369,11 +1372,14 @@ msgstr "آیا از قبل گزارش خود را تشکیل داده‌اید؟
 msgid "The receipt is either invalid or the report has expired."
 msgstr "رسید یا نامعتبر است یا گزارش منقضی شده است."
 
-msgid "Select a file or drag it here."
-msgstr "یک فایل را انتخاب کنید یا به اینجا بکشید."
+msgid "Filename"
+msgstr "نام فایل"
 
 msgid "Size:"
 msgstr "حجم:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "گیرندگان از شما درخواست کردند تا یک پرسش‌نامهٔ اضافی را پر کنید."
@@ -1386,9 +1392,6 @@ msgstr "از:"
 
 msgid "To:"
 msgstr "به:"
-
-msgid "Filename"
-msgstr "نام فایل"
 
 msgid "View"
 msgstr "نمایش"
@@ -1446,8 +1449,8 @@ msgid ""
 "your password."
 msgstr "به شما توصیه می‌کنیم برای دریافت \"کلید بازیابی حساب کاربری\" به بخش \"ترجیحات\" دسترسی پیدا کنید و آن را در جایی امن ذخیره کنید. این کلید برای بازیابی دسترسی شما به پلتفرم و داده‌های شما در صورتی که گذرواژه را فراموش کردید ضروری است."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "یک فایل را انتخاب کنید یا به اینجا بکشید."
 
 msgid "The provided recovery key is invalid."
 msgstr "کلید بازیابی ارائه شده نامعتبر است."
@@ -1476,6 +1479,9 @@ msgstr "دسترسی به هویت افشاگر از سرپرست درخواست
 
 msgid "Date of the request"
 msgstr "تاریخ درخواست"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "نمایش"

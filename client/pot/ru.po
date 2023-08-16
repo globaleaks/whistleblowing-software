@@ -507,13 +507,10 @@ msgstr ""
 msgid "Select your language"
 msgstr "Выберите язык"
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1189,8 +1186,11 @@ msgstr "Разрешить получателю удалять отчеты"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Разрешить получателю откладывать истечение срока действия отчета"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Предоставить этому получателю возможность выдавать пользователям доступ к отчетам"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Предоставьте пользователю административный доступ к следующим функциям:"
@@ -1231,11 +1231,11 @@ msgstr "Укажите вашу учётную запись:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Теперь введите ваш пароль, затем нажмите \"Войти\":"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Текст, показываемый после выбора опции пользователем."
-
 msgid "Confirm"
 msgstr "Подтвердить"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Текст, показываемый после выбора опции пользователем."
 
 msgid "Assign score points"
 msgstr "Оценить"
@@ -1296,6 +1296,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "В случае подтверждения вы увеличите срок истечения сведения до:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1372,11 +1375,14 @@ msgstr "Вы уже подали отчет? Введите свою квита�
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Квитанция недействительна, или истек срок действия отчета."
 
-msgid "Select a file or drag it here."
-msgstr "Выберите файл или перетащите его сюда."
+msgid "Filename"
+msgstr "Имя файла"
 
 msgid "Size:"
 msgstr "Размер:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Получатели попросили вас заполнить дополнительный опросник."
@@ -1389,9 +1395,6 @@ msgstr "От кого:"
 
 msgid "To:"
 msgstr "Кому:"
-
-msgid "Filename"
-msgstr "Имя файла"
 
 msgid "View"
 msgstr "Просмотр"
@@ -1449,8 +1452,8 @@ msgid ""
 "your password."
 msgstr "Мы рекомендуем вам войти в раздел \"Настройки”, чтобы получить “ключ для восстановления учетной записи” и сохранить его в безопасном месте. Этот ключ понадобится для восстановления доступа к платформе и вашим данным в том случае, если вы забудете свой пароль."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Выберите файл или перетащите его сюда."
 
 msgid "The provided recovery key is invalid."
 msgstr "Предоставленный ключ восстановления недействителен."
@@ -1479,6 +1482,9 @@ msgstr "К хранителю поступил запрос о доступе к
 
 msgid "Date of the request"
 msgstr "Дата запроса"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Показать"

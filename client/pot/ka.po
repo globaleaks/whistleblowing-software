@@ -477,13 +477,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1159,8 +1156,11 @@ msgstr "დართეთ ნება მიმღებს წაშალო
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "დართეთ ნება მიმღებს გადაავადოს ანგარიშის ვადის გასვლა"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "ამ მიმღებს მიეცეს შესაძლებლობა მიანიჭოს მომხმარებელს ანგარიშებზე წვდომის უფლება"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "მომხმარებლისთვის ადმინისტრაციული წვდომის მიცემა შემდეგი ფუნქციებისთვის"
@@ -1201,11 +1201,11 @@ msgstr "გთხოვთ, აირჩიოთ თქვენი ანგ�
 msgid "Now type your password, then click 'Log in':"
 msgstr "ახლა აკრიფეთ თქვენი პაროლი, შემდეგ დააჭირეთ \"შესვლა\"-ს:"
 
-msgid "Text shown after the user has selected the option."
-msgstr "ტექსტი გამოჩნდება მას შემდეგ, რაც მომხმარებელი აირჩევს ვარიანტს."
-
 msgid "Confirm"
 msgstr "დადასტურება"
+
+msgid "Text shown after the user has selected the option."
+msgstr "ტექსტი გამოჩნდება მას შემდეგ, რაც მომხმარებელი აირჩევს ვარიანტს."
 
 msgid "Assign score points"
 msgstr "ქულათა რაოდენობის მინიჭება"
@@ -1266,6 +1266,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "დადასტურებით, თქვენ გადაავადებთ ვადის გასვლის თარიღს:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1342,11 +1345,14 @@ msgstr "თქვენ უკვე შეავსეთ ანგარიშ
 msgid "The receipt is either invalid or the report has expired."
 msgstr "მიმღები არასწორია ან მოხსენება ვადაგასულია."
 
-msgid "Select a file or drag it here."
-msgstr "აირჩიეთ ფაილი ან გადმოიტანეთ აქ."
+msgid "Filename"
+msgstr "ფაილის სახელი"
 
 msgid "Size:"
 msgstr "ზომა:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "მიმღებებმა მოითხოვეს, რომ თქვენ შეავსოთ დამატებითი კითხვარი."
@@ -1359,9 +1365,6 @@ msgstr "ვისგან:"
 
 msgid "To:"
 msgstr "ვის:"
-
-msgid "Filename"
-msgstr "ფაილის სახელი"
 
 msgid "View"
 msgstr ""
@@ -1419,8 +1422,8 @@ msgid ""
 "your password."
 msgstr "თქვენი პაროლის დავიწყების შემთხვევაში, \"ანგარიშის აღდგენის კოდის\" მისაღებად, გირჩევთ შეხვიდეთ “პარამეტრების” განყოფილებაში და შეინახოთ იგი უსაფრთხოდ. ეს კოდი საჭირო იქნება პლატფორმაზე და თქვენს მონაცემებზე წვდომის აღსადგენად."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "აირჩიეთ ფაილი ან გადმოიტანეთ აქ."
 
 msgid "The provided recovery key is invalid."
 msgstr "წარდგენილი აღდგენის კოდი არასწორია."
@@ -1449,6 +1452,9 @@ msgstr "ინსტრუქტორის ინტენტობაზე �
 
 msgid "Date of the request"
 msgstr "მოთხოვნის თარიღი"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "ჩვენება"

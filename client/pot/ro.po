@@ -493,13 +493,10 @@ msgstr ""
 msgid "Select your language"
 msgstr "Selectați limba"
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1175,8 +1172,11 @@ msgstr "Permite destinatarilor să șteargă sesizările"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Permite destinatarului să amâne data de expirare a sesizării"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Permite acestui destinatar să acorde utilizatorilor acces la sesizări"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Permite utilizatorului acces administrativ la următoarele instrumente:"
@@ -1217,11 +1217,11 @@ msgstr "Te rugăm să îți selectezi contul:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Tastează parola și dă click pe \"Autentificare\":"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Acest text apare după ce utilizatorul a selectat varianta."
-
 msgid "Confirm"
 msgstr "Confirmă"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Acest text apare după ce utilizatorul a selectat varianta."
 
 msgid "Assign score points"
 msgstr "Atribuie puncte pentru evaluare"
@@ -1282,6 +1282,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Confirmând, vei amâna data de expirare până la:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1358,11 +1361,14 @@ msgstr "Ai trimis deja o sesizare? Introdu codul înregistrării."
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Acest cod este fie invalid, fie sesizarea a expirat."
 
-msgid "Select a file or drag it here."
-msgstr "Selectează un fișier sau trage-l aici."
+msgid "Filename"
+msgstr "Nume fișier"
 
 msgid "Size:"
 msgstr "Dimensiune:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Destinatarii ți-au solicitat să completezi un chestionar suplimentar."
@@ -1375,9 +1381,6 @@ msgstr "De la:"
 
 msgid "To:"
 msgstr "Pentru:"
-
-msgid "Filename"
-msgstr "Nume fișier"
 
 msgid "View"
 msgstr "Vizualizează"
@@ -1435,8 +1438,8 @@ msgid ""
 "your password."
 msgstr "Vă recomandăm să accesați secțiunea \"Preferințe\" pentru a vă obține \"Cheia de recuperare a contului\" și pentru a o salva în siguranță. Această cheie va fi necesară pentru a vă recupera accesul la platformă și la datele dvs. în cazul în care vă uitați parola."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Selectează un fișier sau trage-l aici."
 
 msgid "The provided recovery key is invalid."
 msgstr "Cheia de recuperare introdusă este invalidă."
@@ -1465,6 +1468,9 @@ msgstr "Accesul la identitatea avertizorului a fost solicitată custode."
 
 msgid "Date of the request"
 msgstr "Data solicitării"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Arată"

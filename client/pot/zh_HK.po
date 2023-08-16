@@ -479,13 +479,10 @@ msgstr "选择一个选项"
 msgid "Select your language"
 msgstr "选择您的语言"
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1161,7 +1158,10 @@ msgstr "允許此接收者刪除報告"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "允許此接收者延遲報告到期日"
 
-msgid "Give this recipient ability to grant user access to reports"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
 msgid "Give the user administrative access to the following features:"
@@ -1203,11 +1203,11 @@ msgstr "請選擇您的帳號："
 msgid "Now type your password, then click 'Log in':"
 msgstr "請輸入您的密碼，然後按「登入」："
 
-msgid "Text shown after the user has selected the option."
-msgstr "選項被選後所顯示的文字"
-
 msgid "Confirm"
 msgstr "確認"
+
+msgid "Text shown after the user has selected the option."
+msgstr "選項被選後所顯示的文字"
 
 msgid "Assign score points"
 msgstr "指定評分"
@@ -1268,6 +1268,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "您會將到期日延遲至："
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1344,11 +1347,14 @@ msgstr "想查看您之前提交的報告？在此輸入收據號碼："
 msgid "The receipt is either invalid or the report has expired."
 msgstr "收據號碼無效或報告已到期。"
 
-msgid "Select a file or drag it here."
-msgstr "選取檔案或將其拖曳到此處。"
+msgid "Filename"
+msgstr "檔案名稱"
 
 msgid "Size:"
 msgstr "大小：   "
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "接收者想請您填寫一份附加問卷。"
@@ -1361,9 +1367,6 @@ msgstr "寄件人："
 
 msgid "To:"
 msgstr "收件人："
-
-msgid "Filename"
-msgstr "檔案名稱"
 
 msgid "View"
 msgstr "觀看"
@@ -1421,8 +1424,8 @@ msgid ""
 "your password."
 msgstr "請到「帳號設定」以取得您的「帳號修復金鑰」並妥善保存。萬一您忘記了密碼，只有此金鑰才可修復帳號資料。"
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "選取檔案或將其拖曳到此處。"
 
 msgid "The provided recovery key is invalid."
 msgstr "所提供的修復金鑰無效。"
@@ -1451,6 +1454,9 @@ msgstr "已向保管人請求吹哨者的個人身份。"
 
 msgid "Date of the request"
 msgstr "請求日期"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "顯示"

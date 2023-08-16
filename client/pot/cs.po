@@ -479,7 +479,7 @@ msgid "Hide"
 msgstr "Skrýt"
 
 msgid "Unhide"
-msgstr ""
+msgstr "Zrušit skrytí"
 
 msgid "Redact"
 msgstr "Revidovat"
@@ -490,14 +490,11 @@ msgstr "Vyberte možnost"
 msgid "Select your language"
 msgstr "Vyberte jazyk"
 
-msgid "Grant this recipient ability to transfer reports to other users"
-msgstr "Udělit tomuto příjemci možnost předávat zprávy jiným uživatelům."
+msgid "Give this user ability to mask information"
+msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr "Udělit tomuto uživateli oprávnění ke skrytí informací"
-
-msgid "Grant this user the privilege to permanently redact masked information"
-msgstr "Udělit tomuto uživateli oprávnění trvale revidovat skryté informace"
+msgid "Give this user ability to permanently redact masked information"
+msgstr ""
 
 msgid "Public"
 msgstr "Věřejné"
@@ -1172,8 +1169,11 @@ msgstr "Povolit příjemcům smazat oznámení"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Povolit příjemci odložit datum expirace oznámení"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Přidat tomuto příjemci schopnost nastavit přístup k reportům"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Poskytněte uživateli administrativní přístup k následujícím funkcím:"
@@ -1214,11 +1214,11 @@ msgstr "Vyberte, prosím, váš účet"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Nyní vepište své heslo, poté stiskněte \"Přihlásit\":"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Text bude zobrazen poté, co uživatel vybral jednu z možností."
-
 msgid "Confirm"
 msgstr "Potvrdit"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Text bude zobrazen poté, co uživatel vybral jednu z možností."
 
 msgid "Assign score points"
 msgstr "Přidělit bodové skóre"
@@ -1280,6 +1280,9 @@ msgstr "Potvrzením odložíte datum expirace do:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "Potvrzením, nastavíte nastavíte datum připomenutí na:"
+
+msgid "Transfer access"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Toto je demo platforma, nepoužívejte ji prosím pro skutečné podání oznámení."
@@ -1355,11 +1358,14 @@ msgstr "Už jste podal oznámení? Zadejte své potvrzení."
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Příjemce je buď neplatný nebo platnost oznámení vypršela."
 
-msgid "Select a file or drag it here."
-msgstr "Vyberte soubor nebo jej sem přetáhněte."
+msgid "Filename"
+msgstr "Jméno souboru"
 
 msgid "Size:"
 msgstr "Velikost:"
+
+msgid "Access date"
+msgstr "Datum přístupu"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Příjemci požadují, abyste vyplnili dodatečný dotazník."
@@ -1372,9 +1378,6 @@ msgstr "Od:"
 
 msgid "To:"
 msgstr "Do:"
-
-msgid "Filename"
-msgstr "Jméno souboru"
 
 msgid "View"
 msgstr "Zobrazit"
@@ -1432,8 +1435,8 @@ msgid ""
 "your password."
 msgstr "Doporučujeme jít do sekce „Předvolby“, abyste získali „Klíč pro obnovení účtu“ a bezpečně jej uložili. Tento klíč bude nezbytný pro obnovení přístupu k platformě a k vašim údajům v případě, že své heslo zapomenete."
 
-msgid "Access date"
-msgstr "Datum přístupu"
+msgid "Select a file or drag it here."
+msgstr "Vyberte soubor nebo jej sem přetáhněte."
 
 msgid "The provided recovery key is invalid."
 msgstr "Zadaný obnovovací klíč je neplatný."
@@ -1462,6 +1465,9 @@ msgstr "Správce byl požádán o přístup k identitě oznamovatele"
 
 msgid "Date of the request"
 msgstr "Datum požadavku"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Ukázat"

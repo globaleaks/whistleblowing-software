@@ -490,13 +490,10 @@ msgstr ""
 msgid "Select your language"
 msgstr "Επιλογή γλώσσας"
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1172,7 +1169,10 @@ msgstr "Επιτρέψτε στον παραλήπτη να διαγράφει �
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Επιτρέψτε στον παραλήπτη να αναβάλει την ημερομηνία λήξης της αναφοράς"
 
-msgid "Give this recipient ability to grant user access to reports"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
 msgid "Give the user administrative access to the following features:"
@@ -1214,11 +1214,11 @@ msgstr "Παρακάλω επιλέξτε το λογαριασμό σας: "
 msgid "Now type your password, then click 'Log in':"
 msgstr "Τώρα πληκτρολογήστε τον κωδικό πρόσβασής σας, μετά πιέστε \"Σύνδεση\": "
 
-msgid "Text shown after the user has selected the option."
-msgstr "Κείμενο που εμφανίζεται αφού ο χρήστης μαρκάρει την επιλογή"
-
 msgid "Confirm"
 msgstr "Επιβεβαίωση"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Κείμενο που εμφανίζεται αφού ο χρήστης μαρκάρει την επιλογή"
 
 msgid "Assign score points"
 msgstr "Ανάθεση πόντων βαθμολογίας"
@@ -1279,6 +1279,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Επιβεβαιώνοντας, θα αναβληθεί η ημερομηνία λήξης για τις:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1355,11 +1358,14 @@ msgstr "Έχετε ήδη καταχωρήσει την αναφορά σας; �
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Το αποδεικτό είναι άκυρο ή η καταχωρημένη αναφορά έχει λήξει."
 
-msgid "Select a file or drag it here."
-msgstr "Επιλέξτε αρχείο ή σύρετέ το εδώ."
+msgid "Filename"
+msgstr "Όνομα αρχείου"
 
 msgid "Size:"
 msgstr "Μέγεθος:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Οι παραλήπτες σας ζητούν να συμπληρώσετε ένα επιπρόσθετο ερωτηματολόγιο"
@@ -1372,9 +1378,6 @@ msgstr "Από:"
 
 msgid "To:"
 msgstr "Προς: "
-
-msgid "Filename"
-msgstr "Όνομα αρχείου"
 
 msgid "View"
 msgstr "Προβολή"
@@ -1432,8 +1435,8 @@ msgid ""
 "your password."
 msgstr "Προτείνουμε να πάτε στην περιοχή \"Προτιμήσεις\" για να δείτε το \"Κλειδί ανάκτησης λογαριασμού\" και να το αποθηκεύσετε με ασφάλεια. Αυτό το κλειδί είναι απαραίτητο για την ανάκτηση της πρόσβασης στην πλατφόρμα και στα δεδομένα σας, σε περίπτωση που ξεχάσετε τον κωδικό σας."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Επιλέξτε αρχείο ή σύρετέ το εδώ."
 
 msgid "The provided recovery key is invalid."
 msgstr "Το παρεχόμενο κλειδί ανάκτησης είναι άκυρο"
@@ -1462,6 +1465,9 @@ msgstr "Η πρόσβαση στην ταυτότητα του προσώπου 
 
 msgid "Date of the request"
 msgstr "Ημερομηνία υποβολής της αίτησης"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Εμφάνιση"

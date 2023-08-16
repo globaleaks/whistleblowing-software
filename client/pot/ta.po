@@ -479,13 +479,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1161,7 +1158,10 @@ msgstr "பெற்றவர்கள் சமர்ப்பிப்பு�
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "பெறுநர் சமர்ப்பிப்பு காலாவதி தேதி ஒத்தி அனுமதி"
 
-msgid "Give this recipient ability to grant user access to reports"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
 msgid "Give the user administrative access to the following features:"
@@ -1203,11 +1203,11 @@ msgstr "உங்கள் கணக்கு தேர்ந்தெடுக�
 msgid "Now type your password, then click 'Log in':"
 msgstr "இப்போது உங்கள் கடவுச்சொல்லை தட்டச்சு, பின்னர் 'நுழைய' கிளிக்:"
 
-msgid "Text shown after the user has selected the option."
-msgstr ""
-
 msgid "Confirm"
 msgstr "உறுதிப்படுத்தவும்"
+
+msgid "Text shown after the user has selected the option."
+msgstr ""
 
 msgid "Assign score points"
 msgstr "ஸ்கோர் புள்ளிகள் ஒதுக்க"
@@ -1268,6 +1268,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "உறுதிப்படுத்துவதன் மூலம், நீங்கள் காலாவதி தேதி தள்ளிப்போட:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1344,11 +1347,14 @@ msgstr "நீங்கள் ஏற்கனவே ஒரு சமர்ப்
 msgid "The receipt is either invalid or the report has expired."
 msgstr "ரசீது தவறானது அல்லது சமர்ப்பிப்பு காலாவதியானது."
 
-msgid "Select a file or drag it here."
-msgstr ""
+msgid "Filename"
+msgstr "கோப்பின் பெயர்"
 
 msgid "Size:"
 msgstr "அளவு:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "கூடுதல் கேள்வித்தாள் நிரப்ப நிர்பந்திக்கப்பட்டவர்கள் உங்களிடம் கேட்டுள்ளனர்."
@@ -1361,9 +1367,6 @@ msgstr ""
 
 msgid "To:"
 msgstr ""
-
-msgid "Filename"
-msgstr "கோப்பின் பெயர்"
 
 msgid "View"
 msgstr "காட்சி"
@@ -1421,7 +1424,7 @@ msgid ""
 "your password."
 msgstr ""
 
-msgid "Access date"
+msgid "Select a file or drag it here."
 msgstr ""
 
 msgid "The provided recovery key is invalid."
@@ -1451,6 +1454,9 @@ msgstr "தகவல் தெரிவிப்பவர் அடையாள�
 
 msgid "Date of the request"
 msgstr "கோரிக்கையின் தேதி"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "காண்பி"

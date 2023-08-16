@@ -479,13 +479,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1161,8 +1158,11 @@ msgstr "ДIаэцархочунна аьрзнаш дIадайъа бакъо л
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "ДIаэцархочунна арз чекхдаларан хан дIататта бакъо луо "
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "ХIокху дIаэцархочунна таро луо аьрзнашна тlекхача бакъо яла"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Администраторна хIокху башхаллошна тlекхочийла луо:"
@@ -1203,11 +1203,11 @@ msgstr "Хьайн аккаунт харжахь:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Хlинца хьайн парол чуязъе, тlаккха \"Чувала\" тlетаlайе:"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Пайдаэцархочо хlара опци хаьржинчул тlаьхьа гучуйолуш йолу текст."
-
 msgid "Confirm"
 msgstr "ТIечIагIде"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Пайдаэцархочо хlара опци хаьржинчул тlаьхьа гучуйолуш йолу текст."
 
 msgid "Assign score points"
 msgstr "Баллаш хIиттае"
@@ -1268,6 +1268,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Тlечlагlдича, ахь чекхдаларан хан дlатотту:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1344,11 +1347,14 @@ msgstr "Ахь арз хIинцале чуделлий? Хьайн квитан�
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Квитанци я бакъ дац, я цуьнан леларан хан дlаяьлла."
 
-msgid "Select a file or drag it here."
-msgstr "Файл харжа я кхуза схьатакхае."
+msgid "Filename"
+msgstr "Файлан цlе"
 
 msgid "Size:"
 msgstr "Барам"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "ДIаэцархоша дехна хьоьга тIеоьшу хеттар яздан."
@@ -1361,9 +1367,6 @@ msgstr "Хьаьнгара:"
 
 msgid "To:"
 msgstr "Хьаьнга:"
-
-msgid "Filename"
-msgstr "Файлан цlе"
 
 msgid "View"
 msgstr ""
@@ -1421,8 +1424,8 @@ msgid ""
 "your password."
 msgstr "Охьа хьехар, \"ГIоленаш\" декъе дехьа а валий, хьайн \"Аккаунт меттахIоторан догlа\" схьа а эцна, и кхерамзаллин кепехь лардар. И догlа хьуна оьшур ду платформиний, хьан информациний тlекхочийла меттахlоттон, хьуна хьайн парол йицъелча."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Файл харжа я кхуза схьатакхае."
 
 msgid "The provided recovery key is invalid."
 msgstr "ХIара меттахIоторан догlа бакъ дац."
@@ -1451,6 +1454,9 @@ msgstr "Iорадаккхархочун цIарна тlекхочийла дех
 
 msgid "Date of the request"
 msgstr "Дехаран дата"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Гайта"

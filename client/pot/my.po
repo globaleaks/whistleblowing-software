@@ -478,13 +478,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1160,7 +1157,10 @@ msgstr "လက်ခံသူအား အစီရင်ခံစာမျာ�
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "လက်ခံသူအား အစီရင်ခံစာ သက်တမ်းကုန်ဆုံးရက်ကို ရွှေ့ဆိုင်းခွင့်ပြုပါ"
 
-msgid "Give this recipient ability to grant user access to reports"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
 msgid "Give the user administrative access to the following features:"
@@ -1202,11 +1202,11 @@ msgstr "ကျေးဇူးပြု၍ သင့်အကောင့်က�
 msgid "Now type your password, then click 'Log in':"
 msgstr "ယခု သင့်စကားဝှက်ကို ရိုက်၍ 'လော့အင်ဝင်ရန်' ကို နှိပ်ပါ -"
 
-msgid "Text shown after the user has selected the option."
-msgstr "အသုံးပြုသူ ရွေးချယ်စရာကို ရွေးချယ်ပြီးနောက် ပြသသည့် စာသား။"
-
 msgid "Confirm"
 msgstr "အတည်ပြုမည်"
+
+msgid "Text shown after the user has selected the option."
+msgstr "အသုံးပြုသူ ရွေးချယ်စရာကို ရွေးချယ်ပြီးနောက် ပြသသည့် စာသား။"
 
 msgid "Assign score points"
 msgstr "ရမှတ်များကို သတ်မှတ်ပါ"
@@ -1267,6 +1267,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "အတည်ပြုခြင်းအားဖြင့် သင်သည် သက်တမ်းကုန်ဆုံးရက်ကို ရွှေ့ဆိုင်းပါမည် -"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1343,11 +1346,14 @@ msgstr "သင် အစီရင်ခံစာ တင်ပြီးပြီ�
 msgid "The receipt is either invalid or the report has expired."
 msgstr "လက်ခံဖြတ်ပိုင်းသည် မမှန်ကန်ပါ (သို့) သက်တမ်းကုန်ဆုံးသွားပါပြီ။ "
 
-msgid "Select a file or drag it here."
-msgstr "ဖိုင်တစ်ခုကို ရွေးချယ်ပါ (သို့) ၎င်းကို ဆွဲယူပါ။"
+msgid "Filename"
+msgstr "ဖိုင် အမည်"
 
 msgid "Size:"
 msgstr "အရွယ်အစား - "
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "လက်ခံသူများက သင့်အား အပိုဆောင်း မေးခွန်းလွှာဖြည့်ရန် တောင်းဆိုထားသည်။"
@@ -1360,9 +1366,6 @@ msgstr "မှ -"
 
 msgid "To:"
 msgstr "သို့ - "
-
-msgid "Filename"
-msgstr "ဖိုင် အမည်"
 
 msgid "View"
 msgstr "ကြည့်ရှုန်"
@@ -1420,8 +1423,8 @@ msgid ""
 "your password."
 msgstr "သင်၏ “အကောင့်ပြန်လည်ရယူရန် စကားဝှက်သော့” ကို ပြန်လည်ရယူပြီး လုံခြုံစွာသိမ်းဆည်းရန် “အလေးပေး ရွေးချယ်မှု” ကဏ္ဍကို ဝင်ရောက်ကြည့်ရှုဖို့ ကျွန်ုပ်တို့ အကြံပြုပါသည်။ အကယ်၍ သင့်စကားဝှက်ကို မေ့သွားပါက ပလက်ဖောင်းနှင့် သင်၏ အချက်အလက်များကို ပြန်လည်ရယူရန် ဤသော့ကို လိုအပ်သည်။"
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "ဖိုင်တစ်ခုကို ရွေးချယ်ပါ (သို့) ၎င်းကို ဆွဲယူပါ။"
 
 msgid "The provided recovery key is invalid."
 msgstr "ပေးထားသော ပြန်လည်ရယူရန် စကားဝှက်သော့သည် မမှန်ကန်ပါ။"
@@ -1450,6 +1453,9 @@ msgstr "သတင်းပေးသူ၏ ကိုယ်ပိုင်အမ�
 
 msgid "Date of the request"
 msgstr "တောင်းဆိုသည့် နေ့စွဲ"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "ပြသမည်"

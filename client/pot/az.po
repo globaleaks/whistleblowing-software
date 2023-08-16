@@ -484,13 +484,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1166,8 +1163,11 @@ msgstr "Alıcının hesabatları silməsinə icazə verin"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Alıcının hesabatların son tarixini dəyişməsinə icazə verin"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Alıcıya hesabatlara giriş imkanı ver."
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "İstifadəçiyə aşağıdakılar üçün inzibatçı icazəsi ver:"
@@ -1208,11 +1208,11 @@ msgstr "Xahiş edirik, hesabınızı seçin. "
 msgid "Now type your password, then click 'Log in':"
 msgstr "Şifrənizi daxil edin, sonra \"Giriş\" düyməsinə basın"
 
-msgid "Text shown after the user has selected the option."
-msgstr "İstifadəçi seçimini etdikdən sonra görünən mətn."
-
 msgid "Confirm"
 msgstr "Təsdiqlə"
+
+msgid "Text shown after the user has selected the option."
+msgstr "İstifadəçi seçimini etdikdən sonra görünən mətn."
 
 msgid "Assign score points"
 msgstr "Xalları təyin edin"
@@ -1273,6 +1273,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Təsdiqləməklə, hesabatın tarixini dəyişəcəksiz:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1349,11 +1352,14 @@ msgstr "Hesabatı artıq göndərmisiz? Açar şifrəni daxil edin"
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Açar şifrə etibarsızdır, ya da hesabat müddəti başa çatıb."
 
-msgid "Select a file or drag it here."
-msgstr "Faylı seçin, yaxud bura sürüşdürün."
+msgid "Filename"
+msgstr "Fayl adı"
 
 msgid "Size:"
 msgstr "Ölçü:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Alıcılar əlavə sorğu anketini doldurmağınızı istəyirlər."
@@ -1366,9 +1372,6 @@ msgstr "Etibarən:"
 
 msgid "To:"
 msgstr "Qədər:"
-
-msgid "Filename"
-msgstr "Fayl adı"
 
 msgid "View"
 msgstr "Bax"
@@ -1426,8 +1429,8 @@ msgid ""
 "your password."
 msgstr "\"Hesabı Yeniləmə Açarı\"nı əldə etməkçün \"Seçimlər\" bölməsinə keçməyi və açarı təhlükəsiz yerdə saxlamağı məsləhət görürük. Bu açar parolunuzu unutduğunuzda platformaya və məlumatlarınıza çıxış əldə etməkçün lazım olacaq."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Faylı seçin, yaxud bura sürüşdürün."
 
 msgid "The provided recovery key is invalid."
 msgstr "Verilən qaytarma açarı etibarsızdır."
@@ -1456,6 +1459,9 @@ msgstr "Mühafizəçidən informasiya ötürənin kimliyinə giriş tələb olun
 
 msgid "Date of the request"
 msgstr "Sorğunun tarixi"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Göstər"

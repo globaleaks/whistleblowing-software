@@ -484,13 +484,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1166,7 +1163,10 @@ msgstr "প্রাপককে প্রতিবেদনগুলি মু�
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "প্রাপককে রিপোর্টের মেয়াদ শেষ হওয়ার তারিখ স্থগিত করার অনুমতি দিন"
 
-msgid "Give this recipient ability to grant user access to reports"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
 msgstr ""
 
 msgid "Give the user administrative access to the following features:"
@@ -1208,11 +1208,11 @@ msgstr "আপনার অ্যাকাউন্টটি নির্বা�
 msgid "Now type your password, then click 'Log in':"
 msgstr "এখন আপনার পাসওয়ার্ড টাইপ করুন, তারপরে 'লগ ইন' ক্লিক করুন:"
 
-msgid "Text shown after the user has selected the option."
-msgstr "ব্যবহারকারী বিকল্প নির্বাচন করার পরে যে লেখা দেখানো হবে। "
-
 msgid "Confirm"
 msgstr "নিশ্চিত করা"
+
+msgid "Text shown after the user has selected the option."
+msgstr "ব্যবহারকারী বিকল্প নির্বাচন করার পরে যে লেখা দেখানো হবে। "
 
 msgid "Assign score points"
 msgstr "স্কোর পয়েন্ট বরাদ্দ করুন"
@@ -1273,6 +1273,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "নিশ্চিত করলে, আপনি মেয়াদ শেষ হওয়ার তারিখটি এখানে স্থগিত করবেন:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1349,11 +1352,14 @@ msgstr "আপনি কি ইতিমধ্যে একটি রিপো�
 msgid "The receipt is either invalid or the report has expired."
 msgstr "রসিদটি অবৈধ বা রিপোর্টের মেয়াদ শেষ হয়ে গেছে।"
 
-msgid "Select a file or drag it here."
-msgstr "একটি ফাইল নির্বাচন করুন বা এটিকে এখানে টেনে আনুন।"
+msgid "Filename"
+msgstr "ফাইলের নাম"
 
 msgid "Size:"
 msgstr "আকার:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "প্রাপকরা আপনাকে একটি অতিরিক্ত প্রশ্নপত্র পূরণ করার জন্য অনুরোধ করেছেন।"
@@ -1366,9 +1372,6 @@ msgstr "থেকে:"
 
 msgid "To:"
 msgstr "প্রতি:"
-
-msgid "Filename"
-msgstr "ফাইলের নাম"
 
 msgid "View"
 msgstr "দৃশ্য"
@@ -1426,8 +1429,8 @@ msgid ""
 "your password."
 msgstr "আপনার \"অ্যাকাউন্ট পুনরুদ্ধার কী\" খুঁজে পেতে এবং এটি নিরাপদে সংরক্ষণ করার জন্য আপনাকে \"পছন্দগুলি\" বিভাগটি অ্যাক্সেস করার পরামর্শ দিচ্ছি। আপনার পাসওয়ার্ড ভুলে গেলে এই প্ল্যাটফর্ম এবং আপনার তথ্যে আপনার অ্যাক্সেস পুনরুদ্ধার করার জন্য এই কী টি প্রয়োজনীয় হবে।"
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "একটি ফাইল নির্বাচন করুন বা এটিকে এখানে টেনে আনুন।"
 
 msgid "The provided recovery key is invalid."
 msgstr "প্রদত্ত পুনরুদ্ধার কী টি অবৈধ।"
@@ -1456,6 +1459,9 @@ msgstr "হুইসেল ব্লোয়ারের পরিচয় অ
 
 msgid "Date of the request"
 msgstr "অনুরোধের তারিখ"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "দেখাও"

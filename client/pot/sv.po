@@ -500,14 +500,11 @@ msgstr "Välj ett alternativ"
 msgid "Select your language"
 msgstr "Välj ditt språk"
 
-msgid "Grant this recipient ability to transfer reports to other users"
-msgstr "Ge mottagaren möjlighet att överlämna rapporter till andra användare"
+msgid "Give this user ability to mask information"
+msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr "Ge denna användare möjlighet att maskera information"
-
-msgid "Grant this user the privilege to permanently redact masked information"
-msgstr "Ge denna användare möjlighet att permanent radera maskerad information"
+msgid "Give this user ability to permanently redact masked information"
+msgstr ""
 
 msgid "Public"
 msgstr "Publik"
@@ -1182,8 +1179,11 @@ msgstr "Tillåt mottagaren att ta bort tips"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Tillåt mottagaren att förlänga utgångsdatumet för rapporten"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Ge mottagaren möjlighet att ge användare tillgång till rapporter"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Ge användaren administratörsrättigheter för följande funktioner:"
@@ -1224,11 +1224,11 @@ msgstr "Vänligen välj ditt konto."
 msgid "Now type your password, then click 'Log in':"
 msgstr "Ange ditt lösenord nu, och välj sedan ”Logga in”:"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Text som visas efter att användaren har gjort sitt val."
-
 msgid "Confirm"
 msgstr "Bekräfta"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Text som visas efter att användaren har gjort sitt val."
 
 msgid "Assign score points"
 msgstr "Tilldela poängtal"
@@ -1290,6 +1290,9 @@ msgstr "Genom att klicka på förlängning så kommer du att förlänga tipsets 
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "Genom att bekräfta ställs påminnelsedatum till:"
+
+msgid "Transfer access"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Detta är en demonstrationsplattform, vänligen använd den inte för verkliga tips."
@@ -1365,11 +1368,14 @@ msgstr "Har du redan lämnat en rapport? Ange din kod."
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Antingen är läskvittot ogiltigt eller så har rapporten upphört att gälla."
 
-msgid "Select a file or drag it here."
-msgstr "Välj en fil eller släpa den hit."
+msgid "Filename"
+msgstr "Filnamn"
 
 msgid "Size:"
 msgstr "Storlek:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Mottagarna har bett dig fylla i ytterligare ett frågeformulär."
@@ -1382,9 +1388,6 @@ msgstr "Från:"
 
 msgid "To:"
 msgstr "Till:"
-
-msgid "Filename"
-msgstr "Filnamn"
 
 msgid "View"
 msgstr "Visa"
@@ -1442,8 +1445,8 @@ msgid ""
 "your password."
 msgstr "Vi rekommenderar att du går in på fliken ”Inställningar” för att hämta din ”Kod för kontoåterställning” och därefter kan du spara koden på ett säkert ställe. Denna kod behövs för att återställa åtkomsten till plattformen och dina uppgifter i händelse av att du glömmer ditt lösenord."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Välj en fil eller släpa den hit."
 
 msgid "The provided recovery key is invalid."
 msgstr "Den angivna återställningskoden är fel."
@@ -1472,6 +1475,9 @@ msgstr "Åtkomst till visselblåsarens identitet har begärts av systemförvalta
 
 msgid "Date of the request"
 msgstr "Datum för begäran"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Visa"

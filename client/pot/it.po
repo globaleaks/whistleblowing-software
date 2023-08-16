@@ -488,7 +488,7 @@ msgid "Hide"
 msgstr "Nascosto"
 
 msgid "Unhide"
-msgstr ""
+msgstr "Scopri"
 
 msgid "Redact"
 msgstr "Cancella"
@@ -499,14 +499,11 @@ msgstr "Seleziona un'opzione"
 msgid "Select your language"
 msgstr "Seleziona la tua lingua"
 
-msgid "Grant this recipient ability to transfer reports to other users"
-msgstr "Permetti a questo ricevente di trasferire le segnalazioni ad altri utenti"
+msgid "Give this user ability to mask information"
+msgstr "Dai a questo utente il permesso di mascherare le informazioni"
 
-msgid "Grant this user the privilege to mask information"
-msgstr "Dai a questo utente il privilegio di mascherare temporaneamente le informazioni"
-
-msgid "Grant this user the privilege to permanently redact masked information"
-msgstr "Dai a questo utente il privilegio di cancellare permanentemente le informazioni mascherate"
+msgid "Give this user ability to permanently redact masked information"
+msgstr "Dai a questo utente il permesso di cancellare permanentemente le informazioni mascherate"
 
 msgid "Public"
 msgstr "Pubblico"
@@ -524,7 +521,7 @@ msgid "I've read and accept the Privacy Policy"
 msgstr "Ho letto e accetto l'Informativa Privacy"
 
 msgid "Download copy of the Privacy Policy"
-msgstr "Scarica Copia dell'informativa Privacy"
+msgstr "Scarica copia dell'Informativa Privacy"
 
 msgid "Whistleblowing Policy"
 msgstr "Whistleblowing Policy"
@@ -1181,8 +1178,11 @@ msgstr "Permetti a questo ricevente di cancellare le segnalazioni."
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Permetti al ricevente di posticipare la data di scadenza"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Permetti a questo ricevente di concedere l'accesso alle segnalazioni ad altri utenti"
+msgid "Give this user ability to grant user access to reports"
+msgstr "Dai a questo utente il permesso di concedere l'accesso alle segnalazioni ad altri utenti"
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr "Dai a questo utente il permesso di trasferire l'accesso alle segnalazioni ad altri utenti"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Dai all'utente accesso amministrativo alle seguenti funzionalità:"
@@ -1223,11 +1223,11 @@ msgstr "Come prima cosa seleziona il tuo utente:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Adesso digita la tua password e poi clicca 'Accedi':"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Testo mostrato dopo che l'utente ha selezionato l'opzione."
-
 msgid "Confirm"
 msgstr "Conferma"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Testo mostrato dopo che l'utente ha selezionato l'opzione."
 
 msgid "Assign score points"
 msgstr "Assegna punteggio"
@@ -1289,6 +1289,9 @@ msgstr "Confermando postporrai la data di scadenza al:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "Confermando imposterai un promemoria in data:"
+
+msgid "Transfer access"
+msgstr "Trasferisci accesso"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Questa è una piattaforma dimostrativa, si prega di non usarla per vere segnalazioni."
@@ -1364,11 +1367,14 @@ msgstr "Hai già effettuato una segnalazione? Inserisci la tua ricevuta."
 msgid "The receipt is either invalid or the report has expired."
 msgstr "La ricevuta inserita non è valida o la segnalazione è scaduta."
 
-msgid "Select a file or drag it here."
-msgstr "Seleziona un file o trascinalo quì"
+msgid "Filename"
+msgstr "Nome del file"
 
 msgid "Size:"
 msgstr "Dimensione:"
+
+msgid "Access date"
+msgstr "Data di accesso"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "I riceventi ti richiedono di riempire un ultreriore questionario."
@@ -1381,9 +1387,6 @@ msgstr "Da:"
 
 msgid "To:"
 msgstr "A:"
-
-msgid "Filename"
-msgstr "Nome del file"
 
 msgid "View"
 msgstr "Visualizza"
@@ -1441,8 +1444,8 @@ msgid ""
 "your password."
 msgstr "Consigliamo di accedere alla sezione \"Preferenze\" al fine di recuperare la tua \"Chiave di recupero account\" e farne una copia di sicurezza. Questa chiave sarà necessaria per ripristinare il tuo accesso alla piattaforma e ai tuoi dati nel caso tu dimenticassi la tua password."
 
-msgid "Access date"
-msgstr "Data di accesso"
+msgid "Select a file or drag it here."
+msgstr "Seleziona un file o trascinalo quì"
 
 msgid "The provided recovery key is invalid."
 msgstr "La chiave di recupero fornita non è corretta,"
@@ -1471,6 +1474,9 @@ msgstr "L'accesso all'identità del segnalante è stato richiesto al custode."
 
 msgid "Date of the request"
 msgstr "Data della richiesta"
+
+msgid "Subscription date"
+msgstr "Data di sottoscrizione"
 
 msgid "Show"
 msgstr "Mostra"

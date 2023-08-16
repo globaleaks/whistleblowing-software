@@ -477,13 +477,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1159,8 +1156,11 @@ msgstr "Leisti gavėjui pranešimus ištrinti"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Leisti gavėjui atidėti pranešimo galiojimo pabaigos datą"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Leiskite šiam gavėjui suteikti naudotojui prieigą prie pranešimų"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Suteikite naudotojui administracinę prieigą prie šių funkcijų:"
@@ -1201,11 +1201,11 @@ msgstr "Pasirinkite savo paskyrą:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Dabar įveskite slaptažodį ir spustelėkite „Prisijungti“:"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Tekstas rodomas, kai naudotojas pasirenka parinktį."
-
 msgid "Confirm"
 msgstr "Patvirtinti"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Tekstas rodomas, kai naudotojas pasirenka parinktį."
 
 msgid "Assign score points"
 msgstr "Priskirti vertinimo taškus"
@@ -1266,6 +1266,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Patvirtindami atidėsite galiojimo pabaigos datą iki:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1342,11 +1345,14 @@ msgstr "Ar jau pateikėte pranešimą? Įveskite pranešimo patvirtinimą"
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Pranešimo patvirtinimas neteisingas arba pranešimas nebegalioja."
 
-msgid "Select a file or drag it here."
-msgstr "Pasirinkite failą arba vilkite jį čia."
+msgid "Filename"
+msgstr "Failo pavadinimas"
 
 msgid "Size:"
 msgstr "Dydis:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Gavėjai paprašė jūsų užpildyti papildomą klausimyną."
@@ -1359,9 +1365,6 @@ msgstr "Nuo:"
 
 msgid "To:"
 msgstr "Kam:"
-
-msgid "Filename"
-msgstr "Failo pavadinimas"
 
 msgid "View"
 msgstr "Rodymas"
@@ -1419,8 +1422,8 @@ msgid ""
 "your password."
 msgstr "Rekomenduojame pasiekti skiltį „Nuostatos“, kad galėtumėte nuskaityti „Paskyros atkūrimo raktą“ ir saugiai jį saugoti. Šis raktas bus reikalingas, kad atgautumėte prieigą prie platformos ir jūsų duomenų, jei savo slaptažodį pamirštumėte."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Pasirinkite failą arba vilkite jį čia."
 
 msgid "The provided recovery key is invalid."
 msgstr "Pateiktas atkūrimo raktas netinkamas."
@@ -1449,6 +1452,9 @@ msgstr "Saugotojui pateiktas prašymas leisti susipažinti su pranešėjo tapaty
 
 msgid "Date of the request"
 msgstr "Prašymo data"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Rodyti"

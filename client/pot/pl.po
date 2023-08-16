@@ -497,13 +497,10 @@ msgstr ""
 msgid "Select your language"
 msgstr "Wybierz swój język"
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1179,8 +1176,11 @@ msgstr "Odbiorcy mogą usuwać zgłoszenia"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Odbiorcy mogą zmieniać datę wygaśnięcia zgłoszenia"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Przyznaj temu odbiorcy uprawnienie do udzielania użytkownikom dostępu"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Daj użytkownikowi dostęp administracyjny do poniższych funkcji:"
@@ -1221,11 +1221,11 @@ msgstr "Wybierz swoje konto:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Wpisz swoje hasło i kliknij 'Zaloguj':"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Tekst pokazywany po wybraniu tej opcji przez użytkownika."
-
 msgid "Confirm"
 msgstr "Potwierdź Rozszerzenie"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Tekst pokazywany po wybraniu tej opcji przez użytkownika."
 
 msgid "Assign score points"
 msgstr "Przypisz punkty"
@@ -1286,6 +1286,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Potwierdzasz przesunięcie daty wygaśnięcia na:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1362,11 +1365,14 @@ msgstr "Wysłałeś / wysłałaś już zgłoszenie? Wprowadź jego kod."
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Kod zgłoszenia jest nieprawidłowy lub zgłoszenie wygasło."
 
-msgid "Select a file or drag it here."
-msgstr "Wybierz lub przeciągnij plik."
+msgid "Filename"
+msgstr "Nazwa pliku"
 
 msgid "Size:"
 msgstr "Wielkość:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Odbiorcy proszą cię byś wypełnił/a dodatkową ankietę."
@@ -1379,9 +1385,6 @@ msgstr "Od:"
 
 msgid "To:"
 msgstr "Do:"
-
-msgid "Filename"
-msgstr "Nazwa pliku"
 
 msgid "View"
 msgstr "Pokaż"
@@ -1439,8 +1442,8 @@ msgid ""
 "your password."
 msgstr "Zalecamy wejście w opcję \"Preferencje\" w celu wygenerowania Klucza Odzyskiwania Dostępu, który należy przechowywać w sposób bezpieczny. Klucz ten jest niezbędny do uzyskania dostępu do platformy i wszystkich danych w przypadku zagubienia hasła."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Wybierz lub przeciągnij plik."
 
 msgid "The provided recovery key is invalid."
 msgstr "Podany kod odzyskiwania jest nieprawidłowy."
@@ -1469,6 +1472,9 @@ msgstr "Dozorca zażądał dostępu do tożsamości sygnalisty."
 
 msgid "Date of the request"
 msgstr "Data żądania"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Pokaż"

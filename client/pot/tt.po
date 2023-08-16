@@ -477,13 +477,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1159,8 +1156,11 @@ msgstr "Алучыга хисапларны бетерергә рөхсәт ит
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Алучыга хисапның вакыты чыгу датасын кичектерергә рөхсәт итү"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Бу алучыга кулланучыларны хисапларга кертү мөмкинлеген бирү"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Кулланучыга түбәндәге функцияләргә административ керү мөмкинлеген бирү:"
@@ -1201,11 +1201,11 @@ msgstr "Зинһар, шәхси сәхифәгезне сайлагыз:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Хәзер серсүзегезне кертегез һәм 'Керү' төймәсенә басыгыз:"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Кулланучы опцияне сайлаганнан соң күрсәтелә торган текст."
-
 msgid "Confirm"
 msgstr "Раслау"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Кулланучы опцияне сайлаганнан соң күрсәтелә торган текст."
 
 msgid "Assign score points"
 msgstr "Бәяләмә баллары бирү"
@@ -1266,6 +1266,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Раслап, вакыты чыгу датасын бу көнгә кадәр кичектерәчәксез:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1342,11 +1345,14 @@ msgstr "Сез хисап җибәрдегезме инде? Алу кодыгы
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Алу коды дөрес түгел яки хисапның вакыты чыккан."
 
-msgid "Select a file or drag it here."
-msgstr "Файлны сайлагыз яки аны монда тартып китерегез."
+msgid "Filename"
+msgstr "Файл исеме"
 
 msgid "Size:"
 msgstr "Зурлык:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Алучылар сездән өстәмә сораулык тутыруны сорадылар."
@@ -1359,9 +1365,6 @@ msgstr "Кемнән:"
 
 msgid "To:"
 msgstr "Кемгә:"
-
-msgid "Filename"
-msgstr "Файл исеме"
 
 msgid "View"
 msgstr ""
@@ -1419,8 +1422,8 @@ msgid ""
 "your password."
 msgstr "Шәхси сәхифәне торгызу ачкычын алу һәм аны ышанычлы саклау өчен, \"Өстенлекләр\" бүлегенә керергә киңәш итәбез. Бу ачкыч, серсүзегезне оныткан очракта, платформага һәм мәгълүматларыгызга керү мөмкинлеген кайтару өчен кирәк булачак."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Файлны сайлагыз яки аны монда тартып китерегез."
 
 msgid "The provided recovery key is invalid."
 msgstr "Кертелгән коткару ачкычы дөрес түгел."
@@ -1449,6 +1452,9 @@ msgstr " Мәгълүмат җиткерүченең идентификатор�
 
 msgid "Date of the request"
 msgstr "Сорау датасы"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Күрсәтү"

@@ -504,7 +504,7 @@ msgid "Hide"
 msgstr "Cacher"
 
 msgid "Unhide"
-msgstr ""
+msgstr "Afficher"
 
 msgid "Redact"
 msgstr "Supprimer"
@@ -515,14 +515,11 @@ msgstr "Sélectionnez une option"
 msgid "Select your language"
 msgstr "Choisissez votre langue"
 
-msgid "Grant this recipient ability to transfer reports to other users"
-msgstr "Accorder à ce destinataire la possibilité de transférer des signalements à d’autres utilisateurs "
+msgid "Give this user ability to mask information"
+msgstr "Donner à cet utilisateur la possibilité de cacher des renseignements"
 
-msgid "Grant this user the privilege to mask information"
-msgstr "Accorder à cet utilisateur le privilège de cacher des renseignements"
-
-msgid "Grant this user the privilege to permanently redact masked information"
-msgstr "Accorder à cet utilisateur le privilège de supprimer définitivement des renseignements cachés"
+msgid "Give this user ability to permanently redact masked information"
+msgstr "Donner à cet utilisateur la possibilité de supprimer définitivement des renseignements cachés"
 
 msgid "Public"
 msgstr "Publique"
@@ -1197,8 +1194,11 @@ msgstr "Permettre au destinataire de supprimer des signalements"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Permettre au destinataire de différer la date d’expiration du signalement"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Permettre à ce destinataire d’accorder l’accès des utilisateurs aux signalements"
+msgid "Give this user ability to grant user access to reports"
+msgstr "Donner à cet utilisateur la possibilité d’accorder l’accès des utilisateurs aux signalements"
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr "Donner à cet utilisateur la possibilité de transférer des signalements à d’autres utilisateurs "
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Donner à l’utilisateur un accès d’administration aux fonctions suivantes :"
@@ -1239,11 +1239,11 @@ msgstr "Veuillez sélectionner votre compte :"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Saisissez maintenant votre mot de passe, puis cliquez sur « Connexion » :"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Texte affiché une fois que l’utilisateur a sélectionné l’option."
-
 msgid "Confirm"
 msgstr "Confirmer"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Texte affiché une fois que l’utilisateur a sélectionné l’option."
 
 msgid "Assign score points"
 msgstr "Attribuer un pointage"
@@ -1305,6 +1305,9 @@ msgstr "En confirmant, vous différerez la date d’expiration au :"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "En confirmant, vous définirez un rappel pour cette date :"
+
+msgid "Transfer access"
+msgstr "Transférer l’accès"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Ceci est une plateforme de démonstration. Veuillez ne pas l’utiliser pour des envois réels."
@@ -1380,11 +1383,14 @@ msgstr "Avez-vous déjà rempli un signalement ? Saisissez votre reçu."
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Soit le reçu est invalide soit le signalement est expiré."
 
-msgid "Select a file or drag it here."
-msgstr "Sélectionnez un fichier ou glissez-le ici."
+msgid "Filename"
+msgstr "Nom de fichier"
 
 msgid "Size:"
 msgstr "Taille :"
+
+msgid "Access date"
+msgstr "Date d’accès"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Les destinataires ont demandé à ce que vous remplissiez un questionnaire supplémentaire."
@@ -1397,9 +1403,6 @@ msgstr "De :"
 
 msgid "To:"
 msgstr "À :"
-
-msgid "Filename"
-msgstr "Nom de fichier"
 
 msgid "View"
 msgstr "Afficher"
@@ -1457,8 +1460,8 @@ msgid ""
 "your password."
 msgstr "Nous recommandons que vous accédiez à la section « Préférences » afin de récupérer votre « Clé de récupération du compte » et de la garder à l’abri. Cette clé sera nécessaire afin de récupérer votre accès à la plateforme et à vos données si vous oubliez votre mot de passe."
 
-msgid "Access date"
-msgstr "Date d’accès"
+msgid "Select a file or drag it here."
+msgstr "Sélectionnez un fichier ou glissez-le ici."
 
 msgid "The provided recovery key is invalid."
 msgstr "La clé de récupération fournie n’est pas valide."
@@ -1487,6 +1490,9 @@ msgstr "L’accès à l’identité du lanceur d’alerte a été demandé au ga
 
 msgid "Date of the request"
 msgstr "Date de la demande"
+
+msgid "Subscription date"
+msgstr "Date d’abonnement"
 
 msgid "Show"
 msgstr "Afficher"

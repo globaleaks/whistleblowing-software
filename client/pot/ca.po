@@ -496,14 +496,11 @@ msgstr "Seleccioneu una opció"
 msgid "Select your language"
 msgstr "Selecciona el teu idioma"
 
-msgid "Grant this recipient ability to transfer reports to other users"
-msgstr "Concediu a aquest destinatari la capacitat de transferir denúncies a altres usuaris"
+msgid "Give this user ability to mask information"
+msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr "Concediu a aquest destinatari la capacitat d'ocultar part del text de la denúncia"
-
-msgid "Grant this user the privilege to permanently redact masked information"
-msgstr "Concediu a aquest usuari el privilegi de suprimir permanentment la informació ocultada"
+msgid "Give this user ability to permanently redact masked information"
+msgstr ""
 
 msgid "Public"
 msgstr "Pública"
@@ -1178,8 +1175,11 @@ msgstr "Permet al destinatari esborrar informes"
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Permet al destinatari ajornar la data d'expiració de l'informe"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Doneu a aquesta persona destinatària la possibilitat de concedir accés a les persones usuàries als informes"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Doneu a la persona usuària accés administratiu a les funcions següents:"
@@ -1220,11 +1220,11 @@ msgstr "Si us plau, selecciona el teu compte:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Ara escriu la teva contrasenya, després clica \"Inicia sessió\":"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Text que es mostra després que l’usuari hagi seleccionat l’opció."
-
 msgid "Confirm"
 msgstr "Confirma extensió"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Text que es mostra després que l’usuari hagi seleccionat l’opció."
 
 msgid "Assign score points"
 msgstr "Assigna puntuació"
@@ -1286,6 +1286,9 @@ msgstr "Si ho confirmes, posposaràs la data de caducitat fins a:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "En confirmar, fixarà una data de recordatori:"
+
+msgid "Transfer access"
+msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Aquesta és una plataforma de demostració, no la utilitzeu per a enviaments reals."
@@ -1361,11 +1364,14 @@ msgstr "Ja heu fet algun enviament? Introduïu el vostre codi de rebut."
 msgid "The receipt is either invalid or the report has expired."
 msgstr "El codi de rebut no és vàlid o l'informe ha caducat."
 
-msgid "Select a file or drag it here."
-msgstr "Seleccioneu un fitxer o arrossegueu-lo aquí."
+msgid "Filename"
+msgstr "Nom del fitxer"
 
 msgid "Size:"
 msgstr "Mida:"
+
+msgid "Access date"
+msgstr "Data d'accés"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Les persones destinatàries han demanat que ompli un qüestionari addicional."
@@ -1378,9 +1384,6 @@ msgstr "Des de:"
 
 msgid "To:"
 msgstr "A:"
-
-msgid "Filename"
-msgstr "Nom del fitxer"
 
 msgid "View"
 msgstr "Visualitza"
@@ -1438,8 +1441,8 @@ msgid ""
 "your password."
 msgstr "Us recomanem que accediu a la secció \"Preferències\" per recuperar la vostra \"Clau de recuperació del compte\" i desar-la de manera segura. Aquesta clau serà necessària per recuperar el vostre accés a la plataforma i a les vostres dades en cas que oblideu la contrasenya."
 
-msgid "Access date"
-msgstr "Data d'accés"
+msgid "Select a file or drag it here."
+msgstr "Seleccioneu un fitxer o arrossegueu-lo aquí."
 
 msgid "The provided recovery key is invalid."
 msgstr "La clau de recuperació proporcionada no és vàlida."
@@ -1468,6 +1471,9 @@ msgstr "La persona guardiana ha demanat l'accés a la identitat de l'informador.
 
 msgid "Date of the request"
 msgstr "Data de la petició"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Mostra"

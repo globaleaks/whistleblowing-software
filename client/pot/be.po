@@ -478,13 +478,10 @@ msgstr ""
 msgid "Select your language"
 msgstr ""
 
-msgid "Grant this recipient ability to transfer reports to other users"
+msgid "Give this user ability to mask information"
 msgstr ""
 
-msgid "Grant this user the privilege to mask information"
-msgstr ""
-
-msgid "Grant this user the privilege to permanently redact masked information"
+msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
 msgid "Public"
@@ -1160,8 +1157,11 @@ msgstr "Дазволіць атрымальніку выдаляць справ�
 msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Дазволіць атрымальніку пераносіць сканчэнне тэрміну дзеяння справаздачы"
 
-msgid "Give this recipient ability to grant user access to reports"
-msgstr "Дазволіць гэтаму атрымальніку даваць права карыстальніцкага доступу да справаздачаў"
+msgid "Give this user ability to grant user access to reports"
+msgstr ""
+
+msgid "Give this user ability to transfer reports to other users"
+msgstr ""
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Даць карыстальніку адміністратарскі доступ да наступных функцый:"
@@ -1202,11 +1202,11 @@ msgstr "Выберыце свой уліковы запіс:"
 msgid "Now type your password, then click 'Log in':"
 msgstr "Зараз увесці пароль, а потым націснуць \"Уваход\":"
 
-msgid "Text shown after the user has selected the option."
-msgstr "Тэкст, які паказваецца пасля таго, як карыстальнік выбраў гэтую опцыю."
-
 msgid "Confirm"
 msgstr "Пацвердзіць"
+
+msgid "Text shown after the user has selected the option."
+msgstr "Тэкст, які паказваецца пасля таго, як карыстальнік выбраў гэтую опцыю."
 
 msgid "Assign score points"
 msgstr "Налічыць балы"
@@ -1267,6 +1267,9 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Пацвярджаючы, вы пераносіце сканчэнне тэрміну дзеяння справаздачы на:"
 
 msgid "By confirming, you will set a reminder on date:"
+msgstr ""
+
+msgid "Transfer access"
 msgstr ""
 
 msgid "This is a demo platform, please do not use it for real submissions."
@@ -1343,11 +1346,14 @@ msgstr "Вы ўжо паведамілі інфармацыю? Увесьці к
 msgid "The receipt is either invalid or the report has expired."
 msgstr "Код або няправільны, або састарэлы."
 
-msgid "Select a file or drag it here."
-msgstr "Выбраць файл або перацягнуць яго сюды."
+msgid "Filename"
+msgstr "Назва файла"
 
 msgid "Size:"
 msgstr "Памер:"
+
+msgid "Access date"
+msgstr ""
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Атрымальнікі зрабілі вам запыт запоўніць дадатковую анкету."
@@ -1360,9 +1366,6 @@ msgstr "Ад:"
 
 msgid "To:"
 msgstr "Каму:"
-
-msgid "Filename"
-msgstr "Назва файла"
 
 msgid "View"
 msgstr "Прагляд"
@@ -1420,8 +1423,8 @@ msgid ""
 "your password."
 msgstr "Рэкамендуем зайсці ў раздзел \"Параметры\", каб атрымаць \"Ключ аднаўлення ўліковага запісу\" і захоўваць яго бяспечна. Гэты ключ спатрэбіцца для аднаўлення доступу да платформы і да вашых дадзеных у выпадку, калі вы забудзеце пароль."
 
-msgid "Access date"
-msgstr ""
+msgid "Select a file or drag it here."
+msgstr "Выбраць файл або перацягнуць яго сюды."
 
 msgid "The provided recovery key is invalid."
 msgstr "Уведзены ключ аднаўлення несапраўдны."
@@ -1450,6 +1453,9 @@ msgstr "Захавальнік зрабіў запыт атрымаць дост
 
 msgid "Date of the request"
 msgstr "Дата запыту"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Show"
 msgstr "Паказаць"
