@@ -105,23 +105,6 @@ class ReceiverTip_v_64(Model):
     crypto_files_prv_key = Column(UnicodeText(84), default='', nullable=False)
 
 
-class SubmissionStatus_v_64(Model):
-    __tablename__ = 'submissionstatus'
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    tid = Column(Integer, primary_key=True, default=1)
-    label = Column(JSON, default=dict, nullable=False)
-    order = Column(Integer, default=0, nullable=False)
-
-
-class SubmissionSubStatus_v_64(Model):
-    __tablename__ = 'submissionsubstatus'
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    tid = Column(Integer, primary_key=True, default=1)
-    submissionstatus_id = Column(UnicodeText(36), nullable=False)
-    label = Column(JSON, default=dict, nullable=False)
-    order = Column(Integer, default=0, nullable=False)
-
-
 class User_v_64(Model):
     __tablename__ = 'user'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
@@ -177,6 +160,23 @@ class ReceiverFile_v_64(Model):
     access_date = Column(DateTime, default=datetime_null, nullable=False)
     description = Column(UnicodeText, nullable=False)
     new = Column(Boolean, default=True, nullable=False)
+
+
+class SubmissionStatus_v_64(Model):
+    __tablename__ = 'submissionstatus'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    tid = Column(Integer, primary_key=True, default=1)
+    label = Column(JSON, default=dict, nullable=False)
+    order = Column(Integer, default=0, nullable=False)
+
+
+class SubmissionSubStatus_v_64(Model):
+    __tablename__ = 'submissionsubstatus'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    tid = Column(Integer, primary_key=True, default=1)
+    submissionstatus_id = Column(UnicodeText(36), nullable=False)
+    label = Column(JSON, default=dict, nullable=False)
+    order = Column(Integer, default=0, nullable=False)
 
 
 class MigrationScript(MigrationBase):
