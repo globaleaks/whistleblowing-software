@@ -17,6 +17,4 @@ Access an Existing Report
 -------------------------
 An existing report can be accessed by entering the 16-digit receipt obtained at the end of the submission on the login interface present on the home page of the platform.
 
-.. image:: ../images/whistleblower/access.png
-
 .. image:: ../images/whistleblower/report.png
