@@ -96,7 +96,7 @@ def prepare_tip_export(cc, tip_export):
                 continue
 
             tip_prv_key = GCE.asymmetric_decrypt(cc, tip_export['crypto_tip_prv_key'])
-            filelocation = os.path.join(Settings.attachments_path, file_dict['filename'])
+            filelocation = os.path.join(Settings.attachments_path, file_dict['name'])
             directory_traversal_check(Settings.attachments_path, filelocation)
             file_dict['key'] = tip_prv_key
             file_dict['path'] = filelocation
