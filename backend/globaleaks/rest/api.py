@@ -486,7 +486,7 @@ class APIResourceWrapper(Resource):
             request.setHeader(b"Cross-Origin-Resource-Policy", "same-origin")
 
             # Disable features that could be used to deanonymize the user
-            if State.microphone:
+            if request.tid in State.tenants and State.tenants[request.tid].microphone:
                 request.setHeader(b'Permissions-Policy', b"camera=(),"
                                                          b"document-domain=(),"
                                                          b"fullscreen=(),"
