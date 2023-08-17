@@ -44,7 +44,8 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
                                         func.count(distinct(models.Comment.id))) \
                                  .filter(models.ReceiverTip.receiver_id == receiver_id,
                                          models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                         models.Comment.internaltip_id == models.InternalTip.id) \
+                                         models.Comment.internaltip_id == models.InternalTip.id,
+                                         models.Comment.visibility == 0) \
                                  .group_by(models.InternalTip.id):
         comments_by_itip[itip_id] = count
 

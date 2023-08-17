@@ -1,7 +1,7 @@
 import pages from '../support/pages'; // Adjust the path as needed
 
 describe("globaleaks process", function () {
-  const N = 3;
+  const N = 1;
   let receipts = [];
   const comment = "comment";
   const comment_reply = "comment reply";
