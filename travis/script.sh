@@ -60,8 +60,8 @@ if [ "$GLTEST" = "test" ]; then
 
   if [ -n "CODACY" ]; then
     cd $TRAVIS_BUILD_DIR/backend && coverage xml
-    cd $TRAVIS_BUILD_DIR/client && ./node_modules/nyc/bin/nyc.js report --reporter=lcov
-    bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r $TRAVIS_BUILD_DIR/backend/coverage.xml -r $TRAVIS_BUILD_DIR/client/coverage/lcov.info
+    cd $TRAVIS_BUILD_DIR/client && npm test
+    bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r $TRAVIS_BUILD_DIR/backend/coverage.xml -r $TRAVIS_BUILD_DIR/client/cypress/coverage/lcov.info
   fi
 elif [ "$GLTEST" = "build_and_install" ]; then
   LOGFILE="/var/globaleaks/log/globaleaks.log"
