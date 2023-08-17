@@ -1,5 +1,7 @@
 # -*- coding: utf-8
 import copy
+import os
+
 from globaleaks import models
 from globaleaks.models.config import ConfigFactory
 from globaleaks.state import State
@@ -107,6 +109,9 @@ def serialize_wbfile(session, ifile, wbfile):
     :param wbfile: The wbfile to be serialized
     :return: The serialized wbfile
     """
+    error = not os.path.exists(os.path.join(State.settings.attachments_path, ifile.id)) and \
+        not os.path.exists(os.path.join(State.settings.attachments_path, wbfile.id))
+
     return {
         'id': wbfile.id,
         'ifile_id': ifile.id,
@@ -114,7 +119,8 @@ def serialize_wbfile(session, ifile, wbfile):
         'name': ifile.name,
         'size': ifile.size,
         'type': ifile.content_type,
-        'reference_id': ifile.reference_id
+        'reference_id': ifile.reference_id,
+        'error': error
     }
 
 
@@ -126,6 +132,8 @@ def serialize_rfile(session, rfile):
     :param rfile: The rfile to be serialized
     :return: The serialized rfile
     """
+    error = not os.path.exists(os.path.join(State.settings.attachments_path, rfile.id))
+
     return {
         'id': rfile.id,
         'creation_date': rfile.creation_date,
@@ -133,7 +141,8 @@ def serialize_rfile(session, rfile):
         'size': rfile.size,
         'type': rfile.content_type,
         'description': rfile.description,
-        'visibility': rfile.visibility
+        'visibility': rfile.visibility,
+        'error': error
     }
 
 
