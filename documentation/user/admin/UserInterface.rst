@@ -82,6 +82,8 @@ Depending on your project needs here you could create users with different roles
 
 .. image:: ../../images/admin/users.png
 
+.. image:: ../../images/admin/users_options.png
+
 User Roles
 ..........
 The software offers the possibility to create users with the following roles:
