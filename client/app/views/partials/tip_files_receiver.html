@@ -33,6 +33,7 @@
             </td>
             <td>
               <button class="btn btn-sm btn-primary tip-action-download-file"
+                      data-ng-disabled="file.error"
                       data-uib-tooltip="{{'Download' | translate}}"
                       data-ng-click="downloadWBFile(file)">
                 <i class="fa-solid fa-download"></i>
