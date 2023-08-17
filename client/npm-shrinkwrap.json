@@ -16,10 +16,10 @@
         "@fontsource/noto-sans-armenian": "5.0.8",
         "@fontsource/noto-sans-bengali": "5.0.8",
         "@fontsource/noto-sans-ethiopic": "5.0.8",
-        "@fontsource/noto-sans-georgian": "5.0.8",
-        "@fontsource/noto-sans-hebrew": "5.0.8",
+        "@fontsource/noto-sans-georgian": "5.0.9",
+        "@fontsource/noto-sans-hebrew": "5.0.9",
         "@fontsource/noto-sans-hk": "5.0.7",
-        "@fontsource/noto-sans-jp": "5.0.7",
+        "@fontsource/noto-sans-jp": "5.0.8",
         "@fontsource/noto-sans-khmer": "5.0.8",
         "@fontsource/noto-sans-kr": "5.0.7",
         "@fontsource/noto-sans-lao": "5.0.8",
@@ -71,7 +71,7 @@
         "grunt-usemin": "3.1.1",
         "gruntify-eslint": "5.0.0",
         "node-gettext": "3.0.0",
-        "npm-check-updates": "16.11.1",
+        "npm-check-updates": "16.12.2",
         "nyc": "15.1.0",
         "postcss-rtl": "2.0.0",
         "protractor": "7.0.0",
@@ -703,14 +703,14 @@
       "integrity": "sha512-Buh0ylzr5UPTMalecVqbLgAVE6TN8F9UxMg/71qCyDkcajkSrKZAHFm2YL5C7cK9VgAXbdPVgnXtZ0XmEVnUHw=="
     },
     "node_modules/@fontsource/noto-sans-georgian": {
-      "version": "5.0.8",
-      "resolved": "https://registry.npmjs.org/@fontsource/noto-sans-georgian/-/noto-sans-georgian-5.0.8.tgz",
-      "integrity": "sha512-ynHhgaidBtGSAV4B9y2GVl9j1e0jvwgH3XMstTAHRlg1gzOT+7yp7IqE+60AC3vYp9Lfu4523LOnCQqhvLT9sQ=="
+      "version": "5.0.9",
+      "resolved": "https://registry.npmjs.org/@fontsource/noto-sans-georgian/-/noto-sans-georgian-5.0.9.tgz",
+      "integrity": "sha512-+5xS82zcnQUdchI4gDQ7KLKyyCr5gFDfgMHCUtT9AYaiBj8luh7tD2Yv5j8Kk1uYCq5hqe5ko1R57Vp0kYpzlg=="
     },
     "node_modules/@fontsource/noto-sans-hebrew": {
-      "version": "5.0.8",
-      "resolved": "https://registry.npmjs.org/@fontsource/noto-sans-hebrew/-/noto-sans-hebrew-5.0.8.tgz",
-      "integrity": "sha512-7ZAKrslJ36PmrZ6p0kzuabuWHMVrz/M3hGHt6PNMrAjoXlfzbtAYUvYmnwGpBN+irE31jSWOCHFxLd44LSCOeQ=="
+      "version": "5.0.9",
+      "resolved": "https://registry.npmjs.org/@fontsource/noto-sans-hebrew/-/noto-sans-hebrew-5.0.9.tgz",
+      "integrity": "sha512-vdDzipUz9D02aK+byxhg5qfXcbLRAXrJWYA8JtCf403EIyUhcGemgiu5vy2qrfrHrEosAU8xqRSKYkKi52fgjA=="
     },
     "node_modules/@fontsource/noto-sans-hk": {
       "version": "5.0.7",
@@ -718,9 +718,9 @@
       "integrity": "sha512-x2kXQkoOXF5UaSruZwOqMaTXxxEKZy+SING0iOpLHr45ZN0Ub2wHwkeNt+wEJp4+ia7odlLaO0/ZrRWeQ3JHjw=="
     },
     "node_modules/@fontsource/noto-sans-jp": {
-      "version": "5.0.7",
-      "resolved": "https://registry.npmjs.org/@fontsource/noto-sans-jp/-/noto-sans-jp-5.0.7.tgz",
-      "integrity": "sha512-8zep+eivzD79wS9y54Gf+vsO9joDOxJd/JbA4fdVoeUggN/RGrZghqSw1TeslVtpVxVe8bK+NOyDdpOGbJnbxg=="
+      "version": "5.0.8",
+      "resolved": "https://registry.npmjs.org/@fontsource/noto-sans-jp/-/noto-sans-jp-5.0.8.tgz",
+      "integrity": "sha512-a5/BeERXHO6u66neXXty2WypN1TdDuicpNJOmZqBOhNKlyvdmpDrPTmNXZfabcNGEywAOveApIVqNPLALoG40Q=="
     },
     "node_modules/@fontsource/noto-sans-khmer": {
       "version": "5.0.8",
@@ -7545,9 +7545,9 @@
       }
     },
     "node_modules/npm-check-updates": {
-      "version": "16.11.1",
-      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-16.11.1.tgz",
-      "integrity": "sha512-FgfhQc/LpY1u2BZpg+Y/FVoa8XxTjTpnAuSGdHM6CRqOO9pSPFrQ618HS9zf71ox7hPUQqpPvTaIuCpa4px38Q==",
+      "version": "16.12.2",
+      "resolved": "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-16.12.2.tgz",
+      "integrity": "sha512-N0jeEcak3/+PS1O5JzwJ2+fvmQVv+084O4iRnDtcMBLcr9S7vPOBxwWgsEuNfj3shKFZRYOuh4NHB9nMenCHXA==",
       "dev": true,
       "dependencies": {
         "chalk": "^5.3.0",
@@ -7564,6 +7564,7 @@
         "json-parse-helpfulerror": "^1.0.3",
         "jsonlines": "^0.1.1",
         "lodash": "^4.17.21",
+        "make-fetch-happen": "^11.1.1",
         "minimatch": "^9.0.3",
         "p-map": "^4.0.0",
         "pacote": "15.2.0",
