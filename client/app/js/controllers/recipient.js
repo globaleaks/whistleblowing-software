@@ -18,10 +18,9 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
   $scope.dropdownScoreData = [];
 
   var unique_keys = [];
-  angular.forEach($scope.resources.rtips.rtips, function(tip) {
+  angular.forEach($scope.resources.rtips, function(tip) {
      tip.context = $scope.contexts_by_id[tip.context_id];
      tip.context_name = tip.context.name;
-     tip.questionnaire = $scope.resources.rtips.questionnaires[tip.questionnaire];
      tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText(tip.status, tip.substatus, $scope.submission_statuses);
 
      if (unique_keys.includes(tip.submissionStatusStr) === false) {
@@ -42,7 +41,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
      }
   });
 
-  $scope.filteredTips = $filter("orderBy")($scope.resources.rtips.rtips, "update_date");
+  $scope.filteredTips = $filter("orderBy")($scope.resources.rtips, "update_date");
 
   $scope.dropdownDefaultText = {
     buttonDefaultText: "",
@@ -51,7 +50,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
 
   function applyFilter()
   {
-     $scope.filteredTips = $scope.Utils.getStaticFilter($scope.resources.rtips.rtips, $scope.dropdownStatusModel, "submissionStatusStr");
+     $scope.filteredTips = $scope.Utils.getStaticFilter($scope.resources.rtips, $scope.dropdownStatusModel, "submissionStatusStr");
      $scope.filteredTips = $scope.Utils.getStaticFilter($scope.filteredTips, $scope.dropdownContextModel, "context_name");
      $scope.filteredTips = $scope.Utils.getStaticFilter($scope.filteredTips, $scope.dropdownScoreModel, "score");
      $scope.filteredTips = $scope.Utils.getDateFilter($scope.filteredTips, $scope.reportDateFilter, $scope.updateDateFilter, $scope.expiryDateFilter);
@@ -85,7 +84,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
   $scope.$watch("search", function (value) {
     if (typeof value !== "undefined") {
       $scope.currentPage = 1;
-      $scope.filteredTips = $filter("orderBy")($filter("filter")($scope.resources.rtips.rtips, value), "update_date");
+      $scope.filteredTips = $filter("orderBy")($filter("filter")($scope.resources.rtips, value), "update_date");
     }
   });
 

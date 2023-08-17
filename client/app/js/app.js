@@ -85,7 +85,7 @@ var GL = angular.module("GL", [
           jobs: function() { return JobsAuditLog.query().$promise; },
           questionnaires: function() { return AdminQuestionnaireResource.query().$promise; },
           submission_statuses: function() { return AdminSubmissionStatusResource.query().$promise; },
-          rtips: function() { return ReceiverTips.get().$promise; },
+          rtips: function() { return ReceiverTips.query().$promise; },
           preferences: function() { return UserPreferences.get().$promise; }
         };
 

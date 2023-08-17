@@ -31,10 +31,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
     :param language: The language to be used during data serialization
     :return: A list of submissions descriptors
     """
-    ret = {
-      'questionnaires': {},
-      'rtips': []
-    }
+    ret = []
 
     updated_after = datetime.fromtimestamp(int(args.get(b'updated_after', [b'0'])[0]))
     updated_before = datetime.fromtimestamp(int(args.get(b'updated_before', [b'32503680000'])[0]))
@@ -62,22 +59,20 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
 
     # Fetch rtip, internaltip and associated questionnaire schema
     rtips_ids = {}
-    for rtip, itip, answers, aqs, data in session.query(models.ReceiverTip,
-                                                        models.InternalTip,
-                                                        models.InternalTipAnswers,
-                                                        models.ArchivedSchema,
-                                                        models.InternalTipData) \
-                                           .join(models.InternalTipData,
-                                                 and_(models.InternalTipData.internaltip_id == models.InternalTip.id,
-                                                      models.InternalTipData.key == 'whistleblower_identity'),
-                                                 isouter=True) \
-                                           .filter(models.ReceiverTip.receiver_id == receiver_id,
-                                                   models.InternalTip.update_date >= updated_after,
-                                                   models.InternalTip.update_date <= updated_before,
-                                                   models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                                   models.InternalTipAnswers.internaltip_id == models.ReceiverTip.internaltip_id,
-                                                   models.InternalTipAnswers.questionnaire_hash == models.ArchivedSchema.hash) \
-                                           .order_by(models.InternalTipAnswers.creation_date.asc()):
+    for rtip, itip, answers, data in session.query(models.ReceiverTip,
+                                                   models.InternalTip,
+                                                   models.InternalTipAnswers,
+                                                   models.InternalTipData) \
+                                            .join(models.InternalTipData,
+                                                  and_(models.InternalTipData.internaltip_id == models.InternalTip.id,
+                                                       models.InternalTipData.key == 'whistleblower_identity'),
+                                                  isouter=True) \
+                                            .filter(models.ReceiverTip.receiver_id == receiver_id,
+                                                    models.InternalTip.update_date >= updated_after,
+                                                    models.InternalTip.update_date <= updated_before,
+                                                    models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                                                    models.InternalTipAnswers.internaltip_id == models.ReceiverTip.internaltip_id) \
+                                            .order_by(models.InternalTipAnswers.creation_date.asc()):
         if rtip.id in rtips_ids:
             continue
 
@@ -93,9 +88,6 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
 
             answers = json.loads(GCE.asymmetric_decrypt(tip_key, base64.b64decode(answers.encode())).decode())
 
-        if aqs.hash not in ret['questionnaires']:
-            ret['questionnaires'][aqs.hash] = serializers.serialize_archived_questionnaire_schema(aqs.schema, language)
-
         if data is None:
             subscription = 0
         elif data.creation_date == itip.creation_date:
@@ -103,7 +95,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
         else:
             subscription = 2
 
-        ret['rtips'].append({
+        ret.append({
             'id': rtip.id,
             'itip_id': itip.id,
             'creation_date': itip.creation_date,
@@ -118,7 +110,6 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
             'updated': rtip.last_access < itip.update_date,
             'context_id': itip.context_id,
             'tor': itip.tor,
-            'questionnaire': aqs.hash,
             'answers': answers,
             'score': itip.score,
             'status': itip.status,
