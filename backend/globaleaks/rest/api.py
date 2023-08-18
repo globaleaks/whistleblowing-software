@@ -17,20 +17,21 @@ from twisted.web.server import NOT_DONE_YET
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.handlers import admin, \
+                                auth, \
                                 custodian, \
                                 file, \
-                                recipient, \
-                                public, \
-                                auth, \
                                 l10n, \
-                                user, \
+                                public, \
+                                recipient, \
                                 redirect, \
                                 robots, \
+                                security, \
                                 signup, \
                                 sitemap, \
                                 support, \
                                 staticfile, \
-                                security, \
+                                support, \
+                                user, \
                                 viewer, \
                                 wizard, \
                                 whistleblower
