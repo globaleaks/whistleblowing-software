@@ -20,6 +20,7 @@ from globaleaks.handlers import admin, \
                                 auth, \
                                 custodian, \
                                 file, \
+                                health, \
                                 l10n, \
                                 public, \
                                 recipient, \
@@ -45,6 +46,8 @@ uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
 key_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}|[a-z_]{0,100})'
 
 api_spec = [
+    (r'/api/health', health.HealthStatusHandler),
+
     # Public API
     (r'/api/public', public.PublicResource),
 
