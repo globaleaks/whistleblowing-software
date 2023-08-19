@@ -152,7 +152,6 @@ class AuthenticationHandler(BaseHandler):
     Login handler for internal users
     """
     check_roles = 'any'
-    uniform_answer_time = True
 
     @inlineCallbacks
     def post(self):
@@ -184,7 +183,6 @@ class TokenAuthHandler(BaseHandler):
     Login handler for token based authentication
     """
     check_roles = 'any'
-    uniform_answer_time = True
 
     @inlineCallbacks
     def post(self):
@@ -209,7 +207,6 @@ class ReceiptAuthHandler(BaseHandler):
     Receipt handler for whistleblowers
     """
     check_roles = 'any'
-    uniform_answer_time = True
 
     @inlineCallbacks
     def post(self):

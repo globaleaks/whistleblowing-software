@@ -24,7 +24,7 @@ from globaleaks.utils.ip import check_ip
 from globaleaks.utils.log import log
 from globaleaks.utils.pgp import PGPContext
 from globaleaks.utils.securetempfile import SecureTemporaryFile
-from globaleaks.utils.utility import datetime_now, deferred_sleep
+from globaleaks.utils.utility import datetime_now
 
 mimetypes.add_type('text/javascript', '.js')
 
@@ -98,7 +98,6 @@ def sync_confirmation_check(session, tid, user_id, secret):
 class BaseHandler(object):
     check_roles = 'admin'
     handler_exec_time_threshold = 120
-    uniform_answer_time = False
     cache_resource = False
     invalidate_cache = False
     root_tenant_only = False
@@ -416,8 +415,3 @@ class BaseHandler(object):
             self.state.schedule_exception_email(self.request.tid, *err_tup)
 
         track_handler(self)
-
-        if self.uniform_answer_time:
-            needed_delay = (float(Settings.side_channels_guard) - (float(self.request.execution_time.microseconds) / float(1000))) / float(1000)
-            if needed_delay > 0:
-                return deferred_sleep(needed_delay)

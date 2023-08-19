@@ -58,9 +58,6 @@ class SettingsClass(object, metaclass=Singleton):
 
         self.onionservice = None
 
-        # Default request time uniform value
-        self.side_channels_guard = 150
-
         # SOCKS default
         self.socks_host = "127.0.0.1"
         self.socks_port = 9050
