@@ -10,7 +10,7 @@ from globaleaks.rest import errors
 from globaleaks.rest.cache import Cache
 from globaleaks.state import State
 from globaleaks.utils.json import JSONEncoder
-from globaleaks.utils.utility import datetime_now
+from globaleaks.utils.utility import datetime_now, deferred_sleep
 
 
 def decorator_rate_limit(f):
@@ -18,18 +18,26 @@ def decorator_rate_limit(f):
     def wrapper(self, *args, **kwargs):
         if self.session and self.session.user_role == 'whistleblower':
             now = datetime_now()
-            if now > self.session.ratelimit_time + timedelta(seconds=30):
+            if now > self.session.ratelimit_time + timedelta(seconds=1):
                 self.session.ratelimit_time = now
                 self.session.ratelimit_count = 0
 
             self.session.ratelimit_count += 1
 
-            period = max(now.timestamp() - self.session.ratelimit_time.timestamp(), 1)
+            if self.session.ratelimit_count > 5:
+                d = deferred_sleep(self.session.ratelimit_count // 5)
 
-            if (self.session.ratelimit_count / period) > 5:
-                raise errors.NotAuthenticated
+                def callback(_):
+                    return f(self, *args, **kwargs)
+
+                d.addCallback(callback)
+
+                return d
+            else:
+                return f(self, *args, **kwargs)
 
         return f(self, *args, **kwargs)
+
 
     return wrapper
 
