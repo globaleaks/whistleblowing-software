@@ -71,7 +71,8 @@ def db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, receiver_id)
                                                         models.ReceiverTip.internaltip_id == itip.id).one_or_none()
 
     if existing:
-        return
+        return False
+
     new_receiver = db_get(session,
                           models.User,
                           models.User.id == receiver_id)
@@ -102,6 +103,8 @@ def db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, receiver_id)
 
     db_tip_grant_notification(session, new_receiver)
 
+    return True
+
 
 def db_revoke_tip_access(session, tid, user_id, itip, receiver_id):
     """
@@ -117,9 +120,11 @@ def db_revoke_tip_access(session, tid, user_id, itip, receiver_id):
                   .filter(models.ReceiverTip.internaltip_id == itip.id,
                           models.ReceiverTip.receiver_id == receiver_id).one_or_none()
     if rtip is None:
-        return
+        return False
 
     session.delete(rtip)
+
+    return True
 
 
 @transact
@@ -131,8 +136,8 @@ def grant_tip_access(session, tid, user_id, user_cc, rtip_id, receiver_id):
     if user_id == receiver_id or not user.can_grant_access_to_reports:
         raise errors.ForbiddenOperation
 
-    db_grant_tip_access(session, tid, user, user_cc, itip, rtip, receiver_id)
-    db_log(session, tid=tid, type='grant_access', user_id=user_id, object_id=itip.id)
+    if db_grant_tip_access(session, tid, user, user_cc, itip, rtip, receiver_id):
+        db_log(session, tid=tid, type='grant_access', user_id=user_id, object_id=itip.id)
 
 
 @transact
@@ -144,8 +149,8 @@ def revoke_tip_access(session, tid, user_id, rtip_id, receiver_id):
     if user_id == receiver_id or not user.can_grant_access_to_reports:
         raise errors.ForbiddenOperation
 
-    db_revoke_tip_access(session, tid, user, itip, receiver_id)
-    db_log(session, tid=tid, type='revoke_access', user_id=user_id, object_id=itip.id)
+    if db_revoke_tip_access(session, tid, user, itip, receiver_id):
+        db_log(session, tid=tid, type='revoke_access', user_id=user_id, object_id=itip.id)
 
 
 @transact
@@ -161,8 +166,12 @@ def transfer_tip_access(session, tid, user_id, user_cc, rtip_id, receiver_id):
     if user_id == receiver_id or not user.can_transfer_access_to_reports:
         raise errors.ForbiddenOperation
 
-    db_grant_tip_access(session, tid, user, user_cc, itip, rtip, receiver_id)
-    db_revoke_tip_access(session, tid, user, itip, user_id)
+    if not db_grant_tip_access(session, tid, user, user_cc, itip, rtip, receiver_id):
+        raise errors.ForbiddenOperation
+
+    if not db_revoke_tip_access(session, tid, user, itip, user_id):
+        raise errors.ForbiddenOperation
+
     db_log(session, tid=tid, type='transfer_access', user_id=user_id, object_id=itip.id, data=log_data)
 
 
