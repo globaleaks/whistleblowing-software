@@ -24,8 +24,7 @@ class TestTipsCollection(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_get(self):
         handler = self.request(user_id=self.dummyReceiver_1['id'], role='receiver')
-        ret = yield handler.get()
-        rtips = ret['rtips']
+        rtips = yield handler.get()
         for idx in range(len(rtips)):
             self.assertEqual(rtips[idx]['file_count'], 2)
             self.assertEqual(rtips[idx]['comment_count'], 3)
@@ -42,7 +41,7 @@ class TestOperations(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_put_revoke_and_grant(self):
         rtips = yield recipient.get_receivertips(1, self.dummyReceiver_1['id'], helpers.USER_PRV_KEY, 'en')
-        rtips_ids = [rtip['id'] for rtip in rtips['rtips']]
+        rtips_ids = [rtip['id'] for rtip in rtips]
 
         yield self.test_model_count(models.ReceiverTip, 4)
 
