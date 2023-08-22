@@ -45,8 +45,7 @@ GL.controller("TipCtrl",
           }
         });
       });
-    }
-
+    };
 
     $scope.tabs = [
       {
@@ -66,7 +65,7 @@ GL.controller("TipCtrl",
 
     $scope.selectedTab = function (key){
       $scope.activeTabKey = key;
-    }
+    };
 
     $scope.openTipTransferModal = function() {
       $http({
@@ -102,7 +101,7 @@ GL.controller("TipCtrl",
           }
         });
       });
-    }
+    };
 
     $scope.openGrantTipAccessModal = function () {
       $http({method: "PUT", url: "api/user/operations", data:{

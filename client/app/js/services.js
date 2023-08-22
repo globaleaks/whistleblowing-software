@@ -948,7 +948,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       }
     },
 
-    acceptPrivacyPolicyDialog: function(template, arg, scope) {
+    acceptPrivacyPolicyDialog: function(template, arg) {
       var modal = $uibModal.open({
         templateUrl: "views/modals/accept_agreement.html",
         controller: "ConfirmableModalCtrl",
@@ -966,10 +966,9 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
                  "args": {}
                }
              }).then(function() {
-               console.log($rootScope.resources.preferences.accepted_privacy_policy);
-               $rootScope.resources.preferences.accepted_privacy_policy = '';
+               $rootScope.resources.preferences.accepted_privacy_policy = "";
              });
-            }
+            };
           },
 
           cancelFun: null
