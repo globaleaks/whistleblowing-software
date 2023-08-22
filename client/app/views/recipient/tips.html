@@ -235,8 +235,8 @@
           <td class="TipInfoComments">{{tip.comment_count}}</td>
           <td class="TipInfoFiles">{{tip.file_count}}</td>
           <th class="TipInfoIdentity">
-            <i data-ng-if="tip.subscription === 1" class="fa-solid fa-user"></i>
-            <i data-ng-if="tip.subscription === 2" class="fa-solid fa-user text-muted"></i>
+            <i data-ng-if="tip.subscription === 1" class="fa-solid fa-check"></i>
+            <i data-ng-if="tip.subscription === 2" class="fa-solid fa-check underline"></i>
           </th>
           <td class="TipInfoScore" data-ng-if="public.node.enable_scoring_system" data-ng-switch="tip.score">
             <span data-ng-switch-when="0">-</span>

@@ -1006,3 +1006,7 @@ html[dir="ltr"] #Receipt {
   border-bottom-left-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
 }
+
+.underlined {
+  text-decoration: underline;
+}

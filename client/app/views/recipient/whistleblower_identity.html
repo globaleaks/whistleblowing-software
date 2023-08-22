@@ -31,14 +31,14 @@
         <div data-ng-repeat="field in whistleblower_identity_field.children | orderBy:['y', 'x']">
           <span data-ng-init="fieldAnswers=tip.data.whistleblower_identity" data-ng-include="'views/partials/tip_field.html'"></span>
         </div>
-        <div>
-          <span data-translate>Subscription date</span>
-          <span>{{tip.data.whistleblower_identity_date | date:'dd-MM-yyyy HH:mm'}}</span>
-        </div>
       </div>
       <div data-ng-if="!tip.iar || tip.iar.reply === 'denied'">
         <button data-ng-if="tip.custodian" class="btn btn-sm btn-primary" data-ng-click="file_identity_access_request()" data-translate>Request access to the whistleblower's identity</button>
         <button data-ng-if="!tip.custodian" class="btn btn-sm btn-primary" data-ng-click="access_identity()" data-translate>Show</button>
+      </div>
+      <div data-ng-if="tip.data.whistleblower_identity_date !== tip.creation_date">
+        <span data-translate>Subscription date</span>
+        <span>{{tip.data.whistleblower_identity_date | date:'dd-MM-yyyy HH:mm'}}</span>
       </div>
     </div>
   </div>
