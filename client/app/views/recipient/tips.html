@@ -68,7 +68,6 @@
     </span>
   </div>
 </div>
-
 <div id="TipList" class="row mt-2">
   <div class="col-md-12 table-responsive">
     <table class="table table-striped" id="tipList" data-ng-init="sortKey = 'creation_date'; sortReverse=true;">
@@ -171,6 +170,16 @@
           <th class="TipInfoComments"><i class="fa-solid fa-comment"></i></th>
           <th class="TipInfoFiles"><i class="fa-solid fa-file"></i></th>
           <th class="TipInfoIdentity"><i class="fa-solid fa-user"></i></th>
+          <th class="TipInfoRecipientCount">
+            <span data-ng-click="sortKey = 'receiver_count'; sortReverse = !sortReverse">
+              <i class="fa-solid fa-users"></i>
+              <span data-translate></span>
+              <span data-ng-show="sortKey == 'receiver_count'">
+                <span data-ng-show="!sortReverse" class="fa-solid fa-caret-down"></span>
+                <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
+              </span>
+            </span>
+          </th>
           <th class="TipInfoScore" data-ng-if="public.node.enable_scoring_system">
             <span data-ng-click="$parent.sortKey = 'score'; sortReverse = !sortReverse">
               <i class="fa-solid fa-flash"></i>
@@ -239,6 +248,7 @@
             <i data-ng-switch-when="1" class="fa-solid fa-check"></i>
             <i data-ng-switch-when="2" class="fa-solid fa-check underline" data-uib-tooltip="{{'Subscription date' | translate}}: {{tip.data.whistleblower_identity_date | date:'dd-MM-yyyy HH:mm'}}"></i>
           </th>
+          <td class="TipInfoRecipientCount">{{tip.receiver_count}}</td>
           <td class="TipInfoScore" data-ng-if="public.node.enable_scoring_system" data-ng-switch="tip.score">
             <span data-ng-switch-when="0">-</span>
             <span class="badge badge-primary" data-ng-switch-when="1" data-translate>Low</span>
