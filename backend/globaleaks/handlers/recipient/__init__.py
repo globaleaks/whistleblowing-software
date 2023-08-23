@@ -38,6 +38,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
 
     comments_by_itip = {}
     files_by_itip = {}
+    receiver_access_by_itip = {}
 
     # Fetch comments count
     for itip_id, count in session.query(models.InternalTip.id,
@@ -57,6 +58,12 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
                                          models.InternalFile.internaltip_id == models.InternalTip.id) \
                                  .group_by(models.InternalTip.id):
         files_by_itip[itip_id] = count
+
+    # Fetch number of receivers who have access to each report
+    for itip_id, count in session.query(models.ReceiverTip.internaltip_id,
+                                        func.count(models.ReceiverTip.id)) \
+                                 .group_by(models.ReceiverTip.internaltip_id):
+        receiver_access_by_itip[itip_id] = count
 
     # Fetch rtip, internaltip and associated questionnaire schema
     for rtip, itip, answers, data in session.query(models.ReceiverTip,
@@ -110,6 +117,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
             'substatus': itip.substatus,
             'file_count': files_by_itip.get(itip.id, 0),
             'comment_count': comments_by_itip.get(itip.id, 0),
+            'num_receivers': receiver_access_by_itip.get(itip.id, 0),
             'subscription': subscription
         })
 
