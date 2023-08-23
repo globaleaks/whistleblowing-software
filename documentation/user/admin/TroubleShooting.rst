@@ -24,7 +24,7 @@ Depending on your setup. There are a few things that are usually the first thing
 
 ::
 
-  curl -vvv localhost:8082
+  curl -kis -vvv localhost:8433
 
 - Is the service listening on external interfaces?
 
