@@ -15,4 +15,4 @@ class TestPublicResource(helpers.TestHandlerWithPopulatedDB):
         handler = self.request()
         response = yield handler.get()
 
-        self._handler.validate_request(json.dumps(response), requests.PublicResourcesDesc)
+        self._handler.validate_request(json.dumps(response, default=str), requests.PublicResourcesDesc)

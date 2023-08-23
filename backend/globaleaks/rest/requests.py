@@ -434,6 +434,7 @@ NodeDesc = {
     'signup_tos2_text': str,
     'signup_tos2_title': str,
     'simplified_login': bool,
+    'start_time': DateType,
     'whistleblowing_button': str,
     'whistleblowing_question': str,
     'user_privacy_policy_text': str,
