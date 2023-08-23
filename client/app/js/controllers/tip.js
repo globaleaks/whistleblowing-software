@@ -254,7 +254,7 @@ GL.controller("TipCtrl",
 
         $scope.tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText($scope.tip.status, $scope.tip.substatus, $scope.submission_statuses);
 
-        $scope.downloadWBFile = function(file) {
+        $scope.downloadRFile = function(file) {
           WBTipDownloadFile(file);
         };
 
