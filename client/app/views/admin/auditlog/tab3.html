@@ -10,6 +10,7 @@
       <th>Tor</th>
       <th data-translate>Comments</th>
       <th data-translate>Files</th>
+      <th data-translate>Receivers</th>
       <th data-translate>Whistleblower's last access</th>
     </tr>
   </thead>
@@ -24,6 +25,7 @@
       <td><i class="fa-solid" data-ng-class="{'fa-check': itip.tor, 'fa-xmark': !itip.tor}""></i></td>
       <td>{{tip.comments}}</td>
       <td>{{tip.files}}</td>
+      <td>{{tip.receiver_count}}</td>
       <td>{{tip.last_access | date:'dd-MM-yyyy HH:mm'}}</td>
     </tr>
   </tbody>
