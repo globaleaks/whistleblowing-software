@@ -68,7 +68,7 @@ Here could be configured overrides for any of the texts of the platform and of t
 .. image:: ../../images/admin/site_settings_text_customization.png
 
 Advanced Settings
------------------
+.................
 In this section could be configured a set of advanced settings.
 
 .. image:: ../../images/admin/advanced_settings.png
@@ -82,8 +82,6 @@ Depending on your project needs here you could create users with different roles
 
 .. image:: ../../images/admin/users.png
 
-.. image:: ../../images/admin/users_options.png
-
 User Roles
 ..........
 The software offers the possibility to create users with the following roles:
@@ -91,6 +89,11 @@ The software offers the possibility to create users with the following roles:
    1. Administrators
 
    2. Recipients
+
+User Options
+............
+
+.. image:: ../../images/admin/users_options.png
 
 Questionnaires
 --------------
@@ -170,8 +173,8 @@ Depending on your project needs here you could create additional Channels and co
 
 .. image:: ../../images/admin/contexts.png
 
-Submissions Expiration
-......................
+Data Retention Policy
+.....................
 The software enables to configure a data retention policy for each channel.
 This is a fundamental property of the whistleblowing channel that makes it possible to configure automatic secure deletion of reports after a certain period of time.
 This setting should be configured in relation to the risk of the channel in order to limit unneeded exposure of the reports received therein.
@@ -184,7 +187,6 @@ This section is intended to host all the main case management feature that will 
 Currently it hosts the possibility to define reports statuses and sub-statuses intended to be used by Recipients while working on the reports.
 
 By default the system includes the following report statuses:
-
    1. New
 
    2. Open
@@ -200,12 +202,12 @@ Notification
 This is the section where are configured all the aspects related to the mail notifications sent by the software.
 
 The section is furtherly divided in:
-   1. Main configuration
+   1. Notification Settings
 
-   2. Notification templates
+   2. Notification Templates
 
-Main configuration
-..................
+Notification Settings
+.....................
 Here are configured the technical details about SMTP.
 
 .. note::
