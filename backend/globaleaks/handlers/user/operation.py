@@ -88,7 +88,7 @@ def get_users_names(session, tid, user_id):
     ret = {}
 
     for user_id, user_name in session.query(models.User.id, models.User.name) \
-                                     .filter(models.User.tid == tid, models.Users.enabled == False):
+                                     .filter(models.User.tid == tid):
         ret[user_id] = user_name
 
     return ret

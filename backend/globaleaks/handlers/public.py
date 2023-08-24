@@ -561,8 +561,8 @@ def db_get_receivers(session, tid, language):
     :return: A list of receivers descriptors
     """
     receivers = session.query(models.User).filter(models.User.role == models.EnumUserRole.receiver.value,
-                                                  models.User.tid == tid)
-
+                                                  models.User.tid == tid,
+                                                  models.User.enabled == True)
     data = db_prepare_receivers_serialization(session, receivers)
 
     return [serialize_receiver(session, receiver, language, data) for receiver in receivers]
