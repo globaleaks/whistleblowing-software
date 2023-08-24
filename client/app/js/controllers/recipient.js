@@ -90,15 +90,21 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
 
   $scope.open_grant_access_modal = function () {
     return $scope.Utils.runUserOperation("get_users_names").then(function(response) {
-      // Prevent listing current user
-      delete response.data[$scope.Authentication.session.user_id];
+      var selectable_recipients = [];
+
+      $scope.public.receivers.forEach(async (receiver) => {
+        if (receiver.enabled && receiver.id !== $scope.Authentication.session.user_id) {
+          selectable_recipients.push(receiver);
+        }
+      });
 
       $uibModal.open({
       templateUrl: "views/modals/grant_access.html",
         controller: "ConfirmableModalCtrl",
         resolve: {
           arg: {
-            users_names: response.data
+            users_names: response.data,
+            selectable_recipients: selectable_recipients
           },
           confirmFun: function() {
             return function(receiver_id) {
@@ -118,15 +124,21 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
 
   $scope.open_revoke_access_modal = function () {
     return $scope.Utils.runUserOperation("get_users_names").then(function(response) {
-      // Prevent listing current user
-      delete response.data[$scope.Authentication.session.user_id];
+      var selectable_recipients = [];
+
+      $scope.public.receivers.forEach(async (receiver) => {
+        if (receiver.id !== $scope.Authentication.session.user_id) {
+          selectable_recipients.push(receiver);
+        }
+      });
 
       $uibModal.open({
       templateUrl: "views/modals/revoke_access.html",
         controller: "ConfirmableModalCtrl",
         resolve: {
           arg: {
-            users_names: response.data
+            users_names: response.data,
+            selectable_recipients: selectable_recipients
           },
           confirmFun: function() {
             return function(receiver_id) {

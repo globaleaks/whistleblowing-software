@@ -11,7 +11,7 @@
         <ui-select-match data-ng-attr-placeholder="{{'Search' | translate}}">
            <span data-ng-bind="arg.users_names[$select.selected.id]"></span>
 	</ui-select-match>
-        <ui-select-choices data-repeat="receiver in public.receivers | filter: {name: $select.search}">
+        <ui-select-choices data-repeat="receiver in arg.selectable_recipients | filter: {name: $select.search}">
            <span data-ng-bind-html="arg.users_names[receiver.id] | highlight: $select.search"></span>
         </ui-select-choices>
       </ui-select>
