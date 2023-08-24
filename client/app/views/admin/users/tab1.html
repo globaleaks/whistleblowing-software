@@ -170,7 +170,7 @@
               <label data-translate>Enabled</label>
             </div>
             <div class="form-group">
-              <input data-ng-model="user.password_change_needed" type="checkbox" />
+              <input data-ng-model="user.password_change_needed" data-ng-disabled="user.password_change_needed" type="checkbox" />
               <label data-translate>Force password change</label>
               <div data-ng-show="changePasswordArgs.password_change_needed">
                 <span class="badge badge-primary" data-translate>Enabled</span>
