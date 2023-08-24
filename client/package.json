@@ -9,7 +9,7 @@
     "url": "git@github.com:globaleaks/GlobaLeaks.git"
   },
   "scripts": {
-    "test": "echo grunt instrument-client && npx nyc --report-dir=./cypress/coverage cypress run --browser chrome"
+    "test": "npx nyc --report-dir=./cypress/coverage cypress run --browser chrome"
   },
   "dependencies": {
     "@flowjs/flow.js": "2.14.1",

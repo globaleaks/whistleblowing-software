@@ -22,7 +22,7 @@ trap atexit EXIT
 setupClientDependencies() {
   cd $TRAVIS_BUILD_DIR/client  # to install frontend dependencies
   npm install
-  grunt copy:sources
+  grunt instrument-client
 }
 
 setupBackendDependencies() {
@@ -31,37 +31,33 @@ setupBackendDependencies() {
 }
 
 setupDependencies() {
-  setupClientDependencies $1
+  setupClientDependencies
   setupBackendDependencies
 }
 
 sudo apt-get update
 sudo apt-get install -y tor
-sudo usermod -aG debian-tor $USER
 npm install -g grunt grunt-cli
 
 if [ "$GLTEST" = "test" ]; then
   pip install coverage
-  npm install -g istanbul
 
   echo "Running backend unit tests"
   setupDependencies
   cd $TRAVIS_BUILD_DIR/backend && coverage run setup.py test
 
-  echo "Running BrowserTesting locally collecting code coverage"
-  cd $TRAVIS_BUILD_DIR/client && ./node_modules/nyc/bin/nyc.js  instrument --complete-copy app build --source-map=false
-
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z -d
   sleep 5
 
-  ./node_modules/protractor/bin/webdriver-manager update
+  echo "Running BrowserTesting locally collecting code coverage"
+  cd $TRAVIS_BUILD_DIR/client && npm test
 
-  ./node_modules/protractor/bin/protractor tests/protractor-coverage.config.js
 
   if [ -n "CODACY" ]; then
     cd $TRAVIS_BUILD_DIR/backend && coverage xml
-    cd $TRAVIS_BUILD_DIR/client && npm test
-    bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r $TRAVIS_BUILD_DIR/backend/coverage.xml -r $TRAVIS_BUILD_DIR/client/cypress/coverage/lcov.info
+    bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Python -r $TRAVIS_BUILD_DIR/backend/coverage.xml
+    bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l Javascript -r $TRAVIS_BUILD_DIR/client/cypress/coverage/lcov.info
+    bash <(curl -Ls https://coverage.codacy.com/get.sh) final
   fi
 elif [ "$GLTEST" = "build_and_install" ]; then
   LOGFILE="/var/globaleaks/log/globaleaks.log"
