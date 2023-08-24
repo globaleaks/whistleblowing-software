@@ -133,6 +133,10 @@ def db_admin_update_user(session, tid, user_session, user_id, request, language)
         user.change_email_address = ''
         user.change_email_date = datetime_null()
 
+    # Prevent administrators to reset password change needed status
+    if user.password_change_needed:
+        request['password_change_needed'] = True
+
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)
 
