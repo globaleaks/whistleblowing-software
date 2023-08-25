@@ -202,13 +202,7 @@ GL.controller("AdminFieldEditorCtrl", ["$scope", "$http",
     };
 
     $scope.exportQuestion = function(obj) {
-      $http({
-        method: "GET",
-        url: "api/admin/fieldtemplates/" + obj.id,
-        responseType: "blob",
-      }).then(function (response) {
-        $scope.Utils.saveAs(response.data, obj.label + ".json");
-      });
+      return $scope.Utils.saveAs(obj.label + ".json", "api/admin/fieldtemplates/" + obj.id);
     };
   }
 ]).
