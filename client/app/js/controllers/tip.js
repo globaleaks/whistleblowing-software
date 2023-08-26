@@ -373,10 +373,9 @@ GL.controller("TipCtrl",
               tip: $scope.tip,
               operation: "postpone",
               contexts_by_id: $scope.contexts_by_id,
-              expiration_date: $scope.Utils.getPostponeDate($scope.contexts_by_id[$scope.tip.context_id].tip_timetolive),
+              date: $scope.Utils.getPostponeDate($scope.tip.expiration_date, $scope.contexts_by_id[$scope.tip.context_id].tip_timetolive),
               dateOptions: {
-                minDate: new Date($scope.tip.expiration_date),
-                maxDate: $scope.Utils.getPostponeDate(Math.max(365, $scope.contexts_by_id[$scope.tip.context_id].tip_timetolive * 2))
+                minDate: $scope.Utils.getMinPostponeDate($scope.tip.expiration_date)
               },
               opened: false,
               Utils: $scope.Utils
@@ -396,7 +395,7 @@ GL.controller("TipCtrl",
               tip: $scope.tip,
               operation: "set_reminder",
               contexts_by_id: $scope.contexts_by_id,
-              reminder_date: $scope.Utils.getPostponeDate($scope.contexts_by_id[$scope.tip.context_id].tip_reminder),
+              date: $scope.Utils.getReminderDate($scope.contexts_by_id[$scope.tip.context_id].tip_reminder),
               dateOptions: {
                 minDate: new Date($scope.tip.creation_date)
               },
@@ -474,16 +473,15 @@ controller("TipOperationsCtrl",
     $uibModalInstance.close();
 
     if ($scope.args.operation === "postpone" || $scope.args.operation === "set_reminder") {
-      var date;
-      if ($scope.args.operation === "postpone")
-        date = $scope.args.expiration_date.getTime();
-      else
-        date = $scope.args.reminder_date.getTime();
+      $scope.args.date.setUTCHours(0, 0, 0);
+      if ($scope.args.operation === "postpone") {
+        $scope.args.date.setDate($scope.args.date.getDate() + 1);
+      }
 
       var req = {
         "operation": $scope.args.operation,
         "args": {
-          "value": date
+          "value": $scope.args.date.getTime()
         }
       };
 

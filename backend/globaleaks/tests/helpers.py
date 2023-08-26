@@ -47,7 +47,7 @@ from globaleaks.utils import tempdict
 from globaleaks.utils.crypto import generateRandomKey, GCE
 from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.utils.token import Token
-from globaleaks.utils.utility import datetime_null, datetime_now, sum_dicts, uuid4
+from globaleaks.utils.utility import datetime_now, sum_dicts, uuid4
 from globaleaks.utils.log import log
 
 GCE.options['OPSLIMIT'] = 1
@@ -897,11 +897,11 @@ class TestGLWithPopulatedDB(TestGL):
 
     @transact
     def force_wbtip_expiration(self, session):
-        session.query(models.InternalTip).update({'last_access': datetime_null()})
+        session.query(models.InternalTip).update({'last_access': datetime_now()})
 
     @transact
     def force_itip_expiration(self, session):
-        session.query(models.InternalTip).update({'expiration_date': datetime_null()})
+        session.query(models.InternalTip).update({'expiration_date': datetime_now()})
 
     @transact
     def set_itips_near_to_expire(self, session):

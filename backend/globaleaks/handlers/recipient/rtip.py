@@ -3,6 +3,7 @@
 # Handlers dealing with tip interface for receivers (rtip)
 import base64
 import os
+import time
 
 from datetime import datetime, timedelta
 
@@ -360,22 +361,21 @@ def db_postpone_expiration(session, itip, expiration_date):
     :param itip: A submission model to be postponed
     :param expiration_date: The date timestamp to be set in milliseconds
     """
+    max_date = time.time() + 3651 *  86400
+    max_date = max_date - max_date % 86400
     expiration_date = expiration_date / 1000
-    expiration_date = min(expiration_date, 32503680000)
+    expiration_date = expiration_date if expiration_date < max_date else max_date
     expiration_date = datetime.utcfromtimestamp(expiration_date)
 
-    context = session.query(models.Context).filter(models.Context.id == itip.context_id).one()
+    min_date = time.time() + 91 * 86400
+    min_date = min_date - min_date % 86400
+    min_date = datetime.utcfromtimestamp(min_date)
+    if itip.expiration_date <= min_date:
+        min_date = itip.expiration_date
 
-    if context.tip_timetolive > 0:
-        max_expiration_date = get_expiration(max(365, context.tip_timetolive * 2))
-    else:
-        max_expiration_date = datetime_never()
-
-    if expiration_date > max_expiration_date:
-        expiration_date = max_expiration_date
-
-    if expiration_date > itip.expiration_date:
+    if expiration_date >= min_date:
         itip.expiration_date = expiration_date
+
 
 def db_set_reminder(session, itip, reminder_date):
     """

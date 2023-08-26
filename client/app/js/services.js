@@ -1032,7 +1032,22 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       return date.getTime() === 32503680000000;
     },
 
-    getPostponeDate: function(ttl) {
+    getMinPostponeDate: function(currentExpirationDate) {
+      var currentExpirationDate = new Date(currentExpirationDate);
+      var minDate = new Date();
+      minDate.setDate(minDate.getDate() + 90);
+      return currentExpirationDate > minDate ? minDate : currentExpirationDate;
+    },
+
+    getPostponeDate: function(currentExpirationDate, ttl) {
+      var minPostponeDate = this.getMinPostponeDate(currentExpirationDate);
+      var date = new Date();
+      date.setDate(date.getDate() + ttl + 1);
+      date.setUTCHours(0, 0, 0, 0);
+      return date > minPostponeDate ? date : minPostponeDate;
+    },
+
+    getReminderDate: function(ttl) {
       var date = new Date();
       date.setDate(date.getDate() + ttl + 1);
       date.setUTCHours(0, 0, 0, 0);

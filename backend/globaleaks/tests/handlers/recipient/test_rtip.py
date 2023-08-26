@@ -34,7 +34,6 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
         rtip_descs = yield self.get_rtips()
 
         for rtip_desc in rtip_descs:
-            self.assertTrue(rtip_desc['expiration_date'] == datetime_null())
             operation = {
               'operation': 'postpone',
               'args': {
