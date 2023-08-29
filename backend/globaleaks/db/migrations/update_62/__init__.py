@@ -115,7 +115,7 @@ class MigrationScript(MigrationBase):
             new_obj = self.model_to['Context']()
             for key in new_obj.__mapper__.column_attrs.keys():
                 if key == 'hidden':
-                    setattr(new_obj, key, getattr(old_obj, 'status') != 1)
+                    setattr(new_obj, key, getattr(old_obj, 'status') != 'enabled')
                 else:
                     setattr(new_obj, key, getattr(old_obj, key))
 
