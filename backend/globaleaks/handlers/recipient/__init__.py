@@ -72,8 +72,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
                                                     models.InternalTip.update_date >= updated_after,
                                                     models.InternalTip.update_date <= updated_before,
                                                     models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                                    models.InternalTipAnswers.internaltip_id == models.ReceiverTip.internaltip_id) \
-                                            .order_by(models.InternalTipAnswers.creation_date.asc()):
+                                                    models.InternalTipAnswers.internaltip_id == models.ReceiverTip.internaltip_id):
         if rtip.id in rtips_ids:
             continue
 
