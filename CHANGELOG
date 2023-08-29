@@ -1,3 +1,10 @@
+Changes in version 4.13.1
+    Fix issue wiith selection of users to which granting report access
+    Remove redundant reordering of reports reordered on the client
+    Fix order of identity access requests by date (reverse)
+    Fix indicators for identities provided after the initial report
+    Fix issue #3592
+
 Changes in version 4.13.0
     Make it possible for recipients to transfer access to their reports to other recipients (#3511)
     Make it possible to configure a Privacy Policy for internal users (#3510)
