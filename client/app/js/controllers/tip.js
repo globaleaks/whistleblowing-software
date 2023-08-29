@@ -42,7 +42,7 @@ GL.controller("TipCtrl",
         var selectable_recipients = [];
 
         $scope.public.receivers.forEach(async (receiver) => {
-          if (receiver.enabled && receiver.id !== $scope.Authentication.session.user_id && !$scope.tip.receivers_by_id[receiver.id]) {
+          if (receiver.id !== $scope.Authentication.session.user_id && !$scope.tip.receivers_by_id[receiver.id]) {
             selectable_recipients.push(receiver);
           }
         });
@@ -82,7 +82,7 @@ GL.controller("TipCtrl",
         var selectable_recipients = [];
 
         $scope.public.receivers.forEach(async (receiver) => {
-          if (receiver.enabled && receiver.id !== $scope.Authentication.session.user_id && !$scope.tip.receivers_by_id[receiver.id]) {
+          if (receiver.id !== $scope.Authentication.session.user_id && !$scope.tip.receivers_by_id[receiver.id]) {
             selectable_recipients.push(receiver);
           }
         });

@@ -93,7 +93,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
       var selectable_recipients = [];
 
       $scope.public.receivers.forEach(async (receiver) => {
-        if (receiver.enabled && receiver.id !== $scope.Authentication.session.user_id) {
+        if (receiver.id !== $scope.Authentication.session.user_id) {
           selectable_recipients.push(receiver);
         }
       });
