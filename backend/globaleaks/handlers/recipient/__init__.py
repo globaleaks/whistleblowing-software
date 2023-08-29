@@ -143,11 +143,14 @@ def perform_tips_operation(session, tid, user_id, user_cc, operation, args):
 
     if operation == 'grant' and receiver.can_grant_access_to_reports:
         for itip, rtip in result:
-            db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, args['receiver'])
+            if db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, args['receiver']):
+                db_log(session, tid=tid, type='grant_access', user_id=user_id, object_id=itip.id)
 
     elif operation == 'revoke' and receiver.can_grant_access_to_reports:
         for itip, _ in result:
-            db_revoke_tip_access(session, tid, user_id, itip, args['receiver'])
+            if db_revoke_tip_access(session, tid, user_id, itip, args['receiver']):
+                db_log(session, tid=tid, type='revoke_access', user_id=user_id, object_id=itip.id)
+
 
     else:
         raise errors.ForbiddenOperation
