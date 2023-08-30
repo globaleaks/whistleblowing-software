@@ -59,8 +59,7 @@ class SettingsClass(object, metaclass=Singleton):
         self.onionservice = None
 
         # SOCKS default
-        self.socks_host = "127.0.0.1"
-        self.socks_port = 9050
+        self.socks_port = 9999
 
         self.rsa_key_bits = 4096
         self.csr_sign_bits = 512

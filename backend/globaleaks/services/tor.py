@@ -29,7 +29,7 @@ class Tor(Service):
 
         self.tor = txtorcon.launch(
             reactor,
-            socks_port='9050',
+            socks_port=State.settings.socks_port,
             control_port='unix:' + State.settings.tor_control,
         )
 
