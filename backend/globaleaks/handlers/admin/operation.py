@@ -216,6 +216,7 @@ def db_set_user_password(session, tid, user_session, user_id, password):
 
         db_log(session, tid=tid, type='change_password', user_id=user_session.user_id, object_id=user_id)
 
+
 @transact
 def set_user_password(session, tid, user_session, user_id, password):
   return db_set_user_password(session, tid, user_session, user_id, password)
@@ -250,6 +251,8 @@ def generate_password_reset_token(session, tid, user_session, user_id):
 
     if user_session.ek and user.crypto_pub_key:
         set_tmp_key(user_session, user, token)
+
+    db_log(session, tid=tid, type='send_password_reset_email', user_id=user_session.user_id, object_id=user_id)
 
 
 class AdminOperationHandler(OperationHandler):
