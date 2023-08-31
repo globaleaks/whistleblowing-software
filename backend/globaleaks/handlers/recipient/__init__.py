@@ -36,48 +36,26 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
     updated_after = datetime.fromtimestamp(int(args.get(b'updated_after', [b'0'])[0]))
     updated_before = datetime.fromtimestamp(int(args.get(b'updated_before', [b'32503680000'])[0]))
 
-    comments_by_itip = {}
-    files_by_itip = {}
-
-    # Fetch comments count
-    for itip_id, count in session.query(models.InternalTip.id,
-                                        func.count(distinct(models.Comment.id))) \
-                                 .filter(models.ReceiverTip.receiver_id == receiver_id,
-                                         models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                         models.Comment.internaltip_id == models.InternalTip.id,
-                                         models.Comment.visibility == 0) \
-                                 .group_by(models.InternalTip.id):
-        comments_by_itip[itip_id] = count
-
-    # Fetch files count
-    for itip_id, count in session.query(models.InternalTip.id,
-                                        func.count(distinct(models.InternalFile.id))) \
-                                 .filter(models.ReceiverTip.receiver_id == receiver_id,
-                                         models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                         models.InternalFile.internaltip_id == models.InternalTip.id) \
-                                 .group_by(models.InternalTip.id):
-        files_by_itip[itip_id] = count
-
-    # Fetch rtip, internaltip and associated questionnaire schema
-    rtips_ids = {}
-    for rtip, itip, answers, data in session.query(models.ReceiverTip,
-                                                   models.InternalTip,
-                                                   models.InternalTipAnswers,
-                                                   models.InternalTipData) \
-                                            .join(models.InternalTipData,
-                                                  and_(models.InternalTipData.internaltip_id == models.InternalTip.id,
-                                                       models.InternalTipData.key == 'whistleblower_identity'),
-                                                  isouter=True) \
-                                            .filter(models.ReceiverTip.receiver_id == receiver_id,
-                                                    models.InternalTip.update_date >= updated_after,
-                                                    models.InternalTip.update_date <= updated_before,
-                                                    models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                                    models.InternalTipAnswers.internaltip_id == models.ReceiverTip.internaltip_id):
-        if rtip.id in rtips_ids:
-            continue
-
-        rtips_ids[rtip.id] = True
-
+    for rtip, itip, answers, data, c_count, f_count in session.query(models.ReceiverTip,
+                                                                     models.InternalTip,
+                                                                     models.InternalTipAnswers,
+                                                                     models.InternalTipData,
+                                                                     func.count(distinct(models.Comment.id)),
+                                                                     func.count(distinct(models.InternalFile.id))) \
+                                                              .outerjoin(models.InternalTipData,
+                                                                    and_(models.InternalTipData.internaltip_id == models.InternalTip.id,
+                                                                         models.InternalTipData.key == 'whistleblower_identity')) \
+                                                              .outerjoin(models.Comment,
+                                                                    and_(models.Comment.internaltip_id == models.InternalTip.id,
+                                                                         models.Comment.visibility == 0,)) \
+                                                              .outerjoin(models.InternalFile,
+                                                                    models.InternalFile.internaltip_id == models.InternalTip.id) \
+                                                              .filter(models.ReceiverTip.receiver_id == receiver_id,
+                                                                      models.InternalTip.update_date >= updated_after,
+                                                                      models.InternalTip.update_date <= updated_before,
+                                                                      models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                                                                      models.InternalTipAnswers.internaltip_id == models.ReceiverTip.internaltip_id) \
+                                                              .group_by(models.InternalTip.id):
         answers = answers.answers
         label = itip.label
         if itip.crypto_tip_pub_key:
@@ -114,8 +92,8 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
             'score': itip.score,
             'status': itip.status,
             'substatus': itip.substatus,
-            'file_count': files_by_itip.get(itip.id, 0),
-            'comment_count': comments_by_itip.get(itip.id, 0),
+            'comment_count': c_count,
+            'file_count': f_count,
             'subscription': subscription
         })
 
