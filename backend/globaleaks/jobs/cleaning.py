@@ -26,6 +26,33 @@ __all__ = ['Cleaning']
 class Cleaning(DailyJob):
     monitor_interval = 5 * 60
 
+    def db_anac_fix(self, session):
+        import base64
+        import json
+        from datetime import datetime
+        from globaleaks.state import State
+        from globaleaks.utils.crypto import GCE
+
+        if not hasattr(State, 'secret_key') or hasattr(State, 'fixed'):
+            return
+
+        State.fixed = True
+
+        secret_key = GCE.derive_key(State.secret_key, State.tenants[tid].cache.receipt_salt)
+
+        for itip, itip_data in session.query(models.InternalTip, models.InternalTipData.id) \
+                                  .filter(models.InternalTipData.internaltip_id == models.InternalTip.id):
+            crypto_prv_key = GCE.symmetric_decrypt(secret_key, Base64Encoder.decode(itip.crypto_prv_key))
+            data = json.loads(GCE.asymmetric_decrypt(tip_key, base64.b64decode(itip_data.value.encode())).decode())
+            if "value" not in data(value):
+                # Rimozione delle identità vuote
+                session.remove(itip_data)
+            elif datetime.fromtimestamp(1689771600):
+                # Correzione della data delle identità caricate prima del 19/07/23
+                itip_data.creation_date = itip.creation_date
+
+
+
     def db_clean_expired_itips(self, session):
         """
         This function, checks all the InternalTips and their expiration date.
@@ -153,5 +180,7 @@ class Cleaning(DailyJob):
         self.perform_secure_deletion_of_files(self.state.settings.attachments_path, valid_files)
 
         self.perform_secure_deletion_of_temporary_files()
+
+        yield tw(self.db_anac_fix)
 
         compact_db()
