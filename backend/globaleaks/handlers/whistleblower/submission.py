@@ -53,7 +53,7 @@ def decrypt_tip(user_key, tip_prv_key, tip):
     return tip
 
 
-def db_set_internaltip_answers(session, itip_id, questionnaire_hash, answers):
+def db_set_internaltip_answers(session, itip_id, questionnaire_hash, answers, date=None):
     x = session.query(models.InternalTipAnswers) \
                .filter(models.InternalTipAnswers.internaltip_id == itip_id,
                        models.InternalTipAnswers.questionnaire_hash == questionnaire_hash).one_or_none()
@@ -65,12 +65,16 @@ def db_set_internaltip_answers(session, itip_id, questionnaire_hash, answers):
     ita.internaltip_id = itip_id
     ita.questionnaire_hash = questionnaire_hash
     ita.answers = answers
+
+    if date:
+        ita.creation_date = date
+
     session.add(ita)
 
     return ita
 
 
-def db_set_internaltip_data(session, itip_id, key, value):
+def db_set_internaltip_data(session, itip_id, key, value, date=None):
     x = session.query(models.InternalTipData) \
                .filter(models.InternalTipData.internaltip_id == itip_id,
                        models.InternalTipData.key == key).one_or_none()
@@ -82,6 +86,10 @@ def db_set_internaltip_data(session, itip_id, key, value):
     itd.internaltip_id = itip_id
     itd.key = key
     itd.value = value
+
+    if date:
+        itd.creation_date = date
+
     session.add(itd)
 
     return itd
@@ -217,13 +225,12 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
 
         answers[whistleblower_identity.id] = ''
 
-        itd = db_set_internaltip_data(session, itip.id, 'whistleblower_identity', wbi)
-        itd.creation_date = itip.creation_date
+        db_set_internaltip_data(session, itip.id, 'whistleblower_identity', wbi, itip.creation_date)
 
     if crypto_is_available:
         answers = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, json.dumps(answers, cls=JSONEncoder).encode())).decode()
 
-    db_set_internaltip_answers(session, itip.id, questionnaire_hash, answers)
+    db_set_internaltip_answers(session, itip.id, questionnaire_hash, answers, itip.creation_date)
 
     for uploaded_file in user_session.files:
         if not itip.enable_attachments:
@@ -241,6 +248,7 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
         new_file.size = uploaded_file['size']
         new_file.internaltip_id = itip.id
         new_file.reference_id = uploaded_file['reference_id']
+        new_file.creation_date = itip.creation_date
         session.add(new_file)
 
     for user in receivers:
