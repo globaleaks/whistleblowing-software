@@ -1,6 +1,7 @@
 describe("Recipient first login", () => {
   it("should require password change upon successful authentication", () => {
     cy.login_receiver("Recipient", Cypress.env("init_password"), "/login", true);
+    cy.takeScreenshot("user/password");
     cy.get("[data-ng-model='changePasswordArgs.password']").type(Cypress.env("user_password"));
     cy.get("[data-ng-model='changePasswordArgs.confirm']").type(Cypress.env("user_password"));
     cy.get('[data-ng-click="changePassword()"]').click();

@@ -15,6 +15,8 @@ class ReceiverPage {
 class WhistleblowerPage {
   performSubmission() {
     cy.visit("/");
+    cy.takeScreenshot("whistleblower/home");
+
     cy.get("#WhistleblowingButton").click();
     cy.get("#SubmissionForm").should("be.visible");
 
@@ -45,9 +47,17 @@ class WhistleblowerPage {
 
     cy.get("#step-0-field-10-0-input-0").type("...");
     cy.wait(1000)
-    cy.get("#SubmitButton").should("be.visible").click();
+    cy.get("#SubmitButton").should("be.visible");
+
+    cy.takeScreenshot("whistleblower/submission");
+
+    cy.get("#SubmitButton").click();
+
     cy.wait(1000);
+
     cy.get("#ReceiptCode").should("be.visible");
+
+    cy.takeScreenshot("whistleblower/receipt");
 
     return cy.get('#ReceiptCode').invoke('val').then((value) => {
       return value;
