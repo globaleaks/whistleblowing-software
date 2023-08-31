@@ -1,3 +1,9 @@
+Changes in version 4.13.2
+    Ensure to register the same time for every action performed during a submission
+    Log admin operation: send_password_reset_email
+    Optimize Tor loading storing consensus data permanently
+    Change tor socket port to 9999
+
 Changes in version 4.13.1
     Fix issue wiith selection of users to which granting report access
     Remove redundant reordering of reports reordered on the client
