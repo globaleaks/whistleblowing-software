@@ -219,16 +219,18 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
 .controller("StatisticsCtrl", ["$scope", "RTip", "Statistics",
   function ($scope, RTip, Statistics) {
 
+     var statsModel = Statistics.getStatisticsModel();
+
     $scope.flush = function () {
       $scope.reportingChannel = [];
       $scope.startDatePickerOpen = false;
       $scope.endDatePickerOpen = false;
       $scope.staticData = [];
 
-      statsModel = Statistics.getStatisticsModel();
+     statsModel = Statistics.getStatisticsModel();
+     answerArray = [];
+     dropdownOptions = [];
 
-      dropdownOptions = [];
-      answerArray = [];
     };
 
     $scope.openStartDatePicker = function () {
@@ -240,17 +242,17 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
     };
 
     $scope.initializeTips = function () {
-      var promises = [];
+      let promises = [];
 
-      for (var tip of $scope.resources.rtips) {
+      for (let tip of $scope.resources.rtips) {
         tip.context = $scope.contexts_by_id[tip.context_id];
 
         if ($scope.reportingChannel.indexOf(tip.context.name) === -1) {
           $scope.reportingChannel.push(tip.context.name);
         }
 
-        var creationDate = new Date(tip.creation_date);
-        var expirationDate = new Date(tip.expiration_date);
+        let creationDate = new Date(tip.creation_date);
+        let expirationDate = new Date(tip.expiration_date);
 
         if (($scope.channel && tip.context.name !== $scope.channel) ||
           ($scope.startDate && $scope.startDate > creationDate) ||
@@ -264,11 +266,11 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
         tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText(tip.status, tip.substatus, $scope.submission_statuses);
 
         if (tip.status !== 'new') {
-          var promise = new Promise(function(resolve, reject) {
-            new RTip({ id: tip.id }, function (tip) {
+          let promise = new Promise(function(resolve, reject) {
+            RTip({ id: tip.id }, function (tip) {
               $scope.tip = tip
               if (tip.comments.length > 0) {
-                var lastComment = tip.comments[tip.comments.length - 1];
+                let lastComment = tip.comments[tip.comments.length - 1];
 
                 if (lastComment.type === "whistleblower") {
                   statsModel.unansweredTipsCount += 1;
@@ -293,7 +295,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
           promises.push(promise);
         }
 
-        var lastAccessDate = new Date(tip.last_access);
+        let lastAccessDate = new Date(tip.last_access);
 
         statsModel.statusLabelCount[tip.submissionStatusStr] = (statsModel.statusLabelCount[tip.submissionStatusStr] || 0) + 1;
 
@@ -342,7 +344,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
     };
 
     $scope.generateGeneralGraph = function () {
-      var statusPercentages = Object.keys(statsModel.statusLabelCount).map(status => {
+      let statusPercentages = Object.keys(statsModel.statusLabelCount).map(status => {
         const count = statsModel.statusLabelCount[status];
         const percentage = (statsModel.totalReports !== 0) ? ((count / statsModel.totalReports) * 100).toFixed(2) : 0;
         return { status, count, percentage };
@@ -363,7 +365,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
         $scope.statusBarChart.data.datasets[0].data = data;
         $scope.statusBarChart.update();
       } else {
-        $scope.statusBarChart = Statistics.generateBarGraph(labels.length, 'statusBarChart', '2d', 'bar', labels, 'General Statistics', data, 'Number of Reports', 'Status');
+        $scope.statusBarChart = Statistics.generateBarGraph('statusBarChart', labels, 'General Statistics', data, 'Number of Reports', 'Status');
       }
     };
 
@@ -378,41 +380,41 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
         $scope.perMonthLineGraph.data.datasets[0].data = reportData;
         $scope.perMonthLineGraph.update();
       } else {
-        $scope.perMonthLineGraph = Statistics.generateLineGraph('perMonthLineGraph', '2d', 'line', labels, 'Interaction Statistics', reportData, 'Month', 'Reports');
+        $scope.perMonthLineGraph = Statistics.generateLineGraph('perMonthLineGraph', labels, 'Interaction Statistics', reportData, 'Month', 'Reports');
       }
     };
 
     $scope.generateLabelGraph = function () {
-      var totalItemCount = statsModel.totalReports;
+      let totalItemCount = statsModel.totalReports;
 
       angular.forEach(statsModel.labelCounts, function (count, label) {
-        var percentage = (count / totalItemCount) * 100;
+        let percentage = (count / totalItemCount) * 100;
         statsModel.labelCounts[label] = {
           count: count,
           percentage: percentage.toFixed(2) + "%"
         };
       });
 
-      var unlabeledPercentage = (statsModel.unlabeledCount / totalItemCount) * 100;
+      let unlabeledPercentage = (statsModel.unlabeledCount / totalItemCount) * 100;
       statsModel.unlabeledCount = {
         count: statsModel.unlabeledCount,
         percentage: unlabeledPercentage.toFixed(2) + "%"
       };
 
-      var labelCountsData = Object.values(statsModel.labelCounts).map(function (label) {
+      let labelCountsData = Object.values(statsModel.labelCounts).map(function (label) {
         return label.count;
       });
 
-      var unlabeledCountData = statsModel.unlabeledCount.count;
-      var labels = ['Total Reports', ...Object.keys(statsModel.labelCounts), 'Unlabeled'];
-      var data = [statsModel.totalReports, ...labelCountsData, unlabeledCountData];
+      let unlabeledCountData = statsModel.unlabeledCount.count;
+      let labels = ['Total Reports', ...Object.keys(statsModel.labelCounts), 'Unlabeled'];
+      let data = [statsModel.totalReports, ...labelCountsData, unlabeledCountData];
 
       if ($scope.labelCountsChart) {
         $scope.labelCountsChart.data.labels = labels;
         $scope.labelCountsChart.data.datasets[0].data = data;
         $scope.labelCountsChart.update();
       } else {
-        $scope.labelCountsChart = Statistics.generateBarGraph(labels.length, 'labelCountsChart', '2d', 'bar', labels, 'Labels Statistics', data, 'Number of Reports', 'Label', labels.length);
+        $scope.labelCountsChart = Statistics.generateBarGraph('labelCountsChart', labels, 'Labels Statistics', data, 'Number of Reports', 'Label');
       }
     };
 
@@ -435,7 +437,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
         };
         $scope.channelCountsChart.update();
       } else {
-        $scope.channelCountsChart = Statistics.generateBarGraph(labels.length, 'dropdownOptionsChart', '2d', 'bar', labels, 'Statistics', data, 'Number of Reports', 'DropdownOptions');
+        $scope.channelCountsChart = Statistics.generateBarGraph('dropdownOptionsChart', labels, 'Statistics', data, 'Number of Reports', 'DropdownOptions');
       }
     };
 
