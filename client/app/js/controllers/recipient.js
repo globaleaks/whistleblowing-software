@@ -215,4 +215,297 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
       })(i);
     }
   };
-}]);
+}])
+.controller("StatisticsCtrl", ["$scope", "RTip", "Statistics",
+  function ($scope, RTip, Statistics) {
+
+    $scope.flush = function () {
+      $scope.reportingChannel = [];
+      $scope.startDatePickerOpen = false;
+      $scope.endDatePickerOpen = false;
+      $scope.staticData = [];
+
+      statsModel = Statistics.getStatisticsModel();
+
+      dropdownOptions = [];
+      answerArray = [];
+    };
+
+    $scope.openStartDatePicker = function () {
+      $scope.startDatePickerOpen = true;
+    };
+
+    $scope.openEndDatePicker = function () {
+      $scope.endDatePickerOpen = true;
+    };
+
+    $scope.initializeTips = function () {
+      var promises = [];
+
+      for (var tip of $scope.resources.rtips) {
+        tip.context = $scope.contexts_by_id[tip.context_id];
+
+        if ($scope.reportingChannel.indexOf(tip.context.name) === -1) {
+          $scope.reportingChannel.push(tip.context.name);
+        }
+
+        var creationDate = new Date(tip.creation_date);
+        var expirationDate = new Date(tip.expiration_date);
+
+        if (($scope.channel && tip.context.name !== $scope.channel) ||
+          ($scope.startDate && $scope.startDate > creationDate) ||
+          ($scope.endDate && $scope.endDate < expirationDate)) {
+          continue;
+        }
+
+        statsModel.totalReports += 1;
+        statsModel.reports.push(tip);
+
+        tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText(tip.status, tip.substatus, $scope.submission_statuses);
+
+        if (tip.status !== 'new') {
+          var promise = new Promise(function(resolve, reject) {
+            new RTip({ id: tip.id }, function (tip) {
+              $scope.tip = tip
+              if (tip.comments.length > 0) {
+                var lastComment = tip.comments[tip.comments.length - 1];
+
+                if (lastComment.type === "whistleblower") {
+                  statsModel.unansweredTipsCount += 1;
+                }
+
+                if (lastComment.type === "receiver" && (tip.label.length > 0 || tip.wbfiles.length > 0 || tip.status !== 'opened')) {
+                  statsModel.receiverCount++
+                }
+              }
+
+              statsModel.recipients.push({
+                reportId: tip.progressive,
+                recipients: tip.receivers.map(receiver => receiver.name).join(' - ')
+              });
+
+              $scope.parseAnswers(tip);
+              $scope.initializeStaticData();
+              resolve();
+            });
+          });
+
+          promises.push(promise);
+        }
+
+        var lastAccessDate = new Date(tip.last_access);
+
+        statsModel.statusLabelCount[tip.submissionStatusStr] = (statsModel.statusLabelCount[tip.submissionStatusStr] || 0) + 1;
+
+        const creationDateObj = new Date(tip.creation_date);
+        const monthYear = `${creationDateObj.toLocaleString('default', { month: 'long' })} ${creationDateObj.getFullYear()}`;
+        const reportCreationDate = new Date(tip.creation_date);
+        const reportUpdateDate = new Date(tip.update_date);
+
+        const closureTime = reportUpdateDate - reportCreationDate;
+        statsModel.reportCountPerMonth[monthYear] = (statsModel.reportCountPerMonth[monthYear] || 0) + 1;
+
+        if (lastAccessDate.getTime() !== creationDate.getTime())
+            statsModel.reciprocatingWhistleBlower++;
+
+        if (tip.tor)
+            statsModel.torCount++;
+
+        if (tip.submissionStatusStr === "Closed") {
+          statsModel.averageClosureTime += closureTime;
+          statsModel.totalClosedTips++;
+        }
+
+        const label = tip.label;
+        if (label) {
+          statsModel.allLabeledCount+=1
+          const words = label.split(" ").filter(word => word.length > 0);
+          const labeledWords = words.filter(word => word[0] === "$");
+
+          if (labeledWords.length == 0){
+            statsModel.unlabeledCount += 1;
+          }
+          statsModel.labeledCountDefault += labeledWords.length;
+
+          labeledWords.forEach(word => {
+            statsModel.labelCounts[word] = (statsModel.labelCounts[word] || 0) + 1;
+          });
+        } else {
+          statsModel.unlabeledCount++;
+          statsModel.unlabeledCountDefault++;
+        }
+      }
+
+      Promise.all(promises).then(function() {
+        $scope.generateAnswersGraph();
+      });
+    };
+
+    $scope.generateGeneralGraph = function () {
+      var statusPercentages = Object.keys(statsModel.statusLabelCount).map(status => {
+        const count = statsModel.statusLabelCount[status];
+        const percentage = (statsModel.totalReports !== 0) ? ((count / statsModel.totalReports) * 100).toFixed(2) : 0;
+        return { status, count, percentage };
+      });
+
+      statusPercentages.sort((a, b) => a.status.toLowerCase().localeCompare(b.status.toLowerCase()));
+      statusPercentages.unshift({
+        status: 'Total Reports',
+        count: statsModel.totalReports,
+        percentage: statsModel.totalReports !== 0 ? "100" : "0.00"
+      });
+
+      const labels = statusPercentages.map(item => `${item.status} | ${item.percentage} %`);
+      const data = statusPercentages.map(item => item.count);
+
+      if ($scope.statusBarChart) {
+        $scope.statusBarChart.data.labels = labels;
+        $scope.statusBarChart.data.datasets[0].data = data;
+        $scope.statusBarChart.update();
+      } else {
+        $scope.statusBarChart = Statistics.generateBarGraph(labels.length, 'statusBarChart', '2d', 'bar', labels, 'General Statistics', data, 'Number of Reports', 'Status');
+      }
+    };
+
+    $scope.generateInteractionLineGraph = function () {
+      statsModel.averageClosureTime = (statsModel.averageClosureTime !== 0) ? ((statsModel.averageClosureTime / statsModel.totalClosedTips) / (1000 * 60 * 60 * 24)).toFixed(3) : 0;
+
+      const labels = Object.keys(statsModel.reportCountPerMonth);
+      const reportData = Object.values(statsModel.reportCountPerMonth);
+
+      if ($scope.perMonthLineGraph) {
+        $scope.perMonthLineGraph.data.labels = labels;
+        $scope.perMonthLineGraph.data.datasets[0].data = reportData;
+        $scope.perMonthLineGraph.update();
+      } else {
+        $scope.perMonthLineGraph = Statistics.generateLineGraph('perMonthLineGraph', '2d', 'line', labels, 'Interaction Statistics', reportData, 'Month', 'Reports');
+      }
+    };
+
+    $scope.generateLabelGraph = function () {
+      var totalItemCount = statsModel.totalReports;
+
+      angular.forEach(statsModel.labelCounts, function (count, label) {
+        var percentage = (count / totalItemCount) * 100;
+        statsModel.labelCounts[label] = {
+          count: count,
+          percentage: percentage.toFixed(2) + "%"
+        };
+      });
+
+      var unlabeledPercentage = (statsModel.unlabeledCount / totalItemCount) * 100;
+      statsModel.unlabeledCount = {
+        count: statsModel.unlabeledCount,
+        percentage: unlabeledPercentage.toFixed(2) + "%"
+      };
+
+      var labelCountsData = Object.values(statsModel.labelCounts).map(function (label) {
+        return label.count;
+      });
+
+      var unlabeledCountData = statsModel.unlabeledCount.count;
+      var labels = ['Total Reports', ...Object.keys(statsModel.labelCounts), 'Unlabeled'];
+      var data = [statsModel.totalReports, ...labelCountsData, unlabeledCountData];
+
+      if ($scope.labelCountsChart) {
+        $scope.labelCountsChart.data.labels = labels;
+        $scope.labelCountsChart.data.datasets[0].data = data;
+        $scope.labelCountsChart.update();
+      } else {
+        $scope.labelCountsChart = Statistics.generateBarGraph(labels.length, 'labelCountsChart', '2d', 'bar', labels, 'Labels Statistics', data, 'Number of Reports', 'Label', labels.length);
+      }
+    };
+
+    $scope.generateAnswersGraph = function () {
+      const sortedOptions = dropdownOptions.slice().sort((a, b) => a.optionLabel.localeCompare(b.optionLabel));
+      const labels = ['Total Reports', ...sortedOptions.map(entry => entry.optionLabel)];
+      const tooltip = ['Total Report', ...sortedOptions.map(entry => entry.question)];
+      const data = [statsModel.totalReports, ...sortedOptions.map(entry => entry.count)];
+
+      if ($scope.channelCountsChart) {
+        $scope.channelCountsChart.data.labels = labels;
+        $scope.channelCountsChart.data.datasets[0].data = data;
+        $scope.channelCountsChart.options.plugins.tooltip = {
+          callbacks: {
+            title: function (context) {
+              const dataIndex = context[0].dataIndex;
+              return tooltip[dataIndex];
+            }
+          }
+        };
+        $scope.channelCountsChart.update();
+      } else {
+        $scope.channelCountsChart = Statistics.generateBarGraph(labels.length, 'dropdownOptionsChart', '2d', 'bar', labels, 'Statistics', data, 'Number of Reports', 'DropdownOptions');
+      }
+    };
+
+    $scope.initializeStaticData = function () {
+
+      const totalReports = statsModel.totalReports;
+      const statPercentageCalculator = (value, totalvalue) => (!totalvalue ? 0 : ((value / totalvalue) * 100).toFixed(2) + " %");
+
+      const submissionStatus = {
+        label: ['Total', 'New', 'Opened', 'Closed', 'Labeled', 'Unlabeled'],
+        data: [
+          totalReports,
+          statPercentageCalculator(statsModel.statusLabelCount["New"], totalReports),
+          statPercentageCalculator(statsModel.statusLabelCount["Opened"], totalReports),
+          statPercentageCalculator(statsModel.statusLabelCount["Closed"], totalReports),
+          statPercentageCalculator(statsModel.allLabeledCount, totalReports),
+          statPercentageCalculator(statsModel.unlabeledCountDefault, totalReports)
+        ]
+      };
+
+      const interactionStatus = {
+        label: ['Total Report', 'Average closure time (Days)', 'Total Unanswered Tips', 'Number of interactions', 'Tor Connections', 'Reciprocating whistle blower'],
+        data: [
+          totalReports,
+          statsModel.averageClosureTime,
+          statsModel.unansweredTipsCount,
+          statsModel.receiverCount,
+          statsModel.torCount,
+          statsModel.reciprocatingWhistleBlower
+        ]
+      };
+
+      $scope.staticData = {
+        submissionStatus: submissionStatus,
+        interactionStatus: interactionStatus
+      };
+    };
+
+    $scope.initialize = function () {
+      $scope.flush();
+
+      $scope.initializeTips();
+
+      $scope.initializeStaticData();
+      $scope.generateGeneralGraph();
+      $scope.generateInteractionLineGraph();
+      $scope.generateLabelGraph();
+    };
+
+    $scope.parseAnswers = function (tip) {
+
+      tip.questionnaires.forEach((item) => {
+        item.steps.forEach((step) => {
+          step.children.forEach((children) => {
+            if (children.statistics === true) {
+              if (["selectbox", "multichoice", "checkbox"].includes(children.type)) {
+                Statistics.parseStaticAnswers(tip, item, children);
+              } else if (["textarea", "inputbox", "date", "daterange"].includes(children.type)) {
+                Statistics.parseTextualAnswers(tip, item, children);
+              }
+            }
+          });
+        });
+      });
+    };
+
+    $scope.export = function () {
+      Statistics.export(answerArray, statsModel.reports, statsModel.recipients);
+    };
+
+    $scope.initialize();
+  }
+]);

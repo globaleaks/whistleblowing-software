@@ -50,6 +50,8 @@ module.exports = function(grunt) {
           { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angular-translate/dist/angular-translate.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angular-translate-loader-static-files/angular-translate-loader-static-files.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: "./node_modules/", src: ["ng-csv/build/ng-csv.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["chart.js/dist/chart.min.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.min.js"], expand: true, flatten: true },
           { dest: "app/viewer/", cwd: "./node_modules/", src: ["pdfjs-dist/build/pdf.min.js"], expand: true, flatten: true },
           { dest: "app/viewer/", cwd: "./node_modules/", src: ["pdfjs-dist/build/pdf.worker.min.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: "./node_modules/", src: ["ng-idle/angular-idle.min.js"], expand: true, flatten: true },

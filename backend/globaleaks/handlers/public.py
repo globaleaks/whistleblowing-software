@@ -420,6 +420,7 @@ def serialize_field(session, tid, field, language, data=None, serialize_template
         'step_id': field.step_id if field.step_id else '',
         'fieldgroup_id': field.fieldgroup_id if field.fieldgroup_id else '',
         'multi_entry': field.multi_entry,
+        'statistics': field.statistics,
         'required': field.required,
         'attrs': attrs,
         'x': field.x,

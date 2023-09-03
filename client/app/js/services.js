@@ -681,6 +681,209 @@ factory("RTipViewWBFile", ["Utils", function(Utils) {
     Utils.openViewModalDialog("views/modals/file_view.html", file);
   };
 }]).
+factory("Statistics", ["$rootScope", "$filter", function($rootScope, $filter) {
+  return {
+    getStatisticsModel: function () {
+      return {
+        reports: [],
+        totalReports: 0,
+        statusLabelCount: { 'New': 0, 'Opened': 0, 'Closed': 0 },
+        unansweredTipsCount: 0,
+        receiverCount: 0,
+        labelCounts: {},
+        unlabeledCount = 0,
+        unlabeledCountDefault = 0,
+        labeledCountDefault = 0,
+        allLabeledCount = 0,
+        torCount: 0,
+        reciprocatingWhistleBlower: 0,
+        averageClosureTime: 0,
+        recipients: [],
+        totalClosedTips: 0,
+        reportCountPerMonth: {}
+      };
+    },
+
+    generateGraph: function (ctx, type, graphLabels, graphTitle, graphData, xlabel, ylabel, options = {}) {
+      return new Chart(ctx, {
+        type: type,
+        data: {
+          labels: graphLabels,
+          datasets: [{
+            label: graphTitle,
+            data: graphData,
+            backgroundColor: options.backgroundColor || 'rgba(55, 122, 188, 0.6)',
+            borderColor: options.borderColor || 'rgb(75, 192, 192)',
+            fill: options.fill || false,
+            tension: options.tension || 0.1
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            x: {
+              display: true,
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: xlabel
+              }
+            },
+            y: {
+              display: true,
+              title: {
+                display: true,
+                text: ylabel
+              }
+            }
+          },
+          indexAxis: options.indexAxis || 'x',
+          ...options.additionalOptions
+        }
+      });
+    },
+
+    generateBarGraph: function (rowCount, documentID, context, type, graphLabels, graphTitle, graphData, xlabel, ylabel, update) {
+
+      const canvas = document.getElementById(documentID);
+      const ctx = canvas.getContext(context);
+
+      canvas.height = rowCount * (rowCount - (3.7 * rowCount * 0.2)) * (10 / Math.pow(1.03, rowCount));
+      canvas.width = rowCount * 35;
+      if(canvas.height<10){
+        canvas.height = 10
+      }
+
+      const mergedOptions = {
+        additionalOptions: {
+          indexAxis: 'y',
+          barThickness: 35,
+          categoryPercentage: 1.0,
+        },
+        ...update
+      };
+
+      return this.generateGraph(ctx, type, graphLabels, graphTitle, graphData, xlabel, ylabel, mergedOptions);
+    },
+
+    generateLineGraph: function (documentID, context, type, graphLabels, graphTitle, graphData, xlabel, ylabel) {
+      var ctx = document.getElementById(documentID).getContext(context);
+      return this.generateGraph(ctx, type, graphLabels, graphTitle, graphData, xlabel, ylabel);
+    },
+
+    export: function (answerArray, reports, recipients) {
+      const labels = ["report number #", "label", "status", "substatus", "report date", "update date", "channel", "recipients", "content of preview question(s)"];
+      function escapeCSVValue(value) {
+        if (/[,"\n]/.test(value)) {
+          value = `"${value.replace(/"/g, '""')}"`;
+        }
+        return value;
+      }
+
+      const csvContent = labels.map(escapeCSVValue).join(',') + '\n';
+
+      const groupedData = answerArray.reduce((acc, curr) => {
+        const key = `${curr.reportId}_${curr.question}`;
+        acc[key] ||= { reportId: curr.reportId, question: curr.question, answers: [] };
+        acc[key].answers.push(curr.answer);
+        return acc;
+      }, {});
+
+      const result = Object.values(groupedData);
+      result.forEach(item => item.answers = item.answers.join(' | '));
+
+      const csvRows = reports.map(report => {
+        const [status, substatus] = report.submissionStatusStr.split('(').map(s => s.trim());
+
+        const reportQuestionsAndAnswers = result.filter(item => item.reportId === report.progressive)
+          .map(item => `${item.question} - ${item.answers}`);
+
+        const recipientsList = recipients.filter(receiver => receiver.reportId === report.progressive)
+          .map(receiver => receiver.recipients);
+
+        const rowData = [
+          report.progressive,
+          report.label,
+          status,
+          substatus,
+          $filter('date')(report.creation_date, 'dd/MM/yyyy HH:mm'),
+          $filter('date')(report.update_date, 'dd/MM/yyyy HH:mm'),
+          report.context.name,
+          recipientsList.join(' | '),
+          ...reportQuestionsAndAnswers
+        ].map(escapeCSVValue).join(',');
+
+        return rowData;
+      });
+
+      const csvContentFinal = csvContent + csvRows.join('\n');
+      const blob = new Blob([csvContentFinal], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.setAttribute('href', URL.createObjectURL(blob));
+      link.setAttribute('download', 'data.csv');
+      document.body.appendChild(link);
+      link.click();
+    },
+
+    parseStaticAnswers: function (tip, item, children) {
+      children.options.forEach((optionItem) => {
+        Object.keys(item.answers).forEach((key) => {
+          const checkboxValue = children.type === "checkbox" ? item.answers[key][0] : null;
+          const value = children.type !== "checkbox" ? item.answers[key][0]?.value : null;
+
+          if (value && value === optionItem.id || (checkboxValue && checkboxValue[optionItem.id] === true)) {
+
+            answerArray.push({
+              reportId: tip.progressive,
+              question: children.label,
+              answer: optionItem.label,
+            });
+
+            const optionLabel = optionItem.label;
+            const question = children.label;
+            const existingEntry = dropdownOptions.find((item) => item.question === question && item.optionLabel === optionLabel);
+
+            if (existingEntry) {
+              existingEntry.count++;
+            } else {
+              dropdownOptions.push({
+                reportId: tip.progressive,
+                question: question,
+                optionLabel: optionLabel,
+                count: 1,
+              });
+            }
+          }
+        });
+      });
+    },
+
+    parseTextualAnswers: function (tip, item, children) {
+      Object.keys(item.answers).forEach((key) => {
+        const answerValue = item.answers[key][0]?.value;
+        if (answerValue && key === children.id) {
+          const answer = children.type === "date" ? $filter('date')(answerValue, 'dd/MM/yyyy HH:mm') : (children.type === "daterange" ? Statistics.formatDateRange(answerValue) : answerValue);
+
+          answerArray.push({
+            reportId: tip.progressive,
+            question: children.label,
+            answer: answer,
+          });
+        }
+      });
+    },
+
+    formatDateRange: function (range) {
+      const [startDateStr, endDateStr] = range.split(":");
+      const startDate = new Date(startDateStr);
+      const endDate = new Date(endDateStr);
+      const options = { timeZone: 'UTC' };
+      const formattedStartDate = startDate.toLocaleString('en-GB', options);
+      const formattedEndDate = endDate.toLocaleString('en-GB', options);
+      return `${formattedStartDate} to ${formattedEndDate}`;
+    }
+  };
+}]).
 factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout", "$uibModal", "$window", "TokenResource",
     function($rootScope, $http, $q, $location, $filter, $timeout, $uibModal, $window, TokenResource) {
   return {

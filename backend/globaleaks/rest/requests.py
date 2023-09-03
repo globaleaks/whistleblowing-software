@@ -310,6 +310,7 @@ AdminFieldDesc = {
     'fieldgroup_id': key_regexp_or_empty,
     'label': str,
     'description': str,
+    'statistics': bool,
     'hint': str,
     'placeholder': str,
     'multi_entry': bool,

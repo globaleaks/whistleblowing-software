@@ -195,6 +195,7 @@ def get_dummy_field():
         'hint': 'field hint',
         'multi_entry': False,
         'required': False,
+        'statistics': False,
         'attrs': {},
         'options': get_dummy_fieldoption_list(),
         'children': [],
