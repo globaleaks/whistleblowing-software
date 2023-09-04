@@ -90,7 +90,7 @@ def db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, receiver_id)
     new_rtip.new = False
     if itip.deprecated_crypto_files_pub_key:
         _files_key = GCE.asymmetric_decrypt(user_cc, base64.b64decode(rtip.deprecated_crypto_files_prv_key))
-        new_rtip.deprecated_crypto_files_prv_key = GCE.asymmetric_encrypt(new_receiver.crypto_pub_key, _files_key)
+        new_rtip.deprecated_crypto_files_prv_key = base64.b64encode(GCE.asymmetric_encrypt(new_receiver.crypto_pub_key, _files_key))
 
     wbfiles = session.query(models.WhistleblowerFile) \
                     .filter(models.WhistleblowerFile.receivertip_id == rtip.id)

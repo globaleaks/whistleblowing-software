@@ -181,7 +181,7 @@ class SubmissionSubStatus_v_64(Model):
 
 class MigrationScript(MigrationBase):
     renamed_attrs = {
-        'ReceiverTip': {'crypto_files_prv_key': 'deprecated_crypto_files_prv_key'},
+        'ReceiverTip': {'deprecated_crypto_files_prv_key': 'crypto_files_prv_key'},
     }
 
     skip_count_check = {
