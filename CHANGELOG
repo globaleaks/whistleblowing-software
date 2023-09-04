@@ -1,3 +1,6 @@
+Changes in version 4.13.3
+    Fix bug #3599 introduced in release 4.13.2
+
 Changes in version 4.13.2
     Ensure to register the same time for every action performed during a submission
     Log admin operation: send_password_reset_email
