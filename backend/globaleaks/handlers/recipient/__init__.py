@@ -59,7 +59,6 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
         files_by_itip[itip_id] = count
 
     # Fetch rtip, internaltip and associated questionnaire schema
-    rtips_ids = {}
     for rtip, itip, answers, data in session.query(models.ReceiverTip,
                                                    models.InternalTip,
                                                    models.InternalTipAnswers,
@@ -73,11 +72,6 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
                                                     models.InternalTip.update_date <= updated_before,
                                                     models.InternalTip.id == models.ReceiverTip.internaltip_id,
                                                     models.InternalTipAnswers.internaltip_id == models.ReceiverTip.internaltip_id):
-        if rtip.id in rtips_ids:
-            continue
-
-        rtips_ids[rtip.id] = True
-
         answers = answers.answers
         label = itip.label
         if itip.crypto_tip_pub_key:
