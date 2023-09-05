@@ -11,7 +11,7 @@
 #                    censorship-resistant whistleblowing platform.
 ### END INIT INFO
 
-# Author: Giovanni Pellerano <evilaliv3@globaleaks.org>
+# Author: Giovanni Pellerano <giovanni.pellerano@globaleaks.org>
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 NAME=$(basename $(readlink -nf $0))
@@ -137,6 +137,7 @@ network_sandboxing_start()
         ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d ::1 --dport 9050 -j ACCEPT
         ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
     else
+
         # Enable enstablished connections, new connections on used tcp and udp ports
         iptables -m comment --comment "globaleaks" -A OUTPUT -m state --state RELATED,ESTABLISHED -m owner --uid-owner globaleaks -j ACCEPT
         ip6tables -m comment --comment "globaleaks" -A OUTPUT -m state --state RELATED,ESTABLISHED -m owner --uid-owner globaleaks -j ACCEPT
@@ -153,6 +154,18 @@ network_sandboxing_start()
             ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT -p udp -m owner --uid-owner ${USERNAME} -m udp --dport $PORT -j ACCEPT
         done
     fi
+
+    iptables -m comment --comment "globaleaks" -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
+    ip6tables -m comment --comment "globaleaks" -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
+
+    iptables -m comment --comment "globaleaks" -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 8443
+    ip6tables -m comment --comment "globaleaks" -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 8443
+
+    iptables -m comment --comment "globaleaks" -t nat -A OUTPUT -o lo -p tcp --dport 80 -j REDIRECT --to-port 8080
+    ip6tables -m comment --comment "globaleaks" -t nat -A OUTPUT -o lo -p tcp --dport 80 -j REDIRECT --to-port 8080
+
+    iptables -m comment --comment "globaleaks" -t nat -A OUTPUT -o lo -p tcp --dport 443 -j REDIRECT --to-port 8443
+    ip6tables -m comment --comment "globaleaks" -t nat -A OUTPUT -o lo -p tcp --dport 443 -j REDIRECT --to-port 8443
 
     iptables -m comment --comment "globaleaks" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
     ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
@@ -187,10 +200,9 @@ globaleaks_start()
     fi
 
     ARGS="--ip=${LISTENING_IP}
-          --user=${USERNAME}
           --working-path=${WORKING_DIR}"
 
-    if start-stop-daemon --stop --quiet --pidfile $GLPID --name globaleaks; then
+    if start-stop-daemon --stop --quiet -u ${USERNAME} -g ${USERNAME} --pidfile $GLPID --name globaleaks; then
         log_action_end_msg 0 "already running"
     else
         if [ "${APPARMOR_SANDBOXING}" -eq "1" ]; then
@@ -202,6 +214,7 @@ globaleaks_start()
             if start-stop-daemon \
                 --start \
                 --quiet \
+		--chuid ${USERNAME} \
                 --pidfile $GLPID \
                 --startas $(command -v aa-exec) \
                 --exec $DAEMON \
@@ -216,6 +229,7 @@ globaleaks_start()
             if start-stop-daemon \
                 --start \
                 --quiet \
+		--chuid ${USERNAME} \
                 --pidfile $GLPID \
                 --exec $DAEMON \
 		-- $ARGS
