@@ -157,7 +157,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
                         fail.args[0], fail.args[1])
                 continue
 
-            if port in [443, 8443]:
+            if port == 8443:
                 self.https_socks += [sock]
             else:
                 self.http_socks += [sock]
@@ -170,7 +170,7 @@ class StateClass(ObjectDict, metaclass=Singleton):
                         fail.args[0], fail.args[1])
                 continue
 
-            if port in [443, 8443]:
+            if port == 8443:
                 self.https_socks += [sock]
             else:
                 self.http_socks += [sock]

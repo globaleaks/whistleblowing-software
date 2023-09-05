@@ -35,10 +35,6 @@ from twisted.scripts._twistd_unix import UnixApplicationRunner as TwistedApplica
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.settings import Settings
 from globaleaks.state import State, mail_exception_handler
-from globaleaks.utils.process import drop_privileges, set_proc_title
-
-
-set_proc_title("globaleaks")
 
 
 parser = OptionParser()
@@ -50,10 +46,6 @@ parser.add_option("-n", "--nodaemon", action='store_true',
 parser.add_option("-i", "--ip", type="string",
     help="IP address used for listening [default: %default]",
     dest="ip", default=Settings.bind_address)
-
-parser.add_option("-u", "--user", type="string",
-    help="set the user to run as [default: current_user]",
-    dest="user", default=None)
 
 parser.add_option("-w", "--working-path", type="string",
     help="set the backend working directory",
@@ -91,9 +83,6 @@ Settings.load_cmdline_options(options)
 
 
 State.bind_tcp_ports()
-
-
-drop_privileges(Settings.user, Settings.uid, Settings.gid)
 
 
 State.init_environment()
