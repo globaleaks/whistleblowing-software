@@ -74,6 +74,10 @@ GL.controller("TipCtrl",
       });
     };
 
+    $scope.permanentRedactions = [];
+    $scope.temporaryRedactions = [];
+    $scope.mode = false;
+
     $scope.openGrantTipAccessModal = function () {
       $http({method: "PUT", url: "api/user/operations", data:{
         "operation": "get_users_names",
@@ -292,11 +296,96 @@ GL.controller("TipCtrl",
         $scope.downloadWBFile = RTipDownloadWBFile;
         $scope.viewWBFile = RTipViewWBFile;
 
+        $scope.show = function (id) {
+          return !!$scope.tip.redactions.find(redaction => redaction.redaction_id === id);
+        }
+
+        var reloadUI = function () { $scope.reload(); };
+
+        $scope.maskWBFile = function (f) {
+          $scope.status = true;
+
+          var redaction = {
+            reference_id: f.id,
+            permanent_redaction: "",
+            temporary_redaction: { fileRedactionStatus: $scope.status }
+          }
+
+          $scope.tip.newRedaction(redaction);
+        }
+
+        $scope.unmaskWBFile = function (f) {
+          let temporaryRedactions = $scope.tip.redactions.filter(function (redaction) {
+            return redaction.reference_id === f.id;
+          });
+
+          if (temporaryRedactions.length !== 0) {
+            return $http({
+              method: "DELETE",
+              url: "api/recipient/rtips/" + tip.id + "/redaction/" + temporaryRedactions[0].id
+            }).then(reloadUI);
+          }
+        };
+
+        $scope.redactWBFile = function (f) {
+          let temporaryRedactions = $scope.tip.redactions.filter(function (redaction) {
+            return redaction.reference_id === f.id;
+          });
+
+          if (temporaryRedactions.length !== 0) {
+            return $http({
+              method: "DELETE",
+              url: "api/recipient/rtips/" + tip.id + "/delete/redactionfile/" + temporaryRedactions[0].id
+            }).then(reloadUI);
+          }
+        };
+
         $scope.showEditLabelInput = $scope.tip.label === "";
 
         $scope.tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText($scope.tip.status, $scope.tip.substatus, $scope.submission_statuses);
         $scope.supportedViewTypes = ["application/pdf", "audio/mpeg", "image/gif", "image/jpeg", "image/png", "text/csv", "text/plain", "video/mp4"];
       });
+    }
+
+    function permanentRefineContent(content, permanentRedactions) {
+      var refinedContent = content;
+      permanentRedactions.forEach(function (obj) {
+        var start = obj.start;
+        var end = obj.end;
+        var stars = String.fromCharCode(0x2588).repeat(end - start + 1);
+        var insertPosition = start;
+        refinedContent = refinedContent.substring(0, insertPosition) + stars + refinedContent.substring(insertPosition);
+      });
+      return refinedContent;
+    }
+
+    $scope.edited = function (id) {
+      $scope.temporaryRedactions = $scope.tip.redactions.filter(function (redaction) {
+       return redaction.reference_id === id;
+      });
+
+      if ($scope.temporaryRedactions.length !== 0 && $scope.temporaryRedactions[0].permanent_redaction !== "") {
+        return true
+      } else {
+        return false
+      }
+    }
+
+    $scope.redactionContent = function (content, id) {
+      $scope.permanentRedactions = $scope.tip.redactions.filter(function (redaction) {
+        return redaction.reference_id === id;
+      });
+
+      if ($scope.permanentRedactions.length !== 0 && $scope.permanentRedactions[0].permanent_redaction !== "") {
+        var permanentRedactionArray = Object.values($scope.permanentRedactions[0].permanent_redaction);
+        permanentRedactionArray.sort(function (a, b) {
+          return a.start - b.start;
+        });
+        var contentData = permanentRefineContent(content, permanentRedactionArray);
+        return contentData
+      } else {
+        return content
+      }
     }
 
     $scope.editLabel = function() {
@@ -406,6 +495,33 @@ GL.controller("TipCtrl",
         }
       });
     };
+
+    $scope.editReport = function (content, id, type) {
+          $uibModal.open({
+            templateUrl: "views/modals/tip_operation_redact.html",
+            controller: "TipEditReportCtrl",
+            resolve: {
+              args: function () {
+                return {
+                  tip: $scope.tip,
+                  operation: "editReport",
+                  contexts_by_id: $scope.contexts_by_id,
+                  reminder_date: $scope.Utils.getPostponeDate($scope.contexts_by_id[$scope.tip.context_id].tip_reminder),
+                  dateOptions: {
+                    minDate: new Date($scope.tip.creation_date)
+                  },
+                  opened: false,
+                  Utils: $scope.Utils,
+                  data: { content, id, type }
+                };
+              }
+            }
+          });
+    };
+
+    $scope.tip_mode = function (value) {
+          $scope.mode = value;
+    }
 
     $scope.tip_open_additional_questionnaire = function () {
       $scope.answers = {};
@@ -544,4 +660,181 @@ controller("WhistleblowerFilesCtrl", ["$scope", function ($scope) {
 }]).
 controller("WhistleblowerIdentityFormCtrl", ["$scope", function ($scope) {
   $scope.uploads = {};
+}]).controller("TipEditReportCtrl", ["$scope", "$uibModalInstance", "args", "Authentication", "$routeParams", "$http",
+function ($scope, $uibModalInstance, args, Authentication, $routeParams, $http) {
+  $scope.cancel = function () {
+    $uibModalInstance.close();
+  };
+  $scope.args = args;
+  $scope.content = $scope.args.data.content;
+  $scope.contentId = $scope.args.data.id
+  $scope.contentType = $scope.args.data.type
+  var i = 0;
+  $scope.ranges = {};
+  $scope.id = $routeParams.tip_id;
+  $scope.redactCondition = false;
+  $scope.temporaryRedactions = []
+  $scope.permanentRedactions = []
+
+  function permanentRefineContent(content, permanentRedactions) {
+    var refinedContent = content;
+    permanentRedactions.forEach(function (obj) {
+      var start = obj.start;
+      var end = obj.end;
+      var stars = String.fromCharCode(0x2588).repeat(end - start + 1);
+      var insertPosition = start;
+      refinedContent = refinedContent.substring(0, insertPosition) + stars + refinedContent.substring(insertPosition);
+    });
+    return refinedContent;
+  }
+
+  function applyTemporaryRedaction(content, temporaryRedaction) {
+    let modifiedContent = content;
+    for (let range in temporaryRedaction) {
+      if (temporaryRedaction.hasOwnProperty(range)) {
+        let start = temporaryRedaction[range].start;
+        let end = temporaryRedaction[range].end;
+        modifiedContent =
+          modifiedContent.substring(0, start) +
+          String.fromCharCode(0x2591).repeat(end - start + 1) +
+          modifiedContent.substring(end + 1);
+      }
+    }
+    return modifiedContent;
+  }
+
+  $scope.temporaryRedactions = $scope.args.tip.redactions.filter(function (redaction) {
+    return redaction.reference_id === $scope.contentId;
+  });
+
+  if ($scope.temporaryRedactions.length !== 0 && $scope.temporaryRedactions[0].permanent_redaction !== "") {
+    var permanentRedactionArray = Object.values($scope.temporaryRedactions[0].permanent_redaction);
+    permanentRedactionArray.sort(function (a, b) {
+      return a.start - b.start;
+    });
+    $scope.content = permanentRefineContent($scope.content, permanentRedactionArray);
+  }
+
+  $scope.temporaryRedactions.forEach(function (redactionObject) {
+    $scope.content = applyTemporaryRedaction($scope.content, redactionObject.temporary_redaction);
+  });
+
+  $scope.mask = function (id) {
+    var blank = String.fromCharCode(0x2591);
+    var elem = document.getElementById(id);
+    var text = elem.value;
+    var start = elem.selectionStart;
+    var finish = elem.selectionEnd;
+    var sel = text.substring(start, finish);
+    var length = finish - start;
+    if (length) {
+      elem.value = text.substring(0, start) + blank.repeat(length) + text.substring(finish, text.length);
+    }
+    var rangeExists = Object.values($scope.ranges).some(function (range) {
+      return range.start === start && range.end === finish;
+    });
+    var indicesEqual = start === finish;
+    if (!rangeExists && !indicesEqual) {
+      var range = {
+        start: start,
+        end: finish - 1
+      };
+      $scope.redactCondition = true
+      $scope.ranges[i++] = range;
+    }
+  };
+
+  $scope.unmask = function () {
+    if ($scope.temporaryRedactions.length !== 0) {
+      if ($scope.temporaryRedactions[0].permanent_redaction !== "") {
+        let redactiondata = {
+          reference_id: $scope.contentId,
+          permanent_redaction: $scope.temporaryRedactions[0].permanent_redaction ? $scope.temporaryRedactions[0].permanent_redaction : [],
+          temporary_redaction: []
+        };
+        $scope.args.tip.updateRedaction($scope.temporaryRedactions[0].id, redactiondata);
+        $uibModalInstance.close();
+      } else {
+        var reloadUI = function () { $scope.reload(); };
+        return $http({
+          method: "DELETE",
+          url: "api/rtips/" + $scope.args.tip.id + "/redaction/" + $scope.temporaryRedactions[0].id
+        }).then(reloadUI, $uibModalInstance.close());
+      }
+    }
+  }
+
+  function mergeRanges(ranges) {
+    var mergedRanges = [];
+    var keys = Object.keys(ranges);
+    keys.sort(function (a, b) {
+      return ranges[a].start - ranges[b].start;
+    });
+    var currentRange = ranges[keys[0]];
+    for (var i = 1; i < keys.length; i++) {
+      var nextRange = ranges[keys[i]];
+      if (nextRange.start <= currentRange.end + 1) {
+        currentRange.end = Math.max(currentRange.end, nextRange.end);
+      } else {
+        mergedRanges.push(currentRange);
+        currentRange = nextRange;
+      }
+    }
+    mergedRanges.push(currentRange);
+    return mergedRanges;
+  }
+
+  $scope.temporaryRedact = function () {
+    if ($scope.temporaryRedactions.length !== 0) {
+      if (Object.keys($scope.ranges).length !== 0) {
+        var index = Object.keys($scope.ranges).length;
+        for (var key in $scope.temporaryRedactions[0].temporary_redaction) {
+          if ($scope.temporaryRedactions[0].temporary_redaction.hasOwnProperty(key)) {
+            var range = $scope.temporaryRedactions[0].temporary_redaction[key];
+            var isRangeRepeated = Object.values($scope.ranges).some(function (obj) {
+              return obj.start === range.start && obj.end === range.end;
+            });
+            if (!isRangeRepeated) {
+              var isRangeRepeatedInNew = Object.values($scope.ranges).some(function (obj) {
+                return obj.start === range.start && obj.end === range.end;
+              });
+              if (!isRangeRepeatedInNew) {
+                $scope.ranges[index] = range;
+                index++;
+              }
+            }
+          }
+        }
+        $scope.mergedRanges = mergeRanges($scope.ranges);
+        let redactiondata = {
+          reference_id: $scope.contentId,
+          permanent_redaction: $scope.temporaryRedactions[0].permanent_redaction ? $scope.temporaryRedactions[0].permanent_redaction : "",
+          temporary_redaction: $scope.mergedRanges
+        };
+        $scope.args.tip.updateRedaction($scope.temporaryRedactions[0].id, redactiondata);
+        $uibModalInstance.close();
+      }
+    } else {
+      let redactiondata = {
+        reference_id: $scope.contentId,
+        permanent_redaction: "",
+        temporary_redaction: $scope.ranges
+      };
+      if (Object.keys($scope.ranges).length !== 0) {
+        $scope.args.tip.newRedaction(redactiondata);
+        $uibModalInstance.close();
+      }
+    }
+  };
+ 
+  $scope.permanentRedact = function () {
+    if ($scope.temporaryRedactions[0].temporary_redaction !== "") {
+      let redactiondata = {
+        reference_id: $scope.contentId,
+        content_type: $scope.contentType
+      };
+      $scope.args.tip.updateRedaction($scope.temporaryRedactions[0].id, redactiondata);
+      $uibModalInstance.close();
+    }
+  }
 }]);

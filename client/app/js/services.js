@@ -330,6 +330,9 @@ factory("RTipResource", ["GLResource", function(GLResource) {
 factory("RTipCommentResource", ["GLResource", function(GLResource) {
   return new GLResource("api/recipient/rtips/:id/comments", {id: "@id"});
 }]).
+factory("RTipRedactionResource", ["GLResource", function(GLResource) {
+  return new GLResource("api/recipient/rtips/:id/redactions", {id: "@id"});
+}]).
 factory("RTipDownloadRFile", ["Utils", function(Utils) {
   return function(file) {
     Utils.download("api/recipient/rfiles/" + file.id);
@@ -348,8 +351,8 @@ factory("RTipExport", ["Utils", function(Utils) {
     Utils.download("api/recipient/rtips/" + tip.id + "/export");
   };
 }]).
-factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipCommentResource",
-        function($rootScope, $http, RTipResource, RTipCommentResource) {
+factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipCommentResource", "RTipRedactionResource",
+        function($rootScope, $http, RTipResource, RTipCommentResource, RTipRedactionResource) {
   return function(tipID, fn) {
     var self = this;
 
@@ -365,6 +368,26 @@ factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipCommentResource",
         c.$save(function(newComment) {
           tip.comments.unshift(newComment);
           tip.localChange();
+        });
+      };
+
+      tip.newRedaction = function(content) {
+        var c = new RTipRedactionResource(tipID);
+        c.reference_id = content.reference_id;
+        c.permanent_redaction = content.permanent_redaction;
+        c.temporary_redaction = content.temporary_redaction;
+        c.$save(function(newRedaction) {
+          tip.redactions.unshift(newRedaction);
+          tip.localChange();
+        }).then(function () {
+          $rootScope.reload();
+        });
+      };
+
+      tip.updateRedaction = function(id, data) {
+        var req = {data};
+        return $http({method: "PUT", url: "api/recipient/rtips/" + tip.id + "/redactions/" + id, data: req}).then(function () {
+          $rootScope.reload();
         });
       };
 
@@ -644,6 +667,8 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       user.can_delete_submission = false;
       user.can_postpone_expiration = true;
       user.can_transfer_access_to_reports = false;
+      user.can_mask_information = false;
+      user.can_redact_information = false;
       return user;
     },
 

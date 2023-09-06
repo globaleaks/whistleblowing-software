@@ -28,11 +28,16 @@
     <div id="SubmissionComments" data-ng-if="tip.comments.length" data-ng-repeat="comment in tip.comments | filter : { visibility : activeTabKey } | orderBy:'creation_date':true | limitTo:itemsPerPage:((currentCommentsPage - 1) * itemsPerPage)">
       <div id="comment-{{$index}}" class="mt-2">
         <div data-ng-if="!comment.author_id" class="messageWB">
+          <span data-ng-if="mode">
+            <span class="float-right edit" id="edit-question" data-ng-click="editReport(comment.content,comment.id,'comment')" data-ng-show="mode && (resources.preferences.can_mask_information || resources.preferences.can_redact_information && (maskingObjects.length !==0) && (maskingObjects[0].temporary_masking.length !==0))" data-uib-tooltip="{{'Edit' | translate}}">
+              <i class="fa-solid fa-eraser"></i>
+            </span>
+          </span>
           <div class="row">
             <div class="col-md-6" data-translate>Whistleblower</div>
             <div class="col-md-6 text-right">{{comment.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
           </div>
-          <div class="preformatted">{{comment.content}}</div>
+          <div data-ng-if="comment.content" class="preformatted"><i data-ng-if="edited(comment.id)" class="fa-solid fa-pencil edited"></i>  {{maskingContent(comment.content, comment.id)}}</div>
         </div>
         <div data-ng-if="comment.author_id" class="message">
           <div class="row">

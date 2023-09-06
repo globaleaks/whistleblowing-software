@@ -195,7 +195,7 @@
               <label data-translate>Enable email notifications</label>
             </div>
           </div>
-	</div>
+        </div>
         <div class="row" data-ng-if="resources.node.pgp">
           <div class="col-md-12">
             <div class="form-group" data-ng-show="user.pgp_key_fingerprint">
@@ -233,6 +233,14 @@
             <div class="form-group">
               <input data-ng-model="user.forcefully_selected" type="checkbox">
               <label data-translate>Forcefully selected</label>
+            </div>
+            <div class="form-group">
+              <input data-ng-model="user.can_mask_information" type="checkbox" />
+              <span data-translate>Grant this user the privilege to mask information</span>
+            </div>
+            <div class="form-group">
+              <input data-ng-model="user.can_redact_information" type="checkbox" />
+              <span data-translate>Grant this user the privilege to permanently delete masked information</span>
             </div>
             <div class="form-group">
               <input data-ng-model="user.can_delete_submission" type="checkbox"/>

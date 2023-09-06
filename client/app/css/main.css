@@ -1010,3 +1010,12 @@ html[dir="ltr"] #Receipt {
 .underline {
   text-decoration: underline;
 }
+
+.edit {
+  color: #b4bccb !important
+}
+
+.edited {
+  opacity: 0.25;
+  font-size: 12px;
+}

@@ -2,6 +2,7 @@
 #
 # Handlers dealing with tip interface for receivers (rtip)
 import base64
+import json
 import os
 import time
 
@@ -27,6 +28,7 @@ from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.log import log
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import get_expiration, datetime_now, datetime_null, datetime_never
+from globaleaks.utils.json import JSONEncoder
 
 
 def db_tip_grant_notification(session, user):
@@ -219,6 +221,151 @@ def update_tip_submission_status(session, tid, user_id, rtip_id, status_id, subs
         itip.update_date = rtip.last_access = datetime_now()
 
     db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id)
+
+
+def db_update_redaction(session, tid, user_id, itip_id, object_id, redaction_data):
+    """
+    Update the redaction data of a tip
+
+    :param session: An ORM session
+    :param tid: The tenant ID
+    :param user_id: The user ID of the user changing the state
+    :param itip_id: The ID of the Tip instance to be updated
+    :param object_id: The object_id
+    :param redaction_data: The updated redaction data
+    """
+    redaction = session.query(models.Redaction).get(object_id)
+    if not redaction:
+        return
+
+    redaction.reference_id = redaction_data['reference_id']
+    redaction.temporary_redaction = redaction_data['temporary_redaction']
+    redaction.permanent_redaction = redaction_data['permanent_redaction']
+    redaction.update_date = datetime.now()
+
+    log_data = {
+        'reference_id': redaction_data['reference_id'],
+        'creation_date': redaction.update_date,
+        'temporary_redaction': redaction_data['temporary_redaction'],
+        'permanent_redaction': redaction_data['permanent_redaction']
+    }
+
+    db_log(session, tid=tid, type='update_redaction', user_id=user_id, object_id=object_id, data=log_data)
+
+
+def redact_content(content, temporary_ranges, permanent_ranges):
+    """
+    permanently redact the textual content
+
+    :param content: textual content to be updated
+    :param temporary_ranges: temporary masking ranges
+    :param permanent_ranges: permanent masking ranges
+    """
+
+    for r in temporary_ranges:
+        content = content[:r["start"]] + "*" * (r["end"] - r["start"] + 1) + content[r["start"]:]
+
+    content = list(content)
+    for r in permanent_ranges:
+        start, end = r.get('start', 0), r.get('end', 0) + 1
+        end = min(end, len(content))
+        if start < end:
+            content[start:end] = '*' * (end - start)
+
+    return ''.join(content).replace('*', '') or ' '
+
+
+def merge_dicts(temporary_ranges, permanent_ranges):
+    """
+    Merge ranges for permanent redaction
+
+    :param temporary_ranges: set of temporary ranges
+    :param permanent_ranges: set of permanent ranges
+    """
+
+    merged_list = temporary_ranges + permanent_ranges
+    merged_list.sort(key=lambda x: x['start'])  # Sort by 'start' key
+    i = 1
+
+    while i < len(merged_list):
+        if merged_list[i]['start'] <= merged_list[i - 1]['end']:
+            merged_list[i - 1]['end'] = max(merged_list[i - 1]['end'], merged_list[i]['end'])
+            del merged_list[i]
+        else:
+            i += 1
+
+    return merged_list
+
+
+def db_mask_data(session, redaction, temporary_ranges, permanent_ranges, redaction_data, content, tid, user_id, object_id):
+    """
+    Transaction for updating masked data
+
+    :param session: An ORM Session
+    :param redaction: model tracking content redaction
+    :param temporary_ranges: new permanent ranges that to be marked
+    :param permanent_ranges: existing temporary ranges that are marked
+    :param content: textual content to be updated
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user_id: The user ID of the user performing the operation
+    :param id: The ID of the redaction to be deleted
+    :param masked_marker: Object used to update redaction in database
+    :param id: The ID of the redaction to be deleted
+    """
+
+    tempRedaction = temporary_ranges
+    if permanent_ranges:
+        permanentRedaction = permanent_ranges
+        permanentRedaction = merge_dicts(tempRedaction, permanentRedaction)
+    else:
+        permanentRedaction = tempRedaction
+
+    redaction.reference_id = redaction_data['reference_id']
+    redaction.update_date = datetime.now()
+    redaction.temporary_redaction = []
+    redaction.permanent_redaction = permanentRedaction
+
+    redaction_log_data = {
+        'temporary_redaction': [],
+    }
+
+    db_log(session, tid=tid, type='update_redaction', user_id=user_id, object_id=object_id, data=redaction_log_data)
+
+
+def db_mask_comments(session, tid, user_id, itip_id, content_id, redaction_data, tip_data, content_type, mask):
+    masked_content = next((masked_content for masked_content in tip_data.get(content_type, []) if masked_content['id'] == redaction_data['reference_id']), None)
+
+    if masked_content:
+        redaction = session.query(models.Redaction).get(content_id)
+
+    if redaction:
+        content = redact_content(masked_content.get('content'), redaction.permanent_redaction, redaction.temporary_redaction)
+        content = base64.b64encode(GCE.asymmetric_encrypt(itip_id.crypto_tip_pub_key, content)).decode()
+        db_mask_data(session, redaction, redaction.temporary_redaction, redacton.permanent_redaction, redaction_data, content, tid, user_id, content_id)
+
+
+def db_mask_answer(session, tid, user_id, itip_id, content_id, redaction_data, tip_data):
+    redaction_data = next((masked_content for masked_content in tip_data['redaction'] if masked_content['reference_id'] == redaction_data['reference_id']), None)
+    tip_data = tip_data['questionnaires'][0]
+
+    for key, value in tip_data['answers'].items():
+        # FIX: should be recursive
+        if key == redaction_data['reference_id']:
+            content_data = value[0]
+            content = redact_content(content_data['value'], redaction_data['permanent_redaction'], redaction_data['temporary_redaction'])
+            tip_data['answers'][key][0]['value'] = content
+            redaction = session.query(models.Redaction).get(content_id)
+            db_mask_data(session, redaction, redaction_data['temporary_redaction'], redaction_data['permanent_redaction'], redaction_data, content, tid, user_id, content_id)
+            break
+
+    _content = tip_data['answers']
+    if itip_id.crypto_tip_pub_key:
+        _content = base64.b64encode(GCE.asymmetric_encrypt(itip_id.crypto_tip_pub_key, json.dumps(_content, cls=JSONEncoder).encode())).decode()
+
+    answers = session.query(models.InternalTipAnswers).filter_by(internaltip_id=redaction_data['internaltip_id']).first()
+    if answers:
+        answers.content = _content
 
 
 def db_access_rtip(session, tid, user_id, rtip_id):
@@ -594,18 +741,175 @@ def create_comment(session, tid, user_id, rtip_id, content, visibility=0):
     return ret
 
 
-
-@transact
-def delete_rfile(session, tid, user_id, file_id):
+def redact_file(session, tid, user_id, file_id):
     """
-    Transation for deleting a rfile
+    Transaction for deleting a wbfile
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user_id: The user ID of the user performing the operation
+    :param file_id: The file ID of the wbfile to be deleted
+    """
+
+    wbfile = (
+        session.query(models.ReceiverFile)
+        .filter(models.User.id == user_id, models.ReceiverFile.filename == file_id,
+                models.ReceiverTip.receiver_id == models.User.id,
+                models.ReceiverTip.internaltip_id == models.InternalTip.id, models.InternalTip.tid == tid)
+        .first()
+    )
+
+    if wbfile:
+        receiver_file_list = session.query(models.ReceiverFile).filter(
+            models.ReceiverFile.filename == wbfile.filename).all()
+        internal_file_list = session.query(models.InternalFile).filter(
+            models.InternalFile.filename == wbfile.filename).all()
+        all_files_to_delete = receiver_file_list + internal_file_list
+        for file in all_files_to_delete:
+            session.delete(file)
+
+
+def delete_wbfile(session, tid, user_id, file_id):
+    """
+    Transaction for deleting a wbfile
     :param session: An ORM session
     :param tid: A tenant ID
     :param user_id: The user ID of the user performing the operation
     :param file_id: The file ID of the rfile to be deleted
     """
-    rfile = db_access_rfile(session, tid, user_id, file_id)
-    session.delete(rfile)
+    itips_ids = [x[0] for x in session.query(models.InternalTip.id)
+    .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
+            models.ReceiverTip.receiver_id == user_id,
+            models.InternalTip.tid == tid)]
+
+    wbfile = (
+        session.query(models.WhistleblowerFile)
+        .filter(models.WhistleblowerFile.id == file_id,
+                models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
+                models.ReceiverTip.internaltip_id.in_(itips_ids), models.InternalTip.tid == tid)
+        .first()
+    )
+
+    if wbfile:
+        session.delete(wbfile)
+
+@transact
+def delete_redaction(session, tid, user_id, rtip_id, id):
+    """
+    Transaction for deleting a wbfile
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user_id: The user ID of the user performing the operation
+    :param rtip_id: The rtip_id performing the operation
+    :param id: The ID of the redaction to be deleted
+    """
+    itips_ids = [x[0] for x in session.query(models.InternalTip.id)
+                                      .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                                              models.ReceiverTip.receiver_id == user_id,
+                                              models.InternalTip.tid == tid)]
+
+    redaction = (
+      session.query(models.Redaction)
+      .filter(models.Redaction.id == id, models.ReceiverTip.internaltip_id.in_(itips_ids), models.InternalTip.tid == tid)
+      .first()
+    )
+
+    if redaction:
+        session.delete(redaction)
+
+@transact
+def redact_file(session, tid, user_id, rtip_id, id):
+  """
+    Transaction for deleting a wbfile
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user_id: The user ID of the user performing the operation
+    :param rtip_id: The rtip_id performing the operation
+    :param id: The ID of the redaction to be deleted
+    """
+  itips_ids = [x[0] for x in session.query(models.InternalTip.id)
+                                    .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                                            models.ReceiverTip.receiver_id == user_id,
+                                            models.InternalTip.tid == tid)]
+
+  redaction = session.query(models.Redaction) \
+                   .filter(models.Redaction.id == id, models.ReceiverTip.internaltip_id.in_(itips_ids), models.InternalTip.tid == tid) \
+                   .first()
+
+  if redaction:
+    redact_file(tid, user_id, redaction.reference_id)
+    session.delete(redaction)
+
+
+@transact
+def create_redaction(session, tid, user_id, rtip_id, content):
+    """
+    Transaction for registering a new redaction
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user_id: The user id of the user creating the redaction
+    :param rtip_id: The rtip associated with the redaction to be created
+    :param content: The content of the redaction
+    :return: A serialized descriptor of the redaction
+    """
+    _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+
+    itip.update_date = rtip.last_access = datetime_now()
+
+    redaction_content = {}
+    if itip.crypto_tip_pub_key:
+        if isinstance(content, dict):
+            redaction_content = content
+        else:
+            content_str = content.get('content', str(content))
+            content_bytes = content_str.encode()
+            redaction_content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content_bytes)).decode()
+
+    tempRedaction = [value for value in redaction_content.get('temporary_redaction', {}).values()]
+    permanentRedaction = redaction_content.get('permanent_redaction', [])
+
+    redaction = models.Redaction()
+    redaction.internaltip_id = itip.id
+    redaction.temporary_redaction = tempRedaction
+    redaction.update_date = datetime_now()
+    redaction.reference_id = redaction_content.get('reference_id', '')
+    redaction.permanent_redaction = permanentRedaction
+    session.add(redaction)
+    session.flush()
+
+    ret = serializers.serialize_redaction(session, redaction)
+    ret['redaction'] = content
+    return ret
+
+
+@transact
+def update_tip_redaction(session, tid, user_id, rtip_id, id, data, tip_data):
+    """
+    Transaction for updating tip redaction
+
+    :param session: An ORM session
+    :param tid: The tenant ID
+    :param user_id: A user ID of the user performing the operation
+    :param rtip_id: The ID of the rtip accessed by the user
+    :param id: The ID of the redaction to be updated
+    :param data: The updated redaction data
+    """
+    _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+
+    redaction_data = data.get('data', {})
+
+    if 'content_type' in redaction_data:
+        content_type = redaction_data['content_type']
+
+        if content_type == "comment":
+            model = session.query(models.Comment).get(redaction_data['reference_id'])
+            db_mask_comments(session, tid, user_id, itip, id, redaction_data, tip_data, "comments", model)
+        elif content_type == "answer":
+            db_mask_answer(session, tid, user_id, itip, id, redaction_data, tip_data)
+        else:
+            print("No valid content type found")
+    else:
+        print("Content type not provided")
+        db_update_redaction(session, tid, user_id, itip, id, redaction_data)
 
 
 class RTipInstance(OperationHandler):
@@ -654,7 +958,7 @@ class RTipInstance(OperationHandler):
         return transfer_tip_access(self.request.tid, self.session.user_id, self.session.cc, rtip_id, req_args['receiver'])
 
     def postpone_expiration(self, req_args, rtip_id, *args, **kwargs):
-        return postpone_expiration(self.request.tid, self.session.user_id, rtip_id, req_args['value'])
+       return postpone_expiration(self.request.tid, self.session.user_id, rtip_id, req_args['value'])
 
     def set_reminder(self, req_args, rtip_id, *args, **kwargs):
         return set_reminder(self.request.tid, self.session.user_id, rtip_id, req_args['value'])
@@ -679,6 +983,69 @@ class RTipCommentCollection(BaseHandler):
     def post(self, rtip_id):
         request = self.validate_request(self.request.content.read(), requests.CommentDesc)
         return create_comment(self.request.tid, self.session.user_id, rtip_id, request['content'], request['visibility'])
+
+
+class RTipRedactionCollection(BaseHandler):
+    """
+    Interface used to handle rtip redaction
+    """
+    check_roles = 'receiver'
+
+    @inlineCallbacks
+    def get(self, tip_id):
+        tip, crypto_tip_prv_key = yield get_rtip(self.request.tid, self.session.user_id, tip_id, self.request.language)
+
+        if State.tenants[self.request.tid].cache.encryption and crypto_tip_prv_key:
+          tip = yield deferToThread(decrypt_tip, self.session.cc, crypto_tip_prv_key, tip)
+
+        returnValue(tip)
+
+    def operation_descriptors(self):
+        return {
+            'update_redaction': RTipRedactionCollection.update_redaction
+        }
+
+    def post(self, rtip_id):
+        self.request.content.seek(0)
+        payload = self.request.content.read().decode('utf-8')
+        data = json.loads(payload)
+        return create_redaction(self.request.tid, self.session.user_id, rtip_id, data)
+
+    def put(self, rtip_id, id):
+        self.request.content.seek(0)
+        payload = self.request.content.read().decode('utf-8')
+        data = json.loads(payload)
+        return self.update_redaction(rtip_id, id, data, self.session.cc)
+
+    def update_redaction(self, rtip_id, id, data, *args, **kwargs):
+        tip_data_deferred = self.get(rtip_id)
+
+        def handle_tip_data(tip_data):
+            return update_tip_redaction(self.request.tid, self.session.user_id, rtip_id, id, data, tip_data)
+
+        tip_data_deferred.addCallback(handle_tip_data)
+
+    def delete(self, rtip_id, id):
+        return delete_redaction(self.request.tid, self.session.user_id, rtip_id, id)
+
+
+class RTipFileRedactionCollection(BaseHandler):
+    """
+    Interface used to handle rtip redaction
+    """
+    check_roles = 'receiver'
+
+    @inlineCallbacks
+    def get(self, tip_id):
+        tip, crypto_tip_prv_key = yield get_rtip(self.request.tid, self.session.user_id, tip_id, self.request.language)
+
+        if State.tenants[self.request.tid].cache.encryption and crypto_tip_prv_key:
+            tip = yield deferToThread(decrypt_tip, self.session.cc, crypto_tip_prv_key, tip)
+
+        returnValue(tip)
+
+    def delete(self, rtip_id, id):
+        return redact_file(self.request.tid, self.session.user_id, rtip_id, id)
 
 
 class WhistleblowerFileDownload(BaseHandler):

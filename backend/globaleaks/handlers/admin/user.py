@@ -127,6 +127,8 @@ def db_admin_update_user(session, tid, user_session, user_id, request, language)
     fill_localized_keys(request, models.User.localized_keys, language)
 
     user = db_get_user(session, tid, user_id)
+    user.can_redact_information = request['can_redact_information']
+    user.can_mask_information = request['can_mask_information']
 
     if request['mail_address'] != user.mail_address:
         user.change_email_token = None

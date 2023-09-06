@@ -38,6 +38,36 @@
                       data-ng-click="downloadWBFile(file)">
                 <i class="fa-solid fa-download"></i>
               </button>
+              <span data-ng-if="mode">
+                <span data-ng-show="resources.preferences.can_mask_information">
+                  <button data-ng-hide="show(file.filename)" class="btn btn-sm btn-primary tip-action-mask-file"
+                    data-ng-if="mode" data-uib-tooltip="{{'Mask' | translate}}"
+                    data-ng-click="maskWBFile(file)">
+                    <i class="fa-regular fa-square-check"></i>
+                  </button>
+                </span>
+              </span>
+              <span data-ng-if="mode">
+                <span data-ng-show="show(file.filename)">
+                  <button class="btn btn-sm btn-danger tip-action-delete-file"
+                    data-uib-tooltip="{{'Unmask' | translate}}"
+                    data-ng-disabled="!resources.preferences.can_mask_information"
+                    data-ng-click="unmaskWBFile(file)" data-single-click>
+                    <i class="fa-solid fa-times"></i>
+                  </button>
+                </span>
+              </span>
+              <span data-ng-if="mode">
+                <span data-ng-show="show(file.filename)">
+                  <button class="btn btn-sm btn-danger tip-action-delete-file"
+                    data-uib-tooltip="{{'Delete' | translate}}"
+                    data-ng-disabled="!resources.preferences.can_redact_information"
+                    data-ng-click="deleteWBFile(file)" data-single-click>
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </span>
+              </span>
+
             </td>
             <td>{{file.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
             <td>{{file.type}}</td>

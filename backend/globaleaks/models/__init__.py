@@ -605,7 +605,7 @@ class _InternalFile(Model):
     content_type = Column(JSON, default='', nullable=False)
     size = Column(JSON, default='', nullable=False)
     new = Column(Boolean, default=True, nullable=False)
-    reference_id = Column(UnicodeText(36), default='', nullable=False)
+    reference_id = Column(UnicodeText(36), default='', index=True)
 
     @declared_attr
     def __table_args__(self):
@@ -912,7 +912,6 @@ class _Subscriber(Model):
         return ForeignKeyConstraint(['tid'], ['tenant.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
 
 
-
 class _Tenant(Model):
     """
     Class used to implement tenants
@@ -969,6 +968,8 @@ class _User(Model):
     can_mask_information = Column(Boolean, default=False, nullable=False)
     can_redact_information = Column(Boolean, default=False, nullable=False)
     can_edit_general_settings = Column(Boolean, default=False, nullable=False)
+    can_redact_information = Column(Boolean, default=False, nullable=False)
+    can_mask_information = Column(Boolean, default=False, nullable=False)
     readonly = Column(Boolean, default=False, nullable=False)
     two_factor_secret = Column(UnicodeText(32), default='', nullable=False)
     reminder_date = Column(DateTime, default=datetime_null, nullable=False)
@@ -999,6 +1000,8 @@ class _User(Model):
                  'can_grant_access_to_reports',
                  'can_transfer_access_to_reports',
                  'can_edit_general_settings',
+                 'can_redact_information'
+                 'can_mask_information'
                  'forcefully_selected',
                  'readonly',
                  'clicked_recovery_key']

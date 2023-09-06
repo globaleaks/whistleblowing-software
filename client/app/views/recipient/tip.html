@@ -95,6 +95,16 @@
           class="btn btn-outline-secondary">
       <i class="fa-solid fa-sync"></i>
     </span>
+    <span
+      data-ng-show="(mode === false) && (resources.preferences.can_redact_information || resources.preferences.can_mask_information)"
+      data-ng-click="tip_mode(true)" data-uib-tooltip="{{'Turn on edit mode' | translate}}"
+      class="btn btn-outline-secondary svg-btn">
+      <i class="fa-solid fa-pencil"></i>
+    </span>
+    <span data-ng-if="mode===true" data-ng-click="tip_mode(false)"
+      data-uib-tooltip="{{'Turn off edit mode' | translate}}" class="btn btn-outline-secondary active">
+      <i class="fa-solid fa-pencil"></i>
+    </span>
   </div>
 </div>
 <div class="row mt-2">

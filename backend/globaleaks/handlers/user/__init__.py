@@ -30,6 +30,8 @@ def parse_pgp_options(user, request):
         user.pgp_key_public = pgp_key_public
         user.pgp_key_fingerprint = pgpctx.fingerprint
         user.pgp_key_expiration = pgpctx.expiration
+        user.can_redact_information = request['can_redact_information']
+        user.can_mask_information = request['can_mask_information']
     else:
         user.pgp_key_public = ''
         user.pgp_key_fingerprint = ''
@@ -82,6 +84,8 @@ def user_serialize_user(session, user, language):
         'can_grant_access_to_reports': user.can_grant_access_to_reports,
         'can_transfer_access_to_reports': user.can_transfer_access_to_reports,
         'can_edit_general_settings': user.can_edit_general_settings,
+        'can_redact_information': user.can_redact_information,
+        'can_mask_information': user.can_mask_information,
         'clicked_recovery_key': user.clicked_recovery_key,
         'accepted_privacy_policy': user.accepted_privacy_policy,
         'contexts': contexts
