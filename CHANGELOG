@@ -1,3 +1,6 @@
+Changes in version 4.13.4
+    Fix duplicated entries shown on reports lists
+
 Changes in version 4.13.3
     Fix bug #3599 introduced in release 4.13.2
 
