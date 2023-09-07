@@ -200,8 +200,8 @@ do
     TOR=$(gl-admin getvar onionservice)
     echo "To proceed with the configuration you could now access the platform wizard at:"
     echo "+ http://$TOR (via the Tor Browser)"
-    echo "+ http://127.0.0.1:8082"
-    echo "+ http://0.0.0.0"
+    echo "+ https://127.0.0.1:8443"
+    echo "+ https://0.0.0.0"
     echo "We recommend you to to perform the wizard by using Tor address or on localhost via a VPN."
     exit 0
   fi
