@@ -134,6 +134,10 @@
                 <label data-ng-switch-default data-translate>Accept multiple answers</label>
               </div>
             </div>
+            <div class="form-group" data-ng-if="(field.type === 'fieldgroup' || field.type === 'fileupload') && field.template_id === ''">
+              <label data-translate>Allowed types</label>
+              <textarea data-ng-model="field.allowed_file_type" class="form-control"></textarea>
+            </div>
             <div class="form-group" data-ng-if="fieldIsMarkableSubjectToPreview">
               <input data-ng-model="field.preview" type="checkbox">
               <label data-translate>Preview</label>

@@ -311,6 +311,7 @@ AdminFieldDesc = {
     'label': str,
     'description': str,
     'statistics': bool,
+    'allowed_file_type': str,
     'hint': str,
     'placeholder': str,
     'multi_entry': bool,

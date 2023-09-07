@@ -14,6 +14,15 @@ GL.factory("uploadUtils", ["$filter", function($filter) {
 controller("WBFileUploadCtrl", ["$scope", function($scope) {
   $scope.disabled = false;
 
+  $scope.generateAcceptedFileTypes = function() {
+    allowedFileTypes = $scope.field.allowed_file_type;
+    var acceptedTypes = allowedFileTypes.split(' ').map(function(type) {
+      return '.' + type;
+    }).join(',');
+
+    return acceptedTypes;
+  };
+
   $scope.$on("flow::fileAdded", function (event, $flow, flowFile) {
     flowFile.pause();
 
@@ -21,6 +30,8 @@ controller("WBFileUploadCtrl", ["$scope", function($scope) {
 
     $scope.$emit("GL::uploadsUpdated");
   });
+
+  $scope.allowed_file_type = $scope.generateAcceptedFileTypes();
 }]).
 controller("RFileUploadCtrl", ["$scope", function($scope) {
   $scope.file_upload_description = "";

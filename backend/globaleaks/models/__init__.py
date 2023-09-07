@@ -425,6 +425,7 @@ class _Field(Model):
     placeholder = Column(JSON, default=dict, nullable=False)
     required = Column(Boolean, default=False, nullable=False)
     statistics = Column(Boolean, default=False, nullable=False)
+    allowed_file_type = Column(UnicodeText(100), default='TXT PDF HTM and HTML PPT PPTX MP3 WMA AVI MOV MP4 JPG and JPEG PNG GIF PSD SVG AI ZIP RAR 7Z XLSX', nullable=False)
     multi_entry = Column(Boolean, default=False, nullable=False)
     triggered_by_score = Column(Integer, default=0, nullable=False)
     step_id = Column(UnicodeText(36), index=True)
@@ -443,7 +444,7 @@ class _Field(Model):
                 ForeignKeyConstraint(['template_override_id'], ['field.id'], ondelete='SET NULL', deferrable=True, initially='DEFERRED'),
                 CheckConstraint(self.instance.in_(EnumFieldInstance.keys())))
 
-    unicode_keys = ['type', 'instance', 'key']
+    unicode_keys = ['type', 'instance', 'key', 'allowed_file_type']
     int_keys = ['x', 'y', 'width', 'triggered_by_score']
     localized_keys = ['label', 'description', 'hint', 'placeholder']
     bool_keys = ['multi_entry', 'required', 'statistics']

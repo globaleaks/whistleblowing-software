@@ -576,9 +576,11 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       field.description = "";
       field.hint = "";
       field.placeholder = "";
+      field.allowed_file_type = "TXT PDF HTM and HTML PPT PPTX MP3 WMA AVI MOV MP4 JPG and JPEG PNG GIF PSD SVG AI ZIP RAR 7Z XLSX";
       field.multi_entry = false;
       field.required = false;
       field.preview = false;
+      field.statistics = false;
       field.attrs = {};
       field.options = [];
       field.x = 0;
