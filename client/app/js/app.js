@@ -186,7 +186,7 @@ var GL = angular.module("GL", [
       when("/recipient/settings", {
         templateUrl: "views/recipient/settings.html",
         controller: "AdminCtrl",
-        header_title: "Site settings",
+        header_title: "Settings",
         sidebar: "views/recipient/sidebar.html",
         resolve: {
           access: requireAuth("receiver"),
