@@ -1007,8 +1007,8 @@ msgstr "Enable search engines indexing"
 msgid "Default questionnaire"
 msgstr "Default questionnaire"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Show contexts in alphabetical order"
+msgid "Show channels in alphabetical order"
+msgstr "Show channels in alphabetical order"
 
 msgid "Size limit for file attachments"
 msgstr "Size limit for file attachments"
@@ -1478,11 +1478,11 @@ msgstr "Access to the whistleblower's identity has been requested to the custodi
 msgid "Date of the request"
 msgstr "Date of the request"
 
-msgid "Subscription date"
-msgstr "Subscription date"
-
 msgid "Show"
 msgstr "Show"
+
+msgid "Subscription date"
+msgstr "Subscription date"
 
 msgid "Congratulations!"
 msgstr "Congratulations!"
