@@ -706,18 +706,7 @@ factory("Statistics", ["$rootScope", "$filter", function($rootScope, $filter) {
       };
     },
 
-    generateGraph: function (ctx, type, graphLabels, graphTitle, graphData, xlabel, ylabel) {
-      var options = {}
-      if(type == "bar"){
-        options = {
-          additionalOptions: {
-            indexAxis: 'y',
-            barThickness: 35,
-            categoryPercentage: 1.0,
-          },
-        };
-      }
-
+    generateGraph: function (ctx, type, graphLabels, graphTitle, graphData, xlabel, ylabel, options = {}) {
       return new Chart(ctx, {
         type: type,
         data: {
@@ -756,24 +745,32 @@ factory("Statistics", ["$rootScope", "$filter", function($rootScope, $filter) {
       });
     },
 
-    generateBarGraph: function (documentID, graphLabels, graphTitle, graphData, xlabel, ylabel) {
+    generateBarGraph: function (rowCount, documentID, context, type, graphLabels, graphTitle, graphData, xlabel, ylabel, update) {
 
       const canvas = document.getElementById(documentID);
-      const ctx = canvas.getContext('2d');
+      const ctx = canvas.getContext(context);
 
-      let rowCount = graphLabels.length
       canvas.height = rowCount * (rowCount - (3.7 * rowCount * 0.2)) * (10 / Math.pow(1.03, rowCount));
       canvas.width = rowCount * 35;
       if(canvas.height<10){
         canvas.height = 10
       }
 
-      return this.generateGraph(ctx, 'bar', graphLabels, graphTitle, graphData, xlabel, ylabel);
+      const mergedOptions = {
+        additionalOptions: {
+          indexAxis: 'y',
+          barThickness: 35,
+          categoryPercentage: 1.0,
+        },
+        ...update
+      };
+
+      return this.generateGraph(ctx, type, graphLabels, graphTitle, graphData, xlabel, ylabel, mergedOptions);
     },
 
-    generateLineGraph: function (documentID, graphLabels, graphTitle, graphData, xlabel, ylabel) {
-      let ctx = document.getElementById(documentID).getContext('2d');
-      return this.generateGraph(ctx, 'line', graphLabels, graphTitle, graphData, xlabel, ylabel);
+    generateLineGraph: function (documentID, context, type, graphLabels, graphTitle, graphData, xlabel, ylabel) {
+      var ctx = document.getElementById(documentID).getContext(context);
+      return this.generateGraph(ctx, type, graphLabels, graphTitle, graphData, xlabel, ylabel);
     },
 
     export: function (answerArray, reports, recipients) {
@@ -867,15 +864,7 @@ factory("Statistics", ["$rootScope", "$filter", function($rootScope, $filter) {
       Object.keys(item.answers).forEach((key) => {
         const answerValue = item.answers[key][0]?.value;
         if (answerValue && key === children.id) {
-          let answer;
-
-          if (children.type === "date") {
-            answer = $filter('date')(answerValue, 'dd/MM/yyyy HH:mm');
-          } else if (children.type === "daterange") {
-            answer = Statistics.formatDateRange(answerValue);
-          } else {
-            answer = answerValue;
-          }
+          const answer = children.type === "date" ? $filter('date')(answerValue, 'dd/MM/yyyy HH:mm') : (children.type === "daterange" ? Statistics.formatDateRange(answerValue) : answerValue);
 
           answerArray.push({
             reportId: tip.progressive,
