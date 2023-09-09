@@ -33,7 +33,6 @@ def get_tips(session, tid):
     tips = []
 
     comments_by_itip = {}
-    messages_by_itip = {}
     files_by_itip = {}
 
     # Fetch comments count
@@ -64,7 +63,6 @@ def get_tips(session, tid):
             'substatus': itip.substatus,
             'tor': itip.tor,
             'comments': comments_by_itip.get(itip.id, 0),
-            'messages': messages_by_itip.get(itip.id, 0),
             'files': files_by_itip.get(itip.id, 0),
             'last_access': itip.last_access
         })
