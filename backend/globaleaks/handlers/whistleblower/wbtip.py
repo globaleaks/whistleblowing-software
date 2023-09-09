@@ -117,7 +117,7 @@ def update_identity_information(session, tid, user_id, identity_field_id, wbi, l
 @transact
 def store_additional_questionnaire_answers(session, tid, user_id, answers, language):
     itip, context = session.query(models.InternalTip, models.Context) \
-                           .filter(models.InternalTip.id == self.session.user_id,
+                           .filter(models.InternalTip.id == user_id,
                                    models.InternalTip.status != 'closed',
                                    models.InternalTip.tid == tid,
                                    models.Context.id == models.InternalTip.context_id).one()
