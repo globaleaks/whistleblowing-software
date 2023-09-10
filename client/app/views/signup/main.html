@@ -1,5 +1,5 @@
-<div class="row">
-  <div data-ng-show="step === 1" class="col-md-6 wizard-block" data-ng-switch="public.node.mode">
+<div class="row justify-content-md-center">
+  <div data-ng-show="step === 1" class="col-auto wizard-block" data-ng-switch="public.node.mode">
     <div data-ng-switch-when="default">
       <div data-ng-include="'views/signup/modes/demo.html'"></div>
     </div>
@@ -7,7 +7,7 @@
       <div data-ng-include="'views/signup/modes/' + public.node.mode + '.html'"></div>
     </div>
   </div>
-  <div data-ng-show="step === 2" class="col-md-12 wizard-block">
+  <div data-ng-show="step === 2" class="col-auto wizard-block">
     <div class="congratulations">
       <div class="title" data-translate>Success!</div>
       <div>

@@ -1,3 +1,4 @@
+<div id="WhistleblowerLoginBox" class="ml-1 mb-1" data-ng-if="Utils.showWBLoginBox()" data-ng-include="'views/partials/receipt.html'"></div>
 <div data-ng-if="selectable_contexts.length && !submission.context" data-ng-include="'views/whistleblower/context_selection.html'"></div>
 <div data-ng-if="submission.context">
   <div data-ng-if="selectable_contexts.length > 1 || context_id">

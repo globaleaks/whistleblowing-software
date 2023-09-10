@@ -234,6 +234,18 @@ legend {
   margin-bottom: 1em;
 }
 
+[dir] #ProjectTitle, [dir] #PageTitle {
+  font-size: 1.6rem;
+}
+
+[dir] #ProjectTitle {
+  font-weight: bold;
+}
+
+[dir] .Subtitle {
+  font-size: 1.4rem !important;
+}
+
 #Sidebar a {
   display: block;
   margin-bottom: 0.5em;
@@ -253,6 +265,10 @@ legend {
 
 #HeaderBox {
   padding: 1em;
+}
+
+#HeaderBox-2 {
+  text-align: center;
 }
 
 #ContentBox,
@@ -716,13 +732,6 @@ input[type="file"] {
 #LogoBox,
 #TitleBox {
   margin: 1em 0;
-}
-
-#TitleBox * {
-  font-size: 1.6rem;
-  font-weight: bold;
-  white-space: pre-wrap;
-  display: inline;
 }
 
 #LoginStatusBox {
