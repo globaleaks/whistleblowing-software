@@ -1044,8 +1044,8 @@ msgstr "Zoekmachine-indexering inschakelen"
 msgid "Default questionnaire"
 msgstr "Standaard vragenformulier"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Toon contexten in alfabetische volgorde"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Maximale grootte voor bestandsbijlagen"
@@ -1497,11 +1497,11 @@ msgstr "De toezichthouder heeft een aanvraag ingediend om toegang te krijgen tot
 msgid "Date of the request"
 msgstr "Datum aanvraag"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Tonen"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Gefeliciteerd!"

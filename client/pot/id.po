@@ -1025,8 +1025,8 @@ msgstr "Aktifkan pengindeksan mesin pencari"
 msgid "Default questionnaire"
 msgstr "Kuesioner bawaan "
 
-msgid "Show contexts in alphabetical order"
-msgstr "Memperlihatkan konteks dalam urutan abjad "
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Batasan ukuran untuk berkas lampiran "
@@ -1478,11 +1478,11 @@ msgstr "Akses untuk identitas informan publik telah diminta oleh pihak penjaga"
 msgid "Date of the request"
 msgstr "Tanggal permintaan"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Tampilkan"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Selamat!"

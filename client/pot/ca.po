@@ -485,7 +485,7 @@ msgid "Hide"
 msgstr "Oculta"
 
 msgid "Unhide"
-msgstr ""
+msgstr "Mostrar"
 
 msgid "Redact"
 msgstr "Redactar"
@@ -497,10 +497,10 @@ msgid "Select your language"
 msgstr "Selecciona el teu idioma"
 
 msgid "Give this user ability to mask information"
-msgstr ""
+msgstr "Donar a aquest usuari la capacitat d'ocultar part del text d'una denúncia"
 
 msgid "Give this user ability to permanently redact masked information"
-msgstr ""
+msgstr "Donar a aquest usuari la capacitat d'eliminar definitivament part del text d'una denúncia"
 
 msgid "Public"
 msgstr "Pública"
@@ -1019,8 +1019,8 @@ msgstr "Habilita els motors de cerca d'indexació"
 msgid "Default questionnaire"
 msgstr "Qüestionari per defecte"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Mostra contextos en ordre alfabètic"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Límit de mida per als arxius adjunts"
@@ -1176,10 +1176,10 @@ msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Permet al destinatari ajornar la data d'expiració de l'informe"
 
 msgid "Give this user ability to grant user access to reports"
-msgstr ""
+msgstr "Donar a aquest usuari la capacitat d'accedir a les denúncies"
 
 msgid "Give this user ability to transfer reports to other users"
-msgstr ""
+msgstr "Donar a aquest usuari la capacitat de transferir denúncies a altres usuaris"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Doneu a la persona usuària accés administratiu a les funcions següents:"
@@ -1288,7 +1288,7 @@ msgid "By confirming, you will set a reminder on date:"
 msgstr "En confirmar, fixarà una data de recordatori:"
 
 msgid "Transfer access"
-msgstr ""
+msgstr "Transferir accés"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Aquesta és una plataforma de demostració, no la utilitzeu per a enviaments reals."
@@ -1472,11 +1472,11 @@ msgstr "La persona guardiana ha demanat l'accés a la identitat de l'informador.
 msgid "Date of the request"
 msgstr "Data de la petició"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Mostra"
+
+msgid "Subscription date"
+msgstr "Data de subscripció"
 
 msgid "Congratulations!"
 msgstr "Enhorabona!"

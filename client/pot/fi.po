@@ -479,7 +479,7 @@ msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
-msgstr ""
+msgstr "Peitä"
 
 msgid "Select an option"
 msgstr "Valitse"
@@ -1010,8 +1010,8 @@ msgstr "Salli hakukoneiden indeksointi"
 msgid "Default questionnaire"
 msgstr "Oletuslomake"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Näytä asiakokonaisuudet aakkosjärjestyksessä"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Liitetiedostojen kokorajoitus"
@@ -1463,11 +1463,11 @@ msgstr "Valvojalle on lähetetty pyyntö ilmoittajan henkilötietoihin pääsemi
 msgid "Date of the request"
 msgstr "Pyynnön päivämäärä"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Näytä"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Onnittelut!"

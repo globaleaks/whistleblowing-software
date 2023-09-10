@@ -1002,8 +1002,8 @@ msgstr "Qidiruv tizimlari indeksatsiyasiga ruxsat berish"
 msgid "Default questionnaire"
 msgstr "Birlamchi savolnoma"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Kontekstlarni alifbo tartibida chiqarish"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Fayl biriktirmalari hajmi limiti"
@@ -1455,11 +1455,11 @@ msgstr "Himoyachi tomonidan oshkor qiluvchining shaxsiy axborotini koʻrishga ru
 msgid "Date of the request"
 msgstr "Soʻrov sanasi"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Ko‘rsatish"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Tabriklaymiz!"

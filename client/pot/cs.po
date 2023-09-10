@@ -1013,8 +1013,8 @@ msgstr "Povolit vyhledávačům indexování."
 msgid "Default questionnaire"
 msgstr "Výchozí dotazník"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Ukázat kontexty v abecedním pořadí"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Limit velikosti pro přílohy"
@@ -1466,11 +1466,11 @@ msgstr "Správce byl požádán o přístup k identitě oznamovatele"
 msgid "Date of the request"
 msgstr "Datum požadavku"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Ukázat"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Gratulujeme!"

@@ -1005,8 +1005,8 @@ msgstr "Iespējot meklētājprogrammu indeksēšanu"
 msgid "Default questionnaire"
 msgstr "Noklusējuma anketa"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Rādīt saturu alfabētiskā secībā"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Pielikumu lieluma ierobežojums"
@@ -1458,11 +1458,11 @@ msgstr "Piekļuve trauksmes cēlēja identitātei lūgta glabātājam."
 msgid "Date of the request"
 msgstr "Pieprasījuma datums"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Parādīt"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Apsveicam!"

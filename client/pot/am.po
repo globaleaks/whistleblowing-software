@@ -1001,8 +1001,8 @@ msgstr "የፍለጋ ግርግም ማውጫ ያንቁ"
 msgid "Default questionnaire"
 msgstr "ነባሪ መጠይቅ"
 
-msgid "Show contexts in alphabetical order"
-msgstr "አገባበ ነገሮችን በፊደል ተራ ያሳዩ"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "ለፋይል አባሪዎች የመጠን ገደብ"
@@ -1454,11 +1454,11 @@ msgstr "የመረጃ ሰጪውን ማንነት ለማየት ሞግዚቱ ተጠ�
 msgid "Date of the request"
 msgstr "የጥያቄው ቀን"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "አሳይ "
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "እንኳን ደስ አሎት!"

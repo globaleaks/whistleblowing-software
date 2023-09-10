@@ -1005,8 +1005,8 @@ msgstr "ސާރޗް އިންޖިންތައް އިންޑެކްސް ކުރުމަށ�
 msgid "Default questionnaire"
 msgstr "ޑީފޯލްޓް ސުވާލުކަރުދާސް"
 
-msgid "Show contexts in alphabetical order"
-msgstr "ކޮންޓެކްސްޓްސް އަލްފަބެޓިކަލް  އޯޑަރަށް ބަހާލަން"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "ފައިލް އެޓޭޗްމެންޓްގެ ސައިޒު ލިމިޓް"
@@ -1458,11 +1458,11 @@ msgstr "ވިސިލްބްލޯވަރގެ އައިޑެންޓިޓީ ހާމަކުރު
 msgid "Date of the request"
 msgstr "ހިދުމަތަށް އެދިލެއްވި ތާރީޚް"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "ދައްކާ"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "މަރުޙަބާ!"

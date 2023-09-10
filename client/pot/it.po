@@ -1022,8 +1022,8 @@ msgstr "Abilita l'indicizzazione da parte dei motori di ricerca"
 msgid "Default questionnaire"
 msgstr "Questionario predefinito"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Mostra i contesti in ordine alfabetico"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Dimensione limite dei file allegati"
@@ -1475,11 +1475,11 @@ msgstr "L'accesso all'identità del segnalante è stato richiesto al custode."
 msgid "Date of the request"
 msgstr "Data della richiesta"
 
-msgid "Subscription date"
-msgstr "Data di sottoscrizione"
-
 msgid "Show"
 msgstr "Mostra"
+
+msgid "Subscription date"
+msgstr "Data di sottoscrizione"
 
 msgid "Congratulations!"
 msgstr "Congratulazioni!"

@@ -1023,8 +1023,8 @@ msgstr "Ativar a indexação dos motores de pesquisa"
 msgid "Default questionnaire"
 msgstr "Questionário predefinido "
 
-msgid "Show contexts in alphabetical order"
-msgstr "Mostrar contextos por ordem alfabética"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Limite de tamanho para anexos de ficheiro"
@@ -1476,11 +1476,11 @@ msgstr "Foi solicitado o acesso à identidade do informador pelo conservador."
 msgid "Date of the request"
 msgstr "Data do pedido"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Mostrar"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Parabéns!"

@@ -1007,8 +1007,8 @@ msgstr "Axtarış motorlarının indeksləşməsini aktivləşdirin"
 msgid "Default questionnaire"
 msgstr "Standart sorğu"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Konteksti əlifba sırası ilə göstər"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Fayl əlavələrinin ölçü həddi"
@@ -1460,11 +1460,11 @@ msgstr "Mühafizəçidən informasiya ötürənin kimliyinə giriş tələb olun
 msgid "Date of the request"
 msgstr "Sorğunun tarixi"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Göstər"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Təbriklər!"

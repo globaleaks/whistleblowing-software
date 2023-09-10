@@ -1000,8 +1000,8 @@ msgstr "Wezesha kivinjari cha kutafuta"
 msgid "Default questionnaire"
 msgstr "Chaguo la msingi la dodoso"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Onyesha muktadha kwa mpangilio wa alfabeti"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Kikomo cha ukubwa wa viambatisho vya faili"
@@ -1453,11 +1453,11 @@ msgstr "Ufikiaji wa kitambulisho cha mtoa taarifa za siri umeombwa kwa mwangalzi
 msgid "Date of the request"
 msgstr "Tarehe ya kuomba"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Onyesha"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Hongera!"

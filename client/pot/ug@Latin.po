@@ -1000,8 +1000,8 @@ msgstr "Axturush matorlirining indékislishini qozghat"
 msgid "Default questionnaire"
 msgstr "Köngüldiki ray sinash"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Mezmunlarni élipbe tertipi boyiche körset"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Höjjet qoshumchiliri üchün chongluq chéki"
@@ -1453,11 +1453,11 @@ msgstr "Saqlighuchi pash qilghuchining kimligini ziyaret qilishni telep qildi."
 msgid "Date of the request"
 msgstr "Telep qilghan chésla"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Körset"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Tebrikleymiz!"

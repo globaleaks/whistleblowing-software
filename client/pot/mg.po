@@ -1016,8 +1016,8 @@ msgstr "Activer l’indexation par les moteurs de recherche"
 msgid "Default questionnaire"
 msgstr "Questionnaire par défaut"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Montrer les contextes par ordre alphabétique"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Limite de taille des fichiers joints"
@@ -1469,11 +1469,11 @@ msgstr "L’accès à l’identité du lanceur d’alerte a été demandé au ga
 msgid "Date of the request"
 msgstr "Date de la demande"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Afficher"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Félicitations !"

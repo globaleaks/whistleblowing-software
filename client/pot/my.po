@@ -1001,8 +1001,8 @@ msgstr "ရှာဖွေရေးအင်ဂျင် အညွှန်း�
 msgid "Default questionnaire"
 msgstr "နဂိုမူလ မေးခွန်းလွှာ"
 
-msgid "Show contexts in alphabetical order"
-msgstr "အကြောင်းအရာများကို အက္ခရာစဉ်အတိုင်း ပြသပါ"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "ပူးတွဲဖိုင်များအတွက် အရွယ်အစား ကန့်သတ်ချက်"
@@ -1454,11 +1454,11 @@ msgstr "သတင်းပေးသူ၏ ကိုယ်ပိုင်အမ�
 msgid "Date of the request"
 msgstr "တောင်းဆိုသည့် နေ့စွဲ"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "ပြသမည်"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "ဂုဏ်ယူပါသည်။"

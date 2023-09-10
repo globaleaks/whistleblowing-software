@@ -1000,8 +1000,8 @@ msgstr "د پلټنې د انجنونو د شاخص فعالول"
 msgid "Default questionnaire"
 msgstr "عادې پوښتنلیک"
 
-msgid "Show contexts in alphabetical order"
-msgstr "مطالب د الفبا د تورو په ترتیب وښیئ"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "د فایل د ضمیمو لپاره د اندازې محدودیت"
@@ -1453,11 +1453,11 @@ msgstr "د افشاګر پیژندګلوي ته لاسرسی لرل ساتونک
 msgid "Date of the request"
 msgstr "د غوښتنې نېټه"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "ښودل"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "مبارک!"

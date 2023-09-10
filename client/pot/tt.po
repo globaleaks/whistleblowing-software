@@ -1000,8 +1000,8 @@ msgstr "Эзләү системаларында индекслануны каб�
 msgid "Default questionnaire"
 msgstr "Килешенгәнчә сораулык"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Контекстларны алфавит тәртибендә күрсәтү"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Файл кертелмәләр өчен күләмне чикләү"
@@ -1064,7 +1064,7 @@ msgid "Reset reports"
 msgstr "Хисапны ташлату"
 
 msgid "Settings"
-msgstr ""
+msgstr "Көйләүләр"
 
 msgid "Case management"
 msgstr "Эш белән идарә итү"
@@ -1453,11 +1453,11 @@ msgstr " Мәгълүмат җиткерүченең идентификатор�
 msgid "Date of the request"
 msgstr "Сорау датасы"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Күрсәтү"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Котлыйбыз!"

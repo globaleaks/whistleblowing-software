@@ -1048,8 +1048,8 @@ msgstr "تفعيل فهرسة محركات البحث"
 msgid "Default questionnaire"
 msgstr "الاستطلاع الإفتراضي"
 
-msgid "Show contexts in alphabetical order"
-msgstr "اظهار السياقات في ترتيبٍ ابجديّ"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "الحد الأقصى لحجم الملفات المرفقة"
@@ -1501,11 +1501,11 @@ msgstr "تمّ طلب الحصول على هوية المبلغ من الوصي�
 msgid "Date of the request"
 msgstr "تاريخ الطلب"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "عرض"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "تهانينا!"

@@ -1010,8 +1010,8 @@ msgstr "Активиране на индексиране от търсачки"
 msgid "Default questionnaire"
 msgstr "Въпросник по подразбиране"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Показване на теми по азбучен ред"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Ограничение на размера за прикачени файлове"
@@ -1463,11 +1463,11 @@ msgstr "До длъжностното лице по защита на данни
 msgid "Date of the request"
 msgstr "Дата на заявката"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Показване"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Поздравления!"

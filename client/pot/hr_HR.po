@@ -1005,8 +1005,8 @@ msgstr "Omogući indeksiranje tražilica"
 msgid "Default questionnaire"
 msgstr "Zadani upitnik"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Prikaži kontekste u abecednom slijedu"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Ograničenje veličine privitaka"
@@ -1458,11 +1458,11 @@ msgstr "Od skrbnika se zahtjevao pristup identitetu zviždača."
 msgid "Date of the request"
 msgstr "Datum zahtjeva"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Pokaži"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Čestitamo!"

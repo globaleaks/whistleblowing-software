@@ -1017,8 +1017,8 @@ msgstr "אפשר אינדקס מנועי חיפוש"
 msgid "Default questionnaire"
 msgstr ""
 
-msgid "Show contexts in alphabetical order"
-msgstr "הראה הקשרים בסדר אלפאביתי"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "גודל גבול עבור קבצים מצורפים"
@@ -1470,11 +1470,11 @@ msgstr "גישה אל הזהות של המתריע התבקש האפוטרופו
 msgid "Date of the request"
 msgstr "תאריך הבקשה"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "הצג"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "מזל טוב!"

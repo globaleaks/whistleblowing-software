@@ -1027,8 +1027,8 @@ msgstr "فعال کردن نمایه‌سازی در موتورهای جستجو
 msgid "Default questionnaire"
 msgstr "پرسش‌نامهٔ پیش‌فرض"
 
-msgid "Show contexts in alphabetical order"
-msgstr "نمایش زمینه‌ها به ترتیب الفبا"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "محدودیت حجم برای فایل پیوست‌ها"
@@ -1480,11 +1480,11 @@ msgstr "دسترسی به هویت افشاگر از سرپرست درخواست
 msgid "Date of the request"
 msgstr "تاریخ درخواست"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "نمایش"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "تبریک!"

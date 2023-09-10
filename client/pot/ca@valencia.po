@@ -480,7 +480,7 @@ msgid "Hide"
 msgstr "Ocultar"
 
 msgid "Unhide"
-msgstr ""
+msgstr "Mostrar"
 
 msgid "Redact"
 msgstr "Suprimir permanentment"
@@ -492,10 +492,10 @@ msgid "Select your language"
 msgstr "Selecciona el teu idioma"
 
 msgid "Give this user ability to mask information"
-msgstr ""
+msgstr "Donar a aquest usuari la capacitat d'ocultar part del text d'una denúncia"
 
 msgid "Give this user ability to permanently redact masked information"
-msgstr ""
+msgstr "Donar a aquest usuari la capacitat d'eliminar definitivament part del text d'una denúncia"
 
 msgid "Public"
 msgstr "Pública"
@@ -1014,8 +1014,8 @@ msgstr "Habilita els motors de cerca d'indexació"
 msgid "Default questionnaire"
 msgstr "Qüestionari per defecte"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Mostra contextos en ordre alfabètic"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Límit de tamany per als arxius adjunts"
@@ -1075,7 +1075,7 @@ msgid ""
 msgstr "Activant aquesta funcionalitat estarà contribuïnt al desenvolupament i seguretat de la plataforma"
 
 msgid "Reset reports"
-msgstr "Restableix les denúncies"
+msgstr "Esborrar totes les denúncies"
 
 msgid "Settings"
 msgstr "Configuració"
@@ -1171,13 +1171,13 @@ msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Permet al destinatari pospondre la data d'expiració d'una denúncia"
 
 msgid "Give this user ability to grant user access to reports"
-msgstr ""
+msgstr "Donar a aquest usuari la capacitat de concedir accés a les denúncies"
 
 msgid "Give this user ability to transfer reports to other users"
-msgstr ""
+msgstr "Donar a aquest usuari la capacitat de transferir denúncies a altres usuaris"
 
 msgid "Give the user administrative access to the following features:"
-msgstr "Doneu a l'usuari accés administratiu a les funcions següents:"
+msgstr "Donar a aquest usuari accés administratiu a les funcions següents:"
 
 msgid "Request date"
 msgstr "Data de sol·licitud"
@@ -1283,7 +1283,7 @@ msgid "By confirming, you will set a reminder on date:"
 msgstr "En confirmar, fixarà una data de recordatori:"
 
 msgid "Transfer access"
-msgstr ""
+msgstr "Transferir accés"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Ésta es una plataforma de demostració, per favor no la utilitze per a enviaments reals."
@@ -1467,11 +1467,11 @@ msgstr "El responsable ha demanat l'accés a la identitat de l'informador."
 msgid "Date of the request"
 msgstr "Data de la petició"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Mostrar"
+
+msgid "Subscription date"
+msgstr "Data de subscripció"
 
 msgid "Congratulations!"
 msgstr "Enhorabona!"
