@@ -225,7 +225,7 @@ var GL = angular.module("GL", [
       when("/admin/settings", {
         templateUrl: "views/admin/settings.html",
         controller: "AdminCtrl",
-        header_title: "Site settings",
+        header_title: "Settings",
         sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
