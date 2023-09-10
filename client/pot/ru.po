@@ -1030,8 +1030,8 @@ msgstr "Включить индексирование поисковых сис�
 msgid "Default questionnaire"
 msgstr "Стандартный опросник"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Сортировать контексты в алфавитном порядке"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Ограничение в размере для приложений"
@@ -1483,11 +1483,11 @@ msgstr "К хранителю поступил запрос о доступе к
 msgid "Date of the request"
 msgstr "Дата запроса"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Показать"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Поздравляем!"

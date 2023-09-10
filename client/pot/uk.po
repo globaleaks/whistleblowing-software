@@ -1021,8 +1021,8 @@ msgstr "Включити індексацію пошуковими систем�
 msgid "Default questionnaire"
 msgstr "Стандартна анкета"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Упорядкувати контексти за алфавітом"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Обмеження розміру доданих файлів"
@@ -1474,11 +1474,11 @@ msgstr "Запит на інформацію про особу інформат�
 msgid "Date of the request"
 msgstr "Дата запиту"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Показати"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Вітаємо!"

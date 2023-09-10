@@ -1001,8 +1001,8 @@ msgstr "Эҙләү системаһын индексирлауҙы ҡабыҙы�
 msgid "Default questionnaire"
 msgstr "Стандарт һораулама"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Контексты алфавит тәртибендә сорттарға айырыу"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Ҡушымталар өсөн дәүмәлде сикләү"
@@ -1454,11 +1454,11 @@ msgstr "Һаҡлаусыға информатор шәхситенә рөхсә�
 msgid "Date of the request"
 msgstr "Үтенес датаһы"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Күрһәтергә"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Тәбрикләйбеҙ!"

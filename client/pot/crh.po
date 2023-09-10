@@ -1000,8 +1000,8 @@ msgstr "Къыдырма системаларнынъ индекслемесин
 msgid "Default questionnaire"
 msgstr "Стандарт суаллер джедвели"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Контекстлерни элифбе тертибинде сыраламакъ"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Илявелер ичюн ольчю сынъыры"
@@ -1453,11 +1453,11 @@ msgstr "Къоруйыджыгъа малюмат бериджининъ шах�
 msgid "Date of the request"
 msgstr "Соратма тарихи"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Косьтермек"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Хайырлаймыз!"

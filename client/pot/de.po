@@ -1046,8 +1046,8 @@ msgstr "Suchmaschinenindizierung aktivieren"
 msgid "Default questionnaire"
 msgstr "Standardfragebogen"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Kontexte in alphabetischer Reihenfolge anzeigen"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Größenbegrenzung für Dateianhänge"
@@ -1499,11 +1499,11 @@ msgstr "Zugriff auf die Identität des Hinweisgebers wurde beim Verwalter angefo
 msgid "Date of the request"
 msgstr "Datum der Anfrage"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Anzeigen"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Glückwunsch!"

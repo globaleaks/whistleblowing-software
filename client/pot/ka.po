@@ -1000,8 +1000,8 @@ msgstr "საძიებო სისტემებში ინდექს�
 msgid "Default questionnaire"
 msgstr "ნაგულისხმევი კითხვარი"
 
-msgid "Show contexts in alphabetical order"
-msgstr "კონტექსტის ჩვენება ანბანის მიხედვით"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "დანართებისთვის ზომის ლიმიტი"
@@ -1453,11 +1453,11 @@ msgstr "ინსტრუქტორის ინტენტობაზე �
 msgid "Date of the request"
 msgstr "მოთხოვნის თარიღი"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "ჩვენება"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "გილოცავთ!"

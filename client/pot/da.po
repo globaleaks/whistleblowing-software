@@ -1007,8 +1007,8 @@ msgstr "Aktivér søgemaskiners indeksering"
 msgid "Default questionnaire"
 msgstr "Standard spørgeskema"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Vis sammenhænge i alfabetisk rækkefølge"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Størrelsesgrænse for vedhæftede filer"
@@ -1460,11 +1460,11 @@ msgstr "Forespørgsel om whistleblowerens identitet er blevet videregivet til de
 msgid "Date of the request"
 msgstr "Dato for forespørgslen"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Vis"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Tillykke!"

@@ -501,10 +501,10 @@ msgid "Select your language"
 msgstr "Välj ditt språk"
 
 msgid "Give this user ability to mask information"
-msgstr ""
+msgstr "Ge denna användare förmågan att maskera information"
 
 msgid "Give this user ability to permanently redact masked information"
-msgstr ""
+msgstr "Ge denna användare förmågan att permanent radera maskerad information"
 
 msgid "Public"
 msgstr "Publik"
@@ -1023,8 +1023,8 @@ msgstr "Aktivera sökmotorindexering"
 msgid "Default questionnaire"
 msgstr "Standardfrågeformulär"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Visa kontexter i alfabetisk ordning"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Storleksgräns för bifogade filer"
@@ -1180,10 +1180,10 @@ msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Tillåt mottagaren att förlänga utgångsdatumet för rapporten"
 
 msgid "Give this user ability to grant user access to reports"
-msgstr ""
+msgstr "Ge mottagaren förmågan att ge användare tillgång till rapporter"
 
 msgid "Give this user ability to transfer reports to other users"
-msgstr ""
+msgstr "Ge mottagaren förmågan att överlämna rapporter till andra användare"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Ge användaren administratörsrättigheter för följande funktioner:"
@@ -1292,7 +1292,7 @@ msgid "By confirming, you will set a reminder on date:"
 msgstr "Genom att bekräfta ställs påminnelsedatum till:"
 
 msgid "Transfer access"
-msgstr ""
+msgstr "Överför åtkomst"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Detta är en demonstrationsplattform, vänligen använd den inte för verkliga tips."
@@ -1476,11 +1476,11 @@ msgstr "Åtkomst till visselblåsarens identitet har begärts av systemförvalta
 msgid "Date of the request"
 msgstr "Datum för begäran"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Visa"
+
+msgid "Subscription date"
+msgstr "Prenumerationsdatum"
 
 msgid "Congratulations!"
 msgstr "Grattis!"

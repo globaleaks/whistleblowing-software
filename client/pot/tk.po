@@ -1005,8 +1005,8 @@ msgstr "Gözleg motorlaryny indeksirlemäge mümkinçilik ber"
 msgid "Default questionnaire"
 msgstr "Bellenen sowalnama"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Mazmunlary elipbiý tertibinde görkeziň"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Faýl goşundylarynyň ululygy"
@@ -1458,11 +1458,11 @@ msgstr "Gözegçiden gizlin habar ýetirijiň şahsyýet hasabyna girmek üçin 
 msgid "Date of the request"
 msgstr "Haýyşyň senesi"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Görkez"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Gutlaýarys!"

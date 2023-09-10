@@ -1008,8 +1008,8 @@ msgstr "Укључи пописивање мотора претраге"
 msgid "Default questionnaire"
 msgstr "Podrazumijevani upitnik"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Poređaj predmete po abecednom redu"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Ograničenje veličine priloženih datoteka u"
@@ -1461,11 +1461,11 @@ msgstr "Od čuvara je zatražen pristup identitetu uzbunjivača."
 msgid "Date of the request"
 msgstr "Datum zahtjeva"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Prikaži"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Честитамо!"

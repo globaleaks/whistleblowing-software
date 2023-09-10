@@ -1018,8 +1018,8 @@ msgstr "Gaitu bilaketa motorren indexazioa "
 msgid "Default questionnaire"
 msgstr "Galdekizun lehenetsia"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Testuinguruak ordena alfabetikoan erakutsi"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Erantsitako fitxategientzako gehienezko tamaina"
@@ -1471,11 +1471,11 @@ msgstr "Salatzailearen identitatera sarbidea eskatu zaio jagoleari."
 msgid "Date of the request"
 msgstr "Eskakizunaren data"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Erakutsi"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Zorionak!"

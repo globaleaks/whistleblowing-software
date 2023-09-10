@@ -1004,8 +1004,8 @@ msgstr "បើកការផ្ទុកម៉ាស៊ីនស្វែងរ
 msgid "Default questionnaire"
 msgstr "កម្រងសំណួរលំនាំដើម"
 
-msgid "Show contexts in alphabetical order"
-msgstr "បង្ហាញបរិបទតាមលំដាប់អក្សរ"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "កំណត់ទំហំសម្រាប់ឯកសារភ្ជាប់"
@@ -1457,11 +1457,11 @@ msgstr "ការចូលប្រើប្រាស់អត្តសញ្ញ
 msgid "Date of the request"
 msgstr "កាលបរិច្ឆេទនៃការស្នើសុំ"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "បង្ហាញ"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "អប​អរសាទរ!"

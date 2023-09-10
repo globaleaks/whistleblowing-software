@@ -1002,8 +1002,8 @@ msgstr "Ակտիվացնել որոնման ինդեքսավորումը"
 msgid "Default questionnaire"
 msgstr "Լռելյայն հարցաշար"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Դասավորել համատեքստերն այբբենական կարգով"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Ֆայլի կցորդների թույլատրելի չափ"
@@ -1455,11 +1455,11 @@ msgstr "Ազդարարի ինքնությունը հասանելի դարձնե�
 msgid "Date of the request"
 msgstr "Հայցի ամսաթիվը"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Ցույց տալ"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Շնորհավորո՜ւմ ենք։"

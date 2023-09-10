@@ -506,7 +506,7 @@ msgid "Hide"
 msgstr "Ocultar"
 
 msgid "Unhide"
-msgstr ""
+msgstr "Mostrar"
 
 msgid "Redact"
 msgstr "Eliminar permanentemente"
@@ -518,10 +518,10 @@ msgid "Select your language"
 msgstr "Seleccione su idioma"
 
 msgid "Give this user ability to mask information"
-msgstr ""
+msgstr "Dar a este usuario la capacidad de ocultar parte del texto de la denuncia."
 
 msgid "Give this user ability to permanently redact masked information"
-msgstr ""
+msgstr "Dar a este usuario la capacidad de eliminar permanentemente parte del texto de una denuncia."
 
 msgid "Public"
 msgstr "Público"
@@ -1040,8 +1040,8 @@ msgstr "Habilitar indexación por los motores de búsqueda"
 msgid "Default questionnaire"
 msgstr "Cuestionario por defecto"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Mostrar contextos por orden alfabético"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Límite de tamaño para ficheros adjuntos"
@@ -1197,10 +1197,10 @@ msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Permitir al destinatario posponer la fecha de caducidad de una denuncia."
 
 msgid "Give this user ability to grant user access to reports"
-msgstr ""
+msgstr "Dar a este usuario la capacidad de otorgar acceso a las denuncias"
 
 msgid "Give this user ability to transfer reports to other users"
-msgstr ""
+msgstr "Dar a este usuario la capacidad de transferir denuncias a otros usuarios"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Dar al usuario acceso administrativo a las siguientes características:"
@@ -1309,7 +1309,7 @@ msgid "By confirming, you will set a reminder on date:"
 msgstr "Tras confirmar, quedará establecido un recordatorio para el día:"
 
 msgid "Transfer access"
-msgstr ""
+msgstr "Transferir acceso"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Este es un buzón de demostración, por favor no lo utilice para denuncias reales. "
@@ -1493,11 +1493,11 @@ msgstr "Se ha solicitado al custodio acceso a la identidad del denunciante"
 msgid "Date of the request"
 msgstr "Fecha de la solicitud"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Mostrar"
+
+msgid "Subscription date"
+msgstr "Fecha de suscripción"
 
 msgid "Congratulations!"
 msgstr "¡Felicidades!"

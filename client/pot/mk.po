@@ -1002,8 +1002,8 @@ msgstr "Овозможи индексирање на пребарувачите"
 msgid "Default questionnaire"
 msgstr "Стандарден прашалник"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Покажи ги содржините по азбучен ред"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Граница за големина на датотека за прилог"
@@ -1455,11 +1455,11 @@ msgstr "Од чуварот беше побаран пристап до иден
 msgid "Date of the request"
 msgstr "Датум на барањето"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Покажи"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Честитки!"

@@ -563,7 +563,7 @@
       "uk": "Available disk space: {FreeMemory}/{TotalMemory}\n\nСервер не може гарантувати що новий звіт буде збережено, тому подання звітів було відключено.",
       "ur": "Available disk space: {FreeMemory}/{TotalMemory}\n\nتاکہ گذارشات کو غیر فعال کر دیا گیا ہے سرور، ایک نیا جمع کرانے ذخیرہ کیا جا سکتا ہے کہ اس بات کی ضمانت نہیں دے سکتے.",
       "uz": "Available disk space: {FreeMemory}/{TotalMemory}\n\nServer yangi anonim xabarlarni saqlash kafolatini bermaydi va yangi xabar qilishlar yopiladi.",
-      "vi": "Available disk space: {FreeMemory}/{TotalMemory}\n\nMáy chủ không đảm bảo báo cáo mới có thể được lưu trữ, vì vậy không nhận báo cáo.",
+      "vi": "Chỗ chứa của đĩa còn: {FreeMemory}/{TotalMemory}\n\nMáy chủ không đảm bảo báo cáo mới có thể được lưu trữ, vì vậy không nhận báo cáo.",
       "zh_CN": "Available disk space: {FreeMemory}/{TotalMemory}\n\n服务器无法保证新报告可保存，因此禁用提交。",
       "zh_HK": "Available disk space: {FreeMemory}/{TotalMemory}\n\n伺服器不能確認能夠儲存新的報告，所以已經停止接收。",
       "zh_TW": "Available disk space: {FreeMemory}/{TotalMemory}\n\n`此伺服器無法保證新報告可被儲存，所提交的報告可能無效。"
@@ -644,7 +644,7 @@
       "uk": "Available disk space: {FreeMemory}/{TotalMemory}\n\nБудь ласка, зверніться у вашу службу технічної підтримки, щоб отримати більше місця на сервері.",
       "ur": "Available disk space: {FreeMemory}/{TotalMemory}\n\nبراہ کرم اپنے ٹیکنیشن سے سرور پر مزید ڈسک کی جگہ بنانے کو کہیں۔",
       "uz": "Available disk space: {FreeMemory}/{TotalMemory}\n\nTexnik yordam xizmatidan serverda qoʻshimcha joy ochishni soʻrash haqida oʻylab koʻring.",
-      "vi": "Available disk space: {FreeMemory}/{TotalMemory}\n\nBạn nên yêu cầu người hỗ trợ kỹ thuật tăng thêm dung lượng đĩa trên máy chủ.",
+      "vi": "Chỗ chứa của đĩa còn: {FreeMemory}/{TotalMemory}\n\nBạn nên yêu cầu người hỗ trợ kỹ thuật tăng thêm dung lượng đĩa trên máy chủ.",
       "zh_CN": "Available disk space: {FreeMemory}/{TotalMemory}\n\n请考虑，请求技术支持人员在服务器上创建更多磁盘空间。",
       "zh_HK": "Available disk space: {FreeMemory}/{TotalMemory}\n\n請考慮要求您的技術人員在伺服器上創建更多的磁碟空間。",
       "zh_TW": "Available disk space: {FreeMemory}/{TotalMemory}\n\n請考慮求助技術支援以在伺服器上建立更多硬碟空間"
@@ -3398,7 +3398,7 @@
       "uk": "Шановний {RecipientName},\n\nЦим електронним листом повідомляємо що отримувач надав вам доступ до одного або декількох звітів.\n\n{LoginUrl}\n\nЗ повагою,\n{NodeName}",
       "ur": "محترم{RecipientName}،\n\nیہ آپ کو مطلع کرنے کے لیے ایک ای میل ہے کہ ایک وصول کنندہ نے آپ کو ایک یا زیادہ رپورٹس تک رسائی دی ہے۔ \n\n{LoginUrl}\n\nبہت نوازش، مخلص\n{NodeName}",
       "uz": "Hurmatli {RecipientName},\n\nBu xat qabul qiluvchiga bir yoki bir necha anonim xabarlaringizni koʻrishga ruxsat berilgani haqida xabar qiladi.\n\n{LoginUrl}\n\nHurmat bilan,\n{NodeName}",
-      "vi": "Kính gửi {RecipientName}\n\nThis is an email to notify you that a recipient has granted you access to one or more reports.\n\n{LoginUrl}\n\nTrân trọng,\n{NodeName}",
+      "vi": "Kính gửi {RecipientName}\n\nEmail này báo cho bạn biết là một người nhận đã cho phép bạn quyền truy cập vào một hay nhiều báo cáo.\n\n{LoginUrl}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "尊敬的 {RecipientName}：\n\nThis is an email to notify you that a recipient has granted you access to one or more reports.\n\n{LoginUrl}\n\n谨致，\n{NodeName}",
       "zh_HK": "尊敬的 {RecipientName}，\n\nThis is an email to notify you that a recipient has granted you access to one or more reports.\n\n{LoginUrl}\n\n敬請　台安\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\nThis is an email to notify you that a recipient has granted you access to one or more reports.\n\n{LoginUrl}\n\nKind regards,\n{NodeName}"
@@ -3560,7 +3560,7 @@
       "uk": "Шановний {RecipientName},\n\nOne or more reports are expiring and will be soon deleted.\n\nНайраніша дата закінчення терміну дії {EarliestExpirationDate}.\n\nБудь ласка, не забудьте перевірити їх, перш ніж вони будуть видалені.\n\n{LoginUrl}\n\nЗ повагою,\n{NodeName}",
       "ur": "محترم{RecipientName}،\n\nOne or more reports are expiring and will be soon deleted.\n\nابتدائی میعاد ختم ہونے کی تاریخ {EarliestExpirationDate} ہے۔ \n\nان کے حذف ہونے سے پہلے براہ کرم انہیں چیک کرنا یاد رکھیں۔ \n\n{LoginUrl}\n\nبہت نوازش، مخلص\n{NodeName}",
       "uz": "Hurmatli {RecipientName},\n\nOne or more reports are expiring and will be soon deleted.\n\nEng erta muddati: {EarliestExpirationDate}.\n\nUlarni oʻchib ketishidan oldin tekshirishni unutmang.\n\n{LoginUrl}\n\nHurmat bilan,\n{NodeName}",
-      "vi": "Kính gửi {RecipientName}\n\nOne or more reports are expiring and will be soon deleted.\n\nNgày hết hạn sớm nhất là {EarliestExpirationDate}.\n\nHãy nhớ kiểm tra chúng trước khi chúng bị xóa.\n\n{LoginUrl}\n\nTrân trọng,\n{NodeName}",
+      "vi": "Kính gửi {RecipientName}\n\nMột hay nhiều báo cáo đã hết hạn và sẽ bị xóa trong nay mai.\n\nNgày hết hạn sớm nhất là {EarliestExpirationDate}.\n\nHãy nhớ kiểm tra chúng trước khi chúng bị xóa.\n\n{LoginUrl}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "尊敬的 {RecipientName}：\n\nOne or more reports are expiring and will be soon deleted.\n\n最早过期日期为 {EarliestExpirationDate}。\n\n请在删除之前对其进行检查。\n\n{LoginUrl}\n\n谨致，\n{NodeName}",
       "zh_HK": "尊敬的 {RecipientName}，\n\nOne or more reports are expiring and will be soon deleted.\n\n最早的到期日是 {EarliestExpirationDate}。\n\n請在報告刪除之前檢查一下。\n\n{LoginUrl}\n\n敬請　台安\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\nOne or more reports are expiring and will be soon deleted.\n\n最早的截止日期是 {EarliestExpirationDate}.\n\n請記得在刪除前再檢查一下。\n\n{LoginUrl}\n\nKind regards,\n{NodeName}"
@@ -3722,7 +3722,7 @@
       "uk": "Шановний {RecipientName},\n\nThis is an email to notify you the reception of a new report.\n\nЗвіт можна отримати:\n{Url}\n\nЗ повагою,\n{NodeName}",
       "ur": "محترم{RecipientName}،\n\nThis is an email to notify you the reception of a new report.\n\nتجویز تک یہاں رسائی حاصل کر سکتے ہیں:\n{Url}\n\nبہت نوازش، مخلص\n{NodeName}",
       "uz": "Hurmatli {RecipientName},\n\nThis is an email to notify you the reception of a new report.\n\nAnonim xabarni quyida ochish muimkin:\n{Url}\n\nHurmat bilan,\n{NodeName}",
-      "vi": "Kính gửi {RecipientName}\n\nThis is an email to notify you the reception of a new report.\n\nBáo cáo có thể được truy cập nơi đây:\n{Url}\n\nTrân trọng,\n{NodeName}",
+      "vi": "Kính gửi {RecipientName}\n\nEmail này báo cho bạn biết có một báo cáo mới đến.\n\nBáo cáo có thể được truy cập nơi đây:\n{Url}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "尊敬的 {RecipientName}：\n\nThis is an email to notify you the reception of a new report.\n\n此报告可在此访问：\n{Url}\n\n谨致，\n{NodeName}",
       "zh_HK": "尊敬的 {RecipientName}，\n\nThis is an email to notify you the reception of a new report.\n\n按此查看報告：\n{Url}\n\n敬請　台安\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\nThis is an email to notify you the reception of a new report.\n\n此報告可在此查看：\n{Url}\n\nKind regards,\n{NodeName}"
@@ -3884,7 +3884,7 @@
       "uk": "Шановний {RecipientName},\n\nThis is an email to notify you that the reminder date for one or more reports has been met.\n\n{LoginUrl}\n\nЗ повагою,\n{NodeName}",
       "ur": "محترم{RecipientName}،\n\nThis is an email to notify you that the reminder date for one or more reports has been met.\n\n{LoginUrl}\n\nبہت نوازش، مخلص\n{NodeName}",
       "uz": "Hurmatli {RecipientName},\n\nThis is an email to notify you that the reminder date for one or more reports has been met.\n\n{LoginUrl}\n\nHurmat bilan,\n{NodeName}",
-      "vi": "Kính gửi {RecipientName}\n\nThis is an email to notify you that the reminder date for one or more reports has been met.\n\n{LoginUrl}\n\nTrân trọng,\n{NodeName}",
+      "vi": "Kính gửi {RecipientName}\n\nEmail này báo cho bạn biết là ngày nhắc nhở cho một hay nhiều báo cáo đã đến.\n\n{LoginUrl}\n\nTrân trọng,\n{NodeName}",
       "zh_CN": "尊敬的 {RecipientName}：\n\nThis is an email to notify you that the reminder date for one or more reports has been met.\n\n{LoginUrl}\n\n谨致，\n{NodeName}",
       "zh_HK": "尊敬的 {RecipientName}，\n\nThis is an email to notify you that the reminder date for one or more reports has been met.\n\n{LoginUrl}\n\n敬請　台安\n{NodeName}",
       "zh_TW": "敬愛的 {RecipientName},\n\nThis is an email to notify you that the reminder date for one or more reports has been met.\n\n{LoginUrl}\n\nKind regards,\n{NodeName}"
@@ -3965,7 +3965,7 @@
       "uk": "Reminder",
       "ur": "Reminder",
       "uz": "Reminder",
-      "vi": "Reminder",
+      "vi": "Nhắc nhở",
       "zh_CN": "Reminder",
       "zh_HK": "Reminder",
       "zh_TW": "Reminder"
@@ -4534,7 +4534,7 @@
       "uk": "Select a reporting channel:",
       "ur": "Select a reporting channel:",
       "uz": "Select a reporting channel:",
-      "vi": "Select a reporting channel:",
+      "vi": "Chọn kênh báo cáo:",
       "zh_CN": "Select a reporting channel:",
       "zh_HK": "Select a reporting channel:",
       "zh_TW": "Select a reporting channel:"

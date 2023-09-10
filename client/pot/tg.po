@@ -1008,8 +1008,8 @@ msgstr "Индексатсияи системаҳои ҷустуҷӯро фаъ�
 msgid "Default questionnaire"
 msgstr "Саволномаи пешфарз"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Мавзӯҳоро бо тартиби алифбо нишон додан"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Маҳдудияти ҳаҷм барои файлҳои замимашаванда "
@@ -1461,11 +1461,11 @@ msgstr "Дастрасӣ ба шахсияти хабардиҳанда аз м�
 msgid "Date of the request"
 msgstr "Санаи дархост"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Нишон додан"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Табрик!"

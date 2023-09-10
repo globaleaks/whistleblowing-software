@@ -1018,8 +1018,8 @@ msgstr "Keresőmotorok indexelésének engedélyezése"
 msgid "Default questionnaire"
 msgstr "Alap kérdőív"
 
-msgid "Show contexts in alphabetical order"
-msgstr "A kategóriák megjelenítése betűrendben"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Mellékletek méretkorláta"
@@ -1471,11 +1471,11 @@ msgstr "A bejelentő identitásához való hozzáférés kérelmezve a gondnokna
 msgid "Date of the request"
 msgstr "A kérés dátuma"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Mutat"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Gratulálunk!"

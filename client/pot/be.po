@@ -1001,8 +1001,8 @@ msgstr "Уключыць індэксацыю пошукавых сістэм"
 msgid "Default questionnaire"
 msgstr "Анкета па змаўчанні"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Паказваць кантэксты ў алфавітным парадку"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Абмежаванне памеру далучаных файлаў"
@@ -1454,11 +1454,11 @@ msgstr "Захавальнік зрабіў запыт атрымаць дост
 msgid "Date of the request"
 msgstr "Дата запыту"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Паказаць"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Віншуем!"

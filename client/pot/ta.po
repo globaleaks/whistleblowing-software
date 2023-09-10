@@ -1002,8 +1002,8 @@ msgstr "தேடுபொறிகள் திருப்பு இயக�
 msgid "Default questionnaire"
 msgstr "இயல்புநிலை கேள்வித்தாள்"
 
-msgid "Show contexts in alphabetical order"
-msgstr "அகரவரிசையில் சூழல்களில் காட்டு"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "கோப்பு இணைப்புகளை அளவு எல்லை"
@@ -1455,11 +1455,11 @@ msgstr "தகவல் தெரிவிப்பவர் அடையாள�
 msgid "Date of the request"
 msgstr "கோரிக்கையின் தேதி"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "காண்பி"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "வாழ்த்துக்கள்!"

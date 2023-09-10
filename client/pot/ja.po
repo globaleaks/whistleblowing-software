@@ -1005,8 +1005,8 @@ msgstr "検索エンジンのインデックス化を有効にする"
 msgid "Default questionnaire"
 msgstr "デフォルトのアンケート"
 
-msgid "Show contexts in alphabetical order"
-msgstr "コンテキストをアルファベット順に表示"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "添付ファイルの制限サイズ"
@@ -1458,11 +1458,11 @@ msgstr "内部告発者の身元へのアクセスを管理人にリクエスト
 msgid "Date of the request"
 msgstr "リクエスト日"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "表示"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "おめでとうございます"

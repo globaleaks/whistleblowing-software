@@ -1016,8 +1016,8 @@ msgstr "Activează indexarea pentru motoarele de căutare"
 msgid "Default questionnaire"
 msgstr "Chestionar standard"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Afișează contextele în ordine alfabetică"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Dimensiunea maximă a fișierelor atașate"
@@ -1469,11 +1469,11 @@ msgstr "Accesul la identitatea avertizorului a fost solicitată custode."
 msgid "Date of the request"
 msgstr "Data solicitării"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Arată"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Felicitări!"

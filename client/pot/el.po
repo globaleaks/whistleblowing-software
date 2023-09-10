@@ -1013,8 +1013,8 @@ msgstr "Ενεργοποιήστε τον πίνακα περιεχομένων 
 msgid "Default questionnaire"
 msgstr "Προκαθορισμένο ερωτηματολόγιο"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Εμφάνιση θεματικών ενοτήτων με αλφαβητική σειρά"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Όριο μεγέθους για τα συνημμένα αρχεία"
@@ -1466,11 +1466,11 @@ msgstr "Η πρόσβαση στην ταυτότητα του προσώπου 
 msgid "Date of the request"
 msgstr "Ημερομηνία υποβολής της αίτησης"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Εμφάνιση"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Συγχαρητήρια!"

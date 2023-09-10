@@ -551,9 +551,6 @@ msgstr "Creation date"
 msgid "Last access"
 msgstr "Last access"
 
-msgid "Messages"
-msgstr "Messages"
-
 msgid "Whistleblower's last access"
 msgstr "Whistleblower's last access"
 

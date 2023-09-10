@@ -1007,8 +1007,8 @@ msgstr "সার্চ ইঞ্জিনগুলিতে সূচীকর�
 msgid "Default questionnaire"
 msgstr "সাধারণ প্রশ্নাবলী"
 
-msgid "Show contexts in alphabetical order"
-msgstr "প্রসঙ্গগুলি বর্ণানুক্রমিক ক্রমে দেখান"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "ফাইল সংযুক্তির জন্য আকার সীমা"
@@ -1460,11 +1460,11 @@ msgstr "হুইসেল ব্লোয়ারের পরিচয় অ
 msgid "Date of the request"
 msgstr "অনুরোধের তারিখ"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "দেখাও"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "অভিনন্দন!"

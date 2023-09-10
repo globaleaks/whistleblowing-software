@@ -1012,8 +1012,8 @@ msgstr "سرچ انجن اشاریہ سازی فعال کیجیے"
 msgid "Default questionnaire"
 msgstr "پہلے سے طے شدہ سوالنامہ "
 
-msgid "Show contexts in alphabetical order"
-msgstr "الفبائی ترتیب میں سیاق و سباق دکھائیں"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "فائل اٹیچمنٹ کے سائز کی حد"
@@ -1465,11 +1465,11 @@ msgstr "مخبر کی شناخت تک رسائی نگرانی کرنے کی در
 msgid "Date of the request"
 msgstr "درخواست کی تاریخ"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "دکھائیے"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "مبارک ہو!"

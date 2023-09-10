@@ -11,7 +11,7 @@
 # John, 2021
 # John, 2021
 # Nathan Tran, 2021
-# Nathan Tran, 2021
+# Nathan Tran, 2021,2023
 # Ngoc <ngoc@simplysecure.org>, 2021
 # Anh Phan <vietnamesel10n@gmail.com>, 2013
 # Anh Phan <vietnamesel10n@gmail.com>, 2013
@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014,2016-2018,2020-2022\n"
+"Last-Translator: Nathan Tran, 2021,2023\n"
 "Language-Team: Vietnamese (http://app.transifex.com/otf/globaleaks/language/vi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -120,7 +120,7 @@ msgid "Refresh"
 msgstr "Làm mới"
 
 msgid "Channel"
-msgstr ""
+msgstr "Kênh"
 
 msgid "Preview"
 msgstr "Xem trước"
@@ -294,7 +294,7 @@ msgid "Strong"
 msgstr "Mạnh"
 
 msgid "Text shown on top of the interface for selecting channels"
-msgstr ""
+msgstr "Văn bản hiển thị trên đầu trang của giao diện để chọn kênh"
 
 msgid "Silence email notifications"
 msgstr "Tắt thông báo email"
@@ -386,7 +386,7 @@ msgid "Select"
 msgstr "Chọn"
 
 msgid "Deselect"
-msgstr ""
+msgstr "Hủy chọn"
 
 msgid "Surname"
 msgstr "Họ"
@@ -448,88 +448,88 @@ msgid "This domain name is not available."
 msgstr "Tên miền này không có sẵn"
 
 msgid "Mark as important"
-msgstr ""
+msgstr "Đánh dấu quan trọng"
 
 msgid "Copy to clipboard"
-msgstr "Sao chép vào Clipboard"
+msgstr "Sao chép vào Bảng ghi tạm"
 
 msgid "Logout"
 msgstr "Đăng xuất"
 
 msgid "Grant access"
-msgstr ""
+msgstr "Cho phép truy cập"
 
 msgid "Revoke access"
 msgstr "Thu hồi quyền truy cập"
 
 msgid "Transfer"
-msgstr ""
+msgstr "Chuyển giao"
 
 msgid "Assigned to"
-msgstr ""
+msgstr "Giao cho"
 
 msgid "Not provided."
-msgstr ""
+msgstr "Không cung cấp."
 
 msgid "Set a reminder"
-msgstr ""
+msgstr "Ghi nhắc nhở"
 
 msgid "Privileges"
-msgstr "Ưu đãi"
+msgstr "Đặc quyền"
 
 msgid "Hide"
-msgstr "Dấu"
+msgstr "Ẩn"
 
 msgid "Unhide"
-msgstr ""
+msgstr "Không ẩn"
 
 msgid "Redact"
-msgstr ""
+msgstr "Đục bỏ"
 
 msgid "Select an option"
-msgstr ""
+msgstr "Chọn một tùy chọn"
 
 msgid "Select your language"
-msgstr ""
+msgstr "Chọn ngôn ngữ của bạn"
 
 msgid "Give this user ability to mask information"
-msgstr ""
+msgstr "Cho người dùng này khả năng che đậy thông tin"
 
 msgid "Give this user ability to permanently redact masked information"
-msgstr ""
+msgstr "Cho người dùng này khả năng đục bỏ vĩnh viễn thông tin bị che đậy"
 
 msgid "Public"
-msgstr ""
+msgstr "Công cộng"
 
 msgid "Internal"
-msgstr "Bên trong"
+msgstr "Nội bộ"
 
 msgid "Personal"
-msgstr ""
+msgstr "Cá nhân"
 
 msgid "Privacy Policy"
 msgstr "Chính Sách Quyền Riêng Tư"
 
 msgid "I've read and accept the Privacy Policy"
-msgstr ""
+msgstr "Tôi đã đọc và chấp nhận Chính Sách Quyền Riêng Tư"
 
 msgid "Download copy of the Privacy Policy"
-msgstr ""
+msgstr "Tải về một bản Chính Sách Quyền Riêng Tư"
 
 msgid "Whistleblowing Policy"
-msgstr ""
+msgstr "Chính Sách Tố Giác"
 
 msgid "Accessibility Declaration"
-msgstr ""
+msgstr "Tuyên Bố Khả Năng Truy Cập"
 
 msgid "Voice"
-msgstr ""
+msgstr "Tiếng nói"
 
 msgid "File a report"
 msgstr "Nộp báo cáo"
 
 msgid "Select a reporting channel:"
-msgstr ""
+msgstr "Chọn kênh báo cáo:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Trước khi tiếp tục, hãy cài mật khẩu mới"
@@ -598,7 +598,7 @@ msgid "Report statuses"
 msgstr "Trạng thái của báo cáo"
 
 msgid "Channels"
-msgstr ""
+msgstr "Kênh"
 
 msgid "Hidden"
 msgstr "Ẩn"
@@ -613,7 +613,7 @@ msgid "Recipients"
 msgstr "Người nhận"
 
 msgid "Reminder date"
-msgstr ""
+msgstr "Ngày nhắc nhở"
 
 msgid "days"
 msgstr "ngày"
@@ -646,7 +646,7 @@ msgid "Allow the whistleblower to write comments"
 msgstr "Cho phép người tố giác góp ý kiến"
 
 msgid "Allow the whistleblower to add attachments"
-msgstr ""
+msgstr "Cho phép người tố giác thêm tập tin đính kèm"
 
 msgid "Additional questionnaire"
 msgstr "Bảng câu hỏi bổ sung"
@@ -788,7 +788,7 @@ msgstr "Tới"
 msgid ""
 "Default mail configuration in use. Please consider using a private mail "
 "server."
-msgstr ""
+msgstr "Cấu hình email mặc định được dùng. Xin cân nhắc việc dùng một máy chủ email riêng tư."
 
 msgid "SMTP email address"
 msgstr "Địa chỉ email SMTP"
@@ -866,7 +866,7 @@ msgid "Hint"
 msgstr "Gợi ý"
 
 msgid "Mandatory"
-msgstr "Phải có"
+msgstr "Bắt buộc"
 
 msgid "Accept multiple file uploads"
 msgstr "Chấp nhận nhiều tập tin tải lên"
@@ -878,10 +878,10 @@ msgid "Template override"
 msgstr "Ghi đè lên bản mẫu"
 
 msgid "Min"
-msgstr ""
+msgstr "Tối thiểu"
 
 msgid "Max"
-msgstr ""
+msgstr "Tối đa"
 
 msgid "Phone number"
 msgstr "Số điện thoại"
@@ -959,7 +959,7 @@ msgid "Whistleblowing button"
 msgstr "Nút tố giác"
 
 msgid "Disclaimer"
-msgstr ""
+msgstr "Tuyên bố giới hạn trách nhiệm"
 
 msgid "Footer"
 msgstr "Ghi chú cuối trang"
@@ -1001,10 +1001,10 @@ msgid "Administrators authorized to change user passwords:"
 msgstr "Quản trị viên có quyền thay đổi mật mã người dùng"
 
 msgid "Enable file viewer"
-msgstr ""
+msgstr "Bật mở trình xem tập tin"
 
 msgid "Enable PGP"
-msgstr ""
+msgstr "Bật mở PGP"
 
 msgid "Enable simplified login"
 msgstr "Bật mở đăng nhập đơn giản"
@@ -1015,8 +1015,8 @@ msgstr "Bật công cụ tìm kiếm lập chỉ mục"
 msgid "Default questionnaire"
 msgstr "Bảng câu hỏi mặc định"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Hiển thị đề tài theo thứ tự ABC"
+msgid "Show channels in alphabetical order"
+msgstr "Hiển thị kênh theo thứ tự ABC"
 
 msgid "Size limit for file attachments"
 msgstr "Kích thước giới hạn cho tập tin đính kèm"
@@ -1038,7 +1038,7 @@ msgid "Number of days till notifying unread reports to users"
 msgstr "Số ngày còn lại trước khi báo cho người dùng biết báo cáo chưa được đọc"
 
 msgid "Custom support URL"
-msgstr ""
+msgstr "URL hỗ trợ tùy chỉnh"
 
 msgid "Disable the privacy panel"
 msgstr "Tắt bảng thông tin bảo mật và riêng tư"
@@ -1079,7 +1079,7 @@ msgid "Reset reports"
 msgstr "Cài đặt lại báo cáo"
 
 msgid "Settings"
-msgstr "Cài đặt"
+msgstr "Thiết đặt"
 
 msgid "Case management"
 msgstr "Quản lý hồ sơ"
@@ -1172,10 +1172,10 @@ msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Cho phép người nhận hoãn thời điểm hết hạn của báo cáo"
 
 msgid "Give this user ability to grant user access to reports"
-msgstr ""
+msgstr "Cho người dùng này khả năng cho phép người dùng khác truy cập vào báo cáo"
 
 msgid "Give this user ability to transfer reports to other users"
-msgstr ""
+msgstr "Cho người dùng này khả năng chuyển giao báo cáo cho người dùng khác"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Cho người dùng quyền quản trị để truy cập đến những tính năng sau: "
@@ -1252,7 +1252,7 @@ msgid "Enter a name for the copy"
 msgstr "Nhập tên cho bản sao"
 
 msgid "Request support"
-msgstr ""
+msgstr "Yêu cầu hỗ trợ"
 
 msgid "Thank you."
 msgstr "Cảm ơn bạn."
@@ -1281,10 +1281,10 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Khi xác nhận, bạn sẽ hoãn ngày hết hạn đến:"
 
 msgid "By confirming, you will set a reminder on date:"
-msgstr ""
+msgstr "Khi xác nhận, bạn sẽ ấn định nhắc nhở vào ngày:"
 
 msgid "Transfer access"
-msgstr ""
+msgstr "Chuyển giao truy cập"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Đây là một hệ thống thử nghiệm, xin đừng dùng để gửi báo cáo."
@@ -1367,7 +1367,7 @@ msgid "Size:"
 msgstr "Kích thước:"
 
 msgid "Access date"
-msgstr ""
+msgstr "Ngày truy cập"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Người nhận đã yêu cầu bạn điền vào một bảng câu hỏi bổ sung."
@@ -1468,11 +1468,11 @@ msgstr "Yêu cầu xem danh tính của người tố giác đã được gửi 
 msgid "Date of the request"
 msgstr "Ngày yêu cầu"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Hiển thị"
+
+msgid "Subscription date"
+msgstr "Ngày đăng ký"
 
 msgid "Congratulations!"
 msgstr "Chúc mừng!"
@@ -1512,7 +1512,7 @@ msgid "Address"
 msgstr "Địa chỉ"
 
 msgid "Fiscal code"
-msgstr ""
+msgstr "Mã số tài khóa"
 
 msgid "Tax code"
 msgstr "Mã số thuế"
@@ -1555,7 +1555,7 @@ msgid "View your report"
 msgstr "Xem báo cáo của bạn"
 
 msgid "Select the recipients of your report"
-msgstr ""
+msgstr "Chọn người nhận báo cáo của bạn"
 
 msgid "Recipients selected:"
 msgstr "Người nhận được chọn:"
@@ -1622,10 +1622,10 @@ msgid "When did the facts happen?"
 msgstr "Sự cố xảy ra lúc nào?"
 
 msgid "I'm a victim"
-msgstr ""
+msgstr "Tôi là nạn nhân"
 
 msgid "I'm involved in the facts"
-msgstr ""
+msgstr "Tôi có liên quan trong sự cố"
 
 msgid "I witnessed the facts in person"
 msgstr "Tôi chứng kiến tận mắt sự cố"
@@ -1652,7 +1652,7 @@ msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr ""
+msgstr "Ghi chú kỹ lưỡng của các bằng chứng nộp vào giúp gia tăng khả năng đánh giá lời khai và điều tra của chúng tôi. Xin vui lòng ghi rõ nguồn gốc của các phần quan trọng của bất kỳ video, ảnh hoặc tài liệu được nộp vào làm bằng chứng."
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
 msgstr "Bạn có đã báo cáo sự cố này cho các tổ chức khác không?"
@@ -1680,10 +1680,10 @@ msgid "Last name"
 msgstr "Họ"
 
 msgid "Alternative contact method"
-msgstr ""
+msgstr "Cách liên lạc khác"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr ""
+msgstr "Tôi muốn được liên lạc qua nền này mà thôi"
 
 msgid "Other"
 msgstr "Khác"
@@ -1750,7 +1750,7 @@ msgid "The activities with unusual stats are:"
 msgstr "Các hoạt động với chỉ số bất bình thường là:"
 
 msgid "Available disk space: {FreeMemory}/{TotalMemory}"
-msgstr ""
+msgstr "Chỗ chứa của đĩa còn: {FreeMemory}/{TotalMemory}"
 
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
@@ -1975,13 +1975,13 @@ msgstr "Để biết cách cập nhật phần mềm, xin tham khảo tài liệ
 msgid ""
 "This is an email to notify you that a recipient has granted you access to "
 "one or more reports."
-msgstr ""
+msgstr "Email này báo cho bạn biết là một người nhận đã cho phép bạn quyền truy cập vào một hay nhiều báo cáo."
 
 msgid "New report"
 msgstr "Báo cáo mới"
 
 msgid "One or more reports are expiring and will be soon deleted."
-msgstr ""
+msgstr "Một hay nhiều báo cáo đã hết hạn và sẽ bị xóa trong nay mai."
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Ngày hết hạn sớm nhất là {EarliestExpirationDate}."
@@ -1993,15 +1993,15 @@ msgid "Some reports will expire soon"
 msgstr "Một số báo cáo gần hết hạn"
 
 msgid "This is an email to notify you the reception of a new report."
-msgstr ""
+msgstr "Email này báo cho bạn biết có một báo cáo mới đến."
 
 msgid ""
 "This is an email to notify you that the reminder date for one or more "
 "reports has been met."
-msgstr ""
+msgstr "Email này báo cho bạn biết là ngày nhắc nhở cho một hay nhiều báo cáo đã đến."
 
 msgid "Reminder"
-msgstr ""
+msgstr "Nhắc nhở"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Đây là email để thông báo rằng một báo cáo trong hệ thống vừa được cập nhật."

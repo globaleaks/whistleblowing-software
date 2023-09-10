@@ -1001,8 +1001,8 @@ msgstr "Издөө системаларын индекстөөнү иштетү�
 msgid "Default questionnaire"
 msgstr "Демейки анкета"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Контексттерди алфавиттик тартипте көрсөтүү"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Файлдын тиркемелеринин лимиттик өлчөмү"
@@ -1454,11 +1454,11 @@ msgstr "Сактоочуга кабарчынын жекелигин көрүү�
 msgid "Date of the request"
 msgstr "Талап кылуунун датасы"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Көрсөтүү"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Куттуктоолор!"

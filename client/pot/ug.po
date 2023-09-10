@@ -1002,8 +1002,8 @@ msgstr "ئاختۇرۇش ماتورلىرىنىڭ ئىندېكىسلىشىنى �
 msgid "Default questionnaire"
 msgstr "كۆڭۈلدىكى راي سىناش"
 
-msgid "Show contexts in alphabetical order"
-msgstr "مەزمۇنلارنى ئېلىپبە تەرتىپى بويىچە كۆرسەت"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "ھۆججەت قوشۇمچىلىرى ئۈچۈن چوڭلۇق چېكى"
@@ -1455,11 +1455,11 @@ msgstr "ساقلىغۇچى پاش قىلغۇچىنىڭ كىملىگىنى زىي
 msgid "Date of the request"
 msgstr "تەلەپ قىلغان چېسلا"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "كۆرسەت"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "تەبرىكلەيمىز!"

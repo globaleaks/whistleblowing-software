@@ -1000,8 +1000,8 @@ msgstr "Ахтуруш маторлириниң индекислишини қо�
 msgid "Default questionnaire"
 msgstr "Көңүлдики рай синаш"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Мәзмунларни елипбә тәртипи бойичә көрсәт"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Һөҗҗәт қошумчилири үчүн чоңлуқ чеки"
@@ -1453,11 +1453,11 @@ msgstr "Сақлиғучи паш қилғучиниң кимлигини зий
 msgid "Date of the request"
 msgstr "Telep qilghan chésla"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Көрсәт"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Тәбрикләймиз!"

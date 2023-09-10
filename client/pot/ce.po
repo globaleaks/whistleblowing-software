@@ -1002,8 +1002,8 @@ msgstr "Лохуршна индексаци ян магаде"
 msgid "Default questionnaire"
 msgstr "Юьхьанцарчу рожехь хеттар"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Контексташ абатан рогlаллехь гайта"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Юкъаехкинчу файлийн бараман доза"
@@ -1455,11 +1455,11 @@ msgstr "Iорадаккхархочун цIарна тlекхочийла дех
 msgid "Date of the request"
 msgstr "Дехаран дата"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "Гайта"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "Декъалво хьо!"

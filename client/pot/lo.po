@@ -1000,8 +1000,8 @@ msgstr "ເປີດນຳໃຊ້ການສ້າງດັດຊະນີຂ
 msgid "Default questionnaire"
 msgstr "ແບບສອບຖາມທີ່ເປັນຄ່າເລີ່ມຕົ້ນ"
 
-msgid "Show contexts in alphabetical order"
-msgstr "ສະແດງເນື້ອຫາຕາມລຳດັບຕົວອັກສອນ"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "ຂະໜາດຈຳກັດສຳລັບໄຟລ໌ຄັດຕິດ"
@@ -1453,11 +1453,11 @@ msgstr "ໄດ້ມີການຮ້ອງຂໍການເຂົ້າເຖ
 msgid "Date of the request"
 msgstr "ວັນທີຮ້ອງຂໍ"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "ສະແດງ"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "ຂໍສະແດງຄວາມຍິນດີດ້ວຍ!"

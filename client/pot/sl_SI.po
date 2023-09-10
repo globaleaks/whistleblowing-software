@@ -1006,8 +1006,8 @@ msgstr "Omogoči indeksiranje iskalnikom"
 msgid "Default questionnaire"
 msgstr "Privzeti vprašalnik"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Prikaz kontekstov v abecednem vrstnem redu"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "Omejitev velikosti datotek v prilogah"
@@ -1459,11 +1459,11 @@ msgstr "Zahtevek za dostop do identitete prijavitelja je bil posredovan skrbniku
 msgid "Date of the request"
 msgstr "Datum zahtevka"
 
-msgid "Subscription date"
-msgstr "Datum naročnine"
-
 msgid "Show"
 msgstr "Pokaži"
+
+msgid "Subscription date"
+msgstr "Datum naročnine"
 
 msgid "Congratulations!"
 msgstr "Čestitamo!"

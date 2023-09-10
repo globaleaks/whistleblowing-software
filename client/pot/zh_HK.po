@@ -1002,8 +1002,8 @@ msgstr "允許搜尋引擎進行索引"
 msgid "Default questionnaire"
 msgstr "預設問卷"
 
-msgid "Show contexts in alphabetical order"
-msgstr "以字母順序顯示主題"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "附件檔案大小上限"
@@ -1455,11 +1455,11 @@ msgstr "已向保管人請求吹哨者的個人身份。"
 msgid "Date of the request"
 msgstr "請求日期"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "顯示"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "恭喜您！"

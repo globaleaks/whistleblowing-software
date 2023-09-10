@@ -1010,8 +1010,8 @@ msgstr "เปิดใช้การสร้างดัชนีเครื
 msgid "Default questionnaire"
 msgstr "แบบสอบถามมาตรฐาน"
 
-msgid "Show contexts in alphabetical order"
-msgstr "แสดงบริบทตามลำดับอักษร"
+msgid "Show channels in alphabetical order"
+msgstr ""
 
 msgid "Size limit for file attachments"
 msgstr "ขีดจำกัดขนาดเอกสารแนบ"
@@ -1463,11 +1463,11 @@ msgstr "คำร้องขอเพื่อเข้าถึงตัวต
 msgid "Date of the request"
 msgstr "วันที่ร้องขอ"
 
-msgid "Subscription date"
-msgstr ""
-
 msgid "Show"
 msgstr "แสดง"
+
+msgid "Subscription date"
+msgstr ""
 
 msgid "Congratulations!"
 msgstr "ยินดีด้วย!"

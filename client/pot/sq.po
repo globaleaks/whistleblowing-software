@@ -1009,8 +1009,8 @@ msgstr "Aktivizo indeksim nga motorë kërkimesh"
 msgid "Default questionnaire"
 msgstr "Pyetësor parazgjedhje"
 
-msgid "Show contexts in alphabetical order"
-msgstr "Kontekstet shfaqi në rend alfabetik"
+msgid "Show channels in alphabetical order"
+msgstr "Shfaqi kanalet në rend alfabetik"
 
 msgid "Size limit for file attachments"
 msgstr "Kufi madhësie për bashkëngjitje kartelash"
@@ -1462,11 +1462,11 @@ msgstr "Ruajtësit iu kërkua hyrje te identiteti i nxjerrësit të së fshehtë
 msgid "Date of the request"
 msgstr "Datë e kërkesës"
 
-msgid "Subscription date"
-msgstr "Datë pajtimi"
-
 msgid "Show"
 msgstr "Shfaqe"
+
+msgid "Subscription date"
+msgstr "Datë pajtimi"
 
 msgid "Congratulations!"
 msgstr "Përgëzime!"
