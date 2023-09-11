@@ -1,12 +1,12 @@
 {
   "name": "GlobaLeaks",
-  "version": "4.13.6",
+  "version": "4.13.7",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "GlobaLeaks",
-      "version": "4.13.6",
+      "version": "4.13.7",
       "license": "AGPL-3.0",
       "dependencies": {
         "@flowjs/flow.js": "2.14.1",
