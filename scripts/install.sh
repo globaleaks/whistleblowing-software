@@ -193,7 +193,7 @@ sleep 5
 i=0
 while [ $i -lt 30 ]
 do
-  X=$(netstat -tln | grep "127.0.0.1:8082")
+  X=$(netstat -tln | grep ":8443")
   if [ $? -eq 0 ]; then
     #SUCCESS
     echo "GlobaLeaks setup completed."
