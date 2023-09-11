@@ -137,6 +137,23 @@ network_sandboxing_start()
         ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d ::1 --dport 9050 -j ACCEPT
         ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
     else
+        iptables -m comment --comment "globaleaks" -t filter -A INPUT -p tcp --dport 8080 -j ACCEPT
+        ip6tables -m comment --comment "globaleaks" -t filter -A INPUT -p tcp --dport 8080 -j ACCEPT
+
+        iptables -m comment --comment "globaleaks" -t filter -A INPUT -p tcp --dport 8443 -j ACCEPT
+        ip6tables -m comment --comment "globaleaks" -t filter -A INPUT -p tcp --dport 8443 -j ACCEPT
+
+        iptables -m comment --comment "globaleaks" -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
+        ip6tables -m comment --comment "globaleaks" -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
+
+        iptables -m comment --comment "globaleaks" -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 8443
+        ip6tables -m comment --comment "globaleaks" -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 8443
+
+        iptables -m comment --comment "globaleaks" -t nat -A OUTPUT -o lo -p tcp --dport 80 -j REDIRECT --to-port 8080
+        ip6tables -m comment --comment "globaleaks" -t nat -A OUTPUT -o lo -p tcp --dport 80 -j REDIRECT --to-port 8080
+
+        iptables -m comment --comment "globaleaks" -t nat -A OUTPUT -o lo -p tcp --dport 443 -j REDIRECT --to-port 8443
+        ip6tables -m comment --comment "globaleaks" -t nat -A OUTPUT -o lo -p tcp --dport 443 -j REDIRECT --to-port 8443
 
         # Enable enstablished connections, new connections on used tcp and udp ports
         iptables -m comment --comment "globaleaks" -A OUTPUT -m state --state RELATED,ESTABLISHED -m owner --uid-owner globaleaks -j ACCEPT
@@ -154,18 +171,6 @@ network_sandboxing_start()
             ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT -p udp -m owner --uid-owner ${USERNAME} -m udp --dport $PORT -j ACCEPT
         done
     fi
-
-    iptables -m comment --comment "globaleaks" -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
-    ip6tables -m comment --comment "globaleaks" -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
-
-    iptables -m comment --comment "globaleaks" -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 8443
-    ip6tables -m comment --comment "globaleaks" -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 8443
-
-    iptables -m comment --comment "globaleaks" -t nat -A OUTPUT -o lo -p tcp --dport 80 -j REDIRECT --to-port 8080
-    ip6tables -m comment --comment "globaleaks" -t nat -A OUTPUT -o lo -p tcp --dport 80 -j REDIRECT --to-port 8080
-
-    iptables -m comment --comment "globaleaks" -t nat -A OUTPUT -o lo -p tcp --dport 443 -j REDIRECT --to-port 8443
-    ip6tables -m comment --comment "globaleaks" -t nat -A OUTPUT -o lo -p tcp --dport 443 -j REDIRECT --to-port 8443
 
     iptables -m comment --comment "globaleaks" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
     ip6tables -m comment --comment "globaleaks" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
@@ -218,7 +223,7 @@ globaleaks_start()
                 --pidfile $GLPID \
                 --startas $(command -v aa-exec) \
                 --exec $DAEMON \
-	        -- --profile=usr.bin.globaleaks $DAEMON $ARGS
+                -- --profile=usr.bin.globaleaks $DAEMON $ARGS
             then
                 log_action_end_msg 0
             else
