@@ -95,7 +95,7 @@ class Cleaning(DailyJob):
         subquery = session.query(models.Subscriber.tid).filter(models.Subscriber.activation_token != '',
                                                                models.Subscriber.tid == models.Tenant.id,
                                                                models.Subscriber.registration_date < datetime_now() - timedelta(days=1)) \
-                                                  .subquery()
+                                                       .subquery()
         db_del(session, models.Tenant, models.Tenant.id.in_(subquery))
 
     def perform_secure_deletion_of_files(self, path, valid_files):
