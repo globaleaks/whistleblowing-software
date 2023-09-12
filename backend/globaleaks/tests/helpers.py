@@ -505,7 +505,7 @@ def forge_request(uri=b'https://www.globaleaks.org/',
     request.multilang = False
 
     def isSecure():
-        if request.port is 8443:
+        if request.port == 8443:
             return True
         else:
             return False
