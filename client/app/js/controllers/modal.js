@@ -58,7 +58,7 @@ controller("ConfirmableModalCtrl",
       arg.iframeHeight =  window.innerHeight * 0.75;
     };
 
-    Utils.view("api/recipient/rfiles/" + arg.id, arg.type, function (blob) {
+    Utils.view("api/recipient/wbfiles/" + arg.id, arg.type, function (blob) {
       arg.loaded = true;
       $scope.$apply();
 

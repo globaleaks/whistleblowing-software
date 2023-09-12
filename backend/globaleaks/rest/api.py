@@ -73,9 +73,9 @@ api_spec = [
     (r'/api/recipient/rtips/' + uuid_regexp + r'/comments', recipient.rtip.RTipCommentCollection),
     (r'/api/recipient/rtips/' + uuid_regexp + r'/iars', recipient.rtip.IdentityAccessRequestsCollection),
     (r'/api/recipient/rtips/' + uuid_regexp + r'/export', recipient.export.ExportHandler),
-    (r'/api/recipient/rtips/' + uuid_regexp + r'/rfiles', recipient.rtip.ReceiverFileHandler),
+    (r'/api/recipient/rtips/' + uuid_regexp + r'/rfiles', recipient.rtip.ReceiverFileUpload),
+    (r'/api/recipient/rfiles/' + uuid_regexp, recipient.rtip.ReceiverFileDownload),
     (r'/api/recipient/wbfiles/' + uuid_regexp, recipient.rtip.WhistleblowerFileDownload),
-    (r'/api/recipient/rfiles/' + uuid_regexp, recipient.rtip.RTipWBFileHandler),
 
     # Whistleblower Handlers
     (r'/api/whistleblower/submission', whistleblower.submission.SubmissionInstance),
@@ -83,7 +83,7 @@ api_spec = [
     (r'/api/whistleblower/wbtip', whistleblower.wbtip.WBTipInstance),
     (r'/api/whistleblower/wbtip/comments', whistleblower.wbtip.WBTipCommentCollection),
     (r'/api/whistleblower/wbtip/wbfiles', whistleblower.attachment.PostSubmissionAttachment),
-    (r'/api/whistleblower/wbtip/rfiles/' + uuid_regexp, whistleblower.wbtip.WBTipWBFileHandler),
+    (r'/api/whistleblower/wbtip/rfiles/' + uuid_regexp, whistleblower.wbtip.ReceiverFileDownload),
     (r'/api/whistleblower/wbtip/identity', whistleblower.wbtip.WBTipIdentityHandler),
     (r'/api/whistleblower/wbtip/fillform', whistleblower.wbtip.WBTipAdditionalQuestionnaire),
 

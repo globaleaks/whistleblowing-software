@@ -16,7 +16,7 @@ class TestWBFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
     def test_get(self):
         yield self.perform_full_submission_actions()
 
-        self._handler = rtip.ReceiverFileHandler
+        self._handler = rtip.ReceiverFileUpload
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver', user_id=rtip_desc['receiver_id'], attached_file=attachment)
@@ -24,7 +24,7 @@ class TestWBFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
 
         yield Delivery().run()
 
-        self._handler = wbtip.WBTipWBFileHandler
+        self._handler = wbtip.ReceiverFileDownload
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
             rfiles_desc = yield self.get_rfiles(wbtip_desc['id'])
@@ -33,7 +33,7 @@ class TestWBFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
                 yield handler.get(rfile_desc['id'])
                 self.assertEqual(handler.request.getResponseBody(), attachment)
 
-        self._handler = rtip.RTipWBFileHandler
+        self._handler = rtip.ReceiverFileDownload
         rtips_desc = yield self.get_rtips()
         deleted_rfiles_ids = []
         for rtip_desc in rtips_desc:

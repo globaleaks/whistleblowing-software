@@ -164,7 +164,7 @@ class WBTipCommentCollection(BaseHandler):
         return create_comment(self.request.tid, self.session.user_id, request['content'])
 
 
-class WBTipWBFileHandler(BaseHandler):
+class ReceiverFileDownload(BaseHandler):
     check_roles = 'whistleblower'
     handler_exec_time_threshold = 3600
 

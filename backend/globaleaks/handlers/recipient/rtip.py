@@ -735,22 +735,18 @@ class WhistleblowerFileDownload(BaseHandler):
         yield self.write_file_as_download(name, filelocation, pgp_key)
 
 
-class ReceiverFileHandler(BaseHandler):
+class ReceiverFileUpload(BaseHandler):
     """
     Receiver interface to upload a file intended for the whistleblower
     """
     check_roles = 'receiver'
     upload_handler = True
 
-    @inlineCallbacks
     def post(self, rtip_id):
-        yield register_rfile_on_db(self.request.tid, self.session.user_id, rtip_id, self.uploaded_file)
-
-        log.debug("Recorded new ReceiverFile %s",
-                  self.uploaded_file['name'])
+        return register_rfile_on_db(self.request.tid, self.session.user_id, rtip_id, self.uploaded_file)
 
 
-class RTipWBFileHandler(BaseHandler):
+class ReceiverFileDownload(BaseHandler):
     """
     This handler lets the recipient download and delete rfiles, which are files
     intended for delivery to the whistleblower.
@@ -760,22 +756,19 @@ class RTipWBFileHandler(BaseHandler):
 
     @transact
     def download_rfile(self, session, tid, user_id, file_id):
-        rfile, wbtip, pgp_key = db_get(session,
-                                        (models.ReceiverFile,
-                                         models.InternalTip,
-                                         models.User.pgp_key_public),
-                                        (models.User.id == user_id,
-                                         models.User.id == models.ReceiverTip.receiver_id,
-                                         models.ReceiverFile.id == file_id,
-                                         models.ReceiverFile.internaltip_id == models.InternalTip.id))
-
-        rtip = session.query(models.ReceiverTip) \
-                      .filter(models.ReceiverTip.receiver_id == self.session.user_id,
-                              models.ReceiverTip.internaltip_id == wbtip.id).one_or_none()
-        if not rtip:
+        try:
+            rfile, rtip, pgp_key = db_get(session,
+                                          (models.ReceiverFile,
+                                           models.ReceiverTip,
+                                           models.User.pgp_key_public),
+                                          (models.User.id == user_id,
+                                           models.User.id == models.ReceiverTip.receiver_id,
+                                           models.ReceiverFile.id == file_id,
+                                           models.ReceiverFile.internaltip_id == models.ReceiverTip.internaltip_id))
+        except:
             raise errors.ResourceNotFound
-
-        return rfile.name, rfile.id, base64.b64decode(rtip.crypto_tip_prv_key), pgp_key
+        else:
+            return rfile.name, rfile.id, base64.b64decode(rtip.crypto_tip_prv_key), pgp_key
 
     @inlineCallbacks
     def get(self, rfile_id):
