@@ -251,7 +251,6 @@ class MigrationScript(MigrationBase):
 
             self.session_new.add(new_obj)
 
-
     def migrate_WhistleblowerFile(self):
         self.entries_count['WhistleblowerFile'] = 0
         for old_obj, old_ifile in self.session_old.query(self.model_from['WhistleblowerFile'], self.model_from['InternalFile']) \
@@ -281,6 +280,11 @@ class MigrationScript(MigrationBase):
                     setattr(new_obj, key, r.internaltip_id)
                 elif key in old_obj.__mapper__.column_attrs.keys():
                     setattr(new_obj, key, getattr(old_obj, key))
+
+            srcpath = os.path.abspath(os.path.join(Settings.attachments_path, old_obj.filename))
+            dstpath = os.path.abspath(os.path.join(Settings.attachments_path, old_obj.id))
+            if os.path.exists(srcpath):
+                shutil.move(srcpath, dstpath)
 
             self.session_new.add(new_obj)
 
