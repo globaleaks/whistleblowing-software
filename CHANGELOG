@@ -1,3 +1,6 @@
+Changes in version 4.13.10
+    Revise fixes included in 4.13.10 in compatibility with all sw versions
+
 Changes in version 4.13.9
     Complete fix for failure on files migration from versions <= 4.11.5 (#3606)
     File restore procedure described on ticket
