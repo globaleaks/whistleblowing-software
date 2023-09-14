@@ -105,6 +105,38 @@ class ReceiverTip_v_64(Model):
     crypto_files_prv_key = Column(UnicodeText(84), default='', nullable=False)
 
 
+
+class ReceiverFile_v_64(Model):
+    __tablename__ = 'whistleblowerfile'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    receivertip_id = Column(UnicodeText(36), nullable=False, index=True)
+    name = Column(UnicodeText, nullable=False)
+    filename = Column(UnicodeText(255), unique=True, nullable=False)
+    size = Column(Integer, nullable=False)
+    content_type = Column(UnicodeText, nullable=False)
+    creation_date = Column(DateTime, default=datetime_now, nullable=False)
+    access_date = Column(DateTime, default=datetime_null, nullable=False)
+    description = Column(UnicodeText, nullable=False)
+    new = Column(Boolean, default=True, nullable=False)
+
+
+class SubmissionStatus_v_64(Model):
+    __tablename__ = 'submissionstatus'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    tid = Column(Integer, primary_key=True, default=1)
+    label = Column(JSON, default=dict, nullable=False)
+    order = Column(Integer, default=0, nullable=False)
+
+
+class SubmissionSubStatus_v_64(Model):
+    __tablename__ = 'submissionsubstatus'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    tid = Column(Integer, primary_key=True, default=1)
+    submissionstatus_id = Column(UnicodeText(36), nullable=False)
+    label = Column(JSON, default=dict, nullable=False)
+    order = Column(Integer, default=0, nullable=False)
+
+
 class User_v_64(Model):
     __tablename__ = 'user'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
@@ -148,35 +180,14 @@ class User_v_64(Model):
     clicked_recovery_key = Column(Boolean, default=False, nullable=False)
 
 
-class ReceiverFile_v_64(Model):
-    __tablename__ = 'whistleblowerfile'
+class WhistleblowerFile_v_64(Model):
+    __tablename__ = 'receiverfile'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    filename = Column(UnicodeText(255), nullable=False)
+    internalfile_id = Column(UnicodeText(36), nullable=False, index=True)
     receivertip_id = Column(UnicodeText(36), nullable=False, index=True)
-    name = Column(UnicodeText, nullable=False)
-    filename = Column(UnicodeText(255), unique=True, nullable=False)
-    size = Column(Integer, nullable=False)
-    content_type = Column(UnicodeText, nullable=False)
-    creation_date = Column(DateTime, default=datetime_now, nullable=False)
     access_date = Column(DateTime, default=datetime_null, nullable=False)
-    description = Column(UnicodeText, nullable=False)
     new = Column(Boolean, default=True, nullable=False)
-
-
-class SubmissionStatus_v_64(Model):
-    __tablename__ = 'submissionstatus'
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    tid = Column(Integer, primary_key=True, default=1)
-    label = Column(JSON, default=dict, nullable=False)
-    order = Column(Integer, default=0, nullable=False)
-
-
-class SubmissionSubStatus_v_64(Model):
-    __tablename__ = 'submissionsubstatus'
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    tid = Column(Integer, primary_key=True, default=1)
-    submissionstatus_id = Column(UnicodeText(36), nullable=False)
-    label = Column(JSON, default=dict, nullable=False)
-    order = Column(Integer, default=0, nullable=False)
 
 
 class MigrationScript(MigrationBase):
@@ -222,7 +233,6 @@ class MigrationScript(MigrationBase):
 
             self.session_new.add(new_obj)
 
-
     def migrate_InternalFile(self):
         for old_obj in self.session_old.query(self.model_from['InternalFile']):
             srcpath = os.path.abspath(os.path.join(Settings.attachments_path, old_obj.filename))
@@ -257,16 +267,14 @@ class MigrationScript(MigrationBase):
                                                   .filter(self.model_from['WhistleblowerFile'].internalfile_id == self.model_from['InternalFile'].id):
             new_obj = self.model_to['WhistleblowerFile']()
             for key in new_obj.__mapper__.column_attrs.keys():
-                if key == 'filename':
-                    if old_obj.filename != old_ifile.filename:
-                        new_obj.filename = old_obj.id
-                        srcpath = os.path.abspath(os.path.join(Settings.attachments_path, old_obj.filename))
-                        dstpath = os.path.abspath(os.path.join(Settings.attachments_path, old_obj.id))
-                        if os.path.exists(srcpath):
-                            shutil.move(srcpath, dstpath)
-
-                elif key in old_obj.__mapper__.column_attrs.keys():
+                if key in old_obj.__mapper__.column_attrs.keys():
                     setattr(new_obj, key, getattr(old_obj, key))
+
+            if old_obj.filename != old_ifile.filename:
+                srcpath = os.path.abspath(os.path.join(Settings.attachments_path, old_obj.filename))
+                dstpath = os.path.abspath(os.path.join(Settings.attachments_path, old_obj.id))
+                if os.path.exists(srcpath):
+                    shutil.move(srcpath, dstpath)
 
             self.session_new.add(new_obj)
             self.entries_count['WhistleblowerFile'] += 1
