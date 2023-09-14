@@ -1,3 +1,7 @@
+Changes in version 4.13.9
+    Complete fix for failure on files migration from versions <= 4.11.5 (#3606)
+    File restore procedure described on ticket
+
 Changes in version 4.13.8
     Fix regression on fileviewer introduced in 4.13.0
     Revise migration to db version 65 in relation to recipient files
