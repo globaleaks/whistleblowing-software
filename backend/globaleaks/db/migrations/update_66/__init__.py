@@ -14,6 +14,7 @@ class ReceiverFile_v_65(Model):
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     internaltip_id = Column(UnicodeText(36), nullable=False, index=True)
     name = Column(UnicodeText, nullable=False)
+    filename = Column(UnicodeText(255), nullable=False)
     size = Column(Integer, nullable=False)
     content_type = Column(UnicodeText, nullable=False)
     creation_date = Column(DateTime, default=datetime_now, nullable=False)
@@ -43,6 +44,7 @@ class SubmissionSubStatus_v_65(Model):
 class WhistleblowerFile_v_65(Model):
     __tablename__ = 'receiverfile'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    filename = Column(UnicodeText(255), nullable=False)
     internalfile_id = Column(UnicodeText(36), nullable=False, index=True)
     receivertip_id = Column(UnicodeText(36), nullable=False, index=True)
     access_date = Column(DateTime, default=datetime_null, nullable=False)
