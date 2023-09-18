@@ -7,6 +7,7 @@ import random
 import secrets
 import string
 import struct
+import threading
 import time
 
 from cryptography.hazmat.backends import default_backend
@@ -24,7 +25,7 @@ from typing import Any, Optional, Tuple, Union
 
 
 crypto_backend = default_backend()
-
+lock = threading.Lock()
 
 def _convert_to_bytes(arg: Union[bytes, str]) -> bytes:
     """
@@ -90,18 +91,29 @@ def totpVerify(secret: str, token: str) -> None:
 
 
 def _kdf_argon2(password: bytes, salt: bytes) -> bytes:
-    salt = base64.b64decode(salt)
-    return argon2id.kdf(32, password, salt[0:16],
-                        opslimit=_GCE.options['OPSLIMIT'] + 1,
-                        memlimit=1 << _GCE.options['MEMLIMIT'])
+    lock.acquire()
+
+    try:
+        salt = base64.b64decode(salt)
+        return argon2id.kdf(32, password, salt[0:16],
+                            opslimit=_GCE.options['OPSLIMIT'] + 1,
+                            memlimit=1 << _GCE.options['MEMLIMIT'])
+    finally:
+        lock.release()
 
 
 def _hash_argon2(password: bytes, salt: bytes) -> str:
-    salt = base64.b64decode(salt)
-    hash = argon2id.kdf(32, password, salt[0:16],
-                        opslimit=_GCE.options['OPSLIMIT'],
-                        memlimit=1 << _GCE.options['MEMLIMIT'])
-    return base64.b64encode(hash).decode()
+    lock.acquire()
+
+    try:
+        salt = base64.b64decode(salt)
+        hash = argon2id.kdf(32, password, salt[0:16],
+                            opslimit=_GCE.options['OPSLIMIT'],
+                            memlimit=1 << _GCE.options['MEMLIMIT'])
+        return base64.b64encode(hash).decode()
+
+    finally:
+        lock.release()
 
 
 class _StreamingEncryptionObject(object):
