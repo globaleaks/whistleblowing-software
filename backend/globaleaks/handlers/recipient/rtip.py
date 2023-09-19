@@ -722,15 +722,18 @@ class WhistleblowerFileDownload(BaseHandler):
 
         if tip_prv_key:
             tip_prv_key = GCE.asymmetric_decrypt(self.session.cc, base64.b64decode(tip_prv_key))
-
-            if tip_prv_key2:
-                files_prv_key = GCE.asymmetric_decrypt(self.session.cc, base64.b64decode(tip_prv_key2))
-            else:
-                files_prv_key = tip_prv_key
-
             name = GCE.asymmetric_decrypt(tip_prv_key, base64.b64decode(name.encode())).decode()
 
-            filelocation = GCE.streaming_encryption_open('DECRYPT', files_prv_key, filelocation)
+            try:
+                # First attempt
+                filelocation = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
+            except:
+                # Second attempt
+                if not tip_prv_key2:
+                    raise
+
+                files_prv_key2 = GCE.asymmetric_decrypt(self.session.cc, base64.b64decode(tip_prv_key2))
+                filelocation = GCE.streaming_encryption_open('DECRYPT', files_prv_key2, filelocation)
 
         yield self.write_file_as_download(name, filelocation, pgp_key)
 
