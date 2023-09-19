@@ -265,7 +265,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
 
         tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText(tip.status, tip.substatus, $scope.submission_statuses);
 
-        if (tip.status !== 'new') {
+        if (tip.status !== "new") {
           let promise = new Promise(function(resolve, reject) {
             RTip({ id: tip.id }, function (tip) {
               $scope.tip = tip
@@ -276,14 +276,14 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
                   statsModel.unansweredTipsCount += 1;
                 }
 
-                if (lastComment.type === "receiver" && (tip.label.length > 0 || tip.wbfiles.length > 0 || tip.status !== 'opened')) {
+                if (lastComment.type === "receiver" && (tip.label.length > 0 || tip.wbfiles.length > 0 || tip.status !== "opened")) {
                   statsModel.receiverCount++
                 }
               }
 
               statsModel.recipients.push({
                 reportId: tip.progressive,
-                recipients: tip.receivers.map(receiver => receiver.name).join(' - ')
+                recipients: tip.receivers.map(receiver => receiver.name).join(" - ")
               });
 
               $scope.parseAnswers(tip);
@@ -300,7 +300,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
         statsModel.statusLabelCount[tip.submissionStatusStr] = (statsModel.statusLabelCount[tip.submissionStatusStr] || 0) + 1;
 
         const creationDateObj = new Date(tip.creation_date);
-        const monthYear = `${creationDateObj.toLocaleString('default', { month: 'long' })} ${creationDateObj.getFullYear()}`;
+        const monthYear = `${creationDateObj.toLocaleString("default", { month: "long" })} ${creationDateObj.getFullYear()}`;
         const reportCreationDate = new Date(tip.creation_date);
         const reportUpdateDate = new Date(tip.update_date);
 
@@ -352,7 +352,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
 
       statusPercentages.sort((a, b) => a.status.toLowerCase().localeCompare(b.status.toLowerCase()));
       statusPercentages.unshift({
-        status: 'Total Reports',
+        status: "Total Reports",
         count: statsModel.totalReports,
         percentage: statsModel.totalReports !== 0 ? "100" : "0.00"
       });
@@ -365,7 +365,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
         $scope.statusBarChart.data.datasets[0].data = data;
         $scope.statusBarChart.update();
       } else {
-        $scope.statusBarChart = Statistics.generateBarGraph('statusBarChart', labels, 'General Statistics', data, 'Number of Reports', 'Status');
+        $scope.statusBarChart = Statistics.generateBarGraph("statusBarChart", labels, "General Statistics", data, "Number of Reports", "Status");
       }
     };
 
@@ -380,7 +380,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
         $scope.perMonthLineGraph.data.datasets[0].data = reportData;
         $scope.perMonthLineGraph.update();
       } else {
-        $scope.perMonthLineGraph = Statistics.generateLineGraph('perMonthLineGraph', labels, 'Interaction Statistics', reportData, 'Month', 'Reports');
+        $scope.perMonthLineGraph = Statistics.generateLineGraph("perMonthLineGraph", labels, "Interaction Statistics", reportData, "Month", "Reports");
       }
     };
 
@@ -406,7 +406,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
       });
 
       let unlabeledCountData = statsModel.unlabeledCount.count;
-      let labels = ['Total Reports', ...Object.keys(statsModel.labelCounts), 'Unlabeled'];
+      let labels = ["Total Reports", ...Object.keys(statsModel.labelCounts), "Unlabeled"];
       let data = [statsModel.totalReports, ...labelCountsData, unlabeledCountData];
 
       if ($scope.labelCountsChart) {
@@ -414,14 +414,14 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
         $scope.labelCountsChart.data.datasets[0].data = data;
         $scope.labelCountsChart.update();
       } else {
-        $scope.labelCountsChart = Statistics.generateBarGraph('labelCountsChart', labels, 'Labels Statistics', data, 'Number of Reports', 'Label');
+        $scope.labelCountsChart = Statistics.generateBarGraph("labelCountsChart", labels, "Labels Statistics", data, "Number of Reports", "Label");
       }
     };
 
     $scope.generateAnswersGraph = function () {
       const sortedOptions = dropdownOptions.slice().sort((a, b) => a.optionLabel.localeCompare(b.optionLabel));
-      const labels = ['Total Reports', ...sortedOptions.map(entry => entry.optionLabel)];
-      const tooltip = ['Total Report', ...sortedOptions.map(entry => entry.question)];
+      const labels = ["Total Reports", ...sortedOptions.map(entry => entry.optionLabel)];
+      const tooltip = ["Total Report", ...sortedOptions.map(entry => entry.question)];
       const data = [statsModel.totalReports, ...sortedOptions.map(entry => entry.count)];
 
       if ($scope.channelCountsChart) {
@@ -437,7 +437,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
         };
         $scope.channelCountsChart.update();
       } else {
-        $scope.channelCountsChart = Statistics.generateBarGraph('dropdownOptionsChart', labels, 'Statistics', data, 'Number of Reports', 'DropdownOptions');
+        $scope.channelCountsChart = Statistics.generateBarGraph("dropdownOptionsChart", labels, "Statistics", data, "Number of Reports", "DropdownOptions");
       }
     };
 
@@ -447,7 +447,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
       const statPercentageCalculator = (value, totalvalue) => (!totalvalue ? 0 : ((value / totalvalue) * 100).toFixed(2) + " %");
 
       const submissionStatus = {
-        label: ['Total', 'New', 'Opened', 'Closed', 'Labeled', 'Unlabeled'],
+        label: ["Total", "New", "Opened", "Closed", "Labeled", "Unlabeled"],
         data: [
           totalReports,
           statPercentageCalculator(statsModel.statusLabelCount["New"], totalReports),
@@ -459,7 +459,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
       };
 
       const interactionStatus = {
-        label: ['Total Report', 'Average closure time (Days)', 'Total Unanswered Tips', 'Number of interactions', 'Tor Connections', 'Reciprocating whistle blower'],
+        label: ["Total Report", "Average closure time (Days)", "Total Unanswered Tips", "Number of interactions", "Tor Connections", "Reciprocating whistle blower"],
         data: [
           totalReports,
           statsModel.averageClosureTime,

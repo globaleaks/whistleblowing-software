@@ -688,7 +688,7 @@ factory("Statistics", ["$rootScope", "$filter", function($rootScope, $filter) {
       return {
         reports: [],
         totalReports: 0,
-        statusLabelCount: { 'New': 0, 'Opened': 0, 'Closed': 0 },
+        statusLabelCount: { "New": 0, "Opened": 0, "Closed": 0 },
         unansweredTipsCount: 0,
         receiverCount: 0,
         labelCounts: {},
@@ -710,7 +710,7 @@ factory("Statistics", ["$rootScope", "$filter", function($rootScope, $filter) {
       if(type == "bar"){
         options = {
           additionalOptions: {
-            indexAxis: 'y',
+            indexAxis: "y",
             barThickness: 35,
             categoryPercentage: 1.0,
           },
@@ -724,8 +724,8 @@ factory("Statistics", ["$rootScope", "$filter", function($rootScope, $filter) {
           datasets: [{
             label: graphTitle,
             data: graphData,
-            backgroundColor: options.backgroundColor || 'rgba(55, 122, 188, 0.6)',
-            borderColor: options.borderColor || 'rgb(75, 192, 192)',
+            backgroundColor: options.backgroundColor || "rgba(55, 122, 188, 0.6)",
+            borderColor: options.borderColor || "rgb(75, 192, 192)",
             fill: options.fill || false,
             tension: options.tension || 0.1
           }]
@@ -749,7 +749,7 @@ factory("Statistics", ["$rootScope", "$filter", function($rootScope, $filter) {
               }
             }
           },
-          indexAxis: options.indexAxis || 'x',
+          indexAxis: options.indexAxis || "x",
           ...options.additionalOptions
         }
       });
@@ -758,7 +758,7 @@ factory("Statistics", ["$rootScope", "$filter", function($rootScope, $filter) {
     generateBarGraph: function (documentID, graphLabels, graphTitle, graphData, xlabel, ylabel) {
 
       const canvas = document.getElementById(documentID);
-      const ctx = canvas.getContext('2d');
+      const ctx = canvas.getContext("2d");
 
       let rowCount = graphLabels.length
       canvas.height = rowCount * (rowCount - (3.7 * rowCount * 0.2)) * (10 / Math.pow(1.03, rowCount));
@@ -767,24 +767,24 @@ factory("Statistics", ["$rootScope", "$filter", function($rootScope, $filter) {
         canvas.height = 10
       }
 
-      return this.generateGraph(ctx, 'bar', graphLabels, graphTitle, graphData, xlabel, ylabel);
+      return this.generateGraph(ctx, "bar", graphLabels, graphTitle, graphData, xlabel, ylabel);
     },
 
     generateLineGraph: function (documentID, graphLabels, graphTitle, graphData, xlabel, ylabel) {
-      let ctx = document.getElementById(documentID).getContext('2d');
-      return this.generateGraph(ctx, 'line', graphLabels, graphTitle, graphData, xlabel, ylabel);
+      let ctx = document.getElementById(documentID).getContext("2d");
+      return this.generateGraph(ctx, "line", graphLabels, graphTitle, graphData, xlabel, ylabel);
     },
 
     export: function (answerArray, reports, recipients) {
       const labels = ["report number #", "label", "status", "substatus", "report date", "update date", "channel", "recipients", "content of preview question(s)"];
       function escapeCSVValue(value) {
         if (/[,"\n]/.test(value)) {
-          value = `"${value.replace(/"/g, '""')}"`;
+          value = `"${value.replace(/"/g, "\"\"")}"`;
         }
         return value;
       }
 
-      const csvContent = labels.map(escapeCSVValue).join(',') + '\n';
+      const csvContent = labels.map(escapeCSVValue).join(",") + "\n";
 
       const groupedData = answerArray.reduce((acc, curr) => {
         const key = `${curr.reportId}_${curr.question}`;
@@ -794,10 +794,10 @@ factory("Statistics", ["$rootScope", "$filter", function($rootScope, $filter) {
       }, {});
 
       const result = Object.values(groupedData);
-      result.forEach(item => item.answers = item.answers.join(' | '));
+      result.forEach(item => item.answers = item.answers.join(" | "));
 
       const csvRows = reports.map(report => {
-        const [status, substatus] = report.submissionStatusStr.split('(').map(s => s.trim());
+        const [status, substatus] = report.submissionStatusStr.split("(").map(s => s.trim());
 
         const reportQuestionsAndAnswers = result.filter(item => item.reportId === report.progressive)
           .map(item => `${item.question} - ${item.answers}`);
@@ -810,21 +810,21 @@ factory("Statistics", ["$rootScope", "$filter", function($rootScope, $filter) {
           report.label,
           status,
           substatus,
-          $filter('date')(report.creation_date, 'dd/MM/yyyy HH:mm'),
-          $filter('date')(report.update_date, 'dd/MM/yyyy HH:mm'),
+          $filter("date")(report.creation_date, "dd/MM/yyyy HH:mm"),
+          $filter("date")(report.update_date, "dd/MM/yyyy HH:mm"),
           report.context.name,
-          recipientsList.join(' | '),
+          recipientsList.join(" | "),
           ...reportQuestionsAndAnswers
-        ].map(escapeCSVValue).join(',');
+        ].map(escapeCSVValue).join(",");
 
         return rowData;
       });
 
-      const csvContentFinal = csvContent + csvRows.join('\n');
-      const blob = new Blob([csvContentFinal], { type: 'text/csv;charset=utf-8;' });
-      const link = document.createElement('a');
-      link.setAttribute('href', URL.createObjectURL(blob));
-      link.setAttribute('download', 'data.csv');
+      const csvContentFinal = csvContent + csvRows.join("\n");
+      const blob = new Blob([csvContentFinal], { type: "text/csv;charset=utf-8;" });
+      const link = document.createElement("a");
+      link.setAttribute("href", URL.createObjectURL(blob));
+      link.setAttribute("download", "data.csv");
       document.body.appendChild(link);
       link.click();
     },
@@ -869,7 +869,7 @@ factory("Statistics", ["$rootScope", "$filter", function($rootScope, $filter) {
           let answer;
 
           if (children.type === "date") {
-            answer = $filter('date')(answerValue, 'dd/MM/yyyy HH:mm');
+            answer = $filter("date")(answerValue, "dd/MM/yyyy HH:mm");
           } else if (children.type === "daterange") {
             answer = Statistics.formatDateRange(answerValue);
           } else {
@@ -889,9 +889,9 @@ factory("Statistics", ["$rootScope", "$filter", function($rootScope, $filter) {
       const [startDateStr, endDateStr] = range.split(":");
       const startDate = new Date(startDateStr);
       const endDate = new Date(endDateStr);
-      const options = { timeZone: 'UTC' };
-      const formattedStartDate = startDate.toLocaleString('en-GB', options);
-      const formattedEndDate = endDate.toLocaleString('en-GB', options);
+      const options = { timeZone: "UTC" };
+      const formattedStartDate = startDate.toLocaleString("en-GB", options);
+      const formattedEndDate = endDate.toLocaleString("en-GB", options);
       return `${formattedStartDate} to ${formattedEndDate}`;
     }
   };
