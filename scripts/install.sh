@@ -113,8 +113,8 @@ if echo "$DISTRO_CODENAME" | grep -vqE "^bookworm$" ; then
   prompt_for_continuation
 fi
 
-if [ -f /etc/init.d/globaleaks ]; then
-  DO "/etc/init.d/globaleaks stop"
+if [ -f /etc/systemd/system/globaleaks.service ]; then
+  DO "systemctl stop globaleaks"
 fi
 
 # align apt-get cache to up-to-date state on configured repositories
@@ -223,5 +223,7 @@ done
 
 #ERROR
 echo "Ouch! The installation is complete but GlobaLeaks failed to start."
+netstat -tln
+cat /var/globaleaks/log/globaleaks.log
 last_status "1"
 exit 1
