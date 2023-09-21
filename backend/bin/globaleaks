@@ -15,8 +15,8 @@ sys.path.insert(0, root)
 
 from globaleaks.utils.utility import get_distribution_codename
 
-if get_distribution_codename() != 'bullseye':
-    print("WARNING: The current long term supported platform is Debian 11 (bullseye)")
+if get_distribution_codename() != 'bookworm':
+    print("WARNING: The current long term supported platform is Debian 12 (bookworm)")
     print("WARNING: It is recommended to use only this platform to ensure stability and security")
     print("WARNING: To upgrade your system consult: https://docs.globaleaks.org/en/main/user/admin/UpgradeGuide.html")
 
