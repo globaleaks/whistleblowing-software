@@ -19,8 +19,4 @@ if [ ! -d "/var/globaleaks" ]; then
     mkdir -m 700 /var/globaleaks && chown globaleaks:globaleaks /var/globaleaks
 fi
 
-if which pycompile >/dev/null 2>&1; then
-  pycompile -p globaleaks
-fi
-
 #DEBHELPER#

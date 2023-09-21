@@ -1,0 +1,19 @@
+Description=LSB: Start the GlobaLeaks server.
+Before=multi-user.target
+Before=graphical.target
+After=remote-fs.target
+After=network-online.target
+After=nss-lookup.target
+After=time-sync.target
+Wants=network-online.target
+
+[Service]
+Type=forking
+Restart=on-failure
+TimeoutSec=5min
+KillMode=process
+RemainAfterExit=yes
+ExecStart=/etc/init.d/globaleaks start
+ExecStop=/etc/init.d/globaleaks stop
+ExecReload=/etc/init.d/globaleaks reload
+PIDFile=/var/globaleaks/globaleaks.pid
