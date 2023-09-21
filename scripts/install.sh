@@ -38,6 +38,7 @@ function DO () {
 
 LOGFILE="./install.log"
 ASSUMEYES=0
+DISABLEAUTOSTART=0
 
 DISTRO="unknown"
 DISTRO_CODENAME="unknown"
@@ -77,12 +78,15 @@ usage() {
   echo "Valid options:"
   echo -e " -h show the script helper"
   echo -e " -y assume yes"
+  echo -e " -n disable autostart"
   echo -e " -v install a specific software version"
 }
 
-while getopts "hyv:" opt; do
+while getopts "ynvh:" opt; do
   case $opt in
     y) ASSUMEYES=1
+    ;;
+    n) DISABLEAUTOSTART=1
     ;;
     v) VERSION="$OPTARG"
     ;;
@@ -164,6 +168,10 @@ fi
 echo "Updating GlobaLeaks apt source.list in /etc/apt/sources.list.d/globaleaks.list ..."
 echo "deb http://deb.globaleaks.org $DISTRO_CODENAME/" > /etc/apt/sources.list.d/globaleaks.list
 
+if [ $DISABLEAUTOSTART -eq 1 ]; then
+  systemctl mask globaleaks
+fi
+
 if [ -d /globaleaks/deb ]; then
   DO "apt-get -y update"
   DO "apt-get -y install dpkg-dev"
@@ -182,6 +190,10 @@ else
   else
     DO "apt-get install globaleaks -y"
   fi
+fi
+
+if [ $DISABLEAUTOSTART -eq 1 ]; then
+  exit 0
 fi
 
 # Set the script to its success condition
