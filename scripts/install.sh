@@ -147,11 +147,11 @@ echo " + required TCP sockets open"
 # Depending on the intention of the user to proceed anyhow installing on
 # a not supported distro we using the experimental package if it exists
 # or Buster as fallback.
-if echo "$DISTRO_CODENAME" | grep -vqE "^(bionic|bullseye|buster|focal|jammy)$"; then
+if echo "$DISTRO_CODENAME" | grep -vqE "^(bionic|bookworm|bullseye|buster|focal|jammy)$"; then
   # In case of unsupported platforms we fallback on Bullseye
   echo "No packages available for the current distribution; the install script will use the Buster repository."
   DISTRO="Debian"
-  DISTRO_CODENAME="bullseye"
+  DISTRO_CODENAME="bookworm"
 fi
 
 echo "Adding GlobaLeaks PGP key to trusted APT keys"
