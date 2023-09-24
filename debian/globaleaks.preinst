@@ -10,6 +10,10 @@ set -e
 
 #DEBHELPER#
 
+set +e
+systemctl mask tor
+set -e
+
 if [ "$1" = "upgrade" ]; then
   service globaleaks stop || true
 fi
