@@ -52,18 +52,18 @@
     "ng-csv": "0.3.6",
     "ng-idle": "1.3.2",
     "ng-showdown": "1.1.0",
-    "pdfjs-dist": "3.10.111",
+    "pdfjs-dist": "3.11.174",
     "qrcode-generator": "1.4.4",
     "ui-bootstrap4": "3.0.7",
     "ui-select": "0.19.8"
   },
   "devDependencies": {
     "@babel/cli": "7.22.15",
-    "@babel/core": "7.22.17",
-    "@cypress/code-coverage": "3.12.0",
+    "@babel/core": "7.22.20",
+    "@cypress/code-coverage": "3.12.1",
     "@lodder/grunt-postcss": "3.1.1",
-    "cypress": "13.1.0",
-    "eslint": "8.49.0",
+    "cypress": "13.2.0",
+    "eslint": "8.50.0",
     "gettext-parser": "7.0.1",
     "grunt": "1.6.1",
     "grunt-angular-templates": "1.2.0",
@@ -80,13 +80,13 @@
     "grunt-usemin": "3.1.1",
     "gruntify-eslint": "5.0.0",
     "node-gettext": "3.0.0",
-    "npm-check-updates": "16.13.3",
+    "npm-check-updates": "16.14.4",
     "nyc": "15.1.0",
     "postcss-rtl": "2.0.0",
     "stylelint": "15.10.3",
     "stylelint-config-standard": "34.0.0",
     "superagent": "8.1.2",
-    "terser": "5.19.4"
+    "terser": "5.20.0"
   },
   "overrides": {
     "grunt-stylelint": {
