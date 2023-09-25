@@ -1,11 +1,11 @@
 <header id="HeaderBox">
   <div class="row">
     <div id="HeaderBox1" class="col-auto mr-auto">
-      <a id="LogoBox" data-ng-click="setHomepage()">
+      <a id="LogoBox" href="#" data-ng-click="setHomepage()">
         <img class="img-fluid" alt="{{projectTitle}}" data-ng-src="{{public.node.logo ? 's/logo' : 'data/logo.png'}}" />
       </a>
       <div id="TitleBox" data-ng-if="projectTitle || pageTitle">
-        <a data-ng-if="projectTitle" data-ng-click="setHomepage()" id="ProjectTitle"><h1 data-ng-if="!pageTitle">{{projectTitle}}</h1><span data-ng-if="pageTitle">{{projectTitle}}</span></a><span data-ng-if="projectTitle && pageTitle" class="TitleSeparator"> - </span><span><h1 data-ng-if="pageTitle" id="PageTitle">{{pageTitle | translate}}</h1></span>
+        <a data-ng-if="projectTitle" href="#" data-ng-click="setHomepage()" id="ProjectTitle"><h1 data-ng-if="!pageTitle">{{projectTitle}}</h1><span data-ng-if="pageTitle">{{projectTitle}}</span></a><span data-ng-if="projectTitle && pageTitle" class="TitleSeparator"> - </span><span><h1 data-ng-if="pageTitle" id="PageTitle">{{pageTitle | translate}}</h1></span>
       </div>
     </div>
     <div id="HeaderBox2" class="col-auto">
