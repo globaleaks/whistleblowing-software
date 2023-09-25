@@ -554,9 +554,6 @@ msgstr "Датум на создавање"
 msgid "Last access"
 msgstr "Последен пристап"
 
-msgid "Messages"
-msgstr "Пораки"
-
 msgid "Whistleblower's last access"
 msgstr "Последен пристап на свиркачот"
 

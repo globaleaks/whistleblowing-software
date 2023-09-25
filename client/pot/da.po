@@ -9,11 +9,12 @@
 # Denis Smajlović <deni@deni.dk>, 2019
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2018,2020-2022
 # Noah Böhme <noah0907@gmail.com>, 2021
+# Preben Sørensen <preben@rather.dk>, 2023
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2018,2020-2022\n"
+"Last-Translator: Preben Sørensen <preben@rather.dk>, 2023\n"
 "Language-Team: Danish (http://app.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -112,7 +113,7 @@ msgid "Refresh"
 msgstr "Opdater"
 
 msgid "Channel"
-msgstr ""
+msgstr "Kanal"
 
 msgid "Preview"
 msgstr "Forhåndsvisning"
@@ -458,13 +459,13 @@ msgid "Transfer"
 msgstr "Overfør"
 
 msgid "Assigned to"
-msgstr ""
+msgstr "Tildelt til"
 
 msgid "Not provided."
-msgstr ""
+msgstr "Ikke forudsat."
 
 msgid "Set a reminder"
-msgstr ""
+msgstr "Sæt en påmindelse"
 
 msgid "Privileges"
 msgstr "Privilegier"
@@ -473,19 +474,19 @@ msgid "Hide"
 msgstr "Skjul"
 
 msgid "Unhide"
-msgstr ""
+msgstr "Vis"
 
 msgid "Redact"
-msgstr ""
+msgstr "Redigér"
 
 msgid "Select an option"
-msgstr ""
+msgstr "Vælg en indstilling"
 
 msgid "Select your language"
 msgstr "Vælg dit sprog"
 
 msgid "Give this user ability to mask information"
-msgstr ""
+msgstr "Giv denne bruger mulighed for at sløre informationer"
 
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
@@ -494,34 +495,34 @@ msgid "Public"
 msgstr "Offentlig"
 
 msgid "Internal"
-msgstr ""
+msgstr "Intern"
 
 msgid "Personal"
-msgstr ""
+msgstr "Personlig"
 
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Privatlivspolitik"
 
 msgid "I've read and accept the Privacy Policy"
-msgstr ""
+msgstr "Jeg har læst og accepteret privatlivspolitikken"
 
 msgid "Download copy of the Privacy Policy"
-msgstr ""
+msgstr "Hent en kopi af privatlivspolitikken"
 
 msgid "Whistleblowing Policy"
-msgstr ""
+msgstr "Whitleblowing-politik"
 
 msgid "Accessibility Declaration"
-msgstr ""
+msgstr "Tilgængeligheds-deklaration"
 
 msgid "Voice"
-msgstr ""
+msgstr "Stemme"
 
 msgid "File a report"
 msgstr "Indsend en rapportering"
 
 msgid "Select a reporting channel:"
-msgstr ""
+msgstr "Vælg en rapporterings-kanal"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Før du fortsætter bedes du indstille en ny adgangskode."
@@ -558,9 +559,6 @@ msgstr "Oprettelsesdato"
 
 msgid "Last access"
 msgstr "Seneste login"
-
-msgid "Messages"
-msgstr "Beskeder"
 
 msgid "Whistleblower's last access"
 msgstr "Whistleblowerens seneste adgang"
@@ -605,7 +603,7 @@ msgid "Recipients"
 msgstr "Modtagere"
 
 msgid "Reminder date"
-msgstr ""
+msgstr "Påmindelsesdato"
 
 msgid "days"
 msgstr "dage"
@@ -993,10 +991,10 @@ msgid "Administrators authorized to change user passwords:"
 msgstr "Tillad administratorer at ændre brugeradgangskoder"
 
 msgid "Enable file viewer"
-msgstr ""
+msgstr "Aktivér filvisning"
 
 msgid "Enable PGP"
-msgstr ""
+msgstr "Aktivér PGP"
 
 msgid "Enable simplified login"
 msgstr "Aktivér simplificeret login"
@@ -1008,7 +1006,7 @@ msgid "Default questionnaire"
 msgstr "Standard spørgeskema"
 
 msgid "Show channels in alphabetical order"
-msgstr ""
+msgstr "Vis kanaler i alfabetisk orden"
 
 msgid "Size limit for file attachments"
 msgstr "Størrelsesgrænse for vedhæftede filer"
@@ -1083,7 +1081,7 @@ msgid "Sites"
 msgstr "Sider"
 
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 msgid "Configure"
 msgstr "Konfigurer"
@@ -1164,10 +1162,10 @@ msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Tillad modtageren at udsætte udløbsdatoen på indberetningen"
 
 msgid "Give this user ability to grant user access to reports"
-msgstr ""
+msgstr "Giv denne bruger mulighed for at give brugere adgang til rapporter"
 
 msgid "Give this user ability to transfer reports to other users"
-msgstr ""
+msgstr "Giv denne bruger mulighed for at overføre rapporter til andre brugere"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Giv brugere administrative adgang til følgende funktioner:"
@@ -1273,10 +1271,10 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Ved at bekræfte udsætter du udløbsdatoen til:"
 
 msgid "By confirming, you will set a reminder on date:"
-msgstr ""
+msgstr "Ved at bekræfte, opretter du en påmindelsesdato den:"
 
 msgid "Transfer access"
-msgstr ""
+msgstr "Overførselsadgang"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Dette er en demonstrationsplatform. Undlad at bruge den til rigtige indsendelser."
@@ -1338,7 +1336,7 @@ msgstr "Advarsel"
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr "Vi opfordre kraftigt til at bruge et program kaldet \"Tor Browser\" til denne side, for at beskytte din identitet"
+msgstr "Vi opfordrer kraftigt til at bruge programmet \"Tor Browser\" til denne side, for at beskytte din identitet."
 
 msgid "Download the Tor Browser"
 msgstr "Download Tor browseren"
@@ -1359,7 +1357,7 @@ msgid "Size:"
 msgstr "Størrelse:"
 
 msgid "Access date"
-msgstr ""
+msgstr "Adgangsdato"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Modtagere har anmodet dig om at udfylde et ekstra spørgeskema."
@@ -1464,7 +1462,7 @@ msgid "Show"
 msgstr "Vis"
 
 msgid "Subscription date"
-msgstr ""
+msgstr "Tilmeld-dato"
 
 msgid "Congratulations!"
 msgstr "Tillykke!"
@@ -1504,7 +1502,7 @@ msgid "Address"
 msgstr "Adresse"
 
 msgid "Fiscal code"
-msgstr ""
+msgstr "Finanskode"
 
 msgid "Tax code"
 msgstr "Skattekode"
@@ -1547,7 +1545,7 @@ msgid "View your report"
 msgstr "Se din indberetning"
 
 msgid "Select the recipients of your report"
-msgstr ""
+msgstr "Vælg modtageren af din rapport"
 
 msgid "Recipients selected:"
 msgstr "Valgte modtagere:"
@@ -1742,7 +1740,7 @@ msgid "The activities with unusual stats are:"
 msgstr "Aktiviteterne med usædvanlig statistik er:"
 
 msgid "Available disk space: {FreeMemory}/{TotalMemory}"
-msgstr ""
+msgstr "Tilgængelig diskplads: {FreeMemory}/{TotalMemory}"
 
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
@@ -1973,7 +1971,7 @@ msgid "New report"
 msgstr "Ny indberetning"
 
 msgid "One or more reports are expiring and will be soon deleted."
-msgstr ""
+msgstr "En eller flere rapporter er ved at udløbe og vil snart blive slettet."
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Den tidligste udløbsdato er  {EarliestExpirationDate}."
@@ -1985,15 +1983,15 @@ msgid "Some reports will expire soon"
 msgstr "Der er indsendelser, der snart udløber"
 
 msgid "This is an email to notify you the reception of a new report."
-msgstr ""
+msgstr "Dette er en e-mail om at du har modtaget en ny rapport."
 
 msgid ""
 "This is an email to notify you that the reminder date for one or more "
 "reports has been met."
-msgstr ""
+msgstr "Dette er en e-mail om at påmindelsesdatoen på en eller flere rapporter er nået."
 
 msgid "Reminder"
-msgstr ""
+msgstr "Påmindelse"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Dette er en email der underretter dig om at en eksisterende rapportering er blevet opdateret."

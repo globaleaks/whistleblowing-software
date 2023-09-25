@@ -553,9 +553,6 @@ msgstr "Дата стварэння"
 msgid "Last access"
 msgstr "Апошні доступ"
 
-msgid "Messages"
-msgstr "Паведамленні"
-
 msgid "Whistleblower's last access"
 msgstr "Апошні заход на платформу выкрывальніка"
 

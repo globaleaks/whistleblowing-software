@@ -552,9 +552,6 @@ msgstr "Sukūrimo data"
 msgid "Last access"
 msgstr "Paskutinis prisijungimas"
 
-msgid "Messages"
-msgstr "Laiškai"
-
 msgid "Whistleblower's last access"
 msgstr "Paskutinis pranešėjo prisijungimas"
 

@@ -558,9 +558,6 @@ msgstr "Datum vnosa"
 msgid "Last access"
 msgstr "Zadnji dostop"
 
-msgid "Messages"
-msgstr "Sporočila"
-
 msgid "Whistleblower's last access"
 msgstr "Prijaviteljev zadnji dostop"
 
@@ -1007,7 +1004,7 @@ msgid "Default questionnaire"
 msgstr "Privzeti vprašalnik"
 
 msgid "Show channels in alphabetical order"
-msgstr ""
+msgstr "Prikaži kanale po abecednem redu"
 
 msgid "Size limit for file attachments"
 msgstr "Omejitev velikosti datotek v prilogah"

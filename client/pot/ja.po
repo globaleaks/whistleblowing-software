@@ -557,9 +557,6 @@ msgstr "作成日"
 msgid "Last access"
 msgstr "最終アクセス"
 
-msgid "Messages"
-msgstr "メッセージ"
-
 msgid "Whistleblower's last access"
 msgstr "WBの最終アクセス"
 

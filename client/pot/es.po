@@ -592,9 +592,6 @@ msgstr "Fecha de creación"
 msgid "Last access"
 msgstr "Último acceso"
 
-msgid "Messages"
-msgstr "Mensajes"
-
 msgid "Whistleblower's last access"
 msgstr "Último acceso del denunciante"
 
@@ -1041,7 +1038,7 @@ msgid "Default questionnaire"
 msgstr "Cuestionario por defecto"
 
 msgid "Show channels in alphabetical order"
-msgstr ""
+msgstr "Mostrar canales en orden alfabético."
 
 msgid "Size limit for file attachments"
 msgstr "Límite de tamaño para ficheros adjuntos"

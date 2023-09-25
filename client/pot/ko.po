@@ -553,9 +553,6 @@ msgstr "생성 날짜"
 msgid "Last access"
 msgstr "마지막 액세스"
 
-msgid "Messages"
-msgstr "메시지"
-
 msgid "Whistleblower's last access"
 msgstr "마지막 내부 고발자 액세스"
 

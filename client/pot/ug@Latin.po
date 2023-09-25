@@ -552,9 +552,6 @@ msgstr "Qurulghan chésla"
 msgid "Last access"
 msgstr "Axirqi ziyaret"
 
-msgid "Messages"
-msgstr "Uchurlar"
-
 msgid "Whistleblower's last access"
 msgstr "Pash qilghuchining axirqi ziyariti"
 

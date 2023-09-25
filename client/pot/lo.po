@@ -552,9 +552,6 @@ msgstr "ວັນທີສ້າງ"
 msgid "Last access"
 msgstr "ການເຂົ້າຄັ້ງສຸດທ້າຍ"
 
-msgid "Messages"
-msgstr "ຂໍ້ຄວາມ"
-
 msgid "Whistleblower's last access"
 msgstr "ການເຂົ້າຄັ້ງສຸດທ້າຍຂອງຜູ້ແຈ້ງເບາະແສ"
 

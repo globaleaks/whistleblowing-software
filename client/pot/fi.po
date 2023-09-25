@@ -562,9 +562,6 @@ msgstr "Luontipäivämäärä"
 msgid "Last access"
 msgstr "Viimeisin käyttö"
 
-msgid "Messages"
-msgstr "Viestit"
-
 msgid "Whistleblower's last access"
 msgstr "Vihjeenantajan viimeisin kirjautumisajankohta"
 

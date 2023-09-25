@@ -30,7 +30,7 @@
 # Midgard, 2015
 # Mieke van Heesewijk <mieke@netdem.nl>, 2013
 # Mieke van Heesewijk <mieke@netdem.nl>, 2013
-# M M <wouter.moraal92@gmail.com>, 2015
+# M M <privstuff@woutermoraal.nl>, 2015
 # Nathan Follens, 2016-2017
 # Meteor0id, 2019
 # Niels ten Oever <niels@digitaldissidents.org>, 2013
@@ -595,9 +595,6 @@ msgstr "Datum van aanmaken"
 
 msgid "Last access"
 msgstr "Laatste toegang"
-
-msgid "Messages"
-msgstr "Berichten"
 
 msgid "Whistleblower's last access"
 msgstr "Laatste toegang van de klokkenluider"

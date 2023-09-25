@@ -557,9 +557,6 @@ msgstr "އުފެއްދި ތާރީޚް"
 msgid "Last access"
 msgstr "ހުށައެޅުމުގެ ކުރިން އެންމެ ފަހު އެކްސެސް"
 
-msgid "Messages"
-msgstr "މެސެޖެސް"
-
 msgid "Whistleblower's last access"
 msgstr "ވިސްލްބްލޯވަރގެ އެންމެ ފަހުގެ އެކްސެސް"
 

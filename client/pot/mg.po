@@ -568,9 +568,6 @@ msgstr "Daty namoronana azy"
 msgid "Last access"
 msgstr "Dernier accès"
 
-msgid "Messages"
-msgstr "Messages"
-
 msgid "Whistleblower's last access"
 msgstr ""
 

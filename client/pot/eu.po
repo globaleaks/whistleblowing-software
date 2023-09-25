@@ -570,9 +570,6 @@ msgstr "Sortze-data"
 msgid "Last access"
 msgstr "Azken sarrera"
 
-msgid "Messages"
-msgstr "Mezuak"
-
 msgid "Whistleblower's last access"
 msgstr "Salatzailearen azken sarrera"
 

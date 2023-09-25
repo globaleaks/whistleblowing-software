@@ -562,9 +562,6 @@ msgstr "Dátum vytvorenia"
 msgid "Last access"
 msgstr "Posledný prístup"
 
-msgid "Messages"
-msgstr "Správy"
-
 msgid "Whistleblower's last access"
 msgstr "Posledný prístup oznamovateľa"
 

@@ -573,9 +573,6 @@ msgstr "创建日期"
 msgid "Last access"
 msgstr "上次访问"
 
-msgid "Messages"
-msgstr "消息"
-
 msgid "Whistleblower's last access"
 msgstr "揭发者上次访问"
 

@@ -559,9 +559,6 @@ msgstr "তৈরির তারিখ"
 msgid "Last access"
 msgstr "শেষবার প্রবেশ"
 
-msgid "Messages"
-msgstr "বার্তাসমূহ"
-
 msgid "Whistleblower's last access"
 msgstr "হুইসেল ব্লোয়ারের শেষবার প্রবেশ"
 

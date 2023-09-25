@@ -582,9 +582,6 @@ msgstr "Дата создания"
 msgid "Last access"
 msgstr "Последний доступ"
 
-msgid "Messages"
-msgstr "Сообщения"
-
 msgid "Whistleblower's last access"
 msgstr "Последний доступ информатора"
 

@@ -567,9 +567,6 @@ msgstr "Ngày thành lập"
 msgid "Last access"
 msgstr "Lần truy cập cuối"
 
-msgid "Messages"
-msgstr "Tin nhắn"
-
 msgid "Whistleblower's last access"
 msgstr "Lần truy cập cuối của người tố giác"
 

@@ -552,9 +552,6 @@ msgstr "Төзү датасы"
 msgid "Last access"
 msgstr "Cоңгы керү"
 
-msgid "Messages"
-msgstr "Хәбәрләр"
-
 msgid "Whistleblower's last access"
 msgstr "Мәгълүмат җиткерүченең соңгы керүе"
 

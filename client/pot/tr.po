@@ -579,9 +579,6 @@ msgstr "Oluşturulma tarihi"
 msgid "Last access"
 msgstr "Son erişilme"
 
-msgid "Messages"
-msgstr "İletiler"
-
 msgid "Whistleblower's last access"
 msgstr "Muhbirin son erişme zamanı"
 
@@ -1028,7 +1025,7 @@ msgid "Default questionnaire"
 msgstr "Varsayılan anket"
 
 msgid "Show channels in alphabetical order"
-msgstr ""
+msgstr "Kanallar alfabetik sırada görüntülensin"
 
 msgid "Size limit for file attachments"
 msgstr "Ek dosyaların boyut sınırı"

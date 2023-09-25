@@ -559,9 +559,6 @@ msgstr "Yaradılma tarixi"
 msgid "Last access"
 msgstr "Son giriş "
 
-msgid "Messages"
-msgstr "İsmarışlar"
-
 msgid "Whistleblower's last access"
 msgstr "Məlumatlandıranın son girişi"
 

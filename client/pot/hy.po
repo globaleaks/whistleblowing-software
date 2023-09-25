@@ -554,9 +554,6 @@ msgstr "Ստեղծման ամսաթիվ"
 msgid "Last access"
 msgstr "Վերջին մուտք"
 
-msgid "Messages"
-msgstr "Հաղորդագրություններ"
-
 msgid "Whistleblower's last access"
 msgstr "Ազդարարի վերջին մուտքը"
 

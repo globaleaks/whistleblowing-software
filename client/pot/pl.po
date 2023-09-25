@@ -572,9 +572,6 @@ msgstr "Data utworzenia"
 msgid "Last access"
 msgstr "Ostatnia wizyta"
 
-msgid "Messages"
-msgstr "Wiadomości"
-
 msgid "Whistleblower's last access"
 msgstr "WB Ostatnio Zalogowany"
 

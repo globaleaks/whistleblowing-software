@@ -552,9 +552,6 @@ msgstr ""
 msgid "Last access"
 msgstr "Mara ya mwisho kuingia"
 
-msgid "Messages"
-msgstr "Ujumbe"
-
 msgid "Whistleblower's last access"
 msgstr "Mara ya mwisho kwa mtoa taarifa za siri kuingia"
 

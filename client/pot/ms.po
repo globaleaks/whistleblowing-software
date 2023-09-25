@@ -552,9 +552,6 @@ msgstr "Tarikh penciptaan"
 msgid "Last access"
 msgstr "Akses terakhir"
 
-msgid "Messages"
-msgstr "Mesej"
-
 msgid "Whistleblower's last access"
 msgstr "Akses terakhir pemberi maklumat"
 

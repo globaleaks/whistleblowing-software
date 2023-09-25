@@ -553,9 +553,6 @@ msgstr "Түзүү датасы"
 msgid "Last access"
 msgstr "Акыркы кирүү убакты"
 
-msgid "Messages"
-msgstr "Билдирүүлөр"
-
 msgid "Whistleblower's last access"
 msgstr "Кабарчынын акыркы кирүү убакыты"
 
