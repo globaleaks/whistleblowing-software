@@ -552,9 +552,6 @@ msgstr "Қурулған чесла"
 msgid "Last access"
 msgstr "Ахирқи зийарәт"
 
-msgid "Messages"
-msgstr "Учурлар"
-
 msgid "Whistleblower's last access"
 msgstr "Паш қилғучиниң ахирқи зийарити"
 

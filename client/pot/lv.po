@@ -557,9 +557,6 @@ msgstr "Izveidošanas datums"
 msgid "Last access"
 msgstr "Pēdējā piekļuve"
 
-msgid "Messages"
-msgstr "Ziņas"
-
 msgid "Whistleblower's last access"
 msgstr "Trauksmes cēlēja pēdēja piekļuve"
 

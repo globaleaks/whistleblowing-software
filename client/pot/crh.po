@@ -552,9 +552,6 @@ msgstr "Яратма тарихи"
 msgid "Last access"
 msgstr "Сонъ иришим"
 
-msgid "Messages"
-msgstr "Месажлар"
-
 msgid "Whistleblower's last access"
 msgstr "Малюмат бериджининъ сонъ иришими"
 

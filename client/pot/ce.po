@@ -554,9 +554,6 @@ msgstr "Кхолларан дата"
 msgid "Last access"
 msgstr "Тlаьххьара тlекхачар"
 
-msgid "Messages"
-msgstr "Косташ"
-
 msgid "Whistleblower's last access"
 msgstr "Iорадаккхархочун тlаьххьара тlекхачар"
 

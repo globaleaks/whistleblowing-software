@@ -565,9 +565,6 @@ msgstr "Ημερομηνία δημιουργίας"
 msgid "Last access"
 msgstr "Τελευταία πρόσβαση"
 
-msgid "Messages"
-msgstr "Μηνύματα"
-
 msgid "Whistleblower's last access"
 msgstr "Τελευταία πρόσβαση WB"
 

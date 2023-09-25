@@ -553,9 +553,6 @@ msgstr "Loomise kuupäev:"
 msgid "Last access"
 msgstr "Viimane sisselogimine"
 
-msgid "Messages"
-msgstr "Sõnumid"
-
 msgid "Whistleblower's last access"
 msgstr "Vihjeandja viimane sisselogimine"
 

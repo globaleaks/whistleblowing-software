@@ -560,9 +560,6 @@ msgstr "Датум стварања"
 msgid "Last access"
 msgstr "Posljednji pristup"
 
-msgid "Messages"
-msgstr "Поруке"
-
 msgid "Whistleblower's last access"
 msgstr "Posljednji pristup uzbunjivača"
 

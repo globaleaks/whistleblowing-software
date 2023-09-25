@@ -557,9 +557,6 @@ msgstr "Döredilen senesi"
 msgid "Last access"
 msgstr "Iň soňky giriş"
 
-msgid "Messages"
-msgstr "Habarlar"
-
 msgid "Whistleblower's last access"
 msgstr "Gizlin habar yetirijiniň soňky girişi"
 

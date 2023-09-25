@@ -566,9 +566,6 @@ msgstr "Data de creació"
 msgid "Last access"
 msgstr "Últim accés"
 
-msgid "Messages"
-msgstr "Missatges"
-
 msgid "Whistleblower's last access"
 msgstr "Últim accés de l'Informant"
 
@@ -1015,7 +1012,7 @@ msgid "Default questionnaire"
 msgstr "Qüestionari per defecte"
 
 msgid "Show channels in alphabetical order"
-msgstr ""
+msgstr "Mostrar els canals en ordre alfabètic"
 
 msgid "Size limit for file attachments"
 msgstr "Límit de tamany per als arxius adjunts"

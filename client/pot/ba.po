@@ -553,9 +553,6 @@ msgstr "Булдырыу датаһы"
 msgid "Last access"
 msgstr "Һуңғы тапҡыр ингән"
 
-msgid "Messages"
-msgstr "Хәбәрҙәр"
-
 msgid "Whistleblower's last access"
 msgstr "Информаторҙың һуңғы инеүе"
 

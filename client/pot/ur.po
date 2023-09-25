@@ -564,9 +564,6 @@ msgstr "تاریخِ تخلیق"
 msgid "Last access"
 msgstr "آخری رسائی"
 
-msgid "Messages"
-msgstr "پیغامات"
-
 msgid "Whistleblower's last access"
 msgstr "مخبر کی آخری رسائی "
 

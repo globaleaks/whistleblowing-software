@@ -560,9 +560,6 @@ msgstr "Санаи эҷод"
 msgid "Last access"
 msgstr "Дастрасии охирин"
 
-msgid "Messages"
-msgstr "Паёмҳо"
-
 msgid "Whistleblower's last access"
 msgstr "Дастрасии охирини хабардиҳанда"
 

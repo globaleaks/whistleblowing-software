@@ -554,9 +554,6 @@ msgstr "建立日期"
 msgid "Last access"
 msgstr "最近一次存取"
 
-msgid "Messages"
-msgstr "訊息"
-
 msgid "Whistleblower's last access"
 msgstr "吹哨者最近一次存取"
 

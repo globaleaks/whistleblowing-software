@@ -561,9 +561,6 @@ msgstr "Datë krijimi"
 msgid "Last access"
 msgstr "Hyrja e fundit"
 
-msgid "Messages"
-msgstr "Mesazhe"
-
 msgid "Whistleblower's last access"
 msgstr "Hyrja e fundit nga nxjerrës të fshehtash"
 

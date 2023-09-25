@@ -570,9 +570,6 @@ msgstr "Létrehozás ideje"
 msgid "Last access"
 msgstr "Legutóbbi hozzáférés"
 
-msgid "Messages"
-msgstr "Üzenetek"
-
 msgid "Whistleblower's last access"
 msgstr "A bejelentő utolsó belépési időpontja"
 

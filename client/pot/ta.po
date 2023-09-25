@@ -554,9 +554,6 @@ msgstr "உருவாக்கிய தேதி"
 msgid "Last access"
 msgstr "கடைசியாக அணுகியது"
 
-msgid "Messages"
-msgstr "செய்திகள்"
-
 msgid "Whistleblower's last access"
 msgstr ""
 

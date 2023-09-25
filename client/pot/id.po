@@ -577,9 +577,6 @@ msgstr "Tanggal pembuatan"
 msgid "Last access"
 msgstr "Akses terakhir"
 
-msgid "Messages"
-msgstr "Pesan"
-
 msgid "Whistleblower's last access"
 msgstr "Akses terakhir informan publik"
 

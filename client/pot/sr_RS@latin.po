@@ -558,9 +558,6 @@ msgstr "Datum kreiranja"
 msgid "Last access"
 msgstr "Poslednji pristup"
 
-msgid "Messages"
-msgstr "Poruke"
-
 msgid "Whistleblower's last access"
 msgstr "Poslednji pristup uzbunjivača"
 

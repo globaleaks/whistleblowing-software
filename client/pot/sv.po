@@ -507,7 +507,7 @@ msgid "Give this user ability to permanently redact masked information"
 msgstr "Ge denna användare förmågan att permanent radera maskerad information"
 
 msgid "Public"
-msgstr "Publik"
+msgstr "Allmän"
 
 msgid "Internal"
 msgstr "Intern"
@@ -574,9 +574,6 @@ msgstr "Datum för skapande"
 
 msgid "Last access"
 msgstr "Senaste åtkomst"
-
-msgid "Messages"
-msgstr "Meddelanden"
 
 msgid "Whistleblower's last access"
 msgstr "Tidpunkt för visselblåsarens senaste besök"

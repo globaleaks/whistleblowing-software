@@ -562,9 +562,6 @@ msgstr "วันที่สร้าง"
 msgid "Last access"
 msgstr "เข้าถึงล่าสุด"
 
-msgid "Messages"
-msgstr "ข้อความ"
-
 msgid "Whistleblower's last access"
 msgstr "การเข้าถึงของผู้แจ้งเบาะแสล่าสุด"
 

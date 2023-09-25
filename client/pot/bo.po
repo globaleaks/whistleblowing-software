@@ -553,9 +553,6 @@ msgstr "བཟོ་བསྐྲུན་ཚེས་གྲངས།"
 msgid "Last access"
 msgstr "ལྟ་སྤྱོད་མཐའ་མ།"
 
-msgid "Messages"
-msgstr "འཕྲིན་ཐུང་།"
-
 msgid "Whistleblower's last access"
 msgstr "གསང་སྒྲོག་པའི་ལྟ་སྤྱོད་མཐའ་མ།"
 

@@ -553,9 +553,6 @@ msgstr "የፍጥረት ቀን፡"
 msgid "Last access"
 msgstr "የመጨረሻ መዳረሻ"
 
-msgid "Messages"
-msgstr "መልእክቶች"
-
 msgid "Whistleblower's last access"
 msgstr "የመረጃ ሰጪው የመጨረሻ መዳረሻ"
 

@@ -568,9 +568,6 @@ msgstr "Data creării"
 msgid "Last access"
 msgstr "Ultima accesare"
 
-msgid "Messages"
-msgstr "Mesaje"
-
 msgid "Whistleblower's last access"
 msgstr "Ultima accesare de către avertizorul de integritate"
 

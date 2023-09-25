@@ -554,9 +554,6 @@ msgstr "Жасалған күні"
 msgid "Last access"
 msgstr "Соңғы қатынасу"
 
-msgid "Messages"
-msgstr "Хабарлар"
-
 msgid "Whistleblower's last access"
 msgstr "Хабарлаушының соңғы рет қатынасуы"
 

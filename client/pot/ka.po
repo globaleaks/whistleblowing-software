@@ -552,9 +552,6 @@ msgstr "შექმნის თარიღი"
 msgid "Last access"
 msgstr "ბოლო შესვლა"
 
-msgid "Messages"
-msgstr "შეტყობინებები"
-
 msgid "Whistleblower's last access"
 msgstr "ინსტრუქტორის ბოლო წვდომა"
 

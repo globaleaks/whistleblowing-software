@@ -553,9 +553,6 @@ msgstr "ဖန်တီးသည့်နေ့စွဲ"
 msgid "Last access"
 msgstr "နောက်ဆုံး အသုံးပြုခြင်း"
 
-msgid "Messages"
-msgstr "မက်ဆေ့ချ်များ"
-
 msgid "Whistleblower's last access"
 msgstr "သတင်းပေးသူ၏ နောက်ဆုံး အသုံးပြုခြင်း"
 

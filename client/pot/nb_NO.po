@@ -554,9 +554,6 @@ msgstr "Opprettelsesdato"
 msgid "Last access"
 msgstr "Siste tilgang"
 
-msgid "Messages"
-msgstr "Meldinger"
-
 msgid "Whistleblower's last access"
 msgstr "Siste tilgang til fløyteblåseren"
 

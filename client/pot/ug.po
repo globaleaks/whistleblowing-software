@@ -554,9 +554,6 @@ msgstr "قۇرۇلغان چېسلا"
 msgid "Last access"
 msgstr "ئاخىرقى زىيارەت"
 
-msgid "Messages"
-msgstr "ئۇچۇرلار"
-
 msgid "Whistleblower's last access"
 msgstr "پاش قىلغۇچىنىڭ ئاخىرقى زىيارىتى"
 

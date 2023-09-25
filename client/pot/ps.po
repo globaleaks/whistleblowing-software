@@ -552,9 +552,6 @@ msgstr "د جوړولو نېټه"
 msgid "Last access"
 msgstr "وروستی لاسرسی"
 
-msgid "Messages"
-msgstr "پیغامونه"
-
 msgid "Whistleblower's last access"
 msgstr "د افشاګر وروستی لاسرسی"
 

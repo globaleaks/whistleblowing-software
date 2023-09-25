@@ -553,9 +553,6 @@ msgstr "تاریخ ساخت "
 msgid "Last access"
 msgstr "آخرین دسترسی"
 
-msgid "Messages"
-msgstr "پیام ها"
-
 msgid "Whistleblower's last access"
 msgstr "آخرین دسترسی افشاگر "
 

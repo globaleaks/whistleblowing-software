@@ -598,9 +598,6 @@ msgstr "Erstellungsdatum"
 msgid "Last access"
 msgstr "Letzter Zugriff"
 
-msgid "Messages"
-msgstr "Mitteilungen"
-
 msgid "Whistleblower's last access"
 msgstr "Letzer Zugriff des Hinweisgebers"
 

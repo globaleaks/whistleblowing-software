@@ -554,9 +554,6 @@ msgstr "Yaratilgan sanasi"
 msgid "Last access"
 msgstr "Oxirgi ochilgan vaqti"
 
-msgid "Messages"
-msgstr "Xabarlar"
-
 msgid "Whistleblower's last access"
 msgstr "Oshkor qiluvchining oxirgi kirgan vaqti"
 

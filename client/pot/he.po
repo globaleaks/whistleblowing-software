@@ -569,9 +569,6 @@ msgstr "תאריך יצירה"
 msgid "Last access"
 msgstr "גישה אחרונה"
 
-msgid "Messages"
-msgstr "הודעות"
-
 msgid "Whistleblower's last access"
 msgstr ""
 

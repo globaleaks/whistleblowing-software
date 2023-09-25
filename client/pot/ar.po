@@ -600,9 +600,6 @@ msgstr "تاريخ الانشاء"
 msgid "Last access"
 msgstr "آخر دخول"
 
-msgid "Messages"
-msgstr "الرسائل"
-
 msgid "Whistleblower's last access"
 msgstr "ﺁخر دخول لـ WB"
 
