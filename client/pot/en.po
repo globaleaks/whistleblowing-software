@@ -509,6 +509,21 @@ msgstr "Accessibility Declaration"
 msgid "Voice"
 msgstr "Voice"
 
+msgid "Everyone"
+msgstr "Everyone"
+
+msgid "Recipients only"
+msgstr "Recipients only"
+
+msgid "Only me"
+msgstr "Only me"
+
+msgid "Specify:"
+msgstr "Specify:"
+
+msgid "Would you like to provide us who you are?"
+msgstr "Would you like to provide us who you are?"
+
 msgid "File a report"
 msgstr "File a report"
 
