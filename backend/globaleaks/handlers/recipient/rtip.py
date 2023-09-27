@@ -2,7 +2,10 @@
 #
 # Handlers dealing with tip interface for receivers (rtip)
 import base64
+import copy
+import json
 import os
+import re
 import time
 
 from datetime import datetime, timedelta
@@ -27,6 +30,7 @@ from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.log import log
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import get_expiration, datetime_now, datetime_null, datetime_never
+from globaleaks.utils.json import JSONEncoder
 
 
 def db_notify_grant_access(session, user):
@@ -92,7 +96,8 @@ def db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, receiver_id)
     new_rtip.new = False
     if itip.deprecated_crypto_files_pub_key:
         _files_key = GCE.asymmetric_decrypt(user_cc, base64.b64decode(rtip.deprecated_crypto_files_prv_key))
-        new_rtip.deprecated_crypto_files_prv_key = base64.b64encode(GCE.asymmetric_encrypt(new_receiver.crypto_pub_key, _files_key))
+        new_rtip.deprecated_crypto_files_prv_key = base64.b64encode(
+            GCE.asymmetric_encrypt(new_receiver.crypto_pub_key, _files_key))
 
     wbfiles = session.query(models.WhistleblowerFile) \
                      .filter(models.WhistleblowerFile.receivertip_id == rtip.id)
@@ -118,8 +123,8 @@ def db_revoke_tip_access(session, tid, user_id, itip, receiver_id):
     :param receiver_id: A user ID of the the user to which revoke access to the report
     """
     rtip = session.query(models.ReceiverTip) \
-                  .filter(models.ReceiverTip.internaltip_id == itip.id,
-                          models.ReceiverTip.receiver_id == receiver_id).one_or_none()
+        .filter(models.ReceiverTip.internaltip_id == itip.id,
+                models.ReceiverTip.receiver_id == receiver_id).one_or_none()
     if rtip is None:
         return False
 
@@ -131,7 +136,6 @@ def db_revoke_tip_access(session, tid, user_id, itip, receiver_id):
 @transact
 def grant_tip_access(session, tid, user_id, user_cc, itip_id, receiver_id):
     user, rtip, itip = db_access_rtip(session, tid, user_id, itip_id)
-
     if user_id == receiver_id or not user.can_grant_access_to_reports:
         raise errors.ForbiddenOperation
 
@@ -144,7 +148,6 @@ def grant_tip_access(session, tid, user_id, user_cc, itip_id, receiver_id):
 @transact
 def revoke_tip_access(session, tid, user_id, itip_id, receiver_id):
     user, rtip, itip = db_access_rtip(session, tid, user_id, itip_id)
-
     if user_id == receiver_id or not user.can_grant_access_to_reports:
         raise errors.ForbiddenOperation
 
@@ -155,7 +158,7 @@ def revoke_tip_access(session, tid, user_id, itip_id, receiver_id):
 @transact
 def transfer_tip_access(session, tid, user_id, user_cc, itip_id, receiver_id):
     log_data = {
-      'recipient_id': receiver_id
+        'recipient_id': receiver_id
     }
 
     user, rtip, itip = db_access_rtip(session, tid, user_id, itip_id)
@@ -167,6 +170,7 @@ def transfer_tip_access(session, tid, user_id, user_cc, itip_id, receiver_id):
         db_revoke_tip_access(session, tid, user, itip, user_id)
         db_notify_grant_access(session, new_receiver)
         db_log(session, tid=tid, type='transfer_access', user_id=user_id, object_id=itip.id, data=log_data)
+
 
 def db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id):
     """
@@ -186,11 +190,239 @@ def db_update_submission_status(session, tid, user_id, itip, status_id, substatu
     itip.substatus = substatus_id or None
 
     log_data = {
-      'status': itip.status,
-      'substatus': itip.substatus
+        'status': itip.status,
+        'substatus': itip.substatus
     }
 
     db_log(session, tid=tid, type='update_report_status', user_id=user_id, object_id=itip.id, data=log_data)
+
+
+def db_update_temporary_redaction(session, tid, user_id, redaction, redaction_data):
+    """
+    Update the redaction data of a tip
+
+    :param session: An ORM session
+    :param tid: A tenant ID of the user performing the operation
+    :param user_id: A user ID of the user changing the state
+    :param itip_id: The ID of the Tip instance to be updated
+    :param id: The object_id
+    :param redaction_data: The updated redaction data
+    """
+    new_temporary_redaction = get_new_temporary_redaction(redaction_data['temporary_redaction'], redaction.permanent_redaction)
+
+    log_data = {
+        'old_remporary_redaction': redaction.temporary_redaction,
+        'new_temporary_redaction': new_temporary_redaction
+    }
+
+    db_log(session, tid=tid, type='update_redaction', user_id=user_id, object_id=redaction.id, data=log_data)
+
+    if len(new_temporary_redaction) == 0 and (not redaction.permanent_redaction or len(redaction.permanent_redaction) == 0):
+        session.delete(redaction)
+    else:
+        redaction.temporary_redaction = new_temporary_redaction
+        redaction.update_date = datetime.now()
+
+
+def redact_content(content, ranges, character='0x2588'):
+    result = list(content)
+
+    ranges = sorted(ranges, key=lambda x: x['start'])
+
+    for r in ranges:
+        start, end = r.get('start', 0), r.get('end', 0) + 1
+
+        if start < end:
+            result[start:end] = chr(int(character[2:], 16)) * (end - start)
+
+    return ''.join(result)
+
+
+def db_redact_data(session, tid, user_id, redaction, temporary_redaction, permanent_redaction):
+    """
+    Transaction for updating redaction data
+
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user_id: The user ID of the user performing the operation
+    :param redaction: Object used to update mask in database
+    :param temporary_redaction: new permanent ranges that to be marked
+    :param permanent_redaction: existing temporary ranges that are marked
+    :param redaction_data: redaction request
+    """
+    log_data = {
+        'old_temporary_redaction': redaction.temporary_redaction,
+        'new_temporary_redaction': temporary_redaction,
+        'old_permanent_redaction': redaction.permanent_redaction,
+        'new_permanent_redaction': permanent_redaction,
+    }
+
+    db_log(session, tid=tid, type='update_redaction', user_id=user_id, object_id=redaction.id, data=log_data)
+
+    redaction.temporary_redaction = temporary_redaction
+    redaction.permanent_redaction = permanent_redaction
+    redaction.update_date = datetime.now()
+
+
+def validate_ranges(current_mask, new_mask):
+    for new_range in new_mask:
+        new_start, new_end = new_range['start'], new_range['end']
+        is_within = False
+
+        for current_range in current_mask:
+            current_start, current_end = current_range['start'], current_range['end']
+            if current_start <= new_start <= new_end <= current_end:
+                is_within = True
+                break
+
+        if not is_within:
+            return False
+
+    return True
+
+
+def merge_and_sort_ranges(list1, list2):
+    list2_merged = []
+    current_range = None
+
+    if not list1 and not list2:
+        return []
+
+    for range_item in list2:
+        if current_range is None:
+            current_range = range_item
+        elif range_item['start'] <= current_range['end'] + 1:
+            current_range['end'] = max(current_range['end'], range_item['end'])
+        else:
+            list2_merged.append(current_range)
+            current_range = range_item
+
+    if current_range:
+        list2_merged.append(current_range)
+
+    combined_ranges = list1 + list2_merged
+    combined_ranges.sort(key=lambda x: x['start'])
+
+    merged_ranges = []
+    current_range = combined_ranges[0]
+
+    for range_item in combined_ranges[1:]:
+        if range_item['start'] <= current_range['end'] + 1:
+            current_range['end'] = max(current_range['end'], range_item['end'])
+        else:
+            merged_ranges.append(current_range)
+            current_range = range_item
+
+    merged_ranges.append(current_range)
+
+    return merged_ranges
+
+
+def get_new_temporary_redaction(current_mask, new_mask):
+    result = []
+
+    # Add the current mask ranges to the result list
+    for range_ in current_mask:
+        result.append(range_)
+
+    # Iterate through the new mask ranges and remove overlapping ranges
+    for new_range in new_mask:
+        new_start, new_end = new_range['start'], new_range['end']
+        updated_result = []
+
+        # Check for overlaps with each range in the current mask
+        for current_range in result:
+            current_start, current_end = current_range['start'], current_range['end']
+
+            # Case 1: No overlap, keep the current range
+            if new_end < current_start or new_start > current_end:
+                updated_result.append(current_range)
+
+            # Case 2: Overlap, split the current range into two if needed
+            else:
+                if new_start > current_start:
+                    updated_result.append({'start': current_start, 'end': new_start - 1})
+                if new_end < current_end:
+                    updated_result.append({'start': new_end + 1, 'end': current_end})
+
+        result = updated_result
+
+    return merge_and_sort_ranges(result, [])
+
+
+def db_redact_comment(session, tid, user_id, itip_id, redaction, redaction_data, tip_data):
+    currentMaskedData = next((masked_content for masked_content in tip_data['redactions'] if
+                              masked_content['id'] == redaction_data['id']), None)
+
+    if not currentMaskedData or not validate_ranges(currentMaskedData['temporary_redaction'], redaction_data['permanent_redaction']):
+        return
+
+    currentMaskedContent = next((masked_content for masked_content in tip_data.get('comments', []) if
+                                 masked_content['id'] == redaction_data['reference_id']), None)
+
+    if not currentMaskedContent:
+        return
+
+    new_temporary_redaction = get_new_temporary_redaction(currentMaskedData['temporary_redaction'],
+                                                          redaction_data['permanent_redaction'])
+
+    new_permanent_redaction = merge_and_sort_ranges(currentMaskedData['permanent_redaction'],
+                                                    redaction_data['permanent_redaction'])
+
+    db_redact_data(session, tid, user_id, redaction, new_temporary_redaction, new_permanent_redaction)
+
+    content = redact_content(currentMaskedContent.get('content'), new_permanent_redaction)
+
+    comment = session.query(models.Comment).get(redaction_data['reference_id'])
+    comment.content = base64.b64encode(GCE.asymmetric_encrypt(itip_id.crypto_tip_pub_key, content)).decode()
+
+
+def db_redact_answers(answers, redaction):
+    for key in answers:
+        if not re.match(requests.uuid_regexp, key):
+            continue
+
+        for inner_idx, answer in enumerate(answers[key]):
+            if 'value' in answer:
+                if key == redaction.reference_id and answer['index'] == redaction.entry:
+                    answer['value'] = redact_content(answer['value'], redaction.permanent_redaction)
+                    return
+            else:
+                db_redact_answers(answer, redaction)
+
+
+def db_redact_answers_recursively(session, tid, user_id, itip_id, redaction, redaction_data, tip_data):
+    currentMaskedData = next((masked_content for masked_content in tip_data['redactions'] if
+                              masked_content['id'] == redaction_data['id']), None)
+
+    if not validate_ranges(currentMaskedData['temporary_redaction'], redaction_data['permanent_redaction']):
+        return
+
+    new_temporary_redaction = get_new_temporary_redaction(currentMaskedData['temporary_redaction'],
+                                                          copy.deepcopy(redaction_data['permanent_redaction']))
+
+    new_permanent_redaction = merge_and_sort_ranges(currentMaskedData['permanent_redaction'],
+                                                    redaction_data['permanent_redaction'])
+
+    db_redact_data(session, tid, user_id, redaction, new_temporary_redaction, new_permanent_redaction)
+
+    answers = tip_data['questionnaires'][0]['answers']
+
+    index_answers(answers)
+
+    db_redact_answers(answers, redaction)
+
+    _content = answers
+
+    if itip_id.crypto_tip_pub_key:
+        _content = base64.b64encode(
+            GCE.asymmetric_encrypt(itip_id.crypto_tip_pub_key, json.dumps(_content, cls=JSONEncoder).encode())).decode()
+
+    itip_answers = session.query(models.InternalTipAnswers) \
+                          .filter_by(internaltip_id=currentMaskedData['internaltip_id']).first()
+
+    if itip_answers:
+        itip_answers.answers = _content
 
 
 @transact
@@ -335,6 +567,49 @@ def get_rtip(session, tid, user_id, itip_id, language):
     return db_get_rtip(session, tid, user_id, itip_id, language)
 
 
+def redact_answers(answers, redactions):
+    for key in answers:
+        if not re.match(requests.uuid_regexp, key):
+            continue
+
+        for inner_idx, answer in enumerate(answers[key]):
+            if 'value' in answer:
+                for redaction in redactions:
+                    if key == redaction.reference_id and answer['index'] == redaction.entry:
+                        answer['value'] = redact_content(answer['value'], redaction.temporary_redaction, '0x2591')
+            else:
+                redact_answers(answer, redactions)
+
+
+@transact
+def redact_report(session, user_id, report):
+    user = session.query(models.User).get(user_id)
+
+    redactions = session.query(models.Redaction).filter(models.Redaction.internaltip_id == report['id']).all()
+
+    if user.can_mask_information or \
+            user.can_redact_information or \
+            not len(redactions):
+        return report
+
+    redactions_by_reference_id = {}
+    for redaction in redactions:
+        if redaction.reference_id not in redactions_by_reference_id:
+            redactions_by_reference_id[redaction.reference_id] = []
+        redactions_by_reference_id[redaction.reference_id].append(redaction)
+
+    for q in report['questionnaires']:
+        redact_answers(q['answers'], redactions)
+
+    for comment in report['comments']:
+        if comment['id'] in redactions_by_reference_id:
+            comment['content'] = redact_content(comment['content'], redactions_by_reference_id[comment['id']][0].temporary_redaction, '0x2591')
+
+    report['wbfiles'] = [x for x in report['wbfiles'] if x['ifile_id'] not in redactions_by_reference_id]
+
+    return report
+
+
 def db_delete_itip(session, itip_id):
     """
     Transaction for deleting a submission
@@ -353,7 +628,7 @@ def db_postpone_expiration(session, itip, expiration_date):
     :param itip: A submission model to be postponed
     :param expiration_date: The date timestamp to be set in milliseconds
     """
-    max_date = time.time() + 3651 *  86400
+    max_date = time.time() + 3651 * 86400
     max_date = max_date - max_date % 86400
     expiration_date = expiration_date / 1000
     expiration_date = expiration_date if expiration_date < max_date else max_date
@@ -383,6 +658,7 @@ def db_set_reminder(session, itip, reminder_date):
 
     itip.reminder_date = reminder_date
 
+
 @transact
 def delete_rtip(session, tid, user_id, itip_id):
     """
@@ -401,6 +677,35 @@ def delete_rtip(session, tid, user_id, itip_id):
     db_delete_itip(session, itip.id)
 
     db_log(session, tid=tid, type='delete_report', user_id=user_id, object_id=itip.id)
+
+
+@transact
+def delete_wbfile(session, tid, user_id, file_id):
+    """
+    Transaction for deleting a wbfile
+    :param session: An ORM session
+    :param tid: A tenant ID
+    :param user_id: The user ID of the user performing the operation
+    :param file_id: The file ID of the wbfile to be deleted
+    """
+
+    wbfile = (
+        session.query(models.WhistleblowerFile)
+               .filter(models.User.id == user_id,
+                       models.WhistleblowerFile.internalfile_id == file_id,
+                       models.ReceiverTip.receiver_id == models.User.id,
+                       models.ReceiverTip.internaltip_id == models.InternalTip.id, models.InternalTip.tid == tid)
+               .first()
+    )
+
+    if wbfile:
+        receiver_file_list = session.query(models.WhistleblowerFile).filter(
+            models.WhistleblowerFile.internalfile_id == wbfile.internalfile_id).all()
+        internal_file_list = session.query(models.InternalFile).filter(
+            models.InternalFile.id == wbfile.internalfile_id).all()
+        all_files_to_delete = receiver_file_list + internal_file_list
+        for file in all_files_to_delete:
+            session.delete(file)
 
 
 @transact
@@ -529,7 +834,8 @@ def create_identityaccessrequest(session, tid, user_id, user_cc, itip_id, reques
     iar = models.IdentityAccessRequest()
     iar.internaltip_id = itip.id
     iar.request_user_id = user.id
-    iar.request_motivation = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, request['request_motivation']))
+    iar.request_motivation = base64.b64encode(
+        GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, request['request_motivation']))
     session.add(iar)
     session.flush()
 
@@ -586,6 +892,78 @@ def create_comment(session, tid, user_id, itip_id, content, visibility=0):
     return ret
 
 
+@transact
+def create_redaction(session, tid, user_id, data):
+    user, rtip, itip = db_access_rtip(session, tid, user_id, data['internaltip_id'])
+
+    itip.update_date = rtip.last_access = datetime_now()
+
+    if not user.can_mask_information:
+        return
+
+    mask_content = {}
+    if itip.crypto_tip_pub_key:
+        if isinstance(data, dict):
+            mask_content = data
+        else:
+            content_str = data.get('content', str(data))
+            content_bytes = content_str.encode()
+            mask_content = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, content_bytes)).decode()
+
+    redaction = models.Redaction()
+    redaction.id = data.get('id')
+    redaction.reference_id = data.get('reference_id')
+    redaction.entry = data.get('entry', '0')
+    redaction.internaltip_id = itip.id
+    redaction.temporary_redaction = data.get('temporary_redaction')
+    redaction.permanent_redaction = []
+    session.add(redaction)
+    session.flush()
+
+    return serializers.serialize_redaction(session, redaction)
+
+
+@transact
+def update_redaction(session, tid, user_id, redaction_id, redaction_data, tip_data):
+    """
+    Transaction for updating tip redaction
+
+    :param session: An ORM session
+    :param tid: The tenant ID
+    :param user_id: A user ID of the user performing the operation
+    :param redaction_id: The ID of the mask to be updated
+    """
+    user, rtip, itip = db_access_rtip(session, tid, user_id, redaction_data['internaltip_id'])
+
+    redaction = session.query(models.Redaction).get(redaction_id)
+
+    operation = redaction_data['operation']
+    content_type = redaction_data['content_type']
+
+    if not redaction or redaction.internaltip_id != itip.id:
+        return
+
+    if operation.endswith('mask') and user.can_mask_information:
+        db_update_temporary_redaction(session, tid, user_id, redaction, redaction_data)
+
+        if operation == 'full-unmask':
+            if redaction.permanent_redaction:
+                redaction.temporary_redaction = []
+            else:
+                session.delete(redaction)
+
+    elif operation == 'redact' and user.can_redact_information:
+        if content_type == "answer":
+            db_redact_answers_recursively(session, tid, user_id, itip, redaction, redaction_data, tip_data)
+        elif content_type == "comment":
+            db_redact_comment(session, tid, user_id, itip, redaction, redaction_data, tip_data)
+        elif content_type == 'file':
+            if len(redaction.temporary_redaction) == 1 and \
+                    redaction.temporary_redaction[0].get('start', False) == '-inf' and \
+                    redaction.temporary_redaction[0].get('start', False) == '-inf':
+                session.delete(ifile)
+                session.delete(redaction)
+
 
 @transact
 def delete_rfile(session, tid, user_id, file_id):
@@ -598,6 +976,54 @@ def delete_rfile(session, tid, user_id, file_id):
     """
     rfile = db_access_rfile(session, tid, user_id, file_id)
     session.delete(rfile)
+
+
+class RTipRedactionCollection(BaseHandler):
+    """
+    Interface used to handle rtip mask
+    """
+    check_roles = 'receiver'
+
+    def operation_descriptors(self):
+        return {
+            'update_redaction': RTipRedactionCollection.update_redaction
+        }
+
+    def post(self):
+        payload = self.request.content.read().decode('utf-8')
+        data = json.loads(payload)
+
+        return create_redaction(self.request.tid, self.session.user_id, data)
+
+    @inlineCallbacks
+    def put(self, redaction_id):
+        payload = self.request.content.read().decode('utf-8')
+        data = json.loads(payload)
+
+        tip, crypto_tip_prv_key = yield get_rtip(self.request.tid, self.session.user_id, data['internaltip_id'], self.request.language)
+
+        if State.tenants[self.request.tid].cache.encryption and crypto_tip_prv_key:
+            tip = yield deferToThread(decrypt_tip, self.session.cc, crypto_tip_prv_key, tip)
+
+        redaction = yield update_redaction(self.request.tid, self.session.user_id, redaction_id, data, tip)
+
+        returnValue(redaction)
+
+
+def index_answers(answers, parent_index=''):
+    for key in answers:
+        if not re.match(requests.uuid_regexp, key):
+            continue
+
+        index = 0
+        for answer in answers[key]:
+            str_index = str(index)
+            if parent_index:
+               str_index = parent_index + "-" + str_index
+
+            answer['index'] = str_index
+            index_answers(answer, str_index)
+            index += 1
 
 
 class RTipInstance(OperationHandler):
@@ -613,17 +1039,22 @@ class RTipInstance(OperationHandler):
         if State.tenants[self.request.tid].cache.encryption and crypto_tip_prv_key:
             tip = yield deferToThread(decrypt_tip, self.session.cc, crypto_tip_prv_key, tip)
 
+        for q in tip['questionnaires']:
+          index_answers(q['answers'])
+
+        tip = yield redact_report(self.session.user_id, tip)
+
         returnValue(tip)
 
     def operation_descriptors(self):
         return {
-          'grant': RTipInstance.grant_tip_access,
-          'revoke': RTipInstance.revoke_tip_access,
-          'postpone': RTipInstance.postpone_expiration,
-          'set_reminder': RTipInstance.set_reminder,
-          'set': RTipInstance.set_tip_val,
-          'update_status': RTipInstance.update_submission_status,
-          'transfer': RTipInstance.transfer_tip
+            'grant': RTipInstance.grant_tip_access,
+            'revoke': RTipInstance.revoke_tip_access,
+            'postpone': RTipInstance.postpone_expiration,
+            'set_reminder': RTipInstance.set_reminder,
+            'set': RTipInstance.set_tip_val,
+            'update_status': RTipInstance.update_submission_status,
+            'transfer': RTipInstance.transfer_tip
 
         }
 
@@ -672,7 +1103,6 @@ class RTipCommentCollection(BaseHandler):
         request = self.validate_request(self.request.content.read(), requests.CommentDesc)
         return create_comment(self.request.tid, self.session.user_id, itip_id, request['content'], request['visibility'])
 
-
 class WhistleblowerFileDownload(BaseHandler):
     """
     This handler exposes wbfiles for download.
@@ -682,16 +1112,24 @@ class WhistleblowerFileDownload(BaseHandler):
 
     @transact
     def download_wbfile(self, session, tid, user_id, file_id):
-        ifile, wbfile, rtip, pgp_key = db_get(session,
-                                             (models.InternalFile,
-                                              models.WhistleblowerFile,
-                                              models.ReceiverTip,
-                                              models.User.pgp_key_public),
-                                             (models.ReceiverTip.receiver_id == models.User.id,
-                                              models.ReceiverTip.id == models.WhistleblowerFile.receivertip_id,
-                                              models.InternalFile.id == models.WhistleblowerFile.internalfile_id,
-                                              models.WhistleblowerFile.id == file_id,
-                                              models.User.id == user_id))
+        user, ifile, wbfile, rtip = db_get(session,
+                                           (models.User,
+                                            models.InternalFile,
+                                            models.WhistleblowerFile,
+                                            models.ReceiverTip),
+                                           (models.User.id == user_id,
+                                            models.ReceiverTip.receiver_id == models.User.id,
+                                            models.ReceiverTip.id == models.WhistleblowerFile.receivertip_id,
+                                            models.InternalFile.id == models.WhistleblowerFile.internalfile_id,
+                                            models.WhistleblowerFile.id == file_id))
+
+        redaction = session.query(models.Redaction) \
+                            .filter(models.Redaction.reference_id == ifile.id, models.Redaction.entry == '0').one_or_none()
+
+        if redaction is not None and \
+                not user.can_mask_information and \
+                not user.can_redact_information:
+            raise errors.ForbiddenOperation
 
         if wbfile.access_date == datetime_null():
             wbfile.access_date = datetime_now()
@@ -699,11 +1137,13 @@ class WhistleblowerFileDownload(BaseHandler):
         log.debug("Download of file %s by receiver %s" %
                   (wbfile.internalfile_id, rtip.receiver_id))
 
-        return ifile.name, ifile.id, wbfile.id, rtip.crypto_tip_prv_key, rtip.deprecated_crypto_files_prv_key, pgp_key
+        return ifile.name, ifile.id, wbfile.id, rtip.crypto_tip_prv_key, rtip.deprecated_crypto_files_prv_key, user.pgp_key_public
 
     @inlineCallbacks
     def get(self, wbfile_id):
-        name, ifile_id, wbfile_id, tip_prv_key, tip_prv_key2, pgp_key = yield self.download_wbfile(self.request.tid, self.session.user_id, wbfile_id)
+        name, ifile_id, wbfile_id, tip_prv_key, tip_prv_key2, pgp_key = yield self.download_wbfile(self.request.tid,
+                                                                                                   self.session.user_id,
+                                                                                                   wbfile_id)
 
         filelocation = os.path.join(self.state.settings.attachments_path, wbfile_id)
         if not os.path.exists(filelocation):
@@ -767,7 +1207,8 @@ class ReceiverFileDownload(BaseHandler):
 
     @inlineCallbacks
     def get(self, rfile_id):
-        name, filename, tip_prv_key, pgp_key = yield self.download_rfile(self.request.tid, self.session.user_id, rfile_id)
+        name, filename, tip_prv_key, pgp_key = yield self.download_rfile(self.request.tid, self.session.user_id,
+                                                                         rfile_id)
 
         filelocation = os.path.join(self.state.settings.attachments_path, filename)
         if not os.path.exists(filelocation):

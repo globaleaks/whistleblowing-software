@@ -82,6 +82,25 @@ def serialize_comment(session, comment):
     }
 
 
+def serialize_redaction(session, redaction):
+    """
+    Transaction returning a serialized descriptor of a redaction
+
+    :param session: An ORM session
+    :param redaction: A model to be serialized
+    :return: A serialized description of the model specified
+    """
+    return {
+        'id': redaction.id,
+        'reference_id': redaction.reference_id,
+        'entry': redaction.entry,
+        'internaltip_id': redaction.internaltip_id,
+        'update_date': redaction.update_date,
+        'temporary_redaction': redaction.temporary_redaction,
+        'permanent_redaction': redaction.permanent_redaction
+    }
+
+
 def serialize_ifile(session, ifile):
     """
     Transaction for serializing ifiles
@@ -148,7 +167,6 @@ def serialize_rfile(session, rfile):
         'error': error
     }
 
-
 def serialize_itip(session, internaltip, language):
     x = session.query(models.InternalTipAnswers, models.ArchivedSchema) \
                .filter(models.ArchivedSchema.hash == models.InternalTipAnswers.questionnaire_hash,
@@ -184,12 +202,17 @@ def serialize_itip(session, internaltip, language):
         'comments': [],
         'wbfiles': [],
         'rfiles': [],
+        'redactions': [],
         'data': {}
     }
 
     for itd in session.query(models.InternalTipData).filter(models.InternalTipData.internaltip_id == internaltip.id):
         ret['data'][itd.key] = itd.value
         ret['data'][itd.key + "_date"] = itd.creation_date
+
+    for redaction in session.query(models.Redaction) \
+                            .filter(models.Redaction.internaltip_id == internaltip.id):
+        ret['redactions'].append(serialize_redaction(session, redaction))
 
     return ret
 

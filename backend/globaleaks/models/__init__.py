@@ -778,6 +778,7 @@ class _ReceiverTip(Model):
         return (ForeignKeyConstraint(['receiver_id'], ['user.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
 
+
 class _Redaction(Model):
     """
     This models keep track of data redactions applied on internaltips and related objects
@@ -785,11 +786,12 @@ class _Redaction(Model):
     __tablename__ = 'redaction'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    update_date = Column(DateTime, default=datetime_now, nullable=False)
-    reference_id = Column(UnicodeText(36), nullable=False, index=True)
+    reference_id = Column(UnicodeText(36), default=uuid4, nullable=False)
+    entry = Column(UnicodeText, default='0', nullable=False)
     internaltip_id = Column(UnicodeText(36), nullable=False, index=True)
     temporary_redaction = Column(JSON, default=dict, nullable=False)
     permanent_redaction = Column(JSON, default=dict, nullable=False)
+    update_date = Column(DateTime, default=datetime_now, nullable=False)
 
     @declared_attr
     def __table_args__(self):
@@ -966,8 +968,8 @@ class _User(Model):
     can_postpone_expiration = Column(Boolean, default=True, nullable=False)
     can_grant_access_to_reports = Column(Boolean, default=False, nullable=False)
     can_transfer_access_to_reports = Column(Boolean, default=False, nullable=False)
-    can_mask_information = Column(Boolean, default=False, nullable=False)
     can_redact_information = Column(Boolean, default=False, nullable=False)
+    can_mask_information = Column(Boolean, default=False, nullable=False)
     can_edit_general_settings = Column(Boolean, default=False, nullable=False)
     readonly = Column(Boolean, default=False, nullable=False)
     two_factor_secret = Column(UnicodeText(32), default='', nullable=False)
@@ -997,6 +999,8 @@ class _User(Model):
                  'can_delete_submission',
                  'can_postpone_expiration',
                  'can_grant_access_to_reports',
+                 'can_redact_information',
+                 'can_mask_information',
                  'can_transfer_access_to_reports',
                  'can_edit_general_settings',
                  'forcefully_selected',

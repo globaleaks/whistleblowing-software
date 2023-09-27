@@ -74,6 +74,8 @@ api_spec = [
     (r'/api/recipient/rtips/' + uuid_regexp + r'/iars', recipient.rtip.IdentityAccessRequestsCollection),
     (r'/api/recipient/rtips/' + uuid_regexp + r'/export', recipient.export.ExportHandler),
     (r'/api/recipient/rtips/' + uuid_regexp + r'/rfiles', recipient.rtip.ReceiverFileUpload),
+    (r'/api/recipient/redactions', recipient.rtip.RTipRedactionCollection),
+    (r'/api/recipient/redactions/' + uuid_regexp, recipient.rtip.RTipRedactionCollection),
     (r'/api/recipient/rfiles/' + uuid_regexp, recipient.rtip.ReceiverFileDownload),
     (r'/api/recipient/wbfiles/' + uuid_regexp, recipient.rtip.WhistleblowerFileDownload),
 

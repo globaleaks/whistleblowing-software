@@ -330,6 +330,9 @@ factory("RTipResource", ["GLResource", function(GLResource) {
 factory("RTipCommentResource", ["GLResource", function(GLResource) {
   return new GLResource("api/recipient/rtips/:id/comments", {id: "@id"});
 }]).
+factory("RTipRedactionResource", ["GLResource", function(GLResource) {
+  return new GLResource("api/recipient/redactions/:id", {id: "@id"});
+}]).
 factory("RTipDownloadRFile", ["Utils", function(Utils) {
   return function(file) {
     Utils.download("api/recipient/rfiles/" + file.id);
@@ -348,8 +351,8 @@ factory("RTipExport", ["Utils", function(Utils) {
     Utils.download("api/recipient/rtips/" + tip.id + "/export");
   };
 }]).
-factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipCommentResource",
-        function($rootScope, $http, RTipResource, RTipCommentResource) {
+factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipCommentResource","RTipRedactionResource",
+        function($rootScope, $http, RTipResource, RTipCommentResource,RTipRedactionResource) {
   return function(tipID, fn) {
     var self = this;
 
@@ -368,6 +371,21 @@ factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipCommentResource",
         });
       };
 
+      tip.newRedaction = function(content) {
+        var c = new RTipRedactionResource();
+        c.internaltip_id = content.internaltip_id;
+        c.reference_id = content.reference_id;
+        c.entry = content.entry;
+        c.permanent_redaction = content.permanent_redaction;
+        c.temporary_redaction = content.temporary_redaction;
+        c.$save(function(newRedaction) {
+          tip.mask.unshift(newRedaction);
+          tip.localChange();
+        }).then(function () {
+          $rootScope.reload();
+        });
+      };
+
       tip.operation = function(operation, args) {
         var req = {
           "operation": operation,
@@ -375,6 +393,12 @@ factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipCommentResource",
         };
 
         return $http({method: "PUT", url: "api/recipient/rtips/" + tip.id, data: req});
+      };
+
+      tip.updateRedaction = function(data) {
+        return $http({method: "PUT", url: "api/recipient/redactions/" + data.id, data: data}).then(function () {
+          $rootScope.reload();
+        });
       };
 
       tip.updateSubmissionStatus = function() {
@@ -647,6 +671,8 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       user.forcefully_selected = false;
       user.can_edit_general_settings = false;
       user.can_grant_access_to_reports = false;
+      user.can_mask_information = false;
+      user.can_redact_information = false;
       user.can_delete_submission = false;
       user.can_postpone_expiration = true;
       user.can_transfer_access_to_reports = false;
@@ -664,6 +690,126 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       tenant.mode = "default";
       tenant.subdomain = "";
       return tenant;
+    }
+  };
+}]).
+factory("mask", [function() {
+  return {
+    getSelectedRanges: function(select, selected_ranges) {
+      var elem = document.getElementById("redact");
+      var selectedText = elem.value.substring(elem.selectionStart, elem.selectionEnd);
+
+      let ranges = {
+        start: elem.selectionStart,
+        end: elem.selectionEnd - 1
+      };
+
+      if(selectedText.length === 0) {
+        return {new_ranges:selected_ranges, selected_ranges:ranges};
+      } else if(select) {
+        return {new_ranges:this.mergeRanges([ranges], selected_ranges), selected_ranges:ranges};
+      } else {
+        return {new_ranges:this.splitRanges(ranges, selected_ranges), selected_ranges:ranges};
+      }
+    },
+
+    splitRanges: function (range, ranges) {
+      ranges.sort((a, b) => a.start - b.start);
+      const result = [];
+      for (const r of ranges) {
+        if (r.end < range.start) {
+          result.push(r);
+        } else if (r.start > range.end) {
+          result.push(r);
+        } else {
+          if (r.start < range.start) {
+            result.push({ start: r.start, end: range.start - 1 });
+          }
+          if (r.end > range.end) {
+            result.push({ start: range.end + 1, end: r.end });
+          }
+        }
+      }
+
+      return result;
+    },
+
+    mergeRanges:function (newRanges, temporaryRanges) {
+      const allRanges = newRanges.concat(temporaryRanges);
+      allRanges.sort((a, b) => a.start - b.start);
+
+      const mergedRanges = [];
+      let currentRange = allRanges[0];
+
+      for (let i = 1; i < allRanges.length; i++) {
+        const nextRange = allRanges[i];
+
+        if (currentRange.end >= nextRange.start) {
+          currentRange.end = Math.max(currentRange.end, nextRange.end);
+        } else {
+          mergedRanges.push(currentRange);
+          currentRange = nextRange;
+        }
+      }
+
+      mergedRanges.push(currentRange);
+      return mergedRanges;
+    },
+
+    intersectRanges:function (rangeList1, rangeList2) {
+      rangeList1.sort((a, b) => a.start - b.start);
+      rangeList2.sort((a, b) => a.start - b.start);
+
+      const intersectedRanges = [];
+
+      let i = 0;
+      let j = 0;
+
+      while (i < rangeList1.length && j < rangeList2.length) {
+        const range1 = rangeList1[i];
+        const range2 = rangeList2[j];
+
+        const start = Math.max(range1.start, range2.start);
+        const end = Math.min(range1.end, range2.end);
+
+        if (start <= end) {
+          intersectedRanges.push({ start, end });
+        }
+
+        if (range1.end < range2.end) {
+          i++;
+        } else {
+          j++;
+        }
+      }
+
+      return intersectedRanges;
+    },
+
+    maskContent: function(content, ranges, mask, maskCharacter, originalContent) {
+      return ranges.reduce(function (markedContent, range) {
+        if (mask) {
+          content =
+            markedContent.substring(0, range.start) +
+            maskCharacter.repeat(range.end - range.start + 1) +
+            markedContent.substring(range.end + 1);
+        } else {
+          const maskedPart = originalContent.substring(range.start, range.end + 1);
+          content =
+            markedContent.substring(0, range.start) +
+            maskedPart +
+            markedContent.substring(range.end + 1);
+        }
+        return content;
+      }, content);
+    },
+
+    onHighlight:function (content, ranges) {
+      return this.maskContent(content, ranges, true, String.fromCharCode(0x2588));
+    },
+
+    onUnHighlight: function (content, originalContent, ranges) {
+      return this.maskContent(content, ranges, false, "", originalContent);
     }
   };
 }]).

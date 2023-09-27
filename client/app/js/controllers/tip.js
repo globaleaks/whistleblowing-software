@@ -60,6 +60,9 @@ GL.controller("TipCtrl",
       }
     };
 
+    $scope.redactMode = false;
+    $scope.redactOperationTitle = $filter("translate")("Mask") + " / " + $filter("translate")("Redact");
+
     $scope.tabs = [
       {
         title: "Everyone",
@@ -345,6 +348,35 @@ GL.controller("TipCtrl",
         $scope.downloadWBFile = RTipDownloadWBFile;
         $scope.viewWBFile = RTipViewWBFile;
 
+        var reloadUI = function() {
+          $scope.reload();
+        };
+
+        $scope.redactFileOperation = function(operation, content_type, file) {
+          var redactionData = {
+            reference_id: file.ifile_id,
+            internaltip_id: $scope.tip.id,
+            entry: '0',
+            operation: operation,
+            content_type: content_type,
+            temporary_redaction: [],
+            permanent_redaction: []
+          }
+
+          if (operation === 'full-mask') {
+            redactionData.temporary_redaction = [{'start': '-inf', 'end': 'inf'}];
+          }
+
+          let redaction = $scope.getRedaction(file.ifile_id, '0');
+
+          if (redaction) {
+            redactionData.id = redaction.id;
+            $scope.tip.updateRedaction(redactionData);
+          } else {
+            $scope.tip.newRedaction(redactionData);
+          }
+        };
+
         $scope.showEditLabelInput = $scope.tip.label === "";
 
         $scope.tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText($scope.tip.status, $scope.tip.substatus, $scope.submission_statuses);
@@ -361,6 +393,60 @@ GL.controller("TipCtrl",
       var current_date = new Date();
       return current_date > report_date;
     };
+
+    function refineContent(content, ranges, code) {
+      var maskedText = content.split("");
+
+      ranges.forEach(function (range) {
+        if (range.start >= 0 && range.start <= maskedText.length && range.end >= 0) {
+          for (var i = range.start; i <= range.end; i++) {
+            maskedText.splice(i, 1, String.fromCharCode(code));
+          }
+        }
+      });
+
+      return maskedText.join("");
+    }
+
+    $scope.maskContent = function(id, index, value) {
+      let redaction = $scope.getRedaction(id, index);
+
+      let masked_value = value;
+
+      if (redaction) {
+        if (redaction.temporary_redaction.length > 0) {
+          var temporaryRedactionArray = Object.values(redaction.temporary_redaction);
+          temporaryRedactionArray.sort(function(a, b) {
+            return a.start - b.start;
+          });
+
+          masked_value = refineContent(masked_value, temporaryRedactionArray, 0x2591);
+        }
+
+        if (redaction.permanent_redaction.length > 0) {
+          var permanentRedactionArray = Object.values(redaction.permanent_redaction);
+          permanentRedactionArray.sort(function(a, b) {
+            return a.start - b.start;
+          });
+
+          masked_value = refineContent(masked_value, permanentRedactionArray, 0x2588);
+        }
+      }
+
+      return masked_value;
+    }
+
+    $scope.getRedaction = function(id, entry) {
+      var redactionObjects = $scope.tip.redactions.filter(function(redaction) {
+        return redaction.reference_id === id && redaction.entry === entry;
+      });
+
+      return redactionObjects.length > 0 ? redactionObjects[0] : null;
+    }
+
+    $scope.isMasked = function(id) {
+      return $scope.getRedaction(id, '0') !== null;
+    }
 
     $scope.updateLabel = function(label) {
       $scope.tip.operation("set", {"key": "label", "value": label}).then(function() {
@@ -444,6 +530,32 @@ GL.controller("TipCtrl",
               },
               opened: false,
               Utils: $scope.Utils
+            };
+          }
+        }
+      });
+    };
+
+    $scope.toggleRedactMode = function() {
+      $scope.redactMode = !$scope.redactMode;
+    }
+
+    $scope.redactInformation = function(type, id, entry, content) {
+      $uibModal.open({
+        templateUrl: "views/modals/redact_information.html",
+        controller: "TipRedactInformationCtrl",
+        resolve: {
+          args: function() {
+            return {
+              tip: $scope.tip,
+              redaction: $scope.getRedaction(id, entry),
+              Utils: $scope.Utils,
+              data: {
+                type,
+                id,
+                entry,
+                content
+              }
             };
           }
         }
@@ -574,4 +686,111 @@ controller("WhistleblowerFilesCtrl", ["$scope", function ($scope) {
 }]).
 controller("WhistleblowerIdentityFormCtrl", ["$scope", function ($scope) {
   $scope.uploads = {};
+}]).
+controller("TipRedactInformationCtrl", ["$scope", "$document", "$filter", "mask", "$sce", "$uibModalInstance", "args", "$routeParams", "$http", function($scope, $document, $filter, mask, $sce, $uibModalInstance, args, $routeParams, $http) {
+  $scope.redaction = null;
+  $scope.args = args;
+  $scope.forced_visible = false;
+
+  $scope.vars = {
+    redaction_switch: true // True: Masking; False: Redaction
+  };
+
+  if (!$scope.resources.preferences.can_mask_information && $scope.resources.preferences.can_redact_information) {
+    $scope.vars.redaction_switch = false;
+  }
+
+  $scope.ranges_selected = [];
+
+  $scope.cancel = function() {
+    $uibModalInstance.close();
+  };
+
+  $scope.toggleVisibility = function() {
+    $scope.forced_visible = !$scope.forced_visible;
+  }
+
+  $scope.initializeMasking = function() {
+    $scope.redaction = $scope.args.redaction;
+    $scope.temporary_redaction = [];
+    $scope.permanent_redaction = [];
+    $scope.ranges_selected = [];
+
+    if ($scope.redaction) {
+      $scope.permanent_redaction = $scope.redaction.permanent_redaction;
+      $scope.temporary_redaction = $scope.redaction.temporary_redaction;
+
+      if ($scope.vars.redaction_switch) {
+        $scope.ranges_selected = $scope.temporary_redaction;
+      }
+    }
+
+    $scope.unmaskedContent = $scope.content = $scope.args.data.content;
+    $scope.originalContent = $scope.content = mask.maskContent($scope.content, $scope.temporary_redaction, true, String.fromCharCode(0x2591));
+  };
+
+  $scope.selectContent = function() {
+    let response = mask.getSelectedRanges(true, $scope.ranges_selected);
+    if (!$scope.vars.redaction_switch) {
+      $scope.ranges_selected = mask.intersectRanges($scope.temporary_redaction, response.new_ranges);
+      $scope.content = mask.maskContent($scope.content, $scope.ranges_selected, true, String.fromCharCode(0x2588));
+    } else {
+      if (!$scope.resources.preferences.can_mask_information) {
+        $scope.ranges_selected = mask.intersectRanges($scope.temporary_redaction, response.new_ranges);
+      } else {
+        $scope.ranges_selected = response.new_ranges;
+      }
+
+      $scope.content = mask.maskContent($scope.content, $scope.ranges_selected, true, String.fromCharCode(0x2591));
+      $scope.content = mask.maskContent($scope.content, $scope.permanent_redaction, true, String.fromCharCode(0x2588));
+    }
+  };
+
+  $scope.unSelectContent = function() {
+    let response = mask.getSelectedRanges(false, $scope.ranges_selected);
+    $scope.ranges_selected = response.new_ranges;
+    $scope.content = mask.onUnHighlight($scope.content, $scope.unmaskedContent, [response.selected_ranges]);
+  }
+
+  $scope.saveMasking = function() {
+    let redactionData = {
+      internaltip_id: $scope.args.tip.id,
+      reference_id: $scope.args.data.id,
+      entry: $scope.args.data.entry,
+      temporary_redaction: [],
+      permanent_redaction: []
+    };
+
+    if ($scope.vars.redaction_switch) {
+      redactionData["operation"] = "mask";
+      redactionData["content_type"] = $scope.args.data.type;
+      redactionData["temporary_redaction"] = $scope.ranges_selected;
+    } else {
+      redactionData["operation"] = "redact";
+      redactionData["content_type"] = $scope.args.data.type;
+      redactionData["permanent_redaction"] = $scope.ranges_selected;
+    }
+
+    if ($scope.redaction) {
+      redactionData.id = $scope.redaction.id;
+      $scope.args.tip.updateRedaction(redactionData);
+    } else {
+      $scope.args.tip.newRedaction(redactionData);
+    }
+
+    $scope.cancel();
+  }
+
+  $scope.ignoreEdit = function(event) {
+    if (event.keyCode >= 37 && event.keyCode <= 40) {
+      return;
+    }
+    event.preventDefault();
+  };
+
+  $scope.toggleMasking = function() {
+    $scope.initializeMasking();
+  };
+
+  $scope.initializeMasking()
 }]);

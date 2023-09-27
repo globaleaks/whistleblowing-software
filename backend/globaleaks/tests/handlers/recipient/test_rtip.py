@@ -282,6 +282,78 @@ class TestRTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
             yield handler.post(rtip_desc['id'])
 
 
+class TestRTipRedactionCollection(helpers.TestHandlerWithPopulatedDB):
+    _handler = rtip.RTipRedactionCollection
+
+    @inlineCallbacks
+    def setUp(self):
+        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
+        yield self.perform_full_submission_actions()
+
+    @inlineCallbacks
+    def test_post_and_put(self):
+        rtip_descs = yield self.get_rtips()
+        for rtip_desc in rtip_descs:
+            body = {
+                'internaltip_id': rtip_desc['id'],
+                'reference_id': '',
+                'entry': '0',
+                'permanent_redaction': '',
+                'temporary_redaction': ''
+            }
+
+            handler = self.request(body, role='receiver', user_id=rtip_desc['receiver_id'])
+            yield handler.post()
+
+        rtip_descs = yield self.get_rtips()
+        for rtip_desc in rtip_descs:
+            body = {
+                'id': rtip_desc['redactions'][0]['id'],
+                'operation': 'mask',
+                'content_type': 'answer',
+                'internaltip_id': rtip_desc['id'],
+                'reference_id': '',
+                'entry': '0',
+                'permanent_redaction': '',
+                'temporary_redaction': ''
+            }
+
+            handler = self.request(body, role='receiver', user_id=rtip_desc['receiver_id'])
+            yield handler.put(rtip_desc['redactions'][0]['id'])
+
+        rtip_descs = yield self.get_rtips()
+        for rtip_desc in rtip_descs:
+            body = {
+                'id': rtip_desc['redactions'][0]['id'],
+                'operation': 'redact',
+                'content_type': 'answer',
+                'internaltip_id': rtip_desc['id'],
+                'reference_id': '',
+                'entry': '0',
+                'permanent_redaction': '',
+                'temporary_redaction': ''
+            }
+
+            handler = self.request(body, role='receiver', user_id=rtip_desc['receiver_id'])
+            yield handler.put(rtip_desc['redactions'][0]['id'])
+
+        rtip_descs = yield self.get_rtips()
+        for rtip_desc in rtip_descs:
+            body = {
+                'id': rtip_desc['redactions'][0]['id'],
+                'operation': 'full-unmask',
+                'content_type': 'answer',
+                'internaltip_id': rtip_desc['id'],
+                'reference_id': '',
+                'entry': '0',
+                'permanent_redaction': '',
+                'temporary_redaction': ''
+            }
+
+            handler = self.request(body, role='receiver', user_id=rtip_desc['receiver_id'])
+            yield handler.put(rtip_desc['redactions'][0]['id'])
+
+
 class TestWhistleblowerFileDownload(helpers.TestHandlerWithPopulatedDB):
     _handler = rtip.WhistleblowerFileDownload
 
