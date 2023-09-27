@@ -12,10 +12,10 @@ GL.controller("TipCtrl",
 
     $scope.showEditLabelInput = false;
 
-    $scope.editMode = false
+    $scope.editMode = false;
     $scope.mode = false;
-    $scope.permanentMaskingObjects = []
-    $scope.maskingObjects = []
+    $scope.permanentMaskingObjects = [];
+    $scope.maskingObjects = [];
 
     $scope.tabs = [
       {
@@ -299,7 +299,7 @@ GL.controller("TipCtrl",
 
         $scope.show = function(id) {
           return !!$scope.tip.masking.find(mask => mask.content_id === id);
-        }
+        };
         var reloadUI = function() {
           $scope.reload();
         };
@@ -319,18 +319,18 @@ GL.controller("TipCtrl",
             return masking.content_id === f.ifile_id;
           });
           if (maskingObjects.length !== 0) {
-            $scope.status = false
+            $scope.status = false;
             var maskingData = {
               content_id: f.id,
               permanent_masking: [],
               temporary_masking: []
             }
-            maskingData['operation'] = 'redact'
+            maskingData["operation"] = "redact";
             $scope.tip.updateMasking(maskingObjects[0].id, maskingData);
             }
         };
         $scope.masking = function(f) {
-          $scope.status = true
+          $scope.status = true;
           var maskingData = {
             content_id: f.ifile_id,
             permanent_masking: [],
@@ -338,7 +338,7 @@ GL.controller("TipCtrl",
               { file_masking_status: $scope.status }
             ]
           }
-          maskingData['operation'] = 'mask'
+          maskingData["operation"] = "mask";
           $scope.tip.newMasking(maskingData);
         }
 
@@ -360,7 +360,7 @@ GL.controller("TipCtrl",
     };
 
     function permanentRefineContent(content, ranges) {
-      var maskedText = content.split('');
+      var maskedText = content.split("");
 
       ranges.forEach(function (range) {
         if (range.start >= 0 && range.start <= maskedText.length && range.end >= 0) {
@@ -370,7 +370,7 @@ GL.controller("TipCtrl",
         }
       });
 
-      return maskedText.join('');
+      return maskedText.join("");
     }
 
     $scope.edited = function(id) {
@@ -379,9 +379,9 @@ GL.controller("TipCtrl",
       });
 
       if ($scope.maskingObjects.length !== 0 && $scope.maskingObjects[0].permanent_masking.length > 0) {
-        return true
+        return true;
       } else {
-        return false
+        return false;
       }
     }
 
@@ -390,9 +390,9 @@ GL.controller("TipCtrl",
         return masking.content_id === id;
       });
       if ($scope.permanentMaskingObjects.length !== 0 && $scope.permanentMaskingObjects[0].temporary_masking.length > 0) {
-        return true
+        return true;
       } else {
-        return false
+        return false;
       }
     }
 
@@ -406,9 +406,9 @@ GL.controller("TipCtrl",
           return a.start - b.start;
         });
         var contentData = permanentRefineContent(content, permanentMaskingArray);
-        return contentData
+        return contentData;
       } else {
-        return content
+        return content;
       }
     }
 
@@ -676,42 +676,42 @@ controller("WhistleblowerFilesCtrl", ["$scope", function ($scope) {
 controller("WhistleblowerIdentityFormCtrl", ["$scope", function ($scope) {
   $scope.uploads = {};
 }]).
-controller("TipEditReportCtrl", ["$scope", "$document", "masking", "$sce", "$uibModalInstance", "args", "Authentication", "$routeParams", "$http", function($scope, $document, masking, $sce, $uibModalInstance, args, Authentication, $routeParams, $http) {
+controller("TipEditReportCtrl", ["$scope", "$document", "masking", "$sce", "$uibModalInstance", "args", "$routeParams", "$http", function($scope, $document, masking, $sce, $uibModalInstance, args, $routeParams, $http) {
 
   $scope.args = args;
-  $scope.forced_visible = false
+  $scope.forced_visible = false;
   $scope.maskingSwitch = $scope.resources.preferences.can_privilege_mask_information ? true : false;
-  $scope.ranges_selected = []
+  $scope.ranges_selected = [];
 
   $scope.cancel = function() {
     $uibModalInstance.close();
-    onClose()
+    onClose();
   };
 
   $scope.toggleForcedView = function() {
-    $scope.forced_visible = !$scope.forced_visible
+    $scope.forced_visible = !$scope.forced_visible;
     window.getSelection().removeAllRanges();
   }
 
   $scope.initializeMasking = function() {
-    $scope.temporary_masking = []
-    $scope.permanent_masking = []
-    $scope.ranges_selected = []
+    $scope.temporary_masking = [];
+    $scope.permanent_masking = [];
+    $scope.ranges_selected = [];
     $scope.maskingObjects = $scope.args.tip.masking.filter(function(masking) {
       return masking.content_id === $scope.args.data.id;
     })[0];
 
     if ($scope.maskingSwitch) {
-      var selectedHighlightChar = String.fromCharCode(0x2588)
+      var selectedHighlightChar = String.fromCharCode(0x2588);
       if($scope.maskingObjects){
-        $scope.ranges_selected = $scope.temporary_masking = $scope.maskingObjects.temporary_masking
-        $scope.permanent_masking = $scope.maskingObjects.permanent_masking
+        $scope.ranges_selected = $scope.temporary_masking = $scope.maskingObjects.temporary_masking;
+        $scope.permanent_masking = $scope.maskingObjects.permanent_masking;
       }
     } else {
-      var selectedHighlightChar = String.fromCharCode(0x2591)
+      var selectedHighlightChar = String.fromCharCode(0x2591);
       if($scope.maskingObjects){
-        $scope.permanent_masking = $scope.maskingObjects.permanent_masking
-        $scope.temporary_masking = $scope.maskingObjects.temporary_masking
+        $scope.permanent_masking = $scope.maskingObjects.permanent_masking;
+        $scope.temporary_masking = $scope.maskingObjects.temporary_masking;
       }
     }
 
@@ -720,34 +720,34 @@ controller("TipEditReportCtrl", ["$scope", "$document", "masking", "$sce", "$uib
   };
 
   $scope.selectContent = function() {
-    response = masking.getSelectedRanges(true, $scope.ranges_selected)
+    let response = masking.getSelectedRanges(true, $scope.ranges_selected);
     if (!$scope.maskingSwitch) {
-      $scope.ranges_selected = masking.intersectRanges($scope.temporary_masking, response.new_ranges)
+      $scope.ranges_selected = masking.intersectRanges($scope.temporary_masking, response.new_ranges);
     }else{
       if(!$scope.resources.preferences.can_privilege_mask_information){
-        $scope.ranges_selected = masking.intersectRanges($scope.temporary_masking, response.new_ranges)
+        $scope.ranges_selected = masking.intersectRanges($scope.temporary_masking, response.new_ranges);
       }else{
-        $scope.ranges_selected = response.new_ranges
+        $scope.ranges_selected = response.new_ranges;
       }
     }
 
-    $scope.content = masking.onHighlight($scope.content, $scope.ranges_selected)
+    $scope.content = masking.onHighlight($scope.content, $scope.ranges_selected);
   };
 
   $scope.unSelectContent = function() {
-    response = masking.getSelectedRanges(false, $scope.ranges_selected)
-    $scope.ranges_selected = response.new_ranges
-    $scope.content = masking.onUnHighlight($scope.content, $scope.unmaskedContent, [response.selected_ranges])
+    let response = masking.getSelectedRanges(false, $scope.ranges_selected);
+    $scope.ranges_selected = response.new_ranges;
+    $scope.content = masking.onUnHighlight($scope.content, $scope.unmaskedContent, [response.selected_ranges]);
     if (!$scope.maskingSwitch) {
-      $scope.content = masking.onUnHighlight($scope.content, $scope.originalContent, [response.selected_ranges])
+      $scope.content = masking.onUnHighlight($scope.content, $scope.originalContent, [response.selected_ranges]);
     }
   }
 
   function clickHandler(event) {
-    var element = event.target.getAttribute('name');
-    if(element != "controlElement"){
-      let textarea = document.getElementById('redact');
-      textarea.selectionEnd = textarea.selectionStart
+    var element = event.target.getAttribute("name");
+    if(element !== "controlElement"){
+      let textarea = document.getElementById("redact");
+      textarea.selectionEnd = textarea.selectionStart;
     }
   }
 
@@ -758,22 +758,22 @@ controller("TipEditReportCtrl", ["$scope", "$document", "masking", "$sce", "$uib
     };
 
     if($scope.maskingSwitch){
-      maskingData['temporary_masking'] = $scope.ranges_selected
-      maskingData['operation'] = 'mask'
+      maskingData["temporary_masking"] = $scope.ranges_selected;
+      maskingData["operation"] = "mask";
     }else{
-      maskingData['operation'] = 'redact'
-      maskingData['content_type'] = $scope.args.data.type
-      maskingData['permanent_masking'] = $scope.ranges_selected
+      maskingData["operation"] = "redact";
+      maskingData["content_type"] = $scope.args.data.type;
+      maskingData["permanent_masking"] = $scope.ranges_selected;
     }
 
     if($scope.maskingObjects){
       $scope.args.tip.updateMasking($scope.maskingObjects.id, maskingData);
-      onClose()
+      onClose();
     }else{
       $scope.args.tip.newMasking(maskingData);
-      onClose()
+      onClose();
     }
-    $scope.cancel()
+    $scope.cancel();
   }
 
   $scope.ignoreEdit = function(event) {
@@ -784,15 +784,15 @@ controller("TipEditReportCtrl", ["$scope", "$document", "masking", "$sce", "$uib
   };
 
   $scope.toggleMasking = function() {
-    $scope.initializeMasking()
+    $scope.initializeMasking();
   };
 
   function onClose(event) {
-    $document.off('click', clickHandler);
+    $document.off("click", clickHandler);
   }
 
 
   $scope.initializeMasking()
-  $document.on('click', clickHandler);
+  $document.on("click", clickHandler);
 
 }]);

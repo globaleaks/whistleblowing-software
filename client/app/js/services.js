@@ -684,20 +684,19 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
     }
   };
 }]).
-factory("masking", ["$rootScope", function($rootScope) {
+factory("masking", [function() {
   return {
     getSelectedRanges: function(select, selected_ranges) {
       window.getSelection().removeAllRanges();
-      var elem = document.getElementById('redact');
+      var elem = document.getElementById("redact");
       var selectedText = elem.value.substring(elem.selectionStart, elem.selectionEnd);
 
       let ranges = {
         start: elem.selectionStart,
         end: elem.selectionEnd - 1
-      }
-      if(selectedText.length == 0){
+      };
+      if(selectedText.length === 0){
         return {new_ranges:selected_ranges, selected_ranges:ranges};
-        return selected_ranges;
       }
       else if(select){
         return {new_ranges:this.mergeRanges([ranges], selected_ranges), selected_ranges:ranges};
@@ -779,7 +778,7 @@ factory("masking", ["$rootScope", function($rootScope) {
     },
 
     injectPermanentMasking: function (content, ranges, maskCharacter) {
-      var maskedText = content.split('');
+      var maskedText = content.split("");
 
       ranges.forEach(function (range) {
         if (range.start >= 0 && range.start <= maskedText.length && range.end >= 0) {
@@ -789,7 +788,7 @@ factory("masking", ["$rootScope", function($rootScope) {
         }
       });
 
-      return maskedText.join('');
+      return maskedText.join("");
     },
 
     maskContent: function(content, ranges, mask, maskCharacter, originalContent) {
@@ -811,11 +810,11 @@ factory("masking", ["$rootScope", function($rootScope) {
     },
 
     onHighlight:function (content, ranges) {
-      return this.maskContent(content, ranges, true, String.fromCharCode(0x2588))
+      return this.maskContent(content, ranges, true, String.fromCharCode(0x2588));
     },
 
     onUnHighlight: function (content, originalContent, ranges) {
-      return this.maskContent(content, ranges, false, '', originalContent)
+      return this.maskContent(content, ranges, false, "", originalContent);
     }
   };
 }]).

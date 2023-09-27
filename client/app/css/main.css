@@ -1044,7 +1044,7 @@ html[dir="ltr"] #Receipt {
 }
 
 [dir="ltr"] .custom-switch .custom-control-label::after {
-  background-color: #fff !important;
+  background-color: #fff;
 }
 
 [dir="ltr"] .edit {
