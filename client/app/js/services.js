@@ -330,6 +330,9 @@ factory("RTipResource", ["GLResource", function(GLResource) {
 factory("RTipCommentResource", ["GLResource", function(GLResource) {
   return new GLResource("api/recipient/rtips/:id/comments", {id: "@id"});
 }]).
+factory("RTipMaskingResource", ["GLResource", function(GLResource) {
+  return new GLResource("api/recipient/rtips/:id/masking", {id: "@id"});
+}]).
 factory("RTipDownloadRFile", ["Utils", function(Utils) {
   return function(file) {
     Utils.download("api/recipient/rfiles/" + file.id);
@@ -348,8 +351,8 @@ factory("RTipExport", ["Utils", function(Utils) {
     Utils.download("api/recipient/rtips/" + tip.id + "/export");
   };
 }]).
-factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipCommentResource",
-        function($rootScope, $http, RTipResource, RTipCommentResource) {
+factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipCommentResource","RTipMaskingResource",
+        function($rootScope, $http, RTipResource, RTipCommentResource,RTipMaskingResource) {
   return function(tipID, fn) {
     var self = this;
 
@@ -368,6 +371,19 @@ factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipCommentResource",
         });
       };
 
+      tip.newMasking = function(content) {
+        var c = new RTipMaskingResource(tipID);
+        c.content_id = content.content_id;
+        c.permanent_masking = content.permanent_masking;
+        c.temporary_masking = content.temporary_masking;
+        c.$save(function(newMasking) {
+          tip.masking.unshift(newMasking);
+          tip.localChange();
+        }).then(function () {
+          $rootScope.reload();
+        });
+      };
+
       tip.operation = function(operation, args) {
         var req = {
           "operation": operation,
@@ -376,7 +392,12 @@ factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipCommentResource",
 
         return $http({method: "PUT", url: "api/recipient/rtips/" + tip.id, data: req});
       };
-
+      tip.updateMasking = function(id, data) {
+        var req = {data};
+        return $http({method: "PUT", url: "api/recipient/rtips/" + tip.id +"/masking/" + id, data: req}).then(function () {
+          $rootScope.reload();
+        });
+      };
       tip.updateSubmissionStatus = function() {
         return tip.operation("update_status", {"status": tip.status, "substatus": tip.substatus ? tip.substatus : ""}).then(function () {
           $rootScope.reload();
@@ -641,6 +662,8 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       user.forcefully_selected = false;
       user.can_edit_general_settings = false;
       user.can_grant_access_to_reports = false;
+      user.can_privilege_mask_information = false;
+      user.can_privilege_delete_mask_information = false;
       user.can_delete_submission = false;
       user.can_postpone_expiration = true;
       user.can_transfer_access_to_reports = false;
@@ -658,6 +681,141 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       tenant.mode = "default";
       tenant.subdomain = "";
       return tenant;
+    }
+  };
+}]).
+factory("masking", ["$rootScope", function($rootScope) {
+  return {
+    getSelectedRanges: function(select, selected_ranges) {
+      window.getSelection().removeAllRanges();
+      var elem = document.getElementById('redact');
+      var selectedText = elem.value.substring(elem.selectionStart, elem.selectionEnd);
+
+      let ranges = {
+        start: elem.selectionStart,
+        end: elem.selectionEnd - 1
+      }
+      if(selectedText.length == 0){
+        return {new_ranges:selected_ranges, selected_ranges:ranges};
+        return selected_ranges;
+      }
+      else if(select){
+        return {new_ranges:this.mergeRanges([ranges], selected_ranges), selected_ranges:ranges};
+      }else{
+        return {new_ranges:this.splitRanges(ranges, selected_ranges), selected_ranges:ranges};
+      }
+    },
+    splitRanges: function (range, ranges) {
+      ranges.sort((a, b) => a.start - b.start);
+      const result = [];
+      for (const r of ranges) {
+        if (r.end < range.start) {
+          result.push(r);
+        } else if (r.start > range.end) {
+          result.push(r);
+        } else {
+          if (r.start < range.start) {
+            result.push({ start: r.start, end: range.start - 1 });
+          }
+          if (r.end > range.end) {
+            result.push({ start: range.end + 1, end: r.end });
+          }
+        }
+      }
+
+      return result;
+    },
+
+    mergeRanges:function (newRanges, temporaryRanges) {
+      const allRanges = newRanges.concat(temporaryRanges);
+      allRanges.sort((a, b) => a.start - b.start);
+
+      const mergedRanges = [];
+      let currentRange = allRanges[0];
+
+      for (let i = 1; i < allRanges.length; i++) {
+        const nextRange = allRanges[i];
+
+        if (currentRange.end >= nextRange.start) {
+          currentRange.end = Math.max(currentRange.end, nextRange.end);
+        } else {
+          mergedRanges.push(currentRange);
+          currentRange = nextRange;
+        }
+      }
+
+      mergedRanges.push(currentRange);
+      return mergedRanges;
+    },
+
+    intersectRanges:function (rangeList1, rangeList2) {
+      rangeList1.sort((a, b) => a.start - b.start);
+      rangeList2.sort((a, b) => a.start - b.start);
+
+      const intersectedRanges = [];
+
+      let i = 0;
+      let j = 0;
+
+      while (i < rangeList1.length && j < rangeList2.length) {
+        const range1 = rangeList1[i];
+        const range2 = rangeList2[j];
+
+        const start = Math.max(range1.start, range2.start);
+        const end = Math.min(range1.end, range2.end);
+
+        if (start <= end) {
+          intersectedRanges.push({ start, end });
+        }
+
+        if (range1.end < range2.end) {
+          i++;
+        } else {
+          j++;
+        }
+      }
+
+      return intersectedRanges;
+    },
+
+    injectPermanentMasking: function (content, ranges, maskCharacter) {
+      var maskedText = content.split('');
+
+      ranges.forEach(function (range) {
+        if (range.start >= 0 && range.start <= maskedText.length && range.end >= 0) {
+          for (var i = range.start; i <= range.end; i++) {
+            maskedText.splice(i, 0, maskCharacter);
+          }
+        }
+      });
+
+      return maskedText.join('');
+    },
+
+    maskContent: function(content, ranges, mask, maskCharacter, originalContent) {
+      return ranges.reduce(function (markedContent, range) {
+        if (mask) {
+          content =
+            markedContent.substring(0, range.start) +
+            maskCharacter.repeat(range.end - range.start + 1) +
+            markedContent.substring(range.end + 1);
+        } else {
+          const maskedPart = originalContent.substring(range.start, range.end+1);
+          content =
+            markedContent.substring(0, range.start) +
+            maskedPart +
+            markedContent.substring(range.end+1);
+        }
+        return content;
+      }, content);
+    },
+
+    onHighlight:function (content, ranges) {
+      return this.maskContent(content, ranges, true, String.fromCharCode(0x2588))
+    },
+
+    onUnHighlight: function (content, originalContent, ranges) {
+      return this.maskContent(content, ranges, false, '', originalContent)
     }
   };
 }]).

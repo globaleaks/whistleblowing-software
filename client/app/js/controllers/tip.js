@@ -12,6 +12,11 @@ GL.controller("TipCtrl",
 
     $scope.showEditLabelInput = false;
 
+    $scope.editMode = false
+    $scope.mode = false;
+    $scope.permanentMaskingObjects = []
+    $scope.maskingObjects = []
+
     $scope.tabs = [
       {
         title: "Public",
@@ -292,6 +297,51 @@ GL.controller("TipCtrl",
         $scope.downloadWBFile = RTipDownloadWBFile;
         $scope.viewWBFile = RTipViewWBFile;
 
+        $scope.show = function(id) {
+          return !!$scope.tip.masking.find(mask => mask.content_id === id);
+        }
+        var reloadUI = function() {
+          $scope.reload();
+        };
+        $scope.deleteWBFile = function(f) {
+          let maskingObjects = $scope.tip.masking.filter(function(masking) {
+            return masking.content_id === f.ifile_id;
+          });
+          if (maskingObjects.length !== 0) {
+            return $http({
+              method: "DELETE",
+              url: "api/recipient/rtips/" + tip.id + "/masking/" + maskingObjects[0].id
+            }).then(reloadUI);
+          }
+        };
+        $scope.unmaskFile = function(f) {
+          let maskingObjects = $scope.tip.masking.filter(function(masking) {
+            return masking.content_id === f.ifile_id;
+          });
+          if (maskingObjects.length !== 0) {
+            $scope.status = false
+            var maskingData = {
+              content_id: f.id,
+              permanent_masking: [],
+              temporary_masking: []
+            }
+            maskingData['operation'] = 'redact'
+            $scope.tip.updateMasking(maskingObjects[0].id, maskingData);
+            }
+        };
+        $scope.masking = function(f) {
+          $scope.status = true
+          var maskingData = {
+            content_id: f.ifile_id,
+            permanent_masking: [],
+            temporary_masking: [
+              { file_masking_status: $scope.status }
+            ]
+          }
+          maskingData['operation'] = 'mask'
+          $scope.tip.newMasking(maskingData);
+        }
+
         $scope.showEditLabelInput = $scope.tip.label === "";
 
         $scope.tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText($scope.tip.status, $scope.tip.substatus, $scope.submission_statuses);
@@ -308,6 +358,59 @@ GL.controller("TipCtrl",
       var current_date = new Date();
       return current_date > report_date;
     };
+
+    function permanentRefineContent(content, ranges) {
+      var maskedText = content.split('');
+
+      ranges.forEach(function (range) {
+        if (range.start >= 0 && range.start <= maskedText.length && range.end >= 0) {
+          for (var i = range.start; i <= range.end; i++) {
+            maskedText.splice(i, 0, String.fromCharCode(0x2588));
+          }
+        }
+      });
+
+      return maskedText.join('');
+    }
+
+    $scope.edited = function(id) {
+      $scope.maskingObjects = $scope.tip.masking.filter(function(masking) {
+        return masking.content_id === id;
+      });
+
+      if ($scope.maskingObjects.length !== 0 && $scope.maskingObjects[0].permanent_masking.length > 0) {
+        return true
+      } else {
+        return false
+      }
+    }
+
+    $scope.isMaskingEdited = function(id) {
+      $scope.permanentMaskingObjects = $scope.tip.masking.filter(function(masking) {
+        return masking.content_id === id;
+      });
+      if ($scope.permanentMaskingObjects.length !== 0 && $scope.permanentMaskingObjects[0].temporary_masking.length > 0) {
+        return true
+      } else {
+        return false
+      }
+    }
+
+    $scope.maskingContent = function(content, id) {
+      $scope.permanentMaskingObjects = $scope.tip.masking.filter(function(masking) {
+        return masking.content_id === id;
+      });
+      if ($scope.permanentMaskingObjects.length !== 0 && $scope.permanentMaskingObjects[0].permanent_masking.length > 0) {
+        var permanentMaskingArray = Object.values($scope.permanentMaskingObjects[0].permanent_masking);
+        permanentMaskingArray.sort(function(a, b) {
+          return a.start - b.start;
+        });
+        var contentData = permanentRefineContent(content, permanentMaskingArray);
+        return contentData
+      } else {
+        return content
+      }
+    }
 
     $scope.updateLabel = function(label) {
       $scope.tip.operation("set", {"key": "label", "value": label}).then(function() {
@@ -406,7 +509,35 @@ GL.controller("TipCtrl",
         }
       });
     };
-
+    $scope.tip_mode = function(value) {
+      $scope.mode = value;
+    }
+    $scope.editReport = function(content, id, type) {
+      $uibModal.open({
+        templateUrl: "views/modals/report_reduct.html",
+        controller: "TipEditReportCtrl",
+        resolve: {
+          args: function() {
+            return {
+              tip: $scope.tip,
+              operation: "editReport",
+              contexts_by_id: $scope.contexts_by_id,
+              reminder_date: $scope.Utils.getPostponeDate($scope.contexts_by_id[$scope.tip.context_id].tip_reminder),
+              dateOptions: {
+                minDate: new Date($scope.tip.creation_date)
+              },
+              opened: false,
+              Utils: $scope.Utils,
+              data: {
+                content,
+                id,
+                type
+              }
+            };
+          }
+        }
+      });
+    };
     $scope.tip_open_additional_questionnaire = function () {
       $scope.answers = {};
       $scope.uploads = {};
@@ -544,4 +675,124 @@ controller("WhistleblowerFilesCtrl", ["$scope", function ($scope) {
 }]).
 controller("WhistleblowerIdentityFormCtrl", ["$scope", function ($scope) {
   $scope.uploads = {};
+}]).
+controller("TipEditReportCtrl", ["$scope", "$document", "masking", "$sce", "$uibModalInstance", "args", "Authentication", "$routeParams", "$http", function($scope, $document, masking, $sce, $uibModalInstance, args, Authentication, $routeParams, $http) {
+
+  $scope.args = args;
+  $scope.forced_visible = false
+  $scope.maskingSwitch = $scope.resources.preferences.can_privilege_mask_information ? true : false;
+  $scope.ranges_selected = []
+
+  $scope.cancel = function() {
+    $uibModalInstance.close();
+    onClose()
+  };
+
+  $scope.toggleForcedView = function() {
+    $scope.forced_visible = !$scope.forced_visible
+    window.getSelection().removeAllRanges();
+  }
+
+  $scope.initializeMasking = function() {
+    $scope.temporary_masking = []
+    $scope.permanent_masking = []
+    $scope.ranges_selected = []
+    $scope.maskingObjects = $scope.args.tip.masking.filter(function(masking) {
+      return masking.content_id === $scope.args.data.id;
+    })[0];
+
+    if ($scope.maskingSwitch) {
+      var selectedHighlightChar = String.fromCharCode(0x2588)
+      if($scope.maskingObjects){
+        $scope.ranges_selected = $scope.temporary_masking = $scope.maskingObjects.temporary_masking
+        $scope.permanent_masking = $scope.maskingObjects.permanent_masking
+      }
+    } else {
+      var selectedHighlightChar = String.fromCharCode(0x2591)
+      if($scope.maskingObjects){
+        $scope.permanent_masking = $scope.maskingObjects.permanent_masking
+        $scope.temporary_masking = $scope.maskingObjects.temporary_masking
+      }
+    }
+
+    $scope.unmaskedContent = $scope.content = masking.injectPermanentMasking($scope.args.data.content, $scope.permanent_masking, String.fromCharCode(0x2588));
+    $scope.originalContent = $scope.content = masking.maskContent($scope.content, $scope.temporary_masking, true, selectedHighlightChar);
+  };
+
+  $scope.selectContent = function() {
+    response = masking.getSelectedRanges(true, $scope.ranges_selected)
+    if (!$scope.maskingSwitch) {
+      $scope.ranges_selected = masking.intersectRanges($scope.temporary_masking, response.new_ranges)
+    }else{
+      if(!$scope.resources.preferences.can_privilege_mask_information){
+        $scope.ranges_selected = masking.intersectRanges($scope.temporary_masking, response.new_ranges)
+      }else{
+        $scope.ranges_selected = response.new_ranges
+      }
+    }
+
+    $scope.content = masking.onHighlight($scope.content, $scope.ranges_selected)
+  };
+
+  $scope.unSelectContent = function() {
+    response = masking.getSelectedRanges(false, $scope.ranges_selected)
+    $scope.ranges_selected = response.new_ranges
+    $scope.content = masking.onUnHighlight($scope.content, $scope.unmaskedContent, [response.selected_ranges])
+    if (!$scope.maskingSwitch) {
+      $scope.content = masking.onUnHighlight($scope.content, $scope.originalContent, [response.selected_ranges])
+    }
+  }
+
+  function clickHandler(event) {
+    var element = event.target.getAttribute('name');
+    if(element != "controlElement"){
+      let textarea = document.getElementById('redact');
+      textarea.selectionEnd = textarea.selectionStart
+    }
+  }
+
+  $scope.saveMasking = function() {
+    let maskingData = {
+      content_id: $scope.args.data.id,
+      temporary_masking: []
+    };
+
+    if($scope.maskingSwitch){
+      maskingData['temporary_masking'] = $scope.ranges_selected
+      maskingData['operation'] = 'mask'
+    }else{
+      maskingData['operation'] = 'redact'
+      maskingData['content_type'] = $scope.args.data.type
+      maskingData['permanent_masking'] = $scope.ranges_selected
+    }
+
+    if($scope.maskingObjects){
+      $scope.args.tip.updateMasking($scope.maskingObjects.id, maskingData);
+      onClose()
+    }else{
+      $scope.args.tip.newMasking(maskingData);
+      onClose()
+    }
+    $scope.cancel()
+  }
+
+  $scope.ignoreEdit = function(event) {
+    if (event.keyCode >= 37 && event.keyCode <= 40) {
+      return;
+    }
+    event.preventDefault();
+  };
+
+  $scope.toggleMasking = function() {
+    $scope.initializeMasking()
+  };
+
+  function onClose(event) {
+    $document.off('click', clickHandler);
+  }
+
+
+  $scope.initializeMasking()
+  $document.on('click', clickHandler);
+
 }]);

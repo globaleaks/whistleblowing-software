@@ -82,6 +82,24 @@ def serialize_comment(session, comment):
     }
 
 
+def serialize_masking(session, masking):
+    """
+    Transaction returning a serialized descriptor of a masking
+
+    :param session: An ORM session
+    :param masking: A model to be serialized
+    :return: A serialized description of the model specified
+    """
+    return {
+        'id': masking.id,
+        'content_id': masking.content_id,
+        'mask_date': masking.mask_date,
+        'internaltip_id': masking.internaltip_id,
+        'temporary_masking': masking.temporary_masking,
+        'permanent_masking': masking.permanent_masking
+    }
+
+
 def serialize_ifile(session, ifile):
     """
     Transaction for serializing ifiles
@@ -178,6 +196,7 @@ def serialize_itip(session, internaltip, language):
         'substatus': internaltip.substatus,
         'receivers': [],
         'comments': [],
+        'masking': [],
         'wbfiles': [],
         'rfiles': [],
         'data': {}
@@ -257,6 +276,10 @@ def serialize_rtip(session, itip, rtip, language):
                                            models.Comment.author_id == user_id))):
         ret['comments'].append(serialize_comment(session, comment))
 
+    for masking in session.query(models.Masking) \
+                          .filter(models.Masking.internaltip_id == itip.id):
+        ret['masking'].append(serialize_masking(session, masking))
+
     return ret
 
 
@@ -284,7 +307,10 @@ def serialize_wbtip(session, itip, language):
                           .filter(models.Comment.internaltip_id == itip.id,
                                   models.Comment.visibility == 0):
         ret['comments'].append(serialize_comment(session, comment))
-
+        
+    for masking in session.query(models.Masking) \
+                          .filter(models.Masking.internaltip_id == itip.id):
+        ret['masking'].append(serialize_masking(session, masking))
 
     return ret
 

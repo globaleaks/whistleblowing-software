@@ -143,6 +143,8 @@ AdminUserDesc = {
     'can_delete_submission': bool,
     'can_postpone_expiration': bool,
     'can_grant_access_to_reports': bool,
+    'can_privilege_delete_mask_information': bool,
+    'can_privilege_mask_information': bool,
     'can_transfer_access_to_reports': bool,
     'forcefully_selected': bool
 }
