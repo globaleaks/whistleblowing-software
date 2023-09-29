@@ -33,6 +33,9 @@
     display: none
   }
 
+  #UserBox,.tooltip{
+    display: none;
+  }
 
   #HeaderBox2 {
     display: none
