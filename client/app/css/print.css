@@ -1,4 +1,5 @@
 @media print {
+
   #Toolbar,
   #TipInfoBox .panel-heading,
   .popover *,
@@ -6,5 +7,34 @@
   .fa-collapse-down,
   .fa-fullscreen {
     display: none;
+  }
+
+  .pdf-print #UserBox,
+  .pdf-print .tooltip {
+    display: none;
+  }
+
+  @page {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  html,
+  body {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  @page :footer {
+    display: none
+  }
+
+  @page :header {
+    display: none
+  }
+
+
+  #HeaderBox2 {
+    display: none
   }
 }
