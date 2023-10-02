@@ -138,6 +138,10 @@
               <input data-ng-model="field.preview" type="checkbox">
               <label data-translate>Preview</label>
             </div>
+            <div class="form-group" data-ng-if="fieldIsMarkableSubjectToPreview">
+              <input data-ng-model="field.statistics" type="checkbox">
+              <label data-translate>Statistics</label>
+            </div>
             <div class="form-group">
               <label>
                 <span data-translate>Width</span>

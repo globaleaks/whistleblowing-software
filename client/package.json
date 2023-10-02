@@ -50,6 +50,8 @@
     "bootstrap": "4.6.2",
     "fast-sha256": "1.3.0",
     "ng-csv": "0.3.6",
+    "chart.js": "^3.9.1",
+    "chartjs-plugin-datalabels": "^2.2.0",
     "ng-idle": "1.3.2",
     "ng-showdown": "1.1.0",
     "pdfjs-dist": "3.11.174",
