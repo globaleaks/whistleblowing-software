@@ -504,11 +504,13 @@ def serialize_receiver(session, user, language, data=None):
 
     ret = {
         'id': user.id,
-        'username': user.username,
         'name': user.public_name,
         'forcefully_selected': user.forcefully_selected,
         'picture': data['imgs'].get(user.id, False)
     }
+
+    if State.tenants[user.tid].cache.simplified_login:
+        ret['username'] = user.username
 
     return get_localized_values(ret, user, user.localized_keys, language)
 
