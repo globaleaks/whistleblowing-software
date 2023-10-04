@@ -41,17 +41,13 @@ controller("AudioUploadCtrl", ["$scope", "flowFactory", "Utils", "mediaProcessor
   $scope.isRecording = false;
   $scope.audioPlayer = null;
 
-  $scope.context = new AudioContext();
-
-  $scope.mediaStreamDestination = new MediaStreamAudioDestinationNode($scope.context);
-  $scope.recorder = new MediaRecorder($scope.mediaStreamDestination.stream);
-
   $scope.recording_blob = null;
-  $scope.recorder.ondataavailable = function(e) {
+
+  onRecorderDataAvailable = function(e) {
     $scope.recording_blob = e.data;
   };
 
-  $scope.recorder.onstop = function() {
+  function onRecorderStop() {
     const file = new Flow.FlowFile(flow, {
       name: "audio.webm",
       size: $scope.recording_blob.size,
@@ -73,22 +69,6 @@ controller("AudioUploadCtrl", ["$scope", "flowFactory", "Utils", "mediaProcessor
 
     $scope.$apply();
   };
-
-
-  async function initAudioContext(stream) {
-    window.AudioContext = window.AudioContext || window.webkitAudioContext;
-    await mediaProcessor.enableNoiseSuppression(stream);
-
-    const source = $scope.context.createMediaStreamSource(stream);
-    const filter1 = mediaProcessor.createHighPassFilter($scope.context);
-    const filter2 = mediaProcessor.createLowPassFilter($scope.context);
-    const filter3 = mediaProcessor.createDynamicCompressor($scope.context);
-
-    source.connect(filter1);
-    filter1.connect(filter2);
-    filter2.connect(filter3);
-    filter3.connect($scope.mediaStreamDestination);
-  }
 
   $scope.triggerRecording = function (fileId) {
     $scope.activeButton = "record";
@@ -130,11 +110,26 @@ controller("AudioUploadCtrl", ["$scope", "flowFactory", "Utils", "mediaProcessor
       $scope.$apply();
     }, 1000);
 
+    await mediaProcessor.enableNoiseSuppression(stream);
+
+    var context = new AudioContext();
+    var mediaStreamDestination = new MediaStreamAudioDestinationNode(context);
+    const source = context.createMediaStreamSource(stream);
+    const anonymization_filter = new anonymizeSpeaker(context);
+
+    source.connect(anonymization_filter.input);
+    anonymization_filter.output.connect(mediaStreamDestination);
+
+    var recorder = new MediaRecorder(mediaStreamDestination.stream);
+    recorder.onstop = onRecorderStop;
+    recorder.ondataavailable = onRecorderDataAvailable;
+    recorder.start();
+
     mediaRecorder = new MediaRecorder(stream);
+    mediaRecorder.onstop = function() {
+      recorder.stop();
+    }
 
-    await initAudioContext(stream);
-
-    $scope.recorder.start();
     mediaRecorder.start();
 
     $scope.$apply();
@@ -143,12 +138,12 @@ controller("AudioUploadCtrl", ["$scope", "flowFactory", "Utils", "mediaProcessor
   $scope.stopRecording = async function() {
     $scope.vars["recording"] = false;
 
-    $scope.recorder.stop();
-
     const tracks = mediaRecorder.stream.getTracks();
     tracks.forEach((track) => {
       track.stop();
     });
+
+    mediaRecorder.stop();
 
     $scope.isRecording = false;
     $scope.recordButton = false;

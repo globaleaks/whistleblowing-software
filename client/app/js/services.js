@@ -1334,31 +1334,6 @@ factory("mediaProcessor", [function () {
         });
       }
     },
-
-    createHighPassFilter:function (audioContext) {
-      const filter = audioContext.createBiquadFilter();
-      filter.type = "highpass";
-      filter.frequency.value = 300;
-      return filter;
-    },
-
-    createLowPassFilter:function (audioContext) {
-      const filter = audioContext.createBiquadFilter();
-      filter.type = "lowpass";
-      filter.frequency.value = 3000;
-      return filter;
-    },
-
-    createDynamicCompressor: function(audioContext) {
-      var compressor = audioContext.createDynamicsCompressor();
-      compressor.threshold.value = -50;
-      compressor.knee.value = 40;
-      compressor.ratio.value = 12;
-      compressor.reduction.value = -20;
-      compressor.attack.value = 0;
-      compressor.release.value = 0.25;
-      return compressor;
-    }
   };
 }]).
 factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $http, CONSTANTS) {
