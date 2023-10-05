@@ -35,10 +35,16 @@ def decrypt_tip(user_key, tip_prv_key, tip):
 
     if 'iar' in tip:
         if tip['iar']['request_motivation']:
-            tip['iar']['request_motivation'] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(tip['iar']['request_motivation'])).decode()
+            try:
+                tip['iar']['request_motivation'] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(tip['iar']['request_motivation'])).decode()
+            except:
+                pass
 
         if tip['iar']['reply_motivation']:
-            tip['iar']['reply_motivation'] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(tip['iar']['reply_motivation'])).decode()
+            try:
+                tip['iar']['reply_motivation'] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(tip['iar']['reply_motivation'])).decode()
+            except:
+                pass
 
     for x in tip['comments']:
         x['content'] = GCE.asymmetric_decrypt(tip_key, base64.b64decode(x['content'].encode())).decode()
