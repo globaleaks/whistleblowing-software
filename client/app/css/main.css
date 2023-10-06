@@ -769,7 +769,26 @@ input[type="file"] {
   text-align: center;
 }
 
-#FooterBox a,
+#Skip a {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+#FooterBox a {
+  font-weight: bold;
+}
+
+#Skip a:focus
+{
+  position:static;
+  width:auto;
+  height:auto;
+}
+
 #FooterBox a:hover,
 #Footerbox a:active,
 #FooterBox a:focus {
@@ -923,22 +942,6 @@ html[dir="ltr"] #Receipt {
 
 [dir] .navbar {
   padding: 0;
-}
-
-#Skip a {
-  position: absolute;
-  left: -10000px;
-  top: auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
-
-#Skip a:focus
-{
-  position:static;
-  width:auto;
-  height:auto;
 }
 
 .visually-hidden {
