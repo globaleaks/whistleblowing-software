@@ -10,14 +10,13 @@
     "extends": "eslint:recommended",
     "globals": {
         "angular": true,
+	"anonymizeSpeaker": true,
         "console": true,
         "Flow": true,
         "GL": true,
-        "importScripts": true,
         "onmessage": true,
         "saveAs": true,
         "sha256": true,
-        "StackTrace": true,
         "Uint8Array": true,
         "Uint16Array": true,
         "Uint32Array": true
