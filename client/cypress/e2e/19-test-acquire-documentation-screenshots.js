@@ -60,7 +60,7 @@ describe("acquire screenshots necessary for user documentation", () => {
     cy.takeScreenshot("admin/https");
 
     cy.contains("a", "Tor").first().click();
-    cy.takeScreenshot("admin/https");
+    cy.takeScreenshot("admin/tor");
 
     cy.contains("a", "Access control").first().click();
     cy.takeScreenshot("admin/access_control");
