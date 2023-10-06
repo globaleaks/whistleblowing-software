@@ -1,22 +1,12 @@
 @media print {
-  #PrivacyBadge,
-  #Toolbar,
-  #TipInfoBox .panel-heading,
-  .popover *,
-  .popover .arrow,
-  .fa-collapse-down,
-  .fa-fullscreen {
-    display: none;
-  }
-
-  .pdf-print #UserBox,
-  .pdf-print .tooltip {
-    display: none;
-  }
-
   @page {
     margin-top: 0px;
     margin-bottom: 0px;
+  }
+
+  @page :header,
+  @page :footer {
+    display: none
   }
 
   html,
@@ -25,19 +15,19 @@
     padding-bottom: 72px;
   }
 
-  @page :footer {
-    display: none
-  }
-
-  @page :header {
-    display: none
-  }
-
-  #UserBox,.tooltip{
-    display: none;
-  }
-
+  .tooltip,
   #HeaderBox2 {
     display: none
+  }
+
+  .popover *,
+  .popover .arrow,
+  .fa-collapse-down,
+  .fa-fullscreen,
+  #PrivacyBadge,
+  #Toolbar,
+  #TipInfoBox .panel-heading
+  {
+    display: none;
   }
 }
