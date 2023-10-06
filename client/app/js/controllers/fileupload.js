@@ -43,9 +43,9 @@ controller("AudioUploadCtrl", ["$scope", "flowFactory", "Utils", "mediaProcessor
 
   $scope.recording_blob = null;
 
-  onRecorderDataAvailable = function(e) {
+  function onRecorderDataAvailable(e) {
     $scope.recording_blob = e.data;
-  };
+  }
 
   function onRecorderStop() {
     const file = new Flow.FlowFile(flow, {
@@ -68,7 +68,7 @@ controller("AudioUploadCtrl", ["$scope", "flowFactory", "Utils", "mediaProcessor
     }
 
     $scope.$apply();
-  };
+  }
 
   $scope.triggerRecording = function (fileId) {
     $scope.activeButton = "record";
@@ -128,7 +128,7 @@ controller("AudioUploadCtrl", ["$scope", "flowFactory", "Utils", "mediaProcessor
     mediaRecorder = new MediaRecorder(stream);
     mediaRecorder.onstop = function() {
       recorder.stop();
-    }
+    };
 
     mediaRecorder.start();
 

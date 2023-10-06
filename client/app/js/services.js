@@ -1033,9 +1033,9 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     },
 
     getMinPostponeDate: function(currentExpirationDate) {
-      var currentExpirationDate = new Date(currentExpirationDate);
       var minDate = new Date();
       minDate.setDate(minDate.getDate() + 90);
+      currentExpirationDate = new Date(currentExpirationDate);
       return currentExpirationDate > minDate ? minDate : currentExpirationDate;
     },
 
