@@ -490,13 +490,13 @@ msgid "Transfer"
 msgstr "Transferir"
 
 msgid "Assigned to"
-msgstr ""
+msgstr "Atribuido a"
 
 msgid "Not provided."
-msgstr ""
+msgstr "Não fornecido."
 
 msgid "Set a reminder"
-msgstr ""
+msgstr "Definir um lembrete"
 
 msgid "Privileges"
 msgstr "Privilégios"
@@ -505,7 +505,7 @@ msgid "Hide"
 msgstr "Ocultar"
 
 msgid "Unhide"
-msgstr ""
+msgstr "Desocultar"
 
 msgid "Redact"
 msgstr ""
@@ -529,16 +529,16 @@ msgid "Internal"
 msgstr "Interno"
 
 msgid "Personal"
-msgstr ""
+msgstr "Pessoal"
 
 msgid "Privacy Policy"
 msgstr "Política de Privacidade"
 
 msgid "I've read and accept the Privacy Policy"
-msgstr ""
+msgstr "Eu li e aceito a «Política de Privacidade»"
 
 msgid "Download copy of the Privacy Policy"
-msgstr ""
+msgstr "Transferir cópia da «Política de Privacidade»"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -547,6 +547,15 @@ msgid "Accessibility Declaration"
 msgstr ""
 
 msgid "Voice"
+msgstr ""
+
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
 msgstr ""
 
 msgid "File a report"
@@ -1025,7 +1034,7 @@ msgid "Enable file viewer"
 msgstr ""
 
 msgid "Enable PGP"
-msgstr ""
+msgstr "Ativar PGP"
 
 msgid "Enable simplified login"
 msgstr "Ativar login simplificado"
@@ -2022,7 +2031,7 @@ msgid ""
 msgstr ""
 
 msgid "Reminder"
-msgstr ""
+msgstr "Lembrete"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Este é um e-mail para notificar que um relatório existente foi atualizado."

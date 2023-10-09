@@ -511,6 +511,15 @@ msgstr ""
 msgid "Voice"
 msgstr "အသံ"
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "အစီရင်ခံစာ တင်ပါ"
 

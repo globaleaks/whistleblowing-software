@@ -524,6 +524,15 @@ msgstr "Declaració d'accessibilitat"
 msgid "Voice"
 msgstr "Veu"
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "Presentar una denúncia."
 

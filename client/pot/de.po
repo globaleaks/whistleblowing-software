@@ -554,7 +554,16 @@ msgid "Accessibility Declaration"
 msgstr ""
 
 msgid "Voice"
-msgstr ""
+msgstr "Stimme"
+
+msgid "Everyone"
+msgstr "Jeder"
+
+msgid "Recipients only"
+msgstr "Nur Empfänger"
+
+msgid "Only me"
+msgstr "Nur ich"
 
 msgid "File a report"
 msgstr "Einen Bericht einreichen"

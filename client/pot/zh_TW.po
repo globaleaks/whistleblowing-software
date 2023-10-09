@@ -517,6 +517,15 @@ msgstr ""
 msgid "Voice"
 msgstr "聲音"
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "提交报告"
 

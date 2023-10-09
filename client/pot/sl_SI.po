@@ -516,6 +516,15 @@ msgstr "Izjava o dostopnosti"
 msgid "Voice"
 msgstr "Glas"
 
+msgid "Everyone"
+msgstr "Vsi"
+
+msgid "Recipients only"
+msgstr "Samo prejemniki"
+
+msgid "Only me"
+msgstr "Samo jaz"
+
 msgid "File a report"
 msgstr "Oddaj prijavo"
 

@@ -525,6 +525,15 @@ msgstr "Tuyên Bố Khả Năng Truy Cập"
 msgid "Voice"
 msgstr "Tiếng nói"
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "Nộp báo cáo"
 

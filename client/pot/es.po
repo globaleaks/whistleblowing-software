@@ -550,6 +550,15 @@ msgstr "Declaración de accesibilidad"
 msgid "Voice"
 msgstr "Voz"
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "Presentar una denuncia."
 

@@ -523,6 +523,15 @@ msgstr "Prohlášení o přístupu"
 msgid "Voice"
 msgstr "Hlas"
 
+msgid "Everyone"
+msgstr "Všichni"
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "Podat oznámení"
 

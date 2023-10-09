@@ -548,6 +548,15 @@ msgstr "Déclaration d’accessibilité"
 msgid "Voice"
 msgstr "Voix"
 
+msgid "Everyone"
+msgstr "Tout le monde"
+
+msgid "Recipients only"
+msgstr "Destinataires seulement"
+
+msgid "Only me"
+msgstr "Moi seulement"
+
 msgid "File a report"
 msgstr "Remplir un signalement"
 

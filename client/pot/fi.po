@@ -520,6 +520,15 @@ msgstr "Saavutettavuusseloste"
 msgid "Voice"
 msgstr ""
 
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
+msgstr ""
+
 msgid "File a report"
 msgstr "Jätä vihje"
 

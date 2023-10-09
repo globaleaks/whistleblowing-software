@@ -519,6 +519,15 @@ msgstr "Deklarata Mbi Përdorim Nga Persona Me Aftësi të Kufizuara"
 msgid "Voice"
 msgstr "Zë"
 
+msgid "Everyone"
+msgstr "Gjithkush"
+
+msgid "Recipients only"
+msgstr "Vetëm marrësit"
+
+msgid "Only me"
+msgstr "Vetëm unë"
+
 msgid "File a report"
 msgstr "Depozitoni një raportim"
 

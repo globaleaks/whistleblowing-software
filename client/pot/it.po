@@ -532,6 +532,15 @@ msgstr "Dichiarazione di Accessibilità"
 msgid "Voice"
 msgstr "Voce"
 
+msgid "Everyone"
+msgstr "Tutti"
+
+msgid "Recipients only"
+msgstr "Soli riceventi"
+
+msgid "Only me"
+msgstr "Solo io"
+
 msgid "File a report"
 msgstr "Invia una segnalazione"
 
@@ -1020,7 +1029,7 @@ msgid "Default questionnaire"
 msgstr "Questionario predefinito"
 
 msgid "Show channels in alphabetical order"
-msgstr ""
+msgstr "Mostra i canali in ordine alfabetico"
 
 msgid "Size limit for file attachments"
 msgstr "Dimensione limite dei file allegati"

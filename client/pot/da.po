@@ -10,6 +10,7 @@
 # Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2018,2020-2022
 # Noah Böhme <noah0907@gmail.com>, 2021
 # Preben Sørensen <preben@rather.dk>, 2023
+# Preben Sørensen <preben@rather.dk>, 2023
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
@@ -489,7 +490,7 @@ msgid "Give this user ability to mask information"
 msgstr "Giv denne bruger mulighed for at sløre informationer"
 
 msgid "Give this user ability to permanently redact masked information"
-msgstr ""
+msgstr "Giv denne bruger mulighed for at sløre informationer permanent"
 
 msgid "Public"
 msgstr "Offentlig"
@@ -517,6 +518,15 @@ msgstr "Tilgængeligheds-deklaration"
 
 msgid "Voice"
 msgstr "Stemme"
+
+msgid "Everyone"
+msgstr "Alle"
+
+msgid "Recipients only"
+msgstr "Kun modtagere"
+
+msgid "Only me"
+msgstr "Kun mig"
 
 msgid "File a report"
 msgstr "Indsend en rapportering"

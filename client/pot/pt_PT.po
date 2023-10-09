@@ -17,7 +17,7 @@
 # 425fe09b3064b9f906f637fff94056ae_a00ea56 <0fa3588fa89906bfcb3a354600956e0e_308047>, 2015-2016
 # Manuela Silva <mmsrs@sky.com>, 2020
 # Manuela Silva <mmsrs@sky.com>, 2014-2018
-# Manuela Silva <mmsrs@sky.com>, 2019-2020,2022
+# Manuela Silva <mmsrs@sky.com>, 2019-2020,2022-2023
 # Mónica Marques <coelho_monica75@hotmail.com>, 2017
 # Manuela Silva <mmsrs@sky.com>, 2019
 # Drew Melim <nokostya.translation@gmail.com>, 2014-2015
@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2023\n"
+"Last-Translator: Manuela Silva <mmsrs@sky.com>, 2019-2020,2022-2023\n"
 "Language-Team: Portuguese (Portugal) (http://app.transifex.com/otf/globaleaks/language/pt_PT/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -47,7 +47,7 @@ msgid "Text customization"
 msgstr "Personalização de texto"
 
 msgid "Advanced"
-msgstr "Avançado"
+msgstr "Avançadas"
 
 msgid "Question templates"
 msgstr "Modelos de questão"
@@ -302,7 +302,7 @@ msgid "Strong"
 msgstr "Forte"
 
 msgid "Text shown on top of the interface for selecting channels"
-msgstr "Texto mostrado no topo da interface para os contextos selecionados"
+msgstr "Texto mostrado no topo da interface para os canais selecionados"
 
 msgid "Silence email notifications"
 msgstr "Silenciar notificações de correio eletrónico"
@@ -474,13 +474,13 @@ msgid "Transfer"
 msgstr "Transferir"
 
 msgid "Assigned to"
-msgstr ""
+msgstr "Atribuido a"
 
 msgid "Not provided."
-msgstr ""
+msgstr "Não fornecido."
 
 msgid "Set a reminder"
-msgstr ""
+msgstr "Definir um lembrete"
 
 msgid "Privileges"
 msgstr "Privilégios"
@@ -489,7 +489,7 @@ msgid "Hide"
 msgstr "Ocultar"
 
 msgid "Unhide"
-msgstr ""
+msgstr "Desocultar"
 
 msgid "Redact"
 msgstr ""
@@ -498,7 +498,7 @@ msgid "Select an option"
 msgstr "Selecionar uma opção"
 
 msgid "Select your language"
-msgstr "Selecione seu idioma"
+msgstr "Selecione o seu idioma"
 
 msgid "Give this user ability to mask information"
 msgstr ""
@@ -513,16 +513,16 @@ msgid "Internal"
 msgstr "Interno"
 
 msgid "Personal"
-msgstr ""
+msgstr "Pessoal"
 
 msgid "Privacy Policy"
-msgstr "Politica de Privacidade "
+msgstr "Política de Privacidade "
 
 msgid "I've read and accept the Privacy Policy"
-msgstr ""
+msgstr "Eu li e aceito a «Política de Privacidade»"
 
 msgid "Download copy of the Privacy Policy"
-msgstr ""
+msgstr "Transferir cópia da «Política de Privacidade»"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -531,6 +531,15 @@ msgid "Accessibility Declaration"
 msgstr ""
 
 msgid "Voice"
+msgstr ""
+
+msgid "Everyone"
+msgstr ""
+
+msgid "Recipients only"
+msgstr ""
+
+msgid "Only me"
 msgstr ""
 
 msgid "File a report"
@@ -603,7 +612,7 @@ msgid "Report statuses"
 msgstr "Estados das submissões"
 
 msgid "Channels"
-msgstr "Canals"
+msgstr "Canais"
 
 msgid "Hidden"
 msgstr "Ocultado"
@@ -1009,7 +1018,7 @@ msgid "Enable file viewer"
 msgstr ""
 
 msgid "Enable PGP"
-msgstr ""
+msgstr "Ativar PGP"
 
 msgid "Enable simplified login"
 msgstr "Ativar o início de sessão simplificado"
@@ -2006,7 +2015,7 @@ msgid ""
 msgstr ""
 
 msgid "Reminder"
-msgstr ""
+msgstr "Lembrete"
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Esta mensagem é para o informar que uma submissão existente foi atualizada."
