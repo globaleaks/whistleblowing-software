@@ -479,7 +479,7 @@ var GL = angular.module("GL", [
       testChunks: false,
       simultaneousUploads: 1,
       generateUniqueIdentifier: function () {
-        return Math.random() * 1000000 + 1000000;
+        return crypto.randomUUID();
       },
       headers: function() {
         return $rootScope.Authentication.get_headers();

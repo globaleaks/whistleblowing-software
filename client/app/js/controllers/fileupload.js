@@ -15,6 +15,14 @@ controller("WBFileUploadCtrl", ["$scope", function($scope) {
   $scope.disabled = false;
 
   $scope.$on("flow::fileAdded", function (event, $flow, flowFile) {
+    if ($scope.entry) {
+      if (!$scope.entry['files']) {
+        $scope.entry['files'] = [];
+      }
+
+      $scope.entry['files'].push(flowFile.uniqueIdentifier);
+    }
+
     flowFile.pause();
 
     $scope.file_error_msgs = [];
@@ -65,6 +73,14 @@ controller("AudioUploadCtrl", ["$scope", "flowFactory", "Utils", "mediaProcessor
       flow.files.push(file);
       $scope.audioPlayer = URL.createObjectURL($scope.recording_blob);
       $scope.uploads[$scope.fileinput] = flow;
+
+      if ($scope.entry) {
+        if (!$scope.entry['files']) {
+          $scope.entry['files'] = [];
+        }
+
+        $scope.entry['files'].push(file.uniqueIdentifier);
+      }
     }
 
     $scope.$apply();
@@ -95,7 +111,7 @@ controller("AudioUploadCtrl", ["$scope", "flowFactory", "Utils", "mediaProcessor
       target: $scope.fileupload_url,
       query: {
         type: "audio.webm",
-        reference: fileId,
+        reference_id: fileId,
       },
     });
 
@@ -172,6 +188,10 @@ controller("AudioUploadCtrl", ["$scope", "flowFactory", "Utils", "mediaProcessor
     $scope.seconds = 0;
     $scope.audioPlayer = null;
     delete $scope.uploads[$scope.fileinput];
+
+    if ($scope.entry && $scope.entry.files) {
+      delete $scope.entry.files;
+    }
   };
 }]).
 controller("ImageUploadCtrl", ["$http", "$scope", "$rootScope", "uploadUtils", "Utils", function($http, $scope, $rootScope, uploadUtils, Utils) {

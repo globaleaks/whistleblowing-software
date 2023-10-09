@@ -12,6 +12,32 @@ GL.controller("TipCtrl",
 
     $scope.showEditLabelInput = false;
 
+    $scope.audioFiles = {};
+
+    $scope.loadAudioFile = function(reference_id) {
+      for (var i=0; i < $scope.tip.wbfiles.length; i++) {
+        if ($scope.tip.wbfiles[i].reference_id === reference_id) {
+          var id = $scope.tip.wbfiles[i].id;
+          var xhr = new XMLHttpRequest();
+          xhr.open("GET", 'api/recipient/wbfiles/' + id, true);
+          xhr.setRequestHeader("x-session", $scope.Authentication.session.id);
+          xhr.overrideMimeType("audio/webm");
+          xhr.responseType = "blob";
+
+          xhr.onload = function() {
+            if (this.status === 200) {
+              $scope.audioFiles[reference_id] = URL.createObjectURL(this.response);
+              $scope.$apply();
+            }
+          };
+
+          xhr.send();
+
+          break;
+        }
+      };
+    };
+
     $scope.tabs = [
       {
         title: "Public",
@@ -286,7 +312,6 @@ GL.controller("TipCtrl",
         $scope.score = $scope.tip.score;
         $scope.ctx = "rtip";
         $scope.preprocessTipAnswers(tip);
-        $scope.fetchAudioFiles();
 
         $scope.exportTip = RTipExport;
         $scope.downloadWBFile = RTipDownloadWBFile;
@@ -319,16 +344,6 @@ GL.controller("TipCtrl",
       $scope.tip.updateSubmissionStatus().then(function() {
         $scope.tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText($scope.tip.status, $scope.tip.substatus, $scope.submission_statuses);
       });
-    };
-
-    $scope.fetchAudioFiles = function() {
-      $scope.audiolist = {};
-
-      for (let file of $scope.tip.wbfiles) {
-        $scope.Utils.load("api/recipient/wbfiles/" + file.id).then(function(url) {
-          $scope.audiolist[file["reference_id"]] = url;
-        });
-      }
     };
 
     $scope.newComment = function() {

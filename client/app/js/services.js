@@ -1076,12 +1076,6 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       };
     },
 
-    load: function(url) {
-      return new TokenResource().$get().then(function(token) {
-        return url + "?token=" + token.id + ":" + token.answer;
-      });
-    },
-
     download: function(url) {
       return new TokenResource().$get().then(function(token) {
         $window.open(url + "?token=" + token.id + ":" + token.answer);
@@ -1311,7 +1305,9 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       return this.runOperation("api/recipient/operations", operation, args, refresh);
     },
 
-    removeFile: function (submission, list, file) {
+    removeFile: function (submission, entry, list, file) {
+      entry.files = entry.files.filter(e => e !== file.uniqueIdentifier);
+
       for (var i = list.length - 1; i >= 0; i--) {
         if (list[i] === file) {
           list.splice(i, 1);

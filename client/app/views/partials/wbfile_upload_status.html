@@ -10,7 +10,7 @@
               </div>
               <div class="fileButtons">
                 <div data-ng-if="page === 'submissionpage' || !file.isComplete()" class="removeFileButton text-danger">
-                  <div class="btn btn-sm btn-danger" data-ng-click="Utils.removeFile(submission, uploads[fileinput].files, file)"><i class="fa-solid fa-times" aria-label="{'Remove' | translate}"></i></div>
+                  <div class="btn btn-sm btn-danger" data-ng-click="Utils.removeFile(submission, entry, uploads[fileinput].files, file)"><i class="fa-solid fa-times" aria-label="{'Remove' | translate}"></i></div>
                 </div>
               </div>
               <div class="fileUpload">

@@ -10,8 +10,8 @@
 
   <span data-ng-switch-when="voice">
     <i class="fa-solid fa-file-audio" data-ng-if="Authentication.session.role === 'whistleblower'"></i>
-    <div class="audio-player-wrapper" data-ng-disabled="!audiolist[field.id]" data-ng-if="Authentication.session.role === 'receiver'">
-      <audio data-ng-src="{{audiolist[field.id]}}" controls class="audio-player"></audio>
+    <div class="audio-player-wrapper" data-ng-if="Authentication.session.role === 'receiver'" data-ng-init="loadAudioFile(field.id)">
+      <audio data-ng-src="{{audioFiles[field.id]}}" controls class="audio-player"></audio>
     </div>
   </span>
 
