@@ -1,3 +1,11 @@
+Changes in version 4.13.13
+    Implement speaker anonymization based on vocoder (#3483)
+    Fix issue on identity access for identities inserted before version 4.11 (#3628)
+    Fix homepage link definition in debian packaging (#3685)
+    Fix regression in user email change API (#3674)
+    Bump npm dependencies to latest versions
+    Update translations
+
 Changes in version 4.13.12
     Add Docker scripts: Dockerfile and docker-compose.yaml
     Apply improvements for SEO purposes
