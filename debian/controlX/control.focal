@@ -10,7 +10,7 @@ Build-Depends:
   python3-all,
   python3-setuptools,
   python3-sphinx
-Homepage: https://www.globleaks.org/
+Homepage: https://www.globaleaks.org/
 Vcs-Git: https://github.com/globaleaks/GlobaLeaks.git
 Standards-Version: 4.6.1
 
