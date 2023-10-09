@@ -40,15 +40,15 @@ GL.controller("TipCtrl",
 
     $scope.tabs = [
       {
-        title: "Public",
+        title: "Everyone",
         key: "public"
       },
       {
-        title: "Internal",
+        title: "Recipients only",
         key: "internal"
       },
       {
-        title: "Personal",
+        title: "Only me",
         key: "personal"
       }
     ];
