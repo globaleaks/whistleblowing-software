@@ -25,7 +25,8 @@ def get_identityaccessrequest_list(session, tid, user_id, user_key):
                             .filter(models.IdentityAccessRequestCustodian.identityaccessrequest_id == models.IdentityAccessRequest.id,
                                     models.IdentityAccessRequestCustodian.custodian_id == user_id,
                                     models.IdentityAccessRequest.internaltip_id == models.InternalTip.id,
-                                    models.InternalTip.tid == tid):
+                                    models.InternalTip.tid == tid) \
+                            .order_by(models.IdentityAccessRequest.request_date.desc()):
         elem = serializers.serialize_identityaccessrequest(session, iar)
 
         if iarc.crypto_tip_prv_key:
