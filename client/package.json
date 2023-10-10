@@ -48,7 +48,6 @@
     "angularjs-dropdown-multiselect": "2.0.0-beta.10",
     "babel-plugin-istanbul": "6.1.1",
     "bootstrap": "4.6.2",
-    "fast-sha256": "1.3.0",
     "ng-csv": "0.3.6",
     "ng-idle": "1.3.2",
     "ng-showdown": "1.1.0",

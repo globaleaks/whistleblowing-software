@@ -45,7 +45,6 @@
         "angularjs-dropdown-multiselect": "2.0.0-beta.10",
         "babel-plugin-istanbul": "6.1.1",
         "bootstrap": "4.6.2",
-        "fast-sha256": "1.3.0",
         "ng-csv": "0.3.6",
         "ng-idle": "1.3.2",
         "ng-showdown": "1.1.0",
@@ -6381,11 +6380,6 @@
       "resolved": "https://registry.npmjs.org/fast-safe-stringify/-/fast-safe-stringify-2.1.1.tgz",
       "integrity": "sha512-W+KJc2dmILlPplD/H4K9l9LcAHAfPtP6BY84uVLXQ6Evcz9Lcg33Y2z1IVblT6xdY54PXYVHEv+0Wpq8Io6zkA==",
       "dev": true
-    },
-    "node_modules/fast-sha256": {
-      "version": "1.3.0",
-      "resolved": "https://registry.npmjs.org/fast-sha256/-/fast-sha256-1.3.0.tgz",
-      "integrity": "sha512-n11RGP/lrWEFI/bWdygLxhI+pVeo1ZYIVwvvPkW7azl/rOy+F3HYRZ2K5zeE9mmkhQppyv9sQFx0JM9UabnpPQ=="
     },
     "node_modules/fastest-levenshtein": {
       "version": "1.0.16",
