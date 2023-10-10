@@ -181,6 +181,9 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
     itip.status = 'new'
     itip.crypto_tip_pub_key = crypto_tip_pub_key
 
+    # Ensure that update_date and creation_date have the same value at creation time.
+    itip.update_date = itip.creation_date
+
     itip.progressive = db_assign_submission_progressive(session, tid)
 
     if context.tip_timetolive > 0:
