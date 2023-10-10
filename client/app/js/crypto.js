@@ -16,43 +16,23 @@ GL.factory("glbcUtil", function() {
 .factory("glbcProofOfWork", ["$q", "glbcUtil", function($q, glbcUtil) {
   // proofOfWork return the answer to the proof of work
   // { [challenge string] -> [ answer index] }
-  var getWebCrypto = function() {
-    if (typeof window === "undefined" || !window.isSecureContext) {
-      return;
-    }
-
-    return window.crypto.subtle;
-  };
-
   return {
     proofOfWork: function(data) {
       var deferred = $q.defer();
 
-      var work = function(i) {
-        var webCrypto = getWebCrypto();
+      function work(i) {
+        var webCrypto = window.crypto.subtle;
         var toHash = glbcUtil.str2Uint8Array(data + i);
         var digestPremise;
 
-        var xxx = function (hash) {
+        webCrypto.digest({name: "SHA-256"}, toHash).then(function (hash) {
           hash = new Uint8Array(hash);
           if (hash[31] === 0) {
             deferred.resolve(i);
           } else {
             work(i+1);
           }
-        };
-
-        if (webCrypto) {
-          digestPremise = webCrypto.digest({name: "SHA-256"}, toHash);
-        } else {
-          digestPremise = $q.resolve(sha256(toHash));
-        }
-
-        if (typeof digestPremise.then !== "undefined") {
-          digestPremise.then(xxx);
-        } else {
-          digestPremise.oncomplete = function(r) { xxx(r.target.result); };
-        }
+        });
       };
 
       work(0);

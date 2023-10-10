@@ -36,7 +36,6 @@ module.exports = function(grunt) {
           { dest: "app/lib/css/", cwd: "./node_modules/", src: ["@fortawesome/fontawesome-free/css/regular.css"], expand: true, flatten: true },
           { dest: "app/lib/css/", cwd: "./node_modules/", src: ["@fortawesome/fontawesome-free/css/solid.css"], expand: true, flatten: true },
           { dest: "app/lib/css/", cwd: "./node_modules/", src: ["ui-select/dist/select.css"], expand: true, flatten: true },
-          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["fast-sha256/sha256.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: "./node_modules/", src: ["@flowjs/flow.js/dist/flow.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: "./node_modules/", src: ["@flowjs/ng-flow/dist/ng-flow.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angular/angular.js"], expand: true, flatten: true },
