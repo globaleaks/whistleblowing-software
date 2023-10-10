@@ -234,9 +234,10 @@
           </td>
           <td class="TipInfoComments">{{tip.comment_count}}</td>
           <td class="TipInfoFiles">{{tip.file_count}}</td>
-          <th class="TipInfoIdentity">
-            <i data-ng-if="tip.subscription === 1" class="fa-solid fa-check"></i>
-            <i data-ng-if="tip.subscription === 2" class="fa-solid fa-check underline"></i>
+          <th class="TipInfoIdentity" data-ng-switch="tip.subscription">
+            <i data-ng-switch-when="0" class="fa-solid fa-times"></i>
+            <i data-ng-switch-when="1" class="fa-solid fa-check"></i>
+            <i data-ng-switch-when="2" class="fa-solid fa-check underline" data-uib-tooltip="{{'Subscription date' | translate}}: {{tip.data.whistleblower_identity_date | date:'dd-MM-yyyy HH:mm'}}"></i>
           </th>
           <td class="TipInfoScore" data-ng-if="public.node.enable_scoring_system" data-ng-switch="tip.score">
             <span data-ng-switch-when="0">-</span>
