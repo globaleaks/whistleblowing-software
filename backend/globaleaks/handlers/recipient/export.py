@@ -44,13 +44,13 @@ def serialize_rtip_export(session, user, itip, rtip, context, language):
 
 
 @transact
-def get_tip_export(session, tid, user_id, rtip_id, language):
+def get_tip_export(session, tid, user_id, itip_id, language):
     user, context, itip, rtip = session.query(models.User, models.Context, models.InternalTip, models.ReceiverTip) \
                                        .filter(models.User.id == user_id,
                                                models.User.tid == tid,
-                                               models.ReceiverTip.id == rtip_id,
                                                models.ReceiverTip.receiver_id == models.User.id,
                                                models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                                               models.InternalTip.id == itip_id,
                                                models.Context.id == models.InternalTip.context_id).one_or_none()
 
     if not user:
@@ -125,10 +125,10 @@ class ExportHandler(BaseHandler):
     handler_exec_time_threshold = 3600
 
     @inlineCallbacks
-    def get(self, rtip_id):
+    def get(self, itip_id):
         pgp_key, tip_export = yield get_tip_export(self.request.tid,
                                                    self.session.user_id,
-                                                   rtip_id,
+                                                   itip_id,
                                                    self.request.language)
 
         filename = "report-" + str(tip_export["tip"]["progressive"]) + ".zip"

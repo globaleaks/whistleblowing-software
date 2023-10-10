@@ -136,7 +136,7 @@ var GL = angular.module("GL", [
         controller: "SignupActivationCtrl",
         header_title: "Signup"
       }).
-      when("/status/:tip_id", {
+      when("/reports/:tip_id", {
         templateUrl: "views/recipient/tip.html",
         controller: "TipCtrl",
         header_title: "Report",

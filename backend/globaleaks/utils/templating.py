@@ -313,7 +313,7 @@ class TipKeyword(UserNodeKeyword):
         return self.data['tip']['id']
 
     def UrlPath(self):
-        return '/#/status/' + self.data['tip']['id']
+        return '/#/reports/' + self.data['tip']['id']
 
     def TipNum(self):
         return str(self.data['tip']['progressive'])

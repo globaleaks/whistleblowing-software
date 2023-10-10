@@ -91,8 +91,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
             subscription = 2
 
         ret.append({
-            'id': rtip.id,
-            'itip_id': itip.id,
+            'id': itip.id,
             'creation_date': itip.creation_date,
             'access_date': rtip.access_date,
             'last_access': itip.last_access,
@@ -133,8 +132,8 @@ def perform_tips_operation(session, tid, user_id, user_cc, operation, args):
 
     result = session.query(models.InternalTip, models.ReceiverTip) \
                                  .filter(models.ReceiverTip.receiver_id == user_id,
-                                         models.ReceiverTip.id.in_(args['rtips']),
-                                         models.InternalTip.id == models.ReceiverTip.internaltip_id)
+                                         models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                                         models.InternalTip.id.in_(args['rtips']))
 
     if operation == 'grant' and receiver.can_grant_access_to_reports:
         for itip, rtip in result:

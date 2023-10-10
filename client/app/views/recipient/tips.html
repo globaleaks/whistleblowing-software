@@ -191,7 +191,7 @@
         <tr id="tip-{{$index}}"
             data-ng-repeat="tip in filteredTips | orderBy:sortKey:sortReverse | limitTo:itemsPerPage:((currentPage - 1) * itemsPerPage)"
 	    data-ng-class="{'font-weight-bold': tip.updated, 'selectedTip': isSelected(tip.id)}" class="tip-action-open"
-            data-ng-click="Utils.go('/status/' + tip.id)">
+            data-ng-click="Utils.go('/reports/' + tip.id)">
           <td>
             <span class="btn btn-sm btn-outline-secondary" data-ng-if="isSelected(tip.id)"
                   data-ng-click="tip_switch(tip.id); $event.stopPropagation();">

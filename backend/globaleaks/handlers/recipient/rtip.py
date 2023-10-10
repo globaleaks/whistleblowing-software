@@ -65,7 +65,8 @@ def db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, receiver_id)
     :param tid: A tenant ID of the user performing the operation
     :param user_id: A user ID of the user performing the operation
     :param user_cc: A user crypto key
-    :param rtip_id: A rtip_id of the rtip on which perform the operation
+    :param itip: An itip on which to perform operation
+    :param rtip: An rtip on which to perform operation
     :param receiver_id: A user ID of the the user to which grant access to the report
     """
     existing = session.query(models.ReceiverTip).filter(models.ReceiverTip.receiver_id == receiver_id,
@@ -114,7 +115,7 @@ def db_revoke_tip_access(session, tid, user_id, itip, receiver_id):
     :param session: An ORM session
     :param tid: A tenant ID of the user performing the operation
     :param user_id: A user ID of the user performing the operation
-    :param rtip_id: A rtip_id  of the submission object of the operation
+    :param itip: An itip on which to perform operation
     :param receiver_id: A user ID of the the user to which revoke access to the report
     """
     rtip = session.query(models.ReceiverTip) \
@@ -129,11 +130,9 @@ def db_revoke_tip_access(session, tid, user_id, itip, receiver_id):
 
 
 @transact
-def grant_tip_access(session, tid, user_id, user_cc, rtip_id, receiver_id):
-    user, itip, rtip = session.query(models.User, models.InternalTip, models.ReceiverTip) \
-                                  .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                          models.ReceiverTip.id == rtip_id,
-                                          models.User.id == models.ReceiverTip.receiver_id).one()
+def grant_tip_access(session, tid, user_id, user_cc, itip_id, receiver_id):
+    user, rtip, itip = db_access_rtip(session, tid, user_id, itip_id)
+
     if user_id == receiver_id or not user.can_grant_access_to_reports:
         raise errors.ForbiddenOperation
 
@@ -142,11 +141,9 @@ def grant_tip_access(session, tid, user_id, user_cc, rtip_id, receiver_id):
 
 
 @transact
-def revoke_tip_access(session, tid, user_id, rtip_id, receiver_id):
-    user, itip, rtip = session.query(models.User, models.InternalTip, models.ReceiverTip) \
-                                  .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                          models.ReceiverTip.id == rtip_id,
-                                          models.User.id == models.ReceiverTip.receiver_id).one()
+def revoke_tip_access(session, tid, user_id, itip_id, receiver_id):
+    user, rtip, itip = db_access_rtip(session, tid, user_id, itip_id)
+
     if user_id == receiver_id or not user.can_grant_access_to_reports:
         raise errors.ForbiddenOperation
 
@@ -155,15 +152,12 @@ def revoke_tip_access(session, tid, user_id, rtip_id, receiver_id):
 
 
 @transact
-def transfer_tip_access(session, tid, user_id, user_cc, rtip_id, receiver_id):
+def transfer_tip_access(session, tid, user_id, user_cc, itip_id, receiver_id):
     log_data = {
       'recipient_id': receiver_id
     }
 
-    user, itip, rtip = session.query(models.User, models.InternalTip, models.ReceiverTip) \
-                                  .filter(models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                          models.ReceiverTip.id == rtip_id,
-                                          models.User.id == models.ReceiverTip.receiver_id).one()
+    user, rtip, itip = db_access_rtip(session, tid, user_id, itip_id)
     if user_id == receiver_id or not user.can_transfer_access_to_reports:
         raise errors.ForbiddenOperation
 
@@ -202,18 +196,18 @@ def db_update_submission_status(session, tid, user_id, itip, status_id, substatu
 
 
 @transact
-def update_tip_submission_status(session, tid, user_id, rtip_id, status_id, substatus_id):
+def update_tip_submission_status(session, tid, user_id, itip_id, status_id, substatus_id):
     """
     Transaction for registering a change of status of a submission
 
     :param session: An ORM session
     :param tid: The tenant ID
     :param user_id: A user ID of the user changing the state
-    :param rtip_id: The ID of the rtip accessed by the user
+    :param itip_id: The ID of the rtip accessed by the user
     :param status_id:  The new status ID
     :param substatus_id: A new substatus ID
     """
-    _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+    _, rtip, itip = db_access_rtip(session, tid, user_id, itip_id)
 
     if itip.status != status_id or itip.substatus != substatus_id:
         itip.update_date = rtip.last_access = datetime_now()
@@ -221,20 +215,20 @@ def update_tip_submission_status(session, tid, user_id, rtip_id, status_id, subs
     db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id)
 
 
-def db_access_rtip(session, tid, user_id, rtip_id):
+def db_access_rtip(session, tid, user_id, itip_id):
     """
     Transaction retrieving an rtip and performing basic access checks
 
     :param session: An ORM session
     :param tid: A tenant ID of the user
     :param user_id: A user ID
-    :param rtip_id: the requested rtip ID
+    :param itip_id: the requested rtip ID
     :return: A model requested
     """
     return db_get(session,
                   (models.User, models.ReceiverTip, models.InternalTip),
                   (models.User.id == user_id,
-                   models.ReceiverTip.id == rtip_id,
+                   models.InternalTip.id == itip_id,
                    models.ReceiverTip.receiver_id == models.User.id,
                    models.ReceiverTip.internaltip_id == models.InternalTip.id,
                    models.InternalTip.tid == tid))
@@ -263,18 +257,18 @@ def db_access_rfile(session, tid, user_id, rfile_id):
 
 
 @transact
-def register_rfile_on_db(session, tid, user_id, rtip_id, uploaded_file):
+def register_rfile_on_db(session, tid, user_id, itip_id, uploaded_file):
     """
     Register a file on the database
 
     :param session: An ORM session
     :param tid: A tenant id
-    :param rtip_id: A id of the rtip on which attaching the file
+    :param itip_id: A id of the rtip on which attaching the file
     :param uploaded_file: A file to be attached
     :return: A descriptor of the file
     """
     rtip, itip = session.query(models.ReceiverTip, models.InternalTip) \
-                        .filter(models.ReceiverTip.id == rtip_id,
+                        .filter(models.InternalTip.id == itip_id,
                                 models.ReceiverTip.receiver_id == user_id,
                                 models.ReceiverTip.internaltip_id == models.InternalTip.id,
                                 models.InternalTip.status != 'closed',
@@ -303,18 +297,18 @@ def register_rfile_on_db(session, tid, user_id, rtip_id, uploaded_file):
     return serializers.serialize_rfile(session, new_file)
 
 
-def db_get_rtip(session, tid, user_id, rtip_id, language):
+def db_get_rtip(session, tid, user_id, itip_id, language):
     """
     Transaction retrieving an rtip
 
     :param session: An ORM session
     :param tid: A tenant ID
     :param user_id: A user ID of the user opening the submission
-    :param rtip_id: A rtip ID to accessed
+    :param itip_id: An itip ID to accessed
     :param language: A language to be used for the serialization
     :return:  The serialized descriptor of the rtip
     """
-    _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+    _, rtip, itip = db_access_rtip(session, tid, user_id, itip_id)
 
     if itip.status == 'new':
         db_update_submission_status(session, tid, user_id, itip, 'opened', None)
@@ -329,18 +323,18 @@ def db_get_rtip(session, tid, user_id, rtip_id, language):
 
 
 @transact
-def get_rtip(session, tid, user_id, rtip_id, language):
+def get_rtip(session, tid, user_id, itip_id, language):
     """
     Transaction retrieving an rtip
 
     :param session: An ORM session
     :param tid: A tenant ID
     :param user_id: A user ID of the user opening the submission
-    :param rtip_id: A rtip ID to accessed
+    :param itip_id: An itip ID to accessed
     :param language: A language to be used for the serialization
     :return:  The serialized descriptor of the rtip
     """
-    return db_get_rtip(session, tid, user_id, rtip_id, language)
+    return db_get_rtip(session, tid, user_id, itip_id, language)
 
 
 def db_delete_itip(session, itip_id):
@@ -392,16 +386,16 @@ def db_set_reminder(session, itip, reminder_date):
     itip.reminder_date = reminder_date
 
 @transact
-def delete_rtip(session, tid, user_id, rtip_id):
+def delete_rtip(session, tid, user_id, itip_id):
     """
     Transaction for deleting a submission
 
     :param session: An ORM session
     :param tid: A tenant ID of the user performing the operation
     :param user_id: A user ID of the user performing the operation
-    :param rtip_id: A rtip ID of the submission object of the operation
+    :param itip_id: An itip ID of the submission object of the operation
     """
-    user, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+    user, rtip, itip = db_access_rtip(session, tid, user_id, itip_id)
 
     if not user.can_delete_submission:
         raise errors.ForbiddenOperation
@@ -412,17 +406,17 @@ def delete_rtip(session, tid, user_id, rtip_id):
 
 
 @transact
-def postpone_expiration(session, tid, user_id, rtip_id, expiration_date):
+def postpone_expiration(session, tid, user_id, itip_id, expiration_date):
     """
     Transaction for postponing the expiration of a submission
 
     :param session: An ORM session
     :param tid: A tenant ID of the user performing the operation
     :param user_id: A user ID of the user performing the operation
-    :param rtip_id: A rtip ID of the submission object of the operation
+    :param itip_id: An itip ID of the submission object of the operation
     :param expiration_date: A new expiration date
     """
-    user, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+    user, rtip, itip = db_access_rtip(session, tid, user_id, itip_id)
 
     if not user.can_postpone_expiration:
         raise errors.ForbiddenOperation
@@ -431,34 +425,34 @@ def postpone_expiration(session, tid, user_id, rtip_id, expiration_date):
 
 
 @transact
-def set_reminder(session, tid, user_id, rtip_id, reminder_date):
+def set_reminder(session, tid, user_id, itip_id, reminder_date):
     """
     Transaction for postponing the expiration of a submission
 
     :param session: An ORM session
     :param tid: A tenant ID of the user performing the operation
     :param user_id: A user ID of the user performing the operation
-    :param rtip_id: A rtip ID of the submission object of the operation
+    :param itip_id: An itip ID of the submission object of the operation
     :param reminder_date: A new reminder expiration date
     """
-    user, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+    user, rtip, itip = db_access_rtip(session, tid, user_id, itip_id)
 
     db_set_reminder(session, itip, reminder_date)
 
 
 @transact
-def set_internaltip_variable(session, tid, user_id, rtip_id, key, value):
+def set_internaltip_variable(session, tid, user_id, itip_id, key, value):
     """
     Transaction for setting properties of a submission
 
     :param session: An ORM session
     :param tid: A tenant ID of the user performing the operation
     :param user_id: A user ID of the user performing the operation
-    :param rtip_id: A rtip ID of the submission object of the operation
+    :param itip_id: An itip ID of the submission object of the operation
     :param key: A key of the property to be set
     :param value: A value to be assigned to the property
     """
-    _, _, itip = db_access_rtip(session, tid, user_id, rtip_id)
+    _, _, itip = db_access_rtip(session, tid, user_id, itip_id)
 
     if itip.crypto_tip_pub_key and value and key in ['label']:
         value = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, value))
@@ -467,18 +461,18 @@ def set_internaltip_variable(session, tid, user_id, rtip_id, key, value):
 
 
 @transact
-def set_receivertip_variable(session, tid, user_id, rtip_id, key, value):
+def set_receivertip_variable(session, tid, user_id, itip_id, key, value):
     """
     Transaction for setting properties of a submission
 
     :param session: An ORM session
     :param tid: A tenant ID of the user performing the operation
     :param user_id: A user ID of the user performing the operation
-    :param rtip_id: A rtip ID of the submission object of the operation
+    :param itip_id: An itip ID of the submission object of the operation
     :param key: A key of the property to be set
     :param value: A value to be assigned to the property
     """
-    _, rtip, _ = db_access_rtip(session, tid, user_id, rtip_id)
+    _, rtip, _ = db_access_rtip(session, tid, user_id, itip_id)
     setattr(rtip, key, value)
 
 
@@ -521,16 +515,16 @@ def db_create_identityaccessrequest_notifications(session, itip, rtip, iar):
 
 
 @transact
-def create_identityaccessrequest(session, tid, user_id, user_cc, rtip_id, request):
+def create_identityaccessrequest(session, tid, user_id, user_cc, itip_id, request):
     """
     Transaction for the creation of notifications related to identity access requests
     :param session: An ORM session
     :param tid: A tenant ID of the user issuing the request
     :param user_id: A user ID of the user issuing the request
-    :param rtip_id: A rtip_id ID of the rtip involved in the request
+    :param itip_id: A itip_id ID of the rtip involved in the request
     :param request: The request data
     """
-    user, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+    user, rtip, itip = db_access_rtip(session, tid, user_id, itip_id)
 
     crypto_tip_prv_key = GCE.asymmetric_decrypt(user_cc, base64.b64decode(rtip.crypto_tip_prv_key))
 
@@ -561,18 +555,18 @@ def create_identityaccessrequest(session, tid, user_id, user_cc, rtip_id, reques
 
 
 @transact
-def create_comment(session, tid, user_id, rtip_id, content, visibility=0):
+def create_comment(session, tid, user_id, itip_id, content, visibility=0):
     """
     Transaction for registering a new comment
     :param session: An ORM session
     :param tid: A tenant ID
     :param user_id: The user id of the user creating the comment
-    :param rtip_id: The rtip associated to the comment to be created
+    :param itip_id: The rtip associated to the comment to be created
     :param content: The content of the comment
     :param visibility: The visibility type of the comment
     :return: A serialized descriptor of the comment
     """
-    _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
+    _, rtip, itip = db_access_rtip(session, tid, user_id, itip_id)
 
     itip.update_date = rtip.last_access = datetime_now()
 
@@ -635,39 +629,39 @@ class RTipInstance(OperationHandler):
 
         }
 
-    def set_tip_val(self, req_args, rtip_id, *args, **kwargs):
+    def set_tip_val(self, req_args, itip_id, *args, **kwargs):
         value = req_args['value']
         key = req_args['key']
 
         if key == 'enable_notifications':
-            return set_receivertip_variable(self.request.tid, self.session.user_id, rtip_id, key, value)
+            return set_receivertip_variable(self.request.tid, self.session.user_id, itip_id, key, value)
 
-        return set_internaltip_variable(self.request.tid, self.session.user_id, rtip_id, key, value)
+        return set_internaltip_variable(self.request.tid, self.session.user_id, itip_id, key, value)
 
-    def grant_tip_access(self, req_args, rtip_id, *args, **kwargs):
-        return grant_tip_access(self.request.tid, self.session.user_id, self.session.cc, rtip_id, req_args['receiver'])
+    def grant_tip_access(self, req_args, itip_id, *args, **kwargs):
+        return grant_tip_access(self.request.tid, self.session.user_id, self.session.cc, itip_id, req_args['receiver'])
 
-    def revoke_tip_access(self, req_args, rtip_id, *args, **kwargs):
-        return revoke_tip_access(self.request.tid, self.session.user_id, rtip_id, req_args['receiver'])
+    def revoke_tip_access(self, req_args, itip_id, *args, **kwargs):
+        return revoke_tip_access(self.request.tid, self.session.user_id, itip_id, req_args['receiver'])
 
-    def transfer_tip(self, req_args, rtip_id, *args, **kwargs):
-        return transfer_tip_access(self.request.tid, self.session.user_id, self.session.cc, rtip_id, req_args['receiver'])
+    def transfer_tip(self, req_args, itip_id, *args, **kwargs):
+        return transfer_tip_access(self.request.tid, self.session.user_id, self.session.cc, itip_id, req_args['receiver'])
 
-    def postpone_expiration(self, req_args, rtip_id, *args, **kwargs):
-        return postpone_expiration(self.request.tid, self.session.user_id, rtip_id, req_args['value'])
+    def postpone_expiration(self, req_args, itip_id, *args, **kwargs):
+        return postpone_expiration(self.request.tid, self.session.user_id, itip_id, req_args['value'])
 
-    def set_reminder(self, req_args, rtip_id, *args, **kwargs):
-        return set_reminder(self.request.tid, self.session.user_id, rtip_id, req_args['value'])
+    def set_reminder(self, req_args, itip_id, *args, **kwargs):
+        return set_reminder(self.request.tid, self.session.user_id, itip_id, req_args['value'])
 
-    def update_submission_status(self, req_args, rtip_id, *args, **kwargs):
-        return update_tip_submission_status(self.request.tid, self.session.user_id, rtip_id,
+    def update_submission_status(self, req_args, itip_id, *args, **kwargs):
+        return update_tip_submission_status(self.request.tid, self.session.user_id, itip_id,
                                             req_args['status'], req_args['substatus'])
 
-    def delete(self, rtip_id):
+    def delete(self, itip_id):
         """
         Remove the Internaltip and all the associated data
         """
-        return delete_rtip(self.request.tid, self.session.user_id, rtip_id)
+        return delete_rtip(self.request.tid, self.session.user_id, itip_id)
 
 
 class RTipCommentCollection(BaseHandler):
@@ -676,9 +670,9 @@ class RTipCommentCollection(BaseHandler):
     """
     check_roles = 'receiver'
 
-    def post(self, rtip_id):
+    def post(self, itip_id):
         request = self.validate_request(self.request.content.read(), requests.CommentDesc)
-        return create_comment(self.request.tid, self.session.user_id, rtip_id, request['content'], request['visibility'])
+        return create_comment(self.request.tid, self.session.user_id, itip_id, request['content'], request['visibility'])
 
 
 class WhistleblowerFileDownload(BaseHandler):
@@ -745,8 +739,8 @@ class ReceiverFileUpload(BaseHandler):
     check_roles = 'receiver'
     upload_handler = True
 
-    def post(self, rtip_id):
-        return register_rfile_on_db(self.request.tid, self.session.user_id, rtip_id, self.uploaded_file)
+    def post(self, itip_id):
+        return register_rfile_on_db(self.request.tid, self.session.user_id, itip_id, self.uploaded_file)
 
 
 class ReceiverFileDownload(BaseHandler):
@@ -805,11 +799,11 @@ class IdentityAccessRequestsCollection(BaseHandler):
     """
     check_roles = 'receiver'
 
-    def post(self, rtip_id):
+    def post(self, itip_id):
         request = self.validate_request(self.request.content.read(), requests.ReceiverIdentityAccessRequestDesc)
 
         return create_identityaccessrequest(self.request.tid,
                                             self.session.user_id,
                                             self.session.cc,
-                                            rtip_id,
+                                            itip_id,
                                             request)
