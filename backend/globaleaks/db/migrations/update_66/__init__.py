@@ -59,7 +59,7 @@ class MigrationScript(MigrationBase):
                     setattr(new_obj, key, getattr(old_obj, key))
 
             if old_obj.creation_date < old_tip.creation_date + timedelta(minutes=1):
-                old_obj.creation_date = old_tip.creation_date
+                new_obj.creation_date = old_tip.creation_date
 
             self.session_new.add(new_obj)
 
