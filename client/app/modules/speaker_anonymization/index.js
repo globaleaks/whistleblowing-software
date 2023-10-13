@@ -28,21 +28,12 @@ function anonymizeSpeaker(audioContext) {
 
   input.gain.value = output.gain.value = 1;
 
-  const vocoderBands = generateVocoderBands(80, 8000, 128);
-  const vocoderPitchShift = (Math.random() < 0.5 ? 1 : -1) * (1/12 + Math.random() * 1/2);
+  const vocoderBands = generateVocoderBands(200, 16000, 128);
+  const vocoderPitchShift = -(1/12 - Math.random() * 1/24);
 
   for (let i=0; i < vocoderBands.length; i++) {
     const carrier = audioContext.createOscillator();
-
-    carrier.frequency.value = vocoderBands[i].freq;
-
-    if (vocoderBands[i].freq <= 175) {
-      carrier.frequency.value *= Math.pow(2, 4/12);
-    } else if (175 < carrier.frequency.value && carrier.frequency.value <= 440) {
-      carrier.frequency.value *= Math.pow(2, vocoderPitchShift);
-    } else {
-      carrier.frequency.value *= Math.pow(2, -4/12);
-    }
+    carrier.frequency.value = vocoderBands[i].freq * Math.pow(2, vocoderPitchShift);
 
     const modulatorBandFilter = audioContext.createBiquadFilter();
 
