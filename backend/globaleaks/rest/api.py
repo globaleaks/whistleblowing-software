@@ -254,10 +254,10 @@ class APIResourceWrapper(Resource):
         elif isinstance(e, errors.GLException):
             pass
         else:
+            e = errors.InternalServerError('Unexpected')
             e.tid = request.tid
             e.url = request.hostname + request.path
             extract_exception_traceback_and_schedule_email(exception)
-            e = errors.InternalServerError('Unexpected')
 
         if isinstance(e, errors.GLException):
           request.setResponseCode(e.status_code)
