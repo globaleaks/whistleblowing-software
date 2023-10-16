@@ -58,10 +58,10 @@
   },
   "devDependencies": {
     "@babel/cli": "7.23.0",
-    "@babel/core": "7.23.0",
-    "@cypress/code-coverage": "3.12.1",
+    "@babel/core": "7.23.2",
+    "@cypress/code-coverage": "3.12.4",
     "@lodder/grunt-postcss": "3.1.1",
-    "cypress": "13.3.0",
+    "cypress": "13.3.1",
     "eslint": "8.51.0",
     "gettext-parser": "7.0.1",
     "grunt": "1.6.1",
@@ -79,13 +79,13 @@
     "grunt-usemin": "3.1.1",
     "gruntify-eslint": "5.0.0",
     "node-gettext": "3.0.0",
-    "npm-check-updates": "16.14.5",
+    "npm-check-updates": "16.14.6",
     "nyc": "15.1.0",
     "postcss-rtl": "2.0.0",
     "stylelint": "15.10.3",
     "stylelint-config-standard": "34.0.0",
     "superagent": "8.1.2",
-    "terser": "5.21.0"
+    "terser": "5.22.0"
   },
   "overrides": {
     "grunt-stylelint": {
