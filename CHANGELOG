@@ -1,3 +1,9 @@
+Changes in version 4.13.14
+    Revise vocoder implementation
+    Apply minor bugfixing
+    Bump npm dependencies to latest versions
+    Update translations
+
 Changes in version 4.13.13
     Implement speaker anonymization based on vocoder (#3483)
     Fix issue on identity access for identities inserted before version 4.11 (#3628)
