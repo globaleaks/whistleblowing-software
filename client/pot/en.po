@@ -521,8 +521,8 @@ msgstr "Only me"
 msgid "Specify:"
 msgstr "Specify:"
 
-msgid "Would you like to provide us who you are?"
-msgstr "Would you like to provide us who you are?"
+msgid "Would you like to tell us who you are?"
+msgstr "Would you like to tell us who you are?"
 
 msgid "File a report"
 msgstr "File a report"
@@ -1441,9 +1441,6 @@ msgstr ""
 
 msgid "Join our chat:"
 msgstr "Join our chat:"
-
-msgid "Follow the project on:"
-msgstr "Follow the project on:"
 
 msgid "An update is available:"
 msgstr "An update is available:"
