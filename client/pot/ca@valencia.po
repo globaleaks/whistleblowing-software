@@ -525,13 +525,13 @@ msgid "Voice"
 msgstr "Veu"
 
 msgid "Everyone"
-msgstr ""
+msgstr "Tots"
 
 msgid "Recipients only"
-msgstr ""
+msgstr "Solament destinataris"
 
 msgid "Only me"
-msgstr ""
+msgstr "Solament jo"
 
 msgid "File a report"
 msgstr "Presentar una denúncia."
@@ -1405,7 +1405,7 @@ msgid "Status:"
 msgstr "Estat:"
 
 msgid "Files attached by recipients"
-msgstr "Arxius adjuntats pels receptors"
+msgstr "Arxius adjuntats pels destinataris"
 
 msgid "Upload a file:"
 msgstr "Pujar un fitxer:"

@@ -15,7 +15,7 @@
 # Joan Montané, 2020
 # Joan Montané, 2020
 # Joan Redon, 2022
-# José Luis Ramirez, 2022
+# José Luis Ramirez, 2022-2023
 # Josep Anton Rius <j.rius.cat@gmail.com>, 2016
 # Maddish Falzoni <maddish@xnet-x.net>, 2016
 # Nick Skelsey, 2016
@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022\n"
+"Last-Translator: José Luis Ramirez, 2022-2023\n"
 "Language-Team: Catalan (http://app.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -85,7 +85,7 @@ msgid "Date"
 msgstr "Data"
 
 msgid "Expiration date"
-msgstr "Data de caducitat"
+msgstr "Esborrat automàtic"
 
 msgid "Last Access"
 msgstr "Últim accés"
@@ -530,13 +530,13 @@ msgid "Voice"
 msgstr "Veu"
 
 msgid "Everyone"
-msgstr ""
+msgstr "Tots"
 
 msgid "Recipients only"
-msgstr ""
+msgstr "Solament receptors"
 
 msgid "Only me"
-msgstr ""
+msgstr "Solament jo"
 
 msgid "File a report"
 msgstr "Presentar un informe"
@@ -1868,7 +1868,7 @@ msgid ""
 msgstr "El certificat HTTPS carregat a la plataforma està caducat o a punt de fer-ho."
 
 msgid "Expiration date: {ExpirationDate}"
-msgstr "Data de caducitat: {ExpirationDate}"
+msgstr "Esborrat automàtic: {ExpirationDate}"
 
 msgid ""
 "Without a valid certificate, the platform will be accessible in a secure way"

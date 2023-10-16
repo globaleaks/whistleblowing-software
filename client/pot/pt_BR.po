@@ -508,7 +508,7 @@ msgid "Unhide"
 msgstr "Desocultar"
 
 msgid "Redact"
-msgstr ""
+msgstr "Redigir"
 
 msgid "Select an option"
 msgstr "Selecionar uma opção"
@@ -517,10 +517,10 @@ msgid "Select your language"
 msgstr "Selecione seu idioma"
 
 msgid "Give this user ability to mask information"
-msgstr ""
+msgstr "Dar a este utilizador a capacidade de mascarar informação"
 
 msgid "Give this user ability to permanently redact masked information"
-msgstr ""
+msgstr "Dar a este utilizador a capacidade de editar permanentemente informação mascarada"
 
 msgid "Public"
 msgstr "Pública"
@@ -541,28 +541,28 @@ msgid "Download copy of the Privacy Policy"
 msgstr "Transferir cópia da «Política de Privacidade»"
 
 msgid "Whistleblowing Policy"
-msgstr ""
+msgstr "Política da Denúncia"
 
 msgid "Accessibility Declaration"
-msgstr ""
+msgstr "Declaração de acessibilidade"
 
 msgid "Voice"
-msgstr ""
+msgstr "Voz"
 
 msgid "Everyone"
-msgstr ""
+msgstr "Todos"
 
 msgid "Recipients only"
-msgstr ""
+msgstr "Apenas Recipientes"
 
 msgid "Only me"
-msgstr ""
+msgstr "Só eu"
 
 msgid "File a report"
 msgstr "Apresentar um relatório"
 
 msgid "Select a reporting channel:"
-msgstr ""
+msgstr "Selecione um canal de denúncia:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Antes de continuar, defina uma nova palavra-passe."
@@ -643,7 +643,7 @@ msgid "Recipients"
 msgstr "Destinatários"
 
 msgid "Reminder date"
-msgstr ""
+msgstr "Data do lembrete"
 
 msgid "days"
 msgstr "dias"
@@ -1031,7 +1031,7 @@ msgid "Administrators authorized to change user passwords:"
 msgstr "Administradores autorizados a mudar as palavra -passe dos utilizadores:"
 
 msgid "Enable file viewer"
-msgstr ""
+msgstr "Ativar explorador de arquivos"
 
 msgid "Enable PGP"
 msgstr "Ativar PGP"
@@ -1046,7 +1046,7 @@ msgid "Default questionnaire"
 msgstr "Questionário padrão"
 
 msgid "Show channels in alphabetical order"
-msgstr ""
+msgstr "Mostrar canais por ordem alfabética"
 
 msgid "Size limit for file attachments"
 msgstr "Limite de tamanho para anexos de ficheiro"
@@ -1068,7 +1068,7 @@ msgid "Number of days till notifying unread reports to users"
 msgstr "Número de dias até a notificação aos utilizadores das denúncias não lidas"
 
 msgid "Custom support URL"
-msgstr ""
+msgstr "URL de suporte personalizado"
 
 msgid "Disable the privacy panel"
 msgstr "Desativar o painel de privacidade"
@@ -1202,10 +1202,10 @@ msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Permitir o destinatário a postergar a data de expiração da submissão"
 
 msgid "Give this user ability to grant user access to reports"
-msgstr ""
+msgstr "Conceder a este utilizador a capacidade de conceder acesso a relatórios"
 
 msgid "Give this user ability to transfer reports to other users"
-msgstr ""
+msgstr "Conceder a este utilizador a capacidade de transferir relatórios para outros uyilizadores"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Dê ao utilizador acesso administrativo aos seguintes recursos:"
@@ -1311,10 +1311,10 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Ao confirmar, adiará a data de expiração para:"
 
 msgid "By confirming, you will set a reminder on date:"
-msgstr ""
+msgstr "Ao confirmar, você definirá um lembrete na data:"
 
 msgid "Transfer access"
-msgstr ""
+msgstr "Transferir acesso"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Esta é uma plataforma de demonstração, não a utilize para envios reais."
@@ -1397,7 +1397,7 @@ msgid "Size:"
 msgstr "Tamanho:"
 
 msgid "Access date"
-msgstr ""
+msgstr "Data de acesso"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Os destinatários solicitaram-lhe que preencha um questionário adicional."
@@ -1502,7 +1502,7 @@ msgid "Show"
 msgstr "Mostrar"
 
 msgid "Subscription date"
-msgstr ""
+msgstr "Data de subscrição"
 
 msgid "Congratulations!"
 msgstr "Parabéns!"
@@ -1585,7 +1585,7 @@ msgid "View your report"
 msgstr "Veja a sua denúncia."
 
 msgid "Select the recipients of your report"
-msgstr ""
+msgstr "Selecione os destinatários do seu relatório"
 
 msgid "Recipients selected:"
 msgstr "Destinatários selecionados:"
@@ -1780,7 +1780,7 @@ msgid "The activities with unusual stats are:"
 msgstr "As atividades com estatísticas incomuns são:"
 
 msgid "Available disk space: {FreeMemory}/{TotalMemory}"
-msgstr ""
+msgstr "Espaço de disco disponível: {FreeMemory}/{TotalMemory}"
 
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
@@ -2011,7 +2011,7 @@ msgid "New report"
 msgstr "Novo relatório"
 
 msgid "One or more reports are expiring and will be soon deleted."
-msgstr ""
+msgstr "Um ou mais relatórios estão expirando e serão apagados em breve."
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "A data de validade mais antiga é {EarliestExpirationDate}."
@@ -2023,12 +2023,12 @@ msgid "Some reports will expire soon"
 msgstr "Alguns relatórios expiram em breve"
 
 msgid "This is an email to notify you the reception of a new report."
-msgstr ""
+msgstr "Este é um e-mail para notificá-lo sobre a receção de um novo relatório."
 
 msgid ""
 "This is an email to notify you that the reminder date for one or more "
 "reports has been met."
-msgstr ""
+msgstr "Este é um e-mail para notificá-lo de que a data do lembrete para um ou mais relatórios foi atingida."
 
 msgid "Reminder"
 msgstr "Lembrete"

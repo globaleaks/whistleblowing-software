@@ -8,6 +8,7 @@
 # Drew Melim <nokostya.translation@gmail.com>, 2014
 # Drew Melim <nokostya.translation@gmail.com>, 2014
 # e8f1a29f7bd45d2490d729ad149fc504_6eadd8e, 2015
+# cocoon, 2023
 # Drew Melim <nokostya.translation@gmail.com>, 2014,2018
 # e8f1a29f7bd45d2490d729ad149fc504_6eadd8e, 2015
 # fc2d9c36d73e741383fbbf46a4aac49f_013445b, 2014
@@ -38,7 +39,7 @@ msgstr ""
 "mime-version: 1.0\n"
 
 msgid "Log in"
-msgstr "Iniciar sessão"
+msgstr "Iniciar Sessão"
 
 msgid "Languages"
 msgstr "Idiomas"
@@ -406,7 +407,7 @@ msgid "Opened"
 msgstr "Aberta"
 
 msgid "Closed"
-msgstr "Fechada"
+msgstr "Encerrada"
 
 msgid "Placeholder"
 msgstr "Marcador de posição"
@@ -462,7 +463,7 @@ msgid "Copy to clipboard"
 msgstr "Copiar para a área de transferência"
 
 msgid "Logout"
-msgstr "Terminar sessão"
+msgstr "Terminar Sessão"
 
 msgid "Grant access"
 msgstr "Conceder acesso"
@@ -474,7 +475,7 @@ msgid "Transfer"
 msgstr "Transferir"
 
 msgid "Assigned to"
-msgstr "Atribuido a"
+msgstr "Atribuído a"
 
 msgid "Not provided."
 msgstr "Não fornecido."
@@ -492,7 +493,7 @@ msgid "Unhide"
 msgstr "Desocultar"
 
 msgid "Redact"
-msgstr ""
+msgstr "Redigir"
 
 msgid "Select an option"
 msgstr "Selecionar uma opção"
@@ -501,10 +502,10 @@ msgid "Select your language"
 msgstr "Selecione o seu idioma"
 
 msgid "Give this user ability to mask information"
-msgstr ""
+msgstr "Permitir que este utilizador oculte a informação"
 
 msgid "Give this user ability to permanently redact masked information"
-msgstr ""
+msgstr "Permitir que este utilizador edite permanentemente a informação ocultada"
 
 msgid "Public"
 msgstr "Público"
@@ -525,34 +526,34 @@ msgid "Download copy of the Privacy Policy"
 msgstr "Transferir cópia da «Política de Privacidade»"
 
 msgid "Whistleblowing Policy"
-msgstr ""
+msgstr "Política da Denúncia"
 
 msgid "Accessibility Declaration"
-msgstr ""
+msgstr "Declaração de Acessibilidade"
 
 msgid "Voice"
-msgstr ""
+msgstr "Voz"
 
 msgid "Everyone"
-msgstr ""
+msgstr "Todos"
 
 msgid "Recipients only"
-msgstr ""
+msgstr "Só destinatários"
 
 msgid "Only me"
-msgstr ""
+msgstr "Só eu"
 
 msgid "File a report"
-msgstr "Registar uma submissão"
+msgstr "Registar uma denúncia"
 
 msgid "Select a reporting channel:"
-msgstr ""
+msgstr "Selecione um canal de denúncia:"
 
 msgid "Before proceeding, please set a new password."
 msgstr "Antes de continuar, por favor, defina uma nova palavra-passe."
 
 msgid "Before proceeding, please enable the two factor authentication."
-msgstr "Antes de prosseguir, por favor, ative a autenticação de dois fatores."
+msgstr "Antes de continuar, por favor, ative a autenticação de dois fatores."
 
 msgid "Enable"
 msgstr "Ativar"
@@ -570,7 +571,7 @@ msgid "ID"
 msgstr "Id."
 
 msgid "Username"
-msgstr "Nome de Utilizador"
+msgstr "Nome de utilizador"
 
 msgid "Role"
 msgstr "Função"
@@ -627,7 +628,7 @@ msgid "Recipients"
 msgstr "Destinatários"
 
 msgid "Reminder date"
-msgstr ""
+msgstr "Data do lembrete"
 
 msgid "days"
 msgstr "dias"
@@ -757,12 +758,12 @@ msgid ""
 "Using automatic HTTPS configuration will handle the entire process of "
 "requesting, enabling and renewing certificates from the Let's Encrypt "
 "Certificate Authority."
-msgstr "A utilização da configuração automática de HTTPS irá cuidar de todo o processo de solicitação, ativando e renovando os certificados da 'Autoridade de Certificação - Vamos Encriptar'."
+msgstr "A utilização da configuração automática de HTTPS irá lidar com todo o processo de solicitação, ativando e renovando os certificados da «Vamos Encriptar a Autoridade de Certificação»."
 
 msgid ""
 "The platform must be reachable through a public IP address and the selected "
 "hostname must have a DNS record referencing that address."
-msgstr "A plataforma deve estar acessível através de um endereço IP público e o nome de anfitrião selecionado deve ter um registro DNS que faça referência a esse endereço."
+msgstr "A plataforma deve estar acessível através de um endereço de IP público e o nome de anfitrião selecionado deve ter um registo DNS que faça referência a esse endereço."
 
 msgid "Proceed"
 msgstr "Prosseguir"
@@ -788,7 +789,7 @@ msgid "Anonymize outgoing connections"
 msgstr "Anonimizar ligações de saída"
 
 msgid "Let the platform be reachable without Tor"
-msgstr "Permita que a plataforma seja acessível sem Tor"
+msgstr "Permitir que a plataforma seja acessível sem o Tor"
 
 msgid "Roles enabled to use the platform without Tor"
 msgstr "Funções ativadas para utilizar a plataforma sem o Tor"
@@ -802,7 +803,7 @@ msgstr "Para"
 msgid ""
 "Default mail configuration in use. Please consider using a private mail "
 "server."
-msgstr "Está com a configuração padrão de correio eletrónico. Por favor, considere usar um servidor de correio eletrónico próprio."
+msgstr "Configuração predefinida de correio eletrónico. Por favor, considere utilizar um servidor de correio eletrónico privado."
 
 msgid "SMTP email address"
 msgstr "Endereço de correio eletrónico de SMTP"
@@ -892,10 +893,10 @@ msgid "Template override"
 msgstr "Substituição de modelo"
 
 msgid "Min"
-msgstr "Min"
+msgstr "Mín."
 
 msgid "Max"
-msgstr "Máx"
+msgstr "Máx."
 
 msgid "Phone number"
 msgstr "Número de telefone"
@@ -1015,7 +1016,7 @@ msgid "Administrators authorized to change user passwords:"
 msgstr "Administradores autorizados para alterarem as palavras -passe de utilizador:"
 
 msgid "Enable file viewer"
-msgstr ""
+msgstr "Ativar visualizador de ficheiros"
 
 msgid "Enable PGP"
 msgstr "Ativar PGP"
@@ -1030,7 +1031,7 @@ msgid "Default questionnaire"
 msgstr "Questionário predefinido "
 
 msgid "Show channels in alphabetical order"
-msgstr ""
+msgstr "Mostrar canais por ordem alfabética"
 
 msgid "Size limit for file attachments"
 msgstr "Limite de tamanho para anexos de ficheiro"
@@ -1049,10 +1050,10 @@ msgid ""
 msgstr "Por razões de segurança, as alterações da palavra-passe são solicitadas periodicamente."
 
 msgid "Number of days till notifying unread reports to users"
-msgstr "Número de dias até notificação de utilizadores de submissões por ler."
+msgstr "Número de dias até a notificação dos relatórios não lidos pelos utilizadores."
 
 msgid "Custom support URL"
-msgstr ""
+msgstr "URL de apoio personalizado"
 
 msgid "Disable the privacy panel"
 msgstr "Desativar o painel de privacidade"
@@ -1123,7 +1124,7 @@ msgid "Root domain used for secondary sites"
 msgstr "Domínio raiz utilizado por sites secundários"
 
 msgid "Use the first site for administrative purposes only"
-msgstr "Utilizar o primeiro site para apenas para fins de administração."
+msgstr "Utilizar o primeiro ''site'' para apenas fins de administração."
 
 msgid "Allow users to sign up"
 msgstr "Permitir que os utilizadores se registem"
@@ -1147,7 +1148,7 @@ msgid ""
 "The chosen password is too weak. A valid password should be at least 12 "
 "characters long and contain a variety of characters including at least a "
 "lowercase character, a capital character, a number and a special character."
-msgstr "A palavra-passe escolhida é muito fraca. Uma senha válida deve ter pelo menos 12 caracteres e conter uma variedade de caracteres, incluindo pelo menos um caractere minúsculo, um caractere maiúsculo, um número e um caractere especial."
+msgstr "A palavra-passe escolhida é muito fraca. Uma palavra-passe válida deve ter pelo menos 12 carateres e conter uma variedade de carateres, incluindo pelo menos um caráter minúsculo, um caráter maiúsculo, um número e um caráter especial."
 
 msgid "Force password change"
 msgstr "Forçar alteração da palavra-passe"
@@ -1174,25 +1175,25 @@ msgid "Set up encryption by providing a PGP public key"
 msgstr "Configure a encriptação, indicando a chave pública PGP"
 
 msgid "Give this admin ability to change user passwords"
-msgstr "Dar a esse administrador a capacidade de alterar palavras-passe de utilizador"
+msgstr "Permitir que este administrador altere as palavras-passe de utilizador"
 
 msgid "Forcefully selected"
 msgstr "Selecionado à força"
 
 msgid "Allow the recipient to delete reports"
-msgstr "Permitir ao destinatário apagar denúncias"
+msgstr "Permitir que o destinatário elimine denúncias"
 
 msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Permitir o destinatário adiar a data de validade "
+msgstr "Permitir que o destinatário adie a data de expiração da denúncia"
 
 msgid "Give this user ability to grant user access to reports"
-msgstr ""
+msgstr "Permitir que este utilizador conceda o acesso às submissões"
 
 msgid "Give this user ability to transfer reports to other users"
-msgstr ""
+msgstr "Permitir que este utilizador transfira submissões para outros utilizadores"
 
 msgid "Give the user administrative access to the following features:"
-msgstr "Dê ao utilizador acesso administrativo aos seguintes recursos:"
+msgstr "Conceder ao utilizador acesso administrativo para as seguintes funcionalidades:"
 
 msgid "Request date"
 msgstr "Data do Pedido"
@@ -1234,7 +1235,7 @@ msgid "Confirm"
 msgstr "Confirmar"
 
 msgid "Text shown after the user has selected the option."
-msgstr "Texto exibido após seleção da opção pelo utilizador."
+msgstr "Texto exibido depois do utilizador selecionar a opção."
 
 msgid "Assign score points"
 msgstr "Atribuir pontos"
@@ -1260,7 +1261,7 @@ msgstr "Chave de recuperação da conta"
 msgid ""
 "Make a copy and store it in a safe place. It will be necessary if you lose "
 "your password to recover the access to your account without data loss."
-msgstr "Faça uma cópia e guarde-a num local seguro. Em caso de perda da palavra-passe, este será necessário para recuperar o acesso à sua conta sem perda de dados."
+msgstr "Faça uma cópia e guarde-a num local seguro. Se perder a palavra-passe, esta será necessária para recuperar o acesso à sua conta sem perder dados."
 
 msgid "Enter a name for the copy"
 msgstr "Insira um nome para a cópia"
@@ -1272,7 +1273,7 @@ msgid "Thank you."
 msgstr "Obrigado."
 
 msgid "We will try to get back to you as soon as possible."
-msgstr "Tentaremos dar-lhe uma resposta o mais rapidamente possível."
+msgstr "Nós iremos tentar dar-lhe uma resposta assim que possível."
 
 msgid "Submit"
 msgstr "Submeter"
@@ -1295,13 +1296,13 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "Ao confirmar, adiará a data de validade da denúncia para:"
 
 msgid "By confirming, you will set a reminder on date:"
-msgstr ""
+msgstr "Ao confirmar, irá definir um lembrete na data:"
 
 msgid "Transfer access"
-msgstr ""
+msgstr "Transferir acesso"
 
 msgid "This is a demo platform, please do not use it for real submissions."
-msgstr "Esta é uma plataforma de demonstração. Por favor não a utilize para submissões reais."
+msgstr "É uma plataforma de demonstração. Por favor, não a utilize para submissões reais."
 
 msgid "Install an authenticator app on your phone"
 msgstr "Instale uma aplicação de autenticação no seu telefone"
@@ -1360,7 +1361,7 @@ msgstr "Aviso"
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
 "Browser, that protects your identity."
-msgstr "É altamente recomendável que você visite este site usando a aplicação chamada Tor Browser, que protege sua identidade."
+msgstr "É altamente recomendável que visite este ''site'' utilizando a aplicação chamada Tor Browser, que protege a sua identidade."
 
 msgid "Download the Tor Browser"
 msgstr "Transfira o Navegador Tor"
@@ -1381,7 +1382,7 @@ msgid "Size:"
 msgstr "Tamanho:"
 
 msgid "Access date"
-msgstr ""
+msgstr "Data de acesso"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Os destinatários solicitaram o preenchimento de um questionário adicional."
@@ -1449,7 +1450,7 @@ msgid ""
 "your “Account Recovery Key” and store it safely. This key will be necessary "
 "to recover your access to the platform and to your data in case you forget "
 "your password."
-msgstr "Recomendamos que aceda à secção “Preferências” para copiar a sua “Chave de recuperação de conta” e armazená-la em segurança. Esta chave será necessária para recuperar seu acesso à plataforma e aos seus dados caso se esqueça da sua palavra-passe."
+msgstr "Nós recomendamos que aceda à secção “Preferências” para copiar a sua “Chave de Recuperação de Conta” e guarde-a em segurança. Esta chave será necessária para recuperar o seu acesso à plataforma e aos seus dados caso se esqueça da sua palavra-passe."
 
 msgid "Select a file or drag it here."
 msgstr "Selecione um ficheiro ou arraste-o para aqui."
@@ -1473,7 +1474,7 @@ msgstr "Solicitada a reposição da palavra--passe."
 
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
-msgstr "Insira sua chave de recuperação de criptografia para concluir o procedimento de redefinição de senha"
+msgstr "Insira a sua chave de recuperação de conta para concluir o processo de redefinição da palavra-passe"
 
 msgid ""
 "Access to the whistleblower's identity has been requested to the custodian."
@@ -1486,7 +1487,7 @@ msgid "Show"
 msgstr "Mostrar"
 
 msgid "Subscription date"
-msgstr ""
+msgstr "Data de subscrição"
 
 msgid "Congratulations!"
 msgstr "Parabéns!"
@@ -1501,11 +1502,11 @@ msgid "Your whistleblowing platform is almost ready!"
 msgstr "A plataforma de denúncia está quase pronta!"
 
 msgid "Check your inbox to activate it."
-msgstr "Verifique a sua caixa de entrada de correio eletrónico para ativá-la."
+msgstr "Verifique a sua caixa de entrada do correio eletrónico para ativá-la."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."
-msgstr "Se não ativar a plataforma nas próximas 24 horas, esta será eliminada automaticamente."
+msgstr "Se não ativada nas próximas 24 horas, a plataforma será eliminada automaticamente."
 
 msgid "Sign up"
 msgstr "Registar"
@@ -1552,7 +1553,7 @@ msgstr "Submissões desativadas"
 msgid ""
 "You are connecting to the server without anonymity and this server supports "
 "only anonymous submissions"
-msgstr "Está a ligar-se ao servidor sem anonimato, mas o servidor admite apenas envio de comunicações anónimas."
+msgstr "Está a ligar-se ao servidor sem anonimato e este servidor apenas suporta o envio anónimo."
 
 msgid "Your report was successful."
 msgstr "A sua submissão foi bem-sucedida."
@@ -1563,19 +1564,19 @@ msgstr "Lembre-se do seu código para esta submissão."
 msgid ""
 "Use the 16 digit receipt to log in. It will allow you to view any messages "
 "we sent you, and also to add extra info."
-msgstr "Use o código-chave de 16 dígitos para iniciar sessão. Permitir-lhe-á ver todas as mensagens que lhe enviarmos, e também adicionar mais informação."
+msgstr "Utilize o código de 16 dígitos para iniciar a sessão. Este irá permitir-lhe ver todas as mensagens que nós lhe enviarmos, e também para adicionar mais informação."
 
 msgid "View your report"
 msgstr "Ver a sua submissão"
 
 msgid "Select the recipients of your report"
-msgstr ""
+msgstr "Selecione os destinatários da sua submissão"
 
 msgid "Recipients selected:"
 msgstr "Destinatários selecionados:"
 
 msgid "You have reached the maximum number of selectable recipients."
-msgstr "Atingiu o número máximo de destinatários selecionados."
+msgstr "Atingiu o número máximo de destinatários selecionáveis."
 
 msgid "You must select at least one recipient."
 msgstr "Deve selecionar pelo menos um destinatário."
@@ -1583,7 +1584,7 @@ msgstr "Deve selecionar pelo menos um destinatário."
 msgid ""
 "The following recipients will receive your report and could not be "
 "deselected:"
-msgstr "Os seguintes destinatários irão receber a sua submissão e não poderá ser desselecionados:"
+msgstr "Os seguintes destinatários irão receber a sua submissão e não poderão ser desselecionados:"
 
 msgid ""
 "In this step the answers to the following questions are either missing or "
@@ -1605,14 +1606,14 @@ msgid "Please choose a configuration profile:"
 msgstr "Por favor, escolha o perfil de configuração:"
 
 msgid "Make it possible for this admin to reset user passwords."
-msgstr "Permitir a este administrador redefinir a palavra-passe dos utilizadores."
+msgstr "Permitir que este administrador redefina as palavras-passe de utilizador."
 
 msgid ""
 "We advise selecting this option if you would like to protect data from being"
 " lost in the situation where recipients lose their passwords. On the other "
 "hand, we would not advise using this feature if you want to setup a system "
 "where only recipients are able to access submissions."
-msgstr "Recomendamos que selecione esta opção se quiser proteger os dados contra perda na situação em que os destinatários perdem suas palavras-passe. Por outro lado, não aconselhamos usar esse recurso se pretenda configurar um sistema em que apenas os destinatários possam aceder às submissões."
+msgstr "Nós recomendamos que selecione esta opção se pretender proteger os dados contra a perda na situação em que os destinatários perdem as suas palavras-passe. Por outro lado, nós não aconselhamos a utilização desta funcionalidade se pretender configurar um sistema em que apenas os destinatários podem aceder às submissões."
 
 msgid "Please choose a different username."
 msgstr "Por favor, escolha um nome de utilizador diferente."
@@ -1624,10 +1625,10 @@ msgid "You have completed the platform wizard."
 msgstr "Deve concluir o assistente da plataforma."
 
 msgid "Please summarize your report in a few words."
-msgstr "Por favor, descreva em algumas palavras a sua submissão."
+msgstr "Por favor, descreva em algumas palavras a sua denúncia."
 
 msgid "Describe your report in detail."
-msgstr "Descreva a sua submissão detalhadamente."
+msgstr "Descreva a sua denúncia detalhadamente."
 
 msgid "Where did the facts happen?"
 msgstr "Onde aconteceram os factos?"
@@ -1666,20 +1667,20 @@ msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr "Uma descrição completa das evidências enviadas aumenta nossa capacidade de avaliar reivindicações e investigar. Por favor, faça referência a partes relevantes de quaisquer vídeos, imagens ou documentos enviados."
+msgstr "Uma descrição completa das evidências enviadas aumenta a nossa capacidade para investigar e avaliar as denúncias. Por favor, referencie as partes relevantes de quaisquer vídeos, imagens ou documentos enviados."
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr "Submeteu os factos a outra organização e/ou indivíduos?"
+msgstr "Reportou os factos a outra organização e/ou indivíduos?"
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr "Por favor indique as organizações e/ou indivíduos que infromou sobre estes factos. "
+msgstr "Por favor, indique as organizações e/ou indivíduos que informou sobre estes factos. "
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr "Estas organizações investigaram as suas alegações? Se sim, qual foi o resultado?"
+msgstr "Estas organizações investigaram as suas denúncias? Se sim, qual foi o resultado?"
 
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Qual é o resultado que pretende alcançar com o nosso apoio?"
@@ -1694,10 +1695,10 @@ msgid "Last name"
 msgstr "Sobrenome"
 
 msgid "Alternative contact method"
-msgstr "Método de contato alternativo"
+msgstr "Método de contacto alternativo"
 
 msgid "I prefer to be contacted via this platform only"
-msgstr "Prefiro ser contatado apenas através desta plataforma"
+msgstr "Eu prefiro ser contactado apenas através desta plataforma"
 
 msgid "Other"
 msgstr "Outro"
@@ -1733,7 +1734,7 @@ msgid "Account activation"
 msgstr "Ativação de conta"
 
 msgid "Your whistleblowing platform is now accessible at:"
-msgstr "A plataforma de denúncia está agora acessível em:"
+msgstr "A sua plataforma de denúncias está agora acessível em:"
 
 msgid "To log in, visit:"
 msgstr "Para iniciar a sessão, visite:"
@@ -1764,7 +1765,7 @@ msgid "The activities with unusual stats are:"
 msgstr "As atividades com estatísticas pouco habituais são:"
 
 msgid "Available disk space: {FreeMemory}/{TotalMemory}"
-msgstr ""
+msgstr "Espaço de disco disponível: {FreeMemory}/{TotalMemory}"
 
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
@@ -1901,7 +1902,7 @@ msgid ""
 msgstr "Esta mensagem é para o informar que um conservador autorizou o acesso à identidade do denunciante da submissão {TipNum}."
 
 msgid "The report can be accessed at:"
-msgstr "É possível aceder à submissão:"
+msgstr "A submissão pode ser acedida em:"
 
 msgid "Access to whistleblower's identity authorized"
 msgstr "Autorizado o acesso à identidade do informador"
@@ -1995,7 +1996,7 @@ msgid "New report"
 msgstr "Nova submissão"
 
 msgid "One or more reports are expiring and will be soon deleted."
-msgstr ""
+msgstr "Um ou mais relatórios estão a expirar e serão eliminados em breve."
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "A data de expiração antiga é {EarliestExpirationDate}."
@@ -2007,27 +2008,27 @@ msgid "Some reports will expire soon"
 msgstr "Algumas submissões irão expirar brevemente"
 
 msgid "This is an email to notify you the reception of a new report."
-msgstr ""
+msgstr "É uma mensagem para notificá-lo sobre a receção de uma nova submissão."
 
 msgid ""
 "This is an email to notify you that the reminder date for one or more "
 "reports has been met."
-msgstr ""
+msgstr "É uma mensagem para notificá-lo de que foi atingida a data do lembrete para um ou mais relatórios."
 
 msgid "Reminder"
 msgstr "Lembrete"
 
 msgid "This is an email to notify that an existing report has been updated."
-msgstr "Esta mensagem é para o informar que uma submissão existente foi atualizada."
+msgstr "É uma mensagem para o informar de que foi atualizada uma submissão existente."
 
 msgid "Report updated"
 msgstr "Submissão atualizada"
 
 msgid "This email is to remind you the presence of unread or updated reports."
-msgstr "Esta mensagem é para o relembrar da existência de submissões por ler ou atualizadas."
+msgstr "Esta mensagem é para o lembrar da existência de submissões por ler ou atualizadas."
 
 msgid "Reminder about unread or updated reports"
-msgstr "Lembrete sobre submissões submissões por ler ou atualizadas"
+msgstr "Lembrete sobre submissões por ler ou atualizadas"
 
 msgid "Role: {Role}"
 msgstr "Função: {Role}"

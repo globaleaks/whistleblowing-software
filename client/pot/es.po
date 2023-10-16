@@ -551,13 +551,13 @@ msgid "Voice"
 msgstr "Voz"
 
 msgid "Everyone"
-msgstr ""
+msgstr "Todos"
 
 msgid "Recipients only"
-msgstr ""
+msgstr "Sólo destinatarios"
 
 msgid "Only me"
-msgstr ""
+msgstr "Sólo yo"
 
 msgid "File a report"
 msgstr "Presentar una denuncia."
