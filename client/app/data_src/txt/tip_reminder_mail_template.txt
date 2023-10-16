@@ -1,0 +1,8 @@
+Dear {RecipientName},
+
+This is an email to notify you that the reminder date for one or more reports has been met.
+
+{LoginUrl}
+
+Kind regards,
+{NodeName}
