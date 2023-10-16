@@ -16,11 +16,11 @@ controller("WBFileUploadCtrl", ["$scope", function($scope) {
 
   $scope.$on("flow::fileAdded", function (event, $flow, flowFile) {
     if ($scope.entry) {
-      if (!$scope.entry['files']) {
-        $scope.entry['files'] = [];
+      if (!$scope.entry["files"]) {
+        $scope.entry["files"] = [];
       }
 
-      $scope.entry['files'].push(flowFile.uniqueIdentifier);
+      $scope.entry["files"].push(flowFile.uniqueIdentifier);
     }
 
     flowFile.pause();
@@ -75,11 +75,11 @@ controller("AudioUploadCtrl", ["$scope", "flowFactory", "Utils", "mediaProcessor
       $scope.uploads[$scope.fileinput] = flow;
 
       if ($scope.entry) {
-        if (!$scope.entry['files']) {
-          $scope.entry['files'] = [];
+        if (!$scope.entry["files"]) {
+          $scope.entry["files"] = [];
         }
 
-        $scope.entry['files'].push(file.uniqueIdentifier);
+        $scope.entry["files"].push(file.uniqueIdentifier);
       }
     }
 

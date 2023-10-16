@@ -23,7 +23,6 @@ GL.factory("glbcUtil", function() {
       function work(i) {
         var webCrypto = window.crypto.subtle;
         var toHash = glbcUtil.str2Uint8Array(data + i);
-        var digestPremise;
 
         webCrypto.digest({name: "SHA-256"}, toHash).then(function (hash) {
           hash = new Uint8Array(hash);
@@ -33,7 +32,7 @@ GL.factory("glbcUtil", function() {
             work(i+1);
           }
         });
-      };
+      }
 
       work(0);
 

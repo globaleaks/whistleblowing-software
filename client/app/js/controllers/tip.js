@@ -19,7 +19,7 @@ GL.controller("TipCtrl",
         if ($scope.tip.wbfiles[i].reference_id === reference_id) {
           var id = $scope.tip.wbfiles[i].id;
           var xhr = new XMLHttpRequest();
-          xhr.open("GET", 'api/recipient/wbfiles/' + id, true);
+          xhr.open("GET", "api/recipient/wbfiles/" + id, true);
           xhr.setRequestHeader("x-session", $scope.Authentication.session.id);
           xhr.overrideMimeType("audio/webm");
           xhr.responseType = "blob";
@@ -35,7 +35,7 @@ GL.controller("TipCtrl",
 
           break;
         }
-      };
+      }
     };
 
     $scope.tabs = [
