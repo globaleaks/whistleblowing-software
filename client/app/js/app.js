@@ -229,7 +229,7 @@ var GL = angular.module("GL", [
         sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
-          resources: fetchResources("admin", ["node", "preferences", "questionnaires", "users"])
+          resources: fetchResources("admin", ["node", "preferences", "users"])
         }
       }).
       when("/admin/contexts", {
@@ -299,7 +299,7 @@ var GL = angular.module("GL", [
         sidebar: "views/admin/sidebar.html",
         resolve: {
           access: requireAuth("admin"),
-          resources: fetchResources("admin", ["node", "preferences", "tenants"])
+          resources: fetchResources("admin", ["node", "preferences", "questionnaires", "tenants"])
         }
       }).
       when("/admin/casemanagement", {

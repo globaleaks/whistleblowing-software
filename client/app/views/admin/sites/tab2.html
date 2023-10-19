@@ -1,6 +1,13 @@
 <div class="row">
   <div class="col-md-6">
     <div class="form-group">
+      <label>
+        <input data-ng-model="resources.node.adminonly" type="checkbox" />
+        <span data-translate>Use the first site for administrative purposes only</span>
+      </label>
+    </div>
+
+    <div class="form-group">
       <label data-translate>Profile</label>
       <select name="type" class="form-control" data-ng-model="resources.node.mode" required>
         <option value="default">DEFAULT</option>
@@ -9,18 +16,19 @@
         <option value="eat">EAT</option>
       </select>
     </div>
+
     <div class="form-group">
       <label data-translate>Root domain used for secondary sites</label>
       <div>
         <input class="form-control" data-ng-model="resources.node.rootdomain" type="text" />
       </div>
     </div>
+
     <div class="form-group">
-      <label>
-        <input data-ng-model="resources.node.adminonly" type="checkbox" />
-        <span data-translate>Use the first site for administrative purposes only</span>
-      </label>
+      <label data-translate>Questionnaire</label>
+      <select class="form-control" data-ng-model="resources.node.default_questionnaire" data-ng-options="item.id as item.name for item in resources.questionnaires"></select>
     </div>
+
     <div data-ng-if="!resources.node.adminonly">
       <div class="form-group">
         <label>
