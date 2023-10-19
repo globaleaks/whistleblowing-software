@@ -33,11 +33,11 @@ class StaticFileHandler(BaseHandler):
                                        b"base-uri 'none';"
                                        b"connect-src 'self';"
                                        b"default-src 'none';"
-                                       b"font-src 'self' data:;"
+                                       b"font-src 'self';"
                                        b"form-action 'none';"
                                        b"frame-ancestors 'none';"
                                        b"frame-src 'self';"
-                                       b"img-src 'self' data:;"
+                                       b"img-src 'self';"
                                        b"media-src 'self' blob:;"
                                        b"script-src 'self' 'sha256-l4srTx31TC+tE2K4jVVCnC9XfHivkiSs/v+DPWccDDM=';"
                                        b"style-src 'self' 'sha256-pru43GdcNLwb4MwzOriCI9/9cKBzE5xeoLWHlKai1As=';")
