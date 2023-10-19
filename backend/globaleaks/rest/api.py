@@ -477,33 +477,32 @@ class APIResourceWrapper(Resource):
             if request.tid in State.tenants and State.tenants[request.tid].cache.onionservice:
                 request.setHeader(b'Onion-Location', b'http://' + State.tenants[request.tid].cache.onionservice.encode() + request.path)
 
-        if not State.settings.disable_csp:
-            request.setHeader(b'Content-Security-Policy',
-                              b"base-uri 'none';"
-                              b"default-src 'none';"
-                              b"form-action 'none';"
-                              b"frame-ancestors 'none';"
-                              b"sandbox;")
+        request.setHeader(b'Content-Security-Policy',
+                          b"base-uri 'none';"
+                          b"default-src 'none';"
+                          b"form-action 'none';"
+                          b"frame-ancestors 'none';"
+                          b"sandbox;")
 
-            request.setHeader(b"Cross-Origin-Embedder-Policy", "require-corp")
-            request.setHeader(b"Cross-Origin-Opener-Policy", "same-origin")
-            request.setHeader(b"Cross-Origin-Resource-Policy", "same-origin")
+        request.setHeader(b"Cross-Origin-Embedder-Policy", "require-corp")
+        request.setHeader(b"Cross-Origin-Opener-Policy", "same-origin")
+        request.setHeader(b"Cross-Origin-Resource-Policy", "same-origin")
 
-            # Disable features that could be used to deanonymize the user
-            if request.tid in State.tenants and getattr(State.tenants[request.tid], 'microphone', False):
-                request.setHeader(b'Permissions-Policy', b"camera=(),"
-                                                         b"document-domain=(),"
-                                                         b"fullscreen=(),"
-                                                         b"geolocation=()")
-            else:
-                request.setHeader(b'Permissions-Policy', b"camera=(),"
-                                                         b"document-domain=(),"
-                                                         b"fullscreen=(),"
-                                                         b"geolocation=(),"
-                                                         b"microphone=()")
+        # Disable features that could be used to deanonymize the user
+        if request.tid in State.tenants and getattr(State.tenants[request.tid], 'microphone', False):
+            request.setHeader(b'Permissions-Policy', b"camera=(),"
+                                                     b"document-domain=(),"
+                                                     b"fullscreen=(),"
+                                                     b"geolocation=()")
+        else:
+            request.setHeader(b'Permissions-Policy', b"camera=(),"
+                                                     b"document-domain=(),"
+                                                     b"fullscreen=(),"
+                                                     b"geolocation=(),"
+                                                     b"microphone=()")
 
-            # Prevent old browsers not supporting CSP frame-ancestors directive to includes the platform within an iframe
-            request.setHeader(b'X-Frame-Options', b'deny')
+        # Prevent old browsers not supporting CSP frame-ancestors directive to includes the platform within an iframe
+        request.setHeader(b'X-Frame-Options', b'deny')
 
         # Prevent the browsers to implement automatic mime type detection and execution.
         request.setHeader(b'X-Content-Type-Options', b'nosniff')
