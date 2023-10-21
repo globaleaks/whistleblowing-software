@@ -25,13 +25,13 @@ class Tor(Service):
     tor_conn = None
 
     def __init__(self):
-        Service.__init__(self)
-
         self.tor = txtorcon.launch(
             reactor,
             socks_port=State.settings.socks_port,
             control_port='unix:' + State.settings.tor_control,
         )
+
+        Service.__init__(self)
 
     def reset(self):
         self.tor_conn = None
