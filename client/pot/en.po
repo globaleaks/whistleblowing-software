@@ -78,12 +78,6 @@ msgstr "Details"
 msgid "Platform wizard"
 msgstr "Platform wizard"
 
-msgid "CREDIT CARD"
-msgstr "CREDIT CARD"
-
-msgid "YOUR NAME"
-msgstr "YOUR NAME"
-
 msgid "Label the report"
 msgstr "Label the report"
 
@@ -482,23 +476,14 @@ msgstr "Give this user ability to mask information"
 msgid "Give this user ability to permanently redact masked information"
 msgstr "Give this user ability to permanently redact masked information"
 
-msgid "Public"
-msgstr "Public"
-
-msgid "Internal"
-msgstr "Internal"
-
-msgid "Personal"
-msgstr "Personal"
-
-msgid "Privacy Policy"
-msgstr "Privacy Policy"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr "I've read and accept the Privacy Policy"
 
 msgid "Download copy of the Privacy Policy"
 msgstr "Download copy of the Privacy Policy"
+
+msgid "Privacy Policy"
+msgstr "Privacy Policy"
 
 msgid "Whistleblowing Policy"
 msgstr "Whistleblowing Policy"
@@ -517,12 +502,6 @@ msgstr "Recipients only"
 
 msgid "Only me"
 msgstr "Only me"
-
-msgid "Specify:"
-msgstr "Specify:"
-
-msgid "Would you like to tell us who you are?"
-msgstr "Would you like to tell us who you are?"
 
 msgid "File a report"
 msgstr "File a report"
@@ -1016,9 +995,6 @@ msgstr "Enable simplified login"
 msgid "Enable search engines indexing"
 msgstr "Enable search engines indexing"
 
-msgid "Default questionnaire"
-msgstr "Default questionnaire"
-
 msgid "Show channels in alphabetical order"
 msgstr "Show channels in alphabetical order"
 
@@ -1110,11 +1086,11 @@ msgstr "Mode:"
 msgid "Creation date:"
 msgstr "Creation date:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Root domain used for secondary sites"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Use the first site for administrative purposes only"
+
+msgid "Root domain used for secondary sites"
+msgstr "Root domain used for secondary sites"
 
 msgid "Allow users to sign up"
 msgstr "Allow users to sign up"
@@ -1709,8 +1685,8 @@ msgstr ""
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "What is the outcome you want to achieve with our support?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Do you want to provide your identification information?"
+msgid "Would you like to tell us who you are?"
+msgstr "Would you like to tell us who you are?"
 
 msgid "First name"
 msgstr "First name"
@@ -1726,6 +1702,9 @@ msgstr "I prefer to be contacted via this platform only"
 
 msgid "Other"
 msgstr "Other"
+
+msgid "Specify"
+msgstr "Specify"
 
 msgid "Dear {RecipientName},"
 msgstr "Dear {RecipientName},"
