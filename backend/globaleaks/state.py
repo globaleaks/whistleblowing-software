@@ -7,10 +7,11 @@ import traceback
 from acme.errors import ValidationError
 
 from twisted.internet.defer import succeed, AlreadyCalledError, CancelledError
-from twisted.internet.error import ConnectionLost, DNSLookupError, TimeoutError
+from twisted.internet.error import ConnectionLost, DNSLookupError, NoRouteError, TimeoutError
 from twisted.mail.smtp import SMTPError
 from twisted.python.failure import Failure
 from twisted.python.threadpool import ThreadPool
+from twisted.web.client import ResponseNeverReceived
 
 from globaleaks import __version__, orm
 from globaleaks.orm import tw
@@ -39,6 +40,8 @@ silenced_exceptions = (
   ConnectionLost,
   DNSLookupError,
   GeneratorExit,
+  NoRouteError,
+  ResponseNeverReceived,
   SMTPError,
   TimeoutError,
   ValidationError
