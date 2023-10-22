@@ -14,20 +14,20 @@
   "dependencies": {
     "@flowjs/flow.js": "2.14.1",
     "@flowjs/ng-flow": "2.7.8",
-    "@fontsource/inter": "5.0.13",
+    "@fontsource/inter": "5.0.15",
     "@fontsource/noto-sans-arabic": "5.0.8",
     "@fontsource/noto-sans-armenian": "5.0.8",
     "@fontsource/noto-sans-bengali": "5.0.8",
-    "@fontsource/noto-sans-ethiopic": "5.0.13",
-    "@fontsource/noto-sans-georgian": "5.0.15",
-    "@fontsource/noto-sans-hebrew": "5.0.15",
-    "@fontsource/noto-sans-hk": "5.0.14",
-    "@fontsource/noto-sans-jp": "5.0.14",
+    "@fontsource/noto-sans-ethiopic": "5.0.15",
+    "@fontsource/noto-sans-georgian": "5.0.17",
+    "@fontsource/noto-sans-hebrew": "5.0.17",
+    "@fontsource/noto-sans-hk": "5.0.16",
+    "@fontsource/noto-sans-jp": "5.0.16",
     "@fontsource/noto-sans-khmer": "5.0.8",
-    "@fontsource/noto-sans-kr": "5.0.14",
-    "@fontsource/noto-sans-lao": "5.0.13",
+    "@fontsource/noto-sans-kr": "5.0.16",
+    "@fontsource/noto-sans-lao": "5.0.15",
     "@fontsource/noto-sans-myanmar": "5.0.8",
-    "@fontsource/noto-sans-sc": "5.0.14",
+    "@fontsource/noto-sans-sc": "5.0.16",
     "@fontsource/noto-sans-tamil": "5.0.8",
     "@fontsource/noto-sans-thaana": "5.0.8",
     "@fontsource/noto-sans-thai": "5.0.8",
@@ -61,8 +61,8 @@
     "@babel/core": "7.23.2",
     "@cypress/code-coverage": "3.12.4",
     "@lodder/grunt-postcss": "3.1.1",
-    "cypress": "13.3.1",
-    "eslint": "8.51.0",
+    "cypress": "13.3.2",
+    "eslint": "8.52.0",
     "gettext-parser": "7.0.1",
     "grunt": "1.6.1",
     "grunt-angular-templates": "1.2.0",
@@ -82,14 +82,14 @@
     "npm-check-updates": "16.14.6",
     "nyc": "15.1.0",
     "postcss-rtl": "2.0.0",
-    "stylelint": "15.10.3",
+    "stylelint": "15.11.0",
     "stylelint-config-standard": "34.0.0",
     "superagent": "8.1.2",
     "terser": "5.22.0"
   },
   "overrides": {
     "grunt-stylelint": {
-      "stylelint": "15.10.3"
+      "stylelint": "15.11.0"
     }
   }
 }
