@@ -46,7 +46,7 @@ if [ "$GLTEST" = "test" ]; then
   setupDependencies
   cd $TRAVIS_BUILD_DIR/backend && coverage run setup.py test
 
-  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z -d
+  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z
   sleep 5
 
   echo "Running BrowserTesting locally collecting code coverage"
