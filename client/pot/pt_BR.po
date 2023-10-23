@@ -8,6 +8,7 @@
 # fc2d9c36d73e741383fbbf46a4aac49f_013445b, 2014
 # Communia <ameaneantie@riseup.net>, 2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
+# Cauan Henrique Zorzenon <cauanzorzenon@gmail.com>, 2023
 # C. E., 2019-2020
 # C. E., 2020
 # C. E., 2019
@@ -45,7 +46,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2015,2017-2022\n"
+"Last-Translator: Cauan Henrique Zorzenon <cauanzorzenon@gmail.com>, 2023\n"
 "Language-Team: Portuguese (Brazil) (http://app.transifex.com/otf/globaleaks/language/pt_BR/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -121,12 +122,6 @@ msgstr "Detalhes"
 
 msgid "Platform wizard"
 msgstr "Assistente de plataforma"
-
-msgid "CREDIT CARD"
-msgstr "CARTÃO DE CRÉDITO"
-
-msgid "YOUR NAME"
-msgstr "SEU NOME"
 
 msgid "Label the report"
 msgstr "Etiquetar o relatório"
@@ -522,23 +517,14 @@ msgstr "Dar a este utilizador a capacidade de mascarar informação"
 msgid "Give this user ability to permanently redact masked information"
 msgstr "Dar a este utilizador a capacidade de editar permanentemente informação mascarada"
 
-msgid "Public"
-msgstr "Pública"
-
-msgid "Internal"
-msgstr "Interno"
-
-msgid "Personal"
-msgstr "Pessoal"
-
-msgid "Privacy Policy"
-msgstr "Política de Privacidade"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr "Eu li e aceito a «Política de Privacidade»"
 
 msgid "Download copy of the Privacy Policy"
 msgstr "Transferir cópia da «Política de Privacidade»"
+
+msgid "Privacy Policy"
+msgstr "Política de Privacidade"
 
 msgid "Whistleblowing Policy"
 msgstr "Política da Denúncia"
@@ -1042,9 +1028,6 @@ msgstr "Ativar login simplificado"
 msgid "Enable search engines indexing"
 msgstr "Habilitar indexação aos motores de busca"
 
-msgid "Default questionnaire"
-msgstr "Questionário padrão"
-
 msgid "Show channels in alphabetical order"
 msgstr "Mostrar canais por ordem alfabética"
 
@@ -1135,11 +1118,11 @@ msgstr "Modo:"
 msgid "Creation date:"
 msgstr "Data de criação:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Domínio raiz usado para sites secundários"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Use o primeiro site somente para fins administrativos"
+
+msgid "Root domain used for secondary sites"
+msgstr "Domínio raiz usado para sites secundários"
 
 msgid "Allow users to sign up"
 msgstr "Permitir que os utilizadores se inscrevam"
@@ -1454,9 +1437,6 @@ msgstr "Se quiser contribuir para o desenvolvimento de software ou comunicar um 
 msgid "Join our chat:"
 msgstr "Junte-se ao nosso chat:"
 
-msgid "Follow the project on:"
-msgstr "Siga o projeto em:"
-
 msgid "An update is available:"
 msgstr "Uma atualização está disponível:"
 
@@ -1700,8 +1680,8 @@ msgstr "Estas organizações investigaram as suas reclamações? Em caso afirmat
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Qual é o resultado que pretende alcançar com nosso apoio?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Deseja fornecer informações sobre a sua identidade?"
+msgid "Would you like to tell us who you are?"
+msgstr "Gostaria de nos dizer quem você é?"
 
 msgid "First name"
 msgstr "Primeiro nome"

@@ -85,12 +85,6 @@ msgstr "Tafsilotlar"
 msgid "Platform wizard"
 msgstr "Platformani sozlash"
 
-msgid "CREDIT CARD"
-msgstr "KREDIT KARTA"
-
-msgid "YOUR NAME"
-msgstr "ISMINGIZ"
-
 msgid "Label the report"
 msgstr "Xabarga yorliq biriktiring"
 
@@ -485,23 +479,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr "Ichki"
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "Maxfiylik siyosati"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Maxfiylik siyosati"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1005,9 +990,6 @@ msgstr "Soddalashtirilgan kirishni yoqish"
 msgid "Enable search engines indexing"
 msgstr "Qidiruv tizimlari indeksatsiyasiga ruxsat berish"
 
-msgid "Default questionnaire"
-msgstr "Birlamchi savolnoma"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1098,11 +1080,11 @@ msgstr "Rejim:"
 msgid "Creation date:"
 msgstr "Yaratilgan sanasi:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Ikkilamchi saytlarda ishlatiladigan asosiy domen"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Bosh saytni faqat boshqaruv maqsadlarida ishlating"
+
+msgid "Root domain used for secondary sites"
+msgstr "Ikkilamchi saytlarda ishlatiladigan asosiy domen"
 
 msgid "Allow users to sign up"
 msgstr "Foydalanuvchilarga roʻyxatdan oʻtish imkonini berish"
@@ -1417,9 +1399,6 @@ msgstr "Dasturiy taʼminot rivojiga hissa qoʻshish yoki xatoliklar haqida xabar
 msgid "Join our chat:"
 msgstr "Chatimizga qoʻshiling:"
 
-msgid "Follow the project on:"
-msgstr "Loyihani kuzating:"
-
 msgid "An update is available:"
 msgstr "Yangilanish bor:"
 
@@ -1663,8 +1642,8 @@ msgstr "Ушбу ташкилотлар сизнинг даъволаринги�
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Бизнинг ёрдамимиз билан қандай натижага эришмоқчисиз?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Shaxsiy axoborotingiz taqdim qilinsinmi?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Ismi"

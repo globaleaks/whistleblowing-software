@@ -85,12 +85,6 @@ msgstr "விபரங்கள்"
 msgid "Platform wizard"
 msgstr "மேடை வழிகாட்டி"
 
-msgid "CREDIT CARD"
-msgstr "கடன் அட்டை"
-
-msgid "YOUR NAME"
-msgstr "உங்கள் பெயர்"
-
 msgid "Label the report"
 msgstr "சமர்ப்பிப்புக்கு லேபிளிடுங்கள்"
 
@@ -485,23 +479,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "தனியுரிமை கொள்கை"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "தனியுரிமை கொள்கை"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1005,9 +990,6 @@ msgstr "எளிய உள்நுழைவை இயக்கவும்"
 msgid "Enable search engines indexing"
 msgstr "தேடுபொறிகள் திருப்பு இயக்கு"
 
-msgid "Default questionnaire"
-msgstr "இயல்புநிலை கேள்வித்தாள்"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1098,11 +1080,11 @@ msgstr "முறை:"
 msgid "Creation date:"
 msgstr ""
 
-msgid "Root domain used for secondary sites"
-msgstr "இரண்டாம் தளங்களுக்கு ரூட் டொமைன் பயன்படுத்தப்படுகிறது"
-
 msgid "Use the first site for administrative purposes only"
 msgstr ""
+
+msgid "Root domain used for secondary sites"
+msgstr "இரண்டாம் தளங்களுக்கு ரூட் டொமைன் பயன்படுத்தப்படுகிறது"
 
 msgid "Allow users to sign up"
 msgstr "பயனர்களை டிஜிட்டல் கையெழுத்திட செய்ய அனுமதிக்கவும்"
@@ -1417,9 +1399,6 @@ msgstr "மென்பொருள் மேம்பாட்டிற்க�
 msgid "Join our chat:"
 msgstr ""
 
-msgid "Follow the project on:"
-msgstr "திட்டத்தை பின்பற்றவும்:"
-
 msgid "An update is available:"
 msgstr "புதுப்பிப்பு இருக்கிறது:"
 
@@ -1663,8 +1642,8 @@ msgstr ""
 msgid "What is the outcome you want to achieve with our support?"
 msgstr ""
 
-msgid "Do you want to provide your identification information?"
-msgstr "நீங்கள் உங்கள் அடையாள தகவல் வழங்க வேண்டும் என்று விரும்புகிறீர்கள்?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "முதல் பெயர்"

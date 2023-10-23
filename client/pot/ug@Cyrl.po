@@ -83,12 +83,6 @@ msgstr "Тәпсилатлар"
 msgid "Platform wizard"
 msgstr "Супа сеһиргәри"
 
-msgid "CREDIT CARD"
-msgstr "Инавәтлик карт"
-
-msgid "YOUR NAME"
-msgstr "Намиңиз"
-
 msgid "Label the report"
 msgstr "мәлуматқа бәлгә сал"
 
@@ -483,22 +477,13 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr ""
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Privacy Policy"
 msgstr ""
 
 msgid "Whistleblowing Policy"
@@ -1003,9 +988,6 @@ msgstr "Аддилашқан тизимға киришни қозғат"
 msgid "Enable search engines indexing"
 msgstr "Ахтуруш маторлириниң индекислишини қозғат"
 
-msgid "Default questionnaire"
-msgstr "Көңүлдики рай синаш"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1096,11 +1078,11 @@ msgstr "Һалити:"
 msgid "Creation date:"
 msgstr "Қурулған чесла:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Иккиләмчи тор бекәтләргә ишлитилидиған йилтиз даъирә"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Биринчи бекәтни пәқәтла башқуруш мәқситидә ишләт"
+
+msgid "Root domain used for secondary sites"
+msgstr "Иккиләмчи тор бекәтләргә ишлитилидиған йилтиз даъирә"
 
 msgid "Allow users to sign up"
 msgstr "Ишләткүчиләрниң тизимлитишиға рухсәт қил"
@@ -1415,9 +1397,6 @@ msgstr "Йумшақ детал ечишқа төһпә қошмақчи йак�
 msgid "Join our chat:"
 msgstr "Сөһбитимизгә қетилиң:"
 
-msgid "Follow the project on:"
-msgstr "Түримизгә бу йәрдин әгишиң:"
-
 msgid "An update is available:"
 msgstr "Бир йеңиланма бар:"
 
@@ -1661,8 +1640,8 @@ msgstr ""
 msgid "What is the outcome you want to achieve with our support?"
 msgstr ""
 
-msgid "Do you want to provide your identification information?"
-msgstr "Кимлик учурлириңизни тәминләшни халамсиз?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Исми"

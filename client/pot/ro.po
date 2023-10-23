@@ -99,12 +99,6 @@ msgstr "Detalii"
 msgid "Platform wizard"
 msgstr "Configurator platformă"
 
-msgid "CREDIT CARD"
-msgstr "CARD DE CREDIT"
-
-msgid "YOUR NAME"
-msgstr "NUMELE TĂU"
-
 msgid "Label the report"
 msgstr "Etichetează sesizarea"
 
@@ -499,23 +493,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr "Public"
-
-msgid "Internal"
-msgstr "Intern"
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "Politica de confidențialitate"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Politica de confidențialitate"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1019,9 +1004,6 @@ msgstr "Activează autentificarea simplificată"
 msgid "Enable search engines indexing"
 msgstr "Activează indexarea pentru motoarele de căutare"
 
-msgid "Default questionnaire"
-msgstr "Chestionar standard"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1112,11 +1094,11 @@ msgstr "Mod:"
 msgid "Creation date:"
 msgstr "Data creării:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Domeniu principal utilizat pentru website-urile secundare"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Folosește primul website doar pentru scopuri administrative"
+
+msgid "Root domain used for secondary sites"
+msgstr "Domeniu principal utilizat pentru website-urile secundare"
 
 msgid "Allow users to sign up"
 msgstr "Permite utilizatorilor să se înscrie"
@@ -1431,9 +1413,6 @@ msgstr "Dacă vrei să contribui la dezvoltarea software-ului sau dorești să r
 msgid "Join our chat:"
 msgstr "Participă la discuția noastră:"
 
-msgid "Follow the project on:"
-msgstr "Urmărește proiectul pe: "
-
 msgid "An update is available:"
 msgstr "O nouă versiune este disponibilă"
 
@@ -1677,8 +1656,8 @@ msgstr "Aceste organizații au investigat afirmațiile dvs.? Dacă da, care a fo
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Care este rezultatul pe care doriți să-l obțineți cu sprijinul nostru?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Vrei să oferi informații care să permită identificarea ta?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Prenume"

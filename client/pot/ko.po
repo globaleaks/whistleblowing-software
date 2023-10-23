@@ -84,12 +84,6 @@ msgstr "세부 정보"
 msgid "Platform wizard"
 msgstr "플랫폼 마법사"
 
-msgid "CREDIT CARD"
-msgstr "신용 카드"
-
-msgid "YOUR NAME"
-msgstr "내 이름"
-
 msgid "Label the report"
 msgstr "보고서 라벨링"
 
@@ -484,23 +478,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr "내부"
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "개인 정보 보호 정책"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "개인 정보 보호 정책"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1004,9 +989,6 @@ msgstr "단순 로그인 허용"
 msgid "Enable search engines indexing"
 msgstr "검색 엔진 인덱싱을 사용하도록 허용"
 
-msgid "Default questionnaire"
-msgstr "기본 설문 조사"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1097,11 +1079,11 @@ msgstr "모드:"
 msgid "Creation date:"
 msgstr "생성 날짜:"
 
-msgid "Root domain used for secondary sites"
-msgstr "보조 사이트에 사용하는 루트 도메인"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "관리용으로만 첫 사이트 사용"
+
+msgid "Root domain used for secondary sites"
+msgstr "보조 사이트에 사용하는 루트 도메인"
 
 msgid "Allow users to sign up"
 msgstr "사용자가 가입하도록 허용"
@@ -1416,9 +1398,6 @@ msgstr "소프트웨어 개발에 기여하고 싶거나 버그를 보고하고 
 msgid "Join our chat:"
 msgstr "채팅 참여:"
 
-msgid "Follow the project on:"
-msgstr "프로젝트 팔로우:"
-
 msgid "An update is available:"
 msgstr "업데이트 사용 가능:"
 
@@ -1662,8 +1641,8 @@ msgstr "해당 기관에서 귀하의 주장을 조사했습니까? 그렇다면
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "귀하가 보고 싶거나 달성하고 싶은 결과는 무엇입니까?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "사용자의 식별 정보를 제공하시겠습니까?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "이름"

@@ -83,12 +83,6 @@ msgstr "ລາຍລະອຽດຕ່າງໆ"
 msgid "Platform wizard"
 msgstr "ຕົວຊ່ວຍສ້າງແມ່ແບບ"
 
-msgid "CREDIT CARD"
-msgstr "ບັດເຄຼດິດ"
-
-msgid "YOUR NAME"
-msgstr "ຊື່ຂອງທ່ານ"
-
 msgid "Label the report"
 msgstr "ຕິດສະຫຼາກໃສ່ລາຍງານ"
 
@@ -483,22 +477,13 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr ""
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Privacy Policy"
 msgstr ""
 
 msgid "Whistleblowing Policy"
@@ -1003,9 +988,6 @@ msgstr "ເປີດນຳໃຊ້ການເຂົ້າສູ່ລະບົ
 msgid "Enable search engines indexing"
 msgstr "ເປີດນຳໃຊ້ການສ້າງດັດຊະນີຂອງເຄື່ອງມືຄົ້ນຫາ"
 
-msgid "Default questionnaire"
-msgstr "ແບບສອບຖາມທີ່ເປັນຄ່າເລີ່ມຕົ້ນ"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1096,11 +1078,11 @@ msgstr "ໂໝດ:"
 msgid "Creation date:"
 msgstr "ວັນທີສ້າງ:"
 
-msgid "Root domain used for secondary sites"
-msgstr "ໂດເມນຫຼັກທີ່ໃຊ້ສຳລັບເວັບໄຊສຳຮອງ"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "ໃຊ້ເວັບໄຊທຳອິດເພື່ອຈຸດປະສົງໃນການດູແລລະບົບເທົ່ານັ້ນ"
+
+msgid "Root domain used for secondary sites"
+msgstr "ໂດເມນຫຼັກທີ່ໃຊ້ສຳລັບເວັບໄຊສຳຮອງ"
 
 msgid "Allow users to sign up"
 msgstr "ອະນຸຍາດໃຫ້ຜູ້ໃຊ້ລົງທະບຽນ"
@@ -1415,9 +1397,6 @@ msgstr "ຖ້າທ່ານຕ້ອງການປະກອບສ່ວນເ
 msgid "Join our chat:"
 msgstr "ເຂົ້າຮ່ວມການສົນທະນາຂອງພວກເຮົາ:"
 
-msgid "Follow the project on:"
-msgstr "ຕິດຕາມໂຄງການທີ່:"
-
 msgid "An update is available:"
 msgstr "ມີການອັບເດດທີ່ພ້ອມແລ້ວ:"
 
@@ -1661,8 +1640,8 @@ msgstr "ອົງກອນເຫຼົ່ານັ້ນໄດ້ສືບສວ
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "ຜົນໄດ້ຮັບທີ່ເຈົ້າຢາກເຫັນ/ປະສົບຜົນສໍາເລັດແມ່ນຫຍັງ?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "ທ່ານຕ້ອງການໃຫ້ຂໍ້ມູນປະຈຳຕົວຂອງທ່ານບໍ?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "ຊື່ແທ້"

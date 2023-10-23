@@ -83,12 +83,6 @@ msgstr "Айрынтылар"
 msgid "Platform wizard"
 msgstr "Платформа устасы"
 
-msgid "CREDIT CARD"
-msgstr "КРЕДИТ КАРТЫ"
-
-msgid "YOUR NAME"
-msgstr "АДЫНЪЫЗ"
-
 msgid "Label the report"
 msgstr "Малюматлар берильгенини къайд этмек "
 
@@ -483,22 +477,13 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr ""
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Privacy Policy"
 msgstr ""
 
 msgid "Whistleblowing Policy"
@@ -1003,9 +988,6 @@ msgstr "Саде киришке изин бермек"
 msgid "Enable search engines indexing"
 msgstr "Къыдырма системаларнынъ индекслемесини башламакъ"
 
-msgid "Default questionnaire"
-msgstr "Стандарт суаллер джедвели"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1096,11 +1078,11 @@ msgstr "Режим:"
 msgid "Creation date:"
 msgstr "Яратма тарихи:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Экинджи дереджели сайтлар ичюн къулланылгъан тамыр домен"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Биринджи сайтны тек административ макъсад иле къулланмакъ"
+
+msgid "Root domain used for secondary sites"
+msgstr "Экинджи дереджели сайтлар ичюн къулланылгъан тамыр домен"
 
 msgid "Allow users to sign up"
 msgstr "Къулланыджылыргъа къайд олунмагъа изин бермек"
@@ -1415,9 +1397,6 @@ msgstr "Сиз программа теминаты ишленмесинде иш
 msgid "Join our chat:"
 msgstr "Чатымызгъа къошулынъыз:"
 
-msgid "Follow the project on:"
-msgstr "Лейханынъ инкишафыны козетинъиз:"
-
 msgid "An update is available:"
 msgstr "Янъартма мевджуттир:"
 
@@ -1661,8 +1640,8 @@ msgstr "Бу тешкилятлар иддиаларынъызны тедкъи�
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Ярдымымыз иле насыл нетиджеге иришмеге истейсинъиз?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Сиз озюнъиз акъкъында малюмат къалдырмакъ истейсинъизми?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Ад"

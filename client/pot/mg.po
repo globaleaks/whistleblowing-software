@@ -99,12 +99,6 @@ msgstr "Détails"
 msgid "Platform wizard"
 msgstr "Assistant de la plateforme"
 
-msgid "CREDIT CARD"
-msgstr "CARTE DE CRÉDIT"
-
-msgid "YOUR NAME"
-msgstr "VOTRE NOM"
-
 msgid "Label the report"
 msgstr "Étiqueter l’envoi"
 
@@ -499,22 +493,13 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr ""
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Privacy Policy"
 msgstr ""
 
 msgid "Whistleblowing Policy"
@@ -1019,9 +1004,6 @@ msgstr "Activer la connexion simplifiée"
 msgid "Enable search engines indexing"
 msgstr "Activer l’indexation par les moteurs de recherche"
 
-msgid "Default questionnaire"
-msgstr "Questionnaire par défaut"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1112,11 +1094,11 @@ msgstr "Mode :"
 msgid "Creation date:"
 msgstr ""
 
-msgid "Root domain used for secondary sites"
-msgstr "Domaine racine utilisé pour les sites secondaires"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "N’utiliser le premier site qu’à des fins d’administration"
+
+msgid "Root domain used for secondary sites"
+msgstr "Domaine racine utilisé pour les sites secondaires"
 
 msgid "Allow users to sign up"
 msgstr "Permettre aux utilisateurs de s’inscrire"
@@ -1431,9 +1413,6 @@ msgstr "Si vous souhaitez participer au développement logiciel ou signaler un b
 msgid "Join our chat:"
 msgstr ""
 
-msgid "Follow the project on:"
-msgstr "Suivez le projet sur :"
-
 msgid "An update is available:"
 msgstr "Une mise à jour est proposée :"
 
@@ -1677,8 +1656,8 @@ msgstr ""
 msgid "What is the outcome you want to achieve with our support?"
 msgstr ""
 
-msgid "Do you want to provide your identification information?"
-msgstr "Voulez-vous fournir vos renseignements d’identification ?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Prénom"

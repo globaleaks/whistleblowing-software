@@ -84,12 +84,6 @@ msgstr "ཞིབ་ཕྲ།"
 msgid "Platform wizard"
 msgstr "གླེང་སྟེགས་ཝི་ཛཌ།"
 
-msgid "CREDIT CARD"
-msgstr "བུན་བྱང་།"
-
-msgid "YOUR NAME"
-msgstr "ཁྱེད་ཀྱི་མིང་།"
-
 msgid "Label the report"
 msgstr "སྙན་ཐོ་རྟགས་རྒྱག"
 
@@ -484,23 +478,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr "ནང་ཁུལ།"
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "གསང་དོན་སྲིད་བྱུས།"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "གསང་དོན་སྲིད་བྱུས།"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1004,9 +989,6 @@ msgstr "སྟབས་བདེའི་ནང་འཛུལ་ནུས་ལ
 msgid "Enable search engines indexing"
 msgstr "འཚོལ་ཞིབ་ཨིན་ཇེན་གྱི་དཀར་ཆག་ནུས་ལྡན་བཟོ།"
 
-msgid "Default questionnaire"
-msgstr "རང་སོར་ནས་ཡོད་པའི་དྲི་ཚན།"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1097,11 +1079,11 @@ msgstr "རྣམ་པ།:"
 msgid "Creation date:"
 msgstr "བཟོ་བསྐྲུན་ཚེས་གྲངས།:"
 
-msgid "Root domain used for secondary sites"
-msgstr "དྲ་ཚིགས་གཞན་ཆེད་བེད་སྤྱོད་བྱས་པའི་དྲྭ་རྒྱའི་ཁ་བྱང་རྩ་བ།"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "འཛིན་སྐྱོང་དགོས་དོན་ཁོ་ནའི་ཆེད་དྲ་ཚིགས་དང་པོ་དེ་བེད་སྤྱོད་བྱ།"
+
+msgid "Root domain used for secondary sites"
+msgstr "དྲ་ཚིགས་གཞན་ཆེད་བེད་སྤྱོད་བྱས་པའི་དྲྭ་རྒྱའི་ཁ་བྱང་རྩ་བ།"
 
 msgid "Allow users to sign up"
 msgstr "སྤྱོད་པ་པོར་ཐོ་འགོད་བྱེད་དུ་འཇུག"
@@ -1416,9 +1398,6 @@ msgstr "གལ་ཏེ་ཁྱེད་ཀྱིས་མཉེན་ཆས་
 msgid "Join our chat:"
 msgstr "ང་ཚོའི་གླེང་མོལ་སྟེང་མཉམ་ཞུགས་བྱ།:"
 
-msgid "Follow the project on:"
-msgstr "འདིའི་ཐོག་ལས་འཆར་སྟེང་རྗེས་འབྲང་བྱ།:"
-
 msgid "An update is available:"
 msgstr "གསར་སྒྱུར་ཞིག་ཐོབ་རུང་འདུག:"
 
@@ -1662,8 +1641,8 @@ msgstr "ཚོགས་པ་འདི་དག་གིས་ཁྱེད་ཀ
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "ཁྱེད་ཀྱི་གྲུབ་འབྲས་གང་མཐོང་འདོད་ཡོད་ནམ།"
 
-msgid "Do you want to provide your identification information?"
-msgstr "ཁྱེད་ཀྱི་སོ་སོའི་ངོས་འཛིན་ཆ་འཕྲིན་མཁོ་སྤྲོད་བྱེད་འདོད་དམ།"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "མིང་ཐོག་མ།"

@@ -83,12 +83,6 @@ msgstr "Butiran"
 msgid "Platform wizard"
 msgstr "Wizard platform"
 
-msgid "CREDIT CARD"
-msgstr "KAD KREDIT"
-
-msgid "YOUR NAME"
-msgstr "NAMA ANDA"
-
 msgid "Label the report"
 msgstr "Label laporan"
 
@@ -483,23 +477,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "Dasar Kerahsiaan"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Dasar Kerahsiaan"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1003,9 +988,6 @@ msgstr "Dayakan log masuk diringkaskan"
 msgid "Enable search engines indexing"
 msgstr "Dayakan pengindeksan enjin carian"
 
-msgid "Default questionnaire"
-msgstr "Soal selidik lalai"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1096,11 +1078,11 @@ msgstr "Mod:"
 msgid "Creation date:"
 msgstr "Tarikh penciptaan:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Domain akar digunakan untuk laman sekunder"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Gunakan laman pertama untuk tujuan pentadbiran sahaja"
+
+msgid "Root domain used for secondary sites"
+msgstr "Domain akar digunakan untuk laman sekunder"
 
 msgid "Allow users to sign up"
 msgstr "Benarkan pengguna untuk mendaftar"
@@ -1415,9 +1397,6 @@ msgstr "Jika anda mahu menyumbang kepada pembangunan perisian atau melaporkan pe
 msgid "Join our chat:"
 msgstr "Sertai sembang kami:"
 
-msgid "Follow the project on:"
-msgstr "Ikuti projek di:"
-
 msgid "An update is available:"
 msgstr "Kemas kini tersedia:"
 
@@ -1661,8 +1640,8 @@ msgstr "Adakah mana-mana organisasi ini menyiasat aduan anda? Jika ya, apakah ha
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Apakah keputusan yang anda mahu dapati/peroleh?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Adakah anda mahu menyediakan maklumat pengenalan anda?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Nama pertama"

@@ -95,12 +95,6 @@ msgstr "تفصیلات"
 msgid "Platform wizard"
 msgstr "پلیٹ فارم وزرڈ"
 
-msgid "CREDIT CARD"
-msgstr "کرڈٹ کارڈ"
-
-msgid "YOUR NAME"
-msgstr "آپ کا نام؟"
-
 msgid "Label the report"
 msgstr "رپورٹ لیبل کریں"
 
@@ -495,23 +489,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr "اندرونی"
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "رازداری کی پالیسی"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "رازداری کی پالیسی"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1015,9 +1000,6 @@ msgstr "آسان لاگ ان کو فعال کریں۔ "
 msgid "Enable search engines indexing"
 msgstr "سرچ انجن اشاریہ سازی فعال کیجیے"
 
-msgid "Default questionnaire"
-msgstr "پہلے سے طے شدہ سوالنامہ "
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1108,11 +1090,11 @@ msgstr "موڈ: "
 msgid "Creation date:"
 msgstr "بنانے کی تاریخ: "
 
-msgid "Root domain used for secondary sites"
-msgstr "ثانوی سائٹس کے لیے استعمال شدہ روٹ ڈومین "
-
 msgid "Use the first site for administrative purposes only"
 msgstr "پہلی سائٹ کو صرف انتظامی مقاصد کے لیے استعمال کریں۔ "
+
+msgid "Root domain used for secondary sites"
+msgstr "ثانوی سائٹس کے لیے استعمال شدہ روٹ ڈومین "
 
 msgid "Allow users to sign up"
 msgstr "صارفین کو سائن اپ کرنے کی اجازت دیں۔ "
@@ -1427,9 +1409,6 @@ msgstr "اگر آپ سافٹ ویئر ڈیولپمنٹ میں تعاون کرن�
 msgid "Join our chat:"
 msgstr "ہماری چیٹ میں شامل ہوں: "
 
-msgid "Follow the project on:"
-msgstr "اس پر پروجیکٹ کو فالو کریں:"
-
 msgid "An update is available:"
 msgstr "ایک اپ ڈیٹ دستیاب ہے: "
 
@@ -1673,8 +1652,8 @@ msgstr "کیا ان تنظیموں نے آپ کے دعووں کی چھان بی�
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "ہمارے تعاون سے آپ کیا نتیجہ حاصل کرنا چاہتے ہیں؟ "
 
-msgid "Do you want to provide your identification information?"
-msgstr "کیا آپ اپنی شناخت کی معلومات فراہم کرنا چاہتے ہیں؟"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "پہلا نام"

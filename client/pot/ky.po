@@ -84,12 +84,6 @@ msgstr "Деталдар"
 msgid "Platform wizard"
 msgstr "Платформа устаты"
 
-msgid "CREDIT CARD"
-msgstr "КРЕДИТ КАРТАСЫ"
-
-msgid "YOUR NAME"
-msgstr "АТЫҢЫЗ"
-
 msgid "Label the report"
 msgstr "Отчетту белгилеңиз"
 
@@ -484,23 +478,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr "Ички"
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "Купуялык саясаты"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Купуялык саясаты"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1004,9 +989,6 @@ msgstr "Жөнөкөйлөтүлгөн кирүүнү иштетүү"
 msgid "Enable search engines indexing"
 msgstr "Издөө системаларын индекстөөнү иштетүү"
 
-msgid "Default questionnaire"
-msgstr "Демейки анкета"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1097,11 +1079,11 @@ msgstr "Режим:"
 msgid "Creation date:"
 msgstr "Түзүлгөн күнү:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Кошумча сайттар үчүн колдонулган башкы домен"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Биринчи сайтты административдик макстаттарга гана колдонуу"
+
+msgid "Root domain used for secondary sites"
+msgstr "Кошумча сайттар үчүн колдонулган башкы домен"
 
 msgid "Allow users to sign up"
 msgstr "Колдонуучуларга катталууга уруксат берүү"
@@ -1416,9 +1398,6 @@ msgstr "Эгерде сиз программалык камсыздоону иш
 msgid "Join our chat:"
 msgstr "Биздин чатка кошулуңуз:"
 
-msgid "Follow the project on:"
-msgstr "Проектти ээрчүү:"
-
 msgid "An update is available:"
 msgstr "Жаңыртуу жеткиликтүү"
 
@@ -1662,8 +1641,8 @@ msgstr "Ал уюмдар сиздин дооматтарыңызды иликт
 msgid "What is the outcome you want to achieve with our support?"
 msgstr " Биздин колдообуз менен кандай жыйынтыкка жетүүнү каалайсыз? "
 
-msgid "Do you want to provide your identification information?"
-msgstr "Өздүгүңүздү тастыктоочу маалыматты бергиңиз келеби?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Аты"

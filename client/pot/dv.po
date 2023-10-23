@@ -88,12 +88,6 @@ msgstr "އިތުރު މައުލޫމާތު"
 msgid "Platform wizard"
 msgstr "ޕްލެޓްފޯރމް ވިޒާރޑް"
 
-msgid "CREDIT CARD"
-msgstr "ކްރެޑިޓް ކާޑް"
-
-msgid "YOUR NAME"
-msgstr "ފުރިހަމަ ނަން"
-
 msgid "Label the report"
 msgstr "ރިޕޯޓް ލޭބަލްކުރުމަށް"
 
@@ -488,22 +482,13 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr ""
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Privacy Policy"
 msgstr ""
 
 msgid "Whistleblowing Policy"
@@ -1008,9 +993,6 @@ msgstr "ސިންޕްލިފައިޑް ލޮގް އިން އެނޭބަލްކުރަ�
 msgid "Enable search engines indexing"
 msgstr "ސާރޗް އިންޖިންތައް އިންޑެކްސް ކުރުމަށް"
 
-msgid "Default questionnaire"
-msgstr "ޑީފޯލްޓް ސުވާލުކަރުދާސް"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1101,11 +1083,11 @@ msgstr "ބާވަތް:"
 msgid "Creation date:"
 msgstr "އުފެއްދި ތާރީޚް:"
 
-msgid "Root domain used for secondary sites"
-msgstr "ސެކަންޑަރީ ސައިޓްތަކުގައި ރޫޓް ޑޮމެއިން ބޭނުންކުރުން"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "ފުރަތަމަ ސައިޓް ބޭނުންކުރައްވާނީ އިދާރީ ބޭނުންތަކަށް އެކަނި"
+
+msgid "Root domain used for secondary sites"
+msgstr "ސެކަންޑަރީ ސައިޓްތަކުގައި ރޫޓް ޑޮމެއިން ބޭނުންކުރުން"
 
 msgid "Allow users to sign up"
 msgstr "އިތުރު މީހުން ސައިން އަޕް ކުރުމުގެ ހުއްދަ ދިނުމަށް"
@@ -1420,9 +1402,6 @@ msgstr "ސޮފްޓްވެއަރގައި މައްސަލައެއް އުޅޭކަން
 msgid "Join our chat:"
 msgstr "ޗެޓް ކުރެއްވުމަށް:"
 
-msgid "Follow the project on:"
-msgstr "މި ޕްރޮޖެކްޓް ފޮލޯކުރުމަށް: "
-
 msgid "An update is available:"
 msgstr "އަދާހަމަކުރުމެއް ތައްޔާރުވެފައި"
 
@@ -1666,8 +1645,8 @@ msgstr "މި ޖަމްޢިއްޔާތަކުން ތިޔަބޭފުޅުންގެ ދަ�
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "އަޅުގަނޑުމެންގެ ސަޕޯޓާއެކު ތިޔަބޭފުޅުން ހޯއްދަވަން ބޭނުންފުޅުވާ ނަތީޖާއަކީ ކޮބައިތޯ؟"
 
-msgid "Do you want to provide your identification information?"
-msgstr "ތިޔަ ބޭފުޅާގެ އައިޑެންޓިފިކޭޝަން މަޢުލޫމާތު ޙިއްޞާކުރަން ބޭނުންފުޅުތޯ؟"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "ފުރަތަމަ ނަން"

@@ -83,12 +83,6 @@ msgstr "جزئیات"
 msgid "Platform wizard"
 msgstr "د پلیټ فارم ویزرډ"
 
-msgid "CREDIT CARD"
-msgstr "کریډیټ کارت"
-
-msgid "YOUR NAME"
-msgstr "ستاسې نوم"
-
 msgid "Label the report"
 msgstr "رپوټ لیبل کړئ"
 
@@ -483,22 +477,13 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr ""
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Privacy Policy"
 msgstr ""
 
 msgid "Whistleblowing Policy"
@@ -1003,9 +988,6 @@ msgstr "ساده دننه کېدل فعال کړئ"
 msgid "Enable search engines indexing"
 msgstr "د پلټنې د انجنونو د شاخص فعالول"
 
-msgid "Default questionnaire"
-msgstr "عادې پوښتنلیک"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1096,11 +1078,11 @@ msgstr "موډ:"
 msgid "Creation date:"
 msgstr "د جوړولو نېټه:"
 
-msgid "Root domain used for secondary sites"
-msgstr "د روټ ډومین د ثانوي سایټونو لپاره کارول شوی"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "لومړنی سایټ یوازې د اداري مقاصدو لپاره وکاروئ"
+
+msgid "Root domain used for secondary sites"
+msgstr "د روټ ډومین د ثانوي سایټونو لپاره کارول شوی"
 
 msgid "Allow users to sign up"
 msgstr "د نوم لیکنې لپاره کارنونو ته اجازه ورکول"
@@ -1415,9 +1397,6 @@ msgstr "که چیرته غواړئ چې د سافټ ویر له جوړولو س�
 msgid "Join our chat:"
 msgstr "زموږ له چت سره یو ځای شئ:"
 
-msgid "Follow the project on:"
-msgstr "پروژه تعقیب کړئ په:"
-
 msgid "An update is available:"
 msgstr "یو نوی اپډیټ راغلی:"
 
@@ -1661,8 +1640,8 @@ msgstr "ایا دې سازمانونو ستاسو ادعاوې څیړلي؟ که
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "تاسو زموږ په ملاتړ څه ډول یوه پایله غواړئ؟ "
 
-msgid "Do you want to provide your identification information?"
-msgstr "ایا غواړئ چې خپل د پیژندګلوي معلومات ورکړئ؟"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "نوم"

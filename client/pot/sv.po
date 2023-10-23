@@ -106,12 +106,6 @@ msgstr "Detaljer"
 msgid "Platform wizard"
 msgstr "Plattformsguide"
 
-msgid "CREDIT CARD"
-msgstr "KREDITKORT"
-
-msgid "YOUR NAME"
-msgstr "DITT NAMN"
-
 msgid "Label the report"
 msgstr "Ge rapporten en etikett"
 
@@ -506,23 +500,14 @@ msgstr "Ge denna användare förmågan att maskera information"
 msgid "Give this user ability to permanently redact masked information"
 msgstr "Ge denna användare förmågan att permanent radera maskerad information"
 
-msgid "Public"
-msgstr "Allmän"
-
-msgid "Internal"
-msgstr "Intern"
-
-msgid "Personal"
-msgstr "Personlig"
-
-msgid "Privacy Policy"
-msgstr "Integritetspolicy"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr "Jag har läst och accepterar integritetspolicyn"
 
 msgid "Download copy of the Privacy Policy"
 msgstr "Ladda ner en kopia av integritetspolicyn"
+
+msgid "Privacy Policy"
+msgstr "Integritetspolicy"
 
 msgid "Whistleblowing Policy"
 msgstr "Visselblåsarpolicy"
@@ -1026,9 +1011,6 @@ msgstr "Aktivera förenklad inloggning"
 msgid "Enable search engines indexing"
 msgstr "Aktivera sökmotorindexering"
 
-msgid "Default questionnaire"
-msgstr "Standardfrågeformulär"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1119,11 +1101,11 @@ msgstr "Läge:"
 msgid "Creation date:"
 msgstr "Datum för skapande:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Rotzon som används för sekundära webbplatser"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Använd den primära webbplatsen enbart för administrativa ändamål"
+
+msgid "Root domain used for secondary sites"
+msgstr "Rotzon som används för sekundära webbplatser"
 
 msgid "Allow users to sign up"
 msgstr "Tillåt användarna att registrera sig"
@@ -1438,9 +1420,6 @@ msgstr "Om du vill bidra till programvaruutvecklingen eller rapportera om ett fe
 msgid "Join our chat:"
 msgstr "Delta i vår chatt:"
 
-msgid "Follow the project on:"
-msgstr "Följ projektet på adressen:"
-
 msgid "An update is available:"
 msgstr "En uppdatering är tillgänglig:"
 
@@ -1684,8 +1663,8 @@ msgstr "Har dessa organisationer undersökt dina påståenden? Om så, vad var r
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Vad är resultatet du vill uppnå med din rapport?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Vill du ge oss dina identifieringsuppgifter?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Förnamn"

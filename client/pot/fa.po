@@ -110,12 +110,6 @@ msgstr "جزئیات"
 msgid "Platform wizard"
 msgstr "دستیار پلتفرم"
 
-msgid "CREDIT CARD"
-msgstr "کارت اعتباری"
-
-msgid "YOUR NAME"
-msgstr "نام شما"
-
 msgid "Label the report"
 msgstr "برچسب زدن گزارش"
 
@@ -510,23 +504,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr "عمومی"
-
-msgid "Internal"
-msgstr "داخلی"
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "حریم خصوصی"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "حریم خصوصی"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1030,9 +1015,6 @@ msgstr "فعال کردن ورود ساده شده"
 msgid "Enable search engines indexing"
 msgstr "فعال کردن نمایه‌سازی در موتورهای جستجو"
 
-msgid "Default questionnaire"
-msgstr "پرسش‌نامهٔ پیش‌فرض"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1123,11 +1105,11 @@ msgstr "حالت:"
 msgid "Creation date:"
 msgstr "تاریخ ایجاد:"
 
-msgid "Root domain used for secondary sites"
-msgstr "دامنهٔ ریشهٔ مورد استفاده برای سایت‌های ثانوی"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "از سایت اول فقط برای اهداف مدیریتی استفاده شود"
+
+msgid "Root domain used for secondary sites"
+msgstr "دامنهٔ ریشهٔ مورد استفاده برای سایت‌های ثانوی"
 
 msgid "Allow users to sign up"
 msgstr "اجازهٔ نام‌نویسی به کاربران"
@@ -1442,9 +1424,6 @@ msgstr "اگر می خواهید در توسعهٔ نرم‌افزار مشار�
 msgid "Join our chat:"
 msgstr "به گفتگو‌ی ما بپیوندید:"
 
-msgid "Follow the project on:"
-msgstr "دنبال کردن پروژه در:"
-
 msgid "An update is available:"
 msgstr "یک به‌روزرسانی در دسترس است:"
 
@@ -1688,8 +1667,8 @@ msgstr "آیا این سازمان‌ها ادعاهای شما را بررسی 
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "نتیجه‌ای که می خواهید با حمایت ما به دست آورید چیست؟"
 
-msgid "Do you want to provide your identification information?"
-msgstr "آیا می‌خواهید اطلاعات شناسایی هویت خود را ارائه دهید؟"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "نام"

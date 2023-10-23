@@ -85,12 +85,6 @@ msgstr "Մանրամասներ"
 msgid "Platform wizard"
 msgstr "Հարթակի հրաշագործ"
 
-msgid "CREDIT CARD"
-msgstr "ՎՃԱՐԱՅԻՆ ՔԱՐՏ"
-
-msgid "YOUR NAME"
-msgstr "ՁԵՐ ԱՆՈՒՆԸ"
-
 msgid "Label the report"
 msgstr "Պիտակել զեկույցը"
 
@@ -485,22 +479,13 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr ""
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Privacy Policy"
 msgstr ""
 
 msgid "Whistleblowing Policy"
@@ -1005,9 +990,6 @@ msgstr "Ակտիվացնել պարզեցված մուտքը"
 msgid "Enable search engines indexing"
 msgstr "Ակտիվացնել որոնման ինդեքսավորումը"
 
-msgid "Default questionnaire"
-msgstr "Լռելյայն հարցաշար"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1098,11 +1080,11 @@ msgstr "Ռեժիմ՝"
 msgid "Creation date:"
 msgstr "Ստեղծման ամսաթիվ՝"
 
-msgid "Root domain used for secondary sites"
-msgstr "Արմատային դոմեն, որն օգտագործվում է երկրորդական կայքերի համար"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Օգտագործել առաջին կայքը միայն վարչական նպատակներով"
+
+msgid "Root domain used for secondary sites"
+msgstr "Արմատային դոմեն, որն օգտագործվում է երկրորդական կայքերի համար"
 
 msgid "Allow users to sign up"
 msgstr "Թույլատրել օգտատերերին գրանցվել"
@@ -1417,9 +1399,6 @@ msgstr "Եթե ​​ցանկանում եք մասնակցել ծրագրաշա
 msgid "Join our chat:"
 msgstr "Միանալ մեր չաթին."
 
-msgid "Follow the project on:"
-msgstr "Հետևեք նախագծի զարգացմանը."
-
 msgid "An update is available:"
 msgstr "Հասանելի է թարմացում."
 
@@ -1663,8 +1642,8 @@ msgstr "Արդյո՞ք այդ կազմակերպությունները հետա�
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Ի՞նչ արդյունք եք ակնկալում ունենալ մեր օգնությամբ"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Ցանկանու՞մ եք տրամադրել ձեր նույնականացման տվյալները:"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Անուն"

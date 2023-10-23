@@ -98,12 +98,6 @@ msgstr "Chi tiết"
 msgid "Platform wizard"
 msgstr "Trình hướng dẫn của hệ thống"
 
-msgid "CREDIT CARD"
-msgstr "THẺ TÍN DỤNG"
-
-msgid "YOUR NAME"
-msgstr "TÊN BẠN"
-
 msgid "Label the report"
 msgstr "Dán nhãn báo cáo"
 
@@ -498,23 +492,14 @@ msgstr "Cho người dùng này khả năng che đậy thông tin"
 msgid "Give this user ability to permanently redact masked information"
 msgstr "Cho người dùng này khả năng đục bỏ vĩnh viễn thông tin bị che đậy"
 
-msgid "Public"
-msgstr "Công cộng"
-
-msgid "Internal"
-msgstr "Nội bộ"
-
-msgid "Personal"
-msgstr "Cá nhân"
-
-msgid "Privacy Policy"
-msgstr "Chính Sách Quyền Riêng Tư"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr "Tôi đã đọc và chấp nhận Chính Sách Quyền Riêng Tư"
 
 msgid "Download copy of the Privacy Policy"
 msgstr "Tải về một bản Chính Sách Quyền Riêng Tư"
+
+msgid "Privacy Policy"
+msgstr "Chính Sách Quyền Riêng Tư"
 
 msgid "Whistleblowing Policy"
 msgstr "Chính Sách Tố Giác"
@@ -1018,9 +1003,6 @@ msgstr "Bật mở đăng nhập đơn giản"
 msgid "Enable search engines indexing"
 msgstr "Bật công cụ tìm kiếm lập chỉ mục"
 
-msgid "Default questionnaire"
-msgstr "Bảng câu hỏi mặc định"
-
 msgid "Show channels in alphabetical order"
 msgstr "Hiển thị kênh theo thứ tự ABC"
 
@@ -1111,11 +1093,11 @@ msgstr "Trạng thái:"
 msgid "Creation date:"
 msgstr "Ngày thành lập"
 
-msgid "Root domain used for secondary sites"
-msgstr "Tên miền gốc dùng cho các trang web phụ"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Chỉ dùng trang web đầu tiên cho mục đích quản trị"
+
+msgid "Root domain used for secondary sites"
+msgstr "Tên miền gốc dùng cho các trang web phụ"
 
 msgid "Allow users to sign up"
 msgstr "Cho phép người dùng đăng ký"
@@ -1430,9 +1412,6 @@ msgstr "Nếu bạn muốn đóng góp vào việc phát triển phần mềm ho
 msgid "Join our chat:"
 msgstr "Trò chuyện với chúng tôi:"
 
-msgid "Follow the project on:"
-msgstr "Theo dõi dự án trên:"
-
 msgid "An update is available:"
 msgstr "Bản cập nhật đã có:"
 
@@ -1676,8 +1655,8 @@ msgstr "Những tổ chức này có điều tra lời khai của bạn không? 
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Kết quả mà bạn muốn thấy/đạt được là gì?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Bạn muốn cung cấp thông tin về danh tính của bạn?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Tên"

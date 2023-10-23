@@ -83,12 +83,6 @@ msgstr "Išsamiau"
 msgid "Platform wizard"
 msgstr "Platformos vedlys"
 
-msgid "CREDIT CARD"
-msgstr "KREDITO KORTELĖ"
-
-msgid "YOUR NAME"
-msgstr "JŪSŲ VARDAS IR PAVARDĖ"
-
 msgid "Label the report"
 msgstr "Ženklinti pranešimą"
 
@@ -483,23 +477,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr "Viešasis"
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "Privatumo politika"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Privatumo politika"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1003,9 +988,6 @@ msgstr "Įgalinti supaprastintą prisijungimą"
 msgid "Enable search engines indexing"
 msgstr "Įgalinti paieškos variklių indeksavimą"
 
-msgid "Default questionnaire"
-msgstr "Numatytasis klausimynas"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1096,11 +1078,11 @@ msgstr "Režimas:"
 msgid "Creation date:"
 msgstr "Sukūrimo data:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Antrinėms svetainėms naudojamas šakninis domenas"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Naudoti pirmąją svetainę tik administraciniais tikslais"
+
+msgid "Root domain used for secondary sites"
+msgstr "Antrinėms svetainėms naudojamas šakninis domenas"
 
 msgid "Allow users to sign up"
 msgstr "Leisti naudotojams registruotis"
@@ -1415,9 +1397,6 @@ msgstr "Jei norite prisidėti prie programinės įrangos kūrimo ar pranešti ap
 msgid "Join our chat:"
 msgstr "Prisijunkite prie mūsų pokalbio:"
 
-msgid "Follow the project on:"
-msgstr "Projektą sekite:"
-
 msgid "An update is available:"
 msgstr "Galimas atnaujinimas:"
 
@@ -1661,8 +1640,8 @@ msgstr "Ar šios organizacijos tyrė jūsų skundus? Jei taip, kokie rezultatai?
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Kokį rezultato tikitės su mūsų pagalba?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Ar norite pateikti savo identifikavimo informaciją?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Vardas"

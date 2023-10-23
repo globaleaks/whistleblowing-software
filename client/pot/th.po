@@ -93,12 +93,6 @@ msgstr "รายละเอียด"
 msgid "Platform wizard"
 msgstr "ตัวช่วยตั้งค่าแพลตฟอร์ม"
 
-msgid "CREDIT CARD"
-msgstr "บัตรเครดิต"
-
-msgid "YOUR NAME"
-msgstr "ชื่อของคุณ"
-
 msgid "Label the report"
 msgstr "ติดป้ายกำกับรายงาน"
 
@@ -493,23 +487,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr "สาธารณะ"
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "นโยบายความเป็นส่วนตัว"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "นโยบายความเป็นส่วนตัว"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1013,9 +998,6 @@ msgstr "เปิดใช้งานการลงชื่อเข้าใ
 msgid "Enable search engines indexing"
 msgstr "เปิดใช้การสร้างดัชนีเครื่องมือค้นหา"
 
-msgid "Default questionnaire"
-msgstr "แบบสอบถามมาตรฐาน"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1106,11 +1088,11 @@ msgstr "โหมด:"
 msgid "Creation date:"
 msgstr "วันที่สร้าง:"
 
-msgid "Root domain used for secondary sites"
-msgstr "โดเมนรากถูกใช้สำหรับไซต์ชั้นสอง"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "ใช้งานเว็บไซต์แรกเพื่อจุดประสงค์ในการจัดการดูแลเท่านั้น"
+
+msgid "Root domain used for secondary sites"
+msgstr "โดเมนรากถูกใช้สำหรับไซต์ชั้นสอง"
 
 msgid "Allow users to sign up"
 msgstr "อนุญาตให้ผู้ใช้ลงชื่อสมัคร"
@@ -1425,9 +1407,6 @@ msgstr "ถ้าคุณต้องการช่วยในการพั
 msgid "Join our chat:"
 msgstr "เข้าร่วมการแชตกับเรา:"
 
-msgid "Follow the project on:"
-msgstr "ติดตามโครงการได้ที่:"
-
 msgid "An update is available:"
 msgstr "รายการอัปเดตพร้อมแล้ว:"
 
@@ -1671,8 +1650,8 @@ msgstr "องค์กรเหล่านี้ตรวจสอบข้อ
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "คุณอยากให้/เห็นผลลัพธ์ออกมาเป็นอย่างไร?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "คุณต้องการให้ข้อมูลที่ระบุตัวตนของคุณหรือไม่"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "ชื่อ"

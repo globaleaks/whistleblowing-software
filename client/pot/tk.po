@@ -88,12 +88,6 @@ msgstr "Jikme-jiklikler"
 msgid "Platform wizard"
 msgstr "Platforma düzeltmesi"
 
-msgid "CREDIT CARD"
-msgstr "KREDIT KARTOÇKASY"
-
-msgid "YOUR NAME"
-msgstr "ADYŇYZ"
-
 msgid "Label the report"
 msgstr "Hasabaty bellik ediň"
 
@@ -488,23 +482,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr "Içerki"
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "Gizlinlik Ugry"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Gizlinlik Ugry"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1008,9 +993,6 @@ msgstr "Ýönekeýleşdirilen girişi açyň"
 msgid "Enable search engines indexing"
 msgstr "Gözleg motorlaryny indeksirlemäge mümkinçilik ber"
 
-msgid "Default questionnaire"
-msgstr "Bellenen sowalnama"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1101,11 +1083,11 @@ msgstr "Tertip:"
 msgid "Creation date:"
 msgstr "Döredilen senesi:"
 
-msgid "Root domain used for secondary sites"
-msgstr " Kök domain ikinji derejeli saýtlar üçin ulanyldy"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Ilkinji sahypany diňe administratiw maksatlar üçin ulanyň"
+
+msgid "Root domain used for secondary sites"
+msgstr " Kök domain ikinji derejeli saýtlar üçin ulanyldy"
 
 msgid "Allow users to sign up"
 msgstr "Ulanyjylara ýazylmagyna rugsat beriň"
@@ -1420,9 +1402,6 @@ msgstr "Programma üpjünçiligini ösdürmäge goşant goşmak ýa-da näsazlyk
 msgid "Join our chat:"
 msgstr "Söhbetdeşligimize goşulyň:"
 
-msgid "Follow the project on:"
-msgstr "Proýekti yzarlaň:"
-
 msgid "An update is available:"
 msgstr "Täzelenme bar:"
 
@@ -1666,8 +1645,8 @@ msgstr "Bu guramalar siziň talaplaryňyzy derňedilermi? Derňän bolsalar, net
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Biziň goldawymyz bilen nähili netije almak isleýäňiz?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Şahsyýetiňiz barada maglumat bermek isleýärsiňizmi?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Ady"

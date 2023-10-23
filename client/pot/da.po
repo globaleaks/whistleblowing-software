@@ -92,12 +92,6 @@ msgstr "Detaljer"
 msgid "Platform wizard"
 msgstr "Platformsopsætning"
 
-msgid "CREDIT CARD"
-msgstr "KREDITKORT"
-
-msgid "YOUR NAME"
-msgstr "DIT NAVN"
-
 msgid "Label the report"
 msgstr "Navngiv denne indberetningen"
 
@@ -492,23 +486,14 @@ msgstr "Giv denne bruger mulighed for at sløre informationer"
 msgid "Give this user ability to permanently redact masked information"
 msgstr "Giv denne bruger mulighed for at sløre informationer permanent"
 
-msgid "Public"
-msgstr "Offentlig"
-
-msgid "Internal"
-msgstr "Intern"
-
-msgid "Personal"
-msgstr "Personlig"
-
-msgid "Privacy Policy"
-msgstr "Privatlivspolitik"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr "Jeg har læst og accepteret privatlivspolitikken"
 
 msgid "Download copy of the Privacy Policy"
 msgstr "Hent en kopi af privatlivspolitikken"
+
+msgid "Privacy Policy"
+msgstr "Privatlivspolitik"
 
 msgid "Whistleblowing Policy"
 msgstr "Whitleblowing-politik"
@@ -1012,9 +997,6 @@ msgstr "Aktivér simplificeret login"
 msgid "Enable search engines indexing"
 msgstr "Aktivér søgemaskiners indeksering"
 
-msgid "Default questionnaire"
-msgstr "Standard spørgeskema"
-
 msgid "Show channels in alphabetical order"
 msgstr "Vis kanaler i alfabetisk orden"
 
@@ -1105,11 +1087,11 @@ msgstr "Tilstand:"
 msgid "Creation date:"
 msgstr "Oprettelsesdato:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Primært domænenavn der anvendes til underliggende sider"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Brug kun den første side til administrative formål"
+
+msgid "Root domain used for secondary sites"
+msgstr "Primært domænenavn der anvendes til underliggende sider"
 
 msgid "Allow users to sign up"
 msgstr "Tillad brugere at tilmelde sig"
@@ -1424,9 +1406,6 @@ msgstr "Hvis du ønsker at bidrage til softwareudviklingen eller rapportere om e
 msgid "Join our chat:"
 msgstr "Deltag i vores chat:"
 
-msgid "Follow the project on:"
-msgstr "Følg projektet på:"
-
 msgid "An update is available:"
 msgstr "Der er tilgængelige opdateringer:"
 
@@ -1670,8 +1649,8 @@ msgstr "Har disse organisationer undersøgt din påstand? Hvis ja, hvad var udfa
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Hvilket udfald ønsker du at opnå med vores hjælp?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Ønsker du at give oplysninger om din identitet?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Fornavn"

@@ -92,12 +92,6 @@ msgstr "Hollësi"
 msgid "Platform wizard"
 msgstr "Ndihmës platforme"
 
-msgid "CREDIT CARD"
-msgstr "KARTË KREDITI"
-
-msgid "YOUR NAME"
-msgstr "EMRI JUAJ"
-
 msgid "Label the report"
 msgstr "I vini raportimit një etiketë"
 
@@ -492,23 +486,14 @@ msgstr "Jepini këtij përdoruesi aftësinë të maskojë hollësi"
 msgid "Give this user ability to permanently redact masked information"
 msgstr "Jepini këtij përdoruesi aftësinë të redaktojë në mënyrë permanente hollësi të maskuara"
 
-msgid "Public"
-msgstr "Publik"
-
-msgid "Internal"
-msgstr "I brendshëm"
-
-msgid "Personal"
-msgstr "Personal"
-
-msgid "Privacy Policy"
-msgstr "Rregulla Privatësie"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr "I kam lexuar dhe i pranoj Rregullat e Privatësisë"
 
 msgid "Download copy of the Privacy Policy"
 msgstr "Shkarkoni një kopje të Rregullave të Privatësisë"
+
+msgid "Privacy Policy"
+msgstr "Rregulla Privatësie"
 
 msgid "Whistleblowing Policy"
 msgstr "Rregulla Nxjerrjeje të Fshehtash"
@@ -1012,9 +997,6 @@ msgstr "Aktivizo hyrje të thjeshtuar"
 msgid "Enable search engines indexing"
 msgstr "Aktivizo indeksim nga motorë kërkimesh"
 
-msgid "Default questionnaire"
-msgstr "Pyetësor parazgjedhje"
-
 msgid "Show channels in alphabetical order"
 msgstr "Shfaqi kanalet në rend alfabetik"
 
@@ -1105,11 +1087,11 @@ msgstr "Mënyrë:"
 msgid "Creation date:"
 msgstr "Datë krijimi:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Përkatësi rrënjë e përdorur për sajte dytësorë"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Sajtin e parë përdore vetëm për qëllime administrative"
+
+msgid "Root domain used for secondary sites"
+msgstr "Përkatësi rrënjë e përdorur për sajte dytësorë"
 
 msgid "Allow users to sign up"
 msgstr "Lejoju përdoruesve të regjistrohen"
@@ -1424,9 +1406,6 @@ msgstr "Nëse doni të jepni ndihmesë në zhvillimin e software-it, ose të njo
 msgid "Join our chat:"
 msgstr "Merrni pjesë në fjalosjen tonë:"
 
-msgid "Follow the project on:"
-msgstr "Ndiqeni projektin në:"
-
 msgid "An update is available:"
 msgstr "Ka një përditësim gati:"
 
@@ -1670,8 +1649,8 @@ msgstr "A i kanë hetuar pretendimet tuaja këto ente? Nëse po, ç’doli prej 
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Cili është përfundimi që doni të arrini me mbështetjen tonë?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Doni të jepni hollësi për identifikimin tuaj?"
+msgid "Would you like to tell us who you are?"
+msgstr "Do të donit të na tregonit se cili jeni?"
 
 msgid "First name"
 msgstr "Emër"

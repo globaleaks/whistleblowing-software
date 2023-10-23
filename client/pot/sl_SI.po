@@ -89,12 +89,6 @@ msgstr "Podrobnosti"
 msgid "Platform wizard"
 msgstr "Čarovnik platforme"
 
-msgid "CREDIT CARD"
-msgstr "KREDITNA KARTICA"
-
-msgid "YOUR NAME"
-msgstr "VAŠE IME"
-
 msgid "Label the report"
 msgstr "Označi prijavo"
 
@@ -489,23 +483,14 @@ msgstr "Uporabniku omogoči, da skrije podatke."
 msgid "Give this user ability to permanently redact masked information"
 msgstr "Uporabniku omogoči, da trajno odstrani podatke."
 
-msgid "Public"
-msgstr "Javno"
-
-msgid "Internal"
-msgstr "Interno"
-
-msgid "Personal"
-msgstr "Osebno"
-
-msgid "Privacy Policy"
-msgstr "Politika zasebnosti"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr "Prebral/-a sem in sprejemam 'Politiko zasebnosti'. "
 
 msgid "Download copy of the Privacy Policy"
 msgstr "Prenesite kopijo 'Politike zasebnosti'. "
+
+msgid "Privacy Policy"
+msgstr "Politika zasebnosti"
 
 msgid "Whistleblowing Policy"
 msgstr "Pravilnik o prijavljanju suma nepravilnosti"
@@ -1009,9 +994,6 @@ msgstr "Omogoči poenostavljeno prijavo v račun"
 msgid "Enable search engines indexing"
 msgstr "Omogoči indeksiranje iskalnikom"
 
-msgid "Default questionnaire"
-msgstr "Privzeti vprašalnik"
-
 msgid "Show channels in alphabetical order"
 msgstr "Prikaži kanale po abecednem redu"
 
@@ -1102,11 +1084,11 @@ msgstr "Način:"
 msgid "Creation date:"
 msgstr "Datum nastanka:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Temeljna domena uporabljena za sekundarna spletna mesta"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Prvo spletno mesto uporabite samo za administrativne namene"
+
+msgid "Root domain used for secondary sites"
+msgstr "Temeljna domena uporabljena za sekundarna spletna mesta"
 
 msgid "Allow users to sign up"
 msgstr "Dovoli uporabnikom, da se registrirajo"
@@ -1421,9 +1403,6 @@ msgstr "Če želite prispevati k razvoju programske opreme ali prijaviti napako,
 msgid "Join our chat:"
 msgstr "Pridruži se pogovoru:"
 
-msgid "Follow the project on:"
-msgstr "Spremljajte projekt na: "
-
 msgid "An update is available:"
 msgstr "Na voljo je posodobitev:"
 
@@ -1667,8 +1646,8 @@ msgstr "Ali so te organizacije preiskovale vaše navedbe? Če da, kakšen je bil
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Kaj želite doseči z našo podporo?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Ali želite navesti podatke o svoji identiteti?"
+msgid "Would you like to tell us who you are?"
+msgstr "Ali bi nam radi zaupali, kdo ste?"
 
 msgid "First name"
 msgstr "Ime"

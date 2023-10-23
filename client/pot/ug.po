@@ -85,12 +85,6 @@ msgstr "تەپسىلاتلار"
 msgid "Platform wizard"
 msgstr "سۇپا سېھىرگەرى"
 
-msgid "CREDIT CARD"
-msgstr "ئىناۋەتلىك كارت"
-
-msgid "YOUR NAME"
-msgstr "نامىڭىز"
-
 msgid "Label the report"
 msgstr "مەلۇماتقا بەلگە قوي"
 
@@ -485,23 +479,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "مەخپىيەتلىك سىياسىتىمىز"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "مەخپىيەتلىك سىياسىتىمىز"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1005,9 +990,6 @@ msgstr "ئاددىلاشقان تىزىمغا كىرىشنى قوزغات"
 msgid "Enable search engines indexing"
 msgstr "ئاختۇرۇش ماتورلىرىنىڭ ئىندېكىسلىشىنى قوزغات"
 
-msgid "Default questionnaire"
-msgstr "كۆڭۈلدىكى راي سىناش"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1098,11 +1080,11 @@ msgstr "ھالىتى:"
 msgid "Creation date:"
 msgstr "قۇرۇلغان چېسلا:"
 
-msgid "Root domain used for secondary sites"
-msgstr "ئىككىلەمچى تور بېكەتلەرگە ئىشلىتىلىدىغان يىلتىز دائىرە"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "بىرىنچى بېكەتنى پەقەتلا باشقۇرۇش مەقسىتىدە ئىشلەت"
+
+msgid "Root domain used for secondary sites"
+msgstr "ئىككىلەمچى تور بېكەتلەرگە ئىشلىتىلىدىغان يىلتىز دائىرە"
 
 msgid "Allow users to sign up"
 msgstr "ئىشلەتكۈچىلەرنىڭ تىزىملىتىشىغا رۇخسەت قىل"
@@ -1417,9 +1399,6 @@ msgstr "‏يۇمشاق دېتال ئېچىشقا تۆھپە قوشماقچى ي
 msgid "Join our chat:"
 msgstr "سوھبىتىمىزگە قېتىلىڭ:"
 
-msgid "Follow the project on:"
-msgstr "تۈرىمىزگە بۇ يەردىن ئەگىشىڭ:"
-
 msgid "An update is available:"
 msgstr "بىر يېڭىلانما بار:"
 
@@ -1663,8 +1642,8 @@ msgstr ""
 msgid "What is the outcome you want to achieve with our support?"
 msgstr ""
 
-msgid "Do you want to provide your identification information?"
-msgstr "كىملىك ئۇچۇرلىرىڭىزنى تەمىنلەشنى خالامسىز؟"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "ئىسمى"

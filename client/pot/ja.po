@@ -88,12 +88,6 @@ msgstr "詳細"
 msgid "Platform wizard"
 msgstr "プラットフォーム ウィザード"
 
-msgid "CREDIT CARD"
-msgstr "クレジットカード"
-
-msgid "YOUR NAME"
-msgstr "あなたの名前"
-
 msgid "Label the report"
 msgstr "報告にラベルを付ける"
 
@@ -488,23 +482,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr "公開鍵"
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "プライバシーポリシー"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "プライバシーポリシー"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1008,9 +993,6 @@ msgstr "簡易ログインを有効にする"
 msgid "Enable search engines indexing"
 msgstr "検索エンジンのインデックス化を有効にする"
 
-msgid "Default questionnaire"
-msgstr "デフォルトのアンケート"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1101,11 +1083,11 @@ msgstr "モード:"
 msgid "Creation date:"
 msgstr "生成日:"
 
-msgid "Root domain used for secondary sites"
-msgstr "二番目のサイトで使用するルートドメイン"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "管理目的に最初のサイトのみ使用する"
+
+msgid "Root domain used for secondary sites"
+msgstr "二番目のサイトで使用するルートドメイン"
 
 msgid "Allow users to sign up"
 msgstr "ユーザーによるサインアップを許可"
@@ -1420,9 +1402,6 @@ msgstr "ソフトウェア開発に貢献したり、バグを報告したい場
 msgid "Join our chat:"
 msgstr "私たちのチャットに参加してください:"
 
-msgid "Follow the project on:"
-msgstr "プロジェクトをフォローしてください:"
-
 msgid "An update is available:"
 msgstr "アップデートが利用できます。"
 
@@ -1666,8 +1645,8 @@ msgstr ""
 msgid "What is the outcome you want to achieve with our support?"
 msgstr ""
 
-msgid "Do you want to provide your identification information?"
-msgstr "あなたの身元情報を提供しますか?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "名"

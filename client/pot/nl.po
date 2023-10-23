@@ -127,12 +127,6 @@ msgstr "Details"
 msgid "Platform wizard"
 msgstr "Platformwizard"
 
-msgid "CREDIT CARD"
-msgstr "KREDIETKAART"
-
-msgid "YOUR NAME"
-msgstr "U NAAM"
-
 msgid "Label the report"
 msgstr "Label de inzending"
 
@@ -527,23 +521,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr "Publiek"
-
-msgid "Internal"
-msgstr "Intern"
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "Privacybeleid"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Privacybeleid"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1047,9 +1032,6 @@ msgstr "Vereenvoudigde login inschakelen"
 msgid "Enable search engines indexing"
 msgstr "Zoekmachine-indexering inschakelen"
 
-msgid "Default questionnaire"
-msgstr "Standaard vragenformulier"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1140,11 +1122,11 @@ msgstr "Modus:"
 msgid "Creation date:"
 msgstr "Datum van aanmaak:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Hoofddomein welke wordt gebruikt voor secondaire weblocaties"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Gebruik de eerste weblocatie uitsluitend voor administratieve doeleinden"
+
+msgid "Root domain used for secondary sites"
+msgstr "Hoofddomein welke wordt gebruikt voor secondaire weblocaties"
 
 msgid "Allow users to sign up"
 msgstr "Gebruikers toestaan zich in te schijven"
@@ -1459,9 +1441,6 @@ msgstr "Indien u een bijdrage wilt leveren aan het ontwikkelen van de software o
 msgid "Join our chat:"
 msgstr "Neem deel aan onze chat:"
 
-msgid "Follow the project on:"
-msgstr "Volg het project op:"
-
 msgid "An update is available:"
 msgstr "Een update is beschikbaar:"
 
@@ -1705,8 +1684,8 @@ msgstr "Hebben deze organisaties jouw claims onderzocht? Zoja, wat het het resul
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Wat is het resultaat dat je hoopt te bereiken met onze ondersteuning?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Wil je je identificeren?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Voornaam"

@@ -5,6 +5,7 @@
 # ِAbu <elsahookie@gmail.com>, 2013
 # Ahmed Essam, 2020
 # Ahmed Essam, 2020
+# Ali <alimahwer@yahoo.com>, 2023
 # amine_Acess <amine@accessnow.org>, 2013
 # amine_Acess <amine@accessnow.org>, 2013
 # Amin Jobran, 2017
@@ -54,7 +55,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Muhammad Elghdban <Mohamed.Elghdban@gmail.com>, 2020,2023\n"
+"Last-Translator: Ali <alimahwer@yahoo.com>, 2023\n"
 "Language-Team: Arabic (http://app.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -130,12 +131,6 @@ msgstr "تفاصيل"
 
 msgid "Platform wizard"
 msgstr "معالج المنصة"
-
-msgid "CREDIT CARD"
-msgstr "بطاقة الائتمان"
-
-msgid "YOUR NAME"
-msgstr "اسمك"
 
 msgid "Label the report"
 msgstr "صنّف البلاغ"
@@ -514,7 +509,7 @@ msgid "Hide"
 msgstr "إخفاء"
 
 msgid "Unhide"
-msgstr ""
+msgstr "أظهِر من جديد"
 
 msgid "Redact"
 msgstr "أخفي"
@@ -523,31 +518,22 @@ msgid "Select an option"
 msgstr "حدد اختيار"
 
 msgid "Select your language"
-msgstr ""
+msgstr "إختر لغتك"
 
 msgid "Give this user ability to mask information"
-msgstr ""
+msgstr "مكِّن المستخدِم من حجب المعلومات"
 
 msgid "Give this user ability to permanently redact masked information"
-msgstr ""
-
-msgid "Public"
-msgstr "عمومي"
-
-msgid "Internal"
-msgstr "داخلي"
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "سياسة الخصوصية"
+msgstr "مكِّن المستخدِم من تعمية المعلومات المحجوبة بشكل دائم"
 
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "سياسة الخصوصية"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1051,9 +1037,6 @@ msgstr "تمكين تسجيل دخول مبسط"
 msgid "Enable search engines indexing"
 msgstr "تفعيل فهرسة محركات البحث"
 
-msgid "Default questionnaire"
-msgstr "الاستطلاع الإفتراضي"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1144,11 +1127,11 @@ msgstr "الوضع:"
 msgid "Creation date:"
 msgstr "تاريخ الإنشاء:"
 
-msgid "Root domain used for secondary sites"
-msgstr "النطاق الرئيسي المستخدم في المواقع الثانوية"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "استخدم الموقع الأول من أجل الأغراض الإدارية فقط"
+
+msgid "Root domain used for secondary sites"
+msgstr "النطاق الرئيسي المستخدم في المواقع الثانوية"
 
 msgid "Allow users to sign up"
 msgstr "السماح للمستخدمين بالاشتراك"
@@ -1463,9 +1446,6 @@ msgstr "إذا كنت ترغب في المساهمة في تطوير البرم�
 msgid "Join our chat:"
 msgstr "انضم إلى دردشتنا:"
 
-msgid "Follow the project on:"
-msgstr "تابع المشروع على:"
-
 msgid "An update is available:"
 msgstr "هنالك تحديث متوفّر:"
 
@@ -1709,8 +1689,8 @@ msgstr "هل قامت هذه الجهات بالتحقيق في تقريرك؟ �
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "ما هي النتيجة التي تريد تحقيقها بدعمنا؟"
 
-msgid "Do you want to provide your identification information?"
-msgstr "هل ترغب في تقديم معلومات عن هويتك؟"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "الاسم"

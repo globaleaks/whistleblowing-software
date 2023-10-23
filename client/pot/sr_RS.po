@@ -91,12 +91,6 @@ msgstr "Подаци"
 msgid "Platform wizard"
 msgstr "Чаробњак платформе"
 
-msgid "CREDIT CARD"
-msgstr "КРЕДИТНА КАРТИЦА"
-
-msgid "YOUR NAME"
-msgstr "ВАШЕ ИМЕ"
-
 msgid "Label the report"
 msgstr "Označi prijavu"
 
@@ -491,23 +485,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "Услови кориштења"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Услови кориштења"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1011,9 +996,6 @@ msgstr "Omogući pojednostavljenu prijavu"
 msgid "Enable search engines indexing"
 msgstr "Укључи пописивање мотора претраге"
 
-msgid "Default questionnaire"
-msgstr "Podrazumijevani upitnik"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1104,11 +1086,11 @@ msgstr "Režim:"
 msgid "Creation date:"
 msgstr "Datum kreiranja:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Osnovni domen koji se koristi za sekundarne lokacije"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Koristi prvu lokaciju samo u administrativne svrhe"
+
+msgid "Root domain used for secondary sites"
+msgstr "Osnovni domen koji se koristi za sekundarne lokacije"
 
 msgid "Allow users to sign up"
 msgstr "Dozvoli korisnicima da se registruju"
@@ -1423,9 +1405,6 @@ msgstr "Ako želite da doprinesete razvoju softvera ili prijavite grešku, otvor
 msgid "Join our chat:"
 msgstr "Pridružite se ćaskanju:"
 
-msgid "Follow the project on:"
-msgstr "Pratite projekat na:"
-
 msgid "An update is available:"
 msgstr "Dostupno je ažuriranje:"
 
@@ -1669,8 +1648,8 @@ msgstr ""
 msgid "What is the outcome you want to achieve with our support?"
 msgstr ""
 
-msgid "Do you want to provide your identification information?"
-msgstr "Da li želite da date svoje identifikacione podatke?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Име"

@@ -103,12 +103,6 @@ msgstr "Szczegóły"
 msgid "Platform wizard"
 msgstr "Kreator platformy"
 
-msgid "CREDIT CARD"
-msgstr "KARTA KREDYTOWA"
-
-msgid "YOUR NAME"
-msgstr "TWOJE IMIĘ"
-
 msgid "Label the report"
 msgstr "Dodaj opis zgłoszenia"
 
@@ -503,23 +497,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr "Publiczne"
-
-msgid "Internal"
-msgstr "Wewnętrzne"
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "Polityka Prywatności"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Polityka Prywatności"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1023,9 +1008,6 @@ msgstr "Włącz logowanie uproszczon"
 msgid "Enable search engines indexing"
 msgstr "Włącz indeksowanie przez wyszukiwarki internetowe"
 
-msgid "Default questionnaire"
-msgstr "Domyślna ankieta"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1116,11 +1098,11 @@ msgstr "Tryb:"
 msgid "Creation date:"
 msgstr "Data utworzenia:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Domena główna używana do drugorzędnych stron"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Użyj pierwszej strony tylko do celów administracyjnych"
+
+msgid "Root domain used for secondary sites"
+msgstr "Domena główna używana do drugorzędnych stron"
 
 msgid "Allow users to sign up"
 msgstr "Zezwalaj użytkownikom na rejestrację"
@@ -1435,9 +1417,6 @@ msgstr "Jeśli chcesz pomóc w rozwoju oprogramowania lub zgłosić błąd, otw�
 msgid "Join our chat:"
 msgstr "Dołącz do naszego czatu:"
 
-msgid "Follow the project on:"
-msgstr "Śledź projekt na:"
-
 msgid "An update is available:"
 msgstr "Aktualizacja jest dostępna:"
 
@@ -1681,8 +1660,8 @@ msgstr "Czy wspomniane organizacje zbadały Pana(-i) zgłoszenie? Jeśli tak, z 
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Jaki rezultat chciałby(-aby) Pan(i) uzyskać z naszym wsparciem?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Czy chcesz podać nam dane identyfikacyjne?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Imię"

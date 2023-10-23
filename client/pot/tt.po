@@ -83,12 +83,6 @@ msgstr "Тәфсилле мәгълүмат"
 msgid "Platform wizard"
 msgstr "Платформа остасы"
 
-msgid "CREDIT CARD"
-msgstr "КРЕДИТ КАРТАСЫ"
-
-msgid "YOUR NAME"
-msgstr "ИСЕМЕГЕЗ"
-
 msgid "Label the report"
 msgstr "Хисапны тамгалау"
 
@@ -483,22 +477,13 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr ""
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Privacy Policy"
 msgstr ""
 
 msgid "Whistleblowing Policy"
@@ -1003,9 +988,6 @@ msgstr "Гадиләштерелгән керүне кабызу"
 msgid "Enable search engines indexing"
 msgstr "Эзләү системаларында индекслануны кабызу"
 
-msgid "Default questionnaire"
-msgstr "Килешенгәнчә сораулык"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1096,11 +1078,11 @@ msgstr "Режим:"
 msgid "Creation date:"
 msgstr "Төзү датасы:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Икенчел сайтлар өчен кулланылган тамыр домен"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Беренче сайтны административ максатлар өчен генә куллану"
+
+msgid "Root domain used for secondary sites"
+msgstr "Икенчел сайтлар өчен кулланылган тамыр домен"
 
 msgid "Allow users to sign up"
 msgstr "Кулланучыларга теркәлергә рөхсәт итү"
@@ -1415,9 +1397,6 @@ msgstr "Әгәр сез программа үсешенә өлеш кертер�
 msgid "Join our chat:"
 msgstr "Безнең чатка кушылу:"
 
-msgid "Follow the project on:"
-msgstr "Проектны монда күзәтеп барыгыз:"
-
 msgid "An update is available:"
 msgstr "Яңарту мөмкинлеге бар"
 
@@ -1661,8 +1640,8 @@ msgstr ""
 msgid "What is the outcome you want to achieve with our support?"
 msgstr ""
 
-msgid "Do you want to provide your identification information?"
-msgstr "Сез үзегезне таныта торган мәгълүматыгызны бирергә телисезме?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Исем"

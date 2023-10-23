@@ -91,12 +91,6 @@ msgstr "Тафсилот"
 msgid "Platform wizard"
 msgstr "Устоди платформа"
 
-msgid "CREDIT CARD"
-msgstr "КОРТИ ҚАРЗӢ"
-
-msgid "YOUR NAME"
-msgstr "НОМИ ШУМО"
-
 msgid "Label the report"
 msgstr "Гузоришро қайд кунед"
 
@@ -491,23 +485,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr "Дохилӣ"
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "Сиёсати махфият"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Сиёсати махфият"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1011,9 +996,6 @@ msgstr "Воридшавии соддагардонидашударо фаъол
 msgid "Enable search engines indexing"
 msgstr "Индексатсияи системаҳои ҷустуҷӯро фаъол сохтан"
 
-msgid "Default questionnaire"
-msgstr "Саволномаи пешфарз"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1104,11 +1086,11 @@ msgstr "Режим"
 msgid "Creation date:"
 msgstr "Санаи эҷод"
 
-msgid "Root domain used for secondary sites"
-msgstr "Домени решагӣ барои торнамоҳои дуюм истифодашаванда"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Истифодаи торнамои якум танҳо бо мақсади маъмурӣ"
+
+msgid "Root domain used for secondary sites"
+msgstr "Домени решагӣ барои торнамоҳои дуюм истифодашаванда"
 
 msgid "Allow users to sign up"
 msgstr "Ба корбарон иҷозаи сабти ном шуданро додан"
@@ -1423,9 +1405,6 @@ msgstr "Агар шумо хоҳед, ки дар таҳияи нармафзо�
 msgid "Join our chat:"
 msgstr "Ба сӯҳбати мо ҳамроҳ шавед:"
 
-msgid "Follow the project on:"
-msgstr "Лоиҳаро пайгирӣ кунед:"
-
 msgid "An update is available:"
 msgstr "Навсозӣ дастрас аст: "
 
@@ -1669,8 +1648,8 @@ msgstr "Он мақомот ё одамон гузориши шуморо таҳ
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Шумо бо ёрмандии мо ба чӣ натиҷа расидан мехоҳед?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Оё шумо мехоҳед, ки маълумоти шахсияти худро пешниҳод кунед?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Ном"

@@ -96,12 +96,6 @@ msgstr "Detaily"
 msgid "Platform wizard"
 msgstr "Průvodce platformou"
 
-msgid "CREDIT CARD"
-msgstr "Kreditní karta"
-
-msgid "YOUR NAME"
-msgstr "Vaše jméno"
-
 msgid "Label the report"
 msgstr "Označte oznámení štítkem"
 
@@ -491,28 +485,19 @@ msgid "Select your language"
 msgstr "Vyberte jazyk"
 
 msgid "Give this user ability to mask information"
-msgstr ""
+msgstr "Umožnit tomuto uživateli skrýt informace"
 
 msgid "Give this user ability to permanently redact masked information"
-msgstr ""
-
-msgid "Public"
-msgstr "Věřejné"
-
-msgid "Internal"
-msgstr "Interní"
-
-msgid "Personal"
-msgstr "Osobní"
-
-msgid "Privacy Policy"
-msgstr "Zásady ochrany osobních údajů"
+msgstr "Umožnit tomuto uživateli trvale upravovat skryté informace"
 
 msgid "I've read and accept the Privacy Policy"
 msgstr "Přečetl/a jsem si zásady ochrany osobních údajů a souhlasím s nimi"
 
 msgid "Download copy of the Privacy Policy"
 msgstr "Stáhněte si kopii zásad ochrany osobních údajů"
+
+msgid "Privacy Policy"
+msgstr "Zásady ochrany osobních údajů"
 
 msgid "Whistleblowing Policy"
 msgstr "Zásady whistleblowingu"
@@ -527,10 +512,10 @@ msgid "Everyone"
 msgstr "Všichni"
 
 msgid "Recipients only"
-msgstr ""
+msgstr "Pouze příjemci"
 
 msgid "Only me"
-msgstr ""
+msgstr "Pouze já"
 
 msgid "File a report"
 msgstr "Podat oznámení"
@@ -1016,11 +1001,8 @@ msgstr "Povolit zjednodušené přihlášení"
 msgid "Enable search engines indexing"
 msgstr "Povolit vyhledávačům indexování."
 
-msgid "Default questionnaire"
-msgstr "Výchozí dotazník"
-
 msgid "Show channels in alphabetical order"
-msgstr ""
+msgstr "Zobrazit kanály v abecedním pořadí"
 
 msgid "Size limit for file attachments"
 msgstr "Limit velikosti pro přílohy"
@@ -1109,11 +1091,11 @@ msgstr "Režim"
 msgid "Creation date:"
 msgstr "Datum vytvoření:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Kořenová doména pro sekundární stránky"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "První stránku použijte pouze pro administrativní účely"
+
+msgid "Root domain used for secondary sites"
+msgstr "Kořenová doména pro sekundární stránky"
 
 msgid "Allow users to sign up"
 msgstr "Povolit uživatelům registraci"
@@ -1176,10 +1158,10 @@ msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Povolit příjemci odložit datum expirace oznámení"
 
 msgid "Give this user ability to grant user access to reports"
-msgstr ""
+msgstr "Umožnit tomuto uživateli udělovat přístup k sestavám"
 
 msgid "Give this user ability to transfer reports to other users"
-msgstr ""
+msgstr "Umožnit tomuto uživateli přenášet zprávy ostatním uživatelům"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Poskytněte uživateli administrativní přístup k následujícím funkcím:"
@@ -1288,7 +1270,7 @@ msgid "By confirming, you will set a reminder on date:"
 msgstr "Potvrzením, nastavíte nastavíte datum připomenutí na:"
 
 msgid "Transfer access"
-msgstr ""
+msgstr "Přístup k přenosu"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Toto je demo platforma, nepoužívejte ji prosím pro skutečné podání oznámení."
@@ -1428,9 +1410,6 @@ msgstr "Pokud chcete přispět k vývoji software nebo nahlásit chybu, založte
 msgid "Join our chat:"
 msgstr "Připojte se k našemu chatu:"
 
-msgid "Follow the project on:"
-msgstr "Sledujte projekt na:"
-
 msgid "An update is available:"
 msgstr "Je dostupná aktualizace:"
 
@@ -1476,7 +1455,7 @@ msgid "Show"
 msgstr "Ukázat"
 
 msgid "Subscription date"
-msgstr ""
+msgstr "Datum předplatného"
 
 msgid "Congratulations!"
 msgstr "Gratulujeme!"
@@ -1674,8 +1653,8 @@ msgstr "Prošetřily tyto organizace vaše tvrzení? Pokud ano, jaký byl výsle
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Jakého výsledku chcete s naší podporou dosáhnout?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Chcete poskytnout informace o Vaší identitě?"
+msgid "Would you like to tell us who you are?"
+msgstr "Chcete nám říct, kdo jste?"
 
 msgid "First name"
 msgstr "Jméno"

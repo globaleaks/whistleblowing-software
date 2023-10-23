@@ -85,12 +85,6 @@ msgstr "詳情"
 msgid "Platform wizard"
 msgstr "平台設定精靈"
 
-msgid "CREDIT CARD"
-msgstr "信用卡"
-
-msgid "YOUR NAME"
-msgstr "您的姓名"
-
 msgid "Label the report"
 msgstr "標籤此報告"
 
@@ -485,23 +479,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr "公共"
-
-msgid "Internal"
-msgstr "內置"
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "隱私政策"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "隱私政策"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1005,9 +990,6 @@ msgstr "開啟簡易登入"
 msgid "Enable search engines indexing"
 msgstr "允許搜尋引擎進行索引"
 
-msgid "Default questionnaire"
-msgstr "預設問卷"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1098,11 +1080,11 @@ msgstr "狀態："
 msgid "Creation date:"
 msgstr "建立日期："
 
-msgid "Root domain used for secondary sites"
-msgstr "次要網站使用的根網域"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "主網站只用作管理用途"
+
+msgid "Root domain used for secondary sites"
+msgstr "次要網站使用的根網域"
 
 msgid "Allow users to sign up"
 msgstr "接受新用戶註冊"
@@ -1417,9 +1399,6 @@ msgstr "如您想幫助軟件開發、或想通報軟件問題，請到此建立
 msgid "Join our chat:"
 msgstr "加入聊天群組："
 
-msgid "Follow the project on:"
-msgstr "追蹤我們："
-
 msgid "An update is available:"
 msgstr "有可用的更新："
 
@@ -1663,8 +1642,8 @@ msgstr "這些機構有否就你的匯報進行調查？如有，其結果如何
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "你期望可實現/達致甚麼結果?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "您想提供您的個人身份資料嗎？"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "名"

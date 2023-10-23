@@ -84,12 +84,6 @@ msgstr "Üksikasjad"
 msgid "Platform wizard"
 msgstr "Platvormi viisard"
 
-msgid "CREDIT CARD"
-msgstr "KREDIITKAART"
-
-msgid "YOUR NAME"
-msgstr "TEIE NIMI"
-
 msgid "Label the report"
 msgstr "Teate silt"
 
@@ -484,23 +478,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "Privaatsus"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Privaatsus"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1004,9 +989,6 @@ msgstr "Luba lihtsustatud sisselogimine"
 msgid "Enable search engines indexing"
 msgstr "Luba indekseerimine otsimootorite jaoks"
 
-msgid "Default questionnaire"
-msgstr "Standardankeet"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1097,11 +1079,11 @@ msgstr "Režiim:"
 msgid "Creation date:"
 msgstr "Loomise kuupäev:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Varusaitide puhul kasutatav juurdomeen"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Kasuta esimest saiti ainult administreerimiseks"
+
+msgid "Root domain used for secondary sites"
+msgstr "Varusaitide puhul kasutatav juurdomeen"
 
 msgid "Allow users to sign up"
 msgstr "Luba kasutajate registreerumine"
@@ -1416,9 +1398,6 @@ msgstr "Kui soovite kaasa aidata tarkvara arendamisele või teatada programmivea
 msgid "Join our chat:"
 msgstr "Liituge meie vestlusega:"
 
-msgid "Follow the project on:"
-msgstr "Jälgige projekti:"
-
 msgid "An update is available:"
 msgstr "Värskendus on saadaval:"
 
@@ -1662,8 +1641,8 @@ msgstr "Kas need organisatsioonid on teie väiteid uurinud? Kui jah, siis millin
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Millist tulemust soovite meie toetusega saavutada?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Kas soovite esitada oma isikuandmeid?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Eesnimi"

@@ -123,12 +123,6 @@ msgstr "Detalles"
 msgid "Platform wizard"
 msgstr "Asistente de la plataforma"
 
-msgid "CREDIT CARD"
-msgstr "TARJETA DE CRÉDITO"
-
-msgid "YOUR NAME"
-msgstr "SU NOMBRE"
-
 msgid "Label the report"
 msgstr "Etiquete la denuncia"
 
@@ -523,23 +517,14 @@ msgstr "Dar a este usuario la capacidad de ocultar parte del texto de la denunci
 msgid "Give this user ability to permanently redact masked information"
 msgstr "Dar a este usuario la capacidad de eliminar permanentemente parte del texto de una denuncia."
 
-msgid "Public"
-msgstr "Público"
-
-msgid "Internal"
-msgstr "Interno"
-
-msgid "Personal"
-msgstr "Personal"
-
-msgid "Privacy Policy"
-msgstr "Política de Privacidad"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr "He leído y acepto la Política de privacidad"
 
 msgid "Download copy of the Privacy Policy"
 msgstr "Descargar copia de la Política de privacidad"
+
+msgid "Privacy Policy"
+msgstr "Política de Privacidad"
 
 msgid "Whistleblowing Policy"
 msgstr "Política de denuncias"
@@ -1043,9 +1028,6 @@ msgstr "Activar el inicio de sesión simplificado"
 msgid "Enable search engines indexing"
 msgstr "Habilitar indexación por los motores de búsqueda"
 
-msgid "Default questionnaire"
-msgstr "Cuestionario por defecto"
-
 msgid "Show channels in alphabetical order"
 msgstr "Mostrar canales en orden alfabético."
 
@@ -1136,11 +1118,11 @@ msgstr "Modo:"
 msgid "Creation date:"
 msgstr "Fecha de creación:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Dominio raíz utilizado para sitios secundarios"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Utilizar el primer sitio sólo para propósitos administrativos"
+
+msgid "Root domain used for secondary sites"
+msgstr "Dominio raíz utilizado para sitios secundarios"
 
 msgid "Allow users to sign up"
 msgstr "Permitir registrarse a los usuarios"
@@ -1455,9 +1437,6 @@ msgstr "Si quiere contribuir al desarrollo del software o informar de un fallo, 
 msgid "Join our chat:"
 msgstr "Únase a nuestro chat:"
 
-msgid "Follow the project on:"
-msgstr "Siga el proyecto en:"
-
 msgid "An update is available:"
 msgstr "Hay una actualización disponible:"
 
@@ -1701,8 +1680,8 @@ msgstr "¿Estas organizaciones han investigado sus afirmaciones? Si es así, ¿C
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "¿Qué resultado quiere lograr con nuestro apoyo?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "¿Quiere compartir sus datos de identificación?"
+msgid "Would you like to tell us who you are?"
+msgstr "¿Le gustaría identificarse?"
 
 msgid "First name"
 msgstr "Nombre"

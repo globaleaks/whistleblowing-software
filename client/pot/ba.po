@@ -84,12 +84,6 @@ msgstr "Аныҡлауҙар"
 msgid "Platform wizard"
 msgstr "Платформа оҫтаһы"
 
-msgid "CREDIT CARD"
-msgstr "КРЕДИТ КАРТАҺЫ"
-
-msgid "YOUR NAME"
-msgstr "ҺЕҘҘЕҢ ИСЕМ"
-
 msgid "Label the report"
 msgstr "Материалдар бирелешен билдәләү"
 
@@ -484,22 +478,13 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr ""
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Privacy Policy"
 msgstr ""
 
 msgid "Whistleblowing Policy"
@@ -1004,9 +989,6 @@ msgstr "Ябай инеү мөмкилеге бирергә"
 msgid "Enable search engines indexing"
 msgstr "Эҙләү системаһын индексирлауҙы ҡабыҙыу"
 
-msgid "Default questionnaire"
-msgstr "Стандарт һораулама"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1097,11 +1079,11 @@ msgstr "Режим"
 msgid "Creation date:"
 msgstr "Булдырыу датаһы"
 
-msgid "Root domain used for secondary sites"
-msgstr "Икенсел сайттар өсөн ҡулланылыусы тамыр домен"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Тәүге сайтты административ маҡсатта ғына ҡулланырға"
+
+msgid "Root domain used for secondary sites"
+msgstr "Икенсел сайттар өсөн ҡулланылыусы тамыр домен"
 
 msgid "Allow users to sign up"
 msgstr "Ҡулланыусыларға теркәлеү рөхсәте бирергә"
@@ -1416,9 +1398,6 @@ msgstr "Һеҙ программа тәьмин ителешен булдырыу
 msgid "Join our chat:"
 msgstr "Беҙҙең чатҡа ҡушылыу"
 
-msgid "Follow the project on:"
-msgstr "Проект үҫешен күҙәтеп барығыҙ:"
-
 msgid "An update is available:"
 msgstr "Яңыртыу асыҡ"
 
@@ -1662,8 +1641,8 @@ msgstr ""
 msgid "What is the outcome you want to achieve with our support?"
 msgstr ""
 
-msgid "Do you want to provide your identification information?"
-msgstr "Үҙегеҙ хаҡында мәғлүмәт ҡалдырырға теләйһегеҙме?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Исеме"

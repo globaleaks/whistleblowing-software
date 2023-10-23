@@ -101,12 +101,6 @@ msgstr "Xehetasunak"
 msgid "Platform wizard"
 msgstr "Plataformaren laguntzailea"
 
-msgid "CREDIT CARD"
-msgstr "KREDITU TXARTELA"
-
-msgid "YOUR NAME"
-msgstr "ZURE IZENA"
-
 msgid "Label the report"
 msgstr "Etiketatu salaketa"
 
@@ -501,23 +495,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "Pribatutasun Politika"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Pribatutasun Politika"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1021,9 +1006,6 @@ msgstr "Aktibatu saio hasiera sinplifikatua"
 msgid "Enable search engines indexing"
 msgstr "Gaitu bilaketa motorren indexazioa "
 
-msgid "Default questionnaire"
-msgstr "Galdekizun lehenetsia"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1114,11 +1096,11 @@ msgstr "Modua:"
 msgid "Creation date:"
 msgstr "Sortze-data:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Leku sekundarioentzat erabilitako erro domeinua"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Lehenengo lekua administrazio xedeekin bakarrik erabili"
+
+msgid "Root domain used for secondary sites"
+msgstr "Leku sekundarioentzat erabilitako erro domeinua"
 
 msgid "Allow users to sign up"
 msgstr "Utzi erabiltzaileei erregistratzen"
@@ -1433,9 +1415,6 @@ msgstr "Softwarea garatzen lagundu nahi baduzu edo akats baten berri eman nahi b
 msgid "Join our chat:"
 msgstr "Sartu gure txatean:"
 
-msgid "Follow the project on:"
-msgstr "Jarraitu proiektua hemen:"
-
 msgid "An update is available:"
 msgstr "Eguneraketa bat dago eskuragarri:"
 
@@ -1679,8 +1658,8 @@ msgstr "Parte hartu al dute erakunde hauek zure baieztapenetan? Hala bada, zein 
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Zer lortu nahi duzu gure laguntzarekin?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Partekatu nahi dituzu zure identifikazio datuak?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Izena"

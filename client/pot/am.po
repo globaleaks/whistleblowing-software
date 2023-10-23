@@ -84,12 +84,6 @@ msgstr "ዝርዝሮች"
 msgid "Platform wizard"
 msgstr "የመሳርያ ስርዓት አዋቂ"
 
-msgid "CREDIT CARD"
-msgstr "የዱቤ ካርድ"
-
-msgid "YOUR NAME"
-msgstr "ስምዎት"
-
 msgid "Label the report"
 msgstr "ሪፖርቱን ሰይሙ"
 
@@ -484,23 +478,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr "ውስጣዊ "
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "የግላዊነት ፖሊሲ "
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "የግላዊነት ፖሊሲ "
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1004,9 +989,6 @@ msgstr ""
 msgid "Enable search engines indexing"
 msgstr "የፍለጋ ግርግም ማውጫ ያንቁ"
 
-msgid "Default questionnaire"
-msgstr "ነባሪ መጠይቅ"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1097,11 +1079,11 @@ msgstr "ሁነታ፡"
 msgid "Creation date:"
 msgstr "የፍጥረት ቀን፡"
 
-msgid "Root domain used for secondary sites"
-msgstr "ለሁለተኛ ድረገጾች የሚያገለግል ስርወ ጎራ"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "ለአስተዳደራዊ ጉዳዮች ብቻ የመጀመርያውን ድረገጽ ተጠቀሙ"
+
+msgid "Root domain used for secondary sites"
+msgstr "ለሁለተኛ ድረገጾች የሚያገለግል ስርወ ጎራ"
 
 msgid "Allow users to sign up"
 msgstr "ተጠቃሚዎች እንዲመዘገቡ ፍቀድ"
@@ -1416,9 +1398,6 @@ msgstr "ለሶፍትዌር ግንባታ አስተዋጽኦ ማደረግ ከፈ�
 msgid "Join our chat:"
 msgstr "\"ቻታችንን ተቀላቀ"
 
-msgid "Follow the project on:"
-msgstr "ፕሮጀክቱን በ--- ተከታተሉ"
-
 msgid "An update is available:"
 msgstr "ማዘመኛ አለ"
 
@@ -1662,8 +1641,8 @@ msgstr ""
 msgid "What is the outcome you want to achieve with our support?"
 msgstr ""
 
-msgid "Do you want to provide your identification information?"
-msgstr "የመታወቂያ መረጃዎን መስጠት ይፈልጋሉ?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "የራሶት ስም"

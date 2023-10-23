@@ -113,12 +113,6 @@ msgstr "Подробности"
 msgid "Platform wizard"
 msgstr "Мастер платформы"
 
-msgid "CREDIT CARD"
-msgstr "КРЕДИТНАЯ КАРТА"
-
-msgid "YOUR NAME"
-msgstr "ВАШЕ ИМЯ"
-
 msgid "Label the report"
 msgstr "Пометить подачу материалов"
 
@@ -513,23 +507,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr "Открытый"
-
-msgid "Internal"
-msgstr "Внутреннее хранилище"
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "Политика конфиденциальности"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Политика конфиденциальности"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1033,9 +1018,6 @@ msgstr "Позволить упрощенный вход"
 msgid "Enable search engines indexing"
 msgstr "Включить индексирование поисковых систем"
 
-msgid "Default questionnaire"
-msgstr "Стандартный опросник"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1126,11 +1108,11 @@ msgstr "Режим:"
 msgid "Creation date:"
 msgstr "Дата создания:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Корневой домен, используемый для вторичных сайтов"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Использовать первый сайт только в административных целях"
+
+msgid "Root domain used for secondary sites"
+msgstr "Корневой домен, используемый для вторичных сайтов"
 
 msgid "Allow users to sign up"
 msgstr "Разрешить пользователям регистрироваться"
@@ -1445,9 +1427,6 @@ msgstr "Если Вы хотите участвовать в разработк�
 msgid "Join our chat:"
 msgstr "Присоединяйтесь к нашему чату:"
 
-msgid "Follow the project on:"
-msgstr "Следите за развитием проекта:"
-
 msgid "An update is available:"
 msgstr "Доступно обновление:"
 
@@ -1691,8 +1670,8 @@ msgstr "Расследовали ли эти организации ваши п�
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Какого результата вы хотите добиться с нашей поддержкой?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Вы хотите оставить информацию о себе?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Имя"

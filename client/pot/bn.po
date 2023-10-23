@@ -90,12 +90,6 @@ msgstr "বিস্তারিত"
 msgid "Platform wizard"
 msgstr "প্লাটফর্ম উইজার্ড"
 
-msgid "CREDIT CARD"
-msgstr "ক্রেডিট কার্ড"
-
-msgid "YOUR NAME"
-msgstr "আপনার নাম"
-
 msgid "Label the report"
 msgstr "রিপোর্টটিকে চিহ্নিত করুন"
 
@@ -490,23 +484,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr "প্রকাশ্য"
-
-msgid "Internal"
-msgstr "অভ্যন্তরীণ"
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "গোপনীয়তা নীতি"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "গোপনীয়তা নীতি"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1010,9 +995,6 @@ msgstr "সিম্পল লগইন সক্ষম করুন"
 msgid "Enable search engines indexing"
 msgstr "সার্চ ইঞ্জিনগুলিতে সূচীকরণ সক্ষম করুন"
 
-msgid "Default questionnaire"
-msgstr "সাধারণ প্রশ্নাবলী"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1103,11 +1085,11 @@ msgstr "ধরন:"
 msgid "Creation date:"
 msgstr "তৈরির তারিখ:"
 
-msgid "Root domain used for secondary sites"
-msgstr "আনুষঙ্গিক সাইটগুলির জন্য ব্যবহৃত রুট ডোমেইন"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "প্রশাসনিক উদ্দেশ্যে শুধুমাত্র প্রথম সাইটটি ব্যবহার করুন"
+
+msgid "Root domain used for secondary sites"
+msgstr "আনুষঙ্গিক সাইটগুলির জন্য ব্যবহৃত রুট ডোমেইন"
 
 msgid "Allow users to sign up"
 msgstr "ব্যবহারকারীদের সাইন আপ করার অনুমতি দিন"
@@ -1422,9 +1404,6 @@ msgstr "আপনি যদি সফ্টওয়্যার বিকাশ
 msgid "Join our chat:"
 msgstr "আমাদের আড্ডায় যোগ দিন:"
 
-msgid "Follow the project on:"
-msgstr "প্রকল্পটি অনুসরণ করুন:"
-
 msgid "An update is available:"
 msgstr "একটি আপডেট রয়েছে:"
 
@@ -1668,8 +1647,8 @@ msgstr "এই সংস্থাগুলো কি আপনার দাব�
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "আমাদের সমর্থনের সহায়তায় আপনি কী ফল অর্জন করতে চান?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "আপনি কি আপনার পরিচয় সম্পর্কিত তথ্য সরবরাহ করতে চান?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "নামের প্রথম অংশ"

@@ -88,12 +88,6 @@ msgstr "Detaļas"
 msgid "Platform wizard"
 msgstr "Platformas vednis"
 
-msgid "CREDIT CARD"
-msgstr "KREDĪTKARTE"
-
-msgid "YOUR NAME"
-msgstr "JŪSU VĀRDS"
-
 msgid "Label the report"
 msgstr "Marķēt ziņojumu"
 
@@ -488,22 +482,13 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr ""
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Privacy Policy"
 msgstr ""
 
 msgid "Whistleblowing Policy"
@@ -1008,9 +993,6 @@ msgstr "Iespējot vienkāršotu pieteikšanos"
 msgid "Enable search engines indexing"
 msgstr "Iespējot meklētājprogrammu indeksēšanu"
 
-msgid "Default questionnaire"
-msgstr "Noklusējuma anketa"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1101,11 +1083,11 @@ msgstr "Mods:"
 msgid "Creation date:"
 msgstr "Izveidošanas datums:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Saknes domēns tiek izmantots sekundārajām vietnēm"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Izmantojiet pirmo vietni tikai administratīviem nolūkiem"
+
+msgid "Root domain used for secondary sites"
+msgstr "Saknes domēns tiek izmantots sekundārajām vietnēm"
 
 msgid "Allow users to sign up"
 msgstr "Atļaut lietotājiem reģistrēties"
@@ -1420,9 +1402,6 @@ msgstr "Ja vēlaties piedalīties programmatūras izstrādē vai ziņot par kļ�
 msgid "Join our chat:"
 msgstr "Pievienoties mūsu čatam:"
 
-msgid "Follow the project on:"
-msgstr "Sekojiet projektam: "
-
 msgid "An update is available:"
 msgstr "Ir pieejams atjauninājums:"
 
@@ -1666,8 +1645,8 @@ msgstr "Vai šīs organizācijas ir izmeklējušas jūsu sniegto informāciju? J
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Kādu rezultātu vēlaties panākt ar mūsu atbalstu?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Vai vēlaties sniegt jūs identificējošu informāciju?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Vārds"

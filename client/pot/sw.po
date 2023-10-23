@@ -83,12 +83,6 @@ msgstr "Maelezo"
 msgid "Platform wizard"
 msgstr "Kivinjari cha jukwaa"
 
-msgid "CREDIT CARD"
-msgstr "KADI YA MKOPO"
-
-msgid "YOUR NAME"
-msgstr "JINA LAKO"
-
 msgid "Label the report"
 msgstr "Lebo ripoti"
 
@@ -483,23 +477,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr "Umma"
-
-msgid "Internal"
-msgstr "Ya ndani"
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "Sera ya faragha"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Sera ya faragha"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1003,9 +988,6 @@ msgstr "Wezesha uingiaji rahisi"
 msgid "Enable search engines indexing"
 msgstr "Wezesha kivinjari cha kutafuta"
 
-msgid "Default questionnaire"
-msgstr "Chaguo la msingi la dodoso"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1096,11 +1078,11 @@ msgstr ""
 msgid "Creation date:"
 msgstr "Tarehe ya kuundwa:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Kikoa cha mwanzo kinachotumiwa kwa tovuti zingine"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Tumia tovuti ya kwanza kwa madhumuni ya kiutawala tu"
+
+msgid "Root domain used for secondary sites"
+msgstr "Kikoa cha mwanzo kinachotumiwa kwa tovuti zingine"
 
 msgid "Allow users to sign up"
 msgstr "Ruhusu watumiaji kujisajili"
@@ -1415,9 +1397,6 @@ msgstr "Ikiwa unataka kuchangia uendelezaji wa programu au kuripoti kuhusu virus
 msgid "Join our chat:"
 msgstr "Jiunge na chat yetu: "
 
-msgid "Follow the project on:"
-msgstr "Fuata mradi kwenye"
-
 msgid "An update is available:"
 msgstr "Huisho linapatikana:"
 
@@ -1661,8 +1640,8 @@ msgstr ""
 msgid "What is the outcome you want to achieve with our support?"
 msgstr ""
 
-msgid "Do you want to provide your identification information?"
-msgstr "Je, unataka kutoa taarifa zako za kukutambua?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Jina la kwanza"

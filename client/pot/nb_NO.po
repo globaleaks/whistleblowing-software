@@ -85,12 +85,6 @@ msgstr "Detaljer"
 msgid "Platform wizard"
 msgstr "Plattform-veileder"
 
-msgid "CREDIT CARD"
-msgstr "KREDITTKORT"
-
-msgid "YOUR NAME"
-msgstr "DITT NAVN"
-
 msgid "Label the report"
 msgstr "Merk rapporten"
 
@@ -485,23 +479,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr "Offentlig"
-
-msgid "Internal"
-msgstr "Intern"
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "Personvernspraksis"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Personvernspraksis"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1005,9 +990,6 @@ msgstr "Aktiver forenklet innlogging"
 msgid "Enable search engines indexing"
 msgstr "Aktiver søkemotor-indeksering"
 
-msgid "Default questionnaire"
-msgstr "Standard spørreskjema"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1098,11 +1080,11 @@ msgstr "Modus:"
 msgid "Creation date:"
 msgstr "Opprettelsesdato:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Rotdomene brukt for sekundære sider"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Bruk det første stedet kun til administrative formål"
+
+msgid "Root domain used for secondary sites"
+msgstr "Rotdomene brukt for sekundære sider"
 
 msgid "Allow users to sign up"
 msgstr "Tillat brukere å registrere seg"
@@ -1417,9 +1399,6 @@ msgstr "Hvis du ønsker å bidra i programvareutvilingen eller innrapportere en 
 msgid "Join our chat:"
 msgstr "Bli med i vår chat:"
 
-msgid "Follow the project on:"
-msgstr "Følg prosjektet på:"
-
 msgid "An update is available:"
 msgstr "Oppgradering tilgjengelig:"
 
@@ -1663,8 +1642,8 @@ msgstr ""
 msgid "What is the outcome you want to achieve with our support?"
 msgstr ""
 
-msgid "Do you want to provide your identification information?"
-msgstr "Ønsker du å oppgi identifiserbar informasjon?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Fornavn"

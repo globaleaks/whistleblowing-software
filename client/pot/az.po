@@ -90,12 +90,6 @@ msgstr "Detallar"
 msgid "Platform wizard"
 msgstr "Proqram quraşdırması"
 
-msgid "CREDIT CARD"
-msgstr "KREDİT KARTI"
-
-msgid "YOUR NAME"
-msgstr "ADINIZ"
-
 msgid "Label the report"
 msgstr "Hesabatı etiketlə"
 
@@ -490,23 +484,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr "İctimai"
-
-msgid "Internal"
-msgstr "Daxili"
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "Təhlükəsizlik qaydaları"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Təhlükəsizlik qaydaları"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1010,9 +995,6 @@ msgstr "Sadə girişi işə salın"
 msgid "Enable search engines indexing"
 msgstr "Axtarış motorlarının indeksləşməsini aktivləşdirin"
 
-msgid "Default questionnaire"
-msgstr "Standart sorğu"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1103,11 +1085,11 @@ msgstr "Rejim:"
 msgid "Creation date:"
 msgstr "Yaradılma tarixi:"
 
-msgid "Root domain used for secondary sites"
-msgstr "İkinci dərəcəli saytların əsas domeni"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "İlk saytı yalnız inzibati məqsədlər üçün istifadə edin"
+
+msgid "Root domain used for secondary sites"
+msgstr "İkinci dərəcəli saytların əsas domeni"
 
 msgid "Allow users to sign up"
 msgstr "İstifadəçilərin qeydiyyatına icazə verin"
@@ -1422,9 +1404,6 @@ msgstr "Proqram təminatına töhvə, yaxud problem haqda məlumat vermək istə
 msgid "Join our chat:"
 msgstr "Çata qoşulun:"
 
-msgid "Follow the project on:"
-msgstr "Layihəni izləyin:"
-
 msgid "An update is available:"
 msgstr "Yeniləmə mümkündür"
 
@@ -1668,8 +1647,8 @@ msgstr "Bu qurumlar dediklərinizi araşdırdııbmı? Əgər araşdırıbsa, n�
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Bizim dəstəyimizlə nail olmaq istədiyiniz nəticələr nədir? "
 
-msgid "Do you want to provide your identification information?"
-msgstr "Özünüz haqda məlumat vermək istəyirsizmi?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Ad"

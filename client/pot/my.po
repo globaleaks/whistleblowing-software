@@ -84,12 +84,6 @@ msgstr "အသေးစိတ်များ"
 msgid "Platform wizard"
 msgstr "ပလက်ဖောင်း ဝိဇ္ဇာ"
 
-msgid "CREDIT CARD"
-msgstr "အကြွေးဝယ်ကတ်"
-
-msgid "YOUR NAME"
-msgstr "သင့်အမည်"
-
 msgid "Label the report"
 msgstr "အစီရင်ခံစာကို အညွှန်းတပ်ပါ"
 
@@ -484,23 +478,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr "အများသုံး"
-
-msgid "Internal"
-msgstr "အတွင်း"
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "ကိုယ်ရေးကိုယ်တာမူဝါဒ"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "ကိုယ်ရေးကိုယ်တာမူဝါဒ"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1004,9 +989,6 @@ msgstr "ရိုးရှင်းသော အကောင့်ဝင်မ�
 msgid "Enable search engines indexing"
 msgstr "ရှာဖွေရေးအင်ဂျင် အညွှန်းစီစဉ်ခြင်းကို ဖွင့်ပါ"
 
-msgid "Default questionnaire"
-msgstr "နဂိုမူလ မေးခွန်းလွှာ"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1097,11 +1079,11 @@ msgstr "မုဒ် - "
 msgid "Creation date:"
 msgstr "ဖန်တီးသည့်နေ့စွဲ -"
 
-msgid "Root domain used for secondary sites"
-msgstr "ဒိုမိန်းခွဲများအတွက် အသုံးပြုထားသော မူလ ဒိုမိန်း"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "ပထမ ဝဘ်ဆိုက်ကို အုပ်ချုပ်မှုအတွက်သာ အသုံးပြုပါ"
+
+msgid "Root domain used for secondary sites"
+msgstr "ဒိုမိန်းခွဲများအတွက် အသုံးပြုထားသော မူလ ဒိုမိန်း"
 
 msgid "Allow users to sign up"
 msgstr "အသုံးပြုသူများကို အကောင့်ဖွင့်ခွင့်ပြုပါ"
@@ -1416,9 +1398,6 @@ msgstr "သင်သည် ဆော့ဝဲ ဖွံ့ဖြိုးတိ�
 msgid "Join our chat:"
 msgstr "ကျွန်ုပ်တို့နှင့် စကားစမြည်ပြောရန် - "
 
-msgid "Follow the project on:"
-msgstr "စီမံကိန်းကို လိုက်ပါ - "
-
 msgid "An update is available:"
 msgstr "အပ်ဒိတ် ရရှိနိုင်သည် - "
 
@@ -1662,8 +1641,8 @@ msgstr "ဤအဖွဲ့အစည်းများသည် သင်၏ အ�
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "သင်မြင်တွေ့လိုသော/ရရှိလိုသော ရလဒ်မှာ ဘာလဲ။"
 
-msgid "Do you want to provide your identification information?"
-msgstr "သင့်မှတ်ပုံတင် အချက်အလက်ကို ပေးလိုပါသလား။"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "အမည် ပထမစာလုံး"

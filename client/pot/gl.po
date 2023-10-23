@@ -87,12 +87,6 @@ msgstr "Detalles"
 msgid "Platform wizard"
 msgstr "Asistente de plataforma"
 
-msgid "CREDIT CARD"
-msgstr "TARXETA DE CRÉDITO"
-
-msgid "YOUR NAME"
-msgstr "O TEU NOME"
-
 msgid "Label the report"
 msgstr "Etiqueta a presentación"
 
@@ -487,22 +481,13 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr ""
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
+msgstr ""
+
+msgid "Privacy Policy"
 msgstr ""
 
 msgid "Whistleblowing Policy"
@@ -1007,9 +992,6 @@ msgstr "Activar o inicio de sesión simplificado"
 msgid "Enable search engines indexing"
 msgstr "Activar a indexación dos motores de busca"
 
-msgid "Default questionnaire"
-msgstr "Cuestionario predeterminado"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1100,11 +1082,11 @@ msgstr "Modo:"
 msgid "Creation date:"
 msgstr ""
 
-msgid "Root domain used for secondary sites"
-msgstr "Dominio raíz usado para sitios secundarios"
-
 msgid "Use the first site for administrative purposes only"
 msgstr ""
+
+msgid "Root domain used for secondary sites"
+msgstr "Dominio raíz usado para sitios secundarios"
 
 msgid "Allow users to sign up"
 msgstr "Permitir aos usuarios rexistrarse"
@@ -1419,9 +1401,6 @@ msgstr "Se desexa contribuír ao desenvolvemento de software ou informe dun erro
 msgid "Join our chat:"
 msgstr ""
 
-msgid "Follow the project on:"
-msgstr "Segue o proxecto en:"
-
 msgid "An update is available:"
 msgstr "Hai unha actualización dispoñible:"
 
@@ -1665,8 +1644,8 @@ msgstr ""
 msgid "What is the outcome you want to achieve with our support?"
 msgstr ""
 
-msgid "Do you want to provide your identification information?"
-msgstr "Desexa proporcionar a súa información de identificación?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Nome"

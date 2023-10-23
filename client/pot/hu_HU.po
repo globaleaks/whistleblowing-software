@@ -101,12 +101,6 @@ msgstr "Részletek"
 msgid "Platform wizard"
 msgstr "Platform varázsló"
 
-msgid "CREDIT CARD"
-msgstr "HITELKÁRTYA"
-
-msgid "YOUR NAME"
-msgstr "AZ ÖN NEVE"
-
 msgid "Label the report"
 msgstr "Címkézze a beküldést"
 
@@ -501,23 +495,14 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "Adatvédelmi irányelvek"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Adatvédelmi irányelvek"
 
 msgid "Whistleblowing Policy"
 msgstr ""
@@ -1021,9 +1006,6 @@ msgstr "Egyszerűsített login engedélyezése"
 msgid "Enable search engines indexing"
 msgstr "Keresőmotorok indexelésének engedélyezése"
 
-msgid "Default questionnaire"
-msgstr "Alap kérdőív"
-
 msgid "Show channels in alphabetical order"
 msgstr ""
 
@@ -1114,11 +1096,11 @@ msgstr "Mód:"
 msgid "Creation date:"
 msgstr "Létrehozás dátuma:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Gyökér domain használt a másodlagos oldalakhoz"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Az első oldalt kizárólag adminisztratív célokra használja."
+
+msgid "Root domain used for secondary sites"
+msgstr "Gyökér domain használt a másodlagos oldalakhoz"
 
 msgid "Allow users to sign up"
 msgstr "Felhasználók feliratkozásának engedélyezése"
@@ -1433,9 +1415,6 @@ msgstr "Ha szeretne hozzájárulni a fejlesztéshez vagy jelenteni egy hibát, k
 msgid "Join our chat:"
 msgstr "Csatlakozzon a csevegésünkhöz: "
 
-msgid "Follow the project on:"
-msgstr "Kövesse a projektet itt:"
-
 msgid "An update is available:"
 msgstr "Frissítés elérhető:"
 
@@ -1679,8 +1658,8 @@ msgstr "Have these organizations investigated your claims? If so, what was the o
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "What is the outcome you want to achieve with our support?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Meg szeretné adni az azonosítási információit?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Keresztnév"
