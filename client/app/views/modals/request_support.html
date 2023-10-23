@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body" data-ng-init="sent=false; arg.mail_address=resources.preferences.mail_address">
   <form data-ng-hide="sent" name="SupportRequest" novalidate>
-    <div class="form-group">
+    <div class="form-group" data-ng-if="!resources.preferences">
       <label data-translate>Email address</label>
       <input class="form-control" name="email" data-ng-model="arg.mail_address" type="email" data-ng-pattern="CONSTANTS.email_regexp" required/>
       <div class="text-danger" data-ng-show="SupportRequest.email.$error.required" data-translate>This field is mandatory</div>
