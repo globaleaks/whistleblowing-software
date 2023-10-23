@@ -1,3 +1,14 @@
+Changes in version 4.13.15
+    Improve responsivity of audio player interface (#3712)
+    Silence esceptions related to remote connections
+    Correct initialization order in Tor service
+    Update whistleblowing identity question
+    Reorganize Sites' options
+    Show postpone button also when the channel data retention policy is disabled
+    Revise content security policy
+    Bump npm dependencies to latest versions
+    Update translations
+
 Changes in version 4.13.14
     Revise vocoder implementation
     Apply minor bugfixing
