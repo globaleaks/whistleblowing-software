@@ -215,4 +215,43 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
       })(i);
     }
   };
+
+  $scope.getDataCsv = function(){
+    var output = angular.copy($scope.filteredTips);
+    return output.map(function(tip){
+      return {
+        id:tip.id,
+        progressive: tip.progressive,
+        important: tip.important,
+        reportStatus: $scope.markReportStatus(tip.reminder_date),
+        context_name: tip.context_name,
+        label:tip.label,
+        status: tip.submissionStatusStr,
+        creation_date: $filter("date")(tip.creation_date, "dd-MM-yyyy HH:mm"),
+        update_date: $filter("date")(tip.update_date, "dd-MM-yyyy HH:mm"),
+        expiration_date: $filter("date")(tip.expiration_date, "dd-MM-yyyy HH:mm"),
+        last_access: $filter("date")(tip.last_access, "dd-MM-yyyy HH:mm"),
+        comment_count: tip.comment_count,
+        file_count: tip.file_count
+      }
+    })
+  }
+
+  $scope.getDataCsvHeaders = function (){
+    return ['Id',
+            'Sequential',
+            'Important',
+            'Reminder',
+            'Channel',
+            'Label',
+            'Report Status',
+            'Date of Report',
+            'Last Update',
+            'Expiration date',
+            'Last Access',
+            'Number of Comments',
+            'Number of Files',
+            'Subscription',
+            'Number of Recipients'].map($filter('translate'));
+  }
 }]);

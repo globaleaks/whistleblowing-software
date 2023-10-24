@@ -220,7 +220,7 @@
             </span>
           </td>
           <td class="TipInfoID">{{tip.progressive}}</td>
-          <td><i data-ng-if="tip.important" class="fa-solid fa-star text-warning"></i>
+          <td><i data-ng-if="tip.important" class="fa-solid fa-star text-warning"></i></td>
           <td><i data-ng-if="markReportStatus(tip.reminder_date)" class="fa-solid fa-bell text-warning"></i>
           </td>
           <td class="TipInfoContext" data-ng-if="public.contexts.length > 1">{{tip.context_name}}</td>
@@ -272,6 +272,16 @@
           class="pagination-sm"
           boundary-links="true"
           force-ellipses="true"></ul>
+    </div>
+    <div class="float-right">
+      <a class="btn btn-sm btn-link" type="button"
+         data-ng-if="filteredTips.length > 0"
+         data-ng-csv="getDataCsv()"
+         csv-header="getDataCsvHeaders()"
+         filename="reports.csv">
+        <i class="fa-solid fa-download"></i>
+        <span data-translate>Export</span>
+      </a>
     </div>
   </div>
 </div>
