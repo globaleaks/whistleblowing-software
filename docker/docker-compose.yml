@@ -7,7 +7,10 @@ services:
     container_name: globaleaks
     network_mode: bridge
     volumes:
-      - "/var/globaleaks:/var/globaleaks"
+      - globaleaks:/var/globaleaks
     ports:
       - 80:8080
       - 443:8443
+
+volumes:
+  globaleaks:
