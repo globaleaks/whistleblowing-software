@@ -500,8 +500,8 @@ msgstr "Everyone"
 msgid "Recipients only"
 msgstr "Recipients only"
 
-msgid "Only me"
-msgstr "Only me"
+msgid "Me only"
+msgstr "Me only"
 
 msgid "File a report"
 msgstr "File a report"

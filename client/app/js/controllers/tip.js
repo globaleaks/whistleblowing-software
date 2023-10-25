@@ -48,7 +48,7 @@ GL.controller("TipCtrl",
         key: "internal"
       },
       {
-        title: "Only me",
+        title: "Me only",
         key: "personal"
       }
     ];
