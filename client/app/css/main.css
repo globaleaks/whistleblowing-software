@@ -20,7 +20,8 @@ body {
 a,
 a:hover,
 a:active,
-a:focus {
+a:focus,
+.link {
   color: #205282;
   outline: 0;
   font-weight: bold;
@@ -28,6 +29,7 @@ a:focus {
 }
 
 a:hover,
+.link:hover,
 .onionaddress {
   color: #5797d5;
 }
