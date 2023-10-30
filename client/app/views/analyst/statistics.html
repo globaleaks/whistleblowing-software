@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="card m-2" data-ng-repeat="c in charts" data-ng-if="!error">
+    <div class="card-header">{{c.title}}</div>
+    <div class="card-body">
+      <canvas class="chart chart-pie" chart-data="c.values" chart-labels="c.labels"></canvas>
+    </div>
+  </div>
+</div>

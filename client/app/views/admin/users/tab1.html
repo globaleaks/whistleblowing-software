@@ -14,6 +14,7 @@
         <div>
           <select name="role" class="form-control" data-ng-model="new_user.role" required>
             <option value="admin" data-translate>Admin</option>
+            <option value="analyst" data-translate>Analyst</option>
             <option value="receiver" data-translate>Recipient</option>
             <option data-ng-if="resources.node.enable_custodian" value="custodian" data-translate>Custodian</option>
           </select>
@@ -60,6 +61,7 @@
           <span class="badge badge-primary">
             <span data-ng-switch="user.role">
               <span data-ng-switch-when="admin" data-translate>Admin</span>
+              <span data-ng-switch-when="analyst" data-translate>Analyst</span>
               <span data-ng-switch-when="receiver" data-translate>Recipient</span>
               <span data-ng-switch-when="custodian" data-translate>Custodian</span>
             </span>
@@ -189,6 +191,7 @@
                       data-ng-options="item.code as item.name for item in languages_enabled_selector"></select>
             </div>
             <div class="form-group" data-ng-if="(user.role === 'admin' && !resources.node.disable_admin_notification) ||
+                                                (user.role === 'analyst' && !resources.node.disable_analyst_notification) ||
                                                 (user.role === 'receiver' && !resources.node.disable_receiver_notification) ||
                                                 (user.role === 'custodian' && !resources.node.disable_custodian_notification)">
               <input data-ng-model="user.notification" type="checkbox">
