@@ -786,11 +786,12 @@ class _Redaction(Model):
     __tablename__ = 'redaction'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    update_date = Column(DateTime, default=datetime_now, nullable=False)
     reference_id = Column(UnicodeText(36), nullable=False, index=True)
+    entry = Column(UnicodeText, default='0', nullable=False)
     internaltip_id = Column(UnicodeText(36), nullable=False, index=True)
     temporary_redaction = Column(JSON, default=dict, nullable=False)
     permanent_redaction = Column(JSON, default=dict, nullable=False)
+    update_date = Column(DateTime, default=datetime_now, nullable=False)
 
     @declared_attr
     def __table_args__(self):
