@@ -635,6 +635,7 @@ class _InternalTip(Model):
     important = Column(Boolean, default=False, nullable=False)
     label = Column(UnicodeText, default='', nullable=False)
     last_access = Column(DateTime, default=datetime_now, nullable=False)
+    access_count = Column(Integer, default=0, nullable=False)
     status = Column(UnicodeText(36))
     substatus = Column(UnicodeText(36))
     receipt_hash = Column(UnicodeText(44), nullable=False)
