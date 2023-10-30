@@ -1,6 +1,12 @@
+Changes in version 4.13.16
+    Fix issue #3727
+    Rename report Export functionality in Download
+    Replace icon used for file downloads
+    Bump npm dependencies to latest versions
+
 Changes in version 4.13.15
     Improve responsivity of audio player interface (#3712)
-    Silence esceptions related to remote connections
+    Silence exceptions related to remote connections
     Correct initialization order in Tor service
     Update whistleblowing identity question
     Reorganize Sites' options
