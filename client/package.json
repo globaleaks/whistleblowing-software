@@ -59,9 +59,9 @@
   "devDependencies": {
     "@babel/cli": "7.23.0",
     "@babel/core": "7.23.2",
-    "@cypress/code-coverage": "3.12.4",
+    "@cypress/code-coverage": "3.12.6",
     "@lodder/grunt-postcss": "3.1.1",
-    "cypress": "13.3.2",
+    "cypress": "13.3.3",
     "eslint": "8.52.0",
     "gettext-parser": "7.0.1",
     "grunt": "1.6.1",
