@@ -18,7 +18,7 @@ key_regexp = r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$|^[
 key_regexp_or_empty = r'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$|^[a-z_]{0,100}$|^$'
 uuid_regexp = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$'
 uuid_regexp_or_empty = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$|^$'
-user_role_regexp = r'^(admin|custodian|receiver)$'
+user_role_regexp = r'^(admin|analyst|custodian|receiver)$'
 email_regexp = r'^(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100})$'
 email_regexp_or_empty = r'^(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100})$|^$'
 hostname_regexp = r'^[0-9a-z\-\.]+$'
@@ -249,6 +249,7 @@ AdminNodeDesc = {
 
 AdminNetworkDesc = {
     'https_admin': bool,
+    'https_analyst': bool,
     'https_custodian': bool,
     'https_whistleblower': bool,
     'https_receiver': bool,
@@ -256,6 +257,8 @@ AdminNetworkDesc = {
     'anonymize_outgoing_connections': bool,
     'ip_filter_admin_enable': bool,
     'ip_filter_admin': str,
+    'ip_filter_analyst_enable': bool,
+    'ip_filter_analyst': str,
     'ip_filter_custodian_enable': bool,
     'ip_filter_custodian': str,
     'ip_filter_receiver_enable': bool,
@@ -271,6 +274,7 @@ AdminNotificationDesc = {
     'smtp_password': str,
     'smtp_source_email': email_regexp,
     'disable_admin_notification_emails': bool,
+    'disable_analyst_notification_emails': bool,
     'disable_custodian_notification_emails': bool,
     'disable_receiver_notification_emails': bool,
     'tip_expiration_threshold': int

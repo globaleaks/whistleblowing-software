@@ -42,9 +42,9 @@ factory("Authentication",
       };
 
       self.reset = function() {
-	self.loginInProgress = false;
-	self.requireAuthCode = false;
-	self.loginData = {};
+        self.loginInProgress = false;
+        self.requireAuthCode = false;
+        self.loginData = {};
       };
 
       self.login = function(tid, username, password, authcode, authtoken) {
@@ -80,7 +80,7 @@ factory("Authentication",
 
         };
 
-	var failure_fn = function(response) {
+        var failure_fn = function(response) {
           self.loginInProgress = false;
 
           if (response.data && response.data.error_code) {
@@ -482,6 +482,9 @@ factory("ReceiverTips", ["GLResource", function(GLResource) {
 }]).
 factory("IdentityAccessRequests", ["GLResource", function(GLResource) {
   return new GLResource("api/custodian/iars");
+}]).
+factory("Statistics", ["GLResource", function(GLResource) {
+  return new GLResource("api/analyst/stats");
 }]).
 factory("AdminAuditLogResource", ["GLResource", function(GLResource) {
   return new GLResource("api/admin/auditlog");

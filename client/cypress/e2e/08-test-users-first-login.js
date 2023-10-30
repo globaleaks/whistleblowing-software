@@ -47,6 +47,16 @@ describe("Recipient2 first login", () => {
   });
 });
 
+describe("Analyst first login", () => {
+  it("should require password change upon successful authentication", () => {
+    cy.login_analyst("Analyst", Cypress.env("init_password"), "/login", true);
+    cy.get('[data-ng-model="changePasswordArgs.password"]').type(Cypress.env("user_password"));
+    cy.get('[data-ng-model="changePasswordArgs.confirm"]').type(Cypress.env("user_password"));
+    cy.get('[data-ng-click="changePassword()"]').click();
+    cy.url().should("include", "/analyst/home");
+    cy.logout();
+  });
+});
 
 describe("Custodian first login", () => {
   it("should require password change upon successful authentication", () => {
@@ -69,4 +79,3 @@ describe("Admin2 first login", () => {
     cy.logout();
   });
 });
-

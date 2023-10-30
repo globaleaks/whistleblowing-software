@@ -16,9 +16,14 @@ describe("admin add, configure, and delete users", () => {
       address: "globaleaks-receiver3@mailinator.com",
     },
     {
+      role: "Analyst",
+      name: "Analyst",
+      address: "globaleaks-analyst@mailinator.com",
+    },
+    {
       role: "Custodian",
       name: "Custodian",
-      address: "globaleaks-custodian1@mailinator.com",
+      address: "globaleaks-custodian@mailinator.com",
     },
     {
       role: "Admin",
@@ -51,7 +56,7 @@ describe("admin add, configure, and delete users", () => {
     cy.login_admin();
     cy.visit("/#/admin/users");
 
-    cy.get(".userList").eq(3).within(() => {
+    cy.get(".userList").eq(4).within(() => {
       cy.contains("button", "Edit").click();
       cy.get("[data-ng-model='user.can_delete_submission']").click();
       cy.contains("button", "Save").click();
@@ -78,5 +83,4 @@ describe("admin add, configure, and delete users", () => {
 
     cy.logout();
   });
-
 });

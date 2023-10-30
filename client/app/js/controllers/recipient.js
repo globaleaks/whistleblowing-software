@@ -232,7 +232,9 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
         expiration_date: $filter("date")(tip.expiration_date, "dd-MM-yyyy HH:mm"),
         last_access: $filter("date")(tip.last_access, "dd-MM-yyyy HH:mm"),
         comment_count: tip.comment_count,
-        file_count: tip.file_count
+        file_count: tip.file_count,
+        subscription: tip.subscription === 0 ? "Non sottoscritta" : tip.subscription === 1 ? "Sottoscritta" : "Sottoscritta successivamente",
+        receiver_count: tip.receiver_count
       }
     })
   }

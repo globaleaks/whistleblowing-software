@@ -44,7 +44,13 @@
                     <input data-ng-model="resources.network.https_admin" type="checkbox">
                   </td>
                 </tr>
-                <tr data-ng-if="resources.network.enable_custodian">
+                <tr>
+                  <td data-translate>Analyst</td>
+                  <td>
+                    <input data-ng-model="resources.network.https_analyst" type="checkbox">
+                  </td>
+                </tr>
+                <tr>
                   <td data-translate>Custodian</td>
                   <td>
                     <input data-ng-model="resources.network.https_custodian" type="checkbox">

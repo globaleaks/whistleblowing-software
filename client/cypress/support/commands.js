@@ -86,6 +86,32 @@ Cypress.Commands.add("login_receiver", (username, password, url, firstlogin) => 
   cy.waitForPageIdle();
 });
 
+Cypress.Commands.add("login_analyst", (username, password, url, firstlogin) => {
+  username = username === undefined ? "Analyst" : username;
+  password = password === undefined ? Cypress.env("user_password") : password;
+  url = url === undefined ? "login" : url;
+
+  let finalURL = "/actions/forcedpasswordchange";
+
+  cy.visit(url);
+
+  cy.get('[name="username"]').type(username);
+  cy.get('[name="password"]').type(password);
+  cy.get("#login-button").click();
+
+  if (!firstlogin) {
+    cy.url().should("include", "/login").then(() => {
+      cy.url().should("not.include", "/login").then((currentURL) => {
+        const hashPart = currentURL.split("#")[1];
+        finalURL = hashPart === "login" ? "/analyst/home" : hashPart;
+        cy.waitForUrl(finalURL);
+      });
+    });
+  }
+
+  cy.waitForPageIdle();
+});
+
 Cypress.Commands.add("login_custodian", (username, password, url, firstlogin) => {
   username = username === undefined ? "Custodian" : username;
   password = password === undefined ? Cypress.env("user_password") : password;

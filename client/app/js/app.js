@@ -21,10 +21,14 @@ var GL = angular.module("GL", [
     "ngCsv",
     "ngResource",
     "ngSanitize",
-    "ng-showdown"
+    "ng-showdown",
+    "chart.js"
 ]).
   config(["$ariaProvider", function($ariaProvider) {
     $ariaProvider.config({ariaInvalid: false});
+}]).
+  config(["ChartJsProvider", function(ChartJsProvider) {
+    ChartJsProvider.setOptions("global",{ colors : ['#EEF5FC', '#C4DEF8', '#9FC9F1', '#79B0E6', '#5797D5', '#377ABC', '#2866A2', '#205282', '#1F4365', '#103253']});
 }]).
   config(["$compileProvider", function($compileProvider) {
     $compileProvider.debugInfoEnabled(false);
@@ -70,7 +74,7 @@ var GL = angular.module("GL", [
     }
 
     function fetchResources(role, lst) {
-      return ["$location", "$q", "$rootScope", "Access", "GLTranslate", "AdminAuditLogResource", "AdminContextResource", "AdminQuestionnaireResource", "AdminStepResource", "AdminFieldResource", "AdminFieldTemplateResource", "AdminUserResource", "AdminNodeResource", "AdminNetworkResource", "AdminNotificationResource", "AdminRedirectResource", "AdminTenantResource", "TipsCollection", "JobsAuditLog", "AdminSubmissionStatusResource", "ReceiverTips", "IdentityAccessRequests", "UserPreferences", function($location, $q, $rootScope, Access, GLTranslate, AdminAuditLogResource, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminNodeResource, AdminNetworkResource, AdminNotificationResource, AdminRedirectResource, AdminTenantResource, TipsCollection, JobsAuditLog, AdminSubmissionStatusResource, ReceiverTips, IdentityAccessRequests, UserPreferences) {
+      return ["$location", "$q", "$rootScope", "Access", "GLTranslate", "AdminAuditLogResource", "AdminContextResource", "AdminQuestionnaireResource", "AdminStepResource", "AdminFieldResource", "AdminFieldTemplateResource", "AdminUserResource", "AdminNodeResource", "AdminNetworkResource", "AdminNotificationResource", "AdminRedirectResource", "AdminTenantResource", "TipsCollection", "JobsAuditLog", "AdminSubmissionStatusResource", "ReceiverTips", "Statistics", "IdentityAccessRequests", "UserPreferences", function($location, $q, $rootScope, Access, GLTranslate, AdminAuditLogResource, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminNodeResource, AdminNetworkResource, AdminNotificationResource, AdminRedirectResource, AdminTenantResource, TipsCollection, JobsAuditLog, AdminSubmissionStatusResource, ReceiverTips, Statistics, IdentityAccessRequests, UserPreferences) {
         var resourcesPromises = {
           auditlog: function() { return AdminAuditLogResource.query().$promise; },
           node: function() { return AdminNodeResource.get().$promise; },
@@ -87,6 +91,7 @@ var GL = angular.module("GL", [
           submission_statuses: function() { return AdminSubmissionStatusResource.query().$promise; },
           rtips: function() { return ReceiverTips.query().$promise; },
           iars: function() { return IdentityAccessRequests.query().$promise; },
+          stats: function() { return Statistics.get().$promise; },
           preferences: function() { return UserPreferences.get().$promise; }
         };
 
@@ -332,22 +337,32 @@ var GL = angular.module("GL", [
           resources: fetchResources("custodian", ["preferences"])
         }
       }).
-      when("/custodian/settings", {
-        templateUrl: "views/custodian/settings.html",
-        controller: "AdminCtrl",
-        header_title: "Sites",
-        sidebar: "views/custodian/sidebar.html",
-        resolve: {
-          access: requireAuth("custodian"),
-          resources: fetchResources("custodian", ["node", "preferences"])
-        }
-      }).
       when("/custodian/requests", {
         templateUrl: "views/custodian/identity_access_requests.html",
         header_title: "Requests",
         resolve: {
           access: requireAuth("custodian"),
           resources: fetchResources("custodian", ["iars", "preferences"])
+        }
+      }).
+      when("/analyst/home", {
+        templateUrl: "views/analyst/home.html",
+        controller: "HomeCtrl",
+        header_title: "Home",
+        sidebar: "views/analyst/sidebar.html",
+        resolve: {
+          access: requireAuth("analyst"),
+          resources: fetchResources("analyst", ["preferences"])
+        }
+      }).
+      when("/analyst/statistics", {
+        templateUrl: "views/analyst/statistics.html",
+        controller: "StatisticsCtrl",
+        header_title: "Statistics",
+        sidebar: "views/analyst/sidebar.html",
+        resolve: {
+          access: requireAuth("analyst"),
+          resources: fetchResources("analyst", ["stats"])
         }
       }).
       when("/login", {

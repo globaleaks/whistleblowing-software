@@ -371,11 +371,14 @@ class MockDict:
             'anonymize_outgoing_connections': True,
             'hostname': 'www.globaleaks.org',
             'https_admin': True,
+            'https_analyst': True,
             'https_custodian': True,
             'https_receiver': True,
             'https_whistleblower': True,
             'ip_filter_admin': '',
             'ip_filter_admin_enable': False,
+            'ip_filter_analyst': '',
+            'ip_filter_analyst_enable': False,
             'ip_filter_custodian': '',
             'ip_filter_custodian_enable': False,
             'ip_filter_receiver': '',
@@ -618,7 +621,8 @@ class TestGL(unittest.TestCase):
         self.dummyContext = dummyStuff.dummyContext
         self.dummySubmission = dummyStuff.dummySubmission
         self.dummyAdmin = self.get_dummy_user('admin', 'admin')
-        self.dummyCustodian = self.get_dummy_user('custodian', 'custodian1')
+        self.dummyAnalyst = self.get_dummy_user('analyst', 'analyst')
+        self.dummyCustodian = self.get_dummy_user('custodian', 'custodian')
         self.dummyReceiver_1 = self.get_dummy_receiver('receiver1')
         self.dummyReceiver_2 = self.get_dummy_receiver('receiver2')
 
@@ -805,6 +809,9 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummyAdmin = yield create_user(1, None, self.dummyAdmin, 'en')
 
         # fill_data/create_custodian
+        self.dummyAnalyst = yield create_user(1, None, self.dummyAnalyst, 'en')
+
+        # fill_data/create_custodian
         self.dummyCustodian = yield create_user(1, None, self.dummyCustodian, 'en')
 
         # fill_data/create_receiver
@@ -959,6 +966,8 @@ class TestHandler(TestGLWithPopulatedDB):
         if user_id is None and role is not None:
             if role == 'admin':
                 user_id = self.dummyAdmin['id']
+            elif role == 'analyst':
+                user_id = self.dummyAnalyst['id']
             elif role == 'receiver':
                 user_id = self.dummyReceiver_1['id']
             elif role == 'custodian':
