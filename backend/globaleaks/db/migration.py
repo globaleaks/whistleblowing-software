@@ -50,7 +50,8 @@ from globaleaks.db.migrations.update_65 import Comment_v_64, \
     SubmissionStatus_v_64, SubmissionSubStatus_v_64, \
     User_v_64, ReceiverFile_v_64, WhistleblowerFile_v_64
 from globaleaks.db.migrations.update_66 import SubmissionStatus_v_65, SubmissionSubStatus_v_65
-from globaleaks.db.migrations.update_67 import ReceiverFile_v_66, Redaction_v_66, WhistleblowerFile_v_66
+from globaleaks.db.migrations.update_67 import \
+        InternalTip_v_66, ReceiverFile_v_66, Redaction_v_66, WhistleblowerFile_v_66
 
 
 from globaleaks.orm import get_engine, get_session, make_db_uri
@@ -80,7 +81,7 @@ migration_mapping = OrderedDict([
     ('IdentityAccessRequest', [IdentityAccessRequest_v_64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._IdentityAccessRequest, 0, 0]),
     ('IdentityAccessRequestCustodian', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models._IdentityAccessRequestCustodian, 0, 0]),
     ('InternalFile', [InternalFile_v_45, InternalFile_v_50, 0, 0, 0, 0, InternalFile_v_64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models._InternalFile, 0, 0]),
-    ('InternalTip', [InternalTip_v_45, InternalTip_v_46, InternalTip_v_48, 0, InternalTip_v_51, 0, 0, InternalTip_v_52, InternalTip_v_57, 0, 0, 0, 0, InternalTip_v_59, 0, InternalTip_v_63, 0, 0, 0, InternalTip_v_64, models._InternalTip, 0, 0]),
+    ('InternalTip', [InternalTip_v_45, InternalTip_v_46, InternalTip_v_48, 0, InternalTip_v_51, 0, 0, InternalTip_v_52, InternalTip_v_57, 0, 0, 0, 0, InternalTip_v_59, 0, InternalTip_v_63, 0, 0, 0, InternalTip_v_64, InternalTip_v_66, 0, models._InternalTip]),
     ('InternalTipAnswers', [models._InternalTipAnswers, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('InternalTipData', [InternalTipData_v_51, 0, 0, 0, 0, 0, 0, models._InternalTipData, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Mail', [models._Mail, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
