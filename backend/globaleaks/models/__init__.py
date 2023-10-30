@@ -740,7 +740,7 @@ class _WhistleblowerFile(Model):
     """
     This model keeps track of files destinated to a specific receiver
     """
-    __tablename__ = 'receiverfile'
+    __tablename__ = 'whistleblowerfile'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     internalfile_id = Column(UnicodeText(36), nullable=False, index=True)
@@ -777,6 +777,7 @@ class _ReceiverTip(Model):
     def __table_args__(self):
         return (ForeignKeyConstraint(['receiver_id'], ['user.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'),
                 ForeignKeyConstraint(['internaltip_id'], ['internaltip.id'], ondelete='CASCADE', deferrable=True, initially='DEFERRED'))
+
 
 class _Redaction(Model):
     """
@@ -1023,7 +1024,7 @@ class _ReceiverFile(Model):
     delivered to the whistleblower. This file is not encrypted and nor is it
     integrity checked in any meaningful way.
     """
-    __tablename__ = 'whistleblowerfile'
+    __tablename__ = 'receiverfile'
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     internaltip_id = Column(UnicodeText(36), nullable=False, index=True)
