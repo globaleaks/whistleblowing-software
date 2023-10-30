@@ -787,6 +787,7 @@ class _Redaction(Model):
 
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
     reference_id = Column(UnicodeText(36), default=uuid4, nullable=False)
+    reference_id = Column(UnicodeText(36), nullable=False)
     entry = Column(UnicodeText, default='0', nullable=False)
     internaltip_id = Column(UnicodeText(36), nullable=False, index=True)
     temporary_redaction = Column(JSON, default=dict, nullable=False)

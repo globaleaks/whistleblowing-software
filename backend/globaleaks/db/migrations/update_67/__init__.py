@@ -22,6 +22,16 @@ class ReceiverFile_v_66(Model):
     new = Column(Boolean, default=True, nullable=False)
 
 
+class Redaction_v_66(Model):
+    __tablename__ = 'redaction'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    reference_id = Column(UnicodeText(36), nullable=False, index=True)
+    internaltip_id = Column(UnicodeText(36), nullable=False, index=True)
+    temporary_redaction = Column(JSON, default=dict, nullable=False)
+    permanent_redaction = Column(JSON, default=dict, nullable=False)
+    update_date = Column(DateTime, default=datetime_now, nullable=False)
+
+
 class WhistleblowerFile_v_66(Model):
     __tablename__ = 'receiverfile'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
