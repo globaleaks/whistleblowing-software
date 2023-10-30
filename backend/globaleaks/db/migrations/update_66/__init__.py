@@ -3,24 +3,9 @@ from datetime import timedelta
 
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import Model
-from globaleaks.models.enums import EnumVisibility
 from globaleaks.utils.onion import generate_onion_service_v3
 from globaleaks.models.properties import *
 from globaleaks.utils.utility import datetime_never, datetime_now, datetime_null
-
-
-class ReceiverFile_v_65(Model):
-    __tablename__ = 'whistleblowerfile'
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    internaltip_id = Column(UnicodeText(36), nullable=False, index=True)
-    name = Column(UnicodeText, nullable=False)
-    size = Column(Integer, nullable=False)
-    content_type = Column(UnicodeText, nullable=False)
-    creation_date = Column(DateTime, default=datetime_now, nullable=False)
-    access_date = Column(DateTime, default=datetime_null, nullable=False)
-    description = Column(UnicodeText, default="", nullable=False)
-    visibility = Column(Enum(EnumVisibility), default='public', nullable=False)
-    new = Column(Boolean, default=True, nullable=False)
 
 
 class SubmissionStatus_v_65(Model):
@@ -38,15 +23,6 @@ class SubmissionSubStatus_v_65(Model):
     submissionstatus_id = Column(UnicodeText(36), nullable=False)
     label = Column(JSON, default=dict, nullable=False)
     order = Column(Integer, default=0, nullable=False)
-
-
-class WhistleblowerFile_v_65(Model):
-    __tablename__ = 'receiverfile'
-    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
-    internalfile_id = Column(UnicodeText(36), nullable=False, index=True)
-    receivertip_id = Column(UnicodeText(36), nullable=False, index=True)
-    access_date = Column(DateTime, default=datetime_null, nullable=False)
-    new = Column(Boolean, default=True, nullable=False)
 
 
 class MigrationScript(MigrationBase):
