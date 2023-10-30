@@ -971,6 +971,7 @@ class _User(Model):
     can_transfer_access_to_reports = Column(Boolean, default=False, nullable=False)
     can_mask_information = Column(Boolean, default=False, nullable=False)
     can_redact_information = Column(Boolean, default=False, nullable=False)
+    can_reopen_reports = Column(Boolean, default=False, nullable=False)
     can_edit_general_settings = Column(Boolean, default=False, nullable=False)
     readonly = Column(Boolean, default=False, nullable=False)
     two_factor_secret = Column(UnicodeText(32), default='', nullable=False)
