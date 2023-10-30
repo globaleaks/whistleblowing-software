@@ -56,11 +56,6 @@
         <i class="fa-solid fa-sync"></i>
       </span>
 
-      <span id="tip-export-excel" data-ng-if="filteredTips.length > 0" ng-csv="filteredTips" csv-label='true'
-        filename="reports.csv" data-uib-tooltip="{{'Export csv' | translate}}" class="btn btn-outline-secondary">
-        <i class="fa-solid fa-download"></i>
-      </span>
-
       <span id="SearchFilter" class="form-group float-right">
         <div class="input-group">
           <input type="text" class="form-control" data-ng-attr-placeholder="{{'Search' | translate}}"
@@ -216,7 +211,7 @@
             </span>
           </td>
           <td class="TipInfoID">{{tip.progressive}}</td>
-          <td><i data-ng-if="tip.important" class="fa-solid fa-star text-warning"></i>
+          <td><i data-ng-if="tip.important" class="fa-solid fa-star text-warning"></i></td>
           <td><i data-ng-if="markReportStatus(tip.reminder_date)" class="fa-solid fa-bell text-warning"></i>
           </td>
           <td class="TipInfoContext" data-ng-if="public.contexts.length > 1">{{tip.context_name}}</td>
@@ -266,6 +261,12 @@
           class="pagination-sm"
           boundary-links="true"
           force-ellipses="true"></ul>
+    </div>
+    <div class="align-btn-end">
+      <a class="btn btn-sm btn-link" type="button" data-ng-if="filteredTips.length > 0" ng-csv="getDataCsv()" csv-label='true' filename="reports.csv">
+        <i class="fa-solid fa-download"></i>
+        <span> Report.csv</span>
+      </a>
     </div>
   </div>
 </div>
