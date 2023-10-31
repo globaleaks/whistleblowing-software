@@ -333,11 +333,7 @@ class APIResourceWrapper(Resource):
                 tentative_hostname = request.hostname[4:]
 
             if tentative_hostname in State.tenant_hostname_id_map:
-                request.tid = State.tenant_hostname_id_map[tentative_hostname]
-                if State.tenants[request.tid].cache.https_enabled:
-                    request.redirect(b'https://' + tentative_hostname + b'/')
-                else:
-                    request.redirect(b'http://' + tentative_hostname + b'/')
+                request.redirect(b'https://' + tentative_hostname + b'/')
                 return b''
             else:
                 # Fallback on root tenant with error 400
