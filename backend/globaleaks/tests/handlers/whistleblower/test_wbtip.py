@@ -33,7 +33,8 @@ class TestWBTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_post(self):
         body = {
-            'content': "can you provide an evidence of what you are telling?"
+            'content': "can you provide an evidence of what you are telling?",
+            'visibility': "internal"
         }
 
         wbtips_desc = yield self.get_wbtips()
