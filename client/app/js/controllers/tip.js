@@ -537,25 +537,12 @@ controller("TipOperationsCtrl",
 controller("RTipRFileUploadCtrl", ["$scope", "Authentication", "RTipDownloadRFile", "RTipRFileResource", function($scope, Authentication, RTipDownloadRFile, RTipRFileResource) {
   var reloadUI = function (){ $scope.reload(); };
 
-  $scope.downloadRFile = function(f) {
-    RTipDownloadRFile(f);
+  $scope.downloadRFile = function(file) {
+    RTipDownloadRFile(file);
   };
 
   $scope.deleteRFile = function(f) {
     RTipRFileResource.remove({"id":f.id}).$promise.finally(reloadUI);
-  };
-}]).
-controller("WBTipFileDownloadCtrl", ["$scope", "$uibModalInstance", "WBTipDownloadFile", "file", "tip", function($scope, $uibModalInstance, WBTipDownloadFile, file, tip) {
-  $scope.ctx = "download";
-  $scope.file = file;
-  $scope.tip = tip;
-  $scope.confirm = function() {
-    $uibModalInstance.close();
-    WBTipDownloadFile(file);
-  };
-
-  $scope.cancel = function () {
-    $uibModalInstance.close();
   };
 }]).
 controller("IdentityAccessRequestCtrl",
