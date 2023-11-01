@@ -447,6 +447,11 @@ factory("WBTip", ["$rootScope", "WBTipResource", "WBTipCommentResource",
     });
   };
 }]).
+factory("WBTipDownloadWBFile", ["Utils", function(Utils) {
+  return function(file) {
+    Utils.download("api/whistleblower/wbfiles/" + file.id);
+  };
+}]).
 factory("ReceiverTips", ["GLResource", function(GLResource) {
   return new GLResource("api/recipient/rtips");
 }]).

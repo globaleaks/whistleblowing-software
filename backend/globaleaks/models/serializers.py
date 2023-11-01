@@ -90,13 +90,16 @@ def serialize_ifile(session, ifile):
     :param ifile: The ifile to be serialized
     :return: The serialized ifile
     """
+    error = not os.path.exists(os.path.join(State.settings.attachments_path, ifile.id))
+
     return {
         'id': ifile.id,
         'creation_date': ifile.creation_date,
         'name': ifile.name,
         'size': ifile.size,
         'type': ifile.content_type,
-        'reference_id': ifile.reference_id
+        'reference_id': ifile.reference_id,
+        'error': error
     }
 
 
@@ -172,6 +175,7 @@ def serialize_itip(session, internaltip, language):
         'enable_two_way_comments': internaltip.enable_two_way_comments,
         'enable_attachments': internaltip.enable_attachments,
         'enable_whistleblower_identity': internaltip.enable_whistleblower_identity,
+        'enable_whistleblower_download': not internaltip.deprecated_crypto_files_pub_key,
         'last_access': internaltip.last_access,
         'score': internaltip.score,
         'status': internaltip.status,

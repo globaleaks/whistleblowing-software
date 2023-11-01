@@ -12,6 +12,7 @@
         <thead>
           <tr>
             <th data-translate>Filename</th>
+            <th data-ng-if="tip.enable_whistleblower_download" data-translate>Download</th>
             <th data-translate>Upload date</th>
             <th data-translate>Type</th>
             <th data-translate>File size</th>
@@ -20,6 +21,14 @@
         <tbody id="fileListBody">
           <tr id="file-{{$index}}" data-ng-repeat="file in tip.wbfiles | orderBy:'creation_date'" data-ng-if="!file.reference_id">
             <td>{{file.name}}</td>
+            <td data-ng-if="tip.enable_whistleblower_download">
+              <button class="btn btn-sm btn-primary tip-action-download-file"
+                      data-ng-disabled="file.error"
+                      data-uib-tooltip="{{'Download' | translate}}"
+                      data-ng-click="downloadWBFile(file)">
+                <i class="fa-solid fa-download"></i>
+              </button>
+            </td>
             <td>{{file.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
             <td>{{file.type}}</td>
             <td>{{file.size | byteFmt:2}}</td>

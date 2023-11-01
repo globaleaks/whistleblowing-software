@@ -1,6 +1,6 @@
 GL.controller("TipCtrl",
-  ["$scope", "$location", "$filter", "$http", "$interval", "$routeParams", "$uibModal", "Authentication", "RTip", "WBTip", "RTipExport", "RTipDownloadWBFile", "WBTipDownloadFile", "fieldUtilities","RTipViewWBFile",
-  function($scope, $location, $filter, $http, $interval, $routeParams, $uibModal, Authentication, RTip, WBTip, RTipExport, RTipDownloadWBFile, WBTipDownloadFile, fieldUtilities, RTipViewWBFile) {
+  ["$scope", "$location", "$filter", "$http", "$interval", "$routeParams", "$uibModal", "Authentication", "RTip", "WBTip", "RTipExport", "RTipDownloadWBFile", "WBTipDownloadWBFile", "fieldUtilities","RTipViewWBFile",
+  function($scope, $location, $filter, $http, $interval, $routeParams, $uibModal, Authentication, RTip, WBTip, RTipExport, RTipDownloadWBFile, WBTipDownloadWBFile, fieldUtilities, RTipViewWBFile) {
     $scope.fieldUtilities = fieldUtilities;
     $scope.tip_id = $routeParams.tip_id;
 
@@ -283,10 +283,16 @@ GL.controller("TipCtrl",
         $scope.ctx = "wbtip";
         $scope.preprocessTipAnswers(tip);
 
+        $scope.downloadWBFile = WBTipDownloadWBFile;
+
         $scope.tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText($scope.tip.status, $scope.tip.substatus, $scope.submission_statuses);
 
         $scope.downloadRFile = function(file) {
-          WBTipDownloadFile(file);
+          WBTipDownloadRFile(file);
+        };
+
+        $scope.downloadWBFile = function(file) {
+          WBTipDownloadWBFile(file);
         };
 
         // FIXME: remove this variable that is now needed only to map wb_identity_field
