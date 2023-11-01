@@ -37,7 +37,7 @@ class StaticFileHandler(BaseHandler):
                                    b"frame-ancestors 'none';"
                                    b"frame-src 'self';"
                                    b"img-src 'self';"
-                                   b"media-src 'self' blob:;"
+                                   b"media-src 'self';"
                                    b"script-src 'self' 'sha256-l4srTx31TC+tE2K4jVVCnC9XfHivkiSs/v+DPWccDDM=';"
                                    b"style-src 'self' 'sha256-pru43GdcNLwb4MwzOriCI9/9cKBzE5xeoLWHlKai1As=';")
 

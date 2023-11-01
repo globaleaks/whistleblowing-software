@@ -24,9 +24,7 @@
     <div class="row">
       <div class="col-md-12">
         <input class="inputelem" data-ng-attr-id="customFile-{{fileinput}}" data-ng-model="_fakemodel[fileinput]" data-ng-required="field && field.required && !uploads[fileinput].files.length" name="input-{{entryIndex}}" type="file" />
-        <div id="{{fieldEntry}}-audio" class="audio-player-wrapper" data-ng-disabled="isRecording || seconds < field.attrs.min_len">
-          <audio data-ng-src="{{audioPlayer}}" data-ng-if="audioPlayer" controls class="audio-player"></audio>
-        </div>
+        <iframe data-ng-if="audioPlayer" id="{{fieldEntry}}-audio" class="audio-player-iframe" frameborder="0" scrolling="no" sandbox="allow-downloads allow-scripts" src="/viewer/index.html"></iframe>
       </div>
     </div>
     <div class="row" data-ng-show="seconds > 0">

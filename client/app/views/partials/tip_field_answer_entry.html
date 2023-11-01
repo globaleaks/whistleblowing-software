@@ -11,7 +11,7 @@
   <span data-ng-switch-when="voice">
     <i class="fa-solid fa-file-audio" data-ng-if="Authentication.session.role === 'whistleblower'"></i>
     <div class="audio-player-wrapper" data-ng-if="Authentication.session.role === 'receiver'" data-ng-init="loadAudioFile(field.id)">
-      <audio data-ng-src="{{audioFiles[field.id]}}" controls class="audio-player"></audio>
+      <iframe id="{{'audio-file-' + field.id}}" class="audio-player-iframe" frameborder="0" scrolling="no" sandbox="allow-downloads allow-scripts" src="/viewer/index.html"></iframe>
     </div>
   </span>
 

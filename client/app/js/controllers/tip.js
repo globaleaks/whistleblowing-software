@@ -26,7 +26,23 @@ GL.controller("TipCtrl",
 
           xhr.onload = function() {
             if (this.status === 200) {
-              $scope.audioFiles[reference_id] = URL.createObjectURL(this.response);
+              $scope.audioFiles[reference_id] = this.response;
+
+              window.addEventListener("message", function(message) {
+                const iframe = document.getElementById("audio-file-" + reference_id);
+
+                if (message.source !== iframe.contentWindow) {
+                  return;
+                }
+
+                var data = {
+                  tag: 'audio',
+                  blob: $scope.audioFiles[reference_id]
+                };
+
+                iframe.contentWindow.postMessage(data, "*");
+              }, {once: true});
+
               $scope.$apply();
             }
           };

@@ -71,7 +71,25 @@ controller("AudioUploadCtrl", ["$scope", "flowFactory", "Utils", "mediaProcessor
 
     if ($scope.seconds >= parseInt($scope.field.attrs.min_len.value) && $scope.seconds <= parseInt($scope.field.attrs.max_len.value)) {
       flow.files.push(file);
-      $scope.audioPlayer = URL.createObjectURL($scope.recording_blob);
+
+      window.addEventListener("message", function(message) {
+        const iframe = document.getElementById($scope.fieldEntry + "-audio");
+
+        if (message.source !== iframe.contentWindow) {
+           console.log(message.source);
+          return;
+        }
+
+        var data = {
+          tag: 'audio',
+          blob: $scope.recording_blob
+        };
+
+        iframe.contentWindow.postMessage(data, "*");
+      }, {once: true});
+
+      $scope.audioPlayer = true;
+
       $scope.uploads[$scope.fileinput] = flow;
 
       if ($scope.entry) {
@@ -179,6 +197,8 @@ controller("AudioUploadCtrl", ["$scope", "flowFactory", "Utils", "mediaProcessor
   };
 
   $scope.deleteRecording = function () {
+    $scope.audioPlayer = false;
+
     if (flow) {
       flow.cancel();
     }

@@ -966,15 +966,8 @@ html[dir="ltr"] #Receipt {
   margin: 1em 0;
 }
 
-
-.audio-box {
-  position: relative;
-  border: 1px solid #f5f7fa;
-  background-color: #f5f7fa;
-  border-radius: 5px;
-  padding: 0.5em;
-  display: flex;
-  flex-direction: column;
+.audio-player-iframe {
+  height: 4em;
 }
 
 .audio-player {

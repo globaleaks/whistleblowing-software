@@ -12,7 +12,9 @@ var pageNum = 1;
 var pageCount = 0;
 
 function receiveMessage(evt) {
+  console.log(evt.data.blob);
   var url = URL.createObjectURL(evt.data.blob);
+  console.log(url);
   if (evt.data.tag === "pdf") {
     pdfViewer.style.display = "block";
     mediaViewer.style.display = "none";
@@ -22,7 +24,7 @@ function receiveMessage(evt) {
     mediaViewer.style.display = "block";
     if (evt.data.tag === "audio") {
       mediaViewer.innerHTML =
-        "<audio id=\"viewer\" src=\"' + url + '\" controls /></audio>";
+        "<audio id=\"viewer\" src=\"" + url + "\" controls /></audio>";
     } else if (evt.data.tag === "image") {
       mediaViewer.innerHTML =
         "<img id=\"viewer\" src=\"" + url + "\" />";
