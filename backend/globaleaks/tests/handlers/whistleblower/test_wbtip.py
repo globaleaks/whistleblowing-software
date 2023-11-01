@@ -2,6 +2,7 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.whistleblower import wbtip
+from globaleaks.jobs.delivery import Delivery
 from globaleaks.tests import helpers
 
 
@@ -42,6 +43,23 @@ class TestWBTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
             handler = self.request(body, role='whistleblower', user_id=wbtip_desc['id'])
 
             yield handler.post()
+
+
+class TestWhistleblowerFileDownload(helpers.TestHandlerWithPopulatedDB):
+    _handler = wbtip.WhistleblowerFileDownload
+
+    @inlineCallbacks
+    def test_get(self):
+        yield self.perform_minimal_submission_actions()
+        yield Delivery().run()
+
+        wbtip_descs = yield self.get_wbtips()
+        for wbtip_desc in wbtip_descs:
+            wbfile_ids = yield self.get_ifiles_by_wbtip_id(wbtip_desc['id'])
+            for wbfile_id in wbfile_ids:
+                handler = self.request(role='whistleblower', user_id=wbtip_desc['id'])
+                yield handler.get(wbfile_id)
+                self.assertNotEqual(handler.request.getResponseBody(), '')
 
 
 class WBTipIdentityHandler(helpers.TestHandlerWithPopulatedDB):

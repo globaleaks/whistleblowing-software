@@ -164,6 +164,47 @@ class WBTipCommentCollection(BaseHandler):
         return create_comment(self.request.tid, self.session.user_id, request['content'])
 
 
+class WhistleblowerFileDownload(BaseHandler):
+    """
+    This handler exposes wbfiles for download.
+    """
+    check_roles = 'whistleblower'
+    handler_exec_time_threshold = 3600
+
+    @transact
+    def download_wbfile(self, session, tid, user_id, file_id):
+        ifile, itip = db_get(session,
+                             (models.InternalFile,
+                              models.InternalTip),
+                             (models.InternalFile.id == file_id,
+                              models.InternalFile.internaltip_id == models.InternalTip.id,
+                              models.InternalTip.id == user_id))
+        log.debug("Download of file %s by whistleblower %s" % (ifile.id, user_id))
+
+        return ifile.name, ifile.id, itip.crypto_tip_prv_key
+
+    @inlineCallbacks
+    def get(self, wbfile_id):
+        name, ifile_id, tip_prv_key = yield self.download_wbfile(self.request.tid, self.session.user_id, wbfile_id)
+
+        filelocation = os.path.join(self.state.settings.attachments_path, ifile_id)
+
+        directory_traversal_check(self.state.settings.attachments_path, filelocation)
+        self.check_file_presence(filelocation)
+
+        if tip_prv_key:
+            tip_prv_key = GCE.asymmetric_decrypt(self.session.cc, base64.b64decode(tip_prv_key))
+            name = GCE.asymmetric_decrypt(tip_prv_key, base64.b64decode(name.encode())).decode()
+
+            try:
+                # First attempt
+                filelocation = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
+            except:
+                pass
+
+        yield self.write_file_as_download(name, filelocation)
+
+
 class ReceiverFileDownload(BaseHandler):
     check_roles = 'whistleblower'
     handler_exec_time_threshold = 3600

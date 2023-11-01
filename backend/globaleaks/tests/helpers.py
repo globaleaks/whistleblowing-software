@@ -752,6 +752,11 @@ class TestGL(unittest.TestCase):
                                      .filter(models.WhistleblowerFile.receivertip_id == rtip_id)]
 
     @transact
+    def get_ifiles_by_wbtip_id(self, session, wbtip_id):
+        return [x[0] for x in session.query(models.InternalFile.id) \
+                                     .filter(models.InternalFile.internaltip_id == wbtip_id)]
+
+    @transact
     def get_wbtips(self, session):
         ret = []
         for i in session.query(models.InternalTip) \

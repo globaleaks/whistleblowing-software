@@ -19,7 +19,13 @@ GL.controller("TipCtrl",
         if ($scope.tip.wbfiles[i].reference_id === reference_id) {
           var id = $scope.tip.wbfiles[i].id;
           var xhr = new XMLHttpRequest();
-          xhr.open("GET", "api/recipient/wbfiles/" + id, true);
+
+          if ($scope.Authentication.session.role === "whistleblower") {
+            xhr.open("GET", "api/whistleblower/wbfiles/" + id, true);
+          } else {
+            xhr.open("GET", "api/recipient/wbfiles/" + id, true);
+          }
+
           xhr.setRequestHeader("x-session", $scope.Authentication.session.id);
           xhr.overrideMimeType("audio/webm");
           xhr.responseType = "blob";
