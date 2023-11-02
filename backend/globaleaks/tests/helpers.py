@@ -361,7 +361,6 @@ class MockDict:
             'basic_auth_password': '',
             'custom_support_url': '',
             'pgp': False,
-            'viewer': False,
             'user_privacy_policy_text': '',
             'user_privacy_policy_url': ''
         }

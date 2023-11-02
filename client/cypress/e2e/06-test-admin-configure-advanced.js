@@ -7,7 +7,6 @@ describe("admin configure advanced settings", () => {
     cy.get("[data-ng-model='resources.node.disable_privacy_badge']").click();
     cy.get("[data-ng-model='resources.node.enable_custodian']").click();
 
-    cy.get("[data-ng-model='resources.node.viewer']").click();
     cy.get("[data-ng-click='updateNode()']").last().click();
     cy.waitForLoader();
   });

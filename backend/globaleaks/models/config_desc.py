@@ -111,7 +111,6 @@ ConfigDescriptor = {
     'unread_reminder_time': Int(default=7),  # Days
     'version': Unicode(default=str(__version__)),
     'version_db': Int(default=DATABASE_VERSION),
-    'viewer': Bool(default=True),
     'wizard_done': Bool(default=False),
     'uuid': Unicode(default=uuid4)
 }
@@ -180,7 +179,6 @@ ConfigFilters = {
         'unread_reminder_time',
         'version',
         'version_db',
-        'viewer',
         'wizard_done',
         'uuid'
     ],
@@ -232,7 +230,6 @@ ConfigFilters = {
         'two_factor',
         'version',
         'version_db',
-        'viewer',
         'wizard_done',
         'uuid',
         'unread_reminder_time'
@@ -310,7 +307,6 @@ ConfigFilters = {
         'signup_tos2_enable',
         'simplified_login',
         'subdomain',
-        'viewer',
         'wizard_done',
     ],
     'tenant': [
