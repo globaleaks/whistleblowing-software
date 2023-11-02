@@ -483,7 +483,7 @@ msgid "Hide"
 msgstr "Göm"
 
 msgid "Unhide"
-msgstr ""
+msgstr "Göm ej längre"
 
 msgid "Redact"
 msgstr "Radera"
@@ -519,13 +519,13 @@ msgid "Voice"
 msgstr "Voice"
 
 msgid "Everyone"
-msgstr ""
+msgstr "Alla"
 
 msgid "Recipients only"
-msgstr ""
+msgstr "Endast mottagare"
 
-msgid "Only me"
-msgstr ""
+msgid "Me only"
+msgstr "Bara jag"
 
 msgid "File a report"
 msgstr "Lämna en rapport"
@@ -1012,7 +1012,7 @@ msgid "Enable search engines indexing"
 msgstr "Aktivera sökmotorindexering"
 
 msgid "Show channels in alphabetical order"
-msgstr ""
+msgstr "Visa kanaler i alfabetisk ordning"
 
 msgid "Size limit for file attachments"
 msgstr "Storleksgräns för bifogade filer"
@@ -1363,7 +1363,7 @@ msgid "Size:"
 msgstr "Storlek:"
 
 msgid "Access date"
-msgstr ""
+msgstr "Åtkomstdatum"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Mottagarna har bett dig fylla i ytterligare ett frågeformulär."
@@ -1664,7 +1664,7 @@ msgid "What is the outcome you want to achieve with our support?"
 msgstr "Vad är resultatet du vill uppnå med din rapport?"
 
 msgid "Would you like to tell us who you are?"
-msgstr ""
+msgstr "Vill du berätta för oss vem du är?"
 
 msgid "First name"
 msgstr "Förnamn"
@@ -1680,6 +1680,9 @@ msgstr "Jag föredrar att bli kontaktad endast via denna plattform"
 
 msgid "Other"
 msgstr "Annat"
+
+msgid "Specify"
+msgstr "Specificera"
 
 msgid "Dear {RecipientName},"
 msgstr "Hej {RecipientName},"

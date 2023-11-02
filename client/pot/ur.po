@@ -513,7 +513,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -1669,6 +1669,9 @@ msgstr "میں صرف اس پلیٹ فارم کے ذریعے رابطہ کرنے
 
 msgid "Other"
 msgstr "دیگر"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "محترم{RecipientName}،"

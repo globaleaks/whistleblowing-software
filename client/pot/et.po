@@ -502,7 +502,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -1658,6 +1658,9 @@ msgstr "Eelistan, et minuga võetakse ühendust ainult selle platvormi kaudu"
 
 msgid "Other"
 msgstr "Muu"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Austatud {RecipientName}!"

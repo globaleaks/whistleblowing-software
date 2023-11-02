@@ -516,7 +516,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -1672,6 +1672,9 @@ msgstr "Tôi muốn được liên lạc qua nền này mà thôi"
 
 msgid "Other"
 msgstr "Khác"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Kính gửi {RecipientName}"

@@ -514,8 +514,8 @@ msgstr "Všichni"
 msgid "Recipients only"
 msgstr "Pouze příjemci"
 
-msgid "Only me"
-msgstr "Pouze já"
+msgid "Me only"
+msgstr ""
 
 msgid "File a report"
 msgstr "Podat oznámení"
@@ -1670,6 +1670,9 @@ msgstr "Preferuji být kontaktován pouze prostřednictvím této platformy"
 
 msgid "Other"
 msgstr "Další"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Vážený/á {RecipientName},"

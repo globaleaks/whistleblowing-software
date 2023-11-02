@@ -517,7 +517,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -1673,6 +1673,9 @@ msgstr "Prefer să fiu contactat doar prin intermediul acestei platforme"
 
 msgid "Other"
 msgstr "Alta"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Bună ziua, {RecipientName},"

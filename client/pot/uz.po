@@ -503,7 +503,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -1659,6 +1659,9 @@ msgstr "Men bilan faqat shu platformada bogʻlanilsin"
 
 msgid "Other"
 msgstr "Boshqa"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Hurmatli {RecipientName},"

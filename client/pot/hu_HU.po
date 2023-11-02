@@ -519,7 +519,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -1675,6 +1675,9 @@ msgstr "Kizárólag ezen a platformon keresztüli kapcsolatfelvételt preferálo
 
 msgid "Other"
 msgstr "Egyéb"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Kedves {RecipientName},"

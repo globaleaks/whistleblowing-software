@@ -503,7 +503,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -1659,6 +1659,9 @@ msgstr "Jeg foretrekker å bli kontaktet kun gjennom denne plattformen"
 
 msgid "Other"
 msgstr "Annet"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Kjære {RecipientName},"

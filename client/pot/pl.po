@@ -521,7 +521,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -1677,6 +1677,9 @@ msgstr "Wolę, żeby kontaktowano się ze mną tylko przez tę platformę."
 
 msgid "Other"
 msgstr "Inne"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Szanowny(a) {RecipientName},"

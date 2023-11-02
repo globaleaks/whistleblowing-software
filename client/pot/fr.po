@@ -539,7 +539,7 @@ msgstr "Tout le monde"
 msgid "Recipients only"
 msgstr "Destinataires seulement"
 
-msgid "Only me"
+msgid "Me only"
 msgstr "Moi seulement"
 
 msgid "File a report"
@@ -1695,6 +1695,9 @@ msgstr "Je préfère n’être contacté que par la plateforme"
 
 msgid "Other"
 msgstr "Autre"
+
+msgid "Specify"
+msgstr "Spécifier"
 
 msgid "Dear {RecipientName},"
 msgstr "Cher, chère {RecipientName},"

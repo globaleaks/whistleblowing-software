@@ -510,7 +510,7 @@ msgstr "Gjithkush"
 msgid "Recipients only"
 msgstr "Vetëm marrësit"
 
-msgid "Only me"
+msgid "Me only"
 msgstr "Vetëm unë"
 
 msgid "File a report"
@@ -1666,6 +1666,9 @@ msgstr "Parapëlqej të kontaktohem vetëm përmes kësaj platforme"
 
 msgid "Other"
 msgstr "Tjetër"
+
+msgid "Specify"
+msgstr "Specifikojeni"
 
 msgid "Dear {RecipientName},"
 msgstr "I dashur {RecipientName},"

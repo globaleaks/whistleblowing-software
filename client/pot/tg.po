@@ -509,7 +509,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -1665,6 +1665,9 @@ msgstr "Ман тамосро танҳо тавассути ин барнома 
 
 msgid "Other"
 msgstr "Дигар"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Муҳтарам {RecipientName},"

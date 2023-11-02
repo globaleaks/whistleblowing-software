@@ -520,8 +520,8 @@ msgstr "Tots"
 msgid "Recipients only"
 msgstr "Solament receptors"
 
-msgid "Only me"
-msgstr "Solament jo"
+msgid "Me only"
+msgstr "Únicament jo"
 
 msgid "File a report"
 msgstr "Presentar un informe"
@@ -1676,6 +1676,9 @@ msgstr "Prefereixo que em contactin només mitjançant aquesta plataforma"
 
 msgid "Other"
 msgstr "Altres"
+
+msgid "Specify"
+msgstr "Especifique"
 
 msgid "Dear {RecipientName},"
 msgstr "Benvolgut/uda {RecipientName},"

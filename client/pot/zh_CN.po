@@ -522,7 +522,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -1678,6 +1678,9 @@ msgstr ""
 
 msgid "Other"
 msgstr "其它"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "尊敬的 {RecipientName}："

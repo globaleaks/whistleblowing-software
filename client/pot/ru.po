@@ -531,7 +531,7 @@ msgstr "Всем"
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -1687,6 +1687,9 @@ msgstr "Я предпочитаю, чтобы со мной связывалис
 
 msgid "Other"
 msgstr "Другое"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Дорогой(ая) {RecipientName},"

@@ -528,7 +528,7 @@ msgstr "Herkes"
 msgid "Recipients only"
 msgstr "Yalnızca alıcılar"
 
-msgid "Only me"
+msgid "Me only"
 msgstr "Yalnızca ben"
 
 msgid "File a report"
@@ -1684,6 +1684,9 @@ msgstr "Yalnızca bu platform üzerinden iletişim kurulmasını istiyorum"
 
 msgid "Other"
 msgstr "Diğer"
+
+msgid "Specify"
+msgstr "Belirtin"
 
 msgid "Dear {RecipientName},"
 msgstr "Sayın {RecipientName},"

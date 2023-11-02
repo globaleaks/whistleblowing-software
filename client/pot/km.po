@@ -505,7 +505,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -1661,6 +1661,9 @@ msgstr ""
 
 msgid "Other"
 msgstr "ផ្សេងៗ"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "ជូនចំពោះ {RecipientName},"

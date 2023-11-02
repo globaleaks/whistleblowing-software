@@ -526,7 +526,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -1682,6 +1682,9 @@ msgstr "Saya memilih untuk dihubungi hanya melalui platform ini"
 
 msgid "Other"
 msgstr "Lainnya"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Yang terhormat {RecipientName},"

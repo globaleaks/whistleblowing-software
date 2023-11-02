@@ -519,7 +519,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -1675,6 +1675,9 @@ msgstr "Plataforma honen bitartez bakarrik nahi dut kontaktatzea"
 
 msgid "Other"
 msgstr "Beste bat"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} adeitsua,"

@@ -501,7 +501,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -1657,6 +1657,9 @@ msgstr "მე მირჩევნია დამიკავშირდნ�
 
 msgid "Other"
 msgstr "სხვა"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "ძვირფასო {RecipientName}"

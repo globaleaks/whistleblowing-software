@@ -501,7 +501,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -1657,6 +1657,9 @@ msgstr "Pageidauju, kad su manimi būtų susisiekta tik per šią platformą"
 
 msgid "Other"
 msgstr "Kita"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Gerb. {RecipientName},"

@@ -506,7 +506,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -1662,6 +1662,9 @@ msgstr "އެއްވެސް ކަމަކާއި ގުޅޭގޮތުން އަޅުގަނޑ�
 
 msgid "Other"
 msgstr "އެހެނިހެން"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} އަށް، "

@@ -510,8 +510,8 @@ msgstr "Alle"
 msgid "Recipients only"
 msgstr "Kun modtagere"
 
-msgid "Only me"
-msgstr "Kun mig"
+msgid "Me only"
+msgstr ""
 
 msgid "File a report"
 msgstr "Indsend en rapportering"
@@ -1666,6 +1666,9 @@ msgstr "Jeg foretrækker kun at blive kontaktet via denne platform"
 
 msgid "Other"
 msgstr "Andet"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Kære {RecipientName},"

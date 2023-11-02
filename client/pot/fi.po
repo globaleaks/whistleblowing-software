@@ -482,10 +482,10 @@ msgid "Select your language"
 msgstr "Valitse kielesi"
 
 msgid "Give this user ability to mask information"
-msgstr ""
+msgstr "Anna käyttäjälle mahdollisuus piilottaa tietoja"
 
 msgid "Give this user ability to permanently redact masked information"
-msgstr ""
+msgstr "Anna käyttäjälle mahdollisuus poistaa piilotettuja tietoja pysyvästi"
 
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
@@ -503,16 +503,16 @@ msgid "Accessibility Declaration"
 msgstr "Saavutettavuusseloste"
 
 msgid "Voice"
-msgstr ""
+msgstr "Ääni"
 
 msgid "Everyone"
-msgstr ""
+msgstr "Kaikki"
 
 msgid "Recipients only"
-msgstr ""
+msgstr "Vain vastaanottajat"
 
-msgid "Only me"
-msgstr ""
+msgid "Me only"
+msgstr "Vain minä"
 
 msgid "File a report"
 msgstr "Jätä vihje"
@@ -1155,10 +1155,10 @@ msgid "Allow the recipient to postpone the report expiration date"
 msgstr "Salli vastaanottajan lykätä raportin vanhentumispäivää"
 
 msgid "Give this user ability to grant user access to reports"
-msgstr ""
+msgstr "Anna käyttäjälle mahdollisuus myöntää käyttöoikeuksia ilmoituksiin"
 
 msgid "Give this user ability to transfer reports to other users"
-msgstr ""
+msgstr "Anna käyttäjälle mahdollisuus siirtää ilmoituksia toisille käyttäjille"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Anna käyttäjälle ylläpito-oikeudet seuraaviin toimintoihin:"
@@ -1267,7 +1267,7 @@ msgid "By confirming, you will set a reminder on date:"
 msgstr "Vahvistamalla asetat muistutuksen päivämäärään:"
 
 msgid "Transfer access"
-msgstr ""
+msgstr "Siirrä käyttöoikeus"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "Tämä on demoalusta, älä käytä sitä todellisiin lähetyksiin."
@@ -1651,7 +1651,7 @@ msgid "What is the outcome you want to achieve with our support?"
 msgstr "Millaiseen lopputulokseen haluat päästä tuellamme?"
 
 msgid "Would you like to tell us who you are?"
-msgstr ""
+msgstr "Haluaisitko kertoa meille, kuka olet?"
 
 msgid "First name"
 msgstr "Etunimi"
@@ -1667,6 +1667,9 @@ msgstr "Haluan, että minuun otetaan yhteyttä vain tämän alustan kautta"
 
 msgid "Other"
 msgstr "Muut"
+
+msgid "Specify"
+msgstr "Lisätiedot"
 
 msgid "Dear {RecipientName},"
 msgstr "Hyvä {RecipientName},"

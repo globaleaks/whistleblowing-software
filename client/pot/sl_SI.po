@@ -507,8 +507,8 @@ msgstr "Vsi"
 msgid "Recipients only"
 msgstr "Samo prejemniki"
 
-msgid "Only me"
-msgstr "Samo jaz"
+msgid "Me only"
+msgstr ""
 
 msgid "File a report"
 msgstr "Oddaj prijavo"
@@ -1663,6 +1663,9 @@ msgstr "Želim, da me kontaktirate samo preko te platforme"
 
 msgid "Other"
 msgstr "Drugo"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Spoštovani {RecipientName},"
