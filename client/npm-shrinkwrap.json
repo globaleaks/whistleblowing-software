@@ -6,7 +6,7 @@
   "packages": {
     "": {
       "name": "GlobaLeaks",
-      "version": "4.13.15",
+      "version": "4.13.16",
       "license": "AGPL-3.0",
       "dependencies": {
         "@flowjs/flow.js": "2.14.1",
@@ -56,9 +56,9 @@
       "devDependencies": {
         "@babel/cli": "7.23.0",
         "@babel/core": "7.23.2",
-        "@cypress/code-coverage": "3.12.6",
+        "@cypress/code-coverage": "3.12.7",
         "@lodder/grunt-postcss": "3.1.1",
-        "cypress": "13.3.3",
+        "cypress": "13.4.0",
         "eslint": "8.52.0",
         "gettext-parser": "7.0.1",
         "grunt": "1.6.1",
@@ -82,7 +82,7 @@
         "stylelint": "15.11.0",
         "stylelint-config-standard": "34.0.0",
         "superagent": "8.1.2",
-        "terser": "5.22.0"
+        "terser": "5.24.0"
       }
     },
     "node_modules/@aashutoshrathi/word-wrap": {
@@ -2221,9 +2221,9 @@
       }
     },
     "node_modules/@cypress/code-coverage": {
-      "version": "3.12.6",
-      "resolved": "https://registry.npmjs.org/@cypress/code-coverage/-/code-coverage-3.12.6.tgz",
-      "integrity": "sha512-QeOB54dkxee8LKdbK9NqMinlMtzy60K2DexSvx4XZdrU52gut9Ukc7sUvRe44gK1yJFYno977Kx9miNIeYWVtA==",
+      "version": "3.12.7",
+      "resolved": "https://registry.npmjs.org/@cypress/code-coverage/-/code-coverage-3.12.7.tgz",
+      "integrity": "sha512-gVC92gDM1bT5EtF5eKLlJ4cJSv7+JdgEpDu35pNuHdBJGcFk8A+iaFoa23y/RjBLzYdEVm9yCkf8GNnJNgW9jQ==",
       "dev": true,
       "dependencies": {
         "@cypress/webpack-preprocessor": "^6.0.0",
@@ -5366,9 +5366,9 @@
       }
     },
     "node_modules/cypress": {
-      "version": "13.3.3",
-      "resolved": "https://registry.npmjs.org/cypress/-/cypress-13.3.3.tgz",
-      "integrity": "sha512-mbdkojHhKB1xbrj7CrKWHi22uFx9P9vQFiR0sYDZZoK99OMp9/ZYN55TO5pjbXmV7xvCJ4JwBoADXjOJK8aCJw==",
+      "version": "13.4.0",
+      "resolved": "https://registry.npmjs.org/cypress/-/cypress-13.4.0.tgz",
+      "integrity": "sha512-KeWNC9xSHG/ewZURVbaQsBQg2mOKw4XhjJZFKjWbEjgZCdxpPXLpJnfq5Jns1Gvnjp6AlnIfpZfWFlDgVKXdWQ==",
       "dev": true,
       "hasInstallScript": true,
       "dependencies": {
@@ -13632,9 +13632,9 @@
       }
     },
     "node_modules/terser": {
-      "version": "5.22.0",
-      "resolved": "https://registry.npmjs.org/terser/-/terser-5.22.0.tgz",
-      "integrity": "sha512-hHZVLgRA2z4NWcN6aS5rQDc+7Dcy58HOf2zbYwmFcQ+ua3h6eEFf5lIDKTzbWwlazPyOZsFQO8V80/IjVNExEw==",
+      "version": "5.24.0",
+      "resolved": "https://registry.npmjs.org/terser/-/terser-5.24.0.tgz",
+      "integrity": "sha512-ZpGR4Hy3+wBEzVEnHvstMvqpD/nABNelQn/z2r0fjVWGQsN3bpOLzQlqDxmb4CDZnXq5lpjnQ+mHQLAOpfM5iw==",
       "dev": true,
       "dependencies": {
         "@jridgewell/source-map": "^0.3.3",
