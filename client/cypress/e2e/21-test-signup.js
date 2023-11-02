@@ -7,6 +7,7 @@ describe("Admin Enable Signup", function() {
     cy.contains("a", "Options").should('be.visible').click();
     cy.get('input[data-ng-model="resources.node.rootdomain"]').type("domain.tld");
     cy.get('input[data-ng-model="resources.node.enable_signup"]').click();
+    cy.get('select[data-ng-model="resources.node.mode"]').select("DEMO");
     cy.takeScreenshot("admin/signup_configuration");
     cy.get('i.fa-solid.fa-check').click();
 
