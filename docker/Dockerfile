@@ -1,7 +1,7 @@
 FROM debian:12-slim
 
 RUN apt-get update -q && \
-    apt-get install -y wget && \
+    apt-get install -y wget lsb-release && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
