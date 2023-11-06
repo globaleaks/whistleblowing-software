@@ -29,7 +29,7 @@ from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import get_expiration, datetime_now, datetime_null, datetime_never
 
 
-def db_tip_grant_notification(session, user):
+def db_notify_grant_access(session, user):
     """
     Transaction for the creation of notifications related to grant of access to report
     :param session: An ORM session
@@ -73,7 +73,7 @@ def db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, receiver_id)
                                                         models.ReceiverTip.internaltip_id == itip.id).one_or_none()
 
     if existing:
-        return False
+        return
 
     new_receiver = db_get(session,
                           models.User,
@@ -82,6 +82,7 @@ def db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, receiver_id)
     if itip.crypto_tip_pub_key and not new_receiver.crypto_pub_key:
         # Access to encrypted submissions could be granted only if the recipient has performed first login
         return
+
     _tip_key = b''
     if itip.crypto_tip_pub_key:
         _tip_key = GCE.asymmetric_decrypt(user_cc, base64.b64decode(rtip.crypto_tip_prv_key))
@@ -94,7 +95,7 @@ def db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, receiver_id)
         new_rtip.deprecated_crypto_files_prv_key = base64.b64encode(GCE.asymmetric_encrypt(new_receiver.crypto_pub_key, _files_key))
 
     wbfiles = session.query(models.WhistleblowerFile) \
-                    .filter(models.WhistleblowerFile.receivertip_id == rtip.id)
+                     .filter(models.WhistleblowerFile.receivertip_id == rtip.id)
 
     for wbfile in wbfiles:
         rf = models.WhistleblowerFile()
@@ -103,9 +104,7 @@ def db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, receiver_id)
         rf.new = False
         session.add(rf)
 
-    db_tip_grant_notification(session, new_receiver)
-
-    return True
+    return new_receiver, new_rtip
 
 
 def db_revoke_tip_access(session, tid, user_id, itip, receiver_id):
@@ -136,7 +135,9 @@ def grant_tip_access(session, tid, user_id, user_cc, itip_id, receiver_id):
     if user_id == receiver_id or not user.can_grant_access_to_reports:
         raise errors.ForbiddenOperation
 
-    if db_grant_tip_access(session, tid, user, user_cc, itip, rtip, receiver_id):
+    new_receiver, _ = db_grant_tip_access(session, tid, user, user_cc, itip, rtip, receiver_id)
+    if new_receiver:
+        db_notify_grant_access(session, new_receiver)
         db_log(session, tid=tid, type='grant_access', user_id=user_id, object_id=itip.id)
 
 
@@ -161,14 +162,11 @@ def transfer_tip_access(session, tid, user_id, user_cc, itip_id, receiver_id):
     if user_id == receiver_id or not user.can_transfer_access_to_reports:
         raise errors.ForbiddenOperation
 
-    if not db_grant_tip_access(session, tid, user, user_cc, itip, rtip, receiver_id):
-        raise errors.ForbiddenOperation
-
-    if not db_revoke_tip_access(session, tid, user, itip, user_id):
-        raise errors.ForbiddenOperation
-
-    db_log(session, tid=tid, type='transfer_access', user_id=user_id, object_id=itip.id, data=log_data)
-
+    new_receiver, _ = db_grant_tip_access(session, tid, user, user_cc, itip, rtip, receiver_id)
+    if new_receiver:
+        db_revoke_tip_access(session, tid, user, itip, user_id)
+        db_notify_grant_access(session, new_receiver)
+        db_log(session, tid=tid, type='transfer_access', user_id=user_id, object_id=itip.id, data=log_data)
 
 def db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id):
     """
