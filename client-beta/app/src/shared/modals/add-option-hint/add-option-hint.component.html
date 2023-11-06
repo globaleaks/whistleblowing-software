@@ -1,0 +1,30 @@
+<div class="modal-header">
+  <div class="modal-title">{{ 'Hint' | translate }}</div>
+  <button type="button" class="close btn" (click)="cancel()" [attr.aria-label]="'Close' | translate">
+    <i class="fa-solid fa-times"></i>
+  </button>
+</div>
+<div class="modal-body">
+  <div>
+    <span>{{ 'Hint' | translate }}</span>
+    <input id="hint1" class="form-control" [(ngModel)]="arg.hint1" type="text" />
+  </div>
+  <div>
+    <span>{{ 'Text shown after the user has selected the option.' | translate }}</span>
+    <input id="hint2" class="form-control" [(ngModel)]="arg.hint2" type="text" />
+  </div>
+</div>
+<div class="modal-footer">
+  <button id="modal-action-ok" class="btn btn-primary" (click)="confirm()">
+    <i class="fa-solid fa-check"></i>
+    <span>{{ 'Confirm' | translate }}</span>
+  </button>
+  <button id="modal-action-reset" class="btn btn-danger" (click)="arg.hint1 = ''; arg.hint2 = '';cancel()">
+    <i class="fa-solid fa-check"></i>
+    <span>{{ 'Reset' | translate }}</span>
+  </button>
+  <button id="modal-action-cancel" class="btn btn-outline-secondary" (click)="cancel()">
+    <i class="fa-solid fa-times"></i>
+    <span>{{ 'Cancel' | translate }}</span>
+  </button>
+</div>

@@ -1,0 +1,9 @@
+<div class="ngb-datepicker-container-inner">
+    <ngb-datepicker #dp class="bg-white" (dateSelect)="onDateSelection($event)" [displayMonths]="1" [dayTemplate]="t" outsideDays="hidden"></ngb-datepicker>
+    <ng-template #t let-date let-focused="focused">
+        <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)" [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date" (mouseleave)="hoveredDate = null">
+            {{ date.day }}
+        </span>
+    </ng-template>
+</div>
+<button class="btn btn-danger position-absolute bottom-0 start-0 m-2" (click)="resetDatepicker()">Reset</button>

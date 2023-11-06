@@ -1,0 +1,51 @@
+<div *ngIf="tipService.tip" id="TipPageFilesInfoBox" class="card card-default" [attr.aria-expanded]="collapsed">
+    <div class="card-header clearfix" (click)="collapsed = !collapsed; $event.stopPropagation();">
+        <span>{{ 'Attachments' | translate }}</span>
+        <span class="float-end">
+            <i *ngIf="!collapsed" class="fa-solid fa-chevron-up" data-toggle="tooltip" [title]="'Collapse' | translate"></i>
+            <i *ngIf="collapsed" class="fa-solid fa-chevron-down" data-toggle="tooltip" [title]="'Expand' | translate"></i>
+        </span>
+    </div>
+    <div class="card-body" *ngIf="!collapsed">
+        <div *ngIf="tipService.tip.rfiles && tipService.tip.wbfiles.length" class="table-responsive">
+            <table class="table table-striped" id="fileList">
+                <thead>
+                <tr>
+                    <th>{{ 'Filename' | translate }}</th>
+                    <th *ngIf="appDataService.public.node.viewer">{{ 'View' | translate }}</th>
+                    <th>{{ 'Download' | translate }}</th>
+                    <th>{{ 'Upload date' | translate }}</th>
+                    <th>{{ 'Type' | translate }}</th>
+                    <th>{{ 'File size' | translate }}</th>
+                </tr>
+                </thead>
+                <tbody id="fileListBody">
+                <tr id="file-{{index}}" *ngFor="let file of tipService.tip.wbfiles | orderBy:'creation_date' as index" [ngClass]="{ 'view-supported': supportedViewTypes.includes(file.type) }">
+                    <ng-container *ngIf="!file.reference_id">
+                        <td>{{ file.name }}</td>
+                        <td *ngIf="appDataService.public.node.viewer">
+                            <button class="btn btn-sm btn-primary tip-action-views-file" [disabled]="!supportedViewTypes.includes(file.type)" [ngClass]="{ 'btn-secondary': !supportedViewTypes.includes(file.type) }" data-toggle="tooltip" [title]="'View' | translate" (click)="viewRFile(file)">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn-primary tip-action-download-file" data-toggle="tooltip" [title]="'Download' | translate" (click)="downloadRFile(file)">
+                                <i class="fa-solid fa-download"></i>
+                            </button>
+                        </td>
+                        <td>{{ file.creation_date | date:'dd-MM-yyyy HH:mm' }}</td>
+                        <td>{{ file.type }}</td>
+                        <td>{{ file.size | byteFmt:2 }}</td>
+                    </ng-container>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="tipService.tip.context && authenticationService.session.role === 'receiver' && !tipService.tip.context.enable_attachments" class="form-group">
+            <label class="inline-checkbox">
+                <input [(ngModel)]="tipService.tip.enable_attachments" (ngModelChange)="tipService.operation('api/recipient/rtips/'+tipService.tip.id,'set', {'key': 'enable_attachments', 'value': tipService.tip.enable_attachments})" type="checkbox" />
+                <span>{{ 'Allow the whistleblower to add attachments' | translate }}</span>
+            </label>
+        </div>
+    </div>
+</div>
