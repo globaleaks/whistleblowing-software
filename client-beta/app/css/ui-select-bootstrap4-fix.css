@@ -1,0 +1,21 @@
+.ui-select-toggle.btn {
+  border: 1px solid #377abc;
+}
+
+.ui-select-choices.dropdown-menu {
+  display: block;
+}
+
+.ui-select-match-text {
+  max-height: 1rem;
+}
+
+.ui-select-match.btn-default-focus {
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+  outline: 0;
+}
+
+.ui-select-match.btn-default-focus > .ui-select-toggle {
+  border-color: #5797d5;
+}

@@ -1,0 +1,21 @@
+Dear {RecipientName},
+
+Your whistleblowing platform is now accessible at:
+{Url}
+
+To log in, visit:
+{LoginUrl}
+
+Users' credentials:
+{AdminCredentials}
+{RecipientCredentials}
+
+For the user documentation, visit:
+{DocumentationUrl}
+
+The platform will be automatically deleted on:
+{ExpirationDate}
+
+Kind regards,
+
+{NodeName}

@@ -1,0 +1,4 @@
+From: {Author}
+Date: {EventTime}
+
+{Content}

@@ -1,0 +1,153 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "Globaleaks": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "app",
+      "prefix": "src",
+      "architect": {
+        "build": {
+          "builder": "@angular-builders/custom-webpack:browser",
+          "options": {
+            "allowedCommonJsDependencies": [
+              "fast-sha256",
+              "qrcode"
+            ],
+            "optimization": {
+              "scripts": true,
+              "styles": {
+                "minify": true,
+                "inlineCritical": false
+              },
+              "fonts": true
+            },
+            "outputPath": "dist",
+            "index": "app/index.html",
+            "main": "app/main.ts",
+            "polyfills": "app/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "assets": [
+              "app/assets"
+            ],
+            "styles": [
+              "app/css/date-picker.css",
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "app/css/main.css",
+              "app/css/ui-select-bootstrap4-fix.css",
+              "app/css/loader.css",
+              "app/css/print.css",
+              "app/css/button.css",
+              "app/css/ng-select.css",
+              "app/css/bootstrap-fixes.css",
+              "node_modules/ng-multiselect-dropdown/themes/ng-multiselect-dropdown.theme.scss",
+              "node_modules/@ng-select/ng-select/themes/default.theme.css",
+
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/@fortawesome/fontawesome-free/css/fontawesome.css",
+
+              "app/assets/lib/webfonts/@fontawesome/fontawesome-all.css",
+              "app/assets/lib/webfonts/@fontsource/fontsource-all.css"
+            ],
+            "scripts": [
+              "node_modules/marked/marked.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "5mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "5mb",
+                  "maximumError": "5mb"
+                }
+              ],
+              "extractLicenses": false
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
+            "e2e": {
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "vendorChunk": true,
+              "customWebpackConfig": {
+                "path": "./cypress/coverage.webpack.ts"
+              }
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "Globaleaks:build:production"
+            },
+            "development": {
+              "browserTarget": "Globaleaks:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "Globaleaks:build"
+          }
+        },
+        "serve-coverage": {
+          "builder": "@angular-builders/custom-webpack:dev-server",
+          "options": {
+            "browserTarget": "Globaleaks:build:e2e",
+            "proxyConfig": "proxy.conf.json"
+          }
+        },
+        "e2e": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "Globaleaks:serve-coverage",
+            "watch": true,
+            "headless": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "Globaleaks:serve-coverage:production"
+            }
+          }
+        },
+        "e2e-ci": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "browser": "electron",
+            "devServerTarget": "Globaleaks:serve-coverage",
+            "headless": true,
+            "watch": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "Globaleaks:serve-coverage:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": false
+  }
+}

@@ -1,0 +1,17 @@
+Dear {RecipientName},
+
+You're receiving this email because a user account has been created for you on the system: {Site}
+
+Username: {Username}
+Activation link: {Url}
+
+Please click on the activation link to proceed with the account activation and to set your user password.
+
+After successful activation you will be able to access the system via the following link: {LoginUrl}
+{AccountRecoveryKeyInstructions}
+
+For the user documentation, visit:
+{DocumentationUrl}
+
+Kind regards,
+{NodeName}

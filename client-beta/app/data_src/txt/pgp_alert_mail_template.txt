@@ -1,0 +1,12 @@
+Dear {RecipientName},
+
+This is an email to inform you that your PGP key is expiring or has already expired.
+
+You should extend its validity and update the key present on the platform, or upload a new key.
+
+{PGPKeyInfo}
+
+Without a valid PGP key, the system won't be able to encrypt data provided to you.
+
+Kind regards,
+{NodeName}

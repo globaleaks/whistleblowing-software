@@ -1,0 +1,8 @@
+Dear {RecipientName},
+
+This is a test email sent out from the platform's administrative interface.
+
+Reception of this email indicates that the server was able to authenticate to and interact with the SMTP mail server.
+
+Kind regards,
+{NodeName}

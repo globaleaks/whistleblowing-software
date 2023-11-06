@@ -1,0 +1,41 @@
+.alert-secondary {
+  background-color: #f0f0f0;
+}
+
+.form-control.is-valid:focus,
+.was-validated .form-control:focus {
+  border-color: #86b7fe !important;
+  box-shadow: 0 0 0 .25rem #0d6efd40 !important;
+}
+
+body .dropdown-visible>div.multiselect-dropdown>div.dropdown-list {
+  display: block !important;
+  margin-top: 0;
+}
+
+body .dropdown-visible>div.multiselect-dropdown>div>span.dropdown-btn {
+  display: none !important;
+}
+
+.ngb-dp-week>.ngb-dp-day>.bg-primary {
+  background-color: #205282 !important;
+}
+
+.multiselect-dropdown>.dropdown-list{
+  min-width: 200px;
+  border-radius: 5px !important;
+}
+
+.ngb-datepicker-container-inner{
+  box-shadow: 0 0 10px #b3b3b3;
+  border-radius: 6px !important;
+  background: white;
+  padding: 5px 5px 53px;
+}
+
+.tenant-badge a.badge.bg-primary:hover,
+.tenant-badge a.badge.bg-primary:active,
+.tenant-badge a.badge.bg-primary:focus {
+  color: #fff !important;
+  background: #66b0ff !important;
+}
