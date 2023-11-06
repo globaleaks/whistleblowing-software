@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-3 col-sm-auto login-form">
+        <form #loginValidator="ngForm" autocomplete="off">
+            <input class="d-none" type="password" name="disable-autocomplete-hack" />
+            <app-simple-login *ngIf="appDataService.public.node.simplified_login" [loginValidator]="loginValidator" [loginData]='loginData'></app-simple-login>
+            <app-default-login *ngIf="!appDataService.public.node.simplified_login" [loginValidator]="loginValidator" [loginData]='loginData'></app-default-login>
+            <br />
+            <div id="LoginErrorAuthenticationFailed" class="alert alert-danger" *ngIf="appDataService.errorCodes.code === 9">
+                <span>{{'Authentication failed'|translate}}</span>
+            </div>
+            <div id="LoginErrorExpired" class="alert alert-danger" *ngIf="appDataService.errorCodes.code === 13">
+                <span>{{'The code is either invalid or expired.'|translate}}</span>
+            </div>
+        </form>
+    </div>
+</div>
