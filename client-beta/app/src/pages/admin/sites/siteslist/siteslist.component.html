@@ -1,0 +1,66 @@
+<form id="tenant-{{index}}" novalidate>
+    <div class="config-item">
+        <div class="editorHeader row" (click)="tenant.id !== 1 && toggleEditing($event)">
+            <div class="col-md-6">
+                <div>
+                    <span class="badge bg-secondary">{{tenant.id}}</span>
+                    <span>{{tenant.name}}</span>
+                </div>
+                <div class="tenant-badge" *ngIf="tenant.active && (tenant.onionservice || tenant.hostname || (tenant.subdomain || appDataService.public.node.rootdomain))">
+                    <a class="badge bg-primary" *ngIf="tenant.onionservice" [href]="'http://' + tenant.onionservice" rel="noreferrer" target="_blank">{{tenant.onionservice}}</a>
+                    <span *ngIf="tenant.subdomain">
+                        <a *ngIf="appDataService.public.node.rootdomain" class="badge bg-primary" [href]="'https://' + tenant.subdomain + '.' + appDataService.public.node.rootdomain" target="_blank">{{ tenant.subdomain }} .{{ appDataService.public.node.rootdomain }}</a>
+                        <a *ngIf="appDataService.public.node.onionservice && tenant.subdomain" class="badge bg-primary" [href]="'http://' + tenant.subdomain + '.' + appDataService.public.node.onionservice" rel="noreferrer" target="_blank">{{ tenant.subdomain }} .{{ appDataService.public.node.onionservice }}</a>
+                    </span>
+                    <a class="badge bg-primary" *ngIf="tenant.hostname" [href]="'https://' + tenant.hostname" rel="noreferrer" target="_blank"> {{ tenant.hostname }} </a>
+                </div>
+            </div>
+            <div class="col-md-6 clearfix" *ngIf="tenant.id !== 1">
+                <span class="float-end">
+                    <span *ngIf="tenant.active" class="btn btn-sm btn-primary" (click)="toggleActivation($event)">{{'Enabled'|translate}} </span>
+                    <span *ngIf="!tenant.active" class="btn btn-sm btn-danger" (click)="toggleActivation($event)">{{'Disabled'|translate}} </span>
+                    <span *ngIf="tenant.active" class="btn btn-sm btn-primary" (click)="configureTenant($event, tenant.id)">{{'Configure'|translate}}
+                    </span>
+                    <button class="btn btn-sm btn-outline-secondary" *ngIf="!editing" (click)="toggleEditing($event)">
+                        <span>{{'Edit'|translate}}</span>
+                    </button>
+                    <button class="btn btn-sm btn-primary" *ngIf="editing" (click)="saveTenant()">
+                        <span>{{'Save'|translate}}</span>
+                    </button>
+                    <button class="btn btn-sm btn-danger" *ngIf="isRemovableTenant()" (click)="deleteTenant($event, tenant)">
+                        <span>{{'Delete'|translate}}</span>
+                    </button>
+                </span>
+            </div>
+        </div>
+        <div *ngIf="editing">
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{'Name'|translate}}</label>
+                        <input name="name" class="form-control" [(ngModel)]="tenant.name" type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>{{'Subdomain'|translate}}</label>
+                        <input name="subdomain" class="form-control" [(ngModel)]="tenant.subdomain" type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>{{'Mode:'|translate}}</label>
+                        <select name="type" class="form-select" [(ngModel)]="tenant.mode" required>
+                            <option value="default" [selected]="tenant.mode === 'default'">DEFAULT</option>
+                            <option value="demo">DEMO</option>
+                            <option value="wbpa">WHISTLEBLOWINGPA</option>
+                            <option value="eat">EAT</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <span>{{'Creation date:'|translate}}</span> {{tenant.creation_date | date:'dd-MM-yyyy'}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

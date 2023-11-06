@@ -1,0 +1,32 @@
+<ng-container *ngIf="this.jobs.slice">
+    <table id="userList" class="table table-condensed table-striped">
+        <thead>
+        <tr>
+            <th></th>
+            <th *ngFor="let t of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">#{{ t }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of getPaginatedData()">
+            <td>{{data.name}}</td>
+            <td *ngFor="let t of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]">
+                <div *ngIf="data.timings[t]">
+                    <div>{{ (data.timings[t][1] - data.timings[t][0]) / 1000 }}s</div>
+                    <div>{{ data.timings[t][0] | date:'HH:mm:ss' }}</div>
+                    <div>{{ data.timings[t][0] | date:'dd-MM-yyyy' }}</div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="text-center" *ngIf="jobs.length > pageSize">
+        <ngb-pagination [(page)]="currentPage" [pageSize]="pageSize" [collectionSize]="jobs.length" [boundaryLinks]="true">
+            <ng-template ngbPaginationPrevious>
+                < {{'Previous' | translate}}</ng-template>
+            <ng-template ngbPaginationNext>{{'Next' | translate}} ></ng-template>
+            <ng-template ngbPaginationFirst>
+                << {{'First' | translate}}</ng-template>
+            <ng-template ngbPaginationLast>{{'Last' | translate}} >></ng-template>
+        </ngb-pagination>
+    </div> <button class="btn btn-sm btn-link" type="button" (click)="exportAuditLog()"> <i class="fa-solid fa-download"></i> Export </button>
+</ng-container>

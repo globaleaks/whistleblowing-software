@@ -1,0 +1,26 @@
+<div class="form-group">
+    <form name="adminNetForm" #adminNetForm="ngForm" novalidate>
+        <p class="input-group">
+            <span class="input-group-prepend">
+                <span class="input-group-text">{{ 'Hostname' | translate }}</span>
+            </span>
+            <input name="hostname" class="form-control" type="text" [(ngModel)]="nodeResolver.dataModel.hostname" #hostname="ngModel" [pattern]="Constants.hostnameRegexp" [ngClass]="{'is-invalid': hostname.errors?.['pattern']}" />
+            <span class="input-group-append">
+                <button class="btn btn-primary rounded-start-0" (click)="updateHostname(nodeResolver.dataModel.hostname)" [disabled]="hostname.errors?.['pattern'] || adminNetForm.pristine">{{ 'Save' | translate }}</button>
+            </span>
+        </p>
+    </form>
+</div>
+<div id="HTTPSSettings">
+    <div class="card card-default">
+        <div class="card-body" [ngSwitch]="menuState">
+            <src-https-status [tlsConfig]="tlsConfig" (dataToParent)="httpsStatus($event)"></src-https-status>
+            <div *ngSwitchCase="'setup'">
+                <src-https-setup (dataToParent)="httpsSetup($event)"></src-https-setup>
+            </div>
+            <div *ngSwitchDefault>
+                <src-https-files [tlsConfig]="tlsConfig" [state]="state" (dataToParent)="httpsFiles($event)"></src-https-files>
+            </div>
+        </div>
+    </div>
+</div>

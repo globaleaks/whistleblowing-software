@@ -1,0 +1,20 @@
+<div class="row">
+    <div id="SignupTos1" class="col-md-12 form-group" *ngIf="appDataService.public.node.signup_tos1_enable">
+        <label>{{appDataService.public.node.signup_tos1_title}}</label>
+        <div class="tos-text">{{appDataService.public.node.signup_tos1_text}}</div>
+        <div class="">
+            <input name="tos1" class="form-check-input" signupform="signupform" type="checkbox" [(ngModel)]="signup.tos1" required />
+            <span class="form-check-label">{{appDataService.public.node.signup_tos1_checkbox_label}}</span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div id="SignupTos2" class="col-md-12 form-group" *ngIf="appDataService.public.node.signup_tos2_enable">
+        <label>{{appDataService.public.node.signup_tos2_title}}</label>
+        <div class="tos-text">{{appDataService.public.node.signup_tos2_text}}</div>
+        <div class="">
+            <input name="tos2" class="form-check-input" signupform="signupform" type="checkbox" [(ngModel)]="signup.tos2" required />
+            <label class="form-check-label">{{appDataService.public.node.signup_tos2_checkbox_label}}</label>
+        </div>
+    </div>
+</div>

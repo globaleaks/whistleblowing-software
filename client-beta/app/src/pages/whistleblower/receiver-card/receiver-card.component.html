@@ -1,0 +1,25 @@
+<div class="select-card">
+    <div class="row mb-1">
+        <div class="col-md-1">
+            <div *ngIf="submission.selected_receivers[receiver.id]">
+                <div *ngIf="!receiver.forcefully_selected">
+                    <i class="fa-solid fa-check-square" [ngStyle]="{'float': (translate.currentLang === 'ar') ? 'right' : 'left'}" data-toggle="tooltip" title="{{'Unselect this recipient' | translate}}"></i>
+                </div>
+            </div>
+            <div *ngIf="!submission.selected_receivers[receiver.id] && !receiver.forcefully_selected">
+                <i class="fa-solid fa-square" [ngStyle]="{'float': (translate.currentLang === 'ar') ? 'right' : 'left'}" data-toggle="tooltip" title="{{'Select this recipient' | translate}}"></i>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4" *ngIf="receiver.picture">
+            <img class="receiver-image" alt="receiver picture" src="/s/{{receiver.id}}" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 title" [ngClass]="{ 'text-start': translate.currentLang !== 'ar', 'text-end': translate.currentLang === 'ar'}">{{receiver.name}}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 description" *ngIf="receiver.description">{{receiver.description}}</div>
+    </div>
+</div>
