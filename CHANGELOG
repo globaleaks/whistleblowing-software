@@ -1,3 +1,13 @@
+Changes in version 4.13.17
+    Enable secure file viewer by design and by default
+    Implement sandboxed listening of audio recordings
+    Make it possible for whistleblowers to listen to their own audio recordings (#3736)
+    Make it possible for whistleblowers to download their own file uploads
+    Always ask organization data when on signup form
+    Fix issue #3740
+    Bump client dependencies to latest versions
+    Update translations
+
 Changes in version 4.13.16
     Fix issue #3727
     Rename report Export functionality in Download
