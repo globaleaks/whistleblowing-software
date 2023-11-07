@@ -82,7 +82,10 @@ class TestAPI(TestGL):
                                    "document-domain=(),"
                                    "fullscreen=(),"
                                    "geolocation=(),"
-                                   "microphone=()"),
+                                   "microphone=(),"
+                                   "serial=(),"
+                                   "usb=(),"
+                                   "web-share=()"),
             ('Referrer-Policy', 'no-referrer'),
             ('Server', 'GlobaLeaks'),
             ('X-Content-Type-Options', 'nosniff'),

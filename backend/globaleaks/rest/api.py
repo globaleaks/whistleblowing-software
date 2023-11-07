@@ -490,13 +490,20 @@ class APIResourceWrapper(Resource):
             request.setHeader(b'Permissions-Policy', b"camera=(),"
                                                      b"document-domain=(),"
                                                      b"fullscreen=(),"
-                                                     b"geolocation=()")
+                                                     b"geolocation=(),"
+                                                     b"microphone=(self),"
+                                                     b"serial=(),"
+                                                     b"usb=(),"
+                                                     b"web-share=()")
         else:
             request.setHeader(b'Permissions-Policy', b"camera=(),"
                                                      b"document-domain=(),"
                                                      b"fullscreen=(),"
                                                      b"geolocation=(),"
-                                                     b"microphone=()")
+                                                     b"microphone=(),"
+                                                     b"serial=(),"
+                                                     b"usb=(),"
+                                                     b"web-share=()")
 
         # Prevent old browsers not supporting CSP frame-ancestors directive to includes the platform within an iframe
         request.setHeader(b'X-Frame-Options', b'deny')

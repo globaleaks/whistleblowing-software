@@ -164,7 +164,7 @@ Permissions-Policy
 ++++++++++++++
 The backend implements the following Permissions-Policy header configuration to limit the possible de-anonymization of the user by disabling dangerous browser features:
 ::
-  Permissions-Policy: camera=('none') display-capture=('none') document-domain=('none') fullscreen=('none') geolocation=('none') microphone=('none') speaker=('none')
+  Permissions-Policy: camera=() display-capture=() document-domain=() fullscreen=() geolocation=() microphone=() serial=() usb=() web-share=()
 
 X-Frame-Options
 +++++++++++++++
