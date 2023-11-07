@@ -163,10 +163,10 @@
                type="text" />
       </div>
     </div>
+    <div class="clearfix">
+      <div data-ng-if="entry['value'].length && field.attrs.max_len.value > 0 && (field.attrs.max_len.value - entry['value'].length) <= 50" class="float-right">{{entry['value'].length}}/{{field.attrs.max_len.value}}</div>
+    </div>
     <div data-ng-if="displayErrors()">
-      <div class="clearfix">
-        <div data-ng-if="entry['value'].length && field.attrs.max_len.value > 0 && (field.attrs.max_len.value - entry['value'].length) <= 50" class="float-right">{{entry['value'].length}}/{{field.attrs.max_len.value}}</div>
-      </div>
       <div class="text-danger">
         <span data-ng-if="f[fieldEntry].$error.required || entry.required_status" class="text-danger" data-translate>This field is mandatory</span>
         <span data-ng-if="f[fieldEntry].$error.minlength" class="text-danger" data-translate>The answer is too short</span>
