@@ -28,12 +28,7 @@ sys.path.insert(0, os.path.abspath('../backend/globaleaks/'))
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-  'sphinx.ext.autodoc',
-  'sphinx.ext.autosummary',
-  'sphinx.ext.inheritance_diagram',
-  'sphinx.ext.viewcode',
-  'sphinx_rtd_theme',
-  'autoapi.extension'
+  'sphinx_rtd_theme'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -52,7 +47,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'GLOBALEAKS'
-copyright = u'Copyright (c) 2011-2022 - GlobaLeaks'
+copyright = u'Copyright (c) 2011-2023 - GlobaLeaks'
 author = u'GlobaLeaks'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -278,19 +273,6 @@ texinfo_documents = [
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
-
-autodoc_member_order = 'bysource'
-autodoc_default_flags = ['members', 'show-inheritance', 'undoc-members']
-autoclass_content = 'both'
-autosummary_generate = True
-
-autoapy_type = 'python'
-autoapi_dirs = ['../backend/globaleaks/']
-autoapi_add_toctree_entry = False
-
-autoapi_modules = {
-  'globaleaks': {'output': 'globaleaks'}
-}
 
 html_theme_options = {
   'style_nav_header_background': '#377abc',
