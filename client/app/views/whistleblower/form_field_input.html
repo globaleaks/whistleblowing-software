@@ -182,10 +182,10 @@
       </div>
     </div>
     <div data-ng-if="field.type === 'selectbox'" data-ng-repeat="option in field.options">
-      <div data-ng-show="option.set && option.hint1"><i class="fa-solid fa-info-circle"></i> {{option.hint1}}</div>
+      <div data-ng-show="option.set && option.hint1"><i class="fa-solid fa-info-circle"></i> <span data-markdown-to-html="option.hint1 | stripHtml"></span></div>
     </div>
     <div data-ng-repeat="option in field.options">
-      <div data-ng-show="option.set && option.hint2" data-ng-class="{'text-danger': option.block_submission}"><i class="fa-solid fa-info-circle"></i> {{option.hint2}}</div>
+      <div data-ng-show="option.set && option.hint2" data-ng-class="{'text-danger': option.block_submission}"><i class="fa-solid fa-info-circle"></i> <span data-markdown-to-html="option.hint2 | stripHtml"></span></div>
     </div>
   </div>
 </div>
