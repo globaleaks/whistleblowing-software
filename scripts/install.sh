@@ -157,14 +157,6 @@ fi
 echo "Adding GlobaLeaks PGP key to trusted APT keys"
 wget -qO- https://deb.globaleaks.org/globaleaks.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/globaleaks.gpg
 
-# try adding universe repo only on Ubuntu
-if echo "$DISTRO" | grep -qE "^(Ubuntu)$"; then
-  if ! grep -q "^deb .*universe" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
-    echo "Adding Ubuntu Universe repository"
-    DO "add-apt-repository -y 'deb http://archive.ubuntu.com/ubuntu $DISTRO_CODENAME universe'"
-  fi
-fi
-
 echo "Updating GlobaLeaks apt source.list in /etc/apt/sources.list.d/globaleaks.list ..."
 echo "deb [signed-by=/etc/apt/trusted.gpg.d/globaleaks.gpg] http://deb.globaleaks.org $DISTRO_CODENAME/" > /etc/apt/sources.list.d/globaleaks.list
 
