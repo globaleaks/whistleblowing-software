@@ -70,7 +70,7 @@
                   <span data-ng-hide="tenant.active" class="btn btn-sm btn-danger"
                         data-ng-click="toggleActivation($event)"
                         data-translate>Disabled</span>
-                  <span data-ng-show="!resources.node.tenant.active" class="btn btn-sm btn-primary"
+                  <span data-ng-show="tenant.active" class="btn btn-sm btn-primary"
                         data-ng-click="configureTenant($event, tenant.id)"
                         data-translate>Configure</span>
                   <button class="btn btn-sm btn-outline-secondary"
