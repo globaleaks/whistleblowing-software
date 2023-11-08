@@ -48,5 +48,4 @@ If you are planning some press releases, a conference, or promoting GlobaLeaks p
 To support the GlobaLeaks project you can help us with [donations](https://github.com/sponsors/globaleaks) that will goes entirely for the software development.
 
 ## License
-GlobaLeaks is released under the AGPLv3 license. See [LICENSE](https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE) for more information on Additional Terms as per [7(b)](https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE#L684) and [7(c)](https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE#L713).
-
+GlobaLeaks is released under the [AGPLv3 license](https://github.com/globaleaks/GlobaLeaks/blob/main/LICENSE).
