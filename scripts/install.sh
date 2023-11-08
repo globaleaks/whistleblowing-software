@@ -127,7 +127,7 @@ fi
 apt-get install -y tzdata
 dpkg-reconfigure -f noninteractive tzdata
 
-DO "apt-get -y install curl gnupg net-tools software-properties-common"
+DO "apt-get -y install gnupg net-tools software-properties-common wget"
 
 function is_tcp_sock_free_check {
   ! netstat -tlpn 2>/dev/null | grep -F $1 -q
@@ -155,7 +155,7 @@ if echo "$DISTRO_CODENAME" | grep -vqE "^(bionic|bookworm|bullseye|buster|focal|
 fi
 
 echo "Adding GlobaLeaks PGP key to trusted APT keys"
-curl -L https://deb.globaleaks.org/globaleaks.asc | apt-key add
+wget -qO- https://deb.globaleaks.org/globaleaks.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/globaleaks.gpg
 
 # try adding universe repo only on Ubuntu
 if echo "$DISTRO" | grep -qE "^(Ubuntu)$"; then
@@ -166,7 +166,7 @@ if echo "$DISTRO" | grep -qE "^(Ubuntu)$"; then
 fi
 
 echo "Updating GlobaLeaks apt source.list in /etc/apt/sources.list.d/globaleaks.list ..."
-echo "deb http://deb.globaleaks.org $DISTRO_CODENAME/" > /etc/apt/sources.list.d/globaleaks.list
+echo "deb [signed-by=/etc/apt/trusted.gpg.d/globaleaks.gpg] http://deb.globaleaks.org $DISTRO_CODENAME/" > /etc/apt/sources.list.d/globaleaks.list
 
 if [ $DISABLEAUTOSTART -eq 1 ]; then
   systemctl mask globaleaks
