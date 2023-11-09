@@ -288,7 +288,6 @@ def serialize_wbtip(session, itip, language):
                                   models.Comment.visibility == 0):
         ret['comments'].append(serialize_comment(session, comment))
 
-
     return ret
 
 

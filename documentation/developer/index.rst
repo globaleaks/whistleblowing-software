@@ -7,4 +7,3 @@ Developer Documentation
     DatabaseSchema.rst
     ReleaseProcedure.rst
     ContinuousIntegration.rst
-    CodeDocumentation.rst

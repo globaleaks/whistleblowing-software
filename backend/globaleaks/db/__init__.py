@@ -164,21 +164,23 @@ def db_refresh_tenant_cache(session, to_refresh=None):
 
     # Remove tenants that have been disabled
     for tid in disabled_tids:
-        if tid in State.tenants:
-            tenant_cache = State.tenants[tid].cache
+        if tid not in State.tenants:
+            continue
 
-            State.tenant_uuid_id_map.pop(tenant_cache.uuid, None)
-            State.tenant_subdomain_id_map.pop(tenant_cache.subdomain, None)
+        tenant_cache = State.tenants[tid].cache
 
-            for h in tenant_cache.hostnames + tenant_cache.onionnames:
-                State.tenant_hostname_id_map.pop(h, None)
+        State.tenant_uuid_id_map.pop(tenant_cache.uuid, None)
+        State.tenant_subdomain_id_map.pop(tenant_cache.subdomain, None)
 
-            State.snimap.unload(tid)
+        for h in tenant_cache.hostnames + tenant_cache.onionnames:
+            State.tenant_hostname_id_map.pop(h, None)
 
-            if State.tor:
-                State.tor.unload_onion_service(tid)
+        State.snimap.unload(tid)
 
-            del State.tenants[tid]
+        if State.tor:
+            State.tor.unload_onion_service(tid)
+
+        del State.tenants[tid]
 
     if to_refresh is None or to_refresh == 1:
         tids = active_tids
