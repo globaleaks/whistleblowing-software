@@ -1,3 +1,12 @@
+Changes in version 4.13.18
+    Fix download of recipient files by whistleblowers
+    Deprecate Accessibility Declaration feature;
+      it seems to confuse most of the users and
+      who need it could use the standard footer
+      customization feature.
+    Bump client dependencies to latest versions
+    Update translations source
+
 Changes in version 4.13.17
     Enable secure file viewer by design and by default
     Implement sandboxed listening of audio recordings
