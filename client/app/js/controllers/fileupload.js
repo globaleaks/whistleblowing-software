@@ -76,12 +76,11 @@ controller("AudioUploadCtrl", ["$scope", "flowFactory", "Utils", "mediaProcessor
         const iframe = document.getElementById($scope.fieldEntry + "-audio");
 
         if (message.source !== iframe.contentWindow) {
-           console.log(message.source);
           return;
         }
 
         var data = {
-          tag: 'audio',
+          tag: "audio",
           blob: $scope.recording_blob
         };
 

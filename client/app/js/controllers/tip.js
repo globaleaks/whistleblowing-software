@@ -42,7 +42,7 @@ GL.controller("TipCtrl",
                 }
 
                 var data = {
-                  tag: 'audio',
+                  tag: "audio",
                   blob: $scope.audioFiles[reference_id]
                 };
 
