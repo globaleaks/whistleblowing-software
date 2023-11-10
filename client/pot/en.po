@@ -488,9 +488,6 @@ msgstr "Privacy Policy"
 msgid "Whistleblowing Policy"
 msgstr "Whistleblowing Policy"
 
-msgid "Accessibility Declaration"
-msgstr "Accessibility Declaration"
-
 msgid "Voice"
 msgstr "Voice"
 
@@ -982,9 +979,6 @@ msgstr "Enable administrators to change user passwords"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Administrators authorized to change user passwords:"
-
-msgid "Enable file viewer"
-msgstr "Enable file viewer"
 
 msgid "Enable PGP"
 msgstr "Enable PGP"
@@ -1490,17 +1484,11 @@ msgstr "If not activated within 24 hours the platform will be automatically dele
 msgid "Sign up"
 msgstr "Sign up"
 
-msgid "Site"
-msgstr "Site"
-
-msgid "Confirmation"
-msgstr "Confirmation"
+msgid "Invalid phone number"
+msgstr "Invalid phone number"
 
 msgid "Invalid confirmation"
 msgstr "Invalid confirmation"
-
-msgid "Invalid phone number"
-msgstr "Invalid phone number"
 
 msgid "Address"
 msgstr "Address"
@@ -1510,6 +1498,12 @@ msgstr "Fiscal code"
 
 msgid "Tax code"
 msgstr "Tax code"
+
+msgid "Site"
+msgstr "Site"
+
+msgid "Confirmation"
+msgstr "Confirmation"
 
 msgid "The answer is too short"
 msgstr "The answer is too short"
