@@ -1,0 +1,358 @@
+[archivedschema]
+    *hash {label:"TEXT(64)"}
+    schema {label:"TEXT"}
+[auditlog]
+    *id {label:"INTEGER"}
+    data {label:"TEXT"}
+    date {label:"DATETIME"}
+    object_id {label:"TEXT(36)"}
+    severity {label:"INTEGER"}
+    tid {label:"INTEGER"}
+    type {label:"TEXT(24)"}
+    user_id {label:"TEXT(36)"}
+[comment]
+    *id {label:"TEXT(36)"}
+    author_id {label:"TEXT(36)"}
+    content {label:"TEXT"}
+    creation_date {label:"DATETIME"}
+    internaltip_id {label:"TEXT(36)"}
+    new {label:"BOOLEAN"}
+    visibility {label:"INTEGER"}
+[internaltip]
+    *id {label:"TEXT(36)"}
+    context_id {label:"TEXT(36)"}
+    creation_date {label:"DATETIME"}
+    crypto_prv_key {label:"TEXT(84)"}
+    crypto_pub_key {label:"TEXT(56)"}
+    crypto_tip_prv_key {label:"TEXT(84)"}
+    crypto_tip_pub_key {label:"TEXT(56)"}
+    deprecated_crypto_files_pub_key {label:"TEXT(56)"}
+    enable_attachments {label:"BOOLEAN"}
+    enable_two_way_comments {label:"BOOLEAN"}
+    enable_whistleblower_identity {label:"BOOLEAN"}
+    expiration_date {label:"DATETIME"}
+    important {label:"BOOLEAN"}
+    label {label:"TEXT"}
+    last_access {label:"DATETIME"}
+    mobile {label:"BOOLEAN"}
+    progressive {label:"INTEGER"}
+    receipt_hash {label:"TEXT(44)"}
+    reminder_date {label:"DATETIME"}
+    score {label:"INTEGER"}
+    status {label:"TEXT(36)"}
+    substatus {label:"TEXT(36)"}
+    tid {label:"INTEGER"}
+    tor {label:"BOOLEAN"}
+    update_date {label:"DATETIME"}
+[tenant]
+    *id {label:"INTEGER"}
+    active {label:"BOOLEAN"}
+    creation_date {label:"DATETIME"}
+[context]
+    *id {label:"TEXT(36)"}
+    additional_questionnaire_id {label:"TEXT(36)"}
+    allow_recipients_selection {label:"BOOLEAN"}
+    description {label:"TEXT"}
+    enable_attachments {label:"BOOLEAN"}
+    enable_two_way_comments {label:"BOOLEAN"}
+    hidden {label:"BOOLEAN"}
+    maximum_selectable_receivers {label:"INTEGER"}
+    name {label:"TEXT"}
+    order {label:"INTEGER"}
+    questionnaire_id {label:"TEXT(36)"}
+    score_threshold_high {label:"INTEGER"}
+    score_threshold_medium {label:"INTEGER"}
+    select_all_receivers {label:"BOOLEAN"}
+    show_receivers_in_alphabetical_order {label:"BOOLEAN"}
+    show_recipients_details {label:"BOOLEAN"}
+    show_steps_navigation_interface {label:"BOOLEAN"}
+    tid {label:"INTEGER"}
+    tip_reminder {label:"INTEGER"}
+    tip_timetolive {label:"INTEGER"}
+[questionnaire]
+    *id {label:"TEXT(36)"}
+    name {label:"TEXT"}
+    tid {label:"INTEGER"}
+[config]
+    *tid {label:"INTEGER"}
+    *var_name {label:"TEXT(64)"}
+    update_date {label:"DATETIME"}
+    value {label:"TEXT"}
+[config_l10n]
+    *lang {label:"TEXT(12)"}
+    *tid {label:"INTEGER"}
+    *var_name {label:"TEXT(64)"}
+    update_date {label:"DATETIME"}
+    value {label:"TEXT"}
+[enabledlanguage]
+    *name {label:"TEXT(12)"}
+    *tid {label:"INTEGER"}
+[customtexts]
+    *lang {label:"TEXT(12)"}
+    *tid {label:"INTEGER"}
+    texts {label:"TEXT"}
+[field]
+    *id {label:"TEXT(36)"}
+    description {label:"TEXT"}
+    fieldgroup_id {label:"TEXT(36)"}
+    hint {label:"TEXT"}
+    instance {label:"INTEGER"}
+    label {label:"TEXT"}
+    multi_entry {label:"BOOLEAN"}
+    placeholder {label:"TEXT"}
+    required {label:"BOOLEAN"}
+    step_id {label:"TEXT(36)"}
+    template_id {label:"TEXT(36)"}
+    template_override_id {label:"TEXT(36)"}
+    tid {label:"INTEGER"}
+    triggered_by_score {label:"INTEGER"}
+    type {label:"TEXT"}
+    width {label:"INTEGER"}
+    x {label:"INTEGER"}
+    y {label:"INTEGER"}
+[step]
+    *id {label:"TEXT(36)"}
+    description {label:"TEXT"}
+    label {label:"TEXT"}
+    order {label:"INTEGER"}
+    questionnaire_id {label:"TEXT(36)"}
+    triggered_by_score {label:"INTEGER"}
+[fieldattr]
+    *field_id {label:"TEXT(36)"}
+    *name {label:"TEXT"}
+    type {label:"INTEGER"}
+    value {label:"TEXT"}
+[fieldoption]
+    *id {label:"TEXT(36)"}
+    block_submission {label:"BOOLEAN"}
+    field_id {label:"TEXT(36)"}
+    hint1 {label:"TEXT"}
+    hint2 {label:"TEXT"}
+    label {label:"TEXT"}
+    order {label:"INTEGER"}
+    score_points {label:"INTEGER"}
+    score_type {label:"INTEGER"}
+    trigger_receiver {label:"TEXT"}
+[fieldoptiontriggerfield]
+    *object_id {label:"TEXT(36)"}
+    *option_id {label:"TEXT(36)"}
+    sufficient {label:"BOOLEAN"}
+[fieldoptiontriggerstep]
+    *object_id {label:"TEXT(36)"}
+    *option_id {label:"TEXT(36)"}
+    sufficient {label:"BOOLEAN"}
+[file]
+    *id {label:"TEXT(36)"}
+    name {label:"TEXT"}
+    tid {label:"INTEGER"}
+[identityaccessrequest]
+    *id {label:"TEXT(36)"}
+    internaltip_id {label:"TEXT(36)"}
+    reply {label:"TEXT"}
+    reply_date {label:"DATETIME"}
+    reply_motivation {label:"TEXT"}
+    reply_user_id {label:"TEXT(36)"}
+    request_date {label:"DATETIME"}
+    request_motivation {label:"TEXT"}
+    request_user_id {label:"TEXT(36)"}
+[user]
+    *id {label:"TEXT(36)"}
+    accepted_privacy_policy {label:"DATETIME"}
+    can_delete_submission {label:"BOOLEAN"}
+    can_edit_general_settings {label:"BOOLEAN"}
+    can_grant_access_to_reports {label:"BOOLEAN"}
+    can_mask_information {label:"BOOLEAN"}
+    can_postpone_expiration {label:"BOOLEAN"}
+    can_redact_information {label:"BOOLEAN"}
+    can_transfer_access_to_reports {label:"BOOLEAN"}
+    change_email_address {label:"TEXT"}
+    change_email_date {label:"DATETIME"}
+    change_email_token {label:"TEXT"}
+    clicked_recovery_key {label:"BOOLEAN"}
+    creation_date {label:"DATETIME"}
+    crypto_bkp_key {label:"TEXT(84)"}
+    crypto_escrow_bkp1_key {label:"TEXT(84)"}
+    crypto_escrow_bkp2_key {label:"TEXT(84)"}
+    crypto_escrow_prv_key {label:"TEXT(84)"}
+    crypto_prv_key {label:"TEXT(84)"}
+    crypto_pub_key {label:"TEXT(56)"}
+    crypto_rec_key {label:"TEXT(80)"}
+    description {label:"TEXT"}
+    enabled {label:"BOOLEAN"}
+    forcefully_selected {label:"BOOLEAN"}
+    hash {label:"TEXT(44)"}
+    language {label:"TEXT(12)"}
+    last_login {label:"DATETIME"}
+    mail_address {label:"TEXT"}
+    name {label:"TEXT"}
+    notification {label:"BOOLEAN"}
+    password_change_date {label:"DATETIME"}
+    password_change_needed {label:"BOOLEAN"}
+    pgp_key_expiration {label:"DATETIME"}
+    pgp_key_fingerprint {label:"TEXT"}
+    pgp_key_public {label:"TEXT"}
+    public_name {label:"TEXT"}
+    readonly {label:"BOOLEAN"}
+    reminder_date {label:"DATETIME"}
+    role {label:"INTEGER"}
+    salt {label:"TEXT(24)"}
+    tid {label:"INTEGER"}
+    two_factor_secret {label:"TEXT(32)"}
+    username {label:"TEXT"}
+[identityaccessrequest_custodian]
+    *custodian_id {label:"TEXT(36)"}
+    *identityaccessrequest_id {label:"TEXT(36)"}
+    crypto_tip_prv_key {label:"TEXT(84)"}
+[internalfile]
+    *id {label:"TEXT(36)"}
+    content_type {label:"TEXT"}
+    creation_date {label:"DATETIME"}
+    internaltip_id {label:"TEXT(36)"}
+    name {label:"TEXT"}
+    new {label:"BOOLEAN"}
+    reference_id {label:"TEXT(36)"}
+    size {label:"TEXT"}
+[internaltipanswers]
+    *internaltip_id {label:"TEXT(36)"}
+    *questionnaire_hash {label:"TEXT(64)"}
+    answers {label:"TEXT"}
+    creation_date {label:"DATETIME"}
+[internaltipdata]
+    *internaltip_id {label:"TEXT(36)"}
+    *key {label:"TEXT"}
+    creation_date {label:"DATETIME"}
+    value {label:"TEXT"}
+[mail]
+    *id {label:"TEXT(36)"}
+    address {label:"TEXT"}
+    body {label:"TEXT"}
+    creation_date {label:"DATETIME"}
+    subject {label:"TEXT"}
+    tid {label:"INTEGER"}
+[receiver_context]
+    *context_id {label:"TEXT(36)"}
+    *receiver_id {label:"TEXT(36)"}
+    order {label:"INTEGER"}
+[receiverfile]
+    *id {label:"TEXT(36)"}
+    access_date {label:"DATETIME"}
+    internalfile_id {label:"TEXT(36)"}
+    new {label:"BOOLEAN"}
+    receivertip_id {label:"TEXT(36)"}
+[receivertip]
+    *id {label:"TEXT(36)"}
+    access_date {label:"DATETIME"}
+    crypto_tip_prv_key {label:"TEXT(84)"}
+    deprecated_crypto_files_prv_key {label:"TEXT(84)"}
+    enable_notifications {label:"BOOLEAN"}
+    internaltip_id {label:"TEXT(36)"}
+    last_access {label:"DATETIME"}
+    last_notification {label:"DATETIME"}
+    new {label:"BOOLEAN"}
+    receiver_id {label:"TEXT(36)"}
+[redaction]
+    *id {label:"TEXT(36)"}
+    internaltip_id {label:"TEXT(36)"}
+    permanent_redaction {label:"TEXT"}
+    reference_id {label:"TEXT(36)"}
+    temporary_redaction {label:"TEXT"}
+    update_date {label:"DATETIME"}
+[redirect]
+    *id {label:"TEXT(36)"}
+    path1 {label:"TEXT"}
+    path2 {label:"TEXT"}
+    tid {label:"INTEGER"}
+[sqlite_sequence]
+    name {label:"NULL"}
+    seq {label:"NULL"}
+[submissionstatus]
+    *id {label:"TEXT(36)"}
+    *tid {label:"INTEGER"}
+    label {label:"TEXT"}
+    order {label:"INTEGER"}
+    tip_timetolive {label:"INTEGER"}
+[submissionsubstatus]
+    *id {label:"TEXT(36)"}
+    *tid {label:"INTEGER"}
+    label {label:"TEXT"}
+    order {label:"INTEGER"}
+    submissionstatus_id {label:"TEXT(36)"}
+    tip_timetolive {label:"INTEGER"}
+[subscriber]
+    *tid {label:"INTEGER"}
+    activation_token {label:"TEXT"}
+    client_ip_address {label:"TEXT"}
+    client_user_agent {label:"TEXT"}
+    email {label:"TEXT"}
+    language {label:"TEXT(12)"}
+    name {label:"TEXT"}
+    organization_location {label:"TEXT"}
+    organization_name {label:"TEXT"}
+    organization_tax_code {label:"TEXT"}
+    organization_vat_code {label:"TEXT"}
+    phone {label:"TEXT"}
+    registration_date {label:"DATETIME"}
+    role {label:"TEXT"}
+    subdomain {label:"TEXT"}
+    surname {label:"TEXT"}
+    tos1 {label:"TEXT"}
+    tos2 {label:"TEXT"}
+[whistleblowerfile]
+    *id {label:"TEXT(36)"}
+    access_date {label:"DATETIME"}
+    author_id {label:"TEXT(36)"}
+    content_type {label:"TEXT"}
+    creation_date {label:"DATETIME"}
+    description {label:"TEXT"}
+    internaltip_id {label:"TEXT(36)"}
+    name {label:"TEXT"}
+    new {label:"BOOLEAN"}
+    size {label:"INTEGER"}
+    visibility {label:"INTEGER"}
+internaltip 1--* comment
+tenant 1--* internaltip
+context 1--* internaltip
+questionnaire 1--* context
+tenant 1--* context
+tenant 1--* questionnaire
+tenant 1--1 config
+enabledlanguage 1--1 config_l10n
+enabledlanguage 1--1 config_l10n
+tenant 1--1 enabledlanguage
+tenant 1--1 customtexts
+field ?--* field
+step ?--* field
+tenant 1--* field
+field ?--* field
+field ?--* field
+questionnaire 1--* step
+field 1--1 fieldattr
+field 1--* fieldoption
+field 1--1 fieldoptiontriggerfield
+fieldoption 1--1 fieldoptiontriggerfield
+step 1--1 fieldoptiontriggerstep
+fieldoption 1--1 fieldoptiontriggerstep
+tenant ?--* file
+user ?--* identityaccessrequest
+user 1--* identityaccessrequest
+internaltip 1--* identityaccessrequest
+tenant 1--* user
+identityaccessrequest 1--1 identityaccessrequest_custodian
+user 1--1 identityaccessrequest_custodian
+internaltip 1--* internalfile
+internaltip 1--1 internaltipanswers
+internaltip 1--1 internaltipdata
+tenant 1--* mail
+user 1--1 receiver_context
+context 1--1 receiver_context
+receivertip 1--* receiverfile
+internalfile 1--* receiverfile
+internaltip 1--* receivertip
+user 1--* receivertip
+internaltip 1--* redaction
+tenant 1--* redirect
+tenant 1--1 submissionstatus
+submissionstatus 1--* submissionsubstatus
+submissionstatus 1--1 submissionsubstatus
+tenant 1--1 subscriber
+internaltip 1--* whistleblowerfile
