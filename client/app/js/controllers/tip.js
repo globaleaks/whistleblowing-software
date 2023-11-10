@@ -1,6 +1,6 @@
 GL.controller("TipCtrl",
-  ["$scope", "$location", "$filter", "$http", "$interval", "$routeParams", "$uibModal", "Authentication", "RTip", "WBTip", "RTipExport", "RTipDownloadWBFile", "WBTipDownloadWBFile", "fieldUtilities","RTipViewWBFile",
-  function($scope, $location, $filter, $http, $interval, $routeParams, $uibModal, Authentication, RTip, WBTip, RTipExport, RTipDownloadWBFile, WBTipDownloadWBFile, fieldUtilities, RTipViewWBFile) {
+  ["$scope", "$location", "$filter", "$http", "$interval", "$routeParams", "$uibModal", "Authentication", "RTip", "WBTip", "RTipExport", "RTipDownloadWBFile", "WBTipDownloadWBFile", "WBTipDownloadRFile", "RTipViewWBFile", "fieldUtilities",
+  function($scope, $location, $filter, $http, $interval, $routeParams, $uibModal, Authentication, RTip, WBTip, RTipExport, RTipDownloadWBFile, WBTipDownloadWBFile, WBTipDownloadRFile, RTipViewWBFile, fieldUtilities) {
     $scope.fieldUtilities = fieldUtilities;
     $scope.tip_id = $routeParams.tip_id;
 

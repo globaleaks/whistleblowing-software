@@ -82,11 +82,11 @@ api_spec = [
     (r'/api/whistleblower/submission/attachment', whistleblower.attachment.SubmissionAttachment),
     (r'/api/whistleblower/wbtip', whistleblower.wbtip.WBTipInstance),
     (r'/api/whistleblower/wbtip/comments', whistleblower.wbtip.WBTipCommentCollection),
-    (r'/api/whistleblower/wbtip/wbfiles', whistleblower.attachment.PostSubmissionAttachment),
     (r'/api/whistleblower/wbtip/rfiles/' + uuid_regexp, whistleblower.wbtip.ReceiverFileDownload),
+    (r'/api/whistleblower/wbtip/wbfiles', whistleblower.attachment.PostSubmissionAttachment),
+    (r'/api/whistleblower/wbtip/wbfiles/' + uuid_regexp, whistleblower.wbtip.WhistleblowerFileDownload),
     (r'/api/whistleblower/wbtip/identity', whistleblower.wbtip.WBTipIdentityHandler),
     (r'/api/whistleblower/wbtip/fillform', whistleblower.wbtip.WBTipAdditionalQuestionnaire),
-    (r'/api/whistleblower/wbfiles/' + uuid_regexp, whistleblower.wbtip.WhistleblowerFileDownload),
 
     # Custodian Handlers
     (r'/api/custodian/iars', custodian.IdentityAccessRequestsCollection),

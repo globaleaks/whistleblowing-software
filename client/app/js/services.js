@@ -399,9 +399,14 @@ factory("WBTipResource", ["GLResource", function(GLResource) {
 factory("WBTipCommentResource", ["GLResource", function(GLResource) {
   return new GLResource("api/whistleblower/wbtip/comments");
 }]).
-factory("WBTipDownloadFile", ["Utils", function(Utils) {
+factory("WBTipDownloadRFile", ["Utils", function(Utils) {
   return function(file) {
     Utils.download("api/whistleblower/wbtip/rfiles/" + file.id);
+  };
+}]).
+factory("WBTipDownloadWBFile", ["Utils", function(Utils) {
+  return function(file) {
+    Utils.download("api/whistleblower/wbtip/wbfiles/" + file.id);
   };
 }]).
 factory("WBTip", ["$rootScope", "WBTipResource", "WBTipCommentResource",
@@ -447,11 +452,7 @@ factory("WBTip", ["$rootScope", "WBTipResource", "WBTipCommentResource",
     });
   };
 }]).
-factory("WBTipDownloadWBFile", ["Utils", function(Utils) {
-  return function(file) {
-    Utils.download("api/whistleblower/wbfiles/" + file.id);
-  };
-}]).
+
 factory("ReceiverTips", ["GLResource", function(GLResource) {
   return new GLResource("api/recipient/rtips");
 }]).
