@@ -487,24 +487,18 @@ class APIResourceWrapper(Resource):
         request.setHeader(b"Cross-Origin-Resource-Policy", "same-origin")
 
         # Disable features that could be used to deanonymize the user
+        microphone = False
         if request.tid in State.tenants and getattr(State.tenants[request.tid], 'microphone', False):
-            request.setHeader(b'Permissions-Policy', b"camera=(),"
-                                                     b"document-domain=(),"
-                                                     b"fullscreen=(),"
-                                                     b"geolocation=(),"
-                                                     b"microphone=(self),"
-                                                     b"serial=(),"
-                                                     b"usb=(),"
-                                                     b"web-share=()")
-        else:
-            request.setHeader(b'Permissions-Policy', b"camera=(),"
-                                                     b"document-domain=(),"
-                                                     b"fullscreen=(),"
-                                                     b"geolocation=(),"
-                                                     b"microphone=(),"
-                                                     b"serial=(),"
-                                                     b"usb=(),"
-                                                     b"web-share=()")
+            microphone = True
+
+        request.setHeader(b'Permissions-Policy', b"camera=(),"
+                                                 b"document-domain=(),"
+                                                 b"fullscreen=(),"
+                                                 b"geolocation=(),"
+                                                 b"microphone=(" + (b"self" if microphone else b"") + b"),"
+                                                 b"serial=(),"
+                                                 b"usb=(),"
+                                                 b"web-share=()")
 
         # Prevent old browsers not supporting CSP frame-ancestors directive to includes the platform within an iframe
         request.setHeader(b'X-Frame-Options', b'deny')
