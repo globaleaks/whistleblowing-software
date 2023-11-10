@@ -490,9 +490,6 @@ msgstr "የግላዊነት ፖሊሲ "
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -976,9 +973,6 @@ msgstr "አስተዳዳሪዎቹን የተጠቃሚ የይለፍ ቃልን እ�
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "አስተዳዳሪዎች የተጠቃሚ የይለፍ ቃሎችን እንዲቀይሩ ተፈቅዷል"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1467,17 +1461,11 @@ msgstr "በ24 ሰኣት ውስጥ ካልነቃ የመሳርያ ስርኣቱ በ�
 msgid "Sign up"
 msgstr "ተመዝገቡ"
 
-msgid "Site"
-msgstr "ጣቢያ"
-
-msgid "Confirmation"
-msgstr "ማረጋገጫ"
+msgid "Invalid phone number"
+msgstr "የተሳሳተ ስልክ ቁጥር"
 
 msgid "Invalid confirmation"
 msgstr "የተሳሳተ ማረጋገጫ"
-
-msgid "Invalid phone number"
-msgstr "የተሳሳተ ስልክ ቁጥር"
 
 msgid "Address"
 msgstr "አድራሻ"
@@ -1487,6 +1475,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr "የግብር ኮድ"
+
+msgid "Site"
+msgstr "ጣቢያ"
+
+msgid "Confirmation"
+msgstr "ማረጋገጫ"
 
 msgid "The answer is too short"
 msgstr "መልሱ ከሚፈቀደው በታች አጭር ነው፡፡"

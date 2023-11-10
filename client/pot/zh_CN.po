@@ -510,9 +510,6 @@ msgstr "隐私政策"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr "聲音"
 
@@ -996,9 +993,6 @@ msgstr "启用管理者更改用户密码权限"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "管理员已授权更改用户密码："
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1487,17 +1481,11 @@ msgstr "如果未在 24 小时内完成激活，平台将自动删除。"
 msgid "Sign up"
 msgstr "注册"
 
-msgid "Site"
-msgstr "站点"
-
-msgid "Confirmation"
-msgstr "确认"
+msgid "Invalid phone number"
+msgstr "无效的电话号码"
 
 msgid "Invalid confirmation"
 msgstr "无效确认"
-
-msgid "Invalid phone number"
-msgstr "无效的电话号码"
 
 msgid "Address"
 msgstr "地址"
@@ -1507,6 +1495,12 @@ msgstr "税控码"
 
 msgid "Tax code"
 msgstr "税码"
+
+msgid "Site"
+msgstr "站点"
+
+msgid "Confirmation"
+msgstr "确认"
 
 msgid "The answer is too short"
 msgstr "答案过短"

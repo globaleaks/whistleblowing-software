@@ -490,9 +490,6 @@ msgstr "ကိုယ်ရေးကိုယ်တာမူဝါဒ"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr "အသံ"
 
@@ -976,9 +973,6 @@ msgstr "အုပ်ချုပ်ရေးမှူးများအား �
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "အုပ်ချုပ်ရေးမှူးများအား အသုံးပြုသူ စကားဝှက်များကို ပြောင်းလဲခွင့်ပြုထားသည် - "
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1467,17 +1461,11 @@ msgstr "၂၄ နာရီအတွင်း သက်ဝင်မလုပ်�
 msgid "Sign up"
 msgstr "အကောင့်ဖွင့်ရန်"
 
-msgid "Site"
-msgstr "ဝက်ဘ်ဆိုက်"
-
-msgid "Confirmation"
-msgstr "အတည်ပြုရန်"
+msgid "Invalid phone number"
+msgstr "မမှန်ကန်သော ဖုန်းနံပါတ်"
 
 msgid "Invalid confirmation"
 msgstr "အတည်ပြုချက် မမှန်ကန်ပါ"
-
-msgid "Invalid phone number"
-msgstr "မမှန်ကန်သော ဖုန်းနံပါတ်"
 
 msgid "Address"
 msgstr "လိပ်စာ"
@@ -1487,6 +1475,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr "အခွန် ကုဒ်"
+
+msgid "Site"
+msgstr "ဝက်ဘ်ဆိုက်"
+
+msgid "Confirmation"
+msgstr "အတည်ပြုရန်"
 
 msgid "The answer is too short"
 msgstr "အဖြေက တိုလွန်းသည်"

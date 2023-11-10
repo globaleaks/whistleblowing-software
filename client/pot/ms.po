@@ -489,9 +489,6 @@ msgstr "Dasar Kerahsiaan"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -975,9 +972,6 @@ msgstr "Dayakan pentadbir untuk mengubah kata laluan pengguna"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Pentadbir memberi kebenaran untuk mengubah kata laluan:"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1466,17 +1460,11 @@ msgstr "Jika tidak diaktifkan dalam masa 24 jam, platform akan dipadam secara au
 msgid "Sign up"
 msgstr "Daftar"
 
-msgid "Site"
-msgstr "Laman"
-
-msgid "Confirmation"
-msgstr "Pengesahan"
+msgid "Invalid phone number"
+msgstr "Nombor telefon tidak sah"
 
 msgid "Invalid confirmation"
 msgstr "Pengesahan tidak sah"
-
-msgid "Invalid phone number"
-msgstr "Nombor telefon tidak sah"
 
 msgid "Address"
 msgstr "Alamat"
@@ -1486,6 +1474,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr "Kod cukai"
+
+msgid "Site"
+msgstr "Laman"
+
+msgid "Confirmation"
+msgstr "Pengesahan"
 
 msgid "The answer is too short"
 msgstr "Jawapan terlalu pendek"

@@ -490,9 +490,6 @@ msgstr "གསང་དོན་སྲིད་བྱུས།"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -976,9 +973,6 @@ msgstr "འཛིན་སྐྱོང་པར་སྤྱོད་པ་པོ
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "འཛིན་སྐྱོང་པར་སྤྱོད་པ་པོའི་གསང་ཡིག་བརྗེ་སྒྱུར་བྱེད་རྒྱུའི་བཀའ་འཁྲོལ་ཟིན།:"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1467,17 +1461,11 @@ msgstr "གལ་ཏེ་ཆུ་ཚོད་ ༢༤ ནང་འཚུད་�
 msgid "Sign up"
 msgstr "ཐོ་འགོད།"
 
-msgid "Site"
-msgstr ""
-
-msgid "Confirmation"
-msgstr "གཏན་འཁེལ།"
+msgid "Invalid phone number"
+msgstr "ཁ་པར་ཨང་གྲངས་མི་འཐད།"
 
 msgid "Invalid confirmation"
 msgstr "གཏན་འཁེལ་མི་འཐད།"
-
-msgid "Invalid phone number"
-msgstr "ཁ་པར་ཨང་གྲངས་མི་འཐད།"
 
 msgid "Address"
 msgstr "ཁ་བྱང་།"
@@ -1487,6 +1475,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr "དཔྱ་ཁྲལ་གསང་རྟགས།"
+
+msgid "Site"
+msgstr ""
+
+msgid "Confirmation"
+msgstr "གཏན་འཁེལ།"
 
 msgid "The answer is too short"
 msgstr "ལན་འདེབས་དེ་ཧ་ཅང་ཐུང་ཐུང་འདུག"

@@ -513,9 +513,6 @@ msgstr "Política de Privacidade "
 msgid "Whistleblowing Policy"
 msgstr "Política da Denúncia"
 
-msgid "Accessibility Declaration"
-msgstr "Declaração de Acessibilidade"
-
 msgid "Voice"
 msgstr "Voz"
 
@@ -999,9 +996,6 @@ msgstr "Permitir que os administradores alterem as palavras-passe de utilizador"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Administradores autorizados para alterarem as palavras -passe de utilizador:"
-
-msgid "Enable file viewer"
-msgstr "Ativar visualizador de ficheiros"
 
 msgid "Enable PGP"
 msgstr "Ativar PGP"
@@ -1490,17 +1484,11 @@ msgstr "Se não ativada nas próximas 24 horas, a plataforma será eliminada aut
 msgid "Sign up"
 msgstr "Registar"
 
-msgid "Site"
-msgstr "Site"
-
-msgid "Confirmation"
-msgstr "Confirmação"
+msgid "Invalid phone number"
+msgstr "Número de telefone inválido"
 
 msgid "Invalid confirmation"
 msgstr "Confirmação inválida"
-
-msgid "Invalid phone number"
-msgstr "Número de telefone inválido"
 
 msgid "Address"
 msgstr "Morada"
@@ -1510,6 +1498,12 @@ msgstr "Número de contribuinte"
 
 msgid "Tax code"
 msgstr "Código Fiscal"
+
+msgid "Site"
+msgstr "Site"
+
+msgid "Confirmation"
+msgstr "Confirmação"
 
 msgid "The answer is too short"
 msgstr "A resposta é muito curta"

@@ -538,9 +538,6 @@ msgstr "سياسة الخصوصية"
 msgid "Whistleblowing Policy"
 msgstr "سياسة التبليغ عن الانحرافات"
 
-msgid "Accessibility Declaration"
-msgstr "التصريح بإمكانيات الوصول"
-
 msgid "Voice"
 msgstr "صوت"
 
@@ -1024,9 +1021,6 @@ msgstr "تمكين المدراء من تغيير كلمات سر المستخد
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "المسؤولون المفوضون لتغيير كلمات مرور المستخدم:"
-
-msgid "Enable file viewer"
-msgstr "تمكين عرض الملفات"
 
 msgid "Enable PGP"
 msgstr "تمكين التشفير PGP"
@@ -1515,17 +1509,11 @@ msgstr "إذا لم يتم التفعيل في خلال 24 ساعة، سيتم �
 msgid "Sign up"
 msgstr "تسجيل"
 
-msgid "Site"
-msgstr "موقع"
-
-msgid "Confirmation"
-msgstr "تأكيد"
+msgid "Invalid phone number"
+msgstr "رقم هاتف غير صالح"
 
 msgid "Invalid confirmation"
 msgstr "تأكيد غير صالح"
-
-msgid "Invalid phone number"
-msgstr "رقم هاتف غير صالح"
 
 msgid "Address"
 msgstr "العنوان"
@@ -1535,6 +1523,12 @@ msgstr "الكود الضريبي"
 
 msgid "Tax code"
 msgstr "رمز الضريبة"
+
+msgid "Site"
+msgstr "موقع"
+
+msgid "Confirmation"
+msgstr "تأكيد"
 
 msgid "The answer is too short"
 msgstr "الإجابة قصيرة جدًا."

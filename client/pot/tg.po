@@ -497,9 +497,6 @@ msgstr "Сиёсати махфият"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -983,9 +980,6 @@ msgstr "Ба маъмурон имкони гузарвожаҳои корбар
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Ба маъмурон иҷозаи тағйир додани гузарвожаҳои корбарон дода шуд:"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1474,17 +1468,11 @@ msgstr "Агар давоми 24 соат фаъол нагардад, барн�
 msgid "Sign up"
 msgstr "Қайди ном шудан"
 
-msgid "Site"
-msgstr ""
-
-msgid "Confirmation"
-msgstr "Тасдиқ кардан"
+msgid "Invalid phone number"
+msgstr "Рақами телефони нодуруст"
 
 msgid "Invalid confirmation"
 msgstr "Тасдиқи нодуруст"
-
-msgid "Invalid phone number"
-msgstr "Рақами телефони нодуруст"
 
 msgid "Address"
 msgstr "Суроға"
@@ -1494,6 +1482,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr ""
+
+msgid "Site"
+msgstr ""
+
+msgid "Confirmation"
+msgstr "Тасдиқ кардан"
 
 msgid "The answer is too short"
 msgstr "Ҷавоб хеле кӯтоҳ аст"

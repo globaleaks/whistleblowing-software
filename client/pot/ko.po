@@ -490,9 +490,6 @@ msgstr "개인 정보 보호 정책"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -976,9 +973,6 @@ msgstr "관리자가 사용자 비밀번호를 변경하도록 허용"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "사용자 비밀번호 변경 권한을 갖춘 관리자:"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1467,17 +1461,11 @@ msgstr "24시간 이내에 활성화되지 않으면 플랫폼이 자동으로 �
 msgid "Sign up"
 msgstr "가입"
 
-msgid "Site"
-msgstr "사이트"
-
-msgid "Confirmation"
-msgstr "확인"
+msgid "Invalid phone number"
+msgstr "유효하지 않은 전화번호"
 
 msgid "Invalid confirmation"
 msgstr "유효하지 않은 확인"
-
-msgid "Invalid phone number"
-msgstr "유효하지 않은 전화번호"
 
 msgid "Address"
 msgstr "주소"
@@ -1487,6 +1475,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr "세금 코드"
+
+msgid "Site"
+msgstr "사이트"
+
+msgid "Confirmation"
+msgstr "확인"
 
 msgid "The answer is too short"
 msgstr "답변이 너무 짧습니다."

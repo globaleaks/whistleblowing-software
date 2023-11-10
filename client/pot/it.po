@@ -511,9 +511,6 @@ msgstr "Informativa Privacy"
 msgid "Whistleblowing Policy"
 msgstr "Whistleblowing Policy"
 
-msgid "Accessibility Declaration"
-msgstr "Dichiarazione di Accessibilità"
-
 msgid "Voice"
 msgstr "Voce"
 
@@ -997,9 +994,6 @@ msgstr "Abilita gli amministratori a cambiare le password degli utenti"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Amministratori autorizzati a cambiare le password degli utenti:"
-
-msgid "Enable file viewer"
-msgstr "Abilita visualizzatore file"
 
 msgid "Enable PGP"
 msgstr "Abilita PGP"
@@ -1488,17 +1482,11 @@ msgstr "Se non attivata entro 24 ore la piattaforma verrà cancellata automatica
 msgid "Sign up"
 msgstr "Registrazione"
 
-msgid "Site"
-msgstr "Sito"
-
-msgid "Confirmation"
-msgstr "Conferma"
+msgid "Invalid phone number"
+msgstr "Numero di telefono non valido"
 
 msgid "Invalid confirmation"
 msgstr "Conferma incorretta"
-
-msgid "Invalid phone number"
-msgstr "Numero di telefono non valido"
 
 msgid "Address"
 msgstr "Indirizzo"
@@ -1508,6 +1496,12 @@ msgstr "Codice fiscale"
 
 msgid "Tax code"
 msgstr "Partita IVA"
+
+msgid "Site"
+msgstr "Sito"
+
+msgid "Confirmation"
+msgstr "Conferma"
 
 msgid "The answer is too short"
 msgstr "La risposta è troppo corta"
@@ -1663,7 +1657,7 @@ msgid "What is the outcome you want to achieve with our support?"
 msgstr "Qual è il risultato che vorresti ottenere con il nostro supporto?"
 
 msgid "Would you like to tell us who you are?"
-msgstr "Vuoi dirci chi se?"
+msgstr "Vuoi dirci chi sei?"
 
 msgid "First name"
 msgstr "Nome"

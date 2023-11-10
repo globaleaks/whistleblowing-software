@@ -494,9 +494,6 @@ msgstr "Gizlinlik Ugry"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -980,9 +977,6 @@ msgstr "Dolandyryjylara ulanyjy parollaryny üýtgetmäge mümkinçilik ber"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Ulanyjy parolyny üýtgetmäge ygtyýarly dolandyryjylar:"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1471,17 +1465,11 @@ msgstr "24 sagadyň dowamynda işjeňleşdirilmese, platforma awtomatiki usulda 
 msgid "Sign up"
 msgstr "Ýazyl"
 
-msgid "Site"
-msgstr ""
-
-msgid "Confirmation"
-msgstr "Tassyklama"
+msgid "Invalid phone number"
+msgstr "Nädogry telefon belgisi"
 
 msgid "Invalid confirmation"
 msgstr "Nädogry tassyklama"
-
-msgid "Invalid phone number"
-msgstr "Nädogry telefon belgisi"
 
 msgid "Address"
 msgstr ""
@@ -1491,6 +1479,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr ""
+
+msgid "Site"
+msgstr ""
+
+msgid "Confirmation"
+msgstr "Tassyklama"
 
 msgid "The answer is too short"
 msgstr "Jogap gaty gysga"

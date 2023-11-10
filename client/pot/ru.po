@@ -519,9 +519,6 @@ msgstr "Политика конфиденциальности"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -1005,9 +1002,6 @@ msgstr "Разрешить администраторам изменять па�
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Администраторам разрешено изменять пароли пользователей:"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1496,17 +1490,11 @@ msgstr "Если не активировать платформу в течен�
 msgid "Sign up"
 msgstr "Зарегистрироваться"
 
-msgid "Site"
-msgstr "Сайт"
-
-msgid "Confirmation"
-msgstr "Подтверждение"
+msgid "Invalid phone number"
+msgstr "Недействительный номер телефона"
 
 msgid "Invalid confirmation"
 msgstr "Недействительное подтверждение"
-
-msgid "Invalid phone number"
-msgstr "Недействительный номер телефона"
 
 msgid "Address"
 msgstr "Адрес"
@@ -1516,6 +1504,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr "Код налога"
+
+msgid "Site"
+msgstr "Сайт"
+
+msgid "Confirmation"
+msgstr "Подтверждение"
 
 msgid "The answer is too short"
 msgstr "Ответ слишком короткий"

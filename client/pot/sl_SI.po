@@ -495,9 +495,6 @@ msgstr "Politika zasebnosti"
 msgid "Whistleblowing Policy"
 msgstr "Pravilnik o prijavljanju suma nepravilnosti"
 
-msgid "Accessibility Declaration"
-msgstr "Izjava o dostopnosti"
-
 msgid "Voice"
 msgstr "Glas"
 
@@ -981,9 +978,6 @@ msgstr "Omogoči administratorjem spreminjanje uporabniških gesel"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Administatorji, ki smejo spreminjati uporabniška gesla:"
-
-msgid "Enable file viewer"
-msgstr "Omogoči pregledovanje datotek"
 
 msgid "Enable PGP"
 msgstr "Omogoči PGP"
@@ -1472,17 +1466,11 @@ msgstr "Če platforme ne boste aktivirali v roku 24 ur, bo ta samodejno izbrisan
 msgid "Sign up"
 msgstr "Registracija"
 
-msgid "Site"
-msgstr "Spletno mesto "
-
-msgid "Confirmation"
-msgstr "Potrditev"
+msgid "Invalid phone number"
+msgstr "Neveljavna telefonska številka"
 
 msgid "Invalid confirmation"
 msgstr "Neveljavna potrditev"
-
-msgid "Invalid phone number"
-msgstr "Neveljavna telefonska številka"
 
 msgid "Address"
 msgstr "Naslov"
@@ -1492,6 +1480,12 @@ msgstr "Matična številka"
 
 msgid "Tax code"
 msgstr "Davčna številka"
+
+msgid "Site"
+msgstr "Spletno mesto "
+
+msgid "Confirmation"
+msgstr "Potrditev"
 
 msgid "The answer is too short"
 msgstr "Odgovor je prekratek"

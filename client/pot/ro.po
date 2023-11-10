@@ -505,9 +505,6 @@ msgstr "Politica de confidențialitate"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -991,9 +988,6 @@ msgstr "Permite administratorilor să schimbe parolele utilizatorilor"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Administratori autorizați să schimbe parolele utilizatorului:"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1482,17 +1476,11 @@ msgstr "Dacă nu este activată în 24 de ore, platforma va fi ștearsă în mod
 msgid "Sign up"
 msgstr "Cont nou"
 
-msgid "Site"
-msgstr "Sait"
-
-msgid "Confirmation"
-msgstr "Confirmare"
+msgid "Invalid phone number"
+msgstr "Număr de telefon invalid"
 
 msgid "Invalid confirmation"
 msgstr "Confirmare invalidă"
-
-msgid "Invalid phone number"
-msgstr "Număr de telefon invalid"
 
 msgid "Address"
 msgstr "Adresă"
@@ -1502,6 +1490,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr "Cod fiscal"
+
+msgid "Site"
+msgstr "Sait"
+
+msgid "Confirmation"
+msgstr "Confirmare"
 
 msgid "The answer is too short"
 msgstr "Răspunsul este prea scurt"

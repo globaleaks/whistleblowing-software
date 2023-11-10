@@ -490,9 +490,6 @@ msgstr "Палітыка канфідэнцыяльнасці"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -976,9 +973,6 @@ msgstr "Дазволіць адміністратарам змяняць пар�
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Адміністратары ўпаўнаважаныя змяняць паролі карыстальнікаў:"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1467,17 +1461,11 @@ msgstr "Калі яе не актываваць на працягу 24 гадз�
 msgid "Sign up"
 msgstr "Зарэгістравацца"
 
-msgid "Site"
-msgstr "Сайт"
-
-msgid "Confirmation"
-msgstr "Пацверджанне"
+msgid "Invalid phone number"
+msgstr "Несапраўдны нумар тэлефону"
 
 msgid "Invalid confirmation"
 msgstr "Несапраўднае пацверджанне"
-
-msgid "Invalid phone number"
-msgstr "Несапраўдны нумар тэлефону"
 
 msgid "Address"
 msgstr "Адрас"
@@ -1487,6 +1475,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr ""
+
+msgid "Site"
+msgstr "Сайт"
+
+msgid "Confirmation"
+msgstr "Пацверджанне"
 
 msgid "The answer is too short"
 msgstr "Адказ занадта кароткі"

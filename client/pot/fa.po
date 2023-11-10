@@ -516,9 +516,6 @@ msgstr "حریم خصوصی"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr "صدا"
 
@@ -1002,9 +999,6 @@ msgstr "اجازه به مدیران برای تغییر گذرواژه‌های
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "مدیران مجاز به تغییر گذرواژه‌های کاربران:"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1493,17 +1487,11 @@ msgstr "در صورتی که طی ۲۴ ساعت ساعت فعال نشود پل�
 msgid "Sign up"
 msgstr "نام‌نویسی"
 
-msgid "Site"
-msgstr "پایگاه"
-
-msgid "Confirmation"
-msgstr "تأیید"
+msgid "Invalid phone number"
+msgstr "شماره‌تلفن نامعتبر"
 
 msgid "Invalid confirmation"
 msgstr "تأیید نامعتبر"
-
-msgid "Invalid phone number"
-msgstr "شماره‌تلفن نامعتبر"
 
 msgid "Address"
 msgstr "آدرس"
@@ -1513,6 +1501,12 @@ msgstr "کد مالی"
 
 msgid "Tax code"
 msgstr "شماره مالیات"
+
+msgid "Site"
+msgstr "پایگاه"
+
+msgid "Confirmation"
+msgstr "تأیید"
 
 msgid "The answer is too short"
 msgstr "پاسخ بسیار کوتاه است"

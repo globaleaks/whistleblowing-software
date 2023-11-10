@@ -496,9 +496,6 @@ msgstr "গোপনীয়তা নীতি"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -982,9 +979,6 @@ msgstr "প্রশাসকগণকে ব্যবহারকারীর �
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "প্রশাসকগণ ব্যবহারকারীর পাসওয়ার্ড পরিবর্তন করতে পারবেন:"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1473,17 +1467,11 @@ msgstr "২৪ ঘন্টার মধ্যে সক্রিয় না �
 msgid "Sign up"
 msgstr "সাইন আপ"
 
-msgid "Site"
-msgstr "ওয়েবসাইট"
-
-msgid "Confirmation"
-msgstr "নিশ্চিতকরণ"
+msgid "Invalid phone number"
+msgstr "ফোন নাম্বার সঠিক নয়"
 
 msgid "Invalid confirmation"
 msgstr "অবৈধ নিশ্চিতকরণ"
-
-msgid "Invalid phone number"
-msgstr "ফোন নাম্বার সঠিক নয়"
 
 msgid "Address"
 msgstr "ঠিকানা:"
@@ -1493,6 +1481,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr "টিন নাম্বার"
+
+msgid "Site"
+msgstr "ওয়েবসাইট"
+
+msgid "Confirmation"
+msgstr "নিশ্চিতকরণ"
 
 msgid "The answer is too short"
 msgstr "উত্তরটি খুবই সংক্ষিপ্ত"

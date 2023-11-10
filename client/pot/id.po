@@ -514,9 +514,6 @@ msgstr "Kebjiakan Privasi"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -1000,9 +997,6 @@ msgstr "Aktifkan administrator untuk mengubah kata sandi pengguna"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Administrator mengizinkan untuk mengganti kata sandi pengguna:"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1491,17 +1485,11 @@ msgstr "Jika tidak diaktifkan dalam 24 jam platform ini akan dihapus secara otom
 msgid "Sign up"
 msgstr "Daftar"
 
-msgid "Site"
-msgstr "Situs"
-
-msgid "Confirmation"
-msgstr "Konfirmasi"
+msgid "Invalid phone number"
+msgstr "Nomor telepon tidak valid"
 
 msgid "Invalid confirmation"
 msgstr "Konfirmasi tidak valid"
-
-msgid "Invalid phone number"
-msgstr "Nomor telepon tidak valid"
 
 msgid "Address"
 msgstr "Alamat"
@@ -1511,6 +1499,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr "Kode pajak"
+
+msgid "Site"
+msgstr "Situs"
+
+msgid "Confirmation"
+msgstr "Konfirmasi"
 
 msgid "The answer is too short"
 msgstr "Jawaban terlalu singkat"

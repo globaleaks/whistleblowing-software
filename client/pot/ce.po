@@ -491,9 +491,6 @@ msgstr ""
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -977,9 +974,6 @@ msgstr "Администраторшна пайдаэцархочун парол
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Администраторийн бакъо ю пайдаэцархочун парол хийца:"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1468,17 +1462,11 @@ msgstr "Платформина 24 сахьт далале активаци ца 
 msgid "Sign up"
 msgstr "Язлуо"
 
-msgid "Site"
-msgstr ""
-
-msgid "Confirmation"
-msgstr "Тlечlагlдар"
+msgid "Invalid phone number"
+msgstr "Телпонан лоьмар бакъ яц"
 
 msgid "Invalid confirmation"
 msgstr "Тlечlагlдар бакъ дац"
-
-msgid "Invalid phone number"
-msgstr "Телпонан лоьмар бакъ яц"
 
 msgid "Address"
 msgstr ""
@@ -1488,6 +1476,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr ""
+
+msgid "Site"
+msgstr ""
+
+msgid "Confirmation"
+msgstr "Тlечlагlдар"
 
 msgid "The answer is too short"
 msgstr "Жоп дукха доца ду"

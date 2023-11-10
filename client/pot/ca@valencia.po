@@ -194,7 +194,7 @@ msgid "Motivation"
 msgstr "Motivació"
 
 msgid "Status"
-msgstr "Estatus"
+msgstr "Estat actual"
 
 msgid "Request motivation"
 msgstr "Demana la motivació"
@@ -203,7 +203,7 @@ msgid "Reply motivation"
 msgstr "Respon a la motivació"
 
 msgid "Request status"
-msgstr "Demana l'estatus"
+msgstr "Demana l'estat"
 
 msgid "Custodian"
 msgstr "Custodi"
@@ -503,9 +503,6 @@ msgstr "Política de privacitat"
 msgid "Whistleblowing Policy"
 msgstr "Política de denúncies"
 
-msgid "Accessibility Declaration"
-msgstr "Declaració d'accessibilitat"
-
 msgid "Voice"
 msgstr "Veu"
 
@@ -564,7 +561,7 @@ msgid "Whistleblower's last access"
 msgstr "Últim accés de l'Informant"
 
 msgid "Substatuses"
-msgstr "Subestatus"
+msgstr "Subestats"
 
 msgid "Add"
 msgstr "Afegeix"
@@ -989,9 +986,6 @@ msgstr "Habiliteu als administradors per canviar les contrasenyes d’usuari"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Administradors autoritzats a canviar les contrasenyes dels usuaris:"
-
-msgid "Enable file viewer"
-msgstr "Activar visor de fitxers"
 
 msgid "Enable PGP"
 msgstr "Activar PGP"
@@ -1480,17 +1474,11 @@ msgstr "Si no s'activa dins de les properes 24 hores, la plataforma serà autom�
 msgid "Sign up"
 msgstr "Registrar‐se"
 
-msgid "Site"
-msgstr "Lloc"
-
-msgid "Confirmation"
-msgstr "Confirmació"
+msgid "Invalid phone number"
+msgstr "Número de telèfon no vàlid"
 
 msgid "Invalid confirmation"
 msgstr "Confirmació invàlida"
-
-msgid "Invalid phone number"
-msgstr "Número de telèfon no vàlid"
 
 msgid "Address"
 msgstr "Adreça"
@@ -1500,6 +1488,12 @@ msgstr "Codi postal"
 
 msgid "Tax code"
 msgstr "Codi tributari"
+
+msgid "Site"
+msgstr "Lloc"
+
+msgid "Confirmation"
+msgstr "Confirmació"
 
 msgid "The answer is too short"
 msgstr "La resposta és massa curta"

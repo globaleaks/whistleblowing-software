@@ -491,9 +491,6 @@ msgstr "Personvernspraksis"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -977,9 +974,6 @@ msgstr "La administratorer endre brukerpassord"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Administratorer autorisert til å endre brukerpassord:"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1468,17 +1462,11 @@ msgstr "Hvis aktivering ikke skjer innen 24 timer, vil plattformen slettes autom
 msgid "Sign up"
 msgstr "Registrer deg"
 
-msgid "Site"
-msgstr "Side"
-
-msgid "Confirmation"
-msgstr "Bekreftelse"
+msgid "Invalid phone number"
+msgstr "Ugyldig telefonnummer"
 
 msgid "Invalid confirmation"
 msgstr "Ugyldig bekreftelse"
-
-msgid "Invalid phone number"
-msgstr "Ugyldig telefonnummer"
 
 msgid "Address"
 msgstr "Adresse"
@@ -1488,6 +1476,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr ""
+
+msgid "Site"
+msgstr "Side"
+
+msgid "Confirmation"
+msgstr "Bekreftelse"
 
 msgid "The answer is too short"
 msgstr "Svaret er for kort"

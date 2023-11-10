@@ -501,9 +501,6 @@ msgstr "رازداری کی پالیسی"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -987,9 +984,6 @@ msgstr "منتظمین کو صارف کے پاس ورڈ تبدیل کرنے کے
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "منتظمین صارف کے پاس ورڈ تبدیل کرنے کے مجاز ہیں: "
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1478,17 +1472,11 @@ msgstr "اگر 24 گھنٹوں کے اندر فعال نہیں کیا گیا ت�
 msgid "Sign up"
 msgstr "Sign up"
 
-msgid "Site"
-msgstr "ویب سائٹ"
-
-msgid "Confirmation"
-msgstr "Confirmation"
+msgid "Invalid phone number"
+msgstr "فون نمبر غلط ہے۔ "
 
 msgid "Invalid confirmation"
 msgstr "تصدیق غلط ہے "
-
-msgid "Invalid phone number"
-msgstr "فون نمبر غلط ہے۔ "
 
 msgid "Address"
 msgstr "پتہ"
@@ -1498,6 +1486,12 @@ msgstr "مالیاتی کوڈ "
 
 msgid "Tax code"
 msgstr "ٹیکس کوڈ "
+
+msgid "Site"
+msgstr "ویب سائٹ"
+
+msgid "Confirmation"
+msgstr "Confirmation"
 
 msgid "The answer is too short"
 msgstr "آپ کا جواب بہت مختصر ہے۔ "

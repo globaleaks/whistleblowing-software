@@ -494,9 +494,6 @@ msgstr ""
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -980,9 +977,6 @@ msgstr "ޔޫސަރ ޕާސްވޯޑްސް ބަދަލުކުރަން އެޑްމިނ�
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "ޔޫޒަރ ޕާސްވޯޑް ބަދަލުކުރުމުގެ ހުއްދަ ލިބިފައިވާ އެޑްމިނިސްޓްރޭޓަރުން:"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1471,17 +1465,11 @@ msgstr "24 ގަޑިއިރުގެ ތެރޭގައި އެކްޓިވޭޓް ނުކުރ
 msgid "Sign up"
 msgstr "ހިދުމަތަށް އެދިލެއްވުން"
 
-msgid "Site"
-msgstr ""
-
-msgid "Confirmation"
-msgstr "ކަށަވަރުކުރައްވާ"
+msgid "Invalid phone number"
+msgstr "ފޯނު ނަމްބަރު ރަނގަޅެއްނޫން"
 
 msgid "Invalid confirmation"
 msgstr "ކަށަވަރުކުރެވޭގޮތެއް ނުވި"
-
-msgid "Invalid phone number"
-msgstr "ފޯނު ނަމްބަރު ރަނގަޅެއްނޫން"
 
 msgid "Address"
 msgstr "ްއެޑްރެސް"
@@ -1491,6 +1479,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr ""
+
+msgid "Site"
+msgstr ""
+
+msgid "Confirmation"
+msgstr "ކަށަވަރުކުރައްވާ"
 
 msgid "The answer is too short"
 msgstr "ޖަވާބު މާ ކުރު"

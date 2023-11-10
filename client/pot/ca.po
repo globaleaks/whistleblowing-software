@@ -508,9 +508,6 @@ msgstr "Política de privadesa"
 msgid "Whistleblowing Policy"
 msgstr "Política de denúncies"
 
-msgid "Accessibility Declaration"
-msgstr "Declaració d'accessibilitat"
-
 msgid "Voice"
 msgstr "Veu"
 
@@ -994,9 +991,6 @@ msgstr "Habiliteu als administradors per canviar les contrasenyes d’usuari"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Persones administradores autoritzats a canviar les contrasenyes de les persones usuàries:"
-
-msgid "Enable file viewer"
-msgstr "Activar visor de fitxers"
 
 msgid "Enable PGP"
 msgstr "Activar PGP"
@@ -1485,17 +1479,11 @@ msgstr "Si no s’activa en 24 hores, la plataforma s'eliminarà automàticament
 msgid "Sign up"
 msgstr "Registrar‐se"
 
-msgid "Site"
-msgstr "Lloc"
-
-msgid "Confirmation"
-msgstr "Confirmació"
+msgid "Invalid phone number"
+msgstr "Número de telèfon no vàlid"
 
 msgid "Invalid confirmation"
 msgstr "Confirmació no vàlida"
-
-msgid "Invalid phone number"
-msgstr "Número de telèfon no vàlid"
 
 msgid "Address"
 msgstr "Adreça"
@@ -1505,6 +1493,12 @@ msgstr "Codi postal"
 
 msgid "Tax code"
 msgstr "codi tributari"
+
+msgid "Site"
+msgstr "Lloc"
+
+msgid "Confirmation"
+msgstr "Confirmació"
 
 msgid "The answer is too short"
 msgstr "La resposta és massa curta"

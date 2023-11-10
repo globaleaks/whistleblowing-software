@@ -505,9 +505,6 @@ msgstr ""
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -990,9 +987,6 @@ msgid "Enable administrators to change user passwords"
 msgstr ""
 
 msgid "Administrators authorized to change user passwords:"
-msgstr ""
-
-msgid "Enable file viewer"
 msgstr ""
 
 msgid "Enable PGP"
@@ -1482,17 +1476,11 @@ msgstr ""
 msgid "Sign up"
 msgstr "Inscription"
 
-msgid "Site"
-msgstr ""
-
-msgid "Confirmation"
-msgstr ""
+msgid "Invalid phone number"
+msgstr "Le numéro de téléphone est invalide"
 
 msgid "Invalid confirmation"
 msgstr ""
-
-msgid "Invalid phone number"
-msgstr "Le numéro de téléphone est invalide"
 
 msgid "Address"
 msgstr "Adresse"
@@ -1501,6 +1489,12 @@ msgid "Fiscal code"
 msgstr ""
 
 msgid "Tax code"
+msgstr ""
+
+msgid "Site"
+msgstr ""
+
+msgid "Confirmation"
 msgstr ""
 
 msgid "The answer is too short"

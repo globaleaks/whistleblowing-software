@@ -491,9 +491,6 @@ msgstr "தனியுரிமை கொள்கை"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -976,9 +973,6 @@ msgid "Enable administrators to change user passwords"
 msgstr ""
 
 msgid "Administrators authorized to change user passwords:"
-msgstr ""
-
-msgid "Enable file viewer"
 msgstr ""
 
 msgid "Enable PGP"
@@ -1468,17 +1462,11 @@ msgstr ""
 msgid "Sign up"
 msgstr "டிஜிட்டல் கையெழுத்திட செய்க"
 
-msgid "Site"
-msgstr "தளம்"
-
-msgid "Confirmation"
-msgstr ""
+msgid "Invalid phone number"
+msgstr "தவறான தொலைபேசி எண்"
 
 msgid "Invalid confirmation"
 msgstr ""
-
-msgid "Invalid phone number"
-msgstr "தவறான தொலைபேசி எண்"
 
 msgid "Address"
 msgstr "முகவரி"
@@ -1487,6 +1475,12 @@ msgid "Fiscal code"
 msgstr ""
 
 msgid "Tax code"
+msgstr ""
+
+msgid "Site"
+msgstr "தளம்"
+
+msgid "Confirmation"
 msgstr ""
 
 msgid "The answer is too short"

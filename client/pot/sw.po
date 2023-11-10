@@ -489,9 +489,6 @@ msgstr "Sera ya faragha"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -975,9 +972,6 @@ msgstr "Wezesha wasimamizi kubadilisha nenosiri za mtumiaji "
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Watawala wameidhinishwa kubadilisha nenosiri za watumiaji:\""
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1466,17 +1460,11 @@ msgstr "Kama haitahaishwa ndani ya masaa 24, jukwaa litafutwa automatiki."
 msgid "Sign up"
 msgstr "Sajili"
 
-msgid "Site"
-msgstr ""
-
-msgid "Confirmation"
-msgstr "Uthibitisho"
+msgid "Invalid phone number"
+msgstr "Namba ya simu batili"
 
 msgid "Invalid confirmation"
 msgstr "Uthibitisho batili"
-
-msgid "Invalid phone number"
-msgstr "Namba ya simu batili"
 
 msgid "Address"
 msgstr "Anwani"
@@ -1486,6 +1474,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr "Nambari ya ushuru"
+
+msgid "Site"
+msgstr ""
+
+msgid "Confirmation"
+msgstr "Uthibitisho"
 
 msgid "The answer is too short"
 msgstr "Jibu ni fupi sana."

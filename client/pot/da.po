@@ -498,9 +498,6 @@ msgstr "Privatlivspolitik"
 msgid "Whistleblowing Policy"
 msgstr "Whitleblowing-politik"
 
-msgid "Accessibility Declaration"
-msgstr "Tilgængeligheds-deklaration"
-
 msgid "Voice"
 msgstr "Stemme"
 
@@ -984,9 +981,6 @@ msgstr "Tillad administratorer at ændre brugeradgangskoder"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Tillad administratorer at ændre brugeradgangskoder"
-
-msgid "Enable file viewer"
-msgstr "Aktivér filvisning"
 
 msgid "Enable PGP"
 msgstr "Aktivér PGP"
@@ -1475,17 +1469,11 @@ msgstr "Hvis ikke aktiveret indenfor 24 timer vil platformen automatisk blive sl
 msgid "Sign up"
 msgstr "Tilmeld"
 
-msgid "Site"
-msgstr "Side"
-
-msgid "Confirmation"
-msgstr "Bekræftelse"
+msgid "Invalid phone number"
+msgstr "Forkert telefonnummer"
 
 msgid "Invalid confirmation"
 msgstr "Forkert bekræftelse"
-
-msgid "Invalid phone number"
-msgstr "Forkert telefonnummer"
 
 msgid "Address"
 msgstr "Adresse"
@@ -1495,6 +1483,12 @@ msgstr "Finanskode"
 
 msgid "Tax code"
 msgstr "Skattekode"
+
+msgid "Site"
+msgstr "Side"
+
+msgid "Confirmation"
+msgstr "Bekræftelse"
 
 msgid "The answer is too short"
 msgstr "Dit svar er for kort"

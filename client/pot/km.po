@@ -493,9 +493,6 @@ msgstr "គោលការណ៍​ភាព​ឯកជន"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -979,9 +976,6 @@ msgstr "បើកឲ្យអ្នកគ្រប់គ្រងផ្លាស
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "អ្នកគ្រប់គ្រងត្រូវបានផ្តល់សិទ្ធិផ្លាស់ប្តូរពាក្យសម្ងាត់អ្នកប្រើប្រាស់៖"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1470,17 +1464,11 @@ msgstr "បើមិនដាក់ដំណើរការក្នុងពេ
 msgid "Sign up"
 msgstr "ចុះឈ្មោះ"
 
-msgid "Site"
-msgstr "តំបន់​បណ្ដាញ"
-
-msgid "Confirmation"
-msgstr "ការបញ្ជាក់"
+msgid "Invalid phone number"
+msgstr "លេខទូរស័ព្ទមិនត្រឹមត្រូវ"
 
 msgid "Invalid confirmation"
 msgstr "ការបញ្ជាក់មិនត្រឹមត្រូវ"
-
-msgid "Invalid phone number"
-msgstr "លេខទូរស័ព្ទមិនត្រឹមត្រូវ"
 
 msgid "Address"
 msgstr "អាសយដ្ឋាន"
@@ -1490,6 +1478,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr "លេខពន្ធ"
+
+msgid "Site"
+msgstr "តំបន់​បណ្ដាញ"
+
+msgid "Confirmation"
+msgstr "ការបញ្ជាក់"
 
 msgid "The answer is too short"
 msgstr "ចម្លើយនេះ​ខ្លីពេក"

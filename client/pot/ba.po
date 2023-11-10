@@ -490,9 +490,6 @@ msgstr ""
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -976,9 +973,6 @@ msgstr "Администраторҙарға ҡулланыусылар паро
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Администраторҙарға ҡулланыусылар паролдәрен үҙгәртергә рөхсәт ителде"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1467,17 +1461,11 @@ msgstr "Әгәр платформаны 24 сәғәт эсендә әүҙемл�
 msgid "Sign up"
 msgstr "Инергә"
 
-msgid "Site"
-msgstr ""
-
-msgid "Confirmation"
-msgstr "Раҫлау"
+msgid "Invalid phone number"
+msgstr "Яраҡһыҙ телефон номеры"
 
 msgid "Invalid confirmation"
 msgstr "Яраҡһыҙ раҫлау"
-
-msgid "Invalid phone number"
-msgstr "Яраҡһыҙ телефон номеры"
 
 msgid "Address"
 msgstr ""
@@ -1487,6 +1475,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr ""
+
+msgid "Site"
+msgstr ""
+
+msgid "Confirmation"
+msgstr "Раҫлау"
 
 msgid "The answer is too short"
 msgstr "Яуап үтә ҡыҫҡа"

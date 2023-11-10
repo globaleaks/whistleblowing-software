@@ -491,9 +491,6 @@ msgstr "مەخپىيەتلىك سىياسىتىمىز"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -977,9 +974,6 @@ msgstr "باشقۇرغىچىلار ئىشلەتكۈچى پاروللىرىنى �
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "باشقۇرغۇچىلارغا ئىشلەتكۈچى پاروللىرىنى ئۆزگەرتىشكە ھوقۇق بېرىلدى: "
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1468,17 +1462,11 @@ msgstr "ئەگەر 24 سائەتكىچە ئاكتىپلىمىسڭىز، بۇ س�
 msgid "Sign up"
 msgstr "تىزىملىتىڭ"
 
-msgid "Site"
-msgstr ""
-
-msgid "Confirmation"
-msgstr "جەزملەڭ"
+msgid "Invalid phone number"
+msgstr "ئىناۋەتسىز تېلېفون نومۇرى"
 
 msgid "Invalid confirmation"
 msgstr "ئىناۋەتسىز جەزىملەش"
-
-msgid "Invalid phone number"
-msgstr "ئىناۋەتسىز تېلېفون نومۇرى"
 
 msgid "Address"
 msgstr "ئادرېس"
@@ -1488,6 +1476,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr "باج كودى"
+
+msgid "Site"
+msgstr ""
+
+msgid "Confirmation"
+msgstr "جەزملەڭ"
 
 msgid "The answer is too short"
 msgstr "جاۋاپ بەك قىسقا"

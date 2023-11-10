@@ -490,9 +490,6 @@ msgstr "Купуялык саясаты"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -976,9 +973,6 @@ msgstr "Администраторлорго колдонуучулардын с
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Колдонуучулардын сырсөзүн алмаштырууга укуктуу администраторлор:"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1467,17 +1461,11 @@ msgstr "Эгерде 24 сааттын ичинде активдүү абалг�
 msgid "Sign up"
 msgstr "Катталуу"
 
-msgid "Site"
-msgstr ""
-
-msgid "Confirmation"
-msgstr "Тастыктоо"
+msgid "Invalid phone number"
+msgstr "Жараксыз телефон номуру"
 
 msgid "Invalid confirmation"
 msgstr "Тастыктоо жараксыз"
-
-msgid "Invalid phone number"
-msgstr "Жараксыз телефон номуру"
 
 msgid "Address"
 msgstr ""
@@ -1487,6 +1475,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr ""
+
+msgid "Site"
+msgstr ""
+
+msgid "Confirmation"
+msgstr "Тастыктоо"
 
 msgid "The answer is too short"
 msgstr "Жооп өтө эле кыска"

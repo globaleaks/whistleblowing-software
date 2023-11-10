@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Eva Simonsson, 2020-2021,2023\n"
+"Last-Translator: Max Moiseev <max.moiseev@chamber.fi>, 2020-2023\n"
 "Language-Team: Finnish (http://app.transifex.com/otf/globaleaks/language/fi/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -473,7 +473,7 @@ msgid "Unhide"
 msgstr ""
 
 msgid "Redact"
-msgstr "Peitä"
+msgstr "Poista pysyvästi"
 
 msgid "Select an option"
 msgstr "Valitse"
@@ -482,10 +482,10 @@ msgid "Select your language"
 msgstr "Valitse kielesi"
 
 msgid "Give this user ability to mask information"
-msgstr "Anna käyttäjälle mahdollisuus piilottaa tietoja"
+msgstr "Anna käyttäjälle mahdollisuus peittää tietoja"
 
 msgid "Give this user ability to permanently redact masked information"
-msgstr "Anna käyttäjälle mahdollisuus poistaa piilotettuja tietoja pysyvästi"
+msgstr "Anna käyttäjälle mahdollisuus poistaa pysyvästi peitetyt tiedot"
 
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
@@ -498,9 +498,6 @@ msgstr "Yksityisyyskäytäntö"
 
 msgid "Whistleblowing Policy"
 msgstr ""
-
-msgid "Accessibility Declaration"
-msgstr "Saavutettavuusseloste"
 
 msgid "Voice"
 msgstr "Ääni"
@@ -985,9 +982,6 @@ msgstr "Salli järjestelmänvalvojien vaihtaa käyttäjien salasanoja"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Ylläpitäjillä on valtuutus vaihtaa käyttäjän salasanat:"
-
-msgid "Enable file viewer"
-msgstr "Ota käyttöön tiedostojen katselu"
 
 msgid "Enable PGP"
 msgstr "Ota käyttöön PGP"
@@ -1476,17 +1470,11 @@ msgstr "Sivusto tuhotaan automaattisesti, mikäli tunnusta ei aktivoida 24 tunni
 msgid "Sign up"
 msgstr "Rekisteröidy"
 
-msgid "Site"
-msgstr "Sivusto"
-
-msgid "Confirmation"
-msgstr "Vahvistus"
+msgid "Invalid phone number"
+msgstr "Puhelinnumero ei kelpaa"
 
 msgid "Invalid confirmation"
 msgstr "Virheellinen varmistus"
-
-msgid "Invalid phone number"
-msgstr "Puhelinnumero ei kelpaa"
 
 msgid "Address"
 msgstr "Osoite"
@@ -1496,6 +1484,12 @@ msgstr "Verotunnus"
 
 msgid "Tax code"
 msgstr "Veronumero"
+
+msgid "Site"
+msgstr "Sivusto"
+
+msgid "Confirmation"
+msgstr "Vahvistus"
 
 msgid "The answer is too short"
 msgstr "Vastaus on liian lyhyt"

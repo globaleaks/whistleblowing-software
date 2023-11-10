@@ -507,9 +507,6 @@ msgstr "Adatvédelmi irányelvek"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -782,7 +779,7 @@ msgstr "Eddig:"
 msgid ""
 "Default mail configuration in use. Please consider using a private mail "
 "server."
-msgstr "Default mail configuration in use. Please consider using a private mail server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP email cím"
@@ -872,10 +869,10 @@ msgid "Template override"
 msgstr "Template felülírása"
 
 msgid "Min"
-msgstr "Min"
+msgstr ""
 
 msgid "Max"
-msgstr "Max"
+msgstr ""
 
 msgid "Phone number"
 msgstr "Telefonszám"
@@ -993,9 +990,6 @@ msgstr "Engedélyezze, hogy az adminisztrátorok megváltoztathassák a felhaszn
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Az adminisztrátoroknak engedélyezett a felhasználói jelszavak megváltoztatása:"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1484,26 +1478,26 @@ msgstr "Ha 24 órán belül nem aktiválja a platformot, az automatikusan törl�
 msgid "Sign up"
 msgstr "Feliratkozás"
 
-msgid "Site"
-msgstr "Oldal"
-
-msgid "Confirmation"
-msgstr "Megerősítés"
+msgid "Invalid phone number"
+msgstr "Érvénytelen telefonszám"
 
 msgid "Invalid confirmation"
 msgstr "Érvénytelen megerősítés"
-
-msgid "Invalid phone number"
-msgstr "Érvénytelen telefonszám"
 
 msgid "Address"
 msgstr "Cím"
 
 msgid "Fiscal code"
-msgstr "Fiscal code"
+msgstr ""
 
 msgid "Tax code"
 msgstr "Adókód"
+
+msgid "Site"
+msgstr "Oldal"
+
+msgid "Confirmation"
+msgstr "Megerősítés"
 
 msgid "The answer is too short"
 msgstr "A válasz túl rövid."
@@ -1604,10 +1598,10 @@ msgid "Describe your report in detail."
 msgstr "Írja le a jelentését részletesen."
 
 msgid "Where did the facts happen?"
-msgstr "Where did the facts happen?"
+msgstr ""
 
 msgid "When did the facts happen?"
-msgstr "When did the facts happen?"
+msgstr ""
 
 msgid "I'm a victim"
 msgstr "I'm a victim"
@@ -1616,47 +1610,47 @@ msgid "I'm involved in the facts"
 msgstr "I'm involved in the facts"
 
 msgid "I witnessed the facts in person"
-msgstr "I witnessed the facts in person"
+msgstr ""
 
 msgid "I was personally told by a direct witness"
-msgstr "I was personally told by a direct witness"
+msgstr ""
 
 msgid "It is a rumor I heard"
-msgstr "It is a rumor I heard"
+msgstr ""
 
 msgid "How are you involved in the reported facts?"
-msgstr "How are you involved in the reported facts?"
+msgstr ""
 
 msgid "Do you have evidence to support your report?"
-msgstr "Do you have evidence to support your report?"
+msgstr ""
 
 msgid "Please attach the evidence to support your report."
-msgstr "Please attach the evidence to support your report."
+msgstr ""
 
 msgid "Please describe the evidence in detail."
-msgstr "Please describe the evidence in detail."
+msgstr ""
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr "A thorough description of the submitted evidence enhances our ability to evaluate claims and investigate. Please take care to reference significant portions of any videos, images or documents submitted."
+msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr "Have you reported the facts to other organizations and/or individuals?"
+msgstr ""
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr "Please list the organizations and/or individuals you have informed about these facts."
+msgstr ""
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr "Have these organizations investigated your claims? If so, what was the outcome?"
+msgstr ""
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr "What is the outcome you want to achieve with our support?"
+msgstr ""
 
 msgid "Would you like to tell us who you are?"
 msgstr ""

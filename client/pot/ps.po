@@ -489,9 +489,6 @@ msgstr ""
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -975,9 +972,6 @@ msgstr "مدیرانو ته دا وړتیا ورکړئ چې د کارن پټ ن�
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "مدیرانو ته اجازه ورکړل شوې تر څو د کارن پټ نومونه بدل کړي:"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1466,17 +1460,11 @@ msgstr "که چیرته په 24 ساعتونو کې دننه فعال نشي ن�
 msgid "Sign up"
 msgstr "نوم لیکنه"
 
-msgid "Site"
-msgstr ""
-
-msgid "Confirmation"
-msgstr "تصدیق"
+msgid "Invalid phone number"
+msgstr "ناسمه د ټلیفون شمېره"
 
 msgid "Invalid confirmation"
 msgstr "ناسم تصدیق"
-
-msgid "Invalid phone number"
-msgstr "ناسمه د ټلیفون شمېره"
 
 msgid "Address"
 msgstr ""
@@ -1486,6 +1474,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr ""
+
+msgid "Site"
+msgstr ""
+
+msgid "Confirmation"
+msgstr "تصدیق"
 
 msgid "The answer is too short"
 msgstr "ځواب ډېر لنډ دی"

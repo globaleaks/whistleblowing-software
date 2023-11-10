@@ -491,9 +491,6 @@ msgstr "隱私政策"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr "聲音"
 
@@ -977,9 +974,6 @@ msgstr "允許管理員更改使用者的密碼"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "有權更改使用者密碼的管理員："
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1468,17 +1462,11 @@ msgstr "如未能在 24 小時內完成啟動手續，平台將會被自動刪�
 msgid "Sign up"
 msgstr "註冊"
 
-msgid "Site"
-msgstr "網站"
-
-msgid "Confirmation"
-msgstr "確認"
+msgid "Invalid phone number"
+msgstr "電話號碼無效"
 
 msgid "Invalid confirmation"
 msgstr "確認失敗"
-
-msgid "Invalid phone number"
-msgstr "電話號碼無效"
 
 msgid "Address"
 msgstr "地址"
@@ -1488,6 +1476,12 @@ msgstr "税控码"
 
 msgid "Tax code"
 msgstr "稅務編號"
+
+msgid "Site"
+msgstr "網站"
+
+msgid "Confirmation"
+msgstr "確認"
 
 msgid "The answer is too short"
 msgstr "答案過短"

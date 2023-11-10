@@ -507,9 +507,6 @@ msgstr "Pribatutasun Politika"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -993,9 +990,6 @@ msgstr "Administratzaileei erabiltzailearen pasahitzak aldatzea ahalbidetzea"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Erabiltzailearen pasahitzak aldatzeko baimendutako administratzaileak:"
-
-msgid "Enable file viewer"
-msgstr "Aktibatu fitxategien bisorea"
 
 msgid "Enable PGP"
 msgstr "Aktibatu PGP"
@@ -1484,17 +1478,11 @@ msgstr "Hurrengo 24 orduetan aktibatzen ez bada, plataforma automatikoki ezabatu
 msgid "Sign up"
 msgstr "Erregistratu"
 
-msgid "Site"
-msgstr "Lekua"
-
-msgid "Confirmation"
-msgstr "Berrespena"
+msgid "Invalid phone number"
+msgstr "Telefono zenbakiak ez du balio."
 
 msgid "Invalid confirmation"
 msgstr "Berrespenak ez du balio"
-
-msgid "Invalid phone number"
-msgstr "Telefono zenbakiak ez du balio."
 
 msgid "Address"
 msgstr "Helbidea"
@@ -1504,6 +1492,12 @@ msgstr "Kode fiskala"
 
 msgid "Tax code"
 msgstr "Zergen kodea"
+
+msgid "Site"
+msgstr "Lekua"
+
+msgid "Confirmation"
+msgstr "Berrespena"
 
 msgid "The answer is too short"
 msgstr "Erantzuna laburregia da"

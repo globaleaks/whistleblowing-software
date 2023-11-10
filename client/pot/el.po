@@ -502,9 +502,6 @@ msgstr "Πολιτική Προστασίας Προσωπικών Δεδομέ�
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -988,9 +985,6 @@ msgstr "Επιτρέψτε στους διαχειριστές να αλλάζο
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Οι διαχειριστές που έχουν τη δυνατότητα να αλλάξουν τους κωδικούς πρόσβασης χρηστών:"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1479,17 +1473,11 @@ msgstr "Αν δεν ενεργοποιηθεί εντός 24 ωρών η πλα�
 msgid "Sign up"
 msgstr "Εγγραφή"
 
-msgid "Site"
-msgstr "Δικτυακός τόπος"
-
-msgid "Confirmation"
-msgstr "Επιβεβαίωση"
+msgid "Invalid phone number"
+msgstr "Μη έγκυρος αριθμός τηλεφώνου"
 
 msgid "Invalid confirmation"
 msgstr "Άκυρη επιβεβαίωση"
-
-msgid "Invalid phone number"
-msgstr "Μη έγκυρος αριθμός τηλεφώνου"
 
 msgid "Address"
 msgstr "Διεύθυνση"
@@ -1499,6 +1487,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr "ΑΦΜ"
+
+msgid "Site"
+msgstr "Δικτυακός τόπος"
+
+msgid "Confirmation"
+msgstr "Επιβεβαίωση"
 
 msgid "The answer is too short"
 msgstr "Η απάντηση είναι πολυ μικρή"

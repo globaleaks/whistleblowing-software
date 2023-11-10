@@ -516,9 +516,6 @@ msgstr "Gizlilik ilkesi"
 msgid "Whistleblowing Policy"
 msgstr "Muhbirlik ilkesi"
 
-msgid "Accessibility Declaration"
-msgstr "Erişilebilirlik bildirimi"
-
 msgid "Voice"
 msgstr "Ses"
 
@@ -1002,9 +999,6 @@ msgstr "Yöneticiler kullanıcı parolalarını değiştirebilsin."
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Kullanıcıların parolasını değiştirme izni olan yöneticiler:"
-
-msgid "Enable file viewer"
-msgstr "Dosya görüntüleyici kullanılsın"
 
 msgid "Enable PGP"
 msgstr "PGP kullanılsın"
@@ -1493,17 +1487,11 @@ msgstr "Platform 24 saat içinde etkinleştirilmezse otomatik olarak silinir."
 msgid "Sign up"
 msgstr "Hesap aç"
 
-msgid "Site"
-msgstr "Site"
-
-msgid "Confirmation"
-msgstr "Doğrulama"
+msgid "Invalid phone number"
+msgstr "Telefon numarası geçersiz"
 
 msgid "Invalid confirmation"
 msgstr "Doğrulama geçersiz"
-
-msgid "Invalid phone number"
-msgstr "Telefon numarası geçersiz"
 
 msgid "Address"
 msgstr "Adres"
@@ -1513,6 +1501,12 @@ msgstr "Sicil numarası"
 
 msgid "Tax code"
 msgstr "Vergi numarası"
+
+msgid "Site"
+msgstr "Site"
+
+msgid "Confirmation"
+msgstr "Doğrulama"
 
 msgid "The answer is too short"
 msgstr "Yanıt çok kısa"

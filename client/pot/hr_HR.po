@@ -494,9 +494,6 @@ msgstr "Izjava o privatnosti"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -980,9 +977,6 @@ msgstr "Omogući administratorima da promjene korisničke lozinke"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Administratori autorizirani za promjenu korisničkih lozinki:"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1471,17 +1465,11 @@ msgstr "Ukoliko platformu ne aktivirate unutar 24 sata, bit će automatski obris
 msgid "Sign up"
 msgstr "Prijavite se"
 
-msgid "Site"
-msgstr "Stranica"
-
-msgid "Confirmation"
-msgstr "Potvrda"
+msgid "Invalid phone number"
+msgstr "Neispravan telefonski broj"
 
 msgid "Invalid confirmation"
 msgstr "Neispravna potvrda"
-
-msgid "Invalid phone number"
-msgstr "Neispravan telefonski broj"
 
 msgid "Address"
 msgstr "Adresa"
@@ -1491,6 +1479,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr "Porezni kod"
+
+msgid "Site"
+msgstr "Stranica"
+
+msgid "Confirmation"
+msgstr "Potvrda"
 
 msgid "The answer is too short"
 msgstr "Odgovor je prekratak"

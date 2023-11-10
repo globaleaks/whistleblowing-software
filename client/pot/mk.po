@@ -491,9 +491,6 @@ msgstr "Полиса на Приватност"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -977,9 +974,6 @@ msgstr "Овозможи им на администраторите да ги п
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Одобрени Администратори да ги менуваат лозинките на корисниците:"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1468,17 +1462,11 @@ msgstr "Ако платформата не биде активирана за 24
 msgid "Sign up"
 msgstr "Регистрирај се"
 
-msgid "Site"
-msgstr ""
-
-msgid "Confirmation"
-msgstr "Потврда"
+msgid "Invalid phone number"
+msgstr "Невалиден телефонски број"
 
 msgid "Invalid confirmation"
 msgstr "Невалидна потврда"
-
-msgid "Invalid phone number"
-msgstr "Невалиден телефонски број"
 
 msgid "Address"
 msgstr "Адреса"
@@ -1488,6 +1476,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr "Даночен код"
+
+msgid "Site"
+msgstr ""
+
+msgid "Confirmation"
+msgstr "Потврда"
 
 msgid "The answer is too short"
 msgstr "Одговорот е премногу краток"

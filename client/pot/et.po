@@ -490,9 +490,6 @@ msgstr "Privaatsus"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -976,9 +973,6 @@ msgstr "Luba administraatoritel kasutajate paroole muuta."
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Kasutajate paroolide muutmise õigust omavad administraatorid:"
-
-msgid "Enable file viewer"
-msgstr "Luba failivaatur"
 
 msgid "Enable PGP"
 msgstr "Luba PGP"
@@ -1467,17 +1461,11 @@ msgstr "Kui platvormi 24 tunni jooksul ei aktiveerita, kustutatakse see automaat
 msgid "Sign up"
 msgstr "Registreeru"
 
-msgid "Site"
-msgstr "Sait"
-
-msgid "Confirmation"
-msgstr "Kinnitus"
+msgid "Invalid phone number"
+msgstr "Vigane telefoninumber"
 
 msgid "Invalid confirmation"
 msgstr "Kehtetu kinnitus"
-
-msgid "Invalid phone number"
-msgstr "Vigane telefoninumber"
 
 msgid "Address"
 msgstr "Aadress"
@@ -1487,6 +1475,12 @@ msgstr "Itaalia maksukood"
 
 msgid "Tax code"
 msgstr "Maksukood"
+
+msgid "Site"
+msgstr "Sait"
+
+msgid "Confirmation"
+msgstr "Kinnitus"
 
 msgid "The answer is too short"
 msgstr "Vastus on liiga lühike"

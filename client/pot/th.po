@@ -499,9 +499,6 @@ msgstr "นโยบายความเป็นส่วนตัว"
 msgid "Whistleblowing Policy"
 msgstr "นโยบายการแจ้งเบาะแส"
 
-msgid "Accessibility Declaration"
-msgstr "คำประกาศความสามารถในการเข้าถึง"
-
 msgid "Voice"
 msgstr "เสียง"
 
@@ -985,9 +982,6 @@ msgstr "เปิดให้ผู้ดูแลระบบเปลี่ย
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "ผู้ดูแลได้รับอนุญาตให้เปลี่ยนรหัสผ่านของผู้ใช้:"
-
-msgid "Enable file viewer"
-msgstr "เปิดใช้ตัวดูแฟ้ม"
 
 msgid "Enable PGP"
 msgstr "เปิดใช้ PGP"
@@ -1476,17 +1470,11 @@ msgstr "ถ้าคุณไม่ได้ยืนยันการเปิ
 msgid "Sign up"
 msgstr "ลงชื่อสมัคร"
 
-msgid "Site"
-msgstr "เว็บไซต์"
-
-msgid "Confirmation"
-msgstr "การยืนยัน"
+msgid "Invalid phone number"
+msgstr "หมายเลขโทรศัพท์ไม่ถูกต้อง"
 
 msgid "Invalid confirmation"
 msgstr "การยืนยันไม่ถูกต้อง"
-
-msgid "Invalid phone number"
-msgstr "หมายเลขโทรศัพท์ไม่ถูกต้อง"
 
 msgid "Address"
 msgstr "ที่อยู่"
@@ -1496,6 +1484,12 @@ msgstr "รหัสการเงิน"
 
 msgid "Tax code"
 msgstr "เลขประจำตัวผู้เสียภาษี"
+
+msgid "Site"
+msgstr "เว็บไซต์"
+
+msgid "Confirmation"
+msgstr "การยืนยัน"
 
 msgid "The answer is too short"
 msgstr "คำตอบสั้นเกินไป"

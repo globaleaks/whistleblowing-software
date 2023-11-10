@@ -494,9 +494,6 @@ msgstr "プライバシーポリシー"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -980,9 +977,6 @@ msgstr "管理者によるユーザーのパスワード変更を許可する"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "ユーザーのパスワード変更を許可された管理者:"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1471,17 +1465,11 @@ msgstr "24時間以内に有効にしない場合、プラットフォームは�
 msgid "Sign up"
 msgstr "登録"
 
-msgid "Site"
-msgstr "サイト"
-
-msgid "Confirmation"
-msgstr "確認"
+msgid "Invalid phone number"
+msgstr "電話番号が正しくありません"
 
 msgid "Invalid confirmation"
 msgstr "確認できません"
-
-msgid "Invalid phone number"
-msgstr "電話番号が正しくありません"
 
 msgid "Address"
 msgstr "アドレス"
@@ -1491,6 +1479,12 @@ msgstr "財務コード"
 
 msgid "Tax code"
 msgstr "納税番号"
+
+msgid "Site"
+msgstr "サイト"
+
+msgid "Confirmation"
+msgstr "確認"
 
 msgid "The answer is too short"
 msgstr "回答が短すぎます"

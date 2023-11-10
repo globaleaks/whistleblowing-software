@@ -498,9 +498,6 @@ msgstr "Rregulla Privatësie"
 msgid "Whistleblowing Policy"
 msgstr "Rregulla Nxjerrjeje të Fshehtash"
 
-msgid "Accessibility Declaration"
-msgstr "Deklarata Mbi Përdorim Nga Persona Me Aftësi të Kufizuara"
-
 msgid "Voice"
 msgstr "Zë"
 
@@ -984,9 +981,6 @@ msgstr "Aktivizo ndryshim fjalëkalimesh përdoruesish nga përgjegjësit"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Përgjegjës të autorizuar për ndryshime fjalëkalimesh përdoruesish:"
-
-msgid "Enable file viewer"
-msgstr "Aktivizo parës kartelash"
 
 msgid "Enable PGP"
 msgstr "Aktivizo PGP"
@@ -1475,17 +1469,11 @@ msgstr "Në mos u aktivizoftë brenda 24 orësh, platforma do të fshihet vetvet
 msgid "Sign up"
 msgstr "Regjistrohuni"
 
-msgid "Site"
-msgstr "Sajt"
-
-msgid "Confirmation"
-msgstr "Ripohim"
+msgid "Invalid phone number"
+msgstr "Numër telefoni i pavlefshëm"
 
 msgid "Invalid confirmation"
 msgstr "Ripohim i pavlefshëm"
-
-msgid "Invalid phone number"
-msgstr "Numër telefoni i pavlefshëm"
 
 msgid "Address"
 msgstr "Adresë"
@@ -1495,6 +1483,12 @@ msgstr "Kod fiskal"
 
 msgid "Tax code"
 msgstr "Kod tatimor"
+
+msgid "Site"
+msgstr "Sajt"
+
+msgid "Confirmation"
+msgstr "Ripohim"
 
 msgid "The answer is too short"
 msgstr "Përgjigja është shumë e shkurtër"

@@ -533,9 +533,6 @@ msgstr "Privacybeleid"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -1019,9 +1016,6 @@ msgstr "Stel beheerders in staat om wachtwoorden van gebruikers te veranderen"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Beheerders die gemachtigd zijn om gebruikerswachtwoorden te wijzigen:"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1510,17 +1504,11 @@ msgstr "Het platform wordt automatisch verwijderd als het niet binnen 24 uur wor
 msgid "Sign up"
 msgstr "Aanmelden"
 
-msgid "Site"
-msgstr "Site"
-
-msgid "Confirmation"
-msgstr "Bevestiging"
+msgid "Invalid phone number"
+msgstr "Ongeldig telefoonnummer"
 
 msgid "Invalid confirmation"
 msgstr "Bevestiging ongeldig"
-
-msgid "Invalid phone number"
-msgstr "Ongeldig telefoonnummer"
 
 msgid "Address"
 msgstr "Adres"
@@ -1530,6 +1518,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr "BTW-code / Belastingwetgeving"
+
+msgid "Site"
+msgstr "Site"
+
+msgid "Confirmation"
+msgstr "Bevestiging"
 
 msgid "The answer is too short"
 msgstr "Het antwoord is te kort"

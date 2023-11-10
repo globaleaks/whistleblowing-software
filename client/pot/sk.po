@@ -499,9 +499,6 @@ msgstr "Zásady ochrany súkromia"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -985,9 +982,6 @@ msgstr "Umožnite správcom meniť heslá užívateľov"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Správcovia majú oprávnenie na zmenu užívateľských hesiel:"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1476,17 +1470,11 @@ msgstr "Pokiaľ nedôjde k aktivácii do 24 hodín, bude platforma automaticky o
 msgid "Sign up"
 msgstr "Zaregistrovať sa"
 
-msgid "Site"
-msgstr "Stránka"
-
-msgid "Confirmation"
-msgstr "Potvrdenie"
+msgid "Invalid phone number"
+msgstr "Neplatné telefónne číslo"
 
 msgid "Invalid confirmation"
 msgstr "Neplatné potvrdenie"
-
-msgid "Invalid phone number"
-msgstr "Neplatné telefónne číslo"
 
 msgid "Address"
 msgstr "Adresa"
@@ -1496,6 +1484,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr "DIČ"
+
+msgid "Site"
+msgstr "Stránka"
+
+msgid "Confirmation"
+msgstr "Potvrdenie"
 
 msgid "The answer is too short"
 msgstr "Odpoveď je príliš krátka."

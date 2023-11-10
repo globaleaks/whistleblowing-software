@@ -489,9 +489,6 @@ msgstr ""
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -975,9 +972,6 @@ msgstr "ອະນຸຍາດໃຫ້ຜູ້ເບິ່ງແຍງລະບ
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "ຜູ້ເບິ່ງແຍງລະບົບໄດ້ຮັບອະນຸຍາດໃຫ້ປ່ຽນລະຫັດຜ່ານຂອງຜູ້ໃຊ້:"
-
-msgid "Enable file viewer"
-msgstr ""
 
 msgid "Enable PGP"
 msgstr ""
@@ -1466,17 +1460,11 @@ msgstr "ຖ້າບໍ່ເປີດໃຊ້ງານພາຍໃນ 24 ຊ�
 msgid "Sign up"
 msgstr "ລົງທະບຽນ"
 
-msgid "Site"
-msgstr "ເວັບໄຊຕ໌"
-
-msgid "Confirmation"
-msgstr "ການຢືນຢັນ"
+msgid "Invalid phone number"
+msgstr "ເບີໂທລະສັບໃຊ້ບໍ່ໄດ້"
 
 msgid "Invalid confirmation"
 msgstr "ການຢືນຢັນໃຊ້ບໍ່ໄດ້"
-
-msgid "Invalid phone number"
-msgstr "ເບີໂທລະສັບໃຊ້ບໍ່ໄດ້"
 
 msgid "Address"
 msgstr "ທີ່ຢູ່"
@@ -1486,6 +1474,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr "ລະຫັດອາກອນ"
+
+msgid "Site"
+msgstr "ເວັບໄຊຕ໌"
+
+msgid "Confirmation"
+msgstr "ການຢືນຢັນ"
 
 msgid "The answer is too short"
 msgstr "ຄຳຕອບສັ້ນເກີນໄປ"

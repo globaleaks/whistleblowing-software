@@ -504,9 +504,6 @@ msgstr "Chính Sách Quyền Riêng Tư"
 msgid "Whistleblowing Policy"
 msgstr "Chính Sách Tố Giác"
 
-msgid "Accessibility Declaration"
-msgstr "Tuyên Bố Khả Năng Truy Cập"
-
 msgid "Voice"
 msgstr "Tiếng nói"
 
@@ -990,9 +987,6 @@ msgstr "Cho phép quản trị viên thay đổi mật khẩu người dùng"
 
 msgid "Administrators authorized to change user passwords:"
 msgstr "Quản trị viên có quyền thay đổi mật mã người dùng"
-
-msgid "Enable file viewer"
-msgstr "Bật mở trình xem tập tin"
 
 msgid "Enable PGP"
 msgstr "Bật mở PGP"
@@ -1481,17 +1475,11 @@ msgstr "Nếu không được kích hoạt trong vòng 24 giờ, hệ thống s�
 msgid "Sign up"
 msgstr "Đăng ký"
 
-msgid "Site"
-msgstr "Trang web"
-
-msgid "Confirmation"
-msgstr "Xác nhận"
+msgid "Invalid phone number"
+msgstr "Số điện thoại không hợp lệ"
 
 msgid "Invalid confirmation"
 msgstr "Xác nhận không hợp lệ"
-
-msgid "Invalid phone number"
-msgstr "Số điện thoại không hợp lệ"
 
 msgid "Address"
 msgstr "Địa chỉ"
@@ -1501,6 +1489,12 @@ msgstr "Mã số tài khóa"
 
 msgid "Tax code"
 msgstr "Mã số thuế"
+
+msgid "Site"
+msgstr "Trang web"
+
+msgid "Confirmation"
+msgstr "Xác nhận"
 
 msgid "The answer is too short"
 msgstr "Câu trả lời quá ngắn. "

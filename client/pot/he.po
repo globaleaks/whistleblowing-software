@@ -506,9 +506,6 @@ msgstr "מדיניות פרטיות"
 msgid "Whistleblowing Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
-msgstr ""
-
 msgid "Voice"
 msgstr ""
 
@@ -991,9 +988,6 @@ msgid "Enable administrators to change user passwords"
 msgstr ""
 
 msgid "Administrators authorized to change user passwords:"
-msgstr ""
-
-msgid "Enable file viewer"
 msgstr ""
 
 msgid "Enable PGP"
@@ -1483,17 +1477,11 @@ msgstr ""
 msgid "Sign up"
 msgstr "הירשם"
 
-msgid "Site"
-msgstr "אתר"
-
-msgid "Confirmation"
-msgstr "אישור"
+msgid "Invalid phone number"
+msgstr "מספר טלפון בלתי תקף"
 
 msgid "Invalid confirmation"
 msgstr "אישור בלתי תקף"
-
-msgid "Invalid phone number"
-msgstr "מספר טלפון בלתי תקף"
 
 msgid "Address"
 msgstr "כתובת"
@@ -1503,6 +1491,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr ""
+
+msgid "Site"
+msgstr "אתר"
+
+msgid "Confirmation"
+msgstr "אישור"
 
 msgid "The answer is too short"
 msgstr ""
