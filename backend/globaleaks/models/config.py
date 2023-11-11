@@ -41,11 +41,11 @@ class ConfigFactory(object):
         self.session = session
         self.tid = tid
 
-    def get_all(self, group):
-        return {c.var_name: c for c in self.session.query(Config).filter(Config.tid == self.tid, Config.var_name.in_(ConfigFilters[group]))}
+    def get_all(self, filter_name):
+        return {c.var_name: c for c in self.session.query(Config).filter(Config.tid == self.tid, Config.var_name.in_(ConfigFilters[filter_name]))}
 
-    def update(self, group, data):
-        for k, v in self.get_all(group).items():
+    def update(self, filter_name, data):
+        for k, v in self.get_all(filter_name).items():
             if k in data:
                 v.set_v(data[k])
 
@@ -64,8 +64,8 @@ class ConfigFactory(object):
         if v:
             v.set_v(value)
 
-    def serialize(self, group):
-        return {k: v.value for k, v in self.get_all(group).items()}
+    def serialize(self, filter_name):
+        return {k: v.value for k, v in self.get_all(filter_name).items()}
 
     def update_defaults(self):
         actual = set([c[0] for c in self.session.query(Config.var_name).filter(Config.tid == self.tid)])
@@ -90,32 +90,32 @@ class ConfigL10NFactory(object):
             value = data[key][lang] if key in data else ''
             self.session.add(ConfigL10N({'tid': self.tid, 'lang': lang, 'var_name': key, 'value': value}))
 
-    def get_all(self, group, lang):
-        return list(self.session.query(ConfigL10N).filter(ConfigL10N.tid == self.tid, ConfigL10N.lang == lang, ConfigL10N.var_name.in_(ConfigL10NFilters[group])))
+    def get_all(self, filter_name, lang):
+        return list(self.session.query(ConfigL10N).filter(ConfigL10N.tid == self.tid, ConfigL10N.lang == lang, ConfigL10N.var_name.in_(ConfigL10NFilters[filter_name])))
 
-    def serialize(self, group, lang):
-        rows = self.get_all(group, lang)
-        return {c.var_name: c.value for c in rows if c.var_name in ConfigL10NFilters[group]}
+    def serialize(self, filter_name, lang):
+        rows = self.get_all(filter_name, lang)
+        return {c.var_name: c.value for c in rows if c.var_name in ConfigL10NFilters[filter_name]}
 
-    def update(self, group, data, lang):
-        c_map = {c.var_name: c for c in self.get_all(group, lang)}
+    def update(self, filter_name, data, lang):
+        c_map = {c.var_name: c for c in self.get_all(filter_name, lang)}
 
-        for key in (x for x in ConfigL10NFilters[group] if x in data):
+        for key in (x for x in ConfigL10NFilters[filter_name] if x in data):
             c_map[key].set_v(data[key])
 
-    def update_defaults(self, group, langs, data, reset=False):
+    def update_defaults(self, filter_name, langs, data, reset=False):
         null = datetime_null()
         templates = data.get('templates', {})
 
         for lang in langs:
             old_keys = []
 
-            for cfg in self.get_all(group, lang):
+            for cfg in self.get_all(filter_name, lang):
                 old_keys.append(cfg.var_name)
                 if (cfg.update_date == null or reset) and cfg.var_name in templates:
                     cfg.value = templates[cfg.var_name][lang]
 
-            ConfigL10NFactory.initialize(self, list(set(ConfigL10NFilters[group]) - set(old_keys)), lang, data)
+            ConfigL10NFactory.initialize(self, list(set(ConfigL10NFilters[filter_name]) - set(old_keys)), lang, data)
 
     def get_val(self, var_name, lang):
         v = self.session.query(ConfigL10N.value).filter(ConfigL10N.tid == self.tid, ConfigL10N.lang == lang, ConfigL10N.var_name == var_name).one_or_none()
@@ -129,9 +129,9 @@ class ConfigL10NFactory(object):
         if v:
             v.set_v(value)
 
-    def reset(self, group, data):
+    def reset(self, filter_name, data):
         langs = [x[0] for x in self.session.query(EnabledLanguage.name).filter(EnabledLanguage.tid == self.tid)]
-        self.update_defaults(group, langs, data, reset=True)
+        self.update_defaults(filter_name, langs, data, reset=True)
 
 
 def db_get_config_variable(session, tid, var):
@@ -180,8 +180,7 @@ def update_defaults(session, tid, appdata):
 
     langs = [x[0] for x in session.query(EnabledLanguage.name).filter(EnabledLanguage.tid == tid)]
 
-    session.query(ConfigL10N).filter(ConfigL10N.tid == tid,
-                                     not_(ConfigL10N.var_name.in_(list(set(ConfigL10NFilters['node']).union(ConfigL10NFilters['notification']))))).delete(synchronize_session=False)
+    session.query(ConfigL10N).filter(ConfigL10N.tid == tid, not_(ConfigL10N.var_name.in_(list(set(ConfigL10NFilters['node']).union(ConfigL10NFilters['notification']))))).delete(synchronize_session=False)
 
     ConfigL10NFactory(session, tid).update_defaults('node', langs, appdata['node'])
     ConfigL10NFactory(session, tid).update_defaults('notification', langs, appdata['templates'])
