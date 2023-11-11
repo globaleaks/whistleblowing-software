@@ -6,6 +6,8 @@ import traceback
 
 from acme.errors import ValidationError
 
+from txtorcon.torcontrolprotocol import TorProtocolError
+
 from twisted.internet.defer import succeed, AlreadyCalledError, CancelledError
 from twisted.internet.error import ConnectionLost, DNSLookupError, NoRouteError, TimeoutError
 from twisted.mail.smtp import SMTPError
@@ -44,6 +46,7 @@ silenced_exceptions = (
   ResponseNeverReceived,
   SMTPError,
   TimeoutError,
+  TorProtocolError,
   ValidationError
 )
 
