@@ -12,6 +12,7 @@ class EnumUserRole(_Enum):
     admin = 0
     receiver = 1
     custodian = 2
+    analyst = 3
 
 
 class EnumFieldInstance(_Enum):
