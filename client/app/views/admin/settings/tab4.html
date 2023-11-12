@@ -40,13 +40,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr data-ng-repeat="(key, value) in custom_texts" data-ng-class="{danger: !default_texts[key]}" data-uib-tooltip="{{!default_texts[key] ? 'This custom text is no longer displayed on the platform. The original text has either changed or been removed.' : '' | translate}}">
+          <tr data-ng-repeat="(key, value) in custom_texts" data-ng-class="{bg-danger: !default_texts[key]}" data-uib-tooltip="{{!default_texts[key] ? 'This custom text is no longer displayed on the platform. The original text has either changed or been removed.' : '' | translate}}">
             <td class="preformatted">{{key}}</td>
             <td class="preformatted">{{default_texts[key]}}</td>
             <td class="clearfix">
               <span class="preformatted">{{custom_texts[key]}}</span>
               <button class="deleteCustomTextButton float-right btn btn-sm btn-danger" data-ng-click="Utils.deleteFromDict(custom_texts, key); custom_texts.$update({'lang': vars.language_to_customize})">
-                <i class="fa" data-ng-class="{'fa-times': default_texts[key], 'fa-alert': !default_texts[key]}"></i>
+                <i class="fa fa-times"></i>
               </button>
             </td>
           </tr>
