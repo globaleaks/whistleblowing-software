@@ -18,15 +18,6 @@
   </div>
   <div class="row">
     <div class="col-md-6 form-group">
-      <label data-translate>Phone number</label> <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
-      <input name="phone" class="form-control" data-ng-model="signup.phone" type="text" data-ng-pattern="CONSTANTS.phonenumber_regexp" required>
-      <div class="text-danger" data-ng-show="signupForm.phone.$error.pattern">
-        <span data-translate>Invalid phone number</span>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6 form-group">
       <label>
         <span data-translate>Email address</span>
         <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
@@ -48,6 +39,15 @@
         <div class="text-danger" data-ng-show="signupForm.email.$valid && signup.email !== confirmation_email">
           <span data-translate>Invalid confirmation</span>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 form-group">
+      <label data-translate>Phone number</label> <span class="text-danger" data-uib-tooltip="{{'This field is mandatory' | translate}}">*</span>
+      <input name="phone" class="form-control" data-ng-model="signup.phone" type="text" data-ng-pattern="CONSTANTS.phonenumber_regexp" required>
+      <div class="text-danger" data-ng-show="signupForm.phone.$error.pattern">
+        <span data-translate>Invalid phone number</span>
       </div>
     </div>
   </div>
