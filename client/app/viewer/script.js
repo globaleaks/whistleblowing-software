@@ -12,9 +12,7 @@ var pageNum = 1;
 var pageCount = 0;
 
 function receiveMessage(evt) {
-  console.log(evt.data.blob);
   var url = URL.createObjectURL(evt.data.blob);
-  console.log(url);
   if (evt.data.tag === "pdf") {
     pdfViewer.style.display = "block";
     mediaViewer.style.display = "none";
