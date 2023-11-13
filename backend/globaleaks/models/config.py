@@ -23,6 +23,19 @@ def get_default(default):
     return default
 
 
+def db_get_configs(session, filter_name):
+    configs = {}
+    _configs = session.query(Config).filter(Config.var_name.in_(ConfigFilters[filter_name]))
+
+    for c in _configs:
+        if c.tid not in configs:
+            configs[c.tid] = {}
+
+        configs[c.tid][c.var_name] = c.value
+
+    return configs
+
+
 class ConfigFactory(object):
     def __init__(self, session, tid):
         self.session = session

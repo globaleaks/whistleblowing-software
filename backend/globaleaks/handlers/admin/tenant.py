@@ -1,11 +1,14 @@
 # -*- coding: UTF-8
+from itertools import groupby
+
 from globaleaks import models
 from globaleaks.db.appdata import load_appdata, db_load_defaults
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.wizard import db_wizard
 from globaleaks.models import serializers
-from globaleaks.models.config import db_get_config_variable, \
-    db_set_config_variable
+from globaleaks.models.config import db_get_configs, \
+    db_get_config_variable, db_set_config_variable
+from globaleaks.models.config_desc import ConfigFilters
 from globaleaks.orm import db_del, db_get, transact, tw
 from globaleaks.rest import requests
 from globaleaks.utils.tls import gen_selfsigned_certificate
@@ -87,11 +90,14 @@ def create_and_initialize(session, desc, *args, **kwargs):
 def db_get_tenant_list(session):
     ret = []
 
-    for t, s in session.query(models.Tenant, models.Subscriber).join(models.Subscriber, models.Subscriber.tid == models.Tenant.id, isouter=True):
-        ret.append(serializers.serialize_tenant(session, t))
+    configs = db_get_configs(session, 'tenant')
 
+    for t, s in session.query(models.Tenant, models.Subscriber).join(models.Subscriber, models.Subscriber.tid == models.Tenant.id, isouter=True):
+        tenant_dict = serializers.serialize_tenant(session, t, configs[t.id])
         if s:
-            ret[-1]['signup'] = serializers.serialize_signup(s)
+            tenant_dict['signup'] = serializers.serialize_signup(s)
+
+        ret.append(tenant_dict)
 
     return ret
 

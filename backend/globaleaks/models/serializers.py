@@ -331,13 +331,16 @@ def serialize_signup(signup):
     }
 
 
-def serialize_tenant(session, tenant):
+def serialize_tenant(session, tenant, config=None):
     ret = {
       'id': tenant.id,
       'creation_date': tenant.creation_date,
       'active': tenant.active
     }
 
-    ret.update(ConfigFactory(session, tenant.id).serialize('tenant'))
+    if config:
+        ret.update(config)
+    else:
+        ret.update(ConfigFactory(session, tenant.id).serialize('tenant'))
 
     return ret
