@@ -82,7 +82,7 @@ usage() {
   echo -e " -v install a specific software version"
 }
 
-while getopts "ynvh:" opt; do
+while getopts "ynv:h" opt; do
   case $opt in
     y) ASSUMEYES=1
     ;;
