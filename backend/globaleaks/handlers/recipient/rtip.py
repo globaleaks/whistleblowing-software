@@ -176,7 +176,62 @@ def transfer_tip_access(session, tid, user_id, user_cc, rtip_id, receiver_id):
     db_log(session, tid=tid, type='transfer_access', user_id=user_id, object_id=itip.id, data=log_data)
 
 
-def db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id):
+def get_tip_ttl(session, orm_object, orm_object_id):
+    """
+    Transaction for retrieving the data retention
+
+    :param session: An ORM session
+    :param orm_object: An ORM object
+    :param orm_object_id: The ORM object id
+    """
+    # we exploit the fact that we have the same "tip_timetolive" name in
+    # the SubmissionSubStatus, SubmissionStatus and Context tables
+    return session.query(orm_object.tip_timetolive) \
+                  .filter(orm_object.id == orm_object_id).one()[0]
+
+
+def recalculate_data_retention(session, itip, report_reopen_request):
+    """
+    Transaction for recaulating the data retention after a status change
+
+    :param session: An ORM session
+    :param itip: The internaltip ORM object
+    :param report_reopen_request: boolean value, true if the report is being reopend
+    """
+    new_retention = None
+    if report_reopen_request:
+        # use the context-defined data retention
+        new_retention = get_tip_ttl(session, models.Context, itip.context_id)
+        if new_retention <= 0:
+            new_retention = None
+    elif itip.status == "closed":
+        # check the substatus, status and context for a data retention
+        substatus = 0
+        status = 1
+        context = 2
+        for to_check in (substatus, status, context):
+            if to_check == substatus:
+                if itip.substatus is not None:
+                    new_retention = get_tip_ttl(session, models.SubmissionSubStatus, itip.substatus)
+            elif to_check == status:
+                new_retention = get_tip_ttl(session, models.SubmissionStatus, itip.status)
+            else: # to_check == context:
+                new_retention = get_tip_ttl(session, models.Context, itip.context_id)
+
+            if new_retention == -1:
+                # infinite data retention, break from the for loop
+                new_retention = None
+                break
+    else:
+        return # change between open statuses, no data retention recalculation needed
+
+    if isinstance(new_retention, int):
+        itip.expiration_date = datetime_now() + timedelta(new_retention)
+    else:
+        # infinite data retention, i.e. the 1st January 3000
+        itip.expiration_date = datetime(3000, 1, 1)
+
+def db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id, reason=None, to_be_logged=True):
     """
     Transaction for registering a change of status of a submission
 
@@ -190,19 +245,32 @@ def db_update_submission_status(session, tid, user_id, itip, status_id, substatu
     if status_id == 'new':
         return
 
+    can_reopen_reports = session.query(models.User.can_reopen_reports).filter(models.User.id == user_id).one()[0]
+    report_reopen_request = itip.status == "closed" and status_id == "opened"
+
+    if report_reopen_request and not can_reopen_reports:
+        raise errors.ForbiddenOperation # mandatory permission setting missing
+
+    if report_reopen_request and reason is None:
+        raise errors.ForbiddenOperation # reason must be given when restoring closed tips
+
     itip.status = status_id
     itip.substatus = substatus_id or None
 
+    recalculate_data_retention(session, itip, report_reopen_request)
+
     log_data = {
       'status': itip.status,
-      'substatus': itip.substatus
+      'substatus': itip.substatus,
+      'reason': reason,
     }
 
-    db_log(session, tid=tid, type='update_report_status', user_id=user_id, object_id=itip.id, data=log_data)
+    if to_be_logged:
+        db_log(session, tid=tid, type='update_report_status', user_id=user_id, object_id=itip.id, data=log_data)
 
 
 @transact
-def update_tip_submission_status(session, tid, user_id, rtip_id, status_id, substatus_id):
+def update_tip_submission_status(session, tid, user_id, rtip_id, status_id, substatus_id, reason):
     """
     Transaction for registering a change of status of a submission
 
@@ -215,10 +283,12 @@ def update_tip_submission_status(session, tid, user_id, rtip_id, status_id, subs
     """
     _, rtip, itip = db_access_rtip(session, tid, user_id, rtip_id)
 
+    to_be_logged = True
     if itip.status != status_id or itip.substatus != substatus_id:
         itip.update_date = rtip.last_access = datetime_now()
+        to_be_logged = False
 
-    db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id)
+    db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id, reason, to_be_logged)
 
 
 def db_access_rtip(session, tid, user_id, rtip_id):
@@ -661,7 +731,7 @@ class RTipInstance(OperationHandler):
 
     def update_submission_status(self, req_args, rtip_id, *args, **kwargs):
         return update_tip_submission_status(self.request.tid, self.session.user_id, rtip_id,
-                                            req_args['status'], req_args['substatus'])
+                                            req_args['status'], req_args['substatus'], req_args.get('reason'))
 
     def delete(self, rtip_id):
         """

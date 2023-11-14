@@ -969,6 +969,7 @@ class _User(Model):
     can_mask_information = Column(Boolean, default=False, nullable=False)
     can_redact_information = Column(Boolean, default=False, nullable=False)
     can_edit_general_settings = Column(Boolean, default=False, nullable=False)
+    can_reopen_reports = Column(Boolean, default=False, nullable=False)
     readonly = Column(Boolean, default=False, nullable=False)
     two_factor_secret = Column(UnicodeText(32), default='', nullable=False)
     reminder_date = Column(DateTime, default=datetime_null, nullable=False)
@@ -999,6 +1000,7 @@ class _User(Model):
                  'can_grant_access_to_reports',
                  'can_transfer_access_to_reports',
                  'can_edit_general_settings',
+                 'can_reopen_reports',
                  'forcefully_selected',
                  'readonly',
                  'clicked_recovery_key']

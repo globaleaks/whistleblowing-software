@@ -82,6 +82,7 @@ def user_serialize_user(session, user, language):
         'can_grant_access_to_reports': user.can_grant_access_to_reports,
         'can_transfer_access_to_reports': user.can_transfer_access_to_reports,
         'can_edit_general_settings': user.can_edit_general_settings,
+        'can_reopen_reports': user.can_reopen_reports,
         'clicked_recovery_key': user.clicked_recovery_key,
         'accepted_privacy_policy': user.accepted_privacy_policy,
         'contexts': contexts

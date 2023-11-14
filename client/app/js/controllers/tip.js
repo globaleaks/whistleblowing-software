@@ -100,6 +100,49 @@ GL.controller("TipCtrl",
       });
     };
 
+    $scope.openModalReopen = function() {
+      $uibModal.open({
+        templateUrl: "views/modals/re_open_submission.html",
+        controller: "ConfirmableModalCtrl",
+        resolve: {
+          arg: {
+            reason: "",
+          },
+          confirmFun: function () {
+            return function (reason) {
+              $scope.tip.status = "opened";
+              $scope.tip.substatus = null;
+              $scope.tip.reason = reason;
+              $scope.updateSubmissionStatus();
+            };
+          },
+          cancelFun: null
+        }
+      });
+    };
+
+    $scope.openModalChangeState = function(){
+      $uibModal.open({
+        templateUrl: "views/modals/change_submission_state.html",
+        controller: "ConfirmableModalCtrl",
+        resolve: {
+          arg: {
+            tip: angular.copy($scope.tip),
+            submission_statuses: $scope.submission_statuses
+          },
+          confirmFun: function () {
+            return function (tip) {
+              $scope.tip.status = tip.status;
+              $scope.tip.substatus = tip.substatus;
+              $scope.tip.reason = tip.reason;
+              $scope.updateSubmissionStatus();
+            };
+          },
+          cancelFun: null
+        }
+      });
+    }
+
     $scope.openGrantTipAccessModal = function () {
       $http({method: "PUT", url: "api/user/operations", data:{
         "operation": "get_users_names",
@@ -345,7 +388,6 @@ GL.controller("TipCtrl",
         $scope.tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText($scope.tip.status, $scope.tip.substatus, $scope.submission_statuses);
       });
     };
-
     $scope.newComment = function() {
       $scope.tip.newComment($scope.tip.newCommentContent, $scope.activeTabKey);
       $scope.tip.newCommentContent = "";

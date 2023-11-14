@@ -250,6 +250,10 @@
               <input data-ng-model="user.can_transfer_access_to_reports" type="checkbox" />
               <label data-translate>Give this user ability to transfer reports to other users</label>
             </div>
+            <div class="form-group">
+              <input data-ng-model="user.can_reopen_reports" type="checkbox" />
+              <label data-translate>Allow this user to reopen management of a report</label>
+            </div>
           </div>
         </div>
         <div class="row" data-ng-if="user.role !== 'admin'">

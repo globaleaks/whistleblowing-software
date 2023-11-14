@@ -144,6 +144,7 @@ AdminUserDesc = {
     'can_postpone_expiration': bool,
     'can_grant_access_to_reports': bool,
     'can_transfer_access_to_reports': bool,
+    'can_reopen_reports': bool,
     'forcefully_selected': bool
 }
 

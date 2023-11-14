@@ -1013,3 +1013,10 @@ html[dir="ltr"] #Receipt {
 .underline {
   text-decoration: underline;
 }
+
+.align-state-change-inputs-modal{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
