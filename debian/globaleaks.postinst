@@ -5,7 +5,6 @@ set -e
 # Create globaleaks user and add the user to required groups
 if ! id -u globaleaks >/dev/null 2>&1; then
   adduser --quiet \
-          --uid 1337 \
           --system \
           --group \
           --disabled-login \
