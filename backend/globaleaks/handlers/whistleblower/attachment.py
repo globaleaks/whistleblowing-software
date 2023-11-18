@@ -61,7 +61,6 @@ class SubmissionAttachment(BaseHandler):
 
     def post(self):
         self.uploaded_file['submission'] = True
-
         self.session.files.append(self.uploaded_file)
 
 

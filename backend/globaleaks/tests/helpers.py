@@ -843,7 +843,7 @@ class TestGLWithPopulatedDB(TestGL):
         db_create_field(session, 1, reference_field, 'en')
 
     def perform_submission_start(self):
-        return Sessions.new(1, uuid4(), 1, 'whistleblower')
+        return Sessions.new(1, uuid4(), 1, "whistleblower", 'whistleblower')
 
     def perform_submission_uploads(self, submission_id):
         for _ in range(self.population_of_attachments):
@@ -966,7 +966,7 @@ class TestHandler(TestGLWithPopulatedDB):
             if role == 'whistlebower':
                 session = initialize_submission_session()
             else:
-                session = Sessions.new(1, user_id, 1, role, USER_PRV_KEY)
+                session = Sessions.new(1, user_id, 1, "John Doe", role, USER_PRV_KEY)
 
             headers[b'x-session'] = session.id.encode()
 
