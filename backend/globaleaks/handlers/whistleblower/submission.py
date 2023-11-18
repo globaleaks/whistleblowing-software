@@ -216,6 +216,8 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
     session.add(itip)
     session.flush()
 
+    crypto_tip_prv_key = ''
+
     # Evaluate if the whistleblower tip should be encrypted
     if crypto_is_available:
         crypto_tip_prv_key, itip.crypto_tip_pub_key = GCE.generate_keypair()
@@ -268,7 +270,13 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
 
         db_create_receivertip(session, user, itip, _tip_key)
 
-    db_log(session, tid=tid, type='whistleblower_new_report')
+    operator_id = user_session.properties.get('operator_session', '')
+    if operator_id:
+        # this is actually an operator which is operating on behalf of a whistleblower
+        itip.receipt_change_needed = True
+        itip.operator_id = operator_id
+
+    db_log(session, tid=tid, type='whistleblower_new_report', user_id=operator_id, object_id=itip.id)
 
     return {'receipt': receipt}
 

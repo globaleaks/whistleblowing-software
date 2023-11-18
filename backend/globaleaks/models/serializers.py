@@ -203,7 +203,8 @@ def serialize_itip(session, internaltip, language):
         'wbfiles': [],
         'rfiles': [],
         'redactions': [],
-        'data': {}
+        'data': {},
+        "receipt_change_needed": internaltip.receipt_change_needed
     }
 
     for itd in session.query(models.InternalTipData).filter(models.InternalTipData.internaltip_id == internaltip.id):

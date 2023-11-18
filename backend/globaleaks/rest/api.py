@@ -59,6 +59,7 @@ api_spec = [
     (r'/api/auth/receiptauth', auth.ReceiptAuthHandler),
     (r'/api/auth/session', auth.SessionHandler),
     (r'/api/auth/tenantauthswitch/' + tid_regexp, auth.TenantAuthSwitchHandler),
+    (r'/api/auth/operatorauthswitch', auth.OperatorAuthSwitchHandler),
 
     # User Preferences Handler
     (r'/api/user/preferences', user.UserInstance),
@@ -81,6 +82,7 @@ api_spec = [
     (r'/api/recipient/wbfiles/' + uuid_regexp, recipient.rtip.WhistleblowerFileDownload),
 
     # Whistleblower Handlers
+    (r'/api/whistleblower/operations', whistleblower.wbtip.Operations),
     (r'/api/whistleblower/submission', whistleblower.submission.SubmissionInstance),
     (r'/api/whistleblower/submission/attachment', whistleblower.attachment.SubmissionAttachment),
     (r'/api/whistleblower/wbtip', whistleblower.wbtip.WBTipInstance),

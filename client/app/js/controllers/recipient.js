@@ -256,4 +256,13 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
             'Subscription',
             'Number of Recipients'].map($filter('translate'));
   }
+
+  $scope.actAsWhistleblower = function () {
+    $http.get("/api/auth/operatorauthswitch").then(function (result) {
+      if (result.status === 200) {
+        var urlRedirect = window.location.origin + result.data.redirect
+        window.open(urlRedirect, "_blank");
+      }
+    });
+  };
 }]);
