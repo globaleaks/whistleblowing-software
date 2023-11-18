@@ -7,6 +7,7 @@ GL.controller("LoginCtrl", ["$scope", "$location", function($scope, $location) {
 
   // If already logged in, just go to the landing page.
   if (typeof $scope.Authentication.session !== "undefined" && $scope.Authentication.session.homepage) {
+    console.log("AAAAAAAAA");
     $location.path($scope.Authentication.session.homepage);
   }
 
@@ -19,5 +20,8 @@ GL.controller("LoginCtrl", ["$scope", "$location", function($scope, $location) {
   var token = $location.search().token;
   if (token) {
     $scope.Authentication.login(0, "", "", "", token);
+    console.log($scope.Authentication);
+    console.log($scope.Authentication.session.homepage);
+    console.log($scope.Authentication);
   }
 }]);

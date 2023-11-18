@@ -1020,3 +1020,10 @@ html[dir="ltr"] #Receipt {
 .status_changed {
     font-weight: bold;
 }
+
+#actAsWB_banner {
+    width: 100%;
+    background-color: yellow;
+    color: black;
+    font-weight: bold;
+}

@@ -239,7 +239,7 @@ def db_update_submission_status(session, tid, user_id, itip, status_id, substatu
     if status_id == 'new':
         return
 
-    if itip.crypto_tip_pub_key anditip.crypto_tip_pub_key and  motivation is not None:
+    if itip.crypto_tip_pub_key and itip.crypto_tip_pub_key and  motivation is not None:
         motivation = base64.b64encode(GCE.asymmetric_encrypt(itip.crypto_tip_pub_key, motivation).encode()).decode()
 
     can_reopen_reports = session.query(models.User.can_reopen_reports).filter(models.User.id == user_id).one()[0]

@@ -1,5 +1,8 @@
 <div data-ng-if="!connection.tor">
   <div id="PrivacyBadge" class="clearfix">
+    <div id="actAsWB_banner" data-ng-if="Authentication.session.properties.operator_session">
+        Acting as whistleblower
+    </div>
     <div data-ng-if="!public.node.enable_custom_privacy_badge">
       <div id="PrivacyBadgeTextBox" class="float-left">
         <span class="badge badge-warning">

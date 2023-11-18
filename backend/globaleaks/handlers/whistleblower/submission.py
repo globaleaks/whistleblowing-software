@@ -132,7 +132,7 @@ def db_create_receivertip(session, receiver, internaltip, tip_key):
     return receivertip
 
 
-def db_create_submission(session, tid, request, user_session, client_using_tor, client_using_mobile):
+def db_create_submission(session, tid, request, user_session, client_using_tor, client_using_mobile, operator_id=None):
     encryption = db_get(session, models.Config, (models.Config.tid == tid, models.Config.var_name == 'encryption'))
 
     crypto_is_available = encryption.value
@@ -268,14 +268,16 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
 
         db_create_receivertip(session, user, itip, _tip_key)
 
-    db_log(session, tid=tid, type='whistleblower_new_report')
+    itip.receipt_change_needed = operator_id is not None
+    itip.operator_id = operator_id
+    db_log(session, tid=tid, type='whistleblower_new_report', user_id=operator_id, object_id=itip.id)
 
     return {'receipt': receipt}
 
 
 @transact
-def create_submission(session, tid, request, user_session, client_using_tor, client_using_mobile):
-    return db_create_submission(session, tid, request, user_session, client_using_tor, client_using_mobile)
+def create_submission(session, tid, request, user_session, client_using_tor, client_using_mobile, operator_id=None):
+    return db_create_submission(session, tid, request, user_session, client_using_tor, client_using_mobile, operator_id)
 
 
 class SubmissionInstance(BaseHandler):
@@ -294,4 +296,5 @@ class SubmissionInstance(BaseHandler):
                                  request,
                                  self.session,
                                  self.request.client_using_tor,
-                                 self.request.client_using_mobile)
+                                 self.request.client_using_mobile,
+                                 self.session.properties.get("operator_session"))

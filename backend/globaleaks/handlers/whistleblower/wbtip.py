@@ -16,9 +16,10 @@ from globaleaks.handlers.whistleblower.submission import decrypt_tip, \
     db_archive_questionnaire_schema, db_set_internaltip_data
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.models import serializers
-from globaleaks.orm import db_get, transact
-from globaleaks.rest import requests
-from globaleaks.utils.crypto import GCE
+from globaleaks.orm import db_log, db_get, transact
+from globaleaks.rest import errors, requests
+from globaleaks.state import State
+from globaleaks.utils.crypto import Base64Encoder, GCE
 from globaleaks.utils.fs import directory_traversal_check
 from globaleaks.utils.log import log
 from globaleaks.utils.templating import Templating
@@ -142,6 +143,47 @@ def store_additional_questionnaire_answers(session, tid, user_id, answers, langu
 
     db_notify_recipients_of_tip_update(session, itip.id)
 
+
+@transact
+def change_receipt(session, itip_id, cc, new_receipt, receipt_change_needed):
+    """
+    Transaction for updating old receipt to a new one
+    """
+    itip = session.query(models.InternalTip) \
+                  .filter(models.InternalTip.id == itip_id).one_or_none()
+    if itip is None:
+        return
+
+    tid = itip.tid
+
+    # update receipt
+    itip.receipt_hash = GCE.hash_password(new_receipt, State.tenants[tid].cache.receipt_salt)
+
+    if cc is None:
+        return
+
+    wb_key = GCE.derive_key(new_receipt.encode(), State.tenants[tid].cache.receipt_salt)
+
+    # update private keys
+    itip.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(wb_key, cc))
+
+    itip.receipt_change_needed = receipt_change_needed
+
+
+class Operations(BaseHandler):
+    """
+    This interface expose some utility methods for the Whistleblower Tip.
+    """
+    check_roles = "whistleblower"
+
+    def put(self):
+        request = self.validate_request(self.request.content.read(), requests.OpsDesc)
+        if request["operation"] != "change_receipt":
+            raise errors.InputValidationError("Invalid command")
+
+        return change_receipt(self.session.user_id, self.session.cc,
+                              self.session.properties["operator_new_receipt"],
+                              "operator_session" in self.session.properties)
 
 
 class WBTipInstance(BaseHandler):
@@ -274,7 +316,6 @@ class WBTipAdditionalQuestionnaire(BaseHandler):
 
     def post(self):
         request = self.validate_request(self.request.content.read(), requests.AdditionalQuestionnaireAnswers)
-
         return store_additional_questionnaire_answers(self.request.tid,
                                                       self.session.user_id,
                                                       request['answers'],

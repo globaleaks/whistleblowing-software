@@ -4,6 +4,9 @@
       <a id="LogoBox" href="#" data-ng-click="setHomepage()">
         <img class="img-fluid" alt="{{projectTitle}}" data-ng-src="{{public.node.logo ? 's/logo' : 'data/logo.png'}}" />
       </a>
+      <div style="background-color: green; color: black; font-weight: bold;">
+        {{ Authentication.session | json }}
+      </div>
       <div id="TitleBox" data-ng-if="projectTitle || pageTitle">
         <span data-ng-if="projectTitle" data-ng-click="setHomepage()" id="ProjectTitle"><h1 data-ng-if="!pageTitle">{{projectTitle}}</h1><span data-ng-if="pageTitle">{{projectTitle}}</span></span><span data-ng-if="projectTitle && pageTitle" class="TitleSeparator"> - </span><span><h1 data-ng-if="pageTitle" id="PageTitle">{{pageTitle | translate}}</h1></span>
       </div>

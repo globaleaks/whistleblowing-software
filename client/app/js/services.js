@@ -12,8 +12,8 @@ GL.factory("GLResource", ["$resource", function($resource) {
   };
 }]).
 factory("Authentication",
-  ["$filter", "$http", "$location", "$window", "$rootScope", "GLTranslate",
-  function($filter, $http, $location, $window, $rootScope, GLTranslate) {
+  ["$filter", "$http", "$location", "$window", "$rootScope", "GLTranslate", "$uibModal",
+  function($filter, $http, $location, $window, $rootScope, GLTranslate, $uibModal) {
     function Session() {
       var self = this;
 
@@ -25,18 +25,15 @@ factory("Authentication",
 
       if (typeof session === "string") {
         self.session = JSON.parse(session);
-        $location.path(self.session.homepage);
+        //$location.path(self.session.homepage);
       }
 
       self.set_session = function(response) {
         self.session = response.data;
-
         if (self.session.role !== "whistleblower") {
           var role = self.session.role === "receiver" ? "recipient" : self.session.role;
-
           self.session.homepage = "/" + role + "/home";
           self.session.preferencespage = "/" + role + "/preferences";
-
           $window.sessionStorage.setItem("session",  JSON.stringify(self.session));
         }
       };
@@ -47,21 +44,46 @@ factory("Authentication",
         self.loginData = {};
       };
 
-      self.login = function(tid, username, password, authcode, authtoken) {
+      self.login = function (tid, username, password, authcode, authtoken) {
         if (typeof authcode === "undefined") {
           authcode = "";
         }
-
         self.loginInProgress = true;
-
-        var success_fn = function(response) {
+        var success_fn = function (response) {
           self.reset();
-
           if ("redirect" in response.data) {
             $window.location.replace(response.data.redirect);
           }
-
           self.set_session(response);
+          if (response.data && response.data.properties && response.data.properties.receipt) {
+            var receipt = arg.properties.receipt;
+            var formatted_receipt = $scope.Utils.format_receipt(receipt);
+            $uibModal.open({
+              templateUrl: "views/modals/otkc_access.html",
+              controller: "ConfirmableModalCtrl",
+              resolve: {
+                receipt: receipt,
+		formatted_receipt: formatted_receipt,
+                confirmFun: function () {
+                  return function () {
+                    $http({
+                      method: "PUT",
+                      url: "api/whistleblower/operations",
+                      data: {
+                        "operation": "change_receipt",
+                        "args": {}
+                      }
+                    }).then(function () {
+                      $rootScope.setPage("tippage");
+                    });
+                  };
+                },
+
+                cancelFun: null
+              }
+            });
+            return
+          }
 
           var src = $location.search().src;
           if (src) {
@@ -71,8 +93,10 @@ factory("Authentication",
             if (self.session.role === "whistleblower") {
               if (password) {
                 $rootScope.setPage("tippage");
-                $location.path("/");
+              } else {
+                //$rootScope.setPage("homepage");
               }
+              $location.path("/");
             } else {
               $location.path(self.session.homepage);
             }
@@ -700,6 +724,17 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
         ret[element.id] = element;
       });
       return ret;
+    },
+
+    format_receipt: function(receipt) {
+      if (!receipt || receipt.length !== 16) {
+        return "";
+      }
+
+      return receipt.substr(0, 4) + " " +
+             receipt.substr(4, 4) + " " +
+             receipt.substr(8, 4) + " " +
+             receipt.substr(12, 4);
     },
 
     set_title: function() {
