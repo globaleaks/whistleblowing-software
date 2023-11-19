@@ -49,7 +49,7 @@ profile usr.bin.globaleaks flags=(attach_disconnected) {
     owner /var/crash/** rwkl,
 
     # Explicit silent deny rules:
-    deny /bin/uname x,
+    deny /{,usr/}bin/uname x,
     deny /usr/bin/gcc-** x,
     deny /usr/bin/x86_64-linux-gnu-** x,
     deny /sbin/ldconfig x,
