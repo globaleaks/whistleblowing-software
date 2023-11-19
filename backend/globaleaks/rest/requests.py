@@ -143,6 +143,7 @@ AdminUserDesc = {
     'can_delete_submission': bool,
     'can_postpone_expiration': bool,
     'can_grant_access_to_reports': bool,
+    'can_reopen_reports': bool,
     'can_transfer_access_to_reports': bool,
     'forcefully_selected': bool
 }
@@ -562,5 +563,6 @@ SubmissionStatusDesc = {
 
 SubmissionSubStatusDesc = {
     'label': str,
-    'order': int
+    'order': int,
+    'tip_timetolive': int
 }

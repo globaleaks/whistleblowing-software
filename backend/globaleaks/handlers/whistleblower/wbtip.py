@@ -25,33 +25,40 @@ from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, datetime_null
 
 
+def db_notify_report_update(session, user, rtip, itip):
+    """
+    :param session: An ORM session
+    :param user: An user ORM object
+    :param rtip: A rtip ORM object
+    :param itip: A itip ORM object
+    """
+    data = {
+      'type': 'tip_update',
+      'user': user_serialize_user(session, user, user.language),
+      'node': db_admin_serialize_node(session, user.tid, user.language),
+      'tip': serializers.serialize_rtip(session, itip, rtip, user.language),
+    }
+
+    if data['node']['mode'] == 'default':
+        data['notification'] = db_get_notification(session, user.tid, user.language)
+    else:
+        data['notification'] = db_get_notification(session, 1, user.language)
+
+    subject, body = Templating().get_mail_subject_and_body(data)
+
+    session.add(models.Mail({
+        'address': data['user']['mail_address'],
+        'subject': subject,
+        'body': body,
+        'tid': user.tid
+    }))
+
 def db_notify_recipients_of_tip_update(session, itip_id):
     for user, rtip, itip in session.query(models.User, models.ReceiverTip, models.InternalTip) \
                                    .filter(models.User.id == models.ReceiverTip.receiver_id,
                                            models.ReceiverTip.internaltip_id == models.InternalTip.id,
                                            models.InternalTip.id == itip_id):
-        data = {
-          'type': 'tip_update'
-        }
-
-        data['user'] = user_serialize_user(session, user, user.language)
-        data['tip'] = serializers.serialize_rtip(session, itip, rtip, user.language)
-
-        data['node'] = db_admin_serialize_node(session, user.tid, user.language)
-
-        if data['node']['mode'] == 'default':
-            data['notification'] = db_get_notification(session, user.tid, user.language)
-        else:
-            data['notification'] = db_get_notification(session, 1, user.language)
-
-        subject, body = Templating().get_mail_subject_and_body(data)
-
-        session.add(models.Mail({
-            'address': data['user']['mail_address'],
-            'subject': subject,
-            'body': body,
-            'tid': user.tid
-        }))
+        db_notify_report_update(session, user, rtip, itip)
 
 
 def db_get_wbtip(session, itip_id, language):

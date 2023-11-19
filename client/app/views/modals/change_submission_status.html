@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <div class="modal-title" data-translate>Change status</div>
+</div>
+<div class="modal-body">
+  <div data-translate>Status:</div>
+  <select id="assignSubmissionStatus" class="form-control" data-ng-model="arg.tip.status" data-ng-options="state.id as state.label | translate for state in arg.submission_statuses.slice(1)"></select>
+
+  <div data-ng-hide="!arg.submission_statuses_by_id[tip.status].substatuses.length" class="mt-2" data-translate>Substatus:</div>
+  <select id="assignSubmissionSubStatus" class="form-control" data-ng-model="arg.tip.substatus" data-ng-options="substate.id as substate.label | translate for substate in arg.submission_statuses_by_id[tip.status].substatuses" data-ng-hide="!arg.submission_statuses_by_id[tip.status].substatuses.length">
+    <option value="" data-translate></option>
+  </select>
+
+  <div class="mt-2" data-translate>Motivation:</div>
+  <textarea name="reason" class="form-control " data-ng-model="arg.tip.reason" /></textarea>
+</div>
+<div class="modal-footer">
+  <button id="modal-action-ok" class="btn btn-primary" data-ng-click="confirm(arg.tip)">
+    <i class="fa-solid fa-check"></i>
+    <span data-translate>Confirm</span>
+  </button>
+  <span id="modal-action-cancel" class="btn btn-outline-secondary" data-ng-click="cancel()">
+    <i class="fa-solid fa-times"></i>
+    <span data-translate>Cancel</span>
+  </span>
+</div>
