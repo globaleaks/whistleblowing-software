@@ -122,6 +122,72 @@ GL.controller("TipCtrl",
       });
     };
 
+    $scope.openModalReopen = function() {
+      $uibModal.open({
+        templateUrl: "views/modals/reopen_submission.html",
+        controller: "ConfirmableModalCtrl",
+        resolve: {
+          arg: {
+            motivation: "",
+          },
+          confirmFun: function () {
+            return function (motivation) {
+              $scope.tip.status = "opened";
+              $scope.tip.substatus = null;
+              $scope.tip.motivation = motivation;
+              $scope.updateSubmissionStatus();
+            };
+          },
+          cancelFun: null
+        }
+      });
+    };
+
+    $scope.openModalChangeState = function(){
+      $uibModal.open({
+        templateUrl: "views/modals/change_submission_status.html",
+        controller: "ConfirmableModalCtrl",
+        resolve: {
+          arg: {
+            tip: angular.copy($scope.tip),
+            submission_statuses: function() {
+              var sub_copy = angular.copy($scope.submission_statuses);
+              var output = [];
+              for (var x of sub_copy) {
+                if (x.substatuses.length) {
+                  for (var y of x.substatuses) {
+                    output.push({
+                      id: x.id + ":" + y.id,
+                      label: x.label + " \u2013 " + y.label,
+                      order: output.length
+                    });
+                  }
+                } else {
+                  x.order = output.length;
+                  output.push(x);
+                }
+              }
+              return output;
+            }()
+          },
+          confirmFun: function () {
+            return function (tip) {
+              var statuses = tip.status.split(":");
+              if (statuses.length == 2) {
+                tip.status = statuses[0];
+                tip.substatus = statuses[1];
+              }
+              $scope.tip.status = tip.status;
+              $scope.tip.substatus = tip.substatus;
+              $scope.tip.motivation = tip.motivation;
+              $scope.updateSubmissionStatus();
+            };
+          },
+          cancelFun: null
+        }
+      });
+    }
+
     $scope.openGrantTipAccessModal = function () {
       $http({method: "PUT", url: "api/user/operations", data:{
         "operation": "get_users_names",

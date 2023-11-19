@@ -997,8 +997,26 @@ html[dir="ltr"] #Receipt {
 .underline {
   text-decoration: underline;
 }
-.align-btn-end{
+
+.align-btn-end {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
+}
+
+.disabled-row {
+    background-color: #ccc !important;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.align-state-change-inputs-modal {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.status_changed {
+    font-weight: bold;
 }

@@ -74,10 +74,21 @@
           <div data-ng-form="editStep" data-ng-if="substatus_editing">
             <hr/>
             <div class="row">
-              <div class="form-group">
-                <div class="col-md-6">
+              <div class="col-md-3">
+                <div class="form-group">
                   <label data-translate>Label</label>
                   <input class="form-control" data-ng-model="substatus.label" type="text" required/>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label data-translate>Scadenza (giorni)</label>
+                   <select class="form-control" data-ng-model="substatus.selectedOption">
+                     <option value="-1">Disabilitata</option>
+                     <option value="0">Illimitata</option>
+                     <option value="1">Personalizzata</option>
+                   </select>
+                  <input class="form-control mt-2" data-ng-model="substatus.retentionDays" type="number" data-ng-if="substatus.selectedOption === '1'" required/>
                 </div>
               </div>
             </div>

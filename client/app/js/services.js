@@ -378,7 +378,7 @@ factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipCommentResource",
       };
 
       tip.updateSubmissionStatus = function() {
-        return tip.operation("update_status", {"status": tip.status, "substatus": tip.substatus ? tip.substatus : ""}).then(function () {
+        return tip.operation("update_status", {"status": tip.status, "substatus": tip.substatus ? tip.substatus : "", "motivation": tip.motivation}).then(function () {
           $rootScope.reload();
         });
       };
@@ -653,6 +653,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       user.can_delete_submission = false;
       user.can_postpone_expiration = true;
       user.can_transfer_access_to_reports = false;
+      user.can_reopen_reports = false;
       return user;
     },
 
@@ -1077,10 +1078,10 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       return deferred.promise;
     },
 
-    displayErrorMsg: function(reason) {
+    displayErrorMsg: function(motivation) {
       $rootScope.error = {
         "message": "local-failure",
-        "arguments": [reason],
+        "arguments": [motivation],
         "code": 10
       };
     },
@@ -1116,7 +1117,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
           var substatuses = submission_statuses[i].substatuses;
           for (var j = 0; j < substatuses.length; j++) {
             if (substatuses[j].id === substatus) {
-              text += "(" + $filter("translate")(substatuses[j].label) + ")";
+              text += " \u2013 " + $filter("translate")(substatuses[j].label);
               break;
             }
           }
