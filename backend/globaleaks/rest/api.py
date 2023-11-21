@@ -17,6 +17,7 @@ from twisted.web.server import NOT_DONE_YET
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.handlers import admin, \
+                                analyst, \
                                 auth, \
                                 custodian, \
                                 file, \
@@ -94,6 +95,9 @@ api_spec = [
     # Custodian Handlers
     (r'/api/custodian/iars', custodian.IdentityAccessRequestsCollection),
     (r'/api/custodian/iars/' + uuid_regexp, custodian.IdentityAccessRequestInstance),
+
+    # Analyst Handlers
+    (r'/api/analyst/stats', analyst.Statistics),
 
     # Admin Handlers
     (r'/api/admin/node', admin.node.NodeInstance),
