@@ -997,3 +997,8 @@ html[dir="ltr"] #Receipt {
 .underline {
   text-decoration: underline;
 }
+.align-btn-end{
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
