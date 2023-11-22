@@ -12,6 +12,12 @@
             </span>
           </span>
         </div>
+        <div class="float-right" data-ng-if="Authentication.session.role === 'receiver' && tip.status != 'closed'">
+          <span data-ng-include="'views/partials/tip_submission_status.html'"></span>
+        </div>
+        <div class="float-right" data-ng-if="Authentication.session.role === 'receiver'&& tip.status =='closed'">
+         <button type="button" class="btn btn-primary" data-ng-click="openModalReopen()" data-ng-disabled="!resources.preferences.can_reopen_reports">Riapertura segnalazione</button>
+        </div>
       </div>
     </div>
   </div>
