@@ -9,10 +9,6 @@
         <a id="HomepageLink" data-ng-href="#{{Authentication.session.homepage}}" data-uib-tooltip="{{'Home' | translate}}"><i class="fa-solid fa-fw fa-home"></i></a>
         <span class="text-separator">|</span>
       </span>
-      <span data-ng-if="Authentication.session.role === 'whistleblower' && Authentication.session.properties.operator_session">
-        <i class="fa-solid fa-user-secret"></i>
-        <span class="text-separator">|</span>
-      </span>
     </span>
     <span id="PreferencesLinkBox" data-ng-if="Authentication.session.role !== 'whistleblower' && !Authentication.session.properties.management_session">
       <a id="PreferencesLink" data-ng-href="#{{Authentication.session.preferencespage}}" data-uib-tooltip="{{'Preferences' | translate}}"><i class="fa-solid fa-fw fa-user"></i></a>

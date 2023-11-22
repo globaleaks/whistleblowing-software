@@ -37,7 +37,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
 
     comments_by_itip = {}
     files_by_itip = {}
-    receiver_access_by_itip = {}
+    receiver_count_by_itip = {}
 
     # Fetch comments count
     for itip_id, count in session.query(models.InternalTip.id,
@@ -62,7 +62,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
     for itip_id, count in session.query(models.ReceiverTip.internaltip_id,
                                         func.count(models.ReceiverTip.id)) \
                                  .group_by(models.ReceiverTip.internaltip_id):
-        receiver_access_by_itip[itip_id] = count
+        receiver_count_by_itip[itip_id] = count
 
     # Retrieve all the contexts associated with the current receiver
     receiver_contexts = set()
@@ -129,9 +129,9 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
                 'substatus': itip.substatus,
                 'file_count': files_by_itip.get(itip.id, 0),
                 'comment_count': comments_by_itip.get(itip.id, 0),
-                'num_receivers': receiver_access_by_itip.get(itip.id, 0),
+                'receiver_count': receiver_count_by_itip.get(itip.id, 0),
                 'subscription': subscription,
-                'is_accessible': accessible,
+                'is_accessible': accessible
             }
 
     return list(dict_ret.values())

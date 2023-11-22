@@ -90,6 +90,7 @@
     </div>
 
     <div id="PageContent" class="ng-cloak" data-ng-if="started" data-ng-cloak>
+      <div data-ng-if="Authentication.session.properties.operator_session" data-ng-include="'views/partials/operator.html'"></div>
       <div data-ng-if="!public.node.root_tenant && public.node.mode === 'demo'" data-ng-include="'views/partials/demo.html'"></div>
       <div data-ng-if="Utils.isWhistleblowerPage() && !public.node.disable_privacy_badge" data-ng-include="'views/partials/privacybadge.html'"></div>
       <div data-ng-include="'views/partials/header.html'"></div>
