@@ -285,13 +285,11 @@ def update_tip_submission_status(session, tid, user_id, rtip_id, status_id, subs
         itip.update_date = rtip.last_access = datetime_now()
         to_be_logged = False
 
-    # send mail notification to all users in context excluding <user_id>
-    for user_to_notify in session.query(models.User) \
-                                 .filter(models.ReceiverContext.context_id == itip.context_id,
-                                         models.ReceiverContext.receiver_id != user_id,
-                                         models.User.id == models.ReceiverContext.receiver_id):
-        db_notify_report_update(session, user_to_notify, rtip, itip)
-
+    # send mail notification to all users with access to the report excluding <user_id>
+    for receiver_id in session.query(models.ReceiverTip.receiver_id) \
+                              .filter(models.ReceiverTip.internaltip_id == itip.id,
+                                      models.ReceiverTip.receiver_id != user_id):
+        db_notify_report_update(session, receiver_id, rtip, itip)
 
     db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id, motivation, to_be_logged)
 
