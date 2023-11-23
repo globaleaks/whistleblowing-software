@@ -177,7 +177,8 @@ class SubmissionSubStatusCollectionDesc(helpers.TestHandlerWithPopulatedDB):
     def test_post(self):
         data_request = {
             'label': '12345',
-            'order': 0
+            'order': 0,
+            'tip_timetolive': 30
         }
         handler = self.request(data_request, role='admin')
         yield handler.post(u'new')
@@ -201,7 +202,8 @@ class SubmissionSubStatusInstanceDesc(helpers.TestHandlerWithPopulatedDB):
 
         data_request = {
             'label': '12345',
-            'order': 0
+            'order': 0,
+            'tip_timetolive': 30
         }
 
         handler = self.request(data_request, role='admin')
