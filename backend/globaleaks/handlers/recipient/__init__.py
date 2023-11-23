@@ -72,6 +72,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
 
     dict_ret = dict()
     # Fetch rtip, internaltip and associated questionnaire schema
+    print("receiver_id =", receiver_id)
     for rtip, itip, answers, data in session.query(models.ReceiverTip,
                                                    models.InternalTip,
                                                    models.InternalTipAnswers,
@@ -132,7 +133,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
                 'comment_count': comments_by_itip.get(itip.id, 0),
                 'receiver_count': receiver_count_by_itip.get(itip.id, 0),
                 'subscription': subscription,
-                'is_accessible': accessible
+                'accessible': accessible
             }
 
     return list(dict_ret.values())

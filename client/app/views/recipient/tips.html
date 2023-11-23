@@ -203,7 +203,7 @@
       <tbody id="tipListTableBody">
         <tr id="tip-{{$index}}"
             data-ng-repeat="tip in filteredTips | orderBy:sortKey:sortReverse | limitTo:itemsPerPage:((currentPage - 1) * itemsPerPage)"
-            data-ng-class="{'selectedTip': isSelected(tip.id), 'disabled-row': tip.accessible, 'status_changed': tip.updated}"
+            data-ng-class="{'selectedTip': isSelected(tip.id), 'disabled-row': !tip.accessible, 'status_changed': tip.updated}"
             data-ng-click="Utils.go('/reports/' + tip.id)">
           <td>
             <span class="btn btn-sm btn-outline-secondary" data-ng-if="isSelected(tip.id)"

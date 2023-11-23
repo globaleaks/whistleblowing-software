@@ -55,15 +55,14 @@ factory("Authentication",
             $window.location.replace(response.data.redirect);
           }
           self.set_session(response);
-          if (response.data && response.data.properties && response.data.properties.receipt) {
-            var receipt = arg.properties.receipt;
-            var formatted_receipt = $scope.Utils.format_receipt(receipt);
+          if (response.data && response.data.properties && response.data.properties.operator_new_receipt) {
             $uibModal.open({
               templateUrl: "views/modals/otkc_access.html",
               controller: "ConfirmableModalCtrl",
               resolve: {
-                receipt: receipt,
-		formatted_receipt: formatted_receipt,
+                arg: function() {
+                  return response.data;
+                },
                 confirmFun: function () {
                   return function () {
                     $http({
@@ -82,7 +81,7 @@ factory("Authentication",
                 cancelFun: null
               }
             });
-            return
+            return;
           }
 
           var src = $location.search().src;
