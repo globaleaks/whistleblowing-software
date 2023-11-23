@@ -72,7 +72,6 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
 
     dict_ret = dict()
     # Fetch rtip, internaltip and associated questionnaire schema
-    print("receiver_id =", receiver_id)
     for rtip, itip, answers, data in session.query(models.ReceiverTip,
                                                    models.InternalTip,
                                                    models.InternalTipAnswers,
