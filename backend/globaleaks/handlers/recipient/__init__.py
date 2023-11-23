@@ -85,8 +85,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
                                                     models.InternalTip.update_date >= updated_after,
                                                     models.InternalTip.update_date <= updated_before,
                                                     models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                                    models.InternalTipAnswers.internaltip_id == models.ReceiverTip.internaltip_id) \
-                                            .group_by(models.InternalTip.id):
+                                                    models.InternalTipAnswers.internaltip_id == models.ReceiverTip.internaltip_id):
         answers = answers.answers
         label = itip.label
         accessible = rtip.receiver_id == receiver_id

@@ -39,7 +39,8 @@ def serialize_submission_substatus(substatus, language):
     submission_substatus = {
         'id': substatus.id,
         'submissionstatus_id': substatus.submissionstatus_id,
-        'order': substatus.order
+        'order': substatus.order,
+        'tip_timetolive': substatus.tip_timetolive,
     }
 
     return get_localized_values(submission_substatus, substatus, substatus.localized_keys, language)
@@ -57,7 +58,7 @@ def serialize_submission_status(session, status, language):
     submission_status = {
         'id': status.id,
         'order': status.order,
-        'substatuses': []
+        'substatuses': [],
     }
 
     # See if we have any substatuses we need to serialize

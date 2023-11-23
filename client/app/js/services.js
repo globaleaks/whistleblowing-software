@@ -56,12 +56,15 @@ factory("Authentication",
           }
           self.set_session(response);
           if (response.data && response.data.properties && response.data.properties.operator_new_receipt) {
+            var receipt = response.data.properties.operator_new_receipt;
+            var formatted_receipt = $rootScope.Utils.format_receipt(receipt);
             $uibModal.open({
               templateUrl: "views/modals/otkc_access.html",
               controller: "ConfirmableModalCtrl",
               resolve: {
-                arg: function() {
-                  return response.data;
+                arg: {
+                  receipt: receipt,
+                  formatted_receipt: formatted_receipt,
                 },
                 confirmFun: function () {
                   return function () {

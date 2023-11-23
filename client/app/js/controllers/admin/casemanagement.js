@@ -101,7 +101,8 @@ GL.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
     $scope.addSubmissionStatus = function () {
       var new_submissions_status = {
         "label": $scope.new_submissions_status.label,
-        "order": order
+        "order": order,
+        "tip_timetolive": -1,
       };
 
       $http.post(
@@ -177,7 +178,8 @@ GL.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
     $scope.addSubmissionSubStatus = function () {
       var new_submissions_substatuses = {
         "label": $scope.new_substatus.label,
-        "order": $scope.order
+        "order": $scope.order,
+        "tip_timetolive": -1,
       };
 
       $http.post(

@@ -8,12 +8,12 @@
   <div class="row">
     <div class="col-md-12">
       <label for="ReceiptCode" data-translate>For security reason th receipt code for your report needs to be changed.</label>
-      <div class="mt-2 form-inline" data-uib-tooltip="{{'Copy to clipboard' | translate}}" data-ng-click="Utils.copyToClipboard(receipt)">
+      <div class="mt-2 form-inline" data-uib-tooltip="{{'Copy to clipboard' | translate}}" data-ng-click="Utils.copyToClipboard(arg.receipt)">
         <div class="form-group d-block mx-auto">
           <div class="input-group">
-            <input id="ReceiptCode" class="form-control" type="text" maxlength="19" size="19" data-ng-model="formatted_receipt" name="receipt-input" disabled>
+            <input id="ReceiptCode" class="form-control" type="text" maxlength="19" size="19" data-ng-model="arg.formatted_receipt" name="receipt-input" disabled>
             <span class="input-group-append">
-              <button id="ReceiptButton" data-ng-click="Utils.copyToClipboard(receipt)" class="btn btn-primary" type="button" data-ng-attr-aria-label="{{'Copy to clipboard' | translate}}" >
+              <button id="ReceiptButton" data-ng-click="Utils.copyToClipboard(arg.receipt)" class="btn btn-primary" type="button" data-ng-attr-aria-label="{{'Copy to clipboard' | translate}}" >
                 <i class="fa-solid fa-copy"></i>
               </button>
             </span>

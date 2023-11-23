@@ -88,7 +88,12 @@
                      <option value="0">Illimitata</option>
                      <option value="1">Personalizzata</option>
                    </select>
-                  <input class="form-control mt-2" data-ng-model="substatus.retentionDays" type="number" data-ng-if="substatus.selectedOption === '1'" required/>
+                </div>
+              </div>
+              <div class="col-md-1">
+                <div class="form-group">
+                  <label data-translate></label>
+                  <input class="form-control" data-ng-model="substatus.retentionDays" type="number" min="1" data-ng-if="substatus.selectedOption === '1'" required/>
                 </div>
               </div>
             </div>

@@ -212,9 +212,10 @@ def recalculate_data_retention(session, itip, report_reopen_request):
             else: # to_check == context:
                 new_retention = get_tip_ttl(session, models.Context, itip.context_id)
 
-            if new_retention == -1:
-                # infinite data retention, break from the for loop
-                new_retention = None
+            if new_retention != -1:
+                if new_retention == 0:
+                    # infinite data retention, break from the for loop
+                    new_retention = None
                 break
     else:
         return # change between open statuses, no data retention recalculation needed
@@ -289,7 +290,8 @@ def update_tip_submission_status(session, tid, user_id, rtip_id, status_id, subs
     for receiver_id in session.query(models.ReceiverTip.receiver_id) \
                               .filter(models.ReceiverTip.internaltip_id == itip.id,
                                       models.ReceiverTip.receiver_id != user_id):
-        db_notify_report_update(session, receiver_id, rtip, itip)
+        user = session.query(models.User).filter(models.User.id == receiver_id[0]).one()
+        db_notify_report_update(session, user, rtip, itip)
 
     db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id, motivation, to_be_logged)
 
