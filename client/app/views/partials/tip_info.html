@@ -1,26 +1,4 @@
 <div id="TipInfoBox" class="card card-default">
-  <div class="card-header" data-ng-if="Authentication.session.role === 'receiver'">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="float-left">
-          <span class="input-group">
-            <input id="assignLabelInput" type="text" class="form-control" data-ng-attr-placeholder="{{'Label' | translate}}" data-ng-model="tip.label" />
-            <span class="input-group-append" data-uib-tooltip="{{'Label the report' | translate}}">
-              <button id="assignLabelButton" class="btn btn-primary" data-ng-click="updateLabel(tip.label)">
-                <i class="fa-solid fa-tag"></i>
-              </button>
-            </span>
-          </span>
-        </div>
-        <div class="float-right" data-ng-if="Authentication.session.role === 'receiver' && tip.status != 'closed'">
-          <span data-ng-include="'views/partials/tip_submission_status.html'"></span>
-        </div>
-        <div class="float-right" data-ng-if="Authentication.session.role === 'receiver'&& tip.status =='closed'">
-         <button type="button" class="btn btn-primary" data-ng-click="openModalReopen()" data-ng-disabled="!resources.preferences.can_reopen_reports">Riapertura segnalazione</button>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="card-body">
     <div class="text-center mb-2">
       <span class="font-weight-bold">ID:</span> <span>{{tip.id}}</span>
