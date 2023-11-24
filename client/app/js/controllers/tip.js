@@ -74,6 +74,12 @@ GL.controller("TipCtrl",
         key: "personal"
       }
     ];
+
+    $scope.printableTabs = [
+      "public",
+      "internal",
+    ];
+
     $scope.activeTabKey = $scope.tabs[0].key;
 
     $scope.selectedTab = function (key){
