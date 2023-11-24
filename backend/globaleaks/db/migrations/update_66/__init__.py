@@ -8,6 +8,14 @@ from globaleaks.models.properties import *
 from globaleaks.utils.utility import datetime_never, datetime_now, datetime_null
 
 
+class SubmissionStatus_v_65(Model):
+    __tablename__ = 'submissionstatus'
+    id = Column(UnicodeText(36), primary_key=True, default=uuid4)
+    tid = Column(Integer, primary_key=True, default=1)
+    label = Column(JSON, default=dict, nullable=False)
+    order = Column(Integer, default=0, nullable=False)
+
+
 class SubmissionSubStatus_v_65(Model):
     __tablename__ = 'submissionsubstatus'
     id = Column(UnicodeText(36), primary_key=True, default=uuid4)
