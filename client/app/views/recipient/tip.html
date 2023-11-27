@@ -83,13 +83,15 @@
       <i class="fa-solid fa-dot-circle"></i>
     </span>
 
-    <span id="tip-action-change-status"
+    <button id="tip-action-change-status"
           data-ng-if="tip.status === 'closed'"
+          data-ng-disabled="!resources.preferences.can_reopen_reports"
+          data-ng-style="{'cursor': (!resources.preferences.can_reopen_reports) ? 'not-allowed' : 'pointer'}"
           data-ng-click="openModalReopen()"
-          data-uib-tooltip="{{'Reopen' | translate}}"
+          data-uib-tooltip="{{'Reopen report' | translate}}"
           class="btn btn-outline-secondary">
       <i class="fa-solid fa-dot-circle"></i>
-    </span>
+    </button>
 
     <span id="tip-action-print"
           data-ng-click="Utils.print()"

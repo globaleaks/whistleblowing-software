@@ -38,7 +38,7 @@
   </div>
   <div class="row">
     <div data-ng-repeat="substatus in submissions_status.substatuses" class="col-md-12">
-      <div data-ng-controller="AdminSubmissionSubStatusEditorCtrl">
+      <div data-ng-controller="AdminSubmissionSubStatusEditorCtrl" data-ng-init="substatus.selectedOption = (substatus.tip_timetolive === -1 ? '-1' : (substatus.tip_timetolive === 0 ? '0' : '1')); substatus.retentionDays = substatus.tip_timetolive >= 1 ? substatus.tip_timetolive : 1;">
         <div class="configItem">
           <div class="editorHeader row" data-ng-click="toggleSubstatusEditing(); $event.stopPropagation();">
             <span class="col-md-7">
@@ -71,7 +71,9 @@
               </span>
             </span>
           </div>
-          <div data-ng-form="editStep" data-ng-if="substatus_editing">
+          <div data-ng-form="editStep"
+            data-ng-if="substatus_editing"
+            >
             <hr/>
             <div class="row">
               <div class="col-md-3">

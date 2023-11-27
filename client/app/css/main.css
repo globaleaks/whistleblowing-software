@@ -1006,7 +1006,6 @@ html[dir="ltr"] #Receipt {
 
 .disabled-row {
     background-color: #ccc !important;
-    font-weight: bold;
     pointer-events: none;
 }
 

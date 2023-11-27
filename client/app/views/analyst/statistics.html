@@ -1,8 +1,13 @@
 <div class="row">
-  <div class="card m-2" data-ng-repeat="c in charts" data-ng-if="!error">
-    <div class="card-header">{{c.title}}</div>
-    <div class="card-body">
-      <canvas class="chart chart-pie" chart-data="c.values" chart-labels="c.labels"></canvas>
+  <div class="col-6" data-ng-repeat="c in charts" data-ng-if="!error">
+    <div class="card">
+      <div class="card-header">
+        <span data-translate>{{c.title}}</span>
+      </div>
+      <div class="card-body">
+        <canvas class="chart chart-pie" chart-data="c.values" chart-labels="c.labels"
+          chart-options="c.options" chart-colors="c.colors"></canvas>
+      </div>
     </div>
   </div>
 </div>
