@@ -115,7 +115,7 @@ controller("AdminContextAddCtrl", ["$scope", function($scope) {
     var context = new $scope.AdminUtils.new_context();
 
     context.name = $scope.new_context.name;
-    context.questionnaire_id = $scope.resources.node.default_questionnaire;
+    context.questionnaire_id = 'default';
     context.order = $scope.newItemOrder($scope.resources.contexts, "order");
 
     context.$save(function(new_context){
