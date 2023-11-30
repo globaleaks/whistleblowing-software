@@ -1,5 +1,7 @@
 # -*- coding: utf-8
 import codecs
+import glob
+import gzip
 import logging
 import os
 import sys
@@ -9,6 +11,78 @@ from datetime import datetime
 from twisted.python import log as txlog, logfile as txlogfile
 from twisted.python import util, failure
 from twisted.web.http import _escape
+
+
+def compress_file(input_path, output_path):
+    with open(input_path, 'rb') as f_in, gzip.open(output_path, 'wb') as f_out:
+        f_out.writelines(f_in)
+
+
+class RotatedDailyLogFile(txlogfile.DailyLogFile):
+    """Extending `DailyLogFile` to serve GlobaLeaks purposes.
+
+    Additionally to the original daily log file rotation it also allows
+    call sites to control the number of rotated logfiles kept around and
+    when to start compressing them.
+    """
+    maxRotatedFiles = 30
+    compressLast = 1
+
+    def __init__(self, name, directory, defaultMode=None,
+                 maxRotatedFiles=None, compressLast=None):
+        txlogfile.DailyLogFile.__init__(self, name, directory, defaultMode)
+        if maxRotatedFiles is not None:
+            self.maxRotatedFiles = int(maxRotatedFiles)
+        if compressLast is not None:
+            self.compressLast = int(compressLast)
+
+    def shouldRotate(self):
+        return True
+
+    def _compressFile(self, path):
+        """Compress the file in the given path using bzip2.
+
+        The compressed file will be in the same path and old file
+        will be removed.
+
+        :return: the path to the compressed file.
+        """
+        compressed_path = '%s.gz' % path
+        compress_file(path, compressed_path)
+        os.remove(path)
+        return compressed_path
+
+    def rotate(self):
+        """Rotate the current logfile.
+
+        Also remove extra entries and compress the last ones.
+        """
+        # Rotate the log daily.
+        txlogfile.DailyLogFile.rotate(self)
+
+        # Remove 'extra' rotated log files.
+        logs = self.listLogs()
+        for log_path in logs[self.maxRotatedFiles:]:
+            os.remove(log_path)
+
+        # Refresh the list of existing rotated logs
+        logs = self.listLogs()
+
+        # Skip compressing if there are no files to be compressed.
+        if len(logs) <= self.compressLast:
+            return
+
+        # Compress last log files.
+        for log_path in logs[-self.compressLast:]:
+            # Skip already compressed files.
+            if log_path.endswith('gz'):
+                continue
+            self._compressFile(log_path)
+
+    def listLogs(self):
+        """Return the list of rotate log files, newest first."""
+        return sorted(glob.glob("%s.*" % self.path), reverse=True)
+
 
 
 def timedelta_to_milliseconds(t):
@@ -41,7 +115,7 @@ def log_remove_escapes(s):
             return string
 
 
-def openLogFile(logfile, max_file_size, rotated_log_files):
+def openLogFile(logfile, rotated_log_files):
     """
     Open a log file
 
@@ -53,10 +127,9 @@ def openLogFile(logfile, max_file_size, rotated_log_files):
     name = os.path.basename(logfile)
     directory = os.path.dirname(logfile)
 
-    return txlogfile.LogFile(name,
-                             directory,
-                             rotateLength=max_file_size,
-                             maxRotatedFiles=rotated_log_files)
+    return RotatedDailyLogFile(name,
+                               directory,
+                               maxRotatedFiles=rotated_log_files)
 
 
 def logFormatter(timestamp, request):

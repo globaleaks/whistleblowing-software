@@ -42,7 +42,7 @@ class Site(server.Site):
     requestFactory = Request
 
     def _openLogFile(self, path):
-        return openLogFile(path, Settings.log_file_size, Settings.num_log_files)
+        return openLogFile(path, Settings.num_log_files)
 
 
 class Service(service.Service):
@@ -159,7 +159,7 @@ class Service(service.Service):
 try:
     application = service.Application('GlobaLeaks')
 
-    logfile = openLogFile(Settings.logfile, Settings.log_file_size, Settings.num_log_files)
+    logfile = openLogFile(Settings.logfile, Settings.num_log_files)
     if Settings.nodaemon:
         addObserver(LogObserver(logfile).emit)
     else:
