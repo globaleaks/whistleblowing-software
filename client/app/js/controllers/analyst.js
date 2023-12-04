@@ -1,25 +1,39 @@
-GL.controller("StatisticsCtrl", ["$scope", "$filter",
-              function ($scope, $filter) {
-  var returning_wb_labels = ["Returning", "Not returning"
-    ].map($filter("translate"));
-  var anonymity_wb_labels = ["Anonymous",
-    "Subscribed", "Subscribed later"].map($filter("translate"));
-  $scope.charts = [];
+GL.controller("StatisticsCtrl", ["$scope", "$filter", function ($scope, $filter) {
+
+  // Percentages computing
   var na = $scope.resources.stats.reports_with_no_access;
   var oa = $scope.resources.stats.reports_with_at_least_one_access;
   var totAcc = na + oa;
-  na = Math.floor((na / totAcc)*100)
-  oa = Math.floor((oa / totAcc)*100)
-  
+  na = ((na / totAcc)*100).toFixed(1);
+  oa = ((oa / totAcc)*100).toFixed(1);
+
   var an = $scope.resources.stats.reports_anonymous;
   var sb = $scope.resources.stats.reports_subscribed;
   var sbl = $scope.resources.stats.reports_subscribed_later;
   var totId = an + sb + sbl;
-  an = Math.floor((an / totId)*100)
-  sb = Math.floor((sb / totId)*100)
-  sbl = Math.floor((sbl / totId)*100)
+  an = ((an / totId)*100).toFixed(1);
+  sb = ((sb / totId)*100).toFixed(1);
+  sbl = ((sbl / totId)*100).toFixed(1);
+
+  // Label definition
+  var returning_wb_labels = ["Not returning", "Returning"
+    ].map($filter("translate"));
+  var anonymity_wb_labels = ["Anonymous",
+    "Subscribed", "Subscribed later"].map($filter("translate"));
+
+  // Adding percentages to labels after translation
+  returning_wb_labels[0] = `${returning_wb_labels[0]} ${na}% - (${$scope.resources.stats.reports_with_no_access})`
+  returning_wb_labels[1] = `${returning_wb_labels[1]} ${oa}% - (${$scope.resources.stats.reports_with_at_least_one_access})`
+
+  anonymity_wb_labels[0] = `${anonymity_wb_labels[0]} ${an}% - (${$scope.resources.stats.reports_anonymous})`
+  anonymity_wb_labels[1] = `${anonymity_wb_labels[1]} ${sb}% - (${$scope.resources.stats.reports_subscribed})`
+  anonymity_wb_labels[2] = `${anonymity_wb_labels[2]} ${sbl}% - (${$scope.resources.stats.reports_subscribed_later})`
+
+  // Chart declaration
+  $scope.charts = [];
   $scope.charts.push({
     title: "Returning whistleblowers",
+    total: totAcc,
     //labels: ["Accessi senza ricevuta", "Accessi tramite ricevuta"],
     labels: returning_wb_labels,
     values: [na, oa],
@@ -37,7 +51,7 @@ GL.controller("StatisticsCtrl", ["$scope", "$filter",
       tooltips: {
         callbacks: {
           label: function(tooltipItem, data) {
-            return data.labels[tooltipItem.index] + ' : ' + data.datasets[0].data[tooltipItem.index] + '%';
+            return data.labels[tooltipItem.index];
           }
         }
       }
@@ -62,7 +76,7 @@ GL.controller("StatisticsCtrl", ["$scope", "$filter",
       tooltips: {
         callbacks: {
           label: function(tooltipItem, data) {
-            return data.labels[tooltipItem.index] + ' : ' + data.datasets[0].data[tooltipItem.index] + '%';
+            return data.labels[tooltipItem.index];
           }
         }
       }

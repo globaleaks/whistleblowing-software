@@ -278,7 +278,11 @@
           force-ellipses="true"></ul>
     </div>
     <div class="align-btn-end">
-      <a class="btn btn-sm btn-link" type="button" data-ng-if="filteredTips.length > 0" data-ng-csv="getDataCsv()" csv-label='true' filename="reports.csv">
+      <a class="btn btn-sm btn-link" type="button"
+         data-ng-if="filteredTips.length > 0"
+         data-ng-csv="getDataCsv()"
+         csv-header="getDataCsvHeaders()"
+         filename="reports.csv">
         <i class="fa-solid fa-download"></i>
         <span data-translate>Export</span>
       </a>
