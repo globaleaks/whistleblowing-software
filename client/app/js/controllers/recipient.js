@@ -203,7 +203,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
   $scope.markReportStatus = function (date) {
     var report_date = new Date(date);
     var current_date = new Date();
-    return (current_date-report_date<0) && (current_date-report_date>-1000000000000);
+    return current_date > report_date;
   };
 
   $scope.tips_export = function () {
