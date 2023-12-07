@@ -47,7 +47,7 @@ GL.controller("TipCtrl",
                 };
 
                 iframe.contentWindow.postMessage(data, "*");
-              }, {once: true});
+              });
 
               $scope.$apply();
             }
