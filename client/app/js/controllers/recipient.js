@@ -90,7 +90,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
 
   $scope.open_grant_access_modal = function () {
     return $scope.Utils.runUserOperation("get_users_names").then(function(response) {
-      var selectable_recipients = [];
+      let selectable_recipients = [];
 
       $scope.public.receivers.forEach(async (receiver) => {
         if (receiver.id !== $scope.Authentication.session.user_id) {
@@ -124,7 +124,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
 
   $scope.open_revoke_access_modal = function () {
     return $scope.Utils.runUserOperation("get_users_names").then(function(response) {
-      var selectable_recipients = [];
+      let selectable_recipients = [];
 
       $scope.public.receivers.forEach(async (receiver) => {
         if (receiver.id !== $scope.Authentication.session.user_id) {
@@ -217,8 +217,19 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
   };
 
   $scope.getDataCsv = function(){
-    var output = angular.copy($scope.filteredTips);
+    let output = angular.copy($scope.filteredTips);
     return output.map(function(tip){
+      let subscription_str = '';
+      if(tip.subscription === 0){
+        subscription_str = "Non sottoscritta";
+      }
+      else if(tip.subscription === 1){
+        subscription_str = "Sottoscritta";
+      }
+      else{
+        subscription_str = "Sottoscritta successivamente";
+      }
+
       return {
         id:tip.id,
         progressive: tip.progressive,
@@ -233,7 +244,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
         last_access: $filter("date")(tip.last_access, "dd-MM-yyyy HH:mm"),
         comment_count: tip.comment_count,
         file_count: tip.file_count,
-        subscription: tip.subscription === 0 ? "Non sottoscritta" : tip.subscription === 1 ? "Sottoscritta" : "Sottoscritta successivamente",
+        subscription: subscription_str,
         receiver_count: tip.receiver_count
       }
     })
@@ -260,7 +271,7 @@ GL.controller("ReceiverTipsCtrl", ["$scope",  "$filter", "$http", "$location", "
   $scope.actAsWhistleblower = function () {
     $http.get("/api/auth/operatorauthswitch").then(function (result) {
       if (result.status === 200) {
-        var urlRedirect = window.location.origin + result.data.redirect
+        let urlRedirect = window.location.origin + result.data.redirect;
         window.open(urlRedirect, "_blank");
       }
     });
