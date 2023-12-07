@@ -129,18 +129,6 @@ dpkg-reconfigure -f noninteractive tzdata
 
 DO "apt-get -y install gnupg net-tools software-properties-common wget"
 
-function is_tcp_sock_free_check {
-  ! netstat -tlpn 2>/dev/null | grep -F $1 -q
-}
-
-# check the required sockets to see if they are already used
-for SOCK in "0.0.0.0:80" "0.0.0.0:443" "127.0.0.1:8082" "127.0.0.1:8083"
-do
-  DO "is_tcp_sock_free_check $SOCK"
-done
-
-echo " + required TCP sockets open"
-
 # The supported platforms are experimentally more than only Ubuntu as
 # publicly communicated to users.
 #
