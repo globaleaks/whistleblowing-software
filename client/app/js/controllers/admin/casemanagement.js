@@ -136,14 +136,11 @@ GL.controller("AdminCaseManagementCtrl", ["$scope", function($scope){
     $scope.save_submissions_substatuses = function (substatus, cb) {
       var updated_submissions_substatuses = new AdminSubmissionSubStatusResource(substatus);
       $scope.substatus.selectedOption = substatus.selectedOption;
-      switch (substatus.selectedOption) {
-        case "1":
-          updated_submissions_substatuses.tip_timetolive = substatus.retentionDays;
-          $scope.substatus.retentionDays = substatus.retentionDays;
-          break;
-        default:
-          updated_submissions_substatuses.tip_timetolive = substatus.selectedOption;
-          break;
+      if(substatus.selectedOption === "1"){
+        updated_submissions_substatuses.tip_timetolive = substatus.retentionDays;
+        $scope.substatus.retentionDays = substatus.retentionDays;
+      }else{
+        updated_submissions_substatuses.tip_timetolive = substatus.selectedOption;
       }
       return $scope.Utils.update(updated_submissions_substatuses, cb);
     };
