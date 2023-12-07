@@ -1,24 +1,24 @@
 GL.controller("StatisticsCtrl", ["$scope", "$filter", function ($scope, $filter) {
 
   // Percentages computing
-  var na = $scope.resources.stats.reports_with_no_access;
-  var oa = $scope.resources.stats.reports_with_at_least_one_access;
-  var totAcc = na + oa;
+  let na = $scope.resources.stats.reports_with_no_access;
+  let oa = $scope.resources.stats.reports_with_at_least_one_access;
+  let totAcc = na + oa;
   na = ((na / totAcc)*100).toFixed(1);
   oa = ((oa / totAcc)*100).toFixed(1);
 
-  var an = $scope.resources.stats.reports_anonymous;
-  var sb = $scope.resources.stats.reports_subscribed;
-  var sbl = $scope.resources.stats.reports_subscribed_later;
-  var totId = an + sb + sbl;
+  let an = $scope.resources.stats.reports_anonymous;
+  let sb = $scope.resources.stats.reports_subscribed;
+  let sbl = $scope.resources.stats.reports_subscribed_later;
+  let totId = an + sb + sbl;
   an = ((an / totId)*100).toFixed(1);
   sb = ((sb / totId)*100).toFixed(1);
   sbl = ((sbl / totId)*100).toFixed(1);
 
   // Label definition
-  var returning_wb_labels = ["Not returning", "Returning"
+  let returning_wb_labels = ["Not returning", "Returning"
     ].map($filter("translate"));
-  var anonymity_wb_labels = ["Anonymous",
+  let anonymity_wb_labels = ["Anonymous",
     "Subscribed", "Subscribed later"].map($filter("translate"));
 
   // Adding percentages to labels after translation
