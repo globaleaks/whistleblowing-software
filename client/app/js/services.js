@@ -1,8 +1,8 @@
 GL.factory("GLResource", ["$resource", function($resource) {
   return function(url, params, actions) {
-    var defaults = {
-      get:    {method: "GET"},
-      query:  {method: "GET", isArray: true},
+    let defaults = {
+      get: {method: "GET"},
+      query: {method: "GET", isArray: true},
       update: {method: "PUT"}
     };
 
@@ -15,23 +15,23 @@ factory("Authentication",
   ["$filter", "$http", "$location", "$window", "$rootScope", "GLTranslate", "$uibModal",
   function($filter, $http, $location, $window, $rootScope, GLTranslate, $uibModal) {
     function Session() {
-      var self = this;
+      let self = this;
 
       self.loginInProgress = false;
       self.requireAuthCode = false;
       self.loginData = {};
 
-      var session = $window.sessionStorage.getItem("session");
+      let session = $window.sessionStorage.getItem("session");
 
       if (typeof session === "string") {
         self.session = JSON.parse(session);
-        //$location.path(self.session.homepage);
+
       }
 
       self.set_session = function(response) {
         self.session = response.data;
         if (self.session.role !== "whistleblower") {
-          var role = self.session.role === "receiver" ? "recipient" : self.session.role;
+          let role = self.session.role === "receiver" ? "recipient" : self.session.role;
           self.session.homepage = "/" + role + "/home";
           self.session.preferencespage = "/" + role + "/preferences";
           $window.sessionStorage.setItem("session",  JSON.stringify(self.session));
@@ -49,7 +49,7 @@ factory("Authentication",
           authcode = "";
         }
         self.loginInProgress = true;
-        var success_fn = function (response) {
+        let success_fn = function (response) {
           self.reset();
           if ("redirect" in response.data) {
             $window.location.replace(response.data.redirect);
@@ -87,7 +87,7 @@ factory("Authentication",
             return;
           }
 
-          var src = $location.search().src;
+          let src = $location.search().src;
           if (src) {
             $location.path(src);
           } else {
@@ -106,7 +106,7 @@ factory("Authentication",
 
         };
 
-        var failure_fn = function(response) {
+        let failure_fn = function (response) {
           self.loginInProgress = false;
 
           if (response.data && response.data.error_code) {
@@ -118,7 +118,7 @@ factory("Authentication",
           }
         };
 
-        var promise;
+        let promise;
         if (authtoken) {
           promise = $http.post("api/auth/tokenauth", {"authtoken": authtoken});
         } else {
@@ -139,7 +139,7 @@ factory("Authentication",
       };
 
       self.logout = function() {
-        var cb;
+        let cb;
 
         $rootScope.Authentication.reset();
 
@@ -159,7 +159,7 @@ factory("Authentication",
       };
 
       self.loginRedirect = function(isLogout) {
-        var source_path = $location.path();
+        let source_path = $location.path();
 
         if (source_path !== "/login") {
           $location.path("/login");
@@ -182,7 +182,7 @@ factory("Authentication",
       };
 
       self.get_headers = function() {
-        var h = {};
+        let h = {};
 
         if (self.session) {
           h["X-Session"] = self.session.id;
@@ -197,7 +197,7 @@ factory("Authentication",
     return new Session();
 }]).
 factory("Access", ["$q", "Authentication", function ($q, Authentication) {
-  var Access = {
+  let Access = {
     OK: 200,
 
     FORBIDDEN: 403,
@@ -233,7 +233,7 @@ factory("TokenResource", ["GLResource", "glbcProofOfWork", function(GLResource, 
       method: "POST",
       interceptor: {
         response: function(response) {
-          var token = response.resource;
+          let token = response.resource;
           return glbcProofOfWork.proofOfWork(token.id).then(function(result) {
             token.answer = result;
             return token;
@@ -258,7 +258,7 @@ factory("Submission", ["$q", "$location", "$rootScope", "Authentication", "GLRes
      * This means getting the node information, the list of receivers and the
      * list of contexts.
      */
-    var self = this;
+    let self = this;
 
     self._submission = null;
     self.context = undefined;
@@ -279,7 +279,7 @@ factory("Submission", ["$q", "$location", "$rootScope", "Authentication", "GLRes
       self.receivers = [];
 
       angular.forEach(self.context.receivers, function(receiver) {
-        var r = $rootScope.receivers_by_id[receiver];
+        let r = $rootScope.receivers_by_id[receiver];
 
         if (!r) {
           return;
@@ -377,7 +377,7 @@ factory("RTipExport", ["Utils", function(Utils) {
 factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipCommentResource",
         function($rootScope, $http, RTipResource, RTipCommentResource) {
   return function(tipID, fn) {
-    var self = this;
+    let self = this;
 
     self.tip = RTipResource.get(tipID, function (tip) {
       tip.context = $rootScope.contexts_by_id[tip.context_id];
@@ -385,7 +385,7 @@ factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipCommentResource",
       tip.additional_questionnaire = $rootScope.questionnaires_by_id[tip.context.additional_questionnaire_id];
 
       tip.newComment = function(content,visibility) {
-        var c = new RTipCommentResource(tipID);
+        let c = new RTipCommentResource(tipID);
         c.content = content;
         c.visibility = visibility;
         c.$save(function(newComment) {
@@ -395,7 +395,7 @@ factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipCommentResource",
       };
 
       tip.operation = function(operation, args) {
-        var req = {
+        let req = {
           "operation": operation,
           "args": args
         };
@@ -438,7 +438,7 @@ factory("WBTipDownloadWBFile", ["Utils", function(Utils) {
 factory("WBTip", ["$rootScope", "WBTipResource", "WBTipCommentResource",
     function($rootScope, WBTipResource, WBTipCommentResource,) {
   return function(fn) {
-    var self = this;
+    let self = this;
 
     self.tip = WBTipResource.get(function (tip) {
       tip.context = $rootScope.contexts_by_id[tip.context_id];
@@ -459,7 +459,7 @@ factory("WBTip", ["$rootScope", "WBTipResource", "WBTipCommentResource",
       });
 
       tip.newComment = function(content,visibility) {
-        var c = new WBTipCommentResource();
+        let c = new WBTipCommentResource();
         c.content = content;
         c.visibility = visibility;
         c.$save(function(newComment) {
@@ -552,7 +552,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
     function(AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminNodeResource, AdminNotificationResource, AdminRedirectResource, AdminTenantResource) {
   return {
     new_context: function() {
-      var context = new AdminContextResource();
+      let context = new AdminContextResource();
       context.id = "";
       context.hidden = true;
       context.name = "";
@@ -579,7 +579,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
     },
 
     new_questionnaire: function() {
-      var questionnaire = new AdminQuestionnaireResource();
+      let questionnaire = new AdminQuestionnaireResource();
       questionnaire.id = "";
       questionnaire.key = "";
       questionnaire.name = "";
@@ -588,7 +588,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
     },
 
     new_step: function(questionnaire_id) {
-      var step = new AdminStepResource();
+      let step = new AdminStepResource();
       step.id = "";
       step.label = "";
       step.description = "";
@@ -601,7 +601,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
     },
 
     new_field: function(step_id, fieldgroup_id) {
-      var field = new AdminFieldResource();
+      let field = new AdminFieldResource();
       field.id = "";
       field.key = "";
       field.instance = "instance";
@@ -630,7 +630,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
     },
 
     new_field_template: function (fieldgroup_id) {
-      var field = new AdminFieldTemplateResource();
+      let field = new AdminFieldTemplateResource();
       field.id = "";
       field.instance = "template";
       field.label = "";
@@ -657,7 +657,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
     },
 
     new_user: function () {
-      var user = new AdminUserResource();
+      let user = new AdminUserResource();
       user.id = "";
       user.username = "";
       user.role = "receiver";
@@ -688,7 +688,7 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
     },
 
     new_tenant: function() {
-      var tenant = new AdminTenantResource();
+      let tenant = new AdminTenantResource();
       tenant.active = true;
       tenant.name = "";
       tenant.mode = "default";
@@ -721,7 +721,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     function($rootScope, $http, $q, $location, $filter, $timeout, $uibModal, $window, TokenResource) {
   return {
     array_to_map: function(array) {
-      var ret = {};
+      let ret = {};
       angular.forEach(array, function(element) {
         ret[element.id] = element;
       });
@@ -744,7 +744,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
         return;
       }
 
-      var projectTitle = $rootScope.public.node.name,
+      let projectTitle = $rootScope.public.node.name,
           pageTitle = $rootScope.public.node.header_title_homepage;
 
       if ($location.path() !== "/") {
@@ -768,11 +768,11 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     },
 
     getDateFilter: function(Tips, report_date_filter, update_date_filter, expiry_date_filter) {
-      var filteredTips = [];
+      let filteredTips = [];
       angular.forEach(Tips, function(rows) {
-        var m_row_rdate = new Date(rows.last_access).getTime();
-        var m_row_udate = new Date(rows.update_date).getTime();
-        var m_row_edate = new Date(rows.expiration_date).getTime();
+        let m_row_rdate = new Date(rows.last_access).getTime();
+        let m_row_udate = new Date(rows.update_date).getTime();
+        let m_row_edate = new Date(rows.expiration_date).getTime();
 
         if ((report_date_filter === null || report_date_filter !== null && (report_date_filter[0] === 0 || report_date_filter[0] === report_date_filter[1] || m_row_rdate > report_date_filter[0] && m_row_rdate < report_date_filter[1])) && (update_date_filter === null || update_date_filter !== null && (update_date_filter[0] === 0 || update_date_filter[0] === update_date_filter[1] || m_row_udate > update_date_filter[0] && m_row_udate < update_date_filter[1])) && (expiry_date_filter === null || expiry_date_filter !== null && (expiry_date_filter[0] === 0 || expiry_date_filter[0] === expiry_date_filter[1] || m_row_edate > expiry_date_filter[0] && m_row_edate < expiry_date_filter[1]))) {
           filteredTips.push(rows);
@@ -789,14 +789,14 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     },
 
     getStaticFilter: function(data, model, key) {
+      let rows = [];
       if (model.length === 0) {
         return data;
       } else {
-        var rows = [];
         data.forEach(data_row => {
           model.forEach(selected_option => {
             if (key === "score") {
-              var scoreLabel = this.maskScore(data_row[key]);
+              let scoreLabel = this.maskScore(data_row[key]);
               if (scoreLabel === selected_option.label) {
                 rows.push(data_row);
               }
@@ -828,7 +828,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     },
 
     route_check: function() {
-      var path = $location.path();
+      let path = $location.path();
       if (path !== "/") {
         $rootScope.page = "";
       }
@@ -851,7 +851,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     },
 
     getYOrderProperty: function(elem) {
-      var key = "order";
+      let key = "order";
       if (typeof elem[key] === "undefined") {
         key = "y";
       }
@@ -910,7 +910,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     },
 
     showFilePreview: function(content_type) {
-      var content_types = [
+      let content_types = [
         "image/gif",
         "image/jpeg",
         "image/png",
@@ -937,7 +937,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     },
 
     deleteFromList: function(list, elem) {
-      var idx = list.indexOf(elem);
+      let idx = list.indexOf(elem);
       if (idx !== -1) {
         list.splice(idx, 1);
       }
@@ -952,9 +952,9 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
         return;
       }
 
-      var key = this.getYOrderProperty(elements[0]);
+      let key = this.getYOrderProperty(elements[0]);
       if (elements.length) {
-        var i = 0;
+        let i = 0;
         elements = $filter("orderBy")(elements, key);
         angular.forEach(elements, function (element) {
           element[key] = i;
@@ -964,7 +964,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     },
 
     isUploading: function(uploads) {
-      for (var key in uploads) {
+      for (let key in uploads) {
         if (uploads[key] &&
             uploads[key].isUploading &&
             uploads[key].isUploading()) {
@@ -977,7 +977,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
 
     hasPausedFileUploads: function(uploads) {
       if (uploads["status_page"]) {
-        for (var i=0; i < uploads["status_page"].files.length; i++) {
+        for (let i=0; i < uploads["status_page"].files.length; i++) {
           if (uploads["status_page"].files[i].paused) {
             return true;
           }
@@ -988,7 +988,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     },
 
     resumeFileUploads: function(uploads) {
-      for (var key in uploads) {
+      for (let key in uploads) {
         if (uploads[key]) {
           uploads[key].resume();
         }
@@ -996,7 +996,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     },
 
     acceptPrivacyPolicyDialog: function(template, arg) {
-      var modal = $uibModal.open({
+      let modal = $uibModal.open({
         templateUrl: "views/modals/accept_agreement.html",
         controller: "ConfirmableModalCtrl",
         resolve: {
@@ -1009,12 +1009,12 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
                 method: "PUT",
                 url: "api/user/operations",
                 data: {
-                 "operation": "accepted_privacy_policy",
-                 "args": {}
-               }
-             }).then(function() {
-               $rootScope.resources.preferences.accepted_privacy_policy = "";
-             });
+                  "operation": "accepted_privacy_policy",
+                  "args": {}
+                }
+              }).then(function () {
+                $rootScope.resources.preferences.accepted_privacy_policy = "";
+              });
             };
           },
 
@@ -1028,7 +1028,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     openConfirmableModalDialog: function(template, arg, scope) {
       scope = !scope ? $rootScope : scope;
 
-      var modal = $uibModal.open({
+      let modal = $uibModal.open({
         templateUrl: template,
         controller: "ConfirmableModalCtrl",
         scope: scope,
@@ -1046,20 +1046,20 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
 
      openViewModalDialog: function(template, arg, scope) {
       scope = !scope ? $rootScope : scope;
-      var modal = $uibModal.open({
-        templateUrl: template,
-        controller: "ViewModalCtrl",
-        scope: scope,
-        size: "xl",
-        resolve: {
-          arg: function () {
-            return arg;
-          },
-          confirmFun: null,
-          cancelFun: null
-        }
-      });
-      return modal.result;
+       let modal = $uibModal.open({
+         templateUrl: template,
+         controller: "ViewModalCtrl",
+         scope: scope,
+         size: "xl",
+         resolve: {
+           arg: function () {
+             return arg;
+           },
+           confirmFun: null,
+           cancelFun: null
+         }
+       });
+       return modal.result;
     },
 
     deleteDialog: function() {
@@ -1075,7 +1075,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     },
 
     isNever: function(time) {
-      var date = new Date(time);
+      let date = new Date(time);
       return date.getTime() === 32503680000000;
     },
 
@@ -1095,16 +1095,16 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     },
 
     getReminderDate: function(ttl) {
-      var date = new Date();
+      let date = new Date();
       date.setDate(date.getDate() + ttl + 1);
       date.setUTCHours(0, 0, 0, 0);
       return date;
     },
 
     readFileAsText: function (file) {
-      var deferred = $q.defer();
+      let deferred = $q.defer();
 
-      var reader = new $window.FileReader();
+      let reader = new $window.FileReader();
 
       reader.onload = function (e) {
         deferred.resolve(e.target.result);
@@ -1130,7 +1130,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     },
 
     view: function(url, mimetype, callback) {
-      var xhr = new XMLHttpRequest();
+      let xhr = new XMLHttpRequest();
       xhr.open("GET", url, true);
       xhr.setRequestHeader("x-session", $rootScope.Authentication.session.id);
       xhr.overrideMimeType(mimetype);
@@ -1146,13 +1146,13 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     },
 
     getSubmissionStatusText: function(status, substatus, submission_statuses) {
-      var text;
-      for (var i = 0; i < submission_statuses.length; i++) {
+      let text;
+      for (let i = 0; i < submission_statuses.length; i++) {
         if (submission_statuses[i].id === status) {
           text = $filter("translate")(submission_statuses[i].label);
 
-          var substatuses = submission_statuses[i].substatuses;
-          for (var j = 0; j < substatuses.length; j++) {
+          let substatuses = submission_statuses[i].substatuses;
+          for (let j = 0; j < substatuses.length; j++) {
             if (substatuses[j].id === substatus) {
               text += " \u2013 " + $filter("translate")(substatuses[j].label);
               break;
@@ -1184,7 +1184,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     scrollTo: function(querySelector) {
       $timeout(function() {
         try {
-          var elem = $window.document.querySelector(querySelector);
+          let elem = $window.document.querySelector(querySelector);
           elem.scrollIntoView();
           elem.focus();
         } catch (error) {
@@ -1194,12 +1194,12 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     },
 
     getConfirmation: function(confirmFun) {
-      var template = "views/modals/confirmation_with_password.html";
+      let template = "views/modals/confirmation_with_password.html";
       if ($rootScope.resources.preferences.two_factor) {
         template = "views/modals/confirmation_with_2fa.html";
       }
 
-      var openModal = function() {
+      let openModal = function() {
         return $uibModal.open({
           templateUrl: template,
           controller: "ConfirmableModalCtrl",
@@ -1251,7 +1251,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
         url: url,
         responseType: "blob",
       }).then(function (response) {
-        var fileLink = $window.document.createElement("a");
+        let fileLink = $window.document.createElement("a");
         fileLink.href = URL.createObjectURL(response.data);
         fileLink.download = filename;
         fileLink.click();
@@ -1260,7 +1260,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     },
 
     role_l10n: function(role) {
-      var ret = "";
+      let ret = "";
 
       if (role) {
         ret = role === "receiver" ? "recipient" : role;
@@ -1271,10 +1271,10 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     },
 
     runOperation: function(api, operation, args, refresh) {
-      var self = this;
-      var deferred = $q.defer();
+      let self = this;
+      let deferred = $q.defer();
 
-      var require_confirmation = [
+      let require_confirmation = [
         "enable_encryption",
         "disable_2fa",
         "get_recovery_key",
@@ -1293,7 +1293,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       }
 
       if (require_confirmation.indexOf(operation) !== -1) {
-        var confirm = function(secret) {
+        let confirm = function(secret) {
           return $http({
             method: "PUT",
             url: api,
@@ -1355,7 +1355,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     removeFile: function (submission, entry, list, file) {
       entry.files = entry.files.filter(e => e !== file.uniqueIdentifier);
 
-      for (var i = list.length - 1; i >= 0; i--) {
+      for (let i = list.length - 1; i >= 0; i--) {
         if (list[i] === file) {
           list.splice(i, 1);
           file.abort();
@@ -1380,7 +1380,7 @@ factory("mediaProcessor", [function () {
   };
 }]).
 factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $http, CONSTANTS) {
-    var flatten_field = function(id_map, field) {
+    let flatten_field = function(id_map, field) {
       if (field.children.length === 0) {
         id_map[field.id] = field;
         return id_map;
@@ -1400,7 +1400,7 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
       },
 
       getValidator: function(field) {
-        var validators = {
+        let validators = {
           "custom": field.attrs.regexp ? field.attrs.regexp.value : "",
           "none": "",
           "email": CONSTANTS.email_regexp,
@@ -1420,8 +1420,8 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
       },
 
       splitRows: function(fields) {
-        var rows = [];
-        var y = null;
+        let rows = [];
+        let y = null;
 
         angular.forEach(fields, function(f) {
           if(y !== f.y) {
@@ -1456,9 +1456,9 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
       },
 
       findField: function(answers_obj, field_id) {
-        var r;
+        let r;
 
-        for (var key in answers_obj) {
+        for (let key in answers_obj) {
           if (key === field_id) {
             return answers_obj[key][0];
           }
@@ -1474,8 +1474,8 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
       },
 
       isFieldTriggered: function(scope, parent, field, answers, score) {
-        var count = 0;
-        var i;
+        let count = 0;
+        let i;
 
         field.enabled = false;
 
@@ -1493,8 +1493,8 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
         }
 
         for (i=0; i < field.triggered_by_options.length; i++) {
-          var trigger = field.triggered_by_options[i];
-          var answers_field = this.findField(answers, trigger.field);
+          let trigger = field.triggered_by_options[i];
+          let answers_field = this.findField(answers, trigger.field);
           if (typeof answers_field === "undefined") {
             continue;
           }
@@ -1520,7 +1520,7 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
       },
 
       calculateScore: function(scope, field, entry) {
-        var self = this;
+        let self = this;
         let context, score, i;
 
         if (["selectbox", "multichoice"].indexOf(field.type) > -1) {
@@ -1567,10 +1567,10 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
       },
 
       updateAnswers: function(scope, parent, list, answers) {
-        var self = this;
-        var ret = false;
-        var ret_children = false;
-        var entry, option, i, j;
+        let self = this;
+        let ret = false;
+        let ret_children = false;
+        let entry, option, i, j;
 
         angular.forEach(list, function(field) {
           if (self.isFieldTriggered(scope, parent, field, scope.answers, scope.score)) {
@@ -1662,8 +1662,8 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
       },
 
       onAnswersUpdate: function(scope) {
-        var self = this;
-        var ret = false;
+        let self = this;
+        let ret = false;
         scope.block_submission = false;
         scope.score = 0;
         scope.points_to_sum = 0;
@@ -1692,7 +1692,7 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
       },
 
       parseField: function(field, parsedFields) {
-        var self = this;
+        let self = this;
 
         if (!Object.keys(parsedFields).length) {
           parsedFields.fields = [];
@@ -1717,7 +1717,7 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
       },
 
       parseFields: function(fields, parsedFields) {
-        var self = this;
+        let self = this;
 
         fields.forEach(function(field) {
           parsedFields = self.parseField(field, parsedFields);
@@ -1727,7 +1727,7 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
       },
 
       parseQuestionnaire: function(questionnaire, parsedFields) {
-        var self = this;
+        let self = this;
 
         questionnaire.steps.forEach(function(step) {
           parsedFields = self.parseFields(step.children, parsedFields);
@@ -1741,7 +1741,7 @@ factory("GLTranslate", ["$translate", "$location", "$window", "tmhDynamicLocale"
     function($translate, $location, $window, tmhDynamicLocale) {
 
   // facts are (un)defined in order of importance to the factory.
-  var facts = {
+  let facts = {
     userChoice: null,
     urlParam: null,
     userPreference: null,
@@ -1749,16 +1749,16 @@ factory("GLTranslate", ["$translate", "$location", "$window", "tmhDynamicLocale"
   };
 
   // This is a value set by the public.node.
-  var enabledLanguages = [];
+  let enabledLanguages = [];
 
-  var state = {
+  let state = {
     language: null
   };
 
   initializeStartLanguage();
 
   function initializeStartLanguage() {
-    var lang = $location.search().lang;
+    let lang = $location.search().lang;
     if (lang) {
       if (validLang(lang)) {
         facts.urlParam = lang;
@@ -1784,7 +1784,7 @@ factory("GLTranslate", ["$translate", "$location", "$window", "tmhDynamicLocale"
   // TODO updateTranslationServices should return a promise.
   function updateTranslationServices(lang) {
     // Set text direction for languages that read from right to left.
-    var useRightToLeft = ["ar", "dv", "fa", "fa_AF", "he", "ps", "ug", "ur"].indexOf(lang) !== -1;
+    let useRightToLeft = ["ar", "dv", "fa", "fa_AF", "he", "ps", "ug", "ur"].indexOf(lang) !== -1;
     document.getElementsByTagName("html")[0].setAttribute("dir", useRightToLeft ? "rtl" : "ltr");
 
     // Update the $translate module to use the new language.
@@ -1831,7 +1831,7 @@ factory("GLTranslate", ["$translate", "$location", "$window", "tmhDynamicLocale"
   // defined.
   // { object -> string }
   function bestLanguage(facts) {
-    var lang = "*";
+    let lang = "*";
     if (isSelectable(facts.userChoice)) {
       lang = facts.userChoice;
     } else if (isSelectable(facts.urlParam)) {
