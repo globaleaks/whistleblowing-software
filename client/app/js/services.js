@@ -56,8 +56,8 @@ factory("Authentication",
           }
           self.set_session(response);
           if (response.data && response.data.properties && response.data.properties.operator_new_receipt) {
-            var receipt = response.data.properties.operator_new_receipt;
-            var formatted_receipt = $rootScope.Utils.format_receipt(receipt);
+            let receipt = response.data.properties.operator_new_receipt;
+            let formatted_receipt = $rootScope.Utils.format_receipt(receipt);
             $uibModal.open({
               templateUrl: "views/modals/otkc_access.html",
               controller: "ConfirmableModalCtrl",
@@ -96,7 +96,7 @@ factory("Authentication",
               if (password) {
                 $rootScope.setPage("tippage");
               } else {
-                //$rootScope.setPage("homepage");
+
               }
               $location.path("/");
             } else {
@@ -1080,15 +1080,15 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
     },
 
     getMinPostponeDate: function(currentExpirationDate) {
-      var minDate = new Date();
+      let minDate = new Date();
       minDate.setDate(minDate.getDate() + 90);
       currentExpirationDate = new Date(currentExpirationDate);
       return currentExpirationDate > minDate ? minDate : currentExpirationDate;
     },
 
     getPostponeDate: function(currentExpirationDate, ttl) {
-      var minPostponeDate = this.getMinPostponeDate(currentExpirationDate);
-      var date = new Date();
+      let minPostponeDate = this.getMinPostponeDate(currentExpirationDate);
+      let date = new Date();
       date.setDate(date.getDate() + ttl + 1);
       date.setUTCHours(0, 0, 0, 0);
       return date > minPostponeDate ? date : minPostponeDate;
@@ -1521,7 +1521,7 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
 
       calculateScore: function(scope, field, entry) {
         var self = this;
-        var context, score, i;
+        let context, score, i;
 
         if (["selectbox", "multichoice"].indexOf(field.type) > -1) {
           for(i=0; i<field.options.length; i++) {
