@@ -79,7 +79,7 @@ controller("AudioUploadCtrl", ["$scope", "flowFactory", "Utils", "mediaProcessor
           return;
         }
 
-        var data = {
+        let data = {
           tag: "audio",
           blob: $scope.recording_blob
         };
@@ -145,15 +145,15 @@ controller("AudioUploadCtrl", ["$scope", "flowFactory", "Utils", "mediaProcessor
 
     await mediaProcessor.enableNoiseSuppression(stream);
 
-    var context = new AudioContext();
-    var mediaStreamDestination = new MediaStreamAudioDestinationNode(context);
+    let context = new AudioContext();
+    let mediaStreamDestination = new MediaStreamAudioDestinationNode(context);
     const source = context.createMediaStreamSource(stream);
     const anonymization_filter = new anonymizeSpeaker(context);
 
     source.connect(anonymization_filter.input);
     anonymization_filter.output.connect(mediaStreamDestination);
 
-    var recorder = new MediaRecorder(mediaStreamDestination.stream);
+    let recorder = new MediaRecorder(mediaStreamDestination.stream);
     recorder.onstop = onRecorderStop;
     recorder.ondataavailable = onRecorderDataAvailable;
     recorder.start();
