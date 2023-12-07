@@ -15,10 +15,10 @@ GL.controller("TipCtrl",
     $scope.audioFiles = {};
 
     $scope.loadAudioFile = function(reference_id) {
-      for (var i=0; i < $scope.tip.wbfiles.length; i++) {
+      for (let i=0; i < $scope.tip.wbfiles.length; i++) {
         if ($scope.tip.wbfiles[i].reference_id === reference_id) {
-          var id = $scope.tip.wbfiles[i].id;
-          var xhr = new XMLHttpRequest();
+          let id = $scope.tip.wbfiles[i].id;
+          let xhr = new XMLHttpRequest();
 
           if ($scope.Authentication.session.role === "whistleblower") {
             xhr.open("GET", "api/whistleblower/wbfiles/" + id, true);
@@ -41,7 +41,7 @@ GL.controller("TipCtrl",
                   return;
                 }
 
-                var data = {
+                let data = {
                   tag: "audio",
                   blob: $scope.audioFiles[reference_id]
                 };
@@ -87,7 +87,7 @@ GL.controller("TipCtrl",
           "args": {}
         }
       }).then(function (response) {
-        var selectable_recipients = [];
+        let selectable_recipients = [];
 
         $scope.public.receivers.forEach(async (receiver) => {
           if (receiver.id !== $scope.Authentication.session.user_id && !$scope.tip.receivers_by_id[receiver.id]) {
@@ -151,11 +151,11 @@ GL.controller("TipCtrl",
           arg: {
             tip: angular.copy($scope.tip),
             submission_statuses: function() {
-              var sub_copy = angular.copy($scope.submission_statuses);
-              var output = [];
-              for (var x of sub_copy) {
+              let sub_copy = angular.copy($scope.submission_statuses);
+              let output = [];
+              for (let x of sub_copy) {
                 if (x.substatuses.length) {
-                  for (var y of x.substatuses) {
+                  for (let y of x.substatuses) {
                     output.push({
                       id: x.id + ":" + y.id,
                       label: $filter("translate")(x.label) + " \u2013 " +
@@ -173,7 +173,7 @@ GL.controller("TipCtrl",
           },
           confirmFun: function () {
             return function (tip) {
-              var statuses = tip.status.split(":");
+              let statuses = tip.status.split(":");
               if (statuses.length == 2) {
                 tip.status = statuses[0];
                 tip.substatus = statuses[1];
@@ -194,7 +194,7 @@ GL.controller("TipCtrl",
         "operation": "get_users_names",
         "args": {}
       }}).then(function(response) {
-        var selectable_recipients = [];
+        let selectable_recipients = [];
 
         $scope.public.receivers.forEach(async (receiver) => {
           if (receiver.id !== $scope.Authentication.session.user_id && !$scope.tip.receivers_by_id[receiver.id]) {
@@ -235,7 +235,7 @@ GL.controller("TipCtrl",
         "operation": "get_users_names",
         "args": {}
       }}).then(function(response) {
-        var selectable_recipients = [];
+        let selectable_recipients = [];
 
         $scope.public.receivers.forEach(async (receiver) => {
           if (receiver.id !== $scope.Authentication.session.user_id && $scope.tip.receivers_by_id[receiver.id]) {
