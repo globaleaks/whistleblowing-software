@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "helm-chart.fullname" . }}
+  name: {{ include "globaleaks.fullname" . }}
   labels:
-    {{- include "helm-chart.labels" . | nindent 4 }}
+    {{- include "globaleaks.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "helm-chart.fullname" . }}
+    name: {{ include "globaleaks.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
