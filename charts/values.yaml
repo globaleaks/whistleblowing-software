@@ -80,3 +80,10 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+persistence:
+  enabled: true
+  existingClaim: ""
+  storageClassName: ""
+  accessMode: ReadWriteOnce
+  size: 1Gi

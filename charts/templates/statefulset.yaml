@@ -34,9 +34,9 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          # volumeMounts:
-          # - name: globaleaks-pvc
-          #   mountPath: /usr/bin/python3
+          volumeMounts:
+          - name: globaleaks-pvc
+            mountPath: /app
           ports:
             - name: https
               containerPort: {{ .Values.service.port }}
@@ -63,11 +63,11 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-  # volumeClaimTemplates:
-  # - metadata:
-  #     name: globaleaks-pvc
-  #   spec:
-  #     accessModes: [ "ReadWriteOnce" ]
-  #     resources:
-  #       requests:
-  #         storage: 1Gi
+  volumeClaimTemplates:
+    - metadata:
+        name: globaleaks-pvc
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1Gi
