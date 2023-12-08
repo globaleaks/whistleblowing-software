@@ -17,6 +17,6 @@ RUN apt-get update -q && \
 EXPOSE 8080
 EXPOSE 8443
 
-USER globleaks
+USER globaleaks
 
 CMD ["/usr/bin/python3", "/usr/bin/globaleaks", "--working-path=/var/globaleaks/", "-n"]
