@@ -87,3 +87,4 @@ persistence:
   storageClassName: ""
   accessMode: ReadWriteOnce
   size: 1Gi
+  
